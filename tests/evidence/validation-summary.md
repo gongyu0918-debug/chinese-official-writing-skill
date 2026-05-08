@@ -2,7 +2,7 @@
 
 Date: 2026-05-08
 
-This file records anonymized validation results for the `official-writing` skill. It does not include raw prompts, raw generated official documents, user project materials, private company information, or identifiable internal data.
+This file records anonymized validation results for the `chinese-official-writing` skill. It does not include raw prompts, raw generated official documents, user project materials, private company information, or identifiable internal data.
 
 ## Structural Validation
 

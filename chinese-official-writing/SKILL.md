@@ -1,9 +1,20 @@
 ---
-name: official-writing
-description: Use when drafting or revising Chinese official-style documents and formal enterprise/government materials, including notices, requests for instructions, reports, explanatory notes, plans, applications, letters, replies/approvals, opinions, decisions, announcements/public notices, bulletins, meeting minutes, work points, work summaries, research reports, feasibility studies, implementation plans, construction plans, review materials, AI computing power service feasibility reports, computing resource procurement or leasing plans, GPU/server rental procurement materials, and technical service requirement documents that require structured argumentation, official prose, formatting discipline, and low-AI-flavor wording.
+name: chinese-official-writing
+description: Use when drafting or revising Chinese official-style documents and formal enterprise/government materials, including notices, requests for instructions, reports, explanatory notes, plans, applications, letters, replies/approvals, opinions, decisions, announcements/public notices, bulletins, meeting minutes, work points, work summaries, research reports, feasibility studies, implementation plans, construction plans, review materials, AI computing power service feasibility reports, computing resource procurement or leasing plans, GPU/server rental procurement materials, and technical service requirement documents that require structured argumentation, Chinese official prose, formatting discipline, and low-AI-flavor wording. Not intended for English prose writing.
+license: MIT-0
+metadata:
+  openclaw:
+    version: "1.0.0"
+    emoji: "📝"
+    tags:
+      - chinese
+      - official-document
+      - writing
+      - gongwen
+      - ai-compute
 ---
 
-# Official Writing
+# Chinese Official Writing
 
 Use this skill to produce Chinese official-style writing that reads like a document body, not like instructions about how to write a document.
 

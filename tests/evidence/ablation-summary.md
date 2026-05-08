@@ -8,9 +8,9 @@ This summary describes anonymized ablation results. Raw test prompts and raw gen
 
 Setup:
 
-- Same common official-writing tasks were given to two isolated agents.
+- Same common Chinese official-document writing tasks were given to two isolated agents.
 - One agent received only minimal task prompts and no skill.
-- One agent used `official-writing`.
+- One agent used `chinese-official-writing`.
 - The outputs were reviewed with the lint helper and by an independent blind reviewer.
 
 Result:
@@ -30,7 +30,7 @@ Setup:
 
 - Same AI-compute tasks were given to two isolated agents.
 - One agent received only minimal task prompts and no skill.
-- One agent used `official-writing` with the AI-compute reference.
+- One agent used `chinese-official-writing` with the AI-compute reference.
 - A blind reviewer compared both outputs.
 
 Result:
@@ -47,7 +47,7 @@ Observed difference:
 
 Setup:
 
-- A generic official-writing baseline was compared with an AI-compute-calibrated draft.
+- A generic Chinese official-document baseline was compared with an AI-compute-calibrated draft.
 
 Result:
 

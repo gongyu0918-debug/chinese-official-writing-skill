@@ -1,82 +1,121 @@
-# official-writing
+# Chinese Official Writing Skill
 
-`official-writing` is a Codex skill for Chinese official-document writing. It helps draft and revise formal Chinese materials such as notices, requests for instructions, reports, explanatory notes, plans, applications, letters, replies, approvals, public notices, circulars, meeting minutes, work summaries, research reports, feasibility studies, implementation plans, and construction plans.
+面向中文公文写作的 Codex Skill。适用于起草、改写、校对和复核中文正式材料，不面向英文写作。
 
-The skill is designed for public-sector, state-owned-enterprise, and formal enterprise writing where the document must read like a real working draft rather than a generic AI answer.
+它聚焦正式工作材料的可用性：文种清楚、视角稳定、论点前置、数据有依据、段落能落到事项安排，减少 AI 味、解释腔和模板腔。
 
-## What It Improves
+## 核心功能
 
-- Builds a manuscript blueprint before writing: outline, paragraph map, small paragraph points, paragraph review, section review, and full-document review.
-- Keeps the sponsor viewpoint stable, such as a government office, group company, project unit, or reporting unit.
-- Reduces teaching voice and side-commentary such as "this document explains..." or "the following lists...".
-- Flags common AI-flavor sentence frames and template phrases.
-- Provides genre-specific checks for common Chinese official-document types.
-- Includes a special reference for AI computing-power documents, including feasibility reports, computing resource procurement, GPU/server rental, cloud-cost comparison, SLA, operations, acceptance, and data security.
+- **公文文种适配**：支持通知、请示、报告、说明、方案、申请、函、复函、批复、意见、决定、公告、公示、通报、会议纪要、工作要点、工作总结、调研报告、可研报告、实施方案、建设方案、审查材料等。
+- **分层写作流程**：先列提纲，再拆段落，再写小段要点，最后分段成文、逐段复核、章节复核、全文复核。
+- **视角控制**：保持发文单位、报告单位、项目单位、集团公司或主管部门视角，避免写成“教别人怎么写报告”的说明文。
+- **低 AI 味检查**：识别二元对照句、递进套句、机械并列句等高频 AI 句式，提示旁白式、口语化、空泛化表达。
+- **文种要素核查**：按文种检查主送机关、来文依据、附件、时限、联系人、议定事项、资金来源、绩效目标、验收要求等要素。
+- **中文公文格式参考**：内置 GB/T 9704-2012 常见版式参考，实际使用时以单位模板优先。
+- **AI 算力类材料增强**：针对算力服务可研、算力资源采购、GPU/服务器租赁、云端部署成本对比、SLA、并发、验收、运维、数据安全等技术类正式文稿提供专项写法。
 
-## Repository Layout
+## 适用场景
 
-```text
-official-writing-skill/
-├── official-writing/
-│   ├── SKILL.md
-│   ├── agents/
-│   │   └── openai.yaml
-│   ├── references/
-│   │   ├── ai-compute-docs.md
-│   │   ├── anti-ai-patterns.md
-│   │   ├── format-gbt9704.md
-│   │   ├── genre-checklist.md
-│   │   ├── official-style.md
-│   │   ├── review-checklist.md
-│   │   └── workflow.md
-│   └── scripts/
-│       └── prose_lint.py
-└── tests/
-    └── evidence/
-        ├── ablation-summary.md
-        └── validation-summary.md
-```
+### 通用中文公文
 
-## Install
+- 部门通知、项目请示、情况报告、工作总结、调研报告、实施方案、会议纪要；
+- 国企、事业单位、机关部门内部正式材料；
+- 带批注 Word 文档的改写、压缩、顺稿和风格统一；
+- 需要去掉 AI 味、解释腔、口语化表达的正式文稿。
 
-Copy the `official-writing` folder into your Codex skills directory:
+### AI 公司和技术服务类文档
 
-```powershell
-Copy-Item -Recurse .\official-writing "$env:USERPROFILE\.codex\skills\official-writing"
-```
+- 算力服务可行性研究报告；
+- 算力资源采购或租赁方案；
+- GPU/服务器租赁技术需求；
+- 云端部署与本地租赁成本对比；
+- SLA、并发、日志审计、资源调度、运维验收章节；
+- 数据安全、敏感数据不出域、调用可追溯、责任可界定等章节。
 
-Then invoke it in prompts with:
+## 不适用场景
 
-```text
-Use $official-writing to draft a Chinese official-style implementation plan.
-```
+- 英文写作；
+- 文学创作、营销软文、社交媒体文案；
+- 需要法律、财务、采购、政策最终定稿责任的场景。此类材料可以用作初稿或复核辅助，但必须由专业人员最终审核。
 
-## Lint Helper
+## 安装
 
-The bundled lint helper reports risky prose patterns. It does not rewrite text.
+将 `chinese-official-writing` 文件夹复制到 Codex skills 目录：
 
 ```powershell
-python .\official-writing\scripts\prose_lint.py .\draft.md
-python .\official-writing\scripts\prose_lint.py .\draft.docx
+Copy-Item -Recurse .\chinese-official-writing "$env:USERPROFILE\.codex\skills\chinese-official-writing"
 ```
 
-It currently checks for high-risk paired summary frames, side-commentary, casual expressions, repeated template phrases, and vague AI-compute claims.
+使用时在提示词中调用：
 
-## Validation Evidence
+```text
+Use $chinese-official-writing 起草一份项目实施方案，保持中文公文风格。
+```
 
-This repository includes only anonymized validation summaries. Raw prompts and raw generated document drafts are not included.
+## 目录结构
 
-Summary of local validation:
+```text
+chinese-official-writing/
+├── SKILL.md
+├── agents/
+│   └── openai.yaml
+├── references/
+│   ├── workflow.md              # 分层写作流程
+│   ├── official-style.md        # 公文句式与视角控制
+│   ├── genre-checklist.md       # 常见文种要素核查
+│   ├── anti-ai-patterns.md      # AI 味、口语化、旁白式表达检查
+│   ├── format-gbt9704.md        # GB/T 9704-2012 常见格式参考
+│   ├── ai-compute-docs.md       # AI 算力和服务器租赁类文档专项规则
+│   └── review-checklist.md      # 段落、章节、全文复核清单
+└── scripts/
+    └── prose_lint.py            # 文稿风险提示脚本
+```
 
-- General official-writing true ablation: same tasks, one output without the skill and one output using the skill. The skill output had no lint findings, while the no-skill output triggered paired-summary/template warnings. A blind independent review preferred the skill output for genre format, document-body viewpoint, and public-document realism.
-- AI-compute true ablation: same AI-compute writing tasks, one output without the skill and one output using the skill. A blind independent review preferred the skill output for clearer lease rationale, Token/resource demand, cost comparison, SLA/concurrency, operations, acceptance, and data-security responsibility.
-- AI-compute rule ablation: a generic baseline was compared with an AI-compute-calibrated draft. The calibrated draft replaced vague claims with measurable service, operations, acceptance, and security content.
+## 文稿检查脚本
 
-Validation is intentionally summarized to avoid publishing private project facts, raw internal examples, or identifiable document content.
+`prose_lint.py` 只提示风险，不自动改写。
 
-## Notes
+```powershell
+python .\chinese-official-writing\scripts\prose_lint.py .\draft.md
+python .\chinese-official-writing\scripts\prose_lint.py .\draft.docx
+```
 
-- The skill does not guarantee political, legal, procurement, or accounting correctness. Human review is required before official use.
-- When the source document has a unit-specific Word template, the template should take priority over default GB/T 9704-style settings.
-- Estimates should be clearly separated from actual data.
-- Specific names, dates, amounts, and policy references generated during drafting must be checked before use.
+可检查：
+
+- 高 AI 味句式；
+- 旁白式、教学式表达；
+- 口语化表达；
+- 模板化过渡词；
+- 算力类文档中的空泛技术表述。
+
+## 脱敏测试结论
+
+本仓库只保留脱敏测试摘要，不包含原始测试文稿、真实项目材料、内部文件名或用户数据。
+
+### 通用公文真消融
+
+同一组常见中文公文任务下，一组不使用 Skill，只给最小写作提示；另一组使用本 Skill。结果显示：
+
+- Skill 输出未触发已知 AI 句式和模板化表达检查；
+- 非 Skill 输出出现 paired-summary 和模板化表达风险；
+- 盲审更倾向 Skill 输出，认为其文种格式、正文视角、正式要素和可用性更接近真实公文初稿。
+
+### AI 算力类文档真消融
+
+同一组算力服务可研、GPU 租赁、云端成本对比、SLA 与数据安全任务下，一组不使用 Skill，另一组使用本 Skill。结果显示：
+
+- Skill 输出更能说明“为什么租”“Token/资源需求从哪里来”“成本如何比较”“SLA 和并发如何保障”“验收和运维如何落地”；
+- 非 Skill 输出通常能说明主题，但更像概括性说明；
+- Skill 输出更接近可决策、可采购、可验收、可履约的技术类正式文稿。
+
+## 使用建议
+
+- 写长文时先让 Skill 输出提纲和段落安排，再逐章写正文；
+- 有真实数据时优先使用真实数据，没有数据时明确写成测算或留空；
+- 单位有 Word 模板时，以单位模板优先；
+- 生成的具体日期、金额、政策依据、机构名称和责任分工必须人工复核；
+- 对正式上报、采购、合同、审计和涉法材料，应由相关专业人员复核后再使用。
+
+## License
+
+MIT-0。发布到 ClawHub 的 Skill 按 ClawHub/OpenClaw 规则视为 MIT-0 许可。
