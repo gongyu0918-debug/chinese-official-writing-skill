@@ -38,45 +38,57 @@
 python .\tools\sync_adapters.py
 ```
 
-## 安装与调用
+## 安装 Prompt
 
-### Codex
+如果你的 agent 支持通过自然语言执行安装任务，可以直接复制下面的安装 prompt。这里默认 agent 能访问 GitHub，不要求额外安装 SkillHub、ClawHub 或其他 CLI；prompt 只说明从哪个仓库拉取、安装哪个目录、保留哪些文件。
+
+### Codex / OpenAI Skill
+
+安装 prompt：
+
+```text
+请从 GitHub 仓库 https://github.com/gongyu0918-debug/chinese-official-writing-skill 拉取 chinese-official-writing/ 目录，并将其安装到 Codex 的 skills 目录，目标路径为 ~/.codex/skills/chinese-official-writing。只安装该 Skill 目录，不安装 tests/、output/ 或其他适配目录；安装后确认 SKILL.md、references/、scripts/ 和 agents/ 均已保留。
+```
+
+手动命令：
 
 ```powershell
 Copy-Item -Recurse .\chinese-official-writing "$env:USERPROFILE\.codex\skills\chinese-official-writing"
 ```
 
-调用示例：
+### Claude Code
+
+安装 prompt：
 
 ```text
-Use $chinese-official-writing 起草一份关于年度数据治理工作的通知，要求文种准确、事项清楚、避免 AI 味。
+请从 GitHub 仓库 https://github.com/gongyu0918-debug/chinese-official-writing-skill 拉取完整仓库，并将仓库根目录作为 Claude Code 插件目录。安装后确认 .claude-plugin/plugin.json 存在，并加载 skills/chinese-official-writing/ 作为中文公文写作 Skill 目录；不要把 openclaw/、hermes/ 或 output/ 当作 Claude Code 主技能目录。
 ```
 
-### Claude Code
+本地插件方式：
 
 ```bash
 claude --plugin-dir .
 ```
 
-调用示例：
-
-```text
-Use the chinese-official-writing skill to revise this Chinese implementation plan. Keep the issuing-unit viewpoint, remove teaching voice, and preserve official-document style.
-```
-
 ### OpenClaw / ClawHub
 
-```powershell
-clawhub skill publish .\openclaw\skills\chinese_official_writing --slug chinese-official-writing --name "中文公文写作" --version 1.2.1 --tags "chinese,official-document,writing,gongwen,ai-compute"
-```
-
-调用示例：
+安装 prompt：
 
 ```text
-使用中文公文写作技能，按建设方案文体重写以下材料。重点说明需求来源、成本测算、实施安排和建设成效，不写成概念解释。
+请从 GitHub 仓库 https://github.com/gongyu0918-debug/chinese-official-writing-skill 拉取 openclaw/skills/chinese_official_writing/ 目录，并将其安装为 OpenClaw/ClawHub 可识别的 chinese-official-writing 技能。该适配目录的 frontmatter 使用 name: chinese_official_writing；安装后确认显示名称为“中文公文写作”，用于中文公文、可研报告、建设方案和 AI 算力采购租赁类正式材料写作。
 ```
 
+已发布版本：
+
+`chinese-official-writing@1.2.4`
+
 ### deepseek-tui
+
+安装 prompt：
+
+```text
+请从 GitHub 仓库 https://github.com/gongyu0918-debug/chinese-official-writing-skill 拉取 .agents/skills/chinese-official-writing/ 目录，并将其作为 deepseek-tui 的中文公文写作 Skill。若当前项目只识别 skills/，则改为拉取 skills/chinese-official-writing/。只安装对应的 Skill 目录，不安装 tests/ 或 output/；安装后进入 deepseek-tui，使用 /skills 确认可见，再用 /skill chinese-official-writing 启用。
+```
 
 项目内使用：
 
@@ -92,24 +104,24 @@ deepseek
 /skill chinese-official-writing
 ```
 
-调用示例：
-
-```text
-请使用 chinese-official-writing 技能，起草一份项目请示。要求一文一事，先写请批事项，再写依据、现状、资金或资源需求，结尾使用正式请批语。
-```
-
 ### Hermes
 
-将适配目录复制到 Hermes 可读取的 skills 目录，或在项目中直接引用 `hermes/skills/chinese-official-writing/`。
+安装 prompt：
+
+```text
+请从 GitHub 仓库 https://github.com/gongyu0918-debug/chinese-official-writing-skill 拉取 hermes/skills/chinese-official-writing/ 目录，并将其安装为 Hermes 的 chinese-official-writing 技能。安装时保留 SKILL.md、references/ 和 scripts/，不要使用根目录 chinese-official-writing/ 替代 Hermes 适配目录。
+```
+
+手动复制：
 
 ```powershell
 Copy-Item -Recurse .\hermes\skills\chinese-official-writing "<Hermes skills 目录>\chinese-official-writing"
 ```
 
-调用示例：
+## 安装后试用
 
 ```text
-Use the chinese-official-writing skill to draft a Chinese feasibility study section. Focus on demand, cost, risk, implementation, and acceptance; avoid casual or explanatory wording.
+使用中文公文写作 Skill，起草一份项目请示。要求一文一事，先写请批事项，再写依据、现状、资金或资源需求，结尾使用正式请批语。
 ```
 
 ## 文稿检查脚本
