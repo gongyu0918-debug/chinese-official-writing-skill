@@ -38,12 +38,19 @@ PATTERNS: list[tuple[str, str, str, str]] = [
     ("medium", "side-commentary", r"以下(直接)?列出", "改为正文承接，不写提示语。"),
     ("medium", "side-commentary", r"本文将从", "改为直接进入结论或事实。"),
     ("medium", "side-commentary", r"本节主要(介绍|说明)", "改为正文判断。"),
+    ("medium", "side-commentary", r"根据有关资料显示", "核实来源后直接写事实，避免模糊背书。"),
+    ("medium", "side-commentary", r"相关情况如下", "可删除套话，直接进入事项。"),
     ("medium", "side-commentary", r"需要指出的是", "保留实质内容，删除提示语。"),
     ("medium", "side-commentary", r"值得注意的是", "保留实质内容，删除提示语。"),
     ("medium", "side-commentary", r"为了便于理解", "正式文稿中通常不需要解释腔。"),
+    ("medium", "side-commentary", r"简单来说", "正式文稿中通常不需要解释腔。"),
+    ("medium", "side-commentary", r"通俗地说", "正式文稿中通常不需要解释腔。"),
+    ("medium", "side-commentary", r"可以理解为", "正式文稿中通常不需要解释腔。"),
     ("medium", "casual", r"租赁方式更稳[，,、]?\s*也更省", "改为成本和服务保障更具确定性。"),
     ("medium", "casual", r"用不完", "改为阶段性资源余量或资源利用率。"),
     ("medium", "casual", r"AI味", "改为表述偏泛或判断不够具体。"),
+    ("medium", "casual", r"这个钱花得值", "改为投入产出关系较为清晰。"),
+    ("medium", "casual", r"(老板|领导)关心", "改为决策层重点关注。"),
     ("low", "empty-filler", r"全面赋能", "确认是否有具体机制支撑。"),
     ("low", "empty-filler", r"充分发挥", "确认后文是否说明发挥方式。"),
     ("low", "empty-filler", r"不断提升", "确认是否有具体对象或目标。"),
@@ -126,14 +133,39 @@ def excerpt(line: str, start: int, end: int) -> str:
     return re.sub(r"\s+", " ", value)
 
 
+def inside_inline_code(line: str, start: int, end: int) -> bool:
+    """Return True when a match is entirely inside a Markdown inline-code span."""
+    spans: list[tuple[int, int]] = []
+    idx = 0
+    while True:
+        left = line.find("`", idx)
+        if left == -1:
+            break
+        right = line.find("`", left + 1)
+        if right == -1:
+            break
+        spans.append((left, right + 1))
+        idx = right + 1
+    return any(left <= start and end <= right for left, right in spans)
+
+
 def scan(path_label: str, text: str) -> list[Finding]:
     findings: list[Finding] = []
     lines = text.splitlines() or [text]
 
     compiled = [(severity, label, re.compile(pattern), advice) for severity, label, pattern, advice in PATTERNS]
+    in_fence = False
     for line_no, line in enumerate(lines, start=1):
+        stripped = line.strip()
+        if stripped.startswith("```"):
+            in_fence = not in_fence
+            continue
+        if in_fence:
+            continue
         for severity, label, regex, advice in compiled:
             for match in regex.finditer(line):
+                if inside_inline_code(line, match.start(), match.end()):
+                    continue
                 findings.append(
                     Finding(
                         path=path_label,

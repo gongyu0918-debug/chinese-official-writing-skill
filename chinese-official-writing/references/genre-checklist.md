@@ -85,7 +85,45 @@ Use this reference when drafting or reviewing common Chinese official-document g
 - Start each part with the main judgment, then list concrete work and results.
 - Avoid dense two-paragraph summaries when the user asks for a formal section.
 
+## 工作要点
+
+- State the annual or staged work objective first.
+- Organize tasks by major work lines, responsible mechanisms, timetable, and expected deliverables.
+- Use executable verbs and avoid turning every item into a slogan.
+
 ## 意见
 
 - Include overall requirements, goals, major tasks, policy measures, and organization safeguards.
 - Tie broad tasks to actual mechanisms, responsible units, applicable scenarios, or implementation paths.
+
+## 决定
+
+- State the decision matter, basis, scope, effective time, implementation requirement, and responsibility arrangement.
+- Keep the authority source clear. Do not use decision language for matters that should be handled by notice, approval, or minutes.
+
+## 调研报告
+
+- Start with the core finding or problem judgment.
+- Present research background, sample or source, current situation, key problems, cause analysis, and policy/work recommendations.
+- Avoid generic `启示` sections without evidence from the research.
+
+## 可行性研究报告
+
+- Include project background, demand, construction content, technical route, investment estimate, cost-benefit analysis, risk, implementation schedule, and conclusion.
+- Keep estimates traceable; separate actual data, calculated data, and assumptions.
+- For AI computing power documents, convert demand into Token/resource use and then into cost.
+
+## 实施方案
+
+- Clarify work objectives, implementation steps, task division, schedule, safeguards, acceptance, and follow-up management.
+- Each measure should identify what is done, by whom, when, and how it is checked.
+
+## 建设方案
+
+- Focus on why to build or lease, what will be built, how it will operate, how much it costs, and what results it will produce.
+- Avoid spending long space on concept explanation when the decision needs demand, cost, risk, and delivery evidence.
+
+## 审查材料
+
+- State review object, review basis, main findings, issues requiring attention, review opinion, and required correction or follow-up procedure.
+- Distinguish facts already verified from matters pending supplementary material.

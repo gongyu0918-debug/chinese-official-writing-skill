@@ -4,7 +4,7 @@ description: Use when drafting or revising Chinese official-style documents and 
 license: MIT-0
 metadata:
   openclaw:
-    version: "1.0.0"
+    version: "1.1.0"
     emoji: "📝"
     tags:
       - chinese
@@ -12,30 +12,52 @@ metadata:
       - writing
       - gongwen
       - ai-compute
+  hermes:
+    version: "1.1.0"
+    category: writing
+    display_name: "中文公文写作"
+    tags:
+      - chinese
+      - official-document
+      - formal-writing
+      - ai-compute
 ---
 
-# Chinese Official Writing
+# 中文公文写作
 
-Use this skill to produce Chinese official-style writing that reads like a document body, not like instructions about how to write a document.
+使用本技能生成或修改中文正式文稿。最终文本应像文稿正文，而不是写作说明、概念讲解或外部顾问点评。
 
-## Core Workflow
+## 核心流程
 
-1. Identify the document type, audience, sponsor viewpoint, core conclusion, required data, latest source file, and user comments. If these are mostly available, proceed without asking.
-2. Build a manuscript blueprint before writing: outline -> paragraph map -> small paragraph points.
-3. Draft by section or paragraph. Each paragraph serves one argument and normally follows: conclusion first, fact support, judgment, project/work landing point.
-4. Review each small paragraph before merging. Then review each section. Then review the full document.
-5. When editing DOCX, preserve the user's latest version and existing styles; create a new version unless the user asks to overwrite. Use the document/DOCX skill for Word operations and render checks.
+1. 先确认文种、受文对象、发文或报告主体、核心结论、必要数据、最新底稿和用户批注。信息基本够用时直接推进。
+2. 成文前先搭文稿蓝图：提纲 -> 段落安排 -> 小段要点。
+3. 按章节或段落生成正文。每段只服务一个论点，通常按“结论前置、事实支撑、判断归纳、事项落点”展开。
+4. 小段写完先审，小节写完再审，全文合并后做总审。
+5. 编辑 DOCX 时保留用户最新版和原有样式；除非用户要求覆盖，一律另存新版本。Word 操作和版式核查配合 DOCX/document 技能完成。
 
-## Required Discipline
+## 写作纪律
 
-- Write from the sponsor's viewpoint, such as the group company, government office, project unit, or reporting unit. Avoid a detached teaching or commentary voice.
-- Keep data and claims traceable. Do not invent actual data; label estimates as estimates or calculations.
-- Prefer plain official prose over technical display. Use specialized terms only when they help the argument.
-- Avoid side-commentary, teaching voice, casual phrasing, and high-AI-flavor paired summary frames. Load `references/anti-ai-patterns.md` for Chinese examples and repair methods.
+- 从发文单位、报告单位、项目单位或主管单位视角写，不使用旁观者、教师或评论员口吻。
+- 数据和判断要可追溯。不编造实际数据；测算和预估必须标明性质。
+- 以正式、平实、可执行的公文语言为主。专业词只在支撑论证时使用。
+- 避免旁白式、教学式、口语化和高 AI 味的二元包装句。中文反例和修法见 `references/anti-ai-patterns.md`。
+- 起草算力、采购、租赁或服务器租赁材料时，论证重点放在需求从哪里来、Token/资源如何换算成费用、节省或锁定了哪些成本，以及 SLA、并发、安全、交付和验收如何落实。
 
-## References
+## 常见错误反例
 
-Load only the reference needed for the current task:
+定稿前用以下反例快速自查：
+
+- **旁白式写法**：`本方案重点说明三个问题。` -> 直接写正文判断，如 `项目年度调用需求主要来自审校、内容生产、知识库问答和智能体应用。`
+- **教学式写法**：`重点说明 Token 用在哪里。` -> 改写为业务事实，如 `Token 调用主要消耗在长文审校、批量稿件处理、多轮问答和知识库检索环节。`
+- **口语化判断**：`租赁方式更稳，也更省。` -> 改写为正式判断，如 `租赁服务方式有利于稳定三年成本、缩短建设周期并明确服务保障责任。`
+- **视角错位**：不要像外部顾问讲解“报告应该怎么写”，要从发文或项目主体视角说明本单位拟做什么、为什么做、如何做。
+- **文种错位**：请示要有明确请批事项；报告不得夹带审批请求；通知要写清对象、时限、材料和办理要求。
+- **成本链条断裂**：不要把 Token、TOPS、服务器数量和金额混在一起。面向决策层论证成本时，先写需求，再换算 Token 或资源，再换算金额。
+- **技术空话**：`建设先进算力平台，满足未来发展需要。` -> 补充使用单位、业务系统、Token 增长、并发、SLA、部署边界和验收要求。
+
+## 参考资料
+
+按任务只读取需要的资料：
 
 - `references/workflow.md`: staged blueprint writing process and review gates.
 - `references/official-style.md`: official-document sentence patterns, viewpoint control, and argument structure.
@@ -45,6 +67,6 @@ Load only the reference needed for the current task:
 - `references/ai-compute-docs.md`: AI computing power, GPU/server rental, model service, procurement, leasing, feasibility, cost-comparison, SLA, and security writing patterns.
 - `references/review-checklist.md`: paragraph, section, and full-document audit checklist.
 
-## Script
+## 脚本
 
-Use `scripts/prose_lint.py` on `.txt`, `.md`, or `.docx` drafts when checking for banned patterns. It reports risks only; it does not rewrite text.
+检查 `.txt`、`.md` 或 `.docx` 草稿时使用 `scripts/prose_lint.py`。脚本只提示风险，不自动改写。

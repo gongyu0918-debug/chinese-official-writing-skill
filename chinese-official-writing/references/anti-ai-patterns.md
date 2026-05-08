@@ -30,6 +30,8 @@ Avoid phrases that tell the reader what the document is doing:
 
 - `本方案重点说明三个问题`
 - `重点说明 Token 用在哪里`
+- `根据有关资料显示`
+- `相关情况如下`
 - `以下直接列出`
 - `本文将从……`
 - `本节主要介绍`
@@ -54,6 +56,8 @@ Replace:
 - `AI 味` -> `表述偏泛、判断不够具体`
 - `搞清楚` -> `厘清`
 - `哪里需要 Token` -> `Token 调用需求主要集中于`
+- `这个钱花得值` -> `投入产出关系较为清晰`
+- `老板/领导关心` -> `决策层重点关注`
 
 ## Empty Fillers
 
@@ -94,3 +98,13 @@ For computing power, GPU/server rental, model service, and AI platform documents
 - `自主可控`, unless followed by deployment boundary, data location, permission, key, log, and audit measures.
 - `成本更低`, unless the comparison period, demand, and cost items are stated.
 - `满足未来发展需要`, unless it explains users, Token, concurrency, model upgrades, or agent workflows.
+
+## Common Official-Writing Mistakes
+
+- 文种错位：把请示写成报告，或者在报告中夹带请求审批事项。
+- 主体错位：把发文单位写成旁观者、顾问或写作教师。
+- 结论后置：先铺概念、背景、趋势，最后才写项目判断。
+- 论据空转：有观点无数据，有数据不换算，有金额不说明对应需求。
+- 技术堆叠：列一串模型、GPU、并发、SLA 名词，但不说明业务使用场景。
+- 成本比较失衡：只比较单项 API 价格，不比较云资源、运维、安全、服务保障和扩容风险。
+- 责任缺位：方案写了目标和任务，但没有实施主体、时间安排、验收方式和后续管理。
