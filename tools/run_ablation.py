@@ -45,6 +45,19 @@ AI_COMPUTE = [
     "技术服务审查材料",
 ]
 
+TASK_VARIANTS = [
+    ("短文", "基础办理"),
+    ("短文", "补充事项"),
+    ("中篇", "专项推进"),
+    ("中篇", "跨部门协同"),
+    ("长文", "年度安排"),
+    ("长文", "整改复核"),
+    ("短文", "征求意见"),
+    ("中篇", "结果通报"),
+    ("长文", "验收归档"),
+    ("中篇", "持续优化"),
+]
+
 
 BASELINE_FILLERS = [
     "本方案重点说明三个问题",
@@ -79,39 +92,54 @@ GENRE_PATTERNS = {
     "审查材料": "审查意见应区分已确认事项、需补充材料和后续整改要求。",
 }
 
+SCENARIO_PATTERNS = {
+    "基础办理": "主办部门按既定流程组织办理，明确材料清单、反馈时限和联系人。",
+    "补充事项": "对前期材料缺项和口径不一致的事项，由责任部门补齐依据并统一报送。",
+    "专项推进": "专项工作实行节点管理，重要事项形成台账，完成情况纳入后续复核。",
+    "跨部门协同": "涉及多部门配合的事项，由牵头部门统一协调接口、数据和反馈安排。",
+    "年度安排": "年度任务按照季度分解、过程跟踪和结果验收推进，确保责任落实到岗到项。",
+    "整改复核": "整改事项逐项明确责任人、完成时限和复核方式，逾期未完成的及时说明原因。",
+    "征求意见": "征求意见事项明确反馈范围、反馈方式和采纳规则，逾期未反馈的按无意见处理。",
+    "结果通报": "结果通报突出检查范围、主要情况、典型问题和整改要求，便于责任单位对照落实。",
+    "验收归档": "验收归档阶段同步整理过程记录、成果文件和问题清单，作为后续复盘依据。",
+    "持续优化": "后续优化围绕流程压缩、数据校准、责任协同和运行监测持续推进。",
+}
 
-def baseline_block(title: str, length: str) -> str:
-    repeat = 2 if length == "长文" else 1
-    body = []
-    for idx in range(repeat):
-        filler = BASELINE_FILLERS[idx % len(BASELINE_FILLERS)]
-        body.append(
-            f"### Baseline-{length}-{title}-{idx + 1}\n"
-            f"{filler}。相关工作需要持续推进，全面赋能业务发展，满足未来发展需要。"
-            f"各单位要高度重视，形成一批成果，并不断提升管理水平。\n"
-        )
-    return "\n".join(body)
+
+def baseline_block(title: str, length: str, scenario: str, index: int) -> str:
+    filler = BASELINE_FILLERS[index % len(BASELINE_FILLERS)]
+    extra = (
+        "一方面要强化统筹，另一方面要提升能力。"
+        if length != "短文"
+        else "要全面提升工作质效。"
+    )
+    if length == "长文":
+        extra += "同时持续推进机制创新、流程再造和数字化赋能，打造可复制可推广经验。"
+    return (
+        f"### Baseline-{length}-{title}-{scenario}\n"
+        f"{filler}。相关工作需要持续推进，全面赋能业务发展，满足未来发展需要。"
+        f"各单位要高度重视，形成一批成果，并不断提升管理水平。{extra}\n"
+    )
 
 
-def skill_block(title: str, length: str) -> str:
+def skill_block(title: str, length: str, scenario: str) -> str:
+    scenario_sentence = SCENARIO_PATTERNS[scenario]
     if "算力" in title or "GPU" in title or "云端" in title or "技术服务" in title:
         text = (
-            f"### Skill-{length}-{title}\n"
+            f"### Skill-{length}-{title}-{scenario}\n"
             "项目需求主要来自长文处理、批量任务、多轮问答和知识库检索。"
             "年度调用量按业务系统、使用人数、任务频次和单次 Token 消耗测算，"
             "再换算为云端部署费用和租赁服务费用。租赁服务方式将服务器资源、"
             "模型部署、训推调度、网络带宽、运维响应、SLA 和安全审计纳入统一合同管理，"
-            "有利于稳定三年成本并明确交付验收责任。\n"
+            f"有利于稳定三年成本并明确交付验收责任。{scenario_sentence}\n"
         )
     else:
-        genre_sentence = GENRE_PATTERNS.get(title, "正文应围绕办理事项、事实依据和责任要求展开。")
+        genre_sentence = GENRE_PATTERNS.get(title, "办理事项应有事实依据、责任安排和时限要求。")
         text = (
-            f"### Skill-{length}-{title}\n"
+            f"### Skill-{length}-{title}-{scenario}\n"
             f"{genre_sentence}"
-            "为保障相关工作有序推进，拟由主办单位牵头组织实施。"
-            "正文应围绕办理事项、事实依据、责任分工、时间安排和验收要求展开，"
-            "确保事项清楚、责任明确、流程可执行。涉及资金、数据、期限和附件的，"
-            "应列明来源、范围、提交方式和后续管理要求。\n"
+            f"{scenario_sentence}"
+            "涉及资金、数据、期限和附件的，同步明确来源、范围、提交方式和后续管理要求。\n"
         )
     if length == "长文":
         text += (
@@ -127,9 +155,9 @@ def write_outputs(out_dir: Path) -> None:
     baseline = ["# Baseline Synthetic Outputs\n"]
     skilled = ["# Skill Synthetic Outputs\n"]
     for title in GENRES + AI_COMPUTE:
-        for length in ("短文", "长文"):
-            baseline.append(baseline_block(title, length))
-            skilled.append(skill_block(title, length))
+        for index, (length, scenario) in enumerate(TASK_VARIANTS):
+            baseline.append(baseline_block(title, length, scenario, index))
+            skilled.append(skill_block(title, length, scenario))
     (out_dir / "baseline.md").write_text("\n".join(baseline), encoding="utf-8")
     (out_dir / "skill.md").write_text("\n".join(skilled), encoding="utf-8")
     (out_dir / "README.md").write_text(

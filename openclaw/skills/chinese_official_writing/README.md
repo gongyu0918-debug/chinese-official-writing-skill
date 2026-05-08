@@ -80,7 +80,7 @@ claude --plugin-dir .
 
 已发布版本：
 
-`chinese-official-writing@1.2.4`
+`chinese-official-writing@1.2.5`
 
 ### deepseek-tui
 
@@ -141,7 +141,9 @@ python .\chinese-official-writing\scripts\prose_lint.py .\draft.docx
 
 - 通用公文对比测试：启用 Skill 的输出在文种格式、正文视角、正式要素和初稿可用性上更稳定。
 - AI 算力类文档对比测试：启用 Skill 后，文稿更容易把需求来源、Token/资源需求、成本比较、SLA、并发、运维、验收和数据安全责任连成完整论证。
-- 扩展泛化测试：覆盖 22 类常见文体和 5 类 AI 算力技术文档，并分别设置短文、长文任务。
+- 本地 smoke/regression 消融：覆盖 22 类常见文体和 5 类 AI 算力技术文档，每类 10 个通用场景，共 270 个任务；Baseline 合成输出命中 1594 条风险，Skill 合成输出仅命中 1 条 low 级术语重复提示。
+- DeepSeek A/B/C 消融：Writer A 显式使用本 Skill，Writer B 只按普通提示生成，Evaluator C 独立评估。全量 A/B 写稿覆盖 27 类文体、每类 10 次，共 540 段对比样稿；C 有效评估 7/9 个批次，自动解析出的明确判断为 A=29、B=3、Tie=1，未返回的 2 个批次单列为待复跑，不纳入结论。
+- 社区方法借鉴：采用 baseline-vs-skill 对照、风格规则 lint、独立评估者复核和无效批次剔除的组合方式；ClawHub 上同类公文写作 Skill 多偏格式、模板或文种路由，本仓库额外强化反 AI 句式、主体视角和 AI 算力采购租赁类论证链。
 
 这些测试用于验证规则和流程有效性，不代表具体事实、政策依据、金额和采购结论已经通过业务审核。
 
@@ -158,6 +160,7 @@ python .\tools\sync_adapters.py
 ```powershell
 python .\chinese-official-writing\scripts\prose_lint.py README.md chinese-official-writing\SKILL.md
 python .\tools\run_ablation.py --out output\expanded-ablation
+python .\tools\run_deepseek_ablation.py --genres-per-batch 3 --out output\deepseek-public-ablation-v2
 ```
 
 ## License
