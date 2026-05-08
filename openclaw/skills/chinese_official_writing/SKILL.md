@@ -1,5 +1,5 @@
 ---
-name: chinese-official-writing
+name: chinese_official_writing
 description: Use when drafting or revising Chinese official-style documents and formal enterprise/government materials, including notices, requests for instructions, reports, explanatory notes, plans, applications, letters, replies/approvals, opinions, decisions, announcements/public notices, bulletins, meeting minutes, work points, work summaries, research reports, feasibility studies, implementation plans, construction plans, review materials, AI computing power service feasibility reports, computing resource procurement or leasing plans, GPU/server rental procurement materials, and technical service requirement documents that require structured argumentation, Chinese official prose, formatting discipline, and low-AI-flavor wording. Not intended for English prose writing.
 license: MIT-0
 metadata:
@@ -11,15 +11,6 @@ metadata:
       - official-document
       - writing
       - gongwen
-      - ai-compute
-  hermes:
-    version: "1.1.0"
-    category: writing
-    display_name: "中文公文写作"
-    tags:
-      - chinese
-      - official-document
-      - formal-writing
       - ai-compute
 ---
 

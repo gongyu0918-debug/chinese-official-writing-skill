@@ -1,24 +1,24 @@
-# Validation Summary
+# 验证摘要
 
-Date: 2026-05-08
+日期：2026-05-08
 
-This file records anonymized validation results for the `chinese-official-writing` skill. It does not include raw prompts, raw generated official documents, user project materials, private company information, or identifiable internal data.
+本文件记录 `chinese-official-writing` 的脱敏验证结果，不包含原始提示词、原始生成文稿、用户项目材料、企业内部信息或可识别数据。
 
-## Structural Validation
+## 结构验证
 
-- Skill folder structure validation: passed.
-- Required `SKILL.md` frontmatter validation: passed.
-- `prose_lint.py` syntax compilation: passed.
-- Script can scan plain text, Markdown, stdin, and DOCX content.
+- Skill 文件夹结构验证：通过。
+- 必需 `SKILL.md` frontmatter 验证：通过。
+- `prose_lint.py` 语法编译：通过。
+- 脚本可扫描纯文本、Markdown、stdin 和 DOCX 内容。
 
-## Lint Coverage
+## 检查覆盖
 
-The lint helper detects:
+检查脚本可提示以下风险：
 
-- paired-summary frames such as "not X but Y" style structures in Chinese,
-- side-commentary and teaching voice,
-- casual phrases unsuitable for formal documents,
-- repeated template expressions,
-- vague AI-compute claims such as "advanced computing power" without measurable indicators.
+- 中文公文中常见的二元包装句；
+- 旁白式、教学式表达；
+- 不适合正式文稿的口语化表达；
+- 重复模板表达；
+- 算力类文档中缺少指标支撑的空泛技术表述。
 
-The script reports findings only and does not rewrite user text.
+脚本只提示风险，不自动改写用户文本。

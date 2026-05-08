@@ -1,59 +1,59 @@
-# Ablation Summary
+# 消融测试摘要
 
-Date: 2026-05-08
+日期：2026-05-08
 
-This summary describes anonymized ablation results. Raw test prompts and raw generated documents are intentionally excluded.
+本文件只记录脱敏测试结论，不包含原始提示词、原始生成文稿、真实项目材料、企业内部信息或可识别数据。
 
-## General Official-Document Ablation
+## 通用公文对比测试
 
-Setup:
+测试设置：
 
-- Same common Chinese official-document writing tasks were given to two isolated agents.
-- One agent received only minimal task prompts and no skill.
-- One agent used `chinese-official-writing`.
-- The outputs were reviewed with the lint helper and by an independent blind reviewer.
+- 对同一组常见中文公文写作任务分别生成输出。
+- 一组只给最小写作提示，不启用 Skill。
+- 一组启用 `chinese-official-writing`。
+- 输出使用检查脚本和独立审查进行复核。
 
-Result:
+测试结果：
 
-- The skill output had no lint findings.
-- The no-skill output triggered paired-summary/template warnings.
-- The blind reviewer preferred the skill output for genre format, document-body viewpoint, completeness of formal elements, and realism as a usable first draft.
+- Skill 输出未触发已配置的风险提示。
+- 未启用 Skill 的输出触发了二元包装句和模板化表达提示。
+- 独立审查更认可 Skill 输出，认为其文种格式、正文视角、正式要素和初稿可用性更好。
 
-Observed difference:
+观察差异：
 
-- No-skill output was usually readable but more generic.
-- Skill output more consistently preserved document genre, added formal elements such as deadlines, attachments, responsible units, minutes metadata, and application/report headings, and reduced template flavor.
+- 未启用 Skill 的输出通常可读，但更容易泛化。
+- Skill 输出更稳定地保留文种要求，能补充时限、附件、责任单位、会议要素、申请或报告结构等正式材料要素，并减少模板感。
 
-## AI-Compute Technical Official-Document Ablation
+## AI 算力类技术文稿对比测试
 
-Setup:
+测试设置：
 
-- Same AI-compute tasks were given to two isolated agents.
-- One agent received only minimal task prompts and no skill.
-- One agent used `chinese-official-writing` with the AI-compute reference.
-- A blind reviewer compared both outputs.
+- 对同一组 AI 算力类任务分别生成输出。
+- 一组只给最小写作提示，不启用 Skill。
+- 一组启用 `chinese-official-writing` 并加载算力类参考规则。
+- 独立审查对两组输出进行比较。
 
-Result:
+测试结果：
 
-- The skill output was preferred overall.
-- It was stronger on lease rationale, Token/resource demand, cost comparison, SLA/concurrency, operations, acceptance, and data-security responsibility.
+- Skill 输出整体更优。
+- 在租赁必要性、Token 或资源需求、成本比较、SLA、并发、运维、验收和数据安全责任等方面，Skill 输出更接近正式技术文稿初稿要求。
 
-Observed difference:
+观察差异：
 
-- No-skill output often described the topic correctly but stayed closer to an explanatory overview.
-- Skill output more often used procurement/feasibility language: equivalent resources, performance basis, resource isolation, logs, monitoring, monthly utilization analysis, acceptance testing, fault recovery, replacement resources, and contract-managed service responsibilities.
+- 未启用 Skill 的输出往往能说明主题，但更接近概括性介绍。
+- Skill 输出更常使用采购和可研类材料需要的表达，例如等效资源、性能依据、资源隔离、日志、监控、月度利用分析、验收测试、故障恢复、替代资源和合同化服务责任。
 
-## AI-Compute Rule Ablation
+## 算力类规则消融
 
-Setup:
+测试设置：
 
-- A generic Chinese official-document baseline was compared with an AI-compute-calibrated draft.
+- 将通用公文基线输出与启用算力专项规则后的输出进行比较。
 
-Result:
+测试结果：
 
-- The generic baseline contained vague claims such as advanced computing power, powerful platform, or future development needs.
-- The calibrated draft replaced those claims with measurable service scope, Token demand, scheduling, monitoring, SLA, acceptance, operations, and security content.
+- 通用基线更容易出现空泛技术表述。
+- 算力专项规则能推动文稿补充服务范围、Token 需求、调度、监控、SLA、验收、运维和安全内容。
 
-## Caution
+## 使用边界
 
-These tests are smoke and regression tests, not a complete benchmark. Real official documents still require subject-matter, legal, policy, procurement, and financial review before use.
+上述测试属于 smoke/regression 测试，不构成完整基准测试。正式公文仍需结合业务、法律、政策、采购、财务和审计要求进行人工复核。
