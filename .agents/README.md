@@ -1,6 +1,6 @@
-# deepseek-tui / Agents Adapter
+# deepseek-tui / Agents 适配
 
-本目录提供 deepseek-tui 和兼容 `.agents/skills` 约定的 agent 工具适配副本：
+这个目录面向 deepseek-tui 和兼容 `.agents/skills` 约定的 agent 工具。deepseek-tui 会检查项目根目录的 `skills/` 和 `.agents/skills/`，因此仓库同时保留两处副本，方便不同工具按默认路径加载。
 
 ```text
 .agents/
@@ -9,9 +9,7 @@
         └── SKILL.md
 ```
 
-deepseek-tui 可识别仓库根目录 `skills/`，也会检查 `.agents/skills/`。本仓库保留两处副本，便于不同工具按自己的默认目录加载。
-
-源文件以仓库根目录 `chinese-official-writing/` 为准。发布或更新前运行：
+主技能目录是仓库根目录的 `chinese-official-writing/`。修改主目录后运行同步脚本：
 
 ```powershell
 python .\tools\sync_adapters.py

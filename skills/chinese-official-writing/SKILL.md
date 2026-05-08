@@ -1,10 +1,10 @@
 ---
 name: chinese-official-writing
-description: Use when drafting or revising Chinese official-style documents and formal enterprise/government materials, including notices, requests for instructions, reports, explanatory notes, plans, applications, letters, replies/approvals, opinions, decisions, announcements/public notices, bulletins, meeting minutes, work points, work summaries, research reports, feasibility studies, implementation plans, construction plans, review materials, AI computing power service feasibility reports, computing resource procurement or leasing plans, GPU/server rental procurement materials, and technical service requirement documents that require structured argumentation, Chinese official prose, formatting discipline, and low-AI-flavor wording. Not intended for English prose writing.
+description: 用于起草、改写和复核中文公文及正式工作材料，覆盖通知、请示、报告、说明、方案、申请、函、复函、批复、意见、决定、公告、公示、通报、会议纪要、工作要点、工作总结、调研报告、可研报告、实施方案、建设方案、审查材料，以及 AI 算力服务可研、算力采购或租赁、GPU/服务器租赁、技术服务需求等材料；强调文种准确、主体视角稳定、论点清楚、数据可追溯、公文语气自然、低 AI 味。不用于英文写作。
 license: MIT-0
 metadata:
   openclaw:
-    version: "1.2.0"
+    version: "1.2.1"
     emoji: "📝"
     tags:
       - chinese
@@ -13,7 +13,7 @@ metadata:
       - gongwen
       - ai-compute
   hermes:
-    version: "1.2.0"
+    version: "1.2.1"
     category: writing
     display_name: "中文公文写作"
     tags:

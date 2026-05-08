@@ -10,7 +10,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 CANONICAL = ROOT / "chinese-official-writing"
-VERSION = "1.2.0"
+VERSION = "1.2.1"
 
 TARGETS = {
     "claude": ROOT / "skills" / "chinese-official-writing",
@@ -39,6 +39,8 @@ def copy_skill(target: Path, mode: str) -> None:
     ignore = shutil.ignore_patterns("__pycache__", "*.pyc", ".DS_Store", "Thumbs.db")
     shutil.copytree(CANONICAL, target, ignore=ignore)
     patch_frontmatter(target, mode)
+    if mode == "openclaw":
+        shutil.copyfile(ROOT / "README.md", target / "README.md")
 
 
 def main() -> int:
