@@ -20,5 +20,5 @@ python .\tools\sync_adapters.py
 ClawHub 发布目录建议指向：
 
 ```powershell
-clawhub skill publish .\openclaw\skills\chinese_official_writing --slug chinese-official-writing --name "中文公文写作" --version 1.1.0 --tags "chinese,official-document,writing,gongwen,ai-compute" --changelog "Add multi-agent adapters and expanded ablation coverage."
+clawhub skill publish .\openclaw\skills\chinese_official_writing --slug chinese-official-writing --name "中文公文写作" --version 1.2.0 --tags "chinese,official-document,writing,gongwen,ai-compute" --changelog "Add deepseek-tui adapter and neutral multi-platform README wording."
 ```

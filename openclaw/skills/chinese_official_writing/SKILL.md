@@ -4,7 +4,7 @@ description: Use when drafting or revising Chinese official-style documents and 
 license: MIT-0
 metadata:
   openclaw:
-    version: "1.1.0"
+    version: "1.2.0"
     emoji: "📝"
     tags:
       - chinese

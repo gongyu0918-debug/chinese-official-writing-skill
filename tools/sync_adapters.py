@@ -10,10 +10,11 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 CANONICAL = ROOT / "chinese-official-writing"
-VERSION = "1.1.0"
+VERSION = "1.2.0"
 
 TARGETS = {
     "claude": ROOT / "skills" / "chinese-official-writing",
+    "deepseek_tui": ROOT / ".agents" / "skills" / "chinese-official-writing",
     "hermes": ROOT / "hermes" / "skills" / "chinese-official-writing",
     "openclaw": ROOT / "openclaw" / "skills" / "chinese_official_writing",
 }

@@ -1,6 +1,6 @@
 # 中文公文写作 Skill
 
-面向中文公文写作的 Codex Skill。适用于起草、改写、校对和复核中文正式材料，不面向英文写作。
+面向中文公文写作的 Agent Skill。主能力为中文正式材料起草、改写、校对和复核；仓库已分别适配 Codex/OpenAI Skill、Claude Code、OpenClaw/ClawHub、deepseek-tui 和 Hermes，不面向英文写作。
 
 它聚焦正式工作材料的可用性：文种清楚、视角稳定、论点前置、数据有依据、段落能落到事项安排，减少 AI 味、解释腔和模板腔。
 
@@ -19,7 +19,7 @@
 - **文种要素核查**：按文种检查主送机关、来文依据、附件、时限、联系人、议定事项、资金来源、绩效目标、验收要求等要素。
 - **中文公文格式参考**：内置 GB/T 9704-2012 常见版式参考，实际使用时以单位模板优先。
 - **AI 算力类材料增强**：针对算力服务可研、算力资源采购、GPU/服务器租赁、云端部署成本对比、SLA、并发、验收、运维、数据安全等技术类正式文稿提供专项写法。
-- **多 Agent 工具适配**：提供 Codex/OpenAI Skill、OpenClaw/ClawHub、Claude Code 插件和 Hermes 技能目录的兼容结构。
+- **多 Agent 工具适配**：分别提供 Codex/OpenAI Skill、Claude Code、OpenClaw/ClawHub、deepseek-tui 和 Hermes 的适配目录；各平台目录规则不同，本仓库通过同步脚本生成对应副本。
 
 ## 适用场景
 
@@ -45,35 +45,25 @@
 - 文学创作、营销软文、社交媒体文案；
 - 需要法律、财务、采购、政策最终定稿责任的场景。此类材料可以用作初稿或复核辅助，但必须由专业人员最终审核。
 
-## 安装
+## 适配目录
 
 ### Codex / OpenAI Skill
 
-将 `chinese-official-writing` 文件夹复制到 Codex skills 目录：
-
-```powershell
-Copy-Item -Recurse .\chinese-official-writing "$env:USERPROFILE\.codex\skills\chinese-official-writing"
-```
-
-使用时在提示词中调用：
-
-```text
-Use $chinese-official-writing 起草一份项目实施方案，保持中文公文风格。
-```
+使用主目录 `chinese-official-writing/`。该目录保留 Codex/OpenAI Skill 所需的 `SKILL.md`、`agents/`、`references/` 和 `scripts/`。
 
 ### OpenClaw / ClawHub
 
 仓库提供 `openclaw/skills/chinese_official_writing/` 作为 OpenClaw/ClawHub 适配目录。主技能目录为了兼容 Codex 与 Claude Code 使用 kebab-case 名称；OpenClaw 适配副本使用 snake_case `name: chinese_official_writing`，并保留 `metadata.openclaw`。
 
-发布时使用 ClawHub CLI 指向 OpenClaw 适配目录：
-
-```powershell
-clawhub skill publish .\openclaw\skills\chinese_official_writing --slug chinese-official-writing --name "中文公文写作" --version 1.1.0 --tags "chinese,official-document,writing,gongwen,ai-compute"
-```
+发布时使用 ClawHub CLI 指向 OpenClaw 适配目录，具体命令见下方“安装与调用”。
 
 ### Claude Code
 
 仓库包含 `.claude-plugin/plugin.json` 插件元数据和根目录 `skills/chinese-official-writing/` 技能副本。Claude Code 按插件目录读取时，可从插件根目录加载技能资源。
+
+### deepseek-tui
+
+deepseek-tui 可识别当前仓库根目录的 `skills/`，也可识别 `.agents/skills/`。本仓库同时提供 `skills/chinese-official-writing/` 和 `.agents/skills/chinese-official-writing/`，其中 `.agents/skills/` 适合作为 deepseek-tui 与其他兼容 agent 的通用本地适配目录。
 
 ### Hermes
 
@@ -85,12 +75,95 @@ clawhub skill publish .\openclaw\skills\chinese_official_writing --slug chinese-
 python .\tools\sync_adapters.py
 ```
 
+## 安装与调用
+
+### Codex
+
+本地安装：
+
+```powershell
+Copy-Item -Recurse .\chinese-official-writing "$env:USERPROFILE\.codex\skills\chinese-official-writing"
+```
+
+调用 prompt：
+
+```text
+Use $chinese-official-writing 起草一份关于年度数据治理工作的通知，要求文种准确、事项清楚、避免 AI 味。
+```
+
+### Claude Code
+
+本地插件方式：
+
+```bash
+claude --plugin-dir .
+```
+
+调用 prompt：
+
+```text
+Use the chinese-official-writing skill to revise this Chinese implementation plan. Keep the issuing-unit viewpoint, remove teaching voice, and preserve official-document style.
+```
+
+### OpenClaw / ClawHub
+
+发布目录：
+
+```powershell
+clawhub skill publish .\openclaw\skills\chinese_official_writing --slug chinese-official-writing --name "中文公文写作" --version 1.2.0 --tags "chinese,official-document,writing,gongwen,ai-compute"
+```
+
+调用 prompt：
+
+```text
+使用中文公文写作技能，按建设方案文体重写以下材料。重点说明需求来源、成本测算、实施安排和建设成效，不写成概念解释。
+```
+
+### deepseek-tui
+
+项目内使用：
+
+```powershell
+python .\tools\sync_adapters.py
+deepseek
+```
+
+进入 deepseek-tui 后可使用技能列表和技能调用命令：
+
+```text
+/skills
+/skill chinese-official-writing
+```
+
+调用 prompt：
+
+```text
+请使用 chinese-official-writing 技能，起草一份项目请示。要求一文一事，先写请批事项，再写依据、现状、资金或资源需求，结尾使用正式请批语。
+```
+
+### Hermes
+
+将适配目录复制到 Hermes 可读取的 skills 目录，或按项目约定引用仓库内 `hermes/skills/chinese-official-writing/`。
+
+```powershell
+Copy-Item -Recurse .\hermes\skills\chinese-official-writing "<Hermes skills 目录>\chinese-official-writing"
+```
+
+调用 prompt：
+
+```text
+Use the chinese-official-writing skill to draft a Chinese feasibility study section. Focus on demand, cost, risk, implementation, and acceptance; avoid casual or explanatory wording.
+```
+
 ## 目录结构
 
 ```text
 .
 ├── .claude-plugin/
 │   └── plugin.json             # Claude Code 插件元数据
+├── .agents/
+│   └── skills/
+│       └── chinese-official-writing/ # deepseek-tui / 通用 agent 技能副本
 ├── chinese-official-writing/    # 主技能目录
 │   ├── SKILL.md
 │   ├── agents/
@@ -126,9 +199,10 @@ python .\tools\sync_adapters.py
 - **Codex / OpenAI Skill**：使用主目录 `chinese-official-writing/`，`SKILL.md` 包含完整 description、工作流、反例和引用资料。
 - **OpenClaw / ClawHub**：使用 `openclaw/skills/chinese_official_writing/`，已按 snake_case 技能名生成适配副本，并保留 OpenClaw 元数据。
 - **Claude Code**：使用 `.claude-plugin/plugin.json` 和根目录 `skills/chinese-official-writing/`，符合插件目录和技能目录分离的布局。
+- **deepseek-tui**：使用 `skills/chinese-official-writing/` 或 `.agents/skills/chinese-official-writing/`；deepseek-tui 当前技能发现规则会检查项目 `skills` 与 `.agents/skills` 目录。
 - **Hermes**：使用 `hermes/skills/chinese-official-writing/`，包含 Hermes 元数据和顶层版本字段。
 
-适配依据参考 Claude Code 插件文档、Claude Agent Skills 文档、OpenClaw/ClawHub 技能文档和 Hermes Skills 文档。不同工具的目录习惯并不完全相同，因此本仓库以主技能目录为单一来源，通过同步脚本生成适配副本。
+适配依据参考 Claude Code 插件文档、Claude Agent Skills 文档、OpenClaw/ClawHub 技能文档、deepseek-tui 仓库和 Hermes Skills 文档。不同工具的目录习惯并不完全相同，因此本仓库以主技能目录为单一来源，通过同步脚本生成适配副本。
 
 ## 文稿检查脚本
 
