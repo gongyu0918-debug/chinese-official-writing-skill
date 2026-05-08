@@ -169,7 +169,7 @@ def print_text(findings: Iterable[Finding]) -> None:
 
 
 def main(argv: list[str] | None = None) -> int:
-    parser = argparse.ArgumentParser(description="Warn about official-writing prose risks.")
+    parser = argparse.ArgumentParser(description="Warn about Chinese official-writing prose risks.")
     parser.add_argument("files", nargs="+", help="Text/Markdown/DOCX files to scan, or '-' for stdin.")
     parser.add_argument("--encoding", help="Encoding for plain-text files.")
     parser.add_argument("--json", action="store_true", help="Emit JSON findings.")

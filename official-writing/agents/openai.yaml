@@ -1,4 +1,0 @@
-interface:
-  display_name: "Official Writing"
-  short_description: "Draft and revise Chinese official documents"
-  default_prompt: "Use $official-writing to draft or revise a Chinese official-style plan, report, or research document."
