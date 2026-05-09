@@ -10,7 +10,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 CANONICAL = ROOT / "chinese-official-writing"
-VERSION = "1.2.6"
+VERSION = "1.2.10"
 
 TARGETS = {
     "claude": ROOT / "skills" / "chinese-official-writing",
@@ -33,6 +33,37 @@ def patch_frontmatter(target: Path, mode: str) -> None:
     skill_file.write_text(text, encoding="utf-8")
 
 
+def patch_openclaw_marketplace_body(target: Path) -> None:
+    """Use a marketplace-friendly body for ClawHub's web README view.
+
+    ClawHub renders the SKILL.md body on the public skill page, not the
+    package README.md. Keep the frontmatter executable and replace the body
+    with the public README plus a compact agent-use rule block.
+    """
+
+    skill_file = target / "SKILL.md"
+    text = skill_file.read_text(encoding="utf-8")
+    parts = text.split("---", 2)
+    if len(parts) < 3:
+        raise RuntimeError("OpenClaw SKILL.md frontmatter is malformed")
+    readme = (ROOT / "README.md").read_text(encoding="utf-8").strip()
+    agent_rules = """
+
+## Agent 使用规则
+
+安装后执行写作任务时，仍按以下规则处理：
+
+1. 先确认文种、受文对象、发文或报告主体、核心结论、必要数据、最新底稿和用户批注。
+2. 成文前先搭文稿蓝图：提纲 -> 段落安排 -> 小段要点。
+3. 按章节或段落生成正文，每段只服务一个论点，通常按“结论前置、事实支撑、判断归纳、事项落点”展开。
+4. 从发文单位、报告单位、项目单位或主管单位视角写，不使用旁观者、教师或评论员口吻。
+5. 数据和判断要可追溯；不编造实际数据，测算和预估必须标明性质。
+6. 起草算力、采购、租赁或服务器租赁材料时，论证重点放在需求来源、Token/资源换算、成本比较、SLA、并发、安全、交付和验收。
+7. 检查 `.txt`、`.md` 或 `.docx` 草稿时，可使用 `scripts/prose_lint.py`。脚本只提示风险，不自动改写。
+"""
+    skill_file.write_text(f"---{parts[1]}---\n\n{readme}{agent_rules}", encoding="utf-8")
+
+
 def copy_skill(target: Path, mode: str) -> None:
     if target.exists():
         shutil.rmtree(target)
@@ -41,6 +72,7 @@ def copy_skill(target: Path, mode: str) -> None:
     patch_frontmatter(target, mode)
     if mode == "openclaw":
         shutil.copyfile(ROOT / "README.md", target / "README.md")
+        patch_openclaw_marketplace_body(target)
 
 
 def main() -> int:

@@ -1,18 +1,12 @@
 # 中文公文写作 Skill
 
-[![ClawHub](https://img.shields.io/badge/ClawHub-chinese--official--writing-blue)](https://github.com/gongyu0918-debug/chinese-official-writing-skill)
+[![ClawHub](https://img.shields.io/badge/ClawHub-chinese--official--writing-blue)](https://clawhub.ai/gongyu0918-debug/chinese-official-writing)
 [![License](https://img.shields.io/badge/license-MIT--0-green)](LICENSE)
 [![Language](https://img.shields.io/badge/language-中文公文-red)](#适用范围)
 
-面向中文正式材料写作的 Agent Skill，专门约束 agent 生成更接近正式公文、工作材料和技术类正式文稿的草稿。
+中文公文写作 Skill 面向正式材料起草、改写和复核场景，提供文种路由、文稿蓝图、主体视角校验、低 AI 味审查和技术类材料专项论证约束。
 
-它重点解决三个问题：
-
-- **文种不稳**：请示写成报告、说明写成方案、函写成通知。
-- **视角漂移**：正文像外部顾问讲解，缺少发文单位、报告单位或项目单位立场。
-- **AI 味重**：出现二元对照句、旁白式开场、口语化判断等解释腔表达。
-
-对 AI 算力、服务器租赁、云端部署成本对比等材料，Skill 会额外约束论证链条：**需求来源 -> Token/资源测算 -> 成本比较 -> SLA/并发/安全/验收**。
+主要覆盖文种要素校正、主体视角统一、句式风险压降和技术类材料论证。AI 算力、服务器租赁、云端部署成本对比等材料按 **需求来源 -> Token/资源测算 -> 成本比较 -> SLA/并发/安全/验收** 组织正文。
 
 ## 适用范围
 
@@ -23,7 +17,7 @@
 | 技术类正式材料 | AI 算力服务可研、算力资源采购或租赁、GPU/服务器租赁、云端部署成本对比、SLA 与并发保障、数据安全、运维验收 |
 | Word 文稿 | 带批注文档改写、压缩、顺稿、去口语化、统一文风 |
 
-不建议用于英文写作、文学创作、营销软文、社交媒体文案。涉及法律、财务、采购、审计和政策依据的正式上报材料，应由专业人员最终复核。
+适用边界为中文正式材料。英文写作、文学创作、营销软文、社交媒体文案不在覆盖范围内。法律、财务、采购、审计和政策依据类正式上报材料保留人工复核环节。
 
 ## 核心能力
 
@@ -35,8 +29,6 @@
 - **多平台适配**：已适配 Codex/OpenAI Skill、Claude Code、OpenClaw/ClawHub、deepseek-tui 和 Hermes。
 
 ## 安装 Prompt
-
-如果你的 agent 支持通过自然语言执行安装任务，可以直接复制下面的安装 prompt。这里默认 agent 能访问 GitHub，不要求额外安装 SkillHub、ClawHub 或其他 CLI；prompt 只说明从哪里拉取、安装哪个目录、保留哪些文件。
 
 ### Codex / OpenAI Skill
 
@@ -50,7 +42,7 @@
 请从 GitHub 仓库 https://github.com/gongyu0918-debug/chinese-official-writing-skill 拉取 openclaw/skills/chinese_official_writing/ 目录，并将其安装为 OpenClaw/ClawHub 可识别的 chinese-official-writing 技能。该适配目录的 frontmatter 使用 name: chinese_official_writing；安装后确认显示名称为“中文公文写作”，用于中文公文、可研报告、建设方案和 AI 算力采购租赁类正式材料写作。
 ```
 
-已发布版本：`chinese-official-writing@1.2.6`
+已发布版本：`chinese-official-writing@1.2.10`
 
 ### Claude Code
 
@@ -70,7 +62,7 @@
 请从 GitHub 仓库 https://github.com/gongyu0918-debug/chinese-official-writing-skill 拉取 hermes/skills/chinese-official-writing/ 目录，并将其安装为 Hermes 的 chinese-official-writing 技能。安装时保留 SKILL.md、references/ 和 scripts/，不要使用根目录 chinese-official-writing/ 替代 Hermes 适配目录。
 ```
 
-## 快速试用
+## 试用 Prompt
 
 通用公文：
 
@@ -81,7 +73,7 @@
 技术类正式材料：
 
 ```text
-使用中文公文写作 Skill，起草一段 AI 算力资源租赁方案。要求说明 Token 需求从哪里来、云端部署成本为什么会上升、租赁服务如何保障 SLA、并发和数据安全。
+使用中文公文写作 Skill，起草一段 AI 算力资源租赁方案。要求写明 Token 需求来源、云端部署成本上升因素、租赁服务对 SLA、并发和数据安全的保障安排。
 ```
 
 审稿与降 AI 味：
@@ -90,7 +82,7 @@
 使用中文公文写作 Skill，检查这段建设方案是否存在视角错位、解释腔、口语化判断和二元对照句，只给出需要修改的位置和建议。
 ```
 
-## 目录说明
+## 目录结构
 
 | 路径 | 用途 |
 | --- | --- |
@@ -100,7 +92,7 @@
 | `openclaw/skills/chinese_official_writing/` | OpenClaw/ClawHub 发布目录 |
 | `hermes/skills/chinese-official-writing/` | Hermes 适配目录 |
 
-修改主技能目录后，运行同步脚本更新各平台副本：
+同步各平台副本：
 
 ```powershell
 python .\tools\sync_adapters.py
@@ -108,11 +100,11 @@ python .\tools\sync_adapters.py
 
 ## 评测数据
 
-仓库只保留脱敏测试摘要，不保存原始公文、真实项目材料、内部路径或个人信息。
+公开仓库保留脱敏测试摘要，不保存原始公文、真实项目材料、内部路径或个人信息。
 
 ### 本地 smoke/regression 消融
 
-本地脚本生成 Baseline 与 Skill 两组合成输出，用于检查文种覆盖、反 AI 规则和算力类论证链。每类文种 10 次，共 270 个任务。
+测试任务分为 Baseline 与 Skill 两组，覆盖文种适配、反 AI 规则和算力类论证链。每类文种 10 次，共 270 个任务。
 
 | 指标 | Baseline | Skill |
 | --- | ---: | ---: |
@@ -124,9 +116,9 @@ python .\tools\sync_adapters.py
 
 ### DeepSeek A/B/C 隔离消融
 
-Writer A 显式使用本 Skill，Writer B 只按普通提示生成，Evaluator C 使用独立上下文评估。全量 A/B 写稿覆盖 27 类文体、每类 10 次，共 540 段对比样稿；C 有效评估 7/9 个批次，自动解析出的明确判断为 A=29、B=3、Tie=1。未返回的 2 个批次单列为待复跑，不纳入结论。
+Writer A 调用技能规则，Writer B 按普通提示生成，Evaluator C 使用独立上下文评估。A/B 写稿覆盖 27 类文体、每类 10 次，共 540 段对比样稿；C 有效评估 7/9 个批次，自动解析出的明确判断为 A=29、B=3、Tie=1。未返回的 2 个批次单列为待复跑。
 
-下表列出每个文种的消融次数和本地风险扫描结果。由于本地 smoke/regression 使用相同数量、相同结构的合成反例模板，各文种 Baseline 风险数均为 59；Skill 输出在文种层面未命中风险，另有 1 条 Skill 全局术语重复提示未归入单一文种。该表用于验证规则覆盖和回归稳定性，不等同于真实公文语料的自然分布。
+本地 smoke/regression 采用相同数量、相同结构的合成反例模板。各文种 Baseline 风险数均为 59；Skill 输出在文种层面未命中风险，另有 1 条全局术语重复提示未归入单一文种。
 
 | 文种 | 本地消融次数 | Baseline 风险 | Skill 风险 | DeepSeek A/B 生成 | C 独立评估 |
 | --- | ---: | ---: | ---: | ---: | --- |
@@ -158,13 +150,13 @@ Writer A 显式使用本 Skill，Writer B 只按普通提示生成，Evaluator C
 | 云端部署成本对比说明 | 10 | 59 | 0 | 10 | 有效 |
 | 技术服务审查材料 | 10 | 59 | 0 | 10 | 有效 |
 
-评测结论只证明规则约束和工作流在测试样本中有效，不代表具体事实、政策依据、金额、采购结论已经通过业务审核。
+评测范围限定为脱敏测试样本。事实、政策依据、金额和采购结论保留人工复核环节。
 
-DeepSeek A/B/C 的判断标准包括文种契合、主体视角、段落逻辑、正式语气、低 AI 味表达，以及算力类文稿中的“需求 -> Token/资源 -> 成本 -> SLA/安全/验收”链条。Tie 表示评估者未给出明确优劣或两组输出各有优势。
+DeepSeek A/B/C 评估项：文种契合、主体视角、段落逻辑、正式语气、低 AI 味表达，以及算力类文稿中的“需求 -> Token/资源 -> 成本 -> SLA/安全/验收”链条。Tie 表示未形成明确优劣或两组输出各有优势。
 
 ## 文稿检查脚本
 
-`prose_lint.py` 用来检查草稿中的高风险表达。它只提示问题，不自动改写。
+`prose_lint.py` 检查草稿中的高风险表达。脚本仅提示问题，不自动改写。
 
 ```powershell
 python .\chinese-official-writing\scripts\prose_lint.py .\draft.md
@@ -172,12 +164,6 @@ python .\chinese-official-writing\scripts\prose_lint.py .\draft.docx
 ```
 
 可检查的风险包括：二元包装句、旁白式表达、教学腔、口语化判断、模板化过渡词，以及算力类文档中缺少指标支撑的空泛技术表述。
-
-## 设计取舍
-
-这个 README 采用开源项目常见的结构：先说明定位，再给安装、快速试用、功能表、评测数据和维护命令。这样做是为了让 ClawHub 用户在前几屏内判断三件事：能不能用、怎么装、效果有没有证据。
-
-本 Skill 参考了社区同类 Skill 的格式规范、文种路由和模板思路，但没有复制任何第三方项目内容；公文风格以公开公文写作规则和公开示例抽象出的句式模式为基础。
 
 ## 发布前检查
 
