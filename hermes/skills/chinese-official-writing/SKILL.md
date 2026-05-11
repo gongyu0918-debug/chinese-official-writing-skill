@@ -2,10 +2,10 @@
 name: chinese-official-writing
 description: 用于起草、改写和复核中文公文及正式工作材料，覆盖通知、请示、报告、说明、方案、申请、函、复函、批复、意见、决定、公告、公示、通报、会议纪要、工作要点、工作总结、调研报告、可研报告、实施方案、建设方案、审查材料，以及 AI 算力服务可研、算力采购或租赁、GPU/服务器租赁、技术服务需求等材料；强调文种准确、主体视角稳定、论点清楚、数据可追溯、公文语气自然、低 AI 味。不用于英文写作。
 license: MIT-0
-version: "1.2.11"
+version: "1.2.13"
 metadata:
   hermes:
-    version: "1.2.11"
+    version: "1.2.13"
     category: writing
     display_name: "中文公文写作"
     tags:
@@ -21,11 +21,13 @@ metadata:
 
 ## 核心流程
 
-1. 先确认文种、受文对象、发文或报告主体、核心结论、必要数据、最新底稿和用户批注。信息基本够用时直接推进。
-2. 成文前先搭文稿蓝图：提纲 -> 段落安排 -> 小段要点。
-3. 按章节或段落生成正文。每段只服务一个论点，通常按“结论前置、事实支撑、判断归纳、事项落点”展开。
-4. 小段写完先审，小节写完再审，全文合并后做总审。
-5. 编辑 DOCX 时保留用户最新版和原有样式；除非用户要求覆盖，一律另存新版本。Word 操作和版式核查配合 DOCX/document 技能完成。
+1. 先判断文种，再抽取办理要素，再选择论证链条，最后进入语言和格式复核。
+2. 文种判断以官方规范和 `references/genre-routing.md` 为准；社区模板不得替代文种功能。
+3. 起草前按 `references/handling-elements.md` 核对发文主体、受文对象、事项、依据、时限、责任、附件、反馈渠道和请批事项。
+4. 成文前搭文稿蓝图：提纲 -> 段落安排 -> 小段要点，并按 `references/argument-chains.md` 组织论证。
+5. 按章节或段落生成正文。每段只服务一个论点，通常按“结论前置、事实支撑、判断归纳、事项落点”展开。
+6. 小段写完先审，小节写完再审，全文合并后做总审；总审时按 `references/final-review-layers.md` 二次检查标题、重复事项、ANTI-AI 和格式噪点。
+7. 编辑 DOCX 时保留最新版和原有样式；除非已明确指定覆盖，一律另存新版本。Word 操作和版式核查配合 DOCX/document 技能完成。
 
 ## 写作纪律
 
@@ -43,6 +45,10 @@ metadata:
 - **教学式写法**：`重点说明 Token 用在哪里。` -> 改写为业务事实，如 `Token 调用主要消耗在长文审校、批量稿件处理、多轮问答和知识库检索环节。`
 - **口语化判断**：`租赁方式更稳，也更省。` -> 改写为正式判断，如 `租赁服务方式有利于稳定三年成本、缩短建设周期并明确服务保障责任。`
 - **视角错位**：不要像外部顾问讲解“报告应该怎么写”，要从发文或项目主体视角说明本单位拟做什么、为什么做、如何做。
+- **标题漂移**：默认不改用户指定的文章标题；对大小标题和正文做二次核验，确保正文不偏题。
+- **重复事项**：上一段已经说清的事项，下一段不能换词重复；除非增加数据、责任、风险、时限或验收要求。
+- **思考泄露**：不写 AI 身份、原始指令或改稿过程。
+- **格式噪点**：检查半角标点、数字空格、千位分隔符、首行缩进、滥用表格、频繁编号、Emoji 和装饰符号。
 - **文种错位**：请示要有明确请批事项；报告不得夹带审批请求；通知要写清对象、时限、材料和办理要求。
 - **成本链条断裂**：不要把 Token、TOPS、服务器数量和金额混在一起。面向决策层论证成本时，先写需求，再换算 Token 或资源，再换算金额。
 - **技术空话**：`建设先进算力平台，满足未来发展需要。` -> 补充使用单位、业务系统、Token 增长、并发、SLA、部署边界和验收要求。
@@ -52,6 +58,10 @@ metadata:
 按任务只读取需要的资料：
 
 - `references/workflow.md`: staged blueprint writing process and review gates.
+- `references/genre-routing.md`: official-document genre functions, routing rules, and hard boundaries.
+- `references/handling-elements.md`: required and optional handling elements for common document types.
+- `references/argument-chains.md`: argument chains for requests, reports, plans, technical documents, and AI-compute materials.
+- `references/final-review-layers.md`: title/heading review, repeated-matter review, anti-AI review, and format review.
 - `references/official-style.md`: official-document sentence patterns, viewpoint control, and argument structure.
 - `references/format-gbt9704.md`: common GB/T 9704-2012-style Word formatting defaults.
 - `references/anti-ai-patterns.md`: AI-flavor, teaching-view, and casual-phrasing patterns to avoid.
@@ -61,4 +71,4 @@ metadata:
 
 ## 脚本
 
-检查 `.txt`、`.md` 或 `.docx` 草稿时使用 `scripts/prose_lint.py`。脚本只提示风险，不自动改写。
+检查 `.txt`、`.md` 或 `.docx` 草稿时使用 `scripts/prose_lint.py`。需要检查重复事项和格式噪点时加 `--structure --format`。脚本只提示风险，不自动改写。

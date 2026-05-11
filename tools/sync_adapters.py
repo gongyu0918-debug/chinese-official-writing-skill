@@ -10,7 +10,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 CANONICAL = ROOT / "chinese-official-writing"
-VERSION = "1.2.11"
+VERSION = "1.2.13"
 
 TARGETS = {
     "claude": ROOT / "skills" / "chinese-official-writing",
@@ -53,13 +53,14 @@ def patch_openclaw_marketplace_body(target: Path) -> None:
 
 安装后执行写作任务时，仍按以下规则处理：
 
-1. 先确认文种、受文对象、发文或报告主体、核心结论、必要数据、最新底稿和用户批注。
-2. 成文前先搭文稿蓝图：提纲 -> 段落安排 -> 小段要点。
-3. 按章节或段落生成正文，每段只服务一个论点，通常按“结论前置、事实支撑、判断归纳、事项落点”展开。
-4. 从发文单位、报告单位、项目单位或主管单位视角写，不使用旁观者、教师或评论员口吻。
-5. 数据和判断要可追溯；不编造实际数据，测算和预估必须标明性质。
-6. 起草算力、采购、租赁或服务器租赁材料时，论证重点放在需求来源、Token/资源换算、成本比较、SLA、并发、安全、交付和验收。
-7. 检查 `.txt`、`.md` 或 `.docx` 草稿时，可使用 `scripts/prose_lint.py`。脚本只提示风险，不自动改写。
+1. 先判断文种，再抽取办理要素，再选择论证链条，最后进入语言和格式复核。
+2. 文种判断以官方规范和 `references/genre-routing.md` 为准；社区模板不得替代文种功能。
+3. 起草前按 `references/handling-elements.md` 核对发文主体、受文对象、事项、依据、时限、责任、附件、反馈渠道和请批事项。
+4. 成文时按 `references/argument-chains.md` 组织段落，每段服务一个论点，通常按“结论前置、事实支撑、判断归纳、事项落点”展开。
+5. 从发文单位、报告单位、项目单位或主管单位视角写，不使用旁观者、教师或评论员口吻。
+6. 数据和判断要可追溯；不编造实际数据，测算和预估必须标明性质。
+7. 起草算力、采购、租赁或服务器租赁材料时，论证重点放在需求来源、Token/资源换算、成本比较、SLA、并发、安全、交付和验收。
+8. 检查 `.txt`、`.md` 或 `.docx` 草稿时，可使用 `scripts/prose_lint.py`。脚本只提示风险，不自动改写。
 """
     skill_file.write_text(f"---{parts[1]}---\n\n{readme}{agent_rules}", encoding="utf-8")
 

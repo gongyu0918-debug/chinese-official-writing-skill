@@ -1,0 +1,153 @@
+[
+  {
+    "id": "gov_notice_plan",
+    "genre": "通知/工作方案",
+    "title": "国务院办公厅关于印发《政府网站集约化试点工作方案》的通知",
+    "source": "中国政府网",
+    "url": "https://app.www.gov.cn/govdata/gov/201811/13/431895/article.html",
+    "required_points": [
+      {"label": "标题和发文字号", "terms": ["国务院办公厅", "国办函〔2018〕71号"]},
+      {"label": "主送对象", "terms": ["各省", "国务院各部委"]},
+      {"label": "印发事项", "terms": ["政府网站集约化试点工作方案", "印发", "贯彻执行"]},
+      {"label": "制定依据和目标", "terms": ["网络安全和信息化", "互联互通", "集约共享"]},
+      {"label": "总体要求", "terms": ["总体要求", "管理和服务水平"]},
+      {"label": "公开发布和落款", "terms": ["国务院办公厅", "公开发布"]}
+    ]
+  },
+  {
+    "id": "gov_report_employment",
+    "genre": "报告",
+    "title": "国务院关于就业工作情况的报告",
+    "source": "中国人大网",
+    "url": "https://www.npc.gov.cn/npc/c2/c30834/202212/t20221229_320938.html",
+    "required_points": [
+      {"label": "报告主体和受文对象", "terms": ["国务院", "全国人大常委会"]},
+      {"label": "报告事由", "terms": ["就业工作情况", "请审议"]},
+      {"label": "政策背景", "terms": ["党的二十大", "就业优先"]},
+      {"label": "重点群体", "terms": ["高校毕业生", "农民工"]},
+      {"label": "结构安排", "terms": ["工作进展", "存在问题", "下一步"]},
+      {"label": "报告文种边界", "terms": ["报告", "不夹带请批事项"]}
+    ]
+  },
+  {
+    "id": "project_request_panjin",
+    "genre": "请示",
+    "title": "关于申请盘锦市城市生命线安全工程物联网设备及安装项目工程项目可行性研究报告批复意见的请示",
+    "source": "盘锦市住房和城乡建设局",
+    "url": "https://zjj.panjin.gov.cn/2026_01/07_14/content-551695.html",
+    "required_points": [
+      {"label": "主送机关", "terms": ["市发展改革委"]},
+      {"label": "项目背景", "terms": ["城市生命线安全工程", "安全稳定运行"]},
+      {"label": "建设内容", "terms": ["燃气", "供水", "排水", "供热"]},
+      {"label": "投资和资金来源", "terms": ["8263.2万元", "地方财政资金"]},
+      {"label": "建设工期", "terms": ["建设期", "14个月"]},
+      {"label": "请批事项", "terms": ["可行性研究报告", "请予批复"]},
+      {"label": "附件和落款", "terms": ["附件", "盘锦市住房和城乡建设局"]}
+    ]
+  },
+  {
+    "id": "approval_beijing_opening",
+    "genre": "批复",
+    "title": "国务院关于《支持北京深化国家服务业扩大开放综合示范区建设工作方案》的批复",
+    "source": "中国政府网",
+    "url": "https://www.gov.cn/gongbao/2023/issue_10866/202312/content_6918865.html",
+    "required_points": [
+      {"label": "主送对象", "terms": ["北京市人民政府", "商务部"]},
+      {"label": "来文收悉", "terms": ["请示收悉"]},
+      {"label": "批复结论", "terms": ["原则同意", "工作方案"]},
+      {"label": "实施要求", "terms": ["组织实施", "风险可控"]},
+      {"label": "部门职责", "terms": ["国务院有关部门", "职责分工"]},
+      {"label": "重大事项报告", "terms": ["重大问题", "请示报告"]}
+    ]
+  },
+  {
+    "id": "letter_mEE_comment",
+    "genre": "函",
+    "title": "关于公开征求《生态环境信访工作办法（征求意见稿）》意见的函",
+    "source": "生态环境部",
+    "url": "https://www.mee.gov.cn/xxgk2018/xxgk/xxgk06/202410/t20241025_1090141.html",
+    "required_points": [
+      {"label": "发文机关和文号", "terms": ["生态环境部办公厅", "环办便函〔2024〕359号"]},
+      {"label": "制定依据", "terms": ["信访工作条例", "法律"]},
+      {"label": "征求事项", "terms": ["征求意见稿", "公开征求意见"]},
+      {"label": "反馈对象和方式", "terms": ["机关团体", "书面反馈", "邮箱"]},
+      {"label": "截止时间", "terms": ["2024年11月4日"]},
+      {"label": "联系人和附件", "terms": ["联系人", "附件", "反馈单"]}
+    ]
+  },
+  {
+    "id": "reply_letter_wuxi_road",
+    "genre": "复函",
+    "title": "无锡市民政局关于命名石澄一支路的复函",
+    "source": "无锡市民政局",
+    "url": "https://mzj.wuxi.gov.cn/doc/2023/10/20/4087855.shtml",
+    "required_points": [
+      {"label": "主送对象", "terms": ["梁溪区瞻江街道办事处"]},
+      {"label": "来文收悉和依据", "terms": ["申请", "收悉", "地名管理条例"]},
+      {"label": "函复结论", "terms": ["同意", "石澄一支路"]},
+      {"label": "命名范围", "terms": ["西起石澄路", "全长483.5米", "宽7米"]},
+      {"label": "后续要求", "terms": ["地名标志", "此函"]}
+    ]
+  },
+  {
+    "id": "public_notice_appointment",
+    "genre": "公示公告",
+    "title": "中卫市2024年事业单位公开遴选工作人员拟聘用人员公示公告（一）",
+    "source": "中卫市人民政府",
+    "url": "https://www.nxzw.gov.cn/zzb/tzgg_67308/202408/t20240816_4627169.html",
+    "required_points": [
+      {"label": "公示事项", "terms": ["拟聘用人员", "予以公示"]},
+      {"label": "公示期限", "terms": ["5个工作日", "2024年8月19日至8月23日"]},
+      {"label": "反映渠道", "terms": ["写信", "打电话", "举报电话"]},
+      {"label": "举报要求", "terms": ["具体事实", "联系电话"]},
+      {"label": "处理规则", "terms": ["调查核实", "保密", "取消聘用资格"]},
+      {"label": "附件落款", "terms": ["附件", "中卫市人力资源和社会保障局"]}
+    ]
+  },
+  {
+    "id": "circular_safety_check",
+    "genre": "通报",
+    "title": "国务院安委会办公室关于安全生产大检查动员部署和自查自改有关情况的通报",
+    "source": "应急管理部",
+    "url": "https://www.mem.gov.cn/awhsy_3512/awhbgswj/201708/t20170811_247818.shtml",
+    "required_points": [
+      {"label": "通报对象", "terms": ["各省", "安全生产委员会"]},
+      {"label": "工作依据", "terms": ["安全生产大检查", "部署要求"]},
+      {"label": "进展数据", "terms": ["重大隐患", "整改率", "行政罚款"]},
+      {"label": "主要做法", "terms": ["挂牌督办", "曝光问责"]},
+      {"label": "存在问题", "terms": ["存在的主要问题"]},
+      {"label": "后续要求", "terms": ["整改落实", "舆论宣传"]}
+    ]
+  },
+  {
+    "id": "ai_compute_procurement",
+    "genre": "采购公告/技术类材料",
+    "title": "华中师范大学人工智能算力平台设备采购项目公开招标公告",
+    "source": "中国政府采购网",
+    "url": "https://www.ccgp.gov.cn/cggg/zygg/gkzb/202412/t20241211_23846072.htm",
+    "required_points": [
+      {"label": "项目和预算", "terms": ["人工智能算力平台", "1210万元"]},
+      {"label": "采购内容", "terms": ["AI训练服务器4台", "AI推理服务器5台", "NPU算力卡16块"]},
+      {"label": "配套设备", "terms": ["网关服务器", "交换机"]},
+      {"label": "技术服务", "terms": ["应用适配及技术服务", "1年"]},
+      {"label": "交付期限", "terms": ["20日内交货", "验收合格"]},
+      {"label": "投标边界", "terms": ["不接受联合体投标", "资格要求"]},
+      {"label": "采购联系", "terms": ["获取招标文件", "开标时间", "联系方式"]}
+    ]
+  },
+  {
+    "id": "public_comment_caac",
+    "genre": "征求意见函",
+    "title": "关于就中航通飞华南飞机工业有限公司AG600飞机（TC证后）专用条件征求意见的函",
+    "source": "中国民用航空局",
+    "url": "https://www.caac.gov.cn/HDJL/YJZJ/202604/t20260415_230549.html",
+    "required_points": [
+      {"label": "征求对象", "terms": ["民航各地区管理局", "航空工业集团"]},
+      {"label": "事项背景", "terms": ["AG600飞机", "锚泊设施"]},
+      {"label": "法规依据", "terms": ["第21.16条", "专用条件"]},
+      {"label": "征求期限", "terms": ["10个工作日"]},
+      {"label": "反馈方式", "terms": ["反馈意见表", "电子邮箱"]},
+      {"label": "邮件标题要求", "terms": ["反馈意见", "邮件标题"]}
+    ]
+  }
+]

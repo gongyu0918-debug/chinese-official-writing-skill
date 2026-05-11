@@ -28,7 +28,7 @@ class Finding:
 
 
 PATTERNS: list[tuple[str, str, str, str]] = [
-    ("high", "paired-summary", r"不是[^。；;\n]{0,80}而是", "改为直接肯定结论，避免二元包装。"),
+    ("high", "paired-summary", r"不是[^。；;\n]{0,80}而是", "改为直接肯定结论；必要否定对比可保留。"),
     ("high", "paired-summary", r"不仅[^。；;\n]{0,80}还", "拆成具体事实或只保留关键判断。"),
     ("high", "paired-summary", r"不但[^。；;\n]{0,80}而且", "拆成具体事实或只保留关键判断。"),
     ("high", "paired-summary", r"既[^。；;\n]{0,80}又", "改为具体并列事项，避免套话。"),
@@ -46,6 +46,9 @@ PATTERNS: list[tuple[str, str, str, str]] = [
     ("medium", "side-commentary", r"简单来说", "正式文稿中通常不需要解释腔。"),
     ("medium", "side-commentary", r"通俗地说", "正式文稿中通常不需要解释腔。"),
     ("medium", "side-commentary", r"可以理解为", "正式文稿中通常不需要解释腔。"),
+    ("high", "thought-leak", r"作为(?:一个)?AI|我是(?:一个)?AI|我的(?:思路|推理|分析)|(?:思考|推理)过程(?:如下|是|：|:)|内部推理", "删除模型身份、思考过程或内部推理表述。"),
+    ("medium", "thought-leak", r"我将根据|接下来我会|按你的要求", "改为文稿正文或办理安排，不暴露生成过程。"),
+    ("medium", "viewpoint-risk", r"领导要求|录音要求|用户要求|你让我|这版文章|这段文字", "检查是否把外部修改过程写进正文。"),
     ("medium", "casual", r"租赁方式更稳[，,、]?\s*也更省", "改为成本和服务保障更具确定性。"),
     ("medium", "casual", r"用不完", "改为阶段性资源余量或资源利用率。"),
     ("medium", "casual", r"AI味", "改为表述偏泛或判断不够具体。"),
@@ -62,6 +65,14 @@ PATTERNS: list[tuple[str, str, str, str]] = [
     ("medium", "ai-compute-vague", r"强大平台", "补充调度、监控、隔离、计量、运维等具体平台能力。"),
     ("medium", "ai-compute-vague", r"成本更低", "补充比较周期、需求假设和成本项目。"),
     ("medium", "ai-compute-vague", r"满足未来发展需要", "补充用户、Token、并发、模型升级或智能体工作流依据。"),
+]
+
+FORMAT_PATTERNS: list[tuple[str, str, str, str]] = [
+    ("medium", "halfwidth-punctuation", r"[\u4e00-\u9fff][,;:!?][\u4e00-\u9fff]", "中文正文中通常改用全角标点。"),
+    ("low", "number-grouping-comma", r"\d{1,3}(?:,\d{3})+(?:\.\d+)?", "确认正式中文材料中是否应取消千位分隔符。"),
+    ("low", "cn-number-space", r"[\u4e00-\u9fff]\s+\d|\d\s+[\u4e00-\u9fff]", "检查中文和数字之间是否误加空格。"),
+    ("medium", "emoji-marker", r"[\U0001F300-\U0001FAFF]", "正式公文正文避免使用 Emoji。"),
+    ("low", "western-bullet", r"^\s*(?:[-*•●◆◇★✅☑]|[0-9]+[.)])\s+", "中文正式正文避免频繁使用西式项目符号或 1. 2. 编号；必要清单可保留。"),
 ]
 
 REPEAT_TERMS: dict[str, int] = {
@@ -149,11 +160,75 @@ def inside_inline_code(line: str, start: int, end: int) -> bool:
     return any(left <= start and end <= right for left, right in spans)
 
 
-def scan(path_label: str, text: str) -> list[Finding]:
+def paragraph_blocks(lines: list[str]) -> list[tuple[int, str]]:
+    blocks: list[tuple[int, str]] = []
+    current: list[str] = []
+    start_line = 1
+    for idx, line in enumerate(lines, start=1):
+        stripped = line.strip()
+        if not stripped:
+            if current:
+                blocks.append((start_line, "\n".join(current)))
+                current = []
+            continue
+        if stripped.startswith(("#", "|", "```")) or re.match(r"^\s*(?:[-*]|\d+[.)、])\s+", stripped):
+            if current:
+                blocks.append((start_line, "\n".join(current)))
+                current = []
+            continue
+        if not current:
+            start_line = idx
+        current.append(stripped)
+    if current:
+        blocks.append((start_line, "\n".join(current)))
+    return blocks
+
+
+def content_tokens(text: str) -> set[str]:
+    compact = re.sub(r"[^\u4e00-\u9fffA-Za-z0-9]", "", text)
+    if len(compact) < 12:
+        return set()
+    tokens = {compact[i : i + 2] for i in range(len(compact) - 1)}
+    tokens |= {compact[i : i + 3] for i in range(len(compact) - 2)}
+    stop = {"项目", "工作", "建设", "方案", "情况", "相关", "进行", "通过", "形成", "推进", "落实"}
+    return {token for token in tokens if token not in stop}
+
+
+def duplicate_findings(path_label: str, lines: list[str]) -> list[Finding]:
+    findings: list[Finding] = []
+    blocks = paragraph_blocks(lines)
+    for index in range(1, len(blocks)):
+        prev_line, prev_text = blocks[index - 1]
+        line_no, text = blocks[index]
+        if len(prev_text) < 60 or len(text) < 60:
+            continue
+        prev_tokens = content_tokens(prev_text)
+        tokens = content_tokens(text)
+        if not prev_tokens or not tokens:
+            continue
+        shared = prev_tokens & tokens
+        union = prev_tokens | tokens
+        ratio = len(shared) / len(union)
+        if len(shared) >= 18 and ratio >= 0.42:
+            findings.append(
+                Finding(
+                    path=path_label,
+                    line=line_no,
+                    severity="medium",
+                    label="adjacent-duplicate-matter",
+                    match=";".join(sorted(shared)[:6]),
+                    excerpt=f"与上一段（约第 {prev_line} 行）事项重叠较高；检查是否为胶水式重复连接。",
+                )
+            )
+    return findings
+
+
+def scan(path_label: str, text: str, include_format: bool = False, include_structure: bool = False) -> list[Finding]:
     findings: list[Finding] = []
     lines = text.splitlines() or [text]
 
-    compiled = [(severity, label, re.compile(pattern), advice) for severity, label, pattern, advice in PATTERNS]
+    patterns = PATTERNS + (FORMAT_PATTERNS if include_format else [])
+    compiled = [(severity, label, re.compile(pattern), advice) for severity, label, pattern, advice in patterns]
     in_fence = False
     for line_no, line in enumerate(lines, start=1):
         stripped = line.strip()
@@ -176,6 +251,23 @@ def scan(path_label: str, text: str) -> list[Finding]:
                         excerpt=f"{excerpt(line, match.start(), match.end())} | {advice}",
                     )
                 )
+
+    if include_format:
+        western_list_count = sum(1 for line in lines if re.match(r"^\s*(?:[-*•●◆◇★✅☑]|[0-9]+[.)])\s+", line))
+        if western_list_count >= 8:
+            findings.append(
+                Finding(
+                    path=path_label,
+                    line=1,
+                    severity="low",
+                    label="frequent-list-markers",
+                    match=str(western_list_count),
+                    excerpt="正文中西式项目符号或 1. 2. 编号较多；确认是否可改为中文条款或自然段。",
+                )
+            )
+
+    if include_structure:
+        findings.extend(duplicate_findings(path_label, lines))
 
     for term, threshold in REPEAT_TERMS.items():
         count = text.count(term)
@@ -201,17 +293,21 @@ def print_text(findings: Iterable[Finding]) -> None:
 
 
 def main(argv: list[str] | None = None) -> int:
+    if hasattr(sys.stdout, "reconfigure"):
+        sys.stdout.reconfigure(encoding="utf-8")
     parser = argparse.ArgumentParser(description="Warn about Chinese official-writing prose risks.")
     parser.add_argument("files", nargs="+", help="Text/Markdown/DOCX files to scan, or '-' for stdin.")
     parser.add_argument("--encoding", help="Encoding for plain-text files.")
     parser.add_argument("--json", action="store_true", help="Emit JSON findings.")
+    parser.add_argument("--format", action="store_true", help="Also scan punctuation, number, list-marker, and emoji format risks.")
+    parser.add_argument("--structure", action="store_true", help="Also scan adjacent paragraphs for repeated matters.")
     parser.add_argument("--strict", action="store_true", help="Return exit code 1 when findings exist.")
     args = parser.parse_args(argv)
 
     all_findings: list[Finding] = []
     for file_arg in args.files:
         path_label, text = read_text(file_arg, args.encoding)
-        all_findings.extend(scan(path_label, text))
+        all_findings.extend(scan(path_label, text, include_format=args.format, include_structure=args.structure))
 
     if args.json:
         print(json.dumps([asdict(item) for item in all_findings], ensure_ascii=False, indent=2))

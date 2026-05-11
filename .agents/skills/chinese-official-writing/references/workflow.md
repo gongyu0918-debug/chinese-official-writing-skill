@@ -15,9 +15,13 @@ Confirm or infer these items:
 
 If the user provides a latest file or version number, treat it as the main branch.
 
+When the document type is unclear, load `genre-routing.md` before drafting. When the document type is clear but the content is thin, load `handling-elements.md` and identify missing required elements before writing.
+
 ## 2. Build the outline
 
 Create a title-level outline before writing body text. The outline should show the document logic, not a generic template.
+
+Choose a chain from `argument-chains.md` before drafting the outline. Keep the chain internal; do not print chain labels in the final text.
 
 For construction plans and project materials, a common order is:
 
