@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """Evaluate AI drafts against public real-article profiles.
 
-The fixture stores only public titles, URLs, and paraphrased key points. It does
-not store raw source articles. Difference rate means required-key-point missing
-rate, not literal edit distance.
+Fixtures may keep public source metadata for local traceability, but generated
+evidence summaries anonymize article names and links. Difference rate means
+required-key-point missing rate, not literal edit distance.
 """
 
 from __future__ import annotations
@@ -67,7 +67,6 @@ def evaluate(profile: dict[str, Any], draft: dict[str, Any], prose_lint) -> dict
     return {
         "id": draft["id"],
         "genre": profile["genre"],
-        "title": profile["title"],
         "mode": draft["mode"],
         "required_points": total,
         "covered_points": len(covered_labels),
@@ -102,11 +101,18 @@ def aggregate(rows: list[dict[str, Any]]) -> dict[str, Any]:
 
 def write_markdown(rows: list[dict[str, Any]], profiles: list[dict[str, Any]], out_path: Path) -> None:
     agg = aggregate(rows)
+    sample_labels = {profile["id"]: f"sample-{index:02d}" for index, profile in enumerate(profiles, start=1)}
+    genre_counts: dict[str, int] = defaultdict(int)
+    source_counts: dict[str, int] = defaultdict(int)
+    for profile in profiles:
+        genre_counts[profile["genre"]] += 1
+        source_kind = profile.get("source_kind", "公开政府或公共服务平台")
+        source_counts[source_kind] += 1
     lines = [
         "# 真实样文回归测试摘要",
         "",
-        "本测试以公开真实文章为参照，只保存标题、链接和经转述的关键要素，不保存原文正文。",
-        "差异率按关键要素缺失率计算：缺失关键要素数 / 应覆盖关键要素数。该指标不衡量逐字相似度。",
+        "本测试以公开真实文章为参照，摘要只输出匿名样本编号、文种和经转述的关键要素，不输出具体文章标题、链接或原文正文。",
+        "差异率按关键要素缺失率计算：缺失关键要素数 / 应覆盖关键要素数。该指标不衡量逐字相似度，主要检查应提事项、格式风险、重复事项和反 AI 风险。该组用于回归检查，不代表真实业务表现。",
         "",
         "## 汇总结果",
         "",
@@ -125,20 +131,23 @@ def write_markdown(rows: list[dict[str, Any]], profiles: list[dict[str, Any]], o
             "",
             "## 分样本结果",
             "",
-            "| 样本 | 文种 | 模式 | 差异率 | 覆盖/应覆盖 | 格式风险 | 重复事项 | 缺失要素 |",
-            "| --- | --- | --- | ---: | ---: | ---: | ---: | --- |",
+            "| 样本 | 文种 | 模式 | 差异率 | 覆盖/应覆盖 | 格式风险 | 重复事项 | 反 AI 风险 | 缺失要素 |",
+            "| --- | --- | --- | ---: | ---: | ---: | ---: | ---: | --- |",
         ]
     )
     for row in rows:
         missing = "、".join(row["missing_labels"]) if row["missing_labels"] else "无"
         lines.append(
-            f"| {row['id']} | {row['genre']} | {row['mode']} | {row['difference_rate']:.2%} | "
+            f"| {sample_labels.get(row['id'], row['id'])} | {row['genre']} | {row['mode']} | {row['difference_rate']:.2%} | "
             f"{row['covered_points']}/{row['required_points']} | {row['format_error_count']} | "
-            f"{row['duplicate_error_count']} | {missing} |"
+            f"{row['duplicate_error_count']} | {row['anti_ai_risk_count']} | {missing} |"
         )
-    lines.extend(["", "## 公开来源", ""])
-    for profile in profiles:
-        lines.append(f"- {profile['genre']}：[{profile['title']}]({profile['url']})（{profile['source']}）")
+    lines.extend(["", "## 来源类别", ""])
+    for genre, count in sorted(genre_counts.items()):
+        lines.append(f"- {genre}：{count} 组")
+    lines.extend(["", "## 来源类型", ""])
+    for source_kind, count in sorted(source_counts.items()):
+        lines.append(f"- {source_kind}：{count} 组")
     lines.append("")
     out_path.write_text("\n".join(lines), encoding="utf-8")
 

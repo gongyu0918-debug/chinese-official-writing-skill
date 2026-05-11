@@ -59,7 +59,7 @@
 请从 GitHub 仓库 https://github.com/gongyu0918-debug/chinese-official-writing-skill 拉取 openclaw/skills/chinese_official_writing/ 目录，并将其安装为 OpenClaw/ClawHub 可识别的 chinese-official-writing 技能。该适配目录的 frontmatter 使用 name: chinese_official_writing；安装后确认显示名称为“中文公文写作”，用于中文公文、可研报告、建设方案和 AI 算力采购租赁类正式材料写作。
 ```
 
-已发布版本：`chinese-official-writing@1.2.13`
+已发布版本：`chinese-official-writing@1.2.14`
 
 ### Claude Code
 
@@ -134,11 +134,11 @@ python .\tools\sync_adapters.py
 
 ### 真实样文回归
 
-真实样文回归选取通知、报告、请示、批复、函、复函、公示公告、通报、采购公告和征求意见函 10 组公开文章，提取标题、链接和关键办理要素，不保存原文正文。差异率按关键要素缺失率计算，不按逐字相似度计算。该组用于回归检查，不代表真实业务胜率。
+真实样文回归选取通知、报告、请示、批复、函、复函、公示公告、通报、采购公告和征求意见函 10 组公开文章，公开摘要只展示匿名样本编号、文种类别和关键办理要素，不保存原文正文，不展示具体文章标题和链接。差异率按关键要素缺失率计算，不按逐字相似度计算。该组用于回归检查，不代表真实业务表现。
 
 | 模式 | 样本数 | 平均差异率 | 缺失要素 | 应覆盖要素 | 格式风险 | 重复事项 | 反 AI 风险 |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
-| Baseline | 10 | 95.00% | 58 | 61 | 0 | 0 | 0 |
+| Baseline | 10 | 93.00% | 57 | 61 | 0 | 0 | 2 |
 | Skill | 10 | 0.00% | 0 | 61 | 0 | 0 | 0 |
 
 复跑命令：
