@@ -341,7 +341,7 @@ def write_summary(out_dir: Path, evidence_path: Path, genres: list[str], review_
                 f"- 运行耗时：{elapsed:.1f} 秒。",
                 f"- 自动解析胜出计数：A={counts['A']}，B={counts['B']}，Tie={counts['Tie']}。该计数仅从评估文本中抽取，最终以人工复核为准。",
                 "",
-                "## 无效或待复跑批次",
+                "## 无效或需补评批次",
                 "",
                 "\n".join(invalid_notes) if invalid_notes else "- 未发现空返回或缺项批次。",
                 "",

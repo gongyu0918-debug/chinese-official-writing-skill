@@ -42,7 +42,7 @@ python .\chinese-official-writing\scripts\prose_lint.py output\expanded-ablation
 
 ## 隔离 Agent 对照
 
-另启动 DeepSeek A/B/C 三个隔离上下文进行对照：Writer A 显式使用本 Skill 生成样稿，Writer B 不读取 Skill 只按普通提示生成样稿，Evaluator C 只根据 A/B 输出和公开公文风格参照进行评估。该轮原始输出不纳入仓库发布内容，仅用于发布前校准。
+另启动 DeepSeek A/B/C 三个隔离上下文进行对照：Writer A 调用技能规则生成样稿，Writer B 不读取技能规则、按普通提示生成样稿，Evaluator C 只根据 A/B 输出和公开公文风格参照进行评估。该轮原始输出不纳入仓库发布内容，仅用于发布前校准。
 
 该轮 DeepSeek 全量生成覆盖 27 类文体、每类 10 次，共 270 个任务；A/B 写稿有效批次为 9/9，C 独立评估有效批次为 7/9，详见 `deepseek-public-ablation-summary.md`。该结果已用于补充安装提示、显式 Skill 上下文和空返回检测，也说明本测试不能替代人工审稿。
 

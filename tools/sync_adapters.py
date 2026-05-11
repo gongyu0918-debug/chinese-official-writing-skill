@@ -10,7 +10,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 CANONICAL = ROOT / "chinese-official-writing"
-VERSION = "1.2.10"
+VERSION = "1.2.11"
 
 TARGETS = {
     "claude": ROOT / "skills" / "chinese-official-writing",
