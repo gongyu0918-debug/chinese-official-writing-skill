@@ -10,7 +10,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 CANONICAL = ROOT / "chinese-official-writing"
-VERSION = "1.2.14"
+VERSION = "1.2.15"
 
 TARGETS = {
     "claude": ROOT / "skills" / "chinese-official-writing",
@@ -66,10 +66,8 @@ def patch_openclaw_marketplace_body(target: Path) -> None:
 
 
 def copy_skill(target: Path, mode: str) -> None:
-    if target.exists():
-        shutil.rmtree(target)
     ignore = shutil.ignore_patterns("__pycache__", "*.pyc", ".DS_Store", "Thumbs.db")
-    shutil.copytree(CANONICAL, target, ignore=ignore)
+    shutil.copytree(CANONICAL, target, ignore=ignore, dirs_exist_ok=True)
     patch_frontmatter(target, mode)
     if mode == "openclaw":
         shutil.copyfile(ROOT / "README.md", target / "README.md")

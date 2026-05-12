@@ -1,10 +1,10 @@
 ---
 name: chinese_official_writing
-description: 用于起草、改写和复核中文公文及正式工作材料，覆盖通知、请示、报告、说明、方案、申请、函、复函、批复、意见、决定、公告、公示、通报、会议纪要、工作要点、工作总结、调研报告、可研报告、实施方案、建设方案、审查材料，以及 AI 算力服务可研、算力采购或租赁、GPU/服务器租赁、技术服务需求等材料；强调文种准确、主体视角稳定、论点清楚、数据可追溯、公文语气自然、低 AI 味。不用于英文写作。
+description: 用于起草、改写和复核中文公文及正式工作材料；当用户明确要求中文通知、请示、报告、说明、方案、申请、函、复函、批复、意见、决定、公告、公示、通报、会议纪要、工作要点、工作总结、调研报告、可研报告、实施方案、建设方案、审查材料、AI 算力服务可研、算力采购或租赁、GPU/服务器租赁、技术服务需求，或要求正式文稿顺稿、压缩、去口语化、降 AI 味、文种校验、办理要素核对时使用；强调文种准确、主体视角稳定、事实克制、数据可追溯、公文语气自然。不用于英文写作、文学创作、营销文案、社交媒体文案、模型训练、批量语料生成、批量改写未知来源文本、规避人工审核、替代法律/财务/采购/审计/政策依据判断。
 license: MIT-0
 metadata:
   openclaw:
-    version: "1.2.14"
+    version: "1.2.15"
     emoji: "📝"
     tags:
       - chinese
@@ -34,6 +34,14 @@ metadata:
 | Word 文稿 | 带批注文档改写、压缩、顺稿、去口语化、统一文风 |
 
 适用边界为中文正式材料。英文写作、文学创作、营销软文、社交媒体文案不在覆盖范围内。法律、财务、采购、审计和政策依据类正式上报材料保留人工复核环节。
+
+### 触发条件与非适用范围
+
+建议在用户明确提出中文公文、中文正式工作材料、正式报告、请示、方案、可研、建设方案、审查材料、AI 算力采购/租赁材料，或提出顺稿、压缩、去口语化、降 AI 味、文种校验、办理要素核对时启用本 Skill。
+
+不建议在英文写作、文学创作、营销文案、社交媒体文案、闲聊回复、代码说明、通用翻译、模型训练、批量语料生成、批量改写未知来源文本、规避人工审核、生成可冒充真实签发文件的完整编号/日期/印章信息等场景启用。
+
+本 Skill 只提供写作和复核辅助，不替代法律、财务、采购、审计、政策依据、保密审查和正式签发判断。用户未提供依据时，不编造真实单位、真实政策、真实金额、真实日期、电话、邮箱或审批结论。
 
 ## 核心能力
 
@@ -75,7 +83,7 @@ metadata:
 请从 GitHub 仓库 https://github.com/gongyu0918-debug/chinese-official-writing-skill 拉取 openclaw/skills/chinese_official_writing/ 目录，并将其安装为 OpenClaw/ClawHub 可识别的 chinese-official-writing 技能。该适配目录的 frontmatter 使用 name: chinese_official_writing；安装后确认显示名称为“中文公文写作”，用于中文公文、可研报告、建设方案和 AI 算力采购租赁类正式材料写作。
 ```
 
-已发布版本：`chinese-official-writing@1.2.14`
+已发布版本：`chinese-official-writing@1.2.15`
 
 ### Claude Code
 
@@ -136,6 +144,18 @@ python .\tools\sync_adapters.py
 
 公开仓库保留脱敏测试摘要，不保存原始公文、真实项目材料、内部路径或个人信息。
 
+### Promptfoo 社区式消融
+
+新增 Promptfoo 作为发布前主评测入口。评测使用固定 JSONL 数据集，同时生成 baseline 和 Skill 两组输出；Promptfoo 负责批量运行、确定性断言、JSON/HTML 结果导出，本地汇总脚本再用随机 A/B 顺序做 DeepSeek pairwise judge。输出目录 `output/promptfoo/` 已被 `.gitignore` 排除。
+
+```powershell
+npm run eval:official-writing:smoke
+npm run eval:official-writing
+npm run eval:official-writing:view
+```
+
+Smoke 覆盖 5 个文种、每类 2 个场景，共 10 条；full 覆盖 27 个文种、每类 10 个场景，共 270 条。汇总指标包括 Skill win、baseline win、tie、invalid、硬规则通过率、lint 风险下降率、占位词风险率、judge 一致率、平均耗时和估算成本。Full 评测中 `needs_manual_review` 超过 2% 会非零退出；空输出、缺 case 或 judge 空返回始终非零退出。
+
 ### 本地 smoke/regression 消融
 
 本地 smoke/regression 采用合成反例模板，测试文种适配、反 AI 规则和算力类论证链的回归稳定性。每类文种 10 次，共 270 个任务。该组测试用于检查规则是否失效，不作为真实语料泛化胜率。
@@ -150,12 +170,12 @@ python .\tools\sync_adapters.py
 
 ### 真实样文回归
 
-真实样文回归选取通知、报告、请示、批复、函、复函、公示公告、通报、采购公告和征求意见函 10 组公开文章，公开摘要只展示匿名样本编号、文种类别和关键办理要素，不保存原文正文，不展示具体文章标题和链接。差异率按关键要素缺失率计算，不按逐字相似度计算。该组用于回归检查，不代表真实业务表现。
+真实样文回归选取通知、报告、请示、批复、函、复函、公示公告、通报、采购公告和征求意见函 10 组公开文章，公开摘要只展示匿名样本编号、文种类别和关键办理要素，不保存原文正文，不展示具体文章标题和链接。差异率按关键要素缺失率计算，不按逐字相似度计算。该组用于回归检查，不代表真实业务表现。为避免把关键词命中误读为质量证明，评测同时输出关键词命中率和占位词风险；占位词风险表示草稿直接写入了“发文机关、发文字号、主送单位”等匿名标签，需要进入人工或 LLM judge 复核。
 
-| 模式 | 样本数 | 平均差异率 | 缺失要素 | 应覆盖要素 | 格式风险 | 重复事项 | 反 AI 风险 |
-| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
-| Baseline | 10 | 93.00% | 57 | 61 | 0 | 0 | 2 |
-| Skill | 10 | 0.00% | 0 | 61 | 0 | 0 | 0 |
+| 模式 | 样本数 | 平均差异率 | 缺失要素 | 应覆盖要素 | 关键词命中率 | 占位词风险样本 | 占位词命中 | 格式风险 | 重复事项 | 反 AI 风险 |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| Baseline | 10 | 93.00% | 57 | 61 | 17.43% | 0 | 0 | 0 | 0 | 2 |
+| Skill | 10 | 0.00% | 0 | 61 | 100.00% | 9 | 16 | 0 | 0 | 0 |
 
 复跑命令：
 
@@ -219,8 +239,9 @@ python .\chinese-official-writing\scripts\prose_lint.py .\draft.docx --structure
 
 ```powershell
 python .\chinese-official-writing\scripts\prose_lint.py README.md chinese-official-writing\SKILL.md
+npm run eval:official-writing:smoke
 python .\tools\run_ablation.py --out output\expanded-ablation
-python .\tools\run_deepseek_ablation.py --genres-per-batch 3 --out output\deepseek-public-ablation-v2
+python .\tools\run_deepseek_ablation.py --genres-per-batch 1 --out output\deepseek-public-ablation-v2
 ```
 
 ## 参考来源

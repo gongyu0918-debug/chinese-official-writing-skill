@@ -1,0 +1,46 @@
+# yaml-language-server: $schema=https://promptfoo.dev/config-schema.json
+description: Chinese official-writing Skill baseline-vs-skill ablation
+
+prompts:
+  - id: official-writing-task
+    raw: "{{task}}"
+
+providers:
+  - id: file://providers/deepseek_writer.py:call_api
+    label: baseline
+    config:
+      mode: baseline
+      datasetPath: datasets/cases.jsonl
+      prebatch: true
+      batchSize: 10
+      timeout: 3600000
+      timeoutSeconds: 720
+      retries: 1
+      estimatedCostPer1kChars: 0.00002
+  - id: file://providers/deepseek_writer.py:call_api
+    label: skill
+    config:
+      mode: skill
+      datasetPath: datasets/cases.jsonl
+      prebatch: true
+      batchSize: 10
+      timeout: 3600000
+      timeoutSeconds: 720
+      retries: 1
+      estimatedCostPer1kChars: 0.00002
+
+defaultTest:
+  assert:
+    - type: python
+      value: file://graders/official_writing_rubric.py:assert_official_writing
+
+tests:
+  - file://datasets/cases.jsonl
+
+commandLineOptions:
+  maxConcurrency: 1
+  repeat: 1
+  delay: 0
+  cache: true
+  write: true
+  share: false

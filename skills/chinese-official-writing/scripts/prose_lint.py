@@ -160,27 +160,42 @@ def inside_inline_code(line: str, start: int, end: int) -> bool:
     return any(left <= start and end <= right for left, right in spans)
 
 
-def paragraph_blocks(lines: list[str]) -> list[tuple[int, str]]:
-    blocks: list[tuple[int, str]] = []
+def paragraph_blocks(lines: list[str]) -> list[tuple[int, str, int]]:
+    blocks: list[tuple[int, str, int]] = []
     current: list[str] = []
     start_line = 1
+    section_id = 0
+    in_fence = False
+
+    def flush_current() -> None:
+        nonlocal current
+        if current:
+            blocks.append((start_line, "\n".join(current), section_id))
+            current = []
+
     for idx, line in enumerate(lines, start=1):
         stripped = line.strip()
-        if not stripped:
-            if current:
-                blocks.append((start_line, "\n".join(current)))
-                current = []
+        if stripped.startswith("```"):
+            flush_current()
+            in_fence = not in_fence
+            section_id += 1
             continue
-        if stripped.startswith(("#", "|", "```")) or re.match(r"^\s*(?:[-*]|\d+[.)、])\s+", stripped):
-            if current:
-                blocks.append((start_line, "\n".join(current)))
-                current = []
+        if in_fence:
+            continue
+        if not stripped:
+            flush_current()
+            continue
+        if stripped.startswith(("#", "|")):
+            flush_current()
+            section_id += 1
+            continue
+        if re.match(r"^\s*(?:[-*]|\d+[.)、])\s+", stripped):
+            flush_current()
             continue
         if not current:
             start_line = idx
         current.append(stripped)
-    if current:
-        blocks.append((start_line, "\n".join(current)))
+    flush_current()
     return blocks
 
 
@@ -198,8 +213,10 @@ def duplicate_findings(path_label: str, lines: list[str]) -> list[Finding]:
     findings: list[Finding] = []
     blocks = paragraph_blocks(lines)
     for index in range(1, len(blocks)):
-        prev_line, prev_text = blocks[index - 1]
-        line_no, text = blocks[index]
+        prev_line, prev_text, prev_section = blocks[index - 1]
+        line_no, text, section = blocks[index]
+        if section != prev_section:
+            continue
         if len(prev_text) < 60 or len(text) < 60:
             continue
         prev_tokens = content_tokens(prev_text)

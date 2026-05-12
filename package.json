@@ -1,0 +1,11 @@
+{
+  "private": true,
+  "scripts": {
+    "eval:official-writing": "python evals/official-writing/run_eval.py --suite full",
+    "eval:official-writing:smoke": "python evals/official-writing/run_eval.py --suite smoke --judge-batch-size 2",
+    "eval:official-writing:view": "promptfoo view --yes"
+  },
+  "devDependencies": {
+    "promptfoo": "0.121.11"
+  }
+}

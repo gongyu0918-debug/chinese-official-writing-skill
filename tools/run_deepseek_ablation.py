@@ -282,6 +282,7 @@ def parse_winner_counts(review_texts: list[str]) -> dict[str, int]:
             rf"{key}\s*[:：]\s*(\d+)",
             rf"{key}\s*胜\s*(\d+)",
             rf"{key}\s*获胜\s*(\d+)",
+            rf"\b{key}\b\s+(\d+)",
         ]
         for pattern in patterns:
             for match in re.finditer(pattern, combined, flags=re.IGNORECASE):
@@ -289,11 +290,24 @@ def parse_winner_counts(review_texts: list[str]) -> dict[str, int]:
     return counts
 
 
-def write_summary(out_dir: Path, evidence_path: Path, genres: list[str], review_files: list[Path], started: float) -> None:
+def write_summary(out_dir: Path, evidence_path: Path, genres: list[str], review_files: list[Path], started: float) -> bool:
     reviews = [path.read_text(encoding="utf-8", errors="replace") for path in review_files if path.exists()]
     counts = parse_winner_counts(reviews)
     batch_dirs = sorted(path for path in out_dir.glob("batch-*") if path.is_dir())
-    a_expected = len(SCENARIOS)
+    task_genres: set[str] = set()
+    task_total = 0
+    for batch_dir in batch_dirs:
+        task_path = batch_dir / "tasks.md"
+        if not task_path.exists():
+            continue
+        task_lines = [line for line in task_path.read_text(encoding="utf-8", errors="replace").splitlines() if line.strip()]
+        task_total += len(task_lines)
+        for line in task_lines:
+            match = re.search(r"【([^】]+)】", line)
+            if match:
+                task_genres.add(match.group(1))
+    genre_total = len(task_genres) if task_genres else len(genres)
+    task_total = task_total if task_total else len(genres) * len(SCENARIOS)
     valid_writer_batches = 0
     valid_review_batches = 0
     invalid_notes: list[str] = []
@@ -325,9 +339,9 @@ def write_summary(out_dir: Path, evidence_path: Path, genres: list[str], review_
                 "",
                 "## 测试设计",
                 "",
-                f"- 覆盖文体：{len(genres)} 类。",
+                f"- 覆盖文体：{genre_total} 类。",
                 f"- 每类任务：{len(SCENARIOS)} 次。",
-                f"- 总任务数：{len(genres) * len(SCENARIOS)} 个。",
+                f"- 总任务数：{task_total} 个。",
                 "- Writer A：DeepSeek 在已安装 `chinese-official-writing` Skill 的条件下生成样稿。",
                 "- Writer B：DeepSeek 不读取 Skill，仅按普通提示生成样稿。",
                 "- Evaluator C：独立 DeepSeek 上下文，仅根据 A/B 输出和公开公文风格参照进行评估。",
@@ -358,13 +372,14 @@ def write_summary(out_dir: Path, evidence_path: Path, genres: list[str], review_
         + "\n",
         encoding="utf-8",
     )
+    return valid_writer_batches == len(batch_dirs) and valid_review_batches == len(batch_dirs)
 
 
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--out", default="output/deepseek-public-ablation")
     parser.add_argument("--evidence", default="tests/evidence/deepseek-public-ablation-summary.md")
-    parser.add_argument("--genres-per-batch", type=int, default=9)
+    parser.add_argument("--genres-per-batch", type=int, default=1)
     parser.add_argument("--timeout-seconds", type=int, default=420)
     parser.add_argument("--only-first-batch", action="store_true")
     parser.add_argument("--summarize-only", action="store_true")
@@ -379,9 +394,9 @@ def main() -> int:
 
     if args.summarize_only:
         review_files = sorted(Path(args.out).glob("batch-*/evaluator-c-review.md"))
-        write_summary(out_dir, Path(args.evidence), selected_genres, review_files, started)
+        ok = write_summary(out_dir, Path(args.evidence), selected_genres, review_files, started)
         print(f"summary written: {args.evidence}")
-        return 0
+        return 0 if ok else 1
 
     for batch_index, start in enumerate(range(0, len(selected_genres), args.genres_per_batch), start=1):
         genres = selected_genres[start : start + args.genres_per_batch]
@@ -403,9 +418,9 @@ def main() -> int:
         review_files.append(c_path)
         print(f"batch {batch_index}: A={a_code} B={b_code} C={c_code}")
 
-    write_summary(out_dir, Path(args.evidence), selected_genres, review_files, started)
+    ok = write_summary(out_dir, Path(args.evidence), selected_genres, review_files, started)
     print(f"summary written: {args.evidence}")
-    return 0
+    return 0 if ok else 1
 
 
 if __name__ == "__main__":

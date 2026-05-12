@@ -22,6 +22,22 @@ from typing import Any
 REPO_ROOT = Path(__file__).resolve().parents[1]
 PROSE_LINT_PATH = REPO_ROOT / "chinese-official-writing" / "scripts" / "prose_lint.py"
 
+GENERIC_PLACEHOLDERS = {
+    "发文机关",
+    "发文字号",
+    "主送单位",
+    "主送机关",
+    "报告主体",
+    "受文机关",
+    "报送单位",
+    "来函单位",
+    "发布单位",
+    "通报对象",
+    "征求对象",
+    "事项背景",
+    "法规条款",
+}
+
 
 def load_prose_lint():
     spec = importlib.util.spec_from_file_location("prose_lint", PROSE_LINT_PATH)
@@ -42,11 +58,27 @@ def point_covered(point: dict[str, Any], text: str) -> bool:
     return all(normalize(term) in compact for term in point["terms"])
 
 
+def exact_term_hits(points: list[dict[str, Any]], text: str) -> tuple[list[str], int]:
+    compact = normalize(text)
+    terms: list[str] = []
+    for point in points:
+        terms.extend(normalize(term) for term in point["terms"])
+    unique_terms = sorted(set(term for term in terms if term))
+    return [term for term in unique_terms if term in compact], len(unique_terms)
+
+
+def placeholder_echo_terms(text: str) -> list[str]:
+    compact = normalize(text)
+    return sorted(term for term in GENERIC_PLACEHOLDERS if normalize(term) in compact)
+
+
 def evaluate(profile: dict[str, Any], draft: dict[str, Any], prose_lint) -> dict[str, Any]:
     text = draft["text"]
     points = profile["required_points"]
     covered_labels = [point["label"] for point in points if point_covered(point, text)]
-    missing_labels = [point["label"] for point in points if point["label"] not in covered_labels]
+    missing_labels = [point["label"] for point in points if not point_covered(point, text)]
+    hit_terms, total_terms = exact_term_hits(points, text)
+    placeholder_terms = placeholder_echo_terms(text)
     findings = prose_lint.scan(
         f"{draft['id']}:{draft['mode']}",
         text,
@@ -74,6 +106,11 @@ def evaluate(profile: dict[str, Any], draft: dict[str, Any], prose_lint) -> dict
         "difference_rate": round(missing / total, 4) if total else 0,
         "covered_labels": covered_labels,
         "missing_labels": missing_labels,
+        "exact_term_hits": len(hit_terms),
+        "required_terms": total_terms,
+        "keyword_echo_rate": round(len(hit_terms) / total_terms, 4) if total_terms else 0,
+        "placeholder_echo_count": len(placeholder_terms),
+        "placeholder_echo_terms": placeholder_terms,
         "format_error_count": sum(1 for item in findings if item.label in format_labels),
         "duplicate_error_count": sum(1 for item in findings if item.label in duplicate_labels),
         "anti_ai_risk_count": sum(1 for item in findings if item.label in anti_ai_labels),
@@ -90,6 +127,9 @@ def aggregate(rows: list[dict[str, Any]]) -> dict[str, Any]:
         result[mode] = {
             "cases": len(items),
             "avg_difference_rate": round(mean(item["difference_rate"] for item in items), 4),
+            "avg_keyword_echo_rate": round(mean(item["keyword_echo_rate"] for item in items), 4),
+            "placeholder_echo_cases": sum(1 for item in items if item["placeholder_echo_count"]),
+            "placeholder_echo_terms": sum(item["placeholder_echo_count"] for item in items),
             "total_missing_points": sum(item["missing_points"] for item in items),
             "total_required_points": sum(item["required_points"] for item in items),
             "format_errors": sum(item["format_error_count"] for item in items),
@@ -113,17 +153,20 @@ def write_markdown(rows: list[dict[str, Any]], profiles: list[dict[str, Any]], o
         "",
         "本测试以公开真实文章为参照，摘要只输出匿名样本编号、文种和经转述的关键要素，不输出具体文章标题、链接或原文正文。",
         "差异率按关键要素缺失率计算：缺失关键要素数 / 应覆盖关键要素数。该指标不衡量逐字相似度，主要检查应提事项、格式风险、重复事项和反 AI 风险。该组用于回归检查，不代表真实业务表现。",
+        "为避免把精确关键词命中误读为质量证明，本报告同时输出关键词命中率和占位词风险。占位词风险表示草稿直接写入了“发文机关、发文字号、主送单位”等匿名标签，需进入人工或 LLM judge 复核。",
         "",
         "## 汇总结果",
         "",
-        "| 模式 | 样本数 | 平均差异率 | 缺失要素 | 应覆盖要素 | 格式风险 | 重复事项 | 反 AI 风险 |",
-        "| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |",
+        "| 模式 | 样本数 | 平均差异率 | 缺失要素 | 应覆盖要素 | 关键词命中率 | 占位词风险样本 | 占位词命中 | 格式风险 | 重复事项 | 反 AI 风险 |",
+        "| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |",
     ]
     for mode in sorted(agg):
         item = agg[mode]
         lines.append(
             f"| {mode} | {item['cases']} | {item['avg_difference_rate']:.2%} | "
             f"{item['total_missing_points']} | {item['total_required_points']} | "
+            f"{item['avg_keyword_echo_rate']:.2%} | {item['placeholder_echo_cases']} | "
+            f"{item['placeholder_echo_terms']} | "
             f"{item['format_errors']} | {item['duplicate_errors']} | {item['anti_ai_risks']} |"
         )
     lines.extend(
@@ -131,15 +174,16 @@ def write_markdown(rows: list[dict[str, Any]], profiles: list[dict[str, Any]], o
             "",
             "## 分样本结果",
             "",
-            "| 样本 | 文种 | 模式 | 差异率 | 覆盖/应覆盖 | 格式风险 | 重复事项 | 反 AI 风险 | 缺失要素 |",
-            "| --- | --- | --- | ---: | ---: | ---: | ---: | ---: | --- |",
+            "| 样本 | 文种 | 模式 | 差异率 | 覆盖/应覆盖 | 关键词命中率 | 占位词风险 | 格式风险 | 重复事项 | 反 AI 风险 | 缺失要素 |",
+            "| --- | --- | --- | ---: | ---: | ---: | --- | ---: | ---: | ---: | --- |",
         ]
     )
     for row in rows:
         missing = "、".join(row["missing_labels"]) if row["missing_labels"] else "无"
+        placeholders = "、".join(row["placeholder_echo_terms"]) if row["placeholder_echo_terms"] else "无"
         lines.append(
             f"| {sample_labels.get(row['id'], row['id'])} | {row['genre']} | {row['mode']} | {row['difference_rate']:.2%} | "
-            f"{row['covered_points']}/{row['required_points']} | {row['format_error_count']} | "
+            f"{row['covered_points']}/{row['required_points']} | {row['keyword_echo_rate']:.2%} | {placeholders} | {row['format_error_count']} | "
             f"{row['duplicate_error_count']} | {row['anti_ai_risk_count']} | {missing} |"
         )
     lines.extend(["", "## 来源类别", ""])
