@@ -3,8 +3,26 @@ name: chinese-official-writing
 description: 用于起草、改写和复核中文公文及正式工作材料；当用户明确要求中文通知、请示、报告、说明、方案、申请、函、复函、批复、意见、决定、公告、公示、通报、会议纪要、工作要点、工作总结、调研报告、可研报告、实施方案、建设方案、审查材料、AI 算力服务可研、算力采购或租赁、GPU/服务器租赁、技术服务需求，或要求正式文稿顺稿、压缩、去口语化、降 AI 味、文种校验、办理要素核对时使用；强调文种准确、主体视角稳定、事实克制、数据可追溯、公文语气自然。不用于英文写作、文学创作、营销文案、社交媒体文案、模型训练、批量语料生成、批量改写未知来源文本、规避人工审核、替代法律/财务/采购/审计/政策依据判断。
 license: MIT-0
 metadata:
+  version: "1.2.16"
+  compatible_agents:
+    - codex
+    - claude-code
+    - deepseek-tui
+    - openclaw
+    - hermes
+    - qwen-code
+    - kimi-code
+    - generic-skill-md-agent
+  qwen_code:
+    install_personal: "~/.qwen/skills/chinese-official-writing"
+    install_project: ".qwen/skills/chinese-official-writing"
+    entry: "SKILL.md"
+  kimi_code:
+    skills_dir: "copy folder or pass with --skills-dir"
+    invocation: "/skill:chinese-official-writing"
+    entry: "SKILL.md"
   openclaw:
-    version: "1.2.15"
+    version: "1.2.16"
     emoji: "📝"
     tags:
       - chinese
@@ -13,7 +31,7 @@ metadata:
       - gongwen
       - ai-compute
   hermes:
-    version: "1.2.15"
+    version: "1.2.16"
     category: writing
     display_name: "中文公文写作"
     tags:
@@ -65,6 +83,9 @@ metadata:
 - **重复事项**：上一段已经说清的事项，下一段不能换词重复；除非增加数据、责任、风险、时限或验收要求。
 - **思考泄露**：不写 AI 身份、原始指令或改稿过程。
 - **格式噪点**：检查半角标点、数字空格、千位分隔符、首行缩进、滥用表格、频繁编号、Emoji 和装饰符号。
+- **项目卡片式摘要**：项目名称、建设单位、预算金额等字段不应连续堆成表单，应改为连续正式正文。
+- **测算说明腔**：成本章节不要写成公式讲解，应说明需求来源、费用对应事项和成本边界。
+- **必要性罗列**：必要性章节不要只写“一是、二是、三是”，应补足事实依据、工作影响和事项落点。
 - **文种错位**：请示要有明确请批事项；报告不得夹带审批请求；通知要写清对象、时限、材料和办理要求。
 - **成本链条断裂**：不要把 Token、TOPS、服务器数量和金额混在一起。面向决策层论证成本时，先写需求，再换算 Token 或资源，再换算金额。
 - **技术空话**：`建设先进算力平台，满足未来发展需要。` -> 补充使用单位、业务系统、Token 增长、并发、SLA、部署边界和验收要求。
