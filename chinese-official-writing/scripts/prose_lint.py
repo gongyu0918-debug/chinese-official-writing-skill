@@ -46,8 +46,8 @@ PATTERNS: list[tuple[str, str, str, str]] = [
     ("medium", "side-commentary", r"简单来说", "正式文稿中通常不需要解释腔。"),
     ("medium", "side-commentary", r"通俗地说", "正式文稿中通常不需要解释腔。"),
     ("medium", "side-commentary", r"可以理解为", "正式文稿中通常不需要解释腔。"),
-    ("medium", "project-card-summary", r"^\s*(?:项目名称|建设单位|实施单位|建设周期|总投资|预算金额|采购内容|服务内容)\s*[：:]", "成稿摘要或概况不要写成项目卡片；改为连续正文。"),
-    ("medium", "cost-explainer", r"测算口径|测算公式|计算公式|单价\s*[×xX*]\s*数量|计算如下", "需求与成本章节避免写成测算说明；改为说明需求来源、费用对应事项和成本边界。"),
+    ("medium", "project-card-summary", r"^\s*(?:项目名称|建设单位|实施单位|建设周期|总投资|预算金额|采购内容|服务内容)\s*[：:]", "检查摘要或概况是否写成项目卡片；必要时改为连续正文。"),
+    ("medium", "cost-explainer", r"测算口径|测算公式|计算公式|单价\s*[×xX*]\s*数量|计算如下", "检查需求与成本章节是否写成测算说明；必要时改为说明需求来源、费用对应事项和成本边界。"),
     ("high", "thought-leak", r"作为(?:一个)?AI|我是(?:一个)?AI|我的(?:思路|推理|分析)|(?:思考|推理)过程(?:如下|是|：|:)|内部推理", "删除模型身份、思考过程或内部推理表述。"),
     ("medium", "thought-leak", r"我将根据|接下来我会|按你的要求", "改为文稿正文或办理安排，不暴露生成过程。"),
     ("medium", "viewpoint-risk", r"领导要求|录音要求|用户要求|你让我|这版文章|这段文字", "检查是否把外部修改过程写进正文。"),
@@ -265,7 +265,7 @@ def structured_smell_findings(path_label: str, text: str, lines: list[str]) -> l
                         severity="medium",
                         label="project-card-summary",
                         match="card-fields",
-                        excerpt="连续字段行使摘要或项目概况像项目卡片；改为连续正式正文。",
+                        excerpt="连续字段行使摘要或项目概况像项目卡片；必要时改为连续正式正文。",
                     )
                 )
         elif line.strip():
@@ -292,7 +292,7 @@ def structured_smell_findings(path_label: str, text: str, lines: list[str]) -> l
                 severity="medium",
                 label="necessity-listing",
                 match="一是/二是/三是",
-                excerpt="必要性章节像论点罗列；应补足事实依据、工作影响和事项落点。",
+                excerpt="必要性章节像论点罗列；必要时补足事实依据、工作影响和事项落点。",
             )
         )
     return findings

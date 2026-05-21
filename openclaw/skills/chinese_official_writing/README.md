@@ -36,7 +36,7 @@
 - **重复事项检测**：检查相邻段落和相邻章节是否换词重复，避免批量生成后的胶水连接。
 - **文稿蓝图**：先搭提纲，再列段落，再逐段成文，避免整篇一次性铺开后失控。
 - **视角控制**：从发文单位、项目单位或报告单位出发写，不写成教学说明。
-- **低 AI 味审查**：内置反例库和 `prose_lint.py`，提示二元包装句、旁白句、思考泄露、口语化判断和空泛技术表述。
+- **低 AI 味审查**：内置反例库和 `prose_lint.py`，提示二元包装句、旁白句、思考泄露、口语化判断、结构化草稿腔和空泛技术表述；除事实、文种和过程泄露外，风格类问题只作为质量建议。
 - **格式噪点检查**：提示半角标点、数字空格、千位分隔符、频繁编号、Emoji、装饰符号和表格滥用风险。
 - **算力类专项约束**：对 Token、云端成本、租赁服务、SLA、并发、安全和验收做链式论证。
 - **多平台适配**：已适配 Codex/OpenAI Skill、Claude Code、OpenClaw/ClawHub、deepseek-tui 和 Hermes。
@@ -67,7 +67,7 @@
 请从 GitHub 仓库 https://github.com/gongyu0918-debug/chinese-official-writing-skill 拉取 openclaw/skills/chinese_official_writing/ 目录，并将其安装为 OpenClaw/ClawHub 可识别的 chinese-official-writing 技能。该适配目录的 frontmatter 使用 name: chinese_official_writing；安装后确认显示名称为“中文公文写作”，用于中文公文、可研报告、建设方案和 AI 算力采购租赁类正式材料写作。
 ```
 
-已发布版本：`chinese-official-writing@1.2.16`
+已发布版本：`chinese-official-writing@1.2.17`
 
 ### Claude Code
 
@@ -217,7 +217,7 @@ python .\chinese-official-writing\scripts\prose_lint.py .\draft.docx
 python .\chinese-official-writing\scripts\prose_lint.py .\draft.docx --structure --format
 ```
 
-可检查的风险包括：二元包装句、旁白式表达、教学腔、思考过程泄露、口语化判断、模板化过渡词、项目卡片式摘要、测算说明腔、必要性罗列、相邻段落重复事项、格式噪点，以及算力类文档中缺少指标支撑的空泛技术表述。
+可检查的风险包括：二元包装句、旁白式表达、教学腔、思考过程泄露、口语化判断、模板化过渡词、项目卡片式摘要、测算说明腔、必要性罗列、相邻段落重复事项、格式噪点，以及算力类文档中缺少指标支撑的空泛技术表述。其中过程泄露按硬边界处理，其他多为质量建议。
 
 ## 发布前检查
 
