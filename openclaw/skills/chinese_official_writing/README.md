@@ -67,7 +67,7 @@
 请从 GitHub 仓库 https://github.com/gongyu0918-debug/chinese-official-writing-skill 拉取 openclaw/skills/chinese_official_writing/ 目录，并将其安装为 OpenClaw/ClawHub 可识别的 chinese-official-writing 技能。该适配目录的 frontmatter 使用 name: chinese_official_writing；安装后确认显示名称为“中文公文写作”，用于中文公文、可研报告、建设方案和 AI 算力采购租赁类正式材料写作。
 ```
 
-已发布版本：`chinese-official-writing@1.2.15`
+已发布版本：`chinese-official-writing@1.2.16`
 
 ### Claude Code
 
@@ -217,7 +217,7 @@ python .\chinese-official-writing\scripts\prose_lint.py .\draft.docx
 python .\chinese-official-writing\scripts\prose_lint.py .\draft.docx --structure --format
 ```
 
-可检查的风险包括：二元包装句、旁白式表达、教学腔、思考过程泄露、口语化判断、模板化过渡词、相邻段落重复事项、格式噪点，以及算力类文档中缺少指标支撑的空泛技术表述。
+可检查的风险包括：二元包装句、旁白式表达、教学腔、思考过程泄露、口语化判断、模板化过渡词、项目卡片式摘要、测算说明腔、必要性罗列、相邻段落重复事项、格式噪点，以及算力类文档中缺少指标支撑的空泛技术表述。
 
 ## 发布前检查
 

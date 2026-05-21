@@ -46,6 +46,8 @@ PATTERNS: list[tuple[str, str, str, str]] = [
     ("medium", "side-commentary", r"简单来说", "正式文稿中通常不需要解释腔。"),
     ("medium", "side-commentary", r"通俗地说", "正式文稿中通常不需要解释腔。"),
     ("medium", "side-commentary", r"可以理解为", "正式文稿中通常不需要解释腔。"),
+    ("medium", "project-card-summary", r"^\s*(?:项目名称|建设单位|实施单位|建设周期|总投资|预算金额|采购内容|服务内容)\s*[：:]", "成稿摘要或概况不要写成项目卡片；改为连续正文。"),
+    ("medium", "cost-explainer", r"测算口径|测算公式|计算公式|单价\s*[×xX*]\s*数量|计算如下", "需求与成本章节避免写成测算说明；改为说明需求来源、费用对应事项和成本边界。"),
     ("high", "thought-leak", r"作为(?:一个)?AI|我是(?:一个)?AI|我的(?:思路|推理|分析)|(?:思考|推理)过程(?:如下|是|：|:)|内部推理", "删除模型身份、思考过程或内部推理表述。"),
     ("medium", "thought-leak", r"我将根据|接下来我会|按你的要求", "改为文稿正文或办理安排，不暴露生成过程。"),
     ("medium", "viewpoint-risk", r"领导要求|录音要求|用户要求|你让我|这版文章|这段文字", "检查是否把外部修改过程写进正文。"),
@@ -240,6 +242,62 @@ def duplicate_findings(path_label: str, lines: list[str]) -> list[Finding]:
     return findings
 
 
+def structured_smell_findings(path_label: str, text: str, lines: list[str]) -> list[Finding]:
+    findings: list[Finding] = []
+    card_pattern = re.compile(r"^\s*(?:[-*]\s*)?(?:项目名称|项目单位|建设单位|实施单位|采购单位|建设周期|实施周期|服务期限|建设内容|采购内容|服务内容|总投资|预算金额|经费预算|资金来源|项目地点)\s*[：:]")
+    streak = 0
+    streak_start = 1
+    total = 0
+    first_line = 1
+    for line_no, line in enumerate(lines, start=1):
+        if card_pattern.search(line):
+            if streak == 0:
+                streak_start = line_no
+            streak += 1
+            total += 1
+            if total == 1:
+                first_line = line_no
+            if streak == 3:
+                findings.append(
+                    Finding(
+                        path=path_label,
+                        line=streak_start,
+                        severity="medium",
+                        label="project-card-summary",
+                        match="card-fields",
+                        excerpt="连续字段行使摘要或项目概况像项目卡片；改为连续正式正文。",
+                    )
+                )
+        elif line.strip():
+            streak = 0
+    if total >= 4 and not any(item.label == "project-card-summary" for item in findings):
+        findings.append(
+            Finding(
+                path=path_label,
+                line=first_line,
+                severity="medium",
+                label="project-card-summary",
+                match="card-fields",
+                excerpt="字段行较多，检查摘要或项目概况是否像项目卡片。",
+            )
+        )
+
+    match = re.search(r"(?:^|\n)\s*(?:[一二三四五六七八九十]+、)?[^。\n]{0,18}必要性[^。\n]*(?:\n|$)[\s\S]{0,700}一是[\s\S]{0,220}二是[\s\S]{0,220}三是", text)
+    if match:
+        line = text[: match.start()].count("\n") + 1
+        findings.append(
+            Finding(
+                path=path_label,
+                line=line,
+                severity="medium",
+                label="necessity-listing",
+                match="一是/二是/三是",
+                excerpt="必要性章节像论点罗列；应补足事实依据、工作影响和事项落点。",
+            )
+        )
+    return findings
+
+
 def scan(path_label: str, text: str, include_format: bool = False, include_structure: bool = False) -> list[Finding]:
     findings: list[Finding] = []
     lines = text.splitlines() or [text]
@@ -285,6 +343,7 @@ def scan(path_label: str, text: str, include_format: bool = False, include_struc
 
     if include_structure:
         findings.extend(duplicate_findings(path_label, lines))
+        findings.extend(structured_smell_findings(path_label, text, lines))
 
     for term, threshold in REPEAT_TERMS.items():
         count = text.count(term)
