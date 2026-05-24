@@ -21,7 +21,7 @@ def load_module(name: str, path: Path):
 
 prose_lint = load_module("prose_lint_under_test", ROOT / "chinese-official-writing" / "scripts" / "prose_lint.py")
 real_eval = load_module("real_article_eval_under_test", ROOT / "tools" / "run_real_article_eval.py")
-deepseek_eval = load_module("deepseek_eval_under_test", ROOT / "tools" / "run_deepseek_ablation.py")
+agent_eval = load_module("agent_eval_under_test", ROOT / "tools" / "run_agent_ablation.py")
 
 
 class ProseLintStructureTests(unittest.TestCase):
@@ -67,11 +67,11 @@ class RealArticleEvalAuditTests(unittest.TestCase):
         self.assertEqual(total, 4)
 
 
-class DeepSeekEvalSummaryTests(unittest.TestCase):
+class AgentEvalSummaryTests(unittest.TestCase):
     def test_winner_counts_parse_writer_format(self) -> None:
         review = "Overall winner count: Writer A 10, Writer B 0, Tie 0."
 
-        self.assertEqual(deepseek_eval.parse_winner_counts([review]), {"A": 10, "B": 0, "Tie": 0})
+        self.assertEqual(agent_eval.parse_winner_counts([review]), {"A": 10, "B": 0, "Tie": 0})
 
 
 if __name__ == "__main__":

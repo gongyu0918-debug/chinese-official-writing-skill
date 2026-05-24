@@ -26,7 +26,7 @@ CONFIG_PATH = EVAL_DIR / "promptfooconfig.yaml"
 RUBRIC_PATH = EVAL_DIR / "rubrics" / "pairwise-judge.md"
 DATASET_PATH = EVAL_DIR / "datasets" / "cases.jsonl"
 GRADER_PATH = EVAL_DIR / "graders" / "official_writing_rubric.py"
-PROVIDER_PATH = EVAL_DIR / "providers" / "deepseek_writer.py"
+PROVIDER_PATH = EVAL_DIR / "providers" / "agent_writer.py"
 
 
 class EvalError(RuntimeError):
@@ -44,7 +44,7 @@ def _load_module(name: str, path: Path):
 
 
 grader = _load_module("official_writing_eval_grader", GRADER_PATH)
-deepseek_writer = _load_module("official_writing_deepseek_writer", PROVIDER_PATH)
+agent_writer = _load_module("official_writing_agent_writer", PROVIDER_PATH)
 
 
 def load_cases(limit: int | None = None) -> list[dict[str, Any]]:
@@ -276,7 +276,7 @@ def judge_cache_path(suite: str, repeat_index: int, judge_cases: list[dict[str, 
         {"case_id": item["case_id"], "A": item["A"], "B": item["B"], "label_map": item["label_map"]}
         for item in judge_cases
     ]
-    digest_payload.append({"stub": os.environ.get("OFFICIAL_WRITING_EVAL_STUB") == "1"})
+    digest_payload.append({"stub": agent_writer.use_stub({})})
     digest = hashlib.sha256(json.dumps(digest_payload, ensure_ascii=False, sort_keys=True).encode("utf-8")).hexdigest()[:20]
     return OUTPUT_DIR / "cache" / f"judge-{suite}-r{repeat_index + 1}-{digest}.json"
 
@@ -316,7 +316,7 @@ def call_judge_batch(suite: str, repeat_index: int, judge_cases: list[dict[str, 
     cache_path = judge_cache_path(suite, repeat_index, judge_cases)
     if cache_path.exists() and not os.environ.get("OFFICIAL_WRITING_EVAL_REFRESH"):
         return json.loads(cache_path.read_text(encoding="utf-8"))
-    if os.environ.get("OFFICIAL_WRITING_EVAL_STUB") == "1":
+    if agent_writer.use_stub({}):
         rows = stub_judge(judge_cases)
         cache_path.parent.mkdir(parents=True, exist_ok=True)
         cache_path.write_text(json.dumps(rows, ensure_ascii=False, indent=2), encoding="utf-8")
@@ -345,7 +345,7 @@ def call_judge_batch(suite: str, repeat_index: int, judge_cases: list[dict[str, 
         {json.dumps(cases_payload, ensure_ascii=False, indent=2)}
         """
     ).strip()
-    raw, code, _chars = deepseek_writer.call_deepseek_prompt(prompt, REPO_ROOT, timeout_seconds, retries=1)
+    raw, code, _chars = agent_writer.call_model_prompt(prompt, REPO_ROOT, timeout_seconds, retries=1)
     if code != 0 and not raw.strip():
         raise EvalError(f"judge returned code {code} with empty output")
     parsed = normalize_judge_json(raw)

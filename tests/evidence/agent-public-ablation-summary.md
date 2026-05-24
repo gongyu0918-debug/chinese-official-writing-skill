@@ -1,4 +1,4 @@
-# DeepSeek A/B/C Ablation Summary
+# Model-Agnostic A/B/C Ablation Summary
 
 本文件只记录脱敏评估结论，不包含用户材料、内部文件内容、个人信息或原始公开公文全文。
 
@@ -7,9 +7,9 @@
 - 覆盖文体：27 类。
 - 每类任务：10 次。
 - 总任务数：270 个。
-- Writer A：DeepSeek 在已安装 `chinese-official-writing` Skill 的条件下生成样稿。
-- Writer B：DeepSeek 不读取 Skill，仅按普通提示生成样稿。
-- Evaluator C：独立 DeepSeek 上下文，仅根据 A/B 输出和公开公文风格参照进行评估。
+- Writer A：当前 agent 或指定模型在已安装 `chinese-official-writing` Skill 的条件下生成样稿。
+- Writer B：当前 agent 或指定模型不读取 Skill，仅按普通提示生成样稿。
+- Evaluator C：独立上下文仅根据 A/B 输出和公开公文风格参照进行评估。
 - 公开原稿处理：发布包不保存原文，只保存脱敏后的风格参照和聚合评估结论。
 
 ## 运行结果
@@ -27,11 +27,11 @@
 
 ## 原始输出位置
 
-- 原始 A/B/C 输出保存在 `output/deepseek-public-ablation-v2`，该目录被 `.gitignore` 排除，不进入发布包。
+- 原始 A/B/C 输出保存在 `output/agent-public-ablation`，该目录被 `.gitignore` 排除，不进入发布包。
 
 ## 复核结论
 
-DeepSeek C 的独立评估用于观察技能规则是否改善文种适配、视角控制、公文语气、反 AI 句式和算力类论证链条。该测试不能替代人工审稿，事实、政策依据、金额和采购结论仍需业务审核。
+Evaluator C 的独立评估用于观察技能规则是否改善文种适配、视角控制、公文语气、反 AI 句式和算力类论证链条。该测试不能替代人工审稿，事实、政策依据、金额和采购结论仍需业务审核。
 
 ## 结论说明
 

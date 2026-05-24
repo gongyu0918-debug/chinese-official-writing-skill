@@ -6,7 +6,7 @@ prompts:
     raw: "{{task}}"
 
 providers:
-  - id: file://providers/deepseek_writer.py:call_api
+  - id: file://providers/agent_writer.py:call_api
     label: baseline
     config:
       mode: baseline
@@ -17,7 +17,7 @@ providers:
       timeoutSeconds: 720
       retries: 1
       estimatedCostPer1kChars: 0.00002
-  - id: file://providers/deepseek_writer.py:call_api
+  - id: file://providers/agent_writer.py:call_api
     label: skill
     config:
       mode: skill

@@ -5,8 +5,10 @@ The provider has two modes:
 - baseline: draft from the task only.
 - skill: load the installed Skill entrypoint plus genre-specific references.
 
-DeepSeek is called in read-only, non-interactive mode. Set
-OFFICIAL_WRITING_EVAL_STUB=1 to validate Promptfoo plumbing without model calls.
+By default the provider uses deterministic local drafts so tests can run in
+any agent without a model-specific CLI. Set OFFICIAL_WRITING_AGENT_COMMAND to
+use the current agent or any model command; include {prompt} in the command
+template or the prompt will be appended as the final argument.
 """
 
 from __future__ import annotations
@@ -16,7 +18,7 @@ import json
 import os
 from pathlib import Path
 import re
-import shutil
+import shlex
 import subprocess
 import textwrap
 import time
@@ -248,43 +250,65 @@ def _single_prompt(mode: str, case: dict[str, Any], config: dict[str, Any]) -> s
     return _baseline_prompt([case])
 
 
-def _deepseek_executable() -> str:
-    if os.name == "nt":
-        appdata = os.environ.get("APPDATA")
-        if appdata:
-            downloads = Path(appdata) / "npm" / "node_modules" / "deepseek-tui" / "bin" / "downloads"
-            for name in ("deepseek.exe", "deepseek-tui.exe"):
-                candidate = downloads / name
-                if candidate.exists():
-                    return str(candidate)
-        for name in ("deepseek.exe", "deepseek-tui.exe", "deepseek.ps1", "deepseek.cmd", "deepseek"):
-            found = shutil.which(name)
-            if found:
-                return found
-    found = shutil.which("deepseek")
-    if found:
-        return found
-    raise ProviderError("deepseek executable not found")
+def _agent_command_template(config: dict[str, Any] | None = None) -> str:
+    config = config or {}
+    return str(
+        config.get("commandTemplate")
+        or os.environ.get("OFFICIAL_WRITING_AGENT_COMMAND")
+        or os.environ.get("OFFICIAL_WRITING_EVAL_COMMAND")
+        or ""
+    ).strip()
 
 
-def _deepseek_cmd(prompt: str) -> list[str]:
-    exe = _deepseek_executable()
-    suffix = Path(exe).suffix.lower()
-    common = ["--sandbox-mode", "read-only", "--approval-policy", "never", "exec", prompt]
-    if os.name == "nt" and suffix == ".ps1":
-        return ["powershell.exe", "-NoProfile", "-ExecutionPolicy", "Bypass", "-File", exe, *common]
-    if os.name == "nt" and suffix in {".cmd", ".bat"}:
-        return ["cmd.exe", "/c", exe, *common]
-    return [exe, *common]
+def _truthy_env(name: str) -> bool | None:
+    value = os.environ.get(name)
+    if value is None:
+        return None
+    return value.strip().lower() not in {"0", "false", "no", "off"}
 
 
-def call_deepseek_prompt(prompt: str, cwd: Path, timeout_seconds: int, retries: int = 1) -> tuple[str, int, int]:
+def _use_stub(config: dict[str, Any] | None = None) -> bool:
+    explicit = _truthy_env("OFFICIAL_WRITING_EVAL_STUB")
+    if explicit is not None:
+        return explicit
+    return not _agent_command_template(config)
+
+
+def use_stub(config: dict[str, Any] | None = None) -> bool:
+    return _use_stub(config)
+
+
+def _agent_cmd(prompt: str, config: dict[str, Any] | None = None) -> list[str]:
+    template = _agent_command_template(config)
+    if not template:
+        raise ProviderError("agent eval command is not configured")
+    tokens = shlex.split(template, posix=os.name != "nt")
+    replacements = {
+        "{prompt}": prompt,
+        "{prompt_json}": json.dumps(prompt, ensure_ascii=False),
+    }
+    has_placeholder = any(marker in token for token in tokens for marker in replacements)
+    if has_placeholder:
+        return [
+            token.replace("{prompt}", replacements["{prompt}"]).replace("{prompt_json}", replacements["{prompt_json}"])
+            for token in tokens
+        ]
+    return [*tokens, prompt]
+
+
+def call_model_prompt(
+    prompt: str,
+    cwd: Path,
+    timeout_seconds: int,
+    config: dict[str, Any] | None = None,
+    retries: int = 1,
+) -> tuple[str, int, int]:
     output = ""
     return_code = 1
     for attempt in range(retries + 1):
         try:
             result = subprocess.run(
-                _deepseek_cmd(prompt),
+                _agent_cmd(prompt, config),
                 cwd=str(cwd),
                 text=True,
                 encoding="utf-8",
@@ -394,8 +418,9 @@ def _cache_key(mode: str, cases: list[dict[str, Any]], config: dict[str, Any]) -
         "cases": [case.get("vars", {}) for case in cases],
         "refs": refs,
         "ref_hashes": ref_hashes,
-        "provider_version": 2,
-        "stub": os.environ.get("OFFICIAL_WRITING_EVAL_STUB") == "1",
+        "provider_version": 3,
+        "stub": _use_stub(config),
+        "command_configured": bool(_agent_command_template(config)),
     }
     digest = hashlib.sha256(json.dumps(payload, ensure_ascii=False, sort_keys=True).encode("utf-8")).hexdigest()
     return digest[:20]
@@ -413,32 +438,32 @@ def _load_cache(path: Path) -> dict[str, str] | None:
 
 
 def _run_batch(mode: str, cases: list[dict[str, Any]], config: dict[str, Any]) -> dict[str, str]:
-    if os.environ.get("OFFICIAL_WRITING_EVAL_STUB") == "1":
+    if _use_stub(config):
         return {_case_id(case): _stub_draft(mode, case) for case in cases}
 
     repo_root = _repo_root(config)
     timeout = int(config.get("timeoutSeconds", 600))
     retries = int(config.get("retries", 1))
     prompt = _skill_prompt(cases, config) if mode == "skill" else _baseline_prompt(cases)
-    raw, code, _prompt_chars = call_deepseek_prompt(prompt, repo_root, timeout, retries=retries)
+    raw, code, _prompt_chars = call_model_prompt(prompt, repo_root, timeout, config=config, retries=retries)
     if code != 0 and not raw.strip():
-        raise ProviderError(f"DeepSeek returned code {code} with empty output")
+        raise ProviderError(f"agent eval command returned code {code} with empty output")
     case_ids = {_case_id(case) for case in cases}
     parsed = _parse_sections(raw, case_ids)
     return parsed
 
 
 def _run_single(mode: str, case: dict[str, Any], config: dict[str, Any]) -> str:
-    if os.environ.get("OFFICIAL_WRITING_EVAL_STUB") == "1":
+    if _use_stub(config):
         return _stub_draft(mode, case)
 
     repo_root = _repo_root(config)
     timeout = int(config.get("timeoutSeconds", 600))
     retries = int(config.get("retries", 1))
     prompt = _single_prompt(mode, case, config)
-    raw, code, _prompt_chars = call_deepseek_prompt(prompt, repo_root, timeout, retries=retries)
+    raw, code, _prompt_chars = call_model_prompt(prompt, repo_root, timeout, config=config, retries=retries)
     if code != 0 and not raw.strip():
-        raise ProviderError(f"DeepSeek returned code {code} for {_case_id(case)} with empty output")
+        raise ProviderError(f"agent eval command returned code {code} for {_case_id(case)} with empty output")
     parsed = _parse_sections(raw, {_case_id(case)})
     if parsed.get(_case_id(case)):
         return parsed[_case_id(case)]
@@ -508,7 +533,11 @@ def call_api(prompt: str, options: dict[str, Any], context: dict[str, Any]) -> d
             "case_id": case_id,
             "genre": _case_genre(case),
             "mode": mode,
-            "provider": "deepseek-v4-pro",
-            "estimated_cost_note": "character-count proxy; DeepSeek CLI does not expose token billing here",
+            "provider": str(
+                config.get("providerLabel")
+                or os.environ.get("OFFICIAL_WRITING_EVAL_PROVIDER_LABEL")
+                or ("deterministic-local" if _use_stub(config) else "agent-eval-command")
+            ),
+            "estimated_cost_note": "character-count proxy; agent command billing is not read here",
         },
     }

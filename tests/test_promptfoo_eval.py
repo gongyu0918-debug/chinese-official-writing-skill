@@ -30,7 +30,7 @@ run_eval = load_module(
 )
 provider = load_module(
     "official_promptfoo_provider_under_test",
-    ROOT / "evals" / "official-writing" / "providers" / "deepseek_writer.py",
+    ROOT / "evals" / "official-writing" / "providers" / "agent_writer.py",
 )
 
 

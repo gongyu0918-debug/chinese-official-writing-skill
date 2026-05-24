@@ -1,22 +1,26 @@
 #!/usr/bin/env python3
-"""Run a three-agent DeepSeek ablation for the Chinese official-writing Skill.
+"""Run a model-agnostic three-agent ablation for the Chinese official-writing Skill.
 
-Agent A: DeepSeek writer with the installed Skill available.
-Agent B: DeepSeek writer without Skill instructions.
-Agent C: independent DeepSeek evaluator comparing A/B outputs against public
+Agent A: writer with the installed Skill available.
+Agent B: writer without Skill instructions.
+Agent C: independent evaluator comparing A/B outputs against public
 official-document style profiles.
 
 Raw generated drafts are written under output/ and are ignored by git.
 Only sanitized aggregate evidence should be copied into tests/evidence/.
+Set OFFICIAL_WRITING_AGENT_COMMAND to the current agent or model command.
+Include {prompt} in the command template or the prompt will be appended as the
+final argument.
 """
 
 from __future__ import annotations
 
 import argparse
+import json
 import os
 from pathlib import Path
 import re
-import shutil
+import shlex
 import subprocess
 import sys
 import textwrap
@@ -91,34 +95,26 @@ Common reference traits:
 """
 
 
-def deepseek_executable() -> str:
-    if os.name == "nt":
-        appdata = os.environ.get("APPDATA")
-        if appdata:
-            downloads = Path(appdata) / "npm" / "node_modules" / "deepseek-tui" / "bin" / "downloads"
-            for name in ("deepseek.exe", "deepseek-tui.exe"):
-                candidate = downloads / name
-                if candidate.exists():
-                    return str(candidate)
-        for name in ("deepseek.exe", "deepseek-tui.exe", "deepseek.ps1", "deepseek.cmd", "deepseek"):
-            found = shutil.which(name)
-            if found:
-                return found
-    found = shutil.which("deepseek")
-    if found:
-        return found
-    raise FileNotFoundError("deepseek executable not found")
-
-
-def deepseek_cmd(prompt: str) -> list[str]:
-    exe = deepseek_executable()
-    suffix = Path(exe).suffix.lower()
-    common = ["--sandbox-mode", "read-only", "--approval-policy", "never", "exec", prompt]
-    if os.name == "nt" and suffix == ".ps1":
-        return ["powershell.exe", "-NoProfile", "-ExecutionPolicy", "Bypass", "-File", exe, *common]
-    if os.name == "nt" and suffix in {".cmd", ".bat"}:
-        return ["cmd.exe", "/c", exe, *common]
-    return [exe, *common]
+def external_cmd(prompt: str) -> list[str]:
+    template = (
+        os.environ.get("OFFICIAL_WRITING_AGENT_COMMAND")
+        or os.environ.get("OFFICIAL_WRITING_EVAL_COMMAND")
+        or ""
+    ).strip()
+    if not template:
+        raise FileNotFoundError("OFFICIAL_WRITING_AGENT_COMMAND is not set")
+    tokens = shlex.split(template, posix=os.name != "nt")
+    replacements = {
+        "{prompt}": prompt,
+        "{prompt_json}": json.dumps(prompt, ensure_ascii=False),
+    }
+    has_placeholder = any(marker in token for token in tokens for marker in replacements)
+    if has_placeholder:
+        return [
+            token.replace("{prompt}", replacements["{prompt}"]).replace("{prompt_json}", replacements["{prompt_json}"])
+            for token in tokens
+        ]
+    return [*tokens, prompt]
 
 
 def task_list_for_genres(genres: list[str]) -> list[tuple[str, str, str]]:
@@ -165,7 +161,7 @@ def skill_prompt(tasks: list[tuple[str, str, str]], cwd: Path) -> str:
     skill_context = load_skill_context(cwd, genres)
     return textwrap.dedent(
         f"""
-        You are DeepSeek Writer A. The repository has the Skill installed at
+        You are Writer A. The repository has the Skill installed at
         `.agents/skills/chinese-official-writing/`.
 
         Use the installed Skill instructions and references below. Follow them as
@@ -192,7 +188,7 @@ def skill_prompt(tasks: list[tuple[str, str, str]], cwd: Path) -> str:
 def baseline_prompt(tasks: list[tuple[str, str, str]]) -> str:
     return textwrap.dedent(
         f"""
-        You are DeepSeek Writer B. Do not read or use any Skill, checklist,
+        You are Writer B. Do not read or use any Skill, checklist,
         repository file, or special drafting constraint. Draft from the simple
         prompts only, using your normal writing habits.
 
@@ -212,7 +208,7 @@ def baseline_prompt(tasks: list[tuple[str, str, str]]) -> str:
 def evaluator_prompt(tasks: list[tuple[str, str, str]], a_text: str, b_text: str) -> str:
     return textwrap.dedent(
         f"""
-        You are DeepSeek Evaluator C. You have no access to the writer contexts.
+        You are Evaluator C. You have no access to the writer contexts.
         Evaluate Writer A and Writer B independently against the public official-document
         style profiles below. Do not modify files and do not infer any real facts.
 
@@ -247,12 +243,12 @@ def evaluator_prompt(tasks: list[tuple[str, str, str]], a_text: str, b_text: str
     ).strip()
 
 
-def call_deepseek(prompt: str, cwd: Path, timeout: int, out_path: Path, retries: int = 0) -> int:
+def call_external(prompt: str, cwd: Path, timeout: int, out_path: Path, retries: int = 0) -> int:
     output = ""
     return_code = 4
     for attempt in range(retries + 1):
         result = subprocess.run(
-            deepseek_cmd(prompt),
+            external_cmd(prompt),
             cwd=str(cwd),
             text=True,
             encoding="utf-8",
@@ -333,7 +329,7 @@ def write_summary(out_dir: Path, evidence_path: Path, genres: list[str], review_
     evidence_path.write_text(
         "\n".join(
             [
-                "# DeepSeek A/B/C Ablation Summary",
+                "# Model-Agnostic A/B/C Ablation Summary",
                 "",
                 "本文件只记录脱敏评估结论，不包含用户材料、内部文件内容、个人信息或原始公开公文全文。",
                 "",
@@ -342,9 +338,9 @@ def write_summary(out_dir: Path, evidence_path: Path, genres: list[str], review_
                 f"- 覆盖文体：{genre_total} 类。",
                 f"- 每类任务：{len(SCENARIOS)} 次。",
                 f"- 总任务数：{task_total} 个。",
-                "- Writer A：DeepSeek 在已安装 `chinese-official-writing` Skill 的条件下生成样稿。",
-                "- Writer B：DeepSeek 不读取 Skill，仅按普通提示生成样稿。",
-                "- Evaluator C：独立 DeepSeek 上下文，仅根据 A/B 输出和公开公文风格参照进行评估。",
+                "- Writer A：当前 agent 或指定模型在已安装 `chinese-official-writing` Skill 的条件下生成样稿。",
+                "- Writer B：当前 agent 或指定模型不读取 Skill，仅按普通提示生成样稿。",
+                "- Evaluator C：独立上下文仅根据 A/B 输出和公开公文风格参照进行评估。",
                 "- 公开原稿处理：发布包不保存原文，只保存脱敏后的风格参照和聚合评估结论。",
                 "",
                 "## 运行结果",
@@ -365,7 +361,7 @@ def write_summary(out_dir: Path, evidence_path: Path, genres: list[str], review_
                 "",
                 "## 复核结论",
                 "",
-                "DeepSeek C 的独立评估用于验证 Skill 是否改善文种适配、视角控制、公文语气、反 AI 句式和算力类论证链条。"
+                "Evaluator C 的独立评估用于验证 Skill 是否改善文种适配、视角控制、公文语气、反 AI 句式和算力类论证链条。"
                 "该测试不能替代人工审稿，也不代表具体事实、政策依据、金额或采购结论已经通过业务审核。",
             ]
         )
@@ -377,8 +373,8 @@ def write_summary(out_dir: Path, evidence_path: Path, genres: list[str], review_
 
 def main() -> int:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--out", default="output/deepseek-public-ablation")
-    parser.add_argument("--evidence", default="tests/evidence/deepseek-public-ablation-summary.md")
+    parser.add_argument("--out", default="output/agent-public-ablation")
+    parser.add_argument("--evidence", default="tests/evidence/agent-public-ablation-summary.md")
     parser.add_argument("--genres-per-batch", type=int, default=1)
     parser.add_argument("--timeout-seconds", type=int, default=420)
     parser.add_argument("--only-first-batch", action="store_true")
@@ -410,11 +406,11 @@ def main() -> int:
         b_path = batch_dir / "writer-b-baseline.md"
         c_path = batch_dir / "evaluator-c-review.md"
         print(f"batch {batch_index}: genres={','.join(genres)} tasks={len(tasks)}")
-        a_code = call_deepseek(skill_prompt(tasks, cwd), cwd, args.timeout_seconds, a_path, retries=1)
-        b_code = call_deepseek(baseline_prompt(tasks), cwd, args.timeout_seconds, b_path, retries=1)
+        a_code = call_external(skill_prompt(tasks, cwd), cwd, args.timeout_seconds, a_path, retries=1)
+        b_code = call_external(baseline_prompt(tasks), cwd, args.timeout_seconds, b_path, retries=1)
         a_text = a_path.read_text(encoding="utf-8", errors="replace")
         b_text = b_path.read_text(encoding="utf-8", errors="replace")
-        c_code = call_deepseek(evaluator_prompt(tasks, a_text, b_text), cwd, args.timeout_seconds, c_path, retries=2)
+        c_code = call_external(evaluator_prompt(tasks, a_text, b_text), cwd, args.timeout_seconds, c_path, retries=2)
         review_files.append(c_path)
         print(f"batch {batch_index}: A={a_code} B={b_code} C={c_code}")
 

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build a compact, sanitized packet for DeepSeek ablation review.
+"""Build a compact, sanitized packet for model-agnostic ablation review.
 
 The packet is generated from synthetic outputs only. It deliberately avoids
 raw user documents, internal project text, local paths, and personal data.
@@ -97,7 +97,7 @@ def main() -> int:
     parser.add_argument("--out-dir", default="output/expanded-ablation")
     parser.add_argument("--lint-baseline-json", default="")
     parser.add_argument("--lint-skill-json", default="")
-    parser.add_argument("--out", default="output/expanded-ablation/deepseek-eval-packet.md")
+    parser.add_argument("--out", default="output/expanded-ablation/agent-eval-packet.md")
     args = parser.parse_args()
 
     out_dir = Path(args.out_dir)
@@ -114,7 +114,7 @@ def main() -> int:
         variant_count = str(len(baseline) // TOTAL_GENRES)
 
     lines = [
-        "# DeepSeek Ablation Evaluation Packet",
+        "# Model-Agnostic Ablation Evaluation Packet",
         "",
         "This packet contains only synthetic release-test material for a Chinese official-writing Skill.",
         "Do not infer facts about any real organization or project from these samples.",
