@@ -3,11 +3,10 @@ name: chinese-official-writing
 description: 用于起草、改写和复核中文公文及正式工作材料；当用户明确要求中文通知、请示、报告、说明、方案、申请、函、复函、批复、意见、决定、公告、公示、通报、会议纪要、工作要点、工作总结、调研报告、可研报告、实施方案、建设方案、审查材料、AI 算力服务可研、算力采购或租赁、GPU/服务器租赁、技术服务需求，或要求正式文稿顺稿、压缩、去口语化、降 AI 味、文种校验、办理要素核对时使用；强调文种准确、主体视角稳定、事实克制、数据可追溯、公文语气自然。不用于英文写作、文学创作、营销文案、社交媒体文案、模型训练、批量语料生成、批量改写未知来源文本、规避人工审核、替代法律/财务/采购/审计/政策依据判断。
 license: MIT-0
 metadata:
-  version: "1.2.17"
+  version: "1.2.18"
   compatible_agents:
     - codex
     - claude-code
-    - deepseek-tui
     - openclaw
     - hermes
     - qwen-code
@@ -22,7 +21,7 @@ metadata:
     invocation: "/skill:chinese-official-writing"
     entry: "SKILL.md"
   openclaw:
-    version: "1.2.17"
+    version: "1.2.18"
     emoji: "📝"
     tags:
       - chinese
@@ -31,7 +30,7 @@ metadata:
       - gongwen
       - ai-compute
   hermes:
-    version: "1.2.17"
+    version: "1.2.18"
     category: writing
     display_name: "中文公文写作"
     tags:
