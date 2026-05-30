@@ -1,65 +1,56 @@
-# Review Checklist
+# 复核清单
 
-Use this checklist at three levels: paragraph, section, and full document.
+本文件是执行清单，用于段落、小节和全文交付前核对。具体规则分别见 `genre-routing.md`、`argument-chains.md`、`final-review-layers.md`、`anti-ai-patterns.md` 和 `format-gbt9704.md`。
 
-## Paragraph Review
+## 段落复核
 
-- Viewpoint: the paragraph speaks from the correct sponsor/reporting unit.
-- Main point: the first sentence or first half of the paragraph carries the judgment.
-- Evidence: data, fact, policy, business need, or practical condition supports the point.
-- Landing: the paragraph returns to the project, work arrangement, or decision.
-- Argument chain: the paragraph fits the selected chain from `argument-chains.md` and does not mix unrelated claims.
-- Style: no teaching voice, side-commentary, or casual wording.
-- AI flavor: no obvious paired-summary frames or mechanical transitions.
+- 视角：是否从正确的发文、报告、项目或主管单位立场说话。
+- 主旨：首句或前半段是否承担本段主要判断。
+- 依据：是否有事实、数据、政策、业务需求或现实条件支撑。
+- 落点：是否回到项目、工作安排、责任、时限、请批或验收。
+- 链条：是否符合选定论证链条，没有把无关事项混成一段。
+- 语言：是否有教学口吻、旁白句、口语化判断或机械转折。
+- 数据：金额、时间、单位、数量和数据性质是否一致。
 
-## Section Review
+## 小节复核
 
-- The section has one clear task in the article.
-- Heading fit: if the heading was user-specified, keep it and revise the body to match; if generated, polish headings that drift, duplicate, or overpromise.
-- The first paragraph gives the section conclusion.
-- Paragraph order moves from conclusion to support to arrangement.
-- Data units stay consistent inside the section.
-- Repeated points are merged.
-- Adjacent paragraphs do not repeat the same matter unless the later paragraph adds data, reason, responsibility, risk, deadline, or acceptance.
-- Missing data is left blank, marked for follow-up, or described as estimated only when the user permits estimation.
-- The section follows its genre's formal expectations. Load `genre-checklist.md` for notices, requests, reports, explanations, plans, applications, letters, replies, approvals, public notices, circulars, and minutes.
-- The section follows the selected handling logic. Load `genre-routing.md` when the genre is ambiguous, and `handling-elements.md` when required items may be missing.
+- 本节是否只有一个明确任务。
+- 标题和正文是否贴合；固定标题优先改正文，生成标题可适度润色。
+- 第一段是否给出本节结论或事项。
+- 段落顺序是否从结论到依据，再到安排或要求。
+- 相邻段落是否重复；重复内容是否新增数据、理由、责任、风险、期限或验收要求。
+- 缺失数据是否留空、标注待补或说明为估算，未把估算写成事实。
+- 文种要素是否匹配；不确定时回看 `genre-checklist.md`。
+- 办理要素是否完整；不确定时回看 `handling-elements.md`。
 
-## Full-Document Review
+## 全文复核
 
-- The title, viewpoint, and conclusion match the user's latest instruction.
-- The main title is not changed unless the user asked for it.
-- Generated headings receive a second-pass polish; fixed headings receive a body-fit check.
-- The document's function matches its genre. Requests for approval are not hidden in reports, and reports do not end like requests for approval.
-- Required handling elements are present or explicitly left for user confirmation.
-- The main argument follows one suitable chain: request, report, notice/coordination, plan/construction, feasibility/review, or AI compute/technical service.
-- The structure answers the reader's decision question.
-- All critical user comments are addressed.
-- Tables are used only where needed; prose carries the main argument.
-- Tables are not used to avoid writing a difficult argument.
-- Figures and highlighted data are consistent across sections.
-- "建设背景", "必要性", "成本测算", "收益", "建设方案", "建设成效", and "安全保障" do not repeat the same claims.
-- Terms are unified across the file.
-- Final Word formatting preserves the source template unless the user requests a new format.
-- Public-document plausibility is checked: dates, deadlines, attachments, contact channels, responsible units, approval basis, process language, and implementation responsibilities are present where the genre normally requires them.
-- Repeated template phrases are reduced. Watch for frequent starts such as `总体看`, `重点任务包括`, `保障措施包括`, and `形成一批`.
-- Thought leakage is removed: no AI identity, hidden reasoning, prompt references, recording instructions, or user-editing process in the final document.
-- Format noise is checked: Chinese punctuation, number spacing, number grouping, first-line indentation, list-marker frequency, table overuse, and Emoji/decorative bullets.
-- AI compute technical documents are checked with `ai-compute-docs.md`: business demand, Token/resource conversion, cost comparison, server scale, SLA, concurrency, operations, security, service period, acceptance, and actual/estimated data separation are all clear.
-- Community style references are used only as auxiliary writing and review methods. Official genre functions and user templates take precedence.
+- 标题、视角、文种、行文关系和结论是否符合用户最新要求。
+- 主标题是否未经用户同意被改动。
+- 请示、报告、通知、函、批复、纪要等核心文种是否功能正确。
+- 法定公文、事务文书、工作材料和技术材料是否分类清楚，没有混称。
+- 必备办理要素是否出现；缺项是否明确留待用户确认。
+- 主论证链条是否清楚，能回答读者的办理或决策问题。
+- 用户批注、金额、日期、单位、附件、落款和反馈要求是否逐项落实。
+- 表格是否只用于结构化数据、进度、预算、责任或对比；正文是否承担主要论证。
+- `建设背景`、`必要性`、`成本测算`、`收益`、`建设方案`、`建设成效`、`安全保障` 是否反复写同一套话。
+- 术语、简称、主体称谓、人员称谓和敬谦用语是否统一。
+- Word 格式是否保留来源模板；正式红头格式是否有用户模板或明确要求。
+- 日期、期限、附件、联系人、责任单位、审批依据和实施责任是否符合公开文稿常识。
+- 是否删除 AI 身份、隐藏推理、提示词、录音要求、用户编辑过程等过程泄露。
+- 是否检查中文标点、数字空格、千位分隔符、首行缩进、编号频率、表格过用和 Emoji。
+- AI 算力材料是否交代业务需求、Token/资源换算、成本比较、服务器规模、SLA、并发、运维、安全、服务周期、验收和实际/估算数据边界。
+- 社区样文和经验是否只作为辅助，未替代官方文种功能和用户模板。
 
-## Optional Independent Review
+## 独立复核
 
-Use an independent reviewer only when the user asks or the document is high-stakes. Ask the reviewer for concrete findings on:
+用户要求、材料高风险或准备正式提交时，可请独立 reviewer 只看最终文本或紧凑摘录，不传内部推理。重点问：
 
-- wrong viewpoint,
--口语化 wording,
-- AI-flavor sentence frames,
-- unsupported or conflicting data,
-- repeated paragraphs,
-- logic gaps between claim and evidence.
-- repeated matters between adjacent paragraphs or sections,
-- title/body drift and heading overreach,
-- format noise such as half-width punctuation in Chinese prose, number spacing, list-marker overuse, table overuse, and Emoji.
-
-Pass compact excerpts or the final draft, not internal reasoning.
+- 文种和行文关系是否错。
+- 主体视角是否乱。
+- 是否有口语化、AI 味或旁白句。
+- 数据、金额、日期、依据是否缺失或冲突。
+- 段落和章节是否重复。
+- 判断与依据之间是否断裂。
+- 标题和正文是否漂移。
+- 格式噪点是否影响正式感。

@@ -1,97 +1,97 @@
-# AI Compute Technical Official Documents
+# AI 算力与技术服务材料
 
-Use this reference for AI companies, computing-power service providers, model platforms, GPU/server rental, intelligent computing centers, cloud-vs-local comparison, feasibility reports, procurement plans, leasing service plans, and technical service requirement documents.
+本文件只在任务明确涉及 AI 公司、算力服务、模型平台、GPU/服务器租赁、智算中心、云端与本地部署比较、可研报告、采购方案、租赁服务方案或技术服务需求时读取。通用公文、普通方案、通知、请示、报告不应默认加载本文件。
 
-## Writing Position
+## 写作定位
 
-Write for the decision maker. The document should make the purchase or lease reason clear:
+这类材料面向决策、采购和审查场景，重点不是解释 AI 概念，而是把业务需求、资源需求、费用边界和风险控制讲清楚：
 
-- Where computing demand comes from.
-- How demand converts into Token, concurrency, storage, bandwidth, model, or GPU/server requirements.
-- Why the selected service period, server scale, and service model are appropriate.
-- What costs are reduced or stabilized.
-- What operational risks are controlled.
+- 算力需求从哪些业务场景产生。
+- 需求如何换算为 Token、并发、存储、带宽、模型能力或 GPU/服务器资源。
+- 服务周期、服务器规模、部署方式和服务模式为什么匹配实际需求。
+- 哪些成本可以降低、锁定或转为可管理支出。
+- 哪些运行、数据、安全和连续性风险得到控制。
 
-Do not write as if explaining AI concepts to beginners. Define terms only when necessary for a nontechnical decision reader.
+术语只在非技术读者可能误解时解释。不要把正文写成 AI 科普、产品宣传或参数堆叠。
 
-## Common Document Structures
+## 常见结构
 
-### Computing power feasibility report
+### 算力服务可研报告
 
-1. Project background and conclusion.
-2. Business demand and annual Token/resource demand.
-3. Existing use, constrained use, and future growth.
-4. Technical route and construction or leasing model.
-5. Cost calculation and cloud/external service comparison.
-6. Service capability, SLA, concurrency, and operation guarantee.
-7. Expected benefits.
-8. Data security and compliance.
-9. Implementation schedule and acceptance.
+1. 项目背景和结论。
+2. 业务需求和年度 Token/资源需求。
+3. 现有使用情况、受限使用情况和未来增长。
+4. 技术路线及建设或租赁模式。
+5. 费用测算和云端/外部服务比较。
+6. 服务能力、SLA、并发和运维保障。
+7. 预期效益。
+8. 数据安全和合规要求。
+9. 实施进度和验收安排。
 
-### Computing resource procurement or leasing plan
+### 算力资源采购或租赁方案
 
-1. Procurement purpose.
-2. Service scope.
-3. Resource scale and performance requirement.
-4. Service period and delivery location.
-5. Deployment, scheduling, monitoring, operation, and upgrade service.
-6. Price structure and payment arrangement.
-7. Acceptance, SLA, fault response, and assessment.
-8. Security, data ownership, confidentiality, and audit.
+1. 采购目的。
+2. 服务范围。
+3. 资源规模和性能要求。
+4. 服务期限和交付地点。
+5. 部署、调度、监控、运维和升级服务。
+6. 价格结构和付款安排。
+7. 验收、SLA、故障响应和考核。
+8. 安全、数据权属、保密和审计。
 
-### GPU/server rental technical requirement
+### GPU/服务器租赁技术需求
 
-1. Required quantity, service period, and resource type.
-2. GPU model or equivalent performance.
-3. CPU, memory, disk, RAID, network, storage, and bandwidth.
-4. Model training, inference, fine-tuning, and multi-tenant isolation needs.
-5. Resource scheduling platform, quota management, monitoring, logs, billing, and alerts.
-6. Onsite/remote delivery, installation, system environment, driver and dependency management.
-7. 7x24 operation support, fault replacement, maintenance window, and SLA.
-8. Acceptance tests and reporting materials.
+1. 数量、服务期和资源类型。
+2. GPU 型号或等效性能。
+3. CPU、内存、磁盘、RAID、网络、存储和带宽。
+4. 模型训练、推理、微调和多租户隔离需求。
+5. 资源调度、配额管理、调用监控、日志审计、计费和告警。
+6. 现场或远程交付、系统安装、驱动适配和依赖环境管理。
+7. 7x24 运维支持、故障替换、维护窗口和 SLA。
+8. 验收测试和交付材料。
 
-## Demand-Writing Patterns
+## 需求表述
 
-Use business-driven paragraphs:
+优先从业务场景写需求，再落到资源指标。可采用：
 
-`单位年度算力需求主要来自长文审校、内容生成、知识库问答、模型研发测试和多模态处理等场景。上述场景均以长文本处理、多轮交互、批量任务和知识库检索为主要特征，Token 调用量随使用范围扩大持续增加。项目通过集中租赁算力服务，为核心系统提供稳定承载能力，并为高峰并发和后续模型升级预留资源。`
+`集团年度算力需求主要来自智能审校、内容生成、知识库问答、模型研发测试和多模态处理等场景。上述场景均以长文本处理、多轮交互、批量任务和知识库检索为主要特征，Token 调用量随使用范围扩大持续增加。项目通过集中租赁算力服务，为核心系统提供稳定承载能力，并为高峰并发和后续模型升级预留资源。`
 
-Write demand by unit or scenario when data supports it:
+有数据时按单位或场景拆分：
 
-- Current actual Token, calls, users, and peak concurrency.
-- Restricted current use and reasons: quota, concurrency control, cost control, pilot scope, or manual review queue.
-- Future use: wider users, daily workflow embedding, batch processing, agent workflow, knowledge-base linkage, multimodal tasks.
-- Annual demand: measured data plus growth estimate.
+- 当前实际 Token、调用次数、用户数和峰值并发。
+- 现阶段受限使用及原因，如额度、并发、成本、试点范围或人工审核队列。
+- 未来使用范围，如用户扩大、日常流程嵌入、批量处理、智能体工作流、知识库联动和多模态任务。
+- 年度需求，用已测数据加增长假设说明。
 
-Keep units consistent. If the document's logic uses Token, carry the calculation to cost at the end. Use TOPS/TFLOPS only for server carrying capacity, not as a competing cost line.
+单位要保持一致。正文以 Token 为主线时，应在后文承接到费用测算；TOPS/TFLOPS 只用于说明服务器承载能力，不宜与 Token 单价混作同一成本口径。
 
-## Cost and Comparison Patterns
+## 成本与路径比较
 
-Cost comparison should not rely on model API unit price alone. Include:
+成本比较不能只看模型 API 单价。视材料需要覆盖：
 
-- Model/API Token cost.
-- Cloud server, database, storage, bandwidth, firewall, gateway, load balancing, logging, cache, and function computing.
-- GPU leasing or server rental cost.
-- Room, power, network, maintenance, operation, security, monitoring, and support cost.
-- SLA and concurrency guarantee value.
-- Data security and local deployment value.
+- 模型/API Token 成本。
+- 云服务器、数据库、存储、带宽、防火墙、网关、负载均衡、日志、缓存和函数计算。
+- GPU 租赁或服务器租赁费用。
+- 机房、电力、网络、维护、运维、安全、监控和支持。
+- SLA、并发保障和业务连续性价值。
+- 数据安全、本地化部署和统一调度价值。
 
-Useful paragraph:
+可采用：
 
 `继续采用云端部署的短期支出较轻，但费用随 Token 消耗、模型升级、并发释放和云厂商价格调整持续波动。现阶段账单反映的是受控调用状态，不能代表核心业务全面接入后的三年成本。租赁服务方式将服务器资源、模型部署、训推调度、机房托管、安全防护和运维保障纳入合同管理，有利于锁定服务能力和费用边界，增强三年成本可控性。`
 
-When comparing paths, keep the conclusion readable:
+路径结论要写清适用前提：
 
-- Cloud path: lower current cash spend, higher growth uncertainty, weaker SLA/concurrency/data control.
-- Purchase/self-build path: high upfront investment, longer construction cycle, hardware depreciation, supply and maintenance burden.
-- GPU/server rental path: faster resource access, contract-managed price and service, lower operation burden, stronger elasticity than self-build.
-- Local service path: better data control, audit, continuity, and unified scheduling.
+- 云端路径：当前现金支出较轻，但增长不确定性、并发保障和数据控制压力较大。
+- 购置自建路径：一次性投入高、建设周期长，存在折旧、供货和维护压力。
+- GPU/服务器租赁路径：资源到位较快，价格和服务可通过合同管理，运维负担低于自建，弹性强于固定购置。
+- 本地化服务路径：更利于数据控制、审计、连续性和统一调度。
 
-Do not write the conclusion as "rental is always cheaper." Write which scenario it is cheaper or more certain under.
+不要写成“租赁一定更便宜”。应写明在哪个需求规模、服务期限、成本口径和风险假设下更可控。成本章节不要写成计算草稿；除非用户要求测算表，不要以“测算口径”“测算公式”“单价×数量”“计算如下”开头。正文重点放在需求来源、服务期限、资源覆盖、风险控制和费用边界可接受性。
 
-## Technical Requirement Writing
+## 技术需求
 
-Use measurable and checkable requirements:
+技术条款要可度量、可检查：
 
 - `单台服务器应提供不少于……张 GPU 或等效算力资源。`
 - `应支持模型推理、微调训练、批量任务和多用户并发调用。`
@@ -101,44 +101,44 @@ Use measurable and checkable requirements:
 - `应提供 7x24 运维响应，重大故障应在合同约定时限内恢复或提供替代资源。`
 - `验收内容包括资源规格、性能测试、模型服务可用性、并发压测、日志审计、安全配置和运维文档。`
 
-Avoid vague terms such as `先进算力`, `强大平台`, `领先能力`, unless followed by measurable indicators.
+避免只写“先进算力”“强大平台”“领先能力”。必须使用时，应紧跟可核验指标。
 
-## SLA and Operations
+## SLA 与运维
 
-SLA is part of the business argument, not an appendix only. Mention:
+SLA 是论证的一部分，不只是附件条款。应结合任务写明：
 
-- Availability.
-- Fault response and recovery time.
-- Peak concurrency and queue control.
-- Resource isolation and priority guarantee.
-- Monitoring, logs, monthly reports, and utilization analysis.
-- Upgrade, migration, and model version switching.
+- 可用性。
+- 故障响应和恢复时间。
+- 峰值并发和排队控制。
+- 资源隔离和优先级保障。
+- 监控、日志、月报和利用率分析。
+- 升级、迁移和模型版本切换。
 
-Useful paragraph:
+可采用：
 
-`项目服务能力不只体现为 Token 单价，还体现在峰值并发、响应时延、故障恢复和业务连续性。长文审校、知识库问答和智能体工作流均存在集中提交、批量处理和重点任务保障需求，若仅按平均调用量配置资源，关键时段容易形成排队和积压。租赁服务应将 SLA、资源优先级、监控报表和故障响应写入合同，保障核心业务稳定运行。`
+`项目服务能力不只体现为 Token 单价，还体现在峰值并发、响应时延、故障恢复和业务连续性。出版审校、知识库问答和智能体工作流均存在集中提交、批量处理和重点任务保障需求，若仅按平均调用量配置资源，关键时段容易形成排队和积压。租赁服务应将 SLA、资源优先级、监控报表和故障响应写入合同，保障核心业务稳定运行。`
 
-## Security and Compliance
+## 安全与合规
 
-For publishing, media, education, healthcare, finance, government, and internal enterprise scenarios, state the specific data:
+出版、传媒、教育、医疗、金融、政务和企业内部场景，应明确具体数据类型：
 
-- Manuscripts, copyright materials, review records, internal knowledge bases, user feedback, business rules, training/evaluation data, logs, and prompts.
-- Data should be processed in the controlled environment when required.
-- Sensitive data should not leave the agreed region or environment.
-- Permissions, keys, logs, calls, and model access should be manageable and auditable.
+- 稿件、版权材料、审核记录、内部知识库、用户反馈、业务规则、训练/评测数据、日志和提示词。
+- 有要求时，数据应在受控环境内处理。
+- 敏感数据不应离开约定区域或环境。
+- 权限、密钥、日志、调用和模型访问应可管理、可审计。
 
-Useful paragraph:
+可采用：
 
 `本地化或省内部署有利于将敏感业务数据控制在约定环境内处理，减少外部传输、留存、二次使用和跨区域流转风险。项目应对模型调用、知识库检索、日志记录、运维访问和数据导出实行统一权限管理，做到访问可控、日志可审、调用可追溯、责任可界定。`
 
-## Review Checks
+## 复核要点
 
-Before finalizing AI compute documents, check:
+定稿前检查：
 
-- Does every technical term support the purchase or lease decision?
-- Are Token, TOPS/TFLOPS, GPU cards, server quantity, bandwidth, storage, and money not mixed without explanation?
-- Is the cost comparison based on the same service period and demand assumption?
-- Does the document explain current low use if existing usage is constrained?
-- Does it show why redundancy is needed for peak load, model upgrades, and agent workflow?
-- Are service period, delivery, acceptance, SLA, data ownership, confidentiality, and operation responsibilities stated?
-- Are actual figures separated from estimates?
+- 技术术语是否服务于采购、租赁或建设决策。
+- Token、TOPS/TFLOPS、GPU 卡数、服务器数量、带宽、存储和金额是否有清晰换算关系。
+- 成本比较是否基于同一服务期限和同一需求假设。
+- 现有用量偏低时，是否说明受到额度、并发、成本或试点范围限制。
+- 是否说明冗余配置对高峰负载、模型升级和智能体工作流的必要性。
+- 服务期限、交付、验收、SLA、数据权属、保密和运维责任是否明确。
+- 实际数据和估算数据是否分开。

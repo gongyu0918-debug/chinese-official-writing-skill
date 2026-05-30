@@ -30,6 +30,7 @@ GENRE_REFERENCES: dict[str, list[str]] = {
         "references/genre-routing.md",
         "references/handling-elements.md",
         "references/genre-checklist.md",
+        "references/formal-addressing.md",
         "references/anti-ai-patterns.md",
     ],
     "argument": [

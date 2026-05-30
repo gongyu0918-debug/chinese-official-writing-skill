@@ -1,56 +1,66 @@
-# Handling Elements
+# 办理要素
 
-Use this reference before drafting or reviewing. It lists document-handling elements, not copy-ready templates.
+本文件用于起草前核对材料是否足够。它列的是办理要素，不是可直接复制的模板。
 
-## Common Elements
+## 通用要素
 
-For most official or formal work materials, identify these before writing:
+多数公文或正式工作材料起草前，应尽量明确：
 
-- issuing or reporting unit,
-- recipient or reader,
-- matter to be handled,
-- basis or background,
-- current situation or problem,
-- requested action or work requirement,
-- deadline or schedule,
-- responsible unit or person,
-- attachment or supporting material,
-- feedback channel or contact,
-- data source and whether data is actual, estimated, or pending.
+- 发文、报告、申请或项目主体。
+- 主送、受文、阅读或执行对象。
+- 需要办理、说明、请批、答复或协调的事项。
+- 政策依据、会议依据、工作背景或现实原因。
+- 当前情况、主要问题、风险或差距。
+- 请求事项、工作要求、答复意见或后续安排。
+- 完成期限、实施进度或反馈时限。
+- 责任单位、牵头单位、配合单位或联系人。
+- 附件、支撑材料、数据表或证明材料。
+- 反馈渠道、报送方式或联系方式。
+- 数据来源，以及数据是实际、测算、估算还是待补充。
 
-Do not stop drafting because an optional item is missing. Do stop or leave a clear placeholder when a critical approval item, amount, deadline, or data source is required and cannot be inferred.
+可选要素缺失时，不要停止写作；关键审批事项、金额、期限、数据来源或主体关系缺失时，应保留占位或提示用户补充。
 
-## Genre Elements
+## 文种要素表
 
-| Genre | Required elements | Optional elements | Common failure |
+| 文种/材料 | 必备要素 | 可选要素 | 常见问题 |
 | --- | --- | --- | --- |
-| 通知 | recipient, matter, requirement, deadline, material or action, contact or submission method | basis, attachment, consequences for non-response | vague "please attach importance" without actual handling requirement |
-| 请示 | requesting unit, one requested matter, basis, necessity, plan or amount, risk control, approval sentence | alternatives, attachments, implementation schedule | mixing several matters or ending like a report |
-| 报告 | reporting unit, background, progress or facts, results, problems, next steps | data appendix, responsible units, requested coordination without approval wording | adding "please approve" or burying the conclusion |
-| 说明 | matter to explain, reason, facts, impact, corrective or follow-up arrangement | timeline, supporting attachment | sounding like a writing guide rather than explaining the matter |
-| 方案 | objective, scope, tasks, implementation path, schedule, responsibility, safeguards, acceptance | budget, risk response, data management | only slogans and concepts, no owner or schedule |
-| 申请 | applicant, requested item, basis, purpose, amount or resource, use plan, commitment | supporting attachment | unclear request or missing use plan |
-| 函 | sender, recipient, coordination matter, requested reply or action, deadline, contact | background, attachment | tone too commanding or too casual |
-| 复函 | incoming letter reference, position or reply, handling requirement, follow-up channel | explanation, attachment | failing to answer the original question |
-| 批复 | referenced request, decision, implementation requirement, supervision or reporting requirement | conditions, funding control, acceptance | replying without a clear "agree/disagree/adjust" decision |
-| 通报 | situation, finding, problem or commendation, requirement, corrective action | typical case, deadline | turning into a notice or publicity article |
-| 会议纪要 | meeting time, subject, attendees or units, agreed matters, responsibilities, deadlines | unresolved issues, next meeting | writing as meeting news instead of decisions |
-| 工作要点 | annual or stage target, key tasks, responsible units, time nodes, evaluation method | supporting projects, risk controls | task list without priorities or measures |
-| 工作总结 | work completed, data or results, experience, problems, next steps | typical cases, attachments | excessive praise without facts |
-| 调研报告 | topic, method, facts, findings, problems, causes, recommendations | sample range, data source | recommendation not supported by findings |
-| 可研报告 | demand, necessity, feasibility, option comparison, cost, risk, implementation, benefits | policy basis, financing, schedule | conclusion without calculation |
-| 实施方案 | target, phases, tasks, responsibility, schedule, safeguards, acceptance | communication plan, training, data flow | no accountable owner |
-| 建设方案 | background, demand, construction content, resource and cost, operation, benefits, security | architecture, procurement mode, rollout | repeating necessity and construction content |
-| 审查材料 | review object, review basis, findings, risks, required corrections, conclusion | evidence list, follow-up check | vague "basically compliant" without issues or conditions |
+| 通知 | 对象、事项、要求、时限、材料或动作、反馈方式 | 依据、附件、逾期处理 | 只有“高度重视”，没有具体办理要求 |
+| 请示 | 请示主体、一项请批事项、依据、必要性、方案或金额、风险控制、请批语 | 备选方案、附件、实施进度 | 多事并请、结尾像报告 |
+| 报告 | 报告主体、背景、事实或进展、结果、问题、下一步 | 数据附件、责任单位、无需审批的协调建议 | 夹带“请批准”或结论埋得太深 |
+| 说明 | 说明事项、原因、事实、影响、整改或后续安排 | 时间线、支撑附件 | 写成写作指南或政策宣讲 |
+| 方案 | 目标、范围、任务、实施路径、进度、责任、保障、验收 | 预算、风险应对、数据管理 | 只有口号和概念，没有责任和时限 |
+| 申请 | 申请主体、申请事项、依据、用途、金额或资源、使用计划、承诺 | 支撑附件 | 申请事项不清或缺使用计划 |
+| 函 | 发函主体、受函单位、商洽事项、请求反馈或动作、期限、联系人 | 背景、附件 | 语气过于命令或过于随意 |
+| 复函 | 来函依据、答复立场、办理要求、后续渠道 | 解释说明、附件 | 没有回应原问题 |
+| 批复 | 来文依据、批复决定、实施要求、监督或报送要求 | 条件、经费控制、验收 | 没有明确同意、不同意或调整决定 |
+| 决定 | 决定事项、依据、适用范围、执行要求、生效时间 | 责任分工、解释机关 | 权限来源不清 |
+| 命令（令） | 发布主体、命令事项、依据、生效或执行要求 | 附件、编号 | 用于普通工作部署 |
+| 公报 | 发布主体、公开事项、权威数据或决定、发布时间 | 背景说明 | 写入不宜公开的内部流程 |
+| 议案 | 提请主体、审议机关、议案事项、依据、理由、拟议内容 | 附件、说明材料 | 把普通建议写成议案 |
+| 通报 | 情况、发现、评价、问题或表扬、要求、整改动作 | 典型案例、期限 | 写成通知或宣传稿 |
+| 会议纪要 | 会议时间、主题、参会单位、议定事项、责任、期限 | 未决事项、下次会议 | 写成会议新闻 |
+| 工作要点 | 年度或阶段目标、重点任务、责任机制、时间节点、评价方式 | 支撑项目、风险控制 | 任务清单没有重点和措施 |
+| 工作总结 | 已完成工作、数据或成效、经验、问题、下一步 | 典型案例、附件 | 表扬过多，事实不足 |
+| 调研报告 | 主题、方法、事实、发现、问题、原因、建议 | 样本范围、数据来源 | 建议没有调研事实支撑 |
+| 可研报告 | 需求、必要性、可行性、方案比较、成本、风险、实施、成效 | 政策依据、融资、进度 | 结论没有测算或条件 |
+| 实施方案 | 目标、阶段、任务、责任、进度、保障、验收 | 宣传培训、数据流转 | 没有可追责主体 |
+| 建设方案 | 背景、需求、建设内容、资源和成本、运维、成效、安全 | 架构、采购方式、推广安排 | 必要性和建设内容反复重复 |
+| 审查材料 | 审查对象、依据、发现、风险、整改要求、结论 | 证据清单、后续复查 | 只写“基本合规”，没有条件和问题 |
 
-## AI Compute Elements
+## AI 算力和技术服务要素
 
-For computing power, GPU/server rental, cloud deployment, and model-service documents, check:
+涉及算力、GPU/服务器租赁、云端部署和模型服务时，重点核对：
 
-- business systems and units that create demand,
-- Token, request volume, users, concurrency, or resource assumptions,
-- current cost and future cost drivers,
-- cloud deployment comparison or rental/procurement comparison,
-- SLA, latency, concurrency, fault response, and acceptance,
-- data location, sensitive data handling, permissions, logs, audit, and backup,
-- service period, payment basis, delivery scope, and acceptance documents.
+- 产生需求的业务系统、单位、用户和场景。
+- Token、请求量、使用人数、并发、GPU、服务器或存储假设。
+- 当前成本、未来增长因素和服务周期。
+- 云端、本地、租赁、采购或服务化路径比较。
+- SLA、响应时延、并发保障、故障响应、验收标准。
+- 数据位置、敏感数据处理、权限、日志、审计和备份。
+- 付款依据、交付范围、验收文件和运维责任。
+
+## 缺项处理
+
+- 不编造真实单位、金额、政策、日期、电话、邮箱、文号、签发人和印章。
+- 可用 `〔待补充〕`、`根据用户提供材料填写` 或修订说明提示缺口。
+- 如果缺项影响文种成立，例如请示没有请批事项、批复没有来文依据，应优先补问或标注风险。

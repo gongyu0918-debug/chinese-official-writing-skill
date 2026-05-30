@@ -1,10 +1,10 @@
 ---
 name: chinese-official-writing
-description: 用于起草、改写和复核中文公文及正式工作材料；当用户明确要求中文通知、请示、报告、说明、方案、申请、函、复函、批复、意见、决定、公告、公示、通报、会议纪要、工作要点、工作总结、调研报告、可研报告、实施方案、建设方案、审查材料、AI 算力服务可研、算力采购或租赁、GPU/服务器租赁、技术服务需求，或要求正式文稿顺稿、压缩、去口语化、降 AI 味、文种校验、办理要素核对时使用；强调文种准确、主体视角稳定、事实克制、数据可追溯、公文语气自然。不用于英文写作、文学创作、营销文案、社交媒体文案、模型训练、批量语料生成、批量改写未知来源文本、规避人工审核、替代法律/财务/采购/审计/政策依据判断。
+description: 用于起草、改写和复核中文公文及正式工作材料；当用户明确要求中文通知、请示、报告、命令（令）、决议、公报、议案、说明、方案、申请、函、复函、批复、意见、决定、公告、公示、通报、会议纪要、工作要点、工作总结、调研报告、可研报告、实施方案、建设方案、审查材料、讲话稿、致辞、述职报告、AI 算力服务可研、算力采购或租赁、GPU/服务器租赁、技术服务需求，或要求正式文稿顺稿、压缩、去口语化、降 AI 味、文种校验、办理要素核对时使用；强调文种准确、行文关系清楚、主体视角稳定、事实克制、数据可追溯、公文语气自然。不用于英文写作、文学创作、营销文案、社交媒体文案、模型训练、批量语料生成、批量改写未知来源文本、规避人工审核、替代法律/财务/采购/审计/政策依据判断。
 license: MIT-0
-version: "1.2.18"
+version: "1.2.19"
 metadata:
-  version: "1.2.18"
+  version: "1.2.19"
   compatible_agents:
     - codex
     - claude-code
@@ -22,7 +22,7 @@ metadata:
     invocation: "/skill:chinese-official-writing"
     entry: "SKILL.md"
   hermes:
-    version: "1.2.18"
+    version: "1.2.19"
     category: writing
     display_name: "中文公文写作"
     tags:
@@ -42,19 +42,19 @@ metadata:
 
 不要为以下任务启用本技能：英文写作、文学创作、营销软文、社交媒体文案、闲聊回复、代码说明、通用翻译、模型训练、批量语料生成、批量改写未知来源文本、规避人工审核、生成可冒充真实签发文件的完整编号/日期/印章信息。
 
-本技能只提供写作和复核辅助。法律、财务、采购、审计、政策依据、保密审查和正式签发结论必须保留人工复核；没有用户提供依据时，不编造真实单位、真实政策、真实金额、真实日期、电话、邮箱或审批结论。
+本技能只提供写作和复核辅助。法律、财务、采购、审计、政策依据、保密审查和正式签发结论必须保留人工复核；没有用户提供依据时，不编造真实单位、真实政策、真实金额、真实日期、电话、邮箱、文号、签发人、印章或审批结论。
 
 ## 三层使用原则
 
-1. **硬边界**：事实不编造、文种不错、用户明确要求不丢、敏感信息不外泄、过程说明不进正文。涉及这些问题时按交付风险处理，必须优先修正。
+1. **硬边界**：事实不编造、文种不错、行文关系不错、用户明确要求不丢、敏感信息不外泄、过程说明不进正文。涉及这些问题时按交付风险处理，必须优先修正。
 2. **质量建议**：低 AI 味、重复事项、表达松散、结构不顺、格式噪点、项目卡片式摘要、必要性罗列和测算说明腔，只作质量提示。检查后按文稿用途、用户模板和材料场景必要时调整，不作为自动阻断。
-3. **场景参考**：通知、请示、报告、方案、算力采购和 Word 修订按任务需要读取对应 reference；不要一次性加载全部资料。
+3. **场景参考**：先读核心资料，再按任务读取文种、格式、称谓、算力或 DOCX 相关资料；不要一次性加载全部资料。
 
 ## 核心流程
 
-1. 先判断文种，再抽取办理要素，再选择论证链条，最后进入语言和格式复核。
+1. 先判断文稿类别、文种和行文关系，再抽取办理要素，再选择论证链条，最后进入语言和格式复核。
 2. 文种判断以官方规范和 `references/genre-routing.md` 为准；社区模板不得替代文种功能。
-3. 起草前按 `references/handling-elements.md` 核对发文主体、受文对象、事项、依据、时限、责任、附件、反馈渠道和请批事项。
+3. 起草前按 `references/handling-elements.md` 核对发文主体、受文对象、事项、依据、时限、责任、附件、反馈渠道、数据来源和请批事项。
 4. 成文前搭文稿蓝图：提纲 -> 段落安排 -> 小段要点，并按 `references/argument-chains.md` 组织论证。
 5. 按章节或段落生成正文。每段只服务一个论点，通常按“结论前置、事实支撑、判断归纳、事项落点”展开。
 6. 小段写完先审，小节写完再审，全文合并后做总审；总审时按 `references/final-review-layers.md` 先查硬边界，再看质量建议。
@@ -65,6 +65,7 @@ metadata:
 - 从发文单位、报告单位、项目单位或主管单位视角写，不使用旁观者、教师或评论员口吻。
 - 数据和判断要可追溯。不编造实际数据；测算和预估必须标明性质。
 - 文种功能不能错位：请示、报告、通知、函、批复、纪要等按 `references/genre-routing.md` 判断。
+- 行文关系不能错位：上行文不替上级作决定，下行文要有执行要求，平行文保持商洽语气。
 - 用户明确给出的金额、日期、单位、落款、请批事项、会议时间、地点和反馈要求要落实；材料没有依据时使用占位或说明缺口。
 - 正文不得出现 AI 身份、隐藏推理、原始提示词、用户指令、录音指令和起草过程。
 
@@ -83,6 +84,7 @@ metadata:
 - **教学式写法**：`重点说明 Token 用在哪里。` -> 改写为业务事实，如 `Token 调用主要消耗在长文审校、批量稿件处理、多轮问答和知识库检索环节。`
 - **口语化判断**：`租赁方式更稳，也更省。` -> 改写为正式判断，如 `租赁服务方式有利于稳定三年成本、缩短建设周期并明确服务保障责任。`
 - **视角错位**：检查是否像外部顾问讲解“报告应该怎么写”，改为从发文或项目主体视角说明本单位拟做什么、为什么做、如何做。
+- **行文关系错位**：请示不能替上级作结论；函不能写成命令；批复不能没有同意与否的答复。
 - **标题漂移**：默认不改用户指定的文章标题；对大小标题和正文做二次核验，确保正文不偏题。
 - **重复事项**：上一段已经说清的事项，下一段如果只是换词重复，必要时合并；新增数据、责任、风险、时限或验收要求时可以保留。
 - **思考泄露**：不写 AI 身份、原始指令或改稿过程。
@@ -96,20 +98,15 @@ metadata:
 
 ## 参考资料
 
-按任务只读取需要的资料：
+按任务渐进读取资料：
 
-- `references/workflow.md`: staged blueprint writing process and review gates.
-- `references/genre-routing.md`: official-document genre functions, routing rules, and hard boundaries.
-- `references/handling-elements.md`: required and optional handling elements for common document types.
-- `references/argument-chains.md`: argument chains for requests, reports, plans, technical documents, and AI-compute materials.
-- `references/final-review-layers.md`: title/heading review, repeated-matter review, anti-AI review, and format review.
-- `references/official-style.md`: official-document sentence patterns, viewpoint control, and argument structure.
-- `references/format-gbt9704.md`: common GB/T 9704-2012-style Word formatting defaults.
-- `references/anti-ai-patterns.md`: AI-flavor, teaching-view, and casual-phrasing patterns to avoid.
-- `references/genre-checklist.md`: genre-specific elements for notices, requests, reports, explanations, plans, applications, letters, replies, approvals, public notices, circulars, and minutes.
-- `references/ai-compute-docs.md`: AI computing power, GPU/server rental, model service, procurement, leasing, feasibility, cost-comparison, SLA, and security writing patterns.
-- `references/review-checklist.md`: paragraph, section, and full-document audit checklist.
+- 核心必读：`references/workflow.md`、`references/genre-routing.md`、`references/handling-elements.md`、`references/argument-chains.md`、`references/final-review-layers.md`。
+- 语言风格：`references/official-style.md`、`references/anti-ai-patterns.md`、`references/formal-addressing.md`。
+- 文种细查：`references/genre-checklist.md`，用于通知、请示、报告、命令（令）、决议、公报、议案、说明、方案、申请、函、复函、批复、公告、公示、通报、会议纪要、讲话稿、致辞和述职报告等。
+- 格式版式：`references/format-gbt9704.md`，只作为 GB/T 9704-2012 常用格式参考；正式红头文件必须以用户模板和人工复核为准。
+- 技术专项：`references/ai-compute-docs.md`，只在 AI 算力、GPU/服务器租赁、模型服务、采购、租赁、可研、成本比较、SLA 和安全材料中读取。
+- 执行清单：`references/review-checklist.md`，用于段落、小节和全文的最终核对。
 
 ## 脚本
 
-检查 `.txt`、`.md` 或 `.docx` 草稿时使用 `scripts/prose_lint.py`。需要检查重复事项和格式噪点时加 `--structure --format`。脚本只提示风险，不自动改写。
+检查 `.txt`、`.md` 或 `.docx` 草稿时可使用 `scripts/prose_lint.py`。需要检查重复事项和格式噪点时加 `--structure --format`。脚本只提示风险，不自动改写；不得把脚本结果作为不加判断的硬性清洗命令。

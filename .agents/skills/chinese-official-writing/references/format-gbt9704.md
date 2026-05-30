@@ -1,37 +1,83 @@
-# GB/T 9704-2012 Style Formatting Reference
+# GB/T 9704-2012 常用格式参考
 
-Use the user's existing Word template first. If no template is provided, these common official-document settings are a safe default drawn from public GB/T 9704-2012-style formatting guidance.
+本文件只提供公开国标样式中常见的版式核对点，不等同于完整红头文件制作规范。正式发文、套红、编号、印章、签发和归档应以用户单位模板、办公室要求和人工复核为准；企业材料、项目材料和内部工作材料优先保留用户模板，不强行套用党政机关公文格式。
 
-## Page Setup
+## 使用边界
 
-- Paper: A4.
-- Margins: top 37 mm, bottom 35 mm, left 28 mm, right 26 mm.
-- Body grid: about 22 lines per page and 28 Chinese characters per line when grid control is required.
-- Page number: centered in footer when the document style requires it.
+- 用户要求“符合国标”“红头文件”“正式发文格式”时，先询问或沿用用户模板。
+- 用户只要求起草正文、方案、说明、可研、审查材料时，不主动补造版头、发文字号、签发人、印章和真实日期。
+- 缺少正式编号、密级、紧急程度、签发人、印章等依据时，使用占位或提示缺口，不能编造真实信息。
+- DOCX 排版修改应另存新版本，保留原样式、批注、页眉页脚和修订痕迹。
 
-## Fonts and Levels
+## 页面和基础版式
 
-- Main title: commonly 2号小标宋体 or the user's template title style.
-- Body text: 3号仿宋体.
-- First-level heading: 3号黑体.
-- Second-level heading: 3号楷体.
-- Third-level heading: 3号仿宋体加粗 when the template uses it.
-- Body paragraph: first-line indent 2 Chinese characters.
+- 纸张：A4。
+- 页边距常见参考：上 37 mm、下 35 mm、左 28 mm、右 26 mm。
+- 版心：需要网格控制时，可参考每面 22 行、每行约 28 个汉字。
+- 页码：通常置于版心下边缘之下，具体位置按模板执行。
+- 正文段落：一般首行缩进 2 个汉字，行距、段前段后以模板为准。
 
-## Numbering
+## 字体和层级
 
-Common Chinese hierarchy:
+- 标题：常见为 2 号小标宋体或用户模板标题样式。
+- 正文：常见为 3 号仿宋体。
+- 一级标题：常见为 3 号黑体。
+- 二级标题：常见为 3 号楷体。
+- 三级标题：常见为 3 号仿宋体加粗。
+- 附件、版记、页码等细节按用户模板或正式排版要求处理。
+
+## 标题和主送
+
+- 标题通常体现“发文机关 + 事由 + 文种”，但内部材料、方案、报告附件可按用户模板简化。
+- 标题不得夸大文种功能，如报告标题不能承载请批事项。
+- 主送机关应与行文关系一致：上行文送上级机关，下行文送下级或有关单位，平行文送不相隶属单位。
+- 多个主送机关的排序、简称和标点按用户模板或单位规范执行。
+
+## 版头和发文字号
+
+正式公文可能涉及以下要素，材料不足时不要自行编造：
+
+- 份号、密级和保密期限、紧急程度。
+- 发文机关标志。
+- 发文字号，常见形态如 `XX发〔2026〕X号`，年份使用六角括号。
+- 签发人，上行文按单位要求列示。
+- 红色分隔线、版头位置和字号按模板处理。
+
+## 正文、附件和落款
+
+- 正文应先满足文种功能，再处理排版。
+- 附件说明一般在正文之后、落款之前列明，如 `附件：1.……`；附件名称和正文引用应一致。
+- 落款、成文日期、联系人、联系电话等只使用用户提供或允许生成的信息。
+- 印章和签署位置属于正式签发要素；没有模板和授权时，不生成可冒充真实签发的印章、编号、日期或签署信息。
+
+## 版记和抄送
+
+正式公文可能包含抄送机关、印发机关、印发日期等版记要素：
+
+- 抄送对象应与办理需要相关，不随意扩大范围。
+- 印发机关和印发日期按正式模板和用户单位要求填写。
+- 公开发布、内部流转、会议材料和附件材料的版记要求不同，不要混用。
+
+## 编号层级
+
+常见中文层级为：
 
 - `一、`
 - `（一）`
 - `1.`
 - `（1）`
 
-Preserve the hierarchy of the source document if it differs.
+保留用户来源文件中的编号层级和样式。不要为了“更正式”把短文强行拆成多层编号。
 
-## DOCX Handling
+## 上行文、下行文和平行文差异
 
-- Preserve existing styles, section breaks, headers, footers, comments, and highlighted text unless the user asks to change them.
-- When generating a new version, do not overwrite the source file.
-- Use rendering checks when page layout, title hierarchy, or highlighted figures matter.
-- If a document is an enterprise material rather than a formal government dispatch, keep the user's enterprise template instead of forcing strict GB/T layout.
+- 上行文：重点核对发文字号、签发人、主送机关、请批事项、附件和联系人等。
+- 下行文：重点核对发布对象、执行要求、时限、责任、反馈渠道和版记。
+- 平行文：重点核对函件标题、主送单位、商请事项、回复期限、联系人和附件。
+
+## DOCX 操作
+
+- 保留样式、节、页眉页脚、页码、批注、修订、脚注和高亮，除非用户明确要求修改。
+- 新生成版本默认不覆盖源文件。
+- 版式、标题层级、页码、附件位置或关键数字高亮重要时，应渲染检查。
+- 企业材料、项目材料和内部评审材料应优先保留企业模板，不强制套用严格 GB/T 版式。
