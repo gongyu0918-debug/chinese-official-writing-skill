@@ -70,7 +70,7 @@
 请从 GitHub 仓库 https://github.com/gongyu0918-debug/chinese-official-writing-skill 拉取 openclaw/skills/chinese_official_writing/ 目录，并将其安装为 OpenClaw/ClawHub 可识别的 chinese-official-writing 技能。该适配目录的 frontmatter 使用 name: chinese_official_writing；安装后确认显示名称为“中文公文写作”，用于中文公文、可研报告、建设方案和 AI 算力采购租赁类正式材料写作。
 ```
 
-当前工作版本：`chinese-official-writing@1.2.19`
+当前工作版本：`chinese-official-writing@1.2.20`
 
 ### Claude Code
 
@@ -120,6 +120,8 @@
 | `openclaw/skills/chinese_official_writing/` | OpenClaw/ClawHub 发布目录 |
 | `hermes/skills/chinese-official-writing/` | Hermes 适配目录 |
 | `chinese-official-writing/references/` | 文种路由、办理要素、论证链条、格式和复核规则 |
+
+命名约定：仓库、Codex、Claude Code、Hermes 和 ClawHub slug 使用 `chinese-official-writing`；OpenClaw 适配目录和 frontmatter 使用 `chinese_official_writing`，用于兼容其当前匹配规则。不要把主技能名统一改成下划线形式。
 
 同步各平台副本：
 
