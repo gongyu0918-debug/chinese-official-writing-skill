@@ -27,6 +27,10 @@ class Finding:
     excerpt: str
 
 
+class InputReadError(Exception):
+    """Raised when a CLI input file cannot be read as usable text."""
+
+
 PATTERNS: list[tuple[str, str, str, str]] = [
     ("high", "paired-summary", r"不是[^。；;\n]{0,80}而是", "改为直接肯定结论；必要否定对比可保留。"),
     ("high", "paired-summary", r"不仅[^。；;\n]{0,80}还", "拆成具体事实或只保留关键判断。"),
@@ -89,6 +93,28 @@ REPEAT_TERMS: dict[str, int] = {
     "矩阵": 3,  # 组织和传播材料常用词，3 次起提示是否堆概念。
 }
 
+# 重复段落检测用的通用低信息词。不要放入“数据、系统、平台、服务、管理、实施、保障”等实义领域词。
+DUPLICATE_GENERIC_TOKENS = {
+    "项目",
+    "工作",
+    "建设",
+    "方案",
+    "情况",
+    "相关",
+    "进行",
+    "通过",
+    "形成",
+    "推进",
+    "落实",
+    "有效",
+    "积极",
+    "全面",
+    "持续",
+    "推动",
+    "完善",
+    "确保",
+}
+
 
 def read_docx(path: Path) -> str:
     pieces: list[str] = []
@@ -104,19 +130,24 @@ def read_docx(path: Path) -> str:
         "word/endnotes.xml",
         "word/comments.xml",
     )
-    with zipfile.ZipFile(path) as zf:
-        for name in xml_names:
-            if name not in zf.namelist():
-                continue
-            root = ElementTree.fromstring(zf.read(name))
-            for elem in root.iter():
-                tag = elem.tag.rsplit("}", 1)[-1]
-                if tag == "t" and elem.text:
-                    pieces.append(elem.text)
-                elif tag in {"p", "br"}:
-                    pieces.append("\n")
-                elif tag == "tab":
-                    pieces.append("\t")
+    try:
+        with zipfile.ZipFile(path) as zf:
+            for name in xml_names:
+                if name not in zf.namelist():
+                    continue
+                root = ElementTree.fromstring(zf.read(name))
+                for elem in root.iter():
+                    tag = elem.tag.rsplit("}", 1)[-1]
+                    if tag == "t" and elem.text:
+                        pieces.append(elem.text)
+                    elif tag in {"p", "br"}:
+                        pieces.append("\n")
+                    elif tag == "tab":
+                        pieces.append("\t")
+    except zipfile.BadZipFile as exc:
+        raise InputReadError(f"文件损坏或不是有效 DOCX: {path}") from exc
+    except ElementTree.ParseError as exc:
+        raise InputReadError(f"DOCX 内部 XML 无法解析: {path}") from exc
     return "".join(pieces)
 
 
@@ -125,10 +156,19 @@ def read_text(path_arg: str, encoding: str | None) -> tuple[str, str]:
         return "<stdin>", sys.stdin.read()
 
     path = Path(path_arg)
-    if path.suffix.lower() == ".docx":
-        return str(path), read_docx(path)
+    try:
+        if path.suffix.lower() == ".docx":
+            return str(path), read_docx(path)
+        raw = path.read_bytes()
+    except InputReadError:
+        raise
+    except FileNotFoundError as exc:
+        raise InputReadError(f"文件不存在: {path}") from exc
+    except PermissionError as exc:
+        raise InputReadError(f"无权限读取文件: {path}") from exc
+    except OSError as exc:
+        raise InputReadError(f"无法读取文件: {path}: {exc}") from exc
 
-    raw = path.read_bytes()
     encodings = [encoding] if encoding else ["utf-8-sig", "utf-8", "gb18030"]
     for enc in encodings:
         if not enc:
@@ -208,8 +248,7 @@ def content_tokens(text: str) -> set[str]:
         return set()
     tokens = {compact[i : i + 2] for i in range(len(compact) - 1)}
     tokens |= {compact[i : i + 3] for i in range(len(compact) - 2)}
-    stop = {"项目", "工作", "建设", "方案", "情况", "相关", "进行", "通过", "形成", "推进", "落实"}
-    return {token for token in tokens if token not in stop}
+    return {token for token in tokens if token not in DUPLICATE_GENERIC_TOKENS}
 
 
 def duplicate_findings(path_label: str, lines: list[str]) -> list[Finding]:
@@ -382,17 +421,26 @@ def main(argv: list[str] | None = None) -> int:
     args = parser.parse_args(argv)
 
     all_findings: list[Finding] = []
+    had_read_error = False
     for file_arg in args.files:
-        path_label, text = read_text(file_arg, args.encoding)
+        try:
+            path_label, text = read_text(file_arg, args.encoding)
+        except InputReadError as exc:
+            print(f"ERROR: {exc}", file=sys.stderr)
+            had_read_error = True
+            continue
         all_findings.extend(scan(path_label, text, include_format=args.format, include_structure=args.structure))
 
     if args.json:
         print(json.dumps([asdict(item) for item in all_findings], ensure_ascii=False, indent=2))
     else:
-        print_text(all_findings)
-        if not all_findings:
+        if all_findings:
+            print_text(all_findings)
+        elif not had_read_error:
             print("No prose risks found.")
 
+    if had_read_error:
+        return 2
     return 1 if args.strict and all_findings else 0
 
 

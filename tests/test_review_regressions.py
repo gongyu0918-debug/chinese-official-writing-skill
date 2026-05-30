@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import importlib.util
 from pathlib import Path
+import subprocess
 import sys
 import unittest
 
@@ -50,6 +51,50 @@ class ProseLintStructureTests(unittest.TestCase):
         findings = prose_lint.scan("<test>", text, include_structure=True)
 
         self.assertTrue([item for item in findings if item.label == "adjacent-duplicate-matter"])
+
+    def test_content_tokens_filters_only_low_information_terms(self) -> None:
+        tokens = prose_lint.content_tokens("有效积极全面持续推动完善确保 数据系统平台服务管理实施保障")
+
+        for term in ["有效", "积极", "全面", "持续", "推动", "完善", "确保"]:
+            self.assertNotIn(term, tokens)
+        for term in ["数据", "系统", "平台", "服务", "管理", "实施", "保障"]:
+            self.assertIn(term, tokens)
+
+
+class ProseLintCliTests(unittest.TestCase):
+    def test_missing_file_reports_error_without_traceback(self) -> None:
+        script = ROOT / "chinese-official-writing" / "scripts" / "prose_lint.py"
+        missing = ROOT / "missing-for-prose-lint-test.md"
+
+        result = subprocess.run(
+            [sys.executable, str(script), str(missing)],
+            capture_output=True,
+            text=True,
+            encoding="utf-8",
+        )
+
+        self.assertEqual(result.returncode, 2)
+        self.assertIn("ERROR: 文件不存在", result.stderr)
+        self.assertNotIn("Traceback", result.stderr + result.stdout)
+        self.assertEqual(result.stdout, "")
+
+    def test_bad_docx_reports_error_without_polluting_json_stdout(self) -> None:
+        script = ROOT / "chinese-official-writing" / "scripts" / "prose_lint.py"
+        bad_docx = Path.home() / "AppData" / "Local" / "Temp" / "bad-docx-for-prose-lint-test.docx"
+        bad_docx.write_text("not a zip file", encoding="utf-8")
+        self.addCleanup(lambda: bad_docx.unlink(missing_ok=True))
+
+        result = subprocess.run(
+            [sys.executable, str(script), str(bad_docx), "--json"],
+            capture_output=True,
+            text=True,
+            encoding="utf-8",
+        )
+
+        self.assertEqual(result.returncode, 2)
+        self.assertIn("ERROR: 文件损坏或不是有效 DOCX", result.stderr)
+        self.assertNotIn("Traceback", result.stderr + result.stdout)
+        self.assertEqual(result.stdout.strip(), "[]")
 
 
 class RealArticleEvalAuditTests(unittest.TestCase):

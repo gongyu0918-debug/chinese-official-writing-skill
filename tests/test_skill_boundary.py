@@ -31,6 +31,14 @@ class SkillBoundaryTests(unittest.TestCase):
                 self.assertIn("批量语料生成", text)
                 self.assertIn("规避人工审核", text)
 
+    def test_reference_loading_table_keeps_progressive_disclosure(self) -> None:
+        text = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
+
+        self.assertIn("按任务渐进读取资料，不要一次性加载全部文件", text)
+        self.assertIn("| 文件 | 阶段 | 加载条件 |", text)
+        self.assertIn("`references/ai-compute-docs.md` | 专项选读", text)
+        self.assertIn("仅在 AI 算力、GPU/服务器租赁、模型服务、采购、租赁、可研、成本比较、SLA、安全或验收材料中读取", text)
+
 
 if __name__ == "__main__":
     unittest.main()

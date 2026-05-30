@@ -3,7 +3,7 @@ name: chinese_official_writing
 description: 用于起草、改写和复核中文公文及正式工作材料；当用户要求通知、请示、报告、函、批复、纪要、方案、可研、调研、总结、讲话稿等中文正式文本，或需要顺稿、压缩、去口语化、降 AI 味、文种校验、办理要素核对时使用。不用于英文、文学、营销、社媒、批量语料或替代法律/财务/采购/审计判断。
 license: MIT-0
 metadata:
-  version: "1.2.20"
+  version: "1.2.21"
   compatible_agents:
     - codex
     - claude-code
@@ -21,7 +21,7 @@ metadata:
     invocation: "/skill:chinese-official-writing"
     entry: "SKILL.md"
   openclaw:
-    version: "1.2.20"
+    version: "1.2.21"
     emoji: "📝"
     tags:
       - chinese
@@ -103,7 +103,7 @@ metadata:
 请从 GitHub 仓库 https://github.com/gongyu0918-debug/chinese-official-writing-skill 拉取 openclaw/skills/chinese_official_writing/ 目录，并将其安装为 OpenClaw/ClawHub 可识别的 chinese-official-writing 技能。该适配目录的 frontmatter 使用 name: chinese_official_writing；安装后确认显示名称为“中文公文写作”，用于中文公文、可研报告、建设方案和 AI 算力采购租赁类正式材料写作。
 ```
 
-当前工作版本：`chinese-official-writing@1.2.20`
+当前工作版本：`chinese-official-writing@1.2.21`
 
 ### Claude Code
 
