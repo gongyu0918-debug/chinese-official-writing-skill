@@ -1,6 +1,6 @@
 # 复核清单
 
-本文件是执行清单，用于段落、小节和全文交付前核对。具体规则分别见 `genre-routing.md`、`argument-chains.md`、`final-review-layers.md`、`anti-ai-patterns.md` 和 `format-gbt9704.md`。
+本文件是执行清单，用于段落、小节和全文交付前核对。这里只保留检查问题，不展开反例、分层策略或格式细则；具体规则分别见 `genre-routing.md`、`argument-chains.md`、`final-review-layers.md`、`anti-ai-patterns.md` 和 `format-gbt9704.md`。
 
 ## 段落复核
 
