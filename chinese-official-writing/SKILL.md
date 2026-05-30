@@ -3,7 +3,7 @@ name: chinese-official-writing
 description: 用于起草、改写和复核中文公文及正式工作材料；当用户要求通知、请示、报告、函、批复、纪要、方案、可研、调研、总结、讲话稿等中文正式文本，或需要顺稿、压缩、去口语化、降 AI 味、文种校验、办理要素核对时使用。不用于英文、文学、营销、社媒、批量语料或替代法律/财务/采购/审计判断。
 license: MIT-0
 metadata:
-  version: "1.2.20"
+  version: "1.2.21"
   compatible_agents:
     - codex
     - claude-code
@@ -21,7 +21,7 @@ metadata:
     invocation: "/skill:chinese-official-writing"
     entry: "SKILL.md"
   openclaw:
-    version: "1.2.20"
+    version: "1.2.21"
     emoji: "📝"
     tags:
       - chinese
@@ -30,7 +30,7 @@ metadata:
       - gongwen
       - ai-compute
   hermes:
-    version: "1.2.20"
+    version: "1.2.21"
     category: writing
     display_name: "中文公文写作"
     tags:
@@ -114,14 +114,22 @@ metadata:
 
 ## 参考资料
 
-按任务渐进读取资料：
+按任务渐进读取资料，不要一次性加载全部文件：
 
-- 核心必读：`references/workflow.md`、`references/genre-routing.md`、`references/handling-elements.md`、`references/argument-chains.md`、`references/final-review-layers.md`。
-- 语言风格：`references/official-style.md`、`references/anti-ai-patterns.md`、`references/formal-addressing.md`。
-- 文种细查：`references/genre-checklist.md`，用于通知、请示、报告、命令（令）、决议、公报、议案、说明、方案、申请、函、复函、批复、公告、公示、通报、会议纪要、讲话稿、致辞和述职报告等。
-- 格式版式：`references/format-gbt9704.md`，只作为 GB/T 9704-2012 常用格式参考；正式红头文件必须以用户模板和人工复核为准。
-- 技术专项：`references/ai-compute-docs.md`，只在 AI 算力、GPU/服务器租赁、模型服务、采购、租赁、可研、成本比较、SLA 和安全材料中读取。
-- 执行清单：`references/review-checklist.md`，用于段落、小节和全文的最终核对。
+| 文件 | 阶段 | 加载条件 |
+| --- | --- | --- |
+| `references/workflow.md` | 起草前 | 长文、复杂改稿、多材料整合或需要急件处理时。 |
+| `references/genre-routing.md` | 起草前 | 文种、行文方向或请示/报告/通知/函等边界不明确时。 |
+| `references/handling-elements.md` | 起草前 | 需要核对主体、对象、事项、依据、时限、附件、反馈渠道和请批事项时。 |
+| `references/argument-chains.md` | 起草前 | 需要组织请示、报告、通知、方案、可研、技术材料等论证链条时。 |
+| `references/official-style.md` | 起草中 | 需要统一公文语气、压缩解释腔、去口语化或降 AI 味时。 |
+| `references/formal-addressing.md` | 起草中 | 需要处理行文关系、敬语、谦辞、单位称谓或人员称谓时。 |
+| `references/anti-ai-patterns.md` | 复核时 | 检查模板腔、旁白句、二元包装句、思考泄露和项目卡片式摘要时。 |
+| `references/final-review-layers.md` | 定稿前 | 全文交付前按硬边界、质量建议、场景参考分层总审时。 |
+| `references/review-checklist.md` | 定稿前 | 需要段落、小节、全文三级执行清单时。 |
+| `references/genre-checklist.md` | 按文种选读 | 通知、请示、报告、命令、公报、决议、议案、函、批复、公告、公示、通报、纪要、讲话稿、述职等文种细查时。 |
+| `references/format-gbt9704.md` | 按格式选读 | 用户要求 GB/T 9704-2012、红头文件、发文字号、版头版记、附件、印章或版式时。 |
+| `references/ai-compute-docs.md` | 专项选读 | 仅在 AI 算力、GPU/服务器租赁、模型服务、采购、租赁、可研、成本比较、SLA、安全或验收材料中读取。 |
 
 ## 脚本
 
