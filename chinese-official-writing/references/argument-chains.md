@@ -1,90 +1,102 @@
-# Argument Chains
+# 论证链条
 
-Use this reference to organize paragraphs. The chain is an internal drafting guide; do not print labels such as "fact -> judgment -> action" in the final document.
+本文件用于组织段落和小节。链条是内部写作方法，不要把“事实 -> 判断 -> 行动”等标签写入最终正文。
 
-## General Chain
+## 通用链条
 
-Use for most formal materials:
+多数正式材料可采用以下顺序：
 
-1. Main conclusion or matter.
-2. Fact, data, policy, or business condition.
-3. Judgment on the problem or need.
-4. Arrangement, request, responsibility, or acceptance.
+1. 先写主要事项或核心判断。
+2. 再写事实、数据、政策依据或现实条件。
+3. 说明问题、必要性、可行性或风险。
+4. 落到安排、请求、责任、时限、验收或后续管理。
 
-Keep one paragraph on one claim. If one paragraph contains demand, cost, safety, and schedule at once, split it.
+一个段落只支撑一个判断。需求、成本、安全、进度混在一段时，通常应拆分；同一事项在不同段落反复出现时，只保留新增数据、责任、风险或结论的部分。
 
-## Request for Approval
+## 请示和请批附件
 
-Use for 请示 and approval-oriented attachments:
+适用于请示、请批报告附件、项目立项或经费申请类材料：
 
-1. Requested matter.
-2. Basis and background.
-3. Necessity and urgency.
-4. Plan, budget, resource, or implementation arrangement.
-5. Risk control and responsibility.
-6. Formal request for approval.
+1. 请批事项：开头明确拟请上级审定或批准什么。
+2. 依据和背景：说明政策依据、工作安排或现实来源。
+3. 必要性和紧迫性：写明不办理会影响什么，办理后解决什么。
+4. 方案、预算、资源或实施安排：交代怎么做、花多少、由谁做。
+5. 风险控制和责任：说明合规、资金、数据、安全、验收等边界。
+6. 正式请批语：以“妥否，请批示”“请予审定”等收束。
 
-Avoid putting achievements and general background before the requested matter.
+不要把成绩铺陈放在请批事项之前；请示不能同时请求多个互不相关事项。
 
-## Report
+## 报告和总结
 
-Use for 报告, 工作总结, stage progress, and status materials:
+适用于报告、工作总结、阶段进展、情况汇报：
 
-1. Reporting matter and period.
-2. Work completed or situation identified.
-3. Data, facts, and results.
-4. Problems and causes.
-5. Next-step arrangement.
+1. 报告事项、时间范围和总体判断。
+2. 已完成工作或已经发现的情况。
+3. 数据、事实、结果和典型做法。
+4. 存在问题、原因或风险。
+5. 下一步安排、建议或整改措施。
 
-Do not include approval language. If a decision is needed, prepare a separate request for approval.
+报告不写审批请求。确需上级决策时，另拟请示，或在报告中表述为“下一步拟按程序另行报批”。
 
-## Notice and Coordination
+## 通知和协调
 
-Use for 通知, 函, 复函, and coordination documents:
+适用于通知、函、复函、征求意见函、协调类材料：
 
-1. Matter to handle.
-2. Recipient responsibility.
-3. Material, action, or reply required.
-4. Deadline and channel.
-5. Consequence, follow-up, or contact.
+1. 要办理或协调的事项。
+2. 对象责任或配合范围。
+3. 需要提交的材料、动作或反馈。
+4. 截止时间、渠道、联系人。
+5. 后续处理、监督、结果运用或注意事项。
 
-Keep the practical handling requirement earlier than background.
+办理要求应早于一般背景。通知重执行，函重协商，复函重回应来文。
 
-## Plan and Construction Scheme
+## 方案和建设材料
 
-Use for 方案, 实施方案, 建设方案, and project materials:
+适用于方案、实施方案、建设方案、项目材料：
 
-1. Demand and objective.
-2. Existing basis and gap.
-3. Construction or implementation content.
-4. Resource, cost, and responsibility.
-5. Schedule, operation, and safeguards.
-6. Acceptance, benefits, and continuous improvement.
+1. 需求来源和目标。
+2. 现有基础、差距或问题。
+3. 建设内容、实施路径或任务分工。
+4. 资源、经费、责任和协同机制。
+5. 进度、运维、保障和风险控制。
+6. 验收、成效和持续优化。
 
-If a necessity section repeats the construction content, merge the repeated claim into demand or benefits.
+必要性章节不要重复建设内容。若“为什么建”和“建什么”写成同一套话，应把前者改为需求和影响，后者改为具体内容和交付。
 
-## Feasibility and Review
+## 可研、调研和审查
 
-Use for 可研报告, 调研报告, 审查材料, and decision-support materials:
+适用于可研报告、调研报告、审查材料、论证材料：
 
-1. Review or research object.
-2. Source of facts and data.
-3. Main finding.
-4. Option comparison or risk analysis.
-5. Recommendation or review conclusion.
-6. Conditions, corrections, or follow-up.
+1. 研究、审查或论证对象。
+2. 事实、数据、样本或材料来源。
+3. 主要发现或判断。
+4. 方案比较、风险分析或合规审查。
+5. 建议、审查意见或可行性结论。
+6. 条件、整改、补充材料或后续程序。
 
-Separate actual data from estimates and assumptions.
+必须区分实际数据、测算数据、估算数据和假设条件。审查材料不能只写“基本可行”，应列明依据、条件和需要补充的事项。
 
-## AI Compute and Technical Service
+## AI 算力和技术服务
 
-Use for AI compute, model service, GPU/server rental, and cloud deployment comparison:
+适用于 AI 算力服务、模型服务、GPU/服务器租赁、云端部署成本比较、技术服务需求：
 
-1. Business demand source.
-2. Token, request volume, users, concurrency, or resource calculation.
-3. Current and future cost drivers.
-4. Comparison of cloud, rental, purchase, or service paths.
-5. SLA, latency, concurrency, operations, and fault response.
-6. Data security, compliance, delivery, and acceptance.
+1. 业务需求来源：哪些系统、部门、场景产生调用或算力需求。
+2. 资源测算：Token、请求量、用户数、并发、GPU、服务器或存储等指标如何支撑费用。
+3. 成本驱动：现有成本、增长因素、服务周期和费用边界。
+4. 路径比较：云端、本地、租赁、采购或服务化路径的适用条件。
+5. 服务保障：SLA、时延、并发、运维、监控、故障响应和资源优先级。
+6. 安全验收：数据安全、权限、日志审计、交付物、验收标准和合同责任。
 
-For decision readers, translate technical units into cost and service outcomes. Do not mix Token, TOPS, server count, and money without showing how one supports the other.
+面向决策层时，应把技术单位转化为成本、服务能力和风险边界。不要把 Token、TOPS、服务器数量和金额并列堆放而不说明换算关系。
+
+## 讲话稿、致辞和述职材料
+
+这类材料不是法定公文，但常属于正式工作材料：
+
+1. 先确定场合、身份和听众。
+2. 开头交代主题或态度，不写过度口号。
+3. 主体按成绩、问题、任务、要求或体会展开。
+4. 用事实和具体工作支撑判断。
+5. 结尾回到任务、责任或共同目标。
+
+讲话稿可比公文更有感染力，但仍应避免空泛排比、概念堆叠和不具备事实支撑的评价。

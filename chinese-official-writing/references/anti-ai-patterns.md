@@ -1,12 +1,12 @@
 # 反 AI 表达检查
 
-用于正式文稿定稿前的语言复核，重点排查模板腔、非正文表达、教学腔和口语化表达。
+用于正式文稿定稿前的语言复核，重点排查模板腔、非正文表达、教学腔、口语化表达和空泛技术表述。
 
-本文件属于质量建议层，除“思考泄露和起草过程”外，一般只提示风险，不直接判定文稿不可交付。是否调整取决于用户模板、文种习惯和上下文。
+本文件属于质量建议层。除“思考泄露和起草过程”外，一般只提示风险，不直接判定文稿不可交付；是否调整取决于文种、用户模板和上下文。
 
 ## 高频风险句式
 
-定稿正文检查以下句式，引用原文或真实决策差异除外：
+定稿正文中检查以下句式，引用原文或表达真实决策差异时可以保留：
 
 - `不是……而是……`
 - `不仅……还……`
@@ -18,14 +18,14 @@
 - `可以说，……`
 - `需要指出的是，……`
 - `值得注意的是，……`
-- `综上所述，……` when it only repeats the prior paragraph.
+- `综上所述，……` 但只是在重复上一段。
 
 修订方式：
 
 - 直接写正向结论。
-- 将堆叠判断拆成具体句子。
-- 只保留支撑决策的判断。
-- 真实决策差异、法律边界和风险提醒中的否定比较可保留；装饰性对照可酌情删减。
+- 将堆叠判断拆成具体事实或具体措施。
+- 只保留支撑办理、审查或决策的判断。
+- 法律边界、风险提示和真实方案比较中的否定对比可保留；装饰性对照可删减。
 
 ## 非正文表达和教学口吻
 
@@ -43,7 +43,7 @@
 - `通俗地说`
 - `可以理解为`
 
-可改为正文表述：
+改为正文表述：
 
 - `项目年度调用需求主要来自……`
 - `租赁服务方式可将……纳入统一管理。`
@@ -54,15 +54,15 @@
 
 用户需要正式成稿时，检查以下写法：
 
-- 摘要或项目概况写成 `项目名称：`、`建设单位：`、`建设周期：`、`总投资：` 等项目卡片。
+- 摘要或项目概况写成连续字段，如 `项目名称：`、`建设单位：`、`建设周期：`、`总投资：`。
 - 必要性章节只堆 `一是、二是、三是`，没有事实依据、工作影响和事项落点。
 - 需求与成本章节像测算说明，频繁出现 `测算口径`、`测算公式`、`单价×数量`、`计算如下`。
 
-建议修订方式：
+修订方式：
 
-- 将字段卡片改为一至两个连续自然段。
+- 将字段卡片改成一至两个连续自然段，或在用户要求表格时保留表格。
 - 必要性围绕现实压力、工作影响和办理事项展开。
-- 成本写需求来源、费用对应事项、服务周期和可控性；只有用户要求表格或测算说明时才保留公式。
+- 成本写需求来源、费用对应事项、服务周期和可控性；只有用户要求测算表时才保留公式讲解。
 
 ## 思考泄露和起草过程
 
@@ -81,38 +81,40 @@
 
 - `项目拟……`
 - `经测算……`
-- `有关事项安排如下……` 用于文内过渡时保留。
+- `有关事项安排如下……` 用于文内过渡时可保留。
 - `本次修订将……` 仅在修订说明中使用。
 
 ## 口语化和弱判断
 
-替换为：
+常见替换：
 
 - `更稳，也更省` -> `成本和服务保障更具确定性`
 - `用不完` -> `阶段性资源余量`
-- `机械化表达` -> `表述偏泛、判断不够具体`
+- `AI 味` -> `表述偏泛、判断不够具体`
 - `搞清楚` -> `厘清`
 - `哪里需要 Token` -> `Token 调用需求主要集中于`
 - `这个钱花得值` -> `投入产出关系较为清晰`
 - `老板/领导关心` -> `决策层重点关注`
 
-## Empty Fillers
+## 空泛套话
 
-Check and replace when they do not add concrete work, target, mechanism, or result:
+以下词语并非一律删除，但必须有具体对象、机制、目标或结果支撑：
 
-- `持续推进`, if no specific work follows.
-- `不断提升`, if no measurable target follows.
-- `充分发挥`, if no mechanism follows.
-- `有力支撑`, if the object is vague.
-- `全面赋能`, unless the document's style already accepts it.
-- `形成一批`, if the target, quantity, or result form is unclear.
-- `重点任务包括`, when it introduces a long generic list.
-- `保障措施包括`, when it introduces a long generic list.
-- `总体看`, when it only adds a filler transition.
+- `持续推进`
+- `不断提升`
+- `充分发挥`
+- `有力支撑`
+- `全面赋能`
+- `形成一批`
+- `重点任务包括`
+- `保障措施包括`
+- `总体看`
 
-## Overused Formal Terms
+如果只是过渡填充，应删去或换成具体工作、责任、时限和成果。
 
-Use sparingly and keep them only when they point to a concrete mechanism:
+## 高频正式词
+
+以下词语应节制使用，只在指向具体机制时保留：
 
 - `口径`
 - `边界`
@@ -124,38 +126,26 @@ Use sparingly and keep them only when they point to a concrete mechanism:
 - `赋能`
 - `体系化`
 
-If one of these appears many times, replace some with concrete nouns such as `服务`, `平台`, `系统`, `流程`, `资源`, `费用`, `数据`, or `管理措施`.
+同一词出现过多时，可替换为更具体的名词，如 `服务`、`平台`、`系统`、`流程`、`资源`、`费用`、`数据`、`管理措施`。
 
-## AI Compute Empty Technical Claims
+## AI 算力空泛技术表述
 
-For computing power, GPU/server rental, model service, and AI platform documents, check:
+算力、GPU/服务器租赁、模型服务和 AI 平台材料中，检查以下表述是否有指标支撑：
 
-- `先进算力`, unless followed by specific GPU/server/model/service indicators.
-- `强大平台`, unless followed by scheduling, monitoring, isolation, billing, or operation functions.
-- `自主可控`, unless followed by deployment boundary, data location, permission, key, log, and audit measures.
-- `成本更低`, unless the comparison period, demand, and cost items are stated.
-- `满足未来发展需要`, unless it explains users, Token, concurrency, model upgrades, or agent workflows.
+- `先进算力`：应补 GPU、服务器、模型、服务能力等指标。
+- `强大平台`：应补调度、监控、隔离、计量、运维等能力。
+- `自主可控`：应补部署边界、数据位置、权限、密钥、日志、审计措施。
+- `成本更低`：应补比较周期、需求假设和成本项目。
+- `满足未来发展需要`：应补用户、Token、并发、模型升级或智能体工作流依据。
 
-## Common Official-Writing Mistakes
+## 格式噪点
 
-- 文种错位：把请示写成报告，或者在报告中夹带请求审批事项。
-- 主体错位：把发文单位写成旁观者、顾问或写作教师。
-- 标题漂移：大小标题强调的是一个事项，正文却转向另一个事项。
-- 胶水连接：上一段已经说明的事项在下一段换词重复，没有新增事实、判断或安排。
-- 结论后置：先铺概念、背景、趋势，最后才写项目判断。
-- 论据空转：有观点无数据，有数据不换算，有金额不说明对应需求。
-- 技术堆叠：列一串模型、GPU、并发、SLA 名词，但不说明业务使用场景。
-- 成本比较失衡：只比较单项 API 价格，不比较云资源、运维、安全、服务保障和扩容风险。
-- 责任缺位：方案写了目标和任务，但没有实施主体、时间安排、验收方式和后续管理。
+内容复核后再检查格式，尤其是 Word 文稿：
 
-## Format Noise
-
-Check these after content review, especially when generating Word drafts:
-
-- Check spaces between Chinese text and numbers unless the user's template already does so.
-- Check comma grouping in numbers such as `1,000,000` in ordinary Chinese official prose; use the unit expression preferred by the document.
-- Use full-width Chinese punctuation in Chinese prose. Keep half-width punctuation for URLs, code, model names, English abbreviations, and formulas.
-- Preserve first-line indentation and source Word styles when editing DOCX.
-- Check table overuse. Use tables for data comparison, schedules, budgets, or itemized responsibilities.
-- Check frequent `1. 2. 3.` numbering in prose; prefer Chinese 条款 style or natural paragraphs when the source document uses that style.
-- Check Emoji or decorative symbols in official prose.
+- 中文正文和数字之间是否有不必要空格。
+- 普通中文正式材料中是否误用 `1,000,000` 这类千位分隔符。
+- 中文正文是否使用全角标点；URL、代码、型号、英文缩写和公式可保留半角。
+- DOCX 是否保留首行缩进和来源样式。
+- 表格是否用于数据、进度、预算或责任清单，而不是逃避正文论证。
+- 正文是否频繁使用 `1. 2. 3.`；用户模板要求时可保留。
+- 正文是否出现 Emoji 或装饰性符号。

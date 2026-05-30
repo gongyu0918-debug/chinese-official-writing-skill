@@ -1,129 +1,173 @@
-# Genre Checklist
+# 文种清单
 
-Use this reference when drafting or reviewing common Chinese official-document genres. Match the document's formal elements before polishing wording. Do not flatten every task into generic official prose.
+用于起草或复核常见公文、事务文书和正式工作材料。先核对文种功能和办理要素，再润色语言。不要把所有任务都写成泛泛的“正式材料”。
+
+## 分类提示
+
+- 法定公文按 `genre-routing.md` 中的功能和行文关系判断。
+- 说明、申请、公示、复函等属于常用事务文书或业务材料时，应按实际办理功能写，不要与法定文种混称。
+- 方案、可研、调研、工作总结、建设方案、AI 算力材料等通常是工作材料或附件，是否套红取决于用户模板和发文要求。
 
 ## 通知
 
-- Include issuing purpose, addressee, matters to be handled, deadline, method, materials, and work requirements.
-- Use clear execution language such as `现就有关事项通知如下`.
-- If attachments are involved, list them after the body.
+- 写清发文目的、对象、办理事项、完成时限、提交方式、材料清单和工作要求。
+- 可使用 `现就有关事项通知如下` 等明确执行语。
+- 涉及附件时，在正文后列明附件名称。
 
 ## 请示
 
-- Use one main request per document.
-- State the request early, then explain basis, current status, investment or resource need, and proposed next step.
-- End with a request for approval, such as `妥否，请批示` or `请予审查批复`.
-- Do not write like a report with multiple unrelated issues.
+- 一文一事，开头或前部明确请批事项。
+- 依次说明依据、现状、必要性、经费或资源需求、拟实施安排。
+- 结尾使用 `妥否，请批示`、`请予审定`、`请予批复` 等请批语。
+- 不要写成包含多个无关问题的报告。
 
 ## 报告
 
-- Use factual reporting language. Do not ask the superior to approve matters inside a report.
-- For work reports, use section headings and concrete progress, problems, and next steps.
-- For special reports, state the conclusion first, then facts, analysis, and recommendations.
+- 使用事实性汇报语言，不在报告中请求上级批准。
+- 工作报告写进展、做法、问题和下一步安排。
+- 专题报告先给结论，再写事实、分析和建议。
 
-## 说明
+## 决议
 
-- Use for drafting explanations, situation explanations, or supplementary explanations.
-- Common structure: background, necessity or reason, process, main content, current status, and next arrangement.
-- Avoid turning it into a policy interpretation article unless the user asks for interpretation.
-
-## 方案
-
-- Include overall requirements, objectives, tasks, implementation path, division of responsibilities, schedule, and safeguards as needed.
-- Prefer action verbs such as `开展`, `推进`, `完善`, `建立`, `提升`, `组织`.
-- Avoid a single long paragraph introduced by `重点任务包括`.
-
-## 申请
-
-- State applicant, matter applied for, basis, amount or resource requested, project status, use plan, and commitment.
-- For funding applications, use section headings for project unit, background, construction content, investment estimate, funding source, requested amount, performance target, and authenticity commitment.
-
-## 函
-
-- Use for consultation, request for support, notification among non-subordinate bodies, or soliciting opinions.
-- Keep the tone equal and concise.
-- Include feedback deadline, method, contact person, and attachment when applicable.
-
-## 复函
-
-- Begin with receipt of the incoming letter.
-- State the reply result clearly.
-- Set conditions, required procedures, supervision, reporting, and responsibility where needed.
-- Avoid using approval language beyond the issuing body's authority.
-
-## 批复
-
-- Quote the incoming request.
-- State whether the matter is approved.
-- Include approved scope, major content, investment control, implementation requirements, and follow-up procedures.
-- Check whether the issuing body has approval authority.
-
-## 公示
-
-- Focus on proposed list, basis, review process, public period, objection channel, material requirements, and contact information.
-- Do not add too many post-selection management requirements.
-
-## 公告
-
-- Use for public-facing matters. Include target audience, time, place or platform, required materials, procedures, payment or handling rules, and responsibility reminders.
-- Keep execution items clear.
-
-## 通报
-
-- Common structure: work/check situation, main results, identified problems, rectification or next requirements.
-- Include coverage, numbers, typical problems, deadlines, and responsible units when available.
-
-## 会议纪要
-
-- Include meeting name, time, place, host, attendees, topic, agreed matters, responsibility division, and follow-up requirements.
-- Use `会议指出`, `会议强调`, `会议要求` only when they fit the meeting record.
-- Make agreed matters explicit rather than only describing discussion.
-
-## 工作总结和工作思路
-
-- Use section headings. Separate completed work from next-year work.
-- Start each part with the main judgment, then list concrete work and results.
-- Avoid dense two-paragraph summaries when the user asks for a formal section.
-
-## 工作要点
-
-- State the annual or staged work objective first.
-- Organize tasks by major work lines, responsible mechanisms, timetable, and expected deliverables.
-- Use executable verbs and avoid turning every item into a slogan.
-
-## 意见
-
-- Include overall requirements, goals, major tasks, policy measures, and organization safeguards.
-- Tie broad tasks to actual mechanisms, responsible units, applicable scenarios, or implementation paths.
+- 适用于会议讨论通过的重要决策事项。
+- 写清会议主体、审议事项、通过结果、执行要求。
+- 不要把普通会议纪要或工作部署写成决议。
 
 ## 决定
 
-- State the decision matter, basis, scope, effective time, implementation requirement, and responsibility arrangement.
-- Keep the authority source clear. Do not use decision language for matters that should be handled by notice, approval, or minutes.
+- 写清决定事项、依据、适用范围、生效时间、执行要求和责任安排。
+- 适用于重要事项、奖惩、机构或职责安排等。
+- 权限来源必须清楚，不应用于应由通知、批复或纪要处理的事项。
+
+## 命令（令）
+
+- 使用范围严格，常用于公布法规规章、宣布重大强制性措施、任免或嘉奖等法定场景。
+- 核对发布主体是否具有相应权限。
+- 不要用命令（令）包装普通工作部署。
+
+## 公报
+
+- 用于公开发布重要决定、重大事项或统计信息。
+- 内容应权威、准确、可公开，不写内部办理细节。
+- 不要与公告、通报混用。
+
+## 议案
+
+- 适用于法定主体按程序提请人民代表大会或其常委会审议的事项。
+- 写清提请主体、审议事项、依据、理由和拟议内容。
+- 不要把普通请示、建议或工作方案写成议案。
+
+## 说明
+
+- 用于情况说明、补充说明、原因说明等事务性材料。
+- 常见结构为背景、原因、过程、主要内容、当前状态、后续安排。
+- 除非用户要求政策解读，不要写成宣讲或解释文章。
+
+## 方案
+
+- 按需要写总体要求、目标、任务、实施路径、责任分工、进度安排和保障措施。
+- 使用 `开展`、`推进`、`完善`、`建立`、`组织` 等可执行动词。
+- 避免用 `重点任务包括` 引出一个很长的泛化清单。
+
+## 申请
+
+- 写清申请主体、申请事项、依据、金额或资源需求、项目状态、使用计划和承诺。
+- 经费申请可分项目单位、背景、建设内容、投资估算、资金来源、申请额度、绩效目标和真实性承诺。
+
+## 函
+
+- 用于不相隶属单位之间商洽、请求支持、告知事项、征求意见或答复。
+- 语气平等、简洁，避免下命令。
+- 按需要写反馈期限、方式、联系人和附件。
+
+## 复函
+
+- 开头回应来函，如 `来函收悉。经研究，现函复如下`。
+- 明确答复结果和理由。
+- 需要时列条件、程序、监督、报送和责任。
+- 不超越本单位权限使用审批语。
+
+## 批复
+
+- 引述来文或请示事项。
+- 明确同意、原则同意、不同意或需调整事项。
+- 写清批复范围、主要内容、投资控制、实施要求和后续程序。
+- 核对发文主体是否有批复权限。
+
+## 公示
+
+- 写清拟公示事项、依据、审核过程、公示期限、异议渠道、材料要求和联系方式。
+- 不宜塞入过多后续管理要求。
+
+## 公告
+
+- 面向社会公众或较大公开范围。
+- 写清对象、时间、地点或平台、材料、程序、缴费或办理规则、责任提醒。
+- 执行事项应清楚，不写内部流转细节。
+
+## 通报
+
+- 常见结构为工作或检查情况、主要结果、发现问题、整改或下一步要求。
+- 有条件时写明范围、数据、典型问题、完成期限和责任单位。
+
+## 会议纪要
+
+- 写清会议名称、时间、地点、主持人、参会单位或人员、议题、议定事项、责任分工和后续要求。
+- `会议指出`、`会议强调`、`会议要求` 只在符合会议记录时使用。
+- 重点写议定事项，不写成会议新闻。
+
+## 工作总结和工作思路
+
+- 使用小标题，区分已完成工作、存在问题和下一步工作。
+- 每部分先给主要判断，再写具体工作和成效。
+- 用户要求正式章节时，不要压成两段口号式总结。
+
+## 工作要点
+
+- 先写年度或阶段目标。
+- 按重点工作线、责任机制、时间节点和预期成果组织任务。
+- 使用可执行动词，避免每条都写成口号。
+
+## 意见
+
+- 写总体要求、目标、重点任务、政策措施和组织保障。
+- 宽泛任务必须落到机制、责任单位、适用场景或实施路径。
 
 ## 调研报告
 
-- Start with the core finding or problem judgment.
-- Present research background, sample or source, current situation, key problems, cause analysis, and policy/work recommendations.
-- Avoid generic `启示` sections without evidence from the research.
+- 先写核心发现或问题判断。
+- 写明调研背景、样本或来源、现状、问题、原因分析和政策或工作建议。
+- 避免没有调研证据支撑的泛化 `启示`。
 
 ## 可行性研究报告
 
-- Include project background, demand, construction content, technical route, investment estimate, cost-benefit analysis, risk, implementation schedule, and conclusion.
-- Keep estimates traceable; separate actual data, calculated data, and assumptions.
-- For AI computing power documents, convert demand into Token/resource use and then into cost.
+- 写项目背景、需求、建设内容、技术路线、投资估算、成本收益、风险、实施进度和结论。
+- 估算要可追溯，区分实际数据、测算数据和假设。
+- AI 算力类可研应把需求换算为 Token/资源，再说明成本和服务保障。
 
 ## 实施方案
 
-- Clarify work objectives, implementation steps, task division, schedule, safeguards, acceptance, and follow-up management.
-- Each measure should identify what is done, by whom, when, and how it is checked.
+- 明确目标、步骤、任务分工、进度、保障、验收和后续管理。
+- 每项措施尽量写清做什么、谁来做、何时完成、如何检查。
 
 ## 建设方案
 
-- Focus on why to build or lease, what will be built, how it will operate, how much it costs, and what results it will produce.
-- Avoid spending long space on concept explanation when the decision needs demand, cost, risk, and delivery evidence.
+- 重点回答为什么建或租、建什么、怎么运行、花多少、产出什么。
+- 决策需要需求、成本、风险和交付证据时，不要长篇解释概念。
 
 ## 审查材料
 
-- State review object, review basis, main findings, issues requiring attention, review opinion, and required correction or follow-up procedure.
-- Distinguish facts already verified from matters pending supplementary material.
+- 写明审查对象、审查依据、主要发现、需关注问题、审查意见、整改或后续程序。
+- 区分已经核实的事实和待补充材料事项。
+
+## 讲话稿和致辞
+
+- 明确场合、身份、听众和主题。
+- 可比公文更有情感和号召，但仍需事实支撑。
+- 避免空泛排比、过度口号和脱离场景的宏大叙述。
+
+## 述职报告
+
+- 写清职责范围、履职情况、重点成效、问题不足和改进方向。
+- 使用本人或本单位职责视角，避免写成普通工作总结。
+- 评价性表述要有事实、数据或案例支撑。

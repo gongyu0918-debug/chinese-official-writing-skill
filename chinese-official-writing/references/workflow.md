@@ -1,83 +1,89 @@
-# Workflow
+# 写作流程
 
-Use the "manuscript blueprint" method for formal Chinese plans, reports, research materials, feasibility studies, and official enterprise documents. Do not jump straight from scattered notes into a full article.
+用于中文公文和正式工作材料的起草、改写和复核。核心方法是先形成“文稿蓝图”，再分段成文，避免从零散材料直接铺成整篇。
 
-## 1. Prepare the brief
+## 1. 明确任务口径
 
-Confirm or infer these items:
+起草前先确认或合理推断以下事项：
 
-- Document type: plan, report, feasibility study, research report, implementation plan, summary, briefing, request, or meeting material.
-- Viewpoint: who is speaking and whose interest the document serves.
-- Reader: leader, board, supervising authority, procurement reviewer, implementation unit, or internal department.
-- Core conclusion: what decision or judgment the document should support.
-- Source hierarchy: latest user-edited version first, then formal attachments, then notes, recordings, and online reference style.
-- Data status: actual data, estimated data, missing data, and figures that must be highlighted.
+- 文稿类型：法定公文、常用事务文书、工作材料、技术类正式材料或会议材料。
+- 行文关系：上行文、下行文、平行文，或内部工作材料。
+- 主体视角：谁在发文、报告、申请、答复或承担项目。
+- 阅读对象：上级机关、同级单位、下级单位、采购/审查人员、执行部门或内部管理层。
+- 核心结论：文稿要支撑什么决定、说明什么情况、提出什么办理要求。
+- 材料顺序：用户最新版和批注优先，其次是正式附件、会议纪要、录音整理、参考样式。
+- 数据状态：区分实际数据、测算数据、估算数据、缺失数据和需要突出显示的数据。
 
-If the user provides a latest file or version number, treat it as the main branch.
+用户提供最新版文件、版本号或批注时，以该版本为主线。文种不清时先读取 `genre-routing.md`；文种清楚但材料薄弱时读取 `handling-elements.md`，先标出缺失要素再写。
 
-When the document type is unclear, load `genre-routing.md` before drafting. When the document type is clear but the content is thin, load `handling-elements.md` and identify missing required elements before writing.
+## 2. 选择文种和行文方向
 
-## 2. Build the outline
+不要只按标题字面判断文种。先判断读者需要作出什么反应：
 
-Create a title-level outline before writing body text. The outline should show the document logic, not a generic template.
+- 需要上级批准、指示或审定的，优先考虑请示。
+- 只向上级报告情况、进展、问题或建议的，优先考虑报告，正文不得夹带审批请求。
+- 向下级或有关单位部署、转发、告知、要求办理的，优先考虑通知。
+- 不相隶属单位之间商洽、询问、答复、请求支持或征求意见的，优先考虑函或复函。
+- 上级机关答复下级请示的，优先考虑批复。
 
-Choose a chain from `argument-chains.md` before drafting the outline. Keep the chain internal; do not print chain labels in the final text.
+行文方向决定语气和结构。上行文重依据、必要性、请批事项和事实克制；下行文重权威、执行要求、责任时限和反馈渠道；平行文重平等协商、事项清楚、期限和联系人。
 
-For construction plans and project materials, a common order is:
+## 3. 搭文稿蓝图
 
-1. Background and conclusion.
-2. Demand or necessity.
-3. Cost calculation and comparison.
-4. Implementation plan.
-5. Benefits and expected results.
-6. Security, compliance, and safeguards.
-7. Implementation schedule or guarantee mechanism.
+正文前先列标题层级，提纲应体现本篇文稿的办理逻辑，不要套用通用模板。根据文稿类型选择 `argument-chains.md` 中的论证链条，链条只作为内部组织方法，不把“事实 -> 判断 -> 行动”等标签写入正文。
 
-Adjust the order to the user's document and comments.
+项目、方案、可研和建设类材料常见顺序为：
 
-## 3. Create a paragraph map
+1. 背景与结论。
+2. 需求或必要性。
+3. 费用测算和路径比较。
+4. 实施或建设安排。
+5. 预期成效。
+6. 安全、合规和保障措施。
+7. 进度安排、验收或后续管理。
 
-For each section, list paragraphs before drafting. Each paragraph map item should include:
+具体顺序服从用户底稿、模板和审批场景。若用户已有固定标题，优先让正文贴合标题，而不是随意改标题。
 
-- Main point.
-- Evidence or data.
-- Judgment.
-- Landing point for the project, policy, or work arrangement.
-- Data source or calculation basis if numbers are used.
+## 4. 制作段落地图
 
-One paragraph should support one point. Merge or delete paragraphs that repeat the same point.
+每个小节成文前，先列段落地图。每个段落只服务一个主要判断，通常包括：
 
-## 4. Draft small paragraphs
+- 段落主旨。
+- 支撑事实、依据、数据或业务条件。
+- 对问题、必要性或可行性的判断。
+- 落到办理事项、责任、时限、风险控制或验收要求。
+- 涉及数字时标明数据来源、测算口径或待补依据。
 
-Write paragraphs in batches. For each paragraph:
+如果一个段落同时写需求、成本、安全和进度，通常应拆分。相邻段落只是换词重复时，应合并或删减；新增数据、责任、风险、时限、验收要求时可以保留。
 
-- Put the main judgment near the beginning.
-- Use concrete subjects such as the project, group, platform, system, business unit, or data.
-- Replace teaching language with project language.
-- Avoid explaining the writing method inside the document.
-- Use estimates carefully and mark them as measurement or calculation results, not actual occurrence.
+## 5. 分段起草
 
-## 5. Review each paragraph
+按小段或小节生成正文。每段起草时遵守以下规则：
 
-Before merging a paragraph into the section, check:
+- 结论和事项尽量前置，避免长背景拖到最后才说办理要求。
+- 使用具体主体，如“本项目”“牵头部门”“有关单位”“服务单位”，避免外部顾问口吻。
+- 用事实、依据和业务影响支撑判断，不写概念讲解。
+- 不把写作方法、模型身份、用户指令、录音要求或修改过程写入正文。
+- 对测算和估算使用“经测算”“按现有数据测算”“初步估算”等表述，不把估算写成既成事实。
 
-- Viewpoint: does it speak as the sponsor/reporting unit?
-- Argument: does it make a document claim rather than explain a concept?
-- Data: are units and calculations consistent?
-- Wording: are there AI-flavor summary frames or口语化 phrases?
-- Necessity: can any sentence be removed without weakening the point?
+## 6. 小节复核
 
-## 6. Review each section
+每个小节完成后先复核，不等全文结束再统一修补：
 
-After completing a section, check whether its first paragraph gives the section conclusion, whether all later paragraphs serve that conclusion, and whether it repeats other sections. If a section repeats another section, keep the version closer to the reader's decision need.
+- 视角是否稳定，是否从发文、报告、项目或主管单位立场说话。
+- 小节第一段是否给出本节结论或事项。
+- 后续段落是否都服务于该结论。
+- 与前后小节是否重复，重复处是否新增了必要信息。
+- 数据单位、时间、金额、责任主体和附件名称是否一致。
+- 是否出现教学腔、旁白句、口语化判断或高 AI 味句式。
 
-## 7. Merge and final-review
+## 7. 合并总审
 
-After all sections pass local review:
+全文合并后按 `final-review-layers.md` 做总审：
 
-- Merge sections into one document.
-- Unify numbering, terms, figures, and punctuation.
-- Move repeated details to the strongest section and remove duplicate wording elsewhere.
-- Check comments and user-specific instructions one by one.
-- Run `scripts/prose_lint.py` when available.
-- For DOCX, render to PDF or page images before delivery when layout matters.
+- 先查硬边界：事实、文种、行文关系、用户明确要求、敏感信息和过程泄露。
+- 再查质量建议：标题贴合、重复事项、结构松散、风格机械、表格滥用和格式噪点。
+- 统一编号、术语、数据、附件称谓、标点和落款。
+- 对用户批注和明确要求逐条核对。
+- 需要时运行 `scripts/prose_lint.py` 做风险提示；脚本结论只作为复核线索，不替代人工判断。
+- 编辑 DOCX 时保留原有样式、批注、页眉页脚和最新版；版式重要时渲染为 PDF 或页面图检查。
