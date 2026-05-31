@@ -53,6 +53,29 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assertIn("年份使用六角括号 `〔〕`", text)
         self.assertIn("不要用方括号 `[]` 或圆括号 `()` 替代", text)
 
+    def test_final_drafts_must_not_keep_unfinished_placeholders(self) -> None:
+        skill = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
+        elements = (ROOT / "chinese-official-writing" / "references" / "handling-elements.md").read_text(encoding="utf-8")
+        checklist = (ROOT / "chinese-official-writing" / "references" / "review-checklist.md").read_text(encoding="utf-8")
+
+        for text in [skill, elements, checklist]:
+            self.assertTrue("最终正文" in text or "交付正文" in text)
+            self.assertIn("〔签发日期〕", text)
+            self.assertIn("未完成占位", text)
+
+        self.assertIn("当前日期不得替代维护时间", skill)
+        self.assertIn("当前日期只可用于草稿落款", elements)
+        self.assertIn("未把当前日期误用为维护时间", checklist)
+
+    def test_openclaw_marketplace_readme_is_user_facing(self) -> None:
+        text = (ROOT / "openclaw" / "marketplace-readme.md").read_text(encoding="utf-8")
+
+        self.assertIn("clawhub install chinese-official-writing", text)
+        self.assertIn("其他平台", text)
+        self.assertIn("GitHub 仓库 README", text)
+        self.assertNotIn("### Codex / OpenAI Skill", text)
+        self.assertNotIn("npm run eval:official-writing", text)
+
 
 if __name__ == "__main__":
     unittest.main()
