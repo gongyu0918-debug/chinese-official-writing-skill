@@ -39,6 +39,20 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assertIn("`references/ai-compute-docs.md` | 专项选读", text)
         self.assertIn("仅在 AI 算力、GPU/服务器租赁、模型服务、采购、租赁、可研、成本比较、SLA、安全或验收材料中读取", text)
 
+    def test_legal_genres_have_checklist_and_handling_elements(self) -> None:
+        checklist = (ROOT / "chinese-official-writing" / "references" / "genre-checklist.md").read_text(encoding="utf-8")
+        elements = (ROOT / "chinese-official-writing" / "references" / "handling-elements.md").read_text(encoding="utf-8")
+
+        self.assertIn("## 通告", checklist)
+        for genre in ["决议", "公告", "通告", "意见"]:
+            self.assertIn(f"| {genre} |", elements)
+
+    def test_format_reference_clarifies_document_number_brackets(self) -> None:
+        text = (ROOT / "chinese-official-writing" / "references" / "format-gbt9704.md").read_text(encoding="utf-8")
+
+        self.assertIn("年份使用六角括号 `〔〕`", text)
+        self.assertIn("不要用方括号 `[]` 或圆括号 `()` 替代", text)
+
 
 if __name__ == "__main__":
     unittest.main()
