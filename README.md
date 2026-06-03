@@ -70,7 +70,7 @@
 请从 GitHub 仓库 https://github.com/gongyu0918-debug/chinese-official-writing-skill 拉取 openclaw/skills/chinese_official_writing/ 目录，并将其安装为 OpenClaw/ClawHub 可识别的 chinese-official-writing 技能。该适配目录的 frontmatter 使用 name: chinese_official_writing；安装后确认显示名称为“中文公文写作”，用于中文公文、可研报告、建设方案和 AI 算力采购租赁类正式材料写作。
 ```
 
-当前工作版本：`chinese-official-writing@1.2.25`
+当前工作版本：`chinese-official-writing@1.2.26`
 
 ### Claude Code
 
@@ -135,7 +135,7 @@ python .\tools\sync_adapters.py
 
 ### Promptfoo 社区式消融
 
-新增 Promptfoo 作为发布前主评测入口。评测使用固定 JSONL 数据集，同时生成 baseline 和 Skill 两组输出；Promptfoo 负责批量运行、确定性断言、JSON/HTML 结果导出，本地汇总脚本再用随机 A/B 顺序做 pairwise judge。输出目录 `output/promptfoo/` 已被 `.gitignore` 排除。
+新增 Promptfoo 作为发布前主评测入口。默认本地运行使用确定性本地草稿（stub）做规则回归，不调用真实模型；接入真实模型时需设置 `OFFICIAL_WRITING_AGENT_COMMAND`。评测使用固定 JSONL 数据集，同时生成 baseline 和 Skill 两组输出；Promptfoo 负责批量运行、确定性断言、JSON/HTML 结果导出，本地汇总脚本再用随机 A/B 顺序做 pairwise judge。输出目录 `output/promptfoo/` 已被 `.gitignore` 排除。
 
 ```powershell
 npm run eval:official-writing:smoke
@@ -176,7 +176,7 @@ python .\tools\run_real_article_eval.py
 
 Writer A 调用技能规则，Writer B 按普通提示生成，Evaluator C 使用独立上下文评估。A/B 写稿覆盖 27 类文体、每类 10 次，共 540 段对比样稿。Evaluator C 按 9 个批次出具文种级评估意见；其中 2 个批次曾空返回，已在不重写 A/B 样稿的情况下补跑 C 轮。下表记录文种评估是否形成有效结论，不折算逐任务胜率。
 
-本地 smoke/regression 采用相同数量、相同结构的合成反例模板，因此各文种 Baseline 风险数均为 59。Skill 输出在文种层面未命中风险，另有 1 条全局术语重复提示未归入单一文种。
+本地 smoke/regression 采用相同数量、相同结构的合成反例模板，因此各文种 Baseline 风险数均为 59。Skill 输出在文种层面未命中风险，另有 1 条全局术语重复提示未归入单一文种。下表中的风险数来自本地合成消融；DeepSeek 列只记录 A/B 样稿生成数量和 C 轮评估是否形成有效结论。
 
 | 文种 | 本地消融次数 | Baseline 风险 | Skill 风险 | DeepSeek A/B 生成 | C 评估状态 |
 | --- | ---: | ---: | ---: | ---: | --- |
@@ -233,6 +233,8 @@ npm run eval:official-writing:smoke
 python .\tools\run_ablation.py --out output\expanded-ablation
 python .\tools\run_agent_ablation.py --genres-per-batch 1 --out output\agent-public-ablation
 ```
+
+README/SKILL 自检若命中触发条件、加载条件或适用范围说明文本，按文档自述噪音人工确认，不等同于草稿正文缺陷。
 
 ## 参考来源
 

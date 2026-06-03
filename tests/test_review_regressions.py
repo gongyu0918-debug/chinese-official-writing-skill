@@ -60,6 +60,17 @@ class ProseLintStructureTests(unittest.TestCase):
         for term in ["数据", "系统", "平台", "服务", "管理", "实施", "保障"]:
             self.assertIn(term, tokens)
 
+    def test_term_overuse_message_is_chinese(self) -> None:
+        text = "边界" * 10
+
+        findings = prose_lint.scan("<test>", text)
+        term_findings = [item for item in findings if item.label == "term-overuse"]
+
+        self.assertTrue(term_findings)
+        self.assertIn("出现 10 次", term_findings[0].excerpt)
+        self.assertIn("具体的事项", term_findings[0].excerpt)
+        self.assertNotIn("appears", term_findings[0].excerpt)
+
 
 class ProseLintCliTests(unittest.TestCase):
     def test_missing_file_reports_error_without_traceback(self) -> None:

@@ -3,6 +3,7 @@
 
 from __future__ import annotations
 
+import json
 import shutil
 import re
 from pathlib import Path
@@ -10,8 +11,9 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 CANONICAL = ROOT / "chinese-official-writing"
-VERSION = "1.2.25"
+VERSION = "1.2.26"
 OPENCLAW_MARKETPLACE_README = ROOT / "openclaw" / "marketplace-readme.md"
+CLAUDE_PLUGIN_MANIFEST = ROOT / ".claude-plugin" / "plugin.json"
 
 TARGETS = {
     "claude": ROOT / "skills" / "chinese-official-writing",
@@ -73,6 +75,17 @@ def patch_openclaw_marketplace_body(target: Path) -> None:
     skill_file.write_text(f"---{parts[1]}---\n\n{readme}{agent_rules}", encoding="utf-8")
 
 
+def update_claude_plugin_manifest() -> None:
+    if not CLAUDE_PLUGIN_MANIFEST.exists():
+        raise RuntimeError(f"missing Claude plugin manifest: {CLAUDE_PLUGIN_MANIFEST}")
+    manifest = json.loads(CLAUDE_PLUGIN_MANIFEST.read_text(encoding="utf-8"))
+    manifest["version"] = VERSION
+    CLAUDE_PLUGIN_MANIFEST.write_text(
+        json.dumps(manifest, ensure_ascii=False, indent=2) + "\n",
+        encoding="utf-8",
+    )
+
+
 def copy_skill(target: Path, mode: str) -> None:
     ignore = shutil.ignore_patterns("__pycache__", "*.pyc", ".DS_Store", "Thumbs.db")
     shutil.copytree(CANONICAL, target, ignore=ignore, dirs_exist_ok=True)
@@ -91,6 +104,8 @@ def main() -> int:
     for mode, target in TARGETS.items():
         copy_skill(target, mode)
         print(f"synced {target.relative_to(ROOT)}")
+    update_claude_plugin_manifest()
+    print(f"synced {CLAUDE_PLUGIN_MANIFEST.relative_to(ROOT)}")
     return 0
 
 

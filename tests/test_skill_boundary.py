@@ -1,6 +1,8 @@
 from __future__ import annotations
 
 from pathlib import Path
+import json
+import re
 import unittest
 
 
@@ -88,6 +90,29 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assertIn("GitHub 仓库 README", text)
         self.assertNotIn("### Codex / OpenAI Skill", text)
         self.assertNotIn("npm run eval:official-writing", text)
+
+    def test_claude_plugin_manifest_version_matches_skill_and_sync_script(self) -> None:
+        manifest = json.loads((ROOT / ".claude-plugin" / "plugin.json").read_text(encoding="utf-8"))
+        skill = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
+        sync_script = (ROOT / "tools" / "sync_adapters.py").read_text(encoding="utf-8")
+
+        skill_version = re.search(r'version: "([^"]+)"', skill)
+        sync_version = re.search(r'VERSION = "([^"]+)"', sync_script)
+
+        self.assertIsNotNone(skill_version)
+        self.assertIsNotNone(sync_version)
+        self.assertEqual(manifest["version"], skill_version.group(1))
+        self.assertEqual(manifest["version"], sync_version.group(1))
+
+    def test_readme_discloses_stub_eval_and_deepseek_column_sources(self) -> None:
+        text = (ROOT / "README.md").read_text(encoding="utf-8")
+
+        self.assertIn("默认本地运行使用确定性本地草稿", text)
+        self.assertIn("OFFICIAL_WRITING_AGENT_COMMAND", text)
+        self.assertIn("风险数来自本地合成消融", text)
+        self.assertIn("DeepSeek 列只记录 A/B 样稿生成数量和 C 轮评估是否形成有效结论", text)
+        self.assertIn("文档自述噪音", text)
+        self.assertIn("不等同于草稿正文缺陷", text)
 
 
 if __name__ == "__main__":

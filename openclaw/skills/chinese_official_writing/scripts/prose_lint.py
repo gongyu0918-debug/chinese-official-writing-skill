@@ -395,7 +395,7 @@ def scan(path_label: str, text: str, include_format: bool = False, include_struc
                     severity="low",
                     label="term-overuse",
                     match=term,
-                    excerpt=f"`{term}` appears {count} times; consider replacing some occurrences with concrete nouns.",
+                    excerpt=f"`{term}` 出现 {count} 次；建议将部分表述替换为更具体的事项、主体或办理要素。",
                 )
             )
 

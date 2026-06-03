@@ -18,5 +18,5 @@ python .\tools\sync_adapters.py
 发布命令：
 
 ```powershell
-clawhub publish .\openclaw\skills\chinese_official_writing --slug chinese-official-writing --name "中文公文写作" --version 1.2.25 --tags "chinese,official-document,writing,gongwen,ai-compute"
+clawhub publish .\openclaw\skills\chinese_official_writing --slug chinese-official-writing --name "中文公文写作" --version 1.2.26 --tags "chinese,official-document,writing,gongwen,ai-compute"
 ```
