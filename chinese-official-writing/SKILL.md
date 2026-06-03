@@ -3,7 +3,7 @@ name: chinese-official-writing
 description: 用于起草、改写和复核中文公文及正式工作材料；当用户要求通知、请示、报告、函、批复、纪要、方案、可研、调研、总结、讲话稿等中文正式文本，或需要顺稿、压缩、去口语化、降 AI 味、文种校验、办理要素核对时使用。不用于英文、文学、营销、社媒、批量语料或替代法律/财务/采购/审计判断。
 license: MIT-0
 metadata:
-  version: "1.2.25"
+  version: "1.2.26"
   compatible_agents:
     - codex
     - claude-code
@@ -21,7 +21,7 @@ metadata:
     invocation: "/skill:chinese-official-writing"
     entry: "SKILL.md"
   openclaw:
-    version: "1.2.25"
+    version: "1.2.26"
     emoji: "📝"
     tags:
       - chinese
@@ -30,7 +30,7 @@ metadata:
       - gongwen
       - ai-compute
   hermes:
-    version: "1.2.25"
+    version: "1.2.26"
     category: writing
     display_name: "中文公文写作"
     tags:
