@@ -3,7 +3,7 @@ name: chinese_official_writing
 description: 用于起草、改写和复核中文公文及正式工作材料；当用户要求通知、请示、报告、函、批复、纪要、方案、可研、调研、总结、讲话稿等中文正式文本，或需要顺稿、压缩、去口语化、降 AI 味、文种校验、办理要素核对时使用。不用于英文、文学、营销、社媒、批量语料或替代法律/财务/采购/审计判断。
 license: MIT-0
 metadata:
-  version: "1.2.23"
+  version: "1.2.25"
   compatible_agents:
     - codex
     - claude-code
@@ -21,7 +21,7 @@ metadata:
     invocation: "/skill:chinese-official-writing"
     entry: "SKILL.md"
   openclaw:
-    version: "1.2.23"
+    version: "1.2.25"
     emoji: "📝"
     tags:
       - chinese
@@ -53,7 +53,7 @@ clawhub install chinese-official-writing
 其他平台如 Codex、Claude Code、Hermes、deepseek-tui 的安装 Prompt，请看 GitHub 仓库 README：
 https://github.com/gongyu0918-debug/chinese-official-writing-skill
 
-当前版本：`chinese-official-writing@1.2.23`
+当前版本：`chinese-official-writing@1.2.25`
 
 ## 适用场景
 

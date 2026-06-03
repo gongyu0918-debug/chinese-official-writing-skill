@@ -10,7 +10,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 CANONICAL = ROOT / "chinese-official-writing"
-VERSION = "1.2.23"
+VERSION = "1.2.25"
 OPENCLAW_MARKETPLACE_README = ROOT / "openclaw" / "marketplace-readme.md"
 
 TARGETS = {
@@ -19,6 +19,12 @@ TARGETS = {
     "hermes": ROOT / "hermes" / "skills" / "chinese-official-writing",
     "openclaw": ROOT / "openclaw" / "skills" / "chinese_official_writing",
 }
+
+
+def versioned_text(text: str) -> str:
+    text = re.sub(r"chinese-official-writing@\d+\.\d+\.\d+", f"chinese-official-writing@{VERSION}", text)
+    text = re.sub(r"--version\s+\d+\.\d+\.\d+", f"--version {VERSION}", text)
+    return text
 
 
 def patch_frontmatter(target: Path, mode: str) -> None:
@@ -47,7 +53,7 @@ def patch_openclaw_marketplace_body(target: Path) -> None:
     parts = text.split("---", 2)
     if len(parts) < 3:
         raise RuntimeError("OpenClaw SKILL.md frontmatter is malformed")
-    readme = OPENCLAW_MARKETPLACE_README.read_text(encoding="utf-8").strip()
+    readme = versioned_text(OPENCLAW_MARKETPLACE_README.read_text(encoding="utf-8")).strip()
     agent_rules = """
 
 ## Agent 使用规则
@@ -72,7 +78,10 @@ def copy_skill(target: Path, mode: str) -> None:
     shutil.copytree(CANONICAL, target, ignore=ignore, dirs_exist_ok=True)
     patch_frontmatter(target, mode)
     if mode == "openclaw":
-        shutil.copyfile(OPENCLAW_MARKETPLACE_README, target / "README.md")
+        (target / "README.md").write_text(
+            versioned_text(OPENCLAW_MARKETPLACE_README.read_text(encoding="utf-8")),
+            encoding="utf-8",
+        )
         patch_openclaw_marketplace_body(target)
 
 

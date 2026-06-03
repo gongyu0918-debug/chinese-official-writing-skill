@@ -39,6 +39,19 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assertIn("`references/ai-compute-docs.md` | 专项选读", text)
         self.assertIn("仅在 AI 算力、GPU/服务器租赁、模型服务、采购、租赁、可研、成本比较、SLA、安全或验收材料中读取", text)
 
+    def test_multi_round_revision_rules_keep_structure_and_genre_format(self) -> None:
+        skill = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
+        workflow = (ROOT / "chinese-official-writing" / "references" / "workflow.md").read_text(encoding="utf-8")
+        checklist = (ROOT / "chinese-official-writing" / "references" / "review-checklist.md").read_text(encoding="utf-8")
+
+        for text in [skill, workflow, checklist]:
+            self.assertIn("多轮", text)
+            self.assertIn("增加自然段", text)
+            self.assertIn("反馈渠道", text)
+            self.assertIn("原因分析", text)
+            self.assertIn("发送人", text)
+            self.assertIn("接收方", text)
+
     def test_legal_genres_have_checklist_and_handling_elements(self) -> None:
         checklist = (ROOT / "chinese-official-writing" / "references" / "genre-checklist.md").read_text(encoding="utf-8")
         elements = (ROOT / "chinese-official-writing" / "references" / "handling-elements.md").read_text(encoding="utf-8")

@@ -20,7 +20,7 @@ clawhub install chinese-official-writing
 其他平台如 Codex、Claude Code、Hermes、deepseek-tui 的安装 Prompt，请看 GitHub 仓库 README：
 https://github.com/gongyu0918-debug/chinese-official-writing-skill
 
-当前版本：`chinese-official-writing@1.2.23`
+当前版本：`chinese-official-writing@1.2.25`
 
 ## 适用场景
 
