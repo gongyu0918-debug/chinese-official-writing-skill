@@ -32,6 +32,11 @@ class RealPromptAblationTests(unittest.TestCase):
         self.assertIn("写一份采购公告", prompts)
         self.assertIn("请把这段顺成正式报告", prompts)
         self.assertIn("审一下这段能不能进正文", prompts)
+        self.assertIn("不要新增小标题", prompts)
+        self.assertIn("不要加接收方", prompts)
+        self.assertIn("内部 WPS 会员采购申请", prompts)
+        self.assertIn("不写主送机关", prompts)
+        self.assertIn("不要改成请示", prompts)
 
     def test_current_skill_passes_real_prompt_cases(self) -> None:
         rows = real_prompt_eval.evaluate_root(ROOT, "current_test")
@@ -47,6 +52,24 @@ class RealPromptAblationTests(unittest.TestCase):
         self.assertIn("公示", checks_by_id["P003"]["handling_rows"])
         self.assertIn("thought-leak", checks_by_id["P007"]["lint_present_labels"])
         self.assertIn("viewpoint-risk", checks_by_id["P006"]["lint_absent_labels"])
+        self.assertIn("改稿前小标题清单", checks_by_id["P009"]["review_checklist_terms"])
+        self.assertIn("说明", checks_by_id["P010"]["description_terms"])
+        self.assertIn("申请", checks_by_id["P011"]["description_terms"])
+        self.assertIn("chinese-official-writing/references/final-review-layers.md", checks_by_id["P012"]["file_terms"])
+        self.assertIn("chinese-official-writing/references/formal-addressing.md", checks_by_id["P013"]["file_terms"])
+
+    def test_heading_lock_detects_added_subheading(self) -> None:
+        before = """一、整改进展
+二、存在问题
+三、原因分析
+四、下一步安排"""
+        after = """一、整改进展
+二、存在问题
+三、原因分析
+四、数据口径影响
+五、下一步安排"""
+
+        self.assertNotEqual(real_prompt_eval.numbered_headings(before), real_prompt_eval.numbered_headings(after))
 
 
 if __name__ == "__main__":

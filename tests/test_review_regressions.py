@@ -42,6 +42,33 @@ class ProseLintStructureTests(unittest.TestCase):
         self.assertIn("thought-leak", labels)
         self.assertIn("viewpoint-risk", labels)
 
+    def test_common_placeholders_are_flagged_without_blocking_document_numbers(self) -> None:
+        text = (
+            "项目名称为[具体项目名称]，预算为XXXX万元，整改事项共X项，"
+            "计划于YYYY年MM月DD日完成。（签发日期）另行确认。"
+        )
+
+        findings = prose_lint.scan("<test>", text)
+        placeholder_matches = [item.match for item in findings if item.label == "unfinished-placeholder"]
+
+        self.assertGreaterEqual(len(placeholder_matches), 5)
+        self.assertFalse(
+            [
+                item
+                for item in prose_lint.scan("<test>", "发文字号为XX发〔2026〕1号。")
+                if item.label == "unfinished-placeholder"
+            ]
+        )
+
+    def test_markdown_format_marks_are_flagged_in_formal_output(self) -> None:
+        text = "**一、需求来源**\n正文内容。\n```text\n关于事项的报告\n```"
+
+        findings = prose_lint.scan("<test>", text, include_format=True)
+        labels = {item.label for item in findings}
+
+        self.assertIn("markdown-bold", labels)
+        self.assertIn("markdown-code-fence", labels)
+
     def test_duplicate_detection_stays_within_heading_section(self) -> None:
         text = (
             "### A\n"

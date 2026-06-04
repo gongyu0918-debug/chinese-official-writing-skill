@@ -59,6 +59,9 @@ class SkillBoundaryTests(unittest.TestCase):
             self.assertIn("原因分析", text)
             self.assertIn("发送人", text)
             self.assertIn("接收方", text)
+        self.assertIn("改稿前小标题清单", checklist)
+        self.assertIn("改稿后小标题清单", checklist)
+        self.assertIn("小标题数量", checklist)
 
     def test_legal_genres_have_checklist_and_handling_elements(self) -> None:
         checklist = (ROOT / "chinese-official-writing" / "references" / "genre-checklist.md").read_text(encoding="utf-8")
@@ -99,6 +102,8 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assertIn("当前日期不得替代维护时间", skill)
         self.assertIn("当前日期只可用于草稿落款", elements)
         self.assertIn("未把当前日期误用为维护时间", checklist)
+        self.assertIn("[具体项目名称]", skill)
+        self.assertIn("YYYY年MM月DD日", elements)
 
     def test_openclaw_marketplace_readme_is_user_facing(self) -> None:
         text = (ROOT / "openclaw" / "marketplace-readme.md").read_text(encoding="utf-8")

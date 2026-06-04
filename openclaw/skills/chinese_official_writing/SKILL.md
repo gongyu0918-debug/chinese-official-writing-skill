@@ -3,7 +3,7 @@ name: chinese_official_writing
 description: 用于起草、改写和复核中文公文及正式工作材料；当用户要求通知、请示、报告、函、复函、批复、意见、决定、决议、议案、公报、命令、公告、通告、公示、通报、纪要、方案、说明、申请、征求意见函、采购公告、可研、调研、总结、工作要点、审查材料、讲话稿、致辞、述职报告等中文正式文本，或需要顺稿、压缩、去口语化、降 AI 味、文种校验、办理要素核对时使用。不用于英文、文学、营销、社媒、批量语料或替代法律/财务/采购/审计判断。
 license: MIT-0
 metadata:
-  version: "1.2.27"
+  version: "1.2.28"
   compatible_agents:
     - codex
     - claude-code
@@ -21,7 +21,7 @@ metadata:
     invocation: "/skill:chinese-official-writing"
     entry: "SKILL.md"
   openclaw:
-    version: "1.2.27"
+    version: "1.2.28"
     emoji: "📝"
     tags:
       - chinese
@@ -53,7 +53,7 @@ clawhub install chinese-official-writing
 其他平台如 Codex、Claude Code、Hermes、deepseek-tui 的安装 Prompt，请看 GitHub 仓库 README：
 https://github.com/gongyu0918-debug/chinese-official-writing-skill
 
-当前版本：`chinese-official-writing@1.2.27`
+当前版本：`chinese-official-writing@1.2.28`
 
 ClawHub 页面只展示摘要；安装包内的 `SKILL.md` 和 `references/` 保留完整规则、硬边界和复核清单。
 
@@ -125,5 +125,5 @@ MIT-0
 5. 从发文单位、报告单位、项目单位或主管单位视角写，不使用旁观者、教师或评论员口吻。
 6. 数据和判断要可追溯；不编造实际数据，测算和预估必须标明性质。
 7. 起草算力、采购、租赁或服务器租赁材料时，论证重点放在需求来源、Token/资源换算、成本比较、SLA、并发、安全、交付和验收。
-8. 最终正文不得残留 `〔签发日期〕`、`〔会议时间〕`、`〔待补充〕` 等未完成占位；缺项在正文外提示用户确认。当前日期只可用于草稿落款，不得替代维护时间、会议时间、实施期限、政策依据或业务数据。
+8. 最终正文不得残留 `〔签发日期〕`、`〔会议时间〕`、`〔待补充〕`、`[具体项目名称]`、`XXXX万元`、`YYYY年MM月DD日`、`（签发日期）` 等未完成占位；缺项在正文外提示用户确认。当前日期只可用于草稿落款，不得替代维护时间、会议时间、实施期限、政策依据或业务数据。
 9. 检查 `.txt`、`.md` 或 `.docx` 草稿时，可使用 `scripts/prose_lint.py`。脚本只提示风险，不自动改写。

@@ -52,6 +52,11 @@ PATTERNS: list[tuple[str, str, str, str]] = [
     ("medium", "side-commentary", r"可以理解为", "正式文稿中通常不需要解释腔。"),
     ("medium", "project-card-summary", r"^\s*(?:项目名称|建设单位|实施单位|建设周期|总投资|预算金额|采购内容|服务内容)\s*[：:]", "检查摘要或概况是否写成项目卡片；必要时改为连续正文。"),
     ("medium", "cost-explainer", r"测算口径|测算公式|计算公式|单价\s*[×xX*]\s*数量|计算如下", "检查需求与成本章节是否写成测算说明；必要时改为说明需求来源、费用对应事项和成本边界。"),
+    ("medium", "unfinished-placeholder", r"\[[^\]\n]{0,30}(?:具体|待|填写|补充|确认|项目名称|单位名称|金额|日期)[^\]\n]{0,30}\]", "交付正文不应保留方括号占位；缺项改为正文外提示。"),
+    ("medium", "unfinished-placeholder", r"(?<![A-Za-z])(?:X{2,}(?![A-Za-z\u4e00-\u9fff])|X+(?:万元|亿元|亿|项|%|％|卡|套|人|次|个))", "交付正文不应保留 X/XXXX 类占位；缺项改为正文外提示。"),
+    ("medium", "unfinished-placeholder", r"Y{4}年M{1,2}月D{1,2}日?", "交付正文不应保留 YYYY年MM月DD日 类占位；缺项改为正文外提示。"),
+    ("medium", "unfinished-placeholder", r"[（(][^）)\n]{0,30}(?:待|签发日期|会议时间|成文日期|填写|补充|确认)[^）)\n]{0,30}[）)]", "交付正文不应保留括号占位；缺项改为正文外提示。"),
+    ("medium", "unfinished-placeholder", r"〔(?:签发日期|会议时间|待补充|[^〕\n]{0,20}(?:待|补充|填写|确认)[^〕\n]{0,20})〕", "交付正文不应保留未完成占位；缺项改为正文外提示。"),
     ("high", "thought-leak", r"作为(?:一个)?\s*AI|我是(?:一个)?\s*AI|由\s*AI\s*(?:起草|生成|辅助生成)|AI\s*(?:辅助)?生成|我的(?:思路|推理|分析)|(?:思考|推理)过程(?:如下|是|：|:)|内部推理", "删除模型身份、思考过程或内部推理表述。"),
     ("medium", "thought-leak", r"我将根据|接下来我会|按你的要求", "改为文稿正文或办理安排，不暴露生成过程。"),
     ("medium", "viewpoint-risk", r"(?:按|按照|根据)(?:录音|用户)要求|(?:录音|用户)要求(?:如下|为)|你让我|这版文章|这段文字", "检查是否把外部修改过程写进正文。"),
@@ -78,6 +83,7 @@ FORMAT_PATTERNS: list[tuple[str, str, str, str]] = [
     ("low", "number-grouping-comma", r"\d{1,3}(?:,\d{3})+(?:\.\d+)?", "确认正式中文材料中是否应取消千位分隔符。"),
     ("low", "cn-number-space", r"[\u4e00-\u9fff]\s+\d|\d\s+[\u4e00-\u9fff]", "检查中文和数字之间是否误加空格。"),
     ("medium", "emoji-marker", r"[\U0001F300-\U0001FAFF]", "正式公文正文避免使用 Emoji。"),
+    ("low", "markdown-bold", r"\*\*[^*\n]{1,80}\*\*", "正式公文正文不要用 Markdown 加粗标记；改为普通小标题或正文。"),
     ("low", "western-bullet", r"^\s*(?:[-*•●◆◇★✅☑]|[0-9]+[.)])\s+", "中文正式正文避免频繁使用西式项目符号或 1. 2. 编号；必要清单可保留。"),
 ]
 
@@ -348,6 +354,17 @@ def scan(path_label: str, text: str, include_format: bool = False, include_struc
     for line_no, line in enumerate(lines, start=1):
         stripped = line.strip()
         if stripped.startswith("```"):
+            if include_format:
+                findings.append(
+                    Finding(
+                        path=path_label,
+                        line=line_no,
+                        severity="low",
+                        label="markdown-code-fence",
+                        match=stripped[:20],
+                        excerpt="正式公文正文不要用 Markdown 代码块包裹；交付正文应直接呈现。",
+                    )
+                )
             in_fence = not in_fence
             continue
         if in_fence:

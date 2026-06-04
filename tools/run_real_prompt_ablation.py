@@ -113,6 +113,79 @@ CASES: list[PromptCase] = [
             "lint_absent_labels": ["viewpoint-risk"],
         },
     ),
+    PromptCase(
+        id="P009",
+        kind="revise",
+        prompt="在第三部分后增加一个说明数据口径影响的自然段，不要新增小标题，原四个小标题必须保持不变。",
+        checks={
+            "review_checklist_terms": ["改稿前小标题清单", "改稿后小标题清单", "小标题数量"],
+            "heading_lock": {
+                "before": """一、整改进展
+二、存在问题
+三、原因分析
+四、下一步安排""",
+                "after": """一、整改进展
+二、存在问题
+三、原因分析
+四、下一步安排""",
+            },
+        },
+    ),
+    PromptCase(
+        id="P010",
+        kind="create",
+        prompt="写一份情况说明，说明系统维护期间部分数据同步延迟、已恢复、后续加强监测；不要写成请示，也不要加接收方。",
+        checks={
+            "description_terms": ["说明"],
+            "routing_terms": ["说明", "不写成请示"],
+            "checklist_sections": ["说明"],
+            "handling_rows": ["说明"],
+            "file_terms": {
+                "chinese-official-writing/references/format-gbt9704.md": ["最终以用户模板和材料属性为准"],
+            },
+        },
+    ),
+    PromptCase(
+        id="P011",
+        kind="create",
+        prompt="帮我起草一份内部 WPS 会员采购申请，保留“尊敬的领导：”称呼和两行标题，不要强行改成法定公文格式。",
+        checks={
+            "description_terms": ["申请"],
+            "routing_terms": ["申请", "不因使用请批语就自动改成请示"],
+            "checklist_sections": ["申请"],
+            "handling_rows": ["申请"],
+            "file_terms": {
+                "chinese-official-writing/references/genre-checklist.md": ["两行标题", "尊敬的领导"],
+                "chinese-official-writing/references/formal-addressing.md": ["不作无依据硬删"],
+            },
+        },
+    ),
+    PromptCase(
+        id="P012",
+        kind="revise",
+        prompt="把这份报告改得正式一点，但我明确要求不写主送机关，不要补接收方，也不要加“妥否，请批示”。",
+        checks={
+            "routing_terms": ["报告", "不以“妥否，请批示”收尾"],
+            "review_checklist_terms": ["只有明确要求时才作硬性位置断言"],
+            "file_terms": {
+                "chinese-official-writing/references/final-review-layers.md": ["用户明确要求是否遗漏", "只有在用户或文种明确要求时"],
+                "chinese-official-writing/references/format-gbt9704.md": ["最终以用户模板和材料属性为准"],
+            },
+        },
+    ),
+    PromptCase(
+        id="P013",
+        kind="revise",
+        prompt="把这份申请顺一下，保留“尊敬的领导：”、右下落款和“妥否，请批示”结尾，不要改成请示。",
+        checks={
+            "routing_terms": ["不因使用请批语就自动改成请示"],
+            "checklist_sections": ["申请"],
+            "file_terms": {
+                "chinese-official-writing/references/genre-checklist.md": ["不要只因出现 `妥否，请批示` 就判定为请示"],
+                "chinese-official-writing/references/formal-addressing.md": ["申请向上级或领导班子请求批准时", "不要违背用户指定结尾"],
+            },
+        },
+    ),
 ]
 
 
@@ -132,6 +205,13 @@ def has_table_row(text: str, row_name: str) -> bool:
     return re.search(rf"^\| {re.escape(row_name)} \|", text, re.M) is not None
 
 
+HEADING_RE = re.compile(r"^\s*([一二三四五六七八九十]+、[^\n]+?)\s*$", re.M)
+
+
+def numbered_headings(text: str) -> list[str]:
+    return [match.group(1).strip() for match in HEADING_RE.finditer(text)]
+
+
 def load_prose_lint(root: Path, label: str):
     path = root / "chinese-official-writing" / "scripts" / "prose_lint.py"
     spec = importlib.util.spec_from_file_location(f"real_prompt_prose_lint_{label}", path)
@@ -149,6 +229,7 @@ def evaluate_case(case: PromptCase, root: Path, prose_lint) -> dict[str, Any]:
     routing = read_text(root, "chinese-official-writing/references/genre-routing.md")
     checklist = read_text(root, "chinese-official-writing/references/genre-checklist.md")
     elements = read_text(root, "chinese-official-writing/references/handling-elements.md")
+    review_checklist = read_text(root, "chinese-official-writing/references/review-checklist.md")
 
     failures: list[str] = []
     checks = case.checks
@@ -165,6 +246,21 @@ def evaluate_case(case: PromptCase, root: Path, prose_lint) -> dict[str, Any]:
     for row in checks.get("handling_rows", []):
         if not has_table_row(elements, row):
             failures.append(f"handling-elements missing {row}")
+    for term in checks.get("review_checklist_terms", []):
+        if term not in review_checklist:
+            failures.append(f"review-checklist missing {term}")
+    for relative, terms in checks.get("file_terms", {}).items():
+        file_text = read_text(root, relative)
+        for term in terms:
+            if term not in file_text:
+                failures.append(f"{relative} missing {term}")
+
+    heading_lock = checks.get("heading_lock")
+    if heading_lock:
+        before = numbered_headings(heading_lock["before"])
+        after = numbered_headings(heading_lock["after"])
+        if before != after:
+            failures.append(f"heading list changed: before={before}; after={after}")
 
     lint_text = checks.get("lint_text")
     lint_labels: list[str] = []
@@ -233,14 +329,16 @@ def write_summary(out_dir: Path, results: dict[str, list[dict[str, Any]]]) -> No
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--baseline-root", required=True)
+    parser.add_argument("--baseline-label", default="baseline")
     parser.add_argument("--current-root", default=".")
     parser.add_argument("--out", default="output/real-prompt-ablation")
     args = parser.parse_args()
 
     baseline_root = Path(args.baseline_root).resolve()
     current_root = Path(args.current_root).resolve()
+    baseline_label = args.baseline_label
     results = {
-        "baseline-1.2.26": evaluate_root(baseline_root, "baseline_1_2_26"),
+        baseline_label: evaluate_root(baseline_root, baseline_label),
         "current": evaluate_root(current_root, "current"),
     }
 
@@ -250,7 +348,7 @@ def main() -> int:
     write_summary(out_dir, results)
     print((out_dir / "summary.md").as_posix())
     current_failures = sum(1 for row in results["current"] if not row["passed"])
-    baseline_failures = sum(1 for row in results["baseline-1.2.26"] if not row["passed"])
+    baseline_failures = sum(1 for row in results[baseline_label] if not row["passed"])
     return 1 if current_failures > baseline_failures else 0
 
 
