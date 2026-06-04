@@ -26,6 +26,22 @@ agent_eval = load_module("agent_eval_under_test", ROOT / "tools" / "run_agent_ab
 
 
 class ProseLintStructureTests(unittest.TestCase):
+    def test_formal_leadership_phrases_are_not_flagged_as_process_leaks(self) -> None:
+        text = "根据领导要求，项目组已完成风险排查。领导关心的交付节点已纳入每周调度。"
+
+        findings = prose_lint.scan("<test>", text)
+
+        self.assertFalse([item for item in findings if item.label in {"viewpoint-risk", "casual"}])
+
+    def test_model_identity_and_user_process_phrases_are_still_flagged(self) -> None:
+        text = "本材料由 AI 起草。根据用户要求修改如下：这版文章将压缩为三段。"
+
+        findings = prose_lint.scan("<test>", text)
+        labels = {item.label for item in findings}
+
+        self.assertIn("thought-leak", labels)
+        self.assertIn("viewpoint-risk", labels)
+
     def test_duplicate_detection_stays_within_heading_section(self) -> None:
         text = (
             "### A\n"

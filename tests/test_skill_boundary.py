@@ -41,6 +41,12 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assertIn("`references/ai-compute-docs.md` | 专项选读", text)
         self.assertIn("仅在 AI 算力、GPU/服务器租赁、模型服务、采购、租赁、可研、成本比较、SLA、安全或验收材料中读取", text)
 
+    def test_trigger_description_covers_reported_genres(self) -> None:
+        text = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
+
+        for keyword in ["复函", "公示", "决议", "议案", "公报", "命令", "工作要点", "审查材料"]:
+            self.assertIn(keyword, text)
+
     def test_multi_round_revision_rules_keep_structure_and_genre_format(self) -> None:
         skill = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
         workflow = (ROOT / "chinese-official-writing" / "references" / "workflow.md").read_text(encoding="utf-8")
@@ -60,6 +66,18 @@ class SkillBoundaryTests(unittest.TestCase):
 
         self.assertIn("## 通告", checklist)
         for genre in ["决议", "公告", "通告", "意见"]:
+            self.assertIn(f"| {genre} |", elements)
+
+    def test_reported_genre_coverage_gaps_have_minimum_support(self) -> None:
+        routing = (ROOT / "chinese-official-writing" / "references" / "genre-routing.md").read_text(encoding="utf-8")
+        checklist = (ROOT / "chinese-official-writing" / "references" / "genre-checklist.md").read_text(encoding="utf-8")
+        elements = (ROOT / "chinese-official-writing" / "references" / "handling-elements.md").read_text(encoding="utf-8")
+
+        for keyword in ["工作要点：", "工作总结：", "审查材料：", "讲话稿/致辞/述职报告"]:
+            self.assertIn(keyword, routing)
+        for heading in ["## 征求意见函", "## 采购公告"]:
+            self.assertIn(heading, checklist)
+        for genre in ["公示", "征求意见函", "采购公告"]:
             self.assertIn(f"| {genre} |", elements)
 
     def test_format_reference_clarifies_document_number_brackets(self) -> None:
@@ -88,6 +106,7 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assertIn("clawhub install chinese-official-writing", text)
         self.assertIn("其他平台", text)
         self.assertIn("GitHub 仓库 README", text)
+        self.assertIn("完整规则、硬边界和复核清单", text)
         self.assertNotIn("### Codex / OpenAI Skill", text)
         self.assertNotIn("npm run eval:official-writing", text)
 

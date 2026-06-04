@@ -1,0 +1,53 @@
+from __future__ import annotations
+
+import importlib.util
+from pathlib import Path
+import sys
+import unittest
+
+
+ROOT = Path(__file__).resolve().parents[1]
+
+
+def load_module(name: str, path: Path):
+    spec = importlib.util.spec_from_file_location(name, path)
+    if spec is None or spec.loader is None:
+        raise RuntimeError(f"cannot import {path}")
+    module = importlib.util.module_from_spec(spec)
+    sys.modules[spec.name] = module
+    spec.loader.exec_module(module)
+    return module
+
+
+real_prompt_eval = load_module("real_prompt_ablation_under_test", ROOT / "tools" / "run_real_prompt_ablation.py")
+
+
+class RealPromptAblationTests(unittest.TestCase):
+    def test_cases_cover_create_and_revision_prompts(self) -> None:
+        kinds = {case.kind for case in real_prompt_eval.CASES}
+        prompts = "\n".join(case.prompt for case in real_prompt_eval.CASES)
+
+        self.assertEqual(kinds, {"create", "revise"})
+        self.assertIn("帮我起草", prompts)
+        self.assertIn("写一份采购公告", prompts)
+        self.assertIn("请把这段顺成正式报告", prompts)
+        self.assertIn("审一下这段能不能进正文", prompts)
+
+    def test_current_skill_passes_real_prompt_cases(self) -> None:
+        rows = real_prompt_eval.evaluate_root(ROOT, "current_test")
+        failures = {row["id"]: row["failures"] for row in rows if not row["passed"]}
+
+        self.assertEqual(failures, {})
+
+    def test_case_set_includes_recent_review_regressions(self) -> None:
+        checks_by_id = {case.id: case.checks for case in real_prompt_eval.CASES}
+
+        self.assertIn("采购公告", checks_by_id["P002"]["description_terms"])
+        self.assertIn("征求意见函", checks_by_id["P001"]["checklist_sections"])
+        self.assertIn("公示", checks_by_id["P003"]["handling_rows"])
+        self.assertIn("thought-leak", checks_by_id["P007"]["lint_present_labels"])
+        self.assertIn("viewpoint-risk", checks_by_id["P006"]["lint_absent_labels"])
+
+
+if __name__ == "__main__":
+    unittest.main()

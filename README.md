@@ -70,7 +70,7 @@
 请从 GitHub 仓库 https://github.com/gongyu0918-debug/chinese-official-writing-skill 拉取 openclaw/skills/chinese_official_writing/ 目录，并将其安装为 OpenClaw/ClawHub 可识别的 chinese-official-writing 技能。该适配目录的 frontmatter 使用 name: chinese_official_writing；安装后确认显示名称为“中文公文写作”，用于中文公文、可研报告、建设方案和 AI 算力采购租赁类正式材料写作。
 ```
 
-当前工作版本：`chinese-official-writing@1.2.26`
+当前工作版本：`chinese-official-writing@1.2.27`
 
 ### Claude Code
 
@@ -231,6 +231,7 @@ python .\chinese-official-writing\scripts\prose_lint.py README.md chinese-offici
 python .\tools\run_revision_instruction_eval.py --agent none --out output\revision-instruction-eval-task-packet
 npm run eval:official-writing:smoke
 python .\tools\run_ablation.py --out output\expanded-ablation
+python .\tools\run_real_prompt_ablation.py --baseline-root output\release-baselines\github-1.2.26 --current-root . --out output\real-prompt-ablation
 python .\tools\run_agent_ablation.py --genres-per-batch 1 --out output\agent-public-ablation
 ```
 
