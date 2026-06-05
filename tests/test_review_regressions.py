@@ -45,13 +45,14 @@ class ProseLintStructureTests(unittest.TestCase):
     def test_common_placeholders_are_flagged_without_blocking_document_numbers(self) -> None:
         text = (
             "项目名称为[具体项目名称]，预算为XXXX万元，整改事项共X项，"
-            "计划于YYYY年MM月DD日完成。（签发日期）另行确认。"
+            "期限为XXXX年，设备为XXXX张，支持XXXX并发请求，计划于YYYY年MM月DD日完成。"
+            "（签发日期）另行确认。"
         )
 
         findings = prose_lint.scan("<test>", text)
         placeholder_matches = [item.match for item in findings if item.label == "unfinished-placeholder"]
 
-        self.assertGreaterEqual(len(placeholder_matches), 5)
+        self.assertGreaterEqual(len(placeholder_matches), 8)
         self.assertFalse(
             [
                 item
@@ -68,6 +69,40 @@ class ProseLintStructureTests(unittest.TestCase):
 
         self.assertIn("markdown-bold", labels)
         self.assertIn("markdown-code-fence", labels)
+
+    def test_code_fence_does_not_hide_placeholders_when_format_checking(self) -> None:
+        text = "```text\n项目名称为[具体项目名称]，期限为XXXX年，计划于YYYY年MM月DD日完成。\n```"
+
+        findings = prose_lint.scan("<test>", text, include_format=True)
+        labels = [item.label for item in findings]
+
+        self.assertIn("markdown-code-fence", labels)
+        self.assertGreaterEqual(labels.count("unfinished-placeholder"), 3)
+
+    def test_attachment_numbered_list_is_not_western_bullet_noise(self) -> None:
+        attachment = "附件：\n1. 项目清单\n2. 联系方式"
+        ordinary = "1. 项目清单\n2. 联系方式"
+
+        attachment_labels = {item.label for item in prose_lint.scan("<test>", attachment, include_format=True)}
+        ordinary_labels = {item.label for item in prose_lint.scan("<test>", ordinary, include_format=True)}
+
+        self.assertNotIn("western-bullet", attachment_labels)
+        self.assertIn("western-bullet", ordinary_labels)
+
+    def test_supported_necessity_listing_is_not_flagged_as_empty_roman_list(self) -> None:
+        supported = (
+            "一、项目建设必要性\n"
+            "一是流程节点配置与新发布的集中审批规则不一致，平均办理时长由2.4个工作日延长至4.1个工作日。"
+            "二是现有系统接口无法覆盖跨部门材料流转需求，退回补正事项占比连续三个季度高于15%。"
+            "三是项目实施后可统一材料清单、办理时限和责任分工，支撑后续验收、运行监测和问题闭环整改。"
+        )
+        unsupported = "一、项目建设必要性\n一是强化统筹。二是提升能力。三是完善机制。"
+
+        supported_labels = {item.label for item in prose_lint.scan("<test>", supported, include_structure=True)}
+        unsupported_labels = {item.label for item in prose_lint.scan("<test>", unsupported, include_structure=True)}
+
+        self.assertNotIn("necessity-listing", supported_labels)
+        self.assertIn("necessity-listing", unsupported_labels)
 
     def test_duplicate_detection_stays_within_heading_section(self) -> None:
         text = (

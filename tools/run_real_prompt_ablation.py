@@ -186,6 +186,24 @@ CASES: list[PromptCase] = [
             },
         },
     ),
+    PromptCase(
+        id="P014",
+        kind="revise",
+        prompt="审一下这段能不能直接作为正文交付，模型把全文包在代码块里，里面还有项目名称和日期占位。",
+        checks={
+            "lint_text": "```text\n项目名称为[具体项目名称]，计划于YYYY年MM月DD日完成。\n```",
+            "lint_present_labels": ["markdown-code-fence", "unfinished-placeholder"],
+        },
+    ),
+    PromptCase(
+        id="P015",
+        kind="revise",
+        prompt="审一下这段是否还留着未完成占位：维护期限为XXXX年，设备XXXX张，支持XXXX并发请求。",
+        checks={
+            "lint_text": "维护期限为XXXX年，设备XXXX张，支持XXXX并发请求。",
+            "lint_present_labels": ["unfinished-placeholder"],
+        },
+    ),
 ]
 
 
@@ -205,7 +223,7 @@ def has_table_row(text: str, row_name: str) -> bool:
     return re.search(rf"^\| {re.escape(row_name)} \|", text, re.M) is not None
 
 
-HEADING_RE = re.compile(r"^\s*([一二三四五六七八九十]+、[^\n]+?)\s*$", re.M)
+HEADING_RE = re.compile(r"^\s*(?:#{1,6}\s+)?([一二三四五六七八九十]+、[^\n#]+?)\s*(?:#+\s*)?$", re.M)
 
 
 def numbered_headings(text: str) -> list[str]:

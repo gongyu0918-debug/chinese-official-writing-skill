@@ -37,6 +37,8 @@ class RealPromptAblationTests(unittest.TestCase):
         self.assertIn("内部 WPS 会员采购申请", prompts)
         self.assertIn("不写主送机关", prompts)
         self.assertIn("不要改成请示", prompts)
+        self.assertIn("包在代码块", prompts)
+        self.assertIn("维护期限为XXXX年", prompts)
 
     def test_current_skill_passes_real_prompt_cases(self) -> None:
         rows = real_prompt_eval.evaluate_root(ROOT, "current_test")
@@ -57,6 +59,8 @@ class RealPromptAblationTests(unittest.TestCase):
         self.assertIn("申请", checks_by_id["P011"]["description_terms"])
         self.assertIn("chinese-official-writing/references/final-review-layers.md", checks_by_id["P012"]["file_terms"])
         self.assertIn("chinese-official-writing/references/formal-addressing.md", checks_by_id["P013"]["file_terms"])
+        self.assertIn("unfinished-placeholder", checks_by_id["P014"]["lint_present_labels"])
+        self.assertIn("unfinished-placeholder", checks_by_id["P015"]["lint_present_labels"])
 
     def test_heading_lock_detects_added_subheading(self) -> None:
         before = """一、整改进展
@@ -70,6 +74,17 @@ class RealPromptAblationTests(unittest.TestCase):
 五、下一步安排"""
 
         self.assertNotEqual(real_prompt_eval.numbered_headings(before), real_prompt_eval.numbered_headings(after))
+
+    def test_heading_lock_reads_markdown_numbered_headings(self) -> None:
+        markdown = """### 一、整改进展
+### 二、存在问题
+### 三、原因分析
+### 四、下一步安排"""
+
+        self.assertEqual(
+            real_prompt_eval.numbered_headings(markdown),
+            ["一、整改进展", "二、存在问题", "三、原因分析", "四、下一步安排"],
+        )
 
 
 if __name__ == "__main__":
