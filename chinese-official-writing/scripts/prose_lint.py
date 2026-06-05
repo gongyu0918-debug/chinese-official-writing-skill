@@ -32,11 +32,11 @@ class InputReadError(Exception):
 
 
 PATTERNS: list[tuple[str, str, str, str]] = [
-    ("high", "paired-summary", r"不是[^。；;\n]{0,80}而是", "改为直接肯定结论；必要否定对比可保留。"),
-    ("high", "paired-summary", r"不仅[^。；;\n]{0,80}还", "拆成具体事实或只保留关键判断。"),
-    ("high", "paired-summary", r"不但[^。；;\n]{0,80}而且", "拆成具体事实或只保留关键判断。"),
-    ("high", "paired-summary", r"既[^。；;\n]{0,80}又", "改为具体并列事项，避免套话。"),
-    ("high", "paired-summary", r"一方面[^。；;\n]{0,100}另一方面", "改为按业务或数据自然分段。"),
+    ("medium", "paired-summary", r"不是[^。；;\n]{0,80}而是", "改为直接肯定结论；必要否定对比可保留。"),
+    ("medium", "paired-summary", r"不仅[^。；;\n]{0,80}还", "拆成具体事实或只保留关键判断。"),
+    ("medium", "paired-summary", r"不但[^。；;\n]{0,80}而且", "拆成具体事实或只保留关键判断。"),
+    ("medium", "paired-summary", r"既[^。；;\n]{0,80}又", "改为具体并列事项，避免套话。"),
+    ("medium", "paired-summary", r"一方面[^。；;\n]{0,100}另一方面", "改为按业务或数据自然分段。"),
     ("high", "side-commentary", r"本方案重点说明", "删除写作说明，改成方案正文判断。"),
     ("high", "side-commentary", r"重点说明\s*Token\s*用在哪里", "改为年度调用需求来源描述。"),
     ("medium", "side-commentary", r"以下(直接)?列出", "改为正文承接，不写提示语。"),
