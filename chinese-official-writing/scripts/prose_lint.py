@@ -53,7 +53,7 @@ PATTERNS: list[tuple[str, str, str, str]] = [
     ("medium", "project-card-summary", r"^\s*(?:项目名称|建设单位|实施单位|建设周期|总投资|预算金额|采购内容|服务内容)\s*[：:]", "检查摘要或概况是否写成项目卡片；必要时改为连续正文。"),
     ("medium", "cost-explainer", r"测算口径|测算公式|计算公式|单价\s*[×xX*]\s*数量|计算如下", "检查需求与成本章节是否写成测算说明；必要时改为说明需求来源、费用对应事项和成本边界。"),
     ("medium", "unfinished-placeholder", r"\[[^\]\n]{0,30}(?:具体|待|填写|补充|确认|项目名称|单位名称|金额|日期)[^\]\n]{0,30}\]", "交付正文不应保留方括号占位；缺项改为正文外提示。"),
-    ("medium", "unfinished-placeholder", r"(?<![A-Za-z])(?:X{2,}(?![A-Za-z\u4e00-\u9fff])|X+(?:万元|亿元|亿|项|%|％|卡|套|人|次|个))", "交付正文不应保留 X/XXXX 类占位；缺项改为正文外提示。"),
+    ("medium", "unfinished-placeholder", r"(?<![A-Za-z])(?:X{2,}(?![A-Za-z\u4e00-\u9fff])|X+(?:万元|亿元|亿|项|%|％|卡|套|人|次|个|年|月|日|张|台|路|并发))", "交付正文不应保留 X/XXXX 类占位；缺项改为正文外提示。"),
     ("medium", "unfinished-placeholder", r"Y{4}年M{1,2}月D{1,2}日?", "交付正文不应保留 YYYY年MM月DD日 类占位；缺项改为正文外提示。"),
     ("medium", "unfinished-placeholder", r"[（(][^）)\n]{0,30}(?:待|签发日期|会议时间|成文日期|填写|补充|确认)[^）)\n]{0,30}[）)]", "交付正文不应保留括号占位；缺项改为正文外提示。"),
     ("medium", "unfinished-placeholder", r"〔(?:签发日期|会议时间|待补充|[^〕\n]{0,20}(?:待|补充|填写|确认)[^〕\n]{0,20})〕", "交付正文不应保留未完成占位；缺项改为正文外提示。"),
@@ -209,6 +209,26 @@ def inside_inline_code(line: str, start: int, end: int) -> bool:
     return any(left <= start and end <= right for left, right in spans)
 
 
+def is_attachment_number_item(lines: list[str], line_index: int, line: str) -> bool:
+    """Treat numbered items directly under an attachment label as acceptable."""
+    if not re.match(r"^\s*[0-9]+[.)]\s+", line):
+        return False
+    window = lines[max(0, line_index - 5) : line_index]
+    return any("附件" in item for item in window)
+
+
+def supported_three_part_listing(snippet: str) -> bool:
+    parts = re.split(r"一是|二是|三是", snippet, maxsplit=3)
+    if len(parts) < 4:
+        return False
+    for part in parts[1:4]:
+        content = re.split(r"；|。|\n", part, maxsplit=1)[0]
+        compact = re.sub(r"[^\u4e00-\u9fffA-Za-z0-9]", "", content)
+        if len(compact) < 30:
+            return False
+    return True
+
+
 def paragraph_blocks(lines: list[str]) -> list[tuple[int, str, int]]:
     blocks: list[tuple[int, str, int]] = []
     current: list[str] = []
@@ -328,8 +348,8 @@ def structured_smell_findings(path_label: str, text: str, lines: list[str]) -> l
             )
         )
 
-    match = re.search(r"(?:^|\n)\s*(?:[一二三四五六七八九十]+、)?[^。\n]{0,18}必要性[^。\n]*(?:\n|$)[\s\S]{0,700}一是[\s\S]{0,220}二是[\s\S]{0,220}三是", text)
-    if match:
+    match = re.search(r"(?:^|\n)\s*(?:[一二三四五六七八九十]+、)?[^。\n]{0,18}必要性[^。\n]*(?:\n|$)[\s\S]{0,700}一是[\s\S]{0,220}二是[\s\S]{0,220}三是[\s\S]{0,220}", text)
+    if match and not supported_three_part_listing(match.group(0)):
         line = text[: match.start()].count("\n") + 1
         findings.append(
             Finding(
@@ -349,9 +369,11 @@ def scan(path_label: str, text: str, include_format: bool = False, include_struc
     lines = text.splitlines() or [text]
 
     patterns = PATTERNS + (FORMAT_PATTERNS if include_format else [])
+    core_compiled = [(severity, label, re.compile(pattern), advice) for severity, label, pattern, advice in PATTERNS]
     compiled = [(severity, label, re.compile(pattern), advice) for severity, label, pattern, advice in patterns]
     in_fence = False
-    for line_no, line in enumerate(lines, start=1):
+    for line_index, line in enumerate(lines):
+        line_no = line_index + 1
         stripped = line.strip()
         if stripped.startswith("```"):
             if include_format:
@@ -368,10 +390,25 @@ def scan(path_label: str, text: str, include_format: bool = False, include_struc
             in_fence = not in_fence
             continue
         if in_fence:
+            if include_format:
+                for severity, label, regex, advice in core_compiled:
+                    for match in regex.finditer(line):
+                        findings.append(
+                            Finding(
+                                path=path_label,
+                                line=line_no,
+                                severity=severity,
+                                label=label,
+                                match=match.group(0),
+                                excerpt=f"{excerpt(line, match.start(), match.end())} | {advice}",
+                            )
+                        )
             continue
         for severity, label, regex, advice in compiled:
             for match in regex.finditer(line):
                 if inside_inline_code(line, match.start(), match.end()):
+                    continue
+                if label == "western-bullet" and is_attachment_number_item(lines, line_index, line):
                     continue
                 findings.append(
                     Finding(
