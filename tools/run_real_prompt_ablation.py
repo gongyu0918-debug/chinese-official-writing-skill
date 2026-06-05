@@ -344,6 +344,11 @@ def write_summary(out_dir: Path, results: dict[str, list[dict[str, Any]]]) -> No
     (out_dir / "summary.md").write_text("\n".join(lines), encoding="utf-8")
 
 
+def exit_code_for_results(results: dict[str, list[dict[str, Any]]], baseline_label: str) -> int:
+    current_failures = sum(1 for row in results["current"] if not row["passed"])
+    return 1 if current_failures else 0
+
+
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--baseline-root", required=True)
@@ -365,9 +370,7 @@ def main() -> int:
     (out_dir / "results.json").write_text(json.dumps(results, ensure_ascii=False, indent=2), encoding="utf-8")
     write_summary(out_dir, results)
     print((out_dir / "summary.md").as_posix())
-    current_failures = sum(1 for row in results["current"] if not row["passed"])
-    baseline_failures = sum(1 for row in results[baseline_label] if not row["passed"])
-    return 1 if current_failures > baseline_failures else 0
+    return exit_code_for_results(results, baseline_label)
 
 
 if __name__ == "__main__":

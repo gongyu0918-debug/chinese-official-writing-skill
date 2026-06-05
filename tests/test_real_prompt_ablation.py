@@ -86,6 +86,14 @@ class RealPromptAblationTests(unittest.TestCase):
             ["一、整改进展", "二、存在问题", "三、原因分析", "四、下一步安排"],
         )
 
+    def test_exit_code_fails_when_current_has_any_failure(self) -> None:
+        results = {
+            "old": [{"passed": False}, {"passed": False}],
+            "current": [{"passed": True}, {"passed": False}],
+        }
+
+        self.assertEqual(real_prompt_eval.exit_code_for_results(results, "old"), 1)
+
 
 if __name__ == "__main__":
     unittest.main()

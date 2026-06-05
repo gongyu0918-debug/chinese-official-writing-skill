@@ -90,6 +90,50 @@ class PromptfooRunnerTests(unittest.TestCase):
         self.assertEqual(first["label_map"]["A"], second["label_map"]["B"])
         self.assertEqual(first["label_map"]["B"], second["label_map"]["A"])
 
+    def valid_summary(self) -> dict:
+        return {
+            "suite": "full",
+            "pairwise": {
+                "counts": {"invalid": 0, "needs_manual_review": 0},
+                "needs_manual_review_rate": 0.0,
+                "skill_win_rate": 0.9,
+                "tie_rate": 0.1,
+            },
+            "deterministic": {
+                "missing_output_cases": [],
+                "by_mode": {
+                    "baseline": {"avg_lint_risk_weight": 2.0},
+                    "skill": {
+                        "hard_rule_pass_rate": 1.0,
+                        "placeholder_risk_rate": 0.0,
+                        "avg_lint_risk_weight": 1.0,
+                    },
+                },
+            },
+        }
+
+    def test_release_policy_fails_current_skill_hard_rule_regression(self) -> None:
+        summary = self.valid_summary()
+        summary["deterministic"]["by_mode"]["skill"]["hard_rule_pass_rate"] = 0.97
+
+        with self.assertRaises(run_eval.EvalError):
+            run_eval.enforce_failure_policy(summary)
+
+    def test_release_policy_fails_placeholder_risk(self) -> None:
+        summary = self.valid_summary()
+        summary["deterministic"]["by_mode"]["skill"]["placeholder_risk_rate"] = 0.01
+
+        with self.assertRaises(run_eval.EvalError):
+            run_eval.enforce_failure_policy(summary)
+
+    def test_release_policy_fails_pairwise_loss_regression(self) -> None:
+        summary = self.valid_summary()
+        summary["pairwise"]["skill_win_rate"] = 0.5
+        summary["pairwise"]["tie_rate"] = 0.2
+
+        with self.assertRaises(run_eval.EvalError):
+            run_eval.enforce_failure_policy(summary)
+
 
 class PromptfooProviderTests(unittest.TestCase):
     def test_ai_compute_genre_loads_only_relevant_extra_reference(self) -> None:
@@ -98,6 +142,17 @@ class PromptfooProviderTests(unittest.TestCase):
         self.assertIn("references/ai-compute-docs.md", refs)
         self.assertIn("references/genre-checklist.md", refs)
         self.assertNotIn("references/format-gbt9704.md", refs)
+
+    def test_coordination_genres_load_argument_chains(self) -> None:
+        refs = provider._reference_paths_for_genres(["通知", "函", "复函", "征求意见函", "采购公告", "公示", "会议纪要"])
+
+        self.assertIn("references/argument-chains.md", refs)
+
+    def test_ai_compute_markers_cover_model_platform_language(self) -> None:
+        for genre in ["模型服务技术需求", "智算中心建设方案", "本地化部署成本说明", "AI平台推理服务", "SLA并发保障方案"]:
+            with self.subTest(genre=genre):
+                refs = provider._reference_paths_for_genres([genre])
+                self.assertIn("references/ai-compute-docs.md", refs)
 
 
 if __name__ == "__main__":

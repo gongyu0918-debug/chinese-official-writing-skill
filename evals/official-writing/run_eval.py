@@ -27,6 +27,10 @@ RUBRIC_PATH = EVAL_DIR / "rubrics" / "pairwise-judge.md"
 DATASET_PATH = EVAL_DIR / "datasets" / "cases.jsonl"
 GRADER_PATH = EVAL_DIR / "graders" / "official_writing_rubric.py"
 PROVIDER_PATH = EVAL_DIR / "providers" / "agent_writer.py"
+FULL_NEEDS_MANUAL_REVIEW_RATE_MAX = 0.02
+SKILL_HARD_RULE_PASS_RATE_MIN = 0.98
+SKILL_PLACEHOLDER_RISK_RATE_MAX = 0.0
+SKILL_WIN_OR_TIE_RATE_MIN = 0.90
 
 
 class EvalError(RuntimeError):
@@ -538,9 +542,28 @@ def enforce_failure_policy(summary: dict[str, Any]) -> None:
     if counts["invalid"]:
         raise EvalError(f"invalid pairwise judge cases: {counts['invalid']}")
     manual_rate = summary["pairwise"]["needs_manual_review_rate"]
-    threshold = 0.02 if suite == "full" else 1.0
+    threshold = FULL_NEEDS_MANUAL_REVIEW_RATE_MAX if suite == "full" else 1.0
     if manual_rate > threshold:
         raise EvalError(f"needs_manual_review rate {manual_rate:.2%} exceeds threshold {threshold:.2%}")
+    skill_metrics = summary["deterministic"]["by_mode"].get("skill", {})
+    baseline_metrics = summary["deterministic"]["by_mode"].get("baseline", {})
+    hard_rate = float(skill_metrics.get("hard_rule_pass_rate", 0))
+    if hard_rate < SKILL_HARD_RULE_PASS_RATE_MIN:
+        raise EvalError(
+            f"skill hard_rule_pass_rate {hard_rate:.2%} is below {SKILL_HARD_RULE_PASS_RATE_MIN:.2%}"
+        )
+    placeholder_rate = float(skill_metrics.get("placeholder_risk_rate", 0))
+    if placeholder_rate > SKILL_PLACEHOLDER_RISK_RATE_MAX:
+        raise EvalError(f"skill placeholder_risk_rate {placeholder_rate:.2%} must be 0.00%")
+    skill_lint = float(skill_metrics.get("avg_lint_risk_weight", 0))
+    baseline_lint = float(baseline_metrics.get("avg_lint_risk_weight", 0))
+    if skill_lint > baseline_lint:
+        raise EvalError(
+            f"skill avg_lint_risk_weight {skill_lint:.4f} exceeds baseline {baseline_lint:.4f}"
+        )
+    win_or_tie_rate = summary["pairwise"]["skill_win_rate"] + summary["pairwise"]["tie_rate"]
+    if win_or_tie_rate < SKILL_WIN_OR_TIE_RATE_MIN:
+        raise EvalError(f"skill win+tie rate {win_or_tie_rate:.2%} is below {SKILL_WIN_OR_TIE_RATE_MIN:.2%}")
 
 
 def main() -> int:

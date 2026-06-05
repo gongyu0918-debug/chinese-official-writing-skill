@@ -14,13 +14,15 @@
 ## 安装
 
 ```bash
-clawhub install chinese-official-writing
+openclaw skills install chinese-official-writing
 ```
+
+旧版 CLI 兼容命令：`clawhub install chinese-official-writing`。
 
 其他平台如 Codex、Claude Code、Hermes、deepseek-tui 的安装 Prompt，请看 GitHub 仓库 README：
 https://github.com/gongyu0918-debug/chinese-official-writing-skill
 
-当前版本：`chinese-official-writing@1.2.29`
+当前版本：`chinese-official-writing@1.3.0`
 
 ClawHub 页面只展示摘要；安装包内的 `SKILL.md` 和 `references/` 保留完整规则、硬边界和复核清单。
 
@@ -70,7 +72,7 @@ ClawHub 页面只展示摘要；安装包内的 `SKILL.md` 和 `references/` 保
 
 ## 质量保证
 
-经 270 条合成反例消融测试，使用本 Skill 后，高中低风险从 Baseline 的 1594 降至 1。完整评测方法、测试脚本和多平台安装说明见 GitHub 仓库。
+270 条合成反例用于发布前规则回归检查，主要验证文种、占位符、AI 腔和结构风险是否退化；该指标不代表真实业务胜率。完整评测方法、测试脚本和多平台安装说明见 GitHub 仓库。
 
 ## 反馈
 

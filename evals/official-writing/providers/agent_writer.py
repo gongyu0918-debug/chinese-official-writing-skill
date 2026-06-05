@@ -44,9 +44,17 @@ GENRE_REFERENCES: dict[str, list[str]] = {
     ],
 }
 
-ARGUMENT_GENRES = {
+CHAIN_GENRES = {
     "请示",
     "报告",
+    "通知",
+    "函",
+    "复函",
+    "征求意见函",
+    "采购公告",
+    "公示",
+    "批复",
+    "会议纪要",
     "方案",
     "意见",
     "工作要点",
@@ -58,7 +66,24 @@ ARGUMENT_GENRES = {
     "审查材料",
 }
 
-AI_COMPUTE_MARKERS = ("算力", "GPU", "服务器", "云端", "技术服务")
+AI_COMPUTE_MARKERS = (
+    "算力",
+    "GPU",
+    "服务器",
+    "云端",
+    "技术服务",
+    "模型服务",
+    "智算中心",
+    "本地化部署",
+    "本地部署",
+    "AI平台",
+    "AI 平台",
+    "推理",
+    "训练",
+    "Token",
+    "SLA",
+    "并发",
+)
 
 _BATCH_CACHE: dict[str, dict[str, str]] = {}
 
@@ -153,7 +178,7 @@ def _skill_root(repo_root: Path) -> Path:
 
 def _reference_paths_for_genres(genres: list[str]) -> list[str]:
     paths = ["SKILL.md", *GENRE_REFERENCES["default"]]
-    if any(genre in ARGUMENT_GENRES for genre in genres):
+    if any(genre in CHAIN_GENRES for genre in genres):
         paths.extend(GENRE_REFERENCES["argument"])
     if any(_is_ai_compute(genre) for genre in genres):
         paths.extend(GENRE_REFERENCES["ai_compute"])

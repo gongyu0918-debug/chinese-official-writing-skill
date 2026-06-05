@@ -11,7 +11,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 CANONICAL = ROOT / "chinese-official-writing"
-VERSION = "1.2.29"
+VERSION = "1.3.0"
 OPENCLAW_MARKETPLACE_README = ROOT / "openclaw" / "marketplace-readme.md"
 CLAUDE_PLUGIN_MANIFEST = ROOT / ".claude-plugin" / "plugin.json"
 
@@ -34,6 +34,12 @@ def patch_frontmatter(target: Path, mode: str) -> None:
     text = skill_file.read_text(encoding="utf-8")
     if mode == "openclaw":
         text = text.replace("name: chinese-official-writing", "name: chinese_official_writing", 1)
+        if "\ncategory: writing\n" not in text.split("---", 2)[1]:
+            text = text.replace(
+                "license: MIT-0\n",
+                "license: MIT-0\ncategory: writing\ntags:\n  - chinese\n  - official-document\n  - writing\n  - gongwen\n  - ai-compute\n",
+                1,
+            )
         text = re.sub(r"\n  hermes:\n(?:    .+\n)+", "\n", text, count=1)
     elif mode == "hermes":
         if f'\nversion: "{VERSION}"\n' not in text.split("---", 2)[1]:
@@ -66,11 +72,12 @@ def patch_openclaw_marketplace_body(target: Path) -> None:
 2. 文种判断以官方规范和 `references/genre-routing.md` 为准；社区模板不得替代文种功能。
 3. 起草前按 `references/handling-elements.md` 核对发文主体、受文对象、事项、依据、时限、责任、附件、反馈渠道和请批事项。
 4. 成文时按 `references/argument-chains.md` 组织段落，每段服务一个论点，通常按“结论前置、事实支撑、判断归纳、事项落点”展开。
-5. 从发文单位、报告单位、项目单位或主管单位视角写，不使用旁观者、教师或评论员口吻。
-6. 数据和判断要可追溯；不编造实际数据，测算和预估必须标明性质。
-7. 起草算力、采购、租赁或服务器租赁材料时，论证重点放在需求来源、Token/资源换算、成本比较、SLA、并发、安全、交付和验收。
-8. 最终正文不得残留 `〔签发日期〕`、`〔会议时间〕`、`〔待补充〕`、`[具体项目名称]`、`XXXX万元`、`YYYY年MM月DD日`、`（签发日期）` 等未完成占位；缺项在正文外提示用户确认。当前日期只可用于草稿落款，不得替代维护时间、会议时间、实施期限、政策依据或业务数据。
-9. 检查 `.txt`、`.md` 或 `.docx` 草稿时，可使用 `scripts/prose_lint.py`。脚本只提示风险，不自动改写。
+5. 起草或改写输出正式正文；审稿或复核输出问题位置、风险层级和修改建议；压缩或顺稿输出改后正文和极简改动说明。
+6. 从发文单位、报告单位、项目单位或主管单位视角写，不使用旁观者、教师或评论员口吻。
+7. 数据和判断要可追溯；不编造实际数据，测算和预估必须标明性质。
+8. 起草算力、采购、租赁或服务器租赁材料时，论证重点放在需求来源、Token/资源换算、成本比较、SLA、并发、安全、交付和验收。
+9. 最终正文不得残留 `〔签发日期〕`、`〔会议时间〕`、`〔待补充〕`、`[具体项目名称]`、`XXXX万元`、`YYYY年MM月DD日`、`（签发日期）` 等未完成占位；缺项在正文外提示用户确认。当前日期只可用于草稿落款，不得替代维护时间、会议时间、实施期限、政策依据或业务数据。
+10. 检查 `.txt`、`.md` 或 `.docx` 草稿时，可使用 `scripts/prose_lint.py`。脚本只提示风险，不自动改写。
 """
     skill_file.write_text(f"---{parts[1]}---\n\n{readme}{agent_rules}", encoding="utf-8")
 

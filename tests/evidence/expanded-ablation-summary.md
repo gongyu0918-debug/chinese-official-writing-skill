@@ -38,7 +38,7 @@ python .\chinese-official-writing\scripts\prose_lint.py output\expanded-ablation
 python .\chinese-official-writing\scripts\prose_lint.py output\expanded-ablation\skill.md --json
 ```
 
-本轮合成输出扫描结果为：Baseline 命中 1594 条风险，其中 high 351 条、medium 432 条、low 811 条；Skill 输出命中 1 条 low 级术语重复提示。该结论仅限本轮合成样本和现有检查规则。
+本轮合成输出扫描结果为：Baseline 命中 1594 条风险，其中 high 54 条、medium 729 条、low 811 条；Skill 输出命中 1 条 low 级术语重复提示。该结论仅限本轮合成样本和现有检查规则。
 
 ## 隔离 Agent 对照
 

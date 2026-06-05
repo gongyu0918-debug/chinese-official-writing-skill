@@ -4,6 +4,7 @@ import importlib.util
 from pathlib import Path
 import subprocess
 import sys
+import tempfile
 import unittest
 
 
@@ -69,6 +70,13 @@ class ProseLintStructureTests(unittest.TestCase):
 
         self.assertIn("markdown-bold", labels)
         self.assertIn("markdown-code-fence", labels)
+
+    def test_paired_summary_is_quality_risk_not_hard_leak(self) -> None:
+        findings = prose_lint.scan("<test>", "项目不是单一事项，而是系统工程。")
+        paired = [item for item in findings if item.label == "paired-summary"]
+
+        self.assertTrue(paired)
+        self.assertEqual({item.severity for item in paired}, {"medium"})
 
     def test_code_fence_does_not_hide_placeholders_when_format_checking(self) -> None:
         text = "```text\n项目名称为[具体项目名称]，期限为XXXX年，计划于YYYY年MM月DD日完成。\n```"
@@ -169,16 +177,16 @@ class ProseLintCliTests(unittest.TestCase):
 
     def test_bad_docx_reports_error_without_polluting_json_stdout(self) -> None:
         script = ROOT / "chinese-official-writing" / "scripts" / "prose_lint.py"
-        bad_docx = Path.home() / "AppData" / "Local" / "Temp" / "bad-docx-for-prose-lint-test.docx"
-        bad_docx.write_text("not a zip file", encoding="utf-8")
-        self.addCleanup(lambda: bad_docx.unlink(missing_ok=True))
+        with tempfile.TemporaryDirectory() as temp_dir:
+            bad_docx = Path(temp_dir) / "bad-docx-for-prose-lint-test.docx"
+            bad_docx.write_text("not a zip file", encoding="utf-8")
 
-        result = subprocess.run(
-            [sys.executable, str(script), str(bad_docx), "--json"],
-            capture_output=True,
-            text=True,
-            encoding="utf-8",
-        )
+            result = subprocess.run(
+                [sys.executable, str(script), str(bad_docx), "--json"],
+                capture_output=True,
+                text=True,
+                encoding="utf-8",
+            )
 
         self.assertEqual(result.returncode, 2)
         self.assertIn("ERROR: 文件损坏或不是有效 DOCX", result.stderr)

@@ -2,8 +2,15 @@
 name: chinese_official_writing
 description: 用于起草、改写和复核中文公文及正式工作材料；当用户要求通知、请示、报告、函、复函、批复、意见、决定、决议、议案、公报、命令、公告、通告、公示、通报、纪要、方案、说明、申请、征求意见函、采购公告、可研、调研、总结、工作要点、审查材料、讲话稿、致辞、述职报告等中文正式文本，或需要顺稿、压缩、去口语化、降 AI 味、文种校验、办理要素核对时使用。不用于英文、文学、营销、社媒、批量语料或替代法律/财务/采购/审计判断。
 license: MIT-0
+category: writing
+tags:
+  - chinese
+  - official-document
+  - writing
+  - gongwen
+  - ai-compute
 metadata:
-  version: "1.2.29"
+  version: "1.3.0"
   compatible_agents:
     - codex
     - claude-code
@@ -21,7 +28,7 @@ metadata:
     invocation: "/skill:chinese-official-writing"
     entry: "SKILL.md"
   openclaw:
-    version: "1.2.29"
+    version: "1.3.0"
     emoji: "📝"
     tags:
       - chinese
@@ -47,13 +54,15 @@ metadata:
 ## 安装
 
 ```bash
-clawhub install chinese-official-writing
+openclaw skills install chinese-official-writing
 ```
+
+旧版 CLI 兼容命令：`clawhub install chinese-official-writing`。
 
 其他平台如 Codex、Claude Code、Hermes、deepseek-tui 的安装 Prompt，请看 GitHub 仓库 README：
 https://github.com/gongyu0918-debug/chinese-official-writing-skill
 
-当前版本：`chinese-official-writing@1.2.29`
+当前版本：`chinese-official-writing@1.3.0`
 
 ClawHub 页面只展示摘要；安装包内的 `SKILL.md` 和 `references/` 保留完整规则、硬边界和复核清单。
 
@@ -103,7 +112,7 @@ ClawHub 页面只展示摘要；安装包内的 `SKILL.md` 和 `references/` 保
 
 ## 质量保证
 
-经 270 条合成反例消融测试，使用本 Skill 后，高中低风险从 Baseline 的 1594 降至 1。完整评测方法、测试脚本和多平台安装说明见 GitHub 仓库。
+270 条合成反例用于发布前规则回归检查，主要验证文种、占位符、AI 腔和结构风险是否退化；该指标不代表真实业务胜率。完整评测方法、测试脚本和多平台安装说明见 GitHub 仓库。
 
 ## 反馈
 
@@ -122,8 +131,9 @@ MIT-0
 2. 文种判断以官方规范和 `references/genre-routing.md` 为准；社区模板不得替代文种功能。
 3. 起草前按 `references/handling-elements.md` 核对发文主体、受文对象、事项、依据、时限、责任、附件、反馈渠道和请批事项。
 4. 成文时按 `references/argument-chains.md` 组织段落，每段服务一个论点，通常按“结论前置、事实支撑、判断归纳、事项落点”展开。
-5. 从发文单位、报告单位、项目单位或主管单位视角写，不使用旁观者、教师或评论员口吻。
-6. 数据和判断要可追溯；不编造实际数据，测算和预估必须标明性质。
-7. 起草算力、采购、租赁或服务器租赁材料时，论证重点放在需求来源、Token/资源换算、成本比较、SLA、并发、安全、交付和验收。
-8. 最终正文不得残留 `〔签发日期〕`、`〔会议时间〕`、`〔待补充〕`、`[具体项目名称]`、`XXXX万元`、`YYYY年MM月DD日`、`（签发日期）` 等未完成占位；缺项在正文外提示用户确认。当前日期只可用于草稿落款，不得替代维护时间、会议时间、实施期限、政策依据或业务数据。
-9. 检查 `.txt`、`.md` 或 `.docx` 草稿时，可使用 `scripts/prose_lint.py`。脚本只提示风险，不自动改写。
+5. 起草或改写输出正式正文；审稿或复核输出问题位置、风险层级和修改建议；压缩或顺稿输出改后正文和极简改动说明。
+6. 从发文单位、报告单位、项目单位或主管单位视角写，不使用旁观者、教师或评论员口吻。
+7. 数据和判断要可追溯；不编造实际数据，测算和预估必须标明性质。
+8. 起草算力、采购、租赁或服务器租赁材料时，论证重点放在需求来源、Token/资源换算、成本比较、SLA、并发、安全、交付和验收。
+9. 最终正文不得残留 `〔签发日期〕`、`〔会议时间〕`、`〔待补充〕`、`[具体项目名称]`、`XXXX万元`、`YYYY年MM月DD日`、`（签发日期）` 等未完成占位；缺项在正文外提示用户确认。当前日期只可用于草稿落款，不得替代维护时间、会议时间、实施期限、政策依据或业务数据。
+10. 检查 `.txt`、`.md` 或 `.docx` 草稿时，可使用 `scripts/prose_lint.py`。脚本只提示风险，不自动改写。
