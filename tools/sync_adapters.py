@@ -105,6 +105,13 @@ def update_root_readme() -> None:
     ROOT_README.write_text(versioned_text(ROOT_README.read_text(encoding="utf-8")), encoding="utf-8")
 
 
+def update_openclaw_skill_card_source() -> None:
+    OPENCLAW_SKILL_CARD.write_text(
+        versioned_text(OPENCLAW_SKILL_CARD.read_text(encoding="utf-8")),
+        encoding="utf-8",
+    )
+
+
 def copy_skill(target: Path, mode: str) -> None:
     ignore = shutil.ignore_patterns("__pycache__", "*.pyc", ".DS_Store", "Thumbs.db")
     shutil.copytree(CANONICAL, target, ignore=ignore, dirs_exist_ok=True)
@@ -114,10 +121,9 @@ def copy_skill(target: Path, mode: str) -> None:
             versioned_text(OPENCLAW_MARKETPLACE_README.read_text(encoding="utf-8")),
             encoding="utf-8",
         )
-        (target / "skill-card.md").write_text(
-            versioned_text(OPENCLAW_SKILL_CARD.read_text(encoding="utf-8")),
-            encoding="utf-8",
-        )
+        reserved_skill_card = target / "skill-card.md"
+        if reserved_skill_card.exists():
+            reserved_skill_card.unlink()
         patch_openclaw_marketplace_body(target)
 
 
@@ -129,6 +135,8 @@ def main() -> int:
         print(f"synced {target.relative_to(ROOT)}")
     update_root_readme()
     print(f"synced {ROOT_README.relative_to(ROOT)}")
+    update_openclaw_skill_card_source()
+    print(f"synced {OPENCLAW_SKILL_CARD.relative_to(ROOT)}")
     update_claude_plugin_manifest()
     print(f"synced {CLAUDE_PLUGIN_MANIFEST.relative_to(ROOT)}")
     return 0

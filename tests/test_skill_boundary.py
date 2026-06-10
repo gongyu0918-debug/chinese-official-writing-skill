@@ -120,7 +120,7 @@ class SkillBoundaryTests(unittest.TestCase):
         skill = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
         sync_script = (ROOT / "tools" / "sync_adapters.py").read_text(encoding="utf-8")
         readme = (ROOT / "README.md").read_text(encoding="utf-8")
-        skill_card = (ROOT / "openclaw" / "skills" / "chinese_official_writing" / "skill-card.md").read_text(encoding="utf-8")
+        skill_card = (ROOT / "openclaw" / "skill-card.md").read_text(encoding="utf-8")
 
         skill_version = re.search(r'version: "([^"]+)"', skill)
         sync_version = re.search(r'VERSION = "([^"]+)"', sync_script)
@@ -150,14 +150,12 @@ class SkillBoundaryTests(unittest.TestCase):
 
         self.assertIn("不新增原文没有交代的活动、依据、数据、成效或责任安排", workflow)
 
-    def test_openclaw_skill_card_is_packaged_and_synced(self) -> None:
+    def test_openclaw_skill_card_source_is_tracked_but_not_packaged_directly(self) -> None:
         source = (ROOT / "openclaw" / "skill-card.md").read_text(encoding="utf-8")
-        packaged = (ROOT / "openclaw" / "skills" / "chinese_official_writing" / "skill-card.md").read_text(
-            encoding="utf-8"
-        )
+        packaged_path = ROOT / "openclaw" / "skills" / "chinese_official_writing" / "skill-card.md"
 
         self.assertIn("Known Risks and Mitigations", source)
-        self.assertEqual(source, packaged)
+        self.assertFalse(packaged_path.exists())
 
     def test_readme_discloses_stub_eval_and_deepseek_column_sources(self) -> None:
         text = (ROOT / "README.md").read_text(encoding="utf-8")
