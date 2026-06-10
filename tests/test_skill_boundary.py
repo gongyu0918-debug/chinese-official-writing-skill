@@ -120,18 +120,44 @@ class SkillBoundaryTests(unittest.TestCase):
         skill = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
         sync_script = (ROOT / "tools" / "sync_adapters.py").read_text(encoding="utf-8")
         readme = (ROOT / "README.md").read_text(encoding="utf-8")
+        skill_card = (ROOT / "openclaw" / "skills" / "chinese_official_writing" / "skill-card.md").read_text(encoding="utf-8")
 
         skill_version = re.search(r'version: "([^"]+)"', skill)
         sync_version = re.search(r'VERSION = "([^"]+)"', sync_script)
         readme_version = re.search(r"chinese-official-writing@(\d+\.\d+\.\d+)", readme)
+        skill_card_version = re.search(r"^(\d+\.\d+\.\d+) \(source: server release metadata", skill_card, re.M)
 
         self.assertIsNotNone(skill_version)
         self.assertIsNotNone(sync_version)
         self.assertIsNotNone(readme_version)
+        self.assertIsNotNone(skill_card_version)
         self.assertEqual(manifest["version"], skill_version.group(1))
         self.assertEqual(manifest["version"], sync_version.group(1))
         self.assertEqual(manifest["version"], readme_version.group(1))
+        self.assertEqual(manifest["version"], skill_card_version.group(1))
         self.assertIn("ROOT_README", sync_script)
+        self.assertIn("OPENCLAW_SKILL_CARD", sync_script)
+
+    def test_lint_strict_fail_on_is_documented(self) -> None:
+        skill = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
+        readme = (ROOT / "README.md").read_text(encoding="utf-8")
+
+        self.assertIn("--strict --fail-on medium", skill)
+        self.assertIn("--strict --fail-on medium", readme)
+
+    def test_revision_workflow_forbids_new_unprovided_facts(self) -> None:
+        workflow = (ROOT / "chinese-official-writing" / "references" / "workflow.md").read_text(encoding="utf-8")
+
+        self.assertIn("不新增原文没有交代的活动、依据、数据、成效或责任安排", workflow)
+
+    def test_openclaw_skill_card_is_packaged_and_synced(self) -> None:
+        source = (ROOT / "openclaw" / "skill-card.md").read_text(encoding="utf-8")
+        packaged = (ROOT / "openclaw" / "skills" / "chinese_official_writing" / "skill-card.md").read_text(
+            encoding="utf-8"
+        )
+
+        self.assertIn("Known Risks and Mitigations", source)
+        self.assertEqual(source, packaged)
 
     def test_readme_discloses_stub_eval_and_deepseek_column_sources(self) -> None:
         text = (ROOT / "README.md").read_text(encoding="utf-8")

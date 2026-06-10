@@ -11,9 +11,10 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 CANONICAL = ROOT / "chinese-official-writing"
-VERSION = "1.3.1"
+VERSION = "1.3.2"
 ROOT_README = ROOT / "README.md"
 OPENCLAW_MARKETPLACE_README = ROOT / "openclaw" / "marketplace-readme.md"
+OPENCLAW_SKILL_CARD = ROOT / "openclaw" / "skill-card.md"
 CLAUDE_PLUGIN_MANIFEST = ROOT / ".claude-plugin" / "plugin.json"
 
 TARGETS = {
@@ -27,6 +28,12 @@ TARGETS = {
 def versioned_text(text: str) -> str:
     text = re.sub(r"chinese-official-writing@\d+\.\d+\.\d+", f"chinese-official-writing@{VERSION}", text)
     text = re.sub(r"--version\s+\d+\.\d+\.\d+", f"--version {VERSION}", text)
+    text = re.sub(
+        r"^\d+\.\d+\.\d+ \(source: server release metadata and skill frontmatter\)",
+        f"{VERSION} (source: server release metadata and skill frontmatter)",
+        text,
+        flags=re.M,
+    )
     return text
 
 
@@ -105,6 +112,10 @@ def copy_skill(target: Path, mode: str) -> None:
     if mode == "openclaw":
         (target / "README.md").write_text(
             versioned_text(OPENCLAW_MARKETPLACE_README.read_text(encoding="utf-8")),
+            encoding="utf-8",
+        )
+        (target / "skill-card.md").write_text(
+            versioned_text(OPENCLAW_SKILL_CARD.read_text(encoding="utf-8")),
             encoding="utf-8",
         )
         patch_openclaw_marketplace_body(target)

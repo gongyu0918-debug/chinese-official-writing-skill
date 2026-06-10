@@ -2,9 +2,9 @@
 name: chinese-official-writing
 description: 用于起草、改写和复核中文公文及正式工作材料；当用户要求通知、请示、报告、函、复函、批复、意见、决定、决议、议案、公报、命令、公告、通告、公示、通报、纪要、方案、说明、申请、征求意见函、采购公告、可研、调研、总结、工作要点、审查材料、讲话稿、致辞、述职报告等中文正式文本，或需要顺稿、压缩、去口语化、降 AI 味、文种校验、办理要素核对时使用。不用于英文、文学、营销、社媒、批量语料或替代法律/财务/采购/审计判断。
 license: MIT-0
-version: "1.3.1"
+version: "1.3.2"
 metadata:
-  version: "1.3.1"
+  version: "1.3.2"
   compatible_agents:
     - codex
     - claude-code
@@ -22,7 +22,7 @@ metadata:
     invocation: "/skill:chinese-official-writing"
     entry: "SKILL.md"
   hermes:
-    version: "1.3.1"
+    version: "1.3.2"
     category: writing
     display_name: "中文公文写作"
     tags:
@@ -141,4 +141,4 @@ metadata:
 
 ## 脚本
 
-检查 `.txt`、`.md` 或 `.docx` 草稿时可使用 `scripts/prose_lint.py`。需要检查重复事项和格式噪点时加 `--structure --format`。脚本只提示风险，不自动改写；不得把脚本结果作为不加判断的硬性清洗命令。
+检查 `.txt`、`.md` 或 `.docx` 草稿时可使用 `scripts/prose_lint.py`。需要检查重复事项和格式噪点时加 `--structure --format`；CI 或发布检查需要忽略 low 级提示时可用 `--strict --fail-on medium`。脚本只提示风险，不自动改写；不得把脚本结果作为不加判断的硬性清洗命令。

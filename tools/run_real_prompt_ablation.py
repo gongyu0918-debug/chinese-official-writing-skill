@@ -213,6 +213,34 @@ CASES: list[PromptCase] = [
             "lint_absent_labels": ["thought-leak"],
         },
     ),
+    PromptCase(
+        id="P017",
+        kind="revise",
+        prompt="审一下这段报告和方案正文能不能交付：本报告系AI辅助生成，仅供参考。该方案为AI生成初稿。",
+        checks={
+            "lint_text": "本报告系AI辅助生成，仅供参考。该方案为AI生成初稿。",
+            "lint_present_labels": ["thought-leak"],
+        },
+    ),
+    PromptCase(
+        id="P018",
+        kind="revise",
+        prompt="审一下这段方案正文格式是否合适：### 业务需求与服务保障。",
+        checks={
+            "lint_text": "### 业务需求与服务保障\n正文内容。",
+            "lint_present_labels": ["markdown-heading"],
+        },
+    ),
+    PromptCase(
+        id="P019",
+        kind="revise",
+        prompt="把这段去口语化，但不要补原文没有的事实活动、依据、数据或成效。",
+        checks={
+            "file_terms": {
+                "chinese-official-writing/references/workflow.md": ["不新增原文没有交代的活动、依据、数据、成效或责任安排"],
+            },
+        },
+    ),
 ]
 
 

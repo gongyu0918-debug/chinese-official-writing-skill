@@ -42,6 +42,9 @@ class RealPromptAblationTests(unittest.TestCase):
         self.assertIn("包在代码块", prompts)
         self.assertIn("维护期限为XXXX年", prompts)
         self.assertIn("AI生成内容业务", prompts)
+        self.assertIn("本报告系AI辅助生成", prompts)
+        self.assertIn("### 业务需求与服务保障", prompts)
+        self.assertIn("不要补原文没有的事实", prompts)
 
     def test_current_skill_passes_real_prompt_cases(self) -> None:
         rows = real_prompt_eval.evaluate_root(ROOT, "current_test")
@@ -65,6 +68,12 @@ class RealPromptAblationTests(unittest.TestCase):
         self.assertIn("unfinished-placeholder", checks_by_id["P014"]["lint_present_labels"])
         self.assertIn("unfinished-placeholder", checks_by_id["P015"]["lint_present_labels"])
         self.assertIn("thought-leak", checks_by_id["P016"]["lint_absent_labels"])
+        self.assertIn("thought-leak", checks_by_id["P017"]["lint_present_labels"])
+        self.assertIn("markdown-heading", checks_by_id["P018"]["lint_present_labels"])
+        self.assertIn(
+            "不新增原文没有交代的活动、依据、数据、成效或责任安排",
+            checks_by_id["P019"]["file_terms"]["chinese-official-writing/references/workflow.md"],
+        )
 
     def test_heading_lock_detects_added_subheading(self) -> None:
         before = """一、整改进展

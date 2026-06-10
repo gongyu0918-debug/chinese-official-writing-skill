@@ -51,7 +51,12 @@ class ProseLintStructureTests(unittest.TestCase):
         self.assertFalse([item for item in findings if item.label == "thought-leak"])
 
     def test_ai_authorship_disclaimers_are_still_flagged_as_thought_leak(self) -> None:
-        examples = ["本文由AI辅助生成。", "本材料系AI生成。"]
+        examples = [
+            "本文由AI辅助生成。",
+            "本材料系AI生成。",
+            "本报告系AI辅助生成，仅供参考。",
+            "该方案为AI生成初稿。",
+        ]
 
         for text in examples:
             with self.subTest(text=text):
@@ -78,12 +83,13 @@ class ProseLintStructureTests(unittest.TestCase):
         )
 
     def test_markdown_format_marks_are_flagged_in_formal_output(self) -> None:
-        text = "**一、需求来源**\n正文内容。\n```text\n关于事项的报告\n```"
+        text = "**一、需求来源**\n### 业务需求与服务保障\n正文内容。\n```text\n关于事项的报告\n```"
 
         findings = prose_lint.scan("<test>", text, include_format=True)
         labels = {item.label for item in findings}
 
         self.assertIn("markdown-bold", labels)
+        self.assertIn("markdown-heading", labels)
         self.assertIn("markdown-code-fence", labels)
 
     def test_paired_summary_is_quality_risk_not_hard_leak(self) -> None:
