@@ -57,7 +57,7 @@ PATTERNS: list[tuple[str, str, str, str]] = [
     ("medium", "unfinished-placeholder", r"Y{4}年M{1,2}月D{1,2}日?", "交付正文不应保留 YYYY年MM月DD日 类占位；缺项改为正文外提示。"),
     ("medium", "unfinished-placeholder", r"[（(][^）)\n]{0,30}(?:待|签发日期|会议时间|成文日期|填写|补充|确认)[^）)\n]{0,30}[）)]", "交付正文不应保留括号占位；缺项改为正文外提示。"),
     ("medium", "unfinished-placeholder", r"〔(?:签发日期|会议时间|待补充|[^〕\n]{0,20}(?:待|补充|填写|确认)[^〕\n]{0,20})〕", "交付正文不应保留未完成占位；缺项改为正文外提示。"),
-    ("high", "thought-leak", r"作为(?:一个)?\s*AI|我是(?:一个)?\s*AI|由\s*AI\s*(?:起草|生成|辅助生成)|AI\s*(?:辅助)?生成|我的(?:思路|推理|分析)|(?:思考|推理)过程(?:如下|是|：|:)|内部推理", "删除模型身份、思考过程或内部推理表述。"),
+    ("high", "thought-leak", r"作为(?:一个)?\s*AI|我是(?:一个)?\s*AI|由\s*AI\s*(?:起草|生成|辅助生成)|(?:本文|本稿|全文|本材料)[^。\n]{0,6}(?:系|为)?\s*AI\s*(?:辅助)?生成|我的(?:思路|推理|分析)|(?:思考|推理)过程(?:如下|是|：|:)|内部推理", "删除模型身份、思考过程或内部推理表述。"),
     ("medium", "thought-leak", r"我将根据|接下来我会|按你的要求", "改为文稿正文或办理安排，不暴露生成过程。"),
     ("medium", "viewpoint-risk", r"(?:按|按照|根据)(?:录音|用户)要求|(?:录音|用户)要求(?:如下|为)|你让我|这版文章|这段文字", "检查是否把外部修改过程写进正文。"),
     ("medium", "casual", r"租赁方式更稳[，,、]?\s*也更省", "改为成本和服务保障更具确定性。"),
@@ -120,6 +120,8 @@ DUPLICATE_GENERIC_TOKENS = {
     "完善",
     "确保",
 }
+
+SEVERITY_RANK = {"low": 1, "medium": 2, "high": 3}
 
 
 def read_docx(path: Path) -> str:
@@ -472,6 +474,12 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--format", action="store_true", help="Also scan punctuation, number, list-marker, and emoji format risks.")
     parser.add_argument("--structure", action="store_true", help="Also scan adjacent paragraphs for repeated matters.")
     parser.add_argument("--strict", action="store_true", help="Return exit code 1 when findings exist.")
+    parser.add_argument(
+        "--fail-on",
+        choices=("low", "medium", "high"),
+        default="low",
+        help="With --strict, fail only when findings at this severity or higher exist.",
+    )
     args = parser.parse_args(argv)
 
     all_findings: list[Finding] = []
@@ -495,7 +503,10 @@ def main(argv: list[str] | None = None) -> int:
 
     if had_read_error:
         return 2
-    return 1 if args.strict and all_findings else 0
+    if args.strict:
+        threshold = SEVERITY_RANK[args.fail_on]
+        return 1 if any(SEVERITY_RANK[item.severity] >= threshold for item in all_findings) else 0
+    return 0
 
 
 if __name__ == "__main__":
