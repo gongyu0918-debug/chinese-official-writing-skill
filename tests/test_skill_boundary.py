@@ -119,14 +119,19 @@ class SkillBoundaryTests(unittest.TestCase):
         manifest = json.loads((ROOT / ".claude-plugin" / "plugin.json").read_text(encoding="utf-8"))
         skill = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
         sync_script = (ROOT / "tools" / "sync_adapters.py").read_text(encoding="utf-8")
+        readme = (ROOT / "README.md").read_text(encoding="utf-8")
 
         skill_version = re.search(r'version: "([^"]+)"', skill)
         sync_version = re.search(r'VERSION = "([^"]+)"', sync_script)
+        readme_version = re.search(r"chinese-official-writing@(\d+\.\d+\.\d+)", readme)
 
         self.assertIsNotNone(skill_version)
         self.assertIsNotNone(sync_version)
+        self.assertIsNotNone(readme_version)
         self.assertEqual(manifest["version"], skill_version.group(1))
         self.assertEqual(manifest["version"], sync_version.group(1))
+        self.assertEqual(manifest["version"], readme_version.group(1))
+        self.assertIn("ROOT_README", sync_script)
 
     def test_readme_discloses_stub_eval_and_deepseek_column_sources(self) -> None:
         text = (ROOT / "README.md").read_text(encoding="utf-8")

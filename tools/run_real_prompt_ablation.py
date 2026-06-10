@@ -204,6 +204,15 @@ CASES: list[PromptCase] = [
             "lint_present_labels": ["unfinished-placeholder"],
         },
     ),
+    PromptCase(
+        id="P016",
+        kind="revise",
+        prompt="审一下这段 AI 算力采购说明是否会被误判为模型自述：本平台面向AI生成内容业务，支撑AI辅助生成内容的并发推理。",
+        checks={
+            "lint_text": "本平台面向AI生成内容业务，支撑AI辅助生成内容的并发推理。",
+            "lint_absent_labels": ["thought-leak"],
+        },
+    ),
 ]
 
 
@@ -307,6 +316,25 @@ def evaluate_root(root: Path, label: str) -> list[dict[str, Any]]:
     return [evaluate_case(case, root, prose_lint) for case in CASES]
 
 
+def root_validation_error(root: Path, label: str) -> str | None:
+    required = [
+        "chinese-official-writing/SKILL.md",
+        "chinese-official-writing/scripts/prose_lint.py",
+    ]
+    if not root.exists():
+        return (
+            f"{label} 目录不存在：{root}。请先用 git worktree add --detach <基线目录> <tag或commit> "
+            "或 checkout 对应发行版本准备基线目录。"
+        )
+    missing = [relative for relative in required if not (root / relative).exists()]
+    if missing:
+        return (
+            f"{label} 目录不完整：{root}，缺少 {', '.join(missing)}。请确认传入的是仓库根目录，"
+            "或用 git worktree add --detach 准备完整基线目录。"
+        )
+    return None
+
+
 def write_summary(out_dir: Path, results: dict[str, list[dict[str, Any]]]) -> None:
     lines = [
         "# 真实用户 Prompt 消融测试摘要",
@@ -360,6 +388,12 @@ def main() -> int:
     baseline_root = Path(args.baseline_root).resolve()
     current_root = Path(args.current_root).resolve()
     baseline_label = args.baseline_label
+    for label, root in [(baseline_label, baseline_root), ("current", current_root)]:
+        error = root_validation_error(root, label)
+        if error:
+            print(f"ERROR: {error}", file=sys.stderr)
+            return 2
+
     results = {
         baseline_label: evaluate_root(baseline_root, baseline_label),
         "current": evaluate_root(current_root, "current"),

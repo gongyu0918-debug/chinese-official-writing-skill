@@ -2,7 +2,9 @@ from __future__ import annotations
 
 import importlib.util
 from pathlib import Path
+import subprocess
 import sys
+import tempfile
 import unittest
 
 
@@ -39,6 +41,7 @@ class RealPromptAblationTests(unittest.TestCase):
         self.assertIn("不要改成请示", prompts)
         self.assertIn("包在代码块", prompts)
         self.assertIn("维护期限为XXXX年", prompts)
+        self.assertIn("AI生成内容业务", prompts)
 
     def test_current_skill_passes_real_prompt_cases(self) -> None:
         rows = real_prompt_eval.evaluate_root(ROOT, "current_test")
@@ -61,6 +64,7 @@ class RealPromptAblationTests(unittest.TestCase):
         self.assertIn("chinese-official-writing/references/formal-addressing.md", checks_by_id["P013"]["file_terms"])
         self.assertIn("unfinished-placeholder", checks_by_id["P014"]["lint_present_labels"])
         self.assertIn("unfinished-placeholder", checks_by_id["P015"]["lint_present_labels"])
+        self.assertIn("thought-leak", checks_by_id["P016"]["lint_absent_labels"])
 
     def test_heading_lock_detects_added_subheading(self) -> None:
         before = """一、整改进展
@@ -93,6 +97,33 @@ class RealPromptAblationTests(unittest.TestCase):
         }
 
         self.assertEqual(real_prompt_eval.exit_code_for_results(results, "old"), 1)
+
+    def test_missing_baseline_root_returns_clean_error(self) -> None:
+        script = ROOT / "tools" / "run_real_prompt_ablation.py"
+        with tempfile.TemporaryDirectory() as temp_dir:
+            missing = Path(temp_dir) / "missing-baseline"
+            out_dir = Path(temp_dir) / "out"
+            result = subprocess.run(
+                [
+                    sys.executable,
+                    str(script),
+                    "--baseline-root",
+                    str(missing),
+                    "--current-root",
+                    str(ROOT),
+                    "--out",
+                    str(out_dir),
+                ],
+                capture_output=True,
+                text=True,
+                encoding="utf-8",
+            )
+
+        self.assertEqual(result.returncode, 2)
+        self.assertIn("ERROR:", result.stderr)
+        self.assertIn("目录不存在", result.stderr)
+        self.assertIn("git worktree add", result.stderr)
+        self.assertNotIn("Traceback", result.stderr + result.stdout)
 
 
 if __name__ == "__main__":

@@ -11,7 +11,8 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 CANONICAL = ROOT / "chinese-official-writing"
-VERSION = "1.3.0"
+VERSION = "1.3.1"
+ROOT_README = ROOT / "README.md"
 OPENCLAW_MARKETPLACE_README = ROOT / "openclaw" / "marketplace-readme.md"
 CLAUDE_PLUGIN_MANIFEST = ROOT / ".claude-plugin" / "plugin.json"
 
@@ -93,6 +94,10 @@ def update_claude_plugin_manifest() -> None:
     )
 
 
+def update_root_readme() -> None:
+    ROOT_README.write_text(versioned_text(ROOT_README.read_text(encoding="utf-8")), encoding="utf-8")
+
+
 def copy_skill(target: Path, mode: str) -> None:
     ignore = shutil.ignore_patterns("__pycache__", "*.pyc", ".DS_Store", "Thumbs.db")
     shutil.copytree(CANONICAL, target, ignore=ignore, dirs_exist_ok=True)
@@ -111,6 +116,8 @@ def main() -> int:
     for mode, target in TARGETS.items():
         copy_skill(target, mode)
         print(f"synced {target.relative_to(ROOT)}")
+    update_root_readme()
+    print(f"synced {ROOT_README.relative_to(ROOT)}")
     update_claude_plugin_manifest()
     print(f"synced {CLAUDE_PLUGIN_MANIFEST.relative_to(ROOT)}")
     return 0

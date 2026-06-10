@@ -43,6 +43,21 @@ class ProseLintStructureTests(unittest.TestCase):
         self.assertIn("thought-leak", labels)
         self.assertIn("viewpoint-risk", labels)
 
+    def test_aigc_business_terms_are_not_flagged_as_thought_leak(self) -> None:
+        text = "本平台面向AI生成内容业务，支撑AI辅助生成内容的并发推理。"
+
+        findings = prose_lint.scan("<test>", text)
+
+        self.assertFalse([item for item in findings if item.label == "thought-leak"])
+
+    def test_ai_authorship_disclaimers_are_still_flagged_as_thought_leak(self) -> None:
+        examples = ["本文由AI辅助生成。", "本材料系AI生成。"]
+
+        for text in examples:
+            with self.subTest(text=text):
+                findings = prose_lint.scan("<test>", text)
+                self.assertTrue([item for item in findings if item.label == "thought-leak"])
+
     def test_common_placeholders_are_flagged_without_blocking_document_numbers(self) -> None:
         text = (
             "项目名称为[具体项目名称]，预算为XXXX万元，整改事项共X项，"
@@ -192,6 +207,45 @@ class ProseLintCliTests(unittest.TestCase):
         self.assertIn("ERROR: 文件损坏或不是有效 DOCX", result.stderr)
         self.assertNotIn("Traceback", result.stderr + result.stdout)
         self.assertEqual(result.stdout.strip(), "[]")
+
+    def test_strict_can_ignore_low_severity_findings(self) -> None:
+        script = ROOT / "chinese-official-writing" / "scripts" / "prose_lint.py"
+        with tempfile.TemporaryDirectory() as temp_dir:
+            low_only = Path(temp_dir) / "low-only.md"
+            low_only.write_text("边界" * 10, encoding="utf-8")
+
+            strict_low = subprocess.run(
+                [sys.executable, str(script), str(low_only), "--strict"],
+                capture_output=True,
+                text=True,
+                encoding="utf-8",
+            )
+            strict_medium = subprocess.run(
+                [sys.executable, str(script), str(low_only), "--strict", "--fail-on", "medium"],
+                capture_output=True,
+                text=True,
+                encoding="utf-8",
+            )
+
+        self.assertEqual(strict_low.returncode, 1)
+        self.assertEqual(strict_medium.returncode, 0)
+        self.assertNotIn("Traceback", strict_medium.stderr + strict_medium.stdout)
+
+    def test_strict_fail_on_medium_still_blocks_medium_findings(self) -> None:
+        script = ROOT / "chinese-official-writing" / "scripts" / "prose_lint.py"
+        with tempfile.TemporaryDirectory() as temp_dir:
+            medium = Path(temp_dir) / "medium.md"
+            medium.write_text("项目名称为[具体项目名称]。", encoding="utf-8")
+
+            result = subprocess.run(
+                [sys.executable, str(script), str(medium), "--strict", "--fail-on", "medium"],
+                capture_output=True,
+                text=True,
+                encoding="utf-8",
+            )
+
+        self.assertEqual(result.returncode, 1)
+        self.assertIn("unfinished-placeholder", result.stdout)
 
 
 class RealArticleEvalAuditTests(unittest.TestCase):
