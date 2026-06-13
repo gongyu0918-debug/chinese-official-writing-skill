@@ -31,10 +31,26 @@ FULL_NEEDS_MANUAL_REVIEW_RATE_MAX = 0.02
 SKILL_HARD_RULE_PASS_RATE_MIN = 0.98
 SKILL_PLACEHOLDER_RISK_RATE_MAX = 0.0
 SKILL_WIN_OR_TIE_RATE_MIN = 0.90
+THRESHOLD_ENV_VARS = {
+    "needs_manual_review": "OFFICIAL_WRITING_FULL_NEEDS_MANUAL_REVIEW_RATE_MAX",
+    "hard_rule_pass": "OFFICIAL_WRITING_SKILL_HARD_RULE_PASS_RATE_MIN",
+    "placeholder_risk": "OFFICIAL_WRITING_SKILL_PLACEHOLDER_RISK_RATE_MAX",
+    "win_or_tie": "OFFICIAL_WRITING_SKILL_WIN_OR_TIE_RATE_MIN",
+}
 
 
 class EvalError(RuntimeError):
     pass
+
+
+def threshold_from_env(env_name: str, default: float) -> float:
+    value = os.environ.get(env_name)
+    if value is None or value == "":
+        return default
+    try:
+        return float(value)
+    except ValueError as exc:
+        raise EvalError(f"{env_name} must be a float, got {value!r}") from exc
 
 
 def _load_module(name: str, path: Path):
@@ -542,19 +558,27 @@ def enforce_failure_policy(summary: dict[str, Any]) -> None:
     if counts["invalid"]:
         raise EvalError(f"invalid pairwise judge cases: {counts['invalid']}")
     manual_rate = summary["pairwise"]["needs_manual_review_rate"]
-    threshold = FULL_NEEDS_MANUAL_REVIEW_RATE_MAX if suite == "full" else 1.0
+    threshold = (
+        threshold_from_env(THRESHOLD_ENV_VARS["needs_manual_review"], FULL_NEEDS_MANUAL_REVIEW_RATE_MAX)
+        if suite == "full"
+        else 1.0
+    )
     if manual_rate > threshold:
         raise EvalError(f"needs_manual_review rate {manual_rate:.2%} exceeds threshold {threshold:.2%}")
     skill_metrics = summary["deterministic"]["by_mode"].get("skill", {})
     baseline_metrics = summary["deterministic"]["by_mode"].get("baseline", {})
+    hard_threshold = threshold_from_env(THRESHOLD_ENV_VARS["hard_rule_pass"], SKILL_HARD_RULE_PASS_RATE_MIN)
     hard_rate = float(skill_metrics.get("hard_rule_pass_rate", 0))
-    if hard_rate < SKILL_HARD_RULE_PASS_RATE_MIN:
-        raise EvalError(
-            f"skill hard_rule_pass_rate {hard_rate:.2%} is below {SKILL_HARD_RULE_PASS_RATE_MIN:.2%}"
-        )
+    if hard_rate < hard_threshold:
+        raise EvalError(f"skill hard_rule_pass_rate {hard_rate:.2%} is below {hard_threshold:.2%}")
+    placeholder_threshold = threshold_from_env(
+        THRESHOLD_ENV_VARS["placeholder_risk"], SKILL_PLACEHOLDER_RISK_RATE_MAX
+    )
     placeholder_rate = float(skill_metrics.get("placeholder_risk_rate", 0))
-    if placeholder_rate > SKILL_PLACEHOLDER_RISK_RATE_MAX:
-        raise EvalError(f"skill placeholder_risk_rate {placeholder_rate:.2%} must be 0.00%")
+    if placeholder_rate > placeholder_threshold:
+        raise EvalError(
+            f"skill placeholder_risk_rate {placeholder_rate:.2%} exceeds threshold {placeholder_threshold:.2%}"
+        )
     skill_lint = float(skill_metrics.get("avg_lint_risk_weight", 0))
     baseline_lint = float(baseline_metrics.get("avg_lint_risk_weight", 0))
     if skill_lint > baseline_lint:
@@ -562,8 +586,9 @@ def enforce_failure_policy(summary: dict[str, Any]) -> None:
             f"skill avg_lint_risk_weight {skill_lint:.4f} exceeds baseline {baseline_lint:.4f}"
         )
     win_or_tie_rate = summary["pairwise"]["skill_win_rate"] + summary["pairwise"]["tie_rate"]
-    if win_or_tie_rate < SKILL_WIN_OR_TIE_RATE_MIN:
-        raise EvalError(f"skill win+tie rate {win_or_tie_rate:.2%} is below {SKILL_WIN_OR_TIE_RATE_MIN:.2%}")
+    win_threshold = threshold_from_env(THRESHOLD_ENV_VARS["win_or_tie"], SKILL_WIN_OR_TIE_RATE_MIN)
+    if win_or_tie_rate < win_threshold:
+        raise EvalError(f"skill win+tie rate {win_or_tie_rate:.2%} is below {win_threshold:.2%}")
 
 
 def main() -> int:

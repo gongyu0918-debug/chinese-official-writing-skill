@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import importlib.util
 import json
+import os
 from pathlib import Path
 import sys
 import unittest
@@ -79,6 +80,10 @@ class PromptfooGraderTests(unittest.TestCase):
 
 
 class PromptfooRunnerTests(unittest.TestCase):
+    def tearDown(self) -> None:
+        for name in run_eval.THRESHOLD_ENV_VARS.values():
+            os.environ.pop(name, None)
+
     def test_randomized_pair_maps_display_labels_back_to_modes(self) -> None:
         case = {"vars": {"case_id": "C001", "genre": "通知", "scenario": "报送材料", "task": "任务"}}
         pair = {"baseline": {"text": "baseline"}, "skill": {"text": "skill"}}
@@ -132,6 +137,26 @@ class PromptfooRunnerTests(unittest.TestCase):
         summary["pairwise"]["tie_rate"] = 0.2
 
         with self.assertRaises(run_eval.EvalError):
+            run_eval.enforce_failure_policy(summary)
+
+    def test_release_policy_thresholds_can_be_overridden_for_real_model_probe(self) -> None:
+        summary = self.valid_summary()
+        summary["deterministic"]["by_mode"]["skill"]["hard_rule_pass_rate"] = 0.95
+        summary["deterministic"]["by_mode"]["skill"]["placeholder_risk_rate"] = 0.02
+        summary["pairwise"]["skill_win_rate"] = 0.6
+        summary["pairwise"]["tie_rate"] = 0.2
+
+        os.environ["OFFICIAL_WRITING_SKILL_HARD_RULE_PASS_RATE_MIN"] = "0.90"
+        os.environ["OFFICIAL_WRITING_SKILL_PLACEHOLDER_RISK_RATE_MAX"] = "0.05"
+        os.environ["OFFICIAL_WRITING_SKILL_WIN_OR_TIE_RATE_MIN"] = "0.75"
+
+        run_eval.enforce_failure_policy(summary)
+
+    def test_invalid_threshold_override_fails_cleanly(self) -> None:
+        summary = self.valid_summary()
+        os.environ["OFFICIAL_WRITING_SKILL_WIN_OR_TIE_RATE_MIN"] = "not-a-float"
+
+        with self.assertRaisesRegex(run_eval.EvalError, "must be a float"):
             run_eval.enforce_failure_policy(summary)
 
 

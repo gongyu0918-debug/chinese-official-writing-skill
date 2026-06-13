@@ -9,6 +9,14 @@ import unittest
 ROOT = Path(__file__).resolve().parents[1]
 
 
+def relative_files(root: Path) -> list[str]:
+    return sorted(
+        path.relative_to(root).as_posix()
+        for path in root.rglob("*")
+        if path.is_file() and "__pycache__" not in path.parts and path.suffix != ".pyc"
+    )
+
+
 class SkillBoundaryTests(unittest.TestCase):
     def test_canonical_skill_declares_trigger_and_exclusion_boundaries(self) -> None:
         text = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
@@ -32,6 +40,37 @@ class SkillBoundaryTests(unittest.TestCase):
                 text = path.read_text(encoding="utf-8")
                 self.assertIn("批量语料生成", text)
                 self.assertIn("规避人工审核", text)
+
+    def test_primary_adapter_mirrors_match_canonical_bytes(self) -> None:
+        canonical = ROOT / "chinese-official-writing"
+        canonical_files = relative_files(canonical)
+        for target in [
+            ROOT / "skills" / "chinese-official-writing",
+            ROOT / ".agents" / "skills" / "chinese-official-writing",
+        ]:
+            with self.subTest(target=target):
+                self.assertEqual(relative_files(target), canonical_files)
+                for relative in canonical_files:
+                    self.assertEqual((target / relative).read_bytes(), (canonical / relative).read_bytes(), relative)
+
+    def test_packaged_resource_mirrors_match_canonical_bytes(self) -> None:
+        canonical = ROOT / "chinese-official-writing"
+        for target in [
+            ROOT / "hermes" / "skills" / "chinese-official-writing",
+            ROOT / "openclaw" / "skills" / "chinese_official_writing",
+        ]:
+            for folder in ["agents", "references", "scripts"]:
+                canonical_folder = canonical / folder
+                target_folder = target / folder
+                with self.subTest(target=target, folder=folder):
+                    files = relative_files(canonical_folder)
+                    self.assertEqual(relative_files(target_folder), files)
+                    for relative in files:
+                        self.assertEqual(
+                            (target_folder / relative).read_bytes(),
+                            (canonical_folder / relative).read_bytes(),
+                            f"{target}/{folder}/{relative}",
+                        )
 
     def test_reference_loading_table_keeps_progressive_disclosure(self) -> None:
         text = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
@@ -146,9 +185,16 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assertIn("--strict --fail-on medium", readme)
 
     def test_revision_workflow_forbids_new_unprovided_facts(self) -> None:
+        skill = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
         workflow = (ROOT / "chinese-official-writing" / "references" / "workflow.md").read_text(encoding="utf-8")
+        checklist = (ROOT / "chinese-official-writing" / "references" / "review-checklist.md").read_text(
+            encoding="utf-8"
+        )
 
+        self.assertIn("未新增原文外事实", skill)
         self.assertIn("不新增原文没有交代的活动、依据、数据、成效或责任安排", workflow)
+        self.assertIn("未新增原文外事实", workflow)
+        self.assertIn("未新增原文外事实", checklist)
 
     def test_openclaw_skill_card_source_is_tracked_but_not_packaged_directly(self) -> None:
         source = (ROOT / "openclaw" / "skill-card.md").read_text(encoding="utf-8")
@@ -156,6 +202,17 @@ class SkillBoundaryTests(unittest.TestCase):
 
         self.assertIn("Known Risks and Mitigations", source)
         self.assertFalse(packaged_path.exists())
+
+    def test_openclaw_skill_card_uses_absolute_links_and_key_genres(self) -> None:
+        skill = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
+        source = (ROOT / "openclaw" / "skill-card.md").read_text(encoding="utf-8")
+
+        self.assertNotIn("](references/", source)
+        self.assertIn("https://github.com/gongyu0918-debug/chinese-official-writing-skill/blob/main/", source)
+        for keyword in ["通知", "请示", "报告", "函", "复函", "批复", "方案", "说明", "申请", "采购公告", "审查材料"]:
+            with self.subTest(keyword=keyword):
+                self.assertIn(keyword, skill)
+                self.assertIn(keyword, source)
 
     def test_readme_discloses_stub_eval_and_deepseek_column_sources(self) -> None:
         text = (ROOT / "README.md").read_text(encoding="utf-8")

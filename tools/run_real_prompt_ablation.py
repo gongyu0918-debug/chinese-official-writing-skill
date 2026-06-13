@@ -237,7 +237,51 @@ CASES: list[PromptCase] = [
         prompt="把这段去口语化，但不要补原文没有的事实活动、依据、数据或成效。",
         checks={
             "file_terms": {
-                "chinese-official-writing/references/workflow.md": ["不新增原文没有交代的活动、依据、数据、成效或责任安排"],
+                "chinese-official-writing/SKILL.md": ["未新增原文外事实"],
+                "chinese-official-writing/references/workflow.md": [
+                    "不新增原文没有交代的活动、依据、数据、成效或责任安排",
+                    "未新增原文外事实",
+                ],
+                "chinese-official-writing/references/review-checklist.md": ["未新增原文外事实"],
+            },
+        },
+    ),
+    PromptCase(
+        id="P020",
+        kind="revise",
+        prompt="给 prose_lint 增加新规则前，先确认真实合格公文 clean corpus 不会被 medium/high 误报。",
+        checks={
+            "file_terms": {
+                "tests/fixtures/clean_prose_corpus.json": ["notice-submit-materials", "ai-compute-plan"],
+                "tests/test_review_regressions.py": ["test_clean_corpus_has_no_medium_or_high_findings"],
+            },
+        },
+    ),
+    PromptCase(
+        id="P021",
+        kind="create",
+        prompt="我要用真实模型跑一小组公文评测，不要沿用 stub 发布门槛误杀，请给出可复现入口和阈值覆盖方式。",
+        checks={
+            "file_terms": {
+                "README.md": [
+                    "真实模型小样本评测",
+                    "OFFICIAL_WRITING_SKILL_PLACEHOLDER_RISK_RATE_MAX",
+                ],
+                "evals/official-writing/run_eval.py": ["THRESHOLD_ENV_VARS"],
+            },
+        },
+    ),
+    PromptCase(
+        id="P022",
+        kind="revise",
+        prompt="检查 OpenClaw 展示卡片和镜像目录是否会漂移：skill-card 链接要能在网页打开，镜像不能静默分叉。",
+        checks={
+            "file_terms": {
+                "openclaw/skill-card.md": ["https://github.com/gongyu0918-debug/chinese-official-writing-skill"],
+                "tests/test_skill_boundary.py": [
+                    "test_primary_adapter_mirrors_match_canonical_bytes",
+                    "test_packaged_resource_mirrors_match_canonical_bytes",
+                ],
             },
         },
     ),

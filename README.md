@@ -70,7 +70,7 @@
 请从 GitHub 仓库 https://github.com/gongyu0918-debug/chinese-official-writing-skill 拉取 openclaw/skills/chinese_official_writing/ 目录，并将其安装为 OpenClaw/ClawHub 可识别的 chinese-official-writing 技能。该适配目录的 frontmatter 使用 name: chinese_official_writing；安装后确认显示名称为“中文公文写作”，用于中文公文、可研报告、建设方案和 AI 算力采购租赁类正式材料写作。
 ```
 
-当前工作版本：`chinese-official-writing@1.3.2`
+当前工作版本：`chinese-official-writing@1.3.3`
 
 ### Claude Code
 
@@ -144,6 +144,18 @@ npm run eval:official-writing:view
 ```
 
 Smoke 覆盖 5 个文种、每类 2 个场景，共 10 条；full 覆盖 27 个文种、每类 10 个场景，共 270 条。汇总指标包括 Skill win、baseline win、tie、invalid、硬规则通过率、lint 风险下降率、占位词风险率、judge 一致率、平均耗时和估算成本。Full 评测中 `needs_manual_review` 超过 2% 会非零退出；空输出、缺 case 或 judge 空返回始终非零退出。
+
+真实模型小样本评测可复用 smoke 数据集，设置 `OFFICIAL_WRITING_AGENT_COMMAND` 后运行同一命令。真实模型输出波动较大，默认发布门槛仍按 stub 回归设计；如需记录真实模型探针，可显式设置以下环境变量调整阈值，不要把放宽后的结果写成默认发布门槛：
+
+```powershell
+$env:OFFICIAL_WRITING_AGENT_COMMAND = "your-local-agent-command"
+$env:OFFICIAL_WRITING_SKILL_HARD_RULE_PASS_RATE_MIN = "0.90"
+$env:OFFICIAL_WRITING_SKILL_PLACEHOLDER_RISK_RATE_MAX = "0.05"
+$env:OFFICIAL_WRITING_SKILL_WIN_OR_TIE_RATE_MIN = "0.75"
+npm run eval:official-writing:smoke
+```
+
+可覆盖阈值包括 `OFFICIAL_WRITING_FULL_NEEDS_MANUAL_REVIEW_RATE_MAX`、`OFFICIAL_WRITING_SKILL_HARD_RULE_PASS_RATE_MIN`、`OFFICIAL_WRITING_SKILL_PLACEHOLDER_RISK_RATE_MAX` 和 `OFFICIAL_WRITING_SKILL_WIN_OR_TIE_RATE_MIN`。未设置时使用默认发布门槛。
 
 ### 本地 smoke/regression 消融
 
@@ -228,6 +240,8 @@ python .\chinese-official-writing\scripts\prose_lint.py .\draft.md --strict --fa
 `--strict` 默认任一风险都会返回非零退出；配合 `--fail-on medium` 可只让 medium/high 风险阻断 CI，把 low 级格式和术语提示留作人工参考。
 
 可检查的风险包括：二元包装句、旁白式表达、教学腔、思考过程泄露、口语化判断、模板化过渡词、项目卡片式摘要、测算说明腔、必要性罗列、相邻段落重复事项、格式噪点，以及算力类文档中缺少指标支撑的空泛技术表述。
+
+新增 lint 规则前应先跑 clean corpus 回归。`tests/fixtures/clean_prose_corpus.json` 保存的是脱敏改写的合格公文段落样本，不保存原始公文全文；测试要求这些样本在 `--format --structure` 口径下无 medium/high 命中，low 级只作为人工提示。
 
 ## 发布前检查
 

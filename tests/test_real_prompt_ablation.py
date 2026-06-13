@@ -45,6 +45,9 @@ class RealPromptAblationTests(unittest.TestCase):
         self.assertIn("本报告系AI辅助生成", prompts)
         self.assertIn("### 业务需求与服务保障", prompts)
         self.assertIn("不要补原文没有的事实", prompts)
+        self.assertIn("clean corpus", prompts)
+        self.assertIn("真实模型", prompts)
+        self.assertIn("镜像不能静默分叉", prompts)
 
     def test_current_skill_passes_real_prompt_cases(self) -> None:
         rows = real_prompt_eval.evaluate_root(ROOT, "current_test")
@@ -73,6 +76,17 @@ class RealPromptAblationTests(unittest.TestCase):
         self.assertIn(
             "不新增原文没有交代的活动、依据、数据、成效或责任安排",
             checks_by_id["P019"]["file_terms"]["chinese-official-writing/references/workflow.md"],
+        )
+        self.assertIn("未新增原文外事实", checks_by_id["P019"]["file_terms"]["chinese-official-writing/SKILL.md"])
+        self.assertIn(
+            "notice-submit-materials",
+            checks_by_id["P020"]["file_terms"]["tests/fixtures/clean_prose_corpus.json"],
+        )
+        self.assertIn("真实模型小样本评测", checks_by_id["P021"]["file_terms"]["README.md"])
+        self.assertIn("THRESHOLD_ENV_VARS", checks_by_id["P021"]["file_terms"]["evals/official-writing/run_eval.py"])
+        self.assertIn(
+            "test_primary_adapter_mirrors_match_canonical_bytes",
+            checks_by_id["P022"]["file_terms"]["tests/test_skill_boundary.py"],
         )
 
     def test_heading_lock_detects_added_subheading(self) -> None:

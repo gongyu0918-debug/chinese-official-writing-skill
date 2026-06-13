@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import importlib.util
+import json
 from pathlib import Path
 import subprocess
 import sys
@@ -252,6 +253,28 @@ class ProseLintCliTests(unittest.TestCase):
 
         self.assertEqual(result.returncode, 1)
         self.assertIn("unfinished-placeholder", result.stdout)
+
+
+class CleanProseCorpusTests(unittest.TestCase):
+    def test_clean_corpus_has_no_medium_or_high_findings(self) -> None:
+        corpus_path = ROOT / "tests" / "fixtures" / "clean_prose_corpus.json"
+        corpus = json.loads(corpus_path.read_text(encoding="utf-8"))
+        items = corpus["items"]
+
+        self.assertIn("脱敏改写", corpus["source_note"])
+        self.assertIn("medium/high", corpus["blocking_policy"])
+        self.assertGreaterEqual(len(items), 10)
+        for item in items:
+            with self.subTest(item=item["id"]):
+                findings = prose_lint.scan(
+                    item["id"],
+                    item["text"],
+                    include_format=True,
+                    include_structure=True,
+                )
+                blocking = [finding for finding in findings if finding.severity in {"medium", "high"}]
+
+                self.assertEqual(blocking, [])
 
 
 class RealArticleEvalAuditTests(unittest.TestCase):

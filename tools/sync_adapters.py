@@ -11,7 +11,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 CANONICAL = ROOT / "chinese-official-writing"
-VERSION = "1.3.2"
+VERSION = "1.3.3"
 ROOT_README = ROOT / "README.md"
 OPENCLAW_MARKETPLACE_README = ROOT / "openclaw" / "marketplace-readme.md"
 OPENCLAW_SKILL_CARD = ROOT / "openclaw" / "skill-card.md"
@@ -40,6 +40,7 @@ def versioned_text(text: str) -> str:
 def patch_frontmatter(target: Path, mode: str) -> None:
     skill_file = target / "SKILL.md"
     text = skill_file.read_text(encoding="utf-8")
+    original = text
     if mode == "openclaw":
         text = text.replace("name: chinese-official-writing", "name: chinese_official_writing", 1)
         if "\ncategory: writing\n" not in text.split("---", 2)[1]:
@@ -53,7 +54,8 @@ def patch_frontmatter(target: Path, mode: str) -> None:
         if f'\nversion: "{VERSION}"\n' not in text.split("---", 2)[1]:
             text = text.replace("license: MIT-0\n", f'license: MIT-0\nversion: "{VERSION}"\n', 1)
         text = re.sub(r"\n  openclaw:\n(?:    .+\n)+(?=  hermes:)", "\n", text, count=1)
-    skill_file.write_text(text, encoding="utf-8")
+    if text != original:
+        skill_file.write_text(text, encoding="utf-8", newline="\n")
 
 
 def patch_openclaw_marketplace_body(target: Path) -> None:
