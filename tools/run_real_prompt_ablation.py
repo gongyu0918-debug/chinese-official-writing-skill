@@ -491,6 +491,28 @@ CASES: list[PromptCase] = [
             },
         },
     ),
+    PromptCase(
+        id="P034",
+        kind="revise",
+        prompt="我从政府网站复制了一篇关于印发《实施方案》的通知，里面有来源、字号、打印、责任编辑。请先清理网页元信息，再只改被印发方案第二部分，不要改通知壳和附件标题。",
+        checks={
+            "file_terms": {
+                "chinese-official-writing/SKILL.md": ["网页元信息", "通知壳", "被印发文件正文", "附件关系"],
+                "chinese-official-writing/references/workflow.md": [
+                    "网页复制稿",
+                    "通知壳",
+                    "被印发文件正文",
+                    "附件标题",
+                ],
+                "chinese-official-writing/references/review-checklist.md": [
+                    "网页元信息",
+                    "通知壳",
+                    "被印发文件正文",
+                    "附件关系",
+                ],
+            },
+        },
+    ),
 ]
 
 
