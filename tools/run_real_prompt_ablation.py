@@ -367,6 +367,69 @@ CASES: list[PromptCase] = [
             },
         },
     ),
+    PromptCase(
+        id="P028",
+        kind="revise",
+        prompt="请把这份材料处理成正式 Word 红头文件，要有发文字号、签发人和版记；这些要素我还没给，不要编，先列缺项清单。",
+        checks={
+            "file_terms": {
+                "chinese-official-writing/SKILL.md": ["正式交付前要素核对", "不得编造文号"],
+                "chinese-official-writing/references/format-gbt9704.md": [
+                    "正式交付前要素核对",
+                    "缺项清单",
+                    "签发人",
+                    "版记",
+                    "印章",
+                    "不得用 `[依据/背景]`",
+                ],
+                "chinese-official-writing/references/review-checklist.md": [
+                    "正式交付前要素核对",
+                    "缺项清单",
+                    "未编造文号、签发人、印章或版记",
+                ],
+            },
+        },
+    ),
+    PromptCase(
+        id="P029",
+        kind="revise",
+        prompt="只审一下这段格式和语气，不要重写全文：关于推进巡检工作的通知，大家要马上搞起来，然后月底前报结果。",
+        checks={
+            "file_terms": {
+                "chinese-official-writing/SKILL.md": [
+                    "格式核验或语气检查",
+                    "不默认重写全文",
+                    "0-100 分式伪精确评分",
+                ],
+                "chinese-official-writing/references/review-checklist.md": [
+                    "位置、风险层级、修改建议",
+                    "未默认重写全文",
+                    "不做 0-100 分评分",
+                    "用户可读格式复核项",
+                ],
+            },
+        },
+    ),
+    PromptCase(
+        id="P030",
+        kind="revise",
+        prompt="把这段去口语化但保留事实，不要新增依据和成效：我觉得这个事差不多可以马上搞一下，然后月底前报领导。",
+        checks={
+            "file_terms": {
+                "chinese-official-writing/SKILL.md": ["轻量语气替换", "不新增硬清洗"],
+                "chinese-official-writing/references/official-style.md": [
+                    "轻量语气替换建议",
+                    "我觉得",
+                    "搞",
+                    "差不多",
+                    "马上",
+                    "然后",
+                    "保留原文事实",
+                    "不新增硬清洗",
+                ],
+            },
+        },
+    ),
 ]
 
 

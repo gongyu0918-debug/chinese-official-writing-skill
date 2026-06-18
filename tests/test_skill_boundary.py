@@ -240,6 +240,43 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assertIn("不得编造文号", format_ref)
         self.assertIn("Markdown `**加粗**`", format_ref)
 
+    def test_v141_formal_delivery_review_and_tone_rules_are_documented(self) -> None:
+        skill = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
+        checklist = (ROOT / "chinese-official-writing" / "references" / "review-checklist.md").read_text(
+            encoding="utf-8"
+        )
+        official_style = (ROOT / "chinese-official-writing" / "references" / "official-style.md").read_text(
+            encoding="utf-8"
+        )
+        format_ref = (ROOT / "chinese-official-writing" / "references" / "format-gbt9704.md").read_text(
+            encoding="utf-8"
+        )
+        sync_script = (ROOT / "tools" / "sync_adapters.py").read_text(encoding="utf-8")
+
+        for text in [skill, format_ref, checklist, sync_script]:
+            self.assertIn("正式交付前要素核对", text)
+            self.assertIn("签发", text)
+            self.assertIn("版记", text)
+        self.assertIn("缺项清单", format_ref)
+        self.assertIn("不得用 `[依据/背景]`", format_ref)
+        self.assertIn("未编造文号、签发人、印章或版记", checklist)
+        self.assertIn("用户可读格式复核项", checklist)
+        for term in ["标题", "文种", "主送/受文对象", "发文字号", "日期", "附件", "落款", "结尾语", "层级编号"]:
+            self.assertIn(term, checklist)
+        self.assertIn("位置、风险层级、修改建议", checklist)
+        self.assertIn("未默认重写全文", checklist)
+        self.assertIn("不做 0-100 分评分", checklist)
+        self.assertIn("轻量语气替换建议", official_style)
+        for term in ["我觉得", "搞", "差不多", "马上", "然后"]:
+            self.assertIn(term, official_style)
+        self.assertIn("保留原文事实", official_style)
+        self.assertIn("不新增硬清洗", official_style)
+        self.assertIn("不新增硬清洗", skill)
+
+        skill_files = relative_files(ROOT / "chinese-official-writing")
+        for forbidden in ["document_generator.py", "generate_official_doc.py", "install_fonts.py"]:
+            self.assertNotIn(forbidden, skill_files)
+
     def test_openclaw_agent_rules_include_v140_routing_and_format_bridge(self) -> None:
         text = (ROOT / "openclaw" / "skills" / "chinese_official_writing" / "SKILL.md").read_text(
             encoding="utf-8"

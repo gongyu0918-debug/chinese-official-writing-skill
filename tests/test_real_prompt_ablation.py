@@ -53,6 +53,9 @@ class RealPromptAblationTests(unittest.TestCase):
         self.assertIn("GB/T 9704 排成 Word", prompts)
         self.assertIn("意义重大、亮点纷呈", prompts)
         self.assertIn("不要默认就高", prompts)
+        self.assertIn("正式 Word 红头文件", prompts)
+        self.assertIn("只审一下这段格式和语气", prompts)
+        self.assertIn("我觉得这个事差不多", prompts)
 
     def test_current_skill_passes_real_prompt_cases(self) -> None:
         rows = real_prompt_eval.evaluate_root(ROOT, "current_test")
@@ -98,6 +101,9 @@ class RealPromptAblationTests(unittest.TestCase):
         self.assertIn("Word/排版交付衔接", checks_by_id["P025"]["file_terms"]["chinese-official-writing/references/format-gbt9704.md"])
         self.assertIn("夸大意义", checks_by_id["P026"]["file_terms"]["chinese-official-writing/references/anti-ai-patterns.md"])
         self.assertIn("数据冲突不得默认就高", checks_by_id["P027"]["file_terms"]["chinese-official-writing/references/workflow.md"])
+        self.assertIn("正式交付前要素核对", checks_by_id["P028"]["file_terms"]["chinese-official-writing/references/format-gbt9704.md"])
+        self.assertIn("不默认重写全文", checks_by_id["P029"]["file_terms"]["chinese-official-writing/SKILL.md"])
+        self.assertIn("轻量语气替换建议", checks_by_id["P030"]["file_terms"]["chinese-official-writing/references/official-style.md"])
 
     def test_heading_lock_detects_added_subheading(self) -> None:
         before = """一、整改进展
