@@ -10,7 +10,7 @@ tags:
   - gongwen
   - ai-compute
 metadata:
-  version: "1.4.2"
+  version: "1.4.3"
   compatible_agents:
     - codex
     - claude-code
@@ -28,7 +28,7 @@ metadata:
     invocation: "/skill:chinese-official-writing"
     entry: "SKILL.md"
   openclaw:
-    version: "1.4.2"
+    version: "1.4.3"
     emoji: "📝"
     tags:
       - chinese
@@ -62,7 +62,7 @@ openclaw skills install chinese-official-writing
 其他平台如 Codex、Claude Code、Hermes、deepseek-tui 的安装 Prompt，请看 GitHub 仓库 README：
 https://github.com/gongyu0918-debug/chinese-official-writing-skill
 
-当前版本：`chinese-official-writing@1.4.2`
+当前版本：`chinese-official-writing@1.4.3`
 
 ClawHub 页面只展示摘要；安装包内的 `SKILL.md` 和 `references/` 保留完整规则、硬边界和复核清单。
 
