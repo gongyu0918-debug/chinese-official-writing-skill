@@ -41,6 +41,9 @@ class RevisionInstructionEvalTests(unittest.TestCase):
             "closing_position",
             "preserve_real_application_template",
             "field_value_change",
+            "preserve_field_units",
+            "remove_field_unit",
+            "add_field_unit",
             "change_sender_date",
         ]:
             self.assertIn(operation, operations)
@@ -226,6 +229,33 @@ class RevisionInstructionEvalTests(unittest.TestCase):
 
         self.assertNotIn("申请标题未保留申请文种。", "\n".join(item["detail"] for item in genre_issues))
         self.assertNotIn("title_mismatch", labels)
+        self.assertNotIn("closing_position_wrong", labels)
+
+    def test_field_unit_case_preserves_application_fields(self) -> None:
+        case = next(item for item in revision_eval.CASES if item.id == "R012")
+        turn = case.turns[0]
+        text = """办公设备采购申请
+
+公司领导：
+拟申请采购办公设备。
+
+申请事项：采购移动硬盘、鼠标、键盘等办公设备
+数量：移动硬盘2块、鼠标4个、键盘4个
+预算金额：4860元
+使用范围：部门日常文件存储、编辑和资料归档
+联系人：龚昱
+联系电话：13800000000
+
+妥否，请批示。
+
+音像电子分社
+2026年5月20日"""
+
+        issues = revision_eval.evaluate_turn(text, turn, case)
+        labels = {item["label"] for item in issues}
+
+        self.assertNotIn("missing_required_content", labels)
+        self.assertNotIn("forbidden_content_retained", labels)
         self.assertNotIn("closing_position_wrong", labels)
 
     def test_revision_eval_exit_code_fails_when_any_turn_fails(self) -> None:
