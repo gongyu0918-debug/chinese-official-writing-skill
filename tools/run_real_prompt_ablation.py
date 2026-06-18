@@ -430,6 +430,67 @@ CASES: list[PromptCase] = [
             },
         },
     ),
+    PromptCase(
+        id="P031",
+        kind="create",
+        prompt="起草一份政务数据共享通知，政策依据我没给，也不要外搜；不能编政策依据，缺项放待确认事项。",
+        checks={
+            "file_terms": {
+                "chinese-official-writing/SKILL.md": ["默认不外搜", "搜索结果只作为来源参考", "待确认事项"],
+                "chinese-official-writing/references/workflow.md": [
+                    "联网搜索使用边界",
+                    "默认按用户给定材料写稿",
+                    "不把联网搜索作为起草、改稿或复核的默认步骤",
+                ],
+                "chinese-official-writing/references/handling-elements.md": [
+                    "默认不外搜补缺项",
+                    "不写成已确认事实",
+                ],
+            },
+        },
+    ),
+    PromptCase(
+        id="P032",
+        kind="create",
+        prompt="请核验现行政策依据后起草通知，要说明来源日期，不要把单一网络来源直接写成确定结论。",
+        checks={
+            "file_terms": {
+                "chinese-official-writing/SKILL.md": ["现行政策", "联网核验", "来源、日期或检索口径"],
+                "chinese-official-writing/references/workflow.md": [
+                    "最新",
+                    "当前",
+                    "今日",
+                    "现行政策",
+                    "近期数据",
+                    "发布日期、访问日期或检索口径",
+                    "来源冲突、无法核验或工具不可用",
+                ],
+                "chinese-official-writing/references/review-checklist.md": [
+                    "搜索结果",
+                    "正文外说明来源、日期或检索口径",
+                ],
+            },
+        },
+    ),
+    PromptCase(
+        id="P033",
+        kind="create",
+        prompt="帮市数据资源管理局写一份通知；我只给了单位名称，没让你查官网或样文，不要自动搜索单位风格。",
+        checks={
+            "file_terms": {
+                "chinese-official-writing/SKILL.md": ["不因出现单位名称就搜索单位公开样文、固定格式或写作风格"],
+                "chinese-official-writing/references/workflow.md": [
+                    "只出现单位名称",
+                    "不触发搜索单位公开样文、固定格式或写作风格",
+                ],
+                "chinese-official-writing/references/handling-elements.md": [
+                    "不因出现单位名称就搜索单位公开样文、固定格式或写作风格",
+                    "使用中性称谓和通用文种格式",
+                ],
+                "chinese-official-writing/references/review-checklist.md": ["未因单位名称自动搜索单位公开样文"],
+            },
+        },
+    ),
 ]
 
 

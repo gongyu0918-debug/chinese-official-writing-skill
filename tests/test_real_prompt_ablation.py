@@ -56,6 +56,9 @@ class RealPromptAblationTests(unittest.TestCase):
         self.assertIn("正式 Word 红头文件", prompts)
         self.assertIn("只审一下这段格式和语气", prompts)
         self.assertIn("我觉得这个事差不多", prompts)
+        self.assertIn("政策依据我没给，也不要外搜", prompts)
+        self.assertIn("请核验现行政策依据", prompts)
+        self.assertIn("不要自动搜索单位风格", prompts)
 
     def test_current_skill_passes_real_prompt_cases(self) -> None:
         rows = real_prompt_eval.evaluate_root(ROOT, "current_test")
@@ -104,6 +107,9 @@ class RealPromptAblationTests(unittest.TestCase):
         self.assertIn("正式交付前要素核对", checks_by_id["P028"]["file_terms"]["chinese-official-writing/references/format-gbt9704.md"])
         self.assertIn("不默认重写全文", checks_by_id["P029"]["file_terms"]["chinese-official-writing/SKILL.md"])
         self.assertIn("轻量语气替换建议", checks_by_id["P030"]["file_terms"]["chinese-official-writing/references/official-style.md"])
+        self.assertIn("默认不外搜", checks_by_id["P031"]["file_terms"]["chinese-official-writing/SKILL.md"])
+        self.assertIn("现行政策", checks_by_id["P032"]["file_terms"]["chinese-official-writing/SKILL.md"])
+        self.assertIn("只出现单位名称", checks_by_id["P033"]["file_terms"]["chinese-official-writing/references/workflow.md"])
 
     def test_heading_lock_detects_added_subheading(self) -> None:
         before = """一、整改进展

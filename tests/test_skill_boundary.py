@@ -277,6 +277,39 @@ class SkillBoundaryTests(unittest.TestCase):
         for forbidden in ["document_generator.py", "generate_official_doc.py", "install_fonts.py"]:
             self.assertNotIn(forbidden, skill_files)
 
+    def test_v141_search_boundary_stays_lightweight_and_opt_in(self) -> None:
+        skill = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
+        workflow = (ROOT / "chinese-official-writing" / "references" / "workflow.md").read_text(encoding="utf-8")
+        elements = (ROOT / "chinese-official-writing" / "references" / "handling-elements.md").read_text(
+            encoding="utf-8"
+        )
+        checklist = (ROOT / "chinese-official-writing" / "references" / "review-checklist.md").read_text(
+            encoding="utf-8"
+        )
+        openclaw_skill = (ROOT / "openclaw" / "skills" / "chinese_official_writing" / "SKILL.md").read_text(
+            encoding="utf-8"
+        )
+
+        for text in [skill, workflow, checklist, openclaw_skill]:
+            self.assertIn("联网搜索", text)
+        self.assertIn("联网核验", elements)
+        self.assertIn("默认不外搜", skill)
+        self.assertIn("不把联网搜索作为起草、改稿或复核的默认步骤", workflow)
+        for term in ["最新", "当前", "今日", "现行政策", "近期数据"]:
+            self.assertIn(term, workflow)
+        self.assertIn("搜索结果只作为来源参考", skill)
+        self.assertIn("来源、日期或检索口径", skill)
+        self.assertIn("发布日期、访问日期或检索口径", workflow)
+        self.assertIn("来源冲突、无法核验或工具不可用", workflow)
+        self.assertIn("默认不外搜补缺项", elements)
+        self.assertIn("未因单位名称自动搜索单位公开样文", checklist)
+        for text in [skill, elements, openclaw_skill]:
+            self.assertIn("不因出现单位名称就搜索单位公开样文", text)
+        self.assertIn("只出现单位名称，不触发搜索单位公开样文", workflow)
+        skill_files = relative_files(ROOT / "chinese-official-writing")
+        for forbidden in ["search_units.py", "unit_style_cache.json", "unit-style-registry.md"]:
+            self.assertNotIn(forbidden, skill_files)
+
     def test_openclaw_agent_rules_include_v140_routing_and_format_bridge(self) -> None:
         text = (ROOT / "openclaw" / "skills" / "chinese_official_writing" / "SKILL.md").read_text(
             encoding="utf-8"
