@@ -135,6 +135,18 @@ class RealPromptAblationTests(unittest.TestCase):
             ["一、整改进展", "二、存在问题", "三、原因分析", "四、下一步安排"],
         )
 
+    def test_heading_lock_reads_bracketed_and_arabic_numbered_headings(self) -> None:
+        text = """（一）整改进展
+（二）存在问题
+1. 原因分析
+2、下一步安排
+2026年6月30日前反馈材料。"""
+
+        self.assertEqual(
+            real_prompt_eval.numbered_headings(text),
+            ["（一）整改进展", "（二）存在问题", "1. 原因分析", "2、下一步安排"],
+        )
+
     def test_exit_code_fails_when_current_has_any_failure(self) -> None:
         results = {
             "old": [{"passed": False}, {"passed": False}],

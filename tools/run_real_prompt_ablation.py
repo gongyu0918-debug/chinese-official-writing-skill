@@ -510,7 +510,12 @@ def has_table_row(text: str, row_name: str) -> bool:
     return re.search(rf"^\| {re.escape(row_name)} \|", text, re.M) is not None
 
 
-HEADING_RE = re.compile(r"^\s*(?:#{1,6}\s+)?([一二三四五六七八九十]+、[^\n#]+?)\s*(?:#+\s*)?$", re.M)
+HEADING_RE = re.compile(
+    r"^\s*(?:#{1,6}\s+)?"
+    r"((?:[一二三四五六七八九十]+、|[（(][一二三四五六七八九十]+[）)]|[0-9]+[.、])\s*[^\n#]+?)"
+    r"\s*(?:#+\s*)?$",
+    re.M,
+)
 
 
 def numbered_headings(text: str) -> list[str]:
@@ -650,7 +655,8 @@ def write_summary(out_dir: Path, results: dict[str, list[dict[str, Any]]]) -> No
     (out_dir / "summary.md").write_text("\n".join(lines), encoding="utf-8")
 
 
-def exit_code_for_results(results: dict[str, list[dict[str, Any]]], baseline_label: str) -> int:
+def exit_code_for_results(results: dict[str, list[dict[str, Any]]], _baseline_label: str) -> int:
+    """Fail the release gate only when the current package fails."""
     current_failures = sum(1 for row in results["current"] if not row["passed"])
     return 1 if current_failures else 0
 

@@ -1198,7 +1198,11 @@ def run_eval(cases: list[Case], out_dir: Path, agent: str, command_template: str
     }
     (out_dir / "results.json").write_text(json.dumps(summary, ensure_ascii=False, indent=2), encoding="utf-8")
     write_summary_markdown(summary, out_dir / "summary.md")
-    return 0
+    return exit_code_for_summary(summary)
+
+
+def exit_code_for_summary(summary: dict[str, Any]) -> int:
+    return 1 if int(summary.get("failed_turns", 0)) > 0 else 0
 
 
 def write_summary_markdown(summary: dict[str, Any], path: Path) -> None:

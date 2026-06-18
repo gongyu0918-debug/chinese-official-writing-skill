@@ -228,6 +228,10 @@ class RevisionInstructionEvalTests(unittest.TestCase):
         self.assertNotIn("title_mismatch", labels)
         self.assertNotIn("closing_position_wrong", labels)
 
+    def test_revision_eval_exit_code_fails_when_any_turn_fails(self) -> None:
+        self.assertEqual(revision_eval.exit_code_for_summary({"failed_turns": 0}), 0)
+        self.assertEqual(revision_eval.exit_code_for_summary({"failed_turns": 1}), 1)
+
 
 if __name__ == "__main__":
     unittest.main()

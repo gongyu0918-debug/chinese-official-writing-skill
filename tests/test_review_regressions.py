@@ -276,6 +276,23 @@ class CleanProseCorpusTests(unittest.TestCase):
 
                 self.assertEqual(blocking, [])
 
+    def test_clean_corpus_sentinel_placeholder_is_detected(self) -> None:
+        corpus_path = ROOT / "tests" / "fixtures" / "clean_prose_corpus.json"
+        corpus = json.loads(corpus_path.read_text(encoding="utf-8"))
+
+        for item in corpus["items"]:
+            with self.subTest(item=item["id"]):
+                sentinel_text = f'{item["text"]} 本事项预算为XXXX万元。'
+                findings = prose_lint.scan(
+                    item["id"],
+                    sentinel_text,
+                    include_format=True,
+                    include_structure=True,
+                )
+                labels = {finding.label for finding in findings}
+
+                self.assertIn("unfinished-placeholder", labels)
+
 
 class RealArticleEvalAuditTests(unittest.TestCase):
     def test_placeholder_echo_terms_are_reported(self) -> None:
