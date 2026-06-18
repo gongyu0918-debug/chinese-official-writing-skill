@@ -285,6 +285,88 @@ CASES: list[PromptCase] = [
             },
         },
     ),
+    PromptCase(
+        id="P023",
+        kind="create",
+        prompt="写一份食品安全专项检查情况报告，有发现问题和下一步计划，不要写成请示，也不要加“妥否，请批示”。",
+        checks={
+            "description_terms": ["报告"],
+            "routing_terms": ["报告", "不夹带审批请求"],
+            "file_terms": {
+                "chinese-official-writing/SKILL.md": ["任务模式路由", "起草、改稿、复核、排版交付"],
+                "chinese-official-writing/references/workflow.md": ["起草模式", "复核模式"],
+            },
+        },
+    ),
+    PromptCase(
+        id="P024",
+        kind="revise",
+        prompt="把三个人写的年度总结材料合成一稿，严格保留我给的提纲顺序，原文事实要保留，新增事实请放到待确认事项。",
+        checks={
+            "file_terms": {
+                "chinese-official-writing/SKILL.md": ["多材料合稿", "原文事实", "待确认补充"],
+                "chinese-official-writing/references/workflow.md": [
+                    "原文已有事实",
+                    "压实合并表达",
+                    "待确认补充",
+                    "提纲顺序",
+                ],
+                "chinese-official-writing/references/review-checklist.md": ["原文已有事实", "压实合并表达", "待确认补充"],
+            },
+        },
+    ),
+    PromptCase(
+        id="P025",
+        kind="revise",
+        prompt="我已经写好正文了，请按 GB/T 9704 排成 Word，带红头、发文字号和版记；没有给签发人就不要编，正文里的 markdown 标记也别带进 Word。",
+        checks={
+            "file_terms": {
+                "chinese-official-writing/SKILL.md": ["Word、docx、GB/T 9704", "不得残留 Markdown"],
+                "chinese-official-writing/references/format-gbt9704.md": [
+                    "Word/排版交付衔接",
+                    "DOCX/document 技能",
+                    "不得编造文号",
+                    "Markdown `**加粗**`",
+                ],
+                "chinese-official-writing/references/review-checklist.md": ["Word、docx、GB/T 9704", "代码块和 `###`"],
+            },
+        },
+    ),
+    PromptCase(
+        id="P026",
+        kind="revise",
+        prompt="审一下这段是否 AI 味太重：意义重大、亮点纷呈、有关方面认为、未来可期、首先其次最后。",
+        checks={
+            "file_terms": {
+                "chinese-official-writing/references/anti-ai-patterns.md": [
+                    "公文表达结构风险",
+                    "夸大意义",
+                    "宣传腔",
+                    "模糊归因",
+                    "公式化未来展望",
+                    "同义词循环",
+                    "机械三段式",
+                    "过度抽象词互相解释",
+                    "不新增硬清洗",
+                ],
+            },
+        },
+    ),
+    PromptCase(
+        id="P027",
+        kind="revise",
+        prompt="两版材料里营业收入增速一个写 10%，一个写 12%，请合稿，不要默认就高，也不要自己选最优口径。",
+        checks={
+            "file_terms": {
+                "chinese-official-writing/references/workflow.md": [
+                    "数据冲突不得默认就高",
+                    "自选最优",
+                    "区间口径",
+                ],
+                "chinese-official-writing/references/review-checklist.md": ["未默认就高或自选最优"],
+            },
+        },
+    ),
 ]
 
 

@@ -11,9 +11,10 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 CANONICAL = ROOT / "chinese-official-writing"
-VERSION = "1.3.3"
+VERSION = "1.4.0"
 ROOT_README = ROOT / "README.md"
 OPENCLAW_MARKETPLACE_README = ROOT / "openclaw" / "marketplace-readme.md"
+OPENCLAW_README = ROOT / "openclaw" / "README.md"
 OPENCLAW_SKILL_CARD = ROOT / "openclaw" / "skill-card.md"
 CLAUDE_PLUGIN_MANIFEST = ROOT / ".claude-plugin" / "plugin.json"
 
@@ -82,12 +83,15 @@ def patch_openclaw_marketplace_body(target: Path) -> None:
 2. 文种判断以官方规范和 `references/genre-routing.md` 为准；社区模板不得替代文种功能。
 3. 起草前按 `references/handling-elements.md` 核对发文主体、受文对象、事项、依据、时限、责任、附件、反馈渠道和请批事项。
 4. 成文时按 `references/argument-chains.md` 组织段落，每段服务一个论点，通常按“结论前置、事实支撑、判断归纳、事项落点”展开。
-5. 起草或改写输出正式正文；审稿或复核输出问题位置、风险层级和修改建议；压缩或顺稿输出改后正文和极简改动说明。
-6. 从发文单位、报告单位、项目单位或主管单位视角写，不使用旁观者、教师或评论员口吻。
-7. 数据和判断要可追溯；不编造实际数据，测算和预估必须标明性质。
-8. 起草算力、采购、租赁或服务器租赁材料时，论证重点放在需求来源、Token/资源换算、成本比较、SLA、并发、安全、交付和验收。
-9. 最终正文不得残留 `〔签发日期〕`、`〔会议时间〕`、`〔待补充〕`、`[具体项目名称]`、`XXXX万元`、`YYYY年MM月DD日`、`（签发日期）` 等未完成占位；缺项在正文外提示用户确认。当前日期只可用于草稿落款，不得替代维护时间、会议时间、实施期限、政策依据或业务数据。
-10. 检查 `.txt`、`.md` 或 `.docx` 草稿时，可使用 `scripts/prose_lint.py`。脚本只提示风险，不自动改写。
+5. 起草、改稿、复核、排版交付先按 `references/workflow.md` 判定任务模式；用户已有提纲、模板、标题顺序时优先保留，不把确认流程变成默认阻断。
+6. 多材料合稿按 `references/workflow.md` 区分原文已有事实、压实合并表达和待确认补充；数据冲突不得默认就高或自选最优。
+7. 起草或改写输出正式正文；审稿或复核输出问题位置、风险层级和修改建议；压缩或顺稿输出改后正文和极简改动说明。
+8. 从发文单位、报告单位、项目单位或主管单位视角写，不使用旁观者、教师或评论员口吻。
+9. 数据和判断要可追溯；不编造实际数据，测算和预估必须标明性质。
+10. 起草算力、采购、租赁或服务器租赁材料时，论证重点放在需求来源、Token/资源换算、成本比较、SLA、并发、安全、交付和验收。
+11. 用户要求 Word、docx、GB/T 9704、红头、发文字号、版记时，先按 `references/format-gbt9704.md` 做内容与要素核对，再交给 DOCX/document 技能或现有文档工具；不得编造文号、签发人、印章等要素。
+12. 最终正文不得残留 `〔签发日期〕`、`〔会议时间〕`、`〔待补充〕`、`[具体项目名称]`、`XXXX万元`、`YYYY年MM月DD日`、`（签发日期）` 等未完成占位；缺项在正文外提示用户确认。当前日期只可用于草稿落款，不得替代维护时间、会议时间、实施期限、政策依据或业务数据。
+13. 正式 Word 输出前不得残留 Markdown `**`、代码块或标题井号；检查 `.txt`、`.md` 或 `.docx` 草稿时，可使用 `scripts/prose_lint.py`。脚本只提示风险，不自动改写。
 """
     skill_file.write_text(f"---{parts[1]}---\n\n{readme}{agent_rules}", encoding="utf-8")
 
@@ -105,6 +109,17 @@ def update_claude_plugin_manifest() -> None:
 
 def update_root_readme() -> None:
     ROOT_README.write_text(versioned_text(ROOT_README.read_text(encoding="utf-8")), encoding="utf-8")
+
+
+def update_openclaw_readme_sources() -> None:
+    OPENCLAW_MARKETPLACE_README.write_text(
+        versioned_text(OPENCLAW_MARKETPLACE_README.read_text(encoding="utf-8")),
+        encoding="utf-8",
+    )
+    OPENCLAW_README.write_text(
+        versioned_text(OPENCLAW_README.read_text(encoding="utf-8")),
+        encoding="utf-8",
+    )
 
 
 def update_openclaw_skill_card_source() -> None:
@@ -132,6 +147,8 @@ def copy_skill(target: Path, mode: str) -> None:
 def main() -> int:
     if not (CANONICAL / "SKILL.md").exists():
         raise SystemExit(f"missing canonical skill: {CANONICAL}")
+    update_openclaw_readme_sources()
+    print("synced openclaw README sources")
     for mode, target in TARGETS.items():
         copy_skill(target, mode)
         print(f"synced {target.relative_to(ROOT)}")

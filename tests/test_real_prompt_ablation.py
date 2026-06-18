@@ -48,6 +48,11 @@ class RealPromptAblationTests(unittest.TestCase):
         self.assertIn("clean corpus", prompts)
         self.assertIn("真实模型", prompts)
         self.assertIn("镜像不能静默分叉", prompts)
+        self.assertIn("食品安全专项检查情况报告", prompts)
+        self.assertIn("三个人写的年度总结材料", prompts)
+        self.assertIn("GB/T 9704 排成 Word", prompts)
+        self.assertIn("意义重大、亮点纷呈", prompts)
+        self.assertIn("不要默认就高", prompts)
 
     def test_current_skill_passes_real_prompt_cases(self) -> None:
         rows = real_prompt_eval.evaluate_root(ROOT, "current_test")
@@ -88,6 +93,11 @@ class RealPromptAblationTests(unittest.TestCase):
             "test_primary_adapter_mirrors_match_canonical_bytes",
             checks_by_id["P022"]["file_terms"]["tests/test_skill_boundary.py"],
         )
+        self.assertIn("任务模式路由", checks_by_id["P023"]["file_terms"]["chinese-official-writing/SKILL.md"])
+        self.assertIn("压实合并表达", checks_by_id["P024"]["file_terms"]["chinese-official-writing/references/workflow.md"])
+        self.assertIn("Word/排版交付衔接", checks_by_id["P025"]["file_terms"]["chinese-official-writing/references/format-gbt9704.md"])
+        self.assertIn("夸大意义", checks_by_id["P026"]["file_terms"]["chinese-official-writing/references/anti-ai-patterns.md"])
+        self.assertIn("数据冲突不得默认就高", checks_by_id["P027"]["file_terms"]["chinese-official-writing/references/workflow.md"])
 
     def test_heading_lock_detects_added_subheading(self) -> None:
         before = """一、整改进展

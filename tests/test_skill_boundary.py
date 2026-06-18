@@ -159,22 +159,32 @@ class SkillBoundaryTests(unittest.TestCase):
         skill = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
         sync_script = (ROOT / "tools" / "sync_adapters.py").read_text(encoding="utf-8")
         readme = (ROOT / "README.md").read_text(encoding="utf-8")
+        openclaw_readme = (ROOT / "openclaw" / "README.md").read_text(encoding="utf-8")
+        marketplace_readme = (ROOT / "openclaw" / "marketplace-readme.md").read_text(encoding="utf-8")
         skill_card = (ROOT / "openclaw" / "skill-card.md").read_text(encoding="utf-8")
 
         skill_version = re.search(r'version: "([^"]+)"', skill)
         sync_version = re.search(r'VERSION = "([^"]+)"', sync_script)
         readme_version = re.search(r"chinese-official-writing@(\d+\.\d+\.\d+)", readme)
+        openclaw_publish_version = re.search(r"--version\s+(\d+\.\d+\.\d+)", openclaw_readme)
+        marketplace_version = re.search(r"chinese-official-writing@(\d+\.\d+\.\d+)", marketplace_readme)
         skill_card_version = re.search(r"^(\d+\.\d+\.\d+) \(source: server release metadata", skill_card, re.M)
 
         self.assertIsNotNone(skill_version)
         self.assertIsNotNone(sync_version)
         self.assertIsNotNone(readme_version)
+        self.assertIsNotNone(openclaw_publish_version)
+        self.assertIsNotNone(marketplace_version)
         self.assertIsNotNone(skill_card_version)
         self.assertEqual(manifest["version"], skill_version.group(1))
         self.assertEqual(manifest["version"], sync_version.group(1))
         self.assertEqual(manifest["version"], readme_version.group(1))
+        self.assertEqual(manifest["version"], openclaw_publish_version.group(1))
+        self.assertEqual(manifest["version"], marketplace_version.group(1))
         self.assertEqual(manifest["version"], skill_card_version.group(1))
         self.assertIn("ROOT_README", sync_script)
+        self.assertIn("OPENCLAW_README", sync_script)
+        self.assertIn("OPENCLAW_MARKETPLACE_README", sync_script)
         self.assertIn("OPENCLAW_SKILL_CARD", sync_script)
 
     def test_lint_strict_fail_on_is_documented(self) -> None:
@@ -195,6 +205,53 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assertIn("不新增原文没有交代的活动、依据、数据、成效或责任安排", workflow)
         self.assertIn("未新增原文外事实", workflow)
         self.assertIn("未新增原文外事实", checklist)
+
+    def test_v140_mode_routing_material_mapping_and_format_bridge_are_documented(self) -> None:
+        skill = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
+        workflow = (ROOT / "chinese-official-writing" / "references" / "workflow.md").read_text(encoding="utf-8")
+        checklist = (ROOT / "chinese-official-writing" / "references" / "review-checklist.md").read_text(
+            encoding="utf-8"
+        )
+        anti_ai = (ROOT / "chinese-official-writing" / "references" / "anti-ai-patterns.md").read_text(
+            encoding="utf-8"
+        )
+        format_ref = (ROOT / "chinese-official-writing" / "references" / "format-gbt9704.md").read_text(
+            encoding="utf-8"
+        )
+
+        for text in [skill, workflow]:
+            self.assertIn("任务模式路由", text)
+            self.assertIn("起草", text)
+            self.assertIn("改稿", text)
+            self.assertIn("复核", text)
+            self.assertIn("排版交付", text)
+        self.assertIn("原文已有事实", workflow)
+        self.assertIn("压实合并表达", workflow)
+        self.assertIn("待确认补充", workflow)
+        self.assertIn("数据冲突不得默认就高", workflow)
+        self.assertIn("空章节不直接编实", workflow)
+        self.assertIn("原文已有事实", checklist)
+        self.assertIn("未默认就高或自选最优", checklist)
+        for term in ["夸大意义", "宣传腔", "模糊归因", "公式化未来展望", "同义词循环", "机械三段式", "过度抽象词互相解释"]:
+            self.assertIn(term, anti_ai)
+        self.assertIn("不新增硬清洗", anti_ai)
+        self.assertIn("Word/排版交付衔接", format_ref)
+        self.assertIn("DOCX/document 技能", format_ref)
+        self.assertIn("不得编造文号", format_ref)
+        self.assertIn("Markdown `**加粗**`", format_ref)
+
+    def test_openclaw_agent_rules_include_v140_routing_and_format_bridge(self) -> None:
+        text = (ROOT / "openclaw" / "skills" / "chinese_official_writing" / "SKILL.md").read_text(
+            encoding="utf-8"
+        )
+
+        self.assertIn("任务模式", text)
+        self.assertIn("references/workflow.md", text)
+        self.assertIn("原文已有事实", text)
+        self.assertIn("待确认补充", text)
+        self.assertIn("数据冲突不得默认就高", text)
+        self.assertIn("references/format-gbt9704.md", text)
+        self.assertIn("正式 Word 输出前不得残留 Markdown", text)
 
     def test_openclaw_skill_card_source_is_tracked_but_not_packaged_directly(self) -> None:
         source = (ROOT / "openclaw" / "skill-card.md").read_text(encoding="utf-8")
