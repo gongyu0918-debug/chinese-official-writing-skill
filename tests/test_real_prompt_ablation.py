@@ -61,6 +61,8 @@ class RealPromptAblationTests(unittest.TestCase):
         self.assertIn("不要自动搜索单位风格", prompts)
         self.assertIn("清理网页元信息", prompts)
         self.assertIn("被印发方案第二部分", prompts)
+        self.assertIn("压缩到500字以内", prompts)
+        self.assertIn("多个责任主体不要压成笼统的有关单位", prompts)
 
     def test_current_skill_passes_real_prompt_cases(self) -> None:
         rows = real_prompt_eval.evaluate_root(ROOT, "current_test")
@@ -114,6 +116,8 @@ class RealPromptAblationTests(unittest.TestCase):
         self.assertIn("只出现单位名称", checks_by_id["P033"]["file_terms"]["chinese-official-writing/references/workflow.md"])
         self.assertIn("通知壳", checks_by_id["P034"]["file_terms"]["chinese-official-writing/SKILL.md"])
         self.assertIn("被印发文件正文", checks_by_id["P034"]["file_terms"]["chinese-official-writing/references/workflow.md"])
+        self.assertIn("不可丢要素", checks_by_id["P035"]["file_terms"]["chinese-official-writing/references/workflow.md"])
+        self.assertIn("多主体分工", checks_by_id["P035"]["file_terms"]["chinese-official-writing/references/review-checklist.md"])
 
     def test_heading_lock_detects_added_subheading(self) -> None:
         before = """一、整改进展

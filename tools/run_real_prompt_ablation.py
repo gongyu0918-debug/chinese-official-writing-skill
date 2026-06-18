@@ -513,6 +513,29 @@ CASES: list[PromptCase] = [
             },
         },
     ),
+    PromptCase(
+        id="P035",
+        kind="revise",
+        prompt="把一份很长的通知压缩到500字以内，但原文里的责任单位、办理期限、附件、联系人、反馈渠道和具体数字不能丢；多个责任主体不要压成笼统的有关单位。",
+        checks={
+            "file_terms": {
+                "chinese-official-writing/SKILL.md": ["压缩长文", "主体、对象、数字、期限、责任、附件、联系人和反馈渠道"],
+                "chinese-official-writing/references/workflow.md": [
+                    "长文缩写",
+                    "不可丢要素",
+                    "责任单位",
+                    "反馈渠道",
+                    "不把明确分工压成",
+                ],
+                "chinese-official-writing/references/review-checklist.md": [
+                    "长文缩写",
+                    "责任单位",
+                    "反馈渠道",
+                    "多主体分工",
+                ],
+            },
+        },
+    ),
 ]
 
 
