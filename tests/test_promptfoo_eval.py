@@ -179,6 +179,29 @@ class PromptfooProviderTests(unittest.TestCase):
                 refs = provider._reference_paths_for_genres([genre])
                 self.assertIn("references/ai-compute-docs.md", refs)
 
+    def test_reply_letter_stub_satisfies_common_hard_rule(self) -> None:
+        scenarios = [
+            "报送材料",
+            "专项启动",
+            "阶段进展",
+            "情况补充",
+            "协同联调",
+            "年度安排",
+            "整改复核",
+            "征求意见",
+            "验收归档",
+            "运行优化",
+        ]
+        for scenario in scenarios:
+            with self.subTest(scenario=scenario):
+                case = {"vars": {"case_id": "C071", "genre": "复函", "scenario": scenario}}
+                draft = provider._stub_draft("skill", case)
+                scored = grader.score_text(draft, case["vars"])
+
+                self.assertTrue(scored["hard_rule_pass"])
+                self.assertNotIn("reply_letter_missing_receipt_or_reply", scored["hard_rule_failures"])
+                self.assertTrue(scored["required_elements"]["pass"])
+
 
 if __name__ == "__main__":
     unittest.main()

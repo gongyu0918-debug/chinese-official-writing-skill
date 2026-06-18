@@ -422,6 +422,12 @@ def _stub_draft(mode: str, case: dict[str, Any]) -> str:
             "主要问题集中在数据口径、协同流程和归档标准不够统一。下一步将完善台账管理，"
             "按节点推进整改复核和成果归档。"
         )
+    if genre == "复函":
+        return (
+            f"关于{scenario}事项的来函收悉。经研究，现函复如下：请按既定程序明确材料范围、"
+            "办理条件、责任分工和反馈时限，同步说明联系人、附件依据和后续管理要求；"
+            "涉及数据口径和结果报送的，请留存核验记录，便于后续沟通。"
+        )
     return (
         f"现就{scenario}有关事项作出安排。请相关单位对照{genre}办理要求，明确责任分工、材料清单、"
         "反馈时限和联系人，按程序完成资料核验、过程记录和结果报送。涉及附件、数据和后续管理的，"
@@ -444,7 +450,7 @@ def _cache_key(mode: str, cases: list[dict[str, Any]], config: dict[str, Any]) -
         "cases": [case.get("vars", {}) for case in cases],
         "refs": refs,
         "ref_hashes": ref_hashes,
-        "provider_version": 3,
+        "provider_version": 4,
         "stub": _use_stub(config),
         "command_configured": bool(_agent_command_template(config)),
     }
