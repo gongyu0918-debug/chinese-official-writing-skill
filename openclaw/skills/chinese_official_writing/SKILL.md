@@ -10,7 +10,7 @@ tags:
   - gongwen
   - ai-compute
 metadata:
-  version: "1.4.5"
+  version: "1.4.6"
   compatible_agents:
     - codex
     - claude-code
@@ -28,7 +28,7 @@ metadata:
     invocation: "/skill:chinese-official-writing"
     entry: "SKILL.md"
   openclaw:
-    version: "1.4.5"
+    version: "1.4.6"
     emoji: "📝"
     tags:
       - chinese
@@ -62,7 +62,7 @@ openclaw skills install chinese-official-writing
 其他平台如 Codex、Claude Code、Hermes、deepseek-tui 的安装 Prompt，请看 GitHub 仓库 README：
 https://github.com/gongyu0918-debug/chinese-official-writing-skill
 
-当前版本：`chinese-official-writing@1.4.5`
+当前版本：`chinese-official-writing@1.4.6`
 
 ClawHub 页面只展示摘要；安装包内的 `SKILL.md` 和 `references/` 保留完整规则、硬边界和复核清单。
 
@@ -131,7 +131,7 @@ MIT-0
 2. 文种判断以官方规范和 `references/genre-routing.md` 为准；社区模板不得替代文种功能。
 3. 起草前按 `references/handling-elements.md` 核对发文主体、受文对象、事项、依据、时限、责任、附件、反馈渠道和请批事项。
 4. 成文时按 `references/argument-chains.md` 组织段落，每段服务一个论点，通常按“结论前置、事实支撑、判断归纳、事项落点”展开。
-5. 起草、改稿、复核、排版交付先按 `references/workflow.md` 判定任务模式；用户已有提纲、模板、标题顺序时优先保留；事实不足时先完成可用正文，再在正文后列待确认事项或可补充后更完整的关键事实，不在正文前中断成稿或连续追问；后续轮次用户未补齐事实时仍继续执行本轮修改，不把待确认事项升级为阻断条件。
+5. 起草、改稿、复核、排版交付先按 `references/workflow.md` 判定任务模式；用户已有提纲、模板、标题顺序时优先保留；事实不足时先完成可用正文，再在正文后列待确认事项或“补充以下信息后，文章会更完整”，不在正文前中断成稿或连续追问；后续轮次用户未补齐事实时仍继续执行本轮修改，不把待确认事项升级为阻断条件。
 6. 多材料合稿按 `references/workflow.md` 区分原文已有事实、压实合并表达和待确认补充；数据冲突不得默认就高或自选最优。
 7. 起草或改写输出正式正文；用户要求检查、审一下、格式核验或语气检查时，审稿或复核输出问题位置、风险层级和修改建议，不默认重写全文，不做 0-100 分评分。
 8. 从发文单位、报告单位、项目单位或主管单位视角写，不使用旁观者、教师或评论员口吻。

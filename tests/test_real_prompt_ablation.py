@@ -142,6 +142,7 @@ class RealPromptAblationTests(unittest.TestCase):
         self.assertIn("事实不足不作为默认中断理由", checks_by_id["P043"]["file_terms"]["chinese-official-writing/SKILL.md"])
         self.assertIn("不在正文前中断成稿", checks_by_id["P043"]["file_terms"]["chinese-official-writing/references/workflow.md"])
         self.assertIn("未做调查问卷式问题清单", checks_by_id["P043"]["file_terms"]["chinese-official-writing/references/review-checklist.md"])
+        self.assertIn("补充以下信息后，文章会更完整", checks_by_id["P043"]["file_terms"]["chinese-official-writing/SKILL.md"])
         self.assertIn(
             "事实补足建议只列影响文种功能或执行落地的关键缺口",
             checks_by_id["P044"]["file_terms"]["chinese-official-writing/SKILL.md"],

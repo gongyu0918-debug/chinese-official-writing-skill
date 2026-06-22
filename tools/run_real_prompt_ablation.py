@@ -715,7 +715,7 @@ CASES: list[PromptCase] = [
                 "chinese-official-writing/SKILL.md": [
                     "事实不足不作为默认中断理由",
                     "先完成可用正文",
-                    "可补充后更完整的关键事实",
+                    "补充以下信息后，文章会更完整",
                     "不要做调查问卷式问题清单",
                 ],
                 "chinese-official-writing/references/workflow.md": [
@@ -728,7 +728,7 @@ CASES: list[PromptCase] = [
                 ],
                 "chinese-official-writing/references/review-checklist.md": [
                     "未在正文前中断成稿或连续追问",
-                    "可补充后更完整的关键事实",
+                    "补充以下信息后，文章会更完整",
                     "未做调查问卷式问题清单",
                 ],
             },
