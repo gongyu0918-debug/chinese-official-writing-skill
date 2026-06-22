@@ -75,6 +75,11 @@ class RealPromptAblationTests(unittest.TestCase):
         self.assertIn("不要把增删论点、扩写细节列成我的义务", prompts)
         self.assertIn("不要因为我没补信息就追问或停止修改", prompts)
         self.assertIn("不要因为要成稿就自行写", prompts)
+        self.assertIn("正文后给一个核对卡", prompts)
+        self.assertIn("旧版金额、旧主送和旧政策口号不要回流", prompts)
+        self.assertIn("只审空话套话，不重写全文", prompts)
+        self.assertIn("不要补责任部门、督办安排或处理进展", prompts)
+        self.assertIn("必须标明每处具体位置", prompts)
 
     def test_current_skill_passes_real_prompt_cases(self) -> None:
         rows = real_prompt_eval.evaluate_root(ROOT, "current_test")
@@ -156,6 +161,21 @@ class RealPromptAblationTests(unittest.TestCase):
         self.assertIn("能够正常开展", checks_by_id["P046"]["file_terms"]["chinese-official-writing/SKILL.md"])
         self.assertIn("结论口径列入正文外待确认", checks_by_id["P046"]["file_terms"]["chinese-official-writing/references/workflow.md"])
         self.assertIn("事实强判断", checks_by_id["P046"]["file_terms"]["chinese-official-writing/references/review-checklist.md"])
+        self.assertIn("正式交付前要素核对卡", checks_by_id["P047"]["file_terms"]["chinese-official-writing/references/format-gbt9704.md"])
+        self.assertIn("不因缺这些正式要素阻断成稿", checks_by_id["P047"]["file_terms"]["chinese-official-writing/references/format-gbt9704.md"])
+        self.assertIn("优先只列用户点名缺项", checks_by_id["P047"]["file_terms"]["chinese-official-writing/references/format-gbt9704.md"])
+        self.assertIn("未扩展成长清单", checks_by_id["P047"]["file_terms"]["chinese-official-writing/references/review-checklist.md"])
+        self.assertIn("不把旧金额、旧主送、旧落款、旧政策口号或旧结论带回最新版正文", checks_by_id["P048"]["file_terms"]["chinese-official-writing/references/workflow.md"])
+        self.assertIn("修改模式是否以最新版底稿为主线", checks_by_id["P048"]["file_terms"]["chinese-official-writing/references/review-checklist.md"])
+        self.assertIn("审稿时看成簇问题", checks_by_id["P049"]["file_terms"]["chinese-official-writing/references/anti-ai-patterns.md"])
+        self.assertIn("单个正式词或单个转折不作为硬清洗理由", checks_by_id["P049"]["file_terms"]["chinese-official-writing/references/official-style.md"])
+        self.assertIn(
+            "不为显得完整而补造牵头部门、责任部门、管理动作、整改动作、成果总结、跟踪督办、后续处理进展",
+            checks_by_id["P050"]["file_terms"]["chinese-official-writing/references/workflow.md"],
+        )
+        self.assertIn("正式化新增事实", checks_by_id["P050"]["file_terms"]["chinese-official-writing/references/review-checklist.md"])
+        self.assertIn("优先逐项引用原文短语或句子", checks_by_id["P051"]["file_terms"]["chinese-official-writing/references/review-checklist.md"])
+        self.assertIn("整体归纳可放在逐项意见之后", checks_by_id["P051"]["file_terms"]["chinese-official-writing/references/anti-ai-patterns.md"])
 
     def test_heading_lock_detects_added_subheading(self) -> None:
         before = """一、整改进展

@@ -403,6 +403,56 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assertIn("事实强判断", checklist)
         self.assertIn("总体较好", checklist)
 
+    def test_v147_minimal_borrowing_rules_stay_soft_and_prompt_based(self) -> None:
+        skill = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
+        workflow = (ROOT / "chinese-official-writing" / "references" / "workflow.md").read_text(encoding="utf-8")
+        checklist = (ROOT / "chinese-official-writing" / "references" / "review-checklist.md").read_text(
+            encoding="utf-8"
+        )
+        format_ref = (ROOT / "chinese-official-writing" / "references" / "format-gbt9704.md").read_text(
+            encoding="utf-8"
+        )
+        anti_ai = (ROOT / "chinese-official-writing" / "references" / "anti-ai-patterns.md").read_text(
+            encoding="utf-8"
+        )
+        official_style = (ROOT / "chinese-official-writing" / "references" / "official-style.md").read_text(
+            encoding="utf-8"
+        )
+
+        self.assertIn("正式交付前要素核对卡", skill)
+        self.assertIn("正式交付前要素核对卡", format_ref)
+        self.assertIn("不因缺这些正式要素阻断成稿", format_ref)
+        self.assertIn("发文机关", format_ref)
+        self.assertIn("印章或签署信息", format_ref)
+        self.assertIn("优先只列用户点名缺项", format_ref)
+        self.assertIn("其他正式要素按单位模板另行核对", format_ref)
+        self.assertIn("核对卡优先只列这些点名要素", skill)
+        self.assertIn("未变成正文占位", checklist)
+        self.assertIn("未扩展成长清单", checklist)
+
+        self.assertIn("修改模式只以用户最新版底稿", skill)
+        self.assertIn("不自动回流为正文事实", skill)
+        self.assertIn("旧稿、参考样文、过往材料和公开网页材料", workflow)
+        self.assertIn("不把旧金额、旧主送、旧落款、旧政策口号或旧结论带回最新版正文", workflow)
+        self.assertIn("修改模式是否以最新版底稿为主线", checklist)
+
+        self.assertIn("成簇问题", skill)
+        self.assertIn("不因单个正式词、单个转折或一次排比就硬清洗", skill)
+        self.assertIn("审稿时看成簇问题", anti_ai)
+        self.assertIn("单独出现 `高度重视`", anti_ai)
+        self.assertIn("不足以判为 AI 味或套话", anti_ai)
+        self.assertIn("保留公文必要的正式语气", anti_ai)
+        self.assertIn("去 AI 味或语气审稿应匹配文体", official_style)
+        self.assertIn("不为了显得像人写而加入第一人称", official_style)
+        self.assertIn("单个正式词或单个转折不作为硬清洗理由", official_style)
+        self.assertIn("不得为显得完整而补造未提供的牵头部门、责任部门、管理动作、整改动作、成果总结或跟踪督办安排", skill)
+        self.assertIn("不为显得完整而补造牵头部门、责任部门、管理动作、整改动作、成果总结、跟踪督办、后续处理进展", workflow)
+        self.assertIn("正式化新增事实", checklist)
+        self.assertIn("正式化改写只压实原文已有事实", official_style)
+        self.assertIn("用户要求“位置”时，优先逐项引用原文短语或句子", skill)
+        self.assertIn("未只给笼统段落评价", checklist)
+        self.assertIn("整体归纳可放在逐项意见之后", anti_ai)
+
     def test_openclaw_agent_rules_include_v140_routing_and_format_bridge(self) -> None:
         text = (ROOT / "openclaw" / "skills" / "chinese_official_writing" / "SKILL.md").read_text(
             encoding="utf-8"

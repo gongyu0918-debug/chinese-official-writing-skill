@@ -826,6 +826,129 @@ CASES: list[PromptCase] = [
             },
         },
     ),
+    PromptCase(
+        id="P047",
+        kind="create",
+        prompt="先帮我写正文，后续再补文号、签发人和版记；不要因为正式 Word 要素没齐就停下追问，正文后给一个核对卡即可。",
+        checks={
+            "file_terms": {
+                "chinese-official-writing/SKILL.md": [
+                    "正式交付前要素核对卡",
+                    "事实不足不作为默认中断理由",
+                    "核对卡优先只列这些点名要素",
+                ],
+                "chinese-official-writing/references/format-gbt9704.md": [
+                    "正式交付前要素核对卡",
+                    "不因缺这些正式要素阻断成稿",
+                    "发文机关",
+                    "印章或签署信息",
+                    "内部模板、企业模板或用户指定格式",
+                    "优先只列用户点名缺项",
+                    "其他正式要素按单位模板另行核对",
+                ],
+                "chinese-official-writing/references/review-checklist.md": [
+                    "正式交付前要素核对卡",
+                    "发文机关",
+                    "印章或签署信息",
+                    "未变成正文占位",
+                    "未扩展成长清单",
+                ],
+            },
+        },
+    ),
+    PromptCase(
+        id="P048",
+        kind="revise",
+        prompt="这是最新版申请，另附旧版申请和一篇参考样文；请只按最新版改写，旧版金额、旧主送和旧政策口号不要回流。",
+        checks={
+            "file_terms": {
+                "chinese-official-writing/SKILL.md": [
+                    "修改模式只以用户最新版底稿",
+                    "不自动回流为正文事实",
+                ],
+                "chinese-official-writing/references/workflow.md": [
+                    "旧稿、参考样文、过往材料和公开网页材料",
+                    "不把旧金额、旧主送、旧落款、旧政策口号或旧结论带回最新版正文",
+                    "参考材料只可影响结构检查、语气尺度或缺项提示",
+                ],
+                "chinese-official-writing/references/review-checklist.md": [
+                    "修改模式是否以最新版底稿为主线",
+                    "旧金额、旧主送、旧落款、旧政策口号或旧结论",
+                ],
+            },
+        },
+    ),
+    PromptCase(
+        id="P049",
+        kind="revise",
+        prompt="只审空话套话，不重写全文：各单位高度重视，扎实推进整改，持续完善机制；请给位置、风险层级和建议。",
+        checks={
+            "file_terms": {
+                "chinese-official-writing/SKILL.md": [
+                    "成簇问题",
+                    "不因单个正式词、单个转折或一次排比就硬清洗",
+                ],
+                "chinese-official-writing/references/anti-ai-patterns.md": [
+                    "审稿时看成簇问题",
+                    "单独出现 `高度重视`",
+                    "不足以判为 AI 味或套话",
+                    "位置、风险层级和修改建议",
+                    "不默认重写全文",
+                    "保留公文必要的正式语气",
+                ],
+                "chinese-official-writing/references/official-style.md": [
+                    "去 AI 味或语气审稿应匹配文体",
+                    "不为了显得像人写而加入第一人称",
+                    "检查时看成簇问题",
+                    "单个正式词或单个转折不作为硬清洗理由",
+                ],
+            },
+        },
+    ),
+    PromptCase(
+        id="P050",
+        kind="revise",
+        prompt="把这段顺成正式报告，但不要新增事实：我们检查了系统，发现日志备份不及时，后面继续盯；不要补责任部门、督办安排或处理进展。",
+        checks={
+            "file_terms": {
+                "chinese-official-writing/SKILL.md": [
+                    "不得为显得完整而补造未提供的牵头部门、责任部门、管理动作、整改动作、成果总结或跟踪督办安排",
+                ],
+                "chinese-official-writing/references/workflow.md": [
+                    "不为显得完整而补造牵头部门、责任部门、管理动作、整改动作、成果总结、跟踪督办、后续处理进展",
+                    "原文未给事实",
+                ],
+                "chinese-official-writing/references/review-checklist.md": [
+                    "正式化新增事实",
+                    "牵头部门、责任部门、管理动作、整改动作、成果总结、跟踪督办、后续处理进展",
+                ],
+                "chinese-official-writing/references/official-style.md": [
+                    "正式化改写只压实原文已有事实",
+                    "不要为了让句子更正式而补入原文没有的组织名称",
+                ],
+            },
+        },
+    ),
+    PromptCase(
+        id="P051",
+        kind="revise",
+        prompt="只审空话套话，不重写全文；必须标明每处具体位置，不要只给整段整体评价。",
+        checks={
+            "file_terms": {
+                "chinese-official-writing/SKILL.md": [
+                    "用户要求“位置”时，优先逐项引用原文短语或句子",
+                ],
+                "chinese-official-writing/references/review-checklist.md": [
+                    "优先逐项引用原文短语或句子",
+                    "未只给笼统段落评价",
+                ],
+                "chinese-official-writing/references/anti-ai-patterns.md": [
+                    "先逐项引用原文短语或句子",
+                    "整体归纳可放在逐项意见之后",
+                ],
+            },
+        },
+    ),
 ]
 
 
