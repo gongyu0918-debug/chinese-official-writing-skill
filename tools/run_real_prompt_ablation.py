@@ -536,6 +536,176 @@ CASES: list[PromptCase] = [
             },
         },
     ),
+    PromptCase(
+        id="P036",
+        kind="create",
+        prompt="起草推进政务数据共享通知，政策依据、截止时间、联系人和反馈渠道都没给；不要外搜，也不要写成“指定渠道”“截止时间前”，缺项放正文外待确认。",
+        checks={
+            "file_terms": {
+                "chinese-official-writing/SKILL.md": [
+                    "截止时间",
+                    "反馈渠道",
+                    "泛占位",
+                    "指定渠道",
+                    "联系人沟通",
+                    "缺项说明",
+                ],
+                "chinese-official-writing/references/workflow.md": [
+                    "缺失事实处理提示",
+                    "指定渠道",
+                    "截止时间前",
+                    "联系人沟通",
+                    "缺项说明写进正文",
+                ],
+                "chinese-official-writing/references/review-checklist.md": [
+                    "缺项边界",
+                    "正文泛占位",
+                    "缺项说明位置",
+                ],
+            },
+        },
+    ),
+    PromptCase(
+        id="P037",
+        kind="revise",
+        prompt="顺一下字段式培训费用申请，只新增“报销凭证”字段但我没给字段值；不要推断发票、票据、邮箱或日期，原字段顺序不动。",
+        checks={
+            "file_terms": {
+                "chinese-official-writing/SKILL.md": [
+                    "新增字段只有字段名",
+                    "字段顺序",
+                    "不推断",
+                ],
+                "chinese-official-writing/references/workflow.md": [
+                    "新增字段没有用户提供值",
+                    "只写字段名",
+                    "不推断发票、票据、邮箱、截止日期",
+                ],
+                "chinese-official-writing/references/review-checklist.md": [
+                    "字段值未知",
+                    "未推断发票、票据、邮箱、截止日期",
+                ],
+            },
+        },
+    ),
+    PromptCase(
+        id="P038",
+        kind="revise",
+        prompt="把通知压缩到260字以内，责任单位、办理期限、附件、联系人、反馈渠道和具体数字不能丢；如果做不到要说明取舍风险。",
+        checks={
+            "file_terms": {
+                "chinese-official-writing/SKILL.md": [
+                    "字数或篇幅上限",
+                    "字数自检",
+                    "5%-10% 余量",
+                ],
+                "chinese-official-writing/references/workflow.md": [
+                    "260 字",
+                    "去空行后的正文计数",
+                    "5%-10% 余量",
+                    "取舍风险",
+                ],
+                "chinese-official-writing/references/review-checklist.md": [
+                    "去空行后的正文计数",
+                    "避免静默超字数或贴线上限",
+                ],
+            },
+        },
+    ),
+    PromptCase(
+        id="P039",
+        kind="revise",
+        prompt="审一下这段是否空泛：相关问题已基本完成整改，形成长效机制，显著提升治理能力，未影响核心业务。",
+        checks={
+            "file_terms": {
+                "chinese-official-writing/SKILL.md": [
+                    "抽象词和评价强度要落到证据",
+                    "显著",
+                    "长效",
+                ],
+                "chinese-official-writing/references/official-style.md": [
+                    "评价强度",
+                    "相关问题已基本完成整改",
+                    "未影响核心业务",
+                ],
+                "chinese-official-writing/references/anti-ai-patterns.md": [
+                    "评价强度超过证据",
+                    "基本完成整改",
+                    "形成长效机制",
+                ],
+                "chinese-official-writing/references/review-checklist.md": [
+                    "证据强度",
+                    "显著、长效、全面、基本完成、未影响",
+                ],
+            },
+        },
+    ),
+    PromptCase(
+        id="P040",
+        kind="create",
+        prompt="用户明确要求核验现行政策后起草通知；请把来源名称、发布机关、文号或链接、发布日期、访问日期和用于哪一段放正文外。",
+        checks={
+            "file_terms": {
+                "chinese-official-writing/references/workflow.md": [
+                    "来源名称",
+                    "发布机关或发布主体",
+                    "文号或链接",
+                    "用于哪一处",
+                    "是否已核验",
+                ],
+                "chinese-official-writing/references/review-checklist.md": [
+                    "搜索来源清单",
+                    "发布机关或主体",
+                    "单一网络来源",
+                ],
+            },
+        },
+    ),
+    PromptCase(
+        id="P041",
+        kind="revise",
+        prompt="用户要求正式 Word/docx 交付，但正文还没确认，文号、签发人、印章也没给；只做要素核对和另存，不借排版补写事实。",
+        checks={
+            "file_terms": {
+                "chinese-official-writing/references/format-gbt9704.md": [
+                    "正文内容已经定稿",
+                    "不要写成“已确认可作为 Word 稿基础”",
+                    "默认另存新版本",
+                    "不借排版补写政策依据、联系人、截止时间、签发人、文号、印章或版记",
+                    "避免把缺项改写成正文泛占位",
+                ],
+            },
+        },
+    ),
+    PromptCase(
+        id="P042",
+        kind="create",
+        prompt="写一份1500字以内的专项调研报告，要求有背景现状、问题原因、措施安排和结尾落点；不要为了限字只写开头，后半篇不能草草结束。",
+        checks={
+            "file_terms": {
+                "chinese-official-writing/SKILL.md": [
+                    "长篇限字稿件",
+                    "篇幅预算",
+                    "避免头重脚轻",
+                    "草草收尾",
+                ],
+                "chinese-official-writing/references/workflow.md": [
+                    "长篇限字稿件先做篇幅预算",
+                    "背景现状",
+                    "问题原因",
+                    "措施安排",
+                    "结尾落点",
+                    "后文草草收尾",
+                ],
+                "chinese-official-writing/references/review-checklist.md": [
+                    "长篇限字稿件",
+                    "开头、主体、措施和结尾",
+                    "头重脚轻",
+                    "压掉措施安排",
+                ],
+            },
+        },
+    ),
 ]
 
 

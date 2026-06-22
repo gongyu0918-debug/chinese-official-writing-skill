@@ -310,6 +310,60 @@ class SkillBoundaryTests(unittest.TestCase):
         for forbidden in ["search_units.py", "unit_style_cache.json", "unit-style-registry.md"]:
             self.assertNotIn(forbidden, skill_files)
 
+    def test_v144_common_real_writing_risks_and_adoption_gate_are_documented(self) -> None:
+        skill = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
+        workflow = (ROOT / "chinese-official-writing" / "references" / "workflow.md").read_text(encoding="utf-8")
+        checklist = (ROOT / "chinese-official-writing" / "references" / "review-checklist.md").read_text(
+            encoding="utf-8"
+        )
+        official_style = (ROOT / "chinese-official-writing" / "references" / "official-style.md").read_text(
+            encoding="utf-8"
+        )
+        anti_ai = (ROOT / "chinese-official-writing" / "references" / "anti-ai-patterns.md").read_text(
+            encoding="utf-8"
+        )
+        format_ref = (ROOT / "chinese-official-writing" / "references" / "format-gbt9704.md").read_text(
+            encoding="utf-8"
+        )
+        agents = (ROOT / "AGENTS.md").read_text(encoding="utf-8")
+
+        for text in [skill, workflow, checklist]:
+            self.assertIn("指定渠道", text)
+            self.assertIn("截止时间前", text)
+            self.assertIn("联系人沟通", text)
+        self.assertIn("缺失事实处理提示", workflow)
+        self.assertIn("正文泛占位", checklist)
+        self.assertIn("新增字段没有用户提供值", workflow)
+        self.assertIn("不推断发票、票据、邮箱、截止日期", workflow)
+        self.assertIn("字段值未知", checklist)
+        self.assertIn("字数自检", skill)
+        self.assertIn("5%-10% 余量", skill)
+        self.assertIn("去空行后的正文计数", workflow)
+        self.assertIn("5%-10% 余量", workflow)
+        self.assertIn("避免静默超字数", checklist)
+        self.assertIn("长篇限字稿件", skill)
+        self.assertIn("篇幅预算", workflow)
+        self.assertIn("背景现状", workflow)
+        self.assertIn("问题原因", workflow)
+        self.assertIn("措施安排", workflow)
+        self.assertIn("结尾落点", workflow)
+        self.assertIn("避免头重脚轻", skill)
+        self.assertIn("草草收尾", checklist)
+        self.assertIn("不要写成“已确认可作为 Word 稿基础”", format_ref)
+        self.assertIn("评价强度", official_style)
+        self.assertIn("评价强度超过证据", anti_ai)
+        self.assertIn("证据强度", checklist)
+        self.assertIn("来源名称、发布机关或发布主体、文号或链接", workflow)
+        self.assertIn("搜索来源清单", checklist)
+        self.assertIn("正文内容已经定稿", format_ref)
+        self.assertIn("默认另存新版本", format_ref)
+        for text in [skill, workflow, checklist, agents]:
+            self.assertIn("prompt/markdown", text)
+            self.assertTrue(
+                "不复制" in text or "不直接复制" in text or "未复制" in text or "不直接誊抄" in text or "禁止直接誊抄" in text
+            )
+        self.assertIn("禁止直接誊抄代码、脚本、正则、模板库、大段 prompt、固定话术或模板正文", agents)
+
     def test_openclaw_agent_rules_include_v140_routing_and_format_bridge(self) -> None:
         text = (ROOT / "openclaw" / "skills" / "chinese_official_writing" / "SKILL.md").read_text(
             encoding="utf-8"

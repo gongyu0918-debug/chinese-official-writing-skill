@@ -63,6 +63,14 @@ class RealPromptAblationTests(unittest.TestCase):
         self.assertIn("被印发方案第二部分", prompts)
         self.assertIn("压缩到500字以内", prompts)
         self.assertIn("多个责任主体不要压成笼统的有关单位", prompts)
+        self.assertIn("不要写成“指定渠道”“截止时间前”", prompts)
+        self.assertIn("只新增“报销凭证”字段", prompts)
+        self.assertIn("压缩到260字以内", prompts)
+        self.assertIn("形成长效机制，显著提升治理能力", prompts)
+        self.assertIn("来源名称、发布机关、文号或链接", prompts)
+        self.assertIn("正式 Word/docx 交付", prompts)
+        self.assertIn("专项调研报告", prompts)
+        self.assertIn("后半篇不能草草结束", prompts)
 
     def test_current_skill_passes_real_prompt_cases(self) -> None:
         rows = real_prompt_eval.evaluate_root(ROOT, "current_test")
@@ -118,6 +126,15 @@ class RealPromptAblationTests(unittest.TestCase):
         self.assertIn("被印发文件正文", checks_by_id["P034"]["file_terms"]["chinese-official-writing/references/workflow.md"])
         self.assertIn("不可丢要素", checks_by_id["P035"]["file_terms"]["chinese-official-writing/references/workflow.md"])
         self.assertIn("多主体分工", checks_by_id["P035"]["file_terms"]["chinese-official-writing/references/review-checklist.md"])
+        self.assertIn("缺失事实处理提示", checks_by_id["P036"]["file_terms"]["chinese-official-writing/references/workflow.md"])
+        self.assertIn("新增字段没有用户提供值", checks_by_id["P037"]["file_terms"]["chinese-official-writing/references/workflow.md"])
+        self.assertIn("字数自检", checks_by_id["P038"]["file_terms"]["chinese-official-writing/SKILL.md"])
+        self.assertIn("评价强度超过证据", checks_by_id["P039"]["file_terms"]["chinese-official-writing/references/anti-ai-patterns.md"])
+        self.assertIn("搜索来源清单", checks_by_id["P040"]["file_terms"]["chinese-official-writing/references/review-checklist.md"])
+        self.assertIn("不要写成“已确认可作为 Word 稿基础”", checks_by_id["P041"]["file_terms"]["chinese-official-writing/references/format-gbt9704.md"])
+        self.assertIn("长篇限字稿件", checks_by_id["P042"]["file_terms"]["chinese-official-writing/SKILL.md"])
+        self.assertIn("措施安排", checks_by_id["P042"]["file_terms"]["chinese-official-writing/references/workflow.md"])
+        self.assertIn("压掉措施安排", checks_by_id["P042"]["file_terms"]["chinese-official-writing/references/review-checklist.md"])
 
     def test_heading_lock_detects_added_subheading(self) -> None:
         before = """一、整改进展
