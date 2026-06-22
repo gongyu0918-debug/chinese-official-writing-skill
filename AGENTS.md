@@ -14,6 +14,8 @@
 
 `tools/run_real_prompt_ablation.py` 是发布级确定性消融工具，但它不调用 LLM，只能证明 skill 包、reference、lint 和评估入口具备相应支撑。它不能替代真实写稿实测。
 
+社区技能借鉴必须先设门禁。SkillHub、ClawHub、GitHub 或其他社区实现只作为思路和 prompt/markdown 写法参考，禁止直接誊抄代码、脚本、正则、模板库、大段 prompt 或固定话术。每个候选借鉴点都要满足本技能边界：不新增重排版引擎，不扩大默认联网，不默认强制确认，不破坏用户模板和字段式材料；落地前先归纳共性问题，落地后必须和上一基线做消融。
+
 涉及 `chinese-official-writing` 的版本 review、发布或回归判断时，必须同时做两类验证：
 
 1. **基线消融**：用 detached worktree 固定上一发行基线，只和上一基线比，不和 no-skill 混比。示例：
