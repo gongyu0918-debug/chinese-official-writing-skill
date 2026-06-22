@@ -331,7 +331,7 @@ class SkillBoundaryTests(unittest.TestCase):
             self.assertIn("指定渠道", text)
             self.assertIn("截止时间前", text)
             self.assertIn("联系人沟通", text)
-        self.assertIn("缺失事实处理提示", workflow)
+        self.assertIn("事实充分性软处理", workflow)
         self.assertIn("正文泛占位", checklist)
         self.assertIn("新增字段没有用户提供值", workflow)
         self.assertIn("不推断发票、票据、邮箱、截止日期", workflow)
@@ -363,6 +363,40 @@ class SkillBoundaryTests(unittest.TestCase):
                 "不复制" in text or "不直接复制" in text or "未复制" in text or "不直接誊抄" in text or "禁止直接誊抄" in text
             )
         self.assertIn("禁止直接誊抄代码、脚本、正则、模板库、大段 prompt、固定话术或模板正文", agents)
+
+    def test_fact_sufficiency_guidance_is_soft_and_non_blocking(self) -> None:
+        skill = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
+        workflow = (ROOT / "chinese-official-writing" / "references" / "workflow.md").read_text(encoding="utf-8")
+        checklist = (ROOT / "chinese-official-writing" / "references" / "review-checklist.md").read_text(
+            encoding="utf-8"
+        )
+
+        self.assertNotIn("暂停确认", skill)
+        self.assertNotIn("暂停确认", workflow)
+        self.assertIn("事实不足不作为默认中断理由", skill)
+        self.assertIn("可补充后更完整的关键事实", skill)
+        self.assertIn("不要做调查问卷式问题清单", skill)
+        self.assertIn("不把上一轮待确认事项升级为阻断条件", skill)
+        self.assertIn("材料未给风险结论", skill)
+        self.assertIn("未发现重大隐患", skill)
+        self.assertIn("材料只给问题清单", skill)
+        self.assertIn("能够正常开展", skill)
+        self.assertIn("不在正文前中断成稿", workflow)
+        self.assertIn("不连续追问", workflow)
+        self.assertIn("先按用户已给材料完成正文", workflow)
+        self.assertIn("不做调查问卷", workflow)
+        self.assertIn("写稿人可安排事项", workflow)
+        self.assertIn("待确认事项仍是软提示", workflow)
+        self.assertIn("仍先执行本轮修改请求", workflow)
+        self.assertIn("从已给材料看，问题集中于", workflow)
+        self.assertIn("结论口径列入正文外待确认", workflow)
+        self.assertIn("概括性正向判断", workflow)
+        self.assertIn("未在正文前中断成稿或连续追问", checklist)
+        self.assertIn("未做调查问卷式问题清单", checklist)
+        self.assertIn("转嫁给用户", checklist)
+        self.assertIn("不把待确认事项升级成阻断链路", checklist)
+        self.assertIn("事实强判断", checklist)
+        self.assertIn("总体较好", checklist)
 
     def test_openclaw_agent_rules_include_v140_routing_and_format_bridge(self) -> None:
         text = (ROOT / "openclaw" / "skills" / "chinese_official_writing" / "SKILL.md").read_text(

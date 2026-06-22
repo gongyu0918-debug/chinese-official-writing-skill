@@ -71,6 +71,10 @@ class RealPromptAblationTests(unittest.TestCase):
         self.assertIn("正式 Word/docx 交付", prompts)
         self.assertIn("专项调研报告", prompts)
         self.assertIn("后半篇不能草草结束", prompts)
+        self.assertIn("不要先问我一串问题", prompts)
+        self.assertIn("不要把增删论点、扩写细节列成我的义务", prompts)
+        self.assertIn("不要因为我没补信息就追问或停止修改", prompts)
+        self.assertIn("不要因为要成稿就自行写", prompts)
 
     def test_current_skill_passes_real_prompt_cases(self) -> None:
         rows = real_prompt_eval.evaluate_root(ROOT, "current_test")
@@ -135,6 +139,22 @@ class RealPromptAblationTests(unittest.TestCase):
         self.assertIn("长篇限字稿件", checks_by_id["P042"]["file_terms"]["chinese-official-writing/SKILL.md"])
         self.assertIn("措施安排", checks_by_id["P042"]["file_terms"]["chinese-official-writing/references/workflow.md"])
         self.assertIn("压掉措施安排", checks_by_id["P042"]["file_terms"]["chinese-official-writing/references/review-checklist.md"])
+        self.assertIn("事实不足不作为默认中断理由", checks_by_id["P043"]["file_terms"]["chinese-official-writing/SKILL.md"])
+        self.assertIn("不在正文前中断成稿", checks_by_id["P043"]["file_terms"]["chinese-official-writing/references/workflow.md"])
+        self.assertIn("未做调查问卷式问题清单", checks_by_id["P043"]["file_terms"]["chinese-official-writing/references/review-checklist.md"])
+        self.assertIn(
+            "事实补足建议只列影响文种功能或执行落地的关键缺口",
+            checks_by_id["P044"]["file_terms"]["chinese-official-writing/SKILL.md"],
+        )
+        self.assertIn("写稿人可安排事项", checks_by_id["P044"]["file_terms"]["chinese-official-writing/references/workflow.md"])
+        self.assertIn("转嫁给用户", checks_by_id["P044"]["file_terms"]["chinese-official-writing/references/review-checklist.md"])
+        self.assertIn("不把上一轮待确认事项升级为阻断条件", checks_by_id["P045"]["file_terms"]["chinese-official-writing/SKILL.md"])
+        self.assertIn("待确认事项仍是软提示", checks_by_id["P045"]["file_terms"]["chinese-official-writing/references/workflow.md"])
+        self.assertIn("不把待确认事项升级成阻断链路", checks_by_id["P045"]["file_terms"]["chinese-official-writing/references/review-checklist.md"])
+        self.assertIn("强判断", checks_by_id["P046"]["file_terms"]["chinese-official-writing/SKILL.md"])
+        self.assertIn("能够正常开展", checks_by_id["P046"]["file_terms"]["chinese-official-writing/SKILL.md"])
+        self.assertIn("结论口径列入正文外待确认", checks_by_id["P046"]["file_terms"]["chinese-official-writing/references/workflow.md"])
+        self.assertIn("事实强判断", checks_by_id["P046"]["file_terms"]["chinese-official-writing/references/review-checklist.md"])
 
     def test_heading_lock_detects_added_subheading(self) -> None:
         before = """一、整改进展

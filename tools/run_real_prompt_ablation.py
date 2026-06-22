@@ -706,6 +706,126 @@ CASES: list[PromptCase] = [
             },
         },
     ),
+    PromptCase(
+        id="P043",
+        kind="create",
+        prompt="请先写一版资金申请请示，申请事项、金额和审批对象还没完全给；不要先问我一串问题，正文后只列关键缺口。",
+        checks={
+            "file_terms": {
+                "chinese-official-writing/SKILL.md": [
+                    "事实不足不作为默认中断理由",
+                    "先完成可用正文",
+                    "可补充后更完整的关键事实",
+                    "不要做调查问卷式问题清单",
+                ],
+                "chinese-official-writing/references/workflow.md": [
+                    "不在正文前中断成稿",
+                    "不连续追问",
+                    "申请事项",
+                    "审批对象",
+                    "关键缺口",
+                    "不做调查问卷",
+                ],
+                "chinese-official-writing/references/review-checklist.md": [
+                    "未在正文前中断成稿或连续追问",
+                    "可补充后更完整的关键事实",
+                    "未做调查问卷式问题清单",
+                ],
+            },
+        },
+    ),
+    PromptCase(
+        id="P044",
+        kind="create",
+        prompt="材料不足但要写完整工作报告，底部提示可补充事实；不要把增删论点、扩写细节列成我的义务，也不要做调查问卷。",
+        checks={
+            "file_terms": {
+                "chinese-official-writing/SKILL.md": [
+                    "先完整输出正式正文",
+                    "事实补足建议只列影响文种功能或执行落地的关键缺口",
+                    "不要把增删论点、扩写细节等写稿人可自行安排的事项转嫁给用户",
+                ],
+                "chinese-official-writing/references/workflow.md": [
+                    "先按用户已给材料完成正文",
+                    "影响文种功能或执行落地",
+                    "增加论点",
+                    "删除论点",
+                    "扩写细节",
+                    "写稿人可安排事项",
+                ],
+                "chinese-official-writing/references/review-checklist.md": [
+                    "仍先完成正文",
+                    "影响文种功能或执行落地",
+                    "增删论点",
+                    "扩写细节",
+                    "转嫁给用户",
+                ],
+            },
+        },
+    ),
+    PromptCase(
+        id="P045",
+        kind="revise",
+        prompt="上一轮底部列了金额和联系人待确认，但我这轮还是没补；请继续把稿子压缩到500字内并调整标题顺序，不要因为我没补信息就追问或停止修改。",
+        checks={
+            "file_terms": {
+                "chinese-official-writing/SKILL.md": [
+                    "后续轮次用户未补齐这些事实",
+                    "继续完成本轮修改",
+                    "不把上一轮待确认事项升级为阻断条件",
+                ],
+                "chinese-official-writing/references/workflow.md": [
+                    "后续轮次用户未补齐上一轮列出的关键缺口",
+                    "仍先执行本轮修改请求",
+                    "不把待确认事项变成连续追问或修改阻断",
+                    "第二轮或后续修改",
+                    "待确认事项仍是软提示",
+                    "只在正文外保留或更新关键缺口",
+                ],
+                "chinese-official-writing/references/review-checklist.md": [
+                    "后续轮次用户未补齐事实",
+                    "仍执行本轮修改",
+                    "不把待确认事项升级成阻断链路",
+                ],
+            },
+        },
+    ),
+    PromptCase(
+        id="P046",
+        kind="create",
+        prompt="材料只说发现台账更新不及时和标识不清，请写检查报告；不要因为要成稿就自行写“未发现重大隐患”或“无异常”。",
+        checks={
+            "file_terms": {
+                "chinese-official-writing/SKILL.md": [
+                    "材料未给风险结论",
+                    "未发现重大隐患",
+                    "无异常",
+                    "强判断",
+                    "材料只给问题清单",
+                    "总体较好",
+                    "能够正常开展",
+                ],
+                "chinese-official-writing/references/workflow.md": [
+                    "风险结论",
+                    "整改结论",
+                    "检查结论",
+                    "影响范围",
+                    "从已给材料看，问题集中于",
+                    "结论口径列入正文外待确认",
+                    "概括性正向判断",
+                ],
+                "chinese-official-writing/references/review-checklist.md": [
+                    "事实强判断",
+                    "未发现重大隐患",
+                    "无异常",
+                    "已完成整改",
+                    "未影响核心业务",
+                    "总体较好",
+                    "能够正常开展",
+                ],
+            },
+        },
+    ),
 ]
 
 
