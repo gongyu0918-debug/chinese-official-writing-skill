@@ -31,6 +31,7 @@ class SkillBoundaryTests(unittest.TestCase):
         paths = [
             ROOT / "skills" / "chinese-official-writing" / "SKILL.md",
             ROOT / ".agents" / "skills" / "chinese-official-writing" / "SKILL.md",
+            ROOT / ".qwen" / "skills" / "chinese-official-writing" / "SKILL.md",
             ROOT / "hermes" / "skills" / "chinese-official-writing" / "SKILL.md",
             ROOT / "openclaw" / "skills" / "chinese_official_writing" / "SKILL.md",
         ]
@@ -47,6 +48,7 @@ class SkillBoundaryTests(unittest.TestCase):
         for target in [
             ROOT / "skills" / "chinese-official-writing",
             ROOT / ".agents" / "skills" / "chinese-official-writing",
+            ROOT / ".qwen" / "skills" / "chinese-official-writing",
         ]:
             with self.subTest(target=target):
                 self.assertEqual(relative_files(target), canonical_files)
@@ -153,6 +155,45 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assertIn("完整规则、硬边界和复核清单", text)
         self.assertNotIn("### Codex / OpenAI Skill", text)
         self.assertNotIn("npm run eval:official-writing", text)
+
+    def test_readme_documents_domestic_agent_install_paths(self) -> None:
+        readme = (ROOT / "README.md").read_text(encoding="utf-8")
+        sync_script = (ROOT / "tools" / "sync_adapters.py").read_text(encoding="utf-8")
+        skill = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
+
+        for term in [
+            "Qwen Code",
+            "通用 Agent Skills",
+            "MiniMax Skills",
+            "GLM Skills（Z.ai/智谱）",
+            "AutoClaw",
+            "Kimi Code CLI",
+            "TRAE",
+            "Baidu Comate AI IDE",
+        ]:
+            self.assertIn(term, readme)
+        for path in [
+            ".qwen/skills/chinese-official-writing/",
+            "skills/chinese-official-writing/",
+            ".agents/skills/chinese-official-writing/",
+        ]:
+            self.assertIn(path, readme)
+        self.assertIn("npx skills add https://github.com/gongyu0918-debug/chinese-official-writing-skill --skill chinese-official-writing", readme)
+        for mode in ['"qwen"']:
+            self.assertIn(mode, sync_script)
+        self.assertNotIn('"minimax"', sync_script)
+        self.assertNotIn('"glm"', sync_script)
+        for agent in [
+            "qwen-code",
+            "minimax-skills",
+            "glm-skills",
+            "autoclaw",
+            "kimi-code-cli",
+            "trae",
+            "baidu-comate-ai-ide",
+            "generic-agent-skills",
+        ]:
+            self.assertIn(agent, skill)
 
     def test_claude_plugin_manifest_version_matches_skill_and_sync_script(self) -> None:
         manifest = json.loads((ROOT / ".claude-plugin" / "plugin.json").read_text(encoding="utf-8"))
@@ -452,6 +493,25 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assertIn("用户要求“位置”时，优先逐项引用原文短语或句子", skill)
         self.assertIn("未只给笼统段落评价", checklist)
         self.assertIn("整体归纳可放在逐项意见之后", anti_ai)
+
+    def test_v148_anti_ai_borrowing_stays_soft_and_official(self) -> None:
+        anti_ai = (ROOT / "chinese-official-writing" / "references" / "anti-ai-patterns.md").read_text(
+            encoding="utf-8"
+        )
+        official_style = (ROOT / "chinese-official-writing" / "references" / "official-style.md").read_text(
+            encoding="utf-8"
+        )
+
+        self.assertIn("句群节奏和模板化痕迹", anti_ai)
+        for term in ["句首重复", "连接词链", "句长同质化", "口号式收束", "清单堆叠替代论证"]:
+            self.assertIn(term, anti_ai)
+        self.assertIn("只作软性审稿项，不作为硬门禁", anti_ai)
+        self.assertIn("公文去 AI 味不是聊天化", anti_ai)
+        self.assertIn("不得为了显得“像人写”而加入第一人称、反问、口语插入", anti_ai)
+        self.assertIn("保留公文骨架和用户模板", anti_ai)
+        self.assertIn("用户只要求审稿时，仍输出位置、风险层级和修改建议", anti_ai)
+        self.assertIn("不为了显得像人写而加入第一人称", official_style)
+        self.assertIn("正式化改写只压实原文已有事实", official_style)
 
     def test_openclaw_agent_rules_include_v140_routing_and_format_bridge(self) -> None:
         text = (ROOT / "openclaw" / "skills" / "chinese_official_writing" / "SKILL.md").read_text(

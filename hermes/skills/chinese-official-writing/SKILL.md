@@ -2,27 +2,28 @@
 name: chinese-official-writing
 description: 用于起草、改写和复核中文公文及正式工作材料；当用户要求通知、请示、报告、函、复函、批复、意见、决定、决议、议案、公报、命令、公告、通告、公示、通报、纪要、方案、说明、申请、征求意见函、采购公告、可研、调研、总结、工作要点、审查材料、讲话稿、致辞、述职报告等中文正式文本，或需要顺稿、压缩、去口语化、降 AI 味、文种校验、办理要素核对时使用。不用于英文、文学、营销、社媒、批量语料或替代法律/财务/采购/审计判断。
 license: MIT-0
-version: "1.4.7"
+version: "1.4.8"
 metadata:
-  version: "1.4.7"
+  version: "1.4.8"
   compatible_agents:
     - codex
     - claude-code
     - openclaw
     - hermes
     - qwen-code
-    - kimi-code
-    - generic-skill-md-agent
+    - minimax-skills
+    - glm-skills
+    - autoclaw
+    - kimi-code-cli
+    - trae
+    - baidu-comate-ai-ide
+    - generic-agent-skills
   qwen_code:
     install_personal: "~/.qwen/skills/chinese-official-writing"
     install_project: ".qwen/skills/chinese-official-writing"
     entry: "SKILL.md"
-  kimi_code:
-    skills_dir: "copy folder or pass with --skills-dir"
-    invocation: "/skill:chinese-official-writing"
-    entry: "SKILL.md"
   hermes:
-    version: "1.4.7"
+    version: "1.4.8"
     category: writing
     display_name: "中文公文写作"
     tags:

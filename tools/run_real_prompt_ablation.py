@@ -949,6 +949,54 @@ CASES: list[PromptCase] = [
             },
         },
     ),
+    PromptCase(
+        id="P052",
+        kind="revise",
+        prompt="只审 AI 味，不重写全文：首先要高度重视，其次要持续推进，最后要形成闭环。请看句式是不是太模板化。",
+        checks={
+            "file_terms": {
+                "chinese-official-writing/references/anti-ai-patterns.md": [
+                    "句群节奏和模板化痕迹",
+                    "句首重复",
+                    "连接词链",
+                    "用户只要求审稿时，仍输出位置、风险层级和修改建议",
+                ],
+            },
+        },
+    ),
+    PromptCase(
+        id="P053",
+        kind="revise",
+        prompt="帮我把这段去模板化，但仍然是正式报告语气；不要改成公众号口吻，不要加“我觉得”“说白了”或反问。",
+        checks={
+            "file_terms": {
+                "chinese-official-writing/references/anti-ai-patterns.md": [
+                    "公文去 AI 味不是聊天化",
+                    "不得为了显得“像人写”而加入第一人称、反问、口语插入",
+                    "保留公文骨架和用户模板",
+                ],
+                "chinese-official-writing/references/official-style.md": [
+                    "不为了显得像人写而加入第一人称",
+                    "正式化改写只压实原文已有事实",
+                ],
+            },
+        },
+    ),
+    PromptCase(
+        id="P054",
+        kind="revise",
+        prompt="审一下这段结尾是不是空：为工作开展提供有力支撑，为后续推进奠定坚实基础，推动工作再上新台阶。",
+        checks={
+            "file_terms": {
+                "chinese-official-writing/references/anti-ai-patterns.md": [
+                    "口号式收束",
+                    "提供有力支撑",
+                    "推动再上新台阶",
+                    "将口号式收束改为具体办理动作、责任时限、反馈渠道或审慎结论",
+                ],
+            },
+        },
+    ),
 ]
 
 

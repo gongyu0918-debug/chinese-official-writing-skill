@@ -42,7 +42,7 @@
 - **格式边界**：补充 GB/T 9704-2012 常用格式要素，但正式红头、文号、签发、印章和版记以用户模板和人工复核为准。
 - **格式噪点检查**：提示半角标点、数字空格、千位分隔符、频繁编号、Emoji、装饰符号和表格滥用风险。
 - **算力类专项约束**：对 Token、云端成本、租赁服务、SLA、并发、安全和验收做链式论证。
-- **多平台适配**：已适配 Codex/OpenAI Skill、Claude Code、OpenClaw/ClawHub、Hermes 及通用 Skill Markdown 目录。
+- **多平台适配**：已适配 Codex/OpenAI Skill、Claude Code、OpenClaw/ClawHub、Hermes、Qwen Code 及通用 Agent Skills 目录；MiniMax Skills、GLM Skills（Z.ai/智谱）、AutoClaw、Kimi Code CLI、TRAE、Baidu Comate AI IDE 等兼容平台共用标准 `skills/` 或 `.agents/skills/` 目录，不为相同配方重复建镜像。
 
 ## 社区经验来源
 
@@ -70,7 +70,7 @@
 请从 GitHub 仓库 https://github.com/gongyu0918-debug/chinese-official-writing-skill 拉取 openclaw/skills/chinese_official_writing/ 目录，并将其安装为 OpenClaw/ClawHub 可识别的 chinese-official-writing 技能。该适配目录的 frontmatter 使用 name: chinese_official_writing；安装后确认显示名称为“中文公文写作”，用于中文公文、可研报告、建设方案和 AI 算力采购租赁类正式材料写作。
 ```
 
-当前工作版本：`chinese-official-writing@1.4.7`
+当前工作版本：`chinese-official-writing@1.4.8`
 
 ### Claude Code
 
@@ -88,6 +88,18 @@
 
 ```text
 请从 GitHub 仓库 https://github.com/gongyu0918-debug/chinese-official-writing-skill 拉取 hermes/skills/chinese-official-writing/ 目录，并将其安装为 Hermes 的 chinese-official-writing 技能。安装时保留 SKILL.md、references/ 和 scripts/，不要使用根目录 chinese-official-writing/ 替代 Hermes 适配目录。
+```
+
+### Qwen Code
+
+```text
+请从 GitHub 仓库 https://github.com/gongyu0918-debug/chinese-official-writing-skill 拉取 .qwen/skills/chinese-official-writing/ 目录，并放入当前项目的 .qwen/skills/chinese-official-writing/；如需个人全局使用，则放入 ~/.qwen/skills/chinese-official-writing/。安装后重启 Qwen Code，使用 /skills 确认 chinese-official-writing 可见。
+```
+
+### 通用 Agent Skills（MiniMax Skills / GLM Skills / AutoClaw / Kimi Code CLI / TRAE / Baidu Comate AI IDE 等）
+
+```text
+请从 GitHub 仓库 https://github.com/gongyu0918-debug/chinese-official-writing-skill 拉取 skills/chinese-official-writing/ 目录，作为 MiniMax Skills、GLM Skills（Z.ai/智谱）、AutoClaw、Kimi Code CLI 或其他 Agent Skills 兼容平台的 chinese-official-writing 技能目录。若平台要求 .agents/skills/，例如 TRAE 或 Baidu Comate AI IDE 项目级 Skills，则改用 .agents/skills/chinese-official-writing/。如使用通用 skills 安装器，可尝试 npx skills add https://github.com/gongyu0918-debug/chinese-official-writing-skill --skill chinese-official-writing；安装后确认 SKILL.md、references/、scripts/ 和 agents/ 均已保留。
 ```
 
 ## 试用 Prompt
@@ -115,13 +127,14 @@
 | 路径 | 用途 |
 | --- | --- |
 | `chinese-official-writing/` | 主技能目录，供 Codex/OpenAI Skill 使用 |
-| `skills/chinese-official-writing/` | Claude Code 与部分通用 skills 目录约定 |
-| `.agents/skills/chinese-official-writing/` | 兼容 `.agents/skills` 约定的 agent |
+| `skills/chinese-official-writing/` | Claude Code、MiniMax Skills、GLM Skills（Z.ai/智谱）、AutoClaw、Kimi Code CLI 等通用 Agent Skills 目录约定 |
+| `.agents/skills/chinese-official-writing/` | 兼容 `.agents/skills` 约定的 agent，含 deepseek-tui、TRAE、Baidu Comate AI IDE 等 |
+| `.qwen/skills/chinese-official-writing/` | Qwen Code 项目级 Skill 适配目录 |
 | `openclaw/skills/chinese_official_writing/` | OpenClaw/ClawHub 发布目录 |
 | `hermes/skills/chinese-official-writing/` | Hermes 适配目录 |
 | `chinese-official-writing/references/` | 文种路由、办理要素、论证链条、格式和复核规则 |
 
-命名约定：仓库、Codex、Claude Code、Hermes 和 ClawHub slug 使用 `chinese-official-writing`；OpenClaw 适配目录和 frontmatter 使用 `chinese_official_writing`，用于兼容其当前匹配规则。不要把主技能名统一改成下划线形式。
+命名约定：仓库、Codex、Claude Code、Hermes、Qwen Code、MiniMax Skills、GLM Skills（Z.ai/智谱）、AutoClaw、Kimi Code CLI、TRAE、Baidu Comate AI IDE 和 ClawHub slug 使用 `chinese-official-writing`；OpenClaw 适配目录和 frontmatter 使用 `chinese_official_writing`，用于兼容其当前匹配规则。不要把主技能名统一改成下划线形式。
 
 同步各平台副本：
 

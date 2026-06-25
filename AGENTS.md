@@ -115,3 +115,13 @@
 - `git diff --check`
 
 注意：以上确定性测试不等同真实写稿实测；发布结论必须同时引用真实写稿样本和独立 verifier 结果。
+
+## 1.4.8 接手记录
+
+1.4.8 只做去 AI 味软性审稿和国产 Agent Skills 兼容入口的最小增强，不新增硬 lint、不新增检测器、不新增排版脚本、不新增默认记忆机制。
+
+- 去 AI 味借鉴只落在 `references/anti-ai-patterns.md` 的“句群节奏和模板化痕迹”：检查句首重复、连接词链、句长同质化、口号式收束、清单堆叠替代论证。它只作审稿质量建议，不作为硬门禁，不把公文改成公众号口吻、第一人称、反问、口语插入或情绪化表达。
+- 记忆机制本轮不并入发行包。后续如做，只能是用户明确同意后的本地可选层，短文件、分文种、只记录稳定偏好；当前用户指令、文种功能和事实边界始终优先。
+- 国产 Agent 适配遵循最小镜像原则：Qwen Code 因官方目录为 `.qwen/skills/<skill-name>/SKILL.md`，保留独立 `.qwen/skills/chinese-official-writing/` 镜像；MiniMax Skills、GLM Skills（Z.ai/智谱）、AutoClaw、Kimi Code CLI、TRAE、Baidu Comate AI IDE 等共用 `skills/chinese-official-writing/` 或 `.agents/skills/chinese-official-writing/`，不为同一配方新增 `minimax/`、`glm/`、`kimi/` 等重复镜像。
+- README 安装提示里的平台名要使用实际名称：Qwen Code、MiniMax Skills、GLM Skills（Z.ai/智谱）、AutoClaw、Kimi Code CLI、TRAE、Baidu Comate AI IDE。Kimi 只写兼容提示，不写成已稳定官方 Skill 目录。
+- 对应确定性用例为 P052-P054；新增边界测试检查 `.qwen/skills` 镜像、README 平台名、共享目录策略和 frontmatter 兼容标识。

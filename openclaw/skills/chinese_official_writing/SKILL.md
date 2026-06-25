@@ -10,25 +10,26 @@ tags:
   - gongwen
   - ai-compute
 metadata:
-  version: "1.4.7"
+  version: "1.4.8"
   compatible_agents:
     - codex
     - claude-code
     - openclaw
     - hermes
     - qwen-code
-    - kimi-code
-    - generic-skill-md-agent
+    - minimax-skills
+    - glm-skills
+    - autoclaw
+    - kimi-code-cli
+    - trae
+    - baidu-comate-ai-ide
+    - generic-agent-skills
   qwen_code:
     install_personal: "~/.qwen/skills/chinese-official-writing"
     install_project: ".qwen/skills/chinese-official-writing"
     entry: "SKILL.md"
-  kimi_code:
-    skills_dir: "copy folder or pass with --skills-dir"
-    invocation: "/skill:chinese-official-writing"
-    entry: "SKILL.md"
   openclaw:
-    version: "1.4.7"
+    version: "1.4.8"
     emoji: "📝"
     tags:
       - chinese
@@ -62,7 +63,7 @@ openclaw skills install chinese-official-writing
 其他平台如 Codex、Claude Code、Hermes、deepseek-tui 的安装 Prompt，请看 GitHub 仓库 README：
 https://github.com/gongyu0918-debug/chinese-official-writing-skill
 
-当前版本：`chinese-official-writing@1.4.7`
+当前版本：`chinese-official-writing@1.4.8`
 
 ClawHub 页面只展示摘要；安装包内的 `SKILL.md` 和 `references/` 保留完整规则、硬边界和复核清单。
 
@@ -141,6 +142,6 @@ MIT-0
 12. 用户要求 Word、docx、GB/T 9704、红头、发文字号、签发、版记或正式文件时，先按 `references/format-gbt9704.md` 做正式交付前要素核对卡和缺项清单，再交给 DOCX/document 技能或现有文档工具；不得编造文号、签发人、印章、密级、版记等要素。
 13. 最终正文不得残留 `〔签发日期〕`、`〔会议时间〕`、`〔待补充〕`、`[具体项目名称]`、`XXXX万元`、`YYYY年MM月DD日`、`（签发日期）` 等未完成占位；缺项在正文外提示用户确认。当前日期只可用于草稿落款，不得替代维护时间、会议时间、实施期限、政策依据或业务数据。
 14. 正式 Word 输出前不得残留 Markdown `**`、代码块或标题井号；检查 `.txt`、`.md` 或 `.docx` 草稿时，可使用 `scripts/prose_lint.py`。脚本只提示风险，不自动改写。
-15. 轻量语气替换只作建议层，不新增硬清洗；去口语化必须保留原文事实，不补造依据、数据、成效或责任安排；去 AI 味看成簇问题，不把单个正式词或单个转折当作硬清洗理由。
+15. 轻量语气替换只作建议层，不新增硬清洗；去口语化必须保留原文事实，不补造依据、数据、成效或责任安排；去 AI 味看成簇问题，不把单个正式词或单个转折当作硬清洗理由；句群节奏和模板化痕迹只作软性审稿项，公文去 AI 味不是聊天化，不加入第一人称、反问、口语插入或情绪化表达。
 16. 社区技能和公开样文只借鉴流程思路、检查维度和 prompt/markdown 组织方式；不复制社区代码、脚本、正则、模板正文、大段 prompt 或固定话术，也不扩大默认联网、强制确认、硬清洗或重排版范围。
 17. 长篇限字稿件先做篇幅预算，压缩铺垫、重复和套话，保留措施、责任、时限和结尾落点，避免头重脚轻或草草收尾。

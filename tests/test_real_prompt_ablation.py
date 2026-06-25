@@ -80,6 +80,9 @@ class RealPromptAblationTests(unittest.TestCase):
         self.assertIn("只审空话套话，不重写全文", prompts)
         self.assertIn("不要补责任部门、督办安排或处理进展", prompts)
         self.assertIn("必须标明每处具体位置", prompts)
+        self.assertIn("句式是不是太模板化", prompts)
+        self.assertIn("不要改成公众号口吻", prompts)
+        self.assertIn("提供有力支撑", prompts)
 
     def test_current_skill_passes_real_prompt_cases(self) -> None:
         rows = real_prompt_eval.evaluate_root(ROOT, "current_test")
@@ -176,6 +179,9 @@ class RealPromptAblationTests(unittest.TestCase):
         self.assertIn("正式化新增事实", checks_by_id["P050"]["file_terms"]["chinese-official-writing/references/review-checklist.md"])
         self.assertIn("优先逐项引用原文短语或句子", checks_by_id["P051"]["file_terms"]["chinese-official-writing/references/review-checklist.md"])
         self.assertIn("整体归纳可放在逐项意见之后", checks_by_id["P051"]["file_terms"]["chinese-official-writing/references/anti-ai-patterns.md"])
+        self.assertIn("句群节奏和模板化痕迹", checks_by_id["P052"]["file_terms"]["chinese-official-writing/references/anti-ai-patterns.md"])
+        self.assertIn("公文去 AI 味不是聊天化", checks_by_id["P053"]["file_terms"]["chinese-official-writing/references/anti-ai-patterns.md"])
+        self.assertIn("口号式收束", checks_by_id["P054"]["file_terms"]["chinese-official-writing/references/anti-ai-patterns.md"])
 
     def test_heading_lock_detects_added_subheading(self) -> None:
         before = """一、整改进展
