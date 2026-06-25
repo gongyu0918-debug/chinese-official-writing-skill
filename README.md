@@ -56,7 +56,13 @@
 
 社区来源只作辅助经验。文种定义、格式规范和用户自有模板优先。
 
-## 安装 Prompt
+## 安装方式
+
+### Chatbot / AI 聊天软件 / 网页端
+
+普通聊天机器人、AI 聊天软件或网页端通常不能直接安装带 `SKILL.md`、`references/` 和 `scripts/` 的完整 Skill 目录。此类场景建议使用轻量纯提示词版本：
+
+[gongyu0918-debug/chinese-official-writing-chatbot-prompt](https://github.com/gongyu0918-debug/chinese-official-writing-chatbot-prompt)
 
 ### Codex / OpenAI Skill
 
