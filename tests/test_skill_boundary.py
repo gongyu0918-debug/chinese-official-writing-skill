@@ -156,17 +156,13 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assertNotIn("### Codex / OpenAI Skill", text)
         self.assertNotIn("npm run eval:official-writing", text)
 
-    def test_readme_routes_chatbot_users_to_lightweight_prompt_repo(self) -> None:
+    def test_readme_does_not_route_to_prompt_only_chatbot_repo(self) -> None:
         readme = (ROOT / "README.md").read_text(encoding="utf-8")
 
         self.assertIn("## 安装方式", readme)
         self.assertNotIn("## 安装 Prompt", readme)
-        for term in ["Chatbot", "AI 聊天软件", "网页端", "轻量纯提示词版本"]:
-            self.assertIn(term, readme)
-        self.assertIn(
-            "https://github.com/gongyu0918-debug/chinese-official-writing-chatbot-prompt",
-            readme,
-        )
+        self.assertNotIn("轻量纯提示词版本", readme)
+        self.assertNotIn("chinese-official-writing-chatbot-prompt", readme)
 
     def test_readme_documents_domestic_agent_install_paths(self) -> None:
         readme = (ROOT / "README.md").read_text(encoding="utf-8")
