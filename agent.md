@@ -232,6 +232,51 @@ Patch 3：
 6. **A/B 消融**：用上一轮样稿和新样稿比较“修复前 skill vs 修复后 skill”。必须验证事实边界、AI 味、查重/同质化指标没有退化。
 7. **Rollback / 回滚**：消融、smoke 或最小验证失败，则撤销此次修复，只保留失败记录。
 
+## 社区检测 skill 与工具补测记录
+
+本轮目标是补足测试层，不修改写作 skill。优先找可作为独立 verifier 的 SkillHub/ClawHub 专用 skill；GitHub 工具只作为本地增强候选；DeepSeek API 暂不作为查重主工具。
+
+ClawHub 检索与安装：
+
+- `clawhub search "AI味" --limit 10`：命中 `humanize-zh`、`humanize-zh-pro`。
+- `clawhub search "查重 相似度" --limit 10`：未命中。
+- `clawhub search "tender similarity analyzer" --limit 10`：命中 `tender-similarity-analyzer`。
+- `clawhub search "AIGC检测" --limit 10`、`"AI生成文本检测"`、`"机器生成文本检测"`：未命中。
+- `clawhub search "AI detector" --limit 10`：命中 `ai-detector`、`detector-ai`、`zeelin-ai-detector`、`ai-article-detector` 等。
+- 已隔离安装到 `output/ai-dedupe-community-skills/`：`humanize-zh-pro`、`tender-similarity-analyzer`、`zeelin-ai-detector`、`ai-detector`、`detector-ai`。该目录不提交，仅作测试器来源。
+
+候选判断：
+
+| 候选 | 类型 | 是否外发 | 本轮判断 |
+| --- | --- | --- | --- |
+| `zeelin-ai-detector` | 中文 AI 文本概率判断 skill | 否，纯 skill 评审 | 优先作为中文 AIGC/AI 味 verifier。 |
+| `tender-similarity-analyzer` | 本地多文档段落查重工具 | 否，声明网络隔离 | 优先作为本地查重增强；当前 Python 环境缺依赖，需单独依赖环境后再跑正式样稿。 |
+| `detector-ai` | 本地启发式 AI detector 脚本 | 否 | 可跑通，但指标偏英文；仅作低权重补充。 |
+| `humanize-zh-pro` | 中文去 AI 味/评分 skill | 否，脚本本地 | 检测维度偏自媒体“人味”，不完全适合公文；只作低权重参考。 |
+| `ai-detector` | GPTHumanizer API 检测 | 是，调用 `detect.gpthumanizer.ai` | 默认不纳入主流程，除非用户明确允许外发脱敏文本。 |
+| `ai-article-detector` | 文章链接检测 | 可能依赖外部链接/网络 | 不优先，当前样稿是本地文本。 |
+
+Smoke 结果：
+
+- `python output\ai-dedupe-community-skills\detector-ai\scripts\detect_ai.py output\ai-dedupe-community-smoke\sample_a.txt --json`：可运行，输出 `overall_ai_probability=62.0`，`verdict=Likely AI-generated`，`confidence=Medium`。该结果只证明脚本可用，不作为正式质量结论。
+- `python output\ai-dedupe-community-skills\tender-similarity-analyzer\scripts\main.py --files output\ai-dedupe-community-smoke\sample_a.txt output\ai-dedupe-community-smoke\sample_b.txt --output output\ai-dedupe-community-smoke\tender_report.html`：未跑通，当前环境缺 `docx`、`jieba`、`sklearn`、`lxml`、`bs4`、`jinja2` 等依赖；后续应建独立依赖环境或复用可用 Python 环境。
+- `bash output/ai-dedupe-community-skills/humanize-zh-pro/scripts/detect-ai-taste.sh output/ai-dedupe-community-smoke/sample_a.txt`：未跑通，WSL bash 在当前沙箱报 `E_ACCESSDENIED`；后续可用 Git Bash 或改写为 PowerShell/Python 包装，但不作为第一优先级。
+
+GitHub 工具候选：
+
+- `Hello-SimpleAI/chatgpt-comparison-detection`：HC3 项目提供中英文检测器，含单文本检测和语言学特征检测，适合作为后续 AIGC 检测候选。
+- `johnsonwangzs/MGT-Mini`：NLPCC 2025 机器生成文本检测 top-1 方案，中文相关性强；但需下载多套模型/微调权重，并要求两张 V100 级 GPU，当前只记录为重型候选，不强行接入。
+- `HeraldofLight/C-ReD`：ACL 2026 Findings 中文 AI 生成文本检测 benchmark，适合作为后续评测集参考，不是直接检测工具。
+- `shibing624/text2vec`：中文语义向量和相似度工具，适合补本地 embedding 查重层；优先级高于外部 embedding API。
+
+下一轮补测建议：
+
+1. 用 `zeelin-ai-detector` skill 作为主 AI 味/AIGC verifier，评审上一轮固定样稿。
+2. 给 `tender-similarity-analyzer` 建独立依赖环境，跑同一批样稿的多文档交叉查重。
+3. 用 `detector-ai` 脚本批量跑低权重辅助分。
+4. 再接本地 `text2vec` 或 BGE embedding 做语义相似度；暂不使用 DeepSeek 或外部 embedding API。
+5. 只有上述结果互相矛盾时，再考虑 DeepSeek API 作为大模型仲裁，不把它称为查重。
+
 ## Round 3 goal 模式提示词
 
 目标：继续对 GitHub `origin/main` 版本 `chinese-official-writing` 做 Round 3 生成-评审测试，重点验证事实边界顽疾是否跨三轮成立，并补足真正的 A/B 消融设计。先只读测试，不修 skill。
