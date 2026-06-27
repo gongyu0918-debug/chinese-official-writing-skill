@@ -78,6 +78,86 @@
 
 Round 1 判断：不修复。继续 Round 2、Round 3，用不同 prompt 和独立 verifier 观察 T03 审稿同质化、T01 缺事实时补造日期/联系人风险是否稳定复现。
 
+## Round 2 生成-评审测试
+
+本轮按“写作 skill 生成 -> 反 AI 味 skill 评审”的闭环做，只读测试，不修改 skill。严格说，这不是完整 A/B 测试；完整 A/B 应比较“当前 skill 与上一轮/修复前 skill”或“skill 与 no-skill baseline”。本轮目标是发现当前写作 skill 生成稿中的 AI 味、模板化和事实边界顽疾。
+
+基线核对：
+
+- `git fetch origin` 成功。
+- `origin/main` 仍为 `874ed1d docs: remove chatbot prompt-only routing`。
+- 当前分支相对 `origin/main` ahead 1，仅多本记录文件；`git diff --stat origin/main -- chinese-official-writing skills openclaw hermes .qwen .agents` 无输出，说明 skill 内容仍等同 GitHub main。
+
+生成方式：
+
+- writer subagent 加载 `F:\Workspaces\chinese-official-writing-skill\chinese-official-writing`。
+- 生成 6 篇样稿，覆盖通知、情况报告、内部申请、方案正文、AI 算力服务租赁需求说明、会议讲话稿开头。
+- 样稿临时保存：`output/ai-dedupe-round2/samples.json`。
+
+反 AI 味评审方式：
+
+- verifier subagent 加载本地 `talk-normal` skill 作为反 LLM 腔规则参考。
+- verifier 只看“原 prompt + 样稿”，不看主线程预设结论，不改稿。
+- 输出 PASS/WARN/FAIL、AI 味分、查重/模板风险、事实边界和证据短语。
+
+### verifier 结果
+
+| 样稿 | 结论 | AI 味 | 同质化/模板风险 | 事实边界 | 主要问题 |
+| --- | --- | ---: | ---: | --- | --- |
+| R2-W1-01 通知 | PASS | 1 | 1 | PASS | 缺项已放正文后提示，未编日期、邮箱、联系人；少量常规通知语可接受。 |
+| R2-W1-02 情况报告 | WARN | 0 | 0 | WARN | 末段补入“后续将结合系统运行情况”“继续关注……”等未给出的后续安排。 |
+| R2-W1-03 内部申请 | PASS | 1 | 1 | PASS | 未编供应商、审批人、财务科目；采购用途轻度概括但可接受。 |
+| R2-W1-04 方案正文 | PASS | 0 | 1 | PASS | 无口号式结尾；末句用途收束轻微但未明显新增事实。 |
+| R2-W1-05 算力租赁需求 | PASS | 1 | 1 | PASS | SLA、并发、安全、验收覆盖完整；表达偏清单化但信息密度足够。 |
+| R2-W1-06 讲话稿开头 | WARN | 1 | 1 | WARN | “近期从办文、审稿和流转情况看”等观察来源未给，事实边界略不稳。 |
+
+共性问题：
+
+- medium：为增强完整性补入未给出的后续动作、近期观察或背景判断，count=2，样稿 `R2-W1-02`、`R2-W1-06`。
+- low：个别文本仍有公文常用收束句和清单化表达，count=3，样稿 `R2-W1-01`、`R2-W1-04`、`R2-W1-05`；未达到明显 AI 腔或不可交付程度。
+
+### 本地软件扫描
+
+- `prose_lint.py --format --structure`：仅 `R2-W1-01` 有 4 个 low 级 `western-bullet`；其余样稿 0 finding。无 medium/high AI 味风险。
+- `jieba + simhash`：跨 6 篇样稿两两距离最低为 `23`，未见近重复。
+- `jieba + TF-IDF cosine`：跨样稿最高为 `0.1726`，未见跨文种查重风险。
+- `char_jaccard`：最高为 `0.3418`，主要来自同一政务数据主题词，不构成抄袭或高同质化。
+
+Round 2 判断：不修复。R2 未复现 R1 的“审稿输出同质化”场景，因为本轮主要生成正文；但 R2 与 R1 共同指向事实边界问题：模型为了成稿完整度，容易补入未给出的时限、联系人、后续安排或近期观察。该问题已出现两轮，但尚未满足“三轮以上共性问题”修复门槛，进入 Round 3 重点观察。
+
+## 测试反馈修复 loop
+
+建议把后续工作固定为一个工程 loop：
+
+1. **Test / 生成**：用当前 GitHub main 的 `chinese-official-writing` 生成 6-10 篇真实任务样稿，覆盖缺事实、改写、审稿、方案、讲话和技术材料。
+2. **Review / 评审**：用反 AI 味或去重 skill 的独立 subagent 审核，只提供 prompt 和样稿，输出 PASS/WARN/FAIL、证据短语和共性统计。
+3. **Record / 记录**：把样稿、评审 JSON、本地扫描结果放 `output/ai-dedupe-roundN/`，把摘要和共性问题写入 `agent.md`。
+4. **Gate / 门禁**：只有同类问题跨三轮以上复现，才进入修复候选；单轮或两轮问题只观察。
+5. **Fix / 修复**：对已达门槛的问题做最小 skill 改动，不扩大默认联网、不新增硬禁词、不改成聊天化风格。
+6. **A/B 消融**：用上一轮样稿和新样稿比较“修复前 skill vs 修复后 skill”。必须验证事实边界、AI 味、查重/同质化指标没有退化。
+7. **Rollback / 回滚**：消融、smoke 或最小验证失败，则撤销此次修复，只保留失败记录。
+
+## Round 3 goal 模式提示词
+
+目标：继续对 GitHub `origin/main` 版本 `chinese-official-writing` 做 Round 3 生成-评审测试，重点验证事实边界顽疾是否跨三轮成立，并补足真正的 A/B 消融设计。先只读测试，不修 skill。
+
+执行要求：
+
+1. 先 `git fetch origin`，确认 skill 目录相对 `origin/main` 无差异；如果当前分支有记录提交，只要 `git diff --stat origin/main -- chinese-official-writing skills openclaw hermes .qwen .agents` 为空，即可视为 GitHub main skill 基线。
+2. 读取 `AGENTS.md`、`agent.md`、`evals/ai-dedupe/README.md`，遵守“生成 -> 评审 -> 记录 -> 累计 -> 修复 -> 消融 -> 回滚”的 loop。
+3. 创建 `output/ai-dedupe-round3/` 存放临时样稿、verifier 结果和本地扫描结果；不提交 output。
+4. 让 writer subagent 加载 `chinese-official-writing` skill 生成 6-10 篇样稿，prompt 必须重点覆盖：
+   - 缺截止时间、邮箱、联系人、政策依据；
+   - 原文只给问题但未给后续安排；
+   - 讲话稿或报告未给“近期观察来源”；
+   - 用户明确要求不要补事实；
+   - 去 AI 味但保持公文正式语气。
+5. 让 verifier subagent 加载反 AI 味/去模板化 skill 审核，只给原 prompt 和样稿，输出 PASS/WARN/FAIL、AI 味分、事实边界、查重/模板风险和证据短语。
+6. 本地扫描至少跑 `prose_lint.py --format --structure`、`jieba+simhash`、`jieba+TF-IDF cosine`；如使用模型或 API，记录是否本地运行、是否下载权重、是否外发文本。
+7. 统计 R1/R2/R3 三轮共性问题。若“为完整度补入未给事实/后续安排/近期观察”第三轮仍复现，才拟定最小修复方案。
+8. 本轮仍不修 skill。若用户明确要求进入修复阶段，先固定 R2/R3 样稿为 A/B 消融集，再做最小改动。
+9. 交付报告必须包含：生成样本数、verifier 结论表、共性问题、是否达到三轮门槛、本地扫描结果、未运行项、下一步修复/消融计划。
+
 ## 已运行验证
 
 - `git fetch origin`：成功，`origin/main` 更新到 `874ed1d`。
