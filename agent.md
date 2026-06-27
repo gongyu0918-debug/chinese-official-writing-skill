@@ -326,3 +326,117 @@ GitHub 工具候选：
 8. 只记录问题，不修复。除非某个问题已经跨三轮累计复现并达到修复门槛，否则不得改 skill。
 9. 若后续进入修复阶段，每次只做最小改动；修复后必须与上一轮输出做消融，消融不通过立即回滚此次修改。
 10. 交付时报告：基线 commit、样本数、工具、测试结果、三轮共性状态、未运行/失败原因、剩余风险。
+
+## SkillHub 增强排查 10 轮记录
+
+日期：2026-06-28
+
+本轮回应“不要放弃寻找 SkillHub skill”的要求，重新扩展检索并用 SkillHub 专用 skill 作为主要 verifier。只读测试，不修改 `chinese-official-writing`。
+
+### 基线
+
+- 当前分支：`codex/ai-dedupe-round1-20260627`
+- 当前 HEAD：`31b4404 docs: record community AI detector candidates`
+- 写作 skill 最近一次行为修改：`4e21b43 fix: tighten official writing fact-boundary prompt`
+- 对照核验：`git diff --stat 4e21b43..HEAD -- chinese-official-writing skills openclaw hermes .qwen .agents` 无输出，说明 `4e21b43` 之后没有再改 skill 本体。
+- 本轮样稿基线：最小事实边界修复后的本地版本，不再用未修复的 `origin/main` 旧基线。
+- 样稿文件：`output/ai-dedupe-community-rounds-20260628/samples.json`，10 轮 x 每轮 2 篇，共 20 篇。
+
+### SkillHub 扩展检索
+
+使用 SkillHub API 关键词扩展检索：`AI味`、`去AI味`、`AIGC`、`AI检测`、`AIGC检测`、`机器生成文本检测`、`查重`、`论文查重`、`相似度`、`文本相似度`、`投标 AI味`、`公文 AI味`。候选摘要保存到 `output/ai-dedupe-community-skills/skillhub-search-expanded-fixed.json`。
+
+代表候选：
+
+| skill | 类型 | downloads / installs / stars | API | 本轮用途 |
+| --- | --- | ---: | --- | --- |
+| `unclecheng-reduce-ai-perception-v2` | 文章去 AI 味 | 17643 / 650 / 102 | false | 中文 AI 味 verifier 规则来源 |
+| `unclecheng-reduce-ai-perception` | 去 AI 味 | 4844 / 502 / 15 | false | 候选记录 |
+| `humanizer-academic-zh` | 中文学术去 AIGC | 3567 / 955 / 6 | false | 候选记录 |
+| `humanize-ai` | AI pattern 脚本 | 3062 / 360 / 8 | false | 本地脚本扫描；中文覆盖不足 |
+| `paperdown` | 论文降 AIGC | 3020 / 0 / 13 | false | 候选记录，偏改写 |
+| `removeai` | 清除中文 AI 味 | 1609 / 391 / 1 | false | 中文 AI 味 verifier 规则来源 |
+| `paper-checker` | 查重 + AI率 | 1356 / 0 / 3 | false | 本地脚本扫描 |
+| `tencentcloud-aigc-recog-text` | 文本 AIGC 检测 | 970 / 103 / 0 | true | API 候选，未外发样稿 |
+| `tender-similarity-analyzer` | 多文档查重 | 403 / 15 / 0 | false | 查重候选，当前环境缺依赖 |
+| `humanizer-zh-enhanced` | 中文去痕 | 483 / 0 / 1 | false | 中文 AI 味 verifier 规则来源 |
+| `boo-check-review` | 多 docx 查重 | 154 / 0 / 0 | false | 候选记录 |
+| `stop-slop` | 去 AI 味 | 153 / 0 / 0 | false | 规则参考 |
+| `cn-bid-deai-checker` | 投标文件去 AI 味 | 96 / 0 / 0 | false | 正式文档 verifier 规则来源 |
+| `plagiarism-detection` | 查重监测系统 | 92 / 0 / 0 | false | 候选记录，偏前端系统 |
+| `paper-ct-scan` | 论文 CT AI 痕迹 | 57 / 0 / 0 | false | 正式文档 verifier 规则来源 |
+| `plagiarism-precheck` | 查重卫士 | 44 / 0 / 0 | false | 查重方法论 verifier 规则来源 |
+
+本轮实际下载到 `output/ai-dedupe-community-skills/` 的 SkillHub 包包括：`unclecheng-reduce-ai-perception-v2`、`unclecheng-reduce-ai-perception`、`removeai`、`remove-ai-flavor`、`humanizer-zh-enhanced`、`humanize-ai`、`stop-slop`、`cn-bid-deai-checker`、`paper-checker`、`paper-ct-scan`、`wang-paper-ct`、`plagiarism-precheck`、`plagiarism-detection`、`boo-check-review`、`tender-similarity-analyzer`、`tencentcloud-aigc-recog-text`。
+
+`tencentcloud-aigc-recog-text` 是企业 API 型检测，未用于本轮样稿，以避免外发测试数据。DeepSeek API 本轮未使用，因为未找到以 DeepSeek 为专用查重/AIGC 检测后端的成熟 SkillHub verifier；DeepSeek 可作为大模型仲裁，但不应冒充查重工具。
+
+### 生成与评审流程
+
+- Writer subagent 2 个，均加载 `.agents/skills/chinese-official-writing/SKILL.md`，生成 C01-C10 共 20 篇短样稿。
+- Verifier A：加载 `removeai`、`humanizer-zh-enhanced`、`unclecheng-reduce-ai-perception-v2`，只评审 AI 味，不改稿。
+- Verifier B：加载 `cn-bid-deai-checker`、`paper-ct-scan`，按正式/投标/论文文档的 AI 痕迹维度评审。
+- Verifier C：加载 `paper-checker`、`plagiarism-precheck`、`tender-similarity-analyzer`，结合本地扫描结果评审查重、相似度和弱 AI 检测信号。
+- 所有 verifier 均只读本地样稿，不上传外部服务。
+
+### 本地扫描结果
+
+| 工具 | 结果 |
+| --- | --- |
+| `evals/ai-dedupe/local_scan.py` | sample_count 20；prose_lint_total_findings 12；max_tfidf_cosine 0.0668；max_char_jaccard 0.0511；min_simhash_distance 22。未见跨样稿近重复。 |
+| SkillHub `paper-checker` | max_ai_percentage 30；avg_ai_percentage 19.2；max_similarity_percentage 15；`samples_ai_over_30=[]`；`samples_similarity_over_40=[]`。 |
+| SkillHub `humanize-ai` | total_issues 0。该脚本词库偏英文，对中文公文覆盖不足，只作“可运行但低权重”记录。 |
+| ClawHub `detector-ai` | avg_overall_ai_probability 53.27；likely AI：`C02-02`、`C05-01`、`C07-01`、`C10-01`。该工具对短中文公文的低困惑度过敏，作为弱报警，不单独判失败。 |
+
+### 只记录的三轮以上共性问题
+
+1. **明示缺项未稳定列入待确认**
+   - 轮次：C01、C03、C05、C07
+   - 样稿：`C01-01`、`C03-01`、`C05-01`、`C07-01`
+   - 证据：采购请示未列采购方式、资金来源、供应商；会议通知未列联系人、反馈渠道、附件；AI 算力需求未列价格、供应商、政策依据；会议纪要未列会议时间、主持人、参会人员。
+   - 判断：medium。与前一轮事实边界修复方向一致，但表现为“未编造却也未提示缺项”。后续如修，只能软性补充“用户明示未提供且影响办理落地时，正文后短列待确认”，不得变成硬拦截或长问卷。
+
+2. **三项/编号式脚手架和机械三项展开**
+   - 轮次：C03、C04、C06、C07、C08、C09、C10
+   - 样稿：`C03-02`、`C04-01`、`C06-01`、`C07-02`、`C08-01`、`C08-02`、`C09-01`、`C09-02`、`C10-01`
+   - 证据：审稿和待确认项反复编号；三项任务默认等长铺开；“主要包括三项”“三个方面”“一是、二是、三是”等包装反复出现。
+   - 判断：medium-low。公文可以编号，问题不在编号本身，而是没有必要时仍加三项包装，造成模板感。后续如修，应只提示“用户要求清单或文种确需逐项核对时编号；三项给定时避免额外套一层三项包装”。
+
+3. **句群节奏偏齐、长句或并列链偏密**
+   - 轮次：C02、C03、C04、C05、C06、C07、C08、C10
+   - 样稿：`C02-02`、`C03-01`、`C04-01`、`C05-01`、`C06-01`、`C07-01`、`C08-01`、`C10-01`
+   - 证据：`paper-checker` 高强度长句样稿包括 `C03-01`、`C05-01`、`C06-01`、`C08-01`、`C08-02`、`C10-01`；`detector-ai` likely AI 中有 `C05-01`、`C10-01`；verifier A/B 均指出句式同质和并列要求链。
+   - 判断：low-medium。该问题影响 AI 检测弱信号和读感，但不能牺牲公文简洁。后续如修，应提示“按事项功能自然拆句，避免连续同长度并列句”，不引入口语化。
+
+4. **泛化收束或重复性尾句**
+   - 轮次：C04、C06、C10
+   - 样稿：`C04-01`、`C06-01`、`C06-02`、`C10-01`
+   - 证据：“做到情况清楚、进展可查”“后续将继续跟进督促”“上述工作覆盖窗口巡查、咨询处理和办事指南维护”等尾句未增加新事实。
+   - 判断：low-medium。Verifier A 明确列为共性；Verifier B 只作为局部问题提示，交叉置信度低于前三项。后续可并入“句群节奏/收束只落已给事实”的最小提示，不单独扩大修复。
+
+### 暂不进入修复的观察项
+
+- `C09-01` 复函无标题和落款、`C10-02` “碰头沟通”偏口语、`C06-02` “多轮核看”生硬：均不足三轮，不修。
+- 待确认事项编号尾部只覆盖 C07、C09 两个 round，且用于防止编造；不因降 AI 味删除。
+- 查重/相似度风险低：local_scan、paper-checker 一致未见高相似度，不做查重方向修复。
+
+### 本轮结论
+
+本轮已按 SkillHub 专用 skill 优先原则补足测试层。结论是：当前最小修复基线没有明显跨样稿查重风险，也没有 HIGH AI 味样稿；但存在三类可进入后续修复候选的共性问题：明示缺项未稳定列待确认、机械三项/编号脚手架、句群节奏偏齐。第四类泛化尾句可作为合并修复点观察。
+
+本轮不修改 skill。本轮记录提交后，若进入下一轮修复，应只做 md prompt 最小修复，并以 `4e21b43` 后当前基线和本轮 20 篇样稿做 A/B 消融。消融必须检查：缺项提示是否改善、是否新增编造、文种格式是否漂移、local_scan 相似度是否上升、verifier 是否出现新 HIGH。任何一项明显退化则回滚该次修改。
+
+### 下一轮 goal 模式提示词
+
+目标：基于当前最小修复后基线继续做“测试 -> 反馈 -> 最小修复 -> A/B 消融 -> 回滚或保留”的工程 loop。只修复 SkillHub 增强排查中跨三轮以上出现的共性问题，禁止硬门禁，优先改 `SKILL.md` prompt。
+
+执行要求：
+
+1. 先确认 `git diff --stat 4e21b43..HEAD -- chinese-official-writing skills openclaw hermes .qwen .agents`，明确当前 skill 本体是否仍等同上一修复基线。
+2. 读取 `AGENTS.md` 和 `agent.md` 中 “SkillHub 增强排查 10 轮记录”。
+3. 修复候选只允许覆盖三项：明示缺项短列待确认、避免无必要三项/编号脚手架、句群节奏自然拆分；“泛化收束尾句”只能并入第三项，不能单独扩写大规则。
+4. 只做 `SKILL.md` / 对应镜像的最小 prompt 修复，不新增脚本、硬禁词、硬门禁、默认联网或外部 API。
+5. 修复后立即用本轮 20 篇 prompt 做 A/B：旧基线输出 vs 新输出；writer subagent 生成，新 verifier subagent 加载 SkillHub `removeai`、`cn-bid-deai-checker`、`paper-checker` 等评审。
+6. 消融指标必须包括：事实边界、明示缺项是否提示、文种格式是否保留、AI 味 HIGH/MEDIUM 数、local_scan 相似度、paper-checker AI率/重复率、detector-ai 弱报警变化。
+7. 若出现新增编造、文种骨架漂移、查重相似度明显升高、AI 味 HIGH、或 verifier 判断净退化，则回滚此次修改，只保留失败记录并另拟更小方案。
+8. 通过后再更新 `agent.md`，运行最小 smoke/回归验证，并按 AGENTS.md 要求 commit。不得把未运行的测试写成通过。
