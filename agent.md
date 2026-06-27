@@ -523,3 +523,27 @@ writer subagent 使用当前 `.agents/skills/chinese-official-writing/SKILL.md` 
 ### 结论
 
 本轮保留的修复是“事实边界优先”的最小 prompt 修复，解决明示缺项未稳定提示的问题，同时用更明确的事实边界压住去 AI 味诱发的补造风险。机械三项、句群节奏和泛化尾句仍记录为后续观察项，本轮不修，因为两次 A/B 已证明直接修容易引发事实外扩。
+
+## 1.4.9 发布前检查记录
+
+日期：2026-06-28
+
+本轮在 `619519a` 最小 prompt 修复基础上做 1.4.9 版本同步和发布前验证，不新增规则、不扩大测试硬门禁、不调整写作工作流。
+
+真实 subagent 测试：
+
+- writer subagent 生成 6 条真实场景样稿，覆盖缺项不阻断、问题分析不补事实、只审不改、字段式申请、商请函和限字压缩。
+- verifier subagent 总结为 `WARN`、`publish_blocking=false`。
+- 非阻断观察项：一处正文末句略像审稿口径提示；一处字段式申请将原分号单行改成分行字段。两项均未破坏事实边界、字段边界或文种功能，留作后续观察，不在发布前扩大修复。
+
+发布前验证：
+
+- `python -m unittest tests.test_skill_boundary -q`：29 tests OK。
+- `python -m unittest tests.test_real_prompt_ablation tests.test_review_regressions tests.test_revision_instruction_eval tests.test_promptfoo_eval -q`：57 tests OK。
+- `python C:\Users\admin\.codex\skills\.system\skill-creator\scripts\quick_validate.py .\chinese-official-writing`：Skill is valid。
+- `python -m unittest discover -s tests -q`：86 tests OK。
+- `$env:PROMPTFOO_PYTHON = 'C:\Users\admin\AppData\Local\Programs\Python\Python313\python.exe'; npm run eval:official-writing:smoke`：20/20 passed，skill win rate 1.0，judge consistency rate 1.0。
+- `python .\tools\run_real_prompt_ablation.py --baseline-root .\output\release-baselines\619519a --baseline-label baseline-619519a --current-root . --out .\output\real-prompt-vs-619519a-release-1.4.9`：baseline-619519a 54/54 通过，current 54/54 通过。
+- `git diff --check`：通过。
+
+详细证据见 `tests/evidence/real-writing-1.4.9-release.md`。结论：允许发布 GitHub main 和 ClawHub 1.4.9。
