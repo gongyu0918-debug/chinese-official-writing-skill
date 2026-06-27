@@ -521,6 +521,22 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assertIn("不为了显得像人写而加入第一人称", official_style)
         self.assertIn("正式化改写只压实原文已有事实", official_style)
 
+    def test_ai_dedupe_prompt_fix_guidance_is_documented(self) -> None:
+        skill = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
+        openclaw_skill = (ROOT / "openclaw" / "skills" / "chinese_official_writing" / "SKILL.md").read_text(
+            encoding="utf-8"
+        )
+        sync_script = (ROOT / "tools" / "sync_adapters.py").read_text(encoding="utf-8")
+
+        for text in [skill, openclaw_skill, sync_script]:
+            self.assertIn("用户明示某些事项未提供", text)
+            self.assertRegex(text, r"不(?:要)?扩展成调查问卷")
+        self.assertIn("去 AI 味、变换句式、拆分长句或调整清单结构", skill)
+        self.assertIn("不得补写未给的解释、原因、影响范围、办理流程、责任人员、字段示例或整改动作", skill)
+        self.assertIn("用户只给问题清单、任务清单或明确要求不新增事实时", skill)
+        self.assertIn("不为显得自然或完整而补解释", skill)
+        self.assertIn("不得补写未给解释、原因、影响、流程、人员、字段或整改动作", openclaw_skill)
+
     def test_openclaw_agent_rules_include_v140_routing_and_format_bridge(self) -> None:
         text = (ROOT / "openclaw" / "skills" / "chinese_official_writing" / "SKILL.md").read_text(
             encoding="utf-8"

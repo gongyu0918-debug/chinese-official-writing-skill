@@ -440,3 +440,86 @@ GitHub 工具候选：
 6. 消融指标必须包括：事实边界、明示缺项是否提示、文种格式是否保留、AI 味 HIGH/MEDIUM 数、local_scan 相似度、paper-checker AI率/重复率、detector-ai 弱报警变化。
 7. 若出现新增编造、文种骨架漂移、查重相似度明显升高、AI 味 HIGH、或 verifier 判断净退化，则回滚此次修改，只保留失败记录并另拟更小方案。
 8. 通过后再更新 `agent.md`，运行最小 smoke/回归验证，并按 AGENTS.md 要求 commit。不得把未运行的测试写成通过。
+
+## AI 味/查重最小修复一轮记录
+
+日期：2026-06-28
+
+本轮目标是对 SkillHub 增强排查 10 轮中“三次以上共性问题”做一次最小 prompt 修复，并按用户要求做 A/B 消融；若出现回归风险，立即回滚该次方案。
+
+### 本轮基线
+
+- 修复前基线 commit：`b9e3872`。
+- 对照样稿：`output/ai-dedupe-community-rounds-20260628/samples.json`，共 20 篇。
+- 本轮坚持只改 `SKILL.md` prompt 和镜像摘要，不新增检测脚本、硬门禁、硬禁词或清洗器。
+
+### 尝试过但回滚的方案
+
+第一次方案同时覆盖三项：明示缺项短列待确认、避免机械三项包装、句群节奏和尾句收束。writer subagent 生成 20 篇 patched 样稿后，独立 verifier 给出回滚意见：
+
+- `C08-01`：用户明确“不要新增原因、影响范围和整改举措”，patched 把三项问题扩写成“在线填报要求与窗口受理材料表述不完全对应”等未给解释。
+- `C06-01`：用户只强调提高数据质量、压实填报责任、按时报送结果，patched 增加“名称、编码、地址、联系人”“具体经办人员和复核人员”等未给细节。
+- 本轮判断：三项包装和句群节奏提示容易诱导模型为了“低 AI 味”补事实，按规则回滚该部分思路。
+
+第二次方案补了“降 AI 味不得补造事实”的约束，但仍保留“三项/句群节奏”相关提示。writer subagent 复测后仍出现事实边界漂移：
+
+- `C08-01` 继续把“口径不一致、更新不及时、操作不熟”扩写成“尚未统一、未能及时调整、掌握不稳定”。
+- `C06-01`、`C10-01` 仍有新增流程和成效收束倾向。
+- 本轮判断：继续回滚“三项美化/句群节奏”方向，不把它纳入当前修复。
+
+### 最终保留的最小修复
+
+最终只保留两个更窄的 prompt 边界：
+
+1. 用户明示某些事项未提供且影响办理落地时，正文后短列用户点名缺项；不要漏列，也不要扩展成调查问卷。
+2. 去 AI 味、变换句式、拆分长句或调整清单结构时，不得补写未给的解释、原因、影响范围、办理流程、责任人员、字段示例或整改动作。
+
+同步范围：
+
+- `chinese-official-writing/SKILL.md`
+- `skills/chinese-official-writing/SKILL.md`
+- `.agents/skills/chinese-official-writing/SKILL.md`
+- `.qwen/skills/chinese-official-writing/SKILL.md`
+- `hermes/skills/chinese-official-writing/SKILL.md`
+- `openclaw/skills/chinese_official_writing/SKILL.md`
+- `tools/sync_adapters.py`
+- `tests/test_skill_boundary.py`
+
+### 真实场景复测
+
+writer subagent 使用当前 `.agents/skills/chinese-official-writing/SKILL.md` 生成 5 条真实样稿，覆盖购买数据脱敏工具请示、问题分析、方案正文、只审不改、字段式申请。
+
+独立 verifier 结论：`NO_MATERIAL_REGRESSION`，不建议回滚。
+
+逐项结果：
+
+- `T01` PASS：资金来源、采购方式、供应商、验收指标均列入待确认；未扩展成问卷。
+- `T02` PASS：只围绕三项既有问题正式化表达，未新增原因、影响范围、整改举措、责任人员或办理流程。
+- `T03` PASS：三项任务边界基本保持，未新增牵头部门、考核办法、通报机制、责任人员。
+- `T04` PASS：保持只审不改，按位置、风险层级和建议输出，未重写原文。
+- `T05` PASS：只润色“申请事由”字段，保留字段顺序和空字段。
+
+非阻断提醒：`T01` 有轻微重复，`T02/T03` 仍有少量公文判断腔和目的性补足，`T05` “我科室”正式度一般；这些不足未达到回滚条件。
+
+### 对比与发布前检查
+
+已运行命令：
+
+- `python -m unittest tests.test_skill_boundary -q`
+  - 结果：29 tests OK。
+- `python -m unittest tests.test_real_prompt_ablation tests.test_review_regressions tests.test_revision_instruction_eval tests.test_promptfoo_eval -q`
+  - 结果：57 tests OK。
+  - 说明：因 Windows/sandbox 临时目录清理权限问题，使用提升权限运行；未改测试结果。
+- `python .\tools\run_real_prompt_ablation.py --baseline-root .\output\release-baselines\b9e3872 --baseline-label baseline-b9e3872 --current-root . --out .\output\real-prompt-vs-b9e3872-conservative-ai-boundary`
+  - 结果：baseline-b9e3872 54/54 通过，current 54/54 通过。
+- `git diff --check`
+  - 结果：通过。
+
+未纳入提交的产物：
+
+- `output/` 下 A/B 样稿、扫描结果和基线 worktree。
+- `.clawhub/` 未跟踪目录。
+
+### 结论
+
+本轮保留的修复是“事实边界优先”的最小 prompt 修复，解决明示缺项未稳定提示的问题，同时用更明确的事实边界压住去 AI 味诱发的补造风险。机械三项、句群节奏和泛化尾句仍记录为后续观察项，本轮不修，因为两次 A/B 已证明直接修容易引发事实外扩。
