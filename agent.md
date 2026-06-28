@@ -569,3 +569,39 @@ writer subagent 使用当前 `.agents/skills/chinese-official-writing/SKILL.md` 
 - 共性判断：本轮未发现三轮以上共性失败；“通知类缺项进正文”作为单例观察项继续记录，不进入本轮 prompt 修复。
 
 详细证据见 `tests/evidence/real-writing-1.4.9-public-source-5round.md`。
+
+## 1.4.10 Hermes/GLM Review 复现修复记录
+
+日期：2026-06-28
+
+本轮目标是处理桌面 review 报告 `C:\Users\admin\Desktop\chinese-official-writing-Review-报告.md`。报告只作线索，不直接采信；每项 finding 经 1.4.9 基线和当前 HEAD 复现、源码检查、测试或 subagent 复核后再决定。
+
+接受并修复：
+
+- `R-1/S-3/A-1`：高频风险句式 lint 漏检。1.4.9 基线 13 条命中 `0/13`，当前 HEAD 命中 `13/13`。
+- `S-1/S-2`：`--format` 代码围栏内格式漏扫和 `core_compiled` 冗余。1.4.9 基线围栏内无命中且源码含 `core_compiled`，当前 HEAD 围栏内命中 `halfwidth-punctuation`、`emoji-marker`、`markdown-bold`，源码不再含 `core_compiled`。
+- `P-1`：起草规则 730 字单 bullet 过密。1.4.9 基线最长 730 字，当前 HEAD 拆为父 bullet + 6 个子 bullet，最长 181 字。
+
+拒绝或延期：
+
+- `X-1` 拒绝：OpenClaw 适配目录和 frontmatter 使用 `chinese_official_writing` 是 README 明示的兼容规则，ClawHub slug 仍为 `chinese-official-writing`，未复现加载断裂。
+- `D-1/D-2/R-2/R-3/S-4/S-5/A-2/P-2/P-3/X-2` 延期：未复现明确失败，不扩大本轮修复。
+
+发布前验证：
+
+- `python .\tools\sync_adapters.py`：同步完成，无新增 diff。
+- `python -m unittest tests.test_review_regressions tests.test_skill_boundary -v`：55 tests OK。
+- `python -m unittest discover -s tests -v`：89 tests OK。
+- `$env:PROMPTFOO_PYTHON = 'C:\Users\admin\AppData\Local\Programs\Python\Python313\python.exe'; npm run eval:official-writing:smoke`：20/20 passed，skill win rate 1.0，judge consistency rate 1.0。
+- `git diff --check`：通过。
+- `python .\tools\run_real_prompt_ablation.py --baseline-root .\output\release-baselines\github-1.4.9-review --baseline-label baseline-1.4.9 --current-root . --out .\output\real-prompt-vs-1.4.9-release-1.4.10`：baseline/current 均 54/54 通过。
+
+真实 subagent 测试：
+
+- 覆盖请示、通知、函起草，缺金额、日期、联系人、供应商、附件等不编造。
+- 覆盖字段式材料改写，保持字段名、顺序和空字段，只润色指定字段。
+- 覆盖只审不改，不重写全文，不打 0-100 分。
+- 覆盖去 AI 味和 format lint，只提示风险，不自动清洗。
+- 独立 verifier 结论：`PASS_WITH_WARNINGS`，`publish_blocking=false`。轻微观察项为通知中新增“暂未发生目录更新也请说明”等执行要求，后续继续观察。
+
+详细证据见 `tests/evidence/review-fix-release-1.4.10.md`。
