@@ -164,6 +164,9 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assertIn("当前日期只可用于草稿落款", elements)
         self.assertIn("未把当前日期误用为维护时间", checklist)
         self.assertIn("[具体项目名称]", skill)
+        self.assertIn("（成文日期待确认）", skill)
+        self.assertIn("成文日期明示缺失或待确认时放正文外提示", skill)
+        self.assertIn("不使用当前日期补落款", skill)
         self.assertIn("YYYY年MM月DD日", elements)
 
     def test_openclaw_marketplace_readme_is_user_facing(self) -> None:
@@ -551,6 +554,8 @@ class SkillBoundaryTests(unittest.TestCase):
         for text in [skill, openclaw_skill, sync_script]:
             self.assertIn("用户明示某些事项未提供", text)
             self.assertRegex(text, r"不(?:要)?扩展成调查问卷")
+            self.assertIn("（成文日期待确认）", text)
+            self.assertIn("不使用当前日期补落款", text)
         self.assertIn("去 AI 味、变换句式、拆分长句或调整清单结构", skill)
         self.assertIn("不得补写未给的解释、原因、影响范围、办理流程、责任人员、字段示例或整改动作", skill)
         self.assertIn("用户只给问题清单、任务清单或明确要求不新增事实时", skill)

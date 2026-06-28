@@ -668,3 +668,45 @@ writer subagent 使用当前 `.agents/skills/chinese-official-writing/SKILL.md` 
 - 直接 lint 复现：N-1/N-2/B3 支持场景不再误报，无依据 `未发现重大隐患`、`可以说，`、`综上所述，`、Markdown 加粗和代码围栏格式仍正常提示。
 
 详细证据见 `tests/evidence/review-fix-release-1.4.11.md`。
+
+## 1.4.11 Follow-up Hermes/GLM Review 本地修复记录
+
+日期：2026-06-29
+
+本轮处理桌面报告 `C:\Users\admin\Desktop\chinese-official-writing-Review-1.4.11.md`。基线为 GitHub/main `89948800d9616cb207f7d263948db7f51bc2441c`，不做 `1.4.12` 版本号更新，不发布 GitHub 或 ClawHub，只做本地最小修复提交。
+
+接受并修复：
+
+- `B1`：`综上所述。/：/；` 在 1.4.11 clean HEAD 漏检。修复为只扩展终止标点 `，,。：:；;`，不匹配 `本文综上所述部分如下。`。
+- `O1`：`（成文日期待确认）` 已被 lint 捕获，但 prompt 未明确；真实 writer 测试还暴露“用户明示成文日期缺失时仍把今天日期写进落款”的相邻问题。最终补成文日期边界：明示缺失、待确认或需另行确认时，不使用当前日期补落款，只在正文外列待确认；未明示缺失的完整草稿仍可使用当前日期作草稿日期。
+
+拒绝或延期：
+
+- `X-1` 拒绝：OpenClaw 适配 `name: chinese_official_writing` 是 README 明示兼容规则，未复现加载断裂。
+- `B2` 延期：不把 `调查/检测/审计/评测/论证/了解` 整批列为安全结论依据，避免弱化 `未发现重大隐患` 的事实边界提示。
+- `A-2/R-2/D-1` 等旧项延期：未复现明确失败。
+
+为什么前几轮没看出：
+
+- 前次测试只覆盖 `综上所述，` 和章节引用 false-positive，不覆盖句号、冒号、分号变体。
+- `O1` 不是单纯 lint 漏洞；lint 已命中字面占位，但真实写稿验收没有隔离“成文日期明确缺失且不得用当前日期”的场景。
+- `run_real_prompt_ablation.py` 不调用 LLM，只能证明 skill 包、reference、lint 和评估入口具备支撑，不能替代真实 writer 行为。
+
+真实 subagent 测试：
+
+- 只读 reviewer `019f0f46-08ca-7770-a049-d88e20a773d3` 独立确认 B1/O1 成立，B2/X-1 不应本轮扩改。
+- 初始 writer/verifier 暴露 A1 失败：缺成文日期时写入 `2026年6月29日`。
+- 最小补丁后 writer `019f0f4e-b7f7-7223-a621-ea7247e1f46e` 重测同一请示场景，未写今天日期，成文日期列入正文外待确认。
+- verifier `019f0f4f-d79b-7aa2-baef-3413a05c389f` 结论 `PASS`，支持本地提交且不发布 1.4.12。
+
+验证：
+
+- `python .\tools\sync_adapters.py`：同步成功。
+- `python -m unittest tests.test_review_regressions tests.test_skill_boundary -v`：59 tests OK。
+- `python -m unittest discover -s tests -v`：93 tests OK。
+- `python .\tools\run_real_prompt_ablation.py --baseline-root .\output\release-baselines\github-1.4.11-review-followup --baseline-label baseline-1.4.11 --current-root . --out .\output\real-prompt-vs-1.4.11-review-followup-after-date-fix`：baseline/current 均 54/54 通过。
+- `python C:\Users\admin\.codex\skills\.system\skill-creator\scripts\quick_validate.py .\chinese-official-writing`：Skill is valid。
+- `npm run eval:official-writing:smoke`：最终提权重跑 20/20 passed，skill win rate 1.0，judge consistency rate 1.0；此前沙箱内失败是 promptfoo 无法调用配置 Python 和清理旧日志的环境权限问题。
+- `git diff --check`：通过，仅有 Windows 行尾提示，无 whitespace 错误。
+
+详细证据见 `tests/evidence/review-fix-1.4.11-followup.md`。

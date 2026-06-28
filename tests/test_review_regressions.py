@@ -148,6 +148,22 @@ class ProseLintStructureTests(unittest.TestCase):
 
         self.assertFalse([item for item in findings if item.label == "side-commentary"])
 
+    def test_summary_transition_flags_common_terminal_punctuation(self) -> None:
+        text = "\n".join(
+            [
+                "综上所述，本项工作意义重大。",
+                "综上所述。本项工作意义重大。",
+                "综上所述：本项工作意义重大。",
+                "综上所述；本项工作意义重大。",
+                "本文综上所述部分如下。",
+            ]
+        )
+
+        findings = prose_lint.scan("<test>", text)
+        side_commentary_lines = {item.line for item in findings if item.label == "side-commentary"}
+
+        self.assertEqual(side_commentary_lines, {1, 2, 3, 4})
+
     def test_unsupported_conclusion_keeps_warning_unless_check_basis_is_explicit(self) -> None:
         unsupported = prose_lint.scan("<test>", "未发现重大隐患。")
         supported = prose_lint.scan("<test>", "经现场检查，未发现重大隐患。")

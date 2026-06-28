@@ -48,7 +48,7 @@ PATTERNS: list[tuple[str, str, str, str]] = [
     ("medium", "side-commentary", r"需要指出的是", "保留实质内容，删除提示语。"),
     ("medium", "side-commentary", r"值得注意的是", "保留实质内容，删除提示语。"),
     ("medium", "side-commentary", r"(?<!不)可以说[，,]", "保留实质判断，删除提示语。"),
-    ("medium", "side-commentary", r"综上所述[，,]", "确认是否只是重复上一段；可直接写结论或删除。"),
+    ("medium", "side-commentary", r"综上所述[，,。：:；;]", "确认是否只是重复上一段；可直接写结论或删除。"),
     ("medium", "side-commentary", r"为了便于理解", "正式文稿中通常不需要解释腔。"),
     ("medium", "side-commentary", r"简单来说", "正式文稿中通常不需要解释腔。"),
     ("medium", "side-commentary", r"通俗地说", "正式文稿中通常不需要解释腔。"),
