@@ -34,6 +34,7 @@ class InputReadError(Exception):
 PATTERNS: list[tuple[str, str, str, str]] = [
     ("medium", "paired-summary", r"不是[^。；;\n]{0,80}而是", "改为直接肯定结论；必要否定对比可保留。"),
     ("medium", "paired-summary", r"不仅[^。；;\n]{0,80}还", "拆成具体事实或只保留关键判断。"),
+    ("medium", "paired-summary", r"不仅[^。；;\n]{0,80}更是", "拆成具体事实或只保留关键判断。"),
     ("medium", "paired-summary", r"不但[^。；;\n]{0,80}而且", "拆成具体事实或只保留关键判断。"),
     ("medium", "paired-summary", r"既[^。；;\n]{0,80}又", "改为具体并列事项，避免套话。"),
     ("medium", "paired-summary", r"一方面[^。；;\n]{0,100}另一方面", "改为按业务或数据自然分段。"),
@@ -46,6 +47,8 @@ PATTERNS: list[tuple[str, str, str, str]] = [
     ("medium", "side-commentary", r"相关情况如下", "可删除套话，直接进入事项。"),
     ("medium", "side-commentary", r"需要指出的是", "保留实质内容，删除提示语。"),
     ("medium", "side-commentary", r"值得注意的是", "保留实质内容，删除提示语。"),
+    ("medium", "side-commentary", r"可以说", "保留实质判断，删除提示语。"),
+    ("medium", "side-commentary", r"综上所述", "确认是否只是重复上一段；可直接写结论或删除。"),
     ("medium", "side-commentary", r"为了便于理解", "正式文稿中通常不需要解释腔。"),
     ("medium", "side-commentary", r"简单来说", "正式文稿中通常不需要解释腔。"),
     ("medium", "side-commentary", r"通俗地说", "正式文稿中通常不需要解释腔。"),
@@ -60,18 +63,26 @@ PATTERNS: list[tuple[str, str, str, str]] = [
     ("high", "thought-leak", r"作为(?:一个)?\s*AI|我是(?:一个)?\s*AI|由\s*AI\s*(?:起草|生成|辅助生成)|(?:本(?:文|稿|报告|方案|材料|说明|函)|该(?:文|稿|报告|方案|说明)|全文|以上内容)[^。\n]{0,6}(?:系|为)?\s*AI\s*(?:辅助)?生成|我的(?:思路|推理|分析)|(?:思考|推理)过程(?:如下|是|：|:)|内部推理", "删除模型身份、思考过程或内部推理表述。"),
     ("medium", "thought-leak", r"我将根据|接下来我会|按你的要求", "改为文稿正文或办理安排，不暴露生成过程。"),
     ("medium", "viewpoint-risk", r"(?:按|按照|根据)(?:录音|用户)要求|(?:录音|用户)要求(?:如下|为)|你让我|这版文章|这段文字", "检查是否把外部修改过程写进正文。"),
+    ("medium", "vague-attribution", r"有关方面认为|业内专家指出", "避免模糊背书；补充明确来源或改为材料已给事实。"),
+    ("medium", "unsupported-conclusion", r"未发现重大隐患|总体较好[，,、]?\s*能够正常开展", "没有检查依据时不要补写正向或安全结论。"),
     ("medium", "casual", r"租赁方式更稳[，,、]?\s*也更省", "改为成本和服务保障更具确定性。"),
     ("medium", "casual", r"用不完", "改为阶段性资源余量或资源利用率。"),
     ("medium", "casual", r"AI味", "改为表述偏泛或判断不够具体。"),
     ("medium", "casual", r"这个钱花得值", "改为投入产出关系较为清晰。"),
     ("medium", "casual", r"老板关心", "改为决策层重点关注。"),
     ("low", "empty-filler", r"全面赋能", "确认是否有具体机制支撑。"),
+    ("low", "empty-filler", r"提供有力支撑", "确认是否有具体支撑对象、机制或结果。"),
+    ("low", "empty-filler", r"奠定坚实基础", "确认是否有具体基础内容和后续事项。"),
+    ("low", "empty-filler", r"未来可期", "正式材料中通常改为具体预期目标或删去。"),
+    ("low", "empty-filler", r"高度重视", "确认是否有具体部署、责任或行动支撑。"),
     ("low", "empty-filler", r"充分发挥", "确认后文是否说明发挥方式。"),
     ("low", "empty-filler", r"不断提升", "确认是否有具体对象或目标。"),
+    ("low", "empty-filler", r"持续推进", "确认是否有具体推进事项、时限或责任。"),
     ("low", "template-phrase", r"形成一批", "确认是否有明确对象、数量或结果形态。"),
     ("low", "template-phrase", r"重点任务包括", "避免用一个总括句承接长清单，改为分项任务条款。"),
     ("low", "template-phrase", r"保障措施包括", "避免泛化清单，改为组织、资金、督导、责任等具体措施。"),
     ("low", "template-phrase", r"总体看", "确认是否只是过渡填充；可直接写判断。"),
+    ("low", "template-phrase", r"再上新台阶", "改为具体目标、任务或可验收结果。"),
     ("medium", "ai-compute-vague", r"先进算力", "算力文件中应补充GPU/服务器/Token/并发/SLA等可验收指标。"),
     ("medium", "ai-compute-vague", r"强大平台", "补充调度、监控、隔离、计量、运维等具体平台能力。"),
     ("medium", "ai-compute-vague", r"成本更低", "补充比较周期、需求假设和成本项目。"),
@@ -372,7 +383,6 @@ def scan(path_label: str, text: str, include_format: bool = False, include_struc
     lines = text.splitlines() or [text]
 
     patterns = PATTERNS + (FORMAT_PATTERNS if include_format else [])
-    core_compiled = [(severity, label, re.compile(pattern), advice) for severity, label, pattern, advice in PATTERNS]
     compiled = [(severity, label, re.compile(pattern), advice) for severity, label, pattern, advice in patterns]
     in_fence = False
     for line_index, line in enumerate(lines):
@@ -394,7 +404,7 @@ def scan(path_label: str, text: str, include_format: bool = False, include_struc
             continue
         if in_fence:
             if include_format:
-                for severity, label, regex, advice in core_compiled:
+                for severity, label, regex, advice in compiled:
                     for match in regex.finditer(line):
                         findings.append(
                             Finding(
