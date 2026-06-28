@@ -42,6 +42,19 @@ class SkillBoundaryTests(unittest.TestCase):
                 self.assertIn("批量语料生成", text)
                 self.assertIn("规避人工审核", text)
 
+    def test_drafting_rules_are_split_for_prompt_following(self) -> None:
+        text = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
+        lines = text.splitlines()
+        drafting_lines = [
+            line
+            for line in lines
+            if line.startswith("- 起草或改写：") or line.startswith("  - ")
+        ]
+
+        self.assertTrue(any(line.startswith("- 起草或改写：") for line in drafting_lines))
+        self.assertLess(max(len(line) for line in drafting_lines), 360)
+        self.assertGreaterEqual(sum(1 for line in drafting_lines if line.startswith("  - ")), 4)
+
     def test_primary_adapter_mirrors_match_canonical_bytes(self) -> None:
         canonical = ROOT / "chinese-official-writing"
         canonical_files = relative_files(canonical)

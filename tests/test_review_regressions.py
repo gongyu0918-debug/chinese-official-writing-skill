@@ -109,6 +109,38 @@ class ProseLintStructureTests(unittest.TestCase):
         self.assertIn("markdown-code-fence", labels)
         self.assertGreaterEqual(labels.count("unfinished-placeholder"), 3)
 
+    def test_code_fence_does_not_hide_format_marks_when_format_checking(self) -> None:
+        text = "```\n这里有半角,标点🙂 和 **加粗**。\n```"
+
+        findings = prose_lint.scan("<test>", text, include_format=True)
+        line_two_labels = {item.label for item in findings if item.line == 2}
+
+        self.assertIn("halfwidth-punctuation", line_two_labels)
+        self.assertIn("emoji-marker", line_two_labels)
+        self.assertIn("markdown-bold", line_two_labels)
+
+    def test_anti_ai_reference_high_frequency_phrases_are_linted(self) -> None:
+        phrases = [
+            "可以说，项目建设很有必要。",
+            "综上所述，本项工作意义重大。",
+            "这不仅是落实部署的需要，更是提升治理能力的需要。",
+            "提供有力支撑。",
+            "奠定坚实基础。",
+            "有关方面认为，工作基础较好。",
+            "业内专家指出，未来可期。",
+            "未来可期。",
+            "高度重视。",
+            "再上新台阶。",
+            "未发现重大隐患。",
+            "总体较好，能够正常开展。",
+            "持续推进。",
+        ]
+
+        findings = prose_lint.scan("<test>", "\n".join(phrases))
+        matched_lines = {item.line for item in findings}
+
+        self.assertEqual(matched_lines, set(range(1, len(phrases) + 1)))
+
     def test_attachment_numbered_list_is_not_western_bullet_noise(self) -> None:
         attachment = "附件：\n1. 项目清单\n2. 联系方式"
         ordinary = "1. 项目清单\n2. 联系方式"
