@@ -55,6 +55,13 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assertLess(max(len(line) for line in drafting_lines), 360)
         self.assertGreaterEqual(sum(1 for line in drafting_lines if line.startswith("  - ")), 4)
 
+    def test_long_form_headings_warn_against_markdown_bold(self) -> None:
+        text = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
+
+        self.assertIn("Markdown 格式残留", text)
+        self.assertIn("活动方案、实施方案等长稿正文的小标题", text)
+        self.assertIn("不用 `**加粗**`", text)
+
     def test_primary_adapter_mirrors_match_canonical_bytes(self) -> None:
         canonical = ROOT / "chinese-official-writing"
         canonical_files = relative_files(canonical)

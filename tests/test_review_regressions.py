@@ -141,6 +141,20 @@ class ProseLintStructureTests(unittest.TestCase):
 
         self.assertEqual(matched_lines, set(range(1, len(phrases) + 1)))
 
+    def test_side_commentary_boundaries_do_not_flag_negative_or_section_reference(self) -> None:
+        text = "不可以说这个方案没有问题。\n本文综上所述部分如下。"
+
+        findings = prose_lint.scan("<test>", text)
+
+        self.assertFalse([item for item in findings if item.label == "side-commentary"])
+
+    def test_unsupported_conclusion_keeps_warning_unless_check_basis_is_explicit(self) -> None:
+        unsupported = prose_lint.scan("<test>", "未发现重大隐患。")
+        supported = prose_lint.scan("<test>", "经现场检查，未发现重大隐患。")
+
+        self.assertTrue([item for item in unsupported if item.label == "unsupported-conclusion"])
+        self.assertFalse([item for item in supported if item.label == "unsupported-conclusion"])
+
     def test_attachment_numbered_list_is_not_western_bullet_noise(self) -> None:
         attachment = "附件：\n1. 项目清单\n2. 联系方式"
         ordinary = "1. 项目清单\n2. 联系方式"

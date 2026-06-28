@@ -605,3 +605,44 @@ writer subagent 使用当前 `.agents/skills/chinese-official-writing/SKILL.md` 
 - 独立 verifier 结论：`PASS_WITH_WARNINGS`，`publish_blocking=false`。轻微观察项为通知中新增“暂未发生目录更新也请说明”等执行要求，后续继续观察。
 
 详细证据见 `tests/evidence/review-fix-release-1.4.10.md`。
+
+## 1.4.10 Follow-up Hermes/GLM Review 最小修复
+
+日期：2026-06-28
+
+本轮处理两份桌面 review 报告：
+
+- `C:\Users\admin\Desktop\chinese-official-writing-Review-1.4.10.md`
+- `C:\Users\admin\Desktop\chinese-official-writing-Review-1.4.10-扩大范围.md`
+
+基线为 GitHub/main `d8d7ee0a96a0c0b822446bd70d1d417eef2a729e`。报告只作线索，结论经主上下文复现、源码检查、只读 subagent 复核和真实写稿/审稿测试交叉验证。
+
+接受并最小修复：
+
+- `N-1`：`可以说` 误命中 `不可以说`，收窄为 `(?<!不)可以说[，,]`。
+- `N-2`：`综上所述` 误命中章节引用语境，收窄为 `综上所述[，,]`。
+- `B3`：`经现场检查，未发现重大隐患` 有明确检查依据时误报；仅在同句前置 `经...检查/核查/评估/审查` 时跳过 `unsupported-conclusion`，无依据 `未发现重大隐患` 仍提示。
+- `N-3`：长方案可能残留 Markdown `**加粗**` 小标题；在常见错误反例补软性提示，长稿正文用中文编号或普通小标题，不用 `**加粗**`、`###` 或代码块。
+
+延期：
+
+- `B1`：`高度重视` 维持 `low/empty-filler` 质量提示，不做复杂上下文白名单。
+- `B2`：`有关方面认为` 维持 `medium/vague-attribution`，因为模糊归因仍需明确来源。
+
+真实 subagent 测试：
+
+- Writer A 覆盖节能宣传周/低碳日长方案和设备维保请示；长方案未残留 Markdown 加粗或 `###`，缺日期、经费、联系人、金额、采购方式、供应商、合同日期等均未编造。
+- Writer B 覆盖字段式材料、只审不改和 lint 边界判断；字段顺序和空字段保留，审稿未重写全文、未打分，lint 判断与脚本复现一致。
+- 独立 verifier 结论：`PASS`，`publish_blocking=false`。
+
+验证：
+
+- `python .\tools\sync_adapters.py`：同步成功。
+- `python -m unittest tests.test_review_regressions tests.test_skill_boundary -v`：58 tests OK。
+- `python -m unittest discover -s tests -v`：92 tests OK。
+- `$env:PROMPTFOO_PYTHON='C:\Users\admin\AppData\Local\Programs\Python\Python313\python.exe'; npm run eval:official-writing:smoke`：20/20 passed，skill win rate 1.0，judge consistency rate 1.0。
+- `python .\tools\run_real_prompt_ablation.py --baseline-root .\output\release-baselines\github-1.4.10-review-fix --baseline-label baseline-1.4.10 --current-root . --out .\output\real-prompt-vs-1.4.10-review-fix`：baseline 54/54，current 54/54。
+- `git diff --check`：通过。
+- `python C:\Users\admin\.codex\skills\.system\skill-creator\scripts\quick_validate.py .\chinese-official-writing`：Skill is valid。
+
+详细证据见 `tests/evidence/review-fix-1.4.10-followup.md`。本轮不做版本号 bump，不发布 ClawHub；这是 1.4.10 后续最小修复提交。
