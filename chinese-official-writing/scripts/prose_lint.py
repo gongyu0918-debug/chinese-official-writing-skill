@@ -47,8 +47,8 @@ PATTERNS: list[tuple[str, str, str, str]] = [
     ("medium", "side-commentary", r"相关情况如下", "可删除套话，直接进入事项。"),
     ("medium", "side-commentary", r"需要指出的是", "保留实质内容，删除提示语。"),
     ("medium", "side-commentary", r"值得注意的是", "保留实质内容，删除提示语。"),
-    ("medium", "side-commentary", r"可以说", "保留实质判断，删除提示语。"),
-    ("medium", "side-commentary", r"综上所述", "确认是否只是重复上一段；可直接写结论或删除。"),
+    ("medium", "side-commentary", r"(?<!不)可以说[，,]", "保留实质判断，删除提示语。"),
+    ("medium", "side-commentary", r"综上所述[，,]", "确认是否只是重复上一段；可直接写结论或删除。"),
     ("medium", "side-commentary", r"为了便于理解", "正式文稿中通常不需要解释腔。"),
     ("medium", "side-commentary", r"简单来说", "正式文稿中通常不需要解释腔。"),
     ("medium", "side-commentary", r"通俗地说", "正式文稿中通常不需要解释腔。"),
@@ -221,6 +221,17 @@ def inside_inline_code(line: str, start: int, end: int) -> bool:
         spans.append((left, right + 1))
         idx = right + 1
     return any(left <= start and end <= right for left, right in spans)
+
+
+def has_check_basis_before(line: str, start: int) -> bool:
+    """Return True when a safety conclusion is immediately backed by a check action."""
+    prefix = line[max(0, start - 24) : start]
+    return bool(
+        re.search(
+            r"经(?:现场|专项|全面|安全|联合|实地|书面)?(?:检查|核查|评估|审查)[，,、\s]*$",
+            prefix,
+        )
+    )
 
 
 def is_attachment_number_item(lines: list[str], line_index: int, line: str) -> bool:
@@ -422,6 +433,8 @@ def scan(path_label: str, text: str, include_format: bool = False, include_struc
                 if inside_inline_code(line, match.start(), match.end()):
                     continue
                 if label == "western-bullet" and is_attachment_number_item(lines, line_index, line):
+                    continue
+                if label == "unsupported-conclusion" and has_check_basis_before(line, match.start()):
                     continue
                 findings.append(
                     Finding(
