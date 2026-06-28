@@ -646,3 +646,25 @@ writer subagent 使用当前 `.agents/skills/chinese-official-writing/SKILL.md` 
 - `python C:\Users\admin\.codex\skills\.system\skill-creator\scripts\quick_validate.py .\chinese-official-writing`：Skill is valid。
 
 详细证据见 `tests/evidence/review-fix-1.4.10-followup.md`。本轮不做版本号 bump，不发布 ClawHub；这是 1.4.10 后续最小修复提交。
+
+## 1.4.11 发布记录
+
+日期：2026-06-28
+
+本轮把 `273adb41ffd2400813376ce60b5582e6c06f6c89` 的 1.4.10 follow-up 最小修复作为 1.4.11 候选发布。行为层修复已经在上一节通过真实 subagent 测试；本节只做版本号同步、发布级验证和 GitHub/ClawHub 发布记录。
+
+版本同步：
+
+- `tools/sync_adapters.py` 版本号改为 `1.4.11`。
+- canonical `chinese-official-writing/SKILL.md` metadata/openclaw/hermes 版本改为 `1.4.11`。
+- 运行 `python .\tools\sync_adapters.py` 同步 `.agents`、`.qwen`、`skills`、`hermes`、`openclaw`、README、OpenClaw card 和 Claude plugin manifest。
+
+发布前验证：
+
+- `python -m unittest discover -s tests -v`：92 tests OK。
+- `$env:PROMPTFOO_PYTHON='C:\Users\admin\AppData\Local\Programs\Python\Python313\python.exe'; npm run eval:official-writing:smoke`：20/20 passed，skill win rate 1.0，judge consistency rate 1.0。
+- `python .\tools\run_real_prompt_ablation.py --baseline-root .\output\release-baselines\github-1.4.10-release-1.4.11 --baseline-label baseline-1.4.10 --current-root . --out .\output\real-prompt-vs-1.4.10-release-1.4.11`：baseline 54/54，current 54/54。
+- `python C:\Users\admin\.codex\skills\.system\skill-creator\scripts\quick_validate.py .\chinese-official-writing`：Skill is valid。
+- 直接 lint 复现：N-1/N-2/B3 支持场景不再误报，无依据 `未发现重大隐患`、`可以说，`、`综上所述，`、Markdown 加粗和代码围栏格式仍正常提示。
+
+详细证据见 `tests/evidence/review-fix-release-1.4.11.md`。
