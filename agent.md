@@ -787,3 +787,35 @@ writer subagent 使用当前 `.agents/skills/chinese-official-writing/SKILL.md` 
 - 发布目录未发现 `format_docx.py`、`document_generator.py`、`generate_official_doc.py` 或 `install_fonts.py`。
 
 详细证据见 `tests/evidence/community-borrowing-minimal-db5607b.md`。
+
+## 1.4.12 发布前记录
+
+日期：2026-06-29
+
+本轮判断有必要发布小版本，因为 1.4.12 相对 1.4.11 已改 canonical skill、lint 提示和所有适配镜像。发布前基线固定为 `v1.4.11` / `origin/main` commit `89948800d9616cb207f7d263948db7f51bc2441c`。
+
+远端和线上状态：
+
+- `git fetch origin`：完成。
+- `git rev-list --left-right --count origin/main...HEAD`：`0 3`，远端未领先，本地包含 3 个待发布提交。
+- 发布前 `clawhub inspect chinese-official-writing --json`：`latestVersion.version=1.4.11`，moderation `clean`。
+
+版本同步：
+
+- `chinese-official-writing/SKILL.md`、`tools/sync_adapters.py` 改为 `1.4.12`。
+- 运行 `python .\tools\sync_adapters.py` 同步 `.agents`、`.qwen`、`skills`、`hermes`、`openclaw`、README、OpenClaw card 和 Claude plugin manifest。
+
+发布前验证：
+
+- `python -m unittest discover -s tests -v`：93 tests OK。
+- `python .\tools\run_real_prompt_ablation.py --baseline-root .\output\release-baselines\v1.4.11-release-1.4.12 --baseline-label baseline-v1.4.11 --current-root . --out .\output\real-prompt-vs-1.4.11-release-1.4.12`：baseline 55 用例 54 过、仅新增 P055 失败；current 55/55 通过。
+- `python C:\Users\admin\.codex\skills\.system\skill-creator\scripts\quick_validate.py .\chinese-official-writing`：Skill is valid。
+- `git diff --check`：通过。
+- `$env:PROMPTFOO_PYTHON='C:\Users\admin\AppData\Local\Programs\Python\Python313\python.exe'; npm run eval:official-writing:smoke`：20/20 passed，skill win rate 1.0，judge consistency rate 1.0。
+
+真实 subagent 发布前抽测：
+
+- Writer `019f1303-13ab-7d11-898d-7e3c4706c5b0` 覆盖口语去正式化、模板优先通知、商请函缺项、只审不改。
+- Verifier `019f1305-167f-7bb1-9379-371ca0c02720` 判定 T1-T4 全部 PASS，`overall=PASS`，`publish_blocking=false`。
+
+详细证据见 `tests/evidence/release-1.4.12.md`。
