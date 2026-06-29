@@ -2,6 +2,7 @@ __pycache__/
 *.py[cod]
 node_modules/
 .promptfoo/
+.clawhub/
 .DS_Store
 Thumbs.db
 .env
