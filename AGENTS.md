@@ -2,6 +2,8 @@
 
 本文件适用于整个仓库。后续 agent 接手本仓库时，优先遵守这里的发布、review 和测试约定；若与用户最新指令冲突，以用户最新指令为准，但不得伪造未运行的测试结果。
 
+当前接手入口只保留本文件。当前 GitHub / ClawHub 发布状态为 `chinese-official-writing@1.4.12`；下方 1.4.1 到 1.4.11 内容均为历史接手记录，不代表当前 live 版本。
+
 ## 基本工作纪律
 
 1. 所有代码或文档修改必须通过 git commit 留痕。commit message 需说明修改目的、影响范围和验证方式。
@@ -125,3 +127,36 @@
 - 国产 Agent 适配遵循最小镜像原则：Qwen Code 因官方目录为 `.qwen/skills/<skill-name>/SKILL.md`，保留独立 `.qwen/skills/chinese-official-writing/` 镜像；MiniMax Skills、GLM Skills（Z.ai/智谱）、AutoClaw、Kimi Code CLI、TRAE、Baidu Comate AI IDE 等共用 `skills/chinese-official-writing/` 或 `.agents/skills/chinese-official-writing/`，不为同一配方新增 `minimax/`、`glm/`、`kimi/` 等重复镜像。
 - README 安装提示里的平台名要使用实际名称：Qwen Code、MiniMax Skills、GLM Skills（Z.ai/智谱）、AutoClaw、Kimi Code CLI、TRAE、Baidu Comate AI IDE。Kimi 只写兼容提示，不写成已稳定官方 Skill 目录。
 - 对应确定性用例为 P052-P054；新增边界测试检查 `.qwen/skills` 镜像、README 平台名、共享目录策略和 frontmatter 兼容标识。
+
+## 1.4.9 -> 1.4.12 接手记录
+
+根目录只保留 `AGENTS.md` 作为 agent 接手入口；旧 `agent.md` 已删除。旧文件顶部仍记录 ClawHub live `1.4.8` 和 AI 味/查重 Round 1 过程，容易被后续 agent 误当成当前状态；保留必要结论如下，详细证据以 `tests/evidence/` 为准。
+
+1.4.9 的主要结论：
+
+- AI 味/查重循环只采纳三轮以上共性问题，不把单轮样稿同质化直接做成硬门禁。
+- 最小修复仍限定在 prompt/reference 层，不新增检测器、不新增清洗脚本、不改变默认写作工作流。
+- 发布前真实写稿、公开来源 5 轮测试和基线消融证据见 `tests/evidence/real-writing-1.4.9-release.md`、`tests/evidence/real-writing-1.4.9-public-source-5round.md`。
+
+1.4.10 和 1.4.11 的主要结论：
+
+- Hermes/GLM review 报告只作线索；每项 finding 必须先复现，再决定接受或拒绝。
+- 已接受并修复的方向包括高频风险句式 lint 漏检、`--format` 代码围栏内格式漏扫、冗余 `core_compiled`、起草规则单 bullet 过密、日期/综述类边界漏测等。
+- X-1 `name` 连字符问题继续拒绝：OpenClaw / ClawHub 兼容入口仍使用 `chinese_official_writing`；除非能复现实际加载断裂，否则不要改成连字符。
+- 详细证据见 `tests/evidence/review-fix-release-1.4.10.md`、`tests/evidence/review-fix-1.4.10-followup.md`、`tests/evidence/review-fix-release-1.4.11.md`、`tests/evidence/review-fix-1.4.11-followup.md`。
+
+Hermes 社区借鉴候选 `2713e27` 的处理结论：
+
+- 不接受 `2713e27` 原提交形态，不把它当作可发布候选。该提交在 Hermes 仓库测试中出现镜像不同步、`## 函` 被误改为 `## 函数`、`format_docx.py` 风险和 lint 噪声问题。
+- 拒绝 `format_docx.py`：候选脚本声称只做版式，实际会重建正文，存在默认同名 `.docx` 覆盖风险，并会把任意 `关于...` 行误判为标题。
+- 拒绝段落同构 lint 和 AI 味固定替换表：前者噪声偏高，后者会把口语材料升级为未给出的强判断。
+- 只最小借鉴思路：定稿前高风险先查、口语来源不等于事实授权、文种可参考顺序、低强度 AI 味提示。
+- 详细证据见 `tests/evidence/review-community-borrowing-2713e27.md`、`tests/evidence/community-borrowing-minimal-db5607b.md`。
+
+1.4.12 的发布结论：
+
+- 官方发布 commit 为 `92f6d15cb8802d1e66d8fad6f8d775db6945d9c4`，tag 为 `v1.4.12`。
+- GitHub `origin/main` 已对齐该 commit；ClawHub `latestVersion.version=1.4.12`，moderation `clean`。
+- 1.4.12 只保留 prompt/reference 和测试层最小增强，不新增硬门禁、排版脚本或默认联网。
+- 发布前验证包括 `python -m unittest discover -s tests -v`、`npm run eval:official-writing:smoke`、`git diff --check`、基线消融和真实 writer/verifier subagent 测试。
+- 详细证据见 `tests/evidence/release-1.4.12.md`。
