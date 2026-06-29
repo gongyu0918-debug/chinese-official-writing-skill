@@ -997,6 +997,38 @@ CASES: list[PromptCase] = [
             },
         },
     ),
+    PromptCase(
+        id="P055",
+        kind="revise",
+        prompt="借鉴社区公文 skill 的检查层，但不要新增脚本或硬门禁。把“老板关心、钱花得值、马上要搞”顺成正式表达时，不要升级事实，也不要覆盖用户模板。",
+        checks={
+            "file_terms": {
+                "chinese-official-writing/references/review-checklist.md": [
+                    "定稿前高风险先查",
+                    "其余按文种/风险面",
+                    "不把它改成新的阻断流程",
+                ],
+                "chinese-official-writing/references/official-style.md": [
+                    "口语来源不等于事实授权",
+                    "老板关心",
+                    "领导高度关注",
+                    "不得自动升级",
+                    "审批态度留给用户确认",
+                ],
+                "chinese-official-writing/references/anti-ai-patterns.md": [
+                    "需说明资金使用必要性和预期效果",
+                    "相关负责人关注该事项",
+                    "不要无依据升级为 `领导高度关注`",
+                ],
+                "chinese-official-writing/references/genre-checklist.md": [
+                    "可参考顺序",
+                    "不写成正文标签",
+                    "不覆盖用户模板",
+                    "## 函\n",
+                ],
+            },
+        },
+    ),
 ]
 
 

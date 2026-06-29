@@ -744,3 +744,46 @@ writer subagent 使用当前 `.agents/skills/chinese-official-writing/SKILL.md` 
 - AB5 文种结构骨架：修改后再考虑。先修 `## 函数`，并说明骨架不是可见标签，不覆盖用户模板、字段式材料和既有标题顺序。
 
 详细证据见 `tests/evidence/review-community-borrowing-2713e27.md`。
+
+## 社区借鉴最小实现记录
+
+日期：2026-06-29
+
+本轮以 Codex 工作区 `F:\Workspaces\chinese-official-writing-skill` 为准，不修改 Hermes 工作仓库。基线为本地提交 `db5607b`，不 bump 1.4.12，不发布 GitHub 或 ClawHub。
+
+接受的最小借鉴：
+
+- `review-checklist.md` 增加 `定稿前高风险先查`，只作为定稿前快速分层，不变成阻断流程。
+- `official-style.md` 增加 `口语来源不等于事实授权`，防止 `老板关心`、`钱花得值`、`马上要搞` 被升级成 `领导高度关注`、`投入产出清晰`、`推进较为紧迫`、`按程序推进`。
+- `genre-checklist.md` 给通知、请示、报告、方案、申请、函补 `可参考顺序`，并明示不写成正文标签，不覆盖用户模板、字段式材料、网页复制稿或既有标题顺序。
+- `anti-ai-patterns.md` 和 `prose_lint.py` 把既有口语替换提示改为低强度、保依据边界的建议。
+
+拒绝或未引入：
+
+- 不新增 `format_docx.py`。
+- 不新增段落同构 lint。
+- 不新增硬门禁、自动清洗脚本或默认确认流程。
+
+真实 subagent 测试：
+
+- Writer `019f1289-e637-7821-9994-d0bc63280cf1` 覆盖口语去正式化、字段式申请、只审不改、商请函缺项、模板优先通知 5 个场景。
+- Verifier `019f128b-9977-7351-ba33-508958022f91` 判定 T1-T5 全部 PASS，`overall=PASS`，`publish_blocking=false`。
+
+基线消融：
+
+- `python .\tools\run_real_prompt_ablation.py --baseline-root .\output\release-baselines\db5607b-before-community-borrowing --baseline-label baseline-db5607b --current-root . --out .\output\real-prompt-vs-db5607b-community-borrowing`
+- `baseline-db5607b`：55 用例，54 通过，1 失败；唯一失败是新增 P055。
+- `current`：55 用例，55 通过，0 失败。
+
+验证：
+
+- `python .\tools\sync_adapters.py`：同步成功；首次沙箱内运行因 `.agents` 权限拒绝失败，提权重跑成功。
+- `python -m unittest tests.test_skill_boundary tests.test_real_prompt_ablation -v`：39 tests OK。
+- `python -m unittest tests.test_review_regressions tests.test_skill_boundary -v`：59 tests OK。
+- `python -m unittest discover -s tests -v`：93 tests OK。
+- `$env:PROMPTFOO_PYTHON='C:\Users\admin\AppData\Local\Programs\Python\Python313\python.exe'; npm run eval:official-writing:smoke`：20/20 passed，skill win rate 1.0，judge consistency rate 1.0。
+- `python C:\Users\admin\.codex\skills\.system\skill-creator\scripts\quick_validate.py .\chinese-official-writing`：Skill is valid。
+- `git diff --check`：通过。
+- 发布目录未发现 `format_docx.py`、`document_generator.py`、`generate_official_doc.py` 或 `install_fonts.py`。
+
+详细证据见 `tests/evidence/community-borrowing-minimal-db5607b.md`。

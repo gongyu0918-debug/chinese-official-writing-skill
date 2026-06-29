@@ -346,7 +346,7 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assertIn("不新增硬清洗", skill)
 
         skill_files = relative_files(ROOT / "chinese-official-writing")
-        for forbidden in ["document_generator.py", "generate_official_doc.py", "install_fonts.py"]:
+        for forbidden in ["document_generator.py", "generate_official_doc.py", "install_fonts.py", "format_docx.py"]:
             self.assertNotIn(forbidden, skill_files)
 
     def test_v141_search_boundary_stays_lightweight_and_opt_in(self) -> None:
@@ -389,6 +389,9 @@ class SkillBoundaryTests(unittest.TestCase):
             encoding="utf-8"
         )
         official_style = (ROOT / "chinese-official-writing" / "references" / "official-style.md").read_text(
+            encoding="utf-8"
+        )
+        genre_checklist = (ROOT / "chinese-official-writing" / "references" / "genre-checklist.md").read_text(
             encoding="utf-8"
         )
         anti_ai = (ROOT / "chinese-official-writing" / "references" / "anti-ai-patterns.md").read_text(
@@ -490,6 +493,9 @@ class SkillBoundaryTests(unittest.TestCase):
         official_style = (ROOT / "chinese-official-writing" / "references" / "official-style.md").read_text(
             encoding="utf-8"
         )
+        genre_checklist = (ROOT / "chinese-official-writing" / "references" / "genre-checklist.md").read_text(
+            encoding="utf-8"
+        )
 
         self.assertIn("正式交付前要素核对卡", skill)
         self.assertIn("正式交付前要素核对卡", format_ref)
@@ -514,6 +520,9 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assertIn("单独出现 `高度重视`", anti_ai)
         self.assertIn("不足以判为 AI 味或套话", anti_ai)
         self.assertIn("保留公文必要的正式语气", anti_ai)
+        self.assertIn("需说明资金使用必要性和预期效果", anti_ai)
+        self.assertIn("相关负责人关注该事项", anti_ai)
+        self.assertIn("不要无依据升级为 `领导高度关注`", anti_ai)
         self.assertIn("去 AI 味或语气审稿应匹配文体", official_style)
         self.assertIn("不为了显得像人写而加入第一人称", official_style)
         self.assertIn("单个正式词或单个转折不作为硬清洗理由", official_style)
@@ -521,9 +530,30 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assertIn("不为显得完整而补造牵头部门、责任部门、管理动作、整改动作、成果总结、跟踪督办、后续处理进展", workflow)
         self.assertIn("正式化新增事实", checklist)
         self.assertIn("正式化改写只压实原文已有事实", official_style)
+        self.assertIn("口语来源不等于事实授权", official_style)
+        for term in ["老板关心", "钱花得值", "马上要搞", "领导高度关注", "投入产出清晰", "推进较为紧迫", "按程序推进"]:
+            self.assertIn(term, official_style)
+        self.assertIn("不得自动升级", official_style)
+        self.assertIn("审批态度留给用户确认", official_style)
         self.assertIn("用户要求“位置”时，优先逐项引用原文短语或句子", skill)
         self.assertIn("未只给笼统段落评价", checklist)
         self.assertIn("整体归纳可放在逐项意见之后", anti_ai)
+
+        self.assertIn("定稿前高风险先查", checklist)
+        self.assertIn("其余按文种/风险面", checklist)
+        self.assertIn("不把它改成新的阻断流程", checklist)
+        self.assertIn("不扩展成调查问卷或新确认流程", checklist)
+        self.assertIn("只审不改场景", checklist)
+
+        self.assertIn("## 函\n", genre_checklist)
+        self.assertNotIn("## 函数", genre_checklist)
+        self.assertIn("可参考顺序", genre_checklist)
+        self.assertIn("不写成正文标签", genre_checklist)
+        self.assertIn("不覆盖用户模板", genre_checklist)
+        for section in ["通知", "请示", "报告", "方案", "申请", "函"]:
+            self.assertIn(f"## {section}", genre_checklist)
+        for term in ["目的或背景", "请批事项", "结论或总体情况", "责任分工", "申请主体", "商请或告知事项"]:
+            self.assertIn(term, genre_checklist)
 
     def test_v148_anti_ai_borrowing_stays_soft_and_official(self) -> None:
         anti_ai = (ROOT / "chinese-official-writing" / "references" / "anti-ai-patterns.md").read_text(
