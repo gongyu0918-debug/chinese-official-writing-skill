@@ -710,3 +710,37 @@ writer subagent 使用当前 `.agents/skills/chinese-official-writing/SKILL.md` 
 - `git diff --check`：通过，仅有 Windows 行尾提示，无 whitespace 错误。
 
 详细证据见 `tests/evidence/review-fix-1.4.11-followup.md`。
+
+## Hermes 社区借鉴提交 2713e27 Review 记录
+
+日期：2026-06-29
+
+本轮只读 review Hermes 工作仓库 `C:\Users\admin\chinese-official-writing-review\repo` 的候选提交 `2713e275ea118e15ad3e0ce705bcc73f606b86c4`。当前交付工作区仍是 `F:\Workspaces\chinese-official-writing-skill`；未把 Hermes 提交应用到本工作区。
+
+总体结论：不接受 `2713e27` 当前形态，不发布，不 bump 1.4.12。可保留部分社区借鉴思路，但必须在当前工作区重新做最小实现、同步镜像和测试。
+
+复现证据：
+
+- `python -m unittest tests.test_review_regressions tests.test_skill_boundary -v` 在 Hermes 仓库运行：58 tests，5 failures。
+- `python -m unittest discover -s tests -v` 在 Hermes 仓库运行：92 tests，5 failures。
+- 失败均为镜像一致性问题：canonical 新增 `format_docx.py` 和部分 reference 改动，但 `.agents`、`.qwen`、`skills`、`openclaw` 未同步。
+- canonical `genre-checklist.md` 把 `## 函` 改成 `## 函数`，而镜像仍是 `## 函`，既破坏函文种章节，也证明提交内部不一致。
+
+只读 subagent review：
+
+- reviewer `019f126d-bf21-7310-bde2-eb64da7c169d` 结论：不建议接受。主要问题是 `format_docx.py` 可能覆盖同名 `.docx`、实际重建正文却声称只设置布局、会把任何 `关于...` 行当标题居中放大；段落同构规则噪声偏高且 match 不稳定；提交未补测试或证据。
+
+真实场景补测：
+
+- writer `019f126f-deac-7a63-ac71-6342d069f057` 用候选 canonical skill 跑 5 个场景：函、只审不改、Word/docx 边界、去 AI 味、字段式材料。
+- verifier `019f1271-2ba3-7230-aa06-65a98988fd15` 结论 `overall=FAIL`。T1/T2/T3 PASS；T4/T5 FAIL，原因是把 `老板关心` 升级成 `领导高度关注/领导关注`，并补写 `资金使用具有必要性`、`推进较为紧迫`、`按程序推进` 等未给事实。
+
+借鉴点取舍：
+
+- AB1 段落同构检测：修改后再考虑。只能 low 提示，需要降低常见公文固定句误报、稳定 match、补正反测试。
+- AB2 硬边界 checklist：思路可接受，但不得变成新阻断流程，必须同步镜像。
+- AB3 AI 味替换表：当前实现拒绝。必须明确“只有原文有证据时可替换”，否则会诱发事实升级。
+- AB4 `format_docx.py`：当前实现拒绝。Word/docx 工具需另行设计，不能覆盖模板、不能误排正文、不能声称只设置布局却重建全文。
+- AB5 文种结构骨架：修改后再考虑。先修 `## 函数`，并说明骨架不是可见标签，不覆盖用户模板、字段式材料和既有标题顺序。
+
+详细证据见 `tests/evidence/review-community-borrowing-2713e27.md`。
