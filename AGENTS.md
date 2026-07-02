@@ -2,7 +2,7 @@
 
 本文件适用于整个仓库。后续 agent 接手本仓库时，优先遵守这里的发布、review 和测试约定；若与用户最新指令冲突，以用户最新指令为准，但不得伪造未运行的测试结果。
 
-当前接手入口只保留本文件。当前 GitHub / ClawHub 发布状态为 `chinese-official-writing@1.4.13`；下方 1.4.1 到 1.4.12 内容均为历史接手记录，不代表当前 live 版本。
+当前接手入口只保留本文件。当前 GitHub / ClawHub 发布状态为 `chinese-official-writing@1.4.14`；下方 1.4.1 到 1.4.12 内容均为历史接手记录，不代表当前 live 版本。
 
 ## 基本工作纪律
 
@@ -184,3 +184,14 @@ Hermes 社区借鉴候选 `2713e27` 的处理结论：
 - 1.4.12 基线消融：`baseline-1.4.12` 55/55 通过，`current` 55/55 通过。
 - 发布前真实写稿 sanity：独立 verifier 判定 2 PASS、1 WARN；WARN 为“只审格式和语气”样本中格式项覆盖偏轻，不构成阻断、事实编造或格式破坏。
 - 详细证据见 `tests/evidence/release-1.4.13.md`。
+
+## 1.4.14 接手记录
+
+1.4.14 只调整 skill 触发 description、OpenClaw 摘要说明和 description 专项回归用例，不新增硬门禁、lint 规则、默认联网、排版脚本或写作 workflow 阶段。
+
+- description 明确覆盖“中文公文和机关企事业单位、学校等正式事务材料”，同时保留“写申请/请示/报告/通知/函”等短 prompt 的路由能力。
+- `降 AI 味` 收束为“对这类材料”适用，并明确排除论文、个人求职、营销、社媒等，降低误触发风险。
+- OpenClaw 市场页说明改为市场页只展示摘要，安装包内入口规则和 `references/` 为准，canonical 全文见 GitHub。
+- 新增 P056-P064 description 专项消融用例；1.4.13 基线在新增专项中失败 3 项，current 64/64 通过。
+- 发布前真实写稿 verifier 判定 2 PASS、2 WARN；WARN 均为用户未提供主送/发函单位/成文日期导致的正式完整性偏简，不构成文种错乱、事实编造或中断。
+- 详细证据见 `tests/evidence/release-1.4.14.md`。

@@ -85,6 +85,14 @@ class RealPromptAblationTests(unittest.TestCase):
         self.assertIn("提供有力支撑", prompts)
         self.assertIn("老板关心、钱花得值、马上要搞", prompts)
         self.assertIn("不要升级事实", prompts)
+        self.assertIn("写个申请，买一块 2T 固态硬盘", prompts)
+        self.assertIn("写个请示，申请采购 3 台办公电脑", prompts)
+        self.assertIn("学校奖学金申请", prompts)
+        self.assertIn("起草征求意见函", prompts)
+        self.assertIn("给论文降 AI 味", prompts)
+        self.assertIn("小红书营销种草文案", prompts)
+        self.assertIn("个人求职申请信", prompts)
+        self.assertIn("App 增长营销方案", prompts)
 
     def test_current_skill_passes_real_prompt_cases(self) -> None:
         rows = real_prompt_eval.evaluate_root(ROOT, "current_test")
@@ -188,6 +196,15 @@ class RealPromptAblationTests(unittest.TestCase):
         self.assertIn("口语来源不等于事实授权", checks_by_id["P055"]["file_terms"]["chinese-official-writing/references/official-style.md"])
         self.assertIn("相关负责人关注该事项", checks_by_id["P055"]["file_terms"]["chinese-official-writing/references/anti-ai-patterns.md"])
         self.assertIn("不写成正文标签", checks_by_id["P055"]["file_terms"]["chinese-official-writing/references/genre-checklist.md"])
+        self.assertIn("申请", checks_by_id["P056"]["description_terms"])
+        self.assertIn("请示", checks_by_id["P057"]["description_terms"])
+        self.assertIn("学校", checks_by_id["P058"]["description_terms"])
+        self.assertIn("工作要点", checks_by_id["P059"]["description_terms"])
+        self.assertIn("征求意见函", checks_by_id["P060"]["description_terms"])
+        self.assertIn("论文", checks_by_id["P061"]["description_exclusion_terms"])
+        self.assertIn("营销", checks_by_id["P062"]["description_exclusion_terms"])
+        self.assertIn("个人求职", checks_by_id["P063"]["description_exclusion_terms"])
+        self.assertIn("社媒", checks_by_id["P064"]["description_exclusion_terms"])
 
     def test_heading_lock_detects_added_subheading(self) -> None:
         before = """一、整改进展

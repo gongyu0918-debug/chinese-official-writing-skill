@@ -21,6 +21,13 @@ class SkillBoundaryTests(unittest.TestCase):
     def test_canonical_skill_declares_trigger_and_exclusion_boundaries(self) -> None:
         text = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
 
+        description = re.search(r"^description: (.+)$", text, re.M)
+        self.assertIsNotNone(description)
+        self.assertLessEqual(len(description.group(1)), 280)
+        for keyword in ["申请", "请示", "报告", "通知", "函", "采购公告", "审查材料", "正式文本"]:
+            self.assertIn(keyword, description.group(1))
+        for excluded in ["营销", "社媒", "论文"]:
+            self.assertIn(excluded, description.group(1))
         self.assertIn("当用户明确要求中文通知", text)
         self.assertIn("## 触发条件与边界", text)
         self.assertIn("批量语料生成", text)
@@ -175,7 +182,8 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assertIn("clawhub install chinese-official-writing", text)
         self.assertIn("其他平台", text)
         self.assertIn("GitHub 仓库 README", text)
-        self.assertIn("完整规则、硬边界和复核清单", text)
+        self.assertIn("安装包内包含精简入口和完整 `references/`", text)
+        self.assertIn("关键边界以本入口规则和 `references/` 为准", text)
         self.assertNotIn("### Codex / OpenAI Skill", text)
         self.assertNotIn("npm run eval:official-writing", text)
 
@@ -604,6 +612,8 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assertIn("数据冲突不得默认就高", text)
         self.assertIn("references/format-gbt9704.md", text)
         self.assertIn("正式 Word 输出前不得残留 Markdown", text)
+        self.assertIn("包内 `references/`", text)
+        self.assertNotIn("canonical `SKILL.md` 的“硬边界”段", text)
 
     def test_openclaw_skill_card_source_is_tracked_but_not_packaged_directly(self) -> None:
         source = (ROOT / "openclaw" / "skill-card.md").read_text(encoding="utf-8")

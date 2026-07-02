@@ -1,6 +1,6 @@
 ---
 name: chinese_official_writing
-description: 用于起草、改写和复核中文公文及正式工作材料；当用户要求通知、请示、报告、函、复函、批复、意见、决定、决议、议案、公报、命令、公告、通告、公示、通报、纪要、方案、说明、申请、征求意见函、采购公告、可研、调研、总结、工作要点、审查材料、讲话稿、致辞、述职报告等中文正式文本，或需要顺稿、压缩、去口语化、降 AI 味、文种校验、办理要素核对时使用。不用于英文、文学、营销、社媒、批量语料或替代法律/财务/采购/审计判断。
+description: 用于中文公文和机关企事业单位、学校等正式事务材料的起草、改写、压缩和复核；当用户明确要求写申请、请示、报告、通知、函、复函、批复、说明、方案、纪要、公告、公示、通报、征求意见函、工作要点、总结、调研、讲话、致辞、采购公告、可研、审查材料、AI 算力等正式文本，或要求对这类材料做文种校验、格式核验、去口语化、降 AI 味时使用。不用于英文、文学、营销、社媒、论文、个人求职、批量语料或替代法律/财务/采购/审计判断。
 license: MIT-0
 category: writing
 tags:
@@ -10,7 +10,7 @@ tags:
   - gongwen
   - ai-compute
 metadata:
-  version: "1.4.13"
+  version: "1.4.14"
   compatible_agents:
     - codex
     - claude-code
@@ -29,7 +29,7 @@ metadata:
     install_project: ".qwen/skills/chinese-official-writing"
     entry: "SKILL.md"
   openclaw:
-    version: "1.4.13"
+    version: "1.4.14"
     emoji: "📝"
     tags:
       - chinese
@@ -63,9 +63,9 @@ openclaw skills install chinese-official-writing
 其他平台如 Codex、Claude Code、Hermes、deepseek-tui 的安装 Prompt，请看 GitHub 仓库 README：
 https://github.com/gongyu0918-debug/chinese-official-writing-skill
 
-当前版本：`chinese-official-writing@1.4.13`
+当前版本：`chinese-official-writing@1.4.14`
 
-ClawHub 页面只展示摘要；安装包内的 `SKILL.md` 和 `references/` 保留完整规则、硬边界和复核清单。
+ClawHub 页面只展示摘要；安装包内包含精简入口和完整 `references/`。关键边界以本入口规则和 `references/` 为准，canonical 全文见 GitHub 仓库。
 
 ## 适用场景
 
@@ -145,4 +145,4 @@ MIT-0
 15. 轻量语气替换只作建议层，不新增硬清洗；去口语化必须保留原文事实，不补造依据、数据、成效或责任安排；`老板关心`、`钱花得值`、`马上要搞` 等口语来源不得自动升级成 `领导高度关注`、`投入产出清晰`、`推进较为紧迫`、`按程序推进` 等强判断；去 AI 味看成簇问题，不把单个正式词或单个转折当作硬清洗理由；句群节奏和模板化痕迹只作软性审稿项，公文去 AI 味不是聊天化，不加入第一人称、反问、口语插入或情绪化表达；正文调整只能使用已给事实，不为显得自然或完整补造解释、原因、影响、流程、人员、字段或整改动作。
 16. 社区技能和公开样文只借鉴流程思路、检查维度和 prompt/markdown 组织方式；不复制社区代码、脚本、正则、模板正文、大段 prompt 或固定话术，也不扩大默认联网、强制确认、硬清洗或重排版范围。
 17. 长篇限字稿件先做篇幅预算，压缩铺垫、重复和套话，保留措施、责任、时限和结尾落点，避免头重脚轻或草草收尾。
-18. 完整硬边界以 canonical `SKILL.md` 的“硬边界”段和 `references/final-review-layers.md`、`references/review-checklist.md` 为准；仅加载市场版摘要时，遇到事实、文种、行文关系、用户模板或结构锁定问题必须回看这些完整规则。
+18. OpenClaw 安装包以本入口规则和 `references/final-review-layers.md`、`references/review-checklist.md` 为准；遇到事实、文种、行文关系、用户模板或结构锁定问题，必须回看包内 `references/`，不要假设市场页摘要已经包含完整边界。canonical 全文见 GitHub 仓库。

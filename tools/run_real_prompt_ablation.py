@@ -1029,6 +1029,78 @@ CASES: list[PromptCase] = [
             },
         },
     ),
+    PromptCase(
+        id="P056",
+        kind="create",
+        prompt="写个申请，买一块 2T 固态硬盘，价格 2000 元。",
+        checks={
+            "description_terms": ["申请"],
+        },
+    ),
+    PromptCase(
+        id="P057",
+        kind="create",
+        prompt="写个请示，申请采购 3 台办公电脑，预算 15000 元。",
+        checks={
+            "description_terms": ["请示"],
+        },
+    ),
+    PromptCase(
+        id="P058",
+        kind="create",
+        prompt="帮我写一份学校奖学金申请，材料有成绩、志愿服务和获奖情况。",
+        checks={
+            "description_terms": ["学校", "申请"],
+        },
+    ),
+    PromptCase(
+        id="P059",
+        kind="create",
+        prompt="写一份年度信息化工作要点，包含重点任务、责任机制和时间节点。",
+        checks={
+            "description_terms": ["工作要点"],
+        },
+    ),
+    PromptCase(
+        id="P060",
+        kind="create",
+        prompt="起草征求意见函，附件是管理办法征求意见稿，7 月 10 日前反馈。",
+        checks={
+            "description_terms": ["征求意见函"],
+        },
+    ),
+    PromptCase(
+        id="P061",
+        kind="revise",
+        prompt="帮我给论文降 AI 味。",
+        checks={
+            "description_exclusion_terms": ["论文"],
+        },
+    ),
+    PromptCase(
+        id="P062",
+        kind="create",
+        prompt="写一篇小红书营销种草文案，语气活泼一点。",
+        checks={
+            "description_exclusion_terms": ["营销", "社媒"],
+        },
+    ),
+    PromptCase(
+        id="P063",
+        kind="create",
+        prompt="帮我写个人求职申请信。",
+        checks={
+            "description_exclusion_terms": ["个人求职"],
+        },
+    ),
+    PromptCase(
+        id="P064",
+        kind="create",
+        prompt="写一个 App 增长营销方案，要适合社媒投放。",
+        checks={
+            "description_exclusion_terms": ["营销", "社媒"],
+        },
+    ),
 ]
 
 
@@ -1041,6 +1113,11 @@ def read_text(root: Path, relative: str) -> str:
 
 def extract_description(skill_text: str) -> str:
     match = re.search(r"^description:\s*(.+)$", skill_text, re.M)
+    return match.group(1) if match else ""
+
+
+def extract_description_exclusion(description: str) -> str:
+    match = re.search(r"不用于(.+?)(?:。|$)", description)
     return match.group(1) if match else ""
 
 
@@ -1085,6 +1162,10 @@ def evaluate_case(case: PromptCase, root: Path, prose_lint) -> dict[str, Any]:
     for term in checks.get("description_terms", []):
         if term not in description:
             failures.append(f"description missing {term}")
+    description_exclusion = extract_description_exclusion(description)
+    for term in checks.get("description_exclusion_terms", []):
+        if term not in description_exclusion:
+            failures.append(f"description exclusion missing {term}")
     for term in checks.get("routing_terms", []):
         if term not in routing:
             failures.append(f"routing missing {term}")
