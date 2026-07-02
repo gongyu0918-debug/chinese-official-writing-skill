@@ -2,7 +2,7 @@
 
 本文件适用于整个仓库。后续 agent 接手本仓库时，优先遵守这里的发布、review 和测试约定；若与用户最新指令冲突，以用户最新指令为准，但不得伪造未运行的测试结果。
 
-当前接手入口只保留本文件。当前 GitHub / ClawHub 发布状态为 `chinese-official-writing@1.4.12`；下方 1.4.1 到 1.4.11 内容均为历史接手记录，不代表当前 live 版本。
+当前接手入口只保留本文件。当前 GitHub / ClawHub 发布状态为 `chinese-official-writing@1.4.13`；下方 1.4.1 到 1.4.12 内容均为历史接手记录，不代表当前 live 版本。
 
 ## 基本工作纪律
 
@@ -175,3 +175,12 @@ Hermes 社区借鉴候选 `2713e27` 的处理结论：
 - 1.4.12 只保留 prompt/reference 和测试层最小增强，不新增硬门禁、排版脚本或默认联网。
 - 发布前验证包括 `python -m unittest discover -s tests -v`、`npm run eval:official-writing:smoke`、`git diff --check`、基线消融和真实 writer/verifier subagent 测试。
 - 详细证据见 `tests/evidence/release-1.4.12.md`。
+
+## 1.4.13 接手记录
+
+1.4.13 的发布结论：
+
+- 发布候选从 `cb7c8d3` 出发，只追加版本号同步和 `sync_adapters.py` 版本字段同步修复，不新增硬门禁、lint 规则、默认联网或写作工作流阶段。
+- 1.4.12 基线消融：`baseline-1.4.12` 55/55 通过，`current` 55/55 通过。
+- 发布前真实写稿 sanity：独立 verifier 判定 2 PASS、1 WARN；WARN 为“只审格式和语气”样本中格式项覆盖偏轻，不构成阻断、事实编造或格式破坏。
+- 详细证据见 `tests/evidence/release-1.4.13.md`。

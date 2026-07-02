@@ -11,7 +11,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 CANONICAL = ROOT / "chinese-official-writing"
-VERSION = "1.4.12"
+VERSION = "1.4.13"
 ROOT_README = ROOT / "README.md"
 OPENCLAW_MARKETPLACE_README = ROOT / "openclaw" / "marketplace-readme.md"
 OPENCLAW_README = ROOT / "openclaw" / "README.md"
@@ -39,9 +39,22 @@ def versioned_text(text: str) -> str:
     return text
 
 
+def versioned_skill_text(text: str) -> str:
+    return re.sub(r'version: "\d+\.\d+\.\d+"', f'version: "{VERSION}"', text)
+
+
+def update_canonical_skill_version() -> None:
+    skill_file = CANONICAL / "SKILL.md"
+    skill_file.write_text(
+        versioned_skill_text(skill_file.read_text(encoding="utf-8")),
+        encoding="utf-8",
+        newline="\n",
+    )
+
+
 def patch_frontmatter(target: Path, mode: str) -> None:
     skill_file = target / "SKILL.md"
-    text = skill_file.read_text(encoding="utf-8")
+    text = versioned_skill_text(skill_file.read_text(encoding="utf-8"))
     original = text
     if mode == "openclaw":
         text = text.replace("name: chinese-official-writing", "name: chinese_official_writing", 1)
@@ -153,6 +166,7 @@ def copy_skill(target: Path, mode: str) -> None:
 def main() -> int:
     if not (CANONICAL / "SKILL.md").exists():
         raise SystemExit(f"missing canonical skill: {CANONICAL}")
+    update_canonical_skill_version()
     update_openclaw_readme_sources()
     print("synced openclaw README sources")
     for mode, target in TARGETS.items():
