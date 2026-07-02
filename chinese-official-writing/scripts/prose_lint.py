@@ -242,6 +242,17 @@ def is_attachment_number_item(lines: list[str], line_index: int, line: str) -> b
     return any("附件" in item for item in window)
 
 
+def body_lines(lines: list[str]) -> list[str]:
+    """Return draft body lines before explicit external confirmation notes."""
+    note_start = re.compile(r"^\s*(?:待确认事项|待用户确认事项|补充以下信息后|正文外待确认|需补充信息)")
+    result: list[str] = []
+    for line in lines:
+        if note_start.search(line):
+            break
+        result.append(line)
+    return result
+
+
 def supported_three_part_listing(snippet: str) -> bool:
     parts = re.split(r"一是|二是|三是", snippet, maxsplit=3)
     if len(parts) < 4:
@@ -392,11 +403,13 @@ def structured_smell_findings(path_label: str, text: str, lines: list[str]) -> l
 def scan(path_label: str, text: str, include_format: bool = False, include_structure: bool = False) -> list[Finding]:
     findings: list[Finding] = []
     lines = text.splitlines() or [text]
+    lines_to_scan = body_lines(lines)
+    text_to_scan = "\n".join(lines_to_scan)
 
     patterns = PATTERNS + (FORMAT_PATTERNS if include_format else [])
     compiled = [(severity, label, re.compile(pattern), advice) for severity, label, pattern, advice in patterns]
     in_fence = False
-    for line_index, line in enumerate(lines):
+    for line_index, line in enumerate(lines_to_scan):
         line_no = line_index + 1
         stripped = line.strip()
         if stripped.startswith("```"):
@@ -448,7 +461,7 @@ def scan(path_label: str, text: str, include_format: bool = False, include_struc
                 )
 
     if include_format:
-        western_list_count = sum(1 for line in lines if re.match(r"^\s*(?:[-*•●◆◇★✅☑]|[0-9]+[.)])\s+", line))
+        western_list_count = sum(1 for line in lines_to_scan if re.match(r"^\s*(?:[-*•●◆◇★✅☑]|[0-9]+[.)])\s+", line))
         if western_list_count >= 8:
             findings.append(
                 Finding(
@@ -462,11 +475,11 @@ def scan(path_label: str, text: str, include_format: bool = False, include_struc
             )
 
     if include_structure:
-        findings.extend(duplicate_findings(path_label, lines))
-        findings.extend(structured_smell_findings(path_label, text, lines))
+        findings.extend(duplicate_findings(path_label, lines_to_scan))
+        findings.extend(structured_smell_findings(path_label, text_to_scan, lines_to_scan))
 
     for term, threshold in REPEAT_TERMS.items():
-        count = text.count(term)
+        count = text_to_scan.count(term)
         if count >= threshold:
             findings.append(
                 Finding(

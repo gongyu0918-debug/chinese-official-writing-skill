@@ -50,7 +50,7 @@ def load_prose_lint():
 
 
 def normalize(text: str) -> str:
-    return re.sub(r"\s+", "", text)
+    return re.sub(r"[^\u4e00-\u9fffA-Za-z0-9]+", "", text)
 
 
 def point_covered(point: dict[str, Any], text: str) -> bool:

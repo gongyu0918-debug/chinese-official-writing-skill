@@ -83,6 +83,24 @@ class ProseLintStructureTests(unittest.TestCase):
             ]
         )
 
+    def test_external_confirmation_notes_are_not_treated_as_body_placeholders(self) -> None:
+        text = (
+            "关于事项的请示\n\n"
+            "正文已按已知材料说明申请事项。\n\n"
+            "待确认事项（正文外，供用户确认）：\n"
+            "1. 成文日期待确认。\n"
+            "2. [具体项目名称]和XXXX万元另行确认。"
+        )
+
+        labels = {item.label for item in prose_lint.scan("<test>", text, include_format=True)}
+
+        self.assertNotIn("unfinished-placeholder", labels)
+        self.assertNotIn("western-bullet", labels)
+        self.assertIn(
+            "unfinished-placeholder",
+            {item.label for item in prose_lint.scan("<test>", "正文内仍有（成文日期待确认）。")},
+        )
+
     def test_markdown_format_marks_are_flagged_in_formal_output(self) -> None:
         text = "**一、需求来源**\n### 业务需求与服务保障\n正文内容。\n```text\n关于事项的报告\n```"
 
@@ -369,6 +387,10 @@ class RealArticleEvalAuditTests(unittest.TestCase):
 
         self.assertEqual(hits, ["发文字号", "发文机关"])
         self.assertEqual(total, 4)
+
+    def test_required_point_matching_ignores_punctuation_boundaries(self) -> None:
+        self.assertTrue(real_eval.point_covered({"terms": ["请示收悉"]}, "《请示》收悉。"))
+        self.assertTrue(real_eval.point_covered({"terms": ["曝光问责"]}, "媒体曝光、问责。"))
 
 
 class AgentEvalSummaryTests(unittest.TestCase):
