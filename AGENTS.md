@@ -208,7 +208,6 @@ Hermes 社区借鉴候选 `2713e27` 的处理结论：
 - 1.4.14 基线消融：baseline 65/71，current 71/71；baseline 只在新增 description 守卫上失败。
 - 真实写作 A/B verifier 判定当前候选相对 1.4.14 无功能回退。
 - 详细证据见 `tests/evidence/review-fix-release-1.4.15.md`。
-
 ## 1.5.0 接手记录
 
 1.5.0 是在 1.4.15 稳定基线上的文种 playbook 架构整理和最小边界修复候选；本轮发布目标为 GitHub、ClawHub 和 SkillHub。
@@ -244,3 +243,6 @@ Hermes 社区借鉴候选 `2713e27` 的处理结论：
 - ClawHub CLI `0.18.0` 与 `0.23.1` 发布命令曾因服务端响应不再包含 `skillId/versionId` 而报 schema 错误；官方文档仍推荐 `clawhub skill publish <path>` 和 `/api/v1/skills`，本机 CLI 源码也走该端点。当前环境默认代理变量指向 `127.0.0.1:9` 时会导致 CLI 网络失败；临时清空代理后 `whoami`、`inspect` 和 `dry-run` 正常。用同源 CLI 组包逻辑直接调用官方 `/api/v1/skills`、带完整 GitHub source 元数据重试、以及 legacy `/api/cli/publish` 均返回同一个 `status=pending`、`attemptId=zx7d8vv11327rpzzzg0gfgh24h8a345c`；后续用户完成内置浏览器登录后，ClawHub 页面和 CLI 均确认 1.5.2 已完成异步切换：`latestVersion.version=1.5.2`、`tags.latest=1.5.2`、moderation `clean`、`--versions` 列表包含 `1.5.2`。
 - SkillHub 已公开切换精确项目 `chinese-official-writing`：`skillId=70149`、`versionId=129948`、`tags.latest=1.5.2`，公开 `latestVersion.version=1.5.2`。
 - 详细证据见 `tests/evidence/release-1.5.2.md`。
+
+- 1.4.15 发布后补跑 description 新路由真实写作和改写测试，覆盖通告、命令（令）、意见、公报、决议、议案以及报告改通告、意见稿去口语化。独立 verifier 判定 6 PASS、2 WARN、0 FAIL；主要残留风险是材料不足时容易补入惯常判断，以及公开发布短稿有轻微评价化倾向。详细证据见 `tests/evidence/real-writing-1.4.15-description-routes.md`。
+- 下次发布前必须核查远端字段原始值。ClawHub 1.4.15 曾因 Windows `npx.cmd` 传参把 `--name "中文公文写作"` 和 `--tags "chinese,...,ai-compute"` 的引号写入远端 `displayName` 和 tag key；下一版本发布必须使用 `--name=中文公文写作`、`--tags=chinese,official-document,writing,gongwen,ai-compute`，并用 `clawhub inspect --json`、SkillHub API 和 GitHub tag/main 核对 displayName、tags、latestVersion、summary 和 canonical frontmatter。
