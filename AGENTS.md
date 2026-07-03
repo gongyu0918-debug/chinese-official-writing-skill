@@ -2,7 +2,7 @@
 
 本文件适用于整个仓库。后续 agent 接手本仓库时，优先遵守这里的发布、review 和测试约定；若与用户最新指令冲突，以用户最新指令为准，但不得伪造未运行的测试结果。
 
-当前接手入口只保留本文件。当前 GitHub / ClawHub / SkillHub 发布目标为 `chinese-official-writing@1.4.15`；下方 1.4.1 到 1.4.12 内容均为历史接手记录，不代表当前 live 版本。
+当前接手入口只保留本文件。当前 GitHub / ClawHub / SkillHub 发布目标为 `chinese-official-writing@1.5.0`；下方 1.4.1 到 1.4.15 内容均为历史接手记录，不代表当前 live 版本。
 
 ## 基本工作纪律
 
@@ -208,3 +208,13 @@ Hermes 社区借鉴候选 `2713e27` 的处理结论：
 - 1.4.14 基线消融：baseline 65/71，current 71/71；baseline 只在新增 description 守卫上失败。
 - 真实写作 A/B verifier 判定当前候选相对 1.4.14 无功能回退。
 - 详细证据见 `tests/evidence/review-fix-release-1.4.15.md`。
+
+## 1.5.0 接手记录
+
+1.5.0 是在 1.4.15 稳定基线上的文种 playbook 架构整理和最小边界修复候选；本轮发布目标为 GitHub、ClawHub 和 SkillHub。
+
+- 只做 prompt/reference 层架构优化：按文种 playbook 补齐请示、通知、函、会议纪要、报告、方案、讲话/致辞、采购/可研等路由提示，同时保留共性事实边界、去 AI 味和 lint 规则，不新增脚本硬门禁。
+- 接受并修复 playbook 消融发现的“AI 算力/采购主题过拟合”和“审查/讲话类输出易补造事实”风险；AI/算力只在用户明确给出主题时进入正文，普通采购、审查、讲话和只审不改场景不得自动带入 AI 算力表达。
+- 基线消融必须固定上一发行基线 `1.4.15`；新增用例只允许 1.4.15 baseline 失败，current 不得失败。
+- 发布前仍需真实 writer/verifier subagent 测试，重点覆盖 AI 算力可研、普通采购、字段式审查、会议纪要、讲话、只审不改和旧文种能力。
+- 详细证据见 `tests/evidence/release-1.5.0.md`。
