@@ -77,4 +77,11 @@ Verifier total: `9/9 PASS`; no release blocker and no additional minimal fix req
 
 GitHub and ClawHub are the executable publish surfaces in this workspace. `clawhub` CLI is installed; no local `skillhub` CLI or SkillHub publish script was found in this repository, so SkillHub is not marked as published from this run unless a separate publishing channel is provided.
 
-Live publish verification will be recorded after the GitHub push/tag and ClawHub publish/inspect complete.
+ClawHub publish and inspect:
+
+- Pre-publish inspect: `latestVersion.version=1.4.15`, moderation `clean`.
+- Publish command: `clawhub publish .\openclaw\skills\chinese_official_writing --slug chinese-official-writing --name "中文公文写作" --version 1.5.0 --tags "chinese,official-document,writing,gongwen,ai-compute"`
+- Publish result: `Published chinese-official-writing@1.5.0 (k97fj6xf2vshaybhp1appk94mh89t9b4)`.
+- Post-publish inspect: `latestVersion.version=1.5.0`, `metadata.version=1.5.0`, `metadata.openclaw.version=1.5.0`, moderation verdict `clean`, no suspicious or malware flags.
+
+GitHub push and tag verification are performed after this evidence update is committed, so the exact remote SHA is reported in the final release handoff.

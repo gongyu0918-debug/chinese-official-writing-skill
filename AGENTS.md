@@ -2,7 +2,7 @@
 
 本文件适用于整个仓库。后续 agent 接手本仓库时，优先遵守这里的发布、review 和测试约定；若与用户最新指令冲突，以用户最新指令为准，但不得伪造未运行的测试结果。
 
-当前接手入口只保留本文件。当前 GitHub / ClawHub / SkillHub 发布目标为 `chinese-official-writing@1.5.0`；下方 1.4.1 到 1.4.15 内容均为历史接手记录，不代表当前 live 版本。
+当前接手入口只保留本文件。当前 GitHub / ClawHub 发布状态为 `chinese-official-writing@1.5.0`；本地未配置 SkillHub 发布 CLI 或发布脚本，不能冒充已从本仓库发布 SkillHub。下方 1.4.1 到 1.4.15 内容均为历史接手记录，不代表当前 live 版本。
 
 ## 基本工作纪律
 
