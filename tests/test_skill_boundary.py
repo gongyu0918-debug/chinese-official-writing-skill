@@ -106,6 +106,7 @@ class SkillBoundaryTests(unittest.TestCase):
 
         self.assertIn("按任务渐进读取资料，不要一次性加载全部文件", text)
         self.assertIn("| 文件 | 阶段 | 加载条件 |", text)
+        self.assertIn("`references/genre-playbooks.md` | 按文种/专项选读", text)
         self.assertIn("`references/ai-compute-docs.md` | 专项选读", text)
         self.assertIn("仅在 AI 算力、GPU/服务器租赁、模型服务、采购、租赁、可研、成本比较、SLA、安全或验收材料中读取", text)
 
@@ -417,8 +418,11 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assertIn("事实充分性软处理", workflow)
         self.assertIn("正文泛占位", checklist)
         self.assertIn("新增字段没有用户提供值", workflow)
+        self.assertIn("即使用分号写在一行", workflow)
+        self.assertIn("不合并成连续句", workflow)
         self.assertIn("不推断发票、票据、邮箱、截止日期", workflow)
         self.assertIn("字段值未知", checklist)
+        self.assertIn("分号串写的“字段名：字段值”序列", checklist)
         self.assertIn("字数自检", skill)
         self.assertIn("5%-10% 余量", skill)
         self.assertIn("去空行后的正文计数", workflow)
@@ -581,6 +585,44 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assertIn("用户只要求审稿时，仍输出位置、风险层级和修改建议", anti_ai)
         self.assertIn("不为了显得像人写而加入第一人称", official_style)
         self.assertIn("正式化改写只压实原文已有事实", official_style)
+
+    def test_v150_genre_playbooks_keep_minimal_borrowing_boundaries(self) -> None:
+        skill = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
+        playbooks = (ROOT / "chinese-official-writing" / "references" / "genre-playbooks.md").read_text(
+            encoding="utf-8"
+        )
+        handling = (ROOT / "chinese-official-writing" / "references" / "handling-elements.md").read_text(
+            encoding="utf-8"
+        )
+        anti_ai = (ROOT / "chinese-official-writing" / "references" / "anti-ai-patterns.md").read_text(
+            encoding="utf-8"
+        )
+
+        self.assertIn("references/genre-playbooks.md", skill)
+        self.assertIn("## 目录", playbooks)
+        for heading in [
+            "## 会议纪要",
+            "## 报告/情况说明",
+            "## 函/复函/征求意见函",
+            "## 工作总结/工作要点/周报",
+            "## 调研报告/研究报告/可研报告/建设方案",
+            "## 采购公告/审查材料",
+            "## AI 算力与技术服务",
+        ]:
+            self.assertIn(heading, playbooks)
+        for term in [
+            "不复制社区模板正文",
+            "不新增默认联网、API、Word/PDF 或脚本硬门禁",
+            "用户已有模板和字段顺序优先",
+            "只替换该字段内容，不把多字段合并成一句",
+            "字段式周报保留字段和换行，不散文化、不合并字段",
+            "字段式审查材料只改用户指定字段",
+            "普通采购公告不默认进入 AI 算力语境",
+            "详细结构转读 `references/ai-compute-docs.md`",
+        ]:
+            self.assertIn(term, playbooks)
+        self.assertIn("详细测算和参数转读 `ai-compute-docs.md`", handling)
+        self.assertIn("专项结构和指标写法转读 `ai-compute-docs.md`", anti_ai)
 
     def test_ai_dedupe_prompt_fix_guidance_is_documented(self) -> None:
         skill = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")

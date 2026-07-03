@@ -1157,6 +1157,120 @@ CASES: list[PromptCase] = [
             "description_terms": ["命令"],
         },
     ),
+    PromptCase(
+        id="P072",
+        kind="revise",
+        prompt="把这段会议记录整理成会议纪要，只保留议定事项、责任单位和完成期限，不要写成会议新闻。",
+        checks={
+            "file_terms": {
+                "chinese-official-writing/references/genre-playbooks.md": [
+                    "## 会议纪要",
+                    "议定事项",
+                    "责任、期限",
+                    "不写成会议新闻",
+                ],
+            },
+        },
+    ),
+    PromptCase(
+        id="P073",
+        kind="create",
+        prompt="写一份情况报告，说明系统巡检发现的问题、影响和下一步处置，不要夹带请批事项。",
+        checks={
+            "file_terms": {
+                "chinese-official-writing/references/genre-playbooks.md": [
+                    "## 报告/情况说明",
+                    "报告不写审批请求",
+                    "情况说明重点交代原因、影响、处置",
+                ],
+            },
+        },
+    ),
+    PromptCase(
+        id="P074",
+        kind="create",
+        prompt="起草一份复函，回应对方来函中的数据接口联调事项，写清办理意见和后续联系人。",
+        checks={
+            "file_terms": {
+                "chinese-official-writing/references/genre-playbooks.md": [
+                    "## 函/复函/征求意见函",
+                    "复函重回应来文",
+                    "来文依据",
+                ],
+            },
+        },
+    ),
+    PromptCase(
+        id="P075",
+        kind="create",
+        prompt="帮我把本周项目进展写成工作周报，包含已完成、推进中、问题和下步安排。",
+        checks={
+            "file_terms": {
+                "chinese-official-writing/references/genre-playbooks.md": [
+                    "## 工作总结/工作要点/周报",
+                    "已完成、推进中、问题、下步",
+                    "不把所有总结改成周报格式",
+                ],
+            },
+        },
+    ),
+    PromptCase(
+        id="P076",
+        kind="create",
+        prompt="写一份专题调研报告，要有调研事实、问题原因和建议，不要写成投研报告。",
+        checks={
+            "file_terms": {
+                "chinese-official-writing/references/genre-playbooks.md": [
+                    "## 调研报告/研究报告/可研报告/建设方案",
+                    "事实、数据、样本",
+                    "不把公文报告写成投研报告",
+                ],
+            },
+        },
+    ),
+    PromptCase(
+        id="P077",
+        kind="create",
+        prompt="写一份办公家具采购公告，预算 8 万元，写清提交方式和联系人；这是普通采购，不涉及算力。",
+        checks={
+            "file_terms": {
+                "chinese-official-writing/references/genre-playbooks.md": [
+                    "## 采购公告/审查材料",
+                    "普通采购公告不默认进入 AI 算力语境",
+                    "采购主体、项目名称、预算",
+                ],
+            },
+        },
+    ),
+    PromptCase(
+        id="P078",
+        kind="create",
+        prompt="写一份 AI 算力服务可研的提纲，要求只给结构，不展开具体参数。",
+        checks={
+            "file_terms": {
+                "chinese-official-writing/references/genre-playbooks.md": [
+                    "## AI 算力与技术服务",
+                    "详细结构转读 `references/ai-compute-docs.md`",
+                ],
+                "chinese-official-writing/references/anti-ai-patterns.md": [
+                    "专项结构和指标写法转读 `ai-compute-docs.md`",
+                ],
+            },
+        },
+    ),
+    PromptCase(
+        id="P079",
+        kind="revise",
+        prompt="按我们单位已有模板顺一下采购审查材料，只调整审查意见，不要改字段顺序。",
+        checks={
+            "file_terms": {
+                "chinese-official-writing/references/genre-playbooks.md": [
+                    "用户已有模板和字段顺序优先",
+                    "审查材料重点是依据、发现、风险、整改要求和结论",
+                ],
+            },
+        },
+    ),
 ]
 
 

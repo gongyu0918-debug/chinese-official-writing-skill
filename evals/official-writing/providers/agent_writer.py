@@ -37,6 +37,9 @@ GENRE_REFERENCES: dict[str, list[str]] = {
         "references/argument-chains.md",
         "references/official-style.md",
     ],
+    "playbook": [
+        "references/genre-playbooks.md",
+    ],
     "ai_compute": [
         "references/argument-chains.md",
         "references/ai-compute-docs.md",
@@ -64,6 +67,19 @@ CHAIN_GENRES = {
     "实施方案",
     "建设方案",
     "审查材料",
+}
+
+PLAYBOOK_GENRES = CHAIN_GENRES | {
+    "情况说明",
+    "说明",
+    "申请",
+    "通告",
+    "公告",
+    "通报",
+    "讲话稿",
+    "致辞",
+    "述职报告",
+    "研究报告",
 }
 
 AI_COMPUTE_MARKERS = (
@@ -178,6 +194,8 @@ def _skill_root(repo_root: Path) -> Path:
 
 def _reference_paths_for_genres(genres: list[str]) -> list[str]:
     paths = ["SKILL.md", *GENRE_REFERENCES["default"]]
+    if any(genre in PLAYBOOK_GENRES or _is_ai_compute(genre) for genre in genres):
+        paths.extend(GENRE_REFERENCES["playbook"])
     if any(genre in CHAIN_GENRES for genre in genres):
         paths.extend(GENRE_REFERENCES["argument"])
     if any(_is_ai_compute(genre) for genre in genres):

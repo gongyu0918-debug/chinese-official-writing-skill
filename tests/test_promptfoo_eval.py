@@ -164,6 +164,7 @@ class PromptfooProviderTests(unittest.TestCase):
     def test_ai_compute_genre_loads_only_relevant_extra_reference(self) -> None:
         refs = provider._reference_paths_for_genres(["算力资源采购方案"])
 
+        self.assertIn("references/genre-playbooks.md", refs)
         self.assertIn("references/ai-compute-docs.md", refs)
         self.assertIn("references/genre-checklist.md", refs)
         self.assertNotIn("references/format-gbt9704.md", refs)
@@ -171,12 +172,19 @@ class PromptfooProviderTests(unittest.TestCase):
     def test_coordination_genres_load_argument_chains(self) -> None:
         refs = provider._reference_paths_for_genres(["通知", "函", "复函", "征求意见函", "采购公告", "公示", "会议纪要"])
 
+        self.assertIn("references/genre-playbooks.md", refs)
         self.assertIn("references/argument-chains.md", refs)
+
+    def test_plain_unknown_genre_does_not_load_playbook(self) -> None:
+        refs = provider._reference_paths_for_genres(["通用材料"])
+
+        self.assertNotIn("references/genre-playbooks.md", refs)
 
     def test_ai_compute_markers_cover_model_platform_language(self) -> None:
         for genre in ["模型服务技术需求", "智算中心建设方案", "本地化部署成本说明", "AI平台推理服务", "SLA并发保障方案"]:
             with self.subTest(genre=genre):
                 refs = provider._reference_paths_for_genres([genre])
+                self.assertIn("references/genre-playbooks.md", refs)
                 self.assertIn("references/ai-compute-docs.md", refs)
 
     def test_reply_letter_stub_satisfies_common_hard_rule(self) -> None:

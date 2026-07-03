@@ -93,6 +93,8 @@ class RealPromptAblationTests(unittest.TestCase):
         self.assertIn("小红书营销种草文案", prompts)
         self.assertIn("个人求职申请信", prompts)
         self.assertIn("App 增长营销方案", prompts)
+        self.assertIn("会议记录整理成会议纪要", prompts)
+        self.assertIn("普通采购，不涉及算力", prompts)
 
     def test_current_skill_passes_real_prompt_cases(self) -> None:
         rows = real_prompt_eval.evaluate_root(ROOT, "current_test")
@@ -215,6 +217,18 @@ class RealPromptAblationTests(unittest.TestCase):
             ("P071", "命令"),
         ]:
             self.assertIn(term, checks_by_id[case_id]["description_terms"])
+        self.assertIn(
+            "## 会议纪要",
+            checks_by_id["P072"]["file_terms"]["chinese-official-writing/references/genre-playbooks.md"],
+        )
+        self.assertIn(
+            "普通采购公告不默认进入 AI 算力语境",
+            checks_by_id["P077"]["file_terms"]["chinese-official-writing/references/genre-playbooks.md"],
+        )
+        self.assertIn(
+            "专项结构和指标写法转读 `ai-compute-docs.md`",
+            checks_by_id["P078"]["file_terms"]["chinese-official-writing/references/anti-ai-patterns.md"],
+        )
 
     def test_heading_lock_detects_added_subheading(self) -> None:
         before = """一、整改进展
