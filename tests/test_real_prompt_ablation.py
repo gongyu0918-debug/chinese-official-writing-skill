@@ -205,6 +205,16 @@ class RealPromptAblationTests(unittest.TestCase):
         self.assertIn("营销", checks_by_id["P062"]["description_exclusion_terms"])
         self.assertIn("个人求职", checks_by_id["P063"]["description_exclusion_terms"])
         self.assertIn("社媒", checks_by_id["P064"]["description_exclusion_terms"])
+        for case_id, term in [
+            ("P065", "通告"),
+            ("P066", "意见"),
+            ("P067", "决定"),
+            ("P068", "决议"),
+            ("P069", "议案"),
+            ("P070", "公报"),
+            ("P071", "命令"),
+        ]:
+            self.assertIn(term, checks_by_id[case_id]["description_terms"])
 
     def test_heading_lock_detects_added_subheading(self) -> None:
         before = """一、整改进展

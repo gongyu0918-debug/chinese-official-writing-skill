@@ -46,7 +46,7 @@ Mitigation: Keep missing data outside the final body for user confirmation, and 
 **Other Properties Related to Output:** [May include draft text, revised text, concise change notes, issue locations, risk levels, and suggested edits depending on the task.] <br>
 
 ## Skill Version(s): <br>
-1.4.14 (source: server release metadata and skill frontmatter) <br>
+1.4.15 (source: server release metadata and skill frontmatter) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

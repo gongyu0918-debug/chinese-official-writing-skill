@@ -195,3 +195,16 @@ Hermes 社区借鉴候选 `2713e27` 的处理结论：
 - 新增 P056-P064 description 专项消融用例；1.4.13 基线在新增专项中失败 3 项，current 64/64 通过。
 - 发布前真实写稿 verifier 判定 2 PASS、2 WARN；WARN 均为用户未提供主送/发函单位/成文日期导致的正式完整性偏简，不构成文种错乱、事实编造或中断。
 - 详细证据见 `tests/evidence/release-1.4.14.md`。
+
+## 1.4.15 接手记录
+
+1.4.15 是针对 1.4.14 交付 review 的最小修复候选；本记录不代表 GitHub/ClawHub 已发布，除非后续 commit 已推送并完成平台发布。
+
+- 接受并修复字段式材料 lint 误报：`project-card-summary` 不再作为 base medium 阻断项，只保留为 `--structure` 下 low 级质量提示，避免字段式申请、证明、采购明细被 `--strict --fail-on medium` 卡住。
+- 接受并修复正文外待确认标题变体：`（待确认事项）`、`待补充事项`、`需确认事项`、`补充信息` 等标题后内容不再按正文占位扫描。
+- 接受 description 补强：frontmatter 明确覆盖 `通告、意见、决定、决议、议案、公报、命令`，降低短 prompt 漏触发风险。
+- 拒绝本轮改代码围栏扫描：历史测试要求 `--format` 不能让占位符和 Markdown 残留藏在代码块里，不能一刀切停扫。
+- 延期 BMP 装饰符号和 `可以说。`：可复现但属于小 lint 漏检，暂不扩大 lint 面。
+- 1.4.14 基线消融：baseline 65/71，current 71/71；baseline 只在新增 description 守卫上失败。
+- 真实写作 A/B verifier 判定当前候选相对 1.4.14 无功能回退。
+- 详细证据见 `tests/evidence/review-fix-release-1.4.15.md`。

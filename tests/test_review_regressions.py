@@ -101,6 +101,48 @@ class ProseLintStructureTests(unittest.TestCase):
             {item.label for item in prose_lint.scan("<test>", "正文内仍有（成文日期待确认）。")},
         )
 
+    def test_bracketed_confirmation_notes_are_not_treated_as_body_placeholders(self) -> None:
+        text = (
+            "正文已按已知材料完成。\n\n"
+            "（待确认事项）\n"
+            "1. [具体项目名称]待确认。\n\n"
+            "待补充事项：预算口径待确认。"
+        )
+
+        labels = {item.label for item in prose_lint.scan("<test>", text, include_format=True)}
+
+        self.assertNotIn("unfinished-placeholder", labels)
+        self.assertNotIn("western-bullet", labels)
+
+    def test_field_style_materials_do_not_block_medium_strict_lint(self) -> None:
+        script = ROOT / "chinese-official-writing" / "scripts" / "prose_lint.py"
+        text = (
+            "项目名称：某单位办公自动化升级项目\n"
+            "建设单位：某单位信息中心\n"
+            "建设周期：2026年8月至2027年7月\n"
+            "总投资：80万元\n"
+        )
+
+        findings = prose_lint.scan("<test>", text, include_format=True, include_structure=True)
+        blocking = [item for item in findings if item.severity in {"medium", "high"}]
+        card_findings = [item for item in findings if item.label == "project-card-summary"]
+
+        self.assertEqual(blocking, [])
+        self.assertTrue(card_findings)
+        self.assertEqual({item.severity for item in card_findings}, {"low"})
+
+        with tempfile.TemporaryDirectory() as temp_dir:
+            sample = Path(temp_dir) / "field-style.md"
+            sample.write_text(text, encoding="utf-8")
+            result = subprocess.run(
+                [sys.executable, str(script), str(sample), "--format", "--structure", "--strict", "--fail-on", "medium"],
+                capture_output=True,
+                text=True,
+                encoding="utf-8",
+            )
+
+        self.assertEqual(result.returncode, 0)
+
     def test_markdown_format_marks_are_flagged_in_formal_output(self) -> None:
         text = "**一、需求来源**\n### 业务需求与服务保障\n正文内容。\n```text\n关于事项的报告\n```"
 

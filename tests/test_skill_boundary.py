@@ -24,7 +24,7 @@ class SkillBoundaryTests(unittest.TestCase):
         description = re.search(r"^description: (.+)$", text, re.M)
         self.assertIsNotNone(description)
         self.assertLessEqual(len(description.group(1)), 280)
-        for keyword in ["申请", "请示", "报告", "通知", "函", "采购公告", "审查材料", "正式文本"]:
+        for keyword in ["申请", "请示", "报告", "通知", "通告", "意见", "决定", "函", "采购公告", "审查材料", "正式文本"]:
             self.assertIn(keyword, description.group(1))
         for excluded in ["营销", "社媒", "论文"]:
             self.assertIn(excluded, description.group(1))
@@ -112,7 +112,7 @@ class SkillBoundaryTests(unittest.TestCase):
     def test_trigger_description_covers_reported_genres(self) -> None:
         text = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
 
-        for keyword in ["复函", "公示", "决议", "议案", "公报", "命令", "工作要点", "审查材料"]:
+        for keyword in ["复函", "公示", "通告", "意见", "决定", "决议", "议案", "公报", "命令", "工作要点", "审查材料"]:
             self.assertIn(keyword, text)
 
     def test_multi_round_revision_rules_keep_structure_and_genre_format(self) -> None:

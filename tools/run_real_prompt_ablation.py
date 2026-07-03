@@ -1101,6 +1101,62 @@ CASES: list[PromptCase] = [
             "description_exclusion_terms": ["营销", "社媒"],
         },
     ),
+    PromptCase(
+        id="P065",
+        kind="create",
+        prompt="写个通告，提醒各部门按时完成资产盘点。",
+        checks={
+            "description_terms": ["通告"],
+        },
+    ),
+    PromptCase(
+        id="P066",
+        kind="create",
+        prompt="写个意见，规范项目验收和后续运维管理。",
+        checks={
+            "description_terms": ["意见"],
+        },
+    ),
+    PromptCase(
+        id="P067",
+        kind="create",
+        prompt="写个决定，成立专项工作领导小组。",
+        checks={
+            "description_terms": ["决定"],
+        },
+    ),
+    PromptCase(
+        id="P068",
+        kind="create",
+        prompt="写个决议，明确会议审议通过年度工作安排。",
+        checks={
+            "description_terms": ["决议"],
+        },
+    ),
+    PromptCase(
+        id="P069",
+        kind="create",
+        prompt="写个议案，提交审议信息化建设预算事项。",
+        checks={
+            "description_terms": ["议案"],
+        },
+    ),
+    PromptCase(
+        id="P070",
+        kind="create",
+        prompt="写个公报，发布年度重点工作进展情况。",
+        checks={
+            "description_terms": ["公报"],
+        },
+    ),
+    PromptCase(
+        id="P071",
+        kind="create",
+        prompt="写个命令，公布一项管理要求。",
+        checks={
+            "description_terms": ["命令"],
+        },
+    ),
 ]
 
 
