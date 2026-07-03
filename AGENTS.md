@@ -2,7 +2,7 @@
 
 本文件适用于整个仓库。后续 agent 接手本仓库时，优先遵守这里的发布、review 和测试约定；若与用户最新指令冲突，以用户最新指令为准，但不得伪造未运行的测试结果。
 
-当前接手入口只保留本文件。当前 GitHub / ClawHub 发布状态为 `chinese-official-writing@1.4.14`；下方 1.4.1 到 1.4.12 内容均为历史接手记录，不代表当前 live 版本。
+当前接手入口只保留本文件。当前 GitHub / ClawHub / SkillHub 发布目标为 `chinese-official-writing@1.4.15`；下方 1.4.1 到 1.4.12 内容均为历史接手记录，不代表当前 live 版本。
 
 ## 基本工作纪律
 
@@ -198,7 +198,7 @@ Hermes 社区借鉴候选 `2713e27` 的处理结论：
 
 ## 1.4.15 接手记录
 
-1.4.15 是针对 1.4.14 交付 review 的最小修复候选；本记录不代表 GitHub/ClawHub 已发布，除非后续 commit 已推送并完成平台发布。
+1.4.15 是针对 1.4.14 交付 review 的最小修复候选；本轮发布目标为 GitHub、ClawHub 和 SkillHub。
 
 - 接受并修复字段式材料 lint 误报：`project-card-summary` 不再作为 base medium 阻断项，只保留为 `--structure` 下 low 级质量提示，避免字段式申请、证明、采购明细被 `--strict --fail-on medium` 卡住。
 - 接受并修复正文外待确认标题变体：`（待确认事项）`、`待补充事项`、`需确认事项`、`补充信息` 等标题后内容不再按正文占位扫描。
