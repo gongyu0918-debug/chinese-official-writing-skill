@@ -1271,6 +1271,41 @@ CASES: list[PromptCase] = [
             },
         },
     ),
+    PromptCase(
+        id="P080",
+        kind="revise",
+        prompt="把会议记录整理成会议纪要，只给议定事项、责任单位和期限；原文没有会议结论，不要补“会议认为”“会议强调”。",
+        checks={
+            "file_terms": {
+                "chinese-official-writing/references/genre-playbooks.md": [
+                    "未给会议判断",
+                    "不补写“会议认为”“会议强调”",
+                    "责任或期限未给时留空或列为待确认",
+                ],
+                "chinese-official-writing/references/review-checklist.md": [
+                    "Playbook 事实外扩",
+                    "未给受众称呼、合同义务或服务单位责任",
+                ],
+            },
+        },
+    ),
+    PromptCase(
+        id="P081",
+        kind="revise",
+        prompt="顺一下字段式审查材料，原文用分号串写；只改审查意见，可以拆成字段行，但不要出现“。；”或行尾分号噪声。",
+        checks={
+            "file_terms": {
+                "chinese-official-writing/SKILL.md": [
+                    "分号只是字段分隔符",
+                    "不要保留行尾分号或造成 `。；`",
+                ],
+                "chinese-official-writing/references/review-checklist.md": [
+                    "拆成独立字段行时是否去掉原分号分隔符",
+                    "未造成 `。；` 或行尾分号噪声",
+                ],
+            },
+        },
+    ),
 ]
 
 

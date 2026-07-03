@@ -229,6 +229,14 @@ class RealPromptAblationTests(unittest.TestCase):
             "专项结构和指标写法转读 `ai-compute-docs.md`",
             checks_by_id["P078"]["file_terms"]["chinese-official-writing/references/anti-ai-patterns.md"],
         )
+        self.assertIn(
+            "未给会议判断",
+            checks_by_id["P080"]["file_terms"]["chinese-official-writing/references/genre-playbooks.md"],
+        )
+        self.assertIn(
+            "未造成 `。；` 或行尾分号噪声",
+            checks_by_id["P081"]["file_terms"]["chinese-official-writing/references/review-checklist.md"],
+        )
 
     def test_heading_lock_detects_added_subheading(self) -> None:
         before = """一、整改进展

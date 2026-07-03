@@ -615,12 +615,18 @@ class SkillBoundaryTests(unittest.TestCase):
             "不新增默认联网、API、Word/PDF 或脚本硬门禁",
             "用户已有模板和字段顺序优先",
             "只替换该字段内容，不把多字段合并成一句",
+            "拆成独立字段行后不要保留行尾分号或造成 `。；`",
             "字段式周报保留字段和换行，不散文化、不合并字段",
             "字段式审查材料只改用户指定字段",
+            "未给会议判断",
+            "不自行补受众称呼",
+            "不补服务单位责任",
+            "责任或期限未给时留空或列为待确认",
             "普通采购公告不默认进入 AI 算力语境",
             "详细结构转读 `references/ai-compute-docs.md`",
         ]:
             self.assertIn(term, playbooks)
+        self.assertIn("会议判断、受众称呼、角色分工、合同义务或服务单位责任", skill)
         self.assertIn("详细测算和参数转读 `ai-compute-docs.md`", handling)
         self.assertIn("专项结构和指标写法转读 `ai-compute-docs.md`", anti_ai)
 
