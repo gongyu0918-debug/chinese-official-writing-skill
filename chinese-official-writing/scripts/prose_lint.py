@@ -53,7 +53,6 @@ PATTERNS: list[tuple[str, str, str, str]] = [
     ("medium", "side-commentary", r"简单来说", "正式文稿中通常不需要解释腔。"),
     ("medium", "side-commentary", r"通俗地说", "正式文稿中通常不需要解释腔。"),
     ("medium", "side-commentary", r"可以理解为", "正式文稿中通常不需要解释腔。"),
-    ("medium", "project-card-summary", r"^\s*(?:项目名称|建设单位|实施单位|建设周期|总投资|预算金额|采购内容|服务内容)\s*[：:]", "检查摘要或概况是否写成项目卡片；必要时改为连续正文。"),
     ("medium", "cost-explainer", r"测算口径|测算公式|计算公式|单价\s*[×xX*]\s*数量|计算如下", "检查需求与成本章节是否写成测算说明；必要时改为说明需求来源、费用对应事项和成本边界。"),
     ("medium", "unfinished-placeholder", r"\[[^\]\n]{0,30}(?:具体|待|填写|补充|确认|项目名称|单位名称|金额|日期)[^\]\n]{0,30}\]", "交付正文不应保留方括号占位；缺项改为正文外提示。"),
     ("medium", "unfinished-placeholder", r"(?<![A-Za-z])(?:X{2,}(?![A-Za-z\u4e00-\u9fff])|X+(?:万元|亿元|亿|项|%|％|卡|套|人|次|个|年|月|日|张|台|路|并发))", "交付正文不应保留 X/XXXX 类占位；缺项改为正文外提示。"),
@@ -244,7 +243,10 @@ def is_attachment_number_item(lines: list[str], line_index: int, line: str) -> b
 
 def body_lines(lines: list[str]) -> list[str]:
     """Return draft body lines before explicit external confirmation notes."""
-    note_start = re.compile(r"^\s*(?:待确认事项|待用户确认事项|补充以下信息后|正文外待确认|需补充信息)")
+    note_start = re.compile(
+        r"^\s*(?:[（(【\[]\s*)?"
+        r"(?:待确认事项|待用户确认事项|补充以下信息后|正文外待确认|需补充信息|待补充事项|需确认事项|补充信息)"
+    )
     result: list[str] = []
     for line in lines:
         if note_start.search(line):
@@ -364,7 +366,7 @@ def structured_smell_findings(path_label: str, text: str, lines: list[str]) -> l
                     Finding(
                         path=path_label,
                         line=streak_start,
-                        severity="medium",
+                        severity="low",
                         label="project-card-summary",
                         match="card-fields",
                         excerpt="连续字段行使摘要或项目概况像项目卡片；必要时改为连续正式正文。",
@@ -377,7 +379,7 @@ def structured_smell_findings(path_label: str, text: str, lines: list[str]) -> l
             Finding(
                 path=path_label,
                 line=first_line,
-                severity="medium",
+                severity="low",
                 label="project-card-summary",
                 match="card-fields",
                 excerpt="字段行较多，检查摘要或项目概况是否像项目卡片。",
