@@ -2,7 +2,7 @@
 
 本文件适用于整个仓库。后续 agent 接手本仓库时，优先遵守这里的发布、review 和测试约定；若与用户最新指令冲突，以用户最新指令为准，但不得伪造未运行的测试结果。
 
-当前接手入口只保留本文件。当前 GitHub / ClawHub 发布状态为 `chinese-official-writing@1.5.0`；SkillHub 目标项目 `https://skillhub.cn/skills/chinese-official-writing` 已提交 `1.5.0`，但公开 `latestVersion` 仍待 SkillHub 审核/安全扫描切换，交接时必须重新核验公开状态。下方 1.4.1 到 1.4.15 内容均为历史接手记录，不代表当前 live 版本。
+当前接手入口只保留本文件。当前 GitHub / ClawHub / SkillHub 发布目标为 `chinese-official-writing@1.5.1`；SkillHub 目标项目必须是 `https://skillhub.cn/skills/chinese-official-writing`。交接时必须重新核验公开版本、审核/安全扫描状态和 SkillHub `iconUrl`。下方 1.4.1 到 1.5.0 内容均为历史接手记录，不代表当前 live 版本。
 
 ## 基本工作纪律
 
@@ -219,3 +219,16 @@ Hermes 社区借鉴候选 `2713e27` 的处理结论：
 - 发布前仍需真实 writer/verifier subagent 测试，重点覆盖 AI 算力可研、普通采购、字段式审查、会议纪要、讲话、只审不改和旧文种能力。
 - SkillHub 发布只能针对 slug `chinese-official-writing`；本轮已用 SkillHub CLI dry-run 确认 slug/version，并向该目标提交 `1.5.0`，提交结果 `skillId=70149`、`versionId=127481`、`tags.latest=1.5.0`。公开详情页在审核完成前仍可能显示 `latestVersion=1.4.15`。
 - 详细证据见 `tests/evidence/release-1.5.0.md`。
+
+## 1.5.1 接手记录
+
+1.5.1 是 1.5.0 发布后的 review-found 最小修复发布，包含本地已验证的 `35385ee` 和 `1fa0858` 后续提交以及版本同步。
+
+- 接受并修复上行文缺主送机关、申请单位、金额、成文日期时的软提示不足；仍不阻断成稿，不编造泛称主送、泛称落款或当前日期。
+- 接受并修复长文压缩中落款单位、联系人和成文日期被压掉或截短的提示不足。
+- 接受并修复正文和说明之间残留 `---` Markdown 横线的 lint 漏检；只提示风险，不自动清洗正文。
+- 接受并修复两个 agent/eval 工具的超时异常处理，超时时返回 `124` 和可读错误，不再直接抛 traceback。
+- 1.5.0 基线消融：baseline `81/84`，current `84/84`；baseline 只在新增 P082-P084 review 回归用例失败，current 无失败。
+- 真实 writer/verifier subagent 复核为 `overall=WARN`、`publish_blocking=false`；非阻断 WARN 为会议通知样稿在缺发文单位时补入“办公室”和当前日期，后续观察，不在发布前扩大修复面。
+- SkillHub 支持 skill 级 `iconUrl`；ClawHub `inspect` 未暴露 skill 头像字段。本轮只对 SkillHub 上传并发布蓝底 Q 版图标，不向 ClawHub 包加入头像字段。
+- 详细证据见 `tests/evidence/release-1.5.1.md`。
