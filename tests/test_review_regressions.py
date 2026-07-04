@@ -7,6 +7,7 @@ import subprocess
 import sys
 import tempfile
 import unittest
+from unittest import mock
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -25,6 +26,7 @@ def load_module(name: str, path: Path):
 prose_lint = load_module("prose_lint_under_test", ROOT / "chinese-official-writing" / "scripts" / "prose_lint.py")
 real_eval = load_module("real_article_eval_under_test", ROOT / "tools" / "run_real_article_eval.py")
 agent_eval = load_module("agent_eval_under_test", ROOT / "tools" / "run_agent_ablation.py")
+revision_eval = load_module("revision_eval_under_test", ROOT / "tools" / "run_revision_instruction_eval.py")
 
 
 class ProseLintStructureTests(unittest.TestCase):
@@ -376,6 +378,22 @@ class ProseLintCliTests(unittest.TestCase):
         self.assertEqual(result.returncode, 1)
         self.assertIn("unfinished-placeholder", result.stdout)
 
+    def test_markdown_horizontal_rule_is_format_finding(self) -> None:
+        text = "关于开展网络安全自查工作的通知\n\n各部门：\n请按期反馈。\n\n---\n\n说明：已压缩。"
+
+        findings = prose_lint.scan("<test>", text, include_format=True)
+        labels = {item.label for item in findings}
+
+        self.assertIn("markdown-horizontal-rule", labels)
+
+    def test_yaml_frontmatter_delimiters_are_not_horizontal_rule_findings(self) -> None:
+        text = "---\nname: sample\ndescription: test\n---\n\n正文内容。"
+
+        findings = prose_lint.scan("<test>", text, include_format=True)
+        labels = {item.label for item in findings}
+
+        self.assertNotIn("markdown-horizontal-rule", labels)
+
 
 class CleanProseCorpusTests(unittest.TestCase):
     def test_clean_corpus_has_no_medium_or_high_findings(self) -> None:
@@ -440,6 +458,45 @@ class AgentEvalSummaryTests(unittest.TestCase):
         review = "Overall winner count: Writer A 10, Writer B 0, Tie 0."
 
         self.assertEqual(agent_eval.parse_winner_counts([review]), {"A": 10, "B": 0, "Tie": 0})
+
+    def test_agent_ablation_timeout_returns_124_without_traceback(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            out_path = Path(temp_dir) / "out.md"
+            timeout = subprocess.TimeoutExpired(cmd=["agent"], timeout=1, output="partial", stderr="late")
+            with mock.patch.object(agent_eval, "external_cmd", return_value=["agent"]), mock.patch.object(
+                agent_eval.subprocess, "run", side_effect=timeout
+            ):
+                code = agent_eval.call_external("prompt", ROOT, 1, out_path)
+
+            self.assertEqual(code, 124)
+            text = out_path.read_text(encoding="utf-8")
+            self.assertIn("partial", text)
+            self.assertIn("timed out", text)
+            self.assertIn("late", text)
+
+    def test_revision_command_timeout_returns_124_without_traceback(self) -> None:
+        timeout = subprocess.TimeoutExpired(cmd=["agent"], timeout=1, output="partial", stderr="late")
+        with mock.patch.object(revision_eval, "agent_command", return_value=["agent"]), mock.patch.object(
+            revision_eval.subprocess, "run", side_effect=timeout
+        ):
+            output, code, stderr = revision_eval.call_command("prompt", "agent", 1)
+
+        self.assertEqual(code, 124)
+        self.assertIn("partial", output)
+        self.assertIn("timed out", stderr)
+        self.assertIn("late", stderr)
+
+    def test_revision_codex_timeout_returns_124_without_traceback(self) -> None:
+        timeout = subprocess.TimeoutExpired(cmd=["codex"], timeout=1, output="partial", stderr="late")
+        with mock.patch.object(revision_eval.shutil, "which", return_value="codex"), mock.patch.object(
+            revision_eval.subprocess, "run", side_effect=timeout
+        ):
+            output, code, stderr = revision_eval.call_codex("prompt", 1)
+
+        self.assertEqual(code, 124)
+        self.assertIn("partial", output)
+        self.assertIn("timed out", stderr)
+        self.assertIn("late", stderr)
 
 
 if __name__ == "__main__":

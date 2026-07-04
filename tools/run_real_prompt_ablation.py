@@ -1306,6 +1306,63 @@ CASES: list[PromptCase] = [
             },
         },
     ),
+    PromptCase(
+        id="P082",
+        kind="create",
+        prompt="写一份请示，申请购买10台办公电脑，经费来源是年度信息化预算；主送机关、申请单位、金额和成文日期都没给，不要编造。",
+        checks={
+            "file_terms": {
+                "chinese-official-writing/SKILL.md": [
+                    "上行文缺主送机关",
+                    "待确认事项应优先列出这些结构缺口",
+                    "影响正式报送",
+                ],
+                "chinese-official-writing/references/handling-elements.md": [
+                    "列在待确认事项最前",
+                    "影响正式报送和文种完整性",
+                ],
+                "chinese-official-writing/references/genre-playbooks.md": [
+                    "主送机关、发文或申请单位、成文日期属于正式报送结构要素",
+                    "不编造泛称",
+                ],
+            },
+        },
+    ),
+    PromptCase(
+        id="P083",
+        kind="revise",
+        prompt="把通知压缩到约250字并去AI味，必须保留联系人、落款单位和成文日期，不要把落款截成简称。",
+        checks={
+            "file_terms": {
+                "chinese-official-writing/references/workflow.md": [
+                    "落款单位和成文日期结构",
+                    "不把落款单位截成泛称或为压字数删除成文日期",
+                ],
+                "chinese-official-writing/references/review-checklist.md": [
+                    "落款单位和成文日期结构",
+                    "未把落款单位截成泛称或删掉成文日期",
+                ],
+            },
+        },
+    ),
+    PromptCase(
+        id="P084",
+        kind="revise",
+        prompt="压缩改稿后只输出正文，不要用 --- 分隔正文和说明，也不要残留 Markdown 横线。",
+        checks={
+            "lint_text": "关于开展网络安全自查工作的通知\n\n各部门：\n请按期反馈。\n\n---\n\n说明：已压缩。",
+            "lint_present_labels": ["markdown-horizontal-rule"],
+            "file_terms": {
+                "chinese-official-writing/SKILL.md": [
+                    "不要用 `---` 横线分隔正文和说明",
+                    "不用 `**加粗**`、`###`、`---` 横线或代码块包装正式正文",
+                ],
+                "chinese-official-writing/references/review-checklist.md": [
+                    "是否未残留 `---` 横线分隔符",
+                ],
+            },
+        },
+    ),
 ]
 
 

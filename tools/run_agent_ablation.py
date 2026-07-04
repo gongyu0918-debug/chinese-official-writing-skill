@@ -247,19 +247,29 @@ def call_external(prompt: str, cwd: Path, timeout: int, out_path: Path, retries:
     output = ""
     return_code = 4
     for attempt in range(retries + 1):
-        result = subprocess.run(
-            external_cmd(prompt),
-            cwd=str(cwd),
-            text=True,
-            encoding="utf-8",
-            errors="replace",
-            capture_output=True,
-            timeout=timeout,
-        )
-        output = result.stdout
-        if result.stderr:
-            output = output.rstrip() + "\n\n[stderr]\n" + result.stderr
-        return_code = result.returncode
+        try:
+            result = subprocess.run(
+                external_cmd(prompt),
+                cwd=str(cwd),
+                text=True,
+                encoding="utf-8",
+                errors="replace",
+                capture_output=True,
+                timeout=timeout,
+            )
+        except subprocess.TimeoutExpired as exc:
+            stdout = exc.stdout or ""
+            stderr = exc.stderr or ""
+            output = str(stdout).rstrip()
+            timeout_note = f"agent command timed out after {timeout} seconds"
+            stderr_text = str(stderr).strip()
+            output = output + "\n\n[stderr]\n" + "\n".join(part for part in [timeout_note, stderr_text] if part)
+            return_code = 124
+        else:
+            output = result.stdout
+            if result.stderr:
+                output = output.rstrip() + "\n\n[stderr]\n" + result.stderr
+            return_code = result.returncode
         if output.strip() or return_code != 0:
             break
         time.sleep(2 + attempt)

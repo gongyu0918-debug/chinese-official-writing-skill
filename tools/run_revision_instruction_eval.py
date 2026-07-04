@@ -1109,15 +1109,20 @@ def agent_command(prompt: str, template: str) -> list[str]:
 
 
 def call_command(prompt: str, template: str, timeout: int) -> tuple[str, int, str]:
-    result = subprocess.run(
-        agent_command(prompt, template),
-        cwd=str(ROOT),
-        text=True,
-        encoding="utf-8",
-        errors="replace",
-        capture_output=True,
-        timeout=timeout,
-    )
+    try:
+        result = subprocess.run(
+            agent_command(prompt, template),
+            cwd=str(ROOT),
+            text=True,
+            encoding="utf-8",
+            errors="replace",
+            capture_output=True,
+            timeout=timeout,
+        )
+    except subprocess.TimeoutExpired as exc:
+        output = str(exc.stdout or "")
+        stderr_parts = [f"agent command timed out after {timeout} seconds", str(exc.stderr or "").strip()]
+        return output, 124, "\n".join(part for part in stderr_parts if part)
     stderr = result.stderr.strip()
     return result.stdout, result.returncode, stderr
 
@@ -1142,16 +1147,26 @@ def call_codex(prompt: str, timeout: int) -> tuple[str, int, str]:
         cmd = ["cmd.exe", "/d", "/c", codex_bin, *codex_args]
     else:
         cmd = [codex_bin, *codex_args]
-    result = subprocess.run(
-        cmd,
-        cwd=str(ROOT),
-        input=prompt,
-        text=True,
-        encoding="utf-8",
-        errors="replace",
-        capture_output=True,
-        timeout=timeout,
-    )
+    try:
+        result = subprocess.run(
+            cmd,
+            cwd=str(ROOT),
+            input=prompt,
+            text=True,
+            encoding="utf-8",
+            errors="replace",
+            capture_output=True,
+            timeout=timeout,
+        )
+    except subprocess.TimeoutExpired as exc:
+        output = ""
+        if out_file.exists():
+            output = out_file.read_text(encoding="utf-8", errors="replace")
+            out_file.unlink(missing_ok=True)
+        if not output.strip():
+            output = str(exc.stdout or "")
+        stderr_parts = [f"codex command timed out after {timeout} seconds", str(exc.stderr or "").strip()]
+        return output, 124, "\n".join(part for part in stderr_parts if part)
     output = ""
     if out_file.exists():
         output = out_file.read_text(encoding="utf-8", errors="replace")

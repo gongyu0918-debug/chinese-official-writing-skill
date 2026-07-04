@@ -95,6 +95,9 @@ class RealPromptAblationTests(unittest.TestCase):
         self.assertIn("App 增长营销方案", prompts)
         self.assertIn("会议记录整理成会议纪要", prompts)
         self.assertIn("普通采购，不涉及算力", prompts)
+        self.assertIn("主送机关、申请单位、金额和成文日期都没给", prompts)
+        self.assertIn("不要把落款截成简称", prompts)
+        self.assertIn("不要用 --- 分隔正文和说明", prompts)
 
     def test_current_skill_passes_real_prompt_cases(self) -> None:
         rows = real_prompt_eval.evaluate_root(ROOT, "current_test")
@@ -237,6 +240,15 @@ class RealPromptAblationTests(unittest.TestCase):
             "未造成 `。；` 或行尾分号噪声",
             checks_by_id["P081"]["file_terms"]["chinese-official-writing/references/review-checklist.md"],
         )
+        self.assertIn(
+            "影响正式报送和文种完整性",
+            checks_by_id["P082"]["file_terms"]["chinese-official-writing/references/handling-elements.md"],
+        )
+        self.assertIn(
+            "不把落款单位截成泛称或为压字数删除成文日期",
+            checks_by_id["P083"]["file_terms"]["chinese-official-writing/references/workflow.md"],
+        )
+        self.assertIn("markdown-horizontal-rule", checks_by_id["P084"]["lint_present_labels"])
 
     def test_heading_lock_detects_added_subheading(self) -> None:
         before = """一、整改进展
