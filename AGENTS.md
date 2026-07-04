@@ -2,7 +2,7 @@
 
 本文件适用于整个仓库。后续 agent 接手本仓库时，优先遵守这里的发布、review 和测试约定；若与用户最新指令冲突，以用户最新指令为准，但不得伪造未运行的测试结果。
 
-当前接手入口只保留本文件。当前 GitHub / ClawHub 发布状态为 `chinese-official-writing@1.5.0`；本地未配置 SkillHub 发布 CLI 或发布脚本，不能冒充已从本仓库发布 SkillHub。下方 1.4.1 到 1.4.15 内容均为历史接手记录，不代表当前 live 版本。
+当前接手入口只保留本文件。当前 GitHub / ClawHub 发布状态为 `chinese-official-writing@1.5.0`；SkillHub 目标项目 `https://skillhub.cn/skills/chinese-official-writing` 已提交 `1.5.0`，但公开 `latestVersion` 仍待 SkillHub 审核/安全扫描切换，交接时必须重新核验公开状态。下方 1.4.1 到 1.4.15 内容均为历史接手记录，不代表当前 live 版本。
 
 ## 基本工作纪律
 
@@ -217,4 +217,5 @@ Hermes 社区借鉴候选 `2713e27` 的处理结论：
 - 接受并修复 playbook 消融发现的“AI 算力/采购主题过拟合”和“审查/讲话类输出易补造事实”风险；AI/算力只在用户明确给出主题时进入正文，普通采购、审查、讲话和只审不改场景不得自动带入 AI 算力表达。
 - 基线消融必须固定上一发行基线 `1.4.15`；新增用例只允许 1.4.15 baseline 失败，current 不得失败。
 - 发布前仍需真实 writer/verifier subagent 测试，重点覆盖 AI 算力可研、普通采购、字段式审查、会议纪要、讲话、只审不改和旧文种能力。
+- SkillHub 发布只能针对 slug `chinese-official-writing`；本轮已用 SkillHub CLI dry-run 确认 slug/version，并向该目标提交 `1.5.0`，提交结果 `skillId=70149`、`versionId=127481`、`tags.latest=1.5.0`。公开详情页在审核完成前仍可能显示 `latestVersion=1.4.15`。
 - 详细证据见 `tests/evidence/release-1.5.0.md`。

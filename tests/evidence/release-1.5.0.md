@@ -75,7 +75,7 @@ Verifier total: `9/9 PASS`; no release blocker and no additional minimal fix req
 
 ## Publish Notes
 
-GitHub and ClawHub are the executable publish surfaces in this workspace. `clawhub` CLI is installed; no local `skillhub` CLI or SkillHub publish script was found in this repository, so SkillHub is not marked as published from this run unless a separate publishing channel is provided.
+Target surfaces for this release are GitHub, ClawHub, and the exact SkillHub project `https://skillhub.cn/skills/chinese-official-writing`. Do not republish similarly named SkillHub projects such as `yjkj-chinese-official-writing`.
 
 ClawHub publish and inspect:
 
@@ -84,4 +84,17 @@ ClawHub publish and inspect:
 - Publish result: `Published chinese-official-writing@1.5.0 (k97fj6xf2vshaybhp1appk94mh89t9b4)`.
 - Post-publish inspect: `latestVersion.version=1.5.0`, `metadata.version=1.5.0`, `metadata.openclaw.version=1.5.0`, moderation verdict `clean`, no suspicious or malware flags.
 
-GitHub push and tag verification are performed after this evidence update is committed, so the exact remote SHA is reported in the final release handoff.
+GitHub `main` and tag `v1.5.0` were verified at release commit `91d2ec4009f8a8ae7b3a67bfb07d7bbd9faeebb5` before this SkillHub evidence follow-up. This follow-up records SkillHub status only and does not move the `v1.5.0` tag.
+
+SkillHub target verification and publish submission:
+
+- Public target API before publish confirmed `slug=chinese-official-writing`, `source=clawhub`, `sourceUrl=https://clawhub.ai/gongyu0918-debug/chinese-official-writing`, `latestVersion.version=1.4.15`, `tags.latest=1.4.15`, `stats.versions=20`, Keen/Sanbu security reports `benign`.
+- Search API also showed similarly named skills; this run targeted only `slug=chinese-official-writing`.
+- Local `skillhub` command was not on PATH, but an installed SkillHub CLI was found at `C:\Users\admin\AppData\Local\Temp\skillhub-kit-fce40d6c7e9a48a78c932a965343ea03\cli\skills_store_cli.py`.
+- A temporary publish package was created under `output\skillhub-release-1.5.0\publish-package` from the current canonical skill package, with SkillHub-required top-level metadata `slug=chinese-official-writing`, `displayName=中文公文写作`, `summary`, `homepage`, and `_meta.json` version `1.5.0`.
+- Dry-run command: `python ...\skills_store_cli.py publish .\output\skillhub-release-1.5.0\publish-package --dry-run --json`
+- Dry-run result: `{"dryRun": true, "slug": "chinese-official-writing", "version": "1.5.0"}`.
+- Publish command: `python ...\skills_store_cli.py publish .\output\skillhub-release-1.5.0\publish-package --changelog "1.5.0：补充文种 playbook 架构，强化请示、通知、函、会议纪要、报告、方案、讲话、采购/审查和 AI 算力材料的路由与事实边界；保持 prompt/reference 层最小更新，不新增硬清洗或默认联网。" --json`
+- Publish result: `ok=true`, `slug=chinese-official-writing`, `version=1.5.0`, `skillId=70149`, `versionId=127481`, `fileCount=17`, `fingerprint=a9b3093204d7e79a10c3a220fa7b18d60fd2877f3427b156fccfe96cd081cb0f`, `reviewStatus=pending`, `securityScanStatus=pending`, `contentAuditStatus=pending`, `tags.latest=1.5.0`.
+- Post-submit public API check: `slug=chinese-official-writing`, `sourceUrl=https://clawhub.ai/gongyu0918-debug/chinese-official-writing`, `tags.latest=1.5.0`, `stats.versions=21`, but `latestVersion.version=1.4.15`. The public latest version has not switched while review/security/content audit are pending.
+- Public verification check for `chinese-official-writing@1.5.0` still returned `找不到该版本`, matching the pending public-switch state.
