@@ -87,4 +87,30 @@ SkillHub publish must use the new `iconUrl` in the publish payload. ClawHub publ
 
 ## Publish results
 
-Pending at evidence-file creation time.
+GitHub:
+
+- Release commit: `8a4be21baeb58781346e155f442de43f97249cdf`.
+- `git push origin HEAD:main`: succeeded, `origin/main` advanced from `91d2ec4` to `8a4be21`.
+- `git push origin v1.5.1`: succeeded.
+- `git ls-remote --heads origin main`: `8a4be21baeb58781346e155f442de43f97249cdf`.
+- `git ls-remote --tags origin v1.5.1`: annotated tag object `6bbc1fc0901352d707af6abd4116f01f12d79129`.
+
+ClawHub:
+
+- Pre-publish inspect: `latestVersion.version=1.5.0`, moderation verdict `clean`.
+- Publish command: `clawhub publish .\openclaw\skills\chinese_official_writing --slug chinese-official-writing --name "中文公文写作" --version 1.5.1 --tags "chinese,official-document,writing,gongwen,ai-compute"`.
+- Publish result: `Published chinese-official-writing@1.5.1 (k97amfb3qmjbv7yp0htx9z9p2989xhab)`.
+- Post-publish inspect: `latestVersion.version=1.5.1`, metadata version `1.5.1`, OpenClaw version `1.5.1`, moderation verdict `clean`, no suspicious or malware flags.
+
+SkillHub:
+
+- Icon upload result: `iconUrl=https://skillhub-1388575217.cos.accelerate.myqcloud.com/skill-icons/uploads/437097/fbafa4ddeb204e4584a699f65e06d137.png`, `objectKey=skill-icons/uploads/437097/fbafa4ddeb204e4584a699f65e06d137.png`.
+- Publish package dry-run: `{"dryRun": true, "slug": "chinese-official-writing", "version": "1.5.1"}`.
+- Publish endpoint result: HTTP `201`, `ok=true`, `slug=chinese-official-writing`, `version=1.5.1`, `skillId=70149`, `versionId=127598`, `fileCount=17`, `fingerprint=4625cf0f4d7b08b102c2adb651de217f22a73e48cad0b39dc4229eb55cf21c59`, `reviewStatus=pending`, `securityScanStatus=pending`, `contentAuditStatus=pending`, `iconAuditStatus=pending`, `iconAuditTaskStatus=pending`, `tags.latest=1.5.1`.
+- Post-submit public API check: target slug remains `chinese-official-writing`; `sourceUrl=https://clawhub.ai/gongyu0918-debug/chinese-official-writing`; `tags.latest=1.5.1`; `stats.versions=22`; public `skill.iconUrl` is the new blue Q-style icon URL; public `latestVersion.version` still reports `1.5.0` while review/security/content audit are queued.
+
+Release status:
+
+- GitHub: published.
+- ClawHub: published and moderation clean.
+- SkillHub: submitted to exact target project with `tags.latest=1.5.1` and icon URL updated; public latest version switch is pending platform audit.
