@@ -255,6 +255,17 @@ def body_lines(lines: list[str]) -> list[str]:
     return result
 
 
+def is_frontmatter_delimiter(lines: list[str], line_index: int, line: str) -> bool:
+    """Skip YAML frontmatter delimiters when linting Markdown source files."""
+    if line.strip() != "---":
+        return False
+    if line_index == 0:
+        return any(re.match(r"^\s*(?:name|title|description|metadata|version):", item) for item in lines[1:8])
+    if lines and lines[0].strip() == "---" and "---" not in [item.strip() for item in lines[1:line_index]]:
+        return any(re.match(r"^\s*(?:name|title|description|metadata|version):", item) for item in lines[1:line_index])
+    return False
+
+
 def supported_three_part_listing(snippet: str) -> bool:
     parts = re.split(r"一是|二是|三是", snippet, maxsplit=3)
     if len(parts) < 4:
@@ -428,6 +439,17 @@ def scan(path_label: str, text: str, include_format: bool = False, include_struc
                 )
             in_fence = not in_fence
             continue
+        if include_format and re.fullmatch(r"\s*-{3,}\s*", line) and not is_frontmatter_delimiter(lines_to_scan, line_index, line):
+            findings.append(
+                Finding(
+                    path=path_label,
+                    line=line_no,
+                    severity="low",
+                    label="markdown-horizontal-rule",
+                    match=stripped,
+                    excerpt="正式公文正文和改稿说明之间不要用 Markdown 横线 `---` 分隔；需要说明时用简短正文外提示。",
+                )
+            )
         if in_fence:
             if include_format:
                 for severity, label, regex, advice in compiled:
