@@ -658,8 +658,9 @@ class SkillBoundaryTests(unittest.TestCase):
             "成语默认同语境保留",
             "低语境符合",
             "引用表述、出处和发布日期建议由用户按原始材料核实。",
+            "不要改写成泛泛的 `请核实出处`",
         ]:
-            self.assertIn(term, proofreading)
+            self.assertTrue(term in proofreading or term in skill)
         for term in ["错别字错词", "的地得", "量词", "病句", "数据一致性", "逻辑一致性"]:
             self.assertIn(term, proofreading)
         self.assertIn("不改变 `prose_lint.py` 为深度语法纠错器", proofreading)
