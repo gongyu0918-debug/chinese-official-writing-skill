@@ -1363,6 +1363,35 @@ CASES: list[PromptCase] = [
             },
         },
     ),
+    PromptCase(
+        id="P085",
+        kind="revise",
+        prompt="把 AI 生成的通知稿顺一遍，注意标点、错别字、的地得、量词、病句、引用保真和数据一致性；如果保留我给的领导讲话原句，只在末尾短句提醒我核实出处，不要联网查真伪。",
+        checks={
+            "file_terms": {
+                "chinese-official-writing/SKILL.md": [
+                    "references/proofreading-checklist.md",
+                    "AI 写稿轻量校对",
+                    "不升级为事实核验流程",
+                ],
+                "chinese-official-writing/references/proofreading-checklist.md": [
+                    "不审核人类稿件事实真伪",
+                    "不默认联网反查",
+                    "用户提供的领导讲话、古诗词、名言、政策原文",
+                    "成语默认同语境保留",
+                    "引用表述、出处和发布日期建议由用户按原始材料核实。",
+                    "数据一致性",
+                    "逻辑一致性",
+                ],
+                "chinese-official-writing/references/review-checklist.md": [
+                    "AI 写稿轻量校对",
+                    "未扩展成人类稿件事实审核",
+                    "引用保真",
+                    "未联网查真伪",
+                ],
+            },
+        },
+    ),
 ]
 
 

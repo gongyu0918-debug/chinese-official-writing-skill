@@ -630,6 +630,40 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assertIn("详细测算和参数转读 `ai-compute-docs.md`", handling)
         self.assertIn("专项结构和指标写法转读 `ai-compute-docs.md`", anti_ai)
 
+    def test_proofreading_layer_stays_ai_writing_quality_only(self) -> None:
+        skill = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
+        checklist = (ROOT / "chinese-official-writing" / "references" / "review-checklist.md").read_text(
+            encoding="utf-8"
+        )
+        proofreading = (
+            ROOT / "chinese-official-writing" / "references" / "proofreading-checklist.md"
+        ).read_text(encoding="utf-8")
+
+        self.assertIn("references/proofreading-checklist.md", skill)
+        for text in [skill, checklist, proofreading]:
+            self.assertIn("AI 写稿轻量校对", text)
+            self.assertIn("引用保真", text)
+            self.assertIn("稿内一致性", text)
+        for term in [
+            "不审核人类稿件事实真伪",
+            "不核验新闻真实性",
+            "不默认联网反查",
+            "不新增模型、API、默认联网",
+            "真实性核验不属于本技能的默认修正范围",
+        ]:
+            self.assertIn(term, proofreading)
+        for term in [
+            "领导讲话、古诗词、名言、政策原文",
+            "同语境原样保留",
+            "成语默认同语境保留",
+            "低语境符合",
+            "引用表述、出处和发布日期建议由用户按原始材料核实。",
+        ]:
+            self.assertIn(term, proofreading)
+        for term in ["错别字错词", "的地得", "量词", "病句", "数据一致性", "逻辑一致性"]:
+            self.assertIn(term, proofreading)
+        self.assertIn("不改变 `prose_lint.py` 为深度语法纠错器", proofreading)
+
     def test_ai_dedupe_prompt_fix_guidance_is_documented(self) -> None:
         skill = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
         openclaw_skill = (ROOT / "openclaw" / "skills" / "chinese_official_writing" / "SKILL.md").read_text(
