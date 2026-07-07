@@ -311,6 +311,10 @@ class RealPromptAblationTests(unittest.TestCase):
             checks_by_id["P091"]["file_terms"]["chinese-official-writing/SKILL.md"],
         )
         self.assertIn(
+            "事实映射式二次修改",
+            checks_by_id["P091"]["file_terms"]["chinese-official-writing/SKILL.md"],
+        )
+        self.assertIn(
             "材料未给执行要求、整改要求和后续处理时，不为了像通报而补写",
             checks_by_id["P091"]["file_terms"]["chinese-official-writing/references/genre-playbooks.md"],
         )
