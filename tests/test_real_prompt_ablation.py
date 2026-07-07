@@ -282,6 +282,22 @@ class RealPromptAblationTests(unittest.TestCase):
             "采购需求不等于现有能力不足、效率提升、业务范围不变或影响结论",
             checks_by_id["P088"]["file_terms"]["chinese-official-writing/references/genre-playbooks.md"],
         )
+        self.assertIn(
+            "不改写成已定实施方案、执行命令",
+            checks_by_id["P089"]["file_terms"]["chinese-official-writing/SKILL.md"],
+        )
+        self.assertIn(
+            "不自动改题为“调研报告”“考核说明”或“实施方案”",
+            checks_by_id["P089"]["file_terms"]["chinese-official-writing/references/genre-playbooks.md"],
+        )
+        self.assertIn(
+            "不用 Markdown `**` 加粗包装标签",
+            checks_by_id["P090"]["file_terms"]["chinese-official-writing/SKILL.md"],
+        )
+        self.assertIn(
+            "未用 Markdown 加粗或装饰性格式替代用户要求",
+            checks_by_id["P090"]["file_terms"]["chinese-official-writing/references/review-checklist.md"],
+        )
 
     def test_heading_lock_detects_added_subheading(self) -> None:
         before = """一、整改进展

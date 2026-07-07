@@ -244,5 +244,13 @@ Hermes 社区借鉴候选 `2713e27` 的处理结论：
 - SkillHub 已公开切换精确项目 `chinese-official-writing`：`skillId=70149`、`versionId=129948`、`tags.latest=1.5.2`，公开 `latestVersion.version=1.5.2`。
 - 详细证据见 `tests/evidence/release-1.5.2.md`。
 
+## 1.5.2 后续弱模型测试记录
+
+`be46036` 在 1.5.2 基线上补了报告/说明类、会议纪要、采购/可研等 playbook 边界。本轮随后按用户要求追加弱模型低思考真实写作测试，覆盖版慎通成本考察、版慎通使用报告、结构锁定改稿、只审不改和长篇限字汇报。详细证据见 `tests/evidence/weak-model-low-reasoning-20260707.md`。
+
+累计口径下达到三次的共性问题只有两类：一是弱模型容易把“建议、拟测试、下一步设想”写成已定实施方案或执行要求；二是只审不改或正式稿中仍可能残留 Markdown `**` 加粗标签。本轮只做 prompt/reference 层软性最小修复：保持建议或待评估口径，不在未给正式决定、责任单位和期限时写“按以上方案执行”“一周内反馈”等强执行要求；用户指定“位置 + 风险层级 + 修改建议”时，用普通文本标签，不用 Markdown 加粗包装。未新增脚本清洗、lint 硬规则或默认阻断。
+
+事实外扩、标题漂移和日期额外推断本轮未达到三次共性。后续如果这些问题再次出现，应先复查现有规则是否分散或表述冲突，再决定是否做最小收紧；不要单凭一个样本继续追加补丁。发布前仍需同时跑弱模型低思考和强模型真实写稿，防止优化弱模型后让强模型过度保守或把建议边界处理成新的过拟合。
+
 - 1.4.15 发布后补跑 description 新路由真实写作和改写测试，覆盖通告、命令（令）、意见、公报、决议、议案以及报告改通告、意见稿去口语化。独立 verifier 判定 6 PASS、2 WARN、0 FAIL；主要残留风险是材料不足时容易补入惯常判断，以及公开发布短稿有轻微评价化倾向。详细证据见 `tests/evidence/real-writing-1.4.15-description-routes.md`。
 - 下次发布前必须核查远端字段原始值。ClawHub 1.4.15 曾因 Windows `npx.cmd` 传参把 `--name "中文公文写作"` 和 `--tags "chinese,...,ai-compute"` 的引号写入远端 `displayName` 和 tag key；下一版本发布必须使用 `--name=中文公文写作`、`--tags=chinese,official-document,writing,gongwen,ai-compute`，并用 `clawhub inspect --json`、SkillHub API 和 GitHub tag/main 核对 displayName、tags、latestVersion、summary 和 canonical frontmatter。

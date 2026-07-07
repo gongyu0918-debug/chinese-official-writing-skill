@@ -1462,6 +1462,49 @@ CASES: list[PromptCase] = [
             },
         },
     ),
+    PromptCase(
+        id="P089",
+        kind="create",
+        prompt="请写一份版慎通成本考察短稿：当前一个月模型成本约6万元，后续只是建议尝试低思考档位、便宜模型和路由机制；不要把建议和待测试项写成已定实施方案、执行命令或具体反馈时限。",
+        checks={
+            "file_terms": {
+                "chinese-official-writing/SKILL.md": [
+                    "考察、评估、建议、拟测试、考虑尝试或下一步设想",
+                    "不改写成已定实施方案、执行命令",
+                    "按以上方案执行",
+                ],
+                "chinese-official-writing/references/workflow.md": [
+                    "正文保持建议或待评估口径",
+                    "不改写成已定实施方案、执行命令或具体反馈时限",
+                ],
+                "chinese-official-writing/references/genre-playbooks.md": [
+                    "成本考察、成本评估",
+                    "不自动改题为“调研报告”“考核说明”或“实施方案”",
+                    "不写成已经确定的执行路线、责任命令或反馈时限",
+                ],
+            },
+        },
+    ),
+    PromptCase(
+        id="P090",
+        kind="revise",
+        prompt="只审不改。请按“位置 + 风险层级 + 修改建议”检查一份通知，不要重写全文，不要给分，也不要用 Markdown 加粗包装标签。",
+        checks={
+            "file_terms": {
+                "chinese-official-writing/SKILL.md": [
+                    "位置 + 风险层级 + 修改建议",
+                    "普通文本标签承接",
+                    "不用 Markdown `**` 加粗包装标签",
+                ],
+                "chinese-official-writing/references/review-checklist.md": [
+                    "位置 + 风险层级 + 修改建议",
+                    "普通文本标签逐项输出",
+                    "未用 Markdown `**` 加粗包装标签",
+                    "未用 Markdown 加粗或装饰性格式替代用户要求",
+                ],
+            },
+        },
+    ),
 ]
 
 

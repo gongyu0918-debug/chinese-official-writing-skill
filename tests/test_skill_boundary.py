@@ -630,6 +630,27 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assertIn("详细测算和参数转读 `ai-compute-docs.md`", handling)
         self.assertIn("专项结构和指标写法转读 `ai-compute-docs.md`", anti_ai)
 
+    def test_weak_model_suggestion_boundaries_stay_soft(self) -> None:
+        skill = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
+        workflow = (ROOT / "chinese-official-writing" / "references" / "workflow.md").read_text(
+            encoding="utf-8"
+        )
+        playbooks = (ROOT / "chinese-official-writing" / "references" / "genre-playbooks.md").read_text(
+            encoding="utf-8"
+        )
+        review = (ROOT / "chinese-official-writing" / "references" / "review-checklist.md").read_text(
+            encoding="utf-8"
+        )
+
+        for text in [skill, workflow]:
+            self.assertIn("考察、评估、建议、拟测试、考虑尝试或下一步设想", text)
+            self.assertIn("不改写成已定实施方案、执行命令", text)
+        self.assertIn("成本考察、成本评估", playbooks)
+        self.assertIn("不自动改题为“调研报告”“考核说明”或“实施方案”", playbooks)
+        self.assertIn("不写成已经确定的执行路线、责任命令或反馈时限", playbooks)
+        self.assertIn("不用 Markdown `**` 加粗包装标签", skill)
+        self.assertIn("未用 Markdown `**` 加粗包装标签", review)
+
     def test_proofreading_layer_stays_ai_writing_quality_only(self) -> None:
         skill = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
         checklist = (ROOT / "chinese-official-writing" / "references" / "review-checklist.md").read_text(
