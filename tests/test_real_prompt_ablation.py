@@ -98,6 +98,11 @@ class RealPromptAblationTests(unittest.TestCase):
         self.assertIn("主送机关、申请单位、金额和成文日期都没给", prompts)
         self.assertIn("不要把落款截成简称", prompts)
         self.assertIn("不要用 --- 分隔正文和说明", prompts)
+        self.assertIn("不要过拟合成调研报告", prompts)
+        self.assertIn("不要把提醒写成第七章", prompts)
+        self.assertIn("正文和附件表格的数字", prompts)
+        self.assertIn("不要套模板补空项", prompts)
+        self.assertIn("不要把采购需求推断成现有能力不足", prompts)
 
     def test_current_skill_passes_real_prompt_cases(self) -> None:
         rows = real_prompt_eval.evaluate_root(ROOT, "current_test")
@@ -249,6 +254,34 @@ class RealPromptAblationTests(unittest.TestCase):
             checks_by_id["P083"]["file_terms"]["chinese-official-writing/references/workflow.md"],
         )
         self.assertIn("markdown-horizontal-rule", checks_by_id["P084"]["lint_present_labels"])
+        self.assertIn(
+            "正文后的待确认、风险提醒或核验提示不属于正文章节",
+            checks_by_id["P086"]["file_terms"]["chinese-official-writing/SKILL.md"],
+        )
+        self.assertIn(
+            "不自动改题为“调研报告”",
+            checks_by_id["P086"]["file_terms"]["chinese-official-writing/references/genre-playbooks.md"],
+        )
+        self.assertIn(
+            "文表和附件一致性",
+            checks_by_id["P087"]["file_terms"]["chinese-official-writing/references/proofreading-checklist.md"],
+        )
+        self.assertIn(
+            "未给的供应商、报价依据、验收安排或归档要求列正文外待补",
+            checks_by_id["P088"]["file_terms"]["chinese-official-writing/references/genre-playbooks.md"],
+        )
+        self.assertIn(
+            "不把有期限的事项拆成多个待明确字段",
+            checks_by_id["P088"]["file_terms"]["chinese-official-writing/references/genre-playbooks.md"],
+        )
+        self.assertIn(
+            "不把一个期限扩展到原文未绑定的其他任务",
+            checks_by_id["P088"]["file_terms"]["chinese-official-writing/references/genre-playbooks.md"],
+        )
+        self.assertIn(
+            "采购需求不等于现有能力不足、效率提升、业务范围不变或影响结论",
+            checks_by_id["P088"]["file_terms"]["chinese-official-writing/references/genre-playbooks.md"],
+        )
 
     def test_heading_lock_detects_added_subheading(self) -> None:
         before = """一、整改进展

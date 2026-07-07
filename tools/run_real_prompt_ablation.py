@@ -1392,6 +1392,76 @@ CASES: list[PromptCase] = [
             },
         },
     ),
+    PromptCase(
+        id="P086",
+        kind="create",
+        prompt="请写一份5000字左右的版慎通使用情况报告，主要写使用体验、准确性、速率、成本、接入和报告聚合问题；不要过拟合成调研报告，末尾可以提醒需要核实费用依据和服务方改进计划，但不要把提醒写成第七章或正文章节。",
+        checks={
+            "file_terms": {
+                "chinese-official-writing/SKILL.md": [
+                    "正文后的待确认、风险提醒或核验提示不属于正文章节",
+                    "第七章",
+                ],
+                "chinese-official-writing/references/workflow.md": [
+                    "正文后的待确认、风险提醒、来源核验或引用核验提示不进入报告",
+                    "正文外提示",
+                ],
+                "chinese-official-writing/references/genre-playbooks.md": [
+                    "使用/体验/评估报告",
+                    "不自动改题为“调研报告”",
+                    "不要让负面内容吞没准确性、可用价值、适用场景和后续观察安排",
+                    "待确认事项、风险提醒或引用核验提示放在正文外",
+                    "不编号成报告的最后一章",
+                ],
+                "chinese-official-writing/references/review-checklist.md": [
+                    "正文外提示位置",
+                    "未编号成报告、请示、通知等正文的最后一章",
+                ],
+            },
+        },
+    ),
+    PromptCase(
+        id="P087",
+        kind="revise",
+        prompt="审一下这份调研报告，重点看正文和附件表格的数字、单位、年份、来源说明、旧版日期和旧联系人有没有前后不一致。",
+        checks={
+            "file_terms": {
+                "chinese-official-writing/references/proofreading-checklist.md": [
+                    "文表和附件一致性",
+                    "来源可追溯性",
+                    "改稿残留",
+                    "来源名称、脚注、括号说明、口径说明或测算依据",
+                ],
+                "chinese-official-writing/references/review-checklist.md": [
+                    "文表和附件一致性",
+                    "来源可追溯性",
+                    "改稿残留",
+                ],
+            },
+        },
+    ),
+    PromptCase(
+        id="P088",
+        kind="create",
+        prompt="写一份会议纪要、可研报告或采购申请时，按具体场景核对会议类型、项目类型、投资资金、品名规格数量和报价依据，不要套模板补空项，也不要把采购需求推断成现有能力不足。",
+        checks={
+            "file_terms": {
+                "chinese-official-writing/references/genre-playbooks.md": [
+                    "决策会重“审议、原则同意、决定、要求”",
+                    "同一句中的主体、动作、期限应保持绑定",
+                    "不把有期限的事项拆成多个待明确字段",
+                    "不把一个期限扩展到原文未绑定的其他任务",
+                    "不补写问题类型、产生环节、处理建议、保障效果等未给交付物",
+                    "项目类型、建设性质、建设内容、投资估算、资金来源",
+                    "品名、规格、数量、预算或单价、供应商/报价依据",
+                    "不用地方模板或空表补实",
+                    "未给的供应商、报价依据、验收安排或归档要求列正文外待补",
+                    "采购需求不等于现有能力不足、效率提升、业务范围不变或影响结论",
+                    "用户只给预算时写“预算为”，不包装成“经测算”",
+                ],
+            },
+        },
+    ),
 ]
 
 
