@@ -189,10 +189,24 @@ GitHub:
 ClawHub:
 
 - `clawhub --cli-version` before update: `0.18.0`; after update: `0.23.1`.
+- `clawhub -V` is the current version command. `clawhub --version` is not accepted by CLI `0.23.1` and prints the help text with an unknown-option error.
 - `clawhub whoami`: `gongyu0918-debug`.
 - `clawhub publish ... --version 1.5.2` and `clawhub skill publish ... --version 1.5.2` both failed with `API response: skillId: invalid value; versionId: invalid value`.
 - Dry-run with upgraded CLI succeeded locally: `status=would-publish`, `slug=chinese-official-writing`, `version=1.5.2`, `latestVersion=1.5.1`, `fileCount=18`, `fingerprint=36d7aa86e667f1cd6888562cbc58bbdf3b4d1d6449077c7d07f652515ffd475a`.
 - Direct official API publish using the same CLI file preparation logic and `/api/v1/skills` returned HTTP `200`, `ok=true`, `status=pending`, `attemptId=zx7d8vv11327rpzzzg0gfgh24h8a345c`, `slug=chinese-official-writing`, `version=1.5.2`.
+- Re-check after CLI update:
+  - Official docs checked: `https://docs.openclaw.ai/clawhub`, `https://docs.openclaw.ai/clawhub/publishing`, `https://docs.openclaw.ai/clawhub/cli`, and `https://docs.openclaw.ai/clawhub/http-api`.
+  - Official docs still say skill publishing uses `clawhub skill publish <path>` and authenticated `POST /api/v1/skills`; no separate newer browser-only publish flow is documented.
+  - `clawhub inspect --help` in CLI `0.23.1` shows `--versions`, `--version`, `--files`, `--file`, and `--json`; `clawhub skill publish --help` shows the newer `--source-repo`, `--source-commit`, `--source-ref`, and `--source-path` options.
+  - Local CLI source confirms `clawhub skill publish` posts multipart data to `/api/v1/skills` and validates the response with a schema requiring `skillId` and `versionId`. The observed service response is the newer async form: `ok=true`, `status=pending`, `attemptId=...`.
+  - With inherited `HTTP_PROXY`, `HTTPS_PROXY`, and `ALL_PROXY` set to `http://127.0.0.1:9`, `clawhub whoami` and `clawhub inspect` fail with `connect ECONNREFUSED 127.0.0.1:9`. Temporarily clearing those proxy variables makes `whoami`, `inspect`, and publish dry-run succeed, so the local network path is proxy-sensitive.
+  - After clearing proxy variables, real `clawhub skill publish ... --source-repo ... --source-commit ... --source-ref main --source-path openclaw/skills/chinese_official_writing --version 1.5.2 --json` still failed with `API response: skillId: invalid value; versionId: invalid value`.
+  - Browser fallback checked: `https://clawhub.ai/skills/publish` exists, but the in-app browser is signed out and only shows "Sign in to publish a skill"; no publish form is available until GitHub login is completed.
+  - `clawhub inspect chinese-official-writing --versions --limit 20 --json` listed versions through `1.5.1` but no `1.5.2`.
+  - `clawhub inspect chinese-official-writing --version 1.5.2 --json` returned `Version not found`.
+  - `clawhub skill verify chinese-official-writing --version 1.5.2` returned `Version not found`.
+  - Direct `/api/v1/skills` retry with complete GitHub source metadata returned the same `status=pending`, `attemptId=zx7d8vv11327rpzzzg0gfgh24h8a345c`.
+  - Legacy `/api/cli/publish` upload-and-publish path returned the same `status=pending`, `attemptId=zx7d8vv11327rpzzzg0gfgh24h8a345c`; it did not create a visible version entry.
 - Post-submit `clawhub inspect chinese-official-writing --json` still reported `latestVersion.version=1.5.1`, skill metadata version `1.5.1`, and moderation verdict `clean`.
 - `clawhub inspect chinese-official-writing@1.5.2 --json` still reported not found after the submit attempt.
 
@@ -204,12 +218,13 @@ SkillHub:
 - Dry-run result: `{"dryRun": true, "slug": "chinese-official-writing", "version": "1.5.2"}`.
 - Publish result: `ok=true`, `slug=chinese-official-writing`, `version=1.5.2`, `skillId=70149`, `versionId=129948`, `fileCount=18`, `fingerprint=fb23a669da54acd350a5f2bdc0c60dbd3d8e3ab38b21c27be46128c8271ae4a2`, `reviewStatus=pending`, `securityScanStatus=pending`, `contentAuditStatus=pending`, `tags.latest=1.5.2`.
 - Public API check: `slug=chinese-official-writing`, `source=clawhub`, `sourceUrl=https://clawhub.ai/gongyu0918-debug/chinese-official-writing`, `tags.latest=1.5.2`, `iconUrl=https://skillhub-1388575217.cos.accelerate.myqcloud.com/skill-icons/uploads/437097/fbafa4ddeb204e4584a699f65e06d137.png`, public `latestVersion.version=1.5.1`.
+- Later public API re-check: `slug=chinese-official-writing`, `source=clawhub`, `sourceUrl=https://clawhub.ai/gongyu0918-debug/chinese-official-writing`, `tags.latest=1.5.2`, `latestVersion.version=1.5.2`, `iconUrl=https://skillhub-1388575217.cos.accelerate.myqcloud.com/skill-icons/uploads/437097/fbafa4ddeb204e4584a699f65e06d137.png`, `stats.versions=23`.
 
 Release status:
 
 - GitHub: published.
-- SkillHub: submitted to the exact target project; public `tags.latest=1.5.2`, latest version switch pending audit.
-- ClawHub: 1.5.2 submit accepted as pending by the official API, but public latest is still `1.5.1`; this needs a later live re-check.
+- SkillHub: published to the exact target project; public `tags.latest=1.5.2` and `latestVersion.version=1.5.2`.
+- ClawHub: 1.5.2 submit accepted as pending by official v1 and legacy APIs, but public latest is still `1.5.1`; this needs a later live re-check or platform-side resolution.
 
 ## Remaining Risks
 
@@ -218,4 +233,4 @@ Release status:
 - Formal element hinting for notices and letters should continue to be observed; current evidence shows only 2 WARN samples, below the 3+ fix threshold.
 - Real article eval remains deterministic and does not replace human review or live drafting judgement.
 - This release does not add external fact checking; quote and data authenticity remain user/public-source verification responsibilities.
-- ClawHub public latest has not switched to `1.5.2` yet despite a pending publish attempt. Re-check `clawhub inspect chinese-official-writing --json` before treating ClawHub live as complete.
+- ClawHub public latest has not switched to `1.5.2` yet despite pending publish attempts through v1 and legacy official APIs. Re-check `clawhub inspect chinese-official-writing --versions --limit 20 --json` before treating ClawHub live as complete.
