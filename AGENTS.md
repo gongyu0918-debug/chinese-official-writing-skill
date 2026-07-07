@@ -2,7 +2,7 @@
 
 本文件适用于整个仓库。后续 agent 接手本仓库时，优先遵守这里的发布、review 和测试约定；若与用户最新指令冲突，以用户最新指令为准，但不得伪造未运行的测试结果。
 
-当前接手入口只保留本文件。当前 GitHub / ClawHub 发布状态为 `chinese-official-writing@1.5.1`；SkillHub 目标项目 `https://skillhub.cn/skills/chinese-official-writing` 已提交 `1.5.1`，`tags.latest=1.5.1` 且 `iconUrl` 已切到蓝底 Q 版图标，但公开 `latestVersion.version` 仍显示 `1.5.0`，需等待 SkillHub 审核/安全扫描/内容审核切换。交接时必须重新核验公开版本、审核状态和 SkillHub `iconUrl`。下方 1.4.1 到 1.5.0 内容均为历史接手记录，不代表当前 live 版本。
+当前接手入口只保留本文件。当前 GitHub 发布状态为 `chinese-official-writing@1.5.2`，`origin/main` 和 tag `v1.5.2` 指向 `70efc9ce74fe956497b5044ee14f60e2b94c5e55`。ClawHub 1.5.2 已通过 `/api/v1/skills` 提交并返回 `status=pending`、`attemptId=zx7d8vv11327rpzzzg0gfgh24h8a345c`，但 `clawhub inspect chinese-official-writing --json` 公开 latest 仍显示 `1.5.1` 且 moderation clean；交接时需继续复核是否完成异步切换。SkillHub 目标项目 `https://skillhub.cn/skills/chinese-official-writing` 已提交 `1.5.2`，`skillId=70149`、`versionId=129948`、`tags.latest=1.5.2`，公开 `latestVersion.version` 仍显示 `1.5.1`，`iconUrl` 仍为蓝底 Q 版图标，需等待 SkillHub 审核/安全扫描/内容审核切换。下方 1.4.1 到 1.5.1 内容均为历史接手记录，不代表当前 live 版本。
 
 ## 基本工作纪律
 
@@ -232,3 +232,15 @@ Hermes 社区借鉴候选 `2713e27` 的处理结论：
 - 真实 writer/verifier subagent 复核为 `overall=WARN`、`publish_blocking=false`；非阻断 WARN 为会议通知样稿在缺发文单位时补入“办公室”和当前日期，后续观察，不在发布前扩大修复面。
 - SkillHub 支持 skill 级 `iconUrl`；ClawHub `inspect` 未暴露 skill 头像字段。本轮只对 SkillHub 上传并发布蓝底 Q 版图标，不向 ClawHub 包加入头像字段。
 - 详细证据见 `tests/evidence/release-1.5.1.md`。
+
+## 1.5.2 接手记录
+
+1.5.2 是 1.5.1 后的 prompt/reference 最小边界修复和测试证据补强版本。
+
+- 接受并修复一处引用核验提示边界：`SKILL.md` 入口从“最终稿保留用户给定引用时”收窄为“需要提示未核验引用时”，避免用户明确要求只输出正文时被强制追加核实句。
+- 同步 `tools/sync_adapters.py` 版本到 `1.5.2`，并同步 Codex、Qwen、Hermes、OpenClaw、Claude plugin 和 README 元数据。
+- 发布前验证包括定向 unittest `78/78`、全量 unittest `105/105`、GitHub main/1.5.1 基线消融 current `85/85`、真实文章回归、promptfoo smoke `20/20`、`git diff --check`、真实 subagent writer/verifier 和 3000 字以上调研/可研/多附件合稿测试。
+- GitHub 已发布：`origin/main` 和 tag `v1.5.2` 均为 `70efc9ce74fe956497b5044ee14f60e2b94c5e55`。
+- ClawHub CLI `0.18.0` 与 `0.23.1` 发布命令均因服务端响应不再包含 `skillId/versionId` 而报 schema 错误；用同源 CLI 组包逻辑直接调用官方 `/api/v1/skills` 成功提交，返回 `status=pending`、`attemptId=zx7d8vv11327rpzzzg0gfgh24h8a345c`。截至本记录，`inspect` 仍显示 latest `1.5.1`、moderation `clean`。
+- SkillHub 已提交精确项目 `chinese-official-writing`：`skillId=70149`、`versionId=129948`、`tags.latest=1.5.2`，公开 latest 仍待审核切换。
+- 详细证据见 `tests/evidence/release-1.5.2.md`。

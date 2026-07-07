@@ -176,6 +176,41 @@ Verifier follow-up result: `PASS`, not blocking.
 - `git diff --check`
   - Result: PASS; only CRLF normalization warnings were printed.
 
+## Publish Status
+
+GitHub:
+
+- Release commit: `70efc9ce74fe956497b5044ee14f60e2b94c5e55`.
+- `git push origin HEAD:main`: succeeded.
+- `git push origin v1.5.2`: succeeded.
+- `git ls-remote --heads origin main`: `70efc9ce74fe956497b5044ee14f60e2b94c5e55`.
+- `git ls-remote --tags origin v1.5.2`: `70efc9ce74fe956497b5044ee14f60e2b94c5e55`.
+
+ClawHub:
+
+- `clawhub --cli-version` before update: `0.18.0`; after update: `0.23.1`.
+- `clawhub whoami`: `gongyu0918-debug`.
+- `clawhub publish ... --version 1.5.2` and `clawhub skill publish ... --version 1.5.2` both failed with `API response: skillId: invalid value; versionId: invalid value`.
+- Dry-run with upgraded CLI succeeded locally: `status=would-publish`, `slug=chinese-official-writing`, `version=1.5.2`, `latestVersion=1.5.1`, `fileCount=18`, `fingerprint=36d7aa86e667f1cd6888562cbc58bbdf3b4d1d6449077c7d07f652515ffd475a`.
+- Direct official API publish using the same CLI file preparation logic and `/api/v1/skills` returned HTTP `200`, `ok=true`, `status=pending`, `attemptId=zx7d8vv11327rpzzzg0gfgh24h8a345c`, `slug=chinese-official-writing`, `version=1.5.2`.
+- Post-submit `clawhub inspect chinese-official-writing --json` still reported `latestVersion.version=1.5.1`, skill metadata version `1.5.1`, and moderation verdict `clean`.
+- `clawhub inspect chinese-official-writing@1.5.2 --json` still reported not found after the submit attempt.
+
+SkillHub:
+
+- Exact target project: `https://skillhub.cn/skills/chinese-official-writing`.
+- Clean publish package: `output/skillhub-release-1.5.2/publish-package`, `18` files, no `__pycache__` or `.pyc`.
+- Dry-run command: `python C:\Users\admin\.skillhub\skills_store_cli.py publish .\output\skillhub-release-1.5.2\publish-package --dry-run --json`.
+- Dry-run result: `{"dryRun": true, "slug": "chinese-official-writing", "version": "1.5.2"}`.
+- Publish result: `ok=true`, `slug=chinese-official-writing`, `version=1.5.2`, `skillId=70149`, `versionId=129948`, `fileCount=18`, `fingerprint=fb23a669da54acd350a5f2bdc0c60dbd3d8e3ab38b21c27be46128c8271ae4a2`, `reviewStatus=pending`, `securityScanStatus=pending`, `contentAuditStatus=pending`, `tags.latest=1.5.2`.
+- Public API check: `slug=chinese-official-writing`, `source=clawhub`, `sourceUrl=https://clawhub.ai/gongyu0918-debug/chinese-official-writing`, `tags.latest=1.5.2`, `iconUrl=https://skillhub-1388575217.cos.accelerate.myqcloud.com/skill-icons/uploads/437097/fbafa4ddeb204e4584a699f65e06d137.png`, public `latestVersion.version=1.5.1`.
+
+Release status:
+
+- GitHub: published.
+- SkillHub: submitted to the exact target project; public `tags.latest=1.5.2`, latest version switch pending audit.
+- ClawHub: 1.5.2 submit accepted as pending by the official API, but public latest is still `1.5.1`; this needs a later live re-check.
+
 ## Remaining Risks
 
 - Real subagent testing covered 15 short/medium samples plus 3 long-form 3000+ samples, but not every possible public-sector document variant.
@@ -183,3 +218,4 @@ Verifier follow-up result: `PASS`, not blocking.
 - Formal element hinting for notices and letters should continue to be observed; current evidence shows only 2 WARN samples, below the 3+ fix threshold.
 - Real article eval remains deterministic and does not replace human review or live drafting judgement.
 - This release does not add external fact checking; quote and data authenticity remain user/public-source verification responsibilities.
+- ClawHub public latest has not switched to `1.5.2` yet despite a pending publish attempt. Re-check `clawhub inspect chinese-official-writing --json` before treating ClawHub live as complete.
