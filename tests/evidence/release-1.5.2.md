@@ -201,14 +201,19 @@ ClawHub:
   - Local CLI source confirms `clawhub skill publish` posts multipart data to `/api/v1/skills` and validates the response with a schema requiring `skillId` and `versionId`. The observed service response is the newer async form: `ok=true`, `status=pending`, `attemptId=...`.
   - With inherited `HTTP_PROXY`, `HTTPS_PROXY`, and `ALL_PROXY` set to `http://127.0.0.1:9`, `clawhub whoami` and `clawhub inspect` fail with `connect ECONNREFUSED 127.0.0.1:9`. Temporarily clearing those proxy variables makes `whoami`, `inspect`, and publish dry-run succeed, so the local network path is proxy-sensitive.
   - After clearing proxy variables, real `clawhub skill publish ... --source-repo ... --source-commit ... --source-ref main --source-path openclaw/skills/chinese_official_writing --version 1.5.2 --json` still failed with `API response: skillId: invalid value; versionId: invalid value`.
-  - Browser fallback checked: `https://clawhub.ai/skills/publish` exists, but the in-app browser is signed out and only shows "Sign in to publish a skill"; no publish form is available until GitHub login is completed.
-  - `clawhub inspect chinese-official-writing --versions --limit 20 --json` listed versions through `1.5.1` but no `1.5.2`.
-  - `clawhub inspect chinese-official-writing --version 1.5.2 --json` returned `Version not found`.
-  - `clawhub skill verify chinese-official-writing --version 1.5.2` returned `Version not found`.
+  - Browser fallback checked: `https://clawhub.ai/skills/publish` exists. The Chrome import path was explored but not used because the page-side review endpoint returned a server error after selecting only `chinese_official_writing`; no browser publish side effect was triggered there.
+  - Initial `clawhub inspect chinese-official-writing --versions --limit 20 --json` listed versions through `1.5.1` but no `1.5.2`.
+  - Initial `clawhub inspect chinese-official-writing --version 1.5.2 --json` returned `Version not found`.
+  - Initial `clawhub skill verify chinese-official-writing --version 1.5.2` returned `Version not found`.
   - Direct `/api/v1/skills` retry with complete GitHub source metadata returned the same `status=pending`, `attemptId=zx7d8vv11327rpzzzg0gfgh24h8a345c`.
-  - Legacy `/api/cli/publish` upload-and-publish path returned the same `status=pending`, `attemptId=zx7d8vv11327rpzzzg0gfgh24h8a345c`; it did not create a visible version entry.
-- Post-submit `clawhub inspect chinese-official-writing --json` still reported `latestVersion.version=1.5.1`, skill metadata version `1.5.1`, and moderation verdict `clean`.
-- `clawhub inspect chinese-official-writing@1.5.2 --json` still reported not found after the submit attempt.
+  - Legacy `/api/cli/publish` upload-and-publish path returned the same `status=pending`, `attemptId=zx7d8vv11327rpzzzg0gfgh24h8a345c`.
+- Final re-check after user completed in-app browser login:
+  - In-app browser page `https://clawhub.ai/gongyu0918-debug/skills/chinese-official-writing` showed `当前版本：chinese-official-writing@1.5.2`.
+  - `clawhub inspect chinese-official-writing --json`: `latestVersion.version=1.5.2`, `tags.latest=1.5.2`, `stats.versions=49`, moderation `verdict=clean`, `isSuspicious=false`, `isMalwareBlocked=false`.
+  - `clawhub inspect chinese-official-writing --versions --limit 5 --json`: versions include `1.5.2`, `1.5.1`, `1.5.0`, `1.4.15`, `1.4.14`.
+  - `clawhub inspect chinese-official-writing --version 1.5.2 --json`: version file list contains 18 files, including `SKILL.md`, `README.md`, `agents/openai.yaml`, `references/proofreading-checklist.md`, all other references, and `scripts/prose_lint.py`; `metadata.version=1.5.2`, OpenClaw metadata version `1.5.2`, security `hasWarnings=false`, VT `clean`, deep security status still `pending`.
+  - `clawhub scan download chinese-official-writing --version 1.5.2 --kind skill --output .\output\clawhub-scan-1.5.2.zip --json`: succeeded, report ZIP at `F:\Workspaces\chinese-official-writing-skill\output\clawhub-scan-1.5.2.zip`.
+  - `clawhub scan --slug chinese-official-writing --version 1.5.2 --json` was started as an optional deep-scan poll, produced no output for more than 3 minutes, and was stopped. It is not counted as a passing check; the release conclusion relies on `inspect` and scan-download evidence above.
 
 SkillHub:
 
@@ -224,7 +229,7 @@ Release status:
 
 - GitHub: published.
 - SkillHub: published to the exact target project; public `tags.latest=1.5.2` and `latestVersion.version=1.5.2`.
-- ClawHub: 1.5.2 submit accepted as pending by official v1 and legacy APIs, but public latest is still `1.5.1`; this needs a later live re-check or platform-side resolution.
+- ClawHub: published. Public page, `inspect`, and `--versions` all show `1.5.2`; moderation is `clean`.
 
 ## Remaining Risks
 
@@ -233,4 +238,4 @@ Release status:
 - Formal element hinting for notices and letters should continue to be observed; current evidence shows only 2 WARN samples, below the 3+ fix threshold.
 - Real article eval remains deterministic and does not replace human review or live drafting judgement.
 - This release does not add external fact checking; quote and data authenticity remain user/public-source verification responsibilities.
-- ClawHub public latest has not switched to `1.5.2` yet despite pending publish attempts through v1 and legacy official APIs. Re-check `clawhub inspect chinese-official-writing --versions --limit 20 --json` before treating ClawHub live as complete.
+- ClawHub version-level deep security scan remains asynchronous `pending` even though moderation is `clean`, VT is `clean`, `hasWarnings=false`, and the scan report ZIP can be downloaded. Re-check `clawhub inspect chinese-official-writing --version 1.5.2 --json` if a later handoff needs the deep scan terminal state.
