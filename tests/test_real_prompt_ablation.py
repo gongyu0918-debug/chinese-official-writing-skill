@@ -298,6 +298,30 @@ class RealPromptAblationTests(unittest.TestCase):
             "未用 Markdown 加粗或装饰性格式替代用户要求",
             checks_by_id["P090"]["file_terms"]["chinese-official-writing/references/review-checklist.md"],
         )
+        self.assertIn(
+            "标题后应短列 1-4 项",
+            checks_by_id["P091"]["file_terms"]["chinese-official-writing/SKILL.md"],
+        )
+        self.assertIn(
+            "事实少于字数目标时宁可短写",
+            checks_by_id["P091"]["file_terms"]["chinese-official-writing/SKILL.md"],
+        )
+        self.assertIn(
+            "材料稀疏型通报或情况说明可用短骨架",
+            checks_by_id["P091"]["file_terms"]["chinese-official-writing/SKILL.md"],
+        )
+        self.assertIn(
+            "材料未给执行要求、整改要求和后续处理时，不为了像通报而补写",
+            checks_by_id["P091"]["file_terms"]["chinese-official-writing/references/genre-playbooks.md"],
+        )
+        self.assertIn(
+            "不新增采购类别、资产属性、用途、入库流程",
+            checks_by_id["P092"]["file_terms"]["chinese-official-writing/SKILL.md"],
+        )
+        self.assertIn(
+            "正式正文的标题、小标题、段落标签直接用普通文本承接",
+            checks_by_id["P093"]["file_terms"]["chinese-official-writing/SKILL.md"],
+        )
 
     def test_heading_lock_detects_added_subheading(self) -> None:
         before = """一、整改进展

@@ -252,5 +252,16 @@ Hermes 社区借鉴候选 `2713e27` 的处理结论：
 
 事实外扩、标题漂移和日期额外推断本轮未达到三次共性。后续如果这些问题再次出现，应先复查现有规则是否分散或表述冲突，再决定是否做最小收紧；不要单凭一个样本继续追加补丁。发布前仍需同时跑弱模型低思考和强模型真实写稿，防止优化弱模型后让强模型过度保守或把建议边界处理成新的过拟合。
 
+## 1.5.3 发布前阻断记录
+
+1.5.3 是 1.5.2 后的本地候选，尚未发布 GitHub、ClawHub、SkillHub，未创建 `v1.5.3` tag。候选只做 prompt/reference 层最小收紧和 P091-P093 确定性用例补充，不新增 lint 硬规则、脚本清洗、默认阻断或默认联网。
+
+- 已核实最小借鉴链路存在：历史证据和 `AGENTS.md` 已设社区借鉴门禁，当前包内未发现 `format_docx.py`、`document_generator.py`、`install_fonts.py` 等社区重脚本进入 canonical。下一轮建议补 `minimal-borrowing-ledger` 和轻量防重脚本/社区 slug 守卫。
+- 确定性验证通过：`python -m unittest tests.test_real_prompt_ablation tests.test_skill_boundary` 为 42 tests OK；1.5.2 基线消融 `baseline-1.5.2 84/93`、`current 93/93`。
+- 真实弱模型低思考当前能力测试未通过：结构锁定改稿和版慎通成本考察短稿基本可用，但数据治理专项推进情况通报连续复测仍补写基础清单、工作组、问题清单、统一共识、治理流程、验收节点等未给事实。隔离 verifier 判定不可发布。
+- 发布决定：不得把本地 1.5.3 候选推送或标记为发布版。下一轮优先解决“材料稀疏型通报/情况说明/报告在弱模型上自动补处置链条”的共性问题，修复后必须重新做 1.5.2/上一候选消融和真实 writer/verifier 测试。
+
+详细证据见 `tests/evidence/preflight-1.5.3-blocked.md`。
+
 - 1.4.15 发布后补跑 description 新路由真实写作和改写测试，覆盖通告、命令（令）、意见、公报、决议、议案以及报告改通告、意见稿去口语化。独立 verifier 判定 6 PASS、2 WARN、0 FAIL；主要残留风险是材料不足时容易补入惯常判断，以及公开发布短稿有轻微评价化倾向。详细证据见 `tests/evidence/real-writing-1.4.15-description-routes.md`。
 - 下次发布前必须核查远端字段原始值。ClawHub 1.4.15 曾因 Windows `npx.cmd` 传参把 `--name "中文公文写作"` 和 `--tags "chinese,...,ai-compute"` 的引号写入远端 `displayName` 和 tag key；下一版本发布必须使用 `--name=中文公文写作`、`--tags=chinese,official-document,writing,gongwen,ai-compute`，并用 `clawhub inspect --json`、SkillHub API 和 GitHub tag/main 核对 displayName、tags、latestVersion、summary 和 canonical frontmatter。
