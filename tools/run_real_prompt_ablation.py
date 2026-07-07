@@ -1578,6 +1578,47 @@ CASES: list[PromptCase] = [
             },
         },
     ),
+    PromptCase(
+        id="P094",
+        kind="create",
+        prompt="写一份系统接口异常情况说明，材料只有接口返回延迟、影响3个内部查询页面、10:20恢复；不要把接口包装成核心系统，也不要编原因、责任部门、损失金额或整改方案。",
+        checks={
+            "file_terms": {
+                "chinese-official-writing/SKILL.md": [
+                    "不包装成核心系统、生产系统、业务主系统",
+                    "原因结论、责任部门、损失金额或整改方案",
+                ],
+                "chinese-official-writing/references/workflow.md": [
+                    "稀疏异常情况补充",
+                    "不包装成核心系统、生产系统、业务主系统",
+                    "未造成影响",
+                ],
+                "chinese-official-writing/references/genre-playbooks.md": [
+                    "不包装成核心系统、生产系统、业务主系统",
+                    "原因结论、责任部门、损失金额或整改方案",
+                ],
+            },
+        },
+    ),
+    PromptCase(
+        id="P095",
+        kind="revise",
+        prompt="只审事实不清，不重写全文：本次检查总体情况较好，问题已基本整改到位，后续将持续优化提升。不要把无依据结论降成低风险套话。",
+        checks={
+            "file_terms": {
+                "chinese-official-writing/SKILL.md": [
+                    "总体情况较好",
+                    "按中或中高风险提示",
+                    "不降成低风险套话",
+                ],
+                "chinese-official-writing/references/review-checklist.md": [
+                    "总体情况较好",
+                    "整改证据或验收依据",
+                    "中或中高风险",
+                ],
+            },
+        },
+    ),
 ]
 
 
