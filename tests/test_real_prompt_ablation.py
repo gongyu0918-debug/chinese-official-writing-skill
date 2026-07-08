@@ -334,6 +334,7 @@ class RealPromptAblationTests(unittest.TestCase):
             "## 交付修订模式",
             checks_by_id["P096"]["file_terms"]["chinese-official-writing/references/review-checklist.md"],
         )
+        self.assertIn("markdown-line-break", checks_by_id["P097"]["lint_present_labels"])
 
     def test_heading_lock_detects_added_subheading(self) -> None:
         before = """一、整改进展

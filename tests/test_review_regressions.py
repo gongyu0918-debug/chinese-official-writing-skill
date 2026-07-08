@@ -146,7 +146,7 @@ class ProseLintStructureTests(unittest.TestCase):
         self.assertEqual(result.returncode, 0)
 
     def test_markdown_format_marks_are_flagged_in_formal_output(self) -> None:
-        text = "**一、需求来源**\n### 业务需求与服务保障\n正文内容。\n```text\n关于事项的报告\n```"
+        text = "**一、需求来源**\n### 业务需求与服务保障\n正文内容。  \n```text\n关于事项的报告\n```"
 
         findings = prose_lint.scan("<test>", text, include_format=True)
         labels = {item.label for item in findings}
@@ -154,6 +154,11 @@ class ProseLintStructureTests(unittest.TestCase):
         self.assertIn("markdown-bold", labels)
         self.assertIn("markdown-heading", labels)
         self.assertIn("markdown-code-fence", labels)
+        self.assertIn("markdown-line-break", labels)
+        self.assertEqual(
+            {item.severity for item in findings if item.label == "markdown-line-break"},
+            {"low"},
+        )
 
     def test_paired_summary_is_quality_risk_not_hard_leak(self) -> None:
         findings = prose_lint.scan("<test>", "项目不是单一事项，而是系统工程。")

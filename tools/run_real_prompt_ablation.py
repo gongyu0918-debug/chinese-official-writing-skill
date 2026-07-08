@@ -1640,6 +1640,15 @@ CASES: list[PromptCase] = [
             },
         },
     ),
+    PromptCase(
+        id="P097",
+        kind="revise",
+        prompt="审一下这段正式正文是否残留 Markdown 行尾双空格换行，脚本只提示格式风险，不自动清洗。",
+        checks={
+            "lint_text": "关于 Claude Code 版本风险排查的通知\n\n各位员工：\n请全面排查受影响版本。  \n请于7月10日15:00前反馈。",
+            "lint_present_labels": ["markdown-line-break"],
+        },
+    ),
 ]
 
 
