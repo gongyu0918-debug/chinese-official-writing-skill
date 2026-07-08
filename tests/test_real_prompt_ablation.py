@@ -98,6 +98,11 @@ class RealPromptAblationTests(unittest.TestCase):
         self.assertIn("主送机关、申请单位、金额和成文日期都没给", prompts)
         self.assertIn("不要把落款截成简称", prompts)
         self.assertIn("不要用 --- 分隔正文和说明", prompts)
+        self.assertIn("不要过拟合成调研报告", prompts)
+        self.assertIn("不要把提醒写成第七章", prompts)
+        self.assertIn("正文和附件表格的数字", prompts)
+        self.assertIn("不要套模板补空项", prompts)
+        self.assertIn("不要把采购需求推断成现有能力不足", prompts)
 
     def test_current_skill_passes_real_prompt_cases(self) -> None:
         rows = real_prompt_eval.evaluate_root(ROOT, "current_test")
@@ -249,6 +254,78 @@ class RealPromptAblationTests(unittest.TestCase):
             checks_by_id["P083"]["file_terms"]["chinese-official-writing/references/workflow.md"],
         )
         self.assertIn("markdown-horizontal-rule", checks_by_id["P084"]["lint_present_labels"])
+        self.assertIn(
+            "正文后的待确认、风险提醒或核验提示不属于正文章节",
+            checks_by_id["P086"]["file_terms"]["chinese-official-writing/SKILL.md"],
+        )
+        self.assertIn(
+            "不自动改题为“调研报告”",
+            checks_by_id["P086"]["file_terms"]["chinese-official-writing/references/genre-playbooks.md"],
+        )
+        self.assertIn(
+            "文表和附件一致性",
+            checks_by_id["P087"]["file_terms"]["chinese-official-writing/references/proofreading-checklist.md"],
+        )
+        self.assertIn(
+            "未给的供应商、报价依据、验收安排或归档要求列正文外待补",
+            checks_by_id["P088"]["file_terms"]["chinese-official-writing/references/genre-playbooks.md"],
+        )
+        self.assertIn(
+            "不把有期限的事项拆成多个待明确字段",
+            checks_by_id["P088"]["file_terms"]["chinese-official-writing/references/genre-playbooks.md"],
+        )
+        self.assertIn(
+            "不把一个期限扩展到原文未绑定的其他任务",
+            checks_by_id["P088"]["file_terms"]["chinese-official-writing/references/genre-playbooks.md"],
+        )
+        self.assertIn(
+            "采购需求不等于现有能力不足、效率提升、业务范围不变或影响结论",
+            checks_by_id["P088"]["file_terms"]["chinese-official-writing/references/genre-playbooks.md"],
+        )
+        self.assertIn(
+            "不改写成已定实施方案、执行命令",
+            checks_by_id["P089"]["file_terms"]["chinese-official-writing/SKILL.md"],
+        )
+        self.assertIn(
+            "不自动改题为“调研报告”“考核说明”或“实施方案”",
+            checks_by_id["P089"]["file_terms"]["chinese-official-writing/references/genre-playbooks.md"],
+        )
+        self.assertIn(
+            "不用 Markdown `**` 加粗包装标签",
+            checks_by_id["P090"]["file_terms"]["chinese-official-writing/SKILL.md"],
+        )
+        self.assertIn(
+            "未用 Markdown 加粗或装饰性格式替代用户要求",
+            checks_by_id["P090"]["file_terms"]["chinese-official-writing/references/review-checklist.md"],
+        )
+        self.assertIn(
+            "标题后应短列 1-4 项",
+            checks_by_id["P091"]["file_terms"]["chinese-official-writing/SKILL.md"],
+        )
+        self.assertIn(
+            "事实少于字数目标时宁可短写",
+            checks_by_id["P091"]["file_terms"]["chinese-official-writing/SKILL.md"],
+        )
+        self.assertIn(
+            "材料稀疏型通报或情况说明可用短骨架",
+            checks_by_id["P091"]["file_terms"]["chinese-official-writing/SKILL.md"],
+        )
+        self.assertIn(
+            "事实映射式二次修改",
+            checks_by_id["P091"]["file_terms"]["chinese-official-writing/SKILL.md"],
+        )
+        self.assertIn(
+            "材料未给执行要求、整改要求和后续处理时，不为了像通报而补写",
+            checks_by_id["P091"]["file_terms"]["chinese-official-writing/references/genre-playbooks.md"],
+        )
+        self.assertIn(
+            "不新增采购类别、资产属性、用途、入库流程",
+            checks_by_id["P092"]["file_terms"]["chinese-official-writing/SKILL.md"],
+        )
+        self.assertIn(
+            "正式正文的标题、小标题、段落标签直接用普通文本承接",
+            checks_by_id["P093"]["file_terms"]["chinese-official-writing/SKILL.md"],
+        )
 
     def test_heading_lock_detects_added_subheading(self) -> None:
         before = """一、整改进展
