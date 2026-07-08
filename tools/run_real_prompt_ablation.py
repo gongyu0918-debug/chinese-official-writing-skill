@@ -1661,6 +1661,29 @@ CASES: list[PromptCase] = [
             },
         },
     ),
+    PromptCase(
+        id="P099",
+        kind="create",
+        prompt="写通知时用户点名受影响版本、禁止事项、报送时间和渠道；不能漏写，也不能用“相关版本”“有关事项”泛称带过。",
+        checks={
+            "file_terms": {
+                "chinese-official-writing/SKILL.md": [
+                    "关键要点覆盖短检",
+                    "版本号",
+                    "禁止或必须事项",
+                    "不用“相关版本”“有关事项”等泛称替代",
+                ],
+                "chinese-official-writing/references/workflow.md": [
+                    "关键要点覆盖短检",
+                    "必须能在正文中直接核对",
+                ],
+                "chinese-official-writing/references/review-checklist.md": [
+                    "用户点名的数字、版本号、禁止或必须事项",
+                    "未被“相关版本”“有关事项”等泛称替代",
+                ],
+            },
+        },
+    ),
 ]
 
 

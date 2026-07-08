@@ -339,6 +339,14 @@ class RealPromptAblationTests(unittest.TestCase):
             "用户要求只保留已给事实时，未给日期不得用当前日期补入落款",
             checks_by_id["P098"]["file_terms"]["chinese-official-writing/references/review-checklist.md"],
         )
+        self.assertIn(
+            "关键要点覆盖短检",
+            checks_by_id["P099"]["file_terms"]["chinese-official-writing/SKILL.md"],
+        )
+        self.assertIn(
+            "必须能在正文中直接核对",
+            checks_by_id["P099"]["file_terms"]["chinese-official-writing/references/workflow.md"],
+        )
 
     def test_heading_lock_detects_added_subheading(self) -> None:
         before = """一、整改进展
