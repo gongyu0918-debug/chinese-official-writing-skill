@@ -375,6 +375,30 @@ class RealPromptAblationTests(unittest.TestCase):
             "至少按中风险提示",
             checks_by_id["P102"]["file_terms"]["chinese-official-writing/references/review-checklist.md"],
         )
+        self.assertIn(
+            "正文后用未编号短句交代来源核验",
+            checks_by_id["P103"]["file_terms"]["chinese-official-writing/SKILL.md"],
+        )
+        self.assertIn(
+            "删除、卸载或报送“无”",
+            checks_by_id["P103"]["file_terms"]["chinese-official-writing/SKILL.md"],
+        )
+        self.assertIn(
+            "正文采用 URL 事实时",
+            checks_by_id["P103"]["file_terms"]["chinese-official-writing/references/workflow.md"],
+        )
+        self.assertIn(
+            "不改成升级、确认安全版本或其他替代处置",
+            checks_by_id["P103"]["file_terms"]["chinese-official-writing/references/workflow.md"],
+        )
+        self.assertIn(
+            "稀疏排查或核查材料只给",
+            checks_by_id["P104"]["file_terms"]["chinese-official-writing/SKILL.md"],
+        )
+        self.assertIn(
+            "稀疏排查结论只给",
+            checks_by_id["P104"]["file_terms"]["chinese-official-writing/references/workflow.md"],
+        )
 
     def test_heading_lock_detects_added_subheading(self) -> None:
         before = """一、整改进展

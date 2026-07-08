@@ -1743,6 +1743,49 @@ CASES: list[PromptCase] = [
             },
         },
     ),
+    PromptCase(
+        id="P103",
+        kind="create",
+        prompt="用户给 URL 让改成内部通知，并明确要求发现相关版本就删除、没有也报无；如果正文采用网页里的版本、日期、主体或预警等具体事实，正文后要短列来源核验，不能把删除改成升级或替代处置。",
+        checks={
+            "file_terms": {
+                "chinese-official-writing/SKILL.md": [
+                    "正文后用未编号短句交代来源核验",
+                    "不得编造来源或把外部材料写成本单位事实",
+                    "删除、卸载或报送“无”",
+                ],
+                "chinese-official-writing/references/workflow.md": [
+                    "正文采用 URL 事实时",
+                    "来源核验",
+                    "发布日期或访问日期",
+                    "不改成升级、确认安全版本或其他替代处置",
+                ],
+                "chinese-official-writing/references/review-checklist.md": [
+                    "搜索来源清单是否写明来源名称",
+                    "未把单一网络来源直接写成用户事实",
+                ],
+            },
+        },
+    ),
+    PromptCase(
+        id="P104",
+        kind="create",
+        prompt="写一篇已排查安装情况的报告，用户只给已排查和未发现安装结论；不要补办公终端、工作设备、排查范围、后续管理或日常检查机制。",
+        checks={
+            "file_terms": {
+                "chinese-official-writing/SKILL.md": [
+                    "稀疏排查或核查材料只给",
+                    "不补依据、排查范围",
+                    "后续管理或日常检查机制",
+                ],
+                "chinese-official-writing/references/workflow.md": [
+                    "稀疏排查结论只给",
+                    "不扩展为办公终端",
+                    "后续管理或日常检查机制",
+                ],
+            },
+        },
+    ),
 ]
 
 
