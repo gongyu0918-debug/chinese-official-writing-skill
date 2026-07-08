@@ -9,6 +9,7 @@
 - 1.5.3 相关尝试只保留为 `tests/evidence/` 下的测试证据和本文件记录，不作为发布候选。
 - 不应发布当前候选；下一轮应从 `v1.5.2` 行为边界重新开始最小修复。
 - 最新一轮“二次清稿/返工修订”候选也已回退：确定性消融通过，但弱模型在用户明确要求修干净后仍保留字段痕迹和未授权报送字段，不满足“二次修改可用”的放宽口径。
+- 因已出现多轮 prompt 修补回退，已按目标检索 SkillHub、ClawHub、GitHub 和相关社区；当前只记录可借鉴思路，不修改产品行为。
 
 ## 本轮为什么回退
 
@@ -56,6 +57,12 @@
    - 结果：定向单测、全量单测、`git diff --check` 和 `1.5.2` 消融均通过；但真实弱模型 targeted 复测仍保留 `标题：`、`报 告 人/报 告 对 象`、安装路径、主机名称、报送字段等用户明确要求删除的内容。
    - 处理：按 verifier 建议回退，不作为发布候选；证据见 `tests/evidence/second-cleanup-candidate-reverted-20260708.md`。
 
+7. `534f3fe` 后：触发社区检索。
+   - 思路：既然连续多次相邻 prompt 修补无效，就看类似公文/中文写作技能是否有不同路径可借鉴。
+   - 范围：SkillHub CLI 检索 `公文`、`中文写作`、`清稿`、`润色`；下载 `govwriting`、`official-document-skill`、`writing-polish`、`improvewriting` 到 `output/community-reference-skills-20260708/` 做只读审阅；并补充 Web 检索 ClawHub、GitHub、aiskill.market、mcpmarket.com、skills.sh。
+   - 结论：值得借鉴的是“短诊断 -> 逐条修改 -> 完整改后版本”“修改阶段和格式阶段拆开”“无需修改时不强改”，不是评分、模板库、金句库、清稿脚本或更多禁词。
+   - 证据见 `tests/evidence/community-search-after-cleanup-rollbacks-20260708.md`。
+
 关键证据文件：
 
 - `tests/evidence/weak-model-prompt-loop-20260708.md`：弱模型 prompt 堆叠无效的早期证据。
@@ -64,6 +71,7 @@
 - `tests/evidence/external-deletion-cleaner-source-focused-20260708.md`：外部清稿 focused 风险复测。
 - `tests/evidence/current-vs-1.5.2-real-writing-rollback-20260708.md`：最终回退判定。
 - `tests/evidence/second-cleanup-candidate-reverted-20260708.md`：二次清稿候选确定性通过但真实弱模型二修未达标的回退记录。
+- `tests/evidence/community-search-after-cleanup-rollbacks-20260708.md`：连续回退后社区技能检索与最小借鉴方向。
 
 ## 已跑验证
 
@@ -99,7 +107,7 @@
 
 - 不要继续往 `SKILL.md` 堆入口规则；弱模型已经表现出选择性忽略。
 - 不要一例一修。只有同类问题在真实写稿或独立 verifier 中出现 3 次以上，才进入 prompt/reference 最小修复；单个样本问题先记录证据，不直接改规则。
-- 如果继续推进，应优先验证“外部删减型清稿/二次修订”以外的新思路，或把二次修订做成更结构化的用户交互；不能继续简单追加相邻 prompt 条款。
+- 如果继续推进，应优先验证“结构化二次修订交互”：先短列 `保留/删除/归位`，再输出完整改后版本；不能继续简单追加相邻 prompt 条款。
 - 下一轮如仍测 cleaner，必须先证明它能删除原稿里的字段痕迹和未授权报送字段，而不是只删除后续管理链条。
 - 每累计 5 次 commit，或任何影响 skill 行为的修改，都必须重新做 `1.5.2` 或最新发布基线的确定性消融和真实写稿 A/B。
 - 真实写稿测试必须包含弱模型低思考；只看强模型会掩盖边界漂移。
@@ -107,7 +115,8 @@
 ## 下一次继续前的执行步骤
 
 1. 先确认当前产品文件仍与 `v1.5.2` 行为一致，再决定是否从“外部删减型清稿/用户明确二次修订”做最小候选。
-2. 如要修改，不要重复做“二次清稿小节 + 更多 bullet”这一路径；本轮已验证它对弱模型 targeted 二修不够。
-3. 新规则仍必须写成软性、用户触发、非默认阻断；不得变成首稿默认阶段。
-4. 修改后先跑确定性消融，再跑真实写稿 A/B；真实写稿至少覆盖 Claude Code URL 改通知、OpenClaw 排查报告、世界杯期间通知和一个普通情况说明，且要有独立 verifier。
-5. 如果真实 A/B 或 targeted 二修仍显示 current 相对 `1.5.2` 无净改进，立即回退候选，不发布、不 bump 版本号。
+2. 先不要改产品文件；先用真实弱模型测试“保留/删除/归位 + 完整改后版本”二修形态是否能让 C1/C2 过 verifier。
+3. 如要修改，不要重复做“二次清稿小节 + 更多 bullet”这一路径；本轮已验证它对弱模型 targeted 二修不够。
+4. 新规则仍必须写成软性、用户触发、非默认阻断；不得变成首稿默认阶段。
+5. 修改后先跑确定性消融，再跑真实写稿 A/B；真实写稿至少覆盖 Claude Code URL 改通知、OpenClaw 排查报告、世界杯期间通知和一个普通情况说明，且要有独立 verifier。
+6. 如果真实 A/B 或 targeted 二修仍显示 current 相对 `1.5.2` 无净改进，立即回退候选，不发布、不 bump 版本号。
