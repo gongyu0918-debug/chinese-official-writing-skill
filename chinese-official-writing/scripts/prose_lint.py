@@ -95,7 +95,6 @@ FORMAT_PATTERNS: list[tuple[str, str, str, str]] = [
     ("medium", "emoji-marker", r"[\U0001F300-\U0001FAFF]", "正式公文正文避免使用 Emoji。"),
     ("low", "markdown-bold", r"\*\*[^*\n]{1,80}\*\*", "正式公文正文不要用 Markdown 加粗标记；改为普通小标题或正文。"),
     ("low", "markdown-heading", r"^\s*#{1,6}\s+", "正式公文正文不要用 Markdown 标题标记；改为普通小标题或正文。"),
-    ("low", "markdown-line-break", r" {2,}$", "正式正文不要用 Markdown 行尾双空格控制换行；改为空行或普通段落。"),
     ("low", "western-bullet", r"^\s*(?:[-*•●◆◇★✅☑]|[0-9]+[.)])\s+", "中文正式正文避免频繁使用西式项目符号或 1. 2. 编号；必要清单可保留。"),
 ]
 

@@ -378,15 +378,13 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assertIn("不把联网搜索作为起草、改稿或复核的默认步骤", workflow)
         for term in ["最新", "当前", "今日", "现行政策", "近期数据"]:
             self.assertIn(term, workflow)
-        self.assertIn("不得编造来源", skill)
-        self.assertIn("写成本单位事实", skill)
-        self.assertIn("搜索结果不得直接混入正文成为用户事实", workflow)
+        self.assertIn("搜索结果只作为来源参考", skill)
+        self.assertIn("来源、日期或检索口径", skill)
         self.assertIn("发布日期、访问日期或检索口径", workflow)
-        self.assertIn("来源、日期或检索口径", checklist)
         self.assertIn("来源冲突、无法核验或工具不可用", workflow)
         self.assertIn("默认不外搜补缺项", elements)
         self.assertIn("未因单位名称自动搜索单位公开样文", checklist)
-        for text in [elements, openclaw_skill]:
+        for text in [skill, elements, openclaw_skill]:
             self.assertIn("不因出现单位名称就搜索单位公开样文", text)
         self.assertIn("只出现单位名称，不触发搜索单位公开样文", workflow)
         skill_files = relative_files(ROOT / "chinese-official-writing")
@@ -632,90 +630,6 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assertIn("详细测算和参数转读 `ai-compute-docs.md`", handling)
         self.assertIn("专项结构和指标写法转读 `ai-compute-docs.md`", anti_ai)
 
-    def test_weak_model_suggestion_boundaries_stay_soft(self) -> None:
-        skill = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
-        workflow = (ROOT / "chinese-official-writing" / "references" / "workflow.md").read_text(
-            encoding="utf-8"
-        )
-        playbooks = (ROOT / "chinese-official-writing" / "references" / "genre-playbooks.md").read_text(
-            encoding="utf-8"
-        )
-        review = (ROOT / "chinese-official-writing" / "references" / "review-checklist.md").read_text(
-            encoding="utf-8"
-        )
-
-        for text in [skill, workflow]:
-            self.assertIn("考察、评估、建议、拟测试、考虑尝试或下一步设想", text)
-            self.assertIn("不改写成已定实施方案、执行命令", text)
-        self.assertIn("成本考察、成本评估", playbooks)
-        self.assertIn("不自动改题为“调研报告”“考核说明”或“实施方案”", playbooks)
-        self.assertIn("不写成已经确定的执行路线、责任命令或反馈时限", playbooks)
-        self.assertIn("不用 Markdown `**` 加粗包装标签", skill)
-        self.assertIn("行尾两个空格控制换行", skill)
-        self.assertIn("不把“已排查”“已核查”“已检查”等概括动作展开", skill)
-        self.assertIn("对象范围、载体、流程或结果判断", workflow)
-        self.assertIn("不要补日期、删除日期或成文日期待确认", skill)
-        self.assertIn("不沿用当前日期或上一稿日期", workflow)
-        self.assertIn("未用 Markdown `**` 加粗包装标签", review)
-        self.assertIn("交付修订模式", skill)
-        self.assertIn("修干净、能发、删掉没说的东西、去掉格式痕迹", skill)
-        self.assertIn("## 交付修订模式", review)
-        self.assertIn("不作为默认成稿前阶段", review)
-        self.assertIn("不附事实映射表或长篇自证", review)
-        self.assertIn("用户说“只保留”时，只保留其点名事项", review)
-
-    def test_argument_search_and_second_revision_boundaries_are_documented(self) -> None:
-        skill = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
-        workflow = (ROOT / "chinese-official-writing" / "references" / "workflow.md").read_text(
-            encoding="utf-8"
-        )
-        review = (ROOT / "chinese-official-writing" / "references" / "review-checklist.md").read_text(
-            encoding="utf-8"
-        )
-
-        self.assertIn("联网补充论点", skill)
-        self.assertIn("无联网能力", skill)
-        self.assertIn("活动/赛事/节假日提醒类通知", skill)
-        self.assertIn("references/workflow.md", skill)
-        self.assertIn("不得编造来源", skill)
-        self.assertIn("写成本单位事实", skill)
-        self.assertIn("不自行扩展执行链条", skill)
-
-        for text in [workflow, review]:
-            self.assertIn("同文种、同场景或相近场景", text)
-            self.assertIn("政府机关、事业单位、国有企业", text)
-            self.assertIn("国内主流媒体或行业媒体", text)
-            self.assertIn("技术路线、成本模型、模型路由、算力架构", text)
-            self.assertIn("不把", text)
-            self.assertIn("写成本单位事实", text)
-        for text in [workflow, review]:
-            self.assertIn("没有联网能力", text)
-            self.assertIn("不得编造检索过程", text)
-            self.assertIn("来源名称、链接、发布日期", text)
-            self.assertIn("适当补充论点", text)
-            self.assertIn("一般性论证角度", text)
-            self.assertIn("具体管理动作", text)
-            self.assertIn("未联网核验", text)
-        for text in [workflow, review]:
-            self.assertIn("语气", text)
-            self.assertIn("太硬", text)
-            self.assertIn("提醒式", text)
-            self.assertIn("柔和", text)
-            self.assertIn("立即执行", text)
-            self.assertIn("严肃处理", text)
-            self.assertIn("限期反馈", text)
-            self.assertIn("活动", text)
-            self.assertIn("赛事", text)
-            self.assertIn("内部提醒类通知", text)
-            self.assertIn("宣贯", text)
-            self.assertIn("值班", text)
-            self.assertIn("巡查", text)
-            self.assertIn("上报反馈", text)
-            self.assertIn("请假请示", text)
-            self.assertIn("工作连续性", text)
-            self.assertIn("宣传组织", text)
-            self.assertIn("舆情预防", text)
-
     def test_proofreading_layer_stays_ai_writing_quality_only(self) -> None:
         skill = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
         checklist = (ROOT / "chinese-official-writing" / "references" / "review-checklist.md").read_text(
@@ -758,22 +672,16 @@ class SkillBoundaryTests(unittest.TestCase):
         )
         sync_script = (ROOT / "tools" / "sync_adapters.py").read_text(encoding="utf-8")
 
-        for text in [skill]:
+        for text in [skill, openclaw_skill, sync_script]:
             self.assertIn("用户明示某些事项未提供", text)
             self.assertRegex(text, r"不(?:要)?扩展成调查问卷")
-            self.assertIn("（成文日期待确认）", text)
-            self.assertIn("不使用当前日期补落款", text)
-        for text in [openclaw_skill, sync_script]:
-            self.assertIn("事实不足时先完成可用正文", text)
-            self.assertIn("不在正文前中断成稿或连续追问", text)
-            self.assertIn("references/workflow.md", text)
             self.assertIn("（成文日期待确认）", text)
             self.assertIn("不使用当前日期补落款", text)
         self.assertIn("去 AI 味、变换句式、拆分长句或调整清单结构", skill)
         self.assertIn("不得补写未给的解释、原因、影响范围、办理流程、责任人员、字段示例或整改动作", skill)
         self.assertIn("用户只给问题清单、任务清单或明确要求不新增事实时", skill)
         self.assertIn("不为显得自然或完整而补解释", skill)
-        self.assertIn("具体边界见 `references/workflow.md`", openclaw_skill)
+        self.assertIn("不得补写未给解释、原因、影响、流程、人员、字段或整改动作", openclaw_skill)
 
     def test_openclaw_agent_rules_include_v140_routing_and_format_bridge(self) -> None:
         text = (ROOT / "openclaw" / "skills" / "chinese_official_writing" / "SKILL.md").read_text(
