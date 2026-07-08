@@ -263,7 +263,7 @@ Hermes 社区借鉴候选 `2713e27` 的处理结论：
 
 详细证据见 `tests/evidence/preflight-1.5.3-blocked.md`。
 
-- 2026-07-08 继续在 `446c08c` 基线上按“测试 -> 修复 -> 复测 -> 消融 -> 不行回退”跑了四轮弱模型低思考 prompt 候选，均已回退。候选包括稀疏材料短写、入口三项交付习惯、入口长句拆分、一次静默清理。真实 6 prompt writer/verifier 复核显示 Markdown 残留、稀疏材料补造执行链条、情况说明漂成审批尾巴仍未稳定解决。下一轮不要继续往 `SKILL.md` 堆类似 prompt 限制；优先考虑显式二次修改/交付检查工作流或工具辅助 final-draft inspection。详细证据见 `tests/evidence/weak-model-prompt-loop-20260708.md`。
+- 2026-07-08 继续在 `446c08c` 和 `59923bf` 基线上按“测试 -> 修复 -> 复测 -> 消融 -> 不行回退”跑了五轮弱模型低思考 prompt 候选，均已回退。候选包括稀疏材料短写、入口三项交付习惯、入口长句拆分、一次静默清理、显式交付前检查/smoke text 工具提示。真实 6 prompt writer/verifier 复核显示 Markdown 残留、稀疏材料补造执行链条、情况说明漂成审批尾巴仍未稳定解决；显式工具提示也没有让弱模型稳定调用 lint。下一轮不要继续往 `SKILL.md` 堆类似 prompt 限制；优先考虑真正的二次修订交互或外部工具辅助 final-draft inspection，并用真实 writer/verifier A/B 证明。详细证据见 `tests/evidence/weak-model-prompt-loop-20260708.md`。
 
 - 1.4.15 发布后补跑 description 新路由真实写作和改写测试，覆盖通告、命令（令）、意见、公报、决议、议案以及报告改通告、意见稿去口语化。独立 verifier 判定 6 PASS、2 WARN、0 FAIL；主要残留风险是材料不足时容易补入惯常判断，以及公开发布短稿有轻微评价化倾向。详细证据见 `tests/evidence/real-writing-1.4.15-description-routes.md`。
 - 下次发布前必须核查远端字段原始值。ClawHub 1.4.15 曾因 Windows `npx.cmd` 传参把 `--name "中文公文写作"` 和 `--tags "chinese,...,ai-compute"` 的引号写入远端 `displayName` 和 tag key；下一版本发布必须使用 `--name=中文公文写作`、`--tags=chinese,official-document,writing,gongwen,ai-compute`，并用 `clawhub inspect --json`、SkillHub API 和 GitHub tag/main 核对 displayName、tags、latestVersion、summary 和 canonical frontmatter。
