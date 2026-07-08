@@ -151,3 +151,25 @@ C:\Users\2\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\pytho
 ## 结论
 
 1.5.4 当前候选可发布。它保留远端 `v1.5.3` 的事实边界修复，并合入本地轻量路由卡；相对 `1.5.2` 和远端 `1.5.3` 均没有确定性消融回退。真实写稿链路中未出现三次以上共性功能失败；弱模型首稿仍可能有格式噪点和轻微事实扩展，但二次修改可交付，按本轮验收口径不构成发布阻断。
+
+## 发布状态
+
+### GitHub
+
+- Commit: `20776d4 release: merge 1.5.3 fact boundaries for 1.5.4`
+- Push: `git push origin main v1.5.4`
+- 远端核查：`refs/heads/main` 和 `refs/tags/v1.5.4` 均指向 `20776d4ad9eb0e6c4a3ce3dce5e965c365033928`。
+
+### ClawHub
+
+- 发布命令：`npx --yes clawhub publish openclaw\skills\chinese_official_writing --slug=chinese-official-writing --name=中文公文写作 --version=1.5.4 --tags=chinese,official-document,writing,gongwen,ai-compute --changelog=1.5.4合并事实边界修复并补充轻量任务路由卡`
+- 发布结果：`Published chinese-official-writing@1.5.4 (k97fd7dhkmdhc7snnm4qze4xg98a4k7t)`。
+- 远端核查：`displayName=中文公文写作`，`latestVersion.version=1.5.4`，`metadata.version=1.5.4`，`metadata.openclaw.version=1.5.4`，`tags.latest=1.5.4`，版本列表包含 `1.5.4`，moderation `clean`。
+- 注意：远端 tags 中仍可见历史 `1.4.15` 遗留的带引号 tag key（`"chinese`、`ai-compute"`）；本轮发布命令使用等号参数，未新增带引号 tag。
+
+### SkillHub
+
+- 临时包：`output\skillhub-release-1.5.4\publish-package`，包含 `SKILL.md`、`_meta.json`、`agents/openai.yaml`、14 个 `references/*.md` 和 `scripts/prose_lint.py`，已删除 `__pycache__` 和 `.pyc`。
+- Dry-run：`{"dryRun": true, "slug": "chinese-official-writing", "version": "1.5.4"}`。
+- 发布结果：`ok=true`，`slug=chinese-official-writing`，`version=1.5.4`，`skillId=70149`，`versionId=132166`，`fileCount=19`，`fingerprint=c2d096c36281e13ab1d2bd363058e21574591b9ef82b74a8da97020fae45970c`，`reviewStatus=pending`，`securityScanStatus=pending`，`contentAuditStatus=pending`，`tags.latest=1.5.4`。
+- 后续核查：`skillhub search chinese-official-writing --json` 在提交后仍显示搜索索引版本 `1.5.3`；按发布返回状态判断，SkillHub 已提交但公开搜索/审核切换仍有延迟，不把它描述成已经公开 live。
