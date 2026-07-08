@@ -651,6 +651,50 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assertIn("不用 Markdown `**` 加粗包装标签", skill)
         self.assertIn("未用 Markdown `**` 加粗包装标签", review)
 
+    def test_argument_search_and_second_revision_boundaries_are_documented(self) -> None:
+        skill = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
+        workflow = (ROOT / "chinese-official-writing" / "references" / "workflow.md").read_text(
+            encoding="utf-8"
+        )
+        review = (ROOT / "chinese-official-writing" / "references" / "review-checklist.md").read_text(
+            encoding="utf-8"
+        )
+
+        for text in [skill, workflow, review]:
+            self.assertIn("同文种、同场景或相近场景", text)
+            self.assertIn("政府机关、事业单位、国有企业", text)
+            self.assertIn("国内主流媒体或行业媒体", text)
+            self.assertIn("技术路线、成本模型、模型路由、算力架构", text)
+            self.assertIn("不把", text)
+            self.assertIn("写成本单位事实", text)
+        for text in [workflow, review]:
+            self.assertIn("没有联网能力", text)
+            self.assertIn("不得编造检索过程", text)
+            self.assertIn("来源名称、链接、发布日期", text)
+            self.assertIn("适当补充论点", text)
+            self.assertIn("一般性论证角度", text)
+            self.assertIn("具体管理动作", text)
+            self.assertIn("未联网核验", text)
+        for text in [skill, workflow, review]:
+            self.assertIn("语气", text)
+            self.assertIn("太硬", text)
+            self.assertIn("提醒式", text)
+            self.assertIn("柔和", text)
+            self.assertIn("立即执行", text)
+            self.assertIn("严肃处理", text)
+            self.assertIn("限期反馈", text)
+            self.assertIn("活动", text)
+            self.assertIn("赛事", text)
+            self.assertIn("内部提醒类通知", text)
+            self.assertIn("宣贯", text)
+            self.assertIn("值班", text)
+            self.assertIn("巡查", text)
+            self.assertIn("上报反馈", text)
+            self.assertIn("请假请示", text)
+            self.assertIn("工作连续性", text)
+            self.assertIn("宣传组织", text)
+            self.assertIn("舆情预防", text)
+
     def test_proofreading_layer_stays_ai_writing_quality_only(self) -> None:
         skill = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
         checklist = (ROOT / "chinese-official-writing" / "references" / "review-checklist.md").read_text(
