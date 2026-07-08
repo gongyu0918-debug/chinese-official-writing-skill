@@ -378,13 +378,15 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assertIn("不把联网搜索作为起草、改稿或复核的默认步骤", workflow)
         for term in ["最新", "当前", "今日", "现行政策", "近期数据"]:
             self.assertIn(term, workflow)
-        self.assertIn("搜索结果只作为来源参考", skill)
-        self.assertIn("来源、日期或检索口径", skill)
+        self.assertIn("不得编造来源", skill)
+        self.assertIn("写成本单位事实", skill)
+        self.assertIn("搜索结果不得直接混入正文成为用户事实", workflow)
         self.assertIn("发布日期、访问日期或检索口径", workflow)
+        self.assertIn("来源、日期或检索口径", checklist)
         self.assertIn("来源冲突、无法核验或工具不可用", workflow)
         self.assertIn("默认不外搜补缺项", elements)
         self.assertIn("未因单位名称自动搜索单位公开样文", checklist)
-        for text in [skill, elements, openclaw_skill]:
+        for text in [elements, openclaw_skill]:
             self.assertIn("不因出现单位名称就搜索单位公开样文", text)
         self.assertIn("只出现单位名称，不触发搜索单位公开样文", workflow)
         skill_files = relative_files(ROOT / "chinese-official-writing")
@@ -660,7 +662,15 @@ class SkillBoundaryTests(unittest.TestCase):
             encoding="utf-8"
         )
 
-        for text in [skill, workflow, review]:
+        self.assertIn("联网补充论点", skill)
+        self.assertIn("无联网能力", skill)
+        self.assertIn("活动/赛事/节假日提醒类通知", skill)
+        self.assertIn("references/workflow.md", skill)
+        self.assertIn("不得编造来源", skill)
+        self.assertIn("写成本单位事实", skill)
+        self.assertIn("不自行扩展执行链条", skill)
+
+        for text in [workflow, review]:
             self.assertIn("同文种、同场景或相近场景", text)
             self.assertIn("政府机关、事业单位、国有企业", text)
             self.assertIn("国内主流媒体或行业媒体", text)
@@ -675,7 +685,7 @@ class SkillBoundaryTests(unittest.TestCase):
             self.assertIn("一般性论证角度", text)
             self.assertIn("具体管理动作", text)
             self.assertIn("未联网核验", text)
-        for text in [skill, workflow, review]:
+        for text in [workflow, review]:
             self.assertIn("语气", text)
             self.assertIn("太硬", text)
             self.assertIn("提醒式", text)
@@ -737,16 +747,22 @@ class SkillBoundaryTests(unittest.TestCase):
         )
         sync_script = (ROOT / "tools" / "sync_adapters.py").read_text(encoding="utf-8")
 
-        for text in [skill, openclaw_skill, sync_script]:
+        for text in [skill]:
             self.assertIn("用户明示某些事项未提供", text)
             self.assertRegex(text, r"不(?:要)?扩展成调查问卷")
+            self.assertIn("（成文日期待确认）", text)
+            self.assertIn("不使用当前日期补落款", text)
+        for text in [openclaw_skill, sync_script]:
+            self.assertIn("事实不足时先完成可用正文", text)
+            self.assertIn("不在正文前中断成稿或连续追问", text)
+            self.assertIn("references/workflow.md", text)
             self.assertIn("（成文日期待确认）", text)
             self.assertIn("不使用当前日期补落款", text)
         self.assertIn("去 AI 味、变换句式、拆分长句或调整清单结构", skill)
         self.assertIn("不得补写未给的解释、原因、影响范围、办理流程、责任人员、字段示例或整改动作", skill)
         self.assertIn("用户只给问题清单、任务清单或明确要求不新增事实时", skill)
         self.assertIn("不为显得自然或完整而补解释", skill)
-        self.assertIn("不得补写未给解释、原因、影响、流程、人员、字段或整改动作", openclaw_skill)
+        self.assertIn("具体边界见 `references/workflow.md`", openclaw_skill)
 
     def test_openclaw_agent_rules_include_v140_routing_and_format_bridge(self) -> None:
         text = (ROOT / "openclaw" / "skills" / "chinese_official_writing" / "SKILL.md").read_text(
