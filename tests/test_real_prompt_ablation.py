@@ -335,6 +335,10 @@ class RealPromptAblationTests(unittest.TestCase):
             checks_by_id["P096"]["file_terms"]["chinese-official-writing/references/review-checklist.md"],
         )
         self.assertIn("markdown-line-break", checks_by_id["P097"]["lint_present_labels"])
+        self.assertIn(
+            "用户要求只保留已给事实时，未给日期不得用当前日期补入落款",
+            checks_by_id["P098"]["file_terms"]["chinese-official-writing/references/review-checklist.md"],
+        )
 
     def test_heading_lock_detects_added_subheading(self) -> None:
         before = """一、整改进展

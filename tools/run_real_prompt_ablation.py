@@ -1649,6 +1649,18 @@ CASES: list[PromptCase] = [
             "lint_present_labels": ["markdown-line-break"],
         },
     ),
+    PromptCase(
+        id="P098",
+        kind="revise",
+        prompt="二次修订时用户要求只保留已给事实；原始要求未给报告日期，不得用当前日期补入落款。",
+        checks={
+            "file_terms": {
+                "chinese-official-writing/references/review-checklist.md": [
+                    "用户要求只保留已给事实时，未给日期不得用当前日期补入落款",
+                ],
+            },
+        },
+    ),
 ]
 
 
