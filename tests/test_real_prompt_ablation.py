@@ -399,6 +399,22 @@ class RealPromptAblationTests(unittest.TestCase):
             "稀疏排查结论只给",
             checks_by_id["P104"]["file_terms"]["chinese-official-writing/references/workflow.md"],
         )
+        self.assertIn(
+            "没有实际打开原始发布源时",
+            checks_by_id["P105"]["file_terms"]["chinese-official-writing/references/workflow.md"],
+        )
+        self.assertIn(
+            "过度核验口径",
+            checks_by_id["P105"]["file_terms"]["chinese-official-writing/references/review-checklist.md"],
+        )
+        self.assertIn(
+            "正式通知暂不能定稿",
+            checks_by_id["P106"]["file_terms"]["chinese-official-writing/references/workflow.md"],
+        )
+        self.assertIn(
+            "截止口径",
+            checks_by_id["P106"]["file_terms"]["chinese-official-writing/references/review-checklist.md"],
+        )
 
     def test_heading_lock_detects_added_subheading(self) -> None:
         before = """一、整改进展

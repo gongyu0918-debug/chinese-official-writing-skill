@@ -1786,6 +1786,44 @@ CASES: list[PromptCase] = [
             },
         },
     ),
+    PromptCase(
+        id="P105",
+        kind="revise",
+        prompt="二次修订 URL 改通知时，草稿写了“经来源核验”“据原始网站内容”，但 agent 只打开了转载页；请审出不得自称已核验原始来源，来源说明也不要混入正式下发正文。",
+        checks={
+            "file_terms": {
+                "chinese-official-writing/references/workflow.md": [
+                    "没有实际打开原始发布源时",
+                    "不写“已核验原文”",
+                    "不随正文印发",
+                ],
+                "chinese-official-writing/references/review-checklist.md": [
+                    "未实际打开原始发布源时",
+                    "过度核验口径",
+                    "不随正文印发",
+                ],
+            },
+        },
+    ),
+    PromptCase(
+        id="P106",
+        kind="revise",
+        prompt="二次修订 URL 改通知时，网页里的具体版本没有提取出来，草稿用“相关版本”替代，并把“于7月10日15:00发送”改成“15:00前报送”；请审出版本范围缺失、正式通知暂不能定稿、定点时间不能改成截止口径。",
+        checks={
+            "file_terms": {
+                "chinese-official-writing/references/workflow.md": [
+                    "定点动作",
+                    "不擅自改成“X 时前/之前”",
+                    "正式通知暂不能定稿",
+                ],
+                "chinese-official-writing/references/review-checklist.md": [
+                    "正式通知暂不能定稿",
+                    "相关版本",
+                    "截止口径",
+                ],
+            },
+        },
+    ),
 ]
 
 
