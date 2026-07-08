@@ -1619,6 +1619,27 @@ CASES: list[PromptCase] = [
             },
         },
     ),
+    PromptCase(
+        id="P096",
+        kind="revise",
+        prompt="这是上一版草稿，里面有 Markdown 加粗、补了排查范围和值班巡查。请修干净成可发版本，只保留我给过的事实，不要解释过程。",
+        checks={
+            "file_terms": {
+                "chinese-official-writing/SKILL.md": [
+                    "修干净、能发、删掉没说的东西、去掉格式痕迹",
+                    "交付修订模式",
+                    "不作为默认成稿前阶段",
+                ],
+                "chinese-official-writing/references/review-checklist.md": [
+                    "## 交付修订模式",
+                    "输出前删除 Markdown `**`、`###`、代码块、`---`、行尾双空格",
+                    "排查范围、检查方法、值班巡查、备案、长期复核、反馈字段、处分口径、原因结论等未给内容直接删",
+                    "用户说“只保留”时，只保留其点名事项",
+                    "不附事实映射表或长篇自证",
+                ],
+            },
+        },
+    ),
 ]
 
 

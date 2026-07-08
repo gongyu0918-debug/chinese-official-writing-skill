@@ -326,6 +326,14 @@ class RealPromptAblationTests(unittest.TestCase):
             "正式正文的标题、小标题、段落标签直接用普通文本承接",
             checks_by_id["P093"]["file_terms"]["chinese-official-writing/SKILL.md"],
         )
+        self.assertIn(
+            "交付修订模式",
+            checks_by_id["P096"]["file_terms"]["chinese-official-writing/SKILL.md"],
+        )
+        self.assertIn(
+            "## 交付修订模式",
+            checks_by_id["P096"]["file_terms"]["chinese-official-writing/references/review-checklist.md"],
+        )
 
     def test_heading_lock_detects_added_subheading(self) -> None:
         before = """一、整改进展

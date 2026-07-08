@@ -657,6 +657,12 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assertIn("不要补日期、删除日期或成文日期待确认", skill)
         self.assertIn("不沿用当前日期或上一稿日期", workflow)
         self.assertIn("未用 Markdown `**` 加粗包装标签", review)
+        self.assertIn("交付修订模式", skill)
+        self.assertIn("修干净、能发、删掉没说的东西、去掉格式痕迹", skill)
+        self.assertIn("## 交付修订模式", review)
+        self.assertIn("不作为默认成稿前阶段", review)
+        self.assertIn("不附事实映射表或长篇自证", review)
+        self.assertIn("用户说“只保留”时，只保留其点名事项", review)
 
     def test_argument_search_and_second_revision_boundaries_are_documented(self) -> None:
         skill = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
