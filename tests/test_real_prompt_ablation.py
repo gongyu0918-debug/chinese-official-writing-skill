@@ -355,6 +355,18 @@ class RealPromptAblationTests(unittest.TestCase):
             "具体名称、数字、版本范围、日期和主体",
             checks_by_id["P100"]["file_terms"]["chinese-official-writing/references/workflow.md"],
         )
+        self.assertIn(
+            "不补写试用效果、推进条件、实施安排或后续推进链条",
+            checks_by_id["P101"]["file_terms"]["chinese-official-writing/SKILL.md"],
+        )
+        self.assertIn(
+            "这类稿件通常不写“下一步”段",
+            checks_by_id["P101"]["file_terms"]["chinese-official-writing/references/workflow.md"],
+        )
+        self.assertIn(
+            "未定事项口径",
+            checks_by_id["P101"]["file_terms"]["chinese-official-writing/references/review-checklist.md"],
+        )
 
     def test_heading_lock_detects_added_subheading(self) -> None:
         before = """一、整改进展

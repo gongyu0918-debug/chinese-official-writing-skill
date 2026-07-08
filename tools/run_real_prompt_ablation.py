@@ -1706,6 +1706,29 @@ CASES: list[PromptCase] = [
             },
         },
     ),
+    PromptCase(
+        id="P101",
+        kind="create",
+        prompt="写一份 SmartAudit 小范围试用准备情况报告：还没开始正式使用，只是准备评估，试用范围、时间和费用都没定；不要写成已试用、已有试用效果或后续推进安排。",
+        checks={
+            "file_terms": {
+                "chinese-official-writing/SKILL.md": [
+                    "未定、准备评估、尚未试用",
+                    "这类稿件通常不写“下一步”段",
+                    "不补写试用效果、推进条件、实施安排或后续推进链条",
+                ],
+                "chinese-official-writing/references/workflow.md": [
+                    "这类稿件通常不写“下一步”段",
+                    "不写推进实施、按程序推进或及时报告后续情况",
+                    "不补写试用效果、推进条件、实施安排或后续推进链条",
+                ],
+                "chinese-official-writing/references/review-checklist.md": [
+                    "未定事项口径",
+                    "后续推进链条",
+                ],
+            },
+        },
+    ),
 ]
 
 
