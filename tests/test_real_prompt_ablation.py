@@ -347,6 +347,14 @@ class RealPromptAblationTests(unittest.TestCase):
             "必须能在正文中直接核对",
             checks_by_id["P099"]["file_terms"]["chinese-official-writing/references/workflow.md"],
         )
+        self.assertIn(
+            "不把泛称写成已核验正文",
+            checks_by_id["P100"]["file_terms"]["chinese-official-writing/SKILL.md"],
+        )
+        self.assertIn(
+            "具体名称、数字、版本范围、日期和主体",
+            checks_by_id["P100"]["file_terms"]["chinese-official-writing/references/workflow.md"],
+        )
 
     def test_heading_lock_detects_added_subheading(self) -> None:
         before = """一、整改进展

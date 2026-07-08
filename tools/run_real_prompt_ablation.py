@@ -1684,6 +1684,28 @@ CASES: list[PromptCase] = [
             },
         },
     ),
+    PromptCase(
+        id="P100",
+        kind="create",
+        prompt="用户给 URL 并说排查这些版本；要先提取网页里的具体版本范围，打不开来源时正文外提示，不能用“相关版本”冒充已核验。",
+        checks={
+            "file_terms": {
+                "chinese-official-writing/SKILL.md": [
+                    "用户用链接里的“这些版本、上述名单、该事项”等作指代",
+                    "不把泛称写成已核验正文",
+                ],
+                "chinese-official-writing/references/workflow.md": [
+                    "用户给 URL 并用“这些版本、上述名单、该事项、这篇文章”等指代网页内容",
+                    "具体名称、数字、版本范围、日期和主体",
+                    "不用“相关版本”“有关单位”“这些内容”等泛称装作已经核验",
+                ],
+                "chinese-official-writing/references/review-checklist.md": [
+                    "用户用链接中的“这些、上述、该”等作指代",
+                    "未用泛称装作已核验",
+                ],
+            },
+        },
+    ),
 ]
 
 
