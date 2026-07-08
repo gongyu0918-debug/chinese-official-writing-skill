@@ -25,6 +25,7 @@ Tried and reverted candidates:
 3. `SKILL.md` long-rule split into shorter bullets without changing semantics.
 4. `SKILL.md` one-pass silent cleanup wording before delivery.
 5. `SKILL.md` explicit delivery-smoke wording that told agents to run `scripts/prose_lint.py --format --structure` when users ask for formal delivery checks or smoke text.
+6. `SKILL.md` two-sentence single-prompt candidate: front-load plain-text delivery and add a sparse reminder/inspection/report short-writing boundary.
 
 Common verified failures:
 
@@ -32,15 +33,17 @@ Common verified failures:
 - Sparse or public-source material still expanded into unprovided execution chains, such as duty watch, patrol, reporting, contact person, response linkage, filing/备案, verification scope, or feedback deadlines.
 - Situation explanations still drifted into approval language such as "建议批准" or "请予同意".
 - Weak-model outputs often preserved the document genre skeleton, but the fact boundary was not stable enough for release.
+- A follow-up single-prompt run removed the possible "six drafts in one answer" confound. It still produced two FAIL and three WARN in the first isolated pass; the sixth candidate retest was also rejected with three FAIL and three WARN.
 
 Useful finding:
 
 - Explicit second-round user correction works better than silent prompt rules. When the weak model was given the bad draft plus specific correction points, it often removed Markdown and most unsupported execution chains. This did not transfer reliably when written as an automatic "silent cleanup once" rule in the skill.
 - The explicit delivery-smoke wording also did not transfer to weak-model writing. In a six-prompt retest, the writer still left Markdown headings, `---` separators, placeholders, and unsupported execution chains; the independent verifier marked the scheme failed.
+- Splitting the six prompts into independent writer contexts reduced wrapper noise but did not solve the release blockers. Markdown residue and unsupported management/execution chains still appeared in at least five of six samples.
 
 Decision:
 
-- Do not keep any of the five candidates above.
+- Do not keep any of the six candidates above.
 - Do not continue adding similar `SKILL.md` prompt restrictions; they increased noise or failed to change weak-model behavior.
 - A real fix likely needs an actual two-turn repair path or external tool-assisted inspection workflow that is invoked outside the default writing turn; do not claim this is solved until a real writer/verifier A/B passes.
 
