@@ -367,6 +367,14 @@ class RealPromptAblationTests(unittest.TestCase):
             "未定事项口径",
             checks_by_id["P101"]["file_terms"]["chinese-official-writing/references/review-checklist.md"],
         )
+        self.assertIn(
+            "稀疏的已排查、已核查、已检查类报告",
+            checks_by_id["P102"]["file_terms"]["chinese-official-writing/references/review-checklist.md"],
+        )
+        self.assertIn(
+            "至少按中风险提示",
+            checks_by_id["P102"]["file_terms"]["chinese-official-writing/references/review-checklist.md"],
+        )
 
     def test_heading_lock_detects_added_subheading(self) -> None:
         before = """一、整改进展

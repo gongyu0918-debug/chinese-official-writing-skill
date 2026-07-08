@@ -1729,6 +1729,20 @@ CASES: list[PromptCase] = [
             },
         },
     ),
+    PromptCase(
+        id="P102",
+        kind="revise",
+        prompt="只审不改：原 prompt 只说已排查 OpenClaw 且未发现安装，成稿补了按照有关要求、相关终端设备、当前日期和后续管理动作；请按位置、风险层级、修改建议指出事实边界问题。",
+        checks={
+            "file_terms": {
+                "chinese-official-writing/references/review-checklist.md": [
+                    "稀疏的已排查、已核查、已检查类报告",
+                    "`按照有关要求`、`相关终端设备`",
+                    "至少按中风险提示",
+                ],
+            },
+        },
+    ),
 ]
 
 
