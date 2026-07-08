@@ -2,7 +2,7 @@
 
 本文件适用于整个仓库。后续 agent 接手本仓库时，优先遵守这里的发布、review 和测试约定；若与用户最新指令冲突，以用户最新指令为准，但不得伪造未运行的测试结果。
 
-当前接手入口只保留本文件。当前 GitHub 发布状态为 `chinese-official-writing@1.5.2`，tag `v1.5.2` 指向发布提交 `70efc9ce74fe956497b5044ee14f60e2b94c5e55`，`origin/main` 已包含发布提交和后续发布状态记录，交接时以 `git ls-remote --heads origin main` 复核最新文档提交。SkillHub 目标项目 `https://skillhub.cn/skills/chinese-official-writing` 已公开切换到 `latestVersion.version=1.5.2`，`skillId=70149`、`versionId=129948`、`tags.latest=1.5.2`，`iconUrl` 仍为蓝底 Q 版图标。ClawHub 1.5.2 也已完成异步切换；内置浏览器页面显示 `当前版本：chinese-official-writing@1.5.2`，`clawhub inspect chinese-official-writing --json` 显示 `latestVersion.version=1.5.2`、`tags.latest=1.5.2`、moderation `clean`，`--versions --limit 5` 列表包含 `1.5.2`。版本级 `inspect --version 1.5.2` 显示包内 18 个文件、`proofreading-checklist.md` 已发布、VT `clean`、`hasWarnings=false`；深度 security 字段仍为异步 `pending`。下方 1.4.1 到 1.5.1 内容均为历史接手记录，不代表当前 live 版本。
+当前接手入口只保留本文件。当前远端已发布状态仍以 GitHub/ClawHub/SkillHub 的实际查询为准；最近确认的公开发布为 `chinese-official-writing@1.5.2`，tag `v1.5.2` 指向发布提交 `70efc9ce74fe956497b5044ee14f60e2b94c5e55`。本地当前已形成并验证 `1.5.3` 发布候选，版本字段已同步到 canonical、README 和各镜像，但在远端发布完成前不得把它称为公开已发布版本。SkillHub 目标项目仍为 `https://skillhub.cn/skills/chinese-official-writing`，历史 `skillId=70149`，图标仍为蓝底 Q 版图标。发布前后必须用 `git ls-remote --heads origin main`、`clawhub inspect chinese-official-writing --json`、SkillHub API 和 GitHub tag/main 核对 displayName、tags、latestVersion、summary、source commit 和 canonical frontmatter。下方 1.4.1 到 1.5.2 内容均为历史接手记录，不代表当前 live 版本。
 
 ## 基本工作纪律
 
@@ -262,6 +262,12 @@ Hermes 社区借鉴候选 `2713e27` 的处理结论：
 - 发布决定：不得把本地 1.5.3 候选推送或标记为发布版。下一轮优先解决“材料稀疏型通报/情况说明/报告在弱模型上自动补处置链条”的共性问题，修复后必须重新做 1.5.2/上一候选消融和真实 writer/verifier 测试。
 
 详细证据见 `tests/evidence/preflight-1.5.3-blocked.md`。
+
+## 1.5.3 重新发布候选记录
+
+当前 `1.5.3` 发布候选不是上方被阻断候选的直接发布。被阻断候选之后已继续完成多轮“测试 -> 回退 -> 二次修改链路验证 -> 轻量路由卡 -> 发布前预检”，只保留可验证的最小改动：新增 `references/task-route-cards.md` 并在 `SKILL.md` 参考资料表增加一行按需读取提示。该候选不新增硬 lint、默认联网、强阻断或重排版脚本；弱模型验收口径明确为格式噪点记 WARN，优先判断 prompt 遵循、要点置入、事实边界、禁止事项和二次修改可交付性。
+
+发布前验证已通过：1.5.2 基线消融 baseline/current 均为 85/85；全量 unittest 106/106；promptfoo smoke 20/20、judge 一致率 1.0；quick_validate 通过；真实样文回归 skill 路径 10 样本要素覆盖 61/61；最新真实 writer/verifier 证据无三次以上共性功能失败。详细证据见 `tests/evidence/release-1.5.3.md`。
 
 - 2026-07-09 针对“弱模型可能因入口规则过密导致注意力崩溃”的假设做过一次小步实验。候选只压缩 `SKILL.md` 的“任务模式路由与交付模式”入口段，并同步 Codex、Qwen、Hermes、OpenClaw 等镜像；未改 reference、脚本、lint 或版本号。入口段从 2013 字符压到 1463 字符，减少 550 字符，并把高密度长句拆成更短的扫描项。确定性验证通过：`python -m unittest tests.test_real_prompt_ablation tests.test_skill_boundary` 为 41 tests OK；与 1.5.2 的确定性消融为 baseline 85/85、current 85/85。但真实写稿 A/B 不支持保留：弱模型 `gpt-5.3-codex-spark` low 在当前压缩入口下没有优于 1.5.2 基线，TestAgent 通知把“通过钉钉发给技术应用部”写成“通过钉钉下发至技术应用部”，并把排查主体错误转给技术应用部；C1-C4 仍连续残留 Markdown 加粗。强模型 `gpt-5.5` low 未明显退化，但不能证明弱模型改善。结论：本次入口压缩候选已撤回，不得作为发布候选继续推进。后续如继续做注意力优化，不要在这版失败候选上叠补丁；应先只读审查信息熵和重复表达，每次只压缩一个小块，并固定使用弱/强模型真实 A/B，重点覆盖“时间点不得改成截止时间”“报送至/下发至/由谁执行的动作关系”“正式正文不使用 Markdown 加粗”。详细证据见 `tests/evidence/attention-compression-ab-20260709.md`。
 - 2026-07-09 继续测试一个更窄的“入口长句拆行”候选：不删任何规则，只把 `SKILL.md` 中“起草或改写”下 4 条高密度长句拆成 8 条短句，同步各镜像；未改 reference、脚本、lint 或版本号。确定性验证通过：`python -m unittest tests.test_real_prompt_ablation tests.test_skill_boundary` 为 41 tests OK；与 1.5.2 的确定性消融为 baseline 85/85、current 85/85；入口片段最大单行长度 181 -> 132。但真实弱/强模型 A/B 不支持保留：独立 verifier 判定 current weak 在 260 字压缩通知中把“清查结果通过 OA 反馈至信息技术部”改成“由联系人李明通过电话12345678确认反馈”，遗漏 OA 渠道并改错联系人/反馈关系；current weak 还在 5090 说明和世界杯通知中补入未给判断，current strong 在 5090 说明中也有细节外扩。结论：该拆行候选已撤回，不得作为发布候选推进。后续压缩应先处理重复和信息熵，不要仅凭“更短/更分行”判断改善；必须继续用弱/强模型真实 A/B 证明不损害事实关系。详细证据见 `tests/evidence/split-drafting-rules-ab-20260709.md`。

@@ -1,63 +1,132 @@
-# 1.5.3 发布前复核记录
+# 1.5.3 发布证据
 
-日期：2026-07-07
+## 范围
 
-## 发布候选
+1.5.3 是 1.5.2 后的最小发布候选。本轮只发布已经验证通过的本地候选：
 
-- 本地候选提交：`b30b8cb` 之后追加最小修复。
-- 版本：`1.5.3`
-- 基线：GitHub/ClawHub/SkillHub 1.5.2，`output/release-baselines/github-1.5.2`
+- 新增轻量 `references/task-route-cards.md`，用于材料稀疏、短稿、低上下文局部修改和二次局部修改时优先读取短卡片，再按需转读长 reference。
+- 不新增 lint 硬规则、默认联网、强阻断、排版脚本或重型入口 prompt。
+- 弱模型写作验收口径调整为：Markdown 残留、标题包装等格式噪点记 WARN，不作为内容失败；重点看 prompt 遵循、要点置入、事实边界、禁止事项和二次修改可交付性。
 
-## 独立 review 结论与处理
+历史说明：仓库中曾记录过一个早期 `1.5.3` 本地候选被阻断；本次候选是在后续多轮回退、轻量路由卡、二次修改链路和发布前预检之后重新形成的 `1.5.3` 发布候选，不复用被阻断候选的结论。
 
-独立 subagent 复核当前候选后给出：
+## 验证
 
-- 社区借鉴项落位：`PASS`。
-- 未见硬门禁、默认联网、默认成稿前循环、脚本清洗或重排版引擎风险：`PASS`。
-- reference 规则密度：`WARN`，可后续优化，不作为发布阻断。
-- evidence 链不足：`FAIL`，要求补齐通报、情况说明、报告、会议纪要、成本考察真实弱模型测试。
+### 版本同步
 
-据此本轮暂停发布，补跑 1.5.2 vs current 的真实写稿 A/B，并由独立 verifier 盲评。
+命令：
 
-## 第一轮 A/B 真实写稿
+```powershell
+C:\Users\2\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe .\tools\sync_adapters.py
+```
 
-覆盖：材料稀疏通报、二次修改、正式 Word 缺项核对、最新版/旧版防回流、只审不改空话套话。
+结果：
 
-独立 verifier 结论：
+- `chinese-official-writing/SKILL.md`、Codex 镜像、`.agents`、`.qwen`、Hermes、OpenClaw、README、skill-card 和 Claude plugin 均同步到 `1.5.3`。
+- `tools/sync_adapters.py` 版本常量为 `VERSION = "1.5.3"`。
 
-- current 在二次修改和最新版防回流上更好。
-- 正式 Word 样本和只审不改样本与 baseline 互有优劣。
-- 未见 current 相对 baseline 的发布阻断级回归。
+### 1.5.2 基线消融
 
-## 第二轮 A/B 真实写稿
+命令：
 
-覆盖独立 review 点名范围：通报、情况说明、成本考察报告、会议纪要、事实不清只审不改。
+```powershell
+C:\Users\2\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe .\tools\run_real_prompt_ablation.py --baseline-root output\release-baselines\github-1.5.2 --baseline-label baseline-1.5.2 --current-root . --out output\real-prompt-vs-1.5.2-release-1.5.3
+```
 
-独立 verifier 结论：
+结果：
 
-- 通报：current 写出“推进相关问题处理”，仍属轻微推进性外推，`WARN`。
-- 情况说明：current 写出“核心系统”，属于未给事实外推，`WARN`。
-- 成本考察报告：current `PASS`，未写成已定实施方案。
-- 会议纪要：current `PASS`，未补会议立场、责任单位、时限。
-- 事实不清只审不改：current 把“总体情况较好”降为低风险，`FAIL`。
+| Label | Total | Passed | Failed | Warnings | Errors |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| baseline-1.5.2 | 85 | 85 | 0 | 0 | 0 |
+| current | 85 | 85 | 0 | 0 | 0 |
 
-处理：接受情况说明与事实不清审稿两个阻断点，做最小修复；通报轻微外推继续观察，不新增硬阻断。
+### unittest
 
-## 最小修复
+命令：
 
-- `SKILL.md`、`workflow.md`、`genre-playbooks.md`：材料只说接口、系统、页面异常时，按用户原词写，不包装成核心系统、生产系统、业务主系统，也不补原因结论、责任部门、损失金额、整改方案或“未造成影响”。
-- `SKILL.md`、`review-checklist.md`：事实不清审稿中，“总体情况较好”“基本整改到位”“持续优化提升”等无检查范围、问题清单或验收依据支撑的结论性表述，按中或中高风险提示，不降成低风险套话。
-- `tools/run_real_prompt_ablation.py`：新增 P094/P095 确定性守卫。
+```powershell
+C:\Users\2\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe -m unittest discover -s tests
+```
 
-## 修复后弱模型复测
+结果：
 
-模型：`gpt-5.3-codex-spark`，低思考。
+```text
+Ran 106 tests in 0.756s
+OK
+```
 
-复测场景：
+### quick_validate
 
-- R1 系统接口异常情况说明：未再写“核心系统”，未编原因、责任部门、损失金额或整改方案。`WARN`：仍有 Markdown 加粗和把“后续复核安排”扩成括号细项，非发布阻断。
-- R2 事实不清只审不改：将整句判为中高风险，指出缺少检查范围、问题边界、复核依据与结果支撑。`PASS`。
+命令：
 
-## 当前发布判断
+```cmd
+C:\Users\2\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe C:\Users\2\.codex\skills\.system\skill-creator\scripts\quick_validate.py chinese-official-writing
+```
 
-可继续发布前检查。剩余风险是弱模型在材料稀疏通报里仍可能轻微写出“推进相关问题处理”等推进性衔接，但当前已不再表现为闭环、督办、责任单位、时限等阻断级事实编造；若后续三次以上复现，再进入下一轮最小修复，不在本轮扩大规则。
+结果：
+
+```text
+Skill is valid!
+```
+
+### diff check
+
+命令：
+
+```powershell
+git -C . diff --check
+```
+
+结果：退出码 0；仅有 Windows 换行提示，无 whitespace error。
+
+### official-writing smoke
+
+非提权环境下 promptfoo 依赖访问 npm registry 被沙箱网络拦截；提权后运行同一评测入口通过。
+
+命令：
+
+```cmd
+C:\Users\2\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe evals\official-writing\run_eval.py --suite smoke --judge-batch-size 2
+```
+
+结果：
+
+```text
+Results:
+  20 passed (100%)
+  0 failed (0%)
+  0 errors (0%)
+
+skill_win_rate: 1.0
+judge_consistency_rate: 1.0
+```
+
+### 真实样文回归
+
+命令：
+
+```powershell
+C:\Users\2\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe .\tools\run_real_article_eval.py --out output\real-article-release-1.5.3
+```
+
+摘要：
+
+| 模式 | 样本数 | 平均差异率 | 缺失要素 | 应覆盖要素 | 关键词命中率 | 占位词风险样本 | 占位词命中 | 格式风险 | 重复事项 | 反 AI 风险 |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| baseline | 10 | 93.00% | 57 | 61 | 17.43% | 0 | 0 | 0 | 0 | 2 |
+| skill | 10 | 0.00% | 0 | 61 | 100.00% | 9 | 16 | 0 | 0 | 0 |
+
+说明：`skill` 路径的占位风险主要来自“主送单位、发文字号、发文机关、报告主体”等正式要素待确认项，作为人工复核提示，不作为发布阻断。
+
+### 真实写稿/verifier 证据
+
+本次发布不只依赖确定性脚本；最近真实 writer/verifier 证据包括：
+
+- `tests/evidence/task-route-cards-real-ab-20260709.md`：轻量任务路由卡并入后，弱模型 3 WARN、0 FAIL；强模型 3 PASS。
+- `tests/evidence/second-revision-after-route-cards-20260709.md`：用户式二次修改后，弱模型和强模型均为 3/3 PASS。
+- `tests/evidence/release-readiness-regression-20260709.md`：旧能力真实回归 0 FAIL，无三次以上共性失败。
+- `tests/evidence/preflight-current-20260709.md`：综合预检通过，弱模型格式噪点按 WARN 记录。
+
+## 结论
+
+1.5.3 当前候选可发布。它没有相对 1.5.2 的确定性消融回退；真实写稿链路中未出现三次以上共性功能失败；弱模型首稿仍可能有格式噪点，但二次修改可交付，按本轮验收口径不构成发布阻断。
