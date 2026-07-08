@@ -651,6 +651,11 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assertIn("不自动改题为“调研报告”“考核说明”或“实施方案”", playbooks)
         self.assertIn("不写成已经确定的执行路线、责任命令或反馈时限", playbooks)
         self.assertIn("不用 Markdown `**` 加粗包装标签", skill)
+        self.assertIn("行尾两个空格控制换行", skill)
+        self.assertIn("不把“已排查”“已核查”“已检查”等概括动作展开", skill)
+        self.assertIn("对象范围、载体、流程或结果判断", workflow)
+        self.assertIn("不要补日期、删除日期或成文日期待确认", skill)
+        self.assertIn("不沿用当前日期或上一稿日期", workflow)
         self.assertIn("未用 Markdown `**` 加粗包装标签", review)
 
     def test_argument_search_and_second_revision_boundaries_are_documented(self) -> None:
