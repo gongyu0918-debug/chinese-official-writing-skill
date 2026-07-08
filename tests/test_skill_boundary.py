@@ -106,9 +106,36 @@ class SkillBoundaryTests(unittest.TestCase):
 
         self.assertIn("按任务渐进读取资料，不要一次性加载全部文件", text)
         self.assertIn("| 文件 | 阶段 | 加载条件 |", text)
+        self.assertIn("`references/task-route-cards.md` | 起草前/改稿前", text)
+        self.assertIn("低上下文局部修改", text)
         self.assertIn("`references/genre-playbooks.md` | 按文种/专项选读", text)
         self.assertIn("`references/ai-compute-docs.md` | 专项选读", text)
         self.assertIn("仅在 AI 算力、GPU/服务器租赁、模型服务、采购、租赁、可研、成本比较、SLA、安全或验收材料中读取", text)
+
+    def test_task_route_cards_keep_sparse_tasks_lightweight(self) -> None:
+        skill = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
+        cards = (ROOT / "chinese-official-writing" / "references" / "task-route-cards.md").read_text(
+            encoding="utf-8"
+        )
+        sync_script = (ROOT / "tools" / "sync_adapters.py").read_text(encoding="utf-8")
+
+        for text in [skill, sync_script]:
+            self.assertIn("references/task-route-cards.md", text)
+            self.assertIn("材料稀疏", text)
+            self.assertIn("不新增事实", text)
+        for term in [
+            "先写可用正文",
+            "不补工作组、问题清单、统一共识、治理流程、整改路径",
+            "保持未决口径",
+            "不写“会议强调”“会议认为”“会议决定”",
+            "宁可短写",
+            "不补“认真落实、严肃处理、记录留痕、无论有无异常",
+            "Markdown 加粗、标题井号、横线等属于格式噪点",
+            "事实边界、要点置入和用户禁止项",
+            "上一轮待确认事项仍是软提示",
+        ]:
+            self.assertIn(term, cards)
+        self.assertLess(len(cards.splitlines()), 80)
 
     def test_trigger_description_covers_reported_genres(self) -> None:
         text = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")

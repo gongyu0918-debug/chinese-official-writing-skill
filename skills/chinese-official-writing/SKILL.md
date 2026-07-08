@@ -142,6 +142,7 @@ metadata:
 
 | 文件 | 阶段 | 加载条件 |
 | --- | --- | --- |
+| `references/task-route-cards.md` | 起草前/改稿前 | 材料稀疏、短稿、低上下文局部修改，或用户明确要求不新增事实、只按已给材料写时，先读本轻量卡片；仍复杂时再转读 `workflow.md`、`genre-playbooks.md` 等长 reference。 |
 | `references/workflow.md` | 起草前 | 长文、复杂改稿、多材料合稿、任务模式路由、急件处理，或用户要求不要新增小标题、保留主送/落款/标题等结构锁定项时。 |
 | `references/genre-routing.md` | 起草前 | 文种、行文方向或请示/报告/通知/函等边界不明确时。 |
 | `references/handling-elements.md` | 起草前 | 需要核对主体、对象、事项、依据、时限、附件、反馈渠道和请批事项时。 |
