@@ -2,7 +2,7 @@
 
 本文件适用于整个仓库。后续 agent 接手本仓库时，优先遵守这里的发布、review 和测试约定；若与用户最新指令冲突，以用户最新指令为准，但不得伪造未运行的测试结果。
 
-当前接手入口只保留本文件。当前 GitHub `origin/main` 和 tag `v1.5.4` 均指向 `20776d4ad9eb0e6c4a3ce3dce5e965c365033928`。ClawHub 已发布并核查为 `latestVersion.version=1.5.4`、`tags.latest=1.5.4`、`displayName=中文公文写作`、moderation `clean`、版本列表包含 `1.5.4`；远端仍保留历史 `1.4.15` 遗留的带引号 tag key，但本轮未新增。SkillHub 目标项目仍为 `https://skillhub.cn/skills/chinese-official-writing`，历史 `skillId=70149`，本轮 1.5.4 发布提交返回 `versionId=132166`、`tags.latest=1.5.4`、`reviewStatus/securityScanStatus/contentAuditStatus=pending`；提交后 `skillhub search` 仍显示搜索索引版本 `1.5.3`，公开切换可能延迟，后续接手需复查。图标仍为蓝底 Q 版图标。发布前后必须用 `git ls-remote --heads origin main`、`clawhub inspect chinese-official-writing --json`、SkillHub API 或 CLI 和 GitHub tag/main 核对 displayName、tags、latestVersion、summary、source commit 和 canonical frontmatter。下方 1.4.1 到 1.5.3 内容均为历史接手记录，不代表当前 live 版本。
+当前接手入口只保留本文件。当前 GitHub `origin/main` 和 tag `v1.5.5` 均指向 `dd4c6d66ce31d91e65c6e1d11de3e4e80885b4ba`。ClawHub 已发布并核查为 `latestVersion.version=1.5.5`、`tags.latest=1.5.5`、`displayName=中文公文写作`、moderation `clean`、版本列表包含 `1.5.5`；远端仍保留历史 `1.4.15` 遗留的带引号 tag key，但本轮未新增。SkillHub 目标项目仍为 `https://skillhub.cn/skills/chinese-official-writing`，历史 `skillId=70149`，本轮 1.5.5 发布提交返回 `versionId=132423`、`tags.latest=1.5.5`、`reviewStatus/securityScanStatus/contentAuditStatus=pending`；提交后 `skillhub search` 仍显示搜索索引版本 `1.5.4`，公开切换可能延迟，后续接手需复查。图标仍为蓝底 Q 版图标。发布前后必须用 `git ls-remote --heads origin main`、`clawhub inspect chinese-official-writing --json`、SkillHub API 或 CLI 和 GitHub tag/main 核对 displayName、tags、latestVersion、summary、source commit 和 canonical frontmatter。下方 1.4.1 到 1.5.4 内容均为历史接手记录，不代表当前 live 版本。
 
 ## 基本工作纪律
 
