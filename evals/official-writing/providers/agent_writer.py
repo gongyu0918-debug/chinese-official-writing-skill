@@ -39,6 +39,13 @@ GENRE_REFERENCES: dict[str, list[str]] = {
     "ai_compute": [
         "references/ai-compute-docs.md",
     ],
+    "complex": [
+        "references/workflow.md",
+        "references/handling-elements.md",
+    ],
+    "format": [
+        "references/format-gbt9704.md",
+    ],
 }
 
 MAX_SKILL_CONTEXT_CHARS = 50_000
@@ -68,21 +75,33 @@ CHAIN_GENRES = {
     "申请",
 }
 
-PLAYBOOK_GENRES = {
-    "会议纪要",
+PLAYBOOK_GENRES = CHAIN_GENRES | {
+    "通告",
+    "公告",
+    "通报",
+    "决定",
+    "决议",
+    "议案",
+    "公报",
+    "命令",
+    "命令（令）",
     "讲话稿",
     "致辞",
     "述职报告",
-    "工作要点",
-    "工作总结",
-    "调研报告",
-    "可研报告",
-    "实施方案",
-    "建设方案",
     "研究报告",
-    "采购公告",
-    "审查材料",
 }
+
+COMPLEX_TASK_MARKERS = (
+    "完整文种骨架",
+    "完整结构",
+    "复杂改稿",
+    "多材料",
+    "多附件",
+    "合稿",
+    "长文",
+)
+FORMAT_TASK_MARKERS = ("Word", "word", "DOCX", "docx", "GB/T 9704", "红头", "版记")
+LONG_FORM_RE = re.compile(r"(?<!\d)(\d{3,5})\s*字")
 
 AI_COMPUTE_MARKERS = (
     "算力",
@@ -191,7 +210,14 @@ def _skill_root(repo_root: Path) -> Path:
     return repo_root / "chinese-official-writing"
 
 
-def _reference_paths_for_genres(genres: list[str]) -> list[str]:
+def _task_requires_complex_route(tasks: list[str]) -> bool:
+    if any(marker in task for task in tasks for marker in COMPLEX_TASK_MARKERS):
+        return True
+    return any(int(match.group(1)) >= 800 for task in tasks for match in LONG_FORM_RE.finditer(task))
+
+
+def _reference_paths_for_genres(genres: list[str], tasks: list[str] | None = None) -> list[str]:
+    tasks = tasks or []
     paths = ["SKILL.md", *GENRE_REFERENCES["default"]]
     if any(genre in PLAYBOOK_GENRES or _is_ai_compute(genre) for genre in genres):
         paths.extend(GENRE_REFERENCES["playbook"])
@@ -200,6 +226,10 @@ def _reference_paths_for_genres(genres: list[str]) -> list[str]:
     if any(_is_ai_compute(genre) for genre in genres):
         paths.extend(GENRE_REFERENCES["argument"])
         paths.extend(GENRE_REFERENCES["ai_compute"])
+    if _task_requires_complex_route(tasks):
+        paths.extend(GENRE_REFERENCES["complex"])
+    if any(marker in task for task in tasks for marker in FORMAT_TASK_MARKERS):
+        paths.extend(GENRE_REFERENCES["format"])
 
     seen: set[str] = set()
     ordered: list[str] = []
@@ -210,10 +240,10 @@ def _reference_paths_for_genres(genres: list[str]) -> list[str]:
     return ordered
 
 
-def _load_skill_context(repo_root: Path, genres: list[str]) -> str:
+def _load_skill_context(repo_root: Path, genres: list[str], tasks: list[str] | None = None) -> str:
     root = _skill_root(repo_root)
     parts: list[str] = []
-    for relative in _reference_paths_for_genres(genres):
+    for relative in _reference_paths_for_genres(genres, tasks):
         path = root / relative
         if not path.exists():
             raise ProviderError(f"selected skill reference does not exist: {path}")
@@ -264,7 +294,8 @@ def _baseline_prompt(cases: list[dict[str, Any]]) -> str:
 def _skill_prompt(cases: list[dict[str, Any]], config: dict[str, Any]) -> str:
     repo_root = _repo_root(config)
     genres = sorted({_case_genre(case) for case in cases if _case_genre(case)})
-    skill_context = _load_skill_context(repo_root, genres)
+    tasks = [_case_task(case) for case in cases if _case_task(case)]
+    skill_context = _load_skill_context(repo_root, genres, tasks)
     return textwrap.dedent(
         f"""
         你是中文公文 Skill 写作代理。仓库已安装 Skill：
@@ -459,7 +490,8 @@ def _stub_draft(mode: str, case: dict[str, Any]) -> str:
 
 def _cache_key(mode: str, cases: list[dict[str, Any]], config: dict[str, Any]) -> str:
     genres = sorted({_case_genre(case) for case in cases})
-    refs = _reference_paths_for_genres(genres)
+    tasks = [_case_task(case) for case in cases if _case_task(case)]
+    refs = _reference_paths_for_genres(genres, tasks)
     ref_hashes: dict[str, str] = {}
     if mode == "skill":
         root = _skill_root(_repo_root(config))
@@ -472,9 +504,15 @@ def _cache_key(mode: str, cases: list[dict[str, Any]], config: dict[str, Any]) -
         "cases": [case.get("vars", {}) for case in cases],
         "refs": refs,
         "ref_hashes": ref_hashes,
-        "provider_version": 5,
+        "provider_version": 6,
         "stub": _use_stub(config),
         "command_configured": bool(_agent_command_template(config)),
+        "command_template_hash": hashlib.sha256(
+            _agent_command_template(config).encode("utf-8")
+        ).hexdigest(),
+        "batch_size": config.get("batchSize", 10),
+        "timeout_seconds": config.get("timeoutSeconds", 720),
+        "retries": config.get("retries", 1),
     }
     digest = hashlib.sha256(json.dumps(payload, ensure_ascii=False, sort_keys=True).encode("utf-8")).hexdigest()
     return digest[:20]

@@ -373,9 +373,11 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assertIn("不新增原文没有交代的活动、依据、数据、成效或责任安排", workflow)
         self.assertIn("未新增原文外事实", workflow)
         self.assertIn("未新增原文外事实", checklist)
-        self.assertIn("用户要求只输出正文时，不附这类自证说明", workflow)
-        self.assertIn("正文后的关键缺项提示仍按事实充分性规则处理", workflow)
+        self.assertIn("用户要求只输出正文时，不附自证说明", workflow)
+        self.assertIn("除非用户同时明确允许文后待确认、风险或核验提示", workflow)
+        self.assertIn("也不附其他正文外内容", workflow)
         self.assertIn("用户未要求只输出正文、只输出改后稿或不解释时", checklist)
+        self.assertIn("用户只要求正文且未同时允许文后提示时", checklist)
 
     def test_v140_mode_routing_material_mapping_and_format_bridge_are_documented(self) -> None:
         skill = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")

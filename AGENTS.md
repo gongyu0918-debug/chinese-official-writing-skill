@@ -310,3 +310,9 @@ Hermes 社区借鉴候选 `2713e27` 的处理结论：
 本轮冷审只接受一项最小修复：将 `references/workflow.md` 中“事实充分性软处理”超长单段拆成短 bullet，保持原语义，不新增硬阻断、脚本清洗、lint 规则或默认联网。首轮真实 A/B 达到三次以上共性问题，允许尝试该最小修复；post-fix 继续用 30 类 prompt 做 1.5.4 baseline/current 写稿 A/B，verifier `019f4500-f7ae-7462-a43d-ad38f4c4ac34` 判定总体 `WARN`，但未出现 current 独有且达到三次以上的同类功能性回退，建议保留拆分、不回滚、不继续补丁式追加规则。
 
 验证：定向 unittest `43/43` 通过；全量 unittest `107/107` 通过；与 1.5.4 基线的确定性消融为 baseline `95/95`、current `95/95`；promptfoo smoke `20/20` 通过；真实样文回归 skill 差异率 `0.00%`、关键词命中率 `100.00%`，但仍有占位词风险样本需人工复核；quick_validate 通过；`git diff --check` 通过且仅有 Windows 换行提示。详细证据见 `tests/evidence/deep-review-1.5.4-workflow-split.md`。
+
+## 1.5.6 发布阻断记录
+
+2026-07-10 以 GitHub `v1.5.5` 为固定发行基线补做 reference 路由、评测 provider、只输出正文边界和真实长文测试。已保留的本地候选改动通过全量 unittest `121/121`、确定性消融 current `101/101`、Promptfoo smoke `20/20` 和 quick_validate；但真实 `gpt-5.6-luna` 写稿在 600—800 字、900—1100 字及 3000—3500 字多附件合稿中可复现“现有材料没有/未说明”等材料读取旁白，独立 verifier 按用户最新“一次出现即阻断”口径判定 `FAIL`。该问题在 `v1.5.5` 基线也存在，不是本轮候选独有，但仍阻断新版本发布。
+
+先后尝试的明示禁令、业务对象状态改写、静默纯净检查和单次静默净稿四种 prompt-only 候选均未在长文中稳定解决，已全部回滚；不要在这些失败候选上继续叠同义 prompt。当前版本仍为 `1.5.5`，未创建 `v1.5.6` tag，未推送 GitHub，也未调用 ClawHub 或 SkillHub 发布。详细证据见 `tests/evidence/review-reference-routing-1.5.5-followup-blocked.md`。

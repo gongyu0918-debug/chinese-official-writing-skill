@@ -1647,13 +1647,14 @@ CASES: list[PromptCase] = [
         checks={
             "file_terms": {
                 "chinese-official-writing/references/workflow.md": [
-                    "用户要求只输出正文时，不附这类自证说明",
-                    "正文后的关键缺项提示仍按事实充分性规则处理",
-                    "不与自证说明混为一类",
+                    "用户要求只输出正文时，不附自证说明",
+                    "除非用户同时明确允许文后待确认、风险或核验提示",
+                    "用户允许文后提示时",
                 ],
                 "chinese-official-writing/references/review-checklist.md": [
-                    "用户未要求只输出正文、只输出改后稿或不解释时",
-                    "正文后的关键缺项提示是否仍按事实充分性规则处理",
+                    "用户只要求正文且未同时允许文后提示时",
+                    "用户明确允许文后提示时",
+                    "只附其允许的内容",
                 ],
             },
         },
@@ -1706,6 +1707,29 @@ CASES: list[PromptCase] = [
                 ],
                 "chinese-official-writing/references/review-checklist.md": [
                     "不回读总审层级或反 AI 资料",
+                ],
+            },
+        },
+    ),
+    PromptCase(
+        id="P101",
+        kind="revise",
+        prompt="把下面请示顺稿，只输出正文，不解释。材料未提供主送机关和成文日期，也不要在正文外附待确认事项。",
+        checks={
+            "file_terms": {
+                "chinese-official-writing/SKILL.md": [
+                    "除非同时明确允许文后待确认、风险或核验提示",
+                    "不附任何正文外说明或提示",
+                    "缺失事实不补造",
+                ],
+                "chinese-official-writing/references/workflow.md": [
+                    "也不附其他正文外内容",
+                    "关键缺项仍不得补造或写进正文解释",
+                    "用户允许文后提示时",
+                ],
+                "chinese-official-writing/references/review-checklist.md": [
+                    "用户只要求正文且未同时允许文后提示时",
+                    "是否未附待确认、风险、核验或自证说明",
                 ],
             },
         },

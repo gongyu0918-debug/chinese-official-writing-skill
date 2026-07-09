@@ -181,6 +181,27 @@ class PromptfooProviderTests(unittest.TestCase):
         self.assertIn("references/argument-chains.md", refs)
         self.assertIn("references/task-route-cards.md", refs)
 
+    def test_each_supported_legal_genre_can_reach_the_playbook(self) -> None:
+        genres = ["通知", "请示", "报告", "函", "复函", "公告", "通告", "通报", "决定", "决议", "议案", "公报", "命令（令）"]
+        for genre in genres:
+            with self.subTest(genre=genre):
+                refs = provider._reference_paths_for_genres([genre])
+                self.assertIn("references/genre-playbooks.md", refs)
+
+    def test_task_text_can_upgrade_complex_and_format_routes(self) -> None:
+        complex_refs = provider._reference_paths_for_genres(
+            ["报告"],
+            ["把多材料合稿整理成一份1200字完整报告。"],
+        )
+        format_refs = provider._reference_paths_for_genres(
+            ["通知"],
+            ["按 GB/T 9704 排成 Word 正式文件。"],
+        )
+
+        self.assertIn("references/workflow.md", complex_refs)
+        self.assertIn("references/handling-elements.md", complex_refs)
+        self.assertIn("references/format-gbt9704.md", format_refs)
+
     def test_plain_unknown_genre_does_not_load_playbook(self) -> None:
         refs = provider._reference_paths_for_genres(["通用材料"])
 
@@ -203,6 +224,9 @@ class PromptfooProviderTests(unittest.TestCase):
         canonical = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
 
         self.assertIn(canonical, context)
+        for relative in provider._reference_paths_for_genres(["通知", "请示", "报告", "说明", "方案"]):
+            selected = provider._skill_root(ROOT) / relative
+            self.assertIn(selected.read_text(encoding="utf-8"), context)
         self.assertNotIn("[truncated]", context)
         self.assertLessEqual(len(context), provider.MAX_SKILL_CONTEXT_CHARS)
 
@@ -219,6 +243,42 @@ class PromptfooProviderTests(unittest.TestCase):
         with mock.patch.object(provider, "MAX_SKILL_CONTEXT_CHARS", 10):
             with self.assertRaisesRegex(provider.ProviderError, "selected skill context exceeds 10 characters"):
                 provider._load_skill_context(ROOT, ["通用材料"])
+
+    def test_full_dataset_batches_stay_within_context_budget(self) -> None:
+        config = {
+            "basePath": str(ROOT / "evals" / "official-writing"),
+            "datasetPath": "datasets/cases.jsonl",
+        }
+        cases = provider._load_cases(config)
+        observed: list[int] = []
+        for index in range(0, len(cases), 10):
+            chunk = cases[index : index + 10]
+            genres = sorted({provider._case_genre(case) for case in chunk if provider._case_genre(case)})
+            tasks = [provider._case_task(case) for case in chunk if provider._case_task(case)]
+            observed.append(len(provider._load_skill_context(ROOT, genres, tasks)))
+
+        self.assertEqual(len(observed), 27)
+        self.assertLessEqual(max(observed), provider.MAX_SKILL_CONTEXT_CHARS)
+        self.assertLess(max(observed), 25_000)
+
+    def test_cache_key_changes_with_command_and_batch_configuration(self) -> None:
+        config = {
+            "basePath": str(ROOT / "evals" / "official-writing"),
+            "datasetPath": "datasets/cases.jsonl",
+        }
+        cases = provider._load_cases(config)
+        key_a = provider._cache_key(
+            "skill",
+            cases,
+            {**config, "batchSize": 10, "commandTemplate": "agent-A"},
+        )
+        key_b = provider._cache_key(
+            "skill",
+            cases,
+            {**config, "batchSize": 20, "commandTemplate": "agent-B"},
+        )
+
+        self.assertNotEqual(key_a, key_b)
 
     def test_ai_compute_markers_cover_model_platform_language(self) -> None:
         for genre in ["模型服务技术需求", "智算中心建设方案", "本地化部署成本说明", "AI平台推理服务", "SLA并发保障方案"]:
