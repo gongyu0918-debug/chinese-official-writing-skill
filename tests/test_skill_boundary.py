@@ -124,6 +124,10 @@ class SkillBoundaryTests(unittest.TestCase):
             self.assertIn("材料稀疏", text)
             self.assertIn("不新增事实", text)
         for term in [
+            "必须转读长 reference 的情况",
+            "用户要求完整文种骨架",
+            "800 字以上长文",
+            "会议纪要/可研/采购/AI 算力等专项论证",
             "先写可用正文",
             "不补工作组、问题清单、统一共识、治理流程、整改路径",
             "保持未决口径",
@@ -675,6 +679,8 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assertIn("成本考察、成本评估", playbooks)
         self.assertIn("不自动改题为“调研报告”“考核说明”或“实施方案”", playbooks)
         self.assertIn("不写成已经确定的执行路线、责任命令或反馈时限", playbooks)
+        self.assertIn("按 `workflow.md` 的事实映射式二次修改删掉未支持推断", playbooks)
+        self.assertIn("每个实质句只保留“用户已给事实”和“直接概括”", workflow)
         self.assertIn("不用 Markdown `**` 加粗包装标签", skill)
         self.assertIn("未用 Markdown `**` 加粗包装标签", review)
 

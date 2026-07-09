@@ -291,3 +291,11 @@ Hermes 社区借鉴候选 `2713e27` 的处理结论：
 
 - 1.4.15 发布后补跑 description 新路由真实写作和改写测试，覆盖通告、命令（令）、意见、公报、决议、议案以及报告改通告、意见稿去口语化。独立 verifier 判定 6 PASS、2 WARN、0 FAIL；主要残留风险是材料不足时容易补入惯常判断，以及公开发布短稿有轻微评价化倾向。详细证据见 `tests/evidence/real-writing-1.4.15-description-routes.md`。
 - 下次发布前必须核查远端字段原始值。ClawHub 1.4.15 曾因 Windows `npx.cmd` 传参把 `--name "中文公文写作"` 和 `--tags "chinese,...,ai-compute"` 的引号写入远端 `displayName` 和 tag key；下一版本发布必须使用 `--name=中文公文写作`、`--tags=chinese,official-document,writing,gongwen,ai-compute`，并用 `clawhub inspect --json`、SkillHub API 和 GitHub tag/main 核对 displayName、tags、latestVersion、summary 和 canonical frontmatter。
+
+## 1.5.4 交付 review 后续记录
+
+2026-07-09 复核 `C:\Users\2\Desktop\中文公文写作skill-1.5.4-交付Review报告.md`。该报告结论为 1.5.4 可交付，但提示架构膨胀和重复规则风险。本轮只接受两项最小修复：一是在 `task-route-cards.md` 增加“完整文种骨架、800 字以上长文、多材料合稿、会议纪要/可研/采购/AI 算力专项论证、GB/T 9704 或 Word 正式交付”等必须转读长 reference 的条件；二是将 `genre-playbooks.md` 通报小节中的事实映射式二次修改细则改为指向 `workflow.md`，降低 single source of truth 漂移风险。Codex、`.agents`、`.qwen`、Hermes、OpenClaw 等镜像已通过 `tools/sync_adapters.py` 同步。
+
+本轮拒绝继续压缩 `SKILL.md` 硬边界入口、拆分 `workflow.md` 事实充分性长段，原因是此前 `attention-compression-ab-20260709.md`、`split-drafting-rules-ab-20260709.md`、`prompt-density-community-review-20260709.md` 和 `reference-density-ab-rollback-20260709.md` 均记录过弱模型真实 A/B 回退。后续不要在这些入口和事实充分性长段上叠补丁；如要继续优化，应优先做加载路径或二次修改链路实验。
+
+验证：定向 unittest `43/43` 通过；与当前 1.5.4 基线 `48f3190b704e0486f09e5b44f4c6a1e3efc91bcd` 的确定性消融为 baseline `95/95`、current `95/95`；真实写稿 A/B 使用 subagent，baseline writer `019f44de-05a4-7661-a39b-6ee51015ae86`、current writer `019f44de-4f23-7ea0-90af-389fdadd3afd`、verifier `019f44df-77c1-7f31-886c-ed97e5c7fb58`，两项任务均 PASS，verifier 判定 current 无功能性回退。详细证据见 `tests/evidence/review-fix-1.5.4-delivery.md`。
