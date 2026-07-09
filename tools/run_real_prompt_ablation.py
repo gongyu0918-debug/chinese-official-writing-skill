@@ -1619,6 +1619,59 @@ CASES: list[PromptCase] = [
             },
         },
     ),
+    PromptCase(
+        id="P096",
+        kind="revise",
+        prompt="把普通叙述中的口语改成正式公文表达；引号内这句原话必须逐字保留：\u201c我觉得这个方案差不多能用，老板也挺关心。\u201d",
+        checks={
+            "file_terms": {
+                "chinese-official-writing/SKILL.md": [
+                    "普通叙述中的口语称谓和表达可以按正式文稿语体调整",
+                    "引号内、明确标注为原文/引语或要求逐字保留的内容按字面边界保留",
+                ],
+                "chinese-official-writing/references/proofreading-checklist.md": [
+                    "普通叙述中的口语称谓和表达可以按正式文稿语体调整",
+                    "按字面边界保留",
+                ],
+                "chinese-official-writing/references/official-style.md": [
+                    "`我觉得`：可按语境改为",
+                    "`差不多`：可改为",
+                ],
+            },
+        },
+    ),
+    PromptCase(
+        id="P097",
+        kind="revise",
+        prompt="顺一下这份情况说明，只输出改后正文，不附改动说明；缺少的联系人仍可在正文后短列待确认。",
+        checks={
+            "file_terms": {
+                "chinese-official-writing/references/workflow.md": [
+                    "用户要求只输出正文时，不附这类自证说明",
+                    "正文后的关键缺项提示仍按事实充分性规则处理",
+                    "不与自证说明混为一类",
+                ],
+                "chinese-official-writing/references/review-checklist.md": [
+                    "用户未要求只输出正文、只输出改后稿或不解释时",
+                    "正文后的关键缺项提示是否仍按事实充分性规则处理",
+                ],
+            },
+        },
+    ),
+    PromptCase(
+        id="P098",
+        kind="revise",
+        prompt="只用 prose_lint 做格式和结构风险扫描，不要自动改写稿件。",
+        checks={
+            "file_terms": {
+                "chinese-official-writing/references/final-review-layers.md": [
+                    "python scripts/prose_lint.py --format --structure <draft>",
+                    "`<draft>` 替换为待检查文件路径",
+                    "脚本只提示风险，不自动改写",
+                ],
+            },
+        },
+    ),
 ]
 
 

@@ -70,4 +70,4 @@
 
 ## 工具提示
 
-可使用 `scripts/prose_lint.py --format --structure` 扫描纯文本、Markdown 或提取出的 DOCX 文本。脚本只提示风险，不自动改写；不得把脚本命中当成不加判断的硬性清洗命令。
+可使用 `python scripts/prose_lint.py --format --structure <draft>` 扫描纯文本、Markdown 或提取出的 DOCX 文本，其中 `<draft>` 替换为待检查文件路径。脚本只提示风险，不自动改写；不得把脚本命中当成不加判断的硬性清洗命令。

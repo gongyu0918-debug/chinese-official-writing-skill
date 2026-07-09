@@ -18,6 +18,10 @@ def relative_files(root: Path) -> list[str]:
 
 
 class SkillBoundaryTests(unittest.TestCase):
+    def test_only_one_agent_handoff_entrypoint_remains(self) -> None:
+        self.assertTrue((ROOT / "AGENTS.md").is_file())
+        self.assertFalse((ROOT / "agent.md").exists())
+
     def test_canonical_skill_declares_trigger_and_exclusion_boundaries(self) -> None:
         text = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
 
@@ -317,6 +321,9 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assertIn("不新增原文没有交代的活动、依据、数据、成效或责任安排", workflow)
         self.assertIn("未新增原文外事实", workflow)
         self.assertIn("未新增原文外事实", checklist)
+        self.assertIn("用户要求只输出正文时，不附这类自证说明", workflow)
+        self.assertIn("正文后的关键缺项提示仍按事实充分性规则处理", workflow)
+        self.assertIn("用户未要求只输出正文、只输出改后稿或不解释时", checklist)
 
     def test_v140_mode_routing_material_mapping_and_format_bridge_are_documented(self) -> None:
         skill = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
@@ -718,6 +725,29 @@ class SkillBoundaryTests(unittest.TestCase):
         for term in ["错别字错词", "的地得", "量词", "病句", "数据一致性", "逻辑一致性"]:
             self.assertIn(term, proofreading)
         self.assertIn("不改变 `prose_lint.py` 为深度语法纠错器", proofreading)
+
+    def test_formalization_keeps_only_explicit_literal_boundaries_verbatim(self) -> None:
+        skill = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
+        proofreading = (
+            ROOT / "chinese-official-writing" / "references" / "proofreading-checklist.md"
+        ).read_text(encoding="utf-8")
+        style = (ROOT / "chinese-official-writing" / "references" / "official-style.md").read_text(
+            encoding="utf-8"
+        )
+
+        for text in [skill, proofreading]:
+            self.assertIn("普通叙述中的口语称谓和表达可以按正式文稿语体调整", text)
+            self.assertIn("引号内、明确标注为原文/引语或要求逐字保留的内容按字面边界保留", text)
+        self.assertIn("`我觉得`：可按语境改为", style)
+        self.assertIn("`差不多`：可改为", style)
+
+    def test_review_command_includes_interpreter_and_draft_path(self) -> None:
+        review = (
+            ROOT / "chinese-official-writing" / "references" / "final-review-layers.md"
+        ).read_text(encoding="utf-8")
+
+        self.assertIn("python scripts/prose_lint.py --format --structure <draft>", review)
+        self.assertIn("`<draft>` 替换为待检查文件路径", review)
 
     def test_ai_dedupe_prompt_fix_guidance_is_documented(self) -> None:
         skill = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")

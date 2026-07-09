@@ -305,6 +305,23 @@ class ProseLintStructureTests(unittest.TestCase):
 
 
 class ProseLintCliTests(unittest.TestCase):
+    def test_cli_is_read_only_even_for_quoted_colloquial_text(self) -> None:
+        script = ROOT / "chinese-official-writing" / "scripts" / "prose_lint.py"
+        with tempfile.TemporaryDirectory() as temp_dir:
+            draft = Path(temp_dir) / "quoted-source.md"
+            original = "原文引语：\u201c我觉得这个方案差不多能用，老板也挺关心。\u201d\n"
+            draft.write_text(original, encoding="utf-8")
+
+            subprocess.run(
+                [sys.executable, str(script), "--format", "--structure", str(draft)],
+                capture_output=True,
+                text=True,
+                encoding="utf-8",
+                check=False,
+            )
+
+            self.assertEqual(draft.read_text(encoding="utf-8"), original)
+
     def test_missing_file_reports_error_without_traceback(self) -> None:
         script = ROOT / "chinese-official-writing" / "scripts" / "prose_lint.py"
         missing = ROOT / "missing-for-prose-lint-test.md"
