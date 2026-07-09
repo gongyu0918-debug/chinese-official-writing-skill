@@ -145,6 +145,58 @@ class SkillBoundaryTests(unittest.TestCase):
             self.assertIn(term, cards)
         self.assertLess(len(cards.splitlines()), 80)
 
+    def test_light_route_is_terminal_until_an_explicit_escalation_condition(self) -> None:
+        skill = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
+        cards = (ROOT / "chinese-official-writing" / "references" / "task-route-cards.md").read_text(
+            encoding="utf-8"
+        )
+        playbooks = (ROOT / "chinese-official-writing" / "references" / "genre-playbooks.md").read_text(
+            encoding="utf-8"
+        )
+
+        self.assertIn("不因文种名称已知而自动预读下列全部长 reference", skill)
+        self.assertIn("以本页结束 reference 路由", cards)
+        self.assertIn("不因文种名称已知而继续预读", cards)
+        self.assertIn("每个文种小节都是可从 `SKILL.md` 直接进入的叶子路由", playbooks)
+        self.assertIn("不要求先完整读取 `workflow.md` 或 `genre-routing.md`", playbooks)
+        self.assertIn("不要把每节末尾的“补充读取”当成固定加载清单", playbooks)
+
+    def test_reference_links_form_an_acyclic_graph(self) -> None:
+        refs = ROOT / "chinese-official-writing" / "references"
+        graph: dict[str, set[str]] = {}
+        link_re = re.compile(r"`(?:references/)?([^`/]+\.md)`")
+        for source in refs.glob("*.md"):
+            targets = {
+                match.group(1)
+                for match in link_re.finditer(source.read_text(encoding="utf-8"))
+                if (refs / match.group(1)).is_file()
+            }
+            graph[source.name] = targets
+
+        visiting: set[str] = set()
+        visited: set[str] = set()
+
+        def visit(node: str, trail: tuple[str, ...]) -> None:
+            if node in visiting:
+                self.fail("reference cycle: " + " -> ".join((*trail, node)))
+            if node in visited:
+                return
+            visiting.add(node)
+            for target in graph.get(node, set()):
+                visit(target, (*trail, node))
+            visiting.remove(node)
+            visited.add(node)
+
+        for node in graph:
+            visit(node, ())
+
+        anti_ai = (refs / "anti-ai-patterns.md").read_text(encoding="utf-8")
+        review = (refs / "review-checklist.md").read_text(encoding="utf-8")
+        self.assertNotIn("`final-review-layers.md`", anti_ai)
+        self.assertNotIn("`review-checklist.md`", anti_ai)
+        self.assertNotIn("`final-review-layers.md`", review)
+        self.assertNotIn("`anti-ai-patterns.md`", review)
+
     def test_trigger_description_covers_reported_genres(self) -> None:
         text = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
 

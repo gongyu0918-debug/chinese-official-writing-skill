@@ -1672,6 +1672,44 @@ CASES: list[PromptCase] = [
             },
         },
     ),
+    PromptCase(
+        id="P099",
+        kind="create",
+        prompt="根据已给三项事实写一份200字以内的简短情况说明；轻量卡可以覆盖，不要预读整套长 reference。",
+        checks={
+            "file_terms": {
+                "chinese-official-writing/SKILL.md": [
+                    "命中 `references/task-route-cards.md` 且卡片能够覆盖任务时",
+                    "不因文种名称已知而自动预读下列全部长 reference",
+                ],
+                "chinese-official-writing/references/task-route-cards.md": [
+                    "以本页结束 reference 路由",
+                    "不因文种名称已知而继续预读",
+                ],
+            },
+        },
+    ),
+    PromptCase(
+        id="P100",
+        kind="create",
+        prompt="写会议纪要时只进入对应 playbook 小节；除非任务复杂或文种不清，不要固定预读 workflow、genre-routing 和整套复核资料。",
+        checks={
+            "file_terms": {
+                "chinese-official-writing/references/genre-playbooks.md": [
+                    "每个文种小节都是可从 `SKILL.md` 直接进入的叶子路由",
+                    "不要求先完整读取 `workflow.md` 或 `genre-routing.md`",
+                    "不要把每节末尾的“补充读取”当成固定加载清单",
+                ],
+                "chinese-official-writing/references/anti-ai-patterns.md": [
+                    "语言模式叶子资料",
+                    "不负责重新启动总审流程或加载整套执行清单",
+                ],
+                "chinese-official-writing/references/review-checklist.md": [
+                    "不回读总审层级或反 AI 资料",
+                ],
+            },
+        },
+    ),
 ]
 
 
