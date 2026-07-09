@@ -6,6 +6,7 @@ import os
 from pathlib import Path
 import sys
 import unittest
+from unittest import mock
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -164,9 +165,13 @@ class PromptfooProviderTests(unittest.TestCase):
     def test_ai_compute_genre_loads_only_relevant_extra_reference(self) -> None:
         refs = provider._reference_paths_for_genres(["算力资源采购方案"])
 
+        self.assertEqual(refs[0], "SKILL.md")
+        self.assertIn("references/task-route-cards.md", refs)
         self.assertIn("references/genre-playbooks.md", refs)
         self.assertIn("references/ai-compute-docs.md", refs)
-        self.assertIn("references/genre-checklist.md", refs)
+        self.assertIn("references/argument-chains.md", refs)
+        self.assertNotIn("references/genre-checklist.md", refs)
+        self.assertNotIn("references/anti-ai-patterns.md", refs)
         self.assertNotIn("references/format-gbt9704.md", refs)
 
     def test_coordination_genres_load_argument_chains(self) -> None:
@@ -174,11 +179,46 @@ class PromptfooProviderTests(unittest.TestCase):
 
         self.assertIn("references/genre-playbooks.md", refs)
         self.assertIn("references/argument-chains.md", refs)
+        self.assertIn("references/task-route-cards.md", refs)
 
     def test_plain_unknown_genre_does_not_load_playbook(self) -> None:
         refs = provider._reference_paths_for_genres(["通用材料"])
 
-        self.assertNotIn("references/genre-playbooks.md", refs)
+        self.assertEqual(refs, ["SKILL.md", "references/task-route-cards.md"])
+
+    def test_common_short_genres_do_not_preload_the_full_reference_stack(self) -> None:
+        refs = provider._reference_paths_for_genres(["通知", "请示", "报告", "说明", "方案"])
+
+        self.assertIn("references/task-route-cards.md", refs)
+        self.assertIn("references/argument-chains.md", refs)
+        self.assertIn("references/official-style.md", refs)
+        self.assertNotIn("references/genre-routing.md", refs)
+        self.assertNotIn("references/handling-elements.md", refs)
+        self.assertNotIn("references/genre-checklist.md", refs)
+        self.assertNotIn("references/formal-addressing.md", refs)
+        self.assertNotIn("references/anti-ai-patterns.md", refs)
+
+    def test_skill_context_is_complete_and_within_eval_budget(self) -> None:
+        context = provider._load_skill_context(ROOT, ["通知", "请示", "报告", "说明", "方案"])
+        canonical = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
+
+        self.assertIn(canonical, context)
+        self.assertNotIn("[truncated]", context)
+        self.assertLessEqual(len(context), provider.MAX_SKILL_CONTEXT_CHARS)
+
+    def test_missing_selected_reference_fails_instead_of_skipping(self) -> None:
+        with mock.patch.object(
+            provider,
+            "_reference_paths_for_genres",
+            return_value=["SKILL.md", "references/missing-route.md"],
+        ):
+            with self.assertRaisesRegex(provider.ProviderError, "selected skill reference does not exist"):
+                provider._load_skill_context(ROOT, ["通用材料"])
+
+    def test_context_budget_failure_is_explicit_instead_of_truncating(self) -> None:
+        with mock.patch.object(provider, "MAX_SKILL_CONTEXT_CHARS", 10):
+            with self.assertRaisesRegex(provider.ProviderError, "selected skill context exceeds 10 characters"):
+                provider._load_skill_context(ROOT, ["通用材料"])
 
     def test_ai_compute_markers_cover_model_platform_language(self) -> None:
         for genre in ["模型服务技术需求", "智算中心建设方案", "本地化部署成本说明", "AI平台推理服务", "SLA并发保障方案"]:

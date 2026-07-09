@@ -27,11 +27,7 @@ from typing import Any
 
 GENRE_REFERENCES: dict[str, list[str]] = {
     "default": [
-        "references/genre-routing.md",
-        "references/handling-elements.md",
-        "references/genre-checklist.md",
-        "references/formal-addressing.md",
-        "references/anti-ai-patterns.md",
+        "references/task-route-cards.md",
     ],
     "argument": [
         "references/argument-chains.md",
@@ -41,11 +37,11 @@ GENRE_REFERENCES: dict[str, list[str]] = {
         "references/genre-playbooks.md",
     ],
     "ai_compute": [
-        "references/argument-chains.md",
         "references/ai-compute-docs.md",
-        "references/anti-ai-patterns.md",
     ],
 }
+
+MAX_SKILL_CONTEXT_CHARS = 50_000
 
 CHAIN_GENRES = {
     "请示",
@@ -67,19 +63,25 @@ CHAIN_GENRES = {
     "实施方案",
     "建设方案",
     "审查材料",
+    "说明",
+    "情况说明",
+    "申请",
 }
 
-PLAYBOOK_GENRES = CHAIN_GENRES | {
-    "情况说明",
-    "说明",
-    "申请",
-    "通告",
-    "公告",
-    "通报",
+PLAYBOOK_GENRES = {
+    "会议纪要",
     "讲话稿",
     "致辞",
     "述职报告",
+    "工作要点",
+    "工作总结",
+    "调研报告",
+    "可研报告",
+    "实施方案",
+    "建设方案",
     "研究报告",
+    "采购公告",
+    "审查材料",
 }
 
 AI_COMPUTE_MARKERS = (
@@ -139,11 +141,8 @@ def _cache_dir(config: dict[str, Any]) -> Path:
     return repo_root / "output" / "promptfoo" / "cache"
 
 
-def _read_text(path: Path, max_chars: int = 12000) -> str:
-    text = path.read_text(encoding="utf-8", errors="replace")
-    if len(text) <= max_chars:
-        return text
-    return text[:max_chars] + "\n[truncated]\n"
+def _read_text(path: Path) -> str:
+    return path.read_text(encoding="utf-8", errors="replace")
 
 
 def _load_cases(config: dict[str, Any]) -> list[dict[str, Any]]:
@@ -199,6 +198,7 @@ def _reference_paths_for_genres(genres: list[str]) -> list[str]:
     if any(genre in CHAIN_GENRES for genre in genres):
         paths.extend(GENRE_REFERENCES["argument"])
     if any(_is_ai_compute(genre) for genre in genres):
+        paths.extend(GENRE_REFERENCES["argument"])
         paths.extend(GENRE_REFERENCES["ai_compute"])
 
     seen: set[str] = set()
@@ -216,10 +216,14 @@ def _load_skill_context(repo_root: Path, genres: list[str]) -> str:
     for relative in _reference_paths_for_genres(genres):
         path = root / relative
         if not path.exists():
-            continue
-        limit = 9000 if relative == "SKILL.md" else 7000
-        parts.append(f"## {relative}\n{_read_text(path, limit)}")
-    return "\n\n".join(parts)
+            raise ProviderError(f"selected skill reference does not exist: {path}")
+        parts.append(f"## {relative}\n{_read_text(path)}")
+    context = "\n\n".join(parts)
+    if len(context) > MAX_SKILL_CONTEXT_CHARS:
+        raise ProviderError(
+            f"selected skill context exceeds {MAX_SKILL_CONTEXT_CHARS} characters: {len(context)}"
+        )
+    return context
 
 
 def _case_id(case: dict[str, Any]) -> str:
@@ -468,7 +472,7 @@ def _cache_key(mode: str, cases: list[dict[str, Any]], config: dict[str, Any]) -
         "cases": [case.get("vars", {}) for case in cases],
         "refs": refs,
         "ref_hashes": ref_hashes,
-        "provider_version": 4,
+        "provider_version": 5,
         "stub": _use_stub(config),
         "command_configured": bool(_agent_command_template(config)),
     }
