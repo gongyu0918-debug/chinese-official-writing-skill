@@ -299,3 +299,13 @@ Hermes 社区借鉴候选 `2713e27` 的处理结论：
 本轮拒绝继续压缩 `SKILL.md` 硬边界入口、拆分 `workflow.md` 事实充分性长段，原因是此前 `attention-compression-ab-20260709.md`、`split-drafting-rules-ab-20260709.md`、`prompt-density-community-review-20260709.md` 和 `reference-density-ab-rollback-20260709.md` 均记录过弱模型真实 A/B 回退。后续不要在这些入口和事实充分性长段上叠补丁；如要继续优化，应优先做加载路径或二次修改链路实验。
 
 验证：定向 unittest `43/43` 通过；与当前 1.5.4 基线 `48f3190b704e0486f09e5b44f4c6a1e3efc91bcd` 的确定性消融为 baseline `95/95`、current `95/95`；真实写稿 A/B 使用 subagent，baseline writer `019f44de-05a4-7661-a39b-6ee51015ae86`、current writer `019f44de-4f23-7ea0-90af-389fdadd3afd`、verifier `019f44df-77c1-7f31-886c-ed97e5c7fb58`，两项任务均 PASS，verifier 判定 current 无功能性回退。详细证据见 `tests/evidence/review-fix-1.5.4-delivery.md`。
+
+## 1.5.4 深度 review 进行中记录
+
+2026-07-09 按用户新目标进入深度 review 轮。本轮规则：使用隔离 subagent 冷审，不复用旧 review 结论；未经复现不采信单次 finding；只有三次以上共性问题才进入最小修复；禁止脚本硬清洗、一例一修和默认阻断；每次实质 prompt/reference/script 修改后必须与 1.5.4 基线做确定性消融和真实写稿 A/B。当前基线固定为 `output\release-baselines\local-1.5.4-48f3190`，当前工作树起点为 `42e7b08`。
+
+当前已启动三条只读隔离任务：冷审 reviewer `019f44f2-c729-7ec2-9962-3343180d5f9d` 只看当前源文件、不读历史证据；baseline writer `019f44f3-5ed3-7591-903c-405227879a94` 读取 1.5.4 基线 skill；current writer `019f44f3-d46a-7ad1-b47e-1703ec9acd0b` 读取当前候选 skill。写稿 A/B 覆盖 description 中声明的 30 类文种/正式材料，每类 1 个真实用户式短 prompt。后续必须由独立 verifier 只看 prompt 和两组输出判定回退风险，不能由主上下文自行判定。
+
+本轮冷审只接受一项最小修复：将 `references/workflow.md` 中“事实充分性软处理”超长单段拆成短 bullet，保持原语义，不新增硬阻断、脚本清洗、lint 规则或默认联网。首轮真实 A/B 达到三次以上共性问题，允许尝试该最小修复；post-fix 继续用 30 类 prompt 做 1.5.4 baseline/current 写稿 A/B，verifier `019f4500-f7ae-7462-a43d-ad38f4c4ac34` 判定总体 `WARN`，但未出现 current 独有且达到三次以上的同类功能性回退，建议保留拆分、不回滚、不继续补丁式追加规则。
+
+验证：定向 unittest `43/43` 通过；全量 unittest `107/107` 通过；与 1.5.4 基线的确定性消融为 baseline `95/95`、current `95/95`；promptfoo smoke `20/20` 通过；真实样文回归 skill 差异率 `0.00%`、关键词命中率 `100.00%`，但仍有占位词风险样本需人工复核；quick_validate 通过；`git diff --check` 通过且仅有 Windows 换行提示。详细证据见 `tests/evidence/deep-review-1.5.4-workflow-split.md`。
