@@ -1734,6 +1734,25 @@ CASES: list[PromptCase] = [
             },
         },
     ),
+    PromptCase(
+        id="P103",
+        kind="revise",
+        prompt="在 OpenClaw 中把请示顺稿，只输出正文，不解释；主送机关和成文日期没给，不要在正文外附待确认事项。",
+        checks={
+            "file_terms": {
+                "openclaw/skills/chinese_official_writing/SKILL.md": [
+                    "未同时允许文后提示时，不附任何正文外说明或提示",
+                    "缺项不补造，也不在正文中解释“未提供”",
+                    "缺项按第5条的交付命令处理",
+                    "只有用户允许文后提示时",
+                ],
+                "tools/sync_adapters.py": [
+                    "未同时允许文后提示时，不附任何正文外说明或提示",
+                    "缺项按第5条的交付命令处理",
+                ],
+            },
+        },
+    ),
 ]
 
 

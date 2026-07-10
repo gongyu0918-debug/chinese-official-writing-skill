@@ -311,10 +311,18 @@ Hermes 社区借鉴候选 `2713e27` 的处理结论：
 
 验证：定向 unittest `43/43` 通过；全量 unittest `107/107` 通过；与 1.5.4 基线的确定性消融为 baseline `95/95`、current `95/95`；promptfoo smoke `20/20` 通过；真实样文回归 skill 差异率 `0.00%`、关键词命中率 `100.00%`，但仍有占位词风险样本需人工复核；quick_validate 通过；`git diff --check` 通过且仅有 Windows 换行提示。详细证据见 `tests/evidence/deep-review-1.5.4-workflow-split.md`。
 
-## 1.5.6 发布阻断记录
+## 1.5.6 前置阻断、finalizer 回滚和发布裁决
 
-2026-07-10 以 GitHub `v1.5.5` 为固定发行基线补做 reference 路由、评测 provider、只输出正文边界和真实长文测试。已保留的本地候选改动通过全量 unittest `121/121`、确定性消融 current `101/101`、Promptfoo smoke `20/20` 和 quick_validate；但真实 `gpt-5.6-luna` 写稿在 600—800 字、900—1100 字及 3000—3500 字多附件合稿中可复现“现有材料没有/未说明”等材料读取旁白，独立 verifier 按用户最新“一次出现即阻断”口径判定 `FAIL`。该问题在 `v1.5.5` 基线也存在，不是本轮候选独有，但仍阻断新版本发布。
+2026-07-10 以 GitHub `v1.5.5` 为固定发行基线补做 reference 路由、评测 provider、只输出正文边界和真实长文测试。已保留的本地候选改动通过全量 unittest `121/121`、确定性消融 current `101/101`、Promptfoo smoke `20/20` 和 quick_validate；但真实 `gpt-5.6-luna` 写稿在 600—800 字、900—1100 字及 3000—3500 字多附件合稿中可复现“现有材料没有/未说明”等材料读取旁白，独立 verifier 按当时“一次出现即阻断”的口径判定 `FAIL`。该问题在 `v1.5.5` 基线也存在，不是本轮候选独有，因此该段只记录阶段性暂停发布的历史判断。
 
-先后尝试的明示禁令、业务对象状态改写、静默纯净检查和单次静默净稿四种 prompt-only 候选均未在长文中稳定解决，已全部回滚；不要在这些失败候选上继续叠同义 prompt。当前版本仍为 `1.5.5`，未创建 `v1.5.6` tag，未推送 GitHub，也未调用 ClawHub 或 SkillHub 发布。详细证据见 `tests/evidence/review-reference-routing-1.5.5-followup-blocked.md`。
+先后尝试的明示禁令、业务对象状态改写、静默纯净检查和单次静默净稿四种 prompt-only 候选均未在长文中稳定解决，已全部回滚；不要在这些失败候选上继续叠同义 prompt。该阶段版本仍为 `1.5.5`，没有创建 `v1.5.6` tag，也没有调用 ClawHub 或 SkillHub 发布。详细证据见 `tests/evidence/review-reference-routing-1.5.5-followup-blocked.md`。
 
-2026-07-10 继续固定 `v1.5.2`、`v1.5.3`、`v1.5.4`、`v1.5.5` 和本轮起点做版本追溯、真实 Luna 写稿 A/B、`workflow.md` 拆分因果消融及独立净稿实验。`v1.5.2` 已可复现材料旁白，canonical Markdown 此后没有缩短；受控交换 workflow 的结果不支持“拆段导致旁白”的因果结论。父级显式编排第二个 cleaner agent 时 6 篇清稿均由独立 verifier 判定通过，但把按需 cleaner 路由写入 canonical skill 后，真实 writer 未调用子代理，候选旁白密度由本轮起点的每千字 `1.79` 升至 `2.16`，并发生一次 `拟先` 到 `考虑先` 的语气漂移。两名 blind verifier 都判候选和基线为发布阻断，因此产品改动、临时 reference、测试和 P102 已全部回滚，只保留证据。回滚后定向 unittest `86/86`、全量 `121/121`、本轮起点消融双方 `101/101`、`v1.5.5` 对比 current `101/101`、Promptfoo smoke `20/20` 通过。当前仍为 `1.5.5`，不得发布 `1.5.6`。详细证据见 `tests/evidence/material-narration-version-ab-and-cleaner-rollback-20260710.md`。
+2026-07-10 继续固定 `v1.5.2`、`v1.5.3`、`v1.5.4`、`v1.5.5` 和本轮起点做版本追溯、真实 Luna 写稿 A/B、`workflow.md` 拆分因果消融及独立净稿实验。`v1.5.2` 已可复现材料旁白，canonical Markdown 此后没有缩短；受控交换 workflow 的结果不支持“拆段导致旁白”的因果结论。父级显式编排第二个 cleaner agent 时 6 篇清稿均由独立 verifier 判定通过，但把按需 cleaner 路由写入 canonical skill 后，真实 writer 未调用子代理，候选旁白密度由本轮起点的每千字 `1.79` 升至 `2.16`，并发生一次 `拟先` 到 `考虑先` 的语气漂移。两名 blind verifier 都判候选和基线为发布阻断，因此产品改动、临时 reference、测试和 P102 已全部回滚，只保留证据。回滚后定向 unittest `86/86`、全量 `121/121`、本轮起点消融双方 `101/101`、`v1.5.5` 对比 current `101/101`、Promptfoo smoke `20/20` 通过。该段同样是 finalizer 实验前的阶段性暂停记录，详细证据见 `tests/evidence/material-narration-version-ab-and-cleaner-rollback-20260710.md`。
+
+后续按“确定性检测 + 独立二次修订 + 不变量消融”又隔离测试三种 finalizer 实现。主 Luna A/B/C 中 C 可把确定性旁白命中降为 0，并达到 10/10 场景通过；但两轮 GPT-5.5 强模型复测和独立 cold review 均发现 C 会新增未提供的培训、身份、采购或审批事实，且发生因果与状态外扩，违反“不新增事实”和不变量 100% 的验收条件。因此三种 finalizer、临时 validator、约束包、修订编排和相关测试均完整排除，不进入 canonical skill、reference、正式测试或三平台发行包；pre-finalizer 基线固定为 `a444c51b70c168a0f3c8e6e360d403316630e2d3`。
+
+最终发布裁决：保留 `a444c51` 之前已验证的字面引用边界、只输出正文优先级、渐进式 reference 路由、评测 provider 和发布链修复；长文偶发材料读取旁白作为继承自 `v1.5.5` 的剩余风险记录，不宣称已解决。finalizer 连续三种实现未达到语义不变量门槛后，不再继续向 prompt 堆同义禁令，也不再阻断这些独立正向修复进入 `1.5.6`；发布仍须通过版本同步、双基线消融、真实 writer/verifier、全量测试和三平台实况核验。
+
+发布前又用 5 个独立 Luna writer 对真实 pre-finalizer 稿件测试用户自然语言二次提醒，覆盖 600—800 字阶段报告、900—1100 字调研报告、3000—3300 字多附件可研、300—450 字培训简报和引语/拟办状态保护；另用 GPT-5.5 与 GPT-5.6 Sol 独立盲审。二次提醒可清除大部分可见旁白，但不能视为稳定解决：S1 两版分别 412、538 字，均低于下限，后一版还出现异常残片“屾讯”；S3 普通版 2663 字不足，明确篇幅版 3190 字但有程序性泛化和语义空转；S5 以近义重复凑到 300 字；只有 S7 稳定通过，S2 为 PASS/WARN 分歧。因此二次自然语言提醒只作为用户可尝试的修订方式，不作为默认兜底、发布能力承诺或“旁白已解决”证据；不再为此追加 prompt。详细证据见 `tests/evidence/release-1.5.6.md`。
+
+最终 cold review `019f4bbd-a09f-7cf0-add1-01e405de5c92` 发现并复现 OpenClaw 压缩入口没有同步“只输出正文优先”，规则 5 和规则 13 仍可能无条件追加正文外缺项。已只在 `tools/sync_adapters.py` 的 OpenClaw 摘要模板补齐交付优先级，并增加 unit 断言和 P103 消融守卫；canonical prompt 未改。修复后 `v1.5.5` 为 95/102、pre-finalizer 为 101/102、current 为 102/102，复核代理确认 `resolved=true`、`publish_blocking=false`。

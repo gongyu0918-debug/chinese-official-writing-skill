@@ -843,6 +843,10 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assertIn("数据冲突不得默认就高", text)
         self.assertIn("references/format-gbt9704.md", text)
         self.assertIn("正式 Word 输出前不得残留 Markdown", text)
+        self.assertIn("未同时允许文后提示时，不附任何正文外说明或提示", text)
+        self.assertIn("缺项不补造，也不在正文中解释“未提供”", text)
+        self.assertIn("缺项按第5条的交付命令处理", text)
+        self.assertIn("只有用户允许文后提示时", text)
         self.assertIn("包内 `references/`", text)
         self.assertNotIn("canonical `SKILL.md` 的“硬边界”段", text)
 
