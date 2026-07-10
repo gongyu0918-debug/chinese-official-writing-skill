@@ -81,4 +81,11 @@ writer：
 
 ## 发布状态
 
-发布 commit、tag、GitHub release、ClawHub 和 SkillHub 实况将在发布完成后回写。
+- 发布 commit：`7e485700a49a924abf973656d2bb0e9630054890`；annotated tag `v1.5.6` 解引用后指向同一 commit。
+- GitHub：`origin/main` 在发布时指向 `7e485700a49a924abf973656d2bb0e9630054890`；release `chinese-official-writing 1.5.6` 已公开，`isDraft=false`、`isPrerelease=false`，URL 为 `https://github.com/gongyu0918-debug/chinese-official-writing-skill/releases/tag/v1.5.6`。
+- ClawHub：已发布 `chinese-official-writing@1.5.6`，`versionId=k97evzead87wszaykz7paxyma18a97mh`，19 个文件，fingerprint `c0b78f3735d561b2f8669da1eb6f231d0463f073971448d2e67a06ae1c8b982f`。发布后 `latestVersion.version=1.5.6`、`tags.latest=1.5.6`、`displayName=中文公文写作`、moderation `clean`；版本级 security 仍为 `pending`、`hasWarnings=false`。
+- ClawHub 元数据残留：PowerShell 将未整体引用的 `--tags=chinese,official-document,writing,gongwen,ai-compute` 展开成数组，远端新增合并 key `chinese official-document writing gongwen ai-compute=1.5.6`，五个单独 tag 仍指向 1.5.5。用单引号包住整个参数的 dry-run 已确认传参正确，但同版本不可重发；登录后的 Dashboard Settings 又返回 `Settings unavailable`，因此没有删除或重发 1.5.6。该问题不影响 `latest`、安装包内容或 moderation，作为非阻断发布元数据风险保留；下一版本使用整个单一 token `'--tags=chinese,official-document,writing,gongwen,ai-compute'`。
+- SkillHub：临时发布包 `output/skillhub-release-1.5.6/publish-package` 共 19 个文件，无 `__pycache__` 或 `.pyc`；dry-run 返回 `slug=chinese-official-writing`、`version=1.5.6`。正式发布返回 `ok=true`、`skillId=70149`、`versionId=133850`、fingerprint `5a9824ecc1442c548033b0b82254cf7e9b69741bc9de12a0f43335e74c6ea64a`、`tags.latest=1.5.6`，`reviewStatus/securityScanStatus/contentAuditStatus=pending`。
+- SkillHub 公开状态：精确项目仍为 `https://skillhub.cn/skills/chinese-official-writing`，summary 和蓝底 Q 版 `iconUrl` 均保持；公开 `latestVersion.version` 与搜索索引暂仍为 1.5.5。1.5.6 已提交但尚未完成异步审核切换，当前不描述为公开 live。
+
+发布结论：GitHub 和 ClawHub 1.5.6 已公开；SkillHub 1.5.6 已提交到唯一正确项目并等待审核。finalizer 未进入任何发布包，旁白、自我解释和长稿篇幅风险仍按上节记录，不宣称已由自然语言二次提醒稳定解决。
