@@ -280,6 +280,26 @@ class PromptfooProviderTests(unittest.TestCase):
 
         self.assertNotEqual(key_a, key_b)
 
+    def test_default_timeout_matches_cache_and_model_execution(self) -> None:
+        case = {"vars": {"case_id": "C001", "genre": "通知", "scenario": "报送材料", "task": "任务"}}
+        config = {
+            "basePath": str(ROOT / "evals" / "official-writing"),
+            "repoRoot": str(ROOT),
+            "commandTemplate": "agent {prompt}",
+        }
+
+        default_key = provider._cache_key("baseline", [case], config)
+        explicit_key = provider._cache_key(
+            "baseline",
+            [case],
+            {**config, "timeoutSeconds": provider.DEFAULT_TIMEOUT_SECONDS},
+        )
+        with mock.patch.object(provider, "call_model_prompt", return_value=("正文", 0, 2)) as call:
+            provider._run_single("baseline", case, config)
+
+        self.assertEqual(default_key, explicit_key)
+        self.assertEqual(call.call_args.args[2], provider.DEFAULT_TIMEOUT_SECONDS)
+
     def test_ai_compute_markers_cover_model_platform_language(self) -> None:
         for genre in ["模型服务技术需求", "智算中心建设方案", "本地化部署成本说明", "AI平台推理服务", "SLA并发保障方案"]:
             with self.subTest(genre=genre):

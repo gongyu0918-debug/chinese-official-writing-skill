@@ -49,6 +49,7 @@ GENRE_REFERENCES: dict[str, list[str]] = {
 }
 
 MAX_SKILL_CONTEXT_CHARS = 50_000
+DEFAULT_TIMEOUT_SECONDS = 720
 
 CHAIN_GENRES = {
     "请示",
@@ -511,7 +512,7 @@ def _cache_key(mode: str, cases: list[dict[str, Any]], config: dict[str, Any]) -
             _agent_command_template(config).encode("utf-8")
         ).hexdigest(),
         "batch_size": config.get("batchSize", 10),
-        "timeout_seconds": config.get("timeoutSeconds", 720),
+        "timeout_seconds": config.get("timeoutSeconds", DEFAULT_TIMEOUT_SECONDS),
         "retries": config.get("retries", 1),
     }
     digest = hashlib.sha256(json.dumps(payload, ensure_ascii=False, sort_keys=True).encode("utf-8")).hexdigest()
@@ -534,7 +535,7 @@ def _run_batch(mode: str, cases: list[dict[str, Any]], config: dict[str, Any]) -
         return {_case_id(case): _stub_draft(mode, case) for case in cases}
 
     repo_root = _repo_root(config)
-    timeout = int(config.get("timeoutSeconds", 600))
+    timeout = int(config.get("timeoutSeconds", DEFAULT_TIMEOUT_SECONDS))
     retries = int(config.get("retries", 1))
     prompt = _skill_prompt(cases, config) if mode == "skill" else _baseline_prompt(cases)
     raw, code, _prompt_chars = call_model_prompt(prompt, repo_root, timeout, config=config, retries=retries)
@@ -550,7 +551,7 @@ def _run_single(mode: str, case: dict[str, Any], config: dict[str, Any]) -> str:
         return _stub_draft(mode, case)
 
     repo_root = _repo_root(config)
-    timeout = int(config.get("timeoutSeconds", 600))
+    timeout = int(config.get("timeoutSeconds", DEFAULT_TIMEOUT_SECONDS))
     retries = int(config.get("retries", 1))
     prompt = _single_prompt(mode, case, config)
     raw, code, _prompt_chars = call_model_prompt(prompt, repo_root, timeout, config=config, retries=retries)
