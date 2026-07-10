@@ -29,7 +29,7 @@ TARGETS = {
 
 def versioned_text(text: str) -> str:
     text = re.sub(r"chinese-official-writing@\d+\.\d+\.\d+", f"chinese-official-writing@{VERSION}", text)
-    text = re.sub(r"--version\s+\d+\.\d+\.\d+", f"--version {VERSION}", text)
+    text = re.sub(r"--version(?:\s+|=)\d+\.\d+\.\d+", f"--version={VERSION}", text)
     text = re.sub(
         r"^\d+\.\d+\.\d+ \(source: server release metadata and skill frontmatter\)",
         f"{VERSION} (source: server release metadata and skill frontmatter)",

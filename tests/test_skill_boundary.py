@@ -275,6 +275,16 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assertNotIn("### Codex / OpenAI Skill", text)
         self.assertNotIn("npm run eval:official-writing", text)
 
+    def test_openclaw_publish_command_uses_current_cli_and_safe_windows_flags(self) -> None:
+        readme = (ROOT / "openclaw" / "README.md").read_text(encoding="utf-8")
+        sync_script = (ROOT / "tools" / "sync_adapters.py").read_text(encoding="utf-8")
+
+        self.assertIn("clawhub skill publish", readme)
+        for flag in ["--slug=chinese-official-writing", "--name=中文公文写作", "--version=", "--tags=chinese,"]:
+            self.assertIn(flag, readme)
+        self.assertNotIn("clawhub publish ", readme)
+        self.assertIn('f"--version={VERSION}"', sync_script)
+
     def test_readme_does_not_route_to_prompt_only_chatbot_repo(self) -> None:
         readme = (ROOT / "README.md").read_text(encoding="utf-8")
 
@@ -334,7 +344,7 @@ class SkillBoundaryTests(unittest.TestCase):
         skill_version = re.search(r'version: "([^"]+)"', skill)
         sync_version = re.search(r'VERSION = "([^"]+)"', sync_script)
         readme_version = re.search(r"chinese-official-writing@(\d+\.\d+\.\d+)", readme)
-        openclaw_publish_version = re.search(r"--version\s+(\d+\.\d+\.\d+)", openclaw_readme)
+        openclaw_publish_version = re.search(r"--version(?:\s+|=)(\d+\.\d+\.\d+)", openclaw_readme)
         marketplace_version = re.search(r"chinese-official-writing@(\d+\.\d+\.\d+)", marketplace_readme)
         skill_card_version = re.search(r"^(\d+\.\d+\.\d+) \(source: server release metadata", skill_card, re.M)
 
