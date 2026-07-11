@@ -330,3 +330,9 @@ Hermes 社区借鉴候选 `2713e27` 的处理结论：
 最终 cold review `019f4bbd-a09f-7cf0-add1-01e405de5c92` 发现并复现 OpenClaw 压缩入口没有同步“只输出正文优先”，规则 5 和规则 13 仍可能无条件追加正文外缺项。已只在 `tools/sync_adapters.py` 的 OpenClaw 摘要模板补齐交付优先级，并增加 unit 断言和 P103 消融守卫；canonical prompt 未改。修复后 `v1.5.5` 为 95/102、pre-finalizer 为 101/102、current 为 102/102，复核代理确认 `resolved=true`、`publish_blocking=false`。
 
 发布完成：发布 commit/tag 为 `7e485700a49a924abf973656d2bb0e9630054890`。GitHub main、tag 和 release 已公开；ClawHub 1.5.6 已公开且 moderation `clean`；SkillHub 已向精确项目提交 1.5.6，返回 `skillId=70149`、`versionId=133850` 和 `tags.latest=1.5.6`，但公开 latest/search 仍为 1.5.5，三项审核 pending。详细命令、测试矩阵、finalizer 拒绝证据、自然语言二次修改结论和平台字段见 `tests/evidence/release-1.5.6.md`。
+
+## 1.5.6 后续 span-only finalizer 实验
+
+2026-07-11 在被忽略的 `output/finalizer-experiments/attempt4/` 实现“结构化约束包 -> 模式感知检测 -> 独立 claim verifier -> 一次精确 span patch -> 不变量复核 -> 快照回滚”原型。实际 `v1.5.6` tag 为 `7e485700a49a924abf973656d2bb0e9630054890`，pre-experiment HEAD 为 `8a0144d1f359e3f77e1c1618f87a06b79e5d7f4d`；不要沿用计划中已失真的 `d6414a3` tag SHA。
+
+20 篇审校标注只用于校准线索；Luna A/B 各 24 篇、GPT-5.5 16 篇及 GPT-5.5/GPT-5.6 Sol 双盲复核均未证明 C 稳定优于 B。两项共识安全 patch 在全量复核后仍失败，故接受数为 0，C 的 24 篇正文全部字节级回退为 B。H09 多轮和 H10 compact 后快照恢复均精确通过，说明宿主快照可用，但不能把它表述为模型记忆能力。该 finalizer 不进入 canonical skill、reference、正式测试或发行包；不要在此结果上追加全文重写、通用 cleaner 或同义 prompt。详细证据见 `tests/evidence/finalizer-span-patch-experiment-20260711.md`。
