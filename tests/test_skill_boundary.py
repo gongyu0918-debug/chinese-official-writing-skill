@@ -391,6 +391,20 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assertIn("用户未要求只输出正文、只输出改后稿或不解释时", checklist)
         self.assertIn("用户只要求正文且未同时允许文后提示时", checklist)
 
+    def test_staged_review_workflow_remains_intact(self) -> None:
+        skill = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
+        workflow = (ROOT / "chinese-official-writing" / "references" / "workflow.md").read_text(encoding="utf-8")
+        checklist = (ROOT / "chinese-official-writing" / "references" / "review-checklist.md").read_text(
+            encoding="utf-8"
+        )
+
+        self.assertIn("小段写完先审，小节写完再审，全文合并后做总审", skill)
+        self.assertIn("每个小节完成后先复核", workflow)
+        self.assertIn("全文合并后按 `final-review-layers.md` 做总审", workflow)
+        self.assertIn("用于段落、小节和全文交付前核对", checklist)
+        for rejected_rule in ["小节完成后不另行", "最多局部修订一次", "只执行一次"]:
+            self.assertNotIn(rejected_rule, skill + workflow + checklist)
+
     def test_v140_mode_routing_material_mapping_and_format_bridge_are_documented(self) -> None:
         skill = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
         workflow = (ROOT / "chinese-official-writing" / "references" / "workflow.md").read_text(encoding="utf-8")
