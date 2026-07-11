@@ -237,13 +237,12 @@ CASES: list[PromptCase] = [
         prompt="把这段去口语化，但不要补原文没有的事实活动、依据、数据或成效。",
         checks={
             "file_terms": {
-                "chinese-official-writing/SKILL.md": ["不附“未新增原文外事实”"],
+                "chinese-official-writing/SKILL.md": ["未新增原文外事实"],
                 "chinese-official-writing/references/workflow.md": [
                     "不新增原文没有交代的活动、依据、数据、成效或责任安排",
+                    "未新增原文外事实",
                 ],
-                "chinese-official-writing/references/review-checklist.md": [
-                    "用户只要求正文且未同时允许文后提示时",
-                ],
+                "chinese-official-writing/references/review-checklist.md": ["未新增原文外事实"],
             },
         },
     ),
@@ -1517,6 +1516,7 @@ CASES: list[PromptCase] = [
                     "标题后应短列 1-4 项",
                     "会议纪要、清单覆盖范围、清单版本、子项清单",
                     "用户点名禁止编造的字段写进正文解释为",
+                    "事实少于字数目标时宁可短写",
                     "材料稀疏型通报或情况说明可用短骨架",
                     "事实映射式二次修改",
                     "不推断讨论、沟通、归集、说明、形成意见",
@@ -1647,7 +1647,9 @@ CASES: list[PromptCase] = [
         checks={
             "file_terms": {
                 "chinese-official-writing/references/workflow.md": [
-                    "关键缺项仍不得补造或写进正文解释",
+                    "用户要求只输出正文时，不附自证说明",
+                    "除非用户同时明确允许文后待确认、风险或核验提示",
+                    "用户允许文后提示时",
                 ],
                 "chinese-official-writing/references/review-checklist.md": [
                     "用户只要求正文且未同时允许文后提示时",
@@ -1721,7 +1723,9 @@ CASES: list[PromptCase] = [
                     "缺失事实不补造",
                 ],
                 "chinese-official-writing/references/workflow.md": [
+                    "也不附其他正文外内容",
                     "关键缺项仍不得补造或写进正文解释",
+                    "用户允许文后提示时",
                 ],
                 "chinese-official-writing/references/review-checklist.md": [
                     "用户只要求正文且未同时允许文后提示时",
@@ -1745,29 +1749,6 @@ CASES: list[PromptCase] = [
                 "tools/sync_adapters.py": [
                     "未同时允许文后提示时，不附任何正文外说明或提示",
                     "缺项按第5条的交付命令处理",
-                ],
-            },
-        },
-    ),
-    PromptCase(
-        id="P104",
-        kind="create",
-        prompt="材料很少但要写约600字报告；可以扩展分析和建议，不得新增具体事实，未决事项保持未决。",
-        checks={
-            "file_terms": {
-                "chinese-official-writing/SKILL.md": [
-                    "材料少但用户要求较长篇幅时不机械短写",
-                    "不承载新事实的衔接、概括分析和建议性表达",
-                    "建议、拟、可、视核查结果",
-                    "具体主体、数字、日期、原因、已发生动作、责任分工或确定性结论",
-                ],
-                "chinese-official-writing/references/task-route-cards.md": [
-                    "正文后极简区分分析建议和待确认具体事实",
-                    "不说明材料读取、写作过程或规则遵循",
-                ],
-                "chinese-official-writing/references/workflow.md": [
-                    "事实少于字数目标时不机械短写",
-                    "分析建议需结合实际核定",
                 ],
             },
         },

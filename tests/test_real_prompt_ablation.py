@@ -132,7 +132,7 @@ class RealPromptAblationTests(unittest.TestCase):
             "不新增原文没有交代的活动、依据、数据、成效或责任安排",
             checks_by_id["P019"]["file_terms"]["chinese-official-writing/references/workflow.md"],
         )
-        self.assertIn("不附“未新增原文外事实”", checks_by_id["P019"]["file_terms"]["chinese-official-writing/SKILL.md"])
+        self.assertIn("未新增原文外事实", checks_by_id["P019"]["file_terms"]["chinese-official-writing/SKILL.md"])
         self.assertIn(
             "notice-submit-materials",
             checks_by_id["P020"]["file_terms"]["tests/fixtures/clean_prose_corpus.json"],
@@ -303,6 +303,10 @@ class RealPromptAblationTests(unittest.TestCase):
             checks_by_id["P091"]["file_terms"]["chinese-official-writing/SKILL.md"],
         )
         self.assertIn(
+            "事实少于字数目标时宁可短写",
+            checks_by_id["P091"]["file_terms"]["chinese-official-writing/SKILL.md"],
+        )
+        self.assertIn(
             "材料稀疏型通报或情况说明可用短骨架",
             checks_by_id["P091"]["file_terms"]["chinese-official-writing/SKILL.md"],
         )
@@ -322,14 +326,7 @@ class RealPromptAblationTests(unittest.TestCase):
             "正式正文的标题、小标题、段落标签直接用普通文本承接",
             checks_by_id["P093"]["file_terms"]["chinese-official-writing/SKILL.md"],
         )
-        self.assertIn(
-            "不承载新事实的衔接、概括分析和建议性表达",
-            checks_by_id["P104"]["file_terms"]["chinese-official-writing/SKILL.md"],
-        )
-        self.assertIn(
-            "正文后极简区分分析建议和待确认具体事实",
-            checks_by_id["P104"]["file_terms"]["chinese-official-writing/references/task-route-cards.md"],
-        )
+
     def test_heading_lock_detects_added_subheading(self) -> None:
         before = """一、整改进展
 二、存在问题

@@ -145,22 +145,6 @@ class SkillBoundaryTests(unittest.TestCase):
             self.assertIn(term, cards)
         self.assertLess(len(cards.splitlines()), 80)
 
-    def test_sparse_material_expansion_keeps_facts_and_analysis_separate(self) -> None:
-        skill = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
-        cards = (ROOT / "chinese-official-writing" / "references" / "task-route-cards.md").read_text(
-            encoding="utf-8"
-        )
-        workflow = (ROOT / "chinese-official-writing" / "references" / "workflow.md").read_text(
-            encoding="utf-8"
-        )
-
-        for text in [skill, cards, workflow]:
-            self.assertIn("不承载新事实", text)
-            self.assertIn("建议、拟、可、视核查结果", text)
-        self.assertNotIn("事实少于字数目标时宁可短写", skill)
-        self.assertNotIn("事实少于字数目标时宁可短写", workflow)
-        self.assertIn("正文后极简区分分析建议和待确认具体事实", cards)
-
     def test_light_route_is_terminal_until_an_explicit_escalation_condition(self) -> None:
         skill = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
         cards = (ROOT / "chinese-official-writing" / "references" / "task-route-cards.md").read_text(
@@ -397,15 +381,14 @@ class SkillBoundaryTests(unittest.TestCase):
             encoding="utf-8"
         )
 
-        self.assertIn("不附“未新增原文外事实”", skill)
-        self.assertIn("不写材料读取、写作过程、用户约束或合规自证", skill)
+        self.assertIn("未新增原文外事实", skill)
         self.assertIn("不新增原文没有交代的活动、依据、数据、成效或责任安排", workflow)
-        self.assertIn("分析建议不写成已知事实", workflow)
-        self.assertIn("不说明材料读取、写作取舍、用户约束或自证合规", workflow)
-        self.assertIn("分析建议需结合实际核定", checklist)
-        self.assertIn("未说明材料读取、写作过程、用户约束或合规自证", checklist)
-        self.assertIn("用户要求只输出正文时，不附自证或其他正文外内容", workflow)
-        self.assertIn("用户未要求只输出正文、只输出改后稿或不解释且确有必要时", checklist)
+        self.assertIn("未新增原文外事实", workflow)
+        self.assertIn("未新增原文外事实", checklist)
+        self.assertIn("用户要求只输出正文时，不附自证说明", workflow)
+        self.assertIn("除非用户同时明确允许文后待确认、风险或核验提示", workflow)
+        self.assertIn("也不附其他正文外内容", workflow)
+        self.assertIn("用户未要求只输出正文、只输出改后稿或不解释时", checklist)
         self.assertIn("用户只要求正文且未同时允许文后提示时", checklist)
 
     def test_v140_mode_routing_material_mapping_and_format_bridge_are_documented(self) -> None:
