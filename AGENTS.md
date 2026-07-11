@@ -342,3 +342,9 @@ Hermes 社区借鉴候选 `2713e27` 的处理结论：
 2026-07-11 又在 ignored `output/finalizer-experiments/attempt5/` 测试用户触发二修和宿主检测/repair 双层方案。12 类新 holdout 覆盖稀疏/长文、未决纪要、字段材料、引语、只审不改、只输出正文、定点时间、范围情态、事实外扩和精确回滚；Luna 低/中思考两轮各 36 篇。
 
 三种最小 prompt 候选均在第一轮回退：完整边界会反向泄露，静默局部规则和纯回滚规则都会改坏标题、换行、标点或字段格式，R12 从当前 A 的 3/3 PASS 退为 0/3。达到三次停止条件后未修改 canonical。宿主 C1 不通过；C2 fail-closed 第一轮将 FAIL 从 12 降到 9，但第二轮 Sol 判 A/C 均为 27 PASS、9 FAIL，GPT-5.5 只减少 1 个 WARN，未达到连续三轮稳定优于 B，因此停止第三轮且不下沉。精确回滚继续依赖宿主 SHA/base64 快照，不靠 prompt 或模型记忆。详细证据见 `tests/evidence/second-revision-risk-convergence-20260711.md`。
+
+## 1.5.7 窄修复发布候选
+
+1.5.7 只发布 `8a0144d` 已验证的最小修复：删除容易诱发材料旁白的“从已给材料看，问题集中于……”，改为直接列明已确认问题的对象、数量和状态，无法支持的结论继续放正文外待确认。未加入 finalizer、detector、repair、embedding、外部依赖、二次修改候选 prompt 或新写稿工作流。
+
+干净分支 `codex/release-1.5.7` 从 `afc85dc` 创建，并保留最新实验结论记录；误跟踪实验输出提交不是该分支祖先，`output/` 不进入 Git 发行内容。发布前验证为定向/全量 unittest 均 123/123，`v1.5.6` 消融 baseline 101/102、current 102/102，Promptfoo smoke 20/20，真实文章关键要素 61/61，quick_validate 和 `git diff --check` 通过。4 个 Luna writer 真实 sanity 经独立 GPT-5.5 verifier 判 3 PASS、1 WARN、无发布阻断；WARN 为稀疏问题清单稿篇幅不足和一句边界性概括，不追加 prompt。cold review 另发现 ClawHub PowerShell tags 示例未整体引用和 canonical 下 ignored pyc 不能直接递归打包；前者已用文档加测试最小修复，后者改用 19 文件干净市场目录，不删除本地缓存。修复后 cold re-review 为 `resolved=true`、`publish_blocking=false`；仍须完成三平台实况核验，详细证据见 `tests/evidence/release-1.5.7.md`。

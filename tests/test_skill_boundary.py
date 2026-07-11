@@ -280,8 +280,10 @@ class SkillBoundaryTests(unittest.TestCase):
         sync_script = (ROOT / "tools" / "sync_adapters.py").read_text(encoding="utf-8")
 
         self.assertIn("clawhub skill publish", readme)
-        for flag in ["--slug=chinese-official-writing", "--name=中文公文写作", "--version=", "--tags=chinese,"]:
+        for flag in ["--slug=chinese-official-writing", "--name=中文公文写作", "--version="]:
             self.assertIn(flag, readme)
+        self.assertIn("'--tags=chinese,official-document,writing,gongwen,ai-compute'", readme)
+        self.assertNotIn(" --tags=chinese,official-document,writing,gongwen,ai-compute", readme)
         self.assertNotIn("clawhub publish ", readme)
         self.assertIn('f"--version={VERSION}"', sync_script)
 
