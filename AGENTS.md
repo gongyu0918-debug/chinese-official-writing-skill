@@ -336,3 +336,9 @@ Hermes 社区借鉴候选 `2713e27` 的处理结论：
 2026-07-11 在被忽略的 `output/finalizer-experiments/attempt4/` 实现“结构化约束包 -> 模式感知检测 -> 独立 claim verifier -> 一次精确 span patch -> 不变量复核 -> 快照回滚”原型。实际 `v1.5.6` tag 为 `7e485700a49a924abf973656d2bb0e9630054890`，pre-experiment HEAD 为 `8a0144d1f359e3f77e1c1618f87a06b79e5d7f4d`；不要沿用计划中已失真的 `d6414a3` tag SHA。
 
 20 篇审校标注只用于校准线索；Luna A/B 各 24 篇、GPT-5.5 16 篇及 GPT-5.5/GPT-5.6 Sol 双盲复核均未证明 C 稳定优于 B。两项共识安全 patch 在全量复核后仍失败，故接受数为 0，C 的 24 篇正文全部字节级回退为 B。H09 多轮和 H10 compact 后快照恢复均精确通过，说明宿主快照可用，但不能把它表述为模型记忆能力。该 finalizer 不进入 canonical skill、reference、正式测试或发行包；不要在此结果上追加全文重写、通用 cleaner 或同义 prompt。详细证据见 `tests/evidence/finalizer-span-patch-experiment-20260711.md`。
+
+## 1.5.6 后续二次修改风险收敛实验
+
+2026-07-11 又在 ignored `output/finalizer-experiments/attempt5/` 测试用户触发二修和宿主检测/repair 双层方案。12 类新 holdout 覆盖稀疏/长文、未决纪要、字段材料、引语、只审不改、只输出正文、定点时间、范围情态、事实外扩和精确回滚；Luna 低/中思考两轮各 36 篇。
+
+三种最小 prompt 候选均在第一轮回退：完整边界会反向泄露，静默局部规则和纯回滚规则都会改坏标题、换行、标点或字段格式，R12 从当前 A 的 3/3 PASS 退为 0/3。达到三次停止条件后未修改 canonical。宿主 C1 不通过；C2 fail-closed 第一轮将 FAIL 从 12 降到 9，但第二轮 Sol 判 A/C 均为 27 PASS、9 FAIL，GPT-5.5 只减少 1 个 WARN，未达到连续三轮稳定优于 B，因此停止第三轮且不下沉。精确回滚继续依赖宿主 SHA/base64 快照，不靠 prompt 或模型记忆。详细证据见 `tests/evidence/second-revision-risk-convergence-20260711.md`。
