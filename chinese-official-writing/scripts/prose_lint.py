@@ -92,16 +92,16 @@ PATTERNS: list[tuple[str, str, str, str]] = [
 # scan because the same wording can be legitimate in review notes.
 DELIVERY_PATTERNS: list[tuple[str, str, str, str]] = [
     (
-        "high",
+        "medium",
         "material-reading-narration",
-        r"(?:从|根据)(?:现有|已给|所给|用户(?:已)?提供的)(?:资料|材料|信息|内容)(?:看|来看)[，,：:]?",
-        "交付正文应直接写业务事实，不说明模型如何读取或判断输入材料。",
+        r"(?:从|根据)(?:现有|已有|已给|所给|用户(?:已)?提供的)(?:资料|材料|信息|内容)(?:看|来看)[，,：:]?",
+        "核对这是否是模型对输入的说明；若原材料明确记载调查范围、缺失数据或结论边界，可以保留。",
     ),
     (
-        "high",
+        "medium",
         "material-reading-narration",
         r"(?:现有|已给|所给|用户(?:已)?提供的|上述)(?:资料|材料|信息|内容)(?:仅|只|未|没有|尚未|不足以|无法)[^。\n]{0,28}(?:反映|说明|提供|支持|明确|确认|判断|形成)",
-        "交付正文应直接写业务事实或未决事项；材料读取状态仅可放在允许的正文外说明。",
+        "核对这是否是模型对输入的说明；若属于原材料明确记载的业务、调查或审计边界，可以保留。",
     ),
     (
         "high",
@@ -110,16 +110,16 @@ DELIVERY_PATTERNS: list[tuple[str, str, str, str]] = [
         "删除规则遵循或事实边界自证，只保留正式正文内容。",
     ),
     (
-        "high",
+        "medium",
         "constraint-self-certification",
         r"(?:本报告|本文|本稿|本说明)(?:仅|只)(?:反映|说明|记录)[^。\n]{0,80}(?:不(?:对|作)|未)[^。\n]{0,60}(?:延伸判断|延伸结论|扩展判断|作出判断)",
-        "删除稿件范围或推断边界自证，直接结束正文或写业务状态。",
+        "核对这是规则自证还是必要的报告范围说明；只有规则自证需要删除。",
     ),
     (
-        "high",
+        "medium",
         "constraint-self-certification",
         r"不扩大为[^。\n]{0,50}(?:结论|事实|事项|范围)",
-        "删除规则遵循自证，只保留有材料支撑的业务表述。",
+        "核对这是规则自证还是有材料依据的结论范围；只有规则自证需要删除。",
     ),
     (
         "high",
@@ -130,13 +130,13 @@ DELIVERY_PATTERNS: list[tuple[str, str, str, str]] = [
     (
         "high",
         "delivery-explanation",
-        r"^(?:(?:以下为|下面是)(?:最终|修订后|修改后|调整后)?(?:正文|稿件|文稿|内容)[：:]?|已按(?:你|用户)?要求(?:完成)?(?:修改|压缩|整理|调整)[^。\n]{0,20}[。.]?)\s*$",
+        r"^(?:(?:以下为|下面是)(?:最终|修订后|修改后|调整后)?(?:正文|稿件|文稿|内容)[：:]?|已(?:按|根据)(?:你|用户)(?:的)?要求(?:完成)?(?:修改|压缩|整理|调整)[^。\n]{0,20}[。.]?)\s*$",
         "删除交付说明，直接输出正文。",
     ),
     (
         "high",
         "english-thought-fragment",
-        r"(?i)^\s*(?:analysis\s*[:：]|reasoning\s*[:：]|we need(?: to)?\b|i need(?: to)?\b|let['’]?s\b|the user (?:asked|asks|wants|requested)\b|i should\b|now (?:write|draft|produce)\b|given the (?:user|prompt|materials?|context)\b)[^\n]{0,160}",
+        r"(?i)^\s*(?:analysis\s*[:：]|reasoning\s*[:：]|we need(?: to)?\b|i need(?: to)?\b|i will\s+(?:draft|write|revise|produce|prepare|review|analy[sz]e|edit|summari[sz]e)\b|let['’]?s\b|the user (?:asked|asks|wants|requested)\b|i should\b|now (?:write|draft|produce)\b|given the (?:user|prompt|materials?|context)\b)[^\n]{0,160}",
         "删除英文思考残片或模型自述，只保留中文正式正文。",
     ),
     (
@@ -357,8 +357,9 @@ def is_attachment_number_item(lines: list[str], line_index: int, line: str) -> b
 def body_lines(lines: list[str]) -> list[str]:
     """Return draft body lines before explicit external confirmation notes."""
     note_start = re.compile(
-        r"^\s*(?:[（(【\[]\s*)?"
-        r"(?:待确认事项|待用户确认事项|补充以下信息后|正文外待确认|需补充信息|待补充事项|需确认事项|补充信息)"
+        r"^\s*(?:#{1,6}\s*)?(?:[（(【\[]\s*)?"
+        r"(?:待确认事项|待用户确认事项|补充以下信息后(?:，文章会更完整)?|正文外待确认|正文外提示|风险提醒|核验提示|需补充信息|待补充事项|需确认事项|补充信息)"
+        r"(?=\s*(?:[：:]|[（(【\[]|[）)】\]]|$))"
     )
     result: list[str] = []
     for line in lines:
@@ -655,6 +656,8 @@ def scan(
             if in_fence and delivery_mode == "review-only":
                 continue
             for severity, label, regex, advice in delivery_absolute_compiled:
+                if delivery_mode == "gap-note-allowed" and label == "constraint-self-certification":
+                    continue
                 for match in regex.finditer(line):
                     if inside_inline_code(line, match.start(), match.end()):
                         continue
