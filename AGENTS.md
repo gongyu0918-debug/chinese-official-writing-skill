@@ -348,3 +348,9 @@ Hermes 社区借鉴候选 `2713e27` 的处理结论：
 1.5.7 只发布 `8a0144d` 已验证的最小修复：删除容易诱发材料旁白的“从已给材料看，问题集中于……”，改为直接列明已确认问题的对象、数量和状态，无法支持的结论继续放正文外待确认。未加入 finalizer、detector、repair、embedding、外部依赖、二次修改候选 prompt 或新写稿工作流。
 
 干净分支 `codex/release-1.5.7` 从 `afc85dc` 创建，并保留最新实验结论记录；误跟踪实验输出提交不是该分支祖先，`output/` 不进入 Git 发行内容。发布前验证为定向/全量 unittest 均 123/123，`v1.5.6` 消融 baseline 101/102、current 102/102，Promptfoo smoke 20/20，真实文章关键要素 61/61，quick_validate 和 `git diff --check` 通过。4 个 Luna writer 真实 sanity 经独立 GPT-5.5 verifier 判 3 PASS、1 WARN、无发布阻断；WARN 为稀疏问题清单稿篇幅不足和一句边界性概括，不追加 prompt。cold review 另发现 ClawHub PowerShell tags 示例未整体引用和 canonical 下 ignored pyc 不能直接递归打包；前者已用文档加测试最小修复，后者改用 19 文件干净市场目录，不删除本地缓存。修复后 cold re-review 为 `resolved=true`、`publish_blocking=false`；仍须完成三平台实况核验，详细证据见 `tests/evidence/release-1.5.7.md`。
+
+## 1.5.7 后续稀疏材料扩写与旁白实验
+
+2026-07-11 在 `codex/sparse-expansion-narration-check` 固定 `v1.5.7` 做真实 A/B。保留候选只取消“事实少于字数目标宁可短写”的机械规则，允许不承载新事实的衔接、概括分析和建议性表达，并删除“未新增原文外事实”式自证推荐；不得补具体主体、数字、日期、原因、已发生动作、责任分工或确定性结论。工程验证为定向 111/111、全量 124/124、1.5.7 消融 baseline 102/103/current 103/103、Promptfoo 20/20、真实文章要素 61/61。
+
+旁白风险未解决。三种最小 prompt-only 纯净检查均出现无收益或反向泄露，最后一种在 Luna low/medium/high 三次复测中 3/3 写出材料读取状态或“不超出事实”等约束自述，已全部回退；最终候选真实稿仍因“由于现有材料仅反映……”被严格 verifier 判 SEVERE、`publish_blocking=true`。只输出正文、字段材料和只审不改通过。该候选只在实验分支本地保留，不 bump、不发布，不得声称旁白已解决；详细证据见 `tests/evidence/sparse-expansion-narration-ab-20260711.md`。
