@@ -44,7 +44,12 @@
 
 ## 发布状态
 
-待发布前 cold review 通过后补录 GitHub、ClawHub 和 SkillHub 实况。
+- 发布 commit：`d3755df7deb2456150c61ccb1944aa3982f7edf1`；annotated tag `v1.5.7` 的 tag object 为 `6223215571f596e0834ecc867275f373121b4d54`，解引用后指向同一发布 commit。
+- GitHub：发布时 `origin/main` 指向 `d3755df7deb2456150c61ccb1944aa3982f7edf1`；release `chinese-official-writing 1.5.7` 已公开，`isDraft=false`、`isPrerelease=false`，URL 为 `https://github.com/gongyu0918-debug/chinese-official-writing-skill/releases/tag/v1.5.7`。
+- ClawHub：精确 slug `chinese-official-writing` 已发布 1.5.7，`versionId=k97ftrws1kttyemqrn1jmb13mx8aazy8`、19 个文件、fingerprint `cd120d78875bffe9e21ead647c6334e59cb0619a80f94f7274927b594a4db795`；`latestVersion.version=1.5.7`、`tags.latest=1.5.7`、五个正确 tags 均为 1.5.7，`displayName=中文公文写作`，moderation `clean`。
+- ClawHub 历史元数据：1.4.15 的带引号 tag key 和 1.5.6 的合并 tag key 仍存在；本轮单 token 参数已把五个正常 tag 全部更新到 1.5.7，历史 key 不影响 latest、正常 tags、安装包或 moderation，本轮不删除或重发。
+- SkillHub：只向精确 slug `chinese-official-writing`、`skillId=70149` 提交；返回 `ok=true`、`versionId=134824`、19 个文件、fingerprint `ec3b65e5055d125e92c097476b4f1cbdf759e384aea7e9d7df32e716208c8bdf`、`tags.latest=1.5.7`，`reviewStatus/securityScanStatus/contentAuditStatus=pending`。
+- SkillHub 公开状态：发布后搜索索引仍显示 1.5.6，说明 1.5.7 尚在异步审核/索引切换中；当前只描述为已提交，不描述为公开 live。
 
 ## 继承风险
 
