@@ -30,6 +30,154 @@ revision_eval = load_module("revision_eval_under_test", ROOT / "tools" / "run_re
 
 
 class ProseLintStructureTests(unittest.TestCase):
+    def test_delivery_mode_flags_narration_self_certification_and_english_thought(self) -> None:
+        text = (
+            "由于现有材料仅反映阶段性情况，暂无法形成完整判断。\n"
+            "本稿不新增原文外事实。\n"
+            "We need to draft a concise report before the final answer.\n"
+            "As an AI language model, I cannot verify the source.\n"
+            "以下为最终正文：\n"
+            "本报告仅反映7月核查结果，不对责任归属作延伸判断。\n"
+            "上述情况不扩大为其他系统的结论。"
+        )
+
+        default_labels = {item.label for item in prose_lint.scan("<test>", text)}
+        delivery_findings = prose_lint.scan("<test>", text, delivery_mode="draft-body")
+        delivery_labels = {item.label for item in delivery_findings}
+
+        self.assertNotIn("material-reading-narration", default_labels)
+        self.assertNotIn("constraint-self-certification", default_labels)
+        self.assertNotIn("english-thought-fragment", default_labels)
+        self.assertTrue(
+            {
+                "material-reading-narration",
+                "constraint-self-certification",
+                "english-thought-fragment",
+                "delivery-explanation",
+            }.issubset(delivery_labels)
+        )
+        self.assertEqual({item.severity for item in delivery_findings if item.label in delivery_labels}, {"high"})
+        self.assertGreaterEqual(
+            len([item for item in delivery_findings if item.label == "constraint-self-certification"]),
+            3,
+        )
+
+    def test_review_only_allows_material_gap_analysis_but_not_ai_identity(self) -> None:
+        text = "现有材料未说明验收结论，建议列为高风险。本审稿意见由AI生成。"
+
+        labels = {item.label for item in prose_lint.scan("<test>", text, delivery_mode="review-only")}
+
+        self.assertNotIn("material-reading-narration", labels)
+        self.assertIn("thought-leak", labels)
+
+    def test_review_only_does_not_treat_quoted_problem_sentence_as_agent_leak(self) -> None:
+        text = "位置：“本方案重点说明三个问题。”\n风险层级：高\n修改建议：删除写作说明。"
+
+        review_labels = {item.label for item in prose_lint.scan("<test>", text, delivery_mode="review-only")}
+        draft_labels = {item.label for item in prose_lint.scan("<test>", text, delivery_mode="draft-body")}
+
+        self.assertNotIn("side-commentary", review_labels)
+        self.assertIn("side-commentary", draft_labels)
+
+    def test_review_only_does_not_treat_multiline_quote_as_agent_leak(self) -> None:
+        text = "位置：“本方案重点说明\n三个问题。”\n风险层级：高\n修改建议：删除写作说明。"
+
+        labels = {item.label for item in prose_lint.scan("<test>", text, delivery_mode="review-only")}
+
+        self.assertNotIn("side-commentary", labels)
+
+    def test_unclosed_quote_does_not_hide_later_delivery_leaks(self) -> None:
+        text = (
+            "位置：“本方案重点说明三个问题。\n"
+            "We need to review the draft.\n"
+            "本审稿意见由AI生成。\n"
+            "本稿不新增原文外事实。"
+        )
+
+        labels = {item.label for item in prose_lint.scan("<test>", text, delivery_mode="review-only")}
+
+        self.assertIn("side-commentary", labels)
+        self.assertIn("english-thought-fragment", labels)
+        self.assertIn("thought-leak", labels)
+        self.assertIn("constraint-self-certification", labels)
+
+    def test_review_only_still_scans_unquoted_leaks_and_content_after_note_heading(self) -> None:
+        text = (
+            "We need to review the draft.\n"
+            "待确认事项：\n资金来源待确认。\n本审稿意见由AI生成。"
+        )
+
+        labels = {item.label for item in prose_lint.scan("<test>", text, delivery_mode="review-only")}
+
+        self.assertIn("english-thought-fragment", labels)
+        self.assertIn("thought-leak", labels)
+
+    def test_gap_note_mode_scans_body_but_stops_before_external_note(self) -> None:
+        body_leak = (
+            "从已给材料看，项目尚处于准备阶段。\n\n"
+            "待确认事项：\n现有材料未说明资金来源。"
+        )
+        note_only = "项目拟于8月启动。\n\n待确认事项：\n现有材料未说明资金来源。"
+
+        body_labels = {
+            item.label for item in prose_lint.scan("<test>", body_leak, delivery_mode="gap-note-allowed")
+        }
+        note_labels = {
+            item.label for item in prose_lint.scan("<test>", note_only, delivery_mode="gap-note-allowed")
+        }
+
+        self.assertIn("material-reading-narration", body_labels)
+        self.assertNotIn("material-reading-narration", note_labels)
+
+    def test_gap_note_mode_still_flags_model_leaks_after_note_heading(self) -> None:
+        text = (
+            "项目拟于8月启动。\n\n待确认事项：\n资金来源待确认。\n"
+            "我的思路是先补齐预算。\n本稿不新增原文外事实。"
+        )
+
+        findings = prose_lint.scan("<test>", text, delivery_mode="gap-note-allowed")
+        labels = {item.label for item in findings}
+
+        self.assertIn("thought-leak", labels)
+        self.assertIn("constraint-self-certification", labels)
+
+    def test_gap_note_mode_allows_quoted_or_inline_leak_examples(self) -> None:
+        text = (
+            "项目拟于8月启动。\n\n待确认事项：\n"
+            "原句：“本稿不新增原文外事实。”\n"
+            "命令示例：`We need to draft the report.`"
+        )
+
+        labels = {item.label for item in prose_lint.scan("<test>", text, delivery_mode="gap-note-allowed")}
+
+        self.assertNotIn("constraint-self-certification", labels)
+        self.assertNotIn("english-thought-fragment", labels)
+
+    def test_draft_body_delivery_checks_scan_code_fences_without_format_flag(self) -> None:
+        text = "```text\nWe need to draft the report.\n本稿不新增原文外事实。\n```"
+
+        labels = {item.label for item in prose_lint.scan("<test>", text, delivery_mode="draft-body")}
+
+        self.assertIn("english-thought-fragment", labels)
+        self.assertIn("constraint-self-certification", labels)
+
+    def test_draft_body_mode_rejects_external_note_region(self) -> None:
+        text = "项目拟于8月启动。\n\n待确认事项：\n资金来源待确认。"
+
+        findings = prose_lint.scan("<test>", text, delivery_mode="draft-body")
+
+        self.assertIn("unexpected-external-note", {item.label for item in findings})
+
+    def test_delivery_mode_does_not_flag_clean_official_material_references(self) -> None:
+        text = (
+            "报送材料应与业务系统现行字段保持一致。"
+            "上述材料尚未完成归档，请责任单位于7月20日前补齐。"
+        )
+
+        findings = prose_lint.scan("<test>", text, delivery_mode="draft-body")
+
+        self.assertFalse([item for item in findings if item.label == "material-reading-narration"])
+
     def test_formal_leadership_phrases_are_not_flagged_as_process_leaks(self) -> None:
         text = "根据领导要求，项目组已完成风险排查。领导关心的交付节点已纳入每周调度。"
 
@@ -305,6 +453,39 @@ class ProseLintStructureTests(unittest.TestCase):
 
 
 class ProseLintCliTests(unittest.TestCase):
+    def test_delivery_mode_cli_is_opt_in_and_can_fail_on_high(self) -> None:
+        script = ROOT / "chinese-official-writing" / "scripts" / "prose_lint.py"
+        with tempfile.TemporaryDirectory() as temp_dir:
+            draft = Path(temp_dir) / "draft.md"
+            draft.write_text("由于现有材料仅反映阶段性情况，暂无法形成完整判断。", encoding="utf-8")
+
+            default_result = subprocess.run(
+                [sys.executable, str(script), str(draft), "--strict", "--fail-on", "high"],
+                capture_output=True,
+                text=True,
+                encoding="utf-8",
+            )
+            delivery_result = subprocess.run(
+                [
+                    sys.executable,
+                    str(script),
+                    str(draft),
+                    "--delivery-mode",
+                    "draft-body",
+                    "--strict",
+                    "--fail-on",
+                    "high",
+                    "--json",
+                ],
+                capture_output=True,
+                text=True,
+                encoding="utf-8",
+            )
+
+        self.assertEqual(default_result.returncode, 0)
+        self.assertEqual(delivery_result.returncode, 1)
+        self.assertIn("material-reading-narration", delivery_result.stdout)
+
     def test_cli_is_read_only_even_for_quoted_colloquial_text(self) -> None:
         script = ROOT / "chinese-official-writing" / "scripts" / "prose_lint.py"
         with tempfile.TemporaryDirectory() as temp_dir:
@@ -432,6 +613,23 @@ class CleanProseCorpusTests(unittest.TestCase):
                 blocking = [finding for finding in findings if finding.severity in {"medium", "high"}]
 
                 self.assertEqual(blocking, [])
+
+    def test_clean_corpus_has_no_delivery_mode_high_findings(self) -> None:
+        corpus_path = ROOT / "tests" / "fixtures" / "clean_prose_corpus.json"
+        corpus = json.loads(corpus_path.read_text(encoding="utf-8"))
+
+        for item in corpus["items"]:
+            with self.subTest(item=item["id"]):
+                findings = prose_lint.scan(
+                    item["id"],
+                    item["text"],
+                    include_format=True,
+                    include_structure=True,
+                    delivery_mode="draft-body",
+                )
+                high = [finding for finding in findings if finding.severity == "high"]
+
+                self.assertEqual(high, [])
 
     def test_clean_corpus_sentinel_placeholder_is_detected(self) -> None:
         corpus_path = ROOT / "tests" / "fixtures" / "clean_prose_corpus.json"

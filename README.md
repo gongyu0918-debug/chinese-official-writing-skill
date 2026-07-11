@@ -248,9 +248,12 @@ python .\chinese-official-writing\scripts\prose_lint.py .\draft.md
 python .\chinese-official-writing\scripts\prose_lint.py .\draft.docx
 python .\chinese-official-writing\scripts\prose_lint.py .\draft.docx --structure --format
 python .\chinese-official-writing\scripts\prose_lint.py .\draft.md --strict --fail-on medium
+python .\chinese-official-writing\scripts\prose_lint.py .\draft.md --delivery-mode draft-body --strict --fail-on high
 ```
 
 `--strict` 默认任一风险都会返回非零退出；配合 `--fail-on medium` 可只让 medium/high 风险阻断 CI，把 low 级格式和术语提示留作人工参考。
+
+`--delivery-mode draft-body` 是可选的最终正文检查，只额外提示材料读取旁白、约束自证、交付说明和英文思考残片；`review-only` 允许审稿意见说明材料不足。`gap-note-allowed` 对材料不足说明只检查正文外待确认标题之前的正文，但模型身份、思考残片、约束自证和交付说明仍扫描全文。该模式不自动删除或改写句子。
 
 可检查的风险包括：二元包装句、旁白式表达、教学腔、思考过程泄露、口语化判断、模板化过渡词、项目卡片式摘要、测算说明腔、必要性罗列、相邻段落重复事项、格式噪点，以及算力类文档中缺少指标支撑的空泛技术表述。
 

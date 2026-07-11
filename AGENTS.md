@@ -16,6 +16,16 @@ SkillHub 精确目标仍为 `https://skillhub.cn/skills/chinese-official-writing
 
 ## 中文公文 Skill 发布验证
 
+### 真实写稿测试分级
+
+真实写稿测试按风险升级，不再作为每次小改的固定动作：
+
+1. 普通脚本、测试、文档、发布元数据或默认不启用的检查器改动，优先运行 unit、clean corpus、确定性消融和静态回归；只有行为边界无法由这些证据确认时，才补 2-4 个短样本。
+2. 修改 `SKILL.md`、写稿 reference、文种路由、事实边界或默认 workflow 时，先用 2-4 个与改动直接相关的短稿做 A/B，并由独立 verifier 复核；短测出现新回退、结论分歧或长文特有风险后，再扩大样本和模型数量。
+3. 3000 字以上长文、多附件合稿、多轮/compact、跨模型大矩阵和完整文种覆盖，只在发布候选、重大架构调整、已复现的长文风险、用户明确要求或短测不能回答问题时运行。
+4. 旁白、思考泄露和约束自述出现一次即可触发针对该样本的复现与最小修复判断，但不因此自动启动整套长稿批量测试。
+5. 测试报告必须区分确定性证据、短样本 sanity 和发布级真实写稿；未运行长稿矩阵时直接说明，不用低价值批量生成填充测试数量。
+
 `tools/run_real_prompt_ablation.py` 是发布级确定性消融工具，但它不调用 LLM，只能证明 skill 包、reference、lint 和评估入口具备相应支撑。它不能替代真实写稿实测。
 
 社区技能借鉴必须先设门禁。SkillHub、ClawHub、GitHub 或其他社区实现只作为思路、流程形态、检查维度和 prompt/markdown 写法参考，禁止直接誊抄代码、脚本、正则、模板库、大段 prompt、固定话术或模板正文。每个候选借鉴点都要满足本技能边界：不新增重排版引擎，不扩大默认联网，不默认强制确认，不破坏用户模板和字段式材料，不把社区技能的坏代码、坏 prompt、硬禁词或公众号式风格污染到本技能；落地前先归纳共性问题，落地后必须和上一基线做消融。
@@ -348,3 +358,9 @@ Hermes 社区借鉴候选 `2713e27` 的处理结论：
 1.5.7 只发布 `8a0144d` 已验证的最小修复：删除容易诱发材料旁白的“从已给材料看，问题集中于……”，改为直接列明已确认问题的对象、数量和状态，无法支持的结论继续放正文外待确认。未加入 finalizer、detector、repair、embedding、外部依赖、二次修改候选 prompt 或新写稿工作流。
 
 干净分支 `codex/release-1.5.7` 从 `afc85dc` 创建，并保留最新实验结论记录；误跟踪实验输出提交不是该分支祖先，`output/` 不进入 Git 发行内容。发布前验证为定向/全量 unittest 均 123/123，`v1.5.6` 消融 baseline 101/102、current 102/102，Promptfoo smoke 20/20，真实文章关键要素 61/61，quick_validate 和 `git diff --check` 通过。4 个 Luna writer 真实 sanity 经独立 GPT-5.5 verifier 判 3 PASS、1 WARN、无发布阻断；WARN 为稀疏问题清单稿篇幅不足和一句边界性概括，不追加 prompt。cold review 另发现 ClawHub PowerShell tags 示例未整体引用和 canonical 下 ignored pyc 不能直接递归打包；前者已用文档加测试最小修复，后者改用 19 文件干净市场目录，不删除本地缓存。修复后 cold re-review 为 `resolved=true`、`publish_blocking=false`；仍须完成三平台实况核验，详细证据见 `tests/evidence/release-1.5.7.md`。
+
+## 1.5.7 后续旁白交付检测实验
+
+2026-07-12 已撤销修改全局硬边界的稀疏扩写候选。当前实验只给 `prose_lint.py` 增加默认关闭的 `draft-body`、`review-only`、`gap-note-allowed` 交付模式，检测材料读取旁白、约束自证、交付说明、AI 身份和英文思考残片；不自动改写，不改变 canonical 写稿 prompt 或默认 workflow。独立 cold review 的五类漏扫/误报及镜像漂移均已修复，最终 `publish_blocking=false`。
+
+三名不同档位 agent 均证明现有 Markdown 会把“现有材料仅反映……”和“本报告仅反映已给事实……”误读为可留正文；一条按来源区分业务事实与模型输入判断的候选说明可将三者全部纠正，同时不误伤正式报告过渡语。该候选本轮只记录，不进入 prompt；必须按本文件的真实写稿测试分级规则完成短稿 A/B 后才能决定是否采用。详细证据见 `tests/evidence/narration-delivery-mode-and-prompt-comprehension-20260712.md`。

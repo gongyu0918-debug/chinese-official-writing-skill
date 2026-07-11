@@ -12,6 +12,7 @@ from __future__ import annotations
 import argparse
 from dataclasses import dataclass, field
 import importlib.util
+import inspect
 import json
 from pathlib import Path
 import re
@@ -1753,6 +1754,26 @@ CASES: list[PromptCase] = [
             },
         },
     ),
+    PromptCase(
+        id="P104",
+        kind="revise",
+        prompt="对最终正文做模式感知检查：正文旁白、约束自证、英文思考残片和交付说明出现一次即报高风险；只检测，不自动改写。",
+        checks={
+            "lint_text": (
+                "由于现有材料仅反映阶段性情况，暂无法形成完整判断。\n"
+                "本稿不新增原文外事实。\n"
+                "We need to draft the final report.\n"
+                "以下为最终正文："
+            ),
+            "lint_delivery_mode": "draft-body",
+            "lint_present_labels": [
+                "material-reading-narration",
+                "constraint-self-certification",
+                "english-thought-fragment",
+                "delivery-explanation",
+            ],
+        },
+    ),
 ]
 
 
@@ -1846,7 +1867,11 @@ def evaluate_case(case: PromptCase, root: Path, prose_lint) -> dict[str, Any]:
     lint_text = checks.get("lint_text")
     lint_labels: list[str] = []
     if lint_text:
-        findings = prose_lint.scan(f"{case.id}:{case.kind}", lint_text, include_format=True, include_structure=True)
+        lint_kwargs: dict[str, Any] = {"include_format": True, "include_structure": True}
+        lint_delivery_mode = checks.get("lint_delivery_mode")
+        if lint_delivery_mode and "delivery_mode" in inspect.signature(prose_lint.scan).parameters:
+            lint_kwargs["delivery_mode"] = lint_delivery_mode
+        findings = prose_lint.scan(f"{case.id}:{case.kind}", lint_text, **lint_kwargs)
         lint_labels = sorted({item.label for item in findings})
         for label in checks.get("lint_present_labels", []):
             if label not in lint_labels:
