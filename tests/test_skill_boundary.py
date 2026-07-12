@@ -75,6 +75,26 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assertIn("论文跳过主送、落款、请批语、行文关系", final_review)
         self.assertIn("研究问题、论点、证据和结论是否匹配", anti_ai)
 
+    def test_academic_capability_is_exposed_on_release_surfaces(self) -> None:
+        skill = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
+        agent_ui = (ROOT / "chinese-official-writing" / "agents" / "openai.yaml").read_text(encoding="utf-8")
+        readme = (ROOT / "README.md").read_text(encoding="utf-8")
+        marketplace = (ROOT / "openclaw" / "marketplace-readme.md").read_text(encoding="utf-8")
+        skill_card = (ROOT / "openclaw" / "skill-card.md").read_text(encoding="utf-8")
+        manifest = json.loads((ROOT / ".claude-plugin" / "plugin.json").read_text(encoding="utf-8"))
+
+        self.assertIn("中文本科、硕士学位论文和课程论文", skill)
+        self.assertIn("official and academic writing", agent_ui)
+        self.assertIn("undergraduate, master's, or course papers", agent_ui)
+        for text in [readme, marketplace]:
+            self.assertIn("中文论文", text)
+            self.assertIn("本科论文", text)
+            self.assertIn("硕士学位论文", text)
+            self.assertIn("课程论文", text)
+        self.assertIn("references/academic-writing.md", skill_card)
+        self.assertIn("Chinese undergraduate, master's, and course papers", skill_card)
+        self.assertIn("论文", manifest["description"])
+
     def test_openclaw_compact_route_includes_academic_pre_route(self) -> None:
         sync_script = (ROOT / "tools" / "sync_adapters.py").read_text(encoding="utf-8")
 

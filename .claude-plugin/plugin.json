@@ -1,7 +1,7 @@
 {
   "name": "chinese-official-writing",
-  "version": "1.5.7",
-  "description": "中文公文写作技能，适用于通知、请示、报告、方案、可研、建设方案、审查材料及 AI 算力采购租赁类正式文稿。",
+  "version": "1.5.8",
+  "description": "中文公文与论文写作技能，适用于通知、请示、报告、方案、可研和审查材料，以及中文本科、硕士学位论文和课程论文的起草、改稿与审稿。",
   "repository": "https://github.com/gongyu0918-debug/chinese-official-writing-skill",
   "license": "MIT-0"
 }
