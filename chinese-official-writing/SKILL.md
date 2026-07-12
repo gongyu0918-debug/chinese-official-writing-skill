@@ -1,9 +1,9 @@
 ---
 name: chinese-official-writing
-description: 用于中文公文、机关企事业单位和学校正式事务材料，以及中文学位论文、课程论文的起草、改写、压缩和复核；当用户要求写申请、请示、报告、通知、通告、意见、决定、决议、议案、公报、命令、函、批复、说明、方案、纪要、公告、公示、通报、征求意见函、工作要点、总结、调研、讲话、采购公告、可研、审查材料，或论文提纲、开题报告、文献综述、论文正文、论文改稿和审稿、降 AI 味时使用。不用于英文、文学、营销、社媒、个人求职、批量语料、规避 AIGC/查重检测或替代法律/财务/采购/审计/学术判断。
+description: 用于中文公文、机关企事业单位和学校正式事务材料，以及中文本科、硕士学位论文和课程论文的起草、改写、压缩和复核；当用户要求写申请、请示、报告、通知、通告、意见、决定、决议、议案、公报、命令、函、批复、说明、方案、纪要、公告、公示、通报、征求意见函、工作要点、总结、调研、讲话、采购公告、可研、审查材料，或论文提纲、开题报告、文献综述、论文正文、论文改稿和审稿、降 AI 味时使用。不用于英文、文学、营销、社媒、个人求职、批量语料、规避 AIGC/查重检测或替代法律/财务/采购/审计/学术判断。
 license: MIT-0
 metadata:
-  version: "1.5.7"
+  version: "1.5.8"
   compatible_agents:
     - codex
     - claude-code
@@ -22,7 +22,7 @@ metadata:
     install_project: ".qwen/skills/chinese-official-writing"
     entry: "SKILL.md"
   openclaw:
-    version: "1.5.7"
+    version: "1.5.8"
     emoji: "📝"
     tags:
       - chinese
@@ -31,7 +31,7 @@ metadata:
       - gongwen
       - ai-compute
   hermes:
-    version: "1.5.7"
+    version: "1.5.8"
     category: writing
     display_name: "中文公文写作"
     tags:
