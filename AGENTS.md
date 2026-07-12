@@ -6,6 +6,36 @@
 
 SkillHub 精确目标仍为 `https://skillhub.cn/skills/chinese-official-writing`，`skillId=70149`。1.5.7 已提交，返回 `versionId=134824`、19 个文件、`tags.latest=1.5.7`，`reviewStatus/securityScanStatus/contentAuditStatus=pending`；公开搜索索引暂仍为 1.5.6，需等待异步审核后复查。图标仍为蓝底 Q 版图标。发布前后必须用 `git ls-remote --heads origin main`、`clawhub inspect chinese-official-writing --json`、SkillHub API 或 CLI 和 GitHub tag/main 核对 displayName、tags、latestVersion、summary、source commit 和 canonical frontmatter。下方旧版本内容均为历史接手记录，不代表当前 live 版本。
 
+## 小红书 Red SkillHub（与 SkillHub 分开维护）
+
+小红书 Red SkillHub 是独立发布面，不等同于 `skillhub.cn` 的 SkillHub。两边的登录、标签、审核状态、skill ID、版本回执和安装包不得互相代替，也不能因为一边发布成功就把另一边记为已发布。
+
+- Red SkillHub 官方上传说明：`https://redskill.xiaohongshu.net/uploader.md`。
+- Red SkillHub 专用维护路径：`redskill/skills/chinese-official-writing/`。
+- `skillhub.cn` SkillHub 的发布包仍在 `output/skillhub-release-<version>/publish-package/` 临时生成，不把该临时目录写成 Red SkillHub 的维护路径。
+- Red 专用副本以同版本 SkillHub 已发布包为源，当前 1.5.7 只允许一项内容差异：删除 Red CLI 不支持的 `agents/openai.yaml`。其余共享文件须逐文件校验相对路径和 SHA-256；不得顺手删改 `_meta.json`、`SKILL.md`、references 或脚本。
+- 后续版本先完成 canonical、GitHub、ClawHub、SkillHub 的既定验证，再同步 Red 专用副本；同步后运行小红书 CLI dry-run，确认版本、描述、Skill ID、标签和包哈希，不能沿用上一版本回执。
+- 当前 Red 发布参数：`source=原创`，标签为 `内容创作、职场办公`。标签仍须在每次发布前由 CLI 实时拉取，不把本记录当成平台永久标签清单。
+- 当前 1.5.7 Red dry-run 已通过：`skill_identifier=chinese-official-writing`、`name=chinese-official-writing`、`version=1.5.7`、`original=true`、`content_tag_ids=[1002,1004]`，尚未真实提交。真实回执返回前不得写成 Red 已发布。
+
+Red 上传工具按官方包安装：
+
+```powershell
+npm install -g "https://fe-video-qc.xhscdn.com/fe-platform-file/104101b83221qt9bu7k0653u0hejenq0004pf88k9rpr6a.tgz"
+```
+
+官方 agent skill 注册在当前用户的 `~/.agents/skills/skillhub-upload/SKILL.md`。上传固定顺序为：`whoami`；未登录时 `login --agent`；实时取标签；对 `redskill/skills/chinese-official-writing/` 执行带完整 `--source`、`--tag` 的 `publish --dry-run --agent`；把 dry-run 的 `RESULT_JSON.payload` 展示给用户；只有用户明确回复“提交 / 确认 / submit”后才向 CLI confirm 阶段输入 `submit`；最后保存真实 `RESULT_JSON` 回执。
+
+当前官方 CLI `0.1.1` 的 Windows shim 会因 `import.meta.url` 与 `process.argv[1]` 路径格式不一致而静默退出。在该版本修复前，可调用同一已安装模块的 `main()`，不修改打包、上传或提交逻辑：
+
+```powershell
+node -e "import('file:///C:/Users/admin/AppData/Roaming/npm/node_modules/@xhs/skillhub-upload/cli/index.mjs').then(m=>m.main(process.argv.slice(1)))" whoami
+```
+
+升级 CLI 后先重测普通 `skillhub-upload whoami`；若已恢复输出，应回到官方命令，不长期固化上述兼容入口。任何 Red 发布结果都在本节另记 Red 的 `skill_identifier`、版本、标签、回执和审核状态，不覆盖上方 SkillHub 的 `skillId=70149`、`versionId` 或公开索引状态。
+
+当前 0.1.1 还有一项 frontmatter 兼容问题：SkillHub 包使用 `version: "1.5.7"` 时，Red CLI 会把引号保留进 payload，形成错误的字面版本 `"1.5.7"`。在 CLI 修复前，dry-run 和真实提交都必须显式传 `--version <无引号版本>`，并以 dry-run 的 `RESULT_JSON.payload.version` 为准；不得提交带引号版本，也不为此改写 SkillHub 包的 `SKILL.md`。
+
 ## 基本工作纪律
 
 1. 所有代码或文档修改必须通过 git commit 留痕。commit message 需说明修改目的、影响范围和验证方式。
