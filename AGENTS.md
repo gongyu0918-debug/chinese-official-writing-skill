@@ -16,7 +16,7 @@ SkillHub 精确目标仍为 `https://skillhub.cn/skills/chinese-official-writing
 - Red 专用副本以同版本 SkillHub 已发布包为源，当前 1.5.7 只允许一项内容差异：删除 Red CLI 不支持的 `agents/openai.yaml`。其余共享文件须逐文件校验相对路径和 SHA-256；不得顺手删改 `_meta.json`、`SKILL.md`、references 或脚本。
 - 后续版本先完成 canonical、GitHub、ClawHub、SkillHub 的既定验证，再同步 Red 专用副本；同步后运行小红书 CLI dry-run，确认版本、描述、Skill ID、标签和包哈希，不能沿用上一版本回执。
 - 当前 Red 发布参数：`source=原创`，标签为 `内容创作、职场办公`。标签仍须在每次发布前由 CLI 实时拉取，不把本记录当成平台永久标签清单。
-- 当前 1.5.7 Red dry-run 已通过：`skill_identifier=chinese-official-writing`、`name=chinese-official-writing`、`version=1.5.7`、`original=true`、`content_tag_ids=[1002,1004]`，尚未真实提交。真实回执返回前不得写成 Red 已发布。
+- 小红书 Red SkillHub 1.5.7 已真实提交：`skill_identifier=chinese-official-writing`、`name=中文公文写作`、`version=1.5.7`、`original=true`、`content_tag_ids=[1002,1004]`，回执为 `skill_id=8494`、`version_id=100041`、`first_version=true`、`display_status=1`、`audit_request_id=8494_100041_17833860685024`。首次用英文名称 `chinese-official-writing` 提交时服务端返回“名称长度不符合要求”，该次未发布；改用中文短名并重跑 dry-run 后提交成功。
 
 Red 上传工具按官方包安装：
 
@@ -25,6 +25,8 @@ npm install -g "https://fe-video-qc.xhscdn.com/fe-platform-file/104101b83221qt9b
 ```
 
 官方 agent skill 注册在当前用户的 `~/.agents/skills/skillhub-upload/SKILL.md`。上传固定顺序为：`whoami`；未登录时 `login --agent`；实时取标签；对 `redskill/skills/chinese-official-writing/` 执行带完整 `--source`、`--tag` 的 `publish --dry-run --agent`；把 dry-run 的 `RESULT_JSON.payload` 展示给用户；只有用户明确回复“提交 / 确认 / submit”后才向 CLI confirm 阶段输入 `submit`；最后保存真实 `RESULT_JSON` 回执。
+
+当前用户另有个人自动化 skill：`C:\Users\admin\.codex\skills\red-skillhub-upload\SKILL.md`。它触发“上传小红书 SkillHub / Red Skill / 上传小红书”等请求，采用渐进式披露：主文件只保留默认授权、自动标签和成功判据，详细 CLI 流程按需读取 `references/workflow.md`。该个人 skill 把上传请求本身视为真实上传授权；用户未指定标签时根据 skill 语义从实时标签中自主选择 1—2 个，用户明确指定时直接采用；仍须保留 dry-run、设备授权、永久 Skill ID 歧义和服务端错误等必要门禁。此个人偏好不得反向改变上方官方 `skillhub-upload` 的原始文件。
 
 当前官方 CLI `0.1.1` 的 Windows shim 会因 `import.meta.url` 与 `process.argv[1]` 路径格式不一致而静默退出。在该版本修复前，可调用同一已安装模块的 `main()`，不修改打包、上传或提交逻辑：
 
