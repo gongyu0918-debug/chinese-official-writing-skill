@@ -1,4 +1,4 @@
 interface:
   display_name: "Chinese Official Writing"
-  short_description: "Draft or review Chinese official and academic writing"
-  default_prompt: "Use $chinese-official-writing for Chinese official or formal work documents and Chinese undergraduate, master's, or course papers; keep facts and citations traceable and never invent missing research."
+  short_description: "Draft or review Chinese official and formal work documents"
+  default_prompt: "Use $chinese-official-writing primarily for Chinese official or formal work documents. Route an explicit Chinese undergraduate, master's, or course paper task, proposal, or standalone literature review to exactly one separate on-demand paper reference; never merge workflows or invent facts, sources, or findings."
