@@ -230,6 +230,10 @@ class RealPromptAblationTests(unittest.TestCase):
         )
         self.assertIn("文献综述", checks_by_id["P109"]["description_terms"])
         self.assertIn("英文", checks_by_id["P111"]["description_exclusion_terms"])
+        self.assertIn(
+            "未指定模板时按证据收缩章节",
+            checks_by_id["P113"]["file_terms"]["chinese-official-writing/references/academic-writing.md"],
+        )
         for case_id, term in [
             ("P065", "通告"),
             ("P066", "意见"),

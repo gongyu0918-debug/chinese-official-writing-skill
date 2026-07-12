@@ -1910,6 +1910,21 @@ CASES: list[PromptCase] = [
             },
         },
     ),
+    PromptCase(
+        id="P113",
+        kind="create",
+        prompt="材料只有两项事实，请按已给材料拟三级论文提纲；学校没有固定模板，不要为了凑标准章数用近义标题跨章重复。",
+        checks={
+            "file_terms": {
+                "chinese-official-writing/references/academic-writing.md": [
+                    "材料稀疏时",
+                    "不为凑标准章数用近义标题跨章重复同一事实或缺口",
+                    "未指定模板时按证据收缩章节",
+                    "指定模板时保留章节但区分各章任务",
+                ],
+            },
+        },
+    ),
 ]
 
 

@@ -67,6 +67,7 @@ class SkillBoundaryTests(unittest.TestCase):
             "研究问题或中心命题 -> 全文提纲 -> 章节任务 -> 小节要点 -> 段落论点",
             "段落 -> 小节 -> 全文",
             "用户未给出的比例、均值、显著性或其他派生统计默认不自行计算",
+            "未指定模板时按证据收缩章节，指定模板时保留章节但区分各章任务",
             "重 prompt/reference、轻脚本机制",
         ]:
             self.assertIn(term, academic)
