@@ -205,7 +205,56 @@ class PromptfooProviderTests(unittest.TestCase):
     def test_plain_unknown_genre_does_not_load_playbook(self) -> None:
         refs = provider._reference_paths_for_genres(["通用材料"])
 
-        self.assertEqual(refs, ["SKILL.md", "references/task-route-cards.md"])
+        self.assertEqual(
+            refs,
+            ["SKILL.md", "references/official-writing.md", "references/task-route-cards.md"],
+        )
+
+    def test_academic_route_loads_only_router_and_academic_leaf(self) -> None:
+        refs = provider._reference_paths_for_genres(
+            ["课程论文"],
+            ["根据给定材料拟三级提纲，只输出提纲。"],
+        )
+
+        self.assertEqual(refs, ["SKILL.md", "references/academic-writing.md"])
+        context = provider._load_skill_context(ROOT, ["课程论文"])
+        self.assertIn("## references/academic-writing.md", context)
+        self.assertIn("## 由大至小写作", context)
+        self.assertNotIn("## references/official-writing.md", context)
+        self.assertNotIn("## 三层使用原则", context)
+
+    def test_official_route_does_not_load_academic_leaf(self) -> None:
+        refs = provider._reference_paths_for_genres(["通知"])
+        context = provider._load_skill_context(ROOT, ["通知"])
+
+        self.assertIn("references/official-writing.md", refs)
+        self.assertNotIn("references/academic-writing.md", refs)
+        self.assertIn("## references/official-writing.md", context)
+        self.assertNotIn("## references/academic-writing.md", context)
+        self.assertNotIn("## 由大至小写作", context)
+
+    def test_academic_subchains_each_load_one_positive_leaf(self) -> None:
+        proposal_refs = provider._reference_paths_for_genres(["开题报告"])
+        review_refs = provider._reference_paths_for_genres(["独立文献综述"])
+
+        self.assertEqual(proposal_refs, ["SKILL.md", "references/academic-proposal.md"])
+        self.assertEqual(
+            review_refs,
+            ["SKILL.md", "references/academic-literature-review.md"],
+        )
+        proposal_context = provider._load_skill_context(ROOT, ["开题报告"])
+        review_context = provider._load_skill_context(ROOT, ["独立文献综述"])
+        self.assertIn("## references/academic-proposal.md", proposal_context)
+        self.assertIn("## references/academic-literature-review.md", review_context)
+        for context in [proposal_context, review_context]:
+            self.assertNotIn("## references/official-writing.md", context)
+            self.assertNotIn("## references/academic-writing.md", context)
+
+    def test_mixed_official_and_academic_routes_are_not_context_merged(self) -> None:
+        with self.assertRaisesRegex(provider.ProviderError, "separate batches"):
+            provider._reference_paths_for_genres(["通知", "课程论文"])
+        with self.assertRaisesRegex(provider.ProviderError, "separate batches"):
+            provider._reference_paths_for_genres(["课程论文", "开题报告"])
 
     def test_common_short_genres_do_not_preload_the_full_reference_stack(self) -> None:
         refs = provider._reference_paths_for_genres(["通知", "请示", "报告", "说明", "方案"])

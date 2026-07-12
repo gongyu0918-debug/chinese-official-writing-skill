@@ -9,6 +9,20 @@ import unittest
 ROOT = Path(__file__).resolve().parents[1]
 
 
+def canonical_skill_text() -> str:
+    return (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
+
+
+def official_leaf_text() -> str:
+    return (ROOT / "chinese-official-writing" / "references" / "official-writing.md").read_text(
+        encoding="utf-8"
+    )
+
+
+def official_runtime_text() -> str:
+    return canonical_skill_text() + "\n\n" + official_leaf_text()
+
+
 def relative_files(root: Path) -> list[str]:
     return sorted(
         path.relative_to(root).as_posix()
@@ -23,23 +37,29 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assertFalse((ROOT / "agent.md").exists())
 
     def test_canonical_skill_declares_trigger_and_exclusion_boundaries(self) -> None:
-        text = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
+        text = canonical_skill_text()
 
         description = re.search(r"^description: (.+)$", text, re.M)
         self.assertIsNotNone(description)
         self.assertLessEqual(len(description.group(1)), 280)
-        for keyword in ["申请", "请示", "报告", "通知", "通告", "意见", "决定", "函", "采购公告", "审查材料", "课程论文", "文献综述"]:
+        self.assertTrue(description.group(1).startswith("主要用于中文公文"))
+        for keyword in ["申请", "请示", "报告", "通知", "通告", "意见", "决定", "函", "采购公告", "审查材料", "课程论文"]:
             self.assertIn(keyword, description.group(1))
-        for excluded in ["英文", "营销", "社媒", "个人求职", "规避 AIGC/查重检测"]:
+        for excluded in ["英文", "营销", "社媒", "个人求职", "AIGC/查重检测"]:
             self.assertIn(excluded, description.group(1))
-        self.assertIn("当用户明确要求中文通知", text)
-        self.assertIn("## 触发条件与边界", text)
-        self.assertIn("批量语料生成", text)
-        self.assertIn("规避人工审核", text)
-        self.assertIn("替代法律/财务/采购/审计/政策依据判断", text)
+        self.assertGreater(description.group(1).find("课程论文"), description.group(1).find("审查材料"))
+        self.assertIn("开题报告", description.group(1))
+        self.assertIn("独立文献综述", description.group(1))
+        self.assertGreater(description.group(1).find("开题报告"), description.group(1).find("审查材料"))
+        self.assertIn("主入口是中文公文和正式工作材料", text)
+        self.assertIn("论文仅作按需专项叶", text)
+        self.assertIn("按最终交付物选一个叶子", text)
+        self.assertIn("本科毕业论文抽检通知", text)
+        self.assertIn("研究公文语言的课程论文", text)
 
     def test_academic_route_is_isolated_and_fact_bounded(self) -> None:
-        skill = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
+        skill = canonical_skill_text()
+        official = official_leaf_text()
         academic = (
             ROOT / "chinese-official-writing" / "references" / "academic-writing.md"
         ).read_text(encoding="utf-8")
@@ -53,9 +73,11 @@ class SkillBoundaryTests(unittest.TestCase):
             ROOT / "chinese-official-writing" / "references" / "anti-ai-patterns.md"
         ).read_text(encoding="utf-8")
 
-        self.assertIn("先读 `references/academic-writing.md`", skill)
-        self.assertIn("论文任务不进入公文文种、行文关系", skill)
-        self.assertIn("中文学位或课程论文先读 `references/academic-writing.md`", skill)
+        self.assertIn("普通本科、硕士或课程论文读取 `references/academic-writing.md`", skill)
+        self.assertIn("开题报告读取 `references/academic-proposal.md`", skill)
+        self.assertIn("独立文献综述读取 `references/academic-literature-review.md`", skill)
+        self.assertIn("不得合并不同叶子的 references", skill)
+        self.assertLess(len(skill), 6_000)
         for term in [
             "材料不足时宁可短写",
             "研究对象、样本量、数据、实验、问卷、访谈、案例、政策、结果、引文和参考文献均不得补造",
@@ -65,43 +87,87 @@ class SkillBoundaryTests(unittest.TestCase):
             "`可展开论点`",
             "用户要求只输出正文时，不附任何构造建议",
             "研究问题或中心命题 -> 全文提纲 -> 章节任务 -> 小节要点 -> 段落论点",
-            "段落 -> 小节 -> 全文",
+            "## 由小至大复核",
             "用户未给出的比例、均值、显著性或其他派生统计默认不自行计算",
             "未指定模板时按证据收缩章节，指定模板时保留章节但区分各章任务",
-            "重 prompt/reference、轻脚本机制",
         ]:
             self.assertIn(term, academic)
-        self.assertIn("论文任务先执行下列论文分支", review)
-        self.assertIn("论文跳过主送、落款、请批语、行文关系", final_review)
-        self.assertIn("研究问题、论点、证据和结论是否匹配", anti_ai)
+        for forbidden in ["公文", "主送", "落款", "办理要素", "请批语", "GB/T 9704", "official-writing.md", "task-route-cards.md"]:
+            self.assertNotIn(forbidden, academic)
+        for text in [official, review, final_review, anti_ai]:
+            self.assertNotRegex(text, r"论文|学位论文|课程论文|开题报告|文献综述")
+        self.assertNotIn("academic-writing.md", official)
 
-    def test_academic_capability_is_exposed_on_release_surfaces(self) -> None:
-        skill = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
+    def test_academic_subchains_are_positive_self_contained_and_isolated(self) -> None:
+        root = ROOT / "chinese-official-writing" / "references"
+        proposal = (root / "academic-proposal.md").read_text(encoding="utf-8")
+        literature_review = (root / "academic-literature-review.md").read_text(encoding="utf-8")
+
+        for text in [proposal, literature_review]:
+            self.assertIn("## 由大至小写作", text)
+            self.assertIn("## 由小至大复核", text)
+            self.assertIn("`可补充材料`", text)
+            self.assertIn("用户要求只输出正文时，不附构造建议", text)
+            for forbidden in [
+                "公文",
+                "主送",
+                "落款",
+                "办理",
+                "请批",
+                "GB/T 9704",
+                "official-writing.md",
+                "task-route-cards.md",
+            ]:
+                self.assertNotIn(forbidden, text)
+
+        self.assertIn("计划不得写成已经实施", proposal)
+        self.assertIn("预期不得写成已经证实", proposal)
+        self.assertIn("中心问题 -> 研究目标 -> 子问题", proposal)
+        self.assertIn("不能据此断言整个领域不存在相关研究", literature_review)
+        self.assertIn("相关、关联、反映、提及不得改写为影响、作用、导致或效果", literature_review)
+        self.assertIn("综述问题 -> 分组任务 -> 组内共识与分歧", literature_review)
+        self.assertIn("避免逐篇摘要连续罗列", literature_review)
+
+    def test_academic_capability_is_deemphasized_on_release_surfaces(self) -> None:
+        skill = canonical_skill_text()
         agent_ui = (ROOT / "chinese-official-writing" / "agents" / "openai.yaml").read_text(encoding="utf-8")
         readme = (ROOT / "README.md").read_text(encoding="utf-8")
         marketplace = (ROOT / "openclaw" / "marketplace-readme.md").read_text(encoding="utf-8")
         skill_card = (ROOT / "openclaw" / "skill-card.md").read_text(encoding="utf-8")
         manifest = json.loads((ROOT / ".claude-plugin" / "plugin.json").read_text(encoding="utf-8"))
 
-        self.assertIn("中文本科、硕士学位论文和课程论文", skill)
-        self.assertIn("official and academic writing", agent_ui)
-        self.assertIn("undergraduate, master's, or course papers", agent_ui)
+        self.assertIn("课程论文及其开题报告或独立文献综述任务按独立论文叶子处理", skill)
+        self.assertIn("Chinese Official Writing", agent_ui)
+        self.assertNotIn("official and academic writing", agent_ui)
+        self.assertIn("separate on-demand paper reference", agent_ui)
         for text in [readme, marketplace]:
-            self.assertIn("中文论文", text)
-            self.assertIn("本科论文", text)
-            self.assertIn("硕士学位论文", text)
-            self.assertIn("课程论文", text)
-        self.assertIn("references/academic-writing.md", skill_card)
-        self.assertIn("Chinese undergraduate, master's, and course papers", skill_card)
-        self.assertIn("论文", manifest["description"])
+            self.assertNotIn("| 中文论文 |", text)
+            self.assertNotIn("### 论文写作与审稿", text)
+            self.assertIn("按需进入独立论文叶子", text)
+        self.assertIn("On-demand paper leaf", skill_card)
+        self.assertTrue(manifest["description"].startswith("中文公文与正式工作材料写作技能"))
+        self.assertIn("按需进入单一论文专项叶", manifest["description"])
 
-    def test_openclaw_compact_route_includes_academic_pre_route(self) -> None:
+    def test_openclaw_compact_route_selects_one_leaf_without_inlining_both(self) -> None:
         sync_script = (ROOT / "tools" / "sync_adapters.py").read_text(encoding="utf-8")
+        openclaw = (
+            ROOT / "openclaw" / "skills" / "chinese_official_writing" / "SKILL.md"
+        ).read_text(encoding="utf-8")
+        canonical_body = canonical_skill_text().split("---", 2)[2].strip()
+        openclaw_body = openclaw.split("---", 2)[2].strip()
 
-        self.assertIn("中文学位论文、课程论文", sync_script)
-        self.assertIn("先读取 `references/academic-writing.md`", sync_script)
-        self.assertIn("论文不进入公文文种、行文关系", sync_script)
-        self.assertIn("可补充材料、可补充论点、可展开论点", sync_script)
+        self.assertIn("patch_openclaw_skill_body", sync_script)
+        self.assertIn("canonical_body", sync_script)
+        self.assertEqual(openclaw_body, canonical_body)
+        self.assertLess(len(openclaw_body), 3_000)
+        for market_only in [
+            "## 适用场景",
+            "## 核心能力",
+            "## 快速试用",
+            "覆盖 27+ 种",
+            "帮我起草一份项目请示",
+        ]:
+            self.assertNotIn(market_only, openclaw_body)
 
     def test_adapter_skill_copies_keep_boundaries(self) -> None:
         paths = [
@@ -115,11 +181,11 @@ class SkillBoundaryTests(unittest.TestCase):
         for path in paths:
             with self.subTest(path=path):
                 text = path.read_text(encoding="utf-8")
-                self.assertIn("批量语料生成", text)
-                self.assertIn("规避人工审核", text)
+                self.assertIn("最终交付物", text)
+                self.assertIn("AIGC/查重检测", text)
 
     def test_drafting_rules_are_split_for_prompt_following(self) -> None:
-        text = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
+        text = official_runtime_text()
         lines = text.splitlines()
         drafting_lines = [
             line
@@ -132,7 +198,7 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assertGreaterEqual(sum(1 for line in drafting_lines if line.startswith("  - ")), 4)
 
     def test_long_form_headings_warn_against_markdown_bold(self) -> None:
-        text = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
+        text = official_runtime_text()
 
         self.assertIn("Markdown 格式残留", text)
         self.assertIn("活动方案、实施方案等长稿正文的小标题", text)
@@ -171,7 +237,7 @@ class SkillBoundaryTests(unittest.TestCase):
                         )
 
     def test_reference_loading_table_keeps_progressive_disclosure(self) -> None:
-        text = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
+        text = official_runtime_text()
 
         self.assertIn("按任务渐进读取资料，不要一次性加载全部文件", text)
         self.assertIn("| 文件 | 阶段 | 加载条件 |", text)
@@ -182,16 +248,20 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assertIn("仅在 AI 算力、GPU/服务器租赁、模型服务、采购、租赁、可研、成本比较、SLA、安全或验收材料中读取", text)
 
     def test_task_route_cards_keep_sparse_tasks_lightweight(self) -> None:
-        skill = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
+        skill = official_runtime_text()
         cards = (ROOT / "chinese-official-writing" / "references" / "task-route-cards.md").read_text(
             encoding="utf-8"
         )
-        sync_script = (ROOT / "tools" / "sync_adapters.py").read_text(encoding="utf-8")
+        openclaw_router = (
+            ROOT / "openclaw" / "skills" / "chinese_official_writing" / "SKILL.md"
+        ).read_text(encoding="utf-8")
 
-        for text in [skill, sync_script]:
-            self.assertIn("references/task-route-cards.md", text)
+        self.assertIn("references/task-route-cards.md", skill)
+        for text in [skill, cards]:
             self.assertIn("材料稀疏", text)
             self.assertIn("不新增事实", text)
+        self.assertIn("references/official-writing.md", openclaw_router)
+        self.assertNotIn("references/task-route-cards.md", openclaw_router)
         for term in [
             "必须转读长 reference 的情况",
             "用户要求完整文种骨架",
@@ -211,7 +281,7 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assertLess(len(cards.splitlines()), 80)
 
     def test_light_route_is_terminal_until_an_explicit_escalation_condition(self) -> None:
-        skill = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
+        skill = official_runtime_text()
         cards = (ROOT / "chinese-official-writing" / "references" / "task-route-cards.md").read_text(
             encoding="utf-8"
         )
@@ -263,13 +333,13 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assertNotIn("`anti-ai-patterns.md`", review)
 
     def test_trigger_description_covers_reported_genres(self) -> None:
-        text = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
+        text = official_runtime_text()
 
         for keyword in ["复函", "公示", "通告", "意见", "决定", "决议", "议案", "公报", "命令", "工作要点", "审查材料"]:
             self.assertIn(keyword, text)
 
     def test_multi_round_revision_rules_keep_structure_and_genre_format(self) -> None:
-        skill = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
+        skill = official_runtime_text()
         workflow = (ROOT / "chinese-official-writing" / "references" / "workflow.md").read_text(encoding="utf-8")
         checklist = (ROOT / "chinese-official-writing" / "references" / "review-checklist.md").read_text(encoding="utf-8")
 
@@ -311,7 +381,7 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assertIn("不要用方括号 `[]` 或圆括号 `()` 替代", text)
 
     def test_final_drafts_must_not_keep_unfinished_placeholders(self) -> None:
-        skill = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
+        skill = official_runtime_text()
         elements = (ROOT / "chinese-official-writing" / "references" / "handling-elements.md").read_text(encoding="utf-8")
         checklist = (ROOT / "chinese-official-writing" / "references" / "review-checklist.md").read_text(encoding="utf-8")
 
@@ -433,14 +503,14 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assertIn("OPENCLAW_SKILL_CARD", sync_script)
 
     def test_lint_strict_fail_on_is_documented(self) -> None:
-        skill = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
+        skill = official_runtime_text()
         readme = (ROOT / "README.md").read_text(encoding="utf-8")
 
         self.assertIn("--strict --fail-on medium", skill)
         self.assertIn("--strict --fail-on medium", readme)
 
     def test_revision_workflow_forbids_new_unprovided_facts(self) -> None:
-        skill = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
+        skill = official_runtime_text()
         workflow = (ROOT / "chinese-official-writing" / "references" / "workflow.md").read_text(encoding="utf-8")
         checklist = (ROOT / "chinese-official-writing" / "references" / "review-checklist.md").read_text(
             encoding="utf-8"
@@ -457,7 +527,7 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assertIn("用户只要求正文且未同时允许文后提示时", checklist)
 
     def test_staged_review_workflow_remains_intact(self) -> None:
-        skill = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
+        skill = official_runtime_text()
         workflow = (ROOT / "chinese-official-writing" / "references" / "workflow.md").read_text(encoding="utf-8")
         checklist = (ROOT / "chinese-official-writing" / "references" / "review-checklist.md").read_text(
             encoding="utf-8"
@@ -471,7 +541,7 @@ class SkillBoundaryTests(unittest.TestCase):
             self.assertNotIn(rejected_rule, skill + workflow + checklist)
 
     def test_v140_mode_routing_material_mapping_and_format_bridge_are_documented(self) -> None:
-        skill = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
+        skill = official_runtime_text()
         workflow = (ROOT / "chinese-official-writing" / "references" / "workflow.md").read_text(encoding="utf-8")
         checklist = (ROOT / "chinese-official-writing" / "references" / "review-checklist.md").read_text(
             encoding="utf-8"
@@ -505,7 +575,7 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assertIn("Markdown `**加粗**`", format_ref)
 
     def test_v141_formal_delivery_review_and_tone_rules_are_documented(self) -> None:
-        skill = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
+        skill = official_runtime_text()
         checklist = (ROOT / "chinese-official-writing" / "references" / "review-checklist.md").read_text(
             encoding="utf-8"
         )
@@ -515,12 +585,15 @@ class SkillBoundaryTests(unittest.TestCase):
         format_ref = (ROOT / "chinese-official-writing" / "references" / "format-gbt9704.md").read_text(
             encoding="utf-8"
         )
-        sync_script = (ROOT / "tools" / "sync_adapters.py").read_text(encoding="utf-8")
+        openclaw_router = (
+            ROOT / "openclaw" / "skills" / "chinese_official_writing" / "SKILL.md"
+        ).read_text(encoding="utf-8")
 
-        for text in [skill, format_ref, checklist, sync_script]:
+        for text in [skill, format_ref, checklist]:
             self.assertIn("正式交付前要素核对", text)
             self.assertIn("签发", text)
             self.assertIn("版记", text)
+        self.assertIn("references/official-writing.md", openclaw_router)
         self.assertIn("缺项清单", format_ref)
         self.assertIn("不得用 `[依据/背景]`", format_ref)
         self.assertIn("未编造文号、签发人、印章或版记", checklist)
@@ -542,7 +615,7 @@ class SkillBoundaryTests(unittest.TestCase):
             self.assertNotIn(forbidden, skill_files)
 
     def test_v141_search_boundary_stays_lightweight_and_opt_in(self) -> None:
-        skill = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
+        skill = official_runtime_text()
         workflow = (ROOT / "chinese-official-writing" / "references" / "workflow.md").read_text(encoding="utf-8")
         elements = (ROOT / "chinese-official-writing" / "references" / "handling-elements.md").read_text(
             encoding="utf-8"
@@ -550,11 +623,18 @@ class SkillBoundaryTests(unittest.TestCase):
         checklist = (ROOT / "chinese-official-writing" / "references" / "review-checklist.md").read_text(
             encoding="utf-8"
         )
-        openclaw_skill = (ROOT / "openclaw" / "skills" / "chinese_official_writing" / "SKILL.md").read_text(
+        openclaw_official = (
+            ROOT
+            / "openclaw"
+            / "skills"
+            / "chinese_official_writing"
+            / "references"
+            / "official-writing.md"
+        ).read_text(
             encoding="utf-8"
         )
 
-        for text in [skill, workflow, checklist, openclaw_skill]:
+        for text in [skill, workflow, checklist, openclaw_official]:
             self.assertIn("联网搜索", text)
         self.assertIn("联网核验", elements)
         self.assertIn("默认不外搜", skill)
@@ -567,7 +647,7 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assertIn("来源冲突、无法核验或工具不可用", workflow)
         self.assertIn("默认不外搜补缺项", elements)
         self.assertIn("未因单位名称自动搜索单位公开样文", checklist)
-        for text in [skill, elements, openclaw_skill]:
+        for text in [skill, elements, openclaw_official]:
             self.assertIn("不因出现单位名称就搜索单位公开样文", text)
         self.assertIn("只出现单位名称，不触发搜索单位公开样文", workflow)
         skill_files = relative_files(ROOT / "chinese-official-writing")
@@ -575,7 +655,7 @@ class SkillBoundaryTests(unittest.TestCase):
             self.assertNotIn(forbidden, skill_files)
 
     def test_v144_common_real_writing_risks_and_adoption_gate_are_documented(self) -> None:
-        skill = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
+        skill = official_runtime_text()
         workflow = (ROOT / "chinese-official-writing" / "references" / "workflow.md").read_text(encoding="utf-8")
         checklist = (ROOT / "chinese-official-writing" / "references" / "review-checklist.md").read_text(
             encoding="utf-8"
@@ -635,7 +715,7 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assertIn("禁止直接誊抄代码、脚本、正则、模板库、大段 prompt、固定话术或模板正文", agents)
 
     def test_fact_sufficiency_guidance_is_soft_and_non_blocking(self) -> None:
-        skill = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
+        skill = official_runtime_text()
         workflow = (ROOT / "chinese-official-writing" / "references" / "workflow.md").read_text(encoding="utf-8")
         checklist = (ROOT / "chinese-official-writing" / "references" / "review-checklist.md").read_text(
             encoding="utf-8"
@@ -677,7 +757,7 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assertIn("总体较好", checklist)
 
     def test_v147_minimal_borrowing_rules_stay_soft_and_prompt_based(self) -> None:
-        skill = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
+        skill = official_runtime_text()
         workflow = (ROOT / "chinese-official-writing" / "references" / "workflow.md").read_text(encoding="utf-8")
         checklist = (ROOT / "chinese-official-writing" / "references" / "review-checklist.md").read_text(
             encoding="utf-8"
@@ -773,7 +853,7 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assertIn("正式化改写只压实原文已有事实", official_style)
 
     def test_v150_genre_playbooks_keep_minimal_borrowing_boundaries(self) -> None:
-        skill = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
+        skill = official_runtime_text()
         playbooks = (ROOT / "chinese-official-writing" / "references" / "genre-playbooks.md").read_text(
             encoding="utf-8"
         )
@@ -817,7 +897,7 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assertIn("专项结构和指标写法转读 `ai-compute-docs.md`", anti_ai)
 
     def test_weak_model_suggestion_boundaries_stay_soft(self) -> None:
-        skill = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
+        skill = official_runtime_text()
         workflow = (ROOT / "chinese-official-writing" / "references" / "workflow.md").read_text(
             encoding="utf-8"
         )
@@ -840,7 +920,7 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assertIn("未用 Markdown `**` 加粗包装标签", review)
 
     def test_proofreading_layer_stays_ai_writing_quality_only(self) -> None:
-        skill = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
+        skill = official_runtime_text()
         checklist = (ROOT / "chinese-official-writing" / "references" / "review-checklist.md").read_text(
             encoding="utf-8"
         )
@@ -875,7 +955,7 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assertIn("不改变 `prose_lint.py` 为深度语法纠错器", proofreading)
 
     def test_formalization_keeps_only_explicit_literal_boundaries_verbatim(self) -> None:
-        skill = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
+        skill = official_runtime_text()
         proofreading = (
             ROOT / "chinese-official-writing" / "references" / "proofreading-checklist.md"
         ).read_text(encoding="utf-8")
@@ -898,13 +978,22 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assertIn("`<draft>` 替换为待检查文件路径", review)
 
     def test_ai_dedupe_prompt_fix_guidance_is_documented(self) -> None:
-        skill = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
-        openclaw_skill = (ROOT / "openclaw" / "skills" / "chinese_official_writing" / "SKILL.md").read_text(
+        skill = official_runtime_text()
+        openclaw_official = (
+            ROOT
+            / "openclaw"
+            / "skills"
+            / "chinese_official_writing"
+            / "references"
+            / "official-writing.md"
+        ).read_text(
             encoding="utf-8"
         )
-        sync_script = (ROOT / "tools" / "sync_adapters.py").read_text(encoding="utf-8")
+        openclaw_router = (
+            ROOT / "openclaw" / "skills" / "chinese_official_writing" / "SKILL.md"
+        ).read_text(encoding="utf-8")
 
-        for text in [skill, openclaw_skill, sync_script]:
+        for text in [skill, openclaw_official]:
             self.assertIn("用户明示某些事项未提供", text)
             self.assertRegex(text, r"不(?:要)?扩展成调查问卷")
             self.assertIn("（成文日期待确认）", text)
@@ -913,26 +1002,51 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assertIn("不得补写未给的解释、原因、影响范围、办理流程、责任人员、字段示例或整改动作", skill)
         self.assertIn("用户只给问题清单、任务清单或明确要求不新增事实时", skill)
         self.assertIn("不为显得自然或完整而补解释", skill)
-        self.assertIn("不得补写未给解释、原因、影响、流程、人员、字段或整改动作", openclaw_skill)
+        self.assertIn("不得补写未给的解释、原因、影响范围、办理流程、责任人员、字段示例或整改动作", openclaw_official)
+        self.assertIn("公文路线只读取 `references/official-writing.md`", openclaw_router)
 
     def test_openclaw_agent_rules_include_v140_routing_and_format_bridge(self) -> None:
-        text = (ROOT / "openclaw" / "skills" / "chinese_official_writing" / "SKILL.md").read_text(
+        router = (ROOT / "openclaw" / "skills" / "chinese_official_writing" / "SKILL.md").read_text(
             encoding="utf-8"
         )
+        official = (
+            ROOT
+            / "openclaw"
+            / "skills"
+            / "chinese_official_writing"
+            / "references"
+            / "official-writing.md"
+        ).read_text(encoding="utf-8")
+        workflow = (
+            ROOT
+            / "openclaw"
+            / "skills"
+            / "chinese_official_writing"
+            / "references"
+            / "workflow.md"
+        ).read_text(encoding="utf-8")
 
-        self.assertIn("任务模式", text)
-        self.assertIn("references/workflow.md", text)
-        self.assertIn("原文已有事实", text)
-        self.assertIn("待确认补充", text)
-        self.assertIn("数据冲突不得默认就高", text)
-        self.assertIn("references/format-gbt9704.md", text)
-        self.assertIn("正式 Word 输出前不得残留 Markdown", text)
-        self.assertIn("未同时允许文后提示时，不附任何正文外说明或提示", text)
-        self.assertIn("缺项不补造，也不在正文中解释“未提供”", text)
-        self.assertIn("缺项按第5条的交付命令处理", text)
-        self.assertIn("只有用户允许文后提示时", text)
-        self.assertIn("包内 `references/`", text)
-        self.assertNotIn("canonical `SKILL.md` 的“硬边界”段", text)
+        self.assertIn("按最终交付物选一个叶子", router)
+        self.assertIn("公文路线只读取 `references/official-writing.md`", router)
+        self.assertIn("普通本科、硕士或课程论文读取 `references/academic-writing.md`", router)
+        self.assertIn("开题报告读取 `references/academic-proposal.md`", router)
+        self.assertIn("独立文献综述读取 `references/academic-literature-review.md`", router)
+        self.assertNotIn("references/workflow.md", router)
+        self.assertNotIn("references/task-route-cards.md", router)
+        for term in [
+            "任务模式",
+            "references/workflow.md",
+            "原文事实",
+            "待确认补充",
+            "references/format-gbt9704.md",
+            "正式 Word 输出前不得残留 Markdown",
+            "除非同时明确允许文后待确认、风险或核验提示",
+            "缺失事实不补造，也不在正文中解释“未提供”",
+            "用户同时明确允许某类文后提示时",
+        ]:
+            self.assertIn(term, official)
+        self.assertIn("数据冲突不得默认就高", workflow)
+        self.assertNotIn("论文", official)
 
     def test_openclaw_skill_card_source_is_tracked_but_not_packaged_directly(self) -> None:
         source = (ROOT / "openclaw" / "skill-card.md").read_text(encoding="utf-8")
@@ -942,7 +1056,7 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assertFalse(packaged_path.exists())
 
     def test_openclaw_skill_card_uses_absolute_links_and_key_genres(self) -> None:
-        skill = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
+        skill = official_runtime_text()
         source = (ROOT / "openclaw" / "skill-card.md").read_text(encoding="utf-8")
 
         self.assertNotIn("](references/", source)

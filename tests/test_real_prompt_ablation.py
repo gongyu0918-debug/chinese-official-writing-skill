@@ -229,10 +229,23 @@ class RealPromptAblationTests(unittest.TestCase):
             checks_by_id["P108"]["file_terms"]["chinese-official-writing/references/academic-writing.md"],
         )
         self.assertIn("文献综述", checks_by_id["P109"]["description_terms"])
+        self.assertIn(
+            "避免逐篇摘要连续罗列",
+            checks_by_id["P109"]["file_terms"][
+                "chinese-official-writing/references/academic-literature-review.md"
+            ],
+        )
         self.assertIn("英文", checks_by_id["P111"]["description_exclusion_terms"])
         self.assertIn(
             "未指定模板时按证据收缩章节",
             checks_by_id["P113"]["file_terms"]["chinese-official-writing/references/academic-writing.md"],
+        )
+        self.assertIn("开题报告", checks_by_id["P114"]["description_terms"])
+        self.assertIn(
+            "计划不得写成已经实施",
+            checks_by_id["P114"]["file_terms"][
+                "chinese-official-writing/references/academic-proposal.md"
+            ],
         )
         for case_id, term in [
             ("P065", "通告"),

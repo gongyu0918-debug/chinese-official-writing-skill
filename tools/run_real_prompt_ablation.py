@@ -1082,10 +1082,6 @@ CASES: list[PromptCase] = [
                     "不得补造",
                     "只审不改",
                 ],
-                "chinese-official-writing/references/anti-ai-patterns.md": [
-                    "研究问题、论点、证据和结论是否匹配",
-                    "不得为降低 AIGC 检测率而改写",
-                ],
             },
         },
     ),
@@ -1753,14 +1749,9 @@ CASES: list[PromptCase] = [
         checks={
             "file_terms": {
                 "openclaw/skills/chinese_official_writing/SKILL.md": [
-                    "未同时允许文后提示时，不附任何正文外说明或提示",
-                    "缺项不补造，也不在正文中解释“未提供”",
-                    "缺项按第5条的交付命令处理",
-                    "只有用户允许文后提示时",
-                ],
-                "tools/sync_adapters.py": [
-                    "未同时允许文后提示时，不附任何正文外说明或提示",
-                    "缺项按第5条的交付命令处理",
+                    "只输出正文",
+                    "不附任何正文外说明或提示",
+                    "不在正文中解释“未提供”",
                 ],
             },
         },
@@ -1790,11 +1781,10 @@ CASES: list[PromptCase] = [
         kind="create",
         prompt="根据我给的题目、研究问题和三条材料列一个中文课程论文提纲，不要补数据、案例或参考文献。",
         checks={
-            "description_terms": ["课程论文", "论文提纲"],
+            "description_terms": ["课程论文"],
             "file_terms": {
                 "chinese-official-writing/SKILL.md": [
-                    "先读 `references/academic-writing.md`",
-                    "论文任务不进入公文文种、行文关系",
+                    "references/academic-writing.md",
                 ],
                 "chinese-official-writing/references/academic-writing.md": [
                     "### 提纲构造",
@@ -1832,9 +1822,6 @@ CASES: list[PromptCase] = [
                     "### 底稿修改",
                     "保留术语、数据、引用、图表编号、公式、章节层级和学校模板",
                 ],
-                "chinese-official-writing/references/review-checklist.md": [
-                    "用户要求只输出正文时是否完全省略这些建议",
-                ],
             },
         },
     ),
@@ -1848,10 +1835,7 @@ CASES: list[PromptCase] = [
                     "### 只审不改",
                     "按“位置、风险层级、修改建议”逐项输出",
                     "不以语言流畅度替代学术有效性",
-                ],
-                "chinese-official-writing/references/final-review-layers.md": [
-                    "研究问题、论点、证据和结论是否对应",
-                    "论文跳过主送、落款、请批语、行文关系",
+                    "研究问题、论点、证据、结论",
                 ],
             },
         },
@@ -1863,10 +1847,15 @@ CASES: list[PromptCase] = [
         checks={
             "description_terms": ["文献综述"],
             "file_terms": {
-                "chinese-official-writing/references/academic-writing.md": [
-                    "文献综述按主题、观点、方法或时间线组织",
-                    "不把文献标题列表改写成虚构的研究发现",
-                    "修改前先锁定对应关系",
+                "chinese-official-writing/SKILL.md": [
+                    "独立文献综述读取 `references/academic-literature-review.md`",
+                ],
+                "chinese-official-writing/references/academic-literature-review.md": [
+                    "综述问题 -> 分组任务 -> 组内共识与分歧",
+                    "具体发现只来自实际读取的原文、摘要或用户材料",
+                    "相关、关联、反映、提及不得改写为影响、作用、导致或效果",
+                    "每项来源归因都要能够回到对应材料",
+                    "避免逐篇摘要连续罗列",
                 ],
             },
         },
@@ -1879,12 +1868,8 @@ CASES: list[PromptCase] = [
             "file_terms": {
                 "chinese-official-writing/references/academic-writing.md": [
                     "默认不联网",
-                    "只有用户明确要求检索、补充文献或核验公开来源时才搜索",
+                    "用户明确要求检索时",
                     "链接或 DOI、访问日期及使用位置",
-                ],
-                "chinese-official-writing/references/review-checklist.md": [
-                    "是否保持默认不联网",
-                    "访问日期及使用位置",
                 ],
             },
         },
@@ -1925,6 +1910,25 @@ CASES: list[PromptCase] = [
             },
         },
     ),
+    PromptCase(
+        id="P114",
+        kind="create",
+        prompt="只按我给的学校栏目和材料写论文开题报告；拟采用的方法和预期结果不要写成已经完成，不补文献、数据或进度。",
+        checks={
+            "description_terms": ["开题报告"],
+            "file_terms": {
+                "chinese-official-writing/SKILL.md": [
+                    "开题报告读取 `references/academic-proposal.md`",
+                ],
+                "chinese-official-writing/references/academic-proposal.md": [
+                    "计划不得写成已经实施",
+                    "预期不得写成已经证实",
+                    "中心问题 -> 研究目标 -> 子问题",
+                    "材料不足时先完成能够成立的短稿",
+                ],
+            },
+        },
+    ),
 ]
 
 
@@ -1932,7 +1936,23 @@ def read_text(root: Path, relative: str) -> str:
     path = root / relative
     if not path.exists():
         return ""
-    return path.read_text(encoding="utf-8")
+    text = path.read_text(encoding="utf-8")
+    if relative == "chinese-official-writing/SKILL.md":
+        official_leaf = root / "chinese-official-writing" / "references" / "official-writing.md"
+        if official_leaf.exists():
+            text += "\n\n" + official_leaf.read_text(encoding="utf-8")
+    if relative == "openclaw/skills/chinese_official_writing/SKILL.md":
+        official_leaf = (
+            root
+            / "openclaw"
+            / "skills"
+            / "chinese_official_writing"
+            / "references"
+            / "official-writing.md"
+        )
+        if official_leaf.exists():
+            text += "\n\n" + official_leaf.read_text(encoding="utf-8")
+    return text
 
 
 def extract_description(skill_text: str) -> str:

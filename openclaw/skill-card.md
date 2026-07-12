@@ -1,5 +1,5 @@
 ## Description: <br>
-Drafts, revises, compresses, and reviews Chinese official documents, formal workplace materials, and Chinese undergraduate, master's, and course papers. It covers 通知、请示、报告、函、复函、批复、意见、方案、说明、申请、征求意见函、采购公告、可研、调研、总结、工作要点、审查材料、讲话稿、述职报告，以及论文提纲、开题报告、文献综述、论文正文、论文改稿和审稿. <br>
+Primarily drafts, revises, compresses, and reviews Chinese official documents and formal workplace materials, including 通知、请示、报告、函、复函、批复、意见、方案、说明、申请、征求意见函、采购公告、可研、调研、总结、工作要点、审查材料、讲话稿、述职报告. Explicit Chinese undergraduate, master's, and course paper tasks enter a separate on-demand leaf and do not share the official-document workflow. <br>
 
 This skill is ready for commercial/non-commercial use. <br>
 
@@ -11,7 +11,7 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-External users and teams use this skill to produce or review Chinese formal documents and Chinese academic writing. Official-document tasks use genre, handling-element, structure, and tone checks; academic tasks organize research questions, outlines, claims, evidence, citations, and conclusions while keeping legal, financial, procurement, audit, academic, and final sign-off judgments subject to qualified human review. <br>
+External users and teams use this skill primarily to produce or review Chinese formal documents through genre, handling-element, structure, and tone checks. Its on-demand paper leaf remains secondary in product presentation, source-bounded, and subject to qualified academic review. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
@@ -37,12 +37,12 @@ Mitigation: Keep missing data outside the final body for user confirmation, and 
 - [Review checklist](https://github.com/gongyu0918-debug/chinese-official-writing-skill/blob/main/chinese-official-writing/references/review-checklist.md) <br>
 - [Workflow](https://github.com/gongyu0918-debug/chinese-official-writing-skill/blob/main/chinese-official-writing/references/workflow.md) <br>
 - [AI compute and technical service materials](https://github.com/gongyu0918-debug/chinese-official-writing-skill/blob/main/chinese-official-writing/references/ai-compute-docs.md) <br>
-- [Academic writing](https://github.com/gongyu0918-debug/chinese-official-writing-skill/blob/main/chinese-official-writing/references/academic-writing.md) <br>
+- [On-demand paper leaf](https://github.com/gongyu0918-debug/chinese-official-writing-skill/blob/main/chinese-official-writing/references/academic-writing.md) <br>
 
 
 ## Skill Output: <br>
 **Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Chinese prose, academic outlines, or Markdown with review notes when requested] <br>
+**Output Format:** [Chinese prose or review notes; explicit paper tasks use the separate on-demand leaf] <br>
 **Output Parameters:** [1D] <br>
 **Other Properties Related to Output:** [May include draft text, revised text, concise change notes, issue locations, risk levels, and suggested edits depending on the task.] <br>
 
