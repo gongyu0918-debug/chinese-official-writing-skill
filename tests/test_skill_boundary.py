@@ -28,15 +28,59 @@ class SkillBoundaryTests(unittest.TestCase):
         description = re.search(r"^description: (.+)$", text, re.M)
         self.assertIsNotNone(description)
         self.assertLessEqual(len(description.group(1)), 280)
-        for keyword in ["申请", "请示", "报告", "通知", "通告", "意见", "决定", "函", "采购公告", "审查材料", "正式文本"]:
+        for keyword in ["申请", "请示", "报告", "通知", "通告", "意见", "决定", "函", "采购公告", "审查材料", "课程论文", "文献综述"]:
             self.assertIn(keyword, description.group(1))
-        for excluded in ["营销", "社媒", "论文"]:
+        for excluded in ["英文", "营销", "社媒", "个人求职", "规避 AIGC/查重检测"]:
             self.assertIn(excluded, description.group(1))
         self.assertIn("当用户明确要求中文通知", text)
         self.assertIn("## 触发条件与边界", text)
         self.assertIn("批量语料生成", text)
         self.assertIn("规避人工审核", text)
         self.assertIn("替代法律/财务/采购/审计/政策依据判断", text)
+
+    def test_academic_route_is_isolated_and_fact_bounded(self) -> None:
+        skill = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
+        academic = (
+            ROOT / "chinese-official-writing" / "references" / "academic-writing.md"
+        ).read_text(encoding="utf-8")
+        review = (
+            ROOT / "chinese-official-writing" / "references" / "review-checklist.md"
+        ).read_text(encoding="utf-8")
+        final_review = (
+            ROOT / "chinese-official-writing" / "references" / "final-review-layers.md"
+        ).read_text(encoding="utf-8")
+        anti_ai = (
+            ROOT / "chinese-official-writing" / "references" / "anti-ai-patterns.md"
+        ).read_text(encoding="utf-8")
+
+        self.assertIn("先读 `references/academic-writing.md`", skill)
+        self.assertIn("论文任务不进入公文文种、行文关系", skill)
+        self.assertIn("中文学位或课程论文先读 `references/academic-writing.md`", skill)
+        for term in [
+            "材料不足时宁可短写",
+            "研究对象、样本量、数据、实验、问卷、访谈、案例、政策、结果、引文和参考文献均不得补造",
+            "默认不联网",
+            "`可补充材料`",
+            "`可补充论点`",
+            "`可展开论点`",
+            "用户要求只输出正文时，不附任何构造建议",
+            "研究问题或中心命题 -> 全文提纲 -> 章节任务 -> 小节要点 -> 段落论点",
+            "段落 -> 小节 -> 全文",
+            "用户未给出的比例、均值、显著性或其他派生统计默认不自行计算",
+            "重 prompt/reference、轻脚本机制",
+        ]:
+            self.assertIn(term, academic)
+        self.assertIn("论文任务先执行下列论文分支", review)
+        self.assertIn("论文跳过主送、落款、请批语、行文关系", final_review)
+        self.assertIn("研究问题、论点、证据和结论是否匹配", anti_ai)
+
+    def test_openclaw_compact_route_includes_academic_pre_route(self) -> None:
+        sync_script = (ROOT / "tools" / "sync_adapters.py").read_text(encoding="utf-8")
+
+        self.assertIn("中文学位论文、课程论文", sync_script)
+        self.assertIn("先读取 `references/academic-writing.md`", sync_script)
+        self.assertIn("论文不进入公文文种、行文关系", sync_script)
+        self.assertIn("可补充材料、可补充论点、可展开论点", sync_script)
 
     def test_adapter_skill_copies_keep_boundaries(self) -> None:
         paths = [

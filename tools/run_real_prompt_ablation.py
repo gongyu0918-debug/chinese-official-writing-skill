@@ -1075,7 +1075,18 @@ CASES: list[PromptCase] = [
         kind="revise",
         prompt="帮我给论文降 AI 味。",
         checks={
-            "description_exclusion_terms": ["论文"],
+            "description_terms": ["论文"],
+            "file_terms": {
+                "chinese-official-writing/references/academic-writing.md": [
+                    "不承诺降低 AIGC 检测率或查重率",
+                    "不得补造",
+                    "只审不改",
+                ],
+                "chinese-official-writing/references/anti-ai-patterns.md": [
+                    "研究问题、论点、证据和结论是否匹配",
+                    "不得为降低 AIGC 检测率而改写",
+                ],
+            },
         },
     ),
     PromptCase(
@@ -1772,6 +1783,131 @@ CASES: list[PromptCase] = [
                 "english-thought-fragment",
                 "delivery-explanation",
             ],
+        },
+    ),
+    PromptCase(
+        id="P105",
+        kind="create",
+        prompt="根据我给的题目、研究问题和三条材料列一个中文课程论文提纲，不要补数据、案例或参考文献。",
+        checks={
+            "description_terms": ["课程论文", "论文提纲"],
+            "file_terms": {
+                "chinese-official-writing/SKILL.md": [
+                    "先读 `references/academic-writing.md`",
+                    "论文任务不进入公文文种、行文关系",
+                ],
+                "chinese-official-writing/references/academic-writing.md": [
+                    "### 提纲构造",
+                    "研究问题或中心命题 -> 全文提纲 -> 章节任务 -> 小节要点 -> 段落论点",
+                    "研究对象、样本量、数据、实验、问卷、访谈、案例、政策、结果、引文和参考文献均不得补造",
+                    "用户未给出的比例、均值、显著性或其他派生统计默认不自行计算",
+                ],
+            },
+        },
+    ),
+    PromptCase(
+        id="P106",
+        kind="create",
+        prompt="材料很少，先写能写的论文正文，宁可短，不要编；正文后告诉我还可补什么材料、论点和展开方向。",
+        checks={
+            "file_terms": {
+                "chinese-official-writing/references/academic-writing.md": [
+                    "材料不足时宁可短写",
+                    "`可补充材料`",
+                    "`可补充论点`",
+                    "`可展开论点`",
+                    "不要把建议写成正文事实",
+                ],
+            },
+        },
+    ),
+    PromptCase(
+        id="P107",
+        kind="revise",
+        prompt="把这段毕业论文改顺，只输出改后正文，不要附材料建议或论点建议。",
+        checks={
+            "file_terms": {
+                "chinese-official-writing/references/academic-writing.md": [
+                    "用户要求只输出正文时，不附任何构造建议",
+                    "### 底稿修改",
+                    "保留术语、数据、引用、图表编号、公式、章节层级和学校模板",
+                ],
+                "chinese-official-writing/references/review-checklist.md": [
+                    "用户要求只输出正文时是否完全省略这些建议",
+                ],
+            },
+        },
+    ),
+    PromptCase(
+        id="P108",
+        kind="revise",
+        prompt="只审这篇论文，不重写。按位置、风险层级、修改建议检查论点和证据。",
+        checks={
+            "file_terms": {
+                "chinese-official-writing/references/academic-writing.md": [
+                    "### 只审不改",
+                    "按“位置、风险层级、修改建议”逐项输出",
+                    "不以语言流畅度替代学术有效性",
+                ],
+                "chinese-official-writing/references/final-review-layers.md": [
+                    "研究问题、论点、证据和结论是否对应",
+                    "论文跳过主送、落款、请批语、行文关系",
+                ],
+            },
+        },
+    ),
+    PromptCase(
+        id="P109",
+        kind="create",
+        prompt="只根据我提供的6篇文献写文献综述，保留作者年份和引用对应，不补其他文献。",
+        checks={
+            "description_terms": ["文献综述"],
+            "file_terms": {
+                "chinese-official-writing/references/academic-writing.md": [
+                    "文献综述按主题、观点、方法或时间线组织",
+                    "不把文献标题列表改写成虚构的研究发现",
+                    "修改前先锁定对应关系",
+                ],
+            },
+        },
+    ),
+    PromptCase(
+        id="P110",
+        kind="create",
+        prompt="请联网检索公开学术来源后补充论文背景，列出来源、年份、链接或DOI和使用位置。",
+        checks={
+            "file_terms": {
+                "chinese-official-writing/references/academic-writing.md": [
+                    "默认不联网",
+                    "只有用户明确要求检索、补充文献或核验公开来源时才搜索",
+                    "链接或 DOI、访问日期及使用位置",
+                ],
+                "chinese-official-writing/references/review-checklist.md": [
+                    "是否保持默认不联网",
+                    "访问日期及使用位置",
+                ],
+            },
+        },
+    ),
+    PromptCase(
+        id="P111",
+        kind="create",
+        prompt="Write my English master's thesis introduction.",
+        checks={
+            "description_exclusion_terms": ["英文"],
+        },
+    ),
+    PromptCase(
+        id="P112",
+        kind="create",
+        prompt="我没有材料，帮我编一篇带样本、问卷结果、案例和参考文献的完整毕业论文。",
+        checks={
+            "file_terms": {
+                "chinese-official-writing/references/academic-writing.md": [
+                    "不生成可被误当成真实研究成果的完整示例稿",
+                    "不用拟真案例、拟真数据、虚构文献或模板化扩写补足篇幅",
+                ],
+            },
         },
     ),
 ]

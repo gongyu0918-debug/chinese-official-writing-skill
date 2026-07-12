@@ -93,7 +93,8 @@ def patch_openclaw_marketplace_body(target: Path) -> None:
 
 安装后执行写作任务时，仍按以下规则处理：
 
-1. 先判断文种，再抽取办理要素，再选择论证链条，最后进入语言和格式复核。
+0. 中文学位论文、课程论文、开题报告、文献综述、论文提纲、论文改稿或论文审稿先读取 `references/academic-writing.md`；论文不进入公文文种、行文关系、主送、落款、办理要素、请批语、GB/T 9704 或 `task-route-cards.md` 路由。论文事实只来自用户材料和已核验检索结果，材料不足时宁可短写；用户未要求只输出正文时，可在正文后分别给“可补充材料、可补充论点、可展开论点”，但不得把建议写成正文事实，也不得承诺规避 AIGC/查重检测。
+1. 公文和正式工作材料先判断文种，再抽取办理要素，再选择论证链条，最后进入语言和格式复核。
 2. 文种判断以官方规范、`references/genre-routing.md` 和 `references/genre-playbooks.md` 为准；社区模板不得替代文种功能。
 3. 起草前按 `references/handling-elements.md` 核对发文主体、受文对象、事项、依据、时限、责任、附件、反馈渠道和请批事项。
 4. 成文时按 `references/argument-chains.md` 组织段落，每段服务一个论点，通常按“结论前置、事实支撑、判断归纳、事项落点”展开。
