@@ -26,7 +26,7 @@ npm install -g "https://fe-video-qc.xhscdn.com/fe-platform-file/104101b83221qt9b
 
 官方 agent skill 注册在当前用户的 `~/.agents/skills/skillhub-upload/SKILL.md`。上传固定顺序为：`whoami`；未登录时 `login --agent`；实时取标签；对 `redskill/skills/chinese-official-writing/` 执行带完整 `--source`、`--tag` 的 `publish --dry-run --agent`；把 dry-run 的 `RESULT_JSON.payload` 展示给用户；只有用户明确回复“提交 / 确认 / submit”后才向 CLI confirm 阶段输入 `submit`；最后保存真实 `RESULT_JSON` 回执。
 
-当前用户另有个人自动化 skill：`C:\Users\admin\.codex\skills\red-skillhub-upload\SKILL.md`。它触发“上传小红书 SkillHub / Red Skill / 上传小红书”等请求，采用渐进式披露：主文件只保留默认授权、自动标签和成功判据，详细 CLI 流程按需读取 `references/workflow.md`。该个人 skill 把上传请求本身视为真实上传授权；用户未指定标签时根据 skill 语义从实时标签中自主选择 1—2 个，用户明确指定时直接采用；仍须保留 dry-run、设备授权、永久 Skill ID 歧义和服务端错误等必要门禁。此个人偏好不得反向改变上方官方 `skillhub-upload` 的原始文件。
+当前用户的个人管理 skill 为 `C:\Users\admin\.codex\skills\xiaohongshu-skill-manager\SKILL.md`，旧 `red-skillhub-upload` 已删除。它用于小红书 Red SkillHub 的发布、同一 `skill_identifier` 更新、删除/下架能力检查和回执记录；frontmatter description 只保留两句英文触发说明。该 skill 采用渐进式披露：主文件只保留平台边界、默认授权、自动标签、更新主键和删除确认规则；发布/更新读取 `references/publish-update.md`，删除/下架读取 `references/delete.md`，包规范读取 `references/requirements.md`，不一次加载全部细节。发布和更新请求本身视为真实操作授权，用户未指定标签时从实时列表自主选择 1—2 个；删除属于破坏性操作，执行前仍须确认。当前官方 CLI 0.1.1 没有 delete/unpublish 命令，禁止伪造删除 API；先刷新官方能力，无入口时只做平台管理页或官方支持的最短交接。此个人偏好不得反向修改官方 `skillhub-upload` 原始文件。
 
 当前官方 CLI `0.1.1` 的 Windows shim 会因 `import.meta.url` 与 `process.argv[1]` 路径格式不一致而静默退出。在该版本修复前，可调用同一已安装模块的 `main()`，不修改打包、上传或提交逻辑：
 
