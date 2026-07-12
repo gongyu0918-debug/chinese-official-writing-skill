@@ -88,6 +88,67 @@ PATTERNS: list[tuple[str, str, str, str]] = [
     ("medium", "ai-compute-vague", r"满足未来发展需要", "补充用户、Token、并发、模型升级或智能体工作流依据。"),
 ]
 
+# Opt-in delivery checks. These are intentionally excluded from the default
+# scan because the same wording can be legitimate in review notes.
+DELIVERY_PATTERNS: list[tuple[str, str, str, str]] = [
+    (
+        "medium",
+        "material-reading-narration",
+        r"(?:从|根据)(?:现有|已有|已给|所给|用户(?:已)?提供的)(?:资料|材料|信息|内容)(?:看|来看)[，,：:]?",
+        "核对这是否是模型对输入的说明；若原材料明确记载调查范围、缺失数据或结论边界，可以保留。",
+    ),
+    (
+        "medium",
+        "material-reading-narration",
+        r"(?:现有|已给|所给|用户(?:已)?提供的|上述)(?:资料|材料|信息|内容)(?:仅|只|未|没有|尚未|不足以|无法)[^。\n]{0,28}(?:反映|说明|提供|支持|明确|确认|判断|形成)",
+        "核对这是否是模型对输入的说明；若属于原材料明确记载的业务、调查或审计边界，可以保留。",
+    ),
+    (
+        "high",
+        "constraint-self-certification",
+        r"(?:不新增原文外事实|不超出(?:已给|现有)?事实|不扩大事实范围|不补造(?:供应商|技术参数|责任|流程|事实|数据))",
+        "删除规则遵循或事实边界自证，只保留正式正文内容。",
+    ),
+    (
+        "medium",
+        "constraint-self-certification",
+        r"(?:本报告|本文|本稿|本说明)(?:仅|只)(?:反映|说明|记录)[^。\n]{0,80}(?:不(?:对|作)|未)[^。\n]{0,60}(?:延伸判断|延伸结论|扩展判断|作出判断)",
+        "核对这是规则自证还是必要的报告范围说明；只有规则自证需要删除。",
+    ),
+    (
+        "medium",
+        "constraint-self-certification",
+        r"不扩大为[^。\n]{0,50}(?:结论|事实|事项|范围)",
+        "核对这是规则自证还是有材料依据的结论范围；只有规则自证需要删除。",
+    ),
+    (
+        "high",
+        "delivery-explanation",
+        r"(?:以下|以上|现)(?:为|提供)(?:根据|按照)?(?:你|用户)(?:的)?要求(?:生成|修改|整理|撰写|压缩|调整)的[^。\n]{0,40}",
+        "删除交付说明，直接输出正文。",
+    ),
+    (
+        "high",
+        "delivery-explanation",
+        r"^(?:(?:以下为|下面是)(?:最终|修订后|修改后|调整后)?(?:正文|稿件|文稿|内容)[：:]?|已(?:按|根据)(?:你|用户)(?:的)?要求(?:完成)?(?:修改|压缩|整理|调整)[^。\n]{0,20}[。.]?)\s*$",
+        "删除交付说明，直接输出正文。",
+    ),
+    (
+        "high",
+        "english-thought-fragment",
+        r"(?i)^\s*(?:analysis\s*[:：]|reasoning\s*[:：]|we need(?: to)?\b|i need(?: to)?\b|i will\s+(?:draft|write|revise|produce|prepare|review|analy[sz]e|edit|summari[sz]e)\b|let['’]?s\b|the user (?:asked|asks|wants|requested)\b|i should\b|now (?:write|draft|produce)\b|given the (?:user|prompt|materials?|context)\b)[^\n]{0,160}",
+        "删除英文思考残片或模型自述，只保留中文正式正文。",
+    ),
+    (
+        "high",
+        "english-thought-fragment",
+        r"(?i)\bas an ai(?: language)? model\b[^\n]{0,160}",
+        "删除英文模型身份或能力说明，只保留中文正式正文。",
+    ),
+]
+
+DELIVERY_MODES = ("generic", "draft-body", "review-only", "gap-note-allowed")
+
 FORMAT_PATTERNS: list[tuple[str, str, str, str]] = [
     ("medium", "halfwidth-punctuation", r"[\u4e00-\u9fff][,;:!?][\u4e00-\u9fff]", "中文正文中通常改用全角标点。"),
     ("low", "number-grouping-comma", r"\d{1,3}(?:,\d{3})+(?:\.\d+)?", "确认正式中文材料中是否应取消千位分隔符。"),
@@ -222,6 +283,58 @@ def inside_inline_code(line: str, start: int, end: int) -> bool:
     return any(left <= start and end <= right for left, right in spans)
 
 
+def quoted_spans_by_line(lines: list[str]) -> list[list[tuple[int, int]]]:
+    """Return quoted source spans, including quotes that cross line breaks."""
+    pairs = {"“": "”", "‘": "’", '"': '"'}
+    result: list[list[tuple[int, int]]] = []
+    active_close: str | None = None
+    for line_index, line in enumerate(lines):
+        spans: list[tuple[int, int]] = []
+        idx = 0
+        while idx < len(line):
+            if active_close is not None:
+                right = line.find(active_close, idx)
+                if right == -1:
+                    spans.append((idx, len(line)))
+                    idx = len(line)
+                else:
+                    spans.append((idx, right + 1))
+                    idx = right + 1
+                    active_close = None
+                continue
+
+            openings = [(line.find(mark, idx), mark) for mark in pairs]
+            openings = [(pos, mark) for pos, mark in openings if pos != -1]
+            if not openings:
+                break
+            left, left_mark = min(openings)
+            close_mark = pairs[left_mark]
+            right = line.find(close_mark, left + 1)
+            if right == -1:
+                future_close = False
+                for future in lines[line_index + 1 : line_index + 9]:
+                    if not future.strip():
+                        break
+                    if close_mark in future:
+                        future_close = True
+                        break
+                if future_close:
+                    spans.append((left, len(line)))
+                    active_close = close_mark
+                    idx = len(line)
+                else:
+                    idx = left + 1
+            else:
+                spans.append((left, right + 1))
+                idx = right + 1
+        result.append(spans)
+    return result
+
+
+def inside_spans(spans: list[tuple[int, int]], start: int, end: int) -> bool:
+    return any(left <= start and end <= right for left, right in spans)
+
+
 def has_check_basis_before(line: str, start: int) -> bool:
     """Return True when a safety conclusion is immediately backed by a check action."""
     prefix = line[max(0, start - 24) : start]
@@ -244,8 +357,9 @@ def is_attachment_number_item(lines: list[str], line_index: int, line: str) -> b
 def body_lines(lines: list[str]) -> list[str]:
     """Return draft body lines before explicit external confirmation notes."""
     note_start = re.compile(
-        r"^\s*(?:[（(【\[]\s*)?"
-        r"(?:待确认事项|待用户确认事项|补充以下信息后|正文外待确认|需补充信息|待补充事项|需确认事项|补充信息)"
+        r"^\s*(?:#{1,6}\s*)?(?:[（(【\[]\s*)?"
+        r"(?:待确认事项|待用户确认事项|补充以下信息后(?:，文章会更完整)?|正文外待确认|正文外提示|风险提醒|核验提示|需补充信息|待补充事项|需确认事项|补充信息)"
+        r"(?=\s*(?:[：:]|[（(【\[]|[）)】\]]|$))"
     )
     result: list[str] = []
     for line in lines:
@@ -413,14 +527,54 @@ def structured_smell_findings(path_label: str, text: str, lines: list[str]) -> l
     return findings
 
 
-def scan(path_label: str, text: str, include_format: bool = False, include_structure: bool = False) -> list[Finding]:
+def scan(
+    path_label: str,
+    text: str,
+    include_format: bool = False,
+    include_structure: bool = False,
+    delivery_mode: str = "generic",
+) -> list[Finding]:
+    if delivery_mode not in DELIVERY_MODES:
+        raise ValueError(f"unsupported delivery mode: {delivery_mode}")
+
     findings: list[Finding] = []
     lines = text.splitlines() or [text]
-    lines_to_scan = body_lines(lines)
+    body_only_lines = body_lines(lines)
+    lines_to_scan = lines if delivery_mode == "draft-body" else body_only_lines
     text_to_scan = "\n".join(lines_to_scan)
+    quoted_spans = quoted_spans_by_line(lines)
 
     patterns = PATTERNS + (FORMAT_PATTERNS if include_format else [])
+    if delivery_mode in {"draft-body", "gap-note-allowed"}:
+        patterns += DELIVERY_PATTERNS
     compiled = [(severity, label, re.compile(pattern), advice) for severity, label, pattern, advice in patterns]
+    delivery_absolute_patterns = [
+        item for item in PATTERNS if item[1] in {"thought-leak", "viewpoint-risk", "side-commentary"}
+    ]
+    delivery_absolute_patterns += [item for item in DELIVERY_PATTERNS if item[1] != "material-reading-narration"]
+    delivery_absolute_compiled = [
+        (severity, label, re.compile(pattern), advice)
+        for severity, label, pattern, advice in delivery_absolute_patterns
+    ]
+    delivery_fence_patterns = [
+        item for item in PATTERNS if item[1] in {"thought-leak", "viewpoint-risk", "side-commentary"}
+    ] + DELIVERY_PATTERNS
+    delivery_fence_compiled = [
+        (severity, label, re.compile(pattern), advice)
+        for severity, label, pattern, advice in delivery_fence_patterns
+    ]
+    if delivery_mode == "draft-body" and len(body_only_lines) < len(lines):
+        note_line = len(body_only_lines) + 1
+        findings.append(
+            Finding(
+                path=path_label,
+                line=note_line,
+                severity="high",
+                label="unexpected-external-note",
+                match=lines[note_line - 1].strip(),
+                excerpt="只交付正文的模式不应附待确认、风险、自证或其他正文外说明。",
+            )
+        )
     in_fence = False
     for line_index, line in enumerate(lines_to_scan):
         line_no = line_index + 1
@@ -451,8 +605,11 @@ def scan(path_label: str, text: str, include_format: bool = False, include_struc
                 )
             )
         if in_fence:
-            if include_format:
-                for severity, label, regex, advice in compiled:
+            fence_patterns = compiled if include_format else []
+            if not include_format and delivery_mode in {"draft-body", "gap-note-allowed"}:
+                fence_patterns = delivery_fence_compiled
+            if fence_patterns:
+                for severity, label, regex, advice in fence_patterns:
                     for match in regex.finditer(line):
                         findings.append(
                             Finding(
@@ -469,6 +626,10 @@ def scan(path_label: str, text: str, include_format: bool = False, include_struc
             for match in regex.finditer(line):
                 if inside_inline_code(line, match.start(), match.end()):
                     continue
+                if delivery_mode == "review-only" and inside_spans(
+                    quoted_spans[line_index], match.start(), match.end()
+                ):
+                    continue
                 if label == "western-bullet" and is_attachment_number_item(lines, line_index, line):
                     continue
                 if label == "unsupported-conclusion" and has_check_basis_before(line, match.start()):
@@ -483,6 +644,35 @@ def scan(path_label: str, text: str, include_format: bool = False, include_struc
                         excerpt=f"{excerpt(line, match.start(), match.end())} | {advice}",
                     )
                 )
+
+    if delivery_mode in {"review-only", "gap-note-allowed"}:
+        start_index = 0 if delivery_mode == "review-only" else len(body_only_lines)
+        in_fence = False
+        for zero_index, line in enumerate(lines[start_index:], start=start_index):
+            stripped = line.strip()
+            if stripped.startswith("```"):
+                in_fence = not in_fence
+                continue
+            if in_fence and delivery_mode == "review-only":
+                continue
+            for severity, label, regex, advice in delivery_absolute_compiled:
+                if delivery_mode == "gap-note-allowed" and label == "constraint-self-certification":
+                    continue
+                for match in regex.finditer(line):
+                    if inside_inline_code(line, match.start(), match.end()):
+                        continue
+                    if inside_spans(quoted_spans[zero_index], match.start(), match.end()):
+                        continue
+                    findings.append(
+                        Finding(
+                            path=path_label,
+                            line=zero_index + 1,
+                            severity=severity,
+                            label=label,
+                            match=match.group(0),
+                            excerpt=f"{excerpt(line, match.start(), match.end())} | {advice}",
+                        )
+                    )
 
     if include_format:
         western_list_count = sum(1 for line in lines_to_scan if re.match(r"^\s*(?:[-*•●◆◇★✅☑]|[0-9]+[.)])\s+", line))
@@ -516,7 +706,15 @@ def scan(path_label: str, text: str, include_format: bool = False, include_struc
                 )
             )
 
-    return findings
+    unique_findings: list[Finding] = []
+    seen: set[tuple[str, int, str, str, str]] = set()
+    for item in findings:
+        key = (item.path, item.line, item.severity, item.label, item.match)
+        if key in seen:
+            continue
+        seen.add(key)
+        unique_findings.append(item)
+    return unique_findings
 
 
 def print_text(findings: Iterable[Finding]) -> None:
@@ -534,6 +732,12 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--json", action="store_true", help="Emit JSON findings.")
     parser.add_argument("--format", action="store_true", help="Also scan punctuation, number, list-marker, and emoji format risks.")
     parser.add_argument("--structure", action="store_true", help="Also scan adjacent paragraphs for repeated matters.")
+    parser.add_argument(
+        "--delivery-mode",
+        choices=DELIVERY_MODES,
+        default="generic",
+        help="Opt in to mode-aware delivery checks; default generic keeps existing lint behavior.",
+    )
     parser.add_argument("--strict", action="store_true", help="Return exit code 1 when findings exist.")
     parser.add_argument(
         "--fail-on",
@@ -552,7 +756,15 @@ def main(argv: list[str] | None = None) -> int:
             print(f"ERROR: {exc}", file=sys.stderr)
             had_read_error = True
             continue
-        all_findings.extend(scan(path_label, text, include_format=args.format, include_structure=args.structure))
+        all_findings.extend(
+            scan(
+                path_label,
+                text,
+                include_format=args.format,
+                include_structure=args.structure,
+                delivery_mode=args.delivery_mode,
+            )
+        )
 
     if args.json:
         print(json.dumps([asdict(item) for item in all_findings], ensure_ascii=False, indent=2))

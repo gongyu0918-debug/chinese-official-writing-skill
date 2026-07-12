@@ -44,7 +44,9 @@
 - skillhub.cn 临时包 `output/skillhub-release-1.5.8/publish-package` 为 20 个文件，即 canonical 19 个文件加 `_meta.json`；按 `git ls-files` 显式复制，未递归带入缓存。
 - SkillHub dry-run 返回 `dryRun=true`、`slug=chinese-official-writing`、`version=1.5.8`。
 - 小红书官方 CLI 0.1.1 普通 Windows shim 仍静默退出；兼容入口 `whoami` 返回 `loggedIn=true`，实时标签包含“内容创作”和“职场办公”。
-- 小红书 Red SkillHub 将在上述三个既定发布面完成后，由同版本 SkillHub 已发布包同步到 `redskill/skills/chinese-official-writing/`，仅删除 Red CLI 不支持的 `agents/openai.yaml`，随后做逐文件 SHA-256 和官方 CLI dry-run；发布回执单独记录。
+- GitHub、ClawHub 和 skillhub.cn 完成发布后，已由同版本 SkillHub 包同步 `redskill/skills/chinese-official-writing/`，只删除 Red CLI 不支持的 `agents/openai.yaml`；预期 19 文件、实际 19 文件，缺失、额外和 SHA-256 mismatch 均为 0。
+- Red dry-run payload 为 `skill_identifier=chinese-official-writing`、`name=中文公文写作`、无引号版本 `1.5.8`、`original=true`、`content_tag_ids=[1002,1004]`、bundle SHA-256 `b81d523c4dec67fc8dc5fdbea01251d11223eed6b79b45147a63b15b22df2ff9`、93871 bytes。
+- 通用 Codex `quick_validate.py` 对 Red/SkillHub 包返回“Unexpected key(s)”并拒绝顶层 `slug/version/displayName/summary/tags/homepage`；这些是目标平台所需元数据，未为通过另一平台 validator 而删除。小红书官方 CLI dry-run 已接受该包，此差异记为非阻断平台兼容项。
 
 ## 独立冷审
 
@@ -54,10 +56,14 @@
 
 ## 发布状态
 
-- 待发布后补充 GitHub release commit/tag/URL、GitHub 仓库 description、ClawHub versionId/fingerprint/moderation、SkillHub skillId/versionId/fingerprint/审核状态，以及 Red SkillHub skill_id/version_id/audit_request_id/display_status。
+- 发布 commit：`bde04db86fe59dbc374742f53e67bfa0d4800376`；annotated tag `v1.5.8` 解引用到同一提交。GitHub `origin/main` 在发布时指向该提交，release 已公开且不是 draft/prerelease：`https://github.com/gongyu0918-debug/chinese-official-writing-skill/releases/tag/v1.5.8`。仓库名保持 `chinese-official-writing-skill`，description 已增加论文入口。
+- ClawHub：`chinese-official-writing@1.5.8` 已公开，`versionId=k976nekbayaave0egabm5p0b1h8ac5b5`、20 文件、fingerprint `a1d1dd72c07bc37804c5ee8a6cc8480a44c89e3af951e75ad9b724d6f10a9136`；`latestVersion.version`、`tags.latest` 和五个正确 tag 均为 1.5.8，`displayName=中文公文写作`，source commit 为发布提交。总体 moderation 为 clean；VirusTotal/LLM clean，但 Skillspector 有 2 项 MEDIUM/CAUTION，故 `hasWarnings=true`。
+- skillhub.cn：已向原 slug 和 `skillId=70149` 提交 1.5.8，返回 `ok=true`、`versionId=136083`、20 文件、fingerprint `c9f1b8fb0ecc0119376968207dfdd55930f6e7f0ab529eea987f83dcc14f889d`、`tags.latest=1.5.8`；`reviewStatus/securityScanStatus/contentAuditStatus=pending`。公开搜索仍显示版本 1.5.7，但 description 已更新，暂只表述为“已提交”。
+- 小红书 Red SkillHub：1.5.8 尚未发布成功。第一次真实提交在上传前因 token 过期停止；`login --agent` 用现有 refresh token 静默续期成功。第二次完成上传后，服务端返回 `SUBMIT_REJECTED: Skill ID 已被占用`，未返回 `RESULT_JSON.status=submitted` 或新的平台 ID。当前最后成功回执仍为 1.5.7 的 `skill_id=8494`、`version_id=100041`、`audit_request_id=8494_100041_17833860685024`。未改 identifier，也未创建第二个 skill。
 
 ## 已知风险
 
 - 本轮证明入口路由和既有边界在短样本中稳定，不承诺弱模型无人值守、完整论文独立生成、文献真实性、统计有效性或 AIGC/查重规避。
 - 真实长论文仍可能出现篇幅不足、论点重复、引用状态误写或章节比例失衡；稀疏材料下继续优先短写和文后构造建议。
 - skillhub.cn 与 Red SkillHub 均有异步审核或索引延迟；提交成功与公开可见必须分开表述。
+- Red 1.5.8 当前不是审核延迟，而是服务端在提交阶段明确拒绝；后续需确认当前 OAuth 账号对 `skill_id=8494` 的归属，或使用平台正式支持的既有 skill 更新入口，不能重复盲传或换 identifier 绕过。
