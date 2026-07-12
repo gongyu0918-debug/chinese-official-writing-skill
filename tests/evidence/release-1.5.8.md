@@ -58,7 +58,7 @@
 
 - 发布 commit：`bde04db86fe59dbc374742f53e67bfa0d4800376`；annotated tag `v1.5.8` 解引用到同一提交。GitHub `origin/main` 在发布时指向该提交，release 已公开且不是 draft/prerelease：`https://github.com/gongyu0918-debug/chinese-official-writing-skill/releases/tag/v1.5.8`。仓库名保持 `chinese-official-writing-skill`，description 已增加论文入口。
 - ClawHub：`chinese-official-writing@1.5.8` 已公开，`versionId=k976nekbayaave0egabm5p0b1h8ac5b5`、20 文件、fingerprint `a1d1dd72c07bc37804c5ee8a6cc8480a44c89e3af951e75ad9b724d6f10a9136`；`latestVersion.version`、`tags.latest` 和五个正确 tag 均为 1.5.8，`displayName=中文公文写作`，source commit 为发布提交。总体 moderation 为 clean；VirusTotal/LLM clean，但 Skillspector 有 2 项 MEDIUM/CAUTION，故 `hasWarnings=true`。
-- skillhub.cn：已向原 slug 和 `skillId=70149` 提交 1.5.8，返回 `ok=true`、`versionId=136083`、20 文件、fingerprint `c9f1b8fb0ecc0119376968207dfdd55930f6e7f0ab529eea987f83dcc14f889d`、`tags.latest=1.5.8`；`reviewStatus/securityScanStatus/contentAuditStatus=pending`。公开搜索仍显示版本 1.5.7，但 description 已更新，暂只表述为“已提交”。
+- skillhub.cn：已向原 slug 和 `skillId=70149` 提交 1.5.8，返回 `ok=true`、`versionId=136083`、20 文件、fingerprint `c9f1b8fb0ecc0119376968207dfdd55930f6e7f0ab529eea987f83dcc14f889d`、`tags.latest=1.5.8`；提交回执中的 `reviewStatus/securityScanStatus/contentAuditStatus=pending`。最终公开搜索复核已显示版本 1.5.8，且 description 含论文入口；公开索引切换不等于三项审核状态已另行确认通过。
 - 小红书 Red SkillHub：1.5.8 尚未发布成功。第一次真实提交在上传前因 token 过期停止；`login --agent` 用现有 refresh token 静默续期成功。第二次完成上传后，服务端返回 `SUBMIT_REJECTED: Skill ID 已被占用`，未返回 `RESULT_JSON.status=submitted` 或新的平台 ID。当前最后成功回执仍为 1.5.7 的 `skill_id=8494`、`version_id=100041`、`audit_request_id=8494_100041_17833860685024`。未改 identifier，也未创建第二个 skill。
 
 ## 已知风险
