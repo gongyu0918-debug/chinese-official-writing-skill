@@ -70,7 +70,7 @@
 请从 GitHub 仓库 https://github.com/gongyu0918-debug/chinese-official-writing-skill 拉取 openclaw/skills/chinese_official_writing/ 目录，并将其安装为 OpenClaw/ClawHub 可识别的 chinese-official-writing 技能。该适配目录的 frontmatter 使用 name: chinese_official_writing；安装后确认显示名称为“中文公文写作”，主要用于中文公文和正式工作材料。
 ```
 
-当前工作版本：`chinese-official-writing@1.5.8`
+当前工作版本：`chinese-official-writing@1.5.9`
 
 ### Claude Code
 
