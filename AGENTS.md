@@ -2,9 +2,9 @@
 
 本文件适用于整个仓库。后续 agent 接手本仓库时，优先遵守这里的发布、review 和测试约定；若与用户最新指令冲突，以用户最新指令为准，但不得伪造未运行的测试结果。
 
-当前接手入口只保留本文件。GitHub tag `v1.5.10` 指向发布提交 `7e5fec70ba78ad6d1c4b4ae34952697b4794c03e`，release 为 `https://github.com/gongyu0918-debug/chinese-official-writing-skill/releases/tag/v1.5.10`；`origin/main` 在发布后可能继续包含状态记录等文档提交，不再把 tag 和分支头写成必然相同，接手时以 `git ls-remote --heads origin main` 和 `git rev-parse 'v1.5.10^{commit}'` 分别复核。ClawHub 已公开切换到 `latestVersion.version=1.5.10`、`tags.latest=1.5.10`、`displayName=中文公文写作`，moderation 总体为 `clean`，发布 `versionId=k974c72ypn50rpd6s43zff7mn58afjd8`、19 个文件、fingerprint `617315ce6fff6800c7a3b3f96978207234f6192c6cab037124a8b1ed16687c30`；`chinese`、`official-document`、`writing`、`gongwen`、`ai-compute` 五个正确 tag 均指向 1.5.10。当前版本级扫描仍为 `pending`，`legacyReason=pending.scan`，不得把总体 clean 表述为全部扫描器均已完成。1.4.15 和 1.5.6 形成的带引号或合并历史 tag key 仍保留，但不影响 `latest`、正确 tags、安装包或 moderation；后续发布继续把整个参数写成单一 token：`'--tags=chinese,official-document,writing,gongwen,ai-compute'`。
+当前接手入口只保留本文件。GitHub tag `v1.5.11` 指向发布提交 `59eed9e4a4873082edaaef0c241186583bd68206`，release 为 `https://github.com/gongyu0918-debug/chinese-official-writing-skill/releases/tag/v1.5.11`；`origin/main` 在发布后可能继续包含状态记录等文档提交，不再把 tag 和分支头写成必然相同，接手时以 `git ls-remote --heads origin main` 和 `git rev-parse 'v1.5.11^{commit}'` 分别复核。ClawHub 已公开切换到 `latestVersion.version=1.5.11`、`tags.latest=1.5.11`、`displayName=中文公文写作`，moderation 总体为 `clean`，发布 `versionId=k9745m3tj04cwtbk316k1vvgss8aevy4`、19 个文件、fingerprint `ebb3faa433bdd453b08d69ce70962ee93e0ea03ba483e39cad64e75424ea6d75`；`chinese`、`official-document`、`writing`、`gongwen`、`ai-compute` 五个正确 tag 均指向 1.5.11。隔离安装的 19 个发行文件与 `openclaw/skills/chinese_official_writing/` 逐文件一致，只多平台生成的 `_meta.json` 和 `.clawhub/origin.json`。版本安全对象中的 VT、skillspector 和 LLM 扫描当前均为 `clean`，但 moderation 仍保留 `legacyReason=pending.scan`，后续不得忽略该状态。1.4.15 和 1.5.6 形成的带引号或合并历史 tag key 仍保留，但不影响 `latest`、正确 tags、安装包或 moderation；后续发布继续把整个参数写成单一 token：`'--tags=chinese,official-document,writing,gongwen,ai-compute'`。
 
-SkillHub 精确目标仍为 `https://skillhub.cn/skills/chinese-official-writing`，`skillId=70149`。1.5.10 已提交，返回 `versionId=136272`、19 个文件、fingerprint `9ac3e4c0a347830db58ea178e0223bf142d20206a25486d13f3ae49afde5914c`、`tags.latest=1.5.10`，提交回执中的 `reviewStatus/securityScanStatus/contentAuditStatus=pending`。2026-07-13 公开搜索索引已切换到 1.5.10，并显示纯公文边界说明；公开索引切换不等于三项 pending 已审核通过。图标仍为蓝底 Q 版图标。发布前后必须用 `git ls-remote --heads origin main`、`clawhub inspect chinese-official-writing --json`、SkillHub API 或 CLI 和 GitHub tag/main 核对 displayName、tags、latestVersion、summary、source commit 和 canonical frontmatter。下方旧版本内容均为历史接手记录，不代表当前 live 版本。
+SkillHub 精确目标仍为 `https://skillhub.cn/skills/chinese-official-writing`，`skillId=70149`。1.5.11 已提交，返回 `versionId=136638`、19 个文件、fingerprint `7b2d75293992198eb86cf582e24ab1a38db89fb51672cd37ec6c9faf5c9eef2c`、`tags.latest=1.5.11`，提交回执中的 `reviewStatus/securityScanStatus/contentAuditStatus=pending`。2026-07-13 提交后立即复核时，公开搜索索引和安装入口仍为 1.5.10，因此当前只能表述为“1.5.11 已提交、公开索引尚未切换”，不能把发布回执中的 latest 当成公开安装已生效。图标仍为蓝底 Q 版图标。发布前后必须用 `git ls-remote --heads origin main`、`clawhub inspect chinese-official-writing --json`、SkillHub API 或 CLI 和 GitHub tag/main 核对 displayName、tags、latestVersion、summary、source commit 和 canonical frontmatter。下方旧版本内容均为历史接手记录，不代表当前 live 版本。
 
 ## 小红书 Red SkillHub（停止发布）
 
@@ -12,7 +12,7 @@ SkillHub 精确目标仍为 `https://skillhub.cn/skills/chinese-official-writing
 
 历史状态仅供审计：最后一次成功回执仍为 1.5.7（`skill_id=8494`、`version_id=100041`）；1.5.10 曾完成本地 dry-run，但真实上传达到 100 后仍被服务端以“Skill ID 已被占用”拒绝，没有 `RESULT_JSON.status=submitted` 或新版本回执，因此 1.5.10 未发布到 Red。保留 `redskill/` 仅作历史归档，不再同步、验证或维护其版本一致性，不得用更换 identifier 的方式绕过冲突。
 
-## 1.5.11 发布候选与接手记录
+## 1.5.11 发布与接手记录
 
 1.5.11 以 `v1.5.10=7e5fec70ba78ad6d1c4b4ae34952697b4794c03e` 为上一发行基线，纳入 `0686ea3770b14a36dc560221c21d33e03daf9447` 的成品非正文说明共性修复。该修复在既有硬边界、总审和可选 `draft-body` lint 中统一检查制作版本、内部受众、操作方式、校验门禁、审核状态、重复解释、小字结论、制作/免责/边界/方法自述和重复标题；没有新增 finalizer、自动清洗、默认阻断或写稿阶段。
 
@@ -20,7 +20,7 @@ SkillHub 精确目标仍为 `https://skillhub.cn/skills/chinese-official-writing
 
 发布前又按用户明确要求在既有 ANTI-AI 复核层加入高频表达语义检查。该机制由模型通读全文，频次和句式命中只作线索；只确认无前文依据的否定、虚假对比和机械重复，并局部改写确认有问题的句子。事实、引用、术语、否定范围和论断强度必须保持不变；真实比较、法律政策要求、职责边界、风险提示、原有否定和直接引语继续保留。不得新增自动替换表、批量清洗、固定次数硬门槛或新的写稿阶段。
 
-发布候选已完成全量 unittest 151/151、Promptfoo smoke 20/20、固定 1.5.10 基线消融 106/108 对 108/108、真实文章回归、Skill 快速校验、27 批最大上下文 24968、镜像一致性和发行包清洁检查。ANTI-AI 首轮 A/B 的格式 WARN 和真实比较同义改写未被忽略；收紧默认审稿字段和未确认句保持规则后，双 writer 首轮复测仍有 1 项漏写“检索模块仍在本地”，已降为 WARN；使用包含完整原句的 S2 二次复测后，两名 current writer 均逐字保留真实比较、审校/检索模块和全部数字，独立 verifier 判 2/2 PASS，blocker 解阻。较长上下文盲审为 current PASS、1.5.10 WARN；六组其他写作功能回归两版同为 4 PASS、2 WARN、0 FAIL。原始证据见 `tests/evidence/real-writing-1.5.11-anti-ai.md` 和 `tests/evidence/release-1.5.11.md`。正式发布后须补录三平台回执；发布范围继续排除小红书 Red SkillHub。
+发布提交 `59eed9e4a4873082edaaef0c241186583bd68206` 已完成全量 unittest 151/151、Promptfoo smoke 20/20、固定 1.5.10 基线消融 106/108 对 108/108、真实文章回归、Skill 快速校验、27 批最大上下文 24968、镜像一致性和发行包清洁检查。ANTI-AI 首轮 A/B 的格式 WARN 和真实比较同义改写未被忽略；收紧默认审稿字段和未确认句保持规则后，双 writer 首轮复测仍有 1 项漏写“检索模块仍在本地”，已降为 WARN；使用包含完整原句的 S2 二次复测后，两名 current writer 均逐字保留真实比较、审校/检索模块和全部数字，独立 verifier 判 2/2 PASS，blocker 解阻。较长上下文盲审为 current PASS、1.5.10 WARN；六组其他写作功能回归两版同为 4 PASS、2 WARN、0 FAIL。GitHub release 和 ClawHub 已公开切换；skillhub.cn 已返回 1.5.11 提交回执，但公开索引暂仍为 1.5.10。原始证据见 `tests/evidence/real-writing-1.5.11-anti-ai.md` 和 `tests/evidence/release-1.5.11.md`。发布范围继续排除小红书 Red SkillHub。
 
 ## 基本工作纪律
 
