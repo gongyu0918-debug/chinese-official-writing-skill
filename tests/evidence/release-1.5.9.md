@@ -38,6 +38,7 @@
 - 三个发行目录无 `.pyc` 或 `__pycache__`。
 - skillhub.cn dry-run 返回 `dryRun=true`、`slug=chinese-official-writing`、`version=1.5.9`。
 - Red CLI 0.1.1 dry-run 返回 `status=dry_run`、`skill_identifier=chinese-official-writing`、`name=中文公文写作`、无引号版本 `1.5.9`、`original=true`、`content_tag_ids=[1002,1004]`、bundle SHA-256 `075ee9802061389794fbeeed26d70536e7bd87b0049a563a08be6d20eca29c0b`、96618 bytes。
+- `clawhub install chinese-official-writing --version 1.5.9 --force-install`：公开端真实安装成功。安装目录共 25 个文件，其中 23 个正文文件与 OpenClaw 发布源逐文件 SHA-256 一致，额外文件仅为平台生成的 `_meta.json` 和 `.clawhub/origin.json`。
 
 ## 独立冷审
 
@@ -47,5 +48,7 @@
 
 ## 发布状态
 
-- GitHub、ClawHub、skillhub.cn 和 Red SkillHub 的真实提交、审核与公开状态在正式发布后补记；提交成功、审核通过和公开索引切换分别表述。
-- Red 1.5.8 曾在上传完成后被服务端以“Skill ID 已被占用”拒绝；1.5.9 保持原 identifier，不换新 identifier 绕过。只有终态 `RESULT_JSON.status=submitted` 和新回执才记为发布成功。
+- 发布候选提交为 `a2e489658988f404a6ea5a627eda165da89e9a86`。GitHub `v1.5.9` 注解 tag 已解引用确认指向该提交；Release 已公开，非 draft、非 prerelease：`https://github.com/gongyu0918-debug/chinese-official-writing-skill/releases/tag/v1.5.9`。
+- ClawHub 已公开 `chinese-official-writing@1.5.9`：`versionId=k97be9njgn67yehws0qb0jn7698afz8v`、23 个文件、fingerprint `14652fc04872bd7b14477d7da96de847a92ca7f13bae10c893bb62af03e6f281`。`latestVersion.version`、`tags.latest` 和五个正确 tag 均为 1.5.9，`displayName=中文公文写作`。总体 moderation 为 clean；版本级扫描仍为 pending，VirusTotal 已显示 clean，Skillspector 和 LLM 尚无结果，`legacyReason=pending.scan`。
+- skillhub.cn 已向精确项目 `skillId=70149` 提交 1.5.9：`versionId=136245`、23 个文件、fingerprint `665d74491517f29beca6bcf890b28c150e57d5fe13f45d38f916921699f848c5`，回执 `tags.latest=1.5.9`，`reviewStatus/securityScanStatus/contentAuditStatus` 均为 pending。公开 API 已显示新 summary 和 `tags.latest=1.5.9`，但 `latestVersion.version` 暂仍为 1.5.8；Keen、Sanbu 的 benign 状态属于当前公开版本，不能代替 1.5.9 审核结果。
+- Red 1.5.9 保持原 `skill_identifier=chinese-official-writing`，没有改用新 identifier。第一次真实提交在上传前因 access token 过期停止；`login --agent` 用现有 refresh token 静默续期后，第二次上传进度达到 100，但服务端以“Skill ID 已被占用”拒绝。没有 `RESULT_JSON.status=submitted`，没有新的 `skill_id/version_id/audit_request_id`，因此 Red 1.5.9 未发布，最后可验证成功版本仍为 1.5.7。
