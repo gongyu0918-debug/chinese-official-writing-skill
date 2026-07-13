@@ -49,4 +49,28 @@
 
 ## 第二项：ANTI-AI 结构去重
 
-待完成后补充。
+### 首轮候选及回滚
+
+首轮曾同时删除叶子文件中的总规则复述，并把三处“只审不改/按用户格式输出”合并到一处。文件由 5323 字符降到 4753，定向测试 `75/75`、固定基线消融 `108/108` 对 `108/108`。
+
+真实 A/B 中，独立 verifier 判当前候选在一条审稿建议里把“持续推进”改成“推进”，而基线只建议合并重复，构成候选独有的论断强度回退；两版在另一条改稿中也共同出现同类 `WARN`。按预设回退条件，首轮候选完整撤销并同步六个镜像，没有以单样本追加新禁令或补丁。
+
+### 缩窄候选
+
+第二次只删除 `references/anti-ai-patterns.md` 开头与入口及专项 reference 重复的文种、行文关系、格式骨架、字段、事实、联网和占位符总清单，替换为一条范围分工说明。局部审稿、用户格式、真实否定与比较、事实保真和改写边界均保持原位；不增加新的行为规则。单句回退方式：恢复“网络和社区高频共性风险”清单并同步镜像。
+
+- ANTI-AI 叶子资料：`5323 -> 4802` 字符，减少 521 字符，约 9.8%。
+- 定向测试：`75/75 OK`。
+- 固定 1.5.11 消融：baseline `108/108`，current `108/108`。
+- 两次独立 current writer 和一次固定 baseline writer 覆盖真实比较、必要否定、虚假递进、机械重复、干净文本不动、字段式材料和稀疏报告。独立三方 verifier 判 15 组结果全部 `PASS`，两个 current 输出均无 baseline 独有风险。
+
+缩窄候选保留。首轮暴露的“合并机械重复时可能连同持续性一起删掉”在没有明确材料强度提示的样本中是 current 与 1.5.11 共同风险；本轮没有达到当前候选新增的三次共性门槛，不追加产品规则，继续列为后续观察项。
+
+## 最终验证
+
+- `py -3 -B -m unittest discover -s tests`：`151/151 OK`；完整测试包含 canonical 与五个发行镜像的逐文件一致性检查。
+- `npm run eval:official-writing:smoke`：沙箱内三次均在 Node 启动 Python 时失败，前两次分别命中失效 Hermes 路径和 runner 覆盖显式环境变量，第三次已指向真实 Python 3.13 但仍被沙箱拦截；在相同 PATH 和相同命令下允许子进程执行后复跑，`20/20 PASS`、`0 error`、judge consistency `1.0`。
+- `py -3 -B tools/run_real_article_eval.py --out output/prompt-relief-anti-ai-20260714/final-real-article`：skill 10 个样本缺失要素 `0/61`、关键词命中率 `100%`、格式/重复/反 AI 风险均为 `0`；9 个匿名占位标签样本仍只作人工线索。
+- `py -3 -B C:/Users/admin/.codex/skills/.system/skill-creator/scripts/quick_validate.py chinese-official-writing`：`Skill is valid!`。
+- 27 批评测上下文最大值：`24808`，低于 `<25000` 门槛；相较固定 1.5.11 的 `24968` 减少 160 字符。ANTI-AI 文件按需加载，不影响这组最大批次统计。
+- `git diff --check`：提交前复核通过，仅有工作区 CRLF 转换提示。
