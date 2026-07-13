@@ -49,10 +49,10 @@
 ## 发行包与发布状态
 
 - GitHub 发布提交为 `59eed9e4a4873082edaaef0c241186583bd68206`，annotated tag 为 `v1.5.11`，release 为 `https://github.com/gongyu0918-debug/chinese-official-writing-skill/releases/tag/v1.5.11`；release 非 draft、非 prerelease，`targetCommitish` 为该发布提交。
-- ClawHub 正式回执为 `status=published`、`versionId=k9745m3tj04cwtbk316k1vvgss8aevy4`、19 个文件、fingerprint `ebb3faa433bdd453b08d69ce70962ee93e0ea03ba483e39cad64e75424ea6d75`。实时 `inspect` 已确认 `latestVersion.version=1.5.11`，`latest` 与 `chinese`、`official-document`、`writing`、`gongwen`、`ai-compute` 五个正确 tag 均指向 1.5.11，`displayName=中文公文写作`，moderation verdict 为 `clean`。版本安全对象中的 VT、skillspector 和 LLM 扫描均为 `clean`；moderation 仍保留 `legacyReason=pending.scan`，因此不把该状态省略。
+- ClawHub 正式回执为 `status=published`、`versionId=k9745m3tj04cwtbk316k1vvgss8aevy4`、19 个上传文件、fingerprint `ebb3faa433bdd453b08d69ce70962ee93e0ea03ba483e39cad64e75424ea6d75`。实时 `inspect` 已确认 `latestVersion.version=1.5.11`，`latest` 与 `chinese`、`official-document`、`writing`、`gongwen`、`ai-compute` 五个正确 tag 均指向 1.5.11，`displayName=中文公文写作`，moderation verdict 为 `clean`。版本详情列出 20 个路径，其中 `skill-card.md` 为平台生成项，不进入实际安装包。版本安全对象中的 VT、skillspector 和 LLM 扫描均为 `clean`，moderation 的 `legacyReason` 已由发布初期的 `pending.scan` 更新为 `scanner.vt.clean`。
 - ClawHub 隔离安装命令 `clawhub --workdir .\output\install-smoke-1.5.11 --dir clawhub --no-input install chinese-official-writing --version 1.5.11 --force-install` 成功。安装目录除平台生成的 `_meta.json` 和 `.clawhub/origin.json` 外，19 个发行文件与 `openclaw/skills/chinese_official_writing/` 逐文件 SHA-256 一致。
 - skillhub.cn 正式回执为 `skillId=70149`、`versionId=136638`、`slug=chinese-official-writing`、`version=1.5.11`、19 个文件、fingerprint `7b2d75293992198eb86cf582e24ab1a38db89fb51672cd37ec6c9faf5c9eef2c`、`tags.latest=1.5.11`，`reviewStatus/securityScanStatus/contentAuditStatus` 均为 `pending`。
-- skillhub.cn 提交后立即运行公开 `search` 和隔离 `install`，两者仍返回 1.5.10。结论为“1.5.11 已成功提交，公开索引和安装入口尚未切换”，不把提交回执中的 `tags.latest` 解释为公开安装已生效，也不在 pending 期间重复发布。
+- skillhub.cn 提交后立即运行公开 `search` 和隔离 `install`，两者曾短暂返回 1.5.10；再次只读复核时，公开搜索和隔离安装均已切换到 1.5.11。最终安装共 19 个文件，其中 18 个内容文件与上传包逐文件 SHA-256 一致，只有平台生成的 `_meta.json` 因写入 owner、发布时间和版本元数据而不同。
 - skillhub.cn 临时包 19 个文件、17 个 Git 跟踪共享文件 SHA-256 一致、无 `.pyc` 或 `__pycache__`。
 - 小红书 Red SkillHub 明确排除，未调用 Red CLI、dry-run、登录或上传。
 
@@ -61,5 +61,5 @@
 - 上下文预算只剩 32 字符；1.5.11 不再增加运行时入口 Prompt。后续新增内容优先放叶子 reference，并重新统计全部 27 批。
 - 静态 `prose_lint.py` 仍会把单个二元句式列为 medium 风险提示，这是旧行为；它不自动改写，模型仍须按本轮语义边界判断。
 - 真实写作样本规模有限，不能证明统计显著性、所有弱模型稳定性或长文全覆盖。
-- GitHub 与 ClawHub 已公开生效；skillhub.cn 尚存在审核/索引延迟，需要后续只读复核。若其最终公开包与本次回执版本或内容不一致，停止继续发布并保留 1.5.10 公开入口，不自动重复提交。
+- GitHub、ClawHub 和 skillhub.cn 公开入口均已切换到 1.5.11；skillhub.cn 提交回执中的三项审核状态仍为 pending，公开生效不等于审核字段全部完成。若后续公开包与本次回执版本或内容不一致，停止继续发布，不自动重复提交。
 - 若后续真实稿件复现事实边界、否定范围、文种路由或输出模式回退，回退产品提交到 `v1.5.10`；仅有平台索引延迟不触发产品回滚。
