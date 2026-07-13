@@ -41,5 +41,5 @@
 - GitHub：`origin/main` 和 `v1.5.10` 均指向发布提交 `7e5fec70ba78ad6d1c4b4ae34952697b4794c03e`；Release 已公开：`https://github.com/gongyu0918-debug/chinese-official-writing-skill/releases/tag/v1.5.10`。
 - ClawHub：1.5.10 已发布，`versionId=k974c72ypn50rpd6s43zff7mn58afjd8`，19个文件，fingerprint `617315ce6fff6800c7a3b3f96978207234f6192c6cab037124a8b1ed16687c30`；`latest` 和5个正确标签均指向1.5.10。总体 moderation 为 clean，但版本级扫描仍为 pending，`legacyReason=pending.scan`。
 - ClawHub 隔离安装：使用 `--version 1.5.10 --force-install` 安装成功；排除平台生成的 `_meta.json` 和 `.clawhub/origin.json` 后，19个正文文件与发布源相比缺失0、额外0、SHA-256 mismatch 0。
-- skillhub.cn：1.5.10 已提交到 `skillId=70149`，`versionId=136272`，19个文件，fingerprint `9ac3e4c0a347830db58ea178e0223bf142d20206a25486d13f3ae49afde5914c`，回执 `tags.latest=1.5.10`；三项审核状态均为 pending。2026-07-13 提交后的公开搜索索引仍显示1.5.9，尚未对外切换。
+- skillhub.cn：1.5.10 已提交到 `skillId=70149`，`versionId=136272`，19个文件，fingerprint `9ac3e4c0a347830db58ea178e0223bf142d20206a25486d13f3ae49afde5914c`，回执 `tags.latest=1.5.10`；公开搜索索引已切换到1.5.10并显示纯公文边界说明，三项审核状态仍为 pending。
 - 小红书 Red SkillHub：1.5.10 dry-run 曾通过，真实上传达到100后被服务端以“Skill ID 已被占用”拒绝，没有 submitted 回执，故未发布。用户随后明确决定停止该发布面；后续不再执行 Red 的发布、更新、dry-run、登录续期、标签查询或冲突处理。
