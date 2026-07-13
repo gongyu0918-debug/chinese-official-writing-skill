@@ -214,6 +214,108 @@ class ProseLintStructureTests(unittest.TestCase):
         self.assertTrue(any(item.label == "delivery-explanation" and item.severity == "high" for item in by_line[2]))
         self.assertTrue(any(item.label == "english-thought-fragment" and item.severity == "high" for item in by_line[3]))
 
+    def test_draft_body_flags_common_delivery_metadata_without_a_raw_word_ban(self) -> None:
+        leaked = [
+            "本稿为脱敏版，仅供内部核对。",
+            "以下为修改版，请领导审阅。",
+            "这是给领导看的版本。",
+            "当前工作流仅作只读核对。",
+            "以下内容已经过内部校验。",
+            "已通过内容门禁，可以交付。",
+            "审核通过，以下为定稿版。",
+        ]
+
+        for text in leaked:
+            with self.subTest(text=text):
+                generic_labels = {item.label for item in prose_lint.scan("<test>", text)}
+                findings = prose_lint.scan("<test>", text, delivery_mode="draft-body")
+                metadata = [item for item in findings if item.label == "delivery-metadata"]
+
+                self.assertNotIn("delivery-metadata", generic_labels)
+                self.assertTrue(metadata)
+                self.assertTrue({item.severity for item in metadata} <= {"medium", "high"})
+
+    def test_delivery_metadata_rule_preserves_business_facts_and_visible_document_states(self) -> None:
+        legitimate = [
+            "根据领导要求，项目组已完成风险排查。",
+            "本次调研使用脱敏数据，校验结果作为业务分析依据。",
+            "《实施方案（征求意见稿）》",
+            "项目通过内部审核后，由办公室按程序印发。",
+            "本次只读接口核对发现3项字段差异。",
+        ]
+
+        for text in legitimate:
+            with self.subTest(text=text):
+                findings = prose_lint.scan("<test>", text, delivery_mode="draft-body")
+                self.assertFalse([item for item in findings if item.label == "delivery-metadata"])
+
+    def test_ambiguous_visible_labels_and_business_states_are_not_high_blockers(self) -> None:
+        legitimate_or_ambiguous = [
+            "本稿为脱敏版。",
+            "本稿为送审稿。",
+            "仅供内部人员审阅。",
+            "项目已通过内部审核，可以报送省厅。",
+            "以上材料已经过内部校验。",
+            "本次处理流程包括数据归集和内部校验。",
+        ]
+
+        for text in legitimate_or_ambiguous:
+            with self.subTest(text=text):
+                findings = prose_lint.scan("<test>", text, delivery_mode="draft-body")
+                metadata = [item for item in findings if item.label == "delivery-metadata"]
+                self.assertFalse([item for item in metadata if item.severity == "high"])
+
+    def test_draft_body_flags_delivery_boilerplate_and_exact_repeated_title(self) -> None:
+        boilerplate = [
+            "说明：以上内容已按用户要求整理，可直接使用。",
+            "（小字说明：以上结论仅供参考，以实际审核结果为准。）",
+            "免责声明：本文不构成正式意见。",
+            "边界说明：本文仅依据已提供材料，不对事实真实性负责。",
+            "方法说明：本稿先核对事实，再调整结构和表述。",
+            "以上说明与正文内容一致，不再赘述。",
+        ]
+        for text in boilerplate:
+            with self.subTest(text=text):
+                findings = prose_lint.scan("<test>", text, delivery_mode="draft-body")
+                self.assertTrue([item for item in findings if item.label == "delivery-boilerplate"])
+
+        repeated_title = "关于开展安全检查的通知\n\n关于开展安全检查的通知\n\n各单位：\n请按要求开展检查。"
+        findings = prose_lint.scan("<test>", repeated_title, delivery_mode="draft-body")
+        self.assertTrue(any(item.label == "duplicate-title" and item.severity == "high" for item in findings))
+
+    def test_delivery_boilerplate_only_applies_to_delivered_body(self) -> None:
+        text = (
+            "系统运行情况说明\n\n系统运行正常。\n\n"
+            "待确认事项\n免责声明：本文仅供参考，不构成正式意见。"
+        )
+
+        generic = prose_lint.scan("<test>", text)
+        review = prose_lint.scan("<test>", text, delivery_mode="review-only")
+        gap_allowed = prose_lint.scan("<test>", text, delivery_mode="gap-note-allowed")
+
+        for findings in [generic, review, gap_allowed]:
+            self.assertFalse([item for item in findings if item.label in {"delivery-boilerplate", "duplicate-title"}])
+
+    def test_delivery_boilerplate_rule_preserves_real_scope_and_method_content(self) -> None:
+        legitimate = [
+            "本说明仅反映截至7月12日的检查情况。",
+            "检查采用现场抽查和台账核验相结合的方式。",
+            "责任边界：甲方负责设备维护，乙方负责现场管理。",
+            "关于开展安全检查的通知\n各单位：\n请按要求开展检查。",
+        ]
+
+        for text in legitimate:
+            with self.subTest(text=text):
+                findings = prose_lint.scan("<test>", text, delivery_mode="draft-body")
+                self.assertFalse([item for item in findings if item.label in {"delivery-boilerplate", "duplicate-title"}])
+
+    def test_review_only_can_quote_delivery_metadata_without_flagging_the_reviewer(self) -> None:
+        text = "位置：“本稿为脱敏版，仅供内部核对。”\n风险层级：高\n修改建议：删除制作说明。"
+
+        findings = prose_lint.scan("<test>", text, delivery_mode="review-only")
+
+        self.assertFalse([item for item in findings if item.label == "delivery-metadata"])
+
     def test_delivery_mode_does_not_flag_clean_official_material_references(self) -> None:
         text = (
             "报送材料应与业务系统现行字段保持一致。"

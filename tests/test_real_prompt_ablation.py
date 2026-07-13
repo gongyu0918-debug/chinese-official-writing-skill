@@ -342,6 +342,14 @@ class RealPromptAblationTests(unittest.TestCase):
             "不保留字段标签或机械转述字段名",
             checks_by_id["P107"]["file_terms"]["chinese-official-writing/references/anti-ai-patterns.md"],
         )
+        self.assertEqual(checks_by_id["P108"]["lint_delivery_mode"], "draft-body")
+        self.assertIn("delivery-metadata", checks_by_id["P108"]["lint_present_labels"])
+        self.assertIn(
+            "制作版本、内部受众、操作方式、校验门禁或审核状态等交付元信息",
+            checks_by_id["P108"]["file_terms"]["chinese-official-writing/SKILL.md"],
+        )
+        self.assertIn("delivery-boilerplate", checks_by_id["P108"]["lint_present_labels"])
+        self.assertIn("duplicate-title", checks_by_id["P108"]["lint_present_labels"])
 
     def test_heading_lock_detects_added_subheading(self) -> None:
         before = """一、整改进展

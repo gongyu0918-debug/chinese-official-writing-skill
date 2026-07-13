@@ -134,6 +134,42 @@ DELIVERY_PATTERNS: list[tuple[str, str, str, str]] = [
         "删除交付说明，直接输出正文。",
     ),
     (
+        "medium",
+        "delivery-metadata",
+        r"^(?=.*(?:脱敏|修改|修订|定稿|终稿|送审))\s*(?:(?:以下|以上)(?:为|是)|(?:本|该|此)(?:稿|版|版本|文稿)[^。\n]{0,6}(?:为|是)|审核通过[，,：:]?(?:以下|现)(?:为|是))[^。\n]{0,32}(?:版|版本|稿|稿件|文稿|正文)[^。\n]{0,24}[。.]?\s*$",
+        "核对是否为制作版本或交付状态说明；用户明确要求显示的版本或保密标识应保留。",
+    ),
+    (
+        "high",
+        "delivery-metadata",
+        r"(?:这是|以下为|本(?:稿|版|版本|文稿)(?:是|为)?)[^。\n]{0,12}给(?:领导|负责人|审阅人)看的(?:版本|稿子|文稿|材料)",
+        "删除口语化内部受众或分发说明；用户明确要求显示的正式标识应保留。",
+    ),
+    (
+        "high",
+        "delivery-metadata",
+        r"当前工作流(?:仅作|只作|用于|为)(?:只读核对|内部校验|门禁(?:检查|核验)?)|(?:已|已经|现已)?通过内容门禁[，,：:]?[^。\n]{0,12}(?:可以|可|准予)(?:交付|报送|提交)",
+        "删除内部制作、校验或内容门禁状态。",
+    ),
+    (
+        "medium",
+        "delivery-metadata",
+        r"(?:以下|以上)(?:内容|材料)?[^。\n]{0,8}(?:已|已经)?(?:通过|完成|经过)内部(?:校验|审校)[。.]?\s*$|(?:仅供|供)(?:领导|负责人|内部(?:人员)?)[^。\n]{0,8}(?:审阅|核对)(?:[，,。.]|$)",
+        "核对是否为内部制作或分发说明；材料记载的业务事实和用户要求的正式标识应保留。",
+    ),
+    (
+        "high",
+        "delivery-boilerplate",
+        r"^(?:说明[：:]?)?(?:以上|以下)(?:内容|正文|文稿)?(?:已|已经)?(?:按|根据)(?:你|用户)(?:的)?要求(?:完成)?(?:整理|修改|调整)[^。\n]{0,20}(?:可直接(?:使用|交付)|供审阅)[。.]?\s*$|^(?:方法说明|处理方法|制作说明)[：:][^。\n]{0,24}(?:本稿|本文|文稿|正文)[^。\n]{0,30}(?:核对|调整|修改|整理|生成|编排)(?:事实|结构|表述|格式|内容)",
+        "删除制作、交付或处理方法说明，直接保留成品正文。",
+    ),
+    (
+        "medium",
+        "delivery-boilerplate",
+        r"^[（(]?(?:(?:小字)?说明|免责声明|边界说明)[：:][^。\n]{0,100}(?:仅供参考|不构成(?:正式|法律|专业)?意见|以实际(?:审核|审定|批准|发布)结果为准|不对(?:事实|内容)[^。\n]{0,12}负责)[^。\n]*[。.]?[）)]?\s*$|^(?:以上|上述)(?:说明|解释)[^。\n]{0,40}(?:不再赘述|与正文(?:内容)?一致)[。.]?\s*$",
+        "核对是否为与文种无关的小字结论、免责或边界话术；用户明确要求的声明和材料事实应保留。",
+    ),
+    (
         "high",
         "english-thought-fragment",
         r"(?i)^\s*(?:analysis\s*[:：]|reasoning\s*[:：]|we need(?: to)?\b|i need(?: to)?\b|i will\s+(?:draft|write|revise|produce|prepare|review|analy[sz]e|edit|summari[sz]e)\b|let['’]?s\b|the user (?:asked|asks|wants|requested)\b|i should\b|now (?:write|draft|produce)\b|given the (?:user|prompt|materials?|context)\b)[^\n]{0,160}",
@@ -148,6 +184,7 @@ DELIVERY_PATTERNS: list[tuple[str, str, str, str]] = [
 ]
 
 DELIVERY_MODES = ("generic", "draft-body", "review-only", "gap-note-allowed")
+DELIVERY_BODY_ONLY_LABELS = {"delivery-boilerplate"}
 
 FORMAT_PATTERNS: list[tuple[str, str, str, str]] = [
     ("medium", "halfwidth-punctuation", r"[\u4e00-\u9fff][,;:!?][\u4e00-\u9fff]", "中文正文中通常改用全角标点。"),
@@ -471,6 +508,30 @@ def duplicate_findings(path_label: str, lines: list[str]) -> list[Finding]:
     return findings
 
 
+def duplicate_title_findings(path_label: str, lines: list[str]) -> list[Finding]:
+    """Flag an exact repeated title near the start of a delivered draft."""
+    title_ending = re.compile(
+        r"(?:通知|通告|报告|请示|函|意见|决定|方案|说明|纪要|公告|公示|通报)(?:[（(][^）)\n]{1,20}[）)])?$"
+    )
+    nonempty = [(line_no, re.sub(r"\s+", "", line)) for line_no, line in enumerate(lines[:12], start=1) if line.strip()]
+    for index in range(1, len(nonempty)):
+        previous_line, previous = nonempty[index - 1]
+        line_no, current = nonempty[index]
+        if current != previous or not 4 <= len(current) <= 90 or not title_ending.search(current):
+            continue
+        return [
+            Finding(
+                path=path_label,
+                line=line_no,
+                severity="high",
+                label="duplicate-title",
+                match=current,
+                excerpt=f"与第 {previous_line} 行标题重复；成品正文只保留一次标题。",
+            )
+        ]
+    return []
+
+
 def structured_smell_findings(path_label: str, text: str, lines: list[str]) -> list[Finding]:
     findings: list[Finding] = []
     card_pattern = re.compile(r"^\s*(?:[-*]\s*)?(?:项目名称|项目单位|建设单位|实施单位|采购单位|建设周期|实施周期|服务期限|建设内容|采购内容|服务内容|总投资|预算金额|经费预算|资金来源|项目地点)\s*[：:]")
@@ -551,7 +612,11 @@ def scan(
     delivery_absolute_patterns = [
         item for item in PATTERNS if item[1] in {"thought-leak", "viewpoint-risk", "side-commentary"}
     ]
-    delivery_absolute_patterns += [item for item in DELIVERY_PATTERNS if item[1] != "material-reading-narration"]
+    delivery_absolute_patterns += [
+        item
+        for item in DELIVERY_PATTERNS
+        if item[1] != "material-reading-narration" and item[1] not in DELIVERY_BODY_ONLY_LABELS
+    ]
     delivery_absolute_compiled = [
         (severity, label, re.compile(pattern), advice)
         for severity, label, pattern, advice in delivery_absolute_patterns
@@ -691,6 +756,8 @@ def scan(
     if include_structure:
         findings.extend(duplicate_findings(path_label, lines_to_scan))
         findings.extend(structured_smell_findings(path_label, text_to_scan, lines_to_scan))
+    if delivery_mode in {"draft-body", "gap-note-allowed"}:
+        findings.extend(duplicate_title_findings(path_label, lines_to_scan))
 
     for term, threshold in REPEAT_TERMS.items():
         count = text_to_scan.count(term)

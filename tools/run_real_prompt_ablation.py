@@ -1814,6 +1814,34 @@ CASES: list[PromptCase] = [
             },
         },
     ),
+    PromptCase(
+        id="P108",
+        kind="revise",
+        prompt="把稿子处理成可直接报送的成品，不要把制作版本、内部受众、只读核对、校验门禁、审核状态、免责边界或处理方法写进正文，也不要重复标题。",
+        checks={
+            "file_terms": {
+                "chinese-official-writing/SKILL.md": [
+                    "制作版本、内部受众、操作方式、校验门禁或审核状态等交付元信息",
+                    "材料本身记载的业务事实",
+                    "括号式小字结论、制作说明、免责话术、写作边界或处理方法自述",
+                ],
+                "chinese-official-writing/references/final-review-layers.md": [
+                    "制作版本、内部受众、操作方式、校验门禁或审核状态等交付元信息",
+                ],
+            },
+            "lint_text": (
+                "关于开展安全检查的通知\n"
+                "关于开展安全检查的通知\n"
+                "本稿为脱敏版，仅供内部核对。\n"
+                "当前工作流仅作只读核对。\n"
+                "已通过内容门禁，可以交付。\n"
+                "免责声明：本文不构成正式意见。\n"
+                "方法说明：本稿先核对事实，再调整结构和表述。"
+            ),
+            "lint_delivery_mode": "draft-body",
+            "lint_present_labels": ["delivery-metadata", "delivery-boilerplate", "duplicate-title"],
+        },
+    ),
 ]
 
 
