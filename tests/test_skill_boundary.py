@@ -516,6 +516,9 @@ class SkillBoundaryTests(unittest.TestCase):
         genre_checklist = (ROOT / "chinese-official-writing" / "references" / "genre-checklist.md").read_text(
             encoding="utf-8"
         )
+        genre_playbooks = (ROOT / "chinese-official-writing" / "references" / "genre-playbooks.md").read_text(
+            encoding="utf-8"
+        )
         anti_ai = (ROOT / "chinese-official-writing" / "references" / "anti-ai-patterns.md").read_text(
             encoding="utf-8"
         )
@@ -557,12 +560,21 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assertIn("搜索来源清单", checklist)
         self.assertIn("正文内容已经定稿", format_ref)
         self.assertIn("默认另存新版本", format_ref)
-        for text in [skill, workflow, checklist, agents]:
-            self.assertIn("prompt/markdown", text)
-            self.assertTrue(
-                "不复制" in text or "不直接复制" in text or "未复制" in text or "不直接誊抄" in text or "禁止直接誊抄" in text
-            )
+        self.assertIn("prompt/markdown", agents)
         self.assertIn("禁止直接誊抄代码、脚本、正则、模板库、大段 prompt、固定话术或模板正文", agents)
+        for maintenance_gate in [
+            "不新增重排版引擎",
+            "不扩大默认联网",
+            "不默认强制确认",
+            "不破坏用户模板和字段式材料",
+            "落地后必须和上一基线做消融",
+        ]:
+            self.assertIn(maintenance_gate, agents)
+        for runtime_prompt in [skill, workflow, checklist, genre_checklist, genre_playbooks]:
+            self.assertNotIn("社区技能", runtime_prompt)
+            self.assertNotIn("prompt/markdown", runtime_prompt)
+        self.assertNotIn("不复制社区模板正文", genre_playbooks)
+        self.assertNotIn("联网和社区高频", checklist)
 
     def test_fact_sufficiency_guidance_is_soft_and_non_blocking(self) -> None:
         skill = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
@@ -754,7 +766,6 @@ class SkillBoundaryTests(unittest.TestCase):
         ]:
             self.assertIn(heading, playbooks)
         for term in [
-            "不复制社区模板正文",
             "不新增默认联网、API、Word/PDF 或脚本硬门禁",
             "用户已有模板和字段顺序优先",
             "只替换该字段内容，不把多字段合并成一句",
