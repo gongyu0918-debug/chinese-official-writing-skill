@@ -816,8 +816,25 @@ class SkillBoundaryTests(unittest.TestCase):
         for text in [skill, proofreading]:
             self.assertIn("普通叙述中的口语称谓和表达可以按正式文稿语体调整", text)
             self.assertIn("引号内、明确标注为原文/引语或要求逐字保留的内容按字面边界保留", text)
-        self.assertIn("`我觉得`：可按语境改为", style)
+        self.assertIn("`我觉得`：材料只表达初步意见时", style)
         self.assertIn("`差不多`：可改为", style)
+
+    def test_v1510_sentence_fixes_keep_sparse_and_field_tasks_fact_bounded(self) -> None:
+        skill = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
+        style = (ROOT / "chinese-official-writing" / "references" / "official-style.md").read_text(
+            encoding="utf-8"
+        )
+        anti_ai = (ROOT / "chinese-official-writing" / "references" / "anti-ai-patterns.md").read_text(
+            encoding="utf-8"
+        )
+
+        self.assertIn("按已给事实之间的关系简短成稿", skill)
+        self.assertIn("缺少某一环节时，不补齐固定章节", skill)
+        self.assertNotIn("已完成事项 -> 发现问题 -> 已组织协调", skill)
+        self.assertIn("只有材料确有研究过程或事实依据时", style)
+        self.assertIn("字段式底稿默认保留字段名、顺序和单元边界", anti_ai)
+        self.assertIn("只有用户要求成篇正文且这些字段仅作为素材时", anti_ai)
+        self.assertIn("不保留字段标签或机械转述字段名", anti_ai)
 
     def test_review_command_includes_interpreter_and_draft_path(self) -> None:
         review = (

@@ -1518,7 +1518,7 @@ CASES: list[PromptCase] = [
                     "会议纪要、清单覆盖范围、清单版本、子项清单",
                     "用户点名禁止编造的字段写进正文解释为",
                     "事实少于字数目标时宁可短写",
-                    "材料稀疏型通报或情况说明可用短骨架",
+                    "材料稀疏型通报或情况说明按已给事实之间的关系简短成稿",
                     "事实映射式二次修改",
                     "不推断讨论、沟通、归集、说明、形成意见",
                     "不加括号解释、对象范围",
@@ -1635,7 +1635,7 @@ CASES: list[PromptCase] = [
                     "按字面边界保留",
                 ],
                 "chinese-official-writing/references/official-style.md": [
-                    "`我觉得`：可按语境改为",
+                    "`我觉得`：材料只表达初步意见时",
                     "`差不多`：可改为",
                 ],
             },
@@ -1772,6 +1772,46 @@ CASES: list[PromptCase] = [
                 "english-thought-fragment",
                 "delivery-explanation",
             ],
+        },
+    ),
+    PromptCase(
+        id="P105",
+        kind="create",
+        prompt="材料只有完成一次排查、发现两项问题、召开一次协调会。写一份简短情况说明，不补整改、下一步或固定章节。",
+        checks={
+            "file_terms": {
+                "chinese-official-writing/SKILL.md": [
+                    "按已给事实之间的关系简短成稿",
+                    "缺少某一环节时，不补齐固定章节",
+                ],
+            },
+        },
+    ),
+    PromptCase(
+        id="P106",
+        kind="revise",
+        prompt="把‘我觉得可以下月先试一下’改成正式工作材料用语，不要补研究过程或既定决定。",
+        checks={
+            "file_terms": {
+                "chinese-official-writing/references/official-style.md": [
+                    "材料只表达初步意见时",
+                    "只有材料确有研究过程或事实依据时",
+                ],
+            },
+        },
+    ),
+    PromptCase(
+        id="P107",
+        kind="revise",
+        prompt="润色这份字段式申请表，只改申请理由字段，保留字段名、顺序和单元边界。",
+        checks={
+            "file_terms": {
+                "chinese-official-writing/references/anti-ai-patterns.md": [
+                    "字段式底稿默认保留字段名、顺序和单元边界",
+                    "只有用户要求成篇正文且这些字段仅作为素材时",
+                    "不保留字段标签或机械转述字段名",
+                ],
+            },
         },
     ),
 ]

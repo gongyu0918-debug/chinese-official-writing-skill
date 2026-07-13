@@ -307,7 +307,7 @@ class RealPromptAblationTests(unittest.TestCase):
             checks_by_id["P091"]["file_terms"]["chinese-official-writing/SKILL.md"],
         )
         self.assertIn(
-            "材料稀疏型通报或情况说明可用短骨架",
+            "材料稀疏型通报或情况说明按已给事实之间的关系简短成稿",
             checks_by_id["P091"]["file_terms"]["chinese-official-writing/SKILL.md"],
         )
         self.assertIn(
@@ -325,6 +325,22 @@ class RealPromptAblationTests(unittest.TestCase):
         self.assertIn(
             "正式正文的标题、小标题、段落标签直接用普通文本承接",
             checks_by_id["P093"]["file_terms"]["chinese-official-writing/SKILL.md"],
+        )
+        self.assertIn(
+            "缺少某一环节时，不补齐固定章节",
+            checks_by_id["P105"]["file_terms"]["chinese-official-writing/SKILL.md"],
+        )
+        self.assertIn(
+            "只有材料确有研究过程或事实依据时",
+            checks_by_id["P106"]["file_terms"]["chinese-official-writing/references/official-style.md"],
+        )
+        self.assertIn(
+            "字段式底稿默认保留字段名、顺序和单元边界",
+            checks_by_id["P107"]["file_terms"]["chinese-official-writing/references/anti-ai-patterns.md"],
+        )
+        self.assertIn(
+            "不保留字段标签或机械转述字段名",
+            checks_by_id["P107"]["file_terms"]["chinese-official-writing/references/anti-ai-patterns.md"],
         )
 
     def test_heading_lock_detects_added_subheading(self) -> None:
