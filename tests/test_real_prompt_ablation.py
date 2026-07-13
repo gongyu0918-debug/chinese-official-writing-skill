@@ -211,42 +211,10 @@ class RealPromptAblationTests(unittest.TestCase):
         self.assertIn("学校", checks_by_id["P058"]["description_terms"])
         self.assertIn("工作要点", checks_by_id["P059"]["description_terms"])
         self.assertIn("征求意见函", checks_by_id["P060"]["description_terms"])
-        self.assertIn("论文", checks_by_id["P061"]["description_terms"])
+        self.assertIn("论文", checks_by_id["P061"]["description_exclusion_terms"])
         self.assertIn("营销", checks_by_id["P062"]["description_exclusion_terms"])
         self.assertIn("个人求职", checks_by_id["P063"]["description_exclusion_terms"])
         self.assertIn("社媒", checks_by_id["P064"]["description_exclusion_terms"])
-        self.assertIn("课程论文", checks_by_id["P105"]["description_terms"])
-        self.assertIn(
-            "材料不足时宁可短写",
-            checks_by_id["P106"]["file_terms"]["chinese-official-writing/references/academic-writing.md"],
-        )
-        self.assertIn(
-            "用户要求只输出正文时，不附任何构造建议",
-            checks_by_id["P107"]["file_terms"]["chinese-official-writing/references/academic-writing.md"],
-        )
-        self.assertIn(
-            "### 只审不改",
-            checks_by_id["P108"]["file_terms"]["chinese-official-writing/references/academic-writing.md"],
-        )
-        self.assertIn("文献综述", checks_by_id["P109"]["description_terms"])
-        self.assertIn(
-            "避免逐篇摘要连续罗列",
-            checks_by_id["P109"]["file_terms"][
-                "chinese-official-writing/references/academic-literature-review.md"
-            ],
-        )
-        self.assertIn("英文", checks_by_id["P111"]["description_exclusion_terms"])
-        self.assertIn(
-            "未指定模板时按证据收缩章节",
-            checks_by_id["P113"]["file_terms"]["chinese-official-writing/references/academic-writing.md"],
-        )
-        self.assertIn("开题报告", checks_by_id["P114"]["description_terms"])
-        self.assertIn(
-            "计划不得写成已经实施",
-            checks_by_id["P114"]["file_terms"][
-                "chinese-official-writing/references/academic-proposal.md"
-            ],
-        )
         for case_id, term in [
             ("P065", "通告"),
             ("P066", "意见"),

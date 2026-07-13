@@ -26,18 +26,6 @@ from typing import Any
 
 
 GENRE_REFERENCES: dict[str, list[str]] = {
-    "official": [
-        "references/official-writing.md",
-    ],
-    "academic": [
-        "references/academic-writing.md",
-    ],
-    "academic_proposal": [
-        "references/academic-proposal.md",
-    ],
-    "academic_literature_review": [
-        "references/academic-literature-review.md",
-    ],
     "default": [
         "references/task-route-cards.md",
     ],
@@ -135,21 +123,6 @@ AI_COMPUTE_MARKERS = (
     "并发",
 )
 
-ACADEMIC_GENRES = {
-    "本科论文",
-    "本科毕业论文",
-    "硕士论文",
-    "硕士学位论文",
-    "学位论文",
-    "课程论文",
-    "论文提纲",
-    "论文正文",
-    "论文改稿",
-    "论文审稿",
-}
-ACADEMIC_PROPOSAL_GENRES = {"开题报告"}
-ACADEMIC_LITERATURE_REVIEW_GENRES = {"独立文献综述", "文献综述"}
-
 _BATCH_CACHE: dict[str, dict[str, str]] = {}
 
 
@@ -244,35 +217,9 @@ def _task_requires_complex_route(tasks: list[str]) -> bool:
     return any(int(match.group(1)) >= 800 for task in tasks for match in LONG_FORM_RE.finditer(task))
 
 
-def _route_kind(genres: list[str]) -> str:
-    routes: set[str] = set()
-    if any(genre in ACADEMIC_GENRES for genre in genres):
-        routes.add("academic")
-    if any(genre in ACADEMIC_PROPOSAL_GENRES for genre in genres):
-        routes.add("academic_proposal")
-    if any(genre in ACADEMIC_LITERATURE_REVIEW_GENRES for genre in genres):
-        routes.add("academic_literature_review")
-    if any(
-        genre in PLAYBOOK_GENRES or genre in CHAIN_GENRES or _is_ai_compute(genre)
-        for genre in genres
-    ):
-        routes.add("official")
-    if len(routes) > 1:
-        raise ProviderError("mixed routes must be evaluated in separate batches")
-    return next(iter(routes), "official")
-
-
 def _reference_paths_for_genres(genres: list[str], tasks: list[str] | None = None) -> list[str]:
     tasks = tasks or []
-    route = _route_kind(genres)
-    if route == "academic":
-        return ["SKILL.md", *GENRE_REFERENCES["academic"]]
-    if route == "academic_proposal":
-        return ["SKILL.md", *GENRE_REFERENCES["academic_proposal"]]
-    if route == "academic_literature_review":
-        return ["SKILL.md", *GENRE_REFERENCES["academic_literature_review"]]
-
-    paths = ["SKILL.md", *GENRE_REFERENCES["official"], *GENRE_REFERENCES["default"]]
+    paths = ["SKILL.md", *GENRE_REFERENCES["default"]]
     if any(genre in PLAYBOOK_GENRES or _is_ai_compute(genre) for genre in genres):
         paths.extend(GENRE_REFERENCES["playbook"])
     if any(genre in CHAIN_GENRES for genre in genres):
@@ -349,42 +296,18 @@ def _skill_prompt(cases: list[dict[str, Any]], config: dict[str, Any]) -> str:
     repo_root = _repo_root(config)
     genres = sorted({_case_genre(case) for case in cases if _case_genre(case)})
     tasks = [_case_task(case) for case in cases if _case_task(case)]
-    route = _route_kind(genres)
     skill_context = _load_skill_context(repo_root, genres, tasks)
-    if route == "academic":
-        role_and_method = (
-            "你是中文论文按需专项写作代理。只使用入口和论文叶子，按研究问题、全文提纲、章节任务、"
-            "小节要点和段落论点由大至小组织；只使用给定事实和来源，保持证据状态。"
-        )
-        output_rule = "按用户任务输出提纲、改后正文或审稿意见；不得补造数据、文献、方法、结果或结论。"
-    elif route == "academic_proposal":
-        role_and_method = (
-            "你是中文论文开题报告专项写作代理。只使用入口和开题报告专项链，按题目与范围、中心问题、"
-            "目标、研究内容、方法与材料、进度与已有条件、预期产出由大至小组织。"
-        )
-        output_rule = "只使用给定或已核验材料，保持已有基础、拟开展工作和预期结果的状态，不得补造研究设计或成果。"
-    elif route == "academic_literature_review":
-        role_and_method = (
-            "你是中文独立文献综述专项写作代理。只使用入口和独立文献综述专项链，按综述问题、范围、"
-            "来源清单、组织轴、组内综合和全文结论由大至小组织。"
-        )
-        output_rule = "只使用给定或已核验来源，保持来源归因和引用对应，不得补造文献、观点、分歧或领域空白。"
-    else:
-        role_and_method = (
-            "你是中文公文 Skill 写作代理。只使用入口、公文叶子和本批文种相关 references；"
-            "先判断文种，再抽取办理要素，再组织论证链条，最后做文种边界和格式噪点自查。"
-        )
-        output_rule = (
-            "对每个任务输出一段中文正式材料初稿，控制在 160-260 个汉字。不要编造真实单位、真实政策、"
-            "真实金额、人名、电话、邮箱或内部项目事实。"
-        )
     return textwrap.dedent(
         f"""
-        {role_and_method} 仓库已安装 Skill：
+        你是中文公文 Skill 写作代理。仓库已安装 Skill：
         `.agents/skills/chinese-official-writing/SKILL.md`。
 
-        只使用下列已选路由上下文；不要加载整包，不要读取另一叶子，不要复制参考资料原文。
-        {output_rule}
+        只使用下列 Skill 入口和与本批文种相关的 references；不要加载整包上下文，不要复制参考资料原文。
+        先判断文种，再抽取办理要素，再组织论证链条，最后做反 AI、文种边界和格式噪点自查。
+
+        对每个任务输出一段中文正式材料初稿，控制在 160-260 个汉字。不要编造真实单位、真实政策、真实金额、
+        人名、电话、邮箱或内部项目事实。可使用“有关单位”“相关部门”等泛称，但不要把“发文机关、
+        发文字号、主送单位”等占位标签写进正文。
 
         输出必须严格按如下格式，不要解释：
         ### <case_id>

@@ -1075,14 +1075,7 @@ CASES: list[PromptCase] = [
         kind="revise",
         prompt="帮我给论文降 AI 味。",
         checks={
-            "description_terms": ["论文"],
-            "file_terms": {
-                "chinese-official-writing/references/academic-writing.md": [
-                    "不承诺降低 AIGC 检测率或查重率",
-                    "不得补造",
-                    "只审不改",
-                ],
-            },
+            "description_exclusion_terms": ["论文"],
         },
     ),
     PromptCase(
@@ -1749,9 +1742,14 @@ CASES: list[PromptCase] = [
         checks={
             "file_terms": {
                 "openclaw/skills/chinese_official_writing/SKILL.md": [
-                    "只输出正文",
+                    "除非同时明确允许文后待确认、风险或核验提示",
                     "不附任何正文外说明或提示",
-                    "不在正文中解释“未提供”",
+                    "缺失事实不补造，也不在正文中解释“未提供”",
+                    "用户同时明确允许某类文后提示时",
+                ],
+                "tools/sync_adapters.py": [
+                    "Keep OpenClaw's executable body identical to the canonical skill",
+                    "duplicate the canonical workflow",
                 ],
             },
         },
@@ -1776,159 +1774,6 @@ CASES: list[PromptCase] = [
             ],
         },
     ),
-    PromptCase(
-        id="P105",
-        kind="create",
-        prompt="根据我给的题目、研究问题和三条材料列一个中文课程论文提纲，不要补数据、案例或参考文献。",
-        checks={
-            "description_terms": ["课程论文"],
-            "file_terms": {
-                "chinese-official-writing/SKILL.md": [
-                    "references/academic-writing.md",
-                ],
-                "chinese-official-writing/references/academic-writing.md": [
-                    "### 提纲构造",
-                    "研究问题或中心命题 -> 全文提纲 -> 章节任务 -> 小节要点 -> 段落论点",
-                    "研究对象、样本量、数据、实验、问卷、访谈、案例、政策、结果、引文和参考文献均不得补造",
-                    "用户未给出的比例、均值、显著性或其他派生统计默认不自行计算",
-                ],
-            },
-        },
-    ),
-    PromptCase(
-        id="P106",
-        kind="create",
-        prompt="材料很少，先写能写的论文正文，宁可短，不要编；正文后告诉我还可补什么材料、论点和展开方向。",
-        checks={
-            "file_terms": {
-                "chinese-official-writing/references/academic-writing.md": [
-                    "材料不足时宁可短写",
-                    "`可补充材料`",
-                    "`可补充论点`",
-                    "`可展开论点`",
-                    "不要把建议写成正文事实",
-                ],
-            },
-        },
-    ),
-    PromptCase(
-        id="P107",
-        kind="revise",
-        prompt="把这段毕业论文改顺，只输出改后正文，不要附材料建议或论点建议。",
-        checks={
-            "file_terms": {
-                "chinese-official-writing/references/academic-writing.md": [
-                    "用户要求只输出正文时，不附任何构造建议",
-                    "### 底稿修改",
-                    "保留术语、数据、引用、图表编号、公式、章节层级和学校模板",
-                ],
-            },
-        },
-    ),
-    PromptCase(
-        id="P108",
-        kind="revise",
-        prompt="只审这篇论文，不重写。按位置、风险层级、修改建议检查论点和证据。",
-        checks={
-            "file_terms": {
-                "chinese-official-writing/references/academic-writing.md": [
-                    "### 只审不改",
-                    "按“位置、风险层级、修改建议”逐项输出",
-                    "不以语言流畅度替代学术有效性",
-                    "研究问题、论点、证据、结论",
-                ],
-            },
-        },
-    ),
-    PromptCase(
-        id="P109",
-        kind="create",
-        prompt="只根据我提供的6篇文献写文献综述，保留作者年份和引用对应，不补其他文献。",
-        checks={
-            "description_terms": ["文献综述"],
-            "file_terms": {
-                "chinese-official-writing/SKILL.md": [
-                    "独立文献综述读取 `references/academic-literature-review.md`",
-                ],
-                "chinese-official-writing/references/academic-literature-review.md": [
-                    "综述问题 -> 分组任务 -> 组内共识与分歧",
-                    "具体发现只来自实际读取的原文、摘要或用户材料",
-                    "相关、关联、反映、提及不得改写为影响、作用、导致或效果",
-                    "每项来源归因都要能够回到对应材料",
-                    "避免逐篇摘要连续罗列",
-                ],
-            },
-        },
-    ),
-    PromptCase(
-        id="P110",
-        kind="create",
-        prompt="请联网检索公开学术来源后补充论文背景，列出来源、年份、链接或DOI和使用位置。",
-        checks={
-            "file_terms": {
-                "chinese-official-writing/references/academic-writing.md": [
-                    "默认不联网",
-                    "用户明确要求检索时",
-                    "链接或 DOI、访问日期及使用位置",
-                ],
-            },
-        },
-    ),
-    PromptCase(
-        id="P111",
-        kind="create",
-        prompt="Write my English master's thesis introduction.",
-        checks={
-            "description_exclusion_terms": ["英文"],
-        },
-    ),
-    PromptCase(
-        id="P112",
-        kind="create",
-        prompt="我没有材料，帮我编一篇带样本、问卷结果、案例和参考文献的完整毕业论文。",
-        checks={
-            "file_terms": {
-                "chinese-official-writing/references/academic-writing.md": [
-                    "不生成可被误当成真实研究成果的完整示例稿",
-                    "不用拟真案例、拟真数据、虚构文献或模板化扩写补足篇幅",
-                ],
-            },
-        },
-    ),
-    PromptCase(
-        id="P113",
-        kind="create",
-        prompt="材料只有两项事实，请按已给材料拟三级论文提纲；学校没有固定模板，不要为了凑标准章数用近义标题跨章重复。",
-        checks={
-            "file_terms": {
-                "chinese-official-writing/references/academic-writing.md": [
-                    "材料稀疏时",
-                    "不为凑标准章数用近义标题跨章重复同一事实或缺口",
-                    "未指定模板时按证据收缩章节",
-                    "指定模板时保留章节但区分各章任务",
-                ],
-            },
-        },
-    ),
-    PromptCase(
-        id="P114",
-        kind="create",
-        prompt="只按我给的学校栏目和材料写论文开题报告；拟采用的方法和预期结果不要写成已经完成，不补文献、数据或进度。",
-        checks={
-            "description_terms": ["开题报告"],
-            "file_terms": {
-                "chinese-official-writing/SKILL.md": [
-                    "开题报告读取 `references/academic-proposal.md`",
-                ],
-                "chinese-official-writing/references/academic-proposal.md": [
-                    "计划不得写成已经实施",
-                    "预期不得写成已经证实",
-                    "中心问题 -> 研究目标 -> 子问题",
-                    "材料不足时先完成能够成立的短稿",
-                ],
-            },
-        },
-    ),
 ]
 
 
@@ -1936,23 +1781,7 @@ def read_text(root: Path, relative: str) -> str:
     path = root / relative
     if not path.exists():
         return ""
-    text = path.read_text(encoding="utf-8")
-    if relative == "chinese-official-writing/SKILL.md":
-        official_leaf = root / "chinese-official-writing" / "references" / "official-writing.md"
-        if official_leaf.exists():
-            text += "\n\n" + official_leaf.read_text(encoding="utf-8")
-    if relative == "openclaw/skills/chinese_official_writing/SKILL.md":
-        official_leaf = (
-            root
-            / "openclaw"
-            / "skills"
-            / "chinese_official_writing"
-            / "references"
-            / "official-writing.md"
-        )
-        if official_leaf.exists():
-            text += "\n\n" + official_leaf.read_text(encoding="utf-8")
-    return text
+    return path.read_text(encoding="utf-8")
 
 
 def extract_description(skill_text: str) -> str:

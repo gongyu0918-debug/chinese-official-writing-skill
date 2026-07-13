@@ -11,7 +11,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 CANONICAL = ROOT / "chinese-official-writing"
-VERSION = "1.5.9"
+VERSION = "1.5.10"
 ROOT_README = ROOT / "README.md"
 OPENCLAW_MARKETPLACE_README = ROOT / "openclaw" / "marketplace-readme.md"
 OPENCLAW_README = ROOT / "openclaw" / "README.md"
@@ -25,6 +25,13 @@ TARGETS = {
     "hermes": ROOT / "hermes" / "skills" / "chinese-official-writing",
     "openclaw": ROOT / "openclaw" / "skills" / "chinese_official_writing",
 }
+
+STALE_SPLIT_REFERENCES = (
+    "references/academic-writing.md",
+    "references/academic-proposal.md",
+    "references/academic-literature-review.md",
+    "references/official-writing.md",
+)
 
 
 def versioned_text(text: str) -> str:
@@ -74,10 +81,10 @@ def patch_frontmatter(target: Path, mode: str) -> None:
 
 
 def patch_openclaw_skill_body(target: Path) -> None:
-    """Keep OpenClaw's executable body identical to the canonical short router.
+    """Keep OpenClaw's executable body identical to the canonical skill.
 
-    User-facing marketplace copy remains in README.md. Inlining that copy in
-    SKILL.md would preload public-document examples before an academic route.
+    User-facing marketplace copy remains in README.md. Do not concatenate it
+    into the executable instructions or duplicate the canonical workflow.
     """
 
     skill_file = target / "SKILL.md"
@@ -127,6 +134,10 @@ def update_openclaw_skill_card_source() -> None:
 
 def copy_skill(target: Path, mode: str) -> None:
     ignore = shutil.ignore_patterns("__pycache__", "*.pyc", ".DS_Store", "Thumbs.db")
+    for relative_path in STALE_SPLIT_REFERENCES:
+        stale_file = target / relative_path
+        if stale_file.exists():
+            stale_file.unlink()
     shutil.copytree(CANONICAL, target, ignore=ignore, dirs_exist_ok=True)
     patch_frontmatter(target, mode)
     if mode == "openclaw":

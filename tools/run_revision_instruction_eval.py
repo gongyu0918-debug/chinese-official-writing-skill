@@ -1036,7 +1036,6 @@ def evaluate_turn(output: str, turn: Turn, case: Case) -> list[dict[str, str]]:
 def skill_context(max_chars: int = 18000) -> str:
     paths = [
         ROOT / "chinese-official-writing" / "SKILL.md",
-        ROOT / "chinese-official-writing" / "references" / "official-writing.md",
         ROOT / "chinese-official-writing" / "references" / "workflow.md",
         ROOT / "chinese-official-writing" / "references" / "final-review-layers.md",
         ROOT / "chinese-official-writing" / "references" / "review-checklist.md",

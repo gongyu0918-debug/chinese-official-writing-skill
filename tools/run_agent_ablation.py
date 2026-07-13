@@ -148,7 +148,6 @@ def load_skill_context(cwd: Path, genres: list[str]) -> str:
     skill_dir = cwd / ".agents" / "skills" / "chinese-official-writing"
     parts = [
         ("SKILL.md", read_file(skill_dir / "SKILL.md", 9000)),
-        ("references/official-writing.md", read_file(skill_dir / "references" / "official-writing.md", 12000)),
         ("references/genre-checklist.md", read_file(skill_dir / "references" / "genre-checklist.md", 9000)),
         ("references/anti-ai-patterns.md", read_file(skill_dir / "references" / "anti-ai-patterns.md", 7000)),
     ]

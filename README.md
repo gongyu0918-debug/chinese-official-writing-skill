@@ -4,7 +4,7 @@
 [![License](https://img.shields.io/badge/license-MIT--0-green)](LICENSE)
 [![Language](https://img.shields.io/badge/language-中文公文-red)](#适用范围)
 
-中文公文写作 Skill 主要面向中文公文、机关企事业单位和学校正式事务材料的起草、改写和复核，提供任务路由、结构组织、事实边界、标题核验、重复事项检测和低 AI 味审查。
+中文公文写作 Skill 面向正式材料起草、改写和复核场景，提供文种路由、行文关系判断、办理要素核对、论证链条、标题二次核验、重复事项检测、主体视角校验、敬谦称谓检查、低 AI 味审查和技术类材料专项约束。
 
 主要覆盖文种功能校正、办理要素完整性、主体视角统一、句式风险压降和技术类材料论证。AI 算力、服务器租赁、云端部署成本对比等材料按 **需求来源 -> Token/资源测算 -> 成本比较 -> SLA/并发/安全/验收** 组织正文。
 
@@ -18,11 +18,11 @@
 | 技术类正式材料 | AI 算力服务可研、算力资源采购或租赁、GPU/服务器租赁、云端部署成本对比、SLA 与并发保障、数据安全、运维验收 |
 | Word 文稿 | 带批注文档改写、压缩、顺稿、去口语化、统一文风 |
 
-适用边界以中文公文和正式工作材料为主。明确的中文本科、硕士学位论文和课程论文任务按需进入独立论文叶子，不与公文工作流混载；开题报告和独立文献综述各自按需读取单一专项链。英文论文、实验设计、统计分析、答辩、排版和查重/AIGC 规避不在范围内。法律、财务、采购、审计、政策依据和学术判断保留人工复核环节。
+适用边界为中文正式材料。英文写作、文学创作、营销软文、社交媒体文案不在覆盖范围内。法律、财务、采购、审计和政策依据类正式上报材料保留人工复核环节。
 
 ### 触发条件与非适用范围
 
-建议在用户明确提出中文公文、中文正式工作材料、正式报告、请示、方案、可研、建设方案、审查材料、AI 算力采购/租赁材料，以及顺稿、压缩、去口语化、降 AI 味、文种校验、办理要素核对时启用本 Skill。
+建议在用户明确提出中文公文、中文正式工作材料、正式报告、请示、方案、可研、建设方案、审查材料、AI 算力采购/租赁材料，或提出顺稿、压缩、去口语化、降 AI 味、文种校验、办理要素核对时启用本 Skill。
 
 不建议在英文写作、文学创作、营销文案、社交媒体文案、闲聊回复、代码说明、通用翻译、模型训练、批量语料生成、批量改写未知来源文本、规避人工审核、生成可冒充真实签发文件的完整编号/日期/印章信息等场景启用。
 
@@ -67,10 +67,10 @@
 ### OpenClaw / ClawHub
 
 ```text
-请从 GitHub 仓库 https://github.com/gongyu0918-debug/chinese-official-writing-skill 拉取 openclaw/skills/chinese_official_writing/ 目录，并将其安装为 OpenClaw/ClawHub 可识别的 chinese-official-writing 技能。该适配目录的 frontmatter 使用 name: chinese_official_writing；安装后确认显示名称为“中文公文写作”，主要用于中文公文和正式工作材料。
+请从 GitHub 仓库 https://github.com/gongyu0918-debug/chinese-official-writing-skill 拉取 openclaw/skills/chinese_official_writing/ 目录，并将其安装为 OpenClaw/ClawHub 可识别的 chinese-official-writing 技能。该适配目录的 frontmatter 使用 name: chinese_official_writing；安装后确认显示名称为“中文公文写作”，用于中文公文、可研报告、建设方案和 AI 算力采购租赁类正式材料写作。
 ```
 
-当前工作版本：`chinese-official-writing@1.5.9`
+当前工作版本：`chinese-official-writing@1.5.10`
 
 ### Claude Code
 
