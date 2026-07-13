@@ -2,42 +2,15 @@
 
 本文件适用于整个仓库。后续 agent 接手本仓库时，优先遵守这里的发布、review 和测试约定；若与用户最新指令冲突，以用户最新指令为准，但不得伪造未运行的测试结果。
 
-当前接手入口只保留本文件。GitHub tag `v1.5.9` 指向发布提交 `a2e489658988f404a6ea5a627eda165da89e9a86`，release 为 `https://github.com/gongyu0918-debug/chinese-official-writing-skill/releases/tag/v1.5.9`；`origin/main` 在发布后可能继续包含状态记录等文档提交，不再把 tag 和分支头写成必然相同，接手时以 `git ls-remote --heads origin main` 和 `git rev-parse 'v1.5.9^{commit}'` 分别复核。ClawHub 已公开切换到 `latestVersion.version=1.5.9`、`tags.latest=1.5.9`、`displayName=中文公文写作`，moderation 总体为 `clean`，发布 `versionId=k97be9njgn67yehws0qb0jn7698afz8v`、23 个文件、fingerprint `14652fc04872bd7b14477d7da96de847a92ca7f13bae10c893bb62af03e6f281`；`chinese`、`official-document`、`writing`、`gongwen`、`ai-compute` 五个正确 tag 均指向 1.5.9。发布后真实安装包正文与 OpenClaw 发布源 23 个文件逐文件 SHA-256 一致，平台另生成 `_meta.json` 和 `.clawhub/origin.json`。当前版本级扫描仍为 `pending`：VirusTotal 已显示 clean，Skillspector 和 LLM 尚无结果，`legacyReason=pending.scan`；不得把总体 clean 表述为全部扫描完成。1.4.15 和 1.5.6 形成的带引号或合并历史 tag key 仍保留，但不影响 `latest`、正确 tags、安装包或 moderation；后续发布继续把整个参数写成单一 token：`'--tags=chinese,official-document,writing,gongwen,ai-compute'`。
+当前接手入口只保留本文件。GitHub tag `v1.5.10` 指向发布提交 `7e5fec70ba78ad6d1c4b4ae34952697b4794c03e`，release 为 `https://github.com/gongyu0918-debug/chinese-official-writing-skill/releases/tag/v1.5.10`；`origin/main` 在发布后可能继续包含状态记录等文档提交，不再把 tag 和分支头写成必然相同，接手时以 `git ls-remote --heads origin main` 和 `git rev-parse 'v1.5.10^{commit}'` 分别复核。ClawHub 已公开切换到 `latestVersion.version=1.5.10`、`tags.latest=1.5.10`、`displayName=中文公文写作`，moderation 总体为 `clean`，发布 `versionId=k974c72ypn50rpd6s43zff7mn58afjd8`、19 个文件、fingerprint `617315ce6fff6800c7a3b3f96978207234f6192c6cab037124a8b1ed16687c30`；`chinese`、`official-document`、`writing`、`gongwen`、`ai-compute` 五个正确 tag 均指向 1.5.10。当前版本级扫描仍为 `pending`，`legacyReason=pending.scan`，不得把总体 clean 表述为全部扫描器均已完成。1.4.15 和 1.5.6 形成的带引号或合并历史 tag key 仍保留，但不影响 `latest`、正确 tags、安装包或 moderation；后续发布继续把整个参数写成单一 token：`'--tags=chinese,official-document,writing,gongwen,ai-compute'`。
 
-SkillHub 精确目标仍为 `https://skillhub.cn/skills/chinese-official-writing`，`skillId=70149`。1.5.9 已提交，返回 `versionId=136245`、23 个文件、fingerprint `665d74491517f29beca6bcf890b28c150e57d5fe13f45d38f916921699f848c5`、`tags.latest=1.5.9`，提交回执中的 `reviewStatus/securityScanStatus/contentAuditStatus=pending`。公开 API 随后已切换到 `latestVersion.version=1.5.9`，并显示 1.5.9 summary 和 `tags.latest=1.5.9`；公开安全报告接口当前返回空集合，不能据此把回执中的三项 pending 表述为已审核通过。图标仍为蓝底 Q 版图标。发布前后必须用 `git ls-remote --heads origin main`、`clawhub inspect chinese-official-writing --json`、SkillHub API 或 CLI 和 GitHub tag/main 核对 displayName、tags、latestVersion、summary、source commit 和 canonical frontmatter。下方旧版本内容均为历史接手记录，不代表当前 live 版本。
+SkillHub 精确目标仍为 `https://skillhub.cn/skills/chinese-official-writing`，`skillId=70149`。1.5.10 已提交，返回 `versionId=136272`、19 个文件、fingerprint `9ac3e4c0a347830db58ea178e0223bf142d20206a25486d13f3ae49afde5914c`、`tags.latest=1.5.10`，提交回执中的 `reviewStatus/securityScanStatus/contentAuditStatus=pending`。2026-07-13 提交后的公开搜索索引仍显示 1.5.9，属于索引尚未切换，不能把提交回执写成公开页已更新，也不能把三项 pending 表述为已审核通过。图标仍为蓝底 Q 版图标。发布前后必须用 `git ls-remote --heads origin main`、`clawhub inspect chinese-official-writing --json`、SkillHub API 或 CLI 和 GitHub tag/main 核对 displayName、tags、latestVersion、summary、source commit 和 canonical frontmatter。下方旧版本内容均为历史接手记录，不代表当前 live 版本。
 
-## 小红书 Red SkillHub（与 SkillHub 分开维护）
+## 小红书 Red SkillHub（停止发布）
 
-小红书 Red SkillHub 是独立发布面，不等同于 `skillhub.cn` 的 SkillHub。两边的登录、标签、审核状态、skill ID、版本回执和安装包不得互相代替，也不能因为一边发布成功就把另一边记为已发布。
+自 2026-07-13 起，本仓库不再执行小红书 Red SkillHub 的发布、更新、dry-run、登录续期、标签查询或占用冲突处理；后续发行范围只包括 GitHub、ClawHub 和 `skillhub.cn`。除非用户以后明确撤销本决定，否则任何 agent 不得调用 Red 上传 CLI，也不得把 Red 专用副本纳入发布门禁。
 
-- Red SkillHub 官方上传说明：`https://redskill.xiaohongshu.net/uploader.md`。
-- Red SkillHub 专用维护路径：`redskill/skills/chinese-official-writing/`。
-- `skillhub.cn` SkillHub 的发布包仍在 `output/skillhub-release-<version>/publish-package/` 临时生成，不把该临时目录写成 Red SkillHub 的维护路径。
-- Red 专用副本以同版本 SkillHub 已发布包为源，当前本地 1.5.9 副本只允许一项内容差异：删除 Red CLI 不支持的 `agents/openai.yaml`。当前为 22 个文件，逐文件相对路径和 SHA-256 与 SkillHub 1.5.9 包的其余文件一致；不得顺手删改 `_meta.json`、`SKILL.md`、references 或脚本。
-- 后续版本先完成 canonical、GitHub、ClawHub、SkillHub 的既定验证，再同步 Red 专用副本；同步后运行小红书 CLI dry-run，确认版本、描述、Skill ID、标签和包哈希，不能沿用上一版本回执。
-- 当前 Red 发布参数：`source=原创`，标签为 `内容创作、职场办公`。标签仍须在每次发布前由 CLI 实时拉取，不把本记录当成平台永久标签清单。
-- 小红书 Red SkillHub 1.5.7 已真实提交：`skill_identifier=chinese-official-writing`、`name=中文公文写作`、`version=1.5.7`、`original=true`、`content_tag_ids=[1002,1004]`，回执为 `skill_id=8494`、`version_id=100041`、`first_version=true`、`display_status=1`、`audit_request_id=8494_100041_17833860685024`。首次用英文名称 `chinese-official-writing` 提交时服务端返回“名称长度不符合要求”，该次未发布；改用中文短名并重跑 dry-run 后提交成功。
-- 1.5.9 Red dry-run 已通过：`skill_identifier=chinese-official-writing`、`name=中文公文写作`、无引号版本 `1.5.9`、`original=true`、`content_tag_ids=[1002,1004]`、bundle SHA-256 `075ee9802061389794fbeeed26d70536e7bd87b0049a563a08be6d20eca29c0b`、96618 bytes。真实提交第一次在上传前因 access token 过期停止，`login --agent` 随后用现有 refresh token 静默续期；第二次上传进度达到 100 后，服务端再次以“Skill ID 已被占用”拒绝，没有 `RESULT_JSON.status=submitted`，也没有新的 `skill_id/version_id/audit_request_id`。因此 Red 公开版本仍只能按最后成功回执记为 1.5.7；不得把上传进度 100 或本地 1.5.9 副本写成发布成功。继续处理前需确认当前 OAuth 账号是否拥有 `skill_id=8494`，或取得平台支持的既有 skill 更新入口；不得改用新 identifier 绕过冲突。
-
-Red 上传工具按官方包安装：
-
-```powershell
-npm install -g "https://fe-video-qc.xhscdn.com/fe-platform-file/104101b83221qt9bu7k0653u0hejenq0004pf88k9rpr6a.tgz"
-```
-
-官方 agent skill 注册在当前用户的 `~/.agents/skills/skillhub-upload/SKILL.md`。上传固定顺序为：`whoami`；未登录时 `login --agent`；实时取标签；对 `redskill/skills/chinese-official-writing/` 执行带完整 `--source`、`--tag` 的 `publish --dry-run --agent`；把 dry-run 的 `RESULT_JSON.payload` 展示给用户；只有用户明确回复“提交 / 确认 / submit”后才向 CLI confirm 阶段输入 `submit`；最后保存真实 `RESULT_JSON` 回执。
-
-当前用户的个人管理 skill 为 `C:\Users\admin\.codex\skills\xiaohongshu-skill-manager\SKILL.md`，旧 `red-skillhub-upload` 已删除。它用于小红书 Red SkillHub 的发布、同一 `skill_identifier` 更新、删除/下架能力检查和回执记录；frontmatter description 只保留两句英文触发说明。该 skill 采用渐进式披露：主文件只保留平台边界、默认授权、自动标签、更新主键和删除确认规则；发布/更新读取 `references/publish-update.md`，删除/下架读取 `references/delete.md`，包规范读取 `references/requirements.md`，不一次加载全部细节。发布和更新请求本身视为真实操作授权，用户未指定标签时从实时列表自主选择 1—2 个；删除属于破坏性操作，执行前仍须确认。当前官方 CLI 0.1.1 没有 delete/unpublish 命令，禁止伪造删除 API；先刷新官方能力，无入口时只做平台管理页或官方支持的最短交接。此个人偏好不得反向修改官方 `skillhub-upload` 原始文件。
-
-当前官方 CLI `0.1.1` 的 Windows shim 会因 `import.meta.url` 与 `process.argv[1]` 路径格式不一致而静默退出。在该版本修复前，可调用同一已安装模块的 `main()`，不修改打包、上传或提交逻辑：
-
-```powershell
-node -e "import('file:///C:/Users/admin/AppData/Roaming/npm/node_modules/@xhs/skillhub-upload/cli/index.mjs').then(m=>m.main(process.argv.slice(1)))" whoami
-```
-
-升级 CLI 后先重测普通 `skillhub-upload whoami`；若已恢复输出，应回到官方命令，不长期固化上述兼容入口。任何 Red 发布结果都在本节另记 Red 的 `skill_identifier`、版本、标签、回执和审核状态，不覆盖上方 SkillHub 的 `skillId=70149`、`versionId` 或公开索引状态。
-
-当前 0.1.1 还有一项 frontmatter 兼容问题：SkillHub 包使用带引号的 `version` 时，Red CLI 会把引号保留进 payload，形成错误的字面版本。在 CLI 修复前，dry-run 和真实提交都必须显式传 `--version <无引号版本>`，并以 dry-run 的 `RESULT_JSON.payload.version` 为准；不得提交带引号版本，也不为此改写 SkillHub 包的 `SKILL.md`。
+历史状态仅供审计：最后一次成功回执仍为 1.5.7（`skill_id=8494`、`version_id=100041`）；1.5.10 曾完成本地 dry-run，但真实上传达到 100 后仍被服务端以“Skill ID 已被占用”拒绝，没有 `RESULT_JSON.status=submitted` 或新版本回执，因此 1.5.10 未发布到 Red。保留 `redskill/` 仅作历史归档，不再同步、验证或维护其版本一致性，不得用更换 identifier 的方式绕过冲突。
 
 ## 基本工作纪律
 

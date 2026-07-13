@@ -26,15 +26,20 @@
 - `py -3 -B C:\Users\admin\.codex\skills\.system\skill-creator\scripts\quick_validate.py chinese-official-writing`：`Skill is valid!`。
 - 完整评测数据27批最大上下文 `24789`，低于仓库 `<25000` 门槛。
 - `git diff --check`：通过，仅有 Windows 行尾转换提示。
+- 第5次提交门槛前复跑：完整单测仍为143/143通过，Promptfoo smoke仍为20/20通过；纯公文基线消融仍为101/106对106/106，1.5.9基线消融仍为60/106对106/106，未出现新增回退。
 
 ## 发行包预检
 
 - canonical 按 `git ls-files chinese-official-writing` 白名单为18个文件。
 - ClawHub 源为19个文件，即 canonical 加市场 README。
-- skillhub.cn 临时包 `output/skillhub-release-1.5.10/publish-package` 为19个文件，即 Red 共享包加 `agents/openai.yaml`。
-- Red 专用副本为18个文件；与 SkillHub 包的共用文件相对路径缺失0、额外0、SHA-256 mismatch 0。
+- skillhub.cn 临时包 `output/skillhub-release-1.5.10/publish-package` 为19个文件。
+- 发布前曾验证 Red 历史副本为18个文件，且与 SkillHub 包的共用文件相对路径缺失0、额外0、SHA-256 mismatch 0；自本次发布收尾起，Red 已退出后续发布和一致性门禁。
 - 四个发行面中的论文专项文件为0；三个可上传目录中的 `.pyc` 和 `__pycache__` 为0。
 
 ## 发布状态
 
-- 待完成 GitHub、ClawHub、skillhub.cn 和 Red SkillHub dry-run、真实提交及公开状态复核后补记。
+- GitHub：`origin/main` 和 `v1.5.10` 均指向发布提交 `7e5fec70ba78ad6d1c4b4ae34952697b4794c03e`；Release 已公开：`https://github.com/gongyu0918-debug/chinese-official-writing-skill/releases/tag/v1.5.10`。
+- ClawHub：1.5.10 已发布，`versionId=k974c72ypn50rpd6s43zff7mn58afjd8`，19个文件，fingerprint `617315ce6fff6800c7a3b3f96978207234f6192c6cab037124a8b1ed16687c30`；`latest` 和5个正确标签均指向1.5.10。总体 moderation 为 clean，但版本级扫描仍为 pending，`legacyReason=pending.scan`。
+- ClawHub 隔离安装：使用 `--version 1.5.10 --force-install` 安装成功；排除平台生成的 `_meta.json` 和 `.clawhub/origin.json` 后，19个正文文件与发布源相比缺失0、额外0、SHA-256 mismatch 0。
+- skillhub.cn：1.5.10 已提交到 `skillId=70149`，`versionId=136272`，19个文件，fingerprint `9ac3e4c0a347830db58ea178e0223bf142d20206a25486d13f3ae49afde5914c`，回执 `tags.latest=1.5.10`；三项审核状态均为 pending。2026-07-13 提交后的公开搜索索引仍显示1.5.9，尚未对外切换。
+- 小红书 Red SkillHub：1.5.10 dry-run 曾通过，真实上传达到100后被服务端以“Skill ID 已被占用”拒绝，没有 submitted 回执，故未发布。用户随后明确决定停止该发布面；后续不再执行 Red 的发布、更新、dry-run、登录续期、标签查询或冲突处理。
