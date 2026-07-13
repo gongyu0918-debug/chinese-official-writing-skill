@@ -1842,6 +1842,30 @@ CASES: list[PromptCase] = [
             "lint_present_labels": ["delivery-metadata", "delivery-boilerplate", "duplicate-title"],
         },
     ),
+    PromptCase(
+        id="P109",
+        kind="revise",
+        prompt="检查全文高频句式和高频词，只改无前文依据的否定、虚假对比或机械重复；事实、引用、术语、否定范围和论断强度都不能变化。",
+        checks={
+            "file_terms": {
+                "chinese-official-writing/references/anti-ai-patterns.md": [
+                    "本项由模型通读全文后判断，不按固定词表自动替换",
+                    "无前文依据的否定",
+                    "虚假对比",
+                    "机械重复",
+                    "事实、引用、术语、否定范围和论断强度",
+                    "未确认有问题的句子、真实比较和必要否定保持原样",
+                    "严格服从其指定的字段、顺序和格式",
+                    "未指定时仍按位置、风险层级和修改建议输出",
+                    "只改确认有问题的句子及必要衔接",
+                ],
+                "chinese-official-writing/references/final-review-layers.md": [
+                    "只语义重写确认有问题的局部",
+                    "事实、引用、术语、否定范围和论断强度不变",
+                ],
+            },
+        },
+    ),
 ]
 
 

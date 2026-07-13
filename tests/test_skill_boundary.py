@@ -702,6 +702,33 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assertIn("不为了显得像人写而加入第一人称", official_style)
         self.assertIn("正式化改写只压实原文已有事实", official_style)
 
+    def test_v1511_anti_ai_frequency_review_is_prompt_driven_and_local(self) -> None:
+        anti_ai = (ROOT / "chinese-official-writing" / "references" / "anti-ai-patterns.md").read_text(
+            encoding="utf-8"
+        )
+        final_review = (
+            ROOT / "chinese-official-writing" / "references" / "final-review-layers.md"
+        ).read_text(encoding="utf-8")
+
+        for term in [
+            "本项由模型通读全文后判断，不按固定词表自动替换",
+            "无前文依据的否定",
+            "虚假对比",
+            "机械重复",
+            "出现次数只用于发现线索",
+            "单个正式词、单个句式或达到某个次数都不能直接判错",
+            "事实、引用、术语、否定范围和论断强度",
+            "只改确认有问题的句子及必要衔接",
+            "未确认有问题的句子、真实比较和必要否定保持原样",
+            "严格服从其指定的字段、顺序和格式",
+            "未指定时仍按位置、风险层级和修改建议输出",
+        ]:
+            self.assertIn(term, anti_ai)
+        self.assertIn("真实方案比较、法律政策要求、职责边界、风险提示", anti_ai)
+        self.assertIn("不得把 `未`、`不`、`不得` 移到别的对象", anti_ai)
+        self.assertIn("只语义重写确认有问题的局部", final_review)
+        self.assertNotIn("自动批量替换", final_review)
+
     def test_v150_genre_playbooks_keep_minimal_borrowing_boundaries(self) -> None:
         skill = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
         playbooks = (ROOT / "chinese-official-writing" / "references" / "genre-playbooks.md").read_text(

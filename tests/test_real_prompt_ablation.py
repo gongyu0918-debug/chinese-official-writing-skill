@@ -350,6 +350,24 @@ class RealPromptAblationTests(unittest.TestCase):
         )
         self.assertIn("delivery-boilerplate", checks_by_id["P108"]["lint_present_labels"])
         self.assertIn("duplicate-title", checks_by_id["P108"]["lint_present_labels"])
+        self.assertIn(
+            "本项由模型通读全文后判断，不按固定词表自动替换",
+            checks_by_id["P109"]["file_terms"][
+                "chinese-official-writing/references/anti-ai-patterns.md"
+            ],
+        )
+        self.assertIn(
+            "未确认有问题的句子、真实比较和必要否定保持原样",
+            checks_by_id["P109"]["file_terms"][
+                "chinese-official-writing/references/anti-ai-patterns.md"
+            ],
+        )
+        self.assertIn(
+            "事实、引用、术语、否定范围和论断强度不变",
+            checks_by_id["P109"]["file_terms"][
+                "chinese-official-writing/references/final-review-layers.md"
+            ],
+        )
 
     def test_heading_lock_detects_added_subheading(self) -> None:
         before = """一、整改进展
