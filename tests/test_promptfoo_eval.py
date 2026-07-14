@@ -244,7 +244,7 @@ class PromptfooProviderTests(unittest.TestCase):
             with self.assertRaisesRegex(provider.ProviderError, "selected skill context exceeds 10 characters"):
                 provider._load_skill_context(ROOT, ["通用材料"])
 
-    def test_full_dataset_batches_stay_within_context_budget(self) -> None:
+    def test_full_dataset_batches_stay_within_provider_safety_budget(self) -> None:
         config = {
             "basePath": str(ROOT / "evals" / "official-writing"),
             "datasetPath": "datasets/cases.jsonl",
@@ -259,7 +259,6 @@ class PromptfooProviderTests(unittest.TestCase):
 
         self.assertEqual(len(observed), 27)
         self.assertLessEqual(max(observed), provider.MAX_SKILL_CONTEXT_CHARS)
-        self.assertLess(max(observed), 25_000)
 
     def test_cache_key_changes_with_command_and_batch_configuration(self) -> None:
         config = {

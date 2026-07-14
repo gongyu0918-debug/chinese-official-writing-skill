@@ -20,7 +20,7 @@
 - `python -B tools/run_real_prompt_ablation.py --baseline-root output\release-baselines\github-1.5.12-for-1.5.13 --baseline-label baseline-1.5.12 --current-root . --out output\release-1.5.13\real-prompt-vs-1.5.12`：baseline 104/108，current 108/108；baseline 只在 P036、P039、P046、P094 的本版新增守卫失败。
 - `npm run eval:official-writing:smoke`：20/20 PASS，skill 10 胜，judge consistency 1.0。一次执行申请因审批超时未启动，重试后实际运行通过；未把未启动的尝试写成测试通过。
 - `python -B tools/run_real_article_eval.py --out output\release-1.5.13\real-article`：skill 10 个样本缺失要素 0/61、关键词命中率 100%，格式风险、重复事项和反 AI 风险均为 0；9 个匿名占位标签样本仍只作人工线索。
-- 完整数据集 27 批最大上下文 `24502`，低于仓库 `<25000` 门槛；canonical quick validate、镜像一致性和 `git diff --check` 通过。
+- 完整数据集 27 批所选 Skill 文本最大值为 `24502` 个字符；canonical quick validate、镜像一致性和 `git diff --check` 通过。该数值是 Python `len(context)` 的评测批次字符统计，不是 token 数、模型上下文占用或用户稿件长度。
 
 ## 发行包预检
 
@@ -38,4 +38,8 @@
 
 - 真实写稿样本不能证明所有弱模型、3000 字以上长文、多附件或 compact 后稳定性；本版不扩大相关能力承诺。
 - ClawHub 的 skill card 和聚合安全状态尚未生成；skillhub.cn 的公开索引和三项审核尚未完成。二者属于异步状态，不影响已收到的提交回执，但后续只能轮询，不能重复提交。
-- 任一旧硬边界回退、目标改善丢失、上下文达到或超过 25000、发行包或镜像不一致，停止发布并回退对应提交。
+- 任一旧硬边界回退、目标改善丢失、发行包或镜像不一致，停止发布并回退对应提交。
+
+## 发布后门禁更正
+
+2026-07-14 复核确认，`<25000` 是仓库在 `476d1c55` 中自行增加的评测批次体积线；provider 实际异常保护为 `MAX_SKILL_CONTEXT_CHARS=50000`。自本次更正起，25000 不再作为质量风险、发布停止条件或 Prompt 压缩依据。评测继续保证按渐进路由选中的入口和 references 完整加载且不截断；任务完成度、事实边界和弱模型稳定性优先，任何减负仍须通过真实写稿 A/B。

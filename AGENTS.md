@@ -18,6 +18,10 @@ SkillHub 精确目标仍为 `https://skillhub.cn/skills/chinese-official-writing
 
 发布提交 `cd2d46c58a5f56b9009c5da08626a88640f2e5b3` 已完成全量 unittest 152/152、Promptfoo smoke 20/20、固定 1.5.12 基线 104/108 对 current 108/108、真实文章回归、27 批最大上下文 24502、canonical 快速校验、镜像一致性和发行包清洁检查。固定 `62ea0fa` 的两名 baseline writer 在 4 个真实阶段报告 prompt 中有 6 份输出出现保护性边界自证，两名 candidate writer 的 8 份分稿为 0，且必要事实状态保留；两名独立 verifier 复核通过。所有 writer/verifier 的精确模型均核验为 `gpt-5.6-sol`，未使用 MiniMax。GitHub Release 和 ClawHub live 已切换到 1.5.13，ClawHub 隔离安装与发行目录逐文件 SHA-256 一致；skillhub.cn 已接收 1.5.13，但公开索引仍显示 1.5.12，审核与安全扫描仍在传播。原始证据见 `tests/evidence/negation-rule-dedup-20260714.md`、同名 writing 目录和 `tests/evidence/release-1.5.13.md`。发布范围继续排除小红书 Red SkillHub。
 
+自 2026-07-14 起，完整评测批次 `<25000` 字符不再作为写作质量、发布或 Prompt 压缩门禁。该数值只曾用于仓库自设的批次体积观察，不是模型、平台或 Agent Skill 的上下文限制，也不能证明长文链路存在质量风险。评测仍要求所选 `SKILL.md` 和按任务命中的 references 完整加载、不静默截断，并保留 provider 的 `MAX_SKILL_CONTEXT_CHARS=50000` 异常保护；不得为满足任意字符数而删除事实边界、文种规则或任务完成所需内容。Prompt 减负只能由真实写稿 A/B 证明有益且无回退后实施，渐进式路由继续负责避免无关 reference 被默认加载。
+
+同日补做两名 writer、三轮连续长文改稿：事实、状态、标题顺序和第三轮单点日期修改均稳定，精确 CJK 下限在同一个原始任务中共同偏短。因只覆盖一个 prompt，不据此修改产品 Prompt；后续直接以另一份既有长文成品补第二个改稿任务。历史29个入口均曾被报告进入真实 A/B，但只有申请、请示、报告、通知、说明、纪要、通报7项保留完整 prompt、成稿和独立 verifier 闭环；其余16项只有单文种摘要，6项只有混合覆盖记录。证据见 `tests/evidence/long-revision-stability-20260714.md` 和 `tests/evidence/genre-real-writing-coverage-20260714.md`。
+
 ## 1.5.12 发布与接手记录
 
 1.5.12 以 `v1.5.11=59eed9e4a4873082edaaef0c241186583bd68206` 为上一发行基线，只纳入四个已逐项 A/B 的 Prompt 减负提交：删除入口重复旁白/教学例子，隔离 ANTI-AI 语言模式到按需加载叶子，删除入口重复思考泄露提醒，将社区研究构造规则移回维护层。任务路由、reference 加载条件、三级复核、输出模式、修改次数、默认联网和发布链均未改变；没有新增脚本硬门禁、finalizer、自动替换或批量清洗。
