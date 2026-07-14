@@ -10,7 +10,7 @@
 ## 真实写稿与冷审
 
 - 固定 `62ea0fa` 基线的两名 writer 在 4 个真实阶段报告 prompt 中有 6 份输出出现保护性边界自证；两名候选 writer 的 8 份分稿均为 0，且现场复核后定结论、7 月 15 日核验、7 月 25 日统一验收和 8 月评审议程等必要状态全部保留。
-- 两名 writer、两名 verifier 的本地 `turn_context.model` 均核验为 `gpt-5.6-sol`，未使用 MiniMax。原 prompt、匿名稿、映射、模型 ID、两份 verifier 报告和派生统计补测见 `tests/evidence/negation-rule-dedup-20260714.md` 及同名 writing 目录。
+- 两名 writer、两名 verifier 均由 Codex 子上下文执行，本地 `turn_context.model` 核验为 `gpt-5.6-sol`。原 prompt、匿名稿、映射、模型 ID、两份 verifier 报告和派生统计补测见 `tests/evidence/negation-rule-dedup-20260714.md` 及同名 writing 目录。
 - 一名候选 writer 出现跨异常类型计算总体恢复率和覆盖人数折算人均事项量的 WARN；另一名候选 writer及随后同题基线/候选补测均未复现，不满足共性或候选独有回退门槛，未为此新增规则。
 - 独立 diff 冷审未发现 P0/P1/P2，确认核心工作流和配置未漂移，`publish_blocking=false`。
 
