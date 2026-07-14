@@ -625,9 +625,8 @@ CASES: list[PromptCase] = [
                     "长效",
                 ],
                 "chinese-official-writing/references/official-style.md": [
-                    "评价强度",
-                    "相关问题已基本完成整改",
-                    "未影响核心业务",
+                    "强判断须有复查记录、运行数据、制度文件或责任闭环支撑",
+                    "证据只覆盖局部时，结论范围和强度随之收窄",
                 ],
                 "chinese-official-writing/references/anti-ai-patterns.md": [
                     "评价强度超过证据",
@@ -798,22 +797,15 @@ CASES: list[PromptCase] = [
         checks={
             "file_terms": {
                 "chinese-official-writing/SKILL.md": [
-                    "材料未给风险结论",
-                    "未发现重大隐患",
-                    "无异常",
-                    "强判断",
+                    "风险、整改、检查和影响范围结论以材料明确内容为限",
                     "材料只给问题清单",
-                    "总体较好",
-                    "能够正常开展",
+                    "正文直接列明已确认问题及其对象、数量和状态",
+                    "需要补充的结论口径按交付模式放在正文外待确认",
                 ],
                 "chinese-official-writing/references/workflow.md": [
-                    "风险结论",
-                    "整改结论",
-                    "检查结论",
-                    "影响范围",
-                    "直接列明已确认问题及其对象、数量和状态",
-                    "结论口径列入正文外待确认",
-                    "概括性正向判断",
+                    "风险、整改、检查和影响范围结论保持材料原有强度",
+                    "正文落到已确认问题及其对象、数量和状态",
+                    "需要补充的结论口径按交付模式列入正文外待确认",
                 ],
                 "chinese-official-writing/references/review-checklist.md": [
                     "事实强判断",
@@ -1591,8 +1583,9 @@ CASES: list[PromptCase] = [
                 ],
                 "chinese-official-writing/references/workflow.md": [
                     "稀疏异常情况补充",
-                    "不包装成核心系统、生产系统、业务主系统",
-                    "未造成影响",
+                    "沿用用户给出的接口、系统或页面对象和异常表述",
+                    "正文承接已确认的时间、现象和操作记录",
+                    "原因、影响、责任和处置结论保持材料当前状态",
                 ],
                 "chinese-official-writing/references/genre-playbooks.md": [
                     "不包装成核心系统、生产系统、业务主系统",
