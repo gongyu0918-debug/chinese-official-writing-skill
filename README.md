@@ -1,7 +1,7 @@
 # 中文公文写作 Skill
 
 [![ClawHub](https://img.shields.io/badge/ClawHub-chinese--official--writing-blue)](https://clawhub.ai/gongyu0918-debug/chinese-official-writing)
-[![License](https://img.shields.io/badge/license-MIT--0-green)](LICENSE)
+[![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 [![Language](https://img.shields.io/badge/language-中文公文-red)](#适用范围)
 
 中文公文写作 Skill 面向正式材料起草、改写和复核场景，提供文种路由、行文关系判断、办理要素核对、论证链条、标题二次核验、重复事项检测、主体视角校验、敬谦称谓检查、低 AI 味审查和技术类材料专项约束。

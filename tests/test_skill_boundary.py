@@ -375,6 +375,7 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assertIn("The above copyright notice and this permission notice", license_text)
         self.assertEqual(manifest["license"], "MIT")
         self.assertIn("\n## License\n\nMIT\n", readme)
+        self.assertIn("[![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)", readme)
         self.assertNotIn("MIT-0", readme)
 
         repository_skill_paths = [
