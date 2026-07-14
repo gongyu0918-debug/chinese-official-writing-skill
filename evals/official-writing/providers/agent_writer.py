@@ -26,12 +26,23 @@ from typing import Any
 
 
 GENRE_REFERENCES: dict[str, list[str]] = {
-    "default": [
+    "sparse": [
         "references/task-route-cards.md",
+    ],
+    "routing": [
+        "references/genre-routing.md",
+    ],
+    "review": [
+        "references/review-checklist.md",
+    ],
+    "anti_ai": [
+        "references/anti-ai-patterns.md",
+    ],
+    "style": [
+        "references/official-style.md",
     ],
     "argument": [
         "references/argument-chains.md",
-        "references/official-style.md",
     ],
     "playbook": [
         "references/genre-playbooks.md",
@@ -107,21 +118,109 @@ LONG_FORM_RE = re.compile(r"(?<!\d)(\d{3,5})\s*字")
 AI_COMPUTE_MARKERS = (
     "算力",
     "GPU",
-    "服务器",
-    "云端",
-    "技术服务",
     "模型服务",
     "智算中心",
-    "本地化部署",
-    "本地部署",
     "AI平台",
     "AI 平台",
-    "推理",
-    "训练",
+    "大模型",
     "Token",
-    "SLA",
-    "并发",
+    "模型推理",
+    "推理服务",
+    "模型训练",
+    "训练服务",
 )
+
+AI_COMPUTE_EXACT_GENRES = {
+    "算力服务可研报告",
+    "算力资源采购方案",
+    "GPU/服务器租赁技术需求",
+}
+
+AI_NEGATION_MARKERS = (
+    "不涉及AI",
+    "不涉及 AI",
+    "非AI",
+    "非 AI",
+    "与AI无关",
+    "与 AI 无关",
+    "不用于AI",
+    "不用于 AI",
+)
+
+SPARSE_CARD_GENRES = {"通知", "报告", "情况说明", "说明", "通报", "会议纪要"}
+SPARSE_TASK_MARKERS = (
+    "材料只有",
+    "只按已给",
+    "不新增事实",
+    "不要新增事实",
+    "只给",
+    "只保留",
+    "简短",
+    "短稿",
+    "未决",
+    "未形成",
+    "局部修改",
+    "只改",
+    "补一句",
+)
+REVIEW_TASK_MARKERS = (
+    "只审",
+    "审一下",
+    "只检查",
+    "检查这段",
+    "检查这份",
+    "格式核验",
+    "语气检查",
+    "复核这段",
+    "复核这份",
+)
+REVIEW_REWRITE_MARKERS = (
+    "再按建议重写",
+    "再重写",
+    "然后重写",
+    "并重写",
+    "同时重写",
+    "审后重写",
+    "输出改后稿",
+    "修改并输出",
+    "改写成",
+    "修改全文",
+    "修改正文",
+    "直接改",
+    "代改",
+    "输出修改稿",
+    "输出改稿",
+    "给出改后稿",
+)
+REVIEW_REWRITE_ACTION_RE = re.compile(
+    r"(?:"
+    r"改写(?:成|为|全文|正文|一版)|"
+    r"重写(?:全文|正文|一版)|"
+    r"改一版|改成|改好|修改全文|修改正文|代改|"
+    r"(?:请|并|再|然后|同时|直接|帮我|代为|给我|后帮我)[^，。；;\n]{0,6}(?:重写|改写)"
+    r")"
+)
+REVIEW_REWRITE_NEGATIONS = (
+    "不重写",
+    "不要重写",
+    "不改写",
+    "不要改写",
+    "不修改",
+    "不要修改",
+    "不代改",
+    "不要代改",
+    "不输出修改稿",
+    "不要输出修改稿",
+    "不输出改后稿",
+    "不要输出改后稿",
+    "只给修改建议",
+    "仅给修改建议",
+    "修改建议",
+)
+ANTI_AI_TASK_MARKERS = ("AI 味", "AI味", "降 AI 味", "降AI味", "模板化", "空话套话")
+STYLE_TASK_MARKERS = ("去口语化", "降 AI 味", "降AI味", "润色", "正式一点", "统一语气", "顺稿")
+ROUTING_TASK_MARKERS = ("文种不清", "判断文种", "选择文种", "请示还是报告", "函还是通知")
+ARGUMENT_TASK_MARKERS = ("论证", "可行性", "必要性", "方案比较", "成本比较")
 
 _BATCH_CACHE: dict[str, dict[str, str]] = {}
 
@@ -200,8 +299,29 @@ def _current_case(context: dict[str, Any]) -> dict[str, Any]:
     }
 
 
-def _is_ai_compute(genre: str) -> bool:
-    return any(marker in genre for marker in AI_COMPUTE_MARKERS)
+def _contains_marker(text: str, markers: tuple[str, ...]) -> bool:
+    return any(marker in text for marker in markers)
+
+
+def _is_ai_compute(genre: str, tasks: list[str] | None = None) -> bool:
+    if genre in AI_COMPUTE_EXACT_GENRES:
+        return True
+    text = "\n".join([genre, *(tasks or [])])
+    original_folded = text.casefold()
+    negative_clause = re.compile(
+        r"(?:不涉及|不用于)[^。；;\n]*?(?=(?:，?(?:但|不过|然而|可是|而是|却|仍需|同时|另需|仅涉及))|[。；;\n]|$)",
+        re.I,
+    )
+    text = negative_clause.sub("", text)
+    text = re.sub(r"非\s*AI[^，。；;\n]*", "", text, flags=re.I)
+    for marker in AI_NEGATION_MARKERS:
+        text = text.replace(marker, "")
+    folded = text.casefold()
+    if any(marker.casefold() in folded for marker in AI_COMPUTE_MARKERS):
+        return True
+    if any(marker.casefold() in original_folded for marker in AI_NEGATION_MARKERS):
+        return False
+    return all(marker in text for marker in ("云端", "本地", "部署"))
 
 
 def _skill_root(repo_root: Path) -> Path:
@@ -217,18 +337,71 @@ def _task_requires_complex_route(tasks: list[str]) -> bool:
     return any(int(match.group(1)) >= 800 for task in tasks for match in LONG_FORM_RE.finditer(task))
 
 
+def _tasks_are_review_only(tasks: list[str]) -> bool:
+    def requests_rewrite(task: str) -> bool:
+        normalized = task
+        for marker in REVIEW_REWRITE_NEGATIONS:
+            normalized = normalized.replace(marker, "")
+        return _contains_marker(normalized, REVIEW_REWRITE_MARKERS) or bool(
+            REVIEW_REWRITE_ACTION_RE.search(normalized)
+        )
+
+    return bool(tasks) and all(
+        _contains_marker(task, REVIEW_TASK_MARKERS)
+        and not requests_rewrite(task)
+        for task in tasks
+    )
+
+
+def _task_uses_sparse_card(genres: list[str], tasks: list[str], ai_compute: bool) -> bool:
+    if ai_compute or _task_requires_complex_route(tasks):
+        return False
+    if not tasks:
+        return not any(genre in PLAYBOOK_GENRES for genre in genres)
+    if not any(genre in SPARSE_CARD_GENRES for genre in genres):
+        return False
+    return all(_contains_marker(task, SPARSE_TASK_MARKERS) for task in tasks)
+
+
 def _reference_paths_for_genres(genres: list[str], tasks: list[str] | None = None) -> list[str]:
     tasks = tasks or []
-    paths = ["SKILL.md", *GENRE_REFERENCES["default"]]
-    if any(genre in PLAYBOOK_GENRES or _is_ai_compute(genre) for genre in genres):
-        paths.extend(GENRE_REFERENCES["playbook"])
-    if any(genre in CHAIN_GENRES for genre in genres):
-        paths.extend(GENRE_REFERENCES["argument"])
-    if any(_is_ai_compute(genre) for genre in genres):
-        paths.extend(GENRE_REFERENCES["argument"])
-        paths.extend(GENRE_REFERENCES["ai_compute"])
-    if _task_requires_complex_route(tasks):
+    paths = ["SKILL.md"]
+    ai_compute = any(_is_ai_compute(genre, tasks) for genre in genres)
+
+    if _tasks_are_review_only(tasks):
+        paths.extend(GENRE_REFERENCES["review"])
+        if any(_contains_marker(task, ANTI_AI_TASK_MARKERS) for task in tasks):
+            paths.extend(GENRE_REFERENCES["anti_ai"])
+        if any(marker in task for task in tasks for marker in FORMAT_TASK_MARKERS):
+            paths.extend(GENRE_REFERENCES["format"])
+        return list(dict.fromkeys(paths))
+
+    sparse_route = _task_uses_sparse_card(genres, tasks, ai_compute)
+    if sparse_route:
+        paths.extend(GENRE_REFERENCES["sparse"])
+        if "会议纪要" in genres:
+            # v1.5.13 同时要求稀疏材料先读轻卡、会议纪要再转长 reference；
+            # 在产品路由冲突获批修订前，评测必须如实保留两段读取。
+            paths.extend(GENRE_REFERENCES["playbook"])
+    else:
+        if any(genre in PLAYBOOK_GENRES or _is_ai_compute(genre, tasks) for genre in genres):
+            paths.extend(GENRE_REFERENCES["playbook"])
+        if any(_contains_marker(task, ROUTING_TASK_MARKERS) for task in tasks):
+            paths.extend(GENRE_REFERENCES["routing"])
+
+    complex_route = _task_requires_complex_route(tasks)
+    argument_requested = any(_contains_marker(task, ARGUMENT_TASK_MARKERS) for task in tasks)
+    if complex_route:
         paths.extend(GENRE_REFERENCES["complex"])
+        if any(genre in CHAIN_GENRES for genre in genres) or ai_compute or argument_requested:
+            paths.extend(GENRE_REFERENCES["argument"])
+    elif argument_requested:
+        paths.extend(GENRE_REFERENCES["argument"])
+
+    if any(_contains_marker(task, STYLE_TASK_MARKERS) for task in tasks):
+        paths.extend(GENRE_REFERENCES["style"])
+    if ai_compute:
+        paths.extend(GENRE_REFERENCES["ai_compute"])
     if any(marker in task for task in tasks for marker in FORMAT_TASK_MARKERS):
         paths.extend(GENRE_REFERENCES["format"])
 
@@ -241,10 +414,10 @@ def _reference_paths_for_genres(genres: list[str], tasks: list[str] | None = Non
     return ordered
 
 
-def _load_skill_context(repo_root: Path, genres: list[str], tasks: list[str] | None = None) -> str:
+def _load_skill_context_from_paths(repo_root: Path, reference_paths: list[str]) -> str:
     root = _skill_root(repo_root)
     parts: list[str] = []
-    for relative in _reference_paths_for_genres(genres, tasks):
+    for relative in reference_paths:
         path = root / relative
         if not path.exists():
             raise ProviderError(f"selected skill reference does not exist: {path}")
@@ -257,6 +430,10 @@ def _load_skill_context(repo_root: Path, genres: list[str], tasks: list[str] | N
     return context
 
 
+def _load_skill_context(repo_root: Path, genres: list[str], tasks: list[str] | None = None) -> str:
+    return _load_skill_context_from_paths(repo_root, _reference_paths_for_genres(genres, tasks))
+
+
 def _case_id(case: dict[str, Any]) -> str:
     return str((case.get("vars") or {}).get("case_id", "")).strip()
 
@@ -267,6 +444,28 @@ def _case_genre(case: dict[str, Any]) -> str:
 
 def _case_task(case: dict[str, Any]) -> str:
     return str((case.get("vars") or {}).get("task", "")).strip()
+
+
+def _case_reference_paths(case: dict[str, Any]) -> list[str]:
+    genre = _case_genre(case)
+    task = _case_task(case)
+    return _reference_paths_for_genres([genre] if genre else [], [task] if task else [])
+
+
+def _reference_paths_for_cases(cases: list[dict[str, Any]]) -> list[str]:
+    paths: list[str] = []
+    for case in cases:
+        paths.extend(_case_reference_paths(case))
+    return list(dict.fromkeys(paths))
+
+
+def _skill_batch_reference_paths(cases: list[dict[str, Any]]) -> list[str]:
+    signatures = {tuple(_case_reference_paths(case)) for case in cases}
+    if not signatures:
+        raise ProviderError("cannot build a skill prompt without cases")
+    if len(signatures) != 1:
+        raise ProviderError("skill batch contains mixed reference routes")
+    return list(next(iter(signatures)))
 
 
 def _render_tasks(cases: list[dict[str, Any]]) -> str:
@@ -294,24 +493,32 @@ def _baseline_prompt(cases: list[dict[str, Any]]) -> str:
 
 def _skill_prompt(cases: list[dict[str, Any]], config: dict[str, Any]) -> str:
     repo_root = _repo_root(config)
-    genres = sorted({_case_genre(case) for case in cases if _case_genre(case)})
     tasks = [_case_task(case) for case in cases if _case_task(case)]
-    skill_context = _load_skill_context(repo_root, genres, tasks)
+    reference_paths = _skill_batch_reference_paths(cases)
+    skill_context = _load_skill_context_from_paths(repo_root, reference_paths)
+    if _tasks_are_review_only(tasks):
+        delivery_instruction = (
+            "按用户指定范围输出审稿结论；只审不改时不得重写全文，也不受初稿篇幅要求约束。"
+        )
+    else:
+        delivery_instruction = (
+            "按用户指定的文种、输出模式和篇幅要求交付；任务未指定篇幅时，正文控制在 160-260 个汉字。"
+        )
     return textwrap.dedent(
         f"""
         你是中文公文 Skill 写作代理。仓库已安装 Skill：
         `.agents/skills/chinese-official-writing/SKILL.md`。
 
-        只使用下列 Skill 入口和与本批文种相关的 references；不要加载整包上下文，不要复制参考资料原文。
-        先判断文种，再抽取办理要素，再组织论证链条，最后做反 AI、文种边界和格式噪点自查。
+        只使用下列 Skill 入口和本批任务已选中的 references；不要加载整包上下文，不要复制参考资料原文，
+        也不要自行扩展到未选中的 reference 路线。{delivery_instruction}
 
-        对每个任务输出一段中文正式材料初稿，控制在 160-260 个汉字。不要编造真实单位、真实政策、真实金额、
+        不要编造真实单位、真实政策、真实金额、
         人名、电话、邮箱或内部项目事实。可使用“有关单位”“相关部门”等泛称，但不要把“发文机关、
         发文字号、主送单位”等占位标签写进正文。
 
         输出必须严格按如下格式，不要解释：
         ### <case_id>
-        <正文>
+        <正文或审稿结果>
 
         Skill context:
         ```text
@@ -490,9 +697,11 @@ def _stub_draft(mode: str, case: dict[str, Any]) -> str:
 
 
 def _cache_key(mode: str, cases: list[dict[str, Any]], config: dict[str, Any]) -> str:
-    genres = sorted({_case_genre(case) for case in cases})
-    tasks = [_case_task(case) for case in cases if _case_task(case)]
-    refs = _reference_paths_for_genres(genres, tasks)
+    routes = {
+        _case_id(case): _case_reference_paths(case)
+        for case in cases
+    } if mode == "skill" else {}
+    refs = _reference_paths_for_cases(cases) if mode == "skill" else []
     ref_hashes: dict[str, str] = {}
     if mode == "skill":
         root = _skill_root(_repo_root(config))
@@ -503,9 +712,10 @@ def _cache_key(mode: str, cases: list[dict[str, Any]], config: dict[str, Any]) -
     payload = {
         "mode": mode,
         "cases": [case.get("vars", {}) for case in cases],
+        "routes": routes,
         "refs": refs,
         "ref_hashes": ref_hashes,
-        "provider_version": 6,
+        "provider_version": 8,
         "stub": _use_stub(config),
         "command_configured": bool(_agent_command_template(config)),
         "command_template_hash": hashlib.sha256(
@@ -563,6 +773,20 @@ def _run_single(mode: str, case: dict[str, Any], config: dict[str, Any]) -> str:
     return _normalize_draft(raw, _case_id(case))
 
 
+def _batch_cases(mode: str, cases: list[dict[str, Any]], batch_size: int) -> list[list[dict[str, Any]]]:
+    if mode != "skill":
+        return [cases[index : index + batch_size] for index in range(0, len(cases), batch_size)]
+
+    route_groups: dict[tuple[str, ...], list[dict[str, Any]]] = {}
+    for case in cases:
+        route_groups.setdefault(tuple(_case_reference_paths(case)), []).append(case)
+
+    batches: list[list[dict[str, Any]]] = []
+    for group in route_groups.values():
+        batches.extend(group[index : index + batch_size] for index in range(0, len(group), batch_size))
+    return batches
+
+
 def _ensure_batch_cache(mode: str, config: dict[str, Any]) -> dict[str, str]:
     memory_key = f"{mode}:{_cache_key(mode, _load_cases(config), config)}"
     if memory_key in _BATCH_CACHE:
@@ -577,8 +801,7 @@ def _ensure_batch_cache(mode: str, config: dict[str, Any]) -> dict[str, str]:
 
     batch_size = max(1, int(config.get("batchSize", 10)))
     outputs: dict[str, str] = {}
-    for index in range(0, len(cases), batch_size):
-        chunk = cases[index : index + batch_size]
+    for chunk in _batch_cases(mode, cases, batch_size):
         outputs.update(_run_batch(mode, chunk, config))
         _write_cache(cache_path, outputs)
 
@@ -626,6 +849,7 @@ def call_api(prompt: str, options: dict[str, Any], context: dict[str, Any]) -> d
             "case_id": case_id,
             "genre": _case_genre(case),
             "mode": mode,
+            "selected_references": _case_reference_paths(case) if mode == "skill" else [],
             "provider": str(
                 config.get("providerLabel")
                 or os.environ.get("OFFICIAL_WRITING_EVAL_PROVIDER_LABEL")

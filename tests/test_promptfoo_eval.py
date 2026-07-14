@@ -5,6 +5,7 @@ import json
 import os
 from pathlib import Path
 import sys
+import tempfile
 import unittest
 from unittest import mock
 
@@ -166,20 +167,19 @@ class PromptfooProviderTests(unittest.TestCase):
         refs = provider._reference_paths_for_genres(["算力资源采购方案"])
 
         self.assertEqual(refs[0], "SKILL.md")
-        self.assertIn("references/task-route-cards.md", refs)
         self.assertIn("references/genre-playbooks.md", refs)
         self.assertIn("references/ai-compute-docs.md", refs)
-        self.assertIn("references/argument-chains.md", refs)
+        self.assertNotIn("references/task-route-cards.md", refs)
         self.assertNotIn("references/genre-checklist.md", refs)
         self.assertNotIn("references/anti-ai-patterns.md", refs)
         self.assertNotIn("references/format-gbt9704.md", refs)
 
-    def test_coordination_genres_load_argument_chains(self) -> None:
+    def test_known_genres_use_playbook_without_preloading_other_routes(self) -> None:
         refs = provider._reference_paths_for_genres(["通知", "函", "复函", "征求意见函", "采购公告", "公示", "会议纪要"])
 
         self.assertIn("references/genre-playbooks.md", refs)
-        self.assertIn("references/argument-chains.md", refs)
-        self.assertIn("references/task-route-cards.md", refs)
+        self.assertNotIn("references/argument-chains.md", refs)
+        self.assertNotIn("references/task-route-cards.md", refs)
 
     def test_each_supported_legal_genre_can_reach_the_playbook(self) -> None:
         genres = ["通知", "请示", "报告", "函", "复函", "公告", "通告", "通报", "决定", "决议", "议案", "公报", "命令（令）"]
@@ -200,24 +200,252 @@ class PromptfooProviderTests(unittest.TestCase):
 
         self.assertIn("references/workflow.md", complex_refs)
         self.assertIn("references/handling-elements.md", complex_refs)
+        self.assertIn("references/argument-chains.md", complex_refs)
+        self.assertNotIn("references/task-route-cards.md", complex_refs)
         self.assertIn("references/format-gbt9704.md", format_refs)
+
+    def test_complex_unknown_genre_keeps_an_explicit_argument_route(self) -> None:
+        refs = provider._reference_paths_for_genres(
+            ["通用材料"],
+            ["写1000字可行性论证。"],
+        )
+
+        self.assertIn("references/workflow.md", refs)
+        self.assertIn("references/handling-elements.md", refs)
+        self.assertIn("references/argument-chains.md", refs)
 
     def test_plain_unknown_genre_does_not_load_playbook(self) -> None:
         refs = provider._reference_paths_for_genres(["通用材料"])
 
         self.assertEqual(refs, ["SKILL.md", "references/task-route-cards.md"])
 
-    def test_common_short_genres_do_not_preload_the_full_reference_stack(self) -> None:
+    def test_common_known_genres_stop_at_the_playbook(self) -> None:
         refs = provider._reference_paths_for_genres(["通知", "请示", "报告", "说明", "方案"])
 
-        self.assertIn("references/task-route-cards.md", refs)
-        self.assertIn("references/argument-chains.md", refs)
-        self.assertIn("references/official-style.md", refs)
+        self.assertEqual(refs, ["SKILL.md", "references/genre-playbooks.md"])
         self.assertNotIn("references/genre-routing.md", refs)
         self.assertNotIn("references/handling-elements.md", refs)
         self.assertNotIn("references/genre-checklist.md", refs)
         self.assertNotIn("references/formal-addressing.md", refs)
         self.assertNotIn("references/anti-ai-patterns.md", refs)
+
+    def test_release_route_preserves_the_unresolved_minutes_conflict(self) -> None:
+        refs = provider._reference_paths_for_genres(
+            ["会议纪要"],
+            ["材料只有议题和建议，未形成决定、责任分工或期限，请写简短会议纪要。"],
+        )
+
+        self.assertEqual(
+            refs,
+            ["SKILL.md", "references/task-route-cards.md", "references/genre-playbooks.md"],
+        )
+
+    def test_complete_minutes_upgrade_to_the_playbook(self) -> None:
+        refs = provider._reference_paths_for_genres(
+            ["会议纪要"],
+            ["写一份完整会议纪要，已形成三项议定事项、责任单位和完成期限。"],
+        )
+
+        self.assertEqual(refs, ["SKILL.md", "references/genre-playbooks.md"])
+
+    def test_short_but_complete_minutes_still_include_the_playbook(self) -> None:
+        refs = provider._reference_paths_for_genres(
+            ["会议纪要"],
+            ["请写一份简短但完整的会议纪要，已形成三项决定、责任单位和期限。"],
+        )
+
+        self.assertIn("references/genre-playbooks.md", refs)
+
+    def test_review_only_task_loads_the_review_leaf(self) -> None:
+        refs = provider._reference_paths_for_genres(
+            ["通知"],
+            ["只审不改，检查这份通知的格式、语气和办理要素。"],
+        )
+
+        self.assertEqual(refs, ["SKILL.md", "references/review-checklist.md"])
+
+    def test_review_then_rewrite_is_not_classified_as_review_only(self) -> None:
+        for task in (
+            "请先检查这份通知，再按建议重写全文。",
+            "请检查这份通知并修改全文。",
+            "审一下这份通知，直接改写成正式稿。",
+            "请审一下这份报告并帮我改写全文。",
+            "检查这份通知后帮我重写一版。",
+            "复核这份材料，再帮我改一版。",
+        ):
+            with self.subTest(task=task):
+                refs = provider._reference_paths_for_genres(["通知"], [task])
+                self.assertIn("references/genre-playbooks.md", refs)
+                self.assertNotEqual(refs, ["SKILL.md", "references/review-checklist.md"])
+
+    def test_review_only_language_does_not_treat_modification_advice_as_rewrite(self) -> None:
+        for task in (
+            "只审格式，不重写全文，只给修改建议。",
+            "只检查这份改写稿是否保真，不改写，不输出修改稿。",
+        ):
+            with self.subTest(task=task):
+                refs = provider._reference_paths_for_genres(["通知"], [task])
+                self.assertEqual(refs, ["SKILL.md", "references/review-checklist.md"])
+
+    def test_anti_ai_review_adds_only_the_language_leaf(self) -> None:
+        refs = provider._reference_paths_for_genres(
+            ["报告"],
+            ["只审 AI 味，不重写全文，检查这份报告是否模板化。"],
+        )
+
+        self.assertEqual(
+            refs,
+            ["SKILL.md", "references/review-checklist.md", "references/anti-ai-patterns.md"],
+        )
+
+    def test_style_task_loads_the_official_style_leaf(self) -> None:
+        refs = provider._reference_paths_for_genres(
+            ["报告"],
+            ["请把这份报告去口语化，只统一语气，不改变事实。"],
+        )
+
+        self.assertEqual(
+            refs,
+            ["SKILL.md", "references/genre-playbooks.md", "references/official-style.md"],
+        )
+
+    def test_non_ai_server_rental_does_not_load_ai_compute_reference(self) -> None:
+        refs = provider._reference_paths_for_genres(
+            ["申请"],
+            ["租用普通档案备份服务器，不涉及 AI、模型、GPU 或推理。"],
+        )
+
+        self.assertIn("references/genre-playbooks.md", refs)
+        self.assertNotIn("references/ai-compute-docs.md", refs)
+
+    def test_ai_route_keeps_positive_requirements_after_a_negated_clause(self) -> None:
+        for task in (
+            "本项目不涉及数据库迁移，但需要 GPU 模型推理服务。",
+            "本项目不涉及数据库迁移，而是需要 GPU 模型推理服务。",
+            "本项目不涉及数据库迁移，却需要 GPU 模型推理服务。",
+            "本项目不涉及数据库迁移，仍需 GPU 模型推理服务。",
+        ):
+            with self.subTest(task=task):
+                refs = provider._reference_paths_for_genres(["方案"], [task])
+                self.assertIn("references/ai-compute-docs.md", refs)
+
+    def test_cloud_local_cost_comparison_loads_the_ai_compute_leaf(self) -> None:
+        refs = provider._reference_paths_for_genres(
+            ["说明"],
+            ["比较云端与本地部署成本，并说明 SLA 和峰值并发。"],
+        )
+
+        self.assertIn("references/ai-compute-docs.md", refs)
+
+    def test_generic_cloud_service_with_explicit_non_ai_boundary_stays_out(self) -> None:
+        refs = provider._reference_paths_for_genres(
+            ["说明"],
+            ["普通政务网站部署在云端，需要说明 SLA 和并发，不涉及 AI、模型或 GPU。"],
+        )
+
+        self.assertNotIn("references/ai-compute-docs.md", refs)
+
+    def test_case_reference_paths_keep_sparse_full_and_review_routes_distinct(self) -> None:
+        sparse = {
+            "vars": {
+                "genre": "会议纪要",
+                "task": "材料只有建议，未形成决定、责任分工或期限，请写简短会议纪要。",
+            }
+        }
+        complete = {
+            "vars": {
+                "genre": "会议纪要",
+                "task": "写一份完整会议纪要，已形成议定事项、责任单位和完成期限。",
+            }
+        }
+        review = {
+            "vars": {
+                "genre": "会议纪要",
+                "task": "只审不改，检查这份会议纪要的格式和语气。",
+            }
+        }
+
+        self.assertEqual(
+            provider._case_reference_paths(sparse),
+            ["SKILL.md", "references/task-route-cards.md", "references/genre-playbooks.md"],
+        )
+        self.assertEqual(
+            provider._case_reference_paths(complete),
+            ["SKILL.md", "references/genre-playbooks.md"],
+        )
+        self.assertEqual(
+            provider._case_reference_paths(review),
+            ["SKILL.md", "references/review-checklist.md"],
+        )
+
+    def test_skill_batches_never_mix_reference_signatures(self) -> None:
+        cases = [
+            {
+                "vars": {
+                    "case_id": "R001",
+                    "genre": "会议纪要",
+                    "task": "材料只有建议，未形成决定、责任分工或期限，请写简短会议纪要。",
+                }
+            },
+            {
+                "vars": {
+                    "case_id": "R002",
+                    "genre": "会议纪要",
+                    "task": "写一份完整会议纪要，已形成议定事项、责任单位和完成期限。",
+                }
+            },
+            {
+                "vars": {
+                    "case_id": "R003",
+                    "genre": "会议纪要",
+                    "task": "只审不改，检查这份会议纪要的格式和语气。",
+                }
+            },
+        ]
+
+        batches = provider._batch_cases("skill", cases, batch_size=10)
+
+        self.assertEqual(len(batches), 3)
+        for batch in batches:
+            signatures = {tuple(provider._case_reference_paths(case)) for case in batch}
+            self.assertEqual(len(signatures), 1)
+
+    def test_review_prompt_does_not_force_drafting_or_argument_steps(self) -> None:
+        case = {
+            "vars": {
+                "case_id": "R001",
+                "genre": "通知",
+                "task": "只审不改，检查这份通知的格式、语气和办理要素。",
+            }
+        }
+        config = {"basePath": str(ROOT / "evals" / "official-writing"), "repoRoot": str(ROOT)}
+
+        prompt = provider._skill_prompt([case], config)
+
+        self.assertIn("只审不改时不得重写全文", prompt)
+        self.assertIn("references/review-checklist.md", prompt)
+        self.assertNotIn("组织论证链条", prompt)
+        self.assertNotIn("输出一段中文正式材料初稿", prompt)
+
+    def test_skill_prompt_rejects_a_mixed_route_batch(self) -> None:
+        review = {
+            "vars": {
+                "case_id": "R001",
+                "genre": "通知",
+                "task": "只审不改，检查这份通知的格式和语气。",
+            }
+        }
+        draft = {
+            "vars": {
+                "case_id": "R002",
+                "genre": "通知",
+                "task": "写一份完整通知。",
+            }
+        }
+        config = {"basePath": str(ROOT / "evals" / "official-writing"), "repoRoot": str(ROOT)}
+
+        with self.assertRaisesRegex(provider.ProviderError, "mixed reference routes"):
+            provider._skill_prompt([review, draft], config)
 
     def test_skill_context_is_complete_and_within_eval_budget(self) -> None:
         context = provider._load_skill_context(ROOT, ["通知", "请示", "报告", "说明", "方案"])
@@ -251,14 +479,49 @@ class PromptfooProviderTests(unittest.TestCase):
         }
         cases = provider._load_cases(config)
         observed: list[int] = []
-        for index in range(0, len(cases), 10):
-            chunk = cases[index : index + 10]
-            genres = sorted({provider._case_genre(case) for case in chunk if provider._case_genre(case)})
-            tasks = [provider._case_task(case) for case in chunk if provider._case_task(case)]
-            observed.append(len(provider._load_skill_context(ROOT, genres, tasks)))
+        for chunk in provider._batch_cases("skill", cases, batch_size=10):
+            paths = provider._skill_batch_reference_paths(chunk)
+            observed.append(len(provider._load_skill_context_from_paths(ROOT, paths)))
+            self.assertEqual(
+                {tuple(provider._case_reference_paths(case)) for case in chunk},
+                {tuple(paths)},
+            )
 
         self.assertEqual(len(observed), 27)
         self.assertLessEqual(max(observed), provider.MAX_SKILL_CONTEXT_CHARS)
+
+    def test_skill_cache_key_hashes_every_case_route_leaf(self) -> None:
+        cases = [
+            {
+                "vars": {
+                    "case_id": "R001",
+                    "genre": "通知",
+                    "task": "只审不改，检查这份通知的格式和语气。",
+                }
+            },
+            {
+                "vars": {
+                    "case_id": "R002",
+                    "genre": "通知",
+                    "task": "写一份完整通知。",
+                }
+            },
+        ]
+        with tempfile.TemporaryDirectory() as temp_dir:
+            root = Path(temp_dir)
+            skill = root / "chinese-official-writing"
+            references = skill / "references"
+            references.mkdir(parents=True)
+            (skill / "SKILL.md").write_text("entry", encoding="utf-8")
+            (references / "review-checklist.md").write_text("review-v1", encoding="utf-8")
+            (references / "genre-playbooks.md").write_text("playbook", encoding="utf-8")
+            config = {"basePath": str(root), "repoRoot": str(root), "commandTemplate": "agent"}
+
+            first = provider._cache_key("skill", cases, config)
+            (references / "review-checklist.md").write_text("review-v2", encoding="utf-8")
+            second = provider._cache_key("skill", cases, config)
+
+        self.assertNotEqual(first, second)
 
     def test_cache_key_changes_with_command_and_batch_configuration(self) -> None:
         config = {
@@ -278,6 +541,73 @@ class PromptfooProviderTests(unittest.TestCase):
         )
 
         self.assertNotEqual(key_a, key_b)
+
+    def test_prebatch_execution_groups_cases_by_actual_route(self) -> None:
+        cases = [
+            {"vars": {"case_id": "R001", "genre": "通知", "task": "写一份完整通知。"}},
+            {
+                "vars": {
+                    "case_id": "R002",
+                    "genre": "通知",
+                    "task": "只审不改，检查这份通知的格式和语气。",
+                }
+            },
+            {
+                "vars": {
+                    "case_id": "R003",
+                    "genre": "报告",
+                    "task": "请把这份报告去口语化，只统一语气，不改变事实。",
+                }
+            },
+        ]
+        config = {
+            "basePath": str(ROOT / "evals" / "official-writing"),
+            "repoRoot": str(ROOT),
+            "commandTemplate": "agent",
+            "batchSize": 10,
+        }
+
+        provider._BATCH_CACHE.clear()
+        with (
+            mock.patch.object(provider, "_load_cases", return_value=cases),
+            mock.patch.object(provider, "_load_cache", return_value=None),
+            mock.patch.object(provider, "_write_cache"),
+            mock.patch.object(
+                provider,
+                "_run_batch",
+                side_effect=lambda _mode, chunk, _config: {
+                    provider._case_id(case): "draft" for case in chunk
+                },
+            ) as run_batch,
+        ):
+            outputs = provider._ensure_batch_cache("skill", config)
+
+        self.assertEqual(set(outputs), {"R001", "R002", "R003"})
+        self.assertEqual(run_batch.call_count, 3)
+        for call in run_batch.call_args_list:
+            chunk = call.args[1]
+            self.assertEqual(
+                len({tuple(provider._case_reference_paths(case)) for case in chunk}),
+                1,
+            )
+        provider._BATCH_CACHE.clear()
+
+    def test_call_api_reports_the_route_used_for_the_case(self) -> None:
+        case_vars = {
+            "case_id": "R001",
+            "genre": "通知",
+            "task": "只审不改，检查这份通知的格式和语气。",
+        }
+        options = {"config": {"mode": "skill"}}
+        context = {"vars": case_vars, "test": {"metadata": {}}}
+
+        with mock.patch.object(provider, "_ensure_batch_cache", return_value={"R001": "审稿结果"}):
+            result = provider.call_api("", options, context)
+
+        self.assertEqual(
+            result["metadata"]["selected_references"],
+            ["SKILL.md", "references/review-checklist.md"],
+        )
 
     def test_default_timeout_matches_cache_and_model_execution(self) -> None:
         case = {"vars": {"case_id": "C001", "genre": "通知", "scenario": "报送材料", "task": "任务"}}
@@ -300,7 +630,7 @@ class PromptfooProviderTests(unittest.TestCase):
         self.assertEqual(call.call_args.args[2], provider.DEFAULT_TIMEOUT_SECONDS)
 
     def test_ai_compute_markers_cover_model_platform_language(self) -> None:
-        for genre in ["模型服务技术需求", "智算中心建设方案", "本地化部署成本说明", "AI平台推理服务", "SLA并发保障方案"]:
+        for genre in ["模型服务技术需求", "智算中心建设方案", "大模型本地化部署成本说明", "AI平台推理服务", "GPU推理服务保障方案"]:
             with self.subTest(genre=genre):
                 refs = provider._reference_paths_for_genres([genre])
                 self.assertIn("references/genre-playbooks.md", refs)
