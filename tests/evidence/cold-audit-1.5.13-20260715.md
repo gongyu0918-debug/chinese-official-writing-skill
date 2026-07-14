@@ -28,32 +28,42 @@
 
 ## 真实写稿复现
 
-两名独立 writer 固定使用 detached `v1.5.13`，不读历史 evidence、外部报告或其他 agent 输出。12 个任务覆盖：
+本轮使用 A/B 与 C/D 两组 writer 标识：A/B 完成 T1-T12，C/D 完成 T13-T33，共 33 个任务、66 份交付输出，其中 T6 两份为只审不改的审稿结果。各组任务协议均要求固定使用 detached `v1.5.13`，不读历史 evidence、外部报告、当前实现或另一名 writer 输出；A/B 的控制任务保存在原始文件开头，C/D 的控制条件和完成回报另存 `genre-writer-control.md`。这些记录是任务协议与 writer 自报，不是系统访问日志。
 
-- 未决纪要与完整纪要；
-- 普通非 AI 服务器租赁、AI 算力租赁、非 AI 车辆租赁可研；
-- 只审不改、只输出正文；
-- 请示、函、通知、公示的文种自判；
-- 完整公告格式。
+- T1-T12 覆盖未决纪要与完整纪要、普通非 AI 服务器租赁、AI 算力租赁、非 AI 车辆租赁可研、只审不改、只输出正文，以及申请、请示、函、通知、公告、公示的文种自判或正式格式；
+- T13-T26 补通告、意见、决议、议案、公报、命令、方案、征求意见函、工作要点、总结、调研、讲话、采购公告、审查材料；
+- T27-T30 补决定、复函、批复、致辞；
+- T31-T33 补报告、说明、通报。
 
-独立 verifier 只读取原 prompt 和两组输出，结论为 24/24 PASS：
+按文种去重后，本轮已新跑当前清单中的 29 个公文与正式材料入口；此外保留审稿模式、正文模式、AI/非 AI 专项和纪要轻重路由。四个 verifier 结果包均由与 writer 分离的 verifier 按原 prompt 与两组输出判定，先锁定内容判分，再查看 `ROUTE`：
 
-- 没有事实编造、文种错位、AI/非 AI 误路由、输出模式破坏、Markdown 残留或错误联网；
-- T3、T5 没有误读 AI 算力叶子，T4 正确读取；
-- T6 保持只审不改，T7 正确抑制正文外待确认；
-- 四个文种自判任务均正确。
+- T1-T12：24 PASS、0 WARN、0 FAIL；
+- T13-T26：28 PASS、0 WARN、0 FAIL；
+- T27-T30：8 PASS、0 WARN、0 FAIL；
+- T31-T33：6 PASS、0 WARN、0 FAIL；
+- 合计：66 PASS、0 WARN、0 FAIL，未发现跨 writer 或跨文种累计达到 3 次的同类交付问题。
 
-达到“两名 writer 共同出现且超过 3 次”的问题只有一个：11/12 个任务共同出现任务卡与完整文种栈并行加载。T1 已命中“未决事项会议纪要”卡片，仍继续读取会议纪要 playbook 和 genre checklist；其余起草任务也普遍同时读取通用任务卡。该问题表现为渐进路由没有收敛到最窄叶子，尚未造成成稿质量回退。
+全部交付输出均保持题面事实、数字、期限、责任、文种关系和输出模式；没有事实编造、AI/非 AI 误路由、Markdown 残留、过程说明或错误联网。只审不改、只输出正文、必要缺项正文外提示、决定/命令、函/复函、请示/批复、报告/说明/通报等易混边界均通过。普通办公家具采购和政务云扩容审查没有误读 AI 算力叶，只有明确 GPU 推理服务的 T4 进入 AI 专项。
 
-本轮新跑不是完整 29 入口矩阵。按当前仓库已保存的完整“prompt + writer + verifier”闭环，并把本轮新增的函、可研计入后，通告、意见、决议、议案、公报、命令、方案、征求意见函、工作要点、总结、调研、讲话、采购公告、审查材料 14 类仍只有确定性、摘要或混合覆盖，不能表述为已经完成新一轮真实写稿全覆盖。这是证据覆盖缺口，不等同质量失败，也不据此修改产品 Prompt。
+路由共性问题则进一步扩大：66 条 writer 自报中，`task-route-cards` 命中 65 条，`genre-playbooks` 命中 60 条，`genre-checklist` 命中 64 条。对 T13-T33 这 21 个显式文种任务，两名 writer 的 42 条自报全部命中任务卡和文种 checklist，38 条同时命中 playbook。未决纪要 T1 也稳定自报“轻卡命中后继续选择 playbook”。这说明渐进路由选择普遍没有收敛到最窄叶子，但 66/66 内容通过，尚未观察到写稿质量回退。
 
-证据限制：24 条 `ROUTE` 是 writer 自报，不是系统级文件访问审计；可以证明稳定的 agent 选择模式，不能证明每个文件实际被使用到什么程度。
+66 条 `ROUTE` 均为 writer 自报，不是系统级文件访问审计；它们可以证明稳定的 agent 选择模式，不能证明每个文件实际被使用到什么程度。所有自报均为未联网；仅两名 writer 的 T4 自报 AI 算力叶。
 
 原始证据：
 
 - `tests/evidence/cold-audit-1.5.13-20260715/baseline-writer-a.md`
 - `tests/evidence/cold-audit-1.5.13-20260715/baseline-writer-b.md`
 - `tests/evidence/cold-audit-1.5.13-20260715/baseline-verifier.md`
+- `tests/evidence/cold-audit-1.5.13-20260715/genre-matrix-writer-c.md`
+- `tests/evidence/cold-audit-1.5.13-20260715/genre-matrix-writer-d.md`
+- `tests/evidence/cold-audit-1.5.13-20260715/genre-matrix-verifier.md`
+- `tests/evidence/cold-audit-1.5.13-20260715/genre-gap-writer-c.md`
+- `tests/evidence/cold-audit-1.5.13-20260715/genre-gap-writer-d.md`
+- `tests/evidence/cold-audit-1.5.13-20260715/genre-gap-verifier.md`
+- `tests/evidence/cold-audit-1.5.13-20260715/genre-final-writer-c.md`
+- `tests/evidence/cold-audit-1.5.13-20260715/genre-final-writer-d.md`
+- `tests/evidence/cold-audit-1.5.13-20260715/genre-final-verifier.md`
+- `tests/evidence/cold-audit-1.5.13-20260715/genre-writer-control.md`
 
 ## 采纳的工程问题
 
@@ -111,8 +121,8 @@
 - **二次修改规则擅自允许联网**：拒绝。原文只要求判断是否需要，全局仍由默认不联网和时效事实条件约束；报告建议还会误删“最新/现行政策”等必要核验触发。
 - **15/15 references 被入口引用说明无渐进披露**：拒绝。可发现性不等于实际加载；reference 应由入口直接链接并写明条件。
 - **固定 6KB、40 字、120 字、硬规则 12 条、别名 2 个等门禁**：拒绝。没有真实写稿因果证据，报告内部数值也不一致。
-- **广泛文种质量失败**：未复现。新跑的 24 份成稿全部 PASS；不能把覆盖缺口直接表述为质量失败。
-- **否定句、长复合句或重复规则已经导致真实写稿回退**：证据不足。文本重复和长行可静态复现，但本轮没有出现三次以上相同成稿失败，不据此删写作边界。
+- **广泛文种质量失败**：未复现。新跑的 66 份交付输出全部 PASS；不能把旧覆盖缺口直接表述为质量失败。
+- **否定句、长复合句或重复规则已经导致真实写稿回退**：证据不足。文本重复和长行可静态复现，但本轮没有出现三次以上相同交付失败，不据此删写作边界。
 - **删改 AI 味、限字、description 或拆新 reference**：暂不采纳。均需针对真实输出的 A/B 或触发消融，不能从外部报告直接实施。
 
 ## 会议纪要路由冲突
@@ -123,7 +133,7 @@
 
 ### 待用户明确同意的最小产品方案
 
-现有流程：材料稀疏先读轻卡；会议纪要又被无条件要求转长 playbook；实际 agent 普遍同时读取任务卡和完整文种栈。
+现有流程：材料稀疏先读轻卡；会议纪要又被无条件要求转长 playbook；writer 的路由自报普遍同时命中任务卡和文种栈。
 
 拟改流程：
 
@@ -132,7 +142,7 @@
 3. 不因文种名称已知而默认并读任务卡；任务卡只用于材料稀疏、短通知、明确不新增事实和局部修改。
 4. 不改变事实边界、输出模式、三级复核顺序、修改次数、默认联网和发布链。
 
-改变原因：这是唯一由两名 writer 在 11/12 个任务中共同复现的问题，且当前成稿质量无回退，适合只改仲裁、不改写作内容。
+改变原因：这是唯一由 A/B、C/D 两组 writer 在 29 类文种中稳定复现的问题。66 条路由自报中 65 条命中任务卡；21 个显式文种任务的 42 条自报全部命中任务卡和文种 checklist。当前 66/66 交付质量无回退，适合只改仲裁、不改写作内容。
 
 主要风险：过度减载可能漏掉文种骨架、办理要素或复核要求。获批后应先用 2-4 个直接相关短稿做 `v1.5.13` A/B，再由独立 verifier 判断；出现任何事实、文种、格式或输出模式回退时撤回该方案，换用更窄的条件表达。
 
@@ -140,13 +150,14 @@
 
 - `python -B -m unittest discover -s tests -v`：172/172 PASS。
 - `python -B -m unittest tests.test_promptfoo_eval`：43/43 PASS。
-- `python -B tools/run_real_prompt_ablation.py ...`：`baseline-1.5.13 108/108`，`current 108/108`。该工具不调用 LLM，只作确定性支撑。
+- `python -B tools/run_real_prompt_ablation.py --baseline-root output/release-baselines/github-1.5.13-cold-audit --baseline-label baseline-1.5.13 --current-root . --out output/cold-audit-vs-1.5.13-final`：`baseline-1.5.13 108/108`，`current 108/108`。该工具不调用 LLM，只作确定性支撑。
 - `npm run eval:official-writing:smoke`：沙箱内因 Node 无法启动工作区外 Python 而出现环境失败；按错误提示在沙箱外用 Python 3.13 复跑，20/20 PASS。该 smoke 使用默认 deterministic stub，不作为真实模型写稿证据。
-- 两名 detached baseline writer + 独立 verifier：24/24 PASS；路由过载 11/12 共同复现。
+- A/B、C/D 两组 writer 标识 + 四个 verifier 结果包：66/66 PASS，覆盖当前 29 个文种入口和专项模式；没有累计达到 3 次的同类成稿问题。隔离来源以任务协议和 writer 自报记录，不表述为系统访问审计。
+- 66 条路由自报：任务卡 65、playbook 60、文种 checklist 64；所有任务未联网，AI 算力叶只命中两名 writer 的 T4。
 - `quick_validate.py chinese-official-writing`：`Skill is valid!`。
 - `git diff --check`：无错误；仅工作区 LF/CRLF 转换提示。
 - ClawHub live：1.5.13、moderation clean、verify pass、19/19 artifact SHA-256 一致。
 
 ## 结论
 
-本轮接受并修复的是“真实 agent 评测无法观测渐进路由”这一工程共性问题；不把 stub、确定性消融或 route 元数据包装成真实写作质量。产品层唯一达到修改阈值的是任务卡与完整文种栈并行加载，尤其未决纪要冲突；因它属于核心 reference 加载条件，已给出具体的现有流程、拟改流程、原因和回退风险，等待用户明确同意后再实施。
+本轮接受并修复的是“真实 agent 评测无法观测渐进路由”这一工程共性问题；不把 stub、确定性消融或 route 元数据包装成真实写作质量。产品层唯一达到修改阈值的是任务卡与文种 reference 常见并行自报，尤其未决纪要轻卡命中后仍选择 playbook 的冲突；全 29 文种真实写稿没有出现质量共性回退。因产品问题属于核心 reference 加载条件，已给出具体的现有流程、拟改流程、原因和回退风险，等待用户明确同意后再实施。
