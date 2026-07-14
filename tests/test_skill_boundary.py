@@ -364,6 +364,43 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assertIn("OPENCLAW_MARKETPLACE_README", sync_script)
         self.assertIn("OPENCLAW_SKILL_CARD", sync_script)
 
+    def test_repository_uses_mit_while_clawhub_package_stays_mit_0(self) -> None:
+        license_text = (ROOT / "LICENSE").read_text(encoding="utf-8")
+        readme = (ROOT / "README.md").read_text(encoding="utf-8")
+        sync_script = (ROOT / "tools" / "sync_adapters.py").read_text(encoding="utf-8")
+        manifest = json.loads((ROOT / ".claude-plugin" / "plugin.json").read_text(encoding="utf-8"))
+
+        self.assertTrue(license_text.startswith("MIT License\n"))
+        self.assertIn("subject to the\nfollowing conditions:", license_text)
+        self.assertIn("The above copyright notice and this permission notice", license_text)
+        self.assertEqual(manifest["license"], "MIT")
+        self.assertIn("GitHub 仓库及非 ClawHub 发行面采用 MIT 许可", readme)
+        self.assertIn("ClawHub/OpenClaw 包继续采用 MIT-0 许可", readme)
+
+        repository_skill_paths = [
+            "chinese-official-writing/SKILL.md",
+            "skills/chinese-official-writing/SKILL.md",
+            ".agents/skills/chinese-official-writing/SKILL.md",
+            ".qwen/skills/chinese-official-writing/SKILL.md",
+            "hermes/skills/chinese-official-writing/SKILL.md",
+        ]
+        for relative_path in repository_skill_paths:
+            text = (ROOT / relative_path).read_text(encoding="utf-8")
+            self.assertIn("license: MIT\n", text, relative_path)
+            self.assertNotIn("license: MIT-0\n", text, relative_path)
+
+        openclaw_paths = [
+            "openclaw/skills/chinese_official_writing/SKILL.md",
+            "openclaw/skills/chinese_official_writing/README.md",
+            "openclaw/marketplace-readme.md",
+            "openclaw/skill-card.md",
+        ]
+        for relative_path in openclaw_paths:
+            self.assertIn("MIT-0", (ROOT / relative_path).read_text(encoding="utf-8"), relative_path)
+
+        self.assertIn('REPOSITORY_LICENSE = "MIT"', sync_script)
+        self.assertIn('OPENCLAW_LICENSE = "MIT-0"', sync_script)
+
     def test_lint_strict_fail_on_is_documented(self) -> None:
         skill = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
         readme = (ROOT / "README.md").read_text(encoding="utf-8")
