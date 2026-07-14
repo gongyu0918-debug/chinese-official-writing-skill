@@ -374,8 +374,8 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assertIn("subject to the\nfollowing conditions:", license_text)
         self.assertIn("The above copyright notice and this permission notice", license_text)
         self.assertEqual(manifest["license"], "MIT")
-        self.assertIn("GitHub 仓库及非 ClawHub 发行面采用 MIT 许可", readme)
-        self.assertIn("ClawHub/OpenClaw 包继续采用 MIT-0 许可", readme)
+        self.assertIn("\n## License\n\nMIT\n", readme)
+        self.assertNotIn("MIT-0", readme)
 
         repository_skill_paths = [
             "chinese-official-writing/SKILL.md",
