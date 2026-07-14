@@ -30,12 +30,12 @@
 
 ## 发布状态
 
-- GitHub：待发布。
-- ClawHub：待发布。
-- skillhub.cn：待发布。
+- GitHub：`origin/main`、annotated tag `v1.5.13` 和公开 Release 均指向发布提交 `cd2d46c58a5f56b9009c5da08626a88640f2e5b3`；Release 为 `https://github.com/gongyu0918-debug/chinese-official-writing-skill/releases/tag/v1.5.13`，不是 draft 或 prerelease。
+- ClawHub：公开 `latestVersion.version`、`tags.latest` 及 `chinese`、`official-document`、`writing`、`gongwen`、`ai-compute` 五个正确 tag 均已切换到 1.5.13。发布回执为 `versionId=k97e4jfamrmq7eygdyhtw71tw98ahem1`、19 个文件、fingerprint `35db016eb2da7aa2c7ad82062550c46fc7b1d52df56212eade2a9898c8eaa661`；moderation 总体为 `clean`。隔离安装成功，19 个发行文件与 `openclaw/skills/chinese_official_writing/` 逐文件 SHA-256 一致，只多平台生成的 `_meta.json` 和 `.clawhub/origin.json`。版本安全对象仍为 `pending`，静态扫描和 VirusTotal 已 clean，但 `skill verify` 因 `card.missing`、`security.status_not_clean`、`security.pending` 返回 fail，不能表述为全部扫描完成。
+- skillhub.cn：精确 slug `chinese-official-writing` 已一次提交成功，回执为 `skillId=70149`、`versionId=137942`、19 个文件、fingerprint `05516b51cb1884aea61b6f7b550fb39965977801f508184107cf7722a2c2982a`、`tags.latest=1.5.13`；`reviewStatus`、`securityScanStatus`、`contentAuditStatus` 均为 `pending`。提交后首次公开搜索仍显示 1.5.12，故暂不重复提交，也不把旧索引安装结果写成本版安装证据。
 
 ## 剩余风险与停止条件
 
 - 真实写稿样本不能证明所有弱模型、3000 字以上长文、多附件或 compact 后稳定性；本版不扩大相关能力承诺。
-- 任一平台正式提交成功后若客户端报错，先只读 inspect，不重复提交；公开索引延迟、moderation 或审核 pending 与提交失败分开记录。
+- ClawHub 的 skill card 和聚合安全状态尚未生成；skillhub.cn 的公开索引和三项审核尚未完成。二者属于异步状态，不影响已收到的提交回执，但后续只能轮询，不能重复提交。
 - 任一旧硬边界回退、目标改善丢失、上下文达到或超过 25000、发行包或镜像不一致，停止发布并回退对应提交。
