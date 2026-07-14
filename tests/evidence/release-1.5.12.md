@@ -27,15 +27,15 @@
 ## 发行包预检
 
 - 版本同步脚本将 canonical、五个发行镜像、Claude plugin、README、OpenClaw 市场说明和 skill-card 统一为 `1.5.12`；`redskill/` 未同步。
-- ClawHub 发行源 `openclaw/skills/chinese_official_writing/` 为 19 个文件。最终 dry-run 需在发布提交形成后带精确 `source-commit` 重跑并记录 fingerprint。
+- ClawHub 发行源 `openclaw/skills/chinese_official_writing/` 为 19 个文件。最终 dry-run 使用发布提交 `f87b6be990e1314442b5532ae7441f21c8d4d34f` 作为 `source-commit`，返回 fingerprint `7371dd14354344ae657b2404a6d135bb3a0d169cdd5db812b8a87cddaad9cfaa`。
 - skillhub.cn 使用 `git ls-files chinese-official-writing` 白名单构造临时包，避免 ignored `__pycache__` 混入；临时包 19 个文件，无 `.pyc`、`__pycache__`、finalizer、detector 或 repair 文件，17 个不含专用 `SKILL.md` 的共享文件与 canonical 逐文件 SHA-256 一致。
 - skillhub.cn CLI `2026.7.7` 登录身份为 `user_f3d82da7` / `userId=437097`；dry-run 确认 `slug=chinese-official-writing`、`version=1.5.12`。平台专用 frontmatter 含扩展字段，不能用只接受 Agent Skills 基础字段的 canonical quick validator 替代平台 dry-run。
 
 ## 发布状态
 
-- GitHub：待发布提交、annotated tag `v1.5.12` 和 GitHub release。
-- ClawHub：live 仍为 `1.5.11`；待用最终发布提交 SHA 执行 dry-run、正式发布、inspect、verify、隔离安装和逐文件哈希核验。
-- skillhub.cn：公开 live 仍为 `1.5.11`；精确目标保持 `chinese-official-writing` / `skillId=70149`，待正式提交、公开索引复核、隔离安装和逐文件哈希核验。
+- GitHub：发布提交 `f87b6be990e1314442b5532ae7441f21c8d4d34f` 已快进到 `main`；annotated tag `v1.5.12` 解引用到同一提交；GitHub Release 为 `https://github.com/gongyu0918-debug/chinese-official-writing-skill/releases/tag/v1.5.12`，非 draft、非 prerelease。
+- ClawHub：正式回执 `status=published`、`versionId=k97ej86790086hhs99ga0rqa158ah6fz`、19 个文件、fingerprint `7371dd14354344ae657b2404a6d135bb3a0d169cdd5db812b8a87cddaad9cfaa`。live `latestVersion`、`latest` 与五个正确 tag 均为 1.5.12，`displayName=中文公文写作`，moderation 总体为 clean。隔离安装成功，排除平台生成的 `_meta.json` 和 `.clawhub/origin.json` 后，19 个发行文件与发布源逐文件 SHA-256 一致。版本安全扫描和平台生成 card 在首次核验时仍 pending/missing，因此 `skill verify` 返回 fail；只等待异步状态，不重复发布。
+- skillhub.cn：正式回执 `skillId=70149`、`versionId=136989`、19 个文件、fingerprint `5e7301de32ec3dc1e956d14b1ee33bdd224ccee3b5489ed94ab4eaa453de7a7c`、`tags.latest=1.5.12`，`reviewStatus/securityScanStatus/contentAuditStatus` 均为 pending。发布后首次公开搜索和 API 的 `latestVersion` 仍为 1.5.11，五个主题 tag 的公开 API 仍为历史值 1.5.1；不把平台索引延迟或旧主题 tag 表述为发布失败，也不重复提交。公开安装入口切换后的安装哈希尚待补录。
 
 ## 回退与剩余风险
 
