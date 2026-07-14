@@ -556,7 +556,7 @@ CASES: list[PromptCase] = [
                     "指定渠道",
                     "截止时间前",
                     "联系人沟通",
-                    "缺项说明写进正文",
+                    "缺项说明放在正文外",
                 ],
                 "chinese-official-writing/references/review-checklist.md": [
                     "缺项边界",
