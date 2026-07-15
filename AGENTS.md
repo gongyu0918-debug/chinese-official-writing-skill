@@ -4,7 +4,15 @@
 
 当前接手入口只保留本文件。GitHub tag `v1.5.14` 指向发布提交 `fea1fae4b0c809d3e2b7167d959a3822030b6033`，release 为 `https://github.com/gongyu0918-debug/chinese-official-writing-skill/releases/tag/v1.5.14`；`origin/main` 在发布后可能继续包含状态记录等文档提交，不再把 tag 和分支头写成必然相同，接手时以 `git ls-remote --heads origin main` 和 `git rev-parse 'v1.5.14^{commit}'` 分别复核。ClawHub 已公开切换到 `latestVersion.version=1.5.14`、`tags.latest=1.5.14`、`displayName=中文公文写作`，19 个上传文件的 source fingerprint 为 `eae11169981bff3f142910a0503421e9b1e131230252df959e9642ce71902b99`；`chinese`、`official-document`、`writing`、`gongwen`、`ai-compute` 五个正确 tag 均指向 1.5.14。隔离安装的 19 个发行文件与 `openclaw/skills/chinese_official_writing/` 逐文件 SHA-256 一致，只多平台生成的 `_meta.json` 和 `.clawhub/origin.json`。moderation 和版本安全对象均为 `clean`，VirusTotal 与 SkillSpector 已 clean；`skill verify` 目前只因平台 card 尚未生成而以 `card.missing` 返回 fail，不得把 card 未生成写成安全扫描失败。ClawHub direct publish 虽显式传入 `source-repo/source-commit/source-ref/source-path`，verify 仍显示 `provenance.source=unavailable`，不能把 source commit 写成平台已存储或已解析。1.4.15 和 1.5.6 形成的带引号或合并历史 tag key 仍保留，但不影响 `latest`、正确 tags、安装包或 moderation；后续发布继续把整个参数写成单一 token：`'--tags=chinese,official-document,writing,gongwen,ai-compute'`。
 
-SkillHub 精确目标仍为 `https://skillhub.cn/skills/chinese-official-writing`，`skillId=70149`。1.5.14 已一次提交成功，返回 `versionId=138838`、19 个文件、fingerprint `52be400012652828d7efbe43d0df3940b3171aba92056e7407c94d8b4e85b50e`、`tags.latest=1.5.14`，提交回执中的 `reviewStatus/securityScanStatus/contentAuditStatus=pending`。owner dashboard 已显示 1.5.14，图标审核 passed，但 `latestApprovedVersion` 和公开搜索/安装入口暂仍为 1.5.13，Keen、Sanbu 均为 queued；只继续轮询，不重复提交，等公开入口切换后再补隔离安装和逐文件 SHA-256 证据。图标仍为蓝底 Q 版图标。发布前后必须用 `git ls-remote --heads origin main`、`clawhub inspect chinese-official-writing --json`、SkillHub API 或 CLI 和 GitHub tag/main 核对 displayName、tags、latestVersion、summary、source commit 和 canonical frontmatter；平台不返回 source commit 时如实记为 unavailable，不作推断。下方旧版本内容均为历史接手记录，不代表当前 live 版本。
+SkillHub 精确目标仍为 `https://skillhub.cn/skills/chinese-official-writing`，`skillId=70149`。1.5.14 已一次提交成功，返回 `versionId=138838`、19 个文件、fingerprint `52be400012652828d7efbe43d0df3940b3171aba92056e7407c94d8b4e85b50e`、`tags.latest=1.5.14`。截至 2026-07-16 的只读复核，公开详情、搜索和隔离安装入口均已切换到 1.5.14，Keen、Sanbu 均为 benign；图标仍为蓝底 Q 版图标。发布前后必须用 `git ls-remote --heads origin main`、`clawhub inspect chinese-official-writing --json`、SkillHub API 或 CLI 和 GitHub tag/main 核对 displayName、tags、latestVersion、summary、source commit 和 canonical frontmatter；平台不返回 source commit 时如实记为 unavailable，不作推断。下方旧版本内容均为历史接手记录，不代表当前 live 版本。
+
+## 1.5.15 Candidate B 本地发布候选
+
+1.5.15 以 `v1.5.14=fea1fae4b0c809d3e2b7167d959a3822030b6033` 为上一发行基线，产品规则固定在 Candidate B 提交 `b5ef168e617bd0ca9afa1d5d3ca257291a701976`。相对 1.5.14，canonical 技能包只改动 `SKILL.md`、`references/genre-playbooks.md`、`references/task-route-cards.md`、`references/workflow.md`：将入口的“事实少于字数目标时宁可短写”中和为“篇幅要求不改变事实边界”，删除 workflow 的同义重复，在报告和短通知叶子去掉重复的短写偏置；事实不编造、事项状态、用户篇幅要求和原有文种边界继续保留。`SKILL.md` 同时继承 1.5.14 发布后主线已完成的技能包许可元数据统一，`license` 由 MIT 调整为 MIT-0；根仓库仍按 MIT 展示，这项元数据变化不改变写作流程。
+
+本候选不改变任务路由、reference 加载条件、段落/小节/全文复核顺序、输出模式、修改次数、回滚方式、默认联网和发布链，不新增脚本硬门禁、自动替换、finalizer、detector、repair 或批量清洗。8 份有效同题自然成稿和 1 份初始路由未命中原稿已保留；初始自然触发率按 7/8 记录，复跑后有效质量样本为 8 份，只有 Terra T04 实际读取文种与轻量任务卡 reference，因此不得把该组写成完整路由覆盖或整稿胜率。段落观感和节奏优化仍留待后续独立研发验证，不混入 1.5.15。
+
+当前 1.5.15 只在隔离 worktree 准备，本段不代表已经 push、打 tag、创建 GitHub Release 或提交 ClawHub、skillhub.cn。现有 `v1.5.14` tag、GitHub Release 和两家商店版本保持不动；发布前必须先提交精确 diff、候选 commit、完整测试结果和 19 文件白名单供复核。小红书 Red SkillHub 继续排除。
 
 ## 小红书 Red SkillHub（停止发布）
 
@@ -18,7 +26,7 @@ SkillHub 精确目标仍为 `https://skillhub.cn/skills/chinese-official-writing
 
 发布提交 `fea1fae4b0c809d3e2b7167d959a3822030b6033` 已完成全量 unittest 174/174、Promptfoo smoke 20/20、固定 1.5.13 基线与 current 均 108/108、真实文章回归、canonical 快速校验、镜像一致性和 19 文件发行包清洁检查。15 个真实用户式 prompt 由两名反向映射 writer 生成 baseline/current 共 60 份成稿；综合盲审两版均为 29 PASS、1 对称 WARN、0 FAIL，硬边界盲审两版均为 30 PASS、0 WARN、0 FAIL，未发现 current 独有的事实、文种、格式或输出模式回退。另有针对性路由 A/B 16/16 内容 PASS。原始证据见 `tests/evidence/route-arbitration-20260715.md`、`tests/evidence/functional-regression-vs-1.5.13-20260715.md` 和 `tests/evidence/release-1.5.14.md`。
 
-GitHub Release 和 ClawHub live 已切换到 1.5.14，ClawHub 隔离安装与 19 文件发行目录逐文件 SHA-256 一致；ClawHub 安全聚合已 clean，card 仍在异步生成，direct publish provenance 仍为 unavailable。skillhub.cn 已接收 1.5.14，但公开索引、审核和安全扫描仍在传播，未重复提交。current 的真实写稿覆盖 15 个短稿/改稿场景，不冒充全 29 文种、3000 字以上长文、多附件或 Word 版式矩阵。发布范围继续排除小红书 Red SkillHub。
+GitHub Release 和 ClawHub live 已切换到 1.5.14，ClawHub 隔离安装与 19 文件发行目录逐文件 SHA-256 一致；ClawHub 安全聚合已 clean，card 仍在异步生成，direct publish provenance 仍为 unavailable。发布完成时的 skillhub.cn 快照为已接收 1.5.14、公开索引和扫描仍在传播且未重复提交；2026-07-16 的最终公开状态见本文件顶部。current 的真实写稿覆盖 15 个短稿/改稿场景，不冒充全 29 文种、3000 字以上长文、多附件或 Word 版式矩阵。发布范围继续排除小红书 Red SkillHub。
 
 2026-07-15 的发布后 GitHub 整理继续沿用 1.5.14 基线，不移动 `v1.5.14` tag，也不重新发布 ClawHub 或 skillhub.cn。该整理只更新根 README、授权文件、技能包许可元数据、同步脚本和对应测试；`SKILL.md` 写作正文、references、运行脚本、路由、输出模式及两家商店介绍保持不变。仓库首页按 MIT 展示，可安装技能包及各 Agent 镜像统一为 MIT-0；测试命令留在证据记录，README 只展示模型消融、真实写稿摘要和同题成稿节选。
 

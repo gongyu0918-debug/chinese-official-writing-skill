@@ -1,6 +1,6 @@
 # 中文公文写作 Skill
 
-[![Version](https://img.shields.io/badge/version-1.5.14-blue)](https://github.com/gongyu0918-debug/chinese-official-writing-skill/releases/tag/v1.5.14)
+[![Version](https://img.shields.io/badge/version-1.5.15-blue)](https://github.com/gongyu0918-debug/chinese-official-writing-skill/releases/tag/v1.5.15)
 [![ClawHub](https://img.shields.io/badge/ClawHub-chinese--official--writing-2f80ed)](https://clawhub.ai/gongyu0918-debug/skills/chinese-official-writing)
 [![SkillHub](https://img.shields.io/badge/SkillHub-chinese--official--writing-e8590c)](https://skillhub.cn/skills/chinese-official-writing)
 [![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
@@ -59,7 +59,7 @@
 
 ## 快速安装
 
-当前工作版本：`chinese-official-writing@1.5.14`
+当前工作版本：`chinese-official-writing@1.5.15`
 
 平台入口：[ClawHub](https://clawhub.ai/gongyu0918-debug/skills/chinese-official-writing) · [skillhub.cn](https://skillhub.cn/skills/chinese-official-writing)。通用 Agent Skills 安装器可直接使用：
 
@@ -71,7 +71,7 @@ npx skills add https://github.com/gongyu0918-debug/chinese-official-writing-skil
 
 ## 模型消融与真实写稿
 
-测试从早期无 Skill/带 Skill 对照，逐步扩展到固定版本消融、真实写稿盲审和多轮改稿。下表汇总 1.5.14 发布时已经完成的测试。1.5.14 发布级测试保留原始任务、成稿、匿名映射、独立复核和汇总记录；早期 270 任务模型消融在仓库内保留脱敏聚合摘要。
+测试从早期无 Skill/带 Skill 对照，逐步扩展到固定版本消融、真实写稿盲审和多轮改稿。下表汇总 1.5.15 发布前复核及其继承的 1.5.14 发布证据。原始任务、成稿、匿名映射、独立复核和汇总记录均保存在仓库内；早期 270 任务模型消融保留脱敏聚合摘要。
 
 | 调试方向 | 主要稿件与边界 | 当前证据 |
 | --- | --- | --- |
@@ -80,30 +80,39 @@ npx skills add https://github.com/gongyu0918-debug/chinese-official-writing-skil
 | 事实、文种与格式 | 请示、报告、通知、说明、会议纪要、字段式申请、主送、落款、普通采购与 AI 算力需求 | 固定 v1.5.13 与 1.5.14 的硬边界盲审均为 30/30 PASS |
 | 输出模式 | 起草、改稿、只审不改、只输出正文、最新版/旧稿合稿、单点日期修改 | 15 个真实用户式任务、2 名反向映射 writer，共 60 份成稿 |
 | 多轮与长稿 | 三轮连续改稿、长文事实和标题稳定、第三轮单点修改 | 一个原始任务的完整改稿链中，事实、状态和标题顺序保持稳定；6 份稿中 1 份达到精确 CJK 下限 |
-| 工程回归 | 单元测试、固定上一版消融、Promptfoo、公开样文 | 174/174；两版均 108/108；Promptfoo 20/20；公开样文缺失要素 0/61 |
+| Candidate B 定向实写 | 多材料报告、异常报告、说明、会议纪要 | 8 份有效同题成稿与 1 份初始路由未命中原稿均留存；该组只作局部风险核验，不单独宣传整稿胜率 |
+| 工程回归 | 单元测试、固定上一版消融、Promptfoo、公开样文 | 175/175；两版均 108/108；Promptfoo 20/20；公开样文缺失要素 0/61 |
 
 60 份发布级真实写稿由两名独立 verifier 盲审。综合结果中，v1.5.13 与 1.5.14 都是 29 PASS、1 个对称 WARN、0 FAIL；硬边界复核两版均为 30 PASS、0 WARN、0 FAIL。真实模型小样本评测与发布级写稿覆盖会议纪要、情况说明、通知、请示、报告、字段式申请、只审不改、普通采购、AI 算力需求和旧稿防回流。
 
 ### 同题独立写作节选
 
-测试任务是一份 1300—1500 字的政务服务登录页面异常阶段情况报告：页面在 2026 年 7 月 8 日 9 时 12 分出现间歇性空白，两次重启后恢复，随后又出现 6 次短时空白；13 名用户反映无法登录，异常原因、影响范围和后续处置均未形成结论。以下两稿来自同一任务的独立上下文，并非同一随机 seed，用于展示同一事实的不同表达路径，不单独代表整稿优劣。无 Skill 样稿未进入该轮候选/基线双盲排序；带 Skill 组该篇的事实、状态、文种和篇幅通过，保护性说明项为 WARN。
+两个独立上下文并非同一随机 seed；无 Skill 样稿未进入该轮候选/基线双盲排序。本节只核对一处事实边界，不代表两份整稿的总体胜负。
 
-无 Skill 成稿按多层边界说明表达这项事实：
+```text
+模型：gpt-5.6-terra（medium）
+原始任务首句：请把下面三组材料合并成一份 1300—1600 字的《统一身份认证平台灰度运行情况报告》。材料之间有重复，请合并表达；所有数字、日期和未决状态都要保留。只输出报告正文。
+```
 
-> 7月9日9时至12时，未收到新增反映。该情况说明在这一时段内，现有服务渠道没有新增用户反映记录，但不能单独证明登录页面在该时段始终正常，也不能据此确认前一日异常已全部消除。是否存在未反馈的使用情况、异常是否再次出现以及用户侧实际影响，均不能由“未收到新增反映”这一项记录直接得出结论。
+完整三组材料见 [`prompts.md`](tests/evidence/no-skill-risk-ablation-20260715/prompts.md)，模型、思考档位和读取记录见 [`provenance.md`](tests/evidence/candidate-b-writing-20260715/provenance.md)。下面只截取“已组织 3 场管理员培训，共 58 人参加”这一事项。
 
-带 Skill 成稿以事实状态和结论强度表达同一事实：
+无 Skill 成稿在该事实后补入了材料未给的培训内容和后续机制：
 
-> 7月9日9时00分至12时00分，现有服务渠道未收到新增反映。该记录时段共3小时，能够确认的是这一时段没有新增用户反映。7月8日收到13名用户反映与7月9日9时00分至12时00分未收到新增反映，分别反映两个时段的渠道记录，不宜将后一个时段的无新增反映直接表述为页面异常已经完全消除。
+> 为提升接入系统管理员的操作能力和问题处置协同效率，已组织3场管理员培训，共58人参加。培训覆盖平台登录、账号管理、常见问题处理和反馈报送等内容，为后续扩大灰度范围提供了基础支撑。下一步还需结合新增系统接入和实际问题情况，持续完善管理员操作指引、异常报送流程和用户支持机制。
 
-完整任务与原始输出见 [`prompts.md`](tests/evidence/negative-constraint-echo-20260714-writing/prompts.md)、[`no-skill-writer.md`](tests/evidence/negative-constraint-echo-20260714-writing/no-skill-writer.md) 和 [`candidate-writer-a.md`](tests/evidence/negative-constraint-echo-20260714-writing/candidate-writer-a.md)。
+Candidate B 带 Skill 成稿在该事项中只保留了已给的数量事实：
+
+> 已组织3场管理员培训，共58人参加。
+
+原始任务、模型与读取记录及两份完整输出见 [`provenance.md`](tests/evidence/candidate-b-writing-20260715/provenance.md)、[`terra-t02.md（无 Skill）`](tests/evidence/strict-no-skill-20260715/terra-t02.md) 和 [`terra-t02.md（Candidate B）`](tests/evidence/candidate-b-writing-20260715/terra-t02.md)。
 
 ### 原创与证据链
 
-技能规则、references 和 scripts 在本仓库持续迭代，各平台技能目录由 canonical 包同步生成。规范与社区项目用于校验文种、流程形态和风险维度；具体规则经过本仓库复现、取舍和 A/B 后进入主线。1.5.14 发布级测试按“原始任务 → 隔离 writer → 匿名映射 → 独立 verifier → 汇总报告 → 发布回执”保存，Git 历史记录每次修改和验证；早期大规模消融公开脱敏聚合摘要。
+技能规则、references 和 scripts 在本仓库持续迭代，各平台技能目录由 canonical 包同步生成。规范与社区项目用于校验文种、流程形态和风险维度；具体规则经过本仓库复现、取舍和 A/B 后进入主线。1.5.15 延续“原始任务 → 隔离 writer → 匿名映射 → 独立 verifier → 汇总报告 → 发布回执”的证据链，Git 历史记录每次修改和验证；早期大规模消融公开脱敏聚合摘要。
 
 主要证据：
 
+- [`release-1.5.15.md`](tests/evidence/release-1.5.15.md)
 - [`release-1.5.14.md`](tests/evidence/release-1.5.14.md)
 - [`functional-regression-vs-1.5.13-20260715.md`](tests/evidence/functional-regression-vs-1.5.13-20260715.md)
 - [`route-arbitration-20260715.md`](tests/evidence/route-arbitration-20260715.md)

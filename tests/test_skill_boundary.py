@@ -367,7 +367,7 @@ class SkillBoundaryTests(unittest.TestCase):
         readme_version = re.search(r"chinese-official-writing@(\d+\.\d+\.\d+)", readme)
         openclaw_publish_version = re.search(r"--version(?:\s+|=)(\d+\.\d+\.\d+)", openclaw_readme)
         marketplace_version = re.search(r"chinese-official-writing@(\d+\.\d+\.\d+)", marketplace_readme)
-        skill_card_version = re.search(r"^(\d+\.\d+\.\d+) \(source: server release metadata", skill_card, re.M)
+        skill_card_version = re.search(r"^(\d+\.\d+\.\d+) \(source: skill frontmatter and release candidate metadata", skill_card, re.M)
 
         self.assertIsNotNone(skill_version)
         self.assertIsNotNone(sync_version)
@@ -1023,7 +1023,7 @@ class SkillBoundaryTests(unittest.TestCase):
             "60 份成稿",
             "270 个任务",
             "540 段对比材料",
-            "174/174",
+            "175/175",
             "108/108",
             "Promptfoo 20/20",
             "真实模型小样本评测",

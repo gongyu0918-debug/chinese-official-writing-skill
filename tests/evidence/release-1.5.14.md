@@ -37,7 +37,7 @@
 
 - GitHub：annotated tag `v1.5.14` 解引用到发布提交 `fea1fae4b0c809d3e2b7167d959a3822030b6033`，远端 `main` 首次发布时与该提交一致；公开 Release 为 `https://github.com/gongyu0918-debug/chinese-official-writing-skill/releases/tag/v1.5.14`，不是 draft 或 prerelease。发布回执记录提交可使 `origin/main` 在 tag 之后继续前进，但不得移动发布 tag。
 - ClawHub：使用最终发布提交作为显式 `source-commit` 的 dry-run 返回 `status=would-publish`、`version=1.5.14`、`fileCount=19`、fingerprint `eae11169981bff3f142910a0503421e9b1e131230252df959e9642ce71902b99`。正式命令正常结束但未打印发布回执；未重复提交，随后只读 inspect 已确认公开 `latestVersion.version`、`tags.latest` 及五个正确 tag 均为 1.5.14，19 个上传文件齐全，moderation 总体 clean。隔离安装成功，19 个发行文件逐文件 SHA-256 一致，只多平台生成的 `_meta.json` 和 `.clawhub/origin.json`。复核时版本安全对象、VirusTotal 和 SkillSpector 均已 clean；`skill verify` 只因平台 card 尚未生成而以 `card.missing` 返回 fail。verify 同时显示 `provenance.source=unavailable`，因此不能宣称 ClawHub 已存储或解析 GitHub source commit。
-- skillhub.cn：精确 slug `chinese-official-writing` 已一次提交成功，回执为 `skillId=70149`、`versionId=138838`、19 个文件、fingerprint `52be400012652828d7efbe43d0df3940b3171aba92056e7407c94d8b4e85b50e`、`tags.latest=1.5.14`；`reviewStatus`、`securityScanStatus`、`contentAuditStatus` 均为 pending。owner dashboard 已显示 1.5.14，图标审核 passed，但 `latestApprovedVersion`、公开搜索和安装入口仍为 1.5.13，Keen、Sanbu 均为 queued；只继续轮询，不重复提交，不把旧索引安装结果写成本版安装证据。
+- skillhub.cn：精确 slug `chinese-official-writing` 已一次提交成功，回执为 `skillId=70149`、`versionId=138838`、19 个文件、fingerprint `52be400012652828d7efbe43d0df3940b3171aba92056e7407c94d8b4e85b50e`、`tags.latest=1.5.14`；以下为发布完成时快照：`reviewStatus`、`securityScanStatus`、`contentAuditStatus` 均为 pending，owner dashboard 已显示 1.5.14，图标审核 passed，但 `latestApprovedVersion`、公开搜索和安装入口仍为 1.5.13，Keen、Sanbu 均为 queued。后续只继续轮询，不重复提交，不把旧索引安装结果写成本版安装证据；2026-07-16 已另行确认公开详情、搜索和隔离安装均切到 1.5.14，Keen、Sanbu 均为 benign。
 
 ## 发布后 GitHub 首页与授权整理
 
@@ -55,5 +55,5 @@
 
 - 真实写稿结论覆盖 15 个短稿/改稿场景，不等同 current 全 29 文种、3000 字以上长文、多附件合稿、多轮 compact 或 Word 版式矩阵；本版不扩大相关能力承诺。
 - 评测 provider 仍会对 F01 否定式“不得补写会议决定”保守多读会议纪要 playbook，并会因 F14 会议名称中的“论证会”多读 argument reference；两项均未造成 60 份正文中的用户可见回退。继续扩张否定正则可能吞掉同句后半的真实责任和期限，因此本版记录但不做一例一修。
-- ClawHub 的 card、skillhub.cn 的审核、公开索引和安装入口仍为异步状态；提交成功与公开审核完成分开表述，只轮询，不重复发布。
+- 发布完成时，ClawHub 的 card、skillhub.cn 的审核、公开索引和安装入口仍为异步状态；提交成功与公开审核完成分开表述，只轮询，不重复发布。2026-07-16 的后续只读核对已确认 skillhub.cn 公开详情、搜索和隔离安装均切到 1.5.14，Keen、Sanbu 均为 benign。
 - 任一 current 独有的事实、文种、格式或输出模式回退，任一 19 文件清单不闭合，ClawHub 如返回可解析 source commit 且不等于发布 tag 解引用提交，或 skillhub.cn 返回的 `skillId` 不是 70149，立即停止后续发布并核查，不自动重试。

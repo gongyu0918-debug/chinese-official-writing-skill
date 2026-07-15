@@ -11,7 +11,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 CANONICAL = ROOT / "chinese-official-writing"
-VERSION = "1.5.14"
+VERSION = "1.5.15"
 SKILL_LICENSE = "MIT-0"
 ROOT_README = ROOT / "README.md"
 OPENCLAW_MARKETPLACE_README = ROOT / "openclaw" / "marketplace-readme.md"
@@ -39,8 +39,8 @@ def versioned_text(text: str) -> str:
     text = re.sub(r"chinese-official-writing@\d+\.\d+\.\d+", f"chinese-official-writing@{VERSION}", text)
     text = re.sub(r"--version(?:\s+|=)\d+\.\d+\.\d+", f"--version={VERSION}", text)
     text = re.sub(
-        r"^\d+\.\d+\.\d+ \(source: server release metadata and skill frontmatter\)",
-        f"{VERSION} (source: server release metadata and skill frontmatter)",
+        r"^\d+\.\d+\.\d+ \(source: (?:server release metadata and skill frontmatter|repository release metadata and skill frontmatter|skill frontmatter and release candidate metadata)\)",
+        f"{VERSION} (source: skill frontmatter and release candidate metadata)",
         text,
         flags=re.M,
     )
