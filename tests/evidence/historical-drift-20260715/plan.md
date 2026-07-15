@@ -26,7 +26,7 @@ GPT-5.5 只作历史版本补充定位，不作为当前质量裁决主模型。
 
 ## 第二阶段：LUNA / TERRA 主测
 
-主测固定使用 `gpt-5.6-luna`、`gpt-5.6-terra`。先复用已经在独立上下文中完成的无 Skill和当前 1.5.14 T01—T04 原始稿，再补测历史 harness 组合、1.5.2、1.5.3 和当前 harness 组合。GPT-5.4 只在 LUNA / TERRA 对旧模型依赖出现分歧时作为补充，不与主测同权。
+主测固定使用 `gpt-5.6-luna`、`gpt-5.6-terra`。N 与当前 1.5.14 均使用相同宿主外壳、仅输入原始任务的 T01—T04 新直写稿；旧有带测试控制语的稿件只作诊断，不进入严格配对。历史 harness 组合、1.5.2、1.5.3 和当前 harness 组合另行补测。GPT-5.4 只在 LUNA / TERRA 对旧模型依赖出现分歧时作为补充，不与主测同权。
 
 1.2.x 的历史条件不能只测裸 Skill。用户确认当时主要搭配 `official-writing-agent-community` harness 使用，因此主测至少拆成无 Skill、harness-only、harness + 历史 Skill、当前原生 Skill、harness + 当前 Skill 五类条件。具体预注册见 `new-model-harness-plan.md`。
 
