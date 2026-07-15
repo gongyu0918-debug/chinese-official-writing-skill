@@ -229,7 +229,7 @@ class PromptfooProviderTests(unittest.TestCase):
         self.assertNotIn("references/formal-addressing.md", refs)
         self.assertNotIn("references/anti-ai-patterns.md", refs)
 
-    def test_release_route_preserves_the_unresolved_minutes_conflict(self) -> None:
+    def test_unresolved_minutes_stop_at_the_sparse_card(self) -> None:
         refs = provider._reference_paths_for_genres(
             ["会议纪要"],
             ["材料只有议题和建议，未形成决定、责任分工或期限，请写简短会议纪要。"],
@@ -237,7 +237,7 @@ class PromptfooProviderTests(unittest.TestCase):
 
         self.assertEqual(
             refs,
-            ["SKILL.md", "references/task-route-cards.md", "references/genre-playbooks.md"],
+            ["SKILL.md", "references/task-route-cards.md"],
         )
 
     def test_complete_minutes_upgrade_to_the_playbook(self) -> None:
@@ -254,7 +254,64 @@ class PromptfooProviderTests(unittest.TestCase):
             ["请写一份简短但完整的会议纪要，已形成三项决定、责任单位和期限。"],
         )
 
-        self.assertIn("references/genre-playbooks.md", refs)
+        self.assertEqual(refs, ["SKILL.md", "references/genre-playbooks.md"])
+
+    def test_unresolved_minutes_wording_does_not_force_the_playbook(self) -> None:
+        tasks = (
+            "议定事项尚未形成，责任单位待明确，完成期限待评估，请写简短会议纪要。",
+            "无议定事项，责任单位和完成期限均未明确，请写简短会议纪要。",
+            "不要写会议决定，只记录建议，请写简短会议纪要。",
+            "已形成初步建议，仍待评估，请写简短会议纪要。",
+            "目前只有建议，事项待评估，请写会议纪要。",
+            "会议明确提出建议，待进一步评估，请写简短会议纪要。",
+            "会议明确尚未形成决定，责任单位待研究，请写简短会议纪要。",
+            "会议确定下次再议，请写简短会议纪要。",
+            "会议明确该事项待评估，请写简短会议纪要。",
+            "不需要完整会议纪要，只记录建议和待议事项。",
+            "不是完整会议纪要，只记录建议和待议事项。",
+        )
+
+        for task in tasks:
+            with self.subTest(task=task):
+                refs = provider._reference_paths_for_genres(["会议纪要"], [task])
+                self.assertEqual(refs, ["SKILL.md", "references/task-route-cards.md"])
+
+    def test_resolved_or_formal_minutes_upgrade_to_the_playbook(self) -> None:
+        tasks = (
+            "请写简短但完整正式会议纪要。",
+            "请写简短会议纪要，会议已决定先行试点。",
+            "请写简短会议纪要，会议已明确责任单位为信息中心。",
+            "请写简短会议纪要，完成期限为7月20日。",
+            "请写简短会议纪要，会议形成决定如下。",
+            "请写简短会议纪要，会议通过了三项议定事项。",
+            "请写简短会议纪要，会议无异议通过该事项。",
+            "请写简短会议纪要，责任单位已明确。",
+            "请写简短会议纪要，完成期限已明确。",
+            "请写简短会议纪要，责任分工如下。",
+            "请写简短会议纪要，会上形成了决定：先行试点。",
+            "请写简短会议纪要，经研究决定先行试点。",
+            "请写简短会议纪要，明确由信息中心负责，7月20日前完成。",
+            "请写简短会议纪要，议定由信息中心牵头，7月20日前完成。",
+            "请按完整、正式的会议纪要起草，篇幅简短。",
+            "请写一份简短会议纪要。",
+            "材料未说明是否形成决定，请写简短会议纪要。",
+            "原记录未提供责任单位和期限，请写简短会议纪要。",
+            "请写简短会议纪要，虽未形成决定但已明确责任单位为信息中心。",
+            "请写简短会议纪要，虽未形成决定，但明确由信息中心负责。",
+            "请写简短会议纪要，建议继续研究但责任单位为信息中心。",
+            "请写简短会议纪要，会议建议先行试点，并决定由信息中心负责。",
+            "不是未决事项而是要求完整正式会议纪要。",
+            "不要理解为未形成决定，请按完整正式会议纪要写。",
+            "无需按未决轻卡处理，应起草完整正式会议纪要。",
+            "会议形成一致意见，责任分工待明确，请写简短会议纪要。",
+            "会议已形成结论，但完成期限待定，请写简短会议纪要。",
+            "会议已达成共识，责任单位待明确，请写简短会议纪要。",
+        )
+
+        for task in tasks:
+            with self.subTest(task=task):
+                refs = provider._reference_paths_for_genres(["会议纪要"], [task])
+                self.assertEqual(refs, ["SKILL.md", "references/genre-playbooks.md"])
 
     def test_review_only_task_loads_the_review_leaf(self) -> None:
         refs = provider._reference_paths_for_genres(
@@ -367,7 +424,7 @@ class PromptfooProviderTests(unittest.TestCase):
 
         self.assertEqual(
             provider._case_reference_paths(sparse),
-            ["SKILL.md", "references/task-route-cards.md", "references/genre-playbooks.md"],
+            ["SKILL.md", "references/task-route-cards.md"],
         )
         self.assertEqual(
             provider._case_reference_paths(complete),

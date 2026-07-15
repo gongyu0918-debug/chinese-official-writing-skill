@@ -128,7 +128,9 @@ class SkillBoundaryTests(unittest.TestCase):
             "必须转读长 reference 的情况",
             "用户要求完整文种骨架",
             "800 字以上长文",
-            "会议纪要/可研/采购/AI 算力等专项论证",
+            "会议已形成决定、议定事项、结论或一致意见、责任分工或期限",
+            "用户要求完整正式会议纪要",
+            "任务属于可研、采购、AI 算力等专项论证",
             "先写可用正文",
             "不补工作组、问题清单、统一共识、治理流程、整改路径",
             "保持未决口径",
@@ -152,8 +154,12 @@ class SkillBoundaryTests(unittest.TestCase):
         )
 
         self.assertIn("不因文种名称已知而自动预读下列全部长 reference", skill)
+        self.assertIn("先确定创作、修改、只审不改等输出模式", skill)
+        self.assertIn("未命中时不扩大轻量卡的适用范围", skill)
         self.assertIn("以本页结束 reference 路由", cards)
         self.assertIn("不因文种名称已知而继续预读", cards)
+        self.assertIn("未命中时不扩大本页适用范围", cards)
+        self.assertIn("任一事项已经形成", cards)
         self.assertIn("每个文种小节都是可从 `SKILL.md` 直接进入的叶子路由", playbooks)
         self.assertIn("不要求先完整读取 `workflow.md` 或 `genre-routing.md`", playbooks)
         self.assertIn("不要把每节末尾的“补充读取”当成固定加载清单", playbooks)

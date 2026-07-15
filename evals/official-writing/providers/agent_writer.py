@@ -163,6 +163,64 @@ SPARSE_TASK_MARKERS = (
     "只改",
     "补一句",
 )
+MINUTES_FULL_REQUEST_MARKERS = (
+    "完整会议纪要",
+    "完整的会议纪要",
+    "完整正式会议纪要",
+    "完整的正式会议纪要",
+    "正式完整会议纪要",
+)
+MINUTES_UNRESOLVED_MARKERS = (
+    "下次再议",
+    "未决",
+    "待定",
+    "待议",
+    "只记录建议",
+    "仅记录建议",
+    "不写会议决定",
+    "不要写会议决定",
+)
+MINUTES_UNRESOLVED_RE = re.compile(
+    r"(?:未|尚未|没有)(?:形成|作出|作|明确|确定|达成)[^，。；;\n]{0,10}?"
+    r"(?:决定|决议|议定事项|结论|一致意见|共识|责任单位|责任部门|责任人|责任分工|完成期限|办理期限|期限|时限)"
+    r"|(?:决定|决议|议定事项|结论|一致意见|共识|责任单位|责任部门|责任人|责任分工|完成期限|办理期限|期限|时限)"
+    r"[^，。；;\n]{0,12}?(?:未|尚未|没有)(?:形成|作出|作|明确|确定|达成)"
+    r"|(?:尚无|无)(?:决定|决议|议定事项|结论|一致意见|共识|责任单位|责任部门|责任人|责任分工|完成期限|办理期限|期限|时限)"
+    r"|(?:仍待|尚待|待)[^，。；;\n]{0,10}?(?:评估|研究|确认|明确|议定|决定)"
+    r"|(?:材料只有|只有|仅有)[^，。；;\n]{0,12}?(?:建议|讨论|汇报|听取结果)"
+    r"|(?:只|仅)(?:记录|保留)[^，。；;\n]{0,12}?(?:建议|讨论|汇报|听取结果)"
+    r"|(?:下次|后续|再次)[^，。；;\n]{0,6}?(?:再议|评估|研究|确认)"
+    r"|(?:拟|建议)[^，。；;\n]{0,16}?(?:采购|试点|测试|评估|研究|再议|观察|安排|实施)"
+    r"|(?:只|仅)?(?:听取|汇报)[^，。；;\n]{0,12}?(?:结果|情况)"
+)
+MINUTES_FULL_REQUEST_RE = re.compile(
+    r"(?:完整[、，,\s]*(?:且|并)?正式|正式[、，,\s]*(?:且|并)?完整)(?:的)?会议纪要"
+)
+MINUTES_NEGATED_FULL_REQUEST_RE = re.compile(
+    r"(?:不需要|不要求|不是|不要|不用|无需|不必|不按)"
+    r"\s*(?:按|写|起草|一份)?\s*"
+    r"(?:完整(?:的)?会议纪要|完整正式(?:的)?会议纪要|完整(?:的)?正式会议纪要|正式完整(?:的)?会议纪要)"
+)
+MINUTES_RESOLVED_RE = re.compile(
+    r"(?:会议)?(?:已|已经|现已)(?:作出|形成|通过|议定|明确|确定|达成)"
+    r"(?:了)?(?:如下|[一二三四五六七八九十\d]+项)?[^，。；;\n]{0,16}"
+    r"(?:决定|决议|议定事项|结论|一致意见|共识|责任(?:单位|部门|人|分工)?|完成期限|办理期限|期限|时限|截止时间|安排|负责|牵头)"
+    r"|会议(?:作出|形成|通过|议定|达成)(?:了)?"
+    r"(?:如下|[一二三四五六七八九十\d]+项)?[^，。；;\n]{0,16}"
+    r"(?:决定|决议|议定事项|结论|一致意见|共识|事项|方案|议案|申请|责任(?:单位|部门|人|分工)?|完成期限|办理期限|期限|时限|截止时间|安排)"
+    r"|(?:会议)?(?:已|已经|现已)(?:决定|议定)(?:了|如下|：|:|，)?"
+    r"|会议(?:决定|议定)(?:了|如下|：|:|，)?"
+    r"|(?:会议)?(?:无异议|一致|审议)(?:通过|同意)"
+    r"|(?:责任单位|责任部门|责任人|责任分工|完成期限|办理期限|期限|时限|截止时间)"
+    r"\s*(?:(?:已|已经|现已)?(?:明确|确定)|为|是|如下|：|:)"
+    r"|会议(?:已|已经|现已)?(?:明确|确定)[^，。；;\n]{0,16}"
+    r"(?:责任单位|责任部门|责任人|责任分工|完成期限|办理期限|期限|时限|截止时间)"
+    r"|(?:作出|形成|通过|议定|明确|确定|达成)(?:了)?"
+    r"[^，。；;\n]{0,16}"
+    r"(?:决定|决议|议定事项|结论|一致意见|共识|责任单位|责任部门|责任人|责任分工|完成期限|办理期限|期限|时限|截止时间)"
+    r"|(?:明确|确定)(?:由)?[^，。；;\n]{0,16}(?:负责|牵头)"
+    r"|(?:决定|议定)(?:由|将|先|如下|：|:)[^，。；;\n]{0,20}"
+)
 REVIEW_TASK_MARKERS = (
     "只审",
     "审一下",
@@ -353,6 +411,27 @@ def _tasks_are_review_only(tasks: list[str]) -> bool:
     )
 
 
+def _minutes_require_playbook(tasks: list[str]) -> bool:
+    minutes_text = "\n".join(tasks)
+    full_request_text = MINUTES_NEGATED_FULL_REQUEST_RE.sub("", minutes_text)
+    if _contains_marker(full_request_text, MINUTES_FULL_REQUEST_MARKERS) or MINUTES_FULL_REQUEST_RE.search(
+        full_request_text
+    ):
+        return True
+
+    resolved_text = minutes_text
+    for marker in MINUTES_UNRESOLVED_MARKERS:
+        resolved_text = resolved_text.replace(marker, "")
+    resolved_text = MINUTES_UNRESOLVED_RE.sub("", resolved_text)
+    return bool(MINUTES_RESOLVED_RE.search(resolved_text))
+
+
+def _minutes_are_explicitly_unresolved(task: str) -> bool:
+    return _contains_marker(task, MINUTES_UNRESOLVED_MARKERS) or bool(
+        MINUTES_UNRESOLVED_RE.search(task)
+    )
+
+
 def _task_uses_sparse_card(genres: list[str], tasks: list[str], ai_compute: bool) -> bool:
     if ai_compute or _task_requires_complex_route(tasks):
         return False
@@ -360,6 +439,10 @@ def _task_uses_sparse_card(genres: list[str], tasks: list[str], ai_compute: bool
         return not any(genre in PLAYBOOK_GENRES for genre in genres)
     if not any(genre in SPARSE_CARD_GENRES for genre in genres):
         return False
+    if "会议纪要" in genres:
+        if _minutes_require_playbook(tasks):
+            return False
+        return all(_minutes_are_explicitly_unresolved(task) for task in tasks)
     return all(_contains_marker(task, SPARSE_TASK_MARKERS) for task in tasks)
 
 
@@ -379,10 +462,6 @@ def _reference_paths_for_genres(genres: list[str], tasks: list[str] | None = Non
     sparse_route = _task_uses_sparse_card(genres, tasks, ai_compute)
     if sparse_route:
         paths.extend(GENRE_REFERENCES["sparse"])
-        if "会议纪要" in genres:
-            # v1.5.13 同时要求稀疏材料先读轻卡、会议纪要再转长 reference；
-            # 在产品路由冲突获批修订前，评测必须如实保留两段读取。
-            paths.extend(GENRE_REFERENCES["playbook"])
     else:
         if any(genre in PLAYBOOK_GENRES or _is_ai_compute(genre, tasks) for genre in genres):
             paths.extend(GENRE_REFERENCES["playbook"])
