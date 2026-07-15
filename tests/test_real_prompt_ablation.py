@@ -303,10 +303,6 @@ class RealPromptAblationTests(unittest.TestCase):
             checks_by_id["P091"]["file_terms"]["chinese-official-writing/SKILL.md"],
         )
         self.assertIn(
-            "事实少于字数目标时宁可短写",
-            checks_by_id["P091"]["file_terms"]["chinese-official-writing/SKILL.md"],
-        )
-        self.assertIn(
             "材料稀疏型通报或情况说明按已给事实之间的关系简短成稿",
             checks_by_id["P091"]["file_terms"]["chinese-official-writing/SKILL.md"],
         )

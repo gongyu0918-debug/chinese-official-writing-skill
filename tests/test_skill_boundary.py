@@ -135,7 +135,7 @@ class SkillBoundaryTests(unittest.TestCase):
             "不补工作组、问题清单、统一共识、治理流程、整改路径",
             "保持未决口径",
             "不写“会议强调”“会议认为”“会议决定”",
-            "宁可短写",
+            "完整覆盖已给事项",
             "不补“认真落实、严肃处理、记录留痕、无论有无异常",
             "Markdown 加粗、标题井号、横线等属于格式噪点",
             "事实边界、要点置入和用户禁止项",
@@ -631,6 +631,12 @@ class SkillBoundaryTests(unittest.TestCase):
         checklist = (ROOT / "chinese-official-writing" / "references" / "review-checklist.md").read_text(
             encoding="utf-8"
         )
+        playbooks = (ROOT / "chinese-official-writing" / "references" / "genre-playbooks.md").read_text(
+            encoding="utf-8"
+        )
+        cards = (ROOT / "chinese-official-writing" / "references" / "task-route-cards.md").read_text(
+            encoding="utf-8"
+        )
 
         self.assertNotIn("暂停确认", skill)
         self.assertNotIn("暂停确认", workflow)
@@ -659,6 +665,12 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assertIn("直接列明已确认问题及其对象、数量和状态", skill)
         self.assertIn("正文落到已确认问题及其对象、数量和状态", workflow)
         self.assertIn("需要补充的结论口径按交付模式列入正文外待确认", workflow)
+        for text in [skill, workflow, playbooks, cards]:
+            self.assertNotIn("宁可短写", text)
+        self.assertIn("事实少于字数目标时，以完整覆盖显式事实、保持未决状态和完成文种功能为先", skill)
+        self.assertIn("事实少于字数目标时，以完整覆盖显式事实、保持未决状态和完成文种功能为先", workflow)
+        self.assertIn("完整写清已给事实及其时间、数量、对象和状态关系", playbooks)
+        self.assertIn("完整覆盖已给事项，以简明正文成稿", cards)
         self.assertNotIn("从已给材料看，问题集中于", skill)
         self.assertNotIn("从已给材料看，问题集中于", workflow)
         self.assertNotIn("结论口径列入正文外待确认", workflow)
