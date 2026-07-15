@@ -135,7 +135,7 @@ class SkillBoundaryTests(unittest.TestCase):
             "不补工作组、问题清单、统一共识、治理流程、整改路径",
             "保持未决口径",
             "不写“会议强调”“会议认为”“会议决定”",
-            "宁可短写",
+            "按已给内容和语气成稿",
             "不补“认真落实、严肃处理、记录留痕、无论有无异常",
             "Markdown 加粗、标题井号、横线等属于格式噪点",
             "事实边界、要点置入和用户禁止项",
@@ -143,6 +143,22 @@ class SkillBoundaryTests(unittest.TestCase):
         ]:
             self.assertIn(term, cards)
         self.assertLess(len(cards.splitlines()), 80)
+
+    def test_sparse_length_rule_keeps_fact_boundary_without_short_first_priority(self) -> None:
+        relative_paths = [
+            "chinese-official-writing/SKILL.md",
+            "chinese-official-writing/references/workflow.md",
+            "chinese-official-writing/references/genre-playbooks.md",
+            "chinese-official-writing/references/task-route-cards.md",
+        ]
+        texts = [(ROOT / path).read_text(encoding="utf-8") for path in relative_paths]
+        for text in texts:
+            self.assertNotIn("宁可短写", text)
+        self.assertIn("篇幅要求不改变事实边界", texts[0])
+        self.assertIn("不为凑篇幅补主体、流程、产物、范围、责任或联系方式", texts[0])
+        self.assertIn("基础底稿、基础清单、台账化、过程可追踪、统一督导流程", texts[0])
+        self.assertNotIn("基础底稿、基础清单、台账化、过程可追踪、统一督导流程", texts[1])
+        self.assertIn("按已给内容和语气成稿", texts[3])
 
     def test_light_route_is_terminal_until_an_explicit_escalation_condition(self) -> None:
         skill = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
