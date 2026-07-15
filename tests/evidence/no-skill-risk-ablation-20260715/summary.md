@@ -29,7 +29,7 @@ LUNA 匿名包中 A 为带 Skill，B 为无 Skill；映射在 TERRA verifier 完
 
 ## TERRA 匿名盲审
 
-TERRA 匿名包中 A 为无 Skill，B 为带 Skill。两名独立 Codex verifier 对优先复核的 T02、T04 给出一致的方向判断：
+TERRA 匿名包中 A 为无 Skill，B 为带 Skill。运行时曾对优先复核的 T02、T04 做两次交叉判断，但两份 verifier 原始报告和 thread 没有完整落盘；下表只保留阶段判断，不作为两份可独立复核的盲审证据。后续 LUNA / TERRA 主矩阵重新生成匿名包并在公开映射前保存 verifier 原始结果。
 
 | 任务 | 无 Skill | 带 Skill | 主要结论 |
 | --- | --- | --- | --- |
@@ -55,4 +55,3 @@ LUNA 在相同四题上强制读取完整相关路由，非空白字符从正常
 ## 下一步
 
 从 1.2.x 早期无 Skill 消融起点、1.2.x 末期、1.4.x 事实与 ANTI-AI 增强点、1.5.x playbook/轻量路由/拆分节点及 1.5.14 中抽取代表版本，用同一任务定位漂移起点。5.4、5.5、TERRA、LUNA 分层复核后，只对三次以上的跨任务共性做集中修复。
-
