@@ -45,5 +45,4 @@
 
 ## 原始输出
 
-同目录 8 个 `luna/terra-t01—t04.md` 文件逐字保存有效线程的单个 `final_answer`；`luna-t02-route-miss.md` 逐字保存首次未触发稿。未把 commentary、测试标签或主上下文改写混入成稿。
-
+同目录 8 个 `luna/terra-t01—t04.md` 文件在去除文件末尾换行后，与有效线程的单个 `final_answer` 逐字符一致；`luna-t02-route-miss.md` 以同一口径保存首次未触发稿。未把 commentary、测试标签或主上下文改写混入成稿。
