@@ -11,7 +11,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 CANONICAL = ROOT / "chinese-official-writing"
-VERSION = "1.5.13"
+VERSION = "1.5.14"
 REPOSITORY_LICENSE = "MIT"
 OPENCLAW_LICENSE = "MIT-0"
 ROOT_README = ROOT / "README.md"

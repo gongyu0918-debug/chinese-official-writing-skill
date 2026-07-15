@@ -1,0 +1,45 @@
+# 中文公文写作 1.5.14 发布证据
+
+## 发行范围
+
+- 上一发行基线为 annotated tag `v1.5.13`，解引用提交 `cd2d46c58a5f56b9009c5da08626a88640f2e5b3`。
+- 1.5.14 纳入 `f4d79ceeed4f2ae78f8a2522f22f709d63b6056c` 的渐进式路由最小仲裁修复，以及 `b70c7b9e2cf3bccee897514b1bed43c630baee20` 的发布级真实写稿回归证据。
+- 产品规则变化只涉及 canonical `SKILL.md` 和 `references/task-route-cards.md` 及五组发行镜像：先判创作、修改、只审不改等输出模式；轻量任务卡完整覆盖材料稀疏说明/通报/报告、未决事项会议纪要、短通知/限字通知和二次局部修改时停止继续加载；已经形成决定、议定事项、结论、一致意见、责任分工或期限，或者用户要求完整正式会议纪要时，进入会议纪要 playbook。
+- 未改变事实边界、文种规则、三级复核顺序、输出模式定义、修改次数、默认联网和发布链；未新增脚本硬门禁、自动替换、finalizer、detector、repair 或批量清洗。
+- 小红书 Red SkillHub 继续排除；未同步 `redskill/`，不调用 Red CLI、dry-run、登录、标签查询或上传。
+
+## 冷审核与真实写稿回归
+
+- 1.5.13 冷审核只作问题线索和固定基线证据；本版修改以源码复现、确定性测试和重新执行的真实写稿 A/B 为准，没有复用旧实现路径。
+- 针对性路由 A/B 覆盖 4 个任务、2 名 writer、16 份成稿；独立盲审为 16/16 PASS，current 8 份成稿均正确命中轻量卡或会议纪要 playbook，未出现事实、文种、格式或输出模式回退。
+- 发布级功能回归使用 15 个真实用户式 prompt、2 名反向映射 writer，固定 `v1.5.13` 与 current 共生成 60 份成稿；两名独立 verifier 只看原 prompt 和匿名稿件。
+- 综合盲审两版均为 29 PASS、1 对称 WARN、0 FAIL；硬边界盲审两版均为 30 PASS、0 WARN、0 FAIL。对称 WARN 是一名 writer 在两版的同一未决纪要样本中都未显式复述“尚未形成决定、责任和期限”，但均保持建议、观察和再次评估的未决口径。
+- 未发现 current 独有的事实编造、状态升级、文种混写、格式破坏、只审不改失效、正文外说明回流、局部修改越界、旧稿事实回流、普通采购误入 AI 算力或 AI 算力参数补造。
+
+## 发布前验证
+
+- `python -B -m unittest discover -s tests -v`：174/174 OK。
+- `python -B tools/run_real_prompt_ablation.py --baseline-root output/release-baselines/github-1.5.13-cold-audit --baseline-label baseline-1.5.13 --current-root . --out output/release-1.5.14/real-prompt-vs-1.5.13`：baseline 108/108，current 108/108。该工具不调用 LLM，只作确定性支撑。
+- `$env:PROMPTFOO_PYTHON='C:\Users\admin\AppData\Local\Programs\Python\Python313\python.exe'; npm run eval:official-writing:smoke`：20/20 PASS，0 failed，0 errors；skill 10 胜，judge consistency 1.0。
+- `python -B tools/run_real_article_eval.py --out output/release-1.5.14/real-article`：skill 10 个样本缺失要素 0/61、关键词命中率 100%，格式风险、重复事项和反 AI 风险均为 0；9 个匿名占位标签样本仍只作人工线索。
+- `python -B C:\Users\admin\.codex\skills\.system\skill-creator\scripts\quick_validate.py chinese-official-writing`：`Skill is valid!`。
+- `python -B tools/sync_adapters.py`：在允许写入受保护适配目录后完成 canonical、共享目录、`.agents`、`.qwen`、Hermes、OpenClaw、README、skill card 和 Claude 插件清单同步。首次沙箱内尝试在 `.agents` 权限处失败，不计为通过；重跑成功后，发行版本面不再残留 1.5.13。
+
+## 发行包预检
+
+- ClawHub 发行目录为 19 个文件，违规缓存、finalizer、detector、repair 文件为 0；平台 `SKILL.md` 正文与 canonical 正文一致，包内许可为 MIT-0。
+- skillhub.cn 临时包以 `git ls-files chinese-official-writing` 的 18 个跟踪文件为白名单构造，再加入 `_meta.json`，共 19 个文件；没有递归带入 canonical 目录下被 Git 忽略的 Python 缓存。
+- skillhub.cn 包的 17 个非 `SKILL.md` 共享文件与 canonical 逐文件 SHA-256 一致，平台专用 `SKILL.md` 正文与 canonical 正文一致；`slug=chinese-official-writing`、`version=1.5.14`、`license=MIT-0`。
+- skillhub.cn CLI dry-run 返回 `{"dryRun": true, "slug": "chinese-official-writing", "version": "1.5.14"}`。
+- GitHub 仓库许可继续为 MIT；ClawHub 和 skillhub.cn 包继续维持 MIT-0，不追溯改写历史版本。
+
+## 发布状态
+
+- GitHub、ClawHub 和精确项目 `https://skillhub.cn/skills/chinese-official-writing` 的 1.5.14 发布回执、隔离安装与逐文件哈希将在真实发布后补录。
+- 真实提交前，ClawHub 将使用最终发布提交作为 `source-commit` 再执行 dry-run；任一平台提交返回状态不明时先只读核验，不重复发布。
+
+## 剩余风险与停止条件
+
+- 真实写稿结论覆盖 15 个短稿/改稿场景，不等同 current 全 29 文种、3000 字以上长文、多附件合稿、多轮 compact 或 Word 版式矩阵；本版不扩大相关能力承诺。
+- 评测 provider 仍会对 F01 否定式“不得补写会议决定”保守多读会议纪要 playbook，并会因 F14 会议名称中的“论证会”多读 argument reference；两项均未造成 60 份正文中的用户可见回退。继续扩张否定正则可能吞掉同句后半的真实责任和期限，因此本版记录但不做一例一修。
+- 任一 current 独有的事实、文种、格式或输出模式回退，任一 19 文件清单不闭合，ClawHub source commit 不等于发布 tag 解引用提交，或 skillhub.cn 返回的 `skillId` 不是 70149，立即停止后续发布并核查，不自动重试。
