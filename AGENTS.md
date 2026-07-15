@@ -20,6 +20,8 @@ SkillHub 精确目标仍为 `https://skillhub.cn/skills/chinese-official-writing
 
 GitHub Release 和 ClawHub live 已切换到 1.5.14，ClawHub 隔离安装与 19 文件发行目录逐文件 SHA-256 一致；ClawHub 安全聚合已 clean，card 仍在异步生成，direct publish provenance 仍为 unavailable。skillhub.cn 已接收 1.5.14，但公开索引、审核和安全扫描仍在传播，未重复提交。current 的真实写稿覆盖 15 个短稿/改稿场景，不冒充全 29 文种、3000 字以上长文、多附件或 Word 版式矩阵。发布范围继续排除小红书 Red SkillHub。
 
+2026-07-15 的发布后 GitHub 整理继续沿用 1.5.14 基线，不移动 `v1.5.14` tag，也不重新发布 ClawHub 或 skillhub.cn。该整理只更新根 README、授权文件、技能包许可元数据、同步脚本和对应测试；`SKILL.md` 写作正文、references、运行脚本、路由、输出模式及两家商店介绍保持不变。仓库首页按 MIT 展示，可安装技能包及各 Agent 镜像统一为 MIT-0；测试命令留在证据记录，README 只展示模型消融、真实写稿摘要和同题成稿节选。
+
 ## 1.5.13 发布与接手记录
 
 1.5.13 以 `v1.5.12=f87b6be990e1314442b5532ae7441f21c8d4d34f` 为上一发行基线，纳入两类经真实写稿复现的 Prompt 减负：把两处重复的“缺项说明放正文外”归并为就近提示；把 `SKILL.md`、`references/workflow.md`、`references/official-style.md` 中重复的否定式反例改为事实状态、证据强度和结论强度的正向锚定。任务路由、reference 加载条件、三级复核顺序、输出模式、修改次数、默认联网和发布链均未改变，没有新增脚本硬门禁、finalizer、自动替换或批量清洗。

@@ -12,8 +12,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 CANONICAL = ROOT / "chinese-official-writing"
 VERSION = "1.5.14"
-REPOSITORY_LICENSE = "MIT"
-OPENCLAW_LICENSE = "MIT-0"
+SKILL_LICENSE = "MIT-0"
 ROOT_README = ROOT / "README.md"
 OPENCLAW_MARKETPLACE_README = ROOT / "openclaw" / "marketplace-readme.md"
 OPENCLAW_README = ROOT / "openclaw" / "README.md"
@@ -67,23 +66,18 @@ def patch_frontmatter(target: Path, mode: str) -> None:
     original = text
     if mode == "openclaw":
         text = text.replace("name: chinese-official-writing", "name: chinese_official_writing", 1)
-        text = text.replace(
-            f"license: {REPOSITORY_LICENSE}\n",
-            f"license: {OPENCLAW_LICENSE}\n",
-            1,
-        )
         if "\ncategory: writing\n" not in text.split("---", 2)[1]:
             text = text.replace(
-                f"license: {OPENCLAW_LICENSE}\n",
-                f"license: {OPENCLAW_LICENSE}\ncategory: writing\ntags:\n  - chinese\n  - official-document\n  - writing\n  - gongwen\n  - ai-compute\n",
+                f"license: {SKILL_LICENSE}\n",
+                f"license: {SKILL_LICENSE}\ncategory: writing\ntags:\n  - chinese\n  - official-document\n  - writing\n  - gongwen\n  - ai-compute\n",
                 1,
             )
         text = re.sub(r"\n  hermes:\n(?:    .+\n)+", "\n", text, count=1)
     elif mode == "hermes":
         if f'\nversion: "{VERSION}"\n' not in text.split("---", 2)[1]:
             text = text.replace(
-                f"license: {REPOSITORY_LICENSE}\n",
-                f'license: {REPOSITORY_LICENSE}\nversion: "{VERSION}"\n',
+                f"license: {SKILL_LICENSE}\n",
+                f'license: {SKILL_LICENSE}\nversion: "{VERSION}"\n',
                 1,
             )
         text = re.sub(r"\n  openclaw:\n(?:    .+\n)+(?=  hermes:)", "\n", text, count=1)
@@ -115,7 +109,7 @@ def update_claude_plugin_manifest() -> None:
         raise RuntimeError(f"missing Claude plugin manifest: {CLAUDE_PLUGIN_MANIFEST}")
     manifest = json.loads(CLAUDE_PLUGIN_MANIFEST.read_text(encoding="utf-8"))
     manifest["version"] = VERSION
-    manifest["license"] = REPOSITORY_LICENSE
+    manifest["license"] = SKILL_LICENSE
     CLAUDE_PLUGIN_MANIFEST.write_text(
         json.dumps(manifest, ensure_ascii=False, indent=2) + "\n",
         encoding="utf-8",

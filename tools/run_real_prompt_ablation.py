@@ -264,10 +264,6 @@ CASES: list[PromptCase] = [
         prompt="我要用真实模型跑一小组公文评测，不要沿用 stub 发布门槛误杀，请给出可复现入口和阈值覆盖方式。",
         checks={
             "file_terms": {
-                "README.md": [
-                    "真实模型小样本评测",
-                    "OFFICIAL_WRITING_SKILL_PLACEHOLDER_RISK_RATE_MAX",
-                ],
                 "evals/official-writing/run_eval.py": ["THRESHOLD_ENV_VARS"],
             },
         },

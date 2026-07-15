@@ -293,7 +293,7 @@ class SkillBoundaryTests(unittest.TestCase):
     def test_readme_does_not_route_to_prompt_only_chatbot_repo(self) -> None:
         readme = (ROOT / "README.md").read_text(encoding="utf-8")
 
-        self.assertIn("## 安装方式", readme)
+        self.assertIn("## 快速安装", readme)
         self.assertNotIn("## 安装 Prompt", readme)
         self.assertNotIn("轻量纯提示词版本", readme)
         self.assertNotIn("chinese-official-writing-chatbot-prompt", readme)
@@ -370,8 +370,9 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assertIn("OPENCLAW_MARKETPLACE_README", sync_script)
         self.assertIn("OPENCLAW_SKILL_CARD", sync_script)
 
-    def test_repository_uses_mit_while_clawhub_package_stays_mit_0(self) -> None:
+    def test_skill_packages_use_mit_0_while_repository_materials_use_mit(self) -> None:
         license_text = (ROOT / "LICENSE").read_text(encoding="utf-8")
+        skill_license_text = (ROOT / "LICENSE-SKILL").read_text(encoding="utf-8")
         readme = (ROOT / "README.md").read_text(encoding="utf-8")
         sync_script = (ROOT / "tools" / "sync_adapters.py").read_text(encoding="utf-8")
         manifest = json.loads((ROOT / ".claude-plugin" / "plugin.json").read_text(encoding="utf-8"))
@@ -379,10 +380,14 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assertTrue(license_text.startswith("MIT License\n"))
         self.assertIn("subject to the\nfollowing conditions:", license_text)
         self.assertIn("The above copyright notice and this permission notice", license_text)
-        self.assertEqual(manifest["license"], "MIT")
-        self.assertIn("\n## License\n\nMIT\n", readme)
+        self.assertTrue(skill_license_text.startswith("MIT No Attribution\n"))
+        self.assertNotIn("The above copyright notice and this permission notice", skill_license_text)
+        self.assertEqual(manifest["license"], "MIT-0")
+        self.assertIn("## 开源许可", readme)
+        self.assertIn("可直接安装的技能包", readme)
+        self.assertIn("包外维护材料", readme)
+        self.assertIn("MIT-0", readme)
         self.assertIn("[![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)", readme)
-        self.assertNotIn("MIT-0", readme)
 
         repository_skill_paths = [
             "chinese-official-writing/SKILL.md",
@@ -393,8 +398,7 @@ class SkillBoundaryTests(unittest.TestCase):
         ]
         for relative_path in repository_skill_paths:
             text = (ROOT / relative_path).read_text(encoding="utf-8")
-            self.assertIn("license: MIT\n", text, relative_path)
-            self.assertNotIn("license: MIT-0\n", text, relative_path)
+            self.assertIn("license: MIT-0\n", text, relative_path)
 
         openclaw_paths = [
             "openclaw/skills/chinese_official_writing/SKILL.md",
@@ -405,15 +409,16 @@ class SkillBoundaryTests(unittest.TestCase):
         for relative_path in openclaw_paths:
             self.assertIn("MIT-0", (ROOT / relative_path).read_text(encoding="utf-8"), relative_path)
 
-        self.assertIn('REPOSITORY_LICENSE = "MIT"', sync_script)
-        self.assertIn('OPENCLAW_LICENSE = "MIT-0"', sync_script)
+        self.assertIn('SKILL_LICENSE = "MIT-0"', sync_script)
+        self.assertNotIn("OPENCLAW_LICENSE", sync_script)
+        self.assertNotIn("redskill", sync_script.lower())
 
-    def test_lint_strict_fail_on_is_documented(self) -> None:
+    def test_lint_strict_fail_on_stays_in_skill_not_public_readme(self) -> None:
         skill = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
         readme = (ROOT / "README.md").read_text(encoding="utf-8")
 
         self.assertIn("--strict --fail-on medium", skill)
-        self.assertIn("--strict --fail-on medium", readme)
+        self.assertNotIn("--strict --fail-on medium", readme)
 
     def test_revision_workflow_forbids_new_unprovided_facts(self) -> None:
         skill = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
@@ -994,15 +999,60 @@ class SkillBoundaryTests(unittest.TestCase):
                 self.assertIn(keyword, skill)
                 self.assertIn(keyword, source)
 
-    def test_readme_discloses_stub_eval_and_deepseek_column_sources(self) -> None:
+    def test_readme_summarizes_current_engineering_and_real_writing_evidence(self) -> None:
         text = (ROOT / "README.md").read_text(encoding="utf-8")
 
-        self.assertIn("默认本地运行使用确定性本地草稿", text)
-        self.assertIn("OFFICIAL_WRITING_AGENT_COMMAND", text)
-        self.assertIn("风险数来自本地合成消融", text)
-        self.assertIn("DeepSeek 列只记录 A/B 样稿生成数量和 C 轮评估是否形成有效结论", text)
-        self.assertIn("文档自述噪音", text)
-        self.assertIn("不等同于草稿正文缺陷", text)
+        for term in [
+            "15 个真实用户式任务",
+            "60 份成稿",
+            "270 个任务",
+            "540 段对比材料",
+            "174/174",
+            "108/108",
+            "Promptfoo 20/20",
+            "真实模型小样本评测",
+            "渐进式路由",
+            "路由 14/16",
+            "1.5.14 为 8/8",
+            "事实、文种与格式",
+            "输出模式",
+            "多轮与长稿",
+            "同题独立写作节选",
+            "无 Skill 成稿",
+            "带 Skill 成稿",
+            "并非同一随机 seed",
+            "无 Skill 样稿未进入该轮候选/基线双盲排序",
+            "原始任务 → 隔离 writer → 匿名映射 → 独立 verifier → 汇总报告 → 发布回执",
+        ]:
+            self.assertIn(term, text)
+        self.assertNotIn("每类文种 10 次，共 270 个任务", text)
+        self.assertNotIn("共 540 段对比样稿", text)
+        self.assertNotIn("baseline-1.2.26", text)
+        self.assertNotIn("常用验证命令", text)
+        self.assertNotIn("python -B -m unittest discover", text)
+        self.assertNotIn("### DeepSeek A/B/C", text)
+        for term in [
+            "## 它怎么解决这些问题",
+            "## 实现与技术栈",
+            "## 核心能力",
+            "## 适用范围",
+            "## 快速安装",
+            "Markdown-first",
+            "中文 Markdown",
+            "渐进式路由",
+            "轻量审查层",
+            "材料暂缺时正文优先完成",
+            "scripts/prose_lint.py",
+        ]:
+            self.assertIn(term, text)
+        for term in [
+            "## 文稿检查脚本",
+            "sync_adapters.py",
+            "发布前检查",
+            "复跑命令",
+            "| 平台 | 目录 |",
+        ]:
+            self.assertNotIn(term, text)
 
 
 if __name__ == "__main__":

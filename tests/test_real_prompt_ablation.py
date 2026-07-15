@@ -137,7 +137,7 @@ class RealPromptAblationTests(unittest.TestCase):
             "notice-submit-materials",
             checks_by_id["P020"]["file_terms"]["tests/fixtures/clean_prose_corpus.json"],
         )
-        self.assertIn("真实模型小样本评测", checks_by_id["P021"]["file_terms"]["README.md"])
+        self.assertNotIn("README.md", checks_by_id["P021"]["file_terms"])
         self.assertIn("THRESHOLD_ENV_VARS", checks_by_id["P021"]["file_terms"]["evals/official-writing/run_eval.py"])
         self.assertIn(
             "test_primary_adapter_mirrors_match_canonical_bytes",

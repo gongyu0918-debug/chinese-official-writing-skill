@@ -39,6 +39,18 @@
 - ClawHub：使用最终发布提交作为显式 `source-commit` 的 dry-run 返回 `status=would-publish`、`version=1.5.14`、`fileCount=19`、fingerprint `eae11169981bff3f142910a0503421e9b1e131230252df959e9642ce71902b99`。正式命令正常结束但未打印发布回执；未重复提交，随后只读 inspect 已确认公开 `latestVersion.version`、`tags.latest` 及五个正确 tag 均为 1.5.14，19 个上传文件齐全，moderation 总体 clean。隔离安装成功，19 个发行文件逐文件 SHA-256 一致，只多平台生成的 `_meta.json` 和 `.clawhub/origin.json`。复核时版本安全对象、VirusTotal 和 SkillSpector 均已 clean；`skill verify` 只因平台 card 尚未生成而以 `card.missing` 返回 fail。verify 同时显示 `provenance.source=unavailable`，因此不能宣称 ClawHub 已存储或解析 GitHub source commit。
 - skillhub.cn：精确 slug `chinese-official-writing` 已一次提交成功，回执为 `skillId=70149`、`versionId=138838`、19 个文件、fingerprint `52be400012652828d7efbe43d0df3940b3171aba92056e7407c94d8b4e85b50e`、`tags.latest=1.5.14`；`reviewStatus`、`securityScanStatus`、`contentAuditStatus` 均为 pending。owner dashboard 已显示 1.5.14，图标审核 passed，但 `latestApprovedVersion`、公开搜索和安装入口仍为 1.5.13，Keen、Sanbu 均为 queued；只继续轮询，不重复提交，不把旧索引安装结果写成本版安装证据。
 
+## 发布后 GitHub 首页与授权整理
+
+- 本次整理继续使用 1.5.14 版本号，只推进 GitHub `main`，不移动 `v1.5.14` tag，不重新提交 ClawHub 或 skillhub.cn。
+- README 保留并前置总介绍、核心能力和适用范围，新增通俗工作流、渐进式路由、轻量审查层和 Markdown-first 实现说明。安装区收束为商店入口、一条通用安装命令和手动入口说明；平台目录映射归入原有目录结构表。
+- README 删除内部 unittest、Promptfoo、同步、发布和复跑命令，只展示经证据文件支撑的模型消融、真实写稿摘要及同题独立样稿节选。文末只保留一个“规范与参考”区，社区来源只列 1.5.14 当前仍能定位的借鉴点。
+- 早期 270 任务测试在仓库内只称脱敏聚合摘要；路由 A/B 同时披露内容 16/16、路由 14/16 和 1.5.14 current 8/8；同题节选明确为不同独立上下文、非同一随机 seed，并记录无 Skill 样稿未进入候选/基线双盲排序以及带 Skill S2 的保护性说明 WARN。
+- 根仓库继续以 MIT 展示；可直接安装的 canonical、通用 Agent、`.agents`、Qwen Code、Hermes、OpenClaw 包和 Claude plugin 元数据统一声明 MIT-0，完整条款见根目录 `LICENSE-SKILL`。测试、评测、工具、证据、迭代和维护材料继续使用 MIT。
+- 相对 `v1.5.14`，canonical `SKILL.md` 可执行正文的归一化 SHA-256 前后均为 `1350d1a6ee69dab3d43f5527d574a43cbdfe8ad6cb1f02ea5a7dd30cb836699c`；canonical `references/`、`scripts/`，OpenClaw/ClawHub 与 skillhub.cn 介绍文件及 `redskill/` 均无内容 diff。各平台 `SKILL.md` 只调整许可元数据，写作 description、路由、事实边界、输出模式和复核流程保持 1.5.14 发布状态。
+- `python -B -m unittest discover -s tests -v`：174/174 OK。
+- `python -B C:\Users\admin\.codex\skills\.system\skill-creator\scripts\quick_validate.py chinese-official-writing`：`Skill is valid!`。
+- 本次没有重新生成写稿样本。原因是写作正文、references 和运行脚本未变；功能性写稿回归继续引用发布 1.5.14 前完成的 60 份真实成稿和独立 verifier 结论，本次用正文哈希、相对 `v1.5.14` 的无 diff 证明及最小 smoke 确认没有引入新的写稿路径。
+
 ## 剩余风险与停止条件
 
 - 真实写稿结论覆盖 15 个短稿/改稿场景，不等同 current 全 29 文种、3000 字以上长文、多附件合稿、多轮 compact 或 Word 版式矩阵；本版不扩大相关能力承诺。
