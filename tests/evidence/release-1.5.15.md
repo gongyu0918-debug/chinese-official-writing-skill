@@ -55,7 +55,7 @@
 - ClawHub：正式命令只提交一次，返回 `status=published`、`versionId=k9782v3jbeyehv7e7mkgemdbph8ajd38`、19 个文件和 source fingerprint `53363a15e884f94b9ce821641e81099fb7f4145035220ead0ca95c4e005150b6`。公开 `latestVersion.version`、`tags.latest` 和 `chinese`、`official-document`、`writing`、`gongwen`、`ai-compute` 五个正确 tag 均已切到 1.5.15，`displayName=中文公文写作`，moderation 为 clean、无 suspicious 或 malware。隔离安装共 21 个文件；排除平台生成的 `_meta.json` 与 `.clawhub/origin.json` 后，19/19 相对路径和 SHA-256 与发行源一致，缺失、额外和 mismatch 均为 0。
 - ClawHub 版本级 verify 在约 5 分钟轮询后仍为异步状态：static scan clean，VirusTotal raw 为 stale、归一化为 pending，SkillSpector 尚无结果；card 未生成，provenance 明确为 unavailable，signature 为 unsigned。当前 verify fail 只由 `card.missing`、`security.status_not_clean`、`security.pending` 造成，不写成恶意判定或安全扫描失败，也不重复发布。
 - skillhub.cn：精确 slug `chinese-official-writing` 只提交一次，正式回执为 `skillId=70149`、`versionId=139337`、19 个文件、fingerprint `428e844eb283c844ffbace10d27b4d79da70083020c444e8f9c1985895a260f9`、`tags.latest=1.5.15`，提交时 `reviewStatus`、`securityScanStatus`、`contentAuditStatus` 均为 pending。后续 owner 只读状态已为 `reviewStatus=approved`、`latestApprovedVersion=1.5.15`、`status=listed`，图标审核 passed；公开详情和搜索均已切到 1.5.15。
-- skillhub.cn 隔离安装返回 1.5.15，共 19 个文件；排除平台在 `_meta.json` 中补入的 `ownerId`、`publishedAt` 后，18/18 文件与提交包逐文件 SHA-256 一致，缺失、额外和 mismatch 均为 0。平台签名验证 `ok=true`、`content_hash_match=true`，内容 hash 为 `efa622a30f064a1bbbfa13fd1549d8f6eb962a620e886cfe23a4a630b51c567b`。Keen、Sanbu 仍为 queued，owner GET 不再返回独立 `securityScanStatus`、`contentAuditStatus`，不能从 review approved 推断两项 clean。
+- skillhub.cn 隔离安装返回 1.5.15，共 19 个文件；排除平台在 `_meta.json` 中补入的 `ownerId`、`publishedAt` 后，18/18 文件与提交包逐文件 SHA-256 一致，缺失、额外和 mismatch 均为 0。平台签名验证 `ok=true`、`content_hash_match=true`，内容 hash 为 `efa622a30f064a1bbbfa13fd1549d8f6eb962a620e886cfe23a4a630b51c567b`。最终只读复核时 Keen、Sanbu 均已为 benign；owner GET 不再返回独立 `securityScanStatus`、`contentAuditStatus`，不能从 review approved 或外部报告结果推断这两个内部字段已 clean。
 - 本轮没有调用小红书 Red SkillHub 的发布、dry-run、登录、标签或上传接口。
 
 ## 剩余风险与停止条件
@@ -64,5 +64,5 @@
 - T02 的 Candidate B 稿虽在三稿中事实边界最稳，但仍未达到 1300 字下限；本版只能说明中和重复短写偏置后的相对改善，不能宣称已解决精确篇幅遵循。
 - 初始自然触发存在 1/8 未读取 Skill；reference 实际加载只在 1/8 有记录，继续作为触发与路由可靠性风险，不与本次单变量修改混并。
 - 段落观感、节奏和任务锚机制仍处于独立研发验证，不进入 1.5.15，也不以本版发布结论替代后续验证。
-- ClawHub provenance 仍为 unavailable，版本级 security 聚合和 card 尚在异步；skillhub.cn 的 Keen、Sanbu 仍在排队，owner GET 不暴露独立的安全扫描和内容审核字段。平台未返回的信息不作推断，只继续只读轮询。
-- 两家商店正式提交均已各一次成功。后续若出现 source fingerprint 或安装文件哈希不一致、公开版本回退、平台给出恶意或拒绝结论，立即停止并核查；pending、queued、card missing 或 provenance unavailable 不触发重复提交。
+- ClawHub provenance 仍为 unavailable，版本级 security 聚合和 card 尚在异步；skillhub.cn owner GET 不暴露独立的安全扫描和内容审核字段。平台未返回的信息不作推断，只继续只读轮询。
+- 两家商店正式提交均已各一次成功。后续若出现 source fingerprint 或安装文件哈希不一致、公开版本回退、平台给出恶意或拒绝结论，立即停止并核查；pending、card missing 或 provenance unavailable 不触发重复提交。
