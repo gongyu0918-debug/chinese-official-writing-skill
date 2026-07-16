@@ -87,24 +87,26 @@ npx skills add https://github.com/gongyu0918-debug/chinese-official-writing-skil
 
 ### 同题独立写作节选
 
-两个独立上下文并非同一随机 seed；无 Skill 样稿未进入该轮候选/基线双盲排序。本节只核对一处事实边界，不代表两份整稿的总体胜负。
+两份完整成稿来自同一原始任务、`gpt-5.6-luna` medium 和相同宿主外壳下的独立上下文，并非同一随机 seed。按盲审统一口径去除空白、保留标点后，无 Skill 成稿为 1868 字符，Candidate B 带 Skill 成稿为 1756 字符，相差 112 字符，以较短稿为基数计算为 6.38%。本组两稿均进入 Candidate B 三稿匿名盲审；旧节选中“无 Skill 样稿未进入该轮候选/基线双盲排序”的限制已经排除。
 
 ```text
-模型：gpt-5.6-terra（medium）
-原始任务首句：请把下面三组材料合并成一份 1300—1600 字的《统一身份认证平台灰度运行情况报告》。材料之间有重复，请合并表达；所有数字、日期和未决状态都要保留。只输出报告正文。
+模型：gpt-5.6-luna（medium）
+原始任务首句：请根据以下材料，起草一份 1600—1900 字的《市图书馆自助借还设备试运行阶段报告》，供馆务会审议。只输出可直接使用的报告正文。
 ```
 
-完整三组材料见 [`prompts.md`](tests/evidence/no-skill-risk-ablation-20260715/prompts.md)，模型、思考档位和读取记录见 [`provenance.md`](tests/evidence/candidate-b-writing-20260715/provenance.md)。下面只截取“已组织 3 场管理员培训，共 58 人参加”这一事项。
+完整材料见 [`prompts.md`](tests/evidence/no-skill-risk-ablation-20260715/prompts.md)，模型、思考档位和读取记录见 [`provenance.md`](tests/evidence/candidate-b-writing-20260715/provenance.md)。匿名盲审将 Candidate B 判为 PASS、G0、整体第一，将无 Skill 稿判为 FAIL、G2、整体第三。下面截取两稿“馆务会意见及下一阶段安排”的对应段落。
 
-无 Skill 成稿在该事实后补入了材料未给的培训内容和后续机制：
+无 Skill 成稿采用六项固定列表，并写入材料没有给出的读者数量、业务类型、技术服务方配合、设备排队、人工引导等安排：
 
-> 为提升接入系统管理员的操作能力和问题处置协同效率，已组织3场管理员培训，共58人参加。培训覆盖平台登录、账号管理、常见问题处理和反馈报送等内容，为后续扩大灰度范围提供了基础支撑。下一步还需结合新增系统接入和实际问题情况，持续完善管理员操作指引、异常报送流程和用户支持机制。
+> 6月26日，馆务会听取阶段汇报后提出，继续运行至8月31日，补充高峰时段测试后，再研究是否扩大设备数量。会议未形成新增采购决定。按照会议意见，7月至8月重点做好以下工作：一是记录晚间时段设备使用量、读者数量和业务类型，为评估服务时段提供依据；二是持续跟踪少儿图书识别情况，分类记录识别失败图书及处理结果；三是收集预约书取书路径反馈，优化标识和引导；四是完整记录设备离线、恢复时间、处置方式及网络状态，配合技术服务方查找共同原因；五是补充高峰时段测试，重点观察设备排队、人工引导、故障处理和服务承载情况；六是根据测试数据和读者反馈，形成阶段性分析材料。
 
-Candidate B 带 Skill 成稿在该事项中只保留了已给的数量事实：
+Candidate B 带 Skill 成稿围绕材料明确的会议意见、四项记录对象和未决状态组织段落：
 
-> 已组织3场管理员培训，共58人参加。
+> 6月26日，馆务会听取了自助借还设备试运行阶段汇报，会议意见为继续运行至8月31日，补充高峰时段测试后再研究是否扩大设备数量。会议未形成新增采购决定。根据会议意见，现阶段工作重点仍为继续试运行、补充测试和收集数据，不对新增设备数量及采购安排作出提前结论。
+>
+> 7月至8月，拟重点记录晚间使用量、少儿图书识别情况、预约书取书路径反馈和设备离线情况。其中，晚间使用量用于观察延长服务时段的实际需求；少儿图书识别情况用于继续掌握相关设备使用效果；预约书取书路径反馈用于了解读者查询和取书过程中的实际感受；设备离线情况用于补充运行记录，继续观察离线发生的时间、持续时长和恢复情况。上述事项目前作为下一阶段重点记录内容，具体设备调整方案、责任分工和新增采购安排尚未确定。
 
-原始任务、模型与读取记录及两份完整输出见 [`provenance.md`](tests/evidence/candidate-b-writing-20260715/provenance.md)、[`terra-t02.md（无 Skill）`](tests/evidence/strict-no-skill-20260715/terra-t02.md) 和 [`terra-t02.md（Candidate B）`](tests/evidence/candidate-b-writing-20260715/terra-t02.md)。
+原始任务、两份完整输出和盲审结论见 [`prompts.md`](tests/evidence/no-skill-risk-ablation-20260715/prompts.md)、[`luna-t01.md（无 Skill）`](tests/evidence/strict-no-skill-20260715/luna-t01.md)、[`luna-t01.md（Candidate B）`](tests/evidence/candidate-b-writing-20260715/luna-t01.md) 和 [`release-1.5.15-verifier.md`](tests/evidence/candidate-b-three-way-blind-20260715/release-1.5.15-verifier.md)。
 
 ### 原创与证据链
 
