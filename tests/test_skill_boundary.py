@@ -654,6 +654,21 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assertNotIn("不复制社区模板正文", genre_playbooks)
         self.assertNotIn("联网和社区高频", checklist)
 
+    def test_candidate_ac_anchors_fact_relations_to_explicit_material(self) -> None:
+        skill = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
+        information_selection = (
+            ROOT / "chinese-official-writing" / "references" / "information-selection.md"
+        ).read_text(encoding="utf-8")
+
+        self.assertIn(
+            "保持主体、对象、数字、日期、状态和结论强度；事实之间的时间、因果和归属关系以材料明确关系为准",
+            information_selection,
+        )
+        self.assertIn(
+            "每段只服务一个论点，通常按“结论前置、事实支撑、判断归纳、事项落点”展开",
+            skill,
+        )
+
     def test_fact_sufficiency_guidance_is_soft_and_non_blocking(self) -> None:
         skill = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
         workflow = (ROOT / "chinese-official-writing" / "references" / "workflow.md").read_text(encoding="utf-8")
