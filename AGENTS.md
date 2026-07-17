@@ -2,6 +2,14 @@
 
 本文件适用于整个仓库。后续 agent 接手本仓库时，优先遵守这里的发布、review 和测试约定；若与用户最新指令冲突，以用户最新指令为准，但不得伪造未运行的测试结果。
 
+## 1.5.16 正式发布与平台传播状态（最新）
+
+GitHub `main`、annotated tag `v1.5.16` 和 Latest Release 已发布。发布 tag 解引用提交为 `172d1140905e38ce16ab6a16e89d9cb50248285e`，tag object 为 `d24b1a42434b3048e263343a45c730df94748a33`，Release 为 `https://github.com/gongyu0918-debug/chinese-official-writing-skill/releases/tag/v1.5.16`，`draft=false`、`prerelease=false`。后续平台回执文档可以推进 `main`，不得移动发布 tag。
+
+ClawHub 已正式提交一次，回执为 `status=published`、`versionId=k971781h9nhev0ty8ynw2t4xqn8aqee5`、20 个源文件、fingerprint `b0aac7188804f04a17f6c945f038dd0746d2441edfb1672014fdb58186cbcacf`。首次发布后只读检查仍显示公开 1.5.15，查询 1.5.16 返回异步传播中的 `Version not found`；只继续轮询，不重复提交。skillhub.cn 已向精确 `skillId=70149` 提交一次，回执为 `versionId=141943`、20 个文件、fingerprint `db89678dbfbcba502e15cc080e9a00cae36ec16fadc378a150371d3ca5ddcfb4`、`tags.latest=1.5.16`，提交时 review、security scan、content audit 均为 pending；公开 `latestVersion` 暂仍为 1.5.15。两家平台的异步状态不作为重复提交理由，小红书 Red SkillHub 继续排除。
+
+以下两段保留 1.5.15 发布完成时的历史快照，平台当前状态以上述 1.5.16 段落为准。
+
 当前接手入口只保留本文件。GitHub annotated tag `v1.5.15` 指向发布提交 `cd0772fcd763eaa34bb32361c2f8d2cdee39a291`，release 为 `https://github.com/gongyu0918-debug/chinese-official-writing-skill/releases/tag/v1.5.15`；`origin/main` 在发布后可能继续包含状态记录等文档提交，不再把 tag 和分支头写成必然相同，接手时以 `git ls-remote --heads origin main` 和 `git rev-parse 'v1.5.15^{commit}'` 分别复核。ClawHub 已公开切换到 `latestVersion.version=1.5.15`、`tags.latest=1.5.15`、`displayName=中文公文写作`，19 个上传文件的 source fingerprint 为 `53363a15e884f94b9ce821641e81099fb7f4145035220ead0ca95c4e005150b6`；`chinese`、`official-document`、`writing`、`gongwen`、`ai-compute` 五个正确 tag 均指向 1.5.15。隔离安装共 21 个文件，只多平台生成的 `_meta.json` 和 `.clawhub/origin.json`；排除后 19 个发行文件与 `openclaw/skills/chinese_official_writing/` 逐文件 SHA-256 一致。moderation 为 `clean`，但发布后约 5 分钟的版本级 security 聚合仍为 `pending`：static scan clean，VirusTotal 为 stale/pending，SkillSpector 尚无结果；card 仍未生成，`skill verify` 因 `card.missing`、`security.status_not_clean`、`security.pending` 返回 fail，不得把异步 pending 或 card 未生成写成恶意判定。ClawHub direct publish 虽显式传入 `source-repo/source-commit/source-ref/source-path`，verify 仍显示 `provenance.source=unavailable`，不能把 source commit 写成平台已存储或已解析。1.4.15 和 1.5.6 形成的带引号或合并历史 tag key 仍保留，但不影响 `latest`、正确 tags、安装包或 moderation；后续发布继续把整个参数写成单一 token：`'--tags=chinese,official-document,writing,gongwen,ai-compute'`。
 
 SkillHub 精确目标仍为 `https://skillhub.cn/skills/chinese-official-writing`，`skillId=70149`。1.5.15 已一次提交成功，返回 `versionId=139337`、19 个文件、fingerprint `428e844eb283c844ffbace10d27b4d79da70083020c444e8f9c1985895a260f9`、`tags.latest=1.5.15`。owner 状态已为 `reviewStatus=approved`、`latestApprovedVersion=1.5.15`、`status=listed`，图标审核 passed；公开详情、搜索和隔离安装入口均已切换到 1.5.15。隔离安装的 19 个文件中，排除平台补入 `ownerId`、`publishedAt` 的 `_meta.json` 后，其余 18 个文件与提交包逐文件 SHA-256 一致；平台签名验证 `content_hash_match=true`，内容 hash 为 `efa622a30f064a1bbbfa13fd1549d8f6eb962a620e886cfe23a4a630b51c567b`。Keen、Sanbu 均已为 benign；owner GET 不再暴露独立的 `securityScanStatus`、`contentAuditStatus`，不得从 review approved 或外部报告结果推断这两个内部字段已 clean。发布前后必须用 `git ls-remote --heads origin main`、`clawhub inspect chinese-official-writing --json`、SkillHub API 或 CLI 和 GitHub tag/main 核对 displayName、tags、latestVersion、summary、source commit 和 canonical frontmatter；平台不返回 source commit 时如实记为 unavailable，不作推断。下方旧版本内容均为历史接手记录，不代表当前 live 版本。
@@ -15,6 +23,8 @@ SkillHub 精确目标仍为 `https://skillhub.cn/skills/chinese-official-writing
 发布口径按日常正常材料收束。材料本身不足以支撑用户点名章节、稀疏材料强行扩成长稿等场景留到 1.6.x 继续研究；它们不作为 1.5.16 阻断。已知风险包括：稀疏任务可能短写或在文后列实质缺口；一个样本的标题和落款未显式呈现发文机关；长稿仍可能残留保护性解释，一次局部收束后也可能转为数据折算和同义复述。上述问题可见、可局部处理，当前未形成三次以上同机制回退。
 
 隔离发布分支已完成全量 unittest 176/176、固定 1.5.15 与 current 确定性消融 108/108 对 108/108、Candidate V 产品与最终候选确定性消融 108/108 对 108/108、Promptfoo smoke 20/20、focused version/mirror tests 55/55、公开样文缺失要素 0/61 与关键词命中 61/61、canonical quick validate、`tools/sync_adapters.py` 镜像同步和 `git diff --check`。公开样文仍有 9 个匿名占位词风险样本，只作人工复核提示；同步脚本重写的 12 个入口文件与已提交内容 blob 一致，没有形成额外产品 diff。Promptfoo 在沙箱内因 Node 无法启动已存在的 Python 首先返回环境错误；使用同一系统 Python 在外层权限复跑后为 20/20。正式 push、tag、GitHub Release、ClawHub 和 skillhub.cn 提交尚未执行；在平台发布闭环前，live 版本仍以本文件顶部的 1.5.15 记录为准。详细证据见 `tests/evidence/candidate-v-real-ab-result-20260717.md` 和 `tests/evidence/release-1.5.16.md`。
+
+候选阶段之后已完成正式发布：GitHub 已闭环，ClawHub 与 skillhub.cn 均已收到一次成功提交回执，当前只等待两家商店公开版本传播和审核结果。实际 ID、fingerprint 与停止边界见本文件最上方和 `tests/evidence/release-1.5.16.md`。
 
 ## 1.5.15 发布与接手记录
 
