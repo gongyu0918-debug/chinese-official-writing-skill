@@ -128,6 +128,7 @@ npx skills add https://github.com/gongyu0918-debug/chinese-official-writing-skil
 
 主要证据：
 
+- [`release-1.5.16.md`](tests/evidence/release-1.5.16.md)
 - [`release-1.5.15.md`](tests/evidence/release-1.5.15.md)
 - [`release-1.5.14.md`](tests/evidence/release-1.5.14.md)
 - [`functional-regression-vs-1.5.13-20260715.md`](tests/evidence/functional-regression-vs-1.5.13-20260715.md)

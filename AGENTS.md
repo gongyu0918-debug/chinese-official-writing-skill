@@ -6,6 +6,16 @@
 
 SkillHub 精确目标仍为 `https://skillhub.cn/skills/chinese-official-writing`，`skillId=70149`。1.5.15 已一次提交成功，返回 `versionId=139337`、19 个文件、fingerprint `428e844eb283c844ffbace10d27b4d79da70083020c444e8f9c1985895a260f9`、`tags.latest=1.5.15`。owner 状态已为 `reviewStatus=approved`、`latestApprovedVersion=1.5.15`、`status=listed`，图标审核 passed；公开详情、搜索和隔离安装入口均已切换到 1.5.15。隔离安装的 19 个文件中，排除平台补入 `ownerId`、`publishedAt` 的 `_meta.json` 后，其余 18 个文件与提交包逐文件 SHA-256 一致；平台签名验证 `content_hash_match=true`，内容 hash 为 `efa622a30f064a1bbbfa13fd1549d8f6eb962a620e886cfe23a4a630b51c567b`。Keen、Sanbu 均已为 benign；owner GET 不再暴露独立的 `securityScanStatus`、`contentAuditStatus`，不得从 review approved 或外部报告结果推断这两个内部字段已 clean。发布前后必须用 `git ls-remote --heads origin main`、`clawhub inspect chinese-official-writing --json`、SkillHub API 或 CLI 和 GitHub tag/main 核对 displayName、tags、latestVersion、summary、source commit 和 canonical frontmatter；平台不返回 source commit 时如实记为 unavailable，不作推断。下方旧版本内容均为历史接手记录，不代表当前 live 版本。
 
+## 1.5.16 紧急发布候选与接手记录
+
+1.5.16 从发布后文档头 `5258929786c85613fc8baf2a88994c969eab2803` 建立隔离分支 `codex/release-1.5.16-emergency-v`，固定功能基线仍为 `v1.5.15=cd0772fcd763eaa34bb32361c2f8d2cdee39a291`。候选采用 Candidate V 产品提交 `f72e4e5d2184c35aaba1e867ec60200b20e691a1`：在 `SKILL.md` 保留一句信息选择总纲，把材料状态、事项关联性和办理必要性的四类处理归并到 `references/information-selection.md`，其余 reference 回到各自文种或专项职责。1.5.15 的文种路由、输出模式、用户模板、事实锚、长文提纲与篇幅预算、多轮改稿、Word 交付和三级复核继续保留；本版没有加入 Candidate Q/S/W 的检测器、FSM、硬门禁或段内公式调整。
+
+纠正后的同模型真实 A/B 使用 3 个既有人工标注任务。Candidate V 在进度滞后报告中避免了 1.5.15 新增的 5 项材料外程序或承诺，在长篇试运行报告中避免了材料外研究时间点和决策依据；两题的纠正盲审均判 Candidate V 相对胜出。正常故障报告两版均完整保留时间、影响、业务量和原因排查状态，Candidate V 没有新增保护性外扩。该组支持“相对 1.5.15 大幅压低保护性外扩和材料外程序”的紧急发布判断，不代表全场景统计胜率。
+
+发布口径按日常正常材料收束。材料本身不足以支撑用户点名章节、稀疏材料强行扩成长稿等场景留到 1.6.x 继续研究；它们不作为 1.5.16 阻断。已知风险包括：稀疏任务可能短写或在文后列实质缺口；一个样本的标题和落款未显式呈现发文机关；长稿仍可能残留保护性解释，一次局部收束后也可能转为数据折算和同义复述。上述问题可见、可局部处理，当前未形成三次以上同机制回退。
+
+隔离发布分支已完成全量 unittest 176/176、固定 1.5.15 与 current 确定性消融 108/108 对 108/108、Promptfoo smoke 20/20、focused version/mirror tests 55/55、canonical quick validate 和 `git diff --check`。Promptfoo 在沙箱内因 Node 无法启动已存在的 Python 首先返回环境错误；使用同一系统 Python 在外层权限复跑后为 20/20。正式 push、tag、GitHub Release、ClawHub 和 skillhub.cn 提交尚未执行；在平台发布闭环前，live 版本仍以本文件顶部的 1.5.15 记录为准。详细证据见 `tests/evidence/candidate-v-real-ab-result-20260717.md` 和 `tests/evidence/release-1.5.16.md`。
+
 ## 1.5.15 发布与接手记录
 
 1.5.15 以 `v1.5.14=fea1fae4b0c809d3e2b7167d959a3822030b6033` 为上一发行基线，产品规则固定在 Candidate B 提交 `b5ef168e617bd0ca9afa1d5d3ca257291a701976`。相对 1.5.14，canonical 技能包只改动 `SKILL.md`、`references/genre-playbooks.md`、`references/task-route-cards.md`、`references/workflow.md`：将入口的“事实少于字数目标时宁可短写”中和为“篇幅要求不改变事实边界”，删除 workflow 的同义重复，在报告和短通知叶子去掉重复的短写偏置；事实不编造、事项状态、用户篇幅要求和原有文种边界继续保留。`SKILL.md` 同时继承 1.5.14 发布后主线已完成的技能包许可元数据统一，`license` 由 MIT 调整为 MIT-0；根仓库仍按 MIT 展示，这项元数据变化不改变写作流程。
