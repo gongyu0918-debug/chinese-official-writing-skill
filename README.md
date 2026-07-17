@@ -1,6 +1,6 @@
 # 中文公文写作 Skill
 
-[![Version](https://img.shields.io/badge/version-1.5.15-blue)](https://github.com/gongyu0918-debug/chinese-official-writing-skill/releases/tag/v1.5.15)
+[![Version](https://img.shields.io/badge/version-1.5.16-blue)](https://github.com/gongyu0918-debug/chinese-official-writing-skill/releases/tag/v1.5.16)
 [![ClawHub](https://img.shields.io/badge/ClawHub-chinese--official--writing-2f80ed)](https://clawhub.ai/gongyu0918-debug/skills/chinese-official-writing)
 [![SkillHub](https://img.shields.io/badge/SkillHub-chinese--official--writing-e8590c)](https://skillhub.cn/skills/chinese-official-writing)
 [![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
@@ -59,7 +59,7 @@
 
 ## 快速安装
 
-当前工作版本：`chinese-official-writing@1.5.15`
+当前工作版本：`chinese-official-writing@1.5.16`
 
 平台入口：[ClawHub](https://clawhub.ai/gongyu0918-debug/skills/chinese-official-writing) · [skillhub.cn](https://skillhub.cn/skills/chinese-official-writing)。通用 Agent Skills 安装器可直接使用：
 
