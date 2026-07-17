@@ -1037,7 +1037,9 @@ class SkillBoundaryTests(unittest.TestCase):
             "无 Skill 成稿",
             "带 Skill 成稿",
             "并非同一随机 seed",
-            "无 Skill 样稿未进入该轮候选/基线双盲排序",
+            "无 Skill 组使用 projectless 裸任务",
+            "两名独立匿名评审均将带 Skill 稿排在无 Skill 稿之前",
+            "readme-same-task-comparison-20260717.md",
             "原始任务 → 隔离 writer → 匿名映射 → 独立 verifier → 汇总报告 → 发布回执",
         ]:
             self.assertIn(term, text)
@@ -1047,6 +1049,7 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assertNotIn("常用验证命令", text)
         self.assertNotIn("python -B -m unittest discover", text)
         self.assertNotIn("### DeepSeek A/B/C", text)
+        self.assertNotIn("无 Skill 样稿未进入该轮候选/基线双盲排序", text)
         for term in [
             "## 它怎么解决这些问题",
             "## 实现与技术栈",
