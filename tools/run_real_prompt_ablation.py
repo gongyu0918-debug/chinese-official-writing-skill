@@ -1856,6 +1856,243 @@ CASES: list[PromptCase] = [
 ]
 
 
+# Some release baselines and the current candidate carry the same behavior in
+# different prompt locations.  Each mapping below is a complete, equivalent
+# evidence group: the legacy ``file_terms`` group or one whole alternative must
+# be present.  This keeps the fixed baseline valid without forcing duplicated
+# runtime wording back into the current skill.
+FILE_TERM_ALTERNATIVES_BY_CASE: dict[str, list[dict[str, list[str]]]] = {
+    "P019": [
+        {
+            "chinese-official-writing/references/workflow.md": [
+                "不新增原文没有交代的活动、依据、数据、成效或责任安排",
+                "不附事实边界自证",
+            ],
+            "chinese-official-writing/references/review-checklist.md": ["未支持推断"],
+        }
+    ],
+    "P024": [
+        {
+            "chinese-official-writing/references/workflow.md": [
+                "用户已有提纲、模板、标题顺序时优先保留",
+                "多材料合稿、改稿和去口语化时，内部区分原文已有事实、压实合并表达和未支持推断",
+            ],
+            "chinese-official-writing/references/information-selection.md": [
+                "材料已给且与当前主旨相关的事实进入正文",
+                "视为实质缺口",
+            ],
+        }
+    ],
+    "P036": [
+        {
+            "chinese-official-writing/SKILL.md": ["默认不外搜", "不使用泛称或占位符补齐未给要素"],
+            "chinese-official-writing/references/handling-elements.md": [
+                "完成期限、实施进度或反馈时限",
+                "责任单位、牵头单位、配合单位或联系人",
+            ],
+            "chinese-official-writing/references/information-selection.md": [
+                "视为实质缺口",
+                "输出模式允许文后提示时，在正文后短列",
+            ],
+        }
+    ],
+    "P043": [
+        {
+            "chinese-official-writing/SKILL.md": ["先完整输出正式正文"],
+            "chinese-official-writing/references/workflow.md": ["普通起草和顺稿不在正文前暂停或连续追问"],
+            "chinese-official-writing/references/information-selection.md": [
+                "直接影响当前文种成立、请批事项或执行落地",
+                "输出模式允许文后提示时，在正文后短列",
+                "文后提示使用少量短项",
+            ],
+        }
+    ],
+    "P044": [
+        {
+            "chinese-official-writing/references/workflow.md": [
+                "材料不足不作为中断成稿或连续追问的理由",
+                "不授权使用泛称、占位、流程或结论补齐结构",
+            ],
+            "chinese-official-writing/references/information-selection.md": [
+                "直接影响当前文种成立、请批事项或执行落地",
+                "文后提示使用少量短项，只写缺口及其对当前交付的直接影响",
+            ],
+        }
+    ],
+    "P045": [
+        {
+            "chinese-official-writing/SKILL.md": ["只处理本轮修改", "不暂停交付", "不循环追问"],
+            "chinese-official-writing/references/workflow.md": [
+                "用户在第二轮或后续轮次提出结构修改时，先处理结构",
+            ],
+            "chinese-official-writing/references/information-selection.md": [
+                "上一轮未补齐的缺口不阻断后续修改",
+            ],
+        }
+    ],
+    "P046": [
+        {
+            "chinese-official-writing/SKILL.md": [
+                "材料只给问题清单时，正文列明已确认问题及其对象、数量和状态",
+            ],
+            "chinese-official-writing/references/workflow.md": [
+                "风险、整改、检查、原因、影响范围和办理状态保持材料原有强度",
+            ],
+            "chinese-official-writing/references/information-selection.md": [
+                "材料已给且与当前主旨相关的事实进入正文",
+            ],
+            "chinese-official-writing/references/review-checklist.md": ["事实强判断", "总体较好"],
+        }
+    ],
+    "P047": [
+        {
+            "chinese-official-writing/SKILL.md": ["正式交付前要素核对卡"],
+            "chinese-official-writing/references/format-gbt9704.md": [
+                "不因缺这些正式要素阻断成稿",
+                "优先只列用户点名缺项",
+            ],
+            "chinese-official-writing/references/information-selection.md": [
+                "输出模式允许文后提示时，在正文后短列",
+            ],
+        }
+    ],
+    "P048": [
+        {
+            "chinese-official-writing/SKILL.md": ["修改模式只以用户最新版底稿和本轮明确补充材料为主线"],
+            "chinese-official-writing/references/workflow.md": [
+                "旧稿、参考样文、过往材料和公开网页材料只用于提醒结构、语气、格式或检查维度",
+                "不把旧金额、旧主送、旧落款、旧政策口号或旧结论带回最新版正文",
+            ],
+            "chinese-official-writing/references/review-checklist.md": ["修改模式是否以最新版底稿为主线"],
+        }
+    ],
+    "P050": [
+        {
+            "chinese-official-writing/SKILL.md": [
+                "正式化只压实已给事实，不补未给的原因、效果、处置、责任、流程、结论或后续动作",
+            ],
+            "chinese-official-writing/references/workflow.md": [
+                "正式化、顺稿和报告化不补牵头部门、责任部门、管理动作、整改动作、成果总结、跟踪督办或后续进展",
+            ],
+            "chinese-official-writing/references/review-checklist.md": ["正式化新增事实"],
+        }
+    ],
+    "P080": [
+        {
+            "chinese-official-writing/references/genre-playbooks.md": [
+                "原材料只给议题、责任和期限时，不补写“会议认为”“会议强调”等未给会议判断",
+                "责任或期限未给时不使用“按审核执行”“后续推进”等泛口径补齐",
+            ],
+            "chinese-official-writing/references/information-selection.md": ["材料明确记载未定状态且与当前主旨相关时"],
+        }
+    ],
+    "P082": [
+        {
+            "chinese-official-writing/SKILL.md": ["识别为正式报送结构缺口"],
+            "chinese-official-writing/references/handling-elements.md": [
+                "请示、报告、上报申请缺主送机关、发文或申请单位、成文日期时",
+            ],
+            "chinese-official-writing/references/genre-playbooks.md": [
+                "主送机关、发文或申请单位、成文日期属于正式报送结构要素",
+            ],
+            "chinese-official-writing/references/information-selection.md": ["视为实质缺口"],
+        }
+    ],
+    "P084": [
+        {
+            "chinese-official-writing/SKILL.md": [
+                "不用 Markdown `**` 加粗、`###`、代码块或 `---` 横线包装",
+            ],
+            "chinese-official-writing/references/review-checklist.md": ["是否未残留 `---` 横线分隔符"],
+        }
+    ],
+    "P086": [
+        {
+            "chinese-official-writing/references/genre-playbooks.md": [
+                "使用/体验/评估报告",
+                "不自动改题为“调研报告”",
+            ],
+            "chinese-official-writing/references/review-checklist.md": [
+                "专项提示位置",
+                "未用 `一、`、`七、`、`第七章` 接续正文主体",
+            ],
+            "chinese-official-writing/references/information-selection.md": ["文后提示使用少量短项"],
+        }
+    ],
+    "P088": [
+        {
+            "chinese-official-writing/references/genre-playbooks.md": [
+                "项目类型、资金来源、投资估算或测算口径缺失时不使用地方模板或空表补实",
+                "未给事项按 `information-selection.md` 处理，不写成正文里的流程承诺",
+                "采购需求不等于现有能力不足、效率提升、业务范围不变或影响结论",
+            ],
+            "chinese-official-writing/references/information-selection.md": ["视为实质缺口"],
+        }
+    ],
+    "P089": [
+        {
+            "chinese-official-writing/SKILL.md": [
+                "正文保持原有状态强度，不改写成已定实施方案、执行命令或已安排动作",
+            ],
+            "chinese-official-writing/references/workflow.md": [
+                "正文保持建议、拟办或待评估口径",
+                "不升级成已定实施方案、命令或已安排动作",
+            ],
+            "chinese-official-writing/references/genre-playbooks.md": [
+                "不写成已经确定的执行路线、责任命令或反馈时限",
+            ],
+        }
+    ],
+    "P091": [
+        {
+            "chinese-official-writing/SKILL.md": [
+                "材料稀疏型通报或情况说明按已给事实之间的关系简短成稿",
+                "不推断讨论、沟通、归集、说明、形成意见等会议内容",
+                "事实映射式二次修改",
+            ],
+            "chinese-official-writing/references/workflow.md": ["未支持推断直接删除"],
+            "chinese-official-writing/references/genre-playbooks.md": [
+                "协调会只写“已组织2次协调会”",
+                "不展开会议内容、处理边界、问题清单、对接要求、闭环机制或督办安排",
+                "不新增“已开展处置”“下一步安排”“整改方向”“治理闭环”“督导流程”等章节或小标题",
+            ],
+            "chinese-official-writing/references/information-selection.md": ["文后提示使用少量短项"],
+        }
+    ],
+    "P092": [
+        {
+            "chinese-official-writing/SKILL.md": [
+                "字段式申请、采购明细、通报和情况说明只使用已给字段和事实",
+                "不新增采购类别、资产属性、用途、入库流程",
+            ],
+            "chinese-official-writing/references/workflow.md": [
+                "字段和单元边界",
+                "改字段值只改指定字段",
+            ],
+        }
+    ],
+    "P097": [
+        {
+            "chinese-official-writing/SKILL.md": ["用户同时明确允许某类文后提示时，只附其允许的内容"],
+            "chinese-official-writing/references/information-selection.md": [
+                "输出模式允许文后提示时，在正文后短列",
+            ],
+            "chinese-official-writing/references/review-checklist.md": ["实质缺口只在输出模式允许时短列"],
+        }
+    ],
+    "P101": [
+        {
+            "chinese-official-writing/SKILL.md": [
+                "不附任何正文外说明或提示",
+                "缺失事实不补造，也不在正文中解释“未提供”",
+            ],
+            "chinese-official-writing/references/information-selection.md": ["只输出正文或改后稿时只交正文"],
+            "chinese-official-writing/references/review-checklist.md": ["在只输出正文模式下附加提示"],
+        }
+    ],
+}
+
+
 def read_text(root: Path, relative: str) -> str:
     path = root / relative
     if not path.exists():
@@ -1930,11 +2167,28 @@ def evaluate_case(case: PromptCase, root: Path, prose_lint) -> dict[str, Any]:
     for term in checks.get("review_checklist_terms", []):
         if term not in review_checklist:
             failures.append(f"review-checklist missing {term}")
+    file_term_failures: list[str] = []
     for relative, terms in checks.get("file_terms", {}).items():
         file_text = read_text(root, relative)
         for term in terms:
             if term not in file_text:
-                failures.append(f"{relative} missing {term}")
+                file_term_failures.append(f"{relative} missing {term}")
+
+    if file_term_failures:
+        alternatives = FILE_TERM_ALTERNATIVES_BY_CASE.get(case.id, [])
+        alternative_matched = False
+        for alternative in alternatives:
+            alternative_failures: list[str] = []
+            for relative, terms in alternative.items():
+                file_text = read_text(root, relative)
+                for term in terms:
+                    if term not in file_text:
+                        alternative_failures.append(f"{relative} missing {term}")
+            if not alternative_failures:
+                alternative_matched = True
+                break
+        if not alternative_matched:
+            failures.extend(file_term_failures)
 
     heading_lock = checks.get("heading_lock")
     if heading_lock:

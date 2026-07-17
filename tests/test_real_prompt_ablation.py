@@ -110,6 +110,43 @@ class RealPromptAblationTests(unittest.TestCase):
 
         self.assertEqual(failures, {})
 
+    def test_information_selection_migration_keeps_complete_equivalent_evidence_groups(self) -> None:
+        expected_cases = {
+            "P019",
+            "P024",
+            "P036",
+            "P043",
+            "P044",
+            "P045",
+            "P046",
+            "P047",
+            "P048",
+            "P050",
+            "P080",
+            "P082",
+            "P084",
+            "P086",
+            "P088",
+            "P089",
+            "P091",
+            "P092",
+            "P097",
+            "P101",
+        }
+
+        self.assertEqual(set(real_prompt_eval.FILE_TERM_ALTERNATIVES_BY_CASE), expected_cases)
+        for case_id, alternatives in real_prompt_eval.FILE_TERM_ALTERNATIVES_BY_CASE.items():
+            self.assertTrue(alternatives, case_id)
+            for alternative in alternatives:
+                self.assertTrue(alternative, case_id)
+                for relative, terms in alternative.items():
+                    self.assertTrue(relative, case_id)
+                    self.assertTrue(terms, f"{case_id}:{relative}")
+        self.assertIn(
+            "chinese-official-writing/references/information-selection.md",
+            real_prompt_eval.FILE_TERM_ALTERNATIVES_BY_CASE["P101"][0],
+        )
+
     def test_case_set_includes_recent_review_regressions(self) -> None:
         checks_by_id = {case.id: case.checks for case in real_prompt_eval.CASES}
 

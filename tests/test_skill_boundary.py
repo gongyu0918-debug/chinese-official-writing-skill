@@ -121,6 +121,9 @@ class SkillBoundaryTests(unittest.TestCase):
         cards = (ROOT / "chinese-official-writing" / "references" / "task-route-cards.md").read_text(
             encoding="utf-8"
         )
+        information_selection = (
+            ROOT / "chinese-official-writing" / "references" / "information-selection.md"
+        ).read_text(encoding="utf-8")
         self.assertIn("references/task-route-cards.md", skill)
         self.assertIn("材料稀疏", skill)
         self.assertIn("不新增事实", skill)
@@ -139,9 +142,11 @@ class SkillBoundaryTests(unittest.TestCase):
             "不补“认真落实、严肃处理、记录留痕、无论有无异常",
             "Markdown 加粗、标题井号、横线等属于格式噪点",
             "事实边界、要点置入和用户禁止项",
-            "上一轮待确认事项仍是软提示",
+            "用户没补齐上一轮信息时，仍执行本轮明确修改请求",
         ]:
             self.assertIn(term, cards)
+        self.assertIn("信息进入正文、保持状态、省略或短列缺口，统一按 `information-selection.md` 处理", cards)
+        self.assertIn("上一轮未补齐的缺口不阻断后续修改", information_selection)
         self.assertLess(len(cards.splitlines()), 80)
 
     def test_sparse_length_rule_keeps_fact_boundary_without_short_first_priority(self) -> None:
@@ -276,10 +281,11 @@ class SkillBoundaryTests(unittest.TestCase):
 
         self.assertIn("当前日期不得替代维护时间", skill)
         self.assertIn("当前日期只可用于草稿落款", elements)
-        self.assertIn("未把当前日期误用为维护时间", checklist)
+        self.assertIn("当前日期是否未被误用为维护时间", checklist)
         self.assertIn("[具体项目名称]", skill)
         self.assertIn("（成文日期待确认）", skill)
-        self.assertIn("成文日期明示缺失或待确认时放正文外提示", skill)
+        self.assertIn("明示成文日期缺失、待确认或需另行确认时，不使用当前日期补落款", skill)
+        self.assertIn("识别为正式报送结构缺口", skill)
         self.assertIn("不使用当前日期补落款", skill)
         self.assertIn("YYYY年MM月DD日", elements)
 
@@ -442,16 +448,17 @@ class SkillBoundaryTests(unittest.TestCase):
         checklist = (ROOT / "chinese-official-writing" / "references" / "review-checklist.md").read_text(
             encoding="utf-8"
         )
+        information_selection = (
+            ROOT / "chinese-official-writing" / "references" / "information-selection.md"
+        ).read_text(encoding="utf-8")
 
-        self.assertIn("未新增原文外事实", skill)
         self.assertIn("不新增原文没有交代的活动、依据、数据、成效或责任安排", workflow)
-        self.assertIn("未新增原文外事实", workflow)
-        self.assertIn("未新增原文外事实", checklist)
-        self.assertIn("用户要求只输出正文时，不附自证说明", workflow)
-        self.assertIn("除非用户同时明确允许文后待确认、风险或核验提示", workflow)
-        self.assertIn("也不附其他正文外内容", workflow)
-        self.assertIn("用户未要求只输出正文、只输出改后稿或不解释时", checklist)
-        self.assertIn("用户只要求正文且未同时允许文后提示时", checklist)
+        self.assertIn("不附事实边界自证", workflow)
+        self.assertIn("只输出正文或改后稿时只交正文", information_selection)
+        self.assertIn("在只输出正文模式下附加提示", checklist)
+        self.assertIn("不附任何正文外说明或提示", skill)
+        for text in [skill, workflow, checklist]:
+            self.assertNotIn("未新增原文外事实", text)
 
     def test_staged_review_workflow_remains_intact(self) -> None:
         skill = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
@@ -479,6 +486,9 @@ class SkillBoundaryTests(unittest.TestCase):
         format_ref = (ROOT / "chinese-official-writing" / "references" / "format-gbt9704.md").read_text(
             encoding="utf-8"
         )
+        information_selection = (
+            ROOT / "chinese-official-writing" / "references" / "information-selection.md"
+        ).read_text(encoding="utf-8")
 
         for text in [skill, workflow]:
             self.assertIn("任务模式路由", text)
@@ -488,7 +498,9 @@ class SkillBoundaryTests(unittest.TestCase):
             self.assertIn("排版交付", text)
         self.assertIn("原文已有事实", workflow)
         self.assertIn("压实合并表达", workflow)
-        self.assertIn("待确认补充", workflow)
+        self.assertIn("信息是否进入正文、按原状态承载、省略或作为实质缺口短列", workflow)
+        self.assertIn("材料已给且与当前主旨相关的事实进入正文", information_selection)
+        self.assertIn("视为实质缺口", information_selection)
         self.assertIn("数据冲突不得默认就高", workflow)
         self.assertIn("空章节不直接编实", workflow)
         self.assertIn("原文已有事实", checklist)
@@ -590,15 +602,16 @@ class SkillBoundaryTests(unittest.TestCase):
         format_ref = (ROOT / "chinese-official-writing" / "references" / "format-gbt9704.md").read_text(
             encoding="utf-8"
         )
+        information_selection = (
+            ROOT / "chinese-official-writing" / "references" / "information-selection.md"
+        ).read_text(encoding="utf-8")
         agents = (ROOT / "AGENTS.md").read_text(encoding="utf-8")
 
-        for text in [skill, workflow, checklist]:
-            self.assertIn("指定渠道", text)
-            self.assertIn("截止时间前", text)
-            self.assertIn("联系人沟通", text)
-        self.assertIn("事实充分性软处理", workflow)
-        self.assertIn("正文泛占位", checklist)
-        self.assertIn("新增字段没有用户提供值", workflow)
+        self.assertIn("不使用泛称或占位符补齐未给要素", skill)
+        self.assertIn("材料不足不作为中断成稿或连续追问的理由", workflow)
+        self.assertIn("实质缺口只在输出模式允许时短列", checklist)
+        self.assertIn("直接影响当前文种成立、请批事项或执行落地", information_selection)
+        self.assertIn("新增字段没有用户提供值时只写字段名并留空", workflow)
         self.assertIn("即使用分号写在一行", workflow)
         self.assertIn("不合并成连续句", workflow)
         self.assertIn("不推断发票、票据、邮箱、截止日期", workflow)
@@ -647,43 +660,36 @@ class SkillBoundaryTests(unittest.TestCase):
         checklist = (ROOT / "chinese-official-writing" / "references" / "review-checklist.md").read_text(
             encoding="utf-8"
         )
+        information_selection = (
+            ROOT / "chinese-official-writing" / "references" / "information-selection.md"
+        ).read_text(encoding="utf-8")
 
         self.assertNotIn("暂停确认", skill)
         self.assertNotIn("暂停确认", workflow)
-        self.assertNotIn("可补充后更完整的关键事实", skill)
-        self.assertNotIn("可补充后更完整的关键事实", workflow)
-        self.assertNotIn("可补充后更完整的关键事实", checklist)
-        self.assertIn("事实不足不作为默认中断理由", skill)
-        self.assertIn("补充以下信息后，文章会更完整", skill)
-        self.assertIn("缺项说明放在正文外", skill)
-        self.assertIn("缺项说明放在正文外", workflow)
-        self.assertNotIn("由于……未提供", skill)
-        self.assertNotIn("由于政策依据、截止时间等尚未提供", workflow)
-        self.assertIn("不要做调查问卷式问题清单", skill)
-        self.assertIn("不把上一轮待确认事项升级为阻断条件", skill)
-        self.assertIn("风险、整改、检查和影响范围结论以材料明确内容为限", skill)
+        self.assertIn("先服从用户指定的输出模式，再按材料状态、事项关联性和办理必要性选择信息", skill)
+        self.assertIn("起草、改稿、压缩或合稿时读取 `references/information-selection.md`", skill)
+        self.assertIn("普通起草和顺稿不在正文前暂停或连续追问", workflow)
+        self.assertIn("本文件不重复规定正文、文后提示和省略边界", workflow)
         self.assertIn("材料只给问题清单", skill)
-        self.assertIn("需要补充的结论口径按交付模式放在正文外待确认", skill)
-        self.assertIn("不在正文前中断成稿", workflow)
-        self.assertIn("不连续追问", workflow)
-        self.assertIn("先按用户已给材料完成正文", workflow)
-        self.assertIn("不做调查问卷", workflow)
-        self.assertIn("补充以下信息后，文章会更完整", workflow)
-        self.assertIn("写稿人可安排事项", workflow)
-        self.assertIn("待确认事项仍是软提示", workflow)
-        self.assertIn("仍先执行本轮修改请求", workflow)
-        self.assertIn("直接列明已确认问题及其对象、数量和状态", skill)
-        self.assertIn("正文落到已确认问题及其对象、数量和状态", workflow)
-        self.assertIn("需要补充的结论口径按交付模式列入正文外待确认", workflow)
-        self.assertNotIn("从已给材料看，问题集中于", skill)
-        self.assertNotIn("从已给材料看，问题集中于", workflow)
-        self.assertNotIn("结论口径列入正文外待确认", workflow)
-        self.assertNotIn("概括性正向判断", workflow)
-        self.assertIn("未在正文前中断成稿或连续追问", checklist)
-        self.assertIn("补充以下信息后，文章会更完整", checklist)
-        self.assertIn("未做调查问卷式问题清单", checklist)
-        self.assertIn("转嫁给用户", checklist)
-        self.assertIn("不把待确认事项升级成阻断链路", checklist)
+        self.assertIn("正文列明已确认问题及其对象、数量和状态", skill)
+        self.assertIn("信息选择是否符合 `information-selection.md`", checklist)
+        for term in [
+            "材料已给且与当前主旨相关的事实进入正文",
+            "材料明确记载未定状态且与当前主旨相关时",
+            "材料虽有记载但与当前主旨无关",
+            "视为实质缺口",
+            "只输出正文或改后稿时只交正文",
+            "上一轮未补齐的缺口不阻断后续修改",
+            "用户要求先确认时，再在正文前提出必要问题",
+        ]:
+            self.assertIn(term, information_selection)
+        for legacy_duplicate in [
+            "补充以下信息后，文章会更完整",
+            "缺项说明放在正文外",
+            "待确认事项仍是软提示",
+            "未新增原文外事实",
+        ]:
+            self.assertNotIn(legacy_duplicate, skill + workflow + checklist)
         self.assertIn("事实强判断", checklist)
         self.assertIn("总体较好", checklist)
         runtime_prompts = [
@@ -746,8 +752,8 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assertIn("去 AI 味或语气审稿应匹配文体", official_style)
         self.assertIn("不为了显得像人写而加入第一人称", official_style)
         self.assertIn("单个正式词或单个转折不作为硬清洗理由", official_style)
-        self.assertIn("不得为显得完整而补造未提供的牵头部门、责任部门、管理动作、整改动作、成果总结或跟踪督办安排", skill)
-        self.assertIn("不为显得完整而补造牵头部门、责任部门、管理动作、整改动作、成果总结、跟踪督办、后续处理进展", workflow)
+        self.assertIn("正式化只压实已给事实，不补未给的原因、效果、处置、责任、流程、结论或后续动作", skill)
+        self.assertIn("正式化、顺稿和报告化不补牵头部门、责任部门、管理动作、整改动作、成果总结、跟踪督办或后续进展", workflow)
         self.assertIn("正式化新增事实", checklist)
         self.assertIn("正式化改写只压实原文已有事实", official_style)
         self.assertIn("口语来源不等于事实授权", official_style)
@@ -855,7 +861,7 @@ class SkillBoundaryTests(unittest.TestCase):
             "未给会议判断",
             "不自行补受众称呼",
             "不补服务单位责任",
-            "责任或期限未给时留空或列为待确认",
+            "责任或期限未给时不使用“按审核执行”“后续推进”等泛口径补齐",
             "普通采购公告不默认进入 AI 算力语境",
             "详细结构转读 `references/ai-compute-docs.md`",
         ]:
@@ -878,12 +884,13 @@ class SkillBoundaryTests(unittest.TestCase):
 
         for text in [skill, workflow]:
             self.assertIn("考察、评估、建议、拟测试、考虑尝试或下一步设想", text)
-            self.assertIn("不改写成已定实施方案、执行命令", text)
+        self.assertIn("不改写成已定实施方案、执行命令", skill)
+        self.assertIn("不升级成已定实施方案、命令或已安排动作", workflow)
         self.assertIn("成本考察、成本评估", playbooks)
         self.assertIn("不自动改题为“调研报告”“考核说明”或“实施方案”", playbooks)
         self.assertIn("不写成已经确定的执行路线、责任命令或反馈时限", playbooks)
         self.assertIn("按 `workflow.md` 的事实映射式二次修改删掉未支持推断", playbooks)
-        self.assertIn("每个实质句只保留“用户已给事实”和“直接概括”", workflow)
+        self.assertIn("每个实质句只保留用户已给事实和直接概括", workflow)
         self.assertIn("不用 Markdown `**` 加粗包装标签", skill)
         self.assertIn("未用 Markdown `**` 加粗包装标签", review)
 
@@ -967,11 +974,16 @@ class SkillBoundaryTests(unittest.TestCase):
         openclaw_skill = (ROOT / "openclaw" / "skills" / "chinese_official_writing" / "SKILL.md").read_text(
             encoding="utf-8"
         )
+        information_selection = (
+            ROOT / "chinese-official-writing" / "references" / "information-selection.md"
+        ).read_text(encoding="utf-8")
         for text in [skill, openclaw_skill]:
-            self.assertIn("用户明示某些事项未提供", text)
-            self.assertRegex(text, r"不(?:要)?扩展成调查问卷")
+            self.assertIn("用户点名禁止编造的字段写成正文中的“未提供”说明", text)
+            self.assertIn("识别为正式报送结构缺口", text)
             self.assertIn("（成文日期待确认）", text)
             self.assertIn("不使用当前日期补落款", text)
+        self.assertIn("用户要求先确认时，再在正文前提出必要问题", information_selection)
+        self.assertIn("文后提示使用少量短项", information_selection)
         self.assertIn("去 AI 味、变换句式、拆分长句或调整清单结构", skill)
         self.assertIn("不得补写未给的解释、原因、影响范围、办理流程、责任人员、字段示例或整改动作", skill)
         self.assertIn("用户只给问题清单、任务清单或明确要求不新增事实时", skill)
@@ -987,8 +999,9 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assertEqual(text.split("---", 2)[2].strip(), canonical.split("---", 2)[2].strip())
         self.assertIn("任务模式", text)
         self.assertIn("references/workflow.md", text)
-        self.assertIn("先分清原文事实", text)
-        self.assertIn("待确认补充", text)
+        self.assertIn("references/information-selection.md", text)
+        self.assertIn("按材料状态、事项关联性和办理必要性选择信息", text)
+        self.assertIn("材料只给问题清单时，正文列明已确认问题及其对象、数量和状态", text)
         self.assertIn("稿内一致性风险", text)
         self.assertIn("references/format-gbt9704.md", text)
         self.assertIn("正式 Word 输出前不得残留 Markdown", text)
