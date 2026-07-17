@@ -36,6 +36,7 @@
 - `python -B -m unittest tests.test_skill_boundary tests.test_real_prompt_ablation`：55/55 通过。
 - `python -B evals\official-writing\run_eval.py --suite smoke --judge-batch-size 2`：20/20 通过，judge 10/10 选择 skill，重复评审一致率 1.0。
 - `python -B C:\Users\admin\.codex\skills\.system\skill-creator\scripts\quick_validate.py chinese-official-writing`：`Skill is valid!`。
+- `python -B tools\sync_adapters.py`：完成 canonical、共享目录、`.agents`、`.qwen`、Hermes、OpenClaw、README、skill card 和 Claude plugin 的镜像同步；脚本重写的 12 个文件与已提交内容 blob 一致，没有新增内容差异。
 - `git diff --check`：通过。
 
 第一次在受限沙箱中执行 unittest 时，`TemporaryDirectory` 清理返回 `WinError 5`；外层权限同命令通过。Promptfoo 首次在沙箱中因 Node 无法启动已存在的 Python 返回 20 个环境错误；指定系统 Python 并在外层权限复跑后 20/20 通过。两项均按环境噪声记录，没有写成产品失败。

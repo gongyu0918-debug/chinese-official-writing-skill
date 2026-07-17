@@ -14,7 +14,7 @@ SkillHub 精确目标仍为 `https://skillhub.cn/skills/chinese-official-writing
 
 发布口径按日常正常材料收束。材料本身不足以支撑用户点名章节、稀疏材料强行扩成长稿等场景留到 1.6.x 继续研究；它们不作为 1.5.16 阻断。已知风险包括：稀疏任务可能短写或在文后列实质缺口；一个样本的标题和落款未显式呈现发文机关；长稿仍可能残留保护性解释，一次局部收束后也可能转为数据折算和同义复述。上述问题可见、可局部处理，当前未形成三次以上同机制回退。
 
-隔离发布分支已完成全量 unittest 176/176、固定 1.5.15 与 current 确定性消融 108/108 对 108/108、Promptfoo smoke 20/20、focused version/mirror tests 55/55、canonical quick validate 和 `git diff --check`。Promptfoo 在沙箱内因 Node 无法启动已存在的 Python 首先返回环境错误；使用同一系统 Python 在外层权限复跑后为 20/20。正式 push、tag、GitHub Release、ClawHub 和 skillhub.cn 提交尚未执行；在平台发布闭环前，live 版本仍以本文件顶部的 1.5.15 记录为准。详细证据见 `tests/evidence/candidate-v-real-ab-result-20260717.md` 和 `tests/evidence/release-1.5.16.md`。
+隔离发布分支已完成全量 unittest 176/176、固定 1.5.15 与 current 确定性消融 108/108 对 108/108、Promptfoo smoke 20/20、focused version/mirror tests 55/55、canonical quick validate、`tools/sync_adapters.py` 镜像同步和 `git diff --check`。同步脚本重写的 12 个入口文件与已提交内容 blob 一致，没有形成额外产品 diff。Promptfoo 在沙箱内因 Node 无法启动已存在的 Python 首先返回环境错误；使用同一系统 Python 在外层权限复跑后为 20/20。正式 push、tag、GitHub Release、ClawHub 和 skillhub.cn 提交尚未执行；在平台发布闭环前，live 版本仍以本文件顶部的 1.5.15 记录为准。详细证据见 `tests/evidence/candidate-v-real-ab-result-20260717.md` 和 `tests/evidence/release-1.5.16.md`。
 
 ## 1.5.15 发布与接手记录
 
