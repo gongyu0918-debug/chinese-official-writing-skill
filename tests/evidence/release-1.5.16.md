@@ -1,4 +1,4 @@
-# 中文公文写作 1.5.16 紧急发布候选证据
+# 中文公文写作 1.5.16 紧急发布证据
 
 ## 发布目标
 
@@ -62,5 +62,5 @@
 
 - GitHub：`main` 已快进到发布提交 `172d1140905e38ce16ab6a16e89d9cb50248285e`；annotated tag `v1.5.16` 的 tag object 为 `d24b1a42434b3048e263343a45c730df94748a33`，解引用提交与发布提交一致。Latest Release 为 `https://github.com/gongyu0918-debug/chinese-official-writing-skill/releases/tag/v1.5.16`，`draft=false`、`prerelease=false`。首次创建 Release 时 GitHub API 读取 latest 超时；确认 Release 尚不存在后只重试创建操作，未重复推送 main 或 tag。
 - ClawHub：dry-run 与正式提交的 20 文件 fingerprint 均为 `b0aac7188804f04a17f6c945f038dd0746d2441edfb1672014fdb58186cbcacf`。正式提交只执行一次，返回 `status=published`、`versionId=k971781h9nhev0ty8ynw2t4xqn8aqee5`、`fileCount=20`。首次发布后只读检查仍显示公开 1.5.15，查询 1.5.16 返回异步传播中的 `Version not found`；不重复提交，待公开切换后再做隔离安装和 20 文件哈希闭环。
-- skillhub.cn：dry-run 返回精确 slug `chinese-official-writing` 和版本 1.5.16。正式提交只执行一次，回执为 `skillId=70149`、`versionId=141943`、20 个文件、fingerprint `db89678dbfbcba502e15cc080e9a00cae36ec16fadc378a150371d3ca5ddcfb4`、`tags.latest=1.5.16`；review、security scan、content audit 均为 pending。首次只读检查时公开 `latestVersion` 仍为 1.5.15，现有 Keen、Sanbu benign 报告仍对应上一已批准版本；不将其冒充为 1.5.16 扫描结论，也不重复提交。
+- skillhub.cn：dry-run 返回精确 slug `chinese-official-writing` 和版本 1.5.16。正式提交只执行一次，回执为 `skillId=70149`、`versionId=141943`、20 个文件、fingerprint `db89678dbfbcba502e15cc080e9a00cae36ec16fadc378a150371d3ca5ddcfb4`、`tags.latest=1.5.16`；提交时 review、security scan、content audit 均为 pending。2026-07-17 只读复核显示公开 `latestVersion=1.5.16`，Keen、Sanbu 仍为 queued；公开切换不替代内部审核字段，也不触发重复提交。
 - 小红书 Red SkillHub 未调用。ClawHub 与 skillhub.cn 的公开切换、扫描与隔离安装哈希在异步完成后补记；pending、`Version not found` 或公开索引暂未切换均不触发重复发布。
