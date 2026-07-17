@@ -33,8 +33,10 @@
 
 - `python -B -m unittest discover -s tests`：176/176 通过。
 - `python -B tools/run_real_prompt_ablation.py --baseline-root F:\Workspaces\chinese-official-writing-skill\output\release-baselines\github-1.5.15-candidate-k --baseline-label baseline-1.5.15 --current-root . --out output\release-1.5.16-deterministic-vs-1.5.15`：baseline 108/108，current 108/108。该工具不调用 LLM，只证明确定性支撑未回退。
+- `python -B tools/run_real_prompt_ablation.py --baseline-root F:\Workspaces\chinese-official-writing-skill\output\research-worktrees\candidate-v-low-density-info-selection-1.6 --baseline-label candidate-v-f72e4e5 --current-root . --out output\release-1.5.16-deterministic-vs-candidate-v`：Candidate V 产品与最终发布候选均为 108/108，说明版本面、README 和证据提交没有改变产品行为。
 - `python -B -m unittest tests.test_skill_boundary tests.test_real_prompt_ablation`：55/55 通过。
 - `python -B evals\official-writing\run_eval.py --suite smoke --judge-batch-size 2`：20/20 通过，judge 10/10 选择 skill，重复评审一致率 1.0。
+- `python -B tools/run_real_article_eval.py --out output\real-article-release-1.5.16`：Skill 路径 10 个公开样文的缺失要素 0/61、关键词命中 61/61；9 个匿名占位词风险样本继续作为人工复核提示，不把该确定性结果当作真实写作质量评分。
 - `python -B C:\Users\admin\.codex\skills\.system\skill-creator\scripts\quick_validate.py chinese-official-writing`：`Skill is valid!`。
 - `python -B tools\sync_adapters.py`：完成 canonical、共享目录、`.agents`、`.qwen`、Hermes、OpenClaw、README、skill card 和 Claude plugin 的镜像同步；脚本重写的 12 个文件与已提交内容 blob 一致，没有新增内容差异。
 - `git diff --check`：通过。
