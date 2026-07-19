@@ -32,3 +32,5 @@
 - ClawHub：dry-run 与正式提交均为 20 个文件，fingerprint `c63d57b3c9634578d3bd0796dae355be585d513d004a26eb798261f4e24da39d`；正式提交返回 `status=published`、`versionId=k970c3tg72b4g9aeq7eg3j89b18av50a`。首次只读检查时公开 `latestVersion` 和正确 tags 仍为 1.5.16，属于异步传播，不重复提交。
 - skillhub.cn（skillId 70149）：dry-run 返回精确 slug `chinese-official-writing` 和版本 1.5.17；正式提交返回 `ok=true`、`versionId=144593`、20 个文件、fingerprint `b44bd666b91fdb719b9f6709415ec50454538cc36fdac998aa381727ef5a62a8`、`tags.latest=1.5.17`，review、security scan、content audit 均为 pending。首次公开 API 检查已显示 `tags.latest=1.5.17`，但 `latestVersion` 仍为 1.5.16；现有 Keen、Sanbu benign 报告对应上一公开版本，不能写成 1.5.17 的扫描结论。
 - 小红书 Red SkillHub：按仓库纪律排除。
+
+发布回执文档提交前复跑 `tests.test_skill_boundary`，实际为 47/47 通过。回执提交 `648548e` 的 commit message 误写为 48/48；本行纠正该记录，测试输出和产品内容不受影响。
