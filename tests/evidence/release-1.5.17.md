@@ -28,7 +28,7 @@
 
 ## 三平台状态
 
-- GitHub：待发布。
-- ClawHub：待发布。
-- skillhub.cn（skillId 70149）：待发布。
+- GitHub：`main` 已快进到发布提交 `ddb8dc8dc82255c4a71b02ce3ae1e0a0ec0825ce`；annotated tag `v1.5.17` 的 tag object 为 `1d026579964dd034e3476634d34e08cd4b6a6fd4`，解引用提交为 `ddb8dc8`。正式 Release 为 `https://github.com/gongyu0918-debug/chinese-official-writing-skill/releases/tag/v1.5.17`，`draft=false`、`prerelease=false`。
+- ClawHub：dry-run 与正式提交均为 20 个文件，fingerprint `c63d57b3c9634578d3bd0796dae355be585d513d004a26eb798261f4e24da39d`；正式提交返回 `status=published`、`versionId=k970c3tg72b4g9aeq7eg3j89b18av50a`。首次只读检查时公开 `latestVersion` 和正确 tags 仍为 1.5.16，属于异步传播，不重复提交。
+- skillhub.cn（skillId 70149）：dry-run 返回精确 slug `chinese-official-writing` 和版本 1.5.17；正式提交返回 `ok=true`、`versionId=144593`、20 个文件、fingerprint `b44bd666b91fdb719b9f6709415ec50454538cc36fdac998aa381727ef5a62a8`、`tags.latest=1.5.17`，review、security scan、content audit 均为 pending。首次公开 API 检查已显示 `tags.latest=1.5.17`，但 `latestVersion` 仍为 1.5.16；现有 Keen、Sanbu benign 报告对应上一公开版本，不能写成 1.5.17 的扫描结论。
 - 小红书 Red SkillHub：按仓库纪律排除。
