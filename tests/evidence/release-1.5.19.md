@@ -26,7 +26,7 @@
 
 - `py -3.13 -m unittest discover -s tests`：350/350 通过。沙箱内首次运行因 Python 临时目录 ACL 出现 149 个 `PermissionError`；在沙箱外按原命令复跑后全部通过，该次失败记为环境噪声。
 - `py -3.13 tools/run_real_prompt_ablation.py --baseline-root <1.5.18> --baseline-label 1.5.18 --current-root . --out <out>`：1.5.18 为 108/108，current 为 108/108。
-- `py -3.13 evals/official-writing/run_eval.py --suite smoke --judge-batch-size 2`：20/20 通过，Skill 10/10，judge consistency 1.0。
+- `py -3.13 evals/official-writing/run_eval.py --suite smoke --judge-batch-size 2`：20/20 通过，Skill 10/10，judge consistency 1.0。沙箱内首次运行因 Node 无法启动系统 Python 产生 20 个环境错误；沙箱外按原命令复跑后无错误。
 - `py -3.13 <skill-creator>/scripts/quick_validate.py chinese-official-writing`：通过。
 - `python tools/sync_adapters.py`、镜像一致性测试与 `git diff --check`：通过。
 
@@ -39,8 +39,8 @@
 
 ## 发布回执
 
-- GitHub：待发布。
-- ClawHub：待发布。
-- skillhub.cn：待发布，精确目标仍为 `skillId=70149`。
+- GitHub：`origin/main=e22b0150666974f38c4ce9c3b75cf6757091e646`；annotated tag object 为 `9ec7b5f2b9f030b680d4f05a9cdb7127518697e7`，解引用提交为 `e22b0150666974f38c4ce9c3b75cf6757091e646`；[v1.5.19 Release](https://github.com/gongyu0918-debug/chinese-official-writing-skill/releases/tag/v1.5.19) 已公开，非 draft、非 prerelease。
+- ClawHub：dry-run 与正式提交均为 20 个文件，fingerprint `08d9f0ce40fe63e229a5851b9b7ab670b794b23b849e5c724a7ee1f4540c7f17`；正式提交返回 `status=published`、`versionId=k9771r8n90n85g2x6yd4g3gj1x8ax9fs`。首次发布后只读查询仍显示公开 1.5.18，属于索引传播；1.5.18 的 moderation 为 clean，不能写成 1.5.19 已完成审核，也不重复提交。
+- skillhub.cn：精确目标 `skillId=70149`；dry-run 返回 `chinese-official-writing@1.5.19`。正式提交返回 `ok=true`、`versionId=147664`、20 个文件、fingerprint `777381b76fdcde18c0e6f4c33c1487245ac6cb55dd6e18959c3a19e5eb48fd7a`、`tags.latest=1.5.19`；review、security scan、content audit 均为 pending。首次公开搜索仍显示 1.5.18，按异步传播处理，不重复提交。
 
-小红书 Red SkillHub 继续排除。本节在三平台操作后只按实际回执补录；提交成功、公开 latest、审核和安全扫描分别记录，不互相推断。
+小红书 Red SkillHub 继续排除。提交成功、公开 latest、审核和安全扫描分别记录，不互相推断。

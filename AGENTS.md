@@ -1,10 +1,12 @@
 # AGENTS.md
 
-## 1.5.19 发布准备
+## 1.5.19 正式发布
 
 1.5.19 以 `v1.5.18=9822aaee30df89c479a4e8c94c478424f6d426e3` 为固定发行基线。ClawHub/OpenClaw 普通 Skill 包移除仅供 Codex 生命周期 Hook 使用的 `delivery-review-gate.md`、`gate_stop_hook.py` 和 `review_gate.py`，继续保留只定位、不改稿的 `prose_lint.py`；复核清单删除一处重复的信息选择去向提示，canonical 与五个镜像合计减少 38 个字符；成稿后总审增加一条原子结论限定复核，只处理材料、用户和当前文种均未提出的结论对象，材料明确记载的结论状态保持原义。
 
 微减负三组正常自然 A/B 中 Candidate 两组小胜、baseline 一组小胜，没有形成 Candidate 独有的共性回退。多机制组合语言规则三题一胜、一负、一难分，已撤回；原子结论限定规则在确认 `final-review-layers.md` 实际读取后，以旧稿局部改写、巡检报告和食堂通报做固定 1.5.18 A/B，独立盲审三题均判 Candidate 胜出，且无 Candidate 独有的事实或状态硬回退。完整稿仍有重复解释，不在本轮追加第二条语言规则。跨宿主 Hook、共享检测内核和自动删除原型仍在隔离研究分支，不进入 1.5.19。完整记录见 `tests/evidence/release-1.5.19.md`。
+
+发布提交为 `e22b0150666974f38c4ce9c3b75cf6757091e646`，annotated tag object 为 `9ec7b5f2b9f030b680d4f05a9cdb7127518697e7`。GitHub main、tag 和 Release 已公开；ClawHub 正式提交返回 20 文件、fingerprint `08d9f0ce40fe63e229a5851b9b7ab670b794b23b849e5c724a7ee1f4540c7f17`、versionId `k9771r8n90n85g2x6yd4g3gj1x8ax9fs`；skillhub.cn 返回 `skillId=70149`、`versionId=147664`、20 文件、fingerprint `777381b76fdcde18c0e6f4c33c1487245ac6cb55dd6e18959c3a19e5eb48fd7a` 和 `tags.latest=1.5.19`。两家商店首次公开查询仍显示 1.5.18，属于异步传播；ClawHub 1.5.19 审核状态尚未出现，skillhub.cn 三项审核均为 pending，不重复发布。
 
 ## 1.5.18 正式发布
 
