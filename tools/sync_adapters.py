@@ -34,6 +34,12 @@ STALE_SPLIT_REFERENCES = (
     "references/official-writing.md",
 )
 
+OPENCLAW_SKILL_EXCLUDES = (
+    "references/delivery-review-gate.md",
+    "scripts/gate_stop_hook.py",
+    "scripts/review_gate.py",
+)
+
 
 def versioned_text(text: str) -> str:
     text = re.sub(r"chinese-official-writing@\d+\.\d+\.\d+", f"chinese-official-writing@{VERSION}", text)
@@ -145,6 +151,11 @@ def copy_skill(target: Path, mode: str) -> None:
         if stale_file.exists():
             stale_file.unlink()
     shutil.copytree(CANONICAL, target, ignore=ignore, dirs_exist_ok=True)
+    if mode == "openclaw":
+        for relative_path in OPENCLAW_SKILL_EXCLUDES:
+            packaged_file = target / relative_path
+            if packaged_file.exists():
+                packaged_file.unlink()
     patch_frontmatter(target, mode)
     if mode == "openclaw":
         (target / "README.md").write_text(

@@ -7,6 +7,11 @@ import unittest
 
 
 ROOT = Path(__file__).resolve().parents[1]
+OPENCLAW_SKILL_EXCLUDES = {
+    "references/delivery-review-gate.md",
+    "scripts/gate_stop_hook.py",
+    "scripts/review_gate.py",
+}
 
 
 def relative_files(root: Path) -> list[str]:
@@ -88,15 +93,20 @@ class SkillBoundaryTests(unittest.TestCase):
 
     def test_packaged_resource_mirrors_match_canonical_bytes(self) -> None:
         canonical = ROOT / "chinese-official-writing"
-        for target in [
-            ROOT / "hermes" / "skills" / "chinese-official-writing",
-            ROOT / "openclaw" / "skills" / "chinese_official_writing",
-        ]:
+        targets = [
+            (ROOT / "hermes" / "skills" / "chinese-official-writing", set()),
+            (ROOT / "openclaw" / "skills" / "chinese_official_writing", OPENCLAW_SKILL_EXCLUDES),
+        ]
+        for target, excludes in targets:
             for folder in ["agents", "references", "scripts"]:
                 canonical_folder = canonical / folder
                 target_folder = target / folder
                 with self.subTest(target=target, folder=folder):
-                    files = relative_files(canonical_folder)
+                    files = [
+                        relative
+                        for relative in relative_files(canonical_folder)
+                        if f"{folder}/{relative}" not in excludes
+                    ]
                     self.assertEqual(relative_files(target_folder), files)
                     for relative in files:
                         self.assertEqual(
@@ -104,6 +114,12 @@ class SkillBoundaryTests(unittest.TestCase):
                             (canonical_folder / relative).read_bytes(),
                             f"{target}/{folder}/{relative}",
                         )
+
+    def test_openclaw_skill_excludes_codex_gate_runtime(self) -> None:
+        packaged = ROOT / "openclaw" / "skills" / "chinese_official_writing"
+        for relative in OPENCLAW_SKILL_EXCLUDES:
+            self.assertFalse((packaged / relative).exists(), relative)
+        self.assertTrue((packaged / "scripts" / "prose_lint.py").is_file())
 
     def test_reference_loading_table_keeps_progressive_disclosure(self) -> None:
         text = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
