@@ -1,10 +1,12 @@
 # AGENTS.md
 
-## 1.5.18 发布候选
+## 1.5.18 正式发布
 
 1.5.18 以 `v1.5.17=ddb8dc8dc82255c4a71b02ce3ae1e0a0ec0825ce` 为固定功能基线。入口去除重复清单和复核说明，字符数减少 5.28%；支持生命周期 Hook 的 Codex 插件增加一次有限交付复核，流程为 `detect → prepare → finalize → emit`，最多一次局部修订，异常或不变量失败回到非空 D0。ClawHub 与 skillhub.cn 技能包携带脚本，但不会自动注册仓库根 Hook，不把该能力宣传为全宿主自动触发。
 
-真实同题 A/B 覆盖运行报告、供餐通知和会议纪要，Candidate 3/3 优于固定 1.5.17；长篇报告完成一次真实 D1 闭环。全量 unittest 349/349、固定基线消融两版 108/108、Promptfoo 20/20、quick validate、镜像同步和 diff check 均通过。正式平台回执见 `tests/evidence/release-1.5.18.md`，发布完成后更新本段状态。
+真实同题 A/B 覆盖运行报告、供餐通知和会议纪要，Candidate 3/3 优于固定 1.5.17；长篇报告完成一次真实 D1 闭环。全量 unittest 349/349、固定基线消融两版 108/108、Promptfoo 20/20、quick validate、镜像同步和 diff check 均通过。
+
+GitHub `main`、annotated tag `v1.5.18` 和正式 Release 已发布，发布提交为 `9822aaee30df89c479a4e8c94c478424f6d426e3`。ClawHub 已提交一次，回执 `versionId=k97865b6s05pt2g316qb0sqftd8axg46`、23 个文件、fingerprint `4ee56cff53aaf260255e07739efa6b962a44c0e366f59ab21e6d81f73ff4fe41`；skillhub.cn 已向 `skillId=70149` 提交一次，回执 `versionId=147406`、23 个文件、fingerprint `57d1e018e85e4bad3ecfb46d0a4b87348fa3fa4c2fee47d335ba84b33191c458`、`tags.latest=1.5.18`，review、content audit 和 security scan 均为 pending。首次公开查询仍显示 1.5.17，按异步传播处理，不重复发布。完整回执见 `tests/evidence/release-1.5.18.md`。
 
 ## 1.5.17 正式发布
 
