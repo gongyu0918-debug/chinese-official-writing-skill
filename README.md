@@ -1,6 +1,6 @@
 # 中文公文写作 Skill
 
-[![Version](https://img.shields.io/badge/version-1.5.18-blue)](https://github.com/gongyu0918-debug/chinese-official-writing-skill/releases/tag/v1.5.18)
+[![Version](https://img.shields.io/badge/version-1.5.19-blue)](https://github.com/gongyu0918-debug/chinese-official-writing-skill/releases/tag/v1.5.19)
 [![ClawHub](https://img.shields.io/badge/ClawHub-chinese--official--writing-2f80ed)](https://clawhub.ai/gongyu0918-debug/skills/chinese-official-writing)
 [![SkillHub](https://img.shields.io/badge/SkillHub-chinese--official--writing-e8590c)](https://skillhub.cn/skills/chinese-official-writing)
 [![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
@@ -60,7 +60,7 @@
 
 ## 快速安装
 
-当前工作版本：`chinese-official-writing@1.5.18`
+当前工作版本：`chinese-official-writing@1.5.19`
 
 平台入口：[ClawHub](https://clawhub.ai/gongyu0918-debug/skills/chinese-official-writing) · [skillhub.cn](https://skillhub.cn/skills/chinese-official-writing)。通用 Agent Skills 安装器可直接使用：
 
@@ -72,7 +72,7 @@ npx skills add https://github.com/gongyu0918-debug/chinese-official-writing-skil
 
 ## 模型消融与真实写稿
 
-测试从早期无 Skill/带 Skill 对照，逐步扩展到固定版本消融、真实写稿盲审和多轮改稿。下表汇总 1.5.18 入口减负与可选交付复核、1.5.17 事实关系锚、1.5.16 信息选择修复及其继承的发布证据。原始任务、成稿、匿名映射、独立复核和汇总记录均保存在仓库内；早期 270 任务模型消融保留脱敏聚合摘要。
+测试从早期无 Skill/带 Skill 对照，逐步扩展到固定版本消融、真实写稿盲审和多轮改稿。下表汇总 1.5.19 平台清洁包与复核清单微减负、1.5.18 入口减负与可选交付复核、1.5.17 事实关系锚、1.5.16 信息选择修复及其继承的发布证据。原始任务、成稿、匿名映射、独立复核和汇总记录均保存在仓库内；早期 270 任务模型消融保留脱敏聚合摘要。
 
 | 调试方向 | 主要稿件与边界 | 当前证据 |
 | --- | --- | --- |

@@ -1,5 +1,11 @@
 # AGENTS.md
 
+## 1.5.19 发布准备
+
+1.5.19 以 `v1.5.18=9822aaee30df89c479a4e8c94c478424f6d426e3` 为固定发行基线。ClawHub/OpenClaw 普通 Skill 包移除仅供 Codex 生命周期 Hook 使用的 `delivery-review-gate.md`、`gate_stop_hook.py` 和 `review_gate.py`，继续保留只定位、不改稿的 `prose_lint.py`；复核清单删除一处重复的信息选择去向提示，canonical 与五个镜像合计减少 38 个字符；ANTI-AI、报告/通报叶子及材料稀疏轻量卡增加结论式否定尾巴复核，按命题来源和证据强度保留必要状态，进行态沿用材料原有主体、动作、对象和状态。
+
+微减负三组正常自然 A/B 中 Candidate 两组小胜、baseline 一组小胜，没有形成 Candidate 独有的共性回退。结论式否定尾巴两题 A/B 为 Candidate 一胜一负：报告题消除目标 P0 后仍因重复和约 29 字篇幅偏差落后，通报题胜出；该结果只支持 P0 定向改善，不宣称整体语言全面领先。全量 unittest 350/350、固定 1.5.18 消融两版 108/108、Promptfoo 20/20、quick validate 和 diff check已通过。跨宿主 Hook、共享检测内核和自动删除原型仍在隔离研究分支，不进入 1.5.19。完整记录见 `tests/evidence/release-1.5.19.md`。
+
 ## 1.5.18 正式发布
 
 1.5.18 以 `v1.5.17=ddb8dc8dc82255c4a71b02ce3ae1e0a0ec0825ce` 为固定功能基线。入口去除重复清单和复核说明，字符数减少 5.28%；支持生命周期 Hook 的 Codex 插件增加一次有限交付复核，流程为 `detect → prepare → finalize → emit`，最多一次局部修订，异常或不变量失败回到非空 D0。ClawHub 与 skillhub.cn 技能包携带脚本，但不会自动注册仓库根 Hook，不把该能力宣传为全宿主自动触发。
