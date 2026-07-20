@@ -1,6 +1,6 @@
 # 中文公文写作 Skill
 
-[![Version](https://img.shields.io/badge/version-1.5.17-blue)](https://github.com/gongyu0918-debug/chinese-official-writing-skill/releases/tag/v1.5.17)
+[![Version](https://img.shields.io/badge/version-1.5.18-blue)](https://github.com/gongyu0918-debug/chinese-official-writing-skill/releases/tag/v1.5.18)
 [![ClawHub](https://img.shields.io/badge/ClawHub-chinese--official--writing-2f80ed)](https://clawhub.ai/gongyu0918-debug/skills/chinese-official-writing)
 [![SkillHub](https://img.shields.io/badge/SkillHub-chinese--official--writing-e8590c)](https://skillhub.cn/skills/chinese-official-writing)
 [![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
@@ -53,13 +53,14 @@
 | 文种与专项 references | 按需补充文种骨架、办理要素、论证链、GB/T 9704 格式和 AI 算力材料规则 |
 | 分层复核 references | 从段落、小节到全文检查事实、视角、结构、格式和自然表达 |
 | `scripts/prose_lint.py` | 提供可选的格式、重复和成品残留线索，作为轻量审查层的确定性补充 |
+| Codex 插件 Hook | 在支持生命周期 Hook 的 Codex 插件环境中执行一次有限复核；异常时回到非空初稿，修订不会循环 |
 | `agents/openai.yaml` | 提供界面展示和默认调用信息 |
 
 渐进式路由让短任务只读取轻量卡，完整公文再进入相应文种叶子，技术类材料只加载命中的专项规则。这样既保留必要边界，也减少无关规则对真实写稿的干扰。
 
 ## 快速安装
 
-当前工作版本：`chinese-official-writing@1.5.17`
+当前工作版本：`chinese-official-writing@1.5.18`
 
 平台入口：[ClawHub](https://clawhub.ai/gongyu0918-debug/skills/chinese-official-writing) · [skillhub.cn](https://skillhub.cn/skills/chinese-official-writing)。通用 Agent Skills 安装器可直接使用：
 
@@ -71,7 +72,7 @@ npx skills add https://github.com/gongyu0918-debug/chinese-official-writing-skil
 
 ## 模型消融与真实写稿
 
-测试从早期无 Skill/带 Skill 对照，逐步扩展到固定版本消融、真实写稿盲审和多轮改稿。下表汇总 1.5.17 事实关系锚、1.5.16 信息选择修复及其继承的发布证据。原始任务、成稿、匿名映射、独立复核和汇总记录均保存在仓库内；早期 270 任务模型消融保留脱敏聚合摘要。
+测试从早期无 Skill/带 Skill 对照，逐步扩展到固定版本消融、真实写稿盲审和多轮改稿。下表汇总 1.5.18 入口减负与可选交付复核、1.5.17 事实关系锚、1.5.16 信息选择修复及其继承的发布证据。原始任务、成稿、匿名映射、独立复核和汇总记录均保存在仓库内；早期 270 任务模型消融保留脱敏聚合摘要。
 
 | 调试方向 | 主要稿件与边界 | 当前证据 |
 | --- | --- | --- |
@@ -83,7 +84,8 @@ npx skills add https://github.com/gongyu0918-debug/chinese-official-writing-skil
 | Candidate B 定向实写 | 多材料报告、异常报告、说明、会议纪要 | 8 份有效同题成稿与 1 份初始路由未命中原稿均留存；该组只作局部风险核验，不单独宣传整稿胜率 |
 | Candidate V 信息选择收口 | 进度报告、正常故障报告、稀疏长稿 | 3 组同模型 A/B；两组降低材料外程序或外围决策扩写，正常故障报告两版均无保护性外扩；极端材料只作 1.6.x 风险记录 |
 | 事实关系锚 | 时间、因果、归属关系及二次改稿 | 日常报告与决定状态确认各有一组正向；两组保持难分，一组二次改稿逐字一致；单次会议纪要状态升级未复现，继续作为已知风险观察 |
-| 工程回归 | 单元测试、固定 1.5.16 消融、Promptfoo、公开样文 | 177/177；两版均 108/108；Promptfoo 20/20；公开样文缺失要素 0/61 |
+| 入口减负与有限复核 | 日常报告、供餐通知、会议纪要、长篇试运行报告 | SKILL 入口减少 5.28%；三组同题盲审均优于 1.5.17；一次真实 D1 在事实不变量校验后闭环，无空稿和循环 |
+| 工程回归 | 单元测试、固定 1.5.17 消融、Promptfoo、公开样文 | 349/349；两版均 108/108；Promptfoo 20/20；公开样文缺失要素 0/61 |
 
 60 份发布级真实写稿由两名独立 verifier 盲审。综合结果中，v1.5.13 与 1.5.14 都是 29 PASS、1 个对称 WARN、0 FAIL；硬边界复核两版均为 30 PASS、0 WARN、0 FAIL。真实模型小样本评测与发布级写稿覆盖会议纪要、情况说明、通知、请示、报告、字段式申请、只审不改、普通采购、AI 算力需求和旧稿防回流。
 
@@ -130,6 +132,7 @@ npx skills add https://github.com/gongyu0918-debug/chinese-official-writing-skil
 
 主要证据：
 
+- [`release-1.5.18.md`](tests/evidence/release-1.5.18.md)
 - [`release-1.5.17.md`](tests/evidence/release-1.5.17.md)
 - [`release-1.5.16.md`](tests/evidence/release-1.5.16.md)
 - [`release-1.5.15.md`](tests/evidence/release-1.5.15.md)

@@ -1,0 +1,45 @@
+{
+  "description": "Drive one bounded Candidate AI review transaction and verify the emitted final output.",
+  "hooks": {
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"$PLUGIN_ROOT/skills/chinese-official-writing/scripts/gate_stop_hook.py\"",
+            "commandWindows": "py -3 -c \"import os,runpy;runpy.run_path(os.path.join(os.environ['PLUGIN_ROOT'],'skills','chinese-official-writing','scripts','gate_stop_hook.py'),run_name='__main__')\"",
+            "timeout": 10,
+            "statusMessage": "Binding the current request to the delivery gate"
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"$PLUGIN_ROOT/skills/chinese-official-writing/scripts/gate_stop_hook.py\"",
+            "commandWindows": "py -3 -c \"import os,runpy;runpy.run_path(os.path.join(os.environ['PLUGIN_ROOT'],'skills','chinese-official-writing','scripts','gate_stop_hook.py'),run_name='__main__')\"",
+            "timeout": 10,
+            "statusMessage": "Recording the bounded delivery-gate state"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"$PLUGIN_ROOT/skills/chinese-official-writing/scripts/gate_stop_hook.py\"",
+            "commandWindows": "py -3 -c \"import os,runpy;runpy.run_path(os.path.join(os.environ['PLUGIN_ROOT'],'skills','chinese-official-writing','scripts','gate_stop_hook.py'),run_name='__main__')\"",
+            "timeout": 30,
+            "statusMessage": "Checking the bounded delivery-gate exit"
+          }
+        ]
+      }
+    ]
+  }
+}

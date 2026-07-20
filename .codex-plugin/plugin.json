@@ -1,0 +1,26 @@
+{
+  "name": "chinese-official-writing",
+  "version": "1.5.18",
+  "description": "中文公文写作 Skill 的 Codex 适配插件，提供可选的一次性交付门禁触发增强。",
+  "author": {
+    "name": "gongyu0918-debug",
+    "url": "https://github.com/gongyu0918-debug"
+  },
+  "repository": "https://github.com/gongyu0918-debug/chinese-official-writing-skill",
+  "license": "MIT-0",
+  "keywords": ["chinese", "official-writing", "skill"],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "中文公文写作",
+    "shortDescription": "起草、改写和复核中文公文及正式工作材料",
+    "longDescription": "提供中文公文文种路由、事实边界、篇幅规划、写后复核和可选的一次性交付门禁。",
+    "developerName": "gongyu0918-debug",
+    "category": "Productivity",
+    "capabilities": ["Write", "Review"],
+    "websiteURL": "https://github.com/gongyu0918-debug/chinese-official-writing-skill",
+    "defaultPrompt": [
+      "根据现有材料起草一份可直接使用的情况报告。",
+      "请把这份会议记录整理成会议纪要正文。"
+    ]
+  }
+}
