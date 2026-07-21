@@ -6,6 +6,8 @@
 
 Candidate BB 三组真实 A/B 为三题 Candidate 胜；Candidate BC 三组报告 A/B 解盲后也为三题 Candidate 胜。两轮均无事实、数字、主体、状态、文种、格式、篇幅或输出模式硬回退，无 P0 保护性外扩。语言胜负受生成噪声影响，只把确定性减载和无观察到回退作为发布依据。完整记录见 `tests/evidence/release-1.5.20.md`。
 
+发布提交为 `025e500206b3140546f7789c6746996e170da8d9`，annotated tag object 为 `0499f143e656910a77a89093dc9029c0a7a0b93b`。GitHub main、tag 和 Release 已公开；ClawHub 返回 22 文件、fingerprint `83d471df092a32197f06bffbd2e78da09e79012e854698a24bf2cd2dc7eef55f`、versionId `k97ahy7c2zsst7qhecjvdtn0s18azjbx`；skillhub.cn 返回 `skillId=70149`、`versionId=148210`、22 文件、fingerprint `6ef90b1306785d3ab89798bbf83754795218dbfe107c50db63e53c076bf4b814` 和 `tags.latest=1.5.20`。两家商店首次公开查询仍显示 1.5.19；ClawHub clean 对应旧公开版，skillhub.cn 三项审核为 pending，不重复发布。
+
 ## 1.5.19 正式发布
 
 1.5.19 以 `v1.5.18=9822aaee30df89c479a4e8c94c478424f6d426e3` 为固定发行基线。ClawHub/OpenClaw 普通 Skill 包移除仅供 Codex 生命周期 Hook 使用的 `delivery-review-gate.md`、`gate_stop_hook.py` 和 `review_gate.py`，继续保留只定位、不改稿的 `prose_lint.py`；复核清单删除一处重复的信息选择去向提示，canonical 与五个镜像合计减少 38 个字符；成稿后总审增加一条原子结论限定复核，只处理材料、用户和当前文种均未提出的结论对象，材料明确记载的结论状态保持原义。
