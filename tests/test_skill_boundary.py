@@ -297,6 +297,24 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assertIn("使用事实性汇报语言", report)
         self.assertIn("专题报告先给结论", report)
 
+    def test_institution_rules_have_a_dedicated_routed_leaf(self) -> None:
+        skill = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
+        leaf = (
+            ROOT
+            / "chinese-official-writing"
+            / "references"
+            / "genre-playbook-institution-rules.md"
+        ).read_text(encoding="utf-8")
+
+        for keyword in ["制度", "规定", "办法", "管理办法", "实施细则", "操作规程"]:
+            self.assertIn(keyword, skill.split("---", 2)[1])
+        self.assertIn("references/genre-playbook-institution-rules.md", skill)
+        self.assertIn("内容较短、事项单一时连续列条", leaf)
+        self.assertIn("通知壳只写发布对象、执行要求和附件关系", leaf)
+        self.assertIn("围绕实际操作顺序写清主体、触发条件、步骤、时限、结果和记录", leaf)
+        self.assertIn("仅在材料明确时写入", leaf)
+        self.assertIn("同时读取 `format-gbt9704.md`", leaf)
+
     def test_format_reference_clarifies_document_number_brackets(self) -> None:
         text = (ROOT / "chinese-official-writing" / "references" / "format-gbt9704.md").read_text(encoding="utf-8")
 
