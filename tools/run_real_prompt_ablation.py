@@ -434,11 +434,6 @@ CASES: list[PromptCase] = [
         checks={
             "file_terms": {
                 "chinese-official-writing/SKILL.md": ["默认不外搜", "搜索结果只作为来源参考", "待确认事项"],
-                "chinese-official-writing/references/workflow.md": [
-                    "联网搜索使用边界",
-                    "默认按用户给定材料写稿",
-                    "不把联网搜索作为起草、改稿或复核的默认步骤",
-                ],
                 "chinese-official-writing/references/handling-elements.md": [
                     "默认不外搜补缺项",
                     "不写成已确认事实",
@@ -453,15 +448,6 @@ CASES: list[PromptCase] = [
         checks={
             "file_terms": {
                 "chinese-official-writing/SKILL.md": ["现行政策", "联网核验", "来源、日期或检索口径"],
-                "chinese-official-writing/references/workflow.md": [
-                    "最新",
-                    "当前",
-                    "今日",
-                    "现行政策",
-                    "近期数据",
-                    "发布日期、访问日期或检索口径",
-                    "来源冲突、无法核验或工具不可用",
-                ],
                 "chinese-official-writing/references/review-checklist.md": [
                     "搜索结果",
                     "正文外说明来源、日期或检索口径",
@@ -476,10 +462,6 @@ CASES: list[PromptCase] = [
         checks={
             "file_terms": {
                 "chinese-official-writing/SKILL.md": ["不因出现单位名称就搜索单位公开样文、固定格式或写作风格"],
-                "chinese-official-writing/references/workflow.md": [
-                    "只出现单位名称",
-                    "不触发搜索单位公开样文、固定格式或写作风格",
-                ],
                 "chinese-official-writing/references/handling-elements.md": [
                     "不因出现单位名称就搜索单位公开样文、固定格式或写作风格",
                     "使用中性称谓和通用文种格式",
@@ -642,16 +624,12 @@ CASES: list[PromptCase] = [
         prompt="用户明确要求核验现行政策后起草通知；请把来源名称、发布机关、文号或链接、发布日期、访问日期和用于哪一段放正文外。",
         checks={
             "file_terms": {
-                "chinese-official-writing/references/workflow.md": [
-                    "来源名称",
-                    "发布机关或发布主体",
-                    "文号或链接",
-                    "用于哪一处",
-                    "是否已核验",
-                ],
                 "chinese-official-writing/references/review-checklist.md": [
                     "搜索来源清单",
                     "发布机关或主体",
+                    "文号或链接",
+                    "用于哪一处",
+                    "是否已核验",
                     "单一网络来源",
                 ],
             },

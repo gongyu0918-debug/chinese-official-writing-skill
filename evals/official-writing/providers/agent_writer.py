@@ -54,6 +54,9 @@ GENRE_REFERENCES: dict[str, list[str]] = {
         "references/workflow.md",
         "references/handling-elements.md",
     ],
+    "external_research": [
+        "references/external-research.md",
+    ],
     "format": [
         "references/format-gbt9704.md",
     ],
@@ -279,6 +282,17 @@ ANTI_AI_TASK_MARKERS = ("AI 味", "AI味", "降 AI 味", "降AI味", "模板化"
 STYLE_TASK_MARKERS = ("去口语化", "降 AI 味", "降AI味", "润色", "正式一点", "统一语气", "顺稿")
 ROUTING_TASK_MARKERS = ("文种不清", "判断文种", "选择文种", "请示还是报告", "函还是通知")
 ARGUMENT_TASK_MARKERS = ("论证", "可行性", "必要性", "方案比较", "成本比较")
+EXTERNAL_RESEARCH_TASK_MARKERS = (
+    "联网搜索",
+    "联网核验",
+    "搜索公开来源",
+    "核验公开来源",
+    "现行政策",
+    "近期数据",
+    "最新政策",
+    "最新数据",
+    "今日数据",
+)
 
 _BATCH_CACHE: dict[str, dict[str, str]] = {}
 
@@ -395,6 +409,10 @@ def _task_requires_complex_route(tasks: list[str]) -> bool:
     return any(int(match.group(1)) >= 800 for task in tasks for match in LONG_FORM_RE.finditer(task))
 
 
+def _task_requires_external_research(tasks: list[str]) -> bool:
+    return any(_contains_marker(task, EXTERNAL_RESEARCH_TASK_MARKERS) for task in tasks)
+
+
 def _tasks_are_review_only(tasks: list[str]) -> bool:
     def requests_rewrite(task: str) -> bool:
         normalized = task
@@ -457,6 +475,8 @@ def _reference_paths_for_genres(genres: list[str], tasks: list[str] | None = Non
             paths.extend(GENRE_REFERENCES["anti_ai"])
         if any(marker in task for task in tasks for marker in FORMAT_TASK_MARKERS):
             paths.extend(GENRE_REFERENCES["format"])
+        if _task_requires_external_research(tasks):
+            paths.extend(GENRE_REFERENCES["external_research"])
         return list(dict.fromkeys(paths))
 
     sparse_route = _task_uses_sparse_card(genres, tasks, ai_compute)
@@ -483,6 +503,8 @@ def _reference_paths_for_genres(genres: list[str], tasks: list[str] | None = Non
         paths.extend(GENRE_REFERENCES["ai_compute"])
     if any(marker in task for task in tasks for marker in FORMAT_TASK_MARKERS):
         paths.extend(GENRE_REFERENCES["format"])
+    if _task_requires_external_research(tasks):
+        paths.extend(GENRE_REFERENCES["external_research"])
 
     seen: set[str] = set()
     ordered: list[str] = []

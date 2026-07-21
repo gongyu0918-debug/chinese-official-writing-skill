@@ -190,7 +190,7 @@ class RealPromptAblationTests(unittest.TestCase):
         self.assertIn("轻量语气替换建议", checks_by_id["P030"]["file_terms"]["chinese-official-writing/references/official-style.md"])
         self.assertIn("默认不外搜", checks_by_id["P031"]["file_terms"]["chinese-official-writing/SKILL.md"])
         self.assertIn("现行政策", checks_by_id["P032"]["file_terms"]["chinese-official-writing/SKILL.md"])
-        self.assertIn("只出现单位名称", checks_by_id["P033"]["file_terms"]["chinese-official-writing/references/workflow.md"])
+        self.assertIn("不因出现单位名称就搜索单位公开样文、固定格式或写作风格", checks_by_id["P033"]["file_terms"]["chinese-official-writing/SKILL.md"])
         self.assertIn("通知壳", checks_by_id["P034"]["file_terms"]["chinese-official-writing/SKILL.md"])
         self.assertIn("被印发文件正文", checks_by_id["P034"]["file_terms"]["chinese-official-writing/references/workflow.md"])
         self.assertIn("不可丢要素", checks_by_id["P035"]["file_terms"]["chinese-official-writing/references/workflow.md"])

@@ -567,6 +567,9 @@ class SkillBoundaryTests(unittest.TestCase):
     def test_v141_search_boundary_stays_lightweight_and_opt_in(self) -> None:
         skill = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
         workflow = (ROOT / "chinese-official-writing" / "references" / "workflow.md").read_text(encoding="utf-8")
+        external_research = (
+            ROOT / "chinese-official-writing" / "references" / "external-research.md"
+        ).read_text(encoding="utf-8")
         elements = (ROOT / "chinese-official-writing" / "references" / "handling-elements.md").read_text(
             encoding="utf-8"
         )
@@ -577,22 +580,22 @@ class SkillBoundaryTests(unittest.TestCase):
             encoding="utf-8"
         )
 
-        for text in [skill, workflow, checklist, openclaw_skill]:
+        for text in [skill, workflow, external_research, checklist, openclaw_skill]:
             self.assertIn("联网搜索", text)
         self.assertIn("联网核验", elements)
         self.assertIn("默认不外搜", skill)
-        self.assertIn("不把联网搜索作为起草、改稿或复核的默认步骤", workflow)
+        self.assertIn("普通起草、改稿和复核沿用入口的默认不外搜边界", workflow)
         for term in ["最新", "当前", "今日", "现行政策", "近期数据"]:
-            self.assertIn(term, workflow)
+            self.assertIn(term, external_research)
         self.assertIn("搜索结果只作为来源参考", skill)
         self.assertIn("来源、日期或检索口径", skill)
-        self.assertIn("发布日期、访问日期或检索口径", workflow)
-        self.assertIn("来源冲突、无法核验或工具不可用", workflow)
+        self.assertIn("发布日期、访问日期或检索口径", external_research)
+        self.assertIn("来源冲突、无法核验或工具不可用", external_research)
         self.assertIn("默认不外搜补缺项", elements)
         self.assertIn("未因单位名称自动搜索单位公开样文", checklist)
         for text in [skill, elements, openclaw_skill]:
             self.assertIn("不因出现单位名称就搜索单位公开样文", text)
-        self.assertIn("只出现单位名称，不触发搜索单位公开样文", workflow)
+        self.assertIn("只出现单位名称，不触发搜索单位公开样文", external_research)
         skill_files = relative_files(ROOT / "chinese-official-writing")
         for forbidden in ["search_units.py", "unit_style_cache.json", "unit-style-registry.md"]:
             self.assertNotIn(forbidden, skill_files)
@@ -620,6 +623,9 @@ class SkillBoundaryTests(unittest.TestCase):
         )
         information_selection = (
             ROOT / "chinese-official-writing" / "references" / "information-selection.md"
+        ).read_text(encoding="utf-8")
+        external_research = (
+            ROOT / "chinese-official-writing" / "references" / "external-research.md"
         ).read_text(encoding="utf-8")
         agents = (ROOT / "AGENTS.md").read_text(encoding="utf-8")
 
@@ -650,7 +656,7 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assertIn("评价强度", official_style)
         self.assertIn("评价强度超过证据", anti_ai)
         self.assertIn("证据强度", checklist)
-        self.assertIn("来源名称、发布机关或发布主体、文号或链接", workflow)
+        self.assertIn("来源名称、发布机关或发布主体、文号或链接", external_research)
         self.assertIn("搜索来源清单", checklist)
         self.assertIn("正文内容已经定稿", format_ref)
         self.assertIn("默认另存新版本", format_ref)

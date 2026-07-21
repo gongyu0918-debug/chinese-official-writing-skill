@@ -123,6 +123,7 @@ metadata:
 | `references/information-selection.md` | 起草前/改稿前 | 起草、改稿、压缩或合稿时先读一次，用于按输出模式、材料状态、事项关联性和办理必要性决定信息进入正文、保持状态、省略或短列缺口。 |
 | `references/task-route-cards.md` | 起草前/改稿前 | 材料稀疏、短稿、低上下文局部修改，或用户明确要求不新增事实、只按已给材料写时，先判断是否完整命中材料稀疏的情况说明/通报/报告、未决事项会议纪要、短通知/限字通知、二次局部修改四类卡片之一；卡片不能覆盖或任务转为复杂时，再读 `workflow.md`、`genre-playbooks.md` 等长 reference。 |
 | `references/workflow.md` | 起草前 | 长文、复杂改稿、多材料合稿、任务模式路由、急件处理，或用户要求不要新增小标题、保留主送/落款/标题等结构锁定项时。 |
+| `references/external-research.md` | 按需核验 | 仅在用户明确要求搜索、核验公开来源，或任务包含最新、当前、今日、现行政策、近期数据等时效事实时读取。 |
 | `references/genre-routing.md` | 起草前 | 文种、行文方向或请示/报告/通知/函等边界不明确时。 |
 | `references/handling-elements.md` | 起草前 | 需要核对主体、对象、事项、依据、时限、附件、反馈渠道和请批事项时。 |
 | `references/argument-chains.md` | 起草前 | 需要组织请示、报告、通知、方案、可研、技术材料等论证链条时。 |

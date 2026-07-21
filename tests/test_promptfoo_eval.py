@@ -204,6 +204,19 @@ class PromptfooProviderTests(unittest.TestCase):
         self.assertNotIn("references/task-route-cards.md", complex_refs)
         self.assertIn("references/format-gbt9704.md", format_refs)
 
+    def test_external_research_leaf_is_loaded_only_for_explicit_research_tasks(self) -> None:
+        ordinary_refs = provider._reference_paths_for_genres(
+            ["报告"],
+            ["根据给定材料起草一份1200字完整报告。"],
+        )
+        research_refs = provider._reference_paths_for_genres(
+            ["通知"],
+            ["核验现行政策和公开来源后起草通知。"],
+        )
+
+        self.assertNotIn("references/external-research.md", ordinary_refs)
+        self.assertIn("references/external-research.md", research_refs)
+
     def test_complex_unknown_genre_keeps_an_explicit_argument_route(self) -> None:
         refs = provider._reference_paths_for_genres(
             ["通用材料"],
