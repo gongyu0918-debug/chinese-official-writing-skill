@@ -217,6 +217,10 @@ class PromptfooProviderTests(unittest.TestCase):
         self.assertNotIn("references/external-research.md", ordinary_refs)
         self.assertIn("references/external-research.md", research_refs)
 
+        for marker in ["搜索", "最新", "当前", "今日"]:
+            refs = provider._reference_paths_for_genres(["报告"], [f"请核验{marker}数据后起草报告。"])
+            self.assertIn("references/external-research.md", refs)
+
     def test_complex_unknown_genre_keeps_an_explicit_argument_route(self) -> None:
         refs = provider._reference_paths_for_genres(
             ["通用材料"],
