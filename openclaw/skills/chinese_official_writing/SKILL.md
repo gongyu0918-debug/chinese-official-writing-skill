@@ -140,7 +140,8 @@ metadata:
 | `references/proofreading-checklist.md` | 定稿前 | 成稿前做 AI 写稿轻量校对，或改写含用户引用、成语、数据、金额、日期、比例、数量的材料时。 |
 | `references/review-checklist.md` | 定稿前 | 需要段落、小节、全文三级执行清单，或用户要求格式核验、语气检查、只审不改时。 |
 | `references/genre-playbooks.md` | 按文种/专项选读 | 会议纪要、讲话稿、工作总结/周报、调研/研究/可研、采购公告、审查材料、AI 算力专项等需要快速进入对应场景骨架时读取。 |
-| `references/genre-checklist.md` | 按文种选读 | 通知、请示、报告、命令、公报、决议、议案、函、批复、公告、通告、公示、通报、纪要、讲话稿、述职等文种细查时。 |
+| `references/genre-checklist-report.md` | 按文种选读 | 报告、情况报告或情况说明需要细查文种功能和结构时。 |
+| `references/genre-checklist.md` | 按文种选读 | 通知、请示、命令、公报、决议、议案、函、批复、公告、通告、公示、通报、纪要、讲话稿、述职等其他文种细查时。 |
 | `references/format-gbt9704.md` | 按格式选读 | 用户要求 GB/T 9704-2012、Word、docx、红头文件、发文字号、版头版记、附件、印章或版式时。 |
 | `references/ai-compute-docs.md` | 专项选读 | 仅在 AI 算力、GPU/服务器租赁、模型服务、采购、租赁、可研、成本比较、SLA、安全或验收材料中读取。 |
 

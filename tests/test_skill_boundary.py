@@ -279,6 +279,24 @@ class SkillBoundaryTests(unittest.TestCase):
         for genre in ["公示", "征求意见函", "采购公告"]:
             self.assertIn(f"| {genre} |", elements)
 
+    def test_report_checklist_is_routed_as_an_atomic_leaf(self) -> None:
+        skill = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
+        playbooks = (ROOT / "chinese-official-writing" / "references" / "genre-playbooks.md").read_text(
+            encoding="utf-8"
+        )
+        common = (ROOT / "chinese-official-writing" / "references" / "genre-checklist.md").read_text(
+            encoding="utf-8"
+        )
+        report = (ROOT / "chinese-official-writing" / "references" / "genre-checklist-report.md").read_text(
+            encoding="utf-8"
+        )
+
+        self.assertIn("references/genre-checklist-report.md", skill)
+        self.assertIn("`genre-checklist-report.md`", playbooks)
+        self.assertNotIn("## 报告\n", common)
+        self.assertIn("使用事实性汇报语言", report)
+        self.assertIn("专题报告先给结论", report)
+
     def test_format_reference_clarifies_document_number_brackets(self) -> None:
         text = (ROOT / "chinese-official-writing" / "references" / "format-gbt9704.md").read_text(encoding="utf-8")
 
@@ -759,6 +777,10 @@ class SkillBoundaryTests(unittest.TestCase):
         genre_checklist = (ROOT / "chinese-official-writing" / "references" / "genre-checklist.md").read_text(
             encoding="utf-8"
         )
+        report_checklist = (
+            ROOT / "chinese-official-writing" / "references" / "genre-checklist-report.md"
+        ).read_text(encoding="utf-8")
+        genre_checklist_coverage = genre_checklist + "\n" + report_checklist
 
         self.assertIn("正式交付前要素核对卡", skill)
         self.assertIn("正式交付前要素核对卡", format_ref)
@@ -814,9 +836,9 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assertIn("不写成正文标签", genre_checklist)
         self.assertIn("不覆盖用户模板", genre_checklist)
         for section in ["通知", "请示", "报告", "方案", "申请", "函"]:
-            self.assertIn(f"## {section}", genre_checklist)
+            self.assertIn(f"## {section}", genre_checklist_coverage)
         for term in ["目的或背景", "请批事项", "结论或总体情况", "责任分工", "申请主体", "商请或告知事项"]:
-            self.assertIn(term, genre_checklist)
+            self.assertIn(term, genre_checklist_coverage)
 
     def test_v148_anti_ai_borrowing_stays_soft_and_official(self) -> None:
         anti_ai = (ROOT / "chinese-official-writing" / "references" / "anti-ai-patterns.md").read_text(
