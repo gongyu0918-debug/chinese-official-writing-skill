@@ -110,6 +110,22 @@ class SkillBoundaryTests(unittest.TestCase):
                 for relative in canonical_files:
                     self.assertEqual((target / relative).read_bytes(), (canonical / relative).read_bytes(), relative)
 
+    def test_second_revision_fact_mapping_has_one_complete_entry_rule(self) -> None:
+        text = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
+
+        self.assertEqual(text.count("事实映射式二次修改"), 1)
+        for phrase in [
+            "用户已给事实",
+            "直接概括",
+            "未支持推断",
+            "只处理本轮修改",
+            "不作为默认成稿前阶段",
+            "不暂停交付",
+            "不循环追问",
+            "不输出映射表",
+        ]:
+            self.assertIn(phrase, text)
+
     def test_packaged_resource_mirrors_match_canonical_bytes(self) -> None:
         canonical = ROOT / "chinese-official-writing"
         targets = [
