@@ -94,8 +94,8 @@ class SkillBoundaryTests(unittest.TestCase):
         text = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
 
         self.assertIn("Markdown 格式残留", text)
-        self.assertIn("活动方案、实施方案等长稿正文的小标题", text)
-        self.assertIn("不用 `**加粗**`", text)
+        self.assertIn("正式正文的小标题和段落标签按上文交付模式使用普通文本", text)
+        self.assertIn("不用 Markdown `**` 加粗、`###`、代码块或 `---` 横线包装", text)
 
     def test_primary_adapter_mirrors_match_canonical_bytes(self) -> None:
         canonical = ROOT / "chinese-official-writing"
