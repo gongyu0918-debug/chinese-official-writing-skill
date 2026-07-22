@@ -16,13 +16,9 @@
 | `proofreading-checklist.md` 第 10 行“`不新增模型、API、默认联网、事实核验流程或脚本硬门禁。`” | 看似工具链实现保证；其他位置仍有校对范围和默认不联网规则 | 三题 Candidate 全部技术无效：两题篇幅硬回退，一题漏指定标点问题；Baseline 三题均有效 | 完整撤回，不继续拆词救援；证据 `proofreading-toolchain-boundary-preregister-20260723.md` |
 | `format-gbt9704.md` 多处另存、模板优先、正式要素和 Word 衔接重复 | 静态可合并 283 字 | 三题 Word A/B 为 Candidate 1 胜、Baseline 1 胜、1 平；Candidate 独有标题上缘裁切 | 整组撤回。若重启，每次只动一行并做三组 Word 实际渲染 |
 
-## 下一项独立原子候选
+## 已撤回的第三个 Kimi 原子点
 
-`genre-playbooks.md` 第 25 行只删除尾部实现保证：
-
-> 不新增默认联网、API、Word/PDF 或脚本硬门禁
-
-保留“本文件只定义文种骨架和专项风险”以及信息选择委派。该项面向文种 playbook，可能承担弱模型范围收束，保守优先级低于前两项；须单独预注册通知、报告、纪要三组真实 A/B。没有通过前不与其他点位合并。
+`genre-playbooks.md` 第 25 行尾部实现保证“`不新增默认联网、API、Word/PDF 或脚本硬门禁`”曾作为独立原子删除。工程门全部通过，但真实运行存在预注册输入漂移，且实际调度的 T01 中 Candidate 独有成文日期错误，Baseline 正确。该项已完整撤回，未进入匿名语言盲审；详见 `genre-playbooks-maintenance-tail-preregister-20260723.md`。当前不再把它列为可直接继续的下一候选。
 
 ## 功能问题另案
 

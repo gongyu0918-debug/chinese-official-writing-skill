@@ -37,3 +37,23 @@ Baseline 与 Candidate 使用 `gpt-5.6-sol`、`thinking=high` 和逐字一致的
 - `quick_validate`；
 - canonical 与五份发行镜像一致性；
 - `git diff --check`。
+
+## 实际结果：协议无效并撤回
+
+本轮不进入匿名语言盲审，产品改动已完整撤回。原因有两层，均不能被其他题目的软质量胜负抵消：
+
+1. 调度给写手的 T01、T02 文本与本文件预注册文本不一致。T01 的成文日期由预注册的 2026 年 7 月 23 日漂移为 7 月 17 日，T02 也改成了“材料未提供……”表述。两臂收到的实际输入彼此一致，但不再是预注册任务，因此本轮不能作为该原子删减的正式验收证据。
+2. 在实际调度的 T01 中，Candidate 首稿把用户指定的 2026 年 7 月 17 日写成 7 月 23 日，Baseline 保留了 7 月 17 日。这是 Candidate 独有的日期硬回退；即使把本轮降格为探索性 A/B，也不满足“三题均不劣”的保留条件。
+
+六份稿件均为首个输出，无补抽。T02、T03 不再补做盲审，也不用于稀释 T01 的硬回退。稿件 SHA-256：
+
+- T01 Baseline：`2B6A7B4791B782EB1C7F87F1F3AE75F53B3485101DA73820EDB945705FD55B02`
+- T01 Candidate：`DDB59EDF21028FE8E61DCAD3E801FF6518DC6A9E218E9B2285E1915635F33975`
+- T02 Baseline：`E87D0C205483544A482CEF54232B47DBDE18FEBD7786FFA8981550861F67C9A8`
+- T02 Candidate：`05BE0F3827E1CDAEB49F0975F0A57A974182E60496BEB31B1D1C7B4BD893FBB8`
+- T03 Baseline：`2697A1EE105280E18437965DF650EEAF91864F8CE76F39B2B558952EDCA9CD51`
+- T03 Candidate：`6ED96CFF108E1BF6495322F34B6712CB7DE270C3CC378765BD1E61F5D4921D71`
+
+工程侧在撤回前实际完成：全量 unittest 355/355；固定基线与 Candidate 确定性消融均为 108/108；Promptfoo smoke 20/20、0 error、judge consistency 1.0；quick validate 通过；六份 `genre-playbooks.md` 镜像 SHA-256 一致；`git diff --check` 通过。这些结果只证明工程接口未破坏，不能推翻真实稿件与预注册协议问题。
+
+最终处置：该尾句恢复，相关精确断言恢复。它仍可被视为高熵线索，但没有形成可保留的正向减负；若未来重新研究，必须重新预注册并逐字锁定输入，不能复用本轮成绩。
