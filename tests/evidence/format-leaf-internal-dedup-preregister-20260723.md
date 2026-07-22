@@ -34,3 +34,37 @@
 3. 已有 DOCX 局部修改：保留源文件样式、页眉页脚、页码和正文其他内容，只修改指定文字并另存新文件。
 
 Baseline 与 Candidate 使用同一模型、同一 thinking 和逐字一致的原始任务，各取首个技术有效输出，不补抽。writer 相互独立，匿名 verifier 只看原任务、DOCX 提取结果和版式检查结果。验收要求为三题均无事实、数字、日期、主体、文种、输出模式、缺项处理、标题字体、正文字体、页码、落款、样式、正文字符或文件交付回退；写作观感和直接使用成本至少持平。任一题出现 Candidate 独有回退即撤回产品改动，只保留失败证据。
+
+## 实际结果
+
+结论：`FAIL`，产品改动已完整撤回。该轮只保留预注册与结果记录，`format-gbt9704.md` 及五份发行镜像均已恢复至固定基线内容。
+
+### 工程验证
+
+- 叶子规范化字符数由 3115 降至 2832，减少 283 字（9.09%）。
+- 首次全量单测因结构断言要求保留精确锚点“不得编造文号”出现 2 项失败；在原有核对卡内恢复该锚点后重跑，全量 `unittest` 355/355 通过。
+- 固定基线与 Candidate 的确定性消融均为 108/108。
+- Promptfoo smoke 20/20，错误 0，judge consistency 1.0；该轮输出副本保存在被忽略的 `output/format-leaf-internal-dedup-20260723/promptfoo/`。
+- `quick_validate`、发行镜像一致性和 `git diff --check` 通过。
+
+### 三组真实 Word A/B
+
+六份稿件均由独立 writer 生成。文件级审计确认三题两臂的事实和基础格式检查通过；T03 两臂均只修改指定文字、未覆盖源文件，并保留稳定 OOXML 部件。独立匿名 verifier 又通过 Word 实际导出 PDF、转为 PNG 后逐页检查。
+
+| 任务 | 匿名映射 | 匿名结论 | 揭盲结论 |
+| --- | --- | --- | --- |
+| T01 情况报告 | A=Candidate，B=Baseline | A 胜；B 标题字体为 SimSun | Candidate 胜 |
+| T02 服务时间通知 | A=Baseline，B=Candidate | A 胜；B 标题贴近页面顶边且上缘裁切 | Baseline 胜，Candidate 独有硬回退 |
+| T03 DOCX 局部修改 | A=Candidate，B=Baseline | 难分；两稿渲染像素哈希一致 | 难分 |
+
+原始文件 SHA-256：
+
+- T01 Baseline `F57DE7660B258B9EFA5F46D6F9762ADC496A318393EEB5B53356E0550CB7236C`；Candidate `3FBB547AF03EA1A87F08BA7DB4F5C9EFB34ECC501EBD71DE96EA1A86278BDE44`。
+- T02 Baseline `68E58C2D980CE0D6FD44BC765868DD10DC7F2A6F3E60160FB5113E7CEC199E6B`；Candidate `AE78555B87A98C711C8E505B31DBC6ECC06AB2BF070F781910221E5439BECDB3`。
+- T03 Baseline `3165C2CA71E79969A702506B19A0B5483C712DA80A800E8A35339AB83DE30A05`；Candidate `636A11E2182C073D4B2CBCC50740472998CFE99928F13F7DB52933F82755445A`。
+
+### 失败机制与后续边界
+
+这次改动同时合并了另存、正式要素、模板优先和 Word 衔接四处重复说明。T02 的视觉回退不能从现有一次样本归因到其中某一行，也不能据此追加格式特例；因此按预注册要求撤回整组产品 diff。后续若继续测试格式叶，只允许把单条重复说明作为独立变量，每条仍需三组高度相关 Word A/B，不能沿用本轮的混合成绩。
+
+被忽略的原始证据位于 `output/format-leaf-internal-dedup-20260723/`，包括 `audit.json`、六份 DOCX、writer 回执、Promptfoo 副本和匿名复核报告；仓库内记录只保存可复核结论与哈希，不把这些二进制样稿纳入发行包。
