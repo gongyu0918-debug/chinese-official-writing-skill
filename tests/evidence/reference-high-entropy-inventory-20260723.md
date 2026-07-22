@@ -8,6 +8,23 @@
 | --- | --- | --- |
 | `task-route-cards.md` 的“弱模型测试优先看事实边界、要点置入和用户禁止项” | 删除。它描述评测优先级，不承担运行时写作规则 | 提交 `bc1477c`；真实 A/B 初轮 2 胜 1 负，经用户授权的同题复现再胜 2 次，总计 Candidate 4 胜 1 负，无 Candidate 硬回退；本轮检查点复核该记录与现存原稿一致 |
 
+## 同轮其他入口与叶子任务
+
+本轮判断不只依据上述局部 reference 实验。以下已经完成并留有独立证据：
+
+| 方向 | 结果 | 证据边界 |
+| --- | --- | --- |
+| 低频职责声明与 Word 细则下沉 | 保留；入口减少，三组真实 A/B 均为 Candidate 胜 | `entry-specialty-relief-20260722.md`，产品提交 `0fdd6f1` |
+| AI 算力专项质量规则转入既有叶子 | 保留；两组真实 A/B 均为 Candidate 胜 | `entry-specialty-relief-ai-compute-20260722.md`，产品提交 `9423e49` |
+| 占位符反例去重 | 保留；一组字节级一致，一组 Candidate 胜 | `entry-duplicate-placeholder-relief-20260722.md`，产品提交 `a65c0d9` |
+| Markdown 反例去重 | 保留；一组字节级一致，一组难分 | `entry-duplicate-markdown-relief-20260722.md`，产品提交 `39cd442` |
+| 二次事实映射入口去重 | 保留；入口减少 49 字符，真实 A/B 一胜一平，无硬回退 | `entry-second-revision-dedup-preregister-20260723.md`，产品提交 `f22a472` |
+| 会议纪要检查项新增专用叶子 | 撤回；T01 难分、T02 Baseline 胜 | `entry-minutes-checklist-leaf-preregister-20260723.md` |
+| 审稿模式长规则整体下沉 | 工程门撤回；确定性用例 5 处失败，未生成真实稿 | `entry-review-mode-relief-preregister-20260723.md` |
+| 审稿模式保守压缩 35 字符 | 撤回；真实 A/B 一胜一负 | `entry-review-mode-compact-preregister-20260723.md` |
+
+这些结果说明：现有正向收益主要来自“专项内容转入已有明确叶子”和“同一硬边界的重复反例去重”；新增入口指针、整体下沉审稿承重规则、删除工具边界说明均未形成稳定收益。
+
 ## 已复现并拒绝的高熵点
 
 | 点位 | 静态判断 | 实际结果 | 处置 |
@@ -27,6 +44,7 @@
 - `task-route-cards.md` 的“先判断是否需要联网或参考公开同文种材料”与入口默认不外搜存在解释张力。需要无联网需求、明确联网核验、明确参考公开同文种材料三组路由与写稿验证。
 - `genre-playbook-institution-rules.md` 对章、节、条、款、项、目的层级映射不够清晰。先核对权威制度格式，再测短制度、完整层级制度和操作规程；外部建议漏掉“节”，不直接采用。
 - `SKILL.md` 把“任务模式路由”列入 `workflow.md` 加载条件，字面上可能让轻量任务也加载 workflow。修改属于核心加载条件，需独立授权、实际读取轨迹和长文/复杂改稿回归。
+- `SKILL.md` 的 `prose_lint.py` 段含 CI/发布用 `--strict --fail-on medium`。静态看具有维护者语气，但现有测试明确要求该命令只留在 Skill、不进公开 README，且脚本严格模式有独立回归；在没有脚本调用任务和普通写作双向验证前，不把它按纯噪音删除。
 
 ## 拒绝直接采用
 
