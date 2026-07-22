@@ -355,6 +355,8 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assertIn("当前日期是否未被误用为维护时间", checklist)
         self.assertIn("[具体项目名称]", skill)
         self.assertIn("（成文日期待确认）", skill)
+        self.assertEqual(skill.count("（成文日期待确认）"), 1)
+        self.assertIn("交付前按上文硬边界清理占位", skill)
         self.assertIn("明示成文日期缺失、待确认或需另行确认时，不使用当前日期补落款", skill)
         self.assertIn("识别为正式报送结构缺口", skill)
         self.assertIn("不使用当前日期补落款", skill)
