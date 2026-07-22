@@ -27,6 +27,8 @@
 
 ## 工程验证
 
+证据保存边界：以下命令均在本轮实际运行，但 unittest 与 Promptfoo 使用通用输出位置，后续实验已覆盖其原始文件；本实验独立命令日志为 `unavailable`。以下数字作为本轮执行记录保留，不以当前通用输出文件冒充该次原始回执。
+
 - 定向边界测试：2 项通过。
 - `python -m unittest discover -s tests`：355 项通过。
 - 固定基线确定性消融：Baseline 108/108，Candidate 108/108。

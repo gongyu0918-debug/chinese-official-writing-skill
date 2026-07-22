@@ -26,6 +26,8 @@
 
 ## 工程结果
 
+证据保存边界：以下命令均在本轮实际运行，但 unittest 与 Promptfoo 使用通用输出位置，后续运行已覆盖其原始文件；本实验独立命令日志为 `unavailable`。确定性消融目录仍保留，真实 A/B 原稿以文内哈希核验。
+
 - 入口规范化字符数由 10,102 降至 10,067，减少 35。
 - 全量 unittest 356 项通过；固定基线确定性消融 Baseline 108/108、Candidate 108/108；Promptfoo smoke 20/20，0 failed，0 errors，Skill 10 胜，一致性 1.0；quick validate、镜像同步和 `git diff --check` 通过。
 
