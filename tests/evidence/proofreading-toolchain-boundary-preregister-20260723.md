@@ -37,3 +37,43 @@ Baseline 与 Candidate 使用 `gpt-5.6-sol`、`thinking=high` 和逐字一致的
 - `quick_validate`；
 - canonical 与五份发行镜像一致性；
 - `git diff --check`。
+
+## 实际结果
+
+结论：`FAIL`，候选修改已完整撤回，只保留本证据记录。`proofreading-checklist.md`、五份发行镜像和测试断言恢复至固定基线 `6261427` 的文本。该点位不进入后续版本。
+
+### 工程门
+
+- 首次全量 unittest 为 354/355：唯一失败是测试精确固定了被删的维护句。只删除该精确锚点后，`python -m unittest discover -s tests` 为 355/355；默认不联网反查、不审核人类稿件事实真伪、真实性核验不属于默认修正范围、脚本只提示等行为断言仍保留。
+- 确定性消融：Baseline 108/108，Candidate 108/108。
+- Promptfoo smoke：以系统 Python 在沙箱外运行同一 suite，20/20、0 failed、0 errors、judge consistency 1.0。
+- `quick_validate`：`Skill is valid!`；六份 Candidate 叶子 SHA-256 一致，为 `D6459CDBF7FB6D4438AE25B535E1FD2CDC58C0F6168895D910C00B82BE3E9503`；`git diff --check` 通过。
+
+### 三题真实 A/B 与独立硬项核验
+
+六名独立 writer 均使用 `gpt-5.6-sol`、`thinking=high`，逐字一致原始任务，各自只提交首个输出，无重试。独立 verifier 仅核验硬项；Candidate 已在三题全部技术无效，因此没有继续做语言优劣盲审，也没有补抽。
+
+| 题目 | Baseline | Candidate | Candidate 独有硬回退 |
+| --- | --- | --- | --- |
+| T01 普通顺稿 | 476 字，420—560 字内，技术有效 | 179 字，低于下限 | 是，篇幅硬回退 |
+| T02 引用与政策名称保真 | 535 字，430—570 字内；名称和引语保真 | 603 字，高于上限；名称和引语保真 | 是，篇幅硬回退 |
+| T03 只审不改 | 完整识别错词、半角逗号、并列分句间顿号及其他指定项 | 漏列“7台正常、1台离线”中并列分句间顿号问题 | 是，指定检查项覆盖回退 |
+
+六稿均未出现 Candidate 独有的事实、数字、日期、主体或状态错改；没有调用联网或脚本工具，也没有输出工具说明。失败原因是 Candidate 三题均没有满足原始任务的硬项，而对应 Baseline 均通过。按预注册门，候选撤回。
+
+### 原始稿哈希
+
+| 样本 | SHA-256 |
+| --- | --- |
+| T01 Baseline | `CAB67E5DB2F8422186D55AD5A41D8494308F2DE1930B84DD131D4FC5CDC0E598` |
+| T01 Candidate | `BFB05350A93D97A0E905FC84D81C66DF9F014C8C86803C2970F0C7A740DF46F6` |
+| T02 Baseline | `BED6807E06F74CB53EB36CABCD0D5D322AB2B8D253E07E95FD39F8FBACA5EF44` |
+| T02 Candidate | `105C809EB73AE1111916BC01091209957D5A168561580406EBEFF3160B52EB8F` |
+| T03 Baseline | `1149C0BD5983550F53B046D7FC2C41D4CA47EF6FB62E7705D9C1368C3A356A54` |
+| T03 Candidate | `B24C6F10B454C551268A0DEA689D93855E734BEDEDA56307FAB6CAE93EE6DF57` |
+
+原始稿、writer 回执和独立硬项报告保存在被忽略的 `output/proofreading-toolchain-boundary-20260723/real-ab/`。本结果足以拒绝删除该维护句；不据此判断 1.5.21 产品基线有同类回退。
+
+## 对外部高熵标记的处置
+
+外部审计把整行列为维护性减负点。静态上该判断有依据，但三题真实 A/B 均出现 Candidate 独有硬回退，未达到“拆分后不劣”门槛，因此拒绝直接删除。和上一项前缀实验一样，事实说明此处虽然看似维护者语句，仍可能承担弱提示强度；本轮不继续拆词或改写救援。
