@@ -10,7 +10,7 @@ tags:
   - gongwen
   - ai-compute
 metadata:
-  version: "1.5.20"
+  version: "1.5.21"
   compatible_agents:
     - codex
     - claude-code
@@ -29,7 +29,7 @@ metadata:
     install_project: ".qwen/skills/chinese-official-writing"
     entry: "SKILL.md"
   openclaw:
-    version: "1.5.20"
+    version: "1.5.21"
     emoji: "📝"
     tags:
       - chinese

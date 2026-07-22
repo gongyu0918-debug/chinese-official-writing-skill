@@ -1,6 +1,6 @@
 # 中文公文写作 Skill
 
-[![Version](https://img.shields.io/badge/version-1.5.20-blue)](https://github.com/gongyu0918-debug/chinese-official-writing-skill/releases/tag/v1.5.20)
+[![Version](https://img.shields.io/badge/version-1.5.21-blue)](https://github.com/gongyu0918-debug/chinese-official-writing-skill/releases/tag/v1.5.21)
 [![ClawHub](https://img.shields.io/badge/ClawHub-chinese--official--writing-2f80ed)](https://clawhub.ai/gongyu0918-debug/skills/chinese-official-writing)
 [![SkillHub](https://img.shields.io/badge/SkillHub-chinese--official--writing-e8590c)](https://skillhub.cn/skills/chinese-official-writing)
 [![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
@@ -14,6 +14,7 @@
 - **文种与行文关系**：区分法定公文、事务文书和工作材料，按上行、下行和平行关系控制语气、结构与办理要求。
 - **事实与模板边界**：锁定主体、数字、日期、责任、期限、附件和事项状态，保留用户模板、字段顺序与最新版底稿。
 - **办理要素与论证链**：按请示、报告、通知协调、方案建设、可研审查和技术材料选择相应的办理要素与论证路径。
+- **制度类专项路由**：按制度、规定、办法、实施细则和操作规程选择连续条文、章条结构、职责程序及印发附件关系。
 - **渐进式路由**：短任务使用轻量卡，完整公文进入对应文种叶子，技术类材料按需加载专项规则。
 - **创作、改稿与复核**：分别处理从零起草、基于底稿修改、只审不改、压缩和 Word 正文衔接。
 - **轻量审查**：分层核对事实、视角、标题、格式、重复事项和模板化表达，并提供可选的确定性风险线索。
@@ -25,7 +26,7 @@
 | 场景 | 主要内容 |
 | --- | --- |
 | 法定公文 | 通知、请示、报告、函、批复、意见、决定、公告、通告、公报、通报、议案、决议、命令（令）、纪要 |
-| 事务与工作材料 | 说明、申请、复函、公示、征求意见函、工作要点、总结、调研报告、讲话稿、致辞、述职报告 |
+| 事务与工作材料 | 制度、规定、办法、管理办法、实施细则、操作规程、说明、申请、复函、公示、征求意见函、工作要点、总结、调研报告、讲话稿、致辞、述职报告 |
 | 方案与审查材料 | 实施方案、建设方案、可研报告、采购公告、审查材料、项目论证和办理要素核对 |
 | 技术类正式材料 | AI 算力服务可研、GPU/服务器租赁、模型服务需求、成本比较、SLA、并发、安全、运维和验收 |
 | 改稿与复核 | 顺稿、压缩、去口语化、降 AI 味、文种校验、格式核验、只审不改、Word 正文衔接 |
@@ -60,7 +61,7 @@
 
 ## 快速安装
 
-当前工作版本：`chinese-official-writing@1.5.20`
+当前工作版本：`chinese-official-writing@1.5.21`
 
 平台入口：[ClawHub](https://clawhub.ai/gongyu0918-debug/skills/chinese-official-writing) · [skillhub.cn](https://skillhub.cn/skills/chinese-official-writing)。通用 Agent Skills 安装器可直接使用：
 
@@ -72,7 +73,7 @@ npx skills add https://github.com/gongyu0918-debug/chinese-official-writing-skil
 
 ## 模型消融与真实写稿
 
-测试从早期无 Skill/带 Skill 对照，逐步扩展到固定版本消融、真实写稿盲审和多轮改稿。下表汇总 1.5.20 渐进式路由减载，1.5.19 平台清洁包、复核清单微减负与原子结论限定复核，1.5.18 入口减负与可选交付复核，1.5.17 事实关系锚，1.5.16 信息选择修复及其继承的发布证据。原始任务、成稿、匿名映射、独立复核和汇总记录均保存在仓库内；早期 270 任务模型消融保留脱敏聚合摘要。
+测试从早期无 Skill/带 Skill 对照，逐步扩展到固定版本消融、真实写稿盲审和多轮改稿。下表汇总 1.5.21 制度类专项路由，1.5.20 渐进式路由减载，1.5.19 平台清洁包、复核清单微减负与原子结论限定复核，1.5.18 入口减负与可选交付复核，1.5.17 事实关系锚，1.5.16 信息选择修复及其继承的发布证据。原始任务、成稿、匿名映射、独立复核和汇总记录均保存在仓库内；早期 270 任务模型消融保留脱敏聚合摘要。
 
 | 调试方向 | 主要稿件与边界 | 当前证据 |
 | --- | --- | --- |
@@ -87,7 +88,8 @@ npx skills add https://github.com/gongyu0918-debug/chinese-official-writing-skil
 | 入口减负与有限复核 | 日常报告、供餐通知、会议纪要、长篇试运行报告 | SKILL 入口减少 5.28%；三组同题盲审均优于 1.5.17；一次真实 D1 在事实不变量校验后闭环，无空稿和循环 |
 | 原子结论限定复核 | 旧稿局部改写、巡检整改报告、食堂异常通报 | 固定 1.5.18 同题盲审 3/3 判 1.5.19 胜出；材料原有结论状态保留，完整稿仍有重复风险 |
 | 渐进式拆叶 | 普通复杂写稿、公开来源核验、报告类细查 | 外部核验规则按需加载，报告细查路径减少 3549 字符；两轮各 3 组真实 A/B 均未见硬回退 |
-| 工程回归 | 单元测试、固定 1.5.19 消融、Promptfoo、公开样文 | 352/352；两版均 108/108；Promptfoo 20/20；公开样文缺失要素 0/61 |
+| 制度类专项路由 | 管理办法、来访制度、实施细则、短篇规定、印发通知与操作规程 | 新增实施细则、规定两题相对 1.5.20 均小胜且硬检查通过；既有样本保留条文偏碎、职责复述和 DOCX 视觉未核验风险 |
+| 工程回归 | 单元测试、固定 1.5.20 消融、Promptfoo、镜像与清洁包 | 353/353；两版均 108/108；Promptfoo 20/20；两家商店清洁包均为 23 个文件 |
 
 60 份发布级真实写稿由两名独立 verifier 盲审。综合结果中，v1.5.13 与 1.5.14 都是 29 PASS、1 个对称 WARN、0 FAIL；硬边界复核两版均为 30 PASS、0 WARN、0 FAIL。真实模型小样本评测与发布级写稿覆盖会议纪要、情况说明、通知、请示、报告、字段式申请、只审不改、普通采购、AI 算力需求和旧稿防回流。
 
@@ -172,6 +174,7 @@ npx skills add https://github.com/gongyu0918-debug/chinese-official-writing-skil
 
 主要证据：
 
+- [`release-1.5.21.md`](tests/evidence/release-1.5.21.md)
 - [`release-1.5.20.md`](tests/evidence/release-1.5.20.md)
 - [`release-1.5.19.md`](tests/evidence/release-1.5.19.md)
 - [`release-1.5.18.md`](tests/evidence/release-1.5.18.md)
