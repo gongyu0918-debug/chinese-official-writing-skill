@@ -48,6 +48,18 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assertIn("没有用户提供依据时，不编造真实单位", text)
         self.assertIn("法律、财务、采购、审计、政策适用、保密审查和正式签发结论由相应责任主体确认", readme)
 
+    def test_ai_compute_detail_is_loaded_from_specialty_reference(self) -> None:
+        skill = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
+        specialty = (ROOT / "chinese-official-writing" / "references" / "ai-compute-docs.md").read_text(
+            encoding="utf-8"
+        )
+
+        self.assertNotIn("起草算力、采购、租赁或服务器租赁材料时", skill)
+        self.assertIn("references/ai-compute-docs.md", skill)
+        self.assertIn("Token、并发、存储、带宽", specialty)
+        self.assertIn("SLA", specialty)
+        self.assertIn("验收", specialty)
+
     def test_adapter_skill_copies_keep_boundaries(self) -> None:
         paths = [
             ROOT / "skills" / "chinese-official-writing" / "SKILL.md",
