@@ -37,3 +37,65 @@ Baseline 与 Candidate 使用同一模型、同一 thinking、逐字一致的原
 - `quick_validate`；
 - canonical 与五份发行镜像一致性；
 - `git diff --check`。
+
+## 实际结果
+
+首轮结论：`FAIL`，产品和结构断言改动当时已完整撤回；下列结论保留首次三题的原始判定，不以后续补证覆盖。
+
+### 工程验证
+
+- 首次全量单测 354/355；唯一失败是测试把待删除的“事实边界、要点置入和用户禁止项”评测话语本身固定为结构锚点。删除该精确断言后，全量 `unittest` 355/355 通过；其余事实、轻量路由、Markdown 清理和禁止扩写断言均未放宽。
+- 固定基线 `9040aae` 与 Candidate 的确定性消融均为 108/108；该基线与预注册提交 `bf86636` 的产品文件一致，二者差异仅为研究证据记录。
+- `quick_validate` 通过。
+- Promptfoo 在沙箱内两次均因 Node 子进程无法启动已核验 Python 路径而得到 20 个环境错误，未进入产品断言；按同一 suite 在沙箱外原样复跑后为 20/20、错误 0、judge consistency 1.0。
+- canonical 与五份发行镜像同步，`git diff --check` 通过。
+
+### 三组真实 A/B
+
+六份稿件均由独立 writer 生成，实际读取各自物理隔离的 `SKILL.md`、`information-selection.md` 和 `task-route-cards.md`；篇幅和 Markdown 文件级检查通过。匿名映射与结论如下：
+
+| 任务 | 匿名映射 | 匿名结论 | 揭盲结论 |
+| --- | --- | --- | --- |
+| T01 情况说明 | A=Baseline，B=Candidate | A 胜；B 末段“综上”再次整组复述事实 | Baseline 胜 |
+| T02 未决会议纪要 | A=Candidate，B=Baseline | A 胜；B 连续三层解释无决定和不确定状态 | Candidate 胜 |
+| T03 短通知 | A=Baseline，B=Candidate | B 胜；B 信息完整且更紧凑 | Candidate 胜 |
+
+六稿事实、数字、日期、主体、状态、文种、篇幅、输出模式和 Markdown 清理硬检查均通过；T02 两稿均未新增决定、责任分工或完成期限，T03 两稿均未新增巡查、报送或追责执行链。Candidate 为两胜一负，但预注册要求三题全部非劣，不能用多数胜出替代，因此撤回。
+
+原始文件 SHA-256：
+
+- T01 Baseline `5243D785AC26B75DFAD1839E779A0315E54EA8321D6ECC826D503FAB2A053E21`；Candidate `7467C209DCADA32ACD42BA1335CCFAB2E5B55EF6334BFAAC3CDE682F3E844D3E`。
+- T02 Baseline `5C28DF6643165AE6F600296C086B3764767AF02608E94BED0F401A48DA7DCBA3`；Candidate `767D59F3D05EBBF4E52F9A8D51B8611277FB3F88611F3CC0663FA96CB0B0862D`。
+- T03 Baseline `832EA0F52A8DE33C3E38208F9D7B8CFBE6342A02529B618ED2A08F649CF2C50C`；Candidate `4819D3B09C6D19B9C9ED0D681E6B64FD4A6E6C887059C43B11E30ACACB7E1C1B`。
+
+### 失败边界
+
+删除内容经两次独立静态审计确认为评测层话语，工程能力也未受影响；真实 A/B 的一负表现为 Candidate 独有的全文末段重复。单次样本不能证明该评测分句与重复之间存在因果，也不能据此添加“禁止综上”之类样稿特例。按本轮严格门槛保留原文，后续只可把这项作为运行时噪音登记，不再补抽稀释失败。
+
+被忽略的原始证据位于 `output/task-route-cards-runtime-noise-20260723/`，包括六份正文、writer 回执、确定性消融和匿名盲审报告。
+
+## 揭盲后定向补证修订
+
+首次三题揭盲后，用户明确要求判断 T01 一负是否属于正常生成波动，并授权补充证据后再决定是否删除。新增运行开始前固定以下边界：
+
+- 只复现原 T01，原始任务逐字不变；不换题、不修改 Prompt、不补语义规则。
+- 再运行两组独立 Baseline/Candidate，各取首个技术有效输出，不补抽。
+- 两组 Candidate 均须无硬回退且均不劣于各自 Baseline；任一组再次出现 Candidate 独有的整组事实复述或更高直接修改成本，就维持 `FAIL` 和撤回状态。
+- 两组均持平或胜出时，结合删除句不承载段落结构、复述或成文规则这一静态因果证据，把首次 T01 一负登记为孤立波动；此时总证据为原三题加两次失败点复现，才允许改判为 `PASS` 并恢复原子删除。
+- 补证不改变首次结果，不用多数票掩盖硬回退；若通过，证据正文必须同时保留首次一负和补证依据。
+
+### 补证结果与最终判定
+
+两组均按原 T01 逐字任务完成，四个 writer 只读取各自物理隔离的 `SKILL.md`、`information-selection.md` 和 `task-route-cards.md`；篇幅、文种、主体、日期、关键数字、正文模式和 Markdown 清理检查通过。
+
+| 复现 | 匿名映射 | 匿名结论 | 揭盲结论 |
+| --- | --- | --- | --- |
+| R1 | A=Candidate，B=Baseline | A 胜 | Candidate 胜 |
+| R2 | A=Baseline，B=Candidate | B 胜；A 把后续检查对象扩成 6 台终端 | Candidate 胜，Baseline 独有材料外扩写 |
+
+补证原始文件 SHA-256：
+
+- R1 Baseline `5635B6C4DA0B12EFF1237C3D2EB1A752E4DD57920B69C44B000E0460AD98F81A`；Candidate `5F277D07C97474401A1586CE0C6A5B0679A487F77B8DF7FA03467F580AAB9911`。
+- R2 Baseline `50E5C0B163A4DA25915356EB7AEFCCD82D83119E45FACBBED7EABC0FEAF82E47`；Candidate `AA0FDEDAA77902DB1513F2EC68432E9E0421D99A2E4ADE497E3F3193A86E3829`。
+
+最终结论改判为 `PASS`。原三题 Candidate 为两胜一负，针对唯一失败机制的两次同题复现均由 Candidate 胜出，且没有再次出现 Candidate 独有整组事实复述。删除句只陈述弱模型评测优先项，不承载段落结构、复述、事实进入正文或交付规则；首次 T01 一负与改动缺少可解释的方向性联系，按孤立生成波动登记。总证据为 Candidate 四胜一负、五组全部无 Candidate 硬回退；保留原子删除及相应结构断言更新。

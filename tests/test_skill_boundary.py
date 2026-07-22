@@ -192,7 +192,6 @@ class SkillBoundaryTests(unittest.TestCase):
             "按已给内容和语气成稿",
             "不补“认真落实、严肃处理、记录留痕、无论有无异常",
             "Markdown 加粗、标题井号、横线等属于格式噪点",
-            "事实边界、要点置入和用户禁止项",
             "用户没补齐上一轮信息时，仍执行本轮明确修改请求",
         ]:
             self.assertIn(term, cards)
