@@ -318,7 +318,10 @@ CASES: list[PromptCase] = [
         prompt="我已经写好正文了，请按 GB/T 9704 排成 Word，带红头、发文字号和版记；没有给签发人就不要编，正文里的 markdown 标记也别带进 Word。",
         checks={
             "file_terms": {
-                "chinese-official-writing/SKILL.md": ["Word、docx、GB/T 9704", "不得残留 Markdown"],
+                "chinese-official-writing/SKILL.md": [
+                    "references/format-gbt9704.md",
+                    "Word 操作和版式核查配合 DOCX/document 技能完成",
+                ],
                 "chinese-official-writing/references/format-gbt9704.md": [
                     "Word/排版交付衔接",
                     "DOCX/document 技能",
@@ -370,7 +373,10 @@ CASES: list[PromptCase] = [
         prompt="请把这份材料处理成正式 Word 红头文件，要有发文字号、签发人和版记；这些要素我还没给，不要编，先列缺项清单。",
         checks={
             "file_terms": {
-                "chinese-official-writing/SKILL.md": ["正式交付前要素核对", "不得编造文号"],
+                "chinese-official-writing/SKILL.md": [
+                    "references/format-gbt9704.md",
+                    "正式签发日期、文号、印章和签发人仍不得编造",
+                ],
                 "chinese-official-writing/references/format-gbt9704.md": [
                     "正式交付前要素核对",
                     "缺项清单",
@@ -800,9 +806,8 @@ CASES: list[PromptCase] = [
         checks={
             "file_terms": {
                 "chinese-official-writing/SKILL.md": [
-                    "正式交付前要素核对卡",
-                    "事实不足不作为默认中断理由",
-                    "核对卡优先只列这些点名要素",
+                    "先完整输出正式正文",
+                    "references/format-gbt9704.md",
                 ],
                 "chinese-official-writing/references/format-gbt9704.md": [
                     "正式交付前要素核对卡",
@@ -1924,7 +1929,7 @@ FILE_TERM_ALTERNATIVES_BY_CASE: dict[str, list[dict[str, list[str]]]] = {
     ],
     "P047": [
         {
-            "chinese-official-writing/SKILL.md": ["正式交付前要素核对卡"],
+            "chinese-official-writing/SKILL.md": ["references/format-gbt9704.md"],
             "chinese-official-writing/references/format-gbt9704.md": [
                 "不因缺这些正式要素阻断成稿",
                 "优先只列用户点名缺项",

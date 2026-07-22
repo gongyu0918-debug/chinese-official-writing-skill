@@ -29,6 +29,7 @@ class SkillBoundaryTests(unittest.TestCase):
 
     def test_canonical_skill_declares_trigger_and_exclusion_boundaries(self) -> None:
         text = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
+        readme = (ROOT / "README.md").read_text(encoding="utf-8")
 
         description = re.search(r"^description: (.+)$", text, re.M)
         self.assertIsNotNone(description)
@@ -39,9 +40,13 @@ class SkillBoundaryTests(unittest.TestCase):
             self.assertIn(excluded, description.group(1))
         self.assertIn("当用户明确要求中文通知", text)
         self.assertIn("## 触发条件与边界", text)
-        self.assertIn("批量语料生成", text)
-        self.assertIn("规避人工审核", text)
-        self.assertIn("替代法律/财务/采购/审计/政策依据判断", text)
+        self.assertNotIn("批量语料生成", text)
+        self.assertNotIn("规避人工审核", text)
+        self.assertIn("批量语料生成", readme)
+        self.assertIn("规避人工审核", readme)
+        self.assertNotIn("本技能只提供写作和复核辅助", text)
+        self.assertIn("没有用户提供依据时，不编造真实单位", text)
+        self.assertIn("法律、财务、采购、审计、政策适用、保密审查和正式签发结论由相应责任主体确认", readme)
 
     def test_adapter_skill_copies_keep_boundaries(self) -> None:
         paths = [
@@ -55,8 +60,10 @@ class SkillBoundaryTests(unittest.TestCase):
         for path in paths:
             with self.subTest(path=path):
                 text = path.read_text(encoding="utf-8")
-                self.assertIn("批量语料生成", text)
-                self.assertIn("规避人工审核", text)
+                self.assertNotIn("批量语料生成", text)
+                self.assertNotIn("规避人工审核", text)
+                self.assertNotIn("本技能只提供写作和复核辅助", text)
+                self.assertIn("没有用户提供依据时，不编造真实单位", text)
 
     def test_drafting_rules_are_split_for_prompt_following(self) -> None:
         text = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
@@ -576,8 +583,10 @@ class SkillBoundaryTests(unittest.TestCase):
         format_ref = (ROOT / "chinese-official-writing" / "references" / "format-gbt9704.md").read_text(
             encoding="utf-8"
         )
-        for text in [skill, format_ref, checklist]:
+        self.assertIn("references/format-gbt9704.md", skill)
+        for text in [format_ref, checklist]:
             self.assertIn("正式交付前要素核对", text)
+        for text in [skill, format_ref, checklist]:
             self.assertIn("签发", text)
             self.assertIn("版记", text)
         self.assertIn("缺项清单", format_ref)
@@ -800,14 +809,20 @@ class SkillBoundaryTests(unittest.TestCase):
         ).read_text(encoding="utf-8")
         genre_checklist_coverage = genre_checklist + "\n" + report_checklist
 
-        self.assertIn("正式交付前要素核对卡", skill)
+        self.assertNotIn("正式交付前要素核对卡", skill)
+        self.assertIn("references/format-gbt9704.md", skill)
+        self.assertIn("标题用 2 号小标宋", skill)
+        self.assertIn("页码用 4 号半角宋体并加一字线", skill)
         self.assertIn("正式交付前要素核对卡", format_ref)
         self.assertIn("不因缺这些正式要素阻断成稿", format_ref)
         self.assertIn("发文机关", format_ref)
         self.assertIn("印章或签署信息", format_ref)
+        self.assertIn("4 号半角宋体阿拉伯数字", format_ref)
+        self.assertIn("回行保持词意完整", format_ref)
+        self.assertIn("不改写已定稿正文的用词、数字、标点和字符", format_ref)
         self.assertIn("优先只列用户点名缺项", format_ref)
         self.assertIn("其他正式要素按单位模板另行核对", format_ref)
-        self.assertIn("核对卡优先只列这些点名要素", skill)
+        self.assertNotIn("核对卡优先只列这些点名要素", skill)
         self.assertIn("未变成正文占位", checklist)
         self.assertIn("未扩展成长清单", checklist)
 
@@ -1081,7 +1096,10 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assertIn("材料只给问题清单时，正文列明已确认问题及其对象、数量和状态", text)
         self.assertIn("稿内一致性风险", text)
         self.assertIn("references/format-gbt9704.md", text)
-        self.assertIn("正式 Word 输出前不得残留 Markdown", text)
+        format_ref = (
+            ROOT / "openclaw" / "skills" / "chinese_official_writing" / "references" / "format-gbt9704.md"
+        ).read_text(encoding="utf-8")
+        self.assertIn("不得把 Markdown `**加粗**`", format_ref)
         self.assertIn("除非同时明确允许文后待确认、风险或核验提示", text)
         self.assertIn("缺失事实不补造，也不在正文中解释“未提供”", text)
         self.assertIn("用户同时明确允许某类文后提示时", text)
