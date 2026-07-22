@@ -1113,7 +1113,7 @@ class SkillBoundaryTests(unittest.TestCase):
             "60 份成稿",
             "270 个任务",
             "540 段对比材料",
-            "352/352",
+            "353/353",
             "108/108",
             "Promptfoo 20/20",
             "Candidate V 信息选择收口",

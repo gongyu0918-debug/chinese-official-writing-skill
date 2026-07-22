@@ -39,6 +39,8 @@
 
 Promptfoo 前两次 20 errors 均由 Windows 沙箱拒绝 Node 启动 Python 引起，不计为产品失败，也不写成通过；只采用沙箱外有效复跑结果。
 
+发布回执补录后，README 将实际单测总数由 352 更新为 353，静态测试仍期待旧值并出现 1/50 失败。该问题只涉及证据断言，不涉及技能包；测试期望同步为 353 后，全量 353/353 再次通过。发行 tag 保持不动，发布后主线只追加回执与该验证夹具修正。
+
 ## 已知边界
 
 - 五份制度类 Candidate 稿均出现不同程度的短条偏多，四份出现职责或程序重复解释；现有删除条文粒度保护和自动相邻条文合并方案分别出现硬回退或没有收益，本版不纳入。
@@ -48,4 +50,8 @@ Promptfoo 前两次 20 errors 均由 Windows 沙箱拒绝 Node 启动 Python 引
 
 ## 发布回执
 
-GitHub、ClawHub 和 skillhub.cn 的提交回执、公开 latest、审核与扫描状态待正式发布后分别补录。小红书 Red SkillHub 继续排除。
+- GitHub：`main` 已快进到发布提交 `9a98dac5f9475662cb5e4adb579828c8480c23e0`；annotated tag object 为 `761d7fb68482498399a155768f5945560c99b9c7`，解引用提交为发布提交；[v1.5.21 Release](https://github.com/gongyu0918-debug/chinese-official-writing-skill/releases/tag/v1.5.21) 已公开并设为 Latest。
+- ClawHub：使用 23 文件清洁目录正式提交一次，返回 `status=published`、`versionId=k9707pnea6z33nnyk1m00dg3sd8b0jr9`、fingerprint `0a37eb753bbd32053114c9314e2bc869d11ebc7bf87e07c6e6229b381b59068a`。首次公开查询仍为 `latestVersion=1.5.20`，精确查询 1.5.21 暂时返回 `Version not found`；公开 moderation 为 clean，但对应仍公开的 1.5.20，不推断 1.5.21 已完成扫描，也不重复提交。
+- skillhub.cn：向既有 `skillId=70149` 正式提交一次，返回 `ok=true`、`versionId=153125`、23 文件、fingerprint `0a0261f1e19d17cbc746fcc5c919f2d3d6bd913e2f7068b91e47081589296b47`、`tags.latest=1.5.21`；`reviewStatus`、`securityScanStatus` 和 `contentAuditStatus` 均为 pending。首次公开详情仍显示 1.5.20，按异步审核和传播处理，不重复提交。
+
+小红书 Red SkillHub 继续排除。提交成功、公开 latest、审核和安全扫描分别记录，不互相推断。

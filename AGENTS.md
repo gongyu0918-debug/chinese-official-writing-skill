@@ -1,10 +1,12 @@
 # AGENTS.md
 
-## 1.5.21 发布准备
+## 1.5.21 发布状态
 
 1.5.21 以 `v1.5.20=025e500206b3140546f7789c6746996e170da8d9` 为固定功能基线，只新增制度、规定、办法、管理办法、实施细则和操作规程专项叶子，并在完整初稿后转读既有 `anti-ai-patterns.md` 复核成簇的解释性重复。信息选择、P0 边界、其他文种路由、用户模板、篇幅预算、脚本、Hook、FSM、输出模式和发布链不变。
 
-补测中的实施细则和短篇规定两题均由 Candidate 小胜，硬检查均通过；既有管理办法、来访制度和印发通知/操作规程样本同时表明条文偏碎、职责或程序复述仍是已知风险。DOCX 已完成 OOXML 结构检查，本机缺少 `soffice`，逐页视觉渲染记为 `unavailable`。完整发布门禁与平台回执见 `tests/evidence/release-1.5.21.md`。
+补测中的实施细则和短篇规定两题均由 Candidate 小胜，硬检查均通过；既有管理办法、来访制度和印发通知/操作规程样本同时表明条文偏碎、职责或程序复述仍是已知风险。DOCX 已完成 OOXML 结构检查，本机缺少 `soffice`，逐页视觉渲染记为 `unavailable`。
+
+发布提交和 annotated tag 解引用提交均为 `9a98dac5f9475662cb5e4adb579828c8480c23e0`，tag object 为 `761d7fb68482498399a155768f5945560c99b9c7`，GitHub Latest Release 已公开。ClawHub 一次提交返回 `versionId=k9707pnea6z33nnyk1m00dg3sd8b0jr9`、23 文件和 fingerprint `0a37eb753bbd32053114c9314e2bc869d11ebc7bf87e07c6e6229b381b59068a`；skillhub.cn 一次提交返回 `skillId=70149`、`versionId=153125`、23 文件和 fingerprint `0a0261f1e19d17cbc746fcc5c919f2d3d6bd913e2f7068b91e47081589296b47`。首次公开查询仍为 1.5.20，审核或扫描状态按各平台回执分别记录，不重复发布。完整发布门禁与平台回执见 `tests/evidence/release-1.5.21.md`。
 
 ## 1.5.20 发布准备
 
