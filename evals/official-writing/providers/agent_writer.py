@@ -139,6 +139,27 @@ AI_COMPUTE_EXACT_GENRES = {
     "GPU/服务器租赁技术需求",
 }
 
+AI_ORDINARY_GENRE_MARKERS = (
+    "请示",
+    "申请",
+    "采购",
+    "可研",
+    "可行性研究",
+    "报告",
+    "说明",
+    "审查",
+    "公告",
+    "通知",
+    "函",
+    "建设方案",
+    "实施方案",
+    "方案",
+)
+AI_ORDINARY_TASK_RE = re.compile(
+    r"(?:起草|撰写|形成|编制|写)(?:一份)?[^。；;\n]{0,32}?"
+    r"(?:请示|申请|采购公告|采购方案|可研报告|可行性研究报告|情况报告|报告|说明|审查材料|公告|通知|函|建设方案|实施方案|保障方案|方案)"
+)
+
 AI_NEGATION_MARKERS = (
     "不涉及AI",
     "不涉及 AI",
@@ -400,6 +421,14 @@ def _is_ai_compute(genre: str, tasks: list[str] | None = None) -> bool:
     return all(marker in text for marker in ("云端", "本地", "部署"))
 
 
+def _ai_requires_ordinary_playbook(genres: list[str], tasks: list[str]) -> bool:
+    if any(genre in PLAYBOOK_GENRES for genre in genres):
+        return True
+    if any(_contains_marker(genre, AI_ORDINARY_GENRE_MARKERS) for genre in genres):
+        return True
+    return any(AI_ORDINARY_TASK_RE.search(task) for task in tasks)
+
+
 def _skill_root(repo_root: Path) -> Path:
     installed = repo_root / ".agents" / "skills" / "chinese-official-writing"
     if installed.exists():
@@ -487,7 +516,9 @@ def _reference_paths_for_genres(genres: list[str], tasks: list[str] | None = Non
     if sparse_route:
         paths.extend(GENRE_REFERENCES["sparse"])
     else:
-        if any(genre in PLAYBOOK_GENRES or _is_ai_compute(genre, tasks) for genre in genres):
+        if any(genre in PLAYBOOK_GENRES for genre in genres) or (
+            ai_compute and _ai_requires_ordinary_playbook(genres, tasks)
+        ):
             paths.extend(GENRE_REFERENCES["playbook"])
         if any(_contains_marker(task, ROUTING_TASK_MARKERS) for task in tasks):
             paths.extend(GENRE_REFERENCES["routing"])

@@ -174,6 +174,55 @@ class PromptfooProviderTests(unittest.TestCase):
         self.assertNotIn("references/anti-ai-patterns.md", refs)
         self.assertNotIn("references/format-gbt9704.md", refs)
 
+    def test_pure_ai_technical_genres_skip_the_common_playbook(self) -> None:
+        for genre in [
+            "模型服务技术需求",
+            "AI平台推理服务",
+            "GPU/服务器租赁技术需求",
+        ]:
+            with self.subTest(genre=genre):
+                refs = provider._reference_paths_for_genres([genre])
+                self.assertEqual(
+                    refs,
+                    ["SKILL.md", "references/ai-compute-docs.md"],
+                )
+
+    def test_ai_tasks_with_ordinary_genres_keep_both_reference_layers(self) -> None:
+        for genre in [
+            "请示",
+            "申请",
+            "采购公告",
+            "算力服务可研报告",
+            "大模型本地化部署成本说明",
+            "审查材料",
+            "通知",
+            "函",
+            "智算中心建设方案",
+            "GPU推理服务保障方案",
+        ]:
+            with self.subTest(genre=genre):
+                refs = provider._reference_paths_for_genres(
+                    [genre],
+                    [f"请起草一份{genre}，内容涉及 GPU 模型服务。"],
+                )
+                self.assertIn("references/genre-playbooks.md", refs)
+                self.assertIn("references/ai-compute-docs.md", refs)
+
+    def test_task_text_can_preserve_the_ordinary_genre_layer_for_ai(self) -> None:
+        for task in [
+            "请起草一份GPU算力租赁服务采购公告，只输出正文。",
+            "请起草一份AI模型服务报告，只输出正文。",
+            "请起草一份AI模型服务公告，只输出正文。",
+            "请起草一份AI模型服务方案，只输出正文。",
+        ]:
+            with self.subTest(task=task):
+                refs = provider._reference_paths_for_genres(
+                    ["模型服务技术需求"],
+                    [task],
+                )
+                self.assertIn("references/genre-playbooks.md", refs)
+                self.assertIn("references/ai-compute-docs.md", refs)
+
     def test_known_genres_use_playbook_without_preloading_other_routes(self) -> None:
         refs = provider._reference_paths_for_genres(["通知", "函", "复函", "征求意见函", "采购公告", "公示", "会议纪要"])
 
@@ -704,11 +753,15 @@ class PromptfooProviderTests(unittest.TestCase):
         self.assertEqual(call.call_args.args[2], provider.DEFAULT_TIMEOUT_SECONDS)
 
     def test_ai_compute_markers_cover_model_platform_language(self) -> None:
+        pure_ai = {"模型服务技术需求", "AI平台推理服务"}
         for genre in ["模型服务技术需求", "智算中心建设方案", "大模型本地化部署成本说明", "AI平台推理服务", "GPU推理服务保障方案"]:
             with self.subTest(genre=genre):
                 refs = provider._reference_paths_for_genres([genre])
-                self.assertIn("references/genre-playbooks.md", refs)
                 self.assertIn("references/ai-compute-docs.md", refs)
+                if genre in pure_ai:
+                    self.assertNotIn("references/genre-playbooks.md", refs)
+                else:
+                    self.assertIn("references/genre-playbooks.md", refs)
 
     def test_reply_letter_stub_satisfies_common_hard_rule(self) -> None:
         scenarios = [
