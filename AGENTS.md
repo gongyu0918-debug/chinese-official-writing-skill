@@ -1,10 +1,12 @@
 # AGENTS.md
 
-## 1.5.22 发布准备
+## 1.5.22 发布状态
 
 1.5.22 以 `v1.5.21=9a98dac5f9475662cb5e4adb579828c8480c23e0` 为固定发行基线，只发布已经通过真实 A/B 的入口与叶子原子减负。canonical `SKILL.md` 由 10,631 个规范化字符降至 10,103 个，减少 528 个，约 4.97%；不修改信息选择、P0 边界、文种功能、用户模板、篇幅预算、脚本、Hook、FSM、输出模式、修改次数或回退链。
 
-已保留原子的真实 A/B 汇总为 Candidate 11 胜、4 平、1 个孤立负例；原题两次定向复现均由 Candidate 胜出，未出现 Candidate 独有的事实、数字、日期、主体、状态、文种、格式、输出模式或 P0 硬回退。全量 unittest 355/355、固定 1.5.21 消融两版 108/108、Promptfoo smoke 20/20、quick validate 和 `git diff --check` 均通过。正式提交、平台回执和公开状态以 `tests/evidence/release-1.5.22.md` 的最终记录为准。
+已保留原子的真实 A/B 汇总为 Candidate 11 胜、4 平、1 个孤立负例；原题两次定向复现均由 Candidate 胜出，未出现 Candidate 独有的事实、数字、日期、主体、状态、文种、格式、输出模式或 P0 硬回退。全量 unittest 355/355、固定 1.5.21 消融两版 108/108、Promptfoo smoke 20/20、quick validate 和 `git diff --check` 均通过。
+
+GitHub 发布提交和 annotated tag 解引用提交均为 `7628619da8e05cc03c86d27d5a95eb8cee8fde05`，tag object 为 `1d7e5809c99597ed1e893aafc48c027e80cbc1d7`，Latest Release 已公开。ClawHub 一次提交返回 `versionId=k97740cxyhdf0seh0qsffdjetd8b2cgy`、23 文件和 fingerprint `b029d3ae429fd9f5c09e1534c657cb345b46581a21a3d1a731d8df13d94b4f94`；skillhub.cn 一次提交返回 `skillId=70149`、`versionId=155065`、23 文件和 fingerprint `7c61fc198ef260acf2a28e257527bb1dba9dd192547d5a01d79f08056b267d25`，`tags.latest=1.5.22`，三项审核均为 pending。首次公开查询仍显示 1.5.21，按异步传播处理，不重复发布。完整证据见 `tests/evidence/release-1.5.22.md`。
 
 ## 1.5.21 发布状态
 

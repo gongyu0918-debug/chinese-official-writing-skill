@@ -41,10 +41,19 @@
 - `python -m unittest tests.test_skill_boundary.SkillBoundaryTests.test_primary_adapter_mirrors_match_canonical_bytes tests.test_skill_boundary.SkillBoundaryTests.test_packaged_resource_mirrors_match_canonical_bytes`：2/2 通过。
 - `git diff --check`：通过。
 
-ClawHub 与 skillhub.cn 清洁包均为 23 个文件，不含缓存、测试、研究产物及仅供 Codex Hook 使用的 `delivery-review-gate.md`、`gate_stop_hook.py`、`review_gate.py`。本地排序清单 fingerprint 分别为 `635f7c218a9b7811c6c4a91b446d0dcf50daf6869da845072a85d8f94014de98` 和 `bb75cbab54a2dfbea23f8b609eb186bcbd3d705077efea5f6dc7e86d355d2d1f`；平台打包 fingerprint 以 dry-run 和正式回执为准。
+ClawHub 与 skillhub.cn 清洁包均为 23 个文件，不含缓存、测试、研究产物及仅供 Codex Hook 使用的 `delivery-review-gate.md`、`gate_stop_hook.py`、`review_gate.py`。本地排序清单 fingerprint 分别为 `635f7c218a9b7811c6c4a91b446d0dcf50daf6869da845072a85d8f94014de98` 和 `bb75cbab54a2dfbea23f8b609eb186bcbd3d705077efea5f6dc7e86d355d2d1f`。
 
-独立发布范围审计确认 6 组保留改动与证据一致，已撤回的格式、校对和 playbook 实验没有进入发行产品；README 徽章、发行证据和 AGENTS 状态段已在正式提交前补齐。两家商店 dry-run 待发布提交形成后使用实际 source commit 运行。
+独立发布范围审计确认 6 组保留改动与证据一致，已撤回的格式、校对和 playbook 实验没有进入发行产品；README 徽章、发行证据和 AGENTS 状态段已在正式提交前补齐。两家商店 dry-run 均在发布提交形成后使用实际版本与 source commit 运行。
+
+发布提交形成后：
+
+- ClawHub dry-run 返回 `status=would-publish`、公开基线 1.5.21、目标版本 1.5.22、23 个文件、fingerprint `b029d3ae429fd9f5c09e1534c657cb345b46581a21a3d1a731d8df13d94b4f94`。
+- skillhub.cn dry-run 返回 `dryRun=true`、slug `chinese-official-writing`、目标版本 1.5.22。
+- 提交后最小回归 `python -m unittest tests.test_skill_boundary` 为 52/52 通过，quick validate 再次返回 `Skill is valid!`，`git diff --check` 通过。
 
 ## 发布回执
 
-待 GitHub、ClawHub 和 skillhub.cn 各完成一次提交后补录。小红书 Red SkillHub 继续排除；提交成功、公开 latest、审核和安全扫描分别记录，不互相推断。
+- GitHub：`main` 快进到发布提交 `7628619da8e05cc03c86d27d5a95eb8cee8fde05`。annotated tag `v1.5.22` 的 tag object 为 `1d7e5809c99597ed1e893aafc48c027e80cbc1d7`，解引用提交同为 `7628619da8e05cc03c86d27d5a95eb8cee8fde05`。Latest Release 已公开：`https://github.com/gongyu0918-debug/chinese-official-writing-skill/releases/tag/v1.5.22`，`draft=false`、`prerelease=false`。
+- ClawHub：使用 dry-run 核验过的 23 文件清洁包正式提交一次，返回 `status=published`、`versionId=k97740cxyhdf0seh0qsffdjetd8b2cgy`、fingerprint `b029d3ae429fd9f5c09e1534c657cb345b46581a21a3d1a731d8df13d94b4f94`。首次公开查询仍为 `latestVersion=1.5.21`，精确查询 1.5.22 暂时返回 `Version not found`；公开 moderation 为 clean，但对应仍公开的 1.5.21，不推断 1.5.22 已完成扫描，也不重复提交。
+- skillhub.cn：向既有 `skillId=70149` 正式提交一次，返回 `ok=true`、`versionId=155065`、23 文件、fingerprint `7c61fc198ef260acf2a28e257527bb1dba9dd192547d5a01d79f08056b267d25`、`tags.latest=1.5.22`；`reviewStatus`、`securityScanStatus` 和 `contentAuditStatus` 均为 pending。首次公开搜索仍显示 1.5.21，按异步审核和传播处理，不重复提交。
+- 小红书 Red SkillHub 继续排除；本轮未调用 Red 上传、登录或查询命令。
