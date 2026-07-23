@@ -1,6 +1,6 @@
 # 中文公文写作 Skill
 
-[![Version](https://img.shields.io/badge/version-1.5.21-blue)](https://github.com/gongyu0918-debug/chinese-official-writing-skill/releases/tag/v1.5.21)
+[![Version](https://img.shields.io/badge/version-1.5.22-blue)](https://github.com/gongyu0918-debug/chinese-official-writing-skill/releases/tag/v1.5.22)
 [![ClawHub](https://img.shields.io/badge/ClawHub-chinese--official--writing-2f80ed)](https://clawhub.ai/gongyu0918-debug/skills/chinese-official-writing)
 [![SkillHub](https://img.shields.io/badge/SkillHub-chinese--official--writing-e8590c)](https://skillhub.cn/skills/chinese-official-writing)
 [![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
@@ -63,7 +63,7 @@
 
 ## 快速安装
 
-当前工作版本：`chinese-official-writing@1.5.21`
+当前工作版本：`chinese-official-writing@1.5.22`
 
 平台入口：[ClawHub](https://clawhub.ai/gongyu0918-debug/skills/chinese-official-writing) · [skillhub.cn](https://skillhub.cn/skills/chinese-official-writing)。通用 Agent Skills 安装器可直接使用：
 
@@ -75,10 +75,11 @@ npx skills add https://github.com/gongyu0918-debug/chinese-official-writing-skil
 
 ## 模型消融与真实写稿
 
-测试从早期无 Skill/带 Skill 对照，逐步扩展到固定版本消融、真实写稿盲审和多轮改稿。下表汇总 1.5.21 制度类专项路由，1.5.20 渐进式路由减载，1.5.19 平台清洁包、复核清单微减负与原子结论限定复核，1.5.18 入口减负与可选交付复核，1.5.17 事实关系锚，1.5.16 信息选择修复及其继承的发布证据。原始任务、成稿、匿名映射、独立复核和汇总记录均保存在仓库内；早期 270 任务模型消融保留脱敏聚合摘要。
+测试从早期无 Skill/带 Skill 对照，逐步扩展到固定版本消融、真实写稿盲审和多轮改稿。下表汇总 1.5.22 入口与叶子原子减负，1.5.21 制度类专项路由，1.5.20 渐进式路由减载，1.5.19 平台清洁包、复核清单微减负与原子结论限定复核，1.5.18 入口减负与可选交付复核，1.5.17 事实关系锚，1.5.16 信息选择修复及其继承的发布证据。原始任务、成稿、匿名映射、独立复核和汇总记录均保存在仓库内；早期 270 任务模型消融保留脱敏聚合摘要。
 
 | 调试方向 | 主要稿件与边界 | 当前证据 |
 | --- | --- | --- |
+| 入口与叶子原子减负 | 低频职责与 Word 细则下沉、AI 算力专项按需读取、重复反例与二次事实映射去重、轻量卡测试话语清理 | 入口累计减少 528 个规范化字符（约 4.97%）；已保留原子的真实 A/B 为 11 胜、4 平、1 个孤立负例，定向复现 2/2 胜且无 Candidate 硬回退；失败实验均已撤回 |
 | 无 Skill / 带 Skill 模型消融 | 27 类文体，每类 10 个任务，覆盖通用公文和算力类正式材料 | 270 个任务、540 段对比材料；写稿 9/9 批有效，2 批评估补跑后为 9/9 |
 | 渐进式路由 | 未决/已决会议纪要、稀疏情况说明、短通知、二次局部修改 | 针对性 A/B 共 16 份成稿，内容 16/16 PASS，路由 14/16；两次 over-read 均在 v1.5.13，1.5.14 为 8/8 |
 | 事实、文种与格式 | 请示、报告、通知、说明、会议纪要、字段式申请、主送、落款、普通采购与 AI 算力需求 | 固定 v1.5.13 与 1.5.14 的硬边界盲审均为 30/30 PASS |
@@ -176,6 +177,7 @@ npx skills add https://github.com/gongyu0918-debug/chinese-official-writing-skil
 
 主要证据：
 
+- [`release-1.5.22.md`](tests/evidence/release-1.5.22.md)
 - [`release-1.5.21.md`](tests/evidence/release-1.5.21.md)
 - [`release-1.5.20.md`](tests/evidence/release-1.5.20.md)
 - [`release-1.5.19.md`](tests/evidence/release-1.5.19.md)
