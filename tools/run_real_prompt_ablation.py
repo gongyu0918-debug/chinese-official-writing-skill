@@ -1220,9 +1220,9 @@ CASES: list[PromptCase] = [
         prompt="写一份 AI 算力服务可研的提纲，要求只给结构，不展开具体参数。",
         checks={
             "file_terms": {
-                "chinese-official-writing/references/genre-playbooks.md": [
+                "chinese-official-writing/references/ai-compute-docs.md": [
                     "## AI 算力与技术服务",
-                    "详细结构转读 `references/ai-compute-docs.md`",
+                    "详细结构见下文；本节只保留触发和边界",
                 ],
                 "chinese-official-writing/references/anti-ai-patterns.md": [
                     "专项结构和指标写法转读 `ai-compute-docs.md`",

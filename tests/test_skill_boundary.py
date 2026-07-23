@@ -56,7 +56,15 @@ class SkillBoundaryTests(unittest.TestCase):
 
         self.assertNotIn("起草算力、采购、租赁或服务器租赁材料时", skill)
         self.assertIn("references/ai-compute-docs.md", skill)
+        self.assertIn("纯 AI 算力、模型服务或 GPU/服务器租赁技术需求直接进入", skill)
+        playbooks = (ROOT / "chinese-official-writing" / "references" / "genre-playbooks.md").read_text(
+            encoding="utf-8"
+        )
         self.assertIn("Token、并发、存储、带宽", specialty)
+        self.assertIn("## AI 算力与技术服务", specialty)
+        self.assertEqual(specialty.count("## AI 算力与技术服务"), 1)
+        self.assertNotIn("## AI 算力与技术服务", playbooks)
+        self.assertIn("详细结构见下文；本节只保留触发和边界", specialty)
         self.assertIn("SLA", specialty)
         self.assertIn("验收", specialty)
 
@@ -163,9 +171,9 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assertIn("| 文件 | 阶段 | 加载条件 |", text)
         self.assertIn("`references/task-route-cards.md` | 起草前/改稿前", text)
         self.assertIn("低上下文局部修改", text)
-        self.assertIn("`references/genre-playbooks.md` | 按文种/专项选读", text)
+        self.assertIn("`references/genre-playbooks.md` | 按文种选读", text)
         self.assertIn("`references/ai-compute-docs.md` | 专项选读", text)
-        self.assertIn("仅在 AI 算力、GPU/服务器租赁、模型服务、采购、租赁、可研、成本比较、SLA、安全或验收材料中读取", text)
+        self.assertIn("AI 算力、GPU/服务器租赁、模型服务、智算中心、成本比较、SLA、安全或验收等专项直接读取", text)
 
     def test_task_route_cards_keep_sparse_tasks_lightweight(self) -> None:
         skill = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
@@ -953,6 +961,9 @@ class SkillBoundaryTests(unittest.TestCase):
         playbooks = (ROOT / "chinese-official-writing" / "references" / "genre-playbooks.md").read_text(
             encoding="utf-8"
         )
+        ai_compute = (
+            ROOT / "chinese-official-writing" / "references" / "ai-compute-docs.md"
+        ).read_text(encoding="utf-8")
         handling = (ROOT / "chinese-official-writing" / "references" / "handling-elements.md").read_text(
             encoding="utf-8"
         )
@@ -969,9 +980,9 @@ class SkillBoundaryTests(unittest.TestCase):
             "## 工作总结/工作要点/周报",
             "## 调研报告/研究报告/可研报告/建设方案",
             "## 采购公告/审查材料",
-            "## AI 算力与技术服务",
         ]:
             self.assertIn(heading, playbooks)
+        self.assertIn("## AI 算力与技术服务", ai_compute)
         for term in [
             "不新增默认联网、API、Word/PDF 或脚本硬门禁",
             "用户已有模板和字段顺序优先",
@@ -984,9 +995,9 @@ class SkillBoundaryTests(unittest.TestCase):
             "不补服务单位责任",
             "责任或期限未给时不使用“按审核执行”“后续推进”等泛口径补齐",
             "普通采购公告不默认进入 AI 算力语境",
-            "详细结构转读 `references/ai-compute-docs.md`",
         ]:
             self.assertIn(term, playbooks)
+        self.assertIn("详细结构见下文；本节只保留触发和边界", ai_compute)
         self.assertIn("会议判断、受众称呼、角色分工、合同义务或服务单位责任", skill)
         self.assertIn("详细测算和参数转读 `ai-compute-docs.md`", handling)
         self.assertIn("专项结构和指标写法转读 `ai-compute-docs.md`", anti_ai)

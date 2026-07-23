@@ -70,7 +70,7 @@ metadata:
 
 ## 核心流程
 
-先确定创作、修改、只审不改等输出模式，再选择 reference。材料稀疏、短稿、低上下文局部修改，或用户明确要求“不新增事实”“只按已给材料写”时，先判断是否完整命中 `references/task-route-cards.md` 的四类卡片之一；未命中时不扩大轻量卡的适用范围。命中 `references/task-route-cards.md` 且卡片能够覆盖任务时，以轻量卡片完成正文，再执行本文件硬边界和必要的交付复核；不因文种名称已知而自动预读下列全部长 reference。文种明确且需要常规或完整骨架时，可从本文件直接进入 `references/genre-playbooks.md` 的对应叶子。只有命中轻量卡写明的转读条件，或任务确需完整骨架、论证、格式/专项处理时，才进入以下完整流程并按需读取对应资料。
+先确定创作、修改、只审不改等输出模式，再选择 reference。材料稀疏、短稿、低上下文局部修改，或用户明确要求“不新增事实”“只按已给材料写”时，先判断是否完整命中 `references/task-route-cards.md` 的四类卡片之一；未命中时不扩大轻量卡的适用范围。命中 `references/task-route-cards.md` 且卡片能够覆盖任务时，以轻量卡片完成正文，再执行本文件硬边界和必要的交付复核；不因文种名称已知而自动预读下列全部长 reference。纯 AI 算力、模型服务或 GPU/服务器租赁技术需求直接进入 `references/ai-compute-docs.md`，同时明确请示、申请、采购、可研、报告、说明、审查、公告、通知、函或方案等普通文种时，再叠加相应文种 playbook；其他文种明确且需要常规或完整骨架时，进入 `references/genre-playbooks.md` 的对应叶子。只有命中轻量卡写明的转读条件，或任务确需完整骨架、论证、格式/专项处理时，才进入以下完整流程并按需读取对应资料。
 
 1. 先判断文稿类别、文种和行文关系，再抽取办理要素，再选择论证链条，最后进入语言和格式复核。
 2. 文种判断以官方规范和 `references/genre-routing.md` 为准；社区模板不得替代文种功能。
@@ -131,12 +131,12 @@ metadata:
 | `references/final-review-layers.md` | 定稿前 | 全文交付前按硬边界、质量建议、场景参考分层总审时。 |
 | `references/proofreading-checklist.md` | 定稿前 | 成稿前做 AI 写稿轻量校对，或改写含用户引用、成语、数据、金额、日期、比例、数量的材料时。 |
 | `references/review-checklist.md` | 定稿前 | 需要段落、小节、全文三级执行清单，或用户要求格式核验、语气检查、只审不改时。 |
-| `references/genre-playbooks.md` | 按文种/专项选读 | 会议纪要、讲话稿、工作总结/周报、调研/研究/可研、采购公告、审查材料、AI 算力专项等需要快速进入对应场景骨架时读取。 |
+| `references/genre-playbooks.md` | 按文种选读 | 请示、报告、通知、会议纪要、函、讲话稿、工作总结/周报、调研/研究/可研、采购公告、审查材料等需要快速进入对应场景骨架时读取。 |
 | `references/genre-playbook-institution-rules.md` | 按文种选读 | 起草、改写或复核制度、规定、办法、管理办法、实施细则、操作规程，以及需要区分印发通知与制度附件时读取。 |
 | `references/genre-checklist-report.md` | 按文种选读 | 报告、情况报告或情况说明需要细查文种功能和结构时。 |
 | `references/genre-checklist.md` | 按文种选读 | 通知、请示、命令、公报、决议、议案、函、批复、公告、通告、公示、通报、纪要、讲话稿、述职等其他文种细查时。 |
 | `references/format-gbt9704.md` | 按格式选读 | 用户要求 GB/T 9704-2012、Word、docx、红头文件、发文字号、版头版记、附件、印章或版式时。 |
-| `references/ai-compute-docs.md` | 专项选读 | 仅在 AI 算力、GPU/服务器租赁、模型服务、采购、租赁、可研、成本比较、SLA、安全或验收材料中读取。 |
+| `references/ai-compute-docs.md` | 专项选读 | AI 算力、GPU/服务器租赁、模型服务、智算中心、成本比较、SLA、安全或验收等专项直接读取；同时明确请示、采购、可研、报告或方案等普通文种时，与相应文种 playbook 叠加。 |
 
 ## 脚本
 
