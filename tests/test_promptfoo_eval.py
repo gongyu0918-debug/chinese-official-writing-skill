@@ -226,6 +226,7 @@ class PromptfooProviderTests(unittest.TestCase):
     def test_known_genres_use_playbook_without_preloading_other_routes(self) -> None:
         refs = provider._reference_paths_for_genres(["通知", "函", "复函", "征求意见函", "采购公告", "公示", "会议纪要"])
 
+        self.assertIn("references/genre-playbook-minutes.md", refs)
         self.assertIn("references/genre-playbooks.md", refs)
         self.assertNotIn("references/argument-chains.md", refs)
         self.assertNotIn("references/task-route-cards.md", refs)
@@ -312,7 +313,50 @@ class PromptfooProviderTests(unittest.TestCase):
             ["写一份完整会议纪要，已形成三项议定事项、责任单位和完成期限。"],
         )
 
-        self.assertEqual(refs, ["SKILL.md", "references/genre-playbooks.md"])
+        self.assertEqual(refs, ["SKILL.md", "references/genre-playbook-minutes.md"])
+
+    def test_minutes_without_task_use_the_minutes_leaf(self) -> None:
+        refs = provider._reference_paths_for_genres(["会议纪要"])
+
+        self.assertEqual(refs, ["SKILL.md", "references/genre-playbook-minutes.md"])
+
+    def test_minutes_and_report_load_both_playbook_layers(self) -> None:
+        refs = provider._reference_paths_for_genres(
+            ["会议纪要", "报告"],
+            ["请形成完整会议纪要和情况报告。"],
+        )
+
+        self.assertEqual(
+            refs,
+            [
+                "SKILL.md",
+                "references/genre-playbook-minutes.md",
+                "references/genre-playbooks.md",
+            ],
+        )
+
+    def test_ai_technical_minutes_load_minutes_and_ai_without_common_playbook(self) -> None:
+        refs = provider._reference_paths_for_genres(
+            ["会议纪要", "模型服务技术需求"],
+            ["请起草完整会议纪要，会议已明确责任单位和完成期限，内容涉及 GPU 模型服务。"],
+        )
+
+        self.assertEqual(
+            refs,
+            [
+                "SKILL.md",
+                "references/genre-playbook-minutes.md",
+                "references/ai-compute-docs.md",
+            ],
+        )
+
+    def test_office_assistant_minutes_do_not_trigger_ai_compute_leaf(self) -> None:
+        refs = provider._reference_paths_for_genres(
+            ["会议纪要"],
+            ["请起草完整会议纪要，会议讨论办公助手使用情况并明确责任单位和期限。"],
+        )
+
+        self.assertEqual(refs, ["SKILL.md", "references/genre-playbook-minutes.md"])
 
     def test_short_but_complete_minutes_still_include_the_playbook(self) -> None:
         refs = provider._reference_paths_for_genres(
@@ -320,7 +364,7 @@ class PromptfooProviderTests(unittest.TestCase):
             ["请写一份简短但完整的会议纪要，已形成三项决定、责任单位和期限。"],
         )
 
-        self.assertEqual(refs, ["SKILL.md", "references/genre-playbooks.md"])
+        self.assertEqual(refs, ["SKILL.md", "references/genre-playbook-minutes.md"])
 
     def test_unresolved_minutes_wording_does_not_force_the_playbook(self) -> None:
         tasks = (
@@ -377,7 +421,7 @@ class PromptfooProviderTests(unittest.TestCase):
         for task in tasks:
             with self.subTest(task=task):
                 refs = provider._reference_paths_for_genres(["会议纪要"], [task])
-                self.assertEqual(refs, ["SKILL.md", "references/genre-playbooks.md"])
+                self.assertEqual(refs, ["SKILL.md", "references/genre-playbook-minutes.md"])
 
     def test_review_only_task_loads_the_review_leaf(self) -> None:
         refs = provider._reference_paths_for_genres(
@@ -494,7 +538,7 @@ class PromptfooProviderTests(unittest.TestCase):
         )
         self.assertEqual(
             provider._case_reference_paths(complete),
-            ["SKILL.md", "references/genre-playbooks.md"],
+            ["SKILL.md", "references/genre-playbook-minutes.md"],
         )
         self.assertEqual(
             provider._case_reference_paths(review),

@@ -171,6 +171,7 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assertIn("| 文件 | 阶段 | 加载条件 |", text)
         self.assertIn("`references/task-route-cards.md` | 起草前/改稿前", text)
         self.assertIn("低上下文局部修改", text)
+        self.assertIn("`references/genre-playbook-minutes.md` | 按文种选读", text)
         self.assertIn("`references/genre-playbooks.md` | 按文种选读", text)
         self.assertIn("`references/ai-compute-docs.md` | 专项选读", text)
         self.assertIn("AI 算力、GPU/服务器租赁、模型服务、智算中心、成本比较、SLA、安全或验收等专项直接读取", text)
@@ -338,6 +339,25 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assertNotIn("## 报告\n", common)
         self.assertIn("使用事实性汇报语言", report)
         self.assertIn("专题报告先给结论", report)
+
+    def test_minutes_playbook_is_routed_as_an_atomic_leaf(self) -> None:
+        skill = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
+        cards = (
+            ROOT / "chinese-official-writing" / "references" / "task-route-cards.md"
+        ).read_text(encoding="utf-8")
+        common = (
+            ROOT / "chinese-official-writing" / "references" / "genre-playbooks.md"
+        ).read_text(encoding="utf-8")
+        minutes = (
+            ROOT / "chinese-official-writing" / "references" / "genre-playbook-minutes.md"
+        ).read_text(encoding="utf-8")
+
+        self.assertIn("references/genre-playbook-minutes.md", skill)
+        self.assertIn("references/genre-playbook-minutes.md", cards)
+        self.assertNotIn("## 会议纪要\n", common)
+        self.assertIn("## 会议纪要\n", minutes)
+        self.assertIn("重点是议定事项、责任、期限和后续动作", minutes)
+        self.assertIn("不补写“会议认为”“会议强调”", minutes)
 
     def test_institution_rules_have_a_dedicated_routed_leaf(self) -> None:
         skill = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
@@ -961,6 +981,10 @@ class SkillBoundaryTests(unittest.TestCase):
         playbooks = (ROOT / "chinese-official-writing" / "references" / "genre-playbooks.md").read_text(
             encoding="utf-8"
         )
+        minutes = (
+            ROOT / "chinese-official-writing" / "references" / "genre-playbook-minutes.md"
+        ).read_text(encoding="utf-8")
+        routed_playbooks = playbooks + "\n" + minutes
         ai_compute = (
             ROOT / "chinese-official-writing" / "references" / "ai-compute-docs.md"
         ).read_text(encoding="utf-8")
@@ -981,7 +1005,7 @@ class SkillBoundaryTests(unittest.TestCase):
             "## 调研报告/研究报告/可研报告/建设方案",
             "## 采购公告/审查材料",
         ]:
-            self.assertIn(heading, playbooks)
+            self.assertIn(heading, routed_playbooks)
         self.assertIn("## AI 算力与技术服务", ai_compute)
         for term in [
             "不新增默认联网、API、Word/PDF 或脚本硬门禁",
@@ -996,7 +1020,7 @@ class SkillBoundaryTests(unittest.TestCase):
             "责任或期限未给时不使用“按审核执行”“后续推进”等泛口径补齐",
             "普通采购公告不默认进入 AI 算力语境",
         ]:
-            self.assertIn(term, playbooks)
+            self.assertIn(term, routed_playbooks)
         self.assertIn("详细结构见下文；本节只保留触发和边界", ai_compute)
         self.assertIn("会议判断、受众称呼、角色分工、合同义务或服务单位责任", skill)
         self.assertIn("详细测算和参数转读 `ai-compute-docs.md`", handling)

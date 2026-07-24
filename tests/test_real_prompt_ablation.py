@@ -264,7 +264,9 @@ class RealPromptAblationTests(unittest.TestCase):
             self.assertIn(term, checks_by_id[case_id]["description_terms"])
         self.assertIn(
             "## 会议纪要",
-            checks_by_id["P072"]["file_terms"]["chinese-official-writing/references/genre-playbooks.md"],
+            checks_by_id["P072"]["file_terms"][
+                "chinese-official-writing/references/genre-playbook-minutes.md"
+            ],
         )
         self.assertIn(
             "普通采购公告不默认进入 AI 算力语境",
@@ -276,7 +278,9 @@ class RealPromptAblationTests(unittest.TestCase):
         )
         self.assertIn(
             "未给会议判断",
-            checks_by_id["P080"]["file_terms"]["chinese-official-writing/references/genre-playbooks.md"],
+            checks_by_id["P080"]["file_terms"][
+                "chinese-official-writing/references/genre-playbook-minutes.md"
+            ],
         )
         self.assertIn(
             "未造成 `。；` 或行尾分号噪声",
@@ -309,11 +313,15 @@ class RealPromptAblationTests(unittest.TestCase):
         )
         self.assertIn(
             "不把有期限的事项拆成多个待明确字段",
-            checks_by_id["P088"]["file_terms"]["chinese-official-writing/references/genre-playbooks.md"],
+            checks_by_id["P088"]["file_terms"][
+                "chinese-official-writing/references/genre-playbook-minutes.md"
+            ],
         )
         self.assertIn(
             "不把一个期限扩展到原文未绑定的其他任务",
-            checks_by_id["P088"]["file_terms"]["chinese-official-writing/references/genre-playbooks.md"],
+            checks_by_id["P088"]["file_terms"][
+                "chinese-official-writing/references/genre-playbook-minutes.md"
+            ],
         )
         self.assertIn(
             "采购需求不等于现有能力不足、效率提升、业务范围不变或影响结论",

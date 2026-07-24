@@ -47,6 +47,9 @@ GENRE_REFERENCES: dict[str, list[str]] = {
     "playbook": [
         "references/genre-playbooks.md",
     ],
+    "minutes_playbook": [
+        "references/genre-playbook-minutes.md",
+    ],
     "ai_compute": [
         "references/ai-compute-docs.md",
     ],
@@ -422,7 +425,7 @@ def _is_ai_compute(genre: str, tasks: list[str] | None = None) -> bool:
 
 
 def _ai_requires_ordinary_playbook(genres: list[str], tasks: list[str]) -> bool:
-    if any(genre in PLAYBOOK_GENRES for genre in genres):
+    if any(genre in PLAYBOOK_GENRES and genre != "会议纪要" for genre in genres):
         return True
     if any(_contains_marker(genre, AI_ORDINARY_GENRE_MARKERS) for genre in genres):
         return True
@@ -516,7 +519,9 @@ def _reference_paths_for_genres(genres: list[str], tasks: list[str] | None = Non
     if sparse_route:
         paths.extend(GENRE_REFERENCES["sparse"])
     else:
-        if any(genre in PLAYBOOK_GENRES for genre in genres) or (
+        if "会议纪要" in genres:
+            paths.extend(GENRE_REFERENCES["minutes_playbook"])
+        if any(genre in PLAYBOOK_GENRES and genre != "会议纪要" for genre in genres) or (
             ai_compute and _ai_requires_ordinary_playbook(genres, tasks)
         ):
             paths.extend(GENRE_REFERENCES["playbook"])

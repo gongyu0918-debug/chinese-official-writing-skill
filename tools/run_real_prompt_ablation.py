@@ -1135,7 +1135,7 @@ CASES: list[PromptCase] = [
         prompt="把这段会议记录整理成会议纪要，只保留议定事项、责任单位和完成期限，不要写成会议新闻。",
         checks={
             "file_terms": {
-                "chinese-official-writing/references/genre-playbooks.md": [
+                "chinese-official-writing/references/genre-playbook-minutes.md": [
                     "## 会议纪要",
                     "议定事项",
                     "责任、期限",
@@ -1249,7 +1249,7 @@ CASES: list[PromptCase] = [
         prompt="把会议记录整理成会议纪要，只给议定事项、责任单位和期限；原文没有会议结论，不要补“会议认为”“会议强调”。",
         checks={
             "file_terms": {
-                "chinese-official-writing/references/genre-playbooks.md": [
+                "chinese-official-writing/references/genre-playbook-minutes.md": [
                     "未给会议判断",
                     "不补写“会议认为”“会议强调”",
                     "责任或期限未给时留空或列为待确认",
@@ -1418,12 +1418,14 @@ CASES: list[PromptCase] = [
         prompt="写一份会议纪要、可研报告或采购申请时，按具体场景核对会议类型、项目类型、投资资金、品名规格数量和报价依据，不要套模板补空项，也不要把采购需求推断成现有能力不足。",
         checks={
             "file_terms": {
-                "chinese-official-writing/references/genre-playbooks.md": [
+                "chinese-official-writing/references/genre-playbook-minutes.md": [
                     "决策会重“审议、原则同意、决定、要求”",
                     "同一句中的主体、动作、期限应保持绑定",
                     "不把有期限的事项拆成多个待明确字段",
                     "不把一个期限扩展到原文未绑定的其他任务",
                     "不补写问题类型、产生环节、处理建议、保障效果等未给交付物",
+                ],
+                "chinese-official-writing/references/genre-playbooks.md": [
                     "项目类型、建设性质、建设内容、投资估算、资金来源",
                     "品名、规格、数量、预算或单价、供应商/报价依据",
                     "不用地方模板或空表补实",
@@ -1667,7 +1669,7 @@ CASES: list[PromptCase] = [
         prompt="写会议纪要时只进入对应 playbook 小节；除非任务复杂或文种不清，不要固定预读 workflow、genre-routing 和整套复核资料。",
         checks={
             "file_terms": {
-                "chinese-official-writing/references/genre-playbooks.md": [
+                "chinese-official-writing/references/genre-playbook-minutes.md": [
                     "每个文种小节都是可从 `SKILL.md` 直接进入的叶子路由",
                     "不要求先完整读取 `workflow.md` 或 `genre-routing.md`",
                     "不要把每节末尾的“补充读取”当成固定加载清单",
@@ -1962,7 +1964,7 @@ FILE_TERM_ALTERNATIVES_BY_CASE: dict[str, list[dict[str, list[str]]]] = {
     ],
     "P080": [
         {
-            "chinese-official-writing/references/genre-playbooks.md": [
+            "chinese-official-writing/references/genre-playbook-minutes.md": [
                 "原材料只给议题、责任和期限时，不补写“会议认为”“会议强调”等未给会议判断",
                 "责任或期限未给时不使用“按审核执行”“后续推进”等泛口径补齐",
             ],
