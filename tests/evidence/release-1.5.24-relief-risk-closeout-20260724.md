@@ -71,7 +71,7 @@ C:\Users\admin\AppData\Local\Programs\Python\Python313\python.exe evals\official
 - 内容文件：`23`；SkillHub 临时 `_meta.json` 尚未生成，ClawHub 的 OpenClaw 发行面另含 README。
 - `__pycache__`、`.pyc`、`output/`、`tmp/`：`0`。
 - 三个门禁/FSM 专用文件：`0`。
-- 预览清单 SHA256：`167ea9327f954cfe0bf39418f315fb9fa318e71124df6b910219d2436bbc6ceb`。计算方法为：按相对路径排序，每行写成 `<相对路径>\t<小写文件 SHA256>\n`，再对完整 UTF-8 字节串计算 SHA256。
+- 预览清单 SHA256：`197f4eccfe35e26664e75611aa17a791414c4ccbb794e4cb7da4240ddb72f753`。计算方法为：相对路径统一使用 `/`，按 Unicode Ordinal 升序排列；每行写成 `<相对路径>\t<小写文件 SHA256>\n`，再对完整 UTF-8 字节串计算 SHA256。
 
 canonical 目录存在测试运行产生的 ignored `__pycache__`/`.pyc`；其数量会随测试变化，不作为发行证据。白名单预览、OpenClaw 镜像和同步脚本均未携带这些缓存。发布时继续使用白名单，不从工作目录递归打包。
 
