@@ -1,12 +1,14 @@
 # AGENTS.md
 
-## 1.5.23 发布候选
+## 1.5.23 正式发布
 
 1.5.23 以 `v1.5.22=7628619da8e05cc03c86d27d5a95eb8cee8fde05` 为固定产品基线，只合入已独立通过的 AI 专项叶子减负：纯 AI 技术需求直达 `ai-compute-docs.md`；AI 与请示、申请、采购、可研、报告、说明、审查、公告、通知、函或方案组合时仍走 `genre-playbooks.md` 和对应文种规则。纯 AI 专项 reference 负载减少约 50.2%，计入常驻入口后的所选上下文减少约 23.7%。
 
 真实 A/B 覆盖模型推理服务技术需求、GPU 算力租赁服务采购公告和模型服务平台建设可行性研究报告，结果为 Candidate 2 胜、1 难分；Candidate 三题硬核验均为 PASS，无 Candidate 独有事实、状态、文种、格式、输出模式或 P0 回退。整合工作树全量 unittest 358/358、Promptfoo smoke 20/20、固定 1.5.22 消融 Baseline 107/108 与 Candidate 108/108、quick validate、镜像同步和 diff check 均通过；Baseline 唯一失败为本版新增的专项迁移断言。
 
-52 字符的 CI/发布命令入口减负初轮匿名盲审为 2 胜 1 负；针对唯一负例补做两组逐字同题复现后为 1 胜 1 负，四稿硬核验无事实、P0 或材料外扩回退，胜负均只来自联系人与电话换行偏好，确认原负例含抽样波动。由于复测没有形成稳定不负于基线的证据，该减负仍按预注册排除，不进入 1.5.23。`genre-playbooks.md` 维护尾句减负复测时，Candidate 与 Baseline 两次均自然绕过改动文件，证据无效，也不进入本版。当前 1.5.23 仅为本地发布候选，尚未创建 tag、推送或发布；完整证据见 `tests/evidence/release-1.5.23.md`。
+52 字符的 CI/发布命令入口减负初轮匿名盲审为 2 胜 1 负；针对唯一负例补做两组逐字同题复现后为 1 胜 1 负，四稿硬核验无事实、P0 或材料外扩回退，胜负均只来自联系人与电话换行偏好，确认原负例含抽样波动。由于复测没有形成稳定不负于基线的证据，该减负仍按预注册排除，不进入 1.5.23。`genre-playbooks.md` 维护尾句减负复测时，Candidate 与 Baseline 两次均自然绕过改动文件，证据无效，也不进入本版。
+
+GitHub 发布提交和 annotated tag 解引用提交均为 `1bf33384cc3d2ff9a17da16fcd8f1936b43c253b`，tag object 为 `7ca328566e0736150cfbc057d7d6eacf0e24a5ef`，正式 Release 已公开。ClawHub 一次正式提交返回 `versionId=k975803yfr1r803szmprs4p7en8b5fnf`、23 文件和 fingerprint `ea9704defb77af3d7587c397a6f634e72699c6138967b79c53b157acdfe65bfb`；提交回执仍显示公开 latest 为 1.5.22，立即精确查询 1.5.23 返回传播中的 `Version not found`，不重复提交。skillhub.cn 一次正式提交返回 `skillId=70149`、`versionId=159789`、23 文件和 fingerprint `7ae9dd7811949518a7447b0295b4966c6d6fe4bcfee531376932daac0694cbb6`，`tags.latest=1.5.23`，review、security scan 和 content audit 均为 pending；首次公开搜索仍为 1.5.22。完整证据见 `tests/evidence/release-1.5.23.md`。
 
 ## 1.5.22 发布状态
 
