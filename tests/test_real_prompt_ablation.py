@@ -301,7 +301,9 @@ class RealPromptAblationTests(unittest.TestCase):
         )
         self.assertIn(
             "不自动改题为“调研报告”",
-            checks_by_id["P086"]["file_terms"]["chinese-official-writing/references/genre-playbooks.md"],
+            checks_by_id["P086"]["file_terms"][
+                "chinese-official-writing/references/genre-checklist-report.md"
+            ],
         )
         self.assertIn(
             "文表和附件一致性",
@@ -333,7 +335,9 @@ class RealPromptAblationTests(unittest.TestCase):
         )
         self.assertIn(
             "不自动改题为“调研报告”“考核说明”或“实施方案”",
-            checks_by_id["P089"]["file_terms"]["chinese-official-writing/references/genre-playbooks.md"],
+            checks_by_id["P089"]["file_terms"][
+                "chinese-official-writing/references/genre-checklist-report.md"
+            ],
         )
         self.assertIn(
             "不用 Markdown `**` 加粗包装标签",

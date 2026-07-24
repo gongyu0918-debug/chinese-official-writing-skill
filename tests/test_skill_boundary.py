@@ -335,10 +335,25 @@ class SkillBoundaryTests(unittest.TestCase):
         )
 
         self.assertIn("references/genre-checklist-report.md", skill)
+        self.assertIn("需要常规或完整骨架、专项写法或细查文种功能和结构时直接读取", skill)
         self.assertIn("`genre-checklist-report.md`", playbooks)
         self.assertNotIn("## 报告\n", common)
+        self.assertIn("## 使用方式", report)
+        self.assertIn("## 报告/情况说明", report)
         self.assertIn("使用事实性汇报语言", report)
         self.assertIn("专题报告先给结论", report)
+        self.assertNotIn("`genre-checklist-report.md`", report)
+
+        def section(text: str, heading: str, next_heading: str) -> str:
+            body = text.split(heading, 1)[1].split(next_heading, 1)[0]
+            return "\n".join(
+                line for line in body.splitlines() if not line.startswith("- 补充读取")
+            ).strip()
+
+        self.assertEqual(
+            section(playbooks, "## 报告/情况说明", "## 函/复函/征求意见函"),
+            section(report, "## 报告/情况说明", "## 报告"),
+        )
 
     def test_minutes_playbook_is_routed_as_an_atomic_leaf(self) -> None:
         skill = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")

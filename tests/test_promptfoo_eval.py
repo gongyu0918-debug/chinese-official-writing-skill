@@ -236,7 +236,71 @@ class PromptfooProviderTests(unittest.TestCase):
         for genre in genres:
             with self.subTest(genre=genre):
                 refs = provider._reference_paths_for_genres([genre])
+                expected = (
+                    "references/genre-checklist-report.md"
+                    if genre in provider.REPORT_PLAYBOOK_GENRES
+                    else "references/genre-playbooks.md"
+                )
+                self.assertIn(expected, refs)
+
+    def test_report_genres_use_the_existing_report_leaf_only(self) -> None:
+        for genre in provider.REPORT_PLAYBOOK_GENRES:
+            with self.subTest(genre=genre):
+                refs = provider._reference_paths_for_genres([genre])
+                self.assertEqual(
+                    refs,
+                    ["SKILL.md", "references/genre-checklist-report.md"],
+                )
+
+    def test_plain_explanation_does_not_expand_into_the_report_route(self) -> None:
+        refs = provider._reference_paths_for_genres(["说明"])
+
+        self.assertEqual(
+            refs,
+            ["SKILL.md", "references/genre-playbooks.md"],
+        )
+
+    def test_sparse_report_still_stops_at_the_task_card(self) -> None:
+        cases = [
+            ("报告", "材料只有完成一次排查和发现两项问题，请写简短报告，不新增事实。"),
+            ("情况说明", "材料只有一次中断和恢复时间，请写简短情况说明，不新增事实。"),
+        ]
+        for genre, task in cases:
+            with self.subTest(genre=genre):
+                refs = provider._reference_paths_for_genres([genre], [task])
+                self.assertEqual(
+                    refs,
+                    ["SKILL.md", "references/task-route-cards.md"],
+                )
+
+    def test_ai_report_combines_the_report_and_ai_leaves(self) -> None:
+        refs = provider._reference_paths_for_genres(
+            ["报告"],
+            ["请起草一份AI模型服务报告，只输出正文。"],
+        )
+
+        self.assertEqual(
+            refs,
+            [
+                "SKILL.md",
+                "references/genre-checklist-report.md",
+                "references/ai-compute-docs.md",
+            ],
+        )
+
+    def test_report_as_a_topic_keeps_the_ordinary_playbook_fallback(self) -> None:
+        for task in [
+            "请起草一份关于AI模型服务运行报告报送工作的通知。",
+            "请起草一份关于AI模型服务审计报告整改的请示。",
+        ]:
+            with self.subTest(task=task):
+                refs = provider._reference_paths_for_genres(
+                    ["模型服务技术需求"],
+                    [task],
+                )
                 self.assertIn("references/genre-playbooks.md", refs)
+                self.assertIn("references/ai-compute-docs.md", refs)
+                self.assertNotIn("references/genre-checklist-report.md", refs)
 
     def test_task_text_can_upgrade_complex_and_format_routes(self) -> None:
         complex_refs = provider._reference_paths_for_genres(
@@ -251,6 +315,8 @@ class PromptfooProviderTests(unittest.TestCase):
         self.assertIn("references/workflow.md", complex_refs)
         self.assertIn("references/handling-elements.md", complex_refs)
         self.assertIn("references/argument-chains.md", complex_refs)
+        self.assertIn("references/genre-checklist-report.md", complex_refs)
+        self.assertNotIn("references/genre-playbooks.md", complex_refs)
         self.assertNotIn("references/task-route-cards.md", complex_refs)
         self.assertIn("references/format-gbt9704.md", format_refs)
 
@@ -289,7 +355,14 @@ class PromptfooProviderTests(unittest.TestCase):
     def test_common_known_genres_stop_at_the_playbook(self) -> None:
         refs = provider._reference_paths_for_genres(["通知", "请示", "报告", "说明", "方案"])
 
-        self.assertEqual(refs, ["SKILL.md", "references/genre-playbooks.md"])
+        self.assertEqual(
+            refs,
+            [
+                "SKILL.md",
+                "references/genre-checklist-report.md",
+                "references/genre-playbooks.md",
+            ],
+        )
         self.assertNotIn("references/genre-routing.md", refs)
         self.assertNotIn("references/handling-elements.md", refs)
         self.assertNotIn("references/genre-checklist.md", refs)
@@ -331,7 +404,7 @@ class PromptfooProviderTests(unittest.TestCase):
             [
                 "SKILL.md",
                 "references/genre-playbook-minutes.md",
-                "references/genre-playbooks.md",
+                "references/genre-checklist-report.md",
             ],
         )
 
@@ -473,7 +546,11 @@ class PromptfooProviderTests(unittest.TestCase):
 
         self.assertEqual(
             refs,
-            ["SKILL.md", "references/genre-playbooks.md", "references/official-style.md"],
+            [
+                "SKILL.md",
+                "references/genre-checklist-report.md",
+                "references/official-style.md",
+            ],
         )
 
     def test_non_ai_server_rental_does_not_load_ai_compute_reference(self) -> None:

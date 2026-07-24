@@ -1150,7 +1150,7 @@ CASES: list[PromptCase] = [
         prompt="写一份情况报告，说明系统巡检发现的问题、影响和下一步处置，不要夹带请批事项。",
         checks={
             "file_terms": {
-                "chinese-official-writing/references/genre-playbooks.md": [
+                "chinese-official-writing/references/genre-checklist-report.md": [
                     "## 报告/情况说明",
                     "报告不写审批请求",
                     "情况说明重点交代已给原因、影响、处置",
@@ -1378,7 +1378,7 @@ CASES: list[PromptCase] = [
                     "正文后的待确认、风险提醒、来源核验或引用核验提示不进入报告",
                     "正文外提示",
                 ],
-                "chinese-official-writing/references/genre-playbooks.md": [
+                "chinese-official-writing/references/genre-checklist-report.md": [
                     "使用/体验/评估报告",
                     "不自动改题为“调研报告”",
                     "不要让负面内容吞没准确性、可用价值、适用场景和后续观察安排",
@@ -1451,7 +1451,7 @@ CASES: list[PromptCase] = [
                     "正文保持建议或待评估口径",
                     "不改写成已定实施方案、执行命令或具体反馈时限",
                 ],
-                "chinese-official-writing/references/genre-playbooks.md": [
+                "chinese-official-writing/references/genre-checklist-report.md": [
                     "成本考察、成本评估",
                     "不自动改题为“调研报告”“考核说明”或“实施方案”",
                     "不写成已经确定的执行路线、责任命令或反馈时限",
@@ -1566,7 +1566,7 @@ CASES: list[PromptCase] = [
                     "正文承接已确认的时间、现象和操作记录",
                     "原因、影响、责任和处置结论保持材料当前状态",
                 ],
-                "chinese-official-writing/references/genre-playbooks.md": [
+                "chinese-official-writing/references/genre-checklist-report.md": [
                     "不包装成核心系统、生产系统、业务主系统",
                     "原因结论、责任部门、损失金额或整改方案",
                 ],
@@ -1993,7 +1993,7 @@ FILE_TERM_ALTERNATIVES_BY_CASE: dict[str, list[dict[str, list[str]]]] = {
     ],
     "P086": [
         {
-            "chinese-official-writing/references/genre-playbooks.md": [
+            "chinese-official-writing/references/genre-checklist-report.md": [
                 "使用/体验/评估报告",
                 "不自动改题为“调研报告”",
             ],
@@ -2023,7 +2023,7 @@ FILE_TERM_ALTERNATIVES_BY_CASE: dict[str, list[dict[str, list[str]]]] = {
                 "正文保持建议、拟办或待评估口径",
                 "不升级成已定实施方案、命令或已安排动作",
             ],
-            "chinese-official-writing/references/genre-playbooks.md": [
+            "chinese-official-writing/references/genre-checklist-report.md": [
                 "不写成已经确定的执行路线、责任命令或反馈时限",
             ],
         }

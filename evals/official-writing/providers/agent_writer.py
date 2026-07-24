@@ -50,6 +50,9 @@ GENRE_REFERENCES: dict[str, list[str]] = {
     "minutes_playbook": [
         "references/genre-playbook-minutes.md",
     ],
+    "report_playbook": [
+        "references/genre-checklist-report.md",
+    ],
     "ai_compute": [
         "references/ai-compute-docs.md",
     ],
@@ -107,6 +110,12 @@ PLAYBOOK_GENRES = CHAIN_GENRES | {
     "致辞",
     "述职报告",
     "研究报告",
+}
+
+REPORT_PLAYBOOK_GENRES = {
+    "报告",
+    "情况报告",
+    "情况说明",
 }
 
 COMPLEX_TASK_MARKERS = (
@@ -490,7 +499,10 @@ def _task_uses_sparse_card(genres: list[str], tasks: list[str], ai_compute: bool
     if ai_compute or _task_requires_complex_route(tasks):
         return False
     if not tasks:
-        return not any(genre in PLAYBOOK_GENRES for genre in genres)
+        return not any(
+            genre in PLAYBOOK_GENRES or genre in REPORT_PLAYBOOK_GENRES
+            for genre in genres
+        )
     if not any(genre in SPARSE_CARD_GENRES for genre in genres):
         return False
     if "会议纪要" in genres:
@@ -504,6 +516,7 @@ def _reference_paths_for_genres(genres: list[str], tasks: list[str] | None = Non
     tasks = tasks or []
     paths = ["SKILL.md"]
     ai_compute = any(_is_ai_compute(genre, tasks) for genre in genres)
+    report_playbook = any(genre in REPORT_PLAYBOOK_GENRES for genre in genres)
 
     if _tasks_are_review_only(tasks):
         paths.extend(GENRE_REFERENCES["review"])
@@ -521,8 +534,17 @@ def _reference_paths_for_genres(genres: list[str], tasks: list[str] | None = Non
     else:
         if "会议纪要" in genres:
             paths.extend(GENRE_REFERENCES["minutes_playbook"])
-        if any(genre in PLAYBOOK_GENRES and genre != "会议纪要" for genre in genres) or (
-            ai_compute and _ai_requires_ordinary_playbook(genres, tasks)
+        if report_playbook:
+            paths.extend(GENRE_REFERENCES["report_playbook"])
+        if any(
+            genre in PLAYBOOK_GENRES
+            and genre != "会议纪要"
+            and genre not in REPORT_PLAYBOOK_GENRES
+            for genre in genres
+        ) or (
+            ai_compute
+            and _ai_requires_ordinary_playbook(genres, tasks)
+            and not report_playbook
         ):
             paths.extend(GENRE_REFERENCES["playbook"])
         if any(_contains_marker(task, ROUTING_TASK_MARKERS) for task in tasks):
