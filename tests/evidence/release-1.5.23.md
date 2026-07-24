@@ -10,7 +10,13 @@
 
 独立候选分支为 `codex/release-1.5.23-ai-only`，产品提交 `4eacfce`，结果证据提交 `2848e91`。整合分支通过合并提交 `e74e84a` 保留候选历史。
 
-52 字符的 CI/发布命令入口减负在独立分支 `codex/release-1.5.23-ci-command-relief` 验证。其工程门和硬核验通过，但匿名盲审为 Candidate 2 胜 1 负，不满足预注册的三题均胜或难分，因此按 MIXED 冻结；产品提交 `7ec7f3a` 未进入本版。
+52 字符的 CI/发布命令入口减负在独立分支 `codex/release-1.5.23-ci-command-relief` 验证。其工程门和硬核验通过，初轮匿名盲审为 Candidate 2 胜 1 负。唯一负例只涉及联系人与联系电话分行偏好，没有事实、状态、P0 或材料外扩差异，因此另从固定基线建立 `codex/release-1.5.23-ci-command-relief-retest`，精确复放同一产品变量并预注册两组同题复现。复测产品提交为 `5b10da7`，结果提交为 `9d0ad64`，详见 `entry-ci-command-relief-retest-result-20260724.md`。
+
+复测首批四次运行均在读取前遭遇对称的 Windows ACL 启动错误，按预注册判技术无效；唯一允许的同条件重试得到四份技术有效首稿。硬核验三份 PASS，一份仅因联系人行尾含两个空格为 WARN，无事实、数字、状态、P0 或材料外扩回退；匿名盲审一组 Baseline 胜、一组 Candidate 胜，胜负仍只来自同一换行偏好。由此可确认初轮负例含抽样波动，但无法证明删除该说明后稳定不负于基线；按复测预注册结论为 FAIL，产品提交 `7ec7f3a`、`5b10da7` 均未进入本版。
+
+`genre-playbooks.md` 的维护尾句减负另在 `codex/release-1.5.23-genre-tail-relief-retest` 精确复放，产品提交 `8911d60`，结果提交 `de989bd`。全量 unittest 358/358、固定 1.5.23 确定性消融两侧 108/108、quick validate 和镜像检查均通过；但正常自然任务及唯一允许的同条件重试中，Candidate 与 Baseline 都只读取 `SKILL.md`、`information-selection.md` 和 `task-route-cards.md`，没有加载被修改的 `genre-playbooks.md`。按预注册该测试为 INVALID/STOP，不改变产品结论，也未进入本版。
+
+其余历史减负只保留为下一轮研究：review-mode 紧凑化仅有 1 胜 1 负、改动 35 字且缺少可独立复现的产品提交；纪要清单叶子实际路径由 3042 增至 3045 个字符，不能计作减负。两者均未合入 1.5.23。大幅回退且已有完整 Git 记录的 proofreading toolchain、proofreading prefix 和 format leaf 方向不再作为本版候选；发布前只清理其中状态干净、可由提交重建的研究 worktree，保留分支和提交。
 
 ## 确定性收益
 
