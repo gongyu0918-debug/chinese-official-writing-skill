@@ -1293,7 +1293,7 @@ CASES: list[PromptCase] = [
                     "列在待确认事项最前",
                     "影响正式报送和文种完整性",
                 ],
-                "chinese-official-writing/references/genre-playbooks.md": [
+                "chinese-official-writing/references/genre-playbook-request.md": [
                     "主送机关、发文或申请单位、成文日期属于正式报送结构要素",
                     "不编造泛称",
                 ],
@@ -1977,11 +1977,21 @@ FILE_TERM_ALTERNATIVES_BY_CASE: dict[str, list[dict[str, list[str]]]] = {
             "chinese-official-writing/references/handling-elements.md": [
                 "请示、报告、上报申请缺主送机关、发文或申请单位、成文日期时",
             ],
+            "chinese-official-writing/references/genre-playbook-request.md": [
+                "主送机关、发文或申请单位、成文日期属于正式报送结构要素",
+            ],
+            "chinese-official-writing/references/information-selection.md": ["视为实质缺口"],
+        },
+        {
+            "chinese-official-writing/SKILL.md": ["识别为正式报送结构缺口"],
+            "chinese-official-writing/references/handling-elements.md": [
+                "请示、报告、上报申请缺主送机关、发文或申请单位、成文日期时",
+            ],
             "chinese-official-writing/references/genre-playbooks.md": [
                 "主送机关、发文或申请单位、成文日期属于正式报送结构要素",
             ],
             "chinese-official-writing/references/information-selection.md": ["视为实质缺口"],
-        }
+        },
     ],
     "P084": [
         {
