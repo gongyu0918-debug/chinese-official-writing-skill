@@ -42,6 +42,98 @@ class ReviewGateTests(unittest.TestCase):
             "尚不能据此直接推定异常已经根本解决。"
         )
 
+    def test_candidate_document_invariant_reason_contract(self) -> None:
+        request = "请写一份简短情况报告。"
+        titled = "情况报告\n\n有关工作正在推进。"
+        self.assertEqual(
+            review_gate._candidate_document_invariant_reason(
+                request,
+                titled,
+                "情况通报\n\n有关工作正在推进。",
+                review_gate.REPAIR_MODE_REWRITE_SENTENCE,
+            ),
+            "heading_or_title_changed",
+        )
+
+        sectioned = (
+            "情况报告\n\n"
+            "一、基本情况\n"
+            "有关工作已经完成。\n\n"
+            "二、后续安排\n"
+            "相关安排正在推进。"
+        )
+        emptied_section = (
+            "情况报告\n\n"
+            "一、基本情况\n\n"
+            "二、后续安排\n"
+            "相关安排正在推进。"
+        )
+        self.assertEqual(
+            review_gate._candidate_document_invariant_reason(
+                request,
+                sectioned,
+                emptied_section,
+                review_gate.REPAIR_MODE_REWRITE_SENTENCE,
+            ),
+            "body_or_section_emptied",
+        )
+
+        body = "有关工作正在按计划推进。" * 20
+        self.assertEqual(
+            review_gate._candidate_document_invariant_reason(
+                request,
+                body,
+                "有关工作正在按计划推进。" * 10,
+                review_gate.REPAIR_MODE_REWRITE_SENTENCE,
+            ),
+            "body_content_collapsed",
+        )
+        self.assertEqual(
+            review_gate._candidate_document_invariant_reason(
+                request,
+                "有关工作正在按计划推进。" * 10,
+                "有关工作正在按计划推进。" * 30,
+                review_gate.REPAIR_MODE_REWRITE_SENTENCE,
+            ),
+            "candidate_length_expansion_exceeded",
+        )
+
+        target = (
+            "目前只能确认清洗后告警次数减少，尚不能据此确定长期效果，"
+            "也不能作为扩大设备数量、确定采购安排或者测算年度预算的依据。"
+        )
+        replacement = "长期效果仍待观察。"
+        length_draft = "情况报告\n\n" + "设备运行记录已经完成归档。" * 20 + target
+        length_candidate = length_draft.replace(target, replacement)
+        draft_length = review_gate._count_length(length_draft, "nonspace")
+        length_request = f"请写一份{draft_length}—{draft_length + 20}字的简短情况报告。"
+        self.assertEqual(
+            review_gate._candidate_document_invariant_reason(
+                length_request,
+                length_draft,
+                length_candidate,
+                review_gate.REPAIR_MODE_REWRITE_SENTENCE,
+            ),
+            "prompt_length_compliance_worsened",
+        )
+        self.assertIsNone(
+            review_gate._candidate_document_invariant_reason(
+                request,
+                body,
+                "有关工作正在按计划推进。" * 19,
+                review_gate.REPAIR_MODE_REWRITE_SENTENCE,
+            )
+        )
+        self.assertEqual(
+            review_gate._candidate_document_invariant_reason(
+                request,
+                titled,
+                "情况通报",
+                review_gate.REPAIR_MODE_REWRITE_SENTENCE,
+            ),
+            "heading_or_title_changed",
+        )
+
     def detection(self, request=None, draft=None, source="", run_id="run-1"):
         detection = review_gate.locate_candidates(request or self.request, draft or self.draft, source)
         detection["run_id"] = run_id
