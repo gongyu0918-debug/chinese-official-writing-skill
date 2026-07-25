@@ -374,6 +374,24 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assertIn("重点是议定事项、责任、期限和后续动作", minutes)
         self.assertIn("不补写“会议认为”“会议强调”", minutes)
 
+    def test_request_playbook_is_routed_as_an_atomic_leaf(self) -> None:
+        skill = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
+        common = (
+            ROOT / "chinese-official-writing" / "references" / "genre-playbooks.md"
+        ).read_text(encoding="utf-8")
+        request = (
+            ROOT / "chinese-official-writing" / "references" / "genre-playbook-request.md"
+        ).read_text(encoding="utf-8")
+
+        self.assertIn("references/genre-playbook-request.md", skill)
+        self.assertIn("请示、申请需要常规或完整骨架时直接读取", skill)
+        self.assertNotIn("## 请示/申请\n", common)
+        self.assertNotIn("- 请示/申请\n", common)
+        self.assertIn("## 请示/申请\n", request)
+        self.assertIn("请示一文一事", request)
+        self.assertIn("主送机关、发文或申请单位、成文日期属于正式报送结构要素", request)
+        self.assertIn("`argument-chains.md` 的请示和请批附件", request)
+
     def test_institution_rules_have_a_dedicated_routed_leaf(self) -> None:
         skill = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
         leaf = (
