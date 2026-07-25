@@ -663,6 +663,8 @@ class SkillBoundaryTests(unittest.TestCase):
             self.assertIn("版记", text)
         self.assertIn("缺项清单", format_ref)
         self.assertIn("不得用 `[依据/背景]`", format_ref)
+        self.assertIn("优先保留来源模板", format_ref)
+        self.assertNotIn("Word 格式是否保留来源模板", checklist)
         self.assertIn("未编造文号、签发人、印章或版记", checklist)
         self.assertIn("用户可读格式复核项", checklist)
         for term in ["标题", "文种", "主送/受文对象", "发文字号", "日期", "附件", "落款", "结尾语", "层级编号"]:
