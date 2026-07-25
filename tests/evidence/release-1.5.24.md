@@ -51,12 +51,18 @@ Candidate 与固定 1.5.23 使用相同模型、thinking 和逐字一致原始�
 
 版本面更新后已按同一入口复跑。沙箱内首次运行时，149 项测试因 Windows 用户临时目录 ACL 报错，Promptfoo 也因 Node 无权启动系统 Python 产生 20 项 error；在获批系统权限下保持同一代码、同一测试入口原样复跑后，分别为 368/368 和 20/20。两次初始失败只记作运行环境噪声，不改写成产品失败或通过。
 
-## 平台状态
+## 包与平台回执
 
-发布前只读核验：
+发布前两家商店分别完成 dry-run：
 
-- GitHub `origin/main=e97567724dbac00aa7bc77ad2758a2698c433702`，远端尚无 `v1.5.24`；
-- ClawHub 公开 latest 和 tags 均为 `1.5.23`，moderation 为 `clean`；
-- skillhub.cn 公开状态和当前授权仍需在正式提交前由平台 CLI 重新核验。
+- ClawHub：`status=would-publish`、24 文件、fingerprint `cf1c54b4699aee45b81540042c8350c1d17b2e0f4df0ab925dcf1b04ea0b51b3`；
+- skillhub.cn：`dryRun=true`、`slug=chinese-official-writing`、`version=1.5.24`；
+- 两个发行面均未带入 `delivery-review-gate.md`、`review_gate.py`、`gate_stop_hook.py`、tests、output、tmp、缓存或 `.pyc`。
 
-本节将在正式发布后补录 GitHub tag/Release、ClawHub 与 skillhub.cn 的独立提交回执。平台公开传播和审核状态分别记录，不用发布回执推断异步字段。
+正式发布结果：
+
+- GitHub `main=f9d38c9755cf6188df2767dcfbf5bdaf659f1d1c`；annotated tag `v1.5.24` 的 tag object 为 `387f2a006ad6fdffa6a3d0b54a24512342abe708`，解引用同一发布提交；GitHub Release `中文公文写作 1.5.24` 已公开，`draft=false`、`prerelease=false`；
+- ClawHub 只正式提交一次，返回 `status=published`、`versionId=k9701pszcev3r776wsjtkqpnwh8b7ssc`、24 文件和 fingerprint `cf1c54b4699aee45b81540042c8350c1d17b2e0f4df0ab925dcf1b04ea0b51b3`。提交回执中的公开 latest 仍为 1.5.23；随后只读查询出现 `No matching routes found`，精确 1.5.24 查询返回传播期 `Version not found`，未重复提交；
+- skillhub.cn 只正式提交一次，返回 `ok=true`、`skillId=70149`、`versionId=167050`、24 文件、fingerprint `72b785a16770b8c31255bd810c6456c603566374df905cddd8165a2d084c48de`，`tags.latest=1.5.24`，review、security scan 和 content audit 均为 pending。首次公开 GET 的 `latestVersion` 和版本列表仍停留在 1.5.23，按异步传播记录，不重复提交。
+
+GitHub Release：`https://github.com/gongyu0918-debug/chinese-official-writing-skill/releases/tag/v1.5.24`。两家商店的提交回执、公开传播和审核状态分别记录，不互相推断。

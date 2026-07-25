@@ -1,10 +1,12 @@
 # AGENTS.md
 
-## 1.5.24 发布准备
+## 1.5.24 正式发布
 
 1.5.24 以 `v1.5.23=1bf33384cc3d2ff9a17da16fcd8f1936b43c253b` 为固定产品基线，只合入已经独立通过的纪要与报告叶子减负：完整纪要直达 `genre-playbook-minutes.md`，完整报告直达精简后的 `genre-checklist-report.md`；同题双成果按需组合两条叶子。所选上下文分别减少 2703、2485 和 1502 个字符，约 19.23%、17.68% 和 10.69%。
 
-真实 A/B 中，纪要两题为 Candidate 1 胜、1 难分，报告两题为 2 难分，双成果任务为难分；各组均无 Candidate 独有的事实、数字、主体、状态、文种、格式、输出模式或 P0 回退。事实边界、信息选择、用户模板、篇幅预算、复核顺序、脚本、Hook、FSM 和回退链不变。发布前整合验证与三平台回执见 `tests/evidence/release-1.5.24.md`。
+真实 A/B 中，纪要两题为 Candidate 1 胜、1 难分，报告两题为 2 难分，双成果任务为难分；各组均无 Candidate 独有的事实、数字、主体、状态、文种、格式、输出模式或 P0 回退。事实边界、信息选择、用户模板、篇幅预算、复核顺序、脚本、Hook、FSM 和回退链不变。
+
+GitHub `main`、annotated tag 解引用提交和正式 Release 均指向 `f9d38c9755cf6188df2767dcfbf5bdaf659f1d1c`，tag object 为 `387f2a006ad6fdffa6a3d0b54a24512342abe708`。ClawHub 一次正式提交返回 `versionId=k9701pszcev3r776wsjtkqpnwh8b7ssc`、24 文件和 fingerprint `cf1c54b4699aee45b81540042c8350c1d17b2e0f4df0ab925dcf1b04ea0b51b3`；skillhub.cn 一次正式提交返回 `skillId=70149`、`versionId=167050`、24 文件和 fingerprint `72b785a16770b8c31255bd810c6456c603566374df905cddd8165a2d084c48de`，`tags.latest=1.5.24`，三项审核均为 pending。完整验证与传播状态见 `tests/evidence/release-1.5.24.md`。
 
 ## 1.5.23 正式发布
 
