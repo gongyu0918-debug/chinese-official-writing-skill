@@ -1183,6 +1183,54 @@ def _drops_uncertainty(target: str, replacement: str) -> bool:
     )
 
 
+def _candidate_document_invariant_reason(
+    request: str,
+    draft: str,
+    candidate: str,
+    repair_mode: str,
+) -> str | None:
+    if _headings(candidate) != _headings(draft):
+        return "heading_or_title_changed"
+
+    before_sections = _section_body_counts(draft)
+    after_sections = _section_body_counts(candidate)
+    if len(before_sections) != len(after_sections) or any(
+        before > 0 and after == 0 for before, after in zip(before_sections, after_sections)
+    ):
+        return "body_or_section_emptied"
+    before_body_length = _body_length(draft)
+    after_body_length = _body_length(candidate)
+    if before_body_length <= 0 or after_body_length < before_body_length * MIN_BODY_RETAIN_RATIO:
+        return "body_content_collapsed"
+
+    minimum, maximum, count_mode = _length_bounds(request)
+    draft_length = _count_length(draft, count_mode)
+    candidate_length = _count_length(candidate, count_mode)
+    expansion_allowance = _length_worsening_tolerance(
+        draft_length, minimum, maximum
+    )
+    if candidate_length > draft_length + expansion_allowance:
+        return "candidate_length_expansion_exceeded"
+    draft_violation = _length_violation_distance(draft_length, minimum, maximum)
+    candidate_violation = _length_violation_distance(
+        candidate_length, minimum, maximum
+    )
+    bounded_p0_shortening = (
+        repair_mode == REPAIR_MODE_DECISIONS
+        and minimum is not None
+        and draft_length < minimum
+        and candidate_length < draft_length
+    )
+    if (
+        not bounded_p0_shortening
+        and candidate_violation
+        > draft_violation
+        + _length_worsening_tolerance(draft_length, minimum, maximum)
+    ):
+        return "prompt_length_compliance_worsened"
+    return None
+
+
 def evaluate_candidate(
     request: str,
     source: str,
@@ -1463,42 +1511,11 @@ def evaluate_candidate(
                     )
     if repair_item_hard_anchor_changed:
         return CandidateResult("D0", "repair_item_hard_anchor_changed", draft)
-    if _headings(candidate) != _headings(draft):
-        return CandidateResult("D0", "heading_or_title_changed", draft)
-
-    before_sections = _section_body_counts(draft)
-    after_sections = _section_body_counts(candidate)
-    if len(before_sections) != len(after_sections) or any(
-        before > 0 and after == 0 for before, after in zip(before_sections, after_sections)
-    ):
-        return CandidateResult("D0", "body_or_section_emptied", draft)
-    before_body_length = _body_length(draft)
-    after_body_length = _body_length(candidate)
-    if before_body_length <= 0 or after_body_length < before_body_length * MIN_BODY_RETAIN_RATIO:
-        return CandidateResult("D0", "body_content_collapsed", draft)
-
-    minimum, maximum, count_mode = _length_bounds(request)
-    draft_length = _count_length(draft, count_mode)
-    candidate_length = _count_length(candidate, count_mode)
-    expansion_allowance = _length_worsening_tolerance(
-        draft_length, minimum, maximum
+    invariant_reason = _candidate_document_invariant_reason(
+        request, draft, candidate, repair_mode
     )
-    if candidate_length > draft_length + expansion_allowance:
-        return CandidateResult("D0", "candidate_length_expansion_exceeded", draft)
-    draft_violation = _length_violation_distance(draft_length, minimum, maximum)
-    candidate_violation = _length_violation_distance(candidate_length, minimum, maximum)
-    bounded_p0_shortening = (
-        repair_mode == REPAIR_MODE_DECISIONS
-        and minimum is not None
-        and draft_length < minimum
-        and candidate_length < draft_length
-    )
-    if (
-        not bounded_p0_shortening
-        and candidate_violation
-        > draft_violation + _length_worsening_tolerance(draft_length, minimum, maximum)
-    ):
-        return CandidateResult("D0", "prompt_length_compliance_worsened", draft)
+    if invariant_reason is not None:
+        return CandidateResult("D0", invariant_reason, draft)
     if repair_mode == REPAIR_MODE_DECISIONS:
         reason = "verified_bounded_decision_packet"
     else:
