@@ -1,6 +1,6 @@
 # 中文公文写作 Skill
 
-[![Version](https://img.shields.io/badge/version-1.5.24-blue)](https://github.com/gongyu0918-debug/chinese-official-writing-skill/releases/tag/v1.5.24)
+[![Version](https://img.shields.io/badge/version-1.5.25-blue)](https://github.com/gongyu0918-debug/chinese-official-writing-skill/releases/tag/v1.5.25)
 [![ClawHub](https://img.shields.io/badge/ClawHub-chinese--official--writing-2f80ed)](https://clawhub.ai/gongyu0918-debug/skills/chinese-official-writing)
 [![SkillHub](https://img.shields.io/badge/SkillHub-chinese--official--writing-e8590c)](https://skillhub.cn/skills/chinese-official-writing)
 [![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
@@ -63,7 +63,7 @@
 
 ## 快速安装
 
-当前工作版本：`chinese-official-writing@1.5.24`
+当前工作版本：`chinese-official-writing@1.5.25`
 
 平台入口：[ClawHub](https://clawhub.ai/gongyu0918-debug/skills/chinese-official-writing) · [skillhub.cn](https://skillhub.cn/skills/chinese-official-writing)。通用 Agent Skills 安装器可直接使用：
 
@@ -75,10 +75,11 @@ npx skills add https://github.com/gongyu0918-debug/chinese-official-writing-skil
 
 ## 模型消融与真实写稿
 
-测试从早期无 Skill/带 Skill 对照，逐步扩展到固定版本消融、真实写稿盲审和多轮改稿。下表汇总 1.5.24 纪要与报告叶子减负，1.5.23 AI 专项叶子减负，1.5.22 入口与叶子原子减负，以及此前版本的专项路由、信息选择、事实关系和复核能力。原始任务、成稿、匿名映射、独立复核和汇总记录均保存在仓库内；早期 270 任务模型消融保留脱敏聚合摘要。
+测试从早期无 Skill/带 Skill 对照，逐步扩展到固定版本消融、真实写稿盲审和多轮改稿。下表汇总 1.5.25 请示/申请叶子与 Word 复核原子减负，1.5.24 纪要与报告叶子减负，1.5.23 AI 专项叶子减负，1.5.22 入口与叶子原子减负，以及此前版本的专项路由、信息选择、事实关系和复核能力。原始任务、成稿、匿名映射、独立复核和汇总记录均保存在仓库内；早期 270 任务模型消融保留脱敏聚合摘要。
 
 | 调试方向 | 主要稿件与边界 | 当前证据 |
 | --- | --- | --- |
+| 请示/申请叶子与 Word 复核原子减负 | 完整请示、申请直达专用文种叶；来源模板规则只在正式格式叶保留一份 | 请示/申请路径减少 3377 字符（85.97%）；三组真实 A/B 中两位盲审分别判 3 胜、2 胜 1 平，六稿硬边界全部通过；Word 两组真实 A/B 均小胜 |
 | 纪要与报告叶子减负 | 完整会议纪要、完整报告及同题双成果任务按命中文种读取专用规则 | 所选上下文分别减少约 19.23%、17.68% 和 10.69%；纪要两组真实 A/B 为 1 胜 1 平，报告两组为 2 平，双成果组合为平局，均无 Candidate 独有硬回退 |
 | AI 专项叶子减负 | 纯 AI 技术需求直接读取专项叶；AI 与已识别的普通文种组合时继续读取对应文种规则 | 模型推理服务技术需求、GPU 算力租赁采购公告和模型服务平台可研报告三组同题 A/B 为 2 胜 1 平，无 Candidate 独有硬回退；纯 AI 路径的专项 reference 负载减少约 50.2%，所选上下文减少约 23.7% |
 | 入口与叶子原子减负 | 低频职责与 Word 细则下沉、AI 算力专项按需读取、重复反例与二次事实映射去重、轻量卡测试话语清理 | 入口累计减少 528 个规范化字符（约 4.97%）；已保留原子的真实 A/B 为 11 胜、4 平、1 个孤立负例，定向复现 2/2 胜且无 Candidate 硬回退；失败实验均已撤回 |
@@ -94,7 +95,7 @@ npx skills add https://github.com/gongyu0918-debug/chinese-official-writing-skil
 | 原子结论限定复核 | 旧稿局部改写、巡检整改报告、食堂异常通报 | 固定 1.5.18 同题盲审 3/3 判 1.5.19 胜出；材料原有结论状态保留，完整稿仍有重复风险 |
 | 渐进式拆叶 | 普通复杂写稿、公开来源核验、报告类细查 | 外部核验规则按需加载，报告细查路径减少 3549 字符；两轮各 3 组真实 A/B 均未见硬回退 |
 | 制度类专项路由 | 管理办法、来访制度、实施细则、短篇规定、印发通知与操作规程 | 新增实施细则、规定两题相对 1.5.20 均小胜且硬检查通过；既有样本保留条文偏碎、职责复述和 DOCX 视觉未核验风险 |
-| 工程回归 | 单元测试、固定上一发行版消融、Promptfoo、镜像与清洁包 | 1.5.24 发布候选为 368/368；Candidate 108/108，1.5.23 基线 101/108，仅未满足本版新增的叶子路由断言；Promptfoo 20/20 |
+| 工程回归 | 单元测试、固定上一发行版消融、Promptfoo、镜像与清洁包 | 1.5.25 发布候选为 370/370；Candidate 与 1.5.24 基线均为 108/108；Promptfoo 20/20 |
 
 60 份发布级真实写稿由两名独立 verifier 盲审。综合结果中，v1.5.13 与 1.5.14 都是 29 PASS、1 个对称 WARN、0 FAIL；硬边界复核两版均为 30 PASS、0 WARN、0 FAIL。真实模型小样本评测与发布级写稿覆盖会议纪要、情况说明、通知、请示、报告、字段式申请、只审不改、普通采购、AI 算力需求和旧稿防回流。
 
@@ -179,6 +180,7 @@ npx skills add https://github.com/gongyu0918-debug/chinese-official-writing-skil
 
 主要证据：
 
+- [`release-1.5.25.md`](tests/evidence/release-1.5.25.md)
 - [`release-1.5.24.md`](tests/evidence/release-1.5.24.md)
 - [`release-1.5.23.md`](tests/evidence/release-1.5.23.md)
 - [`release-1.5.22.md`](tests/evidence/release-1.5.22.md)
