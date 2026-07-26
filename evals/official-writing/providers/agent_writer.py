@@ -53,6 +53,9 @@ GENRE_REFERENCES: dict[str, list[str]] = {
     "report_playbook": [
         "references/genre-checklist-report.md",
     ],
+    "request_review": [
+        "references/genre-checklist-request.md",
+    ],
     "ai_compute": [
         "references/ai-compute-docs.md",
     ],
@@ -116,6 +119,11 @@ REPORT_PLAYBOOK_GENRES = {
     "报告",
     "情况报告",
     "情况说明",
+}
+
+REQUEST_REVIEW_GENRES = {
+    "请示",
+    "申请",
 }
 
 COMPLEX_TASK_MARKERS = (
@@ -520,6 +528,8 @@ def _reference_paths_for_genres(genres: list[str], tasks: list[str] | None = Non
 
     if _tasks_are_review_only(tasks):
         paths.extend(GENRE_REFERENCES["review"])
+        if any(genre in REQUEST_REVIEW_GENRES for genre in genres):
+            paths.extend(GENRE_REFERENCES["request_review"])
         if any(_contains_marker(task, ANTI_AI_TASK_MARKERS) for task in tasks):
             paths.extend(GENRE_REFERENCES["anti_ai"])
         if any(marker in task for task in tasks for marker in FORMAT_TASK_MARKERS):

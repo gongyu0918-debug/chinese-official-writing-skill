@@ -156,7 +156,10 @@ CASES: list[PromptCase] = [
             "checklist_sections": ["申请"],
             "handling_rows": ["申请"],
             "file_terms": {
-                "chinese-official-writing/references/genre-checklist.md": ["两行标题", "尊敬的领导"],
+                "chinese-official-writing/references/genre-checklist-request.md": [
+                    "两行标题",
+                    "尊敬的领导",
+                ],
                 "chinese-official-writing/references/formal-addressing.md": ["不作无依据硬删"],
             },
         },
@@ -182,7 +185,9 @@ CASES: list[PromptCase] = [
             "routing_terms": ["不因使用请批语就自动改成请示"],
             "checklist_sections": ["申请"],
             "file_terms": {
-                "chinese-official-writing/references/genre-checklist.md": ["不要只因出现 `妥否，请批示` 就判定为请示"],
+                "chinese-official-writing/references/genre-checklist-request.md": [
+                    "不要只因出现 `妥否，请批示` 就判定为请示"
+                ],
                 "chinese-official-writing/references/formal-addressing.md": ["申请向上级或领导班子请求批准时", "不要违背用户指定结尾"],
             },
         },
@@ -2137,6 +2142,9 @@ def evaluate_case(case: PromptCase, root: Path, prose_lint) -> dict[str, Any]:
     description = extract_description(skill_text)
     routing = read_text(root, "chinese-official-writing/references/genre-routing.md")
     checklist = read_text(root, "chinese-official-writing/references/genre-checklist.md")
+    request_checklist_path = root / "chinese-official-writing/references/genre-checklist-request.md"
+    if request_checklist_path.exists():
+        checklist = f"{checklist}\n{request_checklist_path.read_text(encoding='utf-8')}"
     elements = read_text(root, "chinese-official-writing/references/handling-elements.md")
     review_checklist = read_text(root, "chinese-official-writing/references/review-checklist.md")
 
@@ -2164,7 +2172,14 @@ def evaluate_case(case: PromptCase, root: Path, prose_lint) -> dict[str, Any]:
             failures.append(f"review-checklist missing {term}")
     file_term_failures: list[str] = []
     for relative, terms in checks.get("file_terms", {}).items():
-        file_text = read_text(root, relative)
+        file_path = root / relative
+        if (
+            relative == "chinese-official-writing/references/genre-checklist-request.md"
+            and not file_path.exists()
+        ):
+            file_text = read_text(root, "chinese-official-writing/references/genre-checklist.md")
+        else:
+            file_text = read_text(root, relative)
         for term in terms:
             if term not in file_text:
                 file_term_failures.append(f"{relative} missing {term}")

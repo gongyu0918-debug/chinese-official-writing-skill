@@ -504,6 +504,24 @@ class PromptfooProviderTests(unittest.TestCase):
 
         self.assertEqual(refs, ["SKILL.md", "references/review-checklist.md"])
 
+    def test_request_review_loads_only_the_request_checklist_leaf(self) -> None:
+        for genre in ("请示", "申请"):
+            with self.subTest(genre=genre):
+                refs = provider._reference_paths_for_genres(
+                    [genre],
+                    [f"只审不改，细查这份{genre}的文种功能、请批事项、模板和结尾。"],
+                )
+                self.assertEqual(
+                    refs,
+                    [
+                        "SKILL.md",
+                        "references/review-checklist.md",
+                        "references/genre-checklist-request.md",
+                    ],
+                )
+                self.assertNotIn("references/genre-checklist.md", refs)
+                self.assertNotIn("references/genre-playbook-request.md", refs)
+
     def test_review_then_rewrite_is_not_classified_as_review_only(self) -> None:
         for task in (
             "请先检查这份通知，再按建议重写全文。",

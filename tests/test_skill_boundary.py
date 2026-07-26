@@ -392,6 +392,30 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assertIn("主送机关、发文或申请单位、成文日期属于正式报送结构要素", request)
         self.assertIn("`argument-chains.md` 的请示和请批附件", request)
 
+    def test_request_review_checklist_is_routed_as_an_atomic_leaf(self) -> None:
+        skill = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
+        common = (
+            ROOT / "chinese-official-writing" / "references" / "genre-checklist.md"
+        ).read_text(encoding="utf-8")
+        draft = (
+            ROOT / "chinese-official-writing" / "references" / "genre-playbook-request.md"
+        ).read_text(encoding="utf-8")
+        review = (
+            ROOT / "chinese-official-writing" / "references" / "genre-checklist-request.md"
+        ).read_text(encoding="utf-8")
+
+        self.assertIn("references/genre-checklist-request.md", skill)
+        self.assertIn("只审或细查请示、申请", skill)
+        self.assertNotIn("## 请示\n", common)
+        self.assertNotIn("## 申请\n", common)
+        self.assertIn("## 请示\n", review)
+        self.assertIn("## 申请\n", review)
+        self.assertIn("一文一事，开头或前部明确请批事项", review)
+        self.assertIn("两行标题", review)
+        self.assertIn("不要只因出现 `妥否，请批示` 就判定为请示", review)
+        self.assertNotIn("两行标题", draft)
+        self.assertNotIn("genre-checklist-request.md", draft)
+
     def test_institution_rules_have_a_dedicated_routed_leaf(self) -> None:
         skill = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
         leaf = (
@@ -899,7 +923,10 @@ class SkillBoundaryTests(unittest.TestCase):
         report_checklist = (
             ROOT / "chinese-official-writing" / "references" / "genre-checklist-report.md"
         ).read_text(encoding="utf-8")
-        genre_checklist_coverage = genre_checklist + "\n" + report_checklist
+        request_checklist = (
+            ROOT / "chinese-official-writing" / "references" / "genre-checklist-request.md"
+        ).read_text(encoding="utf-8")
+        genre_checklist_coverage = genre_checklist + "\n" + report_checklist + "\n" + request_checklist
 
         self.assertNotIn("正式交付前要素核对卡", skill)
         self.assertIn("references/format-gbt9704.md", skill)
