@@ -90,8 +90,24 @@ dry-run 阶段来源字段后通过。首次 skillhub.cn dry-run 直接使用 ca
 
 ## 发布状态
 
-GitHub、ClawHub 和 skillhub.cn 尚未正式提交。本节在发布后补充各平台独立回执、
-公开传播和审核状态；异步传播不触发重复发布。
+- 产品发布提交：`776a32e60f7bb0afe37f439b2710b6d0b43d40e8`；
+- annotated tag object：`b21797f7a0c9f58f369f3ecb26aaea3ca42724b0`；
+- GitHub `main`、`v1.5.25` 解引用提交和正式 Release 均指向产品发布提交；
+  Release 为非 draft、非 prerelease：
+  <https://github.com/gongyu0918-debug/chinese-official-writing-skill/releases/tag/v1.5.25>；
+- ClawHub 只正式提交一次，回执为 `status=published`、
+  `versionId=k977qfz5ev2c9fkbtn54hv955s8b9pd3`、25 文件、fingerprint
+  `da7ca4d56ecc7571aab2f702ae23e1a47667861c769a1ece0865872a867966ff`。
+  回执中的公开 `latestVersion` 仍为 1.5.24；首次公开查询也仍为 1.5.24，
+  精确查询 1.5.25 返回传播中的 `Version not found`。旧公开版 moderation 为
+  `clean`，不能据此推断 1.5.25 的审核状态；
+- skillhub.cn 只正式提交一次，回执为 `skillId=70149`、
+  `versionId=171636`、24 文件、fingerprint
+  `b807f2439fb1e1c7368eebcaa846e6fa348410b720bfeb8854d1354b136bbd46`、
+  `tags.latest=1.5.25`；review、security scan 和 content audit 均为
+  `pending`。首次公开查询已显示 `tags.latest=1.5.25`，但
+  `latestVersion` 和安全报告仍对应 1.5.24；
+- 平台异步传播只记录现状，不触发重复发布。
 
 ## 剩余风险
 

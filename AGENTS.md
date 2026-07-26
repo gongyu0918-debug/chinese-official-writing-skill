@@ -1,10 +1,12 @@
 # AGENTS.md
 
-## 1.5.25 发布候选
+## 1.5.25 正式发布
 
 1.5.25 以 `v1.5.24=f9d38c9755cf6188df2767dcfbf5bdaf659f1d1c` 为固定产品基线，只合入已经独立验证通过的两项原子减负和一项行为等价的脚本职责提取：完整请示、申请直达 `genre-playbook-request.md`；来源模板规则只在正式格式叶保留一份；`review_gate.py` 把标题、章节正文、正文保留比例、候选扩张和用户篇幅遵循五项不变量提取为同文件纯函数。信息选择、事实边界、文种功能、用户模板、复核顺序、Hook、FSM、输出模式和回退链保持不变。
 
 请示/申请命中路径从 3928 字符降至 551 字符，减少 3377 字符、约 85.97%。三组正确路由真实 A/B 中，两名独立盲审分别给出 Candidate 3 胜和 2 胜 1 难分，六稿硬边界全部通过；Word 原子减负两组真实 A/B 均由 Candidate 小胜。发布候选全量 unittest 370/370、固定 1.5.24 消融两版 108/108、Promptfoo smoke 20/20、quick validate、镜像同步和 `git diff --check` 均通过。完整证据见 `tests/evidence/release-1.5.25.md`。
+
+GitHub `main`、annotated tag 解引用提交和正式 Release 均指向 `776a32e60f7bb0afe37f439b2710b6d0b43d40e8`，tag object 为 `b21797f7a0c9f58f369f3ecb26aaea3ca42724b0`。ClawHub 一次正式提交返回 `versionId=k977qfz5ev2c9fkbtn54hv955s8b9pd3`、25 文件和 fingerprint `da7ca4d56ecc7571aab2f702ae23e1a47667861c769a1ece0865872a867966ff`；首次公开查询仍为 1.5.24，精确查询 1.5.25 返回传播中的 `Version not found`。skillhub.cn 一次正式提交返回 `skillId=70149`、`versionId=171636`、24 文件和 fingerprint `b807f2439fb1e1c7368eebcaa846e6fa348410b720bfeb8854d1354b136bbd46`，`tags.latest=1.5.25`，三项审核均为 pending；首次公开 `latestVersion` 仍为 1.5.24。异步传播不触发重复发布。
 
 ## 1.5.24 正式发布
 
