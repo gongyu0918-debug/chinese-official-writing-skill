@@ -1092,7 +1092,7 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assertIn("详细测算和参数转读 `ai-compute-docs.md`", handling)
         self.assertIn("专项结构和指标写法转读 `ai-compute-docs.md`", anti_ai)
 
-    def test_ordinary_letter_leaf_preserves_the_existing_correspondence_rules(self) -> None:
+    def test_ordinary_letter_leaf_is_self_contained_without_default_supplemental_reads(self) -> None:
         skill = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
         playbooks = (
             ROOT / "chinese-official-writing" / "references" / "genre-playbooks.md"
@@ -1111,10 +1111,35 @@ class SkillBoundaryTests(unittest.TestCase):
             section(playbooks, "## 使用方式", "## 报告/情况说明"),
             section(correspondence, "## 使用方式", "## 函/复函/征求意见函"),
         )
-        self.assertEqual(
-            section(playbooks, "## 函/复函/征求意见函", "## 通知/通告/公告/公示/通报"),
-            section(correspondence, "## 函/复函/征求意见函"),
+        playbook_section = section(
+            playbooks,
+            "## 函/复函/征求意见函",
+            "## 通知/通告/公告/公示/通报",
         )
+        correspondence_section = section(correspondence, "## 函/复函/征求意见函")
+        for term in [
+            "平行商洽",
+            "函不写成命令",
+        ]:
+            self.assertIn(term, playbook_section)
+            self.assertIn(term, correspondence_section)
+        for term in [
+            "称谓服从用户模板和已给主体",
+            "不相隶属单位",
+            "商请",
+            "请予支持",
+            "材料已给或办理确有需要时",
+            "反馈期限",
+            "联系人和附件",
+            "专此函达",
+            "请予支持为盼",
+        ]:
+            self.assertIn(term, correspondence_section)
+        for supplemental_reference in [
+            "formal-addressing.md",
+            "genre-checklist.md",
+        ]:
+            self.assertNotIn(supplemental_reference, correspondence_section)
         self.assertIn("普通函需要常规或完整骨架时，直接进入", skill)
         self.assertIn("复函、征求意见函及其他文种明确", skill)
 
