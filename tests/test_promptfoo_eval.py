@@ -286,6 +286,9 @@ class PromptfooProviderTests(unittest.TestCase):
             "请只修改下面函件中的日期，事项、范围和结构均保持不变：\n\n正文略。",
             "请只修改日期，不要调整事项范围或结构，其余内容不变：\n\n正文略。",
             "请只修改日期，办理条件不用改，其他内容不变：\n\n正文略。",
+            "请仅调整该函的标题，正文保持不变：\n\n正文略。",
+            "请只更正函件落款，其他内容不变：\n\n正文略。",
+            "请仅替换函中的日期，其余内容不变：\n\n正文略。",
         ]
         for task in tasks:
             with self.subTest(task=task):
@@ -328,6 +331,19 @@ class PromptfooProviderTests(unittest.TestCase):
         tasks = [
             "请修改下面这份函的标题，并重组事项，其他内容不变：\n\n正文略。",
             "请只改日期，同时调整办理条件和范围，其余内容不变：\n\n正文略。",
+        ]
+        for task in tasks:
+            with self.subTest(task=task):
+                self.assertEqual(
+                    provider._reference_paths_for_genres(["函"], [task]),
+                    ["SKILL.md", "references/genre-playbooks.md"],
+                )
+
+    def test_plain_letter_structural_rewording_uses_full_playbook(self) -> None:
+        tasks = [
+            "请对这封函重新组织一下，梳理各段内容和逻辑关系：\n\n正文略。",
+            "请整体优化这封函的逻辑层次和表达顺序：\n\n正文略。",
+            "请梳理该函的段落顺序和事项层次：\n\n正文略。",
         ]
         for task in tasks:
             with self.subTest(task=task):

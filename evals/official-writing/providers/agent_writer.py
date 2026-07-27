@@ -331,6 +331,12 @@ LOCAL_REVISION_SCOPE_MARKERS = (
     "仅改",
     "只修改",
     "仅修改",
+    "只调整",
+    "仅调整",
+    "只更正",
+    "仅更正",
+    "只替换",
+    "仅替换",
     "其余不变",
     "其他不变",
     "其余内容不变",
@@ -379,7 +385,7 @@ ORDINARY_LETTER_UNCHANGED_CLAUSE_RE = re.compile(
     r"|[^，。；;\n]{0,24}(?:不用改|无需改动|不作调整|(?:均)?保持不变|维持不变|保持原样)"
 )
 EXISTING_ORDINARY_LETTER_RE = re.compile(
-    r"(?:这份|该份|该|下列|以下|下面(?:这份)?)"
+    r"(?:这份|这封|该份|该|下列|以下|下面(?:这份)?)"
     r"(?!(?:事实|材料|情况|要点|信息|内容))"
     r"[^。；;\n]{0,12}?(?:函|函件|函稿)"
     r"|(?:原函|原稿|底稿|函稿|既有普通函|现有普通函)"
@@ -394,6 +400,10 @@ ORDINARY_LETTER_REVISION_ACTION_MARKERS = (
     "调整",
     "重组",
     "重排",
+)
+ORDINARY_LETTER_STRUCTURAL_REVISION_RE = re.compile(
+    r"(?:重新组织|梳理|整体优化|优化)"
+    r"[^。；;\n]{0,28}?(?:段落|逻辑|层次|顺序)"
 )
 ORDINARY_LETTER_REVISION_NEGATIONS = (
     "不调整",
@@ -609,6 +619,11 @@ def _ordinary_letter_requires_full_playbook(tasks: list[str]) -> bool:
         if _task_is_ordinary_letter_drafting(normalized):
             continue
         instruction = normalized.split("\n\n", 1)[0]
+        if (
+            EXISTING_ORDINARY_LETTER_RE.search(instruction)
+            and ORDINARY_LETTER_STRUCTURAL_REVISION_RE.search(instruction)
+        ):
+            return True
         has_revision_action = _contains_marker(
             instruction,
             ORDINARY_LETTER_REVISION_ACTION_MARKERS,
