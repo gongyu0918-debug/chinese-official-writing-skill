@@ -87,3 +87,24 @@ bundled Python 复跑后通过。前三次记为环境噪声，不计为产品�
 - reviewer 元指令减载和竞品启发的 Word/GB/T 复核迁移仍在研究线，不进入本版；
 - 平台发布、公开传播、审核和扫描状态在正式提交后分别补录，不以一个字段替代
   其他字段。
+
+## 发布状态
+
+- 产品发布提交：`50afb5ffd9be88327ad1b4dd25d87c1377d39de9`；
+- annotated tag object：
+  `f817ce5f4b148ebd35fdd0726f8cc8f5de6bb24d`，解引用到产品发布提交；
+- GitHub `main`、`v1.5.26` 和正式 Release 已公开，Release 为非 draft、
+  非 prerelease：
+  <https://github.com/gongyu0918-debug/chinese-official-writing-skill/releases/tag/v1.5.26>；
+- ClawHub 只正式提交一次，回执为 `status=published`、
+  `versionId=k97bcqx1pbcswrsynm520xbb7d8baqsp`、26 个文件、fingerprint
+  `baf03fdfa4adc2e1f9aef68b2ba5aac599e0a4a8cd56639cf3948a00b2b5f3fc`。
+  提交回执和首次公开查询仍显示 latest 为 1.5.25，精确查询 1.5.26 返回传播
+  中的 `Version not found`；公开 1.5.25 的 moderation 为 `clean`，不能据此
+  推断 1.5.26 的审核结果；
+- skillhub.cn 只正式提交一次，回执为 `skillId=70149`、
+  `versionId=173218`、25 个文件、fingerprint
+  `421f6f9fe53ef38bdd002ecbe648acc75de312663dea1ccbe2150e6645f1296f`、
+  `tags.latest=1.5.26`；review、security scan 和 content audit 均为
+  `pending`。首次公开搜索仍显示 1.5.25；
+- 两家商店的异步传播只记录现状，不触发重复发布。
