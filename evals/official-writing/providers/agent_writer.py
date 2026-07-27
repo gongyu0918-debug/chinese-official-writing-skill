@@ -53,6 +53,9 @@ GENRE_REFERENCES: dict[str, list[str]] = {
     "report_playbook": [
         "references/genre-checklist-report.md",
     ],
+    "correspondence_playbook": [
+        "references/genre-playbook-correspondence.md",
+    ],
     "request_review": [
         "references/genre-checklist-request.md",
     ],
@@ -119,6 +122,10 @@ REPORT_PLAYBOOK_GENRES = {
     "报告",
     "情况报告",
     "情况说明",
+}
+
+ORDINARY_LETTER_PLAYBOOK_GENRES = {
+    "函",
 }
 
 REQUEST_REVIEW_GENRES = {
@@ -525,6 +532,7 @@ def _reference_paths_for_genres(genres: list[str], tasks: list[str] | None = Non
     paths = ["SKILL.md"]
     ai_compute = any(_is_ai_compute(genre, tasks) for genre in genres)
     report_playbook = any(genre in REPORT_PLAYBOOK_GENRES for genre in genres)
+    ordinary_letter_playbook = any(genre in ORDINARY_LETTER_PLAYBOOK_GENRES for genre in genres)
 
     if _tasks_are_review_only(tasks):
         paths.extend(GENRE_REFERENCES["review"])
@@ -546,15 +554,19 @@ def _reference_paths_for_genres(genres: list[str], tasks: list[str] | None = Non
             paths.extend(GENRE_REFERENCES["minutes_playbook"])
         if report_playbook:
             paths.extend(GENRE_REFERENCES["report_playbook"])
+        if ordinary_letter_playbook:
+            paths.extend(GENRE_REFERENCES["correspondence_playbook"])
         if any(
             genre in PLAYBOOK_GENRES
             and genre != "会议纪要"
             and genre not in REPORT_PLAYBOOK_GENRES
+            and genre not in ORDINARY_LETTER_PLAYBOOK_GENRES
             for genre in genres
         ) or (
             ai_compute
             and _ai_requires_ordinary_playbook(genres, tasks)
             and not report_playbook
+            and not ordinary_letter_playbook
         ):
             paths.extend(GENRE_REFERENCES["playbook"])
         if any(_contains_marker(task, ROUTING_TASK_MARKERS) for task in tasks):

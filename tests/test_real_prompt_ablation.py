@@ -413,6 +413,12 @@ class RealPromptAblationTests(unittest.TestCase):
                 "chinese-official-writing/references/final-review-layers.md"
             ],
         )
+        self.assertIn(
+            "函不写成命令",
+            checks_by_id["P110"]["file_terms"][
+                "chinese-official-writing/references/genre-playbook-correspondence.md"
+            ],
+        )
 
     def test_heading_lock_detects_added_subheading(self) -> None:
         before = """一、整改进展

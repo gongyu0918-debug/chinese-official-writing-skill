@@ -1843,6 +1843,20 @@ CASES: list[PromptCase] = [
             },
         },
     ),
+    PromptCase(
+        id="P110",
+        kind="create",
+        prompt="起草一份函，商请平级单位协助提供数据清单，写清报送期限、邮箱和联系人。",
+        checks={
+            "file_terms": {
+                "chinese-official-writing/references/genre-playbook-correspondence.md": [
+                    "## 函/复函/征求意见函",
+                    "平行商洽",
+                    "函不写成命令",
+                ],
+            },
+        },
+    ),
 ]
 
 

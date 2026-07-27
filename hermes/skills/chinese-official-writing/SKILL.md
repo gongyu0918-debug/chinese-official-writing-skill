@@ -70,7 +70,7 @@ metadata:
 
 ## 核心流程
 
-先确定创作、修改、只审不改等输出模式，再选择 reference。材料稀疏、短稿、低上下文局部修改，或用户明确要求“不新增事实”“只按已给材料写”时，先判断是否完整命中 `references/task-route-cards.md` 的四类卡片之一；未命中时不扩大轻量卡的适用范围。命中 `references/task-route-cards.md` 且卡片能够覆盖任务时，以轻量卡片完成正文，再执行本文件硬边界和必要的交付复核；不因文种名称已知而自动预读下列全部长 reference。纯 AI 算力、模型服务或 GPU/服务器租赁技术需求直接进入 `references/ai-compute-docs.md`；同时明确会议纪要时叠加 `references/genre-playbook-minutes.md`，同时明确报告、情况报告或情况说明时叠加 `references/genre-checklist-report.md`，同时明确请示或申请时叠加 `references/genre-playbook-request.md`，同时明确采购、可研、审查、公告、通知、函或方案等其他普通文种时叠加 `references/genre-playbooks.md`。普通会议纪要需要常规或完整骨架时，直接进入 `references/genre-playbook-minutes.md`；普通报告、情况报告或情况说明需要常规或完整骨架时，直接进入 `references/genre-checklist-report.md`；普通请示、申请需要常规或完整骨架时，直接进入 `references/genre-playbook-request.md`；只审或细查请示、申请时进入 `references/genre-checklist-request.md`，同时要求审后改写时再叠加起草叶；其他文种明确且需要常规或完整骨架时，进入 `references/genre-playbooks.md` 的对应叶子。只有命中轻量卡写明的转读条件，或任务确需完整骨架、论证、格式/专项处理时，才进入以下完整流程并按需读取对应资料。
+先确定创作、修改、只审不改等输出模式，再选择 reference。材料稀疏、短稿、低上下文局部修改，或用户明确要求“不新增事实”“只按已给材料写”时，先判断是否完整命中 `references/task-route-cards.md` 的四类卡片之一；未命中时不扩大轻量卡的适用范围。命中 `references/task-route-cards.md` 且卡片能够覆盖任务时，以轻量卡片完成正文，再执行本文件硬边界和必要的交付复核；不因文种名称已知而自动预读下列全部长 reference。纯 AI 算力、模型服务或 GPU/服务器租赁技术需求直接进入 `references/ai-compute-docs.md`；同时明确会议纪要时叠加 `references/genre-playbook-minutes.md`，同时明确报告、情况报告或情况说明时叠加 `references/genre-checklist-report.md`，同时明确请示或申请时叠加 `references/genre-playbook-request.md`，同时明确普通函时叠加 `references/genre-playbook-correspondence.md`，同时明确采购、可研、审查、公告、通知、复函、征求意见函或方案等其他普通文种时叠加 `references/genre-playbooks.md`。普通会议纪要需要常规或完整骨架时，直接进入 `references/genre-playbook-minutes.md`；普通报告、情况报告或情况说明需要常规或完整骨架时，直接进入 `references/genre-checklist-report.md`；普通请示、申请需要常规或完整骨架时，直接进入 `references/genre-playbook-request.md`；只审或细查请示、申请时进入 `references/genre-checklist-request.md`，同时要求审后改写时再叠加起草叶；普通函需要常规或完整骨架时，直接进入 `references/genre-playbook-correspondence.md`；复函、征求意见函及其他文种明确且需要常规或完整骨架时，进入 `references/genre-playbooks.md` 的对应叶子。只有命中轻量卡写明的转读条件，或任务确需完整骨架、论证、格式/专项处理时，才进入以下完整流程并按需读取对应资料。
 
 1. 先判断文稿类别、文种和行文关系，再抽取办理要素，再选择论证链条，最后进入语言和格式复核。
 2. 文种判断以官方规范和 `references/genre-routing.md` 为准；社区模板不得替代文种功能。
@@ -134,7 +134,8 @@ metadata:
 | `references/genre-playbook-minutes.md` | 按文种选读 | 会议纪要需要常规或完整骨架，或材料已经形成决定、议定事项、责任分工或期限时读取。 |
 | `references/genre-playbook-request.md` | 按文种选读 | 请示、申请需要常规或完整骨架时直接读取。 |
 | `references/genre-checklist-request.md` | 按文种选读 | 只审或细查请示、申请的文种功能和办理要素时读取；同时要求审后改写时与起草叶叠加。 |
-| `references/genre-playbooks.md` | 按文种选读 | 通知、函、讲话稿、工作总结/周报、调研/研究/可研、采购公告、审查材料等需要快速进入对应场景骨架时读取。 |
+| `references/genre-playbook-correspondence.md` | 按文种选读 | 普通函需要常规或完整骨架时直接读取；复函和征求意见函仍读取完整文种 playbook。 |
+| `references/genre-playbooks.md` | 按文种选读 | 通知、复函、征求意见函、讲话稿、工作总结/周报、调研/研究/可研、采购公告、审查材料等需要快速进入对应场景骨架时读取。 |
 | `references/genre-playbook-institution-rules.md` | 按文种选读 | 起草、改写或复核制度、规定、办法、管理办法、实施细则、操作规程，以及需要区分印发通知与制度附件时读取。 |
 | `references/genre-checklist-report.md` | 按文种选读 | 报告、情况报告或情况说明需要常规或完整骨架、专项写法或细查文种功能和结构时直接读取；命中轻量卡且卡片能够覆盖任务时不重复读取。 |
 | `references/genre-checklist.md` | 按文种选读 | 通知、命令、公报、决议、议案、函、批复、公告、通告、公示、通报、纪要、讲话稿、述职等其他文种细查时。 |

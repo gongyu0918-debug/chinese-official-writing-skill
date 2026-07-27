@@ -205,7 +205,11 @@ class PromptfooProviderTests(unittest.TestCase):
                     [genre],
                     [f"请起草一份{genre}，内容涉及 GPU 模型服务。"],
                 )
-                self.assertIn("references/genre-playbooks.md", refs)
+                if genre in provider.ORDINARY_LETTER_PLAYBOOK_GENRES:
+                    self.assertIn("references/genre-playbook-correspondence.md", refs)
+                    self.assertNotIn("references/genre-playbooks.md", refs)
+                else:
+                    self.assertIn("references/genre-playbooks.md", refs)
                 self.assertIn("references/ai-compute-docs.md", refs)
 
     def test_task_text_can_preserve_the_ordinary_genre_layer_for_ai(self) -> None:
@@ -227,6 +231,7 @@ class PromptfooProviderTests(unittest.TestCase):
         refs = provider._reference_paths_for_genres(["通知", "函", "复函", "征求意见函", "采购公告", "公示", "会议纪要"])
 
         self.assertIn("references/genre-playbook-minutes.md", refs)
+        self.assertIn("references/genre-playbook-correspondence.md", refs)
         self.assertIn("references/genre-playbooks.md", refs)
         self.assertNotIn("references/argument-chains.md", refs)
         self.assertNotIn("references/task-route-cards.md", refs)
@@ -236,12 +241,25 @@ class PromptfooProviderTests(unittest.TestCase):
         for genre in genres:
             with self.subTest(genre=genre):
                 refs = provider._reference_paths_for_genres([genre])
-                expected = (
-                    "references/genre-checklist-report.md"
-                    if genre in provider.REPORT_PLAYBOOK_GENRES
-                    else "references/genre-playbooks.md"
-                )
+                if genre in provider.REPORT_PLAYBOOK_GENRES:
+                    expected = "references/genre-checklist-report.md"
+                elif genre in provider.ORDINARY_LETTER_PLAYBOOK_GENRES:
+                    expected = "references/genre-playbook-correspondence.md"
+                else:
+                    expected = "references/genre-playbooks.md"
                 self.assertIn(expected, refs)
+
+    def test_plain_letter_uses_the_dedicated_leaf_without_moving_reply_genres(self) -> None:
+        self.assertEqual(
+            provider._reference_paths_for_genres(["函"]),
+            ["SKILL.md", "references/genre-playbook-correspondence.md"],
+        )
+        for genre in ["复函", "征求意见函"]:
+            with self.subTest(genre=genre):
+                self.assertEqual(
+                    provider._reference_paths_for_genres([genre]),
+                    ["SKILL.md", "references/genre-playbooks.md"],
+                )
 
     def test_report_genres_use_the_existing_report_leaf_only(self) -> None:
         for genre in provider.REPORT_PLAYBOOK_GENRES:

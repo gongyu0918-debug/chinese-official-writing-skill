@@ -1046,7 +1046,10 @@ class SkillBoundaryTests(unittest.TestCase):
         minutes = (
             ROOT / "chinese-official-writing" / "references" / "genre-playbook-minutes.md"
         ).read_text(encoding="utf-8")
-        routed_playbooks = playbooks + "\n" + minutes
+        correspondence = (
+            ROOT / "chinese-official-writing" / "references" / "genre-playbook-correspondence.md"
+        ).read_text(encoding="utf-8")
+        routed_playbooks = playbooks + "\n" + minutes + "\n" + correspondence
         ai_compute = (
             ROOT / "chinese-official-writing" / "references" / "ai-compute-docs.md"
         ).read_text(encoding="utf-8")
@@ -1058,6 +1061,7 @@ class SkillBoundaryTests(unittest.TestCase):
         )
 
         self.assertIn("references/genre-playbooks.md", skill)
+        self.assertIn("references/genre-playbook-correspondence.md", skill)
         self.assertIn("## 目录", playbooks)
         for heading in [
             "## 会议纪要",
@@ -1087,6 +1091,32 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assertIn("会议判断、受众称呼、角色分工、合同义务或服务单位责任", skill)
         self.assertIn("详细测算和参数转读 `ai-compute-docs.md`", handling)
         self.assertIn("专项结构和指标写法转读 `ai-compute-docs.md`", anti_ai)
+
+    def test_ordinary_letter_leaf_preserves_the_existing_correspondence_rules(self) -> None:
+        skill = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
+        playbooks = (
+            ROOT / "chinese-official-writing" / "references" / "genre-playbooks.md"
+        ).read_text(encoding="utf-8")
+        correspondence = (
+            ROOT / "chinese-official-writing" / "references" / "genre-playbook-correspondence.md"
+        ).read_text(encoding="utf-8")
+
+        def section(text: str, heading: str, next_heading: str | None = None) -> str:
+            body = text.split(heading, 1)[1]
+            if next_heading is not None:
+                body = body.split(next_heading, 1)[0]
+            return body.strip()
+
+        self.assertEqual(
+            section(playbooks, "## 使用方式", "## 报告/情况说明"),
+            section(correspondence, "## 使用方式", "## 函/复函/征求意见函"),
+        )
+        self.assertEqual(
+            section(playbooks, "## 函/复函/征求意见函", "## 通知/通告/公告/公示/通报"),
+            section(correspondence, "## 函/复函/征求意见函"),
+        )
+        self.assertIn("普通函需要常规或完整骨架时，直接进入", skill)
+        self.assertIn("复函、征求意见函及其他文种明确", skill)
 
     def test_weak_model_suggestion_boundaries_stay_soft(self) -> None:
         skill = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
