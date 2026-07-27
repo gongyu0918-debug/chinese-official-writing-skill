@@ -397,6 +397,36 @@ class ProseLintStructureTests(unittest.TestCase):
             ]
         )
 
+    def test_parenthesized_instructions_are_not_treated_as_placeholders(self) -> None:
+        text = (
+            "请按要求办理（请于7月30日前确认反馈）。"
+            "材料报送要求（请确认后反馈）。"
+            "附件处理要求（请补充盖章）。"
+        )
+
+        placeholder_matches = [
+            item.match
+            for item in prose_lint.scan("<test>", text)
+            if item.label == "unfinished-placeholder"
+        ]
+
+        self.assertEqual(placeholder_matches, [])
+
+    def test_parenthesized_placeholder_phrases_remain_detectable(self) -> None:
+        text = (
+            "正文仍有（签发日期）、（会议时间）、（成文日期）、"
+            "（待确认）、（项目金额待补充）、（联系人待填写）、"
+            "（待签发）和（成文日期待确认）。"
+        )
+
+        placeholder_matches = [
+            item.match
+            for item in prose_lint.scan("<test>", text)
+            if item.label == "unfinished-placeholder"
+        ]
+
+        self.assertEqual(len(placeholder_matches), 8)
+
     def test_external_confirmation_notes_are_not_treated_as_body_placeholders(self) -> None:
         text = (
             "关于事项的请示\n\n"
