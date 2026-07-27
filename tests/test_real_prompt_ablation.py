@@ -419,6 +419,16 @@ class RealPromptAblationTests(unittest.TestCase):
                 "chinese-official-writing/references/genre-playbook-correspondence.md"
             ],
         )
+        self.assertIn(
+            "用户提供既有普通函并要求重组事务动作、状态、条件、范围或结构时",
+            checks_by_id["P111"]["file_terms"]["chinese-official-writing/SKILL.md"],
+        )
+        self.assertIn(
+            "商请/答复/征求事项",
+            checks_by_id["P111"]["file_terms"][
+                "chinese-official-writing/references/genre-playbooks.md"
+            ],
+        )
 
     def test_heading_lock_detects_added_subheading(self) -> None:
         before = """一、整改进展

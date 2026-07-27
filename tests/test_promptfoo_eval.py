@@ -261,6 +261,95 @@ class PromptfooProviderTests(unittest.TestCase):
                     ["SKILL.md", "references/genre-playbooks.md"],
                 )
 
+    def test_plain_letter_routes_substantive_revision_to_the_full_playbook(self) -> None:
+        tasks = [
+            (
+                "请将下面这份商洽函修改为可直接使用的正式文本，保留全部事实和日期：\n\n"
+                "某单位关于协助办理有关事项的函\n\n正文略。"
+            ),
+            "请完善下面这份函，使商洽事项更清楚、办理状态更准确：\n\n正文略。",
+            "请修改正文，把数字和事项范围一并调整：\n\n正文略。",
+        ]
+        for task in tasks:
+            with self.subTest(task=task):
+                self.assertEqual(
+                    provider._reference_paths_for_genres(["函"], [task]),
+                    ["SKILL.md", "references/genre-playbooks.md"],
+                )
+
+    def test_plain_letter_keeps_explicit_local_edits_on_the_dedicated_leaf(self) -> None:
+        tasks = [
+            "请只修改下面函件中的日期，其余内容不变：\n\n正文略。",
+            "请把下面函件中的一处错别字更正，其他内容不变：\n\n正文略。",
+            "请仅修改函件格式，正文内容不变：\n\n正文略。",
+            "请只改一句局部措辞，其他内容不变：\n\n正文略。",
+            "请只修改下面函件中的日期，事项、范围和结构均保持不变：\n\n正文略。",
+            "请只修改日期，不要调整事项范围或结构，其余内容不变：\n\n正文略。",
+            "请只修改日期，办理条件不用改，其他内容不变：\n\n正文略。",
+        ]
+        for task in tasks:
+            with self.subTest(task=task):
+                self.assertEqual(
+                    provider._reference_paths_for_genres(["函"], [task]),
+                    ["SKILL.md", "references/genre-playbook-correspondence.md"],
+                )
+
+    def test_plain_letter_style_polish_does_not_become_a_substantive_revision(self) -> None:
+        refs = provider._reference_paths_for_genres(
+            ["函"],
+            ["请把下面这份函润色得更正式，保留原意：\n\n正文略。"],
+        )
+
+        self.assertIn("references/genre-playbook-correspondence.md", refs)
+        self.assertNotIn("references/genre-playbooks.md", refs)
+
+    def test_plain_letter_fact_material_remains_a_drafting_task(self) -> None:
+        tasks = [
+            "请根据以下事实材料整理成一份正式函件：\n\n材料略。",
+            "请把以下事实修改为一份正式函件：\n\n材料略。",
+            "以下是事实材料，请整理成函件：\n\n材料略。",
+            "下面是有关情况，请整理成一份函：\n\n材料略。",
+            "下列为事实要点，请完善为正式函件：\n\n材料略。",
+            "参考这份函的格式，根据材料起草并整理一份新的函：\n\n材料略。",
+            "请起草一份关于调整培训事项的函，写清办理条件和反馈时限。",
+            "请起草一份函，商请对方调整有关事项，明确办理条件和范围。",
+            "请把下面这些材料整理成一份函件：\n\n材料略。",
+            "请将以下几项情况整理成一份函：\n\n材料略。",
+            "请把下列所附材料完善为正式函件：\n\n材料略。",
+        ]
+        for task in tasks:
+            with self.subTest(task=task):
+                self.assertEqual(
+                    provider._reference_paths_for_genres(["函"], [task]),
+                    ["SKILL.md", "references/genre-playbook-correspondence.md"],
+                )
+
+    def test_plain_letter_mixed_local_and_substantive_revision_uses_full_playbook(self) -> None:
+        tasks = [
+            "请修改下面这份函的标题，并重组事项，其他内容不变：\n\n正文略。",
+            "请只改日期，同时调整办理条件和范围，其余内容不变：\n\n正文略。",
+        ]
+        for task in tasks:
+            with self.subTest(task=task):
+                self.assertEqual(
+                    provider._reference_paths_for_genres(["函"], [task]),
+                    ["SKILL.md", "references/genre-playbooks.md"],
+                )
+
+    def test_revision_detection_does_not_change_review_only_routing(self) -> None:
+        cases = [
+            ("函", "请检查这份函，不要调整全文结构，只给修改建议。"),
+            ("复函", "请检查这份复函，不要调整全文结构，只给修改建议。"),
+            ("报告", "请检查这份报告，不要调整全文结构，只给修改建议。"),
+            ("征求意见函", "请检查这份征求意见函，不要调整全文结构，只给修改建议。"),
+        ]
+        for genre, task in cases:
+            with self.subTest(genre=genre):
+                refs = provider._reference_paths_for_genres([genre], [task])
+                self.assertIn("references/review-checklist.md", refs)
+                self.assertNotIn("references/genre-playbooks.md", refs)
+                self.assertNotIn("references/genre-playbook-correspondence.md", refs)
+
     def test_report_genres_use_the_existing_report_leaf_only(self) -> None:
         for genre in provider.REPORT_PLAYBOOK_GENRES:
             with self.subTest(genre=genre):

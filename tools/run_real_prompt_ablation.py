@@ -1857,6 +1857,23 @@ CASES: list[PromptCase] = [
             },
         },
     ),
+    PromptCase(
+        id="P111",
+        kind="revise",
+        prompt="把一份既有普通函的事项和办理条件重新整理成正式函件。",
+        checks={
+            "file_terms": {
+                "chinese-official-writing/SKILL.md": [
+                    "普通函起草，以及只改错字、标点、格式或明确局部措辞时",
+                    "用户提供既有普通函并要求重组事务动作、状态、条件、范围或结构时",
+                ],
+                "chinese-official-writing/references/genre-playbooks.md": [
+                    "商请/答复/征求事项",
+                    "函不写成命令",
+                ],
+            },
+        },
+    ),
 ]
 
 

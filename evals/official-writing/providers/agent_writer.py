@@ -326,6 +326,92 @@ REVIEW_REWRITE_NEGATIONS = (
     "仅给修改建议",
     "修改建议",
 )
+LOCAL_REVISION_SCOPE_MARKERS = (
+    "只改",
+    "仅改",
+    "只修改",
+    "仅修改",
+    "其余不变",
+    "其他不变",
+    "其余内容不变",
+    "其他内容不变",
+)
+LOCAL_REVISION_TARGET_MARKERS = (
+    "错别字",
+    "标点",
+    "格式",
+    "日期",
+    "数字",
+    "称谓",
+    "落款",
+    "标题",
+    "一处",
+    "一句",
+    "局部措辞",
+)
+SUBSTANTIVE_ORDINARY_LETTER_TARGET_MARKERS = (
+    "事务动作",
+    "办理动作",
+    "事项",
+    "状态",
+    "条件",
+    "范围",
+    "结构",
+    "职责",
+    "责任",
+    "时限",
+)
+ORDINARY_LETTER_DRAFT_SOURCE_RE = re.compile(
+    r"(?:以下|下面|下列)[^。；;\n]{0,8}?(?:事实|材料|情况|要点|信息|内容)"
+    r"|根据[^。；;\n]{0,16}?(?:事实|材料|情况|要点|信息|内容)"
+)
+ORDINARY_LETTER_DRAFT_OUTPUT_RE = re.compile(
+    r"(?:起草|拟写|撰写)[^。；;\n]{0,20}?(?:新的?)?(?:一份)?(?:正式)?函(?:件)?"
+    r"|(?:整理|完善|修改)(?:成|为)[^。；;\n]{0,12}?(?:一份)?(?:新的?)?(?:正式)?函(?:件)?"
+)
+ORDINARY_LETTER_NEW_DRAFT_RE = re.compile(
+    r"参考[^。；;\n]{0,20}?函[^。；;\n]{0,8}?格式"
+    r"[^。；;\n]{0,28}?(?:起草|拟写|撰写|形成|整理)"
+    r"[^。；;\n]{0,12}?(?:新的?)?(?:一份)?函(?:件)?"
+)
+ORDINARY_LETTER_UNCHANGED_CLAUSE_RE = re.compile(
+    r"(?:不|不要|无需)(?:调整|修改|重组|重排|变更)[^，。；;\n]{0,24}"
+    r"|[^，。；;\n]{0,24}(?:不用改|无需改动|不作调整|(?:均)?保持不变|维持不变|保持原样)"
+)
+EXISTING_ORDINARY_LETTER_RE = re.compile(
+    r"(?:这份|该份|该|下列|以下|下面(?:这份)?)"
+    r"(?!(?:事实|材料|情况|要点|信息|内容))"
+    r"[^。；;\n]{0,12}?(?:函|函件|函稿)"
+    r"|(?:原函|原稿|底稿|函稿|既有普通函|现有普通函)"
+    r"|(?:修改|改写|重写|调整|重组|重排)正文"
+)
+ORDINARY_LETTER_REVISION_ACTION_MARKERS = (
+    "修改",
+    "改写",
+    "重写",
+    "整理",
+    "完善",
+    "调整",
+    "重组",
+    "重排",
+)
+ORDINARY_LETTER_REVISION_NEGATIONS = (
+    "不调整",
+    "不要调整",
+    "无需调整",
+    "不重组",
+    "不要重组",
+    "无需重组",
+    "不重排",
+    "不要重排",
+    "无需重排",
+    "不整理",
+    "不要整理",
+    "无需整理",
+    "不完善",
+    "不要完善",
+    "无需完善",
+)
 ANTI_AI_TASK_MARKERS = ("AI 味", "AI味", "降 AI 味", "降AI味", "模板化", "空话套话")
 STYLE_TASK_MARKERS = ("去口语化", "降 AI 味", "降AI味", "润色", "正式一点", "统一语气", "顺稿")
 ROUTING_TASK_MARKERS = ("文种不清", "判断文种", "选择文种", "请示还是报告", "函还是通知")
@@ -473,18 +559,78 @@ def _task_requires_external_research(tasks: list[str]) -> bool:
     return any(_contains_marker(task, EXTERNAL_RESEARCH_TASK_MARKERS) for task in tasks)
 
 
-def _tasks_are_review_only(tasks: list[str]) -> bool:
-    def requests_rewrite(task: str) -> bool:
-        normalized = task
-        for marker in REVIEW_REWRITE_NEGATIONS:
-            normalized = normalized.replace(marker, "")
-        return _contains_marker(normalized, REVIEW_REWRITE_MARKERS) or bool(
-            REVIEW_REWRITE_ACTION_RE.search(normalized)
-        )
+def _task_requests_rewrite(task: str) -> bool:
+    normalized = task
+    for marker in REVIEW_REWRITE_NEGATIONS:
+        normalized = normalized.replace(marker, "")
+    return (
+        _contains_marker(normalized, REVIEW_REWRITE_MARKERS)
+        or bool(REVIEW_REWRITE_ACTION_RE.search(normalized))
+    )
 
+
+def _task_is_explicit_local_revision(task: str) -> bool:
+    instruction = ORDINARY_LETTER_UNCHANGED_CLAUSE_RE.sub(
+        "",
+        task.split("\n\n", 1)[0],
+    )
+    has_local_target = _contains_marker(instruction, LOCAL_REVISION_TARGET_MARKERS)
+    has_substantive_target = _contains_marker(
+        instruction,
+        SUBSTANTIVE_ORDINARY_LETTER_TARGET_MARKERS,
+    )
+    return (
+        has_local_target
+        and _contains_marker(instruction, LOCAL_REVISION_SCOPE_MARKERS)
+        and not has_substantive_target
+    )
+
+
+def _task_is_ordinary_letter_drafting(task: str) -> bool:
+    instruction = task.split("\n\n", 1)[0]
+    if ORDINARY_LETTER_NEW_DRAFT_RE.search(instruction):
+        return True
+    if (
+        ORDINARY_LETTER_DRAFT_OUTPUT_RE.search(instruction)
+        and not EXISTING_ORDINARY_LETTER_RE.search(instruction)
+    ):
+        return True
+    return bool(
+        ORDINARY_LETTER_DRAFT_SOURCE_RE.search(instruction)
+        and ORDINARY_LETTER_DRAFT_OUTPUT_RE.search(instruction)
+    )
+
+
+def _ordinary_letter_requires_full_playbook(tasks: list[str]) -> bool:
+    for task in tasks:
+        normalized = ORDINARY_LETTER_UNCHANGED_CLAUSE_RE.sub("", task)
+        for marker in (*REVIEW_REWRITE_NEGATIONS, *ORDINARY_LETTER_REVISION_NEGATIONS):
+            normalized = normalized.replace(marker, "")
+        if _task_is_ordinary_letter_drafting(normalized):
+            continue
+        instruction = normalized.split("\n\n", 1)[0]
+        has_revision_action = _contains_marker(
+            instruction,
+            ORDINARY_LETTER_REVISION_ACTION_MARKERS,
+        )
+        if has_revision_action and _contains_marker(
+            instruction,
+            SUBSTANTIVE_ORDINARY_LETTER_TARGET_MARKERS,
+        ):
+            return True
+        if (
+            EXISTING_ORDINARY_LETTER_RE.search(normalized)
+            and has_revision_action
+            and not _task_is_explicit_local_revision(task)
+        ):
+            return True
+    return False
+
+
+def _tasks_are_review_only(tasks: list[str]) -> bool:
     return bool(tasks) and all(
         _contains_marker(task, REVIEW_TASK_MARKERS)
-        and not requests_rewrite(task)
+        and not _task_requests_rewrite(task)
         for task in tasks
     )
 
@@ -533,6 +679,9 @@ def _reference_paths_for_genres(genres: list[str], tasks: list[str] | None = Non
     ai_compute = any(_is_ai_compute(genre, tasks) for genre in genres)
     report_playbook = any(genre in REPORT_PLAYBOOK_GENRES for genre in genres)
     ordinary_letter_playbook = any(genre in ORDINARY_LETTER_PLAYBOOK_GENRES for genre in genres)
+    ordinary_letter_full_playbook = (
+        ordinary_letter_playbook and _ordinary_letter_requires_full_playbook(tasks)
+    )
 
     if _tasks_are_review_only(tasks):
         paths.extend(GENRE_REFERENCES["review"])
@@ -554,7 +703,7 @@ def _reference_paths_for_genres(genres: list[str], tasks: list[str] | None = Non
             paths.extend(GENRE_REFERENCES["minutes_playbook"])
         if report_playbook:
             paths.extend(GENRE_REFERENCES["report_playbook"])
-        if ordinary_letter_playbook:
+        if ordinary_letter_playbook and not ordinary_letter_full_playbook:
             paths.extend(GENRE_REFERENCES["correspondence_playbook"])
         if any(
             genre in PLAYBOOK_GENRES
@@ -567,7 +716,7 @@ def _reference_paths_for_genres(genres: list[str], tasks: list[str] | None = Non
             and _ai_requires_ordinary_playbook(genres, tasks)
             and not report_playbook
             and not ordinary_letter_playbook
-        ):
+        ) or ordinary_letter_full_playbook:
             paths.extend(GENRE_REFERENCES["playbook"])
         if any(_contains_marker(task, ROUTING_TASK_MARKERS) for task in tasks):
             paths.extend(GENRE_REFERENCES["routing"])

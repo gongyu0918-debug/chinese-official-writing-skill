@@ -1140,7 +1140,14 @@ class SkillBoundaryTests(unittest.TestCase):
             "genre-checklist.md",
         ]:
             self.assertNotIn(supplemental_reference, correspondence_section)
-        self.assertIn("普通函需要常规或完整骨架时，直接进入", skill)
+        self.assertIn(
+            "普通函起草，以及只改错字、标点、格式或明确局部措辞时，进入",
+            skill,
+        )
+        self.assertIn(
+            "用户提供既有普通函并要求重组事务动作、状态、条件、范围或结构时",
+            skill,
+        )
         self.assertIn("复函、征求意见函及其他文种明确", skill)
 
     def test_weak_model_suggestion_boundaries_stay_soft(self) -> None:
