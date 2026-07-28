@@ -1,10 +1,12 @@
 # AGENTS.md
 
-## 1.5.27 发布候选
+## 1.5.27 正式发布
 
 1.5.27 以 `v1.5.26=50afb5ffd9be88327ad1b4dd25d87c1377d39de9` 为固定产品基线，只合入两项已经独立验证的产品改动：普通函起草、错字/标点/格式及明确局部措辞修改读取专用叶，涉及事务动作、状态、条件、范围或结构的实质改稿继续读取完整 playbook；`prose_lint.py` 收紧圆括号占位检测，正常办理要求不再因“确认”“补充”等词误报，真实待确认、待补充、待填写、待签发及日期占位仍保留召回。A/B provenance 预检器只用于区分严格可比与探索性证据，不改变写稿行为。
 
 普通函命中文种 reference 从 3529 字符降至 852 字符，减少 2677 字符、约 75.86%。扩展真实验证为 5 胜 1 负，唯一负项同题复放持平；针对该负项的共性机制改为复杂改稿读取完整 playbook，三题为 1 胜 2 平，集成回归覆盖普通函起草和实质改稿均 PASS。括号占位修复的三个正常指令不再误报，八类真实占位仍全部命中。发布级验证、清洁包和平台回执见 `tests/evidence/release-1.5.27.md`；失败的调研/可研叶和未验证的外部借鉴候选不进入本版。
+
+GitHub `main`、annotated tag 解引用提交和正式 Release 均指向 `cfd7bd039e5655ba3e9fe7680206b520d7582072`，tag object 为 `16157ecd43ffa0243ec0a98d14c807fcf839d60e`。ClawHub 一次正式提交返回 `versionId=k975tks2z718b0fe459ngk72gh8bdtbe`、27 个文件和 fingerprint `fc858580413bbb293f5c1cc9043c1b554e731e954accc5e8b62402c420260257`，公开 latest 已为 1.5.27，moderation 为 clean。skillhub.cn 一次正式提交返回 `skillId=70149`、`versionId=175859`、26 个文件和 fingerprint `c1c7c31952c09a0098ab7cdd757af9076d095a3f1444708373ed6950b0a93b33`，`tags.latest=1.5.27`，三项审核均为 pending；首次公开搜索和 `latestVersion` 仍为 1.5.26。异步传播不触发重复发布。
 
 ## 1.5.26 正式发布
 

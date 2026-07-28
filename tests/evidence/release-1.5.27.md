@@ -125,8 +125,23 @@ canonical 没有因此增加平台专有字段。
 
 ## 发布状态
 
-- 产品发布提交：待正式提交；
-- annotated tag：待创建；
-- GitHub Release：待创建；
-- ClawHub：待正式提交；
-- skillhub.cn：待正式提交。
+- 产品发布提交：
+  `cfd7bd039e5655ba3e9fe7680206b520d7582072`；
+- annotated tag object：
+  `16157ecd43ffa0243ec0a98d14c807fcf839d60e`，解引用到产品发布提交；
+- GitHub `main`、`v1.5.27` 和正式 Release 已公开，Release 为非 draft、
+  非 prerelease：
+  <https://github.com/gongyu0918-debug/chinese-official-writing-skill/releases/tag/v1.5.27>；
+- ClawHub 只正式提交一次，回执为 `status=published`、
+  `versionId=k975tks2z718b0fe459ngk72gh8bdtbe`、27 个文件、fingerprint
+  `fc858580413bbb293f5c1cc9043c1b554e731e954accc5e8b62402c420260257`。
+  随后的公开查询已显示 `latestVersion.version=1.5.27`、
+  `tags.latest=1.5.27`、版本总数 74，moderation 为 `clean`；
+- skillhub.cn 只正式提交一次，回执为 `skillId=70149`、
+  `versionId=175859`、26 个文件、fingerprint
+  `c1c7c31952c09a0098ab7cdd757af9076d095a3f1444708373ed6950b0a93b33`、
+  `tags.latest=1.5.27`；review、security scan 和 content audit 均为
+  `pending`。首次公开搜索和精确项目 API 的 `latestVersion` 仍显示
+  1.5.26，但精确项目的 `tags.latest` 已为 1.5.27；
+- 两家商店均未重复发布。skillhub.cn 的异步索引传播与审核状态只记录现状，
+  不把 1.5.26 的安全报告推断为 1.5.27 的审核结果。
