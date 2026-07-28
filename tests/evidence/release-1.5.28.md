@@ -84,9 +84,49 @@ Word、GB/T 9704 和占位符复核。1.5.27 补入普通函轻量路径和括�
 
 ## 发布状态
 
-- 产品发布提交：待生成；
-- annotated tag：待创建；
-- GitHub Release：待创建；
-- ClawHub：待提交；
-- skillhub.cn：待提交；
-- 小红书 Red SkillHub：待 dry-run 与更新提交。
+- 产品发布提交：
+  `f7570d4df5064582946732d283d30e86063ef142`。
+- annotated tag：`v1.5.28` 的 tag object 为
+  `7b8a650f899acecf6396db20444cdf375ecd1569`，解引用后指向产品提交。
+- GitHub：`main` 已推送，正式 Release 已公开：
+  `https://github.com/gongyu0918-debug/chinese-official-writing-skill/releases/tag/v1.5.28`；
+  `isDraft=false`、`isPrerelease=false`。
+- ClawHub：一次正式提交成功，回执为
+  `versionId=k972df3qcnhrhdtyxbetaydhw18bc8j9`、27 个文件、fingerprint
+  `0b6f8b3e17bbb704cfe9718ce25a2a4ca012ce5e4a9a19fcdb599ffc04eb36ea`。
+  提交后的首次公开查询仍显示 1.5.27，moderation 为 clean，属于异步传播；
+  不重复发布。
+- skillhub.cn：一次正式提交成功，回执为 `skillId=70149`、
+  `versionId=178147`、26 个文件、fingerprint
+  `91b11ce218d957aa170d68c56484674882e28a17f402a8c65443836269f79e22`、
+  `tags.latest=1.5.28`；review、security scan、content audit 均为 pending。
+- 小红书 Red SkillHub：1.5.28 未更新成功。官方 CLI dry-run 通过；真实上传
+  达到 100% 后，服务端返回 `SUBMIT_REJECTED: Skill ID 已被占用`，没有
+  `RESULT_JSON.status=submitted`，没有新的 `skill_id`、`version_id` 或
+  `audit_request_id`。最后可验证成功版本仍为 1.5.7。
+
+## Red 更新路径只读核验
+
+- 官方安装说明给出的压缩包仍为 `@xhs/skillhub-upload@0.1.1`，SHA-256 为
+  `ca696c939abe487172b69f60b74097eb9b00bbe10fe9ae1b310ac97ef452cabb`；
+  其中 `cli/submit.mjs` 与本机已安装文件逐字一致。
+- CLI 只公开 `login`、`publish`、`whoami`、`logout` 四个命令，没有
+  `update` 命令。`buildDraftPayload()` 只生成 `skill_identifier`、版本、
+  名称、描述、正文、来源、标签和包信息；即使传入 `--skill-id=8494` 或
+  `--version-id=100041`，这两个字段也不会进入请求。
+- 随包 README 仍把提交路径写为
+  `/api/sns/v1/openapi/skillhub/submit_skill_version`，实际 0.1.1 代码调用
+  `/api/sns/v1/creator/red_skill/cli_submit_skill_version`。现有公开材料没有
+  说明二者分别用于首发或更新，也没有给出携带既有平台 ID 的参数契约。
+- 1.5.7 的原始成功轨迹使用同一 CLI、同一
+  `skill_identifier=chinese-official-writing`，回执明确为
+  `first_version=true`、`skill_id=8494`、`version_id=100041`。1.5.8、
+  1.5.9、1.5.10 和本次 1.5.28 的后续版本均被“Skill ID 已被占用”拒绝，
+  说明“保持 identifier 后再次 publish”在当前账号与服务端组合下不能完成更新。
+- 2026-07-28 直接访问官方 `https://redskill.xiaohongshu.net/upload.md`
+  返回 HTTP 500；浏览器访问亦被客户端拦截，公开检索未找到第二条官方更新
+  文档。不能据此自行猜测接口、添加未公开字段或改 identifier 绕过。
+
+结论：当前官方分发的 CLI 没有可执行的既有 Skill 更新路径，服务端也没有给出
+可用回执。本次按真实失败收口，保留原 identifier 与 1.5.7 平台记录，等待
+Red SkillHub 官方修复 CLI、恢复文档或提供明确的既有 Skill 更新接口。

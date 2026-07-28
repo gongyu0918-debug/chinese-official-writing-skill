@@ -1,6 +1,6 @@
 # AGENTS.md
 
-## 1.5.28 发布候选
+## 1.5.28 正式发布
 
 1.5.28 以 `v1.5.27=cfd7bd039e5655ba3e9fe7680206b520d7582072` 为固定
 发布基线，只包含两项已验证净收益：`prose_lint.py` 的行为等价职责拆分，以及
@@ -9,10 +9,23 @@
 worktree，不进入本版。发布、测试和四平台回执见
 `tests/evidence/release-1.5.28.md`。
 
-本轮经用户明确恢复小红书 Red SkillHub 更新。只允许沿用既有
-`skill_identifier=chinese-official-writing` 提交更高版本，不得更换 identifier
-或创建第二个 Skill；真实提交必须有官方 CLI 的 `RESULT_JSON.status=submitted`
-才可记为成功。
+产品提交为 `f7570d4df5064582946732d283d30e86063ef142`；GitHub `main`、annotated
+tag 解引用提交和正式 Release 均已指向该提交，tag object 为
+`7b8a650f899acecf6396db20444cdf375ecd1569`。ClawHub 一次正式提交返回
+`versionId=k972df3qcnhrhdtyxbetaydhw18bc8j9`、27 个文件和 fingerprint
+`0b6f8b3e17bbb704cfe9718ce25a2a4ca012ce5e4a9a19fcdb599ffc04eb36ea`；
+提交后首次公开查询仍显示 1.5.27，moderation 为 clean。skillhub.cn 一次正式
+提交返回 `skillId=70149`、`versionId=178147`、26 个文件和 fingerprint
+`91b11ce218d957aa170d68c56484674882e28a17f402a8c65443836269f79e22`，
+`tags.latest=1.5.28`，三项审核均为 pending。异步传播不触发重复发布。
+
+本轮经用户明确恢复一次小红书 Red SkillHub 更新。官方 CLI 0.1.1 的 dry-run
+通过，真实上传达到 100%，随后服务端以“Skill ID 已被占用”拒绝，没有
+`RESULT_JSON.status=submitted`，因此 Red 仍停留在最后可验证成功版本 1.5.7。
+只读核验确认官方 CLI 仅支持 `login`、`publish`、`whoami`、`logout`，没有
+`update` 命令，也不会把 `skill_id` 或 `version_id` 写入提交载荷；官方
+`upload.md` 当前返回 HTTP 500，未发现第二条正式更新路径。本轮不更换
+identifier、不创建第二个 Skill、不重复提交。
 
 ## 1.5.27 正式发布
 
