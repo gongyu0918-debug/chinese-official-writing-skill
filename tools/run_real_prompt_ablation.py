@@ -333,7 +333,11 @@ CASES: list[PromptCase] = [
                     "不得编造文号",
                     "Markdown `**加粗**`",
                 ],
-                "chinese-official-writing/references/review-checklist.md": ["Word、docx、GB/T 9704", "代码块和 `###`"],
+                "chinese-official-writing/references/review-checklist.md": [
+                    "Word、docx、GB/T 9704",
+                    "Markdown 加粗、代码块",
+                    "文号、密级、签发人、印章是否未被编造",
+                ],
             },
         },
     ),
