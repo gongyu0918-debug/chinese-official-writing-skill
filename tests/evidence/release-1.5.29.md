@@ -37,9 +37,9 @@ Promptfoo 首次在沙箱内运行时，Node 无权启动 Hermes Python；改用
 
 ## 发行包与平台状态
 
-- GitHub 产品提交、annotated tag 和 Release：发布后补录。
-- ClawHub：先核验 27 文件 dry-run，再正式提交一次；回执与公开传播分开记录。
-- skillhub.cn：使用 26 文件清洁包，排除 `agents/openai.yaml`、`delivery-review-gate.md`、`gate_stop_hook.py`、`review_gate.py`、tests、output、缓存和 `.pyc`；先 dry-run，再正式提交一次。
+- GitHub 产品提交为 `426911ac76538a582f5d7c1a8c9ef63ea12a9833`；`main` 和 annotated tag 解引用均指向该提交，tag object 为 `6f2fd6947170b08db2d834e9c5e376c07d9ac26e`。正式 Release：<https://github.com/gongyu0918-debug/chinese-official-writing-skill/releases/tag/v1.5.29>。
+- ClawHub dry-run 核验 27 个文件、fingerprint `2f376074060c035388b3763e459b162d062f37dd72903ebe5ff51405436ef5dc`。一次正式提交返回 `status=published`、`versionId=k976k9vmqptvw5s7nhxfa5az9d8bfey8`、27 个文件及同一 fingerprint。首次只读查询的公开 latest 仍为 1.5.28，1.5.29 版本查询暂未收录；moderation 对当时公开版本为 clean。提交成功与公开传播分开记录，不重复发布。
+- skillhub.cn 使用 26 文件清洁包，排除 `agents/openai.yaml`、`delivery-review-gate.md`、`gate_stop_hook.py`、`review_gate.py`、tests、output、缓存和 `.pyc`。dry-run 返回 1.5.29；首次正式调用因本机代理指向 `127.0.0.1:9` 在建连前失败，清空代理后按原命令重试一次并成功。正式回执为 `ok=true`、`skillId=70149`、`versionId=181382`、26 个文件、fingerprint `1feaa5050d479df6c9d72c275ee6ded5ef9606abdfd80c815a7289f53f057d2d`，`tags.latest=1.5.29`，review、security scan 与 content audit 均为 pending。首次公开搜索和 `latestVersion` 仍为 1.5.28，异步传播不触发重复发布。
 - 小红书 Red SkillHub 不在本次发布范围，不调用上传 CLI。
 
 ## 剩余风险

@@ -13,6 +13,17 @@
 发布、测试、无效样本边界和平台回执见
 `tests/evidence/release-1.5.29.md`。
 
+产品提交为 `426911ac76538a582f5d7c1a8c9ef63ea12a9833`；GitHub `main`、
+annotated tag 解引用提交和正式 Release 均已指向该提交，tag object 为
+`6f2fd6947170b08db2d834e9c5e376c07d9ac26e`。ClawHub 一次正式提交返回
+`versionId=k976k9vmqptvw5s7nhxfa5az9d8bfey8`、27 个文件和 fingerprint
+`2f376074060c035388b3763e459b162d062f37dd72903ebe5ff51405436ef5dc`；
+提交后首次公开查询仍显示 1.5.28。skillhub.cn 一次有效正式提交返回
+`skillId=70149`、`versionId=181382`、26 个文件和 fingerprint
+`1feaa5050d479df6c9d72c275ee6ded5ef9606abdfd80c815a7289f53f057d2d`，
+`tags.latest=1.5.29`，三项审核均为 pending；首次公开搜索和
+`latestVersion` 仍为 1.5.28。异步传播不触发重复发布。
+
 ## 1.5.28 正式发布
 
 1.5.28 以 `v1.5.27=cfd7bd039e5655ba3e9fe7680206b520d7582072` 为固定
