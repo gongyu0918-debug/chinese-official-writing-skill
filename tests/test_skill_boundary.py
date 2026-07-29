@@ -1096,6 +1096,22 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assertIn("详细测算和参数转读 `ai-compute-docs.md`", handling)
         self.assertIn("专项结构和指标写法转读 `ai-compute-docs.md`", anti_ai)
 
+    def test_work_summary_elaboration_stays_in_target_section(self) -> None:
+        playbooks = (
+            ROOT / "chinese-official-writing" / "references" / "genre-playbooks.md"
+        ).read_text(encoding="utf-8")
+        target_rule = (
+            "材料已经给出下一步、未来安排或改进计划时，可结合前文已述问题、数据和工作基础"
+            "说明该事项的对象、目的或衔接关系，使每项安排形成完整语义单元；"
+            "主体、程序、时限、数量和结果强度沿用材料口径。"
+        )
+        work_summary = playbooks.split("## 工作总结/工作要点/周报", 1)[1].split(
+            "## 调研报告/研究报告/可研报告/建设方案", 1
+        )[0]
+
+        self.assertEqual(1, playbooks.count(target_rule))
+        self.assertIn(target_rule, work_summary)
+
     def test_ordinary_letter_leaf_is_self_contained_without_default_supplemental_reads(self) -> None:
         skill = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
         playbooks = (
