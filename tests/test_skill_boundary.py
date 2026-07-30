@@ -608,12 +608,17 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assertNotIn("OPENCLAW_LICENSE", sync_script)
         self.assertNotIn("redskill", sync_script.lower())
 
-    def test_lint_strict_fail_on_stays_in_skill_not_public_readme(self) -> None:
+    def test_lint_ci_invocation_stays_out_of_writer_context(self) -> None:
         skill = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
         readme = (ROOT / "README.md").read_text(encoding="utf-8")
+        lint_script = (
+            ROOT / "chinese-official-writing" / "scripts" / "prose_lint.py"
+        ).read_text(encoding="utf-8")
 
-        self.assertIn("--strict --fail-on medium", skill)
+        self.assertNotIn("--strict --fail-on medium", skill)
         self.assertNotIn("--strict --fail-on medium", readme)
+        self.assertIn('"--strict"', lint_script)
+        self.assertIn('"--fail-on"', lint_script)
 
     def test_revision_workflow_forbids_new_unprovided_facts(self) -> None:
         skill = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
