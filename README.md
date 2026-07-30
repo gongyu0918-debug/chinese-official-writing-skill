@@ -1,6 +1,6 @@
 # 中文公文写作 Skill
 
-[![Version](https://img.shields.io/badge/version-1.5.29-blue)](https://github.com/gongyu0918-debug/chinese-official-writing-skill/releases/tag/v1.5.29)
+[![Version](https://img.shields.io/badge/version-1.5.30-blue)](https://github.com/gongyu0918-debug/chinese-official-writing-skill/releases/tag/v1.5.30)
 [![ClawHub](https://img.shields.io/badge/ClawHub-chinese--official--writing-2f80ed)](https://clawhub.ai/gongyu0918-debug/skills/chinese-official-writing)
 [![SkillHub](https://img.shields.io/badge/SkillHub-chinese--official--writing-e8590c)](https://skillhub.cn/skills/chinese-official-writing)
 [![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
@@ -63,7 +63,7 @@
 
 ## 快速安装
 
-当前工作版本：`chinese-official-writing@1.5.29`
+当前工作版本：`chinese-official-writing@1.5.30`
 
 平台入口：[ClawHub](https://clawhub.ai/gongyu0918-debug/skills/chinese-official-writing) · [skillhub.cn](https://skillhub.cn/skills/chinese-official-writing)。通用 Agent Skills 安装器可直接使用：
 
@@ -75,10 +75,11 @@ npx skills add https://github.com/gongyu0918-debug/chinese-official-writing-skil
 
 ## 模型消融与真实写稿
 
-测试从早期无 Skill/带 Skill 对照，逐步扩展到固定版本消融、真实写稿盲审和多轮改稿。下表汇总 1.5.29 的信息承载收紧、1.5.28 的 Python 检查脚本职责拆分和 Word 复核原子减负，以及此前版本的专项路由、信息选择、事实关系和复核能力。原始任务、成稿、匿名映射、独立复核和汇总记录均保存在仓库内；早期 270 任务模型消融保留脱敏聚合摘要。
+测试从早期无 Skill/带 Skill 对照，逐步扩展到固定版本消融、真实写稿盲审和多轮改稿。下表汇总 1.5.30 的占位盲区修复、1.5.29 的信息承载收紧、1.5.28 的 Python 检查脚本职责拆分和 Word 复核原子减负，以及此前版本的专项路由、信息选择、事实关系和复核能力。原始任务、成稿、匿名映射、独立复核和汇总记录均保存在仓库内；早期 270 任务模型消融保留脱敏聚合摘要。
 
 | 调试方向 | 主要稿件与边界 | 当前证据 |
 | --- | --- | --- |
+| 中文占位盲区 | 补充识别 `XX类`、`XX系统`、`XX项` 等紧接中文的 X 类占位，同时保留合法文号 | 4 个定向样本和 clean corpus 通过；全量 unittest 394/394，检测脚本与发行镜像一致；不改变正文生成、路由和复核顺序 |
 | 已选事实直接承载 | 已进入正文的事项直接陈述材料已给的业务事实和当前状态，减少事实后的来源自述、无锚定结论限定和解释性尾句 | 两道自然任务均未出现 Candidate 独有硬回退；异常通报对来源泄露和无锚定否定有直接改善，工作总结的自证尾句也较少；受控复验因写手执行偏差作废，未计入胜负 |
 | 脚本职责拆分与 Word 复核减负 | 将 `prose_lint.py` 的扫描、聚合、输出和退出码职责拆开；删除一处重复的 Word Markdown 清理提示 | 两组固定样本复放均为 0 finding 差异；Word 两组真实 A/B 均为 Candidate 小胜，未出现事实、格式或输出模式回退 |
 | 普通函起草叶与占位检查 | 普通函起草、错字/标点/格式及明确局部措辞修改读取专用叶；涉及事务动作、状态、条件、范围或结构的实质改稿继续读取完整规则 | 命中文种 reference 从 3529 字符降至 852 字符，减少 2677 字符（约 75.86%）；扩展验证 5 胜 1 负，唯一负项复放持平，复杂改稿分流后三题为 1 胜 2 平；正常括号指令不再误报，八类真实占位仍全部命中 |
@@ -99,7 +100,7 @@ npx skills add https://github.com/gongyu0918-debug/chinese-official-writing-skil
 | 原子结论限定复核 | 旧稿局部改写、巡检整改报告、食堂异常通报 | 固定 1.5.18 同题盲审 3/3 判 1.5.19 胜出；材料原有结论状态保留，完整稿仍有重复风险 |
 | 渐进式拆叶 | 普通复杂写稿、公开来源核验、报告类细查 | 外部核验规则按需加载，报告细查路径减少 3549 字符；两轮各 3 组真实 A/B 均未见硬回退 |
 | 制度类专项路由 | 管理办法、来访制度、实施细则、短篇规定、印发通知与操作规程 | 新增实施细则、规定两题相对 1.5.20 均小胜且硬检查通过；既有样本保留条文偏碎、职责复述和 DOCX 视觉未核验风险 |
-| 工程回归 | 单元测试、固定上一发行版消融、Promptfoo、镜像与清洁包 | 1.5.29 发布候选为 390/390；Candidate 与固定 1.5.28 均为 110/110；Promptfoo 20/20 |
+| 工程回归 | 单元测试、固定上一发行版消融、Promptfoo、镜像与清洁包 | 1.5.30 发布候选为 394/394；Candidate 与固定 1.5.29 均为 110/110；Promptfoo 20/20 |
 
 60 份发布级真实写稿由两名独立 verifier 盲审。综合结果中，v1.5.13 与 1.5.14 都是 29 PASS、1 个对称 WARN、0 FAIL；硬边界复核两版均为 30 PASS、0 WARN、0 FAIL。真实模型小样本评测与发布级写稿覆盖会议纪要、情况说明、通知、请示、报告、字段式申请、只审不改、普通采购、AI 算力需求和旧稿防回流。
 
@@ -185,6 +186,7 @@ npx skills add https://github.com/gongyu0918-debug/chinese-official-writing-skil
 主要证据：
 
 - [`release-1.5.29.md`](tests/evidence/release-1.5.29.md)
+- [`release-1.5.30.md`](tests/evidence/release-1.5.30.md)
 - [`release-1.5.28.md`](tests/evidence/release-1.5.28.md)
 - [`release-1.5.27.md`](tests/evidence/release-1.5.27.md)
 - [`release-1.5.26.md`](tests/evidence/release-1.5.26.md)
