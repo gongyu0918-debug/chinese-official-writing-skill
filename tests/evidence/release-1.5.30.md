@@ -37,13 +37,23 @@
 
 ## 发行包与平台状态
 
-- GitHub：发布前只读核验 `origin/main=ce2035948457da1ba4ddda06ce68d4dbeb3ef573`；
-  `v1.5.29` 解引用为固定基线提交，正式提交、tag object 和 Release 待发布后记录。
-- ClawHub：dry-run 为 27 个文件、fingerprint
-  `589214d353391f1d8bf382d4015f0821a3ecd14caa15157383a0ca86ee894f63`，
-  发布前公开 latest 为 1.5.29，moderation 为 clean；正式回执待记录。
+- GitHub：产品提交、`main` 和 annotated tag 解引用提交均为
+  `176f1eb64e5ff8d3d557e29d18c2be9e2d15dcc4`，tag object 为
+  `33797fad66478f2ad109a22a6ab8ed6491565ce4`。正式 Release 已公开：
+  `https://github.com/gongyu0918-debug/chinese-official-writing-skill/releases/tag/v1.5.30`，
+  `draft=false`、`prerelease=false`。
+- ClawHub：正式提交一次，回执为 `status=published`、
+  `versionId=k9730sk5zcfndvyxy35y3pgk1d8bheyw`、27 个文件、fingerprint
+  `589214d353391f1d8bf382d4015f0821a3ecd14caa15157383a0ca86ee894f63`。
+  提交后首次公开 latest 仍为 1.5.29，精确查询 1.5.30 返回传播中的
+  `Version not found`；该旧公开版 moderation 为 clean，不据此推断 1.5.30
+  的扫描状态，也不重复提交。
 - skillhub.cn：26 文件清洁包排除 `agents/openai.yaml`、Codex 门禁说明和两项
-  门禁脚本；dry-run 返回 1.5.30。正式回执和公开传播状态待记录。
+  门禁脚本；正式提交一次，回执为 `skillId=70149`、`versionId=183337`、
+  26 个文件、fingerprint
+  `3430361c483e7c44e71073fe924f76b1b2d538e9a7d386dafac2dfd42b35233b`，
+  `tags.latest=1.5.30`。提交时 review、security scan 和 content audit 均为
+  pending；首次公开搜索仍显示 1.5.29，按异步传播处理，不重复提交。
 - 小红书 Red SkillHub 不在本次发布范围。
 
 ## 剩余风险

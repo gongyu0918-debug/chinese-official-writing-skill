@@ -11,6 +11,18 @@
 和全量回归均通过后才进入本地 `main`。发布、测试、包清单和平台回执见
 `tests/evidence/release-1.5.30.md`。
 
+产品提交为 `176f1eb64e5ff8d3d557e29d18c2be9e2d15dcc4`；GitHub `main`、
+annotated tag 解引用提交和正式 Release 均已指向该提交，tag object 为
+`33797fad66478f2ad109a22a6ab8ed6491565ce4`。ClawHub 一次正式提交返回
+`versionId=k9730sk5zcfndvyxy35y3pgk1d8bheyw`、27 个文件和 fingerprint
+`589214d353391f1d8bf382d4015f0821a3ecd14caa15157383a0ca86ee894f63`；
+首次公开 latest 仍为 1.5.29，精确查询 1.5.30 返回传播中的
+`Version not found`。skillhub.cn 一次正式提交返回 `skillId=70149`、
+`versionId=183337`、26 个文件和 fingerprint
+`3430361c483e7c44e71073fe924f76b1b2d538e9a7d386dafac2dfd42b35233b`，
+`tags.latest=1.5.30`，三项审核均为 pending；首次公开搜索仍为 1.5.29。
+异步传播不触发重复发布。
+
 ## 1.5.29 紧急更新
 
 1.5.29 以 `v1.5.28=f7570d4df5064582946732d283d30e86063ef142` 为固定发布
