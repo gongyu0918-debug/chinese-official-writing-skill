@@ -51,6 +51,7 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assertIn("先按用户指定的输出模式执行下文“硬边界”", text)
         for heading in ["## 硬边界", "## 质量建议", "## 参考资料"]:
             self.assertIn(heading, text)
+        self.assertNotIn("模型训练", text)
         self.assertIn("没有用户提供依据时，不编造真实单位", text)
         self.assertIn("法律、财务、采购、审计、政策适用、保密审查和正式签发结论由相应责任主体确认", readme)
 
@@ -69,6 +70,7 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assertIn("Token、并发、存储、带宽", specialty)
         self.assertIn("## AI 算力与技术服务", specialty)
         self.assertEqual(specialty.count("## AI 算力与技术服务"), 1)
+        self.assertIn("模型训练、推理、微调和多租户隔离需求", specialty)
         self.assertNotIn("## AI 算力与技术服务", playbooks)
         self.assertIn("详细结构见下文；本节只保留触发和边界", specialty)
         self.assertIn("SLA", specialty)
