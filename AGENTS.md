@@ -18,6 +18,17 @@ Hook、FSM 或回退方式。全量 unittest 395/395、Promptfoo smoke 20/20、
 MIXED，不进入 1.5.31。新闻消息和新闻评论专项叶继续留待下一轮。发布、包清单、
 平台回执和剩余风险见 `tests/evidence/release-1.5.31.md`。
 
+产品提交为 `e8c077cb1d6c6fe02bec71634140793aeeba5a5b`，annotated tag object
+为 `04f8928d6bb7794291ef83b33183c59c837141fb`，tag 解引用提交与产品提交
+一致；GitHub Release 已公开且不是 draft 或 prerelease。ClawHub 一次正式
+提交返回 `versionId=k97f7p972f02xbdcfr3bfk3gjd8bjj7w`、27 个文件和
+fingerprint `e0f18a01a9f2c190db9594810883ef4810af0d3a570019a3cd75b54c32b8fb57`；
+首次公开查询仍为 1.5.30。skillhub.cn 一次正式提交返回 `skillId=70149`、
+`versionId=184901`、26 个文件和 fingerprint
+`ce67059c80fa6c3cd94295419adbcd5433138fb5aa074ae969bb220a57c08d13`，
+`tags.latest=1.5.31`，三项审核均为 pending；首次公开搜索仍为 1.5.30。
+异步传播不触发重复发布。
+
 ## 1.5.30 小版本更新
 
 1.5.30 以 `v1.5.29=426911ac76538a582f5d7c1a8c9ef63ea12a9833` 为固定
