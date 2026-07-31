@@ -63,7 +63,8 @@ class SkillBoundaryTests(unittest.TestCase):
 
         self.assertNotIn("起草算力、采购、租赁或服务器租赁材料时", skill)
         self.assertIn("references/ai-compute-docs.md", skill)
-        self.assertIn("纯 AI 算力、模型服务或 GPU/服务器租赁技术需求直接进入", skill)
+        self.assertIn("AI 算力、GPU/服务器租赁、模型服务、智算中心、成本比较、SLA、安全或验收等专项直接读取", skill)
+        self.assertIn("同时明确普通文种时，再按本表该文种的任务模式和加载条件叠加相应叶", skill)
         playbooks = (ROOT / "chinese-official-writing" / "references" / "genre-playbooks.md").read_text(
             encoding="utf-8"
         )
@@ -177,6 +178,7 @@ class SkillBoundaryTests(unittest.TestCase):
 
     def test_reference_loading_table_keeps_progressive_disclosure(self) -> None:
         text = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
+        core = text.split("## 核心流程", 1)[1].split("## 硬边界", 1)[0]
 
         self.assertIn("按任务渐进读取资料，不要一次性加载全部文件", text)
         self.assertIn("| 文件 | 阶段 | 加载条件 |", text)
@@ -186,6 +188,19 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assertIn("`references/genre-playbooks.md` | 按文种选读", text)
         self.assertIn("`references/ai-compute-docs.md` | 专项选读", text)
         self.assertIn("AI 算力、GPU/服务器租赁、模型服务、智算中心、成本比较、SLA、安全或验收等专项直接读取", text)
+        self.assertIn("命中 `references/task-route-cards.md` 且卡片能够覆盖任务时，在轻量卡早停", core)
+        self.assertIn("未命中、命中转读条件或卡片不能覆盖时", core)
+        self.assertIn("一次只加载实际命中的表项", core)
+        for duplicated_leaf in [
+            "references/genre-playbook-minutes.md",
+            "references/genre-checklist-report.md",
+            "references/genre-playbook-request.md",
+            "references/genre-checklist-request.md",
+            "references/genre-playbook-correspondence.md",
+            "references/genre-playbooks.md",
+            "references/ai-compute-docs.md",
+        ]:
+            self.assertNotIn(duplicated_leaf, core)
 
     def test_task_route_cards_keep_sparse_tasks_lightweight(self) -> None:
         skill = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
@@ -1264,14 +1279,14 @@ class SkillBoundaryTests(unittest.TestCase):
         ]:
             self.assertNotIn(supplemental_reference, correspondence_section)
         self.assertIn(
-            "普通函起草，以及只改错字、标点、格式或明确局部措辞时，进入",
+            "普通函起草，以及只改错字、标点、格式或明确局部措辞时读取",
             skill,
         )
         self.assertIn(
-            "用户提供既有普通函并要求重组事务动作、状态、条件、范围或结构时",
+            "用户提供既有普通函并要求重组事务动作、状态、条件、范围或结构时读取函规则",
             skill,
         )
-        self.assertIn("复函、征求意见函及其他文种明确", skill)
+        self.assertIn("通知、复函、征求意见函、讲话稿", skill)
 
     def test_weak_model_suggestion_boundaries_stay_soft(self) -> None:
         skill = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
