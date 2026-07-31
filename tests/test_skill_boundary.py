@@ -45,6 +45,12 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assertIn("批量语料生成", readme)
         self.assertIn("规避人工审核", readme)
         self.assertNotIn("本技能只提供写作和复核辅助", text)
+        self.assertNotIn("## 三层使用原则", text)
+        self.assertNotIn("用户写明“材料只有”", text)
+        self.assertIn("## 使用顺序", text)
+        self.assertIn("先按用户指定的输出模式执行下文“硬边界”", text)
+        for heading in ["## 硬边界", "## 质量建议", "## 参考资料"]:
+            self.assertIn(heading, text)
         self.assertIn("没有用户提供依据时，不编造真实单位", text)
         self.assertIn("法律、财务、采购、审计、政策适用、保密审查和正式签发结论由相应责任主体确认", readme)
 
@@ -83,6 +89,9 @@ class SkillBoundaryTests(unittest.TestCase):
                 self.assertNotIn("批量语料生成", text)
                 self.assertNotIn("规避人工审核", text)
                 self.assertNotIn("本技能只提供写作和复核辅助", text)
+                self.assertNotIn("## 三层使用原则", text)
+                self.assertNotIn("用户写明“材料只有”", text)
+                self.assertIn("## 使用顺序", text)
                 self.assertIn("没有用户提供依据时，不编造真实单位", text)
 
     def test_drafting_rules_are_split_for_prompt_following(self) -> None:
@@ -216,11 +225,16 @@ class SkillBoundaryTests(unittest.TestCase):
             "chinese-official-writing/references/task-route-cards.md",
         ]
         texts = [(ROOT / path).read_text(encoding="utf-8") for path in relative_paths]
+        information_selection = (
+            ROOT / "chinese-official-writing" / "references" / "information-selection.md"
+        ).read_text(encoding="utf-8")
         for text in texts:
             self.assertNotIn("宁可短写", text)
-        self.assertIn("篇幅要求不改变事实边界", texts[0])
-        self.assertIn("不为凑篇幅补主体、流程、产物、范围、责任或联系方式", texts[0])
-        self.assertIn("基础底稿、基础清单、台账化、过程可追踪、统一督导流程", texts[0])
+        self.assertNotIn("篇幅要求不改变事实边界", texts[0])
+        self.assertNotIn("基础底稿、基础清单、台账化、过程可追踪、统一督导流程", texts[0])
+        self.assertIn("篇幅目标在上述信息范围内完成", information_selection)
+        self.assertIn("不增加材料外的主体、流程、产物、范围、责任或联系方式", information_selection)
+        self.assertIn("也不以同义概念补回", information_selection)
         self.assertNotIn("基础底稿、基础清单、台账化、过程可追踪、统一督导流程", texts[1])
         self.assertIn("按已给内容和语气成稿", texts[3])
 
@@ -1283,12 +1297,14 @@ class SkillBoundaryTests(unittest.TestCase):
             ROOT / "chinese-official-writing" / "references" / "information-selection.md"
         ).read_text(encoding="utf-8")
         for text in [skill, openclaw_skill]:
-            self.assertIn("用户点名禁止编造的字段写成正文中的“未提供”说明", text)
+            self.assertNotIn("用户点名禁止编造的字段写成正文中的“未提供”说明", text)
             self.assertIn("识别为正式报送结构缺口", text)
             self.assertIn("（成文日期待确认）", text)
             self.assertIn("不使用当前日期补落款", text)
         self.assertIn("用户要求先确认时，再在正文前提出必要问题", information_selection)
         self.assertIn("文后提示使用少量短项", information_selection)
+        self.assertIn("用户点名不得编造的字段按输出模式省略或短列", information_selection)
+        self.assertIn("不在正文中解释为“未提供”", information_selection)
         self.assertIn("去 AI 味、变换句式、拆分长句或调整清单结构", skill)
         self.assertIn("不得补写未给的解释、原因、影响范围、办理流程、责任人员、字段示例或整改动作", skill)
         self.assertIn("用户只给问题清单、任务清单或明确要求不新增事实时", skill)
