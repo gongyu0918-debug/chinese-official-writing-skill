@@ -163,6 +163,93 @@ class PromptfooRunnerTests(unittest.TestCase):
 
 
 class PromptfooProviderTests(unittest.TestCase):
+    def test_news_message_aliases_use_only_the_thin_dedicated_leaf(self) -> None:
+        for genre in [
+            "新闻稿",
+            "新闻消息",
+            "快讯",
+            "活动报道",
+            "活动新闻稿",
+            "新闻通稿",
+        ]:
+            with self.subTest(genre=genre):
+                self.assertEqual(
+                    provider._reference_paths_for_genres([genre]),
+                    ["SKILL.md", "references/genre-playbook-news-message.md"],
+                )
+
+    def test_news_message_leaf_excludes_comments_and_official_documents(self) -> None:
+        for genre in [
+            "新闻评论",
+            "时评",
+            "评论员文章",
+            "通报",
+            "工作简报",
+            "通知",
+            "报告",
+        ]:
+            with self.subTest(genre=genre):
+                self.assertNotIn(
+                    "references/genre-playbook-news-message.md",
+                    provider._reference_paths_for_genres([genre]),
+                )
+
+    def test_news_commentary_aliases_route_directly_to_the_dedicated_leaf(self) -> None:
+        expected = ["SKILL.md", "references/genre-playbook-news-commentary.md"]
+        self.assertEqual(
+            provider.NEWS_COMMENTARY_GENRES,
+            {"新闻评论", "时评", "评论员文章"},
+        )
+        for genre in sorted(provider.NEWS_COMMENTARY_GENRES):
+            with self.subTest(genre=genre):
+                self.assertEqual(
+                    provider._reference_paths_for_genres([genre]),
+                    expected,
+                )
+
+    def test_news_commentary_leaf_excludes_messages_and_official_documents(self) -> None:
+        for genre in [
+            "新闻消息",
+            "新闻稿",
+            "快讯",
+            "活动报道",
+            "通报",
+            "调研",
+            "讲话",
+            "报告",
+        ]:
+            with self.subTest(genre=genre):
+                self.assertNotIn(
+                    "references/genre-playbook-news-commentary.md",
+                    provider._reference_paths_for_genres([genre]),
+                )
+
+    def test_commentary_words_in_a_report_task_do_not_override_the_report_route(self) -> None:
+        refs = provider._reference_paths_for_genres(
+            ["报告"],
+            ["关于时评编审工作的情况报告"],
+        )
+
+        self.assertEqual(
+            refs,
+            ["SKILL.md", "references/genre-checklist-report.md"],
+        )
+        self.assertNotIn("references/genre-playbook-news-commentary.md", refs)
+
+    def test_explicit_news_commentary_wins_over_mixed_genre_labels(self) -> None:
+        expected = ["SKILL.md", "references/genre-playbook-news-commentary.md"]
+        for genres in [
+            ["新闻评论", "报告"],
+            ["报告", "新闻评论"],
+            ["新闻消息", "新闻评论"],
+            ["新闻评论", "新闻消息"],
+        ]:
+            with self.subTest(genres=genres):
+                self.assertEqual(
+                    provider._reference_paths_for_genres(genres),
+                    expected,
+                )
+
     def test_ai_compute_genre_loads_only_relevant_extra_reference(self) -> None:
         refs = provider._reference_paths_for_genres(["算力资源采购方案"])
 

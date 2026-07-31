@@ -450,6 +450,87 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assertIn("仅在材料明确时写入", leaf)
         self.assertIn("同时读取 `format-gbt9704.md`", leaf)
 
+    def test_news_message_has_six_aliases_and_a_four_rule_thin_leaf(self) -> None:
+        skill = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
+        leaf = (
+            ROOT
+            / "chinese-official-writing"
+            / "references"
+            / "genre-playbook-news-message.md"
+        ).read_text(encoding="utf-8")
+
+        aliases = ["新闻稿", "新闻消息", "快讯", "活动报道", "活动新闻稿", "新闻通稿"]
+        frontmatter = skill.split("---", 2)[1]
+        for alias in aliases:
+            self.assertIn(alias, frontmatter)
+        self.assertIn("references/genre-playbook-news-message.md", skill)
+        self.assertIn("不因材料中偶然出现", skill)
+        self.assertEqual(
+            [line for line in leaf.splitlines() if line.startswith("- ")],
+            [
+                "- 标题和导语先交代最重要的已给事实。",
+                "- 用户给出篇幅范围时，以达到下限为预算起点，完整覆盖材料中的各组独立事实，避免用同义复述凑长。",
+                "- 正文按事件进程或信息层次，展开材料已给的时间、地点、主体、动作、数字、结果和背景。",
+                "- 事实关系和状态强度服从材料；新闻消息不转成中心评论或材料外行动。",
+            ],
+        )
+        self.assertNotIn("缺少某一项时直接省略", leaf)
+        self.assertNotIn("流程清单", leaf)
+
+    def test_news_commentary_has_three_precise_aliases_and_a_direct_leaf(self) -> None:
+        skill_paths = [
+            ROOT / "chinese-official-writing" / "SKILL.md",
+            ROOT / "skills" / "chinese-official-writing" / "SKILL.md",
+            ROOT / ".agents" / "skills" / "chinese-official-writing" / "SKILL.md",
+            ROOT / ".qwen" / "skills" / "chinese-official-writing" / "SKILL.md",
+            ROOT / "hermes" / "skills" / "chinese-official-writing" / "SKILL.md",
+            ROOT / "openclaw" / "skills" / "chinese_official_writing" / "SKILL.md",
+        ]
+        reference = "references/genre-playbook-news-commentary.md"
+
+        for path in skill_paths:
+            with self.subTest(path=path):
+                skill = path.read_text(encoding="utf-8")
+                frontmatter = skill.split("---", 2)[1]
+                for alias in ["新闻评论", "时评", "评论员文章"]:
+                    self.assertIn(alias, frontmatter)
+                self.assertNotIn("评论类", frontmatter)
+                self.assertNotIn("各类评论", frontmatter)
+                self.assertIn(reference, skill)
+                self.assertIn(
+                    "普通公文内容中出现这些词语，不改变原定文种",
+                    skill,
+                )
+                self.assertIn(
+                    "除用户明确要求撰写新闻评论、时评或评论员文章外",
+                    skill,
+                )
+
+    def test_news_commentary_leaf_is_bounded_and_non_templated(self) -> None:
+        leaf = (
+            ROOT
+            / "chinese-official-writing"
+            / "references"
+            / "genre-playbook-news-commentary.md"
+        ).read_text(encoding="utf-8")
+
+        for phrase in [
+            "完整时间锚",
+            "目标字数的约值",
+            "每段推进不同论点",
+            "直接判断、事实解释和自然衔接",
+            "材料事实与评论推演",
+            "公共价值、利弊和成立条件",
+            "具体政策、数据、具名责任、期限或承诺",
+            "自然收束",
+        ]:
+            with self.subTest(phrase=phrase):
+                self.assertIn(phrase, leaf)
+        self.assertNotIn("示例：", leaf)
+        self.assertNotIn("模板", leaf)
+        self.assertNotIn("首先", leaf)
+        self.assertNotIn("其次", leaf)
+
     def test_format_reference_clarifies_document_number_brackets(self) -> None:
         text = (ROOT / "chinese-official-writing" / "references" / "format-gbt9704.md").read_text(encoding="utf-8")
 

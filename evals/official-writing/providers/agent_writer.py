@@ -72,6 +72,12 @@ GENRE_REFERENCES: dict[str, list[str]] = {
     "format": [
         "references/format-gbt9704.md",
     ],
+    "news_message": [
+        "references/genre-playbook-news-message.md",
+    ],
+    "news_commentary": [
+        "references/genre-playbook-news-commentary.md",
+    ],
 }
 
 MAX_SKILL_CONTEXT_CHARS = 50_000
@@ -116,6 +122,21 @@ PLAYBOOK_GENRES = CHAIN_GENRES | {
     "致辞",
     "述职报告",
     "研究报告",
+}
+
+NEWS_MESSAGE_GENRES = {
+    "新闻稿",
+    "新闻消息",
+    "快讯",
+    "活动报道",
+    "活动新闻稿",
+    "新闻通稿",
+}
+
+NEWS_COMMENTARY_GENRES = {
+    "新闻评论",
+    "时评",
+    "评论员文章",
 }
 
 REPORT_PLAYBOOK_GENRES = {
@@ -708,6 +729,14 @@ def _reference_paths_for_genres(genres: list[str], tasks: list[str] | None = Non
             paths.extend(GENRE_REFERENCES["format"])
         if _task_requires_external_research(tasks):
             paths.extend(GENRE_REFERENCES["external_research"])
+        return list(dict.fromkeys(paths))
+
+    if any(genre in NEWS_COMMENTARY_GENRES for genre in genres):
+        paths.extend(GENRE_REFERENCES["news_commentary"])
+        return list(dict.fromkeys(paths))
+
+    if any(genre in NEWS_MESSAGE_GENRES for genre in genres):
+        paths.extend(GENRE_REFERENCES["news_message"])
         return list(dict.fromkeys(paths))
 
     sparse_route = _task_uses_sparse_card(genres, tasks, ai_compute)
