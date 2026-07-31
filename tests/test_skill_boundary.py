@@ -766,11 +766,12 @@ class SkillBoundaryTests(unittest.TestCase):
             encoding="utf-8"
         )
 
-        for text in [skill, workflow, external_research, checklist, openclaw_skill]:
+        for text in [skill, external_research, checklist, openclaw_skill]:
             self.assertIn("联网搜索", text)
         self.assertIn("联网核验", elements)
         self.assertIn("默认不外搜", skill)
-        self.assertIn("普通起草、改稿和复核沿用入口的默认不外搜边界", workflow)
+        self.assertNotIn("### 联网搜索使用边界", workflow)
+        self.assertNotIn("external-research.md", workflow)
         for term in ["最新", "当前", "今日", "现行政策", "近期数据"]:
             self.assertIn(term, external_research)
         self.assertIn("搜索结果只作为来源参考", skill)
