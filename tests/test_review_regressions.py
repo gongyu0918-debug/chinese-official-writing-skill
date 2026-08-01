@@ -193,12 +193,28 @@ class ProseLintStructureTests(unittest.TestCase):
             "项目拟于8月启动。\n\n风险提醒：\n资金来源待确认。",
             "项目拟于8月启动。\n\n核验提示：\n引用出处待核验。",
             "项目拟于8月启动。\n\n## 待确认事项\n资金来源待确认。",
+            "项目拟于8月启动。\n\n七、待确认事项\n资金来源待确认。",
+            "项目拟于8月启动。\n\n第七章 待确认事项\n资金来源待确认。",
+            "项目拟于8月启动。\n\n2. 待确认事项\n资金来源待确认。",
+            "项目拟于8月启动。\n\n（二）待确认事项\n资金来源待确认。",
         ]
 
         for text in texts:
             with self.subTest(text=text):
                 findings = prose_lint.scan("<test>", text, delivery_mode="draft-body")
                 self.assertIn("unexpected-external-note", {item.label for item in findings})
+
+    def test_numbered_business_headings_with_note_words_stay_in_body(self) -> None:
+        texts = [
+            "一、待确认事项办理情况\n已完成三项核对。",
+            "第二章 补充信息管理办法\n本章规定信息补录流程。",
+            "经核查，待确认事项已全部确认。",
+        ]
+
+        for text in texts:
+            with self.subTest(text=text):
+                findings = prose_lint.scan("<test>", text, delivery_mode="draft-body")
+                self.assertNotIn("unexpected-external-note", {item.label for item in findings})
 
     def test_delivery_mode_covers_common_narration_and_english_variants(self) -> None:
         text = (

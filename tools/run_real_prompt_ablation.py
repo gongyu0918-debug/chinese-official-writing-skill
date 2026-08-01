@@ -410,7 +410,7 @@ CASES: list[PromptCase] = [
             "file_terms": {
                 "chinese-official-writing/SKILL.md": [
                     "格式核验或语气检查",
-                    "不默认重写全文",
+                    "references/review-checklist.md",
                 ],
                 "chinese-official-writing/references/review-checklist.md": [
                     "位置、风险层级、修改建议",
@@ -864,10 +864,7 @@ CASES: list[PromptCase] = [
         prompt="只审空话套话，不重写全文：各单位高度重视，扎实推进整改，持续完善机制；请给位置、风险层级和建议。",
         checks={
             "file_terms": {
-                "chinese-official-writing/SKILL.md": [
-                    "成簇问题",
-                    "不因单个正式词、单个转折或一次排比就硬清洗",
-                ],
+                "chinese-official-writing/SKILL.md": ["references/anti-ai-patterns.md"],
                 "chinese-official-writing/references/anti-ai-patterns.md": [
                     "审稿时看成簇问题",
                     "单独出现 `高度重视`",
@@ -915,9 +912,7 @@ CASES: list[PromptCase] = [
         prompt="只审空话套话，不重写全文；必须标明每处具体位置，不要只给整段整体评价。",
         checks={
             "file_terms": {
-                "chinese-official-writing/SKILL.md": [
-                    "用户要求“位置”时，优先逐项引用原文短语或句子",
-                ],
+                "chinese-official-writing/SKILL.md": ["references/review-checklist.md"],
                 "chinese-official-writing/references/review-checklist.md": [
                     "优先逐项引用原文短语或句子",
                     "未只给笼统段落评价",
@@ -1473,11 +1468,7 @@ CASES: list[PromptCase] = [
         prompt="只审不改。请按“位置 + 风险层级 + 修改建议”检查一份通知，不要重写全文，不要给分，也不要用 Markdown 加粗包装标签。",
         checks={
             "file_terms": {
-                "chinese-official-writing/SKILL.md": [
-                    "位置 + 风险层级 + 修改建议",
-                    "普通文本标签承接",
-                    "不用 Markdown `**` 加粗包装标签",
-                ],
+                "chinese-official-writing/SKILL.md": ["references/review-checklist.md"],
                 "chinese-official-writing/references/review-checklist.md": [
                     "位置 + 风险层级 + 修改建议",
                     "普通文本标签逐项输出",
@@ -1587,11 +1578,7 @@ CASES: list[PromptCase] = [
         prompt="只审事实不清，不重写全文：本次检查总体情况较好，问题已基本整改到位，后续将持续优化提升。不要把无依据结论降成低风险套话。",
         checks={
             "file_terms": {
-                "chinese-official-writing/SKILL.md": [
-                    "总体情况较好",
-                    "按中或中高风险提示",
-                    "不降成低风险套话",
-                ],
+                "chinese-official-writing/SKILL.md": ["references/review-checklist.md"],
                 "chinese-official-writing/references/review-checklist.md": [
                     "总体情况较好",
                     "整改证据或验收依据",
@@ -2205,6 +2192,11 @@ def evaluate_case(case: PromptCase, root: Path, prose_lint) -> dict[str, Any]:
     request_checklist_path = root / "chinese-official-writing/references/genre-checklist-request.md"
     if request_checklist_path.exists():
         checklist = f"{checklist}\n{request_checklist_path.read_text(encoding='utf-8')}"
+    feasibility_checklist_path = (
+        root / "chinese-official-writing/references/genre-checklist-feasibility-review.md"
+    )
+    if feasibility_checklist_path.exists():
+        checklist = f"{checklist}\n{feasibility_checklist_path.read_text(encoding='utf-8')}"
     elements = read_text(root, "chinese-official-writing/references/handling-elements.md")
     review_checklist = read_text(root, "chinese-official-writing/references/review-checklist.md")
 

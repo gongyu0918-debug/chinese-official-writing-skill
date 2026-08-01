@@ -187,7 +187,7 @@ class RealPromptAblationTests(unittest.TestCase):
         self.assertIn("夸大意义", checks_by_id["P026"]["file_terms"]["chinese-official-writing/references/anti-ai-patterns.md"])
         self.assertIn("数据冲突不得默认就高", checks_by_id["P027"]["file_terms"]["chinese-official-writing/references/workflow.md"])
         self.assertIn("正式交付前要素核对", checks_by_id["P028"]["file_terms"]["chinese-official-writing/references/format-gbt9704.md"])
-        self.assertIn("不默认重写全文", checks_by_id["P029"]["file_terms"]["chinese-official-writing/SKILL.md"])
+        self.assertIn("references/review-checklist.md", checks_by_id["P029"]["file_terms"]["chinese-official-writing/SKILL.md"])
         self.assertIn("轻量语气替换建议", checks_by_id["P030"]["file_terms"]["chinese-official-writing/references/official-style.md"])
         self.assertIn("默认不外搜", checks_by_id["P031"]["file_terms"]["chinese-official-writing/SKILL.md"])
         self.assertIn("现行政策", checks_by_id["P032"]["file_terms"]["chinese-official-writing/SKILL.md"])
@@ -341,7 +341,7 @@ class RealPromptAblationTests(unittest.TestCase):
             ],
         )
         self.assertIn(
-            "不用 Markdown `**` 加粗包装标签",
+            "references/review-checklist.md",
             checks_by_id["P090"]["file_terms"]["chinese-official-writing/SKILL.md"],
         )
         self.assertIn(
