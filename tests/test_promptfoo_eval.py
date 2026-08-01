@@ -254,7 +254,8 @@ class PromptfooProviderTests(unittest.TestCase):
         refs = provider._reference_paths_for_genres(["算力资源采购方案"])
 
         self.assertEqual(refs[0], "SKILL.md")
-        self.assertIn("references/genre-playbooks.md", refs)
+        self.assertIn("references/genre-playbook-plan-construction.md", refs)
+        self.assertNotIn("references/genre-playbooks.md", refs)
         self.assertIn("references/ai-compute-docs.md", refs)
         self.assertNotIn("references/task-route-cards.md", refs)
         self.assertNotIn("references/genre-checklist.md", refs)
@@ -295,6 +296,9 @@ class PromptfooProviderTests(unittest.TestCase):
                 if genre in provider.ORDINARY_LETTER_PLAYBOOK_GENRES:
                     self.assertIn("references/genre-playbook-correspondence.md", refs)
                     self.assertNotIn("references/genre-playbooks.md", refs)
+                elif provider._is_plan_construction_genre(genre):
+                    self.assertIn("references/genre-playbook-plan-construction.md", refs)
+                    self.assertNotIn("references/genre-playbooks.md", refs)
                 else:
                     self.assertIn("references/genre-playbooks.md", refs)
                 self.assertIn("references/ai-compute-docs.md", refs)
@@ -311,7 +315,11 @@ class PromptfooProviderTests(unittest.TestCase):
                     ["模型服务技术需求"],
                     [task],
                 )
-                self.assertIn("references/genre-playbooks.md", refs)
+                if "方案" in task:
+                    self.assertIn("references/genre-playbook-plan-construction.md", refs)
+                    self.assertNotIn("references/genre-playbooks.md", refs)
+                else:
+                    self.assertIn("references/genre-playbooks.md", refs)
                 self.assertIn("references/ai-compute-docs.md", refs)
 
     def test_known_genres_use_playbook_without_preloading_other_routes(self) -> None:
@@ -590,6 +598,7 @@ class PromptfooProviderTests(unittest.TestCase):
             [
                 "SKILL.md",
                 "references/genre-checklist-report.md",
+                "references/genre-playbook-plan-construction.md",
                 "references/genre-playbooks.md",
             ],
         )
@@ -598,6 +607,21 @@ class PromptfooProviderTests(unittest.TestCase):
         self.assertNotIn("references/genre-checklist.md", refs)
         self.assertNotIn("references/formal-addressing.md", refs)
         self.assertNotIn("references/anti-ai-patterns.md", refs)
+
+    def test_plan_genres_use_the_plan_construction_leaf(self) -> None:
+        for genre in ("方案", "实施方案", "建设方案"):
+            with self.subTest(genre=genre):
+                refs = provider._reference_paths_for_genres([genre])
+                self.assertEqual(
+                    refs,
+                    ["SKILL.md", "references/genre-playbook-plan-construction.md"],
+                )
+
+    def test_research_and_feasibility_genres_keep_the_common_playbook(self) -> None:
+        for genre in ("调研报告", "研究报告", "可研报告"):
+            with self.subTest(genre=genre):
+                refs = provider._reference_paths_for_genres([genre])
+                self.assertEqual(refs, ["SKILL.md", "references/genre-playbooks.md"])
 
     def test_unresolved_minutes_stop_at_the_sparse_card(self) -> None:
         refs = provider._reference_paths_for_genres(
@@ -1123,11 +1147,15 @@ class PromptfooProviderTests(unittest.TestCase):
 
     def test_ai_compute_markers_cover_model_platform_language(self) -> None:
         pure_ai = {"模型服务技术需求", "AI平台推理服务"}
+        plan_ai = {"智算中心建设方案", "GPU推理服务保障方案"}
         for genre in ["模型服务技术需求", "智算中心建设方案", "大模型本地化部署成本说明", "AI平台推理服务", "GPU推理服务保障方案"]:
             with self.subTest(genre=genre):
                 refs = provider._reference_paths_for_genres([genre])
                 self.assertIn("references/ai-compute-docs.md", refs)
                 if genre in pure_ai:
+                    self.assertNotIn("references/genre-playbooks.md", refs)
+                elif genre in plan_ai:
+                    self.assertIn("references/genre-playbook-plan-construction.md", refs)
                     self.assertNotIn("references/genre-playbooks.md", refs)
                 else:
                     self.assertIn("references/genre-playbooks.md", refs)

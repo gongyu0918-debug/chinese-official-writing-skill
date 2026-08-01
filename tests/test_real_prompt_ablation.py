@@ -112,6 +112,7 @@ class RealPromptAblationTests(unittest.TestCase):
 
     def test_information_selection_migration_keeps_complete_equivalent_evidence_groups(self) -> None:
         expected_cases = {
+            "P076",
             "P019",
             "P024",
             "P036",
@@ -427,6 +428,16 @@ class RealPromptAblationTests(unittest.TestCase):
             "商请/答复/征求事项",
             checks_by_id["P111"]["file_terms"][
                 "chinese-official-writing/references/genre-playbooks.md"
+            ],
+        )
+        self.assertIn(
+            "方案、实施方案或建设方案需要常规或完整骨架时直接读取",
+            checks_by_id["P112"]["file_terms"]["chinese-official-writing/SKILL.md"],
+        )
+        self.assertIn(
+            "建设方案先核对目标、范围、任务、进度、责任和验收",
+            checks_by_id["P112"]["file_terms"][
+                "chinese-official-writing/references/genre-playbook-plan-construction.md"
             ],
         )
 

@@ -59,6 +59,9 @@ GENRE_REFERENCES: dict[str, list[str]] = {
     "work_summary_playbook": [
         "references/genre-playbook-work-summary.md",
     ],
+    "plan_construction_playbook": [
+        "references/genre-playbook-plan-construction.md",
+    ],
     "request_review": [
         "references/genre-checklist-request.md",
     ],
@@ -158,6 +161,8 @@ WORK_SUMMARY_PLAYBOOK_GENRES = {
     "周报",
     "月报",
 }
+
+PLAN_CONSTRUCTION_GENRE_MARKER = "方案"
 
 REQUEST_REVIEW_GENRES = {
     "请示",
@@ -673,6 +678,18 @@ def _ordinary_letter_requires_full_playbook(tasks: list[str]) -> bool:
     return False
 
 
+def _is_plan_construction_genre(genre: str) -> bool:
+    return PLAN_CONSTRUCTION_GENRE_MARKER in genre
+
+
+def _ai_task_requests_plan_construction(tasks: list[str]) -> bool:
+    for task in tasks:
+        match = AI_ORDINARY_TASK_RE.search(task)
+        if match is not None and PLAN_CONSTRUCTION_GENRE_MARKER in match.group(0):
+            return True
+    return False
+
+
 def _tasks_are_review_only(tasks: list[str]) -> bool:
     return bool(tasks) and all(
         _contains_marker(task, REVIEW_TASK_MARKERS)
@@ -728,6 +745,9 @@ def _reference_paths_for_genres(genres: list[str], tasks: list[str] | None = Non
     report_playbook = any(genre in REPORT_PLAYBOOK_GENRES for genre in genres)
     ordinary_letter_playbook = any(genre in ORDINARY_LETTER_PLAYBOOK_GENRES for genre in genres)
     work_summary_playbook = any(genre in WORK_SUMMARY_PLAYBOOK_GENRES for genre in genres)
+    plan_construction_playbook = any(
+        _is_plan_construction_genre(genre) for genre in genres
+    ) or (ai_compute and _ai_task_requests_plan_construction(tasks))
     ordinary_letter_full_playbook = (
         ordinary_letter_playbook and _ordinary_letter_requires_full_playbook(tasks)
     )
@@ -764,18 +784,22 @@ def _reference_paths_for_genres(genres: list[str], tasks: list[str] | None = Non
             paths.extend(GENRE_REFERENCES["correspondence_playbook"])
         if work_summary_playbook:
             paths.extend(GENRE_REFERENCES["work_summary_playbook"])
+        if plan_construction_playbook:
+            paths.extend(GENRE_REFERENCES["plan_construction_playbook"])
         if any(
             genre in PLAYBOOK_GENRES
             and genre != "会议纪要"
             and genre not in REPORT_PLAYBOOK_GENRES
             and genre not in ORDINARY_LETTER_PLAYBOOK_GENRES
             and genre not in WORK_SUMMARY_PLAYBOOK_GENRES
+            and not _is_plan_construction_genre(genre)
             for genre in genres
         ) or (
             ai_compute
             and _ai_requires_ordinary_playbook(genres, tasks)
             and not report_playbook
             and not ordinary_letter_playbook
+            and not plan_construction_playbook
         ) or ordinary_letter_full_playbook:
             paths.extend(GENRE_REFERENCES["playbook"])
         if any(_contains_marker(task, ROUTING_TASK_MARKERS) for task in tasks):

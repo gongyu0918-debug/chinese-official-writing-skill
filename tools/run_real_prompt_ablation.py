@@ -1878,6 +1878,24 @@ CASES: list[PromptCase] = [
             },
         },
     ),
+    PromptCase(
+        id="P112",
+        kind="create",
+        prompt="根据已有目标、范围、任务、进度、责任和验收要求，起草一份政务大厅叫号系统建设方案。",
+        checks={
+            "file_terms": {
+                "chinese-official-writing/SKILL.md": [
+                    "references/genre-playbook-plan-construction.md",
+                    "方案、实施方案或建设方案需要常规或完整骨架时直接读取",
+                ],
+                "chinese-official-writing/references/genre-playbook-plan-construction.md": [
+                    "## 方案/实施方案/建设方案",
+                    "对象和范围 -> 事实、数据、样本",
+                    "建设方案先核对目标、范围、任务、进度、责任和验收",
+                ],
+            },
+        },
+    ),
 ]
 
 
@@ -1887,6 +1905,15 @@ CASES: list[PromptCase] = [
 # be present.  This keeps the fixed baseline valid without forcing duplicated
 # runtime wording back into the current skill.
 FILE_TERM_ALTERNATIVES_BY_CASE: dict[str, list[dict[str, list[str]]]] = {
+    "P076": [
+        {
+            "chinese-official-writing/references/genre-playbooks.md": [
+                "## 调研报告/研究报告/可研报告",
+                "事实、数据、样本",
+                "不把公文报告写成投研报告",
+            ],
+        }
+    ],
     "P019": [
         {
             "chinese-official-writing/references/workflow.md": [
