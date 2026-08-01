@@ -185,6 +185,7 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assertIn("`references/task-route-cards.md` | 起草前/改稿前", text)
         self.assertIn("低上下文局部修改", text)
         self.assertIn("`references/genre-playbook-minutes.md` | 按文种选读", text)
+        self.assertIn("`references/genre-playbook-plan-construction.md` | 按文种选读", text)
         self.assertIn("`references/genre-playbooks.md` | 按文种选读", text)
         self.assertIn("`references/ai-compute-docs.md` | 专项选读", text)
         self.assertIn("AI 算力、GPU/服务器租赁、模型服务、智算中心、成本比较、SLA、安全或验收等专项直接读取", text)
@@ -197,6 +198,7 @@ class SkillBoundaryTests(unittest.TestCase):
             "references/genre-playbook-request.md",
             "references/genre-checklist-request.md",
             "references/genre-playbook-correspondence.md",
+            "references/genre-playbook-plan-construction.md",
             "references/genre-playbooks.md",
             "references/ai-compute-docs.md",
         ]:
@@ -455,6 +457,34 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assertIn("请示一文一事", request)
         self.assertIn("主送机关、发文或申请单位、成文日期属于正式报送结构要素", request)
         self.assertIn("`argument-chains.md` 的请示和请批附件", request)
+
+    def test_plan_construction_playbook_is_routed_as_an_atomic_leaf(self) -> None:
+        skill = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
+        common = (
+            ROOT / "chinese-official-writing" / "references" / "genre-playbooks.md"
+        ).read_text(encoding="utf-8")
+        leaf = (
+            ROOT
+            / "chinese-official-writing"
+            / "references"
+            / "genre-playbook-plan-construction.md"
+        ).read_text(encoding="utf-8")
+        shared_skeleton = (
+            "对象和范围 -> 事实、数据、样本 -> 发现和问题 -> 原因或方案比较 -> "
+            "建议/可行性/建设内容 -> 条件和风险"
+        )
+
+        self.assertIn("references/genre-playbook-plan-construction.md", skill)
+        self.assertIn("方案、实施方案或建设方案需要常规或完整骨架时直接读取", skill)
+        self.assertNotIn("## 调研报告/研究报告/可研报告/建设方案\n", common)
+        self.assertIn("## 调研报告/研究报告/可研报告\n", common)
+        self.assertIn("## 方案/实施方案/建设方案\n", leaf)
+        self.assertIn(shared_skeleton, common)
+        self.assertIn(shared_skeleton, leaf)
+        self.assertNotIn("建设方案先核对目标、范围、任务、进度、责任和验收", common)
+        self.assertIn("建设方案先核对目标、范围、任务、进度、责任和验收", leaf)
+        for forbidden in ["计划段展开", "计划补写", "篇幅", "字数", "P0"]:
+            self.assertNotIn(forbidden, leaf)
 
     def test_request_review_checklist_is_routed_as_an_atomic_leaf(self) -> None:
         skill = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
@@ -1208,7 +1238,23 @@ class SkillBoundaryTests(unittest.TestCase):
         work_summary = (
             ROOT / "chinese-official-writing" / "references" / "genre-playbook-work-summary.md"
         ).read_text(encoding="utf-8")
-        routed_playbooks = playbooks + "\n" + minutes + "\n" + correspondence + "\n" + work_summary
+        plan_construction = (
+            ROOT
+            / "chinese-official-writing"
+            / "references"
+            / "genre-playbook-plan-construction.md"
+        ).read_text(encoding="utf-8")
+        routed_playbooks = (
+            playbooks
+            + "\n"
+            + minutes
+            + "\n"
+            + correspondence
+            + "\n"
+            + work_summary
+            + "\n"
+            + plan_construction
+        )
         ai_compute = (
             ROOT / "chinese-official-writing" / "references" / "ai-compute-docs.md"
         ).read_text(encoding="utf-8")
@@ -1222,13 +1268,15 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assertIn("references/genre-playbooks.md", skill)
         self.assertIn("references/genre-playbook-correspondence.md", skill)
         self.assertIn("references/genre-playbook-work-summary.md", skill)
+        self.assertIn("references/genre-playbook-plan-construction.md", skill)
         self.assertIn("## 目录", playbooks)
         for heading in [
             "## 会议纪要",
             "## 报告/情况说明",
             "## 函/复函/征求意见函",
             "## 工作总结/工作要点/周报",
-            "## 调研报告/研究报告/可研报告/建设方案",
+            "## 调研报告/研究报告/可研报告",
+            "## 方案/实施方案/建设方案",
             "## 采购公告/审查材料",
         ]:
             self.assertIn(heading, routed_playbooks)

@@ -144,6 +144,7 @@ metadata:
 | `references/genre-checklist-request.md` | 按文种选读 | 只审或细查请示、申请的文种功能和办理要素时读取；同时要求审后改写时与起草叶叠加。 |
 | `references/genre-playbook-correspondence.md` | 按文种选读 | 普通函起草，以及只改错字、标点、格式或明确局部措辞时读取。 |
 | `references/genre-playbook-work-summary.md` | 按文种选读 | 工作总结、工作要点、周报或月报需要常规或完整骨架时直接读取。 |
+| `references/genre-playbook-plan-construction.md` | 按文种选读 | 方案、实施方案或建设方案需要常规或完整骨架时直接读取。 |
 | `references/genre-playbooks.md` | 按文种选读 | 通知、复函、征求意见函、讲话稿、调研/研究/可研、采购公告、审查材料等需要快速进入对应场景骨架时读取；用户提供既有普通函并要求重组事务动作、状态、条件、范围或结构时读取函规则。 |
 | `references/genre-playbook-institution-rules.md` | 按文种选读 | 起草、改写或复核制度、规定、办法、管理办法、实施细则、操作规程，以及需要区分印发通知与制度附件时读取。 |
 | `references/genre-playbook-news-message.md` | 按文种选读 | 用户明确要求新闻稿、新闻消息、快讯、活动报道、活动新闻稿或新闻通稿时直接读取。 |
