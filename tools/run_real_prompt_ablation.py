@@ -2192,6 +2192,11 @@ def evaluate_case(case: PromptCase, root: Path, prose_lint) -> dict[str, Any]:
     request_checklist_path = root / "chinese-official-writing/references/genre-checklist-request.md"
     if request_checklist_path.exists():
         checklist = f"{checklist}\n{request_checklist_path.read_text(encoding='utf-8')}"
+    feasibility_checklist_path = (
+        root / "chinese-official-writing/references/genre-checklist-feasibility-review.md"
+    )
+    if feasibility_checklist_path.exists():
+        checklist = f"{checklist}\n{feasibility_checklist_path.read_text(encoding='utf-8')}"
     elements = read_text(root, "chinese-official-writing/references/handling-elements.md")
     review_checklist = read_text(root, "chinese-official-writing/references/review-checklist.md")
 

@@ -197,6 +197,7 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assertIn("低上下文局部修改", text)
         self.assertIn("`references/genre-playbook-minutes.md` | 按文种选读", text)
         self.assertIn("`references/genre-playbook-plan-construction.md` | 按文种选读", text)
+        self.assertIn("`references/genre-checklist-feasibility-review.md` | 按文种选读", text)
         self.assertIn("`references/genre-playbooks.md` | 按文种选读", text)
         self.assertIn("`references/ai-compute-docs.md` | 专项选读", text)
         self.assertIn("AI 算力、GPU/服务器租赁、模型服务、智算中心、成本比较、SLA、安全或验收等专项直接读取", text)
@@ -437,6 +438,27 @@ class SkillBoundaryTests(unittest.TestCase):
             section(playbooks, "## 报告/情况说明", "## 函/复函/征求意见函"),
             section(report, "## 报告/情况说明", "## 报告"),
         )
+
+    def test_feasibility_review_checklist_is_an_atomic_leaf(self) -> None:
+        skill = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
+        common = (
+            ROOT / "chinese-official-writing" / "references" / "genre-checklist.md"
+        ).read_text(encoding="utf-8")
+        review = (
+            ROOT
+            / "chinese-official-writing"
+            / "references"
+            / "genre-checklist-feasibility-review.md"
+        ).read_text(encoding="utf-8")
+
+        self.assertIn("references/genre-checklist-feasibility-review.md", skill)
+        self.assertIn("只审或细查可研、可行性研究报告", skill)
+        self.assertNotIn("## 可行性研究报告\n", common)
+        self.assertIn("## 可行性研究报告\n", review)
+        self.assertIn("区分实际数据、测算数据和假设", review)
+        self.assertIn("起草、改写或审后改写仍按既有可研 playbook", review)
+        self.assertIn("主张本身及相互之间的内部一致性", review)
+        self.assertNotIn("效果主张之间的内部一致性", review)
 
     def test_minutes_playbook_is_routed_as_an_atomic_leaf(self) -> None:
         skill = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")

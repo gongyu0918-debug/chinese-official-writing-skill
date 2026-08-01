@@ -776,6 +776,40 @@ class PromptfooProviderTests(unittest.TestCase):
                 self.assertNotIn("references/genre-checklist.md", refs)
                 self.assertNotIn("references/genre-playbook-request.md", refs)
 
+    def test_feasibility_review_loads_its_review_leaf(self) -> None:
+        refs = provider._reference_paths_for_genres(
+            ["可研报告"],
+            ["只审不改，细查这份可行性研究报告的数据性质和估算依据。"],
+        )
+
+        self.assertEqual(
+            refs,
+            [
+                "SKILL.md",
+                "references/review-checklist.md",
+                "references/genre-checklist-feasibility-review.md",
+            ],
+        )
+        self.assertNotIn("references/genre-checklist.md", refs)
+        self.assertNotIn("references/genre-playbooks.md", refs)
+
+    def test_feasibility_review_then_rewrite_keeps_the_draft_route(self) -> None:
+        refs = provider._reference_paths_for_genres(
+            ["可研报告"],
+            ["请先检查这份可行性研究报告，再按建议改写全文。"],
+        )
+
+        self.assertIn("references/genre-playbooks.md", refs)
+        self.assertNotIn("references/genre-checklist-feasibility-review.md", refs)
+
+    def test_construction_plan_review_does_not_load_the_feasibility_leaf(self) -> None:
+        refs = provider._reference_paths_for_genres(
+            ["建设方案"],
+            ["只审不改，检查这份建设方案的数据、步骤和责任分工。"],
+        )
+
+        self.assertEqual(refs, ["SKILL.md", "references/review-checklist.md"])
+
     def test_review_then_rewrite_is_not_classified_as_review_only(self) -> None:
         for task in (
             "请先检查这份通知，再按建议重写全文。",
