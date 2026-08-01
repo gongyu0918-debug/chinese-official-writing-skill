@@ -137,6 +137,7 @@ metadata:
 | `references/genre-playbook-minutes.md` | 按文种选读 | 会议纪要需要常规或完整骨架，或材料已经形成决定、议定事项、责任分工或期限时读取。 |
 | `references/genre-playbook-request.md` | 按文种选读 | 请示、申请需要常规或完整骨架时直接读取。 |
 | `references/genre-checklist-request.md` | 按文种选读 | 只审或细查请示、申请的文种功能和办理要素时读取；同时要求审后改写时与起草叶叠加。 |
+| `references/genre-checklist-feasibility-review.md` | 按文种选读 | 只审或细查可研、可行性研究报告的数据性质、估算依据和文种功能时读取；起草、改写或审后改写仍使用既有 playbook 和论证链。 |
 | `references/genre-playbook-correspondence.md` | 按文种选读 | 普通函起草，以及只改错字、标点、格式或明确局部措辞时读取。 |
 | `references/genre-playbook-work-summary.md` | 按文种选读 | 工作总结、工作要点、周报或月报需要常规或完整骨架时直接读取。 |
 | `references/genre-playbook-plan-construction.md` | 按文种选读 | 方案、实施方案或建设方案需要常规或完整骨架时直接读取。 |
@@ -151,4 +152,4 @@ metadata:
 
 ## 脚本
 
-检查 `.txt`、`.md` 或 `.docx` 草稿时可使用 `scripts/prose_lint.py`。需要检查重复事项和格式噪点时加 `--structure --format`。脚本只提示语言、格式和重复风险，不检查文种要素完整性；文种和办理要素仍按 `references/handling-elements.md` 与命中的文种检查叶复核，报告使用 `references/genre-checklist-report.md`，请示和申请使用 `references/genre-checklist-request.md`，其他文种使用 `references/genre-checklist.md`。脚本不自动改写；不得把脚本结果作为不加判断的硬性清洗命令。
+检查 `.txt`、`.md` 或 `.docx` 草稿时可使用 `scripts/prose_lint.py`。需要检查重复事项和格式噪点时加 `--structure --format`。脚本只提示语言、格式和重复风险，不检查文种要素完整性；文种和办理要素仍按 `references/handling-elements.md` 与命中的文种检查叶复核，报告使用 `references/genre-checklist-report.md`，请示和申请使用 `references/genre-checklist-request.md`，可研只审使用 `references/genre-checklist-feasibility-review.md`，其他文种使用 `references/genre-checklist.md`。脚本不自动改写；不得把脚本结果作为不加判断的硬性清洗命令。
