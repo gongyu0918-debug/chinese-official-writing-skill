@@ -275,6 +275,39 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assertIn("不要求先完整读取 `workflow.md` 或 `genre-routing.md`", playbooks)
         self.assertIn("不要把每节末尾的“补充读取”当成固定加载清单", playbooks)
 
+    def test_workflow_sparse_line_relief_keeps_carriers_and_route_graph(self) -> None:
+        skill = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
+        workflow = (ROOT / "chinese-official-writing" / "references" / "workflow.md").read_text(
+            encoding="utf-8"
+        )
+        cards = (ROOT / "chinese-official-writing" / "references" / "task-route-cards.md").read_text(
+            encoding="utf-8"
+        )
+        report = (
+            ROOT / "chinese-official-writing" / "references" / "genre-checklist-report.md"
+        ).read_text(encoding="utf-8")
+
+        self.assertNotIn(
+            "材料稀疏型通报或情况说明只按已给事实之间的关系成稿；缺少某一环节时不补固定章节。",
+            workflow,
+        )
+        self.assertIn(
+            "材料稀疏型通报或情况说明按已给事实之间的关系简短成稿；缺少某一环节时，不补齐固定章节。",
+            skill,
+        )
+        self.assertIn("以本页结束 reference 路由", cards)
+        self.assertIn("不用泛称、占位或未给流程补齐骨架", cards)
+        self.assertIn("材料未给某一环节时，不为补齐骨架硬写", report)
+
+        core = skill.split("## 核心流程", 1)[1].split("## 硬边界", 1)[0]
+        self.assertIn("命中 `references/task-route-cards.md` 且卡片能够覆盖任务时，在轻量卡早停", core)
+        self.assertIn("`references/workflow.md` | 起草前 | 长文、复杂改稿、多材料合稿", skill)
+        self.assertIn(
+            "`references/genre-checklist-report.md` | 按文种选读 | 报告、情况报告或情况说明需要常规或完整骨架",
+            skill,
+        )
+        self.assertIn("材料稀疏任务仍按既有轻量路由处理，不重复加载本叶", report)
+
     def test_reference_links_form_an_acyclic_graph(self) -> None:
         refs = ROOT / "chinese-official-writing" / "references"
         graph: dict[str, set[str]] = {}
