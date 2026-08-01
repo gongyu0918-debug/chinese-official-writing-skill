@@ -48,14 +48,26 @@
 
 ## 发行包与平台状态
 
-- GitHub：待发布。
-- ClawHub：30 文件发行镜像无额外文件；dry-run 返回 `status=would-publish`、
-  `latestVersion=1.5.31`、fingerprint
+- GitHub：产品提交为 `dbaa5b19ed403cbcf1e133ad6c8b91d9900425b9`；annotated
+  tag object 为 `8e1a3cf4e3406b0c993da7ce9ff433647811aac5`，tag 解引用提交与
+  产品提交一致。正式 Release 已公开：
+  `https://github.com/gongyu0918-debug/chinese-official-writing-skill/releases/tag/v1.5.32`，
+  `draft=false`、`prerelease=false`。
+- ClawHub：30 文件发行镜像无额外文件；正式提交一次，返回
+  `status=published`、`versionId=k9760bqzrrbnsqz0wccq5ws0s58bngds`、
+  fingerprint
   `17019404b1a9cee9623960310f1b74e1de98088631f2035feab6f31865ce6160`。
+  首次公开查询的 `latestVersion.version` 和 `tags.latest` 仍为 1.5.31，精确
+  查询 1.5.32 返回传播中的 `Version not found`；公开旧版 moderation 为
+  clean，不据此推断 1.5.32 的扫描状态，也不重复提交。
 - skillhub.cn：29 文件清洁包排除 `agents/openai.yaml`、Codex 门禁说明和两项
   门禁脚本，并加入平台 `_meta.json`；其余 28 个内容文件逐文件哈希与 canonical
-  一致，`SKILL.md` 正文一致。dry-run 返回
-  `{"dryRun": true, "slug": "chinese-official-writing", "version": "1.5.32"}`。
+  一致，`SKILL.md` 正文一致。正式提交一次，返回 `skillId=70149`、
+  `versionId=187025`、fingerprint
+  `150378819d3e19a9ce86d4d1f273781c4225f4b599f3e340fe83143e31ee0768`，
+  `tags.latest=1.5.32`；review、security scan 和 content audit 均为 pending。
+  首次公开详情的 `latestVersion.version` 仍为 1.5.31，而 `tags.latest` 已为
+  1.5.32，按异步传播处理，不重复提交。
 - 小红书 Red SkillHub 不在本次发布范围。
 
 平台提交、公开 latest、审核、扫描和 provenance 分别核验；公开索引传播延迟不

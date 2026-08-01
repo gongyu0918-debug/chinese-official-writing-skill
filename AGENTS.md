@@ -17,6 +17,17 @@
 quick validate、镜像同步、差异检查以及 ClawHub 30 文件、skillhub.cn 29 文件
 清洁包 dry-run 均通过。
 
+产品提交为 `dbaa5b19ed403cbcf1e133ad6c8b91d9900425b9`，annotated tag object
+为 `8e1a3cf4e3406b0c993da7ce9ff433647811aac5`，tag 解引用提交与产品提交
+一致；GitHub Release 已公开且不是 draft 或 prerelease。ClawHub 一次正式
+提交返回 `versionId=k9760bqzrrbnsqz0wccq5ws0s58bngds`、30 个文件和 fingerprint
+`17019404b1a9cee9623960310f1b74e1de98088631f2035feab6f31865ce6160`；
+首次公开查询仍为 1.5.31。skillhub.cn 一次正式提交返回 `skillId=70149`、
+`versionId=187025`、29 个文件和 fingerprint
+`150378819d3e19a9ce86d4d1f273781c4225f4b599f3e340fe83143e31ee0768`，
+`tags.latest=1.5.32`，三项审核均为 pending；首次公开 `latestVersion` 仍为
+1.5.31。异步传播不触发重复发布。
+
 ## 1.5.31 小版本更新
 
 1.5.31 以 `v1.5.30=176f1eb64e5ff8d3d557e29d18c2be9e2d15dcc4` 为固定发布
