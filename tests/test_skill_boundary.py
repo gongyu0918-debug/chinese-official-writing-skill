@@ -916,7 +916,11 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assertIn("未默认重写全文", checklist)
         self.assertIn("不做 0-100 分评分", checklist)
         self.assertNotIn("0-100 分式伪精确评分", skill)
-        self.assertIn("用户仅要求检查、审查、格式核验或语气检查，且未要求代改时", skill)
+        self.assertIn("用户只要求检查、审查、格式核验或语气检查且未要求代改时", skill)
+        self.assertIn("具体定位、分级和格式按 `references/review-checklist.md` 执行", skill)
+        self.assertIn("去 AI 味检查按 `references/anti-ai-patterns.md` 执行", skill)
+        self.assertNotIn("事实不清审稿中", skill)
+        self.assertIn("事实不清审稿中", checklist)
         self.assertNotIn("用户要求检查、审一下、格式核验或语气检查时", skill)
         self.assertIn("轻量语气替换建议", official_style)
         for term in ["我觉得", "搞", "差不多", "马上", "然后"]:
@@ -1157,9 +1161,8 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assertIn("不把旧金额、旧主送、旧落款、旧政策口号或旧结论带回最新版正文", workflow)
         self.assertIn("修改模式是否以最新版底稿为主线", checklist)
 
-        self.assertIn("成簇问题", skill)
-        self.assertIn("不因单个正式词、单个转折或一次排比就硬清洗", skill)
         self.assertIn("审稿时看成簇问题", anti_ai)
+        self.assertIn("单个正式词、单个句式或达到某个次数都不能直接判错", anti_ai)
         self.assertIn("单独出现 `高度重视`", anti_ai)
         self.assertIn("不足以判为 AI 味或套话", anti_ai)
         self.assertIn("保留公文必要的正式语气", anti_ai)
@@ -1178,7 +1181,7 @@ class SkillBoundaryTests(unittest.TestCase):
             self.assertIn(term, official_style)
         self.assertIn("不得自动升级", official_style)
         self.assertIn("审批态度留给用户确认", official_style)
-        self.assertIn("用户要求“位置”时，优先逐项引用原文短语或句子", skill)
+        self.assertIn("用户要求给出“位置”时，是否优先逐项引用原文短语或句子", checklist)
         self.assertIn("未只给笼统段落评价", checklist)
         self.assertIn("整体归纳可放在逐项意见之后", anti_ai)
 
@@ -1418,7 +1421,6 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assertIn("不写成已经确定的执行路线、责任命令或反馈时限", playbooks)
         self.assertIn("按 `workflow.md` 的事实映射式二次修改删掉未支持推断", playbooks)
         self.assertIn("每个实质句只保留用户已给事实和直接概括", workflow)
-        self.assertIn("不用 Markdown `**` 加粗包装标签", skill)
         self.assertIn("未用 Markdown `**` 加粗包装标签", review)
 
     def test_proofreading_layer_stays_ai_writing_quality_only(self) -> None:
