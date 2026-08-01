@@ -8,6 +8,16 @@
 
 本结论只支持方案叶单变量进入本地合并回归，不改变版本号，不代表已经发布。
 
+## 本地合并回归
+
+- 本地 `main` 合并提交：`d2aeec9a`。
+- 合并后 `python -m unittest discover -s tests`：410/410。
+- 合并后 `npm run eval:official-writing:smoke`：20/20。
+- 合并后 Skill Creator `quick_validate.py`：`Skill is valid!`。
+- 合并后固定 `v1.5.32-product=dbaa5b19` 消融：Baseline 110/111，current 111/111；唯一差异仍为新增 P112 专叶守卫。
+- 合并后 `git diff --check cdb74bf..HEAD`：通过；main 工作树干净。
+- `origin/main` 未更新，未推送、未改版本、未打 tag、未发布。
+
 ## 固定对象与提交
 
 - 固定 Baseline：`origin/main=cdb74bf92471d8f4979c85d7fafe67eec5c7f6e4`。
