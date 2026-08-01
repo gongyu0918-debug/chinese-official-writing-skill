@@ -56,6 +56,9 @@ GENRE_REFERENCES: dict[str, list[str]] = {
     "correspondence_playbook": [
         "references/genre-playbook-correspondence.md",
     ],
+    "work_summary_playbook": [
+        "references/genre-playbook-work-summary.md",
+    ],
     "request_review": [
         "references/genre-checklist-request.md",
     ],
@@ -147,6 +150,13 @@ REPORT_PLAYBOOK_GENRES = {
 
 ORDINARY_LETTER_PLAYBOOK_GENRES = {
     "函",
+}
+
+WORK_SUMMARY_PLAYBOOK_GENRES = {
+    "工作总结",
+    "工作要点",
+    "周报",
+    "月报",
 }
 
 REQUEST_REVIEW_GENRES = {
@@ -697,7 +707,9 @@ def _task_uses_sparse_card(genres: list[str], tasks: list[str], ai_compute: bool
         return False
     if not tasks:
         return not any(
-            genre in PLAYBOOK_GENRES or genre in REPORT_PLAYBOOK_GENRES
+            genre in PLAYBOOK_GENRES
+            or genre in REPORT_PLAYBOOK_GENRES
+            or genre in WORK_SUMMARY_PLAYBOOK_GENRES
             for genre in genres
         )
     if not any(genre in SPARSE_CARD_GENRES for genre in genres):
@@ -715,6 +727,7 @@ def _reference_paths_for_genres(genres: list[str], tasks: list[str] | None = Non
     ai_compute = any(_is_ai_compute(genre, tasks) for genre in genres)
     report_playbook = any(genre in REPORT_PLAYBOOK_GENRES for genre in genres)
     ordinary_letter_playbook = any(genre in ORDINARY_LETTER_PLAYBOOK_GENRES for genre in genres)
+    work_summary_playbook = any(genre in WORK_SUMMARY_PLAYBOOK_GENRES for genre in genres)
     ordinary_letter_full_playbook = (
         ordinary_letter_playbook and _ordinary_letter_requires_full_playbook(tasks)
     )
@@ -749,11 +762,14 @@ def _reference_paths_for_genres(genres: list[str], tasks: list[str] | None = Non
             paths.extend(GENRE_REFERENCES["report_playbook"])
         if ordinary_letter_playbook and not ordinary_letter_full_playbook:
             paths.extend(GENRE_REFERENCES["correspondence_playbook"])
+        if work_summary_playbook:
+            paths.extend(GENRE_REFERENCES["work_summary_playbook"])
         if any(
             genre in PLAYBOOK_GENRES
             and genre != "会议纪要"
             and genre not in REPORT_PLAYBOOK_GENRES
             and genre not in ORDINARY_LETTER_PLAYBOOK_GENRES
+            and genre not in WORK_SUMMARY_PLAYBOOK_GENRES
             for genre in genres
         ) or (
             ai_compute

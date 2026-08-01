@@ -1187,7 +1187,7 @@ CASES: list[PromptCase] = [
         prompt="帮我把本周项目进展写成工作周报，包含已完成、推进中、问题和下步安排。",
         checks={
             "file_terms": {
-                "chinese-official-writing/references/genre-playbooks.md": [
+                "chinese-official-writing/references/genre-playbook-work-summary.md": [
                     "## 工作总结/工作要点/周报",
                     "已完成、推进中、问题、下步",
                     "不把所有总结改成周报格式",

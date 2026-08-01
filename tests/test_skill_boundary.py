@@ -1204,7 +1204,10 @@ class SkillBoundaryTests(unittest.TestCase):
         correspondence = (
             ROOT / "chinese-official-writing" / "references" / "genre-playbook-correspondence.md"
         ).read_text(encoding="utf-8")
-        routed_playbooks = playbooks + "\n" + minutes + "\n" + correspondence
+        work_summary = (
+            ROOT / "chinese-official-writing" / "references" / "genre-playbook-work-summary.md"
+        ).read_text(encoding="utf-8")
+        routed_playbooks = playbooks + "\n" + minutes + "\n" + correspondence + "\n" + work_summary
         ai_compute = (
             ROOT / "chinese-official-writing" / "references" / "ai-compute-docs.md"
         ).read_text(encoding="utf-8")
@@ -1217,6 +1220,7 @@ class SkillBoundaryTests(unittest.TestCase):
 
         self.assertIn("references/genre-playbooks.md", skill)
         self.assertIn("references/genre-playbook-correspondence.md", skill)
+        self.assertIn("references/genre-playbook-work-summary.md", skill)
         self.assertIn("## 目录", playbooks)
         for heading in [
             "## 会议纪要",
@@ -1251,17 +1255,20 @@ class SkillBoundaryTests(unittest.TestCase):
         playbooks = (
             ROOT / "chinese-official-writing" / "references" / "genre-playbooks.md"
         ).read_text(encoding="utf-8")
-        target_rule = (
-            "材料已经给出下一步、未来安排或改进计划时，可结合前文已述问题、数据和工作基础"
-            "说明该事项的对象、目的或衔接关系，使每项安排形成完整语义单元；"
-            "主体、程序、时限、数量和结果强度沿用材料口径。"
-        )
-        work_summary = playbooks.split("## 工作总结/工作要点/周报", 1)[1].split(
-            "## 调研报告/研究报告/可研报告/建设方案", 1
-        )[0]
+        work_summary = (
+            ROOT / "chinese-official-writing" / "references" / "genre-playbook-work-summary.md"
+        ).read_text(encoding="utf-8")
+        expected_section = """## 工作总结/工作要点/周报
 
-        self.assertEqual(1, playbooks.count(target_rule))
-        self.assertIn(target_rule, work_summary)
+- 适用：阶段总结、年度要点、周报或月报。
+- 骨架：总结写已完成、成效、问题、经验、下一步；工作要点写目标、重点任务、责任机制、时间节点、评价方式；周报写已完成、推进中、问题、下步。
+- 展开：材料已经给出下一步、未来安排或改进计划时，可结合前文已述问题、数据和工作基础说明该事项的对象、目的或衔接关系，使每项安排形成完整语义单元；主体、程序、时限、数量和结果强度沿用材料口径。
+- 风险：不把所有总结改成周报格式；字段式周报保留字段和换行，不散文化、不合并字段；责任机制只写材料给出的主体，未给运维服务单位或合同责任时，不补服务单位责任；成效必须有事实支撑。
+- 补充读取：`argument-chains.md` 的报告和总结。
+"""
+
+        self.assertNotIn("## 工作总结/工作要点/周报", playbooks)
+        self.assertEqual(work_summary.split("\n\n", 1)[1], expected_section)
 
     def test_ordinary_letter_leaf_is_self_contained_without_default_supplemental_reads(self) -> None:
         skill = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
