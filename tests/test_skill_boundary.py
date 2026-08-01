@@ -112,10 +112,21 @@ class SkillBoundaryTests(unittest.TestCase):
 
     def test_long_form_headings_warn_against_markdown_bold(self) -> None:
         text = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
+        checklist = (ROOT / "chinese-official-writing" / "references" / "review-checklist.md").read_text(encoding="utf-8")
 
-        self.assertIn("Markdown 格式残留", text)
-        self.assertIn("正式正文的小标题和段落标签按上文交付模式使用普通文本", text)
+        self.assertNotIn("Markdown 格式残留", text)
         self.assertIn("不用 Markdown `**` 加粗、`###`、代码块或 `---` 横线包装", text)
+        self.assertIn("Markdown 加粗、代码块、`###` 标题", checklist)
+
+    def test_style_references_keep_precise_routes_without_common_error_catchall(self) -> None:
+        text = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
+
+        self.assertNotIn("其他口语化、标题漂移、重复事项、格式噪点", text)
+        self.assertNotIn("## 常见错误反例", text)
+        self.assertIn("中文反例和修法见 `references/anti-ai-patterns.md`", text)
+        self.assertIn("轻量语气替换见 `references/official-style.md`", text)
+        self.assertIn("| `references/official-style.md` | 起草中 |", text)
+        self.assertIn("| `references/anti-ai-patterns.md` | 复核时 |", text)
 
     def test_primary_adapter_mirrors_match_canonical_bytes(self) -> None:
         canonical = ROOT / "chinese-official-writing"
@@ -388,6 +399,12 @@ class SkillBoundaryTests(unittest.TestCase):
         for genre in ["公示", "征求意见函", "采购公告"]:
             self.assertIn(f"| {genre} |", elements)
 
+    def test_genre_authority_uses_the_defined_routing_source(self) -> None:
+        skill = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
+
+        self.assertIn("文种判断以官方规范和 `references/genre-routing.md` 为准", skill)
+        self.assertNotIn("社区模板不得替代文种功能", skill)
+
     def test_report_checklist_is_routed_as_an_atomic_leaf(self) -> None:
         skill = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
         playbooks = (ROOT / "chinese-official-writing" / "references" / "genre-playbooks.md").read_text(
@@ -631,7 +648,7 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assertIn("[具体项目名称]", skill)
         self.assertIn("（成文日期待确认）", skill)
         self.assertEqual(skill.count("（成文日期待确认）"), 1)
-        self.assertIn("交付前按上文硬边界清理占位", skill)
+        self.assertNotIn("交付前按上文硬边界清理占位", skill)
         self.assertIn("明示成文日期缺失、待确认或需另行确认时，不使用当前日期补落款", skill)
         self.assertIn("识别为正式报送结构缺口", skill)
         self.assertIn("不使用当前日期补落款", skill)
@@ -898,6 +915,9 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assertIn("位置、风险层级、修改建议", checklist)
         self.assertIn("未默认重写全文", checklist)
         self.assertIn("不做 0-100 分评分", checklist)
+        self.assertNotIn("0-100 分式伪精确评分", skill)
+        self.assertIn("用户仅要求检查、审查、格式核验或语气检查，且未要求代改时", skill)
+        self.assertNotIn("用户要求检查、审一下、格式核验或语气检查时", skill)
         self.assertIn("轻量语气替换建议", official_style)
         for term in ["我觉得", "搞", "差不多", "马上", "然后"]:
             self.assertIn(term, official_style)
@@ -1429,9 +1449,9 @@ class SkillBoundaryTests(unittest.TestCase):
             "成语默认同语境保留",
             "低语境符合",
             "引用表述、出处和发布日期建议由用户按原始材料核实。",
-            "不要改写成泛泛的 `请核实出处`",
         ]:
             self.assertTrue(term in proofreading or term in skill)
+        self.assertIn("不改写成 `请核实出处`", proofreading)
         for term in ["错别字错词", "的地得", "量词", "病句", "数据一致性", "逻辑一致性"]:
             self.assertIn(term, proofreading)
         self.assertIn("不改变 `prose_lint.py` 为深度语法纠错器", proofreading)
@@ -1445,9 +1465,12 @@ class SkillBoundaryTests(unittest.TestCase):
             encoding="utf-8"
         )
 
-        for text in [skill, proofreading]:
-            self.assertIn("普通叙述中的口语称谓和表达可以按正式文稿语体调整", text)
-            self.assertIn("引号内、明确标注为原文/引语或要求逐字保留的内容按字面边界保留", text)
+        self.assertNotIn("**引用误改和数据冲突**", skill)
+        self.assertNotIn("引用表述、出处和发布日期建议由用户按原始材料核实。", skill)
+        self.assertIn("普通叙述中的口语称谓和表达可以按正式文稿语体调整", proofreading)
+        self.assertIn("引号内、明确标注为原文/引语或要求逐字保留的内容按字面边界保留", proofreading)
+        self.assertIn("引用表述、出处和发布日期建议由用户按原始材料核实。", proofreading)
+        self.assertIn("同一金额、日期、数量、比例、单位、主体", proofreading)
         self.assertIn("`我觉得`：材料只表达初步意见时", style)
         self.assertIn("`差不多`：可改为", style)
 

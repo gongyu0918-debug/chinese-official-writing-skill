@@ -411,7 +411,6 @@ CASES: list[PromptCase] = [
                 "chinese-official-writing/SKILL.md": [
                     "格式核验或语气检查",
                     "不默认重写全文",
-                    "0-100 分式伪精确评分",
                 ],
                 "chinese-official-writing/references/review-checklist.md": [
                     "位置、风险层级、修改建议",
@@ -1608,8 +1607,7 @@ CASES: list[PromptCase] = [
         checks={
             "file_terms": {
                 "chinese-official-writing/SKILL.md": [
-                    "普通叙述中的口语称谓和表达可以按正式文稿语体调整",
-                    "引号内、明确标注为原文/引语或要求逐字保留的内容按字面边界保留",
+                    "references/proofreading-checklist.md",
                 ],
                 "chinese-official-writing/references/proofreading-checklist.md": [
                     "普通叙述中的口语称谓和表达可以按正式文稿语体调整",
