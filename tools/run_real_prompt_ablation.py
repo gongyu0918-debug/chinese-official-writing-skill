@@ -591,7 +591,7 @@ CASES: list[PromptCase] = [
                 "chinese-official-writing/SKILL.md": [
                     "字数或篇幅上限",
                     "字数自检",
-                    "5%-10% 余量",
+                    "尽量压到限制内",
                 ],
                 "chinese-official-writing/references/workflow.md": [
                     "260 字",
