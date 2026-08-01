@@ -462,6 +462,26 @@ class PromptfooProviderTests(unittest.TestCase):
                     ["SKILL.md", "references/genre-checklist-report.md"],
                 )
 
+    def test_work_summary_genres_use_the_verbatim_leaf_only(self) -> None:
+        expected = ["SKILL.md", "references/genre-playbook-work-summary.md"]
+        self.assertEqual(
+            provider.WORK_SUMMARY_PLAYBOOK_GENRES,
+            {"工作总结", "工作要点", "周报", "月报"},
+        )
+        for genre in sorted(provider.WORK_SUMMARY_PLAYBOOK_GENRES):
+            with self.subTest(genre=genre):
+                self.assertEqual(provider._reference_paths_for_genres([genre]), expected)
+
+    def test_work_summary_mixed_with_another_genre_keeps_both_leaves(self) -> None:
+        self.assertEqual(
+            provider._reference_paths_for_genres(["工作总结", "通知"]),
+            [
+                "SKILL.md",
+                "references/genre-playbook-work-summary.md",
+                "references/genre-playbooks.md",
+            ],
+        )
+
     def test_plain_explanation_does_not_expand_into_the_report_route(self) -> None:
         refs = provider._reference_paths_for_genres(["说明"])
 
