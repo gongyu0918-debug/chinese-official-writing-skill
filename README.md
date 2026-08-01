@@ -1,6 +1,6 @@
 # 中文公文写作 Skill
 
-[![Version](https://img.shields.io/badge/version-1.5.31-blue)](https://github.com/gongyu0918-debug/chinese-official-writing-skill/releases/tag/v1.5.31)
+[![Version](https://img.shields.io/badge/version-1.5.32-blue)](https://github.com/gongyu0918-debug/chinese-official-writing-skill/releases/tag/v1.5.32)
 [![ClawHub](https://img.shields.io/badge/ClawHub-chinese--official--writing-2f80ed)](https://clawhub.ai/gongyu0918-debug/skills/chinese-official-writing)
 [![SkillHub](https://img.shields.io/badge/SkillHub-chinese--official--writing-e8590c)](https://skillhub.cn/skills/chinese-official-writing)
 [![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
@@ -63,7 +63,7 @@
 
 ## 快速安装
 
-当前工作版本：`chinese-official-writing@1.5.31`
+当前工作版本：`chinese-official-writing@1.5.32`
 
 平台入口：[ClawHub](https://clawhub.ai/gongyu0918-debug/skills/chinese-official-writing) · [skillhub.cn](https://skillhub.cn/skills/chinese-official-writing)。通用 Agent Skills 安装器可直接使用：
 
@@ -75,11 +75,11 @@ npx skills add https://github.com/gongyu0918-debug/chinese-official-writing-skil
 
 ## 模型消融与真实写稿
 
-测试从早期无 Skill/带 Skill 对照，逐步扩展到固定版本消融、真实写稿盲审和多轮改稿。下表汇总 1.5.31 的计划内有限展开与入口减负、1.5.30 的占位盲区修复，以及此前版本的专项路由、信息选择、事实关系和复核能力。原始任务、成稿、匿名映射、独立复核和汇总记录均保存在仓库内；早期 270 任务模型消融保留脱敏聚合摘要。
+测试从早期无 Skill/带 Skill 对照，逐步扩展到固定版本消融、真实写稿盲审和多轮改稿。下表汇总 1.5.32 的专项路由、上下文减载与篇幅校准，以及此前版本的信息选择、事实关系和复核能力。原始任务、成稿、匿名映射、独立复核和汇总记录均保存在仓库内；早期 270 任务模型消融保留脱敏聚合摘要。
 
 | 调试方向 | 主要稿件与边界 | 当前证据 |
 | --- | --- | --- |
-| 计划内有限展开与入口减负 | 工作总结、工作要点和周报可围绕材料已给的下一步、未来安排或改进计划说明对象、目的和衔接；写作入口移除维护者 CI 调用示例 | 全量 unittest 395/395；固定 1.5.30 与 Candidate 均为 110/110；Promptfoo 20/20；真实组合稿无事实、状态、文种或 P0 硬回退，单次软差异按生成波动记录 |
+| 专项路由、减载与篇幅校准 | 新闻消息、新闻评论和工作总结按需读取专项叶；核心路由及稀疏工作流去重；删除字数上限后的固定余量要求，新闻评论增加一次事实依据与适用范围复核 | 工作总结命中上下文减少约 22.46%；篇幅原子与新闻评论定向 A/B 均为 3 胜 0 负，未见事实、状态、文种或 P0 硬回退；完整发布验证见 1.5.32 证据 |
 | 中文占位盲区 | 补充识别 `XX类`、`XX系统`、`XX项` 等紧接中文的 X 类占位，同时保留合法文号 | 4 个定向样本和 clean corpus 通过；全量 unittest 394/394，检测脚本与发行镜像一致；不改变正文生成、路由和复核顺序 |
 | 已选事实直接承载 | 已进入正文的事项直接陈述材料已给的业务事实和当前状态，减少事实后的来源自述、无锚定结论限定和解释性尾句 | 两道自然任务均未出现 Candidate 独有硬回退；异常通报对来源泄露和无锚定否定有直接改善，工作总结的自证尾句也较少；受控复验因写手执行偏差作废，未计入胜负 |
 | 脚本职责拆分与 Word 复核减负 | 将 `prose_lint.py` 的扫描、聚合、输出和退出码职责拆开；删除一处重复的 Word Markdown 清理提示 | 两组固定样本复放均为 0 finding 差异；Word 两组真实 A/B 均为 Candidate 小胜，未出现事实、格式或输出模式回退 |
@@ -101,7 +101,7 @@ npx skills add https://github.com/gongyu0918-debug/chinese-official-writing-skil
 | 原子结论限定复核 | 旧稿局部改写、巡检整改报告、食堂异常通报 | 固定 1.5.18 同题盲审 3/3 判 1.5.19 胜出；材料原有结论状态保留，完整稿仍有重复风险 |
 | 渐进式拆叶 | 普通复杂写稿、公开来源核验、报告类细查 | 外部核验规则按需加载，报告细查路径减少 3549 字符；两轮各 3 组真实 A/B 均未见硬回退 |
 | 制度类专项路由 | 管理办法、来访制度、实施细则、短篇规定、印发通知与操作规程 | 新增实施细则、规定两题相对 1.5.20 均小胜且硬检查通过；既有样本保留条文偏碎、职责复述和 DOCX 视觉未核验风险 |
-| 工程回归 | 单元测试、固定上一发行版消融、Promptfoo、镜像与清洁包 | 1.5.31 发布候选为 395/395；Candidate 与固定 1.5.30 均为 110/110；Promptfoo 20/20 |
+| 工程回归 | 单元测试、固定上一发行版消融、Promptfoo、镜像与清洁包 | 1.5.32 发布候选为 407/407；Candidate 为 110/110，固定 1.5.31 为 109/110；Promptfoo 20/20 |
 
 60 份发布级真实写稿由两名独立 verifier 盲审。综合结果中，v1.5.13 与 1.5.14 都是 29 PASS、1 个对称 WARN、0 FAIL；硬边界复核两版均为 30 PASS、0 WARN、0 FAIL。真实模型小样本评测与发布级写稿覆盖会议纪要、情况说明、通知、请示、报告、字段式申请、只审不改、普通采购、AI 算力需求和旧稿防回流。
 
@@ -186,6 +186,7 @@ npx skills add https://github.com/gongyu0918-debug/chinese-official-writing-skil
 
 主要证据：
 
+- [`release-1.5.32.md`](tests/evidence/release-1.5.32.md)
 - [`release-1.5.31.md`](tests/evidence/release-1.5.31.md)
 - [`release-1.5.30.md`](tests/evidence/release-1.5.30.md)
 - [`release-1.5.29.md`](tests/evidence/release-1.5.29.md)
