@@ -73,6 +73,22 @@ class SceneFillerClusterTests(unittest.TestCase):
             with self.subTest(item=item["id"]):
                 self.assertEqual(scene_findings(item["text"]), [])
 
+    def test_archived_real_drafts_have_no_scene_filler_cluster_findings(self) -> None:
+        drafts = [
+            "tests/evidence/candidate-b-writing-20260715/terra-t01.md",
+            "tests/evidence/candidate-b-writing-20260715/terra-t02.md",
+            "tests/evidence/candidate-b-writing-20260715/terra-t03.md",
+            "tests/evidence/candidate-b-writing-20260715/terra-t04.md",
+            "tests/evidence/candidate-b-writing-20260715/luna-t01.md",
+            "tests/evidence/candidate-b-writing-20260715/luna-t03.md",
+            "tests/evidence/candidate-b-writing-20260715/luna-t04.md",
+        ]
+
+        for relative_path in drafts:
+            with self.subTest(path=relative_path):
+                text = (ROOT / relative_path).read_text(encoding="utf-8")
+                self.assertEqual(scene_findings(text), [])
+
     def test_low_scene_hint_does_not_fail_medium_gate(self) -> None:
         script = ROOT / "chinese-official-writing" / "scripts" / "prose_lint.py"
         with tempfile.TemporaryDirectory() as temp_dir:
