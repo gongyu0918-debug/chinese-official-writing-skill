@@ -1520,7 +1520,10 @@ class SkillBoundaryTests(unittest.TestCase):
             ROOT / "chinese-official-writing" / "references" / "final-review-layers.md"
         ).read_text(encoding="utf-8")
 
-        self.assertIn("python scripts/prose_lint.py --format --structure <draft>", review)
+        self.assertIn(
+            "python scripts/prose_lint.py --delivery-mode draft-body --format --structure <draft>",
+            review,
+        )
         self.assertIn("`<draft>` 替换为待检查文件路径", review)
 
     def test_ai_dedupe_prompt_fix_guidance_is_documented(self) -> None:

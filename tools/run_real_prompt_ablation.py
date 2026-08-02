@@ -1633,7 +1633,7 @@ CASES: list[PromptCase] = [
         checks={
             "file_terms": {
                 "chinese-official-writing/references/final-review-layers.md": [
-                    "python scripts/prose_lint.py --format --structure <draft>",
+                    "python scripts/prose_lint.py --delivery-mode draft-body --format --structure <draft>",
                     "`<draft>` 替换为待检查文件路径",
                     "脚本只提示风险，不自动改写",
                 ],
