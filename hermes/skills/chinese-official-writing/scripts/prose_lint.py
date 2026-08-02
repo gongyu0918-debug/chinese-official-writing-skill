@@ -199,6 +199,47 @@ DELIVERY_PATTERNS: list[PatternSpec] = [
     ),
 ]
 
+# 保护性句尾的局部窗口只用于限制单句匹配范围，不承担全文流程判断。
+PROTECTIVE_INFERENCE_BRIDGE_CHARS = 70
+PROTECTIVE_DECISION_OBJECT_CHARS = 24
+PROTECTIVE_BASIS_OBJECT_CHARS = 20
+UNRESOLVED_SUBJECT_CHARS = 24
+UNRESOLVED_RESULT_CHARS = 28
+MIN_NEGATIVE_BOUNDARY_TAIL_CHARS = 2
+NEGATIVE_BOUNDARY_TAIL_CHARS = 70
+
+# 终稿正文中的保护性句尾只给语义复核线索，不按单个否定词判错。
+# 这些模式不进入 generic/review-only/gap-note-allowed，避免把材料原句或复核意见当成成稿问题。
+DRAFT_BODY_PATTERNS: list[PatternSpec] = [
+    (
+        "medium",
+        "protective-negative-inference",
+        r"(?:尚|仍|还|目前)?(?:不能|无法|不足以|不宜)(?:仅凭|单凭|据此|直接据此|由此)?"
+        rf"[^。！？\n]{{0,{PROTECTIVE_INFERENCE_BRIDGE_CHARS}}}"
+        rf"(?:推定|判断|认定|说明|证明|得出|确定|比较|"
+        rf"形成[^。！？\n]{{0,{PROTECTIVE_DECISION_OBJECT_CHARS}}}(?:结论|决定|意见|安排)|"
+        rf"作为[^。！？\n]{{0,{PROTECTIVE_BASIS_OBJECT_CHARS}}}依据)",
+        "核对这是否为材料明确要求的证据或结论边界；若只是事实后的保护性解释，删除该尾句。",
+    ),
+    (
+        "medium",
+        "unresolved-conclusion-tail",
+        rf"(?:尚未|仍未|暂未|还未|尚不|未(?!对|就))[^。！？\n]{{0,{UNRESOLVED_SUBJECT_CHARS}}}"
+        rf"(?:形成|作出)[^。！？\n]{{0,{UNRESOLVED_RESULT_CHARS}}}(?:结论|定论|决定|意见|安排)"
+        r"(?=[。！？]|$)",
+        "核对未决状态是否与正文主旨直接相关；本单位正在办理的事项可改为进行态，外围未决说明可删除。",
+    ),
+    (
+        "medium",
+        "negative-boundary-tail",
+        r"[，,；;](?:但|但这|这|也|并|同时|并且|而且)?(?:也|并)?"
+        rf"不(?:直接)?(?:代表|等同于|意味着|构成)"
+        rf"[^。！？\n]{{{MIN_NEGATIVE_BOUNDARY_TAIL_CHARS},{NEGATIVE_BOUNDARY_TAIL_CHARS}}}"
+        r"(?=[。！？]|$)",
+        "核对这是否为必要的法律或决定边界；若只是用户未要求的免责或范围限定，删除该解释性尾句。",
+    ),
+]
+
 DELIVERY_MODES = ("generic", "draft-body", "review-only", "gap-note-allowed")
 DELIVERY_BODY_ONLY_LABELS = {"delivery-boilerplate"}
 
@@ -796,9 +837,11 @@ def compile_patterns(patterns: Iterable[PatternSpec]) -> list[CompiledPattern]:
 def prepare_pattern_sets(include_format: bool, delivery_mode: str) -> CompiledPatternSets:
     """按通用扫描、交付区扫描和代码围栏扫描准备规则。"""
 
+    stage_patterns = DRAFT_BODY_PATTERNS if delivery_mode == "draft-body" else []
     primary_patterns = PATTERNS + (FORMAT_PATTERNS if include_format else [])
     if delivery_mode in {"draft-body", "gap-note-allowed"}:
         primary_patterns += DELIVERY_PATTERNS
+    primary_patterns += stage_patterns
 
     absolute_patterns = [
         item
@@ -814,7 +857,7 @@ def prepare_pattern_sets(include_format: bool, delivery_mode: str) -> CompiledPa
         item
         for item in PATTERNS
         if item[1] in {"thought-leak", "viewpoint-risk", "side-commentary"}
-    ] + DELIVERY_PATTERNS
+    ] + DELIVERY_PATTERNS + stage_patterns
     return CompiledPatternSets(
         primary=compile_patterns(primary_patterns),
         delivery_absolute=compile_patterns(absolute_patterns),
