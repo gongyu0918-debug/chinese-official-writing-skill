@@ -53,8 +53,29 @@ skillhub.cn dry-run 精确返回 `chinese-official-writing@1.5.33`。skillhub.cn
 
 ## 发行包与平台状态
 
-GitHub、ClawHub 和 skillhub.cn 的正式提交回执、公开 latest、审核与扫描状态在
-发布后分别补入。小红书 Red SkillHub 不在本次发布范围。
+- GitHub 发布提交为 `1ea3f5b6ccccd5ef772803e264087adcf2fb5515`；`main` 已推送，
+  annotated tag `v1.5.33` 的 tag object 为
+  `4c4899a4245c0938ec69395278a3b01fdc3b6699`，解引用到同一发布提交。GitHub
+  Release 已公开：
+  `https://github.com/gongyu0918-debug/chinese-official-writing-skill/releases/tag/v1.5.33`，
+  不是 draft 或 prerelease。
+- ClawHub 正式回执为 `versionId=k97am5rd35mbr2s8t79kmr9njh8bpe9s`、32 个文件，
+  fingerprint 为
+  `cf8dcab0e9d3b2d0939ffa502f3f4e69af3f9fbb293904d6c6091618ae3b3a35`。
+  公开 `latestVersion.version` 和 `tags.latest` 均为 `1.5.33`，moderation 为
+  `clean`；精确版本安全核验为 benign/high，静态扫描和 VirusTotal 均为 clean。
+  `skill verify` 同时返回 `card.missing` 与 `provenance.source=unavailable`：本次首次
+  请求中的 `source-commit` 与实际发布提交不一致，服务端没有形成可验证的 GitHub
+  import provenance。CLI 没有就地修改来源元数据的接口，因此没有删除或重复发布；
+  包内容、fingerprint、公开版本和安全扫描均按实际回执记录，来源证明记为
+  `unavailable`。
+- skillhub.cn 正式回执为 `skillId=70149`、`versionId=189161`、31 个文件，
+  fingerprint 为
+  `fddfb558ed4b4ebfbe89737f2ea80c72101a80e3d1e19b42d5c8006f40b5ca56`。
+  公开 `latestVersion.version` 和 `tags.latest` 均为 `1.5.33`；Keen、散步两项
+  安全扫描当前为 queued，不能提前写成通过。
+
+小红书 Red SkillHub 不在本次发布范围。
 
 ## 剩余风险
 

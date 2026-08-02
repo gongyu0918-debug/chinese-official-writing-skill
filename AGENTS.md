@@ -21,6 +21,12 @@
 quick validate、镜像同步和差异检查通过；ClawHub 32 文件与 skillhub.cn 31 文件
 清洁包 dry-run 通过。
 
+发布提交为 `1ea3f5b6ccccd5ef772803e264087adcf2fb5515`，annotated tag
+`v1.5.33` 解引用到同一提交；GitHub Release 已公开。ClawHub 和 skillhub.cn 的
+公开 latest 均为 `1.5.33`，ClawHub moderation 为 clean，skillhub.cn 两项安全
+扫描仍在排队。ClawHub 本版来源证明为 `unavailable`，不得由包哈希或公开版本号
+反推 provenance；详细回执见发布证据。
+
 ## 1.5.32 小版本更新
 
 1.5.32 以 `v1.5.31=e8c077cb1d6c6fe02bec71634140793aeeba5a5b` 为固定发布
