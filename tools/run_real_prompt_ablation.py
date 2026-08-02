@@ -2125,6 +2125,13 @@ FILE_TERM_ALTERNATIVES_BY_CASE: dict[str, list[dict[str, list[str]]]] = {
                 "输出模式允许文后提示时，在正文后短列",
             ],
             "chinese-official-writing/references/review-checklist.md": ["实质缺口只在输出模式允许时短列"],
+        },
+        {
+            "chinese-official-writing/SKILL.md": ["只允许某类文后提示时", "不扩展到其他提示"],
+            "chinese-official-writing/references/information-selection.md": [
+                "输出模式允许文后提示时，在正文后短列",
+            ],
+            "chinese-official-writing/references/review-checklist.md": ["实质缺口只在输出模式允许时短列"],
         }
     ],
     "P101": [
@@ -2135,6 +2142,25 @@ FILE_TERM_ALTERNATIVES_BY_CASE: dict[str, list[dict[str, list[str]]]] = {
             ],
             "chinese-official-writing/references/information-selection.md": ["只输出正文或改后稿时只交正文"],
             "chinese-official-writing/references/review-checklist.md": ["在只输出正文模式下附加提示"],
+        },
+        {
+            "chinese-official-writing/SKILL.md": [
+                "用户限制输出范围时，以其范围为准",
+                "不附正文外说明",
+                "缺失事实不补造，也不在正文中解释“未提供”",
+            ],
+            "chinese-official-writing/references/information-selection.md": ["只输出正文或改后稿时只交正文"],
+            "chinese-official-writing/references/review-checklist.md": ["在只输出正文模式下附加提示"],
+        }
+    ],
+    "P103": [
+        {
+            "openclaw/skills/chinese_official_writing/SKILL.md": [
+                "用户限制输出范围时，以其范围为准",
+                "不附正文外说明",
+                "只允许某类文后提示时，不扩展到其他提示",
+                "缺失事实不补造，也不在正文中解释“未提供”",
+            ],
         }
     ],
 }

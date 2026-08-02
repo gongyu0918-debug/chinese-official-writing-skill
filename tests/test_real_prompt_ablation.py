@@ -133,6 +133,7 @@ class RealPromptAblationTests(unittest.TestCase):
             "P092",
             "P097",
             "P101",
+            "P103",
         }
 
         self.assertEqual(set(real_prompt_eval.FILE_TERM_ALTERNATIVES_BY_CASE), expected_cases)
