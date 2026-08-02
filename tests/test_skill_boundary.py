@@ -848,7 +848,7 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assertIn("不附事实边界自证", workflow)
         self.assertIn("只输出正文或改后稿时只交正文", information_selection)
         self.assertIn("在只输出正文模式下附加提示", checklist)
-        self.assertIn("不附任何正文外说明或提示", skill)
+        self.assertIn("不附正文外说明", skill)
         for text in [skill, workflow, checklist]:
             self.assertNotIn("未新增原文外事实", text)
 
@@ -1567,9 +1567,9 @@ class SkillBoundaryTests(unittest.TestCase):
             ROOT / "openclaw" / "skills" / "chinese_official_writing" / "references" / "format-gbt9704.md"
         ).read_text(encoding="utf-8")
         self.assertIn("不得把 Markdown `**加粗**`", format_ref)
-        self.assertIn("除非同时明确允许文后待确认、风险或核验提示", text)
+        self.assertIn("用户限制输出范围时，以其范围为准", text)
         self.assertIn("缺失事实不补造，也不在正文中解释“未提供”", text)
-        self.assertIn("用户同时明确允许某类文后提示时", text)
+        self.assertIn("只允许某类文后提示时，不扩展到其他提示", text)
         self.assertIn("按任务渐进读取资料", text)
 
     def test_openclaw_skill_card_source_is_tracked_but_not_packaged_directly(self) -> None:
