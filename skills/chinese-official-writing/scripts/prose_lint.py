@@ -216,6 +216,12 @@ MIN_DUPLICATE_PARAGRAPH_CHARS = 60
 MIN_DUPLICATE_SHARED_TOKENS = 18
 MIN_DUPLICATE_TOKEN_RATIO = 0.42
 DUPLICATE_MATCH_PREVIEW_TOKENS = 6
+EXPLANATORY_TAIL_WINDOW_PARAGRAPHS = 5
+EXPLANATORY_TAIL_MIN_MATCHES = 3
+MIN_EXPLANATORY_TAIL_PARAGRAPH_CHARS = 45
+EXPLANATORY_TAIL_MAX_PURPOSE_CHARS = 52
+EXPLANATORY_TAIL_MAX_QUALIFIER_CHARS = 8
+PLAIN_SECTION_HEADING_MAX_CHARS = 32
 TITLE_SCAN_LINES = 12
 MIN_TITLE_CHARS = 4
 MAX_TITLE_CHARS = 90
@@ -273,6 +279,16 @@ DUPLICATE_GENERIC_TOKENS = {
 }
 
 SEVERITY_RANK = {"low": 1, "medium": 2, "high": 3}
+
+EXPLANATORY_TAIL_PATTERN = re.compile(
+    rf"为[^。！？；\n]{{2,{EXPLANATORY_TAIL_MAX_PURPOSE_CHARS}}}"
+    rf"提供(?:了)?[^。！？；\n]{{0,{EXPLANATORY_TAIL_MAX_QUALIFIER_CHARS}}}"
+    r"(?:基础|依据|支撑|保障|条件)[。！？]?\s*$"
+)
+PLAIN_SECTION_HEADING_PATTERN = re.compile(
+    rf"^(?:[一二三四五六七八九十]+、|第[一二三四五六七八九十0-9]+[章节]|"
+    rf"[（(][一二三四五六七八九十0-9]+[）)])[^。！？；：:]{{0,{PLAIN_SECTION_HEADING_MAX_CHARS}}}$"
+)
 
 
 def read_docx(path: Path) -> str:
@@ -564,6 +580,63 @@ def duplicate_findings(path_label: str, lines: list[str]) -> list[Finding]:
     return findings
 
 
+def is_plain_section_heading(text: str) -> bool:
+    """识别不带 Markdown 标记的中文章节标题。"""
+
+    compact = re.sub(r"\s+", "", text)
+    return bool(PLAIN_SECTION_HEADING_PATTERN.fullmatch(compact))
+
+
+def explanatory_tail_cluster_findings(path_label: str, lines: list[str]) -> list[Finding]:
+    """定位相邻事项段反复以“为……提供……”解释作用的结构。"""
+
+    findings: list[Finding] = []
+    window: list[tuple[int, re.Match[str] | None]] = []
+    current_section: int | None = None
+
+    for line_no, text, section_id in paragraph_blocks(lines):
+        if current_section != section_id:
+            current_section = section_id
+            window = []
+
+        compact = re.sub(r"\s+", "", text)
+        if is_plain_section_heading(compact):
+            window = []
+            continue
+        if len(compact) < MIN_EXPLANATORY_TAIL_PARAGRAPH_CHARS:
+            continue
+
+        window.append((line_no, EXPLANATORY_TAIL_PATTERN.search(compact)))
+        if len(window) > EXPLANATORY_TAIL_WINDOW_PARAGRAPHS:
+            window.pop(0)
+
+        matches = [(item_line, match) for item_line, match in window if match is not None]
+        if len(matches) < EXPLANATORY_TAIL_MIN_MATCHES:
+            continue
+
+        match_lines = [str(item_line) for item_line, _ in matches]
+        last_line, last_match = matches[-1]
+        assert last_match is not None
+        findings.append(
+            Finding(
+                path=path_label,
+                line=last_line,
+                severity="low",
+                label="explanatory-tail-cluster",
+                match=last_match.group(0),
+                excerpt=(
+                    f"最近 {len(window)} 个实质段中有 {len(matches)} 个使用同类解释性句尾"
+                    f"（约第 { '、'.join(match_lines) } 行）；检查是否反复补充意义或用途，"
+                    "各句确有独立事实作用时可保留。"
+                ),
+            )
+        )
+        # 一个成簇区间只提示一次；后续段落重新累计，避免相邻滑窗重复报警。
+        window = []
+
+    return findings
+
+
 def duplicate_title_findings(path_label: str, lines: list[str]) -> list[Finding]:
     """定位交付稿开头附近逐字重复的标题。"""
     title_ending = re.compile(
@@ -669,7 +742,11 @@ def necessity_listing_findings(path_label: str, text: str) -> list[Finding]:
 def structured_smell_findings(path_label: str, text: str, lines: list[str]) -> list[Finding]:
     """汇总彼此独立的结构异味检查。"""
 
-    return project_card_findings(path_label, lines) + necessity_listing_findings(path_label, text)
+    return (
+        project_card_findings(path_label, lines)
+        + necessity_listing_findings(path_label, text)
+        + explanatory_tail_cluster_findings(path_label, lines)
+    )
 
 
 @dataclass(frozen=True)
