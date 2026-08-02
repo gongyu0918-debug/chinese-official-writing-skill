@@ -88,7 +88,13 @@ def placeholder_echo_terms(text: str) -> list[str]:
 
 def lint_summary(text: str) -> dict[str, Any]:
     prose_lint = _load_prose_lint()
-    findings = prose_lint.scan("<promptfoo-output>", text, include_format=True, include_structure=True)
+    findings = prose_lint.scan(
+        "<promptfoo-output>",
+        text,
+        include_format=True,
+        include_structure=True,
+        delivery_mode="draft-body",
+    )
     counts = {"high": 0, "medium": 0, "low": 0}
     labels: dict[str, int] = {}
     for item in findings:

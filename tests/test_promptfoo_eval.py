@@ -63,6 +63,20 @@ class PromptfooDatasetTests(unittest.TestCase):
 
 
 class PromptfooGraderTests(unittest.TestCase):
+    def test_lint_summary_uses_draft_body_delivery_mode(self) -> None:
+        class LintProbe:
+            kwargs: dict[str, object] = {}
+
+            def scan(self, *args, **kwargs):
+                self.kwargs = kwargs
+                return []
+
+        probe = LintProbe()
+        with mock.patch.object(grader, "_load_prose_lint", return_value=probe):
+            grader.lint_summary("关于有关事项的报告")
+
+        self.assertEqual(probe.kwargs["delivery_mode"], "draft-body")
+
     def test_ablation_assertion_does_not_fail_nonempty_baseline_quality(self) -> None:
         weak_request = "围绕专项启动事项，相关工作要全面赋能、不断提升，形成一批成果。各单位要高度重视，加强统筹协调。"
 

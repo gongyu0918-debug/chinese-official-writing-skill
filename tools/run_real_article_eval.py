@@ -84,6 +84,7 @@ def evaluate(profile: dict[str, Any], draft: dict[str, Any], prose_lint) -> dict
         text,
         include_format=True,
         include_structure=True,
+        delivery_mode="draft-body",
     )
     format_labels = {
         "halfwidth-punctuation",

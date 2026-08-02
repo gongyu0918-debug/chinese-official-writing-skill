@@ -865,6 +865,22 @@ class CleanProseCorpusTests(unittest.TestCase):
 
 
 class RealArticleEvalAuditTests(unittest.TestCase):
+    def test_evaluate_uses_draft_body_delivery_mode(self) -> None:
+        class LintProbe:
+            kwargs: dict[str, object] = {}
+
+            def scan(self, *args, **kwargs):
+                self.kwargs = kwargs
+                return []
+
+        probe = LintProbe()
+        profile = {"genre": "报告", "required_points": []}
+        draft = {"id": "sample", "mode": "skill", "text": "关于有关事项的报告"}
+
+        real_eval.evaluate(profile, draft, probe)
+
+        self.assertEqual(probe.kwargs["delivery_mode"], "draft-body")
+
     def test_placeholder_echo_terms_are_reported(self) -> None:
         text = "发文机关以发文字号印发工作方案，主送单位包括有关部门。"
 
