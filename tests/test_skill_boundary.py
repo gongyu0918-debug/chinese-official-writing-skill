@@ -653,6 +653,18 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assertNotIn("首先", leaf)
         self.assertNotIn("其次", leaf)
 
+    def test_news_genres_are_defined_in_authoritative_routing(self) -> None:
+        routing = (
+            ROOT / "chinese-official-writing" / "references" / "genre-routing.md"
+        ).read_text(encoding="utf-8")
+
+        self.assertIn("### 新闻类文本", routing)
+        self.assertIn("新闻消息：面向公开传播已发生事实", routing)
+        self.assertIn("会议活动报道保持消息功能", routing)
+        self.assertIn("新闻评论：围绕已给事实或公共议题提出观点并展开论证", routing)
+        self.assertIn("评论判断保持为观点", routing)
+        self.assertIn("机关决定、责任分工和执行安排以材料为准", routing)
+
     def test_format_reference_clarifies_document_number_brackets(self) -> None:
         text = (ROOT / "chinese-official-writing" / "references" / "format-gbt9704.md").read_text(encoding="utf-8")
 

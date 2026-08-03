@@ -761,6 +761,10 @@ def _reference_paths_for_genres(genres: list[str], tasks: list[str] | None = Non
 
     if _tasks_are_review_only(tasks):
         paths.extend(GENRE_REFERENCES["review"])
+        if any(genre in NEWS_COMMENTARY_GENRES for genre in genres):
+            paths.extend(GENRE_REFERENCES["news_commentary"])
+        elif any(genre in NEWS_MESSAGE_GENRES for genre in genres):
+            paths.extend(GENRE_REFERENCES["news_message"])
         if any(genre in REQUEST_REVIEW_GENRES for genre in genres):
             paths.extend(GENRE_REFERENCES["request_review"])
         if any(genre in FEASIBILITY_REVIEW_GENRES for genre in genres):

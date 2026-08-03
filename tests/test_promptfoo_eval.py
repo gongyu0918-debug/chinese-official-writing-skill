@@ -238,6 +238,33 @@ class PromptfooProviderTests(unittest.TestCase):
                     provider._reference_paths_for_genres([genre]),
                 )
 
+    def test_news_review_only_tasks_load_the_specialized_leaf(self) -> None:
+        message_refs = provider._reference_paths_for_genres(
+            ["新闻消息"],
+            ["只审不改，检查这份新闻消息的事实、标题、导语和体裁。"],
+        )
+        commentary_refs = provider._reference_paths_for_genres(
+            ["新闻评论"],
+            ["只审不改，检查这份新闻评论的事实依据、观点和判断强度。"],
+        )
+
+        self.assertEqual(
+            message_refs,
+            [
+                "SKILL.md",
+                "references/review-checklist.md",
+                "references/genre-playbook-news-message.md",
+            ],
+        )
+        self.assertEqual(
+            commentary_refs,
+            [
+                "SKILL.md",
+                "references/review-checklist.md",
+                "references/genre-playbook-news-commentary.md",
+            ],
+        )
+
     def test_commentary_words_in_a_report_task_do_not_override_the_report_route(self) -> None:
         refs = provider._reference_paths_for_genres(
             ["报告"],
