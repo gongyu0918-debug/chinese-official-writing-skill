@@ -59,8 +59,27 @@ SHA-256 与 canonical 一致，平台专用 `SKILL.md` 正文与 canonical 一�
 
 ## 发行包与平台状态
 
-GitHub、ClawHub 和 skillhub.cn 的正式提交回执、公开 latest、审核与扫描状态在
-发布后分别补入。小红书 Red SkillHub 不在本次发布范围。
+- GitHub 发布提交为 `e85dc6a66fa300e8136eedf26af4534d2715d2fb`；远端 `main`
+  指向同一提交。annotated tag `v1.5.34` 的 tag object 为
+  `d0230afe3f5f8dc35923f092cbe9b1045a0328e4`，解引用到同一发布提交。GitHub
+  Release 已公开，且不是 draft 或 prerelease：
+  `https://github.com/gongyu0918-debug/chinese-official-writing-skill/releases/tag/v1.5.34`。
+  tag 首次推送遇到一次 GitHub 443 连接超时；远端确认未占用后，对同一 tag 原样
+  重试成功，没有重建或移动标签。
+- ClawHub 正式提交只执行一次，返回 `status=published`、
+  `versionId=k97eys891sb0n1pvpqr6rycwfd8bsgeg`、32 个文件和 fingerprint
+  `4f4c6347ca9f576d078863a1ca8886170aaec1cf5a708a6a07e88b924ebf0239`。本次使用
+  完整发布提交 SHA 作为 `source-commit`。首次只读查询仍显示公开
+  `latestVersion.version=1.5.33`、`tags.latest=1.5.33`；五个单项标签仍指向
+  1.5.31，组合标签指向 1.5.33。公开 moderation 为 clean，但对应当前公开旧版，
+  不推断为 1.5.34 已完成扫描，也不重复提交。
+- skillhub.cn 正式提交只执行一次，返回 `skillId=70149`、`versionId=190499`、
+  31 个文件、fingerprint
+  `e85ac984363c2beefccee465c68b7e2b71960161818be521bf8ba7e099de8428`，
+  `tags.latest=1.5.34`；review、security scan 和 content audit 均为 pending。
+  首次公开搜索仍显示 1.5.33，按异步传播处理，不重复提交。
+
+小红书 Red SkillHub 不在本次发布范围，没有调用其 CLI、登录、dry-run 或上传。
 
 ## 剩余风险
 

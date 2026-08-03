@@ -21,6 +21,17 @@ NO MERGE 的欠写章节平衡候选没有进入本次发行。
 quick validate、镜像同步、差异检查以及 ClawHub 32 文件、skillhub.cn 31 文件
 清洁包 dry-run 均通过。
 
+发布提交为 `e85dc6a66fa300e8136eedf26af4534d2715d2fb`；GitHub `main`、annotated
+tag `v1.5.34` 的解引用提交和正式 Release 均已闭环。ClawHub 正式回执为
+`versionId=k97eys891sb0n1pvpqr6rycwfd8bsgeg`、32 个文件、fingerprint
+`4f4c6347ca9f576d078863a1ca8886170aaec1cf5a708a6a07e88b924ebf0239`；首次公开
+查询仍为 1.5.33，且五个单项标签仍指向 1.5.31，不据旧版 clean 状态推断本版
+审核，也不重复提交。skillhub.cn 正式回执为 `skillId=70149`、
+`versionId=190499`、31 个文件、fingerprint
+`e85ac984363c2beefccee465c68b7e2b71960161818be521bf8ba7e099de8428`，
+`tags.latest=1.5.34`；review、security scan 和 content audit 均为 pending，首次
+公开搜索仍为 1.5.33。完整状态见发布证据。
+
 ## 1.5.33 小版本更新
 
 1.5.33 以 `v1.5.32=dbaa5b19ed403cbcf1e133ad6c8b91d9900425b9` 为固定发布
