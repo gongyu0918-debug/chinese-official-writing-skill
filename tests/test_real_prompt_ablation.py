@@ -112,6 +112,7 @@ class RealPromptAblationTests(unittest.TestCase):
 
     def test_information_selection_migration_keeps_complete_equivalent_evidence_groups(self) -> None:
         expected_cases = {
+            "P112",
             "P076",
             "P019",
             "P024",
@@ -438,6 +439,18 @@ class RealPromptAblationTests(unittest.TestCase):
         self.assertIn(
             "建设方案先核对目标、范围、任务、进度、责任和验收",
             checks_by_id["P112"]["file_terms"][
+                "chinese-official-writing/references/genre-playbook-plan-construction.md"
+            ],
+        )
+        self.assertIn(
+            "以目标、主要任务和实施路径为主线，责任、进度、保障、验收与风险控制按材料和用户模板落位",
+            checks_by_id["P112"]["file_terms"][
+                "chinese-official-writing/references/genre-playbook-plan-construction.md"
+            ],
+        )
+        self.assertIn(
+            "对象和范围 -> 事实、数据、样本",
+            real_prompt_eval.FILE_TERM_ALTERNATIVES_BY_CASE["P112"][0][
                 "chinese-official-writing/references/genre-playbook-plan-construction.md"
             ],
         )

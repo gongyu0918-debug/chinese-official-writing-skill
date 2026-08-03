@@ -508,9 +508,13 @@ class SkillBoundaryTests(unittest.TestCase):
             / "references"
             / "genre-playbook-plan-construction.md"
         ).read_text(encoding="utf-8")
-        shared_skeleton = (
+        research_skeleton = (
             "对象和范围 -> 事实、数据、样本 -> 发现和问题 -> 原因或方案比较 -> "
             "建议/可行性/建设内容 -> 条件和风险"
+        )
+        plan_skeleton = (
+            "以目标、主要任务和实施路径为主线，责任、进度、保障、验收与风险控制"
+            "按材料和用户模板落位"
         )
 
         self.assertIn("references/genre-playbook-plan-construction.md", skill)
@@ -518,8 +522,9 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assertNotIn("## 调研报告/研究报告/可研报告/建设方案\n", common)
         self.assertIn("## 调研报告/研究报告/可研报告\n", common)
         self.assertIn("## 方案/实施方案/建设方案\n", leaf)
-        self.assertIn(shared_skeleton, common)
-        self.assertIn(shared_skeleton, leaf)
+        self.assertIn(research_skeleton, common)
+        self.assertNotIn(research_skeleton, leaf)
+        self.assertIn(plan_skeleton, leaf)
         self.assertNotIn("建设方案先核对目标、范围、任务、进度、责任和验收", common)
         self.assertIn("建设方案先核对目标、范围、任务、进度、责任和验收", leaf)
         for forbidden in ["计划段展开", "计划补写", "篇幅", "字数", "P0"]:

@@ -1875,7 +1875,7 @@ CASES: list[PromptCase] = [
                 ],
                 "chinese-official-writing/references/genre-playbook-plan-construction.md": [
                     "## 方案/实施方案/建设方案",
-                    "对象和范围 -> 事实、数据、样本",
+                    "以目标、主要任务和实施路径为主线，责任、进度、保障、验收与风险控制按材料和用户模板落位",
                     "建设方案先核对目标、范围、任务、进度、责任和验收",
                 ],
             },
@@ -1890,6 +1890,15 @@ CASES: list[PromptCase] = [
 # be present.  This keeps the fixed baseline valid without forcing duplicated
 # runtime wording back into the current skill.
 FILE_TERM_ALTERNATIVES_BY_CASE: dict[str, list[dict[str, list[str]]]] = {
+    "P112": [
+        {
+            "chinese-official-writing/references/genre-playbook-plan-construction.md": [
+                "## 方案/实施方案/建设方案",
+                "对象和范围 -> 事实、数据、样本",
+                "建设方案先核对目标、范围、任务、进度、责任和验收",
+            ],
+        }
+    ],
     "P076": [
         {
             "chinese-official-writing/references/genre-playbooks.md": [
