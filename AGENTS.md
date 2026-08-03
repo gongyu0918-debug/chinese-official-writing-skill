@@ -1,5 +1,37 @@
 # AGENTS.md
 
+## 1.5.35 一次性定时发布候选
+
+1.5.35 以 `v1.5.34=e85dc6a66fa300e8136eedf26af4534d2715d2fb` 为固定发布
+基线，只纳入两项已经在独立 worktree 完成真实写稿、匿名盲审和组合回归的修改：
+方案、实施方案和建设方案叶改用目标—任务—路径主线，其他要素按材料及用户模板
+落位；新闻消息、新闻评论补入权威文种路由，评测 provider 的只审任务加载既有
+新闻专项叶。固定七要素方案骨架和在新闻起草阶段提前加载复核规则的两个 R1
+实现均未合入。
+
+方案两题匿名盲审均由 Candidate 胜出，新闻歧义路由题也由 Candidate 胜出；相关
+稿件未见事实、数字、日期、主体、状态、文种或输出范围硬回退。组合验证和原稿
+入口见 `tests/evidence/plan-news-routing-integration-20260803.md`。
+
+发布候选全量 unittest 442/442、Promptfoo smoke 20/20；固定 v1.5.34 与 Candidate
+确定性消融均为 111/111；quick validate、镜像同步和 `git diff --check` 通过。
+ClawHub dry-run 为 32 文件、fingerprint
+`f7aace001f59308fa0f2db737b4449a81a1e22a63350513d6fda645985194a25`；
+skillhub.cn 清洁包为 31 文件、排序清单 SHA-256
+`56859cebb153adef3379bd23a552266e55c694c19c42d3cfd6d38b520bc78655`，dry-run
+精确返回 1.5.35。首次清洁包审计在 dry-run 前发现并移除了误复制的
+`delivery-review-gate.md`，修正后缺失、额外、哈希不一致和禁入文件均为 0。
+
+本地发布版在门禁通过后建立 annotated tag `v1.5.35`。2026-08-04 09:00
+（Asia/Shanghai）的一次性定时任务只允许核验固定提交和 tag 后执行 GitHub、
+ClawHub、skillhub.cn 发布，不现场修改产品、不重跑写稿、不补抽、不重建 tag，
+也不触碰小红书 Red SkillHub。任一固定提交、tag、包清单或版本面漂移时停止；
+平台已接受提交而公开索引滞后时记录回执，不重复发布。
+
+述职专叶、叶内“使用方式”说明压缩和 Candidate H 均从冻结发布提交另建隔离
+worktree 研究，不进入 1.5.35。完整门禁与定时发布边界见
+`tests/evidence/release-1.5.35.md`。
+
 ## 1.5.34 小版本更新
 
 1.5.34 以 `v1.5.33=1ea3f5b6ccccd5ef772803e264087adcf2fb5515` 为固定发布
