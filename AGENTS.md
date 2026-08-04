@@ -1,6 +1,6 @@
 # AGENTS.md
 
-## 1.5.35 一次性定时发布候选
+## 1.5.35 已发布（2026-08-04）
 
 1.5.35 以 `v1.5.34=e85dc6a66fa300e8136eedf26af4534d2715d2fb` 为固定发布
 基线，只纳入两项已经在独立 worktree 完成真实写稿、匿名盲审和组合回归的修改：
@@ -22,11 +22,22 @@ skillhub.cn 清洁包为 31 文件、排序清单 SHA-256
 精确返回 1.5.35。首次清洁包审计在 dry-run 前发现并移除了误复制的
 `delivery-review-gate.md`，修正后缺失、额外、哈希不一致和禁入文件均为 0。
 
-本地发布版在门禁通过后建立 annotated tag `v1.5.35`。2026-08-04 09:00
-（Asia/Shanghai）的一次性定时任务只允许核验固定提交和 tag 后执行 GitHub、
-ClawHub、skillhub.cn 发布，不现场修改产品、不重跑写稿、不补抽、不重建 tag，
-也不触碰小红书 Red SkillHub。任一固定提交、tag、包清单或版本面漂移时停止；
-平台已接受提交而公开索引滞后时记录回执，不重复发布。
+最终发布提交和 annotated tag `v1.5.35` 的解引用提交均为
+`d357c9fb340120c067c1e9efb8d4404c0a9d70e6`。一次性定时任务于 2026-08-04
+09:01（Asia/Shanghai）启动，但 PowerShell 错误解析未加引号的
+`v1.5.35^{commit}`，造成 tag 不一致的假失败，停止前没有执行平台提交。使用带引号
+的 tag 解引用和 tag object 复核后，按冻结包完成一次正式发布。
+
+GitHub `origin/main`、远端 tag 和 Release 已闭环；Release 地址为
+`https://github.com/gongyu0918-debug/chinese-official-writing-skill/releases/tag/v1.5.35`。
+ClawHub 正式回执为 `versionId=k976rg5tady45fbwd965z7gwjx8bt2wf`、32 个文件、
+fingerprint `f7aace001f59308fa0f2db737b4449a81a1e22a63350513d6fda645985194a25`，
+公开 `latestVersion=1.5.35`，moderation 为 `clean`。skillhub.cn 正式回执为
+`skillId=70149`、`versionId=192938`、31 个文件、fingerprint
+`faad8e3d353e8f42f1a1f8d028b658f4d42a38fbc8c61789062ceab026d89825`；
+`tags.latest=1.5.35`，首次回执的 review、security scan 和 content audit 均为
+`pending`，公开详情页 `latestVersion` 尚停留 1.5.34，不重复提交。小红书 Red
+SkillHub 未触碰。
 
 述职专叶、叶内“使用方式”说明压缩和 Candidate H 均从冻结发布提交另建隔离
 worktree 研究，不进入 1.5.35。完整门禁与定时发布边界见

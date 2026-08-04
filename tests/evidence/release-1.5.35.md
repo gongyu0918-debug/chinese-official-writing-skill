@@ -10,7 +10,8 @@
 - 权威文种路由补齐新闻消息、新闻评论定义，评测 provider 的只审新闻任务加载
   既有命中叶。
 
-版本准备提交为 `5d343c5c080b0cf14ad6fe5698bcfee793721fb6`。本版没有修改
+功能准备提交为 `5d343c5c080b0cf14ad6fe5698bcfee793721fb6`，发布元数据收口后的
+最终发布提交为 `d357c9fb340120c067c1e9efb8d4404c0a9d70e6`。本版没有修改
 事实边界、篇幅规则、复核顺序、脚本检测规则、自动改稿次数、回退方式或发布链；
 没有恢复述职专叶、叶内说明压缩或 Candidate H。
 
@@ -110,7 +111,32 @@ No-Skill 稿，结论限于相对固定 1.5.34 的冲突修正和功能覆盖。
 - 述职专叶、叶内说明压缩和 Candidate H 只在独立研究 worktree 继续验证，不进入
   1.5.35。
 
-## 当前平台状态
+## 实际发布与回执
 
-本文件提交时 1.5.35 尚未推送或发布。GitHub、ClawHub、skillhub.cn 的实际回执由
-一次性定时任务在执行后补充；在收到真实回执前，均不得写成已发布。
+2026-08-04 09:01（Asia/Shanghai），一次性定时任务按计划启动，但在发布前不变量
+核验处停止。失败原因不是 tag 错误，而是 PowerShell 对未加引号的
+`v1.5.35^{commit}` 发生了错误解析，误把 tag 解引用结果判为父提交
+`5d343c5c080b0cf14ad6fe5698bcfee793721fb6`。随后使用带引号的
+`git rev-parse 'v1.5.35^{commit}'` 和 tag object 交叉核验，确认 annotated tag object
+为 `08318703a2a4d74461384c1123f65c900f5692c5`，解引用提交始终为冻结发布提交
+`d357c9fb340120c067c1e9efb8d4404c0a9d70e6`。定时任务停止前没有执行任何平台提交。
+
+修正核验方式后，按冻结包和既有 tag 完成一次正式发布：
+
+- GitHub：`origin/main`、远端 `v1.5.35` 解引用提交均为
+  `d357c9fb340120c067c1e9efb8d4404c0a9d70e6`；Release 为非草稿、非预发布，
+  `publishedAt=2026-08-04T01:22:47Z`，地址为
+  `https://github.com/gongyu0918-debug/chinese-official-writing-skill/releases/tag/v1.5.35`。
+- ClawHub：正式回执 `status=published`、`version=1.5.35`、
+  `versionId=k976rg5tady45fbwd965z7gwjx8bt2wf`、32 个文件、fingerprint
+  `f7aace001f59308fa0f2db737b4449a81a1e22a63350513d6fda645985194a25`。
+  随后的公开查询已显示 `latestVersion=1.5.35`、`tags.latest=1.5.35`，moderation
+  为 `clean`。
+- skillhub.cn：正式回执 `ok=true`、`skillId=70149`、`versionId=192938`、31 个
+  文件、fingerprint
+  `faad8e3d353e8f42f1a1f8d028b658f4d42a38fbc8c61789062ceab026d89825`，
+  `tags.latest=1.5.35`；首次回执的 review、security scan 和 content audit 均为
+  `pending`。首次公开详情查询仍显示 `latestVersion=1.5.34`，但 skill 级
+  `tags.latest=1.5.35`，属于审核与详情页传播尚未收敛，不重复提交。
+
+小红书 Red SkillHub 继续不在本次发布范围内，未调用其上传或更新工具。
