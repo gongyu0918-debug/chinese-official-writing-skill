@@ -1533,10 +1533,12 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assertIn("不保留字段标签或机械转述字段名", anti_ai)
 
     def test_review_command_includes_interpreter_and_draft_path(self) -> None:
+        skill = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
         review = (
             ROOT / "chinese-official-writing" / "references" / "final-review-layers.md"
         ).read_text(encoding="utf-8")
 
+        self.assertIn("按 `references/final-review-layers.md` 使用 `draft-body` 模式", skill)
         self.assertIn(
             "python scripts/prose_lint.py --delivery-mode draft-body --format --structure <draft>",
             review,
