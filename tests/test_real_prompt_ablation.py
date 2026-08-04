@@ -184,7 +184,12 @@ class RealPromptAblationTests(unittest.TestCase):
             checks_by_id["P022"]["file_terms"]["tests/test_skill_boundary.py"],
         )
         self.assertIn("任务模式路由", checks_by_id["P023"]["file_terms"]["chinese-official-writing/SKILL.md"])
-        self.assertIn("压实合并表达", checks_by_id["P024"]["file_terms"]["chinese-official-writing/references/workflow.md"])
+        self.assertIn(
+            "段落骨架只组织可核对内容",
+            real_prompt_eval.FILE_TERM_ALTERNATIVES_BY_CASE["P024"][0][
+                "chinese-official-writing/references/workflow.md"
+            ],
+        )
         self.assertIn("Word/排版交付衔接", checks_by_id["P025"]["file_terms"]["chinese-official-writing/references/format-gbt9704.md"])
         self.assertIn("夸大意义", checks_by_id["P026"]["file_terms"]["chinese-official-writing/references/anti-ai-patterns.md"])
         self.assertIn("数据冲突不得默认就高", checks_by_id["P027"]["file_terms"]["chinese-official-writing/references/workflow.md"])
@@ -233,8 +238,10 @@ class RealPromptAblationTests(unittest.TestCase):
         self.assertIn("审稿时看成簇问题", checks_by_id["P049"]["file_terms"]["chinese-official-writing/references/anti-ai-patterns.md"])
         self.assertIn("单个正式词或单个转折不作为硬清洗理由", checks_by_id["P049"]["file_terms"]["chinese-official-writing/references/official-style.md"])
         self.assertIn(
-            "不为显得完整而补造牵头部门、责任部门、管理动作、整改动作、成果总结、跟踪督办、后续处理进展",
-            checks_by_id["P050"]["file_terms"]["chinese-official-writing/references/workflow.md"],
+            "段落骨架只组织可核对内容",
+            real_prompt_eval.FILE_TERM_ALTERNATIVES_BY_CASE["P050"][0][
+                "chinese-official-writing/references/workflow.md"
+            ],
         )
         self.assertIn("正式化新增事实", checks_by_id["P050"]["file_terms"]["chinese-official-writing/references/review-checklist.md"])
         self.assertIn("优先逐项引用原文短语或句子", checks_by_id["P051"]["file_terms"]["chinese-official-writing/references/review-checklist.md"])

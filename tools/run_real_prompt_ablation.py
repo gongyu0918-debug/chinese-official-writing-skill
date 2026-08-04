@@ -1920,6 +1920,20 @@ FILE_TERM_ALTERNATIVES_BY_CASE: dict[str, list[dict[str, list[str]]]] = {
     "P024": [
         {
             "chinese-official-writing/references/workflow.md": [
+                "以用户最新版底稿和本轮明确补充材料为事实源",
+                "段落骨架只组织可核对内容",
+            ],
+            "chinese-official-writing/references/information-selection.md": [
+                "材料已给且与当前主旨相关的事实进入正文",
+                "视为实质缺口",
+            ],
+            "chinese-official-writing/references/review-checklist.md": [
+                "用户已有提纲、模板和标题顺序是否优先保留",
+                "原文已有事实",
+            ],
+        },
+        {
+            "chinese-official-writing/references/workflow.md": [
                 "用户已有提纲、模板、标题顺序时优先保留",
                 "多材料合稿、改稿和去口语化时，内部区分原文已有事实、压实合并表达和未支持推断",
             ],
@@ -1956,6 +1970,20 @@ FILE_TERM_ALTERNATIVES_BY_CASE: dict[str, list[dict[str, list[str]]]] = {
     "P044": [
         {
             "chinese-official-writing/references/workflow.md": [
+                "信息进入正文、保持原状态、省略或短列实质缺口时",
+                "转 `information-selection.md` 处理",
+            ],
+            "chinese-official-writing/references/task-route-cards.md": [
+                "材料少时先写可用正文",
+                "不用泛称、占位或未给流程补齐骨架",
+            ],
+            "chinese-official-writing/references/information-selection.md": [
+                "直接影响当前文种成立、请批事项或执行落地",
+                "文后提示使用少量短项，只写缺口及其对当前交付的直接影响",
+            ],
+        },
+        {
+            "chinese-official-writing/references/workflow.md": [
                 "材料不足不作为中断成稿或连续追问的理由",
                 "不授权使用泛称、占位、流程或结论补齐结构",
             ],
@@ -1977,6 +2005,18 @@ FILE_TERM_ALTERNATIVES_BY_CASE: dict[str, list[dict[str, list[str]]]] = {
         }
     ],
     "P046": [
+        {
+            "chinese-official-writing/SKILL.md": [
+                "材料只给问题清单时，正文列明已确认问题及其对象、数量和状态",
+            ],
+            "chinese-official-writing/references/workflow.md": [
+                "保持主体、对象、数字、状态、关系及其信息去向",
+            ],
+            "chinese-official-writing/references/information-selection.md": [
+                "材料已给且与当前主旨相关的事实进入正文",
+            ],
+            "chinese-official-writing/references/review-checklist.md": ["事实强判断", "总体较好"],
+        },
         {
             "chinese-official-writing/SKILL.md": [
                 "材料只给问题清单时，正文列明已确认问题及其对象、数量和状态",
@@ -2013,6 +2053,16 @@ FILE_TERM_ALTERNATIVES_BY_CASE: dict[str, list[dict[str, list[str]]]] = {
         }
     ],
     "P050": [
+        {
+            "chinese-official-writing/SKILL.md": [
+                "正式化只压实已给事实，不补未给的原因、效果、处置、责任、流程、结论或后续动作",
+            ],
+            "chinese-official-writing/references/workflow.md": [
+                "以用户最新版底稿和本轮明确补充材料为事实源",
+                "段落骨架只组织可核对内容",
+            ],
+            "chinese-official-writing/references/review-checklist.md": ["正式化新增事实"],
+        },
         {
             "chinese-official-writing/SKILL.md": [
                 "正式化只压实已给事实，不补未给的原因、效果、处置、责任、流程、结论或后续动作",
@@ -2100,6 +2150,26 @@ FILE_TERM_ALTERNATIVES_BY_CASE: dict[str, list[dict[str, list[str]]]] = {
         }
     ],
     "P091": [
+        {
+            "chinese-official-writing/SKILL.md": [
+                "材料稀疏型通报或情况说明按已给事实之间的关系简短成稿",
+                "不推断讨论、沟通、归集、说明、形成意见等会议内容",
+                "事实映射式二次修改",
+            ],
+            "chinese-official-writing/references/workflow.md": [
+                "二次局部修改已命中轻量任务卡时，转对应卡片处理",
+            ],
+            "chinese-official-writing/references/task-route-cards.md": [
+                "优先直接改对应位置",
+                "本卡不重新定义信息去向",
+            ],
+            "chinese-official-writing/references/genre-playbooks.md": [
+                "协调会只写“已组织2次协调会”",
+                "不展开会议内容、处理边界、问题清单、对接要求、闭环机制或督办安排",
+                "不新增“已开展处置”“下一步安排”“整改方向”“治理闭环”“督导流程”等章节或小标题",
+            ],
+            "chinese-official-writing/references/information-selection.md": ["文后提示使用少量短项"],
+        },
         {
             "chinese-official-writing/SKILL.md": [
                 "材料稀疏型通报或情况说明按已给事实之间的关系简短成稿",

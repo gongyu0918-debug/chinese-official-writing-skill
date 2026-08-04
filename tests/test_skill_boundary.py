@@ -905,9 +905,9 @@ class SkillBoundaryTests(unittest.TestCase):
             self.assertIn("改稿", text)
             self.assertIn("复核", text)
             self.assertIn("排版交付", text)
-        self.assertIn("原文已有事实", workflow)
-        self.assertIn("压实合并表达", workflow)
-        self.assertIn("信息是否进入正文、按原状态承载、省略或作为实质缺口短列", workflow)
+        self.assertIn("以用户最新版底稿和本轮明确补充材料为事实源", workflow)
+        self.assertIn("保持主体、对象、数字、状态、关系及其信息去向", workflow)
+        self.assertIn("信息进入正文、保持原状态、省略或短列实质缺口", workflow)
         self.assertIn("材料已给且与当前主旨相关的事实进入正文", information_selection)
         self.assertIn("视为实质缺口", information_selection)
         self.assertIn("数据冲突不得默认就高", workflow)
@@ -1033,13 +1033,18 @@ class SkillBoundaryTests(unittest.TestCase):
         information_selection = (
             ROOT / "chinese-official-writing" / "references" / "information-selection.md"
         ).read_text(encoding="utf-8")
+        route_cards = (
+            ROOT / "chinese-official-writing" / "references" / "task-route-cards.md"
+        ).read_text(encoding="utf-8")
         external_research = (
             ROOT / "chinese-official-writing" / "references" / "external-research.md"
         ).read_text(encoding="utf-8")
         agents = (ROOT / "AGENTS.md").read_text(encoding="utf-8")
 
         self.assertIn("不使用泛称或占位符补齐未给要素", skill)
-        self.assertIn("材料不足不作为中断成稿或连续追问的理由", workflow)
+        self.assertIn("段落骨架只组织可核对内容", workflow)
+        self.assertIn("材料少时先写可用正文", route_cards)
+        self.assertIn("不用泛称、占位或未给流程补齐骨架", route_cards)
         self.assertIn("实质缺口只在输出模式允许时短列", checklist)
         self.assertIn("直接影响当前文种成立、请批事项或执行落地", information_selection)
         self.assertIn("新增字段没有用户提供值时只写字段名并留空", workflow)
@@ -1212,7 +1217,8 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assertIn("不为了显得像人写而加入第一人称", official_style)
         self.assertIn("单个正式词或单个转折不作为硬清洗理由", official_style)
         self.assertIn("正式化只压实已给事实，不补未给的原因、效果、处置、责任、流程、结论或后续动作", skill)
-        self.assertIn("正式化、顺稿和报告化不补牵头部门、责任部门、管理动作、整改动作、成果总结、跟踪督办或后续进展", workflow)
+        self.assertIn("以用户最新版底稿和本轮明确补充材料为事实源", workflow)
+        self.assertIn("段落骨架只组织可核对内容", workflow)
         self.assertIn("正式化新增事实", checklist)
         self.assertIn("正式化改写只压实原文已有事实", official_style)
         self.assertIn("口语来源不等于事实授权", official_style)
@@ -1451,6 +1457,9 @@ class SkillBoundaryTests(unittest.TestCase):
         workflow = (ROOT / "chinese-official-writing" / "references" / "workflow.md").read_text(
             encoding="utf-8"
         )
+        route_cards = (
+            ROOT / "chinese-official-writing" / "references" / "task-route-cards.md"
+        ).read_text(encoding="utf-8")
         playbooks = (ROOT / "chinese-official-writing" / "references" / "genre-playbooks.md").read_text(
             encoding="utf-8"
         )
@@ -1466,7 +1475,9 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assertIn("不自动改题为“调研报告”“考核说明”或“实施方案”", playbooks)
         self.assertIn("不写成已经确定的执行路线、责任命令或反馈时限", playbooks)
         self.assertIn("按 `workflow.md` 的事实映射式二次修改删掉未支持推断", playbooks)
-        self.assertIn("每个实质句只保留用户已给事实和直接概括", workflow)
+        self.assertIn("二次局部修改已命中轻量任务卡时，转对应卡片处理", workflow)
+        self.assertIn("优先直接改对应位置", route_cards)
+        self.assertIn("本卡不重新定义信息去向", route_cards)
         self.assertIn("未用 Markdown `**` 加粗包装标签", review)
 
     def test_proofreading_layer_stays_ai_writing_quality_only(self) -> None:
