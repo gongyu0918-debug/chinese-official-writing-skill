@@ -1257,7 +1257,12 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assertIn("保留公文骨架和用户模板", anti_ai)
         self.assertIn("未指定时仍按位置、风险层级和修改建议输出", anti_ai)
         self.assertIn("用户要求改写时，只改确认有问题的句子及必要衔接", anti_ai)
-        self.assertEqual(anti_ai.count("输出范围按“总体复核方法”执行"), 2)
+        self.assertIn("## 高频表达的语义复核", anti_ai)
+        self.assertEqual(
+            anti_ai.count("输出范围按“高频表达的语义复核”中的输出约定执行"),
+            2,
+        )
+        self.assertNotIn("输出范围按“总体复核方法”执行", anti_ai)
         self.assertIn("不为了显得像人写而加入第一人称", official_style)
         self.assertIn("正式化改写只压实原文已有事实", official_style)
 
