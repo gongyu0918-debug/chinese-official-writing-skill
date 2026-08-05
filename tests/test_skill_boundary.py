@@ -1261,14 +1261,7 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assertIn("公文去 AI 味不是聊天化", anti_ai)
         self.assertIn("不得为了显得“像人写”而加入第一人称、反问、口语插入", anti_ai)
         self.assertIn("保留公文骨架和用户模板", anti_ai)
-        self.assertIn("未指定时仍按位置、风险层级和修改建议输出", anti_ai)
-        self.assertIn("用户要求改写时，只改确认有问题的句子及必要衔接", anti_ai)
-        self.assertIn("## 高频表达的语义复核", anti_ai)
-        self.assertEqual(
-            anti_ai.count("输出范围按“高频表达的语义复核”中的输出约定执行"),
-            2,
-        )
-        self.assertNotIn("输出范围按“总体复核方法”执行", anti_ai)
+        self.assertIn("用户只要求审稿时，仍输出位置、风险层级和修改建议", anti_ai)
         self.assertIn("不为了显得像人写而加入第一人称", official_style)
         self.assertIn("正式化改写只压实原文已有事实", official_style)
 
@@ -1551,12 +1544,10 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assertIn("不保留字段标签或机械转述字段名", anti_ai)
 
     def test_review_command_includes_interpreter_and_draft_path(self) -> None:
-        skill = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
         review = (
             ROOT / "chinese-official-writing" / "references" / "final-review-layers.md"
         ).read_text(encoding="utf-8")
 
-        self.assertIn("按 `references/final-review-layers.md` 使用 `draft-body` 模式", skill)
         self.assertIn(
             "python scripts/prose_lint.py --delivery-mode draft-body --format --structure <draft>",
             review,

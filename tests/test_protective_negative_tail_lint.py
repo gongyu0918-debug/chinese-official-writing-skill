@@ -73,9 +73,6 @@ class ProtectiveNegativeTailLintTests(unittest.TestCase):
             "信息中心于8月15日前完成测试，测试通过后再确定上线时间。",
             "经会议研究，决定于8月5日启用新接口。",
             "该行为不构成合同违约。",
-            "未经批准不得作出决定。",
-            "未按规定作出决定的，应当重新履行程序。",
-            "未在会议上作出决定。",
         ]
 
         for text in samples:

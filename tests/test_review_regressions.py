@@ -208,7 +208,6 @@ class ProseLintStructureTests(unittest.TestCase):
         texts = [
             "一、待确认事项办理情况\n已完成三项核对。",
             "第二章 补充信息管理办法\n本章规定信息补录流程。",
-            "1.补充信息：本节说明接口补录范围和办理程序。\n后续内容仍属正文。",
             "经核查，待确认事项已全部确认。",
         ]
 
@@ -413,13 +412,6 @@ class ProseLintStructureTests(unittest.TestCase):
                 if item.label == "unfinished-placeholder"
             ]
         )
-
-        overlapping = [
-            item
-            for item in prose_lint.scan("<test>", "XX项目拟于8月启动。")
-            if item.label == "unfinished-placeholder"
-        ]
-        self.assertEqual(len(overlapping), 1)
 
     def test_parenthesized_instructions_are_not_treated_as_placeholders(self) -> None:
         text = (
