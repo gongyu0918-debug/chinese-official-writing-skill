@@ -52,4 +52,7 @@
 
 ## 实际发布与回执
 
-发布完成后补记 GitHub、ClawHub 和 skillhub.cn 的接受回执、公开版本与审核状态。小红书 Red SkillHub 不在本次范围内。
+- GitHub：`origin/main`、annotated tag `v1.5.36` 的解引用提交和正式 Release 均为 `8bd4eb8c8b4f233445e07ebf4d3f54ceb5777aa2`；tag object 为 `b0655f0c163eff92f58e69670b1725b63a232eee`。Release 已公开：`https://github.com/gongyu0918-debug/chinese-official-writing-skill/releases/tag/v1.5.36`。
+- ClawHub：正式提交只执行一次，回执为 `status=published`、`versionId=k97emf7mhg4adgdbastvnnj3y58bwhak`、32 个文件、fingerprint `52c36b80d263087515c13c72bb0f460e795ea0b6bb0324daba3cab64553f430c`。随后只读查询已显示公开 `latestVersion=1.5.36`，moderation 为 `clean`；本次字段展开没有稳定返回 tags 和统计对象，不作推断。
+- skillhub.cn：正式提交只执行一次，回执为 `ok=true`、`skillId=70149`、`versionId=197616`、31 个文件、fingerprint `2dd2505f454335ee85d3934e8f8fd820f4b552102feca9b3edbbe6b3a67096c1`、`tags.latest=1.5.36`；提交回执中的 review、security scan 和 content audit 均为 `pending`。随后只读查询仍显示 `latestVersion=1.5.35`，属于公开详情传播延迟，不重复提交。
+- 小红书 Red SkillHub 未调用。

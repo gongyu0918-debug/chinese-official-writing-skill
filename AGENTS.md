@@ -1,5 +1,32 @@
 # AGENTS.md
 
+## 1.5.36 已发布（2026-08-05）
+
+1.5.36 以 `v1.5.35=d357c9fb340120c067c1e9efb8d4404c0a9d70e6` 为固定发布
+基线，只发布 `workflow.md` 的一项事实边界减负：把重复的六行否定清单归并为
+一条正向事实源规则，继续转读 `information-selection.md` 和已命中的轻量任务卡，
+规范化字符净减 363。历史正确路由的同机制 A/B 为 Candidate 5 胜、Baseline
+1 胜；“5 胜”不是主线胜出。发布前清洁复验两臂均无硬回退，但实际读取文件不
+对称，因此没有计入比较胜负，也没有补抽。
+
+本地曾混入但只达到 `KEEP ISOLATED` 的 lint/anti-AI 研究改动已由
+`a3a20f8e` 从发布产品中撤出；1.5.36 没有改变文种路由、reference 加载条件、
+篇幅规则、输出模式、复核顺序、修改次数或回退方式。发布候选全量 unittest
+442/442、Promptfoo smoke 20/20；固定 1.5.35 与 Candidate 确定性消融均为
+111/111；quick validate、镜像同步、Python 编译和 `git diff --check` 均通过。
+
+发布提交和 annotated tag `v1.5.36` 的解引用提交均为
+`8bd4eb8c8b4f233445e07ebf4d3f54ceb5777aa2`，tag object 为
+`b0655f0c163eff92f58e69670b1725b63a232eee`，GitHub Release 已公开。ClawHub
+正式回执为 `versionId=k97emf7mhg4adgdbastvnnj3y58bwhak`、32 个文件、
+fingerprint `52c36b80d263087515c13c72bb0f460e795ea0b6bb0324daba3cab64553f430c`，
+公开 `latestVersion=1.5.36`，moderation 为 `clean`。skillhub.cn 正式回执为
+`skillId=70149`、`versionId=197616`、31 个文件、fingerprint
+`2dd2505f454335ee85d3934e8f8fd820f4b552102feca9b3edbbe6b3a67096c1`，
+`tags.latest=1.5.36`；三项审核为 pending，首次公开详情仍为 1.5.35，不重复
+提交。小红书 Red SkillHub 未触碰。完整证据见
+`tests/evidence/release-1.5.36.md`。
+
 ## 1.5.35 已发布（2026-08-04）
 
 1.5.35 以 `v1.5.34=e85dc6a66fa300e8136eedf26af4534d2715d2fb` 为固定发布
