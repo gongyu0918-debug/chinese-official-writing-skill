@@ -224,7 +224,7 @@ DRAFT_BODY_PATTERNS: list[PatternSpec] = [
     (
         "medium",
         "unresolved-conclusion-tail",
-        rf"(?:尚未|仍未|暂未|还未|尚不|未(?!对|就))[^。！？\n]{{0,{UNRESOLVED_SUBJECT_CHARS}}}"
+        rf"(?:尚未|仍未|暂未|还未|尚不|未(?!对|就|经|按|在))[^。！？\n]{{0,{UNRESOLVED_SUBJECT_CHARS}}}"
         rf"(?:形成|作出)[^。！？\n]{{0,{UNRESOLVED_RESULT_CHARS}}}(?:结论|定论|决定|意见|安排)"
         r"(?=[。！？]|$)",
         "核对未决状态是否与正文主旨直接相关；本单位正在办理的事项可改为进行态，外围未决说明可删除。",
@@ -471,6 +471,12 @@ def inside_spans(spans: list[tuple[int, int]], start: int, end: int) -> bool:
     return any(left <= start and end <= right for left, right in spans)
 
 
+def spans_overlap(first: tuple[int, int], second: tuple[int, int]) -> bool:
+    """两个命中区间存在共同字符时返回 True。"""
+
+    return first[0] < second[1] and second[0] < first[1]
+
+
 def has_check_basis_before(line: str, start: int) -> bool:
     """安全结论前紧邻检查动作时返回 True。"""
     prefix = line[max(0, start - CHECK_BASIS_CONTEXT_CHARS) : start]
@@ -492,18 +498,24 @@ def is_attachment_number_item(lines: list[str], line_index: int, line: str) -> b
 
 def body_lines(lines: list[str]) -> list[str]:
     """返回明确正文外待确认区之前的正文行。"""
-    note_start = re.compile(
+    heading_prefix = (
         r"^\s*(?:#{1,6}\s*)?"
         r"(?:(?:[一二三四五六七八九十百0-9]+[、.．]\s*)|"
         r"(?:[（(][一二三四五六七八九十百0-9]+[）)]\s*)|"
         r"(?:第[一二三四五六七八九十百0-9]+(?:章|节)\s*))?"
         r"(?:[（(【\[]\s*)?"
-        r"(?:待确认事项|待用户确认事项|补充以下信息后(?:，文章会更完整)?|正文外待确认|正文外提示|风险提醒|核验提示|需补充信息|待补充事项|需确认事项|补充信息)"
+    )
+    explicit_note_start = re.compile(
+        heading_prefix
+        + r"(?:待确认事项|待用户确认事项|补充以下信息后(?:，文章会更完整)?|正文外待确认|正文外提示|风险提醒|核验提示|需补充信息|待补充事项|需确认事项)"
         r"(?=\s*(?:[：:]|[（(【\[]|[）)】\]]|$))"
+    )
+    standalone_supplement_heading = re.compile(
+        heading_prefix + r"补充信息(?:\s*[）)】\]])?\s*[：:]?\s*$"
     )
     result: list[str] = []
     for line in lines:
-        if note_start.search(line):
+        if explicit_note_start.search(line) or standalone_supplement_heading.search(line):
             break
         result.append(line)
     return result
@@ -934,6 +946,7 @@ def plain_line_findings(
     """扫描普通正文行，并处理引用、附件编号和检查依据例外。"""
 
     findings: list[Finding] = []
+    seen_spans_by_label: dict[str, list[tuple[int, int]]] = {}
     for pattern in patterns:
         _severity, label, regex, _advice = pattern
         for match in regex.finditer(line):
@@ -949,6 +962,13 @@ def plain_line_findings(
                 continue
             if label == "unsupported-conclusion" and has_check_basis_before(line, match.start()):
                 continue
+            span = (match.start(), match.end())
+            if any(
+                spans_overlap(span, prior)
+                for prior in seen_spans_by_label.get(label, [])
+            ):
+                continue
+            seen_spans_by_label.setdefault(label, []).append(span)
             findings.append(finding_from_match(path_label, line_index + 1, line, pattern, match))
     return findings
 
