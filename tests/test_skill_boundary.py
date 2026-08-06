@@ -373,9 +373,11 @@ class SkillBoundaryTests(unittest.TestCase):
             self.assertIn("多轮", text)
             self.assertIn("增加自然段", text)
             self.assertIn("反馈渠道", text)
-            self.assertIn("原因分析", text)
             self.assertIn("发送人", text)
             self.assertIn("接收方", text)
+        self.assertIn("关键名词和结构标签一般保留原词", skill)
+        for text in [workflow, checklist]:
+            self.assertIn("原因分析", text)
         self.assertIn("改稿前小标题清单", checklist)
         self.assertIn("改稿后小标题清单", checklist)
         self.assertIn("小标题数量", checklist)
