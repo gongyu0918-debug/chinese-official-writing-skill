@@ -201,7 +201,8 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assertIn("`references/genre-playbooks.md` | 按文种选读", text)
         self.assertIn("`references/ai-compute-docs.md` | 专项选读", text)
         self.assertIn("AI 算力、GPU/服务器租赁、模型服务、智算中心、成本比较、SLA、安全或验收等专项直接读取", text)
-        self.assertIn("命中 `references/task-route-cards.md` 且卡片能够覆盖任务时，在轻量卡早停", core)
+        self.assertIn("命中 `references/task-route-cards.md` 且卡片能够覆盖任务时", core)
+        self.assertIn("由卡片完成，不再读取长 reference", core)
         self.assertIn("未命中、命中转读条件或卡片不能覆盖时", core)
         self.assertIn("一次只加载实际命中的表项", core)
         for duplicated_leaf in [
@@ -314,7 +315,8 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assertIn("材料未给某一环节时，不为补齐骨架硬写", report)
 
         core = skill.split("## 核心流程", 1)[1].split("## 硬边界", 1)[0]
-        self.assertIn("命中 `references/task-route-cards.md` 且卡片能够覆盖任务时，在轻量卡早停", core)
+        self.assertIn("命中 `references/task-route-cards.md` 且卡片能够覆盖任务时", core)
+        self.assertIn("由卡片完成，不再读取长 reference", core)
         self.assertIn("`references/workflow.md` | 起草前 | 长文、复杂改稿、多材料合稿", skill)
         self.assertIn(
             "`references/genre-checklist-report.md` | 按文种选读 | 报告、情况报告或情况说明需要常规或完整骨架",
