@@ -280,7 +280,7 @@ class SkillBoundaryTests(unittest.TestCase):
         )
 
         self.assertIn("不因文种名称已知而自动预读下列全部长 reference", skill)
-        self.assertIn("先确定创作、修改、只审不改等输出模式", skill)
+        self.assertIn("先确定起草、改稿、复核（默认只审不改）、排版交付模式", skill)
         self.assertIn("未命中时不扩大轻量卡的适用范围", skill)
         self.assertIn("以本页结束 reference 路由", cards)
         self.assertIn("不因文种名称已知而继续预读", cards)
@@ -869,7 +869,7 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assertIn("不附事实边界自证", workflow)
         self.assertIn("只输出正文或改后稿时只交正文", information_selection)
         self.assertIn("在只输出正文模式下附加提示", checklist)
-        self.assertIn("不附正文外说明", skill)
+        self.assertIn("不附其他说明", skill)
         for text in [skill, workflow, checklist]:
             self.assertNotIn("未新增原文外事实", text)
 
@@ -1006,8 +1006,9 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assertIn("来源冲突、无法核验或工具不可用", external_research)
         self.assertIn("默认不外搜补缺项", elements)
         self.assertIn("未因单位名称自动搜索单位公开样文", checklist)
-        for text in [skill, elements, openclaw_skill]:
+        for text in [elements]:
             self.assertIn("不因出现单位名称就搜索单位公开样文", text)
+        self.assertIn("默认不外搜", skill)
         self.assertIn("只出现单位名称，不触发搜索单位公开样文", external_research)
         skill_files = relative_files(ROOT / "chinese-official-writing")
         for forbidden in ["search_units.py", "unit_style_cache.json", "unit-style-registry.md"]:
@@ -1188,8 +1189,11 @@ class SkillBoundaryTests(unittest.TestCase):
 
         self.assertNotIn("正式交付前要素核对卡", skill)
         self.assertIn("references/format-gbt9704.md", skill)
-        self.assertIn("标题用 2 号小标宋", skill)
-        self.assertIn("页码用 4 号半角宋体并加一字线", skill)
+        self.assertNotIn("标题用 2 号小标宋", skill)
+        self.assertNotIn("页码用 4 号半角宋体并加一字线", skill)
+        self.assertIn("读取 `references/format-gbt9704.md` 锁定版式", skill)
+        self.assertIn("2 号小标宋体", format_ref)
+        self.assertIn("3 号仿宋体", format_ref)
         self.assertIn("正式交付前要素核对卡", format_ref)
         self.assertIn("不因缺这些正式要素阻断成稿", format_ref)
         self.assertIn("发文机关", format_ref)
@@ -1564,6 +1568,8 @@ class SkillBoundaryTests(unittest.TestCase):
             review,
         )
         self.assertIn("`<draft>` 替换为待检查文件路径", review)
+        skill = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
+        self.assertIn("检查终稿正文时按 `references/final-review-layers.md` 使用 `draft-body` 模式", skill)
 
     def test_ai_dedupe_prompt_fix_guidance_is_documented(self) -> None:
         skill = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
@@ -1606,9 +1612,9 @@ class SkillBoundaryTests(unittest.TestCase):
             ROOT / "openclaw" / "skills" / "chinese_official_writing" / "references" / "format-gbt9704.md"
         ).read_text(encoding="utf-8")
         self.assertIn("不得把 Markdown `**加粗**`", format_ref)
-        self.assertIn("用户限制输出范围时，以其范围为准", text)
-        self.assertIn("缺失事实不补造，也不在正文中解释“未提供”", text)
-        self.assertIn("只允许某类文后提示时，不扩展到其他提示", text)
+        self.assertIn("交付范围以用户要求为准", text)
+        self.assertIn("允许文后提示时，只列其指定事项", text)
+        self.assertIn("材料没有的事实不补写，也不在正文说明材料缺失", text)
         self.assertIn("按任务渐进读取资料", text)
 
     def test_openclaw_skill_card_source_is_tracked_but_not_packaged_directly(self) -> None:

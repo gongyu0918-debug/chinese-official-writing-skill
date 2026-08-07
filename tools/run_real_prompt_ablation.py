@@ -475,7 +475,7 @@ CASES: list[PromptCase] = [
         prompt="帮市数据资源管理局写一份通知；我只给了单位名称，没让你查官网或样文，不要自动搜索单位风格。",
         checks={
             "file_terms": {
-                "chinese-official-writing/SKILL.md": ["不因出现单位名称就搜索单位公开样文、固定格式或写作风格"],
+                "chinese-official-writing/SKILL.md": ["默认不外搜"],
                 "chinese-official-writing/references/handling-elements.md": [
                     "不因出现单位名称就搜索单位公开样文、固定格式或写作风格",
                     "使用中性称谓和通用文种格式",
@@ -2199,6 +2199,13 @@ FILE_TERM_ALTERNATIVES_BY_CASE: dict[str, list[dict[str, list[str]]]] = {
     ],
     "P097": [
         {
+            "chinese-official-writing/SKILL.md": ["允许文后提示时，只列其指定事项"],
+            "chinese-official-writing/references/information-selection.md": [
+                "输出模式允许文后提示时，在正文后短列",
+            ],
+            "chinese-official-writing/references/review-checklist.md": ["实质缺口只在输出模式允许时短列"],
+        },
+        {
             "chinese-official-writing/SKILL.md": ["用户同时明确允许某类文后提示时，只附其允许的内容"],
             "chinese-official-writing/references/information-selection.md": [
                 "输出模式允许文后提示时，在正文后短列",
@@ -2214,6 +2221,14 @@ FILE_TERM_ALTERNATIVES_BY_CASE: dict[str, list[dict[str, list[str]]]] = {
         }
     ],
     "P101": [
+        {
+            "chinese-official-writing/SKILL.md": [
+                "交付范围以用户要求为准",
+                "材料没有的事实不补写，也不在正文说明材料缺失",
+            ],
+            "chinese-official-writing/references/information-selection.md": ["只输出正文或改后稿时只交正文"],
+            "chinese-official-writing/references/review-checklist.md": ["在只输出正文模式下附加提示"],
+        },
         {
             "chinese-official-writing/SKILL.md": [
                 "不附任何正文外说明或提示",
@@ -2233,6 +2248,13 @@ FILE_TERM_ALTERNATIVES_BY_CASE: dict[str, list[dict[str, list[str]]]] = {
         }
     ],
     "P103": [
+        {
+            "openclaw/skills/chinese_official_writing/SKILL.md": [
+                "交付范围以用户要求为准",
+                "允许文后提示时，只列其指定事项",
+                "材料没有的事实不补写，也不在正文说明材料缺失",
+            ],
+        },
         {
             "openclaw/skills/chinese_official_writing/SKILL.md": [
                 "用户限制输出范围时，以其范围为准",
