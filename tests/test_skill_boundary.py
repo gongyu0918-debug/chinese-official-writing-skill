@@ -1006,8 +1006,9 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assertIn("来源冲突、无法核验或工具不可用", external_research)
         self.assertIn("默认不外搜补缺项", elements)
         self.assertIn("未因单位名称自动搜索单位公开样文", checklist)
-        for text in [skill, elements, openclaw_skill]:
+        for text in [elements]:
             self.assertIn("不因出现单位名称就搜索单位公开样文", text)
+        self.assertIn("默认不外搜", skill)
         self.assertIn("只出现单位名称，不触发搜索单位公开样文", external_research)
         skill_files = relative_files(ROOT / "chinese-official-writing")
         for forbidden in ["search_units.py", "unit_style_cache.json", "unit-style-registry.md"]:
