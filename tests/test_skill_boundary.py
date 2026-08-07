@@ -1564,6 +1564,8 @@ class SkillBoundaryTests(unittest.TestCase):
             review,
         )
         self.assertIn("`<draft>` 替换为待检查文件路径", review)
+        skill = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
+        self.assertIn("检查终稿正文时按 `references/final-review-layers.md` 使用 `draft-body` 模式", skill)
 
     def test_ai_dedupe_prompt_fix_guidance_is_documented(self) -> None:
         skill = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
