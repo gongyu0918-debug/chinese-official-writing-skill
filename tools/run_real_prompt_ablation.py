@@ -475,7 +475,7 @@ CASES: list[PromptCase] = [
         prompt="帮市数据资源管理局写一份通知；我只给了单位名称，没让你查官网或样文，不要自动搜索单位风格。",
         checks={
             "file_terms": {
-                "chinese-official-writing/SKILL.md": ["不因出现单位名称就搜索单位公开样文、固定格式或写作风格"],
+                "chinese-official-writing/SKILL.md": ["默认不外搜"],
                 "chinese-official-writing/references/handling-elements.md": [
                     "不因出现单位名称就搜索单位公开样文、固定格式或写作风格",
                     "使用中性称谓和通用文种格式",
