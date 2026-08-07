@@ -280,7 +280,7 @@ class SkillBoundaryTests(unittest.TestCase):
         )
 
         self.assertIn("不因文种名称已知而自动预读下列全部长 reference", skill)
-        self.assertIn("先确定创作、修改、只审不改等输出模式", skill)
+        self.assertIn("先确定起草、改稿、复核（默认只审不改）、排版交付模式", skill)
         self.assertIn("未命中时不扩大轻量卡的适用范围", skill)
         self.assertIn("以本页结束 reference 路由", cards)
         self.assertIn("不因文种名称已知而继续预读", cards)
