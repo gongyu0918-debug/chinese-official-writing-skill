@@ -87,6 +87,19 @@ def verify(capture_path: Path) -> dict[str, Any]:
     return {"status": "PASS" if not issues else "FAIL", "issues": issues}
 
 
+def count_non_whitespace(capture_path: Path) -> dict[str, Any]:
+    receipt = _read_object(capture_path)
+    body = receipt.get("assistant_body")
+    if not isinstance(body, str):
+        raise ValueError("assistant_body must be a string")
+    return {
+        "status": "PASS",
+        "task_id": receipt.get("task_id"),
+        "assistant_body_sha256": _body_sha256(body),
+        "unicode_non_whitespace_count": sum(1 for character in body if not character.isspace()),
+    }
+
+
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
         description="Freeze and verify first-visible external model outputs."
@@ -99,6 +112,9 @@ def build_parser() -> argparse.ArgumentParser:
 
     verify_parser = subparsers.add_parser("verify")
     verify_parser.add_argument("--capture", type=Path, required=True)
+
+    count_parser = subparsers.add_parser("count")
+    count_parser.add_argument("--capture", type=Path, required=True)
     return parser
 
 
@@ -107,8 +123,10 @@ def main() -> int:
     try:
         if args.command == "capture":
             result = capture(args.input, args.out)
-        else:
+        elif args.command == "verify":
             result = verify(args.capture)
+        else:
+            result = count_non_whitespace(args.capture)
     except FileExistsError as exc:
         print(json.dumps({"status": "FAIL", "error": "capture_exists", "path": str(exc.filename)}, ensure_ascii=False))
         return 3

@@ -93,6 +93,24 @@ class DeterministicCaptureTests(unittest.TestCase):
             self.assertEqual(result["status"], "FAIL")
             self.assertIn("assistant_body_sha256_mismatch", result["issues"])
 
+    def test_count_uses_unicode_whitespace_and_keeps_zero_width_space(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            root = Path(temp_dir)
+            source = root / "input.json"
+            output = root / "capture.json"
+            body = "A B\t中\r\n\u00a0\u3000\u200bＡ"
+            source.write_text(
+                json.dumps({"task_id": "L1", "assistant_body": body}, ensure_ascii=False),
+                encoding="utf-8",
+            )
+            capture_tool.capture(source, output)
+
+            result = capture_tool.count_non_whitespace(output)
+
+            self.assertEqual(result["status"], "PASS")
+            self.assertEqual(result["unicode_non_whitespace_count"], 5)
+            self.assertEqual(result["assistant_body_sha256"], capture_tool._body_sha256(body))
+
 
 if __name__ == "__main__":
     unittest.main()
