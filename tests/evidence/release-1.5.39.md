@@ -2,7 +2,7 @@
 
 ## 当前状态
 
-1.5.39 已完成版本面同步、精简可复验证据包、发布前工程门和两家商店 dry-run。本文件首次提交时尚未推送产品提交、创建 `v1.5.39` tag、GitHub Release 或向 ClawHub、skillhub.cn 发起正式提交；实际发布提交与平台回执在动作完成后补写，不能由 dry-run 推断。
+1.5.39 已完成 GitHub、ClawHub 和 skillhub.cn 各一次正式提交。GitHub `main`、annotated tag `v1.5.39` 和正式 Release 的产品提交均为 `e1de44abefc3ec91f68be55be7abcc616aae105a`；本次回执文档提交继续推进 `main`，不移动发布 tag。ClawHub 和 skillhub.cn 的公开查询首次仍显示 1.5.38，属于异步传播，不重复提交。
 
 ## 本轮改动
 
@@ -20,7 +20,8 @@
 - 固定 1.5.38 产品基线：`c3fa2128ef9426b4ebb135986a7e19feccf08421`（annotated tag `v1.5.38` 解引用提交）。
 - 五原子归并：`77988f51`；成本与质量记录：`d9b7cefc`。
 - Word 对齐修复预注册：`68fc4e01`。
-- 1.5.39 最终产品提交、tag object 和 tag 解引用提交在正式发布后补写。
+- 1.5.39 最终产品提交：`e1de44abefc3ec91f68be55be7abcc616aae105a`。
+- annotated tag `v1.5.39` 的 tag object：`6eddd2c6db36cf9d18bb66e1eb5145f304a1f0d3`；解引用提交同为 `e1de44abefc3ec91f68be55be7abcc616aae105a`。
 
 ## 发布前验证（2026-08-08 实跑）
 
@@ -72,6 +73,11 @@ Promptfoo 使用本地 stub，只证明评测入口和结构未回退，不作�
 4. writer 回执未暴露可独立核验的具体模型标识，故本轮精简包模型字段为 `unavailable`。
 5. R2 用普通文本展示版式清单，没有生成或渲染 DOCX；本轮只证明格式 reference 的要素承载和正文事实边界，不能替代真实 OOXML/逐页视觉验收。
 
-## 发布边界
+## 实际发布与回执
 
-GitHub、ClawHub、skillhub.cn 在收到正式提交回执前均记为未发布。平台一旦返回 accepted、published、pending 或其他提交回执，不因公开 latest、审核、扫描或索引传播延迟重复提交。小红书 Red SkillHub 不在范围内，不调用其 CLI。
+- GitHub：`origin/main` 已包含产品提交；远端 annotated tag `v1.5.39` 的 tag object 为 `6eddd2c6db36cf9d18bb66e1eb5145f304a1f0d3`，解引用提交为 `e1de44abefc3ec91f68be55be7abcc616aae105a`。正式 Release 为非草稿、非 prerelease，`publishedAt=2026-08-08T06:50:04Z`，地址为 `https://github.com/gongyu0918-debug/chinese-official-writing-skill/releases/tag/v1.5.39`。
+- ClawHub：正式提交只执行一次，回执为 `ok=true`、`status=published`、`versionId=k9729c2a4wqd2bdpapsk548vwh8c3tqb`、32 个文件、fingerprint `a90a449c3702ab3b6a57a0ed553c46af49ffee7c0ece2cd092165226fa5b95b8`。首次只读查询仍显示公开 `latestVersion=1.5.38`、`tags.latest=1.5.38`；精确查询 1.5.39 返回传播期 `Version not found`。当前 moderation `clean` 对应仍公开的 1.5.38，不推断为 1.5.39 已完成扫描。
+- skillhub.cn：正式提交只执行一次，回执为 `ok=true`、`skillId=70149`、`versionId=213186`、31 个文件、fingerprint `8de826e5a438aaa206bafc851b5322be73bca48fa23534e162f9d94ea5380df2`、`tags.latest=1.5.39`；提交回执中的 review、security scan 和 content audit 均为 `pending`。首次公开搜索仍显示 1.5.38，不用旧版公开审核或报告推断 1.5.39 状态。
+- 小红书 Red SkillHub 未调用。
+
+平台已返回正式提交回执；后续即使公开 latest、审核、扫描或索引传播延迟，也不重复提交。

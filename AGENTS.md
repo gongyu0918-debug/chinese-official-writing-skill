@@ -1,5 +1,11 @@
 # AGENTS.md
 
+## 1.5.39 已发布（2026-08-08）
+
+1.5.39 以 `v1.5.38=c3fa2128ef9426b4ebb135986a7e19feccf08421` 为固定发布基线，纳入五项已经单独和组合验证的入口清晰化改动：输出范围自然化、Word 细则下沉至格式 reference、搜索边界去冗余、终稿 lint 使用 `draft-body` 指针、模式词与信息选择/轻量卡顺序清晰化。发布前自包含 A/B 发现 Word 正文“两端对齐”在 Candidate 3/3 缺失，按预注册只在 `format-gbt9704.md` 补一条对齐规则；修复后 2/2 真实复放通过。完整原稿、匿名裁决和修复证据见 `tests/evidence/v1539-compact-repro-pack-20260808.md`。
+
+发布提交和 annotated tag `v1.5.39` 的解引用提交均为 `e1de44abefc3ec91f68be55be7abcc616aae105a`，tag object 为 `6eddd2c6db36cf9d18bb66e1eb5145f304a1f0d3`；GitHub Release 已公开。ClawHub 正式回执为 `versionId=k9729c2a4wqd2bdpapsk548vwh8c3tqb`、32 个文件、fingerprint `a90a449c3702ab3b6a57a0ed553c46af49ffee7c0ece2cd092165226fa5b95b8`。skillhub.cn 正式回执为 `skillId=70149`、`versionId=213186`、31 个文件、fingerprint `8de826e5a438aaa206bafc851b5322be73bca48fa23534e162f9d94ea5380df2`、`tags.latest=1.5.39`，三项审核均为 pending。首次发布后公开查询仍显示 1.5.38，属于异步传播，不重复提交。小红书 Red SkillHub 未触碰。完整回执见 `tests/evidence/release-1.5.39.md`。
+
 ## 1.5.36 已发布（2026-08-05）
 
 1.5.36 以 `v1.5.35=d357c9fb340120c067c1e9efb8d4404c0a9d70e6` 为固定发布
