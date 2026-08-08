@@ -105,6 +105,9 @@ def verify(capture_path: Path) -> dict[str, Any]:
 
 
 def count_non_whitespace(capture_path: Path) -> dict[str, Any]:
+    verification = verify(capture_path)
+    if verification["status"] != "PASS":
+        return verification
     receipt = _read_object(capture_path)
     body = receipt.get("assistant_body")
     if not isinstance(body, str):
@@ -264,7 +267,7 @@ def main() -> int:
         return 2
 
     print(json.dumps(result, ensure_ascii=False, indent=2))
-    if args.command in {"verify", "amount-check"} and result["status"] != "PASS":
+    if args.command != "capture" and result["status"] != "PASS":
         return 2
     return 0
 

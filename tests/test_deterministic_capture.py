@@ -136,6 +136,32 @@ class DeterministicCaptureTests(unittest.TestCase):
             self.assertEqual(result["unicode_non_whitespace_count"], 5)
             self.assertEqual(result["assistant_body_sha256"], capture_tool._body_sha256(body))
 
+    def test_count_rejects_a_tampered_capture(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            root = Path(temp_dir)
+            source = root / "input.json"
+            output = root / "capture.json"
+            source.write_text(
+                json.dumps({"task_id": "L1", "assistant_body": "original"}),
+                encoding="utf-8",
+            )
+            capture_tool.capture(source, output)
+            receipt = json.loads(output.read_text(encoding="utf-8"))
+            receipt["assistant_body"] = "changed"
+            output.write_text(json.dumps(receipt), encoding="utf-8")
+
+            result = capture_tool.count_non_whitespace(output)
+            completed = subprocess.run(
+                [sys.executable, str(SCRIPT), "count", "--capture", str(output)],
+                check=False,
+                capture_output=True,
+                text=True,
+            )
+
+            self.assertEqual(result["status"], "FAIL")
+            self.assertIn("assistant_body_sha256_mismatch", result["issues"])
+            self.assertEqual(completed.returncode, 2)
+
     def test_amount_check_uses_decimal_and_explicit_source_quotes(self) -> None:
         with tempfile.TemporaryDirectory() as temp_dir:
             packet = Path(temp_dir) / "packet.json"
