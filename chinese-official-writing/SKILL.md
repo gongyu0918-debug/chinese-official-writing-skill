@@ -87,7 +87,7 @@ metadata:
 3. 起草前按 `references/handling-elements.md` 核对发文主体、受文对象、事项、依据、时限、责任、附件、反馈渠道、数据来源和请批事项；不使用泛称或占位符补齐未给要素。请示、报告和上报申请缺主送机关、发文或申请单位、成文日期时，识别为正式报送结构缺口，信息去向仍按 `references/information-selection.md` 处理。
 4. 成文前搭文稿蓝图：提纲 -> 段落安排 -> 小段要点，并按 `references/argument-chains.md` 组织论证。
 5. 按章节或段落生成正文。每段只服务一个论点，通常按“结论前置、事实支撑、判断归纳、事项落点”展开；用户只给问题清单、任务清单或明确要求不新增事实时，优先保留原词和事实边界，不为显得自然或完整而补解释。
-6. 小段写完先审，小节写完再审，全文合并后做总审；总审时按 `references/final-review-layers.md` 先查硬边界，再看质量建议。成稿前按 `references/proofreading-checklist.md` 顺手做 AI 写稿轻量校对，只看语言、引用保真和稿内一致性风险，不输出长篇审稿报告，不升级为事实核验流程。
+6. 小段写完先审，小节写完再审，全文合并后做总审；总审时按 `references/final-review-layers.md` 先查硬边界，再看质量建议。成稿前按 `references/proofreading-checklist.md` 顺手做 AI 写稿轻量校对，只看语言、引用保真和稿内一致性风险，不输出长篇审稿报告，不升级为事实核验流程。检查终稿正文时按 `references/final-review-layers.md` 使用 `draft-body` 模式。
 7. 编辑 DOCX 时保留最新版和原有样式；除非已明确指定覆盖，默认另存新版本。Word 操作和版式核查配合 DOCX/document 技能完成。
 8. 多轮修改时，以用户最新版底稿为唯一主线，先列本轮结构动作和文种格式锁定项，再改正文。结构动作包括增删自然段、调整段落顺序、替换主标题或小标题、变更提纲、删增要点、变更发文主体、主送或接收方。
 9. 处理公开网页复制稿时，先剥离来源、字号、打印、收藏、责任编辑、栏目路径等网页元信息。遇到“关于印发《方案/规划/办法》的通知”时，区分通知壳、被印发文件正文和附件关系，按用户指定对象修改，不把附件标题或页面标题误当正文小标题。
@@ -152,4 +152,4 @@ metadata:
 
 ## 脚本
 
-检查终稿正文时按 `references/final-review-layers.md` 使用 `draft-body` 模式；检查 `.txt`、`.md` 或 `.docx` 草稿时可使用 `scripts/prose_lint.py`。需要检查重复事项和格式噪点时加 `--structure --format`。脚本只提示语言、格式和重复风险，不检查文种要素完整性；文种和办理要素仍按 `references/handling-elements.md` 与命中的文种检查叶复核，报告使用 `references/genre-checklist-report.md`，请示和申请使用 `references/genre-checklist-request.md`，可研只审使用 `references/genre-checklist-feasibility-review.md`，其他文种使用 `references/genre-checklist.md`。脚本不自动改写；不得把脚本结果作为不加判断的硬性清洗命令。
+检查 `.txt`、`.md` 或 `.docx` 草稿时可使用 `scripts/prose_lint.py`。需要检查重复事项和格式噪点时加 `--structure --format`。脚本只提示语言、格式和重复风险，不检查文种要素完整性；文种和办理要素仍按 `references/handling-elements.md` 与命中的文种检查叶复核，报告使用 `references/genre-checklist-report.md`，请示和申请使用 `references/genre-checklist-request.md`，可研只审使用 `references/genre-checklist-feasibility-review.md`，其他文种使用 `references/genre-checklist.md`。脚本不自动改写；不得把脚本结果作为不加判断的硬性清洗命令。
