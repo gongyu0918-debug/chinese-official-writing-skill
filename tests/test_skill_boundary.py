@@ -1044,7 +1044,9 @@ class SkillBoundaryTests(unittest.TestCase):
         external_research = (
             ROOT / "chinese-official-writing" / "references" / "external-research.md"
         ).read_text(encoding="utf-8")
-        agents = (ROOT / "AGENTS.md").read_text(encoding="utf-8")
+        maintenance_history = (
+            ROOT / "docs" / "evidence" / "AGENTS-history-through-v1.5.39.md"
+        ).read_text(encoding="utf-8")
 
         self.assertIn("不使用泛称或占位符补齐未给要素", skill)
         self.assertIn("段落骨架只组织可核对内容", workflow)
@@ -1080,8 +1082,11 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assertIn("搜索来源清单", checklist)
         self.assertIn("正文内容已经定稿", format_ref)
         self.assertIn("默认另存新版本", format_ref)
-        self.assertIn("prompt/markdown", agents)
-        self.assertIn("禁止直接誊抄代码、脚本、正则、模板库、大段 prompt、固定话术或模板正文", agents)
+        self.assertIn("prompt/markdown", maintenance_history)
+        self.assertIn(
+            "禁止直接誊抄代码、脚本、正则、模板库、大段 prompt、固定话术或模板正文",
+            maintenance_history,
+        )
         for maintenance_gate in [
             "不新增重排版引擎",
             "不扩大默认联网",
@@ -1089,7 +1094,7 @@ class SkillBoundaryTests(unittest.TestCase):
             "不破坏用户模板和字段式材料",
             "落地后必须和上一基线做消融",
         ]:
-            self.assertIn(maintenance_gate, agents)
+            self.assertIn(maintenance_gate, maintenance_history)
         for runtime_prompt in [skill, workflow, checklist, genre_checklist, genre_playbooks]:
             self.assertNotIn("社区技能", runtime_prompt)
             self.assertNotIn("prompt/markdown", runtime_prompt)

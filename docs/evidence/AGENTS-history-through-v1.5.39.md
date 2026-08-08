@@ -1,0 +1,797 @@
+# AGENTS.md
+
+## 1.5.39 已发布（2026-08-08）
+
+1.5.39 以 `v1.5.38=c3fa2128ef9426b4ebb135986a7e19feccf08421` 为固定发布基线，纳入五项已经单独和组合验证的入口清晰化改动：输出范围自然化、Word 细则下沉至格式 reference、搜索边界去冗余、终稿 lint 使用 `draft-body` 指针、模式词与信息选择/轻量卡顺序清晰化。发布前自包含 A/B 发现 Word 正文“两端对齐”在 Candidate 3/3 缺失，按预注册只在 `format-gbt9704.md` 补一条对齐规则；修复后 2/2 真实复放通过。完整原稿、匿名裁决和修复证据见 `tests/evidence/v1539-compact-repro-pack-20260808.md`。
+
+发布提交和 annotated tag `v1.5.39` 的解引用提交均为 `e1de44abefc3ec91f68be55be7abcc616aae105a`，tag object 为 `6eddd2c6db36cf9d18bb66e1eb5145f304a1f0d3`；GitHub Release 已公开。ClawHub 正式回执为 `versionId=k9729c2a4wqd2bdpapsk548vwh8c3tqb`、32 个文件、fingerprint `a90a449c3702ab3b6a57a0ed553c46af49ffee7c0ece2cd092165226fa5b95b8`；公开 `latestVersion`、`tags.latest` 已切到 1.5.39，moderation 和版本级 security 均为 `clean`。skillhub.cn 正式回执为 `skillId=70149`、`versionId=213186`、31 个文件、fingerprint `8de826e5a438aaa206bafc851b5322be73bca48fa23534e162f9d94ea5380df2`、`tags.latest=1.5.39`，三项审核均为 pending；公开搜索仍显示 1.5.38，不重复提交。小红书 Red SkillHub 未触碰。完整回执见 `tests/evidence/release-1.5.39.md`。
+
+## 1.5.36 已发布（2026-08-05）
+
+1.5.36 以 `v1.5.35=d357c9fb340120c067c1e9efb8d4404c0a9d70e6` 为固定发布
+基线，只发布 `workflow.md` 的一项事实边界减负：把重复的六行否定清单归并为
+一条正向事实源规则，继续转读 `information-selection.md` 和已命中的轻量任务卡，
+规范化字符净减 363。历史正确路由的同机制 A/B 为 Candidate 5 胜、Baseline
+1 胜；“5 胜”不是主线胜出。发布前清洁复验两臂均无硬回退，但实际读取文件不
+对称，因此没有计入比较胜负，也没有补抽。
+
+本地曾混入但只达到 `KEEP ISOLATED` 的 lint/anti-AI 研究改动已由
+`a3a20f8e` 从发布产品中撤出；1.5.36 没有改变文种路由、reference 加载条件、
+篇幅规则、输出模式、复核顺序、修改次数或回退方式。发布候选全量 unittest
+442/442、Promptfoo smoke 20/20；固定 1.5.35 与 Candidate 确定性消融均为
+111/111；quick validate、镜像同步、Python 编译和 `git diff --check` 均通过。
+
+发布提交和 annotated tag `v1.5.36` 的解引用提交均为
+`8bd4eb8c8b4f233445e07ebf4d3f54ceb5777aa2`，tag object 为
+`b0655f0c163eff92f58e69670b1725b63a232eee`，GitHub Release 已公开。ClawHub
+正式回执为 `versionId=k97emf7mhg4adgdbastvnnj3y58bwhak`、32 个文件、
+fingerprint `52c36b80d263087515c13c72bb0f460e795ea0b6bb0324daba3cab64553f430c`，
+公开 `latestVersion=1.5.36`，moderation 为 `clean`。skillhub.cn 正式回执为
+`skillId=70149`、`versionId=197616`、31 个文件、fingerprint
+`2dd2505f454335ee85d3934e8f8fd820f4b552102feca9b3edbbe6b3a67096c1`，
+`tags.latest=1.5.36`；三项审核为 pending，首次公开详情仍为 1.5.35，不重复
+提交。小红书 Red SkillHub 未触碰。完整证据见
+`tests/evidence/release-1.5.36.md`。
+
+## 1.5.35 已发布（2026-08-04）
+
+1.5.35 以 `v1.5.34=e85dc6a66fa300e8136eedf26af4534d2715d2fb` 为固定发布
+基线，只纳入两项已经在独立 worktree 完成真实写稿、匿名盲审和组合回归的修改：
+方案、实施方案和建设方案叶改用目标—任务—路径主线，其他要素按材料及用户模板
+落位；新闻消息、新闻评论补入权威文种路由，评测 provider 的只审任务加载既有
+新闻专项叶。固定七要素方案骨架和在新闻起草阶段提前加载复核规则的两个 R1
+实现均未合入。
+
+方案两题匿名盲审均由 Candidate 胜出，新闻歧义路由题也由 Candidate 胜出；相关
+稿件未见事实、数字、日期、主体、状态、文种或输出范围硬回退。组合验证和原稿
+入口见 `tests/evidence/plan-news-routing-integration-20260803.md`。
+
+发布候选全量 unittest 442/442、Promptfoo smoke 20/20；固定 v1.5.34 与 Candidate
+确定性消融均为 111/111；quick validate、镜像同步和 `git diff --check` 通过。
+ClawHub dry-run 为 32 文件、fingerprint
+`f7aace001f59308fa0f2db737b4449a81a1e22a63350513d6fda645985194a25`；
+skillhub.cn 清洁包为 31 文件、排序清单 SHA-256
+`56859cebb153adef3379bd23a552266e55c694c19c42d3cfd6d38b520bc78655`，dry-run
+精确返回 1.5.35。首次清洁包审计在 dry-run 前发现并移除了误复制的
+`delivery-review-gate.md`，修正后缺失、额外、哈希不一致和禁入文件均为 0。
+
+最终发布提交和 annotated tag `v1.5.35` 的解引用提交均为
+`d357c9fb340120c067c1e9efb8d4404c0a9d70e6`。一次性定时任务于 2026-08-04
+09:01（Asia/Shanghai）启动，但 PowerShell 错误解析未加引号的
+`v1.5.35^{commit}`，造成 tag 不一致的假失败，停止前没有执行平台提交。使用带引号
+的 tag 解引用和 tag object 复核后，按冻结包完成一次正式发布。
+
+GitHub `origin/main`、远端 tag 和 Release 已闭环；Release 地址为
+`https://github.com/gongyu0918-debug/chinese-official-writing-skill/releases/tag/v1.5.35`。
+ClawHub 正式回执为 `versionId=k976rg5tady45fbwd965z7gwjx8bt2wf`、32 个文件、
+fingerprint `f7aace001f59308fa0f2db737b4449a81a1e22a63350513d6fda645985194a25`，
+公开 `latestVersion=1.5.35`，moderation 为 `clean`。skillhub.cn 正式回执为
+`skillId=70149`、`versionId=192938`、31 个文件、fingerprint
+`faad8e3d353e8f42f1a1f8d028b658f4d42a38fbc8c61789062ceab026d89825`；
+`tags.latest=1.5.35`，首次回执的 review、security scan 和 content audit 均为
+`pending`，公开详情页 `latestVersion` 尚停留 1.5.34，不重复提交。小红书 Red
+SkillHub 未触碰。
+
+述职专叶、叶内“使用方式”说明压缩和 Candidate H 均从冻结发布提交另建隔离
+worktree 研究，不进入 1.5.35。完整门禁与定时发布边界见
+`tests/evidence/release-1.5.35.md`。
+
+## 1.5.34 小版本更新
+
+1.5.34 以 `v1.5.33=1ea3f5b6ccccd5ef772803e264087adcf2fb5515` 为固定发布
+基线，只发布已经独立验证并完成组合回归的净收益：终稿评估入口统一显式使用
+`draft-body`；`prose_lint.py` 增加保护性否定收束、连续解释性句尾和成簇场景套话
+线索；成稿复核对保护性命中执行一次保留、进行态改写或删除的语义选择；入口输出
+范围规则完成一处等义压缩。
+
+保护性收束完整稿 A/B 为 Candidate 2 胜、1 平，三题均无事实、数字、主体、责任、
+状态、文种、格式或输出范围硬回退。场景套话规则正例 5/5、目标 clean 样本 0/27
+误报；解释性句尾在两份历史同机制稿中命中，clean 样本 0/19；输出范围两题行为
+核验通过。完整证据见 `tests/evidence/release-1.5.34.md`。
+
+本版继续只定位、不自动改稿，不新增自动改稿循环、强制 Hook 或默认联网。已判定
+NO MERGE 的欠写章节平衡候选没有进入本次发行。
+
+发布候选全量 unittest 440/440、Promptfoo smoke 20/20；固定 1.5.33 为
+110/111，Candidate 为 111/111，基线唯一失败是没有本版新增的终稿检测调用证据。
+quick validate、镜像同步、差异检查以及 ClawHub 32 文件、skillhub.cn 31 文件
+清洁包 dry-run 均通过。
+
+发布提交为 `e85dc6a66fa300e8136eedf26af4534d2715d2fb`；GitHub `main`、annotated
+tag `v1.5.34` 的解引用提交和正式 Release 均已闭环。ClawHub 正式回执为
+`versionId=k97eys891sb0n1pvpqr6rycwfd8bsgeg`、32 个文件、fingerprint
+`4f4c6347ca9f576d078863a1ca8886170aaec1cf5a708a6a07e88b924ebf0239`；首次公开
+查询仍为 1.5.33，且五个单项标签仍指向 1.5.31，不据旧版 clean 状态推断本版
+审核，也不重复提交。skillhub.cn 正式回执为 `skillId=70149`、
+`versionId=190499`、31 个文件、fingerprint
+`e85ac984363c2beefccee465c68b7e2b71960161818be521bf8ba7e099de8428`，
+`tags.latest=1.5.34`；review、security scan 和 content audit 均为 pending，首次
+公开搜索仍为 1.5.33。完整状态见发布证据。
+
+## 1.5.33 小版本更新
+
+1.5.33 以 `v1.5.32=dbaa5b19ed403cbcf1e133ad6c8b91d9900425b9` 为固定发布
+基线，只发布已经在独立 worktree 验证并完成组合回归的净收益：方案和建设方案
+进入专用起草叶；入口七项重复或低频细则下沉，审稿模式进一步压缩为专项引用；
+可研只审不改进入专用检查叶；`prose_lint.py --delivery-mode draft-body` 补充识别带编号的
+文后提示标题。
+
+方案目标题命中上下文减少 2551 字符、约 18.34%，真实目标题明显胜出；入口两轮
+合计净减 654 个规范化字符，真实复验为 1 胜 3 难分；可研复核三题为 1 胜 2
+难分；文后提示四模式通过，当前主线未复现提示误入正文。完整验证、发行包清单、
+平台回执和剩余风险见 `tests/evidence/release-1.5.33.md`。
+
+本版不增加自由扩写公式、自动改稿循环或新的强制 Hook。文后提示是否应出现仍由
+输出模式和语义判断决定；lint 只定位，不自动删除或改写。
+
+发布候选全量 unittest 417/417、Promptfoo smoke 20/20；固定 1.5.32 为
+110/111，Candidate 为 111/111，基线唯一失败是没有本版新增的方案专叶。
+quick validate、镜像同步和差异检查通过；ClawHub 32 文件与 skillhub.cn 31 文件
+清洁包 dry-run 通过。
+
+发布提交为 `1ea3f5b6ccccd5ef772803e264087adcf2fb5515`，annotated tag
+`v1.5.33` 解引用到同一提交；GitHub Release 已公开。ClawHub 和 skillhub.cn 的
+公开 latest 均为 `1.5.33`，ClawHub moderation 为 clean，skillhub.cn 两项安全
+扫描仍在排队。ClawHub 本版来源证明为 `unavailable`，不得由包哈希或公开版本号
+反推 provenance；详细回执见发布证据。
+
+## 1.5.32 小版本更新
+
+1.5.32 以 `v1.5.31=e8c077cb1d6c6fe02bec71634140793aeeba5a5b` 为固定发布
+基线，集中发布已经独立验证的专项路由、上下文减载和篇幅校准原子：新闻消息与
+新闻评论进入专用叶；工作总结规则原文迁入专用叶；核心路由和稀疏工作流中的
+重复说明完成归并；入口删除字数上限后的固定 5%-10% 余量要求；新闻评论推演
+增加一次事实依据与适用范围复核。
+
+工作总结命中上下文减少 3187 字符、约 22.46%。篇幅余量删除与新闻评论定向
+真实 A/B 均为 3 胜 0 负，未见事实、状态、文种、格式或 P0 硬回退。完整发布
+验证、发行包清单、平台回执和剩余风险见 `tests/evidence/release-1.5.32.md`。
+
+发布候选全量 unittest 407/407、Promptfoo smoke 20/20；固定 1.5.31 为
+109/110，Candidate 为 110/110，基线唯一失败是没有本版新增的工作总结专项叶。
+quick validate、镜像同步、差异检查以及 ClawHub 30 文件、skillhub.cn 29 文件
+清洁包 dry-run 均通过。
+
+产品提交为 `dbaa5b19ed403cbcf1e133ad6c8b91d9900425b9`，annotated tag object
+为 `8e1a3cf4e3406b0c993da7ce9ff433647811aac5`，tag 解引用提交与产品提交
+一致；GitHub Release 已公开且不是 draft 或 prerelease。ClawHub 一次正式
+提交返回 `versionId=k9760bqzrrbnsqz0wccq5ws0s58bngds`、30 个文件和 fingerprint
+`17019404b1a9cee9623960310f1b74e1de98088631f2035feab6f31865ce6160`；
+首次公开查询仍为 1.5.31。skillhub.cn 一次正式提交返回 `skillId=70149`、
+`versionId=187025`、29 个文件和 fingerprint
+`150378819d3e19a9ce86d4d1f273781c4225f4b599f3e340fe83143e31ee0768`，
+`tags.latest=1.5.32`，三项审核均为 pending；首次公开 `latestVersion` 仍为
+1.5.31。异步传播不触发重复发布。
+
+## 1.5.31 小版本更新
+
+1.5.31 以 `v1.5.30=176f1eb64e5ff8d3d557e29d18c2be9e2d15dcc4` 为固定发布
+基线，只吸收两项已经独立验证的正向原子：工作总结、工作要点和周报可围绕
+材料已给的下一步、未来安排或改进计划，说明对象、目的或与前文工作的衔接；
+写作入口移除维护者专用 CI 调用示例，`prose_lint.py` 的严格模式和退出码能力
+继续保留。
+
+本版不改变任务路由、reference 加载条件、复核顺序、输出模式、修改次数、
+Hook、FSM 或回退方式。全量 unittest 395/395、Promptfoo smoke 20/20、
+固定 1.5.30 与 Candidate 确定性消融均为 110/110，quick validate、镜像同步
+和 diff 检查通过。真实组合 sanity 未见事实、状态、文种或 P0 硬回退；两稿
+共同偏短仍作为既有风险，不宣称已解决篇幅不足。
+
+会议培训/决策分流的外部借鉴候选已完成隔离真实测试，因一题编辑成本上升判为
+MIXED，不进入 1.5.31。新闻消息和新闻评论专项叶继续留待下一轮。发布、包清单、
+平台回执和剩余风险见 `tests/evidence/release-1.5.31.md`。
+
+产品提交为 `e8c077cb1d6c6fe02bec71634140793aeeba5a5b`，annotated tag object
+为 `04f8928d6bb7794291ef83b33183c59c837141fb`，tag 解引用提交与产品提交
+一致；GitHub Release 已公开且不是 draft 或 prerelease。ClawHub 一次正式
+提交返回 `versionId=k97f7p972f02xbdcfr3bfk3gjd8bjj7w`、27 个文件和
+fingerprint `e0f18a01a9f2c190db9594810883ef4810af0d3a570019a3cd75b54c32b8fb57`；
+首次公开查询仍为 1.5.30。skillhub.cn 一次正式提交返回 `skillId=70149`、
+`versionId=184901`、26 个文件和 fingerprint
+`ce67059c80fa6c3cd94295419adbcd5433138fb5aa074ae969bb220a57c08d13`，
+`tags.latest=1.5.31`，三项审核均为 pending；首次公开搜索仍为 1.5.30。
+异步传播不触发重复发布。
+
+## 1.5.30 小版本更新
+
+1.5.30 以 `v1.5.29=426911ac76538a582f5d7c1a8c9ef63ea12a9833` 为固定
+发布基线，只修复 `prose_lint.py` 对 `XX类`、`XX系统`、`XX项` 等紧接中文
+的 X 类占位识别盲区。实现保留合法公文文号，不扩大到小写、混写或全角 X；
+正文生成、任务路由、reference 加载、复核顺序和回退方式不变。
+
+外部候选只作为线索。独立复现采用更窄的通用规则，4 个定向样本、clean corpus
+和全量回归均通过后才进入本地 `main`。发布、测试、包清单和平台回执见
+`tests/evidence/release-1.5.30.md`。
+
+产品提交为 `176f1eb64e5ff8d3d557e29d18c2be9e2d15dcc4`；GitHub `main`、
+annotated tag 解引用提交和正式 Release 均已指向该提交，tag object 为
+`33797fad66478f2ad109a22a6ab8ed6491565ce4`。ClawHub 一次正式提交返回
+`versionId=k9730sk5zcfndvyxy35y3pgk1d8bheyw`、27 个文件和 fingerprint
+`589214d353391f1d8bf382d4015f0821a3ecd14caa15157383a0ca86ee894f63`；
+首次公开 latest 仍为 1.5.29，精确查询 1.5.30 返回传播中的
+`Version not found`。skillhub.cn 一次正式提交返回 `skillId=70149`、
+`versionId=183337`、26 个文件和 fingerprint
+`3430361c483e7c44e71073fe924f76b1b2d538e9a7d386dafac2dfd42b35233b`，
+`tags.latest=1.5.30`，三项审核均为 pending；首次公开搜索仍为 1.5.29。
+异步传播不触发重复发布。
+
+## 1.5.29 紧急更新
+
+1.5.29 以 `v1.5.28=f7570d4df5064582946732d283d30e86063ef142` 为固定发布
+基线，只在信息选择单一规则源增加一句正向承载规则：已进入正文的事项直接
+陈述材料已给的业务事实和当前状态。该改动用于降低事实后的来源自述、无锚定
+结论限定和解释性尾句，不改变任务路由、reference 加载、文种规则、复核顺序、
+输出模式、修改次数、脚本、FSM 或回退方式。
+
+两道自然任务均未出现 Candidate 独有硬回退，其中异常通报对来源泄露和无锚定
+否定有直接改善；受控 R2 因写手多次生成和基线篇幅不足作废，未计入胜负。
+发布、测试、无效样本边界和平台回执见
+`tests/evidence/release-1.5.29.md`。
+
+产品提交为 `426911ac76538a582f5d7c1a8c9ef63ea12a9833`；GitHub `main`、
+annotated tag 解引用提交和正式 Release 均已指向该提交，tag object 为
+`6f2fd6947170b08db2d834e9c5e376c07d9ac26e`。ClawHub 一次正式提交返回
+`versionId=k976k9vmqptvw5s7nhxfa5az9d8bfey8`、27 个文件和 fingerprint
+`2f376074060c035388b3763e459b162d062f37dd72903ebe5ff51405436ef5dc`；
+提交后首次公开查询仍显示 1.5.28。skillhub.cn 一次有效正式提交返回
+`skillId=70149`、`versionId=181382`、26 个文件和 fingerprint
+`1feaa5050d479df6c9d72c275ee6ded5ef9606abdfd80c815a7289f53f057d2d`，
+`tags.latest=1.5.29`，三项审核均为 pending；首次公开搜索和
+`latestVersion` 仍为 1.5.28。异步传播不触发重复发布。
+
+## 1.5.28 正式发布
+
+1.5.28 以 `v1.5.27=cfd7bd039e5655ba3e9fe7680206b520d7582072` 为固定
+发布基线，只包含两项已验证净收益：`prose_lint.py` 的行为等价职责拆分，以及
+通用 Word 复核中一处由近场格式规则和通用交付检查重复承担的 Markdown 清理
+半句减载。培训/信息传达会议纪要轻量路由和可研只审专用叶均留在独立研究
+worktree，不进入本版。发布、测试和四平台回执见
+`tests/evidence/release-1.5.28.md`。
+
+产品提交为 `f7570d4df5064582946732d283d30e86063ef142`；GitHub `main`、annotated
+tag 解引用提交和正式 Release 均已指向该提交，tag object 为
+`7b8a650f899acecf6396db20444cdf375ecd1569`。ClawHub 一次正式提交返回
+`versionId=k972df3qcnhrhdtyxbetaydhw18bc8j9`、27 个文件和 fingerprint
+`0b6f8b3e17bbb704cfe9718ce25a2a4ca012ce5e4a9a19fcdb599ffc04eb36ea`；
+提交后首次公开查询仍显示 1.5.27，moderation 为 clean。skillhub.cn 一次正式
+提交返回 `skillId=70149`、`versionId=178147`、26 个文件和 fingerprint
+`91b11ce218d957aa170d68c56484674882e28a17f402a8c65443836269f79e22`，
+`tags.latest=1.5.28`，三项审核均为 pending。异步传播不触发重复发布。
+
+本轮经用户明确恢复一次小红书 Red SkillHub 更新。官方 CLI 0.1.1 的 dry-run
+通过，真实上传达到 100%，随后服务端以“Skill ID 已被占用”拒绝，没有
+`RESULT_JSON.status=submitted`，因此 Red 仍停留在最后可验证成功版本 1.5.7。
+只读核验确认官方 CLI 仅支持 `login`、`publish`、`whoami`、`logout`，没有
+`update` 命令，也不会把 `skill_id` 或 `version_id` 写入提交载荷；官方
+`upload.md` 当前返回 HTTP 500，未发现第二条正式更新路径。本轮不更换
+identifier、不创建第二个 Skill、不重复提交。
+
+## 1.5.27 正式发布
+
+1.5.27 以 `v1.5.26=50afb5ffd9be88327ad1b4dd25d87c1377d39de9` 为固定产品基线，只合入两项已经独立验证的产品改动：普通函起草、错字/标点/格式及明确局部措辞修改读取专用叶，涉及事务动作、状态、条件、范围或结构的实质改稿继续读取完整 playbook；`prose_lint.py` 收紧圆括号占位检测，正常办理要求不再因“确认”“补充”等词误报，真实待确认、待补充、待填写、待签发及日期占位仍保留召回。A/B provenance 预检器只用于区分严格可比与探索性证据，不改变写稿行为。
+
+普通函命中文种 reference 从 3529 字符降至 852 字符，减少 2677 字符、约 75.86%。扩展真实验证为 5 胜 1 负，唯一负项同题复放持平；针对该负项的共性机制改为复杂改稿读取完整 playbook，三题为 1 胜 2 平，集成回归覆盖普通函起草和实质改稿均 PASS。括号占位修复的三个正常指令不再误报，八类真实占位仍全部命中。发布级验证、清洁包和平台回执见 `tests/evidence/release-1.5.27.md`；失败的调研/可研叶和未验证的外部借鉴候选不进入本版。
+
+GitHub `main`、annotated tag 解引用提交和正式 Release 均指向 `cfd7bd039e5655ba3e9fe7680206b520d7582072`，tag object 为 `16157ecd43ffa0243ec0a98d14c807fcf839d60e`。ClawHub 一次正式提交返回 `versionId=k975tks2z718b0fe459ngk72gh8bdtbe`、27 个文件和 fingerprint `fc858580413bbb293f5c1cc9043c1b554e731e954accc5e8b62402c420260257`，公开 latest 已为 1.5.27，moderation 为 clean。skillhub.cn 一次正式提交返回 `skillId=70149`、`versionId=175859`、26 个文件和 fingerprint `c1c7c31952c09a0098ab7cdd757af9076d095a3f1444708373ed6950b0a93b33`，`tags.latest=1.5.27`，三项审核均为 pending；首次公开搜索和 `latestVersion` 仍为 1.5.26。异步传播不触发重复发布。
+
+## 1.5.26 正式发布
+
+1.5.26 以 `v1.5.25=776a32e60f7bb0afe37f439b2710b6d0b43d40e8` 为固定产品基线，只合入已经独立验证通过的请示/申请复核叶减载：把请示、申请细查规则从通用 `genre-checklist.md` 原样迁入 `genre-checklist-request.md`，只审不改或细查请示、申请时按需读取。起草仍使用既有 `genre-playbook-request.md`；事实边界、信息选择、文种功能、输出模式、复核顺序、Hook、FSM 和回退链保持不变。
+
+命中复核路径从 9707 字符降至 6750 字符，减少 2957 字符、约 30.46%。固定 1.5.25 的三组真实 A/B 中，请示与申请只审不改两题均由 Candidate 明确胜出；审后改稿同题两次运行一胜一负，未形成稳定负项；八稿事实、数字、日期、主体、状态、文种、格式、输出模式和 P0 均通过。发布级验证与平台回执见 `tests/evidence/release-1.5.26.md`。
+
+GitHub `main`、annotated tag 解引用提交和正式 Release 均指向 `50afb5ffd9be88327ad1b4dd25d87c1377d39de9`，tag object 为 `f817ce5f4b148ebd35fdd0726f8cc8f5de6bb24d`。ClawHub 一次正式提交返回 `versionId=k97bcqx1pbcswrsynm520xbb7d8baqsp`、26 个文件和 fingerprint `baf03fdfa4adc2e1f9aef68b2ba5aac599e0a4a8cd56639cf3948a00b2b5f3fc`；首次公开查询仍为 1.5.25，精确查询 1.5.26 返回传播中的 `Version not found`。skillhub.cn 一次正式提交返回 `skillId=70149`、`versionId=173218`、25 个文件和 fingerprint `421f6f9fe53ef38bdd002ecbe648acc75de312663dea1ccbe2150e6645f1296f`，`tags.latest=1.5.26`，三项审核均为 pending；首次公开搜索仍为 1.5.25。异步传播不触发重复发布。
+
+## 1.5.25 正式发布
+
+1.5.25 以 `v1.5.24=f9d38c9755cf6188df2767dcfbf5bdaf659f1d1c` 为固定产品基线，只合入已经独立验证通过的两项原子减负和一项行为等价的脚本职责提取：完整请示、申请直达 `genre-playbook-request.md`；来源模板规则只在正式格式叶保留一份；`review_gate.py` 把标题、章节正文、正文保留比例、候选扩张和用户篇幅遵循五项不变量提取为同文件纯函数。信息选择、事实边界、文种功能、用户模板、复核顺序、Hook、FSM、输出模式和回退链保持不变。
+
+请示/申请命中路径从 3928 字符降至 551 字符，减少 3377 字符、约 85.97%。三组正确路由真实 A/B 中，两名独立盲审分别给出 Candidate 3 胜和 2 胜 1 难分，六稿硬边界全部通过；Word 原子减负两组真实 A/B 均由 Candidate 小胜。发布候选全量 unittest 370/370、固定 1.5.24 消融两版 108/108、Promptfoo smoke 20/20、quick validate、镜像同步和 `git diff --check` 均通过。完整证据见 `tests/evidence/release-1.5.25.md`。
+
+GitHub `main`、annotated tag 解引用提交和正式 Release 均指向 `776a32e60f7bb0afe37f439b2710b6d0b43d40e8`，tag object 为 `b21797f7a0c9f58f369f3ecb26aaea3ca42724b0`。ClawHub 一次正式提交返回 `versionId=k977qfz5ev2c9fkbtn54hv955s8b9pd3`、25 文件和 fingerprint `da7ca4d56ecc7571aab2f702ae23e1a47667861c769a1ece0865872a867966ff`；首次公开查询仍为 1.5.24，精确查询 1.5.25 返回传播中的 `Version not found`。skillhub.cn 一次正式提交返回 `skillId=70149`、`versionId=171636`、24 文件和 fingerprint `b807f2439fb1e1c7368eebcaa846e6fa348410b720bfeb8854d1354b136bbd46`，`tags.latest=1.5.25`，三项审核均为 pending；首次公开 `latestVersion` 仍为 1.5.24。异步传播不触发重复发布。
+
+## 1.5.24 正式发布
+
+1.5.24 以 `v1.5.23=1bf33384cc3d2ff9a17da16fcd8f1936b43c253b` 为固定产品基线，只合入已经独立通过的纪要与报告叶子减负：完整纪要直达 `genre-playbook-minutes.md`，完整报告直达精简后的 `genre-checklist-report.md`；同题双成果按需组合两条叶子。所选上下文分别减少 2703、2485 和 1502 个字符，约 19.23%、17.68% 和 10.69%。
+
+真实 A/B 中，纪要两题为 Candidate 1 胜、1 难分，报告两题为 2 难分，双成果任务为难分；各组均无 Candidate 独有的事实、数字、主体、状态、文种、格式、输出模式或 P0 回退。事实边界、信息选择、用户模板、篇幅预算、复核顺序、脚本、Hook、FSM 和回退链不变。
+
+GitHub `main`、annotated tag 解引用提交和正式 Release 均指向 `f9d38c9755cf6188df2767dcfbf5bdaf659f1d1c`，tag object 为 `387f2a006ad6fdffa6a3d0b54a24512342abe708`。ClawHub 一次正式提交返回 `versionId=k9701pszcev3r776wsjtkqpnwh8b7ssc`、24 文件和 fingerprint `cf1c54b4699aee45b81540042c8350c1d17b2e0f4df0ab925dcf1b04ea0b51b3`；skillhub.cn 一次正式提交返回 `skillId=70149`、`versionId=167050`、24 文件和 fingerprint `72b785a16770b8c31255bd810c6456c603566374df905cddd8165a2d084c48de`，`tags.latest=1.5.24`，三项审核均为 pending。完整验证与传播状态见 `tests/evidence/release-1.5.24.md`。
+
+## 1.5.23 正式发布
+
+1.5.23 以 `v1.5.22=7628619da8e05cc03c86d27d5a95eb8cee8fde05` 为固定产品基线，只合入已独立通过的 AI 专项叶子减负：纯 AI 技术需求直达 `ai-compute-docs.md`；AI 与请示、申请、采购、可研、报告、说明、审查、公告、通知、函或方案组合时仍走 `genre-playbooks.md` 和对应文种规则。纯 AI 专项 reference 负载减少约 50.2%，计入常驻入口后的所选上下文减少约 23.7%。
+
+真实 A/B 覆盖模型推理服务技术需求、GPU 算力租赁服务采购公告和模型服务平台建设可行性研究报告，结果为 Candidate 2 胜、1 难分；Candidate 三题硬核验均为 PASS，无 Candidate 独有事实、状态、文种、格式、输出模式或 P0 回退。整合工作树全量 unittest 358/358、Promptfoo smoke 20/20、固定 1.5.22 消融 Baseline 107/108 与 Candidate 108/108、quick validate、镜像同步和 diff check 均通过；Baseline 唯一失败为本版新增的专项迁移断言。
+
+52 字符的 CI/发布命令入口减负初轮匿名盲审为 2 胜 1 负；针对唯一负例补做两组逐字同题复现后为 1 胜 1 负，四稿硬核验无事实、P0 或材料外扩回退，胜负均只来自联系人与电话换行偏好，确认原负例含抽样波动。由于复测没有形成稳定不负于基线的证据，该减负仍按预注册排除，不进入 1.5.23。`genre-playbooks.md` 维护尾句减负复测时，Candidate 与 Baseline 两次均自然绕过改动文件，证据无效，也不进入本版。
+
+GitHub 发布提交和 annotated tag 解引用提交均为 `1bf33384cc3d2ff9a17da16fcd8f1936b43c253b`，tag object 为 `7ca328566e0736150cfbc057d7d6eacf0e24a5ef`，正式 Release 已公开。ClawHub 一次正式提交返回 `versionId=k975803yfr1r803szmprs4p7en8b5fnf`、23 文件和 fingerprint `ea9704defb77af3d7587c397a6f634e72699c6138967b79c53b157acdfe65bfb`；提交回执仍显示公开 latest 为 1.5.22，立即精确查询 1.5.23 返回传播中的 `Version not found`，不重复提交。skillhub.cn 一次正式提交返回 `skillId=70149`、`versionId=159789`、23 文件和 fingerprint `7ae9dd7811949518a7447b0295b4966c6d6fe4bcfee531376932daac0694cbb6`，`tags.latest=1.5.23`，review、security scan 和 content audit 均为 pending；首次公开搜索仍为 1.5.22。完整证据见 `tests/evidence/release-1.5.23.md`。
+
+## 1.5.22 发布状态
+
+1.5.22 以 `v1.5.21=9a98dac5f9475662cb5e4adb579828c8480c23e0` 为固定发行基线，只发布已经通过真实 A/B 的入口与叶子原子减负。canonical `SKILL.md` 由 10,631 个规范化字符降至 10,103 个，减少 528 个，约 4.97%；不修改信息选择、P0 边界、文种功能、用户模板、篇幅预算、脚本、Hook、FSM、输出模式、修改次数或回退链。
+
+已保留原子的真实 A/B 汇总为 Candidate 11 胜、4 平、1 个孤立负例；原题两次定向复现均由 Candidate 胜出，未出现 Candidate 独有的事实、数字、日期、主体、状态、文种、格式、输出模式或 P0 硬回退。全量 unittest 355/355、固定 1.5.21 消融两版 108/108、Promptfoo smoke 20/20、quick validate 和 `git diff --check` 均通过。
+
+GitHub 发布提交和 annotated tag 解引用提交均为 `7628619da8e05cc03c86d27d5a95eb8cee8fde05`，tag object 为 `1d7e5809c99597ed1e893aafc48c027e80cbc1d7`，Latest Release 已公开。ClawHub 一次提交返回 `versionId=k97740cxyhdf0seh0qsffdjetd8b2cgy`、23 文件和 fingerprint `b029d3ae429fd9f5c09e1534c657cb345b46581a21a3d1a731d8df13d94b4f94`；skillhub.cn 一次提交返回 `skillId=70149`、`versionId=155065`、23 文件和 fingerprint `7c61fc198ef260acf2a28e257527bb1dba9dd192547d5a01d79f08056b267d25`，`tags.latest=1.5.22`，三项审核均为 pending。首次公开查询仍显示 1.5.21，按异步传播处理，不重复发布。完整证据见 `tests/evidence/release-1.5.22.md`。
+
+## 1.5.21 发布状态
+
+1.5.21 以 `v1.5.20=025e500206b3140546f7789c6746996e170da8d9` 为固定功能基线，只新增制度、规定、办法、管理办法、实施细则和操作规程专项叶子，并在完整初稿后转读既有 `anti-ai-patterns.md` 复核成簇的解释性重复。信息选择、P0 边界、其他文种路由、用户模板、篇幅预算、脚本、Hook、FSM、输出模式和发布链不变。
+
+补测中的实施细则和短篇规定两题均由 Candidate 小胜，硬检查均通过；既有管理办法、来访制度和印发通知/操作规程样本同时表明条文偏碎、职责或程序复述仍是已知风险。DOCX 已完成 OOXML 结构检查，本机缺少 `soffice`，逐页视觉渲染记为 `unavailable`。
+
+发布提交和 annotated tag 解引用提交均为 `9a98dac5f9475662cb5e4adb579828c8480c23e0`，tag object 为 `761d7fb68482498399a155768f5945560c99b9c7`，GitHub Latest Release 已公开。ClawHub 一次提交返回 `versionId=k9707pnea6z33nnyk1m00dg3sd8b0jr9`、23 文件和 fingerprint `0a37eb753bbd32053114c9314e2bc869d11ebc7bf87e07c6e6229b381b59068a`；skillhub.cn 一次提交返回 `skillId=70149`、`versionId=153125`、23 文件和 fingerprint `0a0261f1e19d17cbc746fcc5c919f2d3d6bd913e2f7068b91e47081589296b47`。首次公开查询仍为 1.5.20，审核或扫描状态按各平台回执分别记录，不重复发布。完整发布门禁与平台回执见 `tests/evidence/release-1.5.21.md`。
+
+## 1.5.20 发布准备
+
+1.5.20 以 `v1.5.19=e22b0150666974f38c4ce9c3b75cf6757091e646` 为固定发行基线，只做两项通过真实 A/B 的渐进式路由减载：外部检索细则从默认复杂工作流移入按需叶子；报告检查项从全量文种清单移入报告专用叶子。规则正文保真，信息选择、文种骨架、复核顺序、脚本、Hook、输出模式和回退链不变。
+
+Candidate BB 三组真实 A/B 为三题 Candidate 胜；Candidate BC 三组报告 A/B 解盲后也为三题 Candidate 胜。两轮均无事实、数字、主体、状态、文种、格式、篇幅或输出模式硬回退，无 P0 保护性外扩。语言胜负受生成噪声影响，只把确定性减载和无观察到回退作为发布依据。完整记录见 `tests/evidence/release-1.5.20.md`。
+
+发布提交为 `025e500206b3140546f7789c6746996e170da8d9`，annotated tag object 为 `0499f143e656910a77a89093dc9029c0a7a0b93b`。GitHub main、tag 和 Release 已公开；ClawHub 返回 22 文件、fingerprint `83d471df092a32197f06bffbd2e78da09e79012e854698a24bf2cd2dc7eef55f`、versionId `k97ahy7c2zsst7qhecjvdtn0s18azjbx`；skillhub.cn 返回 `skillId=70149`、`versionId=148210`、22 文件、fingerprint `6ef90b1306785d3ab89798bbf83754795218dbfe107c50db63e53c076bf4b814` 和 `tags.latest=1.5.20`。两家商店首次公开查询仍显示 1.5.19；ClawHub clean 对应旧公开版，skillhub.cn 三项审核为 pending，不重复发布。
+
+## 1.5.19 正式发布
+
+1.5.19 以 `v1.5.18=9822aaee30df89c479a4e8c94c478424f6d426e3` 为固定发行基线。ClawHub/OpenClaw 普通 Skill 包移除仅供 Codex 生命周期 Hook 使用的 `delivery-review-gate.md`、`gate_stop_hook.py` 和 `review_gate.py`，继续保留只定位、不改稿的 `prose_lint.py`；复核清单删除一处重复的信息选择去向提示，canonical 与五个镜像合计减少 38 个字符；成稿后总审增加一条原子结论限定复核，只处理材料、用户和当前文种均未提出的结论对象，材料明确记载的结论状态保持原义。
+
+微减负三组正常自然 A/B 中 Candidate 两组小胜、baseline 一组小胜，没有形成 Candidate 独有的共性回退。多机制组合语言规则三题一胜、一负、一难分，已撤回；原子结论限定规则在确认 `final-review-layers.md` 实际读取后，以旧稿局部改写、巡检报告和食堂通报做固定 1.5.18 A/B，独立盲审三题均判 Candidate 胜出，且无 Candidate 独有的事实或状态硬回退。完整稿仍有重复解释，不在本轮追加第二条语言规则。跨宿主 Hook、共享检测内核和自动删除原型仍在隔离研究分支，不进入 1.5.19。完整记录见 `tests/evidence/release-1.5.19.md`。
+
+发布提交为 `e22b0150666974f38c4ce9c3b75cf6757091e646`，annotated tag object 为 `9ec7b5f2b9f030b680d4f05a9cdb7127518697e7`。GitHub main、tag 和 Release 已公开；ClawHub 正式提交返回 20 文件、fingerprint `08d9f0ce40fe63e229a5851b9b7ab670b794b23b849e5c724a7ee1f4540c7f17`、versionId `k9771r8n90n85g2x6yd4g3gj1x8ax9fs`；skillhub.cn 返回 `skillId=70149`、`versionId=147664`、20 文件、fingerprint `777381b76fdcde18c0e6f4c33c1487245ac6cb55dd6e18959c3a19e5eb48fd7a` 和 `tags.latest=1.5.19`。两家商店首次公开查询仍显示 1.5.18，属于异步传播；ClawHub 1.5.19 审核状态尚未出现，skillhub.cn 三项审核均为 pending，不重复发布。
+
+## 1.5.18 正式发布
+
+1.5.18 以 `v1.5.17=ddb8dc8dc82255c4a71b02ce3ae1e0a0ec0825ce` 为固定功能基线。入口去除重复清单和复核说明，字符数减少 5.28%；支持生命周期 Hook 的 Codex 插件增加一次有限交付复核，流程为 `detect → prepare → finalize → emit`，最多一次局部修订，异常或不变量失败回到非空 D0。ClawHub 与 skillhub.cn 技能包携带脚本，但不会自动注册仓库根 Hook，不把该能力宣传为全宿主自动触发。
+
+真实同题 A/B 覆盖运行报告、供餐通知和会议纪要，Candidate 3/3 优于固定 1.5.17；长篇报告完成一次真实 D1 闭环。全量 unittest 349/349、固定基线消融两版 108/108、Promptfoo 20/20、quick validate、镜像同步和 diff check 均通过。
+
+GitHub `main`、annotated tag `v1.5.18` 和正式 Release 已发布，发布提交为 `9822aaee30df89c479a4e8c94c478424f6d426e3`。ClawHub 已提交一次，回执 `versionId=k97865b6s05pt2g316qb0sqftd8axg46`、23 个文件、fingerprint `4ee56cff53aaf260255e07739efa6b962a44c0e366f59ab21e6d81f73ff4fe41`；skillhub.cn 已向 `skillId=70149` 提交一次，回执 `versionId=147406`、23 个文件、fingerprint `57d1e018e85e4bad3ecfb46d0a4b87348fa3fa4c2fee47d335ba84b33191c458`、`tags.latest=1.5.18`，review、content audit 和 security scan 均为 pending。首次公开查询仍显示 1.5.17，按异步传播处理，不重复发布。完整回执见 `tests/evidence/release-1.5.18.md`。
+
+## 1.5.17 正式发布
+
+1.5.17 以 `v1.5.16=172d1140905e38ce16ab6a16e89d9cb50248285e` 为底座，只在唯一信息选择规则源增加一条事实关系锚：事实之间的时间、因果和归属关系以材料明确关系为准。它不加入脚本门禁、FSM、自动改稿器、reference 拆分或段内公式调整。真实 A/B 中，日常报告和决定状态确认各有一组正向，两组保持难分，二次改稿逐字一致；一组会议纪要出现的决定状态升级未在同类确认题复现，按普通场景三次共性门槛继续登记观察。
+
+GitHub `main`、annotated tag `v1.5.17` 和正式 Release 已发布，发布提交为 `ddb8dc8dc82255c4a71b02ce3ae1e0a0ec0825ce`。ClawHub 已提交一次，回执 `versionId=k970c3tg72b4g9aeq7eg3j89b18av50a`；skillhub.cn 已向 `skillId=70149` 提交一次，回执 `versionId=144593`。两家平台首次只读检查仍处于异步传播：ClawHub 公开 latest 为 1.5.16，skillhub.cn 的 tag latest 为 1.5.17 而 latestVersion 仍为 1.5.16；不重复发布。完整测试、回执和风险见 `tests/evidence/release-1.5.17.md`。
+
+本文件适用于整个仓库。后续 agent 接手本仓库时，优先遵守这里的发布、review 和测试约定；若与用户最新指令冲突，以用户最新指令为准，但不得伪造未运行的测试结果。
+
+## 1.5.16 正式发布与平台传播状态（最新）
+
+GitHub `main`、annotated tag `v1.5.16` 和 Latest Release 已发布。发布 tag 解引用提交为 `172d1140905e38ce16ab6a16e89d9cb50248285e`，tag object 为 `d24b1a42434b3048e263343a45c730df94748a33`，Release 为 `https://github.com/gongyu0918-debug/chinese-official-writing-skill/releases/tag/v1.5.16`，`draft=false`、`prerelease=false`。后续平台回执文档可以推进 `main`，不得移动发布 tag。
+
+ClawHub 已正式提交一次，回执为 `status=published`、`versionId=k971781h9nhev0ty8ynw2t4xqn8aqee5`、20 个源文件、fingerprint `b0aac7188804f04a17f6c945f038dd0746d2441edfb1672014fdb58186cbcacf`。2026-07-17 最新只读检查仍显示公开 1.5.15，查询精确 1.5.16 返回异步传播中的 `Version not found`；只继续轮询，不重复提交。skillhub.cn 已向精确 `skillId=70149` 提交一次，回执为 `versionId=141943`、20 个文件、fingerprint `db89678dbfbcba502e15cc080e9a00cae36ec16fadc378a150371d3ca5ddcfb4`、`tags.latest=1.5.16`；公开 `latestVersion` 已切换到 1.5.16，Keen、Sanbu 仍为 queued。提交时的 review、security scan、content audit 回执均为 pending，公开切换不替代这些内部字段的后续核验。两家平台的异步状态不作为重复提交理由，小红书 Red SkillHub 继续排除。
+
+以下两段保留 1.5.15 发布完成时的历史快照，平台当前状态以上述 1.5.16 段落为准。
+
+当前接手入口只保留本文件。GitHub annotated tag `v1.5.15` 指向发布提交 `cd0772fcd763eaa34bb32361c2f8d2cdee39a291`，release 为 `https://github.com/gongyu0918-debug/chinese-official-writing-skill/releases/tag/v1.5.15`；`origin/main` 在发布后可能继续包含状态记录等文档提交，不再把 tag 和分支头写成必然相同，接手时以 `git ls-remote --heads origin main` 和 `git rev-parse 'v1.5.15^{commit}'` 分别复核。ClawHub 已公开切换到 `latestVersion.version=1.5.15`、`tags.latest=1.5.15`、`displayName=中文公文写作`，19 个上传文件的 source fingerprint 为 `53363a15e884f94b9ce821641e81099fb7f4145035220ead0ca95c4e005150b6`；`chinese`、`official-document`、`writing`、`gongwen`、`ai-compute` 五个正确 tag 均指向 1.5.15。隔离安装共 21 个文件，只多平台生成的 `_meta.json` 和 `.clawhub/origin.json`；排除后 19 个发行文件与 `openclaw/skills/chinese_official_writing/` 逐文件 SHA-256 一致。moderation 为 `clean`，但发布后约 5 分钟的版本级 security 聚合仍为 `pending`：static scan clean，VirusTotal 为 stale/pending，SkillSpector 尚无结果；card 仍未生成，`skill verify` 因 `card.missing`、`security.status_not_clean`、`security.pending` 返回 fail，不得把异步 pending 或 card 未生成写成恶意判定。ClawHub direct publish 虽显式传入 `source-repo/source-commit/source-ref/source-path`，verify 仍显示 `provenance.source=unavailable`，不能把 source commit 写成平台已存储或已解析。1.4.15 和 1.5.6 形成的带引号或合并历史 tag key 仍保留，但不影响 `latest`、正确 tags、安装包或 moderation；后续发布继续把整个参数写成单一 token：`'--tags=chinese,official-document,writing,gongwen,ai-compute'`。
+
+SkillHub 精确目标仍为 `https://skillhub.cn/skills/chinese-official-writing`，`skillId=70149`。1.5.15 已一次提交成功，返回 `versionId=139337`、19 个文件、fingerprint `428e844eb283c844ffbace10d27b4d79da70083020c444e8f9c1985895a260f9`、`tags.latest=1.5.15`。owner 状态已为 `reviewStatus=approved`、`latestApprovedVersion=1.5.15`、`status=listed`，图标审核 passed；公开详情、搜索和隔离安装入口均已切换到 1.5.15。隔离安装的 19 个文件中，排除平台补入 `ownerId`、`publishedAt` 的 `_meta.json` 后，其余 18 个文件与提交包逐文件 SHA-256 一致；平台签名验证 `content_hash_match=true`，内容 hash 为 `efa622a30f064a1bbbfa13fd1549d8f6eb962a620e886cfe23a4a630b51c567b`。Keen、Sanbu 均已为 benign；owner GET 不再暴露独立的 `securityScanStatus`、`contentAuditStatus`，不得从 review approved 或外部报告结果推断这两个内部字段已 clean。发布前后必须用 `git ls-remote --heads origin main`、`clawhub inspect chinese-official-writing --json`、SkillHub API 或 CLI 和 GitHub tag/main 核对 displayName、tags、latestVersion、summary、source commit 和 canonical frontmatter；平台不返回 source commit 时如实记为 unavailable，不作推断。下方旧版本内容均为历史接手记录，不代表当前 live 版本。
+
+## 1.5.16 紧急发布候选与接手记录
+
+1.5.16 从发布后文档头 `5258929786c85613fc8baf2a88994c969eab2803` 建立隔离分支 `codex/release-1.5.16-emergency-v`，固定功能基线仍为 `v1.5.15=cd0772fcd763eaa34bb32361c2f8d2cdee39a291`。候选采用 Candidate V 产品提交 `f72e4e5d2184c35aaba1e867ec60200b20e691a1`：在 `SKILL.md` 保留一句信息选择总纲，把材料状态、事项关联性和办理必要性的四类处理归并到 `references/information-selection.md`，其余 reference 回到各自文种或专项职责。1.5.15 的文种路由、输出模式、用户模板、事实锚、长文提纲与篇幅预算、多轮改稿、Word 交付和三级复核继续保留；本版没有加入 Candidate Q/S/W 的检测器、FSM、硬门禁或段内公式调整。
+
+纠正后的同模型真实 A/B 使用 3 个既有人工标注任务。Candidate V 在进度滞后报告中避免了 1.5.15 新增的 5 项材料外程序或承诺，在长篇试运行报告中避免了材料外研究时间点和决策依据；两题的纠正盲审均判 Candidate V 相对胜出。正常故障报告两版均完整保留时间、影响、业务量和原因排查状态，Candidate V 没有新增保护性外扩。该组支持“相对 1.5.15 大幅压低保护性外扩和材料外程序”的紧急发布判断，不代表全场景统计胜率。
+
+发布口径按日常正常材料收束。材料本身不足以支撑用户点名章节、稀疏材料强行扩成长稿等场景留到 1.6.x 继续研究；它们不作为 1.5.16 阻断。已知风险包括：稀疏任务可能短写或在文后列实质缺口；一个样本的标题和落款未显式呈现发文机关；长稿仍可能残留保护性解释，一次局部收束后也可能转为数据折算和同义复述。上述问题可见、可局部处理，当前未形成三次以上同机制回退。
+
+隔离发布分支已完成全量 unittest 176/176、固定 1.5.15 与 current 确定性消融 108/108 对 108/108、Candidate V 产品与最终候选确定性消融 108/108 对 108/108、Promptfoo smoke 20/20、focused version/mirror tests 55/55、公开样文缺失要素 0/61 与关键词命中 61/61、canonical quick validate、`tools/sync_adapters.py` 镜像同步和 `git diff --check`。公开样文仍有 9 个匿名占位词风险样本，只作人工复核提示；同步脚本重写的 12 个入口文件与已提交内容 blob 一致，没有形成额外产品 diff。Promptfoo 在沙箱内因 Node 无法启动已存在的 Python 首先返回环境错误；使用同一系统 Python 在外层权限复跑后为 20/20。候选阶段之后已完成正式发布：GitHub 已闭环，ClawHub 与 skillhub.cn 均已收到一次成功提交回执；skillhub.cn 公开入口已切换到 1.5.16，ClawHub 仍在传播。详细证据、实际 ID、fingerprint 与停止边界见 `tests/evidence/candidate-v-real-ab-result-20260717.md` 和 `tests/evidence/release-1.5.16.md`。
+
+## 1.5.15 发布与接手记录
+
+1.5.15 以 `v1.5.14=fea1fae4b0c809d3e2b7167d959a3822030b6033` 为上一发行基线，产品规则固定在 Candidate B 提交 `b5ef168e617bd0ca9afa1d5d3ca257291a701976`。相对 1.5.14，canonical 技能包只改动 `SKILL.md`、`references/genre-playbooks.md`、`references/task-route-cards.md`、`references/workflow.md`：将入口的“事实少于字数目标时宁可短写”中和为“篇幅要求不改变事实边界”，删除 workflow 的同义重复，在报告和短通知叶子去掉重复的短写偏置；事实不编造、事项状态、用户篇幅要求和原有文种边界继续保留。`SKILL.md` 同时继承 1.5.14 发布后主线已完成的技能包许可元数据统一，`license` 由 MIT 调整为 MIT-0；根仓库仍按 MIT 展示，这项元数据变化不改变写作流程。
+
+本候选不改变任务路由、reference 加载条件、段落/小节/全文复核顺序、输出模式、修改次数、回滚方式、默认联网和发布链，不新增脚本硬门禁、自动替换、finalizer、detector、repair 或批量清洗。8 份有效同题自然成稿和 1 份初始路由未命中原稿已保留；初始自然触发率按 7/8 记录，复跑后有效质量样本为 8 份，只有 Terra T04 实际读取文种与轻量任务卡 reference，因此不得把该组写成完整路由覆盖或整稿胜率。段落观感和节奏优化仍留待后续独立研发验证，不混入 1.5.15。
+
+发布提交 `cd0772fcd763eaa34bb32361c2f8d2cdee39a291` 已完成全量 unittest 175/175、Promptfoo smoke 20/20、固定 1.5.14 与 current 均 108/108、Candidate B 固定基线与 current 均 108/108、真实文章回归、canonical 快速校验、镜像一致性和两家商店 19 文件发行包清洁检查。GitHub main、annotated tag 和 Latest Release 已发布；ClawHub 与 skillhub.cn 均只提交一次并已公开切换到 1.5.15，隔离安装与逐文件哈希闭合。skillhub.cn 的 Keen、Sanbu 已为 benign；ClawHub 版本级安全聚合仍处于平台异步阶段，只继续只读轮询，不重复提交。小红书 Red SkillHub 继续排除。
+
+## 小红书 Red SkillHub（停止发布）
+
+自 2026-07-13 起，本仓库不再执行小红书 Red SkillHub 的发布、更新、dry-run、登录续期、标签查询或占用冲突处理；后续发行范围只包括 GitHub、ClawHub 和 `skillhub.cn`。除非用户以后明确撤销本决定，否则任何 agent 不得调用 Red 上传 CLI，也不得把 Red 专用副本纳入发布门禁。
+
+历史状态仅供审计：最后一次成功回执仍为 1.5.7（`skill_id=8494`、`version_id=100041`）；1.5.10 曾完成本地 dry-run，但真实上传达到 100 后仍被服务端以“Skill ID 已被占用”拒绝，没有 `RESULT_JSON.status=submitted` 或新版本回执，因此 1.5.10 未发布到 Red。保留 `redskill/` 仅作历史归档，不再同步、验证或维护其版本一致性，不得用更换 identifier 的方式绕过冲突。
+
+## 1.5.14 发布与接手记录
+
+1.5.14 以 `v1.5.13=cd2d46c58a5f56b9009c5da08626a88640f2e5b3` 为上一发行基线，只纳入轻量任务卡与会议纪要 playbook 的渐进式路由仲裁：先确定创作、修改、只审不改等输出模式；未决事项纪要可由轻量卡完成，已经形成决定、议定事项、结论、一致意见、责任分工或期限，或者用户明确要求完整正式会议纪要时，进入对应 playbook。事实边界、文种规则、三级复核顺序、输出模式定义、修改次数、默认联网和发布链未改变，没有新增脚本硬门禁、自动替换、finalizer、detector、repair 或批量清洗。
+
+发布提交 `fea1fae4b0c809d3e2b7167d959a3822030b6033` 已完成全量 unittest 174/174、Promptfoo smoke 20/20、固定 1.5.13 基线与 current 均 108/108、真实文章回归、canonical 快速校验、镜像一致性和 19 文件发行包清洁检查。15 个真实用户式 prompt 由两名反向映射 writer 生成 baseline/current 共 60 份成稿；综合盲审两版均为 29 PASS、1 对称 WARN、0 FAIL，硬边界盲审两版均为 30 PASS、0 WARN、0 FAIL，未发现 current 独有的事实、文种、格式或输出模式回退。另有针对性路由 A/B 16/16 内容 PASS。原始证据见 `tests/evidence/route-arbitration-20260715.md`、`tests/evidence/functional-regression-vs-1.5.13-20260715.md` 和 `tests/evidence/release-1.5.14.md`。
+
+GitHub Release 和 ClawHub live 已切换到 1.5.14，ClawHub 隔离安装与 19 文件发行目录逐文件 SHA-256 一致；ClawHub 安全聚合已 clean，card 仍在异步生成，direct publish provenance 仍为 unavailable。发布完成时的 skillhub.cn 快照为已接收 1.5.14、公开索引和扫描仍在传播且未重复提交；2026-07-16 的最终公开状态见本文件顶部。current 的真实写稿覆盖 15 个短稿/改稿场景，不冒充全 29 文种、3000 字以上长文、多附件或 Word 版式矩阵。发布范围继续排除小红书 Red SkillHub。
+
+2026-07-15 的发布后 GitHub 整理继续沿用 1.5.14 基线，不移动 `v1.5.14` tag，也不重新发布 ClawHub 或 skillhub.cn。该整理只更新根 README、授权文件、技能包许可元数据、同步脚本和对应测试；`SKILL.md` 写作正文、references、运行脚本、路由、输出模式及两家商店介绍保持不变。仓库首页按 MIT 展示，可安装技能包及各 Agent 镜像统一为 MIT-0；测试命令留在证据记录，README 只展示模型消融、真实写稿摘要和同题成稿节选。
+
+## 1.5.13 发布与接手记录
+
+1.5.13 以 `v1.5.12=f87b6be990e1314442b5532ae7441f21c8d4d34f` 为上一发行基线，纳入两类经真实写稿复现的 Prompt 减负：把两处重复的“缺项说明放正文外”归并为就近提示；把 `SKILL.md`、`references/workflow.md`、`references/official-style.md` 中重复的否定式反例改为事实状态、证据强度和结论强度的正向锚定。任务路由、reference 加载条件、三级复核顺序、输出模式、修改次数、默认联网和发布链均未改变，没有新增脚本硬门禁、finalizer、自动替换或批量清洗。
+
+发布提交 `cd2d46c58a5f56b9009c5da08626a88640f2e5b3` 已完成全量 unittest 152/152、Promptfoo smoke 20/20、固定 1.5.12 基线 104/108 对 current 108/108、真实文章回归、27 批最大上下文 24502、canonical 快速校验、镜像一致性和发行包清洁检查。固定 `62ea0fa` 的两名 baseline writer 在 4 个真实阶段报告 prompt 中有 6 份输出出现保护性边界自证，两名 candidate writer 的 8 份分稿为 0，且必要事实状态保留；两名独立 verifier 复核通过。所有 writer/verifier 均由 Codex 子上下文执行，本地 `turn_context.model` 核验为 `gpt-5.6-sol`。GitHub Release 和 ClawHub live 已切换到 1.5.13，ClawHub 隔离安装与发行目录逐文件 SHA-256 一致；skillhub.cn 已接收 1.5.13，但公开索引仍显示 1.5.12，审核与安全扫描仍在传播。原始证据见 `tests/evidence/negation-rule-dedup-20260714.md`、同名 writing 目录和 `tests/evidence/release-1.5.13.md`。发布范围继续排除小红书 Red SkillHub。
+
+自 2026-07-14 起，完整评测批次 `<25000` 字符不再作为写作质量、发布或 Prompt 压缩门禁。该数值只曾用于仓库自设的批次体积观察，不是模型、平台或 Agent Skill 的上下文限制，也不能证明长文链路存在质量风险。评测仍要求所选 `SKILL.md` 和按任务命中的 references 完整加载、不静默截断，并保留 provider 的 `MAX_SKILL_CONTEXT_CHARS=50000` 异常保护；不得为满足任意字符数而删除事实边界、文种规则或任务完成所需内容。Prompt 减负只能由真实写稿 A/B 证明有益且无回退后实施，渐进式路由继续负责避免无关 reference 被默认加载。
+
+同日补做两名 writer、三轮连续长文改稿：事实、状态、标题顺序和第三轮单点日期修改均稳定，精确 CJK 下限在同一个原始任务中共同偏短。因只覆盖一个 prompt，不据此修改产品 Prompt；后续直接以另一份既有长文成品补第二个改稿任务。历史29个入口均曾被报告进入真实 A/B，但只有申请、请示、报告、通知、说明、纪要、通报7项保留完整 prompt、成稿和独立 verifier 闭环；其余16项只有单文种摘要，6项只有混合覆盖记录。证据见 `tests/evidence/long-revision-stability-20260714.md` 和 `tests/evidence/genre-real-writing-coverage-20260714.md`。
+
+## 1.5.12 发布与接手记录
+
+1.5.12 以 `v1.5.11=59eed9e4a4873082edaaef0c241186583bd68206` 为上一发行基线，只纳入四个已逐项 A/B 的 Prompt 减负提交：删除入口重复旁白/教学例子，隔离 ANTI-AI 语言模式到按需加载叶子，删除入口重复思考泄露提醒，将社区研究构造规则移回维护层。任务路由、reference 加载条件、三级复核、输出模式、修改次数、默认联网和发布链均未改变；没有新增脚本硬门禁、finalizer、自动替换或批量清洗。
+
+发布提交 `f87b6be990e1314442b5532ae7441f21c8d4d34f` 已完成全量 unittest 151/151、Promptfoo smoke 20/20、固定 1.5.11 基线与 current 均 108/108、真实文章回归、27 批最大上下文 24589、canonical 快速校验、镜像一致性和发行包清洁检查。两名 current writer 与一名固定 baseline writer 共 12 份输出，独立 verifier 判 12/12 PASS，current 相对 baseline 没有独有的事实、引用、文种、格式、输出模式、ANTI-AI 语义、字段边界或旧稿回流回退；精确模型 ID 无法核验，因此只记发布级真实写稿 sanity。GitHub release 和 ClawHub live 已切换到 1.5.12；skillhub.cn 已接收 1.5.12，但公开索引仍在传播。原始证据见 `tests/evidence/release-1.5.12.md` 和 `tests/evidence/release-1.5.12-writing/`。发布范围继续排除小红书 Red SkillHub。
+
+## 1.5.11 发布与接手记录
+
+1.5.11 以 `v1.5.10=7e5fec70ba78ad6d1c4b4ae34952697b4794c03e` 为上一发行基线，纳入 `0686ea3770b14a36dc560221c21d33e03daf9447` 的成品非正文说明共性修复。该修复在既有硬边界、总审和可选 `draft-body` lint 中统一检查制作版本、内部受众、操作方式、校验门禁、审核状态、重复解释、小字结论、制作/免责/边界/方法自述和重复标题；没有新增 finalizer、自动清洗、默认阻断或写稿阶段。
+
+同形但可能合法的显式版本、保密标识和内部校验表述只作 medium 人工提示；用户明确要求显示的声明、版本或保密标识以及材料本身记载的业务事实继续保留。新增检查只作用于稿件正文，`review-only` 和 `gap-note-allowed` 的正文外审稿/待确认区不按成稿残留处理；默认 `generic` 行为不变。任务路由、reference 加载条件、段落/小节/全文复核顺序、输出模式、修改次数、回滚方式、默认联网和三平台发布链均未改变。
+
+发布前又按用户明确要求在既有 ANTI-AI 复核层加入高频表达语义检查。该机制由模型通读全文，频次和句式命中只作线索；只确认无前文依据的否定、虚假对比和机械重复，并局部改写确认有问题的句子。事实、引用、术语、否定范围和论断强度必须保持不变；真实比较、法律政策要求、职责边界、风险提示、原有否定和直接引语继续保留。不得新增自动替换表、批量清洗、固定次数硬门槛或新的写稿阶段。
+
+发布提交 `59eed9e4a4873082edaaef0c241186583bd68206` 已完成全量 unittest 151/151、Promptfoo smoke 20/20、固定 1.5.10 基线消融 106/108 对 108/108、真实文章回归、Skill 快速校验、27 批最大上下文 24968、镜像一致性和发行包清洁检查。ANTI-AI 首轮 A/B 的格式 WARN 和真实比较同义改写未被忽略；收紧默认审稿字段和未确认句保持规则后，双 writer 首轮复测仍有 1 项漏写“检索模块仍在本地”，已降为 WARN；使用包含完整原句的 S2 二次复测后，两名 current writer 均逐字保留真实比较、审校/检索模块和全部数字，独立 verifier 判 2/2 PASS，blocker 解阻。较长上下文盲审为 current PASS、1.5.10 WARN；六组其他写作功能回归两版同为 4 PASS、2 WARN、0 FAIL。GitHub release、ClawHub 和 skillhub.cn 公开索引及安装入口均已切换到 1.5.11。原始证据见 `tests/evidence/real-writing-1.5.11-anti-ai.md` 和 `tests/evidence/release-1.5.11.md`。发布范围继续排除小红书 Red SkillHub。
+
+## 基本工作纪律
+
+1. 所有代码或文档修改必须通过 git commit 留痕。commit message 需说明修改目的、影响范围和验证方式。
+2. 每次认为任务可交付前，必须运行 smoke test 或最小验证流程；无法运行时说明原因和人工验证步骤。
+3. 每累计 5 次 commit，或修改范围明显扩大时，暂停开发，执行轻量 review、基线对比、轻量消融测试和回归检查。
+4. 代码 review、大范围 diff、长文件阅读、第三方实现对比等可能污染主上下文的任务，优先交给 subagent 或独立上下文；subagent 结论必须经源码、diff、测试或日志交叉验证后再采纳。
+5. 不允许伪造测试结果；未实际运行的命令不得写成已通过。
+6. 不得自行修改本 skill 的核心工作流。核心工作流包括任务路由、reference 加载条件、段落/小节/全文复核顺序、输出模式、修改次数、回滚方式和发布链路。拟修改这些内容前，必须先与上一发行版和相关早期稳定基线对比，向用户明确说明现有流程、拟改流程、改变原因和可能回退；只有用户明确同意后才可实施。发现措辞优化实际改变了流程时，应立即停止扩改并单独报告，不得把核心变更混入普通 Markdown 精简、测试修订或发布提交。
+
+## 中文公文 Skill 发布验证
+
+### 真实写稿测试分级
+
+真实写稿测试按风险升级，不再作为每次小改的固定动作：
+
+1. 普通脚本、测试、文档、发布元数据或默认不启用的检查器改动，优先运行 unit、clean corpus、确定性消融和静态回归；只有行为边界无法由这些证据确认时，才补 2-4 个短样本。
+2. 修改 `SKILL.md`、写稿 reference、文种路由、事实边界或默认 workflow 时，先用 2-4 个与改动直接相关的短稿做 A/B，并由独立 verifier 复核；短测出现新回退、结论分歧或长文特有风险后，再扩大样本和模型数量。
+3. 3000 字以上长文、多附件合稿、多轮/compact、跨模型大矩阵和完整文种覆盖，只在发布候选、重大架构调整、已复现的长文风险、用户明确要求或短测不能回答问题时运行。
+4. 旁白、思考泄露和约束自述出现一次即可触发针对该样本的复现与最小修复判断，但不因此自动启动整套长稿批量测试。
+5. 测试报告必须区分确定性证据、短样本 sanity 和发布级真实写稿；未运行长稿矩阵时直接说明，不用低价值批量生成填充测试数量。
+
+`tools/run_real_prompt_ablation.py` 是发布级确定性消融工具，但它不调用 LLM，只能证明 skill 包、reference、lint 和评估入口具备相应支撑。它不能替代真实写稿实测。
+
+社区技能借鉴必须先设门禁。SkillHub、ClawHub、GitHub 或其他社区实现只作为思路、流程形态、检查维度和 prompt/markdown 写法参考，禁止直接誊抄代码、脚本、正则、模板库、大段 prompt、固定话术或模板正文。每个候选借鉴点都要满足本技能边界：不新增重排版引擎，不扩大默认联网，不默认强制确认，不破坏用户模板和字段式材料，不把社区技能的坏代码、坏 prompt、硬禁词或公众号式风格污染到本技能；落地前先归纳共性问题，落地后必须和上一基线做消融。
+
+涉及 `chinese-official-writing` 的版本 review、发布或回归判断时，必须同时做两类验证：
+
+1. **基线消融**：用 detached worktree 固定上一发行基线，只和上一基线比，不和 no-skill 混比。示例：
+   - `git worktree add --detach output\release-baselines\github-1.4.1 74dc5be8e1c9dfa30b0ef3f484c3eb5edc8a7fed`
+   - `python .\tools\run_real_prompt_ablation.py --baseline-root output\release-baselines\github-1.4.1 --baseline-label baseline-1.4.1 --current-root . --out output\real-prompt-vs-1.4.1-release-1.4.3`
+   - 判断口径：current 失败才是发布阻断；baseline 只允许在新补充用例上失败。
+2. **真实写稿实测**：用真实用户式 prompt 让写作 agent 产出短稿或改稿，再让独立 verifier 只看“原 prompt + 成稿”判断，不由主上下文自行判定。稿件可以不长，但必须检验指令遵循、要点置入、文种格式、禁止事项、事实边界和是否把格式改坏。
+
+真实写稿实测至少覆盖：
+
+- 本轮新增或修改的边界，例如网页复制稿、套嵌文件、字段式申请材料、长文压缩、联网搜索边界。
+- 旧能力回归，例如请示/报告不混写、只审不改、去口语化保事实、用户明确模板优先。
+- 创建文章和修改文章两类场景。
+
+推荐流程：
+
+1. 主上下文读取 canonical `chinese-official-writing/SKILL.md` 和本轮相关 reference，明确需要覆盖的风险面。
+2. 派 3-5 个 writer subagents，分别按 unseen 的真实用户 prompt 写短稿或改稿。不要让它们修改仓库。
+3. 派独立 verifier subagent，只给 prompt 和输出，要求逐项判定 PASS/WARN/FAIL：是否遵循用户指令，关键要点是否进入正文，标题/主送/落款/字段/附件关系是否保留，是否编造事实，是否残留 Markdown 或过程说明。
+4. 把 verifier 的结论作为真实写作实测结论；确定性消融和 smoke test 只能作为工程回归证据。
+5. A/B 出现近义词、情态词或固定搭配差异，且人工与 verifier 无法确定哪一种更符合公文习惯时，不靠模型票数直接裁决。先检索政府网站、公开政策文件和专业公文资料，记录检索词、来源类型、实际用例及上下文；优先采用更常见且与文种、责任强度和原材料决策状态一致的表达。搜索结果数量只作方向性证据，不能脱离语境把高频词机械替换进正文。本规则只用于 review/评测取证，不扩大 skill 默认联网范围。
+
+### ANTI-AI 对抗评测工作流
+
+只有通过 AI 痕迹 judge / reference 复核的样稿，才允许在发布报告或 README 中称为 `ANTI-AI` 写作能力。这里的门槛只用于评测和发布命名，不进入默认起草流程，不得把检测器写成正文生成阶段的硬阻断。
+
+对抗评测必须先检索 ClawHub、SkillHub、GitHub 或相关社区里的 AI 味检测、AIGC 痕迹判断、查重/重复度判断类 skill 或 reference。优先借鉴其判断维度和报告结构，例如句群同质化、连接词链、重复开头、模板化转折、二元包装句、空泛强评价、同义词循环、口号式结尾、查重式重复片段等；禁止复制其代码、API 调用、规避检测流程、口语化注入策略、固定替换表或大段 prompt。
+
+ANTI-AI 真实写稿测试应采用对抗式 A/B：
+
+1. 红队 writer subagent 只加载当前 `chinese-official-writing` skill 写稿或改稿，至少覆盖起草、改稿、只审不改、口语来源正式化、长文或限字场景；红队不得读取蓝队判分标准以外的结论，也不得修改仓库。
+2. 蓝队 judge subagent 只加载 AI 痕迹检测、AIGC 判断、查重/重复度 reference 的判断维度，不加载改写器，不调用 API，不给代改稿。蓝队只看“原 prompt + 红队样稿”，按 AI 痕迹、查重式重复、模板化程度、事实边界、文种格式和用户指令遵循给出 PASS/WARN/FAIL。
+3. 首轮至少跑 5 个真实用户式 prompt。先只记录命中问题，不在同一轮里修复；只有出现三次以上共性问题，才进入下一轮最小修复和基线消融。
+4. 若 AI 味下降但事实边界变差，不能直接判定通过；必须记录为“降 AI 味与事实保真存在张力”，等三次以上共性问题再做最小修复。
+5. 若样稿出现明显模板味、查重式重复片段、空泛强评价或机械三段式，且 judge 判为 FAIL，本轮不得对外宣称 `ANTI-AI` 能力通过。
+6. 通过口径以独立 judge 结论为准；主上下文不得自行把普通 `lint`、确定性消融或单次自评包装成 AI 检测通过。
+
+## 1.4.1 -> 1.4.3 接手记录
+
+当前 1.4.3 主线 commit 路径：
+
+- `74dc5be8e1c9dfa30b0ef3f484c3eb5edc8a7fed`：1.4.1 基线，补充联网搜索边界，默认不外搜，不因单位名自动搜索单位风格。
+- `80b8bab`：发布 1.4.2 最小护栏修复。
+- `cf0fba4`：补网页复制稿和套嵌文件边界，区分通知壳、被印发文件正文、附件标题和网页元信息。
+- `7e6f1cd`：补字段式申请、证明、采购明细等材料的字段和单元边界，避免把真实内部格式硬改成散文、表格或编号清单。
+- `652afa8`：补长文压缩事实锚定，压缩时保留主体、对象、数字、期限、责任、附件、联系人和反馈渠道，避免多主体分工被压成笼统“有关单位”。
+- `d89f320`：同步 1.4.3 版本号和镜像入口。
+- `77b56726efab8e2dcffbc8c1f3ae999249c28707`：修复复函 eval stub，使确定性 smoke 不因复函缺少来函收悉/函复要素误报。
+
+本轮修改思路：
+
+- 坚持 prompt/reference 层最小增强，不新增大规模 lint 规则、不新增排版脚本、不扩大联网搜索默认触发。
+- 不做一例一修；把多次出现的真实风险归纳成通用边界：网页稿边界、字段单元边界、长文压缩事实锚定。
+- 用户明确模板和局部格式要求优先于默认公文格式；只有破坏文种功能或事实边界时才提示风险。
+- `run_real_prompt_ablation.py` 新增用例只作为确定性回归网，不宣称真实写作质量；真实质量要靠 subagent 写稿和独立 verifier 复核。
+
+## 1.4.4 接手记录
+
+1.4.4 的修改应从 1.4.3 发行基线 `77b56726efab8e2dcffbc8c1f3ae999249c28707` 出发做最小增强。前置证据包括：
+
+- `tests/evidence/skillhub-1.4.4-research.md`：SkillHub “公文”81 个结果和 8 个代表技能核验；只允许借鉴流程思路、检查维度和 prompt/markdown 组织方式，不复制社区实现。
+- `tests/evidence/real-writing-1.4.4-round1.md`：3 个 writer subagent、8 个真实 prompt、独立 verifier 评分；三次以上共性问题为缺项进正文、字段/事实边界变化、限字不稳、抽象套话、要点位置不准。
+- `tests/evidence/real-writing-1.4.4-round2.md`：3 个 writer subagent、3 个真实 prompt、独立 verifier 复核；当前 1.4.4 规则未出现三次以上共性失败，未观察到缺项规则变成阻断，后续只需关注 Markdown 残留、正式落款日期完整度和字数精确度。
+
+1.4.4 候选修复只应覆盖这些共性层面：
+
+- 缺政策依据、截止时间、联系人、反馈渠道等事实时，列正文外待确认，不写“指定渠道”“截止时间前”等泛占位。
+- 字段式申请、证明、采购明细和清单式材料只改用户指定字段；新增字段无值时留空或待确认，不推断票据、邮箱、日期等内容。
+- 限字压缩必须先锁定不可丢要素，再真实压到用户限制；无法兼顾时说明取舍风险。
+- 长篇限字稿件不能只追求低于字数上限；要检查篇幅预算、首中尾完整度、措施安排和结尾落点，避免模型为了限字头重脚轻或草草收尾。
+- 抽象词和强评价必须有对象、动作、责任、时限、数据或制度载体。
+- Word/docx 交付只做内容定稿后的要素核对和版式衔接，不补造正文事实。
+
+## 1.4.5 接手记录
+
+1.4.5 只收紧 1.4.4 中“事实充分性”的表达方式，不新增硬 lint、不新增联网、不新增排版脚本。
+
+- 事实不足不作为默认中断理由。普通起草、顺稿和改稿必须先完成可用正文，再在正文后用“待确认事项”或当前版本的软性补足标题提示关键缺口。
+- 缺口提示是软性写作建议，不做调查问卷式问题清单；只列影响文种功能或执行落地的关键事实，例如金额、日期、联系人、反馈渠道、政策依据、申请事项、审批对象。
+- 增删论点、扩写细节、调整表达等写稿人可安排事项，不应列成用户义务。
+- 事实不足时不能用强判断补空白。材料未给风险结论、整改结论、检查结论或影响范围时，不自行写“未发现重大隐患”“无异常”“已完成整改”“未影响核心业务”等结论；材料只给问题清单时，也不补写“总体较好”“能够正常开展”等概括性正向判断。
+- 第二轮或后续修改中，用户没有补齐上一轮待确认事项，也必须继续执行本轮明确修改请求；不得把待确认事项升级为连续追问或修改阻断。
+- 对应确定性用例为 P043-P046；真实写稿实测还要覆盖“材料不足但先成稿”“请示关键事实不足但不先问一串问题”“第二轮未补事实仍继续压缩/调序”“缺事实时不补强判断”。
+
+## 1.4.6 接手记录
+
+1.4.6 只调整事实补足提示语，不改变事实不足的非阻断规则。
+
+- 正文后的软提示优先用“补充以下信息后，文章会更完整”，少用“关键事实”这种偏审查清单的标题。
+- 提示项仍只列影响文种功能或执行落地的必要缺口，不做调查问卷式展开，不把增删论点、扩写细节等写稿人安排事项列成用户义务。
+
+## 1.4.7 接手记录
+
+1.4.7 只做社区技能最小借鉴，不引入代码、脚本、字体、模板库、硬禁词、硬阶段或硬阻断。本轮借鉴来源只作为流程形态和检查维度参考：
+
+- `official-doc-writer` 的启发只保留“正式交付前要素核对卡”：用户要求 Word/docx/红头/文号/签发/版记时，正文后列缺项，不编造正式要素，也不因缺正式要素阻断正文。
+- `govwriter-pro` 的启发只保留“创作/修改模式素材边界”：修改模式以最新版底稿为主线，旧稿、参考样文、过往材料和公开网页材料只作结构、语气、格式或检查维度参考，不把旧金额、旧主送、旧落款、旧政策口号或旧结论自动带回正文。
+- `humanizer` 的启发只保留“成簇问题审稿”：去 AI 味和空话套话检查不因单个正式词、单个转折或一次排比硬清洗；公文自然度以克制、准确、可执行为准，不引入第一人称、口语化、情绪化表达或公众号式“人味化”。
+- 真实对比测试曾提示单样本 WARN：模型可能为了更正式而补入未给出的部门、管理动作或后续处理进展，也可能把多个“位置”合并得过粗。对应软收紧为：正式化只压实原文事实；用户要求“位置”时先逐项引用原文短语或句子，再给整体归纳。
+- 后续复测又提示核对卡可能过度展开。对应软收紧为：用户已点名缺少文号、签发人、版记等具体正式要素且要求简短核对时，优先只列点名缺项；其他正式要素只用一句按单位模板另行核对概括，不展开成长清单。
+
+对应确定性用例为 P047-P051；发布或继续修改前还要做真实写稿对比，至少覆盖正式 Word 缺项但先成稿、最新版/旧版/参考样文防回流、只审空话套话不重写、正式化不补组织/管理事实，以及旧能力中的文种判断、结构锁定和第二轮未补事实仍继续修改。
+
+1.4.3 review 已跑过的关键验证：
+
+- `python .\tools\run_real_prompt_ablation.py --baseline-root output\release-baselines\github-1.4.1 --baseline-label baseline-1.4.1 --current-root . --out output\real-prompt-vs-1.4.1-release-1.4.3`
+- `python -m unittest tests.test_real_prompt_ablation tests.test_review_regressions tests.test_revision_instruction_eval tests.test_promptfoo_eval`
+- `python -m unittest discover -s tests`
+- `npm run eval:official-writing:smoke`
+- `python .\tools\run_real_article_eval.py --out output\real-article-release-1.4.3-review`
+- `python .\tools\sync_adapters.py`
+- `python C:\Users\2\.codex\skills\.system\skill-creator\scripts\quick_validate.py chinese-official-writing`
+- `git diff --check`
+
+注意：以上确定性测试不等同真实写稿实测；发布结论必须同时引用真实写稿样本和独立 verifier 结果。
+
+## 1.4.8 接手记录
+
+1.4.8 只做去 AI 味软性审稿和国产 Agent Skills 兼容入口的最小增强，不新增硬 lint、不新增检测器、不新增排版脚本、不新增默认记忆机制。
+
+- 去 AI 味借鉴只落在 `references/anti-ai-patterns.md` 的“句群节奏和模板化痕迹”：检查句首重复、连接词链、句长同质化、口号式收束、清单堆叠替代论证。它只作审稿质量建议，不作为硬门禁，不把公文改成公众号口吻、第一人称、反问、口语插入或情绪化表达。
+- 记忆机制本轮不并入发行包。后续如做，只能是用户明确同意后的本地可选层，短文件、分文种、只记录稳定偏好；当前用户指令、文种功能和事实边界始终优先。
+- 国产 Agent 适配遵循最小镜像原则：Qwen Code 因官方目录为 `.qwen/skills/<skill-name>/SKILL.md`，保留独立 `.qwen/skills/chinese-official-writing/` 镜像；MiniMax Skills、GLM Skills（Z.ai/智谱）、AutoClaw、Kimi Code CLI、TRAE、Baidu Comate AI IDE 等共用 `skills/chinese-official-writing/` 或 `.agents/skills/chinese-official-writing/`，不为同一配方新增 `minimax/`、`glm/`、`kimi/` 等重复镜像。
+- README 安装提示里的平台名要使用实际名称：Qwen Code、MiniMax Skills、GLM Skills（Z.ai/智谱）、AutoClaw、Kimi Code CLI、TRAE、Baidu Comate AI IDE。Kimi 只写兼容提示，不写成已稳定官方 Skill 目录。
+- 对应确定性用例为 P052-P054；新增边界测试检查 `.qwen/skills` 镜像、README 平台名、共享目录策略和 frontmatter 兼容标识。
+
+## 1.4.9 -> 1.4.12 接手记录
+
+根目录只保留 `AGENTS.md` 作为 agent 接手入口；旧 `agent.md` 已删除。旧文件顶部仍记录 ClawHub live `1.4.8` 和 AI 味/查重 Round 1 过程，容易被后续 agent 误当成当前状态；保留必要结论如下，详细证据以 `tests/evidence/` 为准。
+
+1.4.9 的主要结论：
+
+- AI 味/查重循环只采纳三轮以上共性问题，不把单轮样稿同质化直接做成硬门禁。
+- 最小修复仍限定在 prompt/reference 层，不新增检测器、不新增清洗脚本、不改变默认写作工作流。
+- 发布前真实写稿、公开来源 5 轮测试和基线消融证据见 `tests/evidence/real-writing-1.4.9-release.md`、`tests/evidence/real-writing-1.4.9-public-source-5round.md`。
+
+1.4.10 和 1.4.11 的主要结论：
+
+- Hermes/GLM review 报告只作线索；每项 finding 必须先复现，再决定接受或拒绝。
+- 已接受并修复的方向包括高频风险句式 lint 漏检、`--format` 代码围栏内格式漏扫、冗余 `core_compiled`、起草规则单 bullet 过密、日期/综述类边界漏测等。
+- X-1 `name` 连字符问题继续拒绝：OpenClaw / ClawHub 兼容入口仍使用 `chinese_official_writing`；除非能复现实际加载断裂，否则不要改成连字符。
+- 详细证据见 `tests/evidence/review-fix-release-1.4.10.md`、`tests/evidence/review-fix-1.4.10-followup.md`、`tests/evidence/review-fix-release-1.4.11.md`、`tests/evidence/review-fix-1.4.11-followup.md`。
+
+Hermes 社区借鉴候选 `2713e27` 的处理结论：
+
+- 不接受 `2713e27` 原提交形态，不把它当作可发布候选。该提交在 Hermes 仓库测试中出现镜像不同步、`## 函` 被误改为 `## 函数`、`format_docx.py` 风险和 lint 噪声问题。
+- 拒绝 `format_docx.py`：候选脚本声称只做版式，实际会重建正文，存在默认同名 `.docx` 覆盖风险，并会把任意 `关于...` 行误判为标题。
+- 拒绝段落同构 lint 和 AI 味固定替换表：前者噪声偏高，后者会把口语材料升级为未给出的强判断。
+- 只最小借鉴思路：定稿前高风险先查、口语来源不等于事实授权、文种可参考顺序、低强度 AI 味提示。
+- 详细证据见 `tests/evidence/review-community-borrowing-2713e27.md`、`tests/evidence/community-borrowing-minimal-db5607b.md`。
+
+1.4.12 的发布结论：
+
+- 官方发布 commit 为 `92f6d15cb8802d1e66d8fad6f8d775db6945d9c4`，tag 为 `v1.4.12`。
+- GitHub `origin/main` 已对齐该 commit；ClawHub `latestVersion.version=1.4.12`，moderation `clean`。
+- 1.4.12 只保留 prompt/reference 和测试层最小增强，不新增硬门禁、排版脚本或默认联网。
+- 发布前验证包括 `python -m unittest discover -s tests -v`、`npm run eval:official-writing:smoke`、`git diff --check`、基线消融和真实 writer/verifier subagent 测试。
+- 详细证据见 `tests/evidence/release-1.4.12.md`。
+
+## 1.4.13 接手记录
+
+1.4.13 的发布结论：
+
+- 发布候选从 `cb7c8d3` 出发，只追加版本号同步和 `sync_adapters.py` 版本字段同步修复，不新增硬门禁、lint 规则、默认联网或写作工作流阶段。
+- 1.4.12 基线消融：`baseline-1.4.12` 55/55 通过，`current` 55/55 通过。
+- 发布前真实写稿 sanity：独立 verifier 判定 2 PASS、1 WARN；WARN 为“只审格式和语气”样本中格式项覆盖偏轻，不构成阻断、事实编造或格式破坏。
+- 详细证据见 `tests/evidence/release-1.4.13.md`。
+
+## 1.4.14 接手记录
+
+1.4.14 只调整 skill 触发 description、OpenClaw 摘要说明和 description 专项回归用例，不新增硬门禁、lint 规则、默认联网、排版脚本或写作 workflow 阶段。
+
+- description 明确覆盖“中文公文和机关企事业单位、学校等正式事务材料”，同时保留“写申请/请示/报告/通知/函”等短 prompt 的路由能力。
+- `降 AI 味` 收束为“对这类材料”适用，并明确排除论文、个人求职、营销、社媒等，降低误触发风险。
+- OpenClaw 市场页说明改为市场页只展示摘要，安装包内入口规则和 `references/` 为准，canonical 全文见 GitHub。
+- 新增 P056-P064 description 专项消融用例；1.4.13 基线在新增专项中失败 3 项，current 64/64 通过。
+- 发布前真实写稿 verifier 判定 2 PASS、2 WARN；WARN 均为用户未提供主送/发函单位/成文日期导致的正式完整性偏简，不构成文种错乱、事实编造或中断。
+- 详细证据见 `tests/evidence/release-1.4.14.md`。
+
+## 1.4.15 接手记录
+
+1.4.15 是针对 1.4.14 交付 review 的最小修复候选；本轮发布目标为 GitHub、ClawHub 和 SkillHub。
+
+- 接受并修复字段式材料 lint 误报：`project-card-summary` 不再作为 base medium 阻断项，只保留为 `--structure` 下 low 级质量提示，避免字段式申请、证明、采购明细被 `--strict --fail-on medium` 卡住。
+- 接受并修复正文外待确认标题变体：`（待确认事项）`、`待补充事项`、`需确认事项`、`补充信息` 等标题后内容不再按正文占位扫描。
+- 接受 description 补强：frontmatter 明确覆盖 `通告、意见、决定、决议、议案、公报、命令`，降低短 prompt 漏触发风险。
+- 拒绝本轮改代码围栏扫描：历史测试要求 `--format` 不能让占位符和 Markdown 残留藏在代码块里，不能一刀切停扫。
+- 延期 BMP 装饰符号和 `可以说。`：可复现但属于小 lint 漏检，暂不扩大 lint 面。
+- 1.4.14 基线消融：baseline 65/71，current 71/71；baseline 只在新增 description 守卫上失败。
+- 真实写作 A/B verifier 判定当前候选相对 1.4.14 无功能回退。
+- 详细证据见 `tests/evidence/review-fix-release-1.4.15.md`。
+## 1.5.0 接手记录
+
+1.5.0 是在 1.4.15 稳定基线上的文种 playbook 架构整理和最小边界修复候选；本轮发布目标为 GitHub、ClawHub 和 SkillHub。
+
+- 只做 prompt/reference 层架构优化：按文种 playbook 补齐请示、通知、函、会议纪要、报告、方案、讲话/致辞、采购/可研等路由提示，同时保留共性事实边界、去 AI 味和 lint 规则，不新增脚本硬门禁。
+- 接受并修复 playbook 消融发现的“AI 算力/采购主题过拟合”和“审查/讲话类输出易补造事实”风险；AI/算力只在用户明确给出主题时进入正文，普通采购、审查、讲话和只审不改场景不得自动带入 AI 算力表达。
+- 基线消融必须固定上一发行基线 `1.4.15`；新增用例只允许 1.4.15 baseline 失败，current 不得失败。
+- 发布前仍需真实 writer/verifier subagent 测试，重点覆盖 AI 算力可研、普通采购、字段式审查、会议纪要、讲话、只审不改和旧文种能力。
+- SkillHub 发布只能针对 slug `chinese-official-writing`；本轮已用 SkillHub CLI dry-run 确认 slug/version，并向该目标提交 `1.5.0`，提交结果 `skillId=70149`、`versionId=127481`、`tags.latest=1.5.0`。公开详情页在审核完成前仍可能显示 `latestVersion=1.4.15`。
+- 详细证据见 `tests/evidence/release-1.5.0.md`。
+
+## 1.5.1 接手记录
+
+1.5.1 是 1.5.0 发布后的 review-found 最小修复发布，包含本地已验证的 `35385ee` 和 `1fa0858` 后续提交以及版本同步。
+
+- 接受并修复上行文缺主送机关、申请单位、金额、成文日期时的软提示不足；仍不阻断成稿，不编造泛称主送、泛称落款或当前日期。
+- 接受并修复长文压缩中落款单位、联系人和成文日期被压掉或截短的提示不足。
+- 接受并修复正文和说明之间残留 `---` Markdown 横线的 lint 漏检；只提示风险，不自动清洗正文。
+- 接受并修复两个 agent/eval 工具的超时异常处理，超时时返回 `124` 和可读错误，不再直接抛 traceback。
+- 1.5.0 基线消融：baseline `81/84`，current `84/84`；baseline 只在新增 P082-P084 review 回归用例失败，current 无失败。
+- 真实 writer/verifier subagent 复核为 `overall=WARN`、`publish_blocking=false`；非阻断 WARN 为会议通知样稿在缺发文单位时补入“办公室”和当前日期，后续观察，不在发布前扩大修复面。
+- SkillHub 支持 skill 级 `iconUrl`；ClawHub `inspect` 未暴露 skill 头像字段。本轮只对 SkillHub 上传并发布蓝底 Q 版图标，不向 ClawHub 包加入头像字段。
+- 详细证据见 `tests/evidence/release-1.5.1.md`。
+
+## 1.5.2 接手记录
+
+1.5.2 是 1.5.1 后的 prompt/reference 最小边界修复和测试证据补强版本。
+
+- 接受并修复一处引用核验提示边界：`SKILL.md` 入口从“最终稿保留用户给定引用时”收窄为“需要提示未核验引用时”，避免用户明确要求只输出正文时被强制追加核实句。
+- 同步 `tools/sync_adapters.py` 版本到 `1.5.2`，并同步 Codex、Qwen、Hermes、OpenClaw、Claude plugin 和 README 元数据。
+- 发布前验证包括定向 unittest `78/78`、全量 unittest `105/105`、GitHub main/1.5.1 基线消融 current `85/85`、真实文章回归、promptfoo smoke `20/20`、`git diff --check`、真实 subagent writer/verifier 和 3000 字以上调研/可研/多附件合稿测试。
+- GitHub 已发布：`origin/main` 和 tag `v1.5.2` 均为 `70efc9ce74fe956497b5044ee14f60e2b94c5e55`。
+- ClawHub CLI `0.18.0` 与 `0.23.1` 发布命令曾因服务端响应不再包含 `skillId/versionId` 而报 schema 错误；官方文档仍推荐 `clawhub skill publish <path>` 和 `/api/v1/skills`，本机 CLI 源码也走该端点。当前环境默认代理变量指向 `127.0.0.1:9` 时会导致 CLI 网络失败；临时清空代理后 `whoami`、`inspect` 和 `dry-run` 正常。用同源 CLI 组包逻辑直接调用官方 `/api/v1/skills`、带完整 GitHub source 元数据重试、以及 legacy `/api/cli/publish` 均返回同一个 `status=pending`、`attemptId=zx7d8vv11327rpzzzg0gfgh24h8a345c`；后续用户完成内置浏览器登录后，ClawHub 页面和 CLI 均确认 1.5.2 已完成异步切换：`latestVersion.version=1.5.2`、`tags.latest=1.5.2`、moderation `clean`、`--versions` 列表包含 `1.5.2`。
+- SkillHub 已公开切换精确项目 `chinese-official-writing`：`skillId=70149`、`versionId=129948`、`tags.latest=1.5.2`，公开 `latestVersion.version=1.5.2`。
+- 详细证据见 `tests/evidence/release-1.5.2.md`。
+
+## 1.5.2 后续弱模型测试记录
+
+`be46036` 在 1.5.2 基线上补了报告/说明类、会议纪要、采购/可研等 playbook 边界。本轮随后按用户要求追加弱模型低思考真实写作测试，覆盖版慎通成本考察、版慎通使用报告、结构锁定改稿、只审不改和长篇限字汇报。详细证据见 `tests/evidence/weak-model-low-reasoning-20260707.md`。
+
+累计口径下达到三次的共性问题只有两类：一是弱模型容易把“建议、拟测试、下一步设想”写成已定实施方案或执行要求；二是只审不改或正式稿中仍可能残留 Markdown `**` 加粗标签。本轮只做 prompt/reference 层软性最小修复：保持建议或待评估口径，不在未给正式决定、责任单位和期限时写“按以上方案执行”“一周内反馈”等强执行要求；用户指定“位置 + 风险层级 + 修改建议”时，用普通文本标签，不用 Markdown 加粗包装。未新增脚本清洗、lint 硬规则或默认阻断。
+
+事实外扩、标题漂移和日期额外推断本轮未达到三次共性。后续如果这些问题再次出现，应先复查现有规则是否分散或表述冲突，再决定是否做最小收紧；不要单凭一个样本继续追加补丁。发布前仍需同时跑弱模型低思考和强模型真实写稿，防止优化弱模型后让强模型过度保守或把建议边界处理成新的过拟合。
+
+## 1.5.3 发布前阻断记录
+
+1.5.3 是 1.5.2 后的本地候选，尚未发布 GitHub、ClawHub、SkillHub，未创建 `v1.5.3` tag。候选只做 prompt/reference 层最小收紧和 P091-P093 确定性用例补充，不新增 lint 硬规则、脚本清洗、默认阻断或默认联网。
+
+- 已核实最小借鉴链路存在：历史证据和 `AGENTS.md` 已设社区借鉴门禁，当前包内未发现 `format_docx.py`、`document_generator.py`、`install_fonts.py` 等社区重脚本进入 canonical。下一轮建议补 `minimal-borrowing-ledger` 和轻量防重脚本/社区 slug 守卫。
+- 确定性验证通过：`python -m unittest tests.test_real_prompt_ablation tests.test_skill_boundary` 为 42 tests OK；1.5.2 基线消融 `baseline-1.5.2 84/93`、`current 93/93`。
+- 真实弱模型低思考当前能力测试未通过：结构锁定改稿和版慎通成本考察短稿基本可用，但数据治理专项推进情况通报连续复测仍补写基础清单、工作组、问题清单、统一共识、治理流程、验收节点等未给事实。隔离 verifier 判定不可发布。
+- 发布决定：不得把本地 1.5.3 候选推送或标记为发布版。下一轮优先解决“材料稀疏型通报/情况说明/报告在弱模型上自动补处置链条”的共性问题，修复后必须重新做 1.5.2/上一候选消融和真实 writer/verifier 测试。
+
+详细证据见 `tests/evidence/preflight-1.5.3-blocked.md`。
+
+## 1.5.4 重新发布候选记录
+
+当前 `1.5.4` 发布候选不是上方被阻断候选的直接发布。后续复核发现远端 GitHub 已存在 `v1.5.3` tag，指向 `b4535b9 fix: close final 1.5.3 fact-boundary blockers`；该远端版本相对 `1.5.2` 已修复一组事实边界问题并新增 P086-P095。当前候选先恢复并保留远端 `v1.5.3` 的事实边界修复，再合入本地轻量 `references/task-route-cards.md` 和 `SKILL.md` 参考资料表按需读取提示。因远端已有 `v1.5.3` tag，本次候选上移为 `1.5.4`，不覆盖旧 tag。该候选不新增硬 lint、默认联网、强阻断或重排版脚本；弱模型验收口径明确为格式噪点记 WARN，优先判断 prompt 遵循、要点置入、事实边界、禁止事项和二次修改可交付性。
+
+发布前验证已通过：1.5.2 基线消融 baseline `84/95`、current `95/95`；远端 1.5.3 基线消融 baseline/current 均为 `95/95`；全量 unittest `107/107`；promptfoo smoke `20/20`、judge 一致率 `1.0`；quick_validate 通过；真实样文回归 skill 路径 10 样本要素覆盖 `61/61`。合并后另跑弱模型 `gpt-5.3-codex-spark` 低思考和强模型 `gpt-5.5` 低思考真实写稿，独立 verifier 结论为强模型 3 PASS，弱模型 3 WARN、0 FAIL，主要风险为 Markdown 标题和一处轻微事实扩展，无三次以上共性功能失败。详细证据见 `tests/evidence/release-1.5.4.md`。
+
+发布状态：GitHub main/tag 已推送；ClawHub `1.5.4` 已发布且 inspect 显示 clean；SkillHub `1.5.4` 已提交到精确项目 `chinese-official-writing`，返回 `skillId=70149`、`versionId=132166` 和 `tags.latest=1.5.4`，但搜索索引提交后仍显示 `1.5.3`，需等待审核/索引完成后复查公开页。
+
+- 2026-07-09 针对“弱模型可能因入口规则过密导致注意力崩溃”的假设做过一次小步实验。候选只压缩 `SKILL.md` 的“任务模式路由与交付模式”入口段，并同步 Codex、Qwen、Hermes、OpenClaw 等镜像；未改 reference、脚本、lint 或版本号。入口段从 2013 字符压到 1463 字符，减少 550 字符，并把高密度长句拆成更短的扫描项。确定性验证通过：`python -m unittest tests.test_real_prompt_ablation tests.test_skill_boundary` 为 41 tests OK；与 1.5.2 的确定性消融为 baseline 85/85、current 85/85。但真实写稿 A/B 不支持保留：弱模型 `gpt-5.3-codex-spark` low 在当前压缩入口下没有优于 1.5.2 基线，TestAgent 通知把“通过钉钉发给技术应用部”写成“通过钉钉下发至技术应用部”，并把排查主体错误转给技术应用部；C1-C4 仍连续残留 Markdown 加粗。强模型 `gpt-5.5` low 未明显退化，但不能证明弱模型改善。结论：本次入口压缩候选已撤回，不得作为发布候选继续推进。后续如继续做注意力优化，不要在这版失败候选上叠补丁；应先只读审查信息熵和重复表达，每次只压缩一个小块，并固定使用弱/强模型真实 A/B，重点覆盖“时间点不得改成截止时间”“报送至/下发至/由谁执行的动作关系”“正式正文不使用 Markdown 加粗”。详细证据见 `tests/evidence/attention-compression-ab-20260709.md`。
+- 2026-07-09 继续测试一个更窄的“入口长句拆行”候选：不删任何规则，只把 `SKILL.md` 中“起草或改写”下 4 条高密度长句拆成 8 条短句，同步各镜像；未改 reference、脚本、lint 或版本号。确定性验证通过：`python -m unittest tests.test_real_prompt_ablation tests.test_skill_boundary` 为 41 tests OK；与 1.5.2 的确定性消融为 baseline 85/85、current 85/85；入口片段最大单行长度 181 -> 132。但真实弱/强模型 A/B 不支持保留：独立 verifier 判定 current weak 在 260 字压缩通知中把“清查结果通过 OA 反馈至信息技术部”改成“由联系人李明通过电话12345678确认反馈”，遗漏 OA 渠道并改错联系人/反馈关系；current weak 还在 5090 说明和世界杯通知中补入未给判断，current strong 在 5090 说明中也有细节外扩。结论：该拆行候选已撤回，不得作为发布候选推进。后续压缩应先处理重复和信息熵，不要仅凭“更短/更分行”判断改善；必须继续用弱/强模型真实 A/B 证明不损害事实关系。详细证据见 `tests/evidence/split-drafting-rules-ab-20260709.md`。
+- 2026-07-09 按“信息熵/重复表达先审查、三次以上回退后查社区路径”的要求，补做只读密度审查、独立 subagent 审查和 SkillHub 社区检索。可验证参考包括 `official-document-skill`、`plan-proofread`、`unclecheng-reduce-ai-perception-v2`；结论是只借鉴 `plan-proofread` 的“入口索引 + reference 细则 + 审稿清单化”思路，不借鉴单文件大入口、硬评分、重脚本、硬禁词、口语化和“活人感”。随后尝试“短原则 + 转读 reference”的入口瘦身候选，但 `python -m unittest tests.test_real_prompt_ablation tests.test_skill_boundary` 在 41 tests 中失败 6 项，说明入口不能移走 `用户明示某些事项未提供`、`不要做调查问卷式问题清单`、`材料未给风险结论`、`未发现重大隐患`、`总体较好`、`不得为显得完整而补造未提供的牵头部门...` 等历史回归锚点；补回这些锚点会退回上一轮已被真实 A/B 否掉的“拆行/换行”形态。候选已撤回，本轮不产生发布候选。后续不要继续压缩 `SKILL.md` 事实边界入口；若还要做注意力优化，优先只读审查并拆分按需 reference 的超长段落，或转向二次修改链路测试。详细证据见 `tests/evidence/prompt-density-community-review-20260709.md`。
+- 2026-07-09 继续按用户放宽口径测试“弱模型首稿基本可用，用户自然语言指出问题后二次修改可用”。4 个真实场景覆盖 TestAgent 通知、OpenClaw 报告、世界杯通知和 260 字压缩通知；弱模型 `gpt-5.3-codex-spark low` 首稿为 1 FAIL、3 WARN，强模型 `gpt-5.5 low` 首稿为 2 PASS、2 WARN。用户式二次修改后，独立 verifier 判定弱模型二稿 4/4 PASS、强模型二稿 4/4 PASS。二稿阶段没有三次以上共性失败，因此本轮不修改 skill，不继续堆 `SKILL.md` 入口 prompt。首稿阶段仍需关注“时间点被改成截止时间”“弱模型漏落款/日期/反馈渠道或补管理动作”，但本轮证据显示可通过二次修改修正。详细证据见 `tests/evidence/second-revision-usable-20260709.md`。
+- 2026-07-09 继续按“原始文档信息熵和压缩后信息熵”思路测试 reference 层最小拆段。只读定位和独立 explorer 均认为 `workflow.md` 的“事实充分性软处理”长段是可疑高密度片段；临时候选只把该段拆成“缺项处理、上行文结构缺口、正文缺项表达、强判断边界、事实外扩、playbook 边界、后续轮次”7 个短块，未删语义、未改 `SKILL.md` 入口。确定性验证 `python -m unittest tests.test_real_prompt_ablation tests.test_skill_boundary` 为 41 tests OK，但真实弱/强模型 A/B 不支持保留：weak candidate 三篇标题均残留 Markdown `**...**`，并在版慎通成本说明中补入近三个月调用结构、预算监测报表、按月复盘等未给管理动作；strong candidate 也在微博说明中轻度补具体选题方向。独立 verifier 判定 weak baseline PASS、weak candidate FAIL、strong baseline PASS、strong candidate WARN。候选已撤回，不得作为发布候选推进。后续不要把“更短、更分块、更像清单”直接等同于更好；若继续注意力优化，优先做加载路径 A/B（入口、入口+workflow、入口+workflow+playbook），或继续二次修改/只读 final-draft inspection 路线。详细证据见 `tests/evidence/reference-density-ab-rollback-20260709.md`。
+- 2026-07-09 继续澄清并测试“深渐进式披露”。第一阶段测试 A=只读入口、B=入口+整份 workflow、C=入口+整份 workflow+整份 genre-playbooks；结论是“多读 reference”没有单调改善，weak A/WARN、weak B/FAIL、weak C/FAIL，strong A/WARN、strong B/WARN、strong C/PASS，不应强制或鼓励整份 reference 深加载。用户随后澄清深渐进式披露应理解为更细颗粒的按需路由，避免加载无关内容；第二阶段追加微型路由卡，只给稀疏情况说明、会议纪要、限字通知所需 5 条短规则。独立 verifier 在放宽弱模型格式噪点口径后判定 weak micro PASS、strong micro WARN。结论：微型路由卡值得作为后续设计方向，但本轮不直接并入正式 skill；弱模型不要再死磕一次成稿，重点看内容是否符合 prompt、事实边界和禁止项，Markdown 等格式噪点只记 WARN，交付口径转为首稿基本可用、二次/三次局部修改后可交付。详细证据见 `tests/evidence/deep-progressive-disclosure-ab-20260709.md`。
+- 2026-07-09 在 `f0ae58f` 后将微型路由卡按最小原则并入正式 skill：新增 `references/task-route-cards.md`，`SKILL.md` 只在参考资料表增加一行路由提示，OpenClaw 精简入口同步同一提示；不新增 lint 硬规则、默认联网、强阻断或主入口长段落。轻卡只覆盖材料稀疏、未决会议纪要、短通知/限字通知和二次局部修改。真实 writer/verifier 复测显示弱模型 `gpt-5.3-codex-spark low` 三项均为 WARN、无硬 FAIL，强模型 `gpt-5.5 low` 三项 PASS；弱模型格式噪点继续只记 WARN，判断重点是 prompt 遵循、事实边界和禁止项。详细证据见 `tests/evidence/task-route-cards-real-ab-20260709.md`。
+- 2026-07-09 继续在 `be140b9` 上测试轻卡并入后的真实二次修改链路。3 个真实场景覆盖 OpenClaw 安装情况排查报告、版慎通低成本模型测试会议纪要和 230 字以内账号权限自查通知；弱模型 `gpt-5.3-codex-spark low` 首稿为 2 WARN、1 PASS，强模型 `gpt-5.5 low` 首稿为 3 WARN，WARN 均集中在 Markdown/标题包装、`排查范围` 栏目或口径略硬。用户自然语言指出问题后二稿两组均为 3/3 PASS。独立 verifier 判定不存在三次以上共性失败，因此本轮只记录证据，不再修改 prompt，避免无意义膨胀。详细证据见 `tests/evidence/second-revision-after-route-cards-20260709.md`。
+- 2026-07-09 继续做发布前旧能力真实回归，覆盖电脑采购内部申请、结构锁定改稿、只审不改、800 字以内模型成本治理建议。弱模型 `gpt-5.3-codex-spark low` 为 1 WARN、3 PASS，强模型 `gpt-5.5 low` 为 2 WARN、2 PASS；独立 verifier 判定 0 FAIL、无三次以上共性失败。WARN 主要是轻度格式包装、个别表达偏请示化、局部扩写超出指定范围，未达到修复门槛。本轮不修改 prompt，不新增规则，不做一例一修。详细证据见 `tests/evidence/release-readiness-regression-20260709.md`。
+- 2026-07-09 按用户最新口径补做当前候选发布前综合预检：弱模型写作中的 Markdown 残留、标题加粗等格式噪点只记 WARN，不作为内容失败；判断重点转向 prompt 遵循、要点置入、事实边界、禁止事项和二次修改可交付性。`sync_adapters.py` 后零 drift；1.5.2 基线确定性消融 baseline/current 均为 85/85；全量 unittest 106/106；promptfoo smoke 20/20、judge 一致率 1.0；quick_validate 通过；真实样文回归 skill 路径 10 样本要素覆盖 61/61，但“主送单位、发文字号”等待确认项仍被工具计为占位风险，作为人工提示记录。当前候选未发现发布阻断。详细证据见 `tests/evidence/preflight-current-20260709.md`。
+- 2026-07-08 继续在 `446c08c`、`59923bf` 和 `cc3776d` 基线上按“测试 -> 修复 -> 复测 -> 消融 -> 不行回退”跑了六轮弱模型低思考 prompt 候选，均已回退。候选包括稀疏材料短写、入口三项交付习惯、入口长句拆分、一次静默清理、显式交付前检查/smoke text 工具提示、纯文本交付和稀疏提醒/排查类短写前置。真实 6 prompt writer/verifier 复核显示 Markdown 残留、稀疏材料补造执行链条、情况说明漂成审批尾巴仍未稳定解决；单 prompt 隔离复测排除了“六篇合集”伪影，但仍有两次 verifier 判定不适合发布。下一轮不要继续往 `SKILL.md` 堆类似 prompt 限制；优先考虑真正的二次修订交互或外部工具辅助 final-draft inspection，并用真实 writer/verifier A/B 证明。详细证据见 `tests/evidence/weak-model-prompt-loop-20260708.md`。
+- 2026-07-08 继续测试真实二次修改链路。六个真实首稿 prompt 的独立 verifier 结论仍是 6 WARN、`usable but not publish-ready`；自然语言二次修改能删除大块未给事实和明显 Markdown 包装，但仍残留行尾 Markdown 换行、小型事实外扩和日期沿用。随后只保留三条窄修复：二次修改中 `已排查/已核查/已检查` 不展开成未给范围/载体/流程/结果；正式正文不使用行尾两个空格控制换行；用户二轮要求不要补日期/删日期时同步删除上一稿日期。聚焦复测显示这些规则改善显式二次修改，但尚不能证明弱模型首稿可发布。下一步若继续发布准备，必须再跑上一基线消融、强弱模型真实写稿 A/B 和 verifier 复核。详细证据见 `tests/evidence/weak-model-second-round-repair-20260708.md`。
+- 2026-07-08 在 `0caf2db` 上补跑用户指定 6 个真实 prompt 的强弱模型首稿 A/B。strong (`gpt-5.5 low`) 为 4 PASS、2 WARN，整体可进入二次修改；weak (`gpt-5.3-codex-spark low`) 为 4 WARN、2 FAIL，Markdown 残留、事实/措施外扩和正式格式完整性不稳均达到三次以上。独立 verifier 判定当前版本“可辅助起草，但不宜作为稳定版发布口径”。本轮只记录证据，不继续堆 prompt 补丁。详细证据见 `tests/evidence/weak-strong-first-draft-ab-20260708.md`。
+- 2026-07-08 随后尝试把共性外扩归纳为“风险提示/排查/核查类短稿”最小候选，并通过确定性单测和 `3a6eba3` 消融；但真实 weak 复测仍在 Claude Code 通知、暴雨通勤提醒、世界杯通知和 OpenClaw 报告中出现 Markdown 残留、执行链条外扩和排查范围/方法补造，独立 verifier 判定不应保留。该候选已回退，只保留失败证据。后续不要重复追加同类“场景名称 + 禁止项”短稿边界。详细证据见 `tests/evidence/failed-risk-shortdraft-candidate-20260708.md`。
+- 2026-07-08 又诊断了 URL-only 与来源摘录的区别：当 Claude Code 和气象网页关键事实直接放入 prompt 时，弱模型能基本保留版本号、预警时间、预报时段和地区范围；但 OpenClaw 稀疏报告仍补入“按照有关要求”“相关终端设备”和当前日期。后续不要把“URL 是否被读取”与“公文写作能力”混成同一个回归结论；测试公文改写能力时应给来源摘录或确认 writer 具备联网读取能力。真正需要继续处理的是稀疏报告/情况说明自动补依据、范围、日期和后续管理动作。详细证据见 `tests/evidence/source-excerpt-vs-url-diagnostic-20260708.md`。
+- 2026-07-08 在不再堆默认起草 prompt 的前提下，保留了一处 review-only 最小修复：`references/review-checklist.md` 增加稀疏 `已排查/已核查/已检查` 类报告和通知短稿的 final-draft inspection 风险提示，把 `按照有关要求`、`相关终端设备`、当前日期、后续管理、记录留痕等未给依据/范围/动作至少按中风险提示。确定性消融对比 `d5c2c61` 为 baseline `101/102`、current `102/102`；真实低思考审稿复测和独立 verifier 判定 PASS。该修复只改善“只审不改/外部检查”安全网，不证明弱模型首稿已可发布。详细证据见 `tests/evidence/final-draft-inspection-20260708.md`。
+- 2026-07-08 继续测试“交付修订模式”作为非默认二次修订能力。默认首稿“交付前三项短检”候选在真实 6 prompt 复测中仍未解决事实外扩和格式残留，已回退；当前只保留用户把坏稿发回并要求“修干净、能发、删掉没说的东西、去掉格式痕迹、按已给材料重改”时触发的 `references/review-checklist.md` 交付修订模式。二次修订真实测试为 2 PASS、2 WARN，能明显删除补造链条，但仍有行尾空格、少量制度化表达和落款位置不稳风险。本候选不是发布充分条件，不要宣称首稿质量已稳定。详细证据见 `tests/evidence/delivery-repair-loop-20260708.md`。
+
+- 1.4.15 发布后补跑 description 新路由真实写作和改写测试，覆盖通告、命令（令）、意见、公报、决议、议案以及报告改通告、意见稿去口语化。独立 verifier 判定 6 PASS、2 WARN、0 FAIL；主要残留风险是材料不足时容易补入惯常判断，以及公开发布短稿有轻微评价化倾向。详细证据见 `tests/evidence/real-writing-1.4.15-description-routes.md`。
+- 下次发布前必须核查远端字段原始值。ClawHub 1.4.15 曾因 Windows `npx.cmd` 传参把 `--name "中文公文写作"` 和 `--tags "chinese,...,ai-compute"` 的引号写入远端 `displayName` 和 tag key；下一版本发布必须使用 `--name=中文公文写作`、`--tags=chinese,official-document,writing,gongwen,ai-compute`，并用 `clawhub inspect --json`、SkillHub API 和 GitHub tag/main 核对 displayName、tags、latestVersion、summary 和 canonical frontmatter。
+
+## 1.5.4 交付 review 后续记录
+
+2026-07-09 复核 `C:\Users\2\Desktop\中文公文写作skill-1.5.4-交付Review报告.md`。该报告结论为 1.5.4 可交付，但提示架构膨胀和重复规则风险。本轮只接受两项最小修复：一是在 `task-route-cards.md` 增加“完整文种骨架、800 字以上长文、多材料合稿、会议纪要/可研/采购/AI 算力专项论证、GB/T 9704 或 Word 正式交付”等必须转读长 reference 的条件；二是将 `genre-playbooks.md` 通报小节中的事实映射式二次修改细则改为指向 `workflow.md`，降低 single source of truth 漂移风险。Codex、`.agents`、`.qwen`、Hermes、OpenClaw 等镜像已通过 `tools/sync_adapters.py` 同步。
+
+本轮拒绝继续压缩 `SKILL.md` 硬边界入口、拆分 `workflow.md` 事实充分性长段，原因是此前 `attention-compression-ab-20260709.md`、`split-drafting-rules-ab-20260709.md`、`prompt-density-community-review-20260709.md` 和 `reference-density-ab-rollback-20260709.md` 均记录过弱模型真实 A/B 回退。后续不要在这些入口和事实充分性长段上叠补丁；如要继续优化，应优先做加载路径或二次修改链路实验。
+
+验证：定向 unittest `43/43` 通过；与当前 1.5.4 基线 `48f3190b704e0486f09e5b44f4c6a1e3efc91bcd` 的确定性消融为 baseline `95/95`、current `95/95`；真实写稿 A/B 使用 subagent，baseline writer `019f44de-05a4-7661-a39b-6ee51015ae86`、current writer `019f44de-4f23-7ea0-90af-389fdadd3afd`、verifier `019f44df-77c1-7f31-886c-ed97e5c7fb58`，两项任务均 PASS，verifier 判定 current 无功能性回退。详细证据见 `tests/evidence/review-fix-1.5.4-delivery.md`。
+
+## 1.5.4 深度 review 进行中记录
+
+2026-07-09 按用户新目标进入深度 review 轮。本轮规则：使用隔离 subagent 冷审，不复用旧 review 结论；未经复现不采信单次 finding；只有三次以上共性问题才进入最小修复；禁止脚本硬清洗、一例一修和默认阻断；每次实质 prompt/reference/script 修改后必须与 1.5.4 基线做确定性消融和真实写稿 A/B。当前基线固定为 `output\release-baselines\local-1.5.4-48f3190`，当前工作树起点为 `42e7b08`。
+
+当前已启动三条只读隔离任务：冷审 reviewer `019f44f2-c729-7ec2-9962-3343180d5f9d` 只看当前源文件、不读历史证据；baseline writer `019f44f3-5ed3-7591-903c-405227879a94` 读取 1.5.4 基线 skill；current writer `019f44f3-d46a-7ad1-b47e-1703ec9acd0b` 读取当前候选 skill。写稿 A/B 覆盖 description 中声明的 30 类文种/正式材料，每类 1 个真实用户式短 prompt。后续必须由独立 verifier 只看 prompt 和两组输出判定回退风险，不能由主上下文自行判定。
+
+本轮冷审只接受一项最小修复：将 `references/workflow.md` 中“事实充分性软处理”超长单段拆成短 bullet，保持原语义，不新增硬阻断、脚本清洗、lint 规则或默认联网。首轮真实 A/B 达到三次以上共性问题，允许尝试该最小修复；post-fix 继续用 30 类 prompt 做 1.5.4 baseline/current 写稿 A/B，verifier `019f4500-f7ae-7462-a43d-ad38f4c4ac34` 判定总体 `WARN`，但未出现 current 独有且达到三次以上的同类功能性回退，建议保留拆分、不回滚、不继续补丁式追加规则。
+
+验证：定向 unittest `43/43` 通过；全量 unittest `107/107` 通过；与 1.5.4 基线的确定性消融为 baseline `95/95`、current `95/95`；promptfoo smoke `20/20` 通过；真实样文回归 skill 差异率 `0.00%`、关键词命中率 `100.00%`，但仍有占位词风险样本需人工复核；quick_validate 通过；`git diff --check` 通过且仅有 Windows 换行提示。详细证据见 `tests/evidence/deep-review-1.5.4-workflow-split.md`。
+
+## 1.5.6 前置阻断、finalizer 回滚和发布裁决
+
+2026-07-10 以 GitHub `v1.5.5` 为固定发行基线补做 reference 路由、评测 provider、只输出正文边界和真实长文测试。已保留的本地候选改动通过全量 unittest `121/121`、确定性消融 current `101/101`、Promptfoo smoke `20/20` 和 quick_validate；但真实 `gpt-5.6-luna` 写稿在 600—800 字、900—1100 字及 3000—3500 字多附件合稿中可复现“现有材料没有/未说明”等材料读取旁白，独立 verifier 按当时“一次出现即阻断”的口径判定 `FAIL`。该问题在 `v1.5.5` 基线也存在，不是本轮候选独有，因此该段只记录阶段性暂停发布的历史判断。
+
+先后尝试的明示禁令、业务对象状态改写、静默纯净检查和单次静默净稿四种 prompt-only 候选均未在长文中稳定解决，已全部回滚；不要在这些失败候选上继续叠同义 prompt。该阶段版本仍为 `1.5.5`，没有创建 `v1.5.6` tag，也没有调用 ClawHub 或 SkillHub 发布。详细证据见 `tests/evidence/review-reference-routing-1.5.5-followup-blocked.md`。
+
+2026-07-10 继续固定 `v1.5.2`、`v1.5.3`、`v1.5.4`、`v1.5.5` 和本轮起点做版本追溯、真实 Luna 写稿 A/B、`workflow.md` 拆分因果消融及独立净稿实验。`v1.5.2` 已可复现材料旁白，canonical Markdown 此后没有缩短；受控交换 workflow 的结果不支持“拆段导致旁白”的因果结论。父级显式编排第二个 cleaner agent 时 6 篇清稿均由独立 verifier 判定通过，但把按需 cleaner 路由写入 canonical skill 后，真实 writer 未调用子代理，候选旁白密度由本轮起点的每千字 `1.79` 升至 `2.16`，并发生一次 `拟先` 到 `考虑先` 的语气漂移。两名 blind verifier 都判候选和基线为发布阻断，因此产品改动、临时 reference、测试和 P102 已全部回滚，只保留证据。回滚后定向 unittest `86/86`、全量 `121/121`、本轮起点消融双方 `101/101`、`v1.5.5` 对比 current `101/101`、Promptfoo smoke `20/20` 通过。该段同样是 finalizer 实验前的阶段性暂停记录，详细证据见 `tests/evidence/material-narration-version-ab-and-cleaner-rollback-20260710.md`。
+
+后续按“确定性检测 + 独立二次修订 + 不变量消融”又隔离测试三种 finalizer 实现。主 Luna A/B/C 中 C 可把确定性旁白命中降为 0，并达到 10/10 场景通过；但两轮 GPT-5.5 强模型复测和独立 cold review 均发现 C 会新增未提供的培训、身份、采购或审批事实，且发生因果与状态外扩，违反“不新增事实”和不变量 100% 的验收条件。因此三种 finalizer、临时 validator、约束包、修订编排和相关测试均完整排除，不进入 canonical skill、reference、正式测试或三平台发行包；pre-finalizer 基线固定为 `a444c51b70c168a0f3c8e6e360d403316630e2d3`。
+
+最终发布裁决：保留 `a444c51` 之前已验证的字面引用边界、只输出正文优先级、渐进式 reference 路由、评测 provider 和发布链修复；长文偶发材料读取旁白作为继承自 `v1.5.5` 的剩余风险记录，不宣称已解决。finalizer 连续三种实现未达到语义不变量门槛后，不再继续向 prompt 堆同义禁令，也不再阻断这些独立正向修复进入 `1.5.6`；发布仍须通过版本同步、双基线消融、真实 writer/verifier、全量测试和三平台实况核验。
+
+发布前又用 5 个独立 Luna writer 对真实 pre-finalizer 稿件测试用户自然语言二次提醒，覆盖 600—800 字阶段报告、900—1100 字调研报告、3000—3300 字多附件可研、300—450 字培训简报和引语/拟办状态保护；另用 GPT-5.5 与 GPT-5.6 Sol 独立盲审。二次提醒可清除大部分可见旁白，但不能视为稳定解决：S1 两版分别 412、538 字，均低于下限，后一版还出现异常残片“屾讯”；S3 普通版 2663 字不足，明确篇幅版 3190 字但有程序性泛化和语义空转；S5 以近义重复凑到 300 字；只有 S7 稳定通过，S2 为 PASS/WARN 分歧。因此二次自然语言提醒只作为用户可尝试的修订方式，不作为默认兜底、发布能力承诺或“旁白已解决”证据；不再为此追加 prompt。详细证据见 `tests/evidence/release-1.5.6.md`。
+
+最终 cold review `019f4bbd-a09f-7cf0-add1-01e405de5c92` 发现并复现 OpenClaw 压缩入口没有同步“只输出正文优先”，规则 5 和规则 13 仍可能无条件追加正文外缺项。已只在 `tools/sync_adapters.py` 的 OpenClaw 摘要模板补齐交付优先级，并增加 unit 断言和 P103 消融守卫；canonical prompt 未改。修复后 `v1.5.5` 为 95/102、pre-finalizer 为 101/102、current 为 102/102，复核代理确认 `resolved=true`、`publish_blocking=false`。
+
+发布完成：发布 commit/tag 为 `7e485700a49a924abf973656d2bb0e9630054890`。GitHub main、tag 和 release 已公开；ClawHub 1.5.6 已公开且 moderation `clean`；SkillHub 已向精确项目提交 1.5.6，返回 `skillId=70149`、`versionId=133850` 和 `tags.latest=1.5.6`，但公开 latest/search 仍为 1.5.5，三项审核 pending。详细命令、测试矩阵、finalizer 拒绝证据、自然语言二次修改结论和平台字段见 `tests/evidence/release-1.5.6.md`。
+
+## 1.5.6 后续 span-only finalizer 实验
+
+2026-07-11 在被忽略的 `output/finalizer-experiments/attempt4/` 实现“结构化约束包 -> 模式感知检测 -> 独立 claim verifier -> 一次精确 span patch -> 不变量复核 -> 快照回滚”原型。实际 `v1.5.6` tag 为 `7e485700a49a924abf973656d2bb0e9630054890`，pre-experiment HEAD 为 `8a0144d1f359e3f77e1c1618f87a06b79e5d7f4d`；不要沿用计划中已失真的 `d6414a3` tag SHA。
+
+20 篇审校标注只用于校准线索；Luna A/B 各 24 篇、GPT-5.5 16 篇及 GPT-5.5/GPT-5.6 Sol 双盲复核均未证明 C 稳定优于 B。两项共识安全 patch 在全量复核后仍失败，故接受数为 0，C 的 24 篇正文全部字节级回退为 B。H09 多轮和 H10 compact 后快照恢复均精确通过，说明宿主快照可用，但不能把它表述为模型记忆能力。该 finalizer 不进入 canonical skill、reference、正式测试或发行包；不要在此结果上追加全文重写、通用 cleaner 或同义 prompt。详细证据见 `tests/evidence/finalizer-span-patch-experiment-20260711.md`。
+
+## 1.5.6 后续二次修改风险收敛实验
+
+2026-07-11 又在 ignored `output/finalizer-experiments/attempt5/` 测试用户触发二修和宿主检测/repair 双层方案。12 类新 holdout 覆盖稀疏/长文、未决纪要、字段材料、引语、只审不改、只输出正文、定点时间、范围情态、事实外扩和精确回滚；Luna 低/中思考两轮各 36 篇。
+
+三种最小 prompt 候选均在第一轮回退：完整边界会反向泄露，静默局部规则和纯回滚规则都会改坏标题、换行、标点或字段格式，R12 从当前 A 的 3/3 PASS 退为 0/3。达到三次停止条件后未修改 canonical。宿主 C1 不通过；C2 fail-closed 第一轮将 FAIL 从 12 降到 9，但第二轮 Sol 判 A/C 均为 27 PASS、9 FAIL，GPT-5.5 只减少 1 个 WARN，未达到连续三轮稳定优于 B，因此停止第三轮且不下沉。精确回滚继续依赖宿主 SHA/base64 快照，不靠 prompt 或模型记忆。详细证据见 `tests/evidence/second-revision-risk-convergence-20260711.md`。
+
+## 1.5.7 窄修复发布候选
+
+1.5.7 只发布 `8a0144d` 已验证的最小修复：删除容易诱发材料旁白的“从已给材料看，问题集中于……”，改为直接列明已确认问题的对象、数量和状态，无法支持的结论继续放正文外待确认。未加入 finalizer、detector、repair、embedding、外部依赖、二次修改候选 prompt 或新写稿工作流。
+
+干净分支 `codex/release-1.5.7` 从 `afc85dc` 创建，并保留最新实验结论记录；误跟踪实验输出提交不是该分支祖先，`output/` 不进入 Git 发行内容。发布前验证为定向/全量 unittest 均 123/123，`v1.5.6` 消融 baseline 101/102、current 102/102，Promptfoo smoke 20/20，真实文章关键要素 61/61，quick_validate 和 `git diff --check` 通过。4 个 Luna writer 真实 sanity 经独立 GPT-5.5 verifier 判 3 PASS、1 WARN、无发布阻断；WARN 为稀疏问题清单稿篇幅不足和一句边界性概括，不追加 prompt。cold review 另发现 ClawHub PowerShell tags 示例未整体引用和 canonical 下 ignored pyc 不能直接递归打包；前者已用文档加测试最小修复，后者改用 19 文件干净市场目录，不删除本地缓存。修复后 cold re-review 为 `resolved=true`、`publish_blocking=false`；仍须完成三平台实况核验，详细证据见 `tests/evidence/release-1.5.7.md`。
+
+## 1.5.7 后续旁白交付检测实验
+
+2026-07-12 已撤销修改全局硬边界的稀疏扩写候选。当前实验只给 `prose_lint.py` 增加默认关闭的 `draft-body`、`review-only`、`gap-note-allowed` 交付模式，检测材料读取旁白、约束自证、交付说明、AI 身份和英文思考残片；不自动改写，不改变 canonical 写稿 prompt 或默认 workflow。独立 cold review 的五类漏扫/误报及镜像漂移均已修复，最终 `publish_blocking=false`。
+
+三名不同档位 agent 均证明现有 Markdown 会把“现有材料仅反映……”和“本报告仅反映已给事实……”误读为可留正文；一条按来源区分业务事实与模型输入判断的候选说明可将三者全部纠正，同时不误伤正式报告过渡语。该候选本轮只记录，不进入 prompt；必须按本文件的真实写稿测试分级规则完成短稿 A/B 后才能决定是否采用。详细证据见 `tests/evidence/narration-delivery-mode-and-prompt-comprehension-20260712.md`。
+
+## 1.5.7 后续稀疏压力与核心 workflow 复核
+
+2026-07-12 对 1.4.10、1.4.12、1.5.2 和 1.5.7 做历史追溯，并用同一 Luna 低思考 writer 对“仅三项事实但强制 650-800 字”和正常短稿做版本对比。早期 1.4.10、1.5.2 在冲突长稿中已出现重复、材料旁白和事实动作外扩；1.5.7 选择短写且不补造。该压力组合只用于诊断，不能把未达字数单独判为正常写作功能退化。
+
+短审核 workflow 和 13 个 Markdown 文件的广泛清晰化候选均未通过真实 A/B：低思考候选出现一次用户指令遗漏、旁白误判和无关外文残片。两名 blind verifier 未证明候选稳定优于 1.5.7，故全部撤回。canonical 继续保留“小段写完先审、小节写完再审、全文合并后做总审”，不得把“小节不审、全文仅审一次、最多修订一次”等候选重新混入文字精简。
+
+本轮只保留默认关闭、只检测不改写的 delivery lint 精度调整，材料范围句按 medium 人工判断，明确自证、英文思考和交付说明仍按 high；另增加核心 workflow 测试守卫。详细取证和验证见 `tests/evidence/sparse-stress-and-core-workflow-forensics-20260712.md`。
