@@ -7,6 +7,7 @@ import subprocess
 import sys
 import tempfile
 import unittest
+from unittest import mock
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -35,7 +36,7 @@ class DeterministicCaptureTests(unittest.TestCase):
             body = "第一行\r\n第二行\u00a0保留"
             source.write_text(
                 json.dumps(
-                    {"task_id": "M1", "request_sha256": "abc", "assistant_body": body},
+                    {"task_id": "M1", "request_sha256": "a" * 64, "assistant_body": body},
                     ensure_ascii=False,
                 ),
                 encoding="utf-8",
@@ -44,8 +45,9 @@ class DeterministicCaptureTests(unittest.TestCase):
             receipt = capture_tool.capture(source, output)
 
             self.assertEqual(receipt["assistant_body"], body)
-            self.assertEqual(receipt["generation_attempt"], 1)
-            self.assertEqual(receipt["request_sha256"], "abc")
+            self.assertEqual(receipt["capture_ordinal"], 1)
+            self.assertNotIn("generation_attempt", receipt)
+            self.assertEqual(receipt["request_sha256"], "a" * 64)
             self.assertEqual(capture_tool.verify(output), {"status": "PASS", "issues": []})
 
     def test_existing_capture_is_never_overwritten(self) -> None:
@@ -73,6 +75,29 @@ class DeterministicCaptureTests(unittest.TestCase):
 
             self.assertEqual(completed.returncode, 3)
             self.assertEqual(output.read_bytes(), frozen)
+
+    def test_empty_body_is_rejected_and_failed_publish_leaves_no_target(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            root = Path(temp_dir)
+            source = root / "input.json"
+            output = root / "capture.json"
+            source.write_text(
+                json.dumps({"task_id": "M1", "assistant_body": "  \n"}),
+                encoding="utf-8",
+            )
+            with self.assertRaisesRegex(ValueError, "non-empty"):
+                capture_tool.capture(source, output)
+            self.assertFalse(output.exists())
+
+            source.write_text(
+                json.dumps({"task_id": "M1", "assistant_body": "body"}),
+                encoding="utf-8",
+            )
+            with mock.patch.object(capture_tool.os, "link", side_effect=OSError("publish failed")):
+                with self.assertRaisesRegex(OSError, "publish failed"):
+                    capture_tool.capture(source, output)
+            self.assertFalse(output.exists())
+            self.assertEqual(list(root.glob(".capture.json.*.tmp")), [])
 
     def test_tampered_capture_fails_verification(self) -> None:
         with tempfile.TemporaryDirectory() as temp_dir:

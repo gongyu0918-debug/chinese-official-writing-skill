@@ -13,10 +13,13 @@ import hashlib
 import json
 import os
 from pathlib import Path
+import re
+import tempfile
 from typing import Any
 
 
-SCHEMA_VERSION = 1
+SCHEMA_VERSION = 2
+SHA256_RE = re.compile(r"^[0-9a-f]{64}$")
 
 
 def _read_object(path: Path) -> dict[str, Any]:
@@ -33,16 +36,21 @@ def _body_sha256(body: str) -> str:
 def _write_exclusive(path: Path, value: dict[str, Any]) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     payload = (json.dumps(value, ensure_ascii=False, indent=2) + "\n").encode("utf-8")
-    descriptor = os.open(path, os.O_WRONLY | os.O_CREAT | os.O_EXCL, 0o600)
+    descriptor, temporary_name = tempfile.mkstemp(
+        prefix=f".{path.name}.", suffix=".tmp", dir=path.parent
+    )
+    temporary_path = Path(temporary_name)
     try:
         with os.fdopen(descriptor, "wb") as stream:
             stream.write(payload)
-    except BaseException:
+            stream.flush()
+            os.fsync(stream.fileno())
+        os.link(temporary_path, path)
+    finally:
         try:
-            os.close(descriptor)
-        except OSError:
+            temporary_path.unlink()
+        except FileNotFoundError:
             pass
-        raise
 
 
 def capture(input_path: Path, output_path: Path) -> dict[str, Any]:
@@ -51,8 +59,8 @@ def capture(input_path: Path, output_path: Path) -> dict[str, Any]:
     body = source.get("assistant_body")
     if not isinstance(task_id, str) or not task_id.strip():
         raise ValueError("task_id must be a non-empty string")
-    if not isinstance(body, str):
-        raise ValueError("assistant_body must be a string")
+    if not isinstance(body, str) or not body.strip():
+        raise ValueError("assistant_body must be a non-empty string")
 
     receipt: dict[str, Any] = {
         "schema_version": SCHEMA_VERSION,
@@ -60,12 +68,12 @@ def capture(input_path: Path, output_path: Path) -> dict[str, Any]:
         "assistant_body": body,
         "assistant_body_sha256": _body_sha256(body),
         "captured_at": datetime.now(timezone.utc).isoformat(),
-        "generation_attempt": 1,
+        "capture_ordinal": 1,
     }
     request_sha256 = source.get("request_sha256")
     if request_sha256 is not None:
-        if not isinstance(request_sha256, str) or not request_sha256.strip():
-            raise ValueError("request_sha256 must be a non-empty string when present")
+        if not isinstance(request_sha256, str) or not SHA256_RE.fullmatch(request_sha256):
+            raise ValueError("request_sha256 must be a lowercase SHA-256 hex string when present")
         receipt["request_sha256"] = request_sha256
 
     _write_exclusive(output_path, receipt)
@@ -79,9 +87,17 @@ def verify(capture_path: Path) -> dict[str, Any]:
     issues: list[str] = []
     if receipt.get("schema_version") != SCHEMA_VERSION:
         issues.append("schema_version_mismatch")
-    if receipt.get("generation_attempt") != 1:
-        issues.append("generation_attempt_not_one")
-    if not isinstance(body, str):
+    task_id = receipt.get("task_id")
+    if not isinstance(task_id, str) or not task_id.strip():
+        issues.append("task_id_invalid")
+    if receipt.get("capture_ordinal") != 1:
+        issues.append("capture_ordinal_not_one")
+    request_sha256 = receipt.get("request_sha256")
+    if request_sha256 is not None and (
+        not isinstance(request_sha256, str) or not SHA256_RE.fullmatch(request_sha256)
+    ):
+        issues.append("request_sha256_invalid")
+    if not isinstance(body, str) or not body.strip():
         issues.append("assistant_body_not_string")
     elif expected != _body_sha256(body):
         issues.append("assistant_body_sha256_mismatch")
