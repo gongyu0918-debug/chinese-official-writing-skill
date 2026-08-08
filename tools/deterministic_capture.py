@@ -8,7 +8,7 @@ from __future__ import annotations
 
 import argparse
 from datetime import datetime, timezone
-from decimal import Decimal, InvalidOperation
+from decimal import Decimal, DecimalException, InvalidOperation
 import hashlib
 import json
 import os
@@ -120,31 +120,45 @@ def count_non_whitespace(capture_path: Path) -> dict[str, Any]:
     }
 
 
-def _decimal_amounts(packet: dict[str, Any]) -> dict[str, Decimal]:
+def _numeric_values(packet: dict[str, Any]) -> dict[str, tuple[Decimal, str, str]]:
     source_text = packet.get("fact_packet_text")
-    raw_amounts = packet.get("amounts")
+    raw_values = packet.get("values")
     if not isinstance(source_text, str):
         raise ValueError("fact_packet_text must be a string")
-    if not isinstance(raw_amounts, dict) or not raw_amounts:
-        raise ValueError("amounts must be a non-empty object")
+    if not isinstance(raw_values, list) or not raw_values:
+        raise ValueError("values must be a non-empty array")
 
-    amounts: dict[str, Decimal] = {}
-    for name, item in raw_amounts.items():
-        if not isinstance(name, str) or not name:
-            raise ValueError("amount names must be non-empty strings")
+    values: dict[str, tuple[Decimal, str, str]] = {}
+    for index, item in enumerate(raw_values):
         if not isinstance(item, dict):
-            raise ValueError(f"amount {name} must be an object")
+            raise ValueError(f"value {index} must be an object")
+        name = item.get("id")
         value = item.get("value")
+        kind = item.get("kind")
+        unit = item.get("unit")
         quote = item.get("source_quote")
+        if not isinstance(name, str) or not name:
+            raise ValueError(f"value {index} id must be a non-empty string")
+        if name in values:
+            raise ValueError(f"duplicate value id {name}")
         if not isinstance(value, str):
-            raise ValueError(f"amount {name} value must be a decimal string")
+            raise ValueError(f"value {name} must be a decimal string")
+        if kind not in {"money", "scalar"}:
+            raise ValueError(f"value {name} kind must be money or scalar")
+        if not isinstance(unit, str) or not unit:
+            raise ValueError(f"value {name} unit must be a non-empty string")
+        if kind == "money" and unit != "CNY":
+            raise ValueError(f"money value {name} unit must be CNY")
         if not isinstance(quote, str) or not quote or quote not in source_text:
-            raise ValueError(f"amount {name} source_quote must occur in fact_packet_text")
+            raise ValueError(f"value {name} source_quote must occur in fact_packet_text")
         try:
-            amounts[name] = Decimal(value)
+            decimal_value = Decimal(value)
         except InvalidOperation as exc:
-            raise ValueError(f"amount {name} has an invalid decimal value") from exc
-    return amounts
+            raise ValueError(f"value {name} has an invalid decimal value") from exc
+        if not decimal_value.is_finite():
+            raise ValueError(f"value {name} must be finite")
+        values[name] = (decimal_value, kind, unit)
+    return values
 
 
 def check_amounts(packet_path: Path) -> dict[str, Any]:
@@ -152,18 +166,12 @@ def check_amounts(packet_path: Path) -> dict[str, Any]:
     packet = json.loads(packet_bytes.decode("utf-8"))
     if not isinstance(packet, dict):
         raise ValueError(f"{packet_path} must contain a JSON object")
-    amounts = _decimal_amounts(packet)
+    values = _numeric_values(packet)
     raw_assertions = packet.get("assertions")
     if not isinstance(raw_assertions, list) or not raw_assertions:
         raise ValueError("assertions must be a non-empty array")
 
     results: list[dict[str, Any]] = []
-    arithmetic = {
-        "add": lambda left, right: left + right,
-        "sub": lambda left, right: left - right,
-        "mul": lambda left, right: left * right,
-        "div": lambda left, right: left / right,
-    }
     comparisons = {
         "eq": lambda left, right: left == right,
         "ne": lambda left, right: left != right,
@@ -172,6 +180,7 @@ def check_amounts(packet_path: Path) -> dict[str, Any]:
         "gt": lambda left, right: left > right,
         "ge": lambda left, right: left >= right,
     }
+    assertion_ids: set[str] = set()
     for index, assertion in enumerate(raw_assertions):
         if not isinstance(assertion, dict):
             raise ValueError(f"assertion {index} must be an object")
@@ -181,18 +190,41 @@ def check_amounts(packet_path: Path) -> dict[str, Any]:
         right_name = assertion.get("right")
         if not isinstance(assertion_id, str) or not assertion_id:
             raise ValueError(f"assertion {index} id must be a non-empty string")
-        if left_name not in amounts or right_name not in amounts:
-            raise ValueError(f"assertion {assertion_id} refers to an unknown amount")
-        left = amounts[left_name]
-        right = amounts[right_name]
-        if operation in arithmetic:
+        if assertion_id in assertion_ids:
+            raise ValueError(f"duplicate assertion id {assertion_id}")
+        assertion_ids.add(assertion_id)
+        if not isinstance(left_name, str) or not isinstance(right_name, str):
+            raise ValueError(f"assertion {assertion_id} operands must name values")
+        if left_name not in values or right_name not in values:
+            raise ValueError(f"assertion {assertion_id} refers to an unknown value")
+        left, left_kind, left_unit = values[left_name]
+        right, right_kind, right_unit = values[right_name]
+        if operation in {"add", "sub", "mul", "div"}:
             expected_name = assertion.get("expected")
-            if expected_name not in amounts:
-                raise ValueError(f"assertion {assertion_id} expected must name an amount")
-            if operation == "div" and right == 0:
-                raise ValueError(f"assertion {assertion_id} divides by zero")
-            actual = arithmetic[operation](left, right)
-            expected = amounts[expected_name]
+            if not isinstance(expected_name, str) or expected_name not in values:
+                raise ValueError(f"assertion {assertion_id} expected must name a value")
+            expected, expected_kind, expected_unit = values[expected_name]
+            if operation in {"add", "sub"}:
+                if (left_kind, left_unit) != (right_kind, right_unit):
+                    raise ValueError(f"assertion {assertion_id} requires matching operand units")
+                actual = left + right if operation == "add" else left - right
+                result_kind, result_unit = left_kind, left_unit
+            elif operation == "mul":
+                kinds = {left_kind, right_kind}
+                if kinds != {"money", "scalar"}:
+                    raise ValueError(f"assertion {assertion_id} multiplication requires money and scalar")
+                actual = left * right
+                result_kind = "money"
+                result_unit = left_unit if left_kind == "money" else right_unit
+            else:
+                if left_kind != "money" or right_kind != "scalar":
+                    raise ValueError(f"assertion {assertion_id} division requires money divided by scalar")
+                if right == 0:
+                    raise ValueError(f"assertion {assertion_id} divides by zero")
+                actual = left / right
+                result_kind, result_unit = left_kind, left_unit
+            if (expected_kind, expected_unit) != (result_kind, result_unit):
+                raise ValueError(f"assertion {assertion_id} expected unit does not match result")
             passed = actual == expected
             results.append(
                 {
@@ -204,6 +236,8 @@ def check_amounts(packet_path: Path) -> dict[str, Any]:
                 }
             )
         elif operation in comparisons:
+            if (left_kind, left_unit) != (right_kind, right_unit):
+                raise ValueError(f"assertion {assertion_id} comparison requires matching units")
             passed = comparisons[operation](left, right)
             results.append(
                 {
@@ -262,7 +296,7 @@ def main() -> int:
     except FileExistsError as exc:
         print(json.dumps({"status": "FAIL", "error": "capture_exists", "path": str(exc.filename)}, ensure_ascii=False))
         return 3
-    except (OSError, ValueError, json.JSONDecodeError) as exc:
+    except (OSError, ValueError, json.JSONDecodeError, DecimalException) as exc:
         print(json.dumps({"status": "FAIL", "error": str(exc)}, ensure_ascii=False))
         return 2
 

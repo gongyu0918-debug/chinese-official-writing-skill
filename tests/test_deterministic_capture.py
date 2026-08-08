@@ -169,11 +169,11 @@ class DeterministicCaptureTests(unittest.TestCase):
                 json.dumps(
                     {
                         "fact_packet_text": "单价0.1万元，数量3项，合计0.3万元。",
-                        "amounts": {
-                            "unit_price": {"value": "0.1", "source_quote": "单价0.1万元"},
-                            "quantity": {"value": "3", "source_quote": "数量3项"},
-                            "total": {"value": "0.3", "source_quote": "合计0.3万元"},
-                        },
+                        "values": [
+                            {"id": "unit_price", "value": "1000", "kind": "money", "unit": "CNY", "source_quote": "单价0.1万元"},
+                            {"id": "quantity", "value": "3", "kind": "scalar", "unit": "count", "source_quote": "数量3项"},
+                            {"id": "total", "value": "3000", "kind": "money", "unit": "CNY", "source_quote": "合计0.3万元"},
+                        ],
                         "assertions": [
                             {"id": "total_math", "op": "mul", "left": "unit_price", "right": "quantity", "expected": "total"},
                             {"id": "unit_lt_total", "op": "lt", "left": "unit_price", "right": "total"},
@@ -187,7 +187,7 @@ class DeterministicCaptureTests(unittest.TestCase):
             result = capture_tool.check_amounts(packet)
 
             self.assertEqual(result["status"], "PASS")
-            self.assertEqual(result["assertions"][0]["actual"], "0.3")
+            self.assertEqual(result["assertions"][0]["actual"], "3000")
 
     def test_amount_check_reports_failed_relation(self) -> None:
         with tempfile.TemporaryDirectory() as temp_dir:
@@ -196,10 +196,10 @@ class DeterministicCaptureTests(unittest.TestCase):
                 json.dumps(
                     {
                         "fact_packet_text": "甲项2元，乙项3元。",
-                        "amounts": {
-                            "left": {"value": "2", "source_quote": "甲项2元"},
-                            "right": {"value": "3", "source_quote": "乙项3元"},
-                        },
+                        "values": [
+                            {"id": "left", "value": "2", "kind": "money", "unit": "CNY", "source_quote": "甲项2元"},
+                            {"id": "right", "value": "3", "kind": "money", "unit": "CNY", "source_quote": "乙项3元"},
+                        ],
                         "assertions": [{"id": "equal", "op": "eq", "left": "left", "right": "right"}],
                     },
                     ensure_ascii=False,
@@ -219,7 +219,7 @@ class DeterministicCaptureTests(unittest.TestCase):
                 json.dumps(
                     {
                         "fact_packet_text": "金额1元。",
-                        "amounts": {"one": {"value": "1", "source_quote": "不存在"}},
+                        "values": [{"id": "one", "value": "1", "kind": "money", "unit": "CNY", "source_quote": "不存在"}],
                         "assertions": [{"id": "same", "op": "eq", "left": "one", "right": "one"}],
                     },
                     ensure_ascii=False,
@@ -233,10 +233,10 @@ class DeterministicCaptureTests(unittest.TestCase):
                 json.dumps(
                     {
                         "fact_packet_text": "金额1元，数量0项。",
-                        "amounts": {
-                            "one": {"value": "1", "source_quote": "金额1元"},
-                            "zero": {"value": "0", "source_quote": "数量0项"},
-                        },
+                        "values": [
+                            {"id": "one", "value": "1", "kind": "money", "unit": "CNY", "source_quote": "金额1元"},
+                            {"id": "zero", "value": "0", "kind": "scalar", "unit": "count", "source_quote": "数量0项"},
+                        ],
                         "assertions": [{"id": "divide", "op": "div", "left": "one", "right": "zero", "expected": "one"}],
                     },
                     ensure_ascii=False,
@@ -244,6 +244,53 @@ class DeterministicCaptureTests(unittest.TestCase):
                 encoding="utf-8",
             )
             with self.assertRaisesRegex(ValueError, "divides by zero"):
+                capture_tool.check_amounts(packet)
+
+    def test_amount_check_rejects_duplicate_ids_unit_mismatch_and_nonfinite_values(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            packet = Path(temp_dir) / "packet.json"
+            base = {
+                "fact_packet_text": "金额1元，数量1项。",
+                "values": [
+                    {"id": "money", "value": "1", "kind": "money", "unit": "CNY", "source_quote": "金额1元"},
+                    {"id": "count", "value": "1", "kind": "scalar", "unit": "count", "source_quote": "数量1项"},
+                ],
+                "assertions": [{"id": "same", "op": "eq", "left": "money", "right": "money"}],
+            }
+            duplicate = dict(base)
+            duplicate["values"] = [base["values"][0], dict(base["values"][0])]
+            packet.write_text(json.dumps(duplicate, ensure_ascii=False), encoding="utf-8")
+            with self.assertRaisesRegex(ValueError, "duplicate value id"):
+                capture_tool.check_amounts(packet)
+
+            mismatch = dict(base)
+            mismatch["assertions"] = [{"id": "bad", "op": "eq", "left": "money", "right": "count"}]
+            packet.write_text(json.dumps(mismatch, ensure_ascii=False), encoding="utf-8")
+            with self.assertRaisesRegex(ValueError, "matching units"):
+                capture_tool.check_amounts(packet)
+
+            nonfinite = dict(base)
+            nonfinite["values"] = [dict(base["values"][0], value="NaN"), base["values"][1]]
+            packet.write_text(json.dumps(nonfinite, ensure_ascii=False), encoding="utf-8")
+            with self.assertRaisesRegex(ValueError, "finite"):
+                capture_tool.check_amounts(packet)
+
+    def test_amount_check_rejects_duplicate_assertion_ids(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            packet = Path(temp_dir) / "packet.json"
+            assertion = {"id": "same", "op": "eq", "left": "one", "right": "one"}
+            packet.write_text(
+                json.dumps(
+                    {
+                        "fact_packet_text": "金额1元。",
+                        "values": [{"id": "one", "value": "1", "kind": "money", "unit": "CNY", "source_quote": "金额1元"}],
+                        "assertions": [assertion, dict(assertion)],
+                    },
+                    ensure_ascii=False,
+                ),
+                encoding="utf-8",
+            )
+            with self.assertRaisesRegex(ValueError, "duplicate assertion id"):
                 capture_tool.check_amounts(packet)
 
 
