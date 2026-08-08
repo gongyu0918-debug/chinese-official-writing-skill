@@ -2,7 +2,7 @@
 
 ## 当前状态
 
-1.5.39 已完成 GitHub、ClawHub 和 skillhub.cn 各一次正式提交。GitHub `main`、annotated tag `v1.5.39` 和正式 Release 的产品提交均为 `e1de44abefc3ec91f68be55be7abcc616aae105a`；本次回执文档提交继续推进 `main`，不移动发布 tag。ClawHub 和 skillhub.cn 的公开查询首次仍显示 1.5.38，属于异步传播，不重复提交。
+1.5.39 已完成 GitHub、ClawHub 和 skillhub.cn 各一次正式提交。GitHub `main`、annotated tag `v1.5.39` 和正式 Release 的产品提交均为 `e1de44abefc3ec91f68be55be7abcc616aae105a`；回执文档提交继续推进 `main`，不移动发布 tag。ClawHub 已传播到 1.5.39，moderation 和版本级 security 均为 `clean`；skillhub.cn 的提交回执 `tags.latest=1.5.39`，公开搜索仍显示 1.5.38，属于异步传播，不重复提交。
 
 ## 本轮改动
 
@@ -76,7 +76,7 @@ Promptfoo 使用本地 stub，只证明评测入口和结构未回退，不作�
 ## 实际发布与回执
 
 - GitHub：`origin/main` 已包含产品提交；远端 annotated tag `v1.5.39` 的 tag object 为 `6eddd2c6db36cf9d18bb66e1eb5145f304a1f0d3`，解引用提交为 `e1de44abefc3ec91f68be55be7abcc616aae105a`。正式 Release 为非草稿、非 prerelease，`publishedAt=2026-08-08T06:50:04Z`，地址为 `https://github.com/gongyu0918-debug/chinese-official-writing-skill/releases/tag/v1.5.39`。
-- ClawHub：正式提交只执行一次，回执为 `ok=true`、`status=published`、`versionId=k9729c2a4wqd2bdpapsk548vwh8c3tqb`、32 个文件、fingerprint `a90a449c3702ab3b6a57a0ed553c46af49ffee7c0ece2cd092165226fa5b95b8`。首次只读查询仍显示公开 `latestVersion=1.5.38`、`tags.latest=1.5.38`；精确查询 1.5.39 返回传播期 `Version not found`。当前 moderation `clean` 对应仍公开的 1.5.38，不推断为 1.5.39 已完成扫描。
+- ClawHub：正式提交只执行一次，回执为 `ok=true`、`status=published`、`versionId=k9729c2a4wqd2bdpapsk548vwh8c3tqb`、32 个文件、fingerprint `a90a449c3702ab3b6a57a0ed553c46af49ffee7c0ece2cd092165226fa5b95b8`。首次只读查询仍显示 1.5.38，随后公开 `latestVersion`、`tags.latest` 均切换到 1.5.39；moderation 为 `clean`。精确 1.5.39 版本查询返回 32 文件，metadata 与 OpenClaw version 均为 1.5.39，版本级 security 为 `clean`，LLM scanner 为 `benign`、confidence `high`。
 - skillhub.cn：正式提交只执行一次，回执为 `ok=true`、`skillId=70149`、`versionId=213186`、31 个文件、fingerprint `8de826e5a438aaa206bafc851b5322be73bca48fa23534e162f9d94ea5380df2`、`tags.latest=1.5.39`；提交回执中的 review、security scan 和 content audit 均为 `pending`。首次公开搜索仍显示 1.5.38，不用旧版公开审核或报告推断 1.5.39 状态。
 - 小红书 Red SkillHub 未调用。
 
