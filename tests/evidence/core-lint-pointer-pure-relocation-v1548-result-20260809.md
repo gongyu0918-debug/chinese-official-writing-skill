@@ -50,3 +50,13 @@
 ## 决策边界
 
 本结论只支持纯位置移动。此前包含“运行一次”、精确命令、“必须执行”或 `59ea0def` 新正则的候选仍为隔离研究，不随本原子进入 main。
+
+## 工程门禁
+
+- `python -B -m unittest discover -s tests`：457/457 通过。
+- `$env:OFFICIAL_WRITING_EVAL_STUB='1'; npm run eval:official-writing:smoke`：20/20 通过，0 failed、0 errors。
+- 固定 `main-494c2c11` 与 Candidate 确定性消融：111/111、111/111。
+- `quick_validate.py chinese-official-writing`：`Skill is valid!`。
+- 镜像同步、`git diff --check` 和工作树清洁检查通过。
+
+工程门禁证明结构和确定性支撑稳定；合并依据仍是上面的真实读取轨迹与正文结果。
