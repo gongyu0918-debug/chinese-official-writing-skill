@@ -111,6 +111,90 @@ class DeterministicCaptureTests(unittest.TestCase):
             self.assertEqual(result["unicode_non_whitespace_count"], 5)
             self.assertEqual(result["assistant_body_sha256"], capture_tool._body_sha256(body))
 
+    def test_amount_check_uses_decimal_and_explicit_source_quotes(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            packet = Path(temp_dir) / "packet.json"
+            packet.write_text(
+                json.dumps(
+                    {
+                        "fact_packet_text": "单价0.1万元，数量3项，合计0.3万元。",
+                        "amounts": {
+                            "unit_price": {"value": "0.1", "source_quote": "单价0.1万元"},
+                            "quantity": {"value": "3", "source_quote": "数量3项"},
+                            "total": {"value": "0.3", "source_quote": "合计0.3万元"},
+                        },
+                        "assertions": [
+                            {"id": "total_math", "op": "mul", "left": "unit_price", "right": "quantity", "expected": "total"},
+                            {"id": "unit_lt_total", "op": "lt", "left": "unit_price", "right": "total"},
+                        ],
+                    },
+                    ensure_ascii=False,
+                ),
+                encoding="utf-8",
+            )
+
+            result = capture_tool.check_amounts(packet)
+
+            self.assertEqual(result["status"], "PASS")
+            self.assertEqual(result["assertions"][0]["actual"], "0.3")
+
+    def test_amount_check_reports_failed_relation(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            packet = Path(temp_dir) / "packet.json"
+            packet.write_text(
+                json.dumps(
+                    {
+                        "fact_packet_text": "甲项2元，乙项3元。",
+                        "amounts": {
+                            "left": {"value": "2", "source_quote": "甲项2元"},
+                            "right": {"value": "3", "source_quote": "乙项3元"},
+                        },
+                        "assertions": [{"id": "equal", "op": "eq", "left": "left", "right": "right"}],
+                    },
+                    ensure_ascii=False,
+                ),
+                encoding="utf-8",
+            )
+
+            result = capture_tool.check_amounts(packet)
+
+            self.assertEqual(result["status"], "FAIL")
+            self.assertEqual(result["assertions"][0]["status"], "FAIL")
+
+    def test_amount_check_rejects_unanchored_quote_and_division_by_zero(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            packet = Path(temp_dir) / "packet.json"
+            packet.write_text(
+                json.dumps(
+                    {
+                        "fact_packet_text": "金额1元。",
+                        "amounts": {"one": {"value": "1", "source_quote": "不存在"}},
+                        "assertions": [{"id": "same", "op": "eq", "left": "one", "right": "one"}],
+                    },
+                    ensure_ascii=False,
+                ),
+                encoding="utf-8",
+            )
+            with self.assertRaisesRegex(ValueError, "source_quote"):
+                capture_tool.check_amounts(packet)
+
+            packet.write_text(
+                json.dumps(
+                    {
+                        "fact_packet_text": "金额1元，数量0项。",
+                        "amounts": {
+                            "one": {"value": "1", "source_quote": "金额1元"},
+                            "zero": {"value": "0", "source_quote": "数量0项"},
+                        },
+                        "assertions": [{"id": "divide", "op": "div", "left": "one", "right": "zero", "expected": "one"}],
+                    },
+                    ensure_ascii=False,
+                ),
+                encoding="utf-8",
+            )
+            with self.assertRaisesRegex(ValueError, "divides by zero"):
+                capture_tool.check_amounts(packet)
+
 
 if __name__ == "__main__":
     unittest.main()

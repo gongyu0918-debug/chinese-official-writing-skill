@@ -8,6 +8,7 @@ from __future__ import annotations
 
 import argparse
 from datetime import datetime, timezone
+from decimal import Decimal, InvalidOperation
 import hashlib
 import json
 import os
@@ -100,6 +101,111 @@ def count_non_whitespace(capture_path: Path) -> dict[str, Any]:
     }
 
 
+def _decimal_amounts(packet: dict[str, Any]) -> dict[str, Decimal]:
+    source_text = packet.get("fact_packet_text")
+    raw_amounts = packet.get("amounts")
+    if not isinstance(source_text, str):
+        raise ValueError("fact_packet_text must be a string")
+    if not isinstance(raw_amounts, dict) or not raw_amounts:
+        raise ValueError("amounts must be a non-empty object")
+
+    amounts: dict[str, Decimal] = {}
+    for name, item in raw_amounts.items():
+        if not isinstance(name, str) or not name:
+            raise ValueError("amount names must be non-empty strings")
+        if not isinstance(item, dict):
+            raise ValueError(f"amount {name} must be an object")
+        value = item.get("value")
+        quote = item.get("source_quote")
+        if not isinstance(value, str):
+            raise ValueError(f"amount {name} value must be a decimal string")
+        if not isinstance(quote, str) or not quote or quote not in source_text:
+            raise ValueError(f"amount {name} source_quote must occur in fact_packet_text")
+        try:
+            amounts[name] = Decimal(value)
+        except InvalidOperation as exc:
+            raise ValueError(f"amount {name} has an invalid decimal value") from exc
+    return amounts
+
+
+def check_amounts(packet_path: Path) -> dict[str, Any]:
+    packet_bytes = packet_path.read_bytes()
+    packet = json.loads(packet_bytes.decode("utf-8"))
+    if not isinstance(packet, dict):
+        raise ValueError(f"{packet_path} must contain a JSON object")
+    amounts = _decimal_amounts(packet)
+    raw_assertions = packet.get("assertions")
+    if not isinstance(raw_assertions, list) or not raw_assertions:
+        raise ValueError("assertions must be a non-empty array")
+
+    results: list[dict[str, Any]] = []
+    arithmetic = {
+        "add": lambda left, right: left + right,
+        "sub": lambda left, right: left - right,
+        "mul": lambda left, right: left * right,
+        "div": lambda left, right: left / right,
+    }
+    comparisons = {
+        "eq": lambda left, right: left == right,
+        "ne": lambda left, right: left != right,
+        "lt": lambda left, right: left < right,
+        "le": lambda left, right: left <= right,
+        "gt": lambda left, right: left > right,
+        "ge": lambda left, right: left >= right,
+    }
+    for index, assertion in enumerate(raw_assertions):
+        if not isinstance(assertion, dict):
+            raise ValueError(f"assertion {index} must be an object")
+        assertion_id = assertion.get("id")
+        operation = assertion.get("op")
+        left_name = assertion.get("left")
+        right_name = assertion.get("right")
+        if not isinstance(assertion_id, str) or not assertion_id:
+            raise ValueError(f"assertion {index} id must be a non-empty string")
+        if left_name not in amounts or right_name not in amounts:
+            raise ValueError(f"assertion {assertion_id} refers to an unknown amount")
+        left = amounts[left_name]
+        right = amounts[right_name]
+        if operation in arithmetic:
+            expected_name = assertion.get("expected")
+            if expected_name not in amounts:
+                raise ValueError(f"assertion {assertion_id} expected must name an amount")
+            if operation == "div" and right == 0:
+                raise ValueError(f"assertion {assertion_id} divides by zero")
+            actual = arithmetic[operation](left, right)
+            expected = amounts[expected_name]
+            passed = actual == expected
+            results.append(
+                {
+                    "id": assertion_id,
+                    "op": operation,
+                    "status": "PASS" if passed else "FAIL",
+                    "actual": format(actual, "f"),
+                    "expected": format(expected, "f"),
+                }
+            )
+        elif operation in comparisons:
+            passed = comparisons[operation](left, right)
+            results.append(
+                {
+                    "id": assertion_id,
+                    "op": operation,
+                    "status": "PASS" if passed else "FAIL",
+                    "left": format(left, "f"),
+                    "right": format(right, "f"),
+                }
+            )
+        else:
+            raise ValueError(f"assertion {assertion_id} has unsupported op {operation!r}")
+
+    passed = all(item["status"] == "PASS" for item in results)
+    return {
+        "status": "PASS" if passed else "FAIL",
+        "fact_packet_sha256": hashlib.sha256(packet_bytes).hexdigest(),
+        "assertions": results,
+    }
+
+
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
         description="Freeze and verify first-visible external model outputs."
@@ -115,6 +221,10 @@ def build_parser() -> argparse.ArgumentParser:
 
     count_parser = subparsers.add_parser("count")
     count_parser.add_argument("--capture", type=Path, required=True)
+
+    amount_parser = subparsers.add_parser("amount-check")
+    amount_parser.add_argument("--fact-packet", type=Path, required=True)
+    amount_parser.add_argument("--out", type=Path, required=True)
     return parser
 
 
@@ -125,8 +235,11 @@ def main() -> int:
             result = capture(args.input, args.out)
         elif args.command == "verify":
             result = verify(args.capture)
-        else:
+        elif args.command == "count":
             result = count_non_whitespace(args.capture)
+        else:
+            result = check_amounts(args.fact_packet)
+            _write_exclusive(args.out, result)
     except FileExistsError as exc:
         print(json.dumps({"status": "FAIL", "error": "capture_exists", "path": str(exc.filename)}, ensure_ascii=False))
         return 3
@@ -135,7 +248,7 @@ def main() -> int:
         return 2
 
     print(json.dumps(result, ensure_ascii=False, indent=2))
-    if args.command == "verify" and result["status"] != "PASS":
+    if args.command in {"verify", "amount-check"} and result["status"] != "PASS":
         return 2
     return 0
 
