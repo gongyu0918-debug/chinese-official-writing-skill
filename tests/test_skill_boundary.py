@@ -1194,6 +1194,7 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assertIn("读取 `references/format-gbt9704.md` 锁定版式", skill)
         self.assertIn("2 号小标宋体", format_ref)
         self.assertIn("3 号仿宋体", format_ref)
+        self.assertIn("一般两端对齐", format_ref)
         self.assertIn("正式交付前要素核对卡", format_ref)
         self.assertIn("不因缺这些正式要素阻断成稿", format_ref)
         self.assertIn("发文机关", format_ref)

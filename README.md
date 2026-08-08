@@ -1,6 +1,6 @@
 # 中文公文写作 Skill
 
-[![Version](https://img.shields.io/badge/version-1.5.38-blue)](https://github.com/gongyu0918-debug/chinese-official-writing-skill/releases/tag/v1.5.38)
+[![Version](https://img.shields.io/badge/version-1.5.39-blue)](https://github.com/gongyu0918-debug/chinese-official-writing-skill/releases/tag/v1.5.39)
 [![ClawHub](https://img.shields.io/badge/ClawHub-chinese--official--writing-2f80ed)](https://clawhub.ai/gongyu0918-debug/skills/chinese-official-writing)
 [![SkillHub](https://img.shields.io/badge/SkillHub-chinese--official--writing-e8590c)](https://skillhub.cn/skills/chinese-official-writing)
 [![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
@@ -63,7 +63,7 @@
 
 ## 快速安装
 
-当前工作版本：`chinese-official-writing@1.5.38`
+当前工作版本：`chinese-official-writing@1.5.39`
 
 平台入口：[ClawHub](https://clawhub.ai/gongyu0918-debug/skills/chinese-official-writing) · [skillhub.cn](https://skillhub.cn/skills/chinese-official-writing)。通用 Agent Skills 安装器可直接使用：
 
@@ -75,10 +75,11 @@ npx skills add https://github.com/gongyu0918-debug/chinese-official-writing-skil
 
 ## 模型消融与真实写稿
 
-测试从早期无 Skill/带 Skill 对照，逐步扩展到固定版本消融、真实写稿盲审和多轮改稿。下表汇总 1.5.38 的入口清晰化整合，以及此前版本的文种路由、信息选择和复核能力。原始任务、成稿、匿名映射、独立复核和汇总记录均保存在仓库内；早期 270 任务模型消融保留脱敏聚合摘要。
+测试从早期无 Skill/带 Skill 对照，逐步扩展到固定版本消融、真实写稿盲审和多轮改稿。下表汇总 1.5.39 的入口表达与按需路由清晰化，以及此前版本的文种路由、信息选择和复核能力。原始任务、成稿、匿名映射、独立复核和汇总记录均保存在仓库内；早期 270 任务模型消融保留脱敏聚合摘要。
 
 | 调试方向 | 主要稿件与边界 | 当前证据 |
 | --- | --- | --- |
+| 1.5.39 入口表达与按需路由 | 自然化正文输出范围；Word 字体字号细则下沉到格式 reference，并在发布前复验后补齐正文“两端对齐”；删除单位名称触发搜索的冗余否定；终稿 lint 自然选择 `draft-body`；统一起草、改稿、复核、排版交付模式词，并明确先读信息选择规则再判断轻量卡 | 五项原子及归并工程门均通过；固定 1.5.38 消融两边均为 111/111；发布前精简 A/B 保留原始负例，Word 对齐缺项由 3/3 复现触发最小修复，修复后 2/2 明确“两端对齐”且无事实或其他版式回退 |
 | 1.5.38 入口清晰化整合 | 删除入口五个关键名词示例，保留“关键名词和结构标签一般保留原词”承重规则；“在轻量卡早停”改为“由卡片完成，不再读取长 reference”，路由条件不变；不改变文种路由、reference 加载条件、篇幅规则、输出模式或复核顺序 | 全量 unittest 442/442、Promptfoo smoke 20/20、固定 1.5.37 消融两边均为 111/111；三题真实写稿对固定 1.5.37 独立盲审未见 diff 造成回退：轻量卡题候选 PASS、基线 WARN，关键名词两臂两轮 2/2 原词保留，请示题首轮候选负例两次复现均未复现，判写作波动 |
 | 1.5.37 复核契约与 lint 精度 | 将 anti-AI 文件内重复的只审输出契约改为指向统一规则源；收紧编号式“补充信息”、中文相邻 `XX` 占位和合法否定前缀的误报；不改变文种路由、起草 Prompt、篇幅、输出模式或复核顺序 | 组合工程回归 442/442、Promptfoo 20/20、固定 1.5.36 消融两边均为 111/111；两道同题真实写稿相对 1.5.36 为 2 胜 0 负，未见事实、状态、文种或格式硬回退 |
 | 1.5.36 事实边界去重 | 将 workflow 中重复的多重否定清单归并为一条正向事实源规则，继续转读统一的信息选择规则和已命中轻量卡；不改变文种路由、篇幅、输出模式或复核顺序 | 历史正确路由 A/B 为 Candidate 5 胜、Baseline 1 胜；本轮清洁复验两稿均无硬回退，因实际读取文件不对称不计比较胜负；固定 1.5.35 消融两边均为 111/111 |
@@ -107,7 +108,7 @@ npx skills add https://github.com/gongyu0918-debug/chinese-official-writing-skil
 | 原子结论限定复核 | 旧稿局部改写、巡检整改报告、食堂异常通报 | 固定 1.5.18 同题盲审 3/3 判 1.5.19 胜出；材料原有结论状态保留，完整稿仍有重复风险 |
 | 渐进式拆叶 | 普通复杂写稿、公开来源核验、报告类细查 | 外部核验规则按需加载，报告细查路径减少 3549 字符；两轮各 3 组真实 A/B 均未见硬回退 |
 | 制度类专项路由 | 管理办法、来访制度、实施细则、短篇规定、印发通知与操作规程 | 新增实施细则、规定两题相对 1.5.20 均小胜且硬检查通过；既有样本保留条文偏碎、职责复述和 DOCX 视觉未核验风险 |
-| 工程回归 | 单元测试、固定上一发行版消融、Promptfoo、镜像与清洁包 | 1.5.38 本地候选为 442/442；Candidate 与固定 1.5.37 均为 111/111；Promptfoo 20/20 |
+| 工程回归 | 单元测试、固定上一发行版消融、Promptfoo、镜像与清洁包 | 1.5.39 本地候选为 442/442；Candidate 与固定 1.5.38 均为 111/111；Promptfoo 20/20 |
 
 60 份发布级真实写稿由两名独立 verifier 盲审。综合结果中，v1.5.13 与 1.5.14 都是 29 PASS、1 个对称 WARN、0 FAIL；硬边界复核两版均为 30 PASS、0 WARN、0 FAIL。真实模型小样本评测与发布级写稿覆盖会议纪要、情况说明、通知、请示、报告、字段式申请、只审不改、普通采购、AI 算力需求和旧稿防回流。
 
@@ -192,6 +193,11 @@ npx skills add https://github.com/gongyu0918-debug/chinese-official-writing-skil
 
 主要证据：
 
+- [`release-1.5.39.md`](tests/evidence/release-1.5.39.md)
+- [`v1539-compact-repro-pack-20260808.md`](tests/evidence/v1539-compact-repro-pack-20260808.md)
+- [`v1539-format-alignment-repair-result-20260808.md`](tests/evidence/v1539-format-alignment-repair-result-20260808.md)
+- [`integration-entry-clarity-five-atoms-v1539-result-20260807.md`](tests/evidence/integration-entry-clarity-five-atoms-v1539-result-20260807.md)
+- [`v1539-cost-quality-comparison-20260807.md`](tests/evidence/v1539-cost-quality-comparison-20260807.md)
 - [`release-1.5.38.md`](tests/evidence/release-1.5.38.md)
 - [`main-entry-clarity-integration-20260806.md`](tests/evidence/main-entry-clarity-integration-20260806.md)
 - [`release-1.5.37.md`](tests/evidence/release-1.5.37.md)
