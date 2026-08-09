@@ -217,6 +217,9 @@ def run_one(provider: str, model: str, replicate: int, arm: str, order: int, pro
     duration = round(time.monotonic() - started, 3)
     final = final_path.read_text(encoding="utf-8") if final_path.exists() else ""
     headings = [f"## {name}" for name in ("T1", "T2", "T3", "C1", "C2", "C3")]
+    heading_positions = [final.find(heading) for heading in headings]
+    headings_complete = all(final.count(heading) == 1 for heading in headings)
+    headings_complete = headings_complete and heading_positions == sorted(heading_positions)
     return {
         "provider": provider,
         "model": model,
@@ -231,7 +234,8 @@ def run_one(provider: str, model: str, replicate: int, arm: str, order: int, pro
         "final_file": final_path.name,
         "final_sha256": sha256_bytes(final.encode("utf-8")) if final else None,
         "final_chars": len(final),
-        "headings_complete": all(final.count(heading) == 1 for heading in headings),
+        "heading_positions": heading_positions,
+        "headings_complete": headings_complete,
     }
 
 

@@ -1,5 +1,7 @@
 # 连续否定全位置减载原子首轮真实结果
 
+> **状态：SUPERSEDED。** 第5提交轻量 review 发现 `alibaba-r1-candidate` 的六个标题顺序错误，而首版 harness 只检查标题是否各出现一次。本文“五个有效配对”的统计不得用于合并裁决；后续以 `anti-ai-continuous-negation-anywhere-v1543-validity-correction-20260810.md` 和重新冻结的四对匿名包为准。
+
 日期：2026-08-09
 
 Baseline：`03c13d2dea8924d3eb2e8c487956da45ce6b0692`
