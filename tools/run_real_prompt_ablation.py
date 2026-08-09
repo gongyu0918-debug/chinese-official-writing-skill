@@ -1811,12 +1811,12 @@ CASES: list[PromptCase] = [
     PromptCase(
         id="P109",
         kind="revise",
-        prompt="检查全文高频句式和高频词，只改无前文依据的否定、虚假对比或机械重复；事实、引用、术语、否定范围和论断强度都不能变化。",
+        prompt="检查全文高频句式和高频词，只改连续否定式收口、虚假对比或机械重复；事实、引用、术语、否定范围和论断强度都不能变化。",
         checks={
             "file_terms": {
                 "chinese-official-writing/references/anti-ai-patterns.md": [
                     "本项由模型通读全文后判断，不按固定词表自动替换",
-                    "无前文依据的否定",
+                    "连续否定式收口",
                     "虚假对比",
                     "机械重复",
                     "事实、引用、术语、否定范围和论断强度",
