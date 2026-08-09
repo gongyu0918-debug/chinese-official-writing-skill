@@ -6,7 +6,7 @@
 
 **产品写稿规则不得进入 `AGENTS.md`。** 写作行为、文种规则、生成要求和运行时约束只允许存在于 canonical Skill 及其 references；不得在本文件复制、改写、概括或追加，也不得把候选的具体写作结论或长篇发布流水写回根文件。
 
-当前正式发行版为 `v1.5.39`。发布事实和历史入口见 [`docs/evidence/README.md`](docs/evidence/README.md)；历史材料不是当前指令。
+当前正式发行版为 `v1.5.40`。发布事实和历史入口见 [`docs/evidence/README.md`](docs/evidence/README.md)；历史材料不是当前指令。
 
 ## 仓库结构
 
