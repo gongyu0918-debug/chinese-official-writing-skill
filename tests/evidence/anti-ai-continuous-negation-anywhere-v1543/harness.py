@@ -245,8 +245,11 @@ def create_blind_packet(records: list[dict]) -> tuple[str, dict]:
     mapping: dict[str, dict] = {}
     sections = ["# 连续否定全位置减载匿名 A/B", "", JUDGE_FACTS, ""]
     pair_number = 0
-    for provider in ("alibaba", "ollama"):
-        for replicate in (1, 2, 3):
+    for provider in MODELS:
+        replicates = sorted(
+            replicate for pair_provider, replicate in PAIR_ORDER if pair_provider == provider
+        )
+        for replicate in replicates:
             pair_number += 1
             pair_id = f"P{pair_number}"
             arms = ["baseline", "candidate"]
