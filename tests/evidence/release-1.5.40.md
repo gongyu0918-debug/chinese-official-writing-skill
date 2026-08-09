@@ -2,7 +2,7 @@
 
 ## 当前状态
 
-1.5.40 发布候选已完成版本同步、真实证据复核和发布前工程回归。GitHub、ClawHub 与 skillhub.cn 的 dry-run、正式提交和传播回执在发布提交冻结后补记；小红书 Red SkillHub 不在本次授权范围内。
+1.5.40 发布候选已完成版本同步、真实证据复核、发布前工程回归及 ClawHub、skillhub.cn dry-run。正式提交和传播回执在 annotated tag 冻结后补记；小红书 Red SkillHub 不在本次授权范围内。
 
 ## 本轮产品改动
 
@@ -26,7 +26,8 @@ canonical、Claude Code、Qwen、Agents、Hermes 与 OpenClaw 镜像同步到 1.
 
 - 固定发行基线：annotated tag `v1.5.39`，解引用提交 `e1de44abefc3ec91f68be55be7abcc616aae105a`。
 - 本轮四个产品原子：`3df03cac`、`7ee89106`、`a0c49840`、`85fb5420`。
-- 版本与发行证据提交、annotated tag object 及其解引用提交在发布提交冻结后补记。
+- 版本准备与首轮发行证据提交：`221d8750ad5c1cc3a0cecfaa0bedb5339a62311b`。
+- annotated tag object、tag 解引用提交及回执文档提交在正式发布后补记。
 
 ## 真实写稿、真实复核与独立裁决
 
@@ -57,11 +58,19 @@ Promptfoo 使用本地 stub；111 项消融不调用 LLM。两者只证明评测
 
 ### ClawHub
 
-- 发行目录、文件数、dry-run fingerprint 和正式回执待发布提交冻结后补记。
+- 发行目录：`openclaw/skills/chinese_official_writing/`；
+- 文件数：32；
+- dry-run：`ok=true`、`status=would-publish`，公开基线 1.5.39，目标版本 1.5.40；
+- 首轮 dry-run fingerprint：`6a0801ea151a8622e40b2885b39669e23c6244e983b760df43e76f04f4df8300`；最终发布提交冻结后使用精确 SHA 重跑，fingerprint 必须保持一致。
 
 ### skillhub.cn
 
-- 清洁包路径、文件数、排除项、内容清单 SHA-256、dry-run 和正式回执待发布提交冻结后补记。
+- 清洁包：`output/skillhub-release-1.5.40-20260809/publish-package/`；
+- 文件数：31，禁入文件 0，共享内容哈希不一致 0；
+- 排除 `agents/openai.yaml`、`references/delivery-review-gate.md`、`scripts/gate_stop_hook.py`、`scripts/review_gate.py`，加入平台 `_meta.json` 和 SkillHub 专用 frontmatter；
+- `SKILL.md` 可执行正文与 canonical 逐字一致；
+- 内容清单 SHA-256：`3a27babbeb04a493af802dd8d95174c3632626de38aed012b88d665dcc05c280`。算法为：相对路径按序排列，每行 `relative_path<TAB>file_sha256`，UTF-8、LF、末尾保留 LF 后取 SHA-256；
+- dry-run：`dryRun=true`，精确返回 `chinese-official-writing@1.5.40`。
 
 ## 下一轮剩余项
 
