@@ -1301,7 +1301,7 @@ class SkillBoundaryTests(unittest.TestCase):
 
         for term in [
             "本项由模型通读全文后判断，不按固定词表自动替换",
-            "连续否定式收口",
+            "**连续否定**",
             "虚假对比",
             "机械重复",
             "出现次数只用于发现线索",
@@ -1318,26 +1318,17 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assertIn("只语义重写确认有问题的局部", final_review)
         self.assertNotIn("自动批量替换", final_review)
 
-    def test_continuous_negative_close_cluster_keeps_meaning_without_word_ban(self) -> None:
+    def test_continuous_negation_is_position_independent_without_word_ban(self) -> None:
         anti_ai = (ROOT / "chinese-official-writing" / "references" / "anti-ai-patterns.md").read_text(
             encoding="utf-8"
         )
 
-        self.assertIn("**连续否定式收口**", anti_ai)
-        self.assertIn("会议仅听取相关情况", anti_ai)
-        self.assertIn("不再追加采购、安排或责任未决句", anti_ai)
-        for cluster in [
-            "`尚不能据此认定……/尚不能形成定论`",
-            "`现有情况不足以作出判断`",
-            "`仅凭上述情况不能说明……`",
-            "`尚无法据此形成结论`",
-            "`尚未形成最终结论/尚未作出正式决定`",
-            "`有关安排尚未明确/责任分工尚未确定`",
-            "`未形成……决定`",
-        ]:
-            self.assertIn(cluster, anti_ai)
-        self.assertIn("即使材料确有未决状态，也保留含义并直接写对应事项和当前办理状态", anti_ai)
-        self.assertIn("不机械照抄这些尾句；无办理作用时删除", anti_ai)
+        self.assertIn("**连续否定**", anti_ai)
+        self.assertIn("句中或相邻句出现两个以上否定分句", anti_ai)
+        self.assertIn("保留材料明确且与主题直接相关的必要否定", anti_ai)
+        self.assertIn("合并重复内容，省去主题外围的否定说明", anti_ai)
+        self.assertNotIn("连续否定式收口", anti_ai)
+        self.assertNotIn("不机械照抄这些尾句", anti_ai)
         self.assertIn("不按固定词表自动替换", anti_ai)
         self.assertIn("不得自动批量替换", anti_ai)
         self.assertIn("不得把 `未`、`不`、`不得` 移到别的对象", anti_ai)
