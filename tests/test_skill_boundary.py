@@ -97,6 +97,33 @@ class SkillBoundaryTests(unittest.TestCase):
                 self.assertIn("## 使用顺序", text)
                 self.assertIn("没有用户提供依据时，不编造真实单位", text)
 
+    def test_delivery_scope_rule_is_naturalized_across_six_skill_copies(self) -> None:
+        expected = (
+            "正式正文仅包含文种功能和用户要求需要的内容；制作版本、内部受众、操作方式、校验门禁、审核状态，"
+            "以及与稿件事实无关的重复解释、括号式小字结论、制作说明、免责话术、写作边界和处理方法自述均省去，"
+            "同一标题仅保留一次。正文外审稿意见单独处理；用户明确要求显示的声明、版本或保密标识，"
+            "以及材料本身记载的业务事实，按用户要求和事实边界保留。"
+        )
+        legacy = "正式正文只保留文种功能和用户要求需要的内容"
+        canonical = ROOT / "chinese-official-writing" / "SKILL.md"
+        paths = [
+            canonical,
+            ROOT / "skills" / "chinese-official-writing" / "SKILL.md",
+            ROOT / ".agents" / "skills" / "chinese-official-writing" / "SKILL.md",
+            ROOT / ".qwen" / "skills" / "chinese-official-writing" / "SKILL.md",
+            ROOT / "hermes" / "skills" / "chinese-official-writing" / "SKILL.md",
+            ROOT / "openclaw" / "skills" / "chinese_official_writing" / "SKILL.md",
+        ]
+        canonical_body = canonical.read_text(encoding="utf-8").split("---", 2)[2].strip()
+
+        for path in paths:
+            with self.subTest(path=path):
+                text = path.read_text(encoding="utf-8")
+                self.assertIn(expected, text)
+                self.assertEqual(text.count(expected), 1)
+                self.assertNotIn(legacy, text)
+                self.assertEqual(text.split("---", 2)[2].strip(), canonical_body)
+
     def test_entry_excludes_only_non_obvious_out_of_scope_tasks(self) -> None:
         text = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
 
