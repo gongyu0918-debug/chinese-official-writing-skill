@@ -1471,7 +1471,6 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assertIn("## AI 算力与技术服务", ai_compute)
         for term in [
             "不新增默认联网、API、Word/PDF 或脚本硬门禁",
-            "用户已有模板和字段顺序优先",
             "只替换该字段内容，不把多字段合并成一句",
             "拆成独立字段行后不要保留行尾分号或造成 `。；`",
             "字段式周报保留字段和换行，不散文化、不合并字段",
@@ -1483,10 +1482,41 @@ class SkillBoundaryTests(unittest.TestCase):
             "普通采购公告不默认进入 AI 算力语境",
         ]:
             self.assertIn(term, routed_playbooks)
+        self.assertIn("用户已有提纲、模板、标题顺序时优先保留", skill)
+        self.assertIn("保留字段名、字段顺序和单元边界", skill)
         self.assertIn("详细结构见下文；本节只保留触发和边界", ai_compute)
         self.assertIn("会议判断、受众称呼、角色分工、合同义务或服务单位责任", skill)
         self.assertIn("详细测算和参数转读 `ai-compute-docs.md`", handling)
         self.assertIn("专项结构和指标写法转读 `ai-compute-docs.md`", anti_ai)
+
+    def test_playbook_template_priority_uses_entry_semantics_without_leaf_duplication(self) -> None:
+        duplicate = (
+            "每节只用于确定材料骨架和风险点。用户已有模板和字段顺序优先，"
+            "不因 playbook 改掉真实模板、主送、落款、字段或附件关系。"
+        )
+        leaf_paths = [
+            "references/genre-playbooks.md",
+            "references/genre-checklist-report.md",
+            "references/genre-playbook-correspondence.md",
+            "references/genre-playbook-minutes.md",
+            "references/genre-playbook-plan-construction.md",
+        ]
+        roots = [
+            ROOT / "chinese-official-writing",
+            ROOT / "skills" / "chinese-official-writing",
+            ROOT / ".agents" / "skills" / "chinese-official-writing",
+            ROOT / ".qwen" / "skills" / "chinese-official-writing",
+            ROOT / "hermes" / "skills" / "chinese-official-writing",
+            ROOT / "openclaw" / "skills" / "chinese_official_writing",
+        ]
+
+        for root in roots:
+            with self.subTest(root=root):
+                skill = (root / "SKILL.md").read_text(encoding="utf-8")
+                self.assertIn("用户已有提纲、模板、标题顺序时优先保留", skill)
+                self.assertIn("保留字段名、字段顺序和单元边界", skill)
+                for relative in leaf_paths:
+                    self.assertNotIn(duplicate, (root / relative).read_text(encoding="utf-8"))
 
     def test_work_summary_elaboration_stays_in_target_section(self) -> None:
         playbooks = (
