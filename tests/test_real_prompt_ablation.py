@@ -400,7 +400,11 @@ class RealPromptAblationTests(unittest.TestCase):
         self.assertEqual(checks_by_id["P108"]["lint_delivery_mode"], "draft-body")
         self.assertIn("delivery-metadata", checks_by_id["P108"]["lint_present_labels"])
         self.assertIn(
-            "制作版本、内部受众、操作方式、校验门禁或审核状态等交付元信息",
+            "制作版本、内部受众、操作方式、校验门禁、审核状态",
+            checks_by_id["P108"]["file_terms"]["chinese-official-writing/SKILL.md"],
+        )
+        self.assertIn(
+            "括号式小字结论、制作说明、免责话术、写作边界和处理方法自述",
             checks_by_id["P108"]["file_terms"]["chinese-official-writing/SKILL.md"],
         )
         self.assertIn("delivery-boilerplate", checks_by_id["P108"]["lint_present_labels"])

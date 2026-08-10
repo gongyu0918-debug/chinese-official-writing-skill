@@ -1787,9 +1787,9 @@ CASES: list[PromptCase] = [
         checks={
             "file_terms": {
                 "chinese-official-writing/SKILL.md": [
-                    "制作版本、内部受众、操作方式、校验门禁或审核状态等交付元信息",
+                    "制作版本、内部受众、操作方式、校验门禁、审核状态",
                     "材料本身记载的业务事实",
-                    "括号式小字结论、制作说明、免责话术、写作边界或处理方法自述",
+                    "括号式小字结论、制作说明、免责话术、写作边界和处理方法自述",
                 ],
                 "chinese-official-writing/references/final-review-layers.md": [
                     "制作版本、内部受众、操作方式、校验门禁或审核状态等交付元信息",
