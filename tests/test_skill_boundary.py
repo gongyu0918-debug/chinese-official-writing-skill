@@ -458,7 +458,8 @@ class SkillBoundaryTests(unittest.TestCase):
 
         self.assertIn("references/genre-checklist-report.md", skill)
         self.assertIn("需要常规或完整骨架、专项写法或细查文种功能和结构时直接读取", skill)
-        self.assertIn("`genre-checklist-report.md`", playbooks)
+        self.assertNotIn("`genre-checklist-report.md`", playbooks)
+        self.assertNotIn("## 报告/情况说明", playbooks)
         self.assertNotIn("## 报告\n", common)
         self.assertIn("## 使用方式", report)
         self.assertIn("## 报告/情况说明", report)
@@ -466,16 +467,13 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assertIn("专题报告先给结论", report)
         self.assertNotIn("`genre-checklist-report.md`", report)
 
-        def section(text: str, heading: str, next_heading: str) -> str:
-            body = text.split(heading, 1)[1].split(next_heading, 1)[0]
-            return "\n".join(
-                line for line in body.splitlines() if not line.startswith("- 补充读取")
-            ).strip()
-
-        self.assertEqual(
-            section(playbooks, "## 报告/情况说明", "## 函/复函/征求意见函"),
-            section(report, "## 报告/情况说明", "## 报告"),
-        )
+        for phrase in [
+            "报告事项和范围",
+            "使用/体验/评估报告或成本考察",
+            "报告不写审批请求",
+            "材料只说接口、系统、页面异常时",
+        ]:
+            self.assertIn(phrase, report)
 
     def test_feasibility_review_checklist_is_an_atomic_leaf(self) -> None:
         skill = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
@@ -1424,6 +1422,9 @@ class SkillBoundaryTests(unittest.TestCase):
         work_summary = (
             ROOT / "chinese-official-writing" / "references" / "genre-playbook-work-summary.md"
         ).read_text(encoding="utf-8")
+        report = (
+            ROOT / "chinese-official-writing" / "references" / "genre-checklist-report.md"
+        ).read_text(encoding="utf-8")
         plan_construction = (
             ROOT
             / "chinese-official-writing"
@@ -1458,7 +1459,6 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assertIn("## 目录", playbooks)
         for heading in [
             "## 会议纪要",
-            "## 报告/情况说明",
             "## 函/复函/征求意见函",
             "## 工作总结/工作要点/周报",
             "## 调研报告/研究报告/可研报告",
@@ -1466,6 +1466,8 @@ class SkillBoundaryTests(unittest.TestCase):
             "## 采购公告/审查材料",
         ]:
             self.assertIn(heading, routed_playbooks)
+        self.assertNotIn("## 报告/情况说明", playbooks)
+        self.assertIn("## 报告/情况说明", report)
         self.assertIn("## AI 算力与技术服务", ai_compute)
         for term in [
             "不新增默认联网、API、Word/PDF 或脚本硬门禁",
@@ -1521,7 +1523,7 @@ class SkillBoundaryTests(unittest.TestCase):
             return body.strip()
 
         self.assertEqual(
-            section(playbooks, "## 使用方式", "## 报告/情况说明"),
+            section(playbooks, "## 使用方式", "## 函/复函/征求意见函"),
             section(correspondence, "## 使用方式", "## 函/复函/征求意见函"),
         )
         playbook_section = section(
@@ -1574,6 +1576,9 @@ class SkillBoundaryTests(unittest.TestCase):
         playbooks = (ROOT / "chinese-official-writing" / "references" / "genre-playbooks.md").read_text(
             encoding="utf-8"
         )
+        report = (
+            ROOT / "chinese-official-writing" / "references" / "genre-checklist-report.md"
+        ).read_text(encoding="utf-8")
         review = (ROOT / "chinese-official-writing" / "references" / "review-checklist.md").read_text(
             encoding="utf-8"
         )
@@ -1582,9 +1587,10 @@ class SkillBoundaryTests(unittest.TestCase):
             self.assertIn("考察、评估、建议、拟测试、考虑尝试或下一步设想", text)
         self.assertIn("不改写成已定实施方案、执行命令", skill)
         self.assertIn("不升级成已定实施方案、命令或已安排动作", workflow)
-        self.assertIn("成本考察、成本评估", playbooks)
-        self.assertIn("不自动改题为“调研报告”“考核说明”或“实施方案”", playbooks)
-        self.assertIn("不写成已经确定的执行路线、责任命令或反馈时限", playbooks)
+        self.assertNotIn("成本考察、成本评估", playbooks)
+        self.assertIn("成本考察、成本评估", report)
+        self.assertIn("不自动改题为“调研报告”“考核说明”或“实施方案”", report)
+        self.assertIn("不写成已经确定的执行路线、责任命令或反馈时限", report)
         self.assertIn("按 `workflow.md` 的事实映射式二次修改删掉未支持推断", playbooks)
         self.assertIn("二次局部修改已命中轻量任务卡时，转对应卡片处理", workflow)
         self.assertIn("优先直接改对应位置", route_cards)
