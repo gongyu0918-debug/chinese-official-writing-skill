@@ -1239,8 +1239,11 @@ CASES: list[PromptCase] = [
         prompt="按我们单位已有模板顺一下采购审查材料，只调整审查意见，不要改字段顺序。",
         checks={
             "file_terms": {
+                "chinese-official-writing/SKILL.md": [
+                    "用户已有提纲、模板、标题顺序时优先保留",
+                    "保留字段名、字段顺序和单元边界",
+                ],
                 "chinese-official-writing/references/genre-playbooks.md": [
-                    "用户已有模板和字段顺序优先",
                     "审查材料重点是依据、发现、风险、整改要求和结论",
                 ],
             },
