@@ -2,12 +2,13 @@
 
 ## 结论与口径
 
-本轮只评价候选自身的成稿质量、事实要素和路由形态，不按 A/B 票数作判断。最终裁决为：
+本轮只评价候选自身的成稿质量、事实要素和路由形态，不按 A/B 票数作判断。主审复核发现重复材料外分类后，此前总裁决已撤销，当前状态为：
 
-- `SHORT REQUEST + MULTI-ITEM ROUTE QUALITY PASS`；
-- `RICH LONG ROUTE PASS WITH WARN`；
-- `NO P0 LOSS`；
-- `ELIGIBLE FOR LOCAL MAIN`。
+- `PRIOR VERDICT SUPERSEDED`；
+- `REPEATED MATERIAL-EXTERNAL CLASSIFICATION P0 PRE-FIX SIGNAL`；
+- `PENDING REAL RETEST`。
+
+R2 短申请和 R4 多品类请示仍保留为局部正向观察，但不能抵消长题中重复出现的 P0 分类外扩，也不能支持本地合入。
 
 候选产品固定为 `69b1508722715dddbe25bddcc57c0bb6e97bc036`。Alibaba Token Plan 使用 `alibaba-token-plan/deepseek-v4-flash-0731`，Ollama Cloud 使用 `ollama-cloud/deepseek-v4-flash:0731`，均请求 `reasoning=max`。下列结果按各 Codex 任务的首个可见 final 记录，不把后续改写混入首稿结论。正文 SHA-256 未随用户回传，不作推测；以完整 task ID、用户回传的非空白字符数和逐题检查作为定位与量化依据。
 
@@ -32,19 +33,19 @@ R2 两稿共同证明短单项形态没有因近场转读规则而膨胀。R4 �
 | --- | --- | --- | ---: | --- |
 | R2 短软件订阅申请 | Alibaba Token Plan | `019feb75-b16a-73c0-a464-bda95c5d6edd` | 未回传 | PASS；紧凑且要素准确 |
 | R2 短软件订阅申请 | Ollama Cloud | `019feb75-b3f2-7f21-9024-a4d19b93e37e` | 未回传 | PASS；紧凑且要素准确 |
-| R6 稀疏长题包 | Alibaba Token Plan | `019feb75-b7cf-7e91-9c6b-81aa559e86cb` | 716 | 接近 800 字并保留要素；稀疏材料引出推算或泛化，记 WARN |
-| R6 稀疏长题包 | Ollama Cloud | `019feb75-b7f5-7740-bfb7-3b9e619af8de` | 723 | 接近 800 字并保留要素；稀疏材料引出推算或泛化，记 WARN |
+| R6 稀疏长题包 | Alibaba Token Plan | `019feb75-b7cf-7e91-9c6b-81aa559e86cb` | 716 | 接近 800 字并保留其他要素，但把未明确分类的总量与子项差额作了材料外类别归属，记 P0 pre-fix signal |
+| R6 稀疏长题包 | Ollama Cloud | `019feb75-b7f5-7740-bfb7-3b9e619af8de` | 723 | 接近 800 字并保留其他要素，但把未明确分类的总量与子项差额作了材料外类别归属，记 P0 pre-fix signal |
 
-## clean frozen rich-long control
+## clean frozen rich-long control（R7）
 
 最终长篇控制使用事实更丰富的任务和干净冻结上下文，作为长篇路线的主要质量门。
 
 | provider | Codex task ID | 非空白字符 | 首稿逐题检查 | 结论 |
 | --- | --- | ---: | --- | --- |
-| Alibaba Token Plan | `019feb7a-bc7f-7810-8cd5-caba78a08e88` | 766 | 所有分类、进度、预算、余额、责任和节点均保留；没有补造品牌、供应商或报价；把未分类剩余页概括为 A4 | PASS WITH WARN |
+| Alibaba Token Plan | `019feb7a-bc7f-7810-8cd5-caba78a08e88` | 766 | 进度、预算、余额、责任和节点保留，且没有补造品牌、供应商或报价；但把材料未明确分类的剩余页归为 A4，构成材料外分类 | P0 PRE-FIX SIGNAL |
 | Ollama Cloud | `019feb7a-bcb2-7843-a927-708785bf242d` | 736 | 所有分类、进度、预算、余额、责任和节点均保留；没有补造品牌、供应商或报价；使用“报告如下” | PASS WITH WARN |
 
-两稿均无 P0 事实、算术、状态或输出范围损失。A4 概括和“报告如下”分别保留为轻微表达 WARN，不用模型间票数覆盖候选自身的要素通过结论。
+R7 Alibaba 与 frozen R6 两稿重复出现同一类材料外分类，不能降为措辞 WARN。此前“无 P0 损失”和可本地合入结论均已撤回；Ollama 的“报告如下”仍只记表达 WARN。候选在完成真实复测前保持 `PENDING REAL RETEST`。
 
 ## 证据保留与边界
 
