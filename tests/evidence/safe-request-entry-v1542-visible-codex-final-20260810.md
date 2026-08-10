@@ -2,15 +2,15 @@
 
 ## 结论与口径
 
-本轮只评价候选自身的成稿质量、事实要素和路由形态，不按 A/B 票数作判断。主审复核发现重复材料外分类后，此前总裁决已撤销，当前状态为：
+本轮只评价候选自身的成稿质量、事实要素和路由形态，不按 A/B 票数作判断。主审复核发现重复材料外分类后，撤销旧裁决；`bf838523b2dda2e71e8109d8a7d519a597e88ff1` 完成分类原子真实复测后的当前裁决为：
 
 - `PRIOR VERDICT SUPERSEDED`；
-- `REPEATED MATERIAL-EXTERNAL CLASSIFICATION P0 PRE-FIX SIGNAL`；
-- `PENDING REAL RETEST`。
+- `TARGET 4/4 PASS / EXPLICIT CONTROL 2/2 PASS / DIFF-RELATED P0 0`；
+- `ELIGIBLE FOR LOCAL MAIN WITH RECORDED NON-TARGET RESIDUAL RISK`。
 
-R2 短申请和 R4 多品类请示仍保留为局部正向观察，但不能抵消长题中重复出现的 P0 分类外扩，也不能支持本地合入。
+69b 候选中的重复材料外分类继续作为 P0 pre-fix signal 保留；R2 短申请和 R4 多品类请示也继续作为局部正向观察。新裁决只说明分类目标已闭环，不抹去非目标材料外扩风险。
 
-候选产品固定为 `69b1508722715dddbe25bddcc57c0bb6e97bc036`。Alibaba Token Plan 使用 `alibaba-token-plan/deepseek-v4-flash-0731`，Ollama Cloud 使用 `ollama-cloud/deepseek-v4-flash:0731`，均请求 `reasoning=max`。下列结果按各 Codex 任务的首个可见 final 记录，不把后续改写混入首稿结论。正文 SHA-256 未随用户回传，不作推测；以完整 task ID、用户回传的非空白字符数和逐题检查作为定位与量化依据。
+以下 pre-fix 链固定产品为 `69b1508722715dddbe25bddcc57c0bb6e97bc036`；分类复测另固定 `bf838523b2dda2e71e8109d8a7d519a597e88ff1`。Alibaba Token Plan 使用 `alibaba-token-plan/deepseek-v4-flash-0731`，Ollama Cloud 使用 `ollama-cloud/deepseek-v4-flash:0731`，均请求 `reasoning=max`。下列结果按各 Codex 任务的首个可见 final 记录，不把后续改写混入首稿结论。正文 SHA-256 未随用户回传，不作推测；以完整 task ID、用户回传的非空白字符数和逐题检查作为定位与量化依据。
 
 ## 修复后 direct visible
 
@@ -45,11 +45,24 @@ R2 两稿共同证明短单项形态没有因近场转读规则而膨胀。R4 �
 | Alibaba Token Plan | `019feb7a-bc7f-7810-8cd5-caba78a08e88` | 766 | 进度、预算、余额、责任和节点保留，且没有补造品牌、供应商或报价；但把材料未明确分类的剩余页归为 A4，构成材料外分类 | P0 PRE-FIX SIGNAL |
 | Ollama Cloud | `019feb7a-bcb2-7843-a927-708785bf242d` | 736 | 所有分类、进度、预算、余额、责任和节点均保留；没有补造品牌、供应商或报价；使用“报告如下” | PASS WITH WARN |
 
-R7 Alibaba 与 frozen R6 两稿重复出现同一类材料外分类，不能降为措辞 WARN。此前“无 P0 损失”和可本地合入结论均已撤回；Ollama 的“报告如下”仍只记表达 WARN。候选在完成真实复测前保持 `PENDING REAL RETEST`。
+R7 Alibaba 与 frozen R6 两稿重复出现同一类材料外分类，不能降为措辞 WARN。此前“无 P0 损失”和可本地合入结论均已撤回；Ollama 的“报告如下”仍只记表达 WARN。本段记录 `bf838523` 修复前的 superseded 状态，不以后续结果覆盖原始 P0 链。
+
+## bf838523 分类原子真实复测
+
+本轮用未明确余数类别 U1 和明确余数归属 A4 的反向控制 C1 检查分类原子；四稿均为对应 Codex 任务的首个可见 final。
+
+| 场景 | provider | Codex task ID | 非空白字符 | 分类与要素检查 | 结论 |
+| --- | --- | --- | ---: | --- | --- |
+| U1 未明确余数类别 | Alibaba Token Plan | `019feb8c-ae78-71d1-8639-c0bbc3f53769` | 736 | 只写剩余 8,800 页，其中 A3 为 640 页、含项目材料 420 页和会议材料 220 页；未把余数归为 A4 或其他类别；篇幅与采购要素通过 | TARGET PASS |
+| U1 未明确余数类别 | Ollama Cloud | `019feb8c-ae78-71d1-8639-c09997fcfb8d` | 785 | 只写剩余 8,800 页，其中 A3 为 640 页、含项目材料 420 页和会议材料 220 页；未把余数归为 A4 或其他类别；篇幅与采购要素通过 | TARGET PASS |
+| C1 明确余数归属 | Alibaba Token Plan | `019feb8c-b520-7913-bb6c-a0769beb12f6` | 703 | 按材料保留剩余 8,160 页归入 A4，反向控制通过；另增加“购置后不影响其他数字化工作支出”，材料未证明 | CONTROL PASS；SINGLE NON-TARGET MATERIAL-EXTERNAL EXPANSION |
+| C1 明确余数归属 | Ollama Cloud | `019feb8c-b521-73d1-8943-6cac8d1cb131` | 777 | 按材料保留剩余 8,160 页归入 A4，反向控制通过 | CONTROL PASS |
+
+分类目标统计为 `TARGET 4/4 PASS / EXPLICIT CONTROL 2/2 PASS / DIFF-RELATED P0 0`。C1 Alibaba 的单次材料外扩与 classification diff 无直接关系，作为非目标残余风险单列；不能据此回退分类原子，也不能把组合结果概括成不存在 P0。组合裁决为 `ELIGIBLE FOR LOCAL MAIN WITH RECORDED NON-TARGET RESIDUAL RISK`。
 
 ## 证据保留与边界
 
 - 首次外部 CLI 的 `12/12 ENV_INVALID` 继续完整保留在 `safe-request-entry-v1542-single-arm-result-20260810.md`，对应提交 `f382bfaec707a417c7a3f48fa38d231ca108490d`；不把环境失败改写为模型结果，也不删除原始失败链。
 - 最终产品范围仍为请求叶近场规则及其既有安全集成。description 未改；short notice 和 closing relocation 均未进入候选。
 - 本文件只追加质量证据，不修改产品、评测 selector、路由实现或其他 reference。
-- Codex 任务归档状态为 `COMPLETED_ROOT`：此前 13 个 pilot 任务及后续 12 个 post/frozen 任务均已由 root 设置 `archived=true`；本证据引用的全部可见写稿任务已由 root 归档。
+- Codex 任务归档状态为 `COMPLETED_ROOT`：此前 13 个 pilot 任务、后续 12 个 post/frozen 任务及本次 U1/C1 四个复测任务均已由 root 设置 `archived=true`；本证据引用的全部可见写稿任务已由 root 归档。
