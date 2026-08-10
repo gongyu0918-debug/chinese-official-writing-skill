@@ -65,6 +65,9 @@ GENRE_REFERENCES: dict[str, list[str]] = {
     "request_review": [
         "references/genre-checklist-request.md",
     ],
+    "request_playbook": [
+        "references/genre-playbook-request.md",
+    ],
     "feasibility_review": [
         "references/genre-checklist-feasibility-review.md",
     ],
@@ -171,6 +174,24 @@ REQUEST_REVIEW_GENRES = {
     "请示",
     "申请",
 }
+
+REQUEST_PROCUREMENT_MARKERS = (
+    "采购",
+    "购置",
+    "购买",
+    "申购",
+)
+REQUEST_PROCUREMENT_COMPLEXITY_RE = re.compile(
+    r"(?:多(?:个)?品类|不同品类|多项(?:物资|设备|采购)?|"
+    r"不同规格|规格(?:不同|不一|各异)|不同价格|价格(?:不同|不一|各异)|"
+    r"分项(?:核算|列示|报价|计价)|逐项核算|报价(?:单|文件|清单)?|询价|比价|"
+    r"验收(?:标准|要求|指标|方案|条款)?|技术(?:附件|参数附件|需求附件|规格书))"
+)
+REQUEST_PROCUREMENT_NEGATED_CLAUSE_RE = re.compile(
+    r"(?:不涉及|不含|无需|无须|不需要|不要求|没有|并非|不是|不采用)"
+    r"[^。；;\n]*?(?=(?:，?(?:但|不过|然而|可是|而是|却|仍需|仍要|同时|另需|"
+    r"仅需|只需|本次|只(?:申请|采购|购置|购买|申购)))|[。；;\n]|$)"
+)
 
 FEASIBILITY_REVIEW_GENRES = {
     "可研报告",
@@ -608,6 +629,21 @@ def _task_requires_complex_route(tasks: list[str]) -> bool:
     return any(int(match.group(1)) >= 800 for task in tasks for match in LONG_FORM_RE.finditer(task))
 
 
+def _request_procurement_requires_complex_route(genres: list[str], tasks: list[str]) -> bool:
+    if not any(genre in REQUEST_REVIEW_GENRES for genre in genres):
+        return False
+    text = "\n".join(tasks)
+    normalized = REQUEST_PROCUREMENT_NEGATED_CLAUSE_RE.sub("", text)
+    normalized = re.sub(
+        r"非\s*(?:多品类|多项采购|分项核算|比价|报价|验收|技术附件)[^，。；;\n]*",
+        "",
+        normalized,
+    )
+    return _contains_marker(normalized, REQUEST_PROCUREMENT_MARKERS) and bool(
+        REQUEST_PROCUREMENT_COMPLEXITY_RE.search(normalized)
+    )
+
+
 def _task_requires_external_research(tasks: list[str]) -> bool:
     return any(_contains_marker(task, EXTERNAL_RESEARCH_TASK_MARKERS) for task in tasks)
 
@@ -750,6 +786,7 @@ def _reference_paths_for_genres(genres: list[str], tasks: list[str] | None = Non
     paths = ["SKILL.md"]
     ai_compute = any(_is_ai_compute(genre, tasks) for genre in genres)
     report_playbook = any(genre in REPORT_PLAYBOOK_GENRES for genre in genres)
+    request_playbook = any(genre in REQUEST_REVIEW_GENRES for genre in genres)
     ordinary_letter_playbook = any(genre in ORDINARY_LETTER_PLAYBOOK_GENRES for genre in genres)
     work_summary_playbook = any(genre in WORK_SUMMARY_PLAYBOOK_GENRES for genre in genres)
     plan_construction_playbook = any(
@@ -793,6 +830,8 @@ def _reference_paths_for_genres(genres: list[str], tasks: list[str] | None = Non
             paths.extend(GENRE_REFERENCES["minutes_playbook"])
         if report_playbook:
             paths.extend(GENRE_REFERENCES["report_playbook"])
+        if request_playbook:
+            paths.extend(GENRE_REFERENCES["request_playbook"])
         if ordinary_letter_playbook and not ordinary_letter_full_playbook:
             paths.extend(GENRE_REFERENCES["correspondence_playbook"])
         if work_summary_playbook:
@@ -803,6 +842,7 @@ def _reference_paths_for_genres(genres: list[str], tasks: list[str] | None = Non
             genre in PLAYBOOK_GENRES
             and genre != "会议纪要"
             and genre not in REPORT_PLAYBOOK_GENRES
+            and genre not in REQUEST_REVIEW_GENRES
             and genre not in ORDINARY_LETTER_PLAYBOOK_GENRES
             and genre not in WORK_SUMMARY_PLAYBOOK_GENRES
             and not _is_plan_construction_genre(genre)
@@ -818,7 +858,10 @@ def _reference_paths_for_genres(genres: list[str], tasks: list[str] | None = Non
         if any(_contains_marker(task, ROUTING_TASK_MARKERS) for task in tasks):
             paths.extend(GENRE_REFERENCES["routing"])
 
-    complex_route = _task_requires_complex_route(tasks)
+    complex_route = _task_requires_complex_route(tasks) or _request_procurement_requires_complex_route(
+        genres,
+        tasks,
+    )
     argument_requested = any(_contains_marker(task, ARGUMENT_TASK_MARKERS) for task in tasks)
     if complex_route:
         paths.extend(GENRE_REFERENCES["complex"])

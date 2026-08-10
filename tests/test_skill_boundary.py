@@ -97,6 +97,13 @@ class SkillBoundaryTests(unittest.TestCase):
                 self.assertIn("## 使用顺序", text)
                 self.assertIn("没有用户提供依据时，不编造真实单位", text)
 
+    def test_entry_excludes_only_non_obvious_out_of_scope_tasks(self) -> None:
+        text = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
+
+        self.assertIn("英文写作、文学创作、营销软文、社交媒体文案、代码说明", text)
+        self.assertNotIn("闲聊回复", text)
+        self.assertNotIn("通用翻译", text)
+
     def test_drafting_rules_are_split_for_prompt_following(self) -> None:
         text = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
         lines = text.splitlines()
@@ -678,19 +685,32 @@ class SkillBoundaryTests(unittest.TestCase):
     def test_final_drafts_must_not_keep_unfinished_placeholders(self) -> None:
         skill = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
         elements = (ROOT / "chinese-official-writing" / "references" / "handling-elements.md").read_text(encoding="utf-8")
+        final_review = (
+            ROOT / "chinese-official-writing" / "references" / "final-review-layers.md"
+        ).read_text(encoding="utf-8")
         checklist = (ROOT / "chinese-official-writing" / "references" / "review-checklist.md").read_text(encoding="utf-8")
 
-        for text in [skill, elements, checklist]:
+        for text in [skill, elements, final_review, checklist]:
             self.assertTrue("最终正文" in text or "交付正文" in text)
-            self.assertIn("〔签发日期〕", text)
             self.assertIn("未完成占位", text)
 
+        self.assertIn("最终正文不得残留未完成占位", skill)
         self.assertIn("当前日期不得替代维护时间", skill)
         self.assertIn("当前日期只可用于草稿落款", elements)
         self.assertIn("当前日期是否未被误用为维护时间", checklist)
-        self.assertIn("[具体项目名称]", skill)
-        self.assertIn("（成文日期待确认）", skill)
-        self.assertEqual(skill.count("（成文日期待确认）"), 1)
+        for example in [
+            "〔签发日期〕",
+            "〔会议时间〕",
+            "[具体项目名称]",
+            "XXXX万元",
+            "YYYY年MM月DD日",
+            "（签发日期）",
+            "（成文日期待确认）",
+        ]:
+            with self.subTest(example=example):
+                self.assertNotIn(example, skill)
+                self.assertIn(example, elements)
+                self.assertIn(example, final_review)
         self.assertNotIn("交付前按上文硬边界清理占位", skill)
         self.assertIn("明示成文日期缺失、待确认或需另行确认时，不使用当前日期补落款", skill)
         self.assertIn("识别为正式报送结构缺口", skill)
@@ -1633,11 +1653,16 @@ class SkillBoundaryTests(unittest.TestCase):
         information_selection = (
             ROOT / "chinese-official-writing" / "references" / "information-selection.md"
         ).read_text(encoding="utf-8")
+        elements = (
+            ROOT / "chinese-official-writing" / "references" / "handling-elements.md"
+        ).read_text(encoding="utf-8")
         for text in [skill, openclaw_skill]:
             self.assertNotIn("用户点名禁止编造的字段写成正文中的“未提供”说明", text)
             self.assertIn("识别为正式报送结构缺口", text)
-            self.assertIn("（成文日期待确认）", text)
+            self.assertIn("最终正文不得残留未完成占位", text)
+            self.assertNotIn("（成文日期待确认）", text)
             self.assertIn("不使用当前日期补落款", text)
+        self.assertIn("（成文日期待确认）", elements)
         self.assertIn("用户要求先确认时，再在正文前提出必要问题", information_selection)
         self.assertIn("文后提示使用少量短项", information_selection)
         self.assertIn("用户点名不得编造的字段按输出模式省略或短列", information_selection)

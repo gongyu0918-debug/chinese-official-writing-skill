@@ -379,11 +379,35 @@ class PromptfooProviderTests(unittest.TestCase):
                 refs = provider._reference_paths_for_genres([genre])
                 if genre in provider.REPORT_PLAYBOOK_GENRES:
                     expected = "references/genre-checklist-report.md"
+                elif genre in provider.REQUEST_REVIEW_GENRES:
+                    expected = "references/genre-playbook-request.md"
                 elif genre in provider.ORDINARY_LETTER_PLAYBOOK_GENRES:
                     expected = "references/genre-playbook-correspondence.md"
                 else:
                     expected = "references/genre-playbooks.md"
                 self.assertIn(expected, refs)
+
+    def test_request_drafts_load_the_dedicated_playbook(self) -> None:
+        for genre in ("请示", "申请"):
+            with self.subTest(genre=genre):
+                refs = provider._reference_paths_for_genres(
+                    [genre],
+                    [f"请起草一份{genre}，写清请批事项、主送和落款。"],
+                )
+                self.assertEqual(
+                    refs,
+                    ["SKILL.md", "references/genre-playbook-request.md"],
+                )
+
+    def test_request_draft_leaf_does_not_affect_unrelated_genres(self) -> None:
+        for genre, expected in (
+            ("通知", "references/genre-playbooks.md"),
+            ("报告", "references/genre-checklist-report.md"),
+        ):
+            with self.subTest(genre=genre):
+                refs = provider._reference_paths_for_genres([genre])
+                self.assertIn(expected, refs)
+                self.assertNotIn("references/genre-playbook-request.md", refs)
 
     def test_plain_letter_uses_the_dedicated_leaf_without_moving_reply_genres(self) -> None:
         self.assertEqual(
@@ -639,6 +663,7 @@ class PromptfooProviderTests(unittest.TestCase):
             [
                 "SKILL.md",
                 "references/genre-checklist-report.md",
+                "references/genre-playbook-request.md",
                 "references/genre-playbook-plan-construction.md",
                 "references/genre-playbooks.md",
             ],
@@ -906,7 +931,8 @@ class PromptfooProviderTests(unittest.TestCase):
             ["租用普通档案备份服务器，不涉及 AI、模型、GPU 或推理。"],
         )
 
-        self.assertIn("references/genre-playbooks.md", refs)
+        self.assertIn("references/genre-playbook-request.md", refs)
+        self.assertNotIn("references/genre-playbooks.md", refs)
         self.assertNotIn("references/ai-compute-docs.md", refs)
 
     def test_ai_route_keeps_positive_requirements_after_a_negated_clause(self) -> None:
