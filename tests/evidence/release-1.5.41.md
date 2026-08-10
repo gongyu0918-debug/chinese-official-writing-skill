@@ -2,7 +2,7 @@
 
 ## 当前状态
 
-1.5.41 发布候选以 `main=61ac47114402bbc9bd51e10e705b8b6ce575f46e` 为固定产品基线，已完成版本面同步、发布前回归及 ClawHub、skillhub.cn 清洁包 dry-run。正式提交和传播回执在 annotated tag 冻结后补记；小红书 Red SkillHub 不在本次授权范围内。
+1.5.41 已完成 GitHub、ClawHub 和 skillhub.cn 各一次正式提交。GitHub `main`、annotated tag `v1.5.41` 和正式 Release 的产品提交均为 `b2bc25da6b31fb6d6057affc02e3e7b72d18d26c`；回执文档提交继续推进 `main`，不移动发布 tag。ClawHub 和 skillhub.cn 的公开正文索引仍显示 1.5.40，属于提交后的异步传播，不重复发布。小红书 Red SkillHub 不在本次授权范围内。
 
 ## 本轮产品改动
 
@@ -27,7 +27,8 @@
 - 连续否定全位置减载产品提交：`fcc1d960`。
 - 当前发布产品基线：`61ac47114402bbc9bd51e10e705b8b6ce575f46e`。
 - 版本准备与首轮发行证据提交：`c01cfb2db7dc4bb863aa9bdbd3d626442afb2aad`。
-- 发布提交、annotated tag object 和回执文档提交在各阶段冻结后补记。
+- 1.5.41 产品与 tag 解引用提交：`b2bc25da6b31fb6d6057affc02e3e7b72d18d26c`。
+- annotated tag `v1.5.41` 的 tag object：`13c611879f14ac739a7bff75d6b818c7e19f6fd8`。
 
 ## 真实写稿、真实复核与独立裁决
 
@@ -59,7 +60,8 @@ Promptfoo 使用本地 stub；111 项消融不调用 LLM。两者只证明评测
 - 发行目录：`openclaw/skills/chinese_official_writing/`；
 - 文件数：32，禁入门禁文件、缓存和 `.pyc` 为 0；
 - dry-run：`ok=true`、`status=would-publish`，公开基线 1.5.40，目标版本 1.5.41；
-- 首轮 dry-run fingerprint：`6d5851e7c589de5978303929e313b83fac843e18f4b03976c5f368795f33ed99`；最终发布提交冻结并推送后使用精确 `source-commit` 重跑，fingerprint 必须保持一致。
+- 使用最终发布提交精确 `source-commit` 重跑 dry-run，fingerprint 仍为 `6d5851e7c589de5978303929e313b83fac843e18f4b03976c5f368795f33ed99`；
+- 正式提交回执：`ok=true`、`status=published`、`versionId=k976j6z7tccr9zz2jb4tnz2phx8c77cz`、32 个文件，fingerprint 与 dry-run 一致。
 
 ### skillhub.cn
 
@@ -68,9 +70,17 @@ Promptfoo 使用本地 stub；111 项消融不调用 LLM。两者只证明评测
 - 排除 `agents/openai.yaml`、`references/delivery-review-gate.md`、`scripts/gate_stop_hook.py`、`scripts/review_gate.py`，加入平台 `_meta.json` 和 SkillHub 专用 frontmatter；
 - `SKILL.md` 可执行正文与 canonical 逐字一致；
 - 内容清单 SHA-256：`6b24ba3e0f558fb06c6a5f6edf8dad2258d549dd9001fc3003141ef19bdff502`。算法为：相对路径按序排列，每行 `relative_path<TAB>file_sha256`，UTF-8、LF、末尾保留 LF 后取 SHA-256；
-- dry-run：`dryRun=true`，精确返回 `chinese-official-writing@1.5.41`。
+- dry-run：`dryRun=true`，精确返回 `chinese-official-writing@1.5.41`；
+- 正式提交回执：`ok=true`、`skillId=70149`、`versionId=226574`、31 个文件、fingerprint `98dd5dc98d95f10ccf1e20b437fd4b4d586ca2aa8028255edf24dd21f3e24687`、`tags.latest=1.5.41`；review、security scan 和 content audit 均为 `pending`。
 
 首次计算内容清单时，PowerShell 正则转义错误使 31 行均未加入清单，并得到空文本 SHA；该值已作废，未进入平台 dry-run 或发布证据。随后改用字面路径替换，启用错误即停并确认 31 行后重算，得到上列有效 SHA-256。
+
+## 实际发布与首次传播核验
+
+- GitHub：远端 `main` 为 `b2bc25da6b31fb6d6057affc02e3e7b72d18d26c`；远端 tag object 为 `13c611879f14ac739a7bff75d6b818c7e19f6fd8`，解引用提交为 `b2bc25da6b31fb6d6057affc02e3e7b72d18d26c`。正式 Release 为非草稿、非 prerelease，`publishedAt=2026-08-10T00:59:31Z`，地址为 `https://github.com/gongyu0918-debug/chinese-official-writing-skill/releases/tag/v1.5.41`。
+- ClawHub：正式回执已接受 1.5.41；首次只读查询仍显示 `latestVersion=1.5.40`、`tags.latest=1.5.40`，精确 1.5.41 查询返回传播中的 `Version not found`。当前显示的 moderation `clean` 属于已传播的 1.5.40，不能写成 1.5.41 已完成扫描。
+- skillhub.cn：正式回执的 `tags.latest` 已为 1.5.41；首次公开详情的 `latestVersion` 仍显示 1.5.40。提交回执中的 review、security scan 和 content audit 均为 `pending`；公开安全报告仍对应此前已传播内容，不能推断 1.5.41 已完成扫描。
+- 小红书 Red SkillHub 未调用。
 
 ## 下一轮剩余项
 
