@@ -1133,7 +1133,9 @@ class SkillBoundaryTests(unittest.TestCase):
         ).read_text(encoding="utf-8")
 
         self.assertIn(
-            "保持主体、对象、数字、日期、状态和结论强度；事实之间的时间、因果和归属关系以材料明确关系为准",
+            "保持主体、对象、数字、日期、状态和结论强度；"
+            "事实之间的时间、因果、分类和归属关系以材料明确关系为准；"
+            "总量与子项差额用于合计校核",
             information_selection,
         )
         self.assertIn(
