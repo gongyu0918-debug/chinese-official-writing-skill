@@ -264,7 +264,7 @@ def _repair_instruction(txn: Path) -> str | None:
         "骨架中的 null 不是默认答案，必须逐项完成语义判断：材料明确载明且承担当前文种功能、原写法自然时才 KEEP；"
         "材料未谈到且不影响当前文种功能的外围解释选 DELETE；材料明确未定且与主旨相关、但写成示弱或自证时选 REWRITE。"
         "KEEP 的 replacement 与 target 相同，DELETE 为空，REWRITE 只改该句且不新增事实、主体、动作或承诺；"
-        "REWRITE 无需与原句等长，避免复述上下文已有事实。缺态句只改为不扩展方法的调查、核查等进行态；"
+        "REWRITE 无需与原句等长，避免复述上下文已有事实。涉及未决状态时保持材料已有的事实和判断强度；"
         "外围未决尾句保留材料已明确的下一步动作，不把未确定事项改成新的研究承诺。"
         "REWRITE 不得保留原命中表达；确需原样保留时选择 KEEP。"
         "必须覆盖全部 finding。响应骨架如下：\n"
@@ -300,8 +300,6 @@ def _verdict_instruction(txn: Path) -> str | None:
     return (
         "请只读核验本次唯一局部候选，并只输出一个 JSON 对象，不要输出正文、代码围栏、建议或说明。"
         "以 D0 为比较基准，只判断 D1 新增的变化；任何一项不能确认时把 verdict 写为 FAIL，"
-        "材料中的原因尚未形成结论改为同一事项正在调查或核查，且未新增主体、方法或结论时，"
-        "视为未决状态保留，不计为新增动作；"
         "并把对应 check 写为 false。响应骨架如下：\n"
         + json.dumps(response, ensure_ascii=False)
         + "\n核验包如下：\n"

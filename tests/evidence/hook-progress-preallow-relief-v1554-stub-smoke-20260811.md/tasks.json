@@ -1,0 +1,778 @@
+{
+  "mode": "task-packet-only",
+  "case_count": 12,
+  "turn_count": 36,
+  "operations": [
+    "add_field_unit",
+    "add_natural_paragraph",
+    "change_sender_date",
+    "change_sender_receiver",
+    "change_subheading_outline",
+    "change_title",
+    "change_title_receiver",
+    "closing_position",
+    "delete_add_points",
+    "field_value_change",
+    "outline_change",
+    "preserve_field_units",
+    "preserve_real_application_template",
+    "recipient_position",
+    "remove_field_unit",
+    "remove_natural_paragraph",
+    "reorder_paragraphs"
+  ],
+  "cases": [
+    {
+      "id": "R001",
+      "genre": "通知",
+      "title": "关于报送季度项目资料的通知",
+      "initial": "关于报送季度项目资料的通知\n\n各有关单位：\n为做好季度项目资料归集工作，请各单位按要求报送项目进展、资金使用、风险问题和佐证材料。\n\n一、报送范围\n本次报送范围包括在建项目、已完成待验收项目和需协调推进的重点项目。\n\n二、材料要求\n报送材料应包括项目台账、进展说明、问题清单和下一步安排，确保内容真实、口径一致。\n\n三、工作要求\n各单位要高度重视，指定专人负责材料核验和报送工作，逾期未报的应说明原因。\n\n综合管理部\n2026年6月1日",
+      "turns": [
+        {
+          "id": "R001-T1",
+          "operation": "remove_natural_paragraph",
+          "instruction": "删除第三段关于工作要求的自然段，不要改标题和主送对象。",
+          "checks": {
+            "title": "关于报送季度项目资料的通知",
+            "recipient": "各有关单位",
+            "absent": [
+              "三、工作要求",
+              "高度重视",
+              "逾期未报"
+            ],
+            "present": [
+              "报送范围",
+              "材料要求"
+            ]
+          }
+        },
+        {
+          "id": "R001-T2",
+          "operation": "add_natural_paragraph",
+          "instruction": "在材料要求后增加一个自然段，说明反馈渠道和联系人，不要新增小标题。",
+          "checks": {
+            "title": "关于报送季度项目资料的通知",
+            "recipient": "各有关单位",
+            "present": [
+              "反馈渠道",
+              "联系人"
+            ],
+            "absent": [
+              "四、",
+              "反馈渠道和联系人："
+            ],
+            "min_paragraphs": 3
+          }
+        },
+        {
+          "id": "R001-T3",
+          "operation": "change_sender_receiver",
+          "instruction": "主送对象改为各项目单位，发送人改为综合协调处，其他结构保持不变。",
+          "checks": {
+            "title": "关于报送季度项目资料的通知",
+            "recipient": "各项目单位",
+            "sender": "综合协调处",
+            "absent": [
+              "各有关单位",
+              "综合管理部"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "R002",
+      "genre": "请示",
+      "title": "关于启动智能审校系统试点建设的请示",
+      "initial": "关于启动智能审校系统试点建设的请示\n\n市发展改革委：\n为提升长文审校和正式材料处理效率，拟启动智能审校系统试点建设。\n\n一、项目背景\n现有人工审校流程存在周期较长、标准不一和批量处理能力不足等问题。\n\n二、建设内容\n项目拟建设文本审校、知识库检索、多轮修改和归档管理等功能。\n\n三、资金安排\n项目资金拟按年度预算统筹安排，具体金额待测算后报审。\n\n妥否，请批示。\n\n信息化建设中心\n2026年6月1日",
+      "turns": [
+        {
+          "id": "R002-T1",
+          "operation": "change_title",
+          "instruction": "标题改为“关于申请启动智能审校系统试点建设的请示”，正文请批语保留。",
+          "checks": {
+            "title": "关于申请启动智能审校系统试点建设的请示",
+            "present": [
+              "妥否，请批示"
+            ],
+            "recipient": "市发展改革委"
+          }
+        },
+        {
+          "id": "R002-T2",
+          "operation": "delete_add_points",
+          "instruction": "删除资金安排要点，新增风险控制要点，不要把请示写成报告。",
+          "checks": {
+            "present": [
+              "风险控制",
+              "妥否，请批示"
+            ],
+            "absent": [
+              "资金安排",
+              "报告如下"
+            ],
+            "headings_in_order": [
+              "一、项目背景",
+              "二、建设内容",
+              "三、风险控制"
+            ]
+          }
+        },
+        {
+          "id": "R002-T3",
+          "operation": "change_sender_receiver",
+          "instruction": "主送机关改为市政务服务和数据管理局，发文单位改为市信息化建设中心。",
+          "checks": {
+            "recipient": "市政务服务和数据管理局",
+            "sender": "市信息化建设中心",
+            "present": [
+              "妥否，请批示"
+            ],
+            "absent": [
+              "市发展改革委："
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "R003",
+      "genre": "报告",
+      "title": "关于专项整改工作进展情况的报告",
+      "initial": "关于专项整改工作进展情况的报告\n\n市政府办公室：\n现将专项整改工作进展情况报告如下。\n\n一、整改进展\n已完成问题台账梳理、责任分工和阶段性复核，重点事项按计划推进。\n\n二、存在问题\n部分单位佐证材料不完整，个别事项整改口径还需进一步统一。\n\n三、下一步工作\n将继续完善台账管理，按节点组织复核，并及时报送整改结果。\n\n专项整改工作专班\n2026年6月1日",
+      "turns": [
+        {
+          "id": "R003-T1",
+          "operation": "reorder_paragraphs",
+          "instruction": "把“存在问题”调整到“整改进展”前面，“下一步工作”仍放最后。",
+          "checks": {
+            "title": "关于专项整改工作进展情况的报告",
+            "headings_in_order": [
+              "一、存在问题",
+              "二、整改进展",
+              "三、下一步工作"
+            ],
+            "ordered": [
+              "存在问题",
+              "整改进展",
+              "下一步工作"
+            ],
+            "absent": [
+              "请批示",
+              "请予批复"
+            ]
+          }
+        },
+        {
+          "id": "R003-T2",
+          "operation": "add_natural_paragraph",
+          "instruction": "在存在问题后增加一个原因分析自然段，不要改标题。",
+          "checks": {
+            "title": "关于专项整改工作进展情况的报告",
+            "present": [
+              "原因分析"
+            ],
+            "absent": [
+              "请批示",
+              "请予批复"
+            ],
+            "min_paragraphs": 5
+          }
+        },
+        {
+          "id": "R003-T3",
+          "operation": "change_title_receiver",
+          "instruction": "标题改为“关于专项整改工作进展情况的报告（修订稿）”，主送改为市政府督查室。",
+          "checks": {
+            "title": "关于专项整改工作进展情况的报告（修订稿）",
+            "recipient": "市政府督查室",
+            "absent": [
+              "市政府办公室：",
+              "请批示",
+              "请予批复"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "R004",
+      "genre": "会议纪要",
+      "title": "项目推进协调会议纪要",
+      "initial": "项目推进协调会议纪要\n\n会议时间：2026年6月1日\n会议地点：第三会议室\n参会人员：有关部门负责同志\n\n一、会议听取了项目进展情况\n会议听取牵头部门关于系统联调、材料准备和风险事项的汇报。\n\n二、会议议定了协同事项\n会议明确由业务部门负责需求确认，由技术部门负责接口联调，由综合部门负责资料归档。\n\n三、会议要求加强宣传推广\n会议要求同步做好宣传推广，及时总结阶段性成果，形成示范经验。\n\n会议强调，各责任单位应按节点落实任务，重要问题及时报牵头部门协调。\n",
+      "turns": [
+        {
+          "id": "R004-T1",
+          "operation": "change_subheading_outline",
+          "instruction": "把三个小标题改为“一、关于任务分工”“二、关于节点安排”“三、关于后续督办”。",
+          "checks": {
+            "title": "项目推进协调会议纪要",
+            "headings_in_order": [
+              "一、关于任务分工",
+              "二、关于节点安排",
+              "三、关于后续督办"
+            ],
+            "absent": [
+              "会议听取了项目进展情况",
+              "会议议定了协同事项",
+              "会议要求加强宣传推广"
+            ]
+          }
+        },
+        {
+          "id": "R004-T2",
+          "operation": "remove_natural_paragraph",
+          "instruction": "删除关于宣传推广的自然段，会议议定事项和督办要求保留。",
+          "checks": {
+            "absent": [
+              "宣传推广",
+              "示范经验"
+            ],
+            "present": [
+              "会议明确",
+              "督办"
+            ]
+          }
+        },
+        {
+          "id": "R004-T3",
+          "operation": "add_natural_paragraph",
+          "instruction": "增加一个自然段，明确由办公室牵头汇总问题清单并每周反馈。",
+          "checks": {
+            "present": [
+              "办公室",
+              "问题清单",
+              "每周反馈"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "R005",
+      "genre": "实施方案",
+      "title": "数据治理专项实施方案",
+      "initial": "数据治理专项实施方案\n\n为提升数据治理能力，制定本实施方案。\n\n一、总体要求\n坚持问题导向、分步实施、闭环管理，提升数据质量和应用支撑能力。\n\n二、重点任务\n开展数据目录梳理、数据质量核验、宣传培训和共享应用评估。\n\n三、实施步骤\n准备阶段完成台账梳理，实施阶段推进整改，验收阶段形成成果报告。\n\n四、保障措施\n建立协调机制，明确责任分工，强化督办检查和结果运用。\n",
+      "turns": [
+        {
+          "id": "R005-T1",
+          "operation": "outline_change",
+          "instruction": "提纲改为“一、目标任务”“二、阶段安排”“三、责任分工”“四、验收要求”。",
+          "checks": {
+            "title": "数据治理专项实施方案",
+            "headings_in_order": [
+              "一、目标任务",
+              "二、阶段安排",
+              "三、责任分工",
+              "四、验收要求"
+            ],
+            "absent": [
+              "总体要求",
+              "重点任务",
+              "实施步骤",
+              "保障措施"
+            ]
+          }
+        },
+        {
+          "id": "R005-T2",
+          "operation": "delete_add_points",
+          "instruction": "删除宣传培训要点，增加数据安全和验收归档两个要点。",
+          "checks": {
+            "present": [
+              "数据安全",
+              "验收归档"
+            ],
+            "absent": [
+              "宣传培训"
+            ],
+            "headings_in_order": [
+              "一、目标任务",
+              "二、阶段安排",
+              "三、责任分工",
+              "四、验收要求"
+            ]
+          }
+        },
+        {
+          "id": "R005-T3",
+          "operation": "remove_natural_paragraph",
+          "instruction": "去掉开头说明性自然段，直接从第一个小标题开始。",
+          "checks": {
+            "starts_with": "数据治理专项实施方案",
+            "absent": [
+              "为提升数据治理能力，制定本实施方案"
+            ],
+            "headings_in_order": [
+              "一、目标任务",
+              "二、阶段安排",
+              "三、责任分工",
+              "四、验收要求"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "R006",
+      "genre": "函",
+      "title": "关于商请提供系统联调接口信息的函",
+      "initial": "关于商请提供系统联调接口信息的函\n\n市大数据中心：\n为推进政务服务系统联调工作，现商请贵单位协助提供系统联调接口信息。\n\n一、协助事项\n请提供接口清单、数据口径、联调联系人和测试环境开放安排。\n\n二、反馈要求\n请于近期反馈相关材料，便于我局统筹安排联调计划。\n\n区行政审批局\n2026年6月1日",
+      "turns": [
+        {
+          "id": "R006-T1",
+          "operation": "change_sender_receiver",
+          "instruction": "收文单位改为市信息中心，发文单位改为区数据资源管理局。",
+          "checks": {
+            "recipient": "市信息中心",
+            "sender": "区数据资源管理局",
+            "absent": [
+              "市大数据中心：",
+              "区行政审批局"
+            ]
+          }
+        },
+        {
+          "id": "R006-T2",
+          "operation": "change_title",
+          "instruction": "标题改为“关于商请协助开展政务服务系统联调的函”。",
+          "checks": {
+            "title": "关于商请协助开展政务服务系统联调的函",
+            "recipient": "市信息中心",
+            "sender": "区数据资源管理局"
+          }
+        },
+        {
+          "id": "R006-T3",
+          "operation": "delete_add_points",
+          "instruction": "删除“提供接口清单”这个要点，新增联调窗口期和安全责任两个要点。",
+          "checks": {
+            "present": [
+              "联调窗口期",
+              "安全责任"
+            ],
+            "absent": [
+              "提供接口清单"
+            ],
+            "recipient": "市信息中心",
+            "sender": "区数据资源管理局"
+          }
+        }
+      ]
+    },
+    {
+      "id": "R007",
+      "genre": "请示",
+      "title": "关于解决政务大厅设备更新经费的请示",
+      "initial": "关于解决政务大厅设备更新经费的请示\n\n市政府：\n为保障政务大厅窗口服务稳定运行，拟对老旧叫号屏、自助终端和网络配套设备进行更新。\n\n一、基本情况\n现有部分设备已连续使用多年，运行不稳定，影响群众取号、查询和材料打印等服务。\n\n二、更新内容\n拟更新叫号屏、自助终端和网络交换设备，并同步完成安装调试。\n\n三、经费测算\n经初步测算，设备更新和安装调试费用约80万元，拟按年度预算统筹安排。\n\n四、请批事项\n恳请同意启动设备更新工作，并按程序安排相关经费。\n\n妥否，请批示。\n\n区政务服务中心\n2026年6月1日",
+      "turns": [
+        {
+          "id": "R007-T1",
+          "operation": "recipient_position",
+          "instruction": "主送机关改为市财政局。保持正式请示格式，标题必须仍在第一行。",
+          "checks": {
+            "title": "关于解决政务大厅设备更新经费的请示",
+            "recipient": "市财政局",
+            "absent": [
+              "市政府："
+            ],
+            "recipient_after_title": true,
+            "closing_before_signature": [
+              "妥否，请批示"
+            ],
+            "no_approval_after_signature": true
+          }
+        },
+        {
+          "id": "R007-T2",
+          "operation": "closing_position",
+          "instruction": "将请批语改为“以上请示，请予审定。”，该请批语必须作为正文最后一个自然段，落款和日期仍在其后。",
+          "checks": {
+            "title": "关于解决政务大厅设备更新经费的请示",
+            "recipient": "市财政局",
+            "present": [
+              "以上请示，请予审定"
+            ],
+            "absent": [
+              "妥否，请批示"
+            ],
+            "closing_before_signature": [
+              "以上请示，请予审定"
+            ],
+            "no_approval_after_signature": true
+          }
+        },
+        {
+          "id": "R007-T3",
+          "operation": "delete_add_points",
+          "instruction": "删除“四、请批事项”这个小标题，把请批事项并入正文最后一段，不改变请示文种。",
+          "checks": {
+            "title": "关于解决政务大厅设备更新经费的请示",
+            "recipient": "市财政局",
+            "present": [
+              "请予审定"
+            ],
+            "absent": [
+              "四、请批事项",
+              "报告如下"
+            ],
+            "closing_before_signature": [
+              "请予审定"
+            ],
+            "no_approval_after_signature": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "R008",
+      "genre": "申请",
+      "title": "办公设备购置经费申请",
+      "initial": "办公设备购置经费申请\n\n尊敬的领导：\n为保障综合服务窗口日常运行，拟申请购置打印机、扫描仪和配套耗材。\n\n一、申请事项\n申请安排办公设备购置经费18万元，用于补充综合服务窗口设备。\n\n二、使用计划\n经费主要用于购置打印机、扫描仪、耗材和设备安装调试服务。\n\n三、工作承诺\n资金到位后，将严格按采购程序实施，并做好资产登记和验收归档。\n\n恳请予以支持。\n\n综合服务中心\n2026年6月1日",
+      "turns": [
+        {
+          "id": "R008-T1",
+          "operation": "recipient_position",
+          "instruction": "改成正式上报版，接收方为公司领导班子；标题仍放第一行，称呼按上报申请语境处理。",
+          "checks": {
+            "title": "办公设备购置经费申请",
+            "recipient": "公司领导班子",
+            "recipient_after_title": true,
+            "closing_before_signature_any": [
+              "恳请予以支持",
+              "妥否，请批示"
+            ]
+          }
+        },
+        {
+          "id": "R008-T2",
+          "operation": "closing_position",
+          "instruction": "将结尾改为“以上申请，恳请批准。”，结尾必须放在落款和日期之前。",
+          "checks": {
+            "title": "办公设备购置经费申请",
+            "recipient": "公司领导班子",
+            "present": [
+              "以上申请，恳请批准"
+            ],
+            "absent": [
+              "恳请予以支持"
+            ],
+            "closing_before_signature": [
+              "以上申请，恳请批准"
+            ]
+          }
+        },
+        {
+          "id": "R008-T3",
+          "operation": "change_sender_receiver",
+          "instruction": "发文单位改为运营管理部，接收方改为总经理办公会，并增加一个资金用途自然段。",
+          "checks": {
+            "title": "办公设备购置经费申请",
+            "recipient": "总经理办公会",
+            "sender": "运营管理部",
+            "present": [
+              "资金用途",
+              "以上申请，恳请批准"
+            ],
+            "absent": [
+              "公司领导班子：",
+              "综合服务中心"
+            ],
+            "closing_before_signature": [
+              "以上申请，恳请批准"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "R009",
+      "genre": "报告",
+      "title": "关于安全隐患排查整改情况的报告",
+      "initial": "关于安全隐患排查整改情况的报告\n\n市应急管理局：\n现将安全隐患排查整改情况报告如下。\n\n一、排查情况\n已完成重点场所、重点设备和重点岗位排查，形成问题台账并明确整改责任。\n\n二、整改进展\n一般隐患已完成整改，需持续跟踪的事项已纳入月度调度。\n\n三、下一步工作\n将继续开展复查复核，完善安全巡查机制，按要求报送整改结果。\n\n特此报告。\n\n新区建设管理局\n2026年6月1日",
+      "turns": [
+        {
+          "id": "R009-T1",
+          "operation": "recipient_position",
+          "instruction": "主送机关改为市政府办公室。保持报告格式，不要增加请批语。",
+          "checks": {
+            "title": "关于安全隐患排查整改情况的报告",
+            "recipient": "市政府办公室",
+            "absent": [
+              "市应急管理局：",
+              "妥否",
+              "请批示"
+            ],
+            "recipient_after_title": true,
+            "closing_before_signature": [
+              "特此报告"
+            ],
+            "no_approval_after_signature": true
+          }
+        },
+        {
+          "id": "R009-T2",
+          "operation": "closing_position",
+          "instruction": "把结尾改为“以上情况，特此报告。”，必须放在落款和日期之前。",
+          "checks": {
+            "title": "关于安全隐患排查整改情况的报告",
+            "recipient": "市政府办公室",
+            "present": [
+              "以上情况，特此报告"
+            ],
+            "absent": [
+              "妥否",
+              "请批示"
+            ],
+            "closing_before_signature": [
+              "以上情况，特此报告"
+            ],
+            "no_approval_after_signature": true
+          }
+        },
+        {
+          "id": "R009-T3",
+          "operation": "add_natural_paragraph",
+          "instruction": "在整改进展后增加一个原因分析自然段，标题改为“关于安全隐患排查整改情况的报告（修订稿）”。",
+          "checks": {
+            "title": "关于安全隐患排查整改情况的报告（修订稿）",
+            "recipient": "市政府办公室",
+            "present": [
+              "原因分析",
+              "以上情况，特此报告"
+            ],
+            "absent": [
+              "妥否",
+              "请批示"
+            ],
+            "closing_before_signature": [
+              "以上情况，特此报告"
+            ],
+            "min_paragraphs": 5
+          }
+        }
+      ]
+    },
+    {
+      "id": "R010",
+      "genre": "函",
+      "title": "关于商请协助提供档案移交资料的函",
+      "initial": "关于商请协助提供档案移交资料的函\n\n市档案馆：\n为做好政务服务事项档案移交工作，现商请贵馆协助提供档案移交资料清单和办理要求。\n\n一、协助事项\n请协助提供资料清单、归档标准和移交流程说明。\n\n二、反馈要求\n请于近期反馈相关材料，便于我局组织窗口单位做好移交准备。\n\n专此函达。\n\n区行政审批局\n2026年6月1日",
+      "turns": [
+        {
+          "id": "R010-T1",
+          "operation": "recipient_position",
+          "instruction": "收文单位改为市机关事务管理局。保持函的格式。",
+          "checks": {
+            "title": "关于商请协助提供档案移交资料的函",
+            "recipient": "市机关事务管理局",
+            "absent": [
+              "市档案馆："
+            ],
+            "recipient_after_title": true,
+            "closing_before_signature": [
+              "专此函达"
+            ]
+          }
+        },
+        {
+          "id": "R010-T2",
+          "operation": "closing_position",
+          "instruction": "把结尾改为“请予支持为盼。”，该结尾应在落款和日期之前，不要写“妥否，请批示”。",
+          "checks": {
+            "title": "关于商请协助提供档案移交资料的函",
+            "recipient": "市机关事务管理局",
+            "present": [
+              "请予支持为盼"
+            ],
+            "absent": [
+              "专此函达",
+              "妥否",
+              "请批示"
+            ],
+            "closing_before_signature": [
+              "请予支持为盼"
+            ],
+            "no_approval_after_signature": true
+          }
+        },
+        {
+          "id": "R010-T3",
+          "operation": "add_natural_paragraph",
+          "instruction": "在反馈要求后增加一个自然段，写明联系人和反馈期限，不要新增小标题。",
+          "checks": {
+            "title": "关于商请协助提供档案移交资料的函",
+            "recipient": "市机关事务管理局",
+            "present": [
+              "联系人",
+              "反馈期限",
+              "请予支持为盼"
+            ],
+            "absent": [
+              "三、",
+              "联系人和反馈期限：",
+              "妥否",
+              "请批示"
+            ],
+            "closing_before_signature": [
+              "请予支持为盼"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "R011",
+      "genre": "申请",
+      "title": "示例科技有限公司\n软件采购申请",
+      "initial": "示例科技有限公司\n软件采购申请\n\n尊敬的领导：\n为进一步提升公司办公效率，保障文档编辑、排版及协同办公工作的顺利开展，现拟为相关岗位采购办公软件会员一年期授权。\n\n本次采购具体情况如下：\n办公软件会员一年期授权：6套\n单价：198元/套\n合计费用：1188元\n\n上述费用为软件订阅费用，授权周期为一年。采购完成后将统一分配至相关岗位使用，以满足日常办公及文件处理需求。\n\n妥否，请领导批示。\n\n技术应用部\n2026年3月13日",
+      "turns": [
+        {
+          "id": "R011-T1",
+          "operation": "preserve_real_application_template",
+          "instruction": "保留公司名称和“软件采购申请”两行标题，称呼仍为“尊敬的领导：”，在采购明细后新增一个自然段说明授权使用范围，结尾语和落款日期保持不变。",
+          "checks": {
+            "title": "示例科技有限公司\n软件采购申请",
+            "present": [
+              "尊敬的领导",
+              "授权使用范围",
+              "妥否，请领导批示"
+            ],
+            "closing_before_signature": [
+              "妥否，请领导批示"
+            ]
+          }
+        },
+        {
+          "id": "R011-T2",
+          "operation": "field_value_change",
+          "instruction": "把采购数量改为8套，合计费用改为1584元，保留明细字段式写法，不要改成表格或编号清单。",
+          "checks": {
+            "title": "示例科技有限公司\n软件采购申请",
+            "present": [
+              "8套",
+              "1584元",
+              "单价",
+              "合计费用",
+              "妥否，请领导批示"
+            ],
+            "absent": [
+              "6套",
+              "1188元",
+              "一、",
+              "1."
+            ],
+            "closing_before_signature": [
+              "妥否，请领导批示"
+            ]
+          }
+        },
+        {
+          "id": "R011-T3",
+          "operation": "change_sender_date",
+          "instruction": "落款部门改为综合管理部，日期改为2026年3月18日；称呼、两行标题和请批结尾不变。",
+          "checks": {
+            "title": "示例科技有限公司\n软件采购申请",
+            "sender": "综合管理部",
+            "present": [
+              "尊敬的领导",
+              "妥否，请领导批示",
+              "2026年3月18日"
+            ],
+            "absent": [
+              "技术应用部",
+              "2026年3月13日"
+            ],
+            "closing_before_signature": [
+              "妥否，请领导批示"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "R012",
+      "genre": "申请",
+      "title": "办公设备采购申请",
+      "initial": "办公设备采购申请\n\n公司领导：\n为保障日常办公和文件处理需要，拟申请采购移动硬盘、鼠标、键盘等办公设备。\n\n申请事项：采购移动硬盘、鼠标、键盘等办公设备\n数量：移动硬盘2块、鼠标4个、键盘4个\n预算金额：4280元\n使用范围：部门日常文件存储、编辑和资料归档\n联系人：龚昱\n联系电话：13800000000\n\n妥否，请批示。\n\n音像电子分社\n2026年5月20日",
+      "turns": [
+        {
+          "id": "R012-T1",
+          "operation": "preserve_field_units",
+          "instruction": "保留“申请事项、数量、预算金额、使用范围、联系人、联系电话”字段式写法，只把预算金额改为4860元，不要改成散文、表格或编号清单。",
+          "checks": {
+            "title": "办公设备采购申请",
+            "recipient": "公司领导",
+            "present": [
+              "申请事项：",
+              "数量：",
+              "预算金额：4860元",
+              "使用范围：",
+              "联系人：",
+              "联系电话：",
+              "妥否，请批示"
+            ],
+            "absent": [
+              "预算金额：4280元",
+              "一、申请事项",
+              "1.",
+              "|"
+            ],
+            "closing_before_signature": [
+              "妥否，请批示"
+            ]
+          }
+        },
+        {
+          "id": "R012-T2",
+          "operation": "remove_field_unit",
+          "instruction": "删除联系电话字段，保留联系人字段和其他字段顺序，不要把联系人合并进正文段落。",
+          "checks": {
+            "title": "办公设备采购申请",
+            "recipient": "公司领导",
+            "present": [
+              "申请事项：",
+              "数量：",
+              "预算金额：4860元",
+              "使用范围：",
+              "联系人：",
+              "妥否，请批示"
+            ],
+            "absent": [
+              "联系电话",
+              "一、申请事项",
+              "1."
+            ],
+            "closing_before_signature": [
+              "妥否，请批示"
+            ]
+          }
+        },
+        {
+          "id": "R012-T3",
+          "operation": "add_field_unit",
+          "instruction": "把联系人改为综合管理部，新增反馈邮箱字段，字段式写法保持不变。",
+          "checks": {
+            "title": "办公设备采购申请",
+            "recipient": "公司领导",
+            "present": [
+              "联系人：综合管理部",
+              "反馈邮箱：",
+              "预算金额：4860元",
+              "妥否，请批示"
+            ],
+            "absent": [
+              "联系人：龚昱",
+              "联系电话",
+              "一、申请事项",
+              "1."
+            ],
+            "closing_before_signature": [
+              "妥否，请批示"
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -201,7 +201,8 @@ class GateStopHookTests(unittest.TestCase):
         self.assertIn("null 不是默认答案", first["reason"])
         self.assertIn("无需与原句等长", first["reason"])
         self.assertIn("避免复述上下文已有事实", first["reason"])
-        self.assertIn("不扩展方法", first["reason"])
+        self.assertIn("保持材料已有的事实和判断强度", first["reason"])
+        self.assertNotIn("调查、核查等进行态", first["reason"])
         self.assertIn("不把未确定事项改成新的研究承诺", first["reason"])
         self.assertIn("确需原样保留时选择 KEEP", first["reason"])
         repair["repairs"][0]["decision"] = "REWRITE"
@@ -217,7 +218,8 @@ class GateStopHookTests(unittest.TestCase):
         self.assertEqual("block", second["decision"])
         self.assertIn("只读核验", second["reason"])
         self.assertIn("以 D0 为比较基准", second["reason"])
-        self.assertIn("视为未决状态保留", second["reason"])
+        self.assertNotIn("视为未决状态保留", second["reason"])
+        self.assertNotIn("不计为新增动作", second["reason"])
         verdict_text = second["reason"].split("响应骨架如下：\n", 1)[1].split(
             "\n核验包如下：\n", 1
         )[0]

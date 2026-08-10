@@ -1,0 +1,1830 @@
+{
+  "main-b91f25cc": [
+    {
+      "id": "P001",
+      "kind": "create",
+      "prompt": "帮我起草一份向各区征求意见的函，附件是管理办法征求意见稿，要求写清反馈期限、邮箱和联系人。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P002",
+      "kind": "create",
+      "prompt": "写一份采购公告，项目是办公软件会员服务采购，预算上限 2 万元，要有响应文件提交方式和联系人。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P003",
+      "kind": "create",
+      "prompt": "请起草拟聘用人员公示，公示 5 个工作日，要求写明异议渠道、联系电话和处理规则。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P004",
+      "kind": "create",
+      "prompt": "给我写一份年度信息化工作要点，按重点任务、责任机制、时间节点和评价方式组织。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P005",
+      "kind": "create",
+      "prompt": "起草一份项目初步设计审查材料，区分审查依据、主要发现、风险、整改要求和审查结论。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P006",
+      "kind": "revise",
+      "prompt": "请把这段顺成正式报告：根据领导要求，项目组已完成风险排查。领导关心的交付节点已纳入每周调度。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P007",
+      "kind": "revise",
+      "prompt": "审一下这段能不能进正文：本材料由 AI 起草。根据用户要求修改如下：这版文章将压缩为三段。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": [
+        "thought-leak",
+        "viewpoint-risk"
+      ]
+    },
+    {
+      "id": "P008",
+      "kind": "revise",
+      "prompt": "请把纪要里的这句保留成正式表达：会议要求如下，各责任单位每周反馈整改进展。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P009",
+      "kind": "revise",
+      "prompt": "在第三部分后增加一个说明数据口径影响的自然段，不要新增小标题，原四个小标题必须保持不变。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P010",
+      "kind": "create",
+      "prompt": "写一份情况说明，说明系统维护期间部分数据同步延迟、已恢复、后续加强监测；不要写成请示，也不要加接收方。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P011",
+      "kind": "create",
+      "prompt": "帮我起草一份内部 WPS 会员采购申请，保留“尊敬的领导：”称呼和两行标题，不要强行改成法定公文格式。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P012",
+      "kind": "revise",
+      "prompt": "把这份报告改得正式一点，但我明确要求不写主送机关，不要补接收方，也不要加“妥否，请批示”。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P013",
+      "kind": "revise",
+      "prompt": "把这份申请顺一下，保留“尊敬的领导：”、右下落款和“妥否，请批示”结尾，不要改成请示。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P014",
+      "kind": "revise",
+      "prompt": "审一下这段能不能直接作为正文交付，模型把全文包在代码块里，里面还有项目名称和日期占位。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": [
+        "markdown-code-fence",
+        "unfinished-placeholder"
+      ]
+    },
+    {
+      "id": "P015",
+      "kind": "revise",
+      "prompt": "审一下这段是否还留着未完成占位：维护期限为XXXX年，设备XXXX张，支持XXXX并发请求。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": [
+        "unfinished-placeholder"
+      ]
+    },
+    {
+      "id": "P016",
+      "kind": "revise",
+      "prompt": "审一下这段 AI 算力采购说明是否会被误判为模型自述：本平台面向AI生成内容业务，支撑AI辅助生成内容的并发推理。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P017",
+      "kind": "revise",
+      "prompt": "审一下这段报告和方案正文能不能交付：本报告系AI辅助生成，仅供参考。该方案为AI生成初稿。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": [
+        "thought-leak"
+      ]
+    },
+    {
+      "id": "P018",
+      "kind": "revise",
+      "prompt": "审一下这段方案正文格式是否合适：### 业务需求与服务保障。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": [
+        "markdown-heading"
+      ]
+    },
+    {
+      "id": "P019",
+      "kind": "revise",
+      "prompt": "把这段去口语化，但不要补原文没有的事实活动、依据、数据或成效。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P020",
+      "kind": "revise",
+      "prompt": "给 prose_lint 增加新规则前，先确认真实合格公文 clean corpus 不会被 medium/high 误报。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P021",
+      "kind": "create",
+      "prompt": "我要用真实模型跑一小组公文评测，不要沿用 stub 发布门槛误杀，请给出可复现入口和阈值覆盖方式。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P022",
+      "kind": "revise",
+      "prompt": "检查 OpenClaw 展示卡片和镜像目录是否会漂移：skill-card 链接要能在网页打开，镜像不能静默分叉。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P023",
+      "kind": "create",
+      "prompt": "写一份食品安全专项检查情况报告，有发现问题和下一步计划，不要写成请示，也不要加“妥否，请批示”。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P024",
+      "kind": "revise",
+      "prompt": "把三个人写的年度总结材料合成一稿，严格保留我给的提纲顺序，原文事实要保留，新增事实请放到待确认事项。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P025",
+      "kind": "revise",
+      "prompt": "我已经写好正文了，请按 GB/T 9704 排成 Word，带红头、发文字号和版记；没有给签发人就不要编，正文里的 markdown 标记也别带进 Word。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P026",
+      "kind": "revise",
+      "prompt": "审一下这段是否 AI 味太重：意义重大、亮点纷呈、有关方面认为、未来可期、首先其次最后。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P027",
+      "kind": "revise",
+      "prompt": "两版材料里营业收入增速一个写 10%，一个写 12%，请合稿，不要默认就高，也不要自己选最优口径。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P028",
+      "kind": "revise",
+      "prompt": "请把这份材料处理成正式 Word 红头文件，要有发文字号、签发人和版记；这些要素我还没给，不要编，先列缺项清单。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P029",
+      "kind": "revise",
+      "prompt": "只审一下这段格式和语气，不要重写全文：关于推进巡检工作的通知，大家要马上搞起来，然后月底前报结果。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P030",
+      "kind": "revise",
+      "prompt": "把这段去口语化但保留事实，不要新增依据和成效：我觉得这个事差不多可以马上搞一下，然后月底前报领导。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P031",
+      "kind": "create",
+      "prompt": "起草一份政务数据共享通知，政策依据我没给，也不要外搜；不能编政策依据，缺项放待确认事项。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P032",
+      "kind": "create",
+      "prompt": "请核验现行政策依据后起草通知，要说明来源日期，不要把单一网络来源直接写成确定结论。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P033",
+      "kind": "create",
+      "prompt": "帮市数据资源管理局写一份通知；我只给了单位名称，没让你查官网或样文，不要自动搜索单位风格。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P034",
+      "kind": "revise",
+      "prompt": "我从政府网站复制了一篇关于印发《实施方案》的通知，里面有来源、字号、打印、责任编辑。请先清理网页元信息，再只改被印发方案第二部分，不要改通知壳和附件标题。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P035",
+      "kind": "revise",
+      "prompt": "把一份很长的通知压缩到500字以内，但原文里的责任单位、办理期限、附件、联系人、反馈渠道和具体数字不能丢；多个责任主体不要压成笼统的有关单位。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P036",
+      "kind": "create",
+      "prompt": "起草推进政务数据共享通知，政策依据、截止时间、联系人和反馈渠道都没给；不要外搜，也不要写成“指定渠道”“截止时间前”，缺项放正文外待确认。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P037",
+      "kind": "revise",
+      "prompt": "顺一下字段式培训费用申请，只新增“报销凭证”字段但我没给字段值；不要推断发票、票据、邮箱或日期，原字段顺序不动。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P038",
+      "kind": "revise",
+      "prompt": "把通知压缩到260字以内，责任单位、办理期限、附件、联系人、反馈渠道和具体数字不能丢；如果做不到要说明取舍风险。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P039",
+      "kind": "revise",
+      "prompt": "审一下这段是否空泛：相关问题已基本完成整改，形成长效机制，显著提升治理能力，未影响核心业务。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P040",
+      "kind": "create",
+      "prompt": "用户明确要求核验现行政策后起草通知；请把来源名称、发布机关、文号或链接、发布日期、访问日期和用于哪一段放正文外。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P041",
+      "kind": "revise",
+      "prompt": "用户要求正式 Word/docx 交付，但正文还没确认，文号、签发人、印章也没给；只做要素核对和另存，不借排版补写事实。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P042",
+      "kind": "create",
+      "prompt": "写一份1500字以内的专项调研报告，要求有背景现状、问题原因、措施安排和结尾落点；不要为了限字只写开头，后半篇不能草草结束。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P043",
+      "kind": "create",
+      "prompt": "请先写一版资金申请请示，申请事项、金额和审批对象还没完全给；不要先问我一串问题，正文后只列关键缺口。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P044",
+      "kind": "create",
+      "prompt": "材料不足但要写完整工作报告，底部提示可补充事实；不要把增删论点、扩写细节列成我的义务，也不要做调查问卷。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P045",
+      "kind": "revise",
+      "prompt": "上一轮底部列了金额和联系人待确认，但我这轮还是没补；请继续把稿子压缩到500字内并调整标题顺序，不要因为我没补信息就追问或停止修改。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P046",
+      "kind": "create",
+      "prompt": "材料只说发现台账更新不及时和标识不清，请写检查报告；不要因为要成稿就自行写“未发现重大隐患”或“无异常”。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P047",
+      "kind": "create",
+      "prompt": "先帮我写正文，后续再补文号、签发人和版记；不要因为正式 Word 要素没齐就停下追问，正文后给一个核对卡即可。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P048",
+      "kind": "revise",
+      "prompt": "这是最新版申请，另附旧版申请和一篇参考样文；请只按最新版改写，旧版金额、旧主送和旧政策口号不要回流。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P049",
+      "kind": "revise",
+      "prompt": "只审空话套话，不重写全文：各单位高度重视，扎实推进整改，持续完善机制；请给位置、风险层级和建议。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P050",
+      "kind": "revise",
+      "prompt": "把这段顺成正式报告，但不要新增事实：我们检查了系统，发现日志备份不及时，后面继续盯；不要补责任部门、督办安排或处理进展。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P051",
+      "kind": "revise",
+      "prompt": "只审空话套话，不重写全文；必须标明每处具体位置，不要只给整段整体评价。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P052",
+      "kind": "revise",
+      "prompt": "只审 AI 味，不重写全文：首先要高度重视，其次要持续推进，最后要形成闭环。请看句式是不是太模板化。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P053",
+      "kind": "revise",
+      "prompt": "帮我把这段去模板化，但仍然是正式报告语气；不要改成公众号口吻，不要加“我觉得”“说白了”或反问。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P054",
+      "kind": "revise",
+      "prompt": "审一下这段结尾是不是空：为工作开展提供有力支撑，为后续推进奠定坚实基础，推动工作再上新台阶。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P055",
+      "kind": "revise",
+      "prompt": "借鉴社区公文 skill 的检查层，但不要新增脚本或硬门禁。把“老板关心、钱花得值、马上要搞”顺成正式表达时，不要升级事实，也不要覆盖用户模板。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P056",
+      "kind": "create",
+      "prompt": "写个申请，买一块 2T 固态硬盘，价格 2000 元。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P057",
+      "kind": "create",
+      "prompt": "写个请示，申请采购 3 台办公电脑，预算 15000 元。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P058",
+      "kind": "create",
+      "prompt": "帮我写一份学校奖学金申请，材料有成绩、志愿服务和获奖情况。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P059",
+      "kind": "create",
+      "prompt": "写一份年度信息化工作要点，包含重点任务、责任机制和时间节点。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P060",
+      "kind": "create",
+      "prompt": "起草征求意见函，附件是管理办法征求意见稿，7 月 10 日前反馈。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P061",
+      "kind": "revise",
+      "prompt": "帮我给论文降 AI 味。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P062",
+      "kind": "create",
+      "prompt": "写一篇小红书营销种草文案，语气活泼一点。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P063",
+      "kind": "create",
+      "prompt": "帮我写个人求职申请信。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P064",
+      "kind": "create",
+      "prompt": "写一个 App 增长营销方案，要适合社媒投放。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P065",
+      "kind": "create",
+      "prompt": "写个通告，提醒各部门按时完成资产盘点。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P066",
+      "kind": "create",
+      "prompt": "写个意见，规范项目验收和后续运维管理。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P067",
+      "kind": "create",
+      "prompt": "写个决定，成立专项工作领导小组。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P068",
+      "kind": "create",
+      "prompt": "写个决议，明确会议审议通过年度工作安排。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P069",
+      "kind": "create",
+      "prompt": "写个议案，提交审议信息化建设预算事项。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P070",
+      "kind": "create",
+      "prompt": "写个公报，发布年度重点工作进展情况。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P071",
+      "kind": "create",
+      "prompt": "写个命令，公布一项管理要求。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P072",
+      "kind": "revise",
+      "prompt": "把这段会议记录整理成会议纪要，只保留议定事项、责任单位和完成期限，不要写成会议新闻。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P073",
+      "kind": "create",
+      "prompt": "写一份情况报告，说明系统巡检发现的问题、影响和下一步处置，不要夹带请批事项。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P074",
+      "kind": "create",
+      "prompt": "起草一份复函，回应对方来函中的数据接口联调事项，写清办理意见和后续联系人。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P075",
+      "kind": "create",
+      "prompt": "帮我把本周项目进展写成工作周报，包含已完成、推进中、问题和下步安排。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P076",
+      "kind": "create",
+      "prompt": "写一份专题调研报告，要有调研事实、问题原因和建议，不要写成投研报告。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P077",
+      "kind": "create",
+      "prompt": "写一份办公家具采购公告，预算 8 万元，写清提交方式和联系人；这是普通采购，不涉及算力。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P078",
+      "kind": "create",
+      "prompt": "写一份 AI 算力服务可研的提纲，要求只给结构，不展开具体参数。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P079",
+      "kind": "revise",
+      "prompt": "按我们单位已有模板顺一下采购审查材料，只调整审查意见，不要改字段顺序。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P080",
+      "kind": "revise",
+      "prompt": "把会议记录整理成会议纪要，只给议定事项、责任单位和期限；原文没有会议结论，不要补“会议认为”“会议强调”。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P081",
+      "kind": "revise",
+      "prompt": "顺一下字段式审查材料，原文用分号串写；只改审查意见，可以拆成字段行，但不要出现“。；”或行尾分号噪声。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P082",
+      "kind": "create",
+      "prompt": "写一份请示，申请购买10台办公电脑，经费来源是年度信息化预算；主送机关、申请单位、金额和成文日期都没给，不要编造。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P083",
+      "kind": "revise",
+      "prompt": "把通知压缩到约250字并去AI味，必须保留联系人、落款单位和成文日期，不要把落款截成简称。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P084",
+      "kind": "revise",
+      "prompt": "压缩改稿后只输出正文，不要用 --- 分隔正文和说明，也不要残留 Markdown 横线。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": [
+        "markdown-horizontal-rule"
+      ]
+    },
+    {
+      "id": "P085",
+      "kind": "revise",
+      "prompt": "把 AI 生成的通知稿顺一遍，注意标点、错别字、的地得、量词、病句、引用保真和数据一致性；如果保留我给的领导讲话原句，只在末尾短句提醒我核实出处，不要联网查真伪。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P086",
+      "kind": "create",
+      "prompt": "请写一份5000字左右的版慎通使用情况报告，主要写使用体验、准确性、速率、成本、接入和报告聚合问题；不要过拟合成调研报告，末尾可以提醒需要核实费用依据和服务方改进计划，但不要把提醒写成第七章或正文章节。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P087",
+      "kind": "revise",
+      "prompt": "审一下这份调研报告，重点看正文和附件表格的数字、单位、年份、来源说明、旧版日期和旧联系人有没有前后不一致。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P088",
+      "kind": "create",
+      "prompt": "写一份会议纪要、可研报告或采购申请时，按具体场景核对会议类型、项目类型、投资资金、品名规格数量和报价依据，不要套模板补空项，也不要把采购需求推断成现有能力不足。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P089",
+      "kind": "create",
+      "prompt": "请写一份版慎通成本考察短稿：当前一个月模型成本约6万元，后续只是建议尝试低思考档位、便宜模型和路由机制；不要把建议和待测试项写成已定实施方案、执行命令或具体反馈时限。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P090",
+      "kind": "revise",
+      "prompt": "只审不改。请按“位置 + 风险层级 + 修改建议”检查一份通知，不要重写全文，不要给分，也不要用 Markdown 加粗包装标签。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P091",
+      "kind": "create",
+      "prompt": "写一份数据治理专项推进情况通报，材料只有12个系统、3类问题和2次协调会；不要编造会议纪要、清单版本、例行复核节奏，末尾用“补充以下信息后，文章会更完整”短列可补信息。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P092",
+      "kind": "revise",
+      "prompt": "字段式硬盘采购申请只给申请人、日期、固态硬盘、2T、数量1、价格2000元；请缩短正文，不要新增采购类别、资产属性、用途或入库流程。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P093",
+      "kind": "create",
+      "prompt": "写一份成本考察报告，要求正式正文不要使用 Markdown 加粗标题、小标题或横线包装。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P094",
+      "kind": "create",
+      "prompt": "写一份系统接口异常情况说明，材料只有接口返回延迟、影响3个内部查询页面、10:20恢复；不要把接口包装成核心系统，也不要编原因、责任部门、损失金额或整改方案。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P095",
+      "kind": "revise",
+      "prompt": "只审事实不清，不重写全文：本次检查总体情况较好，问题已基本整改到位，后续将持续优化提升。不要把无依据结论降成低风险套话。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P096",
+      "kind": "revise",
+      "prompt": "把普通叙述中的口语改成正式公文表达；引号内这句原话必须逐字保留：“我觉得这个方案差不多能用，老板也挺关心。”",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P097",
+      "kind": "revise",
+      "prompt": "顺一下这份情况说明，只输出改后正文，不附改动说明；缺少的联系人仍可在正文后短列待确认。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P098",
+      "kind": "revise",
+      "prompt": "只用 prose_lint 做格式和结构风险扫描，不要自动改写稿件。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P099",
+      "kind": "create",
+      "prompt": "根据已给三项事实写一份200字以内的简短情况说明；轻量卡可以覆盖，不要预读整套长 reference。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P100",
+      "kind": "create",
+      "prompt": "写会议纪要时只进入对应 playbook 小节；除非任务复杂或文种不清，不要固定预读 workflow、genre-routing 和整套复核资料。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P101",
+      "kind": "revise",
+      "prompt": "把下面请示顺稿，只输出正文，不解释。材料未提供主送机关和成文日期，也不要在正文外附待确认事项。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P103",
+      "kind": "revise",
+      "prompt": "在 OpenClaw 中把请示顺稿，只输出正文，不解释；主送机关和成文日期没给，不要在正文外附待确认事项。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P104",
+      "kind": "revise",
+      "prompt": "对最终正文做模式感知检查：明确的约束自证、英文思考残片和交付说明按高风险提示；材料范围句先保留人工判断。只检测，不自动改写。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": [
+        "constraint-self-certification",
+        "delivery-explanation",
+        "english-thought-fragment",
+        "material-reading-narration",
+        "protective-negative-inference"
+      ]
+    },
+    {
+      "id": "P105",
+      "kind": "create",
+      "prompt": "材料只有完成一次排查、发现两项问题、召开一次协调会。写一份简短情况说明，不补整改、下一步或固定章节。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P106",
+      "kind": "revise",
+      "prompt": "把‘我觉得可以下月先试一下’改成正式工作材料用语，不要补研究过程或既定决定。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P107",
+      "kind": "revise",
+      "prompt": "润色这份字段式申请表，只改申请理由字段，保留字段名、顺序和单元边界。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P108",
+      "kind": "revise",
+      "prompt": "把稿子处理成可直接报送的成品，不要把制作版本、内部受众、只读核对、校验门禁、审核状态、免责边界或处理方法写进正文，也不要重复标题。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": [
+        "delivery-boilerplate",
+        "delivery-metadata",
+        "duplicate-title"
+      ]
+    },
+    {
+      "id": "P109",
+      "kind": "revise",
+      "prompt": "检查全文高频句式和高频词，只改连续否定、虚假对比或机械重复；事实、引用、术语、否定范围和论断强度都不能变化。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P110",
+      "kind": "create",
+      "prompt": "起草一份函，商请平级单位协助提供数据清单，写清报送期限、邮箱和联系人。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P111",
+      "kind": "revise",
+      "prompt": "把一份既有普通函的事项和办理条件重新整理成正式函件。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P112",
+      "kind": "create",
+      "prompt": "根据已有目标、范围、任务、进度、责任和验收要求，起草一份政务大厅叫号系统建设方案。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    }
+  ],
+  "current": [
+    {
+      "id": "P001",
+      "kind": "create",
+      "prompt": "帮我起草一份向各区征求意见的函，附件是管理办法征求意见稿，要求写清反馈期限、邮箱和联系人。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P002",
+      "kind": "create",
+      "prompt": "写一份采购公告，项目是办公软件会员服务采购，预算上限 2 万元，要有响应文件提交方式和联系人。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P003",
+      "kind": "create",
+      "prompt": "请起草拟聘用人员公示，公示 5 个工作日，要求写明异议渠道、联系电话和处理规则。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P004",
+      "kind": "create",
+      "prompt": "给我写一份年度信息化工作要点，按重点任务、责任机制、时间节点和评价方式组织。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P005",
+      "kind": "create",
+      "prompt": "起草一份项目初步设计审查材料，区分审查依据、主要发现、风险、整改要求和审查结论。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P006",
+      "kind": "revise",
+      "prompt": "请把这段顺成正式报告：根据领导要求，项目组已完成风险排查。领导关心的交付节点已纳入每周调度。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P007",
+      "kind": "revise",
+      "prompt": "审一下这段能不能进正文：本材料由 AI 起草。根据用户要求修改如下：这版文章将压缩为三段。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": [
+        "thought-leak",
+        "viewpoint-risk"
+      ]
+    },
+    {
+      "id": "P008",
+      "kind": "revise",
+      "prompt": "请把纪要里的这句保留成正式表达：会议要求如下，各责任单位每周反馈整改进展。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P009",
+      "kind": "revise",
+      "prompt": "在第三部分后增加一个说明数据口径影响的自然段，不要新增小标题，原四个小标题必须保持不变。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P010",
+      "kind": "create",
+      "prompt": "写一份情况说明，说明系统维护期间部分数据同步延迟、已恢复、后续加强监测；不要写成请示，也不要加接收方。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P011",
+      "kind": "create",
+      "prompt": "帮我起草一份内部 WPS 会员采购申请，保留“尊敬的领导：”称呼和两行标题，不要强行改成法定公文格式。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P012",
+      "kind": "revise",
+      "prompt": "把这份报告改得正式一点，但我明确要求不写主送机关，不要补接收方，也不要加“妥否，请批示”。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P013",
+      "kind": "revise",
+      "prompt": "把这份申请顺一下，保留“尊敬的领导：”、右下落款和“妥否，请批示”结尾，不要改成请示。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P014",
+      "kind": "revise",
+      "prompt": "审一下这段能不能直接作为正文交付，模型把全文包在代码块里，里面还有项目名称和日期占位。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": [
+        "markdown-code-fence",
+        "unfinished-placeholder"
+      ]
+    },
+    {
+      "id": "P015",
+      "kind": "revise",
+      "prompt": "审一下这段是否还留着未完成占位：维护期限为XXXX年，设备XXXX张，支持XXXX并发请求。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": [
+        "unfinished-placeholder"
+      ]
+    },
+    {
+      "id": "P016",
+      "kind": "revise",
+      "prompt": "审一下这段 AI 算力采购说明是否会被误判为模型自述：本平台面向AI生成内容业务，支撑AI辅助生成内容的并发推理。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P017",
+      "kind": "revise",
+      "prompt": "审一下这段报告和方案正文能不能交付：本报告系AI辅助生成，仅供参考。该方案为AI生成初稿。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": [
+        "thought-leak"
+      ]
+    },
+    {
+      "id": "P018",
+      "kind": "revise",
+      "prompt": "审一下这段方案正文格式是否合适：### 业务需求与服务保障。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": [
+        "markdown-heading"
+      ]
+    },
+    {
+      "id": "P019",
+      "kind": "revise",
+      "prompt": "把这段去口语化，但不要补原文没有的事实活动、依据、数据或成效。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P020",
+      "kind": "revise",
+      "prompt": "给 prose_lint 增加新规则前，先确认真实合格公文 clean corpus 不会被 medium/high 误报。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P021",
+      "kind": "create",
+      "prompt": "我要用真实模型跑一小组公文评测，不要沿用 stub 发布门槛误杀，请给出可复现入口和阈值覆盖方式。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P022",
+      "kind": "revise",
+      "prompt": "检查 OpenClaw 展示卡片和镜像目录是否会漂移：skill-card 链接要能在网页打开，镜像不能静默分叉。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P023",
+      "kind": "create",
+      "prompt": "写一份食品安全专项检查情况报告，有发现问题和下一步计划，不要写成请示，也不要加“妥否，请批示”。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P024",
+      "kind": "revise",
+      "prompt": "把三个人写的年度总结材料合成一稿，严格保留我给的提纲顺序，原文事实要保留，新增事实请放到待确认事项。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P025",
+      "kind": "revise",
+      "prompt": "我已经写好正文了，请按 GB/T 9704 排成 Word，带红头、发文字号和版记；没有给签发人就不要编，正文里的 markdown 标记也别带进 Word。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P026",
+      "kind": "revise",
+      "prompt": "审一下这段是否 AI 味太重：意义重大、亮点纷呈、有关方面认为、未来可期、首先其次最后。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P027",
+      "kind": "revise",
+      "prompt": "两版材料里营业收入增速一个写 10%，一个写 12%，请合稿，不要默认就高，也不要自己选最优口径。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P028",
+      "kind": "revise",
+      "prompt": "请把这份材料处理成正式 Word 红头文件，要有发文字号、签发人和版记；这些要素我还没给，不要编，先列缺项清单。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P029",
+      "kind": "revise",
+      "prompt": "只审一下这段格式和语气，不要重写全文：关于推进巡检工作的通知，大家要马上搞起来，然后月底前报结果。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P030",
+      "kind": "revise",
+      "prompt": "把这段去口语化但保留事实，不要新增依据和成效：我觉得这个事差不多可以马上搞一下，然后月底前报领导。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P031",
+      "kind": "create",
+      "prompt": "起草一份政务数据共享通知，政策依据我没给，也不要外搜；不能编政策依据，缺项放待确认事项。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P032",
+      "kind": "create",
+      "prompt": "请核验现行政策依据后起草通知，要说明来源日期，不要把单一网络来源直接写成确定结论。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P033",
+      "kind": "create",
+      "prompt": "帮市数据资源管理局写一份通知；我只给了单位名称，没让你查官网或样文，不要自动搜索单位风格。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P034",
+      "kind": "revise",
+      "prompt": "我从政府网站复制了一篇关于印发《实施方案》的通知，里面有来源、字号、打印、责任编辑。请先清理网页元信息，再只改被印发方案第二部分，不要改通知壳和附件标题。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P035",
+      "kind": "revise",
+      "prompt": "把一份很长的通知压缩到500字以内，但原文里的责任单位、办理期限、附件、联系人、反馈渠道和具体数字不能丢；多个责任主体不要压成笼统的有关单位。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P036",
+      "kind": "create",
+      "prompt": "起草推进政务数据共享通知，政策依据、截止时间、联系人和反馈渠道都没给；不要外搜，也不要写成“指定渠道”“截止时间前”，缺项放正文外待确认。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P037",
+      "kind": "revise",
+      "prompt": "顺一下字段式培训费用申请，只新增“报销凭证”字段但我没给字段值；不要推断发票、票据、邮箱或日期，原字段顺序不动。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P038",
+      "kind": "revise",
+      "prompt": "把通知压缩到260字以内，责任单位、办理期限、附件、联系人、反馈渠道和具体数字不能丢；如果做不到要说明取舍风险。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P039",
+      "kind": "revise",
+      "prompt": "审一下这段是否空泛：相关问题已基本完成整改，形成长效机制，显著提升治理能力，未影响核心业务。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P040",
+      "kind": "create",
+      "prompt": "用户明确要求核验现行政策后起草通知；请把来源名称、发布机关、文号或链接、发布日期、访问日期和用于哪一段放正文外。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P041",
+      "kind": "revise",
+      "prompt": "用户要求正式 Word/docx 交付，但正文还没确认，文号、签发人、印章也没给；只做要素核对和另存，不借排版补写事实。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P042",
+      "kind": "create",
+      "prompt": "写一份1500字以内的专项调研报告，要求有背景现状、问题原因、措施安排和结尾落点；不要为了限字只写开头，后半篇不能草草结束。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P043",
+      "kind": "create",
+      "prompt": "请先写一版资金申请请示，申请事项、金额和审批对象还没完全给；不要先问我一串问题，正文后只列关键缺口。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P044",
+      "kind": "create",
+      "prompt": "材料不足但要写完整工作报告，底部提示可补充事实；不要把增删论点、扩写细节列成我的义务，也不要做调查问卷。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P045",
+      "kind": "revise",
+      "prompt": "上一轮底部列了金额和联系人待确认，但我这轮还是没补；请继续把稿子压缩到500字内并调整标题顺序，不要因为我没补信息就追问或停止修改。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P046",
+      "kind": "create",
+      "prompt": "材料只说发现台账更新不及时和标识不清，请写检查报告；不要因为要成稿就自行写“未发现重大隐患”或“无异常”。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P047",
+      "kind": "create",
+      "prompt": "先帮我写正文，后续再补文号、签发人和版记；不要因为正式 Word 要素没齐就停下追问，正文后给一个核对卡即可。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P048",
+      "kind": "revise",
+      "prompt": "这是最新版申请，另附旧版申请和一篇参考样文；请只按最新版改写，旧版金额、旧主送和旧政策口号不要回流。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P049",
+      "kind": "revise",
+      "prompt": "只审空话套话，不重写全文：各单位高度重视，扎实推进整改，持续完善机制；请给位置、风险层级和建议。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P050",
+      "kind": "revise",
+      "prompt": "把这段顺成正式报告，但不要新增事实：我们检查了系统，发现日志备份不及时，后面继续盯；不要补责任部门、督办安排或处理进展。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P051",
+      "kind": "revise",
+      "prompt": "只审空话套话，不重写全文；必须标明每处具体位置，不要只给整段整体评价。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P052",
+      "kind": "revise",
+      "prompt": "只审 AI 味，不重写全文：首先要高度重视，其次要持续推进，最后要形成闭环。请看句式是不是太模板化。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P053",
+      "kind": "revise",
+      "prompt": "帮我把这段去模板化，但仍然是正式报告语气；不要改成公众号口吻，不要加“我觉得”“说白了”或反问。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P054",
+      "kind": "revise",
+      "prompt": "审一下这段结尾是不是空：为工作开展提供有力支撑，为后续推进奠定坚实基础，推动工作再上新台阶。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P055",
+      "kind": "revise",
+      "prompt": "借鉴社区公文 skill 的检查层，但不要新增脚本或硬门禁。把“老板关心、钱花得值、马上要搞”顺成正式表达时，不要升级事实，也不要覆盖用户模板。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P056",
+      "kind": "create",
+      "prompt": "写个申请，买一块 2T 固态硬盘，价格 2000 元。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P057",
+      "kind": "create",
+      "prompt": "写个请示，申请采购 3 台办公电脑，预算 15000 元。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P058",
+      "kind": "create",
+      "prompt": "帮我写一份学校奖学金申请，材料有成绩、志愿服务和获奖情况。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P059",
+      "kind": "create",
+      "prompt": "写一份年度信息化工作要点，包含重点任务、责任机制和时间节点。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P060",
+      "kind": "create",
+      "prompt": "起草征求意见函，附件是管理办法征求意见稿，7 月 10 日前反馈。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P061",
+      "kind": "revise",
+      "prompt": "帮我给论文降 AI 味。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P062",
+      "kind": "create",
+      "prompt": "写一篇小红书营销种草文案，语气活泼一点。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P063",
+      "kind": "create",
+      "prompt": "帮我写个人求职申请信。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P064",
+      "kind": "create",
+      "prompt": "写一个 App 增长营销方案，要适合社媒投放。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P065",
+      "kind": "create",
+      "prompt": "写个通告，提醒各部门按时完成资产盘点。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P066",
+      "kind": "create",
+      "prompt": "写个意见，规范项目验收和后续运维管理。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P067",
+      "kind": "create",
+      "prompt": "写个决定，成立专项工作领导小组。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P068",
+      "kind": "create",
+      "prompt": "写个决议，明确会议审议通过年度工作安排。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P069",
+      "kind": "create",
+      "prompt": "写个议案，提交审议信息化建设预算事项。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P070",
+      "kind": "create",
+      "prompt": "写个公报，发布年度重点工作进展情况。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P071",
+      "kind": "create",
+      "prompt": "写个命令，公布一项管理要求。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P072",
+      "kind": "revise",
+      "prompt": "把这段会议记录整理成会议纪要，只保留议定事项、责任单位和完成期限，不要写成会议新闻。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P073",
+      "kind": "create",
+      "prompt": "写一份情况报告，说明系统巡检发现的问题、影响和下一步处置，不要夹带请批事项。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P074",
+      "kind": "create",
+      "prompt": "起草一份复函，回应对方来函中的数据接口联调事项，写清办理意见和后续联系人。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P075",
+      "kind": "create",
+      "prompt": "帮我把本周项目进展写成工作周报，包含已完成、推进中、问题和下步安排。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P076",
+      "kind": "create",
+      "prompt": "写一份专题调研报告，要有调研事实、问题原因和建议，不要写成投研报告。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P077",
+      "kind": "create",
+      "prompt": "写一份办公家具采购公告，预算 8 万元，写清提交方式和联系人；这是普通采购，不涉及算力。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P078",
+      "kind": "create",
+      "prompt": "写一份 AI 算力服务可研的提纲，要求只给结构，不展开具体参数。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P079",
+      "kind": "revise",
+      "prompt": "按我们单位已有模板顺一下采购审查材料，只调整审查意见，不要改字段顺序。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P080",
+      "kind": "revise",
+      "prompt": "把会议记录整理成会议纪要，只给议定事项、责任单位和期限；原文没有会议结论，不要补“会议认为”“会议强调”。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P081",
+      "kind": "revise",
+      "prompt": "顺一下字段式审查材料，原文用分号串写；只改审查意见，可以拆成字段行，但不要出现“。；”或行尾分号噪声。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P082",
+      "kind": "create",
+      "prompt": "写一份请示，申请购买10台办公电脑，经费来源是年度信息化预算；主送机关、申请单位、金额和成文日期都没给，不要编造。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P083",
+      "kind": "revise",
+      "prompt": "把通知压缩到约250字并去AI味，必须保留联系人、落款单位和成文日期，不要把落款截成简称。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P084",
+      "kind": "revise",
+      "prompt": "压缩改稿后只输出正文，不要用 --- 分隔正文和说明，也不要残留 Markdown 横线。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": [
+        "markdown-horizontal-rule"
+      ]
+    },
+    {
+      "id": "P085",
+      "kind": "revise",
+      "prompt": "把 AI 生成的通知稿顺一遍，注意标点、错别字、的地得、量词、病句、引用保真和数据一致性；如果保留我给的领导讲话原句，只在末尾短句提醒我核实出处，不要联网查真伪。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P086",
+      "kind": "create",
+      "prompt": "请写一份5000字左右的版慎通使用情况报告，主要写使用体验、准确性、速率、成本、接入和报告聚合问题；不要过拟合成调研报告，末尾可以提醒需要核实费用依据和服务方改进计划，但不要把提醒写成第七章或正文章节。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P087",
+      "kind": "revise",
+      "prompt": "审一下这份调研报告，重点看正文和附件表格的数字、单位、年份、来源说明、旧版日期和旧联系人有没有前后不一致。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P088",
+      "kind": "create",
+      "prompt": "写一份会议纪要、可研报告或采购申请时，按具体场景核对会议类型、项目类型、投资资金、品名规格数量和报价依据，不要套模板补空项，也不要把采购需求推断成现有能力不足。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P089",
+      "kind": "create",
+      "prompt": "请写一份版慎通成本考察短稿：当前一个月模型成本约6万元，后续只是建议尝试低思考档位、便宜模型和路由机制；不要把建议和待测试项写成已定实施方案、执行命令或具体反馈时限。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P090",
+      "kind": "revise",
+      "prompt": "只审不改。请按“位置 + 风险层级 + 修改建议”检查一份通知，不要重写全文，不要给分，也不要用 Markdown 加粗包装标签。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P091",
+      "kind": "create",
+      "prompt": "写一份数据治理专项推进情况通报，材料只有12个系统、3类问题和2次协调会；不要编造会议纪要、清单版本、例行复核节奏，末尾用“补充以下信息后，文章会更完整”短列可补信息。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P092",
+      "kind": "revise",
+      "prompt": "字段式硬盘采购申请只给申请人、日期、固态硬盘、2T、数量1、价格2000元；请缩短正文，不要新增采购类别、资产属性、用途或入库流程。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P093",
+      "kind": "create",
+      "prompt": "写一份成本考察报告，要求正式正文不要使用 Markdown 加粗标题、小标题或横线包装。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P094",
+      "kind": "create",
+      "prompt": "写一份系统接口异常情况说明，材料只有接口返回延迟、影响3个内部查询页面、10:20恢复；不要把接口包装成核心系统，也不要编原因、责任部门、损失金额或整改方案。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P095",
+      "kind": "revise",
+      "prompt": "只审事实不清，不重写全文：本次检查总体情况较好，问题已基本整改到位，后续将持续优化提升。不要把无依据结论降成低风险套话。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P096",
+      "kind": "revise",
+      "prompt": "把普通叙述中的口语改成正式公文表达；引号内这句原话必须逐字保留：“我觉得这个方案差不多能用，老板也挺关心。”",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P097",
+      "kind": "revise",
+      "prompt": "顺一下这份情况说明，只输出改后正文，不附改动说明；缺少的联系人仍可在正文后短列待确认。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P098",
+      "kind": "revise",
+      "prompt": "只用 prose_lint 做格式和结构风险扫描，不要自动改写稿件。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P099",
+      "kind": "create",
+      "prompt": "根据已给三项事实写一份200字以内的简短情况说明；轻量卡可以覆盖，不要预读整套长 reference。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P100",
+      "kind": "create",
+      "prompt": "写会议纪要时只进入对应 playbook 小节；除非任务复杂或文种不清，不要固定预读 workflow、genre-routing 和整套复核资料。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P101",
+      "kind": "revise",
+      "prompt": "把下面请示顺稿，只输出正文，不解释。材料未提供主送机关和成文日期，也不要在正文外附待确认事项。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P103",
+      "kind": "revise",
+      "prompt": "在 OpenClaw 中把请示顺稿，只输出正文，不解释；主送机关和成文日期没给，不要在正文外附待确认事项。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P104",
+      "kind": "revise",
+      "prompt": "对最终正文做模式感知检查：明确的约束自证、英文思考残片和交付说明按高风险提示；材料范围句先保留人工判断。只检测，不自动改写。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": [
+        "constraint-self-certification",
+        "delivery-explanation",
+        "english-thought-fragment",
+        "material-reading-narration",
+        "protective-negative-inference"
+      ]
+    },
+    {
+      "id": "P105",
+      "kind": "create",
+      "prompt": "材料只有完成一次排查、发现两项问题、召开一次协调会。写一份简短情况说明，不补整改、下一步或固定章节。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P106",
+      "kind": "revise",
+      "prompt": "把‘我觉得可以下月先试一下’改成正式工作材料用语，不要补研究过程或既定决定。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P107",
+      "kind": "revise",
+      "prompt": "润色这份字段式申请表，只改申请理由字段，保留字段名、顺序和单元边界。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P108",
+      "kind": "revise",
+      "prompt": "把稿子处理成可直接报送的成品，不要把制作版本、内部受众、只读核对、校验门禁、审核状态、免责边界或处理方法写进正文，也不要重复标题。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": [
+        "delivery-boilerplate",
+        "delivery-metadata",
+        "duplicate-title"
+      ]
+    },
+    {
+      "id": "P109",
+      "kind": "revise",
+      "prompt": "检查全文高频句式和高频词，只改连续否定、虚假对比或机械重复；事实、引用、术语、否定范围和论断强度都不能变化。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P110",
+      "kind": "create",
+      "prompt": "起草一份函，商请平级单位协助提供数据清单，写清报送期限、邮箱和联系人。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P111",
+      "kind": "revise",
+      "prompt": "把一份既有普通函的事项和办理条件重新整理成正式函件。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    },
+    {
+      "id": "P112",
+      "kind": "create",
+      "prompt": "根据已有目标、范围、任务、进度、责任和验收要求，起草一份政务大厅叫号系统建设方案。",
+      "passed": true,
+      "failures": [],
+      "lint_labels": []
+    }
+  ]
+}
