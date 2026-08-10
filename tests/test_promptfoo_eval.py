@@ -396,7 +396,11 @@ class PromptfooProviderTests(unittest.TestCase):
                 )
                 self.assertEqual(
                     refs,
-                    ["SKILL.md", "references/genre-playbook-request.md"],
+                    [
+                        "SKILL.md",
+                        "references/information-selection.md",
+                        "references/genre-playbook-request.md",
+                    ],
                 )
 
     def test_request_draft_leaf_does_not_affect_unrelated_genres(self) -> None:
@@ -663,6 +667,7 @@ class PromptfooProviderTests(unittest.TestCase):
             [
                 "SKILL.md",
                 "references/genre-checklist-report.md",
+                "references/information-selection.md",
                 "references/genre-playbook-request.md",
                 "references/genre-playbook-plan-construction.md",
                 "references/genre-playbooks.md",

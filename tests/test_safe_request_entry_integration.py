@@ -17,6 +17,11 @@ MIRROR_ROOTS = (
     ROOT / "openclaw" / "skills" / "chinese_official_writing",
 )
 REQUEST_LEAF = "references/genre-playbook-request.md"
+REQUEST_DRAFT_REFS = [
+    "SKILL.md",
+    "references/information-selection.md",
+    REQUEST_LEAF,
+]
 COMPLEX_REFS = {
     "references/workflow.md",
     "references/handling-elements.md",
@@ -47,25 +52,29 @@ class SafeRequestEntryIntegrationTests(unittest.TestCase):
                         [genre],
                         [f"请起草一份{genre}，写清请批事项。"],
                     ),
-                    ["SKILL.md", REQUEST_LEAF],
+                    REQUEST_DRAFT_REFS,
                 )
 
     def test_simple_and_negated_procurement_requests_stay_on_request_leaf(self) -> None:
         tasks = (
             "起草采购申请：购买一台打印机，单价3000元，总价3000元。",
             "起草采购请示：本次不是多品类采购，不需要分项核算，不含报价、验收或技术附件，只申请购置一台打印机。",
+            "起草纯软件订阅采购申请，材料未给询价和验收信息，按现有事实成稿。",
+            "按字段式材料起草采购申请：用途：办公；品名：打印机；数量：1台；单价：3000元；总价：3000元。",
         )
         for task in tasks:
             with self.subTest(task=task):
                 refs = provider._reference_paths_for_genres(["申请"], [task])
-                self.assertEqual(refs, ["SKILL.md", REQUEST_LEAF])
+                self.assertEqual(refs, REQUEST_DRAFT_REFS)
 
     def test_complex_procurement_markers_upgrade_request_route(self) -> None:
         tasks = (
             "起草采购请示：采购多品类设备，规格不同。",
             "起草采购申请：设备价格不同，须分项核算。",
             "起草采购请示：附三家报价并写明验收标准。",
+            "起草采购申请：设备已询价，请写清报价情况。",
             "起草购置申请：随文提交技术附件。",
+            "起草一份800字采购申请，购买一台打印机。",
         )
         for task in tasks:
             with self.subTest(task=task):

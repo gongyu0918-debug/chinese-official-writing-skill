@@ -66,6 +66,7 @@ GENRE_REFERENCES: dict[str, list[str]] = {
         "references/genre-checklist-request.md",
     ],
     "request_playbook": [
+        "references/information-selection.md",
         "references/genre-playbook-request.md",
     ],
     "feasibility_review": [
@@ -188,7 +189,8 @@ REQUEST_PROCUREMENT_COMPLEXITY_RE = re.compile(
     r"验收(?:标准|要求|指标|方案|条款)?|技术(?:附件|参数附件|需求附件|规格书))"
 )
 REQUEST_PROCUREMENT_NEGATED_CLAUSE_RE = re.compile(
-    r"(?:不涉及|不含|无需|无须|不需要|不要求|没有|并非|不是|不采用)"
+    r"(?:材料未给|材料未提供|未给|未提供|未涉及|不涉及|不含|无需|无须|不需要|"
+    r"不要求|没有|并非|不是|不采用)"
     r"[^。；;\n]*?(?=(?:，?(?:但|不过|然而|可是|而是|却|仍需|仍要|同时|另需|"
     r"仅需|只需|本次|只(?:申请|采购|购置|购买|申购)))|[。；;\n]|$)"
 )
