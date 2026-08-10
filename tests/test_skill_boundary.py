@@ -1335,6 +1335,32 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assertNotIn("馆务会未形成新增设备采购决定", anti_ai)
         self.assertNotIn("先全面梳理、再研究处置", anti_ai)
 
+    def test_sustained_progress_example_is_removed_only_from_redundant_cliche_list(self) -> None:
+        anti_ai = (ROOT / "chinese-official-writing" / "references" / "anti-ai-patterns.md").read_text(
+            encoding="utf-8"
+        )
+        section_start = anti_ai.index("## 空泛套话")
+        section_end = anti_ai.index("## 高频正式词")
+        empty_cliche_section = anti_ai[section_start:section_end]
+
+        self.assertNotIn("- `持续推进`", empty_cliche_section)
+        for retained_example in [
+            "不断提升",
+            "充分发挥",
+            "有力支撑",
+            "全面赋能",
+            "形成一批",
+            "重点任务包括",
+            "保障措施包括",
+            "总体看",
+        ]:
+            self.assertIn(f"- `{retained_example}`", empty_cliche_section)
+        self.assertIn("必须有具体对象、机制、目标或结果支撑", empty_cliche_section)
+        self.assertIn("应删去或换成具体工作、责任、时限和成果", empty_cliche_section)
+        self.assertEqual(anti_ai.count("持续推进"), 3)
+        self.assertIn("公式化未来展望", anti_ai)
+        self.assertIn("相邻段落反复以 `要坚持`、`要强化`、`持续推进`", anti_ai)
+
     def test_v150_genre_playbooks_keep_minimal_borrowing_boundaries(self) -> None:
         skill = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
         playbooks = (ROOT / "chinese-official-writing" / "references" / "genre-playbooks.md").read_text(
