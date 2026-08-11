@@ -20,8 +20,8 @@ RUNTIME_ROOTS = {
     "candidate": RUNTIME_PARENT / "candidate",
 }
 SKILL_REL = Path(".agents/skills/chinese-official-writing")
-OUT = Path(r"F:\Workspaces\chinese-official-writing-skill\output\release-1.6.0-combination-real")
-MAPPING_PATH = RUNTIME_PARENT / "blind-mapping.json"
+OUT = Path(r"F:\Workspaces\chinese-official-writing-skill\output\release-1.6.0-combination-real-r2")
+MAPPING_PATH = RUNTIME_PARENT / "blind-mapping-r2.json"
 CATALOG = Path(r"C:\Users\admin\.codex\opencodex-catalog.json")
 BASE_URL = "http://127.0.0.1:10100/v1"
 MODELS = {
@@ -213,13 +213,14 @@ def run_one(provider: str, task: str, arm: str, order: int) -> dict[str, object]
         "--json",
         "-o",
         str(final_path),
-        prompt,
+        "-",
     ]
     started = time.monotonic()
     timeout = False
     try:
         completed = subprocess.run(
             command,
+            input=prompt,
             text=True,
             encoding="utf-8",
             capture_output=True,
