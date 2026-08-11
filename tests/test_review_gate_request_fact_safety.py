@@ -95,6 +95,8 @@ class ReviewGateRequestFactSafetyTests(unittest.TestCase):
         )
         draft = (
             "采购事项说明\n\n"
+            "本次仅说明现有材料记录的事项状态。有关数据和时间已经逐项核对。"
+            "正文其余内容保持原有范围，不增加新的办理安排。"
             "目前尚未形成采购决定，审批意见、责任分工和完成期限均未确定。"
         )
         detection = self.detection(request, draft)
