@@ -18,9 +18,6 @@ ROOT_LICENSE = ROOT / "LICENSE"
 PURE_SKILL_LICENSE_FILE = ROOT / "LICENSE-SKILL"
 CANONICAL_LICENSE = CANONICAL / "LICENSE"
 ROOT_README = ROOT / "README.md"
-OPENCLAW_MARKETPLACE_README = ROOT / "openclaw" / "marketplace-readme.md"
-OPENCLAW_README = ROOT / "openclaw" / "README.md"
-OPENCLAW_SKILL_CARD = ROOT / "openclaw" / "skill-card.md"
 CLAUDE_PLUGIN_MANIFEST = ROOT / ".claude-plugin" / "plugin.json"
 CODEX_PLUGIN_MANIFEST = ROOT / ".codex-plugin" / "plugin.json"
 PACKAGED_CLAUDE_PLUGIN_MANIFEST = CANONICAL / "hooks" / "claude-code" / ".claude-plugin" / "plugin.json"
@@ -30,7 +27,6 @@ TARGETS = {
     "agents": ROOT / ".agents" / "skills" / "chinese-official-writing",
     "qwen": ROOT / ".qwen" / "skills" / "chinese-official-writing",
     "hermes": ROOT / "hermes" / "skills" / "chinese-official-writing",
-    "openclaw": ROOT / "openclaw" / "skills" / "chinese_official_writing",
 }
 
 TARGET_LICENSES = {
@@ -38,7 +34,6 @@ TARGET_LICENSES = {
     "agents": PURE_SKILL_LICENSE,
     "qwen": PURE_SKILL_LICENSE,
     "hermes": PURE_SKILL_LICENSE,
-    "openclaw": PURE_SKILL_LICENSE,
 }
 
 STALE_TARGET_FILES = (
@@ -64,7 +59,6 @@ TARGET_EXCLUDES = {
     "agents": CODEX_GATE_FILES,
     "qwen": CODEX_GATE_FILES,
     "hermes": CODEX_GATE_FILES,
-    "openclaw": CODEX_GATE_FILES,
 }
 
 
@@ -84,36 +78,6 @@ def sync_canonical_license() -> None:
     shutil.copyfile(ROOT_LICENSE, CANONICAL_LICENSE)
 
 
-def patch_frontmatter(target: Path, mode: str) -> None:
-    if mode != "openclaw":
-        return
-    skill_file = target / "SKILL.md"
-    text = skill_file.read_text(encoding="utf-8")
-    original = text
-    text = text.replace("name: chinese-official-writing", "name: chinese_official_writing", 1)
-    if text != original:
-        skill_file.write_text(text, encoding="utf-8", newline="\n")
-
-
-def patch_openclaw_skill_body(target: Path) -> None:
-    """Keep OpenClaw's executable body identical to the canonical skill.
-
-    User-facing marketplace copy remains in README.md. Do not concatenate it
-    into the executable instructions or duplicate the canonical workflow.
-    """
-
-    skill_file = target / "SKILL.md"
-    text = skill_file.read_text(encoding="utf-8")
-    parts = text.split("---", 2)
-    if len(parts) < 3:
-        raise RuntimeError("OpenClaw SKILL.md frontmatter is malformed")
-    canonical_parts = (CANONICAL / "SKILL.md").read_text(encoding="utf-8").split("---", 2)
-    if len(canonical_parts) < 3:
-        raise RuntimeError("canonical SKILL.md frontmatter is malformed")
-    canonical_body = canonical_parts[2].strip()
-    skill_file.write_text(f"---{parts[1]}---\n\n{canonical_body}\n", encoding="utf-8")
-
-
 def update_plugin_manifest(manifest_path: Path, label: str, license_id: str) -> None:
     if not manifest_path.exists():
         raise RuntimeError(f"missing {label} plugin manifest: {manifest_path}")
@@ -130,24 +94,6 @@ def update_root_readme() -> None:
     ROOT_README.write_text(versioned_text(ROOT_README.read_text(encoding="utf-8")), encoding="utf-8")
 
 
-def update_openclaw_readme_sources() -> None:
-    OPENCLAW_MARKETPLACE_README.write_text(
-        versioned_text(OPENCLAW_MARKETPLACE_README.read_text(encoding="utf-8")),
-        encoding="utf-8",
-    )
-    OPENCLAW_README.write_text(
-        versioned_text(OPENCLAW_README.read_text(encoding="utf-8")),
-        encoding="utf-8",
-    )
-
-
-def update_openclaw_skill_card_source() -> None:
-    OPENCLAW_SKILL_CARD.write_text(
-        versioned_text(OPENCLAW_SKILL_CARD.read_text(encoding="utf-8")),
-        encoding="utf-8",
-    )
-
-
 def copy_skill(target: Path, mode: str) -> None:
     ignore = shutil.ignore_patterns("__pycache__", "*.pyc", ".DS_Store", "Thumbs.db")
     for relative_path in STALE_TARGET_FILES:
@@ -159,18 +105,8 @@ def copy_skill(target: Path, mode: str) -> None:
         packaged_file = target / relative_path
         if packaged_file.exists():
             packaged_file.unlink()
-    patch_frontmatter(target, mode)
     if TARGET_LICENSES[mode] == PURE_SKILL_LICENSE:
         shutil.copyfile(PURE_SKILL_LICENSE_FILE, target / "LICENSE")
-    if mode == "openclaw":
-        (target / "README.md").write_text(
-            versioned_text(OPENCLAW_MARKETPLACE_README.read_text(encoding="utf-8")),
-            encoding="utf-8",
-        )
-        reserved_skill_card = target / "skill-card.md"
-        if reserved_skill_card.exists():
-            reserved_skill_card.unlink()
-        patch_openclaw_skill_body(target)
 
 
 def main() -> int:
@@ -180,15 +116,11 @@ def main() -> int:
         raise SystemExit("every adapter target must declare an explicit package license")
     sync_canonical_license()
     update_plugin_manifest(PACKAGED_CLAUDE_PLUGIN_MANIFEST, "packaged Claude", FULL_PACKAGE_LICENSE)
-    update_openclaw_readme_sources()
-    print("synced openclaw README sources")
     for mode, target in TARGETS.items():
         copy_skill(target, mode)
         print(f"synced {target.relative_to(ROOT)}")
     update_root_readme()
     print(f"synced {ROOT_README.relative_to(ROOT)}")
-    update_openclaw_skill_card_source()
-    print(f"synced {OPENCLAW_SKILL_CARD.relative_to(ROOT)}")
     for manifest_path, label in [
         (CLAUDE_PLUGIN_MANIFEST, "Claude"),
         (CODEX_PLUGIN_MANIFEST, "Codex"),

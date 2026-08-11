@@ -32,7 +32,6 @@ class ReportGenericBlockReliefTests(unittest.TestCase):
             ROOT / ".agents/skills/chinese-official-writing",
             ROOT / ".qwen/skills/chinese-official-writing",
             ROOT / "hermes/skills/chinese-official-writing",
-            ROOT / "openclaw/skills/chinese_official_writing",
         ]
         canonical = (roots[0] / relative).read_bytes()
         for root in roots:
@@ -53,7 +52,6 @@ class ReportGenericBlockReliefTests(unittest.TestCase):
             ROOT / ".agents/skills/chinese-official-writing",
             ROOT / ".qwen/skills/chinese-official-writing",
             ROOT / "hermes/skills/chinese-official-writing",
-            ROOT / "openclaw/skills/chinese_official_writing",
         ]
         canonical = (roots[0] / relative).read_bytes()
         for root in roots:

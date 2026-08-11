@@ -11,18 +11,10 @@ RUNTIME_ROOTS = [
     ROOT / ".agents" / "skills" / "chinese-official-writing",
     ROOT / ".qwen" / "skills" / "chinese-official-writing",
     ROOT / "hermes" / "skills" / "chinese-official-writing",
-    ROOT / "openclaw" / "skills" / "chinese_official_writing",
 ]
 
 
 class ShungaoNaturalizationTests(unittest.TestCase):
-    def test_openclaw_user_facing_readmes_use_plain_editing_terms(self) -> None:
-        marketplace = (ROOT / "openclaw" / "marketplace-readme.md").read_text(encoding="utf-8")
-        packaged = (ROOT / "openclaw" / "skills" / "chinese_official_writing" / "README.md").read_text(encoding="utf-8")
-        self.assertEqual(marketplace, packaged)
-        self.assertNotIn("顺稿", marketplace)
-        self.assertIn("润色修改", marketplace)
-
     def test_runtime_instructions_use_plain_editing_terms(self) -> None:
         for root in RUNTIME_ROOTS:
             texts = [root.joinpath("SKILL.md").read_text(encoding="utf-8")]
