@@ -1,5 +1,5 @@
 {
-  "schema_version": 2,
+  "schema_version": 3,
   "shared_gate_core": "chinese-official-writing/scripts/review_gate.py",
   "activation": {
     "default": "disabled",
@@ -8,18 +8,20 @@
   },
   "hosts": {
     "codex": {
-      "status": "repository_companion_verified",
-      "adapter": "repository-root hooks/hooks.json",
+      "status": "package_registration_verified",
+      "adapter": ".codex-plugin/plugin.json + hooks/hooks.json + hooks/host_gate_adapter.py",
       "package_presence": {
         "repository_companion": "present",
-        "skillhub_ordinary_package": "adapter_absent"
+        "skillhub_ordinary_package": "companion_present_inactive"
       },
-      "skillhub_activation": "requires_user_authorized_host_glue",
+      "skillhub_activation": "explicit_plugin_install_enable_and_hook_trust",
       "events": [
         "UserPromptSubmit",
-        "PostToolUse:Bash",
+        "PostToolUse:Bash|Read",
         "Stop"
       ],
+      "verified_scope": "manifest_validation_and_isolated_registration_without_model",
+      "live_lifecycle_verified": false,
       "data_root_environment": "COW_GATE_HOOK_DATA or PLUGIN_DATA",
       "continuation_limit": 4
     },
@@ -53,8 +55,22 @@
       "adapter": null
     },
     "workbuddy": {
-      "status": "unknown",
-      "adapter": null
+      "status": "package_manifest_verified",
+      "adapter": ".codebuddy-plugin/plugin.json + hooks/hooks.json + hooks/host_gate_adapter.py",
+      "package_presence": "companion_present_inactive",
+      "events": [
+        "UserPromptSubmit",
+        "PostToolUse:Bash|Read",
+        "Stop"
+      ],
+      "verified_scope": "official_cli_manifest_validation_and_local_binary_contract_inspection_without_model",
+      "live_lifecycle_verified": false,
+      "locally_inspected_host_version": "WorkBuddy 5.3.8 / CodeBuddy Code 2.115.0",
+      "minimum_documented_hook_version": "CodeBuddy Code 1.16.0",
+      "required_stop_field": "last_assistant_message",
+      "data_root_environment": "CODEBUDDY_PLUGIN_DATA",
+      "continuation_limit": 4,
+      "activation": "explicit plugin load only"
     }
   }
 }

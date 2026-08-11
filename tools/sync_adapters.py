@@ -21,6 +21,8 @@ ROOT_README = ROOT / "README.md"
 CLAUDE_PLUGIN_MANIFEST = ROOT / ".claude-plugin" / "plugin.json"
 CODEX_PLUGIN_MANIFEST = ROOT / ".codex-plugin" / "plugin.json"
 PACKAGED_CLAUDE_PLUGIN_MANIFEST = CANONICAL / "hooks" / "claude-code" / ".claude-plugin" / "plugin.json"
+PACKAGED_CODEX_PLUGIN_MANIFEST = CANONICAL / ".codex-plugin" / "plugin.json"
+PACKAGED_WORKBUDDY_PLUGIN_MANIFEST = CANONICAL / ".codebuddy-plugin" / "plugin.json"
 
 TARGETS = {
     "claude": ROOT / "skills" / "chinese-official-writing",
@@ -45,14 +47,19 @@ STALE_TARGET_FILES = (
 )
 
 CODEX_GATE_FILES = (
+    ".codex-plugin/plugin.json",
+    ".codebuddy-plugin/plugin.json",
     "references/delivery-review-gate.md",
     "hooks/AGENT_GLUE.md",
     "hooks/host-capabilities.json",
     "hooks/gate_stop_hook.py",
+    "hooks/hooks.json",
+    "hooks/host_gate_adapter.py",
     "hooks/claude-code/.claude-plugin/plugin.json",
     "hooks/claude-code/hooks/hooks.json",
     "hooks/claude-code/scripts/gate_stop_hook.py",
     "scripts/review_gate.py",
+    "skills/chinese-official-writing/SKILL.md",
 )
 
 TARGET_EXCLUDES = {
@@ -115,7 +122,12 @@ def main() -> int:
     if set(TARGET_LICENSES) != set(TARGETS):
         raise SystemExit("every adapter target must declare an explicit package license")
     sync_canonical_license()
-    update_plugin_manifest(PACKAGED_CLAUDE_PLUGIN_MANIFEST, "packaged Claude", FULL_PACKAGE_LICENSE)
+    for manifest_path, label in [
+        (PACKAGED_CODEX_PLUGIN_MANIFEST, "packaged Codex"),
+        (PACKAGED_WORKBUDDY_PLUGIN_MANIFEST, "packaged WorkBuddy"),
+        (PACKAGED_CLAUDE_PLUGIN_MANIFEST, "packaged Claude"),
+    ]:
+        update_plugin_manifest(manifest_path, label, FULL_PACKAGE_LICENSE)
     for mode, target in TARGETS.items():
         copy_skill(target, mode)
         print(f"synced {target.relative_to(ROOT)}")

@@ -61,9 +61,9 @@ class ClaudeGateAdapterTests(unittest.TestCase):
         capabilities = json.loads(CAPABILITIES_PATH.read_text(encoding="utf-8"))
         self.assertFalse(capabilities["activation"]["ordinary_skill_install_enables_hooks"])
         codex = capabilities["hosts"]["codex"]
-        self.assertEqual("repository_companion_verified", codex["status"])
-        self.assertEqual("adapter_absent", codex["package_presence"]["skillhub_ordinary_package"])
-        self.assertEqual("requires_user_authorized_host_glue", codex["skillhub_activation"])
+        self.assertEqual("package_registration_verified", codex["status"])
+        self.assertEqual("companion_present_inactive", codex["package_presence"]["skillhub_ordinary_package"])
+        self.assertEqual("explicit_plugin_install_enable_and_hook_trust", codex["skillhub_activation"])
         claude = capabilities["hosts"]["claude_code"]
         self.assertEqual("lifecycle_verified", claude["status"])
         self.assertEqual("package_present", claude["package_presence"])
@@ -73,7 +73,7 @@ class ClaudeGateAdapterTests(unittest.TestCase):
         self.assertEqual("ollama-cloud/deepseek-v4-flash:0731", claude["verified_model"])
         self.assertFalse(claude["first_party_login_required"])
         self.assertEqual("frozen", capabilities["hosts"]["openclaw"]["status"])
-        self.assertEqual("unknown", capabilities["hosts"]["workbuddy"]["status"])
+        self.assertEqual("package_manifest_verified", capabilities["hosts"]["workbuddy"]["status"])
         hooks = json.loads(HOOKS_PATH.read_text(encoding="utf-8"))["hooks"]
         self.assertEqual(["UserPromptSubmit", "PostToolUse", "Stop"], list(hooks))
         self.assertEqual("Bash|Read", hooks["PostToolUse"][0]["matcher"])
@@ -89,7 +89,7 @@ class ClaudeGateAdapterTests(unittest.TestCase):
         self.assertIn("session-only plugin registration", plan)
         self.assertIn("without a Claude account login", plan)
         self.assertIn("`PostToolUse:Bash` and a D1 repair remain unverified", plan)
-        self.assertIn("WorkBuddy remains `unknown`", plan)
+        self.assertIn("WorkBuddy/CodeBuddy manifest validation and local binary inspection do not prove a real lifecycle run", plan)
 
     def test_read_event_arms_existing_core_and_stop_uses_plugin_data(self):
         prompt = self._event("UserPromptSubmit", prompt="请起草一份情况报告。")

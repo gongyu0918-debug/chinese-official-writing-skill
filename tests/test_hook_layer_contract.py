@@ -33,6 +33,10 @@ class HookLayerContractTests(unittest.TestCase):
         claude_manifest = (
             SKILL_ROOT / "hooks" / "claude-code" / "hooks" / "hooks.json"
         ).read_text(encoding="utf-8")
+        host_adapter = (SKILL_ROOT / "hooks" / "host_gate_adapter.py").read_text(
+            encoding="utf-8"
+        )
+        host_manifest = (SKILL_ROOT / "hooks" / "hooks.json").read_text(encoding="utf-8")
 
         self.assertIn("optional and never edits the draft automatically", glue)
         self.assertIn("It does not run `prose_lint.py`", glue)
@@ -42,6 +46,8 @@ class HookLayerContractTests(unittest.TestCase):
             "Claude adapter": claude_adapter,
             "repository manifest": repository_manifest,
             "Claude manifest": claude_manifest,
+            "Codex and WorkBuddy adapter": host_adapter,
+            "Codex and WorkBuddy manifest": host_manifest,
         }
         for name, hook_surface in hook_surfaces.items():
             with self.subTest(surface=name):
@@ -51,21 +57,25 @@ class HookLayerContractTests(unittest.TestCase):
         capabilities = json.loads(
             (SKILL_ROOT / "hooks" / "host-capabilities.json").read_text(encoding="utf-8")
         )
-        self.assertEqual(2, capabilities["schema_version"])
+        self.assertEqual(3, capabilities["schema_version"])
         self.assertFalse(capabilities["activation"]["ordinary_skill_install_enables_hooks"])
 
         codex = capabilities["hosts"]["codex"]
-        self.assertEqual("repository_companion_verified", codex["status"])
+        self.assertEqual("package_registration_verified", codex["status"])
         self.assertEqual("present", codex["package_presence"]["repository_companion"])
         self.assertEqual(
-            "adapter_absent", codex["package_presence"]["skillhub_ordinary_package"]
+            "companion_present_inactive", codex["package_presence"]["skillhub_ordinary_package"]
         )
-        self.assertEqual("requires_user_authorized_host_glue", codex["skillhub_activation"])
+        self.assertEqual("explicit_plugin_install_enable_and_hook_trust", codex["skillhub_activation"])
+        self.assertFalse(codex["live_lifecycle_verified"])
 
         claude = capabilities["hosts"]["claude_code"]
         self.assertEqual("package_present", claude["package_presence"])
         self.assertEqual("frozen", capabilities["hosts"]["openclaw"]["status"])
-        self.assertEqual("unknown", capabilities["hosts"]["workbuddy"]["status"])
+        workbuddy = capabilities["hosts"]["workbuddy"]
+        self.assertEqual("package_manifest_verified", workbuddy["status"])
+        self.assertEqual("WorkBuddy 5.3.8 / CodeBuddy Code 2.115.0", workbuddy["locally_inspected_host_version"])
+        self.assertFalse(workbuddy["live_lifecycle_verified"])
 
 
 if __name__ == "__main__":

@@ -11,14 +11,19 @@ import yaml
 
 ROOT = Path(__file__).resolve().parents[1]
 CODEX_GATE_FILES = {
+    ".codex-plugin/plugin.json",
+    ".codebuddy-plugin/plugin.json",
     "references/delivery-review-gate.md",
     "hooks/AGENT_GLUE.md",
     "hooks/host-capabilities.json",
     "hooks/gate_stop_hook.py",
+    "hooks/hooks.json",
+    "hooks/host_gate_adapter.py",
     "hooks/claude-code/.claude-plugin/plugin.json",
     "hooks/claude-code/hooks/hooks.json",
     "hooks/claude-code/scripts/gate_stop_hook.py",
     "scripts/review_gate.py",
+    "skills/chinese-official-writing/SKILL.md",
 }
 SKILLHUB_CLEAN_PACKAGE_EXCLUDES = {"agents/openai.yaml", "LICENSE"}
 FROZEN_OPENCLAW_VERSION = "1.6.0"
@@ -309,7 +314,7 @@ class SkillBoundaryTests(unittest.TestCase):
             if relative not in SKILLHUB_CLEAN_PACKAGE_EXCLUDES
         ]
 
-        self.assertEqual(len(package_allowlist), 38)
+        self.assertEqual(len(package_allowlist), 43)
         self.assertNotIn("agents/openai.yaml", package_allowlist)
         self.assertNotIn("LICENSE", package_allowlist)
         for relative in CODEX_GATE_FILES:
@@ -953,7 +958,7 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assertTrue(skill_license_text.startswith("MIT No Attribution\n"))
         self.assertNotIn("The above copyright notice and this permission notice", skill_license_text)
         self.assertIn("## 开源许可", readme)
-        self.assertIn("SkillHub、Codex 与 Claude Code 完整包", readme)
+        self.assertIn("SkillHub、Codex、Claude Code 与 WorkBuddy/CodeBuddy 完整包", readme)
         self.assertIn("ClawHub、OpenClaw 与普通纯 Skill 镜像", readme)
         self.assertIn("包外维护材料", readme)
         self.assertIn("MIT-0", readme)
@@ -983,7 +988,11 @@ class SkillBoundaryTests(unittest.TestCase):
         full_package_manifests = [
             ".codex-plugin/plugin.json",
             ".claude-plugin/plugin.json",
+            "chinese-official-writing/.codex-plugin/plugin.json",
+            "chinese-official-writing/.codebuddy-plugin/plugin.json",
             "chinese-official-writing/hooks/claude-code/.claude-plugin/plugin.json",
+            "skills/chinese-official-writing/.codex-plugin/plugin.json",
+            "skills/chinese-official-writing/.codebuddy-plugin/plugin.json",
             "skills/chinese-official-writing/hooks/claude-code/.claude-plugin/plugin.json",
         ]
         for relative_path in full_package_manifests:
