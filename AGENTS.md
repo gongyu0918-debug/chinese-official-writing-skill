@@ -13,7 +13,7 @@
 - `chinese-official-writing/` 是 canonical 产品包；`skills/`、`.agents/`、`.qwen/`、`hermes/` 是当前适配或镜像表面。`openclaw/` 固定为已发布 v1.6.0，不参与默认同步；恢复更新前必须另做排除式增量验证。
 - `tools/`、`evals/`、`tests/` 是工程与评测工具；`tests/evidence/` 保存预注册、消融、盲审和真实执行证据；`docs/evidence/` 保存维护历史和索引；`output/` 默认不提交。
 - SkillHub 可携带可选 Hook 伴随物，Hook 资产放在专属 `hooks/` 目录；ClawHub 包排除 Hook 和交付门禁资产。包内存在、插件安装、功能启用、信任确认和真实执行是五项独立事实，必须分别验证。
-- 仓库及所有非 ClawHub 内容和发行面采用根 `LICENSE`（MIT）；只有冻结的 `openclaw/` 与由其构建的 ClawHub 包采用 `LICENSE-CLAWHUB`（MIT-0）。第三方材料沿用各自许可。
+- 仓库及所有非 ClawHub 内容和发行面采用根 `LICENSE`（MIT）；只有冻结的 `openclaw/` 与由其构建的 ClawHub 包采用 `licenses/LICENSE-CLAWHUB`（MIT-0）。第三方材料沿用各自许可。
 
 ## 修改与 Git
 

@@ -949,7 +949,7 @@ class SkillBoundaryTests(unittest.TestCase):
 
     def test_repository_packages_use_mit_with_only_openclaw_on_mit_0(self) -> None:
         license_text = (ROOT / "LICENSE").read_text(encoding="utf-8")
-        clawhub_license_text = (ROOT / "LICENSE-CLAWHUB").read_text(encoding="utf-8")
+        clawhub_license_text = (ROOT / "licenses" / "LICENSE-CLAWHUB").read_text(encoding="utf-8")
         license_scope = (ROOT / "LICENSE-SCOPE.md").read_text(encoding="utf-8")
         readme = (ROOT / "README.md").read_text(encoding="utf-8")
         sync_script = (ROOT / "tools" / "sync_adapters.py").read_text(encoding="utf-8")
@@ -960,6 +960,7 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assertTrue(clawhub_license_text.startswith("MIT No Attribution\n"))
         self.assertNotIn("The above copyright notice and this permission notice", clawhub_license_text)
         self.assertFalse((ROOT / "LICENSE-SKILL").exists())
+        self.assertFalse((ROOT / "LICENSE-CLAWHUB").exists())
         self.assertIn("全部内容，但下列例外除外", license_scope)
         self.assertIn("`openclaw/` 目录及由该目录构建的 ClawHub 发行包继续采用 MIT-0", license_scope)
         self.assertIn("只有上述 ClawHub/OpenClaw 发行面采用 MIT-0", license_scope)
