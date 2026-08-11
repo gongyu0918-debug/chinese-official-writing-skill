@@ -1962,7 +1962,7 @@ FILE_TERM_ALTERNATIVES_BY_CASE: dict[str, list[dict[str, list[str]]]] = {
     "P043": [
         {
             "chinese-official-writing/SKILL.md": ["先完整输出正式正文"],
-            "chinese-official-writing/references/workflow.md": ["普通起草和顺稿不在正文前暂停或连续追问"],
+            "chinese-official-writing/references/workflow.md": ["普通起草和润色修改不在正文前暂停或连续追问"],
             "chinese-official-writing/references/information-selection.md": [
                 "直接影响当前文种成立、请批事项或执行落地",
                 "输出模式允许文后提示时，在正文后短列",
@@ -2071,7 +2071,7 @@ FILE_TERM_ALTERNATIVES_BY_CASE: dict[str, list[dict[str, list[str]]]] = {
                 "正式化只压实已给事实，不补未给的原因、效果、处置、责任、流程、结论或后续动作",
             ],
             "chinese-official-writing/references/workflow.md": [
-                "正式化、顺稿和报告化不补牵头部门、责任部门、管理动作、整改动作、成果总结、跟踪督办或后续进展",
+                "正式化、润色修改和报告化不补牵头部门、责任部门、管理动作、整改动作、成果总结、跟踪督办或后续进展",
             ],
             "chinese-official-writing/references/review-checklist.md": ["正式化新增事实"],
         }
