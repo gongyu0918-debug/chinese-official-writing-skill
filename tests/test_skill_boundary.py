@@ -769,7 +769,7 @@ class SkillBoundaryTests(unittest.TestCase):
             "材料事实与评论推演",
             "公共价值、利弊和成立条件",
             "具体政策、数据、具名责任、期限或承诺",
-            "自然收束",
+            "自然结束",
         ]:
             with self.subTest(phrase=phrase):
                 self.assertIn(phrase, leaf)
@@ -1417,7 +1417,7 @@ class SkillBoundaryTests(unittest.TestCase):
         )
 
         self.assertIn("句群节奏和模板化痕迹", anti_ai)
-        for term in ["句首重复", "连接词链", "句长同质化", "口号式收束", "清单堆叠替代论证"]:
+        for term in ["句首重复", "连接词链", "句长同质化", "口号式结尾", "清单堆叠替代论证"]:
             self.assertIn(term, anti_ai)
         self.assertIn("只作软性审稿项，不作为硬门禁", anti_ai)
         self.assertIn("公文去 AI 味不是聊天化", anti_ai)
@@ -1433,6 +1433,22 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assertNotIn("输出范围按“总体复核方法”执行", anti_ai)
         self.assertIn("不为了显得像人写而加入第一人称", official_style)
         self.assertIn("正式化改写只压实原文已有事实", official_style)
+
+    def test_v1601_j1_writing_endings_use_natural_terms(self) -> None:
+        refs = ROOT / "chinese-official-writing" / "references"
+        news_commentary = (refs / "genre-playbook-news-commentary.md").read_text(encoding="utf-8")
+        argument_chains = (refs / "argument-chains.md").read_text(encoding="utf-8")
+        genre_playbooks = (refs / "genre-playbooks.md").read_text(encoding="utf-8")
+        anti_ai = (refs / "anti-ai-patterns.md").read_text(encoding="utf-8")
+
+        self.assertIn("论点已经充分展开时自然结束", news_commentary)
+        self.assertIn("以“妥否，请批示”“请予审定”等作结", argument_chains)
+        self.assertIn("结尾落在责任或目标上", genre_playbooks)
+        for phrase in ["每段结尾都停留在口号层面", "口号式结尾", "将口号式结尾改为具体办理动作"]:
+            with self.subTest(phrase=phrase):
+                self.assertIn(phrase, anti_ai)
+        for text in [news_commentary, argument_chains, genre_playbooks, anti_ai]:
+            self.assertNotIn("收束", text)
 
     def test_v1511_anti_ai_frequency_review_is_prompt_driven_and_local(self) -> None:
         anti_ai = (ROOT / "chinese-official-writing" / "references" / "anti-ai-patterns.md").read_text(
