@@ -1399,6 +1399,7 @@ class SkillBoundaryTests(unittest.TestCase):
 
         for term in [
             "本项由模型通读全文后判断，不按固定词表自动替换",
+            "`先……再……`",
             "**连续否定**",
             "虚假对比",
             "机械重复",
@@ -1413,6 +1414,7 @@ class SkillBoundaryTests(unittest.TestCase):
             self.assertIn(term, anti_ai)
         self.assertIn("真实方案比较、法律政策要求、职责边界、风险提示", anti_ai)
         self.assertIn("不得把 `未`、`不`、`不得` 移到别的对象", anti_ai)
+        self.assertNotIn("**抽象两步流程**", anti_ai)
         self.assertIn("只语义重写确认有问题的局部", final_review)
         self.assertNotIn("自动批量替换", final_review)
 
