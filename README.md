@@ -1,6 +1,6 @@
 # 中文公文写作 Skill
 
-[![Version](https://img.shields.io/badge/version-1.6.0-blue)](https://github.com/gongyu0918-debug/chinese-official-writing-skill/releases/tag/v1.6.0)
+[![Version](https://img.shields.io/badge/version-1.6.1-blue)](https://github.com/gongyu0918-debug/chinese-official-writing-skill/releases/tag/v1.6.1)
 [![ClawHub](https://img.shields.io/badge/ClawHub-chinese--official--writing-2f80ed)](https://clawhub.ai/gongyu0918-debug/skills/chinese-official-writing)
 [![SkillHub](https://img.shields.io/badge/SkillHub-chinese--official--writing-e8590c)](https://skillhub.cn/skills/chinese-official-writing)
 [![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
@@ -21,7 +21,7 @@
 - **创作、改稿与复核**：分别处理从零起草、基于底稿修改、只审不改、压缩和 Word 正文衔接。
 - **轻量审查**：分层核对事实、视角、标题、格式、重复事项和模板化表达，并提供可选的确定性风险线索。
 - **技术材料专项写作**：覆盖 AI 算力、GPU/服务器租赁、成本比较、SLA、并发、安全、运维和验收。
-- **多平台适配**：同一 canonical 技能包同步到 Codex、Claude Code、OpenClaw、Hermes、Qwen Code 和通用 Agent Skills 目录。
+- **多平台适配**：同一 canonical 技能包同步到 Codex、Claude Code、WorkBuddy/CodeBuddy、Hermes、Qwen Code 和通用 Agent Skills 目录；OpenClaw/ClawHub 暂停更新并固定在已发布的 v1.6.0。
 
 ## 适用范围
 
@@ -31,7 +31,7 @@
 | 事务与工作材料 | 制度、规定、办法、管理办法、实施细则、操作规程、说明、申请、复函、公示、征求意见函、工作要点、总结、调研报告、讲话稿、致辞、述职报告 |
 | 方案与审查材料 | 实施方案、建设方案、可研报告、采购公告、审查材料、项目论证和办理要素核对 |
 | 技术类正式材料 | AI 算力服务可研、GPU/服务器租赁、模型服务需求、成本比较、SLA、并发、安全、运维和验收 |
-| 改稿与复核 | 顺稿、压缩、去口语化、降 AI 味、文种校验、格式核验、只审不改、Word 正文衔接 |
+| 改稿与复核 | 润色修改、压缩、去口语化、降 AI 味、文种校验、格式核验、只审不改、Word 正文衔接 |
 
 ## 它怎么解决这些问题
 
@@ -47,7 +47,7 @@
 
 ## 实现与技术栈
 
-这是一个 Markdown-first 的 Agent Skill。核心规则和 references 全部使用中文 Markdown 编写，不懂代码也能直接阅读、审查和修改。YAML frontmatter 负责名称、触发描述、版本和许可；Python 只承担可选的确定性检查；各平台适配包从同一 canonical 技能目录同步，正文规则保持一致。
+这是一个 Markdown-first 的 Agent Skill。核心规则和 references 全部使用中文 Markdown 编写，不懂代码也能直接阅读、审查和修改。通用 YAML frontmatter 只保留名称、触发描述和标签；版本与许可由发布包和宿主 manifest 承担。Python 只承担可选的确定性检查；各平台适配包从同一 canonical 技能目录同步，正文规则保持一致。
 
 | 组成 | 作用 |
 | --- | --- |
@@ -63,7 +63,7 @@
 
 ## 快速安装
 
-当前工作版本：`chinese-official-writing@1.6.0`
+当前本地发布候选：`chinese-official-writing@1.6.1`（尚未推送或发布）
 
 平台入口：[ClawHub](https://clawhub.ai/gongyu0918-debug/skills/chinese-official-writing) · [skillhub.cn](https://skillhub.cn/skills/chinese-official-writing)。通用 Agent Skills 安装器可直接使用：
 
@@ -75,10 +75,11 @@ npx skills add https://github.com/gongyu0918-debug/chinese-official-writing-skil
 
 ## 模型消融与真实写稿
 
-测试从早期无 Skill/带 Skill 对照，逐步扩展到固定版本消融、真实写稿盲审和多轮改稿。下表汇总 1.6.0 的事实边界、采购路由与 reference 减载，以及此前版本的文种路由、信息选择和复核能力。原始任务、成稿、匿名映射、独立复核和汇总记录均保存在仓库内；早期 270 任务模型消融保留脱敏聚合摘要。
+测试从早期无 Skill/带 Skill 对照，逐步扩展到固定版本消融、真实写稿盲审和多轮改稿。下表汇总 1.6.1 候选的入口减载、自然表达和可选 Hook 伴随包，以及此前版本的文种路由、信息选择和复核能力。原始任务、成稿、匿名映射、独立复核和汇总记录均保存在仓库内；早期 270 任务模型消融保留脱敏聚合摘要。
 
 | 调试方向 | 主要稿件与边界 | 当前证据 |
 | --- | --- | --- |
+| 1.6.1 入口减载、自然表达与可选 Hook 伴随包 | 通用入口只保留发现字段和标签，新闻稿件前置、适用单位后置；将运行规则中的“顺稿”“收束”换成普通说法；SkillHub 完整包采用 MIT，并提供默认关闭的 Codex、Claude Code、WorkBuddy/CodeBuddy 薄适配器；OpenClaw/ClawHub 继续固定在 v1.6.0 | description 有效样本未形成跨 provider 重复错路由，但不宣称入口流量提升；Hook 9/9 对、18/18 次真实写稿技术有效，按用户业务口径未形成两次同机制硬回退，但整体票数不占优、真实 D1 为0，只作为显式启用的窄域伴随物，不宣称质量提升或全面兜底 |
 | 1.6.0 事实边界、采购路由与 reference 减载 | 压缩入口占位和排除示例；短单项采购保持自然段，复杂采购按需加载完整办理链；总量与子项差额只用于校核；删除通用叶越界报告块、五个文种叶的模板优先重复句和 Hook 中重复的未决转进行态预放行 | 两家 DeepSeek V4 Flash 0731 `max` 的四原子组合真实复放为 Candidate 8 胜、Baseline 0 胜、2 难分；10/10 对技术有效。附件呈现差异保留为格式风险但未形成同一 provider 复现；最终语义裁决与原始 SOL 盲审均保留在 1.6.0 发布证据链中 |
 | 1.5.41 连续否定表达减载 | 将 anti-AI 叶中句尾限定的连续否定反例簇收敛为位置无关的一条规则，覆盖句中及相邻句；只处理同一事项内重复或主题外围的否定说明，材料明确且与主题直接相关的必要否定继续保留 | 两家 DeepSeek 的真实改稿显示正向事实承载优于连续否定说明；随后 DeepSeek、Luna、Qwen 共 8 个有效配对验证精简规则不劣，16 份有效稿没有候选独有硬回退；固定 1.5.40 组合回归见 1.5.41 发布证据 |
 | 1.5.40 终稿复核入口与复核叶减负 | 将既有 `draft-body` 指针从脚本说明纯前移到核心流程第 6 步；在报告、请示和通用复核叶内删除三处同次加载的精确重复，保留文种边界、要素顺序和近场风险召回；不新增强制脚本、正则、Hook、路由或加载条件 | 四个原子均有固定题真实复放与独立裁决；终稿指针前移形成一次“读取终稿叶并删除无锚保护尾句”的直接信号，三项去重未见 DIFF 相关召回回退；发布前固定 1.5.39 组合回归见 1.5.40 发布证据 |
@@ -111,7 +112,7 @@ npx skills add https://github.com/gongyu0918-debug/chinese-official-writing-skil
 | 原子结论限定复核 | 旧稿局部改写、巡检整改报告、食堂异常通报 | 固定 1.5.18 同题盲审 3/3 判 1.5.19 胜出；材料原有结论状态保留，完整稿仍有重复风险 |
 | 渐进式拆叶 | 普通复杂写稿、公开来源核验、报告类细查 | 外部核验规则按需加载，报告细查路径减少 3549 字符；两轮各 3 组真实 A/B 均未见硬回退 |
 | 制度类专项路由 | 管理办法、来访制度、实施细则、短篇规定、印发通知与操作规程 | 新增实施细则、规定两题相对 1.5.20 均小胜且硬检查通过；既有样本保留条文偏碎、职责复述和 DOCX 视觉未核验风险 |
-| 工程回归 | 单元测试、固定上一发行版消融、Promptfoo、镜像与清洁包 | 1.6.0 发布前实跑结果见 `release-1.6.0.md`；本行只记录实际完成的当次结果，不用确定性工程门替代真实写稿裁决 |
+| 工程回归 | 单元测试、固定上一发行版消融、Promptfoo、镜像与清洁包 | 1.6.1 本地发布候选结果见 `release-1.6.1-rc.md`；本行只记录实际完成的当次结果，不用确定性工程门替代真实写稿裁决 |
 
 60 份发布级真实写稿由两名独立 verifier 盲审。综合结果中，v1.5.13 与 1.5.14 都是 29 PASS、1 个对称 WARN、0 FAIL；硬边界复核两版均为 30 PASS、0 WARN、0 FAIL。真实模型小样本评测与发布级写稿覆盖会议纪要、情况说明、通知、请示、报告、字段式申请、只审不改、普通采购、AI 算力需求和旧稿防回流。
 

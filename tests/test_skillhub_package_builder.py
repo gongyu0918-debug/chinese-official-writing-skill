@@ -15,13 +15,14 @@ SPEC = importlib.util.spec_from_file_location("build_skillhub_package", MODULE_P
 assert SPEC and SPEC.loader
 BUILDER = importlib.util.module_from_spec(SPEC)
 SPEC.loader.exec_module(BUILDER)
+RC_VERSION = "1.6.1"
 
 
 class SkillHubPackageBuilderTests(unittest.TestCase):
     def test_builds_minimal_tracked_package_without_repository_metadata(self) -> None:
         with tempfile.TemporaryDirectory() as temporary:
             output = Path(temporary) / "publish-package"
-            result = BUILDER.build_package(output, version="1.6.2")
+            result = BUILDER.build_package(output, version=RC_VERSION)
 
             self.assertEqual(result["files"], 46)
             self.assertEqual(result["license"], "LICENSE.md")
@@ -55,7 +56,7 @@ class SkillHubPackageBuilderTests(unittest.TestCase):
             )
             self.assertEqual(
                 (output / "_meta.json").read_text(encoding="utf-8"),
-                '{\n  "slug": "chinese-official-writing",\n  "version": "1.6.2"\n}\n',
+                f'{{\n  "slug": "chinese-official-writing",\n  "version": "{RC_VERSION}"\n}}\n',
             )
 
             packaged = (output / "SKILL.md").read_text(encoding="utf-8")
@@ -65,7 +66,7 @@ class SkillHubPackageBuilderTests(unittest.TestCase):
                 set(frontmatter),
                 {"slug", "version", "displayName", "summary", "tags", "name", "description"},
             )
-            self.assertEqual(frontmatter["version"], "1.6.2")
+            self.assertEqual(frontmatter["version"], RC_VERSION)
             self.assertEqual(
                 frontmatter["tags"],
                 ["chinese", "official-document", "writing", "gongwen", "ai-compute"],
@@ -80,15 +81,15 @@ class SkillHubPackageBuilderTests(unittest.TestCase):
             output = Path(temporary) / "publish-package"
             output.mkdir()
             with self.assertRaises(FileExistsError):
-                BUILDER.build_package(output, version="1.6.2")
+                BUILDER.build_package(output, version=RC_VERSION)
 
     def test_rejects_invalid_release_coordinates(self) -> None:
         with tempfile.TemporaryDirectory() as temporary:
             root = Path(temporary)
             with self.assertRaises(ValueError):
-                BUILDER.build_package(root / "bad-version", version="v1.6.2")
+                BUILDER.build_package(root / "bad-version", version=f"v{RC_VERSION}")
             with self.assertRaises(ValueError):
-                BUILDER.build_package(root / "bad-slug", version="1.6.2", slug="Bad_Slug")
+                BUILDER.build_package(root / "bad-slug", version=RC_VERSION, slug="Bad_Slug")
 
 
 if __name__ == "__main__":
