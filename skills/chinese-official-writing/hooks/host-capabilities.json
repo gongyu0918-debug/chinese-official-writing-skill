@@ -19,7 +19,7 @@
       "continuation_limit": 4
     },
     "claude_code": {
-      "status": "registration_verified",
+      "status": "lifecycle_verified",
       "adapter": "hooks/claude-code",
       "events": [
         "UserPromptSubmit",
@@ -27,12 +27,16 @@
         "Stop"
       ],
       "verified_events": [
-        "UserPromptSubmit"
-      ],
-      "unverified_events": [
-        "PostToolUse:Bash|Read",
+        "UserPromptSubmit",
+        "PostToolUse:Read",
         "Stop"
       ],
+      "unverified_events": [
+        "PostToolUse:Bash"
+      ],
+      "verified_transport": "anthropic_messages_gateway",
+      "verified_model": "ollama-cloud/deepseek-v4-flash:0731",
+      "first_party_login_required": false,
       "data_root_environment": "CLAUDE_PLUGIN_DATA",
       "minimum_version": "2.1.195",
       "continuation_limit": 4,
