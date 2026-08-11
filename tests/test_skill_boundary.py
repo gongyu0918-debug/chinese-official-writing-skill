@@ -964,6 +964,8 @@ class SkillBoundaryTests(unittest.TestCase):
 
         self.assertIn('FULL_PACKAGE_LICENSE = "MIT"', sync_script)
         self.assertIn('PURE_SKILL_LICENSE = "MIT-0"', sync_script)
+        self.assertIn("TARGET_LICENSES = {", sync_script)
+        self.assertIn("if set(TARGET_LICENSES) != set(TARGETS)", sync_script)
         self.assertNotIn("redskill", sync_script.lower())
 
     def test_lint_ci_invocation_stays_out_of_writer_context(self) -> None:

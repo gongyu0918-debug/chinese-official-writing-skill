@@ -33,6 +33,14 @@ TARGETS = {
     "openclaw": ROOT / "openclaw" / "skills" / "chinese_official_writing",
 }
 
+TARGET_LICENSES = {
+    "claude": FULL_PACKAGE_LICENSE,
+    "agents": PURE_SKILL_LICENSE,
+    "qwen": PURE_SKILL_LICENSE,
+    "hermes": PURE_SKILL_LICENSE,
+    "openclaw": PURE_SKILL_LICENSE,
+}
+
 STALE_TARGET_FILES = (
     "references/academic-writing.md",
     "references/academic-proposal.md",
@@ -95,7 +103,7 @@ def patch_frontmatter(target: Path, mode: str) -> None:
     skill_file = target / "SKILL.md"
     text = versioned_skill_text(skill_file.read_text(encoding="utf-8"))
     original = text
-    target_license = FULL_PACKAGE_LICENSE if mode == "claude" else PURE_SKILL_LICENSE
+    target_license = TARGET_LICENSES[mode]
     text = re.sub(r"^license: .+$", f"license: {target_license}", text, count=1, flags=re.M)
     if mode == "openclaw":
         text = text.replace("name: chinese-official-writing", "name: chinese_official_writing", 1)
@@ -183,7 +191,7 @@ def copy_skill(target: Path, mode: str) -> None:
         if packaged_file.exists():
             packaged_file.unlink()
     patch_frontmatter(target, mode)
-    if mode != "claude":
+    if TARGET_LICENSES[mode] == PURE_SKILL_LICENSE:
         shutil.copyfile(PURE_SKILL_LICENSE_FILE, target / "LICENSE")
     if mode == "openclaw":
         (target / "README.md").write_text(
@@ -199,6 +207,8 @@ def copy_skill(target: Path, mode: str) -> None:
 def main() -> int:
     if not (CANONICAL / "SKILL.md").exists():
         raise SystemExit(f"missing canonical skill: {CANONICAL}")
+    if set(TARGET_LICENSES) != set(TARGETS):
+        raise SystemExit("every adapter target must declare an explicit package license")
     update_canonical_skill_version()
     sync_canonical_license()
     update_plugin_manifest(PACKAGED_CLAUDE_PLUGIN_MANIFEST, "packaged Claude", FULL_PACKAGE_LICENSE)
