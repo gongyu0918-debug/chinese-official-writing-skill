@@ -1,0 +1,2 @@
+# Frozen anonymous-review artifacts retain their exact judged bytes.
+tests/evidence/agents-control-plane-v1601/*.md -diff
