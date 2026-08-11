@@ -1378,6 +1378,39 @@ class ReviewGateTests(unittest.TestCase):
         self.assertEqual(result.selected, "D1")
         self.assertGreater(candidate_length, maximum)
 
+    def test_decisions_rejects_material_under_minimum_shortening(self) -> None:
+        request = "请写一份至少100字的情况说明。"
+        draft = "情况说明\n\n" + "甲" * 86
+        candidate = "情况说明\n\n" + "甲" * 61
+
+        self.assertEqual(review_gate._count_length(draft, "nonspace"), 90)
+        self.assertEqual(review_gate._count_length(candidate, "nonspace"), 65)
+        self.assertEqual(
+            review_gate._candidate_document_invariant_reason(
+                request,
+                draft,
+                candidate,
+                review_gate.REPAIR_MODE_DECISIONS,
+            ),
+            "prompt_length_compliance_worsened",
+        )
+
+    def test_decisions_allows_minor_under_minimum_shortening(self) -> None:
+        request = "请写一份至少100字的情况说明。"
+        draft = "情况说明\n\n" + "甲" * 86
+        candidate = "情况说明\n\n" + "甲" * 76
+
+        self.assertEqual(review_gate._count_length(draft, "nonspace"), 90)
+        self.assertEqual(review_gate._count_length(candidate, "nonspace"), 80)
+        self.assertIsNone(
+            review_gate._candidate_document_invariant_reason(
+                request,
+                draft,
+                candidate,
+                review_gate.REPAIR_MODE_DECISIONS,
+            )
+        )
+
     def test_sentence_rewrite_allows_minor_length_variance(self) -> None:
         target = "目前只能确认清洗后告警次数减少，尚不能据此确定长期效果。"
         replacement = "长期效果仍待观察。"
@@ -1844,7 +1877,7 @@ class ReviewGateTests(unittest.TestCase):
         self.assertEqual(result.selected, "D0")
         self.assertEqual(result.reason, "hard_anchor_change_not_redundant")
 
-    def test_bounded_p0_repair_may_shorten_draft_already_below_minimum(self) -> None:
+    def test_bounded_p0_repair_cannot_materially_worsen_minimum_shortfall(self) -> None:
         request = "请写一份100—180字的情况报告。"
         draft = (
             "情况报告\n\n"
@@ -1867,8 +1900,8 @@ class ReviewGateTests(unittest.TestCase):
             review_gate.REPAIR_MODE_DECISIONS,
         )
         result = review_gate.evaluate_candidate(request, "", draft, "run-1", detection, packet)
-        self.assertEqual(result.selected, "D1")
-        self.assertEqual(result.reason, "verified_bounded_decision_packet")
+        self.assertEqual(result.selected, "D0")
+        self.assertEqual(result.reason, "prompt_length_compliance_worsened")
 
     def test_middle_substring_cannot_collapse_double_negation(self) -> None:
         request = "请写一份简短情况报告。"
