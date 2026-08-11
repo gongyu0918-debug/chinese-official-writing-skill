@@ -207,7 +207,7 @@ def preflight(baseline_root: Path, candidate_root: Path) -> dict[str, Any]:
         raise RuntimeError("baseline worktree is dirty")
     if git(candidate_root, "status", "--porcelain", "--untracked-files=all"):
         raise RuntimeError("candidate worktree is dirty")
-    if git(candidate_root, "merge-base", "--is-ancestor", CANDIDATE_PRODUCT_COMMIT, "HEAD") != CANDIDATE_PRODUCT_COMMIT:
+    if git(candidate_root, "merge-base", CANDIDATE_PRODUCT_COMMIT, "HEAD") != CANDIDATE_PRODUCT_COMMIT:
         raise RuntimeError("candidate product commit is not an ancestor of evaluation worktree")
     candidate_changed = git(candidate_root, "diff", "--name-only", CANDIDATE_PRODUCT_COMMIT, "HEAD").splitlines()
     if any(path.startswith(prefix + "/") for path in candidate_changed for prefix in PACKAGE_PREFIXES):
