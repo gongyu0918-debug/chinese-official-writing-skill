@@ -12,6 +12,7 @@
 
 ## 逐版发布证据
 
+- 当前仓库目录、GitHub OpenClaw 兼容包和 README 收敛结果：[`repository-layout-v161-result-20260812.md`](../../tests/evidence/repository-layout-v161-result-20260812.md)。
 - 1.5.x 的发布门禁、提交与 tag、清洁包、平台回执和传播状态保存在 `maintenance/tests/evidence/release-1.5.x.md`。
 - 当前 GitHub 发布证据：[`release-1.6.1.md`](../../tests/evidence/release-1.6.1.md)。SkillHub 本次暂缓更新；ClawHub/OpenClaw 继续固定在 v1.6.0；小红书 Red SkillHub 未触碰。
 - 发布前本地候选快照：[`release-1.6.1-rc.md`](../../tests/evidence/release-1.6.1-rc.md)。该文件保留当时测试和许可边界，不覆盖最终发布记录。
