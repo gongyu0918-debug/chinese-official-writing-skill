@@ -2,7 +2,7 @@
 
 日期：2026-08-11
 
-结论：`CONSERVATIVE NEWS-FOREGROUNDING CANDIDATE / ROUTE RETEST REQUIRED / NO QUALITY-UPLIFT CLAIM`
+结论：`USER-SPECIFIED CONSERVATIVE ENTRY / TWO-PROVIDER NON-INFERIOR SIGNAL / THREE-PROVIDER GATE NOT ESTABLISHED / NO QUALITY-UPLIFT CLAIM`
 
 ## 产品范围
 
@@ -26,11 +26,20 @@
 
 ## 本次裁决
 
-用户在看到较宽候选的路由结果后，最终收窄规格：首句只说明能力，四类单位范围后置，不删除“个人求职”。本文件保留前两轮证据作为风险背景；这个新候选仍需独立路由复放，不能直接把较宽候选的 90 次调用写成当前文字已经通过。
+用户在看到较宽候选的路由结果后，最终收窄规格：首句只说明能力，四类单位范围后置，不删除“个人求职”。该 280 字候选又做了三轮、48 次正式路由调用：
+
+- Ollama Cloud：4/4 配对有效；
+- Alibaba `tokenplan2`（实际 provider id `alibaba-token-plan-2`）：4/4 配对有效，未回退旧 Token Plan；
+- MiniMax M3：最终只有 2/4 配对有效。即使同时隔离 `HOME`、`USERPROFILE` 和 `CODEX_HOME`，N1/O1 仍读取 Windows 实际用户 KnownFolder 下的 `.agents` 同名 Skill，按预注册作废。
+
+有效样本没有形成跨 provider 重复的 Candidate 独有错路由。唯一 Candidate 独有信号是 Ollama 的一个事务正向题未读取 Skill；同一 provider 的另一负向题则为 Baseline 独有误触发，方向不一致。严格的“三 provider 每家至少三对”门槛没有满足，因此不能写成三 provider 非劣通过，也不能宣称新闻流量提升。
+
+用户明确把能力优先、新闻前置、单位范围后置和保留“个人求职”作为人类可读的入口规格。本次在完整披露 MiniMax 污染和严格门未建立的前提下按用户规格纳入；Ollama 与 Token Plan 2 的八个有效配对仅作为未见稳定回退的支持信号。
 
 原始结果仍保留在隔离分支：
 
 - `tests/evidence/description-news-trigger-v1601-real-route-result-20260811.md`
 - `tests/evidence/description-news-trigger-v1601-n4-news-replay-result-20260811.md`
+- `codex/description-conservative-route-v1602@359f08310a1ceb443ed055ff772f0f7c782c443e`
 
 本原子未发布、未修改 `main`、未触碰 ClawHub。
