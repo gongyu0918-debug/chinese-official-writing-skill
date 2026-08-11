@@ -46,7 +46,7 @@
 
 1. 授权只覆盖用户点名的平台和版本，不延伸到其他平台或后续版本。
 2. 发布前固定上一发行 tag 的解引用 commit，核对 ancestry、精确 diff、版本号与镜像元数据、工作树、测试、清洁包 allowlist、文件数、禁入文件和 fingerprint。
-3. SkillHub 清洁包使用 `tools/build_skillhub_package.py` 从已跟踪的 canonical 文件构建；发布包不复用历史 output，不上传 `agents/openai.yaml`、包内 `LICENSE`、缓存或研究产物，专用 `SKILL.md` 不回填 homepage、license、兼容列表和安装路径。
+3. SkillHub 清洁包使用 `tools/build_skillhub_package.py` 从已跟踪的 canonical 文件构建；发布包不复用历史 output，不上传 `agents/openai.yaml`、无扩展名 `LICENSE`、缓存或研究产物，另以 `LICENSE.md` 携带根 MIT 许可证全文；专用 `SKILL.md` 不回填 homepage、license、兼容列表和安装路径。
 4. 分别核验 annotated tag object、tag 解引用 commit、发布提交、远端分支和 GitHub Release。发布后的证据提交可以推进 `main`，不得移动已发布 tag。
 5. dry-run、上传回执、公开 `latest` 或 tag、审核与安全状态、来源证明和搜索索引传播分别记录；来源证明缺失时记 `unavailable`，公开索引滞后不构成重复提交理由。
 6. 当前发行范围为 GitHub 和 skillhub.cn。ClawHub 自 v1.6.0 后暂停更新，只有用户明确恢复授权并完成排除式增量验证后才可再次发布；小红书 Red SkillHub 同样默认排除，只有用户逐次明确恢复授权才可触碰。

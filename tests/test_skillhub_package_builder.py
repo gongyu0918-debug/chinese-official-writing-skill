@@ -22,8 +22,11 @@ class SkillHubPackageBuilderTests(unittest.TestCase):
             output = Path(temporary) / "publish-package"
             result = BUILDER.build_package(output, version="1.6.2")
 
-            self.assertEqual(result["files"], 39)
+            self.assertEqual(result["files"], 40)
+            self.assertEqual(result["license"], "LICENSE.md")
             self.assertFalse((output / "LICENSE").exists())
+            self.assertEqual((output / "LICENSE.md").read_bytes(), (ROOT / "LICENSE").read_bytes())
+            self.assertTrue((output / "LICENSE.md").read_text(encoding="utf-8").startswith("MIT License\n"))
             self.assertFalse((output / "agents" / "openai.yaml").exists())
             self.assertEqual(
                 (output / "_meta.json").read_text(encoding="utf-8"),

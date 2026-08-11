@@ -4,7 +4,7 @@
 
 `ENGINEERING PASS / LICENSE SURFACES CONSISTENT / ELIGIBLE FOR LOCAL INTEGRATION`.
 
-The next-version full SkillHub/Codex distribution now uses MIT and carries the complete MIT text. ClawHub/OpenClaw and the ordinary `.agents`, Qwen, and Hermes pure-Skill mirrors retain MIT-0 and carry the complete MIT-0 text. No writing instruction, reference, Hook implementation, gate state machine, route, or external configuration changed.
+The next-version full SkillHub/Codex distribution uses MIT and carries the complete MIT text. The ordinary `.agents`, Qwen, and Hermes pure-Skill mirrors retain their MIT-0 package license. ClawHub/OpenClaw is frozen at its published v1.6.0 package, whose frontmatter and user-facing copy identify MIT-0 without a package-local license file. No writing instruction, reference, Hook implementation, gate state machine, route, or external configuration changed.
 
 ## Bound commits
 
@@ -17,15 +17,15 @@ The next-version full SkillHub/Codex distribution now uses MIT and carries the c
 | Surface | Frontmatter/manifest | Bundled license | Files |
 | --- | --- | --- | ---: |
 | canonical full package | MIT | root MIT bytes | 40 |
-| SkillHub clean package | MIT | root MIT bytes | 39 after excluding `agents/openai.yaml` |
+| SkillHub clean package | MIT | `LICENSE.md` equals root MIT bytes | 40 after excluding `agents/openai.yaml` and extensionless `LICENSE` |
 | `skills/` Codex package | MIT | root MIT bytes | 40 |
 | `.agents`, Qwen, Hermes pure Skill | MIT-0 | root `LICENSE-SKILL` bytes | per mirrored package |
-| OpenClaw/ClawHub | MIT-0 | root `LICENSE-SKILL` bytes | 33 |
+| OpenClaw/ClawHub | MIT-0 | frozen v1.6.0 metadata; no package-local license | 32 |
 
 - MIT SHA-256: `EAD35E40076582D7053FB0908588ADB878FF5108601A76647B9F5626B3A0D5F8`.
 - MIT-0 SHA-256: `F2E66A0AFB821915DA09B79C1BF63DAF4F4EED3356F2D6B7AFF9A6FB763B7A7A`.
 - Canonical, `skills/`, both root plugin manifests, and the packaged Claude adapter manifest declare MIT.
-- The four pure-Skill frontmatters and OpenClaw user-facing license text remain MIT-0.
+- The current pure-Skill mirrors retain MIT-0 package files; frozen OpenClaw frontmatter and user-facing copy remain MIT-0.
 - Red SkillHub and historical evidence were not changed.
 
 ## Verification
@@ -53,4 +53,4 @@ Promptfoo reported that local version 0.121.11 is behind 0.122.0; the frozen stu
 
 - This is a package metadata and bundled-license change, not a writing-quality claim. No real-writing A/B was run for this atom.
 - Public SkillHub/ClawHub packages remain at v1.6.0 until an authorized release; this candidate does not change remote state, tag, or published license metadata.
-- Release checks must use the new expected counts: SkillHub clean 39 and ClawHub/OpenClaw 33.
+- Release checks must use the new expected count: SkillHub clean 40. ClawHub/OpenClaw is frozen at the published v1.6.0 tree and no longer participates in this release line.

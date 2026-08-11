@@ -13,6 +13,8 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 CANONICAL = ROOT / "chinese-official-writing"
+ROOT_LICENSE = ROOT / "LICENSE"
+SKILLHUB_LICENSE_NAME = "LICENSE.md"
 DEFAULT_SLUG = "chinese-official-writing"
 DEFAULT_DISPLAY_NAME = "中文公文写作"
 DEFAULT_SUMMARY = "用于中文公文和正式工作材料的起草、改写、压缩与复核，强调文种准确、事实克制、数据可追溯和公文语气自然。"
@@ -117,6 +119,8 @@ def build_package(
     tracked = tracked_canonical_files()
     if "SKILL.md" not in tracked:
         raise ValueError("tracked canonical package is missing SKILL.md")
+    if SKILLHUB_LICENSE_NAME in tracked:
+        raise ValueError(f"canonical package unexpectedly owns generated {SKILLHUB_LICENSE_NAME}")
 
     canonical_text = (CANONICAL / "SKILL.md").read_text(encoding="utf-8")
     fields, body = split_skill(canonical_text)
@@ -139,6 +143,8 @@ def build_package(
         else:
             shutil.copyfile(source, target)
 
+    shutil.copyfile(ROOT_LICENSE, output / SKILLHUB_LICENSE_NAME)
+
     meta = {"slug": slug, "version": version}
     (output / "_meta.json").write_text(
         json.dumps(meta, ensure_ascii=False, indent=2) + "\n",
@@ -152,6 +158,10 @@ def build_package(
             raise RuntimeError(f"forbidden SkillHub frontmatter key: {key}")
     if packaged_body != body:
         raise RuntimeError("packaged SKILL body differs from canonical")
+    if (output / SKILLHUB_LICENSE_NAME).read_bytes() != ROOT_LICENSE.read_bytes():
+        raise RuntimeError("packaged SkillHub license differs from root MIT license")
+    if (output / "LICENSE").exists():
+        raise RuntimeError("extensionless LICENSE must stay out of the SkillHub package")
 
     files = sorted(path.relative_to(output).as_posix() for path in output.rglob("*") if path.is_file())
     return {
@@ -160,6 +170,7 @@ def build_package(
         "version": version,
         "files": len(files),
         "excluded": sorted(PACKAGE_EXCLUDES),
+        "license": SKILLHUB_LICENSE_NAME,
     }
 
 
