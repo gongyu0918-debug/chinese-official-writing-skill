@@ -15,6 +15,7 @@
 - 1.5.x 的发布门禁、提交与 tag、清洁包、平台回执和传播状态保存在 `tests/evidence/release-1.5.x.md`。
 - 本地待发布候选：[`release-1.6.1-rc.md`](../../tests/evidence/release-1.6.1-rc.md)；已合入本地 `main`，尚未推送、打 tag、创建 Release 或上传平台。
 - 当前最新发布证据：[`release-1.6.0.md`](../../tests/evidence/release-1.6.0.md)。
+- 不改版本、不发布的许可证范围清理：[`license-scope-cleanup-result-20260812.md`](../../tests/evidence/license-scope-cleanup-result-20260812.md)；同题 README v1.6.0 写稿更新见 [`readme-v160-same-task-comparison-20260812.md`](../../tests/evidence/readme-v160-same-task-comparison-20260812.md)。
 - 相邻正式版本：[`release-1.5.41.md`](../../tests/evidence/release-1.5.41.md)、[`release-1.5.40.md`](../../tests/evidence/release-1.5.40.md)。
 - 1.5.39 自包含 A/B、匿名裁决及 Word 对齐修复：[`v1539-compact-repro-pack-20260808.md`](../../tests/evidence/v1539-compact-repro-pack-20260808.md)。
 - 其他预注册、候选、盲审、消融和真实写稿记录继续在 `tests/evidence/` 中按版本号、候选代号或日期检索。
