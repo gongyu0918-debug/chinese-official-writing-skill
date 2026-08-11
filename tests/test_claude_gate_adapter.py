@@ -60,15 +60,19 @@ class ClaudeGateAdapterTests(unittest.TestCase):
     def test_contract_manifest_and_capabilities_are_explicitly_opt_in(self):
         capabilities = json.loads(CAPABILITIES_PATH.read_text(encoding="utf-8"))
         self.assertFalse(capabilities["activation"]["ordinary_skill_install_enables_hooks"])
-        self.assertEqual("verified", capabilities["hosts"]["codex"]["status"])
+        codex = capabilities["hosts"]["codex"]
+        self.assertEqual("repository_companion_verified", codex["status"])
+        self.assertEqual("adapter_absent", codex["package_presence"]["skillhub_ordinary_package"])
+        self.assertEqual("requires_user_authorized_host_glue", codex["skillhub_activation"])
         claude = capabilities["hosts"]["claude_code"]
         self.assertEqual("lifecycle_verified", claude["status"])
+        self.assertEqual("package_present", claude["package_presence"])
         self.assertEqual(["UserPromptSubmit", "PostToolUse:Read", "Stop"], claude["verified_events"])
         self.assertEqual(["PostToolUse:Bash"], claude["unverified_events"])
         self.assertEqual("anthropic_messages_gateway", claude["verified_transport"])
         self.assertEqual("ollama-cloud/deepseek-v4-flash:0731", claude["verified_model"])
         self.assertFalse(claude["first_party_login_required"])
-        self.assertEqual("metadata_only", capabilities["hosts"]["openclaw"]["status"])
+        self.assertEqual("frozen", capabilities["hosts"]["openclaw"]["status"])
         self.assertEqual("unknown", capabilities["hosts"]["workbuddy"]["status"])
         hooks = json.loads(HOOKS_PATH.read_text(encoding="utf-8"))["hooks"]
         self.assertEqual(["UserPromptSubmit", "PostToolUse", "Stop"], list(hooks))

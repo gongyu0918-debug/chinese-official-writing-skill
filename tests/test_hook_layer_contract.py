@@ -1,0 +1,72 @@
+from __future__ import annotations
+
+import json
+from pathlib import Path
+import unittest
+
+
+ROOT = Path(__file__).resolve().parents[1]
+SKILL_ROOT = ROOT / "chinese-official-writing"
+
+
+class HookLayerContractTests(unittest.TestCase):
+    def test_gate_spec_is_hook_only_and_not_an_ordinary_skill_route(self) -> None:
+        skill = (SKILL_ROOT / "SKILL.md").read_text(encoding="utf-8")
+        glue = (SKILL_ROOT / "hooks" / "AGENT_GLUE.md").read_text(encoding="utf-8")
+        gate_spec = (
+            SKILL_ROOT / "references" / "delivery-review-gate.md"
+        ).read_text(encoding="utf-8")
+
+        self.assertNotIn("delivery-review-gate.md", skill)
+        self.assertIn("Three layers", glue)
+        self.assertIn("not an ordinary Skill reference route", glue)
+        self.assertIn("普通 `SKILL.md` 不加载本页", gate_spec)
+        self.assertIn("Hook 默认禁用", gate_spec)
+
+    def test_optional_lint_ends_before_d0_and_is_not_hook_input(self) -> None:
+        glue = (SKILL_ROOT / "hooks" / "AGENT_GLUE.md").read_text(encoding="utf-8")
+        bridge = (SKILL_ROOT / "hooks" / "gate_stop_hook.py").read_text(encoding="utf-8")
+        claude_adapter = (
+            SKILL_ROOT / "hooks" / "claude-code" / "scripts" / "gate_stop_hook.py"
+        ).read_text(encoding="utf-8")
+        repository_manifest = (ROOT / "hooks" / "hooks.json").read_text(encoding="utf-8")
+        claude_manifest = (
+            SKILL_ROOT / "hooks" / "claude-code" / "hooks" / "hooks.json"
+        ).read_text(encoding="utf-8")
+
+        self.assertIn("optional and never edits the draft automatically", glue)
+        self.assertIn("It does not run `prose_lint.py`", glue)
+        self.assertIn("immutable D0 is the fallback", glue)
+        hook_surfaces = {
+            "shared bridge": bridge,
+            "Claude adapter": claude_adapter,
+            "repository manifest": repository_manifest,
+            "Claude manifest": claude_manifest,
+        }
+        for name, hook_surface in hook_surfaces.items():
+            with self.subTest(surface=name):
+                self.assertNotIn("prose_lint", hook_surface)
+
+    def test_capability_claims_match_repository_and_package_surfaces(self) -> None:
+        capabilities = json.loads(
+            (SKILL_ROOT / "hooks" / "host-capabilities.json").read_text(encoding="utf-8")
+        )
+        self.assertEqual(2, capabilities["schema_version"])
+        self.assertFalse(capabilities["activation"]["ordinary_skill_install_enables_hooks"])
+
+        codex = capabilities["hosts"]["codex"]
+        self.assertEqual("repository_companion_verified", codex["status"])
+        self.assertEqual("present", codex["package_presence"]["repository_companion"])
+        self.assertEqual(
+            "adapter_absent", codex["package_presence"]["skillhub_ordinary_package"]
+        )
+        self.assertEqual("requires_user_authorized_host_glue", codex["skillhub_activation"])
+
+        claude = capabilities["hosts"]["claude_code"]
+        self.assertEqual("package_present", claude["package_presence"])
+        self.assertEqual("frozen", capabilities["hosts"]["openclaw"]["status"])
+        self.assertEqual("unknown", capabilities["hosts"]["workbuddy"]["status"])
+
+
+if __name__ == "__main__":
+    unittest.main()

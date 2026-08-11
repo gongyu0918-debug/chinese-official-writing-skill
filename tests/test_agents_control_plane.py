@@ -19,7 +19,7 @@ class AgentsControlPlaneTests(unittest.TestCase):
             "禁止直接誊抄第三方代码、脚本、正则、模板库、大段 prompt、固定话术或模板正文",
             "真实链路 A/B",
             "解盲前不泄露候选身份",
-            "SkillHub 可携带可选 Codex Hook 伴随物",
+            "SkillHub 可携带可选 Hook 伴随物",
             "Hook 资产放在专属 `hooks/` 目录",
             "ClawHub 包排除 Hook 和交付门禁资产",
             "ClawHub 自 v1.6.0 后暂停更新",

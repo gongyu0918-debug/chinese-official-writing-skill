@@ -1,5 +1,5 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "shared_gate_core": "chinese-official-writing/scripts/review_gate.py",
   "activation": {
     "default": "disabled",
@@ -8,8 +8,13 @@
   },
   "hosts": {
     "codex": {
-      "status": "verified",
-      "adapter": "hooks/hooks.json",
+      "status": "repository_companion_verified",
+      "adapter": "repository-root hooks/hooks.json",
+      "package_presence": {
+        "repository_companion": "present",
+        "skillhub_ordinary_package": "adapter_absent"
+      },
+      "skillhub_activation": "requires_user_authorized_host_glue",
       "events": [
         "UserPromptSubmit",
         "PostToolUse:Bash",
@@ -21,6 +26,7 @@
     "claude_code": {
       "status": "lifecycle_verified",
       "adapter": "hooks/claude-code",
+      "package_presence": "package_present",
       "events": [
         "UserPromptSubmit",
         "PostToolUse:Bash|Read",
@@ -43,8 +49,7 @@
       "activation": "explicit plugin load only"
     },
     "openclaw": {
-      "status": "metadata_only",
-      "required_event": "before_agent_finalize",
+      "status": "frozen",
       "adapter": null
     },
     "workbuddy": {

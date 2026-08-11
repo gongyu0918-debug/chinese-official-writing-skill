@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import importlib.util
+import json
 import tempfile
 import unittest
 from pathlib import Path
@@ -28,6 +29,21 @@ class SkillHubPackageBuilderTests(unittest.TestCase):
             self.assertEqual((output / "LICENSE.md").read_bytes(), (ROOT / "LICENSE").read_bytes())
             self.assertTrue((output / "LICENSE.md").read_text(encoding="utf-8").startswith("MIT License\n"))
             self.assertFalse((output / "agents" / "openai.yaml").exists())
+            self.assertTrue((output / "hooks" / "AGENT_GLUE.md").is_file())
+            self.assertTrue((output / "hooks" / "host-capabilities.json").is_file())
+            self.assertTrue((output / "hooks" / "claude-code" / "hooks" / "hooks.json").is_file())
+            self.assertFalse((output / "hooks" / "hooks.json").exists())
+            capabilities = json.loads(
+                (output / "hooks" / "host-capabilities.json").read_text(encoding="utf-8")
+            )
+            self.assertEqual(
+                "adapter_absent",
+                capabilities["hosts"]["codex"]["package_presence"]["skillhub_ordinary_package"],
+            )
+            self.assertEqual(
+                "package_present",
+                capabilities["hosts"]["claude_code"]["package_presence"],
+            )
             self.assertEqual(
                 (output / "_meta.json").read_text(encoding="utf-8"),
                 '{\n  "slug": "chinese-official-writing",\n  "version": "1.6.2"\n}\n',
