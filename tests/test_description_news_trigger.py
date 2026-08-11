@@ -27,7 +27,7 @@ def read_description(path: Path) -> str:
 
 
 class DescriptionNewsTriggerTests(unittest.TestCase):
-    def test_active_description_leads_with_capability_without_audience_enumeration(self) -> None:
+    def test_active_description_leads_with_capability_and_defers_audience(self) -> None:
         descriptions = [read_description(path) for path in ACTIVE_SKILL_PATHS]
         self.assertEqual(len(set(descriptions)), 1)
 
@@ -39,14 +39,13 @@ class DescriptionNewsTriggerTests(unittest.TestCase):
         )
         self.assertIn("新闻稿、新闻消息、快讯、活动报道", description)
         self.assertIn("不用于英文、文学、营销、社媒、论文或个人求职。", description)
-        for audience in ("机关", "企事业单位", "学校", "新闻机构"):
-            self.assertNotIn(audience, description)
+        self.assertIn("适用于机关、企事业单位、学校、新闻机构。", description)
         self.assertIn("个人求职", description)
-        self.assertLessEqual(len(description), 280)
+        self.assertEqual(len(description), 280)
 
     def test_openclaw_description_stays_on_frozen_release(self) -> None:
         description = read_description(FROZEN_OPENCLAW_SKILL)
-        self.assertIn("机关企事业单位、学校等", description)
+        self.assertNotIn("适用于机关、企事业单位、学校、新闻机构", description)
 
 
 if __name__ == "__main__":
