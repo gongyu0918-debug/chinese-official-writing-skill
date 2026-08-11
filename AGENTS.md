@@ -6,14 +6,14 @@
 
 **产品写稿规则不得进入 `AGENTS.md`。** 文种、写作行为、生成要求和运行时约束只写入 canonical Skill 及其 references；候选结论、评测题面和发布流水进入相应 evidence，不在这里复述。
 
-发布事实和维护历史见 [`docs/evidence/README.md`](docs/evidence/README.md)。历史文件不是当前指令。
+发布事实和维护历史见 [`maintenance/docs/evidence/README.md`](maintenance/docs/evidence/README.md)。历史文件不是当前指令。
 
 ## 仓库与发行表面
 
-- `chinese-official-writing/` 是 canonical 产品包；`skills/`、`.agents/`、`.qwen/`、`hermes/` 是当前适配或镜像表面。`openclaw/` 固定为已发布 v1.6.0，不参与默认同步；恢复更新前必须另做排除式增量验证。
-- `tools/`、`evals/`、`tests/` 是工程与评测工具；`tests/evidence/` 保存预注册、消融、盲审和真实执行证据；`docs/evidence/` 保存维护历史和索引；`output/` 默认不提交。
-- SkillHub 可携带可选 Hook 伴随物，Hook 资产放在专属 `hooks/` 目录；ClawHub 包排除 Hook 和交付门禁资产。包内存在、插件安装、功能启用、信任确认和真实执行是五项独立事实，必须分别验证。
-- 仓库及所有非 ClawHub 内容和发行面采用根 `LICENSE`（MIT）；只有冻结的 `openclaw/` 与由其构建的 ClawHub 包采用 `licenses/LICENSE-CLAWHUB`（MIT-0）。第三方材料沿用各自许可。
+- `chinese-official-writing/` 是 canonical 产品包；`packages/` 保存 Codex、Claude Code、WorkBuddy/CodeBuddy、通用 Agent Skills、Qwen Code、Hermes、OpenClaw 和 Red SkillHub 兼容包。
+- `maintenance/tools/`、`maintenance/evals/`、`maintenance/tests/` 是工程与评测工具；`maintenance/tests/evidence/` 保存预注册、消融、盲审和真实执行证据；`maintenance/docs/evidence/` 保存维护历史和索引；`output/` 默认不提交。
+- 完整插件包可携带可选 Hook 伴随物，Hook 资产放在 canonical 与 `packages/agent-plugin/` 的专属 `hooks/` 目录；`packages/openclaw/` 排除 Hook 和交付门禁资产。包内存在、插件安装、功能启用、信任确认和真实执行是五项独立事实，必须分别验证。
+- 本仓库及仓内当前包统一采用根 `LICENSE`（MIT）；第三方材料沿用各自许可。
 
 ## 修改与 Git
 
@@ -37,7 +37,7 @@
 
 1. 可交付前运行与风险相称的 smoke 或最小验证；无法运行时记录原始错误和人工核验方法。
 2. 文档和工程元数据改动至少运行直接相关测试、链接或标题检查及 `git diff --check`。产品、脚本或评测逻辑改动按影响面增加 unit、Promptfoo smoke、quick validate、镜像一致性、编译和固定基线消融。
-3. `tools/run_real_prompt_ablation.py` 是不调用 LLM 的确定性工程门，不能替代真实链路执行或独立质量评分。
+3. `maintenance/tools/run_real_prompt_ablation.py` 是不调用 LLM 的确定性工程门，不能替代真实链路执行或独立质量评分。
 4. canonical Skill、references 或默认行为实质变化时，对固定发行基线运行真实链路 A/B，并由独立 verifier 复核；样本量随风险升级。
 5. A/B 与多候选评分预先固定基线、输入、环境和判分口径。裁判材料先匿名并打乱，解盲前不泄露候选身份。
 6. 保留裁判原始记录，分别报告硬边界、质量、胜负或难分、无效样本和理由。模型票数不能覆盖确定性失败；真实执行、verifier 和人工 review 冲突时不得择优汇报，保留分歧，必要时复现原样本并说明最终依据。
@@ -47,10 +47,10 @@
 
 1. 授权只覆盖用户点名的平台和版本，不延伸到其他平台或后续版本。
 2. 发布前固定上一发行 tag 的解引用 commit，核对 ancestry、精确 diff、版本号与镜像元数据、工作树、测试、清洁包 allowlist、文件数、禁入文件和 fingerprint。
-3. SkillHub 清洁包使用 `tools/build_skillhub_package.py` 从已跟踪的 canonical 文件构建；发布包不复用历史 output，不上传 `agents/openai.yaml`、无扩展名 `LICENSE`、缓存或研究产物，另以 `LICENSE.md` 携带根 MIT 许可证全文；专用 `SKILL.md` 不回填 homepage、license、兼容列表和安装路径。
+3. SkillHub 清洁包使用 `maintenance/tools/build_skillhub_package.py` 从已跟踪的 canonical 文件构建；发布包不复用历史 output，不上传 `agents/openai.yaml`、无扩展名 `LICENSE`、缓存或研究产物，另以 `LICENSE.md` 携带根 MIT 许可证全文；专用 `SKILL.md` 不回填 homepage、license、兼容列表和安装路径。
 4. 分别核验 annotated tag object、tag 解引用 commit、发布提交、远端分支和 GitHub Release。发布后的证据提交可以推进 `main`，不得移动已发布 tag。
 5. dry-run、上传回执、公开 `latest` 或 tag、审核与安全状态、来源证明和搜索索引传播分别记录；来源证明缺失时记 `unavailable`，公开索引滞后不构成重复提交理由。
-6. 当前发行范围为 GitHub 和 skillhub.cn。ClawHub 自 v1.6.0 后暂停更新，只有用户明确恢复授权并完成排除式增量验证后才可再次发布；小红书 Red SkillHub 同样默认排除，只有用户逐次明确恢复授权才可触碰。
+6. GitHub、skillhub.cn、ClawHub 和 Red SkillHub 是彼此独立的发行面。`packages/openclaw/` 随 GitHub 仓库维护，不代表 ClawHub 已发布同版；任何平台上传都必须取得当次明确授权。
 7. 发布报告记录提交、tag、测试、包哈希或 fingerprint、平台回执、未闭环项和剩余风险，不把候选基线称为已发布版本。
 
 ## 安全与交付

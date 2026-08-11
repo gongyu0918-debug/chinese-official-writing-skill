@@ -18,11 +18,12 @@
 - **事实与模板边界**：锁定主体、数字、日期、责任、期限、附件和事项状态，保留用户模板、字段顺序与最新版底稿。
 - **办理要素与论证链**：按请示、报告、通知协调、方案建设、可研审查和技术材料选择相应的办理要素与论证路径。
 - **制度类专项路由**：按制度、规定、办法、实施细则和操作规程选择连续条文、章条结构、职责程序及印发附件关系。
+- **新闻与评论写作**：覆盖新闻稿、新闻消息、快讯、活动报道、新闻通稿、新闻评论、时评和评论员文章，区分事实报道与观点表达。
 - **渐进式路由**：短任务使用轻量卡，完整公文进入对应文种叶子，技术类材料按需加载专项规则。
 - **创作、改稿与复核**：分别处理从零起草、基于底稿修改、只审不改、压缩和 Word 正文衔接。
 - **轻量审查**：分层核对事实、视角、标题、格式、重复事项和模板化表达，并提供可选的确定性风险线索。
 - **技术材料专项写作**：覆盖 AI 算力、GPU/服务器租赁、成本比较、SLA、并发、安全、运维和验收。
-- **多平台适配**：同一 canonical 技能包同步到 Codex、Claude Code、WorkBuddy/CodeBuddy、Hermes、Qwen Code 和通用 Agent Skills 目录；OpenClaw/ClawHub 暂停更新并固定在已发布的 v1.6.0。
+- **多平台适配**：同一 canonical 技能包同步到 Codex、Claude Code、WorkBuddy/CodeBuddy、Hermes、Qwen Code、OpenClaw 和通用 Agent Skills 目录。
 
 ## 适用范围
 
@@ -30,6 +31,7 @@
 | --- | --- |
 | 法定公文 | 通知、请示、报告、函、批复、意见、决定、公告、通告、公报、通报、议案、决议、命令（令）、纪要 |
 | 事务与工作材料 | 制度、规定、办法、管理办法、实施细则、操作规程、说明、申请、复函、公示、征求意见函、工作要点、总结、调研报告、讲话稿、致辞、述职报告 |
+| 新闻与评论稿件 | 新闻稿、新闻消息、快讯、活动报道、活动新闻稿、新闻通稿、新闻评论、时评、评论员文章 |
 | 方案与审查材料 | 实施方案、建设方案、可研报告、采购公告、审查材料、项目论证和办理要素核对 |
 | 技术类正式材料 | AI 算力服务可研、GPU/服务器租赁、模型服务需求、成本比较、SLA、并发、安全、运维和验收 |
 | 改稿与复核 | 润色修改、压缩、去口语化、降 AI 味、文种校验、格式核验、只审不改、Word 正文衔接 |
@@ -64,7 +66,7 @@
 
 ## 快速安装
 
-当前 GitHub 发布版本：`chinese-official-writing@1.6.1`。SkillHub 本次暂缓更新；ClawHub/OpenClaw 继续固定在 v1.6.0。
+当前 GitHub 发布版本：`chinese-official-writing@1.6.1`。
 
 平台入口：[ClawHub](https://clawhub.ai/gongyu0918-debug/skills/chinese-official-writing) · [skillhub.cn](https://skillhub.cn/skills/chinese-official-writing)。通用 Agent Skills 安装器可直接使用：
 
@@ -72,54 +74,21 @@
 npx skills add https://github.com/gongyu0918-debug/chinese-official-writing-skill --skill chinese-official-writing
 ```
 
-从 GitHub 手动部署时，主技能入口为 `chinese-official-writing/`；各平台镜像和 Claude Code 插件入口见下方目录结构。
-
 ## 模型消融与真实写稿
 
-测试从早期无 Skill/带 Skill 对照，逐步扩展到固定版本消融、真实写稿盲审和多轮改稿。下表汇总 1.6.1 的入口减载、自然表达和可选 Hook 伴随包，以及此前版本的文种路由、信息选择和复核能力。原始任务、成稿、匿名映射、独立复核和汇总记录均保存在仓库内；早期 270 任务模型消融保留脱敏聚合摘要。
+下表只保留最近 5 次版本验证。原始任务、成稿、匿名映射、独立复核和完整发布记录保存在 `maintenance/`。
 
 | 调试方向 | 主要稿件与边界 | 当前证据 |
 | --- | --- | --- |
-| 1.6.1 入口减载、自然表达与可选 Hook 伴随包 | 通用入口只保留发现字段和标签，新闻稿件前置、适用单位后置；将运行规则中的“顺稿”“收束”换成普通说法；SkillHub 完整包采用 MIT，并提供默认关闭的 Codex、Claude Code、WorkBuddy/CodeBuddy 薄适配器；OpenClaw/ClawHub 继续固定在 v1.6.0 | description 有效样本未形成跨 provider 重复错路由，但不宣称入口流量提升；Hook 9/9 对、18/18 次真实写稿技术有效，按用户业务口径未形成两次同机制硬回退，但整体票数不占优、真实 D1 为0，只作为显式启用的窄域伴随物，不宣称质量提升或全面兜底 |
+| 1.6.1 入口减载、自然表达与可选 Hook 伴随包 | 通用入口只保留发现字段和标签，新闻稿件前置、适用单位后置；将运行规则中的“顺稿”“收束”换成普通说法；提供默认关闭的 Codex、Claude Code、WorkBuddy/CodeBuddy 薄适配器 | description 有效样本未形成跨 provider 重复错路由，但不宣称入口流量提升；Hook 9/9 对、18/18 次真实写稿技术有效，按业务口径未形成两次同机制硬回退，但整体票数不占优、真实 D1 为 0，只作为显式启用的窄域伴随物 |
 | 1.6.0 事实边界、采购路由与 reference 减载 | 压缩入口占位和排除示例；短单项采购保持自然段，复杂采购按需加载完整办理链；总量与子项差额只用于校核；删除通用叶越界报告块、五个文种叶的模板优先重复句和 Hook 中重复的未决转进行态预放行 | 两家 DeepSeek V4 Flash 0731 `max` 的四原子组合真实复放为 Candidate 8 胜、Baseline 0 胜、2 难分；10/10 对技术有效。附件呈现差异保留为格式风险但未形成同一 provider 复现；最终语义裁决与原始 SOL 盲审均保留在 1.6.0 发布证据链中 |
 | 1.5.41 连续否定表达减载 | 将 anti-AI 叶中句尾限定的连续否定反例簇收敛为位置无关的一条规则，覆盖句中及相邻句；只处理同一事项内重复或主题外围的否定说明，材料明确且与主题直接相关的必要否定继续保留 | 两家 DeepSeek 的真实改稿显示正向事实承载优于连续否定说明；随后 DeepSeek、Luna、Qwen 共 8 个有效配对验证精简规则不劣，16 份有效稿没有候选独有硬回退；固定 1.5.40 组合回归见 1.5.41 发布证据 |
 | 1.5.40 终稿复核入口与复核叶减负 | 将既有 `draft-body` 指针从脚本说明纯前移到核心流程第 6 步；在报告、请示和通用复核叶内删除三处同次加载的精确重复，保留文种边界、要素顺序和近场风险召回；不新增强制脚本、正则、Hook、路由或加载条件 | 四个原子均有固定题真实复放与独立裁决；终稿指针前移形成一次“读取终稿叶并删除无锚保护尾句”的直接信号，三项去重未见 DIFF 相关召回回退；发布前固定 1.5.39 组合回归见 1.5.40 发布证据 |
 | 1.5.39 入口表达与按需路由 | 自然化正文输出范围；Word 字体字号细则下沉到格式 reference，并在发布前复验后补齐正文“两端对齐”；删除单位名称触发搜索的冗余否定；终稿 lint 自然选择 `draft-body`；统一起草、改稿、复核、排版交付模式词，并明确先读信息选择规则再判断轻量卡 | 五项原子及归并工程门均通过；固定 1.5.38 消融两边均为 111/111；发布前精简 A/B 保留原始负例，Word 对齐缺项由 3/3 复现触发最小修复，修复后 2/2 明确“两端对齐”且无事实或其他版式回退 |
-| 1.5.38 入口清晰化整合 | 删除入口五个关键名词示例，保留“关键名词和结构标签一般保留原词”承重规则；“在轻量卡早停”改为“由卡片完成，不再读取长 reference”，路由条件不变；不改变文种路由、reference 加载条件、篇幅规则、输出模式或复核顺序 | 全量 unittest 442/442、Promptfoo smoke 20/20、固定 1.5.37 消融两边均为 111/111；三题真实写稿对固定 1.5.37 独立盲审未见 diff 造成回退：轻量卡题候选 PASS、基线 WARN，关键名词两臂两轮 2/2 原词保留，请示题首轮候选负例两次复现均未复现，判写作波动 |
-| 1.5.37 复核契约与 lint 精度 | 将 anti-AI 文件内重复的只审输出契约改为指向统一规则源；收紧编号式“补充信息”、中文相邻 `XX` 占位和合法否定前缀的误报；不改变文种路由、起草 Prompt、篇幅、输出模式或复核顺序 | 组合工程回归 442/442、Promptfoo 20/20、固定 1.5.36 消融两边均为 111/111；两道同题真实写稿相对 1.5.36 为 2 胜 0 负，未见事实、状态、文种或格式硬回退 |
-| 1.5.36 事实边界去重 | 将 workflow 中重复的多重否定清单归并为一条正向事实源规则，继续转读统一的信息选择规则和已命中轻量卡；不改变文种路由、篇幅、输出模式或复核顺序 | 历史正确路由 A/B 为 Candidate 5 胜、Baseline 1 胜；本轮清洁复验两稿均无硬回退，因实际读取文件不对称不计比较胜负；固定 1.5.35 消融两边均为 111/111 |
-| 1.5.35 方案与新闻路由 | 方案、实施方案和建设方案使用目标—任务—路径主线，责任、进度、保障、验收和风险按材料及用户模板落位；新闻消息、新闻评论进入权威文种路由，只审任务加载既有新闻专项叶 | 方案两题真实 A/B 均由 Candidate 胜出；新闻歧义路由题由 Candidate 胜出，未见事实、数字、主体、状态或文种硬回退；固定 1.5.34 消融两边均为 111/111 |
-| 1.5.34 终稿复核与结构提示 | 终稿检测统一使用 `draft-body` 模式；定位高置信保护性否定收束、连续解释性句尾和成簇场景套话；入口输出范围规则同步压缩 | 保护性收束完整稿 A/B 为 Candidate 2 胜、1 平，无事实、状态、文种或输出范围回退；两项结构提示均为只读线索，不自动改稿 |
-| 1.5.33 专项拆叶与复核边界 | 方案/建设方案直达专叶；入口七项重复细则下沉，审稿模式再减载；可研只审不改使用专用检查叶；编号式文后提示进入可选 lint 识别 | 方案目标路径减少 2551 字符（18.34%）且目标题明显胜出；入口累计净减 654 个规范化字符；可研三题为 1 胜 2 平；文后提示四模式与组合回归通过，未见事实、文种、输出模式或 P0 硬回退 |
-| 专项路由、减载与篇幅校准 | 新闻消息、新闻评论和工作总结按需读取专项叶；核心路由及稀疏工作流去重；删除字数上限后的固定余量要求，新闻评论增加一次事实依据与适用范围复核 | 工作总结命中上下文减少约 22.46%；篇幅原子与新闻评论定向 A/B 均为 3 胜 0 负，未见事实、状态、文种或 P0 硬回退；完整发布验证见 1.5.32 证据 |
-| 中文占位盲区 | 补充识别 `XX类`、`XX系统`、`XX项` 等紧接中文的 X 类占位，同时保留合法文号 | 4 个定向样本和 clean corpus 通过；全量 unittest 394/394，检测脚本与发行镜像一致；不改变正文生成、路由和复核顺序 |
-| 已选事实直接承载 | 已进入正文的事项直接陈述材料已给的业务事实和当前状态，减少事实后的来源自述、无锚定结论限定和解释性尾句 | 两道自然任务均未出现 Candidate 独有硬回退；异常通报对来源泄露和无锚定否定有直接改善，工作总结的自证尾句也较少；受控复验因写手执行偏差作废，未计入胜负 |
-| 脚本职责拆分与 Word 复核减负 | 将 `prose_lint.py` 的扫描、聚合、输出和退出码职责拆开；删除一处重复的 Word Markdown 清理提示 | 两组固定样本复放均为 0 finding 差异；Word 两组真实 A/B 均为 Candidate 小胜，未出现事实、格式或输出模式回退 |
-| 普通函起草叶与占位检查 | 普通函起草、错字/标点/格式及明确局部措辞修改读取专用叶；涉及事务动作、状态、条件、范围或结构的实质改稿继续读取完整规则 | 命中文种 reference 从 3529 字符降至 852 字符，减少 2677 字符（约 75.86%）；扩展验证 5 胜 1 负，唯一负项复放持平，复杂改稿分流后三题为 1 胜 2 平；正常括号指令不再误报，八类真实占位仍全部命中 |
-| 请示/申请复核叶减载 | 只审不改与细查任务按需读取请示/申请细查叶，起草规则和通用复核规则保持不变 | 命中复核路径减少 2957 字符（约 30.46%）；两题 Candidate 明确胜出，一题同题复验一胜一负；八稿硬边界全部通过 |
-| 请示/申请叶子与 Word 复核原子减负 | 完整请示、申请直达专用文种叶；来源模板规则只在正式格式叶保留一份 | 请示/申请路径减少 3377 字符（85.97%）；三组真实 A/B 中两位盲审分别判 3 胜、2 胜 1 平，六稿硬边界全部通过；Word 两组真实 A/B 均小胜 |
-| 纪要与报告叶子减负 | 完整会议纪要、完整报告及同题双成果任务按命中文种读取专用规则 | 所选上下文分别减少约 19.23%、17.68% 和 10.69%；纪要两组真实 A/B 为 1 胜 1 平，报告两组为 2 平，双成果组合为平局，均无 Candidate 独有硬回退 |
-| AI 专项叶子减负 | 纯 AI 技术需求直接读取专项叶；AI 与已识别的普通文种组合时继续读取对应文种规则 | 模型推理服务技术需求、GPU 算力租赁采购公告和模型服务平台可研报告三组同题 A/B 为 2 胜 1 平，无 Candidate 独有硬回退；纯 AI 路径的专项 reference 负载减少约 50.2%，所选上下文减少约 23.7% |
-| 入口与叶子原子减负 | 低频职责与 Word 细则下沉、AI 算力专项按需读取、重复反例与二次事实映射去重、轻量卡测试话语清理 | 入口累计减少 528 个规范化字符（约 4.97%）；已保留原子的真实 A/B 为 11 胜、4 平、1 个孤立负例，定向复现 2/2 胜且无 Candidate 硬回退；失败实验均已撤回 |
-| 无 Skill / 带 Skill 模型消融 | 27 类文体，每类 10 个任务，覆盖通用公文和算力类正式材料 | 270 个任务、540 段对比材料；写稿 9/9 批有效，2 批评估补跑后为 9/9 |
-| 渐进式路由 | 未决/已决会议纪要、稀疏情况说明、短通知、二次局部修改 | 针对性 A/B 共 16 份成稿，内容 16/16 PASS，路由 14/16；两次 over-read 均在 v1.5.13，1.5.14 为 8/8 |
-| 事实、文种与格式 | 请示、报告、通知、说明、会议纪要、字段式申请、主送、落款、普通采购与 AI 算力需求 | 固定 v1.5.13 与 1.5.14 的硬边界盲审均为 30/30 PASS |
-| 输出模式 | 起草、改稿、只审不改、只输出正文、最新版/旧稿合稿、单点日期修改 | 15 个真实用户式任务、2 名反向映射 writer，共 60 份成稿 |
-| 多轮与长稿 | 三轮连续改稿、长文事实和标题稳定、第三轮单点修改 | 一个原始任务的完整改稿链中，事实、状态和标题顺序保持稳定；6 份稿中 1 份达到精确 CJK 下限 |
-| Candidate B 定向实写 | 多材料报告、异常报告、说明、会议纪要 | 8 份有效同题成稿与 1 份初始路由未命中原稿均留存；该组只作局部风险核验，不单独宣传整稿胜率 |
-| Candidate V 信息选择收口 | 进度报告、正常故障报告、稀疏长稿 | 3 组同模型 A/B；两组降低材料外程序或外围决策扩写，正常故障报告两版均无保护性外扩；极端材料只作 1.6.x 风险记录 |
-| 事实关系锚 | 时间、因果、归属关系及二次改稿 | 日常报告与决定状态确认各有一组正向；两组保持难分，一组二次改稿逐字一致；单次会议纪要状态升级未复现，继续作为已知风险观察 |
-| 入口减负与有限复核 | 日常报告、供餐通知、会议纪要、长篇试运行报告 | SKILL 入口减少 5.28%；三组同题盲审均优于 1.5.17；一次真实 D1 在事实不变量校验后闭环，无空稿和循环 |
-| 原子结论限定复核 | 旧稿局部改写、巡检整改报告、食堂异常通报 | 固定 1.5.18 同题盲审 3/3 判 1.5.19 胜出；材料原有结论状态保留，完整稿仍有重复风险 |
-| 渐进式拆叶 | 普通复杂写稿、公开来源核验、报告类细查 | 外部核验规则按需加载，报告细查路径减少 3549 字符；两轮各 3 组真实 A/B 均未见硬回退 |
-| 制度类专项路由 | 管理办法、来访制度、实施细则、短篇规定、印发通知与操作规程 | 新增实施细则、规定两题相对 1.5.20 均小胜且硬检查通过；既有样本保留条文偏碎、职责复述和 DOCX 视觉未核验风险 |
-| 工程回归 | 单元测试、固定上一发行版消融、Promptfoo、镜像与清洁包 | 1.6.1 GitHub 发布记录见 `release-1.6.1.md`，发布前候选快照见 `release-1.6.1-rc.md`；本行只记录实际完成的当次结果，不用确定性工程门替代真实写稿裁决 |
-
-60 份发布级真实写稿由两名独立 verifier 盲审。综合结果中，v1.5.13 与 1.5.14 都是 29 PASS、1 个对称 WARN、0 FAIL；硬边界复核两版均为 30 PASS、0 WARN、0 FAIL。真实模型小样本评测与发布级写稿覆盖会议纪要、情况说明、通知、请示、报告、字段式申请、只审不改、普通采购、AI 算力需求和旧稿防回流。
 
 ### 同题独立写作节选
 
-以下两稿使用逐字一致的制度起草任务，由 `gpt-5.6-sol` 在 `ultra` 推理档位下分别生成，并非同一随机 seed，各取第一次输出。无 Skill writer 在独立上下文中直接写稿，未调用工具或读取本地文件；带 Skill writer 只读取已发布的 v1.6.1 Skill 及命中的制度、信息选择和自然表达资料。按统一口径去除空白后，两稿分别为 1002 和 765 个字符。以下保留完整脱敏稿件，不做事后加工。
+以下两稿使用逐字一致的制度起草任务，由 `gpt-5.6-sol` 在 `ultra` 推理档位下分别生成，各取第一次输出。无 Skill writer 在独立上下文中直接写稿，未调用工具或读取本地文件；带 Skill writer 只读取已发布的 v1.6.1 Skill 及命中的制度、信息选择和自然表达资料。按统一口径去除空白后，两稿分别为 1002 和 765 个字符。以下保留完整脱敏稿件。
 
 ```text
 写作模型：OpenAI Codex gpt-5.6-sol（ultra）
@@ -224,85 +193,28 @@ v1.6.1 带 Skill 成稿（完整，765 字符）：
 
 两名独立匿名裁判在反向映射下均判 v1.6.1 带 Skill 稿胜出。无 Skill 稿虽然更接近 1000 字，但新增了“自收到材料之日起”的期限起算、补正后重新提交并重新计算时限、问题处理后重新配置核验、紧急变更补齐“相关材料”等具体义务或程序。带 Skill 稿完整保留职责边界和试行未决状态，直接采用成本分别为 1、2；不足是明显偏短，且“当天配置”的执行主体可再写明。本次对照只说明这一制度任务中的可复核差异，不代表所有模型、文种和任务的普遍结论。
 
-历史对照继续保留在 [`readme-same-task-comparison-20260717.md`](tests/evidence/readme-same-task-comparison-20260717.md)：该轮无 Skill 组使用 projectless 裸任务，两名独立匿名评审均将带 Skill 稿排在无 Skill 稿之前。
-
 ### 原创与证据链
 
-技能规则、references 和 scripts 在本仓库持续迭代，各平台技能目录由 canonical 包同步生成。规范与社区项目用于校验文种、流程形态和风险维度；具体规则经过本仓库复现、取舍和 A/B 后进入主线。1.5.15 延续“原始任务 → 隔离 writer → 匿名映射 → 独立 verifier → 汇总报告 → 发布回执”的证据链，Git 历史记录每次修改和验证；早期大规模消融公开脱敏聚合摘要。
+技能规则、references 和 scripts 在本仓库持续迭代，各平台技能目录由 canonical 包同步生成。规范与社区项目用于校验文种、流程形态和风险维度；具体规则经过复现、取舍和 A/B 后进入主线，Git 历史记录每次修改和验证。
 
-主要证据：
-
-- [`readme-v161-institution-same-task-comparison-20260812.md`](tests/evidence/readme-v161-institution-same-task-comparison-20260812.md)
-- [`readme-v160-same-task-comparison-20260812.md`](tests/evidence/readme-v160-same-task-comparison-20260812.md)
-- [`release-1.6.1.md`](tests/evidence/release-1.6.1.md)
-- [`release-1.6.1-rc.md`](tests/evidence/release-1.6.1-rc.md)
-- [`release-1.6.0.md`](tests/evidence/release-1.6.0.md)
-- [`release-1.5.41.md`](tests/evidence/release-1.5.41.md)
-- [`release-1.5.40.md`](tests/evidence/release-1.5.40.md)
-- [`release-1.5.39.md`](tests/evidence/release-1.5.39.md)
-- [`v1539-compact-repro-pack-20260808.md`](tests/evidence/v1539-compact-repro-pack-20260808.md)
-- [`v1539-format-alignment-repair-result-20260808.md`](tests/evidence/v1539-format-alignment-repair-result-20260808.md)
-- [`integration-entry-clarity-five-atoms-v1539-result-20260807.md`](tests/evidence/integration-entry-clarity-five-atoms-v1539-result-20260807.md)
-- [`v1539-cost-quality-comparison-20260807.md`](tests/evidence/v1539-cost-quality-comparison-20260807.md)
-- [`release-1.5.38.md`](tests/evidence/release-1.5.38.md)
-- [`main-entry-clarity-integration-20260806.md`](tests/evidence/main-entry-clarity-integration-20260806.md)
-- [`release-1.5.37.md`](tests/evidence/release-1.5.37.md)
-- [`1.5.37-integration-anti-ai-lint-result-20260805.md`](tests/evidence/1.5.37-integration-anti-ai-lint-result-20260805.md)
-- [`release-1.5.36.md`](tests/evidence/release-1.5.36.md)
-- [`release-1.5.35.md`](tests/evidence/release-1.5.35.md)
-- [`release-1.5.34.md`](tests/evidence/release-1.5.34.md)
-- [`release-1.5.33.md`](tests/evidence/release-1.5.33.md)
-- [`release-1.5.32.md`](tests/evidence/release-1.5.32.md)
-- [`release-1.5.31.md`](tests/evidence/release-1.5.31.md)
-- [`release-1.5.30.md`](tests/evidence/release-1.5.30.md)
-- [`release-1.5.29.md`](tests/evidence/release-1.5.29.md)
-- [`release-1.5.28.md`](tests/evidence/release-1.5.28.md)
-- [`release-1.5.27.md`](tests/evidence/release-1.5.27.md)
-- [`release-1.5.26.md`](tests/evidence/release-1.5.26.md)
-- [`release-1.5.25.md`](tests/evidence/release-1.5.25.md)
-- [`release-1.5.24.md`](tests/evidence/release-1.5.24.md)
-- [`release-1.5.23.md`](tests/evidence/release-1.5.23.md)
-- [`release-1.5.22.md`](tests/evidence/release-1.5.22.md)
-- [`release-1.5.21.md`](tests/evidence/release-1.5.21.md)
-- [`release-1.5.20.md`](tests/evidence/release-1.5.20.md)
-- [`release-1.5.19.md`](tests/evidence/release-1.5.19.md)
-- [`release-1.5.18.md`](tests/evidence/release-1.5.18.md)
-- [`release-1.5.17.md`](tests/evidence/release-1.5.17.md)
-- [`release-1.5.16.md`](tests/evidence/release-1.5.16.md)
-- [`release-1.5.15.md`](tests/evidence/release-1.5.15.md)
-- [`release-1.5.14.md`](tests/evidence/release-1.5.14.md)
-- [`functional-regression-vs-1.5.13-20260715.md`](tests/evidence/functional-regression-vs-1.5.13-20260715.md)
-- [`route-arbitration-20260715.md`](tests/evidence/route-arbitration-20260715.md)
-- [`negative-constraint-echo-20260714.md`](tests/evidence/negative-constraint-echo-20260714.md)
-- [`agent-public-ablation-summary.md`](tests/evidence/agent-public-ablation-summary.md)
-- [`long-revision-stability-20260714.md`](tests/evidence/long-revision-stability-20260714.md)
-- [`genre-real-writing-coverage-20260714.md`](tests/evidence/genre-real-writing-coverage-20260714.md)
+最近 5 份证据：[`readme-v161-institution-same-task-comparison-20260812.md`](maintenance/tests/evidence/readme-v161-institution-same-task-comparison-20260812.md) · [`readme-v160-same-task-comparison-20260812.md`](maintenance/tests/evidence/readme-v160-same-task-comparison-20260812.md) · [`release-1.6.1.md`](maintenance/tests/evidence/release-1.6.1.md) · [`release-1.6.1-rc.md`](maintenance/tests/evidence/release-1.6.1-rc.md) · [`release-1.6.0.md`](maintenance/tests/evidence/release-1.6.0.md)。完整记录见 [`maintenance/docs/evidence/README.md`](maintenance/docs/evidence/README.md)。
 
 ## 目录结构
 
 | 路径 | 用途 |
 | --- | --- |
-| `chinese-official-writing/` | Codex / OpenAI 使用的 canonical 技能包 |
-| `skills/chinese-official-writing/` | Claude Code、MiniMax Skills、GLM Skills（Z.ai/智谱）、AutoClaw、Kimi Code CLI 和通用 Agent Skills 镜像 |
-| `.agents/skills/chinese-official-writing/` | TRAE、Baidu Comate AI IDE 等 `.agents/skills` 兼容平台镜像 |
-| `.qwen/skills/chinese-official-writing/` | Qwen Code 镜像 |
-| `hermes/skills/chinese-official-writing/` | Hermes 镜像 |
-| `openclaw/skills/chinese_official_writing/` | OpenClaw / ClawHub 发行镜像 |
-| `.claude-plugin/plugin.json` | Claude Code 插件入口 |
-| `tests/`、`evals/` | 测试案例、原始 prompt、成稿、盲审与评测配置 |
-| `tools/` | 镜像同步与评测工具 |
+| `chinese-official-writing/` | 通用 canonical Agent Skill |
+| `packages/agent-plugin/` | Codex、Claude Code、WorkBuddy/CodeBuddy 插件与完整技能包 |
+| `packages/agent-skills/` | 通用 Agent Skills、MiniMax Skills、GLM Skills（Z.ai/智谱）、AutoClaw、Kimi Code CLI、TRAE、Baidu Comate AI IDE 等兼容包 |
+| `packages/qwen-code/` | Qwen Code 兼容包 |
+| `packages/hermes/` | Hermes 兼容包 |
+| `packages/openclaw/` | OpenClaw 兼容包，不含 Hook 和交付门禁 |
+| `packages/red-skillhub/` | Red SkillHub 专用包 |
+| `maintenance/` | 测试、评测、构建工具、原始证据和维护记录 |
 
 ## 开源许可
 
-仓库首页统一按 [MIT](https://spdx.org/licenses/MIT.html) 展示，具体授权边界见 [`LICENSE-SCOPE.md`](LICENSE-SCOPE.md)：
-
-| 范围 | 许可 |
-| --- | --- |
-| GitHub 仓库及全部非 ClawHub 内容和发行面 | [MIT](https://spdx.org/licenses/MIT.html)，见仓库根 [`LICENSE`](LICENSE)。包括 canonical、SkillHub、Codex、Claude Code、WorkBuddy/CodeBuddy、`.agents`、Qwen Code、Hermes、Red SkillHub 源文件、Hook、构建工具、tests、evals、构建记录、测试证据和维护文档；SkillHub 清洁包以 `LICENSE.md` 携带同一 MIT 全文 |
-| 冻结的 ClawHub / OpenClaw 发行面 | [MIT-0](https://spdx.org/licenses/MIT-0.html)，见 [`licenses/LICENSE-CLAWHUB`](licenses/LICENSE-CLAWHUB)。仅适用于 `openclaw/` 目录及由其构建的 ClawHub 包 |
-| 外部规范和第三方材料 | 沿用各自权利人声明的许可；本仓库 MIT 许可不替代其原有许可 |
-
-除冻结的 ClawHub/OpenClaw 发行面外，本仓库内容和其余包统一采用 MIT；是否包含 Hook 不再改变许可证。该调整不改写历史发行记录，也不改变第三方材料的原有许可。
+本仓库采用 [MIT License](LICENSE)。
 
 ## 规范与参考
 
