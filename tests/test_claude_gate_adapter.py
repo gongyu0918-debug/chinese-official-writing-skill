@@ -112,6 +112,76 @@ class ClaudeGateAdapterTests(unittest.TestCase):
         records = list((self.data_root / ADAPTER.CORE_DATA_DIRECTORY).rglob("*.json"))
         self.assertTrue(records)
 
+    def test_review_only_request_allows_without_core_transaction(self):
+        self.assertTrue(
+            ADAPTER.handle(
+                self._event(
+                    "UserPromptSubmit",
+                    prompt="请复核这份采购申请，不要代改，不重写全文。",
+                )
+            )["continue"]
+        )
+        skill_path = SKILL_ROOT / "SKILL.md"
+        self.assertTrue(
+            ADAPTER.handle(
+                self._event(
+                    "PostToolUse",
+                    tool_name="Read",
+                    tool_input={"file_path": str(skill_path)},
+                    tool_response={"success": True},
+                )
+            )["continue"]
+        )
+        stopped = ADAPTER.handle(
+            self._event(
+                "Stop",
+                stop_hook_active=False,
+                last_assistant_message=(
+                    "审查意见：结尾表述“尚不能据此形成采购结论”较空泛，"
+                    "建议说明当前未决事项。"
+                ),
+            )
+        )
+        self.assertTrue(stopped["continue"])
+        transactions = (
+            self.data_root
+            / ADAPTER.CORE_DATA_DIRECTORY
+            / "candidate-ai-gate-hook"
+            / "transactions"
+        )
+        self.assertFalse(transactions.exists())
+
+    def test_review_then_rewrite_still_uses_core_transaction(self):
+        self.assertTrue(
+            ADAPTER.handle(
+                self._event(
+                    "UserPromptSubmit",
+                    prompt="请先复核这份采购申请，再按建议改写全文。",
+                )
+            )["continue"]
+        )
+        skill_path = SKILL_ROOT / "SKILL.md"
+        ADAPTER.handle(
+            self._event(
+                "PostToolUse",
+                tool_name="Read",
+                tool_input={"file_path": str(skill_path)},
+                tool_response={"success": True},
+            )
+        )
+        stopped = ADAPTER.handle(
+            self._event(
+                "Stop",
+                stop_hook_active=False,
+                last_assistant_message="采购结论尚不能据此形成。",
+            )
+        )
+        self.assertEqual("block", stopped["decision"])
+        states = list(
+            (self.data_root / ADAPTER.CORE_DATA_DIRECTORY).rglob("state.json")
+        )
+        self.assertEqual(1, len(states))
+
     def test_each_prompt_gets_a_new_active_turn_without_prompt_id(self):
         first = self._event("UserPromptSubmit", prompt="相同请求")
         second = self._event("UserPromptSubmit", prompt="相同请求")

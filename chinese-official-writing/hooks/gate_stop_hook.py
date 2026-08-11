@@ -35,6 +35,22 @@ TXN_RE = re.compile(
     r"--txn(?:=|\s+)(?:\"([^\"]+)\"|'([^']+)'|([^\s;&|]+))",
     re.IGNORECASE,
 )
+REVIEW_ACTION_RE = re.compile(r"(?:审稿|审查|检查|复核|核验)")
+EXPLICIT_REVIEW_ONLY_RE = re.compile(
+    r"(?:只|仅)(?:做)?(?:审稿|审查|检查|复核|核验)"
+)
+REVIEW_OUTPUT_BOUNDARY_RE = re.compile(
+    r"(?:不|不要|无需|无须|别)(?:再)?(?:代改|改写|重写|修改)(?:全文|正文)?"
+)
+DIRECT_DRAFT_OR_REVISION_RE = re.compile(
+    r"(?:^|[，。；;\n]|请|帮我|为我|代为|需要|要求)(?:先|再|直接)?"
+    r"(?:起草|撰写|编写|拟写|改写|重写|修改(?!建议)|润色|压缩|合稿)"
+)
+REVIEW_THEN_REWRITE_RE = re.compile(
+    r"(?:审稿|审查|检查|复核|核验)[^。；;\n]{0,16}"
+    r"(?:再|并|同时|然后|之后|后)[^，。；;\n]{0,8}"
+    r"(?:代改|改写|重写|修改|润色)"
+)
 
 
 def _safe_key(value: Any, fallback: str) -> str:
@@ -149,6 +165,20 @@ def _reads_this_skill(command: str) -> bool:
     return any(
         str(skill_root).replace("/", "\\").casefold() in normalized_command
         for skill_root in skill_roots
+    )
+
+
+def _is_review_only_request(request: str) -> bool:
+    """Mirror the Skill's explicit review-only mode without classifying other tasks."""
+    if DIRECT_DRAFT_OR_REVISION_RE.search(request):
+        return False
+    without_boundaries = REVIEW_OUTPUT_BOUNDARY_RE.sub("", request)
+    if REVIEW_THEN_REWRITE_RE.search(without_boundaries):
+        return False
+    if EXPLICIT_REVIEW_ONLY_RE.search(request):
+        return True
+    return bool(
+        REVIEW_ACTION_RE.search(request) and REVIEW_OUTPUT_BOUNDARY_RE.search(request)
     )
 
 
@@ -400,6 +430,8 @@ def _bootstrap_transaction(
     request = record.get("request")
     draft = event.get("last_assistant_message")
     if not isinstance(request, str) or not request.strip():
+        return None
+    if _is_review_only_request(request):
         return None
     if not isinstance(draft, str) or not draft.strip():
         return None

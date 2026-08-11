@@ -133,6 +133,86 @@ class GateStopHookTests(unittest.TestCase):
         )
         self.assertTrue(result["continue"])
 
+    def test_review_only_requests_allow_nonempty_review_without_transaction(self):
+        prompts = (
+            "只审查这份采购申请，列出问题和建议。",
+            "只复核这份通知的格式和语气。",
+            "请审查这份报告，不要代改。",
+            "请检查这份请示，不重写全文。",
+        )
+        review = "审查意见：结尾表述“尚不能据此形成采购结论”较空泛，建议说明当前未决事项。"
+        skill = (
+            Path(os.environ["PLUGIN_ROOT"])
+            / "skills"
+            / "chinese-official-writing"
+            / "SKILL.md"
+        )
+        for index, prompt in enumerate(prompts, start=1):
+            with self.subTest(prompt=prompt):
+                common = {"turn_id": f"review-{index}"}
+                HOOK.handle(self._event("UserPromptSubmit", prompt=prompt, **common))
+                HOOK.handle(
+                    self._event(
+                        "PostToolUse",
+                        tool_input={"cmd": f'Get-Content "{skill}"'},
+                        tool_response={"exit_code": 0},
+                        **common,
+                    )
+                )
+                result = HOOK.handle(
+                    self._event(
+                        "Stop",
+                        stop_hook_active=False,
+                        last_assistant_message=review,
+                        **common,
+                    )
+                )
+                self.assertTrue(result["continue"])
+                record = HOOK._read_json(HOOK._record_path(self._event("Stop", **common)))
+                self.assertIsNotNone(record)
+                self.assertNotIn("txn", record)
+
+        transactions = self.root / "candidate-ai-gate-hook" / "transactions"
+        self.assertFalse(transactions.exists())
+
+    def test_drafting_revision_and_review_then_rewrite_still_bootstrap(self):
+        prompts = (
+            "请起草一份情况报告。",
+            "请起草一份检查报告，只检查设备运行情况。",
+            "请修改这份采购申请并输出改后正文。",
+            "请先只复核这份通知，再按建议改写全文。",
+        )
+        skill = (
+            Path(os.environ["PLUGIN_ROOT"])
+            / "skills"
+            / "chinese-official-writing"
+            / "SKILL.md"
+        )
+        for index, prompt in enumerate(prompts, start=1):
+            with self.subTest(prompt=prompt):
+                common = {"turn_id": f"draft-{index}"}
+                HOOK.handle(self._event("UserPromptSubmit", prompt=prompt, **common))
+                HOOK.handle(
+                    self._event(
+                        "PostToolUse",
+                        tool_input={"cmd": f'Get-Content "{skill}"'},
+                        tool_response={"exit_code": 0},
+                        **common,
+                    )
+                )
+                result = HOOK.handle(
+                    self._event(
+                        "Stop",
+                        stop_hook_active=False,
+                        last_assistant_message="关于设备采购情况的报告\n\n尚不能据此形成采购结论。",
+                        **common,
+                    )
+                )
+                self.assertEqual("block", result["decision"])
+                record = HOOK._read_json(HOOK._record_path(self._event("Stop", **common)))
+                self.assertIsNotNone(record)
+                self.assertIn("txn", record)
+
     def test_continuation_prompt_does_not_replace_original_request(self):
         self._record_prompt_and_skill_read("原始公文任务")
         HOOK.handle(self._event("UserPromptSubmit", prompt="仅调用 emit"))
