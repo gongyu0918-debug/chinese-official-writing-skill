@@ -4,6 +4,7 @@
 
 ## AGENTS 历史快照
 
+- [`AGENTS-control-plane-v1.6.0-pre-v1601.md`](AGENTS-control-plane-v1.6.0-pre-v1601.md) 是本轮进一步去重前的 v1.6.0 轻量工程控制面快照；与当时根文件规范化文本一致。
 - [`AGENTS-history-through-v1.5.39.md`](AGENTS-history-through-v1.5.39.md) 是精简前根 `AGENTS.md` 的完整 Git blob 快照，覆盖 1.4.1—1.5.39 的发布、接手、候选实验、阻断、回滚、评测和平台传播流水。
 - 为保持迁移前后事实和检索关键词完全一致，快照正文未改写。正文中的 `tests/evidence/...`、`tools/...`、`output/...` 等路径均以仓库根为起点解释，不以本目录为起点。
 - 快照中的“当前”“最新”“待发布”等措辞只表示记录写入当时的状态，不覆盖根 `AGENTS.md` 的当前发布基线。
