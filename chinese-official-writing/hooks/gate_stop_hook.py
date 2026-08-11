@@ -26,6 +26,7 @@ TERMINAL_STATES = {"TERMINAL_D0", "TERMINAL_D1"}
 STATE_AWAITING_REPAIR = "AWAITING_REPAIR"
 STATE_AWAITING_VERDICT = "AWAITING_VERDICT"
 MAX_STOP_ATTEMPTS = 4
+REVIEW_GATE_PATH = Path(__file__).resolve().parents[1] / "scripts" / "review_gate.py"
 GATE_COMMAND_RE = re.compile(
     r"review_gate\.py(?:\"|'|\s)+(detect|dispatch|prepare|finalize|emit|abort)\b",
     re.IGNORECASE,
@@ -184,8 +185,7 @@ def _extract_json_object(value: Any) -> dict[str, Any] | None:
 
 
 def _run_gate(txn: Path, action: str, payload: dict[str, Any] | None = None) -> tuple[int, str]:
-    gate = Path(__file__).with_name("review_gate.py").resolve()
-    command = [sys.executable, str(gate), action, "--txn", str(txn)]
+    command = [sys.executable, str(REVIEW_GATE_PATH), action, "--txn", str(txn)]
     payload_path: Path | None = None
     if payload is not None:
         suffix = "repairs" if action == "prepare" else "verdict"
@@ -215,10 +215,9 @@ def _run_gate(txn: Path, action: str, payload: dict[str, Any] | None = None) -> 
 
 
 def _abort(txn: Path, reason: str) -> dict[str, Any] | None:
-    gate = Path(__file__).with_name("review_gate.py").resolve()
     try:
         completed = subprocess.run(
-            [sys.executable, str(gate), "abort", "--txn", str(txn), "--reason", reason],
+            [sys.executable, str(REVIEW_GATE_PATH), "abort", "--txn", str(txn), "--reason", reason],
             stdin=subprocess.DEVNULL,
             stdout=subprocess.PIPE,
             stderr=subprocess.PIPE,
@@ -412,12 +411,11 @@ def _bootstrap_transaction(
     draft_path = inputs / "draft.txt"
     _atomic_write_text(request_path, request)
     _atomic_write_text(draft_path, draft)
-    gate = Path(__file__).with_name("review_gate.py").resolve()
     try:
         completed = subprocess.run(
             [
                 sys.executable,
-                str(gate),
+                str(REVIEW_GATE_PATH),
                 "detect",
                 "--request",
                 str(request_path),

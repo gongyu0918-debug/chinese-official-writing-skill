@@ -6,8 +6,8 @@
         "hooks": [
           {
             "type": "command",
-            "command": "python3 \"$PLUGIN_ROOT/skills/chinese-official-writing/scripts/gate_stop_hook.py\"",
-            "commandWindows": "py -3 -c \"import os,runpy;runpy.run_path(os.path.join(os.environ['PLUGIN_ROOT'],'skills','chinese-official-writing','scripts','gate_stop_hook.py'),run_name='__main__')\"",
+            "command": "python3 \"$PLUGIN_ROOT/skills/chinese-official-writing/hooks/gate_stop_hook.py\"",
+            "commandWindows": "py -3 -c \"import os,runpy;runpy.run_path(os.path.join(os.environ['PLUGIN_ROOT'],'skills','chinese-official-writing','hooks','gate_stop_hook.py'),run_name='__main__')\"",
             "timeout": 10,
             "statusMessage": "Binding the current request to the delivery gate"
           }
@@ -20,8 +20,8 @@
         "hooks": [
           {
             "type": "command",
-            "command": "python3 \"$PLUGIN_ROOT/skills/chinese-official-writing/scripts/gate_stop_hook.py\"",
-            "commandWindows": "py -3 -c \"import os,runpy;runpy.run_path(os.path.join(os.environ['PLUGIN_ROOT'],'skills','chinese-official-writing','scripts','gate_stop_hook.py'),run_name='__main__')\"",
+            "command": "python3 \"$PLUGIN_ROOT/skills/chinese-official-writing/hooks/gate_stop_hook.py\"",
+            "commandWindows": "py -3 -c \"import os,runpy;runpy.run_path(os.path.join(os.environ['PLUGIN_ROOT'],'skills','chinese-official-writing','hooks','gate_stop_hook.py'),run_name='__main__')\"",
             "timeout": 10,
             "statusMessage": "Recording the bounded delivery-gate state"
           }
@@ -33,8 +33,8 @@
         "hooks": [
           {
             "type": "command",
-            "command": "python3 \"$PLUGIN_ROOT/skills/chinese-official-writing/scripts/gate_stop_hook.py\"",
-            "commandWindows": "py -3 -c \"import os,runpy;runpy.run_path(os.path.join(os.environ['PLUGIN_ROOT'],'skills','chinese-official-writing','scripts','gate_stop_hook.py'),run_name='__main__')\"",
+            "command": "python3 \"$PLUGIN_ROOT/skills/chinese-official-writing/hooks/gate_stop_hook.py\"",
+            "commandWindows": "py -3 -c \"import os,runpy;runpy.run_path(os.path.join(os.environ['PLUGIN_ROOT'],'skills','chinese-official-writing','hooks','gate_stop_hook.py'),run_name='__main__')\"",
             "timeout": 30,
             "statusMessage": "Checking the bounded delivery-gate exit"
           }

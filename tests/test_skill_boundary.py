@@ -7,11 +7,12 @@ import unittest
 
 
 ROOT = Path(__file__).resolve().parents[1]
-OPENCLAW_SKILL_EXCLUDES = {
+CODEX_GATE_FILES = {
     "references/delivery-review-gate.md",
-    "scripts/gate_stop_hook.py",
+    "hooks/gate_stop_hook.py",
     "scripts/review_gate.py",
 }
+SKILLHUB_CLEAN_PACKAGE_EXCLUDES = {"agents/openai.yaml"}
 
 
 def relative_files(root: Path) -> list[str]:
@@ -167,8 +168,6 @@ class SkillBoundaryTests(unittest.TestCase):
         canonical_files = relative_files(canonical)
         for target in [
             ROOT / "skills" / "chinese-official-writing",
-            ROOT / ".agents" / "skills" / "chinese-official-writing",
-            ROOT / ".qwen" / "skills" / "chinese-official-writing",
         ]:
             with self.subTest(target=target):
                 self.assertEqual(relative_files(target), canonical_files)
@@ -194,11 +193,13 @@ class SkillBoundaryTests(unittest.TestCase):
     def test_packaged_resource_mirrors_match_canonical_bytes(self) -> None:
         canonical = ROOT / "chinese-official-writing"
         targets = [
-            (ROOT / "hermes" / "skills" / "chinese-official-writing", set()),
-            (ROOT / "openclaw" / "skills" / "chinese_official_writing", OPENCLAW_SKILL_EXCLUDES),
+            (ROOT / ".agents" / "skills" / "chinese-official-writing", CODEX_GATE_FILES),
+            (ROOT / ".qwen" / "skills" / "chinese-official-writing", CODEX_GATE_FILES),
+            (ROOT / "hermes" / "skills" / "chinese-official-writing", CODEX_GATE_FILES),
+            (ROOT / "openclaw" / "skills" / "chinese_official_writing", CODEX_GATE_FILES),
         ]
         for target, excludes in targets:
-            for folder in ["agents", "references", "scripts"]:
+            for folder in ["agents", "hooks", "references", "scripts"]:
                 canonical_folder = canonical / folder
                 target_folder = target / folder
                 with self.subTest(target=target, folder=folder):
@@ -215,11 +216,61 @@ class SkillBoundaryTests(unittest.TestCase):
                             f"{target}/{folder}/{relative}",
                         )
 
-    def test_openclaw_skill_excludes_codex_gate_runtime(self) -> None:
-        packaged = ROOT / "openclaw" / "skills" / "chinese_official_writing"
-        for relative in OPENCLAW_SKILL_EXCLUDES:
-            self.assertFalse((packaged / relative).exists(), relative)
-        self.assertTrue((packaged / "scripts" / "prose_lint.py").is_file())
+    def test_only_canonical_and_codex_plugin_surface_keep_gate_sources(self) -> None:
+        canonical = ROOT / "chinese-official-writing"
+        codex_plugin_skill = ROOT / "skills" / "chinese-official-writing"
+        for relative in CODEX_GATE_FILES:
+            self.assertTrue((canonical / relative).is_file(), relative)
+            self.assertTrue((codex_plugin_skill / relative).is_file(), relative)
+            self.assertEqual(
+                (codex_plugin_skill / relative).read_bytes(),
+                (canonical / relative).read_bytes(),
+                relative,
+            )
+
+        excluded_surfaces = [
+            ROOT / ".agents" / "skills" / "chinese-official-writing",
+            ROOT / ".qwen" / "skills" / "chinese-official-writing",
+            ROOT / "hermes" / "skills" / "chinese-official-writing",
+            ROOT / "openclaw" / "skills" / "chinese_official_writing",
+        ]
+        for packaged in excluded_surfaces:
+            with self.subTest(packaged=packaged):
+                for relative in CODEX_GATE_FILES:
+                    self.assertFalse((packaged / relative).exists(), relative)
+                self.assertTrue((packaged / "scripts" / "prose_lint.py").is_file())
+
+    def test_skillhub_clean_package_allowlist_has_expected_file_count(self) -> None:
+        canonical = ROOT / "chinese-official-writing"
+        package_allowlist = [
+            relative
+            for relative in relative_files(canonical)
+            if relative not in SKILLHUB_CLEAN_PACKAGE_EXCLUDES
+        ]
+
+        self.assertEqual(len(package_allowlist), 33)
+        self.assertNotIn("agents/openai.yaml", package_allowlist)
+        for relative in CODEX_GATE_FILES:
+            self.assertIn(relative, package_allowlist)
+
+    def test_codex_plugin_version_and_hook_path_track_canonical_skill(self) -> None:
+        skill_text = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
+        skill_version = re.search(r'^  version: "([^"]+)"$', skill_text, re.M)
+        self.assertIsNotNone(skill_version)
+        manifest = json.loads((ROOT / ".codex-plugin" / "plugin.json").read_text(encoding="utf-8"))
+        self.assertEqual(manifest["version"], skill_version.group(1))
+
+        config = json.loads((ROOT / "hooks" / "hooks.json").read_text(encoding="utf-8"))
+        commands = [
+            handler[key]
+            for groups in config["hooks"].values()
+            for group in groups
+            for handler in group["hooks"]
+            for key in ("command", "commandWindows")
+        ]
+        self.assertTrue(commands)
+        self.assertTrue(all("gate_stop_hook.py" in command for command in commands))
+        self.assertTrue(all("scripts/gate_stop_hook.py" not in command for command in commands))
 
     def test_reference_loading_table_keeps_progressive_disclosure(self) -> None:
         text = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")

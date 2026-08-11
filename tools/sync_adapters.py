@@ -18,6 +18,7 @@ OPENCLAW_MARKETPLACE_README = ROOT / "openclaw" / "marketplace-readme.md"
 OPENCLAW_README = ROOT / "openclaw" / "README.md"
 OPENCLAW_SKILL_CARD = ROOT / "openclaw" / "skill-card.md"
 CLAUDE_PLUGIN_MANIFEST = ROOT / ".claude-plugin" / "plugin.json"
+CODEX_PLUGIN_MANIFEST = ROOT / ".codex-plugin" / "plugin.json"
 
 TARGETS = {
     "claude": ROOT / "skills" / "chinese-official-writing",
@@ -27,18 +28,26 @@ TARGETS = {
     "openclaw": ROOT / "openclaw" / "skills" / "chinese_official_writing",
 }
 
-STALE_SPLIT_REFERENCES = (
+STALE_TARGET_FILES = (
     "references/academic-writing.md",
     "references/academic-proposal.md",
     "references/academic-literature-review.md",
     "references/official-writing.md",
+    "scripts/gate_stop_hook.py",
 )
 
-OPENCLAW_SKILL_EXCLUDES = (
+CODEX_GATE_FILES = (
     "references/delivery-review-gate.md",
-    "scripts/gate_stop_hook.py",
+    "hooks/gate_stop_hook.py",
     "scripts/review_gate.py",
 )
+
+TARGET_EXCLUDES = {
+    "agents": CODEX_GATE_FILES,
+    "qwen": CODEX_GATE_FILES,
+    "hermes": CODEX_GATE_FILES,
+    "openclaw": CODEX_GATE_FILES,
+}
 
 
 def versioned_text(text: str) -> str:
@@ -110,13 +119,13 @@ def patch_openclaw_skill_body(target: Path) -> None:
     skill_file.write_text(f"---{parts[1]}---\n\n{canonical_body}\n", encoding="utf-8")
 
 
-def update_claude_plugin_manifest() -> None:
-    if not CLAUDE_PLUGIN_MANIFEST.exists():
-        raise RuntimeError(f"missing Claude plugin manifest: {CLAUDE_PLUGIN_MANIFEST}")
-    manifest = json.loads(CLAUDE_PLUGIN_MANIFEST.read_text(encoding="utf-8"))
+def update_plugin_manifest(manifest_path: Path, label: str) -> None:
+    if not manifest_path.exists():
+        raise RuntimeError(f"missing {label} plugin manifest: {manifest_path}")
+    manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
     manifest["version"] = VERSION
     manifest["license"] = SKILL_LICENSE
-    CLAUDE_PLUGIN_MANIFEST.write_text(
+    manifest_path.write_text(
         json.dumps(manifest, ensure_ascii=False, indent=2) + "\n",
         encoding="utf-8",
     )
@@ -146,16 +155,15 @@ def update_openclaw_skill_card_source() -> None:
 
 def copy_skill(target: Path, mode: str) -> None:
     ignore = shutil.ignore_patterns("__pycache__", "*.pyc", ".DS_Store", "Thumbs.db")
-    for relative_path in STALE_SPLIT_REFERENCES:
+    for relative_path in STALE_TARGET_FILES:
         stale_file = target / relative_path
         if stale_file.exists():
             stale_file.unlink()
     shutil.copytree(CANONICAL, target, ignore=ignore, dirs_exist_ok=True)
-    if mode == "openclaw":
-        for relative_path in OPENCLAW_SKILL_EXCLUDES:
-            packaged_file = target / relative_path
-            if packaged_file.exists():
-                packaged_file.unlink()
+    for relative_path in TARGET_EXCLUDES.get(mode, ()):
+        packaged_file = target / relative_path
+        if packaged_file.exists():
+            packaged_file.unlink()
     patch_frontmatter(target, mode)
     if mode == "openclaw":
         (target / "README.md").write_text(
@@ -181,8 +189,12 @@ def main() -> int:
     print(f"synced {ROOT_README.relative_to(ROOT)}")
     update_openclaw_skill_card_source()
     print(f"synced {OPENCLAW_SKILL_CARD.relative_to(ROOT)}")
-    update_claude_plugin_manifest()
-    print(f"synced {CLAUDE_PLUGIN_MANIFEST.relative_to(ROOT)}")
+    for manifest_path, label in [
+        (CLAUDE_PLUGIN_MANIFEST, "Claude"),
+        (CODEX_PLUGIN_MANIFEST, "Codex"),
+    ]:
+        update_plugin_manifest(manifest_path, label)
+        print(f"synced {manifest_path.relative_to(ROOT)}")
     return 0
 
 

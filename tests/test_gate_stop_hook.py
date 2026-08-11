@@ -9,7 +9,7 @@ import unittest
 MODULE_PATH = (
     Path(__file__).parents[1]
     / "chinese-official-writing"
-    / "scripts"
+    / "hooks"
     / "gate_stop_hook.py"
 )
 HOOK_CONFIG_PATH = Path(__file__).parents[1] / "hooks" / "hooks.json"
