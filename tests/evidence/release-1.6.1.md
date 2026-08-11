@@ -30,4 +30,13 @@
 
 ## 外部回执
 
-GitHub main、tag object、tag 解引用提交、Release URL 和发布时间在完成外部写入后追加到本节。发布后的证据提交可以推进 `main`，不得移动 `v1.6.1` tag。
+- GitHub 产品发布提交：`239eb72edc9cee513a4f76c13b9ed38f223fe32b`。
+- annotated tag object：`1366d46e0e99d43a2b78a27cca97879fd04f6e99`。
+- `v1.6.1^{commit}`：`239eb72edc9cee513a4f76c13b9ed38f223fe32b`，与产品发布提交一致。
+- GitHub `main` 在发布时已推进到产品发布提交并完成远端回读。
+- GitHub Release：[`v1.6.1`](https://github.com/gongyu0918-debug/chinese-official-writing-skill/releases/tag/v1.6.1)。
+- Release 状态：`draft=false`、`prerelease=false`，发布时间 `2026-08-11T20:04:48Z`。
+- GitHub 返回的 `targetCommitish` 为 `main`；产品事实以 annotated tag 解引用提交为准。
+- 本次没有执行 SkillHub、ClawHub 或 Red SkillHub 正式上传。公开 SkillHub 与 ClawHub 版本继续保持 v1.6.0。
+
+本节作为发布后证据提交推进 `main`，不移动 `v1.6.1` tag。
