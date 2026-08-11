@@ -3,7 +3,7 @@
 [![Version](https://img.shields.io/badge/version-1.6.1-blue)](https://github.com/gongyu0918-debug/chinese-official-writing-skill/releases/tag/v1.6.1)
 [![ClawHub](https://img.shields.io/badge/ClawHub-chinese--official--writing-2f80ed)](https://clawhub.ai/gongyu0918-debug/skills/chinese-official-writing)
 [![SkillHub](https://img.shields.io/badge/SkillHub-chinese--official--writing-e8590c)](https://skillhub.cn/skills/chinese-official-writing)
-[![SkillHub downloads](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fapi.skillhub.cn%2Fapi%2Fv1%2Fskills%2Fchinese-official-writing&query=%24.skill.stats.downloads&label=SkillHub%20downloads&color=2f855a&cacheSeconds=3600)](https://skillhub.cn/skills/chinese-official-writing)
+[![SkillHub downloads: 37k+](https://img.shields.io/badge/SkillHub%20downloads-37k%2B-2f855a)](https://skillhub.cn/skills/chinese-official-writing)
 [![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 
 中文公文写作 Skill 面向正式材料起草、改写、压缩和复核，提供文种路由、行文关系判断、办理要素核对、论证链条、标题核验、重复事项检测、主体视角校验、自然表达审查和技术类材料专项约束。它先判断创作、修改、只审不改或排版交付，再按任务加载轻量卡、文种 playbook 和专项资料，让事实、文种、格式与交付方式保持在同一条写作链上。
