@@ -66,8 +66,14 @@ def validate_plugin_layout(plugin_directory: Path) -> list[str]:
         command = handler.get("command")
         if handler.get("type") != "command" or not isinstance(command, str):
             errors.append(f"{event_name} must use a command hook")
-        elif "CLAUDE_PLUGIN_ROOT" not in command or "gate_stop_hook.py" not in command:
-            errors.append(f"{event_name} command must load the bundled adapter")
+        elif (
+            "CLAUDE_PLUGIN_ROOT" not in command
+            or "CLAUDE_PLUGIN_DATA" not in command
+            or "gate_stop_hook.py" not in command
+        ):
+            errors.append(
+                f"{event_name} command must pass CLAUDE_PLUGIN_ROOT and CLAUDE_PLUGIN_DATA"
+            )
     if not script.is_file():
         errors.append("missing Claude gate adapter")
     return errors

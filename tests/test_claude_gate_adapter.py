@@ -73,6 +73,9 @@ class ClaudeGateAdapterTests(unittest.TestCase):
         for groups in hooks.values():
             command = groups[0]["hooks"][0]["command"]
             self.assertIn("CLAUDE_PLUGIN_ROOT", command)
+            self.assertIn("CLAUDE_PLUGIN_DATA", command)
+            self.assertIn("sys.argv[1]", command)
+            self.assertIn("sys.argv[2]", command)
             self.assertNotIn("PLUGIN_ROOT", command.replace("CLAUDE_PLUGIN_ROOT", ""))
         plan = PLAN_PATH.read_text(encoding="utf-8")
         self.assertIn("ordinary Skill and its mirrors do not enable hooks", plan)
