@@ -36,4 +36,13 @@
 
 ## 发布前验证
 
-发布前命令、实际结果、发布提交、tag、发行包 fingerprint 和平台回执将在本轮执行后补入本文件。确定性消融和 Promptfoo stub 只作为工程门，不替代上述真实写稿与独立裁决。
+| 验证 | 实际结果 |
+| --- | --- |
+| `python -B -m unittest discover -s tests -p "test_*.py"` | 475/475，通过 |
+| `OFFICIAL_WRITING_EVAL_STUB=1` 的 smoke | 20/20，通过；0 failed、0 errors；eval id `eval-YYX-2026-08-11T03:11:32` |
+| 固定 v1.5.41 确定性消融 | v1.5.41 为 110/111；current 为 111/111；唯一差项是旧版没有本轮新增语义锚 |
+| `quick_validate.py chinese-official-writing` | `Skill is valid!` |
+| `python -B -m py_compile ...` | `prose_lint.py`、`review_gate.py`、`sync_adapters.py`、`deterministic_capture.py` 通过 |
+| 镜像同步与 diff | `sync_adapters.py` 重跑前后 diff object hash 均为空对象 `e69de29b...`；六份运行包版本同步；`git diff --check` 通过 |
+
+版本准备提交为 `fbbe3ec7c84ca7cddcad0321d72c707ad5951248`。确定性消融和 Promptfoo stub 只作为工程门，不替代上述真实写稿与独立裁决。最终发布提交、annotated tag、发行包 fingerprint 和三平台回执在上传完成后以单独维护提交补入，不移动发布 tag。
