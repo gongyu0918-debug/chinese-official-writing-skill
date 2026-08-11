@@ -61,29 +61,24 @@ class HookLayerContractTests(unittest.TestCase):
         capabilities = json.loads(
             (SKILL_ROOT / "hooks" / "host-capabilities.json").read_text(encoding="utf-8")
         )
-        self.assertEqual(4, capabilities["schema_version"])
+        self.assertEqual(3, capabilities["schema_version"])
         self.assertFalse(capabilities["activation"]["ordinary_skill_install_enables_hooks"])
-        self.assertEqual("semantic_skill_only", capabilities["activation"]["current_skillhub_publish_package"])
-        self.assertEqual("HOLD", capabilities["activation"]["real_writing_gate"])
 
         codex = capabilities["hosts"]["codex"]
         self.assertEqual("package_registration_verified", codex["status"])
         self.assertEqual("present", codex["package_presence"]["repository_companion"])
         self.assertEqual(
-            "excluded_after_real_ab_hold", codex["package_presence"]["skillhub_ordinary_package"]
+            "companion_present_inactive", codex["package_presence"]["skillhub_ordinary_package"]
         )
-        self.assertEqual("unavailable_in_current_publish_package", codex["skillhub_activation"])
+        self.assertEqual("explicit_plugin_install_enable_and_hook_trust", codex["skillhub_activation"])
         self.assertFalse(codex["live_lifecycle_verified"])
 
         claude = capabilities["hosts"]["claude_code"]
-        self.assertEqual("repository_companion_only", claude["package_presence"])
-        self.assertEqual("excluded_after_real_ab_hold", claude["publication_status"])
+        self.assertEqual("package_present", claude["package_presence"])
         self.assertEqual("frozen", capabilities["hosts"]["openclaw"]["status"])
         workbuddy = capabilities["hosts"]["workbuddy"]
         self.assertEqual("package_manifest_verified", workbuddy["status"])
         self.assertEqual("WorkBuddy 5.3.8 / CodeBuddy Code 2.115.0", workbuddy["locally_inspected_host_version"])
-        self.assertEqual("repository_companion_only", workbuddy["package_presence"])
-        self.assertEqual("excluded_after_real_ab_hold", workbuddy["publication_status"])
         self.assertFalse(workbuddy["live_lifecycle_verified"])
 
 

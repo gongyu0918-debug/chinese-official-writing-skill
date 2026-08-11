@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import importlib.util
+import json
 import tempfile
 import unittest
 from pathlib import Path
@@ -22,15 +23,36 @@ class SkillHubPackageBuilderTests(unittest.TestCase):
             output = Path(temporary) / "publish-package"
             result = BUILDER.build_package(output, version="1.6.2")
 
-            self.assertEqual(result["files"], 32)
+            self.assertEqual(result["files"], 46)
             self.assertEqual(result["license"], "LICENSE.md")
             self.assertFalse((output / "LICENSE").exists())
             self.assertEqual((output / "LICENSE.md").read_bytes(), (ROOT / "LICENSE").read_bytes())
             self.assertTrue((output / "LICENSE.md").read_text(encoding="utf-8").startswith("MIT License\n"))
             self.assertFalse((output / "agents" / "openai.yaml").exists())
-            for relative in BUILDER.HOOK_PACKAGE_EXCLUDES:
-                with self.subTest(relative=relative):
-                    self.assertFalse((output / relative).exists())
+            self.assertTrue((output / "hooks" / "AGENT_GLUE.md").is_file())
+            self.assertTrue((output / "hooks" / "host-capabilities.json").is_file())
+            self.assertTrue((output / "hooks" / "claude-code" / "hooks" / "hooks.json").is_file())
+            self.assertTrue((output / ".codex-plugin" / "plugin.json").is_file())
+            self.assertTrue((output / ".codebuddy-plugin" / "plugin.json").is_file())
+            self.assertTrue((output / "hooks" / "hooks.json").is_file())
+            self.assertTrue((output / "hooks" / "workbuddy" / "hooks.json").is_file())
+            self.assertTrue((output / "hooks" / "host_gate_adapter.py").is_file())
+            self.assertTrue((output / "skills" / "chinese-official-writing" / "SKILL.md").is_file())
+            capabilities = json.loads(
+                (output / "hooks" / "host-capabilities.json").read_text(encoding="utf-8")
+            )
+            self.assertEqual(
+                "companion_present_inactive",
+                capabilities["hosts"]["codex"]["package_presence"]["skillhub_ordinary_package"],
+            )
+            self.assertEqual(
+                "package_present",
+                capabilities["hosts"]["claude_code"]["package_presence"],
+            )
+            self.assertEqual(
+                "companion_present_inactive",
+                capabilities["hosts"]["workbuddy"]["package_presence"],
+            )
             self.assertEqual(
                 (output / "_meta.json").read_text(encoding="utf-8"),
                 '{\n  "slug": "chinese-official-writing",\n  "version": "1.6.2"\n}\n',

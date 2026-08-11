@@ -26,7 +26,7 @@ CODEX_GATE_FILES = {
     "scripts/review_gate.py",
     "skills/chinese-official-writing/SKILL.md",
 }
-SKILLHUB_CLEAN_PACKAGE_EXCLUDES = {"agents/openai.yaml", "LICENSE", *CODEX_GATE_FILES}
+SKILLHUB_CLEAN_PACKAGE_EXCLUDES = {"agents/openai.yaml", "LICENSE"}
 FROZEN_OPENCLAW_VERSION = "1.6.0"
 FROZEN_OPENCLAW_FINGERPRINT = "c4c06e1db18039256ee99d388223185af5b74e196a2f405e44cb8f7f0c74face"
 
@@ -315,11 +315,11 @@ class SkillBoundaryTests(unittest.TestCase):
             if relative not in SKILLHUB_CLEAN_PACKAGE_EXCLUDES
         ]
 
-        self.assertEqual(len(package_allowlist), 30)
+        self.assertEqual(len(package_allowlist), 44)
         self.assertNotIn("agents/openai.yaml", package_allowlist)
         self.assertNotIn("LICENSE", package_allowlist)
         for relative in CODEX_GATE_FILES:
-            self.assertNotIn(relative, package_allowlist)
+            self.assertIn(relative, package_allowlist)
 
     def test_codex_plugin_version_and_hook_path_track_canonical_skill(self) -> None:
         sync_script = (ROOT / "tools" / "sync_adapters.py").read_text(encoding="utf-8")

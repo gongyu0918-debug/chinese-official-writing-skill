@@ -12,7 +12,7 @@
 
 - `chinese-official-writing/` 是 canonical 产品包；`skills/`、`.agents/`、`.qwen/`、`hermes/` 是当前适配或镜像表面。`openclaw/` 固定为已发布 v1.6.0，不参与默认同步；恢复更新前必须另做排除式增量验证。
 - `tools/`、`evals/`、`tests/` 是工程与评测工具；`tests/evidence/` 保存预注册、消融、盲审和真实执行证据；`docs/evidence/` 保存维护历史和索引；`output/` 默认不提交。
-- Hook 研究伴随物放在 canonical 的专属 `hooks/` 目录，但当前 enabled/disabled 真实写稿结论为 `HOLD`；SkillHub 与 ClawHub 发布包均排除 Hook、宿主 manifest、交付门禁 reference 和 `review_gate.py`。仓库存在、进入发布包、插件安装、功能启用、信任确认和真实执行是不同事实，必须分别验证。
+- SkillHub 可携带可选 Hook 伴随物，Hook 资产放在专属 `hooks/` 目录；ClawHub 包排除 Hook 和交付门禁资产。包内存在、插件安装、功能启用、信任确认和真实执行是五项独立事实，必须分别验证。
 
 ## 修改与 Git
 
@@ -46,7 +46,7 @@
 
 1. 授权只覆盖用户点名的平台和版本，不延伸到其他平台或后续版本。
 2. 发布前固定上一发行 tag 的解引用 commit，核对 ancestry、精确 diff、版本号与镜像元数据、工作树、测试、清洁包 allowlist、文件数、禁入文件和 fingerprint。
-3. SkillHub 清洁包使用 `tools/build_skillhub_package.py` 从已跟踪的 canonical 文件构建；发布包不复用历史 output，不上传 `agents/openai.yaml`、无扩展名 `LICENSE`、Hook/宿主适配器、交付门禁资产、缓存或研究产物，另以 `LICENSE.md` 携带根 MIT 许可证全文；专用 `SKILL.md` 不回填 homepage、license、兼容列表和安装路径。
+3. SkillHub 清洁包使用 `tools/build_skillhub_package.py` 从已跟踪的 canonical 文件构建；发布包不复用历史 output，不上传 `agents/openai.yaml`、无扩展名 `LICENSE`、缓存或研究产物，另以 `LICENSE.md` 携带根 MIT 许可证全文；专用 `SKILL.md` 不回填 homepage、license、兼容列表和安装路径。
 4. 分别核验 annotated tag object、tag 解引用 commit、发布提交、远端分支和 GitHub Release。发布后的证据提交可以推进 `main`，不得移动已发布 tag。
 5. dry-run、上传回执、公开 `latest` 或 tag、审核与安全状态、来源证明和搜索索引传播分别记录；来源证明缺失时记 `unavailable`，公开索引滞后不构成重复提交理由。
 6. 当前发行范围为 GitHub 和 skillhub.cn。ClawHub 自 v1.6.0 后暂停更新，只有用户明确恢复授权并完成排除式增量验证后才可再次发布；小红书 Red SkillHub 同样默认排除，只有用户逐次明确恢复授权才可触碰。
