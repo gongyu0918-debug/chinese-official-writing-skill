@@ -1215,15 +1215,8 @@ def _candidate_document_invariant_reason(
     candidate_violation = _length_violation_distance(
         candidate_length, minimum, maximum
     )
-    bounded_p0_shortening = (
-        repair_mode == REPAIR_MODE_DECISIONS
-        and minimum is not None
-        and draft_length < minimum
-        and candidate_length < draft_length
-    )
     if (
-        not bounded_p0_shortening
-        and candidate_violation
+        candidate_violation
         > draft_violation
         + _length_worsening_tolerance(draft_length, minimum, maximum)
     ):
