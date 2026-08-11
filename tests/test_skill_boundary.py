@@ -947,44 +947,46 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assertIn("ROOT_README", sync_script)
         self.assertNotIn("OPENCLAW_", sync_script)
 
-    def test_full_skillhub_packages_use_mit_and_pure_skill_packages_use_mit_0(self) -> None:
+    def test_repository_packages_use_mit_with_only_openclaw_on_mit_0(self) -> None:
         license_text = (ROOT / "LICENSE").read_text(encoding="utf-8")
-        skill_license_text = (ROOT / "LICENSE-SKILL").read_text(encoding="utf-8")
+        clawhub_license_text = (ROOT / "LICENSE-CLAWHUB").read_text(encoding="utf-8")
+        license_scope = (ROOT / "LICENSE-SCOPE.md").read_text(encoding="utf-8")
         readme = (ROOT / "README.md").read_text(encoding="utf-8")
         sync_script = (ROOT / "tools" / "sync_adapters.py").read_text(encoding="utf-8")
 
         self.assertTrue(license_text.startswith("MIT License\n"))
         self.assertIn("subject to the\nfollowing conditions:", license_text)
         self.assertIn("The above copyright notice and this permission notice", license_text)
-        self.assertTrue(skill_license_text.startswith("MIT No Attribution\n"))
-        self.assertNotIn("The above copyright notice and this permission notice", skill_license_text)
+        self.assertTrue(clawhub_license_text.startswith("MIT No Attribution\n"))
+        self.assertNotIn("The above copyright notice and this permission notice", clawhub_license_text)
+        self.assertFalse((ROOT / "LICENSE-SKILL").exists())
+        self.assertIn("全部内容，但下列例外除外", license_scope)
+        self.assertIn("`openclaw/` 目录及由该目录构建的 ClawHub 发行包继续采用 MIT-0", license_scope)
+        self.assertIn("只有上述 ClawHub/OpenClaw 发行面采用 MIT-0", license_scope)
+        self.assertIn("第三方规范、项目、软件包和其他材料", license_scope)
         self.assertIn("## 开源许可", readme)
-        self.assertIn("SkillHub、Codex、Claude Code 与 WorkBuddy/CodeBuddy 完整包", readme)
-        self.assertIn("ClawHub、OpenClaw 与普通纯 Skill 镜像", readme)
-        self.assertIn("包外维护材料", readme)
+        self.assertIn("GitHub 仓库及全部非 ClawHub 内容和发行面", readme)
+        self.assertIn("冻结的 ClawHub / OpenClaw 发行面", readme)
+        self.assertIn("仅适用于 `openclaw/` 目录及由其构建的 ClawHub 包", readme)
+        self.assertIn("构建记录、测试证据和维护文档", readme)
         self.assertIn("MIT-0", readme)
         self.assertIn("[![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)", readme)
 
-        full_package_skill_paths = [
+        mit_package_skill_paths = [
             "chinese-official-writing/SKILL.md",
             "skills/chinese-official-writing/SKILL.md",
+            ".agents/skills/chinese-official-writing/SKILL.md",
+            ".qwen/skills/chinese-official-writing/SKILL.md",
+            "hermes/skills/chinese-official-writing/SKILL.md",
         ]
-        for relative_path in full_package_skill_paths:
+        for relative_path in mit_package_skill_paths:
             frontmatter = read_frontmatter(ROOT / relative_path)
             self.assertNotIn("license", frontmatter, relative_path)
             package_root = (ROOT / relative_path).parent
             self.assertEqual((package_root / "LICENSE").read_bytes(), (ROOT / "LICENSE").read_bytes())
 
-        pure_skill_paths = [
-            ".agents/skills/chinese-official-writing/SKILL.md",
-            ".qwen/skills/chinese-official-writing/SKILL.md",
-            "hermes/skills/chinese-official-writing/SKILL.md",
-        ]
-        for relative_path in pure_skill_paths:
-            frontmatter = read_frontmatter(ROOT / relative_path)
-            self.assertNotIn("license", frontmatter, relative_path)
-            package_root = (ROOT / relative_path).parent
-            self.assertEqual((package_root / "LICENSE").read_bytes(), (ROOT / "LICENSE-SKILL").read_bytes())
+        redskill_frontmatter = read_frontmatter(ROOT / "redskill/skills/chinese-official-writing/SKILL.md")
+        self.assertEqual("MIT", redskill_frontmatter["license"])
 
         full_package_manifests = [
             ".codex-plugin/plugin.json",
@@ -1009,10 +1011,13 @@ class SkillBoundaryTests(unittest.TestCase):
         for relative_path in frozen_openclaw_paths:
             self.assertIn("MIT-0", (ROOT / relative_path).read_text(encoding="utf-8"), relative_path)
 
-        self.assertIn('FULL_PACKAGE_LICENSE = "MIT"', sync_script)
-        self.assertIn('PURE_SKILL_LICENSE = "MIT-0"', sync_script)
+        self.assertIn('REPOSITORY_LICENSE = "MIT"', sync_script)
         self.assertIn("TARGET_LICENSES = {", sync_script)
         self.assertIn("if set(TARGET_LICENSES) != set(TARGETS)", sync_script)
+        self.assertIn("all non-OpenClaw adapter targets must use the repository MIT license", sync_script)
+        self.assertIn('shutil.copyfile(ROOT_LICENSE, target / "LICENSE")', sync_script)
+        self.assertNotIn("PURE_SKILL_LICENSE", sync_script)
+        self.assertNotIn("MIT-0", sync_script)
         self.assertNotIn("redskill", sync_script.lower())
 
     def test_lint_ci_invocation_stays_out_of_writer_context(self) -> None:

@@ -256,15 +256,15 @@ npx skills add https://github.com/gongyu0918-debug/chinese-official-writing-skil
 
 ## 开源许可
 
-仓库首页统一按 [MIT](https://spdx.org/licenses/MIT.html) 展示，具体授权边界如下：
+仓库首页统一按 [MIT](https://spdx.org/licenses/MIT.html) 展示，具体授权边界见 [`LICENSE-SCOPE.md`](LICENSE-SCOPE.md)：
 
 | 范围 | 许可 |
 | --- | --- |
-| SkillHub、Codex、Claude Code 与 WorkBuddy/CodeBuddy 完整包 | [MIT](https://spdx.org/licenses/MIT.html)，见仓库根 [`LICENSE`](LICENSE)。canonical 与 `skills/` 包含可选 Hook、宿主薄适配器和共享门禁代码；SkillHub 清洁发布包以 `LICENSE.md` 携带同一 MIT 全文，插件 manifest 保留 MIT 标识 |
-| ClawHub、OpenClaw 与普通纯 Skill 镜像 | [MIT-0](https://spdx.org/licenses/MIT-0.html)，见 [`LICENSE-SKILL`](LICENSE-SKILL)。`.agents`、Qwen Code、Hermes 和 OpenClaw 包不含门禁代码，包内携带 MIT-0 `LICENSE` |
-| 包外维护材料 | MIT，见 [`LICENSE`](LICENSE)。包括根 README、tests、evals、tools、测试证据、迭代记录和维护文档 |
+| GitHub 仓库及全部非 ClawHub 内容和发行面 | [MIT](https://spdx.org/licenses/MIT.html)，见仓库根 [`LICENSE`](LICENSE)。包括 canonical、SkillHub、Codex、Claude Code、WorkBuddy/CodeBuddy、`.agents`、Qwen Code、Hermes、Red SkillHub 源文件、Hook、构建工具、tests、evals、构建记录、测试证据和维护文档；SkillHub 清洁包以 `LICENSE.md` 携带同一 MIT 全文 |
+| 冻结的 ClawHub / OpenClaw 发行面 | [MIT-0](https://spdx.org/licenses/MIT-0.html)，见 [`LICENSE-CLAWHUB`](LICENSE-CLAWHUB)。仅适用于 `openclaw/` 目录及由其构建的 ClawHub 包 |
+| 外部规范和第三方材料 | 沿用各自权利人声明的许可；本仓库 MIT 许可不替代其原有许可 |
 
-SkillHub/Codex 完整包中的 `SKILL.md`、references、Hook、scripts 与随包元数据统一采用 MIT；纯 Skill 发行面统一采用 MIT-0。仓库引用的外部规范和第三方项目沿用各自许可。
+除冻结的 ClawHub/OpenClaw 发行面外，本仓库内容和其余包统一采用 MIT；是否包含 Hook 不再改变许可证。该调整不改写历史发行记录，也不改变第三方材料的原有许可。
 
 ## 规范与参考
 

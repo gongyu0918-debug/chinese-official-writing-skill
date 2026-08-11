@@ -12,10 +12,8 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 CANONICAL = ROOT / "chinese-official-writing"
 VERSION = "1.6.1"
-FULL_PACKAGE_LICENSE = "MIT"
-PURE_SKILL_LICENSE = "MIT-0"
+REPOSITORY_LICENSE = "MIT"
 ROOT_LICENSE = ROOT / "LICENSE"
-PURE_SKILL_LICENSE_FILE = ROOT / "LICENSE-SKILL"
 CANONICAL_LICENSE = CANONICAL / "LICENSE"
 ROOT_README = ROOT / "README.md"
 CLAUDE_PLUGIN_MANIFEST = ROOT / ".claude-plugin" / "plugin.json"
@@ -32,10 +30,10 @@ TARGETS = {
 }
 
 TARGET_LICENSES = {
-    "claude": FULL_PACKAGE_LICENSE,
-    "agents": PURE_SKILL_LICENSE,
-    "qwen": PURE_SKILL_LICENSE,
-    "hermes": PURE_SKILL_LICENSE,
+    "claude": REPOSITORY_LICENSE,
+    "agents": REPOSITORY_LICENSE,
+    "qwen": REPOSITORY_LICENSE,
+    "hermes": REPOSITORY_LICENSE,
 }
 
 STALE_TARGET_FILES = (
@@ -113,8 +111,7 @@ def copy_skill(target: Path, mode: str) -> None:
         packaged_file = target / relative_path
         if packaged_file.exists():
             packaged_file.unlink()
-    if TARGET_LICENSES[mode] == PURE_SKILL_LICENSE:
-        shutil.copyfile(PURE_SKILL_LICENSE_FILE, target / "LICENSE")
+    shutil.copyfile(ROOT_LICENSE, target / "LICENSE")
 
 
 def main() -> int:
@@ -122,13 +119,15 @@ def main() -> int:
         raise SystemExit(f"missing canonical skill: {CANONICAL}")
     if set(TARGET_LICENSES) != set(TARGETS):
         raise SystemExit("every adapter target must declare an explicit package license")
+    if any(license_id != REPOSITORY_LICENSE for license_id in TARGET_LICENSES.values()):
+        raise SystemExit("all non-OpenClaw adapter targets must use the repository MIT license")
     sync_canonical_license()
     for manifest_path, label in [
         (PACKAGED_CODEX_PLUGIN_MANIFEST, "packaged Codex"),
         (PACKAGED_WORKBUDDY_PLUGIN_MANIFEST, "packaged WorkBuddy"),
         (PACKAGED_CLAUDE_PLUGIN_MANIFEST, "packaged Claude"),
     ]:
-        update_plugin_manifest(manifest_path, label, FULL_PACKAGE_LICENSE)
+        update_plugin_manifest(manifest_path, label, REPOSITORY_LICENSE)
     for mode, target in TARGETS.items():
         copy_skill(target, mode)
         print(f"synced {target.relative_to(ROOT)}")
@@ -138,7 +137,7 @@ def main() -> int:
         (CLAUDE_PLUGIN_MANIFEST, "Claude"),
         (CODEX_PLUGIN_MANIFEST, "Codex"),
     ]:
-        update_plugin_manifest(manifest_path, label, FULL_PACKAGE_LICENSE)
+        update_plugin_manifest(manifest_path, label, REPOSITORY_LICENSE)
         print(f"synced {manifest_path.relative_to(ROOT)}")
     return 0
 
