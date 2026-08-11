@@ -1,10 +1,12 @@
 {
-  "schema_version": 3,
+  "schema_version": 4,
   "shared_gate_core": "chinese-official-writing/scripts/review_gate.py",
   "activation": {
     "default": "disabled",
     "ordinary_skill_install_enables_hooks": false,
-    "configuration_mutation": "forbidden"
+    "configuration_mutation": "forbidden",
+    "current_skillhub_publish_package": "semantic_skill_only",
+    "real_writing_gate": "HOLD"
   },
   "hosts": {
     "codex": {
@@ -12,9 +14,9 @@
       "adapter": ".codex-plugin/plugin.json + hooks/hooks.json + hooks/host_gate_adapter.py",
       "package_presence": {
         "repository_companion": "present",
-        "skillhub_ordinary_package": "companion_present_inactive"
+        "skillhub_ordinary_package": "excluded_after_real_ab_hold"
       },
-      "skillhub_activation": "explicit_plugin_install_enable_and_hook_trust",
+      "skillhub_activation": "unavailable_in_current_publish_package",
       "events": [
         "UserPromptSubmit",
         "PostToolUse:Bash|Read",
@@ -28,7 +30,8 @@
     "claude_code": {
       "status": "lifecycle_verified",
       "adapter": "hooks/claude-code",
-      "package_presence": "package_present",
+      "package_presence": "repository_companion_only",
+      "publication_status": "excluded_after_real_ab_hold",
       "events": [
         "UserPromptSubmit",
         "PostToolUse:Bash|Read",
@@ -57,7 +60,8 @@
     "workbuddy": {
       "status": "package_manifest_verified",
       "adapter": ".codebuddy-plugin/plugin.json + hooks/workbuddy/hooks.json + hooks/host_gate_adapter.py",
-      "package_presence": "companion_present_inactive",
+      "package_presence": "repository_companion_only",
+      "publication_status": "excluded_after_real_ab_hold",
       "events": [
         "UserPromptSubmit",
         "PostToolUse:Bash|Read",

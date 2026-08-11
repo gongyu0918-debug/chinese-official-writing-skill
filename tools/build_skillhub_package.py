@@ -17,9 +17,25 @@ ROOT_LICENSE = ROOT / "LICENSE"
 SKILLHUB_LICENSE_NAME = "LICENSE.md"
 DEFAULT_SLUG = "chinese-official-writing"
 DEFAULT_DISPLAY_NAME = "中文公文写作"
-DEFAULT_SUMMARY = "用于中文公文和正式工作材料的起草、改写、压缩与复核，强调文种准确、事实克制、数据可追溯和公文语气自然。"
+DEFAULT_SUMMARY = "用于中文公文、事务性材料和新闻稿件的起草、改写、压缩与复核，强调文种准确、事实克制、数据可追溯和正式语气自然。"
 DEFAULT_TAGS = ("chinese", "official-document", "writing", "gongwen", "ai-compute")
-PACKAGE_EXCLUDES = {"agents/openai.yaml", "LICENSE"}
+HOOK_PACKAGE_EXCLUDES = {
+    ".codebuddy-plugin/plugin.json",
+    ".codex-plugin/plugin.json",
+    "hooks/AGENT_GLUE.md",
+    "hooks/claude-code/.claude-plugin/plugin.json",
+    "hooks/claude-code/hooks/hooks.json",
+    "hooks/claude-code/scripts/gate_stop_hook.py",
+    "hooks/gate_stop_hook.py",
+    "hooks/hooks.json",
+    "hooks/host-capabilities.json",
+    "hooks/host_gate_adapter.py",
+    "hooks/workbuddy/hooks.json",
+    "references/delivery-review-gate.md",
+    "scripts/review_gate.py",
+    "skills/chinese-official-writing/SKILL.md",
+}
+PACKAGE_EXCLUDES = {"agents/openai.yaml", "LICENSE", *HOOK_PACKAGE_EXCLUDES}
 FORBIDDEN_FRONTMATTER_KEYS = {
     "homepage",
     "license",

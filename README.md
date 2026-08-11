@@ -47,7 +47,7 @@
 
 ## 实现与技术栈
 
-这是一个 Markdown-first 的 Agent Skill。核心规则和 references 全部使用中文 Markdown 编写，不懂代码也能直接阅读、审查和修改。YAML frontmatter 负责名称、触发描述、版本和许可；Python 只承担可选的确定性检查；各平台适配包从同一 canonical 技能目录同步，正文规则保持一致。
+这是一个 Markdown-first 的 Agent Skill。核心规则和 references 全部使用中文 Markdown 编写，不懂代码也能直接阅读、审查和修改。通用 YAML frontmatter 只保留名称、触发描述和标签；平台发布字段由清洁包构建器生成，许可由包内许可证文件说明。Python 只承担可选的确定性检查；各平台适配包从同一 canonical 技能目录同步，正文规则保持一致。
 
 | 组成 | 作用 |
 | --- | --- |
@@ -56,7 +56,7 @@
 | 文种与专项 references | 按需补充文种骨架、办理要素、论证链、GB/T 9704 格式和 AI 算力材料规则 |
 | 分层复核 references | 从段落、小节到全文检查事实、视角、结构、格式和自然表达 |
 | `scripts/prose_lint.py` | 提供可选的格式、重复和成品残留线索，作为轻量审查层的确定性补充 |
-| Codex 插件 Hook | 在支持生命周期 Hook 的 Codex 插件环境中执行一次有限复核；异常时回到非空初稿，修订不会循环 |
+| Hook 研究伴随物 | 仓库保留 Codex、Claude Code 和 WorkBuddy/CodeBuddy 薄适配器及共享门禁研究；真实 enabled/disabled 写稿结论为 `HOLD`，当前 SkillHub 发布包不含这些文件 |
 | `agents/openai.yaml` | 提供界面展示和默认调用信息 |
 
 渐进式路由让短任务只读取轻量卡，完整公文再进入相应文种叶子，技术类材料只加载命中的专项规则。这样既保留必要边界，也减少无关规则对真实写稿的干扰。
@@ -65,7 +65,7 @@
 
 当前工作版本：`chinese-official-writing@1.6.0`
 
-平台入口：[ClawHub](https://clawhub.ai/gongyu0918-debug/skills/chinese-official-writing) · [skillhub.cn](https://skillhub.cn/skills/chinese-official-writing)。通用 Agent Skills 安装器可直接使用：
+平台入口：[ClawHub](https://clawhub.ai/gongyu0918-debug/skills/chinese-official-writing)（冻结在 1.6.0） · [skillhub.cn](https://skillhub.cn/skills/chinese-official-writing)。通用 Agent Skills 安装器可直接使用：
 
 ```powershell
 npx skills add https://github.com/gongyu0918-debug/chinese-official-writing-skill --skill chinese-official-writing
@@ -258,11 +258,12 @@ npx skills add https://github.com/gongyu0918-debug/chinese-official-writing-skil
 
 | 范围 | 许可 |
 | --- | --- |
-| SkillHub、Codex、Claude Code 与 WorkBuddy/CodeBuddy 完整包 | [MIT](https://spdx.org/licenses/MIT.html)，见仓库根 [`LICENSE`](LICENSE)。canonical 与 `skills/` 包含可选 Hook、宿主薄适配器和共享门禁代码；SkillHub 清洁发布包以 `LICENSE.md` 携带同一 MIT 全文，插件 manifest 保留 MIT 标识 |
+| GitHub 仓库与 SkillHub 语义 Skill 包 | [MIT](https://spdx.org/licenses/MIT.html)，见仓库根 [`LICENSE`](LICENSE)。SkillHub 清洁发布包以 `LICENSE.md` 携带同一 MIT 全文，当前不含 Hook、宿主 manifest 和交付门禁资产 |
+| 仓库内 Hook 研究伴随物 | MIT，见 [`LICENSE`](LICENSE)。Codex、Claude Code、WorkBuddy/CodeBuddy 适配器与共享门禁代码保留在源码和测试中；真实写稿结论为 `HOLD`，不进入当前发布包 |
 | ClawHub、OpenClaw 与普通纯 Skill 镜像 | [MIT-0](https://spdx.org/licenses/MIT-0.html)，见 [`LICENSE-SKILL`](LICENSE-SKILL)。`.agents`、Qwen Code、Hermes 和 OpenClaw 包不含门禁代码，包内携带 MIT-0 `LICENSE` |
 | 包外维护材料 | MIT，见 [`LICENSE`](LICENSE)。包括根 README、tests、evals、tools、测试证据、迭代记录和维护文档 |
 
-SkillHub/Codex 完整包中的 `SKILL.md`、references、Hook、scripts 与随包元数据统一采用 MIT；纯 Skill 发行面统一采用 MIT-0。仓库引用的外部规范和第三方项目沿用各自许可。
+SkillHub 语义包中的 `SKILL.md`、references、`prose_lint.py` 与随包元数据采用 MIT；仓库内 Hook 研究代码也采用 MIT，但不随当前 SkillHub 包发布。纯 Skill 发行面统一采用 MIT-0。仓库引用的外部规范和第三方项目沿用各自许可。
 
 ## 规范与参考
 
