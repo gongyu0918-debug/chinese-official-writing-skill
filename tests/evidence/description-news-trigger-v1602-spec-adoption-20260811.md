@@ -2,13 +2,13 @@
 
 日期：2026-08-11
 
-结论：`USER-SPECIFIED ENTRY RELIEF / NO STABLE ROUTING REGRESSION / NO QUALITY-UPLIFT CLAIM`
+结论：`CONSERVATIVE NEWS-FOREGROUNDING CANDIDATE / ROUTE RETEST REQUIRED / NO QUALITY-UPLIFT CLAIM`
 
 ## 产品范围
 
 - 固定历史基线：`9abc48794ebf82b8e918c593ebdada8cc080fe61`。
 - 已验证的隔离候选：`387882c077b3c78801b7f1a63524fca886ab87fc`。
-- 本次只把活跃 GitHub/SkillHub 运行面的 description 首句改为“用于中文公文、事务性材料、新闻稿件起草、改写、压缩和复核”，并从末句删去“个人求职”。后续文种词表、正向新闻别名和其他排除项不变。
+- 本次只在活跃 GitHub/SkillHub 运行面的 description 首句中把“新闻稿件”提前。原有“机关企事业单位、学校等”以及末句“个人求职”排除项全部保留；后续文种词表、正向新闻别名和其他排除项不变。
 - 已冻结的 OpenClaw/ClawHub v1.6.0 不随本次改动。
 
 ## 既有真实路由证据
@@ -26,7 +26,7 @@
 
 ## 本次裁决
 
-用户再次明确把该文字作为入口减载和人类可读性规格，而不是以路由质量提升为合入前提。结合 48 次复放已撤销最初单例回退推断，本次按用户规格纳入；证据口径只写减载与未见稳定路由回退。
+用户在看到较宽候选的路由结果后，进一步收窄规格：不删除单位范围，不删除“个人求职”，只前置新闻入口。本文件保留前两轮证据作为风险背景；这个更保守的新候选仍需独立路由复放，不能直接把较宽候选的 90 次调用写成当前文字已经通过。
 
 原始结果仍保留在隔离分支：
 
