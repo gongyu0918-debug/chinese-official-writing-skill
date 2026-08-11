@@ -16,7 +16,7 @@
 - 当前 GitHub 发布证据：[`release-1.6.1.md`](../../tests/evidence/release-1.6.1.md)。SkillHub 本次暂缓更新；ClawHub/OpenClaw 继续固定在 v1.6.0；小红书 Red SkillHub 未触碰。
 - 发布前本地候选快照：[`release-1.6.1-rc.md`](../../tests/evidence/release-1.6.1-rc.md)。该文件保留当时测试和许可边界，不覆盖最终发布记录。
 - 上一正式发行版：[`release-1.6.0.md`](../../tests/evidence/release-1.6.0.md)。
-- 不改版本、不发布的许可证范围清理：[`license-scope-cleanup-result-20260812.md`](../../tests/evidence/license-scope-cleanup-result-20260812.md)；同题 README v1.6.0 写稿更新见 [`readme-v160-same-task-comparison-20260812.md`](../../tests/evidence/readme-v160-same-task-comparison-20260812.md)。
+- 不改版本、不发布的许可证范围清理：[`license-scope-cleanup-result-20260812.md`](../../tests/evidence/license-scope-cleanup-result-20260812.md)；当前 README 制度类同题写稿见 [`readme-v161-institution-same-task-comparison-20260812.md`](../../tests/evidence/readme-v161-institution-same-task-comparison-20260812.md)，上一份报告类对照保留在 [`readme-v160-same-task-comparison-20260812.md`](../../tests/evidence/readme-v160-same-task-comparison-20260812.md)。
 - 相邻正式版本：[`release-1.5.41.md`](../../tests/evidence/release-1.5.41.md)、[`release-1.5.40.md`](../../tests/evidence/release-1.5.40.md)。
 - 1.5.39 自包含 A/B、匿名裁决及 Word 对齐修复：[`v1539-compact-repro-pack-20260808.md`](../../tests/evidence/v1539-compact-repro-pack-20260808.md)。
 - 其他预注册、候选、盲审、消融和真实写稿记录继续在 `tests/evidence/` 中按版本号、候选代号或日期检索。
