@@ -24,6 +24,7 @@ OUT = Path(r"F:\Workspaces\chinese-official-writing-skill\output\release-1.6.0-c
 SUPPLEMENT_OUT = Path(r"F:\Workspaces\chinese-official-writing-skill\output\release-1.6.0-combination-real-r2-supplement")
 FINAL_OUT = Path(r"F:\Workspaces\chinese-official-writing-skill\output\release-1.6.0-combination-real-final")
 MAPPING_PATH = RUNTIME_PARENT / "blind-mapping-r2.json"
+JUDGE_ROOT = Path(r"C:\Users\admin\Documents\Codex\cow-160-combination-judge")
 CATALOG = Path(r"C:\Users\admin\.codex\opencodex-catalog.json")
 BASE_URL = "http://127.0.0.1:10100/v1"
 MODELS = {
@@ -484,14 +485,89 @@ def finalize() -> int:
     return 0
 
 
+def judge() -> int:
+    packet_path = FINAL_OUT / "blind-packet.md"
+    manifest = json.loads((FINAL_OUT / "manifest.json").read_text(encoding="utf-8"))
+    packet = packet_path.read_text(encoding="utf-8")
+    packet_sha = sha256_bytes(packet.encode("utf-8"))
+    if packet_sha != manifest["blind_packet_sha256"]:
+        raise RuntimeError("blind packet hash mismatch")
+    JUDGE_ROOT.mkdir(parents=True, exist_ok=True)
+    if any(JUDGE_ROOT.iterdir()):
+        raise RuntimeError("judge root must be empty")
+    prompt = (
+        "你是独立匿名裁判。不得调用工具或读取任何文件，不得猜测 A/B 身份。"
+        "严格只依据下列冻结包逐对裁决；输出 P01—P10 的 A/B PASS、WARN、FAIL，"
+        "A优/B优/难分，硬边界和理由；最后汇总跨稿共性问题。"
+        f"输入包 SHA-256={packet_sha}。\n\n{packet}"
+    )
+    final_path = FINAL_OUT / "blind-review-sol-r2.txt"
+    trace_path = FINAL_OUT / "blind-review-sol-r2.trace.jsonl"
+    stderr_path = FINAL_OUT / "blind-review-sol-r2.stderr.txt"
+    command = [
+        shutil.which("codex") or "codex",
+        "exec",
+        "--ignore-user-config",
+        "--ignore-rules",
+        "--skip-git-repo-check",
+        "-C",
+        str(JUDGE_ROOT),
+        "-m",
+        "gpt-5.6-sol",
+        "-c",
+        'model_reasoning_effort="max"',
+        "-s",
+        "read-only",
+        "--ephemeral",
+        "--json",
+        "-o",
+        str(final_path),
+        "-",
+    ]
+    completed = subprocess.run(
+        command,
+        input=prompt,
+        text=True,
+        encoding="utf-8",
+        capture_output=True,
+        timeout=600,
+        check=False,
+    )
+    trace_path.write_text(completed.stdout, encoding="utf-8", newline="\n")
+    stderr_path.write_text(completed.stderr, encoding="utf-8", newline="\n")
+    if completed.returncode != 0 or not final_path.is_file():
+        return 2
+    final = final_path.read_text(encoding="utf-8")
+    receipt = {
+        "model": "gpt-5.6-sol",
+        "thinking": "max",
+        "packet_sha256": packet_sha,
+        "prompt_sha256": sha256_bytes(prompt.encode("utf-8")),
+        "final_sha256": sha256_bytes(final.encode("utf-8")),
+        "final_chars": len(final),
+        "trace_sha256": sha256_file(trace_path),
+        "return_code": completed.returncode,
+    }
+    (FINAL_OUT / "blind-review-sol-r2.receipt.json").write_text(
+        json.dumps(receipt, ensure_ascii=False, indent=2) + "\n",
+        encoding="utf-8",
+        newline="\n",
+    )
+    print(json.dumps(receipt, ensure_ascii=False))
+    return 0
+
+
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--preflight", action="store_true")
     parser.add_argument("--run", action="store_true")
     parser.add_argument("--supplement", action="store_true")
     parser.add_argument("--finalize", action="store_true")
+    parser.add_argument("--judge", action="store_true")
     args = parser.parse_args()
-    selected = sum((args.preflight, args.run, args.supplement, args.finalize))
+    selected = sum(
+        (args.preflight, args.run, args.supplement, args.finalize, args.judge)
+    )
     if selected != 1:
         parser.error("choose exactly one action")
     if args.preflight:
@@ -500,7 +576,9 @@ def main() -> int:
         return execute()
     if args.supplement:
         return supplement()
-    return finalize()
+    if args.finalize:
+        return finalize()
+    return judge()
 
 
 if __name__ == "__main__":
