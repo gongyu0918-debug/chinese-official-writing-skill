@@ -258,10 +258,11 @@ npx skills add https://github.com/gongyu0918-debug/chinese-official-writing-skil
 
 | 范围 | 许可 |
 | --- | --- |
-| 可直接安装的技能包 | [MIT-0](https://spdx.org/licenses/MIT-0)，见 [`LICENSE-SKILL`](LICENSE-SKILL)。以 `openclaw/skills/chinese_official_writing/` 为基准，canonical、通用 Agent、`.agents`、Qwen Code 和 Hermes 镜像采用同一许可 |
+| SkillHub、Codex 与 Claude Code 完整包 | [MIT](https://spdx.org/licenses/MIT.html)，见 [`LICENSE`](LICENSE)。canonical 与 `skills/` 包含可选 Hook 和共享门禁代码，包内同时携带 MIT `LICENSE` |
+| ClawHub、OpenClaw 与普通纯 Skill 镜像 | [MIT-0](https://spdx.org/licenses/MIT-0.html)，见 [`LICENSE-SKILL`](LICENSE-SKILL)。`.agents`、Qwen Code、Hermes 和 OpenClaw 包不含门禁代码，包内携带 MIT-0 `LICENSE` |
 | 包外维护材料 | MIT，见 [`LICENSE`](LICENSE)。包括根 README、tests、evals、tools、测试证据、迭代记录和维护文档 |
 
-技能包目录内的 `SKILL.md`、`references/`、`scripts/` 与随包元数据统一采用 MIT-0。仓库引用的外部规范和第三方项目沿用各自许可。
+SkillHub/Codex 完整包中的 `SKILL.md`、references、Hook、scripts 与随包元数据统一采用 MIT；纯 Skill 发行面统一采用 MIT-0。仓库引用的外部规范和第三方项目沿用各自许可。
 
 ## 规范与参考
 

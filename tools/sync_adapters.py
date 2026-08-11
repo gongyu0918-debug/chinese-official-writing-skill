@@ -12,13 +12,18 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 CANONICAL = ROOT / "chinese-official-writing"
 VERSION = "1.6.0"
-SKILL_LICENSE = "MIT-0"
+FULL_PACKAGE_LICENSE = "MIT"
+PURE_SKILL_LICENSE = "MIT-0"
+ROOT_LICENSE = ROOT / "LICENSE"
+PURE_SKILL_LICENSE_FILE = ROOT / "LICENSE-SKILL"
+CANONICAL_LICENSE = CANONICAL / "LICENSE"
 ROOT_README = ROOT / "README.md"
 OPENCLAW_MARKETPLACE_README = ROOT / "openclaw" / "marketplace-readme.md"
 OPENCLAW_README = ROOT / "openclaw" / "README.md"
 OPENCLAW_SKILL_CARD = ROOT / "openclaw" / "skill-card.md"
 CLAUDE_PLUGIN_MANIFEST = ROOT / ".claude-plugin" / "plugin.json"
 CODEX_PLUGIN_MANIFEST = ROOT / ".codex-plugin" / "plugin.json"
+PACKAGED_CLAUDE_PLUGIN_MANIFEST = CANONICAL / "hooks" / "claude-code" / ".claude-plugin" / "plugin.json"
 
 TARGETS = {
     "claude": ROOT / "skills" / "chinese-official-writing",
@@ -73,31 +78,39 @@ def versioned_skill_text(text: str) -> str:
 
 def update_canonical_skill_version() -> None:
     skill_file = CANONICAL / "SKILL.md"
+    text = versioned_skill_text(skill_file.read_text(encoding="utf-8"))
+    text = re.sub(r"^license: .+$", f"license: {FULL_PACKAGE_LICENSE}", text, count=1, flags=re.M)
     skill_file.write_text(
-        versioned_skill_text(skill_file.read_text(encoding="utf-8")),
+        text,
         encoding="utf-8",
         newline="\n",
     )
+
+
+def sync_canonical_license() -> None:
+    shutil.copyfile(ROOT_LICENSE, CANONICAL_LICENSE)
 
 
 def patch_frontmatter(target: Path, mode: str) -> None:
     skill_file = target / "SKILL.md"
     text = versioned_skill_text(skill_file.read_text(encoding="utf-8"))
     original = text
+    target_license = FULL_PACKAGE_LICENSE if mode == "claude" else PURE_SKILL_LICENSE
+    text = re.sub(r"^license: .+$", f"license: {target_license}", text, count=1, flags=re.M)
     if mode == "openclaw":
         text = text.replace("name: chinese-official-writing", "name: chinese_official_writing", 1)
         if "\ncategory: writing\n" not in text.split("---", 2)[1]:
             text = text.replace(
-                f"license: {SKILL_LICENSE}\n",
-                f"license: {SKILL_LICENSE}\ncategory: writing\ntags:\n  - chinese\n  - official-document\n  - writing\n  - gongwen\n  - ai-compute\n",
+                f"license: {target_license}\n",
+                f"license: {target_license}\ncategory: writing\ntags:\n  - chinese\n  - official-document\n  - writing\n  - gongwen\n  - ai-compute\n",
                 1,
             )
         text = re.sub(r"\n  hermes:\n(?:    .+\n)+", "\n", text, count=1)
     elif mode == "hermes":
         if f'\nversion: "{VERSION}"\n' not in text.split("---", 2)[1]:
             text = text.replace(
-                f"license: {SKILL_LICENSE}\n",
-                f'license: {SKILL_LICENSE}\nversion: "{VERSION}"\n',
+                f"license: {target_license}\n",
+                f'license: {target_license}\nversion: "{VERSION}"\n',
                 1,
             )
         text = re.sub(r"\n  openclaw:\n(?:    .+\n)+(?=  hermes:)", "\n", text, count=1)
@@ -124,12 +137,12 @@ def patch_openclaw_skill_body(target: Path) -> None:
     skill_file.write_text(f"---{parts[1]}---\n\n{canonical_body}\n", encoding="utf-8")
 
 
-def update_plugin_manifest(manifest_path: Path, label: str) -> None:
+def update_plugin_manifest(manifest_path: Path, label: str, license_id: str) -> None:
     if not manifest_path.exists():
         raise RuntimeError(f"missing {label} plugin manifest: {manifest_path}")
     manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
     manifest["version"] = VERSION
-    manifest["license"] = SKILL_LICENSE
+    manifest["license"] = license_id
     manifest_path.write_text(
         json.dumps(manifest, ensure_ascii=False, indent=2) + "\n",
         encoding="utf-8",
@@ -170,6 +183,8 @@ def copy_skill(target: Path, mode: str) -> None:
         if packaged_file.exists():
             packaged_file.unlink()
     patch_frontmatter(target, mode)
+    if mode != "claude":
+        shutil.copyfile(PURE_SKILL_LICENSE_FILE, target / "LICENSE")
     if mode == "openclaw":
         (target / "README.md").write_text(
             versioned_text(OPENCLAW_MARKETPLACE_README.read_text(encoding="utf-8")),
@@ -185,6 +200,8 @@ def main() -> int:
     if not (CANONICAL / "SKILL.md").exists():
         raise SystemExit(f"missing canonical skill: {CANONICAL}")
     update_canonical_skill_version()
+    sync_canonical_license()
+    update_plugin_manifest(PACKAGED_CLAUDE_PLUGIN_MANIFEST, "packaged Claude", FULL_PACKAGE_LICENSE)
     update_openclaw_readme_sources()
     print("synced openclaw README sources")
     for mode, target in TARGETS.items():
@@ -198,7 +215,7 @@ def main() -> int:
         (CLAUDE_PLUGIN_MANIFEST, "Claude"),
         (CODEX_PLUGIN_MANIFEST, "Codex"),
     ]:
-        update_plugin_manifest(manifest_path, label)
+        update_plugin_manifest(manifest_path, label, FULL_PACKAGE_LICENSE)
         print(f"synced {manifest_path.relative_to(ROOT)}")
     return 0
 

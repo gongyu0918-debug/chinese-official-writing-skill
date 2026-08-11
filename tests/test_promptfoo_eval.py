@@ -1072,8 +1072,11 @@ class PromptfooProviderTests(unittest.TestCase):
     def test_skill_context_is_complete_and_within_eval_budget(self) -> None:
         context = provider._load_skill_context(ROOT, ["通知", "请示", "报告", "说明", "方案"])
         canonical = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
+        selected_skill = provider._skill_root(ROOT) / "SKILL.md"
+        selected = selected_skill.read_text(encoding="utf-8")
 
-        self.assertIn(canonical, context)
+        self.assertIn(selected, context)
+        self.assertEqual(canonical.split("---", 2)[2].strip(), selected.split("---", 2)[2].strip())
         for relative in provider._reference_paths_for_genres(["通知", "请示", "报告", "说明", "方案"]):
             selected = provider._skill_root(ROOT) / relative
             self.assertIn(selected.read_text(encoding="utf-8"), context)
