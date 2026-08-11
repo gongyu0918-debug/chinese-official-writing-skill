@@ -248,7 +248,7 @@ class RealPromptAblationTests(unittest.TestCase):
         self.assertIn("整体归纳可放在逐项意见之后", checks_by_id["P051"]["file_terms"]["chinese-official-writing/references/anti-ai-patterns.md"])
         self.assertIn("句群节奏和模板化痕迹", checks_by_id["P052"]["file_terms"]["chinese-official-writing/references/anti-ai-patterns.md"])
         self.assertIn("公文去 AI 味不是聊天化", checks_by_id["P053"]["file_terms"]["chinese-official-writing/references/anti-ai-patterns.md"])
-        self.assertIn("口号式收束", checks_by_id["P054"]["file_terms"]["chinese-official-writing/references/anti-ai-patterns.md"])
+        self.assertIn("口号式结尾", checks_by_id["P054"]["file_terms"]["chinese-official-writing/references/anti-ai-patterns.md"])
         self.assertIn("定稿前高风险先查", checks_by_id["P055"]["file_terms"]["chinese-official-writing/references/review-checklist.md"])
         self.assertIn("口语来源不等于事实授权", checks_by_id["P055"]["file_terms"]["chinese-official-writing/references/official-style.md"])
         self.assertIn("相关负责人关注该事项", checks_by_id["P055"]["file_terms"]["chinese-official-writing/references/anti-ai-patterns.md"])

@@ -964,10 +964,10 @@ CASES: list[PromptCase] = [
         checks={
             "file_terms": {
                 "chinese-official-writing/references/anti-ai-patterns.md": [
-                    "口号式收束",
+                    "口号式结尾",
                     "提供有力支撑",
                     "推动再上新台阶",
-                    "将口号式收束改为具体办理动作、责任时限、反馈渠道或审慎结论",
+                    "将口号式结尾改为具体办理动作、责任时限、反馈渠道或审慎结论",
                 ],
             },
         },
