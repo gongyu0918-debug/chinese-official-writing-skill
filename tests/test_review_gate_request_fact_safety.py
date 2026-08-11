@@ -70,6 +70,15 @@ class ReviewGateRequestFactSafetyTests(unittest.TestCase):
         self.assertEqual("D1", result.selected)
         self.assertNotIn("未发现同类现象", result.text)
 
+    def test_negated_delete_instruction_keeps_request_authority(self):
+        request = "请润色正文，不要删除“未发现同类现象。”"
+        draft = (
+            "情况说明\n\n"
+            "8月10日完成接口恢复，相关时间记录已经核对。"
+            "未发现同类现象。"
+        )
+        self.assertEqual([], self.detection(request, draft)["findings"])
+
     def test_unsupported_pure_negative_result_remains_deletable(self):
         request = "根据给定恢复时间写一份情况说明，只使用已给事实。"
         draft = (
