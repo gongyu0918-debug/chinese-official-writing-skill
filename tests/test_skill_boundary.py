@@ -9,7 +9,12 @@ import unittest
 ROOT = Path(__file__).resolve().parents[1]
 CODEX_GATE_FILES = {
     "references/delivery-review-gate.md",
+    "hooks/AGENT_GLUE.md",
+    "hooks/host-capabilities.json",
     "hooks/gate_stop_hook.py",
+    "hooks/claude-code/.claude-plugin/plugin.json",
+    "hooks/claude-code/hooks/hooks.json",
+    "hooks/claude-code/scripts/gate_stop_hook.py",
     "scripts/review_gate.py",
 }
 SKILLHUB_CLEAN_PACKAGE_EXCLUDES = {"agents/openai.yaml"}
@@ -248,7 +253,7 @@ class SkillBoundaryTests(unittest.TestCase):
             if relative not in SKILLHUB_CLEAN_PACKAGE_EXCLUDES
         ]
 
-        self.assertEqual(len(package_allowlist), 33)
+        self.assertEqual(len(package_allowlist), 38)
         self.assertNotIn("agents/openai.yaml", package_allowlist)
         for relative in CODEX_GATE_FILES:
             self.assertIn(relative, package_allowlist)

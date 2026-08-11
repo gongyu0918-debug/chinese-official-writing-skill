@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "shared_gate_core": "chinese-official-writing/scripts/review_gate.py",
+  "activation": {
+    "default": "disabled",
+    "ordinary_skill_install_enables_hooks": false,
+    "configuration_mutation": "forbidden"
+  },
+  "hosts": {
+    "codex": {
+      "status": "verified",
+      "adapter": "hooks/hooks.json",
+      "events": [
+        "UserPromptSubmit",
+        "PostToolUse:Bash",
+        "Stop"
+      ],
+      "data_root_environment": "COW_GATE_HOOK_DATA or PLUGIN_DATA",
+      "continuation_limit": 4
+    },
+    "claude_code": {
+      "status": "registration_verified",
+      "adapter": "hooks/claude-code",
+      "events": [
+        "UserPromptSubmit",
+        "PostToolUse:Bash|Read",
+        "Stop"
+      ],
+      "verified_events": [
+        "UserPromptSubmit"
+      ],
+      "unverified_events": [
+        "PostToolUse:Bash|Read",
+        "Stop"
+      ],
+      "data_root_environment": "CLAUDE_PLUGIN_DATA",
+      "minimum_version": "2.1.195",
+      "continuation_limit": 4,
+      "activation": "explicit plugin load only"
+    },
+    "openclaw": {
+      "status": "metadata_only",
+      "required_event": "before_agent_finalize",
+      "adapter": null
+    },
+    "workbuddy": {
+      "status": "unknown",
+      "adapter": null
+    }
+  }
+}

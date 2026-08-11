@@ -1,5 +1,5 @@
 {
-  "description": "Opt-in Claude Code lifecycle adapter for the bounded delivery gate; it does not change host configuration.",
+  "description": "Packaged opt-in Claude Code lifecycle adapter for the bounded delivery gate; it does not change host configuration.",
   "hooks": {
     "UserPromptSubmit": [
       {

@@ -38,7 +38,12 @@ STALE_TARGET_FILES = (
 
 CODEX_GATE_FILES = (
     "references/delivery-review-gate.md",
+    "hooks/AGENT_GLUE.md",
+    "hooks/host-capabilities.json",
     "hooks/gate_stop_hook.py",
+    "hooks/claude-code/.claude-plugin/plugin.json",
+    "hooks/claude-code/hooks/hooks.json",
+    "hooks/claude-code/scripts/gate_stop_hook.py",
     "scripts/review_gate.py",
 )
 

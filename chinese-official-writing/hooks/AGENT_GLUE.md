@@ -6,10 +6,10 @@
 
 The ordinary Skill and its mirrors do not enable hooks. Hook activation is a separate, explicit host action and this repository never writes user, project, or global host configuration.
 
-For the local Claude Code adapter, run it from this checked-out repository only:
+For the packaged Claude Code adapter, run it from the installed Skill directory:
 
 ```powershell
-claude --plugin-dir .\agent-glue\claude-code
+claude --plugin-dir .\hooks\claude-code
 ```
 
 This loads a hook-enabled plugin for that invocation. It is not an installation command, does not modify Claude configuration, and requires the ordinary writing Skill to be available separately. Do not present it as automatic after a Skill installation.
@@ -24,7 +24,7 @@ This loads a hook-enabled plugin for that invocation. It is not an installation 
 
 ## Capability status
 
-See `host-capabilities.json` for the authoritative support matrix. The live Claude Code smoke verified session-only plugin registration and the `UserPromptSubmit` event. The local client was not authenticated, so `PostToolUse`, `Stop`, persisted core state, and D0/D1 continuation remain unverified. OpenClaw remains metadata-only pending a separately validated typed `before_agent_finalize` adapter. WorkBuddy remains `unknown`; do not infer a hook API or ship an executable adapter.
+See `host-capabilities.json` in this directory for the authoritative support matrix. The live Claude Code smoke verified session-only plugin registration and the `UserPromptSubmit` event. The local client was not authenticated, so `PostToolUse`, `Stop`, persisted core state, and D0/D1 continuation remain unverified. OpenClaw remains metadata-only pending a separately validated typed `before_agent_finalize` adapter. WorkBuddy remains `unknown`; do not infer a hook API or ship an executable adapter.
 
 ## No-model preflight
 

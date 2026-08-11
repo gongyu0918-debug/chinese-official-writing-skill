@@ -7,11 +7,12 @@ import unittest
 
 
 ROOT = Path(__file__).parents[1]
-ADAPTER_ROOT = ROOT / "agent-glue" / "claude-code"
+SKILL_ROOT = ROOT / "chinese-official-writing"
+ADAPTER_ROOT = SKILL_ROOT / "hooks" / "claude-code"
 MODULE_PATH = ADAPTER_ROOT / "scripts" / "gate_stop_hook.py"
 HOOKS_PATH = ADAPTER_ROOT / "hooks" / "hooks.json"
-CAPABILITIES_PATH = ROOT / "agent-glue" / "host-capabilities.json"
-PLAN_PATH = ROOT / "agent-glue" / "AGENT_GLUE.md"
+CAPABILITIES_PATH = SKILL_ROOT / "hooks" / "host-capabilities.json"
+PLAN_PATH = SKILL_ROOT / "hooks" / "AGENT_GLUE.md"
 PREFLIGHT_PATH = ROOT / "tools" / "preflight_claude_hooks.py"
 
 
@@ -82,7 +83,7 @@ class ClaudeGateAdapterTests(unittest.TestCase):
     def test_read_event_arms_existing_core_and_stop_uses_plugin_data(self):
         prompt = self._event("UserPromptSubmit", prompt="请起草一份情况报告。")
         self.assertTrue(ADAPTER.handle(prompt)["continue"])
-        skill_path = ROOT / "skills" / "chinese-official-writing" / "SKILL.md"
+        skill_path = SKILL_ROOT / "SKILL.md"
         result = ADAPTER.handle(
             self._event(
                 "PostToolUse",
@@ -134,7 +135,7 @@ class ClaudeGateAdapterTests(unittest.TestCase):
         external = Path(self.temp.name) / "external"
         os.environ["COW_GATE_HOOK_DATA"] = str(external)
         ADAPTER.handle(self._event("UserPromptSubmit", prompt="请起草一份情况报告。"))
-        skill_path = ROOT / "skills" / "chinese-official-writing" / "SKILL.md"
+        skill_path = SKILL_ROOT / "SKILL.md"
         ADAPTER.handle(
             self._event(
                 "PostToolUse",

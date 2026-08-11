@@ -19,10 +19,8 @@ from typing import Any, Iterator
 ALLOWED_EVENTS = {"UserPromptSubmit", "PostToolUse", "Stop"}
 ALLOWED_POST_TOOL_NAMES = {"Bash", "Read"}
 ADAPTER_ROOT = Path(__file__).resolve().parents[1]
-REPOSITORY_ROOT = ADAPTER_ROOT.parents[1]
-CORE_BRIDGE_PATH = (
-    REPOSITORY_ROOT / "chinese-official-writing" / "hooks" / "gate_stop_hook.py"
-)
+SKILL_ROOT = ADAPTER_ROOT.parents[1]
+CORE_BRIDGE_PATH = SKILL_ROOT / "hooks" / "gate_stop_hook.py"
 TURN_STATE_DIRECTORY = "claude-adapter-turns"
 CORE_DATA_DIRECTORY = "claude-gate-core"
 _MISSING = object()
@@ -188,7 +186,6 @@ def _load_core_bridge() -> ModuleType | None:
 @contextmanager
 def _bridge_environment(data_root: Path) -> Iterator[None]:
     overrides = {
-        "PLUGIN_ROOT": str(REPOSITORY_ROOT),
         "COW_GATE_HOOK_DATA": str(data_root / CORE_DATA_DIRECTORY),
     }
     previous = {key: os.environ.get(key, _MISSING) for key in overrides}

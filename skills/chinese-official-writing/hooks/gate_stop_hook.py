@@ -139,14 +139,17 @@ def _extract_gate_call(command: str, cwd: Path) -> tuple[str, Path] | None:
 
 
 def _reads_this_skill(command: str) -> bool:
-    plugin_root = os.environ.get("PLUGIN_ROOT")
-    if not plugin_root or not command:
+    if not command:
         return False
     normalized_command = command.replace("/", "\\").casefold()
-    normalized_skill = str(
-        Path(plugin_root) / "skills" / "chinese-official-writing"
-    ).replace("/", "\\").casefold()
-    return normalized_skill in normalized_command
+    skill_roots = [Path(__file__).resolve().parents[1]]
+    plugin_root = os.environ.get("PLUGIN_ROOT")
+    if plugin_root:
+        skill_roots.append(Path(plugin_root) / "skills" / "chinese-official-writing")
+    return any(
+        str(skill_root).replace("/", "\\").casefold() in normalized_command
+        for skill_root in skill_roots
+    )
 
 
 def _allow() -> dict[str, Any]:

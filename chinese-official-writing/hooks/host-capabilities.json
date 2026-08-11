@@ -20,7 +20,7 @@
     },
     "claude_code": {
       "status": "registration_verified",
-      "adapter": "agent-glue/claude-code",
+      "adapter": "hooks/claude-code",
       "events": [
         "UserPromptSubmit",
         "PostToolUse:Bash|Read",

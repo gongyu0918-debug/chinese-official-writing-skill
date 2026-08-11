@@ -1,0 +1,39 @@
+{
+  "description": "Packaged opt-in Claude Code lifecycle adapter for the bounded delivery gate; it does not change host configuration.",
+  "hooks": {
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "py -3 -c \"import os,runpy;runpy.run_path(os.path.join(os.environ['CLAUDE_PLUGIN_ROOT'],'scripts','gate_stop_hook.py'),run_name='__main__')\"",
+            "timeout": 10
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Bash|Read",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "py -3 -c \"import os,runpy;runpy.run_path(os.path.join(os.environ['CLAUDE_PLUGIN_ROOT'],'scripts','gate_stop_hook.py'),run_name='__main__')\"",
+            "timeout": 10
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "py -3 -c \"import os,runpy;runpy.run_path(os.path.join(os.environ['CLAUDE_PLUGIN_ROOT'],'scripts','gate_stop_hook.py'),run_name='__main__')\"",
+            "timeout": 30
+          }
+        ]
+      }
+    ]
+  }
+}

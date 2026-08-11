@@ -94,6 +94,11 @@ class GateStopHookTests(unittest.TestCase):
         self.assertTrue(result["continue"])
         self.assertTrue(HOOK.handle(self._event("Stop"))["continue"])
 
+    def test_co_located_skill_root_is_recognized_for_flat_packages(self):
+        skill = MODULE_PATH.parents[1] / "SKILL.md"
+        self.assertTrue(HOOK._reads_this_skill(f'Get-Content "{skill}"'))
+        self.assertFalse(HOOK._reads_this_skill('Get-Content "C:/other/SKILL.md"'))
+
     def test_stop_bootstraps_detect_after_real_skill_read(self):
         self._record_prompt_and_skill_read()
         result = HOOK.handle(
