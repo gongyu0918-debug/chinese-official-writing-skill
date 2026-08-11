@@ -19,10 +19,17 @@
       "continuation_limit": 4
     },
     "claude_code": {
-      "status": "verified",
+      "status": "registration_verified",
       "adapter": "agent-glue/claude-code",
       "events": [
         "UserPromptSubmit",
+        "PostToolUse:Bash|Read",
+        "Stop"
+      ],
+      "verified_events": [
+        "UserPromptSubmit"
+      ],
+      "unverified_events": [
         "PostToolUse:Bash|Read",
         "Stop"
       ],

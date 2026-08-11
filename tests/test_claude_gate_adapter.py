@@ -60,7 +60,10 @@ class ClaudeGateAdapterTests(unittest.TestCase):
         capabilities = json.loads(CAPABILITIES_PATH.read_text(encoding="utf-8"))
         self.assertFalse(capabilities["activation"]["ordinary_skill_install_enables_hooks"])
         self.assertEqual("verified", capabilities["hosts"]["codex"]["status"])
-        self.assertEqual("verified", capabilities["hosts"]["claude_code"]["status"])
+        claude = capabilities["hosts"]["claude_code"]
+        self.assertEqual("registration_verified", claude["status"])
+        self.assertEqual(["UserPromptSubmit"], claude["verified_events"])
+        self.assertEqual(["PostToolUse:Bash|Read", "Stop"], claude["unverified_events"])
         self.assertEqual("metadata_only", capabilities["hosts"]["openclaw"]["status"])
         self.assertEqual("unknown", capabilities["hosts"]["workbuddy"]["status"])
         hooks = json.loads(HOOKS_PATH.read_text(encoding="utf-8"))["hooks"]
@@ -72,6 +75,8 @@ class ClaudeGateAdapterTests(unittest.TestCase):
             self.assertNotIn("PLUGIN_ROOT", command.replace("CLAUDE_PLUGIN_ROOT", ""))
         plan = PLAN_PATH.read_text(encoding="utf-8")
         self.assertIn("ordinary Skill and its mirrors do not enable hooks", plan)
+        self.assertIn("session-only plugin registration", plan)
+        self.assertIn("remain unverified", plan)
         self.assertIn("WorkBuddy remains `unknown`", plan)
 
     def test_read_event_arms_existing_core_and_stop_uses_plugin_data(self):
