@@ -14,13 +14,11 @@ The Hook receives the raw request and D0. It does not run `prose_lint.py` and mu
 
 The ordinary Skill and its mirrors do not enable hooks. Hook activation is a separate, explicit host action and this repository never writes user, project, or global host configuration.
 
-The repository retains self-contained Codex and WorkBuddy/CodeBuddy companion research. Codex uses `hooks/hooks.json` with its native `PLUGIN_ROOT`; `.codebuddy-plugin/plugin.json` points WorkBuddy/CodeBuddy to `hooks/workbuddy/hooks.json` with its native `CODEBUDDY_PLUGIN_ROOT`. Both invoke `hooks/host_gate_adapter.py`, the top-level Skill, and the existing gate core. The nested `skills/chinese-official-writing/SKILL.md` is discovery glue only: it routes to the same top-level `SKILL.md` and contains no product rules of its own.
+The flattened SkillHub directory is also a self-contained Codex and WorkBuddy/CodeBuddy companion plugin. Codex uses the package default `hooks/hooks.json` with its native `PLUGIN_ROOT`; `.codebuddy-plugin/plugin.json` points WorkBuddy/CodeBuddy to `hooks/workbuddy/hooks.json` with its native `CODEBUDDY_PLUGIN_ROOT`. Both invoke `hooks/host_gate_adapter.py`, the top-level Skill, and the existing gate core. The nested `skills/chinese-official-writing/SKILL.md` is discovery glue only: it routes to the same top-level `SKILL.md` and contains no product rules of its own.
 
-The current SkillHub publish builder excludes every Hook companion, host manifest, gate protocol and `review_gate.py`. A 9-pair enabled/disabled real-writing A/B ended in `HOLD`; repository presence therefore must not be presented as released SkillHub capability. The ordinary SkillHub package remains a semantic writing Skill with optional `prose_lint.py`, not a Hook plugin.
+For Codex, register the entire installed Skill directory as a plugin through a user-authorized local marketplace, enable it, then review and trust its Hook. Registering only `hooks/` is invalid because plugin caches must retain the top-level Skill, bridge, protocol, and review core together. Installation, enablement, and Hook trust are separate actions; this repository performs none of them automatically.
 
-For Codex research, register the entire repository companion directory as a plugin through a user-authorized local marketplace, enable it, then review and trust its Hook. Registering only `hooks/` is invalid because plugin caches must retain the top-level Skill, bridge, protocol, and review core together. Installation, enablement, and Hook trust are separate actions; this repository performs none of them automatically. This procedure does not apply to the current SkillHub publish package because that package omits the companion.
-
-For WorkBuddy/CodeBuddy research, load the repository companion directory explicitly for the current invocation:
+For WorkBuddy/CodeBuddy, load the entire installed Skill directory explicitly for the current invocation:
 
 ```powershell
 codebuddy --plugin-dir .
@@ -28,7 +26,7 @@ codebuddy --plugin-dir .
 
 The adapter uses the host-provided persistent plugin-data directory. Current compatibility is bounded to the documented CodeBuddy plugin/Hook contract and the locally inspected WorkBuddy 5.3.8 bundle with CodeBuddy Code 2.115.0. Missing `last_assistant_message`, plugin data, or another required event field fails open. Do not infer equivalent support for an older WorkBuddy runtime.
 
-For the repository Claude Code adapter, run it from the repository companion directory:
+For the packaged Claude Code adapter, run it from the installed Skill directory:
 
 ```powershell
 claude --plugin-dir .\hooks\claude-code
@@ -54,7 +52,7 @@ This loads a hook-enabled plugin for that invocation. It is not an installation 
 
 ## Capability status
 
-See `host-capabilities.json` in this directory for the authoritative support matrix. The repository contains Codex, WorkBuddy/CodeBuddy and Claude Code companion research, while the current SkillHub publish package excludes it after the real-writing `HOLD`. Codex package validation and isolated registration do not prove a real lifecycle run. WorkBuddy/CodeBuddy manifest validation and local binary inspection do not prove a real lifecycle run. An isolated Claude Code 2.1.195 run through an Anthropic-compatible third-party gateway verified session-only plugin registration, `UserPromptSubmit`, `PostToolUse:Read`, `Stop`, persisted core state, and bounded D0 emission without a Claude account login. `PostToolUse:Bash` and a D1 repair remain unverified. OpenClaw remains frozen at its released package with no adapter change.
+See `host-capabilities.json` in this directory for the authoritative support matrix. The SkillHub package contains Codex and WorkBuddy/CodeBuddy companion manifests, shared Hook glue, and the previously packaged Claude Code adapter. Codex package validation and isolated registration do not prove a real lifecycle run. WorkBuddy/CodeBuddy manifest validation and local binary inspection do not prove a real lifecycle run. An isolated Claude Code 2.1.195 run through an Anthropic-compatible third-party gateway verified session-only plugin registration, `UserPromptSubmit`, `PostToolUse:Read`, `Stop`, persisted core state, and bounded D0 emission without a Claude account login. `PostToolUse:Bash` and a D1 repair remain unverified. OpenClaw remains frozen at its released package with no adapter change.
 
 ## No-model preflight
 
