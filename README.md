@@ -64,7 +64,7 @@
 
 ## 快速安装
 
-当前本地发布候选：`chinese-official-writing@1.6.1`（尚未推送或发布）
+当前 GitHub 发布版本：`chinese-official-writing@1.6.1`。SkillHub 本次暂缓更新；ClawHub/OpenClaw 继续固定在 v1.6.0。
 
 平台入口：[ClawHub](https://clawhub.ai/gongyu0918-debug/skills/chinese-official-writing) · [skillhub.cn](https://skillhub.cn/skills/chinese-official-writing)。通用 Agent Skills 安装器可直接使用：
 
@@ -76,7 +76,7 @@ npx skills add https://github.com/gongyu0918-debug/chinese-official-writing-skil
 
 ## 模型消融与真实写稿
 
-测试从早期无 Skill/带 Skill 对照，逐步扩展到固定版本消融、真实写稿盲审和多轮改稿。下表汇总 1.6.1 候选的入口减载、自然表达和可选 Hook 伴随包，以及此前版本的文种路由、信息选择和复核能力。原始任务、成稿、匿名映射、独立复核和汇总记录均保存在仓库内；早期 270 任务模型消融保留脱敏聚合摘要。
+测试从早期无 Skill/带 Skill 对照，逐步扩展到固定版本消融、真实写稿盲审和多轮改稿。下表汇总 1.6.1 的入口减载、自然表达和可选 Hook 伴随包，以及此前版本的文种路由、信息选择和复核能力。原始任务、成稿、匿名映射、独立复核和汇总记录均保存在仓库内；早期 270 任务模型消融保留脱敏聚合摘要。
 
 | 调试方向 | 主要稿件与边界 | 当前证据 |
 | --- | --- | --- |
@@ -113,7 +113,7 @@ npx skills add https://github.com/gongyu0918-debug/chinese-official-writing-skil
 | 原子结论限定复核 | 旧稿局部改写、巡检整改报告、食堂异常通报 | 固定 1.5.18 同题盲审 3/3 判 1.5.19 胜出；材料原有结论状态保留，完整稿仍有重复风险 |
 | 渐进式拆叶 | 普通复杂写稿、公开来源核验、报告类细查 | 外部核验规则按需加载，报告细查路径减少 3549 字符；两轮各 3 组真实 A/B 均未见硬回退 |
 | 制度类专项路由 | 管理办法、来访制度、实施细则、短篇规定、印发通知与操作规程 | 新增实施细则、规定两题相对 1.5.20 均小胜且硬检查通过；既有样本保留条文偏碎、职责复述和 DOCX 视觉未核验风险 |
-| 工程回归 | 单元测试、固定上一发行版消融、Promptfoo、镜像与清洁包 | 1.6.1 本地发布候选结果见 `release-1.6.1-rc.md`；本行只记录实际完成的当次结果，不用确定性工程门替代真实写稿裁决 |
+| 工程回归 | 单元测试、固定上一发行版消融、Promptfoo、镜像与清洁包 | 1.6.1 GitHub 发布记录见 `release-1.6.1.md`，发布前候选快照见 `release-1.6.1-rc.md`；本行只记录实际完成的当次结果，不用确定性工程门替代真实写稿裁决 |
 
 60 份发布级真实写稿由两名独立 verifier 盲审。综合结果中，v1.5.13 与 1.5.14 都是 29 PASS、1 个对称 WARN、0 FAIL；硬边界复核两版均为 30 PASS、0 WARN、0 FAIL。真实模型小样本评测与发布级写稿覆盖会议纪要、情况说明、通知、请示、报告、字段式申请、只审不改、普通采购、AI 算力需求和旧稿防回流。
 
@@ -191,6 +191,7 @@ v1.6.0 带 Skill 成稿（完整，761 字符）：
 主要证据：
 
 - [`readme-v160-same-task-comparison-20260812.md`](tests/evidence/readme-v160-same-task-comparison-20260812.md)
+- [`release-1.6.1.md`](tests/evidence/release-1.6.1.md)
 - [`release-1.6.1-rc.md`](tests/evidence/release-1.6.1-rc.md)
 - [`release-1.6.0.md`](tests/evidence/release-1.6.0.md)
 - [`release-1.5.41.md`](tests/evidence/release-1.5.41.md)

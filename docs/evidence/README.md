@@ -13,8 +13,9 @@
 ## 逐版发布证据
 
 - 1.5.x 的发布门禁、提交与 tag、清洁包、平台回执和传播状态保存在 `tests/evidence/release-1.5.x.md`。
-- 本地待发布候选：[`release-1.6.1-rc.md`](../../tests/evidence/release-1.6.1-rc.md)；已合入本地 `main`，尚未推送、打 tag、创建 Release 或上传平台。
-- 当前最新发布证据：[`release-1.6.0.md`](../../tests/evidence/release-1.6.0.md)。
+- 当前 GitHub 发布证据：[`release-1.6.1.md`](../../tests/evidence/release-1.6.1.md)。SkillHub 本次暂缓更新；ClawHub/OpenClaw 继续固定在 v1.6.0；小红书 Red SkillHub 未触碰。
+- 发布前本地候选快照：[`release-1.6.1-rc.md`](../../tests/evidence/release-1.6.1-rc.md)。该文件保留当时测试和许可边界，不覆盖最终发布记录。
+- 上一正式发行版：[`release-1.6.0.md`](../../tests/evidence/release-1.6.0.md)。
 - 不改版本、不发布的许可证范围清理：[`license-scope-cleanup-result-20260812.md`](../../tests/evidence/license-scope-cleanup-result-20260812.md)；同题 README v1.6.0 写稿更新见 [`readme-v160-same-task-comparison-20260812.md`](../../tests/evidence/readme-v160-same-task-comparison-20260812.md)。
 - 相邻正式版本：[`release-1.5.41.md`](../../tests/evidence/release-1.5.41.md)、[`release-1.5.40.md`](../../tests/evidence/release-1.5.40.md)。
 - 1.5.39 自包含 A/B、匿名裁决及 Word 对齐修复：[`v1539-compact-repro-pack-20260808.md`](../../tests/evidence/v1539-compact-repro-pack-20260808.md)。
