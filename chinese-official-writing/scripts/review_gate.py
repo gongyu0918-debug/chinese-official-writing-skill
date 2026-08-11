@@ -92,6 +92,10 @@ RESERVED_FILES = {
     DISPATCH_LOCK_FILE,
 }
 
+NEGATIVE_CLAIM_RE = re.compile(
+    r"(?:未|没有)(?P<event>发生|出现|发现)(?P<object>[^，,；;。！？\n]{1,60})"
+)
+
 PROTECTIVE_PATTERNS: tuple[tuple[str, re.Pattern[str]], ...] = (
     (
         "inference-disclaimer",
@@ -142,7 +146,7 @@ PROTECTIVE_PATTERNS: tuple[tuple[str, re.Pattern[str]], ...] = (
     ),
     (
         "unsupported-negative-claim",
-        re.compile(r"(?:未|没有)(?:发生|出现|发现)[^。！？\n]{1,60}"),
+        NEGATIVE_CLAIM_RE,
     ),
     (
         "gap-state-narration",
@@ -424,6 +428,16 @@ def normalized_text(text: str) -> str:
 
 
 REQUEST_STATUS_FILLER_RE = re.compile(r"(?:目前|现阶段|当前|事项|亦|尚|仍|均)")
+REQUEST_REMOVAL_CUE_RE = re.compile(
+    r"(?:删除|删去|去掉|移除|取消|不要写|不写|不得写|禁止写|避免写|不得新增|不要新增)"
+)
+REQUEST_CUE_CONTEXT_CHARS = 32
+PENDING_FACT_OBJECT_PATTERNS = {
+    "procurement": re.compile(r"采购(?:决定|结论|安排)"),
+    "approval": re.compile(r"(?:审批|审定|批准)(?:意见|结论|结果|决定)?"),
+    "responsibility": re.compile(r"责任(?:分工|主体|部门|单位|人)?"),
+    "deadline": re.compile(r"(?:完成|办理)?(?:期限|时限)"),
+}
 
 
 def _request_anchors_unresolved_replacement(replacement: str, request: str) -> bool:
@@ -472,6 +486,39 @@ def _request_anchors_unresolved_replacement(replacement: str, request: str) -> b
         return False
 
     return bool(request_topics) and all(topic_is_anchored(topic) for topic in topics)
+
+
+def _negative_claim_key(match: re.Match[str]) -> str:
+    obj = normalized_text(match.group("object"))
+    if obj == "同类异常现象":
+        obj = "同类现象"
+    return f"{match.group('event')}:{obj}"
+
+
+def _request_match_is_removal_instruction(request: str, start: int) -> bool:
+    prefix = request[max(0, start - REQUEST_CUE_CONTEXT_CHARS) : start]
+    clause_start = max(
+        prefix.rfind(mark) for mark in ("。", "！", "？", "；", "\n")
+    )
+    return bool(REQUEST_REMOVAL_CUE_RE.search(prefix[clause_start + 1 :]))
+
+
+def _authority_supports_negative_claim(
+    target: str, request: str, source: str
+) -> bool:
+    target_keys = {_negative_claim_key(match) for match in NEGATIVE_CLAIM_RE.finditer(target)}
+    if not target_keys:
+        return False
+    source_keys = {_negative_claim_key(match) for match in NEGATIVE_CLAIM_RE.finditer(source)}
+    if target_keys & source_keys:
+        return True
+    for match in NEGATIVE_CLAIM_RE.finditer(request):
+        if (
+            _negative_claim_key(match) in target_keys
+            and not _request_match_is_removal_instruction(request, match.start())
+        ):
+            return True
+    return False
 
 
 def _has_guided_marker_token(text: str) -> bool:
@@ -685,6 +732,11 @@ def locate_candidates(
         if whole_line == sentence and (first_line_is_title or _is_heading_line(whole_line)):
             continue
         labels = labels_for_sentence(sentence)
+        if (
+            "unsupported-negative-claim" in labels
+            and _authority_supports_negative_claim(sentence, request, source)
+        ):
+            labels.remove("unsupported-negative-claim")
         if not labels:
             continue
         sentence_normalized = normalized_text(sentence)
@@ -1008,6 +1060,11 @@ def _is_pure_process_self_certification(text: str) -> bool:
     )
 
 
+def _is_pure_unsupported_negative_claim(text: str) -> bool:
+    core = text.strip().rstrip("。！？").strip()
+    return bool(core and NEGATIVE_CLAIM_RE.fullmatch(core))
+
+
 def _is_safe_prefix_replacement(
     finding: dict[str, Any], target: str, replacement: str
 ) -> bool:
@@ -1042,6 +1099,12 @@ def _safe_full_deletion(finding: dict[str, Any], target: str) -> bool:
     if _is_pure_process_self_certification(target):
         return True
     labels = set(finding.get("labels") or [])
+    if (
+        labels == {"unsupported-negative-claim"}
+        and _is_pure_unsupported_negative_claim(target)
+        and not any(_hard_anchor_counters(target))
+    ):
+        return True
     if labels & SEMANTIC_SENSITIVE_LABELS:
         return False
     return _is_pure_protective_text(target)
@@ -1102,6 +1165,12 @@ def _delete_contract(
     if _is_pure_process_self_certification(target):
         return True, None
     labels = set(finding.get("labels") or [])
+    if (
+        labels == {"unsupported-negative-claim"}
+        and _is_pure_unsupported_negative_claim(target)
+        and not any(_hard_anchor_counters(target))
+    ):
+        return True, None
     if labels & SEMANTIC_SENSITIVE_LABELS:
         return False, "semantic_sensitive_finding"
     if not _is_pure_protective_text(target):
@@ -1181,6 +1250,46 @@ def _drops_uncertainty(target: str, replacement: str) -> bool:
     return bool(UNCERTAINTY_MARKER_RE.search(target)) and not bool(
         UNCERTAINTY_MARKER_RE.search(replacement)
     )
+
+
+def _semantic_rewrite_preserves_authority(
+    finding: dict[str, Any],
+    target: str,
+    replacement: str,
+    request: str,
+    source: str,
+) -> bool:
+    labels = set(finding.get("labels") or [])
+    if not labels & (SEMANTIC_SENSITIVE_LABELS | {"inference-disclaimer"}):
+        return True
+
+    if "unsupported-negative-claim" in labels:
+        target_claims = {
+            _negative_claim_key(match) for match in NEGATIVE_CLAIM_RE.finditer(target)
+        }
+        replacement_claims = {
+            _negative_claim_key(match)
+            for match in NEGATIVE_CLAIM_RE.finditer(replacement)
+        }
+        if target_claims != replacement_claims:
+            return False
+
+    authority = "\n\n".join(part for part in (request, source) if part)
+    if not UNRESOLVED_TARGET_RE.search(target):
+        return True
+    required = {
+        name
+        for name, pattern in PENDING_FACT_OBJECT_PATTERNS.items()
+        if pattern.search(target) and pattern.search(authority)
+    }
+    if not required:
+        return True
+    retained = {
+        name
+        for name, pattern in PENDING_FACT_OBJECT_PATTERNS.items()
+        if pattern.search(replacement)
+    }
+    return required.issubset(retained)
 
 
 def _candidate_document_invariant_reason(
@@ -1401,6 +1510,13 @@ def evaluate_candidate(
             and _turns_unresolved_into_settled(target, replacement, authority)
         ):
             return CandidateResult("D0", "replacement_strengthens_status", draft)
+        if (
+            effective_mode == REPAIR_MODE_REWRITE_SENTENCE
+            and not _semantic_rewrite_preserves_authority(
+                finding, target, replacement, request, source
+            )
+        ):
+            return CandidateResult("D0", "replacement_changes_sensitive_fact_object", draft)
         if effective_mode == REPAIR_MODE_EXTRACT:
             if not guided_marker and _drops_uncertainty(target, replacement):
                 return CandidateResult("D0", "replacement_drops_uncertainty", draft)
