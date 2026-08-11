@@ -97,7 +97,7 @@ class ReviewGateRequestFactSafetyTests(unittest.TestCase):
             "采购事项说明\n\n"
             "本次仅说明现有材料记录的事项状态。有关数据和时间已经逐项核对。"
             "正文其余内容保持原有范围，不增加新的办理安排。"
-            "目前尚未形成采购决定，审批意见、责任分工和完成期限均未确定。"
+            "现有材料尚不能据此形成采购结论，审批意见、责任分工和完成期限均未确定。"
         )
         detection = self.detection(request, draft)
         self.assertTrue(detection["findings"])
@@ -108,7 +108,7 @@ class ReviewGateRequestFactSafetyTests(unittest.TestCase):
                 "finding_id": finding["finding_id"],
                 "target": finding["target"],
                 "decision": GATE.DECISION_REWRITE,
-                "replacement": "设备调整范围正在研究中。",
+                "replacement": "采购决定正在研究中。",
             }],
         )
         result = GATE.evaluate_candidate(
@@ -116,6 +116,30 @@ class ReviewGateRequestFactSafetyTests(unittest.TestCase):
         )
         self.assertEqual("D0", result.selected)
         self.assertEqual(draft, result.text)
+
+    def test_source_absent_rewrite_cannot_swap_negative_result_object(self):
+        request = "请根据恢复时间写情况说明，不得新增排查结果。"
+        draft = (
+            "情况说明\n\n"
+            "8月10日完成接口恢复，相关时间记录已经核对。"
+            "未发现同类现象。"
+        )
+        detection = self.detection(request, draft)
+        finding = detection["findings"][0]
+        packet = decision_packet(
+            detection,
+            [{
+                "finding_id": finding["finding_id"],
+                "target": finding["target"],
+                "decision": GATE.DECISION_REWRITE,
+                "replacement": "未发现设备故障。",
+            }],
+        )
+        result = GATE.evaluate_candidate(
+            request, "", draft, detection["run_id"], detection, packet
+        )
+        self.assertEqual("D0", result.selected)
+        self.assertEqual("replacement_changes_sensitive_fact_object", result.reason)
 
 
 if __name__ == "__main__":
