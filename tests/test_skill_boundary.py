@@ -1233,7 +1233,7 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assertNotIn("暂停确认", workflow)
         self.assertIn("先服从用户指定的输出模式，再按材料状态、事项关联性和办理必要性选择信息", skill)
         self.assertIn("起草、改稿、压缩或合稿时读取 `references/information-selection.md`", skill)
-        self.assertIn("普通起草和顺稿不在正文前暂停或连续追问", workflow)
+        self.assertIn("普通起草和润色修改不在正文前暂停或连续追问", workflow)
         self.assertIn("本文件不重复规定正文、文后提示和省略边界", workflow)
         self.assertIn("材料只给问题清单", skill)
         self.assertIn("正文列明已确认问题及其对象、数量和状态", skill)
