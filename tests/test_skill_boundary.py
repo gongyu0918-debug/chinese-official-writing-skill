@@ -5,6 +5,8 @@ import json
 import re
 import unittest
 
+import yaml
+
 
 ROOT = Path(__file__).resolve().parents[1]
 CODEX_GATE_FILES = {
@@ -17,7 +19,7 @@ CODEX_GATE_FILES = {
     "hooks/claude-code/scripts/gate_stop_hook.py",
     "scripts/review_gate.py",
 }
-SKILLHUB_CLEAN_PACKAGE_EXCLUDES = {"agents/openai.yaml"}
+SKILLHUB_CLEAN_PACKAGE_EXCLUDES = {"agents/openai.yaml", "LICENSE"}
 
 
 def relative_files(root: Path) -> list[str]:
@@ -26,6 +28,11 @@ def relative_files(root: Path) -> list[str]:
         for path in root.rglob("*")
         if path.is_file() and "__pycache__" not in path.parts and path.suffix != ".pyc"
     )
+
+
+def read_frontmatter(path: Path) -> dict[str, object]:
+    text = path.read_text(encoding="utf-8")
+    return yaml.safe_load(text.split("---", 2)[1])
 
 
 class SkillBoundaryTests(unittest.TestCase):
@@ -60,6 +67,31 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assertNotIn("模型训练", text)
         self.assertIn("没有用户提供依据时，不编造真实单位", text)
         self.assertIn("法律、财务、采购、审计、政策适用、保密审查和正式签发结论由相应责任主体确认", readme)
+
+    def test_skill_frontmatter_keeps_only_discovery_fields_and_tags(self) -> None:
+        paths = [
+            ROOT / "chinese-official-writing" / "SKILL.md",
+            ROOT / "skills" / "chinese-official-writing" / "SKILL.md",
+            ROOT / ".agents" / "skills" / "chinese-official-writing" / "SKILL.md",
+            ROOT / ".qwen" / "skills" / "chinese-official-writing" / "SKILL.md",
+            ROOT / "hermes" / "skills" / "chinese-official-writing" / "SKILL.md",
+            ROOT / "openclaw" / "skills" / "chinese_official_writing" / "SKILL.md",
+        ]
+        expected_tags = "chinese, official-document, writing, gongwen, ai-compute"
+
+        for path in paths:
+            with self.subTest(path=path):
+                frontmatter = read_frontmatter(path)
+                self.assertEqual(set(frontmatter), {"name", "description", "metadata"})
+                self.assertEqual(frontmatter["metadata"], {"tags": expected_tags})
+                self.assertNotIn("license", frontmatter)
+                serialized = path.read_text(encoding="utf-8").split("---", 2)[1]
+                for removed in ["compatible_agents", "qwen_code", "openclaw:", "hermes:", "install_personal"]:
+                    self.assertNotIn(removed, serialized)
+
+        self.assertEqual(read_frontmatter(paths[-1])["name"], "chinese_official_writing")
+        for path in paths[:-1]:
+            self.assertEqual(read_frontmatter(path)["name"], "chinese-official-writing")
 
     def test_ai_compute_detail_is_loaded_from_specialty_reference(self) -> None:
         skill = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
@@ -253,18 +285,18 @@ class SkillBoundaryTests(unittest.TestCase):
             if relative not in SKILLHUB_CLEAN_PACKAGE_EXCLUDES
         ]
 
-        self.assertEqual(len(package_allowlist), 39)
+        self.assertEqual(len(package_allowlist), 38)
         self.assertNotIn("agents/openai.yaml", package_allowlist)
-        self.assertIn("LICENSE", package_allowlist)
+        self.assertNotIn("LICENSE", package_allowlist)
         for relative in CODEX_GATE_FILES:
             self.assertIn(relative, package_allowlist)
 
     def test_codex_plugin_version_and_hook_path_track_canonical_skill(self) -> None:
-        skill_text = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
-        skill_version = re.search(r'^  version: "([^"]+)"$', skill_text, re.M)
-        self.assertIsNotNone(skill_version)
+        sync_script = (ROOT / "tools" / "sync_adapters.py").read_text(encoding="utf-8")
+        sync_version = re.search(r'^VERSION = "([^"]+)"$', sync_script, re.M)
+        self.assertIsNotNone(sync_version)
         manifest = json.loads((ROOT / ".codex-plugin" / "plugin.json").read_text(encoding="utf-8"))
-        self.assertEqual(manifest["version"], skill_version.group(1))
+        self.assertEqual(manifest["version"], sync_version.group(1))
 
         config = json.loads((ROOT / "hooks" / "hooks.json").read_text(encoding="utf-8"))
         commands = [
@@ -833,7 +865,6 @@ class SkillBoundaryTests(unittest.TestCase):
     def test_readme_documents_domestic_agent_install_paths(self) -> None:
         readme = (ROOT / "README.md").read_text(encoding="utf-8")
         sync_script = (ROOT / "tools" / "sync_adapters.py").read_text(encoding="utf-8")
-        skill = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
 
         for term in [
             "Qwen Code",
@@ -857,41 +888,28 @@ class SkillBoundaryTests(unittest.TestCase):
             self.assertIn(mode, sync_script)
         self.assertNotIn('"minimax"', sync_script)
         self.assertNotIn('"glm"', sync_script)
-        for agent in [
-            "qwen-code",
-            "minimax-skills",
-            "glm-skills",
-            "autoclaw",
-            "kimi-code-cli",
-            "trae",
-            "baidu-comate-ai-ide",
-            "generic-agent-skills",
-        ]:
-            self.assertIn(agent, skill)
+        frontmatter = read_frontmatter(ROOT / "chinese-official-writing" / "SKILL.md")
+        self.assertEqual(set(frontmatter), {"name", "description", "metadata"})
 
     def test_claude_plugin_manifest_version_matches_skill_and_sync_script(self) -> None:
         manifest = json.loads((ROOT / ".claude-plugin" / "plugin.json").read_text(encoding="utf-8"))
-        skill = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
         sync_script = (ROOT / "tools" / "sync_adapters.py").read_text(encoding="utf-8")
         readme = (ROOT / "README.md").read_text(encoding="utf-8")
         openclaw_readme = (ROOT / "openclaw" / "README.md").read_text(encoding="utf-8")
         marketplace_readme = (ROOT / "openclaw" / "marketplace-readme.md").read_text(encoding="utf-8")
         skill_card = (ROOT / "openclaw" / "skill-card.md").read_text(encoding="utf-8")
 
-        skill_version = re.search(r'version: "([^"]+)"', skill)
         sync_version = re.search(r'VERSION = "([^"]+)"', sync_script)
         readme_version = re.search(r"chinese-official-writing@(\d+\.\d+\.\d+)", readme)
         openclaw_publish_version = re.search(r"--version(?:\s+|=)(\d+\.\d+\.\d+)", openclaw_readme)
         marketplace_version = re.search(r"chinese-official-writing@(\d+\.\d+\.\d+)", marketplace_readme)
-        skill_card_version = re.search(r"^(\d+\.\d+\.\d+) \(source: skill frontmatter and release candidate metadata", skill_card, re.M)
+        skill_card_version = re.search(r"^(\d+\.\d+\.\d+) \(source: repository release metadata", skill_card, re.M)
 
-        self.assertIsNotNone(skill_version)
         self.assertIsNotNone(sync_version)
         self.assertIsNotNone(readme_version)
         self.assertIsNotNone(openclaw_publish_version)
         self.assertIsNotNone(marketplace_version)
         self.assertIsNotNone(skill_card_version)
-        self.assertEqual(manifest["version"], skill_version.group(1))
         self.assertEqual(manifest["version"], sync_version.group(1))
         self.assertEqual(manifest["version"], readme_version.group(1))
         self.assertEqual(manifest["version"], openclaw_publish_version.group(1))
@@ -925,9 +943,8 @@ class SkillBoundaryTests(unittest.TestCase):
             "skills/chinese-official-writing/SKILL.md",
         ]
         for relative_path in full_package_skill_paths:
-            text = (ROOT / relative_path).read_text(encoding="utf-8")
-            self.assertIn("license: MIT\n", text, relative_path)
-            self.assertNotIn("license: MIT-0\n", text, relative_path)
+            frontmatter = read_frontmatter(ROOT / relative_path)
+            self.assertNotIn("license", frontmatter, relative_path)
             package_root = (ROOT / relative_path).parent
             self.assertEqual((package_root / "LICENSE").read_bytes(), (ROOT / "LICENSE").read_bytes())
 
@@ -938,8 +955,8 @@ class SkillBoundaryTests(unittest.TestCase):
             "openclaw/skills/chinese_official_writing/SKILL.md",
         ]
         for relative_path in pure_skill_paths:
-            text = (ROOT / relative_path).read_text(encoding="utf-8")
-            self.assertIn("license: MIT-0\n", text, relative_path)
+            frontmatter = read_frontmatter(ROOT / relative_path)
+            self.assertNotIn("license", frontmatter, relative_path)
             package_root = (ROOT / relative_path).parent
             self.assertEqual((package_root / "LICENSE").read_bytes(), (ROOT / "LICENSE-SKILL").read_bytes())
 
@@ -954,7 +971,6 @@ class SkillBoundaryTests(unittest.TestCase):
             self.assertEqual(manifest["license"], "MIT", relative_path)
 
         openclaw_paths = [
-            "openclaw/skills/chinese_official_writing/SKILL.md",
             "openclaw/skills/chinese_official_writing/README.md",
             "openclaw/marketplace-readme.md",
             "openclaw/skill-card.md",

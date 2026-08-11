@@ -73,26 +73,11 @@ def versioned_text(text: str) -> str:
     text = re.sub(r"--version(?:\s+|=)\d+\.\d+\.\d+", f"--version={VERSION}", text)
     text = re.sub(
         r"^\d+\.\d+\.\d+ \(source: (?:server release metadata and skill frontmatter|repository release metadata and skill frontmatter|skill frontmatter and release candidate metadata)\)",
-        f"{VERSION} (source: skill frontmatter and release candidate metadata)",
+        f"{VERSION} (source: repository release metadata)",
         text,
         flags=re.M,
     )
     return text
-
-
-def versioned_skill_text(text: str) -> str:
-    return re.sub(r'version: "\d+\.\d+\.\d+"', f'version: "{VERSION}"', text)
-
-
-def update_canonical_skill_version() -> None:
-    skill_file = CANONICAL / "SKILL.md"
-    text = versioned_skill_text(skill_file.read_text(encoding="utf-8"))
-    text = re.sub(r"^license: .+$", f"license: {FULL_PACKAGE_LICENSE}", text, count=1, flags=re.M)
-    skill_file.write_text(
-        text,
-        encoding="utf-8",
-        newline="\n",
-    )
 
 
 def sync_canonical_license() -> None:
@@ -100,28 +85,12 @@ def sync_canonical_license() -> None:
 
 
 def patch_frontmatter(target: Path, mode: str) -> None:
+    if mode != "openclaw":
+        return
     skill_file = target / "SKILL.md"
-    text = versioned_skill_text(skill_file.read_text(encoding="utf-8"))
+    text = skill_file.read_text(encoding="utf-8")
     original = text
-    target_license = TARGET_LICENSES[mode]
-    text = re.sub(r"^license: .+$", f"license: {target_license}", text, count=1, flags=re.M)
-    if mode == "openclaw":
-        text = text.replace("name: chinese-official-writing", "name: chinese_official_writing", 1)
-        if "\ncategory: writing\n" not in text.split("---", 2)[1]:
-            text = text.replace(
-                f"license: {target_license}\n",
-                f"license: {target_license}\ncategory: writing\ntags:\n  - chinese\n  - official-document\n  - writing\n  - gongwen\n  - ai-compute\n",
-                1,
-            )
-        text = re.sub(r"\n  hermes:\n(?:    .+\n)+", "\n", text, count=1)
-    elif mode == "hermes":
-        if f'\nversion: "{VERSION}"\n' not in text.split("---", 2)[1]:
-            text = text.replace(
-                f"license: {target_license}\n",
-                f'license: {target_license}\nversion: "{VERSION}"\n',
-                1,
-            )
-        text = re.sub(r"\n  openclaw:\n(?:    .+\n)+(?=  hermes:)", "\n", text, count=1)
+    text = text.replace("name: chinese-official-writing", "name: chinese_official_writing", 1)
     if text != original:
         skill_file.write_text(text, encoding="utf-8", newline="\n")
 
@@ -209,7 +178,6 @@ def main() -> int:
         raise SystemExit(f"missing canonical skill: {CANONICAL}")
     if set(TARGET_LICENSES) != set(TARGETS):
         raise SystemExit("every adapter target must declare an explicit package license")
-    update_canonical_skill_version()
     sync_canonical_license()
     update_plugin_manifest(PACKAGED_CLAUDE_PLUGIN_MANIFEST, "packaged Claude", FULL_PACKAGE_LICENSE)
     update_openclaw_readme_sources()
