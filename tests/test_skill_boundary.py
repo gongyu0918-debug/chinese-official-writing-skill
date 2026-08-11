@@ -19,6 +19,7 @@ CODEX_GATE_FILES = {
     "hooks/gate_stop_hook.py",
     "hooks/hooks.json",
     "hooks/host_gate_adapter.py",
+    "hooks/workbuddy/hooks.json",
     "hooks/claude-code/.claude-plugin/plugin.json",
     "hooks/claude-code/hooks/hooks.json",
     "hooks/claude-code/scripts/gate_stop_hook.py",
@@ -314,7 +315,7 @@ class SkillBoundaryTests(unittest.TestCase):
             if relative not in SKILLHUB_CLEAN_PACKAGE_EXCLUDES
         ]
 
-        self.assertEqual(len(package_allowlist), 43)
+        self.assertEqual(len(package_allowlist), 44)
         self.assertNotIn("agents/openai.yaml", package_allowlist)
         self.assertNotIn("LICENSE", package_allowlist)
         for relative in CODEX_GATE_FILES:

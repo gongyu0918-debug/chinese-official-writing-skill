@@ -1,12 +1,12 @@
 {
-  "description": "Packaged opt-in Codex and WorkBuddy/CodeBuddy lifecycle adapter for the bounded delivery gate; it does not change host configuration.",
+  "description": "Packaged opt-in Codex lifecycle adapter for the bounded delivery gate; it does not change host configuration.",
   "hooks": {
     "UserPromptSubmit": [
       {
         "hooks": [
           {
             "type": "command",
-            "command": "python3 \"${CLAUDE_PLUGIN_ROOT}/hooks/host_gate_adapter.py\"",
+            "command": "python3 \"${PLUGIN_ROOT}/hooks/host_gate_adapter.py\"",
             "timeout": 10
           }
         ]
@@ -18,7 +18,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "python3 \"${CLAUDE_PLUGIN_ROOT}/hooks/host_gate_adapter.py\"",
+            "command": "python3 \"${PLUGIN_ROOT}/hooks/host_gate_adapter.py\"",
             "timeout": 10
           }
         ]
@@ -29,7 +29,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "python3 \"${CLAUDE_PLUGIN_ROOT}/hooks/host_gate_adapter.py\"",
+            "command": "python3 \"${PLUGIN_ROOT}/hooks/host_gate_adapter.py\"",
             "timeout": 30
           }
         ]

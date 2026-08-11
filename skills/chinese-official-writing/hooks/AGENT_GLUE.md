@@ -14,7 +14,7 @@ The Hook receives the raw request and D0. It does not run `prose_lint.py` and mu
 
 The ordinary Skill and its mirrors do not enable hooks. Hook activation is a separate, explicit host action and this repository never writes user, project, or global host configuration.
 
-The flattened SkillHub directory is also a self-contained Codex and WorkBuddy/CodeBuddy companion plugin. Its `.codex-plugin/plugin.json` and `.codebuddy-plugin/plugin.json` share `hooks/hooks.json`, `hooks/host_gate_adapter.py`, the top-level Skill, and the existing gate core. The nested `skills/chinese-official-writing/SKILL.md` is discovery glue only: it routes to the same top-level `SKILL.md` and contains no product rules of its own.
+The flattened SkillHub directory is also a self-contained Codex and WorkBuddy/CodeBuddy companion plugin. Codex uses the package default `hooks/hooks.json` with its native `PLUGIN_ROOT`; `.codebuddy-plugin/plugin.json` points WorkBuddy/CodeBuddy to `hooks/workbuddy/hooks.json` with its native `CODEBUDDY_PLUGIN_ROOT`. Both invoke `hooks/host_gate_adapter.py`, the top-level Skill, and the existing gate core. The nested `skills/chinese-official-writing/SKILL.md` is discovery glue only: it routes to the same top-level `SKILL.md` and contains no product rules of its own.
 
 For Codex, register the entire installed Skill directory as a plugin through a user-authorized local marketplace, enable it, then review and trust its Hook. Registering only `hooks/` is invalid because plugin caches must retain the top-level Skill, bridge, protocol, and review core together. Installation, enablement, and Hook trust are separate actions; this repository performs none of them automatically.
 
@@ -44,7 +44,7 @@ This loads a hook-enabled plugin for that invocation. It is not an installation 
 
 ## Codex and WorkBuddy/CodeBuddy adapter contract
 
-- Both hosts use the package-root manifests and the same `hooks/hooks.json`; the adapter selects a mapping only from documented host plugin environment variables.
+- Both hosts use package-root manifests and separate Hook command surfaces: Codex resolves only `PLUGIN_ROOT`, while WorkBuddy/CodeBuddy resolves only `CODEBUDDY_PLUGIN_ROOT`. The shared adapter selects a mapping from the same native variables.
 - Codex `turn_id`, `prompt`, `tool_input`, `tool_response`, `stop_hook_active`, and `last_assistant_message` map directly to the shared bridge. WorkBuddy/CodeBuddy receives a bounded per-session turn identifier in its persistent plugin-data directory because its documented Hook payload has no `turn_id`.
 - `Bash.command` and `Read.file_path` normalize to the bridge command text so the existing skill-read guard remains unchanged. Unsupported tools, incomplete events, missing persistent data, and root mismatches fail open.
 - The adapter converts only the shared core's continuation response: Codex retains `decision: block`; WorkBuddy/CodeBuddy receives its documented `continue: false` plus `reason`. It does not change findings, repairs, verdicts, state transitions, or the four-stop bound.

@@ -56,7 +56,7 @@
     },
     "workbuddy": {
       "status": "package_manifest_verified",
-      "adapter": ".codebuddy-plugin/plugin.json + hooks/hooks.json + hooks/host_gate_adapter.py",
+      "adapter": ".codebuddy-plugin/plugin.json + hooks/workbuddy/hooks.json + hooks/host_gate_adapter.py",
       "package_presence": "companion_present_inactive",
       "events": [
         "UserPromptSubmit",

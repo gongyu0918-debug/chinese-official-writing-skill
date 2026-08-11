@@ -37,6 +37,9 @@ class HookLayerContractTests(unittest.TestCase):
             encoding="utf-8"
         )
         host_manifest = (SKILL_ROOT / "hooks" / "hooks.json").read_text(encoding="utf-8")
+        workbuddy_manifest = (
+            SKILL_ROOT / "hooks" / "workbuddy" / "hooks.json"
+        ).read_text(encoding="utf-8")
 
         self.assertIn("optional and never edits the draft automatically", glue)
         self.assertIn("It does not run `prose_lint.py`", glue)
@@ -48,6 +51,7 @@ class HookLayerContractTests(unittest.TestCase):
             "Claude manifest": claude_manifest,
             "Codex and WorkBuddy adapter": host_adapter,
             "Codex and WorkBuddy manifest": host_manifest,
+            "WorkBuddy manifest": workbuddy_manifest,
         }
         for name, hook_surface in hook_surfaces.items():
             with self.subTest(surface=name):

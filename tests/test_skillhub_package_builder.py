@@ -23,7 +23,7 @@ class SkillHubPackageBuilderTests(unittest.TestCase):
             output = Path(temporary) / "publish-package"
             result = BUILDER.build_package(output, version="1.6.2")
 
-            self.assertEqual(result["files"], 45)
+            self.assertEqual(result["files"], 46)
             self.assertEqual(result["license"], "LICENSE.md")
             self.assertFalse((output / "LICENSE").exists())
             self.assertEqual((output / "LICENSE.md").read_bytes(), (ROOT / "LICENSE").read_bytes())
@@ -35,6 +35,7 @@ class SkillHubPackageBuilderTests(unittest.TestCase):
             self.assertTrue((output / ".codex-plugin" / "plugin.json").is_file())
             self.assertTrue((output / ".codebuddy-plugin" / "plugin.json").is_file())
             self.assertTrue((output / "hooks" / "hooks.json").is_file())
+            self.assertTrue((output / "hooks" / "workbuddy" / "hooks.json").is_file())
             self.assertTrue((output / "hooks" / "host_gate_adapter.py").is_file())
             self.assertTrue((output / "skills" / "chinese-official-writing" / "SKILL.md").is_file())
             capabilities = json.loads(

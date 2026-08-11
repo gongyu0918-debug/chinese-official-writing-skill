@@ -15,5 +15,6 @@
   ],
   "skills": [
     "./skills/"
-  ]
+  ],
+  "hooks": "./hooks/workbuddy/hooks.json"
 }

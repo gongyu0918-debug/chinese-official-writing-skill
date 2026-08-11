@@ -55,6 +55,7 @@ CODEX_GATE_FILES = (
     "hooks/gate_stop_hook.py",
     "hooks/hooks.json",
     "hooks/host_gate_adapter.py",
+    "hooks/workbuddy/hooks.json",
     "hooks/claude-code/.claude-plugin/plugin.json",
     "hooks/claude-code/hooks/hooks.json",
     "hooks/claude-code/scripts/gate_stop_hook.py",
