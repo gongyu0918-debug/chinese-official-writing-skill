@@ -197,6 +197,7 @@ npx skills add https://github.com/gongyu0918-debug/chinese-official-writing-skil
 
 主要证据：
 
+- [`release-1.6.1-rc.md`](tests/evidence/release-1.6.1-rc.md)
 - [`release-1.6.0.md`](tests/evidence/release-1.6.0.md)
 - [`release-1.5.41.md`](tests/evidence/release-1.5.41.md)
 - [`release-1.5.40.md`](tests/evidence/release-1.5.40.md)

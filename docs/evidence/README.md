@@ -13,6 +13,7 @@
 ## 逐版发布证据
 
 - 1.5.x 的发布门禁、提交与 tag、清洁包、平台回执和传播状态保存在 `tests/evidence/release-1.5.x.md`。
+- 本地待发布候选：[`release-1.6.1-rc.md`](../../tests/evidence/release-1.6.1-rc.md)；已合入本地 `main`，尚未推送、打 tag、创建 Release 或上传平台。
 - 当前最新发布证据：[`release-1.6.0.md`](../../tests/evidence/release-1.6.0.md)。
 - 相邻正式版本：[`release-1.5.41.md`](../../tests/evidence/release-1.5.41.md)、[`release-1.5.40.md`](../../tests/evidence/release-1.5.40.md)。
 - 1.5.39 自包含 A/B、匿名裁决及 Word 对齐修复：[`v1539-compact-repro-pack-20260808.md`](../../tests/evidence/v1539-compact-repro-pack-20260808.md)。
