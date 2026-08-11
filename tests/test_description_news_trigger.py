@@ -27,24 +27,24 @@ def read_description(path: Path) -> str:
 
 
 class DescriptionNewsTriggerTests(unittest.TestCase):
-    def test_active_description_is_concise_and_news_first(self) -> None:
+    def test_active_description_leads_with_capability_and_defers_audience(self) -> None:
         descriptions = [read_description(path) for path in ACTIVE_SKILL_PATHS]
         self.assertEqual(len(set(descriptions)), 1)
 
         description = descriptions[0]
         self.assertTrue(
             description.startswith(
-                "用于中文公文、新闻稿件和机关企事业单位、学校等正式事务材料的起草、改写、压缩和复核；"
+                "用于中文公文、事务性材料和新闻稿件的起草、改写、压缩和复核；"
             )
         )
         self.assertIn("新闻稿、新闻消息、快讯、活动报道", description)
         self.assertIn("不用于英文、文学、营销、社媒、论文或个人求职。", description)
-        self.assertIn("机关企事业单位、学校等", description)
+        self.assertIn("适用于机关、企事业单位、学校和新闻机构等正式工作场景。", description)
         self.assertIn("个人求职", description)
 
     def test_openclaw_description_stays_on_frozen_release(self) -> None:
         description = read_description(FROZEN_OPENCLAW_SKILL)
-        self.assertNotIn("中文公文、新闻稿件和机关企事业单位", description)
+        self.assertNotIn("适用于机关、企事业单位、学校和新闻机构", description)
 
 
 if __name__ == "__main__":
