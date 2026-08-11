@@ -431,6 +431,7 @@ REQUEST_STATUS_FILLER_RE = re.compile(r"(?:目前|现阶段|当前|事项|亦|�
 REQUEST_REMOVAL_CUE_RE = re.compile(
     r"(?:删除|删去|去掉|移除|取消|不要写|不写|不得写|禁止写|避免写|不得新增|不要新增)"
 )
+REQUEST_KEEP_CUE_RE = re.compile(r"(?:不要|不得|不能|请勿)(?:删除|删去|去掉|移除)")
 REQUEST_CUE_CONTEXT_CHARS = 32
 PENDING_FACT_OBJECT_PATTERNS = {
     "procurement": re.compile(r"采购(?:决定|结论|安排)"),
@@ -500,7 +501,10 @@ def _request_match_is_removal_instruction(request: str, start: int) -> bool:
     clause_start = max(
         prefix.rfind(mark) for mark in ("。", "！", "？", "；", "\n")
     )
-    return bool(REQUEST_REMOVAL_CUE_RE.search(prefix[clause_start + 1 :]))
+    cue_context = prefix[clause_start + 1 :]
+    if REQUEST_KEEP_CUE_RE.search(cue_context):
+        return False
+    return bool(REQUEST_REMOVAL_CUE_RE.search(cue_context))
 
 
 def _authority_supports_negative_claim(
