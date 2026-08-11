@@ -121,7 +121,10 @@ def skill_body(root: Path) -> bytes:
     parts = source_path(root).read_bytes().split(b"---", 2)
     if len(parts) != 3:
         raise RuntimeError(f"malformed SKILL.md: {source_path(root)}")
-    return parts[2]
+    # The product atom changes YAML only. The frozen baseline retains CRLF
+    # while the candidate's synchronized copies use LF, so compare body
+    # content rather than transport line endings.
+    return parts[2].replace(b"\r\n", b"\n").replace(b"\r", b"\n")
 
 
 def read_command(path: Path) -> str:
