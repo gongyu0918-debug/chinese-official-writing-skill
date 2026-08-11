@@ -22,6 +22,8 @@ class AgentsControlPlaneTests(unittest.TestCase):
             "SkillHub 可携带可选 Codex Hook 伴随物",
             "Hook 资产放在专属 `hooks/` 目录",
             "ClawHub 包排除 Hook 和交付门禁资产",
+            "ClawHub 自 v1.6.0 后暂停更新",
+            "当前发行范围为 GitHub 和 skillhub.cn",
             "包内存在、插件安装、功能启用、信任确认和真实执行是五项独立事实",
             "未经授权不得合并 `main`、推送、移动 tag、创建 Release 或上传平台",
             "写作行为类规则只修复至少三份真实样本共同指向的机制",
