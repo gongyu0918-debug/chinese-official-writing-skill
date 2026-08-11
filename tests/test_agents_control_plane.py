@@ -24,6 +24,11 @@ class AgentsControlPlaneTests(unittest.TestCase):
             "ClawHub 包排除 Hook 和交付门禁资产",
             "包内存在、插件安装、功能启用、信任确认和真实执行是五项独立事实",
             "未经授权不得合并 `main`、推送、移动 tag、创建 Release 或上传平台",
+            "写作行为类规则只修复至少三份真实样本共同指向的机制",
+            "确定性工程、安全或发行缺陷须有可重复证据",
+            "不得择优汇报",
+            "来源证明缺失时记 `unavailable`",
+            "实际测试命令与结果",
         ]:
             self.assertIn(required, text)
         for product_rule in ["妥否，请批示", "报告不用请批语", "先……再……", "持续推进"]:
