@@ -6,7 +6,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "py -3 -c \"import os,runpy;runpy.run_path(os.path.join(os.environ['CLAUDE_PLUGIN_ROOT'],'scripts','gate_stop_hook.py'),run_name='__main__')\"",
+            "command": "py -3 -c \"import os,runpy,sys;os.environ['CLAUDE_PLUGIN_ROOT']=sys.argv[1];os.environ['CLAUDE_PLUGIN_DATA']=sys.argv[2];runpy.run_path(os.path.join(sys.argv[1],'scripts','gate_stop_hook.py'),run_name='__main__')\" \"${CLAUDE_PLUGIN_ROOT}\" \"${CLAUDE_PLUGIN_DATA}\"",
             "timeout": 10
           }
         ]
@@ -18,7 +18,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "py -3 -c \"import os,runpy;runpy.run_path(os.path.join(os.environ['CLAUDE_PLUGIN_ROOT'],'scripts','gate_stop_hook.py'),run_name='__main__')\"",
+            "command": "py -3 -c \"import os,runpy,sys;os.environ['CLAUDE_PLUGIN_ROOT']=sys.argv[1];os.environ['CLAUDE_PLUGIN_DATA']=sys.argv[2];runpy.run_path(os.path.join(sys.argv[1],'scripts','gate_stop_hook.py'),run_name='__main__')\" \"${CLAUDE_PLUGIN_ROOT}\" \"${CLAUDE_PLUGIN_DATA}\"",
             "timeout": 10
           }
         ]
@@ -29,7 +29,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "py -3 -c \"import os,runpy;runpy.run_path(os.path.join(os.environ['CLAUDE_PLUGIN_ROOT'],'scripts','gate_stop_hook.py'),run_name='__main__')\"",
+            "command": "py -3 -c \"import os,runpy,sys;os.environ['CLAUDE_PLUGIN_ROOT']=sys.argv[1];os.environ['CLAUDE_PLUGIN_DATA']=sys.argv[2];runpy.run_path(os.path.join(sys.argv[1],'scripts','gate_stop_hook.py'),run_name='__main__')\" \"${CLAUDE_PLUGIN_ROOT}\" \"${CLAUDE_PLUGIN_DATA}\"",
             "timeout": 30
           }
         ]
