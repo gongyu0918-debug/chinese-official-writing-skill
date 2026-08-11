@@ -21,6 +21,8 @@ RUNTIME_ROOTS = {
 }
 SKILL_REL = Path(".agents/skills/chinese-official-writing")
 OUT = Path(r"F:\Workspaces\chinese-official-writing-skill\output\release-1.6.0-combination-real-r2")
+SUPPLEMENT_OUT = Path(r"F:\Workspaces\chinese-official-writing-skill\output\release-1.6.0-combination-real-r2-supplement")
+FINAL_OUT = Path(r"F:\Workspaces\chinese-official-writing-skill\output\release-1.6.0-combination-real-final")
 MAPPING_PATH = RUNTIME_PARENT / "blind-mapping-r2.json"
 CATALOG = Path(r"C:\Users\admin\.codex\opencodex-catalog.json")
 BASE_URL = "http://127.0.0.1:10100/v1"
@@ -122,9 +124,10 @@ def validate_roots() -> tuple[dict[str, str], dict[str, str]]:
     return manifests["baseline"], manifests["candidate"]
 
 
-def read_command(paths: tuple[str, ...]) -> str:
-    joined = ",".join(f"'{path.replace('/', chr(92))}'" for path in paths)
-    return f"Get-Content -LiteralPath {joined}"
+def read_commands(paths: tuple[str, ...]) -> str:
+    return "\n".join(
+        f"Get-Content -LiteralPath '{path.replace('/', chr(92))}'" for path in paths
+    )
 
 
 def build_prompt(task: str) -> str:
@@ -137,8 +140,8 @@ def build_prompt(task: str) -> str:
         ".agents\\skills\\chinese-official-writing，不得读取 C:\\Users\\admin\\.agents、"
         "其他 Skill、副本、tests/evidence、历史结果、git diff/log 或其他 worktree；不得修改文件。"
         "第一步必须调用 shell_command 实际执行：\n"
-        + read_command(paths)
-        + "\n完整读取这些文件后再完成任务。"
+        + read_commands(paths)
+        + "\n上列每个文件必须分别调用一次 shell_command，完整读取后再完成任务。"
         + route_note
         + "若读取失败，最终只输出 ENV_INVALID。最终不得回显读取过程、规则、命令或自评。\n\n"
         + TASK_TEXT[task]
@@ -181,15 +184,17 @@ def final_shape_valid(task: str, final: str) -> bool:
         return False
     if task.startswith("H"):
         lines = [line.strip() for line in final.splitlines() if line.strip()]
-        return len(lines) == 2 and lines[0] == task
+        return len(lines) == 2
     return not any(token in final for token in ("读取过程", "SHA-256", "自评：", "```"))
 
 
-def run_one(provider: str, task: str, arm: str, order: int) -> dict[str, object]:
+def run_one(
+    provider: str, task: str, arm: str, order: int, out_dir: Path = OUT
+) -> dict[str, object]:
     slug = f"{provider}-{task.lower()}-{arm}"
-    final_path = OUT / f"{slug}.final.txt"
-    trace_path = OUT / f"{slug}.trace.jsonl"
-    stderr_path = OUT / f"{slug}.stderr.txt"
+    final_path = out_dir / f"{slug}.final.txt"
+    trace_path = out_dir / f"{slug}.trace.jsonl"
+    stderr_path = out_dir / f"{slug}.stderr.txt"
     prompt = build_prompt(task)
     command = [
         shutil.which("codex") or "codex",
@@ -240,6 +245,10 @@ def run_one(provider: str, task: str, arm: str, order: int) -> dict[str, object]
     final = final_path.read_text(encoding="utf-8") if final_path.exists() else ""
     trace_ok, trace_issues = load_valid(task, trace_path)
     shape_ok = final_shape_valid(task, final)
+    nonempty_lines = [line.strip() for line in final.splitlines() if line.strip()]
+    label_ok = not task.startswith("H") or (
+        bool(nonempty_lines) and nonempty_lines[0] == task
+    )
     return {
         "provider": provider,
         "model": MODELS[provider],
@@ -260,6 +269,8 @@ def run_one(provider: str, task: str, arm: str, order: int) -> dict[str, object]
         "trace_load_valid": trace_ok,
         "trace_issues": trace_issues,
         "final_shape_valid": shape_ok,
+        "output_label_valid": label_ok,
+        "artifact_root": str(out_dir),
         "valid": return_code == 0 and not timeout and trace_ok and shape_ok,
     }
 
@@ -280,7 +291,10 @@ def write_packet(records: list[dict[str, object]]) -> tuple[str, dict[str, objec
             lines.extend([f"## {pair_id} / {task}", ""])
             for label, arm in zip(("A", "B"), arms):
                 record = indexed[(provider, task, arm)]
-                body = (OUT / str(record["final_file"])).read_text(encoding="utf-8").strip()
+                body = (
+                    Path(str(record.get("artifact_root") or OUT))
+                    / str(record["final_file"])
+                ).read_text(encoding="utf-8").strip()
                 lines.extend([f"### {label}", "", body, ""])
     return "\n".join(lines).rstrip() + "\n", mapping
 
@@ -316,7 +330,7 @@ def execute() -> int:
         jobs.extend((provider, task, arm, order) for order, arm in enumerate(arms, start=1))
     records: list[dict[str, object]] = []
     with concurrent.futures.ThreadPoolExecutor(max_workers=4) as pool:
-        futures = [pool.submit(run_one, *job) for job in jobs]
+        futures = [pool.submit(run_one, *job, OUT) for job in jobs]
         for future in concurrent.futures.as_completed(futures):
             record = future.result()
             records.append(record)
@@ -354,14 +368,139 @@ def execute() -> int:
     return 0
 
 
+def supplement() -> int:
+    if SUPPLEMENT_OUT.exists() and any(SUPPLEMENT_OUT.iterdir()):
+        raise RuntimeError(f"supplement directory is not empty: {SUPPLEMENT_OUT}")
+    SUPPLEMENT_OUT.mkdir(parents=True, exist_ok=True)
+    jobs = [
+        ("alibaba", "W1", "candidate", 3, SUPPLEMENT_OUT),
+        ("alibaba", "H1", "baseline", 3, SUPPLEMENT_OUT),
+    ]
+    records: list[dict[str, object]] = []
+    with concurrent.futures.ThreadPoolExecutor(max_workers=2) as pool:
+        futures = [pool.submit(run_one, *job) for job in jobs]
+        for future in concurrent.futures.as_completed(futures):
+            record = future.result()
+            records.append(record)
+            print(
+                json.dumps(
+                    {key: record[key] for key in ("provider", "task", "arm", "valid", "duration_seconds")},
+                    ensure_ascii=False,
+                ),
+                flush=True,
+            )
+    payload = {"reason": "R2 ENV_INVALID technical supplement", "records": records}
+    (SUPPLEMENT_OUT / "manifest.json").write_text(
+        json.dumps(payload, ensure_ascii=False, indent=2) + "\n",
+        encoding="utf-8",
+        newline="\n",
+    )
+    return 0 if all(record["valid"] for record in records) else 2
+
+
+def finalize() -> int:
+    if FINAL_OUT.exists() and any(FINAL_OUT.iterdir()):
+        raise RuntimeError(f"final directory is not empty: {FINAL_OUT}")
+    original = json.loads((OUT / "manifest.json").read_text(encoding="utf-8"))
+    supplement_manifest = json.loads(
+        (SUPPLEMENT_OUT / "manifest.json").read_text(encoding="utf-8")
+    )
+    indexed = {
+        (record["provider"], record["task"], record["arm"]): record
+        for record in original["records"]
+    }
+    for record in supplement_manifest["records"]:
+        indexed[(record["provider"], record["task"], record["arm"])] = record
+    records = list(indexed.values())
+    for record in records:
+        root = Path(str(record.get("artifact_root") or OUT))
+        final = (root / str(record["final_file"])).read_text(encoding="utf-8")
+        trace_ok, trace_issues = load_valid(str(record["task"]), root / str(record["trace_file"]))
+        lines = [line.strip() for line in final.splitlines() if line.strip()]
+        shape_ok = final_shape_valid(str(record["task"]), final)
+        record.update(
+            {
+                "trace_load_valid": trace_ok,
+                "trace_issues": trace_issues,
+                "final_shape_valid": shape_ok,
+                "output_label_valid": not str(record["task"]).startswith("H")
+                or (bool(lines) and lines[0] == record["task"]),
+                "valid": record["return_code"] == 0
+                and not record["timeout"]
+                and trace_ok
+                and shape_ok,
+            }
+        )
+    records.sort(
+        key=lambda record: (
+            TASK_ORDER.index(str(record["task"])),
+            str(record["provider"]),
+            str(record["arm"]),
+        )
+    )
+    valid_pairs = []
+    indexed = {
+        (record["provider"], record["task"], record["arm"]): record
+        for record in records
+    }
+    for provider, task in PAIR_ORDER:
+        if all(indexed[(provider, task, arm)]["valid"] for arm in ("baseline", "candidate")):
+            valid_pairs.append(f"{provider}-{task}")
+    if len(valid_pairs) != len(PAIR_ORDER):
+        raise RuntimeError(f"final valid pairs {len(valid_pairs)} != {len(PAIR_ORDER)}")
+    FINAL_OUT.mkdir(parents=True, exist_ok=True)
+    packet, mapping = write_packet(records)
+    packet_bytes = packet.encode("utf-8")
+    mapping_bytes = (json.dumps(mapping, ensure_ascii=False, indent=2) + "\n").encode("utf-8")
+    (FINAL_OUT / "blind-packet.md").write_bytes(packet_bytes)
+    MAPPING_PATH.write_bytes(mapping_bytes)
+    payload = {
+        "baseline_commit": BASELINE_COMMIT,
+        "candidate_commit": CANDIDATE_COMMIT,
+        "records": records,
+        "valid_pairs": valid_pairs,
+        "blind_packet_sha256": sha256_bytes(packet_bytes),
+        "blind_packet_chars": len(packet),
+        "blind_mapping_sha256": sha256_bytes(mapping_bytes),
+    }
+    (FINAL_OUT / "manifest.json").write_text(
+        json.dumps(payload, ensure_ascii=False, indent=2) + "\n",
+        encoding="utf-8",
+        newline="\n",
+    )
+    print(
+        json.dumps(
+            {
+                "status": "ready-for-blind-review",
+                "valid_pairs": len(valid_pairs),
+                "packet_sha256": payload["blind_packet_sha256"],
+                "output_label_failures": sum(
+                    not bool(record["output_label_valid"]) for record in records
+                ),
+            },
+            ensure_ascii=False,
+        )
+    )
+    return 0
+
+
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--preflight", action="store_true")
     parser.add_argument("--run", action="store_true")
+    parser.add_argument("--supplement", action="store_true")
+    parser.add_argument("--finalize", action="store_true")
     args = parser.parse_args()
-    if args.preflight == args.run:
-        parser.error("choose exactly one of --preflight or --run")
-    return preflight() if args.preflight else execute()
+    selected = sum((args.preflight, args.run, args.supplement, args.finalize))
+    if selected != 1:
+        parser.error("choose exactly one action")
+    if args.preflight:
+        return preflight()
+    if args.run:
+        return execute()
+    if args.supplement:
+        return supplement()
+    return finalize()
 
 
 if __name__ == "__main__":
