@@ -8,7 +8,7 @@
 
 ## 单一候选
 
-在共享 Hook 桥中增加窄域 review-only 判定。判定只处理用户明确要求审查或复核，且同时明确限定不代改或不重写全文的请求。命中时 Stop 直接放行，不创建 transaction。Codex 桥与 Claude adapter 共用这一判断。
+在共享 Hook 桥中增加窄域 review-only 判定。`只审查`、`只复核`等自身已明确限定交付模式；普通审查、检查或复核请求还须同时明确限定不代改或不重写全文。命中时 Stop 直接放行，不创建 transaction。Codex 桥与 Claude adapter 共用这一判断。
 
 以下请求必须继续进入原门禁：
 
