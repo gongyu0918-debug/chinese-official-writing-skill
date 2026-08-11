@@ -98,6 +98,9 @@ class PromptfooGraderTests(unittest.TestCase):
 
 
 class PromptfooRunnerTests(unittest.TestCase):
+    def test_runner_resolves_the_migrated_repository_root(self) -> None:
+        self.assertEqual(ROOT, run_eval.REPO_ROOT)
+
     def tearDown(self) -> None:
         for name in run_eval.THRESHOLD_ENV_VARS.values():
             os.environ.pop(name, None)

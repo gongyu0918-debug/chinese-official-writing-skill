@@ -20,7 +20,7 @@ from typing import Any
 
 
 EVAL_DIR = Path(__file__).resolve().parent
-REPO_ROOT = EVAL_DIR.parents[3]
+REPO_ROOT = EVAL_DIR.parents[2]
 OUTPUT_DIR = REPO_ROOT / "output" / "promptfoo"
 CONFIG_PATH = EVAL_DIR / "promptfooconfig.yaml"
 RUBRIC_PATH = EVAL_DIR / "rubrics" / "pairwise-judge.md"
