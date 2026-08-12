@@ -136,6 +136,9 @@ class GateStopHookTests(unittest.TestCase):
             "只复核这份通知的格式和语气。",
             "请审查这份报告，不要代改。",
             "请检查这份请示，不重写全文。",
+            "只审不改这份采购申请。",
+            "仅审不改这份通知。",
+            "只检查不修改正文，列出问题。",
         )
         review = "审查意见：结尾表述“尚不能据此形成采购结论”较空泛，建议说明当前未决事项。"
         skill = (
@@ -171,6 +174,30 @@ class GateStopHookTests(unittest.TestCase):
 
         transactions = self.root / "candidate-ai-gate-hook" / "transactions"
         self.assertFalse(transactions.exists())
+
+    def test_review_only_short_form_does_not_bypass_followup_writing_or_quoted_material(self):
+        prompts = (
+            "只审不改后按建议改写这份报告。",
+            "请先审再改这份报告。",
+            "请审完改写这份报告。",
+            "这不是只审不改，请输出修改后的正文。",
+            "请起草通知，材料中写有“只审不改”四字。",
+        )
+        for index, prompt in enumerate(prompts, start=1):
+            with self.subTest(prompt=prompt):
+                common = {"turn_id": f"review-followup-{index}"}
+                self._record_prompt_and_skill_read(prompt, **common)
+                result = HOOK.handle(
+                    self._event(
+                        "Stop",
+                        stop_hook_active=False,
+                        last_assistant_message="关于有关事项的报告\n\n情况正在办理。",
+                        **common,
+                    )
+                )
+                self.assertEqual("block", result["decision"])
+                record = HOOK._read_json(HOOK._record_path(self._event("Stop", **common)))
+                self.assertIn("txn", record)
 
     def test_explicit_task_hook_opt_out_allows_without_transaction(self):
         prompts = (

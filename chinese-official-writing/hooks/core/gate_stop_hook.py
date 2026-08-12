@@ -55,8 +55,12 @@ TXN_RE = re.compile(
 )
 REVIEW_ACTION_RE = re.compile(r"(?:审稿|审查|检查|复核|核验)")
 EXPLICIT_REVIEW_ONLY_RE = re.compile(
-    r"(?:只|仅)(?:做)?(?:审稿|审查|检查|复核|核验)"
+    r"(?:只|仅)(?:做)?(?:审稿|审查|检查|复核|核验)(?:不改|不修改(?:全文|正文)?|不代改|不重写(?:全文|正文)?)?"
 )
+SHORT_REVIEW_ONLY_RE = re.compile(
+    r"(?:只|仅)\s*审\s*不\s*(?:改|修改(?:全文|正文)?)"
+)
+REVIEW_ONLY_NEGATION_RE = re.compile(r"(?:不是|并非|不属于)\s*(?:只|仅)?\s*审\s*不\s*(?:改|修改)")
 REVIEW_OUTPUT_BOUNDARY_RE = re.compile(
     r"(?:不|不要|无需|无须|别)(?:再)?(?:代改|改写|重写|修改)(?:全文|正文)?"
 )
@@ -65,8 +69,8 @@ DIRECT_DRAFT_OR_REVISION_RE = re.compile(
     r"(?:起草|撰写|编写|拟写|改写|重写|修改(?!建议)|润色|压缩|合稿)"
 )
 REVIEW_THEN_REWRITE_RE = re.compile(
-    r"(?:审稿|审查|检查|复核|核验)[^。；;\n]{0,16}"
-    r"(?:再|并|同时|然后|之后|后)[^，。；;\n]{0,8}"
+    r"(?:审|审稿|审查|检查|复核|核验)[^。；;\n]{0,16}"
+    r"(?:再|并|同时|然后|之后|后|完)[^，。；;\n]{0,8}"
     r"(?:代改|改写|重写|修改|润色)"
 )
 HOOK_OPT_OUT_RE = re.compile(
@@ -209,12 +213,14 @@ def _reads_this_skill(command: str) -> bool:
 
 def _is_review_only_request(request: str) -> bool:
     """Mirror the Skill's explicit review-only mode without classifying other tasks."""
+    if REVIEW_ONLY_NEGATION_RE.search(request):
+        return False
     if DIRECT_DRAFT_OR_REVISION_RE.search(request):
         return False
     without_boundaries = REVIEW_OUTPUT_BOUNDARY_RE.sub("", request)
     if REVIEW_THEN_REWRITE_RE.search(without_boundaries):
         return False
-    if EXPLICIT_REVIEW_ONLY_RE.search(request):
+    if SHORT_REVIEW_ONLY_RE.search(request) or EXPLICIT_REVIEW_ONLY_RE.search(request):
         return True
     return bool(
         REVIEW_ACTION_RE.search(request) and REVIEW_OUTPUT_BOUNDARY_RE.search(request)
