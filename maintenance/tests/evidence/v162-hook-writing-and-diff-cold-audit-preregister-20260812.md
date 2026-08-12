@@ -12,6 +12,8 @@
 
 三条 provider lane，每条内部串行，合计 9 个配对、18 次调用，零重试、只取第一次终稿、每臂上限 1200 秒：
 
+调度实现使用恰好 3 个 provider worker；每个 worker 只处理一家 provider 的 T1→T2→T3 及各题两臂，不在同一家内并发。最终 manifest 按 pair/slot 重新排序，不以返回先后改变匿名映射。
+
 | Provider | 精确模型 | 用例 |
 | --- | --- | --- |
 | OpenCode Go | `opencode-go/deepseek-v4-flash-0731` | T1、T2、T3 |

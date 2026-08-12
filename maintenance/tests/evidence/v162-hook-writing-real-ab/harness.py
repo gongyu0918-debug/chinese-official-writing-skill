@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import argparse
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import datetime, timezone
 import hashlib
 import json
@@ -13,6 +14,7 @@ import shutil
 import socket
 import subprocess
 import sys
+import threading
 import time
 from typing import Any, Iterable
 from urllib import request as urllib_request
@@ -34,6 +36,7 @@ TIMEOUT_SECONDS = 1200
 AUTHORIZATION_ENV = "V162_HOOK_WRITING_AUTH"
 AUTHORIZATION_VALUE = "APPROVED_BY_USER_20260812"
 CLAUDE_MIN_VERSION = "2.1.195"
+MAX_PROVIDER_LANES = 3
 
 MODELS = {
     "opencode": "opencode-go/deepseek-v4-flash-0731",
@@ -694,17 +697,41 @@ def execute(claude_exe: str, evidence_root: Path) -> int:
     }
     atomic_write_json(evidence_root / "manifest.json", manifest)
     cases = load_cases()
-    for pair in PAIR_SPECS:
-        pair_arms = []
-        for slot, treatment in zip(("A", "B"), pair["order"]):
-            meta = run_arm(claude_exe, runtime_root, evidence_root, pair, slot, treatment, cases[pair["case_id"]])
-            manifest["arms"].append(meta)
-            pair_arms.append(meta)
-            manifest["completed_calls"] = len(manifest["arms"])
-            atomic_write_json(evidence_root / "manifest.json", manifest)
-            print(json.dumps({"completed": manifest["completed_calls"], "planned": manifest["planned_calls"], "arm_key": meta["arm_key"], "technical_valid": meta["technical_valid"], "timeout": meta["timeout"]}, ensure_ascii=False), flush=True)
-        manifest["pairs"].append(
-            {
+    manifest_lock = threading.Lock()
+
+    def run_provider_lane(provider: str) -> None:
+        lane_pairs = [item for item in PAIR_SPECS if item["provider"] == provider]
+        for pair in lane_pairs:
+            pair_arms = []
+            for slot, treatment in zip(("A", "B"), pair["order"]):
+                meta = run_arm(
+                    claude_exe,
+                    runtime_root,
+                    evidence_root,
+                    pair,
+                    slot,
+                    treatment,
+                    cases[pair["case_id"]],
+                )
+                pair_arms.append(meta)
+                with manifest_lock:
+                    manifest["arms"].append(meta)
+                    manifest["completed_calls"] = len(manifest["arms"])
+                    atomic_write_json(evidence_root / "manifest.json", manifest)
+                    print(
+                        json.dumps(
+                            {
+                                "completed": manifest["completed_calls"],
+                                "planned": manifest["planned_calls"],
+                                "arm_key": meta["arm_key"],
+                                "technical_valid": meta["technical_valid"],
+                                "timeout": meta["timeout"],
+                            },
+                            ensure_ascii=False,
+                        ),
+                        flush=True,
+                    )
+            pair_meta = {
                 "pair_id": pair["pair_id"],
                 "provider": pair["provider"],
                 "case_id": pair["case_id"],
@@ -713,8 +740,16 @@ def execute(claude_exe: str, evidence_root: Path) -> int:
                 "normalized_environment_equal": pair_arms[0]["normalized_environment_contract"] == pair_arms[1]["normalized_environment_contract"],
                 "command_only_plugin_difference": without_plugin(pair_arms[1]["command"]) == without_plugin(pair_arms[0]["command"]),
             }
-        )
-        atomic_write_json(evidence_root / "manifest.json", manifest)
+            with manifest_lock:
+                manifest["pairs"].append(pair_meta)
+                atomic_write_json(evidence_root / "manifest.json", manifest)
+
+    with ThreadPoolExecutor(max_workers=MAX_PROVIDER_LANES) as executor:
+        futures = [executor.submit(run_provider_lane, provider) for provider in MODELS]
+        for future in as_completed(futures):
+            future.result()
+    manifest["arms"].sort(key=lambda item: (item["pair_id"], item["slot"]))
+    manifest["pairs"].sort(key=lambda item: item["pair_id"])
     manifest["finished_utc"] = utc_now()
     manifest["valid_pairs"] = sum(1 for item in manifest["pairs"] if item["technical_valid"])
     manifest["valid_pairs_by_provider"] = {

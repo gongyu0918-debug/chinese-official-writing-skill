@@ -20,6 +20,7 @@ SPEC.loader.exec_module(HARNESS)
 
 class V162HookWritingRealHarnessTests(unittest.TestCase):
     def test_matrix_and_exact_models_are_frozen(self) -> None:
+        self.assertEqual(3, HARNESS.MAX_PROVIDER_LANES)
         self.assertEqual(9, len(HARNESS.PAIR_SPECS))
         self.assertEqual(9, len(HARNESS.BLIND_PLAN))
         self.assertEqual(
