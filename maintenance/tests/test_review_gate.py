@@ -670,6 +670,93 @@ class ReviewGateTests(unittest.TestCase):
         self.assertFalse(detection["findings"][0]["source_exact"])
         self.assertTrue(detection["findings"][0]["request_exact"])
 
+    def test_explicit_negative_claim_deletion_overrides_source_read_only(self) -> None:
+        sentence = "未发现同类异常现象。"
+        draft = (
+            "情况说明\n\n"
+            "本次核查范围为接口运行记录，核查过程已按现有记录逐项完成。"
+            f"已核查48条运行记录。{sentence}异常原因仍在核查。"
+        )
+        request = f"请删除这句话：{sentence}其余内容保持不变。"
+        detection = self.detection(request, draft, source=sentence)
+
+        self.assertEqual(len(detection["findings"]), 1)
+        finding = detection["findings"][0]
+        self.assertEqual(finding["labels"], ["unsupported-negative-claim"])
+        self.assertTrue(finding["source_exact"])
+        packet = self.repair_packet(
+            detection,
+            [
+                {
+                    "finding_id": finding["finding_id"],
+                    "target": finding["target"],
+                    "decision": "DELETE",
+                    "replacement": "",
+                }
+            ],
+            review_gate.REPAIR_MODE_DECISIONS,
+        )
+
+        result = review_gate.evaluate_candidate(
+            request, sentence, draft, detection["run_id"], detection, packet
+        )
+
+        self.assertEqual(
+            (result.selected, result.reason),
+            ("D1", "verified_bounded_decision_packet"),
+        )
+        self.assertNotIn(sentence, result.text)
+
+        rewrite_packet = self.repair_packet(
+            detection,
+            [
+                {
+                    "finding_id": finding["finding_id"],
+                    "target": finding["target"],
+                    "replacement": "未见其他异常。",
+                }
+            ],
+        )
+        rewrite_result = review_gate.evaluate_candidate(
+            request, sentence, draft, detection["run_id"], detection, rewrite_packet
+        )
+        self.assertEqual(
+            (rewrite_result.selected, rewrite_result.reason),
+            ("D0", "request_explicit_delete_requires_empty_replacement"),
+        )
+
+    def test_postfixed_negative_claim_deletion_is_detected(self) -> None:
+        sentence = "未发现同类现象。"
+        draft = f"情况说明\n\n已核查48条运行记录。{sentence}异常原因仍在核查。"
+        request = f"“{sentence}”这句话请删除，其余内容保持不变。"
+        detection = self.detection(request, draft)
+
+        self.assertEqual(len(detection["findings"]), 1)
+        self.assertEqual(
+            detection["findings"][0]["labels"], ["unsupported-negative-claim"]
+        )
+
+    def test_keep_instruction_does_not_authorize_negative_claim_deletion(self) -> None:
+        sentence = "未发现同类现象。"
+        for request in (
+            f"请保留这句话：{sentence}",
+            f"不要删除这句话：{sentence}",
+        ):
+            with self.subTest(request=request):
+                detection = self.detection(request, sentence, source=sentence)
+                self.assertEqual(detection["findings"], [])
+
+    def test_unrelated_delete_cue_does_not_target_negative_claim(self) -> None:
+        sentence = "未发现同类现象。"
+        for request in (
+            f"请删除标题，并保留正文中的{sentence}",
+            f"请删除开头的重复句。核查结论为{sentence}",
+            f"请保留结论，不要删除附件说明。{sentence}",
+        ):
+            with self.subTest(request=request):
+                detection = self.detection(request, sentence, source=sentence)
+                self.assertEqual(detection["findings"], [])
+
     def test_request_text_cannot_license_settled_status_in_repair(self) -> None:
         target = "事项尚未形成结论。"
         replacement = "事项已完成。"

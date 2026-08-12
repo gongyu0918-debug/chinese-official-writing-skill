@@ -370,6 +370,7 @@ class Finding:
     target: str
     source_exact: bool
     request_exact: bool
+    request_delete: bool
     span_start: int
     span_end: int
 
@@ -431,8 +432,29 @@ REQUEST_STATUS_FILLER_RE = re.compile(r"(?:目前|现阶段|当前|事项|亦|�
 REQUEST_REMOVAL_CUE_RE = re.compile(
     r"(?:删除|删去|去掉|移除|取消|不要写|不写|不得写|禁止写|避免写|不得新增|不要新增)"
 )
-REQUEST_KEEP_CUE_RE = re.compile(r"(?:不要|不得|不能|请勿)(?:删除|删去|去掉|移除)")
+REQUEST_KEEP_CUE_RE = re.compile(
+    r"(?:(?:不要|不得|不能|请勿)(?:删除|删去|去掉|移除)|(?:请|应|须|需要)?保留)"
+)
 REQUEST_CUE_CONTEXT_CHARS = 32
+REQUEST_DIRECTIVE_TARGET_RE = r"(?:这句话|该句|原句)?"
+REQUEST_DIRECTIVE_LEFT_PADDING_RE = r"\s*[：:、“\"'‘]*\s*$"
+REQUEST_DIRECTIVE_RIGHT_PADDING_RE = r"^[。！？；;，,：:、”\"'’》】〕」』]*\s*"
+REQUEST_REMOVAL_PREFIX_RE = re.compile(
+    rf"{REQUEST_REMOVAL_CUE_RE.pattern}{REQUEST_DIRECTIVE_TARGET_RE}"
+    rf"{REQUEST_DIRECTIVE_LEFT_PADDING_RE}"
+)
+REQUEST_KEEP_PREFIX_RE = re.compile(
+    rf"{REQUEST_KEEP_CUE_RE.pattern}{REQUEST_DIRECTIVE_TARGET_RE}"
+    rf"{REQUEST_DIRECTIVE_LEFT_PADDING_RE}"
+)
+REQUEST_REMOVAL_SUFFIX_RE = re.compile(
+    rf"{REQUEST_DIRECTIVE_RIGHT_PADDING_RE}{REQUEST_DIRECTIVE_TARGET_RE}\s*"
+    rf"(?:请|应|须|需要)?{REQUEST_REMOVAL_CUE_RE.pattern}"
+)
+REQUEST_KEEP_SUFFIX_RE = re.compile(
+    rf"{REQUEST_DIRECTIVE_RIGHT_PADDING_RE}{REQUEST_DIRECTIVE_TARGET_RE}\s*"
+    rf"{REQUEST_KEEP_CUE_RE.pattern}"
+)
 PENDING_FACT_OBJECT_PATTERNS = {
     "procurement": re.compile(r"采购(?:决定|结论|安排)"),
     "approval": re.compile(r"(?:审批|审定|批准)(?:意见|结论|结果|决定)?"),
@@ -496,15 +518,37 @@ def _negative_claim_key(match: re.Match[str]) -> str:
     return f"{match.group('event')}:{obj}"
 
 
-def _request_match_is_removal_instruction(request: str, start: int) -> bool:
+def _request_match_directive(request: str, start: int, end: int) -> str | None:
     prefix = request[max(0, start - REQUEST_CUE_CONTEXT_CHARS) : start]
-    clause_start = max(
-        prefix.rfind(mark) for mark in ("。", "！", "？", "；", "\n")
-    )
-    cue_context = prefix[clause_start + 1 :]
-    if REQUEST_KEEP_CUE_RE.search(cue_context):
+    suffix = request[end : min(len(request), end + REQUEST_CUE_CONTEXT_CHARS)]
+    if REQUEST_KEEP_PREFIX_RE.search(prefix):
+        return "keep"
+    if REQUEST_REMOVAL_PREFIX_RE.search(prefix):
+        return "delete"
+    if REQUEST_KEEP_SUFFIX_RE.search(suffix):
+        return "keep"
+    if REQUEST_REMOVAL_SUFFIX_RE.search(suffix):
+        return "delete"
+    return None
+
+
+def _request_match_is_removal_instruction(
+    request: str, start: int, end: int | None = None
+) -> bool:
+    return _request_match_directive(request, start, end if end is not None else start) == "delete"
+
+
+def _request_explicitly_deletes_negative_claim(target: str, request: str) -> bool:
+    target_keys = {
+        _negative_claim_key(match) for match in NEGATIVE_CLAIM_RE.finditer(target)
+    }
+    if not target_keys:
         return False
-    return bool(REQUEST_REMOVAL_CUE_RE.search(cue_context))
+    return any(
+        _negative_claim_key(match) in target_keys
+        and _request_match_directive(request, match.start(), match.end()) == "delete"
+        for match in NEGATIVE_CLAIM_RE.finditer(request)
+    )
 
 
 def _authority_supports_negative_claim(
@@ -513,13 +557,17 @@ def _authority_supports_negative_claim(
     target_keys = {_negative_claim_key(match) for match in NEGATIVE_CLAIM_RE.finditer(target)}
     if not target_keys:
         return False
+    if _request_explicitly_deletes_negative_claim(target, request):
+        return False
     source_keys = {_negative_claim_key(match) for match in NEGATIVE_CLAIM_RE.finditer(source)}
     if target_keys & source_keys:
         return True
     for match in NEGATIVE_CLAIM_RE.finditer(request):
         if (
             _negative_claim_key(match) in target_keys
-            and not _request_match_is_removal_instruction(request, match.start())
+            and not _request_match_is_removal_instruction(
+                request, match.start(), match.end()
+            )
         ):
             return True
     return False
@@ -750,6 +798,7 @@ def locate_candidates(
         request_exact = bool(
             len(sentence_normalized) >= 8 and sentence.strip() in request
         )
+        request_delete = _request_explicitly_deletes_negative_claim(sentence, request)
         finding_number += 1
         findings.append(
             Finding(
@@ -759,6 +808,7 @@ def locate_candidates(
                 target=sentence,
                 source_exact=source_exact,
                 request_exact=request_exact,
+                request_delete=request_delete,
                 span_start=span_start,
                 span_end=span_end,
             )
@@ -813,6 +863,9 @@ def locate_candidates(
                     ),
                     "request_exact": bool(
                         len(normalized_text(target)) >= 8 and target.strip() in request
+                    ),
+                    "request_delete": _request_explicitly_deletes_negative_claim(
+                        target, request
                     ),
                     "span_start": span_start,
                     "span_end": span_end,
@@ -1160,7 +1213,8 @@ def _delete_contract(
     if not isinstance(target, str) or not target.strip():
         return False, "invalid_delete_target"
     guided_marker = finding.get("guided_marker") is True
-    if finding.get("source_exact") is True and not guided_marker:
+    request_delete = finding.get("request_delete") is True
+    if finding.get("source_exact") is True and not guided_marker and not request_delete:
         return False, "source_explicit_sentence_is_read_only"
     if guided_marker:
         if not _guided_span_is_independent_sentence(draft, finding, target):
@@ -1188,6 +1242,12 @@ def _finding_action_contract(
     finding: dict[str, Any], draft: str
 ) -> tuple[list[str], str | None]:
     guided_marker = finding.get("guided_marker") is True
+    request_delete = finding.get("request_delete") is True
+    if request_delete:
+        delete_allowed, block_reason = _delete_contract(finding, draft)
+        if delete_allowed:
+            return [DECISION_DELETE], "request_explicitly_requires_delete"
+        return [DECISION_KEEP], block_reason
     if finding.get("source_exact") is True and not guided_marker:
         return [DECISION_KEEP], "source_explicit_sentence_is_read_only"
     target = finding.get("target")
@@ -1459,7 +1519,11 @@ def evaluate_candidate(
                 if replacement != target:
                     return CandidateResult("D0", "keep_decision_changed_text", draft)
                 continue
-            if finding.get("source_exact") is True and not guided_marker:
+            if (
+                finding.get("source_exact") is True
+                and not guided_marker
+                and finding.get("request_delete") is not True
+            ):
                 return CandidateResult("D0", "source_explicit_sentence_is_read_only", draft)
             effective_mode = (
                 REPAIR_MODE_EXTRACT if decision == DECISION_DELETE else REPAIR_MODE_REWRITE_SENTENCE
@@ -1469,7 +1533,15 @@ def evaluate_candidate(
             if decision == DECISION_REWRITE and not normalized_text(replacement):
                 return CandidateResult("D0", "rewrite_decision_must_be_nonempty", draft)
         else:
-            if finding.get("source_exact") is True and not guided_marker:
+            if finding.get("request_delete") is True and replacement != "":
+                return CandidateResult(
+                    "D0", "request_explicit_delete_requires_empty_replacement", draft
+                )
+            if (
+                finding.get("source_exact") is True
+                and not guided_marker
+                and finding.get("request_delete") is not True
+            ):
                 return CandidateResult("D0", "source_explicit_sentence_is_read_only", draft)
             effective_mode = repair_mode
         if guided_marker:
