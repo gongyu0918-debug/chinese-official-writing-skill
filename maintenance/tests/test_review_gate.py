@@ -755,6 +755,10 @@ class ReviewGateTests(unittest.TestCase):
             f"说明中提到{sentence}请删除附件说明。",
             f"说明中提到{sentence}删除附件说明。",
             f"说明中提到{sentence}请删除开头重复句。",
+            f"{sentence}该句请删除附件说明。",
+            f"{sentence}原句请删除附件说明。",
+            f"{sentence}这句话请删除附件说明。",
+            f"{sentence}上述结论请删除附件说明。",
         ):
             with self.subTest(request=request):
                 detection = self.detection(request, sentence, source=sentence)
