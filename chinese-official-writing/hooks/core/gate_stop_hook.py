@@ -29,6 +29,7 @@ MAX_STOP_ATTEMPTS = 4
 STATE_SCHEMA_VERSION = 1
 SAFE_KEY_MAX_LENGTH = 120
 GATE_SUBPROCESS_TIMEOUT_SECONDS = 20
+MIN_FENCED_JSON_LINES = 3
 MODULE_PATH = Path(__file__).resolve()
 
 
@@ -248,7 +249,7 @@ def _extract_json_object(value: Any) -> dict[str, Any] | None:
     text = value.strip()
     if text.startswith("```") and text.endswith("```"):
         lines = text.splitlines()
-        if len(lines) >= 3:
+        if len(lines) >= MIN_FENCED_JSON_LINES:
             text = "\n".join(lines[1:-1]).strip()
     start = text.find("{")
     if start < 0:
