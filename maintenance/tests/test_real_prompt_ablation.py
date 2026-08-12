@@ -115,6 +115,7 @@ class RealPromptAblationTests(unittest.TestCase):
 
     def test_information_selection_migration_keeps_complete_equivalent_evidence_groups(self) -> None:
         expected_cases = {
+            "P022",
             "P112",
             "P076",
             "P019",

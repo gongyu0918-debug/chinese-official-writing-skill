@@ -1897,6 +1897,14 @@ CASES: list[PromptCase] = [
 # be present.  This keeps the fixed baseline valid without forcing duplicated
 # runtime wording back into the current skill.
 FILE_TERM_ALTERNATIVES_BY_CASE: dict[str, list[dict[str, list[str]]]] = {
+    "P022": [
+        {
+            "maintenance/tests/test_skill_boundary.py": [
+                "test_primary_adapter_mirrors_match_canonical_bytes",
+                "test_packaged_resource_mirrors_match_canonical_bytes",
+            ],
+        }
+    ],
     "P112": [
         {
             "chinese-official-writing/references/genre-playbook-plan-construction.md": [
