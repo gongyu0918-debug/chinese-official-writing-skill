@@ -20,7 +20,7 @@
 ## 发布前验证
 
 - 全量 unittest：550/550 PASS。
-- Promptfoo stub smoke：20/20 PASS，run `eval-X3x-2026-08-12T09:26:29`。
+- Promptfoo stub smoke：20/20 PASS，最终复跑为 `eval-0l0-2026-08-12T09:38:24`。
 - 固定 v1.6.1 确定性消融：v1.6.1 为 111/111，v1.6.2 为 111/111。
 - 真实写稿：3 个 provider、9 对、18 次全部技术有效，0 timeout、0 retry；9 个 Hook-on 臂均完成事件链并安全回退 D0，D1=0。
 - canonical quick validate、Codex companion validator、Claude strict validator与无模型 preflight、WorkBuddy/CodeBuddy validator：PASS。
