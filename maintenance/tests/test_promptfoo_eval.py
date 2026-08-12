@@ -1079,9 +1079,17 @@ class PromptfooProviderTests(unittest.TestCase):
         canonical = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
         selected_skill = provider._skill_root(ROOT) / "SKILL.md"
         selected = selected_skill.read_text(encoding="utf-8")
+        hook_route = (
+            "\n\n用户明确要求安装、启用、适配或排查交付门禁 Hook 时，读取 `hooks/README.md`。"
+            "普通起草、改稿、压缩和复核不加载该页，也不自动启用 Hook。"
+        )
 
         self.assertIn(selected, context)
-        self.assertEqual(canonical.split("---", 2)[2].strip(), selected.split("---", 2)[2].strip())
+        self.assertEqual(
+            canonical.split("---", 2)[2].strip().replace(hook_route, ""),
+            selected.split("---", 2)[2].strip(),
+        )
+        self.assertNotIn("读取 `hooks/README.md`", selected)
         for relative in provider._reference_paths_for_genres(["通知", "请示", "报告", "说明", "方案"]):
             selected = provider._skill_root(ROOT) / relative
             self.assertIn(selected.read_text(encoding="utf-8"), context)

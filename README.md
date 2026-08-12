@@ -59,7 +59,7 @@
 | 文种与专项 references | 按需补充文种骨架、办理要素、论证链、GB/T 9704 格式和 AI 算力材料规则 |
 | 分层复核 references | 从段落、小节到全文检查事实、视角、结构、格式和自然表达 |
 | `scripts/prose_lint.py` | 提供可选的格式、重复和成品残留线索，作为轻量审查层的确定性补充 |
-| Codex 插件 Hook | 在支持生命周期 Hook 的 Codex 插件环境中执行一次有限复核；异常时回到非空初稿，修订不会循环 |
+| 可选宿主插件 | Codex、Claude Code、WorkBuddy/CodeBuddy 分别使用自包含插件根；生命周期门禁异常时回到非空初稿，修订不会循环 |
 | `agents/openai.yaml` | 提供界面展示和默认调用信息 |
 
 渐进式路由让短任务只读取轻量卡，完整公文再进入相应文种叶子，技术类材料只加载命中的专项规则。这样既保留必要边界，也减少无关规则对真实写稿的干扰。
@@ -203,8 +203,10 @@ v1.6.1 带 Skill 成稿（完整，765 字符）：
 
 | 路径 | 用途 |
 | --- | --- |
-| `chinese-official-writing/` | 通用 canonical Agent Skill |
-| `packages/agent-plugin/` | Codex、Claude Code、WorkBuddy/CodeBuddy 插件与完整技能包 |
+| `chinese-official-writing/` | 通用 canonical Agent Skill；`hooks/` 保存可选门禁核心与使用说明 |
+| `chinese-official-writing/plugins/codex/` | Codex 自包含插件 |
+| `chinese-official-writing/plugins/codebuddy/` | WorkBuddy/CodeBuddy 自包含插件 |
+| `chinese-official-writing/plugins/claude-code/` | Claude Code 自包含插件 |
 | `packages/agent-skills/` | 通用 Agent Skills、MiniMax Skills、GLM Skills（Z.ai/智谱）、AutoClaw、Kimi Code CLI、TRAE、Baidu Comate AI IDE 等兼容包 |
 | `packages/qwen-code/` | Qwen Code 兼容包 |
 | `packages/hermes/` | Hermes 兼容包 |

@@ -7,7 +7,7 @@ import unittest
 
 
 ROOT = Path(__file__).resolve().parents[2]
-PLUGIN_ROOT = ROOT / "packages" / "agent-plugin"
+PLUGIN_ROOT = ROOT / "chinese-official-writing" / "plugins" / "codex"
 MODULE_PATH = ROOT / "chinese-official-writing" / "hooks" / "gate_stop_hook.py"
 HOOK_CONFIG_PATH = PLUGIN_ROOT / "hooks" / "hooks.json"
 SPEC = importlib.util.spec_from_file_location("candidate_ai_gate_stop_hook", MODULE_PATH)

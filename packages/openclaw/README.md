@@ -1,6 +1,6 @@
 # OpenClaw 兼容包
 
-这是 GitHub 仓库内维护的 OpenClaw 兼容包，当前版本为 `1.6.1`，采用仓库根目录的 MIT 许可证。适配副本使用 `name: chinese_official_writing`，用于兼容 OpenClaw 的匹配规则；正文规则由 canonical Skill 同步，Hook 和交付门禁不进入本包。
+这是 GitHub 仓库内维护的 OpenClaw 兼容包，当前候选版本为 `1.6.2`，采用仓库根目录的 MIT 许可证。适配副本使用 `name: chinese_official_writing`，用于兼容 OpenClaw 的匹配规则；正文规则由 canonical Skill 同步，Hook 和交付门禁不进入本包。
 
 ```text
 packages/openclaw/

@@ -8,11 +8,12 @@ import unittest
 
 ROOT = Path(__file__).parents[2]
 SKILL_ROOT = ROOT / "chinese-official-writing"
-ADAPTER_ROOT = SKILL_ROOT / "hooks" / "claude-code"
+ADAPTER_ROOT = SKILL_ROOT / "plugins" / "claude-code"
+PACKAGED_SKILL_ROOT = ADAPTER_ROOT / "skills" / "chinese-official-writing"
 MODULE_PATH = ADAPTER_ROOT / "scripts" / "gate_stop_hook.py"
 HOOKS_PATH = ADAPTER_ROOT / "hooks" / "hooks.json"
 CAPABILITIES_PATH = SKILL_ROOT / "hooks" / "host-capabilities.json"
-PLAN_PATH = SKILL_ROOT / "hooks" / "AGENT_GLUE.md"
+PLAN_PATH = SKILL_ROOT / "hooks" / "README.md"
 PREFLIGHT_PATH = ROOT / "maintenance" / "tools" / "preflight_claude_hooks.py"
 
 
@@ -62,18 +63,15 @@ class ClaudeGateAdapterTests(unittest.TestCase):
         self.assertFalse(capabilities["activation"]["ordinary_skill_install_enables_hooks"])
         codex = capabilities["hosts"]["codex"]
         self.assertEqual("package_registration_verified", codex["status"])
-        self.assertEqual("companion_present_inactive", codex["package_presence"]["skillhub_ordinary_package"])
-        self.assertEqual("explicit_plugin_install_enable_and_hook_trust", codex["skillhub_activation"])
         claude = capabilities["hosts"]["claude_code"]
         self.assertEqual("lifecycle_verified", claude["status"])
-        self.assertEqual("package_present", claude["package_presence"])
         self.assertEqual(["UserPromptSubmit", "PostToolUse:Read", "Stop"], claude["verified_events"])
         self.assertEqual(["PostToolUse:Bash"], claude["unverified_events"])
         self.assertEqual("anthropic_messages_gateway", claude["verified_transport"])
-        self.assertEqual("ollama-cloud/deepseek-v4-flash:0731", claude["verified_model"])
         self.assertFalse(claude["first_party_login_required"])
-        self.assertEqual("frozen", capabilities["hosts"]["openclaw"]["status"])
-        self.assertEqual("package_manifest_verified", capabilities["hosts"]["workbuddy"]["status"])
+        self.assertEqual("skill_only", capabilities["hosts"]["openclaw"]["status"])
+        self.assertEqual("package_manifest_verified", capabilities["hosts"]["codebuddy"]["status"])
+        self.assertFalse(capabilities["length_gate"]["automatic_expansion"])
         hooks = json.loads(HOOKS_PATH.read_text(encoding="utf-8"))["hooks"]
         self.assertEqual(["UserPromptSubmit", "PostToolUse", "Stop"], list(hooks))
         self.assertEqual("Bash|Read", hooks["PostToolUse"][0]["matcher"])
@@ -85,16 +83,15 @@ class ClaudeGateAdapterTests(unittest.TestCase):
             self.assertIn("sys.argv[2]", command)
             self.assertNotIn("PLUGIN_ROOT", command.replace("CLAUDE_PLUGIN_ROOT", ""))
         plan = PLAN_PATH.read_text(encoding="utf-8")
-        self.assertIn("ordinary Skill and its mirrors do not enable hooks", plan)
-        self.assertIn("session-only plugin registration", plan)
-        self.assertIn("without a Claude account login", plan)
-        self.assertIn("`PostToolUse:Bash` and a D1 repair remain unverified", plan)
-        self.assertIn("WorkBuddy/CodeBuddy manifest validation and local binary inspection do not prove a real lifecycle run", plan)
+        self.assertIn("不会因为安装 Skill 自动启用", plan)
+        self.assertIn("当前没有自动补足字数", plan)
+        self.assertIn("Bash 和有效 D1 尚未验证", plan)
+        self.assertIn("真实生命周期仍需独立实跑", plan)
 
     def test_read_event_arms_existing_core_and_stop_uses_plugin_data(self):
         prompt = self._event("UserPromptSubmit", prompt="请起草一份情况报告。")
         self.assertTrue(ADAPTER.handle(prompt)["continue"])
-        skill_path = SKILL_ROOT / "SKILL.md"
+        skill_path = PACKAGED_SKILL_ROOT / "SKILL.md"
         result = ADAPTER.handle(
             self._event(
                 "PostToolUse",
@@ -125,7 +122,7 @@ class ClaudeGateAdapterTests(unittest.TestCase):
                 )
             )["continue"]
         )
-        skill_path = SKILL_ROOT / "SKILL.md"
+        skill_path = PACKAGED_SKILL_ROOT / "SKILL.md"
         self.assertTrue(
             ADAPTER.handle(
                 self._event(
@@ -164,7 +161,7 @@ class ClaudeGateAdapterTests(unittest.TestCase):
                 )
             )["continue"]
         )
-        skill_path = SKILL_ROOT / "SKILL.md"
+        skill_path = PACKAGED_SKILL_ROOT / "SKILL.md"
         ADAPTER.handle(
             self._event(
                 "PostToolUse",
@@ -216,7 +213,7 @@ class ClaudeGateAdapterTests(unittest.TestCase):
         external = Path(self.temp.name) / "external"
         os.environ["COW_GATE_HOOK_DATA"] = str(external)
         ADAPTER.handle(self._event("UserPromptSubmit", prompt="请起草一份情况报告。"))
-        skill_path = SKILL_ROOT / "SKILL.md"
+        skill_path = PACKAGED_SKILL_ROOT / "SKILL.md"
         ADAPTER.handle(
             self._event(
                 "PostToolUse",

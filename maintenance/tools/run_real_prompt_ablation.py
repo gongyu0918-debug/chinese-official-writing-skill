@@ -1720,7 +1720,7 @@ CASES: list[PromptCase] = [
                 ],
                 "maintenance/tools/sync_adapters.py": [
                     '"openclaw": OPENCLAW_PACKAGE',
-                    '"openclaw": CODEX_GATE_FILES + ("agents/openai.yaml",)',
+                    '"openclaw": OPTIONAL_GATE_FILES + ("agents/openai.yaml",)',
                 ],
             },
         },

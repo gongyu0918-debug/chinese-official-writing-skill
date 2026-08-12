@@ -15,7 +15,7 @@ SPEC = importlib.util.spec_from_file_location("build_skillhub_package", MODULE_P
 assert SPEC and SPEC.loader
 BUILDER = importlib.util.module_from_spec(SPEC)
 SPEC.loader.exec_module(BUILDER)
-RC_VERSION = "1.6.1"
+RC_VERSION = "1.6.2"
 
 
 class SkillHubPackageBuilderTests(unittest.TestCase):
@@ -24,36 +24,36 @@ class SkillHubPackageBuilderTests(unittest.TestCase):
             output = Path(temporary) / "publish-package"
             result = BUILDER.build_package(output, version=RC_VERSION)
 
-            self.assertEqual(result["files"], 46)
+            self.assertEqual(result["files"], 160)
             self.assertEqual(result["license"], "LICENSE.md")
             self.assertFalse((output / "LICENSE").exists())
             self.assertEqual((output / "LICENSE.md").read_bytes(), (ROOT / "LICENSE").read_bytes())
             self.assertTrue((output / "LICENSE.md").read_text(encoding="utf-8").startswith("MIT License\n"))
             self.assertFalse((output / "agents" / "openai.yaml").exists())
-            self.assertTrue((output / "hooks" / "AGENT_GLUE.md").is_file())
+            self.assertTrue((output / "hooks" / "README.md").is_file())
             self.assertTrue((output / "hooks" / "host-capabilities.json").is_file())
-            self.assertTrue((output / "hooks" / "claude-code" / "hooks" / "hooks.json").is_file())
-            self.assertTrue((output / ".codex-plugin" / "plugin.json").is_file())
-            self.assertTrue((output / ".codebuddy-plugin" / "plugin.json").is_file())
-            self.assertTrue((output / "hooks" / "hooks.json").is_file())
-            self.assertTrue((output / "hooks" / "workbuddy" / "hooks.json").is_file())
             self.assertTrue((output / "hooks" / "host_gate_adapter.py").is_file())
-            self.assertTrue((output / "skills" / "chinese-official-writing" / "SKILL.md").is_file())
+            self.assertFalse((output / ".codex-plugin").exists())
+            self.assertFalse((output / ".codebuddy-plugin").exists())
+            self.assertFalse((output / "skills").exists())
+            self.assertTrue((output / "plugins" / "README.md").is_file())
+            for host, manifest in {
+                "codex": ".codex-plugin/plugin.json",
+                "codebuddy": ".codebuddy-plugin/plugin.json",
+                "claude-code": ".claude-plugin/plugin.json",
+            }.items():
+                plugin = output / "plugins" / host
+                self.assertTrue((plugin / manifest).is_file())
+                self.assertTrue((plugin / "hooks" / "hooks.json").is_file())
+                self.assertTrue(
+                    (plugin / "skills" / "chinese-official-writing" / "SKILL.md").is_file()
+                )
             capabilities = json.loads(
                 (output / "hooks" / "host-capabilities.json").read_text(encoding="utf-8")
             )
-            self.assertEqual(
-                "companion_present_inactive",
-                capabilities["hosts"]["codex"]["package_presence"]["skillhub_ordinary_package"],
-            )
-            self.assertEqual(
-                "package_present",
-                capabilities["hosts"]["claude_code"]["package_presence"],
-            )
-            self.assertEqual(
-                "companion_present_inactive",
-                capabilities["hosts"]["workbuddy"]["package_presence"],
-            )
+            self.assertEqual("plugins/codex", capabilities["hosts"]["codex"]["plugin_root"])
+            self.assertEqual("plugins/codebuddy", capabilities["hosts"]["codebuddy"]["plugin_root"])
+            self.assertEqual("not_shipped", capabilities["length_gate"]["status"])
             self.assertEqual(
                 (output / "_meta.json").read_text(encoding="utf-8"),
                 f'{{\n  "slug": "chinese-official-writing",\n  "version": "{RC_VERSION}"\n}}\n',

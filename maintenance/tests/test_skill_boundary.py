@@ -10,24 +10,26 @@ import yaml
 
 
 ROOT = Path(__file__).resolve().parents[2]
-CODEX_GATE_FILES = {
-    ".codex-plugin/plugin.json",
-    ".codebuddy-plugin/plugin.json",
+CANONICAL = ROOT / "chinese-official-writing"
+PLUGIN_ROOTS = {
+    host: CANONICAL / "plugins" / host
+    for host in ("codex", "codebuddy", "claude-code")
+}
+PLUGIN_SKILL_ROOTS = {
+    host: plugin_root / "skills" / "chinese-official-writing"
+    for host, plugin_root in PLUGIN_ROOTS.items()
+}
+OPTIONAL_GATE_FILES = {
+    "plugins",
     "references/delivery-review-gate.md",
-    "hooks/AGENT_GLUE.md",
+    "hooks/README.md",
     "hooks/host-capabilities.json",
     "hooks/gate_stop_hook.py",
-    "hooks/hooks.json",
     "hooks/host_gate_adapter.py",
-    "hooks/workbuddy/hooks.json",
-    "hooks/claude-code/.claude-plugin/plugin.json",
-    "hooks/claude-code/hooks/hooks.json",
-    "hooks/claude-code/scripts/gate_stop_hook.py",
     "scripts/review_gate.py",
-    "skills/chinese-official-writing/SKILL.md",
 }
 SKILLHUB_CLEAN_PACKAGE_EXCLUDES = {"agents/openai.yaml", "LICENSE"}
-CURRENT_VERSION = "1.6.1"
+CURRENT_VERSION = "1.6.2"
 
 
 def relative_files(root: Path) -> list[str]:
@@ -88,8 +90,8 @@ class SkillBoundaryTests(unittest.TestCase):
 
     def test_skill_frontmatter_keeps_only_discovery_fields_and_tags(self) -> None:
         paths = [
-            ROOT / "chinese-official-writing" / "SKILL.md",
-            ROOT / "packages" / "agent-plugin" / "skills" / "chinese-official-writing" / "SKILL.md",
+            CANONICAL / "SKILL.md",
+            *[root / "SKILL.md" for root in PLUGIN_SKILL_ROOTS.values()],
             ROOT / "packages" / "agent-skills" / "skills" / "chinese-official-writing" / "SKILL.md",
             ROOT / "packages" / "qwen-code" / "skills" / "chinese-official-writing" / "SKILL.md",
             ROOT / "packages" / "hermes" / "skills" / "chinese-official-writing" / "SKILL.md",
@@ -119,12 +121,12 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assertEqual(frontmatter["metadata"]["version"], CURRENT_VERSION)
         self.assertEqual(len(relative_files(package_root)), 31)
         self.assertEqual((package_root / "LICENSE").read_bytes(), (ROOT / "LICENSE").read_bytes())
-        for forbidden in CODEX_GATE_FILES | {"agents/openai.yaml", "README.md"}:
+        for forbidden in OPTIONAL_GATE_FILES | {"agents/openai.yaml", "README.md"}:
             self.assertFalse((package_root / forbidden).exists(), forbidden)
 
         sync_script = (ROOT / "maintenance" / "tools" / "sync_adapters.py").read_text(encoding="utf-8")
         self.assertIn('"openclaw": OPENCLAW_PACKAGE', sync_script)
-        self.assertIn('"openclaw": CODEX_GATE_FILES + ("agents/openai.yaml",)', sync_script)
+        self.assertIn('"openclaw": OPTIONAL_GATE_FILES + ("agents/openai.yaml",)', sync_script)
 
     def test_ai_compute_detail_is_loaded_from_specialty_reference(self) -> None:
         skill = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
@@ -150,7 +152,7 @@ class SkillBoundaryTests(unittest.TestCase):
 
     def test_adapter_skill_copies_keep_boundaries(self) -> None:
         paths = [
-            ROOT / "packages" / "agent-plugin" / "skills" / "chinese-official-writing" / "SKILL.md",
+            *[root / "SKILL.md" for root in PLUGIN_SKILL_ROOTS.values()],
             ROOT / "packages" / "agent-skills" / "skills" / "chinese-official-writing" / "SKILL.md",
             ROOT / "packages" / "qwen-code" / "skills" / "chinese-official-writing" / "SKILL.md",
             ROOT / "packages" / "hermes" / "skills" / "chinese-official-writing" / "SKILL.md",
@@ -179,12 +181,16 @@ class SkillBoundaryTests(unittest.TestCase):
         canonical = ROOT / "chinese-official-writing" / "SKILL.md"
         paths = [
             canonical,
-            ROOT / "packages" / "agent-plugin" / "skills" / "chinese-official-writing" / "SKILL.md",
+            *[root / "SKILL.md" for root in PLUGIN_SKILL_ROOTS.values()],
             ROOT / "packages" / "agent-skills" / "skills" / "chinese-official-writing" / "SKILL.md",
             ROOT / "packages" / "qwen-code" / "skills" / "chinese-official-writing" / "SKILL.md",
             ROOT / "packages" / "hermes" / "skills" / "chinese-official-writing" / "SKILL.md",
         ]
         canonical_body = canonical.read_text(encoding="utf-8").split("---", 2)[2].strip()
+        hook_route = (
+            "\n\n用户明确要求安装、启用、适配或排查交付门禁 Hook 时，读取 `hooks/README.md`。"
+            "普通起草、改稿、压缩和复核不加载该页，也不自动启用 Hook。"
+        )
 
         for path in paths:
             with self.subTest(path=path):
@@ -192,7 +198,11 @@ class SkillBoundaryTests(unittest.TestCase):
                 self.assertIn(expected, text)
                 self.assertEqual(text.count(expected), 1)
                 self.assertNotIn(legacy, text)
-                self.assertEqual(text.split("---", 2)[2].strip(), canonical_body)
+                body = text.split("---", 2)[2].strip()
+                if "packages" in path.parts:
+                    self.assertEqual(canonical_body.replace(hook_route, ""), body)
+                else:
+                    self.assertEqual(canonical_body, body)
 
     def test_entry_excludes_only_non_obvious_out_of_scope_tasks(self) -> None:
         text = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
@@ -233,15 +243,17 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assertIn("| `references/anti-ai-patterns.md` | 复核时 |", text)
 
     def test_primary_adapter_mirrors_match_canonical_bytes(self) -> None:
-        canonical = ROOT / "chinese-official-writing"
-        canonical_files = relative_files(canonical)
-        for target in [
-            ROOT / "packages" / "agent-plugin" / "skills" / "chinese-official-writing",
-        ]:
-            with self.subTest(target=target):
-                self.assertEqual(relative_files(target), canonical_files)
-                for relative in canonical_files:
-                    self.assertEqual((target / relative).read_bytes(), (canonical / relative).read_bytes(), relative)
+        canonical_files = [path for path in relative_files(CANONICAL) if not path.startswith("plugins/")]
+        for host, target in PLUGIN_SKILL_ROOTS.items():
+            expected_files = [
+                relative
+                for relative in canonical_files
+                if host == "codex" or relative != "agents/openai.yaml"
+            ]
+            with self.subTest(host=host, target=target):
+                self.assertEqual(relative_files(target), expected_files)
+                for relative in expected_files:
+                    self.assertEqual((target / relative).read_bytes(), (CANONICAL / relative).read_bytes(), relative)
 
     def test_second_revision_fact_mapping_has_one_complete_entry_rule(self) -> None:
         text = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
@@ -262,9 +274,9 @@ class SkillBoundaryTests(unittest.TestCase):
     def test_packaged_resource_mirrors_match_canonical_bytes(self) -> None:
         canonical = ROOT / "chinese-official-writing"
         targets = [
-            (ROOT / "packages" / "agent-skills" / "skills" / "chinese-official-writing", CODEX_GATE_FILES),
-            (ROOT / "packages" / "qwen-code" / "skills" / "chinese-official-writing", CODEX_GATE_FILES),
-            (ROOT / "packages" / "hermes" / "skills" / "chinese-official-writing", CODEX_GATE_FILES),
+            (ROOT / "packages" / "agent-skills" / "skills" / "chinese-official-writing", OPTIONAL_GATE_FILES),
+            (ROOT / "packages" / "qwen-code" / "skills" / "chinese-official-writing", OPTIONAL_GATE_FILES),
+            (ROOT / "packages" / "hermes" / "skills" / "chinese-official-writing", OPTIONAL_GATE_FILES),
         ]
         for target, excludes in targets:
             for folder in ["agents", "hooks", "references", "scripts"]:
@@ -284,17 +296,18 @@ class SkillBoundaryTests(unittest.TestCase):
                             f"{target}/{folder}/{relative}",
                         )
 
-    def test_only_canonical_and_codex_plugin_surface_keep_gate_sources(self) -> None:
-        canonical = ROOT / "chinese-official-writing"
-        codex_plugin_skill = ROOT / "packages" / "agent-plugin" / "skills" / "chinese-official-writing"
-        for relative in CODEX_GATE_FILES:
-            self.assertTrue((canonical / relative).is_file(), relative)
-            self.assertTrue((codex_plugin_skill / relative).is_file(), relative)
-            self.assertEqual(
-                (codex_plugin_skill / relative).read_bytes(),
-                (canonical / relative).read_bytes(),
-                relative,
-            )
+    def test_only_canonical_and_host_plugins_keep_gate_sources(self) -> None:
+        gate_files = OPTIONAL_GATE_FILES - {"plugins"}
+        for relative in gate_files:
+            self.assertTrue((CANONICAL / relative).is_file(), relative)
+            for host, plugin_skill in PLUGIN_SKILL_ROOTS.items():
+                with self.subTest(host=host, relative=relative):
+                    self.assertTrue((plugin_skill / relative).is_file(), relative)
+                    self.assertEqual(
+                        (plugin_skill / relative).read_bytes(),
+                        (CANONICAL / relative).read_bytes(),
+                        relative,
+                    )
 
         excluded_surfaces = [
             ROOT / "packages" / "agent-skills" / "skills" / "chinese-official-writing",
@@ -304,7 +317,7 @@ class SkillBoundaryTests(unittest.TestCase):
         ]
         for packaged in excluded_surfaces:
             with self.subTest(packaged=packaged):
-                for relative in CODEX_GATE_FILES:
+                for relative in OPTIONAL_GATE_FILES:
                     self.assertFalse((packaged / relative).exists(), relative)
                 self.assertTrue((packaged / "scripts" / "prose_lint.py").is_file())
 
@@ -316,20 +329,21 @@ class SkillBoundaryTests(unittest.TestCase):
             if relative not in SKILLHUB_CLEAN_PACKAGE_EXCLUDES
         ]
 
-        self.assertEqual(len(package_allowlist), 44)
+        self.assertGreater(len(package_allowlist), 44)
         self.assertNotIn("agents/openai.yaml", package_allowlist)
         self.assertNotIn("LICENSE", package_allowlist)
-        for relative in CODEX_GATE_FILES:
+        for relative in OPTIONAL_GATE_FILES - {"plugins"}:
             self.assertIn(relative, package_allowlist)
+        self.assertTrue(any(relative.startswith("plugins/") for relative in package_allowlist))
 
     def test_codex_plugin_version_and_hook_path_track_canonical_skill(self) -> None:
         sync_script = (ROOT / "maintenance" / "tools" / "sync_adapters.py").read_text(encoding="utf-8")
         sync_version = re.search(r'^VERSION = "([^"]+)"$', sync_script, re.M)
         self.assertIsNotNone(sync_version)
-        manifest = json.loads((ROOT / "packages" / "agent-plugin" / ".codex-plugin" / "plugin.json").read_text(encoding="utf-8"))
+        manifest = json.loads((PLUGIN_ROOTS["codex"] / ".codex-plugin" / "plugin.json").read_text(encoding="utf-8"))
         self.assertEqual(manifest["version"], sync_version.group(1))
 
-        config = json.loads((ROOT / "packages" / "agent-plugin" / "hooks" / "hooks.json").read_text(encoding="utf-8"))
+        config = json.loads((PLUGIN_ROOTS["codex"] / "hooks" / "hooks.json").read_text(encoding="utf-8"))
         commands = [
             handler[key]
             for groups in config["hooks"].values()
@@ -338,8 +352,14 @@ class SkillBoundaryTests(unittest.TestCase):
             for key in ("command", "commandWindows")
         ]
         self.assertTrue(commands)
-        self.assertTrue(all("gate_stop_hook.py" in command for command in commands))
-        self.assertTrue(all("scripts/gate_stop_hook.py" not in command for command in commands))
+        self.assertTrue(
+            all(
+                "host_gate_adapter.py" in command
+                and "skills/chinese-official-writing" not in command
+                and "'skills','chinese-official-writing'" not in command
+                for command in commands
+            )
+        )
 
     def test_reference_loading_table_keeps_progressive_disclosure(self) -> None:
         text = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
@@ -758,7 +778,7 @@ class SkillBoundaryTests(unittest.TestCase):
     def test_news_commentary_has_three_precise_aliases_and_a_direct_leaf(self) -> None:
         skill_paths = [
             ROOT / "chinese-official-writing" / "SKILL.md",
-            ROOT / "packages" / "agent-plugin" / "skills" / "chinese-official-writing" / "SKILL.md",
+            *[root / "SKILL.md" for root in PLUGIN_SKILL_ROOTS.values()],
             ROOT / "packages" / "agent-skills" / "skills" / "chinese-official-writing" / "SKILL.md",
             ROOT / "packages" / "qwen-code" / "skills" / "chinese-official-writing" / "SKILL.md",
             ROOT / "packages" / "hermes" / "skills" / "chinese-official-writing" / "SKILL.md",
@@ -875,7 +895,7 @@ class SkillBoundaryTests(unittest.TestCase):
     def test_openclaw_bundle_readme_is_current_and_contains_no_publish_command(self) -> None:
         readme = (ROOT / "packages" / "openclaw" / "README.md").read_text(encoding="utf-8")
 
-        self.assertIn("当前版本为 `1.6.1`", readme)
+        self.assertIn("当前候选版本为 `1.6.2`", readme)
         self.assertIn("MIT", readme)
         self.assertIn(r"python .\maintenance\tools\sync_adapters.py", readme)
         self.assertIn("packages/openclaw/", readme)
@@ -907,7 +927,7 @@ class SkillBoundaryTests(unittest.TestCase):
             self.assertIn(term, readme)
         for path in [
             "packages/qwen-code/",
-            "packages/agent-plugin/",
+            "chinese-official-writing/plugins/",
             "packages/agent-skills/",
         ]:
             self.assertIn(path, readme)
@@ -920,7 +940,7 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assertEqual(set(frontmatter), {"name", "description", "metadata"})
 
     def test_claude_plugin_manifest_version_matches_skill_and_sync_script(self) -> None:
-        manifest = json.loads((ROOT / "packages" / "agent-plugin" / ".claude-plugin" / "plugin.json").read_text(encoding="utf-8"))
+        manifest = json.loads((PLUGIN_ROOTS["claude-code"] / ".claude-plugin" / "plugin.json").read_text(encoding="utf-8"))
         sync_script = (ROOT / "maintenance" / "tools" / "sync_adapters.py").read_text(encoding="utf-8")
         readme = (ROOT / "README.md").read_text(encoding="utf-8")
         openclaw_readme = (ROOT / "packages" / "openclaw" / "README.md").read_text(encoding="utf-8")
@@ -930,16 +950,16 @@ class SkillBoundaryTests(unittest.TestCase):
 
         sync_version = re.search(r'VERSION = "([^"]+)"', sync_script)
         readme_version = re.search(r"chinese-official-writing@(\d+\.\d+\.\d+)", readme)
-        openclaw_version = re.search(r"当前版本为 `(\d+\.\d+\.\d+)`", openclaw_readme)
+        openclaw_version = re.search(r"当前候选版本为 `(\d+\.\d+\.\d+)`", openclaw_readme)
 
         self.assertIsNotNone(sync_version)
         self.assertIsNotNone(readme_version)
         self.assertIsNotNone(openclaw_version)
         self.assertEqual(manifest["version"], sync_version.group(1))
-        self.assertEqual(manifest["version"], readme_version.group(1))
         self.assertEqual(manifest["version"], openclaw_version.group(1))
         self.assertEqual(manifest["version"], openclaw_skill["metadata"]["version"])
-        self.assertIn("ROOT_README", sync_script)
+        self.assertNotIn("ROOT_README", sync_script)
+        self.assertEqual("1.6.1", readme_version.group(1))
         self.assertIn("OPENCLAW_PACKAGE", sync_script)
 
     def test_repository_and_current_packages_use_mit(self) -> None:
@@ -966,7 +986,9 @@ class SkillBoundaryTests(unittest.TestCase):
 
         mit_package_skill_paths = [
             "chinese-official-writing/SKILL.md",
-            "packages/agent-plugin/skills/chinese-official-writing/SKILL.md",
+            "chinese-official-writing/plugins/codex/skills/chinese-official-writing/SKILL.md",
+            "chinese-official-writing/plugins/codebuddy/skills/chinese-official-writing/SKILL.md",
+            "chinese-official-writing/plugins/claude-code/skills/chinese-official-writing/SKILL.md",
             "packages/agent-skills/skills/chinese-official-writing/SKILL.md",
             "packages/qwen-code/skills/chinese-official-writing/SKILL.md",
             "packages/hermes/skills/chinese-official-writing/SKILL.md",
@@ -992,14 +1014,9 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assertEqual("MIT", redskill_frontmatter["license"])
 
         full_package_manifests = [
-            "packages/agent-plugin/.codex-plugin/plugin.json",
-            "packages/agent-plugin/.claude-plugin/plugin.json",
-            "chinese-official-writing/.codex-plugin/plugin.json",
-            "chinese-official-writing/.codebuddy-plugin/plugin.json",
-            "chinese-official-writing/hooks/claude-code/.claude-plugin/plugin.json",
-            "packages/agent-plugin/skills/chinese-official-writing/.codex-plugin/plugin.json",
-            "packages/agent-plugin/skills/chinese-official-writing/.codebuddy-plugin/plugin.json",
-            "packages/agent-plugin/skills/chinese-official-writing/hooks/claude-code/.claude-plugin/plugin.json",
+            "chinese-official-writing/plugins/codex/.codex-plugin/plugin.json",
+            "chinese-official-writing/plugins/codebuddy/.codebuddy-plugin/plugin.json",
+            "chinese-official-writing/plugins/claude-code/.claude-plugin/plugin.json",
         ]
         for relative_path in full_package_manifests:
             manifest = json.loads((ROOT / relative_path).read_text(encoding="utf-8"))
@@ -1647,7 +1664,7 @@ class SkillBoundaryTests(unittest.TestCase):
         ]
         roots = [
             ROOT / "chinese-official-writing",
-            ROOT / "packages" / "agent-plugin" / "skills" / "chinese-official-writing",
+            *PLUGIN_SKILL_ROOTS.values(),
             ROOT / "packages" / "agent-skills" / "skills" / "chinese-official-writing",
             ROOT / "packages" / "qwen-code" / "skills" / "chinese-official-writing",
             ROOT / "packages" / "hermes" / "skills" / "chinese-official-writing",

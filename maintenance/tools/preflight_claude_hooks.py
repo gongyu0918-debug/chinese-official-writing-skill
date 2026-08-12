@@ -12,7 +12,7 @@ from typing import Any
 
 
 ROOT = Path(__file__).resolve().parents[2]
-DEFAULT_PLUGIN_DIRECTORY = ROOT / "chinese-official-writing" / "hooks" / "claude-code"
+DEFAULT_PLUGIN_DIRECTORY = ROOT / "chinese-official-writing" / "plugins" / "claude-code"
 MINIMUM_VERSION = (2, 1, 195)
 VERSION_RE = re.compile(r"\b(\d+)\.(\d+)\.(\d+)\b")
 EXPECTED_EVENTS = ("UserPromptSubmit", "PostToolUse", "Stop")

@@ -1,0 +1,45 @@
+{
+  "description": "Run the opt-in bounded delivery gate through the Codex host adapter.",
+  "hooks": {
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"${PLUGIN_ROOT}/scripts/host_gate_adapter.py\"",
+            "commandWindows": "py -3 -c \"import os,runpy;runpy.run_path(os.path.join(os.environ['PLUGIN_ROOT'],'scripts','host_gate_adapter.py'),run_name='__main__')\"",
+            "timeout": 10,
+            "statusMessage": "Binding the current request to the delivery gate"
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Bash|Read",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"${PLUGIN_ROOT}/scripts/host_gate_adapter.py\"",
+            "commandWindows": "py -3 -c \"import os,runpy;runpy.run_path(os.path.join(os.environ['PLUGIN_ROOT'],'scripts','host_gate_adapter.py'),run_name='__main__')\"",
+            "timeout": 10,
+            "statusMessage": "Recording the bounded delivery-gate state"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"${PLUGIN_ROOT}/scripts/host_gate_adapter.py\"",
+            "commandWindows": "py -3 -c \"import os,runpy;runpy.run_path(os.path.join(os.environ['PLUGIN_ROOT'],'scripts','host_gate_adapter.py'),run_name='__main__')\"",
+            "timeout": 30,
+            "statusMessage": "Checking the bounded delivery-gate exit"
+          }
+        ]
+      }
+    ]
+  }
+}

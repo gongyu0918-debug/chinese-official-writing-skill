@@ -13,23 +13,36 @@ from unittest import mock
 
 ROOT = Path(__file__).resolve().parents[2]
 SKILL_ROOT = ROOT / "chinese-official-writing"
-ADAPTER_PATH = SKILL_ROOT / "hooks" / "host_gate_adapter.py"
-HOOKS_PATH = SKILL_ROOT / "hooks" / "hooks.json"
-WORKBUDDY_HOOKS_PATH = SKILL_ROOT / "hooks" / "workbuddy" / "hooks.json"
-CODEX_MANIFEST_PATH = SKILL_ROOT / ".codex-plugin" / "plugin.json"
-WORKBUDDY_MANIFEST_PATH = SKILL_ROOT / ".codebuddy-plugin" / "plugin.json"
-SHIM_PATH = SKILL_ROOT / "skills" / "chinese-official-writing" / "SKILL.md"
+PLUGIN_ROOTS = {
+    "codex": SKILL_ROOT / "plugins" / "codex",
+    "workbuddy": SKILL_ROOT / "plugins" / "codebuddy",
+}
+ADAPTER_PATHS = {
+    host: plugin_root / "scripts" / "host_gate_adapter.py"
+    for host, plugin_root in PLUGIN_ROOTS.items()
+}
+HOOKS_PATHS = {
+    host: plugin_root / "hooks" / "hooks.json"
+    for host, plugin_root in PLUGIN_ROOTS.items()
+}
+MANIFEST_PATHS = {
+    "codex": PLUGIN_ROOTS["codex"] / ".codex-plugin" / "plugin.json",
+    "workbuddy": PLUGIN_ROOTS["workbuddy"] / ".codebuddy-plugin" / "plugin.json",
+}
 
 
-def load_module():
-    spec = importlib.util.spec_from_file_location("cow_host_gate_adapter", ADAPTER_PATH)
+def load_module(name: str, path: Path):
+    spec = importlib.util.spec_from_file_location(name, path)
     assert spec and spec.loader
     module = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(module)
     return module
 
 
-ADAPTER = load_module()
+ADAPTERS = {
+    host: load_module(f"cow_{host}_gate_adapter", path)
+    for host, path in ADAPTER_PATHS.items()
+}
 
 
 class HostGateAdapterTests(unittest.TestCase):
@@ -48,9 +61,10 @@ class HostGateAdapterTests(unittest.TestCase):
         return event
 
     def _host_environment(self, host: str):
+        plugin_root = PLUGIN_ROOTS[host]
         if host == "codex":
             values = {
-                "PLUGIN_ROOT": str(SKILL_ROOT),
+                "PLUGIN_ROOT": str(plugin_root),
                 "PLUGIN_DATA": str(self.data_root),
                 "CODEBUDDY_PLUGIN_ROOT": "",
                 "CODEBUDDY_PLUGIN_DATA": "",
@@ -59,12 +73,14 @@ class HostGateAdapterTests(unittest.TestCase):
             values = {
                 "PLUGIN_ROOT": "",
                 "PLUGIN_DATA": "",
-                "CODEBUDDY_PLUGIN_ROOT": str(SKILL_ROOT),
+                "CODEBUDDY_PLUGIN_ROOT": str(plugin_root),
                 "CODEBUDDY_PLUGIN_DATA": str(self.data_root),
             }
         return mock.patch.dict(os.environ, values, clear=False)
 
     def _arm_and_stop(self, host: str):
+        adapter = ADAPTERS[host]
+        plugin_root = PLUGIN_ROOTS[host]
         with self._host_environment(host):
             prompt = self._event(
                 "UserPromptSubmit",
@@ -73,7 +89,11 @@ class HostGateAdapterTests(unittest.TestCase):
             read = self._event(
                 "PostToolUse",
                 tool_name="Read",
-                tool_input={"file_path": str(SKILL_ROOT / "SKILL.md")},
+                tool_input={
+                    "file_path": str(
+                        plugin_root / "skills" / "chinese-official-writing" / "SKILL.md"
+                    )
+                },
                 tool_response={"success": True},
             )
             stop = self._event(
@@ -84,28 +104,30 @@ class HostGateAdapterTests(unittest.TestCase):
             if host == "codex":
                 for event in (prompt, read, stop):
                     event["turn_id"] = "codex-turn-1"
-            self.assertEqual({"continue": True}, ADAPTER.handle(prompt))
-            self.assertEqual({"continue": True}, ADAPTER.handle(read))
-            return ADAPTER.handle(stop)
+            self.assertEqual({"continue": True}, adapter.handle(prompt))
+            self.assertEqual({"continue": True}, adapter.handle(read))
+            return adapter.handle(stop)
 
     def _run_configured_event(self, host: str, event: dict[str, object]):
         if host == "codex":
-            hooks_path = HOOKS_PATH
+            hooks_path = HOOKS_PATHS[host]
             root_variable = "PLUGIN_ROOT"
             data_variable = "PLUGIN_DATA"
+            placeholder = "${PLUGIN_ROOT}"
         else:
-            hooks_path = WORKBUDDY_HOOKS_PATH
+            hooks_path = HOOKS_PATHS[host]
             root_variable = "CODEBUDDY_PLUGIN_ROOT"
             data_variable = "CODEBUDDY_PLUGIN_DATA"
+            placeholder = "${CODEBUDDY_PLUGIN_ROOT}"
         hooks = json.loads(hooks_path.read_text(encoding="utf-8"))["hooks"]
         command = hooks[event["hook_event_name"]][0]["hooks"][0]["command"]
-        placeholder = "${" + root_variable + "}"
         self.assertIn(placeholder, command)
-        expanded = command.replace(placeholder, SKILL_ROOT.as_posix())
+        plugin_root = PLUGIN_ROOTS[host]
+        expanded = command.replace(placeholder, plugin_root.as_posix())
         self.assertNotIn("${", expanded)
         argv = shlex.split(expanded, posix=True)
         self.assertEqual("python3", argv[0])
-        self.assertEqual(ADAPTER_PATH.resolve(), Path(argv[1]).resolve())
+        self.assertEqual(ADAPTER_PATHS[host].resolve(), Path(argv[1]).resolve())
 
         environment = os.environ.copy()
         for key in (
@@ -118,7 +140,7 @@ class HostGateAdapterTests(unittest.TestCase):
             "COW_GATE_HOOK_DATA",
         ):
             environment.pop(key, None)
-        environment[root_variable] = str(SKILL_ROOT)
+        environment[root_variable] = str(plugin_root)
         environment[data_variable] = str(self.data_root / f"{host}-subprocess-data")
         completed = subprocess.run(
             argv,
@@ -136,16 +158,16 @@ class HostGateAdapterTests(unittest.TestCase):
         return json.loads(completed.stdout)
 
     def test_package_root_has_native_per_host_commands_and_one_shared_adapter(self):
-        codex = json.loads(CODEX_MANIFEST_PATH.read_text(encoding="utf-8"))
-        workbuddy = json.loads(WORKBUDDY_MANIFEST_PATH.read_text(encoding="utf-8"))
-        codex_hooks = json.loads(HOOKS_PATH.read_text(encoding="utf-8"))["hooks"]
-        workbuddy_hooks = json.loads(WORKBUDDY_HOOKS_PATH.read_text(encoding="utf-8"))["hooks"]
+        codex = json.loads(MANIFEST_PATHS["codex"].read_text(encoding="utf-8"))
+        workbuddy = json.loads(MANIFEST_PATHS["workbuddy"].read_text(encoding="utf-8"))
+        codex_hooks = json.loads(HOOKS_PATHS["codex"].read_text(encoding="utf-8"))["hooks"]
+        workbuddy_hooks = json.loads(HOOKS_PATHS["workbuddy"].read_text(encoding="utf-8"))["hooks"]
 
         self.assertEqual("chinese-official-writing", codex["name"])
         self.assertEqual("chinese-official-writing", workbuddy["name"])
         self.assertEqual("./skills/", codex["skills"])
         self.assertEqual(["./skills/"], workbuddy["skills"])
-        self.assertEqual("./hooks/workbuddy/hooks.json", workbuddy["hooks"])
+        self.assertEqual("./hooks/hooks.json", workbuddy["hooks"])
         self.assertEqual("MIT", codex["license"])
         self.assertEqual("MIT", workbuddy["license"])
         for hooks in (codex_hooks, workbuddy_hooks):
@@ -164,18 +186,21 @@ class HostGateAdapterTests(unittest.TestCase):
         for hooks in (codex_hooks, workbuddy_hooks):
             for groups in hooks.values():
                 command = groups[0]["hooks"][0]["command"]
-                self.assertIn("hooks/host_gate_adapter.py", command)
+                self.assertIn("scripts/host_gate_adapter.py", command)
                 self.assertNotIn("prose_lint", command)
 
-    def test_plugin_skill_shim_keeps_canonical_description_and_routes_to_top_level(self):
+    def test_each_plugin_contains_a_full_skill_without_parent_traversal(self):
         canonical = (SKILL_ROOT / "SKILL.md").read_text(encoding="utf-8")
-        shim = SHIM_PATH.read_text(encoding="utf-8")
-        canonical_description = canonical.split("description: ", 1)[1].splitlines()[0]
-        shim_description = shim.split("description: ", 1)[1].splitlines()[0]
-
-        self.assertEqual(canonical_description, shim_description)
-        self.assertIn("../../SKILL.md", shim)
-        self.assertNotIn("## 硬边界", shim)
+        for host, plugin_root in PLUGIN_ROOTS.items():
+            with self.subTest(host=host):
+                packaged_root = plugin_root / "skills" / "chinese-official-writing"
+                packaged_skill = (packaged_root / "SKILL.md").read_text(encoding="utf-8")
+                self.assertEqual(canonical, packaged_skill)
+                self.assertIn("## 硬边界", packaged_skill)
+                self.assertNotIn("../", packaged_skill)
+                self.assertFalse((packaged_root / "plugins").exists())
+                self.assertFalse((packaged_root / ".codex-plugin").exists())
+                self.assertFalse((packaged_root / ".codebuddy-plugin").exists())
 
     def test_codex_maps_documented_turn_and_preserves_core_block_shape(self):
         result = self._arm_and_stop("codex")
@@ -188,7 +213,9 @@ class HostGateAdapterTests(unittest.TestCase):
         self.assertEqual(False, result.get("continue"))
         self.assertIsInstance(result.get("reason"), str)
         self.assertNotIn("decision", result)
-        turn = ADAPTER._active_workbuddy_turn(self.data_root, "host-session-1")
+        turn = ADAPTERS["workbuddy"]._active_workbuddy_turn(
+            self.data_root, "host-session-1"
+        )
         self.assertTrue(turn and turn.startswith("workbuddy-1-"))
 
     def test_real_configured_commands_expand_and_run_three_event_subprocesses(self):
@@ -201,7 +228,14 @@ class HostGateAdapterTests(unittest.TestCase):
                 read = self._event(
                     "PostToolUse",
                     tool_name="Read",
-                    tool_input={"file_path": str(SKILL_ROOT / "SKILL.md")},
+                    tool_input={
+                        "file_path": str(
+                            PLUGIN_ROOTS[host]
+                            / "skills"
+                            / "chinese-official-writing"
+                            / "SKILL.md"
+                        )
+                    },
                     tool_response={"success": True},
                 )
                 stop = self._event(
@@ -222,9 +256,10 @@ class HostGateAdapterTests(unittest.TestCase):
 
     def test_workbuddy_missing_stop_message_fails_open(self):
         with self._host_environment("workbuddy"):
+            adapter = ADAPTERS["workbuddy"]
             self.assertEqual(
                 {"continue": True},
-                ADAPTER.handle(
+                adapter.handle(
                     self._event(
                         "UserPromptSubmit",
                         prompt="根据材料起草通知。",
@@ -233,7 +268,7 @@ class HostGateAdapterTests(unittest.TestCase):
             )
             self.assertEqual(
                 {"continue": True},
-                ADAPTER.handle(
+                adapter.handle(
                     self._event("Stop", stop_hook_active=False)
                 ),
             )
@@ -249,7 +284,7 @@ class HostGateAdapterTests(unittest.TestCase):
             },
             clear=False,
         ):
-            result = ADAPTER.handle(
+            result = ADAPTERS["codex"].handle(
                 self._event(
                     "UserPromptSubmit",
                     turn_id="codex-turn-1",

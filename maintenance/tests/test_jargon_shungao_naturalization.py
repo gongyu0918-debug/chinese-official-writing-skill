@@ -7,7 +7,10 @@ import unittest
 ROOT = Path(__file__).resolve().parents[2]
 RUNTIME_ROOTS = [
     ROOT / "chinese-official-writing",
-    ROOT / "packages" / "agent-plugin" / "skills" / "chinese-official-writing",
+    *[
+        ROOT / "chinese-official-writing" / "plugins" / host / "skills" / "chinese-official-writing"
+        for host in ("codex", "codebuddy", "claude-code")
+    ],
     ROOT / "packages" / "agent-skills" / "skills" / "chinese-official-writing",
     ROOT / "packages" / "qwen-code" / "skills" / "chinese-official-writing",
     ROOT / "packages" / "hermes" / "skills" / "chinese-official-writing",

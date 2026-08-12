@@ -8,7 +8,10 @@ import unittest
 ROOT = Path(__file__).resolve().parents[2]
 ACTIVE_SKILL_PATHS = [
     ROOT / "chinese-official-writing" / "SKILL.md",
-    ROOT / "packages" / "agent-plugin" / "skills" / "chinese-official-writing" / "SKILL.md",
+    *[
+        ROOT / "chinese-official-writing" / "plugins" / host / "skills" / "chinese-official-writing" / "SKILL.md"
+        for host in ("codex", "codebuddy", "claude-code")
+    ],
     ROOT / "packages" / "agent-skills" / "skills" / "chinese-official-writing" / "SKILL.md",
     ROOT / "packages" / "qwen-code" / "skills" / "chinese-official-writing" / "SKILL.md",
     ROOT / "packages" / "hermes" / "skills" / "chinese-official-writing" / "SKILL.md",
