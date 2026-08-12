@@ -10,9 +10,9 @@
 
 ## 仓库与发行表面
 
-- `chinese-official-writing/` 是 canonical 产品包；其 `plugins/` 保存 Codex、Claude Code、WorkBuddy/CodeBuddy 自包含插件。`packages/` 保存通用 Agent Skills、Qwen Code、Hermes、OpenClaw 和 Red SkillHub 兼容包。
+- `chinese-official-writing/` 是 canonical 产品包；其 `hooks/core/` 保存唯一门禁核心，`hooks/adapters/` 保存 Codex、Claude Code、WorkBuddy/CodeBuddy 静态兼容层。`packages/` 保存通用 Agent Skills、Qwen Code、Hermes、OpenClaw 和 Red SkillHub 兼容包。
 - `maintenance/tools/`、`maintenance/evals/`、`maintenance/tests/` 是工程与评测工具；`maintenance/tests/evidence/` 保存预注册、消融、盲审和真实执行证据；`maintenance/docs/evidence/` 保存维护历史和索引；`output/` 默认不提交。
-- 可执行 Hook 核心和使用说明放在 canonical 的 `hooks/`，宿主 manifest、事件配置和完整运行副本放在 `chinese-official-writing/plugins/<host>/`；`packages/openclaw/` 排除 Hook、插件和交付门禁资产。包内存在、插件安装、功能启用、信任确认和真实执行是五项独立事实，必须分别验证。
+- Hook 使用说明、唯一核心和宿主静态适配文件放在 canonical 的 `hooks/`；`maintenance/tools/assemble_hook_companion.py` 只在维护验证或用户明确授权的胶水组装中使用，不进入普通运行链。`packages/openclaw/` 排除 Hook、插件和交付门禁资产。文件存在、胶水组装、插件安装、功能启用、信任确认和真实执行必须分别验证。
 - 本仓库及仓内当前包统一采用根 `LICENSE`（MIT）；第三方材料沿用各自许可。
 
 ## 修改与 Git

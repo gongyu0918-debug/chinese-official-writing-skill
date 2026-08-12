@@ -24,7 +24,7 @@ class SkillHubPackageBuilderTests(unittest.TestCase):
             output = Path(temporary) / "publish-package"
             result = BUILDER.build_package(output, version=RC_VERSION)
 
-            self.assertEqual(result["files"], 160)
+            self.assertEqual(result["files"], 48)
             self.assertEqual(result["license"], "LICENSE.md")
             self.assertFalse((output / "LICENSE").exists())
             self.assertEqual((output / "LICENSE.md").read_bytes(), (ROOT / "LICENSE").read_bytes())
@@ -32,27 +32,25 @@ class SkillHubPackageBuilderTests(unittest.TestCase):
             self.assertFalse((output / "agents" / "openai.yaml").exists())
             self.assertTrue((output / "hooks" / "README.md").is_file())
             self.assertTrue((output / "hooks" / "host-capabilities.json").is_file())
-            self.assertTrue((output / "hooks" / "host_gate_adapter.py").is_file())
+            self.assertTrue((output / "hooks" / "core" / "gate_stop_hook.py").is_file())
+            self.assertTrue((output / "hooks" / "adapters" / "host_gate_adapter.py").is_file())
             self.assertFalse((output / ".codex-plugin").exists())
             self.assertFalse((output / ".codebuddy-plugin").exists())
             self.assertFalse((output / "skills").exists())
-            self.assertTrue((output / "plugins" / "README.md").is_file())
-            for host, manifest in {
-                "codex": ".codex-plugin/plugin.json",
-                "codebuddy": ".codebuddy-plugin/plugin.json",
-                "claude-code": ".claude-plugin/plugin.json",
-            }.items():
-                plugin = output / "plugins" / host
-                self.assertTrue((plugin / manifest).is_file())
-                self.assertTrue((plugin / "hooks" / "hooks.json").is_file())
-                self.assertTrue(
-                    (plugin / "skills" / "chinese-official-writing" / "SKILL.md").is_file()
-                )
+            self.assertFalse((output / "plugins").exists())
+            for host in ("codex", "codebuddy", "claude-code"):
+                adapter = output / "hooks" / "adapters" / host
+                self.assertTrue((adapter / "README.md").is_file())
+                self.assertTrue((adapter / "manifest.json").is_file())
+                self.assertTrue((adapter / "hooks.json").is_file())
+                self.assertFalse((adapter / "skills").exists())
+            self.assertFalse((output / "hooks" / "build_companion.py").exists())
+            self.assertFalse((output / "maintenance").exists())
             capabilities = json.loads(
                 (output / "hooks" / "host-capabilities.json").read_text(encoding="utf-8")
             )
-            self.assertEqual("plugins/codex", capabilities["hosts"]["codex"]["plugin_root"])
-            self.assertEqual("plugins/codebuddy", capabilities["hosts"]["codebuddy"]["plugin_root"])
+            self.assertEqual("hooks/adapters/codex", capabilities["hosts"]["codex"]["adapter_source"])
+            self.assertEqual("hooks/adapters/codebuddy", capabilities["hosts"]["codebuddy"]["adapter_source"])
             self.assertEqual("not_shipped", capabilities["length_gate"]["status"])
             self.assertEqual(
                 (output / "_meta.json").read_text(encoding="utf-8"),

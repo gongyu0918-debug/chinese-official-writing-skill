@@ -1,10 +1,16 @@
 {
-  "schema_version": 4,
+  "schema_version": 5,
   "shared_gate_core": "chinese-official-writing/scripts/review_gate.py",
   "activation": {
     "default": "disabled",
     "ordinary_skill_install_enables_hooks": false,
-    "configuration_mutation": "forbidden"
+    "configuration_mutation": "forbidden",
+    "runtime_host_detection": false,
+    "automatic_file_generation": false,
+    "automatic_installation": false,
+    "network_access": false,
+    "task_opt_out_supported": true,
+    "task_opt_out_record": "bypass=user_requested"
   },
   "length_gate": {
     "automatic_expansion": false,
@@ -14,8 +20,8 @@
   "hosts": {
     "codex": {
       "status": "package_registration_verified",
-      "plugin_root": "plugins/codex",
-      "adapter": "scripts/host_gate_adapter.py",
+      "adapter_source": "hooks/adapters/codex",
+      "runtime_adapter": "scripts/host_gate_adapter.py",
       "events": [
         "UserPromptSubmit",
         "PostToolUse:Bash|Read",
@@ -28,8 +34,8 @@
     },
     "codebuddy": {
       "status": "package_manifest_verified",
-      "plugin_root": "plugins/codebuddy",
-      "adapter": "scripts/host_gate_adapter.py",
+      "adapter_source": "hooks/adapters/codebuddy",
+      "runtime_adapter": "scripts/host_gate_adapter.py",
       "events": [
         "UserPromptSubmit",
         "PostToolUse:Bash|Read",
@@ -43,8 +49,8 @@
     },
     "claude_code": {
       "status": "lifecycle_verified",
-      "plugin_root": "plugins/claude-code",
-      "adapter": "scripts/gate_stop_hook.py",
+      "adapter_source": "hooks/adapters/claude-code",
+      "runtime_adapter": "scripts/gate_stop_hook.py",
       "events": [
         "UserPromptSubmit",
         "PostToolUse:Bash|Read",

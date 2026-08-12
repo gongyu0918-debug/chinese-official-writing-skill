@@ -1,52 +1,76 @@
-# 可选交付门禁 Hook
+# 可选交付复核 Hook
 
-这里保存真实可执行的共享 Hook 核心和宿主适配源。它不是普通写稿规则，也不会因为安装 Skill 自动启用。只有用户明确要求安装、启用、适配或排查 Hook 时，Agent 才需要读取本页。
+交付复核 Hook 是中文公文写作 Skill 的可选增强。普通 Skill 可以独立完成起草、改写、压缩和复核；启用 Hook 后，Agent 会在完整初稿形成后增加一次有界交付检查，帮助发现其已覆盖的事实、状态和结构风险。检查未通过或运行异常时，优先交付原始完整稿，不反复改写。
 
-## 能解决什么
+## 适合什么时候用
 
-Hook 在模型已经形成完整原稿 D0 后运行一次有界交付复核：保存 D0，调用 `scripts/review_gate.py` 检查已支持的事实、状态和结构约束，只在候选稿通过机械检查与语义核验后选择 D1；任一层失败、冲突或状态不完整时逐字回退 D0。它不会绕过宿主信任、权限或插件启用流程。
+- 对数字、主体、未决状态和办理表述较敏感的正式材料；
+- 希望在交付前再做一次机器可复核检查的任务；
+- 已接受用少量额外生成时间换取一道交付检查的用户。
 
-当前没有自动补足字数或自动压缩篇幅功能。历史篇幅候选在真实写稿中没有形成可采用的稳定 D1，未进入本目录。现有门禁也不能替代初稿完整性检查、事实核对或人工审稿。
+Hook 会增加事件处理和最多一次局部修订核验，因此通常比普通 Skill 慢。重要材料仍建议由责任人员完成事实核对和正式审签。
 
-## 三层边界
+## 默认状态与知情边界
 
-1. `SKILL.md` 与 references 决定写什么、如何写，先形成完整 D0。
-2. `scripts/prose_lint.py` 是可选的只读提示工具，不改稿，也不向 Hook 传递报告。
-3. 明确启用的生命周期 Hook 保存 D0，并按 `references/delivery-review-gate.md` 执行一次有界复核。协议冲突时只回退 D0，不重新进入写稿循环。
+- 下载、安装或调用普通 Skill 不会自动启用 Hook。
+- 本目录只保存静态能力与兼容文件，不自动识别宿主、不生成安装包、不安装插件、不修改配置，也不主动联网。
+- 用户明确要求为某个宿主启用 Hook 后，Agent 先展示宿主、目标目录和拟复制文件；用户确认后才组装胶水层。组装、安装、启用和宿主信任确认分开进行。
+- 启用后，Hook 仅使用宿主传入的当前任务事件，并在宿主提供的本地插件数据目录保存请求、初稿、门禁状态和输出哈希；不收集已安装 Agent 清单，不上传稿件或运行记录。
 
-## 插件入口
+## 开启或关闭
 
-三套插件都在 `plugins/` 下，彼此独立且自包含。不要只复制 manifest、`hooks/` 或 `scripts/`；插件缓存必须同时保留其 `skills/chinese-official-writing/` 运行副本。
+### 当前任务临时关闭
 
-如果本页是从某个已安装插件的 `skills/chinese-official-writing/hooks/` 中读取的，不要再向外寻找同级 `plugins/`；直接以宿主提供的 `PLUGIN_ROOT`、`CODEBUDDY_PLUGIN_ROOT` 或 `CLAUDE_PLUGIN_ROOT` 作为当前插件根。
+直接对 Agent 说：
 
-| 宿主 | 插件根 | 使用方式 | 已验证边界 |
-| --- | --- | --- | --- |
-| Codex | `plugins/codex/` | 按 Codex 本地 marketplace 流程注册整个插件根，再由用户启用并确认 Hook 信任 | manifest 校验与隔离注册；尚不能据此宣称真实生命周期已验证 |
-| WorkBuddy / CodeBuddy | `plugins/codebuddy/` | 当前会话显式加载整个插件根，例如 `codebuddy --plugin-dir plugins/codebuddy` | 官方 manifest 契约与本地校验；真实生命周期仍需独立实跑 |
-| Claude Code | `plugins/claude-code/` | `claude --plugin-dir plugins/claude-code` | Claude Code 2.1.195 下已验证 UserPromptSubmit、PostToolUse:Read、Stop 与 D0 回退；Bash 和有效 D1 尚未验证 |
+> 本次关闭 Hook，按普通 Skill 完成。
 
-安装、插件注册、功能启用、Hook 信任和真实执行是五件事。任何 Agent 做胶水适配时，先读取本页与 `host-capabilities.json`，再核对宿主官方事件字段和插件根变量；没有官方契约或真实执行证据时，保持关闭并说明未知项。
+也可说“本次不要用 Hook”或“跳过交付门禁”。该任务会记录 `bypass=user_requested`，不创建门禁事务，不阻断终稿。说“不要关闭 Hook”“继续使用 Hook”不会误触发关闭；“不要用脚本”等泛化要求也不会关闭 Hook。
 
-## 共享调用链
+### 完全关闭
+
+| 宿主 | 完全关闭方式 |
+| --- | --- |
+| Codex | 使用普通 Skill，不安装 Hook companion；已安装时用 `codex plugin remove <插件>@<marketplace>` 移除。 |
+| WorkBuddy / CodeBuddy | 启动时不传 `--plugin-dir`；已安装插件可用 `codebuddy plugin disable <插件>` 禁用。 |
+| Claude Code | 启动时不传 `--plugin-dir`；已安装插件可用 `claude plugin disable <插件>` 禁用。 |
+
+完全关闭后仍按 `SKILL.md`、references 和可选的 `scripts/prose_lint.py` 运行，写稿闭环不依赖 Hook。
+
+## 宿主适配说明
+
+内部按“能力核心 + 静态适配层”组织。`core/` 只有一份门禁能力；`adapters/<host>/` 只保存对应宿主的 manifest、事件配置、薄适配器和说明。Agent 不应把 adapter 目录本身当成可安装插件，也不得跨目录建立运行时相对引用。
+
+| 宿主 | 适配说明 | 启用前检查 |
+| --- | --- | --- |
+| Codex | [`adapters/codex/README.md`](adapters/codex/README.md) | 展示组装清单；校验 manifest；完成插件注册、信任确认和事件检查。无法确认运行条件时使用普通 Skill。 |
+| WorkBuddy / CodeBuddy | [`adapters/codebuddy/README.md`](adapters/codebuddy/README.md) | 展示组装清单；运行 `codebuddy plugin validate`；用户确认后加载插件根。 |
+| Claude Code | [`adapters/claude-code/README.md`](adapters/claude-code/README.md) | 展示组装清单；运行 `claude plugin validate --strict`；用户确认后用 `--plugin-dir` 加载或安装。 |
+
+Qwen Code、Hermes、OpenClaw、OpenCode 等没有本仓库内置的生命周期 Hook adapter，仍可使用普通 Skill。Agent 如需新增宿主胶水层，应先核对该宿主官方事件、插件根变量、数据目录和信任机制，再按现有 adapter 的最小职责实现；没有官方依据或真实 smoke 时，不宣称已兼容。
+
+## 工作方式
 
 ```text
-宿主 manifest
-  -> 宿主 hooks/hooks.json
-  -> 宿主适配器
-  -> plugins/<host>/skills/chinese-official-writing/hooks/gate_stop_hook.py
-  -> plugins/<host>/skills/chinese-official-writing/scripts/review_gate.py
+SKILL.md 与 references 形成完整 D0
+  -> 可选 prose_lint 只读提示
+  -> 已启用 Hook 保存 D0
+  -> review_gate 做一次有界检查
+  -> 候选通过机械与语义核验时选择 D1
+  -> 其余情况回退 D0
 ```
 
-Codex 和 CodeBuddy 的适配器由根 `hooks/host_gate_adapter.py` 同步生成；Claude Code 使用独立适配器。三者只转换宿主事件与返回协议，不修改门禁发现、修订、验证、D0/D1 选择或四次 Stop 上限。
+`references/delivery-review-gate.md` 是 Hook 专用协议，不属于普通写稿的默认加载资料。Hook 与 `prose_lint.py` 各自运行，前者负责交付复核，后者提供只读语言与格式提示。
 
-三个插件的 `UserPromptSubmit`、`PostToolUse` 命令上限均为 10 秒，`Stop` 上限为 30 秒；同步器用具名策略校验这三项，超时后按宿主协议失败开放或回退 D0。共享核心调用 `review_gate.py` 的内部上限为 20 秒，由代码常量统一控制。
+## Agent 组装清单
 
-## 验证顺序
+只有用户明确要求启用时才执行以下步骤：
 
-1. 运行 `python -B maintenance/tools/sync_adapters.py`，确认第二次同步无差异。
-2. 分别校验三个插件根；Claude Code 可运行 `python -B maintenance/tools/preflight_claude_hooks.py`。
-3. 在隔离的宿主配置和数据目录中复放 UserPromptSubmit、PostToolUse:Read、Stop，确认插件内部路径、D0 回退和审计状态。
-4. 只有另行授权后才运行真实模型写稿 A/B。静态 manifest 通过不能写成 Hook 已真实生效。
+1. 读取本页、`host-capabilities.json` 和目标宿主的 adapter README。
+2. 向用户展示目标目录及将要复制的文件，确认该目录可新建且不会覆盖现有文件。
+3. 在新目录中放入目标宿主唯一的 manifest 与 `hooks/hooks.json`。
+4. 复制薄适配器到 `scripts/`；复制完整 canonical Skill 到 `skills/chinese-official-writing/`，并将 `core/gate_stop_hook.py` 放到该 Skill 的 `hooks/gate_stop_hook.py`。
+5. 保留 `SKILL.md`、references、`scripts/review_gate.py`、MIT LICENSE 和本说明；禁止父目录回指、外部 symlink、其他宿主 manifest 和自动安装代码。
+6. 先运行宿主 validator 和离线事件 smoke，再由用户决定是否安装或加载。组装完成不得自动进入安装步骤。
 
-能力状态与已验证范围以 [`host-capabilities.json`](host-capabilities.json) 为准。
+可用性和数据边界见 [`host-capabilities.json`](host-capabilities.json)。

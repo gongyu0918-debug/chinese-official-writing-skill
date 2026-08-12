@@ -28,9 +28,6 @@ class ReportGenericBlockReliefTests(unittest.TestCase):
         relative = Path("references/genre-playbooks.md")
         roots = [
             ROOT / "chinese-official-writing",
-            ROOT / "chinese-official-writing/plugins/codex/skills/chinese-official-writing",
-            ROOT / "chinese-official-writing/plugins/codebuddy/skills/chinese-official-writing",
-            ROOT / "chinese-official-writing/plugins/claude-code/skills/chinese-official-writing",
             ROOT / "packages/agent-skills/skills/chinese-official-writing",
             ROOT / "packages/qwen-code/skills/chinese-official-writing",
             ROOT / "packages/hermes/skills/chinese-official-writing",
@@ -50,9 +47,6 @@ class ReportGenericBlockReliefTests(unittest.TestCase):
         relative = Path("references/genre-checklist-report.md")
         roots = [
             ROOT / "chinese-official-writing",
-            ROOT / "chinese-official-writing/plugins/codex/skills/chinese-official-writing",
-            ROOT / "chinese-official-writing/plugins/codebuddy/skills/chinese-official-writing",
-            ROOT / "chinese-official-writing/plugins/claude-code/skills/chinese-official-writing",
             ROOT / "packages/agent-skills/skills/chinese-official-writing",
             ROOT / "packages/qwen-code/skills/chinese-official-writing",
             ROOT / "packages/hermes/skills/chinese-official-writing",

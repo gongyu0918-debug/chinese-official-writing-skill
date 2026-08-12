@@ -7,9 +7,8 @@ import unittest
 
 
 ROOT = Path(__file__).resolve().parents[2]
-PLUGIN_ROOT = ROOT / "chinese-official-writing" / "plugins" / "codex"
-MODULE_PATH = ROOT / "chinese-official-writing" / "hooks" / "gate_stop_hook.py"
-HOOK_CONFIG_PATH = PLUGIN_ROOT / "hooks" / "hooks.json"
+MODULE_PATH = ROOT / "chinese-official-writing" / "hooks" / "core" / "gate_stop_hook.py"
+HOOK_CONFIG_PATH = ROOT / "chinese-official-writing" / "hooks" / "adapters" / "codex" / "hooks.json"
 SPEC = importlib.util.spec_from_file_location("candidate_ai_gate_stop_hook", MODULE_PATH)
 assert SPEC is not None and SPEC.loader is not None
 HOOK = importlib.util.module_from_spec(SPEC)
@@ -68,8 +67,8 @@ class GateStopHookTests(unittest.TestCase):
         )
         self.assertTrue(result["continue"])
 
-    def _record_prompt_and_skill_read(self, prompt="请起草一份情况报告。"):
-        HOOK.handle(self._event("UserPromptSubmit", prompt=prompt))
+    def _record_prompt_and_skill_read(self, prompt="请起草一份情况报告。", **common):
+        HOOK.handle(self._event("UserPromptSubmit", prompt=prompt, **common))
         skill = (
             Path(os.environ["PLUGIN_ROOT"])
             / "skills"
@@ -81,6 +80,7 @@ class GateStopHookTests(unittest.TestCase):
                 "PostToolUse",
                 tool_input={"cmd": f'Get-Content "{skill}"'},
                 tool_response={"exit_code": 0},
+                **common,
             )
         )
 
@@ -171,6 +171,42 @@ class GateStopHookTests(unittest.TestCase):
 
         transactions = self.root / "candidate-ai-gate-hook" / "transactions"
         self.assertFalse(transactions.exists())
+
+    def test_explicit_task_hook_opt_out_allows_without_transaction(self):
+        prompts = (
+            "请关闭 Hook，按普通 Skill 起草一份通知。",
+            "本次不要用hooks，直接完成情况报告。",
+            "这次跳过交付门禁，修改后只输出正文。",
+        )
+        for index, prompt in enumerate(prompts, start=1):
+            with self.subTest(prompt=prompt):
+                common = {"turn_id": f"opt-out-{index}"}
+                self._record_prompt_and_skill_read(prompt, **common)
+                result = HOOK.handle(
+                    self._event(
+                        "Stop",
+                        stop_hook_active=False,
+                        last_assistant_message="关于有关事项的通知\n\n请按要求办理。",
+                        **common,
+                    )
+                )
+                self.assertTrue(result["continue"])
+                record = HOOK._read_json(
+                    HOOK._record_path(self._event("Stop", **common))
+                )
+                self.assertIsNotNone(record)
+                self.assertEqual("user_requested", record["bypass"])
+                self.assertNotIn("txn", record)
+
+    def test_hook_opt_out_does_not_match_negated_or_generic_instructions(self):
+        for prompt in (
+            "不要关闭 Hook，请继续使用 Hook 起草通知。",
+            "请保持交付门禁启用并起草通知。",
+            "请起草通知，不要用脚本。",
+            "请起草通知，不要过度复核。",
+        ):
+            with self.subTest(prompt=prompt):
+                self.assertFalse(HOOK._requests_hook_opt_out(prompt))
 
     def test_drafting_revision_and_review_then_rewrite_still_bootstrap(self):
         prompts = (

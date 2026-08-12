@@ -17,31 +17,9 @@ ROOT_LICENSE = ROOT / "LICENSE"
 CANONICAL_LICENSE = CANONICAL / "LICENSE"
 PACKAGES = ROOT / "packages"
 OPENCLAW_PACKAGE = PACKAGES / "openclaw"
-PLUGINS = CANONICAL / "plugins"
-PLUGIN_ROOTS = {
-    "codex": PLUGINS / "codex",
-    "codebuddy": PLUGINS / "codebuddy",
-    "claude-code": PLUGINS / "claude-code",
-}
-PLUGIN_MANIFESTS = {
-    "codex": PLUGIN_ROOTS["codex"] / ".codex-plugin" / "plugin.json",
-    "codebuddy": PLUGIN_ROOTS["codebuddy"] / ".codebuddy-plugin" / "plugin.json",
-    "claude-code": PLUGIN_ROOTS["claude-code"] / ".claude-plugin" / "plugin.json",
-}
-PLUGIN_SKILL_TARGETS = {
-    host: plugin_root / "skills" / "chinese-official-writing"
-    for host, plugin_root in PLUGIN_ROOTS.items()
-}
-PLUGIN_SKILL_EXCLUDES = {
-    "codex": (),
-    "codebuddy": ("agents/openai.yaml",),
-    "claude-code": ("agents/openai.yaml",),
-}
-SHARED_ADAPTER_SOURCE = CANONICAL / "hooks" / "host_gate_adapter.py"
-SHARED_ADAPTER_TARGETS = {
-    "codex": PLUGIN_ROOTS["codex"] / "scripts" / "host_gate_adapter.py",
-    "codebuddy": PLUGIN_ROOTS["codebuddy"] / "scripts" / "host_gate_adapter.py",
-}
+HOOKS = CANONICAL / "hooks"
+HOOK_ADAPTERS = HOOKS / "adapters"
+HOOK_CORE = HOOKS / "core" / "gate_stop_hook.py"
 HOOK_EVENT_TIMEOUT_SECONDS = {
     "UserPromptSubmit": 10,
     "PostToolUse": 10,
@@ -67,12 +45,8 @@ TARGET_LICENSES = {
 }
 
 OPTIONAL_GATE_FILES = (
-    "plugins",
+    "hooks",
     "references/delivery-review-gate.md",
-    "hooks/README.md",
-    "hooks/host-capabilities.json",
-    "hooks/gate_stop_hook.py",
-    "hooks/host_gate_adapter.py",
     "scripts/review_gate.py",
 )
 
@@ -86,18 +60,6 @@ TARGET_EXCLUDES = {
 
 def sync_canonical_license() -> None:
     shutil.copyfile(ROOT_LICENSE, CANONICAL_LICENSE)
-
-
-def update_plugin_manifest(manifest_path: Path, label: str, license_id: str) -> None:
-    if not manifest_path.exists():
-        raise RuntimeError(f"missing {label} plugin manifest: {manifest_path}")
-    manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
-    manifest["version"] = VERSION
-    manifest["license"] = license_id
-    manifest_path.write_text(
-        json.dumps(manifest, ensure_ascii=False, indent=2) + "\n",
-        encoding="utf-8",
-    )
 
 
 def patch_openclaw_frontmatter(target: Path) -> None:
@@ -136,8 +98,8 @@ def _copy_ignore(directory: str, names: list[str]) -> set[str]:
         for name in names
         if name in {"__pycache__", ".DS_Store", "Thumbs.db"} or name.endswith(".pyc")
     }
-    if Path(directory).resolve() == CANONICAL.resolve() and "plugins" in names:
-        ignored.add("plugins")
+    if Path(directory).resolve() == CANONICAL.resolve() and "hooks" in names:
+        ignored.add("hooks")
     return ignored
 
 
@@ -163,19 +125,15 @@ def copy_skill(
         patch_openclaw_frontmatter(target)
 
 
-def sync_plugin_packages() -> None:
-    for host, target in PLUGIN_SKILL_TARGETS.items():
-        copy_skill(target, "plugin", extra_excludes=PLUGIN_SKILL_EXCLUDES[host])
-        print(f"synced {target.relative_to(ROOT)}")
-    for host, target in SHARED_ADAPTER_TARGETS.items():
-        target.parent.mkdir(parents=True, exist_ok=True)
-        shutil.copyfile(SHARED_ADAPTER_SOURCE, target)
-        print(f"synced {target.relative_to(ROOT)}")
-    for host, manifest_path in PLUGIN_MANIFESTS.items():
-        update_plugin_manifest(manifest_path, host, REPOSITORY_LICENSE)
-        print(f"synced {manifest_path.relative_to(ROOT)}")
-    for host, plugin_root in PLUGIN_ROOTS.items():
-        hooks_path = plugin_root / "hooks" / "hooks.json"
+def validate_hook_sources() -> None:
+    if not HOOK_CORE.is_file():
+        raise RuntimeError(f"missing Hook core: {HOOK_CORE}")
+    for host in ("codex", "codebuddy", "claude-code"):
+        adapter_root = HOOK_ADAPTERS / host
+        for required in ("manifest.json", "hooks.json"):
+            if not (adapter_root / required).is_file():
+                raise RuntimeError(f"missing {host} Hook adapter source: {required}")
+        hooks_path = adapter_root / "hooks.json"
         hooks = json.loads(hooks_path.read_text(encoding="utf-8")).get("hooks")
         if not isinstance(hooks, dict) or set(hooks) != set(HOOK_EVENT_TIMEOUT_SECONDS):
             raise RuntimeError(f"unexpected {host} hook events: {hooks_path}")
@@ -195,7 +153,7 @@ def main() -> int:
     if any(license_id != REPOSITORY_LICENSE for license_id in TARGET_LICENSES.values()):
         raise SystemExit("every GitHub package target must use the repository MIT license")
     sync_canonical_license()
-    sync_plugin_packages()
+    validate_hook_sources()
     for mode, target in TARGETS.items():
         copy_skill(target, mode)
         print(f"synced {target.relative_to(ROOT)}")

@@ -2,110 +2,148 @@ from __future__ import annotations
 
 import json
 from pathlib import Path
+import tempfile
 import unittest
+
+from maintenance.tests.hook_companion_support import ASSEMBLER
 
 
 ROOT = Path(__file__).resolve().parents[2]
 SKILL_ROOT = ROOT / "chinese-official-writing"
-PLUGIN_ROOTS = {
-    "codex": SKILL_ROOT / "plugins" / "codex",
-    "codebuddy": SKILL_ROOT / "plugins" / "codebuddy",
-    "claude-code": SKILL_ROOT / "plugins" / "claude-code",
-}
+HOOK_ROOT = SKILL_ROOT / "hooks"
 
 
 class HookLayerContractTests(unittest.TestCase):
-    def test_plugins_readme_explains_required_nested_skill_copy(self) -> None:
-        readme = (SKILL_ROOT / "plugins" / "README.md").read_text(encoding="utf-8")
-        self.assertIn("宿主发现规范要求的入口", readme)
-        self.assertIn("不是第二套产品规则", readme)
-        self.assertIn("不要直接编辑副本", readme)
-
     def test_gate_spec_is_hook_only_and_semantically_routed(self) -> None:
         skill = (SKILL_ROOT / "SKILL.md").read_text(encoding="utf-8")
-        guide = (SKILL_ROOT / "hooks" / "README.md").read_text(encoding="utf-8")
-        gate_spec = (
-            SKILL_ROOT / "references" / "delivery-review-gate.md"
-        ).read_text(encoding="utf-8")
+        guide = (HOOK_ROOT / "README.md").read_text(encoding="utf-8")
+        gate_spec = (SKILL_ROOT / "references/delivery-review-gate.md").read_text(
+            encoding="utf-8"
+        )
 
         self.assertNotIn("delivery-review-gate.md", skill)
         self.assertIn("明确要求安装、启用、适配或排查交付门禁 Hook", skill)
         self.assertIn("普通起草、改稿、压缩和复核不加载该页", skill)
-        self.assertIn("三层边界", guide)
-        self.assertIn("逐字回退 D0", guide)
-        self.assertIn("当前没有自动补足字数", guide)
+        self.assertIn("完整初稿形成后增加一次有界交付检查", guide)
+        self.assertIn("优先交付原始完整稿", guide)
         self.assertIn("普通 `SKILL.md` 不加载本页", gate_spec)
         self.assertIn("Hook 默认禁用", gate_spec)
 
-        for packaged_skill in [
-            ROOT / "packages" / "agent-skills" / "skills" / "chinese-official-writing" / "SKILL.md",
-            ROOT / "packages" / "qwen-code" / "skills" / "chinese-official-writing" / "SKILL.md",
-            ROOT / "packages" / "hermes" / "skills" / "chinese-official-writing" / "SKILL.md",
-            ROOT / "packages" / "openclaw" / "skills" / "chinese_official_writing" / "SKILL.md",
-        ]:
+    def test_product_manual_is_user_facing_and_discloses_consent_boundaries(self) -> None:
+        guide = (HOOK_ROOT / "README.md").read_text(encoding="utf-8")
+        for required in (
+            "下载、安装或调用普通 Skill 不会自动启用 Hook",
+            "不自动识别宿主",
+            "不安装插件",
+            "不修改配置",
+            "不主动联网",
+            "组装、安装、启用和宿主信任确认分开进行",
+            "本次关闭 Hook",
+            "完全关闭后",
+            "通常比普通 Skill 慢",
+        ):
+            self.assertIn(required, guide)
+        for internal in (
+            "maintenance/tools",
+            "tests/",
+            "evidence",
+            "未进入 v1.6.2",
+            "本版本不包含",
+            "候选未合入",
+        ):
+            self.assertNotIn(internal, guide)
+
+    def test_static_adapter_sources_are_minimal_and_reachable(self) -> None:
+        adapters = HOOK_ROOT / "adapters"
+        expected = {
+            "codex": {"README.md", "hooks.json", "manifest.json"},
+            "codebuddy": {"README.md", "hooks.json", "manifest.json"},
+            "claude-code": {
+                "README.md",
+                "gate_stop_hook.py",
+                "hooks.json",
+                "manifest.json",
+            },
+        }
+        self.assertEqual(
+            expected,
+            {
+                host: {path.name for path in (adapters / host).iterdir() if path.is_file()}
+                for host in expected
+            },
+        )
+        self.assertTrue((adapters / "host_gate_adapter.py").is_file())
+        self.assertTrue((HOOK_ROOT / "core/gate_stop_hook.py").is_file())
+        guide = (HOOK_ROOT / "README.md").read_text(encoding="utf-8")
+        for host in expected:
+            self.assertIn(f"adapters/{host}/README.md", guide)
+
+    def test_maintenance_assembler_produces_three_self_contained_plugins(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            for host in ("codex", "codebuddy", "claude-code"):
+                with self.subTest(host=host):
+                    output = root / host
+                    result = ASSEMBLER.assemble(host, output)
+                    self.assertFalse(result["installed"])
+                    self.assertFalse(result["enabled"])
+                    self.assertFalse(result["network_used"])
+                    manifests = sorted(
+                        path.relative_to(output).as_posix()
+                        for path in output.rglob("plugin.json")
+                    )
+                    expected_manifest = {
+                        "codex": [".codex-plugin/plugin.json"],
+                        "codebuddy": [".codebuddy-plugin/plugin.json"],
+                        "claude-code": [".claude-plugin/plugin.json"],
+                    }[host]
+                    self.assertEqual(expected_manifest, manifests)
+                    packaged = output / "skills/chinese-official-writing"
+                    self.assertTrue((packaged / "SKILL.md").is_file())
+                    self.assertTrue((packaged / "hooks/gate_stop_hook.py").is_file())
+                    self.assertTrue((packaged / "scripts/review_gate.py").is_file())
+                    self.assertFalse((packaged / "hooks/adapters").exists())
+                    self.assertFalse((packaged / "hooks/core").exists())
+                    for path in output.rglob("*"):
+                        if path.is_file():
+                            self.assertNotIn(
+                                "../", path.read_text(encoding="utf-8", errors="ignore")
+                            )
+
+    def test_capabilities_describe_static_opt_in_adapters(self) -> None:
+        capabilities = json.loads(
+            (HOOK_ROOT / "host-capabilities.json").read_text(encoding="utf-8")
+        )
+        activation = capabilities["activation"]
+        self.assertEqual(5, capabilities["schema_version"])
+        self.assertFalse(activation["ordinary_skill_install_enables_hooks"])
+        self.assertFalse(activation["runtime_host_detection"])
+        self.assertFalse(activation["automatic_file_generation"])
+        self.assertFalse(activation["automatic_installation"])
+        self.assertFalse(activation["network_access"])
+        self.assertTrue(activation["task_opt_out_supported"])
+        self.assertEqual("not_shipped", capabilities["length_gate"]["status"])
+        for host in ("codex", "codebuddy", "claude_code"):
+            self.assertIn("adapter_source", capabilities["hosts"][host])
+
+    def test_plain_skill_packages_remain_hook_free_and_keep_lint(self) -> None:
+        for packaged_skill in (
+            ROOT / "packages/agent-skills/skills/chinese-official-writing",
+            ROOT / "packages/qwen-code/skills/chinese-official-writing",
+            ROOT / "packages/hermes/skills/chinese-official-writing",
+            ROOT / "packages/openclaw/skills/chinese_official_writing",
+        ):
             with self.subTest(packaged_skill=packaged_skill):
+                self.assertFalse((packaged_skill / "hooks").exists())
+                self.assertFalse((packaged_skill / "scripts/review_gate.py").exists())
+                self.assertFalse(
+                    (packaged_skill / "references/delivery-review-gate.md").exists()
+                )
+                self.assertTrue((packaged_skill / "scripts/prose_lint.py").is_file())
                 self.assertNotIn(
                     "读取 `hooks/README.md`",
-                    packaged_skill.read_text(encoding="utf-8"),
+                    (packaged_skill / "SKILL.md").read_text(encoding="utf-8"),
                 )
-
-    def test_optional_lint_stays_out_of_every_hook_surface(self) -> None:
-        guide = (SKILL_ROOT / "hooks" / "README.md").read_text(encoding="utf-8")
-        surfaces = {
-            "shared bridge": SKILL_ROOT / "hooks" / "gate_stop_hook.py",
-            "shared adapter source": SKILL_ROOT / "hooks" / "host_gate_adapter.py",
-            "Codex manifest": PLUGIN_ROOTS["codex"] / "hooks" / "hooks.json",
-            "CodeBuddy manifest": PLUGIN_ROOTS["codebuddy"] / "hooks" / "hooks.json",
-            "Claude manifest": PLUGIN_ROOTS["claude-code"] / "hooks" / "hooks.json",
-            "Claude adapter": PLUGIN_ROOTS["claude-code"] / "scripts" / "gate_stop_hook.py",
-        }
-
-        self.assertIn("不向 Hook 传递报告", guide)
-        self.assertIn("只回退 D0", guide)
-        for name, path in surfaces.items():
-            with self.subTest(surface=name):
-                self.assertNotIn("prose_lint", path.read_text(encoding="utf-8"))
-
-    def test_capabilities_match_three_self_contained_plugins(self) -> None:
-        capabilities = json.loads(
-            (SKILL_ROOT / "hooks" / "host-capabilities.json").read_text(encoding="utf-8")
-        )
-        self.assertEqual(4, capabilities["schema_version"])
-        self.assertFalse(capabilities["activation"]["ordinary_skill_install_enables_hooks"])
-        self.assertEqual("not_shipped", capabilities["length_gate"]["status"])
-
-        for host in ("codex", "codebuddy", "claude-code"):
-            with self.subTest(host=host):
-                plugin_root = PLUGIN_ROOTS[host]
-                manifests = sorted(
-                    path.relative_to(plugin_root).as_posix()
-                    for path in plugin_root.rglob("plugin.json")
-                )
-                expected_manifest = {
-                    "codex": [".codex-plugin/plugin.json"],
-                    "codebuddy": [".codebuddy-plugin/plugin.json"],
-                    "claude-code": [".claude-plugin/plugin.json"],
-                }[host]
-                self.assertEqual(expected_manifest, manifests)
-                packaged_skill = plugin_root / "skills" / "chinese-official-writing"
-                self.assertTrue((packaged_skill / "SKILL.md").is_file())
-                self.assertTrue((packaged_skill / "scripts" / "review_gate.py").is_file())
-                self.assertTrue((packaged_skill / "hooks" / "gate_stop_hook.py").is_file())
-                self.assertFalse((packaged_skill / "plugins").exists())
-                self.assertEqual(
-                    host == "codex",
-                    (packaged_skill / "agents" / "openai.yaml").is_file(),
-                )
-                for file in plugin_root.rglob("*"):
-                    if file.is_file():
-                        self.assertNotIn("../", file.read_text(encoding="utf-8", errors="ignore"))
-
-        self.assertEqual("package_registration_verified", capabilities["hosts"]["codex"]["status"])
-        self.assertFalse(capabilities["hosts"]["codex"]["live_lifecycle_verified"])
-        self.assertEqual("package_manifest_verified", capabilities["hosts"]["codebuddy"]["status"])
-        self.assertFalse(capabilities["hosts"]["codebuddy"]["live_lifecycle_verified"])
-        self.assertEqual("lifecycle_verified", capabilities["hosts"]["claude_code"]["status"])
-        self.assertEqual("skill_only", capabilities["hosts"]["openclaw"]["status"])
 
 
 if __name__ == "__main__":

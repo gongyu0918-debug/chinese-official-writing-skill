@@ -59,7 +59,7 @@
 | 文种与专项 references | 按需补充文种骨架、办理要素、论证链、GB/T 9704 格式和 AI 算力材料规则 |
 | 分层复核 references | 从段落、小节到全文检查事实、视角、结构、格式和自然表达 |
 | `scripts/prose_lint.py` | 提供可选的格式、重复和成品残留线索，作为轻量审查层的确定性补充 |
-| 可选宿主插件 | Codex、Claude Code、WorkBuddy/CodeBuddy 分别使用自包含插件根；生命周期门禁异常时回到非空初稿，修订不会循环 |
+| 可选交付 Hook | 一份门禁核心配合 Codex、Claude Code、WorkBuddy/CodeBuddy 静态适配层；由用户明确启用，未通过时优先保留完整初稿 |
 | `agents/openai.yaml` | 提供界面展示和默认调用信息 |
 
 渐进式路由让短任务只读取轻量卡，完整公文再进入相应文种叶子，技术类材料只加载命中的专项规则。这样既保留必要边界，也减少无关规则对真实写稿的干扰。
@@ -203,16 +203,18 @@ v1.6.1 带 Skill 成稿（完整，765 字符）：
 
 | 路径 | 用途 |
 | --- | --- |
-| `chinese-official-writing/` | 通用 canonical Agent Skill；`hooks/` 保存可选门禁核心与使用说明 |
-| `chinese-official-writing/plugins/codex/` | Codex 自包含插件 |
-| `chinese-official-writing/plugins/codebuddy/` | WorkBuddy/CodeBuddy 自包含插件 |
-| `chinese-official-writing/plugins/claude-code/` | Claude Code 自包含插件 |
+| `chinese-official-writing/` | 通用 canonical Agent Skill；不启用 Hook 也可独立完成写稿与复核 |
+| `chinese-official-writing/hooks/` | 可选交付复核说明、唯一能力核心和宿主静态适配层；见 [Hook 使用说明](chinese-official-writing/hooks/README.md) |
+| `chinese-official-writing/hooks/adapters/codex/` | Codex Hook 静态兼容文件与使用指引 |
+| `chinese-official-writing/hooks/adapters/codebuddy/` | WorkBuddy/CodeBuddy Hook 静态兼容文件与使用指引 |
+| `chinese-official-writing/hooks/adapters/claude-code/` | Claude Code Hook 静态兼容文件与使用指引 |
 | `packages/agent-skills/` | 通用 Agent Skills、MiniMax Skills、GLM Skills（Z.ai/智谱）、AutoClaw、Kimi Code CLI、TRAE、Baidu Comate AI IDE 等兼容包 |
 | `packages/qwen-code/` | Qwen Code 兼容包 |
 | `packages/hermes/` | Hermes 兼容包 |
 | `packages/openclaw/` | OpenClaw 兼容包，不含 Hook 和交付门禁 |
 | `packages/red-skillhub/` | Red SkillHub 专用包 |
-| `maintenance/` | 测试、评测、构建工具、原始证据和维护记录 |
+| `packages/` | 各平台普通兼容包总目录；见 [兼容包索引](packages/README.md) |
+| `maintenance/` | 测试、评测、构建工具、原始证据和维护记录；见 [维护区索引](maintenance/README.md) |
 
 ## 开源许可
 
