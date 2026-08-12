@@ -39,8 +39,8 @@ CLAUDE_MIN_VERSION = "2.1.195"
 MAX_PROVIDER_LANES = 3
 
 MODELS = {
-    "opencode": "opencode-go/deepseek-v4-flash-0731",
-    "ollama": "ollama-cloud/deepseek-v4-flash-0731",
+    "opencode": "opencode-go/deepseek-v4-flash",
+    "ollama": "ollama-cloud/deepseek-v4-flash:0731",
     "alibaba2": "alibaba-token-plan-2/deepseek-v4-flash-0731",
 }
 

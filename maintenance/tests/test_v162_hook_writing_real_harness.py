@@ -25,8 +25,8 @@ class V162HookWritingRealHarnessTests(unittest.TestCase):
         self.assertEqual(9, len(HARNESS.BLIND_PLAN))
         self.assertEqual(
             {
-                "opencode": "opencode-go/deepseek-v4-flash-0731",
-                "ollama": "ollama-cloud/deepseek-v4-flash-0731",
+                "opencode": "opencode-go/deepseek-v4-flash",
+                "ollama": "ollama-cloud/deepseek-v4-flash:0731",
                 "alibaba2": "alibaba-token-plan-2/deepseek-v4-flash-0731",
             },
             HARNESS.MODELS,

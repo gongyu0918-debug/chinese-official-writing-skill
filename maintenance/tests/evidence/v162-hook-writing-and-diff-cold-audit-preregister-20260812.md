@@ -16,8 +16,8 @@
 
 | Provider | 精确模型 | 用例 |
 | --- | --- | --- |
-| OpenCode Go | `opencode-go/deepseek-v4-flash-0731` | T1、T2、T3 |
-| Ollama | `ollama-cloud/deepseek-v4-flash-0731` | T1、T2、T3 |
+| OpenCode Go | `opencode-go/deepseek-v4-flash` | T1、T2、T3 |
+| Ollama | `ollama-cloud/deepseek-v4-flash:0731` | T1、T2、T3 |
 | Alibaba Token Plan 2 | `alibaba-token-plan-2/deepseek-v4-flash-0731` | T1、T2、T3 |
 
 所有调用使用 `max`，通过本机 `127.0.0.1:10100` 第三方网关接入 Claude Code，不登录 Claude。正式启动前须对三个 provider 跑只读连接检查和精确 `/v1/messages/count_tokens` 路径探针。
@@ -67,3 +67,9 @@ Kimi K3、Qwen3.8-max、Grok4.5 分别冷审该 packet，给 P0/P1/P2、误报�
 - 任何发布、推送、tag、安装或真实宿主配置修改。
 
 满足停止条件即 HOLD，不能追加样本、重试失败调用或择优删除不利结果。
+
+## 启动后模型路径修订
+
+R1 在用户纠正 OpenCode Go 精确路径后立即终止；随后核对发现 Ollama 的既有精确路径也应使用冒号形式。R1 使用了错误的 `opencode-go/deepseek-v4-flash-0731` 和 `ollama-cloud/deepseek-v4-flash-0731`，故整批记 `MODEL_ROUTE_SPEC_INVALID`，不读取、不评分任何正文，也不从已完成臂抽样保留。终止时 manifest 为 8/18 arms、4 pairs，未生成终态 packet；两个输出根共 150 个文件，tree-manifest SHA-256 分别为 `1c4ac9c474fd8338b1a07ba1b85037b5381323c542b3d98fa2f99028013988d9` 与 `23e6d299632d99749cca117b56ebe415e64fa610e134c74914294a7f09e60039`。PID 树 `92948,90368,47380,86384` 已精确终止，未遗留正式调用。
+
+R2 是修订后唯一有效执行：仍使用原 18 次、题面、顺序、门槛和零重试规则，从全新目录完整开始，不把 R1 视为失败补跑或可比较样本。
