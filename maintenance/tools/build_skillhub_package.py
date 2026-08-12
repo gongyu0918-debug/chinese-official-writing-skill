@@ -17,8 +17,16 @@ ROOT_LICENSE = ROOT / "LICENSE"
 SKILLHUB_LICENSE_NAME = "LICENSE.md"
 DEFAULT_SLUG = "chinese-official-writing"
 DEFAULT_DISPLAY_NAME = "中文公文写作"
-DEFAULT_SUMMARY = "用于中文公文和正式工作材料的起草、改写、压缩与复核，强调文种准确、事实克制、数据可追溯和公文语气自然。"
-DEFAULT_TAGS = ("chinese", "official-document", "writing", "gongwen", "ai-compute")
+DEFAULT_SUMMARY = "用于中文公文、事务性材料、新闻稿件和新闻评论的起草、改写、压缩与复核，兼顾办公效率、内容创作、事实边界和正式表达。"
+DEFAULT_TAGS = (
+    "office-efficiency",
+    "content-creation",
+    "chinese",
+    "official-document",
+    "writing",
+    "gongwen",
+    "ai-compute",
+)
 PACKAGE_EXCLUDES = {"agents/openai.yaml", "LICENSE"}
 FORBIDDEN_FRONTMATTER_KEYS = {
     "homepage",

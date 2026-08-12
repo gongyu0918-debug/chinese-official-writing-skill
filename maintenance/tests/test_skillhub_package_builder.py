@@ -67,8 +67,19 @@ class SkillHubPackageBuilderTests(unittest.TestCase):
             self.assertEqual(frontmatter["version"], RC_VERSION)
             self.assertEqual(
                 frontmatter["tags"],
-                ["chinese", "official-document", "writing", "gongwen", "ai-compute"],
+                [
+                    "office-efficiency",
+                    "content-creation",
+                    "chinese",
+                    "official-document",
+                    "writing",
+                    "gongwen",
+                    "ai-compute",
+                ],
             )
+            self.assertIn("办公效率", frontmatter["summary"])
+            self.assertIn("内容创作", frontmatter["summary"])
+            self.assertIn("新闻评论", frontmatter["summary"])
             for forbidden in ["homepage", "license", "metadata", "compatible_agents", "qwen_code", "openclaw", "hermes"]:
                 self.assertNotIn(forbidden, frontmatter)
             self.assertNotIn("github.com", packaged.lower())
