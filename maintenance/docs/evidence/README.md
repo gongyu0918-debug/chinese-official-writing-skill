@@ -12,11 +12,12 @@
 
 ## 逐版发布证据
 
+- 当前 GitHub 与 SkillHub.cn 发布证据：[`release-1.6.2.md`](../../tests/evidence/release-1.6.2.md)；Hook 真实写稿结果见 [`v162-hook-writing-real-ab-final-result-20260812.md`](../../tests/evidence/v162-hook-writing-real-ab-final-result-20260812.md)。
 - 当前仓库目录、GitHub OpenClaw 兼容包和 README 收敛结果：[`repository-layout-v161-result-20260812.md`](../../tests/evidence/repository-layout-v161-result-20260812.md)。
 - 1.5.x 的发布门禁、提交与 tag、清洁包、平台回执和传播状态保存在 `maintenance/tests/evidence/release-1.5.x.md`。
-- 当前 GitHub 与 SkillHub.cn 发布证据：[`release-1.6.1.md`](../../tests/evidence/release-1.6.1.md)。ClawHub 与小红书 Red SkillHub 未触碰。
+- 上一正式发行版：[`release-1.6.1.md`](../../tests/evidence/release-1.6.1.md)。
 - 发布前本地候选快照：[`release-1.6.1-rc.md`](../../tests/evidence/release-1.6.1-rc.md)。该文件保留当时测试和许可边界，不覆盖最终发布记录。
-- 上一正式发行版：[`release-1.6.0.md`](../../tests/evidence/release-1.6.0.md)。
+- 更早正式发行版：[`release-1.6.0.md`](../../tests/evidence/release-1.6.0.md)。
 - 不改版本、不发布的许可证范围清理：[`license-scope-cleanup-result-20260812.md`](../../tests/evidence/license-scope-cleanup-result-20260812.md)；当前 README 制度类同题写稿见 [`readme-v161-institution-same-task-comparison-20260812.md`](../../tests/evidence/readme-v161-institution-same-task-comparison-20260812.md)，上一份报告类对照保留在 [`readme-v160-same-task-comparison-20260812.md`](../../tests/evidence/readme-v160-same-task-comparison-20260812.md)。
 - 相邻正式版本：[`release-1.5.41.md`](../../tests/evidence/release-1.5.41.md)、[`release-1.5.40.md`](../../tests/evidence/release-1.5.40.md)。
 - 1.5.39 自包含 A/B、匿名裁决及 Word 对齐修复：[`v1539-compact-repro-pack-20260808.md`](../../tests/evidence/v1539-compact-repro-pack-20260808.md)。
