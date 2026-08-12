@@ -752,10 +752,26 @@ class ReviewGateTests(unittest.TestCase):
             f"请删除标题，并保留正文中的{sentence}",
             f"请删除开头的重复句。核查结论为{sentence}",
             f"请保留结论，不要删除附件说明。{sentence}",
+            f"说明中提到{sentence}请删除附件说明。",
+            f"说明中提到{sentence}删除附件说明。",
+            f"说明中提到{sentence}请删除开头重复句。",
         ):
             with self.subTest(request=request):
                 detection = self.detection(request, sentence, source=sentence)
                 self.assertEqual(detection["findings"], [])
+
+    def test_postfixed_delete_requires_explicit_reference_to_claim(self) -> None:
+        sentence = "未发现同类现象。"
+        for request in (
+            f"“{sentence}”这句话请删除。",
+            f"{sentence}该句请删除。",
+            f"{sentence}原句删除。",
+            f"{sentence}上述结论请删除。",
+        ):
+            with self.subTest(request=request):
+                detection = self.detection(request, sentence, source=sentence)
+                self.assertEqual(len(detection["findings"]), 1)
+                self.assertTrue(detection["findings"][0]["request_delete"])
 
     def test_request_text_cannot_license_settled_status_in_repair(self) -> None:
         target = "事项尚未形成结论。"

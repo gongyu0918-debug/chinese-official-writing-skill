@@ -436,15 +436,15 @@ REQUEST_KEEP_CUE_RE = re.compile(
     r"(?:(?:不要|不得|不能|请勿)(?:删除|删去|去掉|移除)|(?:请|应|须|需要)?保留)"
 )
 REQUEST_CUE_CONTEXT_CHARS = 32
-REQUEST_DIRECTIVE_TARGET_RE = r"(?:这句话|该句|原句)?"
+REQUEST_DIRECTIVE_TARGET_RE = r"(?:这句话|该句|原句|上述结论)"
 REQUEST_DIRECTIVE_LEFT_PADDING_RE = r"\s*[：:、“\"'‘]*\s*$"
 REQUEST_DIRECTIVE_RIGHT_PADDING_RE = r"^[。！？；;，,：:、”\"'’》】〕」』]*\s*"
 REQUEST_REMOVAL_PREFIX_RE = re.compile(
-    rf"{REQUEST_REMOVAL_CUE_RE.pattern}{REQUEST_DIRECTIVE_TARGET_RE}"
+    rf"{REQUEST_REMOVAL_CUE_RE.pattern}(?:{REQUEST_DIRECTIVE_TARGET_RE})?"
     rf"{REQUEST_DIRECTIVE_LEFT_PADDING_RE}"
 )
 REQUEST_KEEP_PREFIX_RE = re.compile(
-    rf"{REQUEST_KEEP_CUE_RE.pattern}{REQUEST_DIRECTIVE_TARGET_RE}"
+    rf"{REQUEST_KEEP_CUE_RE.pattern}(?:{REQUEST_DIRECTIVE_TARGET_RE})?"
     rf"{REQUEST_DIRECTIVE_LEFT_PADDING_RE}"
 )
 REQUEST_REMOVAL_SUFFIX_RE = re.compile(
@@ -817,6 +817,8 @@ def locate_candidates(
     serialized_findings: list[dict[str, Any]] = []
     for item in findings:
         serialized = asdict(item)
+        if serialized.get("request_delete") is not True:
+            serialized.pop("request_delete", None)
         serialized["labels"] = list(item.labels)
         serialized_findings.append(serialized)
     if guided_marker_sidecar is not None:
@@ -850,8 +852,7 @@ def locate_candidates(
             ):
                 raise GateInputError("guided marker span is invalid")
             labels = sorted(labels_for_sentence(target) | {"guided-drop-marker"})
-            serialized_findings.append(
-                {
+            serialized_guided_finding = {
                     "finding_id": marker_id,
                     "labels": labels,
                     "line": line,
@@ -864,15 +865,14 @@ def locate_candidates(
                     "request_exact": bool(
                         len(normalized_text(target)) >= 8 and target.strip() in request
                     ),
-                    "request_delete": _request_explicitly_deletes_negative_claim(
-                        target, request
-                    ),
                     "span_start": span_start,
                     "span_end": span_end,
                     "guided_marker": True,
                     "marker_id": marker_id,
                 }
-            )
+            if _request_explicitly_deletes_negative_claim(target, request):
+                serialized_guided_finding["request_delete"] = True
+            serialized_findings.append(serialized_guided_finding)
         if len({item["finding_id"] for item in serialized_findings}) != len(
             serialized_findings
         ):
