@@ -35,4 +35,12 @@
 
 ## 外部回执
 
-GitHub 与 SkillHub 正式回执将在发布后以证据提交补入；该提交只记录远端事实，不移动 `v1.6.2` tag。
+- GitHub 产品发布提交：`7d794b10f7acd320c90c2d311af9466fca732cfe`。
+- annotated tag object：`8fffac05d3f595884cf22b5e8269392a37e5fc4e`；`v1.6.2^{commit}` 与产品发布提交一致。
+- GitHub 远端 `main` 与 tag 已回读；GitHub Release：[`v1.6.2`](https://github.com/gongyu0918-debug/chinese-official-writing-skill/releases/tag/v1.6.2)，`draft=false`、`prerelease=false`，发布时间 `2026-08-12T09:49:40Z`。
+- SkillHub 正式上传只执行一次。回执：`ok=true`、skillId `70149`、versionId `231440`、48 文件、fingerprint `78ff1b8ad6a61b9d48f86f06c400fdbae78c8218115850902c2bd6700187ef68`，全部业务 tag 含 `latest` 均指向 `1.6.2`。
+- SkillHub 更新说明逐字为：“重整 Hook 架构与静态兼容层，补充启用、关闭和任务级旁路说明，修复否定结论删除边界，完善新闻与新闻评论支持；普通 Skill 保持无 Hook 独立运行。”
+- 正式回执中的 review、security scan 和 content audit 均为 `pending`。发布后公开详情的 tags 已为 `1.6.2`，但 `latestVersion.version` 仍为 `1.6.1`，精确版本签名端点返回 404；记录为平台异步传播 pending，不重复上传。
+- ClawHub、小红书 Red SkillHub及其他平台未执行上传。
+
+本节作为发布后证据提交推进 `main`，不移动 `v1.6.2` tag。
