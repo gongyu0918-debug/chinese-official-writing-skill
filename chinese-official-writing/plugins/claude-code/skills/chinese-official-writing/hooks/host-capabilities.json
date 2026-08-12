@@ -21,6 +21,8 @@
         "PostToolUse:Bash|Read",
         "Stop"
       ],
+      "verified_scope": "manifest_validation_and_isolated_registration_without_model",
+      "live_lifecycle_verified": false,
       "data_root_environment": "PLUGIN_DATA",
       "continuation_limit": 4
     },
@@ -33,6 +35,8 @@
         "PostToolUse:Bash|Read",
         "Stop"
       ],
+      "verified_scope": "official_manifest_contract_and_local_validation_without_model",
+      "live_lifecycle_verified": false,
       "required_stop_field": "last_assistant_message",
       "data_root_environment": "CODEBUDDY_PLUGIN_DATA",
       "continuation_limit": 4
@@ -46,14 +50,15 @@
         "PostToolUse:Bash|Read",
         "Stop"
       ],
-      "events_with_known_support": [
+      "verified_events": [
         "UserPromptSubmit",
         "PostToolUse:Read",
         "Stop"
       ],
-      "events_requiring_compatibility_check": [
+      "unverified_events": [
         "PostToolUse:Bash"
       ],
+      "verified_transport": "anthropic_messages_gateway",
       "first_party_login_required": false,
       "data_root_environment": "CLAUDE_PLUGIN_DATA",
       "minimum_version": "2.1.195",

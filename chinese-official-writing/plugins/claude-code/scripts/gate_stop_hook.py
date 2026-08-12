@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Map documented Codex and WorkBuddy/CodeBuddy events to the shared gate."""
+"""Map verified Claude Code hook events to the existing bounded gate bridge."""
 
 from __future__ import annotations
 
@@ -18,13 +18,11 @@ from typing import Any, Iterator
 
 ALLOWED_EVENTS = {"UserPromptSubmit", "PostToolUse", "Stop"}
 ALLOWED_POST_TOOL_NAMES = {"Bash", "Read"}
-ADAPTER_PATH = Path(__file__).resolve()
-ADAPTER_ROOT = ADAPTER_PATH.parents[1]
-PACKAGED_SKILL_ROOT = ADAPTER_ROOT / "skills" / "chinese-official-writing"
-SKILL_ROOT = PACKAGED_SKILL_ROOT if PACKAGED_SKILL_ROOT.is_dir() else ADAPTER_ROOT
+ADAPTER_ROOT = Path(__file__).resolve().parents[1]
+SKILL_ROOT = ADAPTER_ROOT / "skills" / "chinese-official-writing"
 CORE_BRIDGE_PATH = SKILL_ROOT / "hooks" / "gate_stop_hook.py"
-TURN_STATE_DIRECTORY = "workbuddy-adapter-turns"
-CORE_DATA_DIRECTORY = "shared-gate-core"
+TURN_STATE_DIRECTORY = "claude-adapter-turns"
+CORE_DATA_DIRECTORY = "claude-gate-core"
 STATE_SCHEMA_VERSION = 1
 SAFE_KEY_MAX_LENGTH = 120
 TURN_DIGEST_LENGTH = 16
@@ -65,17 +63,9 @@ def _atomic_write_json(path: Path, value: dict[str, Any]) -> None:
             pass
 
 
-def _host_paths() -> tuple[str, Path] | None:
-    if os.environ.get("PLUGIN_ROOT"):
-        host = "codex"
-        raw_root = os.environ.get("PLUGIN_ROOT")
-        raw_data = os.environ.get("PLUGIN_DATA")
-    elif os.environ.get("CODEBUDDY_PLUGIN_ROOT"):
-        host = "workbuddy"
-        raw_root = os.environ.get("CODEBUDDY_PLUGIN_ROOT")
-        raw_data = os.environ.get("CODEBUDDY_PLUGIN_DATA")
-    else:
-        return None
+def _host_paths() -> tuple[Path, Path] | None:
+    raw_root = os.environ.get("CLAUDE_PLUGIN_ROOT")
+    raw_data = os.environ.get("CLAUDE_PLUGIN_DATA")
     if not raw_root or not raw_data:
         return None
     try:
@@ -85,14 +75,14 @@ def _host_paths() -> tuple[str, Path] | None:
         return None
     if plugin_root != ADAPTER_ROOT or not CORE_BRIDGE_PATH.is_file():
         return None
-    return host, data_root
+    return plugin_root, data_root
 
 
 def _turn_state_path(data_root: Path, session_id: str) -> Path:
     return data_root / TURN_STATE_DIRECTORY / f"{_safe_key(session_id)}.json"
 
 
-def _start_workbuddy_turn(data_root: Path, session_id: str, prompt: str) -> str | None:
+def _start_turn(data_root: Path, session_id: str, prompt: str) -> str | None:
     path = _turn_state_path(data_root, session_id)
     current = _read_json(path) or {}
     counter = current.get("counter")
@@ -100,18 +90,22 @@ def _start_workbuddy_turn(data_root: Path, session_id: str, prompt: str) -> str 
         counter = 0
     counter += 1
     digest = hashlib.sha256(prompt.encode("utf-8")).hexdigest()[:TURN_DIGEST_LENGTH]
-    turn_id = f"workbuddy-{counter}-{digest}"
+    turn_id = f"claude-{counter}-{digest}"
     try:
         _atomic_write_json(
             path,
-            {"schema_version": STATE_SCHEMA_VERSION, "counter": counter, "turn_id": turn_id},
+            {
+                "schema_version": STATE_SCHEMA_VERSION,
+                "counter": counter,
+                "turn_id": turn_id,
+            },
         )
     except OSError:
         return None
     return turn_id
 
 
-def _active_workbuddy_turn(data_root: Path, session_id: str) -> str | None:
+def _active_turn(data_root: Path, session_id: str) -> str | None:
     value = _read_json(_turn_state_path(data_root, session_id))
     if value is None:
         return None
@@ -119,23 +113,16 @@ def _active_workbuddy_turn(data_root: Path, session_id: str) -> str | None:
     return turn_id if isinstance(turn_id, str) and turn_id else None
 
 
-def _normalized_tool_input(event: dict[str, Any]) -> dict[str, Any] | None:
-    tool_name = event.get("tool_name")
-    tool_input = event.get("tool_input")
-    if tool_name not in ALLOWED_POST_TOOL_NAMES or not isinstance(tool_input, dict):
-        return None
-    if tool_name == "Bash":
-        command = tool_input.get("command") or tool_input.get("cmd")
-    else:
-        command = tool_input.get("file_path")
-    if not isinstance(command, str) or not command:
-        return None
-    return {"command": command}
+def _common_event(event: dict[str, Any], turn_id: str) -> dict[str, Any]:
+    return {
+        "hook_event_name": event["hook_event_name"],
+        "session_id": event["session_id"],
+        "turn_id": turn_id,
+        "cwd": event["cwd"],
+    }
 
 
-def _map_event(
-    event: dict[str, Any], host: str, data_root: Path
-) -> dict[str, Any] | None:
+def _map_event(event: dict[str, Any], data_root: Path) -> dict[str, Any] | None:
     name = event.get("hook_event_name")
     session_id = event.get("session_id")
     cwd = event.get("cwd")
@@ -143,40 +130,36 @@ def _map_event(
         return None
     if not isinstance(cwd, str) or not cwd:
         return None
-
-    if host == "codex":
-        turn_id = event.get("turn_id")
-        if not isinstance(turn_id, str) or not turn_id:
-            return None
-    elif name == "UserPromptSubmit":
-        prompt = event.get("prompt")
-        if not isinstance(prompt, str) or not prompt.strip():
-            return None
-        turn_id = _start_workbuddy_turn(data_root, session_id, prompt)
-        if turn_id is None:
-            return None
-    else:
-        turn_id = _active_workbuddy_turn(data_root, session_id)
-        if turn_id is None:
-            return None
-
-    mapped: dict[str, Any] = {
-        "hook_event_name": name,
-        "session_id": session_id,
-        "turn_id": turn_id,
-        "cwd": cwd,
-    }
     if name == "UserPromptSubmit":
         prompt = event.get("prompt")
         if not isinstance(prompt, str) or not prompt.strip():
             return None
+        turn_id = _start_turn(data_root, session_id, prompt)
+        if turn_id is None:
+            return None
+        mapped = _common_event(event, turn_id)
         mapped["prompt"] = prompt
         return mapped
+
+    turn_id = _active_turn(data_root, session_id)
+    if turn_id is None:
+        return None
+    mapped = _common_event(event, turn_id)
     if name == "PostToolUse":
-        tool_input = _normalized_tool_input(event)
-        if tool_input is None:
+        tool_name = event.get("tool_name")
+        tool_input = event.get("tool_input")
+        if tool_name not in ALLOWED_POST_TOOL_NAMES or not isinstance(tool_input, dict):
             return None
-        mapped["tool_input"] = tool_input
+        if tool_name == "Bash":
+            command = tool_input.get("command")
+            if not isinstance(command, str) or not command:
+                return None
+            mapped["tool_input"] = {"command": command}
+        else:
+            file_path = tool_input.get("file_path")
+            if not isinstance(file_path, str) or not file_path:
+                return None
+            mapped["tool_input"] = {"command": file_path}
         response = event.get("tool_response")
         if isinstance(response, dict):
             mapped["tool_response"] = response
@@ -205,7 +188,9 @@ def _load_core_bridge() -> ModuleType | None:
 
 @contextmanager
 def _bridge_environment(data_root: Path) -> Iterator[None]:
-    overrides = {"COW_GATE_HOOK_DATA": str(data_root / CORE_DATA_DIRECTORY)}
+    overrides = {
+        "COW_GATE_HOOK_DATA": str(data_root / CORE_DATA_DIRECTORY),
+    }
     previous = {key: os.environ.get(key, _MISSING) for key in overrides}
     try:
         os.environ.update(overrides)
@@ -218,23 +203,20 @@ def _bridge_environment(data_root: Path) -> Iterator[None]:
                 os.environ[key] = str(value)
 
 
-def _host_response(host: str, value: Any) -> dict[str, Any]:
+def _valid_response(value: Any) -> dict[str, Any]:
     if not isinstance(value, dict):
         return _allow()
-    reason = value.get("reason")
-    if value.get("decision") != "block" or not isinstance(reason, str):
-        return _allow()
-    if host == "workbuddy":
-        return {"continue": False, "reason": reason}
-    return {"decision": "block", "reason": reason}
+    if value.get("decision") == "block" and isinstance(value.get("reason"), str):
+        return {"decision": "block", "reason": value["reason"]}
+    return _allow()
 
 
 def handle(event: dict[str, Any]) -> dict[str, Any]:
     paths = _host_paths()
     if paths is None or not isinstance(event, dict):
         return _allow()
-    host, data_root = paths
-    mapped = _map_event(event, host, data_root)
+    _, data_root = paths
+    mapped = _map_event(event, data_root)
     if mapped is None:
         return _allow()
     bridge = _load_core_bridge()
@@ -242,7 +224,7 @@ def handle(event: dict[str, Any]) -> dict[str, Any]:
         return _allow()
     try:
         with _bridge_environment(data_root):
-            return _host_response(host, bridge.handle(mapped))
+            return _valid_response(bridge.handle(mapped))
     except (OSError, RuntimeError, ValueError):
         return _allow()
 
