@@ -6,14 +6,12 @@ from pathlib import Path
 import sys
 import unittest
 
+from maintenance.tests.hook_companion_support import HookCompanionTestMixin
+
 
 ROOT = Path(__file__).resolve().parents[2]
 CANONICAL = ROOT / "chinese-official-writing"
-MIRROR_ROOTS = (
-    *(
-        ROOT / "chinese-official-writing" / "plugins" / host / "skills" / "chinese-official-writing"
-        for host in ("codex", "codebuddy", "claude-code")
-    ),
+PERSISTENT_MIRROR_ROOTS = (
     ROOT / "packages" / "agent-skills" / "skills" / "chinese-official-writing",
     ROOT / "packages" / "qwen-code" / "skills" / "chinese-official-writing",
     ROOT / "packages" / "hermes" / "skills" / "chinese-official-writing",
@@ -46,7 +44,17 @@ def _load_provider():
 provider = _load_provider()
 
 
-class SafeRequestEntryIntegrationTests(unittest.TestCase):
+class SafeRequestEntryIntegrationTests(HookCompanionTestMixin, unittest.TestCase):
+    def setUp(self) -> None:
+        self.setUpHookCompanions()
+        self.mirror_roots = (
+            *(
+                self.companion_roots[host] / "skills/chinese-official-writing"
+                for host in ("codex", "codebuddy", "claude-code")
+            ),
+            *PERSISTENT_MIRROR_ROOTS,
+        )
+
     def test_request_drafts_load_only_the_dedicated_leaf_by_default(self) -> None:
         for genre in ("请示", "申请"):
             with self.subTest(genre=genre):
@@ -111,7 +119,7 @@ class SafeRequestEntryIntegrationTests(unittest.TestCase):
         ]
         self.assertEqual(request_rules, [f"- {expected_line}"])
         expected_hash = hashlib.sha256(canonical_bytes).hexdigest()
-        for mirror in MIRROR_ROOTS:
+        for mirror in self.mirror_roots:
             with self.subTest(mirror=mirror):
                 self.assertEqual(hashlib.sha256((mirror / relative).read_bytes()).hexdigest(), expected_hash)
 

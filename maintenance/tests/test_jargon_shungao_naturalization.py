@@ -3,23 +3,32 @@ from __future__ import annotations
 from pathlib import Path
 import unittest
 
+from maintenance.tests.hook_companion_support import HookCompanionTestMixin
+
 
 ROOT = Path(__file__).resolve().parents[2]
-RUNTIME_ROOTS = [
+PERSISTENT_RUNTIME_ROOTS = [
     ROOT / "chinese-official-writing",
-    *[
-        ROOT / "chinese-official-writing" / "plugins" / host / "skills" / "chinese-official-writing"
-        for host in ("codex", "codebuddy", "claude-code")
-    ],
     ROOT / "packages" / "agent-skills" / "skills" / "chinese-official-writing",
     ROOT / "packages" / "qwen-code" / "skills" / "chinese-official-writing",
     ROOT / "packages" / "hermes" / "skills" / "chinese-official-writing",
 ]
 
 
-class ShungaoNaturalizationTests(unittest.TestCase):
+class ShungaoNaturalizationTests(HookCompanionTestMixin, unittest.TestCase):
+    def setUp(self) -> None:
+        self.setUpHookCompanions()
+        self.runtime_roots = [
+            PERSISTENT_RUNTIME_ROOTS[0],
+            *[
+                self.companion_roots[host] / "skills/chinese-official-writing"
+                for host in ("codex", "codebuddy", "claude-code")
+            ],
+            *PERSISTENT_RUNTIME_ROOTS[1:],
+        ]
+
     def test_runtime_instructions_use_plain_editing_terms(self) -> None:
-        for root in RUNTIME_ROOTS:
+        for root in self.runtime_roots:
             texts = [root.joinpath("SKILL.md").read_text(encoding="utf-8")]
             texts.extend(path.read_text(encoding="utf-8") for path in root.joinpath("references").glob("*.md"))
             joined = "\n".join(texts)

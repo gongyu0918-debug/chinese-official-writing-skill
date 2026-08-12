@@ -283,8 +283,10 @@ CASES: list[PromptCase] = [
                     "https://github.com/gongyu0918-debug/chinese-official-writing-skill"
                 ],
                 "maintenance/tests/test_skill_boundary.py": [
-                    "test_primary_adapter_mirrors_match_canonical_bytes",
                     "test_packaged_resource_mirrors_match_canonical_bytes",
+                ],
+                "maintenance/tests/test_hook_layer_contract.py": [
+                    "test_maintenance_assembler_produces_three_self_contained_plugins",
                 ],
             },
         },

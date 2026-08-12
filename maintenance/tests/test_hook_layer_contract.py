@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import json
 from pathlib import Path
+import re
 import tempfile
 import unittest
 
@@ -104,11 +105,22 @@ class HookLayerContractTests(unittest.TestCase):
                     self.assertTrue((packaged / "scripts/review_gate.py").is_file())
                     self.assertFalse((packaged / "hooks/adapters").exists())
                     self.assertFalse((packaged / "hooks/core").exists())
+                    guide = packaged / "hooks/README.md"
+                    self.assertIn("宿主启用说明见插件根 `README.md`", guide.read_text(encoding="utf-8"))
                     for path in output.rglob("*"):
                         if path.is_file():
                             self.assertNotIn(
                                 "../", path.read_text(encoding="utf-8", errors="ignore")
                             )
+                        if path.is_file() and path.suffix.lower() == ".md":
+                            for target in re.findall(
+                                r"\[[^\]]+\]\(([^)]+)\)",
+                                path.read_text(encoding="utf-8"),
+                            ):
+                                target = target.split("#", 1)[0].strip()
+                                if not target or target.startswith(("https://", "http://", "mailto:")):
+                                    continue
+                                self.assertTrue((path.parent / target).resolve().exists(), f"{path} -> {target}")
 
     def test_capabilities_describe_static_opt_in_adapters(self) -> None:
         capabilities = json.loads(

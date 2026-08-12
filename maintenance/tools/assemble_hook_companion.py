@@ -8,6 +8,7 @@ from dataclasses import dataclass
 import hashlib
 import json
 from pathlib import Path
+import re
 import shutil
 from typing import Final
 
@@ -62,6 +63,15 @@ SKILL_COPY_EXCLUDES: Final = (
     Path("hooks/adapters"),
     Path("hooks/core"),
 )
+MARKDOWN_LINK_RE: Final = re.compile(r"\[[^\]]+\]\(([^)]+)\)")
+ADAPTER_GUIDE_LINKS: Final = {
+    f"[`adapters/{host}/README.md`](adapters/{host}/README.md)": f"`{label}`"
+    for host, label in (
+        ("codex", "Codex"),
+        ("codebuddy", "WorkBuddy / CodeBuddy"),
+        ("claude-code", "Claude Code"),
+    )
+}
 
 
 def _is_excluded(relative: Path, adapter: HostAdapter) -> bool:
@@ -84,6 +94,16 @@ def _copy_skill(output: Path, adapter: HostAdapter) -> None:
         if not _is_excluded(relative, adapter):
             _copy(source, packaged_skill / relative)
     _copy(CORE_PATH, packaged_skill / "hooks" / "gate_stop_hook.py")
+    guide_path = packaged_skill / "hooks" / "README.md"
+    guide = guide_path.read_text(encoding="utf-8")
+    for source, replacement in ADAPTER_GUIDE_LINKS.items():
+        guide = guide.replace(source, replacement)
+    guide = guide.replace(
+        "## 宿主适配说明\n",
+        "## 宿主适配说明\n\n当前 companion 的宿主启用说明见插件根 `README.md`。\n",
+        1,
+    )
+    guide_path.write_text(guide, encoding="utf-8", newline="\n")
 
 
 def _fingerprint(root: Path) -> str:
@@ -118,6 +138,17 @@ def _validate(output: Path, adapter: HostAdapter) -> None:
             raise RuntimeError(f"Hook companion cannot contain a symlink: {path}")
         if path.is_file() and "../" in path.read_text(encoding="utf-8", errors="ignore"):
             raise RuntimeError(f"Hook companion contains parent traversal: {path}")
+        if path.is_file() and path.suffix.lower() == ".md":
+            text = path.read_text(encoding="utf-8")
+            for target in MARKDOWN_LINK_RE.findall(text):
+                target = target.split("#", 1)[0].strip()
+                if not target or target.startswith(("https://", "http://", "mailto:")):
+                    continue
+                resolved = (path.parent / target).resolve()
+                if not resolved.is_relative_to(output) or not resolved.exists():
+                    raise RuntimeError(
+                        f"Hook companion contains a broken local Markdown link: {path} -> {target}"
+                    )
 
 
 def assemble(host: str, output: Path) -> dict[str, object]:
