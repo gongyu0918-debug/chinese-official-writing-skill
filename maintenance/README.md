@@ -17,6 +17,7 @@
 | `tools/sync_adapters.py` | 从 canonical 同步普通平台兼容包 |
 | `tools/build_skillhub_package.py` | 构建 SkillHub 清洁包 |
 | `tools/assemble_hook_companion.py` | 在临时目录或明确授权的目标目录按静态清单组装单一宿主 companion；不安装、不启用、不联网 |
+| `tools/build_v162_cold_audit_packet.py` | 构建 v1.6.0 到 v1.6.2 的只读冷审差异包 |
 | `tools/preflight_claude_hooks.py` | 校验 Claude Code companion 结构与版本 |
 | `tools/check_ab_provenance.py` | 检查 A/B 证据来源绑定 |
 | `tools/deterministic_capture.py` | 保存确定性评测捕获结果 |
