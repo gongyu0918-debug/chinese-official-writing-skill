@@ -165,3 +165,9 @@ class UnderLengthCapabilityTests(unittest.TestCase):
         original = "下一年度拟完善培训安排。"
         candidate = "将在下一年度改进培训安排，并结合既有工作逐步优化培训内容。"
         self.assertIsNone(RUNTIME.mechanical_reason(original, candidate, spec, ""))
+
+    def test_ongoing_investigation_equivalent_reaches_semantic_verifier(self) -> None:
+        spec = {"minimum": 1, "maximum": 0, "scope": "full"}
+        original = "目前，事故原因正在调查中。"
+        candidate = "目前，事故原因正在进一步调查中，相关情况将根据调查进展说明。"
+        self.assertIsNone(RUNTIME.mechanical_reason(original, candidate, spec, ""))
