@@ -43,7 +43,9 @@
 
 ## 必要工程检查
 
-- `python -B -m unittest maintenance.tests.test_hook_layer_contract maintenance.tests.test_repository_reachability -q`：10/10 PASS。
+- `python -B -m unittest maintenance.tests.test_editorial_delete_contract maintenance.tests.test_protective_expansion_lifecycle maintenance.tests.test_hook_layer_contract maintenance.tests.test_repository_reachability -q`：28/28 PASS。
+- canonical Skill quick validate：PASS。
+- `protective_expansion` 三宿主静态组装：Codex 45、CodeBuddy 44、Claude Code 44 文件；均为 `enabled=false`、`installed=false`、`network_used=false`。
+- 全量维护单测只在准备合并时运行：首次 568/573，5 项均为测试锁定旧新闻/总结全文、旧 OpenClaw 版本措辞或已移出最近五次表格的旧证据名；更新为关键语义合同后，最终 573/573 PASS。修复只改测试，不改产品。
 - `python -B maintenance/tools/sync_adapters.py`：完成，普通镜像已同步。
 - `git diff --check 851eaa7d..HEAD`：PASS。
-- 本轮未重复运行全量单测；计划仅在准备合并或发布前运行一次。
