@@ -175,7 +175,7 @@ class SkillBoundaryTests(unittest.TestCase):
         ]
         canonical_body = canonical.read_text(encoding="utf-8").split("---", 2)[2].strip()
         hook_route = (
-            "\n\n用户明确要求安装、启用、适配或排查交付门禁 Hook 时，读取 `hooks/README.md`。"
+            "\n\n用户明确要求处理交付门禁 Hook 时，读取 `hooks/README.md`。"
             "普通起草、改稿、压缩和复核不加载该页，也不自动启用 Hook。"
         )
 
@@ -1286,7 +1286,7 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assertIn(
             "保持主体、对象、数字、日期、状态和结论强度；"
             "事实之间的时间、因果、分类和归属关系以材料明确关系为准；"
-            "总量与子项差额用于合计校核",
+            "总量与子项差额只用于合计校核，不据此补写“其余均正常、未发现其他问题、均无异常”等材料未给结论",
             information_selection,
         )
         self.assertIn(

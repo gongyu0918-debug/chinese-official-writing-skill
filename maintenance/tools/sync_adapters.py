@@ -26,7 +26,7 @@ HOOK_EVENT_TIMEOUT_SECONDS = {
     "Stop": 30,
 }
 HOOK_ROUTE_PARAGRAPH = (
-    "\n\n用户明确要求安装、启用、适配或排查交付门禁 Hook 时，读取 `hooks/README.md`。"
+    "\n\n用户明确要求处理交付门禁 Hook 时，读取 `hooks/README.md`。"
     "普通起草、改稿、压缩和复核不加载该页，也不自动启用 Hook。"
 )
 

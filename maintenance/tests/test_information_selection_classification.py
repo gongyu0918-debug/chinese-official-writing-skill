@@ -17,7 +17,7 @@ PERSISTENT_MIRROR_ROOTS = (
 RELATIVE = Path("references/information-selection.md")
 CLASSIFICATION_RULE = (
     "事实之间的时间、因果、分类和归属关系以材料明确关系为准；"
-    "总量与子项差额用于合计校核。"
+    "总量与子项差额只用于合计校核，不据此补写“其余均正常、未发现其他问题、均无异常”等材料未给结论。"
 )
 
 
@@ -39,6 +39,9 @@ class InformationSelectionClassificationTests(HookCompanionTestMixin, unittest.T
         self.assertNotIn("总量与子项差额归入", text)
         self.assertNotIn("总量与子项差额归为", text)
         self.assertNotIn("总量与子项差额视为", text)
+        cards = (CANONICAL / "references/task-route-cards.md").read_text(encoding="utf-8")
+        self.assertIn("不用差额补写“其余均正常、未发现其他异常”", cards)
+        self.assertIn("不再写“处理工作正在进行”等同义句凑字", cards)
 
     def test_explicit_classification_control_remains_material_bound_in_all_mirrors(self) -> None:
         canonical_bytes = (CANONICAL / RELATIVE).read_bytes()

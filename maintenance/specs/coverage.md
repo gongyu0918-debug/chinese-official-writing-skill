@@ -15,7 +15,7 @@
 | `HK-003` 单协调器 | `hooks/core/gate_stop_hook.py` | 同一任务仅一个 capability | 官方说明同事件多 Hook 可并发，因此保持单 coordinator | 已覆盖 |
 | `HK-004` 宿主薄适配 | `hooks/adapters/` | 不适用 | Codex、Claude、CodeBuddy 官方契约与静态包 | 已覆盖结构；CodeBuddy Hooks 仍为 Beta |
 | `HK-005` 故障回退 | coordinator 和 capability runtime | 当前 Codex/Claude 均选择 D0 并闭合 hash | CodeBuddy 旧在线 D0 回显恢复 | 已覆盖主要路径；错误终稿不得误标成功继续保留反控 |
-| `HK-006` 知情与关闭 | `hooks/README.md`、opt-out classifier | 普通路径六稿 | 显式关闭已测试；自然审稿语义待扩 | 部分 |
+| `HK-006` 知情与关闭 | `hooks/README.md`、opt-out classifier | 普通路径六稿；永久移除后真实写稿 | 未确认逐字不变；二次确认后隔离副本17文件移除、SKILL单点编辑 | 永久移除已覆盖；自然审稿语义待扩 |
 | `UL-001` under-only 触发 | `hooks/capabilities/under_length/runtime.py` 候选 | Codex 819→1036、Claude 170→327 | 两宿主当前在线触发 | 工程覆盖，未合并 |
 | `UL-002` 安全扩写 | under revision/verdict prompt | 旧坏 D1 复放可被当前规则拒绝 | 不依赖宿主 | 部分；尚无获选 D1 |
 | `UL-003` 产品准入 | 同一 D0/D1 功能门 | 当前 0 份 D1 获选 | SOL 未运行 | 未覆盖，候选 HOLD 的决定性缺口 |

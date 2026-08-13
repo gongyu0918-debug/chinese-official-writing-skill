@@ -23,7 +23,7 @@ class HookLayerContractTests(unittest.TestCase):
         )
 
         self.assertNotIn("delivery-review-gate.md", skill)
-        self.assertIn("明确要求安装、启用、适配或排查交付门禁 Hook", skill)
+        self.assertIn("明确要求处理交付门禁 Hook", skill)
         self.assertIn("普通起草、改稿、压缩和复核不加载该页", skill)
         self.assertIn("完整初稿形成后增加一次有界交付检查", guide)
         self.assertIn("优先交付原始完整稿", guide)
@@ -41,9 +41,14 @@ class HookLayerContractTests(unittest.TestCase):
             "组装、安装、启用和宿主信任确认分开进行",
             "本次关闭 Hook",
             "完全关闭后",
+            "永久移除包内 Hook",
+            "本包不携带自删除脚本",
+            "等待用户再次确认",
             "通常比普通 Skill 慢",
         ):
             self.assertIn(required, guide)
+        self.assertFalse((HOOK_ROOT / "remove_hooks.py").exists())
+        self.assertNotIn("python -B hooks/remove_hooks.py", guide)
         for internal in (
             "maintenance/tools",
             "tests/",

@@ -1080,7 +1080,7 @@ class PromptfooProviderTests(unittest.TestCase):
         selected_skill = provider._skill_root(ROOT) / "SKILL.md"
         selected = selected_skill.read_text(encoding="utf-8")
         hook_route = (
-            "\n\n用户明确要求安装、启用、适配或排查交付门禁 Hook 时，读取 `hooks/README.md`。"
+            "\n\n用户明确要求处理交付门禁 Hook 时，读取 `hooks/README.md`。"
             "普通起草、改稿、压缩和复核不加载该页，也不自动启用 Hook。"
         )
 
