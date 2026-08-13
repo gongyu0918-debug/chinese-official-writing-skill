@@ -336,6 +336,8 @@ def main() -> int:
         result = _allow()
     sys.stdout.write(json.dumps(result, ensure_ascii=False, separators=(",", ":")))
     sys.stdout.write("\n")
+    if os.environ.get("CODEBUDDY_PLUGIN_ROOT") and result.get("continue") is False:
+        return 2
     return 0
 
 
