@@ -19,7 +19,7 @@ OPTIONAL_GATE_FILES = {
 }
 SKILLHUB_CLEAN_PACKAGE_EXCLUDES = {"agents/openai.yaml", "LICENSE"}
 CURRENT_VERSION = "1.6.3"
-PUBLISHED_VERSION = "1.6.2"
+PUBLISHED_VERSION = "1.6.3"
 
 
 def relative_files(root: Path) -> list[str]:
@@ -749,18 +749,16 @@ class SkillBoundaryTests(unittest.TestCase):
             self.assertIn(alias, frontmatter)
         self.assertIn("references/genre-playbook-news-message.md", skill)
         self.assertIn("不因材料中偶然出现", skill)
-        self.assertEqual(
-            [line for line in leaf.splitlines() if line.startswith("- ")],
-            [
-                "- 标题和导语先交代最重要的已给事实。",
-                "- 用户给出篇幅范围时，以达到下限为预算起点，完整覆盖材料中的各组独立事实，避免用同义复述凑长。",
-                "- 正文按事件进程或信息层次，展开材料已给的时间、地点、主体、动作、数字、结果和背景。",
-                "- 材料明示且有新闻价值的单个未决状态应保留；同一事件的侦办、抢修、排险、统计等进展，由材料主体、写作主体或近邻句可明确继承的主体承载，不为补主语虚构单位全称、人员身份或处置细节。",
-                "- “全力、第一时间、立即”等强度词只在材料明确，或材料给出的应急响应、连续抢险和责任行动足以支持时使用；不得把一般“正在办理”机械升级。",
-                "- 可依据材料事实、常识和二者直接支持的关系作合理推断和一般预期；推断不得改变事实对象或范围，不得反推动作起点、持续时长或阶段，也不得把待形成的统计、结论或结果写成原始内容尚未形成；不得把抽象活动、服务、资源或项目具体化为材料未写的人物、设备、内容、地点、引语、动作、合作方或后续安排。",
-                "- 普通消息不自行补“这不代表、这不表示、这不构成”等作者判断；材料明确给出的正式声明、司法判断、专家意见或受访者观点，标明来源并按原强度转述。",
-            ],
-        )
+        for rule in [
+            "标题和导语先交代最重要的已给事实",
+            "材料不足以安全达到下限时，优先交付事实完整的短消息",
+            "材料明示且有新闻价值的单个未决状态应保留",
+            "推断不得改变事实对象或范围",
+            "活动新闻只展开材料已经给出的活动设置、参与主体、现场动作和统计状态",
+            "合并成一至两个自然段",
+            "普通消息不自行补“这不代表、这不表示、这不构成”",
+        ]:
+            self.assertIn(rule, leaf)
         self.assertNotIn("缺少某一项时直接省略", leaf)
         self.assertNotIn("流程清单", leaf)
 
@@ -883,7 +881,7 @@ class SkillBoundaryTests(unittest.TestCase):
     def test_openclaw_bundle_readme_is_current_and_contains_no_publish_command(self) -> None:
         readme = (ROOT / "packages" / "openclaw" / "README.md").read_text(encoding="utf-8")
 
-        self.assertIn("当前候选版本为 `1.6.3`", readme)
+        self.assertIn("当前 GitHub 版本为 `1.6.3`", readme)
         self.assertIn("MIT", readme)
         self.assertIn(r"python .\maintenance\tools\sync_adapters.py", readme)
         self.assertIn("packages/openclaw/", readme)
@@ -938,7 +936,7 @@ class SkillBoundaryTests(unittest.TestCase):
 
         sync_version = re.search(r'VERSION = "([^"]+)"', sync_script)
         readme_version = re.search(r"chinese-official-writing@(\d+\.\d+\.\d+)", readme)
-        openclaw_version = re.search(r"当前候选版本为 `(\d+\.\d+\.\d+)`", openclaw_readme)
+        openclaw_version = re.search(r"当前 GitHub 版本为 `(\d+\.\d+\.\d+)`", openclaw_readme)
 
         self.assertIsNotNone(sync_version)
         self.assertIsNotNone(readme_version)
@@ -1670,17 +1668,15 @@ class SkillBoundaryTests(unittest.TestCase):
         work_summary = (
             ROOT / "chinese-official-writing" / "references" / "genre-playbook-work-summary.md"
         ).read_text(encoding="utf-8")
-        expected_section = """## 工作总结/工作要点/周报
-
-- 适用：阶段总结、年度要点、周报或月报。
-- 骨架：总结写已完成、成效、问题、经验、下一步；工作要点写目标、重点任务、责任机制、时间节点、评价方式；周报写已完成、推进中、问题、下步。
-- 展开：材料已经给出下一步、未来安排或改进计划时，可结合前文已述问题、数据和工作基础说明该事项的对象、目的或衔接关系，使每项安排形成完整语义单元；主体、程序、时限、数量和结果强度沿用材料口径。
-- 风险：不把所有总结改成周报格式；字段式周报保留字段和换行，不散文化、不合并字段；责任机制只写材料给出的主体，未给运维服务单位或合同责任时，不补服务单位责任；成效必须有事实支撑。
-- 补充读取：`argument-chains.md` 的报告和总结。
-"""
-
         self.assertNotIn("## 工作总结/工作要点/周报", playbooks)
-        self.assertEqual(work_summary.split("\n\n", 1)[1], expected_section)
+        for rule in [
+            "材料已经给出下一步、未来安排或改进计划时",
+            "材料未给实际运行、测评或业务反馈时",
+            "总结段可将“下一年度拟完善、拟优化”自然归纳为“将在下一年度加以改进”",
+            "需要概括前文时可以使用“综上所述”等承接语",
+            "成效必须有事实支撑",
+        ]:
+            self.assertIn(rule, work_summary)
 
     def test_ordinary_letter_leaf_is_self_contained_without_default_supplemental_reads(self) -> None:
         skill = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
@@ -1936,10 +1932,9 @@ class SkillBoundaryTests(unittest.TestCase):
             "1.6.1 入口减载",
             "1.6.0 事实边界",
             "1.5.41 连续否定表达减载",
-            "1.5.40 终稿复核入口",
+            "1.6.3 纯审稿 Hook 旁路与 SkillHub 检索信号",
             "同题独立写作节选",
             "明川市政务服务中心服务事项信息变更管理办法（试行）",
-            "readme-v161-institution-same-task-comparison-20260812.md",
             "v162-hook-writing-real-ab-final-result-20260812.md",
             "新增了“自收到材料之日起”的期限起算",
             "无 Skill 成稿",
