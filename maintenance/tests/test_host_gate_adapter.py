@@ -153,8 +153,14 @@ class HostGateAdapterTests(HookCompanionTestMixin, unittest.TestCase):
             timeout=30,
             check=False,
         )
-        self.assertEqual(0, completed.returncode, completed.stderr)
-        return json.loads(completed.stdout)
+        result = json.loads(completed.stdout)
+        expected_returncode = (
+            2
+            if host == "workbuddy" and result.get("continue") is False
+            else 0
+        )
+        self.assertEqual(expected_returncode, completed.returncode, completed.stderr)
+        return result
 
     def test_package_root_has_native_per_host_commands_and_one_shared_adapter(self):
         codex = json.loads(self.MANIFEST_PATHS["codex"].read_text(encoding="utf-8"))
