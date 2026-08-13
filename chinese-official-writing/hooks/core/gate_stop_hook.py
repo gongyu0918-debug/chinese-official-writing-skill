@@ -33,6 +33,7 @@ GATE_SUBPROCESS_TIMEOUT_SECONDS = 20
 MIN_FENCED_JSON_LINES = 3
 MODULE_PATH = Path(__file__).resolve()
 PROTECTIVE_CAPABILITY_NAME = "protective_expansion"
+UNDER_LENGTH_CAPABILITY_NAME = "under_length"
 PROTECTIVE_CAPABILITY_ENV = "COW_GATE_CAPABILITY"
 
 
@@ -50,6 +51,9 @@ SKILL_ROOT = _resolve_skill_root()
 REVIEW_GATE_PATH = SKILL_ROOT / "scripts" / "review_gate.py"
 PROTECTIVE_RUNTIME_PATH = (
     SKILL_ROOT / "hooks" / "capabilities" / "protective_expansion" / "runtime.py"
+)
+UNDER_LENGTH_RUNTIME_PATH = (
+    SKILL_ROOT / "hooks" / "capabilities" / "under_length" / "runtime.py"
 )
 GATE_COMMAND_RE = re.compile(
     r"review_gate\.py(?:\"|'|\s)+(detect|dispatch|prepare|finalize|emit|abort)\b",
@@ -269,6 +273,33 @@ def _load_protective_runtime():
     return module
 
 
+def _load_under_length_runtime():
+    try:
+        spec = importlib.util.spec_from_file_location(
+            "cow_under_length_runtime", UNDER_LENGTH_RUNTIME_PATH
+        )
+        if spec is None or spec.loader is None:
+            return None
+        module = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(module)
+    except Exception:
+        return None
+    return module
+
+
+def _load_review_gate_module():
+    try:
+        spec = importlib.util.spec_from_file_location("cow_review_gate", REVIEW_GATE_PATH)
+        if spec is None or spec.loader is None:
+            return None
+        module = importlib.util.module_from_spec(spec)
+        sys.modules[spec.name] = module
+        spec.loader.exec_module(module)
+    except Exception:
+        return None
+    return module
+
+
 def _protective_fallback_path(record_path: Path) -> Path | None:
     root = _data_root()
     if root is None:
@@ -342,6 +373,58 @@ def _handle_protective_capability(
         return runtime.start(event, record_path, record, data_root)
     except (OSError, RuntimeError, ValueError):
         return _protective_runtime_failure(event, record_path, record)
+
+
+def _handle_under_length_capability(
+    event: dict[str, Any], record_path: Path, record: dict[str, Any]
+) -> dict[str, Any] | None:
+    active = isinstance(record.get("under_length"), dict)
+    selected = os.environ.get(PROTECTIVE_CAPABILITY_ENV) == UNDER_LENGTH_CAPABILITY_NAME
+    if not active and not selected:
+        return None
+    runtime = _load_under_length_runtime()
+    if runtime is None:
+        if not active:
+            return None
+        original = record.get("under_length", {}).get("original")
+        if not isinstance(original, str) or not original:
+            return _allow()
+        record["under_length"]["phase"] = "under_length_technical_failure"
+        record["under_length"]["audit"] = {
+            "schema_version": 1,
+            "trigger": "under",
+            "selection": "D0",
+            "reason": "under_length_module_unavailable",
+            "original_sha256": _sha256_text(original),
+            "delivery_verified": False,
+        }
+        _atomic_write(record_path, record)
+        return _continue_once(
+            "篇幅复核模块不可用，已回退原始稿。请逐字输出下列 D0，不要调用工具、不要加说明：\n"
+            + original
+        )
+    if active:
+        response = runtime.advance(event, record)
+        _atomic_write(record_path, record)
+        return response
+    eligible = (
+        record.get("bypass") != "user_requested"
+        and record.get("skill_seen") is True
+        and not _is_review_only_request(str(record.get("request") or ""))
+        and not record.get("txn")
+        and isinstance(event.get("last_assistant_message"), str)
+        and bool(str(event.get("last_assistant_message")).strip())
+        and event.get("stop_hook_active") is not True
+    )
+    if not eligible:
+        return None
+    review_gate = _load_review_gate_module()
+    if review_gate is None:
+        return None
+    response = runtime.start(event, record, review_gate)
+    if response is not None:
+        _atomic_write(record_path, record)
+    return response
 
 
 def _extract_json_object(value: Any) -> dict[str, Any] | None:
@@ -661,6 +744,9 @@ def handle_stop(event: dict[str, Any]) -> dict[str, Any]:
     protective = _handle_protective_capability(event, record_path, record)
     if protective is not None:
         return protective
+    under_length = _handle_under_length_capability(event, record_path, record)
+    if under_length is not None:
+        return under_length
     if not record.get("txn"):
         if event.get("stop_hook_active") is True:
             return _allow()

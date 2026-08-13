@@ -28,7 +28,7 @@ STATE_SCHEMA_VERSION = 1
 SAFE_KEY_MAX_LENGTH = 120
 TURN_DIGEST_LENGTH = 16
 _MISSING = object()
-SUPPORTED_CAPABILITIES = {"delivery_review", "protective_expansion"}
+SUPPORTED_CAPABILITIES = {"delivery_review", "protective_expansion", "under_length"}
 
 
 def _allow() -> dict[str, Any]:

@@ -63,7 +63,7 @@ Qwen Code、Hermes、OpenClaw、OpenCode 等没有本仓库内置的生命周期
 
 ## 可选能力
 
-companion 默认使用既有交付复核。用户也可在组装前明确选择[保护性外扩精确删除](capabilities/protective_expansion/README.md)：它只删除经语义观察确认、在当前文种中没有独立作用的原文片段，不补写进行态、责任主体或篇幅。两种能力不会在同一任务中并行运行；没有完整材料可见性或判断不确定时保留原稿。
+companion 默认使用既有交付复核。用户也可在组装前明确选择[保护性外扩精确删除](capabilities/protective_expansion/README.md)或[篇幅不足补足](capabilities/under_length/README.md)。保护性外扩只做精确删除；篇幅能力只处理明确下限且明显偏短的成稿。三种能力静态互斥，不会在同一任务中并行运行；判断不确定时保留原稿。
 
 ## 工作方式
 
@@ -83,7 +83,7 @@ SKILL.md 与 references 形成完整 D0
 只有用户明确要求启用时才执行以下步骤：
 
 1. 读取本页、`host-capabilities.json` 和目标宿主的 adapter README。
-2. 向用户展示目标目录、将要复制的文件和所选能力；未特别选择时使用既有交付复核，选择 `protective_expansion` 时写入静态能力配置。
+2. 向用户展示目标目录、将要复制的文件和所选能力；未特别选择时使用既有交付复核，选择 `protective_expansion` 或 `under_length` 时写入静态能力配置。
 3. 在新目录中放入目标宿主唯一的 manifest 与 `hooks/hooks.json`。
 4. 复制薄适配器到 `scripts/`；复制完整 canonical Skill 到 `skills/chinese-official-writing/`，并将 `core/gate_stop_hook.py` 放到该 Skill 的 `hooks/gate_stop_hook.py`。
 5. 保留 `SKILL.md`、references、`scripts/review_gate.py`、MIT LICENSE 和本说明；禁止父目录回指、外部 symlink、其他宿主 manifest 和自动安装代码。

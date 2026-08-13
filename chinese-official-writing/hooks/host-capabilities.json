@@ -1,5 +1,5 @@
 {
-  "schema_version": 6,
+  "schema_version": 7,
   "shared_gate_core": "chinese-official-writing/scripts/review_gate.py",
   "activation": {
     "default": "disabled",
@@ -13,9 +13,15 @@
     "task_opt_out_record": "bypass=user_requested"
   },
   "length_gate": {
-    "automatic_expansion": false,
+    "automatic_expansion": true,
     "automatic_compression": false,
-    "status": "not_shipped"
+    "status": "candidate",
+    "activation": "explicit_static_companion_selection",
+    "configuration_file": "hook-capability.json",
+    "default_selected": false,
+    "trigger": "explicit_lower_bound_and_more_than_ten_percent_short",
+    "revision_limit": 1,
+    "failure_action": "original_draft"
   },
   "protective_expansion_gate": {
     "status": "available_opt_in",
