@@ -53,7 +53,7 @@
       "runtime_adapter": "scripts/host_gate_adapter.py",
       "events": [
         "UserPromptSubmit",
-        "PostToolUse:Bash|Read",
+        "PostToolUse:Bash|Read|Skill",
         "Stop"
       ],
       "verified_scope": "official_manifest_contract_and_local_validation_without_model",

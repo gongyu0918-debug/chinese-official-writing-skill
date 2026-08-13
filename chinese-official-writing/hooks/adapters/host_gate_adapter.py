@@ -17,7 +17,7 @@ from typing import Any, Iterator
 
 
 ALLOWED_EVENTS = {"UserPromptSubmit", "PostToolUse", "Stop"}
-ALLOWED_POST_TOOL_NAMES = {"Bash", "Read"}
+ALLOWED_POST_TOOL_NAMES = {"Bash", "Read", "Skill"}
 ADAPTER_PATH = Path(__file__).resolve()
 ADAPTER_ROOT = ADAPTER_PATH.parents[1]
 PACKAGED_SKILL_ROOT = ADAPTER_ROOT / "skills" / "chinese-official-writing"
@@ -175,8 +175,11 @@ def _normalized_tool_input(event: dict[str, Any]) -> dict[str, Any] | None:
         return None
     if tool_name == "Bash":
         command = tool_input.get("command") or tool_input.get("cmd")
-    else:
+    elif tool_name == "Read":
         command = tool_input.get("file_path")
+    else:
+        skill_name = tool_input.get("skill")
+        command = str(PACKAGED_SKILL_ROOT / "SKILL.md") if skill_name == "chinese-official-writing" else None
     if not isinstance(command, str) or not command:
         return None
     return {"command": command}

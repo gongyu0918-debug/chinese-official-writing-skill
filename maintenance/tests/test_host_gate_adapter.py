@@ -171,7 +171,8 @@ class HostGateAdapterTests(HookCompanionTestMixin, unittest.TestCase):
         self.assertEqual("MIT", workbuddy["license"])
         for hooks in (codex_hooks, workbuddy_hooks):
             self.assertEqual(["UserPromptSubmit", "PostToolUse", "Stop"], list(hooks))
-            self.assertEqual("Bash|Read", hooks["PostToolUse"][0]["matcher"])
+            expected_matcher = "Bash|Read" if hooks is codex_hooks else "Bash|Read|Skill"
+            self.assertEqual(expected_matcher, hooks["PostToolUse"][0]["matcher"])
         for groups in codex_hooks.values():
             command = groups[0]["hooks"][0]["command"]
             self.assertIn("${PLUGIN_ROOT}", command)
@@ -329,6 +330,40 @@ class HostGateAdapterTests(HookCompanionTestMixin, unittest.TestCase):
                 "根据材料起草一份450—550字的工作总结。", record.get("request")
             )
             self.assertTrue(record.get("bootstrapped_by_stop"))
+
+    def test_workbuddy_native_skill_tool_marks_packaged_skill_seen(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            plugin_root = Path(temporary) / "codebuddy-under-length"
+            ASSEMBLER.assemble("codebuddy", plugin_root, "under_length")
+            adapter = load_module(
+                f"cow_workbuddy_under_length_adapter_{id(self)}",
+                plugin_root / "scripts" / "host_gate_adapter.py",
+            )
+            previous_root = self.PLUGIN_ROOTS["workbuddy"]
+            self.PLUGIN_ROOTS["workbuddy"] = plugin_root
+            self.addCleanup(self.PLUGIN_ROOTS.__setitem__, "workbuddy", previous_root)
+            with self._host_environment("workbuddy"):
+                prompt = self._event(
+                    "UserPromptSubmit",
+                    prompt="根据材料起草一份450—550字的工作总结。",
+                )
+                skill = self._event(
+                    "PostToolUse",
+                    tool_name="Skill",
+                    tool_input={"skill": "chinese-official-writing"},
+                    tool_response={"success": True},
+                )
+                self.assertEqual({"continue": True}, adapter.handle(prompt))
+                self.assertEqual({"continue": True}, adapter.handle(skill))
+                result = adapter.handle(
+                    self._event(
+                        "Stop",
+                        stop_hook_active=False,
+                        last_assistant_message="工作总结\n\n本年度完成有关工作。",
+                    )
+                )
+                self.assertEqual(False, result.get("continue"))
+                self.assertIn("篇幅复核", result.get("reason", ""))
 
     def test_workbuddy_late_registration_rejects_foreign_transcript(self):
         with self._host_environment("workbuddy"):
