@@ -160,6 +160,17 @@ class UnderLengthCapabilityTests(unittest.TestCase):
             RUNTIME.mechanical_reason("事项正在核查。", "事项核查完成。", spec, ""),
         )
 
+    def test_request_supplied_numbers_and_transparent_count_reach_semantic_verifier(self) -> None:
+        spec = {"minimum": 1, "maximum": 0, "scope": "full"}
+        request = "起草800—900字通知。会议时间为9月15日9时，议程共四项。"
+        original = "会议定于9月15日9时召开。议程如下。"
+        candidate = "会议定于9月15日9时召开。本次议程共四项，具体如下。"
+        self.assertIsNone(RUNTIME.mechanical_reason(original, candidate, spec, request))
+        self.assertEqual(
+            "under_length_number_added_dropped_or_changed",
+            RUNTIME.mechanical_reason(original, candidate + "共3个环节。", spec, request),
+        )
+
     def test_planned_improvement_equivalent_is_not_mechanically_rejected(self) -> None:
         spec = {"minimum": 1, "maximum": 0, "scope": "full"}
         original = "下一年度拟完善培训安排。"

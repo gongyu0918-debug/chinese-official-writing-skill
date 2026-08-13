@@ -187,9 +187,22 @@ def mechanical_reason(
     maximum = int(spec.get("maximum") or 0)
     if maximum and candidate_length > maximum:
         return "under_length_candidate_above_maximum"
-    if set(NUMBER_RE.findall(original)) != set(NUMBER_RE.findall(candidate)):
+    original_numbers = set(NUMBER_RE.findall(original))
+    candidate_numbers = set(NUMBER_RE.findall(candidate))
+    request_numbers = set(NUMBER_RE.findall(request)) - {
+        str(spec["minimum"]),
+        str(spec.get("maximum") or 0),
+    }
+    if not original_numbers.issubset(candidate_numbers) or not candidate_numbers.issubset(
+        original_numbers | request_numbers
+    ):
         return "under_length_number_added_dropped_or_changed"
-    if set(CJK_QUANTITY_RE.findall(original)) != set(CJK_QUANTITY_RE.findall(candidate)):
+    original_quantities = set(CJK_QUANTITY_RE.findall(original))
+    candidate_quantities = set(CJK_QUANTITY_RE.findall(candidate))
+    request_quantities = set(CJK_QUANTITY_RE.findall(request))
+    if not original_quantities.issubset(
+        candidate_quantities
+    ) or not candidate_quantities.issubset(original_quantities | request_quantities):
         return "under_length_quantity_added_dropped_or_changed"
     if not set(QUOTE_RE.findall(original)).issubset(set(QUOTE_RE.findall(candidate))):
         return "under_length_quote_dropped_or_changed"
