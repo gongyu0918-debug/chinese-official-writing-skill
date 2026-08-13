@@ -10,6 +10,7 @@
 | `tests/` | 单元测试、fixture、预注册和真实执行证据 |
 | `docs/evidence/` | 发布与维护历史索引 |
 | `docs/待办.md` | 当前已完成事项、未闭环验证、后续独立原子和明确边界 |
+| `specs/` | 长期产品需求、当前状态与需求到真实证据的轻量覆盖矩阵 |
 
 ## 工具索引
 
@@ -29,4 +30,4 @@
 | `tools/run_revision_instruction_eval.py` | 运行二次修改指令评测 |
 | `tools/build_agent_eval_packet.py` | 构建 Agent 评测包 |
 
-发布事实和历史证据从 `docs/evidence/README.md` 进入；真实写稿原始记录从对应 `tests/evidence/` 预注册或结果文件进入。
+产品需求与当前缺口先看 `specs/README.md`；发布事实和历史证据从 `docs/evidence/README.md` 进入；真实写稿原始记录从对应 `tests/evidence/` 预注册或结果文件进入。

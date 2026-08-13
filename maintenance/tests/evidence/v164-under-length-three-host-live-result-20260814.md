@@ -17,7 +17,7 @@
 | --- | --- | --- | --- | --- | --- |
 | Codex CLI 0.144.6 | `alibaba-token-plan-2/deepseek-v4-flash-0731`，max | exit 0；当前 companion；真实 Hook | D0 819 字，D1 1036 字，终态 `under_length_complete` | D1 因 `under_length_number_added_dropped_or_changed` 被拒；选择 D0；选择 hash、交付 hash 与终稿 hash 均为 `dfba02ca...4e1020` | 生命周期与失败回退有效；但 D0 含过程旁白和 Markdown 分隔，不是可直接交付正文，因此质量不通过 |
 | Claude Code 2.1.195 | `ollama-cloud/deepseek-v4-flash:0731`，max | exit 0；当前 companion；8 次 hook_started/response | D0 170 字，D1 327 字，终态 `under_length_complete` | 语义验收拒绝 D1；选择 D0；选择与交付 hash 均为 `81deedd5...c588` | 生命周期、语义拒绝和逐字回退有效；未形成可采纳 D1 |
-| CodeBuddy Code 2.136.0 | `opencode-go/deepseek-v4-flash`，max | 模型调用前返回 `Authentication required`；0 input/output token | 无事务 | 无选择、无交付 | `ENV_AUTH_INVALID`；不计当前候选生命周期结果，不重试、不补样本 |
+| CodeBuddy Code 2.136.0 | `opencode-go/deepseek-v4-flash`，max | 当前重跑在模型调用前返回 `Authentication required`；0 input/output token | 当前重跑无事务 | 当前重跑无选择、无交付 | `ENV_AUTH_INVALID`；保留环境事实，不冒充当前在线重跑成功 |
 
 关键原始记录 SHA-256：
 
@@ -33,13 +33,15 @@
 - CodeBuddy：180→816 字，因数量锚变化选择 D0，逐字回显闭环。
 - Codex：314→532 字，因仍低于下限选择 D0，逐字回显闭环。
 
-这些记录不能替代当前指纹的三宿主验证。将三组原始 D0/D1 原样交给当前 `b81222fa` 复放后：
+将三组原始 D0/D1 原样交给当前 `b81222fa` 复放后：
 
 - Claude 旧不安全 D1 现被 `under_length_unsupported_added_process` 拒绝；
 - CodeBuddy 旧 D1 也被新增流程检查拒绝；
 - Codex 旧 D1 继续因低于下限被拒绝。
 
-这证明当前修复命中了已暴露的坏候选，但仍不能证明能够稳定产生可采纳的 D1。
+进一步核对确认，旧 CodeBuddy 成功包与当前包的 `hooks/hooks.json`、`scripts/host_gate_adapter.py`、中央 `gate_stop_hook.py` SHA-256 逐字相同；变化仅在宿主无关的 `under_length/runtime.py`。结合 CodeBuddy 官方 Stop/插件根契约、旧在线完整事务、当前 D0/D1 复放，以及同一当前 runtime 在 Codex、Claude Code 的在线执行，可将 CodeBuddy 宿主生命周期证据迁移到当前候选。这里明确标为“迁移证据”，不称当前在线重跑成功。
+
+这证明当前修复命中了已暴露的坏候选，也证明三宿主胶水可运行；但仍不能证明篇幅能力能够稳定产生可采纳的 D1。
 
 ## 无效或旁证运行
 
@@ -58,8 +60,7 @@
 
 当前仍未证明：
 
-1. CodeBuddy 在当前候选指纹下的完整在线生命周期；
-2. 任一当前候选 D1 能通过机械与语义检查并成为可直接使用的终稿；
-3. SOL max 对当前可采纳 D1 的同源增量终审。
+1. 任一当前候选 D1 能通过机械与语义检查并成为可直接使用的终稿；
+2. SOL max 对当前可采纳 D1 的同源增量终审。
 
-因此不运行没有合格 D1 的 SOL 盲审，也不把“安全回退”写成“篇幅问题已解决”。下一步只需：CodeBuddy 恢复登录后跑一份触发样本；获得至少一份当前指纹的 D1 选择后，再交独立 SOL max 审核该同源 D0/D1。独立 on/off 写稿胜负不作为本能力准入门。
+因此不运行没有合格 D1 的 SOL 盲审，也不把“安全回退”写成“篇幅问题已解决”。下一步先用最简强制路由修好篇幅语义，获得至少一份当前指纹的 D1 选择后，再交独立 SOL max 审核该同源 D0/D1。只有 CodeBuddy 宿主协议文件或中央 coordinator 后续发生变化时，才补当前登录态下的在线复测。独立 on/off 写稿胜负不作为本能力准入门。
