@@ -1,5 +1,5 @@
 {
-  "schema_version": 5,
+  "schema_version": 6,
   "shared_gate_core": "chinese-official-writing/scripts/review_gate.py",
   "activation": {
     "default": "disabled",
@@ -16,6 +16,15 @@
     "automatic_expansion": false,
     "automatic_compression": false,
     "status": "not_shipped"
+  },
+  "protective_expansion_gate": {
+    "status": "candidate",
+    "activation": "explicit_static_companion_selection",
+    "configuration_file": "hook-capability.json",
+    "default_selected": false,
+    "operation": "delete_exact_spans_only",
+    "source_visibility": "request_and_observed_tool-read boundary",
+    "uncertain_authority_action": "preserve_original"
   },
   "hosts": {
     "codex": {

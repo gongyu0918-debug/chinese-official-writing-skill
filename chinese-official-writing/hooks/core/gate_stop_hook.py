@@ -12,6 +12,7 @@ the Hook runs every script transition and verifies the final output hash.
 from __future__ import annotations
 
 import hashlib
+import importlib.util
 import json
 import os
 from pathlib import Path
@@ -31,6 +32,8 @@ SAFE_KEY_MAX_LENGTH = 120
 GATE_SUBPROCESS_TIMEOUT_SECONDS = 20
 MIN_FENCED_JSON_LINES = 3
 MODULE_PATH = Path(__file__).resolve()
+PROTECTIVE_CAPABILITY_NAME = "protective_expansion"
+PROTECTIVE_CAPABILITY_ENV = "COW_GATE_CAPABILITY"
 
 
 def _resolve_skill_root() -> Path:
@@ -45,6 +48,9 @@ def _resolve_skill_root() -> Path:
 
 SKILL_ROOT = _resolve_skill_root()
 REVIEW_GATE_PATH = SKILL_ROOT / "scripts" / "review_gate.py"
+PROTECTIVE_RUNTIME_PATH = (
+    SKILL_ROOT / "hooks" / "capabilities" / "protective_expansion" / "runtime.py"
+)
 GATE_COMMAND_RE = re.compile(
     r"review_gate\.py(?:\"|'|\s)+(detect|dispatch|prepare|finalize|emit|abort)\b",
     re.IGNORECASE,
@@ -247,6 +253,95 @@ def _continue_once(message: str) -> dict[str, Any]:
 
 def _sha256_text(value: str) -> str:
     return hashlib.sha256(value.encode("utf-8")).hexdigest()
+
+
+def _load_protective_runtime():
+    try:
+        spec = importlib.util.spec_from_file_location(
+            "cow_protective_expansion_runtime", PROTECTIVE_RUNTIME_PATH
+        )
+        if spec is None or spec.loader is None:
+            return None
+        module = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(module)
+    except Exception:
+        return None
+    return module
+
+
+def _protective_fallback_path(record_path: Path) -> Path | None:
+    root = _data_root()
+    if root is None:
+        return None
+    return root / "protective-expansion-fallbacks" / record_path.parent.name / f"{record_path.stem}.txt"
+
+
+def _protective_runtime_failure(
+    event: dict[str, Any], record_path: Path, record: dict[str, Any]
+) -> dict[str, Any]:
+    original_path = _protective_fallback_path(record_path)
+    if original_path is None:
+        return _continue_once("保护性外扩 Hook 不可用，已停止交付；请关闭本任务 Hook 后重试。")
+    original = None
+    raw_bound = record.get("protective_original_path")
+    if isinstance(raw_bound, str):
+        try:
+            bound = Path(raw_bound).resolve()
+            if bound.is_relative_to((_data_root() or Path.cwd()).resolve()):
+                original = bound.read_text(encoding="utf-8")
+        except (OSError, RuntimeError, UnicodeError):
+            original = None
+    if original is None:
+        candidate = event.get("last_assistant_message")
+        original = candidate if isinstance(candidate, str) else ""
+        _atomic_write_text(original_path, original)
+        record["protective_original_path"] = str(original_path.resolve())
+        record["protective_original_sha256"] = _sha256_text(original)
+    delivered = event.get("last_assistant_message")
+    if record.get("protective_phase") == "runtime_failure_fallback" and isinstance(delivered, str) and _sha256_text(delivered) == record.get("protective_original_sha256"):
+        record["protective_phase"] = "complete"
+        record["protective_delivery_verified"] = True
+        _atomic_write(record_path, record)
+        return _allow()
+    record["protective_phase"] = "runtime_failure_fallback"
+    record["protective_delivery_verified"] = False
+    _atomic_write(record_path, record)
+    return _continue_once("保护性外扩模块不可用，已回退原始完整稿。请逐字输出下列正文，不要调用工具、不要加说明：\n" + original)
+
+
+def _handle_protective_capability(
+    event: dict[str, Any], record_path: Path, record: dict[str, Any]
+) -> dict[str, Any] | None:
+    active_phase = isinstance(record.get("protective_phase"), str)
+    selected = os.environ.get(PROTECTIVE_CAPABILITY_ENV) == PROTECTIVE_CAPABILITY_NAME
+    if not active_phase and not selected:
+        return None
+    if not active_phase:
+        request = record.get("request")
+        draft = event.get("last_assistant_message")
+        eligible = (
+            record.get("bypass") != "user_requested"
+            and record.get("skill_seen") is True
+            and isinstance(request, str)
+            and bool(request.strip())
+            and not _is_review_only_request(request)
+            and not record.get("txn")
+            and isinstance(draft, str)
+            and bool(draft.strip())
+            and event.get("stop_hook_active") is not True
+        )
+        if not eligible:
+            return None
+    runtime = _load_protective_runtime()
+    data_root = _data_root()
+    if runtime is None or data_root is None:
+        return _protective_runtime_failure(event, record_path, record)
+    try:
+        if active_phase:
+            return runtime.continue_transaction(event, record_path, record, data_root)
+        return runtime.start(event, record_path, record, data_root)
+    except (OSError, RuntimeError, ValueError):
+        return _protective_runtime_failure(event, record_path, record)
 
 
 def _extract_json_object(value: Any) -> dict[str, Any] | None:
@@ -456,6 +551,14 @@ def handle_post_tool(event: dict[str, Any]) -> dict[str, Any]:
             }
         )
         _atomic_write(record_path, existing)
+    elif command:
+        existing.update(
+            {
+                "schema_version": STATE_SCHEMA_VERSION,
+                "external_material_read": True,
+            }
+        )
+        _atomic_write(record_path, existing)
     if parsed is None:
         return _allow()
     action, txn = parsed
@@ -555,6 +658,9 @@ def handle_stop(event: dict[str, Any]) -> dict[str, Any]:
         return _allow()
     if record.get("bypass") == "user_requested" and not record.get("txn"):
         return _allow()
+    protective = _handle_protective_capability(event, record_path, record)
+    if protective is not None:
+        return protective
     if not record.get("txn"):
         if event.get("stop_hook_active") is True:
             return _allow()

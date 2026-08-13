@@ -21,12 +21,14 @@ ALLOWED_POST_TOOL_NAMES = {"Bash", "Read"}
 ADAPTER_ROOT = Path(__file__).resolve().parents[1]
 SKILL_ROOT = ADAPTER_ROOT / "skills" / "chinese-official-writing"
 CORE_BRIDGE_PATH = SKILL_ROOT / "hooks" / "gate_stop_hook.py"
+CAPABILITY_CONFIG_PATH = ADAPTER_ROOT / "hook-capability.json"
 TURN_STATE_DIRECTORY = "claude-adapter-turns"
 CORE_DATA_DIRECTORY = "claude-gate-core"
 STATE_SCHEMA_VERSION = 1
 SAFE_KEY_MAX_LENGTH = 120
 TURN_DIGEST_LENGTH = 16
 _MISSING = object()
+SUPPORTED_CAPABILITIES = {"delivery_review", "protective_expansion"}
 
 
 def _allow() -> dict[str, Any]:
@@ -61,6 +63,12 @@ def _atomic_write_json(path: Path, value: dict[str, Any]) -> None:
             os.unlink(temporary)
         except FileNotFoundError:
             pass
+
+
+def _selected_capability() -> str | None:
+    value = _read_json(CAPABILITY_CONFIG_PATH)
+    capability = value.get("capability") if value else None
+    return capability if capability in SUPPORTED_CAPABILITIES else None
 
 
 def _host_paths() -> tuple[Path, Path] | None:
@@ -188,8 +196,10 @@ def _load_core_bridge() -> ModuleType | None:
 
 @contextmanager
 def _bridge_environment(data_root: Path) -> Iterator[None]:
+    capability = _selected_capability() or "delivery_review"
     overrides = {
         "COW_GATE_HOOK_DATA": str(data_root / CORE_DATA_DIRECTORY),
+        "COW_GATE_CAPABILITY": capability,
     }
     previous = {key: os.environ.get(key, _MISSING) for key in overrides}
     try:
