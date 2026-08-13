@@ -136,14 +136,15 @@ class HookLayerContractTests(unittest.TestCase):
             (HOOK_ROOT / "host-capabilities.json").read_text(encoding="utf-8")
         )
         activation = capabilities["activation"]
-        self.assertEqual(6, capabilities["schema_version"])
+        self.assertEqual(7, capabilities["schema_version"])
         self.assertFalse(activation["ordinary_skill_install_enables_hooks"])
         self.assertFalse(activation["runtime_host_detection"])
         self.assertFalse(activation["automatic_file_generation"])
         self.assertFalse(activation["automatic_installation"])
         self.assertFalse(activation["network_access"])
         self.assertTrue(activation["task_opt_out_supported"])
-        self.assertEqual("not_shipped", capabilities["length_gate"]["status"])
+        self.assertEqual("candidate", capabilities["length_gate"]["status"])
+        self.assertFalse(capabilities["length_gate"]["automatic_compression"])
         self.assertFalse(capabilities["protective_expansion_gate"]["default_selected"])
         self.assertEqual(
             "available_opt_in",

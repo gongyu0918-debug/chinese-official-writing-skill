@@ -73,7 +73,7 @@ ADAPTER_GUIDE_LINKS: Final = {
     )
 }
 CAPABILITY_DEFAULT: Final = "delivery_review"
-CAPABILITY_CHOICES: Final = (CAPABILITY_DEFAULT, "protective_expansion")
+CAPABILITY_CHOICES: Final = (CAPABILITY_DEFAULT, "protective_expansion", "under_length")
 
 
 def _is_excluded(relative: Path, adapter: HostAdapter) -> bool:
@@ -127,6 +127,7 @@ def _validate(output: Path, adapter: HostAdapter) -> None:
         output / "skills/chinese-official-writing/hooks/gate_stop_hook.py",
         output / "skills/chinese-official-writing/hooks/capabilities/protective_expansion/contract.py",
         output / "skills/chinese-official-writing/hooks/capabilities/protective_expansion/runtime.py",
+        output / "skills/chinese-official-writing/hooks/capabilities/under_length/runtime.py",
         output / "skills/chinese-official-writing/scripts/review_gate.py",
         output / "hook-capability.json",
         output / "README.md",

@@ -65,7 +65,7 @@ class SkillHubPackageBuilderTests(unittest.TestCase):
             )
             self.assertEqual("hooks/adapters/codex", capabilities["hosts"]["codex"]["adapter_source"])
             self.assertEqual("hooks/adapters/codebuddy", capabilities["hosts"]["codebuddy"]["adapter_source"])
-            self.assertEqual("not_shipped", capabilities["length_gate"]["status"])
+            self.assertEqual("candidate", capabilities["length_gate"]["status"])
             self.assertEqual(
                 (output / "_meta.json").read_text(encoding="utf-8"),
                 f'{{\n  "slug": "chinese-official-writing",\n  "version": "{RC_VERSION}"\n}}\n',

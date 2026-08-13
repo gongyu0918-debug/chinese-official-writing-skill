@@ -75,7 +75,7 @@ class ClaudeGateAdapterTests(unittest.TestCase):
         self.assertFalse(claude["first_party_login_required"])
         self.assertEqual("skill_only", capabilities["hosts"]["openclaw"]["status"])
         self.assertEqual("package_manifest_verified", capabilities["hosts"]["codebuddy"]["status"])
-        self.assertFalse(capabilities["length_gate"]["automatic_expansion"])
+        self.assertTrue(capabilities["length_gate"]["automatic_expansion"])
         hooks = json.loads(self.hooks_path.read_text(encoding="utf-8"))["hooks"]
         self.assertEqual(["UserPromptSubmit", "PostToolUse", "Stop"], list(hooks))
         self.assertEqual("Bash|Read", hooks["PostToolUse"][0]["matcher"])
