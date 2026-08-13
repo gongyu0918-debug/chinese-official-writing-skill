@@ -272,6 +272,84 @@ class HostGateAdapterTests(HookCompanionTestMixin, unittest.TestCase):
                 ),
             )
 
+    def test_workbuddy_recovers_first_prompt_when_plugin_hooks_register_late(self):
+        with self._host_environment("workbuddy"):
+            adapter = self.ADAPTERS["workbuddy"]
+            session_id = "late-plugin-session"
+            transcript = self.data_root / f"{session_id}.jsonl"
+            transcript.write_text(
+                json.dumps(
+                    {
+                        "type": "message",
+                        "role": "user",
+                        "sessionId": session_id,
+                        "content": [
+                            {
+                                "type": "input_text",
+                                "text": "根据材料起草一份450—550字的工作总结。",
+                            }
+                        ],
+                    },
+                    ensure_ascii=False,
+                )
+                + "\n",
+                encoding="utf-8",
+            )
+            plugin_root = self.PLUGIN_ROOTS["workbuddy"]
+            read = self._event(
+                "PostToolUse",
+                session_id=session_id,
+                transcript_path=str(transcript),
+                tool_name="Read",
+                tool_input={
+                    "file_path": str(
+                        plugin_root / "skills" / "chinese-official-writing" / "SKILL.md"
+                    )
+                },
+                tool_response={"success": True},
+            )
+            self.assertEqual({"continue": True}, adapter.handle(read))
+            result = adapter.handle(
+                self._event(
+                    "Stop",
+                    session_id=session_id,
+                    transcript_path=str(transcript),
+                    stop_hook_active=False,
+                    last_assistant_message="工作总结\n\n本年度完成有关工作。",
+                )
+            )
+            self.assertEqual(False, result.get("continue"))
+            turn_id = adapter._active_workbuddy_turn(self.data_root, session_id)
+            self.assertTrue(turn_id and turn_id.startswith("workbuddy-1-"))
+            core_record = next(
+                (self.data_root / "shared-gate-core").rglob(f"{turn_id}.json")
+            )
+            record = json.loads(core_record.read_text(encoding="utf-8"))
+            self.assertEqual(
+                "根据材料起草一份450—550字的工作总结。", record.get("request")
+            )
+            self.assertTrue(record.get("bootstrapped_by_stop"))
+
+    def test_workbuddy_late_registration_rejects_foreign_transcript(self):
+        with self._host_environment("workbuddy"):
+            adapter = self.ADAPTERS["workbuddy"]
+            transcript = self.data_root / "other-session.jsonl"
+            transcript.write_text(
+                '{"type":"message","role":"user","sessionId":"other-session",'
+                '"content":[{"type":"input_text","text":"起草450—550字总结"}]}\n',
+                encoding="utf-8",
+            )
+            result = adapter.handle(
+                self._event(
+                    "Stop",
+                    session_id="expected-session",
+                    transcript_path=str(transcript),
+                    stop_hook_active=False,
+                    last_assistant_message="短稿",
+                )
+            )
+            self.assertEqual({"continue": True}, result)
+
     def test_wrong_plugin_root_and_missing_data_fail_open_without_writes(self):
         with mock.patch.dict(
             os.environ,
