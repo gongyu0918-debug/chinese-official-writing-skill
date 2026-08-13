@@ -51,7 +51,7 @@
       "runtime_adapter": "scripts/host_gate_adapter.py",
       "events": [
         "UserPromptSubmit",
-        "PostToolUse:Bash|Read",
+        "PostToolUse:Bash|Read|Skill",
         "Stop"
       ],
       "required_stop_field": "last_assistant_message",
