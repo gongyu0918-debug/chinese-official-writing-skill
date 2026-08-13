@@ -120,6 +120,10 @@ def _start_workbuddy_turn(data_root: Path, session_id: str, prompt: str) -> str 
     return turn_id
 
 
+def _is_workbuddy_stop_feedback(prompt: str) -> bool:
+    return prompt.lstrip().startswith("Stop hook feedback:")
+
+
 def _active_workbuddy_turn(data_root: Path, session_id: str) -> str | None:
     value = _read_json(_turn_state_path(data_root, session_id))
     if value is None:
@@ -204,9 +208,11 @@ def _map_event(
         prompt = event.get("prompt")
         if not isinstance(prompt, str) or not prompt.strip():
             return None
-        turn_id = _start_workbuddy_turn(data_root, session_id, prompt)
-        if turn_id is None:
-            return None
+        turn_id = _active_workbuddy_turn(data_root, session_id)
+        if not (_is_workbuddy_stop_feedback(prompt) and turn_id is not None):
+            turn_id = _start_workbuddy_turn(data_root, session_id, prompt)
+            if turn_id is None:
+                return None
     else:
         turn_id = _active_workbuddy_turn(data_root, session_id)
         if turn_id is None:
@@ -221,6 +227,8 @@ def _map_event(
     if name == "UserPromptSubmit":
         prompt = event.get("prompt")
         if not isinstance(prompt, str) or not prompt.strip():
+            return None
+        if host == "workbuddy" and _is_workbuddy_stop_feedback(prompt):
             return None
         mapped["prompt"] = prompt
         return mapped

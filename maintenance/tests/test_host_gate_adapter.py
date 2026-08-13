@@ -371,6 +371,27 @@ class HostGateAdapterTests(HookCompanionTestMixin, unittest.TestCase):
                 self.assertEqual(False, result.get("continue"))
                 self.assertIn("篇幅复核", result.get("reason", ""))
 
+    def test_workbuddy_stop_feedback_keeps_active_turn(self):
+        with self._host_environment("workbuddy"):
+            adapter = self.ADAPTERS["workbuddy"]
+            prompt = "根据材料起草一份800—900字的通知。"
+            self.assertEqual(
+                {"continue": True},
+                adapter.handle(self._event("UserPromptSubmit", prompt=prompt)),
+            )
+            first_turn = adapter._active_workbuddy_turn(self.data_root, "host-session-1")
+            result = adapter.handle(
+                self._event(
+                    "UserPromptSubmit",
+                    prompt="Stop hook feedback:\n请继续完成篇幅复核。",
+                )
+            )
+            self.assertEqual({"continue": True}, result)
+            self.assertEqual(
+                first_turn,
+                adapter._active_workbuddy_turn(self.data_root, "host-session-1"),
+            )
+
     def test_workbuddy_late_registration_rejects_foreign_transcript(self):
         with self._host_environment("workbuddy"):
             adapter = self.ADAPTERS["workbuddy"]
