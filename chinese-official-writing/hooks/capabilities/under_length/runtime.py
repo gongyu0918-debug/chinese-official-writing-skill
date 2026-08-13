@@ -107,10 +107,13 @@ def _allow() -> dict[str, Any]:
     return {"continue": True}
 
 
-def _authoritative_match(request: str, match: re.Match[str]) -> bool:
+def _authoritative_match(
+    request: str, match: re.Match[str], *, output_action: bool
+) -> bool:
     prefix = request[max(0, match.start() - 24) : match.start()]
-    return not MATERIAL_CONTEXT_RE.search(prefix) and not APPROXIMATE_LENGTH_RE.search(
-        prefix + match.group(0)
+    return (
+        (output_action or not MATERIAL_CONTEXT_RE.search(prefix))
+        and not APPROXIMATE_LENGTH_RE.search(prefix + match.group(0))
     )
 
 
@@ -118,8 +121,12 @@ def parse_spec(request: str) -> dict[str, Any] | None:
     """Return only an output-scoped hard lower bound or range."""
 
     ranges: list[re.Match[str]] = []
-    for pattern in (SCOPE_RANGE_RE, ACTION_RANGE_RE):
-        ranges.extend(match for match in pattern.finditer(request) if _authoritative_match(request, match))
+    for pattern, output_action in ((SCOPE_RANGE_RE, False), (ACTION_RANGE_RE, True)):
+        ranges.extend(
+            match
+            for match in pattern.finditer(request)
+            if _authoritative_match(request, match, output_action=output_action)
+        )
     if ranges:
         match = ranges[-1]
         minimum, maximum = int(match.group("minimum")), int(match.group("maximum"))
@@ -132,8 +139,12 @@ def parse_spec(request: str) -> dict[str, Any] | None:
             "scope": "body" if scope == "正文" or "正文" in match.group(0) else "full",
         }
     minima: list[re.Match[str]] = []
-    for pattern in (SCOPE_MIN_RE, ACTION_MIN_RE):
-        minima.extend(match for match in pattern.finditer(request) if _authoritative_match(request, match))
+    for pattern, output_action in ((SCOPE_MIN_RE, False), (ACTION_MIN_RE, True)):
+        minima.extend(
+            match
+            for match in pattern.finditer(request)
+            if _authoritative_match(request, match, output_action=output_action)
+        )
     if not minima:
         return None
     match = minima[-1]
