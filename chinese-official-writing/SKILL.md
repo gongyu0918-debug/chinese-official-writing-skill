@@ -118,4 +118,4 @@ metadata:
 
 检查 `.txt`、`.md` 或 `.docx` 草稿时可使用 `scripts/prose_lint.py`。需要检查重复事项和格式噪点时加 `--structure --format`。脚本只提示语言、格式和重复风险，不检查文种要素完整性；文种和办理要素仍按 `references/handling-elements.md` 与命中的文种检查叶复核，报告使用 `references/genre-checklist-report.md`，请示和申请使用 `references/genre-checklist-request.md`，可研只审使用 `references/genre-checklist-feasibility-review.md`，其他文种使用 `references/genre-checklist.md`。脚本不自动改写；不得把脚本结果作为不加判断的硬性清洗命令。
 
-用户明确要求安装、启用、适配或排查交付门禁 Hook 时，读取 `hooks/README.md`。普通起草、改稿、压缩和复核不加载该页，也不自动启用 Hook。
+用户明确要求处理交付门禁 Hook 时，读取 `hooks/README.md`。普通起草、改稿、压缩和复核不加载该页，也不自动启用 Hook。
