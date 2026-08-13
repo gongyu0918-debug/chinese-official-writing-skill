@@ -13,6 +13,7 @@
 ## 逐版发布证据
 
 - 当前 GitHub 与 SkillHub.cn 发布证据：[`release-1.6.3.md`](../../tests/evidence/release-1.6.3.md)。上一版 Hook 真实写稿结果见 [`v162-hook-writing-real-ab-final-result-20260812.md`](../../tests/evidence/v162-hook-writing-real-ab-final-result-20260812.md)。
+- v1.6.4 后篇幅不足 Hook 三宿主在线生命周期候选：[`v164-under-length-three-host-live-result-20260814.md`](../../tests/evidence/v164-under-length-three-host-live-result-20260814.md)。该候选仍为 HOLD，不属于已发布能力。
 - 上一正式发行版：[`release-1.6.2.md`](../../tests/evidence/release-1.6.2.md)。
 - 当前仓库目录、GitHub OpenClaw 兼容包和 README 收敛结果：[`repository-layout-v161-result-20260812.md`](../../tests/evidence/repository-layout-v161-result-20260812.md)。
 - 1.5.x 的发布门禁、提交与 tag、清洁包、平台回执和传播状态保存在 `maintenance/tests/evidence/release-1.5.x.md`。
