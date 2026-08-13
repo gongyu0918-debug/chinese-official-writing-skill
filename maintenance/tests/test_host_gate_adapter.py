@@ -10,7 +10,7 @@ import tempfile
 import unittest
 from unittest import mock
 
-from maintenance.tests.hook_companion_support import HookCompanionTestMixin
+from maintenance.tests.hook_companion_support import ASSEMBLER, HookCompanionTestMixin
 
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -292,6 +292,61 @@ class HostGateAdapterTests(HookCompanionTestMixin, unittest.TestCase):
             )
         self.assertEqual({"continue": True}, result)
         self.assertEqual([], list(self.data_root.rglob("*")))
+
+    def test_static_capability_selection_reaches_protective_observer(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            for host in ("codex", "workbuddy"):
+                with self.subTest(host=host):
+                    target = Path(temporary) / host
+                    ASSEMBLER.assemble(
+                        "codex" if host == "codex" else "codebuddy",
+                        target,
+                        "protective_expansion",
+                    )
+                    adapter_path = target / "scripts/host_gate_adapter.py"
+                    adapter = load_module(
+                        f"cow_{host}_protective_adapter_{id(self)}", adapter_path
+                    )
+                    previous_root = self.PLUGIN_ROOTS[host]
+                    previous_adapter = self.ADAPTERS[host]
+                    self.PLUGIN_ROOTS[host] = target
+                    self.ADAPTERS[host] = adapter
+                    try:
+                        result = self._arm_and_stop(host)
+                        self.assertIn("观察包如下", result.get("reason", ""))
+                    finally:
+                        self.PLUGIN_ROOTS[host] = previous_root
+                        self.ADAPTERS[host] = previous_adapter
+
+    def test_static_delivery_review_overrides_ambient_protective_capability(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            for host in ("codex", "workbuddy"):
+                with self.subTest(host=host):
+                    target = Path(temporary) / host
+                    ASSEMBLER.assemble(
+                        "codex" if host == "codex" else "codebuddy",
+                        target,
+                        "delivery_review",
+                    )
+                    adapter = load_module(
+                        f"cow_{host}_ambient_adapter_{id(self)}",
+                        target / "scripts/host_gate_adapter.py",
+                    )
+                    previous_root = self.PLUGIN_ROOTS[host]
+                    previous_adapter = self.ADAPTERS[host]
+                    self.PLUGIN_ROOTS[host] = target
+                    self.ADAPTERS[host] = adapter
+                    try:
+                        with mock.patch.dict(
+                            os.environ,
+                            {"COW_GATE_CAPABILITY": "protective_expansion"},
+                            clear=False,
+                        ):
+                            result = self._arm_and_stop(host)
+                        self.assertNotIn("观察包如下", result.get("reason", ""))
+                    finally:
+                        self.PLUGIN_ROOTS[host] = previous_root
+                        self.ADAPTERS[host] = previous_adapter
 
 
 if __name__ == "__main__":

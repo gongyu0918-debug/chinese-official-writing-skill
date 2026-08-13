@@ -86,6 +86,7 @@ class HookLayerContractTests(unittest.TestCase):
                 with self.subTest(host=host):
                     output = root / host
                     result = ASSEMBLER.assemble(host, output)
+                    self.assertEqual("delivery_review", result["capability"])
                     self.assertFalse(result["installed"])
                     self.assertFalse(result["enabled"])
                     self.assertFalse(result["network_used"])
@@ -103,6 +104,11 @@ class HookLayerContractTests(unittest.TestCase):
                     self.assertTrue((packaged / "SKILL.md").is_file())
                     self.assertTrue((packaged / "hooks/gate_stop_hook.py").is_file())
                     self.assertTrue((packaged / "scripts/review_gate.py").is_file())
+                    self.assertTrue((packaged / "hooks/capabilities/protective_expansion/runtime.py").is_file())
+                    self.assertEqual(
+                        "delivery_review",
+                        json.loads((output / "hook-capability.json").read_text(encoding="utf-8"))["capability"],
+                    )
                     self.assertFalse((packaged / "hooks/adapters").exists())
                     self.assertFalse((packaged / "hooks/core").exists())
                     guide = packaged / "hooks/README.md"
@@ -127,7 +133,7 @@ class HookLayerContractTests(unittest.TestCase):
             (HOOK_ROOT / "host-capabilities.json").read_text(encoding="utf-8")
         )
         activation = capabilities["activation"]
-        self.assertEqual(5, capabilities["schema_version"])
+        self.assertEqual(6, capabilities["schema_version"])
         self.assertFalse(activation["ordinary_skill_install_enables_hooks"])
         self.assertFalse(activation["runtime_host_detection"])
         self.assertFalse(activation["automatic_file_generation"])
@@ -135,6 +141,7 @@ class HookLayerContractTests(unittest.TestCase):
         self.assertFalse(activation["network_access"])
         self.assertTrue(activation["task_opt_out_supported"])
         self.assertEqual("not_shipped", capabilities["length_gate"]["status"])
+        self.assertFalse(capabilities["protective_expansion_gate"]["default_selected"])
         for host in ("codex", "codebuddy", "claude_code"):
             self.assertIn("adapter_source", capabilities["hosts"][host])
 

@@ -4,6 +4,7 @@ import os
 from pathlib import Path
 import tempfile
 import unittest
+from unittest import mock
 
 from maintenance.tests.hook_companion_support import ASSEMBLER
 
@@ -239,6 +240,93 @@ class ClaudeGateAdapterTests(unittest.TestCase):
         self.assertEqual([], PREFLIGHT.validate_plugin_layout(self.adapter_root))
         self.assertEqual((2, 1, 195), PREFLIGHT.parse_version("2.1.195 (Claude Code)"))
         self.assertIsNone(PREFLIGHT.parse_version("not a version"))
+
+    def test_static_capability_selection_reaches_protective_observer(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary) / "claude-protective"
+            ASSEMBLER.assemble("claude-code", root, "protective_expansion")
+            adapter = load_module(
+                f"cow_claude_protective_adapter_{id(self)}",
+                root / "scripts/gate_stop_hook.py",
+            )
+            previous_root = os.environ["CLAUDE_PLUGIN_ROOT"]
+            os.environ["CLAUDE_PLUGIN_ROOT"] = str(root)
+            try:
+                self.assertTrue(
+                    adapter.handle(
+                        self._event("UserPromptSubmit", prompt="起草简短情况说明。")
+                    )["continue"]
+                )
+                self.assertTrue(
+                    adapter.handle(
+                        self._event(
+                            "PostToolUse",
+                            tool_name="Read",
+                            tool_input={
+                                "file_path": str(
+                                    root / "skills/chinese-official-writing/SKILL.md"
+                                )
+                            },
+                            tool_response={"success": True},
+                        )
+                    )["continue"]
+                )
+                stopped = adapter.handle(
+                    self._event(
+                        "Stop",
+                        stop_hook_active=False,
+                        last_assistant_message="已归集9项意见。上述意见不构成修改。",
+                    )
+                )
+                self.assertIn("观察包如下", stopped.get("reason", ""))
+            finally:
+                os.environ["CLAUDE_PLUGIN_ROOT"] = previous_root
+
+    def test_static_delivery_review_overrides_ambient_protective_capability(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary) / "claude-delivery"
+            ASSEMBLER.assemble("claude-code", root, "delivery_review")
+            adapter = load_module(
+                f"cow_claude_ambient_adapter_{id(self)}",
+                root / "scripts/gate_stop_hook.py",
+            )
+            previous_root = os.environ["CLAUDE_PLUGIN_ROOT"]
+            os.environ["CLAUDE_PLUGIN_ROOT"] = str(root)
+            try:
+                with mock.patch.dict(
+                    os.environ,
+                    {"COW_GATE_CAPABILITY": "protective_expansion"},
+                    clear=False,
+                ):
+                    self.assertTrue(
+                        adapter.handle(
+                            self._event("UserPromptSubmit", prompt="起草简短情况说明。")
+                        )["continue"]
+                    )
+                    self.assertTrue(
+                        adapter.handle(
+                            self._event(
+                                "PostToolUse",
+                                tool_name="Read",
+                                tool_input={
+                                    "file_path": str(
+                                        root / "skills/chinese-official-writing/SKILL.md"
+                                    )
+                                },
+                                tool_response={"success": True},
+                            )
+                        )["continue"]
+                    )
+                    stopped = adapter.handle(
+                        self._event(
+                            "Stop",
+                            stop_hook_active=False,
+                            last_assistant_message="已归集9项意见。上述意见不构成修改。",
+                        )
+                    )
+                self.assertNotIn("观察包如下", stopped.get("reason", ""))
+            finally:
+                os.environ["CLAUDE_PLUGIN_ROOT"] = previous_root
 
 
 if __name__ == "__main__":

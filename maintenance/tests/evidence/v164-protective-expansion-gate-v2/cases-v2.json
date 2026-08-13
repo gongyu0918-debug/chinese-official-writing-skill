@@ -1,0 +1,273 @@
+{
+  "schema_version": 2,
+  "supersedes": "cases.json",
+  "required_delete": [
+    {
+      "id": "P01-delete",
+      "family": "role_scope_disclaimer",
+      "genre": "季度汇总",
+      "request": "根据给定完成情况起草季度汇总，只反映本季度已完成的32项变更。",
+      "authority_scope": "request_only",
+      "draft": "本季度共完成32项变更。季度汇总不对变更所依据的业务规定是否合法作出评价。",
+      "targets": ["季度汇总不对变更所依据的业务规定是否合法作出评价。"],
+      "expected": "本季度共完成32项变更。"
+    },
+    {
+      "id": "P02-delete",
+      "family": "downstream_procurement_states",
+      "genre": "设备采购请示",
+      "request": "起草设备采购请示。材料只明确购置事项和预算，未要求说明采购过程。",
+      "authority_scope": "request_only",
+      "draft": "本次购置资金已列入年度预算。供应商尚未确定、验收尚未实施。",
+      "targets": ["供应商尚未确定、验收尚未实施。"],
+      "expected": "本次购置资金已列入年度预算。"
+    },
+    {
+      "id": "P03-delete",
+      "family": "drafting_future_metadata",
+      "genre": "试行办法",
+      "request": "起草试行办法，试行期为6个月，自印发之日起施行。材料没有规定期满后的制度转归。",
+      "authority_scope": "request_only",
+      "draft": "本办法自印发之日起试行6个月。试行期满后是否转为正式制度，另行决定。",
+      "targets": ["试行期满后是否转为正式制度，另行决定。"],
+      "expected": "本办法自印发之日起试行6个月。"
+    },
+    {
+      "id": "P04-delete",
+      "family": "detached_missing_result",
+      "genre": "活动新闻",
+      "request": "根据活动事实起草新闻稿：当天发放服务手册276份。",
+      "authority_scope": "request_only",
+      "draft": "活动当天发放服务手册276份。意见卡由市公共文化中心留存，目前尚无统计结果。",
+      "targets": ["意见卡由市公共文化中心留存，目前尚无统计结果。"],
+      "expected": "活动当天发放服务手册276份。"
+    },
+    {
+      "id": "P05-delete",
+      "family": "serial_self_certification",
+      "genre": "试行情况简报",
+      "request": "根据已归集9项反馈意见起草简报，不写材料未给出的修订状态。",
+      "authority_scope": "request_only",
+      "draft": "已归集9项反馈意见。上述意见不构成修改，不表示条文已经调整，尚未形成修订方案。",
+      "targets": ["上述意见不构成修改，不表示条文已经调整，尚未形成修订方案。"],
+      "expected": "已归集9项反馈意见。"
+    },
+    {
+      "id": "P06-delete",
+      "family": "unsupported_budget_assurance",
+      "genre": "资金申请请示",
+      "request": "起草资金申请请示。材料只明确资金已列入预算、支出渠道明确。",
+      "authority_scope": "request_only",
+      "draft": "资金已列入预算，支出渠道明确，无需另行追加预算，不影响其他工作正常开展。",
+      "targets": ["，无需另行追加预算，不影响其他工作正常开展"],
+      "expected": "资金已列入预算，支出渠道明确。"
+    },
+    {
+      "id": "P07-delete",
+      "family": "unsupported_supervision_commitment",
+      "genre": "设备购置请示",
+      "request": "起草设备购置请示。材料只明确购置资金已落实，没有专项资金或监督安排。",
+      "authority_scope": "request_only",
+      "draft": "本次购置资金已落实，确保专款专用并接受监督。",
+      "targets": ["，确保专款专用并接受监督"],
+      "expected": "本次购置资金已落实。"
+    },
+    {
+      "id": "P08-delete",
+      "family": "unanchored_future_action",
+      "genre": "活动新闻",
+      "request": "起草活动新闻稿，不新增后续计划。活动当天共有320名市民参加。",
+      "authority_scope": "request_only",
+      "draft": "活动当天共有320名市民参加。后续将据此进一步完善服务。",
+      "targets": ["后续将据此进一步完善服务。"],
+      "expected": "活动当天共有320名市民参加。"
+    },
+    {
+      "id": "P09-delete",
+      "family": "negative_scope_expansion",
+      "genre": "核查情况说明",
+      "request": "起草核查情况说明，只能反映已核对48条记录。",
+      "authority_scope": "request_only",
+      "draft": "本次共核对48条记录。其他事项均无需进一步核对。",
+      "targets": ["其他事项均无需进一步核对。"],
+      "expected": "本次共核对48条记录。"
+    },
+    {
+      "id": "P10-delete",
+      "family": "meeting_self_proof",
+      "genre": "会议纪要",
+      "request": "根据材料整理会议纪要。材料只记载会议听取运行情况。",
+      "authority_scope": "request_only",
+      "draft": "会议听取了运行情况。本次会议未对维护措施的长期效果作出结论。",
+      "targets": ["本次会议未对维护措施的长期效果作出结论。"],
+      "expected": "会议听取了运行情况。"
+    },
+    {
+      "id": "P11-delete",
+      "family": "opposition_self_proof",
+      "genre": "新闻评论",
+      "request": "围绕充分听取读者意见起草短评，材料未提供决策程序或建设方权限。",
+      "authority_scope": "request_only",
+      "draft": "功能调整应充分听取读者意见，而不是由建设方单方面拍板。",
+      "targets": ["，而不是由建设方单方面拍板"],
+      "expected": "功能调整应充分听取读者意见。"
+    },
+    {
+      "id": "P12-delete",
+      "family": "generic_future_tail",
+      "genre": "短通知",
+      "request": "起草工单办理通知，只要求各承办岗位办理在办工单。",
+      "authority_scope": "request_only",
+      "draft": "各承办岗位要按本通知要求办理在办工单。后续将持续推进工作、完善机制。",
+      "targets": ["后续将持续推进工作、完善机制。"],
+      "expected": "各承办岗位要按本通知要求办理在办工单。"
+    }
+  ],
+  "required_keep": [
+    {
+      "id": "P01-keep",
+      "family": "role_scope_disclaimer",
+      "genre": "审计报告",
+      "request": "起草经济责任审计报告，按审计准则说明评价范围。",
+      "source": "审计评价须以充分证据为基础；审计未涉及或证据不足的事项不作评价。",
+      "authority_scope": "explicit_source",
+      "draft": "审计评价以充分证据为基础，对审计未涉及或证据不足的事项不作评价。"
+    },
+    {
+      "id": "P02-keep",
+      "family": "downstream_procurement_states",
+      "genre": "框架协议衔接通知",
+      "request": "起草框架协议采购衔接通知。",
+      "source": "新一轮入围供应商尚未确定时，可继续按本期框架协议执行采购。",
+      "authority_scope": "explicit_source",
+      "draft": "如新一轮入围供应商尚未确定，可继续按本期框架协议执行采购。"
+    },
+    {
+      "id": "P03-keep",
+      "family": "drafting_future_metadata",
+      "genre": "试行制度",
+      "request": "起草试行制度，并写明期满后的评估和效力处理。",
+      "source": "试行期满后开展评估，根据评估结果决定正式发布、修订或者停止试行。",
+      "authority_scope": "explicit_source",
+      "draft": "试行期满后开展评估，并根据评估结果决定正式发布、修订或者停止试行。"
+    },
+    {
+      "id": "P04-keep",
+      "family": "detached_missing_result",
+      "genre": "工作进展",
+      "request": "起草意见征集工作进展。",
+      "source": "市公共文化中心负责汇总意见卡，目前统计工作仍在进行。",
+      "authority_scope": "explicit_source",
+      "draft": "市公共文化中心正在汇总意见卡，统计工作仍在进行。"
+    },
+    {
+      "id": "P05-keep",
+      "family": "serial_self_certification",
+      "genre": "债权申报公告",
+      "request": "起草债权申报公告，明确初步核对的法律效果。",
+      "source": "送达通知不确认债权效力；核对原件不确认材料真实性，也不改变诉讼时效。",
+      "authority_scope": "explicit_source",
+      "draft": "送达申报通知不构成债权确认；原件初步核对不表示对材料真实性的最终确认，也不改变诉讼时效。"
+    },
+    {
+      "id": "P06-keep",
+      "family": "unsupported_budget_assurance",
+      "genre": "预算调整请示",
+      "request": "起草预算调整请示，说明资金从现有项目结余中调剂。",
+      "source": "所需资金全部从现有项目结余中调剂，无需新增财政预算。",
+      "authority_scope": "explicit_source",
+      "draft": "所需资金从现有项目结余中调剂，无需新增财政预算。"
+    },
+    {
+      "id": "P07-keep",
+      "family": "unsupported_supervision_commitment",
+      "genre": "专项资金管理办法",
+      "request": "起草专项资金管理办法，明确专款专用和监督要求。",
+      "source": "专项资金实行专款专用、单独核算，并接受财政和审计监督。",
+      "authority_scope": "explicit_source",
+      "draft": "专项资金实行专款专用、单独核算，并接受财政和审计监督。"
+    },
+    {
+      "id": "P08-keep",
+      "family": "unanchored_future_action",
+      "genre": "服务工作报告",
+      "request": "起草服务工作报告，写明下一步优化事项。",
+      "source": "市服务中心下一步将完善预约流程和老年人现场引导。",
+      "authority_scope": "explicit_source",
+      "draft": "下一步，市服务中心将完善预约流程和老年人现场引导。"
+    },
+    {
+      "id": "P09-keep",
+      "family": "negative_scope_expansion",
+      "genre": "政务服务规程",
+      "request": "起草政务服务规程，明确免重复核验范围。",
+      "source": "通过可信数据共享已经核验身份的，不再重复进行身份核验。",
+      "authority_scope": "explicit_source",
+      "draft": "通过可信数据共享已经核验身份的，不再重复进行身份核验。"
+    },
+    {
+      "id": "P10-keep",
+      "family": "meeting_self_proof",
+      "genre": "会议纪要",
+      "request": "根据材料整理会议纪要。",
+      "source": "议题经讨论仍有较大分歧，会议决定暂缓表决，待进一步调查研究后再次审议。",
+      "authority_scope": "explicit_source",
+      "draft": "该议题经讨论仍有较大分歧，会议决定暂缓表决，待进一步调查研究后再次审议。"
+    },
+    {
+      "id": "P11-keep",
+      "family": "opposition_self_proof",
+      "genre": "重大事项决策制度",
+      "request": "起草重大事项集体决策制度。",
+      "source": "重大事项必须由集体研究决定，不得以个人决定代替集体决定。",
+      "authority_scope": "explicit_source",
+      "draft": "重大事项必须由集体研究决定，不得以个人决定代替集体决定。"
+    },
+    {
+      "id": "P12-keep",
+      "family": "generic_future_tail",
+      "genre": "工单办理通知",
+      "request": "起草工单办理通知，按承诺时限推进。",
+      "source": "各承办岗位负责持续推进75件在办工单，确保在既定承诺时限内办结。",
+      "authority_scope": "explicit_source",
+      "draft": "各承办岗位要持续推进75件在办工单办理，确保在既定承诺时限内办结。"
+    }
+  ],
+  "ambiguous_fallback": [
+    {
+      "id": "A01",
+      "reason": "新闻独立状态需要普通写作补责任主体或进展，delete-only 不改写",
+      "request": "起草案件进展新闻消息。",
+      "authority_scope": "request_only",
+      "draft": "犯罪嫌疑人尚未抓获。"
+    },
+    {
+      "id": "A02",
+      "reason": "恢复时间是事实还是多余尾句取决于不可见处置材料",
+      "request": "起草道路抢修新闻消息。",
+      "authority_scope": "request_only",
+      "draft": "具体恢复通行时间尚未确定。"
+    },
+    {
+      "id": "A03",
+      "reason": "专项资金属性和监督义务未在可见权威范围内说明",
+      "request": "起草资金申请。",
+      "authority_scope": "request_only",
+      "draft": "资金应当专款专用并接受监督。"
+    },
+    {
+      "id": "A04",
+      "reason": "反馈后的调整机制可能是必要程序，也可能是保护性未来安排",
+      "request": "起草试行情况材料。",
+      "authority_scope": "request_only",
+      "draft": "是否调整、如何调整，将根据反馈归集核对情况研究确定。"
+    },
+    {
+      "id": "A05",
+      "reason": "附件或工具读取材料未显式交给 Hook，无法判断原句是否有来源",
+      "request": "根据附件起草情况说明。",
+      "authority_scope": "request_only",
+      "draft": "验收尚未完成。"
+    }
+  ]
+}

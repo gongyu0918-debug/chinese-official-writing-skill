@@ -24,7 +24,12 @@ class SkillHubPackageBuilderTests(unittest.TestCase):
             output = Path(temporary) / "publish-package"
             result = BUILDER.build_package(output, version=RC_VERSION)
 
-            self.assertEqual(result["files"], 48)
+            expected_files = len(BUILDER.tracked_canonical_files()) + 2
+            self.assertEqual(result["files"], expected_files)
+            self.assertEqual(
+                result["files"],
+                len([path for path in output.rglob("*") if path.is_file()]),
+            )
             self.assertEqual(result["license"], "LICENSE.md")
             self.assertFalse((output / "LICENSE").exists())
             self.assertEqual((output / "LICENSE.md").read_bytes(), (ROOT / "LICENSE").read_bytes())
@@ -33,6 +38,15 @@ class SkillHubPackageBuilderTests(unittest.TestCase):
             self.assertTrue((output / "hooks" / "README.md").is_file())
             self.assertTrue((output / "hooks" / "host-capabilities.json").is_file())
             self.assertTrue((output / "hooks" / "core" / "gate_stop_hook.py").is_file())
+            self.assertTrue(
+                (
+                    output
+                    / "hooks"
+                    / "capabilities"
+                    / "protective_expansion"
+                    / "runtime.py"
+                ).is_file()
+            )
             self.assertTrue((output / "hooks" / "adapters" / "host_gate_adapter.py").is_file())
             self.assertFalse((output / ".codex-plugin").exists())
             self.assertFalse((output / ".codebuddy-plugin").exists())

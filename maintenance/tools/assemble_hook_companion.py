@@ -72,6 +72,8 @@ ADAPTER_GUIDE_LINKS: Final = {
         ("claude-code", "Claude Code"),
     )
 }
+CAPABILITY_DEFAULT: Final = "delivery_review"
+CAPABILITY_CHOICES: Final = (CAPABILITY_DEFAULT, "protective_expansion")
 
 
 def _is_excluded(relative: Path, adapter: HostAdapter) -> bool:
@@ -123,7 +125,10 @@ def _validate(output: Path, adapter: HostAdapter) -> None:
         output / adapter.adapter_target,
         output / "skills/chinese-official-writing/SKILL.md",
         output / "skills/chinese-official-writing/hooks/gate_stop_hook.py",
+        output / "skills/chinese-official-writing/hooks/capabilities/protective_expansion/contract.py",
+        output / "skills/chinese-official-writing/hooks/capabilities/protective_expansion/runtime.py",
         output / "skills/chinese-official-writing/scripts/review_gate.py",
+        output / "hook-capability.json",
         output / "README.md",
         output / "LICENSE",
     )
@@ -151,11 +156,15 @@ def _validate(output: Path, adapter: HostAdapter) -> None:
                     )
 
 
-def assemble(host: str, output: Path) -> dict[str, object]:
+def assemble(
+    host: str, output: Path, capability: str = CAPABILITY_DEFAULT
+) -> dict[str, object]:
     """Assemble files only; never install, enable, probe hosts, or use the network."""
     adapter = HOST_ADAPTERS.get(host)
     if adapter is None:
         raise ValueError(f"unsupported host: {host}")
+    if capability not in CAPABILITY_CHOICES:
+        raise ValueError(f"unsupported Hook capability: {capability}")
     output = output.expanduser().resolve()
     if output.exists():
         raise FileExistsError(f"output already exists: {output}")
@@ -167,6 +176,16 @@ def assemble(host: str, output: Path) -> dict[str, object]:
         _copy(adapter.adapter_source, output / adapter.adapter_target)
         _copy(adapter.source_root / "README.md", output / "README.md")
         _copy(SKILL_ROOT / "LICENSE", output / "LICENSE")
+        (output / "hook-capability.json").write_text(
+            json.dumps(
+                {"schema_version": 1, "capability": capability},
+                ensure_ascii=False,
+                sort_keys=True,
+            )
+            + "\n",
+            encoding="utf-8",
+            newline="\n",
+        )
         _validate(output, adapter)
     except Exception:
         shutil.rmtree(output, ignore_errors=True)
@@ -177,6 +196,7 @@ def assemble(host: str, output: Path) -> dict[str, object]:
         "output": str(output),
         "files": len(files),
         "fingerprint": _fingerprint(output),
+        "capability": capability,
         "installed": False,
         "enabled": False,
         "network_used": False,
@@ -189,12 +209,21 @@ def parse_args() -> argparse.Namespace:
     )
     parser.add_argument("--host", required=True, choices=tuple(HOST_ADAPTERS))
     parser.add_argument("--output", required=True, type=Path)
+    parser.add_argument(
+        "--capability", choices=CAPABILITY_CHOICES, default=CAPABILITY_DEFAULT
+    )
     return parser.parse_args()
 
 
 def main() -> int:
     args = parse_args()
-    print(json.dumps(assemble(args.host, args.output), ensure_ascii=False, sort_keys=True))
+    print(
+        json.dumps(
+            assemble(args.host, args.output, args.capability),
+            ensure_ascii=False,
+            sort_keys=True,
+        )
+    )
     return 0
 
 

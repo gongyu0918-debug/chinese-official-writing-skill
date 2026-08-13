@@ -25,12 +25,12 @@ ASSEMBLER = load_module("cow_hook_companion_assembler", ASSEMBLER_PATH)
 class HookCompanionTestMixin:
     """Build throwaway companions; no test writes into the tracked product tree."""
 
-    def setUpHookCompanions(self) -> None:
+    def setUpHookCompanions(self, capability: str = "delivery_review") -> None:
         temporary = tempfile.TemporaryDirectory()
         self.addCleanup(temporary.cleanup)
         self.companion_temp = Path(temporary.name)
         self.companion_roots = {}
         for host in ("codex", "codebuddy", "claude-code"):
             target = self.companion_temp / host
-            ASSEMBLER.assemble(host, target)
+            ASSEMBLER.assemble(host, target, capability)
             self.companion_roots[host] = target
