@@ -142,6 +142,23 @@ class UnderLengthCapabilityTests(unittest.TestCase):
                 if "关闭 Hook" in request:
                     self.assertTrue(result["continue"])
 
+    def test_explicit_permission_to_miss_lower_bound_does_not_start(self) -> None:
+        request = (
+            "请起草800—900字通知。材料不足时宁可短于下限，不得重复凑字。"
+        )
+        self.arm(request)
+        result = CORE.handle(
+            self.event(
+                "Stop",
+                stop_hook_active=False,
+                last_assistant_message="会议通知\n\n各部门：\n定于明日召开会议。特此通知。",
+            )
+        )
+        self.assertIsInstance(result, dict)
+        record = self.record()
+        self.assertNotIn("under_length", record)
+        self.assertEqual("user_allows_shortfall", record["under_length_bypass"])
+
     def test_material_explanation_is_not_an_output_length_spec(self) -> None:
         self.assertIsNone(RUNTIME.parse_spec("请解释制度中正文不少于100字的含义。"))
         self.assertEqual(
@@ -176,6 +193,22 @@ class UnderLengthCapabilityTests(unittest.TestCase):
         original = "下一年度拟完善培训安排。"
         candidate = "将在下一年度改进培训安排，并结合既有工作逐步优化培训内容。"
         self.assertIsNone(RUNTIME.mechanical_reason(original, candidate, spec, ""))
+
+    def test_unsupported_added_process_is_rejected_but_request_grounded_action_is_allowed(self) -> None:
+        original = "会议安排四项议程。"
+        unsafe = "会议安排四项议程。请各部门提前通知参会人员，并保持通讯畅通。"
+        unsafe_items = RUNTIME._increment_items(original, unsafe)
+        self.assertEqual(
+            "under_length_unsupported_added_process",
+            RUNTIME._unsupported_added_process("会议安排四项议程。", original, unsafe_items),
+        )
+
+        request = "会议安排四项议程，请各部门提前通知参会人员。"
+        grounded = original + "请各部门提前通知参会人员。"
+        grounded_items = RUNTIME._increment_items(original, grounded)
+        self.assertIsNone(
+            RUNTIME._unsupported_added_process(request, original, grounded_items)
+        )
 
     def test_ongoing_investigation_equivalent_reaches_semantic_verifier(self) -> None:
         spec = {"minimum": 1, "maximum": 0, "scope": "full"}
