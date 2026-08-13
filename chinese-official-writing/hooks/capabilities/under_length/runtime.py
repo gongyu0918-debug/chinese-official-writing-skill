@@ -63,10 +63,6 @@ STATUS_ANCHOR_RE: Final = re.compile(
     r"尚未|未(?:完成|确定|实施|形成|办结)|拟(?:议|定|完善|优化|改进)|待(?:定|核)|"
     r"下一年度(?:拟|将))"
 )
-NEGATIVE_OR_PENDING_RE: Final = re.compile(
-    r"(?:未发现|未见|没有|尚未|未(?:完成|确定|实施|形成|办结)|"
-    r"正在(?:核查|办理|推进|处理|调查|侦办|抢修|统计)|在办|拟(?:议|定)|待(?:定|核))"
-)
 GENERAL_CONTINUATION_RE: Final = re.compile(
     r"(?:按计划推进|按既定安排(?:办理|推进)?|按工作计划(?:持续)?推进|"
     r"按规定程序(?:办理|推进)?|确保按期完成)"
@@ -203,10 +199,6 @@ def mechanical_reason(
     transition_reason = _status_transition_reason(original, candidate)
     if transition_reason:
         return transition_reason
-    if not set(NEGATIVE_OR_PENDING_RE.findall(original)).issubset(
-        set(NEGATIVE_OR_PENDING_RE.findall(candidate))
-    ):
-        return "under_length_negative_or_pending_state_dropped"
     has_anchor = bool(STATUS_ANCHOR_RE.search(request) or STATUS_ANCHOR_RE.search(original))
     if GENERAL_CONTINUATION_RE.search(candidate) and not has_anchor:
         return "under_length_general_continuation_unanchored"
