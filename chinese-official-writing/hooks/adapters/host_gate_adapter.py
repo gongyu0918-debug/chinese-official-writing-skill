@@ -29,6 +29,7 @@ CORE_DATA_DIRECTORY = "shared-gate-core"
 STATE_SCHEMA_VERSION = 1
 SAFE_KEY_MAX_LENGTH = 120
 TURN_DIGEST_LENGTH = 16
+MAX_TRANSCRIPT_BYTES = 8_000_000
 _MISSING = object()
 SUPPORTED_CAPABILITIES = {"delivery_review", "protective_expansion", "under_length"}
 
@@ -125,6 +126,46 @@ def _active_workbuddy_turn(data_root: Path, session_id: str) -> str | None:
         return None
     turn_id = value.get("turn_id")
     return turn_id if isinstance(turn_id, str) and turn_id else None
+
+
+def _recover_workbuddy_prompt(event: dict[str, Any]) -> str | None:
+    """Recover the current prompt when CodeBuddy registers plugin hooks late."""
+    session_id = event.get("session_id")
+    raw_path = event.get("transcript_path")
+    if not isinstance(session_id, str) or not session_id:
+        return None
+    if not isinstance(raw_path, str) or not raw_path:
+        return None
+    try:
+        path = Path(raw_path).expanduser().resolve(strict=True)
+        if path.name != f"{session_id}.jsonl" or path.stat().st_size > MAX_TRANSCRIPT_BYTES:
+            return None
+        lines = path.read_text(encoding="utf-8").splitlines()
+    except (OSError, UnicodeError):
+        return None
+    for line in reversed(lines):
+        try:
+            item = json.loads(line)
+        except json.JSONDecodeError:
+            continue
+        if not isinstance(item, dict) or item.get("sessionId") != session_id:
+            continue
+        if item.get("type") != "message" or item.get("role") != "user":
+            continue
+        content = item.get("content")
+        if not isinstance(content, list):
+            continue
+        texts = [
+            part.get("text")
+            for part in content
+            if isinstance(part, dict)
+            and part.get("type") == "input_text"
+            and isinstance(part.get("text"), str)
+            and part.get("text").strip()
+        ]
+        if texts:
+            return "\n".join(texts)
+    return None
 
 
 def _normalized_tool_input(event: dict[str, Any]) -> dict[str, Any] | None:
@@ -246,14 +287,39 @@ def handle(event: dict[str, Any]) -> dict[str, Any]:
     if paths is None or not isinstance(event, dict):
         return _allow()
     host, data_root = paths
-    mapped = _map_event(event, host, data_root)
-    if mapped is None:
-        return _allow()
     bridge = _load_core_bridge()
     if bridge is None or not callable(getattr(bridge, "handle", None)):
         return _allow()
     try:
         with _bridge_environment(data_root):
+            session_id = event.get("session_id")
+            event_name = event.get("hook_event_name")
+            if (
+                host == "workbuddy"
+                and event_name in {"PostToolUse", "Stop"}
+                and isinstance(session_id, str)
+                and not _active_workbuddy_turn(data_root, session_id)
+            ):
+                prompt = _recover_workbuddy_prompt(event)
+                turn_id = (
+                    _start_workbuddy_turn(data_root, session_id, prompt)
+                    if prompt is not None
+                    else None
+                )
+                cwd = event.get("cwd")
+                if turn_id is not None and isinstance(cwd, str) and cwd:
+                    bridge.handle(
+                        {
+                            "hook_event_name": "UserPromptSubmit",
+                            "session_id": session_id,
+                            "turn_id": turn_id,
+                            "cwd": cwd,
+                            "prompt": prompt,
+                        }
+                    )
+            mapped = _map_event(event, host, data_root)
+            if mapped is None:
+                return _allow()
             return _host_response(host, bridge.handle(mapped))
     except (OSError, RuntimeError, ValueError):
         return _allow()
