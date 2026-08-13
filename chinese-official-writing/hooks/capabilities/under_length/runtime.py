@@ -47,6 +47,11 @@ MATERIAL_CONTEXT_RE: Final = re.compile(
     r"(?:材料|附件|引语|原文|背景|摘录|写明|载明|提到|如下|制度|合同|条款|解释).{0,18}$"
 )
 APPROXIMATE_LENGTH_RE: Final = re.compile(r"(?:约|左右|控制在)")
+SHORTFALL_PERMISSION_RE: Final = re.compile(
+    r"(?:(?:材料|事实|信息)(?:不足|有限).{0,16}(?:宁可|可以|允许|可).{0,8}"
+    r"(?:短于|低于|少于)(?:下限|字数|篇幅)|"
+    r"(?:不必|无需|不要).{0,8}(?:强行|勉强)?(?:达到|凑到)(?:下限|字数|篇幅))"
+)
 EXPLICIT_TITLE_RE: Final = re.compile(
     r"(?:标题|题目)\s*(?:为|是|：|:)\s*[《\"]?([^》\"\n，。；;]+)"
 )
@@ -66,6 +71,18 @@ STATUS_ANCHOR_RE: Final = re.compile(
 GENERAL_CONTINUATION_RE: Final = re.compile(
     r"(?:按计划推进|按既定安排(?:办理|推进)?|按工作计划(?:持续)?推进|"
     r"按规定程序(?:办理|推进)?|确保按期完成)"
+)
+UNSUPPORTED_ADDED_PROCESS_RE: Final = re.compile(
+    r"(?:"
+    r"提前(?:做好当日工作衔接|通知本部门联络员|了解会议地点)|"
+    r"(?:遵守|维护)(?:会场|会议)秩序|保持(?:通讯|通信)畅通|"
+    r"督促.{0,12}(?:参会|准备)|"
+    r"(?:共同|专题)?研究提出.{0,12}(?:解决办法|解决方案|解决措施)|"
+    r"推动.{0,12}(?:尽快|及时)(?:处理|解决)|"
+    r"明确报送的(?:内容|时间|方式)|统筹做好会议.{0,8}准备|"
+    r"逐项说明工作(?:已完成|正在推进)|"
+    r"(?:书面材料|材料).{0,16}(?:条理清晰|内容完整|查阅使用|如实反映)"
+    r")"
 )
 MARKDOWN_HEADING_RE: Final = re.compile(r"^\s*#{1,6}\s+")
 NUMBERED_HEADING_RE: Final = re.compile(
@@ -150,6 +167,10 @@ def parse_spec(request: str) -> dict[str, Any] | None:
         "maximum": 0,
         "scope": "body" if scope == "正文" or "正文" in match.group(0) else "full",
     }
+
+
+def _user_allows_shortfall(request: str) -> bool:
+    return bool(SHORTFALL_PERMISSION_RE.search(request))
 
 
 def _required_labels(request: str) -> set[str]:
@@ -254,6 +275,21 @@ def _increment_items(original: str, candidate: str) -> list[dict[str, Any]]:
     return items
 
 
+def _unsupported_added_process(
+    request: str, original: str, increments: list[dict[str, Any]]
+) -> str | None:
+    authority = re.sub(r"\s+", "", request + "\n" + original)
+    for item in increments:
+        added = item.get("d1_text")
+        if not isinstance(added, str):
+            continue
+        for match in UNSUPPORTED_ADDED_PROCESS_RE.finditer(added):
+            phrase = re.sub(r"\s+", "", match.group(0))
+            if phrase and phrase not in authority:
+                return "under_length_unsupported_added_process"
+    return None
+
+
 def _verdict_instruction(
     request: str,
     original: str,
@@ -282,6 +318,8 @@ def _verdict_instruction(
         "材料事实、公文常识及基于二者且有责任/状态锚的合理推断可以通过；已有下一年度计划时，"
         "拟完善、拟优化与将在下一年度改进是允许的同强度表达。新增具体人事、时间、数字、职责、流程、"
         "决定、结果或状态升级，或以保护性外扩、重复、自证、空话凑字，必须标 new_specific_fact 并 FAIL。"
+        "凡 D1 新增通知、督促、落实、准备、报送方式、会议纪律、协调办法等动作或义务，而原请求或 D0 "
+        "没有同一事项授权，均属新增流程或职责，不得标为 restatement。"
         "只评价 D1 增量，不把 D0 原有问题归给 D1；不确定即 FAIL。\n"
         + json.dumps(response, ensure_ascii=False)
         + "\n【原请求】\n" + request
@@ -396,6 +434,9 @@ def start(
     if findings:
         record["under_length_bypass"] = "ordinary_findings_present"
         return None
+    if _user_allows_shortfall(request):
+        record["under_length_bypass"] = "user_allows_shortfall"
+        return None
     spec = parse_spec(request)
     if spec is None:
         return None
@@ -433,6 +474,11 @@ def advance(event: dict[str, Any], record: dict[str, Any]) -> dict[str, Any]:
         if reason:
             return _select(record, "D0", reason)
         state["increments"] = _increment_items(state["original"], candidate)
+        unsupported = _unsupported_added_process(
+            request, state["original"], state["increments"]
+        )
+        if unsupported:
+            return _select(record, "D0", unsupported)
         state["phase"] = PHASE_VERDICT
         return _block(
             _verdict_instruction(request, state["original"], candidate, state["spec"], state["increments"])
