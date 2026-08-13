@@ -144,6 +144,10 @@ class UnderLengthCapabilityTests(unittest.TestCase):
 
     def test_material_explanation_is_not_an_output_length_spec(self) -> None:
         self.assertIsNone(RUNTIME.parse_spec("请解释制度中正文不少于100字的含义。"))
+        self.assertEqual(
+            {"minimum": 280, "maximum": 360, "scope": "full"},
+            RUNTIME.parse_spec("请根据材料起草一篇280—360字的新闻消息，只输出正文。"),
+        )
 
     def test_mechanical_gate_rejects_new_number_and_status_upgrade(self) -> None:
         spec = {"minimum": 1, "maximum": 0, "scope": "full"}
