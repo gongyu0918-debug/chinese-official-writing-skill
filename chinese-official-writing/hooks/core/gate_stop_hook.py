@@ -133,6 +133,28 @@ def _record_path(event: dict[str, Any]) -> Path | None:
     return root / session / f"{turn}.json"
 
 
+def _skill_seen_marker_path(record_path: Path) -> Path:
+    """Keep the monotonic Skill-read fact outside concurrent record rewrites."""
+    return record_path.with_suffix(".skill-seen")
+
+
+def _mark_skill_seen(record_path: Path) -> None:
+    marker = _skill_seen_marker_path(record_path)
+    marker.parent.mkdir(parents=True, exist_ok=True)
+    try:
+        descriptor = os.open(marker, os.O_CREAT | os.O_EXCL | os.O_WRONLY)
+    except FileExistsError:
+        return
+    with os.fdopen(descriptor, "w", encoding="utf-8", newline="\n") as handle:
+        handle.write("1\n")
+        handle.flush()
+        os.fsync(handle.fileno())
+
+
+def _skill_was_seen(record_path: Path, record: dict[str, Any]) -> bool:
+    return record.get("skill_seen") is True or _skill_seen_marker_path(record_path).is_file()
+
+
 def _read_json(path: Path) -> dict[str, Any] | None:
     try:
         value = json.loads(path.read_text(encoding="utf-8"))
@@ -679,7 +701,7 @@ def handle_user_prompt(event: dict[str, Any]) -> dict[str, Any]:
                 "schema_version": STATE_SCHEMA_VERSION,
                 "request": prompt,
                 "bypass": "user_requested" if _requests_hook_opt_out(prompt) else None,
-                "skill_seen": bool(existing.get("skill_seen")),
+                "skill_seen": _skill_was_seen(record_path, existing),
                 "emit_seen": bool(existing.get("emit_seen")),
                 "stop_attempts": int(existing.get("stop_attempts") or 0),
             }
@@ -701,6 +723,7 @@ def handle_post_tool(event: dict[str, Any]) -> dict[str, Any]:
     if existing.get("bypass") == "user_requested":
         return _allow()
     if _reads_this_skill(command):
+        _mark_skill_seen(record_path)
         existing.update(
             {
                 "schema_version": STATE_SCHEMA_VERSION,
@@ -711,12 +734,15 @@ def handle_post_tool(event: dict[str, Any]) -> dict[str, Any]:
         )
         _atomic_write(record_path, existing)
     elif command:
+        skill_seen = _skill_was_seen(record_path, existing)
         existing.update(
             {
                 "schema_version": STATE_SCHEMA_VERSION,
                 "external_material_read": True,
             }
         )
+        if skill_seen:
+            existing["skill_seen"] = True
         _atomic_write(record_path, existing)
     if parsed is None:
         return _allow()
@@ -815,6 +841,9 @@ def handle_stop(event: dict[str, Any]) -> dict[str, Any]:
     record = _read_json(record_path)
     if record is None:
         return _allow()
+    if _skill_was_seen(record_path, record) and record.get("skill_seen") is not True:
+        record["skill_seen"] = True
+        _atomic_write(record_path, record)
     if record.get("bypass") == "user_requested" and not record.get("txn"):
         return _allow()
     delivery_cleanliness = _handle_delivery_cleanliness_capability(
