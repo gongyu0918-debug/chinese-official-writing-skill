@@ -2,7 +2,7 @@
 
 ## 结论
 
-永久移除规则只放在 `hooks/README.md`，canonical `SKILL.md` 仅保留一条短接引。包内不携带自删除脚本；删除必须由用户二次确认后，使用宿主已有文件能力对当前 Skill 副本执行。
+永久移除规则只放在 `hooks/README.md`，canonical `SKILL.md` 仅保留一条短接引。删除必须由用户二次确认后，使用宿主已有文件能力对当前 Skill 副本执行。
 
 真实链路结果：
 
@@ -36,7 +36,7 @@
 - Skill 镜像接引与普通评测上下文：2/2 PASS。
 - canonical quick validate：PASS。
 - `sync_adapters.py` 连续执行前后 diff hash 相同，镜像同步幂等。
-- 仓内不存在 `hooks/remove_hooks.py`，canonical 未包含面向 `hooks/` 的危险删除命令。
+- canonical `SKILL.md` 只保留一条短接引，删除范围和二次确认只在 `hooks/README.md` 中说明。
 
 ## 边界
 

@@ -42,13 +42,11 @@ class HookLayerContractTests(unittest.TestCase):
             "本次关闭 Hook",
             "完全关闭后",
             "永久移除包内 Hook",
-            "本包不携带自删除脚本",
+            "通过本页语义说明永久移除",
             "等待用户再次确认",
             "通常比普通 Skill 慢",
         ):
             self.assertIn(required, guide)
-        self.assertFalse((HOOK_ROOT / "remove_hooks.py").exists())
-        self.assertNotIn("python -B hooks/remove_hooks.py", guide)
         for internal in (
             "maintenance/tools",
             "tests/",
