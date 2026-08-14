@@ -38,7 +38,7 @@
 - 本地逐文件清单 SHA-256：`0ab689dc4f822ba15fe8707c3bfc0c913ca93897a4ba5b7c762e1cb2d291417e`。
 - 正式提交一次：`ok=true`、`skillId=70149`、`versionId=235645`、`fileCount=51`、平台 fingerprint `785260e85ac792cc56d5dcc41f9138602ad19b6dab0935da3ea71137f9540bea`。
 - `latest`、`ai-compute`、`chinese`、`content-creation`、`gongwen`、`office-efficiency`、`official-document`、`writing` tags 均指向 `1.6.4`。
-- 上传回执的 `reviewStatus`、`securityScanStatus`、`contentAuditStatus` 均为 `pending`。上传后即时只读查询时，公开 `latestVersion` 仍为 `1.6.3`，1.6.4签名端点返回404；这是异步传播状态，不重复上传。
+- 上传回执的 `reviewStatus`、`securityScanStatus`、`contentAuditStatus` 均为 `pending`。上传后即时只读查询时，公开 `latestVersion` 仍为 `1.6.3`，1.6.4签名端点返回404；没有重复上传。最终复查时公开 `latestVersion` 与 tags.latest 均为 `1.6.4`，1.6.4签名端点返回 HTTP 200，公开传播和版本签名已闭环；审核状态仍按原回执记为 pending。
 
 ## ClawHub 异常回执与未发布状态
 
