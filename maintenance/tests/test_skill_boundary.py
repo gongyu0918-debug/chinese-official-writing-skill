@@ -18,7 +18,7 @@ OPTIONAL_GATE_FILES = {
     "scripts/review_gate.py",
 }
 SKILLHUB_CLEAN_PACKAGE_EXCLUDES = {"agents/openai.yaml", "LICENSE"}
-CURRENT_VERSION = "1.6.4"
+CURRENT_VERSION = "1.6.5"
 PUBLISHED_VERSION = "1.6.4"
 
 
@@ -881,7 +881,7 @@ class SkillBoundaryTests(unittest.TestCase):
     def test_openclaw_bundle_readme_is_current_and_contains_no_publish_command(self) -> None:
         readme = (ROOT / "packages" / "openclaw" / "README.md").read_text(encoding="utf-8")
 
-        self.assertIn("当前 GitHub 版本为 `1.6.4`", readme)
+        self.assertIn("当前 GitHub 候选版本为 `1.6.5`", readme)
         self.assertIn("MIT", readme)
         self.assertIn(r"python .\maintenance\tools\sync_adapters.py", readme)
         self.assertIn("packages/openclaw/", readme)
@@ -936,7 +936,7 @@ class SkillBoundaryTests(unittest.TestCase):
 
         sync_version = re.search(r'VERSION = "([^"]+)"', sync_script)
         readme_version = re.search(r"chinese-official-writing@(\d+\.\d+\.\d+)", readme)
-        openclaw_version = re.search(r"当前 GitHub 版本为 `(\d+\.\d+\.\d+)`", openclaw_readme)
+        openclaw_version = re.search(r"当前 GitHub 候选版本为 `(\d+\.\d+\.\d+)`", openclaw_readme)
 
         self.assertIsNotNone(sync_version)
         self.assertIsNotNone(readme_version)
