@@ -16,6 +16,7 @@
 - v1.6.4 后篇幅不足 Hook 最新真实写稿、Codex/Claude 在线 D1 与 SOL max 结果：[`v164-under-length-real-first-result-20260814.md`](../../tests/evidence/v164-under-length-real-first-result-20260814.md)。第一次只会回退 D0 的三宿主记录继续保留在 [`v164-under-length-three-host-live-result-20260814.md`](../../tests/evidence/v164-under-length-three-host-live-result-20260814.md)。
 - 交付洁净度 5 组真实 D0、SOL max、首次 adapter 漏接、D0 安全回退与 Claude Code 在线 D1：[`delivery-cleanliness-real-first/result.md`](../../tests/evidence/delivery-cleanliness-real-first/result.md)。
 - Hook 永久移除的二次确认、隔离副本真实删除和删除后普通写稿：[`hook-permanent-removal-real-result-20260814.md`](../../tests/evidence/hook-permanent-removal-real-result-20260814.md)。
+- 重复句与高相似句三 provider 真实删除及 SOL max 功能终审：[`repetition-real-first/result.md`](../../tests/evidence/repetition-real-first/result.md)。
 - 上一正式发行版：[`release-1.6.2.md`](../../tests/evidence/release-1.6.2.md)。
 - 当前仓库目录、GitHub OpenClaw 兼容包和 README 收敛结果：[`repository-layout-v161-result-20260812.md`](../../tests/evidence/repository-layout-v161-result-20260812.md)。
 - 1.5.x 的发布门禁、提交与 tag、清洁包、平台回执和传播状态保存在 `maintenance/tests/evidence/release-1.5.x.md`。

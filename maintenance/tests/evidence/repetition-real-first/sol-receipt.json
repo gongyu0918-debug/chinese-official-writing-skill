@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "model": "gpt-5.6-sol",
+  "reasoning_effort": "max",
+  "inputs": [
+    {
+      "id": "sol-packet",
+      "path": "F:\\Workspaces\\chinese-official-writing-skill\\output\\research-worktrees\\repetition-real-first\\output\\repetition-real-first-r1\\sol-packet.md",
+      "expected_sha256": "cafc82526355b2066f4b03828eae8e8ab4bd8d1b11da09d36f33c6cb4e1a0b15",
+      "actual_sha256": "cafc82526355b2066f4b03828eae8e8ab4bd8d1b11da09d36f33c6cb4e1a0b15",
+      "sha256_match": true
+    },
+    {
+      "id": "sol-rubric",
+      "path": "F:\\Workspaces\\chinese-official-writing-skill\\output\\research-worktrees\\repetition-real-first\\output\\repetition-real-first-r1\\sol-rubric.md",
+      "expected_sha256": "dbec93ba68e1d51f59e1c9a7c154859ea2f93f887b16f238a06eb214713dad6f",
+      "actual_sha256": "dbec93ba68e1d51f59e1c9a7c154859ea2f93f887b16f238a06eb214713dad6f",
+      "sha256_match": true
+    }
+  ],
+  "output": {
+    "path": "F:\\Workspaces\\chinese-official-writing-skill\\output\\research-worktrees\\repetition-real-first\\output\\repetition-real-first-r1\\sol-verdict.json",
+    "sha256": "4ba9a76f7c5451f0d5af230e3bc5d86a4117ef6656f26945ace30a45005bc1d4"
+  },
+  "validation": {
+    "verdict_json_parse": "PASS",
+    "verdict_schema": "PASS",
+    "case_coverage": {
+      "expected": [
+        "R1",
+        "R2",
+        "R3",
+        "R4",
+        "R5"
+      ],
+      "actual": [
+        "R1",
+        "R2",
+        "R3",
+        "R4",
+        "R5"
+      ],
+      "exact": true
+    },
+    "overall_logic": "PASS",
+    "receipt_json_parse": "PASS"
+  }
+}

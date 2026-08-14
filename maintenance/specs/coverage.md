@@ -21,7 +21,7 @@
 | `UL-003` 产品准入 | 同一 D0/D1 功能门 | 两次独立 SOL max 均为 `ACCEPT` | selection/delivery/final hash 闭环 | 已覆盖目标功能；不以独立 on/off 总胜负替代 |
 | `UL-004` 证据迁移 | adapter/core/runtime hash 分层 | CodeBuddy 旧完整在线；当前能力同稿复放 | 当前 CodeBuddy 静态包与 canonical runtime 同 hash | 部分；未冒充当前在线登录成功 |
 | `CL-001` 交付洁净度 | `hooks/capabilities/delivery_cleanliness/` | 三 provider 5/5 精确整理；SOL max 全 PASS | 三宿主静态组装；Claude Code 在线 D1/hash 闭环 | 已覆盖目标功能；Codex/CodeBuddy 未重跑当前能力在线生命周期 |
-| `RP-001` 重复与高相似句 | 规格已登记 | 尚未运行短稿/超长稿真实样本 | 尚未接宿主 | 未覆盖；高相似不得只靠阈值 |
+| `RP-001` 重复与高相似句 | 规格已登记，尚无 capability | 三 provider 5 组；SOL max 功能 PASS，长稿 1 WARN | 尚未接宿主 | 部分；功能成立，待复用 delete-only 生命周期 |
 | `AH-001` 引用与硬锚 | 现有能力有分散保护，尚未抽成共享不变量 | under-length 已有局部旁证 | 尚无统一 contract | 部分；不得使用词频完全相等旧门 |
 | `OV-001` 超长收束 | 规格已登记 | 尚未运行 | 尚未接宿主 | 未覆盖；重复清理通过后再验证 |
 | `OT-001/002` 提纲核对与修正 | 规格已登记 | 尚未运行 | 当前生命周期缺正文前提纲检查点 | 未覆盖；优先级低于 Stop-only 快速能力 |

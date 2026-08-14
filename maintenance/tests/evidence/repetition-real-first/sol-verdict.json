@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "cases": [
+    {
+      "id": "R1",
+      "redundancy_handled": "PASS",
+      "meaningful_content_preserved": "PASS",
+      "deletion_only": "PASS",
+      "direct_use": "PASS",
+      "reason": "删除了相邻的完全重复句，保留句及其余字符、换行和结尾均未改变。"
+    },
+    {
+      "id": "R2",
+      "redundancy_handled": "PASS",
+      "meaningful_content_preserved": "PASS",
+      "deletion_only": "PASS",
+      "direct_use": "PASS",
+      "reason": "两句的主体、办理对象、推进要求和按期完成作用相同；候选仅删除零增量复述，保留句已完整承载要求。"
+    },
+    {
+      "id": "R3",
+      "redundancy_handled": "PASS",
+      "meaningful_content_preserved": "PASS",
+      "deletion_only": "PASS",
+      "direct_use": "PASS",
+      "reason": "会前准备与会后归档具有不同时间、事项和作用，不构成重复；候选逐字保留原稿。"
+    },
+    {
+      "id": "R4",
+      "redundancy_handled": "PASS",
+      "meaningful_content_preserved": "PASS",
+      "deletion_only": "PASS",
+      "direct_use": "WARN",
+      "reason": "非相邻的同一句已删除一处，且首段总领句得到保留；删后“工作体会”项只余后续安排，衔接略显单薄，但仍可直接使用。"
+    },
+    {
+      "id": "R5",
+      "redundancy_handled": "PASS",
+      "meaningful_content_preserved": "PASS",
+      "deletion_only": "PASS",
+      "direct_use": "PASS",
+      "reason": "恢复结果与原因核查状态分别表达不同事实和状态，不构成重复；候选逐字保留原稿。"
+    }
+  ],
+  "overall": "PASS",
+  "reason": "R1—R5均未出现前三项失败或direct_use失败；重复项已删除，具有不同事实、状态、时间或结构作用的内容均获保留。"
+}
