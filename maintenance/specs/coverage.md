@@ -20,7 +20,7 @@
 | `UL-002` 安全扩写 | under revision/verdict prompt | 三条 provider 的失败稿驱动语义收窄；三份获选 D1 | 同一能力在两宿主在线执行 | 已覆盖当前事实充分采购请示；稀疏材料仍允许 D0 回退 |
 | `UL-003` 产品准入 | 同一 D0/D1 功能门 | 两次独立 SOL max 均为 `ACCEPT` | selection/delivery/final hash 闭环 | 已覆盖目标功能；不以独立 on/off 总胜负替代 |
 | `UL-004` 证据迁移 | adapter/core/runtime hash 分层 | CodeBuddy 旧完整在线；当前能力同稿复放 | 当前 CodeBuddy 静态包与 canonical runtime 同 hash | 部分；未冒充当前在线登录成功 |
-| `CL-001` 交付洁净度 | 规格已登记，尚无 capability | 尚未运行 | 尚未接宿主 | 未覆盖；下一原子优先 |
+| `CL-001` 交付洁净度 | `hooks/capabilities/delivery_cleanliness/` | 三 provider 5/5 精确整理；SOL max 全 PASS | 三宿主静态组装；Claude Code 在线 D1/hash 闭环 | 已覆盖目标功能；Codex/CodeBuddy 未重跑当前能力在线生命周期 |
 | `RP-001` 重复与高相似句 | 规格已登记 | 尚未运行短稿/超长稿真实样本 | 尚未接宿主 | 未覆盖；高相似不得只靠阈值 |
 | `AH-001` 引用与硬锚 | 现有能力有分散保护，尚未抽成共享不变量 | under-length 已有局部旁证 | 尚无统一 contract | 部分；不得使用词频完全相等旧门 |
 | `OV-001` 超长收束 | 规格已登记 | 尚未运行 | 尚未接宿主 | 未覆盖；重复清理通过后再验证 |

@@ -7,6 +7,7 @@
 - `WR-001/002/005`：v1.6.4 普通语义规则、保护性外扩精确删除、新闻边界和短稿收束已发布于 `v1.6.4@a737791c`；六份真实写稿和 SOL 校准见 [`v164-real-writing-final/result.md`](../tests/evidence/v164-real-writing-final/result.md)，发行回执见 [`release-1.6.4.md`](../tests/evidence/release-1.6.4.md)。
 - `HK-001/003/004/006`：普通路径独立闭环、capability-first 单协调器、三宿主静态 adapter 和用户知情边界已建立；永久移除采用 README 语义说明与二次确认，未确认0改动、确认后隔离副本精确删除并完成真实写稿。
 - `UL-001—004`：篇幅不足 Hook 已按真实写稿优先完成语义修复并合入本地 `main`。Alibaba 直修 268→342，Codex 在线 268→350，Claude Code 在线 268→344；两次独立 SOL max 均判可用 D1 `ACCEPT`。CodeBuddy 当前只保留同构静态迁移证据，不冒充在线成功。结果见 [`v164-under-length-real-first-result-20260814.md`](../tests/evidence/v164-under-length-real-first-result-20260814.md)。
+- `CL-001`：交付洁净度已先用三条指定 DeepSeek V4 Flash 路线完成 5/5 同稿真实整理，再接入独立静态 capability。SOL max 五组全 PASS；Claude Code 在线生命周期精确删除首稿包装并闭合 D1 哈希。结果见 [`delivery-cleanliness-real-first/result.md`](../tests/evidence/delivery-cleanliness-real-first/result.md)。
 - SkillHub 已加入 `office-efficiency`、`content-creation` 轻量检索信号；不声称平台写入双分类。
 - GitHub 当前包统一 MIT；普通兼容包不含 Hook，OpenClaw GitHub 兼容包随仓库维护。
 
@@ -23,12 +24,11 @@
 
 ## TODO：下一轮最短路径
 
-1. `CL-001` 交付洁净度：先强制路由 3—5 份真实 D0，验证只删除过程旁白、协议泄漏和正文外包装；清洁稿与用户明确要求的 Markdown/JSON 逐字保留。
-2. `RP-001` 重复与高相似句：用短稿和超长稿各取真实样本，先验证 exact-span 删除；高相似句必须经语义判断，不做单阈值自动删除。
-3. `AH-001` 引用与硬锚：把值、归属和必要出现保护抽成上述修稿能力的共享不变量，不另起并行 Hook，也不恢复词频完全相等的旧机械门。
-4. `OV-001` 超长收束：先把已验证的重复清理作为压缩前置，再直接测试一次受控 D0→D1；产生可用压缩稿后才接 coordinator。
-5. `OT-001/002` 提纲核对与修正：最后处理。先设计正文前的提纲冻结/确认检查点，再测试提纲修正和终稿一致性；没有冻结提纲时不在 Stop 猜测。
-6. 每项都按“最简 prompt 或强制路由 → 少量真实稿 → SOL max 功能终审 → 必要工程门”推进；一次只接入一个静态 capability。
+1. `RP-001` 重复与高相似句：用短稿和超长稿各取真实样本，先验证 exact-span 删除；高相似句必须经语义判断，不做单阈值自动删除。
+2. `AH-001` 引用与硬锚：把值、归属和必要出现保护抽成上述修稿能力的共享不变量，不另起并行 Hook，也不恢复词频完全相等的旧机械门。
+3. `OV-001` 超长收束：先把已验证的重复清理作为压缩前置，再直接测试一次受控 D0→D1；产生可用压缩稿后才接 coordinator。
+4. `OT-001/002` 提纲核对与修正：最后处理。先设计正文前的提纲冻结/确认检查点，再测试提纲修正和终稿一致性；没有冻结提纲时不在 Stop 猜测。
+5. 每项都按“最简 prompt 或强制路由 → 少量真实稿 → SOL max 功能终审 → 必要工程门”推进；一次只接入一个静态 capability。
 
 ## 不再重复
 

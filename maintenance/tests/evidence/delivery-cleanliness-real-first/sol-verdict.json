@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "cases": [
+    {
+      "id": "C1",
+      "target_correct": "PASS",
+      "body_preserved": "PASS",
+      "requested_format_preserved": "PASS",
+      "direct_use": "PASS",
+      "reason": "仅删除工具受阻、人工校验和交付提示等过程旁白；后续正文逐字保留，普通文本格式符合请求，可直接交付。"
+    },
+    {
+      "id": "C2",
+      "target_correct": "PASS",
+      "body_preserved": "PASS",
+      "requested_format_preserved": "PASS",
+      "direct_use": "PASS",
+      "reason": "删除引导语、Markdown 围栏及标题标记，通知正文内容和必要换行保留为干净普通文本，可直接交付。"
+    },
+    {
+      "id": "C3",
+      "target_correct": "PASS",
+      "body_preserved": "PASS",
+      "requested_format_preserved": "PASS",
+      "direct_use": "PASS",
+      "reason": "仅删除门禁 JSON 及分隔空行，请示正文其他字符不变，符合只输出正文的要求。"
+    },
+    {
+      "id": "C4",
+      "target_correct": "PASS",
+      "body_preserved": "PASS",
+      "requested_format_preserved": "PASS",
+      "direct_use": "PASS",
+      "reason": "原稿无多余包装，候选未作无依据删除；正文与普通文本格式均完整保留，可直接交付。"
+    },
+    {
+      "id": "C5",
+      "target_correct": "PASS",
+      "body_preserved": "PASS",
+      "requested_format_preserved": "PASS",
+      "direct_use": "PASS",
+      "reason": "原稿无多余包装，候选完整保留用户明确要求的 Markdown 标题层级、正文和换行，可直接交付。"
+    }
+  ],
+  "overall": "PASS",
+  "reason": "C1—C3 仅清除用户未要求的过程旁白、协议泄漏或 Markdown 包装，C4—C5 无误删；五案正文及明确格式均保留并可直接使用。"
+}

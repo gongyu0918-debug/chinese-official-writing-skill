@@ -108,6 +108,7 @@ class HookLayerContractTests(unittest.TestCase):
                     self.assertTrue((packaged / "hooks/gate_stop_hook.py").is_file())
                     self.assertTrue((packaged / "scripts/review_gate.py").is_file())
                     self.assertTrue((packaged / "hooks/capabilities/protective_expansion/runtime.py").is_file())
+                    self.assertTrue((packaged / "hooks/capabilities/delivery_cleanliness/runtime.py").is_file())
                     self.assertEqual(
                         "delivery_review",
                         json.loads((output / "hook-capability.json").read_text(encoding="utf-8"))["capability"],
@@ -136,7 +137,7 @@ class HookLayerContractTests(unittest.TestCase):
             (HOOK_ROOT / "host-capabilities.json").read_text(encoding="utf-8")
         )
         activation = capabilities["activation"]
-        self.assertEqual(7, capabilities["schema_version"])
+        self.assertEqual(8, capabilities["schema_version"])
         self.assertFalse(activation["ordinary_skill_install_enables_hooks"])
         self.assertFalse(activation["runtime_host_detection"])
         self.assertFalse(activation["automatic_file_generation"])
@@ -150,6 +151,8 @@ class HookLayerContractTests(unittest.TestCase):
             "available_opt_in",
             capabilities["protective_expansion_gate"]["status"],
         )
+        self.assertEqual("candidate", capabilities["delivery_cleanliness_gate"]["status"])
+        self.assertFalse(capabilities["delivery_cleanliness_gate"]["default_selected"])
         for host in ("codex", "codebuddy", "claude_code"):
             self.assertIn("adapter_source", capabilities["hosts"][host])
 

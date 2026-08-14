@@ -12,6 +12,7 @@ NEW_ARCHITECTURE_FILES = (
     ROOT / "chinese-official-writing/hooks/adapters/claude-code/gate_stop_hook.py",
     ROOT / "chinese-official-writing/hooks/capabilities/protective_expansion/contract.py",
     ROOT / "chinese-official-writing/hooks/capabilities/protective_expansion/runtime.py",
+    ROOT / "chinese-official-writing/hooks/capabilities/delivery_cleanliness/runtime.py",
 )
 KNOWN_COMPLEXITY_DEBT = {
     "chinese-official-writing/scripts/review_gate.py:evaluate_candidate": (250, 80),
@@ -85,7 +86,7 @@ class ComplexityContractTests(unittest.TestCase):
         ):
             self.assertIn(required, names)
 
-    def test_length_hook_is_not_shipped(self) -> None:
+    def test_legacy_length_hook_is_absent_and_current_capability_is_explicit(self) -> None:
         self.assertFalse(
             (ROOT / "chinese-official-writing/hooks/length_band.py").exists()
         )
@@ -95,7 +96,14 @@ class ComplexityContractTests(unittest.TestCase):
         capabilities = (
             ROOT / "chinese-official-writing/hooks/host-capabilities.json"
         ).read_text(encoding="utf-8")
-        self.assertIn('"automatic_expansion": false', capabilities)
+        self.assertTrue(
+            (
+                ROOT
+                / "chinese-official-writing/hooks/capabilities/under_length/runtime.py"
+            ).is_file()
+        )
+        self.assertIn('"automatic_expansion": true', capabilities)
+        self.assertIn('"status": "candidate"', capabilities)
         self.assertIn('"automatic_compression": false', capabilities)
 
 

@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "model": "gpt-5.6-sol",
+  "reasoning_effort": "max",
+  "timestamp_utc": "2026-08-14T08:58:33.7942212Z",
+  "inputs": [
+    {
+      "file": "sol-packet.md",
+      "expected_sha256": "8C19C47AC0CD52BF911B85868471FF20BDEFD6EFB5805AB671FC0D43E4761067",
+      "actual_sha256": "8C19C47AC0CD52BF911B85868471FF20BDEFD6EFB5805AB671FC0D43E4761067",
+      "status": "PASS"
+    },
+    {
+      "file": "sol-rubric.md",
+      "expected_sha256": "5868FA4CB1E818E24DE4D2C3EEA211F88E935F2D2129D4C50DBE0AEAC610A718",
+      "actual_sha256": "5868FA4CB1E818E24DE4D2C3EEA211F88E935F2D2129D4C50DBE0AEAC610A718",
+      "status": "PASS"
+    }
+  ],
+  "outputs": [
+    {
+      "file": "sol-verdict.json",
+      "sha256": "BFBA402199DC7E3C99DD637D136635BD2ADFBFDB392ABCD7CC65F96D929DA87A"
+    }
+  ],
+  "validation": {
+    "input_hash_gate": "PASS",
+    "verdict_json_parse": "PASS",
+    "required_case_coverage": "PASS",
+    "covered_cases": [
+      "C1",
+      "C2",
+      "C3",
+      "C4",
+      "C5"
+    ],
+    "overall": "PASS"
+  }
+}
