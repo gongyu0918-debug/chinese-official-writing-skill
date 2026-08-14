@@ -1,5 +1,5 @@
 {
-  "schema_version": 7,
+  "schema_version": 8,
   "shared_gate_core": "chinese-official-writing/scripts/review_gate.py",
   "activation": {
     "default": "disabled",
@@ -31,6 +31,16 @@
     "operation": "delete_exact_spans_only",
     "source_visibility": "request_and_observed_tool-read boundary",
     "uncertain_authority_action": "preserve_original"
+  },
+  "delivery_cleanliness_gate": {
+    "status": "candidate",
+    "activation": "explicit_static_companion_selection",
+    "configuration_file": "hook-capability.json",
+    "default_selected": false,
+    "operation": "delete_unrequested_delivery_wrappers_only",
+    "revision_limit": 1,
+    "verdict_limit": 1,
+    "failure_action": "original_draft"
   },
   "hosts": {
     "codex": {
