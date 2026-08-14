@@ -16,10 +16,15 @@
 | `HK-004` 宿主薄适配 | `hooks/adapters/` | 不适用 | Codex、Claude、CodeBuddy 官方契约与静态包 | 已覆盖结构；CodeBuddy Hooks 仍为 Beta |
 | `HK-005` 故障回退 | coordinator 和 capability runtime | 当前 Codex/Claude 均选择 D0 并闭合 hash | CodeBuddy 旧在线 D0 回显恢复 | 已覆盖主要路径；错误终稿不得误标成功继续保留反控 |
 | `HK-006` 知情与关闭 | `hooks/README.md`、opt-out classifier | 普通路径六稿；永久移除后真实写稿 | 未确认逐字不变；二次确认后隔离副本17文件移除、SKILL单点编辑 | 永久移除已覆盖；自然审稿语义待扩 |
-| `UL-001` under-only 触发 | `hooks/capabilities/under_length/runtime.py` 候选 | Codex 819→1036、Claude 170→327 | 两宿主当前在线触发 | 工程覆盖，未合并 |
-| `UL-002` 安全扩写 | under revision/verdict prompt | 旧坏 D1 复放可被当前规则拒绝 | 不依赖宿主 | 部分；尚无获选 D1 |
-| `UL-003` 产品准入 | 同一 D0/D1 功能门 | 当前 0 份 D1 获选 | SOL 未运行 | 未覆盖，候选 HOLD 的决定性缺口 |
-| `UL-004` 证据迁移 | adapter/core/runtime hash 分层 | 旧 CodeBuddy 180→816 完整在线；当前 runtime 原样复放 | 旧与当前 CodeBuddy `hooks.json`、adapter、coordinator SHA-256 相同 | 迁移成立；不把它写成当前重跑 |
+| `UL-001` under-only 触发 | `hooks/capabilities/under_length/runtime.py` | Alibaba 268→342；Codex 268→350；Claude 268→344 | Codex、Claude 当前在线选择 D1 | 已覆盖并合入本地 main；未进入 v1.6.4 发行物 |
+| `UL-002` 安全扩写 | under revision/verdict prompt | 三条 provider 的失败稿驱动语义收窄；三份获选 D1 | 同一能力在两宿主在线执行 | 已覆盖当前事实充分采购请示；稀疏材料仍允许 D0 回退 |
+| `UL-003` 产品准入 | 同一 D0/D1 功能门 | 两次独立 SOL max 均为 `ACCEPT` | selection/delivery/final hash 闭环 | 已覆盖目标功能；不以独立 on/off 总胜负替代 |
+| `UL-004` 证据迁移 | adapter/core/runtime hash 分层 | CodeBuddy 旧完整在线；当前能力同稿复放 | 当前 CodeBuddy 静态包与 canonical runtime 同 hash | 部分；未冒充当前在线登录成功 |
+| `CL-001` 交付洁净度 | 规格已登记，尚无 capability | 尚未运行 | 尚未接宿主 | 未覆盖；下一原子优先 |
+| `RP-001` 重复与高相似句 | 规格已登记 | 尚未运行短稿/超长稿真实样本 | 尚未接宿主 | 未覆盖；高相似不得只靠阈值 |
+| `AH-001` 引用与硬锚 | 现有能力有分散保护，尚未抽成共享不变量 | under-length 已有局部旁证 | 尚无统一 contract | 部分；不得使用词频完全相等旧门 |
+| `OV-001` 超长收束 | 规格已登记 | 尚未运行 | 尚未接宿主 | 未覆盖；重复清理通过后再验证 |
+| `OT-001/002` 提纲核对与修正 | 规格已登记 | 尚未运行 | 当前生命周期缺正文前提纲检查点 | 未覆盖；优先级低于 Stop-only 快速能力 |
 | `MT-001` 真实结果优先 | `AGENTS.md`、本规格层 | v1.6.4 已采用 | 篇幅候选暴露了反例 | 已覆盖规则，后续严格执行 |
 | `MT-002` 可达性 | SKILL、说明、组装器、维护索引 | 不适用 | reachability/链接最小检查 | 持续项 |
 | `MT-003` 公开面克制 | 根 README、维护索引 | 最近五次主要证据 | 内部 HOLD 不进入产品宣传 | 持续项 |
@@ -33,9 +38,9 @@
 | `hooks/hooks.json` | `5f02f7b94b7c5b0aedd554d1d6cb2a85d1612f1296868960068b071fd9cf26d9` | 未变化 |
 | `scripts/host_gate_adapter.py` | `d7ea6dad98991d7b650a95570aff6b2f7901f7b822db77d84f405d7a8c548cde` | 未变化 |
 | `skills/.../hooks/gate_stop_hook.py` | `abe469b00e5b04adefdba240bd78afa4bfeed82b67a5ce0810a13e0bf7786834` | 未变化 |
-| `under_length/runtime.py` | 旧 `cc0db3fa...de7e77`，当前 `e16bc5af...036e4` | 已变化，且是宿主无关能力层 |
+| `under_length/runtime.py` | 当前组装时要求与 canonical 逐字一致 | 已变化，且是宿主无关能力层 |
 
-旧在线样本完成 D0 180 字、D1 816 字、拒绝 D1、精确 D0 回显；当前变化后的 runtime 已用该原始 D0/D1 复放并拒绝不安全新增流程。Codex 与 Claude Code 又以当前 runtime 完成在线 Stop 生命周期。因此 CodeBuddy 当前登录失败记录为环境状态，不再作为篇幅语义开发的阻塞项。
+旧在线样本完成 D0 180 字、D1 816 字、拒绝 D1、精确 D0 回显；当前变化后的 runtime 已用该原始 D0/D1 复放并拒绝不安全新增流程。Codex 与 Claude Code 又以当前 runtime 完成在线 Stop 生命周期并选择可用 D1。因此 CodeBuddy 当前登录失败记录为环境状态，不再作为篇幅语义开发的阻塞项，但也不写成当前在线成功。
 
 ## 官方契约依据
 
