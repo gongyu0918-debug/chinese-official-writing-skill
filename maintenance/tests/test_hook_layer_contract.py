@@ -147,6 +147,10 @@ class HookLayerContractTests(unittest.TestCase):
         self.assertTrue(activation["task_opt_out_supported"])
         self.assertEqual("not_shipped", capabilities["length_gate"]["status"])
         self.assertFalse(capabilities["protective_expansion_gate"]["default_selected"])
+        self.assertEqual(
+            "available_opt_in",
+            capabilities["protective_expansion_gate"]["status"],
+        )
         for host in ("codex", "codebuddy", "claude_code"):
             self.assertIn("adapter_source", capabilities["hosts"][host])
 

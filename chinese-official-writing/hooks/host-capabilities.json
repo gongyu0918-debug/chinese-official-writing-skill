@@ -18,7 +18,7 @@
     "status": "not_shipped"
   },
   "protective_expansion_gate": {
-    "status": "candidate",
+    "status": "available_opt_in",
     "activation": "explicit_static_companion_selection",
     "configuration_file": "hook-capability.json",
     "default_selected": false,
