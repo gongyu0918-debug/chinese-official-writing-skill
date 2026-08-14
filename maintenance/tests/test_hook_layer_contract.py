@@ -137,7 +137,7 @@ class HookLayerContractTests(unittest.TestCase):
             (HOOK_ROOT / "host-capabilities.json").read_text(encoding="utf-8")
         )
         activation = capabilities["activation"]
-        self.assertEqual(8, capabilities["schema_version"])
+        self.assertEqual(9, capabilities["schema_version"])
         self.assertFalse(activation["ordinary_skill_install_enables_hooks"])
         self.assertFalse(activation["runtime_host_detection"])
         self.assertFalse(activation["automatic_file_generation"])
@@ -153,6 +153,8 @@ class HookLayerContractTests(unittest.TestCase):
         )
         self.assertEqual("candidate", capabilities["delivery_cleanliness_gate"]["status"])
         self.assertFalse(capabilities["delivery_cleanliness_gate"]["default_selected"])
+        self.assertEqual("candidate", capabilities["repetition_cleanup_gate"]["status"])
+        self.assertFalse(capabilities["repetition_cleanup_gate"]["default_selected"])
         for host in ("codex", "codebuddy", "claude_code"):
             self.assertIn("adapter_source", capabilities["hosts"][host])
 

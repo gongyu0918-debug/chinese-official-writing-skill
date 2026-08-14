@@ -78,6 +78,7 @@ CAPABILITY_CHOICES: Final = (
     "protective_expansion",
     "under_length",
     "delivery_cleanliness",
+    "repetition_cleanup",
 )
 
 
