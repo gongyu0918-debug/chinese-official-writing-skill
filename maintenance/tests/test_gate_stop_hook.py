@@ -119,6 +119,31 @@ class GateStopHookTests(unittest.TestCase):
             (txn / "d0.snapshot.txt").read_text(encoding="utf-8"),
         )
 
+    def test_skill_read_marker_survives_concurrent_material_record_overwrite(self):
+        self._record_prompt_and_skill_read()
+        record_path = HOOK._record_path(self._event("Stop"))
+        self.assertIsNotNone(record_path)
+        record = HOOK._read_json(record_path)
+        self.assertIsNotNone(record)
+        self.assertTrue(HOOK._skill_seen_marker_path(record_path).is_file())
+
+        stale_material_record = dict(record)
+        stale_material_record["skill_seen"] = False
+        stale_material_record["external_material_read"] = True
+        HOOK._atomic_write(record_path, stale_material_record)
+
+        result = HOOK.handle(
+            self._event(
+                "Stop",
+                stop_hook_active=False,
+                last_assistant_message="情况报告\n\n测试工作已完成。",
+            )
+        )
+        self.assertEqual("block", result["decision"])
+        recovered = HOOK._read_json(record_path)
+        self.assertTrue(recovered["skill_seen"])
+        self.assertTrue(recovered["external_material_read"])
+
     def test_stop_does_not_bootstrap_when_skill_was_not_read(self):
         HOOK.handle(self._event("UserPromptSubmit", prompt="请起草一份情况报告。"))
         result = HOOK.handle(
