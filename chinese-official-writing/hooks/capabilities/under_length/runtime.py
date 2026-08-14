@@ -30,19 +30,19 @@ PHASE_COMPLETE: Final = "under_length_complete"
 PHASE_FAILED: Final = "under_length_technical_failure"
 
 SCOPE_MIN_RE: Final = re.compile(
-    r"(?P<scope>正文|成稿|回复|输出|全文|终稿)[^，。；;\n]{0,28}?"
+    r"(?P<scope>正文|成稿|回复|输出|全文|终稿)[^，,。；;\n]{0,28}?[，,：:]?\s*"
     r"(?:不少于|至少|不低于|不小于)\s*(?P<minimum>\d{2,5})\s*字"
 )
 SCOPE_RANGE_RE: Final = re.compile(
-    r"(?P<scope>正文|成稿|回复|输出|全文|终稿)[^，。；;\n]{0,28}?"
+    r"(?P<scope>正文|成稿|回复|输出|全文|终稿)[^，,。；;\n]{0,28}?[，,：:]?\s*"
     r"(?P<minimum>\d{2,5})\s*(?:—|－|-|~|至|到)\s*(?P<maximum>\d{2,5})\s*字"
 )
 ACTION_MIN_RE: Final = re.compile(
-    r"(?:起草|撰写|拟写|写一(?:篇|份))[^，。；;\n]{0,20}?"
+    r"(?:起草|撰写|拟写|写一(?:篇|份))[^，,。；;\n]{0,20}?[，,：:]?\s*"
     r"(?:不少于|至少|不低于|不小于)\s*(?P<minimum>\d{2,5})\s*字"
 )
 ACTION_RANGE_RE: Final = re.compile(
-    r"(?:起草|撰写|拟写|写一(?:篇|份))[^，。；;\n]{0,20}?"
+    r"(?:起草|撰写|拟写|写一(?:篇|份))[^，,。；;\n]{0,20}?[，,：:]?\s*"
     r"(?P<minimum>\d{2,5})\s*(?:—|－|-|~|至|到)\s*(?P<maximum>\d{2,5})\s*字"
 )
 MATERIAL_CONTEXT_RE: Final = re.compile(
@@ -126,8 +126,17 @@ def _authoritative_match(
     request: str, match: re.Match[str], *, output_action: bool
 ) -> bool:
     prefix = request[max(0, match.start() - 24) : match.start()]
+    material_context = MATERIAL_CONTEXT_RE.search(prefix)
+    last_output_signal = max(
+        (prefix.rfind(token) for token in ("起草", "撰写", "拟写", "写一", "只")),
+        default=-1,
+    )
     return (
-        (output_action or not MATERIAL_CONTEXT_RE.search(prefix))
+        (
+            output_action
+            or material_context is None
+            or last_output_signal > material_context.start()
+        )
         and not APPROXIMATE_LENGTH_RE.search(prefix + match.group(0))
     )
 

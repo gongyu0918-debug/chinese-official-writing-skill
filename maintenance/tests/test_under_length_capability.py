@@ -166,6 +166,25 @@ class UnderLengthCapabilityTests(unittest.TestCase):
             RUNTIME.parse_spec("请根据材料起草一篇280—360字的新闻消息，只输出正文。"),
         )
 
+    def test_natural_comma_separated_length_specs_are_recognized(self) -> None:
+        self.assertEqual(
+            {"minimum": 350, "maximum": 450, "scope": "body"},
+            RUNTIME.parse_spec(
+                "请根据材料起草一份采购请示，只输出正文，350—450字。"
+            ),
+        )
+        self.assertEqual(
+            {"minimum": 450, "maximum": 550, "scope": "full"},
+            RUNTIME.parse_spec(
+                "请根据材料起草一段年度工作总结中的整章总结，450—550字，只输出正文。"
+            ),
+        )
+        self.assertIsNone(
+            RUNTIME.parse_spec(
+                "请起草情况说明，材料正文300—400字，请压缩材料中的重复表述。"
+            )
+        )
+
     def test_mechanical_gate_rejects_new_number_and_status_upgrade(self) -> None:
         spec = {"minimum": 1, "maximum": 0, "scope": "full"}
         self.assertEqual(
