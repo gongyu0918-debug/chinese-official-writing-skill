@@ -12,7 +12,7 @@
 
 ## 逐版发布证据
 
-- 当前 GitHub 与 SkillHub.cn 发布证据：[`release-1.6.3.md`](../../tests/evidence/release-1.6.3.md)。上一版 Hook 真实写稿结果见 [`v162-hook-writing-real-ab-final-result-20260812.md`](../../tests/evidence/v162-hook-writing-real-ab-final-result-20260812.md)。
+- 当前 GitHub 与 SkillHub.cn 发布证据：[`release-1.6.4.md`](../../tests/evidence/release-1.6.4.md)。上一正式发行版见 [`release-1.6.3.md`](../../tests/evidence/release-1.6.3.md)，上一版 Hook 真实写稿结果见 [`v162-hook-writing-real-ab-final-result-20260812.md`](../../tests/evidence/v162-hook-writing-real-ab-final-result-20260812.md)。
 - v1.6.4 后篇幅不足 Hook 三宿主在线生命周期候选：[`v164-under-length-three-host-live-result-20260814.md`](../../tests/evidence/v164-under-length-three-host-live-result-20260814.md)。该候选仍为 HOLD，不属于已发布能力。
 - Hook 永久移除的二次确认、隔离副本真实删除和删除后普通写稿：[`hook-permanent-removal-real-result-20260814.md`](../../tests/evidence/hook-permanent-removal-real-result-20260814.md)。
 - 上一正式发行版：[`release-1.6.2.md`](../../tests/evidence/release-1.6.2.md)。

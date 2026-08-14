@@ -1935,7 +1935,7 @@ class SkillBoundaryTests(unittest.TestCase):
             "1.6.3 纯审稿 Hook 旁路与 SkillHub 检索信号",
             "同题独立写作节选",
             "明川市政务服务中心服务事项信息变更管理办法（试行）",
-            "v162-hook-writing-real-ab-final-result-20260812.md",
+            "v164-under-length-three-host-live-result-20260814.md",
             "新增了“自收到材料之日起”的期限起算",
             "无 Skill 成稿",
             "带 Skill 成稿",
