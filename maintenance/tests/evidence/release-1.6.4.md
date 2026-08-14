@@ -7,7 +7,7 @@
 - 发布产品提交：`a737791c8ed6fbae82e4a72fb3931e901faafc07`。
 - 上一正式产品 tag：`v1.6.3^{commit}=f23d5697d973043d03ef3ea05b5741d5abcec42f`。
 - 本版发布 GitHub `main`、annotated tag `v1.6.4`、GitHub Release 和 SkillHub.cn `1.6.4`。
-- 用户先明确要求 GitHub 与 ClawHub；ClawHub CLI 在随后“只上传 SkillHub”纠正到达前返回过正回执。纠正后停止写入；应用户指出页面没有内容，只做一次精确版本只读核验，结果为 `Version not found`，因此本版不计为 ClawHub 已发布。
+- 用户先明确要求 GitHub 与 ClawHub；ClawHub CLI 在随后“只上传 SkillHub”纠正到达前返回过正回执。纠正后停止写入。后续核验确认网页可直接下载真实1.6.4包，但 CLI latest/精确版本/删除接口仍呈现不一致状态，因此分别记录网页下载面与CLI注册表状态。
 - 小红书 Red SkillHub 及其他平台未上传。
 
 ## 主要变化
@@ -40,13 +40,16 @@
 - `latest`、`ai-compute`、`chinese`、`content-creation`、`gongwen`、`office-efficiency`、`official-document`、`writing` tags 均指向 `1.6.4`。
 - 上传回执的 `reviewStatus`、`securityScanStatus`、`contentAuditStatus` 均为 `pending`。上传后即时只读查询时，公开 `latestVersion` 仍为 `1.6.3`，1.6.4签名端点返回404；没有重复上传。最终复查时公开 `latestVersion` 与 tags.latest 均为 `1.6.4`，1.6.4签名端点返回 HTTP 200，公开传播和版本签名已闭环；审核状态仍按原回执记为 pending。
 
-## ClawHub 异常回执与未发布状态
+## ClawHub 网页下载面与CLI注册表状态
 
 - 在用户纠正发布范围前，ClawHub CLI 返回 `status=published`、`versionId=k971eyat4kc83hejvc2ztxqw1h8cep5t`、31文件、fingerprint `ea580c6af1ab089c40552d22ec9ac01850bb5a4e517c735ed10dbe9ef3d52d65`。
 - 该包为 `packages/openclaw/skills/chinese_official_writing` 的无 Hook 兼容包；本地逐文件清单 SHA-256 为 `c07ddb35c887791b2cf5ce01547e67148c766a4e9a389e897002c2d1042e047a`。
 - 用户随后明确“ClawHub不上传，只上传SkillHub”；收到纠正后未再执行 ClawHub 写入。
-- 用户报告页面没有任何1.6.4内容后，唯一一次只读命令 `clawhub inspect chinese-official-writing --version 1.6.4 --json` 返回 `Version not found`。正回执没有形成可读取版本，故不把它记为已上传或已发布，也不重试。
+- 用户最初报告页面没有任何1.6.4内容后，只读命令 `clawhub inspect chinese-official-writing --version 1.6.4 --json` 返回 `Version not found`，表明CLI精确版本面当时不可读取；没有重试上传。
 - 用户随后明确授权使用 `delete` 撤回误提交版本；精确命令 `clawhub delete chinese-official-writing --version 1.6.4 --yes` 返回 `This skill version is already unavailable and cannot be deleted.`。命令没有删除整个 Skill，也没有改动既有1.6.0；1.6.4保持不可用，不再重试。
+- 用户从网页下载 `chinese-official-writing-1.6.4.zip`。ZIP SHA-256 为 `7f3569856340afbc2e576a9c498166fb51b827326227a02b22df150a89a7af71`，共32个文件：31个产品文件及平台生成的 `_meta.json`；`_meta.json` 与 `SKILL.md` 均标明1.6.4。
+- ZIP 中31个产品文件与 GitHub 仓库 `packages/openclaw/skills/chinese_official_writing` 的1.6.4包逐文件逐字节一致：31 exact、0 changed、0 missing、0 extra。该网页下载物是真实1.6.4内容，不是旧1.6.0。
+- 隔离执行 `clawhub install chinese-official-writing --version 1.6.4` 仍返回 `Version not found` 并落盘0文件；不指定版本时安装成功的是1.6.0。结论限定为：网页直链可下载1.6.4，CLI公开安装面仍解析为1.6.0，平台表面尚不一致。
 
 ## 下一轮必须继续
 
