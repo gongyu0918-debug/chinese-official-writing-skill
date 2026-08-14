@@ -19,7 +19,7 @@ OPTIONAL_GATE_FILES = {
 }
 SKILLHUB_CLEAN_PACKAGE_EXCLUDES = {"agents/openai.yaml", "LICENSE"}
 CURRENT_VERSION = "1.6.5"
-PUBLISHED_VERSION = "1.6.4"
+PUBLISHED_VERSION = "1.6.5"
 
 
 def relative_files(root: Path) -> list[str]:
@@ -881,7 +881,7 @@ class SkillBoundaryTests(unittest.TestCase):
     def test_openclaw_bundle_readme_is_current_and_contains_no_publish_command(self) -> None:
         readme = (ROOT / "packages" / "openclaw" / "README.md").read_text(encoding="utf-8")
 
-        self.assertIn("当前 GitHub 候选版本为 `1.6.5`", readme)
+        self.assertIn("当前 GitHub 版本为 `1.6.5`", readme)
         self.assertIn("MIT", readme)
         self.assertIn(r"python .\maintenance\tools\sync_adapters.py", readme)
         self.assertIn("packages/openclaw/", readme)
@@ -936,7 +936,7 @@ class SkillBoundaryTests(unittest.TestCase):
 
         sync_version = re.search(r'VERSION = "([^"]+)"', sync_script)
         readme_version = re.search(r"chinese-official-writing@(\d+\.\d+\.\d+)", readme)
-        openclaw_version = re.search(r"当前 GitHub 候选版本为 `(\d+\.\d+\.\d+)`", openclaw_readme)
+        openclaw_version = re.search(r"当前 GitHub 版本为 `(\d+\.\d+\.\d+)`", openclaw_readme)
 
         self.assertIsNotNone(sync_version)
         self.assertIsNotNone(readme_version)
@@ -1928,14 +1928,14 @@ class SkillBoundaryTests(unittest.TestCase):
 
         for term in [
             "下表只保留最近 5 次版本验证",
+            "1.6.5 可选 Hook 质量控制与生命周期修复",
             "1.6.4 保护性外扩收束、新闻边界与短稿质量",
             "1.6.2 Hook 架构与静态兼容层",
             "1.6.1 入口减载",
-            "1.6.0 事实边界",
             "1.6.3 纯审稿 Hook 旁路与 SkillHub 检索信号",
             "同题独立写作节选",
             "明川市政务服务中心服务事项信息变更管理办法（试行）",
-            "v164-under-length-three-host-live-result-20260814.md",
+            "release-1.6.5-rc.md",
             "新增了“自收到材料之日起”的期限起算",
             "无 Skill 成稿",
             "带 Skill 成稿",

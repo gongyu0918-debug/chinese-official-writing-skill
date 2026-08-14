@@ -1,6 +1,6 @@
 # 中文公文写作 Skill
 
-[![Version](https://img.shields.io/badge/version-1.6.4-blue)](https://github.com/gongyu0918-debug/chinese-official-writing-skill/releases/tag/v1.6.4)
+[![Version](https://img.shields.io/badge/version-1.6.5-blue)](https://github.com/gongyu0918-debug/chinese-official-writing-skill/releases/tag/v1.6.5)
 [![ClawHub](https://img.shields.io/badge/ClawHub-chinese--official--writing-2f80ed)](https://clawhub.ai/gongyu0918-debug/skills/chinese-official-writing)
 [![SkillHub](https://img.shields.io/badge/SkillHub-chinese--official--writing-e8590c)](https://skillhub.cn/skills/chinese-official-writing)
 [![SkillHub downloads: 37k+](https://img.shields.io/badge/SkillHub%20downloads-37k%2B-2f855a)](https://skillhub.cn/skills/chinese-official-writing)
@@ -66,7 +66,7 @@
 
 ## 快速安装
 
-当前 GitHub 发布版本：`chinese-official-writing@1.6.4`。
+当前 GitHub 发布版本：`chinese-official-writing@1.6.5`。
 
 平台入口：[ClawHub](https://clawhub.ai/gongyu0918-debug/skills/chinese-official-writing) · [skillhub.cn](https://skillhub.cn/skills/chinese-official-writing)。通用 Agent Skills 安装器可直接使用：
 
@@ -80,11 +80,11 @@ npx skills add https://github.com/gongyu0918-debug/chinese-official-writing-skil
 
 | 调试方向 | 主要稿件与边界 | 当前证据 |
 | --- | --- | --- |
+| 1.6.5 可选 Hook 质量控制与生命周期修复 | 新增篇幅不足、交付洁净度、重复句与高相似复述三项静态互斥能力；均需用户明确选择，普通 Skill 和关闭 Hook 路径保持原有闭环。并行读取 Skill 与材料时使用单调状态标记，避免生命周期记录相互覆盖 | 三条 DeepSeek V4 Flash 路线先完成真实同稿验证；篇幅能力在 Codex、Claude Code 完成在线 D1，洁净度在两宿主完成 D1，重复清理在 Codex 完成完全重复和高相似 E1。合并后 Codex 8/8 技术终稿，竞态复现修复后篇幅事务正常触发并安全回退 D0 |
 | 1.6.4 保护性外扩收束、新闻边界与短稿质量 | 普通写作减少材料外免责说明、下游未发生事项和同义状态复述；新闻事实与合理推断保持来源、责任主体和状态强度。GitHub 可选 Hook 增加保护性外扩精确删除能力，默认关闭，异常时保留原稿；永久移除由 `hooks/README.md` 的语义接引和用户二次确认完成 | 三家 DeepSeek V4 Flash 的六份真实写稿均完成直接复核；同一初稿的保护性外扩功能包 29/29 通过独立 SOL max 校准。隔离副本永久移除仅删除17个 Hook 文件和一处接引，删除后普通写稿继续闭环 |
 | 1.6.3 纯审稿 Hook 旁路与 SkillHub 检索信号 | 已启用的可选 Hook 可识别“只审不改”“仅审不改”“只检查不修改正文”等纯审稿任务并直接旁路；审后改写、起草和材料引用反例仍进入原门禁。SkillHub 清洁包补充办公效率与内容创作检索信号，不向 canonical 增加平台专用字段 | 551 项单测、20/20 stub smoke 与固定 v1.6.2 消融 111/111 均通过；清洁包 48 文件。新闻真实 A/B、保护性/编辑性 Hook 和篇幅 Hook 仍保持 HOLD 或未闭环，未进入本版 |
 | 1.6.2 Hook 架构与静态兼容层 | 普通 Skill、共享门禁核心和 Codex、Claude Code、WorkBuddy/CodeBuddy 静态适配层分开组织；Hook 默认关闭，支持当前任务临时旁路；普通平台包保持无 Hook 闭环 | 三家 DeepSeek V4 Flash 的 9 对、18 次真实写稿技术有效，9 个启用臂均安全交付原始完整稿；匿名复核未建立启用臂整体质量非劣，因此不宣称 Hook 提升稿件质量 |
 | 1.6.1 入口减载、自然表达与可选 Hook 伴随包 | 通用入口只保留发现字段和标签，新闻稿件前置、适用单位后置；将运行规则中的“顺稿”“收束”换成普通说法；提供默认关闭的 Codex、Claude Code、WorkBuddy/CodeBuddy 薄适配器 | description 有效样本未形成跨 provider 重复错路由，但不宣称入口流量提升；Hook 9/9 对、18/18 次真实写稿技术有效，按业务口径未形成两次同机制硬回退，但整体票数不占优、真实 D1 为 0，只作为显式启用的窄域伴随物 |
-| 1.6.0 事实边界、采购路由与 reference 减载 | 压缩入口占位和排除示例；短单项采购保持自然段，复杂采购按需加载完整办理链；总量与子项差额只用于校核；删除通用叶越界报告块、五个文种叶的模板优先重复句和 Hook 中重复的未决转进行态预放行 | 两家 DeepSeek V4 Flash 0731 `max` 的四原子组合真实复放为 Candidate 8 胜、Baseline 0 胜、2 难分；10/10 对技术有效。附件呈现差异保留为格式风险但未形成同一 provider 复现；最终语义裁决与原始 SOL 盲审均保留在 1.6.0 发布证据链中 |
 
 ### 同题独立写作节选
 
@@ -197,7 +197,7 @@ v1.6.1 带 Skill 成稿（完整，765 字符）：
 
 技能规则、references 和 scripts 在本仓库持续迭代，各平台技能目录由 canonical 包同步生成。规范与社区项目用于校验文种、流程形态和风险维度；具体规则经过复现、取舍和 A/B 后进入主线，Git 历史记录每次修改和验证。
 
-最近 5 份证据：[`release-1.6.4.md`](maintenance/tests/evidence/release-1.6.4.md) · [`v164-real-writing-final/result.md`](maintenance/tests/evidence/v164-real-writing-final/result.md) · [`hook-permanent-removal-real-result-20260814.md`](maintenance/tests/evidence/hook-permanent-removal-real-result-20260814.md) · [`v164-under-length-three-host-live-result-20260814.md`](maintenance/tests/evidence/v164-under-length-three-host-live-result-20260814.md) · [`release-1.6.3.md`](maintenance/tests/evidence/release-1.6.3.md)。完整记录见 [`maintenance/docs/evidence/README.md`](maintenance/docs/evidence/README.md)。
+最近 5 份证据：[`release-1.6.5-rc.md`](maintenance/tests/evidence/release-1.6.5-rc.md) · [`codex-main-multi-capability-real-result-20260814.md`](maintenance/tests/evidence/codex-main-multi-capability-real-result-20260814.md) · [`repetition-real-first/result.md`](maintenance/tests/evidence/repetition-real-first/result.md) · [`delivery-cleanliness-real-first/result.md`](maintenance/tests/evidence/delivery-cleanliness-real-first/result.md) · [`v164-under-length-real-first-result-20260814.md`](maintenance/tests/evidence/v164-under-length-real-first-result-20260814.md)。完整记录见 [`maintenance/docs/evidence/README.md`](maintenance/docs/evidence/README.md)。
 
 ## 目录结构
 
