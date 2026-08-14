@@ -13,11 +13,14 @@ from types import ModuleType
 from typing import Any, Final
 
 
-CAPABILITY_NAME: Final = "protective_expansion"
+PROTECTIVE_CAPABILITY: Final = "protective_expansion"
+REPETITION_CAPABILITY: Final = "repetition_cleanup"
+SUPPORTED_CAPABILITIES: Final = {PROTECTIVE_CAPABILITY, REPETITION_CAPABILITY}
+CAPABILITY_ENV: Final = "COW_GATE_CAPABILITY"
 STATE_SCHEMA_VERSION: Final = 1
 MAX_OUTPUT_REPROMPTS: Final = 1
 MIN_FENCED_JSON_LINES: Final = 3
-FAILURE_NOTICE: Final = "保护性外扩 Hook 未能验证原始稿回显，本次未交付正文。请关闭本任务 Hook 后重试。"
+FAILURE_NOTICE: Final = "纯删除 Hook 未能验证原始稿回显，本次未交付正文。请关闭本任务 Hook 后重试。"
 MODULE_PATH: Final = Path(__file__).resolve()
 CONTRACT_PATH: Final = MODULE_PATH.with_name("contract.py")
 
@@ -104,10 +107,20 @@ def _extract_json_object(value: Any) -> dict[str, Any] | None:
     return payload
 
 
-def _transaction_path(data_root: Path, record_path: Path, draft_hash: str) -> Path:
+def _selected_capability(record: dict[str, Any]) -> str:
+    bound = record.get("protective_capability")
+    if bound in SUPPORTED_CAPABILITIES:
+        return str(bound)
+    selected = os.environ.get(CAPABILITY_ENV)
+    return str(selected) if selected in SUPPORTED_CAPABILITIES else PROTECTIVE_CAPABILITY
+
+
+def _transaction_path(
+    data_root: Path, record_path: Path, draft_hash: str, capability: str
+) -> Path:
     return (
         data_root
-        / "protective-expansion-transactions"
+        / f"{capability.replace('_', '-')}-transactions"
         / record_path.parent.name
         / f"{record_path.stem}-{draft_hash[:12]}"
     )
@@ -133,10 +146,11 @@ def _bind_record(
     txn: Path,
     phase: str,
     original_hash: str,
+    capability: str,
 ) -> None:
     record.update(
         {
-            "protective_capability": CAPABILITY_NAME,
+            "protective_capability": capability,
             "protective_txn": str(txn.resolve()),
             "protective_phase": phase,
             "protective_original_sha256": original_hash,
@@ -148,7 +162,11 @@ def _bind_record(
 
 
 def _resume_existing(
-    txn: Path, record_path: Path, record: dict[str, Any], draft_hash: str
+    txn: Path,
+    record_path: Path,
+    record: dict[str, Any],
+    draft_hash: str,
+    capability: str,
 ) -> dict[str, Any] | None:
     audit = _read_json(txn / "audit.json")
     if audit is None or audit.get("original_sha256") != draft_hash:
@@ -156,7 +174,7 @@ def _resume_existing(
     phase = audit.get("phase")
     if phase not in {"awaiting_observation", "awaiting_output", "awaiting_original", "awaiting_failure_notice"}:
         return None
-    _bind_record(record_path, record, txn, str(phase), draft_hash)
+    _bind_record(record_path, record, txn, str(phase), draft_hash, capability)
     return audit
 
 
@@ -175,13 +193,20 @@ def start(
         if record.get("external_material_read") is True
         else "request_only"
     )
-    packet = contract.build_packet(request, draft, "", authority_scope=authority_scope)
+    capability = _selected_capability(record)
+    packet = contract.build_packet(
+        request,
+        draft,
+        "",
+        authority_scope=authority_scope,
+        capability=capability,
+    )
     if packet.get("status") != "ready":
         raise RuntimeError("protective packet unavailable")
     draft_hash = contract.sha256_text(draft)
-    txn = _transaction_path(data_root, record_path, draft_hash)
+    txn = _transaction_path(data_root, record_path, draft_hash, capability)
     if txn.exists():
-        audit = _resume_existing(txn, record_path, record, draft_hash)
+        audit = _resume_existing(txn, record_path, record, draft_hash, capability)
         if audit is None:
             raise RuntimeError("protective transaction collision")
         return _block(contract.observer_instruction(packet))
@@ -190,7 +215,7 @@ def start(
     _atomic_write(txn / "observation.packet.json", packet)
     audit = {
         "schema_version": STATE_SCHEMA_VERSION,
-        "capability": CAPABILITY_NAME,
+        "capability": capability,
         "phase": "awaiting_observation",
         "authority_scope": authority_scope,
         "request_sha256": packet["request_sha256"],
@@ -200,14 +225,20 @@ def start(
         "delivery_verified": False,
     }
     _save_audit(txn, audit)
-    _bind_record(record_path, record, txn, "awaiting_observation", draft_hash)
+    _bind_record(
+        record_path, record, txn, "awaiting_observation", draft_hash, capability
+    )
     return _block(contract.observer_instruction(packet))
 
 
 def _load_bound_transaction(
     record: dict[str, Any], data_root: Path
 ) -> tuple[Path, dict[str, Any], str] | None:
-    txn = _contained_path(record.get("protective_txn"), data_root / "protective-expansion-transactions")
+    capability = _selected_capability(record)
+    txn = _contained_path(
+        record.get("protective_txn"),
+        data_root / f"{capability.replace('_', '-')}-transactions",
+    )
     if txn is None:
         return None
     audit = _read_json(txn / "audit.json")
@@ -255,7 +286,16 @@ def _select_output(
         }
     )
     _atomic_write(record_path, record)
-    label = "保护性外扩观察已形成精确删减稿。" if selection == "E1" else "保护性外扩观察未形成可安全删除项，保留原始完整稿。"
+    capability = _selected_capability(record)
+    label = (
+        "重复句观察已形成精确删减稿。"
+        if capability == REPETITION_CAPABILITY and selection == "E1"
+        else "重复句观察未形成可安全删除项，保留原始完整稿。"
+        if capability == REPETITION_CAPABILITY
+        else "保护性外扩观察已形成精确删减稿。"
+        if selection == "E1"
+        else "保护性外扩观察未形成可安全删除项，保留原始完整稿。"
+    )
     return _block(label + "请将下列正文逐字作为整条最终回复，不要调用工具、不要加说明：\n" + output)
 
 

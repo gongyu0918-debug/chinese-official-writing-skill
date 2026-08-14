@@ -4,7 +4,7 @@
 from __future__ import annotations
 
 from collections import Counter
-from dataclasses import asdict, dataclass
+from dataclasses import asdict, dataclass, replace
 import hashlib
 import json
 import re
@@ -48,6 +48,12 @@ ALLOWED_FAMILIES: Final = frozenset(
         "semantic_repetition",
     }
 )
+PROTECTIVE_CAPABILITY: Final = "protective_expansion"
+REPETITION_CAPABILITY: Final = "repetition_cleanup"
+CAPABILITY_ALLOWED_FAMILIES: Final = {
+    PROTECTIVE_CAPABILITY: ALLOWED_FAMILIES,
+    REPETITION_CAPABILITY: frozenset({"semantic_repetition"}),
+}
 REQUIRED_ASSERTIONS: Final = (
     "authority_sufficient",
     "no_independent_genre_function",
@@ -205,22 +211,75 @@ def enumerate_segments(request: str, draft: str, source: str = "") -> list[Segme
     return segments
 
 
+def _leading_line_break_start(draft: str, item: Segment) -> int:
+    if item.end != len(draft) or item.start == 0:
+        return item.start
+    start = item.start
+    while start > 0 and draft[start - 1] in {"\n", "\r"}:
+        start -= 1
+    return start
+
+
+def _repetition_segments(draft: str, segments: list[Segment]) -> list[Segment]:
+    exact_counts = Counter(
+        _normalized(item.text) for item in segments if item.kind == "sentence"
+    )
+    adjusted: list[Segment] = []
+    for item in segments:
+        updated = item
+        if item.kind == "sentence":
+            start = _leading_line_break_start(draft, item)
+            if start != item.start:
+                target = draft[start : item.end]
+                updated = replace(
+                    item,
+                    start=start,
+                    text=target,
+                    text_sha256=sha256_text(target),
+                )
+        if (
+            item.kind == "sentence"
+            and exact_counts[_normalized(item.text)] > 1
+            and item.protection_reason in {"explicit_request_text", "explicit_source_text"}
+        ):
+            updated = replace(updated, eligible=True, protection_reason=None)
+        adjusted.append(updated)
+    return adjusted
+
+
 def build_packet(
-    request: str, draft: str, source: str = "", *, authority_scope: str | None = None
+    request: str,
+    draft: str,
+    source: str = "",
+    *,
+    authority_scope: str | None = None,
+    capability: str = PROTECTIVE_CAPABILITY,
 ) -> dict[str, Any]:
+    allowed_families = CAPABILITY_ALLOWED_FAMILIES.get(capability)
+    if allowed_families is None:
+        return {
+            "schema_version": PACKET_SCHEMA_VERSION,
+            "status": "unavailable",
+            "reason": "unsupported_capability",
+        }
     if any(len(value) > MAX_INPUT_CHARACTERS for value in (request, draft, source)):
         return {"schema_version": PACKET_SCHEMA_VERSION, "status": "unavailable", "reason": "input_too_large"}
     scope = authority_scope or ("explicit_source" if source.strip() else "request_only")
     authority_incomplete = bool(
-        not source.strip()
+        capability == PROTECTIVE_CAPABILITY
+        and not source.strip()
         and (
             scope == "external_material_observed"
             or (scope == "request_only" and EXTERNAL_SOURCE_CUE_RE.search(request))
         )
     )
+    segments = enumerate_segments(request, draft, source)
+    if capability == REPETITION_CAPABILITY:
+        segments = _repetition_segments(draft, segments)
     packet = {
         "schema_version": PACKET_SCHEMA_VERSION,
         "status": "ready",
+        "capability": capability,
         "authority_scope": scope,
         "authority_incomplete": authority_incomplete,
         "request": request,
@@ -229,15 +288,15 @@ def build_packet(
         "request_sha256": sha256_text(request),
         "source_sha256": sha256_text(source),
         "draft_sha256": sha256_text(draft),
-        "allowed_families": sorted(ALLOWED_FAMILIES),
+        "allowed_families": sorted(allowed_families),
         "required_assertions": list(REQUIRED_ASSERTIONS),
-        "segments": [asdict(item) for item in enumerate_segments(request, draft, source)],
+        "segments": [asdict(item) for item in segments],
     }
     packet["packet_sha256"] = canonical_json_sha256(packet)
     return packet
 
 
-def observer_instruction(packet: dict[str, Any]) -> str:
+def _response_skeletons(packet: dict[str, Any]) -> tuple[dict[str, Any], dict[str, Any]]:
     clear_response = {
         "schema_version": RESPONSE_SCHEMA_VERSION,
         "packet_sha256": packet.get("packet_sha256"),
@@ -261,6 +320,39 @@ def observer_instruction(packet: dict[str, Any]) -> str:
             }
         ],
     }
+    return clear_response, delete_response
+
+
+def _repetition_observer_instruction(packet: dict[str, Any]) -> str:
+    clear_response, delete_response = _response_skeletons(packet)
+    selection = delete_response["selections"][0]
+    selection["family"] = "semantic_repetition"
+    selection["preserved_segment_id"] = "复制承担同一语义且应保留的另一个 sentence S 编号"
+    selection["reason"] = "说明两句为何零增量，以及保留位置为何更符合段落功能"
+    return (
+        "请对完整初稿做一次重复句语义观察，只输出一个 JSON 对象。不要输出正文、代码围栏或说明。"
+        "完全相同的句子只是候选；高相似句只有在主体、对象、事实、状态、要求和办理作用均相同，"
+        "删除后也不损害标题、段落总领、承接或结尾功能时才可选择。"
+        "会前与会后、结果与原因、不同主体或不同状态等分别承担信息时必须返回 CLEAR。"
+        "每个删除项必须同时填写 preserved_segment_id，指向本次不删除、且完整承载同一语义的另一个 sentence；"
+        "不能选择标题、编号，不能把 target 自己作为 preserved，也不能同时删除 preserved。"
+        "跨小标题重复时优先保留更符合该段功能的一处；若删除后会留下空标题、残段或只有不相干的后续安排，返回 CLEAR。"
+        "只允许精确删除，不得要求改写、合并、补句或调整顺序；有疑问即 CLEAR。"
+        "decision 只允许 CLEAR 或 DELETE_SPANS。CLEAR 必须配空 selections；DELETE_SPANS 至少一项。"
+        "family 只能是 semantic_repetition，segment_id 和 preserved_segment_id 必须来自观察包。"
+        "required_assertions 中每个字段逐项写为 true。CLEAR 骨架如下：\n"
+        + json.dumps(clear_response, ensure_ascii=False)
+        + "\nDELETE_SPANS 骨架（使用观察包真实值）："
+        + json.dumps(delete_response, ensure_ascii=False)
+        + "\n观察包如下：\n"
+        + json.dumps(packet, ensure_ascii=False)
+    )
+
+
+def observer_instruction(packet: dict[str, Any]) -> str:
+    if packet.get("capability") == REPETITION_CAPABILITY:
+        return _repetition_observer_instruction(packet)
+    clear_response, delete_response = _response_skeletons(packet)
     return (
         "请对完整初稿做一次保护性外扩语义观察，只输出一个 JSON 对象。不要输出正文、代码围栏或说明。"
         "这不是否定词检测：先判断句子在当前文种和上下文中是否承担事实状态、程序边界、法律效果、"
@@ -303,10 +395,14 @@ def _selection_map(response: dict[str, Any]) -> tuple[dict[str, dict[str, Any]] 
     return mapped, "ok"
 
 
-def _validate_selection(selection: dict[str, Any], segment: dict[str, Any]) -> str | None:
+def _validate_selection(
+    selection: dict[str, Any],
+    segment: dict[str, Any],
+    allowed_families: frozenset[str],
+) -> str | None:
     if segment.get("eligible") is not True:
         return "protected_segment"
-    if selection.get("family") not in ALLOWED_FAMILIES:
+    if selection.get("family") not in allowed_families:
         return "unknown_family"
     reason = selection.get("reason")
     if not isinstance(reason, str) or not MIN_REASON_CHARACTERS <= len(reason.strip()) <= MAX_REASON_CHARACTERS:
@@ -336,15 +432,33 @@ def _validate_response(packet: dict[str, Any], response: dict[str, Any]) -> tupl
         return None, "invalid_decision"
     if packet.get("authority_incomplete") is True:
         return None, "authority_incomplete"
+    capability = packet.get("capability")
+    allowed_families = CAPABILITY_ALLOWED_FAMILIES.get(capability)
+    if allowed_families is None or set(packet.get("allowed_families") or []) != set(
+        allowed_families
+    ):
+        return None, "capability_family_mismatch"
     segments = {item["segment_id"]: item for item in packet.get("segments") or [] if isinstance(item, dict)}
     selected: list[dict[str, Any]] = []
     for segment_id, selection in mapped.items():
         segment = segments.get(segment_id)
         if segment is None:
             return None, "unknown_segment"
-        invalid = _validate_selection(selection, segment)
+        invalid = _validate_selection(selection, segment, allowed_families)
         if invalid:
             return None, invalid
+        if capability == REPETITION_CAPABILITY:
+            preserved_id = selection.get("preserved_segment_id")
+            preserved = segments.get(preserved_id)
+            if (
+                not isinstance(preserved_id, str)
+                or preserved_id == segment_id
+                or preserved_id in mapped
+                or not isinstance(preserved, dict)
+                or segment.get("kind") != "sentence"
+                or preserved.get("kind") != "sentence"
+            ):
+                return None, "invalid_preserved_segment"
         selected.append(segment)
     return selected, "selected"
 
@@ -413,7 +527,13 @@ def main() -> int:
             request, draft, source = (payload.get(key, "") for key in ("request", "draft", "source"))
             if not all(isinstance(value, str) for value in (request, draft, source)):
                 raise ValueError("request, draft, and source must be strings")
-            result = build_packet(request, draft, source, authority_scope=payload.get("authority_scope"))
+            result = build_packet(
+                request,
+                draft,
+                source,
+                authority_scope=payload.get("authority_scope"),
+                capability=payload.get("capability", PROTECTIVE_CAPABILITY),
+            )
         elif mode == "apply":
             packet, response = payload.get("packet"), payload.get("response")
             if not isinstance(packet, dict) or not isinstance(response, dict):

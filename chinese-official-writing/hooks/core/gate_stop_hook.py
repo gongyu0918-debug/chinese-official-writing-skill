@@ -33,6 +33,7 @@ GATE_SUBPROCESS_TIMEOUT_SECONDS = 20
 MIN_FENCED_JSON_LINES = 3
 MODULE_PATH = Path(__file__).resolve()
 PROTECTIVE_CAPABILITY_NAME = "protective_expansion"
+REPETITION_CAPABILITY_NAME = "repetition_cleanup"
 UNDER_LENGTH_CAPABILITY_NAME = "under_length"
 DELIVERY_CLEANLINESS_CAPABILITY_NAME = "delivery_cleanliness"
 PROTECTIVE_CAPABILITY_ENV = "COW_GATE_CAPABILITY"
@@ -330,7 +331,7 @@ def _protective_runtime_failure(
 ) -> dict[str, Any]:
     original_path = _protective_fallback_path(record_path)
     if original_path is None:
-        return _continue_once("保护性外扩 Hook 不可用，已停止交付；请关闭本任务 Hook 后重试。")
+        return _continue_once("纯删除 Hook 不可用，已停止交付；请关闭本任务 Hook 后重试。")
     original = None
     raw_bound = record.get("protective_original_path")
     if isinstance(raw_bound, str):
@@ -355,14 +356,17 @@ def _protective_runtime_failure(
     record["protective_phase"] = "runtime_failure_fallback"
     record["protective_delivery_verified"] = False
     _atomic_write(record_path, record)
-    return _continue_once("保护性外扩模块不可用，已回退原始完整稿。请逐字输出下列正文，不要调用工具、不要加说明：\n" + original)
+    return _continue_once("纯删除模块不可用，已回退原始完整稿。请逐字输出下列正文，不要调用工具、不要加说明：\n" + original)
 
 
 def _handle_protective_capability(
     event: dict[str, Any], record_path: Path, record: dict[str, Any]
 ) -> dict[str, Any] | None:
     active_phase = isinstance(record.get("protective_phase"), str)
-    selected = os.environ.get(PROTECTIVE_CAPABILITY_ENV) == PROTECTIVE_CAPABILITY_NAME
+    selected = os.environ.get(PROTECTIVE_CAPABILITY_ENV) in {
+        PROTECTIVE_CAPABILITY_NAME,
+        REPETITION_CAPABILITY_NAME,
+    }
     if not active_phase and not selected:
         return None
     if not active_phase:

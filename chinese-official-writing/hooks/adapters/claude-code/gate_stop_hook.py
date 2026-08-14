@@ -33,6 +33,7 @@ SUPPORTED_CAPABILITIES = {
     "protective_expansion",
     "under_length",
     "delivery_cleanliness",
+    "repetition_cleanup",
 }
 
 
