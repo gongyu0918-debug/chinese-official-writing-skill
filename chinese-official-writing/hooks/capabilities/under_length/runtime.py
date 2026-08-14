@@ -21,6 +21,8 @@ CAPABILITY_NAME: Final = "under_length"
 SCHEMA_VERSION: Final = 1
 UNDER_TOLERANCE_RATIO: Final = 0.10
 MAX_FINAL_ECHO_ATTEMPTS: Final = 1
+PREFERRED_MINIMUM_HEADROOM: Final = 10
+PREFERRED_MAXIMUM_HEADROOM: Final = 30
 PHASE_REVISION: Final = "under_length_awaiting_revision"
 PHASE_VERDICT: Final = "under_length_awaiting_verdict"
 PHASE_OUTPUT: Final = "under_length_awaiting_output"
@@ -242,13 +244,29 @@ def mechanical_reason(
 def _revision_instruction(request: str, original: str, spec: dict[str, Any]) -> str:
     maximum = int(spec.get("maximum") or 0)
     target = f"{spec['minimum']}—{maximum}字" if maximum else f"不少于{spec['minimum']}字"
+    preferred_minimum = spec["minimum"] + PREFERRED_MINIMUM_HEADROOM
+    preferred_maximum = spec["minimum"] + PREFERRED_MAXIMUM_HEADROOM
+    if maximum:
+        preferred_minimum = min(maximum, preferred_minimum)
+        preferred_maximum = min(maximum, preferred_maximum)
+    preferred = (
+        f"本轮优先控制在{preferred_minimum}—{preferred_maximum}字"
+        if preferred_minimum < preferred_maximum
+        else f"本轮至少达到{preferred_minimum}字"
+    )
     return (
         "篇幅复核发现上一稿低于用户明确下限 10% 以上。请以原请求、用户材料和 D0 为事实边界，"
-        f"将 D0 修订到{target}，只输出完整终稿。\n"
-        "可以展开材料已给事实，使用公文常识，并作基于二者、强度不升级的合理推断；可以透明分类、"
-        "归纳已列事项、解释已给关系和补足自然衔接。已有计划方向时，‘拟完善、拟优化’与‘将在下一年度改进’"
-        "可作同强度变体。不得新增材料未出现的具体主体、日期、数字、金额、职责、流程、会议内容、决定、"
-        "结果、验收结论或完成状态；不得用连续否定、免责声明、空泛承诺或重复句式凑字。\n"
+        f"将 D0 修订到{target}；{preferred}，只输出完整终稿。\n"
+        "公文常识只用于安排文种结构、段落顺序和自然衔接，不能据此补写本次事项的场景、原因、目的、"
+        "过程、作用、影响、评价、体验或未来用途。每个新增句的核心谓语都必须能由原请求、用户材料或 D0 "
+        "中的明确表述直接回指；允许重组、分类和归纳已列事实，允许说明已给事实之间不引入新事件信息的"
+        "直接关系。合理推断必须同时有材料中的主体和同一事项或状态锚，只能保持原有强度；不能把常见做法、"
+        "可能效果或一般必要性写成本次事实。已有计划方向时，‘拟完善、拟优化’与‘将在下一年度改进’可作"
+        "同强度变体。不得新增材料未出现的具体主体、日期、数字、金额、职责、流程、会议内容、决定、结果、"
+        "验收结论或完成状态；也不得新增群众体验、参与方式、反馈内容、工作成效、保障作用、资金充分性、"
+        "效率影响、规范化目标等材料没有写明的判断。不得用连续否定、免责声明、空泛承诺或重复句式凑字。"
+        "同一数字、金额、用途和未决状态原则上只写一次，不通过再次列举硬值补足篇幅。"
+        "若现有事实不足以安全达到下限，逐字返回 D0，不要勉强补足。\n"
         "【原请求】\n" + request + "\n【D0】\n" + original
     )
 
@@ -315,9 +333,13 @@ def _verdict_instruction(
     return (
         "只读核验 D1 相对 D0 的全部增量，并只输出一个 JSON 对象。冻结增量须逐 id 原样回填。"
         "每项分类为 restatement、transparent_derivation、reasonable_inference 或 new_specific_fact。"
-        "材料事实、公文常识及基于二者且有责任/状态锚的合理推断可以通过；已有下一年度计划时，"
+        "公文常识只能支持结构和衔接，不能单独支持本次事项的新谓语。材料事实、无需新增事件信息的直接关系，"
+        "以及同时具有材料主体和同一事项或状态锚、且不升级强度的合理推断可以通过；已有下一年度计划时，"
         "拟完善、拟优化与将在下一年度改进是允许的同强度表达。新增具体人事、时间、数字、职责、流程、"
-        "决定、结果或状态升级，或以保护性外扩、重复、自证、空话凑字，必须标 new_specific_fact 并 FAIL。"
+        "决定、结果或状态升级，以及材料未写明的场景、原因、目的、作用、影响、评价、体验、反馈内容、"
+        "工作成效、保障作用、资金充分性或规范化目标，必须标 new_specific_fact 并 FAIL。"
+        "透明分类和真实归纳不能只因换了概括词而失败，但不得借概括补入新的事实判断。"
+        "以保护性外扩、重复、自证或空话凑字也必须 FAIL。"
         "凡 D1 新增通知、督促、落实、准备、报送方式、会议纪律、协调办法等动作或义务，而原请求或 D0 "
         "没有同一事项授权，均属新增流程或职责，不得标为 restatement。"
         "只评价 D1 增量，不把 D0 原有问题归给 D1；不确定即 FAIL。\n"
