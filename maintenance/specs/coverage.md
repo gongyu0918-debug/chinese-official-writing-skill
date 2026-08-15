@@ -7,7 +7,7 @@
 | `WR-001` 事实与状态 | `references/information-selection.md`、各文种叶 | v1.6.4 W1—W6 | 无 Hook 也成立 | 已覆盖；继续按真实反例迭代 |
 | `WR-002` 保护性外扩 | `hooks/capabilities/protective_expansion/`、普通语义 references | 同一 E0/E1 29 组功能终审；W1—W6 | 单 coordinator、三宿主静态 companion | 已覆盖；公开 README 旧示例待替换 |
 | `WR-003` 责任承载 | 新闻叶和研究记录 | W4、W5 有效 | 不属于独立 Hook | 部分；跨文种候选未完成 |
-| `WR-004` 文种用语 | `references/formulaic-language.md` 及文种叶 | W6 支持 `综上所述` | 不适用 | 部分；20 类事务文书未全部路由 |
+| `WR-004` 文种用语 | v1.6.5 现有 `genre-routing.md` 与文种叶；`formulaic-language.md` 仅在研究分支 | W6 支持 `综上所述` | 不适用 | 部分；中央参考尚未进入产品，20 类事务文书未全部路由 |
 | `WR-005` 短稿自然度 | 信息选择、新闻/请示/总结叶 | W1—W6；本轮待补普通无 Hook 短稿 | 交付洁净度与重复清理只作可选兜底 | 部分；先验证普通写稿，再决定胶水 |
 | `WR-006` 审稿模式 | SKILL 任务模式、Hook bypass | OpenCode Go 自然审稿请求 | 显式 bypass 已有确定性覆盖 | 部分；复合任务与引语反控待做 |
 | `HK-001` 无 Hook 闭环 | canonical Skill、普通 packages | v1.6.4 六稿 | 普通镜像排除 Hook | 已覆盖 |
