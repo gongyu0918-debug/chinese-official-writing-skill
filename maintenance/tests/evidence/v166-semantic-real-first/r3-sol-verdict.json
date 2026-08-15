@@ -1,0 +1,97 @@
+{
+  "schema_version": 1,
+  "items": [
+    {
+      "id": "S07",
+      "grade": "FAIL",
+      "facts": "PASS",
+      "state": "PASS",
+      "responsibility": "PASS",
+      "genre_function": "PASS",
+      "length": "FAIL",
+      "clean_output": "PASS",
+      "naturalness": "PASS",
+      "direct_use": "FAIL",
+      "reason": "事实、进展状态和责任主体均与材料一致，汇报体例成立；但仅167个非空白字符，显著低于320—400字，篇幅硬失败。"
+    },
+    {
+      "id": "S08",
+      "grade": "PASS",
+      "facts": "PASS",
+      "state": "PASS",
+      "responsibility": "PASS",
+      "genre_function": "PASS",
+      "length": "PASS",
+      "clean_output": "PASS",
+      "naturalness": "PASS",
+      "direct_use": "PASS",
+      "reason": "363个非空白字符符合要求；人数、课程、提交期限及教学发展中心职责准确，号召和预期属于开班讲话允许的一般表达，文本自然洁净，可直接使用。"
+    },
+    {
+      "id": "S09",
+      "grade": "FAIL",
+      "facts": "PASS",
+      "state": "PASS",
+      "responsibility": "PASS",
+      "genre_function": "PASS",
+      "length": "FAIL",
+      "clean_output": "PASS",
+      "naturalness": "PASS",
+      "direct_use": "FAIL",
+      "reason": "巡查发现、分类标识、企业投放要求、联络人员及电话均与材料相符，倡议功能完整；但仅297个非空白字符，低于300—380字下限，篇幅硬失败。"
+    },
+    {
+      "id": "S10",
+      "grade": "FAIL",
+      "facts": "PASS",
+      "state": "PASS",
+      "responsibility": "PASS",
+      "genre_function": "PASS",
+      "length": "FAIL",
+      "clean_output": "FAIL",
+      "naturalness": "PASS",
+      "direct_use": "FAIL",
+      "reason": "受损时间、处置力量、影响范围、临时供水点及抢修进行中状态均准确；但仅170个非空白字符，低于320—400字，且标题残留未要求的Markdown粗体标记。"
+    },
+    {
+      "id": "S11",
+      "grade": "FAIL",
+      "facts": "FAIL",
+      "state": "PASS",
+      "responsibility": "PASS",
+      "genre_function": "PASS",
+      "length": "FAIL",
+      "clean_output": "FAIL",
+      "naturalness": "WARN",
+      "direct_use": "FAIL",
+      "reason": "短评明确未把试行写成推广决定，观点功能成立；但将材料中的“到场提醒”改称“迟到提醒”，改变了措施含义。全文455个非空白字符，超过300—380字，标题还残留Markdown粗体；数据和目的多次复述，“试行目的的自足与清醒”等表达略显生硬。"
+    },
+    {
+      "id": "S12",
+      "grade": "FAIL",
+      "facts": "PASS",
+      "state": "FAIL",
+      "responsibility": "PASS",
+      "genre_function": "PASS",
+      "length": "FAIL",
+      "clean_output": "FAIL",
+      "naturalness": "PASS",
+      "direct_use": "FAIL",
+      "reason": "意见数量、分类、核对和研究主体均准确，情况综合功能成立；但“在相关工作完成前”为现行安排增加了材料未给出的条件边界。全文仅189个非空白字符，低于350—430字，标题另有Markdown粗体残留。"
+    }
+  ],
+  "shared_mechanism_issues": [
+    "缺少机械篇幅校验：S07、S09、S10、S11、S12均未落入各自规定区间。",
+    "未清除生成用Markdown标题标记：S10、S11、S12均残留未要求的粗体符号。"
+  ],
+  "capability_summary": {
+    "WR003": "PARTIAL",
+    "WR004": "PASS",
+    "WR005": "FAIL"
+  },
+  "overall_observations": [
+    "六稿中仅S08同时满足事实、状态、责任、文种、篇幅和输出洁净度要求。",
+    "各稿整体能够识别并实现相应文种功能，主要共性缺陷集中在篇幅控制和最终输出清理。",
+    "除共性形式问题外，S11存在措施含义偏移，S12存在材料外状态条件化。"
+  ]
+}

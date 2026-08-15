@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "model": "gpt-5.6-sol",
+  "effort": "max",
+  "session_id": "2fd8e234-c33c-413e-95ab-e29e14938978",
+  "input_hashes": {
+    "cases-r3.json": "6aa23fe364a2e046fca0cb75e41c634f1a5088c81baeea4023303db6e5fbea7e",
+    "r3-technical.md": "337ceab6ef306caff24c3e81451a1763c88a1d6f9c90f381f5fbff00549f433e",
+    "r3-judge-rubric.md": "1fb500e349c200b708d57b7ed0760ffee2f13ca3dc47b8ae2788a930b151fb4b",
+    "r3-judge-template.json": "e9fe2997abb28a901051138d8105668b9d0dc82748e91634591cc6965e3d2a94",
+    "drafts/S07.md": "fac710efb8896cf9338da7eba9afd71358cdc3bea7985ea7f2a085f3a97593b0",
+    "drafts/S08.md": "1fa0c45927aa3efafd13c5e6e686fb41b9e8b06fbda1e4aff2c9a2c4d4a23b85",
+    "drafts/S09.md": "364d41b9379c8adee9dd2852884660a4a60631f45cc4a63c2796df92af37f553",
+    "drafts/S10.md": "35b593b7093fecc8c9fe564363c06c78ec63b94936bc56396618a734d41d9e35",
+    "drafts/S11.md": "38d8e27bdfa31e047d7eff86c00f3d481d9de02cdfc0fc228f952e825047d156",
+    "drafts/S12.md": "952d2d4926c5698bf4f823ff7ed98d3cd62c195266c4b84afbac295ec66b5bea"
+  },
+  "read_file_count": 10,
+  "verdict_sha256": "ca04b8043bb83c521de36f9dd76ade8f2e795dbf932a7eb00462fd54d3a86e94",
+  "exit_code": 0,
+  "elapsed_seconds": 274.328,
+  "invalid_stream_lines": 0,
+  "model_calls": 1,
+  "api_key_source": "none",
+  "web_search_requests": 0,
+  "retry_count": 0
+}
