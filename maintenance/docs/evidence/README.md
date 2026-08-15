@@ -12,8 +12,8 @@
 
 ## 逐版发布证据
 
-- v1.6.5 GitHub/SkillHub 本地候选、Codex 并发读取修复、CodeBuddy 静态迁移和待发布包哈希：[`release-1.6.5-rc.md`](../../tests/evidence/release-1.6.5-rc.md)。该候选未发布，ClawHub 不在本轮范围。
-- 当前 GitHub 与 SkillHub.cn 发布证据：[`release-1.6.4.md`](../../tests/evidence/release-1.6.4.md)。上一正式发行版见 [`release-1.6.3.md`](../../tests/evidence/release-1.6.3.md)，上一版 Hook 真实写稿结果见 [`v162-hook-writing-real-ab-final-result-20260812.md`](../../tests/evidence/v162-hook-writing-real-ab-final-result-20260812.md)。
+- 当前 GitHub 与 SkillHub.cn 发布证据：[`release-1.6.5.md`](../../tests/evidence/release-1.6.5.md)。本地候选、Codex 并发读取修复、CodeBuddy 静态迁移和候选包哈希保留在 [`release-1.6.5-rc.md`](../../tests/evidence/release-1.6.5-rc.md)。
+- 上一正式发行版见 [`release-1.6.4.md`](../../tests/evidence/release-1.6.4.md)；更早版本与上一版 Hook 真实写稿结果分别见 [`release-1.6.3.md`](../../tests/evidence/release-1.6.3.md) 和 [`v162-hook-writing-real-ab-final-result-20260812.md`](../../tests/evidence/v162-hook-writing-real-ab-final-result-20260812.md)。
 - v1.6.4 后篇幅不足 Hook 最新真实写稿、Codex/Claude 在线 D1 与 SOL max 结果：[`v164-under-length-real-first-result-20260814.md`](../../tests/evidence/v164-under-length-real-first-result-20260814.md)。第一次只会回退 D0 的三宿主记录继续保留在 [`v164-under-length-three-host-live-result-20260814.md`](../../tests/evidence/v164-under-length-three-host-live-result-20260814.md)。
 - 交付洁净度 5 组真实 D0、SOL max、首次 adapter 漏接、D0 安全回退与 Claude Code 在线 D1：[`delivery-cleanliness-real-first/result.md`](../../tests/evidence/delivery-cleanliness-real-first/result.md)。
 - Hook 永久移除的二次确认、隔离副本真实删除和删除后普通写稿：[`hook-permanent-removal-real-result-20260814.md`](../../tests/evidence/hook-permanent-removal-real-result-20260814.md)。

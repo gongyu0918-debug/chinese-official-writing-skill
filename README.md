@@ -197,7 +197,7 @@ v1.6.1 带 Skill 成稿（完整，765 字符）：
 
 技能规则、references 和 scripts 在本仓库持续迭代，各平台技能目录由 canonical 包同步生成。规范与社区项目用于校验文种、流程形态和风险维度；具体规则经过复现、取舍和 A/B 后进入主线，Git 历史记录每次修改和验证。
 
-最近 5 份证据：[`release-1.6.5-rc.md`](maintenance/tests/evidence/release-1.6.5-rc.md) · [`codex-main-multi-capability-real-result-20260814.md`](maintenance/tests/evidence/codex-main-multi-capability-real-result-20260814.md) · [`repetition-real-first/result.md`](maintenance/tests/evidence/repetition-real-first/result.md) · [`delivery-cleanliness-real-first/result.md`](maintenance/tests/evidence/delivery-cleanliness-real-first/result.md) · [`v164-under-length-real-first-result-20260814.md`](maintenance/tests/evidence/v164-under-length-real-first-result-20260814.md)。完整记录见 [`maintenance/docs/evidence/README.md`](maintenance/docs/evidence/README.md)。
+最近 5 份证据：[`release-1.6.5.md`](maintenance/tests/evidence/release-1.6.5.md) · [`codex-main-multi-capability-real-result-20260814.md`](maintenance/tests/evidence/codex-main-multi-capability-real-result-20260814.md) · [`repetition-real-first/result.md`](maintenance/tests/evidence/repetition-real-first/result.md) · [`delivery-cleanliness-real-first/result.md`](maintenance/tests/evidence/delivery-cleanliness-real-first/result.md) · [`v164-under-length-real-first-result-20260814.md`](maintenance/tests/evidence/v164-under-length-real-first-result-20260814.md)。完整记录见 [`maintenance/docs/evidence/README.md`](maintenance/docs/evidence/README.md)。
 
 ## 目录结构
 
