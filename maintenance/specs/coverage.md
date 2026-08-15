@@ -6,8 +6,8 @@
 | --- | --- | --- | --- | --- |
 | `WR-001` 事实与状态 | `references/information-selection.md`、各文种叶 | v1.6.4 W1—W6 | 无 Hook 也成立 | 已覆盖；继续按真实反例迭代 |
 | `WR-002` 保护性外扩 | `hooks/capabilities/protective_expansion/`、普通语义 references | 同一 E0/E1 29 组功能终审；W1—W6 | 单 coordinator、三宿主静态 companion | 已覆盖；公开 README 旧示例待替换 |
-| `WR-003` 责任承载 | `references/information-selection.md`、中央事务文体叶 | 20份真实稿；C02-R3、C03直连复测 | 不属于独立 Hook | 候选已覆盖；待合入 `main` |
-| `WR-004` 文种用语 | `references/formulaic-language.md`、新闻消息叶、SKILL直接路由 | 20类真实写稿，原型19/20；“编者按”修复后目标20/20 | 不适用 | 候选已覆盖；待合入 `main` |
+| `WR-003` 责任承载 | `references/information-selection.md`、中央事务文体叶 | 20份真实稿；C02-R3、C03直连复测 | 不属于独立 Hook | 已覆盖并合入 `main@03e8ec98`；v1.6.6 本地候选 |
+| `WR-004` 文种用语 | `references/formulaic-language.md`、新闻消息叶、SKILL直接路由 | 20类真实写稿，原型19/20；“编者按”修复后目标20/20 | 不适用 | 已覆盖并合入 `main@03e8ec98`；v1.6.6 本地候选 |
 | `WR-005` 短稿自然度 | 信息选择、文种叶和既有可选兜底 | 普通无 Hook 20稿：11篇幅失败、3 Markdown 残留，另有重复/拖沓 | 交付洁净度与重复清理只作可选兜底 | HOLD；不随 WR-003/004 集成 |
 | `WR-006` 审稿模式 | SKILL 任务模式、Hook bypass | OpenCode Go 自然审稿请求 | 显式 bypass 已有确定性覆盖 | 部分；复合任务与引语反控待做 |
 | `HK-001` 无 Hook 闭环 | canonical Skill、普通 packages | v1.6.4 六稿 | 普通镜像排除 Hook | 已覆盖 |
