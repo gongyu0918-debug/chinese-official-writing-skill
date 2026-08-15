@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "items": [
+    {"id":"C01","grade":"PASS|WARN|FAIL","target_function":"PASS|FAIL","facts":"PASS|FAIL","state":"PASS|FAIL","length":"PASS|FAIL","genre_function":"PASS|FAIL","naturalness":"PASS|WARN|FAIL","direct_use":"PASS|WARN|FAIL","reason":""},
+    {"id":"C02","grade":"PASS|WARN|FAIL","target_function":"PASS|FAIL","facts":"PASS|FAIL","state":"PASS|FAIL","length":"PASS|FAIL","genre_function":"PASS|FAIL","naturalness":"PASS|WARN|FAIL","direct_use":"PASS|WARN|FAIL","reason":""},
+    {"id":"C03","grade":"PASS|WARN|FAIL","target_function":"PASS|FAIL","facts":"PASS|FAIL","state":"PASS|FAIL","length":"PASS|FAIL","genre_function":"PASS|FAIL","naturalness":"PASS|WARN|FAIL","direct_use":"PASS|WARN|FAIL","reason":""}
+  ],
+  "overall": "PASS|FAIL",
+  "observations": []
+}
