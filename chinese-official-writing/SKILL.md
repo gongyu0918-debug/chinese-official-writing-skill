@@ -94,6 +94,7 @@ metadata:
 | `references/argument-chains.md` | 起草前 | 需要组织请示、报告、通知、方案、可研、技术材料等论证链条时。 |
 | `references/official-style.md` | 起草中 | 需要统一公文语气、压缩解释腔、去口语化、轻量语气替换或降 AI 味时。 |
 | `references/formal-addressing.md` | 起草中 | 需要处理行文关系、敬语、谦辞、单位称谓或人员称谓时。 |
+| `references/formulaic-language.md` | 起草中/定稿前 | 起草或复核计划、汇报、调查报告、讲话稿、演讲词、答复、责任书、公开信、倡议书、建议信、新闻发布稿、总结、情况反映、情况综合、编者按、新闻、短评、讲解稿、宣传手册或宣传材料，且需要核对文种功能、开端、承启、综合或结尾用语时；与命中的文种叶叠加，不替代事实边界。 |
 | `references/anti-ai-patterns.md` | 复核时 | 检查模板腔、旁白句、二元包装句、思考泄露和项目卡片式摘要时。 |
 | `references/final-review-layers.md` | 定稿前 | 全文交付前按硬边界、质量建议、场景参考分层总审时。 |
 | `references/proofreading-checklist.md` | 定稿前 | 成稿前做 AI 写稿轻量校对，或改写含用户引用、成语、数据、金额、日期、比例、数量的材料时。 |
