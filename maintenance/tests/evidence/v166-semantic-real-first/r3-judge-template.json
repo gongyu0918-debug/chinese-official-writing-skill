@@ -1,0 +1,90 @@
+{
+  "schema_version": 1,
+  "items": [
+    {
+      "id": "S07",
+      "grade": "PASS|WARN|FAIL",
+      "facts": "PASS|FAIL",
+      "state": "PASS|FAIL",
+      "responsibility": "PASS|FAIL",
+      "genre_function": "PASS|FAIL",
+      "length": "PASS|FAIL",
+      "clean_output": "PASS|FAIL",
+      "naturalness": "PASS|WARN|FAIL",
+      "direct_use": "PASS|WARN|FAIL",
+      "reason": ""
+    },
+    {
+      "id": "S08",
+      "grade": "PASS|WARN|FAIL",
+      "facts": "PASS|FAIL",
+      "state": "PASS|FAIL",
+      "responsibility": "PASS|FAIL",
+      "genre_function": "PASS|FAIL",
+      "length": "PASS|FAIL",
+      "clean_output": "PASS|FAIL",
+      "naturalness": "PASS|WARN|FAIL",
+      "direct_use": "PASS|WARN|FAIL",
+      "reason": ""
+    },
+    {
+      "id": "S09",
+      "grade": "PASS|WARN|FAIL",
+      "facts": "PASS|FAIL",
+      "state": "PASS|FAIL",
+      "responsibility": "PASS|FAIL",
+      "genre_function": "PASS|FAIL",
+      "length": "PASS|FAIL",
+      "clean_output": "PASS|FAIL",
+      "naturalness": "PASS|WARN|FAIL",
+      "direct_use": "PASS|WARN|FAIL",
+      "reason": ""
+    },
+    {
+      "id": "S10",
+      "grade": "PASS|WARN|FAIL",
+      "facts": "PASS|FAIL",
+      "state": "PASS|FAIL",
+      "responsibility": "PASS|FAIL",
+      "genre_function": "PASS|FAIL",
+      "length": "PASS|FAIL",
+      "clean_output": "PASS|FAIL",
+      "naturalness": "PASS|WARN|FAIL",
+      "direct_use": "PASS|WARN|FAIL",
+      "reason": ""
+    },
+    {
+      "id": "S11",
+      "grade": "PASS|WARN|FAIL",
+      "facts": "PASS|FAIL",
+      "state": "PASS|FAIL",
+      "responsibility": "PASS|FAIL",
+      "genre_function": "PASS|FAIL",
+      "length": "PASS|FAIL",
+      "clean_output": "PASS|FAIL",
+      "naturalness": "PASS|WARN|FAIL",
+      "direct_use": "PASS|WARN|FAIL",
+      "reason": ""
+    },
+    {
+      "id": "S12",
+      "grade": "PASS|WARN|FAIL",
+      "facts": "PASS|FAIL",
+      "state": "PASS|FAIL",
+      "responsibility": "PASS|FAIL",
+      "genre_function": "PASS|FAIL",
+      "length": "PASS|FAIL",
+      "clean_output": "PASS|FAIL",
+      "naturalness": "PASS|WARN|FAIL",
+      "direct_use": "PASS|WARN|FAIL",
+      "reason": ""
+    }
+  ],
+  "shared_mechanism_issues": [],
+  "capability_summary": {
+    "WR003": "PASS|PARTIAL|FAIL",
+    "WR004": "PASS|PARTIAL|FAIL",
+    "WR005": "PASS|PARTIAL|FAIL"
+  },
+  "overall_observations": []
+}
