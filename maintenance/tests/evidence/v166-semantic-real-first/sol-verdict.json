@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "items": [
+    {
+      "id": "S01",
+      "grade": "WARN",
+      "facts": "PASS",
+      "state": "PASS",
+      "responsibility": "PASS",
+      "genre_function": "PASS",
+      "length": "PASS",
+      "naturalness": "WARN",
+      "direct_use": "PASS",
+      "reason": "各项时点、主体和任务均有材料依据，302个非空白字符符合篇幅要求，计划功能完整；但“正常有序开展”“有序开展”等表述在短稿中反复出现，文风略显重复。"
+    },
+    {
+      "id": "S02",
+      "grade": "FAIL",
+      "facts": "PASS",
+      "state": "PASS",
+      "responsibility": "PASS",
+      "genre_function": "PASS",
+      "length": "FAIL",
+      "naturalness": "PASS",
+      "direct_use": "FAIL",
+      "reason": "调查范围、数据、措施及当前记录状态均与材料一致，报告功能基本完整；但全文仅194个非空白字符，低于350字下限，属于篇幅硬失败，不能按任务要求直接使用。"
+    },
+    {
+      "id": "S03",
+      "grade": "FAIL",
+      "facts": "FAIL",
+      "state": "FAIL",
+      "responsibility": "PASS",
+      "genre_function": "PASS",
+      "length": "PASS",
+      "naturalness": "PASS",
+      "direct_use": "FAIL",
+      "reason": "责任分工、期限、数量及保密要求表述准确，330个非空白字符符合要求；但“经双方协商一致，签订本责任书”新增了材料未载明的协商和签订程序，并把待拟正文写成已经达成一致，构成事实与状态硬问题。"
+    },
+    {
+      "id": "S04",
+      "grade": "FAIL",
+      "facts": "FAIL",
+      "state": "PASS",
+      "responsibility": "FAIL",
+      "genre_function": "PASS",
+      "length": "PASS",
+      "naturalness": "PASS",
+      "direct_use": "FAIL",
+      "reason": "巡查时间、发现情况、后勤巡查安排和报修电话均表述准确，322个非空白字符达标；但将实验室“检查用电设备”扩写为“确认关闭后再离开”，新增了材料外的关闭要求，扩大了责任内容，不能直接使用。"
+    },
+    {
+      "id": "S05",
+      "grade": "FAIL",
+      "facts": "FAIL",
+      "state": "FAIL",
+      "responsibility": "FAIL",
+      "genre_function": "PASS",
+      "length": "PASS",
+      "naturalness": "WARN",
+      "direct_use": "FAIL",
+      "reason": "现行及试行开放时间、轮班责任和评估依据均准确，期限与延长时数属于透明算术，318个非空白字符达标；但“评估情况将向读者反馈”新增了材料外反馈承诺及相应责任，属于硬问题。短稿中“试行”表述也较为重复。"
+    },
+    {
+      "id": "S06",
+      "grade": "FAIL",
+      "facts": "PASS",
+      "state": "PASS",
+      "responsibility": "PASS",
+      "genre_function": "FAIL",
+      "length": "PASS",
+      "naturalness": "PASS",
+      "direct_use": "FAIL",
+      "reason": "社区数量、志愿者人数、服务场次、服务内容、现存问题及编发目的均与材料一致，192个非空白字符符合要求；但文本缺少“编者按”这一文种必需的功能标识，不能作为完整编者按直接刊发。"
+    }
+  ],
+  "shared_mechanism_issues": [],
+  "capability_summary": {
+    "WR003": "PARTIAL",
+    "WR004": "FAIL",
+    "WR005": "FAIL"
+  },
+  "overall_observations": [
+    "S03、S04、S05均出现将常规化扩写转化为材料外程序、责任要求或反馈承诺的问题。",
+    "packet未标注各稿的模型来源归属，在不得推测候选身份的前提下，不能确认上述问题达到至少两个模型来源的共同机制门槛。"
+  ]
+}

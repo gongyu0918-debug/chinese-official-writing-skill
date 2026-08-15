@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "model": "gpt-5.6-sol",
+  "effort": "max",
+  "session_id": "7b0b116a-fdaa-4e51-8dac-875a81174591",
+  "packet_sha256": "32585a51f2f735c9fd6c4461db5760d4915d1b1a7fb66b0638f3a94133c3e20d",
+  "template_sha256": "d9cc58f554161af2f615694efce350caa07c1d1d44b175a5d530ff1d009822ad",
+  "verdict_sha256": "c4f2f011dd14346f9991f5e15a99326b98325ec8dc8bdde2706ed551e9bc4d07",
+  "read_files": [
+    "packet.md",
+    "template.json"
+  ],
+  "exit_code": 0,
+  "elapsed_seconds": 384.821,
+  "invalid_stream_lines": 0,
+  "model_calls": 1,
+  "pre_call_wrapper_errors": 1,
+  "api_key_source": "none",
+  "web_search_requests": 0,
+  "retry_count": 0
+}
