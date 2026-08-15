@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "model": "gpt-5.6-sol",
+  "effort": "max",
+  "session_id": "902bd1ce-75f8-47a5-b233-61ebcc0c3296",
+  "input_hashes": {
+    "candidate-confirm-cases.json": "3e495051e4e69cc1862003654bf4232d27a7fc054e95df47bb19e2465a514511",
+    "candidate-confirm-technical.md": "c0f23f22cdd12bb90b58ee7c892e333269389d836c56b46dea5bd4c605fdbc7e",
+    "candidate-confirm-judge-rubric.md": "b733784c3673664402d8afeb90987970c35fa1e43700750baf880f04dbfb143f",
+    "candidate-confirm-judge-template.json": "a5ea9962fbbb1cf5d579dac418c8ba6c86fcfcb69dc0d5e50a9b4f42768553d1",
+    "candidate-confirm-drafts/C01.md": "6fadbe1c0a496c2c1105245e44dbf7772e1a7b8e87758777d5e527a9fc4e7110",
+    "candidate-confirm-drafts/C02.md": "626d826f3a29fece591ee81ca57ec911c1320df2f17ac60d43108eb4ced8b252",
+    "candidate-confirm-drafts/C03.md": "ceb081a0e2a972fe9fda40d0042245d2503cdaae5a3c30de87346e05d31c30b1"
+  },
+  "read_file_count": 7,
+  "verdict_sha256": "ea84209e8e98abbe782ace51146be112d5f26801eb940cf72f48f2e97a0170e5",
+  "exit_code": 0,
+  "elapsed_seconds": 272.108,
+  "invalid_stream_lines": 0,
+  "model_calls": 1,
+  "api_key_source": "none",
+  "web_search_requests": 0,
+  "retry_count": 0
+}

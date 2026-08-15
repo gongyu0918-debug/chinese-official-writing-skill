@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "items": [
+    {
+      "id": "C01",
+      "grade": "PASS",
+      "target_function": "PASS",
+      "facts": "PASS",
+      "state": "PASS",
+      "length": "PASS",
+      "genre_function": "PASS",
+      "naturalness": "PASS",
+      "direct_use": "PASS",
+      "reason": "显式使用“编者按：”，准确交代编发对象、交流参考目的及下文所写的具体做法和存在问题；数字、状态和篇幅均符合材料及要求，文本自然，可直接刊发。"
+    },
+    {
+      "id": "C02",
+      "grade": "FAIL",
+      "target_function": "PASS",
+      "facts": "FAIL",
+      "state": "PASS",
+      "length": "PASS",
+      "genre_function": "PASS",
+      "naturalness": "PASS",
+      "direct_use": "FAIL",
+      "reason": "目标功能通过：“今后，我们将继续”由演讲人所在服务队承担，且未新增具体活动、期限、程序或已达成成效。但材料仅给出“3月至6月”，稿件增写“今年”，把未给定年份明确为当年，属于材料外时间事实，不能直接使用。"
+    },
+    {
+      "id": "C03",
+      "grade": "PASS",
+      "target_function": "PASS",
+      "facts": "PASS",
+      "state": "PASS",
+      "length": "PASS",
+      "genre_function": "PASS",
+      "naturalness": "PASS",
+      "direct_use": "PASS",
+      "reason": "未新增协商一致、签订或签署等过程和状态；双方职责、10%抽查比例、12000页任务、12月20日期限、当日登记告知及保密要求均准确，篇幅和责任书文种符合要求，可直接使用。"
+    }
+  ],
+  "overall": "FAIL",
+  "observations": [
+    "C02虽通过目标功能门，但因新增明确时间事实触发整稿硬失败，故总体为FAIL。"
+  ]
+}
