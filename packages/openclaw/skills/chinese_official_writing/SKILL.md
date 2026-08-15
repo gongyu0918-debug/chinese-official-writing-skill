@@ -89,7 +89,8 @@ metadata:
 | 文件 | 阶段 | 加载条件 |
 | --- | --- | --- |
 | `references/information-selection.md` | 起草前/改稿前 | 起草、改稿、压缩或合稿时先读一次，用于按输出模式、材料状态、事项关联性和办理必要性决定信息进入正文、保持状态、省略或短列缺口。 |
-| `references/task-route-cards.md` | 起草前/改稿前 | 材料稀疏、短稿、低上下文局部修改，或用户明确要求不新增事实、只按已给材料写时，先判断是否完整命中材料稀疏的情况说明/通报/报告、未决事项会议纪要、短通知/限字通知、二次局部修改四类卡片之一；卡片不能覆盖或任务转为复杂时，再读 `workflow.md`、`genre-playbooks.md` 等长 reference。 |
+| `references/formulaic-language.md` | 起草中/定稿前 | 起草或复核计划、汇报、调查报告、讲话稿、演讲词、答复、责任书、公开信、倡议书、建议信、新闻发布稿、总结、情况反映、情况综合、编者按、新闻、短评、讲解稿、宣传手册或宣传材料，且需要核对文种功能、开端、承启、综合或结尾用语时。文种明确、材料单一且该页功能表足以覆盖时，由该页直接结束文种路由；复杂任务再补对应长 reference。 |
+| `references/task-route-cards.md` | 起草前/改稿前 | 未被 `formulaic-language.md` 直接叶覆盖，且材料稀疏、短稿、低上下文局部修改，或用户明确要求不新增事实、只按已给材料写时，先判断是否完整命中材料稀疏的情况说明/通报/报告、未决事项会议纪要、短通知/限字通知、二次局部修改四类卡片之一；卡片不能覆盖或任务转为复杂时，再读 `workflow.md`、`genre-playbooks.md` 等长 reference。 |
 | `references/workflow.md` | 起草前 | 长文、复杂改稿、多材料合稿、任务模式路由、急件处理，或用户要求不要新增小标题、保留主送/落款/标题等结构锁定项时。 |
 | `references/external-research.md` | 按需核验 | 仅在用户明确要求搜索、核验公开来源，或任务包含最新、当前、今日、现行政策、近期数据等时效事实时读取。 |
 | `references/genre-routing.md` | 起草前 | 文种、行文方向或请示/报告/通知/函等边界不明确时。 |
@@ -110,7 +111,7 @@ metadata:
 | `references/genre-playbook-plan-construction.md` | 按文种选读 | 方案、实施方案或建设方案需要常规或完整骨架时直接读取。 |
 | `references/genre-playbooks.md` | 按文种选读 | 通知、复函、征求意见函、讲话稿、调研/研究/可研、采购公告、审查材料等需要快速进入对应场景骨架时读取；用户提供既有普通函并要求重组事务动作、状态、条件、范围或结构时读取函规则。 |
 | `references/genre-playbook-institution-rules.md` | 按文种选读 | 起草、改写或复核制度、规定、办法、管理办法、实施细则、操作规程，以及需要区分印发通知与制度附件时读取。 |
-| `references/genre-playbook-news-message.md` | 按文种选读 | 用户明确要求新闻稿、新闻消息、快讯、活动报道、活动新闻稿或新闻通稿时直接读取。 |
+| `references/genre-playbook-news-message.md` | 按文种选读 | 用户明确要求编者按、新闻稿、新闻消息、快讯、活动报道、活动新闻稿或新闻通稿时直接读取；材料单一的编者按已由 `formulaic-language.md` 完整覆盖时不重复加载。 |
 | `references/genre-playbook-news-commentary.md` | 按文种选读 | 用户明确将体裁指定为新闻评论、时评或评论员文章时直接读取。 |
 | `references/genre-checklist-report.md` | 按文种选读 | 报告、情况报告或情况说明需要常规或完整骨架、专项写法或细查文种功能和结构时直接读取；命中轻量卡且卡片能够覆盖任务时不重复读取。 |
 | `references/genre-checklist.md` | 按文种选读 | 通知、命令、公报、决议、议案、函、批复、公告、通告、公示、通报、纪要、讲话稿、述职等其他文种细查时。 |

@@ -108,7 +108,13 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assertEqual(frontmatter["name"], "chinese_official_writing")
         self.assertEqual(frontmatter["license"], "MIT")
         self.assertEqual(frontmatter["metadata"]["version"], CURRENT_VERSION)
-        self.assertEqual(len(relative_files(package_root)), 31)
+        exclusions = OPTIONAL_GATE_FILES | {"agents/openai.yaml"}
+        expected_files = {
+            relative
+            for relative in relative_files(CANONICAL)
+            if not any(relative == excluded or relative.startswith(f"{excluded}/") for excluded in exclusions)
+        }
+        self.assertEqual(set(relative_files(package_root)), expected_files)
         self.assertEqual((package_root / "LICENSE").read_bytes(), (ROOT / "LICENSE").read_bytes())
         for forbidden in OPTIONAL_GATE_FILES | {"agents/openai.yaml", "README.md"}:
             self.assertFalse((package_root / forbidden).exists(), forbidden)
@@ -1285,7 +1291,14 @@ class SkillBoundaryTests(unittest.TestCase):
 
         self.assertIn(
             "保持主体、对象、数字、日期、状态和结论强度；"
-            "事实之间的时间、因果、分类和归属关系以材料明确关系为准；"
+            "事实之间的时间、因果、分类和归属关系以材料明确关系为准",
+            information_selection,
+        )
+        self.assertIn(
+            "材料只给月份、月日或时间段时，不自行补`今年`、`本年`、具体年份或其他相对时间锚",
+            information_selection,
+        )
+        self.assertIn(
             "总量与子项差额只用于合计校核，不据此补写“其余均正常、未发现其他问题、均无异常”等材料未给结论",
             information_selection,
         )

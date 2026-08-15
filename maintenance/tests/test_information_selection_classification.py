@@ -16,9 +16,9 @@ PERSISTENT_MIRROR_ROOTS = (
 )
 RELATIVE = Path("references/information-selection.md")
 CLASSIFICATION_RULE = (
-    "事实之间的时间、因果、分类和归属关系以材料明确关系为准；"
     "总量与子项差额只用于合计校核，不据此补写“其余均正常、未发现其他问题、均无异常”等材料未给结论。"
 )
+FORMULAIC = Path("references/formulaic-language.md")
 
 
 class InformationSelectionClassificationTests(HookCompanionTestMixin, unittest.TestCase):
@@ -51,6 +51,17 @@ class InformationSelectionClassificationTests(HookCompanionTestMixin, unittest.T
         for mirror in self.mirror_roots:
             with self.subTest(mirror=mirror):
                 self.assertEqual((mirror / RELATIVE).read_bytes(), canonical_bytes)
+
+    def test_transactional_formulaic_leaf_is_current_in_all_mirrors(self) -> None:
+        canonical_bytes = (CANONICAL / FORMULAIC).read_bytes()
+        canonical_text = canonical_bytes.decode("utf-8")
+
+        self.assertIn("组成直接叶", canonical_text)
+        self.assertIn("| 编者按 |", canonical_text)
+        self.assertIn("不补`今年`、`本年`或具体年份", canonical_text)
+        for mirror in self.mirror_roots:
+            with self.subTest(mirror=mirror):
+                self.assertEqual((mirror / FORMULAIC).read_bytes(), canonical_bytes)
 
 
 if __name__ == "__main__":
