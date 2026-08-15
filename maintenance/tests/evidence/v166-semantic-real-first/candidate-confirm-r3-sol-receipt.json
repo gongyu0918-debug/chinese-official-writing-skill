@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "model": "gpt-5.6-sol",
+  "effort": "max",
+  "session_id": "0ec31792-cb84-4c00-a707-c67d9198a806",
+  "input_hashes": {
+    "candidate-confirm-cases.json": "3e495051e4e69cc1862003654bf4232d27a7fc054e95df47bb19e2465a514511",
+    "candidate-confirm-drafts/C02-R3.md": "bc12a52bebd6148f1a8aebb7ad4a0b590cd7bad91e3000d96b2b808aff2e24df",
+    "candidate-confirm-r3-technical.md": "a738d88266d3d030900078f048957b34413a6eac62d0c0b84329facb6b87992b",
+    "candidate-confirm-r3-judge-rubric.md": "a3cf2b32d34fffeb43810b08722695a405623437e7faca68511b5c2485b7292c",
+    "candidate-confirm-r3-judge-template.json": "eb6790d70275cc74308ca5f0ba3d30ef5a7a5732a50a81e0997ec681062680af"
+  },
+  "read_file_count": 5,
+  "verdict_sha256": "d65ec96fbe034c7bddc9170dfcf0cffb54e49c33fbd1bd72988a6d3c25e75f9e",
+  "exit_code": 0,
+  "elapsed_seconds": 37.028,
+  "invalid_stream_lines": 0,
+  "model_calls": 1,
+  "api_key_source": "none",
+  "web_search_requests": 0,
+  "retry_count": 0
+}
