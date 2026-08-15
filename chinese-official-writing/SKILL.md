@@ -94,7 +94,7 @@ metadata:
 | `references/argument-chains.md` | 起草前 | 需要组织请示、报告、通知、方案、可研、技术材料等论证链条时。 |
 | `references/official-style.md` | 起草中 | 需要统一公文语气、压缩解释腔、去口语化、轻量语气替换或降 AI 味时。 |
 | `references/formal-addressing.md` | 起草中 | 需要处理行文关系、敬语、谦辞、单位称谓或人员称谓时。 |
-| `references/formulaic-language.md` | 起草中/定稿前 | 起草或复核计划、汇报、调查报告、讲话稿、演讲词、答复、责任书、公开信、倡议书、建议信、新闻发布稿、总结、情况反映、情况综合、编者按、新闻、短评、讲解稿、宣传手册或宣传材料，且需要核对文种功能、开端、承启、综合或结尾用语时；与命中的文种叶叠加，不替代事实边界。 |
+| `references/formulaic-language.md` | 起草中/定稿前 | 起草或复核计划、汇报、调查报告、讲话稿、演讲词、答复、责任书、公开信、倡议书、建议信、新闻发布稿、总结、情况反映、情况综合、编者按、新闻、短评、讲解稿、宣传手册或宣传材料，且需要核对文种功能、开端、承启、综合或结尾用语时。文种明确、材料单一且该页功能表足以覆盖时，由该页直接结束文种路由；复杂任务再补对应长 reference。 |
 | `references/anti-ai-patterns.md` | 复核时 | 检查模板腔、旁白句、二元包装句、思考泄露和项目卡片式摘要时。 |
 | `references/final-review-layers.md` | 定稿前 | 全文交付前按硬边界、质量建议、场景参考分层总审时。 |
 | `references/proofreading-checklist.md` | 定稿前 | 成稿前做 AI 写稿轻量校对，或改写含用户引用、成语、数据、金额、日期、比例、数量的材料时。 |
@@ -108,7 +108,7 @@ metadata:
 | `references/genre-playbook-plan-construction.md` | 按文种选读 | 方案、实施方案或建设方案需要常规或完整骨架时直接读取。 |
 | `references/genre-playbooks.md` | 按文种选读 | 通知、复函、征求意见函、讲话稿、调研/研究/可研、采购公告、审查材料等需要快速进入对应场景骨架时读取；用户提供既有普通函并要求重组事务动作、状态、条件、范围或结构时读取函规则。 |
 | `references/genre-playbook-institution-rules.md` | 按文种选读 | 起草、改写或复核制度、规定、办法、管理办法、实施细则、操作规程，以及需要区分印发通知与制度附件时读取。 |
-| `references/genre-playbook-news-message.md` | 按文种选读 | 用户明确要求新闻稿、新闻消息、快讯、活动报道、活动新闻稿或新闻通稿时直接读取。 |
+| `references/genre-playbook-news-message.md` | 按文种选读 | 用户明确要求编者按、新闻稿、新闻消息、快讯、活动报道、活动新闻稿或新闻通稿时直接读取；材料单一的编者按已由 `formulaic-language.md` 完整覆盖时不重复加载。 |
 | `references/genre-playbook-news-commentary.md` | 按文种选读 | 用户明确将体裁指定为新闻评论、时评或评论员文章时直接读取。 |
 | `references/genre-checklist-report.md` | 按文种选读 | 报告、情况报告或情况说明需要常规或完整骨架、专项写法或细查文种功能和结构时直接读取；命中轻量卡且卡片能够覆盖任务时不重复读取。 |
 | `references/genre-checklist.md` | 按文种选读 | 通知、命令、公报、决议、议案、函、批复、公告、通告、公示、通报、纪要、讲话稿、述职等其他文种细查时。 |
