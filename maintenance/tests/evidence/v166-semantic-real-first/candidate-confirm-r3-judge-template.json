@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "grade": "PASS|WARN|FAIL",
+  "facts": "PASS|FAIL",
+  "state": "PASS|FAIL",
+  "time_anchor": "PASS|FAIL",
+  "responsibility": "PASS|FAIL",
+  "genre_function": "PASS|FAIL",
+  "length": "PASS|FAIL",
+  "direct_use": "PASS|WARN|FAIL",
+  "reason": "",
+  "overall": "PASS|FAIL"
+}
