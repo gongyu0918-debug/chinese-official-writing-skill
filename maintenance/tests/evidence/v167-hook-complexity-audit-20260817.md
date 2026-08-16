@@ -83,3 +83,11 @@ AST 以函数行数和 `if/for/while/try/with/match/bool/comprehension` 决策�
 - C3 已完成：`evaluate_candidate` 从313行/117个决策节点降至46行/7个；输入 envelope、单项 action、span、replacement、operation、硬锚和全文不变量保持原先顺序与 reason，所有辅助函数均低于80行/25个决策节点。
 - 调度拆分已完成：`_dispatch_transaction_locked` 从120行/19个决策节点降至69行/8个；输入绑定、repair/verdict claim、bridge 执行和匹配事务 abort 已分开，失败 reason 的赋值时点保持不变。
 - 当前剩余的显式债务只有规则聚合器 `locate_candidates`（131行/27个决策节点）；规则表和正则窗口尚未移动或改值。
+
+## 25提交检查点
+
+- 分支相对 `main@42713108` 为25个提交，工作树清洁；相对 v1.6.6 的产品改动只涉及短稿路由、Hook core 和 review gate 内部拆分。
+- 确定性真实用户式消融：v1.6.6 为111/111，当前候选为111/111，没有路由或基础规则回退。
+- 聚焦边界与复杂度85/85、review/gate/adapter 相关回归223/223；Codex companion 组装为52文件，`enabled=false`、`installed=false`、`network_used=false`。
+- canonical quick validation 通过，普通镜像同步幂等，`git diff --check` 通过。
+- 第一次 quick validation 使用了仓库内已不存在的旧路径 `maintenance/tools/quick_validate.py`，命令以 exit 2 失败；随后改用 skill-creator 实际入口复跑通过。该环境/命令错误不记为产品失败，也不隐去。
