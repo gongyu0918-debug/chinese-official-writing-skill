@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "models": {
+    "opencode": "opencode-go/deepseek-v4-flash",
+    "ollama": "ollama-cloud/deepseek-v4-flash:0731",
+    "alibaba2": "alibaba-token-plan-2/deepseek-v4-flash-0731"
+  },
+  "cases": [
+    {"id": "R01", "source_case_id": "F01", "provider": "opencode", "phrase_lookup": false},
+    {"id": "R02", "source_case_id": "F04", "provider": "opencode", "phrase_lookup": false},
+    {"id": "R03", "source_case_id": "F15", "provider": "opencode", "phrase_lookup": false},
+    {"id": "R04", "source_case_id": "F21", "provider": "opencode", "phrase_lookup": false},
+    {
+      "id": "R05",
+      "provider": "opencode",
+      "genre": "通知用语选择",
+      "phrase_lookup": true,
+      "request": "请根据材料起草《关于开展档案目录复核工作的通知》，包括标题、主送对象和正文，260—330字，只输出可直接使用的完整文本。请从现代正式通知常用写法中选择与本题相称的开端和结尾，不要照搬与通知无关的尾语。材料：主送对象为各业务科室；复核范围为2022年至2024年形成的业务档案目录；各科室于9月18日前完成自查，并将发现的目录错项通过OA报送综合档案室；联系人周宁，电话6123；发文单位为综合档案室。不得补抽查、处罚、整改时限、培训、验收或其他安排。"
+    },
+    {"id": "R06", "source_case_id": "F03", "provider": "ollama", "phrase_lookup": false},
+    {"id": "R07", "source_case_id": "F09", "provider": "ollama", "phrase_lookup": false},
+    {"id": "R08", "source_case_id": "F16", "provider": "ollama", "phrase_lookup": false},
+    {"id": "R09", "source_case_id": "F19", "provider": "ollama", "phrase_lookup": false},
+    {
+      "id": "R10",
+      "provider": "ollama",
+      "genre": "报告用语选择",
+      "phrase_lookup": true,
+      "request": "请根据材料起草《设备巡检情况报告》，包括标题、主送机关和正文，300—380字，只输出可直接使用的完整文本。请按现代情况报告的行文关系选择合适开端和结尾，不得写成请示。材料：主送机关为市公共文化中心；8月5日至9日检查阅览区自助设备18台，发现2台读卡器反应迟缓；技术人员已于8月9日完成清洁和重启，目前2台设备运行状态继续观察；其余16台未发现异常；设备管理科继续记录相关运行情况。不得补故障原因、维修结论、采购计划、责任认定、完成成效或请批事项。"
+    },
+    {"id": "R11", "source_case_id": "F10", "provider": "alibaba2", "phrase_lookup": false},
+    {"id": "R12", "source_case_id": "F12", "provider": "alibaba2", "phrase_lookup": false},
+    {"id": "R13", "source_case_id": "F20", "provider": "alibaba2", "phrase_lookup": false},
+    {"id": "R14", "source_case_id": "F24", "provider": "alibaba2", "phrase_lookup": false},
+    {
+      "id": "R15",
+      "provider": "alibaba2",
+      "genre": "复函用语选择",
+      "phrase_lookup": true,
+      "request": "请根据材料起草《关于数字阅读区参观交流事项的复函》，包括标题、主送单位和正文，300—380字，只输出可直接使用的完整文本。请从现代复函常用写法中选择合适的引叙和结尾。材料：主送单位为东湖区图书馆；对方来函为东图函〔2026〕12号《关于赴市公共文化中心开展数字阅读区参观交流的函》；同意对方于9月22日14时到访；交流内容为数字阅读设备日常巡检和读者操作指导；参加人员不超过8人；联系人林晓，电话8036。不得补接待领导、会议议程、车辆安排、餐饮、合作协议、宣传报道或其他事项。"
+    }
+  ]
+}
