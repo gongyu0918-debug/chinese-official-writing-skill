@@ -769,17 +769,10 @@ def _merge_exact_span_findings(
     return merged
 
 
-def locate_candidates(
-    request: str,
-    draft: str,
-    source: str = "",
-    guided_marker_sidecar: dict[str, Any] | None = None,
-) -> dict[str, Any]:
-    if not draft.strip():
-        raise GateInputError("D0 must be a non-empty complete draft")
-
+def _automatic_candidate_findings(
+    request: str, draft: str, source: str
+) -> list[Finding]:
     findings: list[Finding] = []
-    finding_number = 0
     lines = draft.splitlines()
     first_nonempty = next((line.strip() for line in lines if line.strip()), "")
     for line_number, sentence, span_start, span_end in iter_sentence_spans(draft):
@@ -787,7 +780,9 @@ def locate_candidates(
         first_line_is_title = (
             whole_line == first_nonempty and _is_document_title_line(whole_line)
         )
-        if whole_line == sentence and (first_line_is_title or _is_heading_line(whole_line)):
+        if whole_line == sentence and (
+            first_line_is_title or _is_heading_line(whole_line)
+        ):
             continue
         labels = labels_for_sentence(sentence)
         if (
@@ -798,28 +793,31 @@ def locate_candidates(
         if not labels:
             continue
         sentence_normalized = normalized_text(sentence)
-        source_exact = bool(
-            source and len(sentence_normalized) >= 8 and sentence.strip() in source
-        )
-        request_exact = bool(
-            len(sentence_normalized) >= 8 and sentence.strip() in request
-        )
-        request_delete = _request_explicitly_deletes_negative_claim(sentence, request)
-        finding_number += 1
         findings.append(
             Finding(
-                finding_id=f"P{finding_number:03d}",
+                finding_id=f"P{len(findings) + 1:03d}",
                 labels=tuple(sorted(labels)),
                 line=line_number,
                 target=sentence,
-                source_exact=source_exact,
-                request_exact=request_exact,
-                request_delete=request_delete,
+                source_exact=bool(
+                    source
+                    and len(sentence_normalized) >= 8
+                    and sentence.strip() in source
+                ),
+                request_exact=bool(
+                    len(sentence_normalized) >= 8 and sentence.strip() in request
+                ),
+                request_delete=_request_explicitly_deletes_negative_claim(
+                    sentence, request
+                ),
                 span_start=span_start,
                 span_end=span_end,
             )
         )
+    return findings
 
+
+def _serialized_candidate_findings(findings: list[Finding]) -> list[dict[str, Any]]:
     serialized_findings: list[dict[str, Any]] = []
     for item in findings:
         serialized = asdict(item)
@@ -827,63 +825,91 @@ def locate_candidates(
             serialized.pop("request_delete", None)
         serialized["labels"] = list(item.labels)
         serialized_findings.append(serialized)
-    if guided_marker_sidecar is not None:
-        markers = guided_marker_sidecar.get("markers")
-        if (
-            guided_marker_sidecar.get("schema_version") != GUIDED_MARKER_SCHEMA_VERSION
-            or guided_marker_sidecar.get("parse_status") != "VALID"
-            or guided_marker_sidecar.get("d0_sha256") != sha256_text(draft)
-            or not isinstance(markers, list)
-        ):
-            raise GateInputError("guided marker sidecar is invalid")
-        for marker in markers:
-            if not isinstance(marker, dict):
-                raise GateInputError("guided marker record is invalid")
-            marker_id = marker.get("marker_id")
-            target = marker.get("target")
-            span_start = marker.get("span_start")
-            span_end = marker.get("span_end")
-            line = marker.get("line")
-            if (
-                not isinstance(marker_id, str)
-                or not isinstance(target, str)
-                or not target.strip()
-                or not isinstance(span_start, int)
-                or not isinstance(span_end, int)
-                or not isinstance(line, int)
-                or span_start < 0
-                or span_end <= span_start
-                or draft[span_start:span_end] != target
-                or marker.get("target_sha256") != sha256_text(target)
-            ):
-                raise GateInputError("guided marker span is invalid")
-            labels = sorted(labels_for_sentence(target) | {"guided-drop-marker"})
-            serialized_guided_finding = {
-                    "finding_id": marker_id,
-                    "labels": labels,
-                    "line": line,
-                    "target": target,
-                    "source_exact": bool(
-                        source
-                        and len(normalized_text(target)) >= 8
-                        and target.strip() in source
-                    ),
-                    "request_exact": bool(
-                        len(normalized_text(target)) >= 8 and target.strip() in request
-                    ),
-                    "span_start": span_start,
-                    "span_end": span_end,
-                    "guided_marker": True,
-                    "marker_id": marker_id,
-                }
-            if _request_explicitly_deletes_negative_claim(target, request):
-                serialized_guided_finding["request_delete"] = True
-            serialized_findings.append(serialized_guided_finding)
-        if len({item["finding_id"] for item in serialized_findings}) != len(
-            serialized_findings
-        ):
-            raise GateInputError("guided marker finding id collides")
-    serialized_findings = _merge_exact_span_findings(serialized_findings)
+    return serialized_findings
+
+
+def _validated_guided_markers(
+    guided_marker_sidecar: dict[str, Any], draft: str
+) -> list[Any]:
+    markers = guided_marker_sidecar.get("markers")
+    if (
+        guided_marker_sidecar.get("schema_version") != GUIDED_MARKER_SCHEMA_VERSION
+        or guided_marker_sidecar.get("parse_status") != "VALID"
+        or guided_marker_sidecar.get("d0_sha256") != sha256_text(draft)
+        or not isinstance(markers, list)
+    ):
+        raise GateInputError("guided marker sidecar is invalid")
+    return markers
+
+
+def _serialized_guided_finding(
+    marker: Any, request: str, source: str, draft: str
+) -> dict[str, Any]:
+    if not isinstance(marker, dict):
+        raise GateInputError("guided marker record is invalid")
+    marker_id = marker.get("marker_id")
+    target = marker.get("target")
+    span_start = marker.get("span_start")
+    span_end = marker.get("span_end")
+    line = marker.get("line")
+    if (
+        not isinstance(marker_id, str)
+        or not isinstance(target, str)
+        or not target.strip()
+        or not isinstance(span_start, int)
+        or not isinstance(span_end, int)
+        or not isinstance(line, int)
+        or span_start < 0
+        or span_end <= span_start
+        or draft[span_start:span_end] != target
+        or marker.get("target_sha256") != sha256_text(target)
+    ):
+        raise GateInputError("guided marker span is invalid")
+    target_normalized = normalized_text(target)
+    finding = {
+        "finding_id": marker_id,
+        "labels": sorted(labels_for_sentence(target) | {"guided-drop-marker"}),
+        "line": line,
+        "target": target,
+        "source_exact": bool(
+            source and len(target_normalized) >= 8 and target.strip() in source
+        ),
+        "request_exact": bool(
+            len(target_normalized) >= 8 and target.strip() in request
+        ),
+        "span_start": span_start,
+        "span_end": span_end,
+        "guided_marker": True,
+        "marker_id": marker_id,
+    }
+    if _request_explicitly_deletes_negative_claim(target, request):
+        finding["request_delete"] = True
+    return finding
+
+
+def _guided_candidate_findings(
+    guided_marker_sidecar: dict[str, Any], request: str, source: str, draft: str
+) -> list[dict[str, Any]]:
+    return [
+        _serialized_guided_finding(marker, request, source, draft)
+        for marker in _validated_guided_markers(guided_marker_sidecar, draft)
+    ]
+
+
+def _candidate_detection_record(
+    request: str,
+    source: str,
+    draft: str,
+    findings: list[dict[str, Any]],
+    guided_marker_sidecar: dict[str, Any] | None,
+) -> dict[str, Any]:
+    guided_marker_sha256 = (
+        sha256_text(
+            json.dumps(guided_marker_sidecar, ensure_ascii=False, indent=2) + "\n"
+        )
+        if guided_marker_sidecar is not None
+        else None
+    )
     return {
         "schema_version": SCHEMA_VERSION,
         "request_sha256": sha256_text(request),
@@ -891,15 +917,39 @@ def locate_candidates(
         "draft_sha256": sha256_text(draft),
         "revision_budget": MAX_REVISIONS,
         "verify_budget": MAX_VERIFICATIONS,
-        "findings": serialized_findings,
-        "guided_marker_sha256": (
-            sha256_text(
-                json.dumps(guided_marker_sidecar, ensure_ascii=False, indent=2) + "\n"
-            )
-            if guided_marker_sidecar is not None
-            else None
-        ),
+        "findings": findings,
+        "guided_marker_sha256": guided_marker_sha256,
     }
+
+
+def locate_candidates(
+    request: str,
+    draft: str,
+    source: str = "",
+    guided_marker_sidecar: dict[str, Any] | None = None,
+) -> dict[str, Any]:
+    if not draft.strip():
+        raise GateInputError("D0 must be a non-empty complete draft")
+    serialized_findings = _serialized_candidate_findings(
+        _automatic_candidate_findings(request, draft, source)
+    )
+    if guided_marker_sidecar is not None:
+        serialized_findings.extend(
+            _guided_candidate_findings(
+                guided_marker_sidecar, request, source, draft
+            )
+        )
+        if len({item["finding_id"] for item in serialized_findings}) != len(
+            serialized_findings
+        ):
+            raise GateInputError("guided marker finding id collides")
+    return _candidate_detection_record(
+        request,
+        source,
+        draft,
+        _merge_exact_span_findings(serialized_findings),
+        guided_marker_sidecar,
+    )
 
 
 def _headings(text: str) -> list[str]:
