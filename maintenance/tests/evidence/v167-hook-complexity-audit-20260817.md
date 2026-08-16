@@ -82,7 +82,9 @@ AST 以函数行数和 `if/for/while/try/with/match/bool/comprehension` 决策�
 - C2 已完成：`detect_transaction` 从183行/32个决策节点降至52行/4个；输入绑定、恢复、备份、31字段初始状态、marker 校验和 repair staging 分别由小函数承担。持久化文件、字段、状态名、reason 和数值未改。
 - C3 已完成：`evaluate_candidate` 从313行/117个决策节点降至46行/7个；输入 envelope、单项 action、span、replacement、operation、硬锚和全文不变量保持原先顺序与 reason，所有辅助函数均低于80行/25个决策节点。
 - 调度拆分已完成：`_dispatch_transaction_locked` 从120行/19个决策节点降至69行/8个；输入绑定、repair/verdict claim、bridge 执行和匹配事务 abort 已分开，失败 reason 的赋值时点保持不变。
-- 当前剩余的显式债务只有规则聚合器 `locate_candidates`（131行/27个决策节点）；规则表和正则窗口尚未移动或改值。
+- 规则聚合器已完成行为等价拆分：`locate_candidates` 从131行/27个决策节点降至28行/4个；普通 finding、guided marker 校验与序列化、最终 detection record 分开，finding 编号、顺序、合并顺序和正则本身未改。
+- 当前 `review_gate.py` 与 Hook core 已无超过80行或25个决策节点的函数；复杂度测试改为扫描整个文件，不再维护“已知上帝函数”白名单。
+- 规则表仍集中在 `review_gate.py`。这属于后续模块边界优化，不是可立即机械拆散的魔法字典；移动前仍须固定正则对象、顺序和命中结果。
 
 ## 25提交检查点
 
