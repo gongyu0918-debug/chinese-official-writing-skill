@@ -9,26 +9,27 @@
 - `UL-001—004`：篇幅不足 Hook 已按真实写稿优先完成语义修复，并随 `v1.6.5@81061bd7` 发布。Alibaba 直修 268→342，Codex 在线 268→350，Claude Code 在线 268→344；两次独立 SOL max 均判可用 D1 `ACCEPT`。CodeBuddy 当前只保留同构静态迁移证据，不冒充在线成功。结果见 [`v164-under-length-real-first-result-20260814.md`](../tests/evidence/v164-under-length-real-first-result-20260814.md)。
 - `CL-001`：交付洁净度已先用三条指定 DeepSeek V4 Flash 路线完成 5/5 同稿真实整理，再接入独立静态 capability，并随 v1.6.5 发布。SOL max 五组全 PASS；Claude Code 与 Codex 在线生命周期均选择 D1 并闭合哈希。结果见 [`delivery-cleanliness-real-first/result.md`](../tests/evidence/delivery-cleanliness-real-first/result.md)。
 - `RP-001`：重复句与高相似句已先完成三 provider 的 5 组真实删除和 SOL max 功能终审，再接入纯删除 capability，并随 v1.6.5 发布。长稿 1 个自然度 WARN 保留为后续样本，不影响已验证的目标功能。
+- `WR-003`：20份真实稿与候选直连复测已验证跨文种责任承载；最小规则和镜像已随 `v1.6.6@b49da7f2` 发布。
+- `WR-004`：20类事务文体已完成真实写稿，原型19/20功能成立；“编者按”标识修复后目标功能20/20，中央直接叶已随 `v1.6.6@b49da7f2` 发布。
 - SkillHub 已加入 `office-efficiency`、`content-creation` 轻量检索信号；不声称平台写入双分类。
 - GitHub 当前包统一 MIT；普通兼容包不含 Hook，OpenClaw GitHub 兼容包随仓库维护。
-- v1.6.5 GitHub 与 SkillHub.cn 发布回执见 [`release-1.6.5.md`](../tests/evidence/release-1.6.5.md)；ClawHub、Red SkillHub 及其他平台未在该轮上传。
+- v1.6.6 GitHub 与 SkillHub.cn 发布回执见 [`release-1.6.6.md`](../tests/evidence/release-1.6.6.md)；ClawHub、Red SkillHub 及其他平台未在该轮上传。SkillHub 公开 latest 与签名已传播，Keen、Sanbu 安全报告均为 benign。
 
 ## IN_PROGRESS
 
-- `WR-003`：20份真实稿与候选直连复测已验证跨文种责任承载；最小规则和镜像已随 `v1.6.6@b49da7f2` 发布。
-- `WR-004`：20类事务文体已完成真实写稿，原型19/20功能成立；“编者按”标识修复后目标功能20/20，中央直接叶已随 `v1.6.6@b49da7f2` 发布。
-- `WR-005`：普通无 Hook 20稿已完成；11稿篇幅失败、3稿 Markdown 残留及重复/拖沓风险使该项继续 HOLD，不随 WR-003/004 集成。
+- `WR-005` 复核：先验证 v1.6.6 的20类文体叶是否诱发固定开头、承启、总结和结尾；以用户结构保留、文种功能、跨稿结构重复和直接可用性为主，不按单个惯用语机械判错。确认真实回退后才精简规则和胶水。
 - `WR-006`：审稿模式已有自然请求实跑，复合任务和材料引语反控尚待独立小原子。
 - GitHub README 制度示例替换：旧示例仍含保护性尾句，需用当前版本重新成稿、冻结和替换，不改写历史 evidence。
 
 ### 本轮收束顺序
 
-1. `WR-003/004` 已完成中央 reference、直接路由、新闻标识和普通镜像集成并随 v1.6.6 发布；该版本不夹带 WR-005 或 Hook 修改。
-2. `WR-005` 下一轮继续采用真实稿优先：分别处理普通路径篇幅、Markdown 洁净输出与短稿重复，不用一个总门混判。
+1. `WR-003/004` 已完成中央 reference、直接路由、新闻标识和普通镜像集成并随 v1.6.6 发布。
+2. `WR-005` 继续采用真实稿优先：先单独核验常用语叶是否造成结构和表达同质化，再分别处理普通路径篇幅、Markdown 洁净输出与短稿重复，不用一个总门混判。
 3. 准备合并或发布时再运行一次全量门；候选阶段只保留路由、镜像、构建与可达性最小验证。
 
 ## HOLD
 
+- `WR-005` 原短稿自然度候选：普通无 Hook 20稿中11稿篇幅失败、3稿 Markdown 残留，重复和拖沓风险尚未形成可交付改进；既有结果保留为诊断，不直接集成。
 - 旧 `length-band-hook-v162`、`under-length-hook-v162-v2`、`v163-protective-expansion-gate` 继续保持历史 HOLD，不复活旧验收结论。
 
 ## TODO：已登记但不在本轮展开
