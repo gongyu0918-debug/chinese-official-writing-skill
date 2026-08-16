@@ -10,7 +10,7 @@
 
 - 发布基线：`v1.6.6^{commit}=b49da7f2a5a8ac2327252d29efd66f1d54ccbc35`
 - 发布产品 tree：`7d9e56cfe4f33ad79de3c97e95be60a6db53ae9a`
-- 当前 `formulaic-language.md` SHA-256：`278e36f7d1774551b28efb0d108107e01b82054380d79c260c3e9969ba2a3d40`
+- 发布 blob `formulaic-language.md` SHA-256：`a4940b83c337ec5e0a7f0389de49113df8ccf3ae012b5c3fc498f0982b73bb16`（LF 字节口径，不使用 Windows 工作副本换行哈希）
 - 原型文件：`prototype-formulaic-language.md`，SHA-256 `7ed20aa24167e07e32a666efc0a4bf0d3074a73aed4a0035ce4c50c473087563`；正式运行中不修改。
 - 题面：`cases.json`，SHA-256 `0bab8696cd2bc82cb6a8e40244cb41fcef717385bf684f7b5df541e3b5780ba9`；20类事务文体加4个用户自定义结构反控，共24题。
 
