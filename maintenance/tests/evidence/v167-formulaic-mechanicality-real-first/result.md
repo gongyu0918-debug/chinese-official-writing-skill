@@ -99,3 +99,9 @@ R4 取消普通任务对 `formulaic-language.md` 的自动读取，仅在用户�
 - 无效外部 SOL stream：`053514eb1e1b7bb5bcd07f49319b4830c31581487bd91fd8d05fa072b43b94c3`
 - Desktop SOL verdict：`52104eefb67d176e769352e323851f935c00fb208f0bd53f948969c65a5b5f1c`
 - Desktop SOL receipt：`3b402e26bb1e74730b1d58c1b32e6bde13e6a0060c57c8ee9c755a9b4104cbe6`
+
+### R4 显式路由最小复测
+
+仅在隔离候选前置显式用语直达句，通知、报告、复函各做1对，共6次。6/6调用结束，但只有2臂技术有效、0个完整对：OpenCode 两臂继续上游失败；Ollama 基线有效，候选约299秒后上游失败且未形成有效读取；Alibaba 基线约299秒后失败，候选有效并正确读取查询页。没有重试或补样。
+
+该复测只说明 Alibaba 路径可达，不能证明三宿主/三 provider 路由闭环，也没有可供质量盲审的完整对。R4 继续保持诊断状态，canonical 不变。manifest SHA-256 为 `6d46f6ea5fcc13e6486f26ae56208a16e7f44e6d30f1393b4b0c843adb50b8cf`。
