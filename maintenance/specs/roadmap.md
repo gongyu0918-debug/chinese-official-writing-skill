@@ -24,14 +24,14 @@
 ### 本轮收束顺序
 
 1. `WR-003/004` 已完成中央 reference、直接路由、新闻标识和普通镜像集成并随 v1.6.6 发布。
-2. `WR-005` 常用语机械化已完成两轮真实写稿；两版原型均未达到准入，canonical 保持不变。以后只研究“默认文种结构 + 按需用语查询”的更小拆分，不再叠加反机械 prompt。
+2. `WR-005` 常用语机械化已完成 R1—R6。删词、删总表、取消普通加载和“按材料选择”均出现事实、篇幅或文种硬回退；canonical 保持不变，下一版不再改总表或叠加反机械 prompt。
 3. 准备合并或发布时再运行一次全量门；候选阶段只保留路由、镜像、构建与可达性最小验证。
 4. Hook 复杂度按行为不变的小原子处理：`handle_stop`、超时/锁阈值、`detect_transaction`、`evaluate_candidate`、`_dispatch_transaction_locked` 和 `locate_candidates` 均已完成；当前 Hook core 与 review gate 已无超过80行或25个决策节点的函数。规则表分域留作独立低优先级原子。
 
 ## HOLD
 
 - `WR-005` 原短稿自然度 R1/R2：把自然度与硬下限混在一起，分别形成系统性偏短和材料外补字，保留为 HOLD；已由上限题 R3 取代后续方向。
-- `WR-005` 常用语机械化候选：R1 48次调用中44臂有效，R2 24/24有效；R2 解盲为基线6胜、候选4胜、难分2，候选仍有1个事实硬失败，未证明结构稀疏化优于 v1.6.6。结果见 [`v167-formulaic-mechanicality-real-first/result.md`](../tests/evidence/v167-formulaic-mechanicality-real-first/result.md)。
+- `WR-005` 常用语机械化候选：R1—R6 均未准入；最终 R6 8/8技术有效，但候选仍有篇幅、职责扩张、安全要求和材料外号召硬失败。结果见 [`v167-formulaic-mechanicality-real-first/result.md`](../tests/evidence/v167-formulaic-mechanicality-real-first/result.md)。
 - 旧 `length-band-hook-v162`、`under-length-hook-v162-v2`、`v163-protective-expansion-gate` 继续保持历史 HOLD，不复活旧验收结论。
 
 ## TODO：已登记但不在本轮展开
