@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "models": {
+    "opencode": "opencode-go/deepseek-v4-flash",
+    "ollama": "ollama-cloud/deepseek-v4-flash:0731",
+    "alibaba2": "alibaba-token-plan-2/deepseek-v4-flash-0731"
+  },
+  "cases": [
+    {"id": "Q01", "source_case_id": "F15", "provider": "opencode", "phrase_lookup": false},
+    {"id": "Q02", "source_case_id": "F21", "provider": "opencode", "phrase_lookup": false},
+    {"id": "Q03", "source_r3_id": "R05", "provider": "opencode", "phrase_lookup": true},
+    {"id": "Q04", "source_case_id": "F03", "provider": "ollama", "phrase_lookup": false},
+    {"id": "Q05", "source_case_id": "F16", "provider": "ollama", "phrase_lookup": false},
+    {"id": "Q06", "source_r3_id": "R10", "provider": "ollama", "phrase_lookup": true},
+    {"id": "Q07", "source_case_id": "F19", "provider": "alibaba2", "phrase_lookup": false},
+    {"id": "Q08", "source_case_id": "F20", "provider": "alibaba2", "phrase_lookup": false},
+    {"id": "Q09", "source_r3_id": "R15", "provider": "alibaba2", "phrase_lookup": true}
+  ]
+}
