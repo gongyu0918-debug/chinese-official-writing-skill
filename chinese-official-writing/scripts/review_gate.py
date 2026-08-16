@@ -3119,6 +3119,108 @@ def dispatch_transaction(
         )
 
 
+def _dispatch_bound_input_hashes(
+    request_path: Path,
+    source_paths: list[Path],
+    retained_d0: str,
+    dispatch_input_sha256: str | None,
+    guided_marker_sidecar: dict[str, Any] | None,
+    postdraft_marker_pass_verified: bool | None,
+) -> dict[str, str]:
+    request_text = read_text(request_path)
+    source_text = "\n\n".join(read_text(path) for path in source_paths)
+    guided_marker_text = (
+        json.dumps(guided_marker_sidecar, ensure_ascii=False, indent=2) + "\n"
+        if guided_marker_sidecar is not None
+        else None
+    )
+    return {
+        "request_sha256": sha256_text(request_text),
+        "source_sha256": sha256_text(source_text),
+        "d0_sha256": sha256_text(retained_d0),
+        "dispatch_input_sha256": dispatch_input_sha256 or sha256_text(retained_d0),
+        "guided_marker_parse_status": (
+            str(guided_marker_sidecar.get("parse_status"))
+            if isinstance(guided_marker_sidecar, dict)
+            else "NONE"
+        ),
+        "guided_marker_binding_sha256": sha256_text(guided_marker_text or ""),
+        "postdraft_marker_binding_mode": _postdraft_marker_binding_mode(
+            postdraft_marker_pass_verified
+        ),
+    }
+
+
+def _complete_repair_bridge(
+    txn: Path,
+    state: dict[str, Any],
+    bridge_command: list[str],
+    timeout: int,
+) -> dict[str, Any]:
+    repair_payload = _run_bridge(
+        bridge_command, "repair", txn / REPAIR_PACKET_FILE, timeout
+    )
+    with _external_response_file(
+        txn, "review-gate-repair-", repair_payload
+    ) as repair_path:
+        return prepare_transaction(txn, repair_path)
+
+
+def _claim_repair_bridge(
+    txn: Path, state: dict[str, Any]
+) -> tuple[dict[str, Any], bool]:
+    _load_bound_packet(txn, state, REPAIR_PACKET_FILE, "repair_packet_sha256")
+    return _claim_agent_call(
+        txn,
+        STATE_AWAITING_REPAIR,
+        "repair_agent_call_count",
+        "repair_agent_already_called",
+    )
+
+
+def _complete_verdict_bridge(
+    txn: Path,
+    state: dict[str, Any],
+    bridge_command: list[str],
+    timeout: int,
+) -> dict[str, Any]:
+    verdict_payload = _run_bridge(
+        bridge_command, "verify", txn / VERIFICATION_PACKET_FILE, timeout
+    )
+    with _external_response_file(
+        txn, "review-gate-verdict-", verdict_payload
+    ) as verdict_path:
+        return finalize_transaction(txn, verdict_path)
+
+
+def _claim_verdict_bridge(
+    txn: Path, state: dict[str, Any]
+) -> tuple[dict[str, Any], bool]:
+    _load_bound_packet(
+        txn, state, VERIFICATION_PACKET_FILE, "verification_packet_sha256"
+    )
+    return _claim_agent_call(
+        txn,
+        STATE_AWAITING_VERDICT,
+        "verdict_agent_call_count",
+        "verdict_agent_already_called",
+    )
+
+
+def _abort_matching_dispatch(
+    txn: Path,
+    bound_input_hashes: dict[str, str] | None,
+    failure_reason: str,
+) -> None:
+    try:
+        if isinstance(bound_input_hashes, dict) and _transaction_matches_bound_inputs(
+            txn, bound_input_hashes
+        ):
+            abort_transaction(txn, failure_reason)
+    except Exception:
+        pass
+
+
 def _dispatch_transaction_locked(
     request_path: Path,
     draft_path: Path,
@@ -3140,28 +3242,14 @@ def _dispatch_transaction_locked(
     try:
         if not MIN_GATE_TIMEOUT_SECONDS <= verdict_timeout <= MAX_GATE_TIMEOUT_SECONDS:
             raise GateInputError("verdict timeout must be between 1 and 3600 seconds")
-        request_text = read_text(request_path)
-        source_text = "\n\n".join(read_text(path) for path in source_paths)
-        guided_marker_text = (
-            json.dumps(guided_marker_sidecar, ensure_ascii=False, indent=2) + "\n"
-            if guided_marker_sidecar is not None
-            else None
+        bound_input_hashes = _dispatch_bound_input_hashes(
+            request_path,
+            source_paths,
+            retained_d0,
+            dispatch_input_sha256,
+            guided_marker_sidecar,
+            postdraft_marker_pass_verified,
         )
-        bound_input_hashes = {
-            "request_sha256": sha256_text(request_text),
-            "source_sha256": sha256_text(source_text),
-            "d0_sha256": sha256_text(retained_d0),
-            "dispatch_input_sha256": dispatch_input_sha256 or sha256_text(retained_d0),
-            "guided_marker_parse_status": (
-                str(guided_marker_sidecar.get("parse_status"))
-                if isinstance(guided_marker_sidecar, dict)
-                else "NONE"
-            ),
-            "guided_marker_binding_sha256": sha256_text(guided_marker_text or ""),
-            "postdraft_marker_binding_mode": _postdraft_marker_binding_mode(
-                postdraft_marker_pass_verified
-            ),
-        }
         state = detect_transaction(
             request_path,
             draft_path,
@@ -3180,59 +3268,22 @@ def _dispatch_transaction_locked(
             state.get("verdict_timeout_seconds") or verdict_timeout
         )
         if state.get("state") == STATE_AWAITING_REPAIR:
-            _load_bound_packet(txn, state, REPAIR_PACKET_FILE, "repair_packet_sha256")
-            state, claimed = _claim_agent_call(
-                txn,
-                STATE_AWAITING_REPAIR,
-                "repair_agent_call_count",
-                "repair_agent_already_called",
-            )
+            state, claimed = _claim_repair_bridge(txn, state)
             if claimed:
                 failure_reason = "repair_bridge_failed"
-                repair_payload = _run_bridge(
-                    bridge_command,
-                    "repair",
-                    txn / REPAIR_PACKET_FILE,
-                    effective_repair_timeout,
+                state = _complete_repair_bridge(
+                    txn, state, bridge_command, effective_repair_timeout
                 )
-                with _external_response_file(
-                    txn, "review-gate-repair-", repair_payload
-                ) as repair_path:
-                    state = prepare_transaction(txn, repair_path)
 
         if state.get("state") == STATE_AWAITING_VERDICT:
-            _load_bound_packet(
-                txn,
-                state,
-                VERIFICATION_PACKET_FILE,
-                "verification_packet_sha256",
-            )
-            state, claimed = _claim_agent_call(
-                txn,
-                STATE_AWAITING_VERDICT,
-                "verdict_agent_call_count",
-                "verdict_agent_already_called",
-            )
+            state, claimed = _claim_verdict_bridge(txn, state)
             if claimed:
                 failure_reason = "verdict_bridge_failed"
-                verdict_payload = _run_bridge(
-                    bridge_command,
-                    "verify",
-                    txn / VERIFICATION_PACKET_FILE,
-                    effective_verdict_timeout,
+                state = _complete_verdict_bridge(
+                    txn, state, bridge_command, effective_verdict_timeout
                 )
-                with _external_response_file(
-                    txn, "review-gate-verdict-", verdict_payload
-                ) as verdict_path:
-                    state = finalize_transaction(txn, verdict_path)
     except Exception:
-        try:
-            if isinstance(bound_input_hashes, dict) and _transaction_matches_bound_inputs(
-                txn, bound_input_hashes
-            ):
-                state = abort_transaction(txn, failure_reason)
-        except Exception:
-            state = None
+        _abort_matching_dispatch(txn, bound_input_hashes, failure_reason)
     return emit_transaction(
         txn,
         retained_d0=retained_d0,
