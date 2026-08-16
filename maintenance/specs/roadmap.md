@@ -17,6 +17,7 @@
 
 ## IN_PROGRESS
 
+- `WR-005` 短稿自然度：上限题 R3 已完成8次真实 A/B，SOL max 为候选3胜、基线0胜、难分1，候选四稿硬边界全 PASS；正在补最小产品路由。明确篇幅下限不属于该规则，继续由 under-length 处理。
 - `WR-006`：审稿模式已有自然请求实跑，复合任务和材料引语反控尚待独立小原子。
 - GitHub README 制度示例替换：旧示例仍含保护性尾句，需用当前版本重新成稿、冻结和替换，不改写历史 evidence。
 
@@ -28,7 +29,7 @@
 
 ## HOLD
 
-- `WR-005` 原短稿自然度候选：普通无 Hook 20稿中11稿篇幅失败、3稿 Markdown 残留，重复和拖沓风险尚未形成可交付改进；既有结果保留为诊断，不直接集成。
+- `WR-005` 原短稿自然度 R1/R2：把自然度与硬下限混在一起，分别形成系统性偏短和材料外补字，保留为 HOLD；已由上限题 R3 取代后续方向。
 - `WR-005` 常用语机械化候选：R1 48次调用中44臂有效，R2 24/24有效；R2 解盲为基线6胜、候选4胜、难分2，候选仍有1个事实硬失败，未证明结构稀疏化优于 v1.6.6。结果见 [`v167-formulaic-mechanicality-real-first/result.md`](../tests/evidence/v167-formulaic-mechanicality-real-first/result.md)。
 - 旧 `length-band-hook-v162`、`under-length-hook-v162-v2`、`v163-protective-expansion-gate` 继续保持历史 HOLD，不复活旧验收结论。
 
