@@ -36,6 +36,9 @@ TIMEOUT_SECONDS = 1200
 AUTH_ENV = "V167_FORMULAIC_REAL_AUTH"
 AUTH_VALUE = "APPROVED_BY_USER_20260816"
 MAX_PROVIDER_LANES = 3
+EXPECTED_CASES = 24
+EXPECTED_PER_PROVIDER = 8
+EXPECTED_CALLS = 48
 
 SENSITIVE_ENV_KEYS = {
     "ANTHROPIC_API_KEY",
@@ -97,13 +100,13 @@ def load_payload() -> dict[str, Any]:
         raise RuntimeError("prototype hash mismatch")
     payload = json.loads(CASES_PATH.read_text(encoding="utf-8"))
     cases = payload.get("cases")
-    if not isinstance(cases, list) or len(cases) != 24:
-        raise RuntimeError("expected 24 cases")
+    if not isinstance(cases, list) or len(cases) != EXPECTED_CASES:
+        raise RuntimeError(f"expected {EXPECTED_CASES} cases")
     ids = [str(item.get("id")) for item in cases]
     if len(set(ids)) != len(ids):
         raise RuntimeError("duplicate case id")
     for provider in payload["models"]:
-        if sum(item.get("provider") == provider for item in cases) != 8:
+        if sum(item.get("provider") == provider for item in cases) != EXPECTED_PER_PROVIDER:
             raise RuntimeError(f"provider balance mismatch: {provider}")
     return payload
 
@@ -446,7 +449,7 @@ def run_lane(
             results.append(result)
             with lock:
                 progress.append({"arm_id": result["arm_id"], "technical_valid": result["technical_valid"], "finished_utc": result["finished_utc"]})
-                atomic_json(output / "progress.json", {"completed": len(progress), "total": 48, "arms": progress})
+                atomic_json(output / "progress.json", {"completed": len(progress), "total": EXPECTED_CALLS, "arms": progress})
     return results
 
 
@@ -455,7 +458,7 @@ def preflight(claude: str) -> dict[str, Any]:
         pass
     version = subprocess.run([claude, "--version"], capture_output=True, text=True, encoding="utf-8", timeout=20, check=True).stdout.strip()
     payload = load_payload()
-    return {"checked_utc": utc_now(), "gateway": GATEWAY, "claude": claude, "claude_version": version, "cases": len(payload["cases"]), "calls": 48}
+    return {"checked_utc": utc_now(), "gateway": GATEWAY, "claude": claude, "claude_version": version, "cases": len(payload["cases"]), "calls": EXPECTED_CALLS}
 
 
 def execute(output: Path) -> None:
@@ -496,7 +499,7 @@ def execute(output: Path) -> None:
     freeze = build_packets(output, payload["cases"], all_results)
     manifest = {
         "schema_version": 1, "finished_utc": utc_now(), "baseline_commit": BASELINE_COMMIT,
-        "calls_planned": 48, "calls_completed": len(all_results),
+        "calls_planned": EXPECTED_CALLS, "calls_completed": len(all_results),
         "technical_valid": sum(item["technical_valid"] for item in all_results),
         "pairs_eligible": len(freeze["eligible_groups"]), "arms": all_results,
     }
@@ -512,7 +515,7 @@ def main() -> int:
     args = parser.parse_args()
     payload = load_payload()
     if args.show_plan:
-        print(json.dumps({"cases": len(payload["cases"]), "calls": 48, "providers": {name: 8 for name in payload["models"]}, "models": payload["models"]}, ensure_ascii=False, indent=2))
+        print(json.dumps({"cases": len(payload["cases"]), "calls": EXPECTED_CALLS, "providers": {name: EXPECTED_PER_PROVIDER for name in payload["models"]}, "models": payload["models"]}, ensure_ascii=False, indent=2))
         return 0
     if args.prepare_only:
         target = ROOT / "output/v167-formulaic-mechanicality-real-first/prepare-fixture"
