@@ -17,8 +17,19 @@ NEW_ARCHITECTURE_FILES = (
 )
 KNOWN_COMPLEXITY_DEBT = {
     "chinese-official-writing/scripts/review_gate.py:evaluate_candidate": (250, 80),
-    "chinese-official-writing/scripts/review_gate.py:detect_transaction": (150, 20),
 }
+DETECTION_PIPELINE_FUNCTIONS = (
+    "_validated_detection_timeouts",
+    "_read_detection_inputs",
+    "_resume_detection_transaction",
+    "_assert_empty_transaction",
+    "_build_detection_backup",
+    "_build_initial_detection_state",
+    "_write_detection_snapshots",
+    "_validate_guided_marker_for_detection",
+    "_locate_and_stage_repair",
+    "detect_transaction",
+)
 
 
 def function_metrics(path: Path) -> dict[str, tuple[int, int]]:
@@ -64,6 +75,16 @@ class ComplexityContractTests(unittest.TestCase):
             with self.subTest(key=key):
                 self.assertGreaterEqual(actual[0], minimum[0])
                 self.assertGreaterEqual(actual[1], minimum[1])
+
+    def test_detection_pipeline_has_no_god_functions(self) -> None:
+        metrics = function_metrics(
+            ROOT / "chinese-official-writing/scripts/review_gate.py"
+        )
+        for name in DETECTION_PIPELINE_FUNCTIONS:
+            with self.subTest(function=name):
+                lines, decisions = metrics[name]
+                self.assertLessEqual(lines, 80)
+                self.assertLessEqual(decisions, 25)
 
     def test_hook_thresholds_are_named_constants(self) -> None:
         core = ast.parse(
