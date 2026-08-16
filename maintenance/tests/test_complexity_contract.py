@@ -17,7 +17,6 @@ NEW_ARCHITECTURE_FILES = (
 )
 KNOWN_COMPLEXITY_DEBT = {
     "chinese-official-writing/scripts/review_gate.py:locate_candidates": (100, 25),
-    "chinese-official-writing/scripts/review_gate.py:_dispatch_transaction_locked": (100, 15),
 }
 DETECTION_PIPELINE_FUNCTIONS = (
     "_validated_detection_timeouts",
@@ -47,6 +46,15 @@ CANDIDATE_PIPELINE_FUNCTIONS = (
     "_candidate_anchor_reason",
     "_candidate_success_reason",
     "evaluate_candidate",
+)
+DISPATCH_PIPELINE_FUNCTIONS = (
+    "_dispatch_bound_input_hashes",
+    "_complete_repair_bridge",
+    "_claim_repair_bridge",
+    "_complete_verdict_bridge",
+    "_claim_verdict_bridge",
+    "_abort_matching_dispatch",
+    "_dispatch_transaction_locked",
 )
 
 
@@ -109,6 +117,16 @@ class ComplexityContractTests(unittest.TestCase):
             ROOT / "chinese-official-writing/scripts/review_gate.py"
         )
         for name in CANDIDATE_PIPELINE_FUNCTIONS:
+            with self.subTest(function=name):
+                lines, decisions = metrics[name]
+                self.assertLessEqual(lines, 80)
+                self.assertLessEqual(decisions, 25)
+
+    def test_dispatch_pipeline_has_no_god_functions(self) -> None:
+        metrics = function_metrics(
+            ROOT / "chinese-official-writing/scripts/review_gate.py"
+        )
+        for name in DISPATCH_PIPELINE_FUNCTIONS:
             with self.subTest(function=name):
                 lines, decisions = metrics[name]
                 self.assertLessEqual(lines, 80)
