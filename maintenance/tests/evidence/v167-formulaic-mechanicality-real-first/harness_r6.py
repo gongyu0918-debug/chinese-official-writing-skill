@@ -6,6 +6,7 @@ from __future__ import annotations
 import json
 from pathlib import Path
 import shutil
+import sys
 import threading
 from typing import Any
 
@@ -131,6 +132,55 @@ def run_candidate_lane(
     return results
 
 
+def build_candidate_packets(
+    output: Path, cases: list[dict[str, Any]], results: list[dict[str, Any]]
+) -> dict[str, Any]:
+    expected = {f"{case['id']}-candidate" for case in cases}
+    actual = {result["arm_id"] for result in results}
+    if actual != expected:
+        raise RuntimeError(f"candidate-only arm mismatch: {sorted(actual)}")
+    receipt = {
+        "schema_version": 1,
+        "candidate_only": True,
+        "arms": {
+            result["arm_id"]: result["final_sha256"]
+            for result in sorted(results, key=lambda item: item["arm_id"])
+        },
+        "eligible_groups": [],
+    }
+    base.atomic_json(output / "candidate-only-freeze.json", receipt)
+    return receipt
+
+
+def finalize_existing(output: Path) -> None:
+    payload = load_r6_payload()
+    results = []
+    for case in payload["cases"]:
+        arm_id = f"{case['id']}-candidate"
+        meta_path = output / "raw" / arm_id / "meta.json"
+        final_path = output / "raw" / arm_id / "final.txt"
+        meta = json.loads(meta_path.read_text(encoding="utf-8"))
+        final = final_path.read_text(encoding="utf-8")
+        if meta.get("arm_id") != arm_id or meta.get("final_sha256") != base.sha256_text(
+            final
+        ):
+            raise RuntimeError(f"candidate-only output mismatch: {arm_id}")
+        results.append(meta)
+    freeze = build_candidate_packets(output, payload["cases"], results)
+    manifest = {
+        "schema_version": 1,
+        "baseline_commit": base.BASELINE_COMMIT,
+        "calls_planned": 4,
+        "calls_completed": len(results),
+        "technical_valid": sum(item["technical_valid"] for item in results),
+        "pairs_eligible": len(freeze["eligible_groups"]),
+        "candidate_only": True,
+        "postprocess_recovered": True,
+        "arms": sorted(results, key=lambda item: item["arm_id"]),
+    }
+    base.atomic_json(output / "manifest.json", manifest)
+
+
 base.EXPECTED_CASES = 4
 base.EXPECTED_PER_PROVIDER = 2
 base.EXPECTED_CALLS = 4
@@ -140,7 +190,11 @@ base.AUTH_VALUE = "APPROVED_BY_USER_20260817"
 base.load_payload = load_r6_payload
 base.prepare_skill_roots = prepare_skill_roots
 base.run_lane = run_candidate_lane
+base.build_packets = build_candidate_packets
 
 
 if __name__ == "__main__":
+    if len(sys.argv) == 3 and sys.argv[1] == "--finalize-existing":
+        finalize_existing(Path(sys.argv[2]).resolve())
+        raise SystemExit(0)
     raise SystemExit(base.main())
