@@ -34,7 +34,7 @@ AST 以函数行数和 `if/for/while/try/with/match/bool/comprehension` 决策�
 
 1. `review_gate.py` 多处重复的最小超时1秒、最大超时3600秒；
 2. CLI 的180秒默认 repair/verdict timeout；
-3. dispatch lock 的0.02秒轮询间隔和5次尝试；
+3. dispatch lock 的0.02秒轮询间隔和5秒宽限；
 4. 正则中的窗口长度。前三类可直接命名；正则窗口会影响语义召回，必须先有正反例 characterization，不做机械替换。
 
 ## 拆分顺序

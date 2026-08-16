@@ -38,6 +38,11 @@ MAX_JSON_BYTES = 1_000_000
 MIN_BODY_RETAIN_RATIO = 0.70
 LENGTH_WORSENING_TOLERANCE_RATIO = 0.05
 MIN_LENGTH_WORSENING_TOLERANCE = 20
+MIN_GATE_TIMEOUT_SECONDS = 1
+MAX_GATE_TIMEOUT_SECONDS = 3600
+DEFAULT_GATE_TIMEOUT_SECONDS = 180
+DISPATCH_LOCK_POLL_SECONDS = 0.02
+DISPATCH_LOCK_GRACE_SECONDS = 5
 REPAIR_MODE_EXTRACT = "extract"
 REPAIR_MODE_REWRITE_SENTENCE = "rewrite_sentence"
 REPAIR_MODE_DECISIONS = "decisions"
@@ -1857,7 +1862,7 @@ def dispatch_lock(txn: Path, timeout: int) -> Iterator[None]:
                 except OSError as exc:
                     if time.monotonic() >= deadline:
                         raise TransactionBusyError("dispatcher is still running") from exc
-                    time.sleep(0.02)
+                    time.sleep(DISPATCH_LOCK_POLL_SECONDS)
             yield
         finally:
             if locked:
@@ -2175,11 +2180,11 @@ def detect_transaction(
     guided_marker_sidecar: dict[str, Any] | None = None,
     postdraft_marker_pass_verified: bool | None = None,
 ) -> dict[str, Any]:
-    if repair_timeout < 1 or repair_timeout > 3600:
+    if not MIN_GATE_TIMEOUT_SECONDS <= repair_timeout <= MAX_GATE_TIMEOUT_SECONDS:
         raise GateInputError("repair timeout must be between 1 and 3600 seconds")
     if verdict_timeout is None:
         verdict_timeout = repair_timeout
-    if verdict_timeout < 1 or verdict_timeout > 3600:
+    if not MIN_GATE_TIMEOUT_SECONDS <= verdict_timeout <= MAX_GATE_TIMEOUT_SECONDS:
         raise GateInputError("verdict timeout must be between 1 and 3600 seconds")
     _validate_detect_paths(request_path, draft_path, source_paths, txn)
     request = read_text(request_path)
@@ -2656,7 +2661,12 @@ def prepare_transaction(txn: Path, repairs_path: Path | None) -> dict[str, Any]:
             )
             state["verdict_deadline_utc"] = (
                 datetime.now(timezone.utc)
-                + timedelta(seconds=int(state.get("verdict_timeout_seconds") or 180))
+                + timedelta(
+                    seconds=int(
+                        state.get("verdict_timeout_seconds")
+                        or DEFAULT_GATE_TIMEOUT_SECONDS
+                    )
+                )
             ).isoformat()
             state["state"] = STATE_AWAITING_VERDICT
             state["reason"] = "mechanical_checks_passed"
@@ -2739,8 +2749,16 @@ def dispatch_transaction(
         raise GateInputError("D0 must be a non-empty complete draft")
     postdraft_marker_pass_verified: bool | None = None
     guided_draft = original_guided_draft
-    bounded_repair_timeout = repair_timeout if 1 <= repair_timeout <= 3600 else 1
-    bounded_verdict_timeout = verdict_timeout if 1 <= verdict_timeout <= 3600 else 1
+    bounded_repair_timeout = (
+        repair_timeout
+        if MIN_GATE_TIMEOUT_SECONDS <= repair_timeout <= MAX_GATE_TIMEOUT_SECONDS
+        else MIN_GATE_TIMEOUT_SECONDS
+    )
+    bounded_verdict_timeout = (
+        verdict_timeout
+        if MIN_GATE_TIMEOUT_SECONDS <= verdict_timeout <= MAX_GATE_TIMEOUT_SECONDS
+        else MIN_GATE_TIMEOUT_SECONDS
+    )
     try:
         if marked_draft_path is not None:
             guided_draft, postdraft_marker_pass_verified = _bind_postdraft_marker_pass(
@@ -2751,7 +2769,12 @@ def dispatch_transaction(
         if marked_draft_path is not None:
             validation_sources.append(marked_draft_path)
         _validate_detect_paths(request_path, draft_path, validation_sources, txn)
-        with dispatch_lock(txn, bounded_repair_timeout + bounded_verdict_timeout + 5):
+        with dispatch_lock(
+            txn,
+            bounded_repair_timeout
+            + bounded_verdict_timeout
+            + DISPATCH_LOCK_GRACE_SECONDS,
+        ):
             with _external_text_file(txn, "review-gate-d0-", retained_d0) as clean_draft_path:
                 return _dispatch_transaction_locked(
                     request_path,
@@ -2793,7 +2816,7 @@ def _dispatch_transaction_locked(
     bound_input_hashes: dict[str, str] | None = None
     failure_reason = "dispatch_failed"
     try:
-        if verdict_timeout < 1 or verdict_timeout > 3600:
+        if not MIN_GATE_TIMEOUT_SECONDS <= verdict_timeout <= MAX_GATE_TIMEOUT_SECONDS:
             raise GateInputError("verdict timeout must be between 1 and 3600 seconds")
         request_text = read_text(request_path)
         source_text = "\n\n".join(read_text(path) for path in source_paths)
@@ -3189,8 +3212,12 @@ def build_parser() -> argparse.ArgumentParser:
     dispatch_parser.add_argument(
         "--bridge-arg", action="append", default=[], help="Fixed bridge argument; repeatable."
     )
-    dispatch_parser.add_argument("--repair-timeout", type=int, default=180)
-    dispatch_parser.add_argument("--verdict-timeout", type=int, default=180)
+    dispatch_parser.add_argument(
+        "--repair-timeout", type=int, default=DEFAULT_GATE_TIMEOUT_SECONDS
+    )
+    dispatch_parser.add_argument(
+        "--verdict-timeout", type=int, default=DEFAULT_GATE_TIMEOUT_SECONDS
+    )
 
     detect_parser = subparsers.add_parser("detect", help="Snapshot D0 and perform the only detection pass.")
     detect_parser.add_argument("--request", required=True, help="UTF-8 file containing the raw current request.")
@@ -3201,7 +3228,12 @@ def build_parser() -> argparse.ArgumentParser:
     )
     detect_parser.add_argument("--source", action="append", default=[], help="Optional user-supplied source file; repeatable.")
     detect_parser.add_argument("--txn", required=True, help="New or existing transaction directory.")
-    detect_parser.add_argument("--repair-timeout", type=int, default=180, help="Host repair deadline in seconds.")
+    detect_parser.add_argument(
+        "--repair-timeout",
+        type=int,
+        default=DEFAULT_GATE_TIMEOUT_SECONDS,
+        help="Host repair deadline in seconds.",
+    )
     detect_parser.add_argument(
         "--verdict-timeout",
         type=int,
