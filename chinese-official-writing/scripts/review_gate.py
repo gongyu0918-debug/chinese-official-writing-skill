@@ -2169,6 +2169,262 @@ def _reconcile_selection_claim(
     return _terminalize(txn, state, "D0", "selection_claim_recovered")
 
 
+@dataclass(frozen=True)
+class DetectionInputs:
+    request: str
+    draft: str
+    source: str
+    hashes: dict[str, Any]
+    dispatch_input_sha256: str
+    marker_mode: str
+    marker_text: str | None
+    marker_binding_sha256: str
+    postdraft_marker_binding_mode: str
+    marker_count: Any
+
+
+def _validated_detection_timeouts(
+    repair_timeout: int, verdict_timeout: int | None
+) -> tuple[int, int]:
+    if not MIN_GATE_TIMEOUT_SECONDS <= repair_timeout <= MAX_GATE_TIMEOUT_SECONDS:
+        raise GateInputError("repair timeout must be between 1 and 3600 seconds")
+    effective_verdict_timeout = (
+        repair_timeout if verdict_timeout is None else verdict_timeout
+    )
+    if not (
+        MIN_GATE_TIMEOUT_SECONDS
+        <= effective_verdict_timeout
+        <= MAX_GATE_TIMEOUT_SECONDS
+    ):
+        raise GateInputError("verdict timeout must be between 1 and 3600 seconds")
+    return repair_timeout, effective_verdict_timeout
+
+
+def _read_detection_inputs(
+    request_path: Path,
+    draft_path: Path,
+    source_paths: list[Path],
+    txn: Path,
+    dispatch_input_sha256: str | None,
+    guided_marker_sidecar: dict[str, Any] | None,
+    postdraft_marker_pass_verified: bool | None,
+) -> DetectionInputs:
+    _validate_detect_paths(request_path, draft_path, source_paths, txn)
+    request = read_text(request_path)
+    draft = read_text(draft_path)
+    source = "\n\n".join(read_text(path) for path in source_paths)
+    if not draft.strip():
+        raise GateInputError("D0 must be a non-empty complete draft")
+    marker_mode = (
+        str(guided_marker_sidecar.get("parse_status"))
+        if isinstance(guided_marker_sidecar, dict)
+        else "NONE"
+    )
+    marker_text = (
+        json.dumps(guided_marker_sidecar, ensure_ascii=False, indent=2) + "\n"
+        if guided_marker_sidecar is not None
+        else None
+    )
+    marker_binding_sha256 = sha256_text(marker_text or "")
+    postdraft_binding_mode = _postdraft_marker_binding_mode(
+        postdraft_marker_pass_verified
+    )
+    effective_dispatch_sha256 = dispatch_input_sha256 or sha256_text(draft)
+    hashes: dict[str, Any] = {
+        "request_sha256": sha256_text(request),
+        "source_sha256": sha256_text(source),
+        "d0_sha256": sha256_text(draft),
+        "dispatch_input_sha256": effective_dispatch_sha256,
+        "guided_marker_parse_status": marker_mode,
+        "postdraft_marker_binding_mode": postdraft_binding_mode,
+        "guided_marker_binding_sha256": marker_binding_sha256,
+    }
+    if marker_text is not None:
+        hashes["guided_marker_sha256"] = sha256_text(marker_text)
+    return DetectionInputs(
+        request=request,
+        draft=draft,
+        source=source,
+        hashes=hashes,
+        dispatch_input_sha256=effective_dispatch_sha256,
+        marker_mode=marker_mode,
+        marker_text=marker_text,
+        marker_binding_sha256=marker_binding_sha256,
+        postdraft_marker_binding_mode=postdraft_binding_mode,
+        marker_count=(
+            guided_marker_sidecar.get("marker_count")
+            if isinstance(guided_marker_sidecar, dict)
+            else 0
+        ),
+    )
+
+
+def _resume_detection_transaction(
+    txn: Path, existing: dict[str, Any], input_hashes: dict[str, Any]
+) -> dict[str, Any]:
+    if any(existing.get(key) != value for key, value in input_hashes.items()):
+        raise GateInputError(
+            "transaction is already bound to different request, source, or D0 inputs"
+        )
+    state_name = existing.get("state")
+    if state_name in TERMINAL_STATES:
+        return existing
+    reconciled = _reconcile_selection_claim(txn, existing)
+    if reconciled is not None:
+        return reconciled
+    if state_name in {STATE_AWAITING_REPAIR, STATE_AWAITING_VERDICT}:
+        return existing
+    if state_name in {
+        STATE_DETECTING,
+        STATE_MECHANICAL_VERIFYING,
+        STATE_SEMANTIC_VERIFYING,
+    }:
+        return _terminalize(
+            txn, existing, "D0", "interrupted_transaction_recovered"
+        )
+    return _terminalize(txn, existing, "D0", "invalid_transaction_state")
+
+
+def _assert_empty_transaction(txn: Path) -> None:
+    if any(
+        (txn / name).exists()
+        for name in RESERVED_FILES
+        if name not in {LOCK_FILE, DISPATCH_LOCK_FILE}
+    ):
+        raise GateInputError("transaction directory already contains untrusted files")
+
+
+def _build_detection_backup(
+    run_id: str,
+    inputs: DetectionInputs,
+    postdraft_marker_pass_verified: bool | None,
+) -> dict[str, Any]:
+    backup = {
+        "schema_version": SCHEMA_VERSION,
+        "run_id": run_id,
+        "request_sha256": inputs.hashes["request_sha256"],
+        "source_sha256": inputs.hashes["source_sha256"],
+        "d0_sha256": inputs.hashes["d0_sha256"],
+        "request_b64": _encode_snapshot(inputs.request),
+        "source_b64": _encode_snapshot(inputs.source),
+        "d0_b64": _encode_snapshot(inputs.draft),
+        "dispatch_input_sha256": inputs.dispatch_input_sha256,
+        "guided_marker_parse_status": inputs.marker_mode,
+        "postdraft_marker_pass_verified": postdraft_marker_pass_verified,
+        "postdraft_marker_binding_mode": inputs.postdraft_marker_binding_mode,
+        "guided_marker_binding_sha256": inputs.marker_binding_sha256,
+    }
+    if inputs.marker_text is not None:
+        backup["guided_marker_sha256"] = inputs.hashes["guided_marker_sha256"]
+        backup["guided_marker_b64"] = _encode_snapshot(inputs.marker_text)
+    return backup
+
+
+def _build_initial_detection_state(
+    run_id: str,
+    inputs: DetectionInputs,
+    repair_timeout: int,
+    verdict_timeout: int,
+    postdraft_marker_pass_verified: bool | None,
+) -> dict[str, Any]:
+    deadline = datetime.now(timezone.utc) + timedelta(seconds=repair_timeout)
+    return {
+        "schema_version": SCHEMA_VERSION,
+        "run_id": run_id,
+        "state": STATE_DETECTING,
+        "request_sha256": inputs.hashes["request_sha256"],
+        "source_sha256": inputs.hashes["source_sha256"],
+        "d0_sha256": inputs.hashes["d0_sha256"],
+        "dispatch_input_sha256": inputs.dispatch_input_sha256,
+        "postdraft_marker_pass_verified": postdraft_marker_pass_verified,
+        "postdraft_marker_binding_mode": inputs.postdraft_marker_binding_mode,
+        "guided_marker_sha256": inputs.hashes.get("guided_marker_sha256"),
+        "guided_marker_binding_sha256": inputs.marker_binding_sha256,
+        "guided_marker_parse_status": inputs.marker_mode,
+        "guided_marker_count": inputs.marker_count,
+        "detection_sha256": None,
+        "d1_sha256": None,
+        "detect_count": 1,
+        "repair_count": 0,
+        "mechanical_check_count": 0,
+        "verify_count": 0,
+        "repair_agent_call_count": 0,
+        "verdict_agent_call_count": 0,
+        "selected": None,
+        "reason": None,
+        "repair_timeout_seconds": repair_timeout,
+        "verdict_timeout_seconds": verdict_timeout,
+        "repair_deadline_utc": deadline.isoformat(),
+        "verdict_deadline_utc": None,
+        "verification_packet_sha256": None,
+        "repair_packet_sha256": None,
+        "semantic_pass_receipt_sha256": None,
+        "state_trace": [STATE_DETECTING],
+    }
+
+
+def _write_detection_snapshots(
+    txn: Path, inputs: DetectionInputs, backup: dict[str, Any]
+) -> None:
+    atomic_write_text(txn / REQUEST_FILE, inputs.request)
+    atomic_write_text(txn / SOURCE_FILE, inputs.source)
+    atomic_write_text(txn / D0_FILE, inputs.draft)
+    atomic_write_json(txn / BACKUP_FILE, backup)
+
+
+def _validate_guided_marker_for_detection(
+    txn: Path,
+    state: dict[str, Any],
+    inputs: DetectionInputs,
+    guided_marker_sidecar: dict[str, Any] | None,
+) -> dict[str, Any] | None:
+    if inputs.marker_text is None:
+        return None
+    atomic_write_text(txn / GUIDED_MARKER_FILE, inputs.marker_text)
+    parse_status = guided_marker_sidecar.get("parse_status")
+    if parse_status == "INVALID":
+        marker_errors = guided_marker_sidecar.get("errors") or []
+        reason = (
+            "postdraft_marker_pass_changed_text"
+            if "postdraft_marker_pass_changed_text" in marker_errors
+            else "guided_marker_parse_invalid"
+        )
+        return _terminalize(txn, state, "D0", reason)
+    if parse_status != "VALID":
+        return _terminalize(txn, state, "D0", "guided_marker_status_invalid")
+    return None
+
+
+def _locate_and_stage_repair(
+    txn: Path,
+    state: dict[str, Any],
+    inputs: DetectionInputs,
+    guided_marker_sidecar: dict[str, Any] | None,
+) -> dict[str, Any]:
+    detection = locate_candidates(
+        inputs.request,
+        inputs.draft,
+        inputs.source,
+        guided_marker_sidecar=guided_marker_sidecar,
+    )
+    detection["run_id"] = state["run_id"]
+    atomic_write_json(txn / DETECTION_FILE, detection)
+    state["detection_sha256"] = sha256_text(read_text(txn / DETECTION_FILE))
+    if not detection["findings"]:
+        return _terminalize(txn, state, "D0", "no_review_candidate")
+    if len(detection["findings"]) > MAX_FINDINGS:
+        return _terminalize(txn, state, "D0", "finding_budget_exceeded")
+    repair_packet = _build_repair_packet(state, detection, inputs.draft)
+    atomic_write_json(txn / REPAIR_PACKET_FILE, repair_packet)
+    state["repair_packet_sha256"] = sha256_text(
+        read_text(txn / REPAIR_PACKET_FILE)
+    )
+    state["state"] = STATE_AWAITING_REPAIR
+    state["state_trace"] = [STATE_DETECTING, STATE_AWAITING_REPAIR]
+    atomic_write_json(txn / STATE_FILE, state)
+    return state
+
+
 def detect_transaction(
     request_path: Path,
     draft_path: Path,
@@ -2180,176 +2436,45 @@ def detect_transaction(
     guided_marker_sidecar: dict[str, Any] | None = None,
     postdraft_marker_pass_verified: bool | None = None,
 ) -> dict[str, Any]:
-    if not MIN_GATE_TIMEOUT_SECONDS <= repair_timeout <= MAX_GATE_TIMEOUT_SECONDS:
-        raise GateInputError("repair timeout must be between 1 and 3600 seconds")
-    if verdict_timeout is None:
-        verdict_timeout = repair_timeout
-    if not MIN_GATE_TIMEOUT_SECONDS <= verdict_timeout <= MAX_GATE_TIMEOUT_SECONDS:
-        raise GateInputError("verdict timeout must be between 1 and 3600 seconds")
-    _validate_detect_paths(request_path, draft_path, source_paths, txn)
-    request = read_text(request_path)
-    draft = read_text(draft_path)
-    source = "\n\n".join(read_text(path) for path in source_paths)
-    if not draft.strip():
-        raise GateInputError("D0 must be a non-empty complete draft")
-    input_hashes = {
-        "request_sha256": sha256_text(request),
-        "source_sha256": sha256_text(source),
-        "d0_sha256": sha256_text(draft),
-    }
-    effective_dispatch_input_sha256 = dispatch_input_sha256 or sha256_text(draft)
-    marker_mode = (
-        str(guided_marker_sidecar.get("parse_status"))
-        if isinstance(guided_marker_sidecar, dict)
-        else "NONE"
+    repair_timeout, effective_verdict_timeout = _validated_detection_timeouts(
+        repair_timeout, verdict_timeout
     )
-    guided_marker_text: str | None = None
-    input_hashes["dispatch_input_sha256"] = effective_dispatch_input_sha256
-    input_hashes["guided_marker_parse_status"] = marker_mode
-    postdraft_marker_binding_mode = _postdraft_marker_binding_mode(
-        postdraft_marker_pass_verified
+    inputs = _read_detection_inputs(
+        request_path,
+        draft_path,
+        source_paths,
+        txn,
+        dispatch_input_sha256,
+        guided_marker_sidecar,
+        postdraft_marker_pass_verified,
     )
-    input_hashes["postdraft_marker_binding_mode"] = postdraft_marker_binding_mode
-    if guided_marker_sidecar is not None:
-        guided_marker_text = json.dumps(
-            guided_marker_sidecar, ensure_ascii=False, indent=2
-        ) + "\n"
-        input_hashes["guided_marker_sha256"] = sha256_text(guided_marker_text)
-    marker_binding_sha256 = sha256_text(guided_marker_text or "")
-    input_hashes["guided_marker_binding_sha256"] = marker_binding_sha256
-
     with transaction_lock(txn):
         existing = _load_state(txn)
         if existing:
-            if any(existing.get(key) != value for key, value in input_hashes.items()):
-                raise GateInputError(
-                    "transaction is already bound to different request, source, or D0 inputs"
-                )
-            state_name = existing.get("state")
-            if state_name in TERMINAL_STATES:
-                return existing
-            reconciled = _reconcile_selection_claim(txn, existing)
-            if reconciled is not None:
-                return reconciled
-            if state_name in {
-                STATE_AWAITING_REPAIR,
-                STATE_AWAITING_VERDICT,
-            }:
-                return existing
-            if state_name in {
-                STATE_DETECTING,
-                STATE_MECHANICAL_VERIFYING,
-                STATE_SEMANTIC_VERIFYING,
-            }:
-                return _terminalize(txn, existing, "D0", "interrupted_transaction_recovered")
-            return _terminalize(txn, existing, "D0", "invalid_transaction_state")
-        if any(
-            (txn / name).exists()
-            for name in RESERVED_FILES
-            if name not in {LOCK_FILE, DISPATCH_LOCK_FILE}
-        ):
-            raise GateInputError("transaction directory already contains untrusted files")
-
+            return _resume_detection_transaction(txn, existing, inputs.hashes)
+        _assert_empty_transaction(txn)
         run_id = str(uuid.uuid4())
-        backup = {
-            "schema_version": SCHEMA_VERSION,
-            "run_id": run_id,
-            "request_sha256": sha256_text(request),
-            "source_sha256": sha256_text(source),
-            "d0_sha256": sha256_text(draft),
-            "request_b64": _encode_snapshot(request),
-            "source_b64": _encode_snapshot(source),
-            "d0_b64": _encode_snapshot(draft),
-        }
-        backup["dispatch_input_sha256"] = effective_dispatch_input_sha256
-        backup["guided_marker_parse_status"] = marker_mode
-        backup["postdraft_marker_pass_verified"] = postdraft_marker_pass_verified
-        backup["postdraft_marker_binding_mode"] = postdraft_marker_binding_mode
-        backup["guided_marker_binding_sha256"] = marker_binding_sha256
-        if guided_marker_text is not None:
-            backup["guided_marker_sha256"] = sha256_text(guided_marker_text)
-            backup["guided_marker_b64"] = _encode_snapshot(guided_marker_text)
-        atomic_write_text(txn / REQUEST_FILE, request)
-        atomic_write_text(txn / SOURCE_FILE, source)
-        atomic_write_text(txn / D0_FILE, draft)
-        atomic_write_json(txn / BACKUP_FILE, backup)
-        deadline = datetime.now(timezone.utc) + timedelta(seconds=repair_timeout)
-        state = {
-            "schema_version": SCHEMA_VERSION,
-            "run_id": run_id,
-            "state": STATE_DETECTING,
-            "request_sha256": sha256_text(request),
-            "source_sha256": sha256_text(source),
-            "d0_sha256": sha256_text(draft),
-            "dispatch_input_sha256": effective_dispatch_input_sha256,
-            "postdraft_marker_pass_verified": postdraft_marker_pass_verified,
-            "postdraft_marker_binding_mode": postdraft_marker_binding_mode,
-            "guided_marker_sha256": (
-                sha256_text(guided_marker_text) if guided_marker_text is not None else None
-            ),
-            "guided_marker_binding_sha256": marker_binding_sha256,
-            "guided_marker_parse_status": marker_mode,
-            "guided_marker_count": (
-                guided_marker_sidecar.get("marker_count")
-                if isinstance(guided_marker_sidecar, dict)
-                else 0
-            ),
-            "detection_sha256": None,
-            "d1_sha256": None,
-            "detect_count": 1,
-            "repair_count": 0,
-            "mechanical_check_count": 0,
-            "verify_count": 0,
-            "repair_agent_call_count": 0,
-            "verdict_agent_call_count": 0,
-            "selected": None,
-            "reason": None,
-            "repair_timeout_seconds": repair_timeout,
-            "verdict_timeout_seconds": verdict_timeout,
-            "repair_deadline_utc": deadline.isoformat(),
-            "verdict_deadline_utc": None,
-            "verification_packet_sha256": None,
-            "repair_packet_sha256": None,
-            "semantic_pass_receipt_sha256": None,
-            "state_trace": [STATE_DETECTING],
-        }
+        backup = _build_detection_backup(
+            run_id, inputs, postdraft_marker_pass_verified
+        )
+        _write_detection_snapshots(txn, inputs, backup)
+        state = _build_initial_detection_state(
+            run_id,
+            inputs,
+            repair_timeout,
+            effective_verdict_timeout,
+            postdraft_marker_pass_verified,
+        )
         atomic_write_json(txn / STATE_FILE, state)
         try:
-            if guided_marker_text is not None:
-                atomic_write_text(txn / GUIDED_MARKER_FILE, guided_marker_text)
-                parse_status = guided_marker_sidecar.get("parse_status")
-                if parse_status == "INVALID":
-                    marker_errors = guided_marker_sidecar.get("errors") or []
-                    reason = (
-                        "postdraft_marker_pass_changed_text"
-                        if "postdraft_marker_pass_changed_text" in marker_errors
-                        else "guided_marker_parse_invalid"
-                    )
-                    return _terminalize(txn, state, "D0", reason)
-                if parse_status != "VALID":
-                    return _terminalize(txn, state, "D0", "guided_marker_status_invalid")
-            detection = locate_candidates(
-                request,
-                draft,
-                source,
-                guided_marker_sidecar=guided_marker_sidecar,
+            marker_result = _validate_guided_marker_for_detection(
+                txn, state, inputs, guided_marker_sidecar
             )
-            detection["run_id"] = run_id
-            atomic_write_json(txn / DETECTION_FILE, detection)
-            state["detection_sha256"] = sha256_text(read_text(txn / DETECTION_FILE))
-            if not detection["findings"]:
-                return _terminalize(txn, state, "D0", "no_review_candidate")
-            if len(detection["findings"]) > MAX_FINDINGS:
-                return _terminalize(txn, state, "D0", "finding_budget_exceeded")
-            repair_packet = _build_repair_packet(state, detection, draft)
-            atomic_write_json(txn / REPAIR_PACKET_FILE, repair_packet)
-            state["repair_packet_sha256"] = sha256_text(
-                read_text(txn / REPAIR_PACKET_FILE)
+            if marker_result is not None:
+                return marker_result
+            return _locate_and_stage_repair(
+                txn, state, inputs, guided_marker_sidecar
             )
-            state["state"] = STATE_AWAITING_REPAIR
-            state["state_trace"] = [STATE_DETECTING, STATE_AWAITING_REPAIR]
-            atomic_write_json(txn / STATE_FILE, state)
-            return state
         except Exception:
             return _terminalize(txn, state, "D0", "detection_failed")
 
