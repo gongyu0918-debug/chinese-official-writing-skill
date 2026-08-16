@@ -8,6 +8,7 @@ import unittest
 ROOT = Path(__file__).resolve().parents[2]
 NEW_ARCHITECTURE_FILES = (
     ROOT / "maintenance/tools/assemble_hook_companion.py",
+    ROOT / "chinese-official-writing/hooks/core/gate_stop_hook.py",
     ROOT / "chinese-official-writing/hooks/adapters/host_gate_adapter.py",
     ROOT / "chinese-official-writing/hooks/adapters/claude-code/gate_stop_hook.py",
     ROOT / "chinese-official-writing/hooks/capabilities/protective_expansion/contract.py",
@@ -17,7 +18,6 @@ NEW_ARCHITECTURE_FILES = (
 KNOWN_COMPLEXITY_DEBT = {
     "chinese-official-writing/scripts/review_gate.py:evaluate_candidate": (250, 80),
     "chinese-official-writing/scripts/review_gate.py:detect_transaction": (150, 20),
-    "chinese-official-writing/hooks/core/gate_stop_hook.py:handle_stop": (100, 35),
 }
 
 

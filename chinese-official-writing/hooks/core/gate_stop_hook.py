@@ -834,45 +834,23 @@ def _bootstrap_transaction(
     return state
 
 
-def handle_stop(event: dict[str, Any]) -> dict[str, Any]:
-    record_path = _record_path(event)
-    if record_path is None:
-        return _allow()
-    record = _read_json(record_path)
-    if record is None:
-        return _allow()
-    if _skill_was_seen(record_path, record) and record.get("skill_seen") is not True:
-        record["skill_seen"] = True
-        _atomic_write(record_path, record)
-    if record.get("bypass") == "user_requested" and not record.get("txn"):
-        return _allow()
-    delivery_cleanliness = _handle_delivery_cleanliness_capability(
-        event, record_path, record
-    )
-    if delivery_cleanliness is not None:
-        return delivery_cleanliness
-    protective = _handle_protective_capability(event, record_path, record)
-    if protective is not None:
-        return protective
-    under_length = _handle_under_length_capability(event, record_path, record)
-    if under_length is not None:
-        return under_length
-    if not record.get("txn"):
-        if event.get("stop_hook_active") is True:
-            return _allow()
-        state = _bootstrap_transaction(event, record_path, record)
-        if state is None:
-            return _allow()
+def _bound_transaction(record: dict[str, Any]) -> tuple[Path, dict[str, Any]] | None:
     try:
         txn = Path(str(record["txn"])).resolve()
     except (KeyError, OSError, RuntimeError, ValueError):
-        return _allow()
+        return None
     state = _read_json(txn / "state.json")
     if state is None or state.get("run_id") != record.get("run_id"):
-        return _allow()
-    state_name = state.get("state")
-    attempts = int(record.get("stop_attempts") or 0)
+        return None
+    return txn, state
 
+
+def _handle_selected_output_echo(
+    event: dict[str, Any],
+    record_path: Path,
+    record: dict[str, Any],
+    attempts: int,
+) -> dict[str, Any] | None:
     if record.get("hook_phase") == "awaiting_final_output":
         delivered = event.get("last_assistant_message")
         if (
@@ -896,7 +874,17 @@ def handle_stop(event: dict[str, Any]) -> dict[str, Any]:
             "终稿回显与 emit 哈希不一致。请只逐字输出下列已选终稿，不要调用工具、不要加说明：\n"
             + str(record.get("emitted_output") or "")
         )
+    return None
 
+
+def _consume_repair_response(
+    event: dict[str, Any],
+    txn: Path,
+    record_path: Path,
+    record: dict[str, Any],
+    state: dict[str, Any],
+    attempts: int,
+) -> tuple[dict[str, Any], dict[str, Any] | None]:
     if record.get("hook_phase") == "awaiting_repair":
         repair = _extract_json_object(event.get("last_assistant_message"))
         if repair is None:
@@ -914,10 +902,17 @@ def handle_stop(event: dict[str, Any]) -> dict[str, Any]:
                 record["last_action"] = "prepare"
                 record["stop_attempts"] = attempts + 1
                 _atomic_write(record_path, record)
-                return _continue_once(instruction)
+                return state, _continue_once(instruction)
             state = _abort(txn, "hook_verdict_packet_missing") or state
-            state_name = state.get("state")
+    return state, None
 
+
+def _consume_verdict_response(
+    event: dict[str, Any],
+    txn: Path,
+    record: dict[str, Any],
+    state: dict[str, Any],
+) -> dict[str, Any]:
     if record.get("hook_phase") == "awaiting_verdict":
         verdict = _extract_json_object(event.get("last_assistant_message"))
         if verdict is None:
@@ -927,8 +922,17 @@ def handle_stop(event: dict[str, Any]) -> dict[str, Any]:
             state = _read_json(txn / "state.json") or state
             if code != 0 and state.get("state") not in TERMINAL_STATES:
                 state = _abort(txn, "hook_finalize_failed") or state
-        state_name = state.get("state")
+    return state
 
+
+def _dispatch_ordinary_state(
+    txn: Path,
+    record_path: Path,
+    record: dict[str, Any],
+    state: dict[str, Any],
+    attempts: int,
+) -> dict[str, Any]:
+    state_name = state.get("state")
     if state_name in TERMINAL_STATES:
         if record.get("emit_seen") is True and record.get("delivery_verified") is True:
             return _allow()
@@ -963,6 +967,49 @@ def handle_stop(event: dict[str, Any]) -> dict[str, Any]:
     record["stop_attempts"] = attempts + 1
     _atomic_write(record_path, record)
     return _continue_once("交付门禁正在收口，请只继续当前有限状态，不要重新起草。")
+
+
+def handle_stop(event: dict[str, Any]) -> dict[str, Any]:
+    record_path = _record_path(event)
+    if record_path is None:
+        return _allow()
+    record = _read_json(record_path)
+    if record is None:
+        return _allow()
+    if _skill_was_seen(record_path, record) and record.get("skill_seen") is not True:
+        record["skill_seen"] = True
+        _atomic_write(record_path, record)
+    if record.get("bypass") == "user_requested" and not record.get("txn"):
+        return _allow()
+    delivery_cleanliness = _handle_delivery_cleanliness_capability(event, record_path, record)
+    if delivery_cleanliness is not None:
+        return delivery_cleanliness
+    protective = _handle_protective_capability(event, record_path, record)
+    if protective is not None:
+        return protective
+    under_length = _handle_under_length_capability(event, record_path, record)
+    if under_length is not None:
+        return under_length
+    if not record.get("txn"):
+        if event.get("stop_hook_active") is True:
+            return _allow()
+        if _bootstrap_transaction(event, record_path, record) is None:
+            return _allow()
+    bound = _bound_transaction(record)
+    if bound is None:
+        return _allow()
+    txn, state = bound
+    attempts = int(record.get("stop_attempts") or 0)
+    echo = _handle_selected_output_echo(event, record_path, record, attempts)
+    if echo is not None:
+        return echo
+    state, response = _consume_repair_response(
+        event, txn, record_path, record, state, attempts
+    )
+    if response is not None:
+        return response
+    state = _consume_verdict_response(event, txn, record, state)
+    return _dispatch_ordinary_state(txn, record_path, record, state, attempts)
 
 
 def handle(event: dict[str, Any]) -> dict[str, Any]:

@@ -348,6 +348,34 @@ class GateStopHookTests(unittest.TestCase):
         self.assertTrue(record["emit_seen"])
         self.assertTrue(record["delivery_verified"])
 
+    def test_mismatched_terminal_echo_requests_the_same_selected_output(self):
+        self._record_prompt_and_skill_read()
+        draft = "情况报告\n\n测试工作已完成。"
+        first = HOOK.handle(
+            self._event(
+                "Stop", stop_hook_active=False, last_assistant_message=draft
+            )
+        )
+        self.assertEqual("block", first["decision"])
+        selected = first["reason"].split("不要加说明：\n", 1)[1]
+
+        second = HOOK.handle(
+            self._event(
+                "Stop", stop_hook_active=True, last_assistant_message="错误回显"
+            )
+        )
+        self.assertEqual("block", second["decision"])
+        self.assertEqual(selected, second["reason"].split("不要加说明：\n", 1)[1])
+
+        third = HOOK.handle(
+            self._event(
+                "Stop", stop_hook_active=True, last_assistant_message=selected
+            )
+        )
+        self.assertTrue(third["continue"])
+        record = HOOK._read_json(HOOK._record_path(self._event("Stop")))
+        self.assertTrue(record["delivery_verified"])
+
     def test_hook_drives_one_repair_finalize_and_emit_without_agent_tool_call(self):
         self._record_prompt_and_skill_read()
         first = HOOK.handle(
