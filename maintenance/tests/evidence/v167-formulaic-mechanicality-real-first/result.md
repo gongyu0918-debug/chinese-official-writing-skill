@@ -79,3 +79,23 @@ R3 把20类文体的功能和结构轴保留在默认页，把开端、承启和
 4. 下一候选继续先做真实稿；要求用户结构不退化、候选事实/状态硬失败为0、机械化簇不增加。通过后再改路由和镜像，不靠增加反机械 prompt 压制问题。
 
 原始流、匿名包、restricted mapping 与裁判文件保存在本 worktree 的 ignored `output/v167-formulaic-mechanicality-real-first/`，不纳入发行包。
+
+## R4：普通任务不加载常用语总页
+
+R4 取消普通任务对 `formulaic-language.md` 的自动读取，仅在用户明确要求选择或核对开端、承启、综合、期请或结尾用语时读取精简查询页。原型只改变隔离候选的 `SKILL.md`、`formulaic-language.md` 和 `task-route-cards.md`，canonical 保持零差异。
+
+- 9题×A/B 共18次调用全部结束；11臂技术有效、5对完整。OpenCode Go 三对均上游无效；Ollama 的显式报告候选未读取查询页；Alibaba 的显式复函候选读取成功。
+- 外层执行器在总运行1204秒时返回124，但原 harness 与最后一个子进程继续存活并原批次完成；没有重启或补样，最终 manifest 为18/18。
+- 第一次外部 SOL max 对5对盲包审阅493.6秒后返回平台错误，无 verdict/receipt，记为无效。随后由全新 Codex Desktop `gpt-5.6-sol` max 子代理只读同一盲包和模板，5/5组完成，receipt 记 `mapping_read=false`。
+- 解盲：候选4胜、基线1胜。候选/基线事实 FAIL 分别为1/2，状态 FAIL 为0/1，篇幅 FAIL 为0/1，机械化 FAIL 为1/2；候选没有独有的事实、状态、用户结构或文种 FAIL。
+- Q05 候选去掉短材料的四节骨架和“记录”同义复述，Q09 候选相对减少无依据未来安排和套式收束；Q04、Q08 也降低直接修改成本。Q07 候选仍出现材料外要求和口号式收尾，是实际机械化回退。
+- 结论：**方向成立但覆盖不足，不修改产品。** 下一步不再改语义页，只把显式用语请求从参考表提升为 SKILL 前置直达句，固定通知、报告、复函3题各做一次 A/B；普通任务继续不加载查询页。
+
+冻结哈希：
+
+- manifest：`51ccfe04c89863d9c62c10deabe89d6689246cdcefd57448a97ef97daeef1aae`
+- 盲包：`f88450d72684d303ef3f1f5c8568068702739769f1e6b08a4eed6143f9464c69`
+- 模板：`d4e764329c27e6509a53189eecab5df53de2b09ec262ecdfcee65fe29f124886`
+- 无效外部 SOL stream：`053514eb1e1b7bb5bcd07f49319b4830c31581487bd91fd8d05fa072b43b94c3`
+- Desktop SOL verdict：`52104eefb67d176e769352e323851f935c00fb208f0bd53f948969c65a5b5f1c`
+- Desktop SOL receipt：`3b402e26bb1e74730b1d58c1b32e6bde13e6a0060c57c8ee9c755a9b4104cbe6`
