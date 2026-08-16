@@ -1403,6 +1403,470 @@ def _candidate_document_invariant_reason(
     return None
 
 
+@dataclass(frozen=True)
+class CandidateEnvelope:
+    findings: list[Any]
+    repairs: list[Any]
+    repair_mode: str
+    finding_by_id: dict[str, dict[str, Any]]
+
+
+@dataclass
+class CandidatePlan:
+    seen_repairs: set[str]
+    operations: list[tuple[int, int, str]]
+    guided_anchor_deletions: list[tuple[int, int, str]]
+    request_anchored_anchor_changes: list[str]
+    repair_item_hard_anchor_changed: bool = False
+
+
+def _candidate_d0(reason: str, draft: str) -> CandidateResult:
+    return CandidateResult("D0", reason, draft)
+
+
+def _verified_candidate_findings(
+    request: str,
+    source: str,
+    draft: str,
+    run_id: str,
+    detection: dict[str, Any] | None,
+    guided_marker_sidecar: dict[str, Any] | None,
+) -> CandidateResult | list[Any]:
+    if not isinstance(detection, dict):
+        return _candidate_d0("detection_missing_or_invalid", draft)
+    expected_detection = locate_candidates(
+        request,
+        draft,
+        source,
+        guided_marker_sidecar=guided_marker_sidecar,
+    )
+    expected_detection["run_id"] = run_id
+    if detection != expected_detection:
+        return _candidate_d0("detection_content_mismatch", draft)
+    findings = detection.get("findings")
+    if not isinstance(findings, list) or not findings:
+        return _candidate_d0("no_review_candidate", draft)
+    return findings
+
+
+def _verified_repair_envelope(
+    request: str,
+    source: str,
+    draft: str,
+    run_id: str,
+    detection: dict[str, Any],
+    findings: list[Any],
+    repair_packet: dict[str, Any] | None,
+) -> CandidateResult | tuple[list[Any], str]:
+    if not isinstance(repair_packet, dict):
+        return _candidate_d0("repair_missing_or_invalid", draft)
+    if repair_packet.get("schema_version") != SCHEMA_VERSION:
+        return _candidate_d0("repair_schema_mismatch", draft)
+    if repair_packet.get("run_id") != run_id:
+        return _candidate_d0("repair_run_mismatch", draft)
+    if repair_packet.get("request_sha256") != sha256_text(request):
+        return _candidate_d0("repair_input_hash_mismatch", draft)
+    if repair_packet.get("source_sha256") != sha256_text(source):
+        return _candidate_d0("repair_input_hash_mismatch", draft)
+    if repair_packet.get("draft_sha256") != sha256_text(draft):
+        return _candidate_d0("repair_input_hash_mismatch", draft)
+    if repair_packet.get("guided_marker_sha256") != detection.get(
+        "guided_marker_sha256"
+    ):
+        return _candidate_d0("repair_guided_marker_hash_mismatch", draft)
+    if repair_packet.get("revision_count") != 1:
+        return _candidate_d0("revision_budget_violation", draft)
+    repairs = repair_packet.get("repairs")
+    if not isinstance(repairs, list) or not repairs:
+        return _candidate_d0("no_confirmed_repair", draft)
+    repair_mode = repair_packet.get("repair_mode", REPAIR_MODE_EXTRACT)
+    if repair_mode not in {
+        REPAIR_MODE_EXTRACT,
+        REPAIR_MODE_REWRITE_SENTENCE,
+        REPAIR_MODE_DECISIONS,
+    }:
+        return _candidate_d0("repair_mode_invalid", draft)
+    if repair_mode == REPAIR_MODE_REWRITE_SENTENCE and len(repairs) != 1:
+        return _candidate_d0("sentence_rewrite_budget_violation", draft)
+    if repair_mode == REPAIR_MODE_DECISIONS:
+        if len(findings) > MAX_FINDINGS:
+            return _candidate_d0("finding_budget_exceeded", draft)
+        if len(repairs) != len(findings):
+            return _candidate_d0("decision_packet_incomplete", draft)
+    return repairs, repair_mode
+
+
+def _indexed_candidate_findings(
+    findings: list[Any], draft: str
+) -> CandidateResult | dict[str, dict[str, Any]]:
+    finding_by_id: dict[str, dict[str, Any]] = {}
+    for finding in findings:
+        if not isinstance(finding, dict) or not isinstance(
+            finding.get("finding_id"), str
+        ):
+            return _candidate_d0("detection_finding_invalid", draft)
+        finding_id = finding["finding_id"]
+        if finding_id in finding_by_id:
+            return _candidate_d0("duplicate_finding_id", draft)
+        finding_by_id[finding_id] = finding
+    return finding_by_id
+
+
+def _candidate_envelope(
+    request: str,
+    source: str,
+    draft: str,
+    run_id: str,
+    detection: dict[str, Any] | None,
+    repair_packet: dict[str, Any] | None,
+    guided_marker_sidecar: dict[str, Any] | None,
+) -> CandidateResult | CandidateEnvelope:
+    findings = _verified_candidate_findings(
+        request, source, draft, run_id, detection, guided_marker_sidecar
+    )
+    if isinstance(findings, CandidateResult):
+        return findings
+    repair_envelope = _verified_repair_envelope(
+        request, source, draft, run_id, detection, findings, repair_packet
+    )
+    if isinstance(repair_envelope, CandidateResult):
+        return repair_envelope
+    repairs, repair_mode = repair_envelope
+    finding_by_id = _indexed_candidate_findings(findings, draft)
+    if isinstance(finding_by_id, CandidateResult):
+        return finding_by_id
+    return CandidateEnvelope(findings, repairs, repair_mode, finding_by_id)
+
+
+def _candidate_repair_identity(
+    repair: Any,
+    envelope: CandidateEnvelope,
+    plan: CandidatePlan,
+    draft: str,
+) -> CandidateResult | tuple[dict[str, Any], str, str]:
+    if not isinstance(repair, dict):
+        return _candidate_d0("repair_item_invalid", draft)
+    if envelope.repair_mode == REPAIR_MODE_DECISIONS and set(repair) != {
+        "finding_id",
+        "target",
+        "decision",
+        "replacement",
+    }:
+        return _candidate_d0("decision_item_schema_mismatch", draft)
+    finding_id = repair.get("finding_id")
+    target = repair.get("target")
+    replacement = repair.get("replacement")
+    if not isinstance(finding_id, str) or finding_id in plan.seen_repairs:
+        return _candidate_d0("duplicate_or_missing_repair_id", draft)
+    plan.seen_repairs.add(finding_id)
+    finding = envelope.finding_by_id.get(finding_id)
+    if finding is None or target != finding.get("target"):
+        return _candidate_d0("repair_target_not_detected", draft)
+    if not isinstance(target, str) or not isinstance(replacement, str):
+        return _candidate_d0("repair_text_invalid", draft)
+    return finding, target, replacement
+
+
+def _candidate_repair_action(
+    repair: dict[str, Any],
+    finding: dict[str, Any],
+    target: str,
+    replacement: str,
+    repair_mode: str,
+    draft: str,
+) -> CandidateResult | tuple[str | None, bool, str | None]:
+    guided_marker = finding.get("guided_marker") is True
+    decision: str | None = None
+    if repair_mode == REPAIR_MODE_DECISIONS:
+        decision = repair.get("decision")
+        if decision not in {DECISION_KEEP, DECISION_DELETE, DECISION_REWRITE}:
+            return _candidate_d0("decision_invalid", draft)
+        allowed_decisions, decision_block_reason = _finding_action_contract(
+            finding, draft
+        )
+        if decision not in allowed_decisions:
+            return _candidate_d0(
+                decision_block_reason or "decision_not_allowed_for_finding", draft
+            )
+        if decision == DECISION_KEEP:
+            if replacement != target:
+                return _candidate_d0("keep_decision_changed_text", draft)
+            return None, guided_marker, decision
+        if (
+            finding.get("source_exact") is True
+            and not guided_marker
+            and finding.get("request_delete") is not True
+        ):
+            return _candidate_d0("source_explicit_sentence_is_read_only", draft)
+        effective_mode = (
+            REPAIR_MODE_EXTRACT
+            if decision == DECISION_DELETE
+            else REPAIR_MODE_REWRITE_SENTENCE
+        )
+        if decision == DECISION_DELETE and replacement != "":
+            return _candidate_d0("delete_decision_must_be_empty", draft)
+        if decision == DECISION_REWRITE and not normalized_text(replacement):
+            return _candidate_d0("rewrite_decision_must_be_nonempty", draft)
+        return effective_mode, guided_marker, decision
+    if finding.get("request_delete") is True and replacement != "":
+        return _candidate_d0(
+            "request_explicit_delete_requires_empty_replacement", draft
+        )
+    if (
+        finding.get("source_exact") is True
+        and not guided_marker
+        and finding.get("request_delete") is not True
+    ):
+        return _candidate_d0("source_explicit_sentence_is_read_only", draft)
+    return repair_mode, guided_marker, decision
+
+
+def _candidate_repair_span(
+    finding: dict[str, Any], target: str, guided_marker: bool, draft: str
+) -> CandidateResult | tuple[int, int]:
+    if guided_marker:
+        span_start = finding.get("span_start")
+        span_end = finding.get("span_end")
+        if (
+            not isinstance(span_start, int)
+            or not isinstance(span_end, int)
+            or span_start < 0
+            or span_end <= span_start
+            or draft[span_start:span_end] != target
+        ):
+            return _candidate_d0("guided_marker_span_mismatch", draft)
+        return span_start, span_end
+    if draft.count(target) != 1:
+        return _candidate_d0("repair_target_not_unique", draft)
+    span_start = draft.index(target)
+    return span_start, span_start + len(target)
+
+
+def _candidate_replacement_reason(
+    finding: dict[str, Any],
+    target: str,
+    replacement: str,
+    effective_mode: str,
+    guided_marker: bool,
+    request: str,
+    source: str,
+) -> str | None:
+    target_marker = _leading_structure_marker(target)
+    if target_marker and _leading_structure_marker(replacement) != target_marker:
+        return "list_marker_changed"
+    if replacement != "".join(replacement.splitlines()):
+        return "replacement_crosses_paragraph_boundary"
+    if _replacement_adds_sentence(replacement):
+        return "replacement_adds_sentences"
+    if effective_mode == REPAIR_MODE_REWRITE_SENTENCE and not normalized_text(
+        replacement
+    ):
+        return "sentence_rewrite_must_be_nonempty"
+    if replacement == "":
+        if effective_mode != REPAIR_MODE_EXTRACT:
+            return "sentence_rewrite_must_be_nonempty"
+        if not _safe_full_deletion(finding, target):
+            return "full_deletion_not_proven_safe"
+    elif effective_mode == REPAIR_MODE_EXTRACT:
+        if not _is_safe_prefix_replacement(finding, target, replacement):
+            return "replacement_not_safe_prefix"
+    elif OPEN_CONDITION_RE.search(replacement.strip()):
+        return "sentence_rewrite_opens_condition"
+    if _has_unlicensed_settled_status(replacement, source) or (
+        effective_mode == REPAIR_MODE_REWRITE_SENTENCE
+        and _turns_unresolved_into_settled(target, replacement, source)
+    ):
+        return "replacement_strengthens_status"
+    if effective_mode == REPAIR_MODE_REWRITE_SENTENCE and not (
+        _semantic_rewrite_preserves_authority(
+            finding, target, replacement, request, source
+        )
+    ):
+        return "replacement_changes_sensitive_fact_object"
+    if effective_mode == REPAIR_MODE_EXTRACT:
+        if not guided_marker and _drops_uncertainty(target, replacement):
+            return "replacement_drops_uncertainty"
+        if not guided_marker and _drops_clause_negation(target, replacement):
+            return "replacement_drops_negation"
+    if labels_for_sentence(replacement) and not (
+        _request_anchors_unresolved_replacement(replacement, request)
+    ):
+        return "replacement_retains_protective_pattern"
+    return None
+
+
+def _plan_candidate_repair(
+    repair: Any,
+    envelope: CandidateEnvelope,
+    plan: CandidatePlan,
+    request: str,
+    source: str,
+    draft: str,
+) -> CandidateResult | None:
+    identity = _candidate_repair_identity(repair, envelope, plan, draft)
+    if isinstance(identity, CandidateResult):
+        return identity
+    finding, target, replacement = identity
+    action = _candidate_repair_action(
+        repair, finding, target, replacement, envelope.repair_mode, draft
+    )
+    if isinstance(action, CandidateResult):
+        return action
+    effective_mode, guided_marker, decision = action
+    if effective_mode is None:
+        return None
+    span = _candidate_repair_span(finding, target, guided_marker, draft)
+    if isinstance(span, CandidateResult):
+        return span
+    span_start, span_end = span
+    reason = _candidate_replacement_reason(
+        finding,
+        target,
+        replacement,
+        effective_mode,
+        guided_marker,
+        request,
+        source,
+    )
+    if reason is not None:
+        return _candidate_d0(reason, draft)
+    if _hard_anchor_counters(target) != _hard_anchor_counters(replacement):
+        if (
+            envelope.repair_mode == REPAIR_MODE_DECISIONS
+            and guided_marker
+            and decision == DECISION_DELETE
+        ):
+            plan.guided_anchor_deletions.append((span_start, span_end, target))
+        else:
+            plan.repair_item_hard_anchor_changed = True
+            plan.request_anchored_anchor_changes.append(target)
+    plan.operations.append((span_start, span_end, replacement))
+    return None
+
+
+def _apply_candidate_operations(
+    envelope: CandidateEnvelope, plan: CandidatePlan, draft: str
+) -> CandidateResult | tuple[str, list[tuple[int, int, str]]]:
+    ordered_operations = sorted(plan.operations, key=lambda item: item[0])
+    for previous, current in zip(ordered_operations, ordered_operations[1:]):
+        if current[0] < previous[1]:
+            return _candidate_d0("repair_spans_overlap", draft)
+    candidate = draft
+    for span_start, span_end, replacement in reversed(ordered_operations):
+        candidate = candidate[:span_start] + replacement + candidate[span_end:]
+    if not candidate.strip() or candidate == draft:
+        return _candidate_d0("empty_or_unchanged_candidate", draft)
+    if (
+        envelope.repair_mode == REPAIR_MODE_DECISIONS
+        and plan.seen_repairs != set(envelope.finding_by_id)
+    ):
+        return _candidate_d0("decision_packet_incomplete", draft)
+    return candidate, ordered_operations
+
+
+def _request_anchored_change_reason(
+    draft_anchor_counters: tuple[Counter[str], ...],
+    candidate_anchor_counters: tuple[Counter[str], ...],
+    candidate: str,
+    targets: list[str],
+) -> str | None:
+    for before, after in zip(draft_anchor_counters, candidate_anchor_counters):
+        if any(value not in before and count > 0 for value, count in after.items()):
+            return "hard_anchor_added"
+    candidate_anchor_phrases = {
+        occurrence.canonical for occurrence in _structured_anchor_occurrences(candidate)
+    }
+    for target in targets:
+        required = _guided_delete_required_anchor_phrases(target)
+        if required is None:
+            return "hard_anchor_change_unstructured"
+        if not required.issubset(candidate_anchor_phrases):
+            return "hard_anchor_change_not_redundant"
+    return None
+
+
+def _guided_anchor_change_reason(
+    draft_anchor_counters: tuple[Counter[str], ...],
+    candidate_anchor_counters: tuple[Counter[str], ...],
+    draft: str,
+    request: str,
+    source: str,
+    plan: CandidatePlan,
+) -> str | None:
+    changed_spans = [(start, end) for start, end, _ in plan.operations]
+    surviving_anchor_phrases = {
+        occurrence.canonical
+        for occurrence in _structured_anchor_occurrences(draft)
+        if not _spans_intersect(
+            occurrence.span_start, occurrence.span_end, changed_spans
+        )
+    }
+    authority_anchor_phrases = {
+        occurrence.canonical
+        for authority_text in (request, source)
+        for occurrence in _structured_anchor_occurrences(authority_text)
+    }
+    for _, _, target in plan.guided_anchor_deletions:
+        required = _guided_delete_required_anchor_phrases(target)
+        if required is None:
+            return "guided_delete_hard_anchor_unstructured"
+        if not required.issubset(surviving_anchor_phrases) or not required.issubset(
+            authority_anchor_phrases
+        ):
+            return "guided_delete_hard_anchor_not_redundant"
+    permitted_removals = _hard_anchor_counter_sum(
+        target for _, _, target in plan.guided_anchor_deletions
+    )
+    for before, after, permitted in zip(
+        draft_anchor_counters, candidate_anchor_counters, permitted_removals
+    ):
+        if after - before:
+            return "hard_anchor_added"
+        if before - after != permitted:
+            return "hard_anchor_reduction_not_authorized"
+    return None
+
+
+def _candidate_anchor_reason(
+    request: str,
+    source: str,
+    draft: str,
+    candidate: str,
+    plan: CandidatePlan,
+) -> str | None:
+    draft_anchor_counters = _hard_anchor_counters(draft)
+    candidate_anchor_counters = _hard_anchor_counters(candidate)
+    if candidate_anchor_counters != draft_anchor_counters:
+        if plan.request_anchored_anchor_changes:
+            return _request_anchored_change_reason(
+                draft_anchor_counters,
+                candidate_anchor_counters,
+                candidate,
+                plan.request_anchored_anchor_changes,
+            )
+        if not plan.guided_anchor_deletions:
+            return "hard_anchor_counter_changed"
+        return _guided_anchor_change_reason(
+            draft_anchor_counters,
+            candidate_anchor_counters,
+            draft,
+            request,
+            source,
+            plan,
+        )
+    if plan.repair_item_hard_anchor_changed:
+        return "repair_item_hard_anchor_changed"
+    return None
+
+
+def _candidate_success_reason(repair_mode: str) -> str:
+    if repair_mode == REPAIR_MODE_DECISIONS:
+        return "verified_bounded_decision_packet"
+    if repair_mode == REPAIR_MODE_REWRITE_SENTENCE:
+        return "verified_single_sentence_rewrite"
+    return "verified_single_extractive_revision"
+
+
 def evaluate_candidate(
     request: str,
     source: str,
@@ -1416,306 +1880,39 @@ def evaluate_candidate(
 
     if not draft.strip():
         raise GateInputError("D0 must be a non-empty complete draft")
-    if not isinstance(detection, dict):
-        return CandidateResult("D0", "detection_missing_or_invalid", draft)
-
-    expected_detection = locate_candidates(
+    envelope = _candidate_envelope(
         request,
-        draft,
         source,
-        guided_marker_sidecar=guided_marker_sidecar,
+        draft,
+        run_id,
+        detection,
+        repair_packet,
+        guided_marker_sidecar,
     )
-    expected_detection["run_id"] = run_id
-    if detection != expected_detection:
-        return CandidateResult("D0", "detection_content_mismatch", draft)
-    findings = detection.get("findings")
-    if not isinstance(findings, list) or not findings:
-        return CandidateResult("D0", "no_review_candidate", draft)
-
-    if not isinstance(repair_packet, dict):
-        return CandidateResult("D0", "repair_missing_or_invalid", draft)
-    if repair_packet.get("schema_version") != SCHEMA_VERSION:
-        return CandidateResult("D0", "repair_schema_mismatch", draft)
-    if repair_packet.get("run_id") != run_id:
-        return CandidateResult("D0", "repair_run_mismatch", draft)
-    if repair_packet.get("request_sha256") != sha256_text(request):
-        return CandidateResult("D0", "repair_input_hash_mismatch", draft)
-    if repair_packet.get("source_sha256") != sha256_text(source):
-        return CandidateResult("D0", "repair_input_hash_mismatch", draft)
-    if repair_packet.get("draft_sha256") != sha256_text(draft):
-        return CandidateResult("D0", "repair_input_hash_mismatch", draft)
-    if repair_packet.get("guided_marker_sha256") != detection.get(
-        "guided_marker_sha256"
-    ):
-        return CandidateResult("D0", "repair_guided_marker_hash_mismatch", draft)
-    if repair_packet.get("revision_count") != 1:
-        return CandidateResult("D0", "revision_budget_violation", draft)
-
-    repairs = repair_packet.get("repairs")
-    if not isinstance(repairs, list) or not repairs:
-        return CandidateResult("D0", "no_confirmed_repair", draft)
-    repair_mode = repair_packet.get("repair_mode", REPAIR_MODE_EXTRACT)
-    if repair_mode not in {
-        REPAIR_MODE_EXTRACT,
-        REPAIR_MODE_REWRITE_SENTENCE,
-        REPAIR_MODE_DECISIONS,
-    }:
-        return CandidateResult("D0", "repair_mode_invalid", draft)
-    if repair_mode == REPAIR_MODE_REWRITE_SENTENCE and len(repairs) != 1:
-        return CandidateResult("D0", "sentence_rewrite_budget_violation", draft)
-    if repair_mode == REPAIR_MODE_DECISIONS:
-        if len(findings) > MAX_FINDINGS:
-            return CandidateResult("D0", "finding_budget_exceeded", draft)
-        if len(repairs) != len(findings):
-            return CandidateResult("D0", "decision_packet_incomplete", draft)
-
-    finding_by_id: dict[str, dict[str, Any]] = {}
-    for finding in findings:
-        if not isinstance(finding, dict) or not isinstance(finding.get("finding_id"), str):
-            return CandidateResult("D0", "detection_finding_invalid", draft)
-        finding_id = finding["finding_id"]
-        if finding_id in finding_by_id:
-            return CandidateResult("D0", "duplicate_finding_id", draft)
-        finding_by_id[finding_id] = finding
-
-    seen_repairs: set[str] = set()
-    repair_item_hard_anchor_changed = False
-    guided_anchor_deletions: list[tuple[int, int, str]] = []
-    request_anchored_anchor_changes: list[str] = []
-    candidate = draft
-    operations: list[tuple[int, int, str]] = []
-    authority = source
-    for repair in repairs:
-        if not isinstance(repair, dict):
-            return CandidateResult("D0", "repair_item_invalid", draft)
-        if repair_mode == REPAIR_MODE_DECISIONS and set(repair) != {
-            "finding_id",
-            "target",
-            "decision",
-            "replacement",
-        }:
-            return CandidateResult("D0", "decision_item_schema_mismatch", draft)
-        finding_id = repair.get("finding_id")
-        target = repair.get("target")
-        replacement = repair.get("replacement")
-        if not isinstance(finding_id, str) or finding_id in seen_repairs:
-            return CandidateResult("D0", "duplicate_or_missing_repair_id", draft)
-        seen_repairs.add(finding_id)
-        finding = finding_by_id.get(finding_id)
-        if finding is None or target != finding.get("target"):
-            return CandidateResult("D0", "repair_target_not_detected", draft)
-        if not isinstance(target, str) or not isinstance(replacement, str):
-            return CandidateResult("D0", "repair_text_invalid", draft)
-        guided_marker = finding.get("guided_marker") is True
-        decision: str | None = None
-        if repair_mode == REPAIR_MODE_DECISIONS:
-            decision = repair.get("decision")
-            if decision not in {DECISION_KEEP, DECISION_DELETE, DECISION_REWRITE}:
-                return CandidateResult("D0", "decision_invalid", draft)
-            allowed_decisions, decision_block_reason = _finding_action_contract(
-                finding, draft
-            )
-            if decision not in allowed_decisions:
-                return CandidateResult(
-                    "D0",
-                    decision_block_reason or "decision_not_allowed_for_finding",
-                    draft,
-                )
-            if decision == DECISION_KEEP:
-                if replacement != target:
-                    return CandidateResult("D0", "keep_decision_changed_text", draft)
-                continue
-            if (
-                finding.get("source_exact") is True
-                and not guided_marker
-                and finding.get("request_delete") is not True
-            ):
-                return CandidateResult("D0", "source_explicit_sentence_is_read_only", draft)
-            effective_mode = (
-                REPAIR_MODE_EXTRACT if decision == DECISION_DELETE else REPAIR_MODE_REWRITE_SENTENCE
-            )
-            if decision == DECISION_DELETE and replacement != "":
-                return CandidateResult("D0", "delete_decision_must_be_empty", draft)
-            if decision == DECISION_REWRITE and not normalized_text(replacement):
-                return CandidateResult("D0", "rewrite_decision_must_be_nonempty", draft)
-        else:
-            if finding.get("request_delete") is True and replacement != "":
-                return CandidateResult(
-                    "D0", "request_explicit_delete_requires_empty_replacement", draft
-                )
-            if (
-                finding.get("source_exact") is True
-                and not guided_marker
-                and finding.get("request_delete") is not True
-            ):
-                return CandidateResult("D0", "source_explicit_sentence_is_read_only", draft)
-            effective_mode = repair_mode
-        if guided_marker:
-            span_start = finding.get("span_start")
-            span_end = finding.get("span_end")
-            if (
-                not isinstance(span_start, int)
-                or not isinstance(span_end, int)
-                or span_start < 0
-                or span_end <= span_start
-                or draft[span_start:span_end] != target
-            ):
-                return CandidateResult("D0", "guided_marker_span_mismatch", draft)
-        else:
-            if draft.count(target) != 1:
-                return CandidateResult("D0", "repair_target_not_unique", draft)
-            span_start = draft.index(target)
-            span_end = span_start + len(target)
-        target_marker = _leading_structure_marker(target)
-        if target_marker and _leading_structure_marker(replacement) != target_marker:
-            return CandidateResult("D0", "list_marker_changed", draft)
-        if replacement != "".join(replacement.splitlines()):
-            return CandidateResult("D0", "replacement_crosses_paragraph_boundary", draft)
-        if _replacement_adds_sentence(replacement):
-            return CandidateResult("D0", "replacement_adds_sentences", draft)
-        if effective_mode == REPAIR_MODE_REWRITE_SENTENCE and not normalized_text(replacement):
-            return CandidateResult("D0", "sentence_rewrite_must_be_nonempty", draft)
-        if replacement == "":
-            if effective_mode != REPAIR_MODE_EXTRACT:
-                return CandidateResult("D0", "sentence_rewrite_must_be_nonempty", draft)
-            if not _safe_full_deletion(finding, target):
-                return CandidateResult("D0", "full_deletion_not_proven_safe", draft)
-        elif effective_mode == REPAIR_MODE_EXTRACT:
-            if not _is_safe_prefix_replacement(finding, target, replacement):
-                return CandidateResult("D0", "replacement_not_safe_prefix", draft)
-        elif OPEN_CONDITION_RE.search(replacement.strip()):
-            return CandidateResult("D0", "sentence_rewrite_opens_condition", draft)
-        if _has_unlicensed_settled_status(
-            replacement, authority
-        ) or (
-            effective_mode == REPAIR_MODE_REWRITE_SENTENCE
-            and _turns_unresolved_into_settled(target, replacement, authority)
-        ):
-            return CandidateResult("D0", "replacement_strengthens_status", draft)
-        if (
-            effective_mode == REPAIR_MODE_REWRITE_SENTENCE
-            and not _semantic_rewrite_preserves_authority(
-                finding, target, replacement, request, source
-            )
-        ):
-            return CandidateResult("D0", "replacement_changes_sensitive_fact_object", draft)
-        if effective_mode == REPAIR_MODE_EXTRACT:
-            if not guided_marker and _drops_uncertainty(target, replacement):
-                return CandidateResult("D0", "replacement_drops_uncertainty", draft)
-            if not guided_marker and _drops_clause_negation(target, replacement):
-                return CandidateResult("D0", "replacement_drops_negation", draft)
-        if labels_for_sentence(replacement) and not _request_anchors_unresolved_replacement(
-            replacement, request
-        ):
-            return CandidateResult("D0", "replacement_retains_protective_pattern", draft)
-        if _hard_anchor_counters(target) != _hard_anchor_counters(replacement):
-            if (
-                repair_mode == REPAIR_MODE_DECISIONS
-                and guided_marker
-                and decision == DECISION_DELETE
-            ):
-                guided_anchor_deletions.append((span_start, span_end, target))
-            else:
-                repair_item_hard_anchor_changed = True
-                request_anchored_anchor_changes.append(target)
-        operations.append((span_start, span_end, replacement))
-
-    ordered_operations = sorted(operations, key=lambda item: item[0])
-    for previous, current in zip(ordered_operations, ordered_operations[1:]):
-        if current[0] < previous[1]:
-            return CandidateResult("D0", "repair_spans_overlap", draft)
-    for span_start, span_end, replacement in reversed(ordered_operations):
-        candidate = candidate[:span_start] + replacement + candidate[span_end:]
-
-    if not candidate.strip() or candidate == draft:
-        return CandidateResult("D0", "empty_or_unchanged_candidate", draft)
-    if repair_mode == REPAIR_MODE_DECISIONS and seen_repairs != set(finding_by_id):
-        return CandidateResult("D0", "decision_packet_incomplete", draft)
-    draft_anchor_counters = _hard_anchor_counters(draft)
-    candidate_anchor_counters = _hard_anchor_counters(candidate)
-    if candidate_anchor_counters != draft_anchor_counters:
-        if request_anchored_anchor_changes:
-            for before, after in zip(draft_anchor_counters, candidate_anchor_counters):
-                if any(
-                    value not in before and count > 0
-                    for value, count in after.items()
-                ):
-                    return CandidateResult("D0", "hard_anchor_added", draft)
-            candidate_anchor_phrases = {
-                occurrence.canonical
-                for occurrence in _structured_anchor_occurrences(candidate)
-            }
-            for target in request_anchored_anchor_changes:
-                required = _guided_delete_required_anchor_phrases(target)
-                if required is None:
-                    return CandidateResult("D0", "hard_anchor_change_unstructured", draft)
-                if not required.issubset(candidate_anchor_phrases):
-                    return CandidateResult(
-                        "D0", "hard_anchor_change_not_redundant", draft
-                    )
-            repair_item_hard_anchor_changed = False
-        elif not guided_anchor_deletions:
-            return CandidateResult("D0", "hard_anchor_counter_changed", draft)
-        else:
-            changed_spans = [
-                (span_start, span_end) for span_start, span_end, _ in operations
-            ]
-            surviving_anchor_phrases = {
-                occurrence.canonical
-                for occurrence in _structured_anchor_occurrences(draft)
-                if not _spans_intersect(
-                    occurrence.span_start,
-                    occurrence.span_end,
-                    changed_spans,
-                )
-            }
-            authority_anchor_phrases = {
-                occurrence.canonical
-                for authority_text in (request, source)
-                for occurrence in _structured_anchor_occurrences(authority_text)
-            }
-            for _, _, target in guided_anchor_deletions:
-                required = _guided_delete_required_anchor_phrases(target)
-                if required is None:
-                    return CandidateResult(
-                        "D0", "guided_delete_hard_anchor_unstructured", draft
-                    )
-                if not required.issubset(
-                    surviving_anchor_phrases
-                ) or not required.issubset(authority_anchor_phrases):
-                    return CandidateResult(
-                        "D0", "guided_delete_hard_anchor_not_redundant", draft
-                    )
-            permitted_removals = _hard_anchor_counter_sum(
-                target for _, _, target in guided_anchor_deletions
-            )
-            for before, after, permitted in zip(
-                draft_anchor_counters,
-                candidate_anchor_counters,
-                permitted_removals,
-            ):
-                if after - before:
-                    return CandidateResult("D0", "hard_anchor_added", draft)
-                if before - after != permitted:
-                    return CandidateResult(
-                        "D0", "hard_anchor_reduction_not_authorized", draft
-                    )
-    if repair_item_hard_anchor_changed:
-        return CandidateResult("D0", "repair_item_hard_anchor_changed", draft)
+    if isinstance(envelope, CandidateResult):
+        return envelope
+    plan = CandidatePlan(set(), [], [], [])
+    for repair in envelope.repairs:
+        rejected = _plan_candidate_repair(
+            repair, envelope, plan, request, source, draft
+        )
+        if rejected is not None:
+            return rejected
+    applied = _apply_candidate_operations(envelope, plan, draft)
+    if isinstance(applied, CandidateResult):
+        return applied
+    candidate, _ = applied
+    anchor_reason = _candidate_anchor_reason(request, source, draft, candidate, plan)
+    if anchor_reason is not None:
+        return _candidate_d0(anchor_reason, draft)
     invariant_reason = _candidate_document_invariant_reason(
-        request, draft, candidate, repair_mode
+        request, draft, candidate, envelope.repair_mode
     )
     if invariant_reason is not None:
-        return CandidateResult("D0", invariant_reason, draft)
-    if repair_mode == REPAIR_MODE_DECISIONS:
-        reason = "verified_bounded_decision_packet"
-    else:
-        reason = (
-            "verified_single_sentence_rewrite"
-            if repair_mode == REPAIR_MODE_REWRITE_SENTENCE
-            else "verified_single_extractive_revision"
-        )
-    return CandidateResult("D1", reason, candidate)
+        return _candidate_d0(invariant_reason, draft)
+    return CandidateResult(
+        "D1", _candidate_success_reason(envelope.repair_mode), candidate
+    )
 
 
 def read_text(path: str | Path) -> str:

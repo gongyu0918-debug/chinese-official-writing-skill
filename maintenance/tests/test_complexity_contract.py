@@ -16,7 +16,8 @@ NEW_ARCHITECTURE_FILES = (
     ROOT / "chinese-official-writing/hooks/capabilities/delivery_cleanliness/runtime.py",
 )
 KNOWN_COMPLEXITY_DEBT = {
-    "chinese-official-writing/scripts/review_gate.py:evaluate_candidate": (250, 80),
+    "chinese-official-writing/scripts/review_gate.py:locate_candidates": (100, 25),
+    "chinese-official-writing/scripts/review_gate.py:_dispatch_transaction_locked": (100, 15),
 }
 DETECTION_PIPELINE_FUNCTIONS = (
     "_validated_detection_timeouts",
@@ -29,6 +30,23 @@ DETECTION_PIPELINE_FUNCTIONS = (
     "_validate_guided_marker_for_detection",
     "_locate_and_stage_repair",
     "detect_transaction",
+)
+CANDIDATE_PIPELINE_FUNCTIONS = (
+    "_verified_candidate_findings",
+    "_verified_repair_envelope",
+    "_indexed_candidate_findings",
+    "_candidate_envelope",
+    "_candidate_repair_identity",
+    "_candidate_repair_action",
+    "_candidate_repair_span",
+    "_candidate_replacement_reason",
+    "_plan_candidate_repair",
+    "_apply_candidate_operations",
+    "_request_anchored_change_reason",
+    "_guided_anchor_change_reason",
+    "_candidate_anchor_reason",
+    "_candidate_success_reason",
+    "evaluate_candidate",
 )
 
 
@@ -81,6 +99,16 @@ class ComplexityContractTests(unittest.TestCase):
             ROOT / "chinese-official-writing/scripts/review_gate.py"
         )
         for name in DETECTION_PIPELINE_FUNCTIONS:
+            with self.subTest(function=name):
+                lines, decisions = metrics[name]
+                self.assertLessEqual(lines, 80)
+                self.assertLessEqual(decisions, 25)
+
+    def test_candidate_pipeline_has_no_god_functions(self) -> None:
+        metrics = function_metrics(
+            ROOT / "chinese-official-writing/scripts/review_gate.py"
+        )
+        for name in CANDIDATE_PIPELINE_FUNCTIONS:
             with self.subTest(function=name):
                 lines, decisions = metrics[name]
                 self.assertLessEqual(lines, 80)

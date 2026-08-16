@@ -26,7 +26,7 @@
 1. `WR-003/004` 已完成中央 reference、直接路由、新闻标识和普通镜像集成并随 v1.6.6 发布。
 2. `WR-005` 常用语机械化已完成两轮真实写稿；两版原型均未达到准入，canonical 保持不变。以后只研究“默认文种结构 + 按需用语查询”的更小拆分，不再叠加反机械 prompt。
 3. 准备合并或发布时再运行一次全量门；候选阶段只保留路由、镜像、构建与可达性最小验证。
-4. Hook 复杂度按行为不变的小原子处理：`handle_stop` 已完成拆分；下一步依次处理命名阈值、`detect_transaction`，最后才拆 `evaluate_candidate`。
+4. Hook 复杂度按行为不变的小原子处理：`handle_stop`、超时/锁阈值、`detect_transaction` 和 `evaluate_candidate` 已完成；剩余只处理 `locate_candidates` 与 `_dispatch_transaction_locked`，不在重构中调整门禁语义。
 
 ## HOLD
 
