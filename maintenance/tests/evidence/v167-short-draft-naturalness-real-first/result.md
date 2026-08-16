@@ -52,3 +52,13 @@ R3 将 N03—N06 改为“不超过260/280字”，不设下限；候选删去�
 - 模板：`d1596cd828c016aa3db1bf567e1806e23f6147816c9d62afee0724e61eb0d7ff`
 - SOL verdict：`93f46e21d28e05b7978cffcfaf2dd23af17a7ce8e173f4f6d81e49af86cea474`
 - SOL receipt：`b2fb1d74c4b62f93011d279217fc60cc14348f0db0bd23da5f22c45516b6c433`
+
+## 产品路由在线复测
+
+R3 通过后，规则已作为 `references/short-draft-naturalness.md` 接入 canonical，并只在“短稿且没有明确篇幅下限”时路由；明确下限或区间仍交给独立 under-length 能力。接入后的两篇在线直写均通过：
+
+- Ollama `deepseek-v4-flash:0731` 完成简短情况报告，111个非空白字符；读取短稿页，事实、状态、标题、主送机关和报告结尾完整，无公式化句群。
+- Alibaba Token Plan 2 `deepseek-v4-flash-0731` 完成短活动新闻，114个非空白字符；读取短稿页，保留全部数字与“工作人员正在汇总”状态，没有补活动成效、读者评价或后续安排。
+- 两臂均为 max、零重试、单一成功终稿、无插件或范围外读取。ignored 输出 manifest SHA-256 为 `e54287695eb961d26b73fd426509581ab9b7bcd07a5691a5e180fff4658b8486`；本节不把两篇候选直写扩大解释为新一轮 A/B。
+
+结论：**短稿自然度最小产品路由可进入下一版集成候选。** 当前成立范围是短篇、无硬下限；稀疏材料的硬下限补足仍不得由本规则承担。

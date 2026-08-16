@@ -11,13 +11,13 @@
 - `RP-001`：重复句与高相似句已先完成三 provider 的 5 组真实删除和 SOL max 功能终审，再接入纯删除 capability，并随 v1.6.5 发布。长稿 1 个自然度 WARN 保留为后续样本，不影响已验证的目标功能。
 - `WR-003`：20份真实稿与候选直连复测已验证跨文种责任承载；最小规则和镜像已随 `v1.6.6@b49da7f2` 发布。
 - `WR-004`：20类事务文体已完成真实写稿，原型19/20功能成立；“编者按”标识修复后目标功能20/20，中央直接叶已随 `v1.6.6@b49da7f2` 发布。
+- `WR-005` 短稿自然度：上限题 R3 为候选3胜、基线0胜、难分1，候选四稿硬边界全 PASS；最小路由接入后又以 Ollama 报告和 Alibaba 新闻完成两篇在线直写，均读取新叶且可直接使用。明确篇幅下限继续由 under-length 处理。
 - SkillHub 已加入 `office-efficiency`、`content-creation` 轻量检索信号；不声称平台写入双分类。
 - GitHub 当前包统一 MIT；普通兼容包不含 Hook，OpenClaw GitHub 兼容包随仓库维护。
 - v1.6.6 GitHub 与 SkillHub.cn 发布回执见 [`release-1.6.6.md`](../tests/evidence/release-1.6.6.md)；ClawHub、Red SkillHub 及其他平台未在该轮上传。SkillHub 公开 latest 与签名已传播，Keen、Sanbu 安全报告均为 benign。
 
 ## IN_PROGRESS
 
-- `WR-005` 短稿自然度：上限题 R3 已完成8次真实 A/B，SOL max 为候选3胜、基线0胜、难分1，候选四稿硬边界全 PASS；正在补最小产品路由。明确篇幅下限不属于该规则，继续由 under-length 处理。
 - `WR-006`：审稿模式已有自然请求实跑，复合任务和材料引语反控尚待独立小原子。
 - GitHub README 制度示例替换：旧示例仍含保护性尾句，需用当前版本重新成稿、冻结和替换，不改写历史 evidence。
 
@@ -26,6 +26,7 @@
 1. `WR-003/004` 已完成中央 reference、直接路由、新闻标识和普通镜像集成并随 v1.6.6 发布。
 2. `WR-005` 常用语机械化已完成两轮真实写稿；两版原型均未达到准入，canonical 保持不变。以后只研究“默认文种结构 + 按需用语查询”的更小拆分，不再叠加反机械 prompt。
 3. 准备合并或发布时再运行一次全量门；候选阶段只保留路由、镜像、构建与可达性最小验证。
+4. Hook 复杂度按行为不变的小原子处理：`handle_stop` 已完成拆分；下一步依次处理命名阈值、`detect_transaction`，最后才拆 `evaluate_candidate`。
 
 ## HOLD
 
