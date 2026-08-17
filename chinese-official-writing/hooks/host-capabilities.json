@@ -14,7 +14,7 @@
   },
   "length_gate": {
     "automatic_expansion": true,
-    "automatic_compression": true,
+    "automatic_compression": false,
     "status": "candidate",
     "activation": "explicit_static_companion_selection",
     "configuration_file": "hook-capability.json",
@@ -25,6 +25,7 @@
   },
   "over_length_gate": {
     "status": "candidate",
+    "automatic_compression": true,
     "activation": "explicit_static_companion_selection",
     "configuration_file": "hook-capability.json",
     "default_selected": false,
@@ -81,7 +82,7 @@
       "live_lifecycle_verified": false,
       "data_root_environment": "PLUGIN_DATA",
       "continuation_limit": 4,
-      "over_length_continuation_limit": 6
+      "over_length_continuation_limit": 7
     },
     "codebuddy": {
       "status": "package_manifest_verified",
@@ -97,7 +98,7 @@
       "required_stop_field": "last_assistant_message",
       "data_root_environment": "CODEBUDDY_PLUGIN_DATA",
       "continuation_limit": 4,
-      "over_length_continuation_limit": 6
+      "over_length_continuation_limit": 7
     },
     "claude_code": {
       "status": "lifecycle_verified",
@@ -121,7 +122,7 @@
       "data_root_environment": "CLAUDE_PLUGIN_DATA",
       "minimum_version": "2.1.195",
       "continuation_limit": 4,
-      "over_length_continuation_limit": 6,
+      "over_length_continuation_limit": 7,
       "activation": "explicit plugin load only"
     },
     "openclaw": {

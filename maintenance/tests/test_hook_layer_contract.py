@@ -146,10 +146,15 @@ class HookLayerContractTests(unittest.TestCase):
         self.assertFalse(activation["network_access"])
         self.assertTrue(activation["task_opt_out_supported"])
         self.assertEqual("candidate", capabilities["length_gate"]["status"])
-        self.assertTrue(capabilities["length_gate"]["automatic_compression"])
+        self.assertFalse(capabilities["length_gate"]["automatic_compression"])
         self.assertEqual("candidate", capabilities["over_length_gate"]["status"])
+        self.assertTrue(capabilities["over_length_gate"]["automatic_compression"])
         self.assertFalse(capabilities["over_length_gate"]["default_selected"])
         self.assertEqual(2, capabilities["over_length_gate"]["compression_limit"])
+        for host in ("codex", "codebuddy", "claude_code"):
+            self.assertEqual(
+                7, capabilities["hosts"][host]["over_length_continuation_limit"]
+            )
         self.assertFalse(capabilities["protective_expansion_gate"]["default_selected"])
         self.assertEqual(
             "available_opt_in",
