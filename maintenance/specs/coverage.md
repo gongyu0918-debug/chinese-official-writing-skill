@@ -8,7 +8,7 @@
 | `WR-002` 保护性外扩 | `hooks/capabilities/protective_expansion/`、普通语义 references | 同一 E0/E1 29 组功能终审；W1—W6 | 单 coordinator、三宿主静态 companion | 已覆盖；公开 README 旧示例待替换 |
 | `WR-003` 责任承载 | `references/information-selection.md`、中央事务文体叶 | 20份真实稿；C02-R3、C03直连复测 | 不属于独立 Hook | 已覆盖并随 v1.6.6 发布 |
 | `WR-004` 文种用语 | `references/formulaic-language.md`、新闻消息叶、SKILL直接路由 | 20类真实写稿，原型19/20；“编者按”修复后目标20/20 | 不适用 | 已覆盖并随 v1.6.6 发布 |
-| `WR-005` 短稿自然度与常用语机械化 | `references/short-draft-naturalness.md`、信息选择和文种叶 | 短稿 R3 上限题8次，候选3胜0负1平且硬边界全 PASS；产品接入后两篇在线直写可用；常用语 R1—R6 真实调用 | 交付洁净度与重复清理只作可选兜底 | 短稿自然度已覆盖；硬下限归 under-length；常用语 R1—R6 均 HOLD，下一版不改总表 |
+| `WR-005` 短稿自然度与常用语机械化 | `references/short-draft-naturalness.md`、信息选择和文种叶 | 短稿 R3 上限题8次，候选3胜0负1平且硬边界全 PASS；产品接入后两篇在线直写可用；常用语 R1—R6 真实调用 | 交付洁净度与重复清理只作可选兜底 | 短稿自然度已随 v1.6.7 发布；硬下限归 under-length；常用语 R1—R6 均 HOLD，本版未改总表 |
 | `WR-006` 审稿模式 | SKILL 任务模式、Hook bypass | OpenCode Go 自然审稿请求 | 显式 bypass 已有确定性覆盖 | 部分；复合任务与引语反控待做 |
 | `HK-001` 无 Hook 闭环 | canonical Skill、普通 packages | v1.6.4 六稿 | 普通镜像排除 Hook | 已覆盖 |
 | `HK-002` 写稿后插入 | `UserPromptSubmit` + `PostToolUse` + `Stop` coordinator | 不作为文采门 | Codex/Claude 当前在线、CodeBuddy 旧在线 | 已覆盖生命周期位置 |
@@ -31,7 +31,7 @@
 
 ## 当前语义层收束
 
-- `WR-003/004` 已随 v1.6.6 发布；`WR-005` 短稿上限题 R3 已通过真实写稿、SOL 和接入后的两篇在线直写；常用语默认拆分仍 HOLD。
+- `WR-003/004` 已随 v1.6.6 发布；`WR-005` 短稿自然收束已随 v1.6.7 发布；常用语默认拆分仍 HOLD。
 - R1 降低了固定开头词频，却增加了事实硬失败和另一类空泛、重复、自证；R2 工程上稳定，但基线6胜、候选4胜、难分2，且候选仍有1个事实硬失败。
 - 单个正式连接词不构成机械化；只有固定开头、承启、总结、结尾或段落骨架成簇复现，且对任务没有功能贡献时，才计入同质化风险。
 - 常用语 R4—R6 的更小拆分仍出现硬回退，停止继续修改总表。短稿自然度和实际重复清理由各自已验证机制承担，不用新的统一反机械规则覆盖所有文种。

@@ -197,7 +197,7 @@ v1.6.1 带 Skill 成稿（完整，765 字符）：
 
 技能规则、references 和 scripts 在本仓库持续迭代，各平台技能目录由 canonical 包同步生成。规范与社区项目用于校验文种、流程形态和风险维度；具体规则经过复现、取舍和 A/B 后进入主线，Git 历史记录每次修改和验证。
 
-最近 5 份证据：[`release-1.6.7-rc.md`](maintenance/tests/evidence/release-1.6.7-rc.md) · [`v167-short-draft-naturalness-real-first/result.md`](maintenance/tests/evidence/v167-short-draft-naturalness-real-first/result.md) · [`v167-hook-refactor-live-smoke/result.md`](maintenance/tests/evidence/v167-hook-refactor-live-smoke/result.md) · [`v167-formulaic-mechanicality-real-first/result.md`](maintenance/tests/evidence/v167-formulaic-mechanicality-real-first/result.md) · [`release-1.6.6.md`](maintenance/tests/evidence/release-1.6.6.md)。完整记录见 [`maintenance/docs/evidence/README.md`](maintenance/docs/evidence/README.md)。
+最近 5 份证据：[`release-1.6.7.md`](maintenance/tests/evidence/release-1.6.7.md) · [`v167-short-draft-naturalness-real-first/result.md`](maintenance/tests/evidence/v167-short-draft-naturalness-real-first/result.md) · [`v167-hook-refactor-live-smoke/result.md`](maintenance/tests/evidence/v167-hook-refactor-live-smoke/result.md) · [`v167-formulaic-mechanicality-real-first/result.md`](maintenance/tests/evidence/v167-formulaic-mechanicality-real-first/result.md) · [`release-1.6.6.md`](maintenance/tests/evidence/release-1.6.6.md)。完整记录见 [`maintenance/docs/evidence/README.md`](maintenance/docs/evidence/README.md)。
 
 ## 目录结构
 
