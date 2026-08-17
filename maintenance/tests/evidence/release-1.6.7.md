@@ -49,11 +49,12 @@
 - ClawHub CLI `0.23.1` dry-run 返回 `would-publish`，文件数33、fingerprint `fbbef734bf01d2ff0bef97ebdf9c0c99d42c5479971b61e0f28fa9b46b04bad1`。
 - 正式提交一次返回 `ok=true`、`status=published`、version `1.6.7`、`versionId=k975vyhpk6092rv7yjbjszw8fs8cnfxh`；文件数和 fingerprint 与 dry-run 一致。
 - ClawHub 平台按其统一规则显示 MIT-0；仓库与仓内兼容包仍由根 MIT 许可证覆盖，两者未通过本次同步相互改写。
-- 提交后两次精确版本只读查询均返回 `Version not found`，公开 latest 仍为 `1.6.4`；强制安装未取得1.6.7内容。该状态记录为平台扫描/索引尚未完成，不重复上传。
+- 提交后最初两次精确版本只读查询均返回 `Version not found`，公开 latest 当时仍为 `1.6.4`；没有因此重复上传。
+- 后续只读复核显示 `latestVersion=1.6.7`、tags.latest=`1.6.7`、版本列表首项为1.6.7，安全状态为 clean；公开文件清单为33项。
+- 从公开端安装到全新临时目录后，33个发布文件的相对路径和 SHA-256 与本地发布源逐项一致，Hook 检出为0，`SKILL.md` 版本为1.6.7。安装目录另有客户端生成的 `_meta.json` 与 `.clawhub/origin.json` 两个来源元数据文件，不属于发布文件清单。
 
 ## 剩余事项
 
 - 等待 SkillHub 公开 `latestVersion`、精确版本签名及1.6.7审核、安全、内容状态异步更新；只读复核，不重复提交。
-- 等待 ClawHub 公开列出1.6.7后，再核对33文件清单和下载内容 fingerprint；只读复核，不重复提交。
 - 短稿明确下限仍由 under-length 处理；常用语机械化候选继续 HOLD，不因本次发布改称已解决。
 - Hook 重构后的真实在线 smoke 走 D0 路径；D1 repair/verdict 的既有确定性覆盖保持不变，本次不把该样本扩张为新的质量宣称。
