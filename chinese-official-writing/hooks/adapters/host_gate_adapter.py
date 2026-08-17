@@ -35,6 +35,7 @@ SUPPORTED_CAPABILITIES = {
     "delivery_review",
     "protective_expansion",
     "under_length",
+    "over_length",
     "delivery_cleanliness",
     "repetition_cleanup",
 }
