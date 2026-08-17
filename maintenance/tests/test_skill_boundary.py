@@ -1946,19 +1946,15 @@ class SkillBoundaryTests(unittest.TestCase):
             "1.6.6 事务文体功能与责任承载",
             "1.6.5 可选 Hook 质量控制与生命周期修复",
             "1.6.4 保护性外扩收束、新闻边界与短稿质量",
-            "同题独立写作节选",
             "明川市政务服务中心服务事项信息变更管理办法（试行）",
             "release-1.6.8-rc.md",
-            "新增了“自收到材料之日起”的期限起算",
-            "无 Skill 成稿",
-            "带 Skill 成稿",
             "新闻与评论写作",
             "maintenance/tests/evidence",
             "maintenance/docs/evidence/README.md",
             "本仓库采用 [MIT License](LICENSE)。",
         ]:
             self.assertIn(term, text)
-        recent_table = text.split("## 模型消融与真实写稿", 1)[1].split("### 同题独立写作节选", 1)[0]
+        recent_table = text.split("## 模型消融与真实写稿", 1)[1].split("### 制度正文示例", 1)[0]
         self.assertEqual(7, sum(1 for line in recent_table.splitlines() if line.startswith("|")))
         for removed in [
             "早期 270 任务模型消融",
