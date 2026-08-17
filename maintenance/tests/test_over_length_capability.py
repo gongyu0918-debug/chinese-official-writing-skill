@@ -267,6 +267,14 @@ class OverLengthCapabilityTests(unittest.TestCase):
                 "请先起草不超过500字的通知，最终全文300—400字。"
             ),
         )
+        self.assertIsNone(RUNTIME.parse_spec("请将全文控制在500字左右。"))
+        self.assertIsNone(RUNTIME.parse_spec("请将全文控制在500字上下。"))
+        self.assertIsNone(RUNTIME.parse_spec("请将全文控制在约500字。"))
+        self.assertIsNone(RUNTIME.parse_spec("请将全文至多500字左右。"))
+        self.assertEqual(
+            {"minimum": 0, "maximum": 500, "scope": "full"},
+            RUNTIME.parse_spec("请将全文控制在500字。"),
+        )
 
     def test_mechanical_gate_preserves_anchors_and_real_headings(self) -> None:
         original = "工作报告\n\n一、办理情况\n共核对48件，事项仍在办理。"
@@ -321,6 +329,14 @@ class OverLengthCapabilityTests(unittest.TestCase):
             RUNTIME.mechanical_reason(
                 "运行管理科负责核对材料。",
                 "负责核对材料。",
+                spec,
+            ),
+        )
+        self.assertEqual(
+            "over_length_status_upgraded",
+            RUNTIME.mechanical_reason(
+                "下一年度拟完善服务流程、拟完善咨询机制。",
+                "下一年度拟完善服务流程、已完善咨询机制。",
                 spec,
             ),
         )
@@ -379,6 +395,28 @@ class OverLengthCapabilityTests(unittest.TestCase):
                 spec,
             )
         )
+        self.assertIsNone(
+            RUNTIME.mechanical_reason(
+                "不得由个人负责解释。正文事项按原有安排办理。",
+                "正文事项按原有安排办理。",
+                spec,
+            )
+        )
+
+    def test_long_quotes_and_numbered_body_items_are_not_lost(self) -> None:
+        spec = {"minimum": 0, "maximum": 1000, "scope": "full"}
+        long_quote = "“" + "甲" * 170 + "”"
+        self.assertEqual(
+            "over_length_quote_dropped_or_changed",
+            RUNTIME.mechanical_reason(
+                long_quote + "外部事实。",
+                "外部事实。",
+                spec,
+            ),
+        )
+        draft = "工作安排\n\n1. 开展现场核查并形成问题清单和整改建议\n其他事项按计划推进。"
+        self.assertGreater(RUNTIME.count_text(draft, "body"), 20)
+        self.assertLess(RUNTIME.count_text(draft, "body"), RUNTIME.count_text(draft, "full"))
         self.assertIsNone(
             RUNTIME.mechanical_reason(
                 "本公司不承担后续解释责任。正文事项按原有安排办理。",
