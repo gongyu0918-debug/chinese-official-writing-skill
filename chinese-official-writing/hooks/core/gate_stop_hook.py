@@ -78,25 +78,61 @@ TXN_RE = re.compile(
     r"--txn(?:=|\s+)(?:\"([^\"]+)\"|'([^']+)'|([^\s;&|]+))",
     re.IGNORECASE,
 )
-REVIEW_ACTION_RE = re.compile(r"(?:审稿|审查|检查|复核|核验)")
+REVIEW_ACTION_RE = re.compile(r"(?:审稿|审核|审查|检查|复核|核验)")
 EXPLICIT_REVIEW_ONLY_RE = re.compile(
-    r"(?:只|仅)(?:做)?(?:审稿|审查|检查|复核|核验)(?:不改|不修改(?:全文|正文)?|不代改|不重写(?:全文|正文)?)?"
+    r"(?:只|仅)(?:做)?(?:审稿|审核|审查|检查|复核|核验)(?:不改|不修改(?:全文|正文)?|不代改|不重写(?:全文|正文)?)?"
 )
 SHORT_REVIEW_ONLY_RE = re.compile(
     r"(?:只|仅)\s*审\s*不\s*(?:改|修改(?:全文|正文)?)"
 )
-REVIEW_ONLY_NEGATION_RE = re.compile(r"(?:不是|并非|不属于)\s*(?:只|仅)?\s*审\s*不\s*(?:改|修改)")
+REVIEW_ONLY_NEGATION_RE = re.compile(
+    r"(?:不是|并非|不属于)\s*(?:只|仅)?\s*"
+    r"(?:审稿模式|审稿|审核|审查|检查|复核|核验|审\s*不\s*(?:改|修改))"
+)
+QUOTED_REQUEST_TEXT_RE = re.compile(
+    r"“[^”\n]*”|‘[^’\n]*’|\"[^\"\n]*\"|'[^'\n]*'"
+)
+NATURAL_REVIEW_ONLY_RE = re.compile(
+    r"(?:"
+    r"(?:请|帮我|麻烦)\s*(?:只读)?\s*(?:审核|审稿|审查|复核|核验)(?:一下|下)?"
+    r"(?:这份|一下这份|下这份)?(?:稿子?|文稿|材料|正文|报告|通知|请示|申请|方案|制度|纪要|函)?"
+    r"|(?:只读\s*)?(?:审核|审稿|审查|复核|核验)(?:一下|下|这份(?:稿子?|文稿|材料|正文|报告|通知|请示|申请|方案|制度|纪要|函))"
+    r"|审(?:一下|下)稿"
+    r"|(?:看一下|看下|看看)[^。；;\n]{0,30}(?:哪里|有无|是否|有没有)"
+    r"[^。；;\n]{0,20}(?:问题|错误|不妥|毛病|需要修改)"
+    r"|审稿模式"
+    r")"
+)
 REVIEW_OUTPUT_BOUNDARY_RE = re.compile(
-    r"(?:不|不要|无需|无须|别)(?:再)?(?:代改|改写|重写|修改)(?:全文|正文)?"
+    r"(?:不|不要|无需|无须|别)(?:再)?(?:替我|帮我)?"
+    r"(?:代改|改写|重写|修改|改)(?:全文|正文|稿件)?"
+)
+NEGATED_WRITING_ACTION_RE = re.compile(
+    r"(?:不需要|无需|无须|不用|不要|不必|没必要|别)(?:再)?\s*"
+    r"(?:起草|撰写|编写|拟写|改稿|改好|代改|改写|重写|修改|润色|修订|压缩|合稿)"
 )
 DIRECT_DRAFT_OR_REVISION_RE = re.compile(
     r"(?:^|[，。；;\n]|请|帮我|为我|代为|需要|要求)(?:先|再|直接)?"
-    r"(?:起草|撰写|编写|拟写|改写|重写|修改(?!建议)|润色|压缩|合稿)"
+    r"(?:起草|撰写|编写|拟写|改稿|改好|改写|重写|"
+    r"修改(?!建议|意见|方案|思路|方向|要点|的(?:地方|位置|内容|问题)|之处)|"
+    r"修订(?!建议|意见|方案|思路|方向|要点)|润色|压缩|合稿|改(?:一下|下|成|为))"
 )
 REVIEW_THEN_REWRITE_RE = re.compile(
-    r"(?:审|审稿|审查|检查|复核|核验)[^。；;\n]{0,16}"
+    r"(?:审|审稿|审核|审查|检查|复核|核验)[^。；;\n]{0,24}"
     r"(?:再|并|同时|然后|之后|后|完)[^，。；;\n]{0,8}"
-    r"(?:代改|改写|重写|修改|润色)"
+    r"(?:起草|撰写|编写|拟写|改好|改稿|代改|改写|重写|修改|修订|润色|压缩|合稿|优化)"
+)
+DRAFT_DELIVERABLE_RE = re.compile(
+    r"(?:写|起草|撰写|编写|拟写|生成|输出|给出)(?:一(?:份|篇|版)|份|篇)?"
+    r"(?:正式)?(?:通知|报告|请示|申请|方案|制度|纪要|函|正文|全文|稿件|文稿|成稿|定稿)"
+    r"|(?:整理|精简|优化|调整|修改|修订|改)(?:成|为|后(?:的)?)"
+    r"(?:一(?:份|版))?(?:正式稿|成稿|定稿|正文|全文|稿件|版本)"
+)
+REWRITE_ACTION_RE = re.compile(
+    r"(?:改好|改稿|代改|改写|重写|润色|压缩|合稿|改(?:一下|下|成|为)"
+    r"|修改(?!建议|意见|方案|思路|方向|要点|的(?:地方|位置|内容|问题)|之处)"
+    r"|修订(?!建议|意见|方案|思路|方向|要点)"
+    r"|优化(?!建议|意见|方案|思路|方向|要点))"
 )
 HOOK_OPT_OUT_RE = re.compile(
     r"(?:"
@@ -260,17 +296,31 @@ def _reads_this_skill(command: str) -> bool:
 
 def _is_review_only_request(request: str) -> bool:
     """Mirror the Skill's explicit review-only mode without classifying other tasks."""
-    if REVIEW_ONLY_NEGATION_RE.search(request):
+    request_without_quotes = QUOTED_REQUEST_TEXT_RE.sub("", request)
+    if REVIEW_ONLY_NEGATION_RE.search(request_without_quotes):
         return False
-    if DIRECT_DRAFT_OR_REVISION_RE.search(request):
+    if REVIEW_THEN_REWRITE_RE.search(request_without_quotes):
         return False
-    without_boundaries = REVIEW_OUTPUT_BOUNDARY_RE.sub("", request)
-    if REVIEW_THEN_REWRITE_RE.search(without_boundaries):
+    review_trigger = (
+        SHORT_REVIEW_ONLY_RE.search(request_without_quotes)
+        or EXPLICIT_REVIEW_ONLY_RE.search(request_without_quotes)
+        or NATURAL_REVIEW_ONLY_RE.search(request_without_quotes)
+        or (
+            REVIEW_ACTION_RE.search(request_without_quotes)
+            and REVIEW_OUTPUT_BOUNDARY_RE.search(request_without_quotes)
+        )
+    )
+    if review_trigger is None:
         return False
-    if SHORT_REVIEW_ONLY_RE.search(request) or EXPLICIT_REVIEW_ONLY_RE.search(request):
-        return True
-    return bool(
-        REVIEW_ACTION_RE.search(request) and REVIEW_OUTPUT_BOUNDARY_RE.search(request)
+    review_remainder = SHORT_REVIEW_ONLY_RE.sub("", request_without_quotes)
+    review_remainder = EXPLICIT_REVIEW_ONLY_RE.sub("", review_remainder)
+    review_remainder = NATURAL_REVIEW_ONLY_RE.sub("", review_remainder)
+    review_remainder = REVIEW_OUTPUT_BOUNDARY_RE.sub("", review_remainder)
+    review_remainder = NEGATED_WRITING_ACTION_RE.sub("", review_remainder)
+    return not bool(
+        DIRECT_DRAFT_OR_REVISION_RE.search(review_remainder)
+        or DRAFT_DELIVERABLE_RE.search(review_remainder)
+        or REWRITE_ACTION_RE.search(review_remainder)
     )
 
 
