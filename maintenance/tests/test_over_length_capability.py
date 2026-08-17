@@ -242,6 +242,18 @@ class OverLengthCapabilityTests(unittest.TestCase):
                 "初次回复不得改写、压缩、省略或解释；最终正文不超过420字。"
             ),
         )
+        self.assertEqual(
+            {"minimum": 500, "maximum": 600, "scope": "full"},
+            RUNTIME.parse_spec(
+                "请先起草300—400字的通知，最终全文500—600字。"
+            ),
+        )
+        self.assertEqual(
+            {"minimum": 0, "maximum": 500, "scope": "full"},
+            RUNTIME.parse_spec(
+                "请先起草不超过300字的通知，最终全文不超过500字。"
+            ),
+        )
 
     def test_mechanical_gate_preserves_anchors_and_real_headings(self) -> None:
         original = "工作报告\n\n一、办理情况\n共核对48件，事项仍在办理。"
