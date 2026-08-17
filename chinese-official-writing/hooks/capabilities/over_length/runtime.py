@@ -70,8 +70,9 @@ STATUS_UPGRADE_PATTERNS: Final = (
 PLANNED_ACTION_RE: Final = re.compile(
     r"拟(?:于[^，。；;\n]{0,12})?(?P<action>完善|优化|改进|实施|开展)"
 )
-PLANNED_SETTLED_RE: Final = re.compile(
-    r"(?:已经|已)(?:于[^，。；;\n]{0,12})?[^，。；;\n]{0,16}(?:完成|确定|实施)"
+PLANNED_OBJECT_RE: Final = re.compile(r"(?P<object>[^，。；;、\n]{1,16})")
+NEGATED_RESPONSIBILITY_SUFFIX_RE: Final = re.compile(
+    r"(?:不|不再|无需|无须|不得|不能|不予)$"
 )
 MARKDOWN_HEADING_RE: Final = re.compile(r"^\s*#{1,6}\s+\S+")
 NUMBERED_HEADING_RE: Final = re.compile(
@@ -243,10 +244,17 @@ def _status_transition_reason(original: str, candidate: str) -> str | None:
         still_planned = re.search(
             rf"拟(?:于[^，。；;\n]{{0,12}})?{action}", candidate
         )
-        settled = re.search(
-            rf"(?:已经|已)(?:于[^，。；;\n]{{0,12}})?(?:完成)?{action}",
-            candidate,
-        ) or PLANNED_SETTLED_RE.search(candidate)
+        object_match = PLANNED_OBJECT_RE.match(original, match.end())
+        object_text = object_match.group("object").strip() if object_match else ""
+        settled = None
+        if object_text:
+            object_pattern = re.escape(object_text)
+            settled = re.search(
+                rf"(?:已经|已)(?:于[^，。；;\n]{{0,12}})?(?:完成)?{action}{object_pattern}"
+                rf"|(?:已经|已)(?:于[^，。；;\n]{{0,12}})?完成{object_pattern}{action}"
+                rf"|{object_pattern}(?:已经|已)(?:完成)?{action}",
+                candidate,
+            )
         if still_planned is None and settled is not None:
             return "over_length_status_upgraded"
     return None
@@ -256,6 +264,8 @@ def _responsibility_subjects(text: str) -> set[str]:
     subjects: set[str] = set()
     for match in RESPONSIBILITY_SUBJECT_RE.finditer(text):
         subject = match.group("subject").strip()
+        if NEGATED_RESPONSIBILITY_SUFFIX_RE.search(subject):
+            continue
         if "由" in subject:
             subject = subject.rsplit("由", 1)[-1]
         subject = re.sub(r"^(?:其中|同时|并由|由)", "", subject).strip()
