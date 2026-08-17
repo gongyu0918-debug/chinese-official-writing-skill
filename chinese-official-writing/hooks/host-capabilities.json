@@ -1,5 +1,5 @@
 {
-  "schema_version": 9,
+  "schema_version": 10,
   "shared_gate_core": "chinese-official-writing/scripts/review_gate.py",
   "activation": {
     "default": "disabled",
@@ -14,13 +14,28 @@
   },
   "length_gate": {
     "automatic_expansion": true,
-    "automatic_compression": false,
+    "automatic_compression": true,
     "status": "candidate",
     "activation": "explicit_static_companion_selection",
     "configuration_file": "hook-capability.json",
     "default_selected": false,
     "trigger": "explicit_lower_bound_and_more_than_ten_percent_short",
     "revision_limit": 1,
+    "failure_action": "original_draft"
+  },
+  "over_length_gate": {
+    "status": "candidate",
+    "activation": "explicit_static_companion_selection",
+    "configuration_file": "hook-capability.json",
+    "default_selected": false,
+    "trigger": "explicit_upper_bound_and_more_than_ten_percent_over",
+    "sequence": [
+      "semantic_repetition_observation",
+      "bounded_compression",
+      "semantic_verdict",
+      "hash_bound_delivery"
+    ],
+    "compression_limit": 2,
     "failure_action": "original_draft"
   },
   "protective_expansion_gate": {
@@ -65,7 +80,8 @@
       "verified_scope": "manifest_validation_and_isolated_registration_without_model",
       "live_lifecycle_verified": false,
       "data_root_environment": "PLUGIN_DATA",
-      "continuation_limit": 4
+      "continuation_limit": 4,
+      "over_length_continuation_limit": 6
     },
     "codebuddy": {
       "status": "package_manifest_verified",
@@ -80,7 +96,8 @@
       "live_lifecycle_verified": false,
       "required_stop_field": "last_assistant_message",
       "data_root_environment": "CODEBUDDY_PLUGIN_DATA",
-      "continuation_limit": 4
+      "continuation_limit": 4,
+      "over_length_continuation_limit": 6
     },
     "claude_code": {
       "status": "lifecycle_verified",
@@ -104,6 +121,7 @@
       "data_root_environment": "CLAUDE_PLUGIN_DATA",
       "minimum_version": "2.1.195",
       "continuation_limit": 4,
+      "over_length_continuation_limit": 6,
       "activation": "explicit plugin load only"
     },
     "openclaw": {

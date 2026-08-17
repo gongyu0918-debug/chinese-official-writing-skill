@@ -35,6 +35,7 @@ MODULE_PATH = Path(__file__).resolve()
 PROTECTIVE_CAPABILITY_NAME = "protective_expansion"
 REPETITION_CAPABILITY_NAME = "repetition_cleanup"
 UNDER_LENGTH_CAPABILITY_NAME = "under_length"
+OVER_LENGTH_CAPABILITY_NAME = "over_length"
 DELIVERY_CLEANLINESS_CAPABILITY_NAME = "delivery_cleanliness"
 PROTECTIVE_CAPABILITY_ENV = "COW_GATE_CAPABILITY"
 
@@ -56,6 +57,9 @@ PROTECTIVE_RUNTIME_PATH = (
 )
 UNDER_LENGTH_RUNTIME_PATH = (
     SKILL_ROOT / "hooks" / "capabilities" / "under_length" / "runtime.py"
+)
+OVER_LENGTH_RUNTIME_PATH = (
+    SKILL_ROOT / "hooks" / "capabilities" / "over_length" / "runtime.py"
 )
 DELIVERY_CLEANLINESS_RUNTIME_PATH = (
     SKILL_ROOT / "hooks" / "capabilities" / "delivery_cleanliness" / "runtime.py"
@@ -314,6 +318,20 @@ def _load_under_length_runtime():
     return module
 
 
+def _load_over_length_runtime():
+    try:
+        spec = importlib.util.spec_from_file_location(
+            "cow_over_length_runtime", OVER_LENGTH_RUNTIME_PATH
+        )
+        if spec is None or spec.loader is None:
+            return None
+        module = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(module)
+    except Exception:
+        return None
+    return module
+
+
 def _load_delivery_cleanliness_runtime():
     try:
         spec = importlib.util.spec_from_file_location(
@@ -466,6 +484,55 @@ def _handle_under_length_capability(
     if review_gate is None:
         return None
     response = runtime.start(event, record, review_gate)
+    if response is not None:
+        _atomic_write(record_path, record)
+    return response
+
+
+def _handle_over_length_capability(
+    event: dict[str, Any], record_path: Path, record: dict[str, Any]
+) -> dict[str, Any] | None:
+    active = isinstance(record.get("over_length"), dict)
+    selected = os.environ.get(PROTECTIVE_CAPABILITY_ENV) == OVER_LENGTH_CAPABILITY_NAME
+    if not active and not selected:
+        return None
+    runtime = _load_over_length_runtime()
+    if runtime is None:
+        if not active:
+            return None
+        original = record.get("over_length", {}).get("original")
+        if not isinstance(original, str) or not original:
+            return _allow()
+        record["over_length"]["phase"] = "over_length_technical_failure"
+        record["over_length"]["audit"] = {
+            "schema_version": 1,
+            "trigger": "over",
+            "selection": "D0",
+            "reason": "over_length_module_unavailable",
+            "original_sha256": _sha256_text(original),
+            "delivery_verified": False,
+        }
+        _atomic_write(record_path, record)
+        return _continue_once(
+            "篇幅收束模块不可用，已回退原始稿。请逐字输出下列 D0，不要调用工具、不要加说明：\n"
+            + original
+        )
+    if active:
+        response = runtime.advance(event, record)
+        _atomic_write(record_path, record)
+        return response
+    eligible = (
+        record.get("bypass") != "user_requested"
+        and record.get("skill_seen") is True
+        and not _is_review_only_request(str(record.get("request") or ""))
+        and not record.get("txn")
+        and isinstance(event.get("last_assistant_message"), str)
+        and bool(str(event.get("last_assistant_message")).strip())
+        and event.get("stop_hook_active") is not True
+    )
+    if not eligible:
+        return None
+    response = runtime.start(event, record)
     if response is not None:
         _atomic_write(record_path, record)
     return response
@@ -990,6 +1057,9 @@ def handle_stop(event: dict[str, Any]) -> dict[str, Any]:
     under_length = _handle_under_length_capability(event, record_path, record)
     if under_length is not None:
         return under_length
+    over_length = _handle_over_length_capability(event, record_path, record)
+    if over_length is not None:
+        return over_length
     if not record.get("txn"):
         if event.get("stop_hook_active") is True:
             return _allow()

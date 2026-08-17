@@ -77,6 +77,7 @@ CAPABILITY_CHOICES: Final = (
     CAPABILITY_DEFAULT,
     "protective_expansion",
     "under_length",
+    "over_length",
     "delivery_cleanliness",
     "repetition_cleanup",
 )
@@ -134,6 +135,7 @@ def _validate(output: Path, adapter: HostAdapter) -> None:
         output / "skills/chinese-official-writing/hooks/capabilities/protective_expansion/contract.py",
         output / "skills/chinese-official-writing/hooks/capabilities/protective_expansion/runtime.py",
         output / "skills/chinese-official-writing/hooks/capabilities/under_length/runtime.py",
+        output / "skills/chinese-official-writing/hooks/capabilities/over_length/runtime.py",
         output / "skills/chinese-official-writing/hooks/capabilities/delivery_cleanliness/runtime.py",
         output / "skills/chinese-official-writing/scripts/review_gate.py",
         output / "hook-capability.json",

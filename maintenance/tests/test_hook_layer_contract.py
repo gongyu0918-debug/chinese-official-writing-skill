@@ -108,6 +108,7 @@ class HookLayerContractTests(unittest.TestCase):
                     self.assertTrue((packaged / "hooks/gate_stop_hook.py").is_file())
                     self.assertTrue((packaged / "scripts/review_gate.py").is_file())
                     self.assertTrue((packaged / "hooks/capabilities/protective_expansion/runtime.py").is_file())
+                    self.assertTrue((packaged / "hooks/capabilities/over_length/runtime.py").is_file())
                     self.assertTrue((packaged / "hooks/capabilities/delivery_cleanliness/runtime.py").is_file())
                     self.assertEqual(
                         "delivery_review",
@@ -137,7 +138,7 @@ class HookLayerContractTests(unittest.TestCase):
             (HOOK_ROOT / "host-capabilities.json").read_text(encoding="utf-8")
         )
         activation = capabilities["activation"]
-        self.assertEqual(9, capabilities["schema_version"])
+        self.assertEqual(10, capabilities["schema_version"])
         self.assertFalse(activation["ordinary_skill_install_enables_hooks"])
         self.assertFalse(activation["runtime_host_detection"])
         self.assertFalse(activation["automatic_file_generation"])
@@ -145,7 +146,10 @@ class HookLayerContractTests(unittest.TestCase):
         self.assertFalse(activation["network_access"])
         self.assertTrue(activation["task_opt_out_supported"])
         self.assertEqual("candidate", capabilities["length_gate"]["status"])
-        self.assertFalse(capabilities["length_gate"]["automatic_compression"])
+        self.assertTrue(capabilities["length_gate"]["automatic_compression"])
+        self.assertEqual("candidate", capabilities["over_length_gate"]["status"])
+        self.assertFalse(capabilities["over_length_gate"]["default_selected"])
+        self.assertEqual(2, capabilities["over_length_gate"]["compression_limit"])
         self.assertFalse(capabilities["protective_expansion_gate"]["default_selected"])
         self.assertEqual(
             "available_opt_in",
