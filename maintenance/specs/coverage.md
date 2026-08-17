@@ -23,7 +23,7 @@
 | `CL-001` 交付洁净度 | `hooks/capabilities/delivery_cleanliness/` | 三 provider 5/5 精确整理；SOL max 全 PASS | 三宿主静态组装；Claude Code、Codex 在线 D1/hash 闭环 | 已覆盖并随 v1.6.5 发布；CodeBuddy 未重跑当前能力在线生命周期 |
 | `RP-001` 重复与高相似句 | `hooks/capabilities/repetition_cleanup/` | 三 provider 5 组；SOL max 功能 PASS，长稿 1 WARN | 三宿主静态组装；Codex 完全重复与高相似均在线 E1/hash 闭环 | 已覆盖并随 v1.6.5 发布；CodeBuddy/Claude 尚未做当前能力在线样本 |
 | `AH-001` 引用与硬锚 | 现有能力有分散保护，尚未抽成共享不变量 | under-length 已有局部旁证 | 尚无统一 contract | 部分；不得使用词频完全相等旧门 |
-| `OV-001` 超长收束 | `hooks/capabilities/over_length/`、短稿自然收束叶 | 两家 provider 先行原型；同一 D0 498→285，SOL max 六项全 PASS | Claude Code 在线 D1/hash 闭环；三宿主静态组装 | 候选已覆盖目标功能，尚未合并或发布；Codex/CodeBuddy 本轮无在线样本 |
+| `OV-001` 超长收束 | `hooks/capabilities/over_length/`、短稿自然收束叶 | 两家 provider 先行原型；同一 D0 498→285，SOL max 六项全 PASS | Claude Code 在线 D1/hash 闭环；Grok 4.6 冷审修复；最终机械门真实 D1 重放；三宿主静态组装 | 已进入 v1.6.8 发布候选；Codex/CodeBuddy 本轮无在线样本 |
 | `OT-001/002` 提纲核对与修正 | 规格已登记 | 尚未运行 | 当前生命周期缺正文前提纲检查点 | 未覆盖；优先级低于 Stop-only 快速能力 |
 | `MT-001` 真实结果优先 | `AGENTS.md`、本规格层 | v1.6.4 已采用 | 篇幅候选暴露了反例 | 已覆盖规则，后续严格执行 |
 | `MT-002` 可达性 | SKILL、说明、组装器、维护索引 | 不适用 | reachability/链接最小检查 | 持续项 |
