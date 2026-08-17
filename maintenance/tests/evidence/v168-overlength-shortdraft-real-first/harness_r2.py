@@ -4,12 +4,12 @@ import importlib.util
 import json
 from pathlib import Path
 import shutil
+import argparse
 
 
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[3]
 HARNESS = HERE / "harness.py"
-OUTPUT = ROOT / "output" / "v168-overlength-shortdraft-real-first" / "formal-r2"
 
 
 def load_harness():
@@ -21,11 +21,12 @@ def load_harness():
     return module
 
 
-def main() -> int:
-    if OUTPUT.exists():
-        raise RuntimeError(f"Refusing to reuse output: {OUTPUT}")
+def main(output_name: str) -> int:
+    output = ROOT / "output" / "v168-overlength-shortdraft-real-first" / output_name
+    if output.exists():
+        raise RuntimeError(f"Refusing to reuse output: {output}")
     base = load_harness()
-    base.OUTPUT = OUTPUT
+    base.OUTPUT = output
     payload = json.loads((HERE / "cases.json").read_text(encoding="utf-8"))
     cases = {case["id"]: dict(case) for case in payload["cases"]}
     cases["R01"]["mode"] = "readme-r2"
@@ -42,10 +43,13 @@ def main() -> int:
         "technical_valid": sum(bool(item["technical_valid"]) for item in records),
         "records": records,
     }
-    base.BASE.atomic_json(OUTPUT / "manifest.json", manifest)
+    base.BASE.atomic_json(output / "manifest.json", manifest)
     print(json.dumps(manifest, ensure_ascii=False, indent=2))
     return 0 if manifest["technical_valid"] == len(records) else 2
 
 
 if __name__ == "__main__":
-    raise SystemExit(main())
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--output-name", default="formal-r2")
+    args = parser.parse_args()
+    raise SystemExit(main(args.output_name))
