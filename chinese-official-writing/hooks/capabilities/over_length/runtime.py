@@ -46,12 +46,12 @@ ACTION_RANGE_RE: Final = re.compile(
 MATERIAL_CONTEXT_RE: Final = re.compile(
     r"(?:材料|附件|引语|原文|背景|摘录|写明|载明|提到|如下|制度|合同|条款).{0,18}$"
 )
-APPROXIMATE_LENGTH_RE: Final = re.compile(r"(?:约|左右)")
+APPROXIMATE_LENGTH_RE: Final = re.compile(r"(?:约|左右|上下)")
 NUMBER_RE: Final = re.compile(r"\d+(?:\.\d+)?")
 CJK_QUANTITY_RE: Final = re.compile(
     r"[一二三四五六七八九十百千万两]+(?:台|件|项|次|个月|年|天|份|人|套|批|元)"
 )
-QUOTE_RE: Final = re.compile(r"[\"“][^\"”\n]{1,160}[\"”]")
+QUOTE_RE: Final = re.compile(r"[\"“][^\"”\n]+[\"”]")
 RESPONSIBILITY_SUBJECT_RE: Final = re.compile(
     r"(?:^|[，。；;\n])\s*(?P<subject>[\u4e00-\u9fffA-Za-z0-9（）()·]{2,20}?)"
     r"(?:负责|牵头|承担)"
@@ -72,12 +72,13 @@ PLANNED_ACTION_RE: Final = re.compile(
 )
 PLANNED_OBJECT_RE: Final = re.compile(r"(?P<object>[^，。；;、\n]{1,16})")
 NEGATED_RESPONSIBILITY_SUFFIX_RE: Final = re.compile(
-    r"(?:不|不再|无需|无须|不得|不能|不予)$"
+    r"(?:不|不再|无需|无须|不得|不能|不予|不应|不可|不宜)$"
 )
 MARKDOWN_HEADING_RE: Final = re.compile(r"^\s*#{1,6}\s+\S+")
 NUMBERED_HEADING_RE: Final = re.compile(
     r"^\s*(?:第[一二三四五六七八九十百]+[章节]|[一二三四五六七八九十]+、|\d+[.、])"
 )
+ARABIC_NUMBERED_ITEM_RE: Final = re.compile(r"^\s*\d+[.、]")
 CONTRACT_PATH: Final = (
     Path(__file__).resolve().parents[1] / "protective_expansion" / "contract.py"
 )
@@ -92,7 +93,7 @@ def _body_text(text: str) -> str:
     body: list[str] = []
     for index, line in enumerate(lines):
         stripped = line.strip()
-        if MARKDOWN_HEADING_RE.match(stripped) or _is_numbered_heading(stripped):
+        if MARKDOWN_HEADING_RE.match(stripped) or _is_body_heading(stripped):
             continue
         if index == 0 and len(stripped) <= 30 and not re.search(r"[。！？!?]", stripped):
             continue
@@ -106,6 +107,12 @@ def _is_numbered_heading(value: str) -> bool:
         and len(value) <= 40
         and not re.search(r"[。；;！？!?]", value)
     )
+
+
+def _is_body_heading(value: str) -> bool:
+    """Exclude unambiguous Chinese headings, but count Arabic numbered body items."""
+
+    return bool(_is_numbered_heading(value) and not ARABIC_NUMBERED_ITEM_RE.match(value))
 
 
 def count_text(text: str, scope: str) -> int:
@@ -125,6 +132,7 @@ def _authoritative_match(
     request: str, match: re.Match[str], *, output_action: bool
 ) -> bool:
     prefix = request[max(0, match.start() - 24) : match.start()]
+    suffix = request[match.end() : min(len(request), match.end() + 4)]
     material_context = MATERIAL_CONTEXT_RE.search(prefix)
     last_output_signal = max(
         (
@@ -137,7 +145,7 @@ def _authoritative_match(
         output_action
         or material_context is None
         or last_output_signal > material_context.start()
-    ) and not APPROXIMATE_LENGTH_RE.search(prefix + match.group(0))
+    ) and not APPROXIMATE_LENGTH_RE.search(prefix + match.group(0) + suffix)
 
 
 def parse_spec(request: str) -> dict[str, Any] | None:
@@ -241,14 +249,16 @@ def _status_transition_reason(original: str, candidate: str) -> str | None:
             return "over_length_status_upgraded"
     for match in PLANNED_ACTION_RE.finditer(original):
         action = re.escape(match.group("action"))
-        still_planned = re.search(
-            rf"拟(?:于[^，。；;\n]{{0,12}})?{action}", candidate
-        )
         object_match = PLANNED_OBJECT_RE.match(original, match.end())
         object_text = object_match.group("object").strip() if object_match else ""
+        still_planned = None
         settled = None
         if object_text:
             object_pattern = re.escape(object_text)
+            still_planned = re.search(
+                rf"拟(?:于[^，。；;\n]{{0,12}})?{action}{object_pattern}",
+                candidate,
+            )
             settled = re.search(
                 rf"(?:已经|已)(?:于[^，。；;\n]{{0,12}})?(?:完成)?{action}{object_pattern}"
                 rf"|(?:已经|已)(?:于[^，。；;\n]{{0,12}})?完成{object_pattern}{action}"
@@ -267,7 +277,9 @@ def _responsibility_subjects(text: str) -> set[str]:
         if NEGATED_RESPONSIBILITY_SUFFIX_RE.search(subject):
             continue
         if "由" in subject:
-            subject = subject.rsplit("由", 1)[-1]
+            prefix, subject = subject.rsplit("由", 1)
+            if NEGATED_RESPONSIBILITY_SUFFIX_RE.search(prefix.strip()):
+                continue
         subject = re.sub(r"^(?:其中|同时|并由|由)", "", subject).strip()
         if len(subject) >= 2:
             subjects.add(subject)
