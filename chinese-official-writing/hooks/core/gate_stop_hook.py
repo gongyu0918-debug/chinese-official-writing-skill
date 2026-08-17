@@ -36,6 +36,8 @@ PROTECTIVE_CAPABILITY_NAME = "protective_expansion"
 REPETITION_CAPABILITY_NAME = "repetition_cleanup"
 UNDER_LENGTH_CAPABILITY_NAME = "under_length"
 OVER_LENGTH_CAPABILITY_NAME = "over_length"
+OVER_LENGTH_RUNTIME_FAILURE_PHASE = "over_length_runtime_failure_fallback"
+OVER_LENGTH_RUNTIME_FAILURE_REPROMPTS = 1
 DELIVERY_CLEANLINESS_CAPABILITY_NAME = "delivery_cleanliness"
 PROTECTIVE_CAPABILITY_ENV = "COW_GATE_CAPABILITY"
 
@@ -500,23 +502,7 @@ def _handle_over_length_capability(
     if runtime is None:
         if not active:
             return None
-        original = record.get("over_length", {}).get("original")
-        if not isinstance(original, str) or not original:
-            return _allow()
-        record["over_length"]["phase"] = "over_length_technical_failure"
-        record["over_length"]["audit"] = {
-            "schema_version": 1,
-            "trigger": "over",
-            "selection": "D0",
-            "reason": "over_length_module_unavailable",
-            "original_sha256": _sha256_text(original),
-            "delivery_verified": False,
-        }
-        _atomic_write(record_path, record)
-        return _continue_once(
-            "篇幅收束模块不可用，已回退原始稿。请逐字输出下列 D0，不要调用工具、不要加说明：\n"
-            + original
-        )
+        return _over_length_runtime_failure(event, record_path, record)
     if active:
         response = runtime.advance(event, record)
         _atomic_write(record_path, record)
@@ -536,6 +522,54 @@ def _handle_over_length_capability(
     if response is not None:
         _atomic_write(record_path, record)
     return response
+
+
+def _over_length_runtime_failure(
+    event: dict[str, Any], record_path: Path, record: dict[str, Any]
+) -> dict[str, Any]:
+    state = record.get("over_length")
+    if not isinstance(state, dict):
+        return _allow()
+    original = state.get("original")
+    if not isinstance(original, str) or not original:
+        return _allow()
+    original_sha256 = _sha256_text(original)
+    if state.get("phase") == OVER_LENGTH_RUNTIME_FAILURE_PHASE:
+        delivered = event.get("last_assistant_message")
+        if isinstance(delivered, str) and _sha256_text(delivered) == original_sha256:
+            state["phase"] = "over_length_complete"
+            state["audit"]["delivery_verified"] = True
+            _atomic_write(record_path, record)
+            return _allow()
+        attempts = int(state.get("runtime_failure_reprompts") or 0)
+        if attempts >= OVER_LENGTH_RUNTIME_FAILURE_REPROMPTS:
+            state["phase"] = "over_length_technical_failure"
+            state["audit"].update(
+                {
+                    "reason": "over_length_d0_echo_mismatch_technical_failure",
+                    "delivery_verified": False,
+                }
+            )
+            _atomic_write(record_path, record)
+            return _allow()
+        state["runtime_failure_reprompts"] = attempts + 1
+    else:
+        state["phase"] = OVER_LENGTH_RUNTIME_FAILURE_PHASE
+        state["runtime_failure_reprompts"] = 0
+        state["audit"] = {
+            "schema_version": 1,
+            "trigger": "over",
+            "selection": "D0",
+            "reason": "over_length_module_unavailable",
+            "original_sha256": original_sha256,
+            "delivery_sha256": original_sha256,
+            "delivery_verified": False,
+        }
+    _atomic_write(record_path, record)
+    return _continue_once(
+        "篇幅收束模块不可用，已回退原始稿。请逐字输出下列 D0，不要调用工具、不要加说明：\n"
+        + original
+    )
 
 
 def _handle_delivery_cleanliness_capability(

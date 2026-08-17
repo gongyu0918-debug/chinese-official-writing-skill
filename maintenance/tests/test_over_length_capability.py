@@ -7,6 +7,7 @@ from pathlib import Path
 import sys
 import tempfile
 import unittest
+from unittest.mock import patch
 
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -293,6 +294,27 @@ class OverLengthCapabilityTests(unittest.TestCase):
         )
         self.assertIn("不得再以‘继续做好、持续推进、有序推进’", instruction)
         self.assertIn("natural_and_non_repetitive必须为false并FAIL", verdict)
+
+    def test_started_transaction_recovers_once_when_runtime_disappears(self) -> None:
+        request = "请将全文压缩到不超过40字。"
+        d0 = "工作通知\n\n" + "请各部门按要求推进相关工作，及时完成材料报送。" * 4
+        self.arm(request)
+        first = CORE.handle(
+            self.event("Stop", stop_hook_active=False, last_assistant_message=d0)
+        )
+        self.assertEqual("block", first["decision"])
+
+        with patch.object(CORE, "_load_over_length_runtime", return_value=None):
+            fallback = CORE.handle(
+                self.event("Stop", last_assistant_message="观察器输出不可用")
+            )
+            self.assertIn("已回退原始稿", fallback["reason"])
+            completed = CORE.handle(self.event("Stop", last_assistant_message=d0))
+
+        self.assertTrue(completed["continue"])
+        audit = self.record()["over_length"]["audit"]
+        self.assertEqual("D0", audit["selection"])
+        self.assertTrue(audit["delivery_verified"])
 
 
 if __name__ == "__main__":
