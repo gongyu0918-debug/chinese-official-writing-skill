@@ -2,7 +2,7 @@
 
 日期：2026-08-17
 
-状态：`PREPARING_LOCAL_CANDIDATE`。当前只准备本地候选，不代表任何外部平台已经发布。
+状态：`READY_LOCAL_CANDIDATE`。本地候选已经完成直接相关验证，不代表任何外部平台已经发布。
 
 ## 固定对象与范围
 
@@ -28,11 +28,20 @@
 
 ## 待完成的候选门
 
-- [ ] 版本、README、镜像、OpenClaw 与 SkillHub builder 聚焦测试。
-- [ ] canonical 与普通镜像 quick validation、同步幂等和 diff check。
-- [ ] GitHub 源码归档与 SkillHub 清洁包的文件集合、版本、许可证、禁入项和 hash 核验。
-- [ ] SkillHub 本地 dry-run；不得把 dry-run 当作正式提交。
+- [x] 版本、README、镜像、OpenClaw 与 SkillHub builder 聚焦测试。
+- [x] canonical 与普通镜像 quick validation、同步幂等和 diff check。
+- [x] SkillHub 清洁包的文件集合、版本、许可证、禁入项和 hash 核验；GitHub 源码归档在最终 tag 提交冻结后生成。
+- [x] SkillHub 本地 dry-run；`dryRun=true`、slug=`chinese-official-writing`、version=`1.6.7`，没有发起正式提交。
 - [ ] 正式发布前确认本轮获授权的平台表面。
+
+## 本地候选验证
+
+- 版本、包边界、README、可达性、短稿规则、review gate、Hook core、复杂度和组装合同共282项直接相关测试全部通过；此前版本聚焦测试85/85通过。
+- canonical、Agent Skills、Qwen Code、Hermes 的通用 quick validation 全部通过。OpenClaw 因既有 `category` 适配字段不属于通用 validator schema而返回非零；对应 OpenClaw 专用边界测试2/2通过，未删除兼容字段。
+- `sync_adapters.py` 重跑幂等，`git diff --check`通过。
+- 三宿主 `delivery_review` companion 静态组装成功：Codex 52文件、fingerprint `aae11768317959e0352fedbd0360d019b716f53afa7b792bb7961bc32722d13c`；CodeBuddy 51文件、`a63f34b442fe14bee5996ca02fbbde66319960e615045c41471f1e5b98029c23`；Claude Code 51文件、`d8c360791d8762a92a8d7106f879387a54077647be26326c01cdba3b6df9acb1`。三者均为 `installed=false`、`enabled=false`、`network_used=false`。
+- SkillHub 清洁包共58文件；与“当前已跟踪 canonical - `agents/openai.yaml` - 无扩展名 `LICENSE` + `LICENSE.md` + `_meta.json`”精确一致，无 missing/extra；MIT全文一致，禁入项为0；逐文件清单 SHA-256 为 `9b41b78c5d93a44a9c027a4c548d0c4d2424601780b0e85a2ecd8440733103a1`。
+- 首次并行组装命令误用 PowerShell 只读变量 `$Host`，在任何宿主组装前退出；更名为 `$targetHost` 后仅重跑该静态组装。第一次282项测试随并行调用完成但输出回执丢失，随后单独重跑并取得282/282结果；没有重复真实模型调用。
 
 建议的 SkillHub 更新说明：
 
