@@ -83,6 +83,29 @@ class OverLengthCapabilityTests(unittest.TestCase):
             "selections": [],
         }
 
+    @staticmethod
+    def repetition_response(packet: dict, target: dict, preserved: dict) -> dict:
+        contract = RUNTIME._load_repetition_contract()
+        assert contract is not None
+        return {
+            "schema_version": contract.RESPONSE_SCHEMA_VERSION,
+            "packet_sha256": packet["packet_sha256"],
+            "request_sha256": packet["request_sha256"],
+            "draft_sha256": packet["draft_sha256"],
+            "decision": "DELETE_SPANS",
+            "selections": [
+                {
+                    "segment_id": target["segment_id"],
+                    "preserved_segment_id": preserved["segment_id"],
+                    "family": "semantic_repetition",
+                    "reason": "两句完全相同，保留一处已完整承载信息。",
+                    "assertions": {
+                        key: True for key in contract.REQUIRED_ASSERTIONS
+                    },
+                }
+            ],
+        }
+
     def test_clear_then_compress_completes_hash_bound_d1(self) -> None:
         request = "请将工作情况报告压缩到不超过420字，只输出正文。"
         sentence = (
@@ -164,6 +187,36 @@ class OverLengthCapabilityTests(unittest.TestCase):
         self.assertIn(d0, fallback["reason"])
         self.assertEqual("D0", record["over_length"]["audit"]["selection"])
         self.assertEqual(2, record["over_length"]["audit"]["compression_attempts"])
+
+    def test_repetition_cleanup_that_meets_limit_still_requires_verdict(self) -> None:
+        request = "请将全文压缩到不超过40字。"
+        repeated = "请各部门按要求推进相关工作，及时完成材料报送并做好衔接。"
+        d0 = "工作通知\n\n" + repeated + repeated
+        record = {"request": request}
+        RUNTIME.start({"last_assistant_message": d0}, record)
+        packet = record["over_length"]["repetition_packet"]
+        matches = [
+            item
+            for item in packet["segments"]
+            if item["kind"] == "sentence" and item["text"] == repeated
+        ]
+
+        response = RUNTIME.advance(
+            {
+                "last_assistant_message": json.dumps(
+                    self.repetition_response(packet, matches[1], matches[0]),
+                    ensure_ascii=False,
+                )
+            },
+            record,
+        )
+
+        self.assertIn("只读核验压缩稿", response["reason"])
+        self.assertEqual(
+            RUNTIME.PHASE_VERDICT,
+            record["over_length"]["phase"],
+        )
+        self.assertNotIn("audit", record["over_length"])
 
     def test_trigger_requires_more_than_ten_percent_over(self) -> None:
         spec = RUNTIME.parse_spec("请起草一份不超过100字的通知。")

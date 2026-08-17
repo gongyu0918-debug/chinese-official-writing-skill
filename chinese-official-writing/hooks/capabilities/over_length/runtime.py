@@ -374,6 +374,21 @@ def _begin_revision(record: dict[str, Any]) -> dict[str, Any]:
     )
 
 
+def _begin_verdict(record: dict[str, Any], candidate: str) -> dict[str, Any]:
+    state = record["over_length"]
+    state["candidate"] = candidate
+    state["candidate_count"] = count_text(candidate, state["spec"]["scope"])
+    state["phase"] = PHASE_VERDICT
+    return _block(
+        _verdict_instruction(
+            str(record.get("request") or ""),
+            state["original"],
+            candidate,
+            state["spec"],
+        )
+    )
+
+
 def start(event: dict[str, Any], record: dict[str, Any]) -> dict[str, Any] | None:
     request = record.get("request")
     draft = event.get("last_assistant_message")
@@ -428,9 +443,7 @@ def _consume_observation(event: dict[str, Any], record: dict[str, Any]) -> dict[
     state["repetition_count"] = count_text(working, state["spec"]["scope"])
     reason = mechanical_reason(state["original"], working, state["spec"])
     if reason is None:
-        state["candidate"] = working
-        state["candidate_count"] = state["repetition_count"]
-        return _select(record, "D1", "repetition_cleanup_met_upper_bound")
+        return _begin_verdict(record, working)
     if reason == "over_length_candidate_below_minimum":
         state["working"] = state["original"]
     elif reason != "over_length_candidate_above_maximum":
@@ -454,15 +467,7 @@ def _consume_revision(event: dict[str, Any], record: dict[str, Any]) -> dict[str
         return _begin_revision(record)
     if reason:
         return _select(record, "D0", reason)
-    state["phase"] = PHASE_VERDICT
-    return _block(
-        _verdict_instruction(
-            str(record.get("request") or ""),
-            state["original"],
-            candidate,
-            state["spec"],
-        )
-    )
+    return _begin_verdict(record, candidate)
 
 
 def _consume_verdict(event: dict[str, Any], record: dict[str, Any]) -> dict[str, Any]:
