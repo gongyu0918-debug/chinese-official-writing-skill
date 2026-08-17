@@ -12,6 +12,7 @@
 
 ## 逐版发布证据
 
+- 超长收束、短稿局部去重和 README 制度示例的真实稿先行、Claude Code 在线 D1 与 SOL max 终审：[`v168-overlength-shortdraft-real-first/result.md`](../../tests/evidence/v168-overlength-shortdraft-real-first/result.md)。
 - 当前 GitHub 与 SkillHub.cn 发布证据：[`release-1.6.7.md`](../../tests/evidence/release-1.6.7.md)。本地候选边界、测试和组包记录保留在 [`release-1.6.7-rc.md`](../../tests/evidence/release-1.6.7-rc.md)。
 - 上一 GitHub 与 SkillHub.cn 发布证据：[`release-1.6.6.md`](../../tests/evidence/release-1.6.6.md)。本地候选边界、测试和组包记录保留在 [`release-1.6.6-rc.md`](../../tests/evidence/release-1.6.6-rc.md)。
 - 上一 GitHub 与 SkillHub.cn 发布证据：[`release-1.6.5.md`](../../tests/evidence/release-1.6.5.md)。对应候选、Codex 并发读取修复、CodeBuddy 静态迁移和候选包哈希保留在 [`release-1.6.5-rc.md`](../../tests/evidence/release-1.6.5-rc.md)。

@@ -183,6 +183,12 @@ class OverLengthCapabilityTests(unittest.TestCase):
         self.assertIsNone(
             RUNTIME.parse_spec("请解释附件中‘正文不超过420字’这一条要求。")
         )
+        self.assertEqual(
+            {"minimum": 0, "maximum": 420, "scope": "body"},
+            RUNTIME.parse_spec(
+                "初次回复不得改写、压缩、省略或解释；最终正文不超过420字。"
+            ),
+        )
 
     def test_mechanical_gate_preserves_anchors_and_real_headings(self) -> None:
         original = "工作报告\n\n一、办理情况\n共核对48件，事项仍在办理。"
@@ -205,6 +211,23 @@ class OverLengthCapabilityTests(unittest.TestCase):
         )
         article = "管理办法\n\n第一条 本办法适用于信息变更事项。"
         self.assertGreater(RUNTIME.count_text(article, "body"), 10)
+
+    def test_internal_prompts_reject_relisted_responsibilities(self) -> None:
+        instruction = RUNTIME._revision_instruction(
+            "全文不超过420字。",
+            "原稿",
+            "待压缩稿",
+            {"minimum": 0, "maximum": 420, "scope": "full"},
+            1,
+        )
+        verdict = RUNTIME._verdict_instruction(
+            "全文不超过420字。",
+            "原稿",
+            "压缩稿",
+            {"minimum": 0, "maximum": 420, "scope": "full"},
+        )
+        self.assertIn("不得再以‘继续做好、持续推进、有序推进’", instruction)
+        self.assertIn("natural_and_non_repetitive必须为false并FAIL", verdict)
 
 
 if __name__ == "__main__":
