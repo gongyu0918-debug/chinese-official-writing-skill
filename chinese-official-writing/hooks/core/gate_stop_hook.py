@@ -38,6 +38,10 @@ UNDER_LENGTH_CAPABILITY_NAME = "under_length"
 OVER_LENGTH_CAPABILITY_NAME = "over_length"
 OVER_LENGTH_RUNTIME_FAILURE_PHASE = "over_length_runtime_failure_fallback"
 OVER_LENGTH_RUNTIME_FAILURE_REPROMPTS = 1
+OVER_LENGTH_TERMINAL_PHASES = {
+    "over_length_complete",
+    "over_length_technical_failure",
+}
 DELIVERY_CLEANLINESS_CAPABILITY_NAME = "delivery_cleanliness"
 PROTECTIVE_CAPABILITY_ENV = "COW_GATE_CAPABILITY"
 
@@ -529,6 +533,8 @@ def _over_length_runtime_failure(
 ) -> dict[str, Any]:
     state = record.get("over_length")
     if not isinstance(state, dict):
+        return _allow()
+    if state.get("phase") in OVER_LENGTH_TERMINAL_PHASES:
         return _allow()
     original = state.get("original")
     if not isinstance(original, str) or not original:
