@@ -81,6 +81,10 @@ class HookLayerContractTests(unittest.TestCase):
         guide = (HOOK_ROOT / "README.md").read_text(encoding="utf-8")
         for host in expected:
             self.assertIn(f"adapters/{host}/README.md", guide)
+            adapter_guide = (adapters / host / "README.md").read_text(
+                encoding="utf-8"
+            )
+            self.assertIn("`over_length`", adapter_guide)
 
     def test_maintenance_assembler_produces_three_self_contained_plugins(self) -> None:
         with tempfile.TemporaryDirectory() as temporary:

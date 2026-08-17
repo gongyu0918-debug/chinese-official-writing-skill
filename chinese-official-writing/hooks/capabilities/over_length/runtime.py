@@ -52,6 +52,27 @@ CJK_QUANTITY_RE: Final = re.compile(
     r"[一二三四五六七八九十百千万两]+(?:台|件|项|次|个月|年|天|份|人|套|批|元)"
 )
 QUOTE_RE: Final = re.compile(r"[\"“][^\"”\n]{1,160}[\"”]")
+RESPONSIBILITY_SUBJECT_RE: Final = re.compile(
+    r"(?:^|[，。；;\n])\s*(?P<subject>[\u4e00-\u9fffA-Za-z0-9（）()·]{2,20}?)"
+    r"(?:负责|牵头|承担)"
+)
+STATUS_UPGRADE_PATTERNS: Final = (
+    (re.compile(r"尚未确定"), re.compile(r"(?:已经|已)确定")),
+    (re.compile(r"尚未形成"), re.compile(r"(?:已经|已)形成")),
+    (re.compile(r"未完成"), re.compile(r"(?:已经|已)完成")),
+    (re.compile(r"未办结"), re.compile(r"(?:已经|已)办结")),
+    (re.compile(r"未实施"), re.compile(r"(?:已经|已)实施")),
+    (re.compile(r"正在核查"), re.compile(r"(?:核查完成|已完成核查)")),
+    (re.compile(r"正在调查"), re.compile(r"(?:调查完成|已完成调查)")),
+    (re.compile(r"正在侦办"), re.compile(r"(?:侦办完成|已完成侦办)")),
+    (re.compile(r"正在抢修"), re.compile(r"(?:抢修完成|已完成抢修)")),
+)
+PLANNED_ACTION_RE: Final = re.compile(
+    r"拟(?:于[^，。；;\n]{0,12})?(?P<action>完善|优化|改进|实施|开展)"
+)
+PLANNED_SETTLED_RE: Final = re.compile(
+    r"(?:已经|已)(?:于[^，。；;\n]{0,12})?[^，。；;\n]{0,16}(?:完成|确定|实施)"
+)
 MARKDOWN_HEADING_RE: Final = re.compile(r"^\s*#{1,6}\s+\S+")
 NUMBERED_HEADING_RE: Final = re.compile(
     r"^\s*(?:第[一二三四五六七八九十百]+[章节]|[一二三四五六七八九十]+、|\d+[.、])"
@@ -121,39 +142,39 @@ def _authoritative_match(
 def parse_spec(request: str) -> dict[str, Any] | None:
     """Return only an output-scoped hard upper bound or range."""
 
-    ranges: list[re.Match[str]] = []
+    matches: list[tuple[str, re.Match[str]]] = []
     for pattern, output_action in ((SCOPE_RANGE_RE, False), (ACTION_RANGE_RE, True)):
-        ranges.extend(
-            match
+        matches.extend(
+            ("range", match)
             for match in pattern.finditer(request)
             if _authoritative_match(request, match, output_action=output_action)
         )
-    if ranges:
-        match = max(ranges, key=lambda item: item.start())
+    for pattern, output_action in ((SCOPE_MAX_RE, False), (ACTION_MAX_RE, True)):
+        matches.extend(
+            ("maximum", match)
+            for match in pattern.finditer(request)
+            if _authoritative_match(request, match, output_action=output_action)
+        )
+    if not matches:
+        return None
+    kind, match = max(matches, key=lambda item: item[1].start())
+    scope = match.groupdict().get("scope")
+    normalized_scope = (
+        "body" if scope == "正文" or "正文" in match.group(0) else "full"
+    )
+    if kind == "range":
         minimum, maximum = int(match.group("minimum")), int(match.group("maximum"))
         if minimum <= 0 or minimum > maximum:
             return None
-        scope = match.groupdict().get("scope")
         return {
             "minimum": minimum,
             "maximum": maximum,
-            "scope": "body" if scope == "正文" or "正文" in match.group(0) else "full",
+            "scope": normalized_scope,
         }
-    maxima: list[re.Match[str]] = []
-    for pattern, output_action in ((SCOPE_MAX_RE, False), (ACTION_MAX_RE, True)):
-        maxima.extend(
-            match
-            for match in pattern.finditer(request)
-            if _authoritative_match(request, match, output_action=output_action)
-        )
-    if not maxima:
-        return None
-    match = max(maxima, key=lambda item: item.start())
-    scope = match.groupdict().get("scope")
     return {
         "minimum": 0,
         "maximum": int(match.group("maximum")),
-        "scope": "body" if scope == "正文" or "正文" in match.group(0) else "full",
+        "scope": normalized_scope,
     }
 
 
@@ -209,8 +230,45 @@ def _headings(text: str) -> set[str]:
     return headings
 
 
+def _status_transition_reason(original: str, candidate: str) -> str | None:
+    for unresolved, settled in STATUS_UPGRADE_PATTERNS:
+        if (
+            unresolved.search(original)
+            and not unresolved.search(candidate)
+            and settled.search(candidate)
+        ):
+            return "over_length_status_upgraded"
+    for match in PLANNED_ACTION_RE.finditer(original):
+        action = re.escape(match.group("action"))
+        still_planned = re.search(
+            rf"拟(?:于[^，。；;\n]{{0,12}})?{action}", candidate
+        )
+        settled = re.search(
+            rf"(?:已经|已)(?:于[^，。；;\n]{{0,12}})?(?:完成)?{action}",
+            candidate,
+        ) or PLANNED_SETTLED_RE.search(candidate)
+        if still_planned is None and settled is not None:
+            return "over_length_status_upgraded"
+    return None
+
+
+def _responsibility_subjects(text: str) -> set[str]:
+    subjects: set[str] = set()
+    for match in RESPONSIBILITY_SUBJECT_RE.finditer(text):
+        subject = match.group("subject").strip()
+        if "由" in subject:
+            subject = subject.rsplit("由", 1)[-1]
+        subject = re.sub(r"^(?:其中|同时|并由|由)", "", subject).strip()
+        if len(subject) >= 2:
+            subjects.add(subject)
+    return subjects
+
+
 def mechanical_reason(
-    original: str, candidate: str, spec: dict[str, Any]
+    original: str,
+    candidate: str,
+    spec: dict[str, Any],
+    request: str = "",
 ) -> str | None:
     if not candidate.strip():
         return "over_length_empty_candidate"
@@ -222,6 +280,16 @@ def mechanical_reason(
         return "over_length_quote_dropped_or_changed"
     if not _headings(original).issubset(_headings(candidate)):
         return "over_length_outline_heading_dropped"
+    transition_reason = _status_transition_reason(original, candidate)
+    if transition_reason is not None:
+        return transition_reason
+    original_subjects = _responsibility_subjects(original)
+    candidate_subjects = _responsibility_subjects(candidate)
+    if any(subject not in candidate for subject in original_subjects):
+        return "over_length_responsibility_subject_dropped"
+    authority = original + "\n" + request
+    if any(subject not in authority for subject in candidate_subjects):
+        return "over_length_new_responsibility_subject"
     candidate_length = count_text(candidate, spec["scope"])
     minimum = int(spec.get("minimum") or 0)
     if minimum and candidate_length < minimum:
@@ -441,7 +509,9 @@ def _consume_observation(event: dict[str, Any], record: dict[str, Any]) -> dict[
     state["repetition_selection"] = result.get("selection")
     state["working"] = working
     state["repetition_count"] = count_text(working, state["spec"]["scope"])
-    reason = mechanical_reason(state["original"], working, state["spec"])
+    reason = mechanical_reason(
+        state["original"], working, state["spec"], str(record.get("request") or "")
+    )
     if reason is None:
         return _begin_verdict(record, working)
     if reason == "over_length_candidate_below_minimum":
@@ -458,7 +528,9 @@ def _consume_revision(event: dict[str, Any], record: dict[str, Any]) -> dict[str
         return _select(record, "D0", "revision_missing")
     state["candidate"] = candidate
     state["candidate_count"] = count_text(candidate, state["spec"]["scope"])
-    reason = mechanical_reason(state["original"], candidate, state["spec"])
+    reason = mechanical_reason(
+        state["original"], candidate, state["spec"], str(record.get("request") or "")
+    )
     if (
         reason == "over_length_candidate_above_maximum"
         and int(state.get("compression_attempts") or 0) < MAX_COMPRESSION_ATTEMPTS

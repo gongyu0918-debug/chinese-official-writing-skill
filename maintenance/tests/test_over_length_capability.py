@@ -255,6 +255,18 @@ class OverLengthCapabilityTests(unittest.TestCase):
                 "请先起草不超过300字的通知，最终全文不超过500字。"
             ),
         )
+        self.assertEqual(
+            {"minimum": 0, "maximum": 500, "scope": "full"},
+            RUNTIME.parse_spec(
+                "请先起草300—400字的通知，最终全文不超过500字。"
+            ),
+        )
+        self.assertEqual(
+            {"minimum": 300, "maximum": 400, "scope": "full"},
+            RUNTIME.parse_spec(
+                "请先起草不超过500字的通知，最终全文300—400字。"
+            ),
+        )
 
     def test_mechanical_gate_preserves_anchors_and_real_headings(self) -> None:
         original = "工作报告\n\n一、办理情况\n共核对48件，事项仍在办理。"
@@ -277,6 +289,65 @@ class OverLengthCapabilityTests(unittest.TestCase):
         )
         article = "管理办法\n\n第一条 本办法适用于信息变更事项。"
         self.assertGreater(RUNTIME.count_text(article, "body"), 10)
+
+    def test_mechanical_gate_rejects_status_upgrade_and_new_responsibility(self) -> None:
+        spec = {"minimum": 0, "maximum": 120, "scope": "full"}
+        self.assertEqual(
+            "over_length_status_upgraded",
+            RUNTIME.mechanical_reason(
+                "异常原因尚未形成结论，技术人员正在核查。",
+                "异常原因已经形成结论，技术人员已完成核查。",
+                spec,
+            ),
+        )
+        self.assertEqual(
+            "over_length_status_upgraded",
+            RUNTIME.mechanical_reason(
+                "下一年度拟完善服务流程。",
+                "下一年度已完成服务流程完善。",
+                spec,
+            ),
+        )
+        self.assertEqual(
+            "over_length_new_responsibility_subject",
+            RUNTIME.mechanical_reason(
+                "相关事项按原有安排办理。",
+                "相关事项按原有安排办理，办公室负责落实。",
+                spec,
+            ),
+        )
+        self.assertEqual(
+            "over_length_responsibility_subject_dropped",
+            RUNTIME.mechanical_reason(
+                "运行管理科负责核对材料。",
+                "负责核对材料。",
+                spec,
+            ),
+        )
+
+    def test_mechanical_gate_allows_equivalent_pending_and_numeric_dedup(self) -> None:
+        spec = {"minimum": 0, "maximum": 120, "scope": "full"}
+        self.assertIsNone(
+            RUNTIME.mechanical_reason(
+                "供应商尚未确定，采购事项仍待研究。",
+                "供应商仍待确定，采购事项待研究。",
+                spec,
+            )
+        )
+        self.assertIsNone(
+            RUNTIME.mechanical_reason(
+                "下一年度拟完善服务流程、优化办理方式。",
+                "下一年度将改进服务流程和办理方式。",
+                spec,
+            )
+        )
+        self.assertIsNone(
+            RUNTIME.mechanical_reason(
+                "第一项涉及2件材料，重复说明仍涉及2件材料。",
+                "第一项涉及2件材料。",
+                spec,
+            )
+        )
 
     def test_internal_prompts_reject_relisted_responsibilities(self) -> None:
         instruction = RUNTIME._revision_instruction(
@@ -315,6 +386,16 @@ class OverLengthCapabilityTests(unittest.TestCase):
         audit = self.record()["over_length"]["audit"]
         self.assertEqual("D0", audit["selection"])
         self.assertTrue(audit["delivery_verified"])
+
+        with patch.object(CORE, "_load_over_length_runtime", return_value=None):
+            repeated_stop = CORE.handle(
+                self.event("Stop", last_assistant_message=d0)
+            )
+        self.assertTrue(repeated_stop["continue"])
+        self.assertEqual(
+            "over_length_complete",
+            self.record()["over_length"]["phase"],
+        )
 
 
 if __name__ == "__main__":
