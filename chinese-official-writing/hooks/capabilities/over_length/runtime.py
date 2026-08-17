@@ -129,7 +129,7 @@ def parse_spec(request: str) -> dict[str, Any] | None:
             if _authoritative_match(request, match, output_action=output_action)
         )
     if ranges:
-        match = ranges[-1]
+        match = max(ranges, key=lambda item: item.start())
         minimum, maximum = int(match.group("minimum")), int(match.group("maximum"))
         if minimum <= 0 or minimum > maximum:
             return None
@@ -148,7 +148,7 @@ def parse_spec(request: str) -> dict[str, Any] | None:
         )
     if not maxima:
         return None
-    match = maxima[-1]
+    match = max(maxima, key=lambda item: item.start())
     scope = match.groupdict().get("scope")
     return {
         "minimum": 0,
