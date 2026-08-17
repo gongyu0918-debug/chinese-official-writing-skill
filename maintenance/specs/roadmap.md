@@ -15,7 +15,7 @@
 - SkillHub 已加入 `office-efficiency`、`content-creation` 轻量检索信号；不声称平台写入双分类。
 - GitHub 当前包统一 MIT；普通兼容包不含 Hook，OpenClaw GitHub 兼容包随仓库维护。
 - v1.6.6 GitHub 与 SkillHub.cn 发布回执见 [`release-1.6.6.md`](../tests/evidence/release-1.6.6.md)；ClawHub、Red SkillHub 及其他平台未在该轮上传。SkillHub 公开 latest 与签名已传播，Keen、Sanbu 安全报告均为 benign。
-- v1.6.7 GitHub 与 SkillHub.cn 发布回执见 [`release-1.6.7.md`](../tests/evidence/release-1.6.7.md)；ClawHub、Red SkillHub 及其他平台未在该轮上传。SkillHub tags.latest 已更新，公开 latest 与签名仍在异步传播。
+- v1.6.7 GitHub、SkillHub.cn 与后续 ClawHub 无 Hook 包同步回执见 [`release-1.6.7.md`](../tests/evidence/release-1.6.7.md)。ClawHub 已接受33文件的1.6.7提交，公开精确版本和下载内容仍待平台扫描；Red SkillHub 及其他平台未上传。SkillHub tags.latest 已更新，公开 latest 与签名仍在异步传播。
 
 ## IN_PROGRESS
 

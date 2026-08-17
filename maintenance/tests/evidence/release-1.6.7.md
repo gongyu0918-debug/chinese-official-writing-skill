@@ -6,8 +6,8 @@
 
 - 发布产品提交：`44347003aa7af12b7b205621e255f5e9c1f2166b`。
 - 上一正式产品 tag：`v1.6.6^{commit}=b49da7f2a5a8ac2327252d29efd66f1d54ccbc35`。
-- 本版发布 GitHub `main`、annotated tag `v1.6.7`、GitHub Release 和 SkillHub.cn `1.6.7`。
-- ClawHub、Red SkillHub 及其他平台未上传；没有执行其上传、同步、删除、撤回或版本覆盖命令。
+- 首次发行时发布 GitHub `main`、annotated tag `v1.6.7`、GitHub Release 和 SkillHub.cn `1.6.7`；ClawHub 当时未操作。
+- 2026-08-17 取得用户后续明确授权后，将仓内无 Hook OpenClaw 兼容包单独同步到 ClawHub `1.6.7`；Red SkillHub 及其他平台仍未操作。
 
 ## 主要变化
 
@@ -42,8 +42,18 @@
 - 上传回执的 `reviewStatus`、`securityScanStatus`、`contentAuditStatus` 均为 `pending`。
 - 上传后即时只读查询时，公开 `latestVersion` 仍为 `1.6.6`，1.6.7 精确版本签名端点返回404。公开页显示的 benign 报告仍属于既有可见版本，不能替代1.6.7回执中的 pending 状态；该状态属于平台异步传播，不重复上传。
 
+## ClawHub 后续同步回执与传播状态
+
+- 发布源为 `packages/openclaw/skills/chinese_official_writing/`，绑定 `v1.6.7^{commit}=44347003aa7af12b7b205621e255f5e9c1f2166b`；包内 `SKILL.md` 版本为 `1.6.7`。
+- 包共33文件；Hook、宿主插件、`agents/openai.yaml`、`references/delivery-review-gate.md` 和 `scripts/review_gate.py` 均未进入发布包。
+- ClawHub CLI `0.23.1` dry-run 返回 `would-publish`，文件数33、fingerprint `fbbef734bf01d2ff0bef97ebdf9c0c99d42c5479971b61e0f28fa9b46b04bad1`。
+- 正式提交一次返回 `ok=true`、`status=published`、version `1.6.7`、`versionId=k975vyhpk6092rv7yjbjszw8fs8cnfxh`；文件数和 fingerprint 与 dry-run 一致。
+- ClawHub 平台按其统一规则显示 MIT-0；仓库与仓内兼容包仍由根 MIT 许可证覆盖，两者未通过本次同步相互改写。
+- 提交后两次精确版本只读查询均返回 `Version not found`，公开 latest 仍为 `1.6.4`；强制安装未取得1.6.7内容。该状态记录为平台扫描/索引尚未完成，不重复上传。
+
 ## 剩余事项
 
 - 等待 SkillHub 公开 `latestVersion`、精确版本签名及1.6.7审核、安全、内容状态异步更新；只读复核，不重复提交。
+- 等待 ClawHub 公开列出1.6.7后，再核对33文件清单和下载内容 fingerprint；只读复核，不重复提交。
 - 短稿明确下限仍由 under-length 处理；常用语机械化候选继续 HOLD，不因本次发布改称已解决。
 - Hook 重构后的真实在线 smoke 走 D0 路径；D1 repair/verdict 的既有确定性覆盖保持不变，本次不把该样本扩张为新的质量宣称。
