@@ -45,7 +45,7 @@
 - 包共33文件；Hook、宿主插件、`agents/openai.yaml`、`references/delivery-review-gate.md` 和 `scripts/review_gate.py` 均未进入发布包。本地逐文件清单 SHA-256 为 `0af125cb00b470dcd156a5743f84ba2cd869a0806e90af3401c869d2496aa1fd`。
 - dry-run 与正式提交的 fingerprint 均为 `8957fe37581e4095bc0daf1588c08044aa6cc8205f620830447787424c609381`；正式提交返回 `ok=true`、`status=published`、`fileCount=33`、`versionId=k979cmymj5sdd1f9mw3t0789b58cnmvm`。
 - 第一次 dry-run 因只给 `--source-repo`、未同时给最终 `--source-commit` 而在发布前被 CLI 拒绝；补齐边界后有效 dry-run 和正式提交均成功，没有重复正式发布。
-- 提交后即时查询时公开 latest 仍为1.6.7，1.6.8精确版本暂不可见；只读等待传播，不重复上传。ClawHub 平台按统一规则显示 MIT-0，仓库和仓内包仍由根 MIT 许可证覆盖。
+- 提交后即时查询时公开 latest 仍为1.6.7；后续只读复核显示 `latestVersion=1.6.8`、tags.latest=`1.6.8`、精确1.6.8可访问，安全裁决为 `clean`。ClawHub 平台按统一规则显示 MIT-0，仓库和仓内包仍由根 MIT 许可证覆盖。
 
 ## 发布后冷审发现与下一补丁
 
@@ -56,4 +56,3 @@ Qwen 3.8 Max 独立只读冷审在发布动作进行期间完成。其对固定�
 - 数字值必须至少保留一次，但不恢复“重复出现次数完全相等”的旧门；数值去重继续交语义 verdict 判断归属关系。
 
 这些风险仅存在于用户明确启用的可选超长 Hook；失败默认保留 D0，普通 Skill 和 ClawHub 无 Hook 包不受影响。已发布 tag 不移动、不覆盖同版本，后续以新补丁版本修复。
-
