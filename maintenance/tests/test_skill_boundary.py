@@ -1947,7 +1947,7 @@ class SkillBoundaryTests(unittest.TestCase):
             "1.6.5 可选 Hook 质量控制与生命周期修复",
             "1.6.4 保护性外扩收束、新闻边界与短稿质量",
             "明川市政务服务中心服务事项信息变更管理办法（试行）",
-            "release-1.6.8-rc.md",
+            "release-1.6.8.md",
             "新闻与评论写作",
             "maintenance/tests/evidence",
             "maintenance/docs/evidence/README.md",
