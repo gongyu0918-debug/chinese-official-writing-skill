@@ -54,13 +54,16 @@ def read_files(case: dict[str, Any]) -> list[Path]:
             ROOT / "chinese-official-writing/references/short-draft-naturalness.md",
             HERE / "prototype-shortdraft.md",
         ]
-    if mode == "readme":
-        return [
+    if mode in {"readme", "readme-r2"}:
+        paths = [
             ROOT / "chinese-official-writing/SKILL.md",
             ROOT / "chinese-official-writing/references/information-selection.md",
             ROOT / "chinese-official-writing/references/genre-playbook-institution-rules.md",
             ROOT / "chinese-official-writing/references/official-style.md",
         ]
+        if mode == "readme-r2":
+            paths.append(HERE / "prototype-institution.md")
+        return paths
     raise ValueError(f"Unknown mode: {mode}")
 
 
@@ -229,4 +232,3 @@ def main() -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
-
