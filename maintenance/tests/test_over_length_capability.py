@@ -343,8 +343,46 @@ class OverLengthCapabilityTests(unittest.TestCase):
         )
         self.assertIsNone(
             RUNTIME.mechanical_reason(
+                "核验已完成。下一年度拟完善服务流程。",
+                "核验已完成。下一年度将改进服务流程。",
+                spec,
+            )
+        )
+        self.assertIsNone(
+            RUNTIME.mechanical_reason(
+                "会议时间已经确定。下一年度拟完善服务流程。",
+                "会议时间已经确定。下一年度将改进服务流程。",
+                spec,
+            )
+        )
+        self.assertIsNone(
+            RUNTIME.mechanical_reason(
+                "下一年度拟完善服务流程。",
+                "下一年度将改进服务流程，目前已完成摸底。",
+                spec,
+            )
+        )
+        self.assertIsNone(
+            RUNTIME.mechanical_reason(
                 "第一项涉及2件材料，重复说明仍涉及2件材料。",
                 "第一项涉及2件材料。",
+                spec,
+            )
+        )
+
+    def test_mechanical_gate_ignores_negated_responsibility_disclaimers(self) -> None:
+        spec = {"minimum": 0, "maximum": 120, "scope": "full"}
+        self.assertIsNone(
+            RUNTIME.mechanical_reason(
+                "本公司不负责解释未尽事宜。正文事项按原有安排办理。",
+                "正文事项按原有安排办理。",
+                spec,
+            )
+        )
+        self.assertIsNone(
+            RUNTIME.mechanical_reason(
+                "本公司不承担后续解释责任。正文事项按原有安排办理。",
+                "正文事项按原有安排办理。",
                 spec,
             )
         )
