@@ -35,7 +35,11 @@ def load_base() -> Any:
 
 def tree_fingerprint(root: Path) -> str:
     digest = hashlib.sha256()
-    for path in sorted(item for item in root.rglob("*") if item.is_file()):
+    for path in sorted(
+        item
+        for item in root.rglob("*")
+        if item.is_file() and "__pycache__" not in item.parts and item.suffix != ".pyc"
+    ):
         digest.update(path.relative_to(root).as_posix().encode("utf-8"))
         digest.update(b"\0")
         digest.update(path.read_bytes())
@@ -119,7 +123,7 @@ def main() -> int:
     manifest = {
         "schema_version": 1,
         "product_tree": FROZEN_PRODUCT_TREE,
-        "companion_fingerprint": tree_fingerprint(COMPANION),
+        "companion_source_fingerprint": tree_fingerprint(COMPANION),
         "model": MODEL,
         "effort": "max",
         "outer_retry_count": 0,
