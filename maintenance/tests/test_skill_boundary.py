@@ -18,8 +18,8 @@ OPTIONAL_GATE_FILES = {
     "scripts/review_gate.py",
 }
 SKILLHUB_CLEAN_PACKAGE_EXCLUDES = {"agents/openai.yaml", "LICENSE"}
-CURRENT_VERSION = "1.6.7"
-PUBLISHED_VERSION = "1.6.7"
+CURRENT_VERSION = "1.6.8"
+PUBLISHED_VERSION = "1.6.8"
 
 
 def relative_files(root: Path) -> list[str]:
@@ -887,7 +887,7 @@ class SkillBoundaryTests(unittest.TestCase):
     def test_openclaw_bundle_readme_is_current_and_contains_no_publish_command(self) -> None:
         readme = (ROOT / "packages" / "openclaw" / "README.md").read_text(encoding="utf-8")
 
-        self.assertIn("当前 GitHub 版本为 `1.6.7`", readme)
+        self.assertIn("当前 GitHub 版本为 `1.6.8`", readme)
         self.assertIn("MIT", readme)
         self.assertIn(r"python .\maintenance\tools\sync_adapters.py", readme)
         self.assertIn("packages/openclaw/", readme)
@@ -1941,14 +1941,14 @@ class SkillBoundaryTests(unittest.TestCase):
 
         for term in [
             "下表只保留最近 5 次版本验证",
+            "1.6.8 超长收束与短稿局部去重",
             "1.6.7 短稿自然收束与 Hook 可维护性",
             "1.6.6 事务文体功能与责任承载",
             "1.6.5 可选 Hook 质量控制与生命周期修复",
             "1.6.4 保护性外扩收束、新闻边界与短稿质量",
-            "1.6.3 纯审稿 Hook 旁路与 SkillHub 检索信号",
             "同题独立写作节选",
             "明川市政务服务中心服务事项信息变更管理办法（试行）",
-            "release-1.6.7.md",
+            "release-1.6.8-rc.md",
             "新增了“自收到材料之日起”的期限起算",
             "无 Skill 成稿",
             "带 Skill 成稿",

@@ -1,6 +1,6 @@
 # 中文公文写作 Skill
 
-[![Version](https://img.shields.io/badge/version-1.6.7-blue)](https://github.com/gongyu0918-debug/chinese-official-writing-skill/releases/tag/v1.6.7)
+[![Version](https://img.shields.io/badge/version-1.6.8-blue)](https://github.com/gongyu0918-debug/chinese-official-writing-skill/releases/tag/v1.6.8)
 [![ClawHub](https://img.shields.io/badge/ClawHub-chinese--official--writing-2f80ed)](https://clawhub.ai/gongyu0918-debug/skills/chinese-official-writing)
 [![SkillHub](https://img.shields.io/badge/SkillHub-chinese--official--writing-e8590c)](https://skillhub.cn/skills/chinese-official-writing)
 [![SkillHub downloads: 37k+](https://img.shields.io/badge/SkillHub%20downloads-37k%2B-2f855a)](https://skillhub.cn/skills/chinese-official-writing)
@@ -66,7 +66,7 @@
 
 ## 快速安装
 
-当前 GitHub 发布版本：`chinese-official-writing@1.6.7`。
+当前 GitHub 发布版本：`chinese-official-writing@1.6.8`。
 
 平台入口：[ClawHub](https://clawhub.ai/gongyu0918-debug/skills/chinese-official-writing) · [skillhub.cn](https://skillhub.cn/skills/chinese-official-writing)。通用 Agent Skills 安装器可直接使用：
 
@@ -80,11 +80,11 @@ npx skills add https://github.com/gongyu0918-debug/chinese-official-writing-skil
 
 | 调试方向 | 主要稿件与边界 | 当前证据 |
 | --- | --- | --- |
+| 1.6.8 超长收束与短稿局部去重 | 明确上限或区间且成稿超出上限10%以上时，可选 Hook 先识别语义重复，再有限压缩句式并复核事实、状态、责任关系和结构；短稿按局部事项收束，避免原因、理由和目的反复出现 | 两家 DeepSeek V4 Flash 路线完成真实原型；Claude Code + Alibaba DeepSeek max 将同一稿件由498字收束到285字，终稿哈希闭合，SOL max 对篇幅、事实、状态、职责关系、结构和非重复六项均判 PASS。冷审发现的规格解析、语义核验旁路、异常回退循环和状态误判均已修复 |
 | 1.6.7 短稿自然收束与 Hook 可维护性 | 对只有上限或没有硬下限的短稿增加独立自然收束路由，避免套用长报告骨架、同义复述和正文外包装；拆分 Hook 与 review gate 的历史超长函数，不改变门禁顺序、状态和失败回退 | 短稿 R3 为8/8技术有效，SOL max 判候选3胜、基线0胜、难分1，候选四稿全部硬边界 PASS；接入后两份真实稿可用。Hook 重构后又完成1次 Claude Code + Alibaba DeepSeek max 真实 D0 生命周期，事件、事务和终稿哈希闭合。常用语机械化 R1—R6 均 HOLD，本版不修改常用语总表 |
 | 1.6.6 事务文体功能与责任承载 | 新增约20类事务文体的中央直接路由，按文种选择功能、结构和常用语；合理推断须由材料主体、写作主体或近邻语篇主体承载，并补充编者按标识与相对时间锚保护 | 三条 DeepSeek V4 Flash 路线完成20份真实写稿，原型文种功能19/20；修复后编者按、演讲词和责任书三项直连复测通过，最终样本由独立 SOL max 判事实、状态、时间锚、责任主体、文种、篇幅和直接使用全部 PASS。本版不修改 Hook |
 | 1.6.5 可选 Hook 质量控制与生命周期修复 | 新增篇幅不足、交付洁净度、重复句与高相似复述三项静态互斥能力；均需用户明确选择，普通 Skill 和关闭 Hook 路径保持原有闭环。并行读取 Skill 与材料时使用单调状态标记，避免生命周期记录相互覆盖 | 三条 DeepSeek V4 Flash 路线先完成真实同稿验证；篇幅能力在 Codex、Claude Code 完成在线 D1，洁净度在两宿主完成 D1，重复清理在 Codex 完成完全重复和高相似 E1。合并后 Codex 8/8 技术终稿，竞态复现修复后篇幅事务正常触发并安全回退 D0 |
 | 1.6.4 保护性外扩收束、新闻边界与短稿质量 | 普通写作减少材料外免责说明、下游未发生事项和同义状态复述；新闻事实与合理推断保持来源、责任主体和状态强度。GitHub 可选 Hook 增加保护性外扩精确删除能力，默认关闭，异常时保留原稿；永久移除由 `hooks/README.md` 的语义接引和用户二次确认完成 | 三家 DeepSeek V4 Flash 的六份真实写稿均完成直接复核；同一初稿的保护性外扩功能包 29/29 通过独立 SOL max 校准。隔离副本永久移除仅删除17个 Hook 文件和一处接引，删除后普通写稿继续闭环 |
-| 1.6.3 纯审稿 Hook 旁路与 SkillHub 检索信号 | 已启用的可选 Hook 可识别“只审不改”“仅审不改”“只检查不修改正文”等纯审稿任务并直接旁路；审后改写、起草和材料引用反例仍进入原门禁。SkillHub 清洁包补充办公效率与内容创作检索信号，不向 canonical 增加平台专用字段 | 551 项单测、20/20 stub smoke 与固定 v1.6.2 消融 111/111 均通过；清洁包 48 文件。新闻真实 A/B、保护性/编辑性 Hook 和篇幅 Hook 仍保持 HOLD 或未闭环，未进入本版 |
 
 ### 制度正文示例
 
@@ -114,7 +114,7 @@ npx skills add https://github.com/gongyu0918-debug/chinese-official-writing-skil
 
 技能规则、references 和 scripts 在本仓库持续迭代，各平台技能目录由 canonical 包同步生成。规范与社区项目用于校验文种、流程形态和风险维度；具体规则经过复现、取舍和 A/B 后进入主线，Git 历史记录每次修改和验证。
 
-最近 5 份证据：[`v168-overlength-shortdraft-real-first/result.md`](maintenance/tests/evidence/v168-overlength-shortdraft-real-first/result.md) · [`release-1.6.7.md`](maintenance/tests/evidence/release-1.6.7.md) · [`v167-short-draft-naturalness-real-first/result.md`](maintenance/tests/evidence/v167-short-draft-naturalness-real-first/result.md) · [`v167-hook-refactor-live-smoke/result.md`](maintenance/tests/evidence/v167-hook-refactor-live-smoke/result.md) · [`v167-formulaic-mechanicality-real-first/result.md`](maintenance/tests/evidence/v167-formulaic-mechanicality-real-first/result.md)。完整记录见 [`maintenance/docs/evidence/README.md`](maintenance/docs/evidence/README.md)。
+最近 5 份证据：[`release-1.6.8-rc.md`](maintenance/tests/evidence/release-1.6.8-rc.md) · [`v168-overlength-shortdraft-real-first/result.md`](maintenance/tests/evidence/v168-overlength-shortdraft-real-first/result.md) · [`release-1.6.7.md`](maintenance/tests/evidence/release-1.6.7.md) · [`v167-short-draft-naturalness-real-first/result.md`](maintenance/tests/evidence/v167-short-draft-naturalness-real-first/result.md) · [`v167-hook-refactor-live-smoke/result.md`](maintenance/tests/evidence/v167-hook-refactor-live-smoke/result.md)。完整记录见 [`maintenance/docs/evidence/README.md`](maintenance/docs/evidence/README.md)。
 
 ## 目录结构
 
