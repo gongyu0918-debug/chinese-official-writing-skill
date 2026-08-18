@@ -1,5 +1,5 @@
 {
-  "schema_version": 12,
+  "schema_version": 11,
   "shared_gate_core": "chinese-official-writing/scripts/review_gate.py",
   "activation": {
     "default": "disabled",
@@ -72,25 +72,15 @@
     "status": "candidate",
     "activation": "explicit_static_companion_selection",
     "default_selected": false,
-    "hosts": [
-      "codex",
-      "codebuddy",
-      "claude_code"
-    ],
+    "host": "claude_code",
     "events": [
       "UserPromptSubmit",
-      "PostToolUse:Agent|spawn_agent|multi_agent_v1wait_agent",
+      "PostToolUse:Agent",
       "Stop"
     ],
     "operation": "private_fact_placement_outline_then_one_outline_compliance_pass",
     "automatic_file_generation": false,
-    "local_transaction_files": true,
-    "local_transaction_scope": "codex_only_phase_agent_id_and_content_hashes",
-    "live_lifecycle_verified": {
-      "codex": "0.144.6",
-      "codebuddy": "2.115.0",
-      "claude_code": "2.1.195"
-    },
+    "local_transaction_files": false,
     "coexistence": "standalone_until_multi_stop_coordination_is_verified"
   },
   "hosts": {

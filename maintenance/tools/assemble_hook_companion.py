@@ -205,25 +205,22 @@ def _validate(output: Path, adapter: HostAdapter) -> None:
 
 def _validate_outline(output: Path, adapter: HostAdapter) -> None:
     expected_manifest = output / adapter.manifest_target
-    required = [
+    required = (
         expected_manifest,
         output / "hooks/hooks.json",
         output / "scripts/outline_prompt_hook.py",
+        output / "agents/outline-planner.md",
         output / "skills/chinese-official-writing/SKILL.md",
         output / "skills/chinese-official-writing/scripts/prose_lint.py",
         output / "hook-capability.json",
         output / "README.md",
         output / "LICENSE",
-    ]
-    if adapter.name in {"claude-code", "codebuddy"}:
-        required.append(output / "agents/outline-planner.md")
-    elif adapter.name == "codex":
-        required.append(output / "scripts/outline_prompt_contract.py")
+    )
     missing = [path.relative_to(output).as_posix() for path in required if not path.is_file()]
     if missing:
         raise RuntimeError(f"incomplete outline companion: {missing}")
     if sorted(output.rglob("plugin.json")) != [expected_manifest]:
-        raise RuntimeError("outline companion must contain exactly one host manifest")
+        raise RuntimeError("outline companion must contain exactly one Claude manifest")
     packaged = output / "skills/chinese-official-writing"
     if (packaged / "hooks").exists() or (packaged / "scripts/review_gate.py").exists():
         raise RuntimeError("outline companion must not carry the delivery-gate runtime")
@@ -239,6 +236,8 @@ def assemble(
         raise ValueError(f"unsupported host: {host}")
     if capability not in CAPABILITY_CHOICES:
         raise ValueError(f"unsupported Hook capability: {capability}")
+    if capability == OUTLINE_CAPABILITY and host != "claude-code":
+        raise ValueError("outline_assist currently supports Claude Code only")
     output = output.expanduser().resolve()
     if output.exists():
         raise FileExistsError(f"output already exists: {output}")
@@ -246,48 +245,16 @@ def assemble(
     try:
         if capability == OUTLINE_CAPABILITY:
             _copy_outline_skill(output)
-            if host == "codex":
-                _copy(
-                    OUTLINE_ROOT / "codex-manifest.json",
-                    output / adapter.manifest_target,
-                )
-                _copy(OUTLINE_ROOT / "codex-hooks.json", output / "hooks/hooks.json")
-                _copy(
-                    OUTLINE_ROOT / "codex_outline_prompt_hook.py",
-                    output / "scripts/outline_prompt_hook.py",
-                )
-                _copy(
-                    OUTLINE_ROOT / "outline_prompt_hook.py",
-                    output / "scripts/outline_prompt_contract.py",
-                )
-            elif host == "codebuddy":
-                _copy(
-                    OUTLINE_ROOT / "codebuddy-manifest.json",
-                    output / adapter.manifest_target,
-                )
-                _copy(
-                    OUTLINE_ROOT / "codebuddy-hooks.json",
-                    output / "hooks/hooks.json",
-                )
-                _copy(
-                    OUTLINE_ROOT / "outline_prompt_hook.py",
-                    output / "scripts/outline_prompt_hook.py",
-                )
-                _copy(
-                    OUTLINE_ROOT / "outline-planner.md",
-                    output / "agents/outline-planner.md",
-                )
-            else:
-                _copy(OUTLINE_ROOT / "manifest.json", output / adapter.manifest_target)
-                _copy(OUTLINE_ROOT / "hooks.json", output / "hooks/hooks.json")
-                _copy(
-                    OUTLINE_ROOT / "outline_prompt_hook.py",
-                    output / "scripts/outline_prompt_hook.py",
-                )
-                _copy(
-                    OUTLINE_ROOT / "outline-planner.md",
-                    output / "agents/outline-planner.md",
-                )
+            _copy(OUTLINE_ROOT / "manifest.json", output / adapter.manifest_target)
+            _copy(OUTLINE_ROOT / "hooks.json", output / "hooks/hooks.json")
+            _copy(
+                OUTLINE_ROOT / "outline_prompt_hook.py",
+                output / "scripts/outline_prompt_hook.py",
+            )
+            _copy(
+                OUTLINE_ROOT / "outline-planner.md",
+                output / "agents/outline-planner.md",
+            )
             _copy(OUTLINE_ROOT / "README.md", output / "README.md")
         else:
             _copy_skill(output, adapter)

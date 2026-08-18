@@ -3,33 +3,22 @@ from __future__ import annotations
 from contextlib import redirect_stdout
 import io
 import json
-import os
 from pathlib import Path
 import tempfile
 import unittest
-from unittest.mock import patch
 
 from maintenance.tests.hook_companion_support import ASSEMBLER, load_module
 
 
 ROOT = Path(__file__).resolve().parents[2]
 OUTLINE_MODULE = load_module(
-    "outline_prompt_contract",
+    "cow_outline_prompt_hook",
     ROOT
     / "chinese-official-writing"
     / "hooks"
     / "capabilities"
     / "outline_assist"
     / "outline_prompt_hook.py",
-)
-CODEX_MODULE = load_module(
-    "cow_codex_outline_prompt_hook",
-    ROOT
-    / "chinese-official-writing"
-    / "hooks"
-    / "capabilities"
-    / "outline_assist"
-    / "codex_outline_prompt_hook.py",
 )
 
 
@@ -74,69 +63,39 @@ def _completed_outline_call(tool_id: str = "outline-call") -> list[dict[str, obj
     ]
 
 
-def _codebuddy_completed_outline_call(
-    call_id: str = "outline-call",
-) -> list[dict[str, object]]:
-    return [
-        {
-            "type": "function_call",
-            "name": "Agent",
-            "callId": call_id,
-            "arguments": json.dumps(
-                {"subagent_type": "outline-planner", "prompt": "task"}
-            ),
-        },
-        {
-            "type": "function_call_result",
-            "name": "Agent",
-            "callId": call_id,
-            "status": "completed",
-        },
-    ]
-
-
 class OutlineHookCompanionTests(unittest.TestCase):
-    def test_assembler_builds_three_self_contained_host_companions(self) -> None:
+    def test_assembler_builds_a_claude_only_self_contained_companion(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            output = Path(temporary) / "outline"
+            result = ASSEMBLER.assemble("claude-code", output, "outline_assist")
+            self.assertEqual("outline_assist", result["capability"])
+            self.assertFalse(result["installed"])
+            self.assertFalse(result["enabled"])
+            self.assertFalse(result["network_used"])
+            self.assertTrue((output / ".claude-plugin/plugin.json").is_file())
+            self.assertTrue((output / "agents/outline-planner.md").is_file())
+            self.assertTrue((output / "scripts/outline_prompt_hook.py").is_file())
+            packaged = output / "skills/chinese-official-writing"
+            self.assertTrue((packaged / "SKILL.md").is_file())
+            self.assertTrue((packaged / "scripts/prose_lint.py").is_file())
+            self.assertFalse((packaged / "hooks").exists())
+            self.assertFalse((packaged / "scripts/review_gate.py").exists())
+            self.assertNotIn(
+                "hooks/README.md", (packaged / "SKILL.md").read_text(encoding="utf-8")
+            )
+            hooks = json.loads((output / "hooks/hooks.json").read_text(encoding="utf-8"))[
+                "hooks"
+            ]
+            self.assertEqual(["UserPromptSubmit", "PostToolUse", "Stop"], list(hooks))
+            self.assertEqual("Agent", hooks["PostToolUse"][0]["matcher"])
+
+    def test_assembler_rejects_unverified_outline_hosts(self) -> None:
         with tempfile.TemporaryDirectory() as temporary:
             root = Path(temporary)
-            hosts = {
-                "codex": (".codex-plugin/plugin.json", False, "spawn_agent"),
-                "codebuddy": (".codebuddy-plugin/plugin.json", True, "Agent"),
-                "claude-code": (".claude-plugin/plugin.json", True, "Agent"),
-            }
-            for host, (manifest, has_agent, matcher) in hosts.items():
+            for host in ("codex", "codebuddy"):
                 with self.subTest(host=host):
-                    output = root / host
-                    result = ASSEMBLER.assemble(host, output, "outline_assist")
-                    self.assertEqual("outline_assist", result["capability"])
-                    self.assertFalse(result["installed"])
-                    self.assertFalse(result["enabled"])
-                    self.assertFalse(result["network_used"])
-                    self.assertTrue((output / manifest).is_file())
-                    self.assertEqual(
-                        has_agent, (output / "agents/outline-planner.md").is_file()
-                    )
-                    self.assertEqual(
-                        host == "codex",
-                        (output / "scripts/outline_prompt_contract.py").is_file(),
-                    )
-                    self.assertTrue((output / "scripts/outline_prompt_hook.py").is_file())
-                    packaged = output / "skills/chinese-official-writing"
-                    self.assertTrue((packaged / "SKILL.md").is_file())
-                    self.assertTrue((packaged / "scripts/prose_lint.py").is_file())
-                    self.assertFalse((packaged / "hooks").exists())
-                    self.assertFalse((packaged / "scripts/review_gate.py").exists())
-                    self.assertNotIn(
-                        "hooks/README.md",
-                        (packaged / "SKILL.md").read_text(encoding="utf-8"),
-                    )
-                    hooks = json.loads(
-                        (output / "hooks/hooks.json").read_text(encoding="utf-8")
-                    )["hooks"]
-                    self.assertEqual(
-                        ["UserPromptSubmit", "PostToolUse", "Stop"], list(hooks)
-                    )
-                    self.assertIn(matcher, hooks["PostToolUse"][0]["matcher"])
+                    with self.assertRaisesRegex(ValueError, "Claude Code only"):
+                        ASSEMBLER.assemble(host, root / host, "outline_assist")
 
     def test_stop_scope_requires_a_completed_outline_call_in_current_turn(self) -> None:
         current = [_root_prompt("请起草通知"), *_completed_outline_call()]
@@ -148,89 +107,6 @@ class OutlineHookCompanionTests(unittest.TestCase):
         self.assertFalse(OUTLINE_MODULE._completed_outline_call(incomplete))
         later_turn = [*current, _root_prompt("请帮我审核这份稿件")]
         self.assertFalse(OUTLINE_MODULE._completed_outline_call(later_turn))
-
-    def test_codebuddy_transcript_shape_completes_only_the_current_turn(self) -> None:
-        prompt = {
-            "type": "message",
-            "role": "user",
-            "content": [{"type": "input_text", "text": "请起草通知"}],
-        }
-        current = [prompt, *_codebuddy_completed_outline_call()]
-        self.assertTrue(OUTLINE_MODULE._completed_outline_call(current))
-        self.assertFalse(
-            OUTLINE_MODULE._completed_outline_call([*current, {**prompt}])
-        )
-
-    def test_codebuddy_stop_feedback_does_not_reinject_the_outline_route(self) -> None:
-        output = io.StringIO()
-        with redirect_stdout(output):
-            OUTLINE_MODULE.handle(
-                {
-                    "hook_event_name": "UserPromptSubmit",
-                    "prompt": "Stop hook feedback:请核对提纲",
-                }
-            )
-        self.assertEqual("", output.getvalue())
-
-    def test_codebuddy_uses_its_local_agent_alias(self) -> None:
-        output = io.StringIO()
-        with patch.dict(os.environ, {"CODEBUDDY_PLUGIN_ROOT": "C:/plugin"}):
-            with redirect_stdout(output):
-                OUTLINE_MODULE.handle(
-                    {"hook_event_name": "UserPromptSubmit", "prompt": "请起草通知"}
-                )
-        route = output.getvalue()
-        self.assertIn("subagent_type `outline-planner`", route)
-        self.assertNotIn(OUTLINE_MODULE.OUTLINE_AGENT, route)
-
-    def test_codex_state_machine_reaches_one_bounded_stop_and_completion(self) -> None:
-        with tempfile.TemporaryDirectory() as temporary:
-            base = {"session_id": "session", "turn_id": "turn"}
-            with patch.dict(os.environ, {"PLUGIN_DATA": temporary}):
-                output = io.StringIO()
-                with redirect_stdout(output):
-                    CODEX_MODULE.handle(
-                        {**base, "hook_event_name": "UserPromptSubmit", "prompt": "请起草通知"}
-                    )
-                self.assertIn("chinese-official-writing-outline:chinese-official-writing", output.getvalue())
-                CODEX_MODULE.handle(
-                    {
-                        **base,
-                        "hook_event_name": "PostToolUse",
-                        "tool_name": "spawn_agent",
-                        "tool_input": {"message": f"{CODEX_MODULE.OUTLINE_MARKER}\ntask"},
-                        "tool_response": json.dumps({"agent_id": "agent-1"}),
-                    }
-                )
-                output = io.StringIO()
-                with redirect_stdout(output):
-                    CODEX_MODULE.handle(
-                        {
-                            **base,
-                            "hook_event_name": "PostToolUse",
-                            "tool_name": "multi_agent_v1wait_agent",
-                            "tool_input": {"targets": ["agent-1"]},
-                            "tool_response": json.dumps(
-                                {"status": {"agent-1": {"completed": "outline"}}}
-                            ),
-                        }
-                    )
-                self.assertIn("hookSpecificOutput", output.getvalue())
-                output = io.StringIO()
-                with redirect_stdout(output):
-                    CODEX_MODULE.handle(
-                        {**base, "hook_event_name": "Stop", "stop_hook_active": False}
-                    )
-                self.assertIn('"decision": "block"', output.getvalue())
-                CODEX_MODULE.handle(
-                    {**base, "hook_event_name": "Stop", "stop_hook_active": True}
-                )
-                state = json.loads(
-                    (
-                        Path(temporary) / "outline-assist/session-turn.json"
-                    ).read_text(encoding="utf-8")
-                )
-                self.assertEqual("complete", state["phase"])
 
     def test_explicit_task_opt_out_emits_no_outline_route(self) -> None:
         for prompt in (

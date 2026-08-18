@@ -27,8 +27,8 @@
 | `RP-001` 重复与高相似句 | `hooks/capabilities/repetition_cleanup/` | 三 provider 5 组；SOL max 功能 PASS，长稿 1 WARN | 三宿主静态组装；Codex 与当前 WorkBuddy companion 均在线 E1/hash 闭环 | 已覆盖并随 v1.6.5 发布；Claude 尚未做当前能力在线样本 |
 | `AH-001` 引用与硬锚 | `hooks/shared/hard_anchors.py`；under/over 机械门与既有语义验收 | 24/24 先行实验；12份原型/回放；12次缺口修复真实修订 | 单 coordinator 内共享，不另起 Hook；三宿主 companion 静态组装 | 已集成 `main`；字段、标识数字、汉字数量和篇幅授权边界回归通过，最后窄增量三方冷审均 PASS；其他改稿能力尚未迁移 |
 | `OV-001` 超长收束 | `hooks/capabilities/over_length/`、短稿自然收束叶 | 两家 provider 先行原型；同一 D0 498→285，SOL max 六项全 PASS；Qwen 补丁后同稿重放通过 | Claude Code 在线 D1/hash 闭环；Grok 4.6 冷审修复；三宿主静态组装 | 已随 v1.6.8 发布，五项边界补丁随 v1.6.9 发布；Codex/CodeBuddy 当前版本在线样本待补 |
-| `OT-001` 提纲冻结与核对 | `hooks/capabilities/outline_assist/` | 稀疏正文、完整文稿、固定提纲、改稿和长稿真实写稿；边界稿两家冷审 PASS | Codex、WorkBuddy / CodeBuddy、Claude Code 在线 Agent + Stop 生命周期 | 已合入本地 `main@26b59c10`；不承担篇幅补足或其他 Stop companion 组合 |
-| `OT-002` 提纲修正 | 规格已登记 | 尚未运行专门样本 | 复用 OT-001 正文前检查点，不在 Stop 猜提纲 | 未覆盖；用户固定提纲的层级、重复和缺项修正继续独立验证 |
+| `OT-001` 提纲冻结与核对 | 本地付费候选 `codex/paid-outline-review` | 稀疏正文、完整文稿、固定提纲、改稿和长稿真实写稿；边界稿两家冷审 PASS | Codex、WorkBuddy / CodeBuddy、Claude Code 在线 Agent + Stop 生命周期 | 已验证后从公开 `main` 撤出；公开包不含该能力 |
+| `OT-002` 提纲修正 | 本地付费候选规格 | 尚未运行专门样本 | 复用 OT-001 正文前检查点，不在 Stop 猜提纲 | 未覆盖；不进入公开版能力范围 |
 | `MT-001` 真实结果优先 | `AGENTS.md`、本规格层 | v1.6.4 已采用；Codex GUI 本地 Qwen3.8 27B 5项串行评估为4 PASS、1 WARN | 5/5技术完成，但0/5具有可核验读取回执；本地 writer 不兼任终审 | 已覆盖规则；本地27B暂不纳入任务池，64K别名仅保留为实验资产 |
 | `MT-002` 可达性 | SKILL、说明、组装器、维护索引 | 不适用 | reachability/链接最小检查 | 持续项 |
 | `MT-003` 公开面克制 | 根 README、维护索引 | 最近五次主要证据 | 内部 HOLD 不进入产品宣传 | 持续项 |
