@@ -10,7 +10,7 @@
 | `WR-004` 文种用语 | `references/formulaic-language.md`、新闻消息叶、SKILL直接路由 | 20类真实写稿，原型19/20；“编者按”修复后目标20/20 | 不适用 | 已覆盖并随 v1.6.6 发布 |
 | `WR-005` 短稿自然度与常用语机械化 | `references/short-draft-naturalness.md`、信息选择和文种叶 | 短稿 R3 上限题8次，候选3胜0负1平且硬边界全 PASS；产品接入后两篇在线直写可用；常用语 R1—R6 真实调用 | 交付洁净度与重复清理只作可选兜底 | 短稿自然度已随 v1.6.7 发布；硬下限归 under-length；常用语 R1—R6 均 HOLD，本版未改总表 |
 | `WR-006` 审稿模式 | SKILL 任务模式、Hook bypass | OpenCode Go 自然审稿请求 | 自然审稿、复合成稿和引语反控已完成 | 已随 v1.6.9 发布 |
-| `WR-007` 语义减载与自然表达 | `codex/post-v169-semantic-diet` 的最小 reference 候选 | 16/16 真实稿；SOL 解盲候选胜2、基线胜1、难分5 | 不属于独立 Hook | HOLD；P06 候选新增“待确定后另行报告”，下轮只修这一机制后复测 |
+| `WR-007` 语义减载与自然表达 | `references/anti-ai-patterns.md`、`references/genre-playbook-request.md` 的最小候选 | R1 16稿；R2—R4 20稿，最终R4两家4/4无材料外后续动作 | 不属于独立 Hook | `PASS_FOR_INTEGRATION`；只写到现有事实和状态，请示叶单独压住供应商确定后的采购、报告、到货、验收和付款外推 |
 | `WR-008` 标题与正文边界 | canonical SKILL 主入口标题条目 | 16/16 生成无回退；12/12 同稿修复，候选6/6精确；自然路由R2两家均通过 | 不属于独立 Hook | 已合入；主标题无句号并空一行、层级标题无句号、编号正文句保留句号 |
 | `HK-001` 无 Hook 闭环 | canonical Skill、普通 packages | v1.6.4 六稿 | 普通镜像排除 Hook | 已覆盖 |
 | `HK-002` 写稿后插入 | `UserPromptSubmit` + `PostToolUse` + `Stop` coordinator | 不作为文采门 | Codex/Claude 当前在线；WorkBuddy 5.3.13 当前 companion 在线 | 已覆盖生命周期位置 |
