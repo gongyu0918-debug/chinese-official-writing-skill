@@ -1,5 +1,5 @@
 {
-  "schema_version": 11,
+  "schema_version": 10,
   "shared_gate_core": "chinese-official-writing/scripts/review_gate.py",
   "activation": {
     "default": "disabled",
@@ -67,21 +67,6 @@
     "exact_duplicate_action": "candidate_only",
     "high_similarity_action": "semantic_observation_required",
     "failure_action": "original_draft"
-  },
-  "outline_assist_gate": {
-    "status": "candidate",
-    "activation": "explicit_static_companion_selection",
-    "default_selected": false,
-    "host": "claude_code",
-    "events": [
-      "UserPromptSubmit",
-      "PostToolUse:Agent",
-      "Stop"
-    ],
-    "operation": "private_fact_placement_outline_then_one_outline_compliance_pass",
-    "automatic_file_generation": false,
-    "local_transaction_files": false,
-    "coexistence": "standalone_until_multi_stop_coordination_is_verified"
   },
   "hosts": {
     "codex": {
