@@ -86,12 +86,27 @@ class SharedHardAnchorTests(unittest.TestCase):
                 "会议指出：要抓好落实；项目名称：档案数字化"
             ).fields,
         )
+        for indentation in ("\t", "　"):
+            with self.subTest(indentation=repr(indentation)):
+                self.assertEqual(
+                    ("项目名称",),
+                    ANCHORS.snapshot(
+                        f"{indentation}项目名称：档案数字化"
+                    ).fields,
+                )
         self.assertEqual(
             "fields",
             ANCHORS.compare(
                 "会议指出：要抓好落实；项目名称：档案数字化",
                 "会议指出：要抓好落实",
             )["reason"],
+        )
+        self.assertIsNone(
+            ANCHORS.compare(
+                "",
+                "项目名称：甲。\n项目名称：乙。",
+                "项目名称：甲。\n项目名称：乙。",
+            )["reason"]
         )
 
     def test_existing_field_authority_does_not_allow_a_duplicate(self) -> None:
