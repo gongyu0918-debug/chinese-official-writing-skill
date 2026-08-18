@@ -12,7 +12,7 @@
 
 ## 逐版发布证据
 
-- v1.6.9 本地候选的产品范围、清洁包、三宿主静态组装和验证记录见 [`release-1.6.9-rc.md`](../../tests/evidence/release-1.6.9-rc.md)；候选尚未推送或发布。
+- v1.6.9 的 GitHub、SkillHub.cn 与 ClawHub 发布回执见 [`release-1.6.9.md`](../../tests/evidence/release-1.6.9.md)；本地候选范围、清洁包、三宿主静态组装和验证记录保留在 [`release-1.6.9-rc.md`](../../tests/evidence/release-1.6.9-rc.md)。
 - 超长收束、短稿局部去重和 README 制度示例的真实稿先行、Claude Code 在线 D1 与 SOL max 终审：[`v168-overlength-shortdraft-real-first/result.md`](../../tests/evidence/v168-overlength-shortdraft-real-first/result.md)。当前 GitHub、SkillHub.cn 与 ClawHub 发布回执见 [`release-1.6.8.md`](../../tests/evidence/release-1.6.8.md)，本地候选边界、冷审修复、测试与组包记录见 [`release-1.6.8-rc.md`](../../tests/evidence/release-1.6.8-rc.md)。
 - 上一 GitHub、SkillHub.cn 与 ClawHub 发布证据：[`release-1.6.7.md`](../../tests/evidence/release-1.6.7.md)。对应本地候选记录保留在 [`release-1.6.7-rc.md`](../../tests/evidence/release-1.6.7-rc.md)。
 - 上一 GitHub 与 SkillHub.cn 发布证据：[`release-1.6.6.md`](../../tests/evidence/release-1.6.6.md)。本地候选边界、测试和组包记录保留在 [`release-1.6.6-rc.md`](../../tests/evidence/release-1.6.6-rc.md)。
