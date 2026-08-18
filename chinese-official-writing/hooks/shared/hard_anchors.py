@@ -55,6 +55,7 @@ FIELD_SEGMENT_RE: Final = re.compile(
     r"[：:]\s*(?P<value>[^；;]+)"
 )
 FIELD_VALUE_SENTENCE_RE: Final = re.compile(r"[。！？!?]")
+FIELD_INTRO_LABEL_RE: Final = re.compile(r"如下$")
 STATE_CUE_RE: Final = re.compile(r"拟|尚未|未形成|正在|仍在|待核实|待审批|待研究")
 CLAUSE_BOUNDARY_RE: Final = re.compile(r"[\n。！？；;]")
 
@@ -136,6 +137,7 @@ def _field_labels(text: str) -> tuple[str, ...]:
             match
             for match in FIELD_SEGMENT_RE.finditer(line)
             if match.group("value").strip()
+            and not FIELD_INTRO_LABEL_RE.search(match.group("label").strip())
         ]
         if len(matches) >= 2 and all(
             not FIELD_VALUE_SENTENCE_RE.search(match.group("value"))

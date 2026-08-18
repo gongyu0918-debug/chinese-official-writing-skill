@@ -60,6 +60,30 @@ class SharedHardAnchorTests(unittest.TestCase):
             "fields",
             ANCHORS.compare("姓名：甲；部门：乙", "姓名：甲；科室：乙")["reason"],
         )
+        self.assertEqual(
+            ("项目名称",),
+            ANCHORS.snapshot("项目名称：档案数字化。").fields,
+        )
+        self.assertIsNone(
+            ANCHORS.compare(
+                "会议指出：要抓好落实；同时强调：要压实责任。",
+                "会议指出：要抓好落实；并强调：要压实责任。",
+            )["reason"]
+        )
+        self.assertEqual(
+            (),
+            ANCHORS.snapshot("现将有关情况说明如下：目前已完成核验。").fields,
+        )
+
+    def test_existing_field_authority_does_not_allow_a_duplicate(self) -> None:
+        self.assertEqual(
+            "fields",
+            ANCHORS.compare(
+                "项目名称：设备采购",
+                "项目名称：设备采购；项目名称：设备采购",
+                allowed_field_labels={"项目名称"},
+            )["reason"],
+        )
 
     def test_ascii_identifiers_and_common_cjk_quantities_are_hard_anchors(self) -> None:
         for original, candidate, reason in (
@@ -70,6 +94,12 @@ class SharedHardAnchorTests(unittest.TestCase):
         ):
             with self.subTest(original=original):
                 self.assertEqual(reason, ANCHORS.compare(original, candidate)["reason"])
+        for original, candidate in (
+            ("该项工作十分重要。", "该项工作非常重要。"),
+            ("一个个难题得到解决。", "难题逐个得到解决。"),
+        ):
+            with self.subTest(original=original):
+                self.assertIsNone(ANCHORS.compare(original, candidate)["reason"])
 
     def test_count_reduction_requires_relation_review(self) -> None:
         original = "本次共核验75件工单。经逐项核对，75件工单均已纳入本次核验范围，其中22件需要补充材料。"
@@ -137,6 +167,12 @@ class SharedHardAnchorTests(unittest.TestCase):
                 "标题为采购请示，字段包括项目名称、申请数量，请扩写。"
             ),
         )
+        self.assertEqual(
+            {"请求事项", "项目名称"},
+            UNDER._required_field_labels(
+                "字段包括项目名称、请求事项，请扩写。"
+            ),
+        )
 
     def test_length_bound_with_unit_does_not_authorize_a_new_fact(self) -> None:
         result = ANCHORS.compare(
@@ -146,10 +182,24 @@ class SharedHardAnchorTests(unittest.TestCase):
             ignored_authority_values={"300", "400"},
         )
         self.assertEqual("numbers", result["reason"])
+        self.assertIsNone(
+            ANCHORS.compare(
+                "活动筹备工作正在推进。",
+                "活动筹备工作正在推进，已有100人报名。",
+                "请写明已有100人报名，扩写到100—200字。",
+                ignored_authority_values={"100", "200"},
+            )["reason"]
+        )
+        self.assertIsNone(
+            ANCHORS.compare(
+                "设备采购正在办理。",
+                "拟购置H100设备。",
+                "材料指定H100设备，请扩写到100—200字。",
+                ignored_authority_values={"100", "200"},
+            )["reason"]
+        )
 
-    def test_contract_load_is_stable_and_compare_failure_falls_back(self) -> None:
-        self.assertIs(UNDER._load_hard_anchor_contract(), UNDER._load_hard_anchor_contract())
-        self.assertIs(OVER._load_hard_anchor_contract(), OVER._load_hard_anchor_contract())
+    def test_compare_failure_and_second_load_failure_fall_back(self) -> None:
         broken = type("BrokenAnchors", (), {"compare": staticmethod(lambda *args, **kwargs: 1 / 0)})()
         with patch.object(UNDER, "_load_hard_anchor_contract", return_value=broken):
             self.assertEqual(
@@ -158,6 +208,54 @@ class SharedHardAnchorTests(unittest.TestCase):
                     "原稿。", "候选稿。", {"minimum": 1, "maximum": 100, "scope": "full"}, ""
                 ),
             )
+
+        class BreakOnSecondCompare:
+            def __init__(self) -> None:
+                self.calls = 0
+
+            def compare(self, *args, **kwargs):
+                self.calls += 1
+                if self.calls == 1:
+                    return {"reason": None, "relation_packet": []}
+                raise RuntimeError("second compare failed")
+
+        second = BreakOnSecondCompare()
+        record = {
+            "request": "",
+            "under_length": {
+                "phase": UNDER.PHASE_REVISION,
+                "original": "原稿。",
+                "original_count": 3,
+                "spec": {"minimum": 1, "maximum": 100, "scope": "full"},
+            },
+        }
+        with patch.object(UNDER, "_load_hard_anchor_contract", return_value=second):
+            result = UNDER.advance(
+                {"last_assistant_message": "候选稿。"}, record
+            )
+        self.assertEqual("block", result["decision"])
+        self.assertEqual("D0", record["under_length"]["audit"]["selection"])
+        self.assertEqual(
+            "under_length_hard_anchor_contract_unavailable",
+            record["under_length"]["audit"]["reason"],
+        )
+
+        over_record = {
+            "request": "",
+            "over_length": {
+                "original": "原稿。",
+                "original_count": 3,
+                "spec": {"minimum": 0, "maximum": 100, "scope": "full"},
+            },
+        }
+        with patch.object(OVER, "_verdict_instruction", return_value=None):
+            result = OVER._begin_verdict(over_record, "候选稿。")
+        self.assertEqual("block", result["decision"])
+        self.assertEqual("D0", over_record["over_length"]["audit"]["selection"])
+        self.assertEqual(
+            "over_length_hard_anchor_contract_unavailable",
+            over_record["over_length"]["audit"]["reason"],
+        )
         with patch.object(OVER, "_load_hard_anchor_contract", return_value=broken):
             self.assertEqual(
                 "over_length_hard_anchor_contract_unavailable",
