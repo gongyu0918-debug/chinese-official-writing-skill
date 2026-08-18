@@ -27,7 +27,7 @@
 - `WR-009` 文后提示与正文分区：OpenCode Go 同题实稿中，基线依赖 Markdown 横线分隔，最小候选改为完整正文后空行加无编号正文外标题；只补语义接引和高信号 lint，不增加 Hook。
 - `AH-001` 共享硬锚：24次先行实验和12份原型/回放后已接入 under/over；三方 DIFF 冷审确认的5个主缺口及后续字段边界均已以12次真实修订与冻结稿重放复核，最后窄增量 SOL/Grok/Qwen 均 PASS。其他改稿能力后续按实际需要迁移。
 - WorkBuddy/CodeBuddy 当前在线生命周期：WorkBuddy 5.3.13、CodeBuddy CLI 2.115.0 已完成当前 companion 的 UserPromptSubmit、PostToolUse、Stop、事务、E1 选择及终稿 hash 闭环；`--print` 会在阻断后退出，完整续跑采用交互生命周期。
-- 本地 Qwen3.8 27B 写稿 lane：Codex GUI 首稿事实与结构通过；当前原模型实际以131072上下文运行。64K Ollama 别名已建立并留有可复现 Modelfile，待 Codex 网关重载后再核新名称，不作为独立终审。
+- 本地 Qwen3.8 27B 评估：Codex GUI 5项串行任务为4份写稿 PASS、1份审稿 WARN，运行稳定但没有可核验的 Skill 文件读取回执。当前不纳入任务池；64K Ollama 别名与证据保留，模型已停止释放显存。
 - GitHub README 制度示例替换已随 v1.6.8 发布：历史 evidence 原文未改，公开页使用事实安全的八条制度正文。
 
 ### 本轮收束顺序

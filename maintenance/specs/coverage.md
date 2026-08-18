@@ -29,7 +29,7 @@
 | `OV-001` 超长收束 | `hooks/capabilities/over_length/`、短稿自然收束叶 | 两家 provider 先行原型；同一 D0 498→285，SOL max 六项全 PASS；Qwen 补丁后同稿重放通过 | Claude Code 在线 D1/hash 闭环；Grok 4.6 冷审修复；三宿主静态组装 | 已随 v1.6.8 发布，五项边界补丁随 v1.6.9 发布；Codex/CodeBuddy 当前版本在线样本待补 |
 | `OT-001` 提纲冻结与核对 | `hooks/capabilities/outline_assist/` | 稀疏正文、完整文稿、固定提纲、改稿和长稿真实写稿；边界稿两家冷审 PASS | Codex、WorkBuddy / CodeBuddy、Claude Code 在线 Agent + Stop 生命周期 | 已合入本地 `main@26b59c10`；不承担篇幅补足或其他 Stop companion 组合 |
 | `OT-002` 提纲修正 | 规格已登记 | 尚未运行专门样本 | 复用 OT-001 正文前检查点，不在 Stop 猜提纲 | 未覆盖；用户固定提纲的层级、重复和缺项修正继续独立验证 |
-| `MT-001` 真实结果优先 | `AGENTS.md`、本规格层 | v1.6.4 已采用；Codex GUI 本地 Qwen3.8 27B 探索稿通过 | 篇幅候选暴露了反例；本地 writer 不兼任终审 | 已覆盖规则；本地低成本 lane 按需只读必要 reference，64K别名待网关重载核验 |
+| `MT-001` 真实结果优先 | `AGENTS.md`、本规格层 | v1.6.4 已采用；Codex GUI 本地 Qwen3.8 27B 5项串行评估为4 PASS、1 WARN | 5/5技术完成，但0/5具有可核验读取回执；本地 writer 不兼任终审 | 已覆盖规则；本地27B暂不纳入任务池，64K别名仅保留为实验资产 |
 | `MT-002` 可达性 | SKILL、说明、组装器、维护索引 | 不适用 | reachability/链接最小检查 | 持续项 |
 | `MT-003` 公开面克制 | 根 README、维护索引 | 最近五次主要证据 | 内部 HOLD 不进入产品宣传 | 持续项 |
 | `MT-004` 信息熵与重复规则 | SKILL/reference 路由与叶子停止条件 | 12组真实读取；24次组合写稿 | 不属于 Hook | `OBSERVE`；已扫描重复，尚无真实稿回退，不为去重破坏叶子自包含 |
