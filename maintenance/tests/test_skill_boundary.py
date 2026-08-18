@@ -225,6 +225,17 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assertIn("不用 Markdown `**` 加粗、`###`、代码块或 `---` 横线包装", text)
         self.assertIn("Markdown 加粗、代码块、`###` 标题", checklist)
 
+    def test_plain_text_title_boundary_contract_is_explicit(self) -> None:
+        text = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
+
+        for phrase in [
+            "纯文本主标题行末不加句号",
+            "标题后空一行",
+            "`一、申请事项`等层级标题不加句号",
+            "编号内容本身是完整正文句时仍用正常句末标点",
+        ]:
+            self.assertEqual(text.count(phrase), 1)
+
     def test_style_references_keep_precise_routes_without_common_error_catchall(self) -> None:
         text = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
 
