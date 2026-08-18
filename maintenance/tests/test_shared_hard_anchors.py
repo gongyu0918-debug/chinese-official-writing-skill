@@ -80,6 +80,19 @@ class SharedHardAnchorTests(unittest.TestCase):
             (),
             ANCHORS.snapshot("现将有关情况说明如下：目前已完成核验。").fields,
         )
+        self.assertEqual(
+            ("项目名称",),
+            ANCHORS.snapshot(
+                "会议指出：要抓好落实；项目名称：档案数字化"
+            ).fields,
+        )
+        self.assertEqual(
+            "fields",
+            ANCHORS.compare(
+                "会议指出：要抓好落实；项目名称：档案数字化",
+                "会议指出：要抓好落实",
+            )["reason"],
+        )
 
     def test_existing_field_authority_does_not_allow_a_duplicate(self) -> None:
         self.assertEqual(
@@ -87,6 +100,15 @@ class SharedHardAnchorTests(unittest.TestCase):
             ANCHORS.compare(
                 "项目名称：设备采购",
                 "项目名称：设备采购；项目名称：设备采购",
+                allowed_field_labels={"项目名称"},
+            )["reason"],
+        )
+        self.assertEqual(
+            "fields",
+            ANCHORS.compare(
+                "",
+                "项目名称：档案数字化。\n项目名称：档案数字化。",
+                "项目名称：档案数字化。",
                 allowed_field_labels={"项目名称"},
             )["reason"],
         )
