@@ -137,6 +137,7 @@ def _validate(output: Path, adapter: HostAdapter) -> None:
         output / "skills/chinese-official-writing/hooks/capabilities/under_length/runtime.py",
         output / "skills/chinese-official-writing/hooks/capabilities/over_length/runtime.py",
         output / "skills/chinese-official-writing/hooks/capabilities/delivery_cleanliness/runtime.py",
+        output / "skills/chinese-official-writing/hooks/shared/hard_anchors.py",
         output / "skills/chinese-official-writing/scripts/review_gate.py",
         output / "hook-capability.json",
         output / "README.md",

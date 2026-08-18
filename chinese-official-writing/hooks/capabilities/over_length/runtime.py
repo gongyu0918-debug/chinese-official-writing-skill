@@ -47,11 +47,6 @@ MATERIAL_CONTEXT_RE: Final = re.compile(
     r"(?:材料|附件|引语|原文|背景|摘录|写明|载明|提到|如下|制度|合同|条款).{0,18}$"
 )
 APPROXIMATE_LENGTH_RE: Final = re.compile(r"(?:约|左右|上下)")
-NUMBER_RE: Final = re.compile(r"\d+(?:\.\d+)?")
-CJK_QUANTITY_RE: Final = re.compile(
-    r"[一二三四五六七八九十百千万两]+(?:台|件|项|次|个月|年|天|份|人|套|批|元)"
-)
-QUOTE_RE: Final = re.compile(r"[\"“][^\"”\n]+[\"”]")
 RESPONSIBILITY_SUBJECT_RE: Final = re.compile(
     r"(?:^|[，。；;\n])\s*(?P<subject>[\u4e00-\u9fffA-Za-z0-9（）()·]{2,20}?)"
     r"(?:负责|牵头|承担)"
@@ -82,6 +77,7 @@ ARABIC_NUMBERED_ITEM_RE: Final = re.compile(r"^\s*\d+[.、]")
 CONTRACT_PATH: Final = (
     Path(__file__).resolve().parents[1] / "protective_expansion" / "contract.py"
 )
+HARD_ANCHOR_PATH: Final = Path(__file__).resolve().parents[2] / "shared" / "hard_anchors.py"
 
 
 def _sha256_text(value: str) -> str:
@@ -202,6 +198,21 @@ def _load_repetition_contract() -> Any | None:
     return module
 
 
+def _load_hard_anchor_contract() -> Any | None:
+    try:
+        spec = importlib.util.spec_from_file_location(
+            "cow_over_length_hard_anchors", HARD_ANCHOR_PATH
+        )
+        if spec is None or spec.loader is None:
+            return None
+        module = importlib.util.module_from_spec(spec)
+        sys.modules[spec.name] = module
+        spec.loader.exec_module(module)
+    except Exception:
+        return None
+    return module
+
+
 def _extract_json_object(value: Any) -> dict[str, Any] | None:
     if not isinstance(value, str):
         return None
@@ -294,12 +305,19 @@ def mechanical_reason(
 ) -> str | None:
     if not candidate.strip():
         return "over_length_empty_candidate"
-    if set(NUMBER_RE.findall(candidate)) != set(NUMBER_RE.findall(original)):
+    anchors = _load_hard_anchor_contract()
+    if anchors is None:
+        return "over_length_hard_anchor_contract_unavailable"
+    anchor_result = anchors.compare(original, candidate)
+    anchor_reason = anchor_result.get("reason")
+    if anchor_reason == "numbers":
         return "over_length_number_added_dropped_or_changed"
-    if set(CJK_QUANTITY_RE.findall(candidate)) != set(CJK_QUANTITY_RE.findall(original)):
+    if anchor_reason == "quantities":
         return "over_length_quantity_added_dropped_or_changed"
-    if not set(QUOTE_RE.findall(original)).issubset(set(QUOTE_RE.findall(candidate))):
+    if anchor_reason == "quotes":
         return "over_length_quote_dropped_or_changed"
+    if anchor_reason == "fields":
+        return "over_length_field_order_or_name_changed"
     if not _headings(original).issubset(_headings(candidate)):
         return "over_length_outline_heading_dropped"
     transition_reason = _status_transition_reason(original, candidate)
@@ -360,6 +378,12 @@ def _revision_instruction(
 def _verdict_instruction(
     request: str, original: str, candidate: str, spec: dict[str, Any]
 ) -> str:
+    anchors = _load_hard_anchor_contract()
+    anchor_relations = (
+        anchors.compare(original, candidate).get("relation_packet", [])
+        if anchors is not None
+        else []
+    )
     skeleton = {
         "schema_version": SCHEMA_VERSION,
         "request_sha256": _sha256_text(request),
@@ -379,6 +403,8 @@ def _verdict_instruction(
         "只读核验压缩稿相对原始稿的变化，只输出一个JSON对象。"
         "删除零增量复述、客套和胶水可以通过；句式、段落合并可以变化。"
         "遗漏独立事实、状态、主体、职责、关系或必需结构，改变未决强度，或者新增具体内容，均须FAIL。"
+        "候选以等义总量句明确承载同一主体、对象和范围时，不要求重复保留原稿中的范围自证；"
+        "只有范围缩小、主体或对象换位、事项遗漏或状态改变才按关系丢失处理。"
         "还要跨段检查同义重复：前文已经完整列出职责、原因、理由或目的，结尾只换成‘继续做好、持续推进、"
         "有序推进’再次列举而没有新状态、新要求或新关系时，natural_and_non_repetitive必须为false并FAIL。"
         "不要因为更短而降低标准，也不要把正常精简误判为事实缺失；不确定即FAIL。\n"
@@ -386,6 +412,7 @@ def _verdict_instruction(
         + "\n【原请求】\n" + request
         + "\n【原始稿】\n" + original
         + "\n【压缩稿】\n" + candidate
+        + "\n【共享硬锚关系复核项】\n" + json.dumps(anchor_relations, ensure_ascii=False)
         + "\n【篇幅规格】\n" + json.dumps(spec, ensure_ascii=False)
     )
 
