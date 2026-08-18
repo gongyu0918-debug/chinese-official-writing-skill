@@ -1,0 +1,46 @@
+[
+  {
+    "id": "TB01",
+    "mode": "plain_text",
+    "request": "请起草一份设备购置申请，纯文本输出。标题为‘关于购置档案扫描设备的申请’，主送校领导。正文采用‘一、申请事项’‘二、购置理由’两个小标题。已知：拟购置档案扫描仪6台，单价4200元，总额25200元；现有设备老化，扫描速度较慢；经费已列入年度预算。只输出完整正文。",
+    "checks": [
+      "exact_main_title_without_terminal_period",
+      "blank_line_after_main_title",
+      "section_headings_without_terminal_period",
+      "facts_preserved"
+    ]
+  },
+  {
+    "id": "TB02",
+    "mode": "plain_text",
+    "request": "请起草一份情况说明，纯文本输出。标题为‘关于业务系统短时异常的情况说明’。已知：8月17日9时20分至9时45分，业务系统出现3次接口超时；9时50分恢复正常；技术人员正在核查原因。不要主送机关，不设小标题，只输出完整正文。",
+    "checks": [
+      "exact_main_title_without_terminal_period",
+      "blank_line_after_main_title",
+      "no_extra_heading",
+      "facts_and_pending_state_preserved"
+    ]
+  },
+  {
+    "id": "TB03",
+    "mode": "plain_text",
+    "request": "请起草一份培训工作总结，纯文本输出。标题为‘2026年第三季度业务培训工作总结’。正文采用‘一、工作开展情况’‘二、存在问题’‘三、下一步安排’三个小标题。材料：本季度开展培训2次，共46人参加；收集问题18项，已处理5项，其余问题正在办理；下一季度拟围绕高频问题开展专题答疑。只输出完整正文。",
+    "checks": [
+      "exact_main_title_without_terminal_period",
+      "blank_line_after_main_title",
+      "section_headings_without_terminal_period",
+      "status_strength_preserved"
+    ]
+  },
+  {
+    "id": "TB04",
+    "mode": "plain_text_control",
+    "request": "请将下列核查记录整理为简短正式文本，保留编号正文句的写法，不要把编号句改成小标题。标题为‘设备运行核查记录’。正文必须依次写：一、经核查，3台设备均已恢复运行。二、日志显示，异常集中发生在9时20分至9时45分。三、技术人员正在继续核查原因。只输出完整正文。",
+    "checks": [
+      "exact_main_title_without_terminal_period",
+      "blank_line_after_main_title",
+      "numbered_sentences_keep_terminal_period",
+      "numbers_and_state_preserved"
+    ]
+  }
+]
