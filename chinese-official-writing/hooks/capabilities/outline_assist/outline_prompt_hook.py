@@ -4,7 +4,6 @@
 from __future__ import annotations
 
 import json
-import os
 from pathlib import Path
 import re
 import sys
@@ -12,7 +11,6 @@ from typing import Any
 
 
 OUTLINE_AGENT = "chinese-official-writing-outline:outline-planner"
-OUTLINE_AGENT_ALIASES = frozenset({OUTLINE_AGENT, "outline-planner"})
 MAX_TRANSCRIPT_BYTES = 10_000_000
 HOOK_OPT_OUT_RE = re.compile(
     r"(?:"
@@ -40,16 +38,6 @@ OUTLINE_FREEZE = """The document elements and fact-placement outline returned by
 OUTLINE_REPAIR = """请对照本轮 `outline-planner` 已返回的文档要素和事实放置提纲，只做一次提纲符合性核对：标为“无”的主送、落款、日期等要素不得补写，删除泛称、占位符、当前日期和材料未给的报送对象；提纲中的“正文（不设小标题）”只是私有位置标签，成稿不得输出该标签、编号或替代小标题；只删除能够明确指出与提纲不对应的目的、意义、工作要求、通用流程，以及被扩大的动作、责任、对象、状态或结论。章节内对已给事实的归纳、分组衔接和不改变信息的自然表述属于正文，不因简短而删；不得为了精简而改写或删除已在提纲内的内容。初稿没有明确纲外内容时原样重发。用户以 `《……》` 指代拟写文名时，正式主标题不保留这层书名号，除非用户明确要求保留。不得新增替代句，只输出核对后的完整正文，不解释过程。"""
 
 
-def _runtime_outline_agent() -> str:
-    if os.environ.get("CODEBUDDY_PLUGIN_ROOT"):
-        return "outline-planner"
-    return OUTLINE_AGENT
-
-
-def _for_runtime(text: str) -> str:
-    return text.replace(OUTLINE_AGENT, _runtime_outline_agent())
-
-
 def _read_transcript(raw_path: object) -> list[dict[str, Any]]:
     if not isinstance(raw_path, str) or not raw_path:
         return []
@@ -75,33 +63,15 @@ def _current_turn(records: list[dict[str, Any]]) -> list[dict[str, Any]]:
     for index in range(len(records) - 1, -1, -1):
         item = records[index]
         message = item.get("message")
-        claude_user = (
+        if (
             item.get("type") == "user"
             and item.get("isSynthetic") is not True
             and isinstance(message, dict)
             and message.get("role") == "user"
             and isinstance(message.get("content"), str)
-        )
-        codebuddy_user = (
-            item.get("type") == "message"
-            and item.get("role") == "user"
-            and isinstance(item.get("content"), list)
-        )
-        if claude_user or codebuddy_user:
+        ):
             return records[index + 1 :]
     return []
-
-
-def _json_object(value: object) -> dict[str, Any]:
-    if isinstance(value, dict):
-        return value
-    if not isinstance(value, str):
-        return {}
-    try:
-        parsed = json.loads(value)
-    except json.JSONDecodeError:
-        return {}
-    return parsed if isinstance(parsed, dict) else {}
 
 
 def _completed_outline_call(records: list[dict[str, Any]]) -> bool:
@@ -118,7 +88,7 @@ def _completed_outline_call(records: list[dict[str, Any]]) -> bool:
                     block.get("type") == "tool_use"
                     and block.get("name") == "Agent"
                     and isinstance(tool_input, dict)
-                    and tool_input.get("subagent_type") in OUTLINE_AGENT_ALIASES
+                    and tool_input.get("subagent_type") == OUTLINE_AGENT
                     and isinstance(block.get("id"), str)
                 ):
                     tool_ids.add(block["id"])
@@ -126,26 +96,12 @@ def _completed_outline_call(records: list[dict[str, Any]]) -> bool:
         if (
             isinstance(result, dict)
             and result.get("status") == "completed"
-            and result.get("agentType") in OUTLINE_AGENT_ALIASES
+            and result.get("agentType") == OUTLINE_AGENT
             and isinstance(message, dict)
         ):
             for block in message.get("content", []):
                 if isinstance(block, dict) and isinstance(block.get("tool_use_id"), str):
                     completed_ids.add(block["tool_use_id"])
-        if item.get("type") == "function_call" and item.get("name") == "Agent":
-            tool_input = _json_object(item.get("arguments"))
-            if (
-                tool_input.get("subagent_type") in OUTLINE_AGENT_ALIASES
-                and isinstance(item.get("callId"), str)
-            ):
-                tool_ids.add(item["callId"])
-        if (
-            item.get("type") == "function_call_result"
-            and item.get("name") == "Agent"
-            and item.get("status") == "completed"
-            and isinstance(item.get("callId"), str)
-        ):
-            completed_ids.add(item["callId"])
     return bool(tool_ids & completed_ids)
 
 
@@ -174,30 +130,19 @@ def _requests_hook_opt_out(prompt: object) -> bool:
 def handle(event: dict[str, Any]) -> None:
     event_name = event.get("hook_event_name")
     if event_name == "UserPromptSubmit":
-        prompt = event.get("prompt")
-        if isinstance(prompt, str) and prompt.startswith("Stop hook feedback:"):
+        if _requests_hook_opt_out(event.get("prompt")):
             return
-        if _requests_hook_opt_out(prompt):
-            return
-        _additional_context(event_name, _for_runtime(OUTLINE_ROUTE))
+        _additional_context(event_name, OUTLINE_ROUTE)
         return
     if event_name == "PostToolUse" and event.get("tool_name") == "Agent":
         tool_input = event.get("tool_input")
-        if (
-            isinstance(tool_input, dict)
-            and tool_input.get("subagent_type") in OUTLINE_AGENT_ALIASES
-        ):
-            _additional_context(event_name, _for_runtime(OUTLINE_FREEZE))
+        if isinstance(tool_input, dict) and tool_input.get("subagent_type") == OUTLINE_AGENT:
+            _additional_context(event_name, OUTLINE_FREEZE)
         return
     if event_name != "Stop" or event.get("stop_hook_active") is True:
         return
     if _completed_outline_call(_read_transcript(event.get("transcript_path"))):
-        print(
-            json.dumps(
-                {"decision": "block", "reason": _for_runtime(OUTLINE_REPAIR)},
-                ensure_ascii=False,
-            )
-        )
+        print(json.dumps({"decision": "block", "reason": OUTLINE_REPAIR}, ensure_ascii=False))
 
 
 def main() -> int:
