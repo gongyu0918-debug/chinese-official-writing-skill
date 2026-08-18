@@ -1,0 +1,9 @@
+{
+  "baseline_commit": "17de0712fd09a409fc56135e4929caf8bc4c0fce",
+  "candidate_commit": "9a130454ff0d7a84a5d2195390a6985b01ae8a62",
+  "pairs": 12,
+  "writing_packet_sha256": "ae4d746d095128e1177ffb0deeca889f7c65b7ab22f89d67d744c9a143c18be8",
+  "diff_packet_sha256": "71a7862af379ff7e48c6ba63c7de4158d3217e22d1459cbcba11d1b76ad62d98",
+  "entropy_packet_sha256": "bb63aeea4f09e1623c3d7c87c3ca16c71afe374ffa46845d27be12ec8f3c9239",
+  "manifest_sha256": "c621f3948ce26fe73d80366bbcda22083f4a6c152d9071c7048127ea1aa26321"
+}

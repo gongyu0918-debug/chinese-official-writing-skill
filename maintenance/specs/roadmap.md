@@ -22,9 +22,9 @@
 
 ## IN_PROGRESS
 
-- `WR-007` 语义减载与自然表达：R1 后以 R2—R4 继续完成20次真实写稿；最终两份 reference 已合入 `main`，4/4采购复测不再补材料外后续安排，组合冷审进行中。
+- `WR-007` 语义减载与自然表达：R1 后以 R2—R4 继续完成20次真实写稿；最终两份 reference 已合入 `main`。组合后24/24次真实写稿技术有效，SOL/Grok/Qwen 均未发现候选独有硬失败。
 - `WR-008` 标题与正文边界：真实生成、同稿修复和自然路由均已完成；规则已合入主入口现有标题格式条目，不增加格式脚本。
-- `AH-001` 共享硬锚：24次先行实验后，又以12份真实修订验证共享 contract；产品模块已合入 `main` 并接入 under/over。其他改稿能力后续按实际需要迁移，不在本轮一次性重构。
+- `AH-001` 共享硬锚：24次先行实验和12份原型/回放后已接入 under/over；三方 DIFF 冷审确认的5个主缺口及后续字段边界均已以12次真实修订与冻结稿重放复核，最后窄增量 SOL/Grok/Qwen 均 PASS。其他改稿能力后续按实际需要迁移。
 - WorkBuddy/CodeBuddy 当前在线生命周期：WorkBuddy 5.3.13、CodeBuddy CLI 2.115.0 已完成当前 companion 的 UserPromptSubmit、PostToolUse、Stop、事务、E1 选择及终稿 hash 闭环；`--print` 会在阻断后退出，完整续跑采用交互生命周期。
 - GitHub README 制度示例替换已随 v1.6.8 发布：历史 evidence 原文未改，公开页使用事实安全的八条制度正文。
 

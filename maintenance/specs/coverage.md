@@ -10,7 +10,7 @@
 | `WR-004` 文种用语 | `references/formulaic-language.md`、新闻消息叶、SKILL直接路由 | 20类真实写稿，原型19/20；“编者按”修复后目标20/20 | 不适用 | 已覆盖并随 v1.6.6 发布 |
 | `WR-005` 短稿自然度与常用语机械化 | `references/short-draft-naturalness.md`、信息选择和文种叶 | 短稿 R3 上限题8次，候选3胜0负1平且硬边界全 PASS；产品接入后两篇在线直写可用；常用语 R1—R6 真实调用 | 交付洁净度与重复清理只作可选兜底 | 短稿自然度已随 v1.6.7 发布；硬下限归 under-length；常用语 R1—R6 均 HOLD，本版未改总表 |
 | `WR-006` 审稿模式 | SKILL 任务模式、Hook bypass | OpenCode Go 自然审稿请求 | 自然审稿、复合成稿和引语反控已完成 | 已随 v1.6.9 发布 |
-| `WR-007` 语义减载与自然表达 | `references/anti-ai-patterns.md`、`references/genre-playbook-request.md` | R1 16稿；R2—R4 20稿，最终R4两家4/4无材料外后续动作 | 不属于独立 Hook | 已集成 `main`；只写到现有事实和状态，请示叶单独压住供应商确定后的采购、报告、到货、验收和付款外推；组合冷审进行中 |
+| `WR-007` 语义减载与自然表达 | `references/anti-ai-patterns.md`、`references/genre-playbook-request.md` | R1 16稿；R2—R4 20稿；组合后24/24技术有效 | 不属于独立 Hook | 已集成 `main`；三方冷审无候选独有硬失败，只写到现有事实和状态，压住供应商确定后的后续动作外推 |
 | `WR-008` 标题与正文边界 | canonical SKILL 主入口标题条目 | 16/16 生成无回退；12/12 同稿修复，候选6/6精确；自然路由R2两家均通过 | 不属于独立 Hook | 已合入；主标题无句号并空一行、层级标题无句号、编号正文句保留句号 |
 | `HK-001` 无 Hook 闭环 | canonical Skill、普通 packages | v1.6.4 六稿 | 普通镜像排除 Hook | 已覆盖 |
 | `HK-002` 写稿后插入 | `UserPromptSubmit` + `PostToolUse` + `Stop` coordinator | 不作为文采门 | Codex/Claude 当前在线；WorkBuddy 5.3.13 当前 companion 在线 | 已覆盖生命周期位置 |
@@ -24,12 +24,13 @@
 | `UL-004` 证据迁移 | adapter/core/runtime hash 分层 | CodeBuddy 旧完整在线；当前能力同稿复放 | 当前 CodeBuddy 静态包与 canonical runtime 同 hash | 部分；未冒充当前在线登录成功 |
 | `CL-001` 交付洁净度 | `hooks/capabilities/delivery_cleanliness/` | 三 provider 5/5 精确整理；SOL max 全 PASS | 三宿主静态组装；Claude Code、Codex 在线 D1/hash 闭环 | 已覆盖并随 v1.6.5 发布；CodeBuddy 未重跑当前能力在线生命周期 |
 | `RP-001` 重复与高相似句 | `hooks/capabilities/repetition_cleanup/` | 三 provider 5 组；SOL max 功能 PASS，长稿 1 WARN | 三宿主静态组装；Codex 与当前 WorkBuddy companion 均在线 E1/hash 闭环 | 已覆盖并随 v1.6.5 发布；Claude 尚未做当前能力在线样本 |
-| `AH-001` 引用与硬锚 | `hooks/shared/hard_anchors.py`；under/over 机械门与既有语义验收 | 24/24 先行实验；本轮12份真实修订完成原型、回放和生产复测 | 单 coordinator 内共享，不另起 Hook；三宿主 companion 静态组装 | 已集成 `main`；值、引语和字段机械回退，关系变化进入语义复核；其他改稿能力尚未迁移，组合冷审进行中 |
+| `AH-001` 引用与硬锚 | `hooks/shared/hard_anchors.py`；under/over 机械门与既有语义验收 | 24/24 先行实验；12份原型/回放；12次缺口修复真实修订 | 单 coordinator 内共享，不另起 Hook；三宿主 companion 静态组装 | 已集成 `main`；字段、标识数字、汉字数量和篇幅授权边界回归通过，最后窄增量三方冷审均 PASS；其他改稿能力尚未迁移 |
 | `OV-001` 超长收束 | `hooks/capabilities/over_length/`、短稿自然收束叶 | 两家 provider 先行原型；同一 D0 498→285，SOL max 六项全 PASS；Qwen 补丁后同稿重放通过 | Claude Code 在线 D1/hash 闭环；Grok 4.6 冷审修复；三宿主静态组装 | 已随 v1.6.8 发布，五项边界补丁随 v1.6.9 发布；Codex/CodeBuddy 当前版本在线样本待补 |
 | `OT-001/002` 提纲核对与修正 | 规格已登记 | 尚未运行 | 当前生命周期缺正文前提纲检查点 | 未覆盖；优先级低于 Stop-only 快速能力 |
 | `MT-001` 真实结果优先 | `AGENTS.md`、本规格层 | v1.6.4 已采用 | 篇幅候选暴露了反例 | 已覆盖规则，后续严格执行 |
 | `MT-002` 可达性 | SKILL、说明、组装器、维护索引 | 不适用 | reachability/链接最小检查 | 持续项 |
 | `MT-003` 公开面克制 | 根 README、维护索引 | 最近五次主要证据 | 内部 HOLD 不进入产品宣传 | 持续项 |
+| `MT-004` 信息熵与重复规则 | SKILL/reference 路由与叶子停止条件 | 12组真实读取；24次组合写稿 | 不属于 Hook | `OBSERVE`；已扫描重复，尚无真实稿回退，不为去重破坏叶子自包含 |
 
 ## 当前语义层收束
 

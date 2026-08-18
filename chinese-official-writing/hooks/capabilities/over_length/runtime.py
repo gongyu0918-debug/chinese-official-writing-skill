@@ -308,7 +308,10 @@ def mechanical_reason(
     anchors = _load_hard_anchor_contract()
     if anchors is None:
         return "over_length_hard_anchor_contract_unavailable"
-    anchor_result = anchors.compare(original, candidate)
+    try:
+        anchor_result = anchors.compare(original, candidate)
+    except Exception:
+        return "over_length_hard_anchor_contract_unavailable"
     anchor_reason = anchor_result.get("reason")
     if anchor_reason == "numbers":
         return "over_length_number_added_dropped_or_changed"
@@ -377,13 +380,16 @@ def _revision_instruction(
 
 def _verdict_instruction(
     request: str, original: str, candidate: str, spec: dict[str, Any]
-) -> str:
+) -> str | None:
     anchors = _load_hard_anchor_contract()
-    anchor_relations = (
-        anchors.compare(original, candidate).get("relation_packet", [])
-        if anchors is not None
-        else []
-    )
+    if anchors is None:
+        return None
+    try:
+        anchor_relations = anchors.compare(original, candidate).get(
+            "relation_packet", []
+        )
+    except Exception:
+        return None
     skeleton = {
         "schema_version": SCHEMA_VERSION,
         "request_sha256": _sha256_text(request),
@@ -493,17 +499,18 @@ def _begin_revision(record: dict[str, Any]) -> dict[str, Any]:
 
 def _begin_verdict(record: dict[str, Any], candidate: str) -> dict[str, Any]:
     state = record["over_length"]
+    instruction = _verdict_instruction(
+        str(record.get("request") or ""),
+        state["original"],
+        candidate,
+        state["spec"],
+    )
+    if instruction is None:
+        return _select(record, "D0", "over_length_hard_anchor_contract_unavailable")
     state["candidate"] = candidate
     state["candidate_count"] = count_text(candidate, state["spec"]["scope"])
     state["phase"] = PHASE_VERDICT
-    return _block(
-        _verdict_instruction(
-            str(record.get("request") or ""),
-            state["original"],
-            candidate,
-            state["spec"],
-        )
-    )
+    return _block(instruction)
 
 
 def start(event: dict[str, Any], record: dict[str, Any]) -> dict[str, Any] | None:
