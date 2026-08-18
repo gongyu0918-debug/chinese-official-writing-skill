@@ -150,6 +150,15 @@ class OutlineHookCompanionTests(unittest.TestCase):
         self.assertNotIn("write_text", script)
         self.assertIn("不得为了精简而改写或删除", OUTLINE_MODULE.OUTLINE_REPAIR)
         self.assertIn("没有明确纲外内容时原样重发", OUTLINE_MODULE.OUTLINE_REPAIR)
+        self.assertIn("只改局部时，标题写", OUTLINE_MODULE.OUTLINE_ROUTE)
+        self.assertIn("只输出正文", OUTLINE_MODULE.OUTLINE_ROUTE)
+        planner = (source / "outline-planner.md").read_text(encoding="utf-8")
+        self.assertIn("derive one concise title", planner)
+        self.assertIn("只输出正文", planner)
+        self.assertIn("never split it merely to reach a section count", planner)
+        self.assertIn("不得为了凑章节拆分", OUTLINE_MODULE.OUTLINE_ROUTE)
+        self.assertIn("正文（不设小标题）", OUTLINE_MODULE.OUTLINE_ROUTE)
+        self.assertIn("do not print it, number it", OUTLINE_MODULE.OUTLINE_FREEZE)
 
 
 if __name__ == "__main__":
