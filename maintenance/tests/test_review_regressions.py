@@ -143,6 +143,30 @@ class ProseLintStructureTests(unittest.TestCase):
         self.assertIn("material-reading-narration", body_labels)
         self.assertNotIn("material-reading-narration", note_labels)
 
+    def test_gap_note_mode_requires_a_separate_unnumbered_note_region(self) -> None:
+        clean = (
+            "关于采购设备的请示\n\n妥否，请批示。\n\n综合服务中心\n2026年8月18日\n\n"
+            "待确认事项（正文外）：\n1. 主送机关。"
+        )
+        blurred = [
+            "关于采购设备的请示\n\n妥否，请批示。\n待确认事项：\n1. 主送机关。",
+            "关于采购设备的请示\n\n妥否，请批示。\n\n四、待确认事项\n1. 主送机关。",
+            "关于采购设备的请示\n\n妥否，请批示。\n\n---\n\n待确认事项：\n1. 主送机关。",
+            "关于采购设备的请示\n\n妥否，请批示。\n\n---\n\n影响正式报送的待确认事项：\n1. 主送机关。",
+        ]
+
+        clean_labels = {
+            item.label for item in prose_lint.scan("<test>", clean, delivery_mode="gap-note-allowed")
+        }
+        self.assertNotIn("external-note-boundary", clean_labels)
+        for text in blurred:
+            with self.subTest(text=text):
+                labels = {
+                    item.label
+                    for item in prose_lint.scan("<test>", text, delivery_mode="gap-note-allowed")
+                }
+                self.assertIn("external-note-boundary", labels)
+
     def test_gap_note_mode_still_flags_model_leaks_after_note_heading(self) -> None:
         text = (
             "项目拟于8月启动。\n\n待确认事项：\n资金来源待确认。\n"
