@@ -4,6 +4,7 @@ import importlib.util
 from pathlib import Path
 import sys
 import unittest
+from unittest.mock import patch
 
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -45,6 +46,30 @@ class SharedHardAnchorTests(unittest.TestCase):
         fields = "项目名称：档案数字化\n申请数量：6台\n预算金额：25200元"
         reordered = "申请数量：6台\n项目名称：档案数字化\n预算金额：25200元"
         self.assertEqual("fields", ANCHORS.compare(fields, reordered)["reason"])
+
+    def test_prose_colon_is_not_a_field_but_inline_form_fields_are_complete(self) -> None:
+        self.assertEqual(
+            (),
+            ANCHORS.snapshot("现将有关情况说明如下：\n一、基本情况").fields,
+        )
+        self.assertEqual(
+            ("姓名", "部门"),
+            ANCHORS.snapshot("姓名：甲；部门：乙").fields,
+        )
+        self.assertEqual(
+            "fields",
+            ANCHORS.compare("姓名：甲；部门：乙", "姓名：甲；科室：乙")["reason"],
+        )
+
+    def test_ascii_identifiers_and_common_cjk_quantities_are_hard_anchors(self) -> None:
+        for original, candidate, reason in (
+            ("设备型号H100。", "设备型号H200。", "numbers"),
+            ("批次A12正在核验。", "批次A13正在核验。", "numbers"),
+            ("涉及两个小区。", "涉及三个小区。", "quantities"),
+            ("开展两场活动。", "开展三场活动。", "quantities"),
+        ):
+            with self.subTest(original=original):
+                self.assertEqual(reason, ANCHORS.compare(original, candidate)["reason"])
 
     def test_count_reduction_requires_relation_review(self) -> None:
         original = "本次共核验75件工单。经逐项核对，75件工单均已纳入本次核验范围，其中22件需要补充材料。"
@@ -91,6 +116,56 @@ class SharedHardAnchorTests(unittest.TestCase):
             UNDER.mechanical_reason(original, added_bound, spec, request),
         )
 
+    def test_under_length_allows_only_requested_new_fields(self) -> None:
+        spec = {"minimum": 1, "maximum": 100, "scope": "full"}
+        original = "采购事项正在办理。"
+        requested = "项目名称：设备采购\n采购事项正在办理。"
+        request = "字段包括项目名称，请扩写到1—100字。"
+        self.assertIsNone(UNDER.mechanical_reason(original, requested, spec, request))
+        self.assertEqual(
+            "under_length_field_order_or_name_changed",
+            UNDER.mechanical_reason(
+                original,
+                "内部备注：待定\n采购事项正在办理。",
+                spec,
+                request,
+            ),
+        )
+        self.assertEqual(
+            {"申请数量", "采购请示", "项目名称"},
+            UNDER._required_labels(
+                "标题为采购请示，字段包括项目名称、申请数量，请扩写。"
+            ),
+        )
+
+    def test_length_bound_with_unit_does_not_authorize_a_new_fact(self) -> None:
+        result = ANCHORS.compare(
+            "采购事项正在办理。",
+            "采购事项正在办理，共300个。",
+            "请扩写到300—400个字。",
+            ignored_authority_values={"300", "400"},
+        )
+        self.assertEqual("numbers", result["reason"])
+
+    def test_contract_load_is_stable_and_compare_failure_falls_back(self) -> None:
+        self.assertIs(UNDER._load_hard_anchor_contract(), UNDER._load_hard_anchor_contract())
+        self.assertIs(OVER._load_hard_anchor_contract(), OVER._load_hard_anchor_contract())
+        broken = type("BrokenAnchors", (), {"compare": staticmethod(lambda *args, **kwargs: 1 / 0)})()
+        with patch.object(UNDER, "_load_hard_anchor_contract", return_value=broken):
+            self.assertEqual(
+                "under_length_hard_anchor_contract_unavailable",
+                UNDER.mechanical_reason(
+                    "原稿。", "候选稿。", {"minimum": 1, "maximum": 100, "scope": "full"}, ""
+                ),
+            )
+        with patch.object(OVER, "_load_hard_anchor_contract", return_value=broken):
+            self.assertEqual(
+                "over_length_hard_anchor_contract_unavailable",
+                OVER.mechanical_reason(
+                    "原稿。", "候选稿。", {"minimum": 0, "maximum": 100, "scope": "full"}
+                ),
+            )
+
     def test_semantic_verifiers_accept_equivalent_total_scope_without_relation_loss(self) -> None:
         original = "本次共核验75件工单。经逐项核对，75件工单均已纳入本次核验范围，其中22件需要补充材料。"
         candidate = "本次共核验75件工单，经逐项核对，其中22件需补充材料。"
@@ -107,6 +182,7 @@ class SharedHardAnchorTests(unittest.TestCase):
         for prompt in (over_prompt, under_prompt):
             self.assertIn("等义总量句明确承载同一主体、对象和范围", prompt)
             self.assertIn("范围缩小、主体或对象换位", prompt)
+        self.assertIn("‘涉及两个小区’、‘86人参加’", under_prompt)
 
 
 if __name__ == "__main__":
