@@ -43,7 +43,7 @@ Alibaba 首轮把用户用于指代文名的书名号带入正式标题；同模
 ## 结论与边界
 
 - 真实稿支持“前置事实放置子代理 + 成稿后一次提纲符合性删减”，不支持只靠 `plan/ExitPlanMode`，也不支持只在入口增加提示。
-- 当前实证只覆盖 Claude Code 2.1.195 的插件子代理和 Hook 生命周期。Codex、WorkBuddy / CodeBuddy 尚无同一候选的在线子代理生命周期证明，不得宣称已兼容。
+- 这一阶段的实证只覆盖 Claude Code 2.1.195；Codex、WorkBuddy / CodeBuddy 的后续在线结果见本文末尾“三宿主在线生命周期补测”。
 - 首次 `Stop` 主动阻断后，Claude Code 在第三方 Anthropic 网关链仍会显示既有 `stop-hook-error` 通知；本轮每次 Hook 回执均为 `exit_code=0`、`outcome=success`，第二次 `Stop` 放行且进程返回 0。该 UI 兼容提示继续如实保留。
 - 下一步只组装 Claude Code 静态 companion；普通 Skill 不启用、不运行、不写本地事务文件。是否与其他 `Stop` 门禁组合，须另做协调设计和真实生命周期验证，本原子不并行加载两套 `Stop` 修改器。
 
@@ -63,7 +63,7 @@ Alibaba 复跑的 `CLAUDE_CONFIG_DIR` 与临时目录保持隔离，初始化记
 
 另用正常的临时会话复跑同一 Alibaba 通知题，HOME、配置和临时目录均隔离。实际事件为 `UserPromptSubmit → PostToolUse:Agent → Stop(block) → Stop(allow)`，四次 Hook 均为 `exit_code=0`、`outcome=success`，进程返回 0，零重试。终稿未补主送、署名、日期或报送对象，SHA-256 为 `406bf03ad4c72ae760d120e9ab93a955b8dda834a5efe0a3e00927a766ddb746`。这轮证明正常 Claude 会话可以完成一次有界提纲修订；会话记录不可用时安全保留主 Agent 原稿。
 
-工程候选只声明 Claude Code 支持。Codex 和 WorkBuddy / CodeBuddy 没有相同子代理生命周期实证，组装器会拒绝为这两个宿主生成提纲 companion。
+这一阶段的工程候选只声明 Claude Code 支持；后续补齐 Codex 与 WorkBuddy / CodeBuddy 适配后，才开放三宿主组装。
 
 ## 开关、改稿与长稿实测
 
@@ -95,4 +95,30 @@ E1 的真实迭代先后暴露三个边界：最初没有标题；补标题后�
 
 最终只把 E1 与 E6 组成匿名边界包，packet SHA-256 为 `55891b7f4eb07a2f5fbdd147280010e4737f6fa2e210aa07c4b078cb50a6b6b9`。独立 `alibaba-token-plan-2/qwen3.8-max` 与 `xai/grok-4.6` 均为 max、零重试、无工具，初始化模型与指定模型一致，只有一个成功 JSON 结果且 stderr 为 0。两家对两题的 facts、state、task_fit、naturalness 均判 PASS，直接使用成本均为 0，overall 均为 PASS；verdict SHA-256 分别为 `51b61b1e47ddd4ee20a5802d1cb4dd80a4b08938461af0f26f2b5f3b5378b915`、`8f674cc043a4bc9b1b4c34ac48e61764b20050bd1a30f3ad40ea7192cf3aa6a4`。
 
-因此，本轮没有发现提纲候选造成的 P0/P1；稀疏正文、完整文稿、固定提纲和固定文档壳已通过真实写稿。E4、E5 是明确不启用提纲 Agent 的普通路径 P2，继续记录但不在本原子顺带修改。候选仍只证明 Claude Code 的显式启用 companion，不宣称 Codex 或 WorkBuddy / CodeBuddy 在线兼容，不宣称篇幅补足，也未验证与其他 Stop companion 同时加载。
+因此，本轮没有发现提纲候选造成的 P0/P1；稀疏正文、完整文稿、固定提纲和固定文档壳已通过真实写稿。E4、E5 是明确不启用提纲 Agent 的普通路径 P2，继续记录但不在本原子顺带修改。不宣称篇幅补足，也未验证与其他 Stop companion 同时加载。
+
+## 三宿主在线生命周期补测
+
+在用户明确要求三种宿主都要真实测试后，先运行在线写稿，再补最小兼容胶水。三宿主均加载同一 canonical Skill 副本，提纲能力仍默认关闭、显式启用、每轮最多一个提纲 Agent 和一次 `Stop` 核对。
+
+### Codex
+
+使用 Codex CLI 0.144.6、`gpt-5.6-luna`、max，安装当前 Codex companion 后运行稀疏情况说明。首个有效候选能实际执行 `spawn_agent → wait → Stop(block) → Stop(allow)`，但主 Agent先读取了用户目录中旧 v1.5.34 同名 Skill；终稿虽然事实正确，不能作为自包含证明。Codex 路由随后明确绑定插件内 `chinese-official-writing-outline:chinese-official-writing`，复跑时读取路径落在当前插件缓存，状态文件终态为 `complete`。最终正文 SHA-256 为 `4cb9f8b76f204fd2731364219bae5dbb2ca9904f245af139adfad2971edff0e8`。
+
+两次启动错误均发生在模型调用前：一次中文题面被 CLI 解析为额外参数，一次上层 PowerShell shim 未透传标准输入；改用原生 Codex 启动脚本的标准输入后才形成有效样本。WebSocket 426 后自动回退 HTTP、远端插件目录预热失败和 PowerShell snapshot warning 均未阻断本地插件与模型调用。
+
+### WorkBuddy / CodeBuddy
+
+使用 WorkBuddy 内置 CodeBuddy CLI 2.115.0、`deepseek-v4-flash`、max。最初的无会话持久化运行无法读取 transcript；首次交互运行随后暴露 CodeBuddy 的顶层 `function_call/function_call_result` 会话结构与 Claude 不同，导致 `Stop` 识别不到已完成 Agent。共享适配器加入该结构后，真实交互短稿完成 `outline-planner → PostToolUse → Stop(block) → Stop(allow)`，Agent 恰调用一次，终稿 SHA-256 为 `4cb9f8b76f204fd2731364219bae5dbb2ca9904f245af139adfad2971edff0e8`。
+
+CodeBuddy 会把 Stop 反馈再次发为内部 `UserPromptSubmit`；旧胶水会再次注入提纲路由。加入内部反馈旁路后，复杂会议纪要复跑仍只调用一次 Agent、两次完整正文、一次阻断和一次放行。48/45/3、8月25日、8月26日、三个部门和原引语均保留，没有新增安排；终稿 SHA-256 为 `1c03dee0a28d5884eaef51de99fa2f6c64ef663206f1f80fa1ce393b85cd77fb`。一次性 `-p --plugin-dir` 启动还观察到用户请求先于插件注册的竞态，因此真实生命周期以插件已加载的交互会话为准。
+
+### Claude Code
+
+使用 Claude Code 2.1.195、`ollama-cloud/deepseek-v4-flash:0731`、max，基于当前共享适配器重新组装并严格校验。正常持久化会话完成 `UserPromptSubmit → outline-planner → PostToolUse → Stop(block) → Stop(allow)`；第二次交付与合规初稿逐字一致，终稿 SHA-256 为 `3b7dae1fefcc87d19e0b728a74e770f71c5557746f6052466e216a231f5cc700`。既有 `stop-hook-error` UI 通知仍会在首次主动阻断后出现，但两次 Hook 回执均为 `exit_code=0/outcome=success`，进程返回 0。
+
+### 当前结论
+
+三宿主在线生命周期均已实际完成；Codex 与 WorkBuddy / CodeBuddy 不再只是静态 manifest 兼容。已验证的是显式启用后的提纲 Agent、一次有限 Stop 核对、事实与结构保留及最终交付，不包括篇幅补足，也不包括与其他 Stop companion 的组合运行。WorkBuddy / CodeBuddy 复杂样本约 3 分钟，速度成本真实存在。
+
+当前源码终态重新组装后，三包均为 39 个文件，且组装器回执均为 `installed=false`、`enabled=false`、`network_used=false`。Codex、WorkBuddy / CodeBuddy、Claude Code 的 fingerprint 分别为 `d5ad8dd2a3249a79e7960abd722d3bf561007d016f73acc7e70cf5c3dca76e8f`、`7b90ea143d0ef375f7aed6ab5e4470a65da3ca2b3b78587e2186394329bd0b84`、`58c7b49161d9671d3859fd1afd19adcafcf58b5039f31c9d733b574b370c49fc`；三个宿主自己的 plugin validator 均通过。
