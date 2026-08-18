@@ -70,6 +70,12 @@ class SharedHardAnchorTests(unittest.TestCase):
                 "会议指出：要抓好落实；并强调：要压实责任。",
             )["reason"]
         )
+        self.assertIsNone(
+            ANCHORS.compare(
+                "会议指出：要抓好落实；同时强调：要压实责任",
+                "会议指出：要抓好落实；并强调：要压实责任",
+            )["reason"]
+        )
         self.assertEqual(
             (),
             ANCHORS.snapshot("现将有关情况说明如下：目前已完成核验。").fields,
