@@ -10,7 +10,6 @@ runtime failure selects the byte-identical original draft.
 from __future__ import annotations
 
 from difflib import SequenceMatcher
-from functools import lru_cache
 import hashlib
 import importlib.util
 import json
@@ -92,7 +91,6 @@ NUMBERED_HEADING_RE: Final = re.compile(
 HARD_ANCHOR_PATH: Final = Path(__file__).resolve().parents[2] / "shared" / "hard_anchors.py"
 
 
-@lru_cache(maxsize=1)
 def _load_hard_anchor_contract() -> Any | None:
     try:
         spec = importlib.util.spec_from_file_location(
@@ -213,7 +211,7 @@ def _required_field_labels(request: str) -> set[str]:
     labels: set[str] = set()
     for match in EXPLICIT_FIELD_RE.finditer(request):
         raw = re.split(
-            r"[，,]\s*(?=(?:请|正文|全文|成稿|输出|扩写|压缩|起草|撰写))",
+            r"[，,]\s*(?=(?:请(?:扩写|压缩|起草|撰写|输出|将|把)|正文|全文|成稿|输出|扩写|压缩|起草|撰写))",
             match.group(1),
             maxsplit=1,
         )[0]
@@ -359,23 +357,21 @@ def _verdict_instruction(
     candidate: str,
     spec: dict[str, Any],
     increments: list[dict[str, Any]],
-) -> str:
+) -> str | None:
     anchors = _load_hard_anchor_contract()
+    if anchors is None:
+        return None
     ignored_values = {str(spec["minimum"]), str(spec.get("maximum") or 0)}
     try:
-        anchor_relations = (
-            anchors.compare(
-                original,
-                candidate,
-                request,
-                ignored_authority_values=ignored_values,
-                allowed_field_labels=_required_field_labels(request),
-            ).get("relation_packet", [])
-            if anchors is not None
-            else []
-        )
+        anchor_relations = anchors.compare(
+            original,
+            candidate,
+            request,
+            ignored_authority_values=ignored_values,
+            allowed_field_labels=_required_field_labels(request),
+        ).get("relation_packet", [])
     except Exception:
-        anchor_relations = []
+        return None
     response = {
         "schema_version": SCHEMA_VERSION,
         "request_sha256": _sha256_text(request),
@@ -566,10 +562,13 @@ def advance(event: dict[str, Any], record: dict[str, Any]) -> dict[str, Any]:
         )
         if unsupported:
             return _select(record, "D0", unsupported)
-        state["phase"] = PHASE_VERDICT
-        return _block(
-            _verdict_instruction(request, state["original"], candidate, state["spec"], state["increments"])
+        instruction = _verdict_instruction(
+            request, state["original"], candidate, state["spec"], state["increments"]
         )
+        if instruction is None:
+            return _select(record, "D0", "under_length_hard_anchor_contract_unavailable")
+        state["phase"] = PHASE_VERDICT
+        return _block(instruction)
     if phase == PHASE_VERDICT:
         verdict = _parse_json(event.get("last_assistant_message"))
         if _verdict_passes(verdict, request, state["original"], state.get("candidate", ""), state.get("increments", [])):
