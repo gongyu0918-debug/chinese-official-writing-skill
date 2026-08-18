@@ -3,6 +3,7 @@
 
 from __future__ import annotations
 
+from functools import lru_cache
 import hashlib
 import importlib.util
 import json
@@ -183,6 +184,7 @@ def parse_spec(request: str) -> dict[str, Any] | None:
     }
 
 
+@lru_cache(maxsize=1)
 def _load_repetition_contract() -> Any | None:
     try:
         spec = importlib.util.spec_from_file_location(
@@ -198,6 +200,7 @@ def _load_repetition_contract() -> Any | None:
     return module
 
 
+@lru_cache(maxsize=1)
 def _load_hard_anchor_contract() -> Any | None:
     try:
         spec = importlib.util.spec_from_file_location(
@@ -308,7 +311,10 @@ def mechanical_reason(
     anchors = _load_hard_anchor_contract()
     if anchors is None:
         return "over_length_hard_anchor_contract_unavailable"
-    anchor_result = anchors.compare(original, candidate)
+    try:
+        anchor_result = anchors.compare(original, candidate)
+    except Exception:
+        return "over_length_hard_anchor_contract_unavailable"
     anchor_reason = anchor_result.get("reason")
     if anchor_reason == "numbers":
         return "over_length_number_added_dropped_or_changed"
@@ -379,11 +385,14 @@ def _verdict_instruction(
     request: str, original: str, candidate: str, spec: dict[str, Any]
 ) -> str:
     anchors = _load_hard_anchor_contract()
-    anchor_relations = (
-        anchors.compare(original, candidate).get("relation_packet", [])
-        if anchors is not None
-        else []
-    )
+    try:
+        anchor_relations = (
+            anchors.compare(original, candidate).get("relation_packet", [])
+            if anchors is not None
+            else []
+        )
+    except Exception:
+        anchor_relations = []
     skeleton = {
         "schema_version": SCHEMA_VERSION,
         "request_sha256": _sha256_text(request),

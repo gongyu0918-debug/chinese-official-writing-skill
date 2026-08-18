@@ -10,6 +10,7 @@ runtime failure selects the byte-identical original draft.
 from __future__ import annotations
 
 from difflib import SequenceMatcher
+from functools import lru_cache
 import hashlib
 import importlib.util
 import json
@@ -91,6 +92,7 @@ NUMBERED_HEADING_RE: Final = re.compile(
 HARD_ANCHOR_PATH: Final = Path(__file__).resolve().parents[2] / "shared" / "hard_anchors.py"
 
 
+@lru_cache(maxsize=1)
 def _load_hard_anchor_contract() -> Any | None:
     try:
         spec = importlib.util.spec_from_file_location(
@@ -199,14 +201,27 @@ def _user_allows_shortfall(request: str) -> bool:
 
 
 def _required_labels(request: str) -> set[str]:
+    labels = _required_field_labels(request)
+    for match in EXPLICIT_TITLE_RE.finditer(request):
+        label = match.group(1).strip(" 《》\"“”")
+        if label:
+            labels.add(label)
+    return labels
+
+
+def _required_field_labels(request: str) -> set[str]:
     labels: set[str] = set()
-    for pattern in (EXPLICIT_TITLE_RE, EXPLICIT_FIELD_RE):
-        for match in pattern.finditer(request):
-            labels.update(
-                token.strip(" 《》\"“”")
-                for token in re.split(r"[、,，/]", match.group(1))
-                if token.strip(" 《》\"“”")
-            )
+    for match in EXPLICIT_FIELD_RE.finditer(request):
+        raw = re.split(
+            r"[，,]\s*(?=(?:请|正文|全文|成稿|输出|扩写|压缩|起草|撰写))",
+            match.group(1),
+            maxsplit=1,
+        )[0]
+        labels.update(
+            token.strip(" 《》\"“”")
+            for token in re.split(r"[、,，/]", raw)
+            if token.strip(" 《》\"“”")
+        )
     return labels
 
 
@@ -240,12 +255,16 @@ def mechanical_reason(
         str(spec["minimum"]),
         str(spec.get("maximum") or 0),
     }
-    anchor_result = anchors.compare(
-        original,
-        candidate,
-        request,
-        ignored_authority_values=ignored_values,
-    )
+    try:
+        anchor_result = anchors.compare(
+            original,
+            candidate,
+            request,
+            ignored_authority_values=ignored_values,
+            allowed_field_labels=_required_field_labels(request),
+        )
+    except Exception:
+        return "under_length_hard_anchor_contract_unavailable"
     anchor_reason = anchor_result.get("reason")
     if anchor_reason == "numbers":
         return "under_length_number_added_dropped_or_changed"
@@ -343,16 +362,20 @@ def _verdict_instruction(
 ) -> str:
     anchors = _load_hard_anchor_contract()
     ignored_values = {str(spec["minimum"]), str(spec.get("maximum") or 0)}
-    anchor_relations = (
-        anchors.compare(
-            original,
-            candidate,
-            request,
-            ignored_authority_values=ignored_values,
-        ).get("relation_packet", [])
-        if anchors is not None
-        else []
-    )
+    try:
+        anchor_relations = (
+            anchors.compare(
+                original,
+                candidate,
+                request,
+                ignored_authority_values=ignored_values,
+                allowed_field_labels=_required_field_labels(request),
+            ).get("relation_packet", [])
+            if anchors is not None
+            else []
+        )
+    except Exception:
+        anchor_relations = []
     response = {
         "schema_version": SCHEMA_VERSION,
         "request_sha256": _sha256_text(request),
@@ -378,6 +401,7 @@ def _verdict_instruction(
         "工作成效、保障作用、资金充分性或规范化目标，必须标 new_specific_fact 并 FAIL。"
         "透明分类和真实归纳不能只因换了概括词而失败，但不得借概括补入新的事实判断。"
         "候选以等义总量句明确承载同一主体、对象和范围时，不要求重复保留原稿中的范围自证；"
+        "但‘涉及两个小区’、‘86人参加’等独立范围事实仍必须保留。"
         "只有范围缩小、主体或对象换位、事项遗漏或状态改变才按关系丢失处理。"
         "以保护性外扩、重复、自证或空话凑字也必须 FAIL。"
         "凡 D1 新增通知、督促、落实、准备、报送方式、会议纪律、协调办法等动作或义务，而原请求或 D0 "
