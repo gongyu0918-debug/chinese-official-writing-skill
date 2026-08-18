@@ -114,6 +114,7 @@ class HookLayerContractTests(unittest.TestCase):
                     self.assertTrue((packaged / "hooks/capabilities/protective_expansion/runtime.py").is_file())
                     self.assertTrue((packaged / "hooks/capabilities/over_length/runtime.py").is_file())
                     self.assertTrue((packaged / "hooks/capabilities/delivery_cleanliness/runtime.py").is_file())
+                    self.assertTrue((packaged / "hooks/shared/hard_anchors.py").is_file())
                     self.assertEqual(
                         "delivery_review",
                         json.loads((output / "hook-capability.json").read_text(encoding="utf-8"))["capability"],
