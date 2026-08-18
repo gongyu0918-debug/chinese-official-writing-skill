@@ -10,13 +10,54 @@ from typing import Any, Final, Iterable
 
 
 NUMBER_RE: Final = re.compile(
-    r"(?<![A-Za-z0-9])\d+(?:\.\d+)?(?:万元|元|年|月|日|时|分|秒|台|件|项|人次|人|页|份|条|个|号)?(?![A-Za-z0-9])"
+    r"\d+(?:\.\d+)?(?:万元|人次|个月|小时|分钟|秒钟|元|年|月|日|时|分|秒|"
+    r"台|件|项|人|页|份|条|个|号|场|名|组|户|家|所|辆)?"
+)
+CJK_QUANTITY_UNITS: Final = (
+    "人次",
+    "个月",
+    "小时",
+    "分钟",
+    "秒钟",
+    "台",
+    "件",
+    "项",
+    "次",
+    "年",
+    "月",
+    "日",
+    "天",
+    "时",
+    "分",
+    "秒",
+    "份",
+    "人",
+    "套",
+    "批",
+    "元",
+    "个",
+    "场",
+    "名",
+    "页",
+    "条",
+    "组",
+    "号",
+    "户",
+    "家",
+    "所",
+    "辆",
 )
 CJK_QUANTITY_RE: Final = re.compile(
-    r"[一二三四五六七八九十百千万两]+(?:台|件|项|次|个月|年|天|份|人|套|批|元)"
+    r"[一二三四五六七八九十百千万两]+(?:"
+    + "|".join(re.escape(unit) for unit in CJK_QUANTITY_UNITS)
+    + r")"
 )
 QUOTE_RE: Final = re.compile(r"“[^”\n]+”|‘[^’\n]+’|\"[^\"\n]+\"")
-FIELD_RE: Final = re.compile(r"(?m)^(?P<label>[\u4e00-\u9fffA-Za-z][^：:\n]{0,18})[：:]")
+FIELD_SEGMENT_RE: Final = re.compile(
+    r"(?:^|[；;])\s*(?P<label>[\u4e00-\u9fffA-Za-z][\u4e00-\u9fffA-Za-z0-9（）()\xb7 _-]{0,18})"
+    r"[：:]\s*(?P<value>[^；;]+)"
+)
+FIELD_VALUE_SENTENCE_RE: Final = re.compile(r"[。！？!?]")
 STATE_CUE_RE: Final = re.compile(r"拟|尚未|未形成|正在|仍在|待核实|待审批|待研究")
 CLAUSE_BOUNDARY_RE: Final = re.compile(r"[\n。！？；;]")
 
@@ -73,12 +114,38 @@ def _occurrences(
     )
 
 
+def _field_labels(text: str) -> tuple[str, ...]:
+    """Return labels from populated form-like lines, including inline forms."""
+
+    labels: list[str] = []
+    for line in text.splitlines():
+        matches = [
+            match
+            for match in FIELD_SEGMENT_RE.finditer(line)
+            if match.group("value").strip()
+        ]
+        if len(matches) >= 2:
+            labels.extend(match.group("label").strip() for match in matches)
+            continue
+        if not matches:
+            continue
+        match = matches[0]
+        value = match.group("value").strip()
+        if (
+            match.group(0).lstrip().startswith(match.group("label"))
+            and len(value) <= 80
+            and not FIELD_VALUE_SENTENCE_RE.search(value)
+        ):
+            labels.append(match.group("label").strip())
+    return tuple(labels)
+
+
 def snapshot(text: str) -> AnchorSnapshot:
     return AnchorSnapshot(
         numbers=_occurrences(text, NUMBER_RE, "number"),
         quantities=_occurrences(text, CJK_QUANTITY_RE, "quantity"),
         quotes=_occurrences(text, QUOTE_RE, "quote"),
-        fields=tuple(match.group("label").strip() for match in FIELD_RE.finditer(text)),
+        fields=_field_labels(text),
         state_contexts=tuple(
             re.sub(r"\s+", "", clause)
             for clause in CLAUSE_BOUNDARY_RE.split(text)
@@ -94,7 +161,41 @@ def _counter(items: Iterable[AnchorOccurrence]) -> Counter[str]:
 def _filtered_authority_counter(
     items: Iterable[AnchorOccurrence], ignored_values: set[str]
 ) -> Counter[str]:
-    return Counter(item.value for item in items if item.value not in ignored_values)
+    return Counter(
+        item.value
+        for item in items
+        if not _authority_value_is_ignored(item.value, ignored_values)
+    )
+
+
+def _authority_value_is_ignored(value: str, ignored_values: set[str]) -> bool:
+    if value in ignored_values:
+        return True
+    numeric = re.search(r"\d+(?:\.\d+)?", value)
+    return bool(numeric and numeric.group(0) in ignored_values)
+
+
+def _fields_changed(
+    original: tuple[str, ...],
+    candidate: tuple[str, ...],
+    authority: tuple[str, ...],
+    allowed_labels: Iterable[str],
+) -> bool:
+    allowed = Counter(label.strip() for label in (*authority, *allowed_labels) if label.strip())
+    original_index = 0
+    additions: list[str] = []
+    for label in candidate:
+        if original_index < len(original) and label == original[original_index]:
+            original_index += 1
+        else:
+            additions.append(label)
+    if original_index != len(original):
+        return True
+    for label in additions:
+        if allowed[label] <= 0:
+            return True
+        allowed[label] -= 1
+    return False
 
 
 def _contexts_by_value(items: Iterable[AnchorOccurrence]) -> dict[str, list[str]]:
@@ -154,6 +255,7 @@ def compare(
     authority_text: str = "",
     *,
     ignored_authority_values: Iterable[str] = (),
+    allowed_field_labels: Iterable[str] = (),
 ) -> dict[str, Any]:
     original = snapshot(original_text)
     candidate = snapshot(candidate_text)
@@ -169,7 +271,12 @@ def compare(
         )
         violations[f"missing_{kind}"] = missing
         violations[f"added_{kind}"] = added
-    violations["fields_changed"] = candidate.fields != original.fields
+    violations["fields_changed"] = _fields_changed(
+        original.fields,
+        candidate.fields,
+        authority.fields,
+        allowed_field_labels,
+    )
     reason = next(
         (
             kind
