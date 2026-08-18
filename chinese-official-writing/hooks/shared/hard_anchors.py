@@ -151,7 +151,10 @@ def _field_labels(text: str) -> tuple[str, ...]:
             continue
         match = matches[0]
         value = match.group("value").strip()
-        if match.group(0).lstrip().startswith(match.group("label")) and len(value) <= 80:
+        if (
+            match.group(0).lstrip(" ；;").startswith(match.group("label"))
+            and len(value) <= 80
+        ):
             labels.append(match.group("label").strip())
     return tuple(labels)
 
@@ -199,7 +202,13 @@ def _fields_changed(
     authority: tuple[str, ...],
     allowed_labels: Iterable[str],
 ) -> bool:
-    allowed = Counter(label.strip() for label in (*authority, *allowed_labels) if label.strip())
+    allowed = Counter(
+        {
+            label.strip(): 1
+            for label in (*authority, *allowed_labels)
+            if label.strip()
+        }
+    )
     for label in original:
         if allowed[label] > 0:
             allowed[label] -= 1
