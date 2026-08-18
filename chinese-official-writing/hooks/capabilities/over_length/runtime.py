@@ -3,7 +3,6 @@
 
 from __future__ import annotations
 
-from functools import lru_cache
 import hashlib
 import importlib.util
 import json
@@ -184,7 +183,6 @@ def parse_spec(request: str) -> dict[str, Any] | None:
     }
 
 
-@lru_cache(maxsize=1)
 def _load_repetition_contract() -> Any | None:
     try:
         spec = importlib.util.spec_from_file_location(
@@ -200,7 +198,6 @@ def _load_repetition_contract() -> Any | None:
     return module
 
 
-@lru_cache(maxsize=1)
 def _load_hard_anchor_contract() -> Any | None:
     try:
         spec = importlib.util.spec_from_file_location(
@@ -383,16 +380,16 @@ def _revision_instruction(
 
 def _verdict_instruction(
     request: str, original: str, candidate: str, spec: dict[str, Any]
-) -> str:
+) -> str | None:
     anchors = _load_hard_anchor_contract()
+    if anchors is None:
+        return None
     try:
-        anchor_relations = (
-            anchors.compare(original, candidate).get("relation_packet", [])
-            if anchors is not None
-            else []
+        anchor_relations = anchors.compare(original, candidate).get(
+            "relation_packet", []
         )
     except Exception:
-        anchor_relations = []
+        return None
     skeleton = {
         "schema_version": SCHEMA_VERSION,
         "request_sha256": _sha256_text(request),
@@ -502,17 +499,18 @@ def _begin_revision(record: dict[str, Any]) -> dict[str, Any]:
 
 def _begin_verdict(record: dict[str, Any], candidate: str) -> dict[str, Any]:
     state = record["over_length"]
+    instruction = _verdict_instruction(
+        str(record.get("request") or ""),
+        state["original"],
+        candidate,
+        state["spec"],
+    )
+    if instruction is None:
+        return _select(record, "D0", "over_length_hard_anchor_contract_unavailable")
     state["candidate"] = candidate
     state["candidate_count"] = count_text(candidate, state["spec"]["scope"])
     state["phase"] = PHASE_VERDICT
-    return _block(
-        _verdict_instruction(
-            str(record.get("request") or ""),
-            state["original"],
-            candidate,
-            state["spec"],
-        )
-    )
+    return _block(instruction)
 
 
 def start(event: dict[str, Any], record: dict[str, Any]) -> dict[str, Any] | None:

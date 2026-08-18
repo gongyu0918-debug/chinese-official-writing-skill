@@ -27,9 +27,6 @@ CJK_QUANTITY_UNITS: Final = (
     "月",
     "日",
     "天",
-    "时",
-    "分",
-    "秒",
     "份",
     "人",
     "套",
@@ -50,7 +47,7 @@ CJK_QUANTITY_UNITS: Final = (
 CJK_QUANTITY_RE: Final = re.compile(
     r"[一二三四五六七八九十百千万两]+(?:"
     + "|".join(re.escape(unit) for unit in CJK_QUANTITY_UNITS)
-    + r")"
+    + r")(?![个件项台人次场名页条组户家所辆套批])"
 )
 QUOTE_RE: Final = re.compile(r"“[^”\n]+”|‘[^’\n]+’|\"[^\"\n]+\"")
 FIELD_SEGMENT_RE: Final = re.compile(
@@ -69,6 +66,7 @@ class AnchorOccurrence:
     start: int
     end: int
     context: str
+    is_length_bound: bool
 
 
 @dataclass(frozen=True)
@@ -109,8 +107,23 @@ def _occurrences(
             start=match.start(),
             end=match.end(),
             context=_normalized_clause(text, match.start(), match.end()),
+            is_length_bound=(
+                kind == "number" and _number_is_length_bound(text, match)
+            ),
         )
         for match in pattern.finditer(text)
+    )
+
+
+def _number_is_length_bound(text: str, match: re.Match[str]) -> bool:
+    right = text[match.end() : min(len(text), match.end() + 24)]
+    if re.match(r"\s*字(?!节)", right):
+        return True
+    return bool(
+        re.match(
+            r"\s*(?:—|－|-|~|至|到)\s*\d+(?:\.\d+)?(?:个)?\s*字(?!节)",
+            right,
+        )
     )
 
 
@@ -124,18 +137,17 @@ def _field_labels(text: str) -> tuple[str, ...]:
             for match in FIELD_SEGMENT_RE.finditer(line)
             if match.group("value").strip()
         ]
-        if len(matches) >= 2:
+        if len(matches) >= 2 and all(
+            not FIELD_VALUE_SENTENCE_RE.search(match.group("value"))
+            for match in matches
+        ):
             labels.extend(match.group("label").strip() for match in matches)
             continue
         if not matches:
             continue
         match = matches[0]
         value = match.group("value").strip()
-        if (
-            match.group(0).lstrip().startswith(match.group("label"))
-            and len(value) <= 80
-            and not FIELD_VALUE_SENTENCE_RE.search(value)
-        ):
+        if match.group(0).lstrip().startswith(match.group("label")) and len(value) <= 80:
             labels.append(match.group("label").strip())
     return tuple(labels)
 
@@ -164,15 +176,17 @@ def _filtered_authority_counter(
     return Counter(
         item.value
         for item in items
-        if not _authority_value_is_ignored(item.value, ignored_values)
+        if not _authority_value_is_ignored(item, ignored_values)
     )
 
 
-def _authority_value_is_ignored(value: str, ignored_values: set[str]) -> bool:
-    if value in ignored_values:
-        return True
-    numeric = re.search(r"\d+(?:\.\d+)?", value)
-    return bool(numeric and numeric.group(0) in ignored_values)
+def _authority_value_is_ignored(
+    item: AnchorOccurrence, ignored_values: set[str]
+) -> bool:
+    numeric = re.search(r"\d+(?:\.\d+)?", item.value)
+    return bool(
+        item.is_length_bound and numeric and numeric.group(0) in ignored_values
+    )
 
 
 def _fields_changed(
@@ -182,6 +196,9 @@ def _fields_changed(
     allowed_labels: Iterable[str],
 ) -> bool:
     allowed = Counter(label.strip() for label in (*authority, *allowed_labels) if label.strip())
+    for label in original:
+        if allowed[label] > 0:
+            allowed[label] -= 1
     original_index = 0
     additions: list[str] = []
     for label in candidate:
