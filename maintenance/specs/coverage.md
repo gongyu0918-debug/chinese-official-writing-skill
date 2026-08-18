@@ -12,6 +12,7 @@
 | `WR-006` 审稿模式 | SKILL 任务模式、Hook bypass | OpenCode Go 自然审稿请求 | 自然审稿、复合成稿和引语反控已完成 | 已随 v1.6.9 发布 |
 | `WR-007` 语义减载与自然表达 | `references/anti-ai-patterns.md`、`references/genre-playbook-request.md` | R1 16稿；R2—R4 20稿；组合后24/24技术有效 | 不属于独立 Hook | 已集成 `main`；三方冷审无候选独有硬失败，只写到现有事实和状态，压住供应商确定后的后续动作外推 |
 | `WR-008` 标题与正文边界 | canonical SKILL 主入口标题条目 | 16/16 生成无回退；12/12 同稿修复，候选6/6精确；自然路由R2两家均通过 | 不属于独立 Hook | 已合入；主标题无句号并空一行、层级标题无句号、编号正文句保留句号 |
+| `WR-009` 文后提示与正文分区 | `references/information-selection.md`、`scripts/prose_lint.py` | OpenCode Go 同题基线/候选各1稿；候选去除横线包装并形成独立正文外区域 | 不属于独立 Hook；交付洁净度只作可选包装清理 | 已通过目标真实稿、镜像同步和最小分区回归；尚未发布 |
 | `HK-001` 无 Hook 闭环 | canonical Skill、普通 packages | v1.6.4 六稿 | 普通镜像排除 Hook | 已覆盖 |
 | `HK-002` 写稿后插入 | `UserPromptSubmit` + `PostToolUse` + `Stop` coordinator | 不作为文采门 | Codex/Claude 当前在线；WorkBuddy 5.3.13 当前 companion 在线 | 已覆盖生命周期位置 |
 | `HK-003` 单协调器 | `hooks/core/gate_stop_hook.py` | 同一任务仅一个 capability | 官方说明同事件多 Hook 可并发，因此保持单 coordinator | 已覆盖 |

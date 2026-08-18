@@ -507,7 +507,7 @@ def body_lines(lines: list[str]) -> list[str]:
     )
     explicit_note_start = re.compile(
         heading_prefix
-        + r"(?:待确认事项|待用户确认事项|补充以下信息后(?:，文章会更完整)?|正文外待确认|正文外提示|风险提醒|核验提示|需补充信息|待补充事项|需确认事项)"
+        + r"(?:待确认事项|影响正式报送的待确认事项|待用户确认事项|补充以下信息后(?:，文章会更完整)?|正文外待确认|正文外提示|风险提醒|核验提示|需补充信息|待补充事项|需确认事项)"
         r"(?=\s*(?:[：:]|[（(【\[]|[）)】\]]|$))"
     )
     standalone_supplement_heading = re.compile(
@@ -919,6 +919,59 @@ def unexpected_external_note_findings(
     ]
 
 
+def external_note_boundary_findings(
+    path_label: str,
+    source: ScanSource,
+    delivery_mode: str,
+) -> list[Finding]:
+    """允许文后提示时，检查提示没有黏入正文结构。"""
+
+    if delivery_mode != "gap-note-allowed" or len(source.body_only_lines) >= len(source.lines):
+        return []
+    note_index = len(source.body_only_lines)
+    note_line = note_index + 1
+    heading = source.lines[note_index].strip()
+    findings: list[Finding] = []
+    if PLAIN_SECTION_HEADING_PATTERN.fullmatch(heading):
+        findings.append(
+            Finding(
+                path=path_label,
+                line=note_line,
+                severity="high",
+                label="external-note-boundary",
+                match=heading,
+                excerpt="正文外提示不得沿用正文层级序号；完整结束正文后另起无编号提示标题。",
+            )
+        )
+    if note_index > 0 and source.lines[note_index - 1].strip():
+        findings.append(
+            Finding(
+                path=path_label,
+                line=note_line,
+                severity="high",
+                label="external-note-boundary",
+                match=heading,
+                excerpt="正文与文后提示之间应保留空行，避免提示黏入正文末段。",
+            )
+        )
+    prior_nonempty = next(
+        (line.strip() for line in reversed(source.lines[:note_index]) if line.strip()),
+        "",
+    )
+    if re.fullmatch(r"-{3,}", prior_nonempty):
+        findings.append(
+            Finding(
+                path=path_label,
+                line=note_line,
+                severity="high",
+                label="external-note-boundary",
+                match=prior_nonempty,
+                excerpt="正文外提示使用独立标题和空行分区，不用 Markdown 横线包装。",
+            )
+        )
+    return findings
+
+
 def fence_findings(
     path_label: str,
     line_no: int,
@@ -1192,6 +1245,7 @@ def scan(
     source = prepare_scan_source(text, delivery_mode)
     pattern_sets = prepare_pattern_sets(include_format, delivery_mode)
     findings = unexpected_external_note_findings(path_label, source, delivery_mode)
+    findings.extend(external_note_boundary_findings(path_label, source, delivery_mode))
     findings.extend(
         primary_line_findings(
             path_label,
