@@ -91,6 +91,23 @@ class SharedHardAnchorTests(unittest.TestCase):
             UNDER.mechanical_reason(original, added_bound, spec, request),
         )
 
+    def test_semantic_verifiers_accept_equivalent_total_scope_without_relation_loss(self) -> None:
+        original = "本次共核验75件工单。经逐项核对，75件工单均已纳入本次核验范围，其中22件需要补充材料。"
+        candidate = "本次共核验75件工单，经逐项核对，其中22件需补充材料。"
+        over_prompt = OVER._verdict_instruction(
+            "压缩至100字以内。", original, candidate, {"minimum": 0, "maximum": 100, "scope": "full"}
+        )
+        under_prompt = UNDER._verdict_instruction(
+            "扩写到80—100字。",
+            original,
+            candidate,
+            {"minimum": 80, "maximum": 100, "scope": "full"},
+            UNDER._increment_items(original, candidate),
+        )
+        for prompt in (over_prompt, under_prompt):
+            self.assertIn("等义总量句明确承载同一主体、对象和范围", prompt)
+            self.assertIn("范围缩小、主体或对象换位", prompt)
+
 
 if __name__ == "__main__":
     unittest.main()
