@@ -1,0 +1,20 @@
+{
+  "name": "chinese-official-writing-outline",
+  "version": "1.6.9",
+  "description": "中文公文写作的可选 WorkBuddy / CodeBuddy 提纲辅助 companion。",
+  "author": {
+    "name": "gongyu0918-debug",
+    "url": "https://github.com/gongyu0918-debug"
+  },
+  "repository": "https://github.com/gongyu0918-debug/chinese-official-writing-skill",
+  "license": "MIT",
+  "keywords": [
+    "chinese",
+    "official-writing",
+    "outline"
+  ],
+  "skills": [
+    "./skills/"
+  ],
+  "hooks": "./hooks/hooks.json"
+}

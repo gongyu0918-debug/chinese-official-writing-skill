@@ -51,7 +51,7 @@ Hook 会增加事件处理和有限的修订核验，因此通常比普通 Skill
 
 ## 宿主适配说明
 
-内部按“能力核心 + 静态适配层”组织。`core/` 只有一份门禁能力；`adapters/<host>/` 只保存对应宿主的 manifest、事件配置、薄适配器和说明。Agent 不应把 adapter 目录本身当成可安装插件，也不得跨目录建立运行时相对引用。
+内部按“能力核心 + 静态适配层”组织。唯一交付门核心文件为 `core/gate_stop_hook.py`；`adapters/<host>/` 只保存对应宿主的 manifest、事件配置、薄适配器和说明。Agent 不应把 adapter 目录本身当成可安装插件，也不得跨目录建立运行时相对引用。
 
 | 宿主 | 适配说明 | 启用前检查 |
 | --- | --- | --- |
@@ -65,7 +65,7 @@ Qwen Code、Hermes、OpenClaw、OpenCode 等没有本仓库内置的生命周期
 
 companion 默认使用既有交付复核。用户也可在组装前明确选择[保护性外扩精确删除](capabilities/protective_expansion/README.md)、[篇幅不足补足](capabilities/under_length/README.md)、[超长收束](capabilities/over_length/README.md)、[交付洁净度](capabilities/delivery_cleanliness/README.md)或[重复句整理](capabilities/repetition_cleanup/README.md)。超长收束先查重复，再压缩衔接和句式；其余能力各自只处理说明页列明的单一风险。六种交付后能力静态互斥，判断不确定时保留原稿。
 
-[提纲辅助](capabilities/outline_assist/README.md)使用起草前子代理和一次成稿后提纲核对，当前只组装为独立 Claude Code companion，不与上述 `Stop` 门 companion 同时加载。
+[提纲辅助](capabilities/outline_assist/README.md)使用起草前子代理和一次成稿后提纲核对，可单独组装为 Codex、WorkBuddy / CodeBuddy 或 Claude Code companion，不与上述 `Stop` 门 companion 同时加载。
 
 ## 工作方式
 
@@ -85,8 +85,8 @@ SKILL.md 与 references 形成完整 D0
 只有用户明确要求启用时才执行以下步骤：
 
 1. 读取本页、`host-capabilities.json` 和目标宿主的 adapter README。
-2. 向用户展示目标目录、将要复制的文件和所选能力；未特别选择时使用既有交付复核，选择 `protective_expansion`、`under_length`、`over_length`、`delivery_cleanliness` 或 `repetition_cleanup` 时写入静态能力配置；选择 `outline_assist` 时只组装 Claude Code 独立提纲 companion。
-3. 交付后能力在新目录中放入目标宿主唯一 manifest、`hooks/hooks.json`、薄适配器和门禁核心；`outline_assist` 则只放入 Claude manifest、`agents/outline-planner.md`、`scripts/outline_prompt_hook.py` 与对应事件配置。
+2. 向用户展示目标目录、将要复制的文件和所选能力；未特别选择时使用既有交付复核，选择 `protective_expansion`、`under_length`、`over_length`、`delivery_cleanliness` 或 `repetition_cleanup` 时写入静态能力配置；选择 `outline_assist` 时只组装目标宿主的独立提纲 companion。
+3. 交付后能力在新目录中放入目标宿主唯一 manifest、`hooks/hooks.json`、薄适配器和门禁核心；`outline_assist` 放入该宿主唯一 manifest、事件配置、提纲适配脚本，以及宿主所需的本地 Agent 或 Codex 状态合同。
 4. 两类 companion 都复制完整普通 Skill 到 `skills/chinese-official-writing/`；提纲 companion 不携带交付门核心、`scripts/review_gate.py` 或普通 Skill 的 Hook 接引段。
 5. 保留 MIT LICENSE 和所选能力说明；禁止父目录回指、外部 symlink、其他宿主 manifest 和自动安装代码。
 6. 先运行宿主 validator 和离线事件 smoke，再由用户决定是否安装或加载。组装完成不得自动进入安装步骤。
