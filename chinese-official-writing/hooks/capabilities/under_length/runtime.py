@@ -11,9 +11,12 @@ from __future__ import annotations
 
 from difflib import SequenceMatcher
 import hashlib
+import importlib.util
 import json
 import math
+from pathlib import Path
 import re
+import sys
 from typing import Any, Final
 
 
@@ -60,11 +63,6 @@ EXPLICIT_TITLE_RE: Final = re.compile(
 EXPLICIT_FIELD_RE: Final = re.compile(
     r"(?:字段|栏目)\s*(?:为|包括|：|:)\s*([^。；;\n]+)"
 )
-NUMBER_RE: Final = re.compile(r"\d+(?:\.\d+)?")
-CJK_QUANTITY_RE: Final = re.compile(
-    r"[一二三四五六七八九十百千万两]+(?:台|件|项|次|个月|年|天|份|人|套|批|元)"
-)
-QUOTE_RE: Final = re.compile(r"[\"“][^\"”\n]{1,120}[\"”]")
 STATUS_ANCHOR_RE: Final = re.compile(
     r"(?:在办|正在(?:核查|办理|推进|处理|调查|侦办|抢修|统计)|"
     r"尚未|未(?:完成|确定|实施|形成|办结)|拟(?:议|定|完善|优化|改进)|待(?:定|核)|"
@@ -90,6 +88,22 @@ MARKDOWN_HEADING_RE: Final = re.compile(r"^\s*#{1,6}\s+")
 NUMBERED_HEADING_RE: Final = re.compile(
     r"^\s*(?:[一二三四五六七八九十]+、|\d+[.、])\s*\S+$"
 )
+HARD_ANCHOR_PATH: Final = Path(__file__).resolve().parents[2] / "shared" / "hard_anchors.py"
+
+
+def _load_hard_anchor_contract() -> Any | None:
+    try:
+        spec = importlib.util.spec_from_file_location(
+            "cow_under_length_hard_anchors", HARD_ANCHOR_PATH
+        )
+        if spec is None or spec.loader is None:
+            return None
+        module = importlib.util.module_from_spec(spec)
+        sys.modules[spec.name] = module
+        spec.loader.exec_module(module)
+    except Exception:
+        return None
+    return module
 
 
 def _sha256_text(value: str) -> str:
@@ -219,25 +233,28 @@ def mechanical_reason(
     maximum = int(spec.get("maximum") or 0)
     if maximum and candidate_length > maximum:
         return "under_length_candidate_above_maximum"
-    original_numbers = set(NUMBER_RE.findall(original))
-    candidate_numbers = set(NUMBER_RE.findall(candidate))
-    request_numbers = set(NUMBER_RE.findall(request)) - {
+    anchors = _load_hard_anchor_contract()
+    if anchors is None:
+        return "under_length_hard_anchor_contract_unavailable"
+    ignored_values = {
         str(spec["minimum"]),
         str(spec.get("maximum") or 0),
     }
-    if not original_numbers.issubset(candidate_numbers) or not candidate_numbers.issubset(
-        original_numbers | request_numbers
-    ):
+    anchor_result = anchors.compare(
+        original,
+        candidate,
+        request,
+        ignored_authority_values=ignored_values,
+    )
+    anchor_reason = anchor_result.get("reason")
+    if anchor_reason == "numbers":
         return "under_length_number_added_dropped_or_changed"
-    original_quantities = set(CJK_QUANTITY_RE.findall(original))
-    candidate_quantities = set(CJK_QUANTITY_RE.findall(candidate))
-    request_quantities = set(CJK_QUANTITY_RE.findall(request))
-    if not original_quantities.issubset(
-        candidate_quantities
-    ) or not candidate_quantities.issubset(original_quantities | request_quantities):
+    if anchor_reason == "quantities":
         return "under_length_quantity_added_dropped_or_changed"
-    if not set(QUOTE_RE.findall(original)).issubset(set(QUOTE_RE.findall(candidate))):
+    if anchor_reason == "quotes":
         return "under_length_quote_dropped_or_changed"
+    if anchor_reason == "fields":
+        return "under_length_field_order_or_name_changed"
     for label in _required_labels(request):
         if label not in candidate:
             return "under_length_explicit_title_or_field_dropped"
@@ -324,6 +341,18 @@ def _verdict_instruction(
     spec: dict[str, Any],
     increments: list[dict[str, Any]],
 ) -> str:
+    anchors = _load_hard_anchor_contract()
+    ignored_values = {str(spec["minimum"]), str(spec.get("maximum") or 0)}
+    anchor_relations = (
+        anchors.compare(
+            original,
+            candidate,
+            request,
+            ignored_authority_values=ignored_values,
+        ).get("relation_packet", [])
+        if anchors is not None
+        else []
+    )
     response = {
         "schema_version": SCHEMA_VERSION,
         "request_sha256": _sha256_text(request),
@@ -356,6 +385,7 @@ def _verdict_instruction(
         + "\n【原请求】\n" + request
         + "\n【D0】\n" + original
         + "\n【D1】\n" + candidate
+        + "\n【共享硬锚关系复核项】\n" + json.dumps(anchor_relations, ensure_ascii=False)
         + "\n【冻结增量】\n" + json.dumps(increments, ensure_ascii=False)
         + "\n【篇幅规格】\n" + json.dumps(spec, ensure_ascii=False)
     )
