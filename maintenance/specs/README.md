@@ -9,6 +9,7 @@
 | [`requirements.md`](requirements.md) | 产品长期必须做到什么 |
 | [`roadmap.md`](roadmap.md) | 哪些已经完成、哪些 HOLD、下一步做什么 |
 | [`coverage.md`](coverage.md) | 每项需求由什么产品文件、真实稿件和 Hook 证据覆盖 |
+| [`public-paid-sync.md`](public-paid-sync.md) | 公开 `main` 与付费提纲候选如何同步、哪些差异可以保留 |
 | [`../docs/待办.md`](../docs/待办.md) | 当前迭代的执行细目、环境限制和未闭环反例 |
 
 历史发布、预注册、完整盲审和原始回执仍放在 `maintenance/tests/evidence/`；这里仅链接，不复制大段过程。公开产品说明仍放根 `README.md`；运行时写作规则仍只放 canonical Skill 与 references。
