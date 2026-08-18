@@ -19,6 +19,8 @@ HOOK_ROOT: Final = SKILL_ROOT / "hooks"
 ADAPTER_ROOT: Final = HOOK_ROOT / "adapters"
 CORE_PATH: Final = HOOK_ROOT / "core" / "gate_stop_hook.py"
 SHARED_HOST_ADAPTER: Final = ADAPTER_ROOT / "host_gate_adapter.py"
+OUTLINE_CAPABILITY: Final = "outline_assist"
+OUTLINE_ROOT: Final = HOOK_ROOT / "capabilities" / OUTLINE_CAPABILITY
 
 
 @dataclass(frozen=True)
@@ -63,6 +65,17 @@ SKILL_COPY_EXCLUDES: Final = (
     Path("hooks/adapters"),
     Path("hooks/core"),
 )
+OUTLINE_SKILL_EXCLUDES: Final = (
+    Path("LICENSE"),
+    Path("hooks"),
+    Path("references/delivery-review-gate.md"),
+    Path("scripts/review_gate.py"),
+    Path("agents/openai.yaml"),
+)
+HOOK_ROUTE_PARAGRAPH: Final = (
+    "\n\n用户明确要求处理交付门禁 Hook 时，读取 `hooks/README.md`。"
+    "普通起草、改稿、压缩和复核不加载该页，也不自动启用 Hook。"
+)
 MARKDOWN_LINK_RE: Final = re.compile(r"\[[^\]]+\]\(([^)]+)\)")
 ADAPTER_GUIDE_LINKS: Final = {
     f"[`adapters/{host}/README.md`](adapters/{host}/README.md)": f"`{label}`"
@@ -80,6 +93,7 @@ CAPABILITY_CHOICES: Final = (
     "over_length",
     "delivery_cleanliness",
     "repetition_cleanup",
+    OUTLINE_CAPABILITY,
 )
 
 
@@ -115,6 +129,24 @@ def _copy_skill(output: Path, adapter: HostAdapter) -> None:
     guide_path.write_text(guide, encoding="utf-8", newline="\n")
 
 
+def _copy_outline_skill(output: Path) -> None:
+    packaged_skill = output / "skills" / "chinese-official-writing"
+    for source in sorted(path for path in SKILL_ROOT.rglob("*") if path.is_file()):
+        relative = source.relative_to(SKILL_ROOT)
+        if any(relative == excluded or excluded in relative.parents for excluded in OUTLINE_SKILL_EXCLUDES):
+            continue
+        if "__pycache__" in relative.parts or relative.suffix == ".pyc":
+            continue
+        _copy(source, packaged_skill / relative)
+    skill_path = packaged_skill / "SKILL.md"
+    text = skill_path.read_text(encoding="utf-8")
+    if text.count(HOOK_ROUTE_PARAGRAPH) != 1:
+        raise RuntimeError("unexpected Hook route paragraph in outline companion Skill")
+    skill_path.write_text(
+        text.replace(HOOK_ROUTE_PARAGRAPH, ""), encoding="utf-8", newline="\n"
+    )
+
+
 def _fingerprint(root: Path) -> str:
     digest = hashlib.sha256()
     for path in sorted(item for item in root.rglob("*") if item.is_file()):
@@ -122,6 +154,25 @@ def _fingerprint(root: Path) -> str:
         digest.update(b"\0")
         digest.update(path.read_bytes())
     return digest.hexdigest()
+
+
+def _validate_tree(output: Path) -> None:
+    for path in output.rglob("*"):
+        if path.is_symlink():
+            raise RuntimeError(f"Hook companion cannot contain a symlink: {path}")
+        if path.is_file() and "../" in path.read_text(encoding="utf-8", errors="ignore"):
+            raise RuntimeError(f"Hook companion contains parent traversal: {path}")
+        if path.is_file() and path.suffix.lower() == ".md":
+            text = path.read_text(encoding="utf-8")
+            for target in MARKDOWN_LINK_RE.findall(text):
+                target = target.split("#", 1)[0].strip()
+                if not target or target.startswith(("https://", "http://", "mailto:")):
+                    continue
+                resolved = (path.parent / target).resolve()
+                if not resolved.is_relative_to(output) or not resolved.exists():
+                    raise RuntimeError(
+                        f"Hook companion contains a broken local Markdown link: {path} -> {target}"
+                    )
 
 
 def _validate(output: Path, adapter: HostAdapter) -> None:
@@ -149,22 +200,31 @@ def _validate(output: Path, adapter: HostAdapter) -> None:
     manifests = sorted(output.rglob("plugin.json"))
     if manifests != [expected_manifest]:
         raise RuntimeError("Hook companion must contain exactly one host manifest")
-    for path in output.rglob("*"):
-        if path.is_symlink():
-            raise RuntimeError(f"Hook companion cannot contain a symlink: {path}")
-        if path.is_file() and "../" in path.read_text(encoding="utf-8", errors="ignore"):
-            raise RuntimeError(f"Hook companion contains parent traversal: {path}")
-        if path.is_file() and path.suffix.lower() == ".md":
-            text = path.read_text(encoding="utf-8")
-            for target in MARKDOWN_LINK_RE.findall(text):
-                target = target.split("#", 1)[0].strip()
-                if not target or target.startswith(("https://", "http://", "mailto:")):
-                    continue
-                resolved = (path.parent / target).resolve()
-                if not resolved.is_relative_to(output) or not resolved.exists():
-                    raise RuntimeError(
-                        f"Hook companion contains a broken local Markdown link: {path} -> {target}"
-                    )
+    _validate_tree(output)
+
+
+def _validate_outline(output: Path, adapter: HostAdapter) -> None:
+    expected_manifest = output / adapter.manifest_target
+    required = (
+        expected_manifest,
+        output / "hooks/hooks.json",
+        output / "scripts/outline_prompt_hook.py",
+        output / "agents/outline-planner.md",
+        output / "skills/chinese-official-writing/SKILL.md",
+        output / "skills/chinese-official-writing/scripts/prose_lint.py",
+        output / "hook-capability.json",
+        output / "README.md",
+        output / "LICENSE",
+    )
+    missing = [path.relative_to(output).as_posix() for path in required if not path.is_file()]
+    if missing:
+        raise RuntimeError(f"incomplete outline companion: {missing}")
+    if sorted(output.rglob("plugin.json")) != [expected_manifest]:
+        raise RuntimeError("outline companion must contain exactly one Claude manifest")
+    packaged = output / "skills/chinese-official-writing"
+    if (packaged / "hooks").exists() or (packaged / "scripts/review_gate.py").exists():
+        raise RuntimeError("outline companion must not carry the delivery-gate runtime")
+    _validate_tree(output)
 
 
 def assemble(
@@ -176,16 +236,32 @@ def assemble(
         raise ValueError(f"unsupported host: {host}")
     if capability not in CAPABILITY_CHOICES:
         raise ValueError(f"unsupported Hook capability: {capability}")
+    if capability == OUTLINE_CAPABILITY and host != "claude-code":
+        raise ValueError("outline_assist currently supports Claude Code only")
     output = output.expanduser().resolve()
     if output.exists():
         raise FileExistsError(f"output already exists: {output}")
     output.mkdir(parents=True)
     try:
-        _copy_skill(output, adapter)
-        _copy(adapter.source_root / "manifest.json", output / adapter.manifest_target)
-        _copy(adapter.source_root / "hooks.json", output / "hooks/hooks.json")
-        _copy(adapter.adapter_source, output / adapter.adapter_target)
-        _copy(adapter.source_root / "README.md", output / "README.md")
+        if capability == OUTLINE_CAPABILITY:
+            _copy_outline_skill(output)
+            _copy(OUTLINE_ROOT / "manifest.json", output / adapter.manifest_target)
+            _copy(OUTLINE_ROOT / "hooks.json", output / "hooks/hooks.json")
+            _copy(
+                OUTLINE_ROOT / "outline_prompt_hook.py",
+                output / "scripts/outline_prompt_hook.py",
+            )
+            _copy(
+                OUTLINE_ROOT / "outline-planner.md",
+                output / "agents/outline-planner.md",
+            )
+            _copy(OUTLINE_ROOT / "README.md", output / "README.md")
+        else:
+            _copy_skill(output, adapter)
+            _copy(adapter.source_root / "manifest.json", output / adapter.manifest_target)
+            _copy(adapter.source_root / "hooks.json", output / "hooks/hooks.json")
+            _copy(adapter.adapter_source, output / adapter.adapter_target)
+            _copy(adapter.source_root / "README.md", output / "README.md")
         _copy(SKILL_ROOT / "LICENSE", output / "LICENSE")
         (output / "hook-capability.json").write_text(
             json.dumps(
@@ -197,7 +273,10 @@ def assemble(
             encoding="utf-8",
             newline="\n",
         )
-        _validate(output, adapter)
+        if capability == OUTLINE_CAPABILITY:
+            _validate_outline(output, adapter)
+        else:
+            _validate(output, adapter)
     except Exception:
         shutil.rmtree(output, ignore_errors=True)
         raise
