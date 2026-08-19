@@ -43,6 +43,7 @@ CJK_QUANTITY_UNITS: Final = (
     "家",
     "所",
     "辆",
+    "方面",
 )
 CJK_QUANTITY_RE: Final = re.compile(
     r"[一二三四五六七八九十百千万两]+(?:"
@@ -59,6 +60,10 @@ FIELD_INTRO_LABEL_RE: Final = re.compile(r"如下$")
 FIELD_PROSE_LABEL_RE: Final = re.compile(r"(?:指出|强调|表示|认为|要求|提出)$")
 STATE_CUE_RE: Final = re.compile(r"拟|尚未|未形成|正在|仍在|待核实|待审批|待研究")
 CLAUSE_BOUNDARY_RE: Final = re.compile(r"[\n。！？；;]")
+ANAPHORIC_QUANTITY_PREFIXES: Final = frozenset("前后上下首末")
+TRANSPARENT_ITEM_SUMMARY_RE: Final = re.compile(
+    r"^(?P<numeral>[一二三四五六七八九十百千万两]+)项$"
+)
 
 
 @dataclass(frozen=True)
@@ -117,6 +122,25 @@ def _occurrences(
     )
 
 
+def _quantity_occurrences(text: str) -> tuple[AnchorOccurrence, ...]:
+    items: list[AnchorOccurrence] = []
+    for match in CJK_QUANTITY_RE.finditer(text):
+        prefix = text[match.start() - 1 : match.start()] if match.start() else ""
+        if prefix in ANAPHORIC_QUANTITY_PREFIXES:
+            continue
+        items.append(
+            AnchorOccurrence(
+                kind="quantity",
+                value=match.group(0),
+                start=match.start(),
+                end=match.end(),
+                context=_normalized_clause(text, match.start(), match.end()),
+                is_length_bound=False,
+            )
+        )
+    return tuple(items)
+
+
 def _number_is_length_bound(text: str, match: re.Match[str]) -> bool:
     right = text[match.end() : min(len(text), match.end() + 24)]
     if re.match(r"\s*字(?!节)", right):
@@ -162,7 +186,7 @@ def _field_labels(text: str) -> tuple[str, ...]:
 def snapshot(text: str) -> AnchorSnapshot:
     return AnchorSnapshot(
         numbers=_occurrences(text, NUMBER_RE, "number"),
-        quantities=_occurrences(text, CJK_QUANTITY_RE, "quantity"),
+        quantities=_quantity_occurrences(text),
         quotes=_occurrences(text, QUOTE_RE, "quote"),
         fields=_field_labels(text),
         state_contexts=tuple(
@@ -277,6 +301,35 @@ def _missing_and_added(
     return missing, added
 
 
+def _transparent_quantity_relations(
+    added: list[str],
+    candidate: AnchorSnapshot,
+    original: AnchorSnapshot,
+    authority: AnchorSnapshot,
+) -> tuple[list[str], list[dict[str, Any]]]:
+    remaining: list[str] = []
+    relations: list[dict[str, Any]] = []
+    available = _contexts_by_value((*original.quantities, *authority.quantities))
+    candidate_contexts = _contexts_by_value(candidate.quantities)
+    for value in added:
+        match = TRANSPARENT_ITEM_SUMMARY_RE.fullmatch(value)
+        authority_value = f"{match.group('numeral')}方面" if match else ""
+        if not authority_value or authority_value not in available:
+            remaining.append(value)
+            continue
+        relations.append(
+            {
+                "kind": "quantity_summary",
+                "value": value,
+                "authority_value": authority_value,
+                "authority_contexts": available[authority_value],
+                "candidate_contexts": candidate_contexts.get(value, []),
+                "check": "same_enumerated_items_scope_head_and_attribution",
+            }
+        )
+    return remaining, relations
+
+
 def compare(
     original_text: str,
     candidate_text: str,
@@ -284,12 +337,14 @@ def compare(
     *,
     ignored_authority_values: Iterable[str] = (),
     allowed_field_labels: Iterable[str] = (),
+    allow_transparent_quantity_summaries: bool = False,
 ) -> dict[str, Any]:
     original = snapshot(original_text)
     candidate = snapshot(candidate_text)
     authority = snapshot(authority_text)
     ignored = set(ignored_authority_values)
     violations: dict[str, Any] = {}
+    transparent_quantity_relations: list[dict[str, Any]] = []
     for kind in ("numbers", "quantities", "quotes"):
         missing, added = _missing_and_added(
             getattr(original, kind),
@@ -297,6 +352,13 @@ def compare(
             getattr(authority, kind),
             ignored,
         )
+        if kind == "quantities" and allow_transparent_quantity_summaries:
+            added, transparent_quantity_relations = _transparent_quantity_relations(
+                added,
+                candidate,
+                original,
+                authority,
+            )
         violations[f"missing_{kind}"] = missing
         violations[f"added_{kind}"] = added
     violations["fields_changed"] = _fields_changed(
@@ -327,7 +389,11 @@ def compare(
             for value, count in sorted(before.items())
             if 0 < after[value] < count
         )
-    relations = [] if reason else _relation_items(original, candidate)
+    relations = (
+        []
+        if reason
+        else _relation_items(original, candidate) + transparent_quantity_relations
+    )
     return {
         "status": "fallback" if reason else ("semantic_review_required" if relations else "pass"),
         "mechanical_ok": reason is None,

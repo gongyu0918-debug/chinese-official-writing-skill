@@ -260,6 +260,7 @@ def mechanical_reason(
             request,
             ignored_authority_values=ignored_values,
             allowed_field_labels=_required_field_labels(request),
+            allow_transparent_quantity_summaries=True,
         )
     except Exception:
         return "under_length_hard_anchor_contract_unavailable"
@@ -369,6 +370,7 @@ def _verdict_instruction(
             request,
             ignored_authority_values=ignored_values,
             allowed_field_labels=_required_field_labels(request),
+            allow_transparent_quantity_summaries=True,
         ).get("relation_packet", [])
     except Exception:
         return None
