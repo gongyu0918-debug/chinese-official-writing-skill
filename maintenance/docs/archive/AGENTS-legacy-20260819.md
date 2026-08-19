@@ -10,8 +10,8 @@
 
 **产品写稿规则不得进入 `AGENTS.md`。** 文种、写作行为、生成要求和运行时约束只写入 canonical Skill 及其 references；候选结论、评测题面和发布流水进入相应 evidence，不在这里复述。
 
-发布事实和维护历史见 [`maintenance/docs/evidence/README.md`](maintenance/docs/evidence/README.md)。历史文件不是当前指令。
-长期产品需求、当前状态和需求到真实证据的覆盖关系见 [`maintenance/specs/README.md`](maintenance/specs/README.md)；该目录是轻量记录层，不是额外 workflow。
+发布事实和维护历史见 [`maintenance/docs/evidence/README.md`](../evidence/README.md)。历史文件不是当前指令。
+长期产品需求、当前状态和需求到真实证据的覆盖关系见 [`maintenance/specs/README.md`](../../specs/README.md)；该目录是轻量记录层，不是额外 workflow。
 
 ## 仓库与发行表面
 

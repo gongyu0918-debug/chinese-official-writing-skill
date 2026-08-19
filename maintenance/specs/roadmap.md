@@ -6,10 +6,10 @@
 
 - `WR-001/002`：v1.6.4 事实与状态规则、保护性外扩精确删除和新闻边界已发布于 `v1.6.4@a737791c`；六份真实写稿和 SOL 校准见 [`v164-real-writing-final/result.md`](../tests/evidence/v164-real-writing-final/result.md)，发行回执见 [`release-1.6.4.md`](../tests/evidence/release-1.6.4.md)。
 - `HK-001/003/004/006`：普通路径独立闭环、capability-first 单协调器、三宿主静态 adapter 和用户知情边界已建立；永久移除采用 README 语义说明与二次确认，未确认0改动、确认后隔离副本精确删除并完成真实写稿。
-- `UL-001—004`：篇幅不足 Hook 已按真实写稿优先完成语义修复，并随 `v1.6.5@81061bd7` 发布。Alibaba 直修 268→342，Codex 在线 268→350，Claude Code 在线 268→344；两次独立 SOL max 均判可用 D1 `ACCEPT`。当前 WorkBuddy / CodeBuddy 又完成中文计数保守回退在线样本：候选新增数量表达时选择并精确交付 D0。结果见 [`v164-under-length-real-first-result-20260814.md`](../tests/evidence/v164-under-length-real-first-result-20260814.md) 与 [`post-v1610-host-capability-gaps-result-20260819.md`](../tests/evidence/post-v1610-host-capability-gaps-result-20260819.md)。
+- `UL-001—004`：篇幅不足 Hook 已按真实写稿优先完成语义修复，并随 `v1.6.5@81061bd7` 发布。Alibaba 直修 268→342，Codex 在线 268→350，Claude Code 在线 268→344；两次独立 SOL max 均判可用 D1 `ACCEPT`。当前候选又把材料明确同数“几方面→几项”送入语义核验：106→206字安全 D1 获选，WorkBuddy / CodeBuddy 的106→190字风险候选仍安全回 D0。结果见 [`v164-under-length-real-first-result-20260814.md`](../tests/evidence/v164-under-length-real-first-result-20260814.md) 与 [`post-v1610-cjk-transparent-quantity-result-20260819.md`](../tests/evidence/post-v1610-cjk-transparent-quantity-result-20260819.md)。
 - `CL-001`：交付洁净度已先用三条指定 DeepSeek V4 Flash 路线完成 5/5 同稿真实整理，再接入独立静态 capability，并随 v1.6.5 发布。SOL max 五组全 PASS；Claude Code、Codex 与当前 WorkBuddy / CodeBuddy 在线生命周期均选择 D1 并闭合哈希。结果见 [`delivery-cleanliness-real-first/result.md`](../tests/evidence/delivery-cleanliness-real-first/result.md)。
 - `RP-001`：重复句与高相似句已先完成三 provider 的 5 组真实删除和 SOL max 功能终审，再接入纯删除 capability，并随 v1.6.5 发布。当前 Claude Code 已补一条三事件在线 E1/hash 样本；长稿 1 个自然度 WARN 保留为后续观察，不影响已验证的目标功能。
-- `WR-003`：20份真实稿与候选直连复测已验证跨文种责任承载；最小规则和镜像已随 `v1.6.6@b49da7f2` 发布。v1.6.10 后又以5个真实小样本细分未决状态、进行态和责任主体边界并合入当前 `main`。
+- `WR-003`：20份真实稿与候选直连复测已验证跨文种责任承载；最小规则和镜像已随 `v1.6.6@b49da7f2` 发布。v1.6.10 后又以5个真实小样本细分未决状态、进行态和责任主体边界。当前官方语料扩样确认显式主体、近邻继承与工作事项作主语都成立；额外措辞原型真实稿未稳定改善，已撤回产品改动，只保留[校准证据](../tests/evidence/post-v1610-wr003-official-corpus-calibration-20260819.md)。
 - `WR-004`：20类事务文体已完成真实写稿，原型19/20功能成立；“编者按”标识修复后目标功能20/20，中央直接叶已随 `v1.6.6@b49da7f2` 发布。
 - `WR-005` 短稿自然度：上限题 R3 为候选3胜、基线0胜、难分1，候选四稿硬边界全 PASS；最小路由接入后又以 Ollama 报告和 Alibaba 新闻完成两篇在线直写，均读取新叶且可直接使用，已随 `v1.6.7@44347003` 发布。明确篇幅下限继续由 under-length 处理。
 - `OV-001` 超长收束：真实 D0 498→285、SOL max 六项 PASS、Grok 4.6 冷审修复和最终机械门重放已完成，随 `v1.6.8@6b1dc2c5` 发布；当前 Codex 又完成313→137在线 D1/hash 样本。ClawHub 同步的是无 Hook 写作规则。
@@ -23,11 +23,12 @@
 - SkillHub 已加入 `office-efficiency`、`content-creation` 轻量检索信号；不声称平台写入双分类。
 - GitHub 当前包统一 MIT；普通兼容包不含 Hook，OpenClaw GitHub 兼容包随仓库维护。
 - v1.6.6 GitHub 与 SkillHub.cn 发布回执见 [`release-1.6.6.md`](../tests/evidence/release-1.6.6.md)；ClawHub、Red SkillHub 及其他平台未在该轮上传。SkillHub 公开 latest 与签名已传播，Keen、Sanbu 安全报告均为 benign。
-- v1.6.7 GitHub、SkillHub.cn 与后续 ClawHub 无 Hook 包同步回执见 [`release-1.6.7.md`](../tests/evidence/release-1.6.7.md)。ClawHub 公开 latest、33文件清单与全新安装逐文件复核均已闭环，Hook为0；Red SkillHub 及其他平台未上传。SkillHub tags.latest 已更新，公开 latest 与签名仍在异步传播。
+- v1.6.7 GitHub、SkillHub.cn 与后续 ClawHub 无 Hook 包同步回执见 [`release-1.6.7.md`](../tests/evidence/release-1.6.7.md)。该版旧传播状态已由 v1.6.10 的 latest、签名和下载包闭环取代。
 
 ## IN_PROGRESS
 
 - 当前没有需要重复补跑的 Hook 在线缺口；本地付费分支在公开 `main` 更新后继续按 [`public-paid-sync.md`](public-paid-sync.md) 同步。
+- post-v1.6.10 集成候选已完成中文数量透明归纳与维护可达性清理；尚未取得合并 `main` 的当次授权，不冒充已发布能力。
 - 本地 Qwen3.8 27B 评估：Codex GUI 5项串行任务为4份写稿 PASS、1份审稿 WARN，运行稳定但没有可核验的 Skill 文件读取回执。当前不纳入任务池；64K Ollama 别名与证据保留，模型已停止释放显存。
 - GitHub README 制度示例替换已随 v1.6.8 发布：历史 evidence 原文未改，公开页使用事实安全的八条制度正文。
 
@@ -46,7 +47,7 @@
 
 ## TODO：已登记但不在本轮展开
 
-1. `OT-001` 提纲冻结与终稿核对已完成三宿主在线验证，并完整转存到本地付费候选 `codex/paid-outline-review@59dcf35c`；公开 `main` 不含该能力。`OT-002` 用户固定提纲的层级、重复和缺项修正仅在付费候选中继续。
+1. `OT-001` 提纲冻结与终稿核对已完成三宿主在线验证，并完整转存到本地付费候选 `codex/paid-outline-review`；公开 `main` 不含该能力。付费同步以 [`public-paid-sync.md`](public-paid-sync.md) 的祖先与 allowlist 检查为准，不固定提交号。`OT-002` 用户固定提纲的层级、重复和缺项修正仅在付费候选中继续。
 
 ## 不再重复
 
