@@ -6,7 +6,7 @@
 | --- | --- | --- | --- | --- |
 | `WR-001` 事实与状态 | `references/information-selection.md`、各文种叶 | v1.6.4 W1—W6 | 无 Hook 也成立 | 已覆盖；继续按真实反例迭代 |
 | `WR-002` 保护性外扩 | `hooks/capabilities/protective_expansion/`、普通语义 references | 同一 E0/E1 29 组功能终审；W1—W6 | 单 coordinator、三宿主静态 companion | 已覆盖；公开 README 旧制度示例已用事实安全正文替换 |
-| `WR-003` 责任承载 | `references/information-selection.md`、中央事务文体叶 | 20份真实稿；C02-R3、C03直连复测 | 不属于独立 Hook | 已覆盖并随 v1.6.6 发布 |
+| `WR-003` 责任承载 | `references/information-selection.md`、中央事务文体叶 | 20份真实稿；C02-R3、C03直连复测；v1.6.10 后5个状态/进行态小样本 | 不属于独立 Hook | 已覆盖；当前 `main` 进一步区分未决状态、进行态与责任主体承载 |
 | `WR-004` 文种用语 | `references/formulaic-language.md`、新闻消息叶、SKILL直接路由 | 20类真实写稿，原型19/20；“编者按”修复后目标20/20 | 不适用 | 已覆盖并随 v1.6.6 发布 |
 | `WR-005` 短稿自然度与常用语机械化 | `references/short-draft-naturalness.md`、信息选择和文种叶 | 短稿 R3 上限题8次，候选3胜0负1平且硬边界全 PASS；产品接入后两篇在线直写可用；常用语 R1—R6 真实调用 | 交付洁净度与重复清理只作可选兜底 | 短稿自然度已随 v1.6.7 发布；硬下限归 under-length；常用语 R1—R6 均 HOLD，本版未改总表 |
 | `WR-006` 审稿模式 | SKILL 任务模式、Hook bypass | OpenCode Go 自然审稿请求 | 自然审稿、复合成稿和引语反控已完成 | 已随 v1.6.9 发布 |
@@ -18,15 +18,15 @@
 | `HK-003` 单协调器 | `hooks/core/gate_stop_hook.py` | 同一任务仅一个 capability | 官方说明同事件多 Hook 可并发，因此保持单 coordinator | 已覆盖 |
 | `HK-004` 宿主薄适配 | `hooks/adapters/` | 不适用 | Codex、Claude、CodeBuddy 官方契约与静态包 | 已覆盖结构；CodeBuddy Hooks 仍为 Beta |
 | `HK-005` 故障回退 | coordinator 和 capability runtime | 当前 Codex/Claude 均选择 D0 并闭合 hash | WorkBuddy 当前重复清理样本选择 E1并闭合hash，临时关闭零事务 | 已覆盖主要路径；错误终稿不得误标成功继续保留反控 |
-| `HK-006` 知情与关闭 | `hooks/README.md`、opt-out classifier | 普通路径六稿；永久移除后真实写稿 | 未确认逐字不变；二次确认后隔离副本17文件移除、SKILL单点编辑 | 永久移除已覆盖；自然审稿语义待扩 |
+| `HK-006` 知情与关闭 | `hooks/README.md`、opt-out classifier | 普通路径六稿；永久移除后真实写稿 | 未确认逐字不变；二次确认后隔离副本17文件移除、SKILL单点编辑；自然审稿、复合成稿和引语反控已完成 | 已覆盖 |
 | `UL-001` under-only 触发 | `hooks/capabilities/under_length/runtime.py` | Alibaba 268→342；Codex 268→350；Claude 268→344 | Codex、Claude 当前在线选择 D1；并行 Skill/材料读取竞态修复后 Codex 事务正常建立并安全选择 D0 | 已覆盖并随 v1.6.5 发布；竞态修复不调整篇幅语义门 |
 | `UL-002` 安全扩写 | under revision/verdict prompt | 三条 provider 的失败稿驱动语义收窄；三份获选 D1 | 同一能力在两宿主在线执行 | 已覆盖当前事实充分采购请示；稀疏材料仍允许 D0 回退 |
 | `UL-003` 产品准入 | 同一 D0/D1 功能门 | 两次独立 SOL max 均为 `ACCEPT` | selection/delivery/final hash 闭环 | 已覆盖目标功能；不以独立 on/off 总胜负替代 |
-| `UL-004` 证据迁移 | adapter/core/runtime hash 分层 | CodeBuddy 旧完整在线；当前能力同稿复放 | 当前 CodeBuddy 静态包与 canonical runtime 同 hash | 部分；未冒充当前在线登录成功 |
-| `CL-001` 交付洁净度 | `hooks/capabilities/delivery_cleanliness/` | 三 provider 5/5 精确整理；SOL max 全 PASS | 三宿主静态组装；Claude Code、Codex 在线 D1/hash 闭环 | 已覆盖并随 v1.6.5 发布；CodeBuddy 未重跑当前能力在线生命周期 |
-| `RP-001` 重复与高相似句 | `hooks/capabilities/repetition_cleanup/` | 三 provider 5 组；SOL max 功能 PASS，长稿 1 WARN | 三宿主静态组装；Codex 与当前 WorkBuddy companion 均在线 E1/hash 闭环 | 已覆盖并随 v1.6.5 发布；Claude 尚未做当前能力在线样本 |
+| `UL-004` 证据迁移 | adapter/core/runtime hash 分层 | CodeBuddy 旧完整在线；当前能力同稿复放；当前中文计数 D1 保守回退 | 当前 WorkBuddy / CodeBuddy 在线完成 under transaction、D0 选择及交付 hash 闭环 | 已覆盖当前保守回退路径；不据此放宽中文数量保护 |
+| `CL-001` 交付洁净度 | `hooks/capabilities/delivery_cleanliness/` | 三 provider 5/5 精确整理；SOL max 全 PASS | 三宿主静态组装；Claude Code、Codex 与当前 WorkBuddy / CodeBuddy 均有在线 D1/hash 闭环 | 已覆盖并随 v1.6.5 发布 |
+| `RP-001` 重复与高相似句 | `hooks/capabilities/repetition_cleanup/` | 三 provider 5 组；SOL max 功能 PASS，长稿 1 WARN | 三宿主静态组装；Codex、WorkBuddy / CodeBuddy 与当前 Claude Code 均有在线 E1/hash 闭环 | 已覆盖并随 v1.6.5 发布 |
 | `AH-001` 引用与硬锚 | `hooks/shared/hard_anchors.py`；under/over 机械门与既有语义验收 | 24/24 先行实验；12份原型/回放；12次缺口修复真实修订 | 单 coordinator 内共享，不另起 Hook；三宿主 companion 静态组装 | 已随 v1.6.10 发布；字段、标识数字、汉字数量和篇幅授权边界回归通过，最后窄增量三方冷审均 PASS；其他改稿能力尚未迁移 |
-| `OV-001` 超长收束 | `hooks/capabilities/over_length/`、短稿自然收束叶 | 两家 provider 先行原型；同一 D0 498→285，SOL max 六项全 PASS；Qwen 补丁后同稿重放通过 | Claude Code 在线 D1/hash 闭环；Grok 4.6 冷审修复；三宿主静态组装 | 已随 v1.6.8 发布，五项边界补丁随 v1.6.9 发布；Codex/CodeBuddy 当前版本在线样本待补 |
+| `OV-001` 超长收束 | `hooks/capabilities/over_length/`、短稿自然收束叶 | 两家 provider 先行原型；同一 D0 498→285，SOL max 六项全 PASS；Qwen 补丁后同稿重放通过；当前 Codex 313→137 | Claude Code 与当前 Codex 在线 D1/hash 闭环；Grok 4.6 冷审修复；三宿主静态组装 | 已随 v1.6.8 发布，五项边界补丁随 v1.6.9 发布；当前缺口在线样本已补 |
 | `OT-001` 提纲冻结与核对 | 本地付费候选 `codex/paid-outline-review` | 稀疏正文、完整文稿、固定提纲、改稿和长稿真实写稿；边界稿两家冷审 PASS | Codex、WorkBuddy / CodeBuddy、Claude Code 在线 Agent + Stop 生命周期 | 已验证后从公开 `main` 撤出；公开包不含该能力 |
 | `OT-002` 提纲修正 | 本地付费候选规格 | 尚未运行专门样本 | 复用 OT-001 正文前检查点，不在 Stop 猜提纲 | 未覆盖；不进入公开版能力范围 |
 | `MT-001` 真实结果优先 | `AGENTS.md`、本规格层 | v1.6.4 已采用；Codex GUI 本地 Qwen3.8 27B 5项串行评估为4 PASS、1 WARN | 5/5技术完成，但0/5具有可核验读取回执；本地 writer 不兼任终审 | 已覆盖规则；本地27B暂不纳入任务池，64K别名仅保留为实验资产 |
@@ -52,7 +52,7 @@
 | `skills/.../hooks/gate_stop_hook.py` | `abe469b00e5b04adefdba240bd78afa4bfeed82b67a5ce0810a13e0bf7786834` | 未变化 |
 | `under_length/runtime.py` | 当前组装时要求与 canonical 逐字一致 | 已变化，且是宿主无关能力层 |
 
-旧在线样本完成 D0 180 字、D1 816 字、拒绝 D1、精确 D0 回显；当前变化后的 runtime 已用该原始 D0/D1 复放并拒绝不安全新增流程。Codex 与 Claude Code 又以当前 runtime 完成在线 Stop 生命周期并选择可用 D1。因此 CodeBuddy 当前登录失败记录为环境状态，不再作为篇幅语义开发的阻塞项，但也不写成当前在线成功。
+旧在线样本完成 D0 180 字、D1 816 字、拒绝 D1、精确 D0 回显；当前变化后的 runtime 已用该原始 D0/D1 复放并拒绝不安全新增流程。Codex 与 Claude Code 又以当前 runtime 完成在线 Stop 生命周期并选择可用 D1。2026-08-19，当前 WorkBuddy 5.3.13 / CodeBuddy CLI 2.115.0 以当前 companion 完成中文计数保守回退在线样本：D0 106 字、D1 192 字，因新增数量表达选择 D0，终稿 hash 与 D0 一致。该样本只证明当前保守回退路径，不推定其他 CodeBuddy capability 均已重跑。
 
 ## 官方契约依据
 
