@@ -1955,7 +1955,7 @@ class SkillBoundaryTests(unittest.TestCase):
             "1.6.7 短稿自然收束与 Hook 可维护性",
             "1.6.6 事务文体功能与责任承载",
             "明川市政务服务中心服务事项信息变更管理办法（试行）",
-            "release-1.6.10-rc.md",
+            "release-1.6.10.md",
             "release-1.6.9.md",
             "新闻与评论写作",
             "maintenance/tests/evidence",

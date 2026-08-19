@@ -52,6 +52,7 @@
 
 ## 剩余边界
 
+- 发布后累计5个提交的轻量 review 确认 tag 后产品树零漂移。README 最近五份证据第一次回归仍写死本地 RC 名称，修正为最终发布记录后，Skill boundary 与 repository reachability 81/81通过。
 - 本轮没有重新跑 Codex、CodeBuddy/WorkBuddy 在线 Hook 生命周期；共享硬锚的真实修订和静态组装证据已闭环，宿主协议没有变化。
 - SkillHub.cn 的公开 latest、精确签名和下载包已传播；本版本审核、安全、内容状态仍以正式回执的 `pending` 为准，只读复核，不重复上传。
 - 付费提纲能力继续只保存在 `codex/paid-outline-review`，未进入本次三个公开发行面。
