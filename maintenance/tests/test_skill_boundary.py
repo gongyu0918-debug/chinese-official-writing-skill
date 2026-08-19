@@ -18,8 +18,8 @@ OPTIONAL_GATE_FILES = {
     "scripts/review_gate.py",
 }
 SKILLHUB_CLEAN_PACKAGE_EXCLUDES = {"agents/openai.yaml", "LICENSE"}
-CURRENT_VERSION = "1.6.9"
-PUBLISHED_VERSION = "1.6.9"
+CURRENT_VERSION = "1.6.10"
+PUBLISHED_VERSION = "1.6.10"
 
 
 def relative_files(root: Path) -> list[str]:
@@ -464,8 +464,8 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assertIn("未命中时不扩大本页适用范围", cards)
         self.assertIn("任一事项已经形成", cards)
         self.assertIn("每个文种小节都是可从 `SKILL.md` 直接进入的叶子路由", playbooks)
-        self.assertIn("不要求先完整读取 `workflow.md` 或 `genre-routing.md`", playbooks)
-        self.assertIn("不要把每节末尾的“补充读取”当成固定加载清单", playbooks)
+        self.assertIn("只有任务另有复杂改稿、多材料合稿或文种/行文关系不明等条件时才补读长 reference", playbooks)
+        self.assertIn("节末“补充读取”不是固定清单", playbooks)
 
     def test_workflow_sparse_line_relief_keeps_carriers_and_route_graph(self) -> None:
         skill = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
@@ -898,7 +898,7 @@ class SkillBoundaryTests(unittest.TestCase):
     def test_openclaw_bundle_readme_is_current_and_contains_no_publish_command(self) -> None:
         readme = (ROOT / "packages" / "openclaw" / "README.md").read_text(encoding="utf-8")
 
-        self.assertIn("当前 GitHub 版本为 `1.6.9`", readme)
+        self.assertIn("当前 GitHub 版本为 `1.6.10`", readme)
         self.assertIn("MIT", readme)
         self.assertIn(r"python .\maintenance\tools\sync_adapters.py", readme)
         self.assertIn("packages/openclaw/", readme)
@@ -1276,16 +1276,13 @@ class SkillBoundaryTests(unittest.TestCase):
             "禁止直接誊抄代码、脚本、正则、模板库、大段 prompt、固定话术或模板正文",
             maintenance_history,
         )
-        self.assertIn(
-            "禁止直接誊抄第三方代码、脚本、正则、模板库、大段 prompt、固定话术或模板正文",
-            agents,
-        )
+        self.assertIn("旧版长文已移至", agents)
+        self.assertIn("只供追溯，不读取为当前指令", agents)
         for maintenance_gate in [
-            "不新增重排版引擎",
-            "不扩大默认联网",
-            "不默认强制确认",
-            "不破坏用户模板和字段式材料",
-            "落地后必须和上一基线做消融",
+            "真实稿失败时先修产品或停止候选",
+            "不得用扩大量表、增加裁判、重复全量测试或堆工程门替代质量改进",
+            "全量测试原则上只在准备合并或发布前运行一次",
+            "当前仓库和仓内包使用根 `LICENSE`（MIT）",
         ]:
             self.assertIn(maintenance_gate, agents)
         for runtime_prompt in [skill, workflow, checklist, genre_checklist, genre_playbooks]:
@@ -1952,14 +1949,14 @@ class SkillBoundaryTests(unittest.TestCase):
 
         for term in [
             "下表只保留最近 5 次版本验证",
+            "1.6.10 标题边界、语义减载与共享硬锚",
             "1.6.9 超长边界与自然审稿",
             "1.6.8 超长收束与短稿局部去重",
             "1.6.7 短稿自然收束与 Hook 可维护性",
             "1.6.6 事务文体功能与责任承载",
-            "1.6.5 可选 Hook 质量控制与生命周期修复",
             "明川市政务服务中心服务事项信息变更管理办法（试行）",
-            "release-1.6.9-rc.md",
-            "release-1.6.8.md",
+            "release-1.6.10-rc.md",
+            "release-1.6.9.md",
             "新闻与评论写作",
             "maintenance/tests/evidence",
             "maintenance/docs/evidence/README.md",
