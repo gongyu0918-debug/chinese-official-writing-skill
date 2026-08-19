@@ -104,6 +104,12 @@ Hook 模块缺失、超时、非法 JSON、hash 不符、span 漂移、回显不
 
 当 CodeBuddy 等宿主的 `hooks.json`、adapter 与中央 coordinator 和旧在线成功样本逐字相同，仅宿主无关的篇幅 runtime 变化时，可以迁移旧在线生命周期证据；仍须保留当前 runtime 的同稿复放和至少一个共享宿主在线执行。宿主胶水发生变化时必须重跑该宿主。
 
+### UL-005 语义验收来源绑定
+
+写稿模型对自己生成的 D1 做自由类别自审，不能作为唯一事实安全门。同一增量在不同轮次被改标为 `reasonable_inference`、`transparent_derivation` 或 `restatement` 时，类别名称本身不得决定放行。
+
+下一候选必须让新增事实绑定可机械核验的请求或材料 span/hash，或交给真正独立且已证明判别能力的 verifier。没有可验证来源、verifier 不可用、分类漂移或结果不明时逐字回退 D0。普通起草可以使用有主体和状态锚的合理推断；篇幅兜底不得仅靠推断增加字数。
+
 ## 快速收益型 Hook 能力
 
 ### CL-001 交付洁净度

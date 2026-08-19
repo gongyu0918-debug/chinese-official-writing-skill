@@ -1,0 +1,20 @@
+{
+  "model": "gpt-5.6-sol",
+  "effort": "max",
+  "scope": "same-D0 generated explicit-fact candidate",
+  "overall": "REJECT",
+  "checks": {
+    "fact_attribution": "FAIL",
+    "unresolved_status": "PASS",
+    "length_330_420": "PASS",
+    "request_genre_order": "PASS",
+    "naturalness_and_repetition": "FAIL",
+    "out_of_material_procedure_responsibility_commitment_result": "FAIL"
+  },
+  "findings": [
+    "‘现均已恢复正常使用’将材料中的‘现均已恢复使用’强化为‘正常使用’，新增了未明示的状态及结果判断。",
+    "‘本年度已有2台发生故障，分别于6月18日、7月22日发生’重复使用‘发生’，表达生硬。"
+  ],
+  "candidate_char_count": 357,
+  "direct_use": false
+}

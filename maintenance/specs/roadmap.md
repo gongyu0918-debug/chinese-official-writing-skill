@@ -44,10 +44,12 @@
 - `WR-005` 原短稿自然度 R1/R2：把自然度与硬下限混在一起，分别形成系统性偏短和材料外补字，保留为 HOLD；已由上限题 R3 取代后续方向。
 - `WR-005` 常用语机械化候选：R1—R6 均未准入；最终 R6 8/8技术有效，但候选仍有篇幅、职责扩张、安全要求和材料外号召硬失败。结果见 [`v167-formulaic-mechanicality-real-first/result.md`](../tests/evidence/v167-formulaic-mechanicality-real-first/result.md)。
 - 旧 `length-band-hook-v162`、`under-length-hook-v162-v2`、`v163-protective-expansion-gate` 继续保持历史 HOLD，不复活旧验收结论。
+- `UL-005` 篇幅验收来源绑定：R8 暴露同模型自审误放；拒绝 `reasonable_inference` 的窄补丁被模型改标绕过，同模型独立 verifier Agent 也把坏增量改标为透明归纳并放行。产品改动已撤回；下一步只比较来源 span/hash 与真正异模型 verifier 两种最小原型。[结果](../tests/evidence/post-v1610-underlength-verifier-risk-20260820.md)
 
 ## TODO：已登记但不在本轮展开
 
 1. `OT-001` 提纲冻结与终稿核对已完成三宿主在线验证，并完整转存到本地付费候选 `codex/paid-outline-review`；公开 `main` 不含该能力。付费同步以 [`public-paid-sync.md`](public-paid-sync.md) 的祖先与 allowlist 检查为准，不固定提交号。`OT-002` 用户固定提纲的层级、重复和缺项修正仅在付费候选中继续。
+2. `OT-001-composite` 的 Claude 有序组合已形成实验候选，但在 `UL-005` 闭环前不合入付费分支；Codex、WorkBuddy / CodeBuddy 组合入口仍不开放。
 
 ## 不再重复
 
