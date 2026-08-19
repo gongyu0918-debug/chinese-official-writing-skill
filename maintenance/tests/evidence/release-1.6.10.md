@@ -38,7 +38,8 @@
 
 - 正式提交一次：`ok=true`、`skillId=70149`、`versionId=245586`、`fileCount=61`、平台 fingerprint `e3c3a194e2fa8aeb625603b62e55762f1a5372ca35510bf58d436a02680c7a2c`。
 - `latest`、`ai-compute`、`chinese`、`content-creation`、`gongwen`、`office-efficiency`、`official-document`、`writing` tags 均已指向 `1.6.10`；公开版本计数为73。
-- 上传回执的 `reviewStatus`、`securityScanStatus`、`contentAuditStatus` 均为 `pending`。提交后只读复核时 `latestVersion` 仍为1.6.9，1.6.10精确版本签名返回404；属于平台异步传播，不重复上传。
+- 上传回执的 `reviewStatus`、`securityScanStatus`、`contentAuditStatus` 均为 `pending`。提交后第一次只读复核时 `latestVersion` 仍为1.6.9，1.6.10精确版本签名返回404；未重复上传。后续复核时 `latestVersion` 与 `tags.latest` 均已为1.6.10，签名端点返回200，签名 `content_hash=c1774816f017d36cc98d15ba6918dea93096ea6ec6337239ecd06c430a0bbebd`、`version_id=245586`。
+- 公开下载包为61文件；其中60个签名内容文件与本地发布包逐项哈希一致。平台生成的 `_meta.json` 只增加 `ownerId` 与 `publishedAt`，因此签名载荷的 `file_count=60`，公开归档仍为61文件。
 
 ## ClawHub 回执与传播状态
 
@@ -52,5 +53,5 @@
 ## 剩余边界
 
 - 本轮没有重新跑 Codex、CodeBuddy/WorkBuddy 在线 Hook 生命周期；共享硬锚的真实修订和静态组装证据已闭环，宿主协议没有变化。
-- SkillHub.cn 的公开 latest、精确签名和本版本审核、安全、内容状态仍待异步传播；只读复核，不重复上传。
+- SkillHub.cn 的公开 latest、精确签名和下载包已传播；本版本审核、安全、内容状态仍以正式回执的 `pending` 为准，只读复核，不重复上传。
 - 付费提纲能力继续只保存在 `codex/paid-outline-review`，未进入本次三个公开发行面。
