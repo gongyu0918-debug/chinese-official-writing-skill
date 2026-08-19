@@ -1672,8 +1672,8 @@ CASES: list[PromptCase] = [
             "file_terms": {
                 "chinese-official-writing/references/genre-playbook-minutes.md": [
                     "每个文种小节都是可从 `SKILL.md` 直接进入的叶子路由",
-                    "不要求先完整读取 `workflow.md` 或 `genre-routing.md`",
-                    "不要把每节末尾的“补充读取”当成固定加载清单",
+                    "只有任务另有复杂改稿、多材料合稿或文种/行文关系不明等条件时才补读长 reference",
+                    "节末“补充读取”不是固定清单",
                 ],
                 "chinese-official-writing/references/anti-ai-patterns.md": [
                     "语言模式叶子资料",

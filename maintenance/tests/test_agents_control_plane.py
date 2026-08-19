@@ -14,24 +14,18 @@ class AgentsControlPlaneTests(unittest.TestCase):
         text = path.read_text(encoding="utf-8")
         self.assertLess(len(path.read_bytes()), 12 * 1024)
         for required in [
-            "产品写稿规则不得进入 `AGENTS.md`",
-            "每累计 5 次 commit",
-            "禁止直接誊抄第三方代码、脚本、正则、模板库、大段 prompt、固定话术或模板正文",
-            "真实链路 A/B",
-            "解盲前不泄露候选身份",
-            "Hook 使用说明、唯一核心和宿主静态适配文件放在 canonical 的 `hooks/`",
-            "`hooks/adapters/` 保存 Codex、Claude Code、WorkBuddy/CodeBuddy 静态兼容层",
-            "`packages/openclaw/` 排除 Hook、插件和交付门禁资产",
-            "`packages/openclaw/` 随 GitHub 仓库维护，不代表 ClawHub 已发布同版",
-            "GitHub、skillhub.cn、ClawHub 和 Red SkillHub 是彼此独立的发行面",
-            "文件存在、胶水组装、插件安装、功能启用、信任确认和真实执行必须分别验证",
-            "未经授权不得合并 `main`、推送、移动 tag、创建 Release 或上传平台",
-            "写作行为类规则只修复至少三份真实样本共同指向的机制",
-            "确定性工程、安全或发行缺陷须有可重复证据",
-            "不得择优汇报",
-            "来源证明缺失时记 `unavailable`",
-            "实际测试命令与结果",
-            "本仓库及仓内当前包统一采用根 `LICENSE`（MIT）",
+            "本文件是仓库唯一活动开发纪律",
+            "产品写稿规则只写入 `chinese-official-writing/SKILL.md` 与 `references/`",
+            "真实结果优先",
+            "全量测试原则上只在准备合并或发布前运行一次",
+            "每累计5次 commit",
+            "未经当次明确授权，不合并 `main`",
+            "`main` 是公开版主线，不包含提纲审核 Hook",
+            "`codex/paid-outline-review` 是“当前 `main` + 付费提纲增量”",
+            "普通 Skill 安装、Hook companion 组装、插件安装、启用、信任和真实执行是不同事实",
+            "当前仓库和仓内包使用根 `LICENSE`（MIT）",
+            "交付时报告修改摘要、branch、commit、实际命令与结果",
+            "外部写入、发布和删除只在明确授权范围内执行",
         ]:
             self.assertIn(required, text)
         for product_rule in ["妥否，请批示", "报告不用请批语", "先……再……", "持续推进"]:
