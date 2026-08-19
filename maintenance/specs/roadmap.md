@@ -15,6 +15,11 @@
 - `OV-001` 超长收束：真实 D0 498→285、SOL max 六项 PASS、Grok 4.6 冷审修复和最终机械门重放已完成，随 `v1.6.8@6b1dc2c5` 发布。ClawHub 同步的是无 Hook 写作规则。
 - `WR-006` 自然审稿：OpenCode Go 真实审稿和自然审稿、复合成稿、材料引语三类路由反控已完成，随 `v1.6.9@5047c224` 发布。
 - `OV-001` 发布后边界补丁：软性“约、左右、上下”、长引语、无标点编号正文、否定责任短语和同动词多拟办对象修复已随 `v1.6.9@5047c224` 发布。
+- `WR-007` 语义减载与自然表达：R1—R4及组合真实写稿通过，SOL、Grok、Qwen 未发现候选独有硬失败，随 `v1.6.10@af12b771` 发布。
+- `WR-008` 标题与正文边界：真实生成、同稿修复和自然路由通过，随 `v1.6.10@af12b771` 发布。
+- `WR-009` 文后提示与正文分区：真实同题稿验证正文外独立分区，随 `v1.6.10@af12b771` 发布。
+- `AH-001` 共享硬锚：引用、数字、字段及归属关系保护已接入篇幅不足和超长收束，真实修订与三方冷审通过，随 `v1.6.10@af12b771` 发布。
+- `v1.6.10` 已发布至 GitHub、SkillHub.cn 与 ClawHub；ClawHub 为33文件无 Hook 包，并完成分类、话题和远端逐文件哈希复核。
 - SkillHub 已加入 `office-efficiency`、`content-creation` 轻量检索信号；不声称平台写入双分类。
 - GitHub 当前包统一 MIT；普通兼容包不含 Hook，OpenClaw GitHub 兼容包随仓库维护。
 - v1.6.6 GitHub 与 SkillHub.cn 发布回执见 [`release-1.6.6.md`](../tests/evidence/release-1.6.6.md)；ClawHub、Red SkillHub 及其他平台未在该轮上传。SkillHub 公开 latest 与签名已传播，Keen、Sanbu 安全报告均为 benign。
@@ -22,10 +27,6 @@
 
 ## IN_PROGRESS
 
-- `WR-007` 语义减载与自然表达：R1 后以 R2—R4 继续完成20次真实写稿；最终两份 reference 已合入 `main`。组合后24/24次真实写稿技术有效，SOL/Grok/Qwen 均未发现候选独有硬失败。
-- `WR-008` 标题与正文边界：真实生成、同稿修复和自然路由均已完成；规则已合入主入口现有标题格式条目，不增加格式脚本。
-- `WR-009` 文后提示与正文分区：OpenCode Go 同题实稿中，基线依赖 Markdown 横线分隔，最小候选改为完整正文后空行加无编号正文外标题；只补语义接引和高信号 lint，不增加 Hook。
-- `AH-001` 共享硬锚：24次先行实验和12份原型/回放后已接入 under/over；三方 DIFF 冷审确认的5个主缺口及后续字段边界均已以12次真实修订与冻结稿重放复核，最后窄增量 SOL/Grok/Qwen 均 PASS。其他改稿能力后续按实际需要迁移。
 - WorkBuddy/CodeBuddy 当前在线生命周期：WorkBuddy 5.3.13、CodeBuddy CLI 2.115.0 已完成当前 companion 的 UserPromptSubmit、PostToolUse、Stop、事务、E1 选择及终稿 hash 闭环；`--print` 会在阻断后退出，完整续跑采用交互生命周期。
 - 本地 Qwen3.8 27B 评估：Codex GUI 5项串行任务为4份写稿 PASS、1份审稿 WARN，运行稳定但没有可核验的 Skill 文件读取回执。当前不纳入任务池；64K Ollama 别名与证据保留，模型已停止释放显存。
 - GitHub README 制度示例替换已随 v1.6.8 发布：历史 evidence 原文未改，公开页使用事实安全的八条制度正文。
@@ -46,7 +47,6 @@
 ## TODO：已登记但不在本轮展开
 
 1. `OT-001` 提纲冻结与终稿核对已完成三宿主在线验证，并完整转存到本地付费候选 `codex/paid-outline-review@59dcf35c`；公开 `main` 不含该能力。`OT-002` 用户固定提纲的层级、重复和缺项修正仅在付费候选中继续。
-2. ClawHub 分类与话题整理按用户最后指令留到下一版本，不修改已经发布的1.6.9。
 
 ## 不再重复
 
