@@ -27,7 +27,7 @@
 
 ## IN_PROGRESS
 
-- 当前没有需要重复补跑的 Hook 在线缺口；本地付费分支在公开 `main` 更新后继续按 [`public-paid-sync.md`](public-paid-sync.md) 同步。
+- 已发布 v1.6.10 的既有 Hook 在线证据无需重复补跑；本轮共享硬锚窄修复在合并前只补修辞性方面压缩、相对期限或序号变化两条同一 D0 生命周期。本地付费分支在公开 `main` 更新后继续按 [`public-paid-sync.md`](public-paid-sync.md) 同步。
 - post-v1.6.10 集成候选已完成中文数量透明归纳与维护可达性清理；尚未取得合并 `main` 的当次授权，不冒充已发布能力。
 - 本地 Qwen3.8 27B 评估：Codex GUI 5项串行任务为4份写稿 PASS、1份审稿 WARN，运行稳定但没有可核验的 Skill 文件读取回执。当前不纳入任务池；64K Ollama 别名与证据保留，模型已停止释放显存。
 - GitHub README 制度示例替换已随 v1.6.8 发布：历史 evidence 原文未改，公开页使用事实安全的八条制度正文。
