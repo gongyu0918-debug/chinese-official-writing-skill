@@ -44,7 +44,7 @@
 - `WR-005` 原短稿自然度 R1/R2：把自然度与硬下限混在一起，分别形成系统性偏短和材料外补字，保留为 HOLD；已由上限题 R3 取代后续方向。
 - `WR-005` 常用语机械化候选：R1—R6 均未准入；最终 R6 8/8技术有效，但候选仍有篇幅、职责扩张、安全要求和材料外号召硬失败。结果见 [`v167-formulaic-mechanicality-real-first/result.md`](../tests/evidence/v167-formulaic-mechanicality-real-first/result.md)。
 - 旧 `length-band-hook-v162`、`under-length-hook-v162-v2`、`v163-protective-expansion-gate` 继续保持历史 HOLD，不复活旧验收结论。
-- `UL-005` 篇幅验收来源绑定：R8 暴露同模型自审误放；拒绝 `reasonable_inference` 的窄补丁被模型改标绕过，同模型独立 verifier Agent 也把坏增量改标为透明归纳并放行。产品改动已撤回；下一步只比较来源 span/hash 与真正异模型 verifier 两种最小原型。[结果](../tests/evidence/post-v1610-underlength-verifier-risk-20260820.md)
+- `UL-005` 篇幅验收来源绑定：R8 暴露同模型自审误放；拒绝 `reasonable_inference` 的窄补丁被模型改标绕过，同模型独立 verifier Agent 也把坏增量改标为透明归纳并放行。verifier 试改已撤回；main 已有的数量透明关系包同样纳入下一轮来源 span/hash 或真正异模型 verifier 原型。[结果](../tests/evidence/post-v1610-underlength-verifier-risk-20260820.md)
 
 ## TODO：已登记但不在本轮展开
 

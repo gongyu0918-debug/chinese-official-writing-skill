@@ -23,10 +23,10 @@
 | `UL-002` 安全扩写 | under revision/verdict prompt | 三条 provider 的失败稿驱动语义收窄；三份获选 D1 | 同一能力在两宿主在线执行 | 已覆盖当前事实充分采购请示；稀疏材料仍允许 D0 回退 |
 | `UL-003` 产品准入 | 同一 D0/D1 功能门 | 两次独立 SOL max 均为 `ACCEPT` | selection/delivery/final hash 闭环 | 已覆盖目标功能；不以独立 on/off 总胜负替代 |
 | `UL-004` 证据迁移 | adapter/core/runtime hash 分层 | CodeBuddy 旧完整在线；当前能力同稿复放；中文数量透明归纳同稿 106→206 字并由真实 verifier 选 D1 | 当前 WorkBuddy / CodeBuddy 又以 106→190 字候选完成在线事务；新增对象与错归属使语义层选 D0，交付 hash 闭环 | 已覆盖“同数方面→项”只进入语义核验的窄放宽；独立数量变化仍机械回退 |
-| `UL-005` 语义验收来源绑定 | 待定：来源 span/hash 或异模型 verifier | 固定 R8 坏 D1、固定 R11 好 D1；同模型自审与独立 Agent 原型 | Claude 原型每题真实调用1次 verifier Agent，但坏 D1 仍被改标后放行 | HOLD；当前产品零改动，下一原子先做真实原型再工程化 |
+| `UL-005` 语义验收来源绑定 | 待定：来源 span/hash 或异模型 verifier | 固定 R8 坏 D1、固定 R11 好 D1，以及106字同稿的数量透明归纳关系包；同模型自审与独立 Agent 原型 | Claude 原型每题真实调用1次 verifier Agent，但坏 D1 仍被改标后放行 | HOLD；本轮 verifier 试改已撤回；main 已有的“方面→项”透明归纳同样纳入暴露面，下一原子先做真实原型再工程化 |
 | `CL-001` 交付洁净度 | `hooks/capabilities/delivery_cleanliness/` | 三 provider 5/5 精确整理；SOL max 全 PASS | 三宿主静态组装；Claude Code、Codex 与当前 WorkBuddy / CodeBuddy 均有在线 D1/hash 闭环 | 已覆盖并随 v1.6.5 发布 |
 | `RP-001` 重复与高相似句 | `hooks/capabilities/repetition_cleanup/` | 三 provider 5 组；SOL max 功能 PASS，长稿 1 WARN | 三宿主静态组装；Codex、WorkBuddy / CodeBuddy 与当前 Claude Code 均有在线 E1/hash 闭环 | 已覆盖并随 v1.6.5 发布 |
-| `AH-001` 引用与硬锚 | `hooks/shared/hard_anchors.py`；under/over 机械门与既有语义验收 | 24/24 先行实验；12份原型/回放；12次缺口修复真实修订 | 单 coordinator 内共享，不另起 Hook；三宿主 companion 静态组装 | 已随 v1.6.10 发布；字段、标识数字、汉字数量和篇幅授权边界回归通过，最后窄增量三方冷审均 PASS；其他改稿能力尚未迁移 |
+| `AH-001` 引用与硬锚 | `hooks/shared/hard_anchors.py`；under/over 机械门与既有语义验收 | 24/24 先行实验；12份原型/回放；12次缺口修复真实修订；v1.6.10 后三路冷审复现回指/序号/修辞三处窄缺口 | 单 coordinator 内共享，不另起 Hook；三宿主 companion 静态组装 | 已随 v1.6.10 发布；后续候选将回指豁免收窄为“前一项”等，`第N项`继续硬锚，`一方面/另一方面`不作业务数量；其他改稿能力尚未迁移 |
 | `OV-001` 超长收束 | `hooks/capabilities/over_length/`、短稿自然收束叶 | 两家 provider 先行原型；同一 D0 498→285，SOL max 六项全 PASS；Qwen 补丁后同稿重放通过；当前 Codex 313→137 | Claude Code 与当前 Codex 在线 D1/hash 闭环；Grok 4.6 冷审修复；三宿主静态组装 | 已随 v1.6.8 发布，五项边界补丁随 v1.6.9 发布；当前缺口在线样本已补 |
 | `OT-001` 提纲冻结与核对 | 本地付费候选 `codex/paid-outline-review` | 稀疏正文、完整文稿、固定提纲、改稿和长稿真实写稿；边界稿两家冷审 PASS | Codex、WorkBuddy / CodeBuddy、Claude Code 在线 Agent + Stop 生命周期 | 已验证后从公开 `main` 撤出；公开包不含该能力 |
 | `OT-002` 提纲修正 | 本地付费候选规格 | 尚未运行专门样本 | 复用 OT-001 正文前检查点，不在 Stop 猜提纲 | 未覆盖；不进入公开版能力范围 |
@@ -53,7 +53,7 @@
 | `skills/.../hooks/gate_stop_hook.py` | `abe469b00e5b04adefdba240bd78afa4bfeed82b67a5ce0810a13e0bf7786834` | 未变化 |
 | `under_length/runtime.py` | 当前组装时要求与 canonical 逐字一致 | 已变化，且是宿主无关能力层 |
 
-旧在线样本完成 D0 180 字、D1 816 字、拒绝 D1、精确 D0 回显；当前变化后的 runtime 已用该原始 D0/D1 复放并拒绝不安全新增流程。Codex 与 Claude Code 又以当前 runtime 完成在线 Stop 生命周期并选择可用 D1。2026-08-19，当前 WorkBuddy 5.3.13 / CodeBuddy CLI 2.115.0 以当前 companion 完成中文计数保守回退在线样本：D0 106 字、D1 192 字，因新增数量表达选择 D0，终稿 hash 与 D0 一致。该样本只证明当前保守回退路径，不推定其他 CodeBuddy capability 均已重跑。
+旧在线样本完成 D0 180 字、D1 816 字、拒绝 D1、精确 D0 回显；当前变化后的 runtime 已用该原始 D0/D1 复放并拒绝不安全新增流程。Codex 与 Claude Code 又以当前 runtime 完成在线 Stop 生命周期并选择可用 D1。2026-08-19，WorkBuddy 5.3.13 / CodeBuddy CLI 2.115.0 先在透明归纳放宽前以106→192字样本完成机械回退；放宽后又以106→190字候选进入语义层，并因新增对象与错归属选择 D0，两个阶段终稿 hash 均与 D0 一致。该组样本只证明对应阶段的保守回退与当前语义拒绝，不推定其他 CodeBuddy capability 均已重跑。
 
 ## 官方契约依据
 

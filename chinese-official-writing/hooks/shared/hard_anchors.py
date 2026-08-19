@@ -60,7 +60,7 @@ FIELD_INTRO_LABEL_RE: Final = re.compile(r"如下$")
 FIELD_PROSE_LABEL_RE: Final = re.compile(r"(?:指出|强调|表示|认为|要求|提出)$")
 STATE_CUE_RE: Final = re.compile(r"拟|尚未|未形成|正在|仍在|待核实|待审批|待研究")
 CLAUSE_BOUNDARY_RE: Final = re.compile(r"[\n。！？；;]")
-ANAPHORIC_QUANTITY_PREFIXES: Final = frozenset("前后上下首末")
+ANAPHORIC_ITEM_PREFIXES: Final = frozenset("前后上下")
 TRANSPARENT_ITEM_SUMMARY_RE: Final = re.compile(
     r"^(?P<numeral>[一二三四五六七八九十百千万两]+)项$"
 )
@@ -125,16 +125,23 @@ def _occurrences(
 def _quantity_occurrences(text: str) -> tuple[AnchorOccurrence, ...]:
     items: list[AnchorOccurrence] = []
     for match in CJK_QUANTITY_RE.finditer(text):
+        value = match.group(0)
         prefix = text[match.start() - 1 : match.start()] if match.start() else ""
-        if prefix in ANAPHORIC_QUANTITY_PREFIXES:
+        if value == "一方面":
             continue
+        if prefix in ANAPHORIC_ITEM_PREFIXES and value == "一项":
+            continue
+        start = match.start()
+        if prefix == "第":
+            value = prefix + value
+            start -= 1
         items.append(
             AnchorOccurrence(
                 kind="quantity",
-                value=match.group(0),
-                start=match.start(),
+                value=value,
+                start=start,
                 end=match.end(),
-                context=_normalized_clause(text, match.start(), match.end()),
+                context=_normalized_clause(text, start, match.end()),
                 is_length_bound=False,
             )
         )

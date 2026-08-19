@@ -171,9 +171,34 @@ class SharedHardAnchorTests(unittest.TestCase):
         )
         self.assertEqual((), ANCHORS.snapshot("前一项完成，后一项推进。").quantities)
         self.assertEqual(
-            ("一项",),
+            ("第一项",),
             tuple(item.value for item in ANCHORS.snapshot("第一项工作已完成。").quantities),
         )
+
+    def test_anaphoric_relief_does_not_hide_real_counts_or_rhetorical_aspects(self) -> None:
+        self.assertEqual(
+            "quantities",
+            ANCHORS.compare("会后三天内报送。", "会后两天内报送。")['reason'],
+        )
+        self.assertEqual(
+            "quantities",
+            ANCHORS.compare("前三项已完成。", "前五项已完成。")['reason'],
+        )
+        rhetorical = "一方面要核对设备，另一方面要完善台账。"
+        self.assertEqual((), ANCHORS.snapshot(rhetorical).quantities)
+        self.assertIsNone(
+            ANCHORS.compare(rhetorical, "要核对设备并完善台账。")['reason']
+        )
+
+    def test_ordinal_items_do_not_use_transparent_summary_relief(self) -> None:
+        result = ANCHORS.compare(
+            "材料明确两方面工作。",
+            "材料明确两方面工作。第二项工作已完成。",
+            allow_transparent_quantity_summaries=True,
+        )
+        self.assertEqual("quantities", result["reason"])
+        self.assertEqual(["第二项"], result["violations"]["added_quantities"])
+        self.assertEqual([], result["relation_packet"])
 
     def test_transparent_summary_never_changes_the_authoritative_count(self) -> None:
         request = "材料分两方面，请扩写到80—120字。"

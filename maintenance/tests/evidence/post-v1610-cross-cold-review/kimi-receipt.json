@@ -1,0 +1,13 @@
+{
+  "label": "kimi",
+  "commanded_model": "ollama-cloud/kimi-k3",
+  "effort": "ultra",
+  "packet_sha256": "fc4cda2cb0e3a7be0dca3e78b39c24c5ab2c9ab561c95f986b012adc20a85489",
+  "return_code": 1,
+  "timeout": false,
+  "duration_seconds": 26.265,
+  "retry_count": 0,
+  "final_sha256": null,
+  "json_valid": false,
+  "parse_error": null
+}

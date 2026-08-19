@@ -22,6 +22,7 @@
 - v1.6.4 后篇幅不足 Hook 最新真实写稿、Codex/Claude 在线 D1 与 SOL max 结果：[`v164-under-length-real-first-result-20260814.md`](../../tests/evidence/v164-under-length-real-first-result-20260814.md)。第一次只会回退 D0 的三宿主记录继续保留在 [`v164-under-length-three-host-live-result-20260814.md`](../../tests/evidence/v164-under-length-three-host-live-result-20260814.md)。
 - v1.6.10 后篇幅验收自审、类别收紧和同模型独立 verifier Agent 的真实复测及 HOLD 结论：[`post-v1610-underlength-verifier-risk-20260820.md`](../../tests/evidence/post-v1610-underlength-verifier-risk-20260820.md)。
 - 当前 main、付费分支和实验组合的未完成工程、观察项及可达性盘点：[`post-v1610-registered-engineering-audit-20260820.md`](../../tests/evidence/post-v1610-registered-engineering-audit-20260820.md)。
+- v1.6.10 后 main、付费叠加、组合实验与风险台账的 Qwen/Grok/Kimi 三路冷审及共享硬锚窄修复：[`post-v1610-cross-cold-review/result.md`](../../tests/evidence/post-v1610-cross-cold-review/result.md)。
 - 交付洁净度 5 组真实 D0、SOL max、首次 adapter 漏接、D0 安全回退与 Claude Code 在线 D1：[`delivery-cleanliness-real-first/result.md`](../../tests/evidence/delivery-cleanliness-real-first/result.md)。
 - Hook 永久移除的二次确认、隔离副本真实删除和删除后普通写稿：[`hook-permanent-removal-real-result-20260814.md`](../../tests/evidence/hook-permanent-removal-real-result-20260814.md)。
 - 重复句与高相似句三 provider 真实删除及 SOL max 功能终审：[`repetition-real-first/result.md`](../../tests/evidence/repetition-real-first/result.md)。
