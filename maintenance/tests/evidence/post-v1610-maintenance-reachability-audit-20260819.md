@@ -24,7 +24,7 @@
 
 - `python -B -m unittest maintenance.tests.test_repository_reachability -q`：7/7 PASS；
 - 与共享硬锚、篇幅能力及 Hook 边界合跑：39/39 PASS；
-- tracked 文件入链扫描与 Markdown 本地链接扫描（只读）：990份 Markdown 中只剩冻结历史 evidence 的15个旧路径，活动面为0；
+- tracked 文件入链扫描与 Markdown 本地链接扫描（只读）：991份 Markdown 中只剩冻结历史 evidence 的15个旧路径，活动面为0；
 - `sync_adapters.py` 后 packages 零差异，quick validation PASS，`git diff --check` PASS。
 
 历史 evidence 中的旧路径仅用于还原当时目录，不应复制成当前运行命令；需要现行入口时从 `maintenance/README.md`、`maintenance/specs/README.md` 或 `maintenance/docs/evidence/README.md` 进入。
