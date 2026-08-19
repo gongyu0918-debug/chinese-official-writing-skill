@@ -144,6 +144,89 @@ class SharedHardAnchorTests(unittest.TestCase):
             with self.subTest(original=original):
                 self.assertIsNone(ANCHORS.compare(original, candidate)["reason"])
 
+    def test_under_length_routes_explicit_cjk_item_summary_to_semantic_review(self) -> None:
+        request = (
+            "材料：近期完成两方面工作。第一，更新办事指南。第二，开展窗口培训。"
+            "请扩写到180—230字。"
+        )
+        original = "近期完成办事指南更新和窗口培训工作。一是更新指南。二是开展培训。"
+        candidate = (
+            "近期完成两项工作，分别为办事指南更新和窗口培训。"
+            "一是完成指南更新。二是完成窗口培训。前一项明确办事内容，后一项对应培训事项。"
+        )
+        strict = ANCHORS.compare(original, candidate, request)
+        self.assertEqual("quantities", strict["reason"])
+
+        relaxed = ANCHORS.compare(
+            original,
+            candidate,
+            request,
+            allow_transparent_quantity_summaries=True,
+        )
+        self.assertIsNone(relaxed["reason"])
+        self.assertEqual("semantic_review_required", relaxed["status"])
+        self.assertEqual(
+            ["quantity_summary"],
+            [item["kind"] for item in relaxed["relation_packet"]],
+        )
+        self.assertEqual((), ANCHORS.snapshot("前一项完成，后一项推进。").quantities)
+        self.assertEqual(
+            ("一项",),
+            tuple(item.value for item in ANCHORS.snapshot("第一项工作已完成。").quantities),
+        )
+
+    def test_transparent_summary_never_changes_the_authoritative_count(self) -> None:
+        request = "材料分两方面，请扩写到80—120字。"
+        self.assertEqual(
+            "quantities",
+            ANCHORS.compare(
+                "现将两方面情况说明如下。",
+                "现将三项情况说明如下。",
+                request,
+                allow_transparent_quantity_summaries=True,
+            )["reason"],
+        )
+        self.assertEqual(
+            "quantities",
+            ANCHORS.compare(
+                "涉及两个小区。",
+                "涉及三个小区。",
+                request,
+                allow_transparent_quantity_summaries=True,
+            )["reason"],
+        )
+
+    def test_real_under_length_d1_reaches_semantic_verifier_after_summary_relief(self) -> None:
+        request = (
+            "根据以下材料起草一份工作情况说明，正文180—230字。材料："
+            "市政务服务中心近期完成两方面工作。第一，更新线上办事指南，"
+            "补充申请材料清单、办理步骤和咨询电话，8月15日上线。第二，"
+            "开展窗口业务培训，共4场，参加人员86人，培训内容为新指南使用和咨询答复口径。"
+            "两方面工作均已完成。"
+        )
+        original = (
+            "市政务服务中心近期完成服务指引更新和窗口培训工作。一是更新线上办事指南，"
+            "补充申请材料清单、办理步骤和咨询电话，新指南于8月15日上线。二是开展窗口业务培训，"
+            "共4场、86人参加，培训内容为新指南使用和咨询答复口径。"
+        )
+        candidate = (
+            "市政务服务中心近期完成两项服务工作，分别为线上办事指南更新和窗口业务培训，"
+            "现将有关情况说明如下。一是完成线上办事指南更新，补充申请材料清单、办理步骤和咨询电话，"
+            "更新后的新指南于8月15日上线。二是完成窗口业务培训，共开展4场，参加人员86人，"
+            "培训内容为新指南使用和咨询答复口径。线上办事指南更新工作和窗口业务培训工作均已完成，"
+            "前一项工作明确了指南补充内容及上线日期，后一项工作明确了培训场次、参加人员及培训内容。"
+        )
+        spec = {"minimum": 180, "maximum": 230, "scope": "body"}
+        self.assertIsNone(UNDER.mechanical_reason(original, candidate, spec, request))
+        prompt = UNDER._verdict_instruction(
+            request,
+            original,
+            candidate,
+            spec,
+            UNDER._increment_items(original, candidate),
+        )
+        self.assertIn("quantity_summary", prompt)
+
     def test_count_reduction_requires_relation_review(self) -> None:
         original = "本次共核验75件工单。经逐项核对，75件工单均已纳入本次核验范围，其中22件需要补充材料。"
         candidate = "本次共核验75件工单，其中22件需要补充材料。"

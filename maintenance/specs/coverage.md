@@ -22,7 +22,7 @@
 | `UL-001` under-only 触发 | `hooks/capabilities/under_length/runtime.py` | Alibaba 268→342；Codex 268→350；Claude 268→344 | Codex、Claude 当前在线选择 D1；并行 Skill/材料读取竞态修复后 Codex 事务正常建立并安全选择 D0 | 已覆盖并随 v1.6.5 发布；竞态修复不调整篇幅语义门 |
 | `UL-002` 安全扩写 | under revision/verdict prompt | 三条 provider 的失败稿驱动语义收窄；三份获选 D1 | 同一能力在两宿主在线执行 | 已覆盖当前事实充分采购请示；稀疏材料仍允许 D0 回退 |
 | `UL-003` 产品准入 | 同一 D0/D1 功能门 | 两次独立 SOL max 均为 `ACCEPT` | selection/delivery/final hash 闭环 | 已覆盖目标功能；不以独立 on/off 总胜负替代 |
-| `UL-004` 证据迁移 | adapter/core/runtime hash 分层 | CodeBuddy 旧完整在线；当前能力同稿复放；当前中文计数 D1 保守回退 | 当前 WorkBuddy / CodeBuddy 在线完成 under transaction、D0 选择及交付 hash 闭环 | 已覆盖当前保守回退路径；不据此放宽中文数量保护 |
+| `UL-004` 证据迁移 | adapter/core/runtime hash 分层 | CodeBuddy 旧完整在线；当前能力同稿复放；中文数量透明归纳同稿 106→206 字并由真实 verifier 选 D1 | 当前 WorkBuddy / CodeBuddy 又以 106→190 字候选完成在线事务；新增对象与错归属使语义层选 D0，交付 hash 闭环 | 已覆盖“同数方面→项”只进入语义核验的窄放宽；独立数量变化仍机械回退 |
 | `CL-001` 交付洁净度 | `hooks/capabilities/delivery_cleanliness/` | 三 provider 5/5 精确整理；SOL max 全 PASS | 三宿主静态组装；Claude Code、Codex 与当前 WorkBuddy / CodeBuddy 均有在线 D1/hash 闭环 | 已覆盖并随 v1.6.5 发布 |
 | `RP-001` 重复与高相似句 | `hooks/capabilities/repetition_cleanup/` | 三 provider 5 组；SOL max 功能 PASS，长稿 1 WARN | 三宿主静态组装；Codex、WorkBuddy / CodeBuddy 与当前 Claude Code 均有在线 E1/hash 闭环 | 已覆盖并随 v1.6.5 发布 |
 | `AH-001` 引用与硬锚 | `hooks/shared/hard_anchors.py`；under/over 机械门与既有语义验收 | 24/24 先行实验；12份原型/回放；12次缺口修复真实修订 | 单 coordinator 内共享，不另起 Hook；三宿主 companion 静态组装 | 已随 v1.6.10 发布；字段、标识数字、汉字数量和篇幅授权边界回归通过，最后窄增量三方冷审均 PASS；其他改稿能力尚未迁移 |
