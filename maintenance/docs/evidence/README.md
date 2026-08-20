@@ -25,6 +25,9 @@
 - v1.6.11 后 `UL-005` 来源完整性原型、`OT-001` Stop 收紧、WorkBuddy / CodeBuddy 的 OV/提纲生命周期、description 减载、竞品原子和状态冲突收口：[`post-v1611-research-closeout-20260820.md`](../../tests/evidence/post-v1611-research-closeout-20260820.md)。
 - v1.6.11 后 description HOLD 的18次扩大写稿、会议争议来源原子、联网来源用途/停止原子及 main→付费同步：[`post-v1611-expanded-real-writing-20260820.md`](../../tests/evidence/post-v1611-expanded-real-writing-20260820.md)。
 - v1.6.11 后 SkillHub / ClawHub 当前在线73项发现、综合与单原子竞品复核、许可证边界及会议承诺语义真实 A/B：[`post-v1611-live-market-refresh-20260820.md`](../../tests/evidence/post-v1611-live-market-refresh-20260820.md)。
+- v1.6.11 后 `UL-005` 单稿事实台账的简单对抗题、跨 span/同义改写缺口与 WorkBuddy / CodeBuddy 无效生命周期：[`ul005-fact-ledger-r2-live-20260821.md`](../../tests/evidence/ul005-fact-ledger-r2-live-20260821.md)。
+- v1.6.11 后新闻声明级三冲突来源矩阵与安全正文 A/B，含局部改善、后续硬回退和最终 HOLD：[`post-v1612-news-claim-matrix-result-20260821.md`](../../tests/evidence/post-v1612-news-claim-matrix-result-20260821.md)。固定题面和预注册分别见 [`post-v1612-news-claim-matrix-prompt.txt`](../../tests/evidence/post-v1612-news-claim-matrix-prompt.txt)、[`post-v1612-news-claim-matrix-preregister-20260821.md`](../../tests/evidence/post-v1612-news-claim-matrix-preregister-20260821.md)。
+- v1.6.11 后内部情况说明、明确正式报告和普通业务函三题正式发文意图 A/B：[`v1612-formal-issuance-intent-result-20260821.md`](../../tests/evidence/v1612-formal-issuance-intent-result-20260821.md)。
 - 当前 main、付费分支和实验组合的未完成工程、观察项及可达性盘点：[`post-v1610-registered-engineering-audit-20260820.md`](../../tests/evidence/post-v1610-registered-engineering-audit-20260820.md)。
 - v1.6.10 后 main、付费叠加、组合实验与风险台账的 Qwen/Grok/Kimi 三路冷审及共享硬锚窄修复：[`post-v1610-cross-cold-review/result.md`](../../tests/evidence/post-v1610-cross-cold-review/result.md)。
 - v1.6.10 后修辞性方面压缩的 Claude Code 在线 D1 与相对期限变化的同稿 D0 生命周期：[`post-v1610-hard-anchor-live-gate-result-20260820.md`](../../tests/evidence/post-v1610-hard-anchor-live-gate-result-20260820.md)。

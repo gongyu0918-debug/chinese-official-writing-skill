@@ -27,10 +27,11 @@
 
 ## IN_PROGRESS
 
-- 已验证的 description 减载与状态修正已以 `aeccc49e` 合入本地 main，并以 `8274d2c4` 同步本地付费候选；均未推送或发布。`codex/v1612-ul005-source-binding` 与 `codex/paid-outline-ot001-r3` 仍是隔离实验。
+- 已验证的 description 减载与状态修正已合入本地 main，并同步本地付费候选；均未推送或发布。`UL-005` 两轮来源绑定、`OT-001` Stop 收紧、新闻声明核验和正式发文意图均保留为隔离实验，失败候选不进入产品。
 - `MT-005b2/b3/b4` 又完成18次扩大真实 A/B，制度、函件和讲话致辞候选分别出现范围扩大、未给日期、材料外责任/效果或未交稿，继续 HOLD。description 保持204字。
 - `WR-010` 会议承诺语义正文候选完成三题6稿真实 A/B：当前基线3/3已覆盖弱意向、未回应指派、明确承诺、后续修正和权威交办；候选无目标改善且把内部审计措辞带入正式正文，不合入。只保留与 `UL-005` 共同验证的正文外 claim—evidence sidecar 构想。
 - 会议争议来源原子三组基线已经完整实现目标，不叠加重复规则；联网用途/停止组合候选虽减少消息轮次，但来源身份和直接交付回退未过，继续 HOLD。
+- 新闻声明级核验三冲突来源 A/B 中，R1 改善了来源归属与冲突状态，R2 修掉开放数量差额后又新增机构性质、混淆来源身份与数据出处并破坏正文包装；正式发文意图候选只改善内部情况说明，却在正式报告和普通业务函各产生硬回退。两项均只保留证据。
 - 本地 Qwen3.8 27B 评估：Codex GUI 5项串行任务为4份写稿 PASS、1份审稿 WARN，运行稳定但没有可核验的 Skill 文件读取回执。当前不纳入任务池；64K Ollama 别名与证据保留，模型已停止释放显存。
 - GitHub README 制度示例替换已随 v1.6.8 发布：历史 evidence 原文未改，公开页使用事实安全的八条制度正文。
 
@@ -46,7 +47,9 @@
 - `WR-005` 原短稿自然度 R1/R2：把自然度与硬下限混在一起，分别形成系统性偏短和材料外补字，保留为 HOLD；已由上限题 R3 取代后续方向。
 - `WR-005` 常用语机械化候选：R1—R6 均未准入；最终 R6 8/8技术有效，但候选仍有篇幅、职责扩张、安全要求和材料外号召硬失败。结果见 [`v167-formulaic-mechanicality-real-first/result.md`](../tests/evidence/v167-formulaic-mechanicality-real-first/result.md)。
 - 旧 `length-band-hook-v162`、`under-length-hook-v162-v2`、`v163-protective-expansion-gate` 继续保持历史 HOLD，不复活旧验收结论。
-- `UL-005` 篇幅验收来源绑定：`codex/v1612-ul005-source-binding@95ef7498` 已证明 span 的范围、原文和 hash 可机械闭合，但任意无关 span 仍可绑定任意增量，不能证明来源蕴含；现有同模型 verifier 又已有 R8 误放记录，因此原型不合入 main，继续 HOLD。下一原子固定原始 R8/R11 文本包并加入“相关局部 span 但新增目的/动作/结果”的对抗题。[本轮结果](../tests/evidence/post-v1611-research-closeout-20260820.md)
+- `UL-005` 篇幅验收来源绑定：R1 已证明 span 完整性不等于来源蕴含；R2 确定性测试可拒绝单个无关 span 和局部相关但新增谓语，但代码复核仍发现跨 span 角色拼接可洗白、安全同义谓语会被过度拒绝。WorkBuddy / CodeBuddy 单样本未返回合规事实台账，也未形成 D0/D1 最终选择，记为 `INVALID`，不是安全回退。两轮原型都不合入 main。[R1](../tests/evidence/post-v1611-research-closeout-20260820.md) [R2](../tests/evidence/ul005-fact-ledger-r2-live-20260821.md)
+- `WR-011` 新闻声明级核验：三冲突来源候选有局部改善，但最终出现材料外机构性质、来源身份/数据出处混淆和正文外包装，继续 HOLD；不以 R1 的局部成功覆盖 R2 硬回退。[结果](../tests/evidence/post-v1612-news-claim-matrix-result-20260821.md)
+- `WR-012` 正式发文意图路由：内部情况说明样本方向成立，明确正式报告和普通业务函分别出现正文外自证、材料外时间/过程事实，继续 HOLD。当前 main 的已有边界优于本轮候选，不叠加规则。[结果](../tests/evidence/v1612-formal-issuance-intent-result-20260821.md)
 
 ## TODO：已登记但不在本轮展开
 
