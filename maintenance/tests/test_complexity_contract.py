@@ -92,7 +92,7 @@ class ComplexityContractTests(unittest.TestCase):
             ).is_file()
         )
         self.assertIn('"automatic_expansion": true', capabilities)
-        self.assertIn('"status": "candidate"', capabilities)
+        self.assertIn('"status": "available_opt_in"', capabilities)
         self.assertIn('"automatic_compression": false', capabilities)
 
 

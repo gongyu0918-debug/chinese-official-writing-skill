@@ -15,16 +15,17 @@
   "length_gate": {
     "automatic_expansion": true,
     "automatic_compression": false,
-    "status": "candidate",
+    "status": "available_opt_in",
     "activation": "explicit_static_companion_selection",
     "configuration_file": "hook-capability.json",
     "default_selected": false,
     "trigger": "explicit_lower_bound_and_more_than_ten_percent_short",
     "revision_limit": 1,
-    "failure_action": "original_draft"
+    "failure_action": "original_draft",
+    "known_hold": "UL-005 semantic acceptance source entailment"
   },
   "over_length_gate": {
-    "status": "candidate",
+    "status": "available_opt_in",
     "automatic_compression": true,
     "activation": "explicit_static_companion_selection",
     "configuration_file": "hook-capability.json",
@@ -49,7 +50,7 @@
     "uncertain_authority_action": "preserve_original"
   },
   "delivery_cleanliness_gate": {
-    "status": "candidate",
+    "status": "available_opt_in",
     "activation": "explicit_static_companion_selection",
     "configuration_file": "hook-capability.json",
     "default_selected": false,
@@ -59,7 +60,7 @@
     "failure_action": "original_draft"
   },
   "repetition_cleanup_gate": {
-    "status": "candidate",
+    "status": "available_opt_in",
     "activation": "explicit_static_companion_selection",
     "configuration_file": "hook-capability.json",
     "default_selected": false,
@@ -70,7 +71,7 @@
   },
   "hosts": {
     "codex": {
-      "status": "package_registration_verified",
+      "status": "lifecycle_verified",
       "adapter_source": "hooks/adapters/codex",
       "runtime_adapter": "scripts/host_gate_adapter.py",
       "events": [
@@ -78,14 +79,16 @@
         "PostToolUse:Bash|Read",
         "Stop"
       ],
-      "verified_scope": "manifest_validation_and_isolated_registration_without_model",
-      "live_lifecycle_verified": false,
+      "verified_scope": "manifest_validation_registration_and_current_model_lifecycle",
+      "verified_host_scope": "Codex CLI 0.144.6",
+      "evidence": "maintenance/tests/evidence/post-v1610-host-capability-gaps-result-20260819.md",
+      "live_lifecycle_verified": true,
       "data_root_environment": "PLUGIN_DATA",
       "continuation_limit": 4,
       "over_length_continuation_limit": 7
     },
     "codebuddy": {
-      "status": "package_manifest_verified",
+      "status": "lifecycle_verified",
       "adapter_source": "hooks/adapters/codebuddy",
       "runtime_adapter": "scripts/host_gate_adapter.py",
       "events": [
@@ -93,8 +96,10 @@
         "PostToolUse:Bash|Read|Skill",
         "Stop"
       ],
-      "verified_scope": "official_manifest_contract_and_local_validation_without_model",
-      "live_lifecycle_verified": false,
+      "verified_scope": "official_manifest_contract_local_validation_and_workbuddy_embedded_codebuddy_lifecycle",
+      "verified_host_scope": "WorkBuddy 5.3.13 embedded CodeBuddy CLI 2.115.0",
+      "evidence": "maintenance/tests/evidence/post-v1611-research-closeout-20260820.md",
+      "live_lifecycle_verified": true,
       "required_stop_field": "last_assistant_message",
       "data_root_environment": "CODEBUDDY_PLUGIN_DATA",
       "continuation_limit": 4,

@@ -50,7 +50,7 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assertTrue((ROOT / "AGENTS.md").is_file())
         self.assertFalse((ROOT / "agent.md").exists())
 
-    def test_canonical_skill_declares_trigger_and_exclusion_boundaries(self) -> None:
+    def test_canonical_skill_declares_positive_trigger_boundary(self) -> None:
         text = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
         readme = (ROOT / "README.md").read_text(encoding="utf-8")
 
@@ -59,8 +59,8 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assertLessEqual(len(description.group(1)), 280)
         for keyword in ["申请", "请示", "报告", "通知", "通告", "意见", "决定", "函", "采购公告", "审查材料", "正式文本"]:
             self.assertIn(keyword, description.group(1))
-        for excluded in ["营销", "社媒", "论文"]:
-            self.assertIn(excluded, description.group(1))
+        for excluded in ["营销", "社媒", "论文", "个人求职"]:
+            self.assertNotIn(excluded, description.group(1))
         self.assertIn("当用户明确要求中文通知", text)
         self.assertIn("## 触发条件与边界", text)
         self.assertNotIn("批量语料生成", text)

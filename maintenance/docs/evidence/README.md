@@ -22,6 +22,7 @@
 - 上一正式发行版见 [`release-1.6.4.md`](../../tests/evidence/release-1.6.4.md)；更早版本与上一版 Hook 真实写稿结果分别见 [`release-1.6.3.md`](../../tests/evidence/release-1.6.3.md) 和 [`v162-hook-writing-real-ab-final-result-20260812.md`](../../tests/evidence/v162-hook-writing-real-ab-final-result-20260812.md)。
 - v1.6.4 后篇幅不足 Hook 最新真实写稿、Codex/Claude 在线 D1 与 SOL max 结果：[`v164-under-length-real-first-result-20260814.md`](../../tests/evidence/v164-under-length-real-first-result-20260814.md)。第一次只会回退 D0 的三宿主记录继续保留在 [`v164-under-length-three-host-live-result-20260814.md`](../../tests/evidence/v164-under-length-three-host-live-result-20260814.md)。
 - v1.6.10 后篇幅验收自审、类别收紧和同模型独立 verifier Agent 的真实复测及 HOLD 结论：[`post-v1610-underlength-verifier-risk-20260820.md`](../../tests/evidence/post-v1610-underlength-verifier-risk-20260820.md)。
+- v1.6.11 后 `UL-005` 来源完整性原型、`OT-001` Stop 收紧、WorkBuddy / CodeBuddy 的 OV/提纲生命周期、description 减载、竞品原子和状态冲突收口：[`post-v1611-research-closeout-20260820.md`](../../tests/evidence/post-v1611-research-closeout-20260820.md)。
 - 当前 main、付费分支和实验组合的未完成工程、观察项及可达性盘点：[`post-v1610-registered-engineering-audit-20260820.md`](../../tests/evidence/post-v1610-registered-engineering-audit-20260820.md)。
 - v1.6.10 后 main、付费叠加、组合实验与风险台账的 Qwen/Grok/Kimi 三路冷审及共享硬锚窄修复：[`post-v1610-cross-cold-review/result.md`](../../tests/evidence/post-v1610-cross-cold-review/result.md)。
 - v1.6.10 后修辞性方面压缩的 Claude Code 在线 D1 与相对期限变化的同稿 D0 生命周期：[`post-v1610-hard-anchor-live-gate-result-20260820.md`](../../tests/evidence/post-v1610-hard-anchor-live-gate-result-20260820.md)。

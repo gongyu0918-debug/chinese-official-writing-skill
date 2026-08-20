@@ -150,9 +150,10 @@ class HookLayerContractTests(unittest.TestCase):
         self.assertFalse(activation["automatic_installation"])
         self.assertFalse(activation["network_access"])
         self.assertTrue(activation["task_opt_out_supported"])
-        self.assertEqual("candidate", capabilities["length_gate"]["status"])
+        self.assertEqual("available_opt_in", capabilities["length_gate"]["status"])
+        self.assertIn("UL-005", capabilities["length_gate"]["known_hold"])
         self.assertFalse(capabilities["length_gate"]["automatic_compression"])
-        self.assertEqual("candidate", capabilities["over_length_gate"]["status"])
+        self.assertEqual("available_opt_in", capabilities["over_length_gate"]["status"])
         self.assertTrue(capabilities["over_length_gate"]["automatic_compression"])
         self.assertFalse(capabilities["over_length_gate"]["default_selected"])
         self.assertEqual(2, capabilities["over_length_gate"]["compression_limit"])
@@ -165,9 +166,9 @@ class HookLayerContractTests(unittest.TestCase):
             "available_opt_in",
             capabilities["protective_expansion_gate"]["status"],
         )
-        self.assertEqual("candidate", capabilities["delivery_cleanliness_gate"]["status"])
+        self.assertEqual("available_opt_in", capabilities["delivery_cleanliness_gate"]["status"])
         self.assertFalse(capabilities["delivery_cleanliness_gate"]["default_selected"])
-        self.assertEqual("candidate", capabilities["repetition_cleanup_gate"]["status"])
+        self.assertEqual("available_opt_in", capabilities["repetition_cleanup_gate"]["status"])
         self.assertFalse(capabilities["repetition_cleanup_gate"]["default_selected"])
         for host in ("codex", "codebuddy", "claude_code"):
             self.assertIn("adapter_source", capabilities["hosts"][host])
