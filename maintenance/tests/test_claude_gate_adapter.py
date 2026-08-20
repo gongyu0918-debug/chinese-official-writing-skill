@@ -66,7 +66,9 @@ class ClaudeGateAdapterTests(unittest.TestCase):
         capabilities = json.loads(CAPABILITIES_PATH.read_text(encoding="utf-8"))
         self.assertFalse(capabilities["activation"]["ordinary_skill_install_enables_hooks"])
         codex = capabilities["hosts"]["codex"]
-        self.assertEqual("package_registration_verified", codex["status"])
+        self.assertEqual("lifecycle_verified", codex["status"])
+        self.assertTrue(codex["live_lifecycle_verified"])
+        self.assertEqual("Codex CLI 0.144.6", codex["verified_host_scope"])
         claude = capabilities["hosts"]["claude_code"]
         self.assertEqual("lifecycle_verified", claude["status"])
         self.assertEqual(["UserPromptSubmit", "PostToolUse:Read", "Stop"], claude["verified_events"])
@@ -74,7 +76,12 @@ class ClaudeGateAdapterTests(unittest.TestCase):
         self.assertEqual("anthropic_messages_gateway", claude["verified_transport"])
         self.assertFalse(claude["first_party_login_required"])
         self.assertEqual("skill_only", capabilities["hosts"]["openclaw"]["status"])
-        self.assertEqual("package_manifest_verified", capabilities["hosts"]["codebuddy"]["status"])
+        self.assertEqual("lifecycle_verified", capabilities["hosts"]["codebuddy"]["status"])
+        self.assertTrue(capabilities["hosts"]["codebuddy"]["live_lifecycle_verified"])
+        self.assertEqual(
+            "WorkBuddy 5.3.13 embedded CodeBuddy CLI 2.115.0",
+            capabilities["hosts"]["codebuddy"]["verified_host_scope"],
+        )
         self.assertTrue(capabilities["length_gate"]["automatic_expansion"])
         hooks = json.loads(self.hooks_path.read_text(encoding="utf-8"))["hooks"]
         self.assertEqual(["UserPromptSubmit", "PostToolUse", "Stop"], list(hooks))
