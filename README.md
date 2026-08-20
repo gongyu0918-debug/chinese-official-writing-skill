@@ -114,7 +114,7 @@ npx skills add https://github.com/gongyu0918-debug/chinese-official-writing-skil
 
 技能规则、references 和 scripts 在本仓库持续迭代，各平台技能目录由 canonical 包同步生成。规范与社区项目用于校验文种、流程形态和风险维度；具体规则经过复现、取舍和 A/B 后进入主线，Git 历史记录每次修改和验证。
 
-最近 5 份证据：[`release-1.6.11-rc.md`](maintenance/tests/evidence/release-1.6.11-rc.md) · [`post-v1610-hard-anchor-live-gate-result-20260820.md`](maintenance/tests/evidence/post-v1610-hard-anchor-live-gate-result-20260820.md) · [`post-v1610-cross-cold-review/result.md`](maintenance/tests/evidence/post-v1610-cross-cold-review/result.md) · [`post-v1610-cjk-transparent-quantity-result-20260819.md`](maintenance/tests/evidence/post-v1610-cjk-transparent-quantity-result-20260819.md) · [`post-v1610-state-responsibility-result-20260819.md`](maintenance/tests/evidence/post-v1610-state-responsibility-result-20260819.md)。完整记录见 [`maintenance/docs/evidence/README.md`](maintenance/docs/evidence/README.md)。
+最近 5 份证据：[`release-1.6.11.md`](maintenance/tests/evidence/release-1.6.11.md) · [`post-v1610-hard-anchor-live-gate-result-20260820.md`](maintenance/tests/evidence/post-v1610-hard-anchor-live-gate-result-20260820.md) · [`post-v1610-cross-cold-review/result.md`](maintenance/tests/evidence/post-v1610-cross-cold-review/result.md) · [`post-v1610-cjk-transparent-quantity-result-20260819.md`](maintenance/tests/evidence/post-v1610-cjk-transparent-quantity-result-20260819.md) · [`post-v1610-state-responsibility-result-20260819.md`](maintenance/tests/evidence/post-v1610-state-responsibility-result-20260819.md)。完整记录见 [`maintenance/docs/evidence/README.md`](maintenance/docs/evidence/README.md)。
 
 ## 目录结构
 

@@ -1954,7 +1954,7 @@ class SkillBoundaryTests(unittest.TestCase):
             "1.6.8 超长收束与短稿局部去重",
             "1.6.7 短稿自然收束与 Hook 可维护性",
             "明川市政务服务中心服务事项信息变更管理办法（试行）",
-            "release-1.6.11-rc.md",
+            "release-1.6.11.md",
             "post-v1610-hard-anchor-live-gate-result-20260820.md",
             "新闻与评论写作",
             "maintenance/tests/evidence",
