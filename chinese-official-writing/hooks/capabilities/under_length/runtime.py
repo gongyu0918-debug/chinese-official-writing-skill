@@ -22,6 +22,7 @@ from typing import Any, Final
 
 CAPABILITY_NAME: Final = "under_length"
 SCHEMA_VERSION: Final = 1
+FACT_LEDGER_SCHEMA_VERSION: Final = 1
 UNDER_TOLERANCE_RATIO: Final = 0.10
 MAX_FINAL_ECHO_ATTEMPTS: Final = 1
 PREFERRED_MINIMUM_HEADROOM: Final = 10
@@ -337,6 +338,121 @@ def _increment_items(original: str, candidate: str) -> list[dict[str, Any]]:
     return items
 
 
+_LEDGER_ROLES: Final = ("subject", "object", "predicate", "status", "intensity")
+_LEDGER_RELATIONS: Final = {"same", "restatement", "transparent_derivation"}
+
+
+def _ledger_text(value: Any) -> str:
+    if not isinstance(value, str):
+        return ""
+    return re.sub(r"\s+", "", value).strip("，。；：、,.;: ")
+
+
+def _ledger_role_is_absent(value: str) -> bool:
+    return value in {"", "无", "未涉及", "不适用", "__none__"}
+
+
+def _fact_ledger_passes(
+    value: dict[str, Any] | None,
+    request: str,
+    original: str,
+    candidate: str,
+    increments: list[dict[str, Any]],
+) -> bool:
+    """Check a narrow, hash-bound fact ledger for every D1 increment.
+
+    This prototype does not pretend to perform full Chinese semantic parsing.
+    It mechanically requires each subject/object/predicate/state/intensity
+    claim to point to exact source text. Same-value relations are mechanically
+    exact; a restatement must point to wording somewhere in the frozen
+    authority. The independent verifier still supplies the final semantic
+    judgment.
+    """
+
+    if not isinstance(value, dict) or value.get("schema_version") != FACT_LEDGER_SCHEMA_VERSION:
+        return False
+    if value.get("authority_sha256") != _sha256_text(request + "\n" + original):
+        return False
+    expected_sources = {
+        "request": (request, _sha256_text(request)),
+        "d0": (original, _sha256_text(original)),
+    }
+    authority_text = _ledger_text(request + original)
+    sources = value.get("sources")
+    if not isinstance(sources, dict):
+        return False
+    for name, (text, digest) in expected_sources.items():
+        packet = sources.get(name)
+        if not isinstance(packet, dict) or packet.get("sha256") != digest:
+            return False
+        if packet.get("length") != len(text):
+            return False
+    spans = value.get("spans")
+    if not isinstance(spans, list) or not spans:
+        return False
+    by_id: dict[str, dict[str, Any]] = {}
+    for span in spans:
+        if not isinstance(span, dict):
+            return False
+        span_id, origin = span.get("id"), span.get("origin")
+        start, end = span.get("start"), span.get("end")
+        quote, digest = span.get("quote"), span.get("sha256")
+        if (
+            not isinstance(span_id, str) or not span_id or span_id in by_id
+            or origin not in expected_sources
+            or not isinstance(start, int) or not isinstance(end, int)
+            or start < 0 or start >= end or end > len(expected_sources[origin][0])
+            or not isinstance(quote, str)
+            or quote != expected_sources[origin][0][start:end]
+            or digest != _sha256_text(quote)
+        ):
+            return False
+        by_id[span_id] = span
+    expected_ids = {item["id"] for item in increments if item.get("d1_text")}
+    ledger = value.get("ledger")
+    if not isinstance(ledger, list) or len(ledger) != len(expected_ids):
+        return False
+    received: set[str] = set()
+    for entry in ledger:
+        if not isinstance(entry, dict):
+            return False
+        increment_id, span_ids = entry.get("increment_id"), entry.get("span_ids")
+        if (
+            not isinstance(increment_id, str) or increment_id in received
+            or increment_id not in expected_ids or not isinstance(span_ids, list)
+            or not span_ids or any(span_id not in by_id for span_id in span_ids)
+        ):
+            return False
+        item = next(item for item in increments if item["id"] == increment_id)
+        added = _ledger_text(item.get("d1_text"))
+        source_text = _ledger_text("".join(by_id[span_id]["quote"] for span_id in span_ids))
+        if not added or not source_text:
+            return False
+        for role in _LEDGER_ROLES:
+            payload = entry.get(role)
+            if not isinstance(payload, dict):
+                return False
+            source_role = _ledger_text(payload.get("source"))
+            candidate_role = _ledger_text(payload.get("candidate"))
+            relation = payload.get("relation")
+            if relation not in _LEDGER_RELATIONS:
+                return False
+            if _ledger_role_is_absent(source_role) or _ledger_role_is_absent(candidate_role):
+                if not (_ledger_role_is_absent(source_role) and _ledger_role_is_absent(candidate_role)):
+                    return False
+                if relation != "same":
+                    return False
+                continue
+            if source_role not in source_text or candidate_role not in added:
+                return False
+            if relation == "same" and source_role != candidate_role:
+                return False
+            if relation == "restatement" and candidate_role not in authority_text:
+                return False
+        received.add(increment_id)
+    return received == expected_ids
+
+
 def _unsupported_added_process(
     request: str, original: str, increments: list[dict[str, Any]]
 ) -> str | None:
@@ -388,6 +504,16 @@ def _verdict_instruction(
         "increments": [
             {**item, "category": "restatement"} for item in increments
         ],
+        "fact_ledger": {
+            "schema_version": FACT_LEDGER_SCHEMA_VERSION,
+            "authority_sha256": _sha256_text(request + "\n" + original),
+            "sources": {
+                "request": {"sha256": _sha256_text(request), "length": len(request)},
+                "d0": {"sha256": _sha256_text(original), "length": len(original)},
+            },
+            "spans": [],
+            "ledger": [],
+        },
     }
     return (
         "只读核验 D1 相对 D0 的全部增量，并只输出一个 JSON 对象。冻结增量须逐 id 原样回填。"
@@ -405,6 +531,11 @@ def _verdict_instruction(
         "凡 D1 新增通知、督促、落实、准备、报送方式、会议纪律、协调办法等动作或义务，而原请求或 D0 "
         "没有同一事项授权，均属新增流程或职责，不得标为 restatement。"
         "只评价 D1 增量，不把 D0 原有问题归给 D1；不确定即 FAIL。\n"
+        "每个非空增量还必须在 fact_ledger 中绑定请求或 D0 的精确 span：填写 origin、start、end、quote、sha256；"
+        "再填写 subject、object、predicate、status、intensity 五项。每项都要给 source、candidate 和 relation；"
+        "source 必须是所引 span 的原文，candidate 必须出现在该增量中。relation=same 时逐字保持；"
+        "relation=restatement 或 transparent_derivation 时，candidate 还必须出现在冻结的请求或 D0 中，"
+        "不能用局部相关 span 为新增谓语、状态或强度背书。真实但无关的 span、局部相关但新增谓语的 span 均须 FAIL。"
         + json.dumps(response, ensure_ascii=False)
         + "\n【原请求】\n" + request
         + "\n【D0】\n" + original
@@ -474,9 +605,13 @@ def _verdict_passes(
         for item in received
         if isinstance(item, dict) and item.get("category") in allowed
     }
-    return actual == expected and all(
+    if actual != expected or not all(
         isinstance(item, dict) and item.get("category") != "new_specific_fact"
         for item in received
+    ):
+        return False
+    return _fact_ledger_passes(
+        value.get("fact_ledger"), request, original, candidate, increments
     )
 
 
