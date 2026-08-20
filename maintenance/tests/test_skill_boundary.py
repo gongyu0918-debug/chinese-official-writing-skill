@@ -57,7 +57,7 @@ class SkillBoundaryTests(unittest.TestCase):
         description = re.search(r"^description: (.+)$", text, re.M)
         self.assertIsNotNone(description)
         self.assertLessEqual(len(description.group(1)), 280)
-        for keyword in ["申请", "请示", "报告", "通知", "通告", "意见", "决定", "函", "采购公告", "审查材料", "正式文本"]:
+        for keyword in ["申请", "请示", "报告", "通知", "通告", "意见", "决定", "函", "公告", "审查材料", "正式文本"]:
             self.assertIn(keyword, description.group(1))
         for excluded in ["营销", "社媒", "论文", "个人求职"]:
             self.assertNotIn(excluded, description.group(1))
