@@ -1,6 +1,6 @@
 # 中文公文写作 Skill
 
-[![Version](https://img.shields.io/badge/version-1.6.10-blue)](https://github.com/gongyu0918-debug/chinese-official-writing-skill/releases/tag/v1.6.10)
+[![Version](https://img.shields.io/badge/version-1.6.11-blue)](https://github.com/gongyu0918-debug/chinese-official-writing-skill/releases/tag/v1.6.11)
 [![ClawHub](https://img.shields.io/badge/ClawHub-chinese--official--writing-2f80ed)](https://clawhub.ai/gongyu0918-debug/skills/chinese-official-writing)
 [![SkillHub](https://img.shields.io/badge/SkillHub-chinese--official--writing-e8590c)](https://skillhub.cn/skills/chinese-official-writing)
 [![SkillHub downloads: 50k+](https://img.shields.io/badge/SkillHub%20downloads-50k%2B-2f855a)](https://skillhub.cn/skills/chinese-official-writing)
@@ -66,7 +66,7 @@
 
 ## 快速安装
 
-当前 GitHub 发布版本：`chinese-official-writing@1.6.10`。
+当前 GitHub 发布版本：`chinese-official-writing@1.6.11`。
 
 平台入口：[ClawHub](https://clawhub.ai/gongyu0918-debug/skills/chinese-official-writing) · [skillhub.cn](https://skillhub.cn/skills/chinese-official-writing)。通用 Agent Skills 安装器可直接使用：
 
@@ -80,11 +80,11 @@ npx skills add https://github.com/gongyu0918-debug/chinese-official-writing-skil
 
 | 调试方向 | 主要稿件与边界 | 当前证据 |
 | --- | --- | --- |
+| 1.6.11 状态责任与共享硬锚边界 | 进行态只承载材料或常识支持的同一事项，责任主体按文种和语境落位；同数中文数量的透明归纳进入语义核验；相对期限、序号继续作为硬锚，修辞性“一方面/另一方面”不作业务数量 | 5个状态与责任主体真实样本通过；中文数量同稿在 WorkBuddy/CodeBuddy 完成在线语义回退；Claude Code 在线压缩修辞性方面并选择 D1，相对期限变化在同稿生命周期中选择 D0并逐字交付原稿 |
 | 1.6.10 标题边界、语义减载与共享硬锚 | 主标题去除句末句号并与正文留空行，编号正文仍保留必要句号；减少供应商等未决状态引出的材料外程序，精简会议纪要、函件和通用文种叶的重复说明；篇幅 Hook 共享保护引用、数字、字段及其归属关系 | 标题生成16/16、同稿修复12/12及两路自然路由通过；WR-007 与 AH-001 组合24/24技术有效，SOL、Grok、Qwen 未发现候选独有硬失败；减负后的会议纪要与工作联系函真实稿通过 |
 | 1.6.9 超长边界与自然审稿 | 修复“约、左右、上下”等软性字数表达误触发超长收束，加强长引语、编号正文、否定责任短语和同动词多拟办对象保护；已启用 Hook 时，“帮我审核、审一下稿、审稿模式、看看哪里有问题”等自然表达进入只审不改旁路，审后改写和材料引语仍按成稿任务处理 | Qwen 3.8 max 冷审问题已复现并修复；v1.6.8 的真实498→285稿件按新机械门重放通过。自然审稿、复合成稿和引语反控14组全部命中预期路由，三宿主静态 companion 组装通过 |
 | 1.6.8 超长收束与短稿局部去重 | 明确上限或区间且成稿超出上限10%以上时，可选 Hook 先识别语义重复，再有限压缩句式并复核事实、状态、责任关系和结构；短稿按局部事项收束，避免原因、理由和目的反复出现 | 两家 DeepSeek V4 Flash 路线完成真实原型；Claude Code + Alibaba DeepSeek max 将同一稿件由498字收束到285字，终稿哈希闭合，SOL max 对篇幅、事实、状态、职责关系、结构和非重复六项均判 PASS。冷审发现的规格解析、语义核验旁路、异常回退循环和状态误判均已修复 |
 | 1.6.7 短稿自然收束与 Hook 可维护性 | 对只有上限或没有硬下限的短稿增加独立自然收束路由，避免套用长报告骨架、同义复述和正文外包装；拆分 Hook 与 review gate 的历史超长函数，不改变门禁顺序、状态和失败回退 | 短稿 R3 为8/8技术有效，SOL max 判候选3胜、基线0胜、难分1，候选四稿全部硬边界 PASS；接入后两份真实稿可用。Hook 重构后又完成1次 Claude Code + Alibaba DeepSeek max 真实 D0 生命周期，事件、事务和终稿哈希闭合 |
-| 1.6.6 事务文体功能与责任承载 | 新增约20类事务文体的中央直接路由，按文种选择功能、结构和常用语；合理推断须由材料主体、写作主体或近邻语篇主体承载，并补充编者按标识与相对时间锚保护 | 三条 DeepSeek V4 Flash 路线完成20份真实写稿，原型文种功能19/20；修复后编者按、演讲词和责任书三项直连复测通过，最终样本由独立 SOL max 判事实、状态、时间锚、责任主体、文种、篇幅和直接使用全部 PASS |
 
 ### 制度正文示例
 
@@ -114,7 +114,7 @@ npx skills add https://github.com/gongyu0918-debug/chinese-official-writing-skil
 
 技能规则、references 和 scripts 在本仓库持续迭代，各平台技能目录由 canonical 包同步生成。规范与社区项目用于校验文种、流程形态和风险维度；具体规则经过复现、取舍和 A/B 后进入主线，Git 历史记录每次修改和验证。
 
-最近 5 份证据：[`release-1.6.10.md`](maintenance/tests/evidence/release-1.6.10.md) · [`post-integration-wr-ah-cold-review/r1-result-20260818.md`](maintenance/tests/evidence/post-integration-wr-ah-cold-review/r1-result-20260818.md) · [`reference-slimming-real-first/integration-result.md`](maintenance/tests/evidence/reference-slimming-real-first/integration-result.md) · [`post-v169-title-boundary/natural-route-r2-result-20260818.md`](maintenance/tests/evidence/post-v169-title-boundary/natural-route-r2-result-20260818.md) · [`release-1.6.9.md`](maintenance/tests/evidence/release-1.6.9.md)。完整记录见 [`maintenance/docs/evidence/README.md`](maintenance/docs/evidence/README.md)。
+最近 5 份证据：[`release-1.6.11-rc.md`](maintenance/tests/evidence/release-1.6.11-rc.md) · [`post-v1610-hard-anchor-live-gate-result-20260820.md`](maintenance/tests/evidence/post-v1610-hard-anchor-live-gate-result-20260820.md) · [`post-v1610-cross-cold-review/result.md`](maintenance/tests/evidence/post-v1610-cross-cold-review/result.md) · [`post-v1610-cjk-transparent-quantity-result-20260819.md`](maintenance/tests/evidence/post-v1610-cjk-transparent-quantity-result-20260819.md) · [`post-v1610-state-responsibility-result-20260819.md`](maintenance/tests/evidence/post-v1610-state-responsibility-result-20260819.md)。完整记录见 [`maintenance/docs/evidence/README.md`](maintenance/docs/evidence/README.md)。
 
 ## 目录结构
 
