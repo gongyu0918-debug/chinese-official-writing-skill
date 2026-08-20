@@ -49,11 +49,13 @@ class DescriptionNewsTriggerTests(HookCompanionTestMixin, unittest.TestCase):
                 "用于中文公文、事务性材料和新闻稿件的起草、改写、压缩和复核；"
             )
         )
-        self.assertIn("新闻稿、新闻消息、快讯、活动报道", description)
+        self.assertIn("新闻稿件", description)
+        self.assertNotIn("活动新闻稿", description)
+        self.assertNotIn("评论员文章", description)
         self.assertIn("适用于机关、企事业单位、学校、新闻机构。", description)
         self.assertNotIn("不用于", description)
         self.assertNotIn("个人求职", description)
-        self.assertEqual(len(description), 257)
+        self.assertEqual(len(description), 215)
 
     def test_openclaw_description_tracks_current_canonical_capability(self) -> None:
         self.assertEqual(read_description(self.active_skill_paths[0]), read_description(OPENCLAW_SKILL))

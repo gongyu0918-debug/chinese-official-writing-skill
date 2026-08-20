@@ -751,7 +751,7 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assertIn("仅在材料明确时写入", leaf)
         self.assertIn("同时读取 `format-gbt9704.md`", leaf)
 
-    def test_news_message_has_six_aliases_and_a_thin_fact_boundary_leaf(self) -> None:
+    def test_news_message_uses_one_frontmatter_cluster_and_six_body_aliases(self) -> None:
         skill = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
         leaf = (
             ROOT
@@ -762,8 +762,11 @@ class SkillBoundaryTests(unittest.TestCase):
 
         aliases = ["新闻稿", "新闻消息", "快讯", "活动报道", "活动新闻稿", "新闻通稿"]
         frontmatter = skill.split("---", 2)[1]
+        self.assertIn("新闻稿件", frontmatter)
         for alias in aliases:
-            self.assertIn(alias, frontmatter)
+            self.assertIn(alias, skill)
+        self.assertNotIn("活动新闻稿", frontmatter)
+        self.assertNotIn("新闻通稿", frontmatter)
         self.assertIn("references/genre-playbook-news-message.md", skill)
         self.assertIn("不因材料中偶然出现", skill)
         for rule in [
@@ -779,7 +782,7 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assertNotIn("缺少某一项时直接省略", leaf)
         self.assertNotIn("流程清单", leaf)
 
-    def test_news_commentary_has_three_precise_aliases_and_a_direct_leaf(self) -> None:
+    def test_news_commentary_uses_clustered_frontmatter_and_precise_body_route(self) -> None:
         skill_paths = [
             ROOT / "chinese-official-writing" / "SKILL.md",
             ROOT / "packages" / "agent-skills" / "skills" / "chinese-official-writing" / "SKILL.md",
@@ -793,8 +796,10 @@ class SkillBoundaryTests(unittest.TestCase):
             with self.subTest(path=path):
                 skill = path.read_text(encoding="utf-8")
                 frontmatter = skill.split("---", 2)[1]
+                self.assertIn("新闻稿件", frontmatter)
                 for alias in ["新闻评论", "时评", "评论员文章"]:
-                    self.assertIn(alias, frontmatter)
+                    self.assertIn(alias, skill)
+                    self.assertNotIn(alias, frontmatter)
                 self.assertNotIn("评论类", frontmatter)
                 self.assertNotIn("各类评论", frontmatter)
                 self.assertIn(reference, skill)
