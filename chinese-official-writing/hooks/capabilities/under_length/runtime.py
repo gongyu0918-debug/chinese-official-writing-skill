@@ -377,7 +377,6 @@ def _fact_ledger_passes(
         "request": (request, _sha256_text(request)),
         "d0": (original, _sha256_text(original)),
     }
-    authority_text = _ledger_text(request + original)
     sources = value.get("sources")
     if not isinstance(sources, dict):
         return False
@@ -447,7 +446,7 @@ def _fact_ledger_passes(
                 return False
             if relation == "same" and source_role != candidate_role:
                 return False
-            if relation == "restatement" and candidate_role not in authority_text:
+            if relation in {"restatement", "transparent_derivation"} and candidate_role not in source_text:
                 return False
         received.add(increment_id)
     return received == expected_ids

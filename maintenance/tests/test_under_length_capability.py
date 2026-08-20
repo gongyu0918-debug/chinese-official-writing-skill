@@ -166,7 +166,7 @@ class UnderLengthCapabilityTests(unittest.TestCase):
         packet["spans"][0].update({"start": start, "end": start + len(quote), "quote": quote, "sha256": RUNTIME._sha256_text(quote)})
         packet["ledger"][0]["subject"] = {"source": "各部门", "candidate": "各部门", "relation": "same"}
         packet["ledger"][0]["object"] = {"source": "工作与学习", "candidate": "工作与学习", "relation": "same"}
-        packet["ledger"][0]["predicate"] = {"source": "统筹", "candidate": "完成考核", "relation": "restatement"}
+        packet["ledger"][0]["predicate"] = {"source": "统筹", "candidate": "完成考核", "relation": "transparent_derivation"}
         packet["ledger"][0]["status"] = {"source": "", "candidate": "", "relation": "same"}
         packet["ledger"][0]["intensity"] = {"source": "", "candidate": "", "relation": "same"}
         self.assertFalse(RUNTIME._fact_ledger_passes(packet, request, original, candidate, increments))
@@ -186,6 +186,22 @@ class UnderLengthCapabilityTests(unittest.TestCase):
         packet["ledger"][0]["status"] = {"source": "", "candidate": "", "relation": "same"}
         packet["ledger"][0]["intensity"] = {"source": "按计划", "candidate": "按计划", "relation": "same"}
         self.assertTrue(RUNTIME._fact_ledger_passes(packet, request, original, candidate, increments))
+
+    def test_fact_ledger_rejects_cross_span_predicate_backing(self) -> None:
+        request = "要求各部门统筹工作与学习；培训安排继续组织。"
+        original = "各部门统筹工作与学习。"
+        candidate = "各部门统筹工作与学习并组织培训。"
+        increments = RUNTIME._increment_items(original, candidate)
+        quote = "要求各部门统筹工作与学习"
+        start = request.index(quote)
+        packet = self.valid_fact_ledger(request, original, candidate, increments, quote=quote)
+        packet["spans"][0].update({"start": start, "end": start + len(quote), "quote": quote, "sha256": RUNTIME._sha256_text(quote)})
+        packet["ledger"][0]["subject"] = {"source": "各部门", "candidate": "各部门", "relation": "same"}
+        packet["ledger"][0]["object"] = {"source": "工作与学习", "candidate": "工作与学习", "relation": "same"}
+        packet["ledger"][0]["predicate"] = {"source": "统筹", "candidate": "组织", "relation": "restatement"}
+        packet["ledger"][0]["status"] = {"source": "", "candidate": "", "relation": "same"}
+        packet["ledger"][0]["intensity"] = {"source": "", "candidate": "", "relation": "same"}
+        self.assertFalse(RUNTIME._fact_ledger_passes(packet, request, original, candidate, increments))
 
     def test_within_range_material_quote_review_and_opt_out_do_not_start(self) -> None:
         within = "内容" * 70
