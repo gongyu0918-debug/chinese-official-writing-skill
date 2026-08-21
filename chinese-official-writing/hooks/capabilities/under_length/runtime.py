@@ -343,6 +343,13 @@ _LEDGER_CORE_ROLES: Final = ("subject", "predicate", "object")
 _LEDGER_RELATIONS: Final = {
     "same", "restatement", "transparent_derivation", "reasonable_inference"
 }
+_LEDGER_SAFE_RESTATEMENTS: Final = frozenset(
+    {
+        frozenset({"开展", "进行"}),
+        frozenset({"面向", "对象为"}),
+        frozenset({"尚未确定", "仍待明确"}),
+    }
+)
 
 
 def _ledger_text(value: Any) -> str:
@@ -353,6 +360,10 @@ def _ledger_text(value: Any) -> str:
 
 def _ledger_role_is_absent(value: str) -> bool:
     return value in {"", "无", "未涉及", "不适用", "__none__"}
+
+
+def _ledger_safe_restatement(source: str, candidate: str) -> bool:
+    return frozenset({source, candidate}) in _LEDGER_SAFE_RESTATEMENTS
 
 
 def _fact_ledger_passes(
@@ -437,7 +448,13 @@ def _fact_ledger_passes(
                 core_source_roles.append(source_role)
             if relation == "same" and source_role != candidate_role:
                 return False
-            if relation in {"restatement", "transparent_derivation"} and candidate_role not in source_text:
+            if (
+                relation == "restatement"
+                and candidate_role not in source_text
+                and not _ledger_safe_restatement(source_role, candidate_role)
+            ):
+                return False
+            if relation == "transparent_derivation" and candidate_role not in source_text:
                 return False
         if core_source_roles and not any(
             all(value in _ledger_text(by_id[span_id]["quote"]) for value in core_source_roles)
@@ -604,7 +621,8 @@ def _verdict_instruction(
         "复合增量可在同一角色字段中填写材料与候选均连续出现的复合短语。"
         "每项都要给 source、candidate 和 relation；"
         "source 必须是所引 span 的原文，candidate 必须出现在该增量中。relation=same 时逐字保持；"
-        "relation=restatement 或 transparent_derivation 时，candidate 还必须出现在冻结的请求或 D0 中，"
+        "relation=restatement 时，candidate 须出现在冻结的请求或 D0 中，或仅使用开展/进行、面向/对象为、"
+        "尚未确定/仍待明确这三组低风险等义表达；relation=transparent_derivation 时，candidate 仍须出现在冻结来源中；"
         "relation=reasonable_inference 时，source 须给出直接事实或通常功能锚，candidate 只能承载一层低强度"
         "原因、目的、即时作用或预期，不能承载新增具体事实或既成成效；"
         "主体、谓语或动作、对象只要非空，至少一个所引来源 span 必须同时承载这些核心角色；不得跨 span 拼接新关系。"
