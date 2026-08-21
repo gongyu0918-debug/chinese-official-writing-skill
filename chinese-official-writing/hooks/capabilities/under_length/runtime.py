@@ -467,6 +467,45 @@ def _unsupported_added_process(
     return None
 
 
+def _fact_ledger_template(
+    request: str, original: str, increments: list[dict[str, Any]]
+) -> dict[str, Any]:
+    spans: list[dict[str, Any]] = []
+    ledger: list[dict[str, Any]] = []
+    for index, item in enumerate(
+        (item for item in increments if item.get("d1_text")), start=1
+    ):
+        span_id = f"S{index:03d}"
+        spans.append(
+            {
+                "id": span_id,
+                "origin": None,
+                "start": None,
+                "end": None,
+                "quote": None,
+                "sha256": None,
+            }
+        )
+        role = {"source": None, "candidate": None, "relation": None}
+        ledger.append(
+            {
+                "increment_id": item["id"],
+                "span_ids": [span_id],
+                **{name: dict(role) for name in _LEDGER_ROLES},
+            }
+        )
+    return {
+        "schema_version": FACT_LEDGER_SCHEMA_VERSION,
+        "authority_sha256": _sha256_text(request + "\n" + original),
+        "sources": {
+            "request": {"sha256": _sha256_text(request), "length": len(request)},
+            "d0": {"sha256": _sha256_text(original), "length": len(original)},
+        },
+        "spans": spans,
+        "ledger": ledger,
+    }
+
+
 def _verdict_instruction(
     request: str,
     original: str,
@@ -503,16 +542,7 @@ def _verdict_instruction(
         "increments": [
             {**item, "category": "restatement"} for item in increments
         ],
-        "fact_ledger": {
-            "schema_version": FACT_LEDGER_SCHEMA_VERSION,
-            "authority_sha256": _sha256_text(request + "\n" + original),
-            "sources": {
-                "request": {"sha256": _sha256_text(request), "length": len(request)},
-                "d0": {"sha256": _sha256_text(original), "length": len(original)},
-            },
-            "spans": [],
-            "ledger": [],
-        },
+        "fact_ledger": _fact_ledger_template(request, original, increments),
     }
     return (
         "只读核验 D1 相对 D0 的全部增量，并只输出一个 JSON 对象。冻结增量须逐 id 原样回填。"
@@ -530,8 +560,11 @@ def _verdict_instruction(
         "凡 D1 新增通知、督促、落实、准备、报送方式、会议纪律、协调办法等动作或义务，而原请求或 D0 "
         "没有同一事项授权，均属新增流程或职责，不得标为 restatement。"
         "只评价 D1 增量，不把 D0 原有问题归给 D1；不确定即 FAIL。\n"
-        "每个非空增量还必须在 fact_ledger 中绑定请求或 D0 的精确 span：填写 origin、start、end、quote、sha256；"
-        "再填写 subject、object、predicate、status、intensity 五项。每项都要给 source、candidate 和 relation；"
+        "fact_ledger 已按每个非空增量给出一条完整骨架；必须替换全部 null，不得删除固定的 id、increment_id、span_ids，"
+        "也不得把同一增量的多个子句拆成多条 ledger。需要多个来源时可新增 span，并把其 id 加入同一条 span_ids。"
+        "每个 span 都必须完整填写 id、origin、start、end、quote、sha256；每条 ledger 都必须保留 increment_id、span_ids，"
+        "再填写 subject、object、predicate、status、intensity 五项。复合增量可在同一角色字段中填写材料与候选均连续出现的复合短语。"
+        "每项都要给 source、candidate 和 relation；"
         "source 必须是所引 span 的原文，candidate 必须出现在该增量中。relation=same 时逐字保持；"
         "relation=restatement 或 transparent_derivation 时，candidate 还必须出现在冻结的请求或 D0 中，"
         "不能用局部相关 span 为新增谓语、状态或强度背书。真实但无关的 span、局部相关但新增谓语的 span 均须 FAIL。"

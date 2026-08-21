@@ -187,6 +187,27 @@ class UnderLengthCapabilityTests(unittest.TestCase):
         packet["ledger"][0]["intensity"] = {"source": "按计划", "candidate": "按计划", "relation": "same"}
         self.assertTrue(RUNTIME._fact_ledger_passes(packet, request, original, candidate, increments))
 
+    def test_fact_ledger_prompt_prepopulates_one_complete_entry_per_increment(self) -> None:
+        request = "材料：培训面向窗口工作人员，内容为系统操作，具体时间尚未确定。"
+        original = "办公室拟组织业务培训。"
+        candidate = original + "培训面向窗口工作人员，内容为系统操作，具体时间尚未确定。"
+        increments = RUNTIME._increment_items(original, candidate)
+        packet = RUNTIME._fact_ledger_template(request, original, increments)
+
+        self.assertEqual(len([item for item in increments if item.get("d1_text")]), len(packet["ledger"]))
+        self.assertEqual(len(packet["ledger"]), len(packet["spans"]))
+        for entry, span in zip(packet["ledger"], packet["spans"]):
+            self.assertEqual([span["id"]], entry["span_ids"])
+            self.assertIn(entry["increment_id"], {item["id"] for item in increments})
+            self.assertEqual(
+                {"increment_id", "span_ids", "subject", "object", "predicate", "status", "intensity"},
+                set(entry),
+            )
+            self.assertEqual(
+                {"source", "candidate", "relation"},
+                set(entry["predicate"]),
+            )
+
     def test_fact_ledger_rejects_cross_span_predicate_backing(self) -> None:
         request = "要求各部门统筹工作与学习；培训安排继续组织。"
         original = "各部门统筹工作与学习。"
