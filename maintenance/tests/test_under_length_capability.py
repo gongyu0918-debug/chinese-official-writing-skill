@@ -187,6 +187,47 @@ class UnderLengthCapabilityTests(unittest.TestCase):
         packet["ledger"][0]["intensity"] = {"source": "按计划", "candidate": "按计划", "relation": "same"}
         self.assertTrue(RUNTIME._fact_ledger_passes(packet, request, original, candidate, increments))
 
+    def test_fact_ledger_allows_grounded_low_strength_inference(self) -> None:
+        request = "材料：办公系统高峰时段响应缓慢，技术排查认为资源承载压力较大，拟扩容系统资源，尚未批准。"
+        original = "办公系统高峰时段响应缓慢，拟扩容系统资源，尚未批准。"
+        candidate = "办公系统高峰时段响应缓慢，为缓解资源承载压力，拟扩容系统资源，尚未批准。"
+        increments = RUNTIME._increment_items(original, candidate)
+        quote = "资源承载压力较大，拟扩容系统资源，尚未批准"
+        packet = self.valid_fact_ledger(request, original, candidate, increments, quote=quote)
+        packet["ledger"][0]["subject"] = {
+            "source": "资源", "candidate": "资源", "relation": "same"
+        }
+        packet["ledger"][0]["object"] = {
+            "source": "承载压力", "candidate": "承载压力", "relation": "same"
+        }
+        packet["ledger"][0]["predicate"] = {
+            "source": "压力较大", "candidate": "缓解", "relation": "reasonable_inference"
+        }
+        packet["ledger"][0]["status"] = {
+            "source": "", "candidate": "", "relation": "same"
+        }
+        packet["ledger"][0]["intensity"] = {
+            "source": "", "candidate": "", "relation": "same"
+        }
+        self.assertTrue(
+            RUNTIME._fact_ledger_passes(packet, request, original, candidate, increments)
+        )
+
+    def test_verifier_instruction_does_not_require_verbatim_effect_wording(self) -> None:
+        request = "将材料扩写到70—90字：系统高峰响应缓慢，资源承载压力较大，拟扩容但尚未批准。"
+        original = "系统高峰响应缓慢，拟扩容但尚未批准。"
+        candidate = "系统高峰响应缓慢，为缓解资源承载压力拟扩容，但尚未批准。"
+        spec = {"minimum": 70, "maximum": 90, "scope": "full"}
+        instruction = RUNTIME._verdict_instruction(
+            request, original, candidate, spec,
+            RUNTIME._increment_items(original, candidate),
+        )
+
+        self.assertIsNotNone(instruction)
+        self.assertIn("不要求这些推断逐字出现在材料中", instruction)
+        self.assertIn("把预期写成已经取得的成效", instruction)
+        self.assertNotIn("材料未写明的场景、原因、目的、作用、影响", instruction)
+
     def test_fact_ledger_prompt_prepopulates_one_complete_entry_per_increment(self) -> None:
         request = "材料：培训面向窗口工作人员，内容为系统操作，具体时间尚未确定。"
         original = "办公室拟组织业务培训。"
