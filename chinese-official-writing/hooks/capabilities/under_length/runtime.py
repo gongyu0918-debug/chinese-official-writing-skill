@@ -339,6 +339,7 @@ def _increment_items(original: str, candidate: str) -> list[dict[str, Any]]:
 
 
 _LEDGER_ROLES: Final = ("subject", "object", "predicate", "status", "intensity")
+_LEDGER_CORE_ROLES: Final = ("subject", "predicate", "object")
 _LEDGER_RELATIONS: Final = {
     "same", "restatement", "transparent_derivation", "reasonable_inference"
 }
@@ -365,10 +366,12 @@ def _fact_ledger_passes(
 
     This prototype does not pretend to perform full Chinese semantic parsing.
     It mechanically requires each subject/object/predicate/state/intensity
-    claim to point to exact source text. Same-value relations are mechanically
-    exact; a restatement must point to wording somewhere in the frozen
-    authority. The independent verifier still supplies the final semantic
-    judgment.
+    claim to point to exact source text. The non-empty subject, predicate and
+    object must also co-occur in one selected source span, so separately true
+    spans cannot be concatenated into a new relation. Same-value relations are
+    mechanically exact; a restatement must point to wording somewhere in the
+    frozen authority. The independent verifier still supplies the final
+    semantic judgment.
     """
 
     if not isinstance(value, dict) or value.get("schema_version") != FACT_LEDGER_SCHEMA_VERSION:
@@ -412,6 +415,7 @@ def _fact_ledger_passes(
         source_text = _ledger_text("".join(by_id[span_id]["quote"] for span_id in span_ids))
         if not added or not source_text:
             return False
+        core_source_roles: list[str] = []
         for role in _LEDGER_ROLES:
             payload = entry.get(role)
             if not isinstance(payload, dict):
@@ -429,10 +433,17 @@ def _fact_ledger_passes(
                 continue
             if source_role not in source_text or candidate_role not in added:
                 return False
+            if role in _LEDGER_CORE_ROLES:
+                core_source_roles.append(source_role)
             if relation == "same" and source_role != candidate_role:
                 return False
             if relation in {"restatement", "transparent_derivation"} and candidate_role not in source_text:
                 return False
+        if core_source_roles and not any(
+            all(value in _ledger_text(by_id[span_id]["quote"]) for value in core_source_roles)
+            for span_id in span_ids
+        ):
+            return False
         received.add(increment_id)
     return received == expected_ids
 
@@ -596,6 +607,7 @@ def _verdict_instruction(
         "relation=restatement 或 transparent_derivation 时，candidate 还必须出现在冻结的请求或 D0 中，"
         "relation=reasonable_inference 时，source 须给出直接事实或通常功能锚，candidate 只能承载一层低强度"
         "原因、目的、即时作用或预期，不能承载新增具体事实或既成成效；"
+        "主体、谓语或动作、对象只要非空，至少一个所引来源 span 必须同时承载这些核心角色；不得跨 span 拼接新关系。"
         "不能用局部相关 span 为新增谓语、状态或强度背书。真实但无关的 span、局部相关但新增谓语的 span 均须 FAIL。"
         + json.dumps(response, ensure_ascii=False)
         + "\n【冻结来源目录】\n" + _render_compact_span_catalog(frozen_ledger)

@@ -320,6 +320,53 @@ class UnderLengthCapabilityTests(unittest.TestCase):
         packet["ledger"][0]["intensity"] = {"source": "", "candidate": "", "relation": "same"}
         self.assertFalse(RUNTIME._fact_ledger_passes(packet, request, original, candidate, increments))
 
+    def test_fact_ledger_rejects_actor_action_object_stitched_across_spans(self) -> None:
+        request = "我单位组织业务培训；各部门统筹工作与学习。"
+        original = "当前安排保持不变。"
+        candidate = "当前安排保持不变。各部门组织业务培训。"
+        increments = RUNTIME._increment_items(original, candidate)
+        frozen = RUNTIME._fact_ledger_template(request, original, increments)
+        organization = next(span for span in frozen["spans"] if "我单位组织业务培训" in span["quote"])
+        departments = next(span for span in frozen["spans"] if "各部门统筹工作与学习" in span["quote"])
+        entry = frozen["ledger"][0]
+        entry["span_ids"] = [organization["id"], departments["id"]]
+        entry["subject"] = {"source": "各部门", "candidate": "各部门", "relation": "same"}
+        entry["object"] = {"source": "业务培训", "candidate": "业务培训", "relation": "same"}
+        entry["predicate"] = {"source": "组织", "candidate": "组织", "relation": "same"}
+
+        self.assertFalse(
+            RUNTIME._fact_ledger_passes(
+                RUNTIME._compact_fact_ledger_response(frozen),
+                request,
+                original,
+                candidate,
+                increments,
+            )
+        )
+
+    def test_fact_ledger_allows_actor_action_object_from_one_span(self) -> None:
+        request = "各部门组织业务培训，并统筹工作与学习。"
+        original = "当前安排保持不变。"
+        candidate = "当前安排保持不变。各部门组织业务培训。"
+        increments = RUNTIME._increment_items(original, candidate)
+        frozen = RUNTIME._fact_ledger_template(request, original, increments)
+        authority = next(span for span in frozen["spans"] if "各部门组织业务培训" in span["quote"])
+        entry = frozen["ledger"][0]
+        entry["span_ids"] = [authority["id"]]
+        entry["subject"] = {"source": "各部门", "candidate": "各部门", "relation": "same"}
+        entry["object"] = {"source": "业务培训", "candidate": "业务培训", "relation": "same"}
+        entry["predicate"] = {"source": "组织", "candidate": "组织", "relation": "same"}
+
+        self.assertTrue(
+            RUNTIME._fact_ledger_passes(
+                RUNTIME._compact_fact_ledger_response(frozen),
+                request,
+                original,
+                candidate,
+                increments,
+            )
+        )
+
     def test_compact_fact_ledger_rejects_unknown_span_id(self) -> None:
         request = "要求各部门统筹工作与学习。"
         original = "各部门统筹工作与学习。"
