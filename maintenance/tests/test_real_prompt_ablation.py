@@ -157,7 +157,8 @@ class RealPromptAblationTests(unittest.TestCase):
     def test_case_set_includes_recent_review_regressions(self) -> None:
         checks_by_id = {case.id: case.checks for case in real_prompt_eval.CASES}
 
-        self.assertIn("采购公告", checks_by_id["P002"]["description_terms"])
+        self.assertIn("公告", checks_by_id["P002"]["description_terms"])
+        self.assertIn("采购公告", checks_by_id["P002"]["routing_terms"])
         self.assertIn("征求意见函", checks_by_id["P001"]["checklist_sections"])
         self.assertIn("公示", checks_by_id["P003"]["handling_rows"])
         self.assertIn("thought-leak", checks_by_id["P007"]["lint_present_labels"])
@@ -268,11 +269,11 @@ class RealPromptAblationTests(unittest.TestCase):
         self.assertIn("请示", checks_by_id["P057"]["description_terms"])
         self.assertIn("学校", checks_by_id["P058"]["description_terms"])
         self.assertIn("工作要点", checks_by_id["P059"]["description_terms"])
-        self.assertIn("征求意见函", checks_by_id["P060"]["description_terms"])
-        self.assertIn("论文", checks_by_id["P061"]["description_exclusion_terms"])
-        self.assertIn("营销", checks_by_id["P062"]["description_exclusion_terms"])
-        self.assertIn("个人求职", checks_by_id["P063"]["description_exclusion_terms"])
-        self.assertIn("社媒", checks_by_id["P064"]["description_exclusion_terms"])
+        self.assertIn("函", checks_by_id["P060"]["description_terms"])
+        self.assertIn("论文", checks_by_id["P061"]["description_exclusion_or_absent_terms"])
+        self.assertIn("营销", checks_by_id["P062"]["description_exclusion_or_absent_terms"])
+        self.assertIn("个人求职", checks_by_id["P063"]["description_exclusion_or_absent_terms"])
+        self.assertIn("社媒", checks_by_id["P064"]["description_exclusion_or_absent_terms"])
         for case_id, term in [
             ("P065", "通告"),
             ("P066", "意见"),

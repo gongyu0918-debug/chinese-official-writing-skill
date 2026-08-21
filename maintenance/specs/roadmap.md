@@ -1,6 +1,6 @@
 # 状态与下一步
 
-状态只表示当前仓库事实：`DONE` 已完成或已合并，`IN_PROGRESS` 有当前候选，`HOLD` 已实现但未达到产品准入，`TODO` 尚未实现。
+状态只表示当前仓库事实：`DONE` 已完成或已合并，`IN_PROGRESS` 有当前候选，`HOLD` 已实现但仍可能继续收窄，`TERMINATED` 经多轮最小化仍有硬回退且当前方向已停止，`TODO` 尚未实现。
 
 ## DONE
 
@@ -19,7 +19,8 @@
 - `WR-008` 标题与正文边界：真实生成、同稿修复和自然路由通过，随 `v1.6.10@af12b771` 发布。
 - `WR-009` 文后提示与正文分区：真实同题稿验证正文外独立分区，随 `v1.6.10@af12b771` 发布。
 - `AH-001` 共享硬锚：引用、数字、字段及归属关系保护已接入篇幅不足和超长收束，真实修订与三方冷审通过，随 `v1.6.10@af12b771` 发布。
-- `v1.6.11` 已发布至 GitHub、SkillHub.cn 与 ClawHub；产品 tag 指向 `15af538a`，ClawHub 为33文件无 Hook 包。v1.6.10 的公开状态已被本版取代。
+- `v1.6.12` 已发布至 GitHub、SkillHub.cn 与 ClawHub；产品 tag 指向 `ae4a25b4`，ClawHub 为33文件无 Hook 包。v1.6.11 及更早公开状态已被本版取代。
+- `WR-013` 一般原因、即时作用与发布者角色边界已完成五路真实写稿、入口冲突消融和非新闻控制，合入本地 `main`，未推送、未发布。
 - SkillHub 已加入 `office-efficiency`、`content-creation` 轻量检索信号；不声称平台写入双分类。
 - GitHub 当前包统一 MIT；普通兼容包不含 Hook，OpenClaw GitHub 兼容包随仓库维护。
 - v1.6.6 GitHub 与 SkillHub.cn 发布回执见 [`release-1.6.6.md`](../tests/evidence/release-1.6.6.md)；ClawHub、Red SkillHub 及其他平台未在该轮上传。SkillHub 公开 latest 与签名已传播，Keen、Sanbu 安全报告均为 benign。
@@ -27,10 +28,11 @@
 
 ## IN_PROGRESS
 
-- 已验证的 description 减载与状态修正已以 `aeccc49e` 合入本地 main，并以 `8274d2c4` 同步本地付费候选；均未推送或发布。`codex/v1612-ul005-source-binding` 与 `codex/paid-outline-ot001-r3` 仍是隔离实验。
+- v1.6.12 已包含通过的 description 减载与状态修正；发布后的本地 main 已新增 `WR-013`。`WR-011` 又经三轮25份真实稿完成来源身份、原始出处和限定来源结论的原子修复；`UL-005`、联网来源用途与停止、正式发文意图和付费提纲组合继续按各自证据推进。当前本地增量均未推送或发布。
 - `MT-005b2/b3/b4` 又完成18次扩大真实 A/B，制度、函件和讲话致辞候选分别出现范围扩大、未给日期、材料外责任/效果或未交稿，继续 HOLD。description 保持204字。
 - `WR-010` 会议承诺语义正文候选完成三题6稿真实 A/B：当前基线3/3已覆盖弱意向、未回应指派、明确承诺、后续修正和权威交办；候选无目标改善且把内部审计措辞带入正式正文，不合入。只保留与 `UL-005` 共同验证的正文外 claim—evidence sidecar 构想。
 - 会议争议来源原子三组基线已经完整实现目标，不叠加重复规则；联网用途/停止组合候选虽减少消息轮次，但来源身份和直接交付回退未过，继续 HOLD。
+- 新闻声明级核验上一轮的机构性质、来源身份/原始出处混淆和限定来源外推已分别拆成原子；R3 最终五路候选均守住目标边界，不增加 Hook 或矩阵模板。正式发文意图仍只改善内部情况说明，在正式报告和普通业务函存在硬回退。
 - 本地 Qwen3.8 27B 评估：Codex GUI 5项串行任务为4份写稿 PASS、1份审稿 WARN，运行稳定但没有可核验的 Skill 文件读取回执。当前不纳入任务池；64K Ollama 别名与证据保留，模型已停止释放显存。
 - GitHub README 制度示例替换已随 v1.6.8 发布：历史 evidence 原文未改，公开页使用事实安全的八条制度正文。
 
@@ -46,7 +48,12 @@
 - `WR-005` 原短稿自然度 R1/R2：把自然度与硬下限混在一起，分别形成系统性偏短和材料外补字，保留为 HOLD；已由上限题 R3 取代后续方向。
 - `WR-005` 常用语机械化候选：R1—R6 均未准入；最终 R6 8/8技术有效，但候选仍有篇幅、职责扩张、安全要求和材料外号召硬失败。结果见 [`v167-formulaic-mechanicality-real-first/result.md`](../tests/evidence/v167-formulaic-mechanicality-real-first/result.md)。
 - 旧 `length-band-hook-v162`、`under-length-hook-v162-v2`、`v163-protective-expansion-gate` 继续保持历史 HOLD，不复活旧验收结论。
-- `UL-005` 篇幅验收来源绑定：`codex/v1612-ul005-source-binding@95ef7498` 已证明 span 的范围、原文和 hash 可机械闭合，但任意无关 span 仍可绑定任意增量，不能证明来源蕴含；现有同模型 verifier 又已有 R8 误放记录，因此原型不合入 main，继续 HOLD。下一原子固定原始 R8/R11 文本包并加入“相关局部 span 但新增目的/动作/结果”的对抗题。[本轮结果](../tests/evidence/post-v1611-research-closeout-20260820.md)
+- `UL-005` 篇幅验收来源绑定：R1 已证明 span 完整性不等于来源蕴含；R2 确定性测试可拒绝单个无关 span 和局部相关但新增谓语，但代码复核仍发现跨 span 角色拼接可洗白、安全同义谓语会被过度拒绝。WorkBuddy / CodeBuddy 单样本未返回合规事实台账，也未形成 D0/D1 最终选择，记为 `INVALID`，不是安全回退。两轮原型都不合入 main。[R1](../tests/evidence/post-v1611-research-closeout-20260820.md) [R2](../tests/evidence/ul005-fact-ledger-r2-live-20260821.md)
+- `WR-012` 正式发文意图路由：内部情况说明样本方向成立，明确正式报告和普通业务函分别出现正文外自证、材料外时间/过程事实，继续 HOLD。当前 main 的已有边界优于本轮候选，不叠加规则。[结果](../tests/evidence/v1612-formal-issuance-intent-result-20260821.md)
+
+## TERMINATED
+
+- `SB-001` 章节均衡提示词/路由：R3.1—R3.5 已依次尝试语义叶、路由减载、底稿形态触发、过程隔离和近场卡。虽有多路精确搬移，但最终仍出现 Alibaba 章节/整稿重复、未决状态改写和无关残片，OpenCode 另有一次只承诺交付而未交稿；产品改动不合入，不再向第三处堆规则。[结果](../tests/evidence/sb001-r3-subject-preserving-result.md)
 
 ## TODO：已登记但不在本轮展开
 
