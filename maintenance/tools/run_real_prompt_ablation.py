@@ -2076,7 +2076,7 @@ FILE_TERM_ALTERNATIVES_BY_CASE: dict[str, list[dict[str, list[str]]]] = {
     "P050": [
         {
             "chinese-official-writing/SKILL.md": [
-                "正式化只压实已给事实，不补未给的原因、效果、处置、责任、流程、结论或后续动作",
+                "正式化不得补材料外的具体事实、未决结论或新的处置、责任、流程和后续动作",
             ],
             "chinese-official-writing/references/workflow.md": [
                 "以用户最新版底稿和本轮明确补充材料为事实源",
