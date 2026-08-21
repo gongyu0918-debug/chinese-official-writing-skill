@@ -248,6 +248,10 @@ class UnderLengthCapabilityTests(unittest.TestCase):
                 {"source", "candidate", "relation"},
                 set(entry["predicate"]),
             )
+            self.assertEqual(
+                {"source": "", "candidate": "", "relation": "same"},
+                entry["status"],
+            )
         for span in packet["spans"]:
             source = request if span["origin"] == "request" else original
             self.assertEqual(span["quote"], source[span["start"]:span["end"]])
