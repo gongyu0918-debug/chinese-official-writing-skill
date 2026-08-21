@@ -636,6 +636,9 @@ def _verdict_instruction(
         "尚未确定/仍待明确这三组低风险等义表达；relation=transparent_derivation 时，candidate 仍须出现在冻结来源中；"
         "relation=reasonable_inference 时，source 须给出直接事实或通常功能锚，candidate 只能承载一层低强度"
         "原因、目的、即时作用或预期，不能承载新增具体事实或既成成效；"
+        "合理推断也不免除同一来源 span 约束：核心角色的 source 应从同一条直接事实或通常功能锚中拆取，"
+        "不要把用户允许推断、允许措辞或强度说明本身填作核心 source，也不要把问题句、计划句和通用授权句"
+        "分开拼成一条关系；candidate 可以在低强度推断范围内不同于 source，但仍须出现在对应增量中。"
         "主体、谓语或动作、对象只要非空，至少一个所引来源 span 必须同时承载这些核心角色；不得跨 span 拼接新关系。"
         "不能用局部相关 span 为新增谓语、状态或强度背书。真实但无关的 span、局部相关但新增谓语的 span 均须 FAIL。"
         + json.dumps(response, ensure_ascii=False)
