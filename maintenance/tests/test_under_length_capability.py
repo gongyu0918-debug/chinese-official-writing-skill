@@ -250,6 +250,8 @@ class UnderLengthCapabilityTests(unittest.TestCase):
         self.assertIsNotNone(instruction)
         self.assertIn("不要求这些推断逐字出现在材料中", instruction)
         self.assertIn("把预期写成已经取得的成效", instruction)
+        self.assertIn("核心角色的 source 应从同一条直接事实", instruction)
+        self.assertIn("不要把用户允许推断、允许措辞或强度说明本身填作核心 source", instruction)
         self.assertNotIn("材料未写明的场景、原因、目的、作用、影响", instruction)
 
     def test_fact_ledger_prompt_prepopulates_one_complete_entry_per_increment(self) -> None:
