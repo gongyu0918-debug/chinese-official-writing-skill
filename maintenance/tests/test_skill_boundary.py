@@ -18,8 +18,8 @@ OPTIONAL_GATE_FILES = {
     "scripts/review_gate.py",
 }
 SKILLHUB_CLEAN_PACKAGE_EXCLUDES = {"agents/openai.yaml", "LICENSE"}
-CURRENT_VERSION = "1.6.11"
-PUBLISHED_VERSION = "1.6.11"
+CURRENT_VERSION = "1.6.12"
+PUBLISHED_VERSION = "1.6.12"
 
 
 def relative_files(root: Path) -> list[str]:
@@ -903,7 +903,7 @@ class SkillBoundaryTests(unittest.TestCase):
     def test_openclaw_bundle_readme_is_current_and_contains_no_publish_command(self) -> None:
         readme = (ROOT / "packages" / "openclaw" / "README.md").read_text(encoding="utf-8")
 
-        self.assertIn("当前 GitHub 版本为 `1.6.11`", readme)
+        self.assertIn("当前 GitHub 版本为 `1.6.12`", readme)
         self.assertIn("MIT", readme)
         self.assertIn(r"python .\maintenance\tools\sync_adapters.py", readme)
         self.assertIn("packages/openclaw/", readme)
@@ -1954,13 +1954,13 @@ class SkillBoundaryTests(unittest.TestCase):
 
         for term in [
             "下表只保留最近 5 次版本验证",
+            "1.6.12 触发描述原子减载",
             "1.6.11 状态责任与共享硬锚边界",
             "1.6.9 超长边界与自然审稿",
             "1.6.8 超长收束与短稿局部去重",
-            "1.6.7 短稿自然收束与 Hook 可维护性",
             "明川市政务服务中心服务事项信息变更管理办法（试行）",
+            "release-1.6.12-rc.md",
             "release-1.6.11.md",
-            "post-v1610-hard-anchor-live-gate-result-20260820.md",
             "新闻与评论写作",
             "maintenance/tests/evidence",
             "maintenance/docs/evidence/README.md",

@@ -37,7 +37,7 @@ CASES: list[PromptCase] = [
         kind="create",
         prompt="帮我起草一份向各区征求意见的函，附件是管理办法征求意见稿，要求写清反馈期限、邮箱和联系人。",
         checks={
-            "description_terms": ["征求意见函"],
+            "description_terms": ["函"],
             "routing_terms": ["征求意见函", "反馈期限", "反馈方式"],
             "checklist_sections": ["征求意见函"],
             "handling_rows": ["征求意见函"],
@@ -48,7 +48,7 @@ CASES: list[PromptCase] = [
         kind="create",
         prompt="写一份采购公告，项目是办公软件会员服务采购，预算上限 2 万元，要有响应文件提交方式和联系人。",
         checks={
-            "description_terms": ["采购公告"],
+            "description_terms": ["公告"],
             "routing_terms": ["采购公告", "预算", "联系方式"],
             "checklist_sections": ["采购公告"],
             "handling_rows": ["采购公告"],
@@ -1045,7 +1045,7 @@ CASES: list[PromptCase] = [
         kind="create",
         prompt="起草征求意见函，附件是管理办法征求意见稿，7 月 10 日前反馈。",
         checks={
-            "description_terms": ["征求意见函"],
+            "description_terms": ["函"],
         },
     ),
     PromptCase(
@@ -1053,7 +1053,7 @@ CASES: list[PromptCase] = [
         kind="revise",
         prompt="帮我给论文降 AI 味。",
         checks={
-            "description_exclusion_terms": ["论文"],
+            "description_exclusion_or_absent_terms": ["论文"],
         },
     ),
     PromptCase(
@@ -1061,7 +1061,10 @@ CASES: list[PromptCase] = [
         kind="create",
         prompt="写一篇小红书营销种草文案，语气活泼一点。",
         checks={
-            "description_exclusion_terms": ["营销", "社媒"],
+            "description_exclusion_or_absent_terms": ["营销", "社媒"],
+            "file_terms": {
+                "chinese-official-writing/SKILL.md": ["营销软文", "社交媒体文案"],
+            },
         },
     ),
     PromptCase(
@@ -1069,7 +1072,7 @@ CASES: list[PromptCase] = [
         kind="create",
         prompt="帮我写个人求职申请信。",
         checks={
-            "description_exclusion_terms": ["个人求职"],
+            "description_exclusion_or_absent_terms": ["个人求职"],
         },
     ),
     PromptCase(
@@ -1077,7 +1080,10 @@ CASES: list[PromptCase] = [
         kind="create",
         prompt="写一个 App 增长营销方案，要适合社媒投放。",
         checks={
-            "description_exclusion_terms": ["营销", "社媒"],
+            "description_exclusion_or_absent_terms": ["营销", "社媒"],
+            "file_terms": {
+                "chinese-official-writing/SKILL.md": ["营销软文", "社交媒体文案"],
+            },
         },
     ),
     PromptCase(
@@ -2349,6 +2355,9 @@ def evaluate_case(case: PromptCase, root: Path, prose_lint) -> dict[str, Any]:
         if term not in description:
             failures.append(f"description missing {term}")
     description_exclusion = extract_description_exclusion(description)
+    for term in checks.get("description_exclusion_or_absent_terms", []):
+        if term in description and term not in description_exclusion:
+            failures.append(f"description positive scope unexpectedly contains {term}")
     for term in checks.get("description_exclusion_terms", []):
         if term not in description_exclusion:
             failures.append(f"description exclusion missing {term}")
