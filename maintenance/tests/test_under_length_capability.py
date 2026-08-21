@@ -206,6 +206,37 @@ class UnderLengthCapabilityTests(unittest.TestCase):
             RUNTIME._fact_ledger_passes(packet, request, original, candidate, increments)
         )
 
+    def test_fact_ledger_rejects_achieved_effect_laundered_as_inference(self) -> None:
+        request = "材料：办公系统高峰时段响应缓慢；技术排查认为资源承载压力较大；信息中心拟扩容系统资源，方案尚未批准。"
+        original = "办公系统高峰时段响应缓慢，信息中心拟扩容系统资源，方案尚未批准。"
+        candidate = original + "扩容后系统响应速度已明显提升。"
+        increments = RUNTIME._increment_items(original, candidate)
+        frozen = RUNTIME._fact_ledger_template(request, original, increments)
+        authority = next(span for span in frozen["spans"] if "拟扩容系统资源" in span["quote"])
+        entry = frozen["ledger"][0]
+        entry["span_ids"] = [authority["id"]]
+        entry["subject"] = {"source": "系统", "candidate": "系统", "relation": "same"}
+        entry["predicate"] = {
+            "source": "拟扩容",
+            "candidate": "已明显提升",
+            "relation": "reasonable_inference",
+        }
+        entry["object"] = {
+            "source": "系统资源",
+            "candidate": "系统响应速度",
+            "relation": "reasonable_inference",
+        }
+
+        self.assertFalse(
+            RUNTIME._fact_ledger_passes(
+                RUNTIME._compact_fact_ledger_response(frozen),
+                request,
+                original,
+                candidate,
+                increments,
+            )
+        )
+
     def test_verifier_instruction_does_not_require_verbatim_effect_wording(self) -> None:
         request = "将材料扩写到70—90字：系统高峰响应缓慢，资源承载压力较大，拟扩容但尚未批准。"
         original = "系统高峰响应缓慢，拟扩容但尚未批准。"
