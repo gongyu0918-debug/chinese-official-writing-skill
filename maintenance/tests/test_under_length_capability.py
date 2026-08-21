@@ -236,9 +236,9 @@ class UnderLengthCapabilityTests(unittest.TestCase):
         packet = RUNTIME._fact_ledger_template(request, original, increments)
 
         self.assertEqual(len([item for item in increments if item.get("d1_text")]), len(packet["ledger"]))
-        self.assertEqual(len(packet["ledger"]), len(packet["spans"]))
-        for entry, span in zip(packet["ledger"], packet["spans"]):
-            self.assertEqual([span["id"]], entry["span_ids"])
+        self.assertGreater(len(packet["spans"]), 1)
+        for entry in packet["ledger"]:
+            self.assertEqual([], entry["span_ids"])
             self.assertIn(entry["increment_id"], {item["id"] for item in increments})
             self.assertEqual(
                 {"increment_id", "span_ids", "subject", "object", "predicate", "status", "intensity"},
@@ -248,6 +248,34 @@ class UnderLengthCapabilityTests(unittest.TestCase):
                 {"source", "candidate", "relation"},
                 set(entry["predicate"]),
             )
+        for span in packet["spans"]:
+            source = request if span["origin"] == "request" else original
+            self.assertEqual(span["quote"], source[span["start"]:span["end"]])
+            self.assertEqual(RUNTIME._sha256_text(span["quote"]), span["sha256"])
+
+    def test_prehashed_spans_support_grounded_inference_without_tools(self) -> None:
+        request = "材料：办公系统高峰时段响应缓慢；技术排查认为资源承载压力较大；拟扩容系统资源；尚未批准。"
+        original = "办公系统高峰时段响应缓慢，拟扩容系统资源，尚未批准。"
+        candidate = "办公系统高峰时段响应缓慢，为缓解资源承载压力，拟扩容系统资源，尚未批准。"
+        increments = RUNTIME._increment_items(original, candidate)
+        packet = RUNTIME._fact_ledger_template(request, original, increments)
+        pressure = next(
+            span for span in packet["spans"]
+            if "资源承载压力较大" in span["quote"]
+        )
+        entry = packet["ledger"][0]
+        entry["span_ids"] = [pressure["id"]]
+        entry["subject"] = {"source": "资源", "candidate": "资源", "relation": "same"}
+        entry["object"] = {"source": "承载压力", "candidate": "承载压力", "relation": "same"}
+        entry["predicate"] = {
+            "source": "压力较大", "candidate": "缓解", "relation": "reasonable_inference"
+        }
+        entry["status"] = {"source": "", "candidate": "", "relation": "same"}
+        entry["intensity"] = {"source": "", "candidate": "", "relation": "same"}
+
+        self.assertTrue(
+            RUNTIME._fact_ledger_passes(packet, request, original, candidate, increments)
+        )
 
     def test_fact_ledger_rejects_cross_span_predicate_backing(self) -> None:
         request = "要求各部门统筹工作与学习；培训安排继续组织。"

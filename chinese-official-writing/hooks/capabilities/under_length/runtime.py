@@ -473,26 +473,37 @@ def _fact_ledger_template(
     request: str, original: str, increments: list[dict[str, Any]]
 ) -> dict[str, Any]:
     spans: list[dict[str, Any]] = []
-    ledger: list[dict[str, Any]] = []
-    for index, item in enumerate(
-        (item for item in increments if item.get("d1_text")), start=1
+    for origin, text, prefix in (
+        ("request", request, "R"), ("d0", original, "D")
     ):
-        span_id = f"S{index:03d}"
-        spans.append(
-            {
-                "id": span_id,
-                "origin": None,
-                "start": None,
-                "end": None,
-                "quote": None,
-                "sha256": None,
-            }
-        )
+        index = 0
+        for match in re.finditer(r"[^。！？；：;\r\n]+[。！？；：;]?", text):
+            quote = match.group(0)
+            leading = len(quote) - len(quote.lstrip())
+            trailing = len(quote) - len(quote.rstrip())
+            start = match.start() + leading
+            end = match.end() - trailing
+            if start >= end:
+                continue
+            quote = text[start:end]
+            index += 1
+            spans.append(
+                {
+                    "id": f"{prefix}{index:03d}",
+                    "origin": origin,
+                    "start": start,
+                    "end": end,
+                    "quote": quote,
+                    "sha256": _sha256_text(quote),
+                }
+            )
+    ledger: list[dict[str, Any]] = []
+    for item in (item for item in increments if item.get("d1_text")):
         role = {"source": None, "candidate": None, "relation": None}
         ledger.append(
             {
                 "increment_id": item["id"],
-                "span_ids": [span_id],
+                "span_ids": [],
                 **{name: dict(role) for name in _LEDGER_ROLES},
             }
         )
@@ -565,10 +576,11 @@ def _verdict_instruction(
         "没有同一事项授权，均属新增流程或职责，不得标为 restatement。"
         "只评价 D1 增量，不把 D0 原有问题归给 D1；具体事实、状态或责任关系实质不确定时才 FAIL，"
         "推断措辞没有逐字来源本身不构成不确定。\n"
-        "fact_ledger 已按每个非空增量给出一条完整骨架；必须替换全部 null，不得删除固定的 id、increment_id、span_ids，"
-        "也不得把同一增量的多个子句拆成多条 ledger。需要多个来源时可新增 span，并把其 id 加入同一条 span_ids。"
-        "每个 span 都必须完整填写 id、origin、start、end、quote、sha256；每条 ledger 都必须保留 increment_id、span_ids，"
-        "再填写 subject、object、predicate、status、intensity 五项。复合增量可在同一角色字段中填写材料与候选均连续出现的复合短语。"
+        "fact_ledger.spans 已由 Hook 按请求与 D0 的句或分句机械冻结，并完整预填 id、origin、start、end、quote、sha256；"
+        "无需也不得调用工具重算 hash，不得修改、删除或新增 spans。fact_ledger.ledger 已按每个非空增量给出一条骨架；"
+        "不得删除固定的 increment_id 或把同一增量的多个子句拆成多条 ledger。只从已有 spans 选择直接相关 id 填入 span_ids，"
+        "需要多个来源时可选择多个已有 id；没有直接相关 span 时应 FAIL。再填写 subject、object、predicate、status、intensity 五项。"
+        "复合增量可在同一角色字段中填写材料与候选均连续出现的复合短语。"
         "每项都要给 source、candidate 和 relation；"
         "source 必须是所引 span 的原文，candidate 必须出现在该增量中。relation=same 时逐字保持；"
         "relation=restatement 或 transparent_derivation 时，candidate 还必须出现在冻结的请求或 D0 中，"
