@@ -22,7 +22,7 @@ from typing import Any, Final
 
 CAPABILITY_NAME: Final = "under_length"
 SCHEMA_VERSION: Final = 1
-FACT_LEDGER_SCHEMA_VERSION: Final = 1
+FACT_LEDGER_SCHEMA_VERSION: Final = 2
 UNDER_TOLERANCE_RATIO: Final = 0.10
 MAX_FINAL_ECHO_ATTEMPTS: Final = 1
 PREFERRED_MINIMUM_HEADROOM: Final = 10
@@ -373,28 +373,11 @@ def _fact_ledger_passes(
 
     if not isinstance(value, dict) or value.get("schema_version") != FACT_LEDGER_SCHEMA_VERSION:
         return False
-    if value.get("authority_sha256") != _sha256_text(request + "\n" + original):
-        return False
-    expected_sources = {
-        "request": (request, _sha256_text(request)),
-        "d0": (original, _sha256_text(original)),
-    }
-    sources = value.get("sources")
-    if not isinstance(sources, dict):
-        return False
-    for name, (text, digest) in expected_sources.items():
-        packet = sources.get(name)
-        if not isinstance(packet, dict) or packet.get("sha256") != digest:
-            return False
-        if packet.get("length") != len(text):
-            return False
-    spans = value.get("spans")
-    if not isinstance(spans, list) or not spans:
-        return False
+    frozen = _fact_ledger_template(request, original, increments)
+    spans = frozen["spans"]
+    expected_sources = {"request": request, "d0": original}
     by_id: dict[str, dict[str, Any]] = {}
     for span in spans:
-        if not isinstance(span, dict):
-            return False
         span_id, origin = span.get("id"), span.get("origin")
         start, end = span.get("start"), span.get("end")
         quote, digest = span.get("quote"), span.get("sha256")
@@ -402,9 +385,9 @@ def _fact_ledger_passes(
             not isinstance(span_id, str) or not span_id or span_id in by_id
             or origin not in expected_sources
             or not isinstance(start, int) or not isinstance(end, int)
-            or start < 0 or start >= end or end > len(expected_sources[origin][0])
+            or start < 0 or start >= end or end > len(expected_sources[origin])
             or not isinstance(quote, str)
-            or quote != expected_sources[origin][0][start:end]
+            or quote != expected_sources[origin][start:end]
             or digest != _sha256_text(quote)
         ):
             return False
@@ -519,6 +502,31 @@ def _fact_ledger_template(
     }
 
 
+def _compact_fact_ledger_response(
+    frozen: dict[str, Any],
+) -> dict[str, Any]:
+    return {
+        "schema_version": FACT_LEDGER_SCHEMA_VERSION,
+        "ledger": frozen["ledger"],
+    }
+
+
+def _compact_span_catalog(
+    frozen: dict[str, Any],
+) -> list[dict[str, str]]:
+    return [
+        {"id": span["id"], "quote": span["quote"]}
+        for span in frozen["spans"]
+    ]
+
+
+def _render_compact_span_catalog(frozen: dict[str, Any]) -> str:
+    return "\n".join(
+        f"{item['id']}\t{json.dumps(item['quote'], ensure_ascii=False)}"
+        for item in _compact_span_catalog(frozen)
+    )
+
+
 def _verdict_instruction(
     request: str,
     original: str,
@@ -541,6 +549,7 @@ def _verdict_instruction(
         ).get("relation_packet", [])
     except Exception:
         return None
+    frozen_ledger = _fact_ledger_template(request, original, increments)
     response = {
         "schema_version": SCHEMA_VERSION,
         "request_sha256": _sha256_text(request),
@@ -555,7 +564,7 @@ def _verdict_instruction(
         "increments": [
             {**item, "category": "restatement"} for item in increments
         ],
-        "fact_ledger": _fact_ledger_template(request, original, increments),
+        "fact_ledger": _compact_fact_ledger_response(frozen_ledger),
     }
     return (
         "只读核验 D1 相对 D0 的全部增量，并只输出一个 JSON 对象。冻结增量须逐 id 原样回填。"
@@ -576,9 +585,9 @@ def _verdict_instruction(
         "没有同一事项授权，均属新增流程或职责，不得标为 restatement。"
         "只评价 D1 增量，不把 D0 原有问题归给 D1；具体事实、状态或责任关系实质不确定时才 FAIL，"
         "推断措辞没有逐字来源本身不构成不确定。\n"
-        "fact_ledger.spans 已由 Hook 按请求与 D0 的句或分句机械冻结，并完整预填 id、origin、start、end、quote、sha256；"
-        "无需也不得调用工具重算 hash，不得修改、删除或新增 spans。fact_ledger.ledger 已按每个非空增量给出一条骨架；"
-        "不得删除固定的 increment_id 或把同一增量的多个子句拆成多条 ledger。只从已有 spans 选择直接相关 id 填入 span_ids，"
+        "来源目录已由 Hook 按请求与 D0 的句或分句机械冻结；offset、origin 和 hash 只在 Hook 内部保存并回查，"
+        "无需也不得调用工具重算。fact_ledger.ledger 已按每个非空增量给出一条骨架；"
+        "不得删除固定的 increment_id 或把同一增量的多个子句拆成多条 ledger。只从已有来源目录选择直接相关 id 填入 span_ids，"
         "需要多个来源时可选择多个已有 id；没有直接相关 span 时应 FAIL。再填写 subject、object、predicate、status、intensity 五项。"
         "五个角色已用空字符串和 relation=same 预填为“不适用”；不涉及的角色须原样保留，不得改成 null，涉及的角色再替换为实际值。"
         "复合增量可在同一角色字段中填写材料与候选均连续出现的复合短语。"
@@ -589,8 +598,7 @@ def _verdict_instruction(
         "原因、目的、即时作用或预期，不能承载新增具体事实或既成成效；"
         "不能用局部相关 span 为新增谓语、状态或强度背书。真实但无关的 span、局部相关但新增谓语的 span 均须 FAIL。"
         + json.dumps(response, ensure_ascii=False)
-        + "\n【原请求】\n" + request
-        + "\n【D0】\n" + original
+        + "\n【冻结来源目录】\n" + _render_compact_span_catalog(frozen_ledger)
         + "\n【D1】\n" + candidate
         + "\n【共享硬锚关系复核项】\n" + json.dumps(anchor_relations, ensure_ascii=False)
         + "\n【冻结增量】\n" + json.dumps(increments, ensure_ascii=False)

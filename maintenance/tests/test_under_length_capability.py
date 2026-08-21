@@ -115,9 +115,15 @@ class UnderLengthCapabilityTests(unittest.TestCase):
     @staticmethod
     def valid_fact_ledger(request, original, candidate, increments, quote=None):
         item = increments[0]
-        quote = quote or "培训安排按既定计划进行；要求各部门统筹工作与学习，参训人员完成学习任务并学以致用，当前安排保持不变"
-        start = request.index(quote)
-        digest = RUNTIME._sha256_text(quote)
+        quotes = [quote] if quote else [
+            "培训安排按既定计划进行",
+            "要求各部门统筹工作与学习，参训人员完成学习任务并学以致用，当前安排保持不变",
+        ]
+        frozen = RUNTIME._fact_ledger_template(request, original, increments)
+        span_ids = [
+            next(span["id"] for span in frozen["spans"] if source in span["quote"])
+            for source in quotes
+        ]
         roles = {
             "subject": {"source": "各部门", "candidate": "各部门", "relation": "same"},
             "object": {"source": "工作与学习", "candidate": "工作与学习", "relation": "same"},
@@ -126,14 +132,8 @@ class UnderLengthCapabilityTests(unittest.TestCase):
             "intensity": {"source": "按既定计划", "candidate": "按既定计划", "relation": "same"},
         }
         return {
-            "schema_version": 1,
-            "authority_sha256": RUNTIME._sha256_text(request + "\n" + original),
-            "sources": {
-                "request": {"sha256": RUNTIME._sha256_text(request), "length": len(request)},
-                "d0": {"sha256": RUNTIME._sha256_text(original), "length": len(original)},
-            },
-            "spans": [{"id": "S001", "origin": "request", "start": start, "end": start + len(quote), "quote": quote, "sha256": digest}],
-            "ledger": [{"increment_id": item["id"], "span_ids": ["S001"], **roles}],
+            "schema_version": RUNTIME.FACT_LEDGER_SCHEMA_VERSION,
+            "ledger": [{"increment_id": item["id"], "span_ids": span_ids, **roles}],
         }
 
     def test_fact_ledger_rejects_real_but_unrelated_span(self) -> None:
@@ -142,12 +142,9 @@ class UnderLengthCapabilityTests(unittest.TestCase):
         candidate = "现组织业务培训。各部门统筹工作与学习，参训人员完成学习任务并学以致用，当前安排保持不变。"
         increments = RUNTIME._increment_items(original, candidate)
         quote = "办公室收到三份材料"
-        start = request.index(quote)
         packet = self.valid_fact_ledger(
-            request, original, candidate, increments,
-            quote="要求各部门统筹工作与学习，参训人员完成学习任务并学以致用，当前安排保持不变",
+            request, original, candidate, increments, quote=quote,
         )
-        packet["spans"][0].update({"start": start, "end": start + len(quote), "quote": quote, "sha256": RUNTIME._sha256_text(quote)})
         packet["ledger"][0]["subject"] = {"source": "办公室", "candidate": "组织", "relation": "same"}
         packet["ledger"][0]["object"] = {"source": "材料", "candidate": "参加", "relation": "same"}
         packet["ledger"][0]["predicate"] = {"source": "收到", "candidate": "参加", "relation": "same"}
@@ -161,9 +158,7 @@ class UnderLengthCapabilityTests(unittest.TestCase):
         candidate = "各部门统筹工作与学习并完成考核。"
         increments = RUNTIME._increment_items(original, candidate)
         quote = "要求各部门统筹工作与学习"
-        start = request.index(quote)
         packet = self.valid_fact_ledger(request, original, candidate, increments, quote=quote)
-        packet["spans"][0].update({"start": start, "end": start + len(quote), "quote": quote, "sha256": RUNTIME._sha256_text(quote)})
         packet["ledger"][0]["subject"] = {"source": "各部门", "candidate": "各部门", "relation": "same"}
         packet["ledger"][0]["object"] = {"source": "工作与学习", "candidate": "工作与学习", "relation": "same"}
         packet["ledger"][0]["predicate"] = {"source": "统筹", "candidate": "完成考核", "relation": "transparent_derivation"}
@@ -177,9 +172,7 @@ class UnderLengthCapabilityTests(unittest.TestCase):
         candidate = "现组织业务培训。培训活动按计划组织。"
         increments = RUNTIME._increment_items(original, candidate)
         quote = "组织业务培训，培训活动按计划开展"
-        start = request.index(quote)
         packet = self.valid_fact_ledger(request, original, candidate, increments, quote=quote)
-        packet["spans"][0].update({"start": start, "end": start + len(quote), "quote": quote, "sha256": RUNTIME._sha256_text(quote)})
         packet["ledger"][0]["subject"] = {"source": "培训活动", "candidate": "培训活动", "relation": "same"}
         packet["ledger"][0]["object"] = {"source": "", "candidate": "", "relation": "same"}
         packet["ledger"][0]["predicate"] = {"source": "开展", "candidate": "组织", "relation": "restatement"}
@@ -257,6 +250,37 @@ class UnderLengthCapabilityTests(unittest.TestCase):
             self.assertEqual(span["quote"], source[span["start"]:span["end"]])
             self.assertEqual(RUNTIME._sha256_text(span["quote"]), span["sha256"])
 
+    def test_verifier_exposes_only_compact_span_catalog(self) -> None:
+        request = "材料：办公系统高峰时段响应缓慢；资源承载压力较大；拟扩容系统资源；尚未批准。请扩写到70—90字。"
+        original = "办公系统高峰时段响应缓慢，拟扩容系统资源，尚未批准。"
+        candidate = "办公系统高峰时段响应缓慢，为缓解资源承载压力，拟扩容系统资源，尚未批准。"
+        increments = RUNTIME._increment_items(original, candidate)
+        frozen = RUNTIME._fact_ledger_template(request, original, increments)
+        compact = RUNTIME._compact_fact_ledger_response(frozen)
+        catalog = RUNTIME._compact_span_catalog(frozen)
+        instruction = RUNTIME._verdict_instruction(
+            request,
+            original,
+            candidate,
+            {"minimum": 70, "maximum": 90, "scope": "full"},
+            increments,
+        )
+
+        self.assertEqual({"schema_version", "ledger"}, set(compact))
+        self.assertTrue(catalog)
+        self.assertTrue(all(set(item) == {"id", "quote"} for item in catalog))
+        self.assertIsNotNone(instruction)
+        catalog_text = instruction.split("【冻结来源目录】\n", 1)[1].split(
+            "\n【D1】", 1
+        )[0]
+        self.assertNotIn('"origin"', catalog_text)
+        self.assertNotIn('"start"', catalog_text)
+        self.assertNotIn('"end"', catalog_text)
+        self.assertNotIn('"sha256"', catalog_text)
+        self.assertEqual(len(catalog), len(catalog_text.splitlines()))
+        self.assertTrue(all("\t" in line for line in catalog_text.splitlines()))
+        self.assertTrue(all("sha256" in span for span in frozen["spans"]))
+
     def test_prehashed_spans_support_grounded_inference_without_tools(self) -> None:
         request = "材料：办公系统高峰时段响应缓慢；技术排查认为资源承载压力较大；拟扩容系统资源；尚未批准。"
         original = "办公系统高峰时段响应缓慢，拟扩容系统资源，尚未批准。"
@@ -277,8 +301,9 @@ class UnderLengthCapabilityTests(unittest.TestCase):
         entry["status"] = {"source": "", "candidate": "", "relation": "same"}
         entry["intensity"] = {"source": "", "candidate": "", "relation": "same"}
 
+        compact = RUNTIME._compact_fact_ledger_response(packet)
         self.assertTrue(
-            RUNTIME._fact_ledger_passes(packet, request, original, candidate, increments)
+            RUNTIME._fact_ledger_passes(compact, request, original, candidate, increments)
         )
 
     def test_fact_ledger_rejects_cross_span_predicate_backing(self) -> None:
@@ -287,15 +312,32 @@ class UnderLengthCapabilityTests(unittest.TestCase):
         candidate = "各部门统筹工作与学习并组织培训。"
         increments = RUNTIME._increment_items(original, candidate)
         quote = "要求各部门统筹工作与学习"
-        start = request.index(quote)
         packet = self.valid_fact_ledger(request, original, candidate, increments, quote=quote)
-        packet["spans"][0].update({"start": start, "end": start + len(quote), "quote": quote, "sha256": RUNTIME._sha256_text(quote)})
         packet["ledger"][0]["subject"] = {"source": "各部门", "candidate": "各部门", "relation": "same"}
         packet["ledger"][0]["object"] = {"source": "工作与学习", "candidate": "工作与学习", "relation": "same"}
         packet["ledger"][0]["predicate"] = {"source": "统筹", "candidate": "组织", "relation": "restatement"}
         packet["ledger"][0]["status"] = {"source": "", "candidate": "", "relation": "same"}
         packet["ledger"][0]["intensity"] = {"source": "", "candidate": "", "relation": "same"}
         self.assertFalse(RUNTIME._fact_ledger_passes(packet, request, original, candidate, increments))
+
+    def test_compact_fact_ledger_rejects_unknown_span_id(self) -> None:
+        request = "要求各部门统筹工作与学习。"
+        original = "各部门统筹工作与学习。"
+        candidate = "各部门统筹工作与学习并完成考核。"
+        increments = RUNTIME._increment_items(original, candidate)
+        packet = self.valid_fact_ledger(
+            request,
+            original,
+            candidate,
+            increments,
+            quote="要求各部门统筹工作与学习",
+        )
+        packet["ledger"][0]["span_ids"] = ["R999"]
+        self.assertFalse(
+            RUNTIME._fact_ledger_passes(
+                packet, request, original, candidate, increments
+            )
+        )
 
     def test_within_range_material_quote_review_and_opt_out_do_not_start(self) -> None:
         within = "内容" * 70
