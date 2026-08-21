@@ -339,7 +339,9 @@ def _increment_items(original: str, candidate: str) -> list[dict[str, Any]]:
 
 
 _LEDGER_ROLES: Final = ("subject", "object", "predicate", "status", "intensity")
-_LEDGER_RELATIONS: Final = {"same", "restatement", "transparent_derivation"}
+_LEDGER_RELATIONS: Final = {
+    "same", "restatement", "transparent_derivation", "reasonable_inference"
+}
 
 
 def _ledger_text(value: Any) -> str:
@@ -547,11 +549,13 @@ def _verdict_instruction(
     return (
         "只读核验 D1 相对 D0 的全部增量，并只输出一个 JSON 对象。冻结增量须逐 id 原样回填。"
         "每项分类为 restatement、transparent_derivation、reasonable_inference 或 new_specific_fact。"
-        "公文常识只能支持结构和衔接，不能单独支持本次事项的新谓语。材料事实、无需新增事件信息的直接关系，"
-        "以及同时具有材料主体和同一事项或状态锚、且不升级强度的合理推断可以通过；已有下一年度计划时，"
+        "材料事实、无需新增事件信息的直接关系，以及材料事实与事项或对象通常功能直接支持的一层原因、目的、"
+        "即时作用或低强度预期可以通过，不要求这些推断逐字出现在材料中。推断须绑定材料中的主体、对象、范围和"
+        "当前状态，不得升级强度；满足时标 reasonable_inference。已有下一年度计划时，"
         "拟完善、拟优化与将在下一年度改进是允许的同强度表达。新增具体人事、时间、数字、职责、流程、"
-        "决定、结果或状态升级，以及材料未写明的场景、原因、目的、作用、影响、评价、体验、反馈内容、"
-        "工作成效、保障作用、资金充分性或规范化目标，必须标 new_specific_fact 并 FAIL。"
+        "决定、结果或状态升级，材料不能直接支持的具体场景、前提、评价、体验、反馈内容、工作成效、"
+        "资金充分性或规范化目标，以及把预期写成已经取得的成效，必须标 new_specific_fact 并 FAIL。"
+        "不能仅凭事项名称或空泛常识补作用凑字，但不得只因出现为了、便于、缓解、提高、改善或促进等作用词而失败。"
         "透明分类和真实归纳不能只因换了概括词而失败，但不得借概括补入新的事实判断。"
         "候选以等义总量句明确承载同一主体、对象和范围时，不要求重复保留原稿中的范围自证；"
         "但‘涉及两个小区’、‘86人参加’等独立范围事实仍必须保留。"
@@ -559,7 +563,8 @@ def _verdict_instruction(
         "以保护性外扩、重复、自证或空话凑字也必须 FAIL。"
         "凡 D1 新增通知、督促、落实、准备、报送方式、会议纪律、协调办法等动作或义务，而原请求或 D0 "
         "没有同一事项授权，均属新增流程或职责，不得标为 restatement。"
-        "只评价 D1 增量，不把 D0 原有问题归给 D1；不确定即 FAIL。\n"
+        "只评价 D1 增量，不把 D0 原有问题归给 D1；具体事实、状态或责任关系实质不确定时才 FAIL，"
+        "推断措辞没有逐字来源本身不构成不确定。\n"
         "fact_ledger 已按每个非空增量给出一条完整骨架；必须替换全部 null，不得删除固定的 id、increment_id、span_ids，"
         "也不得把同一增量的多个子句拆成多条 ledger。需要多个来源时可新增 span，并把其 id 加入同一条 span_ids。"
         "每个 span 都必须完整填写 id、origin、start、end、quote、sha256；每条 ledger 都必须保留 increment_id、span_ids，"
@@ -567,6 +572,8 @@ def _verdict_instruction(
         "每项都要给 source、candidate 和 relation；"
         "source 必须是所引 span 的原文，candidate 必须出现在该增量中。relation=same 时逐字保持；"
         "relation=restatement 或 transparent_derivation 时，candidate 还必须出现在冻结的请求或 D0 中，"
+        "relation=reasonable_inference 时，source 须给出直接事实或通常功能锚，candidate 只能承载一层低强度"
+        "原因、目的、即时作用或预期，不能承载新增具体事实或既成成效；"
         "不能用局部相关 span 为新增谓语、状态或强度背书。真实但无关的 span、局部相关但新增谓语的 span 均须 FAIL。"
         + json.dumps(response, ensure_ascii=False)
         + "\n【原请求】\n" + request
