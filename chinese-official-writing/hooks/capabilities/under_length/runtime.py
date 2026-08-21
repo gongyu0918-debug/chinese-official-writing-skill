@@ -499,7 +499,7 @@ def _fact_ledger_template(
             )
     ledger: list[dict[str, Any]] = []
     for item in (item for item in increments if item.get("d1_text")):
-        role = {"source": None, "candidate": None, "relation": None}
+        role = {"source": "", "candidate": "", "relation": "same"}
         ledger.append(
             {
                 "increment_id": item["id"],
@@ -580,6 +580,7 @@ def _verdict_instruction(
         "无需也不得调用工具重算 hash，不得修改、删除或新增 spans。fact_ledger.ledger 已按每个非空增量给出一条骨架；"
         "不得删除固定的 increment_id 或把同一增量的多个子句拆成多条 ledger。只从已有 spans 选择直接相关 id 填入 span_ids，"
         "需要多个来源时可选择多个已有 id；没有直接相关 span 时应 FAIL。再填写 subject、object、predicate、status、intensity 五项。"
+        "五个角色已用空字符串和 relation=same 预填为“不适用”；不涉及的角色须原样保留，不得改成 null，涉及的角色再替换为实际值。"
         "复合增量可在同一角色字段中填写材料与候选均连续出现的复合短语。"
         "每项都要给 source、candidate 和 relation；"
         "source 必须是所引 span 的原文，candidate 必须出现在该增量中。relation=same 时逐字保持；"
