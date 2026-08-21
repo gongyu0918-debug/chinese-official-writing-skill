@@ -350,6 +350,9 @@ _LEDGER_SAFE_RESTATEMENTS: Final = frozenset(
         frozenset({"尚未确定", "仍待明确"}),
     }
 )
+_LEDGER_ACHIEVED_EFFECT_RE: Final = re.compile(
+    r"(?:已经|现已|已|取得|实现).{0,10}(?:提升|提高|改善|缓解|降低|减少|增强|成效|效果)"
+)
 
 
 def _ledger_text(value: Any) -> str:
@@ -427,6 +430,7 @@ def _fact_ledger_passes(
         if not added or not source_text:
             return False
         core_source_roles: list[str] = []
+        has_reasonable_inference = False
         for role in _LEDGER_ROLES:
             payload = entry.get(role)
             if not isinstance(payload, dict):
@@ -436,6 +440,8 @@ def _fact_ledger_passes(
             relation = payload.get("relation")
             if relation not in _LEDGER_RELATIONS:
                 return False
+            if relation == "reasonable_inference":
+                has_reasonable_inference = True
             if _ledger_role_is_absent(source_role) or _ledger_role_is_absent(candidate_role):
                 if not (_ledger_role_is_absent(source_role) and _ledger_role_is_absent(candidate_role)):
                     return False
@@ -456,6 +462,11 @@ def _fact_ledger_passes(
                 return False
             if relation == "transparent_derivation" and candidate_role not in source_text:
                 return False
+        if has_reasonable_inference and any(
+            match.group(0) not in source_text
+            for match in _LEDGER_ACHIEVED_EFFECT_RE.finditer(added)
+        ):
+            return False
         if core_source_roles and not any(
             all(value in _ledger_text(by_id[span_id]["quote"]) for value in core_source_roles)
             for span_id in span_ids
