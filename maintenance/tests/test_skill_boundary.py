@@ -774,7 +774,9 @@ class SkillBoundaryTests(unittest.TestCase):
             "材料不足以安全达到下限时，优先交付事实完整的短消息",
             "材料明示且有新闻价值的单个未决状态应保留",
             "推断不得改变事实对象或范围",
-            "活动新闻只展开材料已经给出的活动设置、参与主体、现场动作和统计状态",
+            "发布视角只调整叙述主语",
+            "文种内窄例外",
+            "只有活动名称本身已明示功能且无需补参与者动作或活动内容",
             "合并成一至两个自然段",
             "普通消息不自行补“这不代表、这不表示、这不构成”",
         ]:
@@ -1434,7 +1436,9 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assertIn("去 AI 味或语气审稿应匹配文体", official_style)
         self.assertIn("不为了显得像人写而加入第一人称", official_style)
         self.assertIn("单个正式词或单个转折不作为硬清洗理由", official_style)
-        self.assertIn("正式化只压实已给事实，不补未给的原因、效果、处置、责任、流程、结论或后续动作", skill)
+        self.assertIn("正式化不得补材料外的具体事实、未决结论或新的处置、责任、流程和后续动作", skill)
+        self.assertIn("一般原因、目的、即时作用和低强度预期", skill)
+        self.assertIn("不作为已经取得的成效", skill)
         self.assertIn("以用户最新版底稿和本轮明确补充材料为事实源", workflow)
         self.assertIn("段落骨架只组织可核对内容", workflow)
         self.assertIn("正式化新增事实", checklist)
