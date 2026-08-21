@@ -12,7 +12,7 @@
 
 ## 逐版发布证据
 
-- v1.6.12 已完成本地发行候选准备；固定范围、真实写稿、测试、清洁包、平台坐标和未发布边界见 [`release-1.6.12-rc.md`](../../tests/evidence/release-1.6.12-rc.md)。正式回执完成前公开版本仍为 v1.6.11。
+- v1.6.12 的 GitHub、SkillHub.cn 与 ClawHub 发布回执见 [`release-1.6.12.md`](../../tests/evidence/release-1.6.12.md)；本地候选范围、真实写稿、测试、清洁包和 dry-run 记录见 [`release-1.6.12-rc.md`](../../tests/evidence/release-1.6.12-rc.md)。
 - v1.6.11 的 GitHub、SkillHub.cn 与 ClawHub 发布回执见 [`release-1.6.11.md`](../../tests/evidence/release-1.6.11.md)；本地候选范围、清洁包、验证和 dry-run 记录见 [`release-1.6.11-rc.md`](../../tests/evidence/release-1.6.11-rc.md)。
 - v1.6.10 的 GitHub、SkillHub.cn 与 ClawHub 发布回执见 [`release-1.6.10.md`](../../tests/evidence/release-1.6.10.md)；本地候选范围、清洁包、验证和 dry-run 记录见 [`release-1.6.10-rc.md`](../../tests/evidence/release-1.6.10-rc.md)。
 - v1.6.9 的 GitHub、SkillHub.cn 与 ClawHub 发布回执见 [`release-1.6.9.md`](../../tests/evidence/release-1.6.9.md)；本地候选范围、清洁包、三宿主静态组装和验证记录保留在 [`release-1.6.9-rc.md`](../../tests/evidence/release-1.6.9-rc.md)。
