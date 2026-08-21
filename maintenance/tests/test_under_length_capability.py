@@ -367,6 +367,48 @@ class UnderLengthCapabilityTests(unittest.TestCase):
             )
         )
 
+    def test_fact_ledger_allows_registered_safe_predicate_restatement(self) -> None:
+        request = "材料：培训活动按计划开展；培训面向窗口工作人员；具体时间尚未确定。"
+        original = "培训活动按计划开展。"
+        candidate = "培训活动按计划进行。"
+        increments = RUNTIME._increment_items(original, candidate)
+        frozen = RUNTIME._fact_ledger_template(request, original, increments)
+        authority = next(span for span in frozen["spans"] if "培训活动按计划开展" in span["quote"])
+        entry = frozen["ledger"][0]
+        entry["span_ids"] = [authority["id"]]
+        entry["predicate"] = {"source": "开展", "candidate": "进行", "relation": "restatement"}
+
+        self.assertTrue(
+            RUNTIME._fact_ledger_passes(
+                RUNTIME._compact_fact_ledger_response(frozen),
+                request,
+                original,
+                candidate,
+                increments,
+            )
+        )
+
+    def test_fact_ledger_rejects_unregistered_state_upgrade_as_restatement(self) -> None:
+        request = "材料：培训活动按计划开展；具体时间尚未确定。"
+        original = "培训活动按计划开展。"
+        candidate = "培训活动按计划完成。"
+        increments = RUNTIME._increment_items(original, candidate)
+        frozen = RUNTIME._fact_ledger_template(request, original, increments)
+        authority = next(span for span in frozen["spans"] if "培训活动按计划开展" in span["quote"])
+        entry = frozen["ledger"][0]
+        entry["span_ids"] = [authority["id"]]
+        entry["predicate"] = {"source": "开展", "candidate": "完成", "relation": "restatement"}
+
+        self.assertFalse(
+            RUNTIME._fact_ledger_passes(
+                RUNTIME._compact_fact_ledger_response(frozen),
+                request,
+                original,
+                candidate,
+                increments,
+            )
+        )
+
     def test_compact_fact_ledger_rejects_unknown_span_id(self) -> None:
         request = "要求各部门统筹工作与学习。"
         original = "各部门统筹工作与学习。"
