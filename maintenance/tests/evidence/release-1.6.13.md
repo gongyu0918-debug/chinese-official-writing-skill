@@ -39,6 +39,7 @@
 - slug 为 `chinese-official-writing`，公开坐标为 `@user_f3d82da7/chinese-official-writing`，展示名为“中文公文写作”。
 - `latest`、`ai-compute`、`chinese`、`content-creation`、`gongwen`、`office-efficiency`、`official-document`、`writing` tags 均已指向 `1.6.13`。
 - 上传回执的 `reviewStatus`、`securityScanStatus`、`contentAuditStatus` 均为 `pending`。提交后的首次只读复核中，公开 tags 已更新，`latestVersion` 与版本列表仍停在1.6.12；未重复上传。
+- 后续只读复核中，公开搜索、详情 `latestVersion` 与 `tags.latest` 均已切换为1.6.13；精确1.6.13签名已生成，绑定 `versionId=261633`，签名内容 hash 为 `8f3ab1642fcb3ffc936692e3674902fe45c3c45a78fd3ea06ba10a8b3552ca87`。公开报告接口仍为空，不据此把提交回执中的三项 `pending` 改写为已审核通过。
 
 ## ClawHub 回执与传播状态
 
@@ -50,5 +51,5 @@
 
 ## 剩余边界
 
-- SkillHub.cn 的公开 latest、精确版本、审核和扫描仍在异步传播；正式回执和 tags 已存在，不因索引滞后重复发布。ClawHub 的 latest、精确版本、文件清单和 moderation 已闭环。
+- SkillHub.cn 的公开 latest 与精确版本签名已闭环，提交回执中的审核、安全扫描和内容审核仍保持 `pending`；不因内部状态未公开而重复发布。ClawHub 的 latest、精确版本、文件清单和 moderation 已闭环。
 - 付费提纲仍不发布；`OT-002` 提纲修正和结构化组合 Stop 生命周期继续在 `codex/paid-outline-review` 原子化验证。
