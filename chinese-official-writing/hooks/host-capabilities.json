@@ -1,5 +1,5 @@
 {
-  "schema_version": 10,
+  "schema_version": 11,
   "shared_gate_core": "chinese-official-writing/scripts/review_gate.py",
   "activation": {
     "default": "disabled",
@@ -12,6 +12,14 @@
     "task_opt_out_supported": true,
     "task_opt_out_record": "bypass=user_requested"
   },
+  "data_retention": {
+    "active_turn_raw_data": "request_d0_candidate_and_verification_packets_in_plugin_data",
+    "terminal_action": "redact_raw_text_and_delete_turn_transaction_files",
+    "retained_receipt": "hash_count_phase_selection_and_delivery_status_only",
+    "interrupted_turn": "may_remain_until_exact_plugin_data_cleanup",
+    "data_root": "PLUGIN_DATA/candidate-ai-gate-hook",
+    "network_exfiltration": false
+  },
   "length_gate": {
     "automatic_expansion": true,
     "automatic_compression": false,
@@ -21,8 +29,7 @@
     "default_selected": false,
     "trigger": "explicit_lower_bound_and_more_than_ten_percent_short",
     "revision_limit": 1,
-    "failure_action": "original_draft",
-    "known_hold": "UL-005 semantic acceptance source entailment"
+    "failure_action": "original_draft"
   },
   "over_length_gate": {
     "status": "available_opt_in",

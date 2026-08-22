@@ -48,6 +48,8 @@ class InformationSelectionClassificationTests(HookCompanionTestMixin, unittest.T
         canonical_text = canonical_bytes.decode("utf-8")
 
         self.assertIn("分类和归属关系以材料明确关系为准", canonical_text)
+        self.assertIn("能力或选项保持“可”", canonical_text)
+        self.assertIn("计划状态时保持原强度", canonical_text)
         for mirror in self.mirror_roots:
             with self.subTest(mirror=mirror):
                 self.assertEqual((mirror / RELATIVE).read_bytes(), canonical_bytes)

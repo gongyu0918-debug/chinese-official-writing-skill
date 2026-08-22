@@ -170,6 +170,94 @@ class DeliveryCleanlinessCapabilityTests(unittest.TestCase):
                     else:
                         os.environ[key] = value
 
+    def test_core_terminal_delivery_redacts_cleanliness_text(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            old = {
+                key: os.environ.get(key)
+                for key in ("COW_GATE_HOOK_DATA", "COW_GATE_CAPABILITY")
+            }
+            os.environ["COW_GATE_HOOK_DATA"] = temporary
+            os.environ["COW_GATE_CAPABILITY"] = "delivery_cleanliness"
+            try:
+                base = {
+                    "session_id": "clean-redact-session",
+                    "turn_id": "clean-redact-turn",
+                    "cwd": temporary,
+                }
+                request = "请起草情况说明，只输出正文。"
+                original = (
+                    "以下是处理说明，请核对。\n\n"
+                    "情况说明\n\n系统于8月12日出现短时异常，目前正在核查。"
+                )
+                candidate = "情况说明\n\n系统于8月12日出现短时异常，目前正在核查。"
+                CORE.handle(
+                    {**base, "hook_event_name": "UserPromptSubmit", "prompt": request}
+                )
+                CORE.handle(
+                    {
+                        **base,
+                        "hook_event_name": "PostToolUse",
+                        "tool_input": {
+                            "cmd": f'Get-Content "{ROOT / "chinese-official-writing/SKILL.md"}"'
+                        },
+                        "tool_response": {"exit_code": 0},
+                    }
+                )
+                first = CORE.handle(
+                    {
+                        **base,
+                        "hook_event_name": "Stop",
+                        "stop_hook_active": False,
+                        "last_assistant_message": original,
+                    }
+                )
+                self.assertEqual("block", first["decision"])
+                second = CORE.handle(
+                    {
+                        **base,
+                        "hook_event_name": "Stop",
+                        "last_assistant_message": candidate,
+                    }
+                )
+                self.assertIn("只读核验", second["reason"])
+                record_path = CORE._record_path(
+                    {**base, "hook_event_name": "Stop"}
+                )
+                record = CORE._read_json(record_path)
+                third = CORE.handle(
+                    {
+                        **base,
+                        "hook_event_name": "Stop",
+                        "last_assistant_message": self._verdict(record),
+                    }
+                )
+                self.assertIn(candidate, third["reason"])
+                final = CORE.handle(
+                    {
+                        **base,
+                        "hook_event_name": "Stop",
+                        "last_assistant_message": candidate,
+                    }
+                )
+                self.assertEqual({"continue": True}, final)
+                redacted = CORE._read_json(record_path)
+                self.assertEqual(
+                    CORE.REDACTED_RECORD_STATE, redacted["data_retention_state"]
+                )
+                self.assertNotIn("request", redacted)
+                self.assertNotIn("original", redacted["delivery_cleanliness"])
+                self.assertNotIn("candidate", redacted["delivery_cleanliness"])
+                self.assertNotIn("deletions", redacted["delivery_cleanliness"])
+                serialized = json.dumps(redacted, ensure_ascii=False)
+                self.assertNotIn("处理说明", serialized)
+                self.assertNotIn("短时异常", serialized)
+            finally:
+                for key, value in old.items():
+                    if value is None:
+                        os.environ.pop(key, None)
+                    else:
+                        os.environ[key] = value
+
     def test_all_static_companions_include_the_selected_capability(self):
         with tempfile.TemporaryDirectory() as temporary:
             for host in ("codex", "codebuddy", "claude-code"):

@@ -4,6 +4,7 @@ import os
 from pathlib import Path
 import tempfile
 import unittest
+from unittest import mock
 
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -119,6 +120,48 @@ class GateStopHookTests(unittest.TestCase):
             (txn / "d0.snapshot.txt").read_text(encoding="utf-8"),
         )
 
+    def test_terminal_delivery_redacts_raw_turn_data_and_transaction(self):
+        draft = "情况报告\n\n测试工作已完成。"
+        self._record_prompt_and_skill_read()
+        first = HOOK.handle(
+            self._event(
+                "Stop",
+                stop_hook_active=False,
+                last_assistant_message=draft,
+            )
+        )
+        self.assertEqual("block", first["decision"])
+        record_path = HOOK._record_path(self._event("Stop"))
+        self.assertIsNotNone(record_path)
+        record = HOOK._read_json(record_path)
+        self.assertIsNotNone(record)
+        txn = Path(record["txn"])
+        inputs = txn.parent / f"{txn.name}-inputs"
+        self.assertTrue(txn.is_dir())
+        self.assertTrue(inputs.is_dir())
+
+        final = HOOK.handle(
+            self._event("Stop", last_assistant_message=draft)
+        )
+        self.assertEqual({"continue": True}, final)
+        redacted = HOOK._read_json(record_path)
+        self.assertIsNotNone(redacted)
+        self.assertEqual(HOOK.REDACTED_RECORD_STATE, redacted["data_retention_state"])
+        self.assertEqual(0, redacted["raw_artifact_delete_failures"])
+        self.assertNotIn("request", redacted)
+        self.assertNotIn("txn", redacted)
+        serialized = json.dumps(redacted, ensure_ascii=False)
+        self.assertNotIn("请起草一份情况报告", serialized)
+        self.assertNotIn("测试工作已完成", serialized)
+        self.assertFalse(txn.exists())
+        self.assertFalse(inputs.exists())
+        self.assertFalse(HOOK._skill_seen_marker_path(record_path).exists())
+
+        duplicate = HOOK.handle(
+            self._event("Stop", last_assistant_message=draft)
+        )
+        self.assertEqual({"continue": True}, duplicate)
+
     def test_skill_read_marker_survives_concurrent_material_record_overwrite(self):
         self._record_prompt_and_skill_read()
         record_path = HOOK._record_path(self._event("Stop"))
@@ -154,6 +197,9 @@ class GateStopHookTests(unittest.TestCase):
             )
         )
         self.assertTrue(result["continue"])
+        record = HOOK._read_json(HOOK._record_path(self._event("Stop")))
+        self.assertEqual(HOOK.REDACTED_RECORD_STATE, record["data_retention_state"])
+        self.assertNotIn("request", record)
 
     def test_review_only_requests_allow_nonempty_review_without_transaction(self):
         prompts = (
@@ -205,6 +251,10 @@ class GateStopHookTests(unittest.TestCase):
                 record = HOOK._read_json(HOOK._record_path(self._event("Stop", **common)))
                 self.assertIsNotNone(record)
                 self.assertNotIn("txn", record)
+                self.assertNotIn("request", record)
+                self.assertEqual(
+                    HOOK.REDACTED_RECORD_STATE, record["data_retention_state"]
+                )
 
         transactions = self.root / "candidate-ai-gate-hook" / "transactions"
         self.assertFalse(transactions.exists())
@@ -264,6 +314,52 @@ class GateStopHookTests(unittest.TestCase):
                 self.assertIsNotNone(record)
                 self.assertEqual("user_requested", record["bypass"])
                 self.assertNotIn("txn", record)
+                self.assertNotIn("request", record)
+                self.assertEqual(
+                    HOOK.REDACTED_RECORD_STATE, record["data_retention_state"]
+                )
+
+    def test_redaction_never_deletes_transaction_outside_plugin_data_root(self):
+        outside = self.root / "outside-transaction"
+        outside.mkdir()
+        (outside / "draft.txt").write_text("不得删除", encoding="utf-8")
+        record_path = HOOK._record_path(self._event("Stop", turn_id="outside"))
+        self.assertIsNotNone(record_path)
+        record = {
+            "schema_version": 1,
+            "request": "敏感请求",
+            "txn": str(outside.resolve()),
+            "hook_phase": "complete",
+        }
+        HOOK._atomic_write(record_path, record)
+
+        response = HOOK._finish_stop_response(record_path, record, {"continue": True})
+
+        self.assertEqual({"continue": True}, response)
+        self.assertTrue((outside / "draft.txt").is_file())
+        redacted = HOOK._read_json(record_path)
+        self.assertNotIn("request", redacted)
+        self.assertNotIn("txn", redacted)
+
+    def test_redaction_write_failure_removes_exact_raw_record(self):
+        record_path = HOOK._record_path(self._event("Stop", turn_id="write-failure"))
+        self.assertIsNotNone(record_path)
+        record = {
+            "schema_version": 1,
+            "request": "敏感请求",
+            "hook_phase": "complete",
+        }
+        HOOK._atomic_write(record_path, record)
+
+        with mock.patch.object(
+            HOOK, "_atomic_write", side_effect=OSError("write denied")
+        ):
+            response = HOOK._finish_stop_response(
+                record_path, record, {"continue": True}
+            )
+
+        self.assertEqual({"continue": True}, response)
+        self.assertFalse(record_path.exists())
 
     def test_hook_opt_out_does_not_match_negated_or_generic_instructions(self):
         for prompt in (

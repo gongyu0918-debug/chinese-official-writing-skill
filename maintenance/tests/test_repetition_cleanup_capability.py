@@ -212,6 +212,8 @@ class RepetitionCleanupCapabilityTests(unittest.TestCase):
         self.assertEqual(["semantic_repetition"], packet["allowed_families"])
         self.assertIn("完全相同的句子只是候选", instruction)
         self.assertIn("preserved_segment_id", instruction)
+        self.assertIn("segment_id 和 preserved_segment_id 都必须指向观察包中 kind=sentence", instruction)
+        self.assertIn("不得选择 tail", instruction)
         self.assertIn("小标题", instruction)
         self.assertNotIn("相似度阈值", instruction)
 
@@ -300,6 +302,13 @@ class RepetitionCleanupCapabilityTests(unittest.TestCase):
                 )
                 self.assertEqual("repetition_cleanup", record["protective_capability"])
                 self.assertTrue(record["protective_delivery_verified"])
+                self.assertEqual(
+                    CORE.REDACTED_RECORD_STATE, record["data_retention_state"]
+                )
+                self.assertNotIn("request", record)
+                self.assertNotIn("protective_txn", record)
+                self.assertNotIn("protective_original_path", record)
+                self.assertNotIn("protective_selected_path", record)
             finally:
                 for key, value in previous.items():
                     if value is None:

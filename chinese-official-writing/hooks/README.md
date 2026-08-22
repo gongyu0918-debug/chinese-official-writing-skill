@@ -37,6 +37,12 @@ Hook 会增加事件处理和有限的修订核验，因此通常比普通 Skill
 
 完全关闭后仍按 `SKILL.md`、references 和可选的 `scripts/prose_lint.py` 运行，写稿闭环不依赖 Hook。
 
+### 本地数据留存
+
+已启用 companion 时，Hook 为完成当前有界生命周期，会在宿主提供的插件数据目录下暂存本轮原请求、D0、候选稿和核验包。正常到达终态 Stop，或 Stop 判定本轮不启动门禁后，原请求、原稿、候选稿、删除 span、观察包和事务文件会立即删除或从记录中移除；本地只保留 hash、字数、阶段、选择结果和交付状态等不含正文的回执。重复 Stop 只读取已脱敏状态，不重建事务。
+
+宿主或进程在终态 Stop 前异常退出时，未完成事务可能仍留在 `<PLUGIN_DATA>/candidate-ai-gate-hook`。需要清理时，先按上表停用或移除 companion，核对宿主实际给出的 `PLUGIN_DATA` 绝对路径，只删除其下精确的 `candidate-ai-gate-hook` 子目录；不要删除插件数据父目录、用户目录或其他插件目录。当前 Hook 不联网外传这些快照，也不读取凭证文件。
+
 ### 永久移除包内 Hook
 
 只需要普通 Skill 时，可以通过本页语义说明永久移除本地 Skill 包内的 Hook 源文件。此操作只在用户明确要求并再次确认后进行；普通调用不自动清理文件。
@@ -76,7 +82,7 @@ SKILL.md 与 references 形成完整 D0
   -> 其余情况回退 D0
 ```
 
-`references/delivery-review-gate.md` 是 Hook 专用协议，不属于普通写稿的默认加载资料。Hook 与 `prose_lint.py` 各自运行，前者负责交付复核，后者提供只读语言与格式提示。
+`references/delivery-review-gate.md` 是 Hook 专用协议，不属于普通写稿的默认加载资料。Hook 与 `prose_lint.py` 各自运行，前者负责交付复核，后者提供只读语言与格式提示。数据暂存与终态脱敏边界见上文“本地数据留存”。
 
 ## Agent 组装清单
 

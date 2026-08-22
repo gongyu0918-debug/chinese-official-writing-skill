@@ -110,7 +110,13 @@ class UnderLengthCapabilityTests(unittest.TestCase):
         self.assertIn(d1, third["reason"])
         final = CORE.handle(self.event("Stop", last_assistant_message=d1))
         self.assertTrue(final["continue"])
-        self.assertTrue(self.record()["under_length"]["audit"]["delivery_verified"])
+        redacted = self.record()
+        self.assertTrue(redacted["under_length"]["audit"]["delivery_verified"])
+        self.assertEqual(CORE.REDACTED_RECORD_STATE, redacted["data_retention_state"])
+        self.assertNotIn("request", redacted)
+        self.assertNotIn("original", redacted["under_length"])
+        self.assertNotIn("candidate", redacted["under_length"])
+        self.assertNotIn("increments", redacted["under_length"])
 
     @staticmethod
     def valid_fact_ledger(request, original, candidate, increments, quote=None):

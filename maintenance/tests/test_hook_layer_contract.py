@@ -143,15 +143,28 @@ class HookLayerContractTests(unittest.TestCase):
             (HOOK_ROOT / "host-capabilities.json").read_text(encoding="utf-8")
         )
         activation = capabilities["activation"]
-        self.assertEqual(10, capabilities["schema_version"])
+        self.assertEqual(11, capabilities["schema_version"])
         self.assertFalse(activation["ordinary_skill_install_enables_hooks"])
         self.assertFalse(activation["runtime_host_detection"])
         self.assertFalse(activation["automatic_file_generation"])
         self.assertFalse(activation["automatic_installation"])
         self.assertFalse(activation["network_access"])
         self.assertTrue(activation["task_opt_out_supported"])
+        retention = capabilities["data_retention"]
+        self.assertEqual(
+            "redact_raw_text_and_delete_turn_transaction_files",
+            retention["terminal_action"],
+        )
+        self.assertEqual(
+            "hash_count_phase_selection_and_delivery_status_only",
+            retention["retained_receipt"],
+        )
+        self.assertEqual(
+            "PLUGIN_DATA/candidate-ai-gate-hook", retention["data_root"]
+        )
+        self.assertFalse(retention["network_exfiltration"])
         self.assertEqual("available_opt_in", capabilities["length_gate"]["status"])
-        self.assertIn("UL-005", capabilities["length_gate"]["known_hold"])
+        self.assertNotIn("known_hold", capabilities["length_gate"])
         self.assertFalse(capabilities["length_gate"]["automatic_compression"])
         self.assertEqual("available_opt_in", capabilities["over_length_gate"]["status"])
         self.assertTrue(capabilities["over_length_gate"]["automatic_compression"])

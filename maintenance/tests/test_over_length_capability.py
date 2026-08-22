@@ -164,9 +164,16 @@ class OverLengthCapabilityTests(unittest.TestCase):
         self.assertIn(d1, fourth["reason"])
         final = CORE.handle(self.event("Stop", last_assistant_message=d1))
         self.assertTrue(final["continue"])
-        audit = self.record()["over_length"]["audit"]
+        redacted = self.record()
+        audit = redacted["over_length"]["audit"]
         self.assertEqual("D1", audit["selection"])
         self.assertTrue(audit["delivery_verified"])
+        self.assertEqual(CORE.REDACTED_RECORD_STATE, redacted["data_retention_state"])
+        self.assertNotIn("request", redacted)
+        self.assertNotIn("original", redacted["over_length"])
+        self.assertNotIn("candidate", redacted["over_length"])
+        self.assertNotIn("working", redacted["over_length"])
+        self.assertNotIn("repetition_packet", redacted["over_length"])
 
     def test_second_compression_is_bounded_and_then_falls_back(self) -> None:
         request = "请将情况说明压缩到不超过100字，只输出正文。"
@@ -441,6 +448,23 @@ class OverLengthCapabilityTests(unittest.TestCase):
         )
         self.assertIn("不得再以‘继续做好、持续推进、有序推进’", instruction)
         self.assertIn("natural_and_non_repetitive必须为false并FAIL", verdict)
+
+    def test_semantic_verdict_balances_completeness_and_reasonable_inference(self) -> None:
+        verdict = RUNTIME._verdict_instruction(
+            "请将全文压缩到不超过260字。",
+            "原稿",
+            "压缩稿",
+            {"minimum": 0, "maximum": 260, "scope": "full"},
+        )
+
+        self.assertIsNotNone(verdict)
+        assert verdict is not None
+        self.assertIn("篇幅达标只是必要条件，不把更短本身判为更好", verdict)
+        self.assertIn("单句成段、裸提纲式标题或极短分项只作结构风险线索", verdict)
+        self.assertIn("原请求、原始稿已给事实与常识直接支持的一层", verdict)
+        self.assertIn("没有写成已经取得的成效", verdict)
+        self.assertIn("无法指出硬风险，不能单独作为FAIL依据", verdict)
+        self.assertNotIn("不确定即FAIL", verdict)
 
     def test_started_transaction_recovers_once_when_runtime_disappears(self) -> None:
         request = "请将全文压缩到不超过40字。"
