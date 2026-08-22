@@ -1,12 +1,13 @@
 #!/usr/bin/env python3
 """Bounded lifecycle bridge for a Candidate AI transaction.
 
-UserPromptSubmit retains the current raw request. PostToolUse records that this
-plugin's Skill was actually read and tracks explicit review_gate.py calls. If
-the model reaches Stop without starting the gate, Stop snapshots the completed
-assistant draft and drives the bounded detect/prepare/finalize/emit chain. The
-agent only supplies one repair decision and one read-only verdict when needed;
-the Hook runs every script transition and verifies the final output hash.
+UserPromptSubmit temporarily retains the current raw request. PostToolUse
+records that this plugin's Skill was actually read and tracks explicit
+review_gate.py calls. If the model reaches Stop without starting the gate, Stop
+snapshots the completed assistant draft and drives the bounded
+detect/prepare/finalize/emit chain. The agent only supplies one repair decision
+and one read-only verdict when needed; the Hook runs every script transition,
+verifies the final output hash, and redacts raw turn data after terminal Stop.
 """
 
 from __future__ import annotations
@@ -17,6 +18,7 @@ import json
 import os
 from pathlib import Path
 import re
+import shutil
 import subprocess
 import sys
 import tempfile
@@ -44,6 +46,38 @@ OVER_LENGTH_TERMINAL_PHASES = {
 }
 DELIVERY_CLEANLINESS_CAPABILITY_NAME = "delivery_cleanliness"
 PROTECTIVE_CAPABILITY_ENV = "COW_GATE_CAPABILITY"
+REDACTED_RECORD_STATE = "raw_turn_data_redacted"
+RAW_RECORD_KEYS = frozenset(
+    {
+        "candidate",
+        "deletions",
+        "delivery_cleanliness_selected_output",
+        "draft_path",
+        "emitted_output",
+        "increments",
+        "original",
+        "over_length_selected_output",
+        "protective_original_path",
+        "protective_selected_path",
+        "protective_txn",
+        "repetition_packet",
+        "request",
+        "request_path",
+        "selected_path",
+        "source_text",
+        "txn",
+        "under_length_selected_output",
+        "working",
+    }
+)
+CAPABILITY_TERMINAL_PHASES = {
+    "under_length": {"under_length_complete", "under_length_technical_failure"},
+    "over_length": {"over_length_complete", "over_length_technical_failure"},
+    "delivery_cleanliness": {
+        "delivery_cleanliness_complete",
+        "delivery_cleanliness_technical_failure",
+    },
+}
 
 
 def _resolve_skill_root() -> Path:
@@ -240,6 +274,117 @@ def _atomic_write_text(path: Path, value: str) -> None:
             os.unlink(temp_name)
         except FileNotFoundError:
             pass
+
+
+def _contained_data_path(raw_path: Any, data_root: Path) -> Path | None:
+    if not isinstance(raw_path, str) or not raw_path:
+        return None
+    try:
+        path = Path(raw_path).expanduser().resolve()
+        root = data_root.resolve()
+    except OSError:
+        return None
+    if path == root or not path.is_relative_to(root):
+        return None
+    return path
+
+
+def _record_is_terminal(record: dict[str, Any]) -> bool:
+    if record.get("data_retention_state") == REDACTED_RECORD_STATE:
+        return True
+    if record.get("hook_phase") in {"complete", "failed_bounded"}:
+        return True
+    if record.get("protective_phase") in {"complete", "failed_closed"}:
+        return True
+    for key, phases in CAPABILITY_TERMINAL_PHASES.items():
+        state = record.get(key)
+        if isinstance(state, dict) and state.get("phase") in phases:
+            return True
+    return False
+
+
+def _redact_raw_values(value: Any) -> Any:
+    if isinstance(value, dict):
+        return {
+            key: _redact_raw_values(item)
+            for key, item in value.items()
+            if key not in RAW_RECORD_KEYS
+        }
+    if isinstance(value, list):
+        return [_redact_raw_values(item) for item in value]
+    return value
+
+
+def _remove_turn_artifact(path: Path, data_root: Path) -> bool:
+    try:
+        resolved = path.resolve()
+        root = data_root.resolve()
+    except OSError:
+        return False
+    if resolved == root or not resolved.is_relative_to(root):
+        return False
+    try:
+        if resolved.is_dir():
+            shutil.rmtree(resolved)
+        else:
+            resolved.unlink(missing_ok=True)
+    except OSError:
+        return False
+    return True
+
+
+def _redact_turn_data(record_path: Path, record: dict[str, Any]) -> None:
+    data_root = _data_root()
+    if data_root is None:
+        return
+    targets: list[Path] = []
+    ordinary_txn = _contained_data_path(record.get("txn"), data_root)
+    if ordinary_txn is not None:
+        targets.extend(
+            [ordinary_txn, ordinary_txn.parent / f"{ordinary_txn.name}-inputs"]
+        )
+    protective_txn = _contained_data_path(record.get("protective_txn"), data_root)
+    if protective_txn is not None:
+        targets.append(protective_txn)
+    fallback = (
+        data_root
+        / "protective-expansion-fallbacks"
+        / record_path.parent.name
+        / f"{record_path.stem}.txt"
+    )
+    targets.append(fallback)
+    failures = 0
+    for target in dict.fromkeys(targets):
+        if target.exists() and not _remove_turn_artifact(target, data_root):
+            failures += 1
+    try:
+        _skill_seen_marker_path(record_path).unlink(missing_ok=True)
+    except OSError:
+        failures += 1
+    redacted = _redact_raw_values(record)
+    assert isinstance(redacted, dict)
+    redacted["data_retention_state"] = REDACTED_RECORD_STATE
+    redacted["raw_artifact_delete_failures"] = failures
+    try:
+        _atomic_write(record_path, redacted)
+    except OSError:
+        # Prefer losing the nonessential receipt to retaining the raw turn when
+        # the filesystem cannot replace the record after terminal cleanup.
+        try:
+            record_path.unlink(missing_ok=True)
+        except OSError:
+            pass
+        return
+    record.clear()
+    record.update(redacted)
+
+
+def _finish_stop_response(
+    record_path: Path, record: dict[str, Any], response: dict[str, Any]
+) -> dict[str, Any]:
+    if response.get("continue") is True and _record_is_terminal(record):
+        _redact_turn_data(record_path, record)
+    return response
 
 
 def _command_text(event: dict[str, Any]) -> str:
@@ -1133,27 +1278,31 @@ def handle_stop(event: dict[str, Any]) -> dict[str, Any]:
     record = _read_json(record_path)
     if record is None:
         return _allow()
+    if record.get("data_retention_state") == REDACTED_RECORD_STATE:
+        return _allow()
     if _skill_was_seen(record_path, record) and record.get("skill_seen") is not True:
         record["skill_seen"] = True
         _atomic_write(record_path, record)
     if record.get("bypass") == "user_requested" and not record.get("txn"):
+        _redact_turn_data(record_path, record)
         return _allow()
     delivery_cleanliness = _handle_delivery_cleanliness_capability(event, record_path, record)
     if delivery_cleanliness is not None:
-        return delivery_cleanliness
+        return _finish_stop_response(record_path, record, delivery_cleanliness)
     protective = _handle_protective_capability(event, record_path, record)
     if protective is not None:
-        return protective
+        return _finish_stop_response(record_path, record, protective)
     under_length = _handle_under_length_capability(event, record_path, record)
     if under_length is not None:
-        return under_length
+        return _finish_stop_response(record_path, record, under_length)
     over_length = _handle_over_length_capability(event, record_path, record)
     if over_length is not None:
-        return over_length
+        return _finish_stop_response(record_path, record, over_length)
     if not record.get("txn"):
         if event.get("stop_hook_active") is True:
             return _allow()
         if _bootstrap_transaction(event, record_path, record) is None:
+            _redact_turn_data(record_path, record)
             return _allow()
     bound = _bound_transaction(record)
     if bound is None:
@@ -1162,14 +1311,15 @@ def handle_stop(event: dict[str, Any]) -> dict[str, Any]:
     attempts = int(record.get("stop_attempts") or 0)
     echo = _handle_selected_output_echo(event, record_path, record, attempts)
     if echo is not None:
-        return echo
+        return _finish_stop_response(record_path, record, echo)
     state, response = _consume_repair_response(
         event, txn, record_path, record, state, attempts
     )
     if response is not None:
         return response
     state = _consume_verdict_response(event, txn, record, state)
-    return _dispatch_ordinary_state(txn, record_path, record, state, attempts)
+    response = _dispatch_ordinary_state(txn, record_path, record, state, attempts)
+    return _finish_stop_response(record_path, record, response)
 
 
 def handle(event: dict[str, Any]) -> dict[str, Any]:
