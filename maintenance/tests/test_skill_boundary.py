@@ -1963,7 +1963,7 @@ class SkillBoundaryTests(unittest.TestCase):
             "1.6.11 状态责任与共享硬锚边界",
             "1.6.9 超长边界与自然审稿",
             "明川市政务服务中心服务事项信息变更管理办法（试行）",
-            "release-1.6.13-rc.md",
+            "release-1.6.13.md",
             "release-1.6.12.md",
             "新闻与评论写作",
             "maintenance/tests/evidence",
