@@ -47,7 +47,7 @@
 - slug 为 `chinese-official-writing`，展示名为“中文公文写作”；分类保持 `productivity,knowledge`，话题保持 `chinese-writing,official-writing,office-productivity,content-creation`。
 - 正式回执与最终 dry-run 的33文件 fingerprint 完全一致；上传目录为发行 worktree 中的无 Hook OpenClaw 包。
 - 提交后的首次只读复核仍返回 `latestVersion=1.6.12`，精确1.6.13返回 `Version not found`；未重复上传。随后公开 `latestVersion`、`tags.latest` 和版本列表均已切换为1.6.13，精确版本 moderation 为 `clean`。
-- 远端33个文件逐项与正式上传所用发行 worktree 比较：缺失0、哈希不一致0、多余0；Hook、交付门禁、`agents/openai.yaml` 和付费提纲文件命中数为0。
+- 首次公开文件复核时，远端33个源文件逐项与正式上传所用发行 worktree 比较：缺失0、哈希不一致0、多余0。后续平台生成 `skill-card.md` 后，公开文件面为34项；排除该平台生成卡片，33个源文件再次逐项比较仍为缺失0、哈希不一致0、多余0。上传源文件及当前公开文件中的 Hook、交付门禁、`agents/openai.yaml` 和付费提纲文件命中数均为0。
 
 ## 剩余边界
 
