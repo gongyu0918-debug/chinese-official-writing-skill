@@ -1,3 +1,4 @@
+import errno
 import importlib.util
 import json
 import os
@@ -305,6 +306,72 @@ class GateStopHookTests(unittest.TestCase):
         self.assertEqual(HOOK.REDACTED_RECORD_STATE, redacted["data_retention_state"])
         self.assertFalse(HOOK._bootstrap_lock_path(record_path).exists())
         self._assert_gate_root_omits(prompt, draft, "内部编号F-75")
+
+    def test_bootstrap_lock_open_error_redacts_and_allows(self):
+        prompt = "请起草包含内部编号G-86的情况报告。"
+        draft = "情况报告\n\n内部编号G-86的核验工作已完成。"
+        self._record_prompt_and_skill_read(prompt=prompt)
+
+        with mock.patch.object(
+            HOOK,
+            "_acquire_bootstrap_lock",
+            side_effect=OSError(errno.EIO, "lock I/O"),
+        ):
+            result = HOOK.handle(self._event("Stop", last_assistant_message=draft))
+
+        self.assertEqual({"continue": True}, result)
+        record = HOOK._read_json(HOOK._record_path(self._event("Stop")))
+        self.assertIsNotNone(record)
+        self.assertEqual(HOOK.REDACTED_RECORD_STATE, record["data_retention_state"])
+        self._assert_gate_root_omits(prompt, draft, "内部编号G-86")
+
+    def test_pending_bootstrap_lock_error_redacts_and_allows(self):
+        prompt = "请起草包含内部编号H-97的情况报告。"
+        draft = "情况报告\n\n内部编号H-97的核验工作已完成。"
+        self._record_prompt_and_skill_read(prompt=prompt)
+        record_path = HOOK._record_path(self._event("Stop"))
+        record = HOOK._read_json(record_path)
+        self.assertIsNotNone(record)
+        data_root = HOOK._data_root()
+        self.assertIsNotNone(data_root)
+        txn = data_root / "transactions" / "session-1" / "turn-1"
+        inputs = txn.parent / "turn-1-inputs"
+        HOOK._atomic_write_text(inputs / "request.txt", prompt)
+        HOOK._atomic_write_text(inputs / "draft.txt", draft)
+        record.update({"txn": str(txn.resolve()), "bootstrap_pending": True})
+        HOOK._atomic_write(record_path, record)
+
+        with mock.patch.object(
+            HOOK,
+            "_acquire_bootstrap_lock",
+            side_effect=OSError(errno.EIO, "lock I/O"),
+        ):
+            result = HOOK.handle(self._event("Stop", last_assistant_message=draft))
+
+        self.assertEqual({"continue": True}, result)
+        redacted = HOOK._read_json(record_path)
+        self.assertIsNotNone(redacted)
+        self.assertEqual(HOOK.REDACTED_RECORD_STATE, redacted["data_retention_state"])
+        self._assert_gate_root_omits(prompt, draft, "内部编号H-97")
+
+    def test_bootstrap_lock_open_error_is_not_reported_as_contention(self):
+        record_path = HOOK._record_path(self._event("Stop", turn_id="lock-io"))
+        self.assertIsNotNone(record_path)
+        with mock.patch.object(
+            HOOK.Path, "open", side_effect=OSError(errno.EIO, "lock open failed")
+        ):
+            with self.assertRaises(OSError):
+                HOOK._acquire_bootstrap_lock(record_path)
+
+    @unittest.skipUnless(os.name == "nt", "Windows lock API test")
+    def test_bootstrap_lock_api_io_error_is_not_reported_as_contention(self):
+        record_path = HOOK._record_path(self._event("Stop", turn_id="lock-api-io"))
+        self.assertIsNotNone(record_path)
+        with mock.patch(
+            "msvcrt.locking", side_effect=OSError(errno.EIO, "lock API failed")
+        ):
+            with self.assertRaises(OSError):
+                HOOK._acquire_bootstrap_lock(record_path)
 
     def test_released_owner_cannot_unlock_replacement_owner(self):
         record_path = HOOK._record_path(self._event("Stop", turn_id="lock-owner"))
