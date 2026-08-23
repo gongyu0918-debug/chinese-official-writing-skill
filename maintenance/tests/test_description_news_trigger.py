@@ -57,7 +57,7 @@ class DescriptionNewsTriggerTests(HookCompanionTestMixin, unittest.TestCase):
         self.assertNotIn("个人求职", description)
         self.assertNotIn("征求意见函", description)
         self.assertNotIn("采购公告", description)
-        self.assertEqual(len(description), 204)
+        self.assertEqual(len(description), 202)
 
     def test_openclaw_description_tracks_current_canonical_capability(self) -> None:
         self.assertEqual(read_description(self.active_skill_paths[0]), read_description(OPENCLAW_SKILL))

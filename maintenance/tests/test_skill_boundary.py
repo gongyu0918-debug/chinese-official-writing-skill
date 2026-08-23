@@ -759,8 +759,10 @@ class SkillBoundaryTests(unittest.TestCase):
             / "genre-playbook-institution-rules.md"
         ).read_text(encoding="utf-8")
 
-        for keyword in ["制度", "规定", "办法", "管理办法", "实施细则", "操作规程"]:
+        for keyword in ["制度", "规定", "办法", "管理办法", "细则", "操作规程"]:
             self.assertIn(keyword, skill.split("---", 2)[1])
+        self.assertNotIn("实施细则", skill.split("---", 2)[1])
+        self.assertIn("实施细则", skill.split("---", 2)[2])
         self.assertIn("references/genre-playbook-institution-rules.md", skill)
         self.assertIn("内容较短、事项单一时连续列条", leaf)
         self.assertIn("通知壳只写发布对象、执行要求和附件关系", leaf)
