@@ -1,10 +1,10 @@
 # HK-008b 启动清理与并发恢复集成结果
 
-日期：2026-08-23。固定基线：`main@408db010870bb336d0d1f6dbc7019a519e55b2a4`。集成分支：`codex/v1615-hk008b-integration`。
+日期：2026-08-23。固定基线：`main@408db010870bb336d0d1f6dbc7019a519e55b2a4`。本地 main 产品合入提交：`4fa42c7db0c04a220c0a52aebcb4607d6eb4ead4`。
 
 ## 结论
 
-`PASS_MERGE_CANDIDATE_NOT_RELEASED`。本候选只集成 HK-008b 的 Hook 核心与直接测试，不包含 WR-010 sidecar、OC-002 新闻语料或其他研究文件。
+`PASS_LOCAL_MAIN_NOT_RELEASED`。HK-008b 已 fast-forward 合入本地 `main`；精确范围只有 Hook 核心、直接测试和直接规格/证据，不包含 WR-010 sidecar、OC-002 新闻语料或其他研究文件。
 
 普通 Stop 自动启动门禁时，Hook 会先登记当前 turn 的 provisional txn，再写入 request/D0。detect 非零、detect OSError、成功但缺 state、进程中断后的下一次 Stop，以及锁文件永久 I/O 故障，都会删除该 turn 的原始输入和事务后安全放行；并发 Stop 只有一个 bootstrap owner。
 
@@ -44,4 +44,4 @@ fatal-lock I/O 分流前的直接前序候选已在 CodeBuddy CLI 2.115.0、`dee
 - fatal-lock I/O 最终补丁只有直接反控和最终包校验，没有再次运行普通 CodeBuddy 在线写稿；迁移的是协议未变化的前序生命周期。
 - 宿主硬退出且之后没有同 turn Stop 时，pending 原始输入仍需人工清理；本候选不增加后台 TTL 或全局扫描。
 - CodeBuddy 自身会话、debug、trace 和通用日志不在 companion 清理权限内。
-- 当前只是本地合并候选，未推送、未打 tag、未发布；Hook 默认关闭和窄启用边界不变。
+- 当前只在本地 `main`，未推送、未打 tag、未发布；Hook 默认关闭和窄启用边界不变。
