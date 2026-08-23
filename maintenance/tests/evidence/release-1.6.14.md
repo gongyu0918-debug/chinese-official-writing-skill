@@ -45,7 +45,7 @@
 - 正式提交一次：`ok=true`、`skillId=70149`、`versionId=262769`、`fileCount=61`、平台 fingerprint `c4fe7dba0b156ea37ad6898f3bdbe4cc49a8e7ff6d603de814ee6e122aa5a04f`。
 - slug 为 `chinese-official-writing`，公开坐标为 `@user_f3d82da7/chinese-official-writing`，展示名为“中文公文写作”。
 - `latest`、`ai-compute`、`chinese`、`content-creation`、`gongwen`、`office-efficiency`、`official-document`、`writing` tags 均已指向 `1.6.14`。
-- 上传回执的 `reviewStatus`、`securityScanStatus`、`contentAuditStatus` 均为 `pending`。首次只读复核中，公开 `tags.latest` 已为1.6.14，`latestVersion` 与版本列表仍停在1.6.13；未重复上传。
+- 上传回执的 `reviewStatus`、`securityScanStatus`、`contentAuditStatus` 均为 `pending`。首次只读复核中，公开 `tags.latest` 已为1.6.14，`latestVersion` 与版本列表仍停在1.6.13；未重复上传。后续详情 `latestVersion` 与 `tags.latest` 均已切换为1.6.14，精确1.6.14签名已生成并绑定 `versionId=262769`，签名内容 hash 为 `d6618db17ddb47383ae54729b305dacbeba61dc9a009415aeba227dd11bca1ce`。
 
 ## ClawHub 回执与传播状态
 
@@ -57,6 +57,6 @@
 
 ## 剩余边界
 
-- SkillHub.cn 与 ClawHub 的正式提交均已受理；ClawHub 的 latest、精确版本、33文件清单和 moderation 已闭环。SkillHub.cn 的公开 latest、精确版本、签名和审核/扫描状态仍按异步传播分别记录，不以旧公开索引否定成功回执，也不重复发布。
+- SkillHub.cn 与 ClawHub 的正式提交均已受理；SkillHub.cn 的 latest 与精确签名、ClawHub 的 latest、精确版本、33文件清单和 moderation 均已闭环。SkillHub.cn 提交回执中的审核、安全扫描和内容审核仍保持 `pending`，不据公开签名改写为已通过，也不重复发布。
 - Hook 继续默认关闭并按单能力窄启用；单次真实压缩仍可能需要约4分钟，终态前异常退出与宿主日志不在 HK-008 已证明范围内。
 - 付费提纲仍不发布；其结构化组合和真实 Stop 生命周期继续只在付费分支管理。
