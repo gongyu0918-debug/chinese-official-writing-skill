@@ -35,6 +35,8 @@ Hook 会增加事件处理和有限的修订核验，因此通常比普通 Skill
 | WorkBuddy / CodeBuddy | 启动时不传 `--plugin-dir`；已安装插件可用 `codebuddy plugin disable <插件>` 禁用。 |
 | Claude Code | 启动时不传 `--plugin-dir`；已安装插件可用 `claude plugin disable <插件>` 禁用。 |
 | ZCode | 不在插件目录中登记或启用 companion；已登记时从 ZCode 插件配置中停用或移除。 |
+| Qwen Code | 使用普通 Skill，不安装 native extension；已安装时用 `qwen extensions disable chinese-official-writing-gate` 停用，或用 `qwen extensions uninstall chinese-official-writing-gate` 移除。 |
+| Kimi Code CLI | 使用普通 Skill，不安装 plugin；已安装时通过 `/plugins disable chinese-official-writing-gate` 停用，或通过 `/plugins remove chinese-official-writing-gate` 移除。 |
 
 完全关闭后仍按 `SKILL.md`、references 和可选的 `scripts/prose_lint.py` 运行，写稿闭环不依赖 Hook。
 
@@ -66,8 +68,10 @@ Hook 会增加事件处理和有限的修订核验，因此通常比普通 Skill
 | WorkBuddy / CodeBuddy | [`adapters/codebuddy/README.md`](adapters/codebuddy/README.md) | 展示组装清单；运行 `codebuddy plugin validate`；用户确认后加载插件根。 |
 | Claude Code | [`adapters/claude-code/README.md`](adapters/claude-code/README.md) | 展示组装清单；运行 `claude plugin validate --strict`；用户确认后用 `--plugin-dir` 加载或安装。 |
 | ZCode | [`adapters/zcode/README.md`](adapters/zcode/README.md) | 展示组装清单；确认 `.zcode-plugin`、三类 Hook 与 Skill 被发现；用户确认后才登记或启用插件根。 |
+| Qwen Code | [`adapters/qwen-code/README.md`](adapters/qwen-code/README.md) | 展示组装清单并完成本地事件 smoke；用户确认后安装 native extension，用 `qwen extensions list` 核对版本、Skill 和启用状态。 |
+| Kimi Code CLI | [`adapters/kimi-code/README.md`](adapters/kimi-code/README.md) | 展示组装清单；用户确认后通过 `/plugins install` 安装并用 `/plugins info` 核对；单 Stop 上限见适配说明。 |
 
-Qwen Code、Kimi Code CLI、Hermes、OpenClaw、OpenCode 等没有本仓库内置的完整生命周期 Hook adapter，仍可使用普通 Skill。Qwen Code 当前能在 Stop 提供完整末次成稿，但官方 Agent Plugin v1 不加载 Hook；Kimi Code CLI 当前 Stop 事件不提供完整成稿，两者均不得由普通 Skill 可用性外推为交付门禁可用。Agent 如需新增宿主胶水层，应先核对该宿主官方事件、插件根变量、数据目录和信任机制，再按现有 adapter 的最小职责实现；没有官方依据或真实 smoke 时，不宣称已兼容。
+Qwen Code 必须使用 native extension；便携 Agent Plugin v1 仍不会加载 Hook。Kimi Code CLI 已有 native plugin adapter，但 0.38.0 每回合只接受一次 Stop 阻断：可完成当前 D0 的首次检查和一次续写，不能对续写终稿再次运行 Stop，因此不得宣称与多 Stop 宿主等价闭环。Hermes、OpenClaw、OpenCode 等尚无本仓库内置的完整生命周期 Hook adapter，仍使用普通 Skill。Agent 如需新增宿主胶水层，应先核对该宿主官方事件、插件根变量、数据目录和信任机制，再按现有 adapter 的最小职责实现；没有官方依据或真实 smoke 时，不宣称已兼容。
 
 ## 可选能力
 
@@ -92,7 +96,7 @@ SKILL.md 与 references 形成完整 D0
 
 1. 读取本页、`host-capabilities.json` 和目标宿主的 adapter README。
 2. 向用户展示目标目录、将要复制的文件和所选能力；未特别选择时使用既有交付复核，选择 `protective_expansion`、`under_length`、`over_length`、`delivery_cleanliness` 或 `repetition_cleanup` 时写入静态能力配置。
-3. 在新目录中放入目标宿主唯一的 manifest 与 `hooks/hooks.json`。
+3. 在新目录中放入目标宿主唯一的 manifest；使用外部 Hook 配置的宿主同时放入唯一的 `hooks/hooks.json`，Kimi Code CLI 的 Hook 保持在 `kimi.plugin.json` 内联声明。
 4. 复制薄适配器到 `scripts/`；复制完整 canonical Skill 到 `skills/chinese-official-writing/`，并将 `core/gate_stop_hook.py` 放到该 Skill 的 `hooks/gate_stop_hook.py`。
 5. 保留 `SKILL.md`、references、`scripts/review_gate.py`、MIT LICENSE 和本说明；禁止父目录回指、外部 symlink、其他宿主 manifest 和自动安装代码。
 6. 先运行宿主 validator 和离线事件 smoke，再由用户决定是否安装或加载。组装完成不得自动进入安装步骤。

@@ -320,7 +320,14 @@ class RepetitionCleanupCapabilityTests(unittest.TestCase):
         self.assertIn("repetition_cleanup", HOST_ADAPTER.SUPPORTED_CAPABILITIES)
         self.assertIn("repetition_cleanup", CLAUDE_ADAPTER.SUPPORTED_CAPABILITIES)
         with tempfile.TemporaryDirectory() as temporary:
-            for host in ("codex", "codebuddy", "claude-code", "zcode"):
+            for host in (
+                "codex",
+                "codebuddy",
+                "claude-code",
+                "zcode",
+                "qwen-code",
+                "kimi-code",
+            ):
                 output = Path(temporary) / host
                 result = ASSEMBLER.assemble(host, output, "repetition_cleanup")
                 self.assertEqual("repetition_cleanup", result["capability"])

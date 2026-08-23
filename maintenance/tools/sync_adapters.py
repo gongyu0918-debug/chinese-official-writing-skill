@@ -28,6 +28,7 @@ HOOK_EVENT_TIMEOUT_SECONDS = {
 HOOK_TIMEOUT_FIELDS = {
     "zcode": "timeoutMs",
 }
+HOOK_TIMEOUT_MILLISECONDS_HOSTS = {"zcode", "qwen-code"}
 HOOK_ROUTE_PARAGRAPH = (
     "\n\n用户明确要求处理交付门禁 Hook 时，读取 `hooks/README.md`。"
     "普通起草、改稿、压缩和复核不加载该页，也不自动启用 Hook。"
@@ -131,7 +132,7 @@ def copy_skill(
 def validate_hook_sources() -> None:
     if not HOOK_CORE.is_file():
         raise RuntimeError(f"missing Hook core: {HOOK_CORE}")
-    for host in ("codex", "codebuddy", "claude-code", "zcode"):
+    for host in ("codex", "codebuddy", "claude-code", "zcode", "qwen-code"):
         adapter_root = HOOK_ADAPTERS / host
         for required in ("manifest.json", "hooks.json"):
             if not (adapter_root / required).is_file():
@@ -145,13 +146,30 @@ def validate_hook_sources() -> None:
             actual_timeout = hooks[event][0]["hooks"][0].get(timeout_field)
             expected_value = (
                 expected_timeout * 1000
-                if timeout_field == "timeoutMs"
+                if host in HOOK_TIMEOUT_MILLISECONDS_HOSTS
                 else expected_timeout
             )
             if actual_timeout != expected_value:
                 raise RuntimeError(
                     f"unexpected {host} {event} timeout: {actual_timeout!r}"
                 )
+    kimi_root = HOOK_ADAPTERS / "kimi-code"
+    for required in ("manifest.json", "gate_stop_hook.py"):
+        if not (kimi_root / required).is_file():
+            raise RuntimeError(f"missing kimi-code Hook adapter source: {required}")
+    manifest = json.loads((kimi_root / "manifest.json").read_text(encoding="utf-8"))
+    hooks = manifest.get("hooks")
+    if not isinstance(hooks, list):
+        raise RuntimeError("unexpected kimi-code inline hooks")
+    by_event = {hook.get("event"): hook for hook in hooks if isinstance(hook, dict)}
+    if set(by_event) != set(HOOK_EVENT_TIMEOUT_SECONDS):
+        raise RuntimeError(f"unexpected kimi-code hook events: {sorted(by_event)}")
+    for event, expected_timeout in HOOK_EVENT_TIMEOUT_SECONDS.items():
+        actual_timeout = by_event[event].get("timeout")
+        if actual_timeout != expected_timeout:
+            raise RuntimeError(
+                f"unexpected kimi-code {event} timeout: {actual_timeout!r}"
+            )
 
 
 def main() -> int:

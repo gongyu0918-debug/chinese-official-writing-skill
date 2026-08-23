@@ -69,6 +69,13 @@ class HookLayerContractTests(unittest.TestCase):
                 "manifest.json",
             },
             "zcode": {"README.md", "hooks.json", "manifest.json"},
+            "qwen-code": {
+                "README.md",
+                "gate_stop_hook.py",
+                "hooks.json",
+                "manifest.json",
+            },
+            "kimi-code": {"README.md", "gate_stop_hook.py", "manifest.json"},
         }
         self.assertEqual(
             expected,
@@ -87,10 +94,17 @@ class HookLayerContractTests(unittest.TestCase):
             )
             self.assertIn("`over_length`", adapter_guide)
 
-    def test_maintenance_assembler_produces_four_self_contained_plugins(self) -> None:
+    def test_maintenance_assembler_produces_six_self_contained_plugins(self) -> None:
         with tempfile.TemporaryDirectory() as temporary:
             root = Path(temporary)
-            for host in ("codex", "codebuddy", "claude-code", "zcode"):
+            for host in (
+                "codex",
+                "codebuddy",
+                "claude-code",
+                "zcode",
+                "qwen-code",
+                "kimi-code",
+            ):
                 with self.subTest(host=host):
                     output = root / host
                     result = ASSEMBLER.assemble(host, output)
@@ -98,15 +112,23 @@ class HookLayerContractTests(unittest.TestCase):
                     self.assertFalse(result["installed"])
                     self.assertFalse(result["enabled"])
                     self.assertFalse(result["network_used"])
+                    manifest_names = {
+                        "plugin.json",
+                        "qwen-extension.json",
+                        "kimi.plugin.json",
+                    }
                     manifests = sorted(
                         path.relative_to(output).as_posix()
-                        for path in output.rglob("plugin.json")
+                        for path in output.rglob("*")
+                        if path.is_file() and path.name in manifest_names
                     )
                     expected_manifest = {
                         "codex": [".codex-plugin/plugin.json"],
                         "codebuddy": [".codebuddy-plugin/plugin.json"],
                         "claude-code": [".claude-plugin/plugin.json"],
                         "zcode": [".zcode-plugin/plugin.json"],
+                        "qwen-code": ["qwen-extension.json"],
+                        "kimi-code": ["kimi.plugin.json"],
                     }[host]
                     self.assertEqual(expected_manifest, manifests)
                     packaged = output / "skills/chinese-official-writing"
@@ -145,7 +167,7 @@ class HookLayerContractTests(unittest.TestCase):
             (HOOK_ROOT / "host-capabilities.json").read_text(encoding="utf-8")
         )
         activation = capabilities["activation"]
-        self.assertEqual(12, capabilities["schema_version"])
+        self.assertEqual(13, capabilities["schema_version"])
         self.assertFalse(activation["ordinary_skill_install_enables_hooks"])
         self.assertFalse(activation["runtime_host_detection"])
         self.assertFalse(activation["automatic_file_generation"])
@@ -172,10 +194,14 @@ class HookLayerContractTests(unittest.TestCase):
         self.assertTrue(capabilities["over_length_gate"]["automatic_compression"])
         self.assertFalse(capabilities["over_length_gate"]["default_selected"])
         self.assertEqual(2, capabilities["over_length_gate"]["compression_limit"])
-        for host in ("codex", "codebuddy", "claude_code", "zcode"):
+        for host in ("codex", "codebuddy", "claude_code", "zcode", "qwen_code"):
             self.assertEqual(
                 7, capabilities["hosts"][host]["over_length_continuation_limit"]
             )
+        self.assertEqual(
+            1,
+            capabilities["hosts"]["kimi_code_cli"]["over_length_continuation_limit"],
+        )
         self.assertFalse(capabilities["protective_expansion_gate"]["default_selected"])
         self.assertEqual(
             "available_opt_in",
@@ -185,12 +211,30 @@ class HookLayerContractTests(unittest.TestCase):
         self.assertFalse(capabilities["delivery_cleanliness_gate"]["default_selected"])
         self.assertEqual("available_opt_in", capabilities["repetition_cleanup_gate"]["status"])
         self.assertFalse(capabilities["repetition_cleanup_gate"]["default_selected"])
-        for host in ("codex", "codebuddy", "claude_code", "zcode"):
+        for host in (
+            "codex",
+            "codebuddy",
+            "claude_code",
+            "zcode",
+            "qwen_code",
+            "kimi_code_cli",
+        ):
             self.assertIn("adapter_source", capabilities["hosts"][host])
-        self.assertEqual("skill_only", capabilities["hosts"]["qwen_code"]["status"])
-        self.assertIsNone(capabilities["hosts"]["qwen_code"]["adapter"])
-        self.assertEqual("skill_only", capabilities["hosts"]["kimi_code_cli"]["status"])
-        self.assertIsNone(capabilities["hosts"]["kimi_code_cli"]["adapter"])
+        self.assertEqual(
+            "lifecycle_verified", capabilities["hosts"]["qwen_code"]["status"]
+        )
+        self.assertTrue(capabilities["hosts"]["qwen_code"]["live_lifecycle_verified"])
+        self.assertEqual(
+            "lifecycle_verified_single_stop",
+            capabilities["hosts"]["kimi_code_cli"]["status"],
+        )
+        self.assertTrue(
+            capabilities["hosts"]["kimi_code_cli"]["live_lifecycle_verified"]
+        )
+        self.assertIn(
+            "without a second Stop",
+            capabilities["hosts"]["kimi_code_cli"]["host_limit"],
+        )
 
     def test_plain_skill_packages_remain_hook_free_and_keep_lint(self) -> None:
         for packaged_skill in (

@@ -1,5 +1,5 @@
 {
-  "schema_version": 12,
+  "schema_version": 13,
   "shared_gate_core": "chinese-official-writing/scripts/review_gate.py",
   "activation": {
     "default": "disabled",
@@ -169,20 +169,70 @@
       "distribution_limit": "community CLI wrapper carrying the ZCode runtime; not an official standalone CLI"
     },
     "qwen_code": {
-      "status": "skill_only",
-      "adapter": null,
+      "status": "lifecycle_verified",
+      "adapter_source": "hooks/adapters/qwen-code",
+      "runtime_adapter": "scripts/gate_stop_hook.py",
       "skill_package": "packages/qwen-code/skills/chinese-official-writing",
-      "observed_stop_field": "last_assistant_message",
-      "hook_gap": "Agent Plugin v1 ignores hooks; settings-level hooks are not a packaged companion",
-      "evidence": "maintenance/tests/evidence/domestic-cli-hooks-v1615/result.md"
+      "events": [
+        "UserPromptSubmit",
+        "PostToolUse:skill|read_file|run_shell_command",
+        "Stop"
+      ],
+      "verified_events": [
+        "UserPromptSubmit",
+        "PostToolUse:read_file",
+        "Stop"
+      ],
+      "unverified_events": [
+        "PostToolUse:run_shell_command"
+      ],
+      "verified_transport": "openai_compatible_gateway_via_opencodex",
+      "verified_scope": "native_extension_install_current_skill_real_writing_three_stop_hash_bound_delivery",
+      "verified_host_scope": "Qwen Code CLI 0.22.0",
+      "verified_platform": "Windows",
+      "evidence": "maintenance/tests/evidence/domestic-cli-hooks-v1615/result-r2.md",
+      "live_lifecycle_verified": true,
+      "required_stop_field": "last_assistant_message",
+      "data_root_environment": "QWEN_RUNTIME_DIR, QWEN_HOME, or the exact transcript runtime root",
+      "first_party_login_required": false,
+      "continuation_limit": 4,
+      "over_length_continuation_limit": 7,
+      "activation": "explicit native extension install only",
+      "distribution_limit": "portable Agent Plugin v1 ignores hooks and is not a substitute for the native extension",
+      "compatibility_normalization": "Qwen 0.22.0 reports stop_hook_active=true on every Stop; the adapter reconstructs first versus continuation Stop from the current-turn counter"
     },
     "kimi_code_cli": {
-      "status": "skill_only",
-      "adapter": null,
+      "status": "lifecycle_verified_single_stop",
+      "adapter_source": "hooks/adapters/kimi-code",
+      "runtime_adapter": "scripts/gate_stop_hook.py",
       "skill_package": "packages/agent-skills/skills/chinese-official-writing",
-      "observed_stop_field": null,
-      "hook_gap": "Stop lacks the complete final draft and a documented transcript path",
-      "evidence": "maintenance/tests/evidence/domestic-cli-hooks-v1615/result.md"
+      "events": [
+        "UserPromptSubmit",
+        "PostToolUse:Skill|Read|ReadFile|Bash",
+        "Stop"
+      ],
+      "verified_events": [
+        "UserPromptSubmit",
+        "PostToolUse:Skill|Read",
+        "Stop"
+      ],
+      "unverified_events": [
+        "PostToolUse:Bash"
+      ],
+      "verified_transport": "openai_compatible_gateway_via_opencodex",
+      "verified_scope": "native_plugin_install_current_skill_real_writing_exact_current_wire_d0_and_first_stop_block",
+      "verified_host_scope": "Kimi Code CLI 0.38.0",
+      "verified_platform": "Windows",
+      "evidence": "maintenance/tests/evidence/domestic-cli-hooks-v1615/result-r2.md",
+      "live_lifecycle_verified": true,
+      "required_stop_field": null,
+      "current_draft_source": "exact session_index entry plus current-turn wire byte offset and last completed main-agent step",
+      "data_root_environment": "KIMI_CODE_HOME/plugin-data/chinese-official-writing-gate",
+      "first_party_login_required": false,
+      "continuation_limit": 1,
+      "over_length_continuation_limit": 1,
+      "activation": "explicit native plugin install only",
+      "host_limit": "Kimi 0.38.0 runs Stop only before the first hook-requested continuation; the revised final draft is delivered without a second Stop verification"
     },
     "openclaw": {
       "status": "skill_only",

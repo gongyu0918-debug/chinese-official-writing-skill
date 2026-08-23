@@ -133,7 +133,7 @@
 
 ### HK-004 宿主薄适配
 
-能力核心和事务状态只维护一份。Codex、Claude Code、CodeBuddy、ZCode adapter 只负责映射已核验的宿主事件字段、插件根和数据根、阻断返回与信任/加载差异。宿主 adapter 不承载写作规则。普通 Skill 可发现不等于生命周期 Hook 可用；缺少完整 Stop 成稿或官方插件装载路径时只登记边界，不补造伪适配。
+能力核心和事务状态只维护一份。Codex、Claude Code、CodeBuddy、ZCode、Qwen Code、Kimi Code CLI adapter 只负责映射已核验的宿主事件字段、插件根和数据根、阻断返回与信任/加载差异。宿主 adapter 不承载写作规则。普通 Skill 可发现不等于生命周期 Hook 可用；缺少完整 Stop 成稿、可绑定的当前回合记录或官方插件装载路径时只登记边界，不补造伪适配。宿主只允许一次 Stop 阻断时，可以登记首次 D0 检查能力，但不得把未复核的续写终稿标成多阶段闭环。
 
 ### HK-005 故障回退
 

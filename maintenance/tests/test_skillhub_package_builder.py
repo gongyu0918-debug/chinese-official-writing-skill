@@ -52,11 +52,18 @@ class SkillHubPackageBuilderTests(unittest.TestCase):
             self.assertFalse((output / ".codebuddy-plugin").exists())
             self.assertFalse((output / "skills").exists())
             self.assertFalse((output / "plugins").exists())
-            for host in ("codex", "codebuddy", "claude-code", "zcode"):
+            for host in (
+                "codex",
+                "codebuddy",
+                "claude-code",
+                "zcode",
+                "qwen-code",
+                "kimi-code",
+            ):
                 adapter = output / "hooks" / "adapters" / host
                 self.assertTrue((adapter / "README.md").is_file())
                 self.assertTrue((adapter / "manifest.json").is_file())
-                self.assertTrue((adapter / "hooks.json").is_file())
+                self.assertEqual(host != "kimi-code", (adapter / "hooks.json").is_file())
                 self.assertFalse((adapter / "skills").exists())
             self.assertFalse((output / "hooks" / "build_companion.py").exists())
             self.assertFalse((output / "maintenance").exists())
@@ -66,6 +73,8 @@ class SkillHubPackageBuilderTests(unittest.TestCase):
             self.assertEqual("hooks/adapters/codex", capabilities["hosts"]["codex"]["adapter_source"])
             self.assertEqual("hooks/adapters/codebuddy", capabilities["hosts"]["codebuddy"]["adapter_source"])
             self.assertEqual("hooks/adapters/zcode", capabilities["hosts"]["zcode"]["adapter_source"])
+            self.assertEqual("hooks/adapters/qwen-code", capabilities["hosts"]["qwen_code"]["adapter_source"])
+            self.assertEqual("hooks/adapters/kimi-code", capabilities["hosts"]["kimi_code_cli"]["adapter_source"])
             self.assertEqual("available_opt_in", capabilities["length_gate"]["status"])
             self.assertEqual(
                 (output / "_meta.json").read_text(encoding="utf-8"),

@@ -27,7 +27,14 @@ class InformationSelectionClassificationTests(HookCompanionTestMixin, unittest.T
         self.mirror_roots = (
             *(
                 self.companion_roots[host] / "skills/chinese-official-writing"
-                for host in ("codex", "codebuddy", "claude-code", "zcode")
+                for host in (
+                    "codex",
+                    "codebuddy",
+                    "claude-code",
+                    "zcode",
+                    "qwen-code",
+                    "kimi-code",
+                )
             ),
             *PERSISTENT_MIRROR_ROOTS,
         )
