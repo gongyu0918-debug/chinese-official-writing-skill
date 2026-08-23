@@ -12,6 +12,7 @@ verifies the final output hash, and redacts raw turn data after terminal Stop.
 
 from __future__ import annotations
 
+import errno
 import hashlib
 import importlib.util
 import json
@@ -240,6 +241,13 @@ def _acquire_bootstrap_lock(record_path: Path) -> tuple[Path, Any] | None:
             handle.write(b"0")
             handle.flush()
         handle.seek(0)
+    except OSError:
+        try:
+            handle.close()
+        except (NameError, OSError):
+            pass
+        raise
+    try:
         if os.name == "nt":
             import msvcrt
 
@@ -248,12 +256,20 @@ def _acquire_bootstrap_lock(record_path: Path) -> tuple[Path, Any] | None:
             import fcntl
 
             fcntl.flock(handle.fileno(), fcntl.LOCK_EX | fcntl.LOCK_NB)
-    except (BlockingIOError, OSError):
+    except BlockingIOError:
         try:
             handle.close()
-        except (NameError, OSError):
+        except OSError:
             pass
         return None
+    except OSError as exc:
+        try:
+            handle.close()
+        except OSError:
+            pass
+        if exc.errno in {errno.EACCES, errno.EAGAIN}:
+            return None
+        raise
     return lock_path, handle
 
 
@@ -284,7 +300,10 @@ def _cleanup_bootstrap_lock_file(record_path: Path) -> None:
     # conflicting unlink and is safe to clean after a successful probe.
     if os.name != "nt":
         return
-    lock = _acquire_bootstrap_lock(record_path)
+    try:
+        lock = _acquire_bootstrap_lock(record_path)
+    except OSError:
+        return
     if lock is None:
         return
     lock_path, handle = lock
@@ -1281,7 +1300,8 @@ def _recover_pending_bootstrap(
     try:
         lock = _acquire_bootstrap_lock(record_path)
     except OSError:
-        return _BOOTSTRAP_BUSY
+        _redact_turn_data(record_path, record)
+        return None
     if lock is None:
         return _BOOTSTRAP_BUSY
     lock_path, lock_handle = lock
