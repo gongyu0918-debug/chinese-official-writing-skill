@@ -278,6 +278,12 @@ def _release_bootstrap_lock(lock_path: Path, handle: Any) -> None:
 
 
 def _cleanup_bootstrap_lock_file(record_path: Path) -> None:
+    # POSIX flock binds to an inode. Unlinking after unlock can let a contender
+    # hold the old inode while a third process creates and locks a new one.
+    # Keep the one-byte, non-sensitive sentinel there; Windows denies the
+    # conflicting unlink and is safe to clean after a successful probe.
+    if os.name != "nt":
+        return
     lock = _acquire_bootstrap_lock(record_path)
     if lock is None:
         return

@@ -369,6 +369,19 @@ class GateStopHookTests(unittest.TestCase):
         HOOK._release_bootstrap_lock(*recovered)
         HOOK._cleanup_bootstrap_lock_file(record_path)
 
+    def test_posix_cleanup_keeps_shared_lock_inode(self):
+        record_path = HOOK._record_path(self._event("Stop", turn_id="posix-lock"))
+        self.assertIsNotNone(record_path)
+        lock_path = HOOK._bootstrap_lock_path(record_path)
+        lock_path.parent.mkdir(parents=True, exist_ok=True)
+        lock_path.write_bytes(b"0")
+        self.addCleanup(lambda: lock_path.unlink(missing_ok=True))
+
+        with mock.patch.object(HOOK.os, "name", "posix"):
+            HOOK._cleanup_bootstrap_lock_file(record_path)
+
+        self.assertEqual(b"0", lock_path.read_bytes())
+
     def test_interrupted_bootstrap_is_cleaned_without_redetect_on_resume(self):
         prompt = "请起草包含内部编号C-41的情况报告。"
         draft = "情况报告\n\n内部编号C-41的核验工作已完成。"
