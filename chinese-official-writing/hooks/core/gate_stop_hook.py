@@ -18,12 +18,10 @@ import json
 import os
 from pathlib import Path
 import re
-import secrets
 import shutil
 import subprocess
 import sys
 import tempfile
-import time
 from typing import Any
 
 
@@ -34,7 +32,6 @@ MAX_STOP_ATTEMPTS = 4
 STATE_SCHEMA_VERSION = 1
 SAFE_KEY_MAX_LENGTH = 120
 GATE_SUBPROCESS_TIMEOUT_SECONDS = 20
-BOOTSTRAP_LOCK_STALE_SECONDS = GATE_SUBPROCESS_TIMEOUT_SECONDS * 3
 MIN_FENCED_JSON_LINES = 3
 MODULE_PATH = Path(__file__).resolve()
 PROTECTIVE_CAPABILITY_NAME = "protective_expansion"
@@ -147,8 +144,9 @@ REVIEW_OUTPUT_BOUNDARY_RE = re.compile(
     r"(?:代改|改写|重写|修改|改)(?:全文|正文|稿件)?"
 )
 NON_DRAFT_ARTIFACT_CHANGE_RE = re.compile(
-    r"(?:不|不要|无需|无须|别)(?:再)?(?:修改|改动|更改)\s*"
-    r"(?:任何|本地|现有|项目(?:内|中)?|仓库内)?\s*"
+    r"(?:不|不要|无需|无须|别)(?:再)?(?:修改|改动|更改|改)\s*"
+    r"(?:任何|本地|现有|工作区(?:内|中)?(?:的)?|"
+    r"项目(?:内|中)?(?:的)?|仓库(?:内|中)?(?:的)?)?\s*"
     r"(?:文件|源代码|代码|配置|仓库)"
 )
 NEGATED_WRITING_ACTION_RE = re.compile(
@@ -232,94 +230,59 @@ def _bootstrap_lock_path(record_path: Path) -> Path:
     return record_path.with_suffix(".bootstrap-lock")
 
 
-def _read_bootstrap_lock(lock_path: Path) -> tuple[str, int] | None:
-    try:
-        parts = lock_path.read_text(encoding="ascii").splitlines()
-    except (OSError, UnicodeError):
-        return None
-    if len(parts) < 2 or not parts[0]:
-        return None
-    try:
-        pid = int(parts[1])
-    except ValueError:
-        return None
-    return parts[0], pid
-
-
-def _pid_is_alive(pid: int) -> bool:
-    if pid <= 0:
-        return False
-    if pid == os.getpid():
-        return True
-    if os.name == "nt":
-        try:
-            import ctypes
-
-            kernel32 = ctypes.WinDLL("kernel32", use_last_error=True)
-            handle = kernel32.OpenProcess(0x1000, False, pid)
-            if handle:
-                kernel32.CloseHandle(handle)
-                return True
-            return ctypes.get_last_error() == 5
-        except (AttributeError, OSError):
-            return False
-    try:
-        os.kill(pid, 0)
-    except ProcessLookupError:
-        return False
-    except PermissionError:
-        return True
-    return True
-
-
-def _bootstrap_lock_is_active(record_path: Path) -> bool:
-    lock_path = _bootstrap_lock_path(record_path)
-    try:
-        age = time.time() - lock_path.stat().st_mtime
-    except FileNotFoundError:
-        return False
-    except OSError:
-        return True
-    owner = _read_bootstrap_lock(lock_path)
-    if owner is not None and _pid_is_alive(owner[1]):
-        return True
-    if age <= BOOTSTRAP_LOCK_STALE_SECONDS:
-        return True
-    stale_token = owner[0] if owner is not None else None
-    if stale_token is not None:
-        current = _read_bootstrap_lock(lock_path)
-        if current is None or current[0] != stale_token:
-            return True
-    try:
-        lock_path.unlink()
-    except FileNotFoundError:
-        pass
-    except OSError:
-        return True
-    return False
-
-
-def _acquire_bootstrap_lock(record_path: Path) -> tuple[Path, str] | None:
+def _acquire_bootstrap_lock(record_path: Path) -> tuple[Path, Any] | None:
     lock_path = _bootstrap_lock_path(record_path)
     lock_path.parent.mkdir(parents=True, exist_ok=True)
-    if _bootstrap_lock_is_active(record_path):
-        return None
-    token = secrets.token_hex(16)
     try:
-        descriptor = os.open(lock_path, os.O_CREAT | os.O_EXCL | os.O_WRONLY)
-    except FileExistsError:
+        handle = lock_path.open("a+b")
+        handle.seek(0, os.SEEK_END)
+        if handle.tell() == 0:
+            handle.write(b"0")
+            handle.flush()
+        handle.seek(0)
+        if os.name == "nt":
+            import msvcrt
+
+            msvcrt.locking(handle.fileno(), msvcrt.LK_NBLCK, 1)
+        else:
+            import fcntl
+
+            fcntl.flock(handle.fileno(), fcntl.LOCK_EX | fcntl.LOCK_NB)
+    except (BlockingIOError, OSError):
+        try:
+            handle.close()
+        except (NameError, OSError):
+            pass
         return None
-    with os.fdopen(descriptor, "w", encoding="ascii", newline="\n") as handle:
-        handle.write(f"{token}\n{os.getpid()}\n")
-        handle.flush()
-        os.fsync(handle.fileno())
-    return lock_path, token
+    return lock_path, handle
 
 
-def _release_bootstrap_lock(lock_path: Path, token: str) -> None:
-    owner = _read_bootstrap_lock(lock_path)
-    if owner is None or owner[0] != token:
+def _release_bootstrap_lock(lock_path: Path, handle: Any) -> None:
+    del lock_path
+    if handle.closed:
         return
+    try:
+        handle.seek(0)
+        if os.name == "nt":
+            import msvcrt
+
+            msvcrt.locking(handle.fileno(), msvcrt.LK_UNLCK, 1)
+        else:
+            import fcntl
+
+            fcntl.flock(handle.fileno(), fcntl.LOCK_UN)
+    except OSError:
+        pass
+    finally:
+        handle.close()
+
+
+def _cleanup_bootstrap_lock_file(record_path: Path) -> None:
+    lock = _acquire_bootstrap_lock(record_path)
+    if lock is None:
+        return
+    lock_path, handle = lock
+    _release_bootstrap_lock(lock_path, handle)
     try:
         lock_path.unlink()
     except FileNotFoundError:
@@ -487,6 +450,7 @@ def _redact_turn_data(record_path: Path, record: dict[str, Any]) -> None:
         return
     record.clear()
     record.update(redacted)
+    _cleanup_bootstrap_lock_file(record_path)
 
 
 def _finish_stop_response(
@@ -1200,7 +1164,7 @@ def _bootstrap_transaction(
         return None
     if lock is None:
         return _BOOTSTRAP_BUSY
-    lock_path, lock_token = lock
+    lock_path, lock_handle = lock
     try:
         latest = _read_json(record_path)
         if latest is not None:
@@ -1210,7 +1174,7 @@ def _bootstrap_transaction(
             return _read_json(Path(str(record["txn"])) / "state.json")
         return _bootstrap_transaction_locked(record_path, record, draft)
     finally:
-        _release_bootstrap_lock(lock_path, lock_token)
+        _release_bootstrap_lock(lock_path, lock_handle)
 
 
 def _bootstrap_transaction_locked(
@@ -1314,7 +1278,7 @@ def _recover_pending_bootstrap(
         return _BOOTSTRAP_BUSY
     if lock is None:
         return _BOOTSTRAP_BUSY
-    lock_path, lock_token = lock
+    lock_path, lock_handle = lock
     try:
         latest = _read_json(record_path)
         if latest is not None:
@@ -1327,7 +1291,9 @@ def _recover_pending_bootstrap(
             _redact_turn_data(record_path, record)
         return None
     finally:
-        _release_bootstrap_lock(lock_path, lock_token)
+        _release_bootstrap_lock(lock_path, lock_handle)
+        if record.get("data_retention_state") == REDACTED_RECORD_STATE:
+            _cleanup_bootstrap_lock_file(record_path)
 
 
 def _handle_selected_output_echo(
