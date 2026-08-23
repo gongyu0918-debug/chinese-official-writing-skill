@@ -440,6 +440,11 @@ class GateStopHookTests(unittest.TestCase):
             "帮我审核这份材料，写份通知。",
             "这次不是审稿，是修改。",
             "请起草通知，材料中写有“帮我审核这段稿子哪里有问题”。",
+            (
+                "请使用当前插件中的公文 Skill 起草一份设备采购申请。只读取指定"
+                " reference，不调用 Shell，不修改文件。品牌和供应商尚未确定，"
+                "采购方式待审核；只输出完整正文，不解释过程。"
+            ),
         )
         for index, prompt in enumerate(prompts, start=1):
             with self.subTest(prompt=prompt):
