@@ -1,5 +1,5 @@
 {
-  "schema_version": 11,
+  "schema_version": 12,
   "shared_gate_core": "chinese-official-writing/scripts/review_gate.py",
   "activation": {
     "default": "disabled",
@@ -129,6 +129,47 @@
       "continuation_limit": 4,
       "over_length_continuation_limit": 7,
       "activation": "explicit plugin load only"
+    },
+    "zcode": {
+      "status": "lifecycle_verified",
+      "adapter_source": "hooks/adapters/zcode",
+      "runtime_adapter": "scripts/gate_stop_hook.py",
+      "events": [
+        "UserPromptSubmit",
+        "PostToolUse:Bash|Read",
+        "Stop"
+      ],
+      "events_with_known_support": [
+        "UserPromptSubmit",
+        "PostToolUse:Read",
+        "Stop"
+      ],
+      "events_requiring_compatibility_check": [
+        "PostToolUse:Bash"
+      ],
+      "host_version_scope": "ZCode Agent runtime 0.16.3 via community zcode-app-cli 3.8.1-15",
+      "platform_scope": "Windows",
+      "required_stop_field": "last_assistant_message",
+      "data_root_environment": "ZCODE_PLUGIN_DATA or the host-provided CLAUDE_PLUGIN_DATA compatibility alias",
+      "first_party_login_required": false,
+      "continuation_limit": 4,
+      "over_length_continuation_limit": 7,
+      "activation": "explicit plugin load only",
+      "distribution_limit": "community CLI wrapper carrying the ZCode runtime; not an official standalone CLI"
+    },
+    "qwen_code": {
+      "status": "skill_only",
+      "adapter": null,
+      "skill_package": "packages/qwen-code/skills/chinese-official-writing",
+      "observed_stop_field": "last_assistant_message",
+      "hook_gap": "Agent Plugin v1 ignores hooks; settings-level hooks are not a packaged companion"
+    },
+    "kimi_code_cli": {
+      "status": "skill_only",
+      "adapter": null,
+      "skill_package": "packages/agent-skills/skills/chinese-official-writing",
+      "observed_stop_field": null,
+      "hook_gap": "Stop lacks the complete final draft and a documented transcript path"
     },
     "openclaw": {
       "status": "skill_only",
