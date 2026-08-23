@@ -9,7 +9,7 @@
 - 已发布产品 tag：`v1.6.13^{commit}=c4ea80a6146a2c672fdec8aeb8de13ed547f33f9`。
 - 发布回执基线：本地 `main` / `origin/main@4b51fd8242850e5c35fe86406216f6cfd26f49c0`。
 - 集成研究分支：`codex/v1614-next-atomic`；最终产品差异 fingerprint：`5654f2b237d4bed53ca5e231ebe121a6047da0dd`。
-- 净产品文件10个：5个 Hook 文件、Hook README、canonical `information-selection.md` 与四套普通镜像；description、版本 manifest、Red SkillHub、付费分支和 `output/` 净差异均为0。
+- 净产品文件10个：4个 Hook 实现/配置文件、Hook README、canonical `information-selection.md` 与四套普通镜像；description、版本 manifest、Red SkillHub、付费分支和 `output/` 净差异均为0。
 
 最终只接入四类已验证原子：
 
