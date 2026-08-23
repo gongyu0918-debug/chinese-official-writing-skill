@@ -262,8 +262,11 @@ class GateStopHookTests(unittest.TestCase):
         failures = []
 
         def slow_run(*args, **kwargs):
-            entered.set()
-            self.assertTrue(release.wait(timeout=5))
+            if not entered.is_set():
+                record_path = HOOK._record_path(self._event("Stop"))
+                os.utime(HOOK._bootstrap_lock_path(record_path), (0, 0))
+                entered.set()
+                self.assertTrue(release.wait(timeout=5))
             return original_run(*args, **kwargs)
 
         def first_stop():
@@ -301,6 +304,26 @@ class GateStopHookTests(unittest.TestCase):
         redacted = HOOK._read_json(record_path)
         self.assertEqual(HOOK.REDACTED_RECORD_STATE, redacted["data_retention_state"])
         self._assert_gate_root_omits(prompt, draft, "内部编号F-75")
+
+    def test_old_owner_cannot_release_reclaimed_lock(self):
+        record_path = HOOK._record_path(self._event("Stop", turn_id="lock-owner"))
+        self.assertIsNotNone(record_path)
+        first = HOOK._acquire_bootstrap_lock(record_path)
+        self.assertIsNotNone(first)
+        first_path, first_token = first
+        os.utime(first_path, (0, 0))
+
+        with mock.patch.object(HOOK, "_pid_is_alive", return_value=False):
+            second = HOOK._acquire_bootstrap_lock(record_path)
+
+        self.assertIsNotNone(second)
+        second_path, second_token = second
+        self.assertNotEqual(first_token, second_token)
+        HOOK._release_bootstrap_lock(first_path, first_token)
+        self.assertTrue(second_path.is_file())
+        self.assertEqual(second_token, HOOK._read_bootstrap_lock(second_path)[0])
+        HOOK._release_bootstrap_lock(second_path, second_token)
+        self.assertFalse(second_path.exists())
 
     def test_interrupted_bootstrap_is_cleaned_without_redetect_on_resume(self):
         prompt = "请起草包含内部编号C-41的情况报告。"
@@ -383,6 +406,7 @@ class GateStopHookTests(unittest.TestCase):
             "请审一下稿，看看哪里有问题。",
             "请进入审稿模式看看这份报告。",
             "帮我看看这段稿子哪里有问题。",
+            "请检查这份材料，不修改文件，只列出问题和建议。",
             (
                 "帮我看看下面这段稿子哪里有问题，按位置、问题、建议给我审核意见，"
                 "不要替我改正文。"
@@ -445,6 +469,10 @@ class GateStopHookTests(unittest.TestCase):
                 " reference，不调用 Shell，不修改文件。品牌和供应商尚未确定，"
                 "采购方式待审核；只输出完整正文，不解释过程。"
             ),
+            "请根据材料形成一份采购申请，采购方式待审核，不修改任何文件。",
+            "请起草设备采购申请，不修改本地文件，采购方式待审核。",
+            "请起草设备采购申请，不修改 文件，采购方式待审核。",
+            "请起草设备采购申请，不修改源代码，采购方式待审核。",
         )
         for index, prompt in enumerate(prompts, start=1):
             with self.subTest(prompt=prompt):

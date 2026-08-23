@@ -18,6 +18,7 @@ import json
 import os
 from pathlib import Path
 import re
+import secrets
 import shutil
 import subprocess
 import sys
@@ -132,9 +133,9 @@ QUOTED_REQUEST_TEXT_RE = re.compile(
 )
 NATURAL_REVIEW_ONLY_RE = re.compile(
     r"(?:"
-    r"(?:请|帮我|麻烦)\s*(?:只读)?\s*(?:审核|审稿|审查|复核|核验)(?:一下|下)?"
+    r"(?:请|帮我|麻烦)\s*(?:只读)?\s*(?:审核|审稿|审查|检查|复核|核验)(?:一下|下)?"
     r"(?:这份|一下这份|下这份)?(?:稿子?|文稿|材料|正文|报告|通知|请示|申请|方案|制度|纪要|函)?"
-    r"|(?:只读\s*)?(?:审核|审稿|审查|复核|核验)(?:一下|下|这份(?:稿子?|文稿|材料|正文|报告|通知|请示|申请|方案|制度|纪要|函))"
+    r"|(?:只读\s*)?(?:审核|审稿|审查|检查|复核|核验)(?:一下|下|这份(?:稿子?|文稿|材料|正文|报告|通知|请示|申请|方案|制度|纪要|函))"
     r"|审(?:一下|下)稿"
     r"|(?:看一下|看下|看看)[^。；;\n]{0,30}(?:哪里|有无|是否|有没有)"
     r"[^。；;\n]{0,20}(?:问题|错误|不妥|毛病|需要修改)"
@@ -144,7 +145,11 @@ NATURAL_REVIEW_ONLY_RE = re.compile(
 REVIEW_OUTPUT_BOUNDARY_RE = re.compile(
     r"(?:不|不要|无需|无须|别)(?:再)?(?:替我|帮我)?"
     r"(?:代改|改写|重写|修改|改)(?:全文|正文|稿件)?"
-    r"(?!文件|代码|配置|仓库)"
+)
+NON_DRAFT_ARTIFACT_CHANGE_RE = re.compile(
+    r"(?:不|不要|无需|无须|别)(?:再)?(?:修改|改动|更改)\s*"
+    r"(?:任何|本地|现有|项目(?:内|中)?|仓库内)?\s*"
+    r"(?:文件|源代码|代码|配置|仓库)"
 )
 NEGATED_WRITING_ACTION_RE = re.compile(
     r"(?:不需要|无需|无须|不用|不要|不必|没必要|别)(?:再)?\s*"
@@ -227,6 +232,46 @@ def _bootstrap_lock_path(record_path: Path) -> Path:
     return record_path.with_suffix(".bootstrap-lock")
 
 
+def _read_bootstrap_lock(lock_path: Path) -> tuple[str, int] | None:
+    try:
+        parts = lock_path.read_text(encoding="ascii").splitlines()
+    except (OSError, UnicodeError):
+        return None
+    if len(parts) < 2 or not parts[0]:
+        return None
+    try:
+        pid = int(parts[1])
+    except ValueError:
+        return None
+    return parts[0], pid
+
+
+def _pid_is_alive(pid: int) -> bool:
+    if pid <= 0:
+        return False
+    if pid == os.getpid():
+        return True
+    if os.name == "nt":
+        try:
+            import ctypes
+
+            kernel32 = ctypes.WinDLL("kernel32", use_last_error=True)
+            handle = kernel32.OpenProcess(0x1000, False, pid)
+            if handle:
+                kernel32.CloseHandle(handle)
+                return True
+            return ctypes.get_last_error() == 5
+        except (AttributeError, OSError):
+            return False
+    try:
+        os.kill(pid, 0)
+    except ProcessLookupError:
+        return False
+    except PermissionError:
+        return True
+    return True
+
+
 def _bootstrap_lock_is_active(record_path: Path) -> bool:
     lock_path = _bootstrap_lock_path(record_path)
     try:
@@ -235,8 +280,16 @@ def _bootstrap_lock_is_active(record_path: Path) -> bool:
         return False
     except OSError:
         return True
+    owner = _read_bootstrap_lock(lock_path)
+    if owner is not None and _pid_is_alive(owner[1]):
+        return True
     if age <= BOOTSTRAP_LOCK_STALE_SECONDS:
         return True
+    stale_token = owner[0] if owner is not None else None
+    if stale_token is not None:
+        current = _read_bootstrap_lock(lock_path)
+        if current is None or current[0] != stale_token:
+            return True
     try:
         lock_path.unlink()
     except FileNotFoundError:
@@ -246,23 +299,27 @@ def _bootstrap_lock_is_active(record_path: Path) -> bool:
     return False
 
 
-def _acquire_bootstrap_lock(record_path: Path) -> Path | None:
+def _acquire_bootstrap_lock(record_path: Path) -> tuple[Path, str] | None:
     lock_path = _bootstrap_lock_path(record_path)
     lock_path.parent.mkdir(parents=True, exist_ok=True)
     if _bootstrap_lock_is_active(record_path):
         return None
+    token = secrets.token_hex(16)
     try:
         descriptor = os.open(lock_path, os.O_CREAT | os.O_EXCL | os.O_WRONLY)
     except FileExistsError:
         return None
     with os.fdopen(descriptor, "w", encoding="ascii", newline="\n") as handle:
-        handle.write(f"{os.getpid()}\n")
+        handle.write(f"{token}\n{os.getpid()}\n")
         handle.flush()
         os.fsync(handle.fileno())
-    return lock_path
+    return lock_path, token
 
 
-def _release_bootstrap_lock(lock_path: Path) -> None:
+def _release_bootstrap_lock(lock_path: Path, token: str) -> None:
+    owner = _read_bootstrap_lock(lock_path)
+    if owner is None or owner[0] != token:
+        return
     try:
         lock_path.unlink()
     except FileNotFoundError:
@@ -406,7 +463,6 @@ def _redact_turn_data(record_path: Path, record: dict[str, Any]) -> None:
         / f"{record_path.stem}.txt"
     )
     targets.append(fallback)
-    targets.append(_bootstrap_lock_path(record_path))
     failures = 0
     for target in dict.fromkeys(targets):
         if target.exists() and not _remove_turn_artifact(target, data_root):
@@ -496,22 +552,23 @@ def _reads_this_skill(command: str) -> bool:
 def _is_review_only_request(request: str) -> bool:
     """Mirror the Skill's explicit review-only mode without classifying other tasks."""
     request_without_quotes = QUOTED_REQUEST_TEXT_RE.sub("", request)
-    if REVIEW_ONLY_NEGATION_RE.search(request_without_quotes):
+    request_for_intent = NON_DRAFT_ARTIFACT_CHANGE_RE.sub("", request_without_quotes)
+    if REVIEW_ONLY_NEGATION_RE.search(request_for_intent):
         return False
-    if REVIEW_THEN_REWRITE_RE.search(request_without_quotes):
+    if REVIEW_THEN_REWRITE_RE.search(request_for_intent):
         return False
     review_trigger = (
-        SHORT_REVIEW_ONLY_RE.search(request_without_quotes)
-        or EXPLICIT_REVIEW_ONLY_RE.search(request_without_quotes)
-        or NATURAL_REVIEW_ONLY_RE.search(request_without_quotes)
+        SHORT_REVIEW_ONLY_RE.search(request_for_intent)
+        or EXPLICIT_REVIEW_ONLY_RE.search(request_for_intent)
+        or NATURAL_REVIEW_ONLY_RE.search(request_for_intent)
         or (
-            REVIEW_ACTION_RE.search(request_without_quotes)
-            and REVIEW_OUTPUT_BOUNDARY_RE.search(request_without_quotes)
+            REVIEW_ACTION_RE.search(request_for_intent)
+            and REVIEW_OUTPUT_BOUNDARY_RE.search(request_for_intent)
         )
     )
     if review_trigger is None:
         return False
-    review_remainder = SHORT_REVIEW_ONLY_RE.sub("", request_without_quotes)
+    review_remainder = SHORT_REVIEW_ONLY_RE.sub("", request_for_intent)
     review_remainder = EXPLICIT_REVIEW_ONLY_RE.sub("", review_remainder)
     review_remainder = NATURAL_REVIEW_ONLY_RE.sub("", review_remainder)
     review_remainder = REVIEW_OUTPUT_BOUNDARY_RE.sub("", review_remainder)
@@ -1138,11 +1195,12 @@ def _bootstrap_transaction(
     if not isinstance(draft, str) or not draft.strip():
         return None
     try:
-        lock_path = _acquire_bootstrap_lock(record_path)
+        lock = _acquire_bootstrap_lock(record_path)
     except OSError:
         return None
-    if lock_path is None:
+    if lock is None:
         return _BOOTSTRAP_BUSY
+    lock_path, lock_token = lock
     try:
         latest = _read_json(record_path)
         if latest is not None:
@@ -1152,7 +1210,7 @@ def _bootstrap_transaction(
             return _read_json(Path(str(record["txn"])) / "state.json")
         return _bootstrap_transaction_locked(record_path, record, draft)
     finally:
-        _release_bootstrap_lock(lock_path)
+        _release_bootstrap_lock(lock_path, lock_token)
 
 
 def _bootstrap_transaction_locked(
@@ -1245,6 +1303,31 @@ def _bound_transaction(record: dict[str, Any]) -> tuple[Path, dict[str, Any]] | 
     if state is None or state.get("run_id") != record.get("run_id"):
         return None
     return txn, state
+
+
+def _recover_pending_bootstrap(
+    record_path: Path, record: dict[str, Any]
+) -> object | tuple[Path, dict[str, Any]] | None:
+    try:
+        lock = _acquire_bootstrap_lock(record_path)
+    except OSError:
+        return _BOOTSTRAP_BUSY
+    if lock is None:
+        return _BOOTSTRAP_BUSY
+    lock_path, lock_token = lock
+    try:
+        latest = _read_json(record_path)
+        if latest is not None:
+            record.clear()
+            record.update(latest)
+        bound = _bound_transaction(record)
+        if bound is not None:
+            return bound
+        if record.get("bootstrap_pending") is True:
+            _redact_turn_data(record_path, record)
+        return None
+    finally:
+        _release_bootstrap_lock(lock_path, lock_token)
 
 
 def _handle_selected_output_echo(
@@ -1398,8 +1481,6 @@ def handle_stop(event: dict[str, Any]) -> dict[str, Any]:
     over_length = _handle_over_length_capability(event, record_path, record)
     if over_length is not None:
         return _finish_stop_response(record_path, record, over_length)
-    if _bootstrap_lock_is_active(record_path):
-        return _continue_once("交付门禁正在启动，请只继续当前有限状态，不要重新起草。")
     if not record.get("txn"):
         if event.get("stop_hook_active") is True:
             return _allow()
@@ -1410,9 +1491,15 @@ def handle_stop(event: dict[str, Any]) -> dict[str, Any]:
             _redact_turn_data(record_path, record)
             return _allow()
     bound = _bound_transaction(record)
+    if bound is None and record.get("bootstrap_pending") is True:
+        recovered = _recover_pending_bootstrap(record_path, record)
+        if recovered is _BOOTSTRAP_BUSY:
+            return _continue_once("交付门禁正在启动，请只继续当前有限状态，不要重新起草。")
+        if isinstance(recovered, tuple):
+            bound = recovered
+        else:
+            return _allow()
     if bound is None:
-        if record.get("bootstrap_pending") is True:
-            _redact_turn_data(record_path, record)
         return _allow()
     txn, state = bound
     attempts = int(record.get("stop_attempts") or 0)
