@@ -2,6 +2,8 @@ import importlib.util
 import json
 import os
 from pathlib import Path
+import subprocess
+import sys
 import tempfile
 import threading
 import unittest
@@ -263,8 +265,6 @@ class GateStopHookTests(unittest.TestCase):
 
         def slow_run(*args, **kwargs):
             if not entered.is_set():
-                record_path = HOOK._record_path(self._event("Stop"))
-                os.utime(HOOK._bootstrap_lock_path(record_path), (0, 0))
                 entered.set()
                 self.assertTrue(release.wait(timeout=5))
             return original_run(*args, **kwargs)
@@ -303,27 +303,71 @@ class GateStopHookTests(unittest.TestCase):
         self.assertEqual({"continue": True}, terminal)
         redacted = HOOK._read_json(record_path)
         self.assertEqual(HOOK.REDACTED_RECORD_STATE, redacted["data_retention_state"])
+        self.assertFalse(HOOK._bootstrap_lock_path(record_path).exists())
         self._assert_gate_root_omits(prompt, draft, "内部编号F-75")
 
-    def test_old_owner_cannot_release_reclaimed_lock(self):
+    def test_released_owner_cannot_unlock_replacement_owner(self):
         record_path = HOOK._record_path(self._event("Stop", turn_id="lock-owner"))
         self.assertIsNotNone(record_path)
         first = HOOK._acquire_bootstrap_lock(record_path)
         self.assertIsNotNone(first)
-        first_path, first_token = first
-        os.utime(first_path, (0, 0))
+        first_path, first_handle = first
+        self.assertIsNone(HOOK._acquire_bootstrap_lock(record_path))
+        HOOK._release_bootstrap_lock(first_path, first_handle)
 
-        with mock.patch.object(HOOK, "_pid_is_alive", return_value=False):
-            second = HOOK._acquire_bootstrap_lock(record_path)
+        replacement = HOOK._acquire_bootstrap_lock(record_path)
+        self.assertIsNotNone(replacement)
+        replacement_path, replacement_handle = replacement
+        HOOK._release_bootstrap_lock(first_path, first_handle)
+        self.assertIsNone(HOOK._acquire_bootstrap_lock(record_path))
+        HOOK._release_bootstrap_lock(replacement_path, replacement_handle)
 
-        self.assertIsNotNone(second)
-        second_path, second_token = second
-        self.assertNotEqual(first_token, second_token)
-        HOOK._release_bootstrap_lock(first_path, first_token)
-        self.assertTrue(second_path.is_file())
-        self.assertEqual(second_token, HOOK._read_bootstrap_lock(second_path)[0])
-        HOOK._release_bootstrap_lock(second_path, second_token)
-        self.assertFalse(second_path.exists())
+        final = HOOK._acquire_bootstrap_lock(record_path)
+        self.assertIsNotNone(final)
+        HOOK._release_bootstrap_lock(*final)
+        HOOK._cleanup_bootstrap_lock_file(record_path)
+        self.assertFalse(first_path.exists())
+
+    def test_process_exit_releases_bootstrap_lock(self):
+        record_path = HOOK._record_path(self._event("Stop", turn_id="process-lock"))
+        self.assertIsNotNone(record_path)
+        script = (
+            "import importlib.util, os, pathlib, sys; "
+            f"p=pathlib.Path({str(MODULE_PATH)!r}); "
+            "s=importlib.util.spec_from_file_location('g',p); "
+            "m=importlib.util.module_from_spec(s); s.loader.exec_module(m); "
+            f"lock=m._acquire_bootstrap_lock(pathlib.Path({str(record_path)!r})); "
+            "assert lock is not None; print('READY', flush=True); "
+            "sys.stdin.readline(); os._exit(0)"
+        )
+        process = subprocess.Popen(
+            [sys.executable, "-c", script],
+            stdin=subprocess.PIPE,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            text=True,
+        )
+        def close_process():
+            if process.poll() is None:
+                process.kill()
+                process.wait(timeout=5)
+            for stream in (process.stdin, process.stdout, process.stderr):
+                if stream is not None and not stream.closed:
+                    stream.close()
+
+        self.addCleanup(close_process)
+        self.assertEqual("READY", process.stdout.readline().strip())
+        self.assertIsNone(HOOK._acquire_bootstrap_lock(record_path))
+        process.stdin.write("\n")
+        process.stdin.flush()
+        exit_code = process.wait(timeout=5)
+        stderr = process.stderr.read()
+        self.assertEqual(0, exit_code, stderr)
+
+        recovered = HOOK._acquire_bootstrap_lock(record_path)
+        self.assertIsNotNone(recovered)
+        HOOK._release_bootstrap_lock(*recovered)
+        HOOK._cleanup_bootstrap_lock_file(record_path)
 
     def test_interrupted_bootstrap_is_cleaned_without_redetect_on_resume(self):
         prompt = "请起草包含内部编号C-41的情况报告。"
@@ -473,6 +517,9 @@ class GateStopHookTests(unittest.TestCase):
             "请起草设备采购申请，不修改本地文件，采购方式待审核。",
             "请起草设备采购申请，不修改 文件，采购方式待审核。",
             "请起草设备采购申请，不修改源代码，采购方式待审核。",
+            "请根据材料形成一份采购申请，采购方式待审核，不改文件。",
+            "请根据材料形成一份采购申请，采购方式待审核，不修改工作区文件。",
+            "请根据材料形成一份采购申请，采购方式待审核，不修改项目中的文件。",
         )
         for index, prompt in enumerate(prompts, start=1):
             with self.subTest(prompt=prompt):
