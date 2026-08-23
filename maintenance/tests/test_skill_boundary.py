@@ -144,6 +144,14 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assertIn("详细结构见下文；本节只保留触发和边界", specialty)
         self.assertIn("SLA", specialty)
         self.assertIn("验收", specialty)
+        for term in [
+            "图形处理器（Graphics Processing Unit，GPU）",
+            "应用编程接口（Application Programming Interface，API）",
+            "服务级别协议（Service Level Agreement，SLA）",
+            "数据中心电能利用效率（Power Usage Effectiveness，PUE）",
+        ]:
+            self.assertIn(term, specialty)
+        self.assertIn("含义不明的缩写不自行展开", specialty)
 
     def test_adapter_skill_copies_keep_boundaries(self) -> None:
         paths = [
@@ -1477,12 +1485,24 @@ class SkillBoundaryTests(unittest.TestCase):
         )
 
         self.assertIn("句群节奏和模板化痕迹", anti_ai)
-        for term in ["句首重复", "连接词链", "句长同质化", "口号式结尾", "清单堆叠替代论证"]:
+        for term in [
+            "句首重复",
+            "连接词链",
+            "句长同质化",
+            "翻译式框架成簇",
+            "口号式结尾",
+            "清单堆叠替代论证",
+        ]:
             self.assertIn(term, anti_ai)
         self.assertIn("只作软性审稿项，不作为硬门禁", anti_ai)
         self.assertIn("公文去 AI 味不是聊天化", anti_ai)
         self.assertIn("不得为了显得“像人写”而加入第一人称、反问、口语插入", anti_ai)
         self.assertIn("保留公文骨架和用户模板", anti_ai)
+        self.assertIn("主体不明时保留无主表达或只调整动词", anti_ai)
+        self.assertIn("不得新增责任主体、实施主体或归属关系", anti_ai)
+        self.assertIn("## 必要英文、专名和缩写", anti_ai)
+        self.assertIn("内部代号或含义不明的缩写只保留原样", anti_ai)
+        self.assertIn("不把 `Token` 改写成调用次数", anti_ai)
         self.assertIn("未指定时仍按位置、风险层级和修改建议输出", anti_ai)
         self.assertIn("用户要求改写时，只改确认有问题的句子及必要衔接", anti_ai)
         self.assertIn("## 高频表达的语义复核", anti_ai)
