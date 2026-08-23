@@ -22,6 +22,7 @@ import shutil
 import subprocess
 import sys
 import tempfile
+import time
 from typing import Any
 
 
@@ -32,6 +33,7 @@ MAX_STOP_ATTEMPTS = 4
 STATE_SCHEMA_VERSION = 1
 SAFE_KEY_MAX_LENGTH = 120
 GATE_SUBPROCESS_TIMEOUT_SECONDS = 20
+BOOTSTRAP_LOCK_STALE_SECONDS = GATE_SUBPROCESS_TIMEOUT_SECONDS * 3
 MIN_FENCED_JSON_LINES = 3
 MODULE_PATH = Path(__file__).resolve()
 PROTECTIVE_CAPABILITY_NAME = "protective_expansion"
@@ -47,9 +49,11 @@ OVER_LENGTH_TERMINAL_PHASES = {
 DELIVERY_CLEANLINESS_CAPABILITY_NAME = "delivery_cleanliness"
 PROTECTIVE_CAPABILITY_ENV = "COW_GATE_CAPABILITY"
 REDACTED_RECORD_STATE = "raw_turn_data_redacted"
+_BOOTSTRAP_BUSY = object()
 RAW_RECORD_KEYS = frozenset(
     {
         "candidate",
+        "bootstrap_pending",
         "deletions",
         "delivery_cleanliness_selected_output",
         "draft_path",
@@ -218,6 +222,54 @@ def _skill_seen_marker_path(record_path: Path) -> Path:
     return record_path.with_suffix(".skill-seen")
 
 
+def _bootstrap_lock_path(record_path: Path) -> Path:
+    return record_path.with_suffix(".bootstrap-lock")
+
+
+def _bootstrap_lock_is_active(record_path: Path) -> bool:
+    lock_path = _bootstrap_lock_path(record_path)
+    try:
+        age = time.time() - lock_path.stat().st_mtime
+    except FileNotFoundError:
+        return False
+    except OSError:
+        return True
+    if age <= BOOTSTRAP_LOCK_STALE_SECONDS:
+        return True
+    try:
+        lock_path.unlink()
+    except FileNotFoundError:
+        pass
+    except OSError:
+        return True
+    return False
+
+
+def _acquire_bootstrap_lock(record_path: Path) -> Path | None:
+    lock_path = _bootstrap_lock_path(record_path)
+    lock_path.parent.mkdir(parents=True, exist_ok=True)
+    if _bootstrap_lock_is_active(record_path):
+        return None
+    try:
+        descriptor = os.open(lock_path, os.O_CREAT | os.O_EXCL | os.O_WRONLY)
+    except FileExistsError:
+        return None
+    with os.fdopen(descriptor, "w", encoding="ascii", newline="\n") as handle:
+        handle.write(f"{os.getpid()}\n")
+        handle.flush()
+        os.fsync(handle.fileno())
+    return lock_path
+
+
+def _release_bootstrap_lock(lock_path: Path) -> None:
+    try:
+        lock_path.unlink()
+    except FileNotFoundError:
+        pass
+    except OSError:
+        pass
+
+
 def _mark_skill_seen(record_path: Path) -> None:
     marker = _skill_seen_marker_path(record_path)
     marker.parent.mkdir(parents=True, exist_ok=True)
@@ -353,6 +405,7 @@ def _redact_turn_data(record_path: Path, record: dict[str, Any]) -> None:
         / f"{record_path.stem}.txt"
     )
     targets.append(fallback)
+    targets.append(_bootstrap_lock_path(record_path))
     failures = 0
     for target in dict.fromkeys(targets):
         if target.exists() and not _remove_turn_artifact(target, data_root):
@@ -684,8 +737,9 @@ def _handle_under_length_capability(
     review_gate = _load_review_gate_module()
     if review_gate is None:
         return None
+    before = dict(record)
     response = runtime.start(event, record, review_gate)
-    if response is not None:
+    if response is not None or record != before:
         _atomic_write(record_path, record)
     return response
 
@@ -1069,7 +1123,7 @@ def handle_post_tool(event: dict[str, Any]) -> dict[str, Any]:
 
 def _bootstrap_transaction(
     event: dict[str, Any], record_path: Path, record: dict[str, Any]
-) -> dict[str, Any] | None:
+) -> object | dict[str, Any] | None:
     if record.get("bypass") == "user_requested":
         return None
     if record.get("skill_seen") is not True:
@@ -1082,6 +1136,39 @@ def _bootstrap_transaction(
         return None
     if not isinstance(draft, str) or not draft.strip():
         return None
+    try:
+        lock_path = _acquire_bootstrap_lock(record_path)
+    except OSError:
+        return None
+    if lock_path is None:
+        return _BOOTSTRAP_BUSY
+    try:
+        latest = _read_json(record_path)
+        if latest is not None:
+            record.clear()
+            record.update(latest)
+        if record.get("txn"):
+            return _read_json(Path(str(record["txn"])) / "state.json")
+        return _bootstrap_transaction_locked(record_path, record, draft)
+    finally:
+        _release_bootstrap_lock(lock_path)
+
+
+def _bootstrap_transaction_locked(
+    record_path: Path,
+    record: dict[str, Any],
+    draft: str,
+) -> dict[str, Any] | None:
+    request = record.get("request")
+    if not isinstance(request, str) or not request.strip():
+        return None
+    if _is_review_only_request(request):
+        return None
+    if (
+        record.get("bypass") == "user_requested"
+        or record.get("skill_seen") is not True
+    ):
+        return None
     data_root = _data_root()
     if data_root is None:
         return None
@@ -1091,9 +1178,17 @@ def _bootstrap_transaction(
     inputs = txn.parent / f"{txn.name}-inputs"
     request_path = inputs / "request.txt"
     draft_path = inputs / "draft.txt"
-    _atomic_write_text(request_path, request)
-    _atomic_write_text(draft_path, draft)
+    record.update(
+        {
+            "schema_version": STATE_SCHEMA_VERSION,
+            "txn": str(txn.resolve()),
+            "bootstrap_pending": True,
+        }
+    )
+    _atomic_write(record_path, record)
     try:
+        _atomic_write_text(request_path, request)
+        _atomic_write_text(draft_path, draft)
         completed = subprocess.run(
             [
                 sys.executable,
@@ -1121,7 +1216,9 @@ def _bootstrap_transaction(
     state = _read_json(txn / "state.json")
     if state is None:
         return None
-    record.update(
+    latest = _read_json(record_path) or record
+    latest.pop("bootstrap_pending", None)
+    latest.update(
         {
             "schema_version": STATE_SCHEMA_VERSION,
             "txn": str(txn.resolve()),
@@ -1132,6 +1229,8 @@ def _bootstrap_transaction(
             "stop_attempts": int(record.get("stop_attempts") or 0),
         }
     )
+    record.clear()
+    record.update(latest)
     _atomic_write(record_path, record)
     return state
 
@@ -1298,14 +1397,21 @@ def handle_stop(event: dict[str, Any]) -> dict[str, Any]:
     over_length = _handle_over_length_capability(event, record_path, record)
     if over_length is not None:
         return _finish_stop_response(record_path, record, over_length)
+    if _bootstrap_lock_is_active(record_path):
+        return _continue_once("交付门禁正在启动，请只继续当前有限状态，不要重新起草。")
     if not record.get("txn"):
         if event.get("stop_hook_active") is True:
             return _allow()
-        if _bootstrap_transaction(event, record_path, record) is None:
+        bootstrap = _bootstrap_transaction(event, record_path, record)
+        if bootstrap is _BOOTSTRAP_BUSY:
+            return _continue_once("交付门禁正在启动，请只继续当前有限状态，不要重新起草。")
+        if bootstrap is None:
             _redact_turn_data(record_path, record)
             return _allow()
     bound = _bound_transaction(record)
     if bound is None:
+        if record.get("bootstrap_pending") is True:
+            _redact_turn_data(record_path, record)
         return _allow()
     txn, state = bound
     attempts = int(record.get("stop_attempts") or 0)

@@ -3,6 +3,7 @@ import json
 import os
 from pathlib import Path
 import tempfile
+import threading
 import unittest
 from unittest import mock
 
@@ -85,6 +86,21 @@ class GateStopHookTests(unittest.TestCase):
             )
         )
 
+    def _assert_gate_root_omits(self, *needles):
+        data_root = HOOK._data_root()
+        self.assertIsNotNone(data_root)
+        leaks = []
+        for path in data_root.rglob("*"):
+            if not path.is_file():
+                continue
+            try:
+                text = path.read_text(encoding="utf-8")
+            except (OSError, UnicodeError):
+                continue
+            if any(needle in text for needle in needles):
+                leaks.append(path.relative_to(data_root).as_posix())
+        self.assertEqual([], leaks)
+
     def test_non_gate_tool_does_not_arm(self):
         result = HOOK.handle(
             self._event("PostToolUse", tool_input={"cmd": "git status"})
@@ -161,6 +177,158 @@ class GateStopHookTests(unittest.TestCase):
             self._event("Stop", last_assistant_message=draft)
         )
         self.assertEqual({"continue": True}, duplicate)
+
+    def test_bootstrap_detect_nonzero_redacts_provisional_raw_inputs(self):
+        prompt = "请起草包含内部编号A-17的情况报告。"
+        draft = "情况报告\n\n内部编号A-17的核验工作已完成。"
+        self._record_prompt_and_skill_read(prompt=prompt)
+
+        completed = mock.Mock(returncode=1, stdout="", stderr="detect failed")
+        with mock.patch.object(HOOK.subprocess, "run", return_value=completed):
+            result = HOOK.handle(
+                self._event("Stop", last_assistant_message=draft)
+            )
+
+        self.assertEqual({"continue": True}, result)
+        record = HOOK._read_json(HOOK._record_path(self._event("Stop")))
+        self.assertIsNotNone(record)
+        self.assertEqual(HOOK.REDACTED_RECORD_STATE, record["data_retention_state"])
+        self._assert_gate_root_omits(prompt, draft, "内部编号A-17")
+
+    def test_bootstrap_detect_oserror_redacts_provisional_raw_inputs(self):
+        prompt = "请起草包含内部编号B-23的情况报告。"
+        draft = "情况报告\n\n内部编号B-23的核验工作已完成。"
+        self._record_prompt_and_skill_read(prompt=prompt)
+
+        with mock.patch.object(
+            HOOK.subprocess, "run", side_effect=OSError("detect unavailable")
+        ):
+            result = HOOK.handle(
+                self._event("Stop", last_assistant_message=draft)
+            )
+
+        self.assertEqual({"continue": True}, result)
+        record = HOOK._read_json(HOOK._record_path(self._event("Stop")))
+        self.assertIsNotNone(record)
+        self.assertEqual(HOOK.REDACTED_RECORD_STATE, record["data_retention_state"])
+        self._assert_gate_root_omits(prompt, draft, "内部编号B-23")
+
+    def test_bootstrap_success_without_state_redacts_provisional_raw_inputs(self):
+        prompt = "请起草包含内部编号D-52的情况报告。"
+        draft = "情况报告\n\n内部编号D-52的核验工作已完成。"
+        self._record_prompt_and_skill_read(prompt=prompt)
+
+        completed = mock.Mock(returncode=0, stdout="", stderr="")
+        with mock.patch.object(HOOK.subprocess, "run", return_value=completed):
+            result = HOOK.handle(self._event("Stop", last_assistant_message=draft))
+
+        self.assertEqual({"continue": True}, result)
+        record = HOOK._read_json(HOOK._record_path(self._event("Stop")))
+        self.assertIsNotNone(record)
+        self.assertEqual(HOOK.REDACTED_RECORD_STATE, record["data_retention_state"])
+        self._assert_gate_root_omits(prompt, draft, "内部编号D-52")
+
+    def test_bootstrap_failure_preserves_other_session_and_plugin_data(self):
+        prompt = "请起草包含内部编号E-64的情况报告。"
+        draft = "情况报告\n\n内部编号E-64的核验工作已完成。"
+        self._record_prompt_and_skill_read(prompt=prompt)
+        data_root = HOOK._data_root()
+        self.assertIsNotNone(data_root)
+        other_session = data_root / "transactions" / "session-other" / "keep.txt"
+        other_session.parent.mkdir(parents=True)
+        other_session.write_text("保留相邻会话", encoding="utf-8")
+        other_plugin = data_root.parent / "other-plugin" / "keep.txt"
+        other_plugin.parent.mkdir(parents=True)
+        other_plugin.write_text("保留其他插件", encoding="utf-8")
+
+        completed = mock.Mock(returncode=1, stdout="", stderr="detect failed")
+        with mock.patch.object(HOOK.subprocess, "run", return_value=completed):
+            result = HOOK.handle(self._event("Stop", last_assistant_message=draft))
+
+        self.assertEqual({"continue": True}, result)
+        self.assertTrue(data_root.is_dir())
+        self.assertEqual("保留相邻会话", other_session.read_text(encoding="utf-8"))
+        self.assertEqual("保留其他插件", other_plugin.read_text(encoding="utf-8"))
+        self._assert_gate_root_omits(prompt, draft, "内部编号E-64")
+
+    def test_concurrent_stop_uses_single_bootstrap_owner(self):
+        prompt = "请起草包含内部编号F-75的情况报告。"
+        draft = "情况报告\n\n内部编号F-75的核验工作已完成。"
+        self._record_prompt_and_skill_read(prompt=prompt)
+        entered = threading.Event()
+        release = threading.Event()
+        original_run = HOOK.subprocess.run
+        results = []
+        failures = []
+
+        def slow_run(*args, **kwargs):
+            entered.set()
+            self.assertTrue(release.wait(timeout=5))
+            return original_run(*args, **kwargs)
+
+        def first_stop():
+            try:
+                results.append(
+                    HOOK.handle(self._event("Stop", last_assistant_message=draft))
+                )
+            except BaseException as exc:  # pragma: no cover - surfaced below
+                failures.append(exc)
+
+        with mock.patch.object(HOOK.subprocess, "run", side_effect=slow_run):
+            worker = threading.Thread(target=first_stop)
+            worker.start()
+            self.assertTrue(entered.wait(timeout=5))
+            concurrent = HOOK.handle(
+                self._event("Stop", last_assistant_message=draft)
+            )
+            release.set()
+            worker.join(timeout=10)
+
+        self.assertFalse(worker.is_alive())
+        self.assertEqual([], failures)
+        self.assertEqual("block", concurrent["decision"])
+        self.assertIn("正在启动", concurrent["reason"])
+        self.assertEqual(1, len(results))
+        self.assertEqual("block", results[0]["decision"])
+        record_path = HOOK._record_path(self._event("Stop"))
+        record = HOOK._read_json(record_path)
+        self.assertIsNotNone(record)
+        self.assertNotIn("bootstrap_pending", record)
+        self.assertTrue(Path(record["txn"]).is_dir())
+
+        terminal = HOOK.handle(self._event("Stop", last_assistant_message=draft))
+        self.assertEqual({"continue": True}, terminal)
+        redacted = HOOK._read_json(record_path)
+        self.assertEqual(HOOK.REDACTED_RECORD_STATE, redacted["data_retention_state"])
+        self._assert_gate_root_omits(prompt, draft, "内部编号F-75")
+
+    def test_interrupted_bootstrap_is_cleaned_without_redetect_on_resume(self):
+        prompt = "请起草包含内部编号C-41的情况报告。"
+        draft = "情况报告\n\n内部编号C-41的核验工作已完成。"
+        self._record_prompt_and_skill_read(prompt=prompt)
+
+        with mock.patch.object(
+            HOOK.subprocess, "run", side_effect=KeyboardInterrupt()
+        ):
+            with self.assertRaises(KeyboardInterrupt):
+                HOOK.handle(self._event("Stop", last_assistant_message=draft))
+
+        data_root = HOOK._data_root()
+        self.assertIsNotNone(data_root)
+        input_dir = data_root / "transactions" / "session-1" / "turn-1-inputs"
+        self.assertTrue(input_dir.is_dir())
+
+        with mock.patch.object(HOOK.subprocess, "run") as redetect:
+            resumed = HOOK.handle(
+                self._event("Stop", last_assistant_message=draft)
+            )
+
+        self.assertEqual({"continue": True}, resumed)
+        redetect.assert_not_called()
+        record = HOOK._read_json(HOOK._record_path(self._event("Stop")))
+        self.assertIsNotNone(record)
+        self.assertEqual(HOOK.REDACTED_RECORD_STATE, record["data_retention_state"])
+        self._assert_gate_root_omits(prompt, draft, "内部编号C-41")
 
     def test_skill_read_marker_survives_concurrent_material_record_overwrite(self):
         self._record_prompt_and_skill_read()
