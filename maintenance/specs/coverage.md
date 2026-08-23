@@ -13,12 +13,14 @@
 | `WR-007` 语义减载与自然表达 | `references/anti-ai-patterns.md`、`references/genre-playbook-request.md` | R1 16稿；R2—R4 20稿；组合后24/24技术有效 | 不属于独立 Hook | 已随 v1.6.10 发布；三方冷审无候选独有硬失败，只写到现有事实和状态，压住供应商确定后的后续动作外推 |
 | `WR-008` 标题与正文边界 | canonical SKILL 主入口标题条目 | 16/16 生成无回退；12/12 同稿修复，候选6/6精确；自然路由R2两家均通过 | 不属于独立 Hook | 已随 v1.6.10 发布；主标题无句号并空一行、层级标题无句号、编号正文句保留句号 |
 | `WR-009` 文后提示与正文分区 | `references/information-selection.md`、`scripts/prose_lint.py` | OpenCode Go 同题基线/候选各1稿；候选去除横线包装并形成独立正文外区域 | 不属于独立 Hook；交付洁净度只作可选包装清理 | 已随 v1.6.10 发布；保持正文外独立区域，不增加 Hook |
-| `WR-010` 会议结论与承诺证据 | 当前 `references/genre-playbook-minutes.md` 已覆盖议定、未决、责任和期限；内部 claim—evidence sidecar 未实现 | 2026-08-20 三题6稿 A/B：基线3/3正确处理弱意向、未回应指派、明确承诺、后续修正和权威交办；正文候选无改善且把“未确认承接”带入成稿 | 不属于现有 Hook；若做 sidecar 须与 `UL-005` 的来源蕴含一起验证 | `PARTIAL/HOLD`；正文能力已被当前结果覆盖，候选 `9423d951` 不合入；只保留正文外语义相关证据绑定原子 |
+| `WR-010` 会议结论与承诺证据 | 当前 `references/genre-playbook-minutes.md` 已覆盖议定、未决、责任和期限；内部 claim—evidence sidecar 未实现 | 2026-08-20 三题6稿 A/B：基线3/3正确处理弱意向、未回应指派、明确承诺、后续修正和权威交办；正文候选无改善且把“未确认承接”带入成稿；最新竞品只新增“正式规则/候选规则/一次性安排”可测方法 | 不属于现有 Hook；若做 sidecar 须与 `UL-005` 的来源蕴含一起验证 | `PARTIAL/RESEARCH`；正文能力已被当前结果覆盖，候选 `9423d951` 不合入；`WR-010-M2` 先做正文真实写稿，不先做表格或渲染工程 |
 | `WR-011` 新闻声明级核验 | `references/genre-playbook-news-message.md`；来源名称/载体、原始出处和限定来源结论分开 | [R3 三轮25稿](../tests/evidence/post-v1612-news-claim-matrix-r3-result-20260822.md)：先复现机构性质与包装回退，再分别收窄名称/载体和限定来源结论；最终五路候选5/5目标通过，1处文字重复 WARN | 不新增 Hook、独立矩阵叶或路由胶水 | `DONE`；上一轮 HOLD 已由后续原子结果取代，最小新闻叶及四套镜像已随 v1.6.13 发布 |
 | `WR-012` 正式发文意图路由 | 当前 `references/genre-routing.md` 与 SKILL 已有工作材料/正式发文边界；本轮候选未合入 | [三题6稿 A/B](../tests/evidence/v1612-formal-issuance-intent-result-20260821.md)：内部情况说明方向改善；明确正式报告追加正文外自证，普通业务函新增时间和过程事实 | 不属于 Hook；WorkBuddy / CodeBuddy 2.115.0 六次退出均为0 | `PARTIAL/HOLD`；当前基线已覆盖明确正式发文和普通业务函的主要边界，本轮候选两项硬回退，不合入产品 |
 | `WR-013` 事实支撑的一般原因与即时作用 | SKILL 起草入口、`references/information-selection.md`、新闻消息叶 | [R8.4 五路 A—E](../tests/evidence/wr013b-r8-role-effect/result-r84.md)：OpenCode/Ollama/MiniMax 在活动稿写出一层即时作用，Alibaba 部分命中，Luna 保守；采购原因前置与停机控制均安全 | 不新增 Hook；canonical 与四套普通镜像同步 | `DONE`；发布者角色、稀疏活动边界和入口推断冲突已随 v1.6.13 发布 |
 | `WR-014` 证据可见性与事项进度 | 当前信息选择、状态和事实边界覆盖三态、资金能力及能力/计划意向；R1 组合原型不合入 | [R3](../tests/evidence/wr014-r3-capacity-plan-20260822/result.md) A五路有效稿守住“可安排”，B四路有效稿守住“拟于”，OpenCode B两次技术失败 | 不新增 Hook、审批模板或保护性声明；canonical 与四套普通镜像同步45字符状态锚 | `DONE`；能力与计划状态反例已原子闭环并随 v1.6.14 发布 |
 | `WR-018` 丰富材料下的事务稿密度 | 当前 SKILL、信息选择和三类既有文种路由；没有产品候选 | [五路三文种真实写稿](../tests/evidence/wr018-rich-material-baseline-20260822/result.md)：13/15硬通过，MiniMax一项状态升级、Ollama一项直接交付失败，0/15功能性过薄 | 只读 Codex Desktop 五家 provider；不启用 Hook、不设统一字数门 | `DONE_CURRENT_PRODUCT_NO_NEW_RULE`；丰富材料能按文种展开，无跨模型密度缺口 |
+| `WR-019` 术语、行业表达与翻译腔 | 当前反 AI 叶已有成簇检查，但“口径”、测算说明、必要英文和翻译腔边界不完整；产品未改 | 官方统计、公文外语审核和 AI 场景材料已证明相关词汇有合法使用；严格 lint 只读复现多类误伤，尚未完成四个独立写稿 A/B | 不新增自动替换或硬禁词；工程 lint 后置 | `RESEARCH`；按 019a—019d 逐项验证，不能组合候选一次接入 |
+| `WR-020` 长报告与讲话稳定性 | 当前 workflow、报告清单、论证链和讲话 playbook 具备基础骨架；产品未改 | 六篇官方报告/讲话已抽出结论位置、控制论点段群、长短段和功能性复现差异；CodeBuddy 付费长稿样本因主模型手工计数失控而 `TECHNICAL_INVALID`，未形成质量证据 | 不先加段长门或新 Hook；提纲能力仍只在付费分支 | `RESEARCH`；先测报告用途差异、讲话任务卡/时长、控制论点段群和跨文种指纹 |
 | `SB-001` 头重脚轻与裸提纲句搬移 | R3.1—R3.5 仅在隔离分支验证，产品改动未合入 | [五轮真实顺稿](../tests/evidence/sb001-r3-subject-preserving-result.md)：部分路线可精确搬移，但跨 provider 反复出现未交稿、正文旁白、跨题单位污染、章节/整稿重复和状态改写 | 不新增段长门、结构评分器或 Hook | `TERMINATED`；提示词/路由方向经多次最小化仍有候选独有硬回退，证据保留，产品保持原状 |
 | `HK-001` 无 Hook 闭环 | canonical Skill、普通 packages | v1.6.4 六稿 | 普通镜像排除 Hook | 已覆盖 |
 | `HK-002` 写稿后插入 | `UserPromptSubmit` + `PostToolUse` + `Stop` coordinator | 不作为文采门 | Codex、Claude Code、WorkBuddy 5.3.13 / CodeBuddy 2.115.0 当前在线 | 已覆盖生命周期位置；各 capability 的 D1 结果仍分项记录 |
@@ -44,7 +46,7 @@
 | `MT-002` 可达性 | SKILL、说明、组装器、维护索引 | 不适用 | [当前审计](../tests/evidence/post-v1610-maintenance-reachability-audit-20260819.md)：28脚本、21 CLI、189非入口 Markdown、195活动链接文档均零孤儿或失效入口 | 当前轮已覆盖并固化回归；冻结历史 evidence 旧路径不回写 |
 | `MT-003` 公开面克制 | 根 README、维护索引 | 最近五次主要证据 | 内部 HOLD 不进入产品宣传 | 持续项 |
 | `MT-004` 信息熵与重复规则 | SKILL/reference 路由与叶子停止条件 | 12组真实读取；24次组合写稿 | 不属于 Hook | `OBSERVE`；已扫描重复，尚无真实稿回退，不为去重破坏叶子自包含 |
-| `MT-005` Description 入口减载 | canonical 与四套镜像保持已发布204字；通过项依次删除负向句、新闻细项、重复“征求意见函”和被“公告”覆盖的“采购公告” | 制度、函件、讲话致辞18次扩大 A/B 仍有候选独有硬回退；`MT-005c` 首轮 CLI 触发通过，但[合并前跟进](../tests/evidence/mt005c-school-repair-followup-20260823.md)先暴露显式“学校”缺失，196字回补再出现两份正向稿硬失败 | 既有五路 Desktop、Codex CLI 0.144.6 同体隔离；合并前全量门真实捕获 P058 | `005a/005b1/005b3r2/005b5` 已随 v1.6.12 发布；`005c` 已验证并拒绝接入；`005b2/005b3/005b4` 不动。相对原始280字累计减76字（27.1%） |
+| `MT-005` Description 入口减载 | canonical 与四套镜像保持已发布204字；通过项依次删除负向句、新闻细项、重复“征求意见函”和被“公告”覆盖的“采购公告” | 制度、函件、讲话致辞18次扩大 A/B 仍有候选独有硬回退；`MT-005c` 首轮 CLI 触发通过，但[合并前跟进](../tests/evidence/mt005c-school-repair-followup-20260823.md)先暴露显式“学校”缺失，196字回补再出现两份正向稿硬失败 | 既有五路 Desktop、Codex CLI 0.144.6 同体隔离；合并前全量门真实捕获 P058 | 已通过项维持；失败原子不重抽。新 `MT-005b6` 只测试六项制度枚举合并为“制度规范”，尚无接入结论；相对原始280字当前仍减76字（27.1%） |
 
 ## 当前语义层收束
 
