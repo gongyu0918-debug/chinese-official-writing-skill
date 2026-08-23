@@ -434,6 +434,15 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assertIn("上一轮未补齐的缺口不阻断后续修改", information_selection)
         self.assertLess(len(cards.splitlines()), 80)
 
+    def test_missing_metric_visibility_does_not_become_plan_state(self) -> None:
+        information_selection = (
+            ROOT / "chinese-official-writing" / "references" / "information-selection.md"
+        ).read_text(encoding="utf-8")
+
+        self.assertIn("复核或改稿时，`本次材料未提供某项数值` 不得被现稿写成", information_selection)
+        self.assertIn("未设置、尚未确定、待明确或待会议决定", information_selection)
+        self.assertIn("只保留已明确动作，不转述材料视角", information_selection)
+
     def test_sparse_length_rule_keeps_fact_boundary_without_short_first_priority(self) -> None:
         relative_paths = [
             "chinese-official-writing/SKILL.md",
