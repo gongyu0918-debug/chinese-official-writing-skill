@@ -22,7 +22,7 @@ class ShungaoNaturalizationTests(HookCompanionTestMixin, unittest.TestCase):
             PERSISTENT_RUNTIME_ROOTS[0],
             *[
                 self.companion_roots[host] / "skills/chinese-official-writing"
-                for host in ("codex", "codebuddy", "claude-code")
+                for host in ("codex", "codebuddy", "claude-code", "zcode")
             ],
             *PERSISTENT_RUNTIME_ROOTS[1:],
         ]

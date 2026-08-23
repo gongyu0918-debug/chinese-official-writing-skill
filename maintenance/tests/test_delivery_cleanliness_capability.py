@@ -260,7 +260,7 @@ class DeliveryCleanlinessCapabilityTests(unittest.TestCase):
 
     def test_all_static_companions_include_the_selected_capability(self):
         with tempfile.TemporaryDirectory() as temporary:
-            for host in ("codex", "codebuddy", "claude-code"):
+            for host in ("codex", "codebuddy", "claude-code", "zcode"):
                 with self.subTest(host=host):
                     output = Path(temporary) / host
                     result = ASSEMBLER.assemble(host, output, "delivery_cleanliness")

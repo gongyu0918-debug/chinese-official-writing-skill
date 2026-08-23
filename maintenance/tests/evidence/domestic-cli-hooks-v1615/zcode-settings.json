@@ -1,0 +1,114 @@
+{
+  "provider": {
+    "opencodex": {
+      "name": "OpenCodex",
+      "kind": "anthropic",
+      "enabled": true,
+      "source": "custom",
+      "options": {
+        "apiKey": "opencodex-loopback",
+        "baseURL": "http://127.0.0.1:10100",
+        "apiKeyRequired": true
+      },
+      "models": {
+        "alibaba-token-plan-2/qwen3.8-max": {
+          "name": "qwen3.8-max (alibaba-token-plan-2)",
+          "modalities": {
+            "input": ["text"],
+            "output": ["text"]
+          },
+          "limit": {
+            "context": 350000
+          }
+        }
+      }
+    }
+  },
+  "model": {
+    "main": "opencodex/alibaba-token-plan-2/qwen3.8-max",
+    "lite": "opencodex/alibaba-token-plan-2/qwen3.8-max"
+  },
+  "storage": {
+    "dir": "output/domestic-cli-hooks-v1615/zcode-home",
+    "sessionDbPath": "output/domestic-cli-hooks-v1615/zcode-home/db.sqlite"
+  },
+  "memory": {
+    "use": false,
+    "write": false,
+    "autoConsolidate": false
+  },
+  "mcp": {
+    "servers": {}
+  },
+  "plugins": {
+    "enabled": false,
+    "dirs": [],
+    "enabledPlugins": {},
+    "options": {},
+    "suppressedBuiltins": []
+  },
+  "skills": {
+    "enabled": true,
+    "includeInstructions": true,
+    "metadataBudget": 20000,
+    "roots": [
+      "packages/agent-skills/skills",
+      "maintenance/tests/evidence/domestic-cli-hooks-v1615/host-skills"
+    ]
+  },
+  "features": {
+    "compact": true,
+    "rewind": true,
+    "subagent": false,
+    "memory": false,
+    "skill": true,
+    "mcp": true
+  },
+  "hooks": {
+    "enabled": true,
+    "timeoutMs": 10000,
+    "maxOutputBytes": 32768,
+    "events": {
+      "UserPromptSubmit": [
+        {
+          "hooks": [
+            {
+              "type": "process",
+              "command": "py",
+              "args": ["-3", "maintenance/tests/evidence/domestic-cli-hooks-v1615/observe_hook.py", "--output-dir", "maintenance/tests/evidence/domestic-cli-hooks-v1615/runtime/zcode"],
+              "enabled": true,
+              "timeoutMs": 10000
+            }
+          ]
+        }
+      ],
+      "PostToolUse": [
+        {
+          "matcher": "Skill|Read|Glob|Grep",
+          "hooks": [
+            {
+              "type": "process",
+              "command": "py",
+              "args": ["-3", "maintenance/tests/evidence/domestic-cli-hooks-v1615/observe_hook.py", "--output-dir", "maintenance/tests/evidence/domestic-cli-hooks-v1615/runtime/zcode"],
+              "enabled": true,
+              "timeoutMs": 10000
+            }
+          ]
+        }
+      ],
+      "Stop": [
+        {
+          "hooks": [
+            {
+              "type": "process",
+              "command": "py",
+              "args": ["-3", "maintenance/tests/evidence/domestic-cli-hooks-v1615/observe_hook.py", "--output-dir", "maintenance/tests/evidence/domestic-cli-hooks-v1615/runtime/zcode"],
+              "enabled": true,
+              "timeoutMs": 10000
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

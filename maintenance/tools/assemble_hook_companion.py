@@ -56,6 +56,12 @@ HOST_ADAPTERS: Final = {
             ADAPTER_ROOT / "claude-code" / "gate_stop_hook.py",
             Path("scripts/gate_stop_hook.py"),
         ),
+        HostAdapter(
+            "zcode",
+            Path(".zcode-plugin/plugin.json"),
+            ADAPTER_ROOT / "claude-code" / "gate_stop_hook.py",
+            Path("scripts/gate_stop_hook.py"),
+        ),
     )
 }
 SKILL_COPY_EXCLUDES: Final = (
@@ -70,6 +76,7 @@ ADAPTER_GUIDE_LINKS: Final = {
         ("codex", "Codex"),
         ("codebuddy", "WorkBuddy / CodeBuddy"),
         ("claude-code", "Claude Code"),
+        ("zcode", "ZCode"),
     )
 }
 CAPABILITY_DEFAULT: Final = "delivery_review"

@@ -1,0 +1,50 @@
+{
+  "environment_present": {
+    "CLAUDE_PLUGIN_DATA": false,
+    "CLAUDE_PLUGIN_ROOT": false,
+    "KIMI_CODE_HOME": false,
+    "QWEN_PROJECT_DIR": true,
+    "ZCODE_PLUGIN_DATA": false,
+    "ZCODE_PLUGIN_ROOT": false
+  },
+  "event_keys": [
+    "cwd",
+    "hook_event_name",
+    "prompt",
+    "session_id",
+    "submitted_prompt",
+    "timestamp",
+    "transcript_path"
+  ],
+  "field_types": {
+    "cwd": "str",
+    "hook_event_name": "str",
+    "prompt": "str",
+    "session_id": "str",
+    "submitted_prompt": "str",
+    "timestamp": "str",
+    "transcript_path": "str"
+  },
+  "observed_at_ns": 1787499387887049800,
+  "selected": {
+    "cwd": "F:\\Workspaces\\chinese-official-writing-skill\\output\\research-worktrees\\domestic-cli-hooks-v1615",
+    "hook_event_name": "UserPromptSubmit",
+    "session_id": "76c5114b-d6d0-4147-89f7-66156c76fb65"
+  },
+  "texts": {
+    "prompt": {
+      "chars": 9885,
+      "nonempty": true,
+      "sha256": "682f7fbfd88938494bd9c13a9e222807f5a95d2e141190ff894cb87afb16d1b8",
+      "utf8_bytes": 22567
+    },
+    "submitted_prompt": {
+      "chars": 70,
+      "nonempty": true,
+      "sha256": "70111d3394d3ec7b25a52fa7666f97ca4fc4fdd1c5186a68fb28f50b7d6fabe7",
+      "utf8_bytes": 122
+    }
+  },
+  "tool_input_keys": null,
+  "tool_response_type": null
+}

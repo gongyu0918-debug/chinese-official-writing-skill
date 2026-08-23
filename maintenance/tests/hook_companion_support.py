@@ -30,7 +30,7 @@ class HookCompanionTestMixin:
         self.addCleanup(temporary.cleanup)
         self.companion_temp = Path(temporary.name)
         self.companion_roots = {}
-        for host in ("codex", "codebuddy", "claude-code"):
+        for host in ("codex", "codebuddy", "claude-code", "zcode"):
             target = self.companion_temp / host
             ASSEMBLER.assemble(host, target, capability)
             self.companion_roots[host] = target

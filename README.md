@@ -125,7 +125,8 @@ npx skills add https://github.com/gongyu0918-debug/chinese-official-writing-skil
 | `chinese-official-writing/hooks/adapters/codex/` | Codex Hook 静态兼容文件与使用指引 |
 | `chinese-official-writing/hooks/adapters/codebuddy/` | WorkBuddy/CodeBuddy Hook 静态兼容文件与使用指引 |
 | `chinese-official-writing/hooks/adapters/claude-code/` | Claude Code Hook 静态兼容文件与使用指引 |
-| `packages/agent-skills/` | 通用 Agent Skills、MiniMax Skills、GLM Skills（Z.ai/智谱）、AutoClaw、Kimi Code CLI、TRAE、Baidu Comate AI IDE 等兼容包 |
+| `chinese-official-writing/hooks/adapters/zcode/` | ZCode Hook 静态兼容文件与使用指引 |
+| `packages/agent-skills/` | 通用 Agent Skills、MiniMax Skills、GLM Skills（Z.ai/智谱）、ZCode、AutoClaw、Kimi Code CLI、TRAE、Baidu Comate AI IDE 等兼容包 |
 | `packages/qwen-code/` | Qwen Code 兼容包 |
 | `packages/hermes/` | Hermes 兼容包 |
 | `packages/openclaw/` | OpenClaw 兼容包，不含 Hook 和交付门禁 |

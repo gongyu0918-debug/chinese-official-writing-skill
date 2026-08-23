@@ -34,7 +34,7 @@ class DescriptionNewsTriggerTests(HookCompanionTestMixin, unittest.TestCase):
             PERSISTENT_SKILL_PATHS[0],
             *[
                 self.companion_roots[host] / "skills/chinese-official-writing/SKILL.md"
-                for host in ("codex", "codebuddy", "claude-code")
+                for host in ("codex", "codebuddy", "claude-code", "zcode")
             ],
             *PERSISTENT_SKILL_PATHS[1:],
         ]

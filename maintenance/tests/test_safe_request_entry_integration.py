@@ -50,7 +50,7 @@ class SafeRequestEntryIntegrationTests(HookCompanionTestMixin, unittest.TestCase
         self.mirror_roots = (
             *(
                 self.companion_roots[host] / "skills/chinese-official-writing"
-                for host in ("codex", "codebuddy", "claude-code")
+                for host in ("codex", "codebuddy", "claude-code", "zcode")
             ),
             *PERSISTENT_MIRROR_ROOTS,
         )

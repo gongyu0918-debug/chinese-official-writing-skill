@@ -1,5 +1,5 @@
 {
-  "schema_version": 11,
+  "schema_version": 12,
   "shared_gate_core": "chinese-official-writing/scripts/review_gate.py",
   "activation": {
     "default": "disabled",
@@ -136,6 +136,53 @@
       "continuation_limit": 4,
       "over_length_continuation_limit": 7,
       "activation": "explicit plugin load only"
+    },
+    "zcode": {
+      "status": "lifecycle_verified",
+      "adapter_source": "hooks/adapters/zcode",
+      "runtime_adapter": "scripts/gate_stop_hook.py",
+      "events": [
+        "UserPromptSubmit",
+        "PostToolUse:Bash|Read",
+        "Stop"
+      ],
+      "verified_events": [
+        "UserPromptSubmit",
+        "PostToolUse:Read",
+        "Stop"
+      ],
+      "unverified_events": [
+        "PostToolUse:Bash"
+      ],
+      "verified_transport": "anthropic_messages_gateway_via_opencodex",
+      "verified_scope": "plugin_discovery_current_skill_real_writing_and_stop_delivery_hash",
+      "verified_host_scope": "ZCode Agent runtime 0.16.3 via community zcode-app-cli 3.8.1-15",
+      "verified_platform": "Windows",
+      "evidence": "maintenance/tests/evidence/domestic-cli-hooks-v1615/result.md",
+      "live_lifecycle_verified": true,
+      "required_stop_field": "last_assistant_message",
+      "data_root_environment": "ZCODE_PLUGIN_DATA or the host-provided CLAUDE_PLUGIN_DATA compatibility alias",
+      "first_party_login_required": false,
+      "continuation_limit": 4,
+      "over_length_continuation_limit": 7,
+      "activation": "explicit plugin load only",
+      "distribution_limit": "community CLI wrapper carrying the ZCode runtime; not an official standalone CLI"
+    },
+    "qwen_code": {
+      "status": "skill_only",
+      "adapter": null,
+      "skill_package": "packages/qwen-code/skills/chinese-official-writing",
+      "observed_stop_field": "last_assistant_message",
+      "hook_gap": "Agent Plugin v1 ignores hooks; settings-level hooks are not a packaged companion",
+      "evidence": "maintenance/tests/evidence/domestic-cli-hooks-v1615/result.md"
+    },
+    "kimi_code_cli": {
+      "status": "skill_only",
+      "adapter": null,
+      "skill_package": "packages/agent-skills/skills/chinese-official-writing",
+      "observed_stop_field": null,
+      "hook_gap": "Stop lacks the complete final draft and a documented transcript path",
+      "evidence": "maintenance/tests/evidence/domestic-cli-hooks-v1615/result.md"
     },
     "openclaw": {
       "status": "skill_only",

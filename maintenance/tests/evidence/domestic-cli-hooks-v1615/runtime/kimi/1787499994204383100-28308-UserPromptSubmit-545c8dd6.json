@@ -1,0 +1,36 @@
+{
+  "environment_present": {
+    "CLAUDE_PLUGIN_DATA": false,
+    "CLAUDE_PLUGIN_ROOT": false,
+    "KIMI_CODE_HOME": true,
+    "QWEN_PROJECT_DIR": false,
+    "ZCODE_PLUGIN_DATA": false,
+    "ZCODE_PLUGIN_ROOT": false
+  },
+  "event_keys": [
+    "client_type",
+    "cwd",
+    "hook_event_name",
+    "is_steer",
+    "prompt",
+    "session_id"
+  ],
+  "field_types": {
+    "client_type": "str",
+    "cwd": "str",
+    "hook_event_name": "str",
+    "is_steer": "bool",
+    "prompt": "list",
+    "session_id": "str"
+  },
+  "observed_at_ns": 1787499994204198300,
+  "selected": {
+    "client_type": "kimi_code_cli",
+    "cwd": "F:\\Workspaces\\chinese-official-writing-skill\\output\\research-worktrees\\domestic-cli-hooks-v1615",
+    "hook_event_name": "UserPromptSubmit",
+    "session_id": "session_9e7bd328-4208-434c-95bd-7d898aea20a5"
+  },
+  "texts": {},
+  "tool_input_keys": null,
+  "tool_response_type": null
+}

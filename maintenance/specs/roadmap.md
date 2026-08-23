@@ -5,7 +5,7 @@
 ## DONE
 
 - `WR-001/002`：v1.6.4 事实与状态规则、保护性外扩精确删除和新闻边界已发布于 `v1.6.4@a737791c`；六份真实写稿和 SOL 校准见 [`v164-real-writing-final/result.md`](../tests/evidence/v164-real-writing-final/result.md)，发行回执见 [`release-1.6.4.md`](../tests/evidence/release-1.6.4.md)。
-- `HK-001/003/004/006`：普通路径独立闭环、capability-first 单协调器、三宿主静态 adapter 和用户知情边界已建立；永久移除采用 README 语义说明与二次确认，未确认0改动、确认后隔离副本精确删除并完成真实写稿。
+- `HK-001/003/004/006`：普通路径独立闭环、capability-first 单协调器、Codex、Claude Code、CodeBuddy 三宿主静态 adapter 和用户知情边界已建立；ZCode 第四宿主 adapter 已在独立候选完成真实 CLI 生命周期，待干净合并。永久移除采用 README 语义说明与二次确认，未确认0改动、确认后隔离副本精确删除并完成真实写稿。
 - `UL-001—004`：篇幅不足 Hook 已按真实写稿优先完成语义修复，并随 `v1.6.5@81061bd7` 发布。Alibaba 直修 268→342，Codex 在线 268→350，Claude Code 在线 268→344；两次独立 SOL max 均判可用 D1 `ACCEPT`。当前候选又把材料明确同数“几方面→几项”送入语义核验：106→206字安全 D1 获选，WorkBuddy / CodeBuddy 的106→190字风险候选仍安全回 D0。结果见 [`v164-under-length-real-first-result-20260814.md`](../tests/evidence/v164-under-length-real-first-result-20260814.md) 与 [`post-v1610-cjk-transparent-quantity-result-20260819.md`](../tests/evidence/post-v1610-cjk-transparent-quantity-result-20260819.md)。
 - `CL-001`：交付洁净度已先用三条指定 DeepSeek V4 Flash 路线完成 5/5 同稿真实整理，再接入独立静态 capability，并随 v1.6.5 发布。SOL max 五组全 PASS；Claude Code、Codex 与当前 WorkBuddy / CodeBuddy 在线生命周期均选择 D1 并闭合哈希。结果见 [`delivery-cleanliness-real-first/result.md`](../tests/evidence/delivery-cleanliness-real-first/result.md)。
 - `RP-001`：重复句与高相似句已先完成三 provider 的 5 组真实删除和 SOL max 功能终审，再接入纯删除 capability，并随 v1.6.5 发布。当前 Claude Code 已补一条三事件在线 E1/hash 样本；长稿 1 个自然度 WARN 保留为后续观察，不影响已验证的目标功能。
@@ -32,6 +32,7 @@
 
 ## IN_PROGRESS
 
+- `HK-004-ZCode`：社区 CLI wrapper 携带的 ZCode runtime 0.16.3 已通过 OpenCodex 注入 qwen3.8-max，当前 Skill、UserPromptSubmit、Read、Stop、完整 D0、hash 和终态脱敏闭环；专用 `.zcode-plugin` 54文件 companion 已组装。Qwen Code 与 Kimi Code CLI 只完成普通 Skill/事件边界研究，不冒充完整 Hook 适配。[结果](../tests/evidence/domestic-cli-hooks-v1615/result.md)
 - v1.6.14 已包含 `WR-013`、`WR-011` R3、`UL-005` R9、联网来源用途/命中页绑定及本轮四个公开原子。正式发文意图仍保留现有基线；付费提纲的结构化组合 Hook 和 `OT-002` 继续只在付费分支推进，不进入公开版。
 - `MT-005b2/b3/b4` 的18次扩大真实 A/B 仍分别存在范围扩大、未给日期、材料外责任/效果或未交稿，不接入；独立 `MT-005c` 初轮触发通过后在合并前全量门暴露“学校”缺词，196字回补又出现两份正向稿硬失败，最终恢复已发布204字，不接入。
 - `OC-001` 已把十二份官方采购、通知、报告、纪要、总结/调研和活动新闻抽成结构/论证方法基线；`WR-018` 五路三文种为13/15硬通过、0/15功能性过薄，当前产品不增加字数门、固定模板或统一扩写流程。

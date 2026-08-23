@@ -1,6 +1,6 @@
 # 通用 Agent Skills 适配
 
-这个目录面向兼容 Agent Skills 目录约定的工具。它保存普通 Skill 副本，不包含交付 Hook。
+这个目录面向兼容 Agent Skills 目录约定的工具。当前已在 Kimi Code CLI 与 ZCode runtime 中完成真实发现和写稿；它保存普通 Skill 副本，不包含交付 Hook。
 
 ```text
 packages/agent-skills/

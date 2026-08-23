@@ -34,6 +34,7 @@ Hook 会增加事件处理和有限的修订核验，因此通常比普通 Skill
 | Codex | 使用普通 Skill，不安装 Hook companion；已安装时用 `codex plugin remove <插件>@<marketplace>` 移除。 |
 | WorkBuddy / CodeBuddy | 启动时不传 `--plugin-dir`；已安装插件可用 `codebuddy plugin disable <插件>` 禁用。 |
 | Claude Code | 启动时不传 `--plugin-dir`；已安装插件可用 `claude plugin disable <插件>` 禁用。 |
+| ZCode | 不在插件目录中登记或启用 companion；已登记时从 ZCode 插件配置中停用或移除。 |
 
 完全关闭后仍按 `SKILL.md`、references 和可选的 `scripts/prose_lint.py` 运行，写稿闭环不依赖 Hook。
 
@@ -64,8 +65,9 @@ Hook 会增加事件处理和有限的修订核验，因此通常比普通 Skill
 | Codex | [`adapters/codex/README.md`](adapters/codex/README.md) | 展示组装清单；校验 manifest；完成插件注册、信任确认和事件检查。无法确认运行条件时使用普通 Skill。 |
 | WorkBuddy / CodeBuddy | [`adapters/codebuddy/README.md`](adapters/codebuddy/README.md) | 展示组装清单；运行 `codebuddy plugin validate`；用户确认后加载插件根。 |
 | Claude Code | [`adapters/claude-code/README.md`](adapters/claude-code/README.md) | 展示组装清单；运行 `claude plugin validate --strict`；用户确认后用 `--plugin-dir` 加载或安装。 |
+| ZCode | [`adapters/zcode/README.md`](adapters/zcode/README.md) | 展示组装清单；确认 `.zcode-plugin`、三类 Hook 与 Skill 被发现；用户确认后才登记或启用插件根。 |
 
-Qwen Code、Hermes、OpenClaw、OpenCode 等没有本仓库内置的生命周期 Hook adapter，仍可使用普通 Skill。Agent 如需新增宿主胶水层，应先核对该宿主官方事件、插件根变量、数据目录和信任机制，再按现有 adapter 的最小职责实现；没有官方依据或真实 smoke 时，不宣称已兼容。
+Qwen Code、Kimi Code CLI、Hermes、OpenClaw、OpenCode 等没有本仓库内置的完整生命周期 Hook adapter，仍可使用普通 Skill。Qwen Code 当前能在 Stop 提供完整末次成稿，但官方 Agent Plugin v1 不加载 Hook；Kimi Code CLI 当前 Stop 事件不提供完整成稿，两者均不得由普通 Skill 可用性外推为交付门禁可用。Agent 如需新增宿主胶水层，应先核对该宿主官方事件、插件根变量、数据目录和信任机制，再按现有 adapter 的最小职责实现；没有官方依据或真实 smoke 时，不宣称已兼容。
 
 ## 可选能力
 

@@ -52,7 +52,7 @@ class SkillHubPackageBuilderTests(unittest.TestCase):
             self.assertFalse((output / ".codebuddy-plugin").exists())
             self.assertFalse((output / "skills").exists())
             self.assertFalse((output / "plugins").exists())
-            for host in ("codex", "codebuddy", "claude-code"):
+            for host in ("codex", "codebuddy", "claude-code", "zcode"):
                 adapter = output / "hooks" / "adapters" / host
                 self.assertTrue((adapter / "README.md").is_file())
                 self.assertTrue((adapter / "manifest.json").is_file())
@@ -65,6 +65,7 @@ class SkillHubPackageBuilderTests(unittest.TestCase):
             )
             self.assertEqual("hooks/adapters/codex", capabilities["hosts"]["codex"]["adapter_source"])
             self.assertEqual("hooks/adapters/codebuddy", capabilities["hosts"]["codebuddy"]["adapter_source"])
+            self.assertEqual("hooks/adapters/zcode", capabilities["hosts"]["zcode"]["adapter_source"])
             self.assertEqual("available_opt_in", capabilities["length_gate"]["status"])
             self.assertEqual(
                 (output / "_meta.json").read_text(encoding="utf-8"),
