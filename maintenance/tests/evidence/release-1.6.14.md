@@ -52,10 +52,11 @@
 - 正式提交一次：`ok=true`、`status=published`、`versionId=k97aavwrmkx3k4d0xrs44jxgpx8d1m0j`、`fileCount=33`、fingerprint `3256085ef4c746b4f99abd05c24c82098b139375563df4bf4f661b468c0fdaa7`。
 - slug 为 `chinese-official-writing`，展示名为“中文公文写作”；分类保持 `productivity,knowledge`，话题保持 `chinese-writing,official-writing,office-productivity,content-creation`。
 - 正式回执与最终 dry-run 的33文件 fingerprint 完全一致；上传目录为发行 worktree 中的无 Hook OpenClaw 包，source commit 绑定正确产品提交。
-- 提交后的首次只读复核仍返回 `latestVersion=1.6.13`、`tags.latest=1.6.13`，精确1.6.14返回 `Version not found`；未重复上传。
+- 提交后的首次只读复核仍返回 `latestVersion=1.6.13`、`tags.latest=1.6.13`，精确1.6.14返回 `Version not found`；未重复上传。后续公开 `latestVersion`、`tags.latest` 和精确版本均已切换为1.6.14，moderation 为 `clean`。
+- 公开精确版本返回33个源文件；逐项与正式上传所用发行 worktree 比较，缺失0、额外0、哈希不一致0，Hook、交付门禁、`agents/openai.yaml` 和付费提纲禁入路径0。
 
 ## 剩余边界
 
-- SkillHub.cn 与 ClawHub 的正式提交均已受理；公开 latest、精确版本、签名、文件清单和审核/扫描状态按异步传播分别记录，不以旧公开索引否定成功回执，也不重复发布。
+- SkillHub.cn 与 ClawHub 的正式提交均已受理；ClawHub 的 latest、精确版本、33文件清单和 moderation 已闭环。SkillHub.cn 的公开 latest、精确版本、签名和审核/扫描状态仍按异步传播分别记录，不以旧公开索引否定成功回执，也不重复发布。
 - Hook 继续默认关闭并按单能力窄启用；单次真实压缩仍可能需要约4分钟，终态前异常退出与宿主日志不在 HK-008 已证明范围内。
 - 付费提纲仍不发布；其结构化组合和真实 Stop 生命周期继续只在付费分支管理。
