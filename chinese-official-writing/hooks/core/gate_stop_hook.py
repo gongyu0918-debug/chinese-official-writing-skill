@@ -144,6 +144,7 @@ NATURAL_REVIEW_ONLY_RE = re.compile(
 REVIEW_OUTPUT_BOUNDARY_RE = re.compile(
     r"(?:不|不要|无需|无须|别)(?:再)?(?:替我|帮我)?"
     r"(?:代改|改写|重写|修改|改)(?:全文|正文|稿件)?"
+    r"(?!文件|代码|配置|仓库)"
 )
 NEGATED_WRITING_ACTION_RE = re.compile(
     r"(?:不需要|无需|无须|不用|不要|不必|没必要|别)(?:再)?\s*"
