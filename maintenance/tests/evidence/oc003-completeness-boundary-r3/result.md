@@ -4,7 +4,7 @@
 
 ## 结论
 
-`VALIDATED_INTEGRATION_CANDIDATE / READY_FOR_LOCAL_MAIN_MERGE / NOT_RELEASED`。
+候选阶段结论为 `VALIDATED_INTEGRATION_CANDIDATE / READY_FOR_LOCAL_MAIN_MERGE / NOT_RELEASED`；已于本地 `main@68eaf5ba` 非快进合并，当前为 `DONE_LOCAL_MAIN_NOT_RELEASED`。
 
 候选解决两个相连问题：只审既有可研摘要、且用户已点名完整性核对项时，不再自动加载整份 AI 算力起草选项库；审稿意见仍可核算数据、说明缺项影响，并按点名维度列出指标、费用和依据类别。限制对象是材料外的厂商数量、比较路径、数值阈值、实际责任主体、合同义务、既定程序和未点名审查域，不限制由给定事实、任务目的和文种功能直接支持的原因、影响、结论与论证。
 
@@ -81,4 +81,4 @@ OpenCode Go DeepSeek V4 Flash 在 current main 与候选上使用同一 `natural
 
 全量首跑实际为 `Ran 693 tests in 81.457s`、2项失败：两条旧测试仍断言 AI 算力“专项直接读取”，与新路由文案不一致。产品未回退；只更新 `test_skill_boundary.py` 的过时断言后，该文件78/78通过，全量复跑 `Ran 693 tests in 85.737s`、`OK`。
 
-合并、push、tag、Release 和三平台发布是不同授权；本结果只允许本地 main 集成，不授权推送或发布。
+本地 main 集成后重新执行专项、镜像、状态、链接、快速校验和差异检查；结果见合并回执提交。push、tag、Release 和三平台发布是不同授权，本结果不授权推送或发布。
