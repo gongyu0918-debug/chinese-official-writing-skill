@@ -41,11 +41,13 @@ class FeasibilityStateLayeringTests(unittest.TestCase):
 
         self.assertIn("先停在 `references/genre-checklist-feasibility-review.md`", skill)
         self.assertIn("不因出现上述术语自动加载本页", skill)
+        self.assertIn("不自动叠加通用审稿页或去 AI 味页", skill)
         self.assertIn("不是只审既有摘要时的默认缺项清单", ai_compute)
         self.assertIn("只指出点名缺项及需补充的材料类别", ai_compute)
         self.assertIn("由现有事实直接支持的研究、风险控制或验证意见", review)
-        self.assertIn("需补充的材料类别", review)
-        self.assertIn("不代填具体厂商数量", review)
+        self.assertIn("列出直接相关的指标类别、费用构成或依据类别", review)
+        self.assertIn("不规定若干家或云端、自建、API 等比较路径", review)
+        self.assertIn("不代拟具体单位、部门或第三方", review)
 
     def test_four_public_mirrors_match_the_canonical_references(self) -> None:
         for relative in REFERENCES:
