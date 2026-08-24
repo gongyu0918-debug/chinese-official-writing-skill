@@ -45,7 +45,7 @@
 - slug 为 `chinese-official-writing`，公开坐标为 `@user_f3d82da7/chinese-official-writing`，展示名为“中文公文写作”。
 - 上传回执中 `latest`、`ai-compute`、`chinese`、`content-creation`、`gongwen`、`office-efficiency`、`official-document`、`writing` tags 均指向 `1.6.15`；`reviewStatus`、`securityScanStatus`、`contentAuditStatus` 仍为 `pending`。
 - 精确1.6.15签名已生成：`key_id=skillhub-platform-v1`，签名内容 hash `ae8e9a789e2c71aa9440666a0cd1afc57eb694421786a7f1083237778d3f2495`；正式上传所用71文件目录完成本地验签与内容匹配。
-- 首次只读搜索复核中，description 已更新但搜索结果的 version 字段仍为1.6.14；不据此重复上传。由 `main` 工作树重新构建的包受 Windows 检出换行影响，内容 hash 与正式上传原包不同；发布指纹以正式上传原包及签名为准。
+- 首次只读搜索复核中，description 已更新但搜索结果的 version 字段仍为1.6.14；未重复上传。后续搜索结果已切换为1.6.15，并保留“管理办法、细则、操作规程”的原子描述。由 `main` 工作树重新构建的包受 Windows 检出换行影响，内容 hash 与正式上传原包不同；发布指纹以正式上传原包及签名为准。
 
 ## ClawHub 回执与传播状态
 
@@ -56,6 +56,6 @@
 
 ## 剩余边界
 
-- GitHub 与 ClawHub 已公开闭环；SkillHub.cn 正式提交、tag 更新和精确签名已闭环，但搜索索引版本字段仍可能短暂滞后，审核、安全扫描和内容审核回执保持 `pending`。
+- GitHub、SkillHub.cn 与 ClawHub 的公开 latest 和精确版本均已闭环；SkillHub.cn 上传回执中的审核、安全扫描和内容审核仍保持 `pending`。
 - Hook 默认关闭并按单能力窄启用。Kimi Code CLI 当前只证明宿主允许的一次 Stop；Qwen 和 ZCode 的宿主协议变化仍需后续真实生命周期回归。
 - 付费提纲继续只在独立分支管理，不发布、不反向合入公开 `main`。
