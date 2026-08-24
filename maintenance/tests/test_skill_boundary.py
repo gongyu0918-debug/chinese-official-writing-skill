@@ -131,8 +131,9 @@ class SkillBoundaryTests(unittest.TestCase):
 
         self.assertNotIn("起草算力、采购、租赁或服务器租赁材料时", skill)
         self.assertIn("references/ai-compute-docs.md", skill)
-        self.assertIn("AI 算力、GPU/服务器租赁、模型服务、智算中心、成本比较、SLA、安全或验收等专项直接读取", skill)
-        self.assertIn("同时明确普通文种时，再按本表该文种的任务模式和加载条件叠加相应叶", skill)
+        self.assertIn("AI 算力、GPU/服务器租赁、模型服务、智算中心、成本比较、SLA、安全或验收等专项起草、改写和完整技术审查时读取", skill)
+        self.assertIn("不因出现上述术语或点名技术指标等缺项转读本页", skill)
+        self.assertIn("普通文种仍按本表相应叶叠加", skill)
         playbooks = (ROOT / "chinese-official-writing" / "references" / "genre-playbooks.md").read_text(
             encoding="utf-8"
         )
@@ -396,7 +397,8 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assertIn("`references/genre-checklist-feasibility-review.md` | 按文种选读", text)
         self.assertIn("`references/genre-playbooks.md` | 按文种选读", text)
         self.assertIn("`references/ai-compute-docs.md` | 专项选读", text)
-        self.assertIn("AI 算力、GPU/服务器租赁、模型服务、智算中心、成本比较、SLA、安全或验收等专项直接读取", text)
+        self.assertIn("AI 算力、GPU/服务器租赁、模型服务、智算中心、成本比较、SLA、安全或验收等专项起草、改写和完整技术审查时读取", text)
+        self.assertIn("本轮停在 `references/genre-checklist-feasibility-review.md`", text)
         self.assertIn("命中 `references/task-route-cards.md` 且卡片能够覆盖任务时", core)
         self.assertIn("由卡片完成，不再读取长 reference", core)
         self.assertIn("未命中、命中转读条件或卡片不能覆盖时", core)
