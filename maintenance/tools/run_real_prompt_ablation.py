@@ -286,7 +286,7 @@ CASES: list[PromptCase] = [
                     "test_packaged_resource_mirrors_match_canonical_bytes",
                 ],
                 "maintenance/tests/test_hook_layer_contract.py": [
-                    "test_maintenance_assembler_produces_three_self_contained_plugins",
+                    "test_maintenance_assembler_produces_six_self_contained_plugins",
                 ],
             },
         },

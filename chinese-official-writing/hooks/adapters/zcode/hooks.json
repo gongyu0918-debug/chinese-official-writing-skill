@@ -1,0 +1,51 @@
+{
+  "description": "Packaged opt-in ZCode lifecycle adapter for the bounded delivery gate; it does not change host configuration.",
+  "hooks": {
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "process",
+            "command": "py",
+            "args": [
+              "-3",
+              "${ZCODE_PLUGIN_ROOT}/scripts/gate_stop_hook.py"
+            ],
+            "timeoutMs": 10000
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Bash|Read",
+        "hooks": [
+          {
+            "type": "process",
+            "command": "py",
+            "args": [
+              "-3",
+              "${ZCODE_PLUGIN_ROOT}/scripts/gate_stop_hook.py"
+            ],
+            "timeoutMs": 10000
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "process",
+            "command": "py",
+            "args": [
+              "-3",
+              "${ZCODE_PLUGIN_ROOT}/scripts/gate_stop_hook.py"
+            ],
+            "timeoutMs": 30000
+          }
+        ]
+      }
+    ]
+  }
+}

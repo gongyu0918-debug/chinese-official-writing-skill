@@ -255,12 +255,23 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assertIn("| `references/anti-ai-patterns.md` | 复核时 |", text)
 
     def test_static_hook_adapters_do_not_duplicate_full_skill(self) -> None:
-        for host in ("codex", "codebuddy", "claude-code"):
+        for host in (
+            "codex",
+            "codebuddy",
+            "claude-code",
+            "zcode",
+            "qwen-code",
+            "kimi-code",
+        ):
             with self.subTest(host=host):
                 adapter = HOOK_ADAPTERS / host
                 self.assertTrue((adapter / "README.md").is_file())
                 self.assertTrue((adapter / "manifest.json").is_file())
-                self.assertTrue((adapter / "hooks.json").is_file())
+                self.assertEqual(host != "kimi-code", (adapter / "hooks.json").is_file())
+                self.assertEqual(
+                    host in {"claude-code", "qwen-code", "kimi-code"},
+                    (adapter / "gate_stop_hook.py").is_file(),
+                )
                 self.assertFalse((adapter / "skills").exists())
 
     def test_second_revision_fact_mapping_has_one_complete_entry_rule(self) -> None:
@@ -948,6 +959,7 @@ class SkillBoundaryTests(unittest.TestCase):
             "GLM Skills（Z.ai/智谱）",
             "AutoClaw",
             "Kimi Code CLI",
+            "ZCode",
             "TRAE",
             "Baidu Comate AI IDE",
         ]:
@@ -968,6 +980,9 @@ class SkillBoundaryTests(unittest.TestCase):
 
     def test_claude_plugin_manifest_version_matches_skill_and_sync_script(self) -> None:
         manifest = json.loads((HOOK_ADAPTERS / "claude-code" / "manifest.json").read_text(encoding="utf-8"))
+        zcode_manifest = json.loads((HOOK_ADAPTERS / "zcode" / "manifest.json").read_text(encoding="utf-8"))
+        qwen_manifest = json.loads((HOOK_ADAPTERS / "qwen-code" / "manifest.json").read_text(encoding="utf-8"))
+        kimi_manifest = json.loads((HOOK_ADAPTERS / "kimi-code" / "manifest.json").read_text(encoding="utf-8"))
         sync_script = (ROOT / "maintenance" / "tools" / "sync_adapters.py").read_text(encoding="utf-8")
         readme = (ROOT / "README.md").read_text(encoding="utf-8")
         openclaw_readme = (ROOT / "packages" / "openclaw" / "README.md").read_text(encoding="utf-8")
@@ -985,6 +1000,9 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assertEqual(manifest["version"], sync_version.group(1))
         self.assertEqual(manifest["version"], openclaw_version.group(1))
         self.assertEqual(manifest["version"], openclaw_skill["metadata"]["version"])
+        self.assertEqual(manifest["version"], zcode_manifest["version"])
+        self.assertEqual(manifest["version"], qwen_manifest["version"])
+        self.assertEqual(manifest["version"], kimi_manifest["version"])
         self.assertNotIn("ROOT_README", sync_script)
         self.assertEqual(PUBLISHED_VERSION, readme_version.group(1))
         self.assertIn("OPENCLAW_PACKAGE", sync_script)
@@ -1041,6 +1059,9 @@ class SkillBoundaryTests(unittest.TestCase):
             "chinese-official-writing/hooks/adapters/codex/manifest.json",
             "chinese-official-writing/hooks/adapters/codebuddy/manifest.json",
             "chinese-official-writing/hooks/adapters/claude-code/manifest.json",
+            "chinese-official-writing/hooks/adapters/zcode/manifest.json",
+            "chinese-official-writing/hooks/adapters/qwen-code/manifest.json",
+            "chinese-official-writing/hooks/adapters/kimi-code/manifest.json",
         ]
         for relative_path in full_package_manifests:
             manifest = json.loads((ROOT / relative_path).read_text(encoding="utf-8"))

@@ -1,0 +1,68 @@
+{
+  "environment_present": {
+    "CLAUDE_PLUGIN_DATA": true,
+    "CLAUDE_PLUGIN_ROOT": true,
+    "KIMI_CODE_HOME": false,
+    "QWEN_PROJECT_DIR": false,
+    "ZCODE_PLUGIN_DATA": true,
+    "ZCODE_PLUGIN_ROOT": true
+  },
+  "event_keys": [
+    "cwd",
+    "hookEventName",
+    "hook_event_name",
+    "last_assistant_message",
+    "mode",
+    "permission_mode",
+    "responsePreview",
+    "responseText",
+    "sessionId",
+    "session_id",
+    "stopHookActive",
+    "stop_hook_active",
+    "timestamp",
+    "toolCallCount",
+    "traceId",
+    "transcriptPath",
+    "transcript_path",
+    "turnId"
+  ],
+  "field_types": {
+    "cwd": "str",
+    "hookEventName": "str",
+    "hook_event_name": "str",
+    "last_assistant_message": "str",
+    "mode": "str",
+    "permission_mode": "str",
+    "responsePreview": "str",
+    "responseText": "str",
+    "sessionId": "str",
+    "session_id": "str",
+    "stopHookActive": "bool",
+    "stop_hook_active": "bool",
+    "timestamp": "str",
+    "toolCallCount": "int",
+    "traceId": "str",
+    "transcriptPath": "str",
+    "transcript_path": "str",
+    "turnId": "str"
+  },
+  "observed_at_ns": 1787500736048052300,
+  "selected": {
+    "cwd": "F:\\Workspaces\\chinese-official-writing-skill\\output\\research-worktrees\\domestic-cli-hooks-v1615",
+    "hook_event_name": "Stop",
+    "permission_mode": "plan",
+    "session_id": "sess_ebfac7bd-46ac-43e3-9324-f2a217424145",
+    "stop_hook_active": false
+  },
+  "texts": {
+    "last_assistant_message": {
+      "chars": 189,
+      "nonempty": true,
+      "sha256": "7ee93ae62b56286ae48ffcc53a041727b55cc9d11929ba2918b646850100b79a",
+      "utf8_bytes": 519
+    }
+  },
+  "tool_input_keys": null,
+  "tool_response_type": null
+}

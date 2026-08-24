@@ -1,0 +1,45 @@
+{
+  "description": "Packaged opt-in Qwen Code lifecycle adapter for the bounded delivery gate; it does not change host configuration.",
+  "hooks": {
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "py -3 \"${CLAUDE_PLUGIN_ROOT}/scripts/gate_stop_hook.py\"",
+            "shell": "powershell",
+            "timeout": 10000,
+            "name": "official-writing-request-gate"
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "^(skill|read_file|run_shell_command)$",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "py -3 \"${CLAUDE_PLUGIN_ROOT}/scripts/gate_stop_hook.py\"",
+            "shell": "powershell",
+            "timeout": 10000,
+            "name": "official-writing-state-gate"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "py -3 \"${CLAUDE_PLUGIN_ROOT}/scripts/gate_stop_hook.py\"",
+            "shell": "powershell",
+            "timeout": 30000,
+            "name": "official-writing-stop-gate"
+          }
+        ]
+      }
+    ]
+  }
+}

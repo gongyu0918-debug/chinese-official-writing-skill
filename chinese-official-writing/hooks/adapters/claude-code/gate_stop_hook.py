@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Map verified Claude Code hook events to the existing bounded gate bridge."""
+"""Map verified Claude-compatible hook events to the bounded gate bridge."""
 
 from __future__ import annotations
 
@@ -79,8 +79,12 @@ def _selected_capability() -> str | None:
 
 
 def _host_paths() -> tuple[Path, Path] | None:
-    raw_root = os.environ.get("CLAUDE_PLUGIN_ROOT")
-    raw_data = os.environ.get("CLAUDE_PLUGIN_DATA")
+    raw_root = os.environ.get("CLAUDE_PLUGIN_ROOT") or os.environ.get(
+        "ZCODE_PLUGIN_ROOT"
+    )
+    raw_data = os.environ.get("CLAUDE_PLUGIN_DATA") or os.environ.get(
+        "ZCODE_PLUGIN_DATA"
+    )
     if not raw_root or not raw_data:
         return None
     try:

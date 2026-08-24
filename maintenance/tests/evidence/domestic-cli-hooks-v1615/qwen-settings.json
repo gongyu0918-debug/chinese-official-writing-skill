@@ -1,0 +1,83 @@
+{
+  "general": {
+    "enableAutoUpdate": false
+  },
+  "memory": {
+    "enableManagedAutoMemory": false,
+    "enableManagedAutoDream": false,
+    "enableAutoSkill": false
+  },
+  "skills": {
+    "directories": [
+      "packages/qwen-code/skills",
+      "maintenance/tests/evidence/domestic-cli-hooks-v1615/host-skills"
+    ]
+  },
+  "permissions": {
+    "allow": [
+      "Skill",
+      "Read"
+    ],
+    "deny": [
+      "Bash",
+      "Edit",
+      "Write",
+      "WebFetch",
+      "Agent"
+    ]
+  },
+  "privacy": {
+    "usageStatisticsEnabled": false
+  },
+  "tools": {
+    "computerUse": {
+      "enabled": false
+    },
+    "toolSearch": {
+      "threshold": 0
+    }
+  },
+  "hooks": {
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "py -3 maintenance/tests/evidence/domestic-cli-hooks-v1615/observe_hook.py --output-dir maintenance/tests/evidence/domestic-cli-hooks-v1615/runtime/qwen",
+            "shell": "powershell",
+            "timeout": 10000,
+            "name": "official-writing-lifecycle-observer"
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "^(skill|read_file|grep_search|glob|list_directory)$",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "py -3 maintenance/tests/evidence/domestic-cli-hooks-v1615/observe_hook.py --output-dir maintenance/tests/evidence/domestic-cli-hooks-v1615/runtime/qwen",
+            "shell": "powershell",
+            "timeout": 10000,
+            "name": "official-writing-lifecycle-observer"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "py -3 maintenance/tests/evidence/domestic-cli-hooks-v1615/observe_hook.py --output-dir maintenance/tests/evidence/domestic-cli-hooks-v1615/runtime/qwen",
+            "shell": "powershell",
+            "timeout": 10000,
+            "name": "official-writing-lifecycle-observer"
+          }
+        ]
+      }
+    ]
+  },
+  "$version": 4
+}

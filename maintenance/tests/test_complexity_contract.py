@@ -12,6 +12,8 @@ NEW_ARCHITECTURE_FILES = (
     ROOT / "chinese-official-writing/hooks/core/gate_stop_hook.py",
     ROOT / "chinese-official-writing/hooks/adapters/host_gate_adapter.py",
     ROOT / "chinese-official-writing/hooks/adapters/claude-code/gate_stop_hook.py",
+    ROOT / "chinese-official-writing/hooks/adapters/qwen-code/gate_stop_hook.py",
+    ROOT / "chinese-official-writing/hooks/adapters/kimi-code/gate_stop_hook.py",
     ROOT / "chinese-official-writing/hooks/capabilities/protective_expansion/contract.py",
     ROOT / "chinese-official-writing/hooks/capabilities/protective_expansion/runtime.py",
     ROOT / "chinese-official-writing/hooks/capabilities/delivery_cleanliness/runtime.py",

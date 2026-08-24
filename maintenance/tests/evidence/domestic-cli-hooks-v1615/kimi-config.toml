@@ -1,0 +1,39 @@
+default_model = "opencodex/alibaba-token-plan-2/qwen3.8-max"
+extra_skill_dirs = ["packages/agent-skills/skills", "maintenance/tests/evidence/domestic-cli-hooks-v1615/host-skills"]
+builtin_product_skills = false
+
+[providers.opencodex]
+type = "openai"
+base_url = "http://127.0.0.1:10100/v1"
+api_key = "opencodex-loopback"
+
+[models."opencodex/alibaba-token-plan-2/qwen3.8-max"]
+provider = "opencodex"
+model = "alibaba-token-plan-2/qwen3.8-max"
+max_context_size = 350000
+
+[models."opencodex/minimax-cn/MiniMax-M3"]
+provider = "opencodex"
+model = "minimax-cn/MiniMax-M3"
+max_context_size = 350000
+
+[[hooks]]
+event = "UserPromptSubmit"
+command = "py -3 maintenance/tests/evidence/domestic-cli-hooks-v1615/observe_hook.py --output-dir maintenance/tests/evidence/domestic-cli-hooks-v1615/runtime/kimi"
+timeout = 10
+
+[[hooks]]
+event = "PreToolUse"
+command = "py -3 maintenance/tests/evidence/domestic-cli-hooks-v1615/read_only_guard.py"
+timeout = 10
+
+[[hooks]]
+event = "PostToolUse"
+matcher = "^(Skill|ReadFile|Read|Glob|Grep)$"
+command = "py -3 maintenance/tests/evidence/domestic-cli-hooks-v1615/observe_hook.py --output-dir maintenance/tests/evidence/domestic-cli-hooks-v1615/runtime/kimi"
+timeout = 10
+
+[[hooks]]
+event = "Stop"
+command = "py -3 maintenance/tests/evidence/domestic-cli-hooks-v1615/observe_hook.py --output-dir maintenance/tests/evidence/domestic-cli-hooks-v1615/runtime/kimi"
+timeout = 10

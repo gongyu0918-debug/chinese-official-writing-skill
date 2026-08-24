@@ -1,0 +1,73 @@
+{
+  "description": "Read-only official-writing lifecycle observer",
+  "hooks": {
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "process",
+            "command": "py",
+            "args": [
+              "-3",
+              "${ZCODE_PROJECT_DIR}/maintenance/tests/evidence/domestic-cli-hooks-v1615/observe_hook.py",
+              "--output-dir",
+              "${ZCODE_PROJECT_DIR}/maintenance/tests/evidence/domestic-cli-hooks-v1615/runtime/zcode"
+            ],
+            "timeoutMs": 10000
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "process",
+            "command": "py",
+            "args": [
+              "-3",
+              "${ZCODE_PROJECT_DIR}/maintenance/tests/evidence/domestic-cli-hooks-v1615/read_only_guard.py"
+            ],
+            "timeoutMs": 10000
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Skill|Read|Glob|Grep",
+        "hooks": [
+          {
+            "type": "process",
+            "command": "py",
+            "args": [
+              "-3",
+              "${ZCODE_PROJECT_DIR}/maintenance/tests/evidence/domestic-cli-hooks-v1615/observe_hook.py",
+              "--output-dir",
+              "${ZCODE_PROJECT_DIR}/maintenance/tests/evidence/domestic-cli-hooks-v1615/runtime/zcode"
+            ],
+            "timeoutMs": 10000
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "process",
+            "command": "py",
+            "args": [
+              "-3",
+              "${ZCODE_PROJECT_DIR}/maintenance/tests/evidence/domestic-cli-hooks-v1615/observe_hook.py",
+              "--output-dir",
+              "${ZCODE_PROJECT_DIR}/maintenance/tests/evidence/domestic-cli-hooks-v1615/runtime/zcode"
+            ],
+            "timeoutMs": 10000
+          }
+        ]
+      }
+    ]
+  }
+}

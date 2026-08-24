@@ -1,0 +1,49 @@
+{
+  "environment_present": {
+    "CLAUDE_PLUGIN_DATA": false,
+    "CLAUDE_PLUGIN_ROOT": false,
+    "KIMI_CODE_HOME": false,
+    "QWEN_PROJECT_DIR": true,
+    "ZCODE_PLUGIN_DATA": false,
+    "ZCODE_PLUGIN_ROOT": false
+  },
+  "event_keys": [
+    "cwd",
+    "hook_event_name",
+    "permission_mode",
+    "session_id",
+    "timestamp",
+    "tool_call_id",
+    "tool_input",
+    "tool_name",
+    "tool_response",
+    "tool_use_id",
+    "transcript_path"
+  ],
+  "field_types": {
+    "cwd": "str",
+    "hook_event_name": "str",
+    "permission_mode": "str",
+    "session_id": "str",
+    "timestamp": "str",
+    "tool_call_id": "str",
+    "tool_input": "dict",
+    "tool_name": "str",
+    "tool_response": "dict",
+    "tool_use_id": "str",
+    "transcript_path": "str"
+  },
+  "observed_at_ns": 1787499840364016100,
+  "selected": {
+    "cwd": "F:\\Workspaces\\chinese-official-writing-skill\\output\\research-worktrees\\domestic-cli-hooks-v1615",
+    "hook_event_name": "PostToolUse",
+    "permission_mode": "auto",
+    "session_id": "dcb30596-7156-4f13-a8bd-446f7832e9f6",
+    "tool_name": "read_file"
+  },
+  "texts": {},
+  "tool_input_keys": [
+    "file_path"
+  ],
+  "tool_response_type": "dict"
+}

@@ -27,6 +27,7 @@ class HostAdapter:
     manifest_target: Path
     adapter_source: Path
     adapter_target: Path
+    hooks_target: Path | None = Path("hooks/hooks.json")
     include_openai_metadata: bool = False
 
     @property
@@ -56,6 +57,25 @@ HOST_ADAPTERS: Final = {
             ADAPTER_ROOT / "claude-code" / "gate_stop_hook.py",
             Path("scripts/gate_stop_hook.py"),
         ),
+        HostAdapter(
+            "zcode",
+            Path(".zcode-plugin/plugin.json"),
+            ADAPTER_ROOT / "claude-code" / "gate_stop_hook.py",
+            Path("scripts/gate_stop_hook.py"),
+        ),
+        HostAdapter(
+            "qwen-code",
+            Path("qwen-extension.json"),
+            ADAPTER_ROOT / "qwen-code" / "gate_stop_hook.py",
+            Path("scripts/gate_stop_hook.py"),
+        ),
+        HostAdapter(
+            "kimi-code",
+            Path("kimi.plugin.json"),
+            ADAPTER_ROOT / "kimi-code" / "gate_stop_hook.py",
+            Path("scripts/gate_stop_hook.py"),
+            hooks_target=None,
+        ),
     )
 }
 SKILL_COPY_EXCLUDES: Final = (
@@ -70,6 +90,9 @@ ADAPTER_GUIDE_LINKS: Final = {
         ("codex", "Codex"),
         ("codebuddy", "WorkBuddy / CodeBuddy"),
         ("claude-code", "Claude Code"),
+        ("zcode", "ZCode"),
+        ("qwen-code", "Qwen Code"),
+        ("kimi-code", "Kimi Code CLI"),
     )
 }
 CAPABILITY_DEFAULT: Final = "delivery_review"
@@ -126,9 +149,8 @@ def _fingerprint(root: Path) -> str:
 
 def _validate(output: Path, adapter: HostAdapter) -> None:
     expected_manifest = output / adapter.manifest_target
-    required = (
+    required = [
         expected_manifest,
-        output / "hooks" / "hooks.json",
         output / adapter.adapter_target,
         output / "skills/chinese-official-writing/SKILL.md",
         output / "skills/chinese-official-writing/hooks/gate_stop_hook.py",
@@ -142,11 +164,18 @@ def _validate(output: Path, adapter: HostAdapter) -> None:
         output / "hook-capability.json",
         output / "README.md",
         output / "LICENSE",
-    )
+    ]
+    if adapter.hooks_target is not None:
+        required.append(output / adapter.hooks_target)
     missing = [path.relative_to(output).as_posix() for path in required if not path.is_file()]
     if missing:
         raise RuntimeError(f"incomplete Hook companion: {missing}")
-    manifests = sorted(output.rglob("plugin.json"))
+    manifest_names = {"plugin.json", "qwen-extension.json", "kimi.plugin.json"}
+    manifests = sorted(
+        path
+        for path in output.rglob("*")
+        if path.is_file() and path.name in manifest_names
+    )
     if manifests != [expected_manifest]:
         raise RuntimeError("Hook companion must contain exactly one host manifest")
     for path in output.rglob("*"):
@@ -183,7 +212,8 @@ def assemble(
     try:
         _copy_skill(output, adapter)
         _copy(adapter.source_root / "manifest.json", output / adapter.manifest_target)
-        _copy(adapter.source_root / "hooks.json", output / "hooks/hooks.json")
+        if adapter.hooks_target is not None:
+            _copy(adapter.source_root / "hooks.json", output / adapter.hooks_target)
         _copy(adapter.adapter_source, output / adapter.adapter_target)
         _copy(adapter.source_root / "README.md", output / "README.md")
         _copy(SKILL_ROOT / "LICENSE", output / "LICENSE")

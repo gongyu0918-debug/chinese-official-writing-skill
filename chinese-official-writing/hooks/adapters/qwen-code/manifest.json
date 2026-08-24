@@ -1,0 +1,14 @@
+{
+  "name": "chinese-official-writing-gate",
+  "version": "1.6.14",
+  "displayName": "中文公文写作交付门禁",
+  "description": "中文公文写作 Skill 的可选 Qwen Code companion，提供一次有界交付门禁。",
+  "author": {
+    "name": "gongyu0918-debug",
+    "url": "https://github.com/gongyu0918-debug"
+  },
+  "repository": "https://github.com/gongyu0918-debug/chinese-official-writing-skill",
+  "license": "MIT",
+  "skills": "skills",
+  "hooks": "hooks/hooks.json"
+}

@@ -1,0 +1,70 @@
+{
+  "environment_present": {
+    "CLAUDE_PLUGIN_DATA": true,
+    "CLAUDE_PLUGIN_ROOT": true,
+    "KIMI_CODE_HOME": false,
+    "QWEN_PROJECT_DIR": false,
+    "ZCODE_PLUGIN_DATA": true,
+    "ZCODE_PLUGIN_ROOT": true
+  },
+  "event_keys": [
+    "cwd",
+    "hookEventName",
+    "hook_event_name",
+    "mode",
+    "permission_mode",
+    "sessionId",
+    "session_id",
+    "timestamp",
+    "toolCallId",
+    "toolInput",
+    "toolName",
+    "toolResponse",
+    "toolResultPreview",
+    "tool_input",
+    "tool_name",
+    "tool_response",
+    "tool_use_id",
+    "traceId",
+    "transcriptPath",
+    "transcript_path",
+    "turnId"
+  ],
+  "field_types": {
+    "cwd": "str",
+    "hookEventName": "str",
+    "hook_event_name": "str",
+    "mode": "str",
+    "permission_mode": "str",
+    "sessionId": "str",
+    "session_id": "str",
+    "timestamp": "str",
+    "toolCallId": "str",
+    "toolInput": "dict",
+    "toolName": "str",
+    "toolResponse": "str",
+    "toolResultPreview": "str",
+    "tool_input": "dict",
+    "tool_name": "str",
+    "tool_response": "str",
+    "tool_use_id": "str",
+    "traceId": "str",
+    "transcriptPath": "str",
+    "transcript_path": "str",
+    "turnId": "str"
+  },
+  "observed_at_ns": 1787500714005333200,
+  "selected": {
+    "cwd": "F:\\Workspaces\\chinese-official-writing-skill\\output\\research-worktrees\\domestic-cli-hooks-v1615",
+    "hook_event_name": "PostToolUse",
+    "permission_mode": "plan",
+    "session_id": "sess_ebfac7bd-46ac-43e3-9324-f2a217424145",
+    "tool_name": "Skill"
+  },
+  "texts": {},
+  "tool_input_keys": [
+    "args",
+    "skill"
+  ],
+  "tool_response_type": "str"
+}
