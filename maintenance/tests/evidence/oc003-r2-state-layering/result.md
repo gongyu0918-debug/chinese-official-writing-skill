@@ -48,5 +48,6 @@ Ollama Candidate 使用“三组供应商初步报价”这一不够严谨的搭
 - `quick_validate.py chinese-official-writing`：`Skill is valid!`。
 - OC-003 语义与镜像测试加既有全镜像测试：3/3通过。
 - 新测试首跑因 `ROOT` 多取一层父目录产生2个 `FileNotFoundError`；既有镜像测试当时通过。提交说明已改为真实失败，随后单独修正路径并重跑3/3通过。
+- 合并前全量：`python -B -m unittest discover -s maintenance/tests -p "test_*.py"`，`Ran 692 tests in 83.089s`，`OK`。
 
 当前分支未合入 main、未 push、未创建 tag/Release、未上传平台。合入本地 main 后仍需运行一次合并门并把规格中的旧 `MINIMAL_SCOPE_REPAIR_REQUIRED` 回填为已完成、未发布。
