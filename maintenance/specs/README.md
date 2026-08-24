@@ -7,7 +7,7 @@
 | 文件 | 回答的问题 |
 | --- | --- |
 | [`requirements.md`](requirements.md) | 产品长期必须做到什么 |
-| [`roadmap.md`](roadmap.md) | 哪些已经完成、哪些 HOLD、下一步做什么 |
+| [`roadmap.md`](roadmap.md) | 哪些已经完成、哪些候选已拒绝或终止、哪些等待新反例、下一步做什么 |
 | [`coverage.md`](coverage.md) | 每项需求由什么产品文件、真实稿件和 Hook 证据覆盖 |
 | [`public-paid-sync.md`](public-paid-sync.md) | 公开 `main` 与付费提纲候选如何同步、哪些差异可以保留 |
 | [`../docs/待办.md`](../docs/待办.md) | 当前迭代的执行细目、环境限制和未闭环反例 |
@@ -18,7 +18,7 @@
 
 1. 新要求先归入一个稳定编号；同一机制的新表述补充到原编号，不重复建项。
 2. `requirements.md` 只写长期行为和验收场景，不写某次模型票数、临时路径或内部命令。
-3. `roadmap.md` 只使用 `DONE`、`IN_PROGRESS`、`HOLD`、`TERMINATED`、`TODO` 五种状态；`TERMINATED` 表示当前方向经多轮最小化仍有硬回退并已停止，环境失败与产品失败分开记录。
+3. `roadmap.md` 使用 `DONE`、`IN_PROGRESS`、`HOLD`、`REJECTED`、`TERMINATED`、`WAIT_NEW_COUNTEREXAMPLE`、`TODO`。`HOLD` 只表示仍有明确下一原子的活动候选；`REJECTED` 表示已测试候选不准入但不否定需求；`TERMINATED` 表示当前实现方向经多轮最小化仍有硬回退并停止；`WAIT_NEW_COUNTEREXAMPLE` 表示当前基线已覆盖已知场景，只有新的真实失败才重开。环境失败、产品失败和候选拒绝分开记录。
 4. `coverage.md` 必须区分：规则存在、真实写稿响应、同稿 Hook 修订、宿主在线生命周期、发行状态。任一列缺失时不得用另一列替代。
 5. 写作与 Hook 修稿能力先做最小候选和真实写稿；只有真实输出证明目标机制有效，才精修 coordinator、adapter、组装、镜像和回退测试。
 6. 宿主适配只有在该宿主协议文件或中央 coordinator 变化时才要求重跑在线生命周期。若宿主胶水与旧成功样本逐字相同，可用“官方协议同构 + 旧在线实证 + 当前共享能力在其他宿主在线验证 + 当前同稿复放”迁移证据，并明确未重跑。

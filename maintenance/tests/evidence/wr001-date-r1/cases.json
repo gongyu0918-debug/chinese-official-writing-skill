@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "reasoning_effort": "max",
+  "providers": {
+    "ollama": "ollama-cloud/deepseek-v4-flash:0731",
+    "alibaba2": "alibaba-token-plan-2/deepseek-v4-flash-0731",
+    "minimax": "minimax-cn/MiniMax-M3"
+  },
+  "arms": {
+    "baseline": "v1.6.15",
+    "candidate": "25627f7f5053bff088cf07d4814a0962d88e51c1"
+  },
+  "case": {
+    "id": "S2-ACTIVITY-NEWS",
+    "prompt": "2026年8月20日，星河市图书馆举办“书香伴成长”青少年阅读分享活动，48名学生参加。活动设置导读、分组讨论和阅读方法练习三个环节；45名学生完成练习，3名因提前离场未完成。现场回收意见卡46份，其中1名学生写道“学会了先列问题再读文章”。主办方尚未完成意见卡汇总，不掌握其余参与者的反馈。请以图书馆发布者视角起草一则活动新闻稿。不限定字数，只输出可直接使用的完整正文，不解释过程。"
+  }
+}
