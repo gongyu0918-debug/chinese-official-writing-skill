@@ -30,13 +30,14 @@
 - v1.6.6 GitHub 与 SkillHub.cn 发布回执见 [`release-1.6.6.md`](../tests/evidence/release-1.6.6.md)；ClawHub、Red SkillHub 及其他平台未在该轮上传。SkillHub 公开 latest 与签名已传播，Keen、Sanbu 安全报告均为 benign。
 - v1.6.7 GitHub、SkillHub.cn 与后续 ClawHub 无 Hook 包同步回执见 [`release-1.6.7.md`](../tests/evidence/release-1.6.7.md)。该版旧传播状态已由 v1.6.10 的 latest、签名和下载包闭环取代。
 - `OC-001/WR-018` 已用十二份官方稿件和五路三文种真实写稿校准结构、论证密度和合理推断；15稿中13稿硬通过、0稿功能性过薄，当前产品不增加统一字数门、固定模板或扩写流程。
+- `OC-003` 算力可研状态与程序边界已完成三路正向可研和三路最终反向复核：正向3/3保留条件性比较、技术指标、风险控制或运行验证建议，反向3/3删除材料外既定程序并停在材料原有未决状态。四个 canonical reference 与四套普通镜像已合入本地 `main@56474c5a`，状态为 `DONE_LOCAL_MAIN_NOT_RELEASED`；未进入 v1.6.15 tag 或三个公开平台。[R2结果](../tests/evidence/oc003-r2-state-layering/result.md)
 - `WR-020b2a/b2b/b2c` 已证明当前产品可以对已有讲话稿做点名搬移、点名删除和只审定位；b2b 的 Ollama 样本删除正确但正文包装失败，作为交付风险保留，不据此增加任务卡、段长门或 Hook。
 - v1.6.15 短稿诊断已完成五路30臂：未复现跨文种系统性偏短；活动新闻完整年份和个别 provider 的材料外扩写已拆成独立风险，不用“正文必须长于提示词”统一处理。
-- 本地付费候选 `codex/paid-outline-review@8f1d31fe` 已以当前 main 为祖先收敛 `OT-001`、`OT-001-composite`、`OT-002` 与 `RF-001`；三宿主47文件组装、698项全量和公开零文件检查通过。该状态为 `DONE_LOCAL_PAID_NO_RELEASE`，不反向进入公开版、不发布。
+- 本地付费候选 `codex/paid-outline-review` 收敛 `OT-001`、`OT-001-composite`、`OT-002` 与 `RF-001`；活动台账以“当前 main 是付费分支祖先”作为同步事实，不固化会在下一次同步后失效的 tip。三宿主47文件组装、698项全量和公开零文件检查通过。该状态为 `DONE_LOCAL_PAID_NO_RELEASE`，不反向进入公开版、不发布。
 
 ## IN_PROGRESS
 
-- `OC-003` 算力可研状态与程序边界候选已证明能减少“未决状态→既定程序”的真实外扩，但上一轮把条件性研究建议和运行验证也一并挡住，判准偏严。当前状态为 `ACCEPTED_RESEARCH_CANDIDATE / MINIMAL_SCOPE_REPAIR_REQUIRED`：只区分“已启动/已确定/必须履行”的状态升级与“建议/如后续实施/仍需明确”的一层条件性建议，再用三条有效路线做正负对照；不先合入产品。[重新裁定](../tests/evidence/post-v1615-backlog-recovery-r1/oc003-gate-readjudication.md)
+- 无。
 
 ## REJECTED
 
