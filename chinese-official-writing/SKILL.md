@@ -116,7 +116,7 @@ metadata:
 | `references/genre-checklist-report.md` | 按文种选读 | 报告、情况报告或情况说明需要常规或完整骨架、专项写法或细查文种功能和结构时直接读取；命中轻量卡且卡片能够覆盖任务时不重复读取。 |
 | `references/genre-checklist.md` | 按文种选读 | 通知、命令、公报、决议、议案、函、批复、公告、通告、公示、通报、纪要、讲话稿、述职等其他文种细查时。 |
 | `references/format-gbt9704.md` | 按格式选读 | 用户要求 GB/T 9704-2012、Word、docx、红头文件、发文字号、版头版记、附件、印章或版式时。 |
-| `references/ai-compute-docs.md` | 专项选读 | AI 算力、GPU/服务器租赁、模型服务、智算中心、成本比较、SLA、安全或验收等专项起草、改写和完整技术审查时读取；只审既有可研摘要且用户已点名完整性核对项时，先停在 `references/genre-checklist-feasibility-review.md`，不因出现上述术语自动加载本页，只有用户要求展开技术结构或现有技术主张含义不清时再读。普通文种仍按本表相应叶叠加。 |
+| `references/ai-compute-docs.md` | 专项选读 | AI 算力、GPU/服务器租赁、模型服务、智算中心、成本比较、SLA、安全或验收等专项起草、改写和完整技术审查时读取；只审既有可研摘要且用户已点名完整性核对项时，本轮停在 `references/genre-checklist-feasibility-review.md`，不因出现上述术语或点名技术指标等缺项转读本页。只有用户另行明确要求起草或改写技术结构、解释某一具体技术主张，或做完整技术审查时再读。普通文种仍按本表相应叶叠加。 |
 
 ## 脚本
 
