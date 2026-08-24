@@ -52,3 +52,5 @@
 R2 仍使用全新 `xai/grok-4.6` Codex CLI 会话和相同 Git 对象，只把执行范围收窄为12次以内只读命令、优先审差异和直接证据、禁止读取历史模型 verdict。推理强度由 `max` 降为 `high`，用于阻止工具循环，不改变硬问题、非阻断项或输出结构。
 
 R2 又因本机只读策略反复拒绝组合 Git/PowerShell 命令而超过12次尝试，主审停止并记 `TECH_INVALID_TOOL_POLICY_LOOP`。R3 不再授权模型调用工具：主进程把固定 Git 对象的精确差异、发布记录与直接证据通过 stdin 一次性提供给全新 Grok 4.6 会话；模型只审输入包并输出终判。输入包由只读 Git 和文件读取动态生成，不含 Kimi 输出或任何历史模型 verdict。
+
+R3 使用“参数 prompt + 管道 stdin”时，Codex CLI 0.144.6 显示读取 stdin，却没有把审查包加入模型上下文；Grok 只收到指令并正确拒绝终判，记 `TECH_INVALID_PACKET_NOT_DELIVERED`。R4 把指令与审查包合并后全部从 stdin 传入，不再同时提供参数 prompt；包内容和判准不变。
