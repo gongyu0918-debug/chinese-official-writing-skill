@@ -41,7 +41,7 @@ class StatusLedgerConsistencyTests(unittest.TestCase):
         self.assertIn("`v1.6.15` 已发布至 GitHub、SkillHub.cn 与 ClawHub", roadmap)
         self.assertNotIn("当前产品 tag 为 `v1.6.14", todo)
 
-    def test_oc003_is_registered_on_every_active_status_surface(self) -> None:
+    def test_oc003_is_closed_on_every_active_status_surface(self) -> None:
         for relative in (
             "maintenance/specs/requirements.md",
             "maintenance/specs/coverage.md",
@@ -55,11 +55,22 @@ class StatusLedgerConsistencyTests(unittest.TestCase):
         requirements = read("maintenance/specs/requirements.md")
         coverage_row = table_row(read("maintenance/specs/coverage.md"), "OC-003")
         self.assertIn("条件性研究或风险控制建议", requirements)
-        self.assertIn("MINIMAL_SCOPE_REPAIR_REQUIRED", coverage_row)
-        self.assertIn("公开 main 尚未包含候选规则", coverage_row)
+        self.assertIn("反向条件结论", requirements)
+        self.assertIn("DONE_LOCAL_MAIN_NOT_RELEASED", coverage_row)
+        self.assertIn("已合入本地 main", coverage_row)
+        self.assertIn("合成材料状态", coverage_row)
+        self.assertNotIn("MINIMAL_SCOPE_REPAIR_REQUIRED", coverage_row)
+        self.assertNotIn("公开 main 尚未包含候选规则", coverage_row)
         self.assertIn(
-            "oc003-gate-readjudication.md",
+            "oc003-r2-state-layering/result.md",
             read("maintenance/docs/evidence/README.md"),
+        )
+        roadmap = read("maintenance/specs/roadmap.md")
+        self.assertIn("`OC-003` 算力可研状态与程序边界已完成", section(roadmap, "DONE"))
+        self.assertNotIn("OC-003", section(roadmap, "IN_PROGRESS"))
+        self.assertRegex(
+            read("maintenance/docs/待办.md"),
+            r"(?m)^- \[x\] `OC-003`.*DONE_LOCAL_MAIN_NOT_RELEASED",
         )
 
     def test_rejected_prompt_atoms_are_not_left_as_active_hold(self) -> None:
@@ -117,7 +128,8 @@ class StatusLedgerConsistencyTests(unittest.TestCase):
         for item_id in ("OT-002", "OT-001-composite", "OT-001", "RF-001"):
             with self.subTest(item_id=item_id):
                 self.assertRegex(todo, rf"(?m)^- \[x\] `{re.escape(item_id)}`")
-        self.assertIn("codex/paid-outline-review@8f1d31fe", roadmap)
+        self.assertIn("`codex/paid-outline-review`", roadmap)
+        self.assertNotRegex(roadmap, r"codex/paid-outline-review@[0-9a-f]{8,40}")
         self.assertIn("DONE_LOCAL_PAID_NO_RELEASE", roadmap)
         self.assertNotIn("尚未实现的是结构化组合 coordinator 及其真实 Stop 生命周期", roadmap)
 
