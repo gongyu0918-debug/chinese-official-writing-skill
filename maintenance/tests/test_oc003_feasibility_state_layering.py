@@ -39,8 +39,9 @@ class FeasibilityStateLayeringTests(unittest.TestCase):
         ai_compute = (CANONICAL / REFERENCES[0]).read_text(encoding="utf-8")
         review = (CANONICAL / REFERENCES[2]).read_text(encoding="utf-8")
 
-        self.assertIn("先停在 `references/genre-checklist-feasibility-review.md`", skill)
-        self.assertIn("不因出现上述术语自动加载本页", skill)
+        self.assertIn("本轮停在 `references/genre-checklist-feasibility-review.md`", skill)
+        self.assertIn("不因出现上述术语或点名技术指标等缺项转读本页", skill)
+        self.assertIn("解释某一具体技术主张", skill)
         self.assertIn("不自动叠加通用审稿页或去 AI 味页", skill)
         self.assertIn("不是只审既有摘要时的默认缺项清单", ai_compute)
         self.assertIn("只指出点名缺项及需补充的材料类别", ai_compute)
