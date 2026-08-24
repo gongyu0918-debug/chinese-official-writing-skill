@@ -16,7 +16,7 @@
 | --- | --- |
 | `python -B maintenance/tools/sync_adapters.py` | 四套普通镜像同步；随后工作树无漂移。 |
 | `python -B -m unittest maintenance.tests.test_description_news_trigger maintenance.tests.test_skill_boundary maintenance.tests.test_real_prompt_ablation -q` | 89/89 OK。 |
-| `python -B C:\Users\admin\.codex\skills\.system\skill-creator\scripts\quick_validate.py chinese-official-writing` | `Skill is valid!` |
+| `python -B <skill-creator>/scripts/quick_validate.py chinese-official-writing` | `Skill is valid!` |
 | `python -B -m unittest discover -s maintenance/tests -p 'test_*.py' -q` | 674/674 OK，60.307秒。 |
 | `git diff --check` | PASS。 |
 | `git status --porcelain=v1` | 空。 |

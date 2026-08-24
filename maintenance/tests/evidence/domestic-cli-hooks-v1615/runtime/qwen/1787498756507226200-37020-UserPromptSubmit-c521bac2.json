@@ -25,7 +25,7 @@
   },
   "observed_at_ns": 1787498756506981500,
   "selected": {
-    "cwd": "F:\\Workspaces\\chinese-official-writing-skill\\output\\research-worktrees\\domestic-cli-hooks-v1615",
+    "cwd": "<REPO_ROOT>",
     "hook_event_name": "UserPromptSubmit",
     "session_id": "6485df89-fed4-474b-bf92-8f957d255b7e"
   },

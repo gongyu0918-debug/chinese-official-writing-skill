@@ -26,7 +26,7 @@
   "observed_at_ns": 1787498544518164900,
   "selected": {
     "client_type": "kimi_code_cli",
-    "cwd": "F:\\Workspaces\\chinese-official-writing-skill\\output\\research-worktrees\\domestic-cli-hooks-v1615",
+    "cwd": "<REPO_ROOT>",
     "hook_event_name": "UserPromptSubmit",
     "session_id": "session_12952acf-9aef-440b-b874-2d1583b35c75"
   },

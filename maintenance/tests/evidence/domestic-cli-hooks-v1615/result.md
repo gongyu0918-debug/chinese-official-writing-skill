@@ -78,7 +78,7 @@ ZCode 专用 companion 最终正文：
 ```powershell
 qwen --version
 kimi --version
-node C:\Users\admin\AppData\Roaming\npm\node_modules\zcode-app-cli\vendor\zcode.cjs version
+node <zcode-cli-entry> version
 ocx --version
 ocx models
 npm list -g --depth=0 @qwen-code/qwen-code @moonshot-ai/kimi-code zcode-app-cli @bitkyc08/opencodex
@@ -93,14 +93,14 @@ ocx export --client zcode --json
 
 ```powershell
 py -3 maintenance/tools/assemble_hook_companion.py --host zcode --output output/domestic-cli-hooks-v1615/zcode-native-companion --capability delivery_cleanliness
-node C:\Users\admin\AppData\Roaming\npm\node_modules\zcode-app-cli\vendor\zcode.cjs plugins list
-node C:\Users\admin\AppData\Roaming\npm\node_modules\zcode-app-cli\vendor\zcode.cjs --prompt $zcodePrompt --mode plan --surface terminal
+node <zcode-cli-entry> plugins list
+node <zcode-cli-entry> --prompt $zcodePrompt --mode plan --surface terminal
 ```
 
 失败且保留的命令形态：
 
 ```powershell
-node C:\Users\admin\AppData\Roaming\npm\node_modules\zcode-app-cli\vendor\zcode.cjs --prompt $zcodePrompt --mode plan --max-turns 8 --allowed-tools "Skill,Read,Glob,Grep" --disallowed-tools "Bash,Edit,Write,WebFetch,WebSearch,Agent" --surface terminal
+node <zcode-cli-entry> --prompt $zcodePrompt --mode plan --max-turns 8 --allowed-tools "Skill,Read,Glob,Grep" --disallowed-tools "Bash,Edit,Write,WebFetch,WebSearch,Agent" --surface terminal
 ```
 
 结果：退出码1，`Unknown option '--max-turns'`；没有模型调用。

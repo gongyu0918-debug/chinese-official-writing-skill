@@ -29,7 +29,7 @@ def run_with_opencodex(command, *args, **kwargs):
             "-c",
             'openai_base_url="http://127.0.0.1:10100/v1"',
             "-c",
-            'model_catalog_json="C:/Users/admin/.codex/opencodex-catalog.json"',
+            f'model_catalog_json="{(Path.home() / ".codex/opencodex-catalog.json").as_posix()}"',
         ]
     return real_run(command, *args, **kwargs)
 

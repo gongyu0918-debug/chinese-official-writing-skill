@@ -17,8 +17,8 @@ CASES_PATH = HERE / "cases.json"
 SOURCE_SKILL = REPO / "chinese-official-writing"
 OUTPUT_ROOT = REPO / "output" / "mt005c-codex-cli-20260822"
 USER_SKILLS = (
-    Path("C:/Users/admin/.agents/skills/chinese-official-writing/SKILL.md"),
-    Path("C:/Users/admin/.codex/skills/chinese-official-writing/SKILL.md"),
+    Path.home() / ".agents/skills/chinese-official-writing/SKILL.md",
+    Path.home() / ".codex/skills/chinese-official-writing/SKILL.md",
 )
 RELATIVE_SKILL_PATH = ".agents/skills/chinese-official-writing/skill.md"
 

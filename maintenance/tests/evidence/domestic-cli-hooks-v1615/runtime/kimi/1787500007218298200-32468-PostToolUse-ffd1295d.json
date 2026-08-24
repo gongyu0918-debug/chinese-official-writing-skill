@@ -30,7 +30,7 @@
   "observed_at_ns": 1787500007218086400,
   "selected": {
     "client_type": "kimi_code_cli",
-    "cwd": "F:\\Workspaces\\chinese-official-writing-skill\\output\\research-worktrees\\domestic-cli-hooks-v1615",
+    "cwd": "<REPO_ROOT>",
     "hook_event_name": "PostToolUse",
     "session_id": "session_9e7bd328-4208-434c-95bd-7d898aea20a5",
     "tool_name": "Read"
