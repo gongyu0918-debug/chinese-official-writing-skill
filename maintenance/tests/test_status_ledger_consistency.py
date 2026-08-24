@@ -30,11 +30,14 @@ def section(text: str, heading: str) -> str:
 
 class StatusLedgerConsistencyTests(unittest.TestCase):
     def test_current_public_release_is_v1615(self) -> None:
+        public_readme = read("README.md")
         todo = read("maintenance/docs/待办.md")
         roadmap = read("maintenance/specs/roadmap.md")
 
         self.assertIn("当前产品 tag 为 `v1.6.15^{commit}=762b84d4", todo)
         self.assertIn("`release-1.6.15.md`", todo)
+        self.assertIn("## v1.6.14 起已发布状态与后续研究", todo)
+        self.assertNotIn("候选均保持 HOLD", public_readme)
         self.assertIn("`v1.6.15` 已发布至 GitHub、SkillHub.cn 与 ClawHub", roadmap)
         self.assertNotIn("当前产品 tag 为 `v1.6.14", todo)
 
@@ -107,7 +110,7 @@ class StatusLedgerConsistencyTests(unittest.TestCase):
         todo = read("maintenance/docs/待办.md")
         roadmap = read("maintenance/specs/roadmap.md")
 
-        self.assertIn("LOCAL_PAID_DONE_NO_RELEASE", table_row(coverage, "OT-001"))
+        self.assertIn("DONE_LOCAL_PAID_NO_RELEASE", table_row(coverage, "OT-001"))
         self.assertIn("DONE_CODEBUDDY_ONE_SAMPLE", table_row(coverage, "OT-001-composite"))
         self.assertIn("CLOSED_BY_EXISTING_PLANNER", table_row(coverage, "OT-002"))
         self.assertIn("PAID_PRODUCT_PASS_FONT_FALLBACK", table_row(coverage, "RF-001"))
@@ -115,6 +118,7 @@ class StatusLedgerConsistencyTests(unittest.TestCase):
             with self.subTest(item_id=item_id):
                 self.assertRegex(todo, rf"(?m)^- \[x\] `{re.escape(item_id)}`")
         self.assertIn("codex/paid-outline-review@8f1d31fe", roadmap)
+        self.assertIn("DONE_LOCAL_PAID_NO_RELEASE", roadmap)
         self.assertNotIn("尚未实现的是结构化组合 coordinator 及其真实 Stop 生命周期", roadmap)
 
 
