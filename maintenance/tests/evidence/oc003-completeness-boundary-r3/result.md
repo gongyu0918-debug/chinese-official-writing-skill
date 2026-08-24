@@ -77,4 +77,8 @@ OpenCode Go DeepSeek V4 Flash 在 current main 与候选上使用同一 `natural
 - 新增确定性测试覆盖专项只审直达、长页不自动加载、允许的类别分析和四镜像一致性；
 - 没有新增 Hook、coordinator、adapter、自动测算、厂商数量门、指标阈值门或段长门。
 
-准备合并前仍需完成五提交暂停复核、全量 unittest、快速校验、链接检查和 `git diff --check`。合并、push、tag、Release 和三平台发布是不同授权；本结果只允许本地 main 集成，不授权推送或发布。
+五提交暂停复核、固定 main 差异检查和同模型消融未发现范围外产品变更。镜像同步二次运行保持工作树干净；快速校验为 `Skill is valid!`，状态/链接/专项路由和镜像相关检查均通过，`git diff --check` 只有 Windows 行尾提示。
+
+全量首跑实际为 `Ran 693 tests in 81.457s`、2项失败：两条旧测试仍断言 AI 算力“专项直接读取”，与新路由文案不一致。产品未回退；只更新 `test_skill_boundary.py` 的过时断言后，该文件78/78通过，全量复跑 `Ran 693 tests in 85.737s`、`OK`。
+
+合并、push、tag、Release 和三平台发布是不同授权；本结果只允许本地 main 集成，不授权推送或发布。
