@@ -34,6 +34,19 @@ class FeasibilityStateLayeringTests(unittest.TestCase):
         self.assertIn("不改成“不具备”或“暂不具备”条件", review)
         self.assertIn("只以条件态提出研究建议，不写成既定流程", workflow)
 
+    def test_named_completeness_review_stops_before_option_library(self) -> None:
+        skill = (CANONICAL / "SKILL.md").read_text(encoding="utf-8")
+        ai_compute = (CANONICAL / REFERENCES[0]).read_text(encoding="utf-8")
+        review = (CANONICAL / REFERENCES[2]).read_text(encoding="utf-8")
+
+        self.assertIn("先停在 `references/genre-checklist-feasibility-review.md`", skill)
+        self.assertIn("不因出现上述术语自动加载本页", skill)
+        self.assertIn("不是只审既有摘要时的默认缺项清单", ai_compute)
+        self.assertIn("只指出点名缺项及需补充的材料类别", ai_compute)
+        self.assertIn("由现有事实直接支持的研究、风险控制或验证意见", review)
+        self.assertIn("需补充的材料类别", review)
+        self.assertIn("不代填具体厂商数量", review)
+
     def test_four_public_mirrors_match_the_canonical_references(self) -> None:
         for relative in REFERENCES:
             canonical = (CANONICAL / relative).read_bytes()
