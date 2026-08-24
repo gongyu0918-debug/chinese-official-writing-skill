@@ -20,6 +20,7 @@ USER_SKILLS = (
     Path("C:/Users/admin/.agents/skills/chinese-official-writing/SKILL.md"),
     Path("C:/Users/admin/.codex/skills/chinese-official-writing/SKILL.md"),
 )
+RELATIVE_SKILL_PATH = ".agents/skills/chinese-official-writing/skill.md"
 
 
 def sha256(path: Path) -> str:
@@ -100,6 +101,14 @@ def normalize_trace(text: str) -> str:
             if isinstance(command, str):
                 commands.append(command)
     return re.sub(r"/+", "/", "\n".join(commands).replace("\\", "/")).casefold()
+
+
+def exact_skill_seen(normalized_trace: str, exact_skill: Path) -> bool:
+    """Accept both absolute and cwd-relative reads of the isolated Skill."""
+    return (
+        exact_skill.as_posix().casefold() in normalized_trace
+        or RELATIVE_SKILL_PATH in normalized_trace
+    )
 
 
 def trace_usage(text: str) -> dict:
@@ -191,7 +200,7 @@ def run_one(cases: dict, case: dict, arm: str, root: Path) -> dict:
     stderr_path.write_text(stderr, encoding="utf-8", newline="\n")
     final = final_path.read_text(encoding="utf-8", errors="replace") if final_path.is_file() else ""
     normalized = normalize_trace(stdout)
-    exact_seen = exact_skill.as_posix().casefold() in normalized
+    exact_seen = exact_skill_seen(normalized, exact_skill)
     global_seen = [path.as_posix() for path in USER_SKILLS if path.as_posix().casefold() in normalized]
     technical: list[str] = []
     if return_code != 0:
@@ -242,7 +251,7 @@ def reanalyze_one(cases: dict, case: dict, arm: str, root: Path, previous: dict)
     trace = trace_path.read_text(encoding="utf-8", errors="replace") if trace_path.is_file() else ""
     normalized = normalize_trace(trace)
     exact_skill = root / ".agents/skills/chinese-official-writing/SKILL.md"
-    exact_seen = exact_skill.as_posix().casefold() in normalized
+    exact_seen = exact_skill_seen(normalized, exact_skill)
     global_seen = [path.as_posix() for path in USER_SKILLS if path.as_posix().casefold() in normalized]
     technical: list[str] = []
     return_code = previous.get("return_code")

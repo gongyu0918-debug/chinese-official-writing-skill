@@ -46,7 +46,7 @@
 | `MT-002` 可达性 | SKILL、说明、组装器、维护索引 | 不适用 | [当前审计](../tests/evidence/post-v1610-maintenance-reachability-audit-20260819.md)：28脚本、21 CLI、189非入口 Markdown、195活动链接文档均零孤儿或失效入口 | 当前轮已覆盖并固化回归；冻结历史 evidence 旧路径不回写 |
 | `MT-003` 公开面克制 | 根 README、维护索引 | 最近五次主要证据 | 内部 HOLD 不进入产品宣传 | 持续项 |
 | `MT-004` 信息熵与重复规则 | SKILL/reference 路由与叶子停止条件 | 12组真实读取；24次组合写稿 | 不属于 Hook | `OBSERVE`；已扫描重复，尚无真实稿回退，不为去重破坏叶子自包含 |
-| `MT-005` Description 入口减载 | canonical 与四套镜像保持已发布204字；通过项依次删除负向句、新闻细项、重复“征求意见函”和被“公告”覆盖的“采购公告” | [b6/b6a 20次真实调用](../tests/evidence/post-v1614-writing-quality-r1/mt005b6-result.md)：19字制度伞词和5字“管理办法”删除均保持触发/边界，但分别出现材料外依据、职责或责任归属；逐字机械判据已校准 | Codex CLI 0.144.6 同体隔离，合计1,968,715输入token；不以节省字数覆盖稿件风险 | `204_CHAR_BASELINE_RETAINED`；b6/b6a 已拒绝而非继续HOLD；下一原子只能单测“实施细则→细则”，不与规程合并 |
+| `MT-005` Description 入口减载 | canonical 与四套镜像的本地候选为202字；通过项依次删除负向句、新闻细项、重复“征求意见函”、被“公告”覆盖的“采购公告”，并将“实施细则”并入“细则” | [b6/b6a 20次真实调用](../tests/evidence/post-v1614-writing-quality-r1/mt005b6-result.md)拒绝19字伞词和5字删除；[b6b R1/R2](../tests/evidence/mt005b6b-description-atom/r2-result.md)正向4/4触发且安全、私人边界2/2不触发 | b6b 使用 Codex CLI 0.144.6 同体隔离，354,708输入token；只接受两字原子，不以节省覆盖稿件风险 | `LOCAL_CANDIDATE_202_CHARS`；b6/b6a 已拒绝，b6b 已通过并提交，尚未合入 main、推送或发布 |
 
 ## 当前语义层收束
 
