@@ -1,0 +1,41 @@
+{
+  "name": "chinese-official-writing-gate",
+  "version": "1.6.14",
+  "description": "中文公文写作 Skill 的可选 Kimi Code CLI companion，提供一次有界交付门禁。",
+  "author": {
+    "name": "gongyu0918-debug"
+  },
+  "homepage": "https://github.com/gongyu0918-debug/chinese-official-writing-skill",
+  "license": "MIT",
+  "keywords": [
+    "chinese",
+    "official-writing",
+    "skill"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "中文公文写作交付门禁",
+    "shortDescription": "中文正式材料的可选写后交付检查",
+    "longDescription": "随中文公文写作 Skill 提供原生 Kimi plugin Hook，在当前会话内绑定请求、读取包内 Skill 和核对末次成稿。",
+    "developerName": "gongyu0918-debug",
+    "websiteURL": "https://github.com/gongyu0918-debug/chinese-official-writing-skill"
+  },
+  "hooks": [
+    {
+      "event": "UserPromptSubmit",
+      "command": "py -3 ./scripts/gate_stop_hook.py",
+      "timeout": 10
+    },
+    {
+      "event": "PostToolUse",
+      "matcher": "^(Skill|Read|ReadFile|Bash)$",
+      "command": "py -3 ./scripts/gate_stop_hook.py",
+      "timeout": 10
+    },
+    {
+      "event": "Stop",
+      "command": "py -3 ./scripts/gate_stop_hook.py",
+      "timeout": 30
+    }
+  ]
+}
