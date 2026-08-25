@@ -71,4 +71,4 @@
 - 官方检索：`site:gov.cn` 的持续动作、资源紧张采购、局部未发生及“已完成/未附佐证”定向查询；实际采用来源和用途见 `research.md`。
 - 没有使用Grok、SOL、Kimi或Qwen承担普通写稿；没有电脑控制，没有push、tag、上传或发布。
 
-最终规格测试、链接检查、quick validate、五提交复核与清洁状态在本提交后的复核记录中补齐。
+最终规格测试、链接检查、quick validate、baseline diff、轻量消融、独立冷审与清洁状态见 [`five-commit-review.md`](five-commit-review.md)。
