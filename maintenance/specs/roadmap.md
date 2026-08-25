@@ -32,6 +32,7 @@
 - v1.6.7 GitHub、SkillHub.cn 与后续 ClawHub 无 Hook 包同步回执见 [`release-1.6.7.md`](../tests/evidence/release-1.6.7.md)。该版旧传播状态已由 v1.6.10 的 latest、签名和下载包闭环取代。
 - `OC-001/WR-018` 已用十二份官方稿件和五路三文种真实写稿校准结构、论证密度和合理推断；15稿中13稿硬通过、0稿功能性过薄，当前产品不增加统一字数门、固定模板或扩写流程。
 - `OC-003` 算力可研状态与程序边界已完成，点名完整性审稿也已收口：R2 完成状态分层；R3 最终五个便宜 provider 5/5只读入口与可研叶，仍完整核算数据、解释缺项影响并覆盖成本、技术指标、验收主体与依据。R3 已随 v1.6.16 发布，状态为 `DONE_V1.6.16`，不新增 Hook、程序模板或数值阈值门。[R2](../tests/evidence/oc003-r2-state-layering/result.md) [R3](../tests/evidence/oc003-completeness-boundary-r3/result.md)
+- `OC-003` 发布后状态谓语泛化原子完成36次有效复核/改稿：直接前提缺口可支持同对象低强度条件判断，但产品例示跨模型不稳定；最终纯范围候选又在 MiniMax 同题 baseline 通过时独有地把“未安排/未指定”外扩为“尚待研究确定”。条件例示记 `REJECTED`、泛化方向记 `TERMINATED`，产品已恢复 v1.6.16 原文，不留 `HOLD`。[结果](../tests/evidence/oc003-state-predicate-general-r1/result.md)
 - `WR-014-R5` 已用总体已决/局部未定、整体未决明示、采购进行中三题核对“尚未形成采购决定”的状态层级；四个范围有效样本的目标层级4/4通过，其中两稿另有输出形状或材料外事实硬失败。当前产品对本目标足够，不增加禁词、reference或Hook；官方语料只用于校准具体阶段和对象的承载方式。[结果](../tests/evidence/wr014-r5-procurement-state-scope/result.md)
 - `WR-020b2a/b2b/b2c` 已证明当前产品可以对已有讲话稿做点名搬移、点名删除和只审定位；b2b 的 Ollama 样本删除正确但正文包装失败，作为交付风险保留，不据此增加任务卡、段长门或 Hook。
 - v1.6.15 短稿诊断已完成五路30臂：未复现跨文种系统性偏短；活动新闻完整年份和个别 provider 的材料外扩写已拆成独立风险，不用“正文必须长于提示词”统一处理。
