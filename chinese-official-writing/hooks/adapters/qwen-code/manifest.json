@@ -1,6 +1,6 @@
 {
   "name": "chinese-official-writing-gate",
-  "version": "1.6.15",
+  "version": "1.6.16",
   "displayName": "中文公文写作交付门禁",
   "description": "中文公文写作 Skill 的可选 Qwen Code companion，提供一次有界交付门禁。",
   "author": {
