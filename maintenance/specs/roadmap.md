@@ -19,7 +19,8 @@
 - `WR-008` 标题与正文边界：真实生成、同稿修复和自然路由通过，随 `v1.6.10@af12b771` 发布。
 - `WR-009` 文后提示与正文分区：真实同题稿验证正文外独立分区，随 `v1.6.10@af12b771` 发布。
 - `AH-001` 共享硬锚：引用、数字、字段及归属关系保护已接入篇幅不足和超长收束，真实修订与三方冷审通过，随 `v1.6.10@af12b771` 发布。
-- `v1.6.15` 已发布至 GitHub、SkillHub.cn 与 ClawHub；产品 tag 指向 `762b84d4`，ClawHub 为33文件无 Hook 包。国产 CLI Hook adapter、`MT-005b6b`、`HK-008b`、`WR-014-R4`、`WR-019c/019d` 及更早已通过原子均已进入本版，v1.6.14 及更早公开状态已被取代。
+- `v1.6.16` 已发布至 GitHub、SkillHub.cn 与 ClawHub；产品 tag 指向 `f6293aaa`，ClawHub 为33文件无 Hook 包。`OC-003` 已进入本版；SkillHub 与 ClawHub 的首次公开索引回读短暂显示1.6.15，后续 latest 均已传播为1.6.16，ClawHub 精确版本文件和安全状态已闭环，期间未重复上传。
+- `v1.6.15` 已发布至 GitHub、SkillHub.cn 与 ClawHub；产品 tag 指向 `762b84d4`，ClawHub 为33文件无 Hook 包。国产 CLI Hook adapter、`MT-005b6b`、`HK-008b`、`WR-014-R4`、`WR-019c/019d` 及更早已通过原子均已进入发布历史。
 - `OV-001` 语义判定校准与 sentence-target、`HK-008` 终态脱敏、`WR-014-R3` 能力/计划状态锚已随 v1.6.14 发布；Hook 默认关闭和按单能力窄启用不变。
 - `WR-013` 一般原因、即时作用与发布者角色边界已完成五路真实写稿、入口冲突消融和非新闻控制，并随 v1.6.13 发布。
 - `WR-011` 新闻声明级核验已把机构性质、来源身份/原始出处和限定来源结论拆成三个原子；R3 三轮25稿后五路最终候选5/5守住目标边界，最小新闻叶及四套镜像已随 v1.6.13 发布。
@@ -30,7 +31,7 @@
 - v1.6.6 GitHub 与 SkillHub.cn 发布回执见 [`release-1.6.6.md`](../tests/evidence/release-1.6.6.md)；ClawHub、Red SkillHub 及其他平台未在该轮上传。SkillHub 公开 latest 与签名已传播，Keen、Sanbu 安全报告均为 benign。
 - v1.6.7 GitHub、SkillHub.cn 与后续 ClawHub 无 Hook 包同步回执见 [`release-1.6.7.md`](../tests/evidence/release-1.6.7.md)。该版旧传播状态已由 v1.6.10 的 latest、签名和下载包闭环取代。
 - `OC-001/WR-018` 已用十二份官方稿件和五路三文种真实写稿校准结构、论证密度和合理推断；15稿中13稿硬通过、0稿功能性过薄，当前产品不增加统一字数门、固定模板或扩写流程。
-- `OC-003` 算力可研状态与程序边界已完成，点名完整性审稿也已收口：R2 完成状态分层；R3 最终五个便宜 provider 5/5只读入口与可研叶，仍完整核算数据、解释缺项影响并覆盖成本、技术指标、验收主体与依据。R3 已合入本地 `main@68eaf5ba`，状态为 `DONE_LOCAL_MAIN_NOT_RELEASED`，不含 Hook 或版本变更，未 push 或发布。[R2](../tests/evidence/oc003-r2-state-layering/result.md) [R3](../tests/evidence/oc003-completeness-boundary-r3/result.md)
+- `OC-003` 算力可研状态与程序边界已完成，点名完整性审稿也已收口：R2 完成状态分层；R3 最终五个便宜 provider 5/5只读入口与可研叶，仍完整核算数据、解释缺项影响并覆盖成本、技术指标、验收主体与依据。R3 已随 v1.6.16 发布，状态为 `DONE_V1.6.16`，不新增 Hook、程序模板或数值阈值门。[R2](../tests/evidence/oc003-r2-state-layering/result.md) [R3](../tests/evidence/oc003-completeness-boundary-r3/result.md)
 - `WR-014-R5` 已用总体已决/局部未定、整体未决明示、采购进行中三题核对“尚未形成采购决定”的状态层级；四个范围有效样本的目标层级4/4通过，其中两稿另有输出形状或材料外事实硬失败。当前产品对本目标足够，不增加禁词、reference或Hook；官方语料只用于校准具体阶段和对象的承载方式。[结果](../tests/evidence/wr014-r5-procurement-state-scope/result.md)
 - `WR-020b2a/b2b/b2c` 已证明当前产品可以对已有讲话稿做点名搬移、点名删除和只审定位；b2b 的 Ollama 样本删除正确但正文包装失败，作为交付风险保留，不据此增加任务卡、段长门或 Hook。
 - v1.6.15 短稿诊断已完成五路30臂：未复现跨文种系统性偏短；活动新闻完整年份和个别 provider 的材料外扩写已拆成独立风险，不用“正文必须长于提示词”统一处理。
@@ -53,7 +54,7 @@
 - 旧 `length-band-hook-v162`、`under-length-hook-v162-v2`、`v163-protective-expansion-gate` 已被后续正式能力或新原子取代，旧实现方向终止，不复活旧准入结论。
 - `SB-001` 章节均衡提示词/路由：R3.1—R3.5 已依次尝试语义叶、路由减载、底稿形态触发、过程隔离和近场卡。虽有多路精确搬移，但最终仍出现 Alibaba 章节/整稿重复、未决状态改写和无关残片，OpenCode 另有一次只承诺交付而未交稿；产品改动不合入，不再向第三处堆规则。[结果](../tests/evidence/sb001-r3-subject-preserving-result.md)
 - 联网严格“一次补搜”的纯提示词方向：R2f—R2h 已两次按失败增加最小停止语义，15稿中12稿精确一次；超额调用在 Luna、Ollama 间转移，说明不能靠继续叠字形成确定性门。产品保留有限补搜写作规则；除非出现值得付出工程复杂度的新宿主级机制，不再追加提示词。[结果](../tests/evidence/online-source-use-r2h-result-20260822.md)
-- `WR-001-DATE` 新闻完整日期重复提示：R1独立 bullet 和R2合并短句均提升年份命中，但 Ollama 两轮仍补材料外活动过程，未形成稳定净收益；产品已恢复v1.6.15。完整年份遗漏保留为真实风险，只有出现不同机制和新反例才重开。[R1](../tests/evidence/wr001-date-r1/r1-result.md) [R2](../tests/evidence/wr001-date-r1/r2-result.md)
+- `WR-001-DATE` 新闻完整日期重复提示：R1独立 bullet 和R2合并短句均提升年份命中，但 Ollama 两轮仍补材料外活动过程，未形成稳定净收益；产品未采用该候选并保持已发布基线。完整年份遗漏保留为真实风险，只有出现不同机制和新反例才重开。[R1](../tests/evidence/wr001-date-r1/r1-result.md) [R2](../tests/evidence/wr001-date-r1/r2-result.md)
 
 ## WAIT_NEW_COUNTEREXAMPLE
 
