@@ -12,6 +12,7 @@
 
 ## 逐版发布证据
 
+- v1.6.16 的本地候选范围、OC-003 真实写稿依据、版本面、测试和两类平台包预检见 [`release-1.6.16-rc.md`](../../tests/evidence/release-1.6.16-rc.md)。正式三平台回执完成前，本记录不表示已经发布。
 - v1.6.15 的 GitHub、SkillHub.cn 与 ClawHub 发布回执见 [`release-1.6.15.md`](../../tests/evidence/release-1.6.15.md)；本地候选范围、真实写稿依据、测试、清洁包和 dry-run 记录见 [`release-1.6.15-rc.md`](../../tests/evidence/release-1.6.15-rc.md)。
 - v1.6.14 的 GitHub、SkillHub.cn 与 ClawHub 发布回执见 [`release-1.6.14.md`](../../tests/evidence/release-1.6.14.md)；本地候选范围、真实写稿依据、测试、清洁包和 dry-run 记录见 [`release-1.6.14-rc.md`](../../tests/evidence/release-1.6.14-rc.md)。
 - v1.6.13 的 GitHub、SkillHub.cn 与 ClawHub 发布回执见 [`release-1.6.13.md`](../../tests/evidence/release-1.6.13.md)；本地候选范围、真实写稿依据、测试、清洁包和 dry-run 记录见 [`release-1.6.13-rc.md`](../../tests/evidence/release-1.6.13-rc.md)。

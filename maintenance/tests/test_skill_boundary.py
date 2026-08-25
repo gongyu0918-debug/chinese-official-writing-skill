@@ -18,8 +18,8 @@ OPTIONAL_GATE_FILES = {
     "scripts/review_gate.py",
 }
 SKILLHUB_CLEAN_PACKAGE_EXCLUDES = {"agents/openai.yaml", "LICENSE"}
-CURRENT_VERSION = "1.6.15"
-PUBLISHED_VERSION = "1.6.15"
+CURRENT_VERSION = "1.6.16"
+PUBLISHED_VERSION = "1.6.16"
 
 
 def relative_files(root: Path) -> list[str]:
@@ -937,7 +937,7 @@ class SkillBoundaryTests(unittest.TestCase):
     def test_openclaw_bundle_readme_is_current_and_contains_no_publish_command(self) -> None:
         readme = (ROOT / "packages" / "openclaw" / "README.md").read_text(encoding="utf-8")
 
-        self.assertIn("当前 GitHub 版本为 `1.6.15`", readme)
+        self.assertIn("当前 GitHub 版本为 `1.6.16`", readme)
         self.assertIn("MIT", readme)
         self.assertIn(r"python .\maintenance\tools\sync_adapters.py", readme)
         self.assertIn("packages/openclaw/", readme)
@@ -2012,14 +2012,17 @@ class SkillBoundaryTests(unittest.TestCase):
 
         for term in [
             "下表只保留最近 5 次版本验证",
+            "1.6.16 算力可研状态与点名完整性审查",
             "1.6.15 国产 CLI Hook、状态精修与入口减载",
             "1.6.14 超长判定、状态锚与终态脱敏",
             "1.6.13 事实边界与有限联网",
             "1.6.12 触发描述原子减载",
-            "1.6.11 状态责任与共享硬锚边界",
             "明川市政务服务中心服务事项信息变更管理办法（试行）",
+            "release-1.6.16-rc.md",
+            "oc003-completeness-boundary-r3/result.md",
+            "oc003-r2-state-layering/result.md",
+            "release-1.6.15.md",
             "release-1.6.15-rc.md",
-            "release-1.6.14.md",
             "新闻与评论写作",
             "maintenance/tests/evidence",
             "maintenance/docs/evidence/README.md",
