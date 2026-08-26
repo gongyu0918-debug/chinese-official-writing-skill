@@ -1,6 +1,6 @@
 # 中文公文写作 Skill
 
-[![Version](https://img.shields.io/badge/version-1.6.16-blue)](https://github.com/gongyu0918-debug/chinese-official-writing-skill/releases/tag/v1.6.16)
+[![Version](https://img.shields.io/badge/version-1.6.17-blue)](https://github.com/gongyu0918-debug/chinese-official-writing-skill/releases/tag/v1.6.17)
 [![ClawHub](https://img.shields.io/badge/ClawHub-chinese--official--writing-2f80ed)](https://clawhub.ai/gongyu0918-debug/skills/chinese-official-writing)
 [![SkillHub](https://img.shields.io/badge/SkillHub-chinese--official--writing-e8590c)](https://skillhub.cn/skills/chinese-official-writing)
 [![SkillHub downloads: 50k+](https://img.shields.io/badge/SkillHub%20downloads-50k%2B-2f855a)](https://skillhub.cn/skills/chinese-official-writing)
@@ -66,7 +66,7 @@
 
 ## 快速安装
 
-当前 GitHub 发布版本：`chinese-official-writing@1.6.16`。
+当前 GitHub 发布版本：`chinese-official-writing@1.6.17`。
 
 平台入口：[ClawHub](https://clawhub.ai/gongyu0918-debug/skills/chinese-official-writing) · [skillhub.cn](https://skillhub.cn/skills/chinese-official-writing)。通用 Agent Skills 安装器可直接使用：
 
@@ -80,11 +80,11 @@ npx skills add https://github.com/gongyu0918-debug/chinese-official-writing-skil
 
 | 调试方向 | 主要稿件与边界 | 当前证据 |
 | --- | --- | --- |
+| 1.6.17 写稿稳定性与状态收口 | 分开验证持续动作、证据未附、短采购原因与影响、长报告结论范围；没有跨模型共同目标失败，不新增写作规则、Hook 或统一篇幅门 | `WR-014-R6/R6b`、`WR-013c`、`WR-020a2` 完成预登记真实写稿；Ollama 单家状态外推、长稿技术失效和无 Hook 直写包装作为残余风险保留 |
 | 1.6.16 算力可研状态与点名完整性审查 | 既有可研摘要的点名核对停在窄审查叶；允许核算已给数据、说明缺项影响并提出一层条件性研究意见，不把未决事项写成已启动程序或反向条件结论 | `OC-003` 先完成状态分层，再经五路真实审稿验证成本、技术指标、验收主体与依据四项均可达；公开版不增加程序模板、数值阈值或新 Hook |
 | 1.6.15 国产 CLI Hook、状态精修与入口减载 | ZCode、Qwen Code、Kimi Code CLI 使用独立原生适配；缺失指标不再被改写为待定计划；PUE/API 等核准译名与翻译式框架按窄边界处理；description 只把“实施细则”并入“细则” | Qwen 完成三 Stop/hash/脱敏闭环，ZCode 完成 D0/hash 闭环，Kimi 如实停在宿主单 Stop 边界；WR-014-R4、WR-019c/019d 和 MT-005b6b 均经真实改稿或写稿验证，失败原型未接入 |
 | 1.6.14 超长判定、状态锚与终态脱敏 | 超长收束只在事实、状态、主体、关系、结构或直接可用性存在具体风险时失败；重复删除限定为句子目标；“可”与“拟、计划、将”保持各自状态；Hook 终态移除原始事务数据 | `OV-001` 五路写稿、15/15语义判定、两次 CodeBuddy 生命周期和四方盲审通过；`WR-014-R3` 正反真实稿闭环；`HK-008` 完成 CodeBuddy 终态清理；`UL-005` 仅清理已完成状态残留 |
 | 1.6.13 事实边界与有限联网 | 允许材料和常识支持的一层原因、即时作用及发布者角色推断；区分来源身份、原始出处和限定来源结论；篇幅扩写按同一事实 span 约束新增信息；联网补搜只围绕已识别缺口并绑定实际打开页 | `WR-013`、`WR-011`、`UL-005` 和联网来源用途均经多路线真实写稿或真实生命周期闭环；严格工具调用次数仍不作提示词层确定性承诺 |
-| 1.6.12 触发描述原子减载 | 删除已被上位表述覆盖的负向句、新闻细项和重复文种别名，减少每次发现阶段加载的 description；制度、函件、讲话致辞和受众合并等出现真实稿硬回退的候选均未进入公开版 | 通过项逐个完成真实触发、非触发和写稿 A/B；五路线受众合并候选因自行补入年份撤回，公开包只包含已验证原子 |
 
 ### 制度正文示例
 
@@ -114,7 +114,7 @@ npx skills add https://github.com/gongyu0918-debug/chinese-official-writing-skil
 
 技能规则、references 和 scripts 在本仓库持续迭代，各平台技能目录由 canonical 包同步生成。规范与社区项目用于校验文种、流程形态和风险维度；具体规则经过复现、取舍和 A/B 后进入主线，Git 历史记录每次修改和验证。
 
-最近 5 份证据：[`release-1.6.16.md`](maintenance/tests/evidence/release-1.6.16.md) · [`release-1.6.16-rc.md`](maintenance/tests/evidence/release-1.6.16-rc.md) · [`oc003-completeness-boundary-r3/result.md`](maintenance/tests/evidence/oc003-completeness-boundary-r3/result.md) · [`oc003-r2-state-layering/result.md`](maintenance/tests/evidence/oc003-r2-state-layering/result.md) · [`release-1.6.15.md`](maintenance/tests/evidence/release-1.6.15.md)。完整记录见 [`maintenance/docs/evidence/README.md`](maintenance/docs/evidence/README.md)。
+最近 5 份证据：[`release-1.6.17-rc.md`](maintenance/tests/evidence/release-1.6.17-rc.md) · [`post-v1616-writing-stability-r1/result.md`](maintenance/tests/evidence/post-v1616-writing-stability-r1/result.md) · [`post-v1616-writing-stability-r1/five-commit-review.md`](maintenance/tests/evidence/post-v1616-writing-stability-r1/five-commit-review.md) · [`release-1.6.16.md`](maintenance/tests/evidence/release-1.6.16.md) · [`release-1.6.16-rc.md`](maintenance/tests/evidence/release-1.6.16-rc.md)。完整记录见 [`maintenance/docs/evidence/README.md`](maintenance/docs/evidence/README.md)。
 
 ## 目录结构
 
