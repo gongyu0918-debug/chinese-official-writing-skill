@@ -19,6 +19,7 @@
 - `WR-008` 标题与正文边界：真实生成、同稿修复和自然路由通过，随 `v1.6.10@af12b771` 发布。
 - `WR-009` 文后提示与正文分区：真实同题稿验证正文外独立分区，随 `v1.6.10@af12b771` 发布。
 - `AH-001` 共享硬锚：引用、数字、字段及归属关系保护已接入篇幅不足和超长收束，真实修订与三方冷审通过，随 `v1.6.10@af12b771` 发布。
+- `v1.6.17` 维护补丁已发布：产品 tag 指向 `7b457784`，GitHub、SkillHub.cn 与 ClawHub 公开 latest 均已闭环；ClawHub 精确33文件无 Hook 包与本地逐项一致，扫描为clean，期间未重复提交。公开写作规则和 Hook 协议相对 v1.6.16 不变。
 - `v1.6.16` 已发布至 GitHub、SkillHub.cn 与 ClawHub；产品 tag 指向 `f6293aaa`，ClawHub 为33文件无 Hook 包。`OC-003` 已进入本版；SkillHub 与 ClawHub 的首次公开索引回读短暂显示1.6.15，后续 latest 均已传播为1.6.16，ClawHub 精确版本文件和安全状态已闭环，期间未重复上传。
 - `v1.6.15` 已发布至 GitHub、SkillHub.cn 与 ClawHub；产品 tag 指向 `762b84d4`，ClawHub 为33文件无 Hook 包。国产 CLI Hook adapter、`MT-005b6b`、`HK-008b`、`WR-014-R4`、`WR-019c/019d` 及更早已通过原子均已进入发布历史。
 - `OV-001` 语义判定校准与 sentence-target、`HK-008` 终态脱敏、`WR-014-R3` 能力/计划状态锚已随 v1.6.14 发布；Hook 默认关闭和按单能力窄启用不变。

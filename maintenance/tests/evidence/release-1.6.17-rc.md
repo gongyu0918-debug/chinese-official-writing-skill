@@ -36,7 +36,7 @@
 - canonical、Agent Skills、Qwen Code、Hermes 四套 quick validation 均通过；136个 tracked Python 文件内存编译、142个 tracked JSON 文件解析通过。
 - `sync_adapters.py` 复跑前后 diff hash 均为 `8537fb8e03e14a39fcb53737ddac2f2c2e60fae9`，镜像同步幂等。
 - SkillHub.cn 清洁包71文件，本地文件树指纹 `2ef79003a0cd9d0343d30f94d9b95c1414d5ae9e71910449ca449b8383bf4a54`；含 `LICENSE.md`，不含 `agents/openai.yaml` 或付费实现路径。dry-run 返回 `slug=chinese-official-writing`、`version=1.6.17`。
-- ClawHub 包33文件，本地文件树指纹 `7c68fd98e77e9f9cb7f4abf6ff8e483b7eacc727eaaf4ce6b6475e9eb75cb50f`；Hook、`agents/openai.yaml`、付费提纲和红头实现路径命中均为0。结构 dry-run 返回 `would-publish`、展示名“中文公文写作”、版本1.6.17、33文件、平台 fingerprint `811cd3dac093d8639adbfd9ad84a1844f4710730c695194ba65e64c1900d5a30`；绑定产品提交的最终 dry-run 待候选 commit 生成后执行。
+- ClawHub 包33文件，本地文件树指纹 `7c68fd98e77e9f9cb7f4abf6ff8e483b7eacc727eaaf4ce6b6475e9eb75cb50f`；Hook、`agents/openai.yaml`、付费提纲和红头实现路径命中均为0。结构 dry-run 与绑定产品提交 `7b4577843d6d98e5583aa6615d813c1c82a56db3` 的最终 dry-run 均返回 `would-publish`、展示名“中文公文写作”、版本1.6.17、33文件、平台 fingerprint `811cd3dac093d8639adbfd9ad84a1844f4710730c695194ba65e64c1900d5a30`。
 - 本地指纹按相对 POSIX 路径排序，对每个文件依次写入 `path + NUL + bytes + NUL` 后计算 SHA-256；平台回执指纹单列，不与本地 Windows 检出字节混用。
 - `git diff --check` 与最终清洁状态在候选 commit 前复核；所有正式外部写入均尚未发生。
 

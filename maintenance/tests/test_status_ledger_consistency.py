@@ -29,16 +29,16 @@ def section(text: str, heading: str) -> str:
 
 
 class StatusLedgerConsistencyTests(unittest.TestCase):
-    def test_current_public_release_is_v1616(self) -> None:
+    def test_current_public_release_is_v1617(self) -> None:
         public_readme = read("README.md")
         todo = read("maintenance/docs/待办.md")
         roadmap = read("maintenance/specs/roadmap.md")
 
-        self.assertIn("当前产品 tag 为 `v1.6.16^{commit}=f6293aaa", todo)
-        self.assertIn("`release-1.6.16.md`", todo)
+        self.assertIn("当前产品 tag 为 `v1.6.17^{commit}=7b457784", todo)
+        self.assertIn("`release-1.6.17.md`", todo)
         self.assertIn("## v1.6.14 起已发布状态与后续研究", todo)
         self.assertNotIn("候选均保持 HOLD", public_readme)
-        self.assertIn("`v1.6.16` 已发布至 GitHub、SkillHub.cn 与 ClawHub", roadmap)
+        self.assertIn("`v1.6.17` 维护补丁已发布", roadmap)
         self.assertNotIn("当前产品 tag 为 `v1.6.15", todo)
 
     def test_oc003_is_closed_on_every_active_status_surface(self) -> None:
