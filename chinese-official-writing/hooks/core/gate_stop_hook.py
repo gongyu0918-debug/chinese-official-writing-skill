@@ -48,6 +48,14 @@ OVER_LENGTH_TERMINAL_PHASES = {
 DELIVERY_CLEANLINESS_CAPABILITY_NAME = "delivery_cleanliness"
 PROTECTIVE_CAPABILITY_ENV = "COW_GATE_CAPABILITY"
 REDACTED_RECORD_STATE = "raw_turn_data_redacted"
+HOST_ABORT_REASONS = {
+    "adapter_failure",
+    "continuation_failed",
+    "host_ceiling",
+    "pending_replay",
+    "skill_not_loaded",
+    "turn_changed",
+}
 _BOOTSTRAP_BUSY = object()
 RAW_RECORD_KEYS = frozenset(
     {
@@ -1113,6 +1121,23 @@ def handle_user_prompt(event: dict[str, Any]) -> dict[str, Any]:
     return _allow()
 
 
+def handle_host_abort(event: dict[str, Any]) -> dict[str, Any]:
+    """Fail open while redacting one exact host-bound turn transaction."""
+    record_path = _record_path(event)
+    if record_path is None:
+        return _allow()
+    record = _read_json(record_path)
+    if record is None or record.get("data_retention_state") == REDACTED_RECORD_STATE:
+        return _allow()
+    reason = str(event.get("abort_reason") or "")
+    record["host_abort_reason"] = (
+        reason if reason in HOST_ABORT_REASONS else "adapter_failure"
+    )
+    record["hook_phase"] = "failed_open_host_abort"
+    _redact_turn_data(record_path, record)
+    return _allow()
+
+
 def handle_post_tool(event: dict[str, Any]) -> dict[str, Any]:
     if not _successful_tool_result(event):
         return _allow()
@@ -1512,6 +1537,8 @@ def handle(event: dict[str, Any]) -> dict[str, Any]:
     name = str(event.get("hook_event_name") or "")
     if name == "UserPromptSubmit":
         return handle_user_prompt(event)
+    if name == "HostAbort":
+        return handle_host_abort(event)
     if name == "PostToolUse":
         return handle_post_tool(event)
     if name == "Stop":
