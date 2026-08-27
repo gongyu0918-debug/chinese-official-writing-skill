@@ -99,11 +99,13 @@ class StatusLedgerConsistencyTests(unittest.TestCase):
         self.assertIn("`WR-020b1` 讲话首次起草任务卡", section(roadmap, "REJECTED"))
         self.assertIn("`WR-020` 当前长稿基线有写作价值", section(roadmap, "WAIT_NEW_COUNTEREXAMPLE"))
 
-    def test_domestic_cli_adapters_are_recorded_as_released_with_limits(self) -> None:
+    def test_host_adapters_keep_released_domestic_limits_and_opencode_terminal(self) -> None:
         row = table_row(read("maintenance/specs/coverage.md"), "HK-004")
 
-        self.assertIn("DONE_V1.6.15", row)
-        self.assertIn("Kimi 只证明首次 Stop", row)
+        self.assertIn("国产 CLI 复核", row)
+        self.assertIn("DONE_LOCAL_MAIN / HERMES_BASELINE_NOT_REPRODUCED", row)
+        self.assertIn("OpenCode 项目级 companion", row)
+        self.assertIn("Kimi 仍只证明首次 Stop", row)
         self.assertNotIn("LOCAL_CANDIDATE", row)
 
         coverage = read("maintenance/specs/coverage.md")

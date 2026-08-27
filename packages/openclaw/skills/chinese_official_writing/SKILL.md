@@ -4,7 +4,7 @@ description: 用于中文公文、事务性材料和新闻稿件的起草、改�
 license: MIT
 category: writing
 metadata:
-  version: "1.6.17"
+  version: "1.6.18"
   tags: chinese, official-document, writing, gongwen, ai-compute
 ---
 
