@@ -30,6 +30,15 @@ def _record(event: str, **fields: Any) -> None:
 
 
 def register(ctx: Any) -> None:
+    raw_skill_root = os.environ.get("COW_HERMES_SKILL_ROOT")
+    if raw_skill_root:
+        skill_md = Path(raw_skill_root).expanduser().resolve() / "SKILL.md"
+        ctx.register_skill(
+            "chinese-official-writing",
+            skill_md,
+            "Current-checkout Chinese official-writing Skill used by the isolated probe.",
+        )
+
     def transform(response_text: str, session_id: str = "", **kwargs: Any) -> str | None:
         del kwargs
         _record("transform_llm_output", session_id=session_id, response=_summary(response_text))
