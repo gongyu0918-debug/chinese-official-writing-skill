@@ -43,7 +43,7 @@
 
 ## IN_PROGRESS
 
-- `HK-004-HERMES-R2`：Hermes Agent 0.20.5 upstream `a9611f3c` 至0.20.6 upstream `5fc308a7` 的 profile 用户插件候选已完成新建 inline 与 `--query-file` 生命周期、采购/情况说明当前 Skill 真稿、固定失败稿223→182字最小修订、硬锚反控、post task/turn/hash 闭合、官方 doctor 和定向测试；0.20.6 更新后 query-file 再次在线闭合，最终 R19 又完成128字采购真稿 `KEEP`，状态为 `VERIFIED_CANDIDATE_NOT_MERGED`。确定性 D0→D1 后恢复同一 session 实测读回 D0，故交互与 resume/continue 终止支持；`--oneshot` 因插件加载竞态记 `UNSUPPORTED_HOST_LIMIT`，gateway 记 `NOT_LIVE_VERIFIED`，不保留 HOLD。候选只支持新建且不可恢复的单题，等待单独合并授权，不发布。[结果](../tests/evidence/hk004-hermes-r2/result.md)
+- `HK-004-HERMES-R2`：Hermes Agent 0.20.5 upstream `a9611f3c` 至0.20.6 upstream `5fc308a7` 的 profile 用户插件已完成新建 inline 与 `--query-file` 生命周期、采购/情况说明当前 Skill 真稿、固定失败稿223→182字最小修订、硬锚反控、post task/turn/hash 闭合、官方 doctor 和定向测试；0.20.6 更新后 query-file 再次在线闭合，最终 R19 又完成128字采购真稿 `KEEP`，状态为 `MERGED_LOCAL_MAIN_NOT_PUSHED_NOT_RELEASED`。确定性 D0→D1 后恢复同一 session 实测读回 D0，故交互与 resume/continue 终止支持；`--oneshot` 因插件加载竞态记 `UNSUPPORTED_HOST_LIMIT`，gateway 记 `NOT_LIVE_VERIFIED`，不保留 HOLD。实现只支持新建且不可恢复的单题，已合入本地 `main`，未推送、未发布。[结果](../tests/evidence/hk004-hermes-r2/result.md)
 
 ## REJECTED
 
