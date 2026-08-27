@@ -1,0 +1,27 @@
+{
+  "name": "chinese-official-writing-gate-dsh",
+  "description": "Optional DeepSeek Harness delivery gate for the Chinese official-writing Skill",
+  "version": "1.6.18",
+  "private": true,
+  "type": "module",
+  "main": "index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./cordis.patch.yml": "./cordis.patch.yml",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "index.mjs",
+    "cordis.patch.yml",
+    "hook-capability.json",
+    "skills/chinese-official-writing",
+    "README.md",
+    "LICENSE"
+  ],
+  "license": "MIT",
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    }
+  }
+}

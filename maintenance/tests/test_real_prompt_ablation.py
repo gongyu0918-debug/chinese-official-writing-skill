@@ -192,7 +192,7 @@ class RealPromptAblationTests(unittest.TestCase):
             checks_by_id["P022"]["file_terms"]["maintenance/tests/test_skill_boundary.py"],
         )
         self.assertIn(
-            "test_maintenance_assembler_produces_eight_self_contained_plugins",
+            "test_maintenance_assembler_produces_nine_self_contained_plugins",
             checks_by_id["P022"]["file_terms"]["maintenance/tests/test_hook_layer_contract.py"],
         )
         self.assertIn("任务模式路由", checks_by_id["P023"]["file_terms"]["chinese-official-writing/SKILL.md"])

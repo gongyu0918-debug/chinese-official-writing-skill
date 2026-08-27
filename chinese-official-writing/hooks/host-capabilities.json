@@ -1,5 +1,5 @@
 {
-  "schema_version": 15,
+  "schema_version": 16,
   "shared_gate_core": "chinese-official-writing/scripts/review_gate.py",
   "activation": {
     "default": "disabled",
@@ -300,6 +300,49 @@
       "project_plugin_cli_limit": "0.20.5 runtime scans opted-in project plugins, but plugins list/enable does not enumerate them",
       "failure_action": "original_draft",
       "host_limit": "one synchronous host-owned completion and deterministic anchor check; Hermes persists D0 before transform, so interactive and resumed sessions are refused; --oneshot does not reliably finish plugin loading before preloaded-skill lifecycle; gateway is unverified; not equivalent to the shared multi-stage Stop gate, other capabilities are refused"
+    },
+    "deepseek_harness": {
+      "status": "candidate_lifecycle_verified_headless_not_released",
+      "adapter_source": "hooks/adapters/deepseek-harness",
+      "runtime_adapter": "index.mjs",
+      "skill_package": "skills/chinese-official-writing",
+      "events": [
+        "agent/pre-step",
+        "tools/post-execute:skill|read|read_file|bash|pwsh",
+        "agent/turn-stopping"
+      ],
+      "verified_events": [
+        "agent/pre-step",
+        "tools/post-execute:skill|read",
+        "agent/turn-stopping"
+      ],
+      "unverified_events": [
+        "tools/post-execute:bash|pwsh"
+      ],
+      "verified_scope": "native profile bundle install, exact packaged-skill binding, current open-turn D0, three-stop hash-bound delivery, terminal redaction, default compressed session persistence and current-skill procurement writing",
+      "verified_host_scope": "DeepSeek Harness 0.1.1-rc.2 headless profile",
+      "verified_platform": "Windows",
+      "verified_transport": "opencodex_openai_responses_gateway",
+      "verified_model": "Alibaba Token Plan 2 DeepSeek V4 Flash 0731 using provider-default reasoning because the exported model row advertises no reasoningEfforts",
+      "evidence": "maintenance/tests/evidence/hk004-deepseek-harness-r1/result.md",
+      "live_lifecycle_verified": true,
+      "live_writing_adapter_verified": true,
+      "headless_profile_verified": true,
+      "tui_profile_verified": false,
+      "web_profile_verified": false,
+      "online_verified_capabilities": [
+        "delivery_review"
+      ],
+      "required_stop_field": null,
+      "current_draft_source": "last non-interrupted assistant/message for the current open turn in agent.session.events",
+      "data_root_environment": "absolute COW_DSH_GATE_DATA or DSH_HOME/plugin-data/chinese-official-writing-gate",
+      "first_party_login_required": false,
+      "continuation_limit": 4,
+      "over_length_continuation_limit": 7,
+      "host_stop_ceiling": 9,
+      "activation": "explicit dsh plugin add of the assembled Profile Bundle followed by profile restart",
+      "failure_action": "original_draft",
+      "official_bridge_limit": "@deepseek-ai/dsh-hooks-claude-code 0.1.1-rc.2 omits last_assistant_message from Stop, so this companion uses the native Cordis lifecycle instead"
     },
     "openclaw": {
       "status": "skill_only",

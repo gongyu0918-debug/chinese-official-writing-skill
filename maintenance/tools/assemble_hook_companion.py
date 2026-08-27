@@ -33,6 +33,7 @@ class HostAdapter:
     include_openai_metadata: bool = False
     skill_target: Path = Path("skills/chinese-official-writing")
     capability_target: Path = Path("hook-capability.json")
+    extra_files: tuple[tuple[Path, Path], ...] = ()
 
     @property
     def source_root(self) -> Path:
@@ -97,6 +98,20 @@ HOST_ADAPTERS: Final = {
             manifest_source=ADAPTER_ROOT / "hermes-agent" / "plugin.yaml",
             hooks_target=None,
         ),
+        HostAdapter(
+            "deepseek-harness",
+            Path("package.json"),
+            ADAPTER_ROOT / "deepseek-harness" / "index.mjs",
+            Path("index.mjs"),
+            manifest_source=ADAPTER_ROOT / "deepseek-harness" / "package.json",
+            hooks_target=None,
+            extra_files=(
+                (
+                    ADAPTER_ROOT / "deepseek-harness" / "cordis.patch.yml",
+                    Path("cordis.patch.yml"),
+                ),
+            ),
+        ),
     )
 }
 SKILL_COPY_EXCLUDES: Final = (
@@ -116,6 +131,7 @@ ADAPTER_GUIDE_LINKS: Final = {
         ("kimi-code", "Kimi Code CLI"),
         ("opencode", "OpenCode"),
         ("hermes-agent", "Hermes Agent"),
+        ("deepseek-harness", "DeepSeek Harness"),
     )
 }
 CAPABILITY_DEFAULT: Final = "delivery_review"
@@ -199,6 +215,7 @@ def _validate(output: Path, adapter: HostAdapter) -> None:
         required.append(packaged_skill / "hooks/single_pass_final_review.py")
     if adapter.hooks_target is not None:
         required.append(output / adapter.hooks_target)
+    required.extend(output / target for _, target in adapter.extra_files)
     missing = [path.relative_to(output).as_posix() for path in required if not path.is_file()]
     if missing:
         raise RuntimeError(f"incomplete Hook companion: {missing}")
@@ -207,6 +224,7 @@ def _validate(output: Path, adapter: HostAdapter) -> None:
         "qwen-extension.json",
         "kimi.plugin.json",
         "plugin.yaml",
+        "package.json",
     }
     manifests = sorted(
         path
@@ -259,6 +277,8 @@ def assemble(
         if adapter.hooks_target is not None:
             _copy(adapter.source_root / "hooks.json", output / adapter.hooks_target)
         _copy(adapter.adapter_source, output / adapter.adapter_target)
+        for source, target in adapter.extra_files:
+            _copy(source, output / target)
         _copy(adapter.source_root / "README.md", output / "README.md")
         _copy(SKILL_ROOT / "LICENSE", output / "LICENSE")
         capability_path = output / adapter.capability_target

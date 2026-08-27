@@ -78,6 +78,12 @@ class HookLayerContractTests(unittest.TestCase):
             "kimi-code": {"README.md", "gate_stop_hook.py", "manifest.json"},
             "opencode": {"README.md", "opencode_gate_plugin.js"},
             "hermes-agent": {"README.md", "__init__.py", "plugin.yaml"},
+            "deepseek-harness": {
+                "README.md",
+                "cordis.patch.yml",
+                "index.mjs",
+                "package.json",
+            },
         }
         self.assertEqual(
             expected,
@@ -99,7 +105,7 @@ class HookLayerContractTests(unittest.TestCase):
             else:
                 self.assertIn("`over_length`", adapter_guide)
 
-    def test_maintenance_assembler_produces_eight_self_contained_plugins(self) -> None:
+    def test_maintenance_assembler_produces_nine_self_contained_plugins(self) -> None:
         with tempfile.TemporaryDirectory() as temporary:
             root = Path(temporary)
             for host in (
@@ -111,6 +117,7 @@ class HookLayerContractTests(unittest.TestCase):
                 "kimi-code",
                 "opencode",
                 "hermes-agent",
+                "deepseek-harness",
             ):
                 with self.subTest(host=host):
                     output = root / host
@@ -124,6 +131,7 @@ class HookLayerContractTests(unittest.TestCase):
                         "qwen-extension.json",
                         "kimi.plugin.json",
                         "plugin.yaml",
+                        "package.json",
                     }
                     manifests = sorted(
                         path.relative_to(output).as_posix()
@@ -139,6 +147,7 @@ class HookLayerContractTests(unittest.TestCase):
                         "kimi-code": ["kimi.plugin.json"],
                         "opencode": [],
                         "hermes-agent": ["plugin.yaml"],
+                        "deepseek-harness": ["package.json"],
                     }[host]
                     self.assertEqual(expected_manifest, manifests)
                     packaged = output / (
@@ -190,7 +199,7 @@ class HookLayerContractTests(unittest.TestCase):
             (HOOK_ROOT / "host-capabilities.json").read_text(encoding="utf-8")
         )
         activation = capabilities["activation"]
-        self.assertEqual(15, capabilities["schema_version"])
+        self.assertEqual(16, capabilities["schema_version"])
         self.assertFalse(activation["ordinary_skill_install_enables_hooks"])
         self.assertFalse(activation["runtime_host_detection"])
         self.assertFalse(activation["automatic_file_generation"])
@@ -224,6 +233,7 @@ class HookLayerContractTests(unittest.TestCase):
             "zcode",
             "qwen_code",
             "opencode",
+            "deepseek_harness",
         ):
             self.assertEqual(
                 7, capabilities["hosts"][host]["over_length_continuation_limit"]
@@ -250,6 +260,7 @@ class HookLayerContractTests(unittest.TestCase):
             "kimi_code_cli",
             "opencode",
             "hermes_agent",
+            "deepseek_harness",
         ):
             self.assertIn("adapter_source", capabilities["hosts"][host])
         self.assertEqual(
@@ -292,6 +303,13 @@ class HookLayerContractTests(unittest.TestCase):
         )
         self.assertTrue(
             capabilities["hosts"]["kimi_code_cli"]["live_lifecycle_verified"]
+        )
+        self.assertTrue(
+            capabilities["hosts"]["deepseek_harness"]["live_lifecycle_verified"]
+        )
+        self.assertEqual(
+            ["delivery_review"],
+            capabilities["hosts"]["deepseek_harness"]["online_verified_capabilities"],
         )
         self.assertIn(
             "without a second Stop",
