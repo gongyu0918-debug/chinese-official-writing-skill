@@ -1,5 +1,5 @@
 {
-  "schema_version": 13,
+  "schema_version": 14,
   "shared_gate_core": "chinese-official-writing/scripts/review_gate.py",
   "activation": {
     "default": "disabled",
@@ -214,6 +214,42 @@
       "over_length_continuation_limit": 1,
       "activation": "explicit native plugin install only",
       "host_limit": "Kimi 0.38.0 runs Stop only before the first hook-requested continuation; the revised final draft is delivered without a second Stop verification"
+    },
+    "opencode": {
+      "status": "lifecycle_verified_interactive_only",
+      "adapter_source": "hooks/adapters/opencode",
+      "runtime_adapter": ".opencode/plugins/chinese-official-writing-gate.js",
+      "skill_package": ".opencode/skills/chinese-official-writing",
+      "events": [
+        "session.idle",
+        "SDK session.messages",
+        "SDK session.prompt"
+      ],
+      "host_version_scope": "OpenCode 1.18.23 interactive mini CLI",
+      "platform_scope": "Windows",
+      "headless_run_supported": false,
+      "visible_intermediate_outputs": true,
+      "required_stop_field": null,
+      "current_draft_source": "latest assistant text after the current external user message",
+      "data_root_environment": "COW_OPENCODE_GATE_DATA, absolute OPENCODE_DB sibling, or the OpenCode XDG data root",
+      "first_party_login_required": false,
+      "continuation_limit": 4,
+      "over_length_continuation_limit": 7,
+      "host_continuation_ceiling": 8,
+      "activation": "explicit project-level .opencode overlay only",
+      "distribution_limit": "interactive CLI only; opencode run exits before a reliable asynchronous continuation and is explicitly bypassed",
+      "skill_collision_limit": "the adapter arms only when the loaded skill directory exactly matches the packaged project skill"
+    },
+    "hermes_agent": {
+      "status": "transform_only_no_adapter_candidate",
+      "adapter_source": null,
+      "events": [
+        "transform_llm_output",
+        "post_llm_call"
+      ],
+      "host_version_scope": "Hermes Agent CLI 0.20.0",
+      "platform_scope": "Windows",
+      "host_limit": "transform_llm_output can make deterministic text transforms but cannot invoke the shared semantic multi-stage gate; pre_verify is code-change-only and inject_message is not a writing Stop substitute"
     },
     "openclaw": {
       "status": "skill_only",
