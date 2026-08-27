@@ -28,6 +28,12 @@
 - 复核只处理正文外包装、已给事实/状态、材料外具体后续动作，以及一层合理原因或低强度预期作用的保留边界。它不得把合理推断一律删除，也不得新增字数下限。
 - 至少两题解决候选 D0 的目标问题，且三题均无候选独有的事实、状态、文种、篇幅或直接可用性硬回退，才进入真实 adapter；否则终止，不以生命周期标记成功代替写稿成功。
 
+#### R1d 重名 Skill 污染处置
+
+- 首轮 R1c 导出发现 OpenCode 同时扫描项目 `.opencode/skills` 与用户级 `.agents/skills`，同名 Skill 的最终来源不稳定；该轮统一记 `INVALID_DUPLICATE_SKILL_COLLISION`，不计质量结论。
+- 按官方运行时开关仅追加一次 `OPENCODE_DISABLE_EXTERNAL_SKILLS=1` 重跑：关闭用户级 `.agents`/`.claude` Skill，保留项目 `.opencode/skills` 当前 checkout。每个 session 必须从 tool metadata 证明实际加载路径位于固定项目副本；否则终止为 `TECHNICAL_INVALID`。
+- 该隔离开关只用于证据有效性；产品说明必须要求用户避免同名旧副本，不能在 adapter 内静默修改宿主环境或用户配置。
+
 ### Hermes Agent
 
 - 官方插件 `transform_llm_output` 在交付前同步接收最终文本，可用经典程序变换替换输出；`post_llm_call` 仅观察。
