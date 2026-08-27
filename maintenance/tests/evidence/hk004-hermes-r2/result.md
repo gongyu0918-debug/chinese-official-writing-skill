@@ -13,7 +13,7 @@
 - Hermes 从0.20.0先更新到0.20.5、upstream `86221181`。本次继续验证时官方检查显示落后10个提交；第一次 `hermes update --yes` 因 GitHub TLS 握手失败退出，代码未变且 gateway 已恢复。只读 `git ls-remote` 随后成功，唯一重试把安装更新并收敛到 upstream `a9611f3c6f7ff287a4f10f71a77d7c5a808ea1c8`，版本仍为0.20.5。
 - 验证期间上游又发布0.20.6。官方 `hermes update --yes` 因浅克隆历史分叉按自身流程重置到 `5fc308a70719a83cccdbba4c0e39c23f5a8239d5`，安装工作树随后为 `main...origin/main` 且无未提交文件。Windows 自替换窗口第一次调用 launcher 暂时失败，新 `hermes.exe` 落盘后版本命令恢复；更新器没有实际恢复 gateway，故再次用官方 `hermes gateway start` 启动，并由 status 确认 PID 67496 运行。
 - Hermes 0.20.5 运行时可以在显式环境开关下扫描项目插件，但 `hermes plugins list/enable` 仍不枚举项目插件。候选因此只把 profile 用户插件目录写成默认安装路径。
-- 最终组装物为54文件，fingerprint `852e7fbfc0a10d0e4a6303e9f67f5cb70b9e379ead1c9f097fc1b2fb2b9b0fd3`；`hermes plugins doctor ... --ci` 验证为0个工具、7个 Hook。候选未申请工具覆盖权限，manifest 中一项非官方 `skill_namespace` 字段已删除。
+- 最终组装物为54文件，fingerprint `7991fbd26bff60c91a2c08ea7edd7f8e96e7c48a17936878e47aa56f17dbe910`；`hermes plugins doctor ... --ci` 验证为0个工具、7个 Hook。候选未申请工具覆盖权限，manifest 中一项非官方 `skill_namespace` 字段已删除。
 
 ## 生命周期问题与修复
 
@@ -29,6 +29,7 @@
 
 | 样本 | 宿主/模型 | 结果 | 结论 |
 |---|---|---|---|
+| 0.20.6 稀疏采购申请 R19 | Hermes `chat --query-file` / Alibaba Token Plan 2 DeepSeek V4 Flash max | 128→128字符 `KEEP`；post 四项闭合均为 true | 128字符正文长于116字符任务文本；保留2台、10个工作日、93%、每天约16项、拟增购2台和三项未决，原因前置，无故障、冗余、程序或承诺外扩 |
 | 0.20.6 更新后产品标记 R17 | Hermes `chat --query-file` / Ollama Cloud DeepSeek V4 Flash max | 15→15字符 `KEEP`；`pending=1/bound=true/armed=true`，post 四项闭合均为 true | upstream `5fc308a7` 的当前宿主仍完成插件注册、跨线程绑定、一次辅助调用和同回合闭合；此后产品只改版本说明 |
 | `--query-file` 产品标记 R15 | Hermes `chat --query-file` / Ollama Cloud DeepSeek V4 Flash max | 20→20字符 `KEEP`；`pending=1/bound=true/armed=true`，post 四项闭合均为 true | 首次证明官方文件单题入口可完成同回合闭合；后续只收紧异常 argv，并由 R17 重跑正常路径 |
 | 更新后产品标记 R13 | Hermes `chat -q` / Ollama Cloud DeepSeek V4 Flash max | 9→9字符 `KEEP`；`task_match=True`、`turn_match=True`、`response_match=True`、`history_match=True` | upstream `a9611f3c` 上当前插件、Skill 预载、同回合 transform、一次辅助调用和 post hash 闭合成立 |

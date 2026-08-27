@@ -277,11 +277,11 @@
         "post_llm_call",
         "on_session_finalize|on_session_reset"
       ],
-      "verified_scope": "profile user plugin current-skill preload, bounded cross-thread fresh-query binding, synchronous one-call review, strict JSON selection, fail-open D0, exact post task/turn/visible-response hash closure, inline and query-file markers, two product real drafts, one fixed-D0 replacement and a transform-persistence counterexample",
+      "verified_scope": "profile user plugin current-skill preload, bounded cross-thread fresh-query binding, synchronous one-call review, strict JSON selection, fail-open D0, exact post task/turn/visible-response hash closure, inline and query-file markers, real drafts across sparse procurement and unresolved-situation tasks including a 0.20.6 rerun, one fixed-D0 replacement and a transform-persistence counterexample",
       "verified_host_scope": "Hermes Agent CLI 0.20.5 upstream a9611f3c and 0.20.6 upstream 5fc308a7",
       "verified_platform": "Windows new non-resumed hermes chat -q/--query/--query-file only",
       "verified_transport": "ollama_cloud_and_opencodex_openai_compatible_gateway",
-      "verified_model": "Alibaba Token Plan 2 DeepSeek V4 Flash 0731; Ollama Cloud marker",
+      "verified_model": "Alibaba Token Plan 2 DeepSeek V4 Flash 0731; Ollama Cloud DeepSeek V4 Flash marker and real draft",
       "evidence": "maintenance/tests/evidence/hk004-hermes-r2/result.md",
       "live_transform_marker_verified": true,
       "live_writing_adapter_verified": true,
