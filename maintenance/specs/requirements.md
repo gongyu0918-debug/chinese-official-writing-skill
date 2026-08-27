@@ -143,7 +143,7 @@
 
 ### HK-004 宿主薄适配
 
-能力核心和事务状态只维护一份。Codex、Claude Code、CodeBuddy、ZCode、Qwen Code、Kimi Code CLI、OpenCode 与 Hermes adapter 只负责映射已核验的宿主事件字段、插件根和数据根、阻断、同步 transform 或同 session 续写方式及信任/加载差异。宿主 adapter 不承载普通写作规则。普通 Skill 可发现不等于生命周期 Hook 可用；缺少完整 Stop 成稿、可绑定的当前回合记录或官方插件装载路径时只登记边界，不补造伪适配。宿主只允许一次 Stop 阻断时，可以登记首次 D0 检查能力，但不得把未复核的续写终稿标成多阶段闭环；只有异步 idle 续写时，必须明示中间输出可见和无头命令旁路，延迟发送前重新绑定原外部回合。回合已变化或未终态相位不能无歧义恢复时，保留当前 D0、精确中止并脱敏旧事务，不猜测重放。同步文本 transform 只有在真实同稿目标成立、每回合最多一次辅助调用、严格解析、硬锚反控和失败保留 D0 时才可形成单次能力；没有 session 的预载事件必须按宿主和平台有界绑定，不能跨并发平台猜测归属。若宿主在 transform 前持久化 D0，adapter 必须拒绝交互或可恢复 session，只能登记不恢复的单次交付，并在 post 事件精确闭合 task、turn 与可见终稿 hash。Hermes 0.20.5—0.20.6 当前只登记新建、不可恢复的 `chat -q/--query/--query-file`，不得把交互、resume/continue、`--oneshot` 或未实测 gateway 写成支持。
+能力核心和事务状态只维护一份。Codex、Claude Code、CodeBuddy、ZCode、Qwen Code、Kimi Code CLI、OpenCode、Hermes 与 DeepSeek Harness adapter 只负责映射已核验的宿主事件字段、插件根和数据根、阻断、同步 transform 或同 session 续写方式及信任/加载差异。宿主 adapter 不承载普通写作规则。普通 Skill 可发现不等于生命周期 Hook 可用；缺少完整 Stop 成稿、可绑定的当前回合记录或官方插件装载路径时只登记边界，不补造伪适配。宿主只允许一次 Stop 阻断时，可以登记首次 D0 检查能力，但不得把未复核的续写终稿标成多阶段闭环；只有异步 idle 续写时，必须明示中间输出可见和无头命令旁路，延迟发送前重新绑定原外部回合。回合已变化或未终态相位不能无歧义恢复时，保留当前 D0、精确中止并脱敏旧事务，不猜测重放。同步文本 transform 只有在真实同稿目标成立、每回合最多一次辅助调用、严格解析、硬锚反控和失败保留 D0 时才可形成单次能力；没有 session 的预载事件必须按宿主和平台有界绑定，不能跨并发平台猜测归属。若宿主在 transform 前持久化 D0，adapter 必须拒绝交互或可恢复 session，只能登记不恢复的单次交付，并在 post 事件精确闭合 task、turn 与可见终稿 hash。Hermes 0.20.5—0.20.6 当前只登记新建、不可恢复的 `chat -q/--query/--query-file`，不得把交互、resume/continue、`--oneshot` 或未实测 gateway 写成支持。DeepSeek Harness 若兼容 bridge 不提供完整 D0，必须改用其原生当前 open-turn 生命周期；只有实际加载 companion 内 Skill、同 turn 末次 assistant message、Stop 次序和终态 hash 四者绑定时才启动门禁，不读取压缩会话文件猜稿。
 
 ### HK-005 故障回退
 
