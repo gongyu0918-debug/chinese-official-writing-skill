@@ -76,12 +76,25 @@
 - `opencode run` 使用同一组装包和 Alibaba Token Plan 2，session `ses_fbe896b02ffe0bhit5mdApLpoM`；Skill 路径正确，输出一份184字符采购申请。
 - adapter 明确不启动，`COW_OPENCODE_GATE_DATA` 不存在；该稿标题含 Markdown `#`，如实说明无头普通 Skill 路径没有 Hook 兜底。
 
+## P1 冷审修复与在线复核
+
+第一次最终冷审发现两项 P1：延迟 `session.prompt` 没有在发送前重新绑定原始外部回合；未终态模块重载只靠内存状态，可能重复消费同一 D0。候选没有按原结论直接交付，而是增加不含正文的 adapter 相位文件和共享 core `HostAbort` 精确脱敏事件：
+
+- 延迟发送前重新读取同一 session，外部用户消息 ID、末次助理消息 ID/hash 或续写计数任一变化即取消旧续写；对抗 smoke 在延迟窗口插入新用户消息，结果为0次 prompt、旧事务原文0命中。
+- 模块在首个 block 后、prompt 前重载时，不猜测恢复已消费的门禁相位；重载实例精确中止旧事务并保留可见 D0，原实例的延迟任务读取不到待派发相位，不会重复 prompt。结果为0次 prompt、旧事务原文0命中。
+- 同名外部 Skill 获胜时，既不启动项目门禁，也不留下 `UserPromptSubmit` 暂存原文；结果为0次 prompt、警告可见、原文0命中。
+- core 单测确认 `HostAbort` 只清理当前 session/turn，回执保留受限原因码与 `failed_open_host_abort`，不保留请求或草稿。
+
+修复后又用 OpenCode 1.18.23、`opencodex/alibaba-token-plan-2/deepseek-v4-flash-0731` 和配置 `reasoningEffort=max` 跑一份无字数限制采购申请，session 为 `ses_fbe6805e3ffebMTw91aWxQUZ8x`。tool metadata 精确命中最新52文件 companion 内 Skill；D0 与最终回显均为320字符、SHA-256 `7374e9aba1b424731305a3d1c86b0afff640a6c0cc18e2c2247713862728863c`。稿件保留92%、18个排队、拟采购2台、预算/供应商尚未确定和后续按比选完善方案，原因与时效影响为题面事实直接支持的一层推断；“明确设备配置、预算金额及采购等具体事项”语言略生硬，记写作 WARN，不冒充满分稿，也不是 adapter 新增回退。
+
+该在线周期只需一次 emit 续写，终态回执为 `hook_phase=complete`、`delivery_verified=true`、`stop_attempts=1`、`data_retention_state=raw_turn_data_redacted`；门禁数据根只有1份脱敏回执，原请求/正文扫描0命中，`opencode-adapter-state` 文件数为0。OpenCode export 记录了精确模型与 reasoning token，但仍未回显 effort 名称，所以只表述为“配置 max”。
+
 ## 工程结果
 
 - 新增项目级 adapter：`hooks/adapters/opencode/opencode_gate_plugin.js` 与说明页；不生成 manifest，不修改 `opencode.json`，不自动安装、启用或设置隔离开关。
-- 组装器新增 `opencode` 布局：`.opencode/plugins/chinese-official-writing-gate.js`、`.opencode/skills/chinese-official-writing/`、`.opencode/hook-capability.json`。最终组装为52文件，fingerprint `1f8b5bb28e3f42e94473568c2825bd260df29ebcb40082bc39f163c379113f80`。
+- 组装器新增 `opencode` 布局：`.opencode/plugins/chinese-official-writing-gate.js`、`.opencode/skills/chinese-official-writing/`、`.opencode/hook-capability.json`。P1 修复后最终组装仍为52文件，fingerprint `0cd827bc11a32565877cab89e745d10d6f71b3daf50ce741457637435fbbe88c`。
 - adapter 只映射当前 external user 后的 assistant 文本；只有实际加载 companion 内 Skill 才启动。共享 core 缺失、非法响应、续写失败或达到宿主上限时失败开放，不把错误消息标成终稿。
-- adapter 在进程重启后先读取当前 turn 的终态脱敏回执，避免恢复旧 session 时重建原文或重复续写；模块重载 smoke 已覆盖该路径。
+- adapter 在进程重启后先读取当前 turn 的终态脱敏回执；若是已消费但未终态的 adapter 周期，则不重放，精确中止并脱敏后保留 D0。模块重载、延迟期间新任务和同名外部 Skill 三条 smoke 已覆盖这些路径。
 - 本轮新增离线 Node/Python 生命周期 smoke，并把 OpenCode 纳入六类 capability 的静态组装、SkillHub 源包与边界回归；发布平台无操作。
 
 ## 实际命令
@@ -98,17 +111,17 @@ py -3 -m unittest maintenance.tests.test_opencode_gate_adapter -v
 opencode --mini --no-replay --model opencodex/alibaba-token-plan-2/deepseek-v4-flash-0731 --prompt <fixed-real-writing-prompt>
 opencode run --model opencodex/alibaba-token-plan-2/deepseek-v4-flash-0731 <fixed-procurement-prompt>
 opencode export <session-id>
-py -3 -m unittest maintenance.tests.test_opencode_gate_adapter maintenance.tests.test_hook_layer_contract maintenance.tests.test_delivery_cleanliness_capability maintenance.tests.test_repetition_cleanup_capability maintenance.tests.test_skill_boundary maintenance.tests.test_skillhub_package_builder maintenance.tests.test_repository_reachability maintenance.tests.test_claude_gate_adapter maintenance.tests.test_complexity_contract -v
+py -3 -m unittest maintenance.tests.test_opencode_gate_adapter maintenance.tests.test_gate_stop_hook maintenance.tests.test_hook_layer_contract maintenance.tests.test_delivery_cleanliness_capability maintenance.tests.test_repetition_cleanup_capability maintenance.tests.test_skill_boundary maintenance.tests.test_skillhub_package_builder maintenance.tests.test_repository_reachability maintenance.tests.test_claude_gate_adapter maintenance.tests.test_complexity_contract -v
 py -3 -B C:\Users\admin\.codex\skills\.system\skill-creator\scripts\quick_validate.py chinese-official-writing
 ```
 
 OpenCode 在线命令同时使用独立绝对 `OPENCODE_DB`、`COW_OPENCODE_GATE_DATA` 与 `OPENCODE_DISABLE_EXTERNAL_SKILLS=1`；活动新闻样本在 `OPENCODE_CONFIG_CONTENT` 的 `agent.build.reasoningEffort` 中显式传入 `max`。原始数据库、session export、TUI 日志和 Hermes stdout 保存在忽略的 `output/hk004-opencode-hermes-r1/`，不进入产品包。
 
-扩展回归实际为125/125通过，Skill Creator quick validate 返回 `Skill is valid!`。首次误用仓库内已不存在的 `maintenance/tools/quick_validate.py`，命令未启动；改用上列真实入口后复跑通过，失败命令不计为产品失败，也不隐去。
+P1 修复后的扩展回归实际为167/167通过，Skill Creator quick validate 返回 `Skill is valid!`。首次误用仓库内已不存在的 `maintenance/tools/quick_validate.py`，命令未启动；改用上列真实入口后复跑通过，失败命令不计为产品失败，也不隐去。
 
 ## 剩余风险
 
-- OpenCode 不是同步 Stop：用户会看到 D0、中间结构化判断和最终回显；异常退出可能留下未完成事务，必须按说明精确清理。
+- OpenCode 不是同步 Stop：用户会看到 D0、中间结构化判断和最终回显；已覆盖的新任务竞态和未终态模块重载会安全回退并脱敏，但任意位置硬杀进程、Python/core 同时不可用仍可能留下未完成事务，必须按说明精确清理。
 - OpenCode `run` 仍不受门禁保护；常驻交互证据不能外推到 web、ACP、其他版本或其他平台。
 - 项目与用户级同名 Skill 的发现顺序不稳定；adapter 会拒绝错误来源，但用户仍需清理旧副本或在隔离验证中显式关闭外部 Skill。
 - 本轮只在线跑默认 `delivery_review`。其他 capability 共享同一 core 且静态组装/离线生命周期通过，但没有在 OpenCode 逐项重跑真实在线 D1；不能把静态可组装写成各能力在线全覆盖。
