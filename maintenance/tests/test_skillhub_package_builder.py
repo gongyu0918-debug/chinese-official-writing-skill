@@ -60,16 +60,26 @@ class SkillHubPackageBuilderTests(unittest.TestCase):
                 "qwen-code",
                 "kimi-code",
                 "opencode",
+                "hermes-agent",
             ):
                 adapter = output / "hooks" / "adapters" / host
                 self.assertTrue((adapter / "README.md").is_file())
-                self.assertEqual(host != "opencode", (adapter / "manifest.json").is_file())
                 self.assertEqual(
-                    host not in {"kimi-code", "opencode"},
+                    host not in {"opencode", "hermes-agent"},
+                    (adapter / "manifest.json").is_file(),
+                )
+                self.assertEqual(
+                    host == "hermes-agent", (adapter / "plugin.yaml").is_file()
+                )
+                self.assertEqual(
+                    host not in {"kimi-code", "opencode", "hermes-agent"},
                     (adapter / "hooks.json").is_file(),
                 )
                 self.assertEqual(
                     host == "opencode", (adapter / "opencode_gate_plugin.js").is_file()
+                )
+                self.assertEqual(
+                    host == "hermes-agent", (adapter / "__init__.py").is_file()
                 )
                 self.assertFalse((adapter / "skills").exists())
             self.assertFalse((output / "hooks" / "build_companion.py").exists())
@@ -83,8 +93,9 @@ class SkillHubPackageBuilderTests(unittest.TestCase):
             self.assertEqual("hooks/adapters/qwen-code", capabilities["hosts"]["qwen_code"]["adapter_source"])
             self.assertEqual("hooks/adapters/kimi-code", capabilities["hosts"]["kimi_code_cli"]["adapter_source"])
             self.assertEqual("hooks/adapters/opencode", capabilities["hosts"]["opencode"]["adapter_source"])
+            self.assertEqual("hooks/adapters/hermes-agent", capabilities["hosts"]["hermes_agent"]["adapter_source"])
             self.assertEqual(
-                "transform_only_no_adapter_candidate",
+                "candidate_verified_fresh_query_single_pass_not_released",
                 capabilities["hosts"]["hermes_agent"]["status"],
             )
             self.assertEqual("available_opt_in", capabilities["length_gate"]["status"])

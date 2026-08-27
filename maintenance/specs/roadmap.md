@@ -43,7 +43,7 @@
 
 ## IN_PROGRESS
 
-- 当前没有活动候选。本轮三个原子及新拆出的R6b均已终态收口；后续只在出现新的真实反例时重开。
+- `HK-004-HERMES-R2`：Hermes Agent 0.20.5 upstream `a9611f3c` 至0.20.6 upstream `5fc308a7` 的 profile 用户插件候选已完成新建 inline 与 `--query-file` 生命周期、两篇当前 Skill 真稿、固定失败稿223→182字最小修订、硬锚反控、post task/turn/hash 闭合、官方 doctor 和定向测试；0.20.6 更新后 query-file 再次在线闭合，状态为 `VERIFIED_CANDIDATE_NOT_MERGED`。确定性 D0→D1 后恢复同一 session 实测读回 D0，故交互与 resume/continue 终止支持；`--oneshot` 因插件加载竞态记 `UNSUPPORTED_HOST_LIMIT`，gateway 记 `NOT_LIVE_VERIFIED`，不保留 HOLD。候选只支持新建且不可恢复的单题，等待单独合并授权，不发布。[结果](../tests/evidence/hk004-hermes-r2/result.md)
 
 ## REJECTED
 

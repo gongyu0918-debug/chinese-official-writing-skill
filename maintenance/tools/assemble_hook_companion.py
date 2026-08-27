@@ -18,6 +18,7 @@ SKILL_ROOT: Final = ROOT / "chinese-official-writing"
 HOOK_ROOT: Final = SKILL_ROOT / "hooks"
 ADAPTER_ROOT: Final = HOOK_ROOT / "adapters"
 CORE_PATH: Final = HOOK_ROOT / "core" / "gate_stop_hook.py"
+SINGLE_PASS_REVIEW_PATH: Final = HOOK_ROOT / "core" / "single_pass_final_review.py"
 SHARED_HOST_ADAPTER: Final = ADAPTER_ROOT / "host_gate_adapter.py"
 
 
@@ -27,6 +28,7 @@ class HostAdapter:
     manifest_target: Path | None
     adapter_source: Path
     adapter_target: Path
+    manifest_source: Path | None = None
     hooks_target: Path | None = Path("hooks/hooks.json")
     include_openai_metadata: bool = False
     skill_target: Path = Path("skills/chinese-official-writing")
@@ -87,6 +89,14 @@ HOST_ADAPTERS: Final = {
             skill_target=Path(".opencode/skills/chinese-official-writing"),
             capability_target=Path(".opencode/hook-capability.json"),
         ),
+        HostAdapter(
+            "hermes-agent",
+            Path("plugin.yaml"),
+            ADAPTER_ROOT / "hermes-agent" / "__init__.py",
+            Path("__init__.py"),
+            manifest_source=ADAPTER_ROOT / "hermes-agent" / "plugin.yaml",
+            hooks_target=None,
+        ),
     )
 }
 SKILL_COPY_EXCLUDES: Final = (
@@ -105,6 +115,7 @@ ADAPTER_GUIDE_LINKS: Final = {
         ("qwen-code", "Qwen Code"),
         ("kimi-code", "Kimi Code CLI"),
         ("opencode", "OpenCode"),
+        ("hermes-agent", "Hermes Agent"),
     )
 }
 CAPABILITY_DEFAULT: Final = "delivery_review"
@@ -138,6 +149,11 @@ def _copy_skill(output: Path, adapter: HostAdapter) -> None:
         if not _is_excluded(relative, adapter):
             _copy(source, packaged_skill / relative)
     _copy(CORE_PATH, packaged_skill / "hooks" / "gate_stop_hook.py")
+    if adapter.name == "hermes-agent":
+        _copy(
+            SINGLE_PASS_REVIEW_PATH,
+            packaged_skill / "hooks" / "single_pass_final_review.py",
+        )
     guide_path = packaged_skill / "hooks" / "README.md"
     guide = guide_path.read_text(encoding="utf-8")
     for source, replacement in ADAPTER_GUIDE_LINKS.items():
@@ -179,12 +195,19 @@ def _validate(output: Path, adapter: HostAdapter) -> None:
     ]
     if expected_manifest is not None:
         required.append(expected_manifest)
+    if adapter.name == "hermes-agent":
+        required.append(packaged_skill / "hooks/single_pass_final_review.py")
     if adapter.hooks_target is not None:
         required.append(output / adapter.hooks_target)
     missing = [path.relative_to(output).as_posix() for path in required if not path.is_file()]
     if missing:
         raise RuntimeError(f"incomplete Hook companion: {missing}")
-    manifest_names = {"plugin.json", "qwen-extension.json", "kimi.plugin.json"}
+    manifest_names = {
+        "plugin.json",
+        "qwen-extension.json",
+        "kimi.plugin.json",
+        "plugin.yaml",
+    }
     manifests = sorted(
         path
         for path in output.rglob("*")
@@ -220,6 +243,8 @@ def assemble(
         raise ValueError(f"unsupported host: {host}")
     if capability not in CAPABILITY_CHOICES:
         raise ValueError(f"unsupported Hook capability: {capability}")
+    if host == "hermes-agent" and capability != CAPABILITY_DEFAULT:
+        raise ValueError("Hermes Agent currently supports delivery_review only")
     output = output.expanduser().resolve()
     if output.exists():
         raise FileExistsError(f"output already exists: {output}")
@@ -227,7 +252,10 @@ def assemble(
     try:
         _copy_skill(output, adapter)
         if adapter.manifest_target is not None:
-            _copy(adapter.source_root / "manifest.json", output / adapter.manifest_target)
+            _copy(
+                adapter.manifest_source or adapter.source_root / "manifest.json",
+                output / adapter.manifest_target,
+            )
         if adapter.hooks_target is not None:
             _copy(adapter.source_root / "hooks.json", output / adapter.hooks_target)
         _copy(adapter.adapter_source, output / adapter.adapter_target)

@@ -1,0 +1,12 @@
+name: hk004-hermes-r2
+version: "0.1.0"
+description: Isolated semantic finalization probe for the HK-004 Hermes R2 study.
+skill_namespace: hk004-hermes-r2
+provides_hooks:
+  - on_session_finalize
+  - on_session_reset
+  - on_session_start
+  - on_skill_lifecycle
+  - post_llm_call
+  - pre_llm_call
+  - transform_llm_output

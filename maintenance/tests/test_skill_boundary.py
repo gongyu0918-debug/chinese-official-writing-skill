@@ -264,13 +264,20 @@ class SkillBoundaryTests(unittest.TestCase):
             "qwen-code",
             "kimi-code",
             "opencode",
+            "hermes-agent",
         ):
             with self.subTest(host=host):
                 adapter = HOOK_ADAPTERS / host
                 self.assertTrue((adapter / "README.md").is_file())
-                self.assertEqual(host != "opencode", (adapter / "manifest.json").is_file())
                 self.assertEqual(
-                    host not in {"kimi-code", "opencode"},
+                    host not in {"opencode", "hermes-agent"},
+                    (adapter / "manifest.json").is_file(),
+                )
+                self.assertEqual(
+                    host == "hermes-agent", (adapter / "plugin.yaml").is_file()
+                )
+                self.assertEqual(
+                    host not in {"kimi-code", "opencode", "hermes-agent"},
                     (adapter / "hooks.json").is_file(),
                 )
                 self.assertEqual(
@@ -279,6 +286,9 @@ class SkillBoundaryTests(unittest.TestCase):
                 )
                 self.assertEqual(
                     host == "opencode", (adapter / "opencode_gate_plugin.js").is_file()
+                )
+                self.assertEqual(
+                    host == "hermes-agent", (adapter / "__init__.py").is_file()
                 )
                 self.assertFalse((adapter / "skills").exists())
 

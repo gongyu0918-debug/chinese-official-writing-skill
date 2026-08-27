@@ -1,5 +1,5 @@
 {
-  "schema_version": 14,
+  "schema_version": 15,
   "shared_gate_core": "chinese-official-writing/scripts/review_gate.py",
   "activation": {
     "default": "disabled",
@@ -265,19 +265,41 @@
       "restart_and_race_policy": "a changed external turn or an unfinished consumed cycle is not replayed; the visible D0 is retained while the exact old transaction is aborted and redacted; a same-process reload during prompt dispatch observes the existing owner and does not send a duplicate prompt"
     },
     "hermes_agent": {
-      "status": "transform_only_no_adapter_candidate",
-      "adapter_source": null,
+      "status": "candidate_verified_fresh_query_single_pass_not_released",
+      "adapter_source": "hooks/adapters/hermes-agent",
+      "runtime_adapter": "__init__.py",
+      "skill_package": "skills/chinese-official-writing",
       "events": [
+        "on_skill_lifecycle",
+        "on_session_start",
+        "pre_llm_call",
         "transform_llm_output",
-        "post_llm_call"
+        "post_llm_call",
+        "on_session_finalize|on_session_reset"
       ],
-      "verified_scope": "isolated project plugin marker transformed HA_D0 to HA_D1; current-skill writing baseline did not reproduce a deterministic wrapper target",
-      "verified_host_scope": "Hermes Agent CLI 0.20.0",
-      "verified_platform": "Windows",
-      "evidence": "maintenance/tests/evidence/hk004-opencode-hermes-r1/result.md",
+      "verified_scope": "profile user plugin current-skill preload, bounded cross-thread fresh-query binding, synchronous one-call review, strict JSON selection, fail-open D0, exact post task/turn/visible-response hash closure, inline and query-file markers, two product real drafts, one fixed-D0 replacement and a transform-persistence counterexample",
+      "verified_host_scope": "Hermes Agent CLI 0.20.5 upstream a9611f3c and 0.20.6 upstream 5fc308a7",
+      "verified_platform": "Windows new non-resumed hermes chat -q/--query/--query-file only",
+      "verified_transport": "ollama_cloud_and_opencodex_openai_compatible_gateway",
+      "verified_model": "Alibaba Token Plan 2 DeepSeek V4 Flash 0731; Ollama Cloud marker",
+      "evidence": "maintenance/tests/evidence/hk004-hermes-r2/result.md",
       "live_transform_marker_verified": true,
-      "live_writing_adapter_verified": false,
-      "host_limit": "transform_llm_output can make deterministic text transforms but cannot invoke the shared semantic multi-stage gate; pre_verify is code-change-only and inject_message is not a writing Stop substitute"
+      "live_writing_adapter_verified": true,
+      "interactive_cli_supported": false,
+      "resumable_session_supported": false,
+      "oneshot_supported": false,
+      "gateway_live_verified": false,
+      "supported_capabilities": [
+        "delivery_review"
+      ],
+      "additional_llm_calls": 1,
+      "continuation_limit": 0,
+      "current_draft_source": "response_text supplied synchronously to transform_llm_output after the main tool loop",
+      "data_retention": "the plugin keeps request, D0 and candidate in process memory for one turn and logs hashes/counts only; Hermes 0.20.5-0.20.6 itself persists the pre-transform D0 in normal session storage, so the transformed session must not be resumed",
+      "activation": "explicit profile user plugin enable plus exact companion skill preload in a fresh hermes chat -q/--query/--query-file process with chat as the first command token; a sessionless preload binds once only when its non-empty task_id exactly matches the CLI session_id within 30 seconds",
+      "project_plugin_cli_limit": "0.20.5 runtime scans opted-in project plugins, but plugins list/enable does not enumerate them",
+      "failure_action": "original_draft",
+      "host_limit": "one synchronous host-owned completion and deterministic anchor check; Hermes persists D0 before transform, so interactive and resumed sessions are refused; --oneshot does not reliably finish plugin loading before preloaded-skill lifecycle; gateway is unverified; not equivalent to the shared multi-stage Stop gate, other capabilities are refused"
     },
     "openclaw": {
       "status": "skill_only",

@@ -77,6 +77,7 @@ class HookLayerContractTests(unittest.TestCase):
             },
             "kimi-code": {"README.md", "gate_stop_hook.py", "manifest.json"},
             "opencode": {"README.md", "opencode_gate_plugin.js"},
+            "hermes-agent": {"README.md", "__init__.py", "plugin.yaml"},
         }
         self.assertEqual(
             expected,
@@ -93,9 +94,12 @@ class HookLayerContractTests(unittest.TestCase):
             adapter_guide = (adapters / host / "README.md").read_text(
                 encoding="utf-8"
             )
-            self.assertIn("`over_length`", adapter_guide)
+            if host == "hermes-agent":
+                self.assertIn("`delivery_review`", adapter_guide)
+            else:
+                self.assertIn("`over_length`", adapter_guide)
 
-    def test_maintenance_assembler_produces_six_self_contained_plugins(self) -> None:
+    def test_maintenance_assembler_produces_eight_self_contained_plugins(self) -> None:
         with tempfile.TemporaryDirectory() as temporary:
             root = Path(temporary)
             for host in (
@@ -106,6 +110,7 @@ class HookLayerContractTests(unittest.TestCase):
                 "qwen-code",
                 "kimi-code",
                 "opencode",
+                "hermes-agent",
             ):
                 with self.subTest(host=host):
                     output = root / host
@@ -118,6 +123,7 @@ class HookLayerContractTests(unittest.TestCase):
                         "plugin.json",
                         "qwen-extension.json",
                         "kimi.plugin.json",
+                        "plugin.yaml",
                     }
                     manifests = sorted(
                         path.relative_to(output).as_posix()
@@ -132,6 +138,7 @@ class HookLayerContractTests(unittest.TestCase):
                         "qwen-code": ["qwen-extension.json"],
                         "kimi-code": ["kimi.plugin.json"],
                         "opencode": [],
+                        "hermes-agent": ["plugin.yaml"],
                     }[host]
                     self.assertEqual(expected_manifest, manifests)
                     packaged = output / (
@@ -183,7 +190,7 @@ class HookLayerContractTests(unittest.TestCase):
             (HOOK_ROOT / "host-capabilities.json").read_text(encoding="utf-8")
         )
         activation = capabilities["activation"]
-        self.assertEqual(14, capabilities["schema_version"])
+        self.assertEqual(15, capabilities["schema_version"])
         self.assertFalse(activation["ordinary_skill_install_enables_hooks"])
         self.assertFalse(activation["runtime_host_detection"])
         self.assertFalse(activation["automatic_file_generation"])
@@ -242,6 +249,7 @@ class HookLayerContractTests(unittest.TestCase):
             "qwen_code",
             "kimi_code_cli",
             "opencode",
+            "hermes_agent",
         ):
             self.assertIn("adapter_source", capabilities["hosts"][host])
         self.assertEqual(
@@ -259,10 +267,29 @@ class HookLayerContractTests(unittest.TestCase):
         self.assertTrue(capabilities["hosts"]["opencode"]["live_lifecycle_verified"])
         self.assertFalse(capabilities["hosts"]["opencode"]["headless_run_supported"])
         self.assertEqual(
-            "transform_only_no_adapter_candidate",
+            "candidate_verified_fresh_query_single_pass_not_released",
             capabilities["hosts"]["hermes_agent"]["status"],
         )
-        self.assertIsNone(capabilities["hosts"]["hermes_agent"]["adapter_source"])
+        self.assertTrue(
+            capabilities["hosts"]["hermes_agent"]["live_writing_adapter_verified"]
+        )
+        self.assertEqual(
+            ["delivery_review"],
+            capabilities["hosts"]["hermes_agent"]["supported_capabilities"],
+        )
+        self.assertFalse(
+            capabilities["hosts"]["hermes_agent"]["interactive_cli_supported"]
+        )
+        self.assertFalse(
+            capabilities["hosts"]["hermes_agent"]["resumable_session_supported"]
+        )
+        self.assertFalse(
+            capabilities["hosts"]["hermes_agent"]["oneshot_supported"]
+        )
+        self.assertIn(
+            "persists D0 before transform",
+            capabilities["hosts"]["hermes_agent"]["host_limit"],
+        )
         self.assertTrue(
             capabilities["hosts"]["kimi_code_cli"]["live_lifecycle_verified"]
         )
