@@ -92,7 +92,7 @@
 ## 工程结果
 
 - 新增项目级 adapter：`hooks/adapters/opencode/opencode_gate_plugin.js` 与说明页；不生成 manifest，不修改 `opencode.json`，不自动安装、启用或设置隔离开关。
-- 组装器新增 `opencode` 布局：`.opencode/plugins/chinese-official-writing-gate.js`、`.opencode/skills/chinese-official-writing/`、`.opencode/hook-capability.json`。P1 修复后最终组装仍为52文件，fingerprint `0cd827bc11a32565877cab89e745d10d6f71b3daf50ce741457637435fbbe88c`。
+- 组装器新增 `opencode` 布局：`.opencode/plugins/chinese-official-writing-gate.js`、`.opencode/skills/chinese-official-writing/`、`.opencode/hook-capability.json`。P1 修复和说明同步后的最终组装仍为52文件，fingerprint `873299da9731e5771cc060afdad7de96b2beeb986dd1a8411ccbb131b6181bbd`；在线复核实际加载的是同一修复代码的前一组装 `0cd827bc...`，两者差异只来自在线后同步的说明与能力元数据。
 - adapter 只映射当前 external user 后的 assistant 文本；只有实际加载 companion 内 Skill 才启动。共享 core 缺失、非法响应、续写失败或达到宿主上限时失败开放，不把错误消息标成终稿。
 - adapter 在进程重启后先读取当前 turn 的终态脱敏回执；若是已消费但未终态的 adapter 周期，则不重放，精确中止并脱敏后保留 D0。模块重载、延迟期间新任务和同名外部 Skill 三条 smoke 已覆盖这些路径。
 - 本轮新增离线 Node/Python 生命周期 smoke，并把 OpenCode 纳入六类 capability 的静态组装、SkillHub 源包与边界回归；发布平台无操作。
