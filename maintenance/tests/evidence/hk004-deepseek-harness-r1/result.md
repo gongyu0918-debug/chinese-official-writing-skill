@@ -47,9 +47,11 @@ dsh --profile headless --dump-config
 dsh --profile headless <W1 prompt>
 dsh --profile headless <W2 prompt>
 py -3 -m unittest maintenance.tests.test_deepseek_harness_gate_adapter -v
+py -3 -B C:\Users\admin\.codex\skills\.system\skill-creator\scripts\quick_validate.py chinese-official-writing
+py -3 -m unittest discover -s maintenance\tests -p "test_*.py"
 ```
 
-截至本记录，上述命令均实际运行；DSH 专门测试2/2、adapter/层契约8/8、可达性与状态一致性13/13通过。后续全量回归结果在最终提交后补入本文件。
+上述命令均实际运行；DSH 专门测试2/2、adapter/层契约8/8、可达性与状态一致性13/13、全量 unittest 723/723通过，Skill Creator quick validate 返回 `Skill is valid!`。另有一条 `py -3 maintenance/tools/quick_validate.py` 因仓库不存在该路径而退出1；它不计验证，随后改用上列系统 Skill Creator 脚本成功运行。
 
 ## 剩余边界
 
