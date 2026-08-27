@@ -79,6 +79,24 @@ export const ChineseOfficialWritingLifecycleProbe = async ({ client, directory }
     }
     const mode = process.env.COW_OPENCODE_PROBE_MODE ?? "async"
     logRecord({ event: "continuation.requested", sessionID, mode })
+    if (mode === "scheduled") {
+      const delayMs = Number(process.env.COW_OPENCODE_PROBE_DELAY_MS ?? "1200")
+      setTimeout(async () => {
+        logRecord({ event: "continuation.dispatched", sessionID, mode, delayMs })
+        try {
+          await client.session.prompt(request)
+          logRecord({ event: "continuation.resolved", sessionID, mode })
+        } catch (error) {
+          logRecord({
+            event: "continuation.failed",
+            sessionID,
+            mode,
+            error: error instanceof Error ? error.message : String(error),
+          })
+        }
+      }, delayMs)
+      return
+    }
     if (mode === "sync") {
       await client.session.prompt(request)
     } else {
@@ -86,4 +104,3 @@ export const ChineseOfficialWritingLifecycleProbe = async ({ client, directory }
     }
   },
 })
-

@@ -16,6 +16,12 @@
 - 当前公开插件契约没有同步 `Stop`/`AfterAgent` 或最终文本替换事件。因此只验证受限路径：首次 `session.idle` 读取当前 D0，必要时向同一 session 发一次有界续写，第二次 `session.idle` 收口。
 - 若 headless `run` 在第一次 idle 后退出，先试 `promptAsync`，仅允许再试一次同步 `prompt`；两者均不能稳定交付最终续写时，终态记 `LIFECYCLE_LIMITED`，不造完整 adapter。
 
+#### R1b 常驻 CLI 区分实验
+
+- R1 的 headless `run` 已分别用 `promptAsync` 与同步 `prompt` 复现“续写消息进入同一 session、模型未被唤醒、进程仅交付 D0”。为区分无头进程提前退出与 idle 唤醒本身失效，追加一次常驻 `--mini` CLI 原子。
+- 插件在首次 idle 后延迟 1200ms 调用一次同步 `session.prompt`；只看同一 session 是否出现 `OC_D1` 和第二次有效 idle，不追加写稿、不改门禁。
+- 成功也只能支持“常驻交互 CLI 的可见二次生成”，不能外推为 headless、同步拦截或最终文本替换；失败则 OpenCode 直接收口 `LIFECYCLE_LIMITED`，不再换事件或堆轮询。
+
 ### Hermes Agent
 
 - 官方插件 `transform_llm_output` 在交付前同步接收最终文本，可用经典程序变换替换输出；`post_llm_call` 仅观察。
@@ -53,4 +59,3 @@
 - 不保留 `HOLD`。每个宿主只能收口为 `ADAPTER_CANDIDATE_PASS`、`LIFECYCLE_LIMITED`、`BASELINE_NOT_REPRODUCED`、`TRANSFORM_REJECTED` 或 `TECHNICAL_INVALID`。
 - 只有真实生命周期与真实稿先通过，才补 assembler、manifest、静态契约、聚焦测试、host-capabilities 和说明。
 - 若形成产品候选，运行直接相关 adapter/unit/smoke、companion 组装、`quick_validate.py`、`git diff --check`，并提交到当前独立分支；不自动合入 main。
-
