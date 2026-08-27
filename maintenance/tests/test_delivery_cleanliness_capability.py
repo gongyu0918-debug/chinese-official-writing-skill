@@ -267,12 +267,17 @@ class DeliveryCleanlinessCapabilityTests(unittest.TestCase):
                 "zcode",
                 "qwen-code",
                 "kimi-code",
+                "opencode",
             ):
                 with self.subTest(host=host):
                     output = Path(temporary) / host
                     result = ASSEMBLER.assemble(host, output, "delivery_cleanliness")
                     self.assertEqual("delivery_cleanliness", result["capability"])
-                    packaged = output / "skills/chinese-official-writing"
+                    packaged = output / (
+                        ".opencode/skills/chinese-official-writing"
+                        if host == "opencode"
+                        else "skills/chinese-official-writing"
+                    )
                     self.assertTrue(
                         (packaged / "hooks/capabilities/delivery_cleanliness/runtime.py").is_file()
                     )

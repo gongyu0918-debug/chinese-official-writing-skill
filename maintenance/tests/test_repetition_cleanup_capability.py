@@ -327,6 +327,7 @@ class RepetitionCleanupCapabilityTests(unittest.TestCase):
                 "zcode",
                 "qwen-code",
                 "kimi-code",
+                "opencode",
             ):
                 output = Path(temporary) / host
                 result = ASSEMBLER.assemble(host, output, "repetition_cleanup")

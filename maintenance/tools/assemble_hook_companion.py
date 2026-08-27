@@ -24,11 +24,13 @@ SHARED_HOST_ADAPTER: Final = ADAPTER_ROOT / "host_gate_adapter.py"
 @dataclass(frozen=True)
 class HostAdapter:
     name: str
-    manifest_target: Path
+    manifest_target: Path | None
     adapter_source: Path
     adapter_target: Path
     hooks_target: Path | None = Path("hooks/hooks.json")
     include_openai_metadata: bool = False
+    skill_target: Path = Path("skills/chinese-official-writing")
+    capability_target: Path = Path("hook-capability.json")
 
     @property
     def source_root(self) -> Path:
@@ -76,6 +78,15 @@ HOST_ADAPTERS: Final = {
             Path("scripts/gate_stop_hook.py"),
             hooks_target=None,
         ),
+        HostAdapter(
+            "opencode",
+            None,
+            ADAPTER_ROOT / "opencode" / "opencode_gate_plugin.js",
+            Path(".opencode/plugins/chinese-official-writing-gate.js"),
+            hooks_target=None,
+            skill_target=Path(".opencode/skills/chinese-official-writing"),
+            capability_target=Path(".opencode/hook-capability.json"),
+        ),
     )
 }
 SKILL_COPY_EXCLUDES: Final = (
@@ -93,6 +104,7 @@ ADAPTER_GUIDE_LINKS: Final = {
         ("zcode", "ZCode"),
         ("qwen-code", "Qwen Code"),
         ("kimi-code", "Kimi Code CLI"),
+        ("opencode", "OpenCode"),
     )
 }
 CAPABILITY_DEFAULT: Final = "delivery_review"
@@ -120,7 +132,7 @@ def _copy(source: Path, target: Path) -> None:
 
 
 def _copy_skill(output: Path, adapter: HostAdapter) -> None:
-    packaged_skill = output / "skills" / "chinese-official-writing"
+    packaged_skill = output / adapter.skill_target
     for source in sorted(path for path in SKILL_ROOT.rglob("*") if path.is_file()):
         relative = source.relative_to(SKILL_ROOT)
         if not _is_excluded(relative, adapter):
@@ -148,23 +160,25 @@ def _fingerprint(root: Path) -> str:
 
 
 def _validate(output: Path, adapter: HostAdapter) -> None:
-    expected_manifest = output / adapter.manifest_target
+    expected_manifest = output / adapter.manifest_target if adapter.manifest_target else None
+    packaged_skill = output / adapter.skill_target
     required = [
-        expected_manifest,
         output / adapter.adapter_target,
-        output / "skills/chinese-official-writing/SKILL.md",
-        output / "skills/chinese-official-writing/hooks/gate_stop_hook.py",
-        output / "skills/chinese-official-writing/hooks/capabilities/protective_expansion/contract.py",
-        output / "skills/chinese-official-writing/hooks/capabilities/protective_expansion/runtime.py",
-        output / "skills/chinese-official-writing/hooks/capabilities/under_length/runtime.py",
-        output / "skills/chinese-official-writing/hooks/capabilities/over_length/runtime.py",
-        output / "skills/chinese-official-writing/hooks/capabilities/delivery_cleanliness/runtime.py",
-        output / "skills/chinese-official-writing/hooks/shared/hard_anchors.py",
-        output / "skills/chinese-official-writing/scripts/review_gate.py",
-        output / "hook-capability.json",
+        packaged_skill / "SKILL.md",
+        packaged_skill / "hooks/gate_stop_hook.py",
+        packaged_skill / "hooks/capabilities/protective_expansion/contract.py",
+        packaged_skill / "hooks/capabilities/protective_expansion/runtime.py",
+        packaged_skill / "hooks/capabilities/under_length/runtime.py",
+        packaged_skill / "hooks/capabilities/over_length/runtime.py",
+        packaged_skill / "hooks/capabilities/delivery_cleanliness/runtime.py",
+        packaged_skill / "hooks/shared/hard_anchors.py",
+        packaged_skill / "scripts/review_gate.py",
+        output / adapter.capability_target,
         output / "README.md",
         output / "LICENSE",
     ]
+    if expected_manifest is not None:
+        required.append(expected_manifest)
     if adapter.hooks_target is not None:
         required.append(output / adapter.hooks_target)
     missing = [path.relative_to(output).as_posix() for path in required if not path.is_file()]
@@ -176,7 +190,8 @@ def _validate(output: Path, adapter: HostAdapter) -> None:
         for path in output.rglob("*")
         if path.is_file() and path.name in manifest_names
     )
-    if manifests != [expected_manifest]:
+    expected_manifests = [expected_manifest] if expected_manifest is not None else []
+    if manifests != expected_manifests:
         raise RuntimeError("Hook companion must contain exactly one host manifest")
     for path in output.rglob("*"):
         if path.is_symlink():
@@ -211,13 +226,16 @@ def assemble(
     output.mkdir(parents=True)
     try:
         _copy_skill(output, adapter)
-        _copy(adapter.source_root / "manifest.json", output / adapter.manifest_target)
+        if adapter.manifest_target is not None:
+            _copy(adapter.source_root / "manifest.json", output / adapter.manifest_target)
         if adapter.hooks_target is not None:
             _copy(adapter.source_root / "hooks.json", output / adapter.hooks_target)
         _copy(adapter.adapter_source, output / adapter.adapter_target)
         _copy(adapter.source_root / "README.md", output / "README.md")
         _copy(SKILL_ROOT / "LICENSE", output / "LICENSE")
-        (output / "hook-capability.json").write_text(
+        capability_path = output / adapter.capability_target
+        capability_path.parent.mkdir(parents=True, exist_ok=True)
+        capability_path.write_text(
             json.dumps(
                 {"schema_version": 1, "capability": capability},
                 ensure_ascii=False,

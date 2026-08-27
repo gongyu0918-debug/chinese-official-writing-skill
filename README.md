@@ -59,7 +59,7 @@
 | 文种与专项 references | 按需补充文种骨架、办理要素、论证链、GB/T 9704 格式和 AI 算力材料规则 |
 | 分层复核 references | 从段落、小节到全文检查事实、视角、结构、格式和自然表达 |
 | `scripts/prose_lint.py` | 提供可选的格式、重复和成品残留线索，作为轻量审查层的确定性补充 |
-| 可选交付 Hook | 一份门禁核心配合 Codex、Claude Code、WorkBuddy/CodeBuddy、ZCode、Qwen Code、Kimi Code CLI 静态适配层；由用户明确启用，未通过时优先保留完整初稿；Kimi 受宿主单 Stop 上限约束 |
+| 可选交付 Hook | 一份门禁核心配合 Codex、Claude Code、WorkBuddy/CodeBuddy、ZCode、Qwen Code、Kimi Code CLI、OpenCode 静态适配层；由用户明确启用，未通过时优先保留完整初稿；Kimi 受宿主单 Stop 上限约束，OpenCode 仅支持常驻交互 CLI且中间响应可见，无头 `run` 旁路 |
 | `agents/openai.yaml` | 提供界面展示和默认调用信息 |
 
 渐进式路由让短任务只读取轻量卡，完整公文再进入相应文种叶子，技术类材料只加载命中的专项规则。这样既保留必要边界，也减少无关规则对真实写稿的干扰。
@@ -128,6 +128,7 @@ npx skills add https://github.com/gongyu0918-debug/chinese-official-writing-skil
 | `chinese-official-writing/hooks/adapters/zcode/` | ZCode Hook 静态兼容文件与使用指引 |
 | `chinese-official-writing/hooks/adapters/qwen-code/` | Qwen Code native extension Hook 静态兼容文件与使用指引 |
 | `chinese-official-writing/hooks/adapters/kimi-code/` | Kimi Code CLI native plugin Hook 静态兼容文件、单 Stop 边界与使用指引 |
+| `chinese-official-writing/hooks/adapters/opencode/` | OpenCode 项目级交互插件、同名 Skill 来源保护、无头旁路与使用指引 |
 | `packages/agent-skills/` | 通用 Agent Skills、MiniMax Skills、GLM Skills（Z.ai/智谱）、ZCode、AutoClaw、Kimi Code CLI、TRAE、Baidu Comate AI IDE 等兼容包 |
 | `packages/qwen-code/` | Qwen Code 兼容包 |
 | `packages/hermes/` | Hermes 兼容包 |

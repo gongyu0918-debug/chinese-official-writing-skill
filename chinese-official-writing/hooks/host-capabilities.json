@@ -1,5 +1,5 @@
 {
-  "schema_version": 13,
+  "schema_version": 14,
   "shared_gate_core": "chinese-official-writing/scripts/review_gate.py",
   "activation": {
     "default": "disabled",
@@ -233,6 +233,50 @@
       "over_length_continuation_limit": 1,
       "activation": "explicit native plugin install only",
       "host_limit": "Kimi 0.38.0 runs Stop only before the first hook-requested continuation; the revised final draft is delivered without a second Stop verification"
+    },
+    "opencode": {
+      "status": "lifecycle_verified_interactive_only",
+      "adapter_source": "hooks/adapters/opencode",
+      "runtime_adapter": ".opencode/plugins/chinese-official-writing-gate.js",
+      "skill_package": ".opencode/skills/chinese-official-writing",
+      "events": [
+        "session.idle",
+        "SDK session.messages",
+        "SDK session.prompt"
+      ],
+      "verified_transport": "opencodex_openai_compatible_gateway",
+      "verified_scope": "project_plugin_current_skill_same_session_real_writing_semantic_keep_hash_bound_echo_and_terminal_redaction",
+      "verified_host_scope": "OpenCode 1.18.23 interactive mini CLI",
+      "verified_platform": "Windows",
+      "evidence": "maintenance/tests/evidence/hk004-opencode-hermes-r1/result.md",
+      "live_lifecycle_verified": true,
+      "headless_run_supported": false,
+      "visible_intermediate_outputs": true,
+      "required_stop_field": null,
+      "current_draft_source": "latest assistant text after the current external user message",
+      "data_root_environment": "COW_OPENCODE_GATE_DATA, absolute OPENCODE_DB sibling, or the OpenCode XDG data root",
+      "first_party_login_required": false,
+      "continuation_limit": 4,
+      "over_length_continuation_limit": 7,
+      "host_continuation_ceiling": 8,
+      "activation": "explicit project-level .opencode overlay only",
+      "distribution_limit": "interactive CLI only; opencode run exits before a reliable asynchronous continuation and is explicitly bypassed",
+      "skill_collision_limit": "the adapter arms only when the loaded skill directory exactly matches the packaged project skill"
+    },
+    "hermes_agent": {
+      "status": "transform_only_no_adapter_candidate",
+      "adapter_source": null,
+      "events": [
+        "transform_llm_output",
+        "post_llm_call"
+      ],
+      "verified_scope": "isolated project plugin marker transformed HA_D0 to HA_D1; current-skill writing baseline did not reproduce a deterministic wrapper target",
+      "verified_host_scope": "Hermes Agent CLI 0.20.0",
+      "verified_platform": "Windows",
+      "evidence": "maintenance/tests/evidence/hk004-opencode-hermes-r1/result.md",
+      "live_transform_marker_verified": true,
+      "live_writing_adapter_verified": false,
+      "host_limit": "transform_llm_output can make deterministic text transforms but cannot invoke the shared semantic multi-stage gate; pre_verify is code-change-only and inject_message is not a writing Stop substitute"
     },
     "openclaw": {
       "status": "skill_only",

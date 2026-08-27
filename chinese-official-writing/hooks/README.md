@@ -37,6 +37,7 @@ Hook 会增加事件处理和有限的修订核验，因此通常比普通 Skill
 | ZCode | 不在插件目录中登记或启用 companion；已登记时从 ZCode 插件配置中停用或移除。 |
 | Qwen Code | 使用普通 Skill，不安装 native extension；已安装时用 `qwen extensions disable chinese-official-writing-gate` 停用，或用 `qwen extensions uninstall chinese-official-writing-gate` 移除。 |
 | Kimi Code CLI | 使用普通 Skill，不安装 plugin；已安装时通过 `/plugins disable chinese-official-writing-gate` 停用，或通过 `/plugins remove chinese-official-writing-gate` 移除。 |
+| OpenCode | 使用普通 Skill，不把 companion 的项目级 `.opencode/plugins/chinese-official-writing-gate.js` 合入目标项目；已合入时先停用 OpenCode，再只移除该文件及本 companion 的同名 Skill/能力配置，不覆盖项目内其他 `.opencode` 内容。 |
 
 完全关闭后仍按 `SKILL.md`、references 和可选的 `scripts/prose_lint.py` 运行，写稿闭环不依赖 Hook。
 
@@ -44,7 +45,7 @@ Hook 会增加事件处理和有限的修订核验，因此通常比普通 Skill
 
 已启用 companion 时，Hook 为完成当前有界生命周期，会在宿主提供的插件数据目录下暂存本轮原请求、D0、候选稿和核验包。正常到达终态 Stop，或 Stop 判定本轮不启动门禁后，原请求、原稿、候选稿、删除 span、观察包和事务文件会立即删除或从记录中移除；本地只保留 hash、字数、阶段、选择结果和交付状态等不含正文的回执。重复 Stop 只读取已脱敏状态，不重建事务。
 
-宿主或进程在终态 Stop 前异常退出时，未完成事务可能仍留在 `<PLUGIN_DATA>/candidate-ai-gate-hook`。需要清理时，先按上表停用或移除 companion，核对宿主实际给出的 `PLUGIN_DATA` 绝对路径，只删除其下精确的 `candidate-ai-gate-hook` 子目录；不要删除插件数据父目录、用户目录或其他插件目录。当前 Hook 不联网外传这些快照，也不读取凭证文件。
+宿主或进程在终态前异常退出时，未完成事务可能仍留在宿主 adapter 数据根下的 `candidate-ai-gate-hook`。需要清理时，先按上表停用或移除 companion，核对该宿主说明中的绝对数据根，只删除其下精确的 `candidate-ai-gate-hook` 子目录；不要删除数据父目录、用户目录或其他插件目录。当前 Hook 不联网外传这些快照，也不读取凭证文件。
 
 ### 永久移除包内 Hook
 
@@ -70,8 +71,9 @@ Hook 会增加事件处理和有限的修订核验，因此通常比普通 Skill
 | ZCode | [`adapters/zcode/README.md`](adapters/zcode/README.md) | 展示组装清单；确认 `.zcode-plugin`、三类 Hook 与 Skill 被发现；用户确认后才登记或启用插件根。 |
 | Qwen Code | [`adapters/qwen-code/README.md`](adapters/qwen-code/README.md) | 展示组装清单并完成本地事件 smoke；用户确认后安装 native extension，用 `qwen extensions list` 核对版本、Skill 和启用状态。 |
 | Kimi Code CLI | [`adapters/kimi-code/README.md`](adapters/kimi-code/README.md) | 展示组装清单；用户确认后通过 `/plugins install` 安装并用 `/plugins info` 核对；单 Stop 上限见适配说明。 |
+| OpenCode | [`adapters/opencode/README.md`](adapters/opencode/README.md) | 只支持常驻交互 CLI；预览并合并项目级 `.opencode/` 覆盖，核对实际 Skill 来源后做同一 session 在线 smoke。`opencode run` 明确旁路。 |
 
-Qwen Code 必须使用 native extension；便携 Agent Plugin v1 仍不会加载 Hook。Kimi Code CLI 已有 native plugin adapter，但 0.38.0 每回合只接受一次 Stop 阻断：可完成当前 D0 的首次检查和一次续写，不能对续写终稿再次运行 Stop，因此不得宣称与多 Stop 宿主等价闭环。Hermes、OpenClaw、OpenCode 等尚无本仓库内置的完整生命周期 Hook adapter，仍使用普通 Skill。Agent 如需新增宿主胶水层，应先核对该宿主官方事件、插件根变量、数据目录和信任机制，再按现有 adapter 的最小职责实现；没有官方依据或真实 smoke 时，不宣称已兼容。
+Qwen Code 必须使用 native extension；便携 Agent Plugin v1 仍不会加载 Hook。Kimi Code CLI 已有 native plugin adapter，但 0.38.0 每回合只接受一次 Stop 阻断：可完成当前 D0 的首次检查和一次续写，不能对续写终稿再次运行 Stop，因此不得宣称与多 Stop 宿主等价闭环。OpenCode 1.18.23 只有常驻交互 CLI 完成了 `session.idle → session.prompt → session.idle` 的同一 session 闭环；中间稿与结构化响应对用户可见，`run` 无头命令不会启动门禁。Hermes Agent 的同步 `transform_llm_output` 标记已验证，但三份当前 Skill 真稿没有复现可机械删除的正文外包装，真实问题又需要语义判断，因此不制作 transform-only adapter；OpenClaw 仍为普通 Skill。没有官方依据或真实 smoke 时，不宣称新增宿主兼容。
 
 ## 可选能力
 
@@ -96,8 +98,8 @@ SKILL.md 与 references 形成完整 D0
 
 1. 读取本页、`host-capabilities.json` 和目标宿主的 adapter README。
 2. 向用户展示目标目录、将要复制的文件和所选能力；未特别选择时使用既有交付复核，选择 `protective_expansion`、`under_length`、`over_length`、`delivery_cleanliness` 或 `repetition_cleanup` 时写入静态能力配置。
-3. 在新目录中放入目标宿主唯一的 manifest；使用外部 Hook 配置的宿主同时放入唯一的 `hooks/hooks.json`，Kimi Code CLI 的 Hook 保持在 `kimi.plugin.json` 内联声明。
-4. 复制薄适配器到 `scripts/`；复制完整 canonical Skill 到 `skills/chinese-official-writing/`，并将 `core/gate_stop_hook.py` 放到该 Skill 的 `hooks/gate_stop_hook.py`。
+3. 在新目录中放入目标宿主唯一的 manifest；使用外部 Hook 配置的宿主同时放入唯一的 `hooks/hooks.json`，Kimi Code CLI 的 Hook 保持在 `kimi.plugin.json` 内联声明。OpenCode 没有 companion manifest，使用其官方项目级 `.opencode/plugins/` 自动发现。
+4. 普通 manifest 宿主把薄适配器放到 `scripts/`、Skill 放到 `skills/chinese-official-writing/`；OpenCode 则使用 `.opencode/plugins/chinese-official-writing-gate.js`、`.opencode/skills/chinese-official-writing/` 与 `.opencode/hook-capability.json`。两类布局都只复制一份完整 canonical Skill，并将 `core/gate_stop_hook.py` 放到该 Skill 的 `hooks/gate_stop_hook.py`。
 5. 保留 `SKILL.md`、references、`scripts/review_gate.py`、MIT LICENSE 和本说明；禁止父目录回指、外部 symlink、其他宿主 manifest 和自动安装代码。
 6. 先运行宿主 validator 和离线事件 smoke，再由用户决定是否安装或加载。组装完成不得自动进入安装步骤。
 

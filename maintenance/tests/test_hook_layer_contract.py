@@ -76,6 +76,7 @@ class HookLayerContractTests(unittest.TestCase):
                 "manifest.json",
             },
             "kimi-code": {"README.md", "gate_stop_hook.py", "manifest.json"},
+            "opencode": {"README.md", "opencode_gate_plugin.js"},
         }
         self.assertEqual(
             expected,
@@ -104,6 +105,7 @@ class HookLayerContractTests(unittest.TestCase):
                 "zcode",
                 "qwen-code",
                 "kimi-code",
+                "opencode",
             ):
                 with self.subTest(host=host):
                     output = root / host
@@ -129,9 +131,14 @@ class HookLayerContractTests(unittest.TestCase):
                         "zcode": [".zcode-plugin/plugin.json"],
                         "qwen-code": ["qwen-extension.json"],
                         "kimi-code": ["kimi.plugin.json"],
+                        "opencode": [],
                     }[host]
                     self.assertEqual(expected_manifest, manifests)
-                    packaged = output / "skills/chinese-official-writing"
+                    packaged = output / (
+                        ".opencode/skills/chinese-official-writing"
+                        if host == "opencode"
+                        else "skills/chinese-official-writing"
+                    )
                     self.assertTrue((packaged / "SKILL.md").is_file())
                     self.assertTrue((packaged / "hooks/gate_stop_hook.py").is_file())
                     self.assertTrue((packaged / "scripts/review_gate.py").is_file())
@@ -141,7 +148,16 @@ class HookLayerContractTests(unittest.TestCase):
                     self.assertTrue((packaged / "hooks/shared/hard_anchors.py").is_file())
                     self.assertEqual(
                         "delivery_review",
-                        json.loads((output / "hook-capability.json").read_text(encoding="utf-8"))["capability"],
+                        json.loads(
+                            (
+                                output
+                                / (
+                                    ".opencode/hook-capability.json"
+                                    if host == "opencode"
+                                    else "hook-capability.json"
+                                )
+                            ).read_text(encoding="utf-8")
+                        )["capability"],
                     )
                     self.assertFalse((packaged / "hooks/adapters").exists())
                     self.assertFalse((packaged / "hooks/core").exists())
@@ -167,7 +183,7 @@ class HookLayerContractTests(unittest.TestCase):
             (HOOK_ROOT / "host-capabilities.json").read_text(encoding="utf-8")
         )
         activation = capabilities["activation"]
-        self.assertEqual(13, capabilities["schema_version"])
+        self.assertEqual(14, capabilities["schema_version"])
         self.assertFalse(activation["ordinary_skill_install_enables_hooks"])
         self.assertFalse(activation["runtime_host_detection"])
         self.assertFalse(activation["automatic_file_generation"])
@@ -194,7 +210,14 @@ class HookLayerContractTests(unittest.TestCase):
         self.assertTrue(capabilities["over_length_gate"]["automatic_compression"])
         self.assertFalse(capabilities["over_length_gate"]["default_selected"])
         self.assertEqual(2, capabilities["over_length_gate"]["compression_limit"])
-        for host in ("codex", "codebuddy", "claude_code", "zcode", "qwen_code"):
+        for host in (
+            "codex",
+            "codebuddy",
+            "claude_code",
+            "zcode",
+            "qwen_code",
+            "opencode",
+        ):
             self.assertEqual(
                 7, capabilities["hosts"][host]["over_length_continuation_limit"]
             )
@@ -218,6 +241,7 @@ class HookLayerContractTests(unittest.TestCase):
             "zcode",
             "qwen_code",
             "kimi_code_cli",
+            "opencode",
         ):
             self.assertIn("adapter_source", capabilities["hosts"][host])
         self.assertEqual(
@@ -228,6 +252,17 @@ class HookLayerContractTests(unittest.TestCase):
             "lifecycle_verified_single_stop",
             capabilities["hosts"]["kimi_code_cli"]["status"],
         )
+        self.assertEqual(
+            "lifecycle_verified_interactive_only",
+            capabilities["hosts"]["opencode"]["status"],
+        )
+        self.assertTrue(capabilities["hosts"]["opencode"]["live_lifecycle_verified"])
+        self.assertFalse(capabilities["hosts"]["opencode"]["headless_run_supported"])
+        self.assertEqual(
+            "transform_only_no_adapter_candidate",
+            capabilities["hosts"]["hermes_agent"]["status"],
+        )
+        self.assertIsNone(capabilities["hosts"]["hermes_agent"]["adapter_source"])
         self.assertTrue(
             capabilities["hosts"]["kimi_code_cli"]["live_lifecycle_verified"]
         )
