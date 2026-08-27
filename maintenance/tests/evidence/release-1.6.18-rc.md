@@ -2,7 +2,7 @@
 
 日期：2026-08-27。
 
-状态：`READY_FOR_PRODUCT_COMMIT / NOT_PUBLISHED`。本文件绑定本地发行候选；正式发布回执完成前，不表示 GitHub、SkillHub.cn 或 ClawHub 已存在 v1.6.18。
+状态：`PUBLISHED / SEE release-1.6.18.md`。本文件保留发布前候选门；正式外部回执见同目录 `release-1.6.18.md`。
 
 ## 固定对象与范围
 
@@ -37,7 +37,7 @@
 - canonical、Agent Skills、Qwen Code、Hermes 四套 quick validation 均通过；138个 tracked Python 文件内存编译、142个 tracked JSON 文件解析通过。
 - `sync_adapters.py` 复跑前后 diff hash 均为 `3a17b581c6822b24918fb99ff7be76219531238285b217475de423023fe3f30e`，镜像同步幂等。
 - SkillHub.cn 清洁包73文件，本地文件树指纹 `4ff2cb68beff03a09a9372d8c26eb2d0d0c9aabbde6aa56e5ae615b478f16c61`；含 `LICENSE.md`，不含 `agents/openai.yaml` 或付费实现路径。dry-run 返回 `slug=chinese-official-writing`、`version=1.6.18`。
-- ClawHub 包33文件，本地文件树指纹 `b09972521d52871e4345c40074683db58374d5bd12fca8413cc6dae332de6f53`；Hook路径和Hook内容命中均为0，`agents/openai.yaml`、付费提纲和红头实现路径命中均为0。ClawHub 0.23.3 结构 dry-run 返回 `would-publish`、展示名“中文公文写作”、版本1.6.18、33文件、平台 fingerprint `f71bf08951ea28860d14602950aab7ee43d7bd482a2ccc71e40d909f363a765d`。该次 dry-run 绑定内容基线 `0fa243ba`；产品提交生成后还须以最终提交重跑 source-bound dry-run，未运行前不预称通过。
+- ClawHub 包33文件，本地文件树指纹 `b09972521d52871e4345c40074683db58374d5bd12fca8413cc6dae332de6f53`；Hook路径和Hook内容命中均为0，`agents/openai.yaml`、付费提纲和红头实现路径命中均为0。ClawHub 0.23.3 结构 dry-run 与绑定最终产品提交 `67a68257f8a79220a38e961ced932bcb022cf86b` 的 source-bound dry-run 均返回 `would-publish`、展示名“中文公文写作”、版本1.6.18、33文件、平台 fingerprint `f71bf08951ea28860d14602950aab7ee43d7bd482a2ccc71e40d909f363a765d`。
 - 本地指纹按相对 POSIX 路径排序，对每个文件依次写入 `path + NUL + bytes + NUL` 后计算 SHA-256；平台回执指纹单列，不与本地 Windows 检出字节混用。
 - `git diff --check`、候选终审和最终清洁状态在产品提交前复核；所有正式外部写入均尚未发生。
 

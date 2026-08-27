@@ -29,17 +29,17 @@ def section(text: str, heading: str) -> str:
 
 
 class StatusLedgerConsistencyTests(unittest.TestCase):
-    def test_current_public_release_is_v1617(self) -> None:
+    def test_current_public_release_is_v1618(self) -> None:
         public_readme = read("README.md")
         todo = read("maintenance/docs/待办.md")
         roadmap = read("maintenance/specs/roadmap.md")
 
-        self.assertIn("当前产品 tag 为 `v1.6.17^{commit}=7b457784", todo)
-        self.assertIn("`release-1.6.17.md`", todo)
+        self.assertIn("当前产品 tag 为 `v1.6.18^{commit}=67a68257", todo)
+        self.assertIn("`release-1.6.18.md`", todo)
         self.assertIn("## v1.6.14 起已发布状态与后续研究", todo)
         self.assertNotIn("候选均保持 HOLD", public_readme)
-        self.assertIn("`v1.6.17` 维护补丁已发布", roadmap)
-        self.assertNotIn("当前产品 tag 为 `v1.6.15", todo)
+        self.assertIn("`v1.6.18` 小版本已发布", roadmap)
+        self.assertNotIn("当前产品 tag 为 `v1.6.17", todo)
 
     def test_oc003_is_closed_on_every_active_status_surface(self) -> None:
         for relative in (
@@ -103,7 +103,7 @@ class StatusLedgerConsistencyTests(unittest.TestCase):
         row = table_row(read("maintenance/specs/coverage.md"), "HK-004")
 
         self.assertIn("国产 CLI 复核", row)
-        self.assertIn("DONE_LOCAL_MAIN / HERMES_BASELINE_NOT_REPRODUCED", row)
+        self.assertIn("DONE_V1.6.18 / HERMES_BASELINE_NOT_REPRODUCED", row)
         self.assertIn("OpenCode 项目级 companion", row)
         self.assertIn("Kimi 仍只证明首次 Stop", row)
         self.assertNotIn("LOCAL_CANDIDATE", row)
