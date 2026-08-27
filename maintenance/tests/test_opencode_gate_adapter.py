@@ -73,6 +73,66 @@ class OpenCodeGateAdapterTests(unittest.TestCase):
         self.assertIn('"prompts":0', result.stdout)
         self.assertFalse(data.exists())
 
+    def test_module_restart_aborts_pending_cycle_without_replay(self) -> None:
+        result = subprocess.run(
+            [
+                self.node,
+                str(SMOKE),
+                str(self.companion),
+                str(self.root / "restart-data"),
+                "restart-pending",
+            ],
+            check=True,
+            capture_output=True,
+            text=True,
+            encoding="utf-8",
+            env={**os.environ, "COW_OPENCODE_GATE_DELAY_MS": "200"},
+            timeout=30,
+        )
+        self.assertIn('"prompts":0', result.stdout)
+        self.assertIn('"rawRetained":false', result.stdout)
+        self.assertIn('"pendingReplayAborted":true', result.stdout)
+
+    def test_delayed_continuation_cannot_enter_a_new_user_turn(self) -> None:
+        result = subprocess.run(
+            [
+                self.node,
+                str(SMOKE),
+                str(self.companion),
+                str(self.root / "turn-data"),
+                "turn-changed",
+            ],
+            check=True,
+            capture_output=True,
+            text=True,
+            encoding="utf-8",
+            env={**os.environ, "COW_OPENCODE_GATE_DELAY_MS": "200"},
+            timeout=30,
+        )
+        self.assertIn('"prompts":0', result.stdout)
+        self.assertIn('"rawRetained":false', result.stdout)
+        self.assertIn('"turnBound":true', result.stdout)
+
+    def test_same_name_external_skill_fails_open_and_redacts_request(self) -> None:
+        result = subprocess.run(
+            [
+                self.node,
+                str(SMOKE),
+                str(self.companion),
+                str(self.root / "stale-skill-data"),
+                "stale-skill",
+            ],
+            check=True,
+            capture_output=True,
+            text=True,
+            encoding="utf-8",
+            env={**os.environ, "COW_OPENCODE_GATE_DELAY_MS": "0"},
+            timeout=30,
+        )
+        self.assertIn('"prompts":0', result.stdout)
+        self.assertIn('"rawRetained":false', result.stdout)
+        self.assertIn('"staleSkillRejected":true', result.stdout)
+
 
 if __name__ == "__main__":
     unittest.main()

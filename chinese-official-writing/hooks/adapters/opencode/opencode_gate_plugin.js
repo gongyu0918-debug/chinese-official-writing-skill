@@ -68,9 +68,22 @@ function latestAssistant(messages, afterIndex) {
     const message = messages[index]
     if (message?.info?.role !== "assistant") continue
     const text = messageText(message)
-    if (text) return { id: messageID(message) || digest(text), text }
+    if (text) return { index, id: messageID(message) || digest(text), text }
   }
   return null
+}
+
+function latestInternalContinuationIndex(messages, afterIndex) {
+  for (let index = messages.length - 1; index > afterIndex; index -= 1) {
+    const message = messages[index]
+    if (
+      message?.info?.role === "user" &&
+      messageText(message).startsWith(INTERNAL_PREFIX)
+    ) {
+      return index
+    }
+  }
+  return -1
 }
 
 function internalContinuationCount(messages, afterIndex) {
@@ -133,6 +146,66 @@ function hasTerminalReceipt(sessionID, turnID) {
   }
 }
 
+function adapterStatePath(sessionID, turnID) {
+  return path.join(
+    gateDataRoot(),
+    "opencode-adapter-state",
+    safeKey(sessionID),
+    `${safeKey(turnID)}.json`,
+  )
+}
+
+function readAdapterState(sessionID, turnID) {
+  const target = adapterStatePath(sessionID, turnID)
+  try {
+    const value = JSON.parse(fs.readFileSync(target, "utf8"))
+    return value && typeof value === "object"
+      ? value
+      : { phase: "corrupt", processedKey: null }
+  } catch {
+    try {
+      if (fs.statSync(target).isFile()) return { phase: "corrupt", processedKey: null }
+    } catch {
+      // Missing state is the ordinary first-cycle case.
+    }
+    return null
+  }
+}
+
+function writeAdapterState(sessionID, turnID, value) {
+  const target = adapterStatePath(sessionID, turnID)
+  const temporary = `${target}.${process.pid}.${crypto.randomBytes(6).toString("hex")}.tmp`
+  try {
+    fs.mkdirSync(path.dirname(target), { recursive: true })
+    fs.writeFileSync(temporary, JSON.stringify(value) + "\n", {
+      encoding: "utf8",
+      flag: "wx",
+    })
+    fs.renameSync(temporary, target)
+    return true
+  } catch {
+    try {
+      fs.unlinkSync(temporary)
+    } catch {
+      // A missing temporary file needs no cleanup.
+    }
+    return false
+  }
+}
+
+function clearAdapterState(sessionID, turnID, processedKey = null) {
+  const target = adapterStatePath(sessionID, turnID)
+  if (processedKey !== null && readAdapterState(sessionID, turnID)?.processedKey !== processedKey) {
+    return false
+  }
+  try {
+    fs.unlinkSync(target)
+    return true
+  } catch (error) {
+    return error?.code === "ENOENT"
+  }
+}
+
 function pythonCommands() {
   if (process.platform === "win32") {
     return [
@@ -174,6 +247,23 @@ function runCore(event, selectedCapability, directory) {
     }
   }
   return null
+}
+
+function abortTurn(common, selectedCapability, directory, reason, processedKey) {
+  const result = runCore(
+    { ...common, hook_event_name: "HostAbort", abort_reason: reason },
+    selectedCapability,
+    directory,
+  )
+  if (result) {
+    clearAdapterState(common.session_id, common.turn_id, processedKey)
+    return true
+  }
+  writeAdapterState(common.session_id, common.turn_id, {
+    phase: "abort_failed",
+    processedKey,
+  })
+  return false
 }
 
 function toolCommand(part) {
@@ -235,8 +325,26 @@ async function handleIdle({ client, directory, event }) {
   const messages = messageList(result)
   const external = latestExternalUser(messages)
   if (!external) return
+  const turnID = `opencode-${digest(external.id).slice(0, 24)}`
+  const common = { session_id: sessionID, turn_id: turnID, cwd: directory }
+  const selectedCapability = capability()
   const assistant = latestAssistant(messages, external.index)
   if (!assistant) return
+  const latestInternalIndex = latestInternalContinuationIndex(messages, external.index)
+  if (latestInternalIndex > assistant.index) {
+    const pending = readAdapterState(sessionID, turnID)
+    if (pending) {
+      abortTurn(
+        common,
+        selectedCapability,
+        directory,
+        "continuation_failed",
+        pending.processedKey,
+      )
+      await log(client, "error", "internal continuation ended without an assistant reply")
+    }
+    return
+  }
 
   let state = sessionStates.get(sessionID)
   if (!state || state.externalID !== external.id) {
@@ -250,10 +358,8 @@ async function handleIdle({ client, directory, event }) {
   if (state.lastProcessed === processedKey) return
   state.lastProcessed = processedKey
 
-  const turnID = `opencode-${digest(external.id).slice(0, 24)}`
-  const common = { session_id: sessionID, turn_id: turnID, cwd: directory }
-  const selectedCapability = capability()
   if (hasTerminalReceipt(sessionID, turnID)) {
+    clearAdapterState(sessionID, turnID)
     state.terminal = true
     await log(client, "info", "terminal receipt already exists; skipping a replayed idle", {
       capability: selectedCapability,
@@ -261,7 +367,33 @@ async function handleIdle({ client, directory, event }) {
     })
     return
   }
+  const pending = readAdapterState(sessionID, turnID)
+  if (
+    pending &&
+    (
+      pending.processedKey === processedKey ||
+      pending.phase === "abort_failed" ||
+      pending.phase === "corrupt"
+    )
+  ) {
+    const aborted = abortTurn(
+      common,
+      selectedCapability,
+      directory,
+      "pending_replay",
+      pending.processedKey,
+    )
+    state.terminal = true
+    await log(
+      client,
+      aborted ? "warn" : "error",
+      "unfinished adapter cycle was not replayed after a module restart",
+      { capability: selectedCapability, continuationCount, redacted: aborted },
+    )
+    return
+  }
   if (!runCore({ ...common, hook_event_name: "UserPromptSubmit", prompt: external.text }, selectedCapability, directory)) {
+    abortTurn(common, selectedCapability, directory, "adapter_failure", processedKey)
     state.terminal = true
     await log(client, "error", "shared gate core unavailable; leaving the current draft unchanged")
     return
@@ -290,6 +422,7 @@ async function handleIdle({ client, directory, event }) {
   }
 
   if (!localSkillSeen) {
+    abortTurn(common, selectedCapability, directory, "skill_not_loaded", processedKey)
     state.terminal = true
     if (staleSkillSeen && !state.staleWarned) {
       state.staleWarned = true
@@ -303,6 +436,16 @@ async function handleIdle({ client, directory, event }) {
     return
   }
 
+  if (!writeAdapterState(sessionID, turnID, {
+    phase: "evaluating",
+    processedKey,
+    continuationCount,
+  })) {
+    abortTurn(common, selectedCapability, directory, "adapter_failure", processedKey)
+    state.terminal = true
+    await log(client, "error", "adapter state could not be persisted; leaving D0 unchanged")
+    return
+  }
   const response = runCore(
     {
       ...common,
@@ -314,11 +457,13 @@ async function handleIdle({ client, directory, event }) {
     directory,
   )
   if (!response) {
+    abortTurn(common, selectedCapability, directory, "adapter_failure", processedKey)
     state.terminal = true
     await log(client, "error", "shared gate call failed; leaving the current draft unchanged")
     return
   }
   if (response.decision !== "block" || typeof response.reason !== "string") {
+    clearAdapterState(sessionID, turnID, processedKey)
     state.terminal = true
     await log(client, "info", "shared gate reached a terminal allow", {
       capability: selectedCapability,
@@ -328,6 +473,7 @@ async function handleIdle({ client, directory, event }) {
     return
   }
   if (continuationCount >= MAX_HOST_CONTINUATIONS) {
+    abortTurn(common, selectedCapability, directory, "host_ceiling", processedKey)
     state.terminal = true
     await log(client, "error", "OpenCode host continuation ceiling reached", {
       capability: selectedCapability,
@@ -336,14 +482,80 @@ async function handleIdle({ client, directory, event }) {
     return
   }
 
+  if (!writeAdapterState(sessionID, turnID, {
+    phase: "pending_prompt",
+    processedKey,
+    continuationCount,
+  })) {
+    abortTurn(common, selectedCapability, directory, "adapter_failure", processedKey)
+    state.terminal = true
+    await log(client, "error", "pending continuation could not be persisted; leaving D0 unchanged")
+    return
+  }
+
   setTimeout(async () => {
     try {
+      const pendingPrompt = readAdapterState(sessionID, turnID)
+      if (pendingPrompt?.phase === "corrupt") {
+        abortTurn(common, selectedCapability, directory, "adapter_failure", null)
+        await log(client, "error", "corrupt adapter state cancelled the pending continuation")
+        return
+      }
+      if (
+        pendingPrompt?.phase !== "pending_prompt" ||
+        pendingPrompt.processedKey !== processedKey
+      ) {
+        return
+      }
+      const currentResult = await client.session.messages({
+        path: { id: sessionID },
+        query: { directory },
+      })
+      const currentMessages = messageList(currentResult)
+      const currentExternal = latestExternalUser(currentMessages)
+      const currentAssistant = currentExternal
+        ? latestAssistant(currentMessages, currentExternal.index)
+        : null
+      const currentContinuationCount = currentExternal
+        ? internalContinuationCount(currentMessages, currentExternal.index)
+        : -1
+      const currentProcessedKey = currentAssistant
+        ? `${currentContinuationCount}:${currentAssistant.id}:${digest(currentAssistant.text)}`
+        : ""
+      if (
+        currentExternal?.id !== external.id ||
+        currentProcessedKey !== processedKey
+      ) {
+        const aborted = abortTurn(
+          common,
+          selectedCapability,
+          directory,
+          "turn_changed",
+          processedKey,
+        )
+        await log(client, aborted ? "warn" : "error", "delayed continuation was cancelled because the session changed", {
+          capability: selectedCapability,
+          redacted: aborted,
+        })
+        return
+      }
+      if (!writeAdapterState(sessionID, turnID, {
+        phase: "prompt_dispatching",
+        processedKey,
+        continuationCount,
+      })) {
+        abortTurn(common, selectedCapability, directory, "adapter_failure", processedKey)
+        await log(client, "error", "continuation dispatch state could not be persisted")
+        return
+      }
       await client.session.prompt({
         path: { id: sessionID },
         query: { directory },
         body: { parts: [{ type: "text", text: INTERNAL_PREFIX + response.reason }] },
       })
+      clearAdapterState(sessionID, turnID, processedKey)
     } catch (error) {
+      abortTurn(common, selectedCapability, directory, "continuation_failed", processedKey)
       await log(client, "error", "OpenCode continuation failed", {
         error: error instanceof Error ? error.message : String(error),
       })

@@ -73,7 +73,7 @@ Hook 会增加事件处理和有限的修订核验，因此通常比普通 Skill
 | Kimi Code CLI | [`adapters/kimi-code/README.md`](adapters/kimi-code/README.md) | 展示组装清单；用户确认后通过 `/plugins install` 安装并用 `/plugins info` 核对；单 Stop 上限见适配说明。 |
 | OpenCode | [`adapters/opencode/README.md`](adapters/opencode/README.md) | 只支持常驻交互 CLI；预览并合并项目级 `.opencode/` 覆盖，核对实际 Skill 来源后做同一 session 在线 smoke。`opencode run` 明确旁路。 |
 
-Qwen Code 必须使用 native extension；便携 Agent Plugin v1 仍不会加载 Hook。Kimi Code CLI 已有 native plugin adapter，但 0.38.0 每回合只接受一次 Stop 阻断：可完成当前 D0 的首次检查和一次续写，不能对续写终稿再次运行 Stop，因此不得宣称与多 Stop 宿主等价闭环。OpenCode 1.18.23 只有常驻交互 CLI 完成了 `session.idle → session.prompt → session.idle` 的同一 session 闭环；中间稿与结构化响应对用户可见，`run` 无头命令不会启动门禁。Hermes Agent 的同步 `transform_llm_output` 标记已验证，但三份当前 Skill 真稿没有复现可机械删除的正文外包装，真实问题又需要语义判断，因此不制作 transform-only adapter；OpenClaw 仍为普通 Skill。没有官方依据或真实 smoke 时，不宣称新增宿主兼容。
+Qwen Code 必须使用 native extension；便携 Agent Plugin v1 仍不会加载 Hook。Kimi Code CLI 已有 native plugin adapter，但 0.38.0 每回合只接受一次 Stop 阻断：可完成当前 D0 的首次检查和一次续写，不能对续写终稿再次运行 Stop，因此不得宣称与多 Stop 宿主等价闭环。OpenCode 1.18.23 只有常驻交互 CLI 完成了 `session.idle → session.prompt → session.idle` 的同一 session 闭环；中间稿与结构化响应对用户可见，`run` 无头命令不会启动门禁。延迟期间会重新绑定原回合；用户提交新任务、同名外部 Skill 获胜或未终态模块重载时，旧事务精确脱敏并安全回退当前 D0，不把旧续写串入新任务。Hermes Agent 的同步 `transform_llm_output` 标记已验证，但三份当前 Skill 真稿没有复现可机械删除的正文外包装，真实问题又需要语义判断，因此不制作 transform-only adapter；OpenClaw 仍为普通 Skill。没有官方依据或真实 smoke 时，不宣称新增宿主兼容。
 
 ## 可选能力
 

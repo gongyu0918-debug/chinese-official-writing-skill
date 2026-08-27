@@ -6,7 +6,7 @@ const [companionRoot, dataRoot, mode = "interactive"] = process.argv.slice(2)
 if (!companionRoot || !dataRoot) throw new Error("usage: opencode_adapter_smoke.mjs COMPANION DATA [MODE]")
 
 process.env.COW_OPENCODE_GATE_DATA = dataRoot
-process.env.COW_OPENCODE_GATE_DELAY_MS = "0"
+process.env.COW_OPENCODE_GATE_DELAY_MS ||= "0"
 
 const pluginPath = path.join(
   companionRoot,
@@ -40,7 +40,9 @@ const messages = [
         state: {
           status: "completed",
           input: { name: "chinese-official-writing" },
-          metadata: { dir: skillRoot },
+          metadata: {
+            dir: mode === "stale-skill" ? path.join(companionRoot, "stale-skill") : skillRoot,
+          },
         },
       },
       { type: "text", text: draft },
@@ -49,6 +51,27 @@ const messages = [
 ]
 const prompts = []
 const logs = []
+function retainedText() {
+  const retained = []
+  function collect(directory) {
+    if (!fs.existsSync(directory)) return
+    for (const entry of fs.readdirSync(directory, { withFileTypes: true })) {
+      const current = path.join(directory, entry.name)
+      if (entry.isDirectory()) collect(current)
+      else retained.push(fs.readFileSync(current, "utf8"))
+    }
+  }
+  collect(dataRoot)
+  return retained.join("\n")
+}
+
+function assertRawRedacted() {
+  const serialized = retainedText()
+  if (serialized.includes(originalPrompt) || serialized.includes(draft)) {
+    throw new Error("terminal receipt retained raw request or draft")
+  }
+}
+
 const client = {
   app: {
     log: async (request) => {
@@ -76,6 +99,57 @@ const client = {
 
 const hook = await ChineseOfficialWritingGate({ client, directory: companionRoot })
 await hook.event({ event: { type: "session.idle", properties: { sessionID: "session-1" } } })
+
+if (mode === "stale-skill") {
+  if (prompts.length !== 0) throw new Error("a same-name external skill armed the project gate")
+  assertRawRedacted()
+  if (!logs.some((entry) => entry?.body?.message?.includes("same-name external skill"))) {
+    throw new Error("missing same-name skill collision warning")
+  }
+  process.stdout.write(
+    JSON.stringify({ mode, prompts: prompts.length, rawRetained: false, staleSkillRejected: true }) + "\n",
+  )
+  process.exit(0)
+}
+
+if (mode === "restart-pending") {
+  const restartedModule = await import(`${pluginURL.href}?restart-pending=1`)
+  const restartedHook = await restartedModule.ChineseOfficialWritingGate({
+    client,
+    directory: companionRoot,
+  })
+  await restartedHook.event({
+    event: { type: "session.idle", properties: { sessionID: "session-1" } },
+  })
+  await new Promise((resolve) => setTimeout(resolve, 400))
+  if (prompts.length !== 0) throw new Error("a restarted pending cycle dispatched a duplicate prompt")
+  assertRawRedacted()
+  if (!logs.some((entry) => entry?.body?.message?.includes("was not replayed"))) {
+    throw new Error("missing pending replay cancellation log")
+  }
+  process.stdout.write(
+    JSON.stringify({ mode, prompts: prompts.length, rawRetained: false, pendingReplayAborted: true }) + "\n",
+  )
+  process.exit(0)
+}
+
+if (mode === "turn-changed") {
+  messages.push({
+    info: { id: "msg-user-2", role: "user" },
+    parts: [{ type: "text", text: "请改为起草另一份通知。" }],
+  })
+  await new Promise((resolve) => setTimeout(resolve, 400))
+  if (prompts.length !== 0) throw new Error("an old turn continuation entered a new user task")
+  assertRawRedacted()
+  if (!logs.some((entry) => entry?.body?.message?.includes("session changed"))) {
+    throw new Error("missing changed-turn cancellation log")
+  }
+  process.stdout.write(
+    JSON.stringify({ mode, prompts: prompts.length, rawRetained: false, turnBound: true }) + "\n",
+  )
+  process.exit(0)
+}
+
 await new Promise((resolve) => setTimeout(resolve, 400))
 
 if (mode === "run") {
@@ -88,21 +162,7 @@ if (prompts.length !== 1) throw new Error(`expected one continuation, got ${prom
 await hook.event({ event: { type: "session.idle", properties: { sessionID: "session-1" } } })
 await new Promise((resolve) => setTimeout(resolve, 200))
 if (prompts.length !== 1) throw new Error("terminal echo must not create another continuation")
-
-const retained = []
-function collect(directory) {
-  if (!fs.existsSync(directory)) return
-  for (const entry of fs.readdirSync(directory, { withFileTypes: true })) {
-    const current = path.join(directory, entry.name)
-    if (entry.isDirectory()) collect(current)
-    else retained.push(fs.readFileSync(current, "utf8"))
-  }
-}
-collect(dataRoot)
-const serialized = retained.join("\n")
-if (serialized.includes(originalPrompt) || serialized.includes(draft)) {
-  throw new Error("terminal receipt retained raw request or draft")
-}
+assertRawRedacted()
 if (!logs.some((entry) => entry?.body?.message === "shared gate reached a terminal allow")) {
   throw new Error("missing terminal allow log")
 }

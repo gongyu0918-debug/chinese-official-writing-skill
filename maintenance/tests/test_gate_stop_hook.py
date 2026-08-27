@@ -111,6 +111,24 @@ class GateStopHookTests(unittest.TestCase):
         self.assertTrue(result["continue"])
         self.assertTrue(HOOK.handle(self._event("Stop"))["continue"])
 
+    def test_host_abort_redacts_one_exact_pending_turn(self):
+        request = "敏感的待处理写稿请求"
+        self._record_prompt_and_skill_read(request)
+        record_path = HOOK._record_path(self._event("HostAbort"))
+        self.assertIsNotNone(record_path)
+        self.assertIn(request, record_path.read_text(encoding="utf-8"))
+
+        result = HOOK.handle(
+            self._event("HostAbort", abort_reason="turn_changed")
+        )
+
+        self.assertTrue(result["continue"])
+        record = json.loads(record_path.read_text(encoding="utf-8"))
+        self.assertEqual("raw_turn_data_redacted", record["data_retention_state"])
+        self.assertEqual("turn_changed", record["host_abort_reason"])
+        self.assertEqual("failed_open_host_abort", record["hook_phase"])
+        self._assert_gate_root_omits(request)
+
     def test_co_located_skill_root_is_recognized_for_flat_packages(self):
         skill = MODULE_PATH.parents[1] / "SKILL.md"
         self.assertTrue(HOOK._reads_this_skill(f'Get-Content "{skill}"'))
