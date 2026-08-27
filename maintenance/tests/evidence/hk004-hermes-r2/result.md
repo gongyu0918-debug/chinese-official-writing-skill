@@ -2,18 +2,18 @@
 
 ## 结论
 
-`HK-004-HERMES-R2` 已形成可提交、未合并、未发布的 Hermes Agent 单次写后复核候选。当前明确支持已验证的 Hermes Agent 0.20.5—0.20.6 新建、不可恢复 `hermes chat -q/--query/--query-file` 单题：profile 用户插件被官方 CLI 列出和启停，精确 companion Skill 预载后，同一回合在 `transform_llm_output` 内只调用一次宿主管理的 LLM，严格选择 D0 或完整 D1，失败保留 D0，`post_llm_call` 再闭合 task、turn 与用户可见响应 hash。
+`HK-004-HERMES-R2` 已合并到本地 `main`、未推送、未发布，形成 Hermes Agent 单次写后复核能力。当前明确支持已验证的 Hermes Agent 0.20.5—0.20.6 新建、不可恢复 `hermes chat -q/--query/--query-file` 单题：profile 用户插件被官方 CLI 列出和启停，精确 companion Skill 预载后，同一回合在 `transform_llm_output` 内只调用一次宿主管理的 LLM，严格选择 D0 或完整 D1，失败保留 D0，`post_llm_call` 再闭合 task、turn 与用户可见响应 hash。
 
 本轮不把它写成共享多 Stop 门禁，也不宣称支持交互 CLI、resume/continue、`hermes --oneshot` 或 gateway。0.20.5—0.20.6 的 one-shot 路径在预载 Skill 前没有同步等待原生插件完成加载；更关键的是，宿主在 `transform_llm_output` 前已经持久化 D0。确定性 D0→D1 后恢复同一 session 实测读回 D0，因此产品代码本身拒绝可恢复会话，不只在说明中提示。
 
 ## 宿主与安装事实
 
 - 固定公开基线：`main@c784e3721db8f170015e1220ea92c815f747a89a`，已发布产品 tag `v1.6.18@67a68257f8a79220a38e961ced932bcb022cf86b`。
-- 候选分支/worktree：`codex/hermes-lifecycle-r2` / `F:\Workspaces\chinese-official-writing-skill-worktrees\hermes-lifecycle-r2`。
+- 开发分支/worktree：`codex/hermes-lifecycle-r2` / `F:\Workspaces\chinese-official-writing-skill-worktrees\hermes-lifecycle-r2`；本地 `main` 先快进到候选提交，再用本记录提交收口。
 - Hermes 从0.20.0先更新到0.20.5、upstream `86221181`。本次继续验证时官方检查显示落后10个提交；第一次 `hermes update --yes` 因 GitHub TLS 握手失败退出，代码未变且 gateway 已恢复。只读 `git ls-remote` 随后成功，唯一重试把安装更新并收敛到 upstream `a9611f3c6f7ff287a4f10f71a77d7c5a808ea1c8`，版本仍为0.20.5。
 - 验证期间上游又发布0.20.6。官方 `hermes update --yes` 因浅克隆历史分叉按自身流程重置到 `5fc308a70719a83cccdbba4c0e39c23f5a8239d5`，安装工作树随后为 `main...origin/main` 且无未提交文件。Windows 自替换窗口第一次调用 launcher 暂时失败，新 `hermes.exe` 落盘后版本命令恢复；更新器没有实际恢复 gateway，故再次用官方 `hermes gateway start` 启动，并由 status 确认 PID 67496 运行。
 - Hermes 0.20.5 运行时可以在显式环境开关下扫描项目插件，但 `hermes plugins list/enable` 仍不枚举项目插件。候选因此只把 profile 用户插件目录写成默认安装路径。
-- 最终组装物为54文件，fingerprint `7991fbd26bff60c91a2c08ea7edd7f8e96e7c48a17936878e47aa56f17dbe910`；`hermes plugins doctor ... --ci` 验证为0个工具、7个 Hook。候选未申请工具覆盖权限，manifest 中一项非官方 `skill_namespace` 字段已删除。
+- 本地 `main` 重新组装物为54文件，fingerprint `6115fb292bd72883db9ef624bdf51e520152de064f0ed2d95fed77e8b9b87bce`；`hermes plugins doctor ... --ci` 验证为0个工具、7个 Hook。它与候选 worktree 的 `7991fbd26bff60c91a2c08ea7edd7f8e96e7c48a17936878e47aa56f17dbe910` 仅有9个文本文件的 CRLF/LF 字节差异，逐文件换行归一化后内容相同；指纹按实际组装字节记录，不以宽泛换行改写破坏既有镜像字节一致契约。候选未申请工具覆盖权限，manifest 中一项非官方 `skill_namespace` 字段已删除。
 
 ## 生命周期问题与修复
 
