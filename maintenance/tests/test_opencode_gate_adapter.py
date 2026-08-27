@@ -133,6 +133,26 @@ class OpenCodeGateAdapterTests(unittest.TestCase):
         self.assertIn('"rawRetained":false', result.stdout)
         self.assertIn('"staleSkillRejected":true', result.stdout)
 
+    def test_reload_during_prompt_dispatch_keeps_one_owner(self) -> None:
+        result = subprocess.run(
+            [
+                self.node,
+                str(SMOKE),
+                str(self.companion),
+                str(self.root / "dispatch-data"),
+                "dispatch-reload",
+            ],
+            check=True,
+            capture_output=True,
+            text=True,
+            encoding="utf-8",
+            env={**os.environ, "COW_OPENCODE_GATE_DELAY_MS": "0"},
+            timeout=30,
+        )
+        self.assertIn('"prompts":1', result.stdout)
+        self.assertIn('"rawRetained":false', result.stdout)
+        self.assertIn('"singleOwner":true', result.stdout)
+
 
 if __name__ == "__main__":
     unittest.main()

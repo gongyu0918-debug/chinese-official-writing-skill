@@ -193,6 +193,20 @@ function writeAdapterState(sessionID, turnID, value) {
   }
 }
 
+function claimAdapterState(sessionID, turnID, value) {
+  const target = adapterStatePath(sessionID, turnID)
+  try {
+    fs.mkdirSync(path.dirname(target), { recursive: true })
+    fs.writeFileSync(target, JSON.stringify(value) + "\n", {
+      encoding: "utf8",
+      flag: "wx",
+    })
+    return true
+  } catch {
+    return false
+  }
+}
+
 function clearAdapterState(sessionID, turnID, processedKey = null) {
   const target = adapterStatePath(sessionID, turnID)
   if (processedKey !== null && readAdapterState(sessionID, turnID)?.processedKey !== processedKey) {
@@ -369,6 +383,17 @@ async function handleIdle({ client, directory, event }) {
   }
   const pending = readAdapterState(sessionID, turnID)
   if (
+    pending?.phase === "prompt_dispatching" &&
+    pending.processedKey === processedKey &&
+    pending.processID === process.pid
+  ) {
+    await log(client, "info", "another module instance is already dispatching this continuation", {
+      capability: selectedCapability,
+      continuationCount,
+    })
+    return
+  }
+  if (
     pending &&
     (
       pending.processedKey === processedKey ||
@@ -436,14 +461,22 @@ async function handleIdle({ client, directory, event }) {
     return
   }
 
-  if (!writeAdapterState(sessionID, turnID, {
+  if (!claimAdapterState(sessionID, turnID, {
     phase: "evaluating",
     processedKey,
     continuationCount,
+    processID: process.pid,
   })) {
-    abortTurn(common, selectedCapability, directory, "adapter_failure", processedKey)
-    state.terminal = true
-    await log(client, "error", "adapter state could not be persisted; leaving D0 unchanged")
+    if (readAdapterState(sessionID, turnID)) {
+      await log(client, "info", "another module instance already owns this adapter cycle", {
+        capability: selectedCapability,
+        continuationCount,
+      })
+    } else {
+      abortTurn(common, selectedCapability, directory, "adapter_failure", processedKey)
+      state.terminal = true
+      await log(client, "error", "adapter state could not be claimed; leaving D0 unchanged")
+    }
     return
   }
   const response = runCore(
@@ -486,6 +519,7 @@ async function handleIdle({ client, directory, event }) {
     phase: "pending_prompt",
     processedKey,
     continuationCount,
+    processID: process.pid,
   })) {
     abortTurn(common, selectedCapability, directory, "adapter_failure", processedKey)
     state.terminal = true
@@ -543,6 +577,7 @@ async function handleIdle({ client, directory, event }) {
         phase: "prompt_dispatching",
         processedKey,
         continuationCount,
+        processID: process.pid,
       })) {
         abortTurn(common, selectedCapability, directory, "adapter_failure", processedKey)
         await log(client, "error", "continuation dispatch state could not be persisted")

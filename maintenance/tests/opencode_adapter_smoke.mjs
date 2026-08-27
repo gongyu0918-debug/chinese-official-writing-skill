@@ -51,6 +51,12 @@ const messages = [
 ]
 const prompts = []
 const logs = []
+let releaseDispatch = null
+const dispatchBarrier = mode === "dispatch-reload"
+  ? new Promise((resolve) => {
+      releaseDispatch = resolve
+    })
+  : null
 function retainedText() {
   const retained = []
   function collect(directory) {
@@ -83,6 +89,7 @@ const client = {
     prompt: async (request) => {
       const text = request.body.parts[0].text
       prompts.push(text)
+      if (dispatchBarrier) await dispatchBarrier
       messages.push({
         info: { id: `msg-user-internal-${prompts.length}`, role: "user" },
         parts: [{ type: "text", text }],
@@ -108,6 +115,37 @@ if (mode === "stale-skill") {
   }
   process.stdout.write(
     JSON.stringify({ mode, prompts: prompts.length, rawRetained: false, staleSkillRejected: true }) + "\n",
+  )
+  process.exit(0)
+}
+
+if (mode === "dispatch-reload") {
+  for (let attempt = 0; attempt < 50 && prompts.length === 0; attempt += 1) {
+    await new Promise((resolve) => setTimeout(resolve, 10))
+  }
+  if (prompts.length !== 1) throw new Error("the original module did not start one prompt dispatch")
+  const restartedModule = await import(`${pluginURL.href}?dispatch-reload=1`)
+  const restartedHook = await restartedModule.ChineseOfficialWritingGate({
+    client,
+    directory: companionRoot,
+  })
+  await restartedHook.event({
+    event: { type: "session.idle", properties: { sessionID: "session-1" } },
+  })
+  if (prompts.length !== 1) throw new Error("a reloaded module duplicated an in-flight dispatch")
+  releaseDispatch()
+  await new Promise((resolve) => setTimeout(resolve, 100))
+  await restartedHook.event({
+    event: { type: "session.idle", properties: { sessionID: "session-1" } },
+  })
+  await new Promise((resolve) => setTimeout(resolve, 100))
+  if (prompts.length !== 1) throw new Error("the dispatch reload path created an extra prompt")
+  assertRawRedacted()
+  if (!logs.some((entry) => entry?.body?.message?.includes("already dispatching"))) {
+    throw new Error("missing in-flight dispatch ownership log")
+  }
+  process.stdout.write(
+    JSON.stringify({ mode, prompts: prompts.length, rawRetained: false, singleOwner: true }) + "\n",
   )
   process.exit(0)
 }

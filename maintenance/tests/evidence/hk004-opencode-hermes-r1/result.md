@@ -82,6 +82,7 @@
 
 - 延迟发送前重新读取同一 session，外部用户消息 ID、末次助理消息 ID/hash 或续写计数任一变化即取消旧续写；对抗 smoke 在延迟窗口插入新用户消息，结果为0次 prompt、旧事务原文0命中。
 - 模块在首个 block 后、prompt 前重载时，不猜测恢复已消费的门禁相位；重载实例精确中止旧事务并保留可见 D0，原实例的延迟任务读取不到待派发相位，不会重复 prompt。结果为0次 prompt、旧事务原文0命中。
+- 原实例已进入 `session.prompt` 派发时，同进程重载实例识别 `prompt_dispatching` 所有者并保持静默；对抗 smoke 阻塞原派发、插入重载再释放，最终始终只有1次 prompt、终态原文0命中。初始 adapter 周期另用 `wx` 原子 claim，未取得所有权的并发实例不进入 Stop 或派发。
 - 同名外部 Skill 获胜时，既不启动项目门禁，也不留下 `UserPromptSubmit` 暂存原文；结果为0次 prompt、警告可见、原文0命中。
 - core 单测确认 `HostAbort` 只清理当前 session/turn，回执保留受限原因码与 `failed_open_host_abort`，不保留请求或草稿。
 
@@ -92,7 +93,7 @@
 ## 工程结果
 
 - 新增项目级 adapter：`hooks/adapters/opencode/opencode_gate_plugin.js` 与说明页；不生成 manifest，不修改 `opencode.json`，不自动安装、启用或设置隔离开关。
-- 组装器新增 `opencode` 布局：`.opencode/plugins/chinese-official-writing-gate.js`、`.opencode/skills/chinese-official-writing/`、`.opencode/hook-capability.json`。P1 修复和说明同步后的最终组装仍为52文件，fingerprint `873299da9731e5771cc060afdad7de96b2beeb986dd1a8411ccbb131b6181bbd`；在线复核实际加载的是同一修复代码的前一组装 `0cd827bc...`，两者差异只来自在线后同步的说明与能力元数据。
+- 组装器新增 `opencode` 布局：`.opencode/plugins/chinese-official-writing-gate.js`、`.opencode/skills/chinese-official-writing/`、`.opencode/hook-capability.json`。两项P1修复、派发窗口单所有者补强和说明同步后的最终组装仍为52文件，fingerprint `7a1bfc84dd1de782d716804d39e38be1e47a8a53cbabada1e975d085b73b965a`。在线复核实际加载的 `0cd827bc...` 已包含两项P1修复；其后只增加不改变写作/core语义的 adapter 原子 claim、派发窗口对抗和说明元数据，因此不把前一在线 fingerprint 冒充最终包逐字等同。
 - adapter 只映射当前 external user 后的 assistant 文本；只有实际加载 companion 内 Skill 才启动。共享 core 缺失、非法响应、续写失败或达到宿主上限时失败开放，不把错误消息标成终稿。
 - adapter 在进程重启后先读取当前 turn 的终态脱敏回执；若是已消费但未终态的 adapter 周期，则不重放，精确中止并脱敏后保留 D0。模块重载、延迟期间新任务和同名外部 Skill 三条 smoke 已覆盖这些路径。
 - 本轮新增离线 Node/Python 生命周期 smoke，并把 OpenCode 纳入六类 capability 的静态组装、SkillHub 源包与边界回归；发布平台无操作。
@@ -117,7 +118,7 @@ py -3 -B C:\Users\admin\.codex\skills\.system\skill-creator\scripts\quick_valida
 
 OpenCode 在线命令同时使用独立绝对 `OPENCODE_DB`、`COW_OPENCODE_GATE_DATA` 与 `OPENCODE_DISABLE_EXTERNAL_SKILLS=1`；活动新闻样本在 `OPENCODE_CONFIG_CONTENT` 的 `agent.build.reasoningEffort` 中显式传入 `max`。原始数据库、session export、TUI 日志和 Hermes stdout 保存在忽略的 `output/hk004-opencode-hermes-r1/`，不进入产品包。
 
-P1 修复后的扩展回归实际为167/167通过，Skill Creator quick validate 返回 `Skill is valid!`。首次误用仓库内已不存在的 `maintenance/tools/quick_validate.py`，命令未启动；改用上列真实入口后复跑通过，失败命令不计为产品失败，也不隐去。
+P1 修复及派发窗口对抗补充后的扩展回归实际为168/168通过，Skill Creator quick validate 返回 `Skill is valid!`。首次误用仓库内已不存在的 `maintenance/tools/quick_validate.py`，命令未启动；改用上列真实入口后复跑通过，失败命令不计为产品失败，也不隐去。
 
 ## 剩余风险
 

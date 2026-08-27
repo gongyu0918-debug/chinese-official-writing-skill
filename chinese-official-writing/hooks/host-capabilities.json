@@ -245,7 +245,7 @@
         "SDK session.prompt"
       ],
       "verified_transport": "opencodex_openai_compatible_gateway",
-      "verified_scope": "project_plugin_current_skill_same_session_real_writing_hash_bound_echo_terminal_redaction_turn_rebind_and_pending_restart_abort",
+      "verified_scope": "project_plugin_current_skill_same_session_real_writing_hash_bound_echo_terminal_redaction_turn_rebind_pending_restart_abort_and_single_dispatch_owner",
       "verified_host_scope": "OpenCode 1.18.23 interactive mini CLI",
       "verified_platform": "Windows",
       "evidence": "maintenance/tests/evidence/hk004-opencode-hermes-r1/result.md",
@@ -262,7 +262,7 @@
       "activation": "explicit project-level .opencode overlay only",
       "distribution_limit": "interactive CLI only; opencode run exits before a reliable asynchronous continuation and is explicitly bypassed",
       "skill_collision_limit": "the adapter arms only when the loaded skill directory exactly matches the packaged project skill",
-      "restart_and_race_policy": "a changed external turn or an unfinished consumed cycle is not replayed; the visible D0 is retained while the exact old transaction is aborted and redacted"
+      "restart_and_race_policy": "a changed external turn or an unfinished consumed cycle is not replayed; the visible D0 is retained while the exact old transaction is aborted and redacted; a same-process reload during prompt dispatch observes the existing owner and does not send a duplicate prompt"
     },
     "hermes_agent": {
       "status": "transform_only_no_adapter_candidate",
