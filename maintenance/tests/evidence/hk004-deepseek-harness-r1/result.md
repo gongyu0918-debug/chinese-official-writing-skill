@@ -59,3 +59,5 @@ py -3 -m unittest discover -s maintenance\tests -p "test_*.py"
 - 只有 `delivery_review` 取得真稿 Stop 闭环；其他 capability 可静态组装，但尚无 DSH 在线 D1。
 - shell 工具映射已实现并进入确定性结构测试，真实 W1/W2 只观察到 Skill/read；`bash|pwsh` 的真实 PostToolUse 尚未单独取样。
 - DSH 原始 profile 与宿主日志不属于 companion 终态清理范围。硬退出仍可能留下当前未完成事务，按 README 精确人工清理。
+
+最终范围与固定基线消融见 [`review.md`](review.md)。
