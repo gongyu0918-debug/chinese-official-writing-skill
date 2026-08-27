@@ -33,7 +33,7 @@
 
 - owner `gongyu0918-debug`、slug `chinese-official-writing`、展示名“中文公文写作”、分类 `productivity,knowledge`、话题 `chinese-writing,official-writing,office-productivity,content-creation` 保持不变。
 - ClawHub 0.23.3 正式提交一次获受理：`status=pending-publication`、`versionId=k9745n8v3wgavpdb736s7v5a0n8d9rda`、`attemptId=zx704wzg5ccn1r7xnyvfn08vjx8d9p81`、`fileCount=33`、平台 fingerprint `f71bf08951ea28860d14602950aab7ee43d7bd482a2ccc71e40d909f363a765d`。首次回读仍为旧 latest，期间未重复提交。
-- 后续 `latestVersion`、`tags.latest` 与精确版本均为1.6.18。精确远端33文件与本地比较：缺失0、额外0、SHA-256不一致0、Hook路径0；安全状态为 `clean`，`hasWarnings=false`。
+- 后续 `latestVersion`、`tags.latest` 与精确版本均为1.6.18。精确远端33文件与本地比较：缺失0、额外0、SHA-256不一致0、Hook路径0；安全状态为 `clean`。首次精确回读的 `hasWarnings=false` 随异步扫描传播变为 `true`，不把早期瞬时值写成终态，也不把总体clean外推为该布尔字段已消失。
 
 ## 剩余边界
 
