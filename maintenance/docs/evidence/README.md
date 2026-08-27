@@ -12,7 +12,7 @@
 
 ## 逐版发布证据
 
-- OpenCode 1.18.23 / Hermes Agent 0.20.0 的官方生命周期研究、当前 Skill 三题真稿、OpenCode 同稿收益、Alibaba Token Plan 2 交互共享门禁、无头旁路和 Hermes `BASELINE_NOT_REPRODUCED` 终态：[`hk004-opencode-hermes-r1/result.md`](../../tests/evidence/hk004-opencode-hermes-r1/result.md)。OpenCode adapter 仅为未合入、未发布的独立分支候选。
+- OpenCode 1.18.23 / Hermes Agent 0.20.0 的官方生命周期研究、当前 Skill 三题真稿、OpenCode 同稿收益、Alibaba Token Plan 2 交互共享门禁、无头旁路、竞态修复和 Hermes `BASELINE_NOT_REPRODUCED` 终态：[`hk004-opencode-hermes-r1/result.md`](../../tests/evidence/hk004-opencode-hermes-r1/result.md)。OpenCode adapter 已合入本地 `main`，本轮未推送或发布。
 - v1.6.17 的 GitHub、SkillHub.cn 与 ClawHub 发布回执见 [`release-1.6.17.md`](../../tests/evidence/release-1.6.17.md)；本地候选范围、真实写稿依据、测试和两类平台包预检见 [`release-1.6.17-rc.md`](../../tests/evidence/release-1.6.17-rc.md)。
 - v1.6.16 的 GitHub、SkillHub.cn 与 ClawHub 发布回执见 [`release-1.6.16.md`](../../tests/evidence/release-1.6.16.md)；本地候选范围、OC-003 真实写稿依据、测试、清洁包和 dry-run 记录见 [`release-1.6.16-rc.md`](../../tests/evidence/release-1.6.16-rc.md)。
 - v1.6.15 的 GitHub、SkillHub.cn 与 ClawHub 发布回执见 [`release-1.6.15.md`](../../tests/evidence/release-1.6.15.md)；本地候选范围、真实写稿依据、测试、清洁包和 dry-run 记录见 [`release-1.6.15-rc.md`](../../tests/evidence/release-1.6.15-rc.md)。

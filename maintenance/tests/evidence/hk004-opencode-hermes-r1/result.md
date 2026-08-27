@@ -5,7 +5,7 @@
 - 固定基线为已发布 `main@98b018483db938769a20fd5125ba83770566a49b`（v1.6.17），开发分支为 `codex/opencode-hook-r1`。本轮没有修改 description、写作规则、references 或共享门禁语义。
 - OpenCode 终态为 `ADAPTER_CANDIDATE_PASS_INTERACTIVE_ONLY`：项目级插件把官方 `session.idle`、`session.messages`、`session.prompt` 映射到现有共享 core；常驻交互 CLI 已完成当前 Skill、同一 session、真实稿、语义判断、逐字回显、终态脱敏。`opencode run` 无头路径实测旁路，不能宣称受 Hook 保护。
 - Hermes Agent 终态为 `BASELINE_NOT_REPRODUCED`：`transform_llm_output` 同步变换标记真实通过，但三份当前 Skill 真稿没有出现可机械删除的正文外包装；实际缺口是材料外程序、未来动作和效果升级，需要语义判断。同步 transform 不能安全替代共享多阶段门禁，因此没有制作产品 adapter，也没有留下 HOLD。
-- OpenCode 候选只在当前独立分支；未合入 `main`、未推送、未发布。Hermes 没有候选文件可合入。
+- OpenCode 候选经两轮冷审与竞态补强后已快进合入本地 `main`；本轮未推送、未发布。Hermes 没有候选文件可合入。
 
 ## 官方依据与宿主边界
 
