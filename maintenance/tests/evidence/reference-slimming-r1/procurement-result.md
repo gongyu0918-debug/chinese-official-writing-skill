@@ -38,4 +38,3 @@ py -3 maintenance/tests/evidence/reference-slimming-r1/run_eval.py --experiment 
 - R2 `fixture.json` SHA-256：`5CF5E2E4D7DFD0CDCF35EBE4136C9E4E5772C263BBAA768F6649872DC4C5E068`
 - R2 `summary.json` SHA-256：`40CF454AEDBA62910D72A48D0C4919C555EAF2BF8BCD65A08D6DD87DE0C2A129`
 - 原始final、trace和stderr位于对应忽略目录；提交证据只保留预登记、runner和终态摘要。
-

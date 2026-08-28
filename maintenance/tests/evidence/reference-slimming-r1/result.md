@@ -35,4 +35,3 @@
 - [复核分层结果](review-result.md)
 
 原始final、trace、stderr、fixture和summary保留在各实验worktree的忽略目录；每份终态记录给出fixture与summary SHA-256。所有实验产品均已恢复固定Baseline，不应选择性合入候选产品字节。
-
