@@ -5,8 +5,8 @@
 ## DONE
 
 - `WR-001/002`：v1.6.4 事实与状态规则、保护性外扩精确删除和新闻边界已发布于 `v1.6.4@a737791c`；六份真实写稿和 SOL 校准见 [`v164-real-writing-final/result.md`](../tests/evidence/v164-real-writing-final/result.md)，发行回执见 [`release-1.6.4.md`](../tests/evidence/release-1.6.4.md)。
-- `HK-001/003/004/006`：普通路径独立闭环、capability-first 单协调器及既有宿主 adapter 保持不变；三套国产 CLI adapter 已随 v1.6.15 发布。OpenCode 1.18.23 项目级交互 adapter 已随 v1.6.18 发布：同一 session 共享门禁到达 hash 绑定终态并脱敏，`run` 无头路径明确旁路，中间响应可见；冷审发现的延迟串回合和未终态重放两项P1已用回合重绑、精确中止/脱敏和对抗 smoke 解掉，派发窗口补单所有者，修复后真稿在线闭环。Hermes Agent 0.20.0 的同步 transform 生命周期标记成立，但三份当前 Skill 真稿未复现机械包装目标，语义问题又不能由 transform 安全修复，终态为 `BASELINE_NOT_REPRODUCED`，不造 adapter。Qwen 完成多 Stop/hash/脱敏；Kimi 只完成首次 Stop，宿主单 Stop 上限明确保留。[结果](../tests/evidence/hk004-opencode-hermes-r1/result.md)
-- `HK-004-DEEPSEEK-HARNESS-R1`：DSH 0.1.1-rc.2 headless 原生 Profile Bundle 已完成全新 profile 安装、OpenCodex 精确模型配置、两份当前 Skill 真稿、多 Stop/hash/脱敏和同名 Skill 反控；只在线覆盖 `delivery_review`，已合入本地 `main` 并进入 `v1.6.19` 发布候选。Qoder 依用户收窄范围 `DEFERRED_BY_USER`。[结果](../tests/evidence/hk004-deepseek-harness-r1/result.md)
+- `HK-001/003/004/006`：普通路径独立闭环、capability-first 单协调器及既有宿主 adapter 保持不变；三套国产 CLI adapter 已随 v1.6.15 发布，OpenCode 1.18.23 项目级交互 adapter 已随 v1.6.18 发布。Hermes Agent 0.20.5—0.20.6 新建且不可恢复单题 adapter 已随 v1.6.19 进入 GitHub 与 SkillHub.cn；交互、恢复、one-shot/gateway 继续旁路。Qwen 完成多 Stop/hash/脱敏；Kimi 只完成首次 Stop，宿主单 Stop 上限明确保留。[OpenCode/Hermes R1](../tests/evidence/hk004-opencode-hermes-r1/result.md) · [Hermes R2](../tests/evidence/hk004-hermes-r2/result.md)
+- `HK-004-DEEPSEEK-HARNESS-R1`：DSH 0.1.1-rc.2 headless 原生 Profile Bundle 已完成全新 profile 安装、OpenCodex 精确模型配置、两份当前 Skill 真稿、多 Stop/hash/脱敏和同名 Skill 反控；只在线覆盖 `delivery_review`，已随 `v1.6.19` 进入 GitHub 与 SkillHub.cn。Qoder 依用户收窄范围 `DEFERRED_BY_USER`。[结果](../tests/evidence/hk004-deepseek-harness-r1/result.md)
 - `UL-001—004`：篇幅不足 Hook 已按真实写稿优先完成语义修复，并随 `v1.6.5@81061bd7` 发布。Alibaba 直修 268→342，Codex 在线 268→350，Claude Code 在线 268→344；两次独立 SOL max 均判可用 D1 `ACCEPT`。当前候选又把材料明确同数“几方面→几项”送入语义核验：106→206字安全 D1 获选，WorkBuddy / CodeBuddy 的106→190字风险候选仍安全回 D0。结果见 [`v164-under-length-real-first-result-20260814.md`](../tests/evidence/v164-under-length-real-first-result-20260814.md) 与 [`post-v1610-cjk-transparent-quantity-result-20260819.md`](../tests/evidence/post-v1610-cjk-transparent-quantity-result-20260819.md)。
 - `CL-001`：交付洁净度已先用三条指定 DeepSeek V4 Flash 路线完成 5/5 同稿真实整理，再接入独立静态 capability，并随 v1.6.5 发布。SOL max 五组全 PASS；Claude Code、Codex 与当前 WorkBuddy / CodeBuddy 在线生命周期均选择 D1 并闭合哈希。结果见 [`delivery-cleanliness-real-first/result.md`](../tests/evidence/delivery-cleanliness-real-first/result.md)。
 - `RP-001`：重复句与高相似句已先完成三 provider 的 5 组真实删除和 SOL max 功能终审，再接入纯删除 capability，并随 v1.6.5 发布。当前 Claude Code 已补一条三事件在线 E1/hash 样本；长稿 1 个自然度 WARN 保留为后续观察，不影响已验证的目标功能。
@@ -20,6 +20,7 @@
 - `WR-008` 标题与正文边界：真实生成、同稿修复和自然路由通过，随 `v1.6.10@af12b771` 发布。
 - `WR-009` 文后提示与正文分区：真实同题稿验证正文外独立分区，随 `v1.6.10@af12b771` 发布。
 - `AH-001` 共享硬锚：引用、数字、字段及归属关系保护已接入篇幅不足和超长收束，真实修订与三方冷审通过，随 `v1.6.10@af12b771` 发布。
+- `v1.6.19` 小版本已发布：产品 tag 指向 `eef65336`；GitHub Release 已公开，ClawHub latest、精确33文件和总体clean已闭环；SkillHub.cn 已受理81文件并将回执中的 `tags.latest` 指向1.6.19，公开搜索和精确签名仍在异步传播。Hermes 与 DSH adapter 进入 GitHub/SkillHub，ClawHub 继续无 Hook；公开写作规则、description 和 references 相对 v1.6.18 不变。
 - `v1.6.18` 小版本已发布：产品 tag 指向 `67a68257`，GitHub、SkillHub.cn 与 ClawHub 公开 latest 均已闭环；OpenCode 常驻交互 adapter 进入 GitHub 与 SkillHub.cn，ClawHub 精确33文件无 Hook 包只同步版本坐标且与本地逐项一致。公开写作规则、description 和 references 相对 v1.6.17 不变。
 - `v1.6.17` 维护补丁已发布：产品 tag 指向 `7b457784`，GitHub、SkillHub.cn 与 ClawHub 公开 latest 均已闭环；ClawHub 精确33文件无 Hook 包与本地逐项一致，扫描为clean，期间未重复提交。公开写作规则和 Hook 协议相对 v1.6.16 不变。
 - `v1.6.16` 已发布至 GitHub、SkillHub.cn 与 ClawHub；产品 tag 指向 `f6293aaa`，ClawHub 为33文件无 Hook 包。`OC-003` 已进入本版；SkillHub 与 ClawHub 的首次公开索引回读短暂显示1.6.15，后续 latest 均已传播为1.6.16，ClawHub 精确版本文件和安全状态已闭环，期间未重复上传。
@@ -43,8 +44,6 @@
 - 本地付费候选 `codex/paid-outline-review` 收敛 `OT-001`、`OT-001-composite`、`OT-002` 与 `RF-001`；活动台账以“当前 main 是付费分支祖先”作为同步事实，不固化会在下一次同步后失效的 tip。三宿主47文件组装、698项全量和公开零文件检查通过。该状态为 `DONE_LOCAL_PAID_NO_RELEASE`，不反向进入公开版、不发布。
 
 ## IN_PROGRESS
-
-- `v1.6.19` 发布候选：Hermes Agent 0.20.5—0.20.6 新建不可恢复单题 adapter 与 DeepSeek Harness 0.1.1-rc.2 headless Profile Bundle 已合入本地 `main`；真实生命周期、宿主边界和失败回退均已有证据，本轮只补发行坐标、固定基线门和三平台清洁包，不修改 description、写作规则或 references。正式外部回执完成前仍记 `NOT_RELEASED`。
 
 ## REJECTED
 

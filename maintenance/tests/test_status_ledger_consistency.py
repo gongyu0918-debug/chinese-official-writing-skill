@@ -29,17 +29,17 @@ def section(text: str, heading: str) -> str:
 
 
 class StatusLedgerConsistencyTests(unittest.TestCase):
-    def test_current_public_release_is_v1618(self) -> None:
+    def test_current_release_record_is_v1619(self) -> None:
         public_readme = read("README.md")
         todo = read("maintenance/docs/待办.md")
         roadmap = read("maintenance/specs/roadmap.md")
 
-        self.assertIn("当前产品 tag 为 `v1.6.18^{commit}=67a68257", todo)
-        self.assertIn("`release-1.6.18.md`", todo)
+        self.assertIn("当前产品 tag 为 `v1.6.19^{commit}=eef65336", todo)
+        self.assertIn("`release-1.6.19.md`", todo)
         self.assertIn("## v1.6.14 起已发布状态与后续研究", todo)
         self.assertNotIn("候选均保持 HOLD", public_readme)
-        self.assertIn("`v1.6.18` 小版本已发布", roadmap)
-        self.assertNotIn("当前产品 tag 为 `v1.6.17", todo)
+        self.assertIn("`v1.6.19` 小版本已发布", roadmap)
+        self.assertNotIn("当前产品 tag 为 `v1.6.18", todo)
 
     def test_oc003_is_closed_on_every_active_status_surface(self) -> None:
         for relative in (
@@ -104,7 +104,7 @@ class StatusLedgerConsistencyTests(unittest.TestCase):
 
         self.assertIn("国产 CLI 复核", row)
         self.assertIn(
-            "OPENCODE_DONE_V1.6.18 / HERMES_R2_RELEASE_CANDIDATE_V1.6.19 / DSH_R1_RELEASE_CANDIDATE_V1.6.19",
+            "OPENCODE_DONE_V1.6.18 / HERMES_R2_DONE_V1.6.19 / DSH_R1_DONE_V1.6.19",
             row,
         )
         self.assertIn("OpenCode 项目级 companion", row)
