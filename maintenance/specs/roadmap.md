@@ -47,6 +47,10 @@
 
 ## REJECTED
 
+- `MINUTES-CHECKLIST-LEAF-R1`：15个技术有效纪要目标配对中Baseline读取通用检查页为0，搬移小节没有可归因减载，产品已恢复。[汇总](../tests/evidence/reference-slimming-r1/result.md)
+- `NOTICE-LEAF-CURRENT-R1`：目标路由仅2/15，且真实通知与采购公告控制出现对象、日期、合同关系和过程包装回退，候选已拒绝并恢复产品。[汇总](../tests/evidence/reference-slimming-r1/result.md)
+- `PROCUREMENT-ANNOUNCEMENT-LEAF-R1/R2`：公告写稿质量安全；最小R2消除控制串叶后仍只有2/5 provider形成可归因减载对，低于预登记门，终止继续堆入口提示。[汇总](../tests/evidence/reference-slimming-r1/result.md)
+- `REVIEW-LAYER-SPLIT-R1`：局部目标路由0/10、全文能力路由0/5，两家Candidate另有Skill过程旁白；四层物理拆分候选已拒绝并恢复产品。[汇总](../tests/evidence/reference-slimming-r1/result.md)
 - `WR-012` 正式发文意图候选：内部情况说明方向成立，但正式报告和普通业务函分别出现正文外自证、材料外时间/过程事实；候选拒绝，当前基线保留。[结果](../tests/evidence/v1612-formal-issuance-intent-result-20260821.md)
 - `MT-005b2/b3/b4` description 合并候选：18次扩大真实 A/B 分别复现范围扩大、未给日期、材料外责任/效果或未交稿；候选拒绝，保留当前枚举。[结果](../tests/evidence/post-v1611-expanded-real-writing-20260820.md)
 - `MT-005c` 受众合并候选：193字版本缺“学校”，196字最小回补又出现正向稿状态/安排硬失败；候选拒绝，恢复已发布基线。[结果](../tests/evidence/mt005c-school-repair-followup-20260823.md)
