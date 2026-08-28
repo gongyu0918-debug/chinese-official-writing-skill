@@ -15,7 +15,7 @@ SPEC = importlib.util.spec_from_file_location("build_skillhub_package", MODULE_P
 assert SPEC and SPEC.loader
 BUILDER = importlib.util.module_from_spec(SPEC)
 SPEC.loader.exec_module(BUILDER)
-RC_VERSION = "1.6.18"
+RC_VERSION = "1.6.19"
 
 
 class SkillHubPackageBuilderTests(unittest.TestCase):
@@ -61,18 +61,19 @@ class SkillHubPackageBuilderTests(unittest.TestCase):
                 "kimi-code",
                 "opencode",
                 "hermes-agent",
+                "deepseek-harness",
             ):
                 adapter = output / "hooks" / "adapters" / host
                 self.assertTrue((adapter / "README.md").is_file())
                 self.assertEqual(
-                    host not in {"opencode", "hermes-agent"},
+                    host not in {"opencode", "hermes-agent", "deepseek-harness"},
                     (adapter / "manifest.json").is_file(),
                 )
                 self.assertEqual(
                     host == "hermes-agent", (adapter / "plugin.yaml").is_file()
                 )
                 self.assertEqual(
-                    host not in {"kimi-code", "opencode", "hermes-agent"},
+                    host not in {"kimi-code", "opencode", "hermes-agent", "deepseek-harness"},
                     (adapter / "hooks.json").is_file(),
                 )
                 self.assertEqual(
@@ -80,6 +81,9 @@ class SkillHubPackageBuilderTests(unittest.TestCase):
                 )
                 self.assertEqual(
                     host == "hermes-agent", (adapter / "__init__.py").is_file()
+                )
+                self.assertEqual(
+                    host == "deepseek-harness", (adapter / "package.json").is_file()
                 )
                 self.assertFalse((adapter / "skills").exists())
             self.assertFalse((output / "hooks" / "build_companion.py").exists())
@@ -94,9 +98,14 @@ class SkillHubPackageBuilderTests(unittest.TestCase):
             self.assertEqual("hooks/adapters/kimi-code", capabilities["hosts"]["kimi_code_cli"]["adapter_source"])
             self.assertEqual("hooks/adapters/opencode", capabilities["hosts"]["opencode"]["adapter_source"])
             self.assertEqual("hooks/adapters/hermes-agent", capabilities["hosts"]["hermes_agent"]["adapter_source"])
+            self.assertEqual("hooks/adapters/deepseek-harness", capabilities["hosts"]["deepseek_harness"]["adapter_source"])
             self.assertEqual(
-                "candidate_verified_fresh_query_single_pass_not_released",
+                "lifecycle_verified_fresh_query_single_pass",
                 capabilities["hosts"]["hermes_agent"]["status"],
+            )
+            self.assertEqual(
+                "lifecycle_verified_headless",
+                capabilities["hosts"]["deepseek_harness"]["status"],
             )
             self.assertEqual("available_opt_in", capabilities["length_gate"]["status"])
             self.assertEqual(

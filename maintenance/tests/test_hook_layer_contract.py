@@ -278,7 +278,7 @@ class HookLayerContractTests(unittest.TestCase):
         self.assertTrue(capabilities["hosts"]["opencode"]["live_lifecycle_verified"])
         self.assertFalse(capabilities["hosts"]["opencode"]["headless_run_supported"])
         self.assertEqual(
-            "candidate_verified_fresh_query_single_pass_not_released",
+            "lifecycle_verified_fresh_query_single_pass",
             capabilities["hosts"]["hermes_agent"]["status"],
         )
         self.assertTrue(
@@ -306,6 +306,10 @@ class HookLayerContractTests(unittest.TestCase):
         )
         self.assertTrue(
             capabilities["hosts"]["deepseek_harness"]["live_lifecycle_verified"]
+        )
+        self.assertEqual(
+            "lifecycle_verified_headless",
+            capabilities["hosts"]["deepseek_harness"]["status"],
         )
         self.assertEqual(
             ["delivery_review"],

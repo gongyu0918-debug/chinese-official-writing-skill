@@ -1,6 +1,6 @@
 # 中文公文写作 Skill
 
-[![Version](https://img.shields.io/badge/version-1.6.18-blue)](https://github.com/gongyu0918-debug/chinese-official-writing-skill/releases/tag/v1.6.18)
+[![Version](https://img.shields.io/badge/version-1.6.19-blue)](https://github.com/gongyu0918-debug/chinese-official-writing-skill/releases/tag/v1.6.19)
 [![ClawHub](https://img.shields.io/badge/ClawHub-chinese--official--writing-2f80ed)](https://clawhub.ai/gongyu0918-debug/skills/chinese-official-writing)
 [![SkillHub](https://img.shields.io/badge/SkillHub-chinese--official--writing-e8590c)](https://skillhub.cn/skills/chinese-official-writing)
 [![SkillHub downloads: 50k+](https://img.shields.io/badge/SkillHub%20downloads-50k%2B-2f855a)](https://skillhub.cn/skills/chinese-official-writing)
@@ -59,14 +59,14 @@
 | 文种与专项 references | 按需补充文种骨架、办理要素、论证链、GB/T 9704 格式和 AI 算力材料规则 |
 | 分层复核 references | 从段落、小节到全文检查事实、视角、结构、格式和自然表达 |
 | `scripts/prose_lint.py` | 提供可选的格式、重复和成品残留线索，作为轻量审查层的确定性补充 |
-| 可选交付 Hook | 一份门禁核心配合 Codex、Claude Code、WorkBuddy/CodeBuddy、ZCode、Qwen Code、Kimi Code CLI、OpenCode 静态适配层；由用户明确启用，未通过时优先保留完整初稿；Kimi 受宿主单 Stop 上限约束，OpenCode 仅支持常驻交互 CLI且中间响应可见，无头 `run` 旁路 |
+| 可选交付 Hook | 一份门禁核心配合 Codex、Claude Code、WorkBuddy/CodeBuddy、ZCode、Qwen Code、Kimi Code CLI、OpenCode、Hermes Agent 与 DeepSeek Harness 静态适配层；由用户明确启用，未通过时优先保留完整初稿；各宿主只承诺其已验证生命周期 |
 | `agents/openai.yaml` | 提供界面展示和默认调用信息 |
 
 渐进式路由让短任务只读取轻量卡，完整公文再进入相应文种叶子，技术类材料只加载命中的专项规则。这样既保留必要边界，也减少无关规则对真实写稿的干扰。
 
 ## 快速安装
 
-当前 GitHub 发布版本：`chinese-official-writing@1.6.18`。
+当前 GitHub 发布版本：`chinese-official-writing@1.6.19`。
 
 平台入口：[ClawHub](https://clawhub.ai/gongyu0918-debug/skills/chinese-official-writing) · [skillhub.cn](https://skillhub.cn/skills/chinese-official-writing)。通用 Agent Skills 安装器可直接使用：
 
@@ -80,11 +80,11 @@ npx skills add https://github.com/gongyu0918-debug/chinese-official-writing-skil
 
 | 调试方向 | 主要稿件与边界 | 当前证据 |
 | --- | --- | --- |
+| 1.6.19 Hermes 与 DeepSeek Harness 有界适配 | Hermes 0.20.5—0.20.6 只支持新建且不可恢复的单题；DeepSeek Harness 0.1.1-rc.2 只支持 Windows headless Profile Bundle 与 `delivery_review` | Hermes 完成采购、情况说明和固定失败稿的真实生命周期；DSH 用 Alibaba 与 OpenCode Go 两份当前 Skill 真稿闭合多 Stop、终稿 hash 与脱敏；交互、恢复、one-shot/gateway、TUI/Web、POSIX 和其他 capability 不外推；不改写作规则或 references |
 | 1.6.18 OpenCode 交互 Hook 与宿主边界 | OpenCode 1.18.23 常驻交互模式把 `session.idle`、同一 session 续写与共享门禁连接起来；无头 `run` 明确旁路，Hermes 同步变换未复现可安全机械处理的真稿目标 | 三份同稿原型均有目标修正，其中采购申请、情况说明解决目标，活动新闻仍保留包装风险；Alibaba Token Plan 2 的320字符采购申请完成回合重绑、单所有者、终态脱敏在线闭环；不改写作规则或 references |
 | 1.6.17 写稿稳定性与状态收口 | 分开验证持续动作、证据未附、短采购原因与影响、长报告结论范围；没有跨模型共同目标失败，不新增写作规则、Hook 或统一篇幅门 | `WR-014-R6/R6b`、`WR-013c`、`WR-020a2` 完成预登记真实写稿；Ollama 单家状态外推、长稿技术失效和无 Hook 直写包装作为残余风险保留 |
 | 1.6.16 算力可研状态与点名完整性审查 | 既有可研摘要的点名核对停在窄审查叶；允许核算已给数据、说明缺项影响并提出一层条件性研究意见，不把未决事项写成已启动程序或反向条件结论 | `OC-003` 先完成状态分层，再经五路真实审稿验证成本、技术指标、验收主体与依据四项均可达；公开版不增加程序模板、数值阈值或新 Hook |
 | 1.6.15 国产 CLI Hook、状态精修与入口减载 | ZCode、Qwen Code、Kimi Code CLI 使用独立原生适配；缺失指标不再被改写为待定计划；PUE/API 等核准译名与翻译式框架按窄边界处理；description 只把“实施细则”并入“细则” | Qwen 完成三 Stop/hash/脱敏闭环，ZCode 完成 D0/hash 闭环，Kimi 如实停在宿主单 Stop 边界；WR-014-R4、WR-019c/019d 和 MT-005b6b 均经真实改稿或写稿验证，失败原型未接入 |
-| 1.6.14 超长判定、状态锚与终态脱敏 | 超长收束只在事实、状态、主体、关系、结构或直接可用性存在具体风险时失败；重复删除限定为句子目标；“可”与“拟、计划、将”保持各自状态；Hook 终态移除原始事务数据 | `OV-001` 五路写稿、15/15语义判定、两次 CodeBuddy 生命周期和四方盲审通过；`WR-014-R3` 正反真实稿闭环；`HK-008` 完成 CodeBuddy 终态清理；`UL-005` 仅清理已完成状态残留 |
 
 ### 制度正文示例
 
@@ -114,7 +114,7 @@ npx skills add https://github.com/gongyu0918-debug/chinese-official-writing-skil
 
 技能规则、references 和 scripts 在本仓库持续迭代，各平台技能目录由 canonical 包同步生成。规范与社区项目用于校验文种、流程形态和风险维度；具体规则经过复现、取舍和 A/B 后进入主线，Git 历史记录每次修改和验证。
 
-最近 5 份证据：[`release-1.6.18.md`](maintenance/tests/evidence/release-1.6.18.md) · [`release-1.6.18-rc.md`](maintenance/tests/evidence/release-1.6.18-rc.md) · [`hk004-opencode-hermes-r1/result.md`](maintenance/tests/evidence/hk004-opencode-hermes-r1/result.md) · [`release-1.6.17.md`](maintenance/tests/evidence/release-1.6.17.md) · [`release-1.6.17-rc.md`](maintenance/tests/evidence/release-1.6.17-rc.md)。完整记录见 [`maintenance/docs/evidence/README.md`](maintenance/docs/evidence/README.md)。
+最近 5 份证据：[`release-1.6.19-rc.md`](maintenance/tests/evidence/release-1.6.19-rc.md) · [`hk004-hermes-r2/result.md`](maintenance/tests/evidence/hk004-hermes-r2/result.md) · [`hk004-deepseek-harness-r1/result.md`](maintenance/tests/evidence/hk004-deepseek-harness-r1/result.md) · [`release-1.6.18.md`](maintenance/tests/evidence/release-1.6.18.md) · [`release-1.6.18-rc.md`](maintenance/tests/evidence/release-1.6.18-rc.md)。完整记录见 [`maintenance/docs/evidence/README.md`](maintenance/docs/evidence/README.md)。
 
 ## 目录结构
 
@@ -129,6 +129,8 @@ npx skills add https://github.com/gongyu0918-debug/chinese-official-writing-skil
 | `chinese-official-writing/hooks/adapters/qwen-code/` | Qwen Code native extension Hook 静态兼容文件与使用指引 |
 | `chinese-official-writing/hooks/adapters/kimi-code/` | Kimi Code CLI native plugin Hook 静态兼容文件、单 Stop 边界与使用指引 |
 | `chinese-official-writing/hooks/adapters/opencode/` | OpenCode 项目级交互插件、同名 Skill 来源保护、无头旁路与使用指引 |
+| `chinese-official-writing/hooks/adapters/hermes-agent/` | Hermes Agent 新建、不可恢复单题的有界复核插件与宿主限制 |
+| `chinese-official-writing/hooks/adapters/deepseek-harness/` | DeepSeek Harness headless Profile Bundle、OpenCodex 配置与生命周期边界 |
 | `packages/agent-skills/` | 通用 Agent Skills、MiniMax Skills、GLM Skills（Z.ai/智谱）、ZCode、AutoClaw、Kimi Code CLI、TRAE、Baidu Comate AI IDE 等兼容包 |
 | `packages/qwen-code/` | Qwen Code 兼容包 |
 | `packages/hermes/` | Hermes 兼容包 |

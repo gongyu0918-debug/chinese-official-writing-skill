@@ -265,7 +265,7 @@
       "restart_and_race_policy": "a changed external turn or an unfinished consumed cycle is not replayed; the visible D0 is retained while the exact old transaction is aborted and redacted; a same-process reload during prompt dispatch observes the existing owner and does not send a duplicate prompt"
     },
     "hermes_agent": {
-      "status": "candidate_verified_fresh_query_single_pass_not_released",
+      "status": "lifecycle_verified_fresh_query_single_pass",
       "adapter_source": "hooks/adapters/hermes-agent",
       "runtime_adapter": "__init__.py",
       "skill_package": "skills/chinese-official-writing",
@@ -302,7 +302,7 @@
       "host_limit": "one synchronous host-owned completion and deterministic anchor check; Hermes persists D0 before transform, so interactive and resumed sessions are refused; --oneshot does not reliably finish plugin loading before preloaded-skill lifecycle; gateway is unverified; not equivalent to the shared multi-stage Stop gate, other capabilities are refused"
     },
     "deepseek_harness": {
-      "status": "candidate_lifecycle_verified_headless_not_released",
+      "status": "lifecycle_verified_headless",
       "adapter_source": "hooks/adapters/deepseek-harness",
       "runtime_adapter": "index.mjs",
       "skill_package": "skills/chinese-official-writing",

@@ -12,6 +12,7 @@
 
 ## 逐版发布证据
 
+- v1.6.19 的本地候选范围、Hermes 与 DeepSeek Harness 真实生命周期依据、固定基线验证和两类平台包预检见 [`release-1.6.19-rc.md`](../../tests/evidence/release-1.6.19-rc.md)；正式发布回执完成前，不表示任一平台已存在该版本。
 - v1.6.18 的 GitHub、SkillHub.cn 与 ClawHub 发布回执见 [`release-1.6.18.md`](../../tests/evidence/release-1.6.18.md)；本地候选范围、OpenCode 真实交互依据、固定基线验证和两类平台包预检见 [`release-1.6.18-rc.md`](../../tests/evidence/release-1.6.18-rc.md)。
 - OpenCode 1.18.23 / Hermes Agent 0.20.0 的首轮生命周期研究、当前 Skill 三题真稿、OpenCode 同稿收益、Alibaba Token Plan 2 交互共享门禁、无头旁路、竞态修复和当时 Hermes `BASELINE_NOT_REPRODUCED` 终态：[`hk004-opencode-hermes-r1/result.md`](../../tests/evidence/hk004-opencode-hermes-r1/result.md)。OpenCode adapter 已随 v1.6.18 发布。后续 Hermes Agent 0.20.5—0.20.6 单次语义复核重开、跨线程预载修复、真实采购/情况说明、固定 D0 223→182、post hash 闭合、transform 前持久化反例、新建 inline/query-file 边界和未发布 adapter 候选见 [`hk004-hermes-r2/result.md`](../../tests/evidence/hk004-hermes-r2/result.md)。
 - DeepSeek Harness 0.1.1-rc.2 官方 bridge 的 Stop/D0 缺口、原生 Profile Bundle、OpenCodex provider-default/max 精确配置、两份当前 Skill 真稿、多 Stop/hash/脱敏与本轮 Qoder `DEFERRED_BY_USER` 边界见 [`hk004-deepseek-harness-r1/research.md`](../../tests/evidence/hk004-deepseek-harness-r1/research.md) 和 [`result.md`](../../tests/evidence/hk004-deepseek-harness-r1/result.md)。

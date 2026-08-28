@@ -99,12 +99,12 @@ class StatusLedgerConsistencyTests(unittest.TestCase):
         self.assertIn("`WR-020b1` 讲话首次起草任务卡", section(roadmap, "REJECTED"))
         self.assertIn("`WR-020` 当前长稿基线有写作价值", section(roadmap, "WAIT_NEW_COUNTEREXAMPLE"))
 
-    def test_host_adapters_keep_released_limits_and_record_local_hermes_merge(self) -> None:
+    def test_host_adapters_keep_released_limits_and_record_v1619_candidate(self) -> None:
         row = table_row(read("maintenance/specs/coverage.md"), "HK-004")
 
         self.assertIn("国产 CLI 复核", row)
         self.assertIn(
-            "OPENCODE_DONE_V1.6.18 / HERMES_R2_MERGED_LOCAL_MAIN_NOT_PUSHED_NOT_RELEASED",
+            "OPENCODE_DONE_V1.6.18 / HERMES_R2_RELEASE_CANDIDATE_V1.6.19 / DSH_R1_RELEASE_CANDIDATE_V1.6.19",
             row,
         )
         self.assertIn("OpenCode 项目级 companion", row)
