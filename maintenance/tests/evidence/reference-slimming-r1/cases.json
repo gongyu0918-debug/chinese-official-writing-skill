@@ -206,6 +206,54 @@
         }
       ]
     },
+    "procurement-r2": {
+      "allowed_product_diff": [
+        "chinese-official-writing/SKILL.md",
+        "chinese-official-writing/references/genre-playbook-procurement-announcement.md",
+        "chinese-official-writing/references/genre-playbooks.md"
+      ],
+      "tracked_files": [
+        "SKILL.md",
+        "references/genre-playbook-procurement-announcement.md",
+        "references/genre-playbooks.md",
+        "references/genre-checklist.md",
+        "references/genre-checklist-request.md",
+        "references/handling-elements.md"
+      ],
+      "route_rules": [
+        {
+          "kind": "target",
+          "case_ids": ["PROCUREMENT-ANNOUNCEMENT-R2"],
+          "baseline_all": ["references/genre-playbooks.md"],
+          "candidate_all": ["references/genre-playbook-procurement-announcement.md"],
+          "candidate_none": ["references/genre-playbooks.md"],
+          "require_negative_delta": true
+        },
+        {
+          "kind": "control",
+          "case_ids": ["PROCUREMENT-REVIEW-CONTROL-R2"],
+          "candidate_none": ["references/genre-playbook-procurement-announcement.md"]
+        }
+      ],
+      "cases": [
+        {
+          "id": "PROCUREMENT-ANNOUNCEMENT-R2",
+          "material": "采购人为云川市公共数据中心，项目名称为2026年度离线备份介质采购，预算上限31.5万元。采购内容为LTO-9数据磁带600盘及条码标签600套。供应商须具备同类产品供货经验，材料未给年限或项目数量。响应文件提交截止时间为2026年9月25日9时30分，提交地点为中心二楼采购室。联系人宋宁，电话0371-64567890。采购方式、评审办法、付款和验收条款尚未提供。",
+          "prompt": "请使用已安装的中文公文写作 Skill，根据材料起草一份采购公告，只输出标题和正文，不解释过程，不报告字数，不作自评，不使用Markdown包装。完整保留采购主体、项目、预算、内容、资格、截止时间、地点和联系人；不得补采购方式、资格年限、项目数量、评审办法、合同、付款、验收指标或发布日。材料：采购人为云川市公共数据中心，项目名称为2026年度离线备份介质采购，预算上限31.5万元。采购内容为LTO-9数据磁带600盘及条码标签600套。供应商须具备同类产品供货经验，材料未给年限或项目数量。响应文件提交截止时间为2026年9月25日9时30分，提交地点为中心二楼采购室。联系人宋宁，电话0371-64567890。采购方式、评审办法、付款和验收条款尚未提供。",
+          "required_groups": [["云川市公共数据中心"], ["2026年度离线备份介质采购"], ["31.5万元"], ["LTO-9"], ["600盘"], ["600套"], ["同类产品供货经验"], ["2026年9月25日"], ["9时30分"], ["中心二楼采购室"], ["宋宁"], ["0371-64567890"]],
+          "forbidden": ["公开招标", "竞争性磋商", "三年以上", "至少3个项目", "综合评分", "签订合同", "付款", "验收合格"],
+          "quality_markers": ["采购公告", "采购人", "预算", "响应文件", "联系人"]
+        },
+        {
+          "id": "PROCUREMENT-REVIEW-CONTROL-R2",
+          "material": "审查对象：数据归档系统初步设计；审查依据：用户提供的设计说明第2版；发现问题：容量测算未区分原始数据与副本，接口并发指标未给测试依据；当前状态：设计单位已补充容量表，接口依据尚未提供；审查结论：未提供。",
+          "prompt": "请使用已安装的中文公文写作 Skill，将下面的字段式审查材料改写得正式、清楚，只输出改后完整字段，不解释过程，不增加或删除字段，不改变字段顺序，不使用Markdown表格。保持已补充、尚未提供和结论未提供的状态，不补整改要求、责任单位、期限或审查结论。材料：审查对象：数据归档系统初步设计；审查依据：用户提供的设计说明第2版；发现问题：容量测算未区分原始数据与副本，接口并发指标未给测试依据；当前状态：设计单位已补充容量表，接口依据尚未提供；审查结论：未提供。",
+          "required_groups": [["审查对象"], ["数据归档系统初步设计"], ["审查依据"], ["设计说明第2版"], ["发现问题"], ["原始数据"], ["副本"], ["接口并发指标"], ["当前状态"], ["已补充容量表"], ["尚未提供"], ["审查结论"], ["未提供"]],
+          "forbidden": ["责令整改", "限期", "责任单位", "审查通过", "原则同意", "不予通过"],
+          "quality_markers": ["审查对象", "审查依据", "发现问题", "当前状态", "审查结论"]
+        }
+      ]
+    },
     "review": {
       "allowed_product_diff": [
         "chinese-official-writing/SKILL.md",
