@@ -20,7 +20,7 @@
 - `WR-008` 标题与正文边界：真实生成、同稿修复和自然路由通过，随 `v1.6.10@af12b771` 发布。
 - `WR-009` 文后提示与正文分区：真实同题稿验证正文外独立分区，随 `v1.6.10@af12b771` 发布。
 - `AH-001` 共享硬锚：引用、数字、字段及归属关系保护已接入篇幅不足和超长收束，真实修订与三方冷审通过，随 `v1.6.10@af12b771` 发布。
-- `v1.6.19` 小版本已发布：产品 tag 指向 `eef65336`；GitHub Release 已公开，ClawHub latest、精确33文件和总体clean已闭环；SkillHub.cn 已受理81文件并将回执中的 `tags.latest` 指向1.6.19，公开搜索和精确签名仍在异步传播。Hermes 与 DSH adapter 进入 GitHub/SkillHub，ClawHub 继续无 Hook；公开写作规则、description 和 references 相对 v1.6.18 不变。
+- `v1.6.19` 小版本已发布：产品 tag 指向 `eef65336`；GitHub Release、SkillHub.cn 公开搜索与精确签名、ClawHub latest、精确33文件和总体clean均已闭环。Hermes 与 DSH adapter 进入 GitHub/SkillHub，ClawHub 继续无 Hook；公开写作规则、description 和 references 相对 v1.6.18 不变。
 - `v1.6.18` 小版本已发布：产品 tag 指向 `67a68257`，GitHub、SkillHub.cn 与 ClawHub 公开 latest 均已闭环；OpenCode 常驻交互 adapter 进入 GitHub 与 SkillHub.cn，ClawHub 精确33文件无 Hook 包只同步版本坐标且与本地逐项一致。公开写作规则、description 和 references 相对 v1.6.17 不变。
 - `v1.6.17` 维护补丁已发布：产品 tag 指向 `7b457784`，GitHub、SkillHub.cn 与 ClawHub 公开 latest 均已闭环；ClawHub 精确33文件无 Hook 包与本地逐项一致，扫描为clean，期间未重复提交。公开写作规则和 Hook 协议相对 v1.6.16 不变。
 - `v1.6.16` 已发布至 GitHub、SkillHub.cn 与 ClawHub；产品 tag 指向 `f6293aaa`，ClawHub 为33文件无 Hook 包。`OC-003` 已进入本版；SkillHub 与 ClawHub 的首次公开索引回读短暂显示1.6.15，后续 latest 均已传播为1.6.16，ClawHub 精确版本文件和安全状态已闭环，期间未重复上传。
