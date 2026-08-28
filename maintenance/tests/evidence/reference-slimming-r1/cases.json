@@ -21,6 +21,21 @@
         "references/genre-playbook-minutes.md",
         "references/review-checklist.md"
       ],
+      "route_rules": [
+        {
+          "kind": "target",
+          "case_ids": ["MINUTES-NOISY", "MINUTES-UNRESOLVED", "MINUTES-DECIDED"],
+          "baseline_all": ["references/genre-playbook-minutes.md", "references/genre-checklist.md"],
+          "candidate_all": ["references/genre-playbook-minutes.md"],
+          "candidate_none": ["references/genre-checklist.md"],
+          "require_negative_delta": true
+        },
+        {
+          "kind": "control",
+          "case_ids": ["MINUTES-NOTICE-CONTROL"],
+          "candidate_none": ["references/genre-playbook-minutes.md"]
+        }
+      ],
       "cases": [
         {
           "id": "MINUTES-NOISY",
@@ -34,7 +49,7 @@
           "id": "MINUTES-UNRESOLVED",
           "material": "2026年8月21日，市档案馆召开数字档案移交方式讨论会。会上听取A方案分批移交和B方案集中移交的说明。两种方案的接口改造量、停机窗口和费用依据均未核清，会议未表决，也未确定采用哪一种。有人提出9月20日可作为首次移交日期，主持人表示需待技术条件核实后再议；没有明确牵头单位和完成期限。",
           "prompt": "请使用已安装的中文公文写作 Skill，根据材料起草一份讨论会会议纪要，只输出标题和正文，不解释过程，不报告字数，不作自评，不使用Markdown包装。完整保留两种方案、证据缺口和未决状态；不得把建议日期写成暂定安排，不得补牵头单位、后续研究会议或报批程序。材料：2026年8月21日，市档案馆召开数字档案移交方式讨论会。会上听取A方案分批移交和B方案集中移交的说明。两种方案的接口改造量、停机窗口和费用依据均未核清，会议未表决，也未确定采用哪一种。有人提出9月20日可作为首次移交日期，主持人表示需待技术条件核实后再议；没有明确牵头单位和完成期限。",
-          "required_groups": [["2026年8月21日"], ["A方案"], ["分批移交"], ["B方案"], ["集中移交"], ["接口改造量"], ["停机窗口"], ["费用依据"], ["未表决"], ["未确定"], ["9月20日"], ["技术条件"], ["没有明确牵头单位", "未明确牵头单位"], ["没有明确完成期限", "未明确完成期限"]],
+          "required_groups": [["2026年8月21日"], ["A方案"], ["分批移交"], ["B方案"], ["集中移交"], ["接口改造量"], ["停机窗口"], ["费用依据"], ["未表决"], ["未确定"], ["9月20日"], ["技术条件"]],
           "forbidden": ["暂定于9月20日", "会议决定采用", "会议原则同意", "另行召开会议", "按程序报批"],
           "quality_markers": ["会议纪要", "听取", "未表决", "未确定", "再议"]
         },
@@ -69,6 +84,21 @@
         "references/genre-checklist.md",
         "references/handling-elements.md"
       ],
+      "route_rules": [
+        {
+          "kind": "target",
+          "case_ids": ["NOTICE-INTERNAL", "NOTICE-PUBLIC", "NOTICE-CIRCULAR"],
+          "baseline_all": ["references/genre-playbooks.md"],
+          "candidate_all": ["references/genre-playbook-notice.md"],
+          "candidate_none": ["references/genre-playbooks.md"],
+          "require_negative_delta": true
+        },
+        {
+          "kind": "control",
+          "case_ids": ["NOTICE-PROCUREMENT-CONTROL", "NOTICE-SPEECH-CONTROL"],
+          "candidate_none": ["references/genre-playbook-notice.md"]
+        }
+      ],
       "cases": [
         {
           "id": "NOTICE-INTERNAL",
@@ -83,7 +113,7 @@
           "material": "因供电设备例行检测，云川市政务服务中心一楼自助服务区将于2026年9月13日8时至12时暂停使用，二楼人工窗口正常办理。暂停范围仅限一楼自助终端，线上平台不受影响。咨询电话0371-62345678。材料未给发布日、检测单位或处罚措施。",
           "prompt": "请使用已安装的中文公文写作 Skill，根据材料起草一份面向办事群众的通告，只输出标题和正文，不解释过程，不报告字数，不作自评，不使用Markdown包装。写清原因、时间、暂停范围、替代办理方式和咨询电话；不得扩大停用范围，不补检测单位、恢复承诺、交通提示、处罚或发布日。材料：因供电设备例行检测，云川市政务服务中心一楼自助服务区将于2026年9月13日8时至12时暂停使用，二楼人工窗口正常办理。暂停范围仅限一楼自助终端，线上平台不受影响。咨询电话0371-62345678。材料未给发布日、检测单位或处罚措施。",
           "required_groups": [["供电设备例行检测"], ["2026年9月13日"], ["8时"], ["12时"], ["一楼自助服务区", "一楼自助终端"], ["二楼人工窗口"], ["线上平台"], ["0371-62345678"]],
-          "forbidden": ["全中心暂停", "线上平台暂停", "检测单位", "确保按时恢复", "交通管制", "处罚"],
+          "forbidden": ["全中心暂停", "线上平台暂停", "由市供电公司负责检测", "确保按时恢复", "交通管制", "违规处罚"],
           "quality_markers": ["通告", "暂停", "正常办理", "不受影响", "咨询电话"]
         },
         {
@@ -125,6 +155,21 @@
         "references/genre-checklist.md",
         "references/genre-checklist-request.md",
         "references/handling-elements.md"
+      ],
+      "route_rules": [
+        {
+          "kind": "target",
+          "case_ids": ["PROCUREMENT-ANNOUNCEMENT"],
+          "baseline_all": ["references/genre-playbooks.md"],
+          "candidate_all": ["references/genre-playbook-procurement-announcement.md"],
+          "candidate_none": ["references/genre-playbooks.md"],
+          "require_negative_delta": true
+        },
+        {
+          "kind": "control",
+          "case_ids": ["PROCUREMENT-APPLICATION-CONTROL", "PROCUREMENT-REVIEW-CONTROL", "PROCUREMENT-NOTICE-CONTROL"],
+          "candidate_none": ["references/genre-playbook-procurement-announcement.md"]
+        }
       ],
       "cases": [
         {
@@ -177,6 +222,35 @@
         "references/review-checklist-full.md",
         "references/format-gbt9704.md"
       ],
+      "route_rules": [
+        {
+          "kind": "target",
+          "case_ids": ["REVIEW-PARAGRAPH-REWRITE"],
+          "baseline_all": ["references/review-checklist.md"],
+          "candidate_all": ["references/review-checklist.md", "references/review-checklist-paragraph.md"],
+          "candidate_none": ["references/review-checklist-section.md", "references/review-checklist-full.md"],
+          "require_negative_delta": true
+        },
+        {
+          "kind": "target",
+          "case_ids": ["REVIEW-SECTION-REWRITE"],
+          "baseline_all": ["references/review-checklist.md"],
+          "candidate_all": ["references/review-checklist.md", "references/review-checklist-paragraph.md", "references/review-checklist-section.md"],
+          "candidate_none": ["references/review-checklist-full.md"],
+          "require_negative_delta": true
+        },
+        {
+          "kind": "capability_control",
+          "case_ids": ["REVIEW-FULL-REPORT-REWRITE"],
+          "candidate_all": ["references/review-checklist.md", "references/review-checklist-paragraph.md", "references/review-checklist-section.md", "references/review-checklist-full.md"]
+        },
+        {
+          "kind": "shape_control",
+          "case_ids": ["REVIEW-FORMAT-ONLY"],
+          "candidate_all": ["references/review-checklist.md", "references/format-gbt9704.md"],
+          "candidate_none": ["references/review-checklist-paragraph.md", "references/review-checklist-section.md", "references/review-checklist-full.md"]
+        }
+      ],
       "cases": [
         {
           "id": "REVIEW-PARAGRAPH-REWRITE",
@@ -206,7 +280,8 @@
           "id": "REVIEW-FORMAT-ONLY",
           "material": "关于开展电子档案目录质量培训的通知\n各业务处室：\n定于2026年9月18日14时30分在三楼培训室开展培训，各处室安排2人参加，名单于9月15日17时前通过OA报送。联系人王敏，内线6123。\n市档案馆\n2026年9月10日\n用户说明：需要按单位正式发文模板排版，但尚未提供发文字号、签发人、版记、印章信息和具体Word模板。",
           "prompt": "请使用已安装的中文公文写作 Skill，只审查下面通知的格式和材料缺口，不改写正文。按‘位置、风险层级、修改建议’逐项输出普通文本，不打分，不使用Markdown加粗，不声称已经生成Word。已有标题、主送、正文、落款和日期不得误报为缺失；未提供的发文字号、签发人、版记、印章和具体模板要说明清楚，不能编造。材料：关于开展电子档案目录质量培训的通知\n各业务处室：\n定于2026年9月18日14时30分在三楼培训室开展培训，各处室安排2人参加，名单于9月15日17时前通过OA报送。联系人王敏，内线6123。\n市档案馆\n2026年9月10日\n用户说明：需要按单位正式发文模板排版，但尚未提供发文字号、签发人、版记、印章信息和具体Word模板。",
-          "required_groups": [["位置"], ["风险层级"], ["修改建议"], ["发文字号"], ["签发人"], ["版记"], ["印章"], ["模板"]],
+          "required_groups": [],
+          "output_shape_groups": [["位置"], ["风险层级"], ["修改建议"], ["发文字号"], ["签发人"], ["版记"], ["印章"], ["模板"]],
           "forbidden": ["已生成Word", "发文字号：云档发", "签发人：王敏", "印章已加盖", "0分", "100分"],
           "quality_markers": ["位置", "风险层级", "修改建议", "未提供"]
         }

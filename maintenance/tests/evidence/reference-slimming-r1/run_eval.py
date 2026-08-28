@@ -181,6 +181,29 @@ def read_files_from_trace(trace: str, runtime: Path) -> tuple[list[str], int]:
     return ordered, loaded_bytes
 
 
+def missing_groups(groups: list[list[str]], final: str) -> list[str]:
+    compact = "".join(final.split())
+    return ["|".join(group) for group in groups if not any("".join(value.split()) in compact for value in group)]
+
+
+def evaluate_route_rule(rule: dict, baseline: dict, candidate: dict) -> dict:
+    baseline_files = set(baseline["skill_files_read"])
+    candidate_files = set(candidate["skill_files_read"])
+    failures = []
+    for relative in rule.get("baseline_all", []):
+        if relative not in baseline_files:
+            failures.append(f"baseline_missing:{relative}")
+    for relative in rule.get("candidate_all", []):
+        if relative not in candidate_files:
+            failures.append(f"candidate_missing:{relative}")
+    for relative in rule.get("candidate_none", []):
+        if relative in candidate_files:
+            failures.append(f"candidate_unexpected:{relative}")
+    if rule.get("require_negative_delta") and candidate["tracked_loaded_bytes"] >= baseline["tracked_loaded_bytes"]:
+        failures.append("candidate_not_lower_bytes")
+    return {"kind": rule["kind"], "passed": not failures, "failures": failures}
+
+
 def run_provider(experiment_id: str, provider_id: str) -> dict:
     root = output_root(experiment_id)
     if not (root / "fixture.json").is_file():
@@ -213,6 +236,9 @@ def run_provider(experiment_id: str, provider_id: str) -> dict:
             record["experiment_id"] = experiment_id
             record["skill_files_read"] = files
             record["tracked_loaded_bytes"] = loaded_bytes
+            final_path = root / record["final_file"]
+            final = final_path.read_text(encoding="utf-8", errors="replace") if final_path.is_file() else ""
+            record["output_shape_failures"] = missing_groups(case.get("output_shape_groups", []), final)
             records.append(record)
             result_path.write_text(
                 json.dumps({"provider_id": provider_id, "records": records}, ensure_ascii=False, indent=2),
@@ -243,8 +269,7 @@ def summarize(experiment_id: str) -> dict:
             candidate = indexed.get((provider_id, case["id"], "candidate"))
             if baseline is None or candidate is None:
                 continue
-            pairs.append(
-                {
+            pair = {
                     "provider_id": provider_id,
                     "case_id": case["id"],
                     "technical_ok": not baseline["technical_failures"] and not candidate["technical_failures"],
@@ -257,8 +282,13 @@ def summarize(experiment_id: str) -> dict:
                     "candidate_hard_failures": candidate["hard_failures"],
                     "baseline_chars": baseline["final_chars_nonspace"],
                     "candidate_chars": candidate["final_chars_nonspace"],
-                }
-            )
+                    "candidate_output_shape_failures": candidate.get("output_shape_failures", []),
+                    "route_checks": [],
+            }
+            for rule in experiment.get("route_rules", []):
+                if case["id"] in rule["case_ids"]:
+                    pair["route_checks"].append(evaluate_route_rule(rule, baseline, candidate))
+            pairs.append(pair)
     summary = {
         "schema_version": 1,
         "experiment_id": experiment_id,
@@ -266,6 +296,18 @@ def summarize(experiment_id: str) -> dict:
         "record_count": len(records),
         "technical_failure_count": sum(bool(item["technical_failures"]) for item in records),
         "hard_failure_count_observation_only": sum(bool(item["hard_failures"]) for item in records),
+        "route_check_pass_count": sum(
+            check["passed"] for pair in pairs for check in pair["route_checks"] if check["kind"] == "target"
+        ),
+        "route_check_target_count": sum(
+            1 for pair in pairs for check in pair["route_checks"] if check["kind"] == "target"
+        ),
+        "control_contamination_count": sum(
+            not check["passed"]
+            for pair in pairs
+            for check in pair["route_checks"]
+            if check["kind"] in {"control", "shape_control", "capability_control"}
+        ),
         "pairs": pairs,
         "records": records,
     }
