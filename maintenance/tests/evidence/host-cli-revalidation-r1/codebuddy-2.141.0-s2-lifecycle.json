@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "cli": "@tencent-ai/codebuddy-code@2.141.0",
+  "case_id": "S2_EXPLICIT_LOWER_BOUND",
+  "data_root_environment": "CODEBUDDY_PLUGIN_DATA",
+  "evidence_scope": "real_global_profile_not_isolated_data_root",
+  "observed_api_key_source": "copilot.tencent.com",
+  "observed_model": "deepseek-v4-flash",
+  "opencodex_provider_injection_verified": false,
+  "required_reference_reads": "denied_by_host_permission_mode",
+  "source_record": "shared-gate-core/candidate-ai-gate-hook/host-cli-r1-cb2141-s2-r3-20260829/workbuddy-1-d5923e9555057895.json",
+  "source_turn_record": "workbuddy-adapter-turns/host-cli-r1-cb2141-s2-r3-20260829.json",
+  "state": {
+    "bootstrapped_by_stop": true,
+    "bypass": null,
+    "data_retention_state": "raw_turn_data_redacted",
+    "delivery_verified": true,
+    "emit_seen": true,
+    "emitted_sha256": "87035a9ebc7da25ada8b05208c2a2183270aceaa0b3ef2ae2a20ed04a37ec202",
+    "hook_phase": "complete",
+    "last_action": "emit",
+    "raw_artifact_delete_failures": 0,
+    "run_id": "c2fb289b-c3d1-4842-9927-4dc469196a51",
+    "skill_seen": true,
+    "stop_attempts": 1
+  },
+  "turn": {
+    "counter": 1,
+    "turn_id": "workbuddy-1-d5923e9555057895"
+  },
+  "independent_stdout_final_sha256": "87035a9ebc7da25ada8b05208c2a2183270aceaa0b3ef2ae2a20ed04a37ec202"
+}
