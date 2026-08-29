@@ -34,11 +34,12 @@
 
 - owner `gongyu0918-debug`、slug `chinese-official-writing`、展示名“中文公文写作”、分类 `productivity,knowledge`、话题 `chinese-writing,official-writing,office-productivity,content-creation` 保持不变。
 - 首次正式调用因 PowerShell 未给逗号列表加引号，被服务端在写入前拒绝为未知分类 `productivity knowledge`；未创建版本。修正为显式引号后只成功提交一次，回执为 `status=published`、`versionId=k97df79ant8tkx5yp85fcjj2ad8ddnwf`、`fileCount=33`、平台 fingerprint `1386bf0fb02bf836d7f00f5eaed48e351d152442992a0876f41195b4d84d8d24`。
-- 后续 `latestVersion`、`tags.latest` 与精确版本均为1.6.20；版本列表前五项为1.6.20—1.6.16。精确远端33文件与本地比较：缺失0、额外0、SHA-256不一致0；安全状态为 `clean`、`hasWarnings=false`。
+- 后续 `latestVersion`、`tags.latest` 与精确版本均为1.6.20；版本列表前五项为1.6.20—1.6.16。精确远端33文件与本地比较：缺失0、额外0、SHA-256不一致0。首次精确回读为 `status=clean`、`hasWarnings=false`；后续异步子扫描更新后总体仍为 `clean`，但 `hasWarnings=true`：VirusTotal 为 `stale/pending`，Skillspector 为 `suspicious`、`MEDIUM`、score 29、issueCount 1，LLM 扫描为 `clean/benign/high`。平台未返回该 Skillspector issue 的具体明细，不把总体clean外推为所有子扫描完成或无警告。
 
 ## 剩余边界
 
-- GitHub、SkillHub.cn 与 ClawHub 已公开到1.6.20；SkillHub 精确签名匹配，ClawHub 精确33文件、逐文件哈希和总体安全状态均已闭环。
+- GitHub、SkillHub.cn 与 ClawHub 已公开到1.6.20；SkillHub 精确签名匹配，ClawHub 精确33文件、逐文件哈希和总体 `clean` 状态均已闭环。
+- ClawHub 的异步子扫描仍有 `hasWarnings=true`：VirusTotal stale/pending，Skillspector 给出未附明细的 MEDIUM/Caution 单项警告；LLM 扫描为 benign。该警告不触发重复上传，后续只能只读观察或取得平台明细后再判断。
 - SkillHub.cn 上传回执中的三项审核/扫描仍为pending，不重复上传；平台后续状态不能由本回执预判。
 - `AH-002` 只覆盖默认 `delivery_review` 中唯一完整来源日期与唯一目标新闻文种；多日期、非新闻、歧义材料、其他 capability 和所有宿主不外推。ClawHub 包完全不含 Hook。
 - 付费提纲和红头 DOCX 能力继续只在独立分支管理，未发布、未反向合入公开 `main`。
