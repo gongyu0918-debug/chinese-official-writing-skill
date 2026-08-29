@@ -23,7 +23,7 @@
 - **创作、改稿与复核**：分别处理从零起草、基于底稿修改、只审不改、压缩和 Word 正文衔接。
 - **轻量审查**：分层核对事实、视角、标题、格式、重复事项和模板化表达，并提供可选的确定性风险线索。
 - **技术材料专项写作**：覆盖 AI 算力、GPU/服务器租赁、成本比较、SLA、并发、安全、运维和验收。
-- **多平台适配**：同一 canonical 技能包同步到 Codex、Claude Code、WorkBuddy/CodeBuddy、Hermes、Qwen Code、OpenClaw 和通用 Agent Skills 目录。
+- **多平台适配**：同一 canonical 技能包同步到 Codex、Claude Code、WorkBuddy/CodeBuddy、Hermes、Qwen Code、QwenWork（Qwen 办公）、OpenClaw 和通用 Agent Skills 目录。
 
 ## 适用范围
 
@@ -73,6 +73,8 @@
 ```powershell
 npx skills add https://github.com/gongyu0918-debug/chinese-official-writing-skill --skill chinese-official-writing
 ```
+
+QwenWork 可使用 [`packages/qwenwork/`](packages/qwenwork/) 中的无 Hook 静态 Skill 包；个人安装目录与组织 ZIP 结构见该目录说明。
 
 ## 模型消融与真实写稿
 
@@ -133,6 +135,7 @@ npx skills add https://github.com/gongyu0918-debug/chinese-official-writing-skil
 | `chinese-official-writing/hooks/adapters/deepseek-harness/` | DeepSeek Harness headless Profile Bundle、OpenCodex 配置与生命周期边界 |
 | `packages/agent-skills/` | 通用 Agent Skills、MiniMax Skills、GLM Skills（Z.ai/智谱）、ZCode、AutoClaw、Kimi Code CLI、TRAE、Baidu Comate AI IDE 等兼容包 |
 | `packages/qwen-code/` | Qwen Code 兼容包 |
+| `packages/qwenwork/` | QwenWork（Qwen 办公）静态 Skill 兼容包，不声明 Hook 生命周期 |
 | `packages/hermes/` | Hermes 兼容包 |
 | `packages/openclaw/` | OpenClaw 兼容包，不含 Hook 和交付门禁 |
 | `packages/red-skillhub/` | Red SkillHub 专用包 |

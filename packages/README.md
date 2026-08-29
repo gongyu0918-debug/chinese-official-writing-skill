@@ -6,6 +6,7 @@
 | --- | --- |
 | `agent-skills/` | 通用 Agent Skills 兼容面，也供 MiniMax、GLM、ZCode、Kimi Code CLI、TRAE 等读取通用 Skill 结构 |
 | `qwen-code/` | Qwen Code 兼容面 |
+| `qwenwork/` | QwenWork（Qwen 办公）静态 Skill 兼容面，不声明 Hook 生命周期 |
 | `hermes/` | Hermes 兼容面 |
 | `openclaw/` | OpenClaw 兼容面，不含交付 Hook |
 | `red-skillhub/` | Red SkillHub 专用发布面 |
