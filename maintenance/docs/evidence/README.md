@@ -14,6 +14,7 @@
 
 - v1.6.20 的 GitHub、SkillHub.cn 与 ClawHub 发布回执见 [`release-1.6.20.md`](../../tests/evidence/release-1.6.20.md)；本地候选固定基线、AH-002 真实生命周期、四个 references 减载原子的终态、发布门和两类平台包预检见 [`release-1.6.20-rc.md`](../../tests/evidence/release-1.6.20-rc.md)。
 - v1.6.20 当前无字数限制事务稿的五路15份真实写稿、合理推断边界、篇幅诊断和残余风险见 [`short-inference-r1/baseline-result.md`](../../tests/evidence/short-inference-r1/baseline-result.md)；目标原子 `WR-013d/WR-018-R2` 转为 `WAIT_NEW_COUNTEREXAMPLE`，普通写稿规则未改。
+- v1.6.20 后 `UL-005-R10` 扩写指令与 verifier 合理推断口径的四轮75份候选/基线真实稿、稀疏精确回退、五提交 checkpoint 和最终未合并候选见 [`short-inference-r1/underlength-r4-result.md`](../../tests/evidence/short-inference-r1/underlength-r4-result.md)；R1—R3 失败及最小修复分别保留在同目录。
 - v1.6.19 后四个 references 减载原子的190次五路真实任务、实际读取、最小R2、逐稿复核与终态见 [`reference-slimming-r1/result.md`](../../tests/evidence/reference-slimming-r1/result.md)；四项产品均恢复发布基线，无Hook、包体、description或版本变化。
 - v1.6.19 的 GitHub、SkillHub.cn 与 ClawHub 发布回执见 [`release-1.6.19.md`](../../tests/evidence/release-1.6.19.md)；本地候选范围、Hermes 与 DeepSeek Harness 真实生命周期依据、固定基线验证和两类平台包预检见 [`release-1.6.19-rc.md`](../../tests/evidence/release-1.6.19-rc.md)。
 - v1.6.18 的 GitHub、SkillHub.cn 与 ClawHub 发布回执见 [`release-1.6.18.md`](../../tests/evidence/release-1.6.18.md)；本地候选范围、OpenCode 真实交互依据、固定基线验证和两类平台包预检见 [`release-1.6.18-rc.md`](../../tests/evidence/release-1.6.18-rc.md)。

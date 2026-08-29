@@ -31,6 +31,7 @@
 - `WR-013` 一般原因、即时作用与发布者角色边界已完成五路真实写稿、入口冲突消融和非新闻控制，并随 v1.6.13 发布。
 - `WR-011` 新闻声明级核验已把机构性质、来源身份/原始出处和限定来源结论拆成三个原子；R3 三轮25稿后五路最终候选5/5守住目标边界，最小新闻叶及四套镜像已随 v1.6.13 发布。
 - `UL-005` 当前来源台账原子已闭环：WorkBuddy / CodeBuddy 2.115.0 对同一61字 D0 分别拒绝含强保障、材料外用途和多余请批语的111字 D1，并接受只含同一事实 span 低强度推断的114字 D1；两次终稿 hash 闭合。当前实现与 R9 证据已进入本地 `main`，不外推为所有文种、所有模型的自然扩写保证。[结果](../tests/evidence/ul005-fact-ledger-r9-codebuddy-20260822.md)
+- `UL-005-R10` 扩写指令与 verifier 合理推断口径已在独立候选完成四轮收敛：最终五路15份候选中扫描仪申请5/5进入下限，活动新闻4/5进入、1份安全D0，稀疏采购5/5逐字D0，包装0/15且无候选独有事实、状态或程序硬回退。状态为 `CANDIDATE_PASSED_NOT_MERGED`，未进入 main、未发布。[结果](../tests/evidence/short-inference-r1/underlength-r4-result.md)
 - 联网来源用途分型与命中页绑定已完成：国家规范、本地执行、外省比较不混用，命中页元数据和 URL 绑定实际打开页；R2f—R2h 五路15稿中12稿只做一次定向补搜，最终 R2h 五路5/5写入真实上海命中 URL。严格工具调用次数不能由提示词确定性保证。[结果](../tests/evidence/online-source-use-r2h-result-20260822.md)
 - SkillHub 已加入 `office-efficiency`、`content-creation` 轻量检索信号；不声称平台写入双分类。
 - GitHub 当前包统一 MIT；普通兼容包不含 Hook，OpenClaw GitHub 兼容包随仓库维护。
@@ -47,7 +48,7 @@
 
 ## IN_PROGRESS
 
-- `UL-005-R10`、`WR-009b`：继续在固定 D0 上校准篇幅不足扩写提示与核验口径一致性，并验证原因确实无法推断时的正文外补充建议；不以“正文短于完整提示词”判失败，不把基于事实与常识的一层原因、归纳、条件性预测或即时作用判为外扩。[预登记](../tests/evidence/short-inference-r1/preregister.md)
+- `WR-009b`：继续验证事务稿原因确实无法推断且输出模式允许时的正文外补充建议；可推断时直接成文，只要正文或用户明确拒绝时不追加提示。[预登记](../tests/evidence/short-inference-r1/preregister.md)
 
 ## REJECTED
 
