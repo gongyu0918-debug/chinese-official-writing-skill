@@ -49,7 +49,7 @@
 | `MT-001` 真实结果优先 | `AGENTS.md`、本规格层 | v1.6.4 已采用；Codex GUI 本地 Qwen3.8 27B 5项串行评估为4 PASS、1 WARN | 5/5技术完成，但0/5具有可核验读取回执；本地 writer 不兼任终审 | 已覆盖规则；本地27B暂不纳入任务池，64K别名仅保留为实验资产 |
 | `MT-002` 可达性 | SKILL、说明、组装器、维护索引 | 不适用 | [当前审计](../tests/evidence/post-v1610-maintenance-reachability-audit-20260819.md)：28脚本、21 CLI、189非入口 Markdown、195活动链接文档均零孤儿或失效入口 | 当前轮已覆盖并固化回归；冻结历史 evidence 旧路径不回写 |
 | `MT-003` 公开面克制 | 根 README、维护索引 | 最近五次主要证据 | 内部研究、拒绝和终止状态不进入产品宣传 | 持续项 |
-| `MT-004` 信息熵与重复规则 | SKILL/reference 路由与叶子停止条件 | 12组真实读取；24次组合写稿；[QwenWork 包路径采购稿](../tests/evidence/hk004-qwenwork-r1/result.md)又观察到入口加6个 references、合计52029字节 | 不属于 Hook | `OBSERVE / MT-004a_REGISTERED`；单 trace 不直接改产品，下一原子先跨两家复现简单采购申请的加载集合，再只测文种叶停止条件 |
+| `MT-004` 信息熵与重复规则 | SKILL/reference 路由与叶子停止条件 | 12组真实读取；24次组合写稿；[QwenWork 初始负载观察](../tests/evidence/hk004-qwenwork-r1/result.md)与[MT-004a采购申请路由复现](../tests/evidence/mt004a-procurement-request-route-r1/result.md) | 不属于 Hook | `OBSERVE / MT-004a_WAIT_NEW_COUNTEREXAMPLE`；一份 Alibaba2 过读未被 Alibaba1 全新题复现，未形成产品候选，不为单 trace 改叶子 |
 | `MT-005` Description 入口减载 | canonical 与四套镜像为202字；通过项依次删除负向句、新闻细项、重复“征求意见函”、被“公告”覆盖的“采购公告”，并将“实施细则”并入“细则” | [b6/b6a 20次真实调用](../tests/evidence/post-v1614-writing-quality-r1/mt005b6-result.md)拒绝19字伞词和5字删除；[b6b R1/R2](../tests/evidence/mt005b6b-description-atom/r2-result.md)正向4/4触发且安全、私人边界2/2不触发 | b6b 使用 Codex CLI 0.144.6 同体隔离，354,708输入token；只接受两字原子，不以节省覆盖稿件风险 | `DONE_202_CHARS`；b6/b6a已拒绝，b6b已随v1.6.15发布 |
 
 ## 当前语义层收束
