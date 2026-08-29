@@ -56,6 +56,8 @@ class HookLayerContractTests(unittest.TestCase):
             "候选未合入",
         ):
             self.assertNotIn(internal, guide)
+        self.assertLess(guide.index("## 宿主适配说明"), guide.index("## 永久移除包内 Hook"))
+        self.assertLess(guide.index("## Agent 组装清单"), guide.index("## 永久移除包内 Hook"))
 
     def test_static_adapter_sources_are_minimal_and_reachable(self) -> None:
         adapters = HOOK_ROOT / "adapters"
@@ -179,7 +181,12 @@ class HookLayerContractTests(unittest.TestCase):
                     self.assertFalse((packaged / "hooks/adapters").exists())
                     self.assertFalse((packaged / "hooks/core").exists())
                     guide = packaged / "hooks/README.md"
-                    self.assertIn("宿主启用说明见插件根 `README.md`", guide.read_text(encoding="utf-8"))
+                    guide_text = guide.read_text(encoding="utf-8")
+                    self.assertIn("宿主启用说明见插件根 `README.md`", guide_text)
+                    self.assertLess(
+                        guide_text.index("## Agent 组装清单"),
+                        guide_text.index("## 永久移除包内 Hook"),
+                    )
                     for path in output.rglob("*"):
                         if path.is_file():
                             self.assertNotIn(
