@@ -114,11 +114,16 @@ class SourceBoundDateTests(unittest.TestCase):
                 self.assertEqual(draft, result["output"])
 
     def test_news_material_used_to_draft_another_genre_is_unchanged(self) -> None:
-        request = "请参考2026年9月2日的新闻稿，起草一份情况报告。"
         draft = "情况报告\n\n9月2日，有关活动举行。"
-        result = DATES.restore_unique_full_date(request, draft)
-        self.assertFalse(result["selected"])
-        self.assertEqual(draft, result["output"])
+        requests = (
+            "请参考2026年9月2日的新闻稿，起草一份情况报告。",
+            "请将2026年9月2日的活动新闻改写为通知。",
+        )
+        for request in requests:
+            with self.subTest(request=request):
+                result = DATES.restore_unique_full_date(request, draft)
+                self.assertFalse(result["selected"])
+                self.assertEqual(draft, result["output"])
 
 
 if __name__ == "__main__":

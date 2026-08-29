@@ -26,6 +26,11 @@ NEGATED_NEWS_RE: Final = re.compile(
     r"(?:写成|改成|整理成|作为|使用)?[^。；;\n]{0,6}"
     r"(?:新闻稿|新闻消息|快讯|活动新闻(?:稿)?|活动报道|新闻通稿)"
 )
+NEWS_TO_OTHER_GENRE_RE: Final = re.compile(
+    r"(?:新闻稿|新闻消息|快讯|活动新闻(?:稿)?|活动报道|新闻通稿)"
+    r"[^。；;\n]{0,12}(?:改写|修改|修订|整理|改成|写成|转为|转换为)"
+    r"[^。；;\n]{0,8}(?:通知|报告|函|请示|申请|纪要|说明|方案|通报|公告|公示|制度|意见|总结|讲话|致辞)"
+)
 KEEP_FULL_DATE_RE: Final = re.compile(
     r"(?:不要|不得|不能|不可)[^。；;\n]{0,8}(?:省略|删除|去掉|缩短)"
     r"[^。；;\n]{0,8}(?:年份|完整日期|日期)"
@@ -78,6 +83,7 @@ def _news_task(request: str) -> bool:
         NEWS_GENRE_RE.search(request)
         and EXPLICIT_NEWS_TASK_RE.search(request)
         and not NEGATED_NEWS_RE.search(request)
+        and not NEWS_TO_OTHER_GENRE_RE.search(request)
     )
 
 
