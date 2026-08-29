@@ -204,6 +204,7 @@ def _validate(output: Path, adapter: HostAdapter) -> None:
         packaged_skill / "hooks/capabilities/over_length/runtime.py",
         packaged_skill / "hooks/capabilities/delivery_cleanliness/runtime.py",
         packaged_skill / "hooks/shared/hard_anchors.py",
+        packaged_skill / "hooks/shared/source_bound_dates.py",
         packaged_skill / "scripts/review_gate.py",
         output / adapter.capability_target,
         output / "README.md",
