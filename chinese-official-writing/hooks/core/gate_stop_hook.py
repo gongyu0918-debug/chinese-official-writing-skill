@@ -46,6 +46,7 @@ OVER_LENGTH_TERMINAL_PHASES = {
     "over_length_technical_failure",
 }
 DELIVERY_CLEANLINESS_CAPABILITY_NAME = "delivery_cleanliness"
+DELIVERY_REVIEW_CAPABILITY_NAME = "delivery_review"
 PROTECTIVE_CAPABILITY_ENV = "COW_GATE_CAPABILITY"
 REDACTED_RECORD_STATE = "raw_turn_data_redacted"
 HOST_ABORT_REASONS = {
@@ -115,6 +116,7 @@ OVER_LENGTH_RUNTIME_PATH = (
 DELIVERY_CLEANLINESS_RUNTIME_PATH = (
     SKILL_ROOT / "hooks" / "capabilities" / "delivery_cleanliness" / "runtime.py"
 )
+SOURCE_BOUND_DATES_PATH = SKILL_ROOT / "hooks" / "shared" / "source_bound_dates.py"
 GATE_COMMAND_RE = re.compile(
     r"review_gate\.py(?:\"|'|\s)+(detect|dispatch|prepare|finalize|emit|abort)\b",
     re.IGNORECASE,
@@ -653,6 +655,55 @@ def _load_delivery_cleanliness_runtime():
     except Exception:
         return None
     return module
+
+
+def _load_source_bound_dates():
+    try:
+        spec = importlib.util.spec_from_file_location(
+            "cow_source_bound_dates", SOURCE_BOUND_DATES_PATH
+        )
+        if spec is None or spec.loader is None:
+            return None
+        module = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(module)
+    except Exception:
+        return None
+    return module
+
+
+def _source_bound_date_input(request: str, draft: str) -> tuple[str, dict[str, Any] | None]:
+    if os.environ.get(PROTECTIVE_CAPABILITY_ENV) != DELIVERY_REVIEW_CAPABILITY_NAME:
+        return draft, None
+    module = _load_source_bound_dates()
+    if module is None:
+        return draft, None
+    try:
+        result = module.restore_unique_full_date(request, draft)
+    except Exception:
+        return draft, None
+    output = result.get("output") if isinstance(result, dict) else None
+    if (
+        not isinstance(result, dict)
+        or result.get("selected") is not True
+        or not isinstance(output, str)
+        or not output.strip()
+    ):
+        return draft, None
+    audit = {
+        "schema_version": result.get("schema_version"),
+        "selected": True,
+        "reason": result.get("reason"),
+        "original_sha256": result.get("original_sha256"),
+        "output_sha256": result.get("output_sha256"),
+    }
+    return output, audit
+
+
+def _prepare_gate_draft(record: dict[str, Any], request: str, draft: str) -> str:
+    output, audit = _source_bound_date_input(request, draft)
+    if audit is not None:
+        record["source_bound_date"] = audit
+    return output
 
 
 def _load_review_gate_module():
@@ -1245,6 +1296,7 @@ def _bootstrap_transaction_locked(
     data_root = _data_root()
     if data_root is None:
         return None
+    draft_for_gate = _prepare_gate_draft(record, request, draft)
     txn = data_root / "transactions" / record_path.parent.name / record_path.stem
     if txn.exists():
         return None
@@ -1261,7 +1313,7 @@ def _bootstrap_transaction_locked(
     _atomic_write(record_path, record)
     try:
         _atomic_write_text(request_path, request)
-        _atomic_write_text(draft_path, draft)
+        _atomic_write_text(draft_path, draft_for_gate)
         completed = subprocess.run(
             [
                 sys.executable,
