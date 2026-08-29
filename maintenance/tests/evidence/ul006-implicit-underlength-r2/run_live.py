@@ -21,7 +21,7 @@ ROOT = HERE.parents[3]
 CONFIG_PATH = HERE / "cases.json"
 ASSEMBLER = ROOT / "maintenance/tools/assemble_hook_companion.py"
 CATALOG = Path.home() / ".codex/opencodex-catalog.json"
-OUTPUT_ROOT = ROOT / "output/ul006-implicit-underlength-r2-live"
+OUTPUT_ROOT = ROOT / "output/ul006-implicit-underlength-r2-live-r2"
 MARKETPLACE_NAME = "ul006-r2-local"
 PLUGIN_NAME = "chinese-official-writing"
 TIMEOUT_SECONDS = 1200
@@ -246,13 +246,13 @@ def run_one(provider_id: str, model: str, case: dict[str, Any], effort: str) -> 
     final_path = raw_root / "final.txt"
     codex = shutil.which("codex") or "codex"
     command = [
-        codex, "exec", "--ignore-rules", "--skip-git-repo-check",
-        "--dangerously-bypass-hook-trust", "--enable", "hooks",
+        codex, "-a", "never", "--dangerously-bypass-hook-trust",
+        "--enable", "hooks", "exec", "--ignore-rules", "--skip-git-repo-check",
         "-C", str(workspace), "-m", model,
         "-c", 'openai_base_url="http://127.0.0.1:10100/v1"',
         "-c", f'model_catalog_json="{CATALOG.as_posix()}"',
         "-c", f'model_reasoning_effort="{effort}"',
-        "-s", "read-only", "-a", "never", "--ephemeral", "--json",
+        "-s", "read-only", "--ephemeral", "--json",
         "--output-last-message", str(final_path), "-",
     ]
     started = time.monotonic()
