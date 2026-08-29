@@ -12,6 +12,7 @@
 
 ## 逐版发布证据
 
+- v1.6.20 本地发行候选的固定基线、AH-002 真实生命周期、四个 references 减载原子的终态、发布门和两类平台包预检见 [`release-1.6.20-rc.md`](../../tests/evidence/release-1.6.20-rc.md)；正式发布回执将在三平台写入成功后单列。
 - v1.6.19 后四个 references 减载原子的190次五路真实任务、实际读取、最小R2、逐稿复核与终态见 [`reference-slimming-r1/result.md`](../../tests/evidence/reference-slimming-r1/result.md)；四项产品均恢复发布基线，无Hook、包体、description或版本变化。
 - v1.6.19 的 GitHub、SkillHub.cn 与 ClawHub 发布回执见 [`release-1.6.19.md`](../../tests/evidence/release-1.6.19.md)；本地候选范围、Hermes 与 DeepSeek Harness 真实生命周期依据、固定基线验证和两类平台包预检见 [`release-1.6.19-rc.md`](../../tests/evidence/release-1.6.19-rc.md)。
 - v1.6.18 的 GitHub、SkillHub.cn 与 ClawHub 发布回执见 [`release-1.6.18.md`](../../tests/evidence/release-1.6.18.md)；本地候选范围、OpenCode 真实交互依据、固定基线验证和两类平台包预检见 [`release-1.6.18-rc.md`](../../tests/evidence/release-1.6.18-rc.md)。
@@ -57,7 +58,7 @@
 - `OC-003` 算力可研状态、程序与完整性审稿：早期研究已由[`R2分层结果`](../../tests/evidence/oc003-r2-state-layering/result.md)取代；后续[`R3点名完整性与渐进路由`](../../tests/evidence/oc003-completeness-boundary-r3/result.md)用五个便宜 provider 验证减载后仍保留合理分析和四项实质缺口。[已合入能力冷审](../../tests/evidence/oc003-postmerge-cold-review-r1/result.md)仅使用 Grok 4.6 与 Kimi K3 做冷审，不计普通写稿准入。[R2状态收口](../../tests/evidence/oc003-status-closeout/result.md)。发布后的[状态谓语泛化原子](../../tests/evidence/oc003-state-predicate-general-r1/result.md)以36次有效真实复核/改稿终止产品泛化方向，v1.6.16 产品原文保持不变。
 - v1.6.15 发布后一次点赞回落的 v1.6.14/v1.6.15 短稿同题诊断：[`预登记`](../../tests/evidence/v1615-like-signal-short-writing-r1/preregister.md)、[`结果`](../../tests/evidence/v1615-like-signal-short-writing-r1/result.md)。五路30臂未复现系统性偏短回退，但活动新闻完整年份在两版均4/5遗漏，MiniMax 候选另有材料外活动细节和代码块交付。
 - `WR-001-DATE` 活动新闻完整日期原子的两轮最小化：[`R1`](../../tests/evidence/wr001-date-r1/r1-result.md)、[`R2`](../../tests/evidence/wr001-date-r1/r2-result.md)。候选均提升年份命中，但 Ollama 两轮材料外活动过程阻止准入；产品已恢复，重复提示词方向终止。
-- `AH-002` 以不同机制处理同一风险：自然漏年基线、冻结写后续写、单一来源日期纯机械原型、歧义反控和三 provider 九次 Claude Code 真实生命周期见 [`live-result.md`](../../tests/evidence/ah002-news-date-completeness-r1/live-result.md)。Alibaba Token Plan 2 与 OpenCode Go 达到预登记门；候选未合并、未发布。
+- `AH-002` 以不同机制处理同一风险：自然漏年基线、冻结写后续写、单一来源日期纯机械原型、歧义反控和三 provider 九次 Claude Code 真实生命周期见 [`live-result.md`](../../tests/evidence/ah002-news-date-completeness-r1/live-result.md)。Alibaba Token Plan 2 与 OpenCode Go 达到预登记门；实现已进入 v1.6.20 本地发行候选，尚未发布。
 - v1.6.15 后恢复分支的短稿诊断、日期原子恢复、付费候选本地整合和30提交最终检查点：[`最终收口复核`](../../tests/evidence/post-v1615-backlog-recovery-r1/final-closeout-review.md)。该记录不改变 `main`、tag 或平台版本。
 - v1.6.15 后 WR-020、OC-003、发布状态、旧 HOLD 终态和本地付费候选的纯维护 main 回填候选：[`状态回填结果`](../../tests/evidence/post-v1615-status-main-backfill-r1/result.md)。该候选排除 OC-003 产品 reference、镜像和全部付费源码。
 - v1.6.15 后状态回填的 Kimi K3 / Grok 4.6 独立 Codex CLI 冷审、失效尝试和状态标记收口：[`post-v1615-status-cold-review-r1/result.md`](../../tests/evidence/post-v1615-status-cold-review-r1/result.md)。两份有效终判均为 `PASS / SOURCE_BOUNDARY:CLEAN`；原始输出保存在忽略目录，不进入公开产品。

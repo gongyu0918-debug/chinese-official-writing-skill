@@ -18,8 +18,8 @@ OPTIONAL_GATE_FILES = {
     "scripts/review_gate.py",
 }
 SKILLHUB_CLEAN_PACKAGE_EXCLUDES = {"agents/openai.yaml", "LICENSE"}
-CURRENT_VERSION = "1.6.19"
-PUBLISHED_VERSION = "1.6.19"
+CURRENT_VERSION = "1.6.20"
+PUBLISHED_VERSION = "1.6.20"
 
 
 def relative_files(root: Path) -> list[str]:
@@ -954,7 +954,7 @@ class SkillBoundaryTests(unittest.TestCase):
     def test_openclaw_bundle_readme_is_current_and_contains_no_publish_command(self) -> None:
         readme = (ROOT / "packages" / "openclaw" / "README.md").read_text(encoding="utf-8")
 
-        self.assertIn("当前 GitHub 版本为 `1.6.19`", readme)
+        self.assertIn("当前 GitHub 版本为 `1.6.20`", readme)
         self.assertIn("MIT", readme)
         self.assertIn(r"python .\maintenance\tools\sync_adapters.py", readme)
         self.assertIn("packages/openclaw/", readme)
@@ -2029,17 +2029,17 @@ class SkillBoundaryTests(unittest.TestCase):
 
         for term in [
             "下表只保留最近 5 次版本验证",
+            "1.6.20 新闻完整日期写后修复与 Hook 使用顺序",
             "1.6.19 Hermes 与 DeepSeek Harness 有界适配",
             "1.6.18 OpenCode 交互 Hook 与宿主边界",
             "1.6.17 写稿稳定性与状态收口",
             "1.6.16 算力可研状态与点名完整性审查",
-            "1.6.15 国产 CLI Hook、状态精修与入口减载",
             "明川市政务服务中心服务事项信息变更管理办法（试行）",
+            "release-1.6.20-rc.md",
+            "ah002-news-date-completeness-r1/live-result.md",
+            "reference-slimming-r1/result.md",
             "release-1.6.19.md",
             "release-1.6.19-rc.md",
-            "hk004-hermes-r2/result.md",
-            "hk004-deepseek-harness-r1/result.md",
-            "release-1.6.18.md",
             "新闻与评论写作",
             "maintenance/tests/evidence",
             "maintenance/docs/evidence/README.md",

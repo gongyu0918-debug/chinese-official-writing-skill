@@ -20,6 +20,7 @@
 - `WR-008` 标题与正文边界：真实生成、同稿修复和自然路由通过，随 `v1.6.10@af12b771` 发布。
 - `WR-009` 文后提示与正文分区：真实同题稿验证正文外独立分区，随 `v1.6.10@af12b771` 发布。
 - `AH-001` 共享硬锚：引用、数字、字段及归属关系保护已接入篇幅不足和超长收束，真实修订与三方冷审通过，随 `v1.6.10@af12b771` 发布。
+- `AH-002` 新闻完整日期来源绑定修复已进入 `v1.6.20` 本地发行候选：重复日期提示方向继续 `TERMINATED`；不同机制已用三 provider 九次真实 Claude Code 生命周期通过预登记门，Alibaba Token Plan 2 与 OpenCode Go 各至少一题精确补年且控制题逐字不变。只覆盖唯一完整日期与唯一目标新闻文种，多日期、非新闻、歧义材料及其他 capability 旁路。[结果](../tests/evidence/ah002-news-date-completeness-r1/live-result.md)
 - `v1.6.19` 小版本已发布：产品 tag 指向 `eef65336`；GitHub Release、SkillHub.cn 公开搜索与精确签名、ClawHub latest、精确33文件和总体clean均已闭环。Hermes 与 DSH adapter 进入 GitHub/SkillHub，ClawHub 继续无 Hook；公开写作规则、description 和 references 相对 v1.6.18 不变。
 - `v1.6.18` 小版本已发布：产品 tag 指向 `67a68257`，GitHub、SkillHub.cn 与 ClawHub 公开 latest 均已闭环；OpenCode 常驻交互 adapter 进入 GitHub 与 SkillHub.cn，ClawHub 精确33文件无 Hook 包只同步版本坐标且与本地逐项一致。公开写作规则、description 和 references 相对 v1.6.17 不变。
 - `v1.6.17` 维护补丁已发布：产品 tag 指向 `7b457784`，GitHub、SkillHub.cn 与 ClawHub 公开 latest 均已闭环；ClawHub 精确33文件无 Hook 包与本地逐项一致，扫描为clean，期间未重复提交。公开写作规则和 Hook 协议相对 v1.6.16 不变。
@@ -44,8 +45,6 @@
 - 本地付费候选 `codex/paid-outline-review` 收敛 `OT-001`、`OT-001-composite`、`OT-002` 与 `RF-001`；活动台账以“当前 main 是付费分支祖先”作为同步事实，不固化会在下一次同步后失效的 tip。三宿主47文件组装、698项全量和公开零文件检查通过。该状态为 `DONE_LOCAL_PAID_NO_RELEASE`，不反向进入公开版、不发布。
 
 ## IN_PROGRESS
-
-- `AH-002` 新闻完整日期来源绑定修复：重复日期提示方向仍为 `TERMINATED`；不同机制候选已用三 provider 九次真实 Claude Code 生命周期通过预登记门，Alibaba Token Plan 2 与 OpenCode Go 各至少一题精确补年且控制题逐字不变。状态为 `PASSED_CANDIDATE_NOT_MERGED`，当前 main、版本和平台均未变化。[结果](../tests/evidence/ah002-news-date-completeness-r1/live-result.md)
 
 ## REJECTED
 
@@ -74,7 +73,7 @@
 - `WR-014-R6b` 当前OpenCode可以区分已完成、附件未附与真实效果待观察，Ollama单家仍有核验外推；等待不同材料中的跨模型共同反例，不把单家风险扩成全局禁词。
 - `WR-020` 当前长稿基线有写作价值，a2一份有效长稿通过范围目标、另一provider技术失效，b2已覆盖已有稿搬移、删除和只审定位；只有新的有效长稿出现结构、任务归属、结论范围或材料外职责共同反例才重开。
 - `WR-010` 当前会议正文已覆盖弱意向、明确承诺、权威修正和未回应指派；没有新的正文反例前不增加 sidecar、负责人/期限补全或渲染工程。
-- `WR-001` 重复日期提示方向已经终止，不以统一长度门或更多枚举修复；完整年份风险已由不同机制 `AH-002` 重开并进入通过但未合并候选，不再把它记为单纯等待新反例。
+- `WR-001` 重复日期提示方向已经终止，不以统一长度门或更多枚举修复；完整年份风险已由不同机制 `AH-002` 完成并进入 v1.6.20 本地发行候选，不再把它记为单纯等待新反例。
 
 ## TODO：已登记但不在本轮展开
 

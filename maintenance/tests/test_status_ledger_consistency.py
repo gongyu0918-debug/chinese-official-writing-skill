@@ -114,7 +114,7 @@ class StatusLedgerConsistencyTests(unittest.TestCase):
         self.assertIn("累计190次真实任务输出", result)
         self.assertNotIn("`HOLD`", rejected)
 
-    def test_ah002_is_a_passed_unmerged_candidate_not_a_reopened_prompt_atom(self) -> None:
+    def test_ah002_is_a_local_release_candidate_and_prompt_atom_stays_terminated(self) -> None:
         requirements = read("maintenance/specs/requirements.md")
         coverage_row = table_row(read("maintenance/specs/coverage.md"), "AH-002")
         roadmap = read("maintenance/specs/roadmap.md")
@@ -123,13 +123,13 @@ class StatusLedgerConsistencyTests(unittest.TestCase):
 
         self.assertIn("### AH-002 新闻完整日期来源绑定修复", requirements)
         self.assertIn("请求中只有一个唯一完整日期", requirements)
-        self.assertIn("PASSED_CANDIDATE_NOT_MERGED", coverage_row)
+        self.assertIn("DONE_LOCAL_RELEASE_CANDIDATE_V1.6.20", coverage_row)
         self.assertIn("三 provider 九次执行", coverage_row)
-        self.assertIn("AH-002", section(roadmap, "IN_PROGRESS"))
-        self.assertNotIn("AH-002", section(roadmap, "DONE"))
+        self.assertNotIn("AH-002", section(roadmap, "IN_PROGRESS"))
+        self.assertIn("AH-002", section(roadmap, "DONE"))
         self.assertRegex(
             todo,
-            r"(?m)^- \[x\] `AH-002`.*PASSED_CANDIDATE_NOT_MERGED",
+            r"(?m)^- \[x\] `AH-002`.*DONE_LOCAL_RELEASE_CANDIDATE_V1\.6\.20",
         )
         self.assertIn(
             "ah002-news-date-completeness-r1/live-result.md",
