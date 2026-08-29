@@ -41,6 +41,24 @@ class StatusLedgerConsistencyTests(unittest.TestCase):
         self.assertIn("`v1.6.20` 小版本已发布", roadmap)
         self.assertNotIn("当前产品 tag 为 `v1.6.19", todo)
 
+    def test_v1621_is_local_pending_while_v1620_remains_public(self) -> None:
+        public_readme = read("README.md")
+        evidence = read("maintenance/tests/evidence/release-1.6.21-rc.md")
+        evidence_index = read("maintenance/docs/evidence/README.md")
+        todo = read("maintenance/docs/待办.md")
+        roadmap = read("maintenance/specs/roadmap.md")
+
+        self.assertIn("chinese-official-writing@1.6.20", public_readme)
+        self.assertIn(
+            "LOCAL_RELEASE_CANDIDATE / PENDING_USER_RELEASE_AUTHORIZATION",
+            evidence,
+        )
+        self.assertIn("389b43f4` 不是本分支祖先", evidence)
+        self.assertIn("release-1.6.21-rc.md", evidence_index)
+        self.assertIn("v1.6.21 已在 `codex/release-v1.6.21` 建立本地待发布基线", todo)
+        self.assertIn("`v1.6.21` 本地待发布候选", section(roadmap, "IN_PROGRESS"))
+        self.assertNotIn("`v1.6.21` 小版本已发布", roadmap)
+
     def test_oc003_is_closed_on_every_active_status_surface(self) -> None:
         for relative in (
             "maintenance/specs/requirements.md",

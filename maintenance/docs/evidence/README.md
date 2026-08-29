@@ -12,6 +12,7 @@
 
 ## 逐版发布证据
 
+- v1.6.21 当前仅为本地待发布候选：固定 `main@c60e3ffa`、版本坐标、动态字数候选隔离、已完成 Alibaba2 Stop 结果、736项全量门和两类本地包结构见 [`release-1.6.21-rc.md`](../../tests/evidence/release-1.6.21-rc.md)。未打 tag、未推送、未上传任何平台。
 - v1.6.20 的 GitHub、SkillHub.cn 与 ClawHub 发布回执见 [`release-1.6.20.md`](../../tests/evidence/release-1.6.20.md)；本地候选固定基线、AH-002 真实生命周期、四个 references 减载原子的终态、发布门和两类平台包预检见 [`release-1.6.20-rc.md`](../../tests/evidence/release-1.6.20-rc.md)。
 - v1.6.20 当前无字数限制事务稿的五路15份真实写稿、合理推断边界、篇幅诊断和残余风险见 [`short-inference-r1/baseline-result.md`](../../tests/evidence/short-inference-r1/baseline-result.md)；目标原子 `WR-013d/WR-018-R2` 转为 `WAIT_NEW_COUNTEREXAMPLE`，普通写稿规则未改。
 - 旧 `WR-013d/WR-018-R2` 因提示词直接给出合理推断许可与文章结构，已由自然用户请求的 `SHORT-NATURAL-REFERENCE-R1` 重开；五家低成本 provider 完成50次基线和R1/R2/R3共150次候选。普通 reference 三轮未形成稳定目标改善并已恢复 main 产品字节；100/120/120/150/300校准、显式短稿旁路与文种功能边界继续由独立 `UL-006-R1` 验证。[预登记](../../tests/evidence/short-natural-reference-r1/preregister.md) [基线](../../tests/evidence/short-natural-reference-r1/baseline-result.md) [R1](../../tests/evidence/short-natural-reference-r1/r1-result.md) [R2](../../tests/evidence/short-natural-reference-r1/r2-result.md) [reference终态](../../tests/evidence/short-natural-reference-r1/reference-result.md)
