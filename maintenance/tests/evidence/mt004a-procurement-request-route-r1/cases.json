@@ -1,0 +1,89 @@
+{
+  "schema_version": 1,
+  "reasoning_effort": "max",
+  "providers": {
+    "alibaba2": "alibaba-token-plan-2/deepseek-v4-flash-0731",
+    "alibaba1": "alibaba-token-plan/deepseek-v4-flash-0731",
+    "ollama": "ollama-cloud/deepseek-v4-flash:0731",
+    "opencode": "opencode-go/deepseek-v4-flash",
+    "minimax": "minimax-cn/MiniMax-M3"
+  },
+  "experiments": {
+    "request-route": {
+      "allowed_product_diff": [
+        "chinese-official-writing/references/genre-playbook-request.md"
+      ],
+      "tracked_files": [
+        "SKILL.md",
+        "references/information-selection.md",
+        "references/genre-playbook-request.md",
+        "references/argument-chains.md",
+        "references/formal-addressing.md",
+        "references/proofreading-checklist.md",
+        "references/final-review-layers.md",
+        "references/workflow.md",
+        "references/handling-elements.md",
+        "references/genre-checklist-report.md"
+      ],
+      "route_rules": [
+        {
+          "kind": "target",
+          "case_ids": ["REQUEST-SIMPLE"],
+          "baseline_all": ["references/genre-playbook-request.md"],
+          "candidate_all": [
+            "references/information-selection.md",
+            "references/genre-playbook-request.md"
+          ],
+          "candidate_none": [
+            "references/argument-chains.md",
+            "references/formal-addressing.md",
+            "references/proofreading-checklist.md",
+            "references/final-review-layers.md"
+          ],
+          "require_negative_delta": true
+        },
+        {
+          "kind": "capability_control",
+          "case_ids": ["REQUEST-COMPLEX-CONTROL"],
+          "candidate_all": [
+            "references/genre-playbook-request.md",
+            "references/workflow.md",
+            "references/handling-elements.md",
+            "references/argument-chains.md"
+          ]
+        },
+        {
+          "kind": "control",
+          "case_ids": ["REPORT-CONTROL"],
+          "candidate_none": ["references/genre-playbook-request.md"]
+        }
+      ],
+      "cases": [
+        {
+          "id": "REQUEST-SIMPLE",
+          "material": "综合处现有2台多功能一体机，其中1台于2018年购置，近一个月连续出现卡纸和扫描中断，已两次清洁进纸组件，故障仍反复。日均需打印、扫描约650页材料，高峰时段排队较长。拟增购1台A3黑白多功能一体机，询价3.6万元，预算控制在4万元以内，拟从办公设备购置经费列支。",
+          "prompt": "请使用当前项目中的中文公文写作 Skill，根据材料起草一份向分管领导报送的采购申请。无字数限制，只输出可直接使用的标题和正文，不解释过程，不报告字数，不作自评，不使用Markdown包装。可基于给定事实和常识作一层合理原因与直接作用推断，不得补材料外数值、具体用途、采购程序、责任人、日期、供应商状态或完成承诺。材料：综合处现有2台多功能一体机，其中1台于2018年购置，近一个月连续出现卡纸和扫描中断，已两次清洁进纸组件，故障仍反复。日均需打印、扫描约650页材料，高峰时段排队较长。拟增购1台A3黑白多功能一体机，询价3.6万元，预算控制在4万元以内，拟从办公设备购置经费列支。",
+          "required_groups": [["综合处"], ["2台", "两台"], ["2018年"], ["近一个月"], ["卡纸"], ["扫描中断"], ["两次", "2次"], ["650页"], ["1台", "一台"], ["A3黑白多功能一体机"], ["3.6万元"], ["4万元"], ["办公设备购置经费"]],
+          "forbidden": ["公开招标", "询价程序", "三个工作日", "供应商已确定", "专人负责", "确保完成", "档案数字化"],
+          "quality_markers": ["申请", "为", "缓解", "提高", "妥否，请批示"]
+        },
+        {
+          "id": "REQUEST-COMPLEX-CONTROL",
+          "material": "信息中心拟申请采购日志分析平台扩容资源，包括2台计算节点、1台存储交换机和36个月日志分析软件授权。计算节点单台含税报价18.6万元，存储交换机含税报价7.8万元，软件授权报价21万元，合计66万元，控制预算68万元，拟从信息化建设经费列支。技术附件已给出CPU、内存、存储接口、吞吐指标、部署拓扑和验收测试项；要求在正文中说明多品类构成、测算关系、技术附件作用、实施风险和验收边界，参考1200—1600个中文字符。采购方式、供应商、实施日期和责任人未确定。",
+          "prompt": "请使用当前项目中的中文公文写作 Skill，根据材料起草一份完整采购请示，参考1200—1600个中文字符，只输出标题和正文，不解释过程，不报告字数，不作自评，不使用Markdown包装。需要组织多品类构成、金额测算、技术附件作用、实施风险和验收边界；允许基于材料和常识作一层合理原因、影响和条件性判断，但不得补采购方式、供应商、实施日期、责任人、附件中未给的参数或既定成效。材料：信息中心拟申请采购日志分析平台扩容资源，包括2台计算节点、1台存储交换机和36个月日志分析软件授权。计算节点单台含税报价18.6万元，存储交换机含税报价7.8万元，软件授权报价21万元，合计66万元，控制预算68万元，拟从信息化建设经费列支。技术附件已给出CPU、内存、存储接口、吞吐指标、部署拓扑和验收测试项；要求在正文中说明多品类构成、测算关系、技术附件作用、实施风险和验收边界，参考1200—1600个中文字符。采购方式、供应商、实施日期和责任人未确定。",
+          "required_groups": [["信息中心"], ["2台", "两台"], ["计算节点"], ["1台", "一台"], ["存储交换机"], ["36个月"], ["18.6万元"], ["7.8万元"], ["21万元"], ["66万元"], ["68万元"], ["信息化建设经费"], ["技术附件"], ["验收"]],
+          "forbidden": ["公开招标", "竞争性磋商", "供应商已确定", "2026年9月实施", "由采购科负责", "取得显著成效"],
+          "quality_markers": ["请示", "必要性", "技术附件", "风险", "验收", "妥否，请批示"]
+        },
+        {
+          "id": "REPORT-CONTROL",
+          "material": "2026年8月25日9时12分，市数据交换平台出现任务积压，9时47分恢复，持续35分钟。期间63项交换任务延迟；截至当日18时，55项已完成，8项仍在核验。运行组已留存日志和告警记录，故障具体原因尚未查明，影响范围和责任尚未认定。材料没有给整改方案、后续通报或完成期限。",
+          "prompt": "请使用当前项目中的中文公文写作 Skill，根据材料起草一份内部情况报告，只输出标题和正文，不解释过程，不报告字数，不作自评，不使用Markdown包装。完整保留时间、数量、已完成、核验中、日志、告警、原因、影响和责任状态；可以作事实直接支持的总结，不得补整改、通报、责任主体、期限或既成成效。材料：2026年8月25日9时12分，市数据交换平台出现任务积压，9时47分恢复，持续35分钟。期间63项交换任务延迟；截至当日18时，55项已完成，8项仍在核验。运行组已留存日志和告警记录，故障具体原因尚未查明，影响范围和责任尚未认定。材料没有给整改方案、后续通报或完成期限。",
+          "required_groups": [["2026年8月25日"], ["9时12分"], ["9时47分"], ["35分钟"], ["63项"], ["18时"], ["55项"], ["8项"], ["核验"], ["运行组"], ["日志"], ["告警记录"], ["尚未查明"], ["尚未认定"]],
+          "forbidden": ["整改方案", "另行通报", "严肃追责", "限期完成", "彻底解决", "取得显著成效"],
+          "quality_markers": ["报告", "任务积压", "恢复", "核验", "尚未查明"]
+        }
+      ]
+    }
+  }
+}

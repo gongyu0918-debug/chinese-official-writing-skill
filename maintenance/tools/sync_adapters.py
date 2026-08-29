@@ -37,6 +37,7 @@ HOOK_ROUTE_PARAGRAPH = (
 TARGETS = {
     "agents": PACKAGES / "agent-skills" / "skills" / "chinese-official-writing",
     "qwen": PACKAGES / "qwen-code" / "skills" / "chinese-official-writing",
+    "qwenwork": PACKAGES / "qwenwork" / "skills" / "chinese-official-writing",
     "hermes": PACKAGES / "hermes" / "skills" / "chinese-official-writing",
     "openclaw": OPENCLAW_PACKAGE / "skills" / "chinese_official_writing",
 }
@@ -44,6 +45,7 @@ TARGETS = {
 TARGET_LICENSES = {
     "agents": REPOSITORY_LICENSE,
     "qwen": REPOSITORY_LICENSE,
+    "qwenwork": REPOSITORY_LICENSE,
     "hermes": REPOSITORY_LICENSE,
     "openclaw": REPOSITORY_LICENSE,
 }
@@ -57,6 +59,7 @@ OPTIONAL_GATE_FILES = (
 TARGET_EXCLUDES = {
     "agents": OPTIONAL_GATE_FILES,
     "qwen": OPTIONAL_GATE_FILES,
+    "qwenwork": OPTIONAL_GATE_FILES,
     "hermes": OPTIONAL_GATE_FILES,
     "openclaw": OPTIONAL_GATE_FILES + ("agents/openai.yaml",),
 }

@@ -332,6 +332,7 @@ class HookLayerContractTests(unittest.TestCase):
         for packaged_skill in (
             ROOT / "packages/agent-skills/skills/chinese-official-writing",
             ROOT / "packages/qwen-code/skills/chinese-official-writing",
+            ROOT / "packages/qwenwork/skills/chinese-official-writing",
             ROOT / "packages/hermes/skills/chinese-official-writing",
             ROOT / "packages/openclaw/skills/chinese_official_writing",
         ):
