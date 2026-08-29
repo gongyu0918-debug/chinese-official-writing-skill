@@ -199,7 +199,7 @@ def run_one(provider_id: str, model: str, arm: str, case: dict, effort: str, pro
     }
 
 
-def run_provider(provider_id: str) -> dict:
+def run_provider(provider_id: str, *, candidate_only: bool = False) -> dict:
     data = config()
     if provider_id not in data["providers"]:
         raise RuntimeError(f"unknown provider: {provider_id}")
@@ -211,7 +211,11 @@ def run_provider(provider_id: str) -> dict:
     result_path.parent.mkdir(parents=True, exist_ok=True)
     prompts = json.loads((OUTPUT_ROOT / "prompts.json").read_text(encoding="utf-8"))
     provider_index = list(data["providers"]).index(provider_id)
-    arm_order = ["baseline", "candidate"] if provider_index % 2 == 0 else ["candidate", "baseline"]
+    arm_order = (
+        ["candidate"]
+        if candidate_only
+        else (["baseline", "candidate"] if provider_index % 2 == 0 else ["candidate", "baseline"])
+    )
     records = []
     for case in data["cases"]:
         for arm in arm_order:
@@ -247,6 +251,7 @@ def summarize() -> dict:
 
 
 def main() -> int:
+    global OUTPUT_ROOT
     data = config()
     parser = argparse.ArgumentParser()
     action = parser.add_mutually_exclusive_group(required=True)
@@ -254,13 +259,19 @@ def main() -> int:
     action.add_argument("--provider", choices=tuple(data["providers"]))
     action.add_argument("--summarize", action="store_true")
     parser.add_argument("--candidate-commit")
+    parser.add_argument("--candidate-only", action="store_true")
+    parser.add_argument("--output-root", default="output/short-inference-r1/underlength-r10")
     args = parser.parse_args()
+    relative_output = Path(args.output_root)
+    if relative_output.is_absolute() or ".." in relative_output.parts:
+        parser.error("--output-root must be a repository-relative path without '..'")
+    OUTPUT_ROOT = REPO / relative_output
     if args.prepare:
         if not args.candidate_commit:
             parser.error("--candidate-commit is required with --prepare")
         result = prepare(args.candidate_commit)
     elif args.provider:
-        result = run_provider(args.provider)
+        result = run_provider(args.provider, candidate_only=args.candidate_only)
     else:
         result = summarize()
     print(json.dumps(result, ensure_ascii=False, indent=2), flush=True)
