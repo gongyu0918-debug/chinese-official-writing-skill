@@ -29,17 +29,17 @@ def section(text: str, heading: str) -> str:
 
 
 class StatusLedgerConsistencyTests(unittest.TestCase):
-    def test_current_release_record_is_v1619(self) -> None:
+    def test_current_release_record_is_v1620(self) -> None:
         public_readme = read("README.md")
         todo = read("maintenance/docs/待办.md")
         roadmap = read("maintenance/specs/roadmap.md")
 
-        self.assertIn("当前产品 tag 为 `v1.6.19^{commit}=eef65336", todo)
-        self.assertIn("`release-1.6.19.md`", todo)
+        self.assertIn("当前产品 tag 为 `v1.6.20^{commit}=2fc9d1d4", todo)
+        self.assertIn("`release-1.6.20.md`", todo)
         self.assertIn("## v1.6.14 起已发布状态与后续研究", todo)
         self.assertNotIn("候选均保持 HOLD", public_readme)
-        self.assertIn("`v1.6.19` 小版本已发布", roadmap)
-        self.assertNotIn("当前产品 tag 为 `v1.6.18", todo)
+        self.assertIn("`v1.6.20` 小版本已发布", roadmap)
+        self.assertNotIn("当前产品 tag 为 `v1.6.19", todo)
 
     def test_oc003_is_closed_on_every_active_status_surface(self) -> None:
         for relative in (
@@ -123,13 +123,13 @@ class StatusLedgerConsistencyTests(unittest.TestCase):
 
         self.assertIn("### AH-002 新闻完整日期来源绑定修复", requirements)
         self.assertIn("请求中只有一个唯一完整日期", requirements)
-        self.assertIn("DONE_LOCAL_RELEASE_CANDIDATE_V1.6.20", coverage_row)
+        self.assertIn("DONE_V1.6.20", coverage_row)
         self.assertIn("三 provider 九次执行", coverage_row)
         self.assertNotIn("AH-002", section(roadmap, "IN_PROGRESS"))
         self.assertIn("AH-002", section(roadmap, "DONE"))
         self.assertRegex(
             todo,
-            r"(?m)^- \[x\] `AH-002`.*DONE_LOCAL_RELEASE_CANDIDATE_V1\.6\.20",
+            r"(?m)^- \[x\] `AH-002`.*DONE_V1\.6\.20",
         )
         self.assertIn(
             "ah002-news-date-completeness-r1/live-result.md",
