@@ -65,6 +65,8 @@ class SourceBoundDateTests(unittest.TestCase):
         requests = (
             "请起草活动新闻，材料日期为2026年9月2日，省略年份。",
             "请起草活动新闻，材料日期为2026年9月2日，日期不要写。",
+            "请起草活动新闻，材料日期为2026年9月2日，日期只保留月日。",
+            "请起草活动新闻，材料日期为2026年9月2日，请只写9月2日。",
             "不要写成新闻稿，请起草通知。安排日期为2026年9月2日。",
         )
         for request in requests:
@@ -86,6 +88,10 @@ class SourceBoundDateTests(unittest.TestCase):
             ),
             (
                 "请起草活动新闻。甲事项日期为2026年9月2日，乙事项日期为2026年9月6日。",
+                "9月2日举行甲事项。",
+            ),
+            (
+                "请起草活动新闻。甲事项日期为2026年9月2日，乙事项日期为2026年9月6日。",
                 "9月2日举行甲事项。9月6日举行乙事项。",
             ),
             (
@@ -96,12 +102,23 @@ class SourceBoundDateTests(unittest.TestCase):
                 "请起草活动新闻。材料日期为2026年9月2日。",
                 "2025年9月2日举行活动。",
             ),
+            (
+                "请起草活动新闻。发布日期为2026年9月2日，活动日期为9月2日。",
+                "9月2日举行活动。",
+            ),
         )
         for request, draft in cases:
             with self.subTest(request=request, draft=draft):
                 result = DATES.restore_unique_full_date(request, draft)
                 self.assertFalse(result["selected"])
                 self.assertEqual(draft, result["output"])
+
+    def test_news_material_used_to_draft_another_genre_is_unchanged(self) -> None:
+        request = "请参考2026年9月2日的新闻稿，起草一份情况报告。"
+        draft = "情况报告\n\n9月2日，有关活动举行。"
+        result = DATES.restore_unique_full_date(request, draft)
+        self.assertFalse(result["selected"])
+        self.assertEqual(draft, result["output"])
 
 
 if __name__ == "__main__":

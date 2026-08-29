@@ -12,8 +12,14 @@ SCHEMA_VERSION: Final = 1
 NEWS_GENRE_RE: Final = re.compile(
     r"(?:新闻稿|新闻消息|快讯|活动新闻(?:稿)?|活动报道|新闻通稿)"
 )
-WRITING_ACTION_RE: Final = re.compile(
-    r"(?:起草|拟写|撰写|写(?:一则|一篇|一份)?|改写|修改|修订|润色|整理|生成|输出)"
+EXPLICIT_NEWS_TASK_RE: Final = re.compile(
+    r"(?:"
+    r"(?:起草|拟写|撰写|写|改写|修改|修订|润色|整理|生成|输出)"
+    r"(?:一则|一篇|一份)?[^。；;\n]{0,16}"
+    r"(?:新闻稿|新闻消息|快讯|活动新闻(?:稿)?|活动报道|新闻通稿)"
+    r"|(?:新闻稿|新闻消息|快讯|活动新闻(?:稿)?|活动报道|新闻通稿)"
+    r"(?:请)?(?:改写|修改|修订|润色|压缩)"
+    r")"
 )
 NEGATED_NEWS_RE: Final = re.compile(
     r"(?:不要|不需要|无需|无须|并非|不是|别)(?:再)?[^。；;\n]{0,16}"
@@ -26,11 +32,16 @@ KEEP_FULL_DATE_RE: Final = re.compile(
 )
 OMIT_DATE_RE: Final = re.compile(
     r"(?:"
-    r"(?:省略|不写|不要写|无需写|无须写|删除|去掉|不保留|无需保留|无须保留)"
+    r"(?:省略|不写|不要写|无需写|无须写|不必写|删除|去掉|不保留|无需保留|无须保留|不必保留|不要求保留)"
     r"[^。；;\n]{0,10}(?:年份|完整日期|日期)"
     r"|(?:年份|完整日期|日期)[^。；;\n]{0,10}"
-    r"(?:省略|不写|不要写|无需写|无须写|删除|去掉|不保留|无需保留|无须保留)"
+    r"(?:省略|不写|不要写|无需写|无须写|不必写|删除|去掉|不保留|无需保留|无须保留|不必保留|不要求保留)"
     r")"
+)
+ONLY_MONTH_DAY_RE: Final = re.compile(
+    r"(?:只|仅)(?:保留|写|写成|使用|采用)"
+    r"(?![^。；;\n]{0,8}[12]\d{3}年)"
+    r"[^。；;\n]{0,8}(?:月日|(?:0?[1-9]|1[0-2])月(?:0?[1-9]|[12]\d|3[01])日)"
 )
 FULL_DATE_RE: Final = re.compile(
     r"(?<!\d)(?P<year>[12]\d{3})年"
@@ -65,7 +76,7 @@ def _result(reason: str, draft: str, output: str | None = None, **extra: Any) ->
 def _news_task(request: str) -> bool:
     return bool(
         NEWS_GENRE_RE.search(request)
-        and WRITING_ACTION_RE.search(request)
+        and EXPLICIT_NEWS_TASK_RE.search(request)
         and not NEGATED_NEWS_RE.search(request)
     )
 
@@ -73,7 +84,7 @@ def _news_task(request: str) -> bool:
 def _date_omission_requested(request: str) -> bool:
     if KEEP_FULL_DATE_RE.search(request):
         request = KEEP_FULL_DATE_RE.sub("", request)
-    return bool(OMIT_DATE_RE.search(request))
+    return bool(OMIT_DATE_RE.search(request) or ONLY_MONTH_DAY_RE.search(request))
 
 
 def restore_unique_full_date(request: str, draft: str) -> dict[str, Any]:
@@ -91,38 +102,40 @@ def restore_unique_full_date(request: str, draft: str) -> dict[str, Any]:
     if _date_omission_requested(request):
         return _result("user_requested_date_omission", draft)
 
-    source_by_day: dict[tuple[int, int], dict[tuple[int, int, int], str]] = {}
+    source_dates: dict[tuple[int, int, int], str] = {}
     for match in FULL_DATE_RE.finditer(request):
         year = int(match.group("year"))
         month = int(match.group("month"))
         day = int(match.group("day"))
-        source_by_day.setdefault((month, day), {})[(year, month, day)] = match.group(0)
-    if not source_by_day:
+        source_dates[(year, month, day)] = match.group(0)
+    if not source_dates:
         return _result("request_has_no_full_date", draft)
-    if any(len(full_dates) != 1 for full_dates in source_by_day.values()):
-        return _result("request_date_mapping_ambiguous", draft)
+    if len(source_dates) != 1:
+        return _result("request_has_multiple_full_dates", draft)
+    (source_key, full_literal), = source_dates.items()
+    day_key = source_key[1:]
+    request_bare_dates = [
+        match
+        for match in ANY_DATE_RE.finditer(request)
+        if match.group("year") is None
+        and (int(match.group("month")), int(match.group("day"))) == day_key
+    ]
+    if request_bare_dates:
+        return _result("request_date_role_ambiguous", draft)
 
     draft_dates: dict[tuple[int, int], list[re.Match[str]]] = {}
     for match in ANY_DATE_RE.finditer(draft):
         key = (int(match.group("month")), int(match.group("day")))
         draft_dates.setdefault(key, []).append(match)
 
-    candidates: list[tuple[re.Match[str], str]] = []
-    for day_key, full_dates in source_by_day.items():
-        (_, full_literal), = full_dates.items()
-        matches = draft_dates.get(day_key, [])
-        if any(match.group("year") is not None for match in matches):
-            continue
-        short_matches = [match for match in matches if match.group("year") is None]
-        if len(short_matches) == 1:
-            candidates.append((short_matches[0], full_literal))
-    if len(candidates) != 1:
-        return _result(
-            "no_unique_source_bound_target" if not candidates else "multiple_source_bound_targets",
-            draft,
-        )
+    matches = draft_dates.get(day_key, [])
+    if any(match.group("year") is not None for match in matches):
+        return _result("draft_has_full_date_for_same_day", draft)
+    short_matches = [match for match in matches if match.group("year") is None]
+    if len(short_matches) != 1:
+        return _result("no_unique_source_bound_target", draft)
 
-    target, full_literal = candidates[0]
+    target = short_matches[0]
     output = draft[: target.start()] + full_literal + draft[target.end() :]
     if output == draft:
         return _result("unchanged_candidate", draft)

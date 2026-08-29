@@ -28,4 +28,3 @@ py -3 maintenance/tests/evidence/ah002-news-date-completeness-r1/run_baseline.py
 ```
 
 原始 final、trace、stderr、fixture 和 summary 位于忽略目录 `output/ah002-news-date-completeness-r1/baseline/`。
-
