@@ -12,6 +12,9 @@
   "arms": {
     "baseline": {
       "commit": "6e4e8914431c5674a3fda87ab42d35ed8a531e8c"
+    },
+    "candidate": {
+      "commit": "06e1a3c5e9c36a013492281dcb7d4325236ea441"
     }
   },
   "cases": [
