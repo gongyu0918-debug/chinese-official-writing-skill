@@ -162,6 +162,7 @@ class HookLayerContractTests(unittest.TestCase):
                     self.assertTrue((packaged / "hooks/capabilities/over_length/runtime.py").is_file())
                     self.assertTrue((packaged / "hooks/capabilities/delivery_cleanliness/runtime.py").is_file())
                     self.assertTrue((packaged / "hooks/shared/hard_anchors.py").is_file())
+                    self.assertTrue((packaged / "hooks/shared/source_bound_dates.py").is_file())
                     self.assertEqual(
                         "delivery_review",
                         json.loads(

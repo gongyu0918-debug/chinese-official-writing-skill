@@ -157,6 +157,63 @@ class GateStopHookTests(unittest.TestCase):
             (txn / "d0.snapshot.txt").read_text(encoding="utf-8"),
         )
 
+    def test_delivery_review_restores_one_source_bound_news_date_before_detect(self):
+        prompt = (
+            "请根据材料起草一则活动新闻，只输出可直接使用的正文。\n"
+            "2026年9月2日，临江区政务服务中心举办培训，47名工作人员参加。"
+        )
+        draft = "培训活动举行\n\n9月2日，临江区政务服务中心举办培训，47名工作人员参加。"
+        expected = draft.replace("9月2日", "2026年9月2日", 1)
+        with mock.patch.dict(
+            os.environ, {"COW_GATE_CAPABILITY": "delivery_review"}, clear=False
+        ):
+            self._record_prompt_and_skill_read(prompt=prompt)
+            first = HOOK.handle(
+                self._event(
+                    "Stop",
+                    stop_hook_active=False,
+                    last_assistant_message=draft,
+                )
+            )
+        self.assertEqual("block", first["decision"])
+        self.assertIn(expected, first["reason"])
+        record_path = HOOK._record_path(self._event("Stop"))
+        record = HOOK._read_json(record_path)
+        self.assertIsNotNone(record)
+        self.assertTrue(record["source_bound_date"]["selected"])
+        txn = Path(record["txn"])
+        self.assertEqual(
+            expected,
+            (txn / "d0.snapshot.txt").read_text(encoding="utf-8"),
+        )
+
+        final = HOOK.handle(self._event("Stop", last_assistant_message=expected))
+        self.assertEqual({"continue": True}, final)
+        redacted = HOOK._read_json(record_path)
+        self.assertEqual(HOOK.REDACTED_RECORD_STATE, redacted["data_retention_state"])
+        self.assertTrue(redacted["source_bound_date"]["selected"])
+        self.assertNotIn(draft, json.dumps(redacted, ensure_ascii=False))
+
+    def test_source_bound_date_preflight_is_default_delivery_review_only(self):
+        request = "请起草活动新闻。材料日期为2026年9月2日。"
+        draft = "活动举行\n\n9月2日，活动举行。"
+        with mock.patch.dict(
+            os.environ, {"COW_GATE_CAPABILITY": "delivery_cleanliness"}, clear=False
+        ):
+            output, audit = HOOK._source_bound_date_input(request, draft)
+        self.assertEqual(draft, output)
+        self.assertIsNone(audit)
+
+    def test_source_bound_date_module_failure_preserves_original_d0(self):
+        request = "请起草活动新闻。材料日期为2026年9月2日。"
+        draft = "活动举行\n\n9月2日，活动举行。"
+        with mock.patch.dict(
+            os.environ, {"COW_GATE_CAPABILITY": "delivery_review"}, clear=False
+        ), mock.patch.object(HOOK, "_load_source_bound_dates", return_value=None):
+            output, audit = HOOK._source_bound_date_input(request, draft)
+        self.assertEqual(draft, output)
+        self.assertIsNone(audit)
+
     def test_terminal_delivery_redacts_raw_turn_data_and_transaction(self):
         draft = "情况报告\n\n测试工作已完成。"
         self._record_prompt_and_skill_read()

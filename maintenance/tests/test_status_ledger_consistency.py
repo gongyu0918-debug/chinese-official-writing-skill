@@ -114,6 +114,32 @@ class StatusLedgerConsistencyTests(unittest.TestCase):
         self.assertIn("累计190次真实任务输出", result)
         self.assertNotIn("`HOLD`", rejected)
 
+    def test_ah002_is_a_passed_unmerged_candidate_not_a_reopened_prompt_atom(self) -> None:
+        requirements = read("maintenance/specs/requirements.md")
+        coverage_row = table_row(read("maintenance/specs/coverage.md"), "AH-002")
+        roadmap = read("maintenance/specs/roadmap.md")
+        todo = read("maintenance/docs/待办.md")
+        evidence_index = read("maintenance/docs/evidence/README.md")
+
+        self.assertIn("### AH-002 新闻完整日期来源绑定修复", requirements)
+        self.assertIn("请求中只有一个唯一完整日期", requirements)
+        self.assertIn("PASSED_CANDIDATE_NOT_MERGED", coverage_row)
+        self.assertIn("三 provider 九次执行", coverage_row)
+        self.assertIn("AH-002", section(roadmap, "IN_PROGRESS"))
+        self.assertNotIn("AH-002", section(roadmap, "DONE"))
+        self.assertRegex(
+            todo,
+            r"(?m)^- \[x\] `AH-002`.*PASSED_CANDIDATE_NOT_MERGED",
+        )
+        self.assertIn(
+            "ah002-news-date-completeness-r1/live-result.md",
+            evidence_index,
+        )
+        self.assertNotIn(
+            "完整年份遗漏仍是真实风险；重复日期提示方向已经终止，等待新素材",
+            section(roadmap, "WAIT_NEW_COUNTEREXAMPLE"),
+        )
+
     def test_wr020_first_draft_rejected_but_existing_draft_atoms_are_closed(self) -> None:
         coverage_row = table_row(read("maintenance/specs/coverage.md"), "WR-020")
         roadmap = read("maintenance/specs/roadmap.md")
