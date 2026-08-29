@@ -54,4 +54,4 @@ python -m json.tool maintenance/tests/evidence/hk004-qwenwork-r1/package-sanity-
 git diff --check
 ```
 
-直接相关镜像、边界、Hook 隔离、状态和链接共100项测试通过；两个 Python 文件编译、案例 JSON 解析和 `git diff --check` 通过。没有安装/启动 QwenWork，没有修改用户配置，没有控制 GUI，没有合并、推送或发布。
+直接相关镜像、边界、Hook 隔离、状态和链接共100项测试通过；两个 Python 文件编译、案例 JSON 解析和 `git diff --check` 通过。五提交范围与基线复核见 [`five-commit-review.md`](five-commit-review.md)。没有安装/启动 QwenWork，没有修改用户配置，没有控制 GUI，没有合并、推送或发布。
