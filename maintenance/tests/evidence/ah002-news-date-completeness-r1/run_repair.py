@@ -182,7 +182,18 @@ def summarize() -> dict:
         final_path = OUTPUT_ROOT / record["final_file"]
         final = final_path.read_text(encoding="utf-8", errors="replace") if final_path.is_file() else ""
         expected = expected_text(case)
+        continuation_failures = [
+            failure
+            for failure in record["technical_failures"]
+            if failure != "missing_exact_skill_trace"
+        ]
         record["mode"] = case["mode"]
+        # Phase two models a Hook-requested continuation, not a fresh Skill
+        # trigger.  An exact Skill read remains useful attribution evidence but
+        # is not required for the host to execute the bounded continuation.
+        record["continuation_failures"] = continuation_failures
+        record["continuation_valid"] = not continuation_failures and bool(final.strip())
+        record["skill_attributed"] = bool(record["exact_skill_trace"])
         record["full_date_present"] = case["full_date"] in final
         record["exact_expected"] = final == expected
         record["exact_d0"] = final == case["d0"]
@@ -194,6 +205,7 @@ def summarize() -> dict:
         )[:40]
 
     valid = [item for item in records if not item["technical_failures"]]
+    continuation_valid = [item for item in records if item["continuation_valid"]]
     summary = {
         "schema_version": 1,
         "missing_providers": missing,
@@ -201,10 +213,23 @@ def summarize() -> dict:
         "technical_failure_count": sum(bool(item["technical_failures"]) for item in records),
         "valid_count": len(valid),
         "exact_expected_count": sum(bool(item["exact_expected"]) for item in valid),
+        "continuation_valid_count": len(continuation_valid),
+        "continuation_exact_expected_count": sum(
+            bool(item["exact_expected"]) for item in continuation_valid
+        ),
+        "skill_attributed_count": sum(bool(item["skill_attributed"]) for item in records),
         "repair_exact_by_case": {
             case["id"]: sum(
                 bool(item["exact_expected"])
                 for item in valid
+                if item["case_id"] == case["id"]
+            )
+            for case in cases["cases"]
+        },
+        "continuation_exact_by_case": {
+            case["id"]: sum(
+                bool(item["exact_expected"])
+                for item in continuation_valid
                 if item["case_id"] == case["id"]
             )
             for case in cases["cases"]
