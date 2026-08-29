@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "experiment_id": "ai-basic",
+  "allowed_product_diff": [
+    "chinese-official-writing/SKILL.md",
+    "chinese-official-writing/references/ai-compute-request.md"
+  ],
+  "tracked_files": [
+    "SKILL.md",
+    "references/ai-compute-request.md",
+    "references/ai-compute-docs.md",
+    "references/genre-playbook-request.md",
+    "references/information-selection.md"
+  ],
+  "case_plan": [
+    {
+      "id": "AI-BASIC-PURCHASE",
+      "kind": "target_frozen_baseline",
+      "arms": ["candidate"],
+      "arms_r2": ["candidate"]
+    },
+    {
+      "id": "AI-FULL-FEASIBILITY",
+      "kind": "full_control_frozen_baseline",
+      "arms": ["candidate"],
+      "arms_r2": ["candidate"]
+    },
+    {
+      "id": "FINAL-SPARSE-PURCHASE",
+      "kind": "adjacent_control_frozen_baseline",
+      "arms": ["candidate"],
+      "arms_r2": []
+    },
+    {
+      "id": "AI-BASIC-HOLDOUT",
+      "kind": "target_new_pair",
+      "arms": ["baseline", "candidate"],
+      "arms_r2": ["candidate"],
+      "material": "市融媒体中心稿件审校任务每日16时至18时集中提交，现有接口并发上限为2路。近10个工作日共发生62次排队，最长等待42分钟。编辑部已尝试把非紧急任务移至晚间，晚间排队减少，但当日稿件审校仍受影响。拟租用1台含2张GPU的推理服务器，服务期2个月，用于验证高峰审校任务分流。预算、GPU型号、供应商、采购方式、部署地点和SLA尚未确定。",
+      "prompt": "请使用已安装的中文公文写作 Skill，根据材料起草一份算力资源租用申请，无字数限制，只输出可直接使用的标题和正文，不解释过程，不报告字数，不作自评，不使用Markdown包装。原因前置，可以写材料和常识直接支持的一层合理作用与低强度预期；完整保留每日集中时段、2路、10个工作日、62次、42分钟、已尝试措施、1台、2张GPU、2个月和验证状态。不得补GPU型号、价格、供应商、采购方式、部署地点、SLA数值、完成期限、验收付款、正式部署决定或已经取得的效果。材料：市融媒体中心稿件审校任务每日16时至18时集中提交，现有接口并发上限为2路。近10个工作日共发生62次排队，最长等待42分钟。编辑部已尝试把非紧急任务移至晚间，晚间排队减少，但当日稿件审校仍受影响。拟租用1台含2张GPU的推理服务器，服务期2个月，用于验证高峰审校任务分流。预算、GPU型号、供应商、采购方式、部署地点和SLA尚未确定。",
+      "required_groups": [["16时至18时", "16—18时", "16时—18时"], ["2路"], ["10个工作日"], ["62次"], ["42分钟"], ["非紧急任务"], ["晚间"], ["当日稿件审校"], ["拟租用"], ["1台"], ["2张GPU"], ["2个月"], ["验证"], ["预算"], ["GPU型号"], ["供应商"], ["采购方式"], ["部署地点"], ["SLA"], ["尚未确定", "未定", "待定"]],
+      "forbidden": ["A100", "H100", "L40S", "每月", "竞争性磋商", "99.9%", "7x24", "验收合格后付款", "正式上线部署", "已经显著缩短"],
+      "quality_markers": ["算力资源租用申请", "为", "拟租用", "验证", "尚未确定"]
+    }
+  ]
+}

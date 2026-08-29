@@ -55,6 +55,9 @@
 
 ## REJECTED
 
+- `FINAL-BODY-LEAF-R1`：稀疏采购、活动新闻、普通长报告对完整总审页的实际读取依次为1/5、0/5、1/5，没有稳定可归因减载入口，不做产品原型。[基线结果](../tests/evidence/reference-slimming-r2/baseline-result.md)
+- `WORKFLOW-REVISION-LEAF-R1`：普通长报告0/5读取 `workflow.md`，多材料改稿也只有1/4有效读取；物理拆分不能解决当前路由，不做产品原型。[基线结果](../tests/evidence/reference-slimming-r2/baseline-result.md)
+
 - `MINUTES-CHECKLIST-LEAF-R1`：15个技术有效纪要目标配对中Baseline读取通用检查页为0，搬移小节没有可归因减载，产品已恢复。[汇总](../tests/evidence/reference-slimming-r1/result.md)
 - `NOTICE-LEAF-CURRENT-R1`：目标路由仅2/15，且真实通知与采购公告控制出现对象、日期、合同关系和过程包装回退，候选已拒绝并恢复产品。[汇总](../tests/evidence/reference-slimming-r1/result.md)
 - `PROCUREMENT-ANNOUNCEMENT-LEAF-R1/R2`：公告写稿质量安全；最小R2消除控制串叶后仍只有2/5 provider形成可归因减载对，低于预登记门，终止继续堆入口提示。[汇总](../tests/evidence/reference-slimming-r1/result.md)
@@ -66,6 +69,7 @@
 
 ## TERMINATED
 
+- `AI-COMPUTE-BASIC-LEAF-R1/R2`：R2用五条低成本路线完成15/15技术有效真实任务，完整可研已不串读窄叶，但Ollama相对冻结Baseline仍遗漏2台服务器、每台4张GPU、5.8千瓦和71%四项已给事实；两道简单申请未同时达到稳定省读与无候选硬回退。产品恢复固定Baseline，不做R3。[R2终态](../tests/evidence/reference-slimming-r2/r2-result.md)
 - `WR-005` 原短稿自然度 R1/R2 已被上限题 R3 取代；常用语机械化 R1—R6 依次尝试删词、删表、取消加载和按材料选择，仍轮流出现篇幅、职责、文种或材料外号召回退。两个旧方向均终止，不再以 HOLD 呈现。[结果](../tests/evidence/v167-formulaic-mechanicality-real-first/result.md)
 - 旧 `length-band-hook-v162`、`under-length-hook-v162-v2`、`v163-protective-expansion-gate` 已被后续正式能力或新原子取代，旧实现方向终止，不复活旧准入结论。
 - `SB-001` 章节均衡提示词/路由：R3.1—R3.5 已依次尝试语义叶、路由减载、底稿形态触发、过程隔离和近场卡。虽有多路精确搬移，但最终仍出现 Alibaba 章节/整稿重复、未决状态改写和无关残片，OpenCode 另有一次只承诺交付而未交稿；产品改动不合入，不再向第三处堆规则。[结果](../tests/evidence/sb001-r3-subject-preserving-result.md)
