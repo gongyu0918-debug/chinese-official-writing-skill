@@ -31,6 +31,7 @@
 - `WR-013` 一般原因、即时作用与发布者角色边界已完成五路真实写稿、入口冲突消融和非新闻控制，并随 v1.6.13 发布。
 - `WR-011` 新闻声明级核验已把机构性质、来源身份/原始出处和限定来源结论拆成三个原子；R3 三轮25稿后五路最终候选5/5守住目标边界，最小新闻叶及四套镜像已随 v1.6.13 发布。
 - `UL-005` 当前来源台账原子已闭环：WorkBuddy / CodeBuddy 2.115.0 对同一61字 D0 分别拒绝含强保障、材料外用途和多余请批语的111字 D1，并接受只含同一事实 span 低强度推断的114字 D1；两次终稿 hash 闭合。当前实现与 R9 证据已进入本地 `main`，不外推为所有文种、所有模型的自然扩写保证。[结果](../tests/evidence/ul005-fact-ledger-r9-codebuddy-20260822.md)
+- `UL-005-R10` 扩写指令与 verifier 合理推断口径已在独立候选完成四轮收敛：最终五路15份候选中扫描仪申请5/5进入下限，活动新闻4/5进入、1份安全D0，稀疏采购5/5逐字D0，包装0/15且无候选独有事实、状态或程序硬回退。状态为 `CANDIDATE_PASSED_NOT_MERGED`，未进入 main、未发布。[结果](../tests/evidence/short-inference-r1/underlength-r4-result.md)
 - 联网来源用途分型与命中页绑定已完成：国家规范、本地执行、外省比较不混用，命中页元数据和 URL 绑定实际打开页；R2f—R2h 五路15稿中12稿只做一次定向补搜，最终 R2h 五路5/5写入真实上海命中 URL。严格工具调用次数不能由提示词确定性保证。[结果](../tests/evidence/online-source-use-r2h-result-20260822.md)
 - SkillHub 已加入 `office-efficiency`、`content-creation` 轻量检索信号；不声称平台写入双分类。
 - GitHub 当前包统一 MIT；普通兼容包不含 Hook，OpenClaw GitHub 兼容包随仓库维护。
@@ -46,6 +47,9 @@
 - 本地付费候选 `codex/paid-outline-review` 收敛 `OT-001`、`OT-001-composite`、`OT-002` 与 `RF-001`；活动台账以“当前 main 是付费分支祖先”作为同步事实，不固化会在下一次同步后失效的 tip。三宿主47文件组装、698项全量和公开零文件检查通过。该状态为 `DONE_LOCAL_PAID_NO_RELEASE`，不反向进入公开版、不发布。
 
 ## IN_PROGRESS
+
+- `WR-009c`：稀疏事务申请的未决字段后续写边界。只验证“待明确后另行报批/按程序组织实施”等材料外程序承诺，不同时修改原因推断；有现状、问题或已做尝试时仍允许一层合理原因和即时作用。[来源](../tests/evidence/short-inference-r1/cause-hint-result.md)
+- `CL-001-NOHK-R2`：普通无 Hook 写稿仍跨 provider 出现“已读取技能”、正文引导语、横线、自检和 commit/测试说明。只前移或合并现有“只交正文”规则，用短事务稿、新闻、情况说明与长稿做真实 A/B，不增加 description。[来源](../tests/evidence/short-inference-r1/cause-hint-result.md)
 
 ## REJECTED
 
@@ -68,6 +72,8 @@
 
 ## WAIT_NEW_COUNTEREXAMPLE
 
+- `WR-009b` 当前通用实质缺口规则已让明确允许提示题5/5、自然 holdout 技术有效4/4给出原因补充建议；两轮显式候选在只交正文和明确拒绝题之间摆动，已恢复产品。若出现当前基线未提示的新自然反例再开，不重试原组合。[结果](../tests/evidence/short-inference-r1/cause-hint-result.md)
+- `WR-013d/WR-018-R2` 当前五路新采购、维修与活动新闻共15份真实稿中14份技术有效；申请稿5/5均形成一层合理原因和作用，活动新闻3/4形成有限影响，未复现跨provider功能性过薄。完整年份、包装和个别材料外流程另作既有风险，不据此改普通写稿规则。[结果](../tests/evidence/short-inference-r1/baseline-result.md)
 - `WR-012` 当前基线已覆盖内部情况说明、明确正式报告和普通业务函的主要意图边界；只有当前基线出现新的真实误路由才开新机制，不重抽已拒绝候选。
 - `MT-005` 当前202字 description 已覆盖已知正向和相邻边界；只有新的真实漏触发或误触发才开单原子，不重跑 b2/b3/b4/c 旧组合。
 - `WR-013c` 当前短采购基线两路均能由资源利用率、排队和等待形成合理原因与低强度预期；只有新的真实稿出现共同过薄或共同既成影响外扩才重开。

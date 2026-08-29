@@ -72,6 +72,24 @@ class UnderLengthCapabilityTests(unittest.TestCase):
         record_path = next((self.root / "data").rglob("under-turn.json"))
         return json.loads(record_path.read_text(encoding="utf-8"))
 
+    def test_revision_instruction_aligns_reasonable_inference_and_exact_fallback(self) -> None:
+        request = (
+            "材料：每日扫描260份，现有1台扫描仪，上午排队，拟采购2台高速扫描仪，"
+            "预算和型号尚未确定。请将正文扩写到220—280字。"
+        )
+        original = "拟采购2台高速扫描仪，预算和型号尚未确定。"
+        instruction = RUNTIME._revision_instruction(
+            request, original, {"minimum": 220, "maximum": 280, "scope": "body"}
+        )
+
+        self.assertIn("一层原因、目的、即时作用、真实归纳、条件结论或低强度预期可以写", instruction)
+        self.assertIn("上位功能可用于一层作用推断", instruction)
+        self.assertIn("不得补材料未给的组件、技术特性、性能对比、参数或新增用途", instruction)
+        self.assertIn("尚未、正在、未完成、拟、待定", instruction)
+        self.assertIn("回复第一字必须是终稿首字", instruction)
+        self.assertIn("必须逐字返回 D0", instruction)
+        self.assertNotIn("不能据此补写本次事项的场景、原因、目的", instruction)
+
     def test_explicit_under_range_completes_hash_bound_d1(self) -> None:
         request = (
             "请起草80—140字通知。事实：组织业务培训，培训内容围绕日常业务，培训安排按既定计划进行；"

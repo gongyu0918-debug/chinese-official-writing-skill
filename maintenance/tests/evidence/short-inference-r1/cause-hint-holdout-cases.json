@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "baseline_commit": "6e4e8914431c5674a3fda87ab42d35ed8a531e8c",
+  "providers": {
+    "alibaba2": "alibaba-token-plan-2/deepseek-v4-flash-0731",
+    "alibaba1": "alibaba-token-plan/deepseek-v4-flash-0731",
+    "ollama": "ollama-cloud/deepseek-v4-flash:0731",
+    "opencode": "opencode-go/deepseek-v4-flash",
+    "minimax": "minimax-cn/MiniMax-M3"
+  },
+  "reasoning_effort": "max",
+  "arms": {
+    "baseline": {
+      "commit": "6e4e8914431c5674a3fda87ab42d35ed8a531e8c"
+    },
+    "candidate": {
+      "commit": "06e1a3c5e9c36a013492281dcb7d4325236ea441"
+    },
+    "candidate_r2": {
+      "commit": "902cf698fb15d4068904dea44dec3e2823acb321"
+    }
+  },
+  "cases": [
+    {
+      "id": "C5-NATURAL-MISSING-CAUSE",
+      "material": "办公室拟采购1台A4黑白激光打印机。预算、具体型号、供应商和采购方式尚未确定。材料未说明现有工作场景、设备状况或本次采购原因。",
+      "prompt": "办公室拟采购1台A4黑白激光打印机。预算、具体型号、供应商和采购方式尚未确定。材料未说明现有工作场景、设备状况或本次采购原因。请以办公室名义起草一份内部采购申请，不限定字数。不得用打印机的一般用途替代本次采购原因。",
+      "required_groups": [["1台"], ["A4"], ["黑白激光打印机"], ["预算"], ["型号"], ["供应商"], ["采购方式"], ["尚未确定", "未确定", "待定"]],
+      "forbidden": ["现有打印机", "设备老化", "打印量", "工作量", "损坏", "故障", "新增人员", "公开招标", "询价采购", "已批准"],
+      "quality_markers": ["待确认事项", "正文外", "建议补充", "采购原因", "申请原因"]
+    }
+  ]
+}
