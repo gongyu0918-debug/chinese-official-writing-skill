@@ -45,9 +45,10 @@ def main() -> int:
     if not command:
         parser.error("missing command after --")
 
-    prompt = args.prompt_prefix + load_prompt(args.case_id)
+    prompt = load_prompt(args.case_id)
+    prompt_argument = args.prompt_prefix + prompt
     if args.prompt_mode == "append":
-        command.append(prompt)
+        command.append(prompt_argument)
     stdin_text = prompt if args.prompt_mode == "stdin" else None
 
     output = Path(args.out).resolve()
