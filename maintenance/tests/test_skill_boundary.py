@@ -18,7 +18,7 @@ OPTIONAL_GATE_FILES = {
     "scripts/review_gate.py",
 }
 SKILLHUB_CLEAN_PACKAGE_EXCLUDES = {"agents/openai.yaml", "LICENSE"}
-CURRENT_VERSION = "1.6.20"
+CURRENT_VERSION = "1.6.21"
 PUBLISHED_VERSION = "1.6.20"
 
 
@@ -976,7 +976,7 @@ class SkillBoundaryTests(unittest.TestCase):
     def test_openclaw_bundle_readme_is_current_and_contains_no_publish_command(self) -> None:
         readme = (ROOT / "packages" / "openclaw" / "README.md").read_text(encoding="utf-8")
 
-        self.assertIn("当前 GitHub 版本为 `1.6.20`", readme)
+        self.assertIn(f"当前 GitHub 版本为 `{PUBLISHED_VERSION}`", readme)
         self.assertIn("MIT", readme)
         self.assertIn(r"python .\maintenance\tools\sync_adapters.py", readme)
         self.assertIn("packages/openclaw/", readme)
@@ -1043,7 +1043,8 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assertIsNotNone(readme_version)
         self.assertIsNotNone(openclaw_version)
         self.assertEqual(manifest["version"], sync_version.group(1))
-        self.assertEqual(manifest["version"], openclaw_version.group(1))
+        self.assertEqual(CURRENT_VERSION, manifest["version"])
+        self.assertEqual(PUBLISHED_VERSION, openclaw_version.group(1))
         self.assertEqual(manifest["version"], openclaw_skill["metadata"]["version"])
         self.assertEqual(manifest["version"], zcode_manifest["version"])
         self.assertEqual(manifest["version"], qwen_manifest["version"])
