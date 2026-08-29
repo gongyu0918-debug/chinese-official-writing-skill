@@ -50,6 +50,8 @@
 
 ## IN_PROGRESS
 
+- `SHORT-NATURAL-REFERENCE-R1` 普通 reference 原子已终止并恢复产品：五家低成本 provider 完成50次自然基线和R1/R2/R3共150次候选，三轮均未在至少两家稳定改善真实偏短组；R1/R2还出现候选独有的状态遗漏、程序/承诺或新事件内容。显式80字控制保持，合理推断不算失败。后续只继续独立`UL-006` Hook，不再堆reference措辞。[终态](../tests/evidence/short-natural-reference-r1/reference-result.md)
+- `UL-006-R1/R2`：普通 reference 已终止后单独建立动态 Hook 候选，不再使用100/120/150/300固定门槛。五路20份提示原型只让情况说明、事故通报和办理通知进入最小实现，会议纪要未进入；`389b43f4` 已有33项定向单测。Alibaba2 当前 Codex Stop 四题中，U1真实触发但147字D1因新算`95.7%`回退且D0漏“本次材料未附”；U2事故稿已自然充分而正确不触发；U3通知未触发但新增落款、日期和“梳理”；80字上限旁路正确。状态为`DEFERRED_NEXT_SESSION / CANDIDATE_BRANCH_ONLY / NOT_MAIN`，下一轮先拆算术、事实补回和通知落款日期，不启动大矩阵。[R1](../tests/evidence/ul006-implicit-underlength-r1/prompt-r1-result.md) [R2](../tests/evidence/ul006-implicit-underlength-r2/alibaba2-result.md)
 - `WR-009c`：稀疏事务申请的未决字段后续写边界。只验证“待明确后另行报批/按程序组织实施”等材料外程序承诺，不同时修改原因推断；有现状、问题或已做尝试时仍允许一层合理原因和即时作用。[来源](../tests/evidence/short-inference-r1/cause-hint-result.md)
 - `CL-001-NOHK-R2`：普通无 Hook 写稿仍跨 provider 出现“已读取技能”、正文引导语、横线、自检和 commit/测试说明。只前移或合并现有“只交正文”规则，用短事务稿、新闻、情况说明与长稿做真实 A/B，不增加 description。[来源](../tests/evidence/short-inference-r1/cause-hint-result.md)
 

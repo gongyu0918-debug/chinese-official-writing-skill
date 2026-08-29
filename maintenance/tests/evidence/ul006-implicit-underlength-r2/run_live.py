@@ -207,7 +207,7 @@ def hook_records(codex_home: Path) -> list[dict[str, Any]]:
             continue
         if not isinstance(value, dict):
             continue
-        if "under_length" not in value and "under_length_bypass" not in value:
+        if "candidate-ai-gate-hook" not in path.parts:
             continue
         records.append({"path": str(path.relative_to(codex_home)), "record": value})
     return records
@@ -282,17 +282,32 @@ def run_one(provider_id: str, model: str, case: dict[str, Any], effort: str) -> 
     candidate = message_by_hash(messages, audit.get("candidate_sha256"))
     final_hash = sha256_text(final) if final else None
     expected = case["kind"]
-    if expected == "target":
+    material_chars = len(compact(case["material"]))
+    body_chars = len(compact(body_text(final)))
+    closeness_margin = max(12, (material_chars * 12 + 99) // 100)
+    if expected == "target" and state:
+        disposition = "dynamic_complete"
         lifecycle_ok = bool(
             state.get("phase") == "under_length_complete"
             and audit.get("trigger") == "implicit_under"
             and audit.get("delivery_verified") is True
             and audit.get("delivery_sha256") == final_hash
         )
+    elif expected == "target":
+        disposition = "no_start_sufficiently_expanded"
+        lifecycle_ok = bool(
+            record.get("hook_phase") == "complete"
+            and record.get("delivery_verified") is True
+            and record.get("emitted_sha256") == final_hash
+            and body_chars > material_chars + closeness_margin
+        )
     else:
+        disposition = "explicit_bypass"
         lifecycle_ok = bool(
             not state
             and record.get("under_length_bypass") == case["expected_bypass"]
+            and record.get("delivery_verified") is True
+            and record.get("emitted_sha256") == final_hash
         )
     technical_failures = []
     if return_code != 0:
@@ -311,6 +326,7 @@ def run_one(provider_id: str, model: str, case: dict[str, Any], effort: str) -> 
         "effort": effort,
         "case_id": case["id"],
         "kind": expected,
+        "disposition": disposition,
         "return_code": return_code,
         "timeout": timeout,
         "seconds": round(time.monotonic() - started, 3),
