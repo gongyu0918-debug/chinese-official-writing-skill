@@ -64,6 +64,7 @@ def main() -> int:
 
     started = time.time()
     timed_out = False
+    launch_error = None
     try:
         completed = subprocess.run(
             command,
@@ -87,6 +88,11 @@ def main() -> int:
             stdout = stdout.decode("utf-8", errors="replace")
         if isinstance(stderr, bytes):
             stderr = stderr.decode("utf-8", errors="replace")
+    except OSError as exc:
+        exit_code = 127
+        stdout = ""
+        stderr = f"{type(exc).__name__}: {exc}\n"
+        launch_error = type(exc).__name__
 
     stdout_bytes = stdout.encode("utf-8")
     stderr_bytes = stderr.encode("utf-8")
@@ -100,6 +106,7 @@ def main() -> int:
         "cwd": str(cwd),
         "elapsed_seconds": round(time.time() - started, 3),
         "exit_code": exit_code,
+        "launch_error": launch_error,
         "prompt_mode": args.prompt_mode,
         "prompt_sha256": sha256_bytes(prompt.encode("utf-8")),
         "stderr_sha256": sha256_bytes(stderr_bytes),
