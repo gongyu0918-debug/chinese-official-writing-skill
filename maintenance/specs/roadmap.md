@@ -48,7 +48,8 @@
 
 ## IN_PROGRESS
 
-- `WR-009b`：继续验证事务稿原因确实无法推断且输出模式允许时的正文外补充建议；可推断时直接成文，只要正文或用户明确拒绝时不追加提示。[预登记](../tests/evidence/short-inference-r1/preregister.md)
+- `WR-009c`：稀疏事务申请的未决字段后续写边界。只验证“待明确后另行报批/按程序组织实施”等材料外程序承诺，不同时修改原因推断；有现状、问题或已做尝试时仍允许一层合理原因和即时作用。[来源](../tests/evidence/short-inference-r1/cause-hint-result.md)
+- `CL-001-NOHK-R2`：普通无 Hook 写稿仍跨 provider 出现“已读取技能”、正文引导语、横线、自检和 commit/测试说明。只前移或合并现有“只交正文”规则，用短事务稿、新闻、情况说明与长稿做真实 A/B，不增加 description。[来源](../tests/evidence/short-inference-r1/cause-hint-result.md)
 
 ## REJECTED
 
@@ -71,6 +72,7 @@
 
 ## WAIT_NEW_COUNTEREXAMPLE
 
+- `WR-009b` 当前通用实质缺口规则已让明确允许提示题5/5、自然 holdout 技术有效4/4给出原因补充建议；两轮显式候选在只交正文和明确拒绝题之间摆动，已恢复产品。若出现当前基线未提示的新自然反例再开，不重试原组合。[结果](../tests/evidence/short-inference-r1/cause-hint-result.md)
 - `WR-013d/WR-018-R2` 当前五路新采购、维修与活动新闻共15份真实稿中14份技术有效；申请稿5/5均形成一层合理原因和作用，活动新闻3/4形成有限影响，未复现跨provider功能性过薄。完整年份、包装和个别材料外流程另作既有风险，不据此改普通写稿规则。[结果](../tests/evidence/short-inference-r1/baseline-result.md)
 - `WR-012` 当前基线已覆盖内部情况说明、明确正式报告和普通业务函的主要意图边界；只有当前基线出现新的真实误路由才开新机制，不重抽已拒绝候选。
 - `MT-005` 当前202字 description 已覆盖已知正向和相邻边界；只有新的真实漏触发或误触发才开单原子，不重跑 b2/b3/b4/c 旧组合。
