@@ -1,0 +1,339 @@
+{
+  "schema_version": 1,
+  "reasoning_effort": "max",
+  "providers": {
+    "alibaba2": "alibaba-token-plan-2/deepseek-v4-flash-0731",
+    "alibaba1": "alibaba-token-plan/deepseek-v4-flash-0731",
+    "ollama": "ollama-cloud/deepseek-v4-flash:0731",
+    "opencode": "opencode-go/deepseek-v4-flash",
+    "minimax": "minimax-cn/MiniMax-M3"
+  },
+  "experiments": {
+    "minutes": {
+      "allowed_product_diff": [
+        "chinese-official-writing/SKILL.md",
+        "chinese-official-writing/references/genre-checklist.md",
+        "chinese-official-writing/references/genre-playbook-minutes.md"
+      ],
+      "tracked_files": [
+        "SKILL.md",
+        "references/genre-checklist.md",
+        "references/genre-playbook-minutes.md",
+        "references/review-checklist.md"
+      ],
+      "route_rules": [
+        {
+          "kind": "target",
+          "case_ids": ["MINUTES-NOISY", "MINUTES-UNRESOLVED", "MINUTES-DECIDED"],
+          "baseline_all": ["references/genre-playbook-minutes.md", "references/genre-checklist.md"],
+          "candidate_all": ["references/genre-playbook-minutes.md"],
+          "candidate_none": ["references/genre-checklist.md"],
+          "require_negative_delta": true
+        },
+        {
+          "kind": "control",
+          "case_ids": ["MINUTES-NOTICE-CONTROL"],
+          "candidate_none": ["references/genre-playbook-minutes.md"]
+        }
+      ],
+      "cases": [
+        {
+          "id": "MINUTES-NOISY",
+          "material": "2026年8月18日14时，市数据资源中心召开交换目录试运行专题会，李峻主持，信息管理科、运行保障科和3家接入单位参加。发言人甲先说9月1日切换，随后当场纠正为9月5日至9日试运行。会议明确：信息管理科负责留存运行日志；3家接入单位于9月8日17时前完成各自用户测试；9月10日根据试运行记录复盘。发言人乙建议试运行后立即扩大到全部单位，现场无人回应，该建议未形成决定。备份参数仍待技术核验，会上未确定。",
+          "prompt": "请使用已安装的中文公文写作 Skill，把下面的会议转写整理成可直接内部流转的会议纪要，只输出标题和正文，不解释过程，不报告字数，不作自评，不使用Markdown包装。口头修正以后说法为准；只把会议明确事项写成议定事项，保持责任与期限绑定；无人回应的建议、待核验参数不得升级为决定、安排或承诺。材料：2026年8月18日14时，市数据资源中心召开交换目录试运行专题会，李峻主持，信息管理科、运行保障科和3家接入单位参加。发言人甲先说9月1日切换，随后当场纠正为9月5日至9日试运行。会议明确：信息管理科负责留存运行日志；3家接入单位于9月8日17时前完成各自用户测试；9月10日根据试运行记录复盘。发言人乙建议试运行后立即扩大到全部单位，现场无人回应，该建议未形成决定。备份参数仍待技术核验，会上未确定。",
+          "required_groups": [["2026年8月18日"], ["14时"], ["李峻"], ["9月5日至9日"], ["信息管理科"], ["运行日志"], ["3家接入单位"], ["9月8日"], ["17时"], ["9月10日"], ["未形成决定", "未形成议定事项"], ["未确定", "待技术核验"]],
+          "forbidden": ["9月1日切换", "立即扩大到全部单位", "会议决定扩大", "已确定备份参数", "由运行保障科负责备份参数"],
+          "quality_markers": ["会议纪要", "议定", "负责", "未形成", "核验"]
+        },
+        {
+          "id": "MINUTES-UNRESOLVED",
+          "material": "2026年8月21日，市档案馆召开数字档案移交方式讨论会。会上听取A方案分批移交和B方案集中移交的说明。两种方案的接口改造量、停机窗口和费用依据均未核清，会议未表决，也未确定采用哪一种。有人提出9月20日可作为首次移交日期，主持人表示需待技术条件核实后再议；没有明确牵头单位和完成期限。",
+          "prompt": "请使用已安装的中文公文写作 Skill，根据材料起草一份讨论会会议纪要，只输出标题和正文，不解释过程，不报告字数，不作自评，不使用Markdown包装。完整保留两种方案、证据缺口和未决状态；不得把建议日期写成暂定安排，不得补牵头单位、后续研究会议或报批程序。材料：2026年8月21日，市档案馆召开数字档案移交方式讨论会。会上听取A方案分批移交和B方案集中移交的说明。两种方案的接口改造量、停机窗口和费用依据均未核清，会议未表决，也未确定采用哪一种。有人提出9月20日可作为首次移交日期，主持人表示需待技术条件核实后再议；没有明确牵头单位和完成期限。",
+          "required_groups": [["2026年8月21日"], ["A方案"], ["分批移交"], ["B方案"], ["集中移交"], ["接口改造量"], ["停机窗口"], ["费用依据"], ["未表决"], ["未确定"], ["9月20日"], ["技术条件"]],
+          "forbidden": ["暂定于9月20日", "会议决定采用", "会议原则同意", "另行召开会议", "按程序报批"],
+          "quality_markers": ["会议纪要", "听取", "未表决", "未确定", "再议"]
+        },
+        {
+          "id": "MINUTES-DECIDED",
+          "material": "2026年8月24日，市公共服务中心召开热线知识库更新协调会。会议决定，业务一科于9月15日前完成46条政策问答校核，信息科于9月18日前完成已校核条目的系统更新；运行组从9月19日起记录一周检索失败情况。会议没有决定扩大知识库范围，也没有给运行组后续整改期限。",
+          "prompt": "请使用已安装的中文公文写作 Skill，根据材料起草一份协调会会议纪要，只输出标题和正文，不解释过程，不报告字数，不作自评，不使用Markdown包装。把三项已议定任务分别与原责任主体、数量或期限绑定；不得把一个期限扩展到其他任务，不得补扩大范围、整改期限或成效。材料：2026年8月24日，市公共服务中心召开热线知识库更新协调会。会议决定，业务一科于9月15日前完成46条政策问答校核，信息科于9月18日前完成已校核条目的系统更新；运行组从9月19日起记录一周检索失败情况。会议没有决定扩大知识库范围，也没有给运行组后续整改期限。",
+          "required_groups": [["2026年8月24日"], ["业务一科"], ["9月15日"], ["46条"], ["信息科"], ["9月18日"], ["运行组"], ["9月19日"], ["一周"], ["没有决定扩大", "未决定扩大"], ["没有给", "未明确", "未给"]],
+          "forbidden": ["业务一科于9月18日前", "信息科于9月15日前", "运行组于9月18日前完成整改", "全面扩大知识库范围", "取得明显成效"],
+          "quality_markers": ["会议纪要", "会议决定", "业务一科", "信息科", "运行组"]
+        },
+        {
+          "id": "MINUTES-NOTICE-CONTROL",
+          "material": "市公共服务中心拟于2026年9月7日9时至11时在六楼会议室开展热线知识库使用培训。各业务科室安排1人参加，参训人员8时45分前签到；名单于9月4日17时前通过OA报送。联系人周敏，内线6082，培训由信息科组织。",
+          "prompt": "请使用已安装的中文公文写作 Skill，根据材料起草一份内部培训通知，只输出标题和正文，不解释过程，不报告字数，不作自评，不使用Markdown包装。保留对象、时间、地点、人数、签到、名单报送、渠道、联系人和组织科室，不补会议议定、培训考核、材料要求或其他安排。材料：市公共服务中心拟于2026年9月7日9时至11时在六楼会议室开展热线知识库使用培训。各业务科室安排1人参加，参训人员8时45分前签到；名单于9月4日17时前通过OA报送。联系人周敏，内线6082，培训由信息科组织。",
+          "required_groups": [["2026年9月7日"], ["9时"], ["11时"], ["六楼会议室"], ["各业务科室"], ["1人"], ["8时45分"], ["9月4日"], ["17时"], ["OA"], ["周敏"], ["6082"], ["信息科"]],
+          "forbidden": ["会议决定", "议定事项", "考核", "培训材料", "整改"],
+          "quality_markers": ["通知", "参加", "签到", "报送", "联系人"]
+        }
+      ]
+    },
+    "notice": {
+      "allowed_product_diff": [
+        "chinese-official-writing/SKILL.md",
+        "chinese-official-writing/references/genre-playbook-notice.md",
+        "chinese-official-writing/references/genre-playbooks.md"
+      ],
+      "tracked_files": [
+        "SKILL.md",
+        "references/genre-playbook-notice.md",
+        "references/genre-playbooks.md",
+        "references/genre-checklist.md",
+        "references/handling-elements.md"
+      ],
+      "route_rules": [
+        {
+          "kind": "target",
+          "case_ids": ["NOTICE-INTERNAL", "NOTICE-PUBLIC", "NOTICE-CIRCULAR"],
+          "baseline_all": ["references/genre-playbooks.md"],
+          "candidate_all": ["references/genre-playbook-notice.md"],
+          "candidate_none": ["references/genre-playbooks.md"],
+          "require_negative_delta": true
+        },
+        {
+          "kind": "control",
+          "case_ids": ["NOTICE-PROCUREMENT-CONTROL", "NOTICE-SPEECH-CONTROL"],
+          "candidate_none": ["references/genre-playbook-notice.md"]
+        }
+      ],
+      "cases": [
+        {
+          "id": "NOTICE-INTERNAL",
+          "material": "市民服务中心定于2026年9月11日14时30分至16时30分在四楼培训室开展办件归档操作培训。各窗口安排2人参加，14时15分前签到；名单于9月8日17时前通过内网报送。联系人赵宁，内线6216，培训由档案管理科组织。",
+          "prompt": "请使用已安装的中文公文写作 Skill，根据材料起草一份内部培训通知，只输出标题和正文，不解释过程，不报告字数，不作自评，不使用Markdown包装。保留对象、完整时间、地点、人数、签到、名单报送、渠道、联系人和组织科室，不补考核、纪律、材料准备或其他安排。材料：市民服务中心定于2026年9月11日14时30分至16时30分在四楼培训室开展办件归档操作培训。各窗口安排2人参加，14时15分前签到；名单于9月8日17时前通过内网报送。联系人赵宁，内线6216，培训由档案管理科组织。",
+          "required_groups": [["2026年9月11日"], ["14时30分"], ["16时30分"], ["四楼培训室"], ["各窗口"], ["2人"], ["14时15分"], ["9月8日"], ["17时"], ["内网"], ["赵宁"], ["6216"], ["档案管理科"]],
+          "forbidden": ["考核", "纪律处分", "准备材料", "会议决定", "整改"],
+          "quality_markers": ["通知", "参加", "签到", "报送", "联系人"]
+        },
+        {
+          "id": "NOTICE-PUBLIC",
+          "material": "因供电设备例行检测，云川市政务服务中心一楼自助服务区将于2026年9月13日8时至12时暂停使用，二楼人工窗口正常办理。暂停范围仅限一楼自助终端，线上平台不受影响。咨询电话0371-62345678。材料未给发布日、检测单位或处罚措施。",
+          "prompt": "请使用已安装的中文公文写作 Skill，根据材料起草一份面向办事群众的通告，只输出标题和正文，不解释过程，不报告字数，不作自评，不使用Markdown包装。写清原因、时间、暂停范围、替代办理方式和咨询电话；不得扩大停用范围，不补检测单位、恢复承诺、交通提示、处罚或发布日。材料：因供电设备例行检测，云川市政务服务中心一楼自助服务区将于2026年9月13日8时至12时暂停使用，二楼人工窗口正常办理。暂停范围仅限一楼自助终端，线上平台不受影响。咨询电话0371-62345678。材料未给发布日、检测单位或处罚措施。",
+          "required_groups": [["供电设备例行检测"], ["2026年9月13日"], ["8时"], ["12时"], ["一楼自助服务区", "一楼自助终端"], ["二楼人工窗口"], ["线上平台"], ["0371-62345678"]],
+          "forbidden": ["全中心暂停", "线上平台暂停", "由市供电公司负责检测", "确保按时恢复", "交通管制", "违规处罚"],
+          "quality_markers": ["通告", "暂停", "正常办理", "不受影响", "咨询电话"]
+        },
+        {
+          "id": "NOTICE-CIRCULAR",
+          "material": "2026年7月至8月，市数据共享办公室完成120项共享目录梳理，发现17项字段名称不一致、6项更新时间未标注；已组织2次协调会。材料没有给问题处置结果、整改责任、完成期限或下一步安排。",
+          "prompt": "请使用已安装的中文公文写作 Skill，根据材料起草一份内部情况通报，只输出标题和正文，不解释过程，不报告字数，不作自评，不使用Markdown包装。只写已经完成的梳理、发现的问题和已组织协调会事实；不得补会议内容、整改、处置、责任、期限、督办闭环或下一步安排。材料：2026年7月至8月，市数据共享办公室完成120项共享目录梳理，发现17项字段名称不一致、6项更新时间未标注；已组织2次协调会。材料没有给问题处置结果、整改责任、完成期限或下一步安排。",
+          "required_groups": [["2026年7月至8月"], ["市数据共享办公室"], ["120项"], ["17项"], ["6项"], ["2次协调会"]],
+          "forbidden": ["完成整改", "处置", "责任单位", "完成期限", "督办", "闭环", "下一步"],
+          "quality_markers": ["通报", "完成", "发现", "协调会"]
+        },
+        {
+          "id": "NOTICE-PROCUREMENT-CONTROL",
+          "material": "采购人为云川市政务数据中心，项目为2026年度日志存储扩容服务，预算上限42万元，采购内容为新增180TB可用容量并提供12个月基础运维。供应商须有同类服务经验，材料未给年限和数量门槛。响应文件于2026年9月22日9时前提交至中心二楼采购室。联系人李岩，电话0371-63456789。采购方式、评审办法和合同条款未提供。",
+          "prompt": "请使用已安装的中文公文写作 Skill，根据材料起草一份采购公告，只输出标题和正文，不解释过程，不报告字数，不作自评，不使用Markdown包装。不得补采购方式、资格年限、项目数量、评审办法、合同、付款、验收指标或发布日。材料：采购人为云川市政务数据中心，项目为2026年度日志存储扩容服务，预算上限42万元，采购内容为新增180TB可用容量并提供12个月基础运维。供应商须有同类服务经验，材料未给年限和数量门槛。响应文件于2026年9月22日9时前提交至中心二楼采购室。联系人李岩，电话0371-63456789。采购方式、评审办法和合同条款未提供。",
+          "required_groups": [["云川市政务数据中心"], ["2026年度日志存储扩容服务"], ["42万元"], ["180TB"], ["12个月"], ["同类服务经验"], ["2026年9月22日"], ["9时"], ["中心二楼采购室"], ["李岩"], ["0371-63456789"]],
+          "forbidden": ["公开招标", "竞争性磋商", "三年以上", "至少3项", "综合评分", "签订合同后", "验收合格"],
+          "quality_markers": ["采购公告", "采购人", "预算", "响应文件", "联系人"]
+        },
+        {
+          "id": "NOTICE-SPEECH-CONTROL",
+          "material": "2026年1月至8月，市热线中心受理咨询82400件，其中在线答复73100件、转人工9300件；抽查发现28条知识问答表述不一致，19条已校核，9条仍在研究。3个业务组试用新的检索提示，共记录210次查询，其中14次因关键词不匹配转人工。是否扩大试用、由谁牵头和何时实施均未确定，本次交流只分析问题、提出研究方向，不作正式部署。",
+          "prompt": "请使用已安装的中文公文写作 Skill，起草一篇在热线知识库协同交流会上的完整讲话稿，参考1200—1600个中文字符。要有自然开场、事实判断、问题分析和相互衔接的研究方向；允许材料和常识支持的一层合理原因与影响推断，不得把试用写成推广或成效，不得新增责任部门、期限或正式部署。只输出标题和正文，不解释过程，不报告字数，不作自评，不使用Markdown包装。材料：2026年1月至8月，市热线中心受理咨询82400件，其中在线答复73100件、转人工9300件；抽查发现28条知识问答表述不一致，19条已校核，9条仍在研究。3个业务组试用新的检索提示，共记录210次查询，其中14次因关键词不匹配转人工。是否扩大试用、由谁牵头和何时实施均未确定，本次交流只分析问题、提出研究方向，不作正式部署。",
+          "required_groups": [["82400"], ["73100"], ["9300"], ["28条"], ["19条"], ["9条"], ["3个业务组"], ["210次"], ["14次"], ["未确定", "均未确定", "尚未确定"], ["不作正式部署", "不作部署"]],
+          "forbidden": ["全面推广", "取得显著成效", "由市热线中心牵头", "年底前完成", "会议决定"],
+          "quality_markers": ["同志们", "问题", "试用", "研究", "下一步"]
+        }
+      ]
+    },
+    "procurement": {
+      "allowed_product_diff": [
+        "chinese-official-writing/SKILL.md",
+        "chinese-official-writing/references/genre-playbook-procurement-announcement.md",
+        "chinese-official-writing/references/genre-playbooks.md"
+      ],
+      "tracked_files": [
+        "SKILL.md",
+        "references/genre-playbook-procurement-announcement.md",
+        "references/genre-playbooks.md",
+        "references/genre-checklist.md",
+        "references/genre-checklist-request.md",
+        "references/handling-elements.md"
+      ],
+      "route_rules": [
+        {
+          "kind": "target",
+          "case_ids": ["PROCUREMENT-ANNOUNCEMENT"],
+          "baseline_all": ["references/genre-playbooks.md"],
+          "candidate_all": ["references/genre-playbook-procurement-announcement.md"],
+          "candidate_none": ["references/genre-playbooks.md"],
+          "require_negative_delta": true
+        },
+        {
+          "kind": "control",
+          "case_ids": ["PROCUREMENT-APPLICATION-CONTROL", "PROCUREMENT-REVIEW-CONTROL", "PROCUREMENT-NOTICE-CONTROL"],
+          "candidate_none": ["references/genre-playbook-procurement-announcement.md"]
+        }
+      ],
+      "cases": [
+        {
+          "id": "PROCUREMENT-ANNOUNCEMENT",
+          "material": "采购人为云川市公共数据中心，项目名称为2026年度离线备份介质采购，预算上限31.5万元。采购内容为LTO-9数据磁带600盘及条码标签600套。供应商须具备同类产品供货经验，材料未给年限或项目数量。响应文件提交截止时间为2026年9月25日9时30分，提交地点为中心二楼采购室。联系人宋宁，电话0371-64567890。采购方式、评审办法、付款和验收条款尚未提供。",
+          "prompt": "请使用已安装的中文公文写作 Skill，根据材料起草一份采购公告，只输出标题和正文，不解释过程，不报告字数，不作自评，不使用Markdown包装。完整保留采购主体、项目、预算、内容、资格、截止时间、地点和联系人；不得补采购方式、资格年限、项目数量、评审办法、合同、付款、验收指标或发布日。材料：采购人为云川市公共数据中心，项目名称为2026年度离线备份介质采购，预算上限31.5万元。采购内容为LTO-9数据磁带600盘及条码标签600套。供应商须具备同类产品供货经验，材料未给年限或项目数量。响应文件提交截止时间为2026年9月25日9时30分，提交地点为中心二楼采购室。联系人宋宁，电话0371-64567890。采购方式、评审办法、付款和验收条款尚未提供。",
+          "required_groups": [["云川市公共数据中心"], ["2026年度离线备份介质采购"], ["31.5万元"], ["LTO-9"], ["600盘"], ["600套"], ["同类产品供货经验"], ["2026年9月25日"], ["9时30分"], ["中心二楼采购室"], ["宋宁"], ["0371-64567890"]],
+          "forbidden": ["公开招标", "竞争性磋商", "三年以上", "至少3个项目", "综合评分", "签订合同", "付款", "验收合格"],
+          "quality_markers": ["采购公告", "采购人", "预算", "响应文件", "联系人"]
+        },
+        {
+          "id": "PROCUREMENT-APPLICATION-CONTROL",
+          "material": "办公室现有黑白打印机近两周连续卡纸，已尝试清洁搓纸轮并更换纸张，仍影响每日材料打印。拟采购1台黑白激光打印机，预算和供应商未定。",
+          "prompt": "请使用已安装的中文公文写作 Skill，根据材料起草一份简短采购申请，无字数限制，只输出可直接使用的标题和正文，不解释过程，不报告字数，不作自评，不使用Markdown包装。原因前置，可以写材料和常识直接支持的一层合理作用，但不得补采购程序、完成期限、品牌型号、工作日测算、验收付款或已取得成效。材料：办公室现有黑白打印机近两周连续卡纸，已尝试清洁搓纸轮并更换纸张，仍影响每日材料打印。拟采购1台黑白激光打印机，预算和供应商未定。",
+          "required_groups": [["近两周"], ["连续卡纸"], ["清洁搓纸轮"], ["更换纸张"], ["每日材料打印"], ["拟采购"], ["1台"], ["黑白激光打印机"], ["预算", "供应商"], ["未定", "尚未确定"]],
+          "forbidden": ["公开招标", "询价程序", "三个工作日", "完成采购", "验收", "付款", "显著提升", "确保"],
+          "quality_markers": ["采购申请", "为", "拟采购", "预算", "供应商"]
+        },
+        {
+          "id": "PROCUREMENT-REVIEW-CONTROL",
+          "material": "审查对象：数据归档系统初步设计；审查依据：用户提供的设计说明第2版；发现问题：容量测算未区分原始数据与副本，接口并发指标未给测试依据；当前状态：设计单位已补充容量表，接口依据尚未提供；审查结论：未提供。",
+          "prompt": "请使用已安装的中文公文写作 Skill，将下面的字段式审查材料改写得正式、清楚，只输出改后完整字段，不解释过程，不增加或删除字段，不改变字段顺序，不使用Markdown表格。保持已补充、尚未提供和结论未提供的状态，不补整改要求、责任单位、期限或审查结论。材料：审查对象：数据归档系统初步设计；审查依据：用户提供的设计说明第2版；发现问题：容量测算未区分原始数据与副本，接口并发指标未给测试依据；当前状态：设计单位已补充容量表，接口依据尚未提供；审查结论：未提供。",
+          "required_groups": [["审查对象"], ["数据归档系统初步设计"], ["审查依据"], ["设计说明第2版"], ["发现问题"], ["原始数据"], ["副本"], ["接口并发指标"], ["当前状态"], ["已补充容量表"], ["尚未提供"], ["审查结论"], ["未提供"]],
+          "forbidden": ["责令整改", "限期", "责任单位", "审查通过", "原则同意", "不予通过"],
+          "quality_markers": ["审查对象", "审查依据", "发现问题", "当前状态", "审查结论"]
+        },
+        {
+          "id": "PROCUREMENT-NOTICE-CONTROL",
+          "material": "市档案馆定于2026年9月16日9时至10时30分在二楼会议室开展档案目录著录培训。各处室安排1人参加，8时45分前签到；名单于9月12日17时前通过OA报送。联系人吴洁，内线6172。",
+          "prompt": "请使用已安装的中文公文写作 Skill，根据材料起草一份内部培训通知，只输出标题和正文，不解释过程，不报告字数，不作自评，不使用Markdown包装。保留对象、时间、地点、人数、签到、报送渠道和联系人，不补采购、考核、材料准备或其他安排。材料：市档案馆定于2026年9月16日9时至10时30分在二楼会议室开展档案目录著录培训。各处室安排1人参加，8时45分前签到；名单于9月12日17时前通过OA报送。联系人吴洁，内线6172。",
+          "required_groups": [["2026年9月16日"], ["9时"], ["10时30分"], ["二楼会议室"], ["各处室"], ["1人"], ["8时45分"], ["9月12日"], ["17时"], ["OA"], ["吴洁"], ["6172"]],
+          "forbidden": ["采购", "预算", "供应商", "考核", "培训材料"],
+          "quality_markers": ["通知", "参加", "签到", "报送", "联系人"]
+        }
+      ]
+    },
+    "procurement-r2": {
+      "allowed_product_diff": [
+        "chinese-official-writing/SKILL.md",
+        "chinese-official-writing/references/genre-playbook-procurement-announcement.md",
+        "chinese-official-writing/references/genre-playbooks.md"
+      ],
+      "tracked_files": [
+        "SKILL.md",
+        "references/genre-playbook-procurement-announcement.md",
+        "references/genre-playbooks.md",
+        "references/genre-checklist.md",
+        "references/genre-checklist-request.md",
+        "references/handling-elements.md"
+      ],
+      "route_rules": [
+        {
+          "kind": "target",
+          "case_ids": ["PROCUREMENT-ANNOUNCEMENT-R2"],
+          "baseline_all": ["references/genre-playbooks.md"],
+          "candidate_all": ["references/genre-playbook-procurement-announcement.md"],
+          "candidate_none": ["references/genre-playbooks.md"],
+          "require_negative_delta": true
+        },
+        {
+          "kind": "control",
+          "case_ids": ["PROCUREMENT-REVIEW-CONTROL-R2"],
+          "candidate_none": ["references/genre-playbook-procurement-announcement.md"]
+        }
+      ],
+      "cases": [
+        {
+          "id": "PROCUREMENT-ANNOUNCEMENT-R2",
+          "material": "采购人为云川市公共数据中心，项目名称为2026年度离线备份介质采购，预算上限31.5万元。采购内容为LTO-9数据磁带600盘及条码标签600套。供应商须具备同类产品供货经验，材料未给年限或项目数量。响应文件提交截止时间为2026年9月25日9时30分，提交地点为中心二楼采购室。联系人宋宁，电话0371-64567890。采购方式、评审办法、付款和验收条款尚未提供。",
+          "prompt": "请使用已安装的中文公文写作 Skill，根据材料起草一份采购公告，只输出标题和正文，不解释过程，不报告字数，不作自评，不使用Markdown包装。完整保留采购主体、项目、预算、内容、资格、截止时间、地点和联系人；不得补采购方式、资格年限、项目数量、评审办法、合同、付款、验收指标或发布日。材料：采购人为云川市公共数据中心，项目名称为2026年度离线备份介质采购，预算上限31.5万元。采购内容为LTO-9数据磁带600盘及条码标签600套。供应商须具备同类产品供货经验，材料未给年限或项目数量。响应文件提交截止时间为2026年9月25日9时30分，提交地点为中心二楼采购室。联系人宋宁，电话0371-64567890。采购方式、评审办法、付款和验收条款尚未提供。",
+          "required_groups": [["云川市公共数据中心"], ["2026年度离线备份介质采购"], ["31.5万元"], ["LTO-9"], ["600盘"], ["600套"], ["同类产品供货经验"], ["2026年9月25日"], ["9时30分"], ["中心二楼采购室"], ["宋宁"], ["0371-64567890"]],
+          "forbidden": ["公开招标", "竞争性磋商", "三年以上", "至少3个项目", "综合评分", "签订合同", "付款", "验收合格"],
+          "quality_markers": ["采购公告", "采购人", "预算", "响应文件", "联系人"]
+        },
+        {
+          "id": "PROCUREMENT-REVIEW-CONTROL-R2",
+          "material": "审查对象：数据归档系统初步设计；审查依据：用户提供的设计说明第2版；发现问题：容量测算未区分原始数据与副本，接口并发指标未给测试依据；当前状态：设计单位已补充容量表，接口依据尚未提供；审查结论：未提供。",
+          "prompt": "请使用已安装的中文公文写作 Skill，将下面的字段式审查材料改写得正式、清楚，只输出改后完整字段，不解释过程，不增加或删除字段，不改变字段顺序，不使用Markdown表格。保持已补充、尚未提供和结论未提供的状态，不补整改要求、责任单位、期限或审查结论。材料：审查对象：数据归档系统初步设计；审查依据：用户提供的设计说明第2版；发现问题：容量测算未区分原始数据与副本，接口并发指标未给测试依据；当前状态：设计单位已补充容量表，接口依据尚未提供；审查结论：未提供。",
+          "required_groups": [["审查对象"], ["数据归档系统初步设计"], ["审查依据"], ["设计说明第2版"], ["发现问题"], ["原始数据"], ["副本"], ["接口并发指标"], ["当前状态"], ["已补充容量表"], ["尚未提供"], ["审查结论"], ["未提供"]],
+          "forbidden": ["责令整改", "限期", "责任单位", "审查通过", "原则同意", "不予通过"],
+          "quality_markers": ["审查对象", "审查依据", "发现问题", "当前状态", "审查结论"]
+        }
+      ]
+    },
+    "review": {
+      "allowed_product_diff": [
+        "chinese-official-writing/SKILL.md",
+        "chinese-official-writing/references/review-checklist.md",
+        "chinese-official-writing/references/review-checklist-paragraph.md",
+        "chinese-official-writing/references/review-checklist-section.md",
+        "chinese-official-writing/references/review-checklist-full.md"
+      ],
+      "tracked_files": [
+        "SKILL.md",
+        "references/review-checklist.md",
+        "references/review-checklist-paragraph.md",
+        "references/review-checklist-section.md",
+        "references/review-checklist-full.md",
+        "references/format-gbt9704.md"
+      ],
+      "route_rules": [
+        {
+          "kind": "target",
+          "case_ids": ["REVIEW-PARAGRAPH-REWRITE"],
+          "baseline_all": ["references/review-checklist.md"],
+          "candidate_all": ["references/review-checklist.md", "references/review-checklist-paragraph.md"],
+          "candidate_none": ["references/review-checklist-section.md", "references/review-checklist-full.md"],
+          "require_negative_delta": true
+        },
+        {
+          "kind": "target",
+          "case_ids": ["REVIEW-SECTION-REWRITE"],
+          "baseline_all": ["references/review-checklist.md"],
+          "candidate_all": ["references/review-checklist.md", "references/review-checklist-paragraph.md", "references/review-checklist-section.md"],
+          "candidate_none": ["references/review-checklist-full.md"],
+          "require_negative_delta": true
+        },
+        {
+          "kind": "capability_control",
+          "case_ids": ["REVIEW-FULL-REPORT-REWRITE"],
+          "candidate_all": ["references/review-checklist.md", "references/review-checklist-paragraph.md", "references/review-checklist-section.md", "references/review-checklist-full.md"]
+        },
+        {
+          "kind": "shape_control",
+          "case_ids": ["REVIEW-FORMAT-ONLY"],
+          "candidate_all": ["references/review-checklist.md", "references/format-gbt9704.md"],
+          "candidate_none": ["references/review-checklist-paragraph.md", "references/review-checklist-section.md", "references/review-checklist-full.md"]
+        }
+      ],
+      "cases": [
+        {
+          "id": "REVIEW-PARAGRAPH-REWRITE",
+          "material": "截至2026年8月20日，20项问题中17项已完成整改，3项正在核验。原句：截至2026年8月20日，20项问题均已整改完成，项目已全面达到预期成效。",
+          "prompt": "请使用已安装的中文公文写作 Skill，复核下面这一句话并直接给出可替换的改后句，只输出改后句，不解释过程，不报告字数，不使用Markdown包装。必须保留完整日期、20项、17项已完成、3项正在核验，不能把核验中写成已完成，也不要补成效。材料：截至2026年8月20日，20项问题中17项已完成整改，3项正在核验。原句：截至2026年8月20日，20项问题均已整改完成，项目已全面达到预期成效。",
+          "required_groups": [["2026年8月20日"], ["20项"], ["17项"], ["已完成整改", "完成整改"], ["3项"], ["正在核验"]],
+          "forbidden": ["均已整改完成", "全面达到预期成效", "取得显著成效"],
+          "quality_markers": ["截至", "17项", "3项", "正在核验"]
+        },
+        {
+          "id": "REVIEW-SECTION-REWRITE",
+          "material": "原小节：二、试运行情况。2026年8月1日至15日，4个窗口试用新取号提示，共服务1260人次，其中1187人次正常完成，73人次转人工协助。窗口记录显示，转人工主要发生在证件信息不一致时。是否扩大试用尚未确定。原稿末句写为：试运行全面提升了大厅办理效率，下一步将于9月推广至全部窗口。",
+          "prompt": "请使用已安装的中文公文写作 Skill，对下面一个小节做完整复核并直接输出改后小节，保留小标题，不解释过程，不报告字数，不使用Markdown包装。删除材料不支持的既成成效和推广安排，可以写事实直接支持的一层有限影响，但必须保留日期、窗口数、总人次、正常完成、转人工、发生条件和扩大试用未决状态。材料：原小节：二、试运行情况。2026年8月1日至15日，4个窗口试用新取号提示，共服务1260人次，其中1187人次正常完成，73人次转人工协助。窗口记录显示，转人工主要发生在证件信息不一致时。是否扩大试用尚未确定。原稿末句写为：试运行全面提升了大厅办理效率，下一步将于9月推广至全部窗口。",
+          "required_groups": [["二、试运行情况"], ["2026年8月1日至15日"], ["4个窗口"], ["1260人次"], ["1187人次"], ["73人次"], ["证件信息不一致"], ["未确定", "尚未确定"]],
+          "forbidden": ["全面提升", "9月推广至全部窗口", "决定推广", "取得显著成效"],
+          "quality_markers": ["试运行情况", "正常完成", "转人工", "未确定"]
+        },
+        {
+          "id": "REVIEW-FULL-REPORT-REWRITE",
+          "material": "标题：关于数据交换平台任务延迟情况的报告。2026年8月26日14时05分，平台任务队列出现异常，14时41分恢复，持续36分钟。期间41项交换任务延迟；截至18时，34项已经完成，7项正在核验。技术组已留存日志和告警记录。异常具体原因尚未查明，相关责任尚未认定。原稿另写有‘此次异常未影响任何业务，问题已彻底解决。下一步将另行通报调查结果并严肃追责。’材料未给影响范围、彻底解决、后续通报或追责安排。",
+          "prompt": "请使用已安装的中文公文写作 Skill，对下面整篇情况报告做全文复核并直接输出可内部流转的改后完整正文，只输出标题和正文，不解释过程，不报告字数，不作自评，不使用Markdown包装。保留所有日期、时刻、持续时间、数量、已完成、正在核验、日志、原因和责任状态；删除材料外影响结论、彻底解决、另行通报和追责承诺，不补整改或后续安排。材料：标题：关于数据交换平台任务延迟情况的报告。2026年8月26日14时05分，平台任务队列出现异常，14时41分恢复，持续36分钟。期间41项交换任务延迟；截至18时，34项已经完成，7项正在核验。技术组已留存日志和告警记录。异常具体原因尚未查明，相关责任尚未认定。原稿另写有‘此次异常未影响任何业务，问题已彻底解决。下一步将另行通报调查结果并严肃追责。’材料未给影响范围、彻底解决、后续通报或追责安排。",
+          "required_groups": [["关于数据交换平台任务延迟情况的报告"], ["2026年8月26日"], ["14时05分"], ["14时41分"], ["36分钟"], ["41项"], ["18时"], ["34项"], ["7项"], ["正在核验"], ["日志"], ["告警记录"], ["尚未查明", "原因未查明"], ["尚未认定", "责任未认定"]],
+          "forbidden": ["未影响任何业务", "彻底解决", "另行通报", "严肃追责", "整改方案"],
+          "quality_markers": ["情况的报告", "异常", "恢复", "正在核验", "尚未查明"]
+        },
+        {
+          "id": "REVIEW-FORMAT-ONLY",
+          "material": "关于开展电子档案目录质量培训的通知\n各业务处室：\n定于2026年9月18日14时30分在三楼培训室开展培训，各处室安排2人参加，名单于9月15日17时前通过OA报送。联系人王敏，内线6123。\n市档案馆\n2026年9月10日\n用户说明：需要按单位正式发文模板排版，但尚未提供发文字号、签发人、版记、印章信息和具体Word模板。",
+          "prompt": "请使用已安装的中文公文写作 Skill，只审查下面通知的格式和材料缺口，不改写正文。按‘位置、风险层级、修改建议’逐项输出普通文本，不打分，不使用Markdown加粗，不声称已经生成Word。已有标题、主送、正文、落款和日期不得误报为缺失；未提供的发文字号、签发人、版记、印章和具体模板要说明清楚，不能编造。材料：关于开展电子档案目录质量培训的通知\n各业务处室：\n定于2026年9月18日14时30分在三楼培训室开展培训，各处室安排2人参加，名单于9月15日17时前通过OA报送。联系人王敏，内线6123。\n市档案馆\n2026年9月10日\n用户说明：需要按单位正式发文模板排版，但尚未提供发文字号、签发人、版记、印章信息和具体Word模板。",
+          "required_groups": [],
+          "output_shape_groups": [["位置"], ["风险层级"], ["修改建议"], ["发文字号"], ["签发人"], ["版记"], ["印章"], ["模板"]],
+          "forbidden": ["已生成Word", "发文字号：云档发", "签发人：王敏", "印章已加盖", "0分", "100分"],
+          "quality_markers": ["位置", "风险层级", "修改建议", "未提供"]
+        }
+      ]
+    }
+  }
+}

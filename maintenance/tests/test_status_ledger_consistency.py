@@ -90,6 +90,30 @@ class StatusLedgerConsistencyTests(unittest.TestCase):
                 self.assertNotRegex(todo, rf"(?m)^- \[ \] `{re.escape(item_id)}`.*HOLD")
                 self.assertNotIn(item_id, in_progress)
 
+    def test_reference_slimming_atoms_are_terminal(self) -> None:
+        roadmap = read("maintenance/specs/roadmap.md")
+        todo = read("maintenance/docs/待办.md")
+        evidence_index = read("maintenance/docs/evidence/README.md")
+        result = read("maintenance/tests/evidence/reference-slimming-r1/result.md")
+        rejected = section(roadmap, "REJECTED")
+        in_progress = section(roadmap, "IN_PROGRESS")
+
+        for item_id in (
+            "MINUTES-CHECKLIST-LEAF-R1",
+            "NOTICE-LEAF-CURRENT-R1",
+            "PROCUREMENT-ANNOUNCEMENT-LEAF-R1/R2",
+            "REVIEW-LAYER-SPLIT-R1",
+        ):
+            with self.subTest(item_id=item_id):
+                self.assertIn(item_id, rejected)
+                self.assertIn(item_id, todo)
+                self.assertIn(item_id, result)
+                self.assertNotIn(item_id, in_progress)
+
+        self.assertIn("reference-slimming-r1/result.md", evidence_index)
+        self.assertIn("累计190次真实任务输出", result)
+        self.assertNotIn("`HOLD`", rejected)
+
     def test_wr020_first_draft_rejected_but_existing_draft_atoms_are_closed(self) -> None:
         coverage_row = table_row(read("maintenance/specs/coverage.md"), "WR-020")
         roadmap = read("maintenance/specs/roadmap.md")
