@@ -47,6 +47,8 @@
 
 ## IN_PROGRESS
 
+- `WR-013d/WR-018-R2`、`UL-005-R10`、`WR-009b`：以v1.6.20新题分别复核无字数限制事务稿的一层合理原因/作用、篇幅不足扩写提示与核验口径一致性，以及原因确实无法推断时的正文外补充建议；不以“正文短于完整提示词”判失败，先跑五条低成本路线真实稿再决定是否改产品或Hook。[预登记](../tests/evidence/short-inference-r1/preregister.md)
+
 ## REJECTED
 
 - `MINUTES-CHECKLIST-LEAF-R1`：15个技术有效纪要目标配对中Baseline读取通用检查页为0，搬移小节没有可归因减载，产品已恢复。[汇总](../tests/evidence/reference-slimming-r1/result.md)
