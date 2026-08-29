@@ -33,11 +33,11 @@ QwenWork（Qwen 办公）无 Hook 静态 Skill 包已在独立分支形成候选
 
 ## 新 reference 风险原子
 
-登记 `MT-004a-PROCUREMENT-REQUEST-ROUTE-R1`，本轮不修改产品 reference：
+本页最初登记 `MT-004a-PROCUREMENT-REQUEST-ROUTE-R1`，没有修改产品 reference；后续已完成全新跨 provider 复现并收口为 `CURRENT_BASELINE_SUFFICIENT / WAIT_NEW_COUNTEREXAMPLE`，见 [`mt004a-procurement-request-route-r1/result.md`](../mt004a-procurement-request-route-r1/result.md)：
 
 - 单份无字数限制采购申请实际读取入口与6个 references：`information-selection.md`、`genre-playbook-request.md`、`argument-chains.md`、`formal-addressing.md`、`proofreading-checklist.md`、`final-review-layers.md`，合计52029字节。
-- 这是一份可用真稿中的单 trace 负载信号，不足以断言路由错误。下一最小验证先让至少两家低成本 provider 用全新采购申请复现当前读取集合，再只测试一个停止条件：文种叶能够完整覆盖简单申请时，是否可在保留 `information-selection.md` 与 `genre-playbook-request.md` 后停止继续加载通用论证、称谓和总审页。
-- 准入必须同时满足：至少两家形成可归因省读；正文的理由、申请事项、资金、请批功能不变；不新增事实/状态/程序硬回退；普通请示、复杂采购申请和报告控制题不串叶。只减少文件或 token 不算通过。
+- 这是一份可用真稿中的单 trace 负载信号，不足以断言路由错误。后续 Alibaba Token Plan 1 全新题只读信息选择、轻量卡和申请叶，未复现4份额外通用页；预注册的候选启动门没有成立。
+- 当前不增加停止条件，不运行五路候选 A/B。只有另一家低成本 provider 的新简单采购申请再次出现同类过读或真实质量回退才重开；准入仍须同时保护理由、申请事项、资金、请批功能和控制题路由。
 
 ## 实际命令与结果
 
