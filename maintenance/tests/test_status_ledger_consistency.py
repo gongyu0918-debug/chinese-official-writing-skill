@@ -149,18 +149,29 @@ class StatusLedgerConsistencyTests(unittest.TestCase):
         self.assertIn("`WR-020b1` 讲话首次起草任务卡", section(roadmap, "REJECTED"))
         self.assertIn("`WR-020` 当前长稿基线有写作价值", section(roadmap, "WAIT_NEW_COUNTEREXAMPLE"))
 
-    def test_host_adapters_keep_released_limits_and_record_v1619_candidate(self) -> None:
+    def test_host_adapters_keep_released_limits_and_record_current_cli_revalidation(self) -> None:
         row = table_row(read("maintenance/specs/coverage.md"), "HK-004")
 
         self.assertIn("国产 CLI 复核", row)
         self.assertIn(
-            "OPENCODE_DONE_V1.6.18 / HERMES_R2_DONE_V1.6.19 / DSH_R1_DONE_V1.6.19",
+            "OPENCODE_DONE_V1.6.18 / HERMES_R2_DONE_V1.6.19 / DSH_R1_DONE_V1.6.19 / CURRENT_CLI_R1_REVALIDATED",
             row,
         )
-        self.assertIn("OpenCode 项目级 companion", row)
-        self.assertIn("不外推交互、恢复、one-shot/gateway", row)
-        self.assertIn("Kimi 仍只证明首次 Stop", row)
+        self.assertIn("CodeBuddy 2.141.0", row)
+        self.assertIn("QWEN_0.22.3_HOOK_INCOMPATIBLE", row)
+        self.assertIn("KIMI_0.39.1_HOOK_UNSAFE", row)
+        self.assertIn("OPENCODE_1.18.25_LIFECYCLE_INCOMPATIBLE", row)
+        self.assertIn("产品0差异", row)
         self.assertNotIn("LOCAL_CANDIDATE", row)
+        self.assertIn("无 `HOLD`", row)
+
+        roadmap = read("maintenance/specs/roadmap.md")
+        todo = read("maintenance/docs/待办.md")
+        evidence = read("maintenance/docs/evidence/README.md")
+        self.assertIn("`SHORT-CURRENT-CLI-R1`", section(roadmap, "WAIT_NEW_COUNTEREXAMPLE"))
+        self.assertNotIn("SHORT-CURRENT-CLI-R1", section(roadmap, "IN_PROGRESS"))
+        self.assertIn("HK-004-CLI-REVALIDATION-R1", todo)
+        self.assertIn("host-cli-revalidation-r1/result.md", evidence)
 
         coverage = read("maintenance/specs/coverage.md")
         for item_id, marker in (
