@@ -15,6 +15,9 @@
     },
     "candidate": {
       "commit": "06e1a3c5e9c36a013492281dcb7d4325236ea441"
+    },
+    "candidate_r2": {
+      "commit": "902cf698fb15d4068904dea44dec3e2823acb321"
     }
   },
   "cases": [
