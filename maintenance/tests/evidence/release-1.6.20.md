@@ -28,7 +28,7 @@
 
 - slug `chinese-official-writing`、公开坐标 `@user_f3d82da7/chinese-official-writing`、展示名“中文公文写作”保持不变。
 - 正式提交一次：`ok=true`、`skillId=70149`、`versionId=275458`、`fileCount=82`、平台 fingerprint `1467c4b2abf79fe4f5a571fb8ed51697b3b614ac36e46cfdb25a464370cd94f8`；八个既有 tags 含 `latest` 均在提交回执中指向1.6.20。
-- 提交回执中的 `reviewStatus`、`securityScanStatus`、`contentAuditStatus` 均为 `pending`。两次初始只读搜索仍显示1.6.19，精确1.6.20签名入口返回“找不到该版本”；按异步审核与传播记录，不重复提交，也不把旧版公开状态写成本版审核结论。
+- 提交回执中的 `reviewStatus`、`securityScanStatus`、`contentAuditStatus` 均为 `pending`。两次初始只读搜索仍显示1.6.19，精确1.6.20签名入口返回“找不到该版本”；期间未重复提交。后续公开搜索已显示精确坐标、中文展示名和1.6.20；留存正式 zip 对平台签名验证 `content_hash_match=true`，content hash 为 `6672323c52810cdd56fe7701ad1adc11fb22147c9c8bfd831bc5f21f39fe5ffd`。公开传播与签名匹配不改写上传回执中的三项pending。
 
 ## ClawHub 回执
 
@@ -38,7 +38,7 @@
 
 ## 剩余边界
 
-- GitHub 与 ClawHub 已公开到1.6.20；ClawHub 精确33文件、逐文件哈希和总体安全状态已闭环。
-- SkillHub.cn 已取得唯一正式写入回执，但公开搜索与精确签名仍在传播；三项审核/扫描均为pending，不重复上传。平台后续状态不能由本回执预判。
+- GitHub、SkillHub.cn 与 ClawHub 已公开到1.6.20；SkillHub 精确签名匹配，ClawHub 精确33文件、逐文件哈希和总体安全状态均已闭环。
+- SkillHub.cn 上传回执中的三项审核/扫描仍为pending，不重复上传；平台后续状态不能由本回执预判。
 - `AH-002` 只覆盖默认 `delivery_review` 中唯一完整来源日期与唯一目标新闻文种；多日期、非新闻、歧义材料、其他 capability 和所有宿主不外推。ClawHub 包完全不含 Hook。
 - 付费提纲和红头 DOCX 能力继续只在独立分支管理，未发布、未反向合入公开 `main`。
