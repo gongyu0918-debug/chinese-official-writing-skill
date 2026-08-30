@@ -752,6 +752,12 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assertIn("## 请示/申请\n", request)
         self.assertIn("请示一文一事", request)
         self.assertIn("主送机关、发文或申请单位、成文日期属于正式报送结构要素", request)
+        self.assertIn("申请必须有能够成立的原因、依据或必要性", request)
+        self.assertIn("已给事实与常识能够直接支持一般必要性、直接用途", request)
+        self.assertIn("输出允许正文外提示时，只短列需要补充的申请原因或用途", request)
+        self.assertIn("只交正文时不夹带说明，也不留空白横线或“事由待补”等占位", request)
+        self.assertIn("根据有关休假规定", request)
+        self.assertIn("不用“因个人事务”“因身体原因”等泛称代填", request)
         self.assertIn("`argument-chains.md` 的请示和请批附件", request)
 
     def test_plan_construction_playbook_is_routed_as_an_atomic_leaf(self) -> None:

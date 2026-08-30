@@ -114,17 +114,17 @@ class SafeRequestEntryIntegrationTests(HookCompanionTestMixin, unittest.TestCase
     def test_request_leaf_compact_and_escalation_shape_is_identical_in_all_mirrors(self) -> None:
         relative = Path("references/genre-playbook-request.md")
         canonical_bytes = (CANONICAL / relative).read_bytes()
-        expected_line = (
-            "单项采购申请用一至两个自然段连贯呈现已给的品名规格、数量和金额。"
-            "多品类、分项核算、比价验收、技术附件或明确长篇任务转读 `workflow.md`、"
-            "`handling-elements.md` 和 `argument-chains.md`；字段表格保持原结构。"
-        )
         request_rules = [
             line
             for line in canonical_bytes.decode("utf-8").splitlines()
             if line.startswith("- 单项采购申请")
         ]
-        self.assertEqual(request_rules, [f"- {expected_line}"])
+        self.assertEqual(len(request_rules), 1)
+        request_rule = request_rules[0]
+        self.assertIn("原因或必要性、品名规格、数量和金额", request_rule)
+        self.assertIn("不得补具体故障、损失、政策条款、采购程序或审批结论", request_rule)
+        self.assertIn("`workflow.md`、`handling-elements.md` 和 `argument-chains.md`", request_rule)
+        self.assertIn("字段表格保持原结构", request_rule)
         expected_hash = hashlib.sha256(canonical_bytes).hexdigest()
         for mirror in self.mirror_roots:
             with self.subTest(mirror=mirror):

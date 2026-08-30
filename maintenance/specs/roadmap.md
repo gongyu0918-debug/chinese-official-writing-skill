@@ -45,6 +45,7 @@
 - `OC-003` 发布后状态谓语泛化原子完成36次有效复核/改稿：直接前提缺口可支持同对象低强度条件判断，但产品例示跨模型不稳定；最终纯范围候选又在 MiniMax 同题 baseline 通过时独有地把“未安排/未指定”外扩为“尚待研究确定”。条件例示记 `REJECTED`、泛化方向记 `TERMINATED`，产品已恢复 v1.6.16 原文，不留 `HOLD`。[结果](../tests/evidence/oc003-state-predicate-general-r1/result.md)
 - `WR-014-R5` 已用总体已决/局部未定、整体未决明示、采购进行中三题核对“尚未形成采购决定”的状态层级；四个范围有效样本的目标层级4/4通过，其中两稿另有输出形状或材料外事实硬失败。当前产品对本目标足够，不增加禁词、reference或Hook；官方语料只用于校准具体阶段和对象的承载方式。[结果](../tests/evidence/wr014-r5-procurement-state-scope/result.md)
 - `WR-020b2a/b2b/b2c` 已证明当前产品可以对已有讲话稿做点名搬移、点名删除和只审定位；b2b 的 Ollama 样本删除正确但正文包装失败，作为交付风险保留，不据此增加任务卡、段长门或 Hook。
+- `WR-023` 申请原因、依据与材料缺口已完成五路65份真实写稿并选择 R2：申请原因在材料事实与常识可闭合时自然前置；缺事由事假不以泛称代填，年休假可用一般制度依据；稀疏打印机采购全新题5/5形成直接用途且未补具体故障、损失或程序。R3 因提示过度导致材料遗漏和状态升级，终态为 `TERMINATED_PROMPT_OVERHANDLING`；R2 为 `DONE_LOCAL_MAIN_NOT_RELEASED`，不新增 Hook、description 或统一长度门。[结果](../tests/evidence/wr021-application-reason-r1/result.md)
 - `WR-014-R6/R6b`、`WR-013c`、`WR-020a2` 已完成当前基线真实写稿：[结果](../tests/evidence/post-v1616-writing-stability-r1/result.md)。R6原“继续”目标2/2未复现；R6b只有Ollama 1/2把证据未附外推为待后续核验；短采购原因/低强度影响2/2通过；长报告OpenCode目标通过，Ollama两次技术失效。没有跨模型共同目标失败，产品0差异，不留HOLD。
 - v1.6.15 短稿诊断已完成五路30臂：未复现跨文种系统性偏短；活动新闻完整年份和个别 provider 的材料外扩写已拆成独立风险，不用“正文必须长于提示词”统一处理。
 - 本地付费候选 `codex/paid-outline-review` 收敛 `OT-001`、`OT-001-composite`、`OT-002` 与 `RF-001`；活动台账以“当前 main 是付费分支祖先”作为同步事实，不固化会在下一次同步后失效的 tip。三宿主47文件组装、698项全量和公开零文件检查通过。该状态为 `DONE_LOCAL_PAID_NO_RELEASE`，不反向进入公开版、不发布。
