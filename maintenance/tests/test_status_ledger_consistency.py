@@ -75,9 +75,10 @@ class StatusLedgerConsistencyTests(unittest.TestCase):
         evidence_index = read("maintenance/docs/evidence/README.md")
 
         self.assertNotIn("chinese-official-writing@1.6.22", public_readme)
-        self.assertIn("`v1.6.22` 本地公开版候选已登记", section(roadmap, "DONE"))
+        self.assertIn("`v1.6.22` 本地公开版候选已冻结", section(roadmap, "DONE"))
         self.assertNotIn("v1.6.22", section(roadmap, "IN_PROGRESS"))
-        self.assertIn("本地公开版候选已登记为 `v1.6.22`", todo)
+        self.assertIn("本地公开版候选 `v1.6.22` 已固定", todo)
+        self.assertIn("codex/release-v1.6.22@62ba9e82", todo)
         self.assertIn("DONE_V1.6.22_LOCAL_CANDIDATE", table_row(coverage, "WR-023"))
         self.assertIn("DONE_V1.6.22_LOCAL_CANDIDATE", table_row(coverage, "WR-024"))
         self.assertIn("DONE_V1.6.22_LOCAL_CANDIDATE", table_row(coverage, "UL-006"))
@@ -87,28 +88,36 @@ class StatusLedgerConsistencyTests(unittest.TestCase):
         self.assertIn("未向 SkillHub.cn、ClawHub 或其他平台提交", evidence)
         self.assertIn("release-1.6.22-rc.md", evidence_index)
 
-    def test_hk009_is_a_verified_unmerged_next_version_candidate(self) -> None:
+    def test_hk009_is_merged_but_excluded_from_frozen_v1622(self) -> None:
         requirements = read("maintenance/specs/requirements.md")
         coverage_row = table_row(read("maintenance/specs/coverage.md"), "HK-009")
         roadmap = read("maintenance/specs/roadmap.md")
         todo = read("maintenance/docs/待办.md")
         evidence_index = read("maintenance/docs/evidence/README.md")
         result = read("maintenance/tests/evidence/post-v1622-hook-contract-r1/result.md")
+        merge_record = read("maintenance/tests/evidence/post-v1622-hook-contract-r1/main-merge.md")
 
         self.assertIn("### HK-009 单次 Stop 子进程预算与可信恢复", requirements)
         self.assertIn("共享 25 秒总预算", requirements)
-        self.assertIn("ENGINEERING_VERIFIED_NEXT_VERSION_CANDIDATE / NOT_MERGED", coverage_row)
+        self.assertIn("MERGED_MAIN_NEXT_VERSION_CANDIDATE", coverage_row)
+        self.assertIn("EXCLUDED_FROM_FROZEN_V1.6.22", coverage_row)
         self.assertIn("无 `HOLD`", coverage_row)
         self.assertIn("`UL-006-CONTRACT-R1 / HK-009-STOP-BUDGET-R1`", section(roadmap, "DONE"))
         self.assertNotIn("HK-009", section(roadmap, "IN_PROGRESS"))
         self.assertRegex(
             todo,
-            r"(?m)^- \[x\] `UL-006-CONTRACT-R1 / HK-009-STOP-BUDGET-R1`.*NOT_MERGED",
+            r"(?m)^- \[x\] `UL-006-CONTRACT-R1 / HK-009-STOP-BUDGET-R1`.*EXCLUDED_FROM_FROZEN_V1\.6\.22",
         )
         self.assertIn("post-v1622-hook-contract-r1/result.md", evidence_index)
+        self.assertIn("post-v1622-hook-contract-r1/main-merge.md", evidence_index)
         self.assertIn("main@62ba9e8206e5b11f08a8f28ebdfe95b08e30ccfe", result)
         self.assertIn("Ran 756 tests", result)
-        self.assertIn("未合入 `main`", result)
+        self.assertIn("已合入 `main`", result)
+        self.assertIn("62ba9e8206e5b11f08a8f28ebdfe95b08e30ccfe", merge_record)
+        self.assertIn("ad732865eb8face14133581ad7f56d10e41cb1d5", merge_record)
+        self.assertIn("SKILLHUB_REBUILD_EXACT=true", merge_record)
+        self.assertIn("codex/release-v1.6.22:main", merge_record)
+        self.assertIn("禁止普通 `git push origin main`", merge_record)
 
     def test_ul006_and_notice_atoms_have_distinct_terminal_states(self) -> None:
         requirements = read("maintenance/specs/requirements.md")

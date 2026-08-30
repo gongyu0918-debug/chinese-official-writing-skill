@@ -4,7 +4,7 @@
 
 ## 结论
 
-`UL-006-CONTRACT-R1` 与 `HK-009-STOP-BUDGET-R1` 已在 `codex/post-v1622-hook-contract-r1` 完成目标反例、最小实现、独立冷审和工程回归，状态为 `ENGINEERING_VERIFIED_NEXT_VERSION_CANDIDATE / NOT_MERGED`。固定基线是 `main@62ba9e8206e5b11f08a8f28ebdfe95b08e30ccfe`；本候选未修改版本号，未合入 `main`，未创建或移动 tag，未推送或发布。
+`UL-006-CONTRACT-R1` 与 `HK-009-STOP-BUDGET-R1` 已在 `codex/post-v1622-hook-contract-r1` 完成目标反例、最小实现、独立冷审和工程回归，随后以 fast-forward 合入 `main`，状态为 `ENGINEERING_VERIFIED / MERGED_MAIN_NEXT_VERSION_CANDIDATE / EXCLUDED_FROM_FROZEN_V1.6.22`。固定基线是 `main@62ba9e8206e5b11f08a8f28ebdfe95b08e30ccfe`；本候选未修改版本号，冻结发布源仍为 `codex/release-v1.6.22@62ba9e82`，未创建或移动 tag，未推送或发布。
 
 这两个原子不新增写稿文种或放宽事实边界。事故通报无显式下限入口已经有五家20稿和联合留出的既有真实写稿证据；本轮只把 README、manifest 与实际运行时统一，并删除已经终止且不可达的情况说明/办理通知旧代码。Stop 原子只改变超时、选择恢复和失败清理，不改变写稿提示、verifier 口径、能力路由或正常 D0/D1 状态机，因此没有用新的大模型稿件替代工程生命周期验证。
 
@@ -62,4 +62,4 @@ host adapter 测试通过实际 `main()` 的 stdin/stdout 路径执行 emit 失�
 - `bfeb56c2`：登记 R2 失败清理修正。
 - `d0235670`：实现预算耗尽后的精确脱敏。
 
-剩余风险只有当前候选未在真实在线宿主上人为制造20秒级慢子进程；这种注入会扩大外部运行成本，本轮以真实 adapter 入口、模拟单调时钟和九宿主组装契约覆盖。候选尚未合入 `main`，下一步由用户决定是否作为 v1.6.22 之后的小版本增量合并；无需保留 `HOLD`。
+剩余风险只有当前候选未在真实在线宿主上人为制造20秒级慢子进程；这种注入会扩大外部运行成本，本轮以真实 adapter 入口、模拟单调时钟和九宿主组装契约覆盖。候选已合入 `main`，但不属于冻结 v1.6.22；明日发布必须继续从 `codex/release-v1.6.22@62ba9e82` 及其已核对包体执行，无需保留 `HOLD`。

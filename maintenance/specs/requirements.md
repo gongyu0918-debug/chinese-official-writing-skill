@@ -185,7 +185,7 @@ Hook 只在完成当前有界生命周期所需的时间内暂存原请求、D0�
 
 `emit` 子进程失败后，进程内恢复必须使用不写宿主 stdout 的可信选择解析入口。只有事务明确为 `TERMINAL_D0`、`selected=D0` 且 D0 hash 匹配时，才可恢复并请求精确回显；`TERMINAL_D1` 选择证据缺失或损坏时不得静默降级为 D0，必须停止自动交付并脱敏。
 
-预算耗尽或 abort 失败且已经达到有限尝试上限时，必须记录 `failed_bounded`、将 `delivery_verified` 置为 false，并立即删除当前 turn 的 request、txn 和输入快照；宿主仍沿既有 fail-open 返回形状结束，不泄露正文或内部状态。正常 D0/D1 状态机、能力路由、尝试次数和写稿语义不变。当前实现已完成工程验证，状态为下一版本候选，尚未合入 `main`。
+预算耗尽或 abort 失败且已经达到有限尝试上限时，必须记录 `failed_bounded`、将 `delivery_verified` 置为 false，并立即删除当前 turn 的 request、txn 和输入快照；宿主仍沿既有 fail-open 返回形状结束，不泄露正文或内部状态。正常 D0/D1 状态机、能力路由、尝试次数和写稿语义不变。当前实现已完成工程验证并合入 `main`，只作为 v1.6.22 之后的下一版本候选；冻结的 `codex/release-v1.6.22@62ba9e82` 及其明日发布包不包含本项。
 
 ## 篇幅不足能力
 
