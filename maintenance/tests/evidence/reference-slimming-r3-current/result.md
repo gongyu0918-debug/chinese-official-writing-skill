@@ -4,7 +4,7 @@
 
 ## 结论
 
-- `MT-004b-REVIEW-DIRECT-LEAF-R1/R2` 已通过当前路由基线、两轮五路真实审稿和直接工程门，状态为 `SELECTED_ENGINEERING_VERIFIED_NEXT_VERSION_CANDIDATE`。它只处理用户已点名范围且只审不改的任务；格式、语气、AI 味、多层或综合审稿继续使用 `review-checklist.md`，可研点名完整性审稿继续只读既有可研细查叶。
+- `MT-004b-REVIEW-DIRECT-LEAF-R1/R2` 已通过当前路由基线、两轮五路真实审稿、直接工程门和756项全量，并以 fast-forward 合入本地 `main@c639b282`，状态为 `ENGINEERING_VERIFIED / MERGED_MAIN_NEXT_VERSION_CANDIDATE / EXCLUDED_FROM_FROZEN_V1.6.22`。它只处理用户已点名范围且只审不改的任务；格式、语气、AI 味、多层或综合审稿继续使用 `review-checklist.md`，可研点名完整性审稿继续只读既有可研细查叶。
 - `ANTI-AI-SINGLE-SURFACE-ROUTE` 在三题15次基线中只有1次读取 `anti-ai-patterns.md`，状态为 `TERMINATED_BASELINE_LOAD_NOT_REPRODUCED`。不因14 KB静态文件大小拆英文、过程旁白或句群子叶。
 - 旧 `REVIEW-LAYER-SPLIT-R1` 仍为 `REJECTED`。本轮新机制是点名范围的轻量执行页，不恢复段落/小节/全文四层物理拆分。
 - 当前 Hook 冷审没有发现需要另开产品候选的 P1/P2；当前分支相对起点没有 Hook 产品差异。剩余证据缺口仅是尚未在真实宿主进程内故意制造 emit/子进程超时并核对墙钟不超过30秒，不构成本候选阻断。
@@ -95,4 +95,4 @@ git diff --check
 PASS
 ```
 
-本结果不改版本号、不合并 `main`、不创建或移动 tag、不推送、不发布。
+本结果不改版本号、不创建或移动 tag、不推送、不发布。候选已 fast-forward 合入本地 `main@c639b282`；冻结 `codex/release-v1.6.22@62ba9e82` 及其82/33文件包仍逐字不变。
