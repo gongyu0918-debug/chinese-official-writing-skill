@@ -85,6 +85,9 @@ Ran 103 tests；OK
 py -3 -B -m unittest maintenance.tests.test_gate_stop_hook maintenance.tests.test_host_gate_adapter maintenance.tests.test_under_length_capability maintenance.tests.test_hook_layer_contract
 Ran 102 tests in 49.752s；OK
 
+py -3 -B -m unittest discover -s maintenance/tests -p "test_*.py"
+Ran 756 tests in 115.722s；OK
+
 py -3 maintenance/tools/sync_adapters.py
 五套公开宿主镜像同步完成
 
