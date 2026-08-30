@@ -57,6 +57,8 @@ class StatusLedgerConsistencyTests(unittest.TestCase):
         self.assertIn("k97asahr8jx0qbvqeny6jrp3m18dftt1", evidence)
         self.assertIn("PUBLIC_PROPAGATION_PENDING", evidence)
         self.assertIn("PUBLIC_INDEX_PENDING", evidence)
+        self.assertIn("skill-card.md", evidence)
+        self.assertIn("当前接口列出34项", evidence)
         self.assertIn("`389b43f4` 及当日后续", evidence)
         self.assertIn("release-1.6.21.md", evidence_index)
         self.assertIn("SkillHub旧待审`versionId=276070`", todo)

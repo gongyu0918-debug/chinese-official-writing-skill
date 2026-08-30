@@ -17,7 +17,7 @@
 - canonical、Agent Skills、QwenWork、Qwen Code、Hermes 五套 quick validation 均通过；161个 tracked Python 文件完成内存编译，158个 tracked JSON 文件解析通过。首次把 Windows `NUL` 作为 `.pyc` 目标的补充命令因目标不是普通文件而失效，随后改用内存 `compile()` 原样重跑通过，不把失效命令记为产品失败或通过。
 - `sync_adapters.py` 复跑前后 tracked diff 均为空对象；活动 Markdown 链接7/7、`git diff --check`、工作树状态与版本边界均通过。
 - SkillHub.cn 正式包82文件，本地规范化文件树指纹 `39816269d78bed354d16a52f64b789ae7e9e4c80c33cfc53a0f2ebe7caf6668e`；留存 zip SHA-256 为 `c34acff6661672e23f66f6c376b27f72d81cf84199835621a2b8e28d56f1edbb`。包内 slug `chinese-official-writing`、展示名“中文公文写作”、版本 `1.6.21`，含 `LICENSE.md`，不含 `LICENSE`、`agents/openai.yaml`、付费实现或私密路径。
-- ClawHub 正式目录33文件，本地规范化文件树指纹 `69e312eb9f0f3f5b71b3a2923cb658be37905b89c0c3b35f2c7db2dd9d0b1285`；Hook路径、Hook内容、`agents/openai.yaml`、付费提纲和红头实现路径命中均为0。绑定 source commit 的 dry-run 返回 `would-publish`、33文件和平台 fingerprint `559d5d2727bbbd74dd3c91ad7f7d5e96031da92b99c05e2cb4c70e63c4a6a5d6`。
+- ClawHub 上传目录33文件，本地规范化文件树指纹 `69e312eb9f0f3f5b71b3a2923cb658be37905b89c0c3b35f2c7db2dd9d0b1285`；Hook路径、Hook内容、`agents/openai.yaml`、付费提纲和红头实现路径命中均为0。绑定 source commit 的 dry-run 返回 `would-publish`、33文件和平台 fingerprint `559d5d2727bbbd74dd3c91ad7f7d5e96031da92b99c05e2cb4c70e63c4a6a5d6`。
 
 ## GitHub 回执
 
@@ -36,12 +36,12 @@
 
 - owner `gongyu0918-debug`、slug `chinese-official-writing`、展示名“中文公文写作”、分类 `productivity,knowledge`、话题 `chinese-writing,official-writing,office-productivity,content-creation` 保持不变；分类与话题逗号列表均以单一带引号参数传递。
 - 正式提交一次成功：`status=published`、`versionId=k97asahr8jx0qbvqeny6jrp3m18dftt1`、`fileCount=33`、平台 fingerprint `559d5d2727bbbd74dd3c91ad7f7d5e96031da92b99c05e2cb4c70e63c4a6a5d6`。
-- 提交回执中的 `latestVersion` 仍为1.6.20；首次精确1.6.21只读检查返回 `Version not found`，当时记为 `PUBLISHED_RECEIPT / PUBLIC_INDEX_PENDING`。后续只读复核确认公开 `latestVersion=1.6.21`，精确版本33文件与本地包逐项 SHA-256 一致，Hook仍为0，moderation 与版本级 security 均为 `clean`；VirusTotal 子扫描仍为pending，Skillspector与LLM子扫描为clean。期间未重复上传。
+- 提交回执中的 `latestVersion` 仍为1.6.20；首次精确1.6.21只读检查返回 `Version not found`，当时记为 `PUBLISHED_RECEIPT / PUBLIC_INDEX_PENDING`。后续只读复核确认公开 `latestVersion=1.6.21`。当前接口列出34项，其中`skill-card.md`为平台生成文件；排除该项后，33个上传文件与`v1.6.21`本地包路径和 SHA-256 逐项一致，Hook路径仍为0，moderation 与版本级 security 均为 `clean`。期间未重复上传。
 
 ## 剩余边界
 
 - GitHub 产品提交、annotated tag 和 Release 已闭环；后续发布证据提交只推进 `main`，不得移动产品 tag。
-- ClawHub 公开latest、精确33文件哈希和总体clean已闭环，且本次没有重发。SkillHub.cn旧待审提交已撤回并同包重提一次；新版本审核、公开搜索与精确签名仍在异步传播。成功回执不等于审核通过，不再重复上传。
+- ClawHub 公开latest、33个上传文件哈希、平台生成`skill-card.md`的计数差异和总体clean已闭环，且本次没有重发。SkillHub.cn旧待审提交已撤回并同包重提一次；新版本审核、公开搜索与精确签名仍在异步传播。成功回执不等于审核通过，不再重复上传。
 - `UL-005-R10` 的真实稿使用五条低成本 Codex CLI 路线，宿主协议未变化且未在本候选重跑所有在线生命周期；不外推为每个模型都必须扩写成功。
 - QwenWork 只证明官方布局、静态无 Hook 包和包路径真实写稿，不代表在线触发或 Hook 生命周期已验证。ClawHub 包完全不含 Hook。
 - 付费提纲、Pro Hook、红头 DOCX 与 `UL-006` 动态字数研究继续留在授权外的独立分支或研究状态，未反向进入本版。
