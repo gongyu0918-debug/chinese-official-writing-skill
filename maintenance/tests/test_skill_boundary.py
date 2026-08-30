@@ -535,6 +535,16 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assertIn("只有任务另有复杂改稿、多材料合稿或文种/行文关系不明等条件时才补读长 reference", playbooks)
         self.assertIn("节末“补充读取”不是固定清单", playbooks)
 
+    def test_sparse_notice_does_not_treat_delivery_channel_as_issuer(self) -> None:
+        cards = (
+            ROOT / "chinese-official-writing" / "references" / "task-route-cards.md"
+        ).read_text(encoding="utf-8")
+
+        self.assertIn(
+            "不从邮箱、接收方或当前日期反推补写；渠道或接收单位中出现的名称不等于发文主体",
+            cards,
+        )
+
     def test_workflow_sparse_line_relief_keeps_carriers_and_route_graph(self) -> None:
         skill = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
         workflow = (ROOT / "chinese-official-writing" / "references" / "workflow.md").read_text(

@@ -607,3 +607,137 @@ class UnderLengthCapabilityTests(unittest.TestCase):
         original = "目前，事故原因正在调查中。"
         candidate = "目前，事故原因正在进一步调查中，相关情况将根据调查进展说明。"
         self.assertIsNone(RUNTIME.mechanical_reason(original, candidate, spec, ""))
+
+    def test_incident_implicit_spec_uses_material_relation_not_a_fixed_floor(self) -> None:
+        request = (
+            "2026年8月29日16时20分，东河路一处临街仓库发生局部坍塌，2名人员自行撤离，"
+            "1人轻微擦伤并已接受现场处理。消防救援人员已到场排查，周边道路保持通行。"
+            "坍塌原因正在调查，排查工作仍在进行。请起草一份情况通报，不限字数，只输出正文。"
+        )
+        draft = (
+            "关于东河路临街仓库局部坍塌有关情况的通报\n\n2026年8月29日16时20分，"
+            "东河路一处临街仓库发生局部坍塌。现场2名人员自行撤离，1人轻微擦伤，已接受现场处理。"
+            "消防救援人员已到场排查，周边道路保持通行。坍塌原因正在调查，排查工作仍在进行。"
+        )
+        spec = RUNTIME._implicit_spec(request, draft)
+        self.assertIsNotNone(spec)
+        self.assertEqual("implicit", spec["mode"])
+        self.assertEqual("incident_bulletin", spec["genre"])
+        self.assertEqual(
+            max(spec["material_count"], RUNTIME.count_text(draft, "body")) + 1,
+            spec["minimum"],
+        )
+        self.assertNotEqual(100, spec["minimum"])
+
+    def test_situation_and_notice_do_not_start_implicit_under_length(self) -> None:
+        cases = (
+            (
+                "截至2026年8月27日，数据接口两轮联调已完成，860项字段映射中823项已核对、37项待补。"
+                "联调记录已经形成，但本次材料未附。安全演练尚未开展，目前没有作出安排。"
+                "请起草一份内部情况说明，不限字数，只输出正文。",
+                "截至2026年8月27日，数据接口两轮联调已完成，860项字段映射中823项已核对，37项待补。"
+                "联调记录已经形成，本次材料未附。安全演练尚未开展，目前没有作出安排。",
+            ),
+            (
+                "各部门于2026年9月5日17时前，将本部门数据目录变更表发送至信息中心公共邮箱。"
+                "变更表应列明目录名称、变更字段和联系人。无变更的部门无需报送。"
+                "请起草一份内部通知，不限字数，只输出正文。",
+                "关于报送数据目录变更表的通知\n\n各部门：\n请于2026年9月5日17时前，"
+                "将本部门数据目录变更表发送至信息中心公共邮箱。变更表应列明目录名称、变更字段和联系人。"
+                "无变更的部门无需报送。",
+            ),
+        )
+        for request, draft in cases:
+            with self.subTest(request=request[-24:]):
+                self.assertIsNone(RUNTIME._implicit_spec(request, draft))
+
+    def test_implicit_does_not_waive_request_only_finding(self) -> None:
+        findings = [{"request_exact": True, "target": "不要新增后续安排"}]
+        material = (
+            "2026年8月30日7时40分，南桥街一处商铺后墙局部脱落，3人自行撤至安全区域，"
+            "无人受伤。城管和消防人员已到场设置警戒并开展排查，原因正在调查。"
+        )
+        request = material + "请起草情况通报，不限字数；不要新增后续安排。"
+        separated = RUNTIME._separable_material(request)
+        self.assertIsNotNone(separated)
+        self.assertNotIn(findings[0]["target"], separated)
+
+        class ReviewGate:
+            @staticmethod
+            def locate_candidates(_request, _draft):
+                return {"findings": findings}
+
+        record = {"request": request}
+        response = RUNTIME.start(
+            {"last_assistant_message": material}, record, ReviewGate
+        )
+        self.assertIsNone(response)
+        self.assertEqual("ordinary_findings_present", record["under_length_bypass"])
+        self.assertNotIn("under_length", record)
+
+    def test_implicit_bypasses_and_unvalidated_minutes_do_not_start(self) -> None:
+        facts = (
+            "各部门于9月5日17时前将数据目录变更表发送至公共邮箱。"
+            "变更表列明目录名称、变更字段和联系人，无变更的部门无需报送。"
+        )
+        for request, reason in (
+            (facts + "请起草内部通知，不超过80字，只输出正文。", "explicit_upper_bound"),
+            (facts + "请压缩为内部通知，只输出正文。", "compression_request"),
+            (facts + "请起草内部通知，但仅回复下列原文。", "exact_reply"),
+            (facts + "请用一句话起草内部通知。", "explicit_short_form"),
+            (facts + "请只检查格式，不要改写。", "review_or_format_only"),
+        ):
+            with self.subTest(reason=reason):
+                self.assertEqual(reason, RUNTIME._implicit_spec(request, facts)["bypass"])
+
+        minutes_request = (
+            "2026年8月30日，办公室召开协调会。会议决定保留现有入口至9月30日。"
+            "技术组建议10月启用新入口，该建议未形成决定。请整理为会议纪要正文，不限字数。"
+        )
+        self.assertIsNone(RUNTIME._implicit_spec(minutes_request, minutes_request.split("请整理", 1)[0]))
+
+    def test_incident_implicit_does_not_start_after_safe_substantive_growth(self) -> None:
+        request = (
+            "2026年8月30日7时40分，南桥街一处商铺后墙局部脱落，3人自行撤至安全区域，"
+            "无人受伤。城管和消防人员已到场设置警戒并开展排查，周边通行未中断。"
+            "脱落原因正在调查，排查工作仍在进行。请起草情况通报，不限字数，只输出正文。"
+        )
+        draft = (
+            "关于南桥街商铺后墙局部脱落情况的阶段性通报\n\n"
+            "2026年8月30日7时40分，南桥街一处商铺后墙发生局部脱落。现场3人已自行撤至安全区域，"
+            "无人受伤。城管和消防人员已到场设置警戒并开展现场排查，周边通行未中断。"
+            "目前，脱落原因正在调查，相关排查工作仍在进行。后续情况将及时通报。"
+        )
+        self.assertIsNone(RUNTIME._implicit_spec(request, draft))
+
+    def test_numbered_body_sentence_is_counted_but_heading_is_not(self) -> None:
+        text = (
+            "情况说明\n\n一、数据接口联调情况\n"
+            "一、数据接口联调已完成，860项字段映射中823项已核对、37项待补。"
+        )
+        body = RUNTIME._body_text(text)
+        self.assertNotIn("一、数据接口联调情况\n", body)
+        self.assertIn("一、数据接口联调已完成", body)
+        self.assertGreater(RUNTIME.count_text(text, "body"), 30)
+
+    def test_implicit_verifier_requires_substance_without_integer_floor(self) -> None:
+        request = (
+            "各部门于9月5日17时前将变更表发送至公共邮箱，无变更无需报送。"
+            "请起草内部通知，不限字数，只输出正文。"
+        )
+        original = "各部门于9月5日17时前将变更表发送至公共邮箱，无变更无需报送。"
+        candidate = "为及时掌握变更情况，请各部门于9月5日17时前将变更表发送至公共邮箱，无变更无需报送。"
+        spec = {
+            "minimum": RUNTIME.count_text(original, "body") + 1,
+            "maximum": 0,
+            "scope": "body",
+            "mode": "implicit",
+            "genre": "action_notice",
+        }
+        instruction = RUNTIME._verdict_instruction(
+            request, original, candidate, spec,
+            RUNTIME._increment_items(original, candidate),
+        )
+        self.assertIsNotNone(instruction)
+        self.assertIn("安全实质增量", instruction)
+        self.assertIn("不得因为 D1 未跨过100字", instruction)
