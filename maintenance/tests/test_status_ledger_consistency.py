@@ -29,35 +29,38 @@ def section(text: str, heading: str) -> str:
 
 
 class StatusLedgerConsistencyTests(unittest.TestCase):
-    def test_current_release_record_is_v1620(self) -> None:
+    def test_current_release_record_is_v1621(self) -> None:
         public_readme = read("README.md")
         todo = read("maintenance/docs/待办.md")
         roadmap = read("maintenance/specs/roadmap.md")
 
-        self.assertIn("当前产品 tag 为 `v1.6.20^{commit}=2fc9d1d4", todo)
-        self.assertIn("`release-1.6.20.md`", todo)
+        self.assertIn("当前产品 tag 为 `v1.6.21^{commit}=8086ff25", todo)
+        self.assertIn("`release-1.6.21.md`", todo)
         self.assertIn("## v1.6.14 起已发布状态与后续研究", todo)
         self.assertNotIn("候选均保持 HOLD", public_readme)
-        self.assertIn("`v1.6.20` 小版本已发布", roadmap)
-        self.assertNotIn("当前产品 tag 为 `v1.6.19", todo)
+        self.assertIn("`v1.6.21` 小版本已发布", roadmap)
+        self.assertNotIn("当前产品 tag 为 `v1.6.20", todo)
 
-    def test_v1621_is_local_pending_while_v1620_remains_public(self) -> None:
+    def test_v1621_is_published_while_store_indexes_propagate(self) -> None:
         public_readme = read("README.md")
-        evidence = read("maintenance/tests/evidence/release-1.6.21-rc.md")
+        evidence = read("maintenance/tests/evidence/release-1.6.21.md")
+        candidate_evidence = read("maintenance/tests/evidence/release-1.6.21-rc.md")
         evidence_index = read("maintenance/docs/evidence/README.md")
         todo = read("maintenance/docs/待办.md")
         roadmap = read("maintenance/specs/roadmap.md")
 
-        self.assertIn("chinese-official-writing@1.6.20", public_readme)
-        self.assertIn(
-            "LOCAL_RELEASE_CANDIDATE / PENDING_USER_RELEASE_AUTHORIZATION",
-            evidence,
-        )
-        self.assertIn("389b43f4` 不是本分支祖先", evidence)
-        self.assertIn("release-1.6.21-rc.md", evidence_index)
-        self.assertIn("v1.6.21 已在 `codex/release-v1.6.21` 建立本地待发布基线", todo)
-        self.assertIn("`v1.6.21` 本地待发布候选", section(roadmap, "IN_PROGRESS"))
-        self.assertNotIn("`v1.6.21` 小版本已发布", roadmap)
+        self.assertIn("chinese-official-writing@1.6.21", public_readme)
+        self.assertIn("PUBLISHED / SEE release-1.6.21.md", candidate_evidence)
+        self.assertIn("8086ff255f04df8b080ef1a0488236295bf2cb8d", evidence)
+        self.assertIn("versionId=276070", evidence)
+        self.assertIn("k97asahr8jx0qbvqeny6jrp3m18dftt1", evidence)
+        self.assertIn("PUBLIC_PROPAGATION_PENDING", evidence)
+        self.assertIn("PUBLIC_INDEX_PENDING", evidence)
+        self.assertIn("`389b43f4` 及当日后续", evidence)
+        self.assertIn("release-1.6.21.md", evidence_index)
+        self.assertIn("SkillHub `versionId=276070`", todo)
+        self.assertIn("`v1.6.21` 小版本已发布", section(roadmap, "DONE"))
+        self.assertNotIn("`v1.6.21` 本地待发布候选", section(roadmap, "IN_PROGRESS"))
 
     def test_oc003_is_closed_on_every_active_status_surface(self) -> None:
         for relative in (

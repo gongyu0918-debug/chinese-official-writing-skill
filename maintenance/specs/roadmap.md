@@ -23,6 +23,7 @@
 - `WR-009` 文后提示与正文分区：真实同题稿验证正文外独立分区，随 `v1.6.10@af12b771` 发布。
 - `AH-001` 共享硬锚：引用、数字、字段及归属关系保护已接入篇幅不足和超长收束，真实修订与三方冷审通过，随 `v1.6.10@af12b771` 发布。
 - `AH-002` 新闻完整日期来源绑定修复已随 `v1.6.20` 进入 GitHub 与 SkillHub.cn：重复日期提示方向继续 `TERMINATED`；不同机制已用三 provider 九次真实 Claude Code 生命周期通过预登记门，Alibaba Token Plan 2 与 OpenCode Go 各至少一题精确补年且控制题逐字不变。只覆盖唯一完整日期与唯一目标新闻文种，多日期、非新闻、歧义材料及其他 capability 旁路；ClawHub 无 Hook。[结果](../tests/evidence/ah002-news-date-completeness-r1/live-result.md)
+- `v1.6.21` 小版本已发布：产品 tag 指向 `8086ff25`；GitHub Release与ClawHub公开面已闭环，SkillHub.cn一次正式提交成功但公开latest、精确签名与审核状态仍在异步传播。`UL-005-R10`与QwenWork静态包进入GitHub/SkillHub对应发布面，ClawHub继续33文件无Hook包；`UL-006`、Red SkillHub和付费能力未纳入。
 - `v1.6.20` 小版本已发布：产品 tag 指向 `2fc9d1d4`；GitHub Release、SkillHub.cn 公开搜索与精确签名、ClawHub latest、精确33文件、逐文件哈希和总体clean均已闭环。AH-002 进入 GitHub/SkillHub，ClawHub 继续无 Hook；公开写作规则、description 和 references 相对 v1.6.19 不变。
 - `v1.6.19` 小版本已发布：产品 tag 指向 `eef65336`；GitHub Release、SkillHub.cn 公开搜索与精确签名、ClawHub latest、精确33文件和总体clean均已闭环。Hermes 与 DSH adapter 进入 GitHub/SkillHub，ClawHub 继续无 Hook；公开写作规则、description 和 references 相对 v1.6.18 不变。
 - `v1.6.18` 小版本已发布：产品 tag 指向 `67a68257`，GitHub、SkillHub.cn 与 ClawHub 公开 latest 均已闭环；OpenCode 常驻交互 adapter 进入 GitHub 与 SkillHub.cn，ClawHub 精确33文件无 Hook 包只同步版本坐标且与本地逐项一致。公开写作规则、description 和 references 相对 v1.6.17 不变。
@@ -33,7 +34,7 @@
 - `WR-013` 一般原因、即时作用与发布者角色边界已完成五路真实写稿、入口冲突消融和非新闻控制，并随 v1.6.13 发布。
 - `WR-011` 新闻声明级核验已把机构性质、来源身份/原始出处和限定来源结论拆成三个原子；R3 三轮25稿后五路最终候选5/5守住目标边界，最小新闻叶及四套镜像已随 v1.6.13 发布。
 - `UL-005` 当前来源台账原子已闭环：WorkBuddy / CodeBuddy 2.115.0 对同一61字 D0 分别拒绝含强保障、材料外用途和多余请批语的111字 D1，并接受只含同一事实 span 低强度推断的114字 D1；两次终稿 hash 闭合。当前实现与 R9 证据已进入本地 `main`，不外推为所有文种、所有模型的自然扩写保证。[结果](../tests/evidence/ul005-fact-ledger-r9-codebuddy-20260822.md)
-- `UL-005-R10` 扩写指令与 verifier 合理推断口径已完成四轮收敛并进入本地 `main`：最终五路15份候选中扫描仪申请5/5进入下限，活动新闻4/5进入、1份安全D0，稀疏采购5/5逐字D0，包装0/15且无候选独有事实、状态或程序硬回退。状态为 `DONE_LOCAL_MAIN_NOT_RELEASED`。[结果](../tests/evidence/short-inference-r1/underlength-r4-result.md)
+- `UL-005-R10` 扩写指令与 verifier 合理推断口径已完成四轮收敛并随v1.6.21发布：最终五路15份候选中扫描仪申请5/5进入下限，活动新闻4/5进入、1份安全D0，稀疏采购5/5逐字D0，包装0/15且无候选独有事实、状态或程序硬回退。状态为 `DONE_V1.6.21`；ClawHub继续无Hook。[结果](../tests/evidence/short-inference-r1/underlength-r4-result.md)
 - 联网来源用途分型与命中页绑定已完成：国家规范、本地执行、外省比较不混用，命中页元数据和 URL 绑定实际打开页；R2f—R2h 五路15稿中12稿只做一次定向补搜，最终 R2h 五路5/5写入真实上海命中 URL。严格工具调用次数不能由提示词确定性保证。[结果](../tests/evidence/online-source-use-r2h-result-20260822.md)
 - SkillHub 已加入 `office-efficiency`、`content-creation` 轻量检索信号；不声称平台写入双分类。
 - GitHub 当前包统一 MIT；普通兼容包不含 Hook，OpenClaw GitHub 兼容包随仓库维护。
@@ -50,7 +51,6 @@
 
 ## IN_PROGRESS
 
-- `v1.6.21` 本地待发布候选已从干净 `main@c60e3ffa` 建立并通过确定性发布门；公开 README 仍为v1.6.20，当前没有 tag、push 或平台上传。动态 `UL-006` 实现不在候选祖先链，只保留研究记录；正式发布需后续明确授权。[候选证据](../tests/evidence/release-1.6.21-rc.md)
 - `SHORT-NATURAL-REFERENCE-R1` 普通 reference 原子已终止并恢复产品：五家低成本 provider 完成50次自然基线和R1/R2/R3共150次候选，三轮均未在至少两家稳定改善真实偏短组；R1/R2还出现候选独有的状态遗漏、程序/承诺或新事件内容。显式80字控制保持，合理推断不算失败。后续只继续独立`UL-006` Hook，不再堆reference措辞。[终态](../tests/evidence/short-natural-reference-r1/reference-result.md)
 - `UL-006-R1/R2`：普通 reference 已终止后单独建立动态 Hook 候选，不再使用100/120/150/300固定门槛。五路20份提示原型只让情况说明、事故通报和办理通知进入最小实现，会议纪要未进入；`389b43f4` 已有33项定向单测。Alibaba2 当前 Codex Stop 四题中，U1真实触发但147字D1因新算`95.7%`回退且D0漏“本次材料未附”；U2事故稿已自然充分而正确不触发；U3通知未触发但新增落款、日期和“梳理”；80字上限旁路正确。状态为`DEFERRED_NEXT_SESSION / CANDIDATE_BRANCH_ONLY / NOT_MAIN`，下一轮先拆算术、事实补回和通知落款日期，不启动大矩阵。[R1](../tests/evidence/ul006-implicit-underlength-r1/prompt-r1-result.md) [R2](../tests/evidence/ul006-implicit-underlength-r2/alibaba2-result.md)
 - `WR-009c`：稀疏事务申请的未决字段后续写边界。只验证“待明确后另行报批/按程序组织实施”等材料外程序承诺，不同时修改原因推断；有现状、问题或已做尝试时仍允许一层合理原因和即时作用。[来源](../tests/evidence/short-inference-r1/cause-hint-result.md)

@@ -2,7 +2,7 @@
 
 日期：2026-08-30。
 
-状态：`LOCAL_RELEASE_CANDIDATE / PENDING_USER_RELEASE_AUTHORIZATION / DETERMINISTIC_GATES_PASSED`。本文件只固定本地候选，不代表已经打 tag、推送、创建 GitHub Release 或上传 SkillHub.cn、ClawHub。
+状态：`PUBLISHED / SEE release-1.6.21.md`。本文件保留发布前候选门；正式外部回执与本次复跑计数见同目录 `release-1.6.21.md`。
 
 ## 固定对象与范围
 
