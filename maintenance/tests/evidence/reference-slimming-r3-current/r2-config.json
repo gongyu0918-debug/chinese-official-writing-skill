@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "baseline_commit": "492dde1890e8503b3c291992e4ef7ae7199b55f2",
+  "candidate_commit": "66d5dd6ddb128e75d71a9b02da64f00ab448d79d",
+  "case_ids": [
+    "REVIEW-REQUEST-ONLY",
+    "REVIEW-REPORT-ONLY",
+    "REVIEW-FEASIBILITY-ONLY",
+    "REVIEW-NOTICE-CONTROL"
+  ],
+  "allowed_product_diff": [
+    "chinese-official-writing/references/review-direct-checklist.md"
+  ]
+}
