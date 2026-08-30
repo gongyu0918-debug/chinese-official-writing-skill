@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "baseline_commit": "6c15efca83916cd29b1036ed265f83fc1b70280f",
+  "candidate_commit": "492dde1890e8503b3c291992e4ef7ae7199b55f2",
+  "case_ids": [
+    "REVIEW-REQUEST-ONLY",
+    "REVIEW-REPORT-ONLY",
+    "REVIEW-FEASIBILITY-ONLY",
+    "REVIEW-NOTICE-CONTROL"
+  ],
+  "allowed_product_diff": [
+    "chinese-official-writing/SKILL.md",
+    "chinese-official-writing/references/genre-checklist-report.md",
+    "chinese-official-writing/references/review-direct-checklist.md"
+  ]
+}
