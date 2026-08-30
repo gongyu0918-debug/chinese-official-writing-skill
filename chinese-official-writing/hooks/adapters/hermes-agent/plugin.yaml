@@ -1,5 +1,5 @@
 name: chinese-official-writing-gate
-version: "1.6.21"
+version: "1.6.22"
 description: Optional bounded final review for the Chinese official-writing Skill.
 provides_hooks:
   - on_session_finalize
