@@ -24,12 +24,13 @@
 - 远端 `main` 与 `v1.6.21^{commit}` 在产品发布时均为 `8086ff255f04df8b080ef1a0488236295bf2cb8d`；annotated tag object 为 `211fbe7429d15e7fbbe73e178b86d8ca37c5193a`。
 - 首次 `git push --atomic` 在 TLS 握手阶段失败；随后用 GitHub API 只读确认远端 `main` 仍为 `6e4e8914` 且 `v1.6.21` 不存在，再以同一原子 ref 集合、OpenSSL backend 重试成功。没有非原子更新、force push 或 tag 移动。
 - GitHub Release：<https://github.com/gongyu0918-debug/chinese-official-writing-skill/releases/tag/v1.6.21>，`databaseId=379147885`、`draft=false`、`prerelease=false`、`publishedAt=2026-08-30T01:13:12Z`。
+- 发布后发现原更新说明混入内部工程排除项；按用户授权原位改为两条用户可读增量：“优化篇幅不足稿件的写后修订，在保持事实、数字和未决状态的前提下，提高合理扩写的稳定性”和“新增 QwenWork 静态 Skill 包支持”。tag、Release ID、资产和产品提交均未变化。
 
 ## SkillHub.cn 回执
 
 - slug `chinese-official-writing`、`skillId=70149`、公开坐标 `@user_f3d82da7/chinese-official-writing`、展示名“中文公文写作”保持不变。
-- 正式提交一次成功：`ok=true`、`versionId=276070`、`fileCount=82`、平台 fingerprint `9841d5082d11af04c6c9dd0abe679b63b4ed5ed91ac79cf841e41556a373a9df`；八个既有 tags 含 `latest` 均在提交回执中指向1.6.21。
-- 提交回执中的 `reviewStatus`、`securityScanStatus`、`contentAuditStatus` 均为 `pending`。首次只读公开搜索仍显示1.6.20，精确1.6.21签名入口返回“找不到该版本”；期间未重复提交，当前记为 `ACCEPTED / PUBLIC_PROPAGATION_PENDING`。
+- 初次提交`versionId=276070`、82文件、平台fingerprint `9841d5082d11af04c6c9dd0abe679b63b4ed5ed91ac79cf841e41556a373a9df`，三项审核均为pending；因更新说明混入内部工程排除项，在仍处审核状态时调用平台“取消更新”接口精确撤回，回执`ok=true`、`restoredVersion=1.6.20`、`softDeletedSkill=false`，旧1.6.21记录随后不可见。
+- 对同一82文件目录先dry-run，再以用户可读说明重新提交；新回执`ok=true`、`versionId=276243`、`fileCount=82`、fingerprint仍为`9841d5082d11af04c6c9dd0abe679b63b4ed5ed91ac79cf841e41556a373a9df`，slug、展示名、版本和八个tags均未变。dashboard显示新说明且三项审核pending；公开latest仍为1.6.20，精确1.6.21下载已重定向到新包，当前记为`REPLACED_PENDING_REVIEW / PUBLIC_PROPAGATION_PENDING`。
 
 ## ClawHub 回执
 
@@ -40,7 +41,7 @@
 ## 剩余边界
 
 - GitHub 产品提交、annotated tag 和 Release 已闭环；后续发布证据提交只推进 `main`，不得移动产品 tag。
-- SkillHub.cn 与 ClawHub 已各成功提交一次。ClawHub 公开latest、精确33文件哈希和总体clean已闭环；SkillHub.cn公开搜索、精确签名与三项审核仍在异步传播。成功回执不等于审核通过，不重复上传。
+- ClawHub 公开latest、精确33文件哈希和总体clean已闭环，且本次没有重发。SkillHub.cn旧待审提交已撤回并同包重提一次；新版本审核、公开搜索与精确签名仍在异步传播。成功回执不等于审核通过，不再重复上传。
 - `UL-005-R10` 的真实稿使用五条低成本 Codex CLI 路线，宿主协议未变化且未在本候选重跑所有在线生命周期；不外推为每个模型都必须扩写成功。
 - QwenWork 只证明官方布局、静态无 Hook 包和包路径真实写稿，不代表在线触发或 Hook 生命周期已验证。ClawHub 包完全不含 Hook。
 - 付费提纲、Pro Hook、红头 DOCX 与 `UL-006` 动态字数研究继续留在授权外的独立分支或研究状态，未反向进入本版。

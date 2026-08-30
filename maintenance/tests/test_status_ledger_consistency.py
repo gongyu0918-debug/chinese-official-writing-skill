@@ -53,14 +53,37 @@ class StatusLedgerConsistencyTests(unittest.TestCase):
         self.assertIn("PUBLISHED / SEE release-1.6.21.md", candidate_evidence)
         self.assertIn("8086ff255f04df8b080ef1a0488236295bf2cb8d", evidence)
         self.assertIn("versionId=276070", evidence)
+        self.assertIn("versionId=276243", evidence)
         self.assertIn("k97asahr8jx0qbvqeny6jrp3m18dftt1", evidence)
         self.assertIn("PUBLIC_PROPAGATION_PENDING", evidence)
         self.assertIn("PUBLIC_INDEX_PENDING", evidence)
         self.assertIn("`389b43f4` 及当日后续", evidence)
         self.assertIn("release-1.6.21.md", evidence_index)
-        self.assertIn("SkillHub `versionId=276070`", todo)
+        self.assertIn("SkillHub旧待审`versionId=276070`", todo)
+        self.assertIn("重新提交为`versionId=276243`", todo)
         self.assertIn("`v1.6.21` 小版本已发布", section(roadmap, "DONE"))
         self.assertNotIn("`v1.6.21` 本地待发布候选", section(roadmap, "IN_PROGRESS"))
+
+    def test_ul006_and_notice_atoms_have_distinct_terminal_states(self) -> None:
+        requirements = read("maintenance/specs/requirements.md")
+        coverage_row = table_row(read("maintenance/specs/coverage.md"), "UL-006")
+        roadmap = read("maintenance/specs/roadmap.md")
+        todo = read("maintenance/docs/待办.md")
+        evidence_index = read("maintenance/docs/evidence/README.md")
+
+        self.assertIn("当前公开候选只实现事故通报入口", requirements)
+        self.assertIn("VALIDATED_FOR_LOCAL_MAIN_MERGE / NOT_RELEASED", coverage_row)
+        self.assertIn("情况说明、通知隐式Hook与算术增量均`TERMINATED`", coverage_row)
+        self.assertIn("无活动`HOLD`", coverage_row)
+        self.assertIn("`UL-006` 已完成拆分收口", section(roadmap, "IN_PROGRESS"))
+        self.assertRegex(todo, r"(?m)^- \[x\] `SHORT-NATURAL-REFERENCE-R1 / UL-006`.*不留HOLD")
+        for relative in (
+            "post-v1621-validated-atoms-r1/result.md",
+            "ul006-r3-arithmetic/result.md",
+            "wr018-completeness-r1/result.md",
+        ):
+            with self.subTest(relative=relative):
+                self.assertIn(relative, evidence_index)
 
     def test_oc003_is_closed_on_every_active_status_surface(self) -> None:
         for relative in (

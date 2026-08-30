@@ -23,7 +23,7 @@
 - `WR-009` 文后提示与正文分区：真实同题稿验证正文外独立分区，随 `v1.6.10@af12b771` 发布。
 - `AH-001` 共享硬锚：引用、数字、字段及归属关系保护已接入篇幅不足和超长收束，真实修订与三方冷审通过，随 `v1.6.10@af12b771` 发布。
 - `AH-002` 新闻完整日期来源绑定修复已随 `v1.6.20` 进入 GitHub 与 SkillHub.cn：重复日期提示方向继续 `TERMINATED`；不同机制已用三 provider 九次真实 Claude Code 生命周期通过预登记门，Alibaba Token Plan 2 与 OpenCode Go 各至少一题精确补年且控制题逐字不变。只覆盖唯一完整日期与唯一目标新闻文种，多日期、非新闻、歧义材料及其他 capability 旁路；ClawHub 无 Hook。[结果](../tests/evidence/ah002-news-date-completeness-r1/live-result.md)
-- `v1.6.21` 小版本已发布：产品 tag 指向 `8086ff25`；GitHub Release与ClawHub公开面已闭环，SkillHub.cn一次正式提交成功但公开latest、精确签名与审核状态仍在异步传播。`UL-005-R10`与QwenWork静态包进入GitHub/SkillHub对应发布面，ClawHub继续33文件无Hook包；`UL-006`、Red SkillHub和付费能力未纳入。
+- `v1.6.21` 小版本已发布：产品 tag 指向 `8086ff25`；GitHub Release与ClawHub公开面已闭环。GitHub公开更新说明已去除内部排除项；SkillHub.cn旧待审提交已撤回并以相同82文件包、相同fingerprint和用户可读说明重新提交为`versionId=276243`，审核与公开传播仍pending。ClawHub保持33文件无Hook包且未重发；`UL-006`、Red SkillHub和付费能力不在v1.6.21产品祖先中。
 - `v1.6.20` 小版本已发布：产品 tag 指向 `2fc9d1d4`；GitHub Release、SkillHub.cn 公开搜索与精确签名、ClawHub latest、精确33文件、逐文件哈希和总体clean均已闭环。AH-002 进入 GitHub/SkillHub，ClawHub 继续无 Hook；公开写作规则、description 和 references 相对 v1.6.19 不变。
 - `v1.6.19` 小版本已发布：产品 tag 指向 `eef65336`；GitHub Release、SkillHub.cn 公开搜索与精确签名、ClawHub latest、精确33文件和总体clean均已闭环。Hermes 与 DSH adapter 进入 GitHub/SkillHub，ClawHub 继续无 Hook；公开写作规则、description 和 references 相对 v1.6.18 不变。
 - `v1.6.18` 小版本已发布：产品 tag 指向 `67a68257`，GitHub、SkillHub.cn 与 ClawHub 公开 latest 均已闭环；OpenCode 常驻交互 adapter 进入 GitHub 与 SkillHub.cn，ClawHub 精确33文件无 Hook 包只同步版本坐标且与本地逐项一致。公开写作规则、description 和 references 相对 v1.6.17 不变。
@@ -52,7 +52,7 @@
 ## IN_PROGRESS
 
 - `SHORT-NATURAL-REFERENCE-R1` 普通 reference 原子已终止并恢复产品：五家低成本 provider 完成50次自然基线和R1/R2/R3共150次候选，三轮均未在至少两家稳定改善真实偏短组；R1/R2还出现候选独有的状态遗漏、程序/承诺或新事件内容。显式80字控制保持，合理推断不算失败。后续只继续独立`UL-006` Hook，不再堆reference措辞。[终态](../tests/evidence/short-natural-reference-r1/reference-result.md)
-- `UL-006-R1/R2`：普通 reference 已终止后单独建立动态 Hook 候选，不再使用100/120/150/300固定门槛。五路20份提示原型只让情况说明、事故通报和办理通知进入最小实现，会议纪要未进入；`389b43f4` 已有33项定向单测。Alibaba2 当前 Codex Stop 四题中，U1真实触发但147字D1因新算`95.7%`回退且D0漏“本次材料未附”；U2事故稿已自然充分而正确不触发；U3通知未触发但新增落款、日期和“梳理”；80字上限旁路正确。状态为`DEFERRED_NEXT_SESSION / CANDIDATE_BRANCH_ONLY / NOT_MAIN`，下一轮先拆算术、事实补回和通知落款日期，不启动大矩阵。[R1](../tests/evidence/ul006-implicit-underlength-r1/prompt-r1-result.md) [R2](../tests/evidence/ul006-implicit-underlength-r2/alibaba2-result.md)
+- `UL-006` 已完成拆分收口：阶段性事故通报保留动态近转写入口；情况说明和办理通知的隐式入口终止；透明算术因没有安全D1交付而撤回；“已形成但未附”reference因跨provider正文包装终止；短通知只合入不从邮箱/接收方反推落款主体或日期的关系边界。旧五家20稿与新五家15稿共同达到本地main合并门，状态为`VALIDATED_FOR_LOCAL_MAIN_MERGE / NOT_RELEASED`，无活动`HOLD`。[事故结果](../tests/evidence/ul006-incident-only-r1/result.md) [联合留出](../tests/evidence/post-v1621-validated-atoms-r1/result.md)
 - `WR-009c`：稀疏事务申请的未决字段后续写边界。只验证“待明确后另行报批/按程序组织实施”等材料外程序承诺，不同时修改原因推断；有现状、问题或已做尝试时仍允许一层合理原因和即时作用。[来源](../tests/evidence/short-inference-r1/cause-hint-result.md)
 - `CL-001-NOHK-R2`：普通无 Hook 写稿仍跨 provider 出现“已读取技能”、正文引导语、横线、自检和 commit/测试说明。只前移或合并现有“只交正文”规则，用短事务稿、新闻、情况说明与长稿做真实 A/B，不增加 description。[来源](../tests/evidence/short-inference-r1/cause-hint-result.md)
 
