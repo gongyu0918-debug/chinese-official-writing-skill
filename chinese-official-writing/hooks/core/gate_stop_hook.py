@@ -13,6 +13,7 @@ verifies the final output hash, and redacts raw turn data after terminal Stop.
 from __future__ import annotations
 
 import errno
+from contextvars import ContextVar
 import hashlib
 import importlib.util
 import json
@@ -23,6 +24,7 @@ import shutil
 import subprocess
 import sys
 import tempfile
+import time
 from typing import Any
 
 
@@ -33,6 +35,10 @@ MAX_STOP_ATTEMPTS = 4
 STATE_SCHEMA_VERSION = 1
 SAFE_KEY_MAX_LENGTH = 120
 GATE_SUBPROCESS_TIMEOUT_SECONDS = 20
+STOP_SUBPROCESS_BUDGET_SECONDS = 25.0
+_STOP_GATE_DEADLINE: ContextVar[float | None] = ContextVar(
+    "official_writing_stop_gate_deadline", default=None
+)
 MIN_FENCED_JSON_LINES = 3
 MODULE_PATH = Path(__file__).resolve()
 PROTECTIVE_CAPABILITY_NAME = "protective_expansion"
@@ -1007,6 +1013,35 @@ def _extract_json_object(value: Any) -> dict[str, Any] | None:
     return payload
 
 
+def _remaining_gate_subprocess_timeout() -> float | None:
+    deadline = _STOP_GATE_DEADLINE.get()
+    if deadline is None:
+        return float(GATE_SUBPROCESS_TIMEOUT_SECONDS)
+    remaining = deadline - time.monotonic()
+    if remaining <= 0:
+        return None
+    return min(float(GATE_SUBPROCESS_TIMEOUT_SECONDS), remaining)
+
+
+def _run_review_gate_subprocess(command: list[str]) -> subprocess.CompletedProcess[str] | None:
+    timeout = _remaining_gate_subprocess_timeout()
+    if timeout is None:
+        return None
+    try:
+        return subprocess.run(
+            command,
+            stdin=subprocess.DEVNULL,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            text=True,
+            encoding="utf-8",
+            timeout=timeout,
+            check=False,
+        )
+    except (OSError, subprocess.SubprocessError):
+        return None
+
+
 def _run_gate(txn: Path, action: str, payload: dict[str, Any] | None = None) -> tuple[int, str]:
     command = [sys.executable, str(REVIEW_GATE_PATH), action, "--txn", str(txn)]
     payload_path: Path | None = None
@@ -1016,40 +1051,23 @@ def _run_gate(txn: Path, action: str, payload: dict[str, Any] | None = None) -> 
         _atomic_write(payload_path, payload)
         command.extend([f"--{suffix}", str(payload_path)])
     try:
-        completed = subprocess.run(
-            command,
-            stdin=subprocess.DEVNULL,
-            stdout=subprocess.PIPE,
-            stderr=subprocess.PIPE,
-            text=True,
-            encoding="utf-8",
-            timeout=GATE_SUBPROCESS_TIMEOUT_SECONDS,
-            check=False,
-        )
-    except (OSError, subprocess.SubprocessError):
-        return 1, ""
+        completed = _run_review_gate_subprocess(command)
     finally:
         if payload_path is not None:
             try:
                 payload_path.unlink()
             except FileNotFoundError:
                 pass
+    if completed is None:
+        return 1, ""
     return completed.returncode, completed.stdout
 
 
 def _abort(txn: Path, reason: str) -> dict[str, Any] | None:
-    try:
-        completed = subprocess.run(
-            [sys.executable, str(REVIEW_GATE_PATH), "abort", "--txn", str(txn), "--reason", reason],
-            stdin=subprocess.DEVNULL,
-            stdout=subprocess.PIPE,
-            stderr=subprocess.PIPE,
-            text=True,
-            encoding="utf-8",
-            timeout=GATE_SUBPROCESS_TIMEOUT_SECONDS,
-            check=False,
-        )
-    except (OSError, subprocess.SubprocessError):
+    completed = _run_review_gate_subprocess(
+        [sys.executable, str(REVIEW_GATE_PATH), "abort", "--txn", str(txn), "--reason", reason]
+    )
+    if completed is None:
         return None
     if completed.returncode != 0:
         return None
@@ -1134,7 +1152,21 @@ def _emit_and_request_exact_output(
 ) -> dict[str, Any]:
     code, output = _run_gate(txn, "emit")
     if code != 0 or not output.strip():
-        return _allow()
+        output = _recover_selected_output_without_subprocess(txn) or ""
+    if not output.strip():
+        record.update(
+            {
+                "last_action": "emit_failed",
+                "hook_phase": "failed_bounded",
+                "delivery_verified": False,
+            }
+        )
+        _atomic_write(record_path, record)
+        _redact_turn_data(record_path, record)
+        return _continue_once(
+            "交付门禁无法恢复可信初稿，已停止自动交付。请只告知用户关闭本任务 Hook 后重新请求原稿，"
+            "不要输出当前核验 JSON、状态包或自行重写的正文。"
+        )
     record.update(
         {
             "last_action": "emit",
@@ -1149,6 +1181,49 @@ def _emit_and_request_exact_output(
         "交付门禁已由 Hook 完成 emit。请将下列终稿逐字作为整条最终回复，不要调用工具、不要加说明：\n"
         + output
     )
+
+
+def _trusted_d0_snapshot(txn: Path) -> str | None:
+    state = _read_json(txn / "state.json") or {}
+    if state.get("state") != "TERMINAL_D0" or state.get("selected") != "D0":
+        return None
+    for filename in (
+        "selection.claim.json",
+        "selection.claim.backup.json",
+        "report.json",
+    ):
+        claim = _read_json(txn / filename)
+        if claim is not None and (
+            claim.get("state") == "TERMINAL_D1" or claim.get("selected") == "D1"
+        ):
+            return None
+    backup = _read_json(txn / "snapshot.backup.json") or {}
+    expected = state.get("d0_sha256")
+    if not isinstance(expected, str):
+        return None
+    backup_hash = backup.get("d0_sha256")
+    if isinstance(backup_hash, str) and backup_hash != expected:
+        return None
+    try:
+        text = (txn / "d0.snapshot.txt").read_text(encoding="utf-8")
+    except (OSError, UnicodeError):
+        return None
+    if not text.strip() or _sha256_text(text) != expected:
+        return None
+    return text
+
+
+def _recover_selected_output_without_subprocess(txn: Path) -> str | None:
+    module = _load_review_gate_module()
+    if module is not None:
+        resolver = getattr(module, "resolve_selected_output", None)
+        try:
+            output = resolver(txn) if callable(resolver) else None
+        except Exception:
+            output = None
+        if isinstance(output, str) and output.strip():
+            return output
+    return _trusted_d0_snapshot(txn)
 
 
 def handle_user_prompt(event: dict[str, Any]) -> dict[str, Any]:
@@ -1314,7 +1389,7 @@ def _bootstrap_transaction_locked(
     try:
         _atomic_write_text(request_path, request)
         _atomic_write_text(draft_path, draft_for_gate)
-        completed = subprocess.run(
+        completed = _run_review_gate_subprocess(
             [
                 sys.executable,
                 str(REVIEW_GATE_PATH),
@@ -1325,16 +1400,11 @@ def _bootstrap_transaction_locked(
                 str(draft_path),
                 "--txn",
                 str(txn),
-            ],
-            stdin=subprocess.DEVNULL,
-            stdout=subprocess.PIPE,
-            stderr=subprocess.PIPE,
-            text=True,
-            encoding="utf-8",
-            timeout=GATE_SUBPROCESS_TIMEOUT_SECONDS,
-            check=False,
+            ]
         )
-    except (OSError, subprocess.SubprocessError):
+    except OSError:
+        return None
+    if completed is None:
         return None
     if completed.returncode != 0:
         return None
@@ -1490,6 +1560,15 @@ def _dispatch_ordinary_state(
     if state_name in TERMINAL_STATES:
         if record.get("emit_seen") is True and record.get("delivery_verified") is True:
             return _allow()
+        if (
+            record.get("emit_seen") is True
+            and record.get("last_action") == "emit"
+            and not isinstance(record.get("emitted_sha256"), str)
+        ):
+            record["hook_phase"] = "failed_bounded"
+            record["delivery_verified"] = False
+            _atomic_write(record_path, record)
+            return _allow()
         if attempts >= MAX_STOP_ATTEMPTS:
             return _allow()
         record["stop_attempts"] = attempts + 1
@@ -1523,7 +1602,7 @@ def _dispatch_ordinary_state(
     return _continue_once("交付门禁正在收口，请只继续当前有限状态，不要重新起草。")
 
 
-def handle_stop(event: dict[str, Any]) -> dict[str, Any]:
+def _handle_stop(event: dict[str, Any]) -> dict[str, Any]:
     record_path = _record_path(event)
     if record_path is None:
         return _allow()
@@ -1583,6 +1662,16 @@ def handle_stop(event: dict[str, Any]) -> dict[str, Any]:
     state = _consume_verdict_response(event, txn, record, state)
     response = _dispatch_ordinary_state(txn, record_path, record, state, attempts)
     return _finish_stop_response(record_path, record, response)
+
+
+def handle_stop(event: dict[str, Any]) -> dict[str, Any]:
+    token = _STOP_GATE_DEADLINE.set(
+        time.monotonic() + STOP_SUBPROCESS_BUDGET_SECONDS
+    )
+    try:
+        return _handle_stop(event)
+    finally:
+        _STOP_GATE_DEADLINE.reset(token)
 
 
 def handle(event: dict[str, Any]) -> dict[str, Any]:

@@ -3459,6 +3459,12 @@ def _resolve_emit_text(txn: Path) -> str:
     return text
 
 
+def resolve_selected_output(txn: Path) -> str:
+    """Return the trusted selected draft without writing to host stdout."""
+
+    return _resolve_emit_text(txn)
+
+
 def _retained_d0_fallback_allowed(txn: Path) -> bool:
     state = _load_state(txn) or {}
     if state.get("state") == STATE_TERMINAL_D1 or state.get("selected") == "D1":
@@ -3583,7 +3589,7 @@ def emit_transaction(
         text = retained_d0
     else:
         try:
-            text = _resolve_emit_text(txn)
+            text = resolve_selected_output(txn)
         except Exception:
             recovered_d1 = (
                 _recover_bound_d1_from_claim(txn, bound_input_hashes)
