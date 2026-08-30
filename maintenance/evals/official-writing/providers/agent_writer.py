@@ -35,6 +35,12 @@ GENRE_REFERENCES: dict[str, list[str]] = {
     "review": [
         "references/review-checklist.md",
     ],
+    "review_direct": [
+        "references/review-direct-checklist.md",
+    ],
+    "genre_review": [
+        "references/genre-checklist.md",
+    ],
     "anti_ai": [
         "references/anti-ai-patterns.md",
     ],
@@ -489,6 +495,52 @@ ORDINARY_LETTER_REVISION_NEGATIONS = (
     "无需完善",
 )
 ANTI_AI_TASK_MARKERS = ("AI 味", "AI味", "降 AI 味", "降AI味", "模板化", "空话套话")
+COMPREHENSIVE_REVIEW_MARKERS = (
+    "格式",
+    "语气",
+    "通篇",
+    "全面审稿",
+    "全面复核",
+    "全面检查",
+    "综合审稿",
+    "综合复核",
+    "综合检查",
+    "段落、小节",
+    "段落、小节、全文",
+    "段落、小节和全文",
+    "全文审稿",
+    "全文复核",
+    "全文检查",
+)
+DIRECT_REVIEW_SCOPE_MARKERS = (
+    "事实",
+    "状态",
+    "保真",
+    "主体",
+    "对象",
+    "事项",
+    "金额",
+    "数量",
+    "单位",
+    "日期",
+    "时限",
+    "渠道",
+    "落款",
+    "结尾",
+    "文种功能",
+    "请批",
+    "办理要素",
+    "数据",
+    "估算依据",
+    "步骤",
+    "责任分工",
+    "标题",
+    "导语",
+    "体裁",
+    "观点",
+    "判断强度",
+    "承诺强度",
+)
 STYLE_TASK_MARKERS = ("去口语化", "降 AI 味", "降AI味", "润色", "正式一点", "统一语气", "顺稿")
 ROUTING_TASK_MARKERS = ("文种不清", "判断文种", "选择文种", "请示还是报告", "函还是通知")
 ARGUMENT_TASK_MARKERS = ("论证", "可行性", "必要性", "方案比较", "成本比较")
@@ -743,6 +795,20 @@ def _tasks_are_review_only(tasks: list[str]) -> bool:
     )
 
 
+def _tasks_require_comprehensive_review(tasks: list[str]) -> bool:
+    return any(
+        _contains_marker(task, COMPREHENSIVE_REVIEW_MARKERS)
+        or _contains_marker(task, ANTI_AI_TASK_MARKERS)
+        for task in tasks
+    )
+
+
+def _tasks_name_direct_review_scope(tasks: list[str]) -> bool:
+    return bool(tasks) and all(
+        _contains_marker(task, DIRECT_REVIEW_SCOPE_MARKERS) for task in tasks
+    )
+
+
 def _minutes_require_playbook(tasks: list[str]) -> bool:
     minutes_text = "\n".join(tasks)
     full_request_text = MINUTES_NEGATED_FULL_REQUEST_RE.sub("", minutes_text)
@@ -799,15 +865,26 @@ def _reference_paths_for_genres(genres: list[str], tasks: list[str] | None = Non
     )
 
     if _tasks_are_review_only(tasks):
-        paths.extend(GENRE_REFERENCES["review"])
-        if any(genre in NEWS_COMMENTARY_GENRES for genre in genres):
-            paths.extend(GENRE_REFERENCES["news_commentary"])
-        elif any(genre in NEWS_MESSAGE_GENRES for genre in genres):
-            paths.extend(GENRE_REFERENCES["news_message"])
-        if any(genre in REQUEST_REVIEW_GENRES for genre in genres):
-            paths.extend(GENRE_REFERENCES["request_review"])
-        if any(genre in FEASIBILITY_REVIEW_GENRES for genre in genres):
+        comprehensive_review = _tasks_require_comprehensive_review(tasks)
+        feasibility_review = any(genre in FEASIBILITY_REVIEW_GENRES for genre in genres)
+        direct_review = _tasks_name_direct_review_scope(tasks)
+
+        if feasibility_review and not comprehensive_review:
             paths.extend(GENRE_REFERENCES["feasibility_review"])
+        elif comprehensive_review or not direct_review:
+            paths.extend(GENRE_REFERENCES["review"])
+        else:
+            paths.extend(GENRE_REFERENCES["review_direct"])
+            if any(genre in NEWS_COMMENTARY_GENRES for genre in genres):
+                paths.extend(GENRE_REFERENCES["news_commentary"])
+            elif any(genre in NEWS_MESSAGE_GENRES for genre in genres):
+                paths.extend(GENRE_REFERENCES["news_message"])
+            elif any(genre in REQUEST_REVIEW_GENRES for genre in genres):
+                paths.extend(GENRE_REFERENCES["request_review"])
+            elif report_playbook:
+                paths.extend(GENRE_REFERENCES["report_playbook"])
+            else:
+                paths.extend(GENRE_REFERENCES["genre_review"])
         if any(_contains_marker(task, ANTI_AI_TASK_MARKERS) for task in tasks):
             paths.extend(GENRE_REFERENCES["anti_ai"])
         if any(marker in task for task in tasks for marker in FORMAT_TASK_MARKERS):

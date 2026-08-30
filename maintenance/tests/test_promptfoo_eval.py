@@ -257,7 +257,7 @@ class PromptfooProviderTests(unittest.TestCase):
             message_refs,
             [
                 "SKILL.md",
-                "references/review-checklist.md",
+                "references/review-direct-checklist.md",
                 "references/genre-playbook-news-message.md",
             ],
         )
@@ -265,7 +265,7 @@ class PromptfooProviderTests(unittest.TestCase):
             commentary_refs,
             [
                 "SKILL.md",
-                "references/review-checklist.md",
+                "references/review-direct-checklist.md",
                 "references/genre-playbook-news-commentary.md",
             ],
         )
@@ -845,7 +845,7 @@ class PromptfooProviderTests(unittest.TestCase):
                     refs,
                     [
                         "SKILL.md",
-                        "references/review-checklist.md",
+                        "references/review-direct-checklist.md",
                         "references/genre-checklist-request.md",
                     ],
                 )
@@ -862,7 +862,6 @@ class PromptfooProviderTests(unittest.TestCase):
             refs,
             [
                 "SKILL.md",
-                "references/review-checklist.md",
                 "references/genre-checklist-feasibility-review.md",
             ],
         )
@@ -884,7 +883,14 @@ class PromptfooProviderTests(unittest.TestCase):
             ["只审不改，检查这份建设方案的数据、步骤和责任分工。"],
         )
 
-        self.assertEqual(refs, ["SKILL.md", "references/review-checklist.md"])
+        self.assertEqual(
+            refs,
+            [
+                "SKILL.md",
+                "references/review-direct-checklist.md",
+                "references/genre-checklist.md",
+            ],
+        )
 
     def test_review_then_rewrite_is_not_classified_as_review_only(self) -> None:
         for task in (
@@ -907,7 +913,17 @@ class PromptfooProviderTests(unittest.TestCase):
         ):
             with self.subTest(task=task):
                 refs = provider._reference_paths_for_genres(["通知"], [task])
-                self.assertEqual(refs, ["SKILL.md", "references/review-checklist.md"])
+                if "格式" in task:
+                    self.assertEqual(refs, ["SKILL.md", "references/review-checklist.md"])
+                else:
+                    self.assertEqual(
+                        refs,
+                        [
+                            "SKILL.md",
+                            "references/review-direct-checklist.md",
+                            "references/genre-checklist.md",
+                        ],
+                    )
 
     def test_anti_ai_review_adds_only_the_language_leaf(self) -> None:
         refs = provider._reference_paths_for_genres(
