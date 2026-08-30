@@ -48,11 +48,10 @@
 - `WR-014-R6/R6b`、`WR-013c`、`WR-020a2` 已完成当前基线真实写稿：[结果](../tests/evidence/post-v1616-writing-stability-r1/result.md)。R6原“继续”目标2/2未复现；R6b只有Ollama 1/2把证据未附外推为待后续核验；短采购原因/低强度影响2/2通过；长报告OpenCode目标通过，Ollama两次技术失效。没有跨模型共同目标失败，产品0差异，不留HOLD。
 - v1.6.15 短稿诊断已完成五路30臂：未复现跨文种系统性偏短；活动新闻完整年份和个别 provider 的材料外扩写已拆成独立风险，不用“正文必须长于提示词”统一处理。
 - 本地付费候选 `codex/paid-outline-review` 收敛 `OT-001`、`OT-001-composite`、`OT-002` 与 `RF-001`；活动台账以“当前 main 是付费分支祖先”作为同步事实，不固化会在下一次同步后失效的 tip。三宿主47文件组装、698项全量和公开零文件检查通过。该状态为 `DONE_LOCAL_PAID_NO_RELEASE`，不反向进入公开版、不发布。
+- `UL-006` 已完成拆分并进入本地main：阶段性事故通报保留动态近转写入口；情况说明和办理通知的隐式入口终止；透明算术因没有安全D1交付而撤回；“已形成但未附”reference因跨provider正文包装终止；短通知只接入不从邮箱/接收方反推落款主体或日期的关系边界。旧五家20稿与新五家15稿、746项全量和五套quick validation通过，状态为`DONE_LOCAL_MAIN_NOT_RELEASED`，不属于v1.6.21 tag，无活动`HOLD`。[事故结果](../tests/evidence/ul006-incident-only-r1/result.md) [联合留出](../tests/evidence/post-v1621-validated-atoms-r1/result.md)
 
 ## IN_PROGRESS
 
-- `SHORT-NATURAL-REFERENCE-R1` 普通 reference 原子已终止并恢复产品：五家低成本 provider 完成50次自然基线和R1/R2/R3共150次候选，三轮均未在至少两家稳定改善真实偏短组；R1/R2还出现候选独有的状态遗漏、程序/承诺或新事件内容。显式80字控制保持，合理推断不算失败。后续只继续独立`UL-006` Hook，不再堆reference措辞。[终态](../tests/evidence/short-natural-reference-r1/reference-result.md)
-- `UL-006` 已完成拆分收口：阶段性事故通报保留动态近转写入口；情况说明和办理通知的隐式入口终止；透明算术因没有安全D1交付而撤回；“已形成但未附”reference因跨provider正文包装终止；短通知只合入不从邮箱/接收方反推落款主体或日期的关系边界。旧五家20稿与新五家15稿共同达到本地main合并门，状态为`VALIDATED_FOR_LOCAL_MAIN_MERGE / NOT_RELEASED`，无活动`HOLD`。[事故结果](../tests/evidence/ul006-incident-only-r1/result.md) [联合留出](../tests/evidence/post-v1621-validated-atoms-r1/result.md)
 - `WR-009c`：稀疏事务申请的未决字段后续写边界。只验证“待明确后另行报批/按程序组织实施”等材料外程序承诺，不同时修改原因推断；有现状、问题或已做尝试时仍允许一层合理原因和即时作用。[来源](../tests/evidence/short-inference-r1/cause-hint-result.md)
 - `CL-001-NOHK-R2`：普通无 Hook 写稿仍跨 provider 出现“已读取技能”、正文引导语、横线、自检和 commit/测试说明。只前移或合并现有“只交正文”规则，用短事务稿、新闻、情况说明与长稿做真实 A/B，不增加 description。[来源](../tests/evidence/short-inference-r1/cause-hint-result.md)
 
@@ -72,6 +71,7 @@
 
 ## TERMINATED
 
+- `SHORT-NATURAL-REFERENCE-R1` 普通 reference 原子已终止并恢复产品：五家低成本 provider 完成50次自然基线和R1/R2/R3共150次候选，三轮均未在至少两家稳定改善真实偏短组；R1/R2还出现候选独有的状态遗漏、程序/承诺或新事件内容。显式80字控制保持，合理推断不算失败。后续不再堆reference措辞。[终态](../tests/evidence/short-natural-reference-r1/reference-result.md)
 - `AI-COMPUTE-BASIC-LEAF-R1/R2`：R2用五条低成本路线完成15/15技术有效真实任务，完整可研已不串读窄叶，但Ollama相对冻结Baseline仍遗漏2台服务器、每台4张GPU、5.8千瓦和71%四项已给事实；两道简单申请未同时达到稳定省读与无候选硬回退。产品恢复固定Baseline，不做R3。[R2终态](../tests/evidence/reference-slimming-r2/r2-result.md)
 - `WR-005` 原短稿自然度 R1/R2 已被上限题 R3 取代；常用语机械化 R1—R6 依次尝试删词、删表、取消加载和按材料选择，仍轮流出现篇幅、职责、文种或材料外号召回退。两个旧方向均终止，不再以 HOLD 呈现。[结果](../tests/evidence/v167-formulaic-mechanicality-real-first/result.md)
 - 旧 `length-band-hook-v162`、`under-length-hook-v162-v2`、`v163-protective-expansion-gate` 已被后续正式能力或新原子取代，旧实现方向终止，不复活旧准入结论。

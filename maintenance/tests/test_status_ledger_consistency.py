@@ -72,10 +72,13 @@ class StatusLedgerConsistencyTests(unittest.TestCase):
         evidence_index = read("maintenance/docs/evidence/README.md")
 
         self.assertIn("当前公开候选只实现事故通报入口", requirements)
-        self.assertIn("VALIDATED_FOR_LOCAL_MAIN_MERGE / NOT_RELEASED", coverage_row)
+        self.assertIn("DONE_LOCAL_MAIN_NOT_RELEASED", coverage_row)
         self.assertIn("情况说明、通知隐式Hook与算术增量均`TERMINATED`", coverage_row)
         self.assertIn("无活动`HOLD`", coverage_row)
-        self.assertIn("`UL-006` 已完成拆分收口", section(roadmap, "IN_PROGRESS"))
+        self.assertIn("`UL-006` 已完成拆分并进入本地main", section(roadmap, "DONE"))
+        self.assertNotIn("UL-006", section(roadmap, "IN_PROGRESS"))
+        self.assertIn("`SHORT-NATURAL-REFERENCE-R1`", section(roadmap, "TERMINATED"))
+        self.assertNotIn("SHORT-NATURAL-REFERENCE-R1", section(roadmap, "IN_PROGRESS"))
         self.assertRegex(todo, r"(?m)^- \[x\] `SHORT-NATURAL-REFERENCE-R1 / UL-006`.*不留HOLD")
         for relative in (
             "post-v1621-validated-atoms-r1/result.md",

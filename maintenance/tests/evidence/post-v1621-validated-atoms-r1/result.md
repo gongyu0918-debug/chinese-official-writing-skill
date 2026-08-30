@@ -2,7 +2,7 @@
 
 日期：2026-08-30。
 
-终态：`VALIDATED_FOR_LOCAL_MAIN_MERGE / NOT_RELEASED`。
+终态：`DONE_LOCAL_MAIN_NOT_RELEASED`。
 
 ## 固定对象
 
@@ -30,6 +30,11 @@ MiniMax 的 `I2` 初稿另有“接报后赶赴现场”“继续做好现场警
 - `WR-018-NOTICE-ISSUER-DATE-R1—R3` 旧18稿显示目标规则移除了基线中的推定落款，并最终由 Alibaba2、MiniMax 2/2 复测通过；本轮再以五家全新通知 5/5 验证目标关系。
 - 通用三文种隐式篇幅机制、透明算术原子和通知隐式 Hook 均未恢复；情况说明与通知继续不进入无下限 Hook。
 - 两个产品原子达到本地 `main` 合并条件。合并不等于发布，版本、tag、GitHub、SkillHub.cn 与 ClawHub 均不因本结论自动变化。
+
+## 合并回执
+
+- 全量回归746/746通过；canonical、Agent Skills、QwenWork、Qwen Code、Hermes五套quick validation通过；`sync_adapters.py`复跑后工作树无新增差异。
+- 本地`main`已快进包含产品提交`80dc7299`和联合证据提交`1dc8fe87`；没有推送、移动tag或发布新版本。v1.6.21产品tag仍指向`8086ff25`。
 
 ## 实际命令
 
