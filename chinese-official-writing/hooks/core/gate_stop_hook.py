@@ -1549,6 +1549,21 @@ def _consume_verdict_response(
     return state
 
 
+def _fail_bounded_and_redact(
+    record_path: Path, record: dict[str, Any], reason: str
+) -> dict[str, Any]:
+    record.update(
+        {
+            "last_action": "bounded_failure",
+            "failure_reason": reason,
+            "hook_phase": "failed_bounded",
+            "delivery_verified": False,
+        }
+    )
+    _redact_turn_data(record_path, record)
+    return _allow()
+
+
 def _dispatch_ordinary_state(
     txn: Path,
     record_path: Path,
@@ -1570,7 +1585,9 @@ def _dispatch_ordinary_state(
             _atomic_write(record_path, record)
             return _allow()
         if attempts >= MAX_STOP_ATTEMPTS:
-            return _allow()
+            return _fail_bounded_and_redact(
+                record_path, record, "hook_terminal_delivery_budget_exhausted"
+            )
         record["stop_attempts"] = attempts + 1
         _atomic_write(record_path, record)
         return _emit_and_request_exact_output(txn, record_path, record)
@@ -1580,13 +1597,17 @@ def _dispatch_ordinary_state(
             state = _abort(txn, "hook_stop_budget_exhausted")
             if state is not None and state.get("state") in TERMINAL_STATES:
                 return _emit_and_request_exact_output(txn, record_path, record)
-            return _allow()
+            return _fail_bounded_and_redact(
+                record_path, record, "hook_stop_budget_exhausted_abort_failed"
+            )
         instruction = _repair_instruction(txn)
         if instruction is None:
             state = _abort(txn, "hook_repair_packet_missing")
             if state is not None and state.get("state") in TERMINAL_STATES:
                 return _emit_and_request_exact_output(txn, record_path, record)
-            return _allow()
+            return _fail_bounded_and_redact(
+                record_path, record, "hook_repair_packet_missing_abort_failed"
+            )
         record["hook_phase"] = "awaiting_repair"
         record["stop_attempts"] = attempts + 1
         _atomic_write(record_path, record)
@@ -1596,7 +1617,9 @@ def _dispatch_ordinary_state(
         state = _abort(txn, "hook_unknown_state")
         if state is not None and state.get("state") in TERMINAL_STATES:
             return _emit_and_request_exact_output(txn, record_path, record)
-        return _allow()
+        return _fail_bounded_and_redact(
+            record_path, record, "hook_unknown_state_abort_failed"
+        )
     record["stop_attempts"] = attempts + 1
     _atomic_write(record_path, record)
     return _continue_once("交付门禁正在收口，请只继续当前有限状态，不要重新起草。")

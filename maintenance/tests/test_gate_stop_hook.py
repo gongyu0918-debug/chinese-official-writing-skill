@@ -317,6 +317,67 @@ class GateStopHookTests(unittest.TestCase):
         self.assertEqual(3, len(timeouts))
         self.assertAlmostEqual(HOOK.GATE_SUBPROCESS_TIMEOUT_SECONDS, timeouts[2])
 
+    def test_expired_stop_budget_redacts_exhausted_nonterminal_transaction(self):
+        request = "请根据内部材料起草情况报告，保留尚未形成结论的状态。"
+        draft = "情况报告\n\n当前事项仍在核查，尚未形成结论。"
+        data_root = HOOK._data_root()
+        self.assertIsNotNone(data_root)
+        txn = data_root / "transactions" / "expired-budget" / "turn"
+        inputs = txn.parent / f"{txn.name}-inputs"
+        txn.mkdir(parents=True)
+        inputs.mkdir(parents=True)
+        run_id = "run-expired-budget"
+        HOOK._atomic_write(
+            txn / "state.json",
+            {"state": "AWAITING_REPAIR", "run_id": run_id},
+        )
+        (txn / "d0.snapshot.txt").write_text(draft, encoding="utf-8")
+        (inputs / "request.txt").write_text(request, encoding="utf-8")
+        (inputs / "draft.txt").write_text(draft, encoding="utf-8")
+
+        event = self._event(
+            "Stop",
+            turn_id="expired-budget",
+            stop_hook_active=True,
+            last_assistant_message="{不是有效的修订响应",
+        )
+        record_path = HOOK._record_path(event)
+        self.assertIsNotNone(record_path)
+        HOOK._atomic_write(
+            record_path,
+            {
+                "schema_version": 1,
+                "request": request,
+                "txn": str(txn.resolve()),
+                "run_id": run_id,
+                "hook_phase": "awaiting_repair",
+                "stop_attempts": HOOK.MAX_STOP_ATTEMPTS,
+                "skill_seen": True,
+            },
+        )
+
+        with mock.patch.object(
+            HOOK.time, "monotonic", side_effect=[100.0, 126.0, 126.0]
+        ), mock.patch.object(HOOK.subprocess, "run") as runner:
+            result = HOOK.handle_stop(event)
+
+        self.assertEqual({"continue": True}, result)
+        runner.assert_not_called()
+        redacted = HOOK._read_json(record_path)
+        self.assertIsNotNone(redacted)
+        self.assertEqual("failed_bounded", redacted["hook_phase"])
+        self.assertFalse(redacted["delivery_verified"])
+        self.assertEqual(
+            "hook_stop_budget_exhausted_abort_failed",
+            redacted["failure_reason"],
+        )
+        self.assertEqual(HOOK.REDACTED_RECORD_STATE, redacted["data_retention_state"])
+        self.assertFalse(txn.exists())
+        self.assertFalse(inputs.exists())
+        serialized = json.dumps(redacted, ensure_ascii=False)
+        self.assertNotIn(request, serialized)
+        self.assertNotIn(draft, serialized)
+
     def test_all_review_gate_subprocesses_use_the_budgeted_runner(self):
         source = MODULE_PATH.read_text(encoding="utf-8")
         self.assertEqual(1, source.count("subprocess.run("))
