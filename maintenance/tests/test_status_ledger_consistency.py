@@ -87,6 +87,29 @@ class StatusLedgerConsistencyTests(unittest.TestCase):
         self.assertIn("未向 SkillHub.cn、ClawHub 或其他平台提交", evidence)
         self.assertIn("release-1.6.22-rc.md", evidence_index)
 
+    def test_hk009_is_a_verified_unmerged_next_version_candidate(self) -> None:
+        requirements = read("maintenance/specs/requirements.md")
+        coverage_row = table_row(read("maintenance/specs/coverage.md"), "HK-009")
+        roadmap = read("maintenance/specs/roadmap.md")
+        todo = read("maintenance/docs/待办.md")
+        evidence_index = read("maintenance/docs/evidence/README.md")
+        result = read("maintenance/tests/evidence/post-v1622-hook-contract-r1/result.md")
+
+        self.assertIn("### HK-009 单次 Stop 子进程预算与可信恢复", requirements)
+        self.assertIn("共享 25 秒总预算", requirements)
+        self.assertIn("ENGINEERING_VERIFIED_NEXT_VERSION_CANDIDATE / NOT_MERGED", coverage_row)
+        self.assertIn("无 `HOLD`", coverage_row)
+        self.assertIn("`UL-006-CONTRACT-R1 / HK-009-STOP-BUDGET-R1`", section(roadmap, "DONE"))
+        self.assertNotIn("HK-009", section(roadmap, "IN_PROGRESS"))
+        self.assertRegex(
+            todo,
+            r"(?m)^- \[x\] `UL-006-CONTRACT-R1 / HK-009-STOP-BUDGET-R1`.*NOT_MERGED",
+        )
+        self.assertIn("post-v1622-hook-contract-r1/result.md", evidence_index)
+        self.assertIn("main@62ba9e8206e5b11f08a8f28ebdfe95b08e30ccfe", result)
+        self.assertIn("Ran 756 tests", result)
+        self.assertIn("未合入 `main`", result)
+
     def test_ul006_and_notice_atoms_have_distinct_terminal_states(self) -> None:
         requirements = read("maintenance/specs/requirements.md")
         coverage_row = table_row(read("maintenance/specs/coverage.md"), "UL-006")

@@ -13,6 +13,7 @@
 ## 逐版发布证据
 
 - v1.6.22 当前只登记为本地公开版候选；固定基线、746项全量、111/111确定性消融、20/20 stub smoke、82/33文件包体和未发布边界见 [`release-1.6.22-rc.md`](../../tests/evidence/release-1.6.22-rc.md)。
+- v1.6.22 后的 `UL-006-CONTRACT-R1 / HK-009-STOP-BUDGET-R1` 已在独立 worktree 完成下一版本候选验证：事故隐式入口契约同步、单 Stop 25秒共享子进程预算、无 stdout 副作用的可信恢复、D1不降级及预算耗尽精确脱敏见[结果](../../tests/evidence/post-v1622-hook-contract-r1/result.md)，预登记与两次冷审修正见[原始预登记](../../tests/evidence/post-v1622-hook-contract-r1/preregister.md)、[R1](../../tests/evidence/post-v1622-hook-contract-r1/r1-amendment.md)、[R2](../../tests/evidence/post-v1622-hook-contract-r1/r2-amendment.md)。候选未合入main，不改v1.6.22版本、tag或发布面，无活动HOLD。
 - v1.6.21 的 GitHub、SkillHub.cn 与 ClawHub 发布回执、737项本次全量复跑、82/33文件包体、GitHub更新说明修正、SkillHub旧待审版本撤回与同包重提、ClawHub公开闭环见 [`release-1.6.21.md`](../../tests/evidence/release-1.6.21.md)；固定候选、动态字数候选隔离和发布前确定性门见 [`release-1.6.21-rc.md`](../../tests/evidence/release-1.6.21-rc.md)。
 - v1.6.20 的 GitHub、SkillHub.cn 与 ClawHub 发布回执见 [`release-1.6.20.md`](../../tests/evidence/release-1.6.20.md)；本地候选固定基线、AH-002 真实生命周期、四个 references 减载原子的终态、发布门和两类平台包预检见 [`release-1.6.20-rc.md`](../../tests/evidence/release-1.6.20-rc.md)。
 - v1.6.20 当前无字数限制事务稿的五路15份真实写稿、合理推断边界、篇幅诊断和残余风险见 [`short-inference-r1/baseline-result.md`](../../tests/evidence/short-inference-r1/baseline-result.md)；目标原子 `WR-013d/WR-018-R2` 转为 `WAIT_NEW_COUNTEREXAMPLE`，普通写稿规则未改。

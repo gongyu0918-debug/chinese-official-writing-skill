@@ -179,6 +179,14 @@ Hook 只在完成当前有界生命周期所需的时间内暂存原请求、D0�
 
 普通 Stop 自动启动门禁时，必须在写入 request/D0 前登记当前 turn 的 provisional txn。detect 同步失败、缺少 state 或后续同 turn Stop 发现未绑定 pending 时，只清理该 turn 并安全放行 D0；并发 Stop 只能有一个 bootstrap owner。只有真实非阻塞加锁竞争可以继续等待，锁文件永久 I/O 错误必须脱敏后安全放行。宿主硬退出且不再产生同 turn Stop 的情形仍按人工清理边界处理，不据此增加后台全局扫描。
 
+### HK-009 单次 Stop 子进程预算与可信恢复
+
+同一次 `handle_stop` 内由 review gate 启动的 `detect`、`prepare/finalize/emit` 与 `abort` 子进程共享 25 秒总预算；每个子进程仍不超过 20 秒，预算耗尽后不得再启动下一个子进程。每次独立 Stop 重新取得完整预算，Claude-compatible、Codex、CodeBuddy、Qwen 和 Kimi 既有 30 秒宿主 Stop 上限不变。
+
+`emit` 子进程失败后，进程内恢复必须使用不写宿主 stdout 的可信选择解析入口。只有事务明确为 `TERMINAL_D0`、`selected=D0` 且 D0 hash 匹配时，才可恢复并请求精确回显；`TERMINAL_D1` 选择证据缺失或损坏时不得静默降级为 D0，必须停止自动交付并脱敏。
+
+预算耗尽或 abort 失败且已经达到有限尝试上限时，必须记录 `failed_bounded`、将 `delivery_verified` 置为 false，并立即删除当前 turn 的 request、txn 和输入快照；宿主仍沿既有 fail-open 返回形状结束，不泄露正文或内部状态。正常 D0/D1 状态机、能力路由、尝试次数和写稿语义不变。当前实现已完成工程验证，状态为下一版本候选，尚未合入 `main`。
+
 ## 篇幅不足能力
 
 ### UL-001 触发边界
