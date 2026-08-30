@@ -1,10 +1,12 @@
 #!/usr/bin/env python3
 """Bounded under-length revision capability for the optional Hook.
 
-The capability starts only for an explicit output lower bound or range when
-the completed draft is more than ten percent short.  It permits one revision,
-one semantic delta verdict, and a hash-bound final echo.  Any uncertainty or
-runtime failure selects the byte-identical original draft.
+An explicit lower bound keeps the existing ten-percent tolerance.  Without a
+numeric bound, three real-writing-validated short genres may also start when a
+reliably separated fact block was only paraphrased into the completed draft.
+Both paths permit one revision, one semantic delta verdict, and a hash-bound
+final echo.  Any uncertainty or runtime failure selects the byte-identical
+original draft.
 """
 
 from __future__ import annotations
@@ -58,6 +60,41 @@ SHORTFALL_PERMISSION_RE: Final = re.compile(
     r"(?:短于|低于|少于)(?:下限|字数|篇幅)|"
     r"(?:不必|无需|不要).{0,8}(?:强行|勉强)?(?:达到|凑到)(?:下限|字数|篇幅))"
 )
+IMPLICIT_UPPER_BOUND_RE: Final = re.compile(
+    r"(?:(?:不超过|不高于|至多|最多|少于|低于)\s*\d{1,5}\s*字|"
+    r"(?:上限|控制在)\s*\d{1,5}\s*字(?:以内|以下)?)"
+)
+IMPLICIT_COMPRESSION_RE: Final = re.compile(
+    r"(?:压缩|缩写|缩短|精简|删减|缩减|减至|压到|控制篇幅)"
+)
+IMPLICIT_EXACT_RE: Final = re.compile(
+    r"(?:逐字(?:回复|输出|保留)?|原样(?:回复|输出|保留)?|一字不改|"
+    r"(?:只|仅)回复(?:以下|下列|这句|该句|原文|指定文字))"
+)
+IMPLICIT_SHORT_FORM_RE: Final = re.compile(
+    r"(?:一句话|一两句|极短|最简(?:短)?|尽量简短|越短越好)"
+)
+IMPLICIT_REVIEW_OR_FORMAT_ONLY_RE: Final = re.compile(
+    r"(?:只审不改|仅审不改|只(?:检查|复核|核验)(?:问题|风险)?|不要改写|"
+    r"只(?:调整|修改|检查|核对).{0,8}(?:格式|排版|标点|错别字))"
+)
+MATERIAL_MARKER_RE: Final = re.compile(
+    r"(?:材料|事实|背景|已知情况|原始信息)\s*[：:]"
+)
+DRAFT_ACTION_RE: Final = re.compile(
+    r"(?:请|据此).{0,36}?(?:起草|撰写|拟写|写一(?:篇|份|则)|整理为|编写|写成)"
+)
+INCIDENT_TOPIC_RE: Final = re.compile(
+    r"(?:事故|突发事件|警情|灾情|险情|火灾|坍塌|塌方|爆炸|泄漏|伤亡|"
+    r"受伤|救援|抢险|原因正在调查|原因仍在调查)"
+)
+SITUATION_STATUS_RE: Final = re.compile(
+    r"(?:已完成|已经形成|未附|尚未|未作|没有作出安排|仍处于|待补|待定|"
+    r"正在|未形成(?:采购)?决定)"
+)
+NOTICE_ACTION_RE: Final = re.compile(
+    r"(?:报送|发送|提交|填报|参加|办理|反馈|于.{0,16}前|截止)"
+)
 EXPLICIT_TITLE_RE: Final = re.compile(
     r"(?:标题|题目)\s*(?:为|是|：|:)\s*[《\"]?([^》\"\n，。；;]+)"
 )
@@ -87,7 +124,7 @@ UNSUPPORTED_ADDED_PROCESS_RE: Final = re.compile(
 )
 MARKDOWN_HEADING_RE: Final = re.compile(r"^\s*#{1,6}\s+")
 NUMBERED_HEADING_RE: Final = re.compile(
-    r"^\s*(?:[一二三四五六七八九十]+、|\d+[.、])\s*\S+$"
+    r"^\s*(?:[一二三四五六七八九十]+、|\d+[.、])\s*[^。！？!?；;]{1,40}$"
 )
 HARD_ANCHOR_PATH: Final = Path(__file__).resolve().parents[2] / "shared" / "hard_anchors.py"
 
@@ -195,6 +232,97 @@ def parse_spec(request: str) -> dict[str, Any] | None:
     }
 
 
+def _implicit_bypass_reason(request: str) -> str | None:
+    for reason, pattern in (
+        ("explicit_upper_bound", IMPLICIT_UPPER_BOUND_RE),
+        ("compression_request", IMPLICIT_COMPRESSION_RE),
+        ("exact_reply", IMPLICIT_EXACT_RE),
+        ("explicit_short_form", IMPLICIT_SHORT_FORM_RE),
+        ("review_or_format_only", IMPLICIT_REVIEW_OR_FORMAT_ONLY_RE),
+    ):
+        if pattern.search(request):
+            return reason
+    return None
+
+
+def _separable_material(request: str) -> str | None:
+    """Extract only material shapes that are unambiguous enough for a gate."""
+
+    markers = list(MATERIAL_MARKER_RE.finditer(request))
+    if markers:
+        start = markers[-1].end()
+        tail = request[start:]
+        action = DRAFT_ACTION_RE.search(tail)
+        material = tail[: action.start()] if action and action.start() >= 20 else tail
+    else:
+        actions = list(DRAFT_ACTION_RE.finditer(request))
+        material = ""
+        for action in reversed(actions):
+            prefix = request[: action.start()].strip(" \t\r\n，。；;：:")
+            if len(re.sub(r"\s+", "", prefix)) >= 24:
+                material = prefix
+                break
+        if not material and actions:
+            colon = request.find("：", actions[0].end())
+            if colon < 0:
+                colon = request.find(":", actions[0].end())
+            if colon >= 0:
+                material = request[colon + 1 :]
+    material = material.strip(" \t\r\n，。；;：:")
+    if len(re.sub(r"\s+", "", material)) < 24:
+        return None
+    return material
+
+
+def _implicit_genre(request: str) -> str | None:
+    if "通报" in request and INCIDENT_TOPIC_RE.search(request):
+        return "incident_bulletin"
+    return None
+
+
+def _semantic_compact(value: str) -> str:
+    return re.sub(r"[\s，。；：、,.!?！？;:“”\"'（）()《》\-—]+", "", value)
+
+
+def _implicit_spec(request: str, draft: str) -> dict[str, Any] | None:
+    bypass = _implicit_bypass_reason(request)
+    if bypass:
+        return {"bypass": bypass}
+    if not DRAFT_ACTION_RE.search(request):
+        return None
+    genre = _implicit_genre(request)
+    material = _separable_material(request)
+    if genre is None or material is None:
+        return None
+    body = _body_text(draft)
+    material_count = len(re.sub(r"\s+", "", material))
+    body_count = len(re.sub(r"\s+", "", body))
+    if not body_count:
+        return None
+    closeness_margin = max(12, math.ceil(material_count * 0.12))
+    if body_count > material_count + closeness_margin:
+        return None
+    compact_material = _semantic_compact(material)
+    compact_body = _semantic_compact(body)
+    if not compact_material or not compact_body:
+        return None
+    similarity = SequenceMatcher(
+        a=compact_material, b=compact_body, autojunk=False
+    ).ratio()
+    if similarity < 0.55:
+        return None
+    return {
+        "minimum": max(material_count, body_count) + 1,
+        "maximum": 0,
+        "scope": "body",
+        "mode": "implicit",
+        "genre": genre,
+        "material_count": material_count,
+        "material_sha256": _sha256_text(material),
+        "similarity_milli": round(similarity * 1000),
+    }
+
+
 def _user_allows_shortfall(request: str) -> bool:
     return bool(SHORTFALL_PERMISSION_RE.search(request))
 
@@ -286,7 +414,50 @@ def mechanical_reason(
     return None
 
 
+_IMPLICIT_GENRE_GUIDANCE: Final = {
+    "situation_explanation": (
+        "情况说明可按事项或阶段归组，增加题名、必要承接和由已列事实直接支持的阶段归纳；"
+        "必须逐项保留已经完成、已经形成但未附、尚未开展且未安排、正在办理或尚未决定等成对状态，"
+        "不得把缺失材料改写成以后报送、说明或通报的承诺。"
+    ),
+    "action_notice": (
+        "办理通知须完整承载对象、动作、截止时间、内容字段、渠道和豁免条件；"
+        "可增加由既有办理动作直接支持的一层低强度目的和常规收束，"
+        "不得新增梳理、核对、摸排、附件、公章、纸质材料、考核、追责或其他执行链。"
+    ),
+    "incident_bulletin": (
+        "阶段性事故通报按材料所处阶段承载事件、人员状态、已给影响、现场处置和调查或排查状态；"
+        "原因、影响和处置以材料为准，不得擅自判定原因、责任、损失或完成状态。"
+        "可用不增加具体时间、渠道或新处置安排的续报句自然收束，但不是必写项。"
+    ),
+}
+
+
+def _implicit_revision_instruction(
+    request: str, original: str, spec: dict[str, Any]
+) -> str:
+    guidance = _IMPLICIT_GENRE_GUIDANCE[spec["genre"]]
+    return (
+        "写后复核发现 D0 正文接近可可靠分离事实材料的换词或换序转写，尚未充分形成当前文种功能。"
+        "这不是固定100字要求，也不是国家公文规范。请只修订 D0，不另起一篇；在事实安全前提下"
+        "增加本题确实需要的一个完整文种功能，使 D1 正文比 D0 和事实材料更完整、更长。"
+        "任何安全的实质增长都是有效改进，不为跨过整数凑字。只输出可直接使用的完整终稿。"
+        "回复第一字必须是终稿首字，最后一字必须是终稿末字，不要添加引导语、字数、自评、代码围栏、"
+        "横线或解释。\n"
+        "原请求、用户材料和 D0 是唯一事实边界；完整保留主体、对象、数字、日期、状态和结论强度。"
+        "可写由材料事实和常识直接支持的一层原因、目的、即时作用、合理归纳、条件结论或低强度预期，"
+        "不要求这些关系逐字出现在材料中，也不套统一的原因、事项、作用、结论结构。"
+        "不得新增具体用途、程序、责任、期限、承诺、新事件或既成成效，不得把预期写成已经取得的效果，"
+        "也不得重复状态、同义改写或拆句凑字。每项新增关系须能回指同一主体、对象、范围和当前状态。"
+        "若不能安全形成实质增长，必须逐字返回 D0，不添加任何说明。\n"
+        "【本题文种边界】\n" + guidance
+        + "\n【原请求】\n" + request + "\n【D0】\n" + original
+    )
+
+
 def _revision_instruction(request: str, original: str, spec: dict[str, Any]) -> str:
+    if spec.get("mode") == "implicit":
+        return _implicit_revision_instruction(request, original, spec)
     maximum = int(spec.get("maximum") or 0)
     target = f"{spec['minimum']}—{maximum}字" if maximum else f"不少于{spec['minimum']}字"
     preferred_minimum = spec["minimum"] + PREFERRED_MINIMUM_HEADROOM
@@ -618,6 +789,13 @@ def _verdict_instruction(
         ],
         "fact_ledger": _compact_fact_ledger_response(frozen_ledger),
     }
+    implicit_quality = ""
+    if spec.get("mode") == "implicit":
+        implicit_quality = (
+            "本次由无显式下限的近材料转写触发；PASS 还要求 D1 形成当前文种需要的安全实质增量。"
+            "只增加标题、标点、同义词、拆句、重复状态或正文外说明，不算实质增量，必须 FAIL。"
+            "不得因为 D1 未跨过100字或其他整数而失败。"
+        )
     return (
         "只读核验 D1 相对 D0 的全部增量，并只输出一个 JSON 对象。冻结增量须逐 id 原样回填。"
         "每项分类为 restatement、transparent_derivation、reasonable_inference 或 new_specific_fact。"
@@ -636,7 +814,7 @@ def _verdict_instruction(
         "凡 D1 新增通知、督促、落实、准备、报送方式、会议纪律、协调办法等动作或义务，而原请求或 D0 "
         "没有同一事项授权，均属新增流程或职责，不得标为 restatement。"
         "只评价 D1 增量，不把 D0 原有问题归给 D1；具体事实、状态或责任关系实质不确定时才 FAIL，"
-        "推断措辞没有逐字来源本身不构成不确定。\n"
+        "推断措辞没有逐字来源本身不构成不确定。" + implicit_quality + "\n"
         "来源目录已由 Hook 按请求与 D0 的句或分句机械冻结；offset、origin 和 hash 只在 Hook 内部保存并回查，"
         "无需也不得调用工具重算。fact_ledger.ledger 已按每个非空增量给出一条骨架；"
         "不得删除固定的 increment_id 或把同一增量的多个子句拆成多条 ledger。只从已有来源目录选择直接相关 id 填入 span_ids，"
@@ -740,7 +918,7 @@ def _select(record: dict[str, Any], selection: str, reason: str) -> dict[str, An
         selection = "D0"
     state["audit"] = {
         "schema_version": SCHEMA_VERSION,
-        "trigger": "under",
+        "trigger": "implicit_under" if state.get("spec", {}).get("mode") == "implicit" else "under",
         "original_sha256": _sha256_text(state["original"]),
         "candidate_sha256": _sha256_text(state.get("candidate", "")) if state.get("candidate") else None,
         "spec": state.get("spec"),
@@ -764,21 +942,42 @@ def start(
     draft = event.get("last_assistant_message")
     if not isinstance(request, str) or not isinstance(draft, str) or not draft.strip():
         return None
-    try:
-        findings = review_gate.locate_candidates(request, draft).get("findings") or []
-    except Exception:
-        return None
-    if findings:
-        record["under_length_bypass"] = "ordinary_findings_present"
-        return None
     if _user_allows_shortfall(request):
         record["under_length_bypass"] = "user_allows_shortfall"
         return None
     spec = parse_spec(request)
     if spec is None:
+        spec = _implicit_spec(request, draft)
+        if isinstance(spec, dict) and isinstance(spec.get("bypass"), str):
+            record["under_length_bypass"] = spec["bypass"]
+            return None
+        if spec is None:
+            return None
+    try:
+        findings = review_gate.locate_candidates(request, draft).get("findings") or []
+    except Exception:
         return None
+    separated_material = _separable_material(request) if spec.get("mode") == "implicit" else None
+    request_exact_findings = bool(findings) and isinstance(separated_material, str) and all(
+        isinstance(finding, dict)
+        and finding.get("request_exact") is True
+        and isinstance(finding.get("target"), str)
+        and bool(_semantic_compact(finding["target"]))
+        and _semantic_compact(finding["target"]) in _semantic_compact(separated_material)
+        for finding in findings
+    )
+    if findings and not (
+        spec.get("mode") == "implicit" and request_exact_findings
+    ):
+        record["under_length_bypass"] = "ordinary_findings_present"
+        return None
+    if request_exact_findings:
+        spec["request_exact_finding_count"] = len(findings)
     original_count = count_text(draft, spec["scope"])
-    if original_count >= math.ceil(spec["minimum"] * (1 - UNDER_TOLERANCE_RATIO)):
+    if (
+        spec.get("mode") != "implicit"
+        and original_count >= math.ceil(spec["minimum"] * (1 - UNDER_TOLERANCE_RATIO))
+    ):
         return None
     record["under_length"] = {
         "schema_version": SCHEMA_VERSION,
