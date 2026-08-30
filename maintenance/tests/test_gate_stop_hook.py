@@ -273,6 +273,153 @@ class GateStopHookTests(unittest.TestCase):
         self.assertEqual(HOOK.REDACTED_RECORD_STATE, record["data_retention_state"])
         self._assert_gate_root_omits(prompt, draft, "内部编号A-17")
 
+    def test_one_stop_shares_a_bounded_review_gate_subprocess_budget(self):
+        clock = [100.0]
+        timeouts = []
+
+        def fake_run(*_args, **kwargs):
+            timeout = float(kwargs["timeout"])
+            timeouts.append(timeout)
+            clock[0] += timeout
+            return mock.Mock(returncode=1, stdout="", stderr="timeout probe")
+
+        def consume_three_gate_calls(_event):
+            HOOK._run_gate(self.txn, "emit")
+            HOOK._abort(self.txn, "timeout_probe")
+            HOOK._run_gate(self.txn, "emit")
+            return {"continue": True}
+
+        def consume_one_gate_call(_event):
+            HOOK._run_gate(self.txn, "emit")
+            return {"continue": True}
+
+        with mock.patch.object(HOOK.time, "monotonic", side_effect=lambda: clock[0]), \
+             mock.patch.object(HOOK.subprocess, "run", side_effect=fake_run), \
+             mock.patch.object(HOOK, "_handle_stop", side_effect=consume_three_gate_calls):
+            first = HOOK.handle_stop(self._event("Stop"))
+
+        self.assertEqual({"continue": True}, first)
+        self.assertEqual(2, len(timeouts))
+        self.assertLessEqual(sum(timeouts), HOOK.STOP_SUBPROCESS_BUDGET_SECONDS)
+        self.assertAlmostEqual(HOOK.GATE_SUBPROCESS_TIMEOUT_SECONDS, timeouts[0])
+        self.assertAlmostEqual(
+            HOOK.STOP_SUBPROCESS_BUDGET_SECONDS
+            - HOOK.GATE_SUBPROCESS_TIMEOUT_SECONDS,
+            timeouts[1],
+        )
+
+        with mock.patch.object(HOOK.time, "monotonic", side_effect=lambda: clock[0]), \
+             mock.patch.object(HOOK.subprocess, "run", side_effect=fake_run), \
+             mock.patch.object(HOOK, "_handle_stop", side_effect=consume_one_gate_call):
+            second = HOOK.handle_stop(self._event("Stop"))
+
+        self.assertEqual({"continue": True}, second)
+        self.assertEqual(3, len(timeouts))
+        self.assertAlmostEqual(HOOK.GATE_SUBPROCESS_TIMEOUT_SECONDS, timeouts[2])
+
+    def test_all_review_gate_subprocesses_use_the_budgeted_runner(self):
+        source = MODULE_PATH.read_text(encoding="utf-8")
+        self.assertEqual(1, source.count("subprocess.run("))
+
+    def test_emit_timeout_recovers_trusted_d0_and_redacts_after_exact_echo(self):
+        original = "情况报告\n\n当前事项仍在核查，尚未形成结论。"
+        self._state(name="TERMINAL_D0")
+        state = HOOK._read_json(self.txn / "state.json")
+        self.assertIsNotNone(state)
+        state.update({"selected": "D0", "d0_sha256": HOOK._sha256_text(original)})
+        HOOK._atomic_write(self.txn / "state.json", state)
+        (self.txn / "d0.snapshot.txt").write_text(original, encoding="utf-8")
+
+        event = self._event("Stop", turn_id="emit-timeout")
+        record_path = HOOK._record_path(event)
+        self.assertIsNotNone(record_path)
+        record = {
+            "schema_version": 1,
+            "request": "请改写情况报告，只输出正文。",
+            "txn": str(self.txn.resolve()),
+            "hook_phase": "awaiting_verdict",
+            "stop_attempts": 2,
+        }
+        HOOK._atomic_write(record_path, record)
+
+        with mock.patch.object(HOOK, "_run_gate", return_value=(1, "")), \
+             mock.patch.object(HOOK, "_load_review_gate_module", return_value=None):
+            response = HOOK._emit_and_request_exact_output(
+                self.txn, record_path, record
+            )
+
+        self.assertEqual("block", response["decision"])
+        self.assertIn(original, response["reason"])
+        self.assertEqual(HOOK._sha256_text(original), record["emitted_sha256"])
+
+        echo = HOOK._handle_selected_output_echo(
+            self._event(
+                "Stop", turn_id="emit-timeout", last_assistant_message=original
+            ),
+            record_path,
+            record,
+            attempts=3,
+        )
+        self.assertEqual({"continue": True}, echo)
+        final = HOOK._finish_stop_response(record_path, record, echo)
+        self.assertEqual({"continue": True}, final)
+        redacted = HOOK._read_json(record_path)
+        self.assertIsNotNone(redacted)
+        self.assertEqual(HOOK.REDACTED_RECORD_STATE, redacted["data_retention_state"])
+        serialized = json.dumps(redacted, ensure_ascii=False)
+        self.assertNotIn(original, serialized)
+        self.assertNotIn("请改写情况报告", serialized)
+
+    def test_emit_timeout_never_downgrades_terminal_d1_to_d0(self):
+        original = "情况报告\n\n当前事项仍在核查，尚未形成结论。"
+        data_root = HOOK._data_root()
+        self.assertIsNotNone(data_root)
+        txn = data_root / "transactions" / "emit-timeout-d1"
+        txn.mkdir(parents=True)
+        HOOK._atomic_write(
+            txn / "state.json",
+            {"state": "TERMINAL_D1", "run_id": "run-emit-timeout-d1"},
+        )
+        state = HOOK._read_json(txn / "state.json")
+        self.assertIsNotNone(state)
+        state.update(
+            {
+                "selected": "D1",
+                "d0_sha256": HOOK._sha256_text(original),
+                "d1_sha256": HOOK._sha256_text(original + "候选"),
+            }
+        )
+        HOOK._atomic_write(txn / "state.json", state)
+        (txn / "d0.snapshot.txt").write_text(original, encoding="utf-8")
+
+        event = self._event("Stop", turn_id="emit-timeout-d1")
+        record_path = HOOK._record_path(event)
+        self.assertIsNotNone(record_path)
+        record = {
+            "schema_version": 1,
+            "request": "请改写情况报告，只输出正文。",
+            "txn": str(txn.resolve()),
+            "hook_phase": "awaiting_verdict",
+            "stop_attempts": 2,
+        }
+        HOOK._atomic_write(record_path, record)
+
+        with mock.patch.object(HOOK, "_run_gate", return_value=(1, "")):
+            response = HOOK._emit_and_request_exact_output(
+                txn, record_path, record
+            )
+
+        self.assertEqual("block", response["decision"])
+        self.assertIn("停止自动交付", response["reason"])
+        self.assertNotIn(original, response["reason"])
+        redacted = HOOK._read_json(record_path)
+        self.assertIsNotNone(redacted)
+        self.assertEqual(HOOK.REDACTED_RECORD_STATE, redacted["data_retention_state"])
+        self.assertFalse(txn.exists())
+        serialized = json.dumps(redacted, ensure_ascii=False)
+        self.assertNotIn(original, serialized)
+        self.assertNotIn("请改写情况报告", serialized)
+
     def test_bootstrap_detect_oserror_redacts_provisional_raw_inputs(self):
         prompt = "请起草包含内部编号B-23的情况报告。"
         draft = "情况报告\n\n内部编号B-23的核验工作已完成。"

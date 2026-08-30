@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import importlib.util
+import io
 import json
 import os
 from pathlib import Path
@@ -161,6 +162,61 @@ class HostGateAdapterTests(HookCompanionTestMixin, unittest.TestCase):
         )
         self.assertEqual(expected_returncode, completed.returncode, completed.stderr)
         return result
+
+    def test_emit_fallback_keeps_adapter_stdout_as_one_json_object(self):
+        adapter = self.ADAPTERS["codex"]
+        bridge = adapter._load_core_bridge()
+        self.assertIsNotNone(bridge)
+        original = "情况报告\n\n当前事项仍在核查，尚未形成结论。"
+        txn = self.data_root / "stdout-contract-txn"
+        txn.mkdir()
+        (txn / "state.json").write_text(
+            json.dumps(
+                {
+                    "state": "TERMINAL_D0",
+                    "selected": "D0",
+                    "run_id": "stdout-contract",
+                    "d0_sha256": bridge._sha256_text(original),
+                },
+                ensure_ascii=False,
+            ),
+            encoding="utf-8",
+        )
+        (txn / "d0.snapshot.txt").write_text(original, encoding="utf-8")
+        record_path = self.data_root / "stdout-contract-record.json"
+        record = {
+            "schema_version": 1,
+            "txn": str(txn.resolve()),
+            "stop_attempts": 2,
+        }
+        bridge._atomic_write(record_path, record)
+
+        def emit_after_subprocess_failure(_event):
+            with mock.patch.object(bridge, "_run_gate", return_value=(1, "")):
+                return bridge._emit_and_request_exact_output(
+                    txn, record_path, record
+                )
+
+        bridge.handle = emit_after_subprocess_failure
+        event = self._event(
+            "Stop",
+            turn_id="stdout-contract-turn",
+            stop_hook_active=False,
+            last_assistant_message=original,
+        )
+        stdin = io.StringIO(json.dumps(event, ensure_ascii=False))
+        stdout = io.StringIO()
+        with self._host_environment("codex"), \
+             mock.patch.object(adapter, "_load_core_bridge", return_value=bridge), \
+             mock.patch("sys.stdin", stdin), \
+             mock.patch("sys.stdout", stdout):
+            returncode = adapter.main()
+
+        payload = stdout.getvalue()
+        result = json.loads(payload)
+        self.assertEqual(0, returncode)
+        self.assertEqual("block", result["decision"])
+        self.assertIn(original, result["reason"])
 
     def test_package_root_has_native_per_host_commands_and_one_shared_adapter(self):
         codex = json.loads(self.MANIFEST_PATHS["codex"].read_text(encoding="utf-8"))
