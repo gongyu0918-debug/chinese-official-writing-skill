@@ -26,6 +26,7 @@
 - v1.6.20 后 `UL-005-R10` 扩写指令与 verifier 合理推断口径的四轮75份候选/基线真实稿、稀疏精确回退、五提交 checkpoint 和合并前结论见 [`short-inference-r1/underlength-r4-result.md`](../../tests/evidence/short-inference-r1/underlength-r4-result.md)；R1—R3 失败及最小修复分别保留在同目录，最终候选已进入本地 `main`、未发布。
 - v1.6.20 后 `WR-009b` 事务稿原因缺口提示的基线、两轮最小候选、75份五路真实稿、第二次五提交复核和终态见 [`short-inference-r1/cause-hint-result.md`](../../tests/evidence/short-inference-r1/cause-hint-result.md)；当前基线已覆盖允许提示目标，不稳定候选已恢复，正文程序承诺与普通无 Hook 包装分别登记为 `WR-009c`、`CL-001-NOHK-R2`。
 - v1.6.20 后第二轮 references 减载的30次基线、25次窄叶R1、15次路由R2真实任务与最终产品恢复见 [`reference-slimming-r2/r2-result.md`](../../tests/evidence/reference-slimming-r2/r2-result.md)；合理一层推断不作失败，三个原子均已进入REJECTED或TERMINATED终态。
+- v1.6.22 后当前 references / Hook 冷审、35次路由基线、点名审稿轻页R1/R2共40次五路真实审稿、去AI味拆分终止、五套镜像和下一拆分观察面见 [`reference-slimming-r3-current/result.md`](../../tests/evidence/reference-slimming-r3-current/result.md)；轻页为下一版本候选，冻结v1.6.22不变。
 - v1.6.19 后四个 references 减载原子的190次五路真实任务、实际读取、最小R2、逐稿复核与终态见 [`reference-slimming-r1/result.md`](../../tests/evidence/reference-slimming-r1/result.md)；四项产品均恢复发布基线，无Hook、包体、description或版本变化。
 - v1.6.19 的 GitHub、SkillHub.cn 与 ClawHub 发布回执见 [`release-1.6.19.md`](../../tests/evidence/release-1.6.19.md)；本地候选范围、Hermes 与 DeepSeek Harness 真实生命周期依据、固定基线验证和两类平台包预检见 [`release-1.6.19-rc.md`](../../tests/evidence/release-1.6.19-rc.md)。
 - v1.6.18 的 GitHub、SkillHub.cn 与 ClawHub 发布回执见 [`release-1.6.18.md`](../../tests/evidence/release-1.6.18.md)；本地候选范围、OpenCode 真实交互依据、固定基线验证和两类平台包预检见 [`release-1.6.18-rc.md`](../../tests/evidence/release-1.6.18-rc.md)。
