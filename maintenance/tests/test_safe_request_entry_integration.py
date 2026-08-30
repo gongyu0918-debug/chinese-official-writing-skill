@@ -117,7 +117,7 @@ class SafeRequestEntryIntegrationTests(HookCompanionTestMixin, unittest.TestCase
         request_rules = [
             line
             for line in canonical_bytes.decode("utf-8").splitlines()
-            if line.startswith("- 单项采购申请")
+            if line.startswith("- 单项采购请示或申请")
         ]
         self.assertEqual(len(request_rules), 1)
         request_rule = request_rules[0]
