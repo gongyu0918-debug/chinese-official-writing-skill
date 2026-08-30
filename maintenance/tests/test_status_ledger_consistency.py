@@ -34,7 +34,7 @@ class StatusLedgerConsistencyTests(unittest.TestCase):
         todo = read("maintenance/docs/待办.md")
         roadmap = read("maintenance/specs/roadmap.md")
 
-        self.assertIn("当前产品 tag 为 `v1.6.21^{commit}=8086ff25", todo)
+        self.assertIn("当前产品 tag 仍为 `v1.6.21^{commit}=8086ff25", todo)
         self.assertIn("`release-1.6.21.md`", todo)
         self.assertIn("## v1.6.14 起已发布状态与后续研究", todo)
         self.assertNotIn("候选均保持 HOLD", public_readme)
@@ -66,6 +66,27 @@ class StatusLedgerConsistencyTests(unittest.TestCase):
         self.assertIn("`v1.6.21` 小版本已发布", section(roadmap, "DONE"))
         self.assertNotIn("`v1.6.21` 本地待发布候选", section(roadmap, "IN_PROGRESS"))
 
+    def test_v1622_is_registered_as_local_candidate_only(self) -> None:
+        public_readme = read("README.md")
+        todo = read("maintenance/docs/待办.md")
+        roadmap = read("maintenance/specs/roadmap.md")
+        coverage = read("maintenance/specs/coverage.md")
+        evidence = read("maintenance/tests/evidence/release-1.6.22-rc.md")
+        evidence_index = read("maintenance/docs/evidence/README.md")
+
+        self.assertNotIn("chinese-official-writing@1.6.22", public_readme)
+        self.assertIn("`v1.6.22` 本地公开版候选已登记", section(roadmap, "DONE"))
+        self.assertNotIn("v1.6.22", section(roadmap, "IN_PROGRESS"))
+        self.assertIn("本地公开版候选已登记为 `v1.6.22`", todo)
+        self.assertIn("DONE_V1.6.22_LOCAL_CANDIDATE", table_row(coverage, "WR-023"))
+        self.assertIn("DONE_V1.6.22_LOCAL_CANDIDATE", table_row(coverage, "WR-024"))
+        self.assertIn("DONE_V1.6.22_LOCAL_CANDIDATE", table_row(coverage, "UL-006"))
+        self.assertIn("DONE_V1.6.21", table_row(coverage, "HK-004-QWENWORK-R1"))
+        self.assertIn("未创建或移动 tag", evidence)
+        self.assertIn("未推送", evidence)
+        self.assertIn("未向 SkillHub.cn、ClawHub 或其他平台提交", evidence)
+        self.assertIn("release-1.6.22-rc.md", evidence_index)
+
     def test_ul006_and_notice_atoms_have_distinct_terminal_states(self) -> None:
         requirements = read("maintenance/specs/requirements.md")
         coverage_row = table_row(read("maintenance/specs/coverage.md"), "UL-006")
@@ -74,10 +95,10 @@ class StatusLedgerConsistencyTests(unittest.TestCase):
         evidence_index = read("maintenance/docs/evidence/README.md")
 
         self.assertIn("当前公开候选只实现事故通报入口", requirements)
-        self.assertIn("DONE_LOCAL_MAIN_NOT_RELEASED", coverage_row)
+        self.assertIn("DONE_V1.6.22_LOCAL_CANDIDATE", coverage_row)
         self.assertIn("情况说明、通知隐式Hook与算术增量均`TERMINATED`", coverage_row)
         self.assertIn("无活动`HOLD`", coverage_row)
-        self.assertIn("`UL-006` 已完成拆分并进入本地main", section(roadmap, "DONE"))
+        self.assertIn("`UL-006` 已完成拆分并登记为 v1.6.22 本地候选", section(roadmap, "DONE"))
         self.assertNotIn("UL-006", section(roadmap, "IN_PROGRESS"))
         self.assertIn("`SHORT-NATURAL-REFERENCE-R1`", section(roadmap, "TERMINATED"))
         self.assertNotIn("SHORT-NATURAL-REFERENCE-R1", section(roadmap, "IN_PROGRESS"))
