@@ -629,6 +629,45 @@ class UnderLengthCapabilityTests(unittest.TestCase):
         )
         self.assertNotEqual(100, spec["minimum"])
 
+    def test_implicit_contract_exposes_only_the_incident_bulletin_entry(self) -> None:
+        guide = (RUNTIME_PATH.parent / "README.md").read_text(encoding="utf-8")
+        capabilities = json.loads(
+            (RUNTIME_PATH.parents[2] / "host-capabilities.json").read_text(
+                encoding="utf-8"
+            )
+        )["length_gate"]
+
+        self.assertIn("无显式字数下限", guide)
+        self.assertIn("仅限阶段性事故通报", guide)
+        self.assertIn("情况说明、办理通知和会议纪要", guide)
+        self.assertEqual(["incident_bulletin"], capabilities["implicit_genres"])
+        self.assertIn("incident_bulletin", capabilities["trigger"])
+        self.assertEqual(
+            {"incident_bulletin"}, set(RUNTIME._IMPLICIT_GENRE_GUIDANCE)
+        )
+        self.assertFalse(hasattr(RUNTIME, "SITUATION_STATUS_RE"))
+        self.assertFalse(hasattr(RUNTIME, "NOTICE_ACTION_RE"))
+
+    def test_incident_revision_instruction_uses_natural_material_boundary_wording(self) -> None:
+        request = (
+            "2026年8月30日7时40分，南桥街一处商铺后墙局部脱落，无人受伤。"
+            "城管和消防人员已到场排查，原因正在调查。请起草情况通报，不限字数。"
+        )
+        original = (
+            "2026年8月30日7时40分，南桥街一处商铺后墙局部脱落。"
+            "无人受伤，城管和消防人员已到场排查，原因正在调查。"
+        )
+        instruction = RUNTIME._implicit_revision_instruction(
+            request,
+            original,
+            {"mode": "implicit", "genre": "incident_bulletin"},
+        )
+
+        self.assertNotIn("可可靠分离", instruction)
+        self.assertIn("能够可靠分离的事实材料", instruction)
+        self.assertIn("一层原因、目的、即时作用、合理归纳、条件结论或低强度预期", instruction)
+        self.assertIn("必须逐字返回 D0", instruction)
+
     def test_situation_and_notice_do_not_start_implicit_under_length(self) -> None:
         cases = (
             (

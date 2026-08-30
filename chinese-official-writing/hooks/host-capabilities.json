@@ -1,5 +1,5 @@
 {
-  "schema_version": 16,
+  "schema_version": 17,
   "shared_gate_core": "chinese-official-writing/scripts/review_gate.py",
   "activation": {
     "default": "disabled",
@@ -27,7 +27,20 @@
     "activation": "explicit_static_companion_selection",
     "configuration_file": "hook-capability.json",
     "default_selected": false,
-    "trigger": "explicit_lower_bound_and_more_than_ten_percent_short",
+    "trigger": "explicit_lower_bound_and_more_than_ten_percent_short_or_incident_bulletin_implicit_near_material_paraphrase",
+    "implicit_genres": [
+      "incident_bulletin"
+    ],
+    "implicit_entry": {
+      "requires_numeric_bound": false,
+      "requires_separable_fact_material": true,
+      "requires_near_material_paraphrase": true,
+      "excluded_genres": [
+        "situation_explanation",
+        "action_notice",
+        "meeting_minutes"
+      ]
+    },
     "revision_limit": 1,
     "failure_action": "original_draft"
   },

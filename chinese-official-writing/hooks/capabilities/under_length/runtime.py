@@ -2,11 +2,11 @@
 """Bounded under-length revision capability for the optional Hook.
 
 An explicit lower bound keeps the existing ten-percent tolerance.  Without a
-numeric bound, three real-writing-validated short genres may also start when a
-reliably separated fact block was only paraphrased into the completed draft.
-Both paths permit one revision, one semantic delta verdict, and a hash-bound
-final echo.  Any uncertainty or runtime failure selects the byte-identical
-original draft.
+numeric bound, only the real-writing-validated incident-bulletin path may start
+when a reliably separated fact block was only paraphrased into the completed
+draft.  Both paths permit one revision, one semantic delta verdict, and a
+hash-bound final echo.  Any uncertainty or runtime failure selects the
+byte-identical original draft.
 """
 
 from __future__ import annotations
@@ -87,13 +87,6 @@ DRAFT_ACTION_RE: Final = re.compile(
 INCIDENT_TOPIC_RE: Final = re.compile(
     r"(?:事故|突发事件|警情|灾情|险情|火灾|坍塌|塌方|爆炸|泄漏|伤亡|"
     r"受伤|救援|抢险|原因正在调查|原因仍在调查)"
-)
-SITUATION_STATUS_RE: Final = re.compile(
-    r"(?:已完成|已经形成|未附|尚未|未作|没有作出安排|仍处于|待补|待定|"
-    r"正在|未形成(?:采购)?决定)"
-)
-NOTICE_ACTION_RE: Final = re.compile(
-    r"(?:报送|发送|提交|填报|参加|办理|反馈|于.{0,16}前|截止)"
 )
 EXPLICIT_TITLE_RE: Final = re.compile(
     r"(?:标题|题目)\s*(?:为|是|：|:)\s*[《\"]?([^》\"\n，。；;]+)"
@@ -415,16 +408,6 @@ def mechanical_reason(
 
 
 _IMPLICIT_GENRE_GUIDANCE: Final = {
-    "situation_explanation": (
-        "情况说明可按事项或阶段归组，增加题名、必要承接和由已列事实直接支持的阶段归纳；"
-        "必须逐项保留已经完成、已经形成但未附、尚未开展且未安排、正在办理或尚未决定等成对状态，"
-        "不得把缺失材料改写成以后报送、说明或通报的承诺。"
-    ),
-    "action_notice": (
-        "办理通知须完整承载对象、动作、截止时间、内容字段、渠道和豁免条件；"
-        "可增加由既有办理动作直接支持的一层低强度目的和常规收束，"
-        "不得新增梳理、核对、摸排、附件、公章、纸质材料、考核、追责或其他执行链。"
-    ),
     "incident_bulletin": (
         "阶段性事故通报按材料所处阶段承载事件、人员状态、已给影响、现场处置和调查或排查状态；"
         "原因、影响和处置以材料为准，不得擅自判定原因、责任、损失或完成状态。"
@@ -438,7 +421,7 @@ def _implicit_revision_instruction(
 ) -> str:
     guidance = _IMPLICIT_GENRE_GUIDANCE[spec["genre"]]
     return (
-        "写后复核发现 D0 正文接近可可靠分离事实材料的换词或换序转写，尚未充分形成当前文种功能。"
+        "写后复核发现 D0 正文基本只是对能够可靠分离的事实材料作换词或换序转写，尚未充分形成当前文种功能。"
         "这不是固定100字要求，也不是国家公文规范。请只修订 D0，不另起一篇；在事实安全前提下"
         "增加本题确实需要的一个完整文种功能，使 D1 正文比 D0 和事实材料更完整、更长。"
         "任何安全的实质增长都是有效改进，不为跨过整数凑字。只输出可直接使用的完整终稿。"
