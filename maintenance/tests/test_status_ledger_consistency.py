@@ -29,27 +29,25 @@ def section(text: str, heading: str) -> str:
 
 
 class StatusLedgerConsistencyTests(unittest.TestCase):
-    def test_current_release_record_is_v1621(self) -> None:
+    def test_current_release_record_is_v1622(self) -> None:
         public_readme = read("README.md")
         todo = read("maintenance/docs/待办.md")
         roadmap = read("maintenance/specs/roadmap.md")
 
-        self.assertIn("当前产品 tag 仍为 `v1.6.21^{commit}=8086ff25", todo)
-        self.assertIn("`release-1.6.21.md`", todo)
+        self.assertIn("当前产品tag为`v1.6.22^{commit}=4b135c50", todo)
+        self.assertIn("`release-1.6.22.md`", todo)
         self.assertIn("## v1.6.14 起已发布状态与后续研究", todo)
         self.assertNotIn("候选均保持 HOLD", public_readme)
-        self.assertIn("`v1.6.21` 小版本已发布", roadmap)
-        self.assertNotIn("当前产品 tag 为 `v1.6.20", todo)
+        self.assertIn("`v1.6.22` 小版本已发布", roadmap)
+        self.assertNotIn("当前产品 tag 仍为 `v1.6.21", todo)
 
-    def test_v1621_is_published_while_store_indexes_propagate(self) -> None:
-        public_readme = read("README.md")
+    def test_v1621_release_history_is_preserved(self) -> None:
         evidence = read("maintenance/tests/evidence/release-1.6.21.md")
         candidate_evidence = read("maintenance/tests/evidence/release-1.6.21-rc.md")
         evidence_index = read("maintenance/docs/evidence/README.md")
         todo = read("maintenance/docs/待办.md")
         roadmap = read("maintenance/specs/roadmap.md")
 
-        self.assertIn("chinese-official-writing@1.6.21", public_readme)
         self.assertIn("PUBLISHED / SEE release-1.6.21.md", candidate_evidence)
         self.assertIn("8086ff255f04df8b080ef1a0488236295bf2cb8d", evidence)
         self.assertIn("versionId=276070", evidence)
@@ -61,30 +59,34 @@ class StatusLedgerConsistencyTests(unittest.TestCase):
         self.assertIn("当前接口列出34项", evidence)
         self.assertIn("`389b43f4` 及当日后续", evidence)
         self.assertIn("release-1.6.21.md", evidence_index)
-        self.assertIn("SkillHub旧待审`versionId=276070`", todo)
-        self.assertIn("重新提交为`versionId=276243`", todo)
+        self.assertIn("v1.6.21 的 GitHub、SkillHub.cn 与 ClawHub 回执", todo)
         self.assertIn("`v1.6.21` 小版本已发布", section(roadmap, "DONE"))
         self.assertNotIn("`v1.6.21` 本地待发布候选", section(roadmap, "IN_PROGRESS"))
 
-    def test_v1622_is_registered_as_local_candidate_only(self) -> None:
+    def test_v1622_is_published_while_store_indexes_propagate(self) -> None:
         public_readme = read("README.md")
         todo = read("maintenance/docs/待办.md")
         roadmap = read("maintenance/specs/roadmap.md")
         coverage = read("maintenance/specs/coverage.md")
-        evidence = read("maintenance/tests/evidence/release-1.6.22-rc.md")
+        evidence = read("maintenance/tests/evidence/release-1.6.22.md")
+        candidate_evidence = read("maintenance/tests/evidence/release-1.6.22-rc.md")
         evidence_index = read("maintenance/docs/evidence/README.md")
 
-        self.assertNotIn("chinese-official-writing@1.6.22", public_readme)
-        self.assertIn("`v1.6.22` 本地公开版候选已登记", section(roadmap, "DONE"))
+        self.assertIn("chinese-official-writing@1.6.22", public_readme)
+        self.assertIn("`v1.6.22` 小版本已发布", section(roadmap, "DONE"))
         self.assertNotIn("v1.6.22", section(roadmap, "IN_PROGRESS"))
-        self.assertIn("本地公开版候选已登记为 `v1.6.22`", todo)
-        self.assertIn("DONE_V1.6.22_LOCAL_CANDIDATE", table_row(coverage, "WR-023"))
-        self.assertIn("DONE_V1.6.22_LOCAL_CANDIDATE", table_row(coverage, "WR-024"))
-        self.assertIn("DONE_V1.6.22_LOCAL_CANDIDATE", table_row(coverage, "UL-006"))
+        self.assertIn("SkillHub `versionId=277452`", todo)
+        self.assertIn("DONE_V1.6.22", table_row(coverage, "WR-023"))
+        self.assertIn("DONE_V1.6.22", table_row(coverage, "WR-024"))
+        self.assertIn("DONE_V1.6.22", table_row(coverage, "UL-006"))
         self.assertIn("DONE_V1.6.21", table_row(coverage, "HK-004-QWENWORK-R1"))
-        self.assertIn("未创建或移动 tag", evidence)
-        self.assertIn("未推送", evidence)
-        self.assertIn("未向 SkillHub.cn、ClawHub 或其他平台提交", evidence)
+        self.assertIn("PUBLISHED / SEE release-1.6.22.md", candidate_evidence)
+        self.assertIn("4b135c506b4b4d61f49115298bc78564b5ec8f50", evidence)
+        self.assertIn("versionId=277452", evidence)
+        self.assertIn("k972jtvctk9hshdd0kqf149sks8dh3xf", evidence)
+        self.assertIn("PUBLIC_LATEST_PENDING", evidence)
+        self.assertIn("PUBLIC_INDEX_CLOSED", evidence)
+        self.assertIn("release-1.6.22.md", evidence_index)
         self.assertIn("release-1.6.22-rc.md", evidence_index)
 
     def test_ul006_and_notice_atoms_have_distinct_terminal_states(self) -> None:
@@ -94,11 +96,11 @@ class StatusLedgerConsistencyTests(unittest.TestCase):
         todo = read("maintenance/docs/待办.md")
         evidence_index = read("maintenance/docs/evidence/README.md")
 
-        self.assertIn("当前公开候选只实现事故通报入口", requirements)
-        self.assertIn("DONE_V1.6.22_LOCAL_CANDIDATE", coverage_row)
+        self.assertIn("当前公开实现只接入事故通报入口", requirements)
+        self.assertIn("DONE_V1.6.22", coverage_row)
         self.assertIn("情况说明、通知隐式Hook与算术增量均`TERMINATED`", coverage_row)
         self.assertIn("无活动`HOLD`", coverage_row)
-        self.assertIn("`UL-006` 已完成拆分并登记为 v1.6.22 本地候选", section(roadmap, "DONE"))
+        self.assertIn("`UL-006` 已完成拆分并随v1.6.22发布", section(roadmap, "DONE"))
         self.assertNotIn("UL-006", section(roadmap, "IN_PROGRESS"))
         self.assertIn("`SHORT-NATURAL-REFERENCE-R1`", section(roadmap, "TERMINATED"))
         self.assertNotIn("SHORT-NATURAL-REFERENCE-R1", section(roadmap, "IN_PROGRESS"))

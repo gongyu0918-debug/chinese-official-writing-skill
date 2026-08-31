@@ -66,7 +66,7 @@
 
 ## 快速安装
 
-当前 GitHub 发布版本：`chinese-official-writing@1.6.21`。
+当前 GitHub 发布版本：`chinese-official-writing@1.6.22`。
 
 平台入口：[ClawHub](https://clawhub.ai/gongyu0918-debug/skills/chinese-official-writing) · [skillhub.cn](https://skillhub.cn/skills/chinese-official-writing)。通用 Agent Skills 安装器可直接使用：
 
