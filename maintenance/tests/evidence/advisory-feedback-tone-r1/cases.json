@@ -1,0 +1,59 @@
+{
+  "schema_version": 1,
+  "baseline_commit": "a6764b7e61c5939c3dd098d556bf3e8d36a298a3",
+  "reasoning_effort": "max",
+  "providers": {
+    "alibaba2": "alibaba-token-plan-2/deepseek-v4-flash-0731",
+    "alibaba1": "alibaba-token-plan/deepseek-v4-flash-0731",
+    "ollama": "ollama-cloud/deepseek-v4-flash:0731",
+    "opencode": "opencode-go/deepseek-v4-flash",
+    "minimax": "minimax-cn/MiniMax-M3"
+  },
+  "cases": [
+    {
+      "id": "ADVICE-COMPUTE-SUBSIDY",
+      "atoms": ["WR-021-ADVISORY-FEEDBACK-R1"],
+      "prompt_file": "prompts/advice-compute-subsidy.txt",
+      "material": "算力补贴意见建议长稿：5项问题、9项建议，含1亿Token、单月6万余条、5个月30万条等事实；建议对象涉及审核部门和申报平台。",
+      "required_groups": [["算力补贴"], ["预付费"], ["6万余条"], ["30万条"], ["九", "（九）"], ["审核", "申报"]],
+      "forbidden": ["已全面解决", "极大便利了企业", "审核部门能力不足", "平台建设落后"],
+      "quality_markers": ["肯定", "便利", "建议", "审核部门", "平台"]
+    },
+    {
+      "id": "ADVICE-MULTI-OWNER",
+      "atoms": ["WR-021-ADVISORY-FEEDBACK-R1"],
+      "prompt_file": "prompts/advice-multi-owner.txt",
+      "material": "线上申报和进度查询已上线；材料认定权属于审核部门，上传能力属于平台建设运营方。",
+      "required_groups": [["线上申报"], ["进度查询"], ["PDF"], ["20MB"], ["CSV"], ["ZIP"], ["审核部门"], ["平台"]],
+      "forbidden": ["现认定", "现允许", "审核部门不懂", "平台技术落后", "已显著提升"],
+      "quality_markers": ["便利", "建议审核部门", "建议平台", "研究明确", "可考虑"]
+    },
+    {
+      "id": "ADVICE-NO-PRAISE-FACT",
+      "atoms": ["WR-021-ADVISORY-FEEDBACK-R1"],
+      "prompt_file": "prompts/advice-no-praise-fact.txt",
+      "material": "只给出意见征集页面问题和两项建议，没有既成效果或用户评价。",
+      "required_groups": [["意见征集"], ["保存"], ["附件"], ["技术支持"], ["建议"]],
+      "forbidden": ["成效显著", "极大便利", "广受好评", "全面提升", "技术能力不足"],
+      "quality_markers": ["感谢", "围绕", "建议", "可考虑"]
+    },
+    {
+      "id": "CONTROL-SAFETY-RECTIFICATION",
+      "atoms": ["WR-021-ADVISORY-FEEDBACK-R1-CONTROL"],
+      "prompt_file": "prompts/control-safety-rectification.txt",
+      "material": "安全检查确认3处隐患，其中1处涉及应急出口被占用，要求受检单位限期整改。",
+      "required_groups": [["3处"], ["应急出口"], ["9月3日"], ["整改"], ["复核"]],
+      "forbidden": ["总体工作成效显著", "可酌情整改", "如有条件可整改", "贵单位成绩值得肯定"],
+      "quality_markers": ["立即", "限期", "责任", "安全"]
+    },
+    {
+      "id": "CONTROL-FORMAL-GUIDANCE",
+      "atoms": ["WR-021-ADVISORY-FEEDBACK-R1-CONTROL"],
+      "prompt_file": "prompts/control-formal-guidance.txt",
+      "material": "市主管部门向区县印发正式指导意见，要求建立台账、季度汇总和年度评估。",
+      "required_groups": [["各区县"], ["台账"], ["季度"], ["年度评估"]],
+      "forbidden": ["建议贵单位", "供参考", "请予考虑", "可酌情建立"],
+      "quality_markers": ["应当", "要", "严格", "落实"]
+    }
+  ]
+}

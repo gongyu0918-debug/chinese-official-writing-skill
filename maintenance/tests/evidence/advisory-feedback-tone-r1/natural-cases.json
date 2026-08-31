@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "baseline_commit": "a6764b7e61c5939c3dd098d556bf3e8d36a298a3",
+  "reasoning_effort": "max",
+  "providers": {
+    "alibaba2": "alibaba-token-plan-2/deepseek-v4-flash-0731",
+    "alibaba1": "alibaba-token-plan/deepseek-v4-flash-0731",
+    "ollama": "ollama-cloud/deepseek-v4-flash:0731",
+    "opencode": "opencode-go/deepseek-v4-flash",
+    "minimax": "minimax-cn/MiniMax-M3"
+  },
+  "cases": [
+    {
+      "id": "ADVICE-COMPUTE-NATURAL",
+      "atoms": ["WR-021a-ADVISORY-RELATION", "WR-021b-ADVISORY-CONSOLIDATION", "WR-008-DOCX-HEADING-R1"],
+      "source_file": "prompts/advice-compute-subsidy.txt",
+      "source_from_heading": "关于进一步优化算力补贴申报审核机制的意见建议",
+      "instruction": "请使用已安装的中文公文写作 Skill，将下面底稿修改为可直接提交给算力补贴主管、审核部门和申报平台的意见建议。要求正式、清晰、精炼，保留有用事实、数字、未决状态和实质建议；只输出完整正文，不解释过程。",
+      "material": "算力补贴审核机制长底稿，包含动态计费、支持期、海量明细、主体对应、资金勾稽、平台能力和分类审核。",
+      "required_groups": [["算力补贴"], ["预付费"], ["1亿"], ["6万余条"], ["30万条"], ["审核"], ["平台"]],
+      "forbidden": ["已全面解决", "成效显著", "审核部门能力不足", "平台技术落后"],
+      "quality_markers": ["建议", "主管", "审核部门", "平台运营", "共性"]
+    },
+    {
+      "id": "ADVICE-MULTI-OWNER-NATURAL",
+      "atoms": ["WR-021a-ADVISORY-RELATION", "WR-021b-ADVISORY-CONSOLIDATION"],
+      "prompt_file": "prompts/advice-multi-owner-natural.txt",
+      "material": "线上申报已提供便利；材料认定和上传功能分属审核部门与平台运营方，均未决定调整。",
+      "required_groups": [["线上申报"], ["PDF"], ["20MB"], ["CSV"], ["ZIP"], ["审核部门"], ["平台"]],
+      "forbidden": ["现认定", "现允许", "已上线", "能力不足", "技术落后"],
+      "quality_markers": ["建议", "研究明确", "平台运营方", "可考虑"]
+    },
+    {
+      "id": "ADVICE-HEADING-REPAIR-NATURAL",
+      "atoms": ["WR-008-DOCX-HEADING-R1"],
+      "prompt_file": "prompts/advice-heading-repair-natural.txt",
+      "material": "意见建议片段将两个二级小标题与长正文接排，标题后带句号；主标题带首行空格。",
+      "required_groups": [["关于优化申报材料核验方式的意见建议"], ["证据链认定"], ["平台上传能力"], ["6万余条"], ["30万条"]],
+      "forbidden": [],
+      "format_expectations": ["主标题无前导空格并单独成段", "两个二级小标题独立成段且末尾无句号", "各自正文另起一段"],
+      "quality_markers": ["（一）证据链认定\n", "（二）平台上传能力\n"]
+    },
+    {
+      "id": "CONTROL-SAFETY-NATURAL",
+      "atoms": ["WR-021a-ADVISORY-RELATION-CONTROL"],
+      "prompt_file": "prompts/control-safety-rectification.txt",
+      "material": "安全检查确认3处隐患并要求限期整改。",
+      "required_groups": [["3处"], ["应急出口"], ["9月3日"], ["整改"], ["复核"]],
+      "forbidden": ["可酌情整改", "如有条件可整改", "成绩值得肯定"],
+      "quality_markers": ["立即", "限期", "安全"]
+    },
+    {
+      "id": "CONTROL-FORMAL-GUIDANCE-NATURAL",
+      "atoms": ["WR-021a-ADVISORY-RELATION-CONTROL"],
+      "prompt_file": "prompts/control-formal-guidance.txt",
+      "material": "主管部门向区县印发正式指导意见。",
+      "required_groups": [["各区县"], ["台账"], ["季度"], ["年度评估"]],
+      "forbidden": ["建议贵单位", "供参考", "请予考虑", "可酌情建立"],
+      "quality_markers": ["要", "应当", "落实"]
+    }
+  ]
+}
