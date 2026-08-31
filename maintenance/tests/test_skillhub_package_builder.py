@@ -15,7 +15,7 @@ SPEC = importlib.util.spec_from_file_location("build_skillhub_package", MODULE_P
 assert SPEC and SPEC.loader
 BUILDER = importlib.util.module_from_spec(SPEC)
 SPEC.loader.exec_module(BUILDER)
-RC_VERSION = "1.6.22"
+RC_VERSION = "1.6.23"
 
 
 class SkillHubPackageBuilderTests(unittest.TestCase):
