@@ -2,6 +2,8 @@
 
 日期：2026-08-31。
 
+状态：`PUBLISHED / SEE release-1.6.22.md`。本文件保留发布前候选门；正式外部回执与本次复跑计数见同目录 `release-1.6.22.md`。
+
 ## 候选边界
 
 - 固定产品基线为 `main@736eca124b1dd8d1f95f6ce475b820ae2ead46cf`，版本坐标提交为 `4b135c506b4b4d61f49115298bc78564b5ec8f50`，分支为 `codex/release-v1.6.22`。
