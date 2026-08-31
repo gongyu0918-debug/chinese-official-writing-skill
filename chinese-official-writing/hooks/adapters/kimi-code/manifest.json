@@ -1,6 +1,6 @@
 {
   "name": "chinese-official-writing-gate",
-  "version": "1.6.22",
+  "version": "1.6.23",
   "description": "中文公文写作 Skill 的可选 Kimi Code CLI companion，提供一次有界交付门禁。",
   "author": {
     "name": "gongyu0918-debug"
