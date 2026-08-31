@@ -2,7 +2,7 @@
 
 日期：2026-08-31。
 
-状态：`R3_SELECTED_ENGINEERING_VERIFIED / R4_R5_R6_TERMINATED / NEXT_VERSION_CANDIDATE / NOT_MERGED`。
+状态：`R3_SELECTED_ENGINEERING_VERIFIED / R4_R5_R6_TERMINATED / PREMERGE_GATE_PASS / NEXT_VERSION_CANDIDATE_NOT_MERGED`。
 
 ## 边界
 
@@ -28,6 +28,14 @@
 
 R3 的读取回执也如实保留：长篇题3/5、多主体有效题2/4、标题题4/5实际读取新增专叶。没有读取专叶的样本仍可能仅凭主入口和既有规则完成部分目标，因此读取次数不冒充质量证据；该差异作为宿主自主选读的残余风险保留。
 
+## 正式权力关系控制题补回
+
+首轮候选 `a5d90f11` 已在 Alibaba Token Plan 2 和 OpenCode Go 两家低成本路线运行安全整改意见、正式下行指导意见各一题，共4份真实终稿；此前结果摘要只写了正向题，没有把这组已有控制证据带入终态。现从原始运行记录补回：4/4无技术失败、无硬失败，4/4均未读取 `genre-playbook-advisory-feedback.md`。
+
+- 安全整改2/2保留3处隐患、应急出口、2026年9月3日、整改照片和复核要求，未插入泛泛表扬，也未把限期要求弱化为`可酌情`或`如有条件`。终稿见[`Alibaba2`](control-r1/alibaba2-safety-rectification.txt)和[`OpenCode`](control-r1/opencode-safety-rectification.txt)。
+- 正式下行指导2/2使用`各区县要`等部署语气，保留台账、季度汇总、年度评估和12月底报送要求，未改成`建议贵单位`、`供参考`或`请予考虑`。终稿见[`Alibaba2`](control-r1/alibaba2-formal-guidance.txt)和[`OpenCode`](control-r1/opencode-formal-guidance.txt)。
+- 从该首轮候选到选定语义 `10c00a10` 的产品差异只涉及共性归并、礼貌铺垫细化和标题版式；主入口对正式下行指导、监督检查、安全整改、审计纪检建议的排除句没有变化。因此这4份控制稿可作为选定路由的两家真实证据，但不扩大表述为五家控制验证。
+
 ## 后续最小尝试
 
 - R4 只在专叶增加“只留一条代表事实链、不得用一二三重展旧项、总量须明显收束”。OpenCode由2719字符降至2406字符，但 Alibaba2 由2384字符回升至2687字符且建议项增至7项；没有跨 provider 共同增益，已恢复 R3 产品字节，状态 `TERMINATED_MIXED_REGRESSION`。
@@ -38,11 +46,24 @@ R3 的读取回执也如实保留：长篇题3/5、多主体有效题2/4、标�
 
 ## 工程验证
 
-- `python -m unittest maintenance.tests.test_advisory_feedback_leaf`：4/4通过。
+- `python -m unittest maintenance.tests.test_advisory_feedback_leaf`：5/5通过。
 - `python -m unittest maintenance.tests.test_skill_boundary`：80/80通过。
 - `python -m unittest maintenance.tests.test_skillhub_package_builder`：3/3通过。
 - Skill Creator `quick_validate.py`：canonical、Agent Skills、Qwen Code、QwenWork、Hermes均通过。OpenClaw包有仓库既有的`category`扩展字段，通用 validator 不接受该字段；其镜像一致性、MIT和无 Hook 边界由仓库单测覆盖，不记为本候选回退。
 - `git diff --check`：通过。
+
+## 合并前最终门
+
+- 以冻结的 `codex/release-v1.6.23@88eec00e` 为直接基线建立独立集成分支；当前公开 `main@a6764b7e` 是该基线和集成提交的祖先。产品集成提交为 `22fadf36`，未改写冻结分支或 `main`。
+- 精确产品差异只有 canonical `SKILL.md`、`format-gbt9704.md`、新增建议反馈专叶及五套普通镜像；Hook树、description、版本坐标、manifest、tag和平台状态均无变化，R4—R6产品加码没有进入候选。
+- 聚焦回归107/107、全量回归761/761通过；固定冻结基线与候选的确定性真实题面消融均为111/111，双方起草失败和改稿失败均为0。
+- `OFFICIAL_WRITING_EVAL_STUB=1` 的10个 smoke 用例形成20次顺序平衡裁决：Skill 10胜、baseline 0胜、无平局、无无效、无需人工复核，judge consistency为1.0；该项是stub工程门，不冒充真实写稿。
+- canonical、Agent Skills、Qwen Code、QwenWork、Hermes五套 `quick_validate.py` 通过；174个tracked Python文件完成只读编译，175个tracked JSON文件完成解析；`sync_adapters.py` 复跑后tracked产品和镜像无差异。
+- 本地 SkillHub 预检包为84文件，slug=`chinese-official-writing`、展示名“中文公文写作”、版本坐标1.6.23，fingerprint=`625af034cc5655d87c2f24d9c8e06df06ee656b587d96550e1d07b03aac7f084`；这只是合并前结构预检包，不是待发布的v1.6.23冻结包。
+- 本地 ClawHub 目录为35文件、无Hook、无`agents/openai.yaml`、无付费提纲和红头实现，fingerprint=`e742ec79802e982de7d6c66d1719aaecce826ff3e80e9018fcb2eac20291f034`。未向任何平台写入。
+- 独立只读冷审确认R3净改动、R4—R6隔离、普通编号句保护、冻结基线和五套镜像均无P1；冷审指出的状态字符串不一致和控制题摘要缺口已在本记录统一、补回。DOCX视觉验证缺口保持明示，不算已完成。
+
+最终状态为 `PREMERGE_GATE_PASS / NEXT_VERSION_CANDIDATE_NOT_MERGED`。后续如获明确授权，只能把本候选合入当前 `main`；不得改变已冻结、已发布的v1.6.23产品包，也不得把本地预检包作为1.6.23再次发布。
 
 ## 终态与剩余风险
 
