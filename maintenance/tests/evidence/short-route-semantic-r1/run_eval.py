@@ -25,11 +25,11 @@ MODE_COMMITS = {
     "candidate-r2": "candidate_r2_commit",
 }
 R2_CASE_IDS = {
-    "semantic-compact-procurement-application",
-    "upper-480-unresolved-situation-note",
-    "around-360-internal-notice",
-    "fact-dense-compact-work-report",
-    "upper-1500-full-speech",
+    "SEMANTIC-COMPACT-PURCHASE",
+    "UPPER-480-SITUATION",
+    "AROUND-360-NOTICE",
+    "FACT-DENSE-COMPACT-REPORT",
+    "UPPER-1500-FULL-SPEECH",
 }
 
 
