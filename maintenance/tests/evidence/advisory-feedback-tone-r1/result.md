@@ -70,4 +70,4 @@ R3 的读取回执也如实保留：长篇题3/5、多主体有效题2/4、标�
 - `WR-025a` 有据合作性开场与处置权绑定：`SELECTED_ENGINEERING_VERIFIED`。
 - `WR-025b` 共性问题与建议归并：`SELECTED_WITH_MODEL_VARIANCE`；已有4家可比路线产生3家建议项收束、4家问题项收束，不以MiniMax单路保持9项否定整体能力，也不继续堆规则。
 - `WR-008b` 并列小标题与 DOCX 主标题缩进：文本修复 `SELECTED_ENGINEERING_VERIFIED`；实际 DOCX 渲染仍未验证，不把文字规则冒充最终 Word 视觉结果。
-- R4、R5、R6 均已 `TERMINATED`，无活动 `HOLD`。当前分支未合入 main、未推送、未发布；是否进入 v1.6.24 由后续授权决定。
+- R4、R5、R6 均已 `TERMINATED`，无活动 `HOLD`。R3候选已在v1.6.23发布闭环后合入本地main，但未进入已发布v1.6.23产品tag或平台包；后续发布仍需另行授权。

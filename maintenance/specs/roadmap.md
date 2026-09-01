@@ -16,6 +16,7 @@
 - `WR-004`：20类事务文体已完成真实写稿，原型19/20功能成立；“编者按”标识修复后目标功能20/20，中央直接叶已随 `v1.6.6@b49da7f2` 发布。
 - `WR-005` 短稿自然度：上限题 R3 为候选3胜、基线0胜、难分1，候选四稿硬边界全 PASS；最小路由接入后又以 Ollama 报告和 Alibaba 新闻完成两篇在线直写，均读取新叶且可直接使用，已随 `v1.6.7@44347003` 发布。明确篇幅下限继续由 under-length 处理。
 - `WR-005b-SHORT-ROUTE-SEMANTIC-R3`：已删除无通用依据的300/200字路由阈值，不用另一组数字替换；五家累计100份真实调用中最终R3为15/15技术有效，采购判断强度和情况说明未决状态完整，明确不要求短稿的完整讲话短稿页读取由2/5降为0/5。五套镜像和定向工程门通过，状态为`R3_SELECTED_ENGINEERING_VERIFIED / MERGED_MAIN_POST_V1.6.23`；不改Hook、description、版本或发布面。[结果](../tests/evidence/short-route-semantic-r1/result.md)
+- `WR-005b` 合入后表项冷审：Qwen 3.8 Max 与 Grok 4.6 均指出入口语义与参考资料表旧表述不一致；三轮单句最小原型已用 Alibaba Token Plan 2、OpenCode Go、MiniMax 完成27份真实稿。R1无读取收益，R2出现过程说明、材料外安排和两家报告变短，R3报告仅一处改善但讲话误读反增；全部产品字节已恢复，终态为`TERMINATED_NO_REAL_GAIN / BASELINE_RETAINED`，无活动`HOLD`。[结果](../tests/evidence/post-v1623-cold-review-fixes-r1/result.md)
 - `OV-001` 超长收束：真实 D0 498→285、SOL max 六项 PASS、Grok 4.6 冷审修复和最终机械门重放已完成，随 `v1.6.8@6b1dc2c5` 发布；当前 Codex 又完成313→137在线 D1/hash 样本。2026-08-20 的 WorkBuddy / CodeBuddy 2.115.0 补样已闭合 Skill、事务、Stop 和 D0 hash，但两次重复观察均因 `invalid_preserved_segment` 安全回退，不能记为 CodeBuddy 压缩 D1。ClawHub 同步的是无 Hook 写作规则。
 - `WR-006` 自然审稿：OpenCode Go 真实审稿和自然审稿、复合成稿、材料引语三类路由反控已完成，随 `v1.6.9@5047c224` 发布。
 - `OV-001` 发布后边界补丁：软性“约、左右、上下”、长引语、无标点编号正文、否定责任短语和同动词多拟办对象修复已随 `v1.6.9@5047c224` 发布。
