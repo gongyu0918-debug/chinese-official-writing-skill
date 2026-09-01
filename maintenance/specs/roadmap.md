@@ -60,6 +60,7 @@
 
 ## IN_PROGRESS
 
+- `WR-005b-SHORT-ROUTE-SEMANTIC-R3`：已删除无通用依据的300/200字路由阈值，不用另一组数字替换；五家累计100份真实调用中最终R3为15/15技术有效，采购判断强度和情况说明未决状态完整，明确不要求短稿的完整讲话短稿页读取由2/5降为0/5。五套镜像和定向工程门通过，状态为`R3_SELECTED_ENGINEERING_VERIFIED / READY_FOR_INTEGRATION / NOT_MERGED`；不改Hook、description、版本或发布面。[结果](../tests/evidence/short-route-semantic-r1/result.md)
 - `WR-009c`：稀疏事务申请的未决字段后续写边界。只验证“待明确后另行报批/按程序组织实施”等材料外程序承诺，不同时修改原因推断；有现状、问题或已做尝试时仍允许一层合理原因和即时作用。[来源](../tests/evidence/short-inference-r1/cause-hint-result.md)
 - `CL-001-NOHK-R2`：普通无 Hook 写稿仍跨 provider 出现“已读取技能”、正文引导语、横线、自检和 commit/测试说明。只前移或合并现有“只交正文”规则，用短事务稿、新闻、情况说明与长稿做真实 A/B，不增加 description。[来源](../tests/evidence/short-inference-r1/cause-hint-result.md)
 
