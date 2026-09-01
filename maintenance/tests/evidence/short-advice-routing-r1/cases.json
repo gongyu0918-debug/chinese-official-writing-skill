@@ -1,5 +1,6 @@
 {
   "schema_version": 1,
+  "baseline_commit": "69515dbc216e6e057e497fbaa0c1cebb9dac6547",
   "reasoning_effort": "max",
   "providers": {
     "alibaba2": "alibaba-token-plan-2/deepseek-v4-flash-0731",
@@ -56,4 +57,3 @@
     }
   ]
 }
-
