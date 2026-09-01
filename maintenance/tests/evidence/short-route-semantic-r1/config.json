@@ -1,0 +1,9 @@
+{
+  "schema_version": 1,
+  "baseline_commit": "69515dbc216e6e057e497fbaa0c1cebb9dac6547",
+  "candidate_commit": "c9935bf4a30da3150dea521ef333c971983e67ae",
+  "allowed_product_diff": [
+    "chinese-official-writing/SKILL.md",
+    "chinese-official-writing/references/short-draft-naturalness.md"
+  ]
+}
