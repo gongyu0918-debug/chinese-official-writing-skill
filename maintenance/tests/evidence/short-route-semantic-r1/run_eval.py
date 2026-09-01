@@ -17,7 +17,7 @@ BASE_RUNNER_PATH = REPO / "maintenance/tests/evidence/reference-slimming-r2/run_
 OUTPUTS = {
     "baseline": REPO / "output/short-route-semantic-r1/baseline",
     "candidate": REPO / "output/short-route-semantic-r1/candidate",
-    "candidate-r2": REPO / "output/short-route-semantic-r1/candidate-r2",
+    "candidate-r2": REPO / "output/short-route-semantic-r1/candidate-r2b",
 }
 MODE_COMMITS = {
     "baseline": "baseline_commit",
