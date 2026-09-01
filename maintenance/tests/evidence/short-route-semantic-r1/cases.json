@@ -1,0 +1,68 @@
+{
+  "schema_version": 1,
+  "baseline_commit": "69515dbc216e6e057e497fbaa0c1cebb9dac6547",
+  "reasoning_effort": "max",
+  "providers": {
+    "alibaba2": "alibaba-token-plan-2/deepseek-v4-flash-0731",
+    "alibaba1": "alibaba-token-plan/deepseek-v4-flash-0731",
+    "ollama": "ollama-cloud/deepseek-v4-flash:0731",
+    "opencode": "opencode-go/deepseek-v4-flash",
+    "minimax": "minimax-cn/MiniMax-M3"
+  },
+  "cases": [
+    {
+      "id": "SEMANTIC-COMPACT-PURCHASE",
+      "atoms": ["WR-005b-SHORT-ROUTE-SEMANTIC-R1"],
+      "prompt_file": "prompts/semantic-compact-purchase.txt",
+      "material": "无数字简洁意图的采购申请，含现有设备、检测结论、数量、单价、总额、用途、申请单位、日期和未决状态。",
+      "required_groups": [["信息化运维部"], ["8台"], ["3台"], ["7年"], ["6200"], ["18600"], ["现场检测数据录入"], ["尚未批准", "尚待批准", "请批示", "请审批"]],
+      "forbidden": ["已经批准", "已完成采购", "政府采购程序", "三家比价", "当前日期"],
+      "quality_markers": ["申请", "购置", "用于", "批准"]
+    },
+    {
+      "id": "UPPER-480-SITUATION",
+      "atoms": ["WR-005b-SHORT-ROUTE-SEMANTIC-R1"],
+      "prompt_file": "prompts/upper-480-situation.txt",
+      "material": "只有480字上限的接口迁移情况说明，含日期、接口总数、完成与待配合数量、记录数、缺字段数、无数据丢失和切换未决。",
+      "required_groups": [["2026年8月20日"], ["6个"], ["4个"], ["2个"], ["3200"], ["17"], ["未发现数据丢失", "没有发现数据丢失"], ["尚未决定", "尚未确定"]],
+      "forbidden": ["已完成全部迁移", "已决定正式切换", "责任追究", "限期整改"],
+      "quality_markers": ["情况", "迁移", "待", "切换"]
+    },
+    {
+      "id": "AROUND-360-NOTICE",
+      "atoms": ["WR-005b-SHORT-ROUTE-SEMANTIC-R1"],
+      "prompt_file": "prompts/around-360-notice.txt",
+      "material": "360字左右且无下限的内部培训通知，时间、地点、对象、人数、内容、报名期限和责任部门齐全。",
+      "required_groups": [["2026年9月10日"], ["14:30"], ["第二会议室"], ["36人"], ["数据安全"], ["案例演练"], ["9月8日17:00"], ["办公室"]],
+      "forbidden": ["自带电脑", "考试", "签到考核", "不得请假"],
+      "quality_markers": ["通知", "参加", "报名", "办公室"]
+    },
+    {
+      "id": "FACT-DENSE-COMPACT-REPORT",
+      "atoms": ["WR-005b-SHORT-ROUTE-SEMANTIC-R1"],
+      "prompt_file": "prompts/fact-dense-compact-report.txt",
+      "material": "无上限但要求紧凑的事实密集项目情况报告，必须保护日期、数量、金额、状态、责任和下一步条件。",
+      "required_groups": [["2026年7月1日"], ["12项"], ["9项"], ["3项"], ["86万元"], ["61万元"], ["25万元"], ["项目办公室"], ["尚未验收", "未验收"], ["验收通过后"]],
+      "forbidden": ["已全部完成", "已经验收", "全部资金已支付", "全面投产"],
+      "quality_markers": ["进展", "尚未", "负责", "验收"]
+    },
+    {
+      "id": "LOWER-RANGE-800-1000",
+      "atoms": ["WR-005b-CONTROL"],
+      "prompt_file": "prompts/lower-range-800-1000.txt",
+      "material": "明确800—1000字硬区间的季度工作报告，事实足以展开，不得用短稿规则代替下限。",
+      "required_groups": [["2026年第二季度"], ["24项"], ["19项"], ["5项"], ["480万元"], ["312万元"], ["168万元"], ["7家"], ["2家"], ["尚未形成"]],
+      "forbidden": ["全部完成", "全部拨付", "已经形成统一方案"],
+      "quality_markers": ["第二季度", "进展", "问题", "下一步"]
+    },
+    {
+      "id": "UPPER-1500-FULL-SPEECH",
+      "atoms": ["WR-005b-CONTROL"],
+      "prompt_file": "prompts/upper-1500-full-speech.txt",
+      "material": "1500字以内但明确不要求短稿的完整讲话，含场合、对象、三组工作数据、问题和条件性后续。",
+      "required_groups": [["数字化服务专题会议"], ["2026年上半年"], ["18项"], ["14项"], ["4项"], ["3200人次"], ["7分钟"], ["11分钟"], ["6家"], ["2家"], ["尚未决定"]],
+      "forbidden": ["全部完成", "全面领先", "已经决定上线", "同志们必须"],
+      "quality_markers": ["同志们", "成绩", "问题", "下一步"]
+    }
+  ]
+}
