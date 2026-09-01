@@ -1,0 +1,59 @@
+{
+  "schema_version": 1,
+  "reasoning_effort": "max",
+  "providers": {
+    "alibaba2": "alibaba-token-plan-2/deepseek-v4-flash-0731",
+    "alibaba1": "alibaba-token-plan/deepseek-v4-flash-0731",
+    "ollama": "ollama-cloud/deepseek-v4-flash:0731",
+    "opencode": "opencode-go/deepseek-v4-flash",
+    "minimax": "minimax-cn/MiniMax-M3"
+  },
+  "cases": [
+    {
+      "id": "SHORT-ADVICE-PORTAL-BODY",
+      "atoms": ["WR-026-SHORT-ADVICE-ROUTING-R1"],
+      "prompt_file": "prompts/short-advice-portal-body.txt",
+      "material": "平台另设标题和身份字段；2026年8月12日实际申报时只收PDF且单文件10MB，原始XLSX为14MB，平台尚未决定调整。",
+      "required_groups": [["2026年8月12日"], ["PDF"], ["10MB", "10 MB"], ["XLSX"], ["14MB", "14 MB"], ["平台运营方"], ["尚未决定", "尚未形成", "待研究"]],
+      "forbidden": ["平台已经决定", "平台已开放", "审核部门已认可", "建议标题：", "落款："],
+      "quality_markers": ["建议", "实际申报", "研究", "平台运营方"]
+    },
+    {
+      "id": "SHORT-ADVICE-EMAIL-BODY",
+      "atoms": ["WR-026-SHORT-ADVICE-ROUTING-R1"],
+      "prompt_file": "prompts/short-advice-email-body.txt",
+      "material": "协会4家会员单位经办培训补贴，单家约22份材料，2家因逐份上传中断返工；批量上传与错误定位尚未决定。",
+      "required_groups": [["4家"], ["22份"], ["2家"], ["人力资源部门"], ["平台运营方"], ["尚未决定", "尚未形成", "待研究"]],
+      "forbidden": ["已上线批量上传", "已经决定", "立即开放", "关于进一步优化", "落款："],
+      "quality_markers": ["建议", "实际", "研究", "平台运营方"]
+    },
+    {
+      "id": "SHORT-ADVICE-STANDALONE",
+      "atoms": ["WR-026-SHORT-ADVICE-ROUTING-R1"],
+      "prompt_file": "prompts/short-advice-standalone.txt",
+      "material": "赣江新区软件行业协会独立成文的紧凑意见建议；6家会员中4家遇到20MB附件限制，材料为32MB CSV，调整尚未决定，成文日期2026年8月30日。",
+      "required_groups": [["赣江新区软件行业协会"], ["2026年8月30日"], ["6家"], ["4家"], ["20MB", "20 MB"], ["32MB", "32 MB"], ["CSV"], ["尚未决定", "尚未形成", "待研究"]],
+      "forbidden": ["平台已开放", "已经决定上线", "××", "XXXX"],
+      "quality_markers": ["关于", "意见建议", "建议", "赣江新区软件行业协会"]
+    },
+    {
+      "id": "CONTROL-SHORT-NOTICE",
+      "atoms": ["WR-026-CONTROL"],
+      "prompt_file": "prompts/control-short-notice.txt",
+      "material": "已决定的内部系统维护通知，时间、影响范围和责任团队明确。",
+      "required_groups": [["2026年9月6日"], ["20:00"], ["22:00"], ["申报材料上传"], ["已保存草稿"], ["技术保障组"]],
+      "forbidden": ["建议技术保障组", "供研究参考", "尚未决定", "可酌情维护"],
+      "quality_markers": ["暂停", "恢复", "负责"]
+    },
+    {
+      "id": "CONTROL-FORMAL-ADVICE",
+      "atoms": ["WR-026-CONTROL"],
+      "prompt_file": "prompts/control-formal-advice.txt",
+      "material": "江西省数字服务行业协会完整独立正式意见建议，含两类实际申报问题、两个有权对象和成文日期2026年8月28日。",
+      "required_groups": [["江西省数字服务行业协会"], ["2026年8月28日"], ["8家"], ["5家"], ["3家"], ["审核部门"], ["平台运营方"], ["尚未决定", "尚未形成", "待研究"]],
+      "forbidden": ["已经决定调整", "平台已开放", "审核部门已认可", "××", "XXXX"],
+      "quality_markers": ["关于", "意见建议", "建议", "江西省数字服务行业协会"]
+    }
+  ]
+}
+
