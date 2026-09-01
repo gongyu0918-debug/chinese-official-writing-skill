@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "baseline_commit": "69515dbc216e6e057e497fbaa0c1cebb9dac6547",
+  "candidate_commit": "9d3a44d8",
+  "allowed_product_diff": [
+    "chinese-official-writing/references/short-draft-naturalness.md"
+  ],
+  "case_ids": [
+    "SHORT-ADVICE-PORTAL-BODY",
+    "SHORT-ADVICE-EMAIL-BODY",
+    "SHORT-ADVICE-STANDALONE",
+    "CONTROL-SHORT-NOTICE",
+    "CONTROL-FORMAL-ADVICE"
+  ]
+}
+
