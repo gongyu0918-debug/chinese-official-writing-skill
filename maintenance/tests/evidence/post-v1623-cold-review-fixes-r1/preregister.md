@@ -44,4 +44,3 @@
 - `CR-001`：`SELECTED` 或 `REJECTED_NO_REAL_GAIN`，不留活动 `HOLD`。
 - `CR-002`：`BASELINE_RETAINED`，或在复现共性风险后另开候选；本轮观察本身不直接改产品。
 - 只有 `SELECTED` 的产品字节才同步五套公开兼容镜像，并补直接相关测试、规格和证据。
-

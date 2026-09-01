@@ -22,4 +22,3 @@ base.WRITER.OUTPUT_ROOT = base.OUTPUT_ROOT
 
 if __name__ == "__main__":
     sys.exit(base.main())
-
