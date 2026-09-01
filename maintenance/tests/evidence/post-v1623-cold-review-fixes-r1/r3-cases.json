@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "reasoning_effort": "max",
+  "providers": {
+    "alibaba2": "alibaba-token-plan-2/deepseek-v4-flash-0731",
+    "alibaba1": "alibaba-token-plan/deepseek-v4-flash-0731",
+    "ollama": "ollama-cloud/deepseek-v4-flash:0731",
+    "opencode": "opencode-go/deepseek-v4-flash",
+    "minimax": "minimax-cn/MiniMax-M3"
+  },
+  "cases": [
+    {
+      "id": "CR001-R3-DENSE-UPPER-1500-SPEECH",
+      "atom": "CR-001-R3",
+      "arms": ["candidate"],
+      "prompt_file": "prompts/dense-upper-1500-speech.txt",
+      "material": "数字化服务专题会议完整讲话，只有1500字上限；包含三组进展、两类问题、三项条件性后续和改版未决状态。",
+      "required_groups": [["2026年上半年"], ["18项"], ["14项"], ["4项"], ["3200人次"], ["11分钟"], ["7分钟"], ["6家"], ["2家"], ["3次"], ["9项"], ["尚未决定", "尚未确定", "尚待研究确定"]],
+      "forbidden": ["全部完成", "全面领先", "已经决定上线", "改版时间已经确定", "同志们必须"],
+      "quality_markers": ["同志们", "进展", "问题", "下一步"]
+    },
+    {
+      "id": "CR001-R3-DENSE-UPPER-1200-REPORT",
+      "atom": "CR-001-R3",
+      "arms": ["candidate"],
+      "prompt_file": "prompts/dense-upper-1200-report.txt",
+      "material": "2026年第一季度政务数据共享工作情况报告，只有1200字上限；包含事项、部门、接口、请求、检查、问题和未决后续。",
+      "required_groups": [["2026年第一季度"], ["28项"], ["21项"], ["7项"], ["9个部门", "9个业务部门"], ["6个"], ["3个"], ["1840次"], ["9分钟"], ["6分钟"], ["2次"], ["5项"], ["1项"], ["尚未确定", "尚未决定"]],
+      "forbidden": ["全部完成", "全面建成", "已经决定上线", "二季度全面推广", "限期问责"],
+      "quality_markers": ["工作进展", "存在问题", "下一步"]
+    }
+  ]
+}
+
