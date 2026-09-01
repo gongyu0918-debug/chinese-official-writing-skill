@@ -4,6 +4,7 @@ import argparse
 import importlib.util
 import json
 import sys
+from collections import Counter
 from pathlib import Path
 
 
@@ -48,6 +49,73 @@ def load_module(arm: str):
     return module
 
 
+def summarize(module) -> dict:
+    cases_config, config, cases = module.load_inputs()
+    pairs = []
+    missing_providers = []
+    missing_case_pairs = []
+    for provider_id in cases_config["providers"]:
+        baseline_path = module.BASELINE_OUTPUT / "providers" / f"{provider_id}.json"
+        candidate_path = module.OUTPUT_ROOT / "providers" / f"{provider_id}.json"
+        if not baseline_path.is_file() or not candidate_path.is_file():
+            missing_providers.append(provider_id)
+            continue
+        baseline_records = {
+            item["case_id"]: item
+            for item in json.loads(baseline_path.read_text(encoding="utf-8"))["records"]
+        }
+        candidate_records = {
+            item["case_id"]: item
+            for item in json.loads(candidate_path.read_text(encoding="utf-8"))["records"]
+        }
+        for case in cases:
+            baseline = baseline_records.get(case["id"])
+            candidate = candidate_records.get(case["id"])
+            if baseline is None or candidate is None:
+                missing_case_pairs.append({"provider_id": provider_id, "case_id": case["id"]})
+                continue
+            pairs.append(
+                {
+                    "provider_id": provider_id,
+                    "case_id": case["id"],
+                    "technical_ok": not baseline["technical_failures"]
+                    and not candidate["technical_failures"],
+                    "baseline_files": baseline["skill_files_read"],
+                    "candidate_files": candidate["skill_files_read"],
+                    "baseline_loaded_bytes": baseline["loaded_bytes"],
+                    "candidate_loaded_bytes": candidate["loaded_bytes"],
+                    "baseline_hard_failures": baseline["hard_failures"],
+                    "candidate_hard_failures": candidate["hard_failures"],
+                    "baseline_chars": baseline["final_chars_nonspace"],
+                    "candidate_chars": candidate["final_chars_nonspace"],
+                    "baseline_file": baseline["final_file"],
+                    "candidate_file": candidate["final_file"],
+                }
+            )
+    read_counts = {}
+    for case in cases:
+        counter = Counter()
+        for pair in pairs:
+            if pair["case_id"] == case["id"] and pair["technical_ok"]:
+                counter.update(pair["candidate_files"])
+        read_counts[case["id"]] = dict(sorted(counter.items()))
+    summary = {
+        "schema_version": 1,
+        "baseline_commit": config["baseline_commit"],
+        "candidate_commit": config["candidate_commit"],
+        "missing_providers": missing_providers,
+        "missing_case_pairs": missing_case_pairs,
+        "pair_count": len(pairs),
+        "technical_pair_count": sum(pair["technical_ok"] for pair in pairs),
+        "candidate_read_counts_valid_pairs": read_counts,
+        "pairs": pairs,
+    }
+    (module.OUTPUT_ROOT / "summary.json").write_text(
+        json.dumps(summary, ensure_ascii=False, indent=2), encoding="utf-8", newline="\n"
+    )
+    return summary
+
+
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--arm", required=True, choices=tuple(ARMS))
@@ -65,7 +133,7 @@ def main() -> int:
     elif args.provider:
         result = module.run_provider(args.provider)
     else:
-        result = module.summarize()
+        result = summarize(module)
     print(json.dumps(result, ensure_ascii=False, indent=2), flush=True)
     return 0
 
