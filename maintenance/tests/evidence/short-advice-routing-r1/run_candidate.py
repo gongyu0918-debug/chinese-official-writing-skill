@@ -12,6 +12,10 @@ HERE = Path(__file__).resolve().parent
 REPO = HERE.parents[3]
 BASE_RUNNER_PATH = REPO / "maintenance/tests/evidence/advisory-feedback-tone-r1/run_candidate.py"
 ARMS = {
+    "advisory-r2": {
+        "config": HERE / "advisory-r2-config.json",
+        "output": REPO / "output/short-advice-routing-r1/advisory-leaf-r2",
+    },
     "advisory": {
         "config": HERE / "advisory-config.json",
         "output": REPO / "output/short-advice-routing-r1/advisory-leaf",
