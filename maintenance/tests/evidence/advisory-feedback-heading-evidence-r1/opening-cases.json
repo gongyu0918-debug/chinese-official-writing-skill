@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "baseline_commit": "69515dbc216e6e057e497fbaa0c1cebb9dac6547",
+  "reasoning_effort": "max",
+  "providers": {
+    "alibaba2": "alibaba-token-plan-2/deepseek-v4-flash-0731",
+    "alibaba1": "alibaba-token-plan/deepseek-v4-flash-0731",
+    "ollama": "ollama-cloud/deepseek-v4-flash:0731",
+    "opencode": "opencode-go/deepseek-v4-flash",
+    "minimax": "minimax-cn/MiniMax-M3"
+  },
+  "cases": [
+    {
+      "id": "ADVICE-OPENING-POV-DATE",
+      "atoms": ["WR-025c-EXTERNAL-ADVICE-HEADING-EVIDENCE-R1"],
+      "prompt_file": "prompts/advice-opening-pov-date.txt",
+      "material": "2026年8月政策实施、企业实际使用统一入口和进度查询、两项申报差异以及一段发布者视角过重的待修改开头。",
+      "required_groups": [["2026年8月"], ["统一申报入口"], ["进度查询"], ["两批次"], ["18张"], ["236MB"], ["20MB"], ["审核部门"], ["平台运营方"]],
+      "forbidden": ["促进大模型应用落地", "切实体会到政策对企业创新发展的支持力度", "成效显著", "极大便利"],
+      "quality_markers": ["我司", "实际申报", "结合", "建议", "研究"]
+    }
+  ]
+}
+
