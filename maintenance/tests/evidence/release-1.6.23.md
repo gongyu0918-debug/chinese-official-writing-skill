@@ -2,7 +2,7 @@
 
 日期：2026-09-01。
 
-状态：`GITHUB_RELEASE_CLOSED / SKILLHUB_RECEIPT_ACCEPTED_REVIEW_PENDING / CLAWHUB_RECEIPT_ACCEPTED_PUBLIC_INDEX_PENDING`。
+状态：`GITHUB_RELEASE_CLOSED / SKILLHUB_PUBLIC_LATEST_CLOSED_SECURITY_REPORTS_QUEUED / CLAWHUB_PUBLIC_INDEX_CLOSED_SECURITY_CLEAN`。
 
 ## 发布范围与提交
 
@@ -27,15 +27,15 @@
 
 - slug `chinese-official-writing`、`skillId=70149`、公开坐标 `@user_f3d82da7/chinese-official-writing`、展示名“中文公文写作”保持不变。
 - dry-run先返回`dryRun=true`、slug和版本正确；正式提交只执行一次并成功：`ok=true`、`versionId=279383`、`fileCount=83`、平台 fingerprint `37c8f1cfa23381017390c983ed6b7f5bb98ac127c95ba9cabd07b4539b1dab75`，八个既有 tags 含`latest`均在提交回执中指向1.6.23。
-- 提交回执中的`reviewStatus`、`securityScanStatus`、`contentAuditStatus`均为`pending`。首次只读公开接口中 tags 已切换为1.6.23，`latestVersion`仍为1.6.22；这是审核/索引传播状态，不重复提交，也不把旧版 benign 报告外推为1.6.23终态。
+- 提交回执中的`reviewStatus`、`securityScanStatus`、`contentAuditStatus`均为`pending`。首次只读公开接口中 tags 已切换为1.6.23，`latestVersion`仍为1.6.22；随后只读复核确认`latestVersion`与八个既有tags均已切换为1.6.23，slug、展示名、公开坐标和更新说明正确。Keen、Sanbu 报告仍为`queued`，不从公开latest反推提交回执中的三项内部状态，也不重复提交。
 
 ## ClawHub 回执
 
 - owner `gongyu0918-debug`、slug `chinese-official-writing`、展示名“中文公文写作”、分类`productivity,knowledge`、话题`chinese-writing,official-writing,office-productivity,content-creation`保持不变。
 - 正式提交只执行一次并成功：`status=published`、`versionId=k97da1z02hxs6cd58a9txyahb98dkv4w`、`fileCount=34`、平台 fingerprint `6dda63353fdbcb760e235b7bca2388cfbac8171ce9f831abcf78c3428278f770`。
-- 提交回执中的`latestVersion`仍为1.6.22；首次精确1.6.23只读检查返回`Version not found`，公开 latest 也仍为1.6.22。该状态只记为传播延迟，期间不重复上传；当前公开 moderation clean 对应旧公开版本，不能外推为1.6.23扫描终态。
+- 提交回执中的`latestVersion`仍为1.6.22；首次精确1.6.23只读检查返回`Version not found`，公开 latest 也仍为1.6.22。随后只读复核确认公开latest、`tags.latest`和精确版本均为1.6.23；精确版本为34文件，Hook路径和`agents/openai.yaml`均为0，moderation与版本级security均为`clean`，许可证显示平台既有`MIT-0`。期间未重复上传。
 
 ## 剩余边界
 
-- GitHub产品提交、annotated tag和Release已闭环。SkillHub.cn与ClawHub均已有唯一成功回执，仍需后续只读核对审核、公开latest、精确版本文件和安全状态；任何传播延迟都不触发再次发布。
-- 产品 tag 与两类已提交包均不含 `WR-025 / WR-008b`。后续可在当前 `main` 合入这两个已验证原子，但不得移动 v1.6.23 tag、修改已提交包或把下一版本本地预检包冒充本次发行物。
+- GitHub产品提交、annotated tag和Release已闭环；SkillHub.cn公开latest已闭环，外部安全报告仍排队；ClawHub公开latest、精确版本文件和clean状态已闭环。三个平台均未重复提交。
+- 产品 tag 与两类已提交包均不含 `WR-025 / WR-008b`。这两个已验证原子随后仅合入本地下一版本`main`，未推送、未移动v1.6.23 tag、未修改已提交包，也未把下一版本本地预检包冒充本次发行物。
