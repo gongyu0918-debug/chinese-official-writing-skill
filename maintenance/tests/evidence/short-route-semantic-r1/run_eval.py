@@ -17,6 +17,19 @@ BASE_RUNNER_PATH = REPO / "maintenance/tests/evidence/reference-slimming-r2/run_
 OUTPUTS = {
     "baseline": REPO / "output/short-route-semantic-r1/baseline",
     "candidate": REPO / "output/short-route-semantic-r1/candidate",
+    "candidate-r2": REPO / "output/short-route-semantic-r1/candidate-r2",
+}
+MODE_COMMITS = {
+    "baseline": "baseline_commit",
+    "candidate": "candidate_commit",
+    "candidate-r2": "candidate_r2_commit",
+}
+R2_CASE_IDS = {
+    "semantic-compact-procurement-application",
+    "upper-480-unresolved-situation-note",
+    "around-360-internal-notice",
+    "fact-dense-compact-work-report",
+    "upper-1500-full-speech",
 }
 
 
@@ -39,7 +52,9 @@ def load_static() -> tuple[dict, dict]:
 
 def load_cases(mode: str) -> dict:
     cases, config = load_static()
-    cases["baseline_commit"] = config[f"{mode}_commit"]
+    cases["baseline_commit"] = config[MODE_COMMITS[mode]]
+    if mode == "candidate-r2":
+        cases["cases"] = [case for case in cases["cases"] if case["id"] in R2_CASE_IDS]
     for case in cases["cases"]:
         case["prompt"] = (HERE / case["prompt_file"]).read_text(encoding="utf-8")
     return cases
@@ -58,10 +73,11 @@ def load_runner(mode: str):
     return module
 
 
-def validate_candidate_diff() -> None:
+def validate_candidate_diff(mode: str) -> None:
     _, config = load_static()
     baseline = git_text("rev-parse", f"{config['baseline_commit']}^{{commit}}")
-    candidate = git_text("rev-parse", f"{config['candidate_commit']}^{{commit}}")
+    candidate_key = MODE_COMMITS[mode]
+    candidate = git_text("rev-parse", f"{config[candidate_key]}^{{commit}}")
     changed = set(
         filter(
             None,
@@ -82,13 +98,14 @@ def validate_candidate_diff() -> None:
         )
 
 
-def compare() -> dict:
-    cases, config = load_static()
+def compare(candidate_mode: str) -> dict:
+    cases = load_cases(candidate_mode)
+    _, config = load_static()
     pairs = []
     missing = []
     for provider_id in cases["providers"]:
         baseline_path = OUTPUTS["baseline"] / "providers" / f"{provider_id}.json"
-        candidate_path = OUTPUTS["candidate"] / "providers" / f"{provider_id}.json"
+        candidate_path = OUTPUTS[candidate_mode] / "providers" / f"{provider_id}.json"
         if not baseline_path.is_file() or not candidate_path.is_file():
             missing.append(provider_id)
             continue
@@ -132,14 +149,16 @@ def compare() -> dict:
     result = {
         "schema_version": 1,
         "baseline_commit": config["baseline_commit"],
-        "candidate_commit": config["candidate_commit"],
+        "candidate_commit": config[MODE_COMMITS[candidate_mode]],
+        "candidate_mode": candidate_mode,
         "missing": missing,
         "pair_count": len(pairs),
         "technical_pair_count": sum(item["technical_ok"] for item in pairs),
         "candidate_read_counts_valid_pairs": read_counts,
         "pairs": pairs,
     }
-    output = REPO / "output/short-route-semantic-r1/comparison.json"
+    suffix = "" if candidate_mode == "candidate" else "-r2"
+    output = REPO / f"output/short-route-semantic-r1/comparison{suffix}.json"
     output.parent.mkdir(parents=True, exist_ok=True)
     output.write_text(
         json.dumps(result, ensure_ascii=False, indent=2), encoding="utf-8", newline="\n"
@@ -151,6 +170,9 @@ def main() -> int:
     cases, _ = load_static()
     parser = argparse.ArgumentParser()
     parser.add_argument("--mode", choices=tuple(OUTPUTS))
+    parser.add_argument(
+        "--compare-mode", choices=("candidate", "candidate-r2"), default="candidate"
+    )
     action = parser.add_mutually_exclusive_group(required=True)
     action.add_argument("--prepare", action="store_true")
     action.add_argument("--provider", choices=tuple(cases["providers"]))
@@ -158,12 +180,12 @@ def main() -> int:
     action.add_argument("--compare", action="store_true")
     args = parser.parse_args()
     if args.compare:
-        result = compare()
+        result = compare(args.compare_mode)
     else:
         if args.mode is None:
             parser.error("--mode is required except with --compare")
-        if args.mode == "candidate" and args.prepare:
-            validate_candidate_diff()
+        if args.mode != "baseline" and args.prepare:
+            validate_candidate_diff(args.mode)
         runner = load_runner(args.mode)
         if args.prepare:
             result = runner.prepare()
