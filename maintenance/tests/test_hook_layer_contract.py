@@ -328,6 +328,24 @@ class HookLayerContractTests(unittest.TestCase):
             capabilities["hosts"]["kimi_code_cli"]["host_limit"],
         )
 
+    def test_opencode_host_ceiling_declaration_matches_runtime(self) -> None:
+        capabilities = json.loads(
+            (HOOK_ROOT / "host-capabilities.json").read_text(encoding="utf-8")
+        )
+        opencode = capabilities["hosts"]["opencode"]
+        capability_budget = opencode["over_length_continuation_limit"]
+        host_ceiling = opencode["host_continuation_ceiling"]
+        runtime = (
+            HOOK_ROOT / "adapters/opencode/opencode_gate_plugin.js"
+        ).read_text(encoding="utf-8")
+        match = re.search(r"const MAX_HOST_CONTINUATIONS = (\d+)", runtime)
+
+        self.assertEqual(7, capability_budget)
+        self.assertEqual(8, host_ceiling)
+        self.assertGreater(host_ceiling, capability_budget)
+        self.assertIsNotNone(match)
+        self.assertEqual(host_ceiling, int(match.group(1)))
+
     def test_plain_skill_packages_remain_hook_free_and_keep_lint(self) -> None:
         for packaged_skill in (
             ROOT / "packages/agent-skills/skills/chinese-official-writing",

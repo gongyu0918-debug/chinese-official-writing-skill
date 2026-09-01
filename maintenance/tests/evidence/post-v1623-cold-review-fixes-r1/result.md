@@ -51,6 +51,8 @@ R1 同时用当前基线完成两份路由观察：
 - `requirements.md` 不再声称当前 `SKILL.md` 仍含300/200字阈值，改为指向 `WR-005b` 已完成的历史固定阈值删除。
 - `advisory-feedback-tone-r1/result.md` 底部不再与同文件“已合入main”结论冲突。
 
+Grok 另列出的 OpenCode `7/8` 数字差异经运行时复核后关闭为 `REJECTED_FALSE_POSITIVE`：`over_length_continuation_limit=7` 是能力说明预算，`host_continuation_ceiling=8` 是 adapter 的最后保险上限，后者与 `MAX_HOST_CONTINUATIONS=8` 一致。新增契约测试分别锁定两个含义并校验声明与运行时常量，未改 Hook 行为或产品文件。
+
 ## 本地输出与哈希
 
 原始终稿、trace、provider JSON 和 summary 留在忽略目录 `output/post-v1623-cold-review-fixes-r1`、`-r2`、`-r3`；未把模型长输出提交到产品包。
@@ -68,6 +70,7 @@ python maintenance/tests/evidence/post-v1623-cold-review-fixes-r1/run_eval.py --
 python maintenance/tests/evidence/post-v1623-cold-review-fixes-r1/run_r2.py --prepare/--provider/--summarize ...
 python maintenance/tests/evidence/post-v1623-cold-review-fixes-r1/run_r3.py --prepare/--provider/--summarize ...
 python -m unittest maintenance.tests.test_short_draft_naturalness maintenance.tests.test_skill_boundary
+python -m unittest maintenance.tests.test_opencode_gate_adapter maintenance.tests.test_hook_layer_contract -v
 python C:\Users\admin\.codex\skills\.system\skill-creator\scripts\quick_validate.py chinese-official-writing
 git diff --check
 ```
