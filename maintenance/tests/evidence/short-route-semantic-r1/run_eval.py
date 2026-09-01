@@ -18,17 +18,24 @@ OUTPUTS = {
     "baseline": REPO / "output/short-route-semantic-r1/baseline",
     "candidate": REPO / "output/short-route-semantic-r1/candidate",
     "candidate-r2": REPO / "output/short-route-semantic-r1/candidate-r2b",
+    "candidate-r3": REPO / "output/short-route-semantic-r1/candidate-r3",
 }
 MODE_COMMITS = {
     "baseline": "baseline_commit",
     "candidate": "candidate_commit",
     "candidate-r2": "candidate_r2_commit",
+    "candidate-r3": "candidate_r3_commit",
 }
 R2_CASE_IDS = {
     "SEMANTIC-COMPACT-PURCHASE",
     "UPPER-480-SITUATION",
     "AROUND-360-NOTICE",
     "FACT-DENSE-COMPACT-REPORT",
+    "UPPER-1500-FULL-SPEECH",
+}
+R3_CASE_IDS = {
+    "SEMANTIC-COMPACT-PURCHASE",
+    "UPPER-480-SITUATION",
     "UPPER-1500-FULL-SPEECH",
 }
 
@@ -55,6 +62,8 @@ def load_cases(mode: str) -> dict:
     cases["baseline_commit"] = config[MODE_COMMITS[mode]]
     if mode == "candidate-r2":
         cases["cases"] = [case for case in cases["cases"] if case["id"] in R2_CASE_IDS]
+    elif mode == "candidate-r3":
+        cases["cases"] = [case for case in cases["cases"] if case["id"] in R3_CASE_IDS]
     for case in cases["cases"]:
         case["prompt"] = (HERE / case["prompt_file"]).read_text(encoding="utf-8")
     return cases
@@ -157,7 +166,8 @@ def compare(candidate_mode: str) -> dict:
         "candidate_read_counts_valid_pairs": read_counts,
         "pairs": pairs,
     }
-    suffix = "" if candidate_mode == "candidate" else "-r2"
+    suffixes = {"candidate": "", "candidate-r2": "-r2", "candidate-r3": "-r3"}
+    suffix = suffixes[candidate_mode]
     output = REPO / f"output/short-route-semantic-r1/comparison{suffix}.json"
     output.parent.mkdir(parents=True, exist_ok=True)
     output.write_text(
@@ -171,7 +181,9 @@ def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--mode", choices=tuple(OUTPUTS))
     parser.add_argument(
-        "--compare-mode", choices=("candidate", "candidate-r2"), default="candidate"
+        "--compare-mode",
+        choices=("candidate", "candidate-r2", "candidate-r3"),
+        default="candidate",
     )
     action = parser.add_mutually_exclusive_group(required=True)
     action.add_argument("--prepare", action="store_true")
