@@ -49,13 +49,14 @@ R3 实际读取：
 
 ```text
 python -m unittest maintenance.tests.test_short_draft_naturalness maintenance.tests.test_skill_boundary maintenance.tests.test_skill_frontmatter_relief_harness
+python -m unittest discover -s maintenance/tests -p "test_*.py"
 python maintenance/tools/sync_adapters.py
 python -m py_compile maintenance/tools/sync_adapters.py maintenance/tests/evidence/short-route-semantic-r1/run_eval.py
 python -m json.tool maintenance/tests/evidence/short-route-semantic-r1/config.json
 git diff --check
 ```
 
-首次定向门准确报出五套镜像仍是旧字节；运行既有同步器后85项定向测试通过。完整全量门和最终提交状态见本分支后续提交，不把首次预期镜像失败写成通过。
+首次定向门准确报出五套镜像仍是旧字节；运行既有同步器后85项定向测试通过。完整 unittest 为761/761通过（140.336秒），同步器第二次运行后无新增差异，编译、JSON和`git diff --check`通过。不把首次预期镜像失败写成通过。
 
 ## 剩余风险
 
