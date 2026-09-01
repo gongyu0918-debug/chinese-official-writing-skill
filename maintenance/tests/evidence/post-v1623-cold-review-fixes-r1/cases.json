@@ -1,0 +1,44 @@
+{
+  "schema_version": 1,
+  "reasoning_effort": "max",
+  "providers": {
+    "alibaba2": "alibaba-token-plan-2/deepseek-v4-flash-0731",
+    "alibaba1": "alibaba-token-plan/deepseek-v4-flash-0731",
+    "ollama": "ollama-cloud/deepseek-v4-flash:0731",
+    "opencode": "opencode-go/deepseek-v4-flash",
+    "minimax": "minimax-cn/MiniMax-M3"
+  },
+  "cases": [
+    {
+      "id": "CR001-DENSE-UPPER-1500-SPEECH",
+      "atom": "CR-001",
+      "arms": ["baseline", "candidate"],
+      "prompt_file": "prompts/dense-upper-1500-speech.txt",
+      "material": "数字化服务专题会议完整讲话，只有1500字上限；包含三组进展、两类问题、三项条件性后续和改版未决状态。",
+      "required_groups": [["2026年上半年"], ["18项"], ["14项"], ["4项"], ["3200人次"], ["11分钟"], ["7分钟"], ["6家"], ["2家"], ["3次"], ["9项"], ["尚未决定", "尚未确定"]],
+      "forbidden": ["全部完成", "全面领先", "已经决定上线", "改版时间已经确定", "同志们必须"],
+      "quality_markers": ["同志们", "成绩", "问题", "下一步"]
+    },
+    {
+      "id": "CR002-COOPERATIVE-ADVICE-LETTER",
+      "atom": "CR-002",
+      "arms": ["baseline"],
+      "prompt_file": "prompts/cooperative-advice-letter.txt",
+      "material": "企业向算力券审核部门和平台运营方正式提出合作性建议信；既有便利、实际申报问题、建议对象和未决状态均明确。",
+      "required_groups": [["省算力券审核部门"], ["平台运营方"], ["2026年8月"], ["18份"], ["12MB"], ["10MB"], ["尚未决定", "尚未形成", "待研究"], ["赣江智算科技有限公司"], ["2026年9月2日"]],
+      "forbidden": ["平台已决定", "审核部门已经认可", "立即开放", "必须开放", "限期整改"],
+      "quality_markers": ["建议", "申报", "审核", "研究"]
+    },
+    {
+      "id": "CR002-OPINION-REPLY-LETTER",
+      "atom": "CR-002",
+      "arms": ["baseline"],
+      "prompt_file": "prompts/opinion-reply-letter.txt",
+      "material": "市数据局征求办法修改意见，行业协会仅建议调整一项材料提交要求，其他条款无意见；主送、发文单位和日期明确。",
+      "required_groups": [["市数据局"], ["数据服务管理办法（征求意见稿）"], ["第十二条"], ["20MB"], ["压缩文件"], ["其他条款无意见", "其余条款无意见"], ["市软件行业协会"], ["2026年9月2日"]],
+      "forbidden": ["已经采纳", "已决定修改", "立即修改", "必须修改", "平台运营方"],
+      "quality_markers": ["复函", "征求意见", "建议", "无意见"]
+    }
+  ]
+}
+
