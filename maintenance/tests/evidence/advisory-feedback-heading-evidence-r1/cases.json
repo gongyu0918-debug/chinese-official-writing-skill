@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "baseline_commit": "69515dbc216e6e057e497fbaa0c1cebb9dac6547",
+  "reasoning_effort": "max",
+  "providers": {
+    "alibaba2": "alibaba-token-plan-2/deepseek-v4-flash-0731",
+    "alibaba1": "alibaba-token-plan/deepseek-v4-flash-0731",
+    "ollama": "ollama-cloud/deepseek-v4-flash:0731",
+    "opencode": "opencode-go/deepseek-v4-flash",
+    "minimax": "minimax-cn/MiniMax-M3"
+  },
+  "cases": [
+    {
+      "id": "ADVICE-SUBSIDY-EXTERNAL-EVIDENCE",
+      "atoms": ["WR-025c-EXTERNAL-ADVICE-HEADING-EVIDENCE-R1"],
+      "prompt_file": "prompts/advice-subsidy-external-evidence.txt",
+      "material": "企业两次实际申报算力补贴的材料与上传问题；外市公开指南只作参考，适用性未核实。",
+      "required_groups": [["两批次"], ["18张"], ["236MB"], ["20MB"], ["外市"], ["审核部门"], ["平台运营方"], ["尚未"]],
+      "forbidden": ["平台已支持CSV", "审核部门已认可", "外市已全面实行", "本市应当照搬", "已经决定上线"],
+      "quality_markers": ["建议", "实际申报", "供参考", "研究", "平台运营方"]
+    },
+    {
+      "id": "FEEDBACK-TRAINING-GRANT-EXTERNAL-EVIDENCE",
+      "atoms": ["WR-025c-EXTERNAL-ADVICE-HEADING-EVIDENCE-R1"],
+      "prompt_file": "prompts/feedback-training-grant-external-evidence.txt",
+      "material": "协会汇总6家会员单位的培训补贴申报经历；外省公开问答仅说明一种可能做法。",
+      "required_groups": [["6家"], ["4家"], ["2家"], ["外省"], ["人力资源部门"], ["平台运营方"], ["尚未"]],
+      "forbidden": ["本地已经认可", "平台已经取消", "外省普遍实行", "应立即上线"],
+      "quality_markers": ["建议", "实际申报", "参考", "研究明确", "平台运营方"]
+    },
+    {
+      "id": "FEEDBACK-MULTI-AUTHORITY-HEADING",
+      "atoms": ["WR-025c-EXTERNAL-ADVICE-HEADING-EVIDENCE-R1"],
+      "prompt_file": "prompts/feedback-multi-authority-heading.txt",
+      "material": "申报单位反馈审核口径和上传功能两类问题，分别属于审核部门与平台运营方，调整均未决定。",
+      "required_groups": [["3次"], ["PDF"], ["15MB"], ["CSV"], ["审核部门"], ["平台运营方"], ["尚未形成"]],
+      "forbidden": ["现已认可", "现已开放", "已经决定", "平台技术落后"],
+      "quality_markers": ["建议", "审核部门", "平台运营方", "研究明确"]
+    },
+    {
+      "id": "CONTROL-INTERNAL-PLATFORM-DEPLOYMENT",
+      "atoms": ["WR-025c-CONTROL"],
+      "prompt_file": "prompts/control-internal-platform-deployment.txt",
+      "material": "平台运营方内部已批准的改造任务，责任团队和上线日期均已确定。",
+      "required_groups": [["技术团队"], ["CSV"], ["200MB"], ["2026年9月18日"], ["测试记录"]],
+      "forbidden": ["建议技术团队", "供研究参考", "可酌情上线", "尚待决定"],
+      "quality_markers": ["完成", "上线", "负责"]
+    },
+    {
+      "id": "CONTROL-AUDIT-RECTIFICATION",
+      "atoms": ["WR-025c-CONTROL"],
+      "prompt_file": "prompts/control-audit-rectification.txt",
+      "material": "专项检查已确认两项材料管理问题并要求责任单位限期整改。",
+      "required_groups": [["2项"], ["7份"], ["2026年9月10日"], ["整改"], ["复核"]],
+      "forbidden": ["建议责任单位", "供研究参考", "可酌情整改", "如有条件"],
+      "quality_markers": ["应当", "限期", "整改", "复核"]
+    }
+  ]
+}
+
