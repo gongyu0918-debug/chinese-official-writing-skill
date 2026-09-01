@@ -3,6 +3,7 @@ from __future__ import annotations
 import argparse
 import importlib.util
 import json
+import os
 import sys
 from collections import Counter
 from pathlib import Path
@@ -12,6 +13,10 @@ HERE = Path(__file__).resolve().parent
 REPO = HERE.parents[3]
 BASE_RUNNER_PATH = REPO / "maintenance/tests/evidence/advisory-feedback-tone-r1/run_candidate.py"
 ARMS = {
+    "advisory-r3": {
+        "config": HERE / "advisory-r3-config.json",
+        "output": REPO / "output/short-advice-routing-r1/advisory-leaf-r3",
+    },
     "advisory-r2": {
         "config": HERE / "advisory-r2-config.json",
         "output": REPO / "output/short-advice-routing-r1/advisory-leaf-r2",
@@ -26,7 +31,12 @@ ARMS = {
     },
 }
 CASES_PATH = HERE / "cases.json"
-BASELINE_OUTPUT = REPO / "output/short-advice-routing-r1/baseline"
+BASELINE_OUTPUT = Path(
+    os.environ.get(
+        "WR026_BASELINE_OUTPUT",
+        REPO / "output/short-advice-routing-r1/baseline",
+    )
+)
 
 
 def load_module(arm: str):

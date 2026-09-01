@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "baseline_commit": "69515dbc216e6e057e497fbaa0c1cebb9dac6547",
+  "candidate_commit": "2c7c07ab3391e5d613f0536c77036594599349f0",
+  "allowed_product_diff": [
+    "chinese-official-writing/references/genre-playbook-advisory-feedback.md"
+  ],
+  "case_ids": [
+    "SHORT-ADVICE-PORTAL-BODY",
+    "SHORT-ADVICE-EMAIL-BODY",
+    "SHORT-ADVICE-STANDALONE",
+    "CONTROL-SHORT-NOTICE",
+    "CONTROL-FORMAL-ADVICE"
+  ]
+}
