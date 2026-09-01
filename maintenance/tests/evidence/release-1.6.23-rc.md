@@ -2,7 +2,7 @@
 
 日期：2026-08-31。
 
-状态：`LOCAL_FROZEN / READY_FOR_AUTHORIZED_RELEASE`。
+状态：`PUBLISHED / SEE release-1.6.23.md`。下文保留正式发布前的冻结快照；最终回执与传播状态见 [`release-1.6.23.md`](release-1.6.23.md)。
 
 ## 候选边界
 
@@ -29,5 +29,5 @@
 
 ## 剩余边界
 
-- 明日发布仍需用户明确授权；届时从本冻结分支和上述精确包面复核 main/tag ancestry、平台坐标与更新说明，不从继续演进的实验分支发布。
+- 本候选已按用户明确授权从冻结分支和上述精确包面发布；最终 GitHub、SkillHub.cn 与 ClawHub 回执及传播状态见 [`release-1.6.23.md`](release-1.6.23.md)。
 - 为运行 pinned Promptfoo stub 执行 `npm ci --ignore-scripts`，npm 对维护期开发依赖报告 36 项 audit finding（2 low、16 moderate、18 high）；`node_modules` 不进入产品或发行包，锁文件未改，本轮不以 `npm audit fix --force` 扩大范围。
