@@ -12,6 +12,7 @@
 
 ## 逐版发布证据
 
+- v1.6.24 的冻结产品 tag、756项全量、101项聚焦回归、五套 quick validate、83/34文件包体和两平台 dry-run 见 [`release-1.6.24-rc.md`](../../tests/evidence/release-1.6.24-rc.md)；本记录写入时三个平台尚未正式提交。
 - v1.6.23 的 GitHub、SkillHub.cn 与 ClawHub 唯一发布回执、产品 tag、108项最终定向门和83/34文件包体见 [`release-1.6.23.md`](../../tests/evidence/release-1.6.23.md)；冻结基线、756项全量、111/111双侧确定性消融、20/20 stub smoke和五套 quick validate见 [`release-1.6.23-rc.md`](../../tests/evidence/release-1.6.23-rc.md)。GitHub、SkillHub公开latest以及ClawHub公开latest、精确34文件和clean状态均已闭环；SkillHub外部安全报告仍为queued，期间未重复提交。
 - v1.6.22 的 GitHub、SkillHub.cn 与 ClawHub 发布回执、747项本次全量复跑、82/33文件包体和最终公开状态见 [`release-1.6.22.md`](../../tests/evidence/release-1.6.22.md)；固定候选、真实写稿依据与发布前工程门见 [`release-1.6.22-rc.md`](../../tests/evidence/release-1.6.22-rc.md)。SkillHub `versionId=277452` 已审核通过，公开latest与签名均为1.6.22。
 - `UL-006-CONTRACT-R1 / HK-009-STOP-BUDGET-R1` 已在独立 worktree 完成验证、合入main并随v1.6.23发布：事故隐式入口契约同步、单 Stop 25秒共享子进程预算、无 stdout 副作用的可信恢复、D1不降级及预算耗尽精确脱敏见[结果](../../tests/evidence/post-v1622-hook-contract-r1/result.md)，预登记与两次冷审修正见[原始预登记](../../tests/evidence/post-v1622-hook-contract-r1/preregister.md)、[R1](../../tests/evidence/post-v1622-hook-contract-r1/r1-amendment.md)、[R2](../../tests/evidence/post-v1622-hook-contract-r1/r2-amendment.md)，主线合入见[合入记录](../../tests/evidence/post-v1622-hook-contract-r1/main-merge.md)。状态为 `DONE_V1.6.23`，无活动HOLD。
