@@ -16,6 +16,7 @@
 - `git merge-base --is-ancestor v1.6.24 cf8e1815`：通过；固定上一 tag 是候选祖先。
 - 聚焦回归：`python -m unittest maintenance.tests.test_skill_boundary maintenance.tests.test_skillhub_package_builder maintenance.tests.test_hook_layer_contract maintenance.tests.test_status_ledger_consistency`，104/104 通过。
 - 一次全量回归：`python -m unittest discover -s maintenance/tests -p "test_*.py"`，765/765 通过，耗时 120.681 秒。
+- 冻结记录写入后复跑 `python -m unittest maintenance.tests.test_status_ledger_consistency maintenance.tests.test_repository_reachability maintenance.tests.test_skill_boundary`，102/102 通过；本测试同时锁定公开版仍为 v1.6.24、v1.6.25 没有发布记录以及候选证据可达。
 - canonical、Agent Skills、Qwen Code、QwenWork、Hermes 五套 `quick_validate.py` 均返回 `Skill is valid!`。
 - `python maintenance/tools/sync_adapters.py` 复跑前后产品树无差异；185 个受控 Python 文件通过语法解析，190 个受控 JSON 文件通过解析，`git diff --check` 通过。
 - `v1.6.24^{commit}..cf8e1815` 共 140 个变更路径；付费、红头、提纲禁入路径命中为 0。
