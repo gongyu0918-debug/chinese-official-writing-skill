@@ -29,17 +29,17 @@ def section(text: str, heading: str) -> str:
 
 
 class StatusLedgerConsistencyTests(unittest.TestCase):
-    def test_current_release_record_is_v1622(self) -> None:
+    def test_current_release_record_is_v1623(self) -> None:
         public_readme = read("README.md")
         todo = read("maintenance/docs/待办.md")
         roadmap = read("maintenance/specs/roadmap.md")
 
-        self.assertIn("当前产品tag为`v1.6.22^{commit}=4b135c50", todo)
-        self.assertIn("`release-1.6.22.md`", todo)
+        self.assertIn("当前产品tag为`v1.6.23^{commit}=6a6ededa", todo)
+        self.assertIn("release-1.6.23.md", todo)
         self.assertIn("## v1.6.14 起已发布状态与后续研究", todo)
         self.assertNotIn("候选均保持 HOLD", public_readme)
-        self.assertIn("`v1.6.22` 小版本已发布", roadmap)
-        self.assertNotIn("当前产品 tag 仍为 `v1.6.21", todo)
+        self.assertIn("`v1.6.23` 小版本已发布", roadmap)
+        self.assertNotIn("当前产品tag为`v1.6.22", todo)
 
     def test_v1621_release_history_is_preserved(self) -> None:
         evidence = read("maintenance/tests/evidence/release-1.6.21.md")
@@ -72,7 +72,7 @@ class StatusLedgerConsistencyTests(unittest.TestCase):
         candidate_evidence = read("maintenance/tests/evidence/release-1.6.22-rc.md")
         evidence_index = read("maintenance/docs/evidence/README.md")
 
-        self.assertIn("chinese-official-writing@1.6.22", public_readme)
+        self.assertIn("chinese-official-writing@1.6.23", public_readme)
         self.assertIn("`v1.6.22` 小版本已发布", section(roadmap, "DONE"))
         self.assertNotIn("v1.6.22", section(roadmap, "IN_PROGRESS"))
         self.assertIn("SkillHub `versionId=277452`", todo)
@@ -91,26 +91,42 @@ class StatusLedgerConsistencyTests(unittest.TestCase):
         self.assertIn("release-1.6.22.md", evidence_index)
         self.assertIn("release-1.6.22-rc.md", evidence_index)
 
-    def test_hk009_is_merged_but_excluded_from_frozen_v1622(self) -> None:
+    def test_v1623_is_published_and_hk009_mt004b_are_done(self) -> None:
         requirements = read("maintenance/specs/requirements.md")
         coverage_row = table_row(read("maintenance/specs/coverage.md"), "HK-009")
+        mt004_row = table_row(read("maintenance/specs/coverage.md"), "MT-004")
         roadmap = read("maintenance/specs/roadmap.md")
         todo = read("maintenance/docs/待办.md")
         evidence_index = read("maintenance/docs/evidence/README.md")
+        candidate_evidence = read("maintenance/tests/evidence/release-1.6.23-rc.md")
+        release_evidence = read("maintenance/tests/evidence/release-1.6.23.md")
         result = read("maintenance/tests/evidence/post-v1622-hook-contract-r1/result.md")
         merge_record = read("maintenance/tests/evidence/post-v1622-hook-contract-r1/main-merge.md")
 
         self.assertIn("### HK-009 单次 Stop 子进程预算与可信恢复", requirements)
         self.assertIn("共享 25 秒总预算", requirements)
-        self.assertIn("MERGED_MAIN_NEXT_VERSION_CANDIDATE", coverage_row)
-        self.assertIn("EXCLUDED_FROM_FROZEN_V1.6.22", coverage_row)
+        self.assertIn("DONE_V1.6.23", coverage_row)
+        self.assertIn("MT-004b_DONE_V1.6.23", mt004_row)
         self.assertIn("无 `HOLD`", coverage_row)
         self.assertIn("`UL-006-CONTRACT-R1 / HK-009-STOP-BUDGET-R1`", section(roadmap, "DONE"))
         self.assertNotIn("HK-009", section(roadmap, "IN_PROGRESS"))
         self.assertRegex(
             todo,
-            r"(?m)^- \[x\] `UL-006-CONTRACT-R1 / HK-009-STOP-BUDGET-R1`.*EXCLUDED_FROM_FROZEN_V1\.6\.22",
+            r"(?m)^- \[x\] `UL-006-CONTRACT-R1 / HK-009-STOP-BUDGET-R1`.*DONE_V1\.6\.23",
         )
+        self.assertRegex(todo, r"(?m)^- \[x\] `MT-004b-REVIEW-DIRECT-LEAF-R1/R2`.*DONE_V1\.6\.23")
+        self.assertIn("release-1.6.23.md", evidence_index)
+        self.assertIn("release-1.6.23-rc.md", evidence_index)
+        self.assertIn("PUBLISHED / SEE release-1.6.23.md", candidate_evidence)
+        self.assertIn("a6764b7e61c5939c3dd098d556bf3e8d36a298a3", candidate_evidence)
+        self.assertIn("6a6ededa", candidate_evidence)
+        self.assertIn("83 文件", candidate_evidence)
+        self.assertIn("34 文件", candidate_evidence)
+        self.assertIn("6a6ededa2ec287f68457ec1d5762aabae8e79bac", release_evidence)
+        self.assertIn("versionId=279383", release_evidence)
+        self.assertIn("k97da1z02hxs6cd58a9txyahb98dkv4w", release_evidence)
+        self.assertIn("SKILLHUB_PUBLIC_LATEST_CLOSED_SECURITY_REPORTS_QUEUED", release_evidence)
+        self.assertIn("CLAWHUB_PUBLIC_INDEX_CLOSED_SECURITY_CLEAN", release_evidence)
         self.assertIn("post-v1622-hook-contract-r1/result.md", evidence_index)
         self.assertIn("post-v1622-hook-contract-r1/main-merge.md", evidence_index)
         self.assertIn("main@62ba9e8206e5b11f08a8f28ebdfe95b08e30ccfe", result)
