@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "baseline_commit": "69515dbc216e6e057e497fbaa0c1cebb9dac6547",
+  "candidate_commit": "1b548989229a820ab44cf0ebd099db61d094114c",
+  "allowed_product_diff": [
+    "chinese-official-writing/references/genre-playbook-advisory-feedback.md"
+  ],
+  "case_ids": [
+    "ADVICE-SUBSIDY-EXTERNAL-EVIDENCE",
+    "FEEDBACK-TRAINING-GRANT-EXTERNAL-EVIDENCE",
+    "FEEDBACK-MULTI-AUTHORITY-HEADING",
+    "CONTROL-INTERNAL-PLATFORM-DEPLOYMENT",
+    "CONTROL-AUDIT-RECTIFICATION"
+  ]
+}
+
