@@ -19,7 +19,7 @@ OPTIONAL_GATE_FILES = {
 }
 SKILLHUB_CLEAN_PACKAGE_EXCLUDES = {"agents/openai.yaml", "LICENSE"}
 CURRENT_VERSION = "1.6.24"
-PUBLISHED_VERSION = "1.6.23"
+PUBLISHED_VERSION = "1.6.24"
 
 
 def relative_files(root: Path) -> list[str]:
