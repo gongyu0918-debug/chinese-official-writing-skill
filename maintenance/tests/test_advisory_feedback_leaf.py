@@ -62,6 +62,14 @@ class AdvisoryFeedbackLeafTests(HookCompanionTestMixin, unittest.TestCase):
         self.assertIn("建议 + 有权对象或具体动作", text)
         self.assertIn("问题标题、参考情况、反馈办理结果", text)
 
+    def test_short_advice_body_rule_is_additive_and_carrier_aware(self) -> None:
+        text = (CANONICAL / LEAF).read_text(encoding="utf-8")
+
+        self.assertIn("短意见或反馈用紧凑的连续正文", text)
+        self.assertIn("由此直接支持的影响或判断", text)
+        self.assertIn("题名、身份和联系方式已由平台或邮件字段承载时正文不重复", text)
+        self.assertIn("独立成文则按任务保留已有题名、建议方和日期", text)
+
     def test_heading_and_docx_title_rules_are_narrow(self) -> None:
         leaf = (CANONICAL / LEAF).read_text(encoding="utf-8")
         format_text = (CANONICAL / FORMAT).read_text(encoding="utf-8")
@@ -92,6 +100,9 @@ class AdvisoryFeedbackLeafTests(HookCompanionTestMixin, unittest.TestCase):
         route_result = (
             ROOT / "maintenance/tests/evidence/wr025d-feedback-route-r1/result.md"
         ).read_text(encoding="utf-8")
+        short_advice_result = (
+            ROOT / "maintenance/tests/evidence/short-advice-capability-r4/candidate-result.md"
+        ).read_text(encoding="utf-8")
 
         self.assertIn("### WR-025 合作性意见建议与建议反馈", requirements)
         self.assertIn("`WR-025/025c` 合作性意见建议与建议反馈", coverage)
@@ -111,6 +122,9 @@ class AdvisoryFeedbackLeafTests(HookCompanionTestMixin, unittest.TestCase):
         self.assertIn("共20次真实写稿", route_result)
         self.assertIn("| 对外“反馈意见” | 5/5 | 4/5 |", route_result)
         self.assertIn("| 对外“意见反馈” | 5/5 | 5/5 |", route_result)
+        self.assertIn("R4_REAL_WRITING_PASSED / ENGINEERING_VERIFIED", short_advice_result)
+        self.assertIn("短意见载体与完整稿件形态", coverage)
+        self.assertIn("short-advice-capability-r4/candidate-result.md", evidence)
 
 
 if __name__ == "__main__":

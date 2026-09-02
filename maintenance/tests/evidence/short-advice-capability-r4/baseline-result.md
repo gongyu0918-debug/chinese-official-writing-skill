@@ -10,11 +10,14 @@
 | --- | --- | --- | --- |
 | Alibaba Token Plan 2 / DeepSeek V4 Flash 0731 | `01a06142-5857-7fc2-9ed7-a27fb629ab42` | 完成 | 5 |
 | Alibaba Token Plan / DeepSeek V4 Flash 0731 | `01a0613f-3fa7-7c70-82fe-87d3c30f3430` | 完成 | 5 |
-| Ollama Cloud / DeepSeek V4 Flash 0731 | `01a06142-5de3-7e71-bcec-36ad9991abbb` | 首次 502；已原任务重试一次 | 0（待重试回执） |
+| Ollama Cloud / DeepSeek V4 Flash 0731 | `01a06142-5de3-7e71-bcec-36ad9991abbb` | 首次与原任务重试均为同一 502 | 0（技术无效） |
+| Ollama Cloud / GLM 5.3 Flash（同 provider 回退） | `01a0614d-428a-7cb3-a167-da01377d1e76` | 同一 502；按用户要求本轮停止重试 | 0（技术无效） |
 | OpenCode Go / DeepSeek V4 Flash | `01a06142-627c-74c3-83aa-16f45303d302` | 完成 | 5 |
 | MiniMax / MiniMax M3 | `01a06142-67a1-7301-9ae6-e8bff49f0d2c` | 完成 | 5 |
 
-当前共 20 份有效真稿；Ollama 技术失败不计质量。
+当前共 20 份有效真稿。Ollama 两个模型均返回 `Provider unreachable: ollama-native orphan tool result <missing-id>`，目标地址为 `http://127.0.0.1:10100/v1/responses`；这是同 provider 的传输失败，不计写稿质量，也不以其他 provider 的稿件冒充 Ollama 结果。
+
+用户指出 OpenCodex 2.39.0 的 `ollama-native` 适配器要求 `tool_result` 前存在同 `call_id` 的 assistant tool call 后，本轮又分别为 Baseline 与 Candidate 请求全新干净任务；两次请求只返回 client setup id，未形成可列出的 Codex task，也没有正文输出。按用户要求停止有限重试。由于没有跑通样本，该诊断不提升为仓库通用测试规则，只保留在本证据中等待下次复现。
 
 ## 正向题观察
 
