@@ -1,0 +1,9 @@
+{
+  "schema_version": 1,
+  "baseline_commit": "2d50fcd3c2d7449dfa5baf1a8f11e80da9c083c8",
+  "candidate_commit": "f63d106206921eec41ec8c3719a0aa3a61919269",
+  "allowed_product_diff": [
+    "chinese-official-writing/SKILL.md",
+    "chinese-official-writing/references/genre-playbook-complaint-reflection.md"
+  ]
+}
