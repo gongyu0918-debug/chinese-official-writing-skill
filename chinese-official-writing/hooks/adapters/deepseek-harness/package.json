@@ -1,7 +1,7 @@
 {
   "name": "chinese-official-writing-gate-dsh",
   "description": "Optional DeepSeek Harness delivery gate for the Chinese official-writing Skill",
-  "version": "1.6.23",
+  "version": "1.6.24",
   "private": true,
   "type": "module",
   "main": "index.mjs",
