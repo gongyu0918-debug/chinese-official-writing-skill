@@ -61,6 +61,15 @@ def load_writer(repo: Path, cases_path: Path, output_root: Path):
     writer.CASES_PATH = cases_path
     writer.OUTPUT_ROOT = output_root
 
+    def isolated_skills_config(root: Path) -> str:
+        runtime_skill = root / ".agents/skills/chinese-official-writing"
+        entries = [f'{{path="{runtime_skill.as_posix()}",enabled=true}}']
+        entries.extend(
+            f'{{path="{skill_file.parent.as_posix()}",enabled=false}}'
+            for skill_file in writer.USER_SKILLS
+        )
+        return f"skills.config=[{','.join(entries)}]"
+
     def run_one(provider_id: str, model: str, arm: str, case: dict, effort: str) -> dict:
         root = writer.runtime_root(provider_id, arm)
         raw = output_root / "raw" / provider_id
@@ -85,7 +94,7 @@ def load_writer(repo: Path, cases_path: Path, output_root: Path):
             "-c",
             "features.memories=false",
             "-c",
-            writer.disabled_skills_config(),
+            isolated_skills_config(root),
             "-c",
             'openai_base_url="http://127.0.0.1:10100/v1"',
             "-c",
