@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "baseline_commit": "f03081dbaf6dd946b1fb2c4d9edc7ca37e017327",
+  "reasoning_effort": "max",
+  "providers": {
+    "alibaba2": "alibaba-token-plan-2/deepseek-v4-flash-0731",
+    "alibaba1": "alibaba-token-plan/deepseek-v4-flash-0731",
+    "ollama": "ollama-cloud/deepseek-v4-flash:0731",
+    "opencode": "opencode-go/deepseek-v4-flash",
+    "minimax": "minimax-cn/MiniMax-M3"
+  },
+  "cases": [
+    {
+      "id": "FEEDBACK-OPINION-OUTBOUND",
+      "atoms": ["WR-025d-FEEDBACK-TERM-ROUTE"],
+      "prompt_file": "prompts/feedback-opinion-outbound.txt",
+      "material": "协会向政策材料起草方提交正式反馈意见，含办理经历、未决状态和两类有权对象。",
+      "required_groups": [["2026年8月"], ["12家"], ["9家"], ["审核部门"], ["平台运营方"], ["尚未"]],
+      "forbidden": ["已经决定", "现已支持", "普遍认可", "必须立即上线"],
+      "quality_markers": ["反馈意见", "审核部门", "平台运营方", "供参考"]
+    },
+    {
+      "id": "OPINION-FEEDBACK-OUTBOUND",
+      "atoms": ["WR-025d-FEEDBACK-TERM-ROUTE"],
+      "prompt_file": "prompts/opinion-feedback-outbound.txt",
+      "material": "企业向申报平台运营方提交意见反馈，反映实际上传限制和待研究事项。",
+      "required_groups": [["3次"], ["18MB"], ["15MB"], ["CSV"], ["平台运营方"], ["尚未"]],
+      "forbidden": ["已经开放", "已经调整", "技术落后", "必须在本月完成"],
+      "quality_markers": ["意见反馈", "平台运营方", "研究", "实际"]
+    },
+    {
+      "id": "CONTROL-RECEIVED-FEEDBACK",
+      "atoms": ["WR-025d-RECEIVED-FEEDBACK-CONTROL"],
+      "prompt_file": "prompts/control-received-feedback.txt",
+      "material": "内部整理已收到的反馈意见和反馈办理结果，两个事项已答复、一个事项仍待研究。",
+      "required_groups": [["2026年8月28日"], ["3项"], ["2项"], ["1项"], ["尚在研究"]],
+      "forbidden": ["建议平台", "供研究参考", "请审核部门", "建议有关方面"],
+      "quality_markers": ["情况说明", "已答复", "尚在研究"]
+    },
+    {
+      "id": "ADVICE-SAME-COUNT-REORGANIZATION",
+      "atoms": ["WR-025d-SAME-COUNT-REORGANIZATION"],
+      "prompt_file": "prompts/advice-same-count-reorganization.txt",
+      "material": "三项底稿中前两项应按共同证据链合并，第三项应按审核与平台权限拆开，最终三项合理。",
+      "required_groups": [["框架合同"], ["预付款"], ["审核部门"], ["平台运营方"], ["CSV"], ["尚未"]],
+      "forbidden": ["已经认可", "已经开放", "统一由平台决定", "统一由企业决定"],
+      "quality_markers": ["审核部门", "平台运营方", "建议"]
+    }
+  ]
+}
