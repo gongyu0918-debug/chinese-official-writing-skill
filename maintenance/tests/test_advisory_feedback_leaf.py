@@ -103,6 +103,9 @@ class AdvisoryFeedbackLeafTests(HookCompanionTestMixin, unittest.TestCase):
         short_advice_result = (
             ROOT / "maintenance/tests/evidence/short-advice-capability-r4/candidate-result.md"
         ).read_text(encoding="utf-8")
+        short_advice_merge = (
+            ROOT / "maintenance/tests/evidence/short-advice-capability-r4/main-merge.md"
+        ).read_text(encoding="utf-8")
 
         self.assertIn("### WR-025 合作性意见建议与建议反馈", requirements)
         self.assertIn("`WR-025/025c` 合作性意见建议与建议反馈", coverage)
@@ -125,6 +128,8 @@ class AdvisoryFeedbackLeafTests(HookCompanionTestMixin, unittest.TestCase):
         self.assertIn("R4_REAL_WRITING_PASSED / ENGINEERING_VERIFIED", short_advice_result)
         self.assertIn("短意见载体与完整稿件形态", coverage)
         self.assertIn("short-advice-capability-r4/candidate-result.md", evidence)
+        self.assertIn("MERGED_MAIN_POST_V1.6.25_FROZEN", coverage)
+        self.assertIn("30a75113b962b0017fc20e082f3fc60059f30549", short_advice_merge)
 
 
 if __name__ == "__main__":
