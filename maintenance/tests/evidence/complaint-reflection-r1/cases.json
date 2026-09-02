@@ -1,0 +1,59 @@
+{
+  "schema_version": 1,
+  "baseline_commit": "2d50fcd3c2d7449dfa5baf1a8f11e80da9c083c8",
+  "reasoning_effort": "max",
+  "providers": {
+    "alibaba2": "alibaba-token-plan-2/deepseek-v4-flash-0731",
+    "alibaba1": "alibaba-token-plan/deepseek-v4-flash-0731",
+    "ollama": "ollama-cloud/deepseek-v4-flash:0731",
+    "opencode": "opencode-go/deepseek-v4-flash",
+    "minimax": "minimax-cn/MiniMax-M3"
+  },
+  "cases": [
+    {
+      "id": "COMPLAINT-PORTAL-OWN-EXPERIENCE",
+      "atoms": ["WR-027-COMPLAINT-NO-SOLUTION"],
+      "prompt_file": "prompts/complaint-portal-own-experience.txt",
+      "material": "本单位申报平台亲历问题，含完整日期、附件数、金额、回执字段、截图次数和待审核状态。",
+      "required_groups": [["2026年8月27日"], ["3份"], ["12.8万元", "128000元", "128,000元"], ["项目编号"], ["6张"], ["待审核"]],
+      "forbidden": ["建议平台", "建议审核部门", "应当增加", "完善回执", "优化流程", "立即整改", "普遍存在", "大量企业", "故意拖延", "已经解决"],
+      "quality_markers": ["反映", "待审核", "截图", "核对"]
+    },
+    {
+      "id": "SITUATION-REFLECTION-STANDALONE",
+      "atoms": ["WR-027-REFLECTION-FACT-STATE"],
+      "prompt_file": "prompts/situation-reflection-standalone.txt",
+      "material": "独立成文的报销材料退回情况反映，含两次退回原因、回执编号、热线答复、当前状态、署名和日期。",
+      "required_groups": [["关于线上报销材料退回情况的反映"], ["20260812017"], ["附件名称不一致"], ["发票编号未识别"], ["后台核验"], ["退回待修改"], ["海川技术有限公司"], ["2026年8月22日"]],
+      "forbidden": ["建议", "应当", "请完善", "优化系统", "立即整改", "普遍存在", "技术落后", "故意退回", "已经处理完毕"],
+      "quality_markers": ["8月12日", "8月14日", "8月16日", "8月18日", "退回待修改"]
+    },
+    {
+      "id": "COMPLAINT-EXPLICIT-REQUEST",
+      "atoms": ["WR-027-REQUEST-NOT-SOLUTION"],
+      "prompt_file": "prompts/complaint-explicit-request.txt",
+      "material": "服务续费投诉，含金额、工单编号、两次联系和未处理状态，并明确要求核实续费记录、反馈结果。",
+      "required_groups": [["2026年8月5日"], ["2400元", "2,400元"], ["F-0806-17"], ["2026年8月9日"], ["尚未"], ["核实"], ["反馈"]],
+      "forbidden": ["建议", "应当", "增加补偿", "延长服务", "优化系统", "立即退款", "三个工作日", "已经恢复"],
+      "quality_markers": ["核实", "反馈处理结果", "尚未"]
+    },
+    {
+      "id": "CONTROL-ADVISORY-FEEDBACK",
+      "atoms": ["WR-027-ADVISORY-CONTROL"],
+      "prompt_file": "prompts/control-advisory-feedback.txt",
+      "material": "协会向审核部门和平台运营方提交合作性意见建议，两个事项均处于未决状态。",
+      "required_groups": [["2026年8月19日"], ["4家"], ["审核部门"], ["平台运营方"], ["建议"]],
+      "forbidden": ["已经认可", "已经增加", "已完成调整", "必须立即上线"],
+      "quality_markers": ["建议", "审核部门", "平台运营方", "研究"]
+    },
+    {
+      "id": "CONTROL-RECEIVED-COMPLAINT-RECORD",
+      "atoms": ["WR-027-RECEIVED-RECORD-CONTROL"],
+      "prompt_file": "prompts/control-received-complaint-record.txt",
+      "material": "内部整理已收到的3件投诉及办理结果，两件已答复、一件仍待核实。",
+      "required_groups": [["2026年8月29日"], ["3件"], ["2件"], ["1件"], ["仍待核实"]],
+      "forbidden": ["我单位在申报时遇到", "本人投诉", "请核实本次", "建议平台", "全部办结"],
+      "quality_markers": ["办理情况", "已答复", "仍待核实"]
+    }
+  ]
+}
