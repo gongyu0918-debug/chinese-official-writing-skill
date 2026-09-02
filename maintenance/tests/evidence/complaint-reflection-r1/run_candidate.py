@@ -14,9 +14,10 @@ HERE = Path(__file__).resolve().parent
 REPO = HERE.parents[3]
 CASES_PATH = HERE / "cases.json"
 CONFIG_PATH = HERE / "candidate-config.json"
-OUTPUT_ROOT = REPO / "output/complaint-reflection-r1/candidate-r1"
-BASELINE_OUTPUT = REPO / "output/complaint-reflection-r1/baseline"
+OUTPUT_ROOT = REPO / "output/complaint-reflection-r1/candidate-r2"
+BASELINE_OUTPUT = REPO / "output/complaint-reflection-r1/baseline-r2"
 BASE_RUNNER_PATH = REPO / "maintenance/tests/evidence/reference-slimming-r2/run_probe.py"
+DESKTOP_WRITER_PATH = HERE / "desktop_writer.py"
 
 
 def load_cases_config() -> dict:
@@ -36,6 +37,12 @@ def load_base_runner():
     module.CASES_PATH = CASES_PATH
     module.OUTPUT_ROOT = OUTPUT_ROOT
     module.load_config = load_cases_config
+    writer_spec = importlib.util.spec_from_file_location("wr027_desktop_writer_candidate", DESKTOP_WRITER_PATH)
+    if writer_spec is None or writer_spec.loader is None:
+        raise RuntimeError(f"cannot load writer adapter: {DESKTOP_WRITER_PATH}")
+    writer_adapter = importlib.util.module_from_spec(writer_spec)
+    writer_spec.loader.exec_module(writer_adapter)
+    module.load_writer = lambda: writer_adapter.load_writer(REPO, CASES_PATH, OUTPUT_ROOT)
     return module
 
 
