@@ -91,9 +91,11 @@ class ComplaintReflectionLeafTests(HookCompanionTestMixin, unittest.TestCase):
         self.assertIn("WR-027-COMPLAINT-REFLECTION-R2", todo)
         self.assertIn("complaint-reflection-r1/result.md", evidence)
         self.assertIn(
-            "R2_REAL_WRITING_PASSED / ENGINEERING_VERIFIED / CANDIDATE_NOT_MERGED",
+            "R2_REAL_WRITING_PASSED / ENGINEERING_VERIFIED / MERGED_MAIN_POST_V1.6.25_FROZEN",
             result,
         )
+        self.assertIn("complaint-reflection-r1/main-merge.md", evidence)
+        self.assertIn("冻结v1.6.25不变", (ROOT / "maintenance/tests/evidence/complaint-reflection-r1/main-merge.md").read_text(encoding="utf-8"))
 
 
 if __name__ == "__main__":

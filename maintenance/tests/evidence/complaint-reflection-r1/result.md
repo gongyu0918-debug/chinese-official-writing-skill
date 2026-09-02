@@ -2,7 +2,7 @@
 
 日期：2026-09-02。
 
-状态：`R2_REAL_WRITING_PASSED / ENGINEERING_VERIFIED / CANDIDATE_NOT_MERGED`。
+状态：`R2_REAL_WRITING_PASSED / ENGINEERING_VERIFIED / MERGED_MAIN_POST_V1.6.25_FROZEN`。
 
 ## 范围与判断基线
 
@@ -39,7 +39,7 @@ R2原批14/15技术有效；MiniMax一份误读全局同名Skill，作技术无�
 2. 新增`references/genre-playbook-complaint-reflection.md`；
 3. 同步 Agent Skills、Qwen Code、QwenWork、Hermes、OpenClaw 五套普通兼容镜像。
 
-不修改 description、Hook、adapter、通用短稿页、版本号或发布包。六种临时 companion 组装只用于字节一致性测试，不形成新的常驻产品目录。当前分支未合入`main`，没有 tag、推送或平台发布。
+不修改 description、Hook、adapter、通用短稿页、版本号或发布包。六种临时 companion 组装只用于字节一致性测试，不形成新的常驻产品目录。所选候选已合入本地`main`，但没有进入冻结v1.6.25，也没有推送、移动标签或平台发布；精确坐标见`main-merge.md`。
 
 ## 证据坐标与命令
 
