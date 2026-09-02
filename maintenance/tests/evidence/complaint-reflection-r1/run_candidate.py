@@ -14,7 +14,7 @@ HERE = Path(__file__).resolve().parent
 REPO = HERE.parents[3]
 CASES_PATH = HERE / "cases.json"
 CONFIG_PATH = HERE / "candidate-config.json"
-OUTPUT_ROOT = REPO / "output/complaint-reflection-r1/candidate-r2"
+OUTPUT_ROOT = REPO / "output/complaint-reflection-r1/candidate-r3"
 BASELINE_OUTPUT = REPO / "output/complaint-reflection-r1/baseline-r2"
 BASE_RUNNER_PATH = REPO / "maintenance/tests/evidence/reference-slimming-r2/run_probe.py"
 DESKTOP_WRITER_PATH = HERE / "desktop_writer.py"
@@ -22,6 +22,9 @@ DESKTOP_WRITER_PATH = HERE / "desktop_writer.py"
 
 def load_cases_config() -> dict:
     config = json.loads(CASES_PATH.read_text(encoding="utf-8"))
+    candidate_config = json.loads(CONFIG_PATH.read_text(encoding="utf-8"))
+    active_case_ids = set(candidate_config["active_case_ids"])
+    config["cases"] = [case for case in config["cases"] if case["id"] in active_case_ids]
     for case in config["cases"]:
         case["prompt"] = (HERE / case["prompt_file"]).read_text(encoding="utf-8")
     return config
