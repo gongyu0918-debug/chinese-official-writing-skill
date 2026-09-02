@@ -82,11 +82,11 @@ QwenWork 可使用 [`packages/qwenwork/`](packages/qwenwork/) 中的无 Hook 静
 
 | 调试方向 | 主要稿件与边界 | 当前证据 |
 | --- | --- | --- |
-| 1.6.21 篇幅不足口径与 QwenWork 静态包 | `UL-005-R10` 对扩写指令和 verifier 合理推断口径做一致化收窄；QwenWork 增加34文件无 Hook 静态 Skill 包；`UL-006` 动态字数候选不进入发行祖先 | R10 四轮75份候选/基线真实稿实现充足申请5/5、新闻4/5达标加1份安全D0、稀疏5/5逐字D0；QwenWork 完成官方布局、组织 ZIP、同 hash 打包和包路径采购真稿；ClawHub 继续33文件无 Hook 包 |
-| 1.6.20 新闻完整日期写后修复与 Hook 使用顺序 | 对唯一完整来源日期、唯一目标新闻文种做 Stop 前机械补年；多日期、非新闻、歧义材料和其他 capability 均旁路；Hook README 先说明安装使用，再列彻底删除 | 三 provider 九次 Claude Code 真实生命周期中3次精确修复、3次目标稿自然正确、3次控制逐字不变；Alibaba Token Plan 2 与 OpenCode Go 达到预登记门。四个 references 减载原子经五路190次真实任务后全部拒绝并恢复产品字节；ClawHub 仍发布无 Hook 包 |
-| 1.6.19 Hermes 与 DeepSeek Harness 有界适配 | Hermes 0.20.5—0.20.6 只支持新建且不可恢复的单题；DeepSeek Harness 0.1.1-rc.2 只支持 Windows headless Profile Bundle 与 `delivery_review` | Hermes 完成采购、情况说明和固定失败稿的真实生命周期；DSH 用 Alibaba 与 OpenCode Go 两份当前 Skill 真稿闭合多 Stop、终稿 hash 与脱敏；交互、恢复、one-shot/gateway、TUI/Web、POSIX 和其他 capability 不外推；不改写作规则或 references |
-| 1.6.18 OpenCode 交互 Hook 与宿主边界 | OpenCode 1.18.23 常驻交互模式把 `session.idle`、同一 session 续写与共享门禁连接起来；无头 `run` 明确旁路，Hermes 同步变换未复现可安全机械处理的真稿目标 | 三份同稿原型均有目标修正，其中采购申请、情况说明解决目标，活动新闻仍保留包装风险；Alibaba Token Plan 2 的320字符采购申请完成回合重绑、单所有者、终态脱敏在线闭环；不改写作规则或 references |
-| 1.6.17 写稿稳定性与状态收口 | 分开验证持续动作、证据未附、短采购原因与影响、长报告结论范围；没有跨模型共同目标失败，不新增写作规则、Hook 或统一篇幅门 | `WR-014-R6/R6b`、`WR-013c`、`WR-020a2` 完成预登记真实写稿；Ollama 单家状态外推、长稿技术失效和无 Hook 直写包装作为残余风险保留 |
+| 1.6.24 短稿语义路由与 Hook 说明顺序 | 短稿不再用固定字符数作跨文种分界；明确简短时直达，只有上限时结合文种、材料密度和交付形态判断；Hook README 先介绍使用，再说明暂停和关闭 | 五家累计100份真实调用，最终候选15/15有效，完整讲话误读短稿页由2/5降为0/5；发布前101项聚焦、756项全量及五套普通 Skill 校验通过 |
+| 1.6.23 事故入口契约与点名审稿轻页 | 阶段性事故通报的隐式补足入口收窄为单一类型；共享 Stop 预算、可信恢复与失败脱敏闭合；点名只审任务优先读取轻量检查页 | 事故与宿主契约定向反控、五路点名审稿真稿、111/111双侧消融及756项全量通过；ClawHub 继续34文件无 Hook 包 |
+| 1.6.22 事故、申请和请示的材料边界 | 阶段性事故通报保留动态近转写入口；短通知不从邮箱或接收方反推落款；申请和请示在事实与常识可闭合时自然写明一般缘由，材料不足时不捏造具体事由 | 五路申请65份、请示80份和事故/通知联合留出通过；发布前747项全量、111/111确定性消融和20/20本地 smoke 通过 |
+| 1.6.21 篇幅不足口径与 QwenWork 静态包 | `UL-005-R10` 对扩写指令和 verifier 合理推断口径做一致化收窄；QwenWork 增加34文件无 Hook 静态 Skill 包 | R10 四轮75份候选/基线真实稿实现充足申请5/5、新闻4/5达标加1份安全D0、稀疏5/5逐字D0；QwenWork 完成官方布局、组织 ZIP、同 hash 打包和包路径采购真稿 |
+| 1.6.20 新闻完整日期写后修复与 Hook 使用顺序 | 对唯一完整来源日期、唯一目标新闻文种做 Stop 前机械补年；多日期、非新闻、歧义材料和其他 capability 均旁路；Hook README 先说明安装使用，再列彻底删除 | 三 provider 九次 Claude Code 真实生命周期中3次精确修复、3次目标稿自然正确、3次控制逐字不变；Alibaba Token Plan 2 与 OpenCode Go 达到预登记门 |
 
 ### 制度正文示例
 
@@ -116,7 +116,7 @@ QwenWork 可使用 [`packages/qwenwork/`](packages/qwenwork/) 中的无 Hook 静
 
 技能规则、references 和 scripts 在本仓库持续迭代，各平台技能目录由 canonical 包同步生成。规范与社区项目用于校验文种、流程形态和风险维度；具体规则经过复现、取舍和 A/B 后进入主线，Git 历史记录每次修改和验证。
 
-最近 5 份证据：[`release-1.6.21.md`](maintenance/tests/evidence/release-1.6.21.md) · [`release-1.6.21-rc.md`](maintenance/tests/evidence/release-1.6.21-rc.md) · [`short-inference-r1/underlength-r4-result.md`](maintenance/tests/evidence/short-inference-r1/underlength-r4-result.md) · [`hk004-qwenwork-r1/result.md`](maintenance/tests/evidence/hk004-qwenwork-r1/result.md) · [`release-1.6.20.md`](maintenance/tests/evidence/release-1.6.20.md)。完整记录见 [`maintenance/docs/evidence/README.md`](maintenance/docs/evidence/README.md)。
+最近 5 份证据：[`release-1.6.24.md`](maintenance/tests/evidence/release-1.6.24.md) · [`release-1.6.24-rc.md`](maintenance/tests/evidence/release-1.6.24-rc.md) · [`short-route-semantic-r1/result.md`](maintenance/tests/evidence/short-route-semantic-r1/result.md) · [`release-1.6.23.md`](maintenance/tests/evidence/release-1.6.23.md) · [`release-1.6.22.md`](maintenance/tests/evidence/release-1.6.22.md)。完整记录见 [`maintenance/docs/evidence/README.md`](maintenance/docs/evidence/README.md)。
 
 ## 目录结构
 
