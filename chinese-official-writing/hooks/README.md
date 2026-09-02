@@ -17,39 +17,13 @@ Hook 会增加事件处理和有限的修订核验，因此通常比普通 Skill
 - 用户明确要求为某个宿主启用 Hook 后，Agent 先展示宿主、目标目录和拟复制文件；用户确认后才组装胶水层。组装、安装、启用和宿主信任确认分开进行。
 - 启用后，Hook 仅使用宿主传入的当前任务事件，并在宿主提供的本地插件数据目录保存请求、初稿、门禁状态和输出哈希；不收集已安装 Agent 清单，不上传稿件或运行记录。
 
-## 开启或关闭
-
-### 当前任务临时关闭
-
-直接对 Agent 说：
-
-> 本次关闭 Hook，按普通 Skill 完成。
-
-也可说“本次不要用 Hook”或“跳过交付门禁”。该任务会记录 `bypass=user_requested`，不创建门禁事务，不调用门禁，也不阻断终稿。已启用的 companion 仍会收到宿主事件；这里关闭的是本 Skill 当前任务的交付门禁。说“不要关闭 Hook”“继续使用 Hook”不会误触发关闭；“不要用脚本”等泛化要求也不会关闭 Hook。
-
-### 完全关闭
-
-| 宿主 | 完全关闭方式 |
-| --- | --- |
-| Codex | 使用普通 Skill，不安装 Hook companion；已安装时用 `codex plugin remove <插件>@<marketplace>` 移除。 |
-| WorkBuddy / CodeBuddy | 启动时不传 `--plugin-dir`；已安装插件可用 `codebuddy plugin disable <插件>` 禁用。 |
-| Claude Code | 启动时不传 `--plugin-dir`；已安装插件可用 `claude plugin disable <插件>` 禁用。 |
-| ZCode | 不在插件目录中登记或启用 companion；已登记时从 ZCode 插件配置中停用或移除。 |
-| Qwen Code | 使用普通 Skill，不安装 native extension；已安装时用 `qwen extensions disable chinese-official-writing-gate` 停用，或用 `qwen extensions uninstall chinese-official-writing-gate` 移除。 |
-| Kimi Code CLI | 使用普通 Skill，不安装 plugin；已安装时通过 `/plugins disable chinese-official-writing-gate` 停用，或通过 `/plugins remove chinese-official-writing-gate` 移除。 |
-| OpenCode | 使用普通 Skill，不把 companion 的项目级 `.opencode/plugins/chinese-official-writing-gate.js` 合入目标项目；已合入时先停用 OpenCode，再只移除该文件及本 companion 的同名 Skill/能力配置，不覆盖项目内其他 `.opencode` 内容。 |
-| Hermes Agent | 使用普通 Skill，不安装 profile 用户插件；已启用时运行 `hermes plugins disable chinese-official-writing-gate`。 |
-| DeepSeek Harness | 使用普通 Skill，不向目标 profile 安装 bundle；已安装时运行 `dsh plugin --profile <profile> remove chinese-official-writing-gate-dsh`，然后重启该 profile。 |
-
-完全关闭后仍按 `SKILL.md`、references 和可选的 `scripts/prose_lint.py` 运行，写稿闭环不依赖 Hook。
-
-### 本地数据留存
+## 本地数据留存
 
 已启用 companion 时，Hook 为完成当前有界生命周期，会在宿主提供的插件数据目录下暂存本轮原请求、D0、候选稿和核验包。正常到达终态 Stop，或 Stop 判定本轮不启动门禁后，原请求、原稿、候选稿、删除 span、观察包和事务文件会立即删除或从记录中移除；本地只保留 hash、字数、阶段、选择结果和交付状态等不含正文的回执。重复 Stop 只读取已脱敏状态，不重建事务。
 
 Hermes Agent 的单次同步复核不建立磁盘事务：请求、D0 和候选只保留在当前进程内存，回合结束即移除；宿主 INFO/显式 debug 摘要只含动作、原因、字符数和 hash，不含正文。
 
-宿主或进程在终态前异常退出时，未完成事务可能仍留在宿主 adapter 数据根下的 `candidate-ai-gate-hook`。需要清理时，先按上表停用或移除 companion，核对该宿主说明中的绝对数据根，只删除其下精确的 `candidate-ai-gate-hook` 子目录；不要删除数据父目录、用户目录或其他插件目录。当前 Hook 不联网外传这些快照，也不读取凭证文件。
+宿主或进程在终态前异常退出时，未完成事务可能仍留在宿主 adapter 数据根下的 `candidate-ai-gate-hook`。需要清理时，先按下文“暂停或关闭”中的宿主关闭方式停用或移除 companion，核对该宿主说明中的绝对数据根，只删除其下精确的 `candidate-ai-gate-hook` 子目录；不要删除数据父目录、用户目录或其他插件目录。当前 Hook 不联网外传这些快照，也不读取凭证文件。
 
 ## 宿主适配说明
 
@@ -98,6 +72,32 @@ SKILL.md 与 references 形成完整 D0
 6. 先运行宿主 validator 和离线事件 smoke，再由用户决定是否安装或加载。组装完成不得自动进入安装步骤。
 
 可用性和数据边界见 [`host-capabilities.json`](host-capabilities.json)。
+
+## 暂停或关闭
+
+### 当前任务临时关闭
+
+直接对 Agent 说：
+
+> 本次关闭 Hook，按普通 Skill 完成。
+
+也可说“本次不要用 Hook”或“跳过交付门禁”。该任务会记录 `bypass=user_requested`，不创建门禁事务，不调用门禁，也不阻断终稿。已启用的 companion 仍会收到宿主事件；这里关闭的是本 Skill 当前任务的交付门禁。说“不要关闭 Hook”“继续使用 Hook”不会误触发关闭；“不要用脚本”等泛化要求也不会关闭 Hook。
+
+### 完全关闭
+
+| 宿主 | 完全关闭方式 |
+| --- | --- |
+| Codex | 使用普通 Skill，不安装 Hook companion；已安装时用 `codex plugin remove <插件>@<marketplace>` 移除。 |
+| WorkBuddy / CodeBuddy | 启动时不传 `--plugin-dir`；已安装插件可用 `codebuddy plugin disable <插件>` 禁用。 |
+| Claude Code | 启动时不传 `--plugin-dir`；已安装插件可用 `claude plugin disable <插件>` 禁用。 |
+| ZCode | 不在插件目录中登记或启用 companion；已登记时从 ZCode 插件配置中停用或移除。 |
+| Qwen Code | 使用普通 Skill，不安装 native extension；已安装时用 `qwen extensions disable chinese-official-writing-gate` 停用，或用 `qwen extensions uninstall chinese-official-writing-gate` 移除。 |
+| Kimi Code CLI | 使用普通 Skill，不安装 plugin；已安装时通过 `/plugins disable chinese-official-writing-gate` 停用，或通过 `/plugins remove chinese-official-writing-gate` 移除。 |
+| OpenCode | 使用普通 Skill，不把 companion 的项目级 `.opencode/plugins/chinese-official-writing-gate.js` 合入目标项目；已合入时先停用 OpenCode，再只移除该文件及本 companion 的同名 Skill/能力配置，不覆盖项目内其他 `.opencode` 内容。 |
+| Hermes Agent | 使用普通 Skill，不安装 profile 用户插件；已启用时运行 `hermes plugins disable chinese-official-writing-gate`。 |
+| DeepSeek Harness | 使用普通 Skill，不向目标 profile 安装 bundle；已安装时运行 `dsh plugin --profile <profile> remove chinese-official-writing-gate-dsh`，然后重启该 profile。 |
+
+完全关闭后仍按 `SKILL.md`、references 和可选的 `scripts/prose_lint.py` 运行，写稿闭环不依赖 Hook。
 
 ## 永久移除包内 Hook
 
