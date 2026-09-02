@@ -163,6 +163,27 @@ class StatusLedgerConsistencyTests(unittest.TestCase):
         self.assertIn("SKILLHUB_PUBLIC_LATEST_SIGNATURE_CLOSED_REPORTS_QUEUED", release_evidence)
         self.assertIn("CLAWHUB_PUBLIC_INDEX_CLOSED_SECURITY_CLEAN", release_evidence)
 
+    def test_v1625_is_local_frozen_and_not_recorded_as_published(self) -> None:
+        public_readme = read("README.md")
+        roadmap = read("maintenance/specs/roadmap.md")
+        todo = read("maintenance/docs/待办.md")
+        evidence_index = read("maintenance/docs/evidence/README.md")
+        candidate_evidence = read("maintenance/tests/evidence/release-1.6.25-rc.md")
+
+        self.assertIn("chinese-official-writing@1.6.24", public_readme)
+        self.assertIn("当前产品tag为`v1.6.24", todo)
+        self.assertIn("LOCAL_TAG_FROZEN / PREFLIGHT_PASSED / PUBLICATION_PAUSED_BY_USER", candidate_evidence)
+        self.assertIn("cf8e181591ea01ba81138352c12b5b93a8acf098", candidate_evidence)
+        self.assertIn("765/765 通过", candidate_evidence)
+        self.assertIn("84 文件", candidate_evidence)
+        self.assertIn("35 文件", candidate_evidence)
+        self.assertIn("release-1.6.25-rc.md", evidence_index)
+        self.assertIn("release-1.6.25-rc.md", todo)
+        self.assertIn("`v1.6.25` 已在独立发行分支固定本地 annotated tag", section(roadmap, "IN_PROGRESS"))
+        self.assertIn("PUBLICATION_PAUSED_BY_USER", section(roadmap, "IN_PROGRESS"))
+        self.assertFalse((ROOT / "maintenance/tests/evidence/release-1.6.25.md").exists())
+        self.assertNotIn("`v1.6.25` 小版本已发布", section(roadmap, "DONE"))
+
     def test_ul006_and_notice_atoms_have_distinct_terminal_states(self) -> None:
         requirements = read("maintenance/specs/requirements.md")
         coverage_row = table_row(read("maintenance/specs/coverage.md"), "UL-006")

@@ -66,7 +66,9 @@
 
 ## IN_PROGRESS
 
-当前无活动候选。
+当前无活动候选（产品研究）；另有一个冻结发行候选：
+
+- `v1.6.25` 已在独立发行分支固定本地 annotated tag，`v1.6.25^{commit}=cf8e181591ea01ba81138352c12b5b93a8acf098`。765项全量、104项聚焦回归、五套 quick validate、84/35文件包体和两平台 dry-run 已通过，状态为 `LOCAL_TAG_FROZEN / PREFLIGHT_PASSED / PUBLICATION_PAUSED_BY_USER`；公开 latest 仍为 v1.6.24，没有远端 tag、GitHub Release 或两平台正式提交。[候选记录](../tests/evidence/release-1.6.25-rc.md)
 
 ## REJECTED
 
