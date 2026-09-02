@@ -57,15 +57,16 @@
 - `WR-024` 请示缘由、依据与材料缺口已完成五路四臂80份真实写稿并选择拆分后的 R3：请示按缘由—事项—要求组织，紧凑短稿可同句承载；事实、依据和常识可直接支持时允许一层自然理由或用途，缺原因时不编造具体事由。R1 宽泛合并句与 R2 负面枚举分别记 `REJECTED`，R3 为 `SELECTED_ENGINEERING_VERIFIED / DONE_V1.6.22`；单缺口提示形态和材料外“其他安排不变”另项处理，不新增 Hook、description 或统一长度门。[结果](../tests/evidence/wr024-request-reason-r1/r3-result.md)
 - `WR-025 / WR-008b` 已用五家低成本路线完成长篇算力建议、多处置主体反馈和小标题修复，并补回两家4份安全整改/正式下行指导真实控制稿。R3 的问题归并、处置权、未决状态和5/5标题换行形成可复现正收益，专叶、窄路由、五套镜像、761项全量和合并前包体门通过；R4/R5/R6只否定加码路径并已终止。发布v1.6.23后已合入本地main，当前状态为 `R3_SELECTED_ENGINEERING_VERIFIED / MERGED_MAIN_POST_V1.6.23`，不新增Hook、description、固定条数或统一长度门；不进入已发布v1.6.23，实际DOCX渲染未验证，不冒充Word视觉交付。[结果](../tests/evidence/advisory-feedback-tone-r1/result.md)
 - `WR-025c` 已在同一建议反馈专叶内补充第一方证据优先、外部做法仅作参考和并列建议标题显式建议行为三项窄规则。五家23组有效A/B及5组正式长意见留出中，四个实际读取专叶的provider把建议标题从0/4改善为4/4，并保持日期、处置权和未决状态；第一方开头在基线已5/5通过，只作稳定规则。canonical与五套镜像、直接单测和包体镜像门通过，状态为`SELECTED_ENGINEERING_VERIFIED / MERGED_MAIN_POST_V1.6.24`；不新增Hook、description或版本号，不进入已发布v1.6.24。[复核](../tests/evidence/advisory-feedback-heading-evidence-r1/review.md)
+- `WR-025d` 已用五路20份真实稿复核“反馈意见/意见反馈”路由和同总数重组：两道对外题分别4/5、5/5读取建议专叶，收到反馈/办理结果控制0/5误读；三家有效读叶模型均正确合并同因项、按权限拆开混合项并合理保留3项。状态为`BASELINE_SUFFICIENT / CANDIDATE_NOT_STARTED / NO_PRODUCT_CHANGE`，不机械扩路由词或修改条目规则；两稿材料外日期/占位落款归既有WR-001残余，不顺手加禁令。[结果](../tests/evidence/wr025d-feedback-route-r1/result.md)
 - `WR-026` 已把短意见从正式长意见和通用短稿减载中拆成独立原子，完成五家R1—R3累计123份真实写稿。R3改用正向载体结构后，实际读取候选叶的样本仍为2项包装改善、3项包装回退并有1项材料外扩展；该路径终止，状态为 `BASELINE_RETAINED / WAIT_NEW_COUNTEREXAMPLE`。产品、Hook、description、镜像、版本或包体保持main，包装残余归 `CL-001-NOHK-R2`。[结果](../tests/evidence/short-advice-routing-r1/result.md)
 - `WR-014-R6/R6b`、`WR-013c`、`WR-020a2` 已完成当前基线真实写稿：[结果](../tests/evidence/post-v1616-writing-stability-r1/result.md)。R6原“继续”目标2/2未复现；R6b只有Ollama 1/2把证据未附外推为待后续核验；短采购原因/低强度影响2/2通过；长报告OpenCode目标通过，Ollama两次技术失效。没有跨模型共同目标失败，产品0差异，不留HOLD。
 - v1.6.15 短稿诊断已完成五路30臂：未复现跨文种系统性偏短；活动新闻完整年份和个别 provider 的材料外扩写已拆成独立风险，不用“正文必须长于提示词”统一处理。
-- 本地付费候选 `codex/paid-outline-review` 收敛 `OT-001`、`OT-001-composite`、`OT-002` 与 `RF-001`；活动台账以“当前 main 是付费分支祖先”作为同步事实，不固化会在下一次同步后失效的 tip。三宿主47文件组装、698项全量和公开零文件检查通过。该状态为 `DONE_LOCAL_PAID_NO_RELEASE`，不反向进入公开版、不发布。
+- 本地付费候选 `codex/paid-outline-review` 历史上收敛 `OT-001`、`OT-001-composite`、`OT-002` 与 `RF-001`，最后明确同步到v1.6.18发布线；2026-09-02实测当前公开main不是该分支祖先。既有三宿主47文件组装、698项全量和公开零文件检查只证明当时状态，当前记为 `CAPABILITY_DONE_LOCAL / SYNC_REQUIRED / PAID_THREAD_OWNED / NO_RELEASE`；同步与复核由独立付费线程完成，不在公开候选反向合并付费实现。
 - `UL-006` 已完成拆分并随v1.6.22发布：阶段性事故通报保留动态近转写入口；情况说明和办理通知的隐式入口终止；透明算术因没有安全D1交付而撤回；“已形成但未附”reference因跨provider正文包装终止；短通知只接入不从邮箱/接收方反推落款主体或日期的关系边界。旧五家20稿与新五家15稿通过，状态为`DONE_V1.6.22`，无活动`HOLD`。[事故结果](../tests/evidence/ul006-incident-only-r1/result.md) [联合留出](../tests/evidence/post-v1621-validated-atoms-r1/result.md)
 
 ## IN_PROGRESS
-- `WR-009c`：稀疏事务申请的未决字段后续写边界。只验证“待明确后另行报批/按程序组织实施”等材料外程序承诺，不同时修改原因推断；有现状、问题或已做尝试时仍允许一层合理原因和即时作用。[来源](../tests/evidence/short-inference-r1/cause-hint-result.md)
-- `CL-001-NOHK-R2`：普通无 Hook 写稿仍跨 provider 出现“已读取技能”、正文引导语、横线、自检和 commit/测试说明。只前移或合并现有“只交正文”规则，用短事务稿、新闻、情况说明与长稿做真实 A/B，不增加 description。[来源](../tests/evidence/short-inference-r1/cause-hint-result.md)
+
+当前无活动候选。
 
 ## REJECTED
 
@@ -94,6 +95,7 @@
 ## WAIT_NEW_COUNTEREXAMPLE
 
 - `WR-009b` 当前通用实质缺口规则已让明确允许提示题5/5、自然 holdout 技术有效4/4给出原因补充建议；两轮显式候选在只交正文和明确拒绝题之间摆动，已恢复产品。若出现当前基线未提示的新自然反例再开，不重试原组合。[结果](../tests/evidence/short-inference-r1/cause-hint-result.md)
+- `WR-021-SITUATION-CLOSE-R1` 全新情况说明题只有Alibaba 1/3新增“另行说明”，Ollama与OpenCode自然收束，未达到复现门；历史编号不复用，新的材料外后续承诺反例归`WR-009c`。[结果](../tests/evidence/wr021-situation-close-r1/result.md)
 - `WR-013d/WR-018-R2` 当前五路新采购、维修与活动新闻共15份真实稿中14份技术有效；申请稿5/5均形成一层合理原因和作用，活动新闻3/4形成有限影响，未复现跨provider功能性过薄。完整年份、包装和个别材料外流程另作既有风险，不据此改普通写稿规则。[结果](../tests/evidence/short-inference-r1/baseline-result.md)
 - `SHORT-CURRENT-CLI-R1` 当前同一无上限采购题十个CLI的实际正文均完成文种功能且不薄；240—300字符题在Claude/Codex/ZCode/DeepSeek Harness四种当前companion无争议通过，CodeBuddy 2.141.0为长度/真实profile生命周期通过但有reference拒绝与软性时间措辞风险，Qwen无Hook消融另得245字符干净正文。活动新闻、未决说明和噪声纪要各两家低成本provider也未出现功能性过薄。状态为`NO_COMMON_SHORT_REGRESSION / WAIT_NEW_COUNTEREXAMPLE`；只在新的跨provider功能性过薄反例出现时重开，不把Hook输出聚合、事实外扩或技术失效记成短稿失败。[结果](../tests/evidence/host-cli-revalidation-r1/result.md)
 - `MT-004a-PROCUREMENT-REQUEST-ROUTE-R1`：首份 Alibaba2 简单采购申请读取4份额外通用页，但预注册的 Alibaba1 全新复现只读信息选择、轻量卡和申请叶，正文132→219字且事实、状态、合理原因和请批功能通过。跨 provider 稳定过载未成立，不修改 reference；只有另一家低成本 provider 新 trace 再次出现同类过读或真实质量回退才重开。[结果](../tests/evidence/mt004a-procurement-request-route-r1/result.md)
@@ -108,6 +110,9 @@
 ## TODO：已登记但不在本轮展开
 
 1. 文件提取失败与降级交付仅作低优先级观察；出现真实扫描 PDF/不支持格式失败后，再验证停止、请求转换和 Markdown 降级，不先并入默认写稿流程。
+2. `WR-009c`（`REGISTERED_BACKLOG`）：只在新的自然反例出现时验证稀疏事务稿把未决字段扩成“待明确后另行报批、按程序组织实施”等材料外程序承诺；不同时收紧WR-013允许的一层合理原因、即时作用和条件性结论。[来源](../tests/evidence/short-inference-r1/cause-hint-result.md)
+3. `CL-001-NOHK-R2`（`REGISTERED_BACKLOG`）：普通无Hook写稿若再次跨provider出现过程说明、正文引导语、横线、自检或commit/测试说明，再以短事务稿、新闻、情况说明和长稿做最小A/B；不增加description。[来源](../tests/evidence/short-inference-r1/cause-hint-result.md)
+4. `PAID-PUBLIC-SYNC`（`SYNC_REQUIRED / PAID_THREAD_OWNED`）：由独立付费线程把当前公开main同步到`codex/paid-outline-review`，重新核对祖先、allowlist、提纲/红头真稿和生命周期；公开分支不执行该同步。
 
 ## 不再重复
 

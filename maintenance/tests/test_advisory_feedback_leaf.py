@@ -89,6 +89,9 @@ class AdvisoryFeedbackLeafTests(HookCompanionTestMixin, unittest.TestCase):
         heading_review = (
             ROOT / "maintenance/tests/evidence/advisory-feedback-heading-evidence-r1/review.md"
         ).read_text(encoding="utf-8")
+        route_result = (
+            ROOT / "maintenance/tests/evidence/wr025d-feedback-route-r1/result.md"
+        ).read_text(encoding="utf-8")
 
         self.assertIn("### WR-025 合作性意见建议与建议反馈", requirements)
         self.assertIn("`WR-025/025c` 合作性意见建议与建议反馈", coverage)
@@ -99,10 +102,15 @@ class AdvisoryFeedbackLeafTests(HookCompanionTestMixin, unittest.TestCase):
         self.assertIn("`WR-025c`", todo)
         self.assertIn("advisory-feedback-tone-r1/result.md", evidence)
         self.assertIn("advisory-feedback-heading-evidence-r1/review.md", evidence)
+        self.assertIn("wr025d-feedback-route-r1/result.md", evidence)
         self.assertIn("R4_R5_R6_TERMINATED", result)
         self.assertIn("无活动 `HOLD`", result)
         self.assertIn("4/4", heading_review)
         self.assertIn("进入直接工程", heading_review)
+        self.assertIn("BASELINE_SUFFICIENT / CANDIDATE_NOT_STARTED / NO_PRODUCT_CHANGE", route_result)
+        self.assertIn("共20次真实写稿", route_result)
+        self.assertIn("| 对外“反馈意见” | 5/5 | 4/5 |", route_result)
+        self.assertIn("| 对外“意见反馈” | 5/5 | 5/5 |", route_result)
 
 
 if __name__ == "__main__":

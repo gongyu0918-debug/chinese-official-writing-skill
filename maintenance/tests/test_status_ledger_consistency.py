@@ -236,6 +236,37 @@ class StatusLedgerConsistencyTests(unittest.TestCase):
                 self.assertNotRegex(todo, rf"(?m)^- \[ \] `{re.escape(item_id)}`.*HOLD")
                 self.assertNotIn(item_id, in_progress)
 
+    def test_post_v1624_spec_audit_records_numbering_backlogs_and_paid_sync(self) -> None:
+        requirements = read("maintenance/specs/requirements.md")
+        coverage = read("maintenance/specs/coverage.md")
+        roadmap = read("maintenance/specs/roadmap.md")
+        todo = read("maintenance/docs/待办.md")
+        evidence = read("maintenance/docs/evidence/README.md")
+
+        self.assertIn("### WR-009b 事务稿原因缺口提示", requirements)
+        self.assertIn("wr021-application-reason-r1", requirements)
+        self.assertIn("WR-021-SITUATION-CLOSE-R1", requirements)
+        self.assertIn("旧 `WR-022` 采购状态层级已由 `WR-014-R5` 吸收", requirements)
+        self.assertIn("WR-021-SITUATION-CLOSE", table_row(coverage, "WR-021-SITUATION-CLOSE"))
+
+        for item_id in ("OT-001", "OT-001-composite", "OT-002", "RF-001"):
+            with self.subTest(item_id=item_id):
+                row = table_row(coverage, item_id)
+                self.assertIn("SYNC_REQUIRED", row)
+                self.assertIn("PAID_THREAD_OWNED", row)
+
+        in_progress = section(roadmap, "IN_PROGRESS")
+        backlog = section(roadmap, "TODO：已登记但不在本轮展开")
+        self.assertIn("当前无活动候选", in_progress)
+        self.assertNotIn("WR-009c", in_progress)
+        self.assertNotIn("CL-001-NOHK-R2", in_progress)
+        for item_id in ("WR-009c", "CL-001-NOHK-R2", "PAID-PUBLIC-SYNC"):
+            with self.subTest(item_id=item_id):
+                self.assertIn(item_id, backlog)
+        self.assertIn("SYNC_REQUIRED / PAID_THREAD_OWNED", todo)
+        self.assertIn("wr021-situation-close-r1/result.md", evidence)
+        self.assertIn("wr025d-feedback-route-r1/result.md", evidence)
+
     def test_reference_slimming_atoms_are_terminal(self) -> None:
         roadmap = read("maintenance/specs/roadmap.md")
         todo = read("maintenance/docs/待办.md")
@@ -334,16 +365,20 @@ class StatusLedgerConsistencyTests(unittest.TestCase):
         todo = read("maintenance/docs/待办.md")
         roadmap = read("maintenance/specs/roadmap.md")
 
-        self.assertIn("DONE_LOCAL_PAID_NO_RELEASE", table_row(coverage, "OT-001"))
+        self.assertIn("CAPABILITY_DONE_LOCAL", table_row(coverage, "OT-001"))
         self.assertIn("DONE_CODEBUDDY_ONE_SAMPLE", table_row(coverage, "OT-001-composite"))
         self.assertIn("CLOSED_BY_EXISTING_PLANNER", table_row(coverage, "OT-002"))
         self.assertIn("PAID_PRODUCT_PASS_FONT_FALLBACK", table_row(coverage, "RF-001"))
         for item_id in ("OT-002", "OT-001-composite", "OT-001", "RF-001"):
             with self.subTest(item_id=item_id):
                 self.assertRegex(todo, rf"(?m)^- \[x\] `{re.escape(item_id)}`")
+                self.assertIn("SYNC_REQUIRED", table_row(coverage, item_id))
+                self.assertIn("PAID_THREAD_OWNED", table_row(coverage, item_id))
         self.assertIn("`codex/paid-outline-review`", roadmap)
         self.assertNotRegex(roadmap, r"codex/paid-outline-review@[0-9a-f]{8,40}")
-        self.assertIn("DONE_LOCAL_PAID_NO_RELEASE", roadmap)
+        self.assertIn("CAPABILITY_DONE_LOCAL / SYNC_REQUIRED / PAID_THREAD_OWNED / NO_RELEASE", roadmap)
+        self.assertRegex(todo, r"(?m)^- \[ \] `PAID-PUBLIC-SYNC`.*SYNC_REQUIRED / PAID_THREAD_OWNED")
+        self.assertIn("当前公开main不是该分支祖先", roadmap)
         self.assertNotIn("尚未实现的是结构化组合 coordinator 及其真实 Stop 生命周期", roadmap)
 
 
