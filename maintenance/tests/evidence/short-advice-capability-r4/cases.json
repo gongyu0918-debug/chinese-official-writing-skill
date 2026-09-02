@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "baseline_commit": "821364abfd7df2fa0af04f5e3ab7277897110ff0",
+  "reasoning_effort": "max",
+  "providers": {
+    "alibaba2": "alibaba-token-plan-2/deepseek-v4-flash-0731",
+    "alibaba1": "alibaba-token-plan/deepseek-v4-flash-0731",
+    "ollama": "ollama-cloud/deepseek-v4-flash:0731",
+    "opencode": "opencode-go/deepseek-v4-flash",
+    "minimax": "minimax-cn/MiniMax-M3"
+  },
+  "cases": [
+    {
+      "id": "SHORT-ADVICE-PORTAL-R4",
+      "prompt_file": "prompts/portal-body.txt",
+      "focus": "平台字段承载形式要素；短正文仍包含第一方事实、直接影响、两个有权对象和未决建议"
+    },
+    {
+      "id": "SHORT-ADVICE-EMAIL-R4",
+      "prompt_file": "prompts/email-body.txt",
+      "focus": "邮件载体中的克制反馈；不重复主题和署名，保留事实、影响和具体建议"
+    },
+    {
+      "id": "SHORT-ADVICE-STANDALONE-R4",
+      "prompt_file": "prompts/standalone.txt",
+      "focus": "紧凑但独立成文；保留给定题名、建议方和日期"
+    },
+    {
+      "id": "CONTROL-FORMAL-ADVICE-R4",
+      "prompt_file": "prompts/control-formal-advice.txt",
+      "focus": "正式长意见不得被短意见原子剥壳或压成一两段"
+    },
+    {
+      "id": "CONTROL-SHORT-NOTICE-R4",
+      "prompt_file": "prompts/control-short-notice.txt",
+      "focus": "已决定通知保持通知语气、事实和责任关系"
+    }
+  ]
+}
