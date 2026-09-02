@@ -54,6 +54,14 @@ class AdvisoryFeedbackLeafTests(HookCompanionTestMixin, unittest.TestCase):
         self.assertIn("建议审核部门研究明确", text)
         self.assertIn("建议平台建设运营方研究优化", text)
 
+    def test_external_advice_uses_first_party_evidence_and_explicit_suggestion_headings(self) -> None:
+        text = (CANONICAL / LEAF).read_text(encoding="utf-8")
+
+        self.assertIn("我方实际参与、办理、使用感受", text)
+        self.assertIn("外部做法只用于说明可能路径或可行性", text)
+        self.assertIn("建议 + 有权对象或具体动作", text)
+        self.assertIn("问题标题、参考情况、反馈办理结果", text)
+
     def test_heading_and_docx_title_rules_are_narrow(self) -> None:
         leaf = (CANONICAL / LEAF).read_text(encoding="utf-8")
         format_text = (CANONICAL / FORMAT).read_text(encoding="utf-8")
@@ -78,15 +86,23 @@ class AdvisoryFeedbackLeafTests(HookCompanionTestMixin, unittest.TestCase):
         result = (ROOT / "maintenance/tests/evidence/advisory-feedback-tone-r1/result.md").read_text(
             encoding="utf-8"
         )
+        heading_review = (
+            ROOT / "maintenance/tests/evidence/advisory-feedback-heading-evidence-r1/review.md"
+        ).read_text(encoding="utf-8")
 
         self.assertIn("### WR-025 合作性意见建议与建议反馈", requirements)
-        self.assertIn("`WR-025` 合作性意见建议与建议反馈", coverage)
+        self.assertIn("`WR-025/025c` 合作性意见建议与建议反馈", coverage)
         self.assertIn("`WR-008b` 并列小标题与 DOCX 主标题缩进", coverage)
-        self.assertIn("MERGED_MAIN_POST_V1.6.23", roadmap)
+        self.assertIn("WR-025c", roadmap)
+        self.assertIn("MERGED_MAIN_POST_V1.6.24", roadmap)
         self.assertIn("`WR-025 / WR-008b`", todo)
+        self.assertIn("`WR-025c`", todo)
         self.assertIn("advisory-feedback-tone-r1/result.md", evidence)
+        self.assertIn("advisory-feedback-heading-evidence-r1/review.md", evidence)
         self.assertIn("R4_R5_R6_TERMINATED", result)
         self.assertIn("无活动 `HOLD`", result)
+        self.assertIn("4/4", heading_review)
+        self.assertIn("进入直接工程", heading_review)
 
 
 if __name__ == "__main__":
