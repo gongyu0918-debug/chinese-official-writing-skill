@@ -29,17 +29,17 @@ def section(text: str, heading: str) -> str:
 
 
 class StatusLedgerConsistencyTests(unittest.TestCase):
-    def test_current_release_record_is_v1623(self) -> None:
+    def test_current_release_record_is_v1624(self) -> None:
         public_readme = read("README.md")
         todo = read("maintenance/docs/待办.md")
         roadmap = read("maintenance/specs/roadmap.md")
 
-        self.assertIn("当前产品tag为`v1.6.23^{commit}=6a6ededa", todo)
-        self.assertIn("release-1.6.23.md", todo)
+        self.assertIn("当前产品tag为`v1.6.24^{commit}=105fc3b1", todo)
+        self.assertIn("release-1.6.24.md", todo)
         self.assertIn("## v1.6.14 起已发布状态与后续研究", todo)
         self.assertNotIn("候选均保持 HOLD", public_readme)
-        self.assertIn("`v1.6.23` 小版本已发布", roadmap)
-        self.assertNotIn("当前产品tag为`v1.6.22", todo)
+        self.assertIn("`v1.6.24` 小版本已发布", roadmap)
+        self.assertNotIn("当前产品tag为`v1.6.23", todo)
 
     def test_v1621_release_history_is_preserved(self) -> None:
         evidence = read("maintenance/tests/evidence/release-1.6.21.md")
@@ -72,7 +72,7 @@ class StatusLedgerConsistencyTests(unittest.TestCase):
         candidate_evidence = read("maintenance/tests/evidence/release-1.6.22-rc.md")
         evidence_index = read("maintenance/docs/evidence/README.md")
 
-        self.assertIn("chinese-official-writing@1.6.23", public_readme)
+        self.assertIn("chinese-official-writing@1.6.24", public_readme)
         self.assertIn("`v1.6.22` 小版本已发布", section(roadmap, "DONE"))
         self.assertNotIn("v1.6.22", section(roadmap, "IN_PROGRESS"))
         self.assertIn("SkillHub `versionId=277452`", todo)
@@ -137,6 +137,31 @@ class StatusLedgerConsistencyTests(unittest.TestCase):
         self.assertIn("SKILLHUB_REBUILD_EXACT=true", merge_record)
         self.assertIn("codex/release-v1.6.22:main", merge_record)
         self.assertIn("禁止普通 `git push origin main`", merge_record)
+
+    def test_v1624_is_published_with_frozen_product_and_single_receipts(self) -> None:
+        public_readme = read("README.md")
+        requirements = read("maintenance/specs/requirements.md")
+        coverage_row = table_row(read("maintenance/specs/coverage.md"), "WR-005")
+        roadmap = read("maintenance/specs/roadmap.md")
+        todo = read("maintenance/docs/待办.md")
+        evidence_index = read("maintenance/docs/evidence/README.md")
+        candidate_evidence = read("maintenance/tests/evidence/release-1.6.24-rc.md")
+        release_evidence = read("maintenance/tests/evidence/release-1.6.24.md")
+
+        self.assertIn("chinese-official-writing@1.6.24", public_readme)
+        self.assertIn("固定字符数充当跨文种通用分界", requirements)
+        self.assertIn("v1.6.24 发布", coverage_row)
+        self.assertIn("`v1.6.24` 小版本已发布", section(roadmap, "DONE"))
+        self.assertIn("versionId=281889", todo)
+        self.assertIn("k972sdvqbb8gvxpvzngcqpgj9h8dnnbb", todo)
+        self.assertIn("release-1.6.24.md", evidence_index)
+        self.assertIn("release-1.6.24-rc.md", evidence_index)
+        self.assertIn("PUBLISHED / SEE release-1.6.24.md", candidate_evidence)
+        self.assertIn("105fc3b134ef2c17fb8a541a6e41ec1859c12bb3", release_evidence)
+        self.assertIn("versionId=281889", release_evidence)
+        self.assertIn("k972sdvqbb8gvxpvzngcqpgj9h8dnnbb", release_evidence)
+        self.assertIn("SKILLHUB_PUBLIC_LATEST_SIGNATURE_CLOSED_REPORTS_QUEUED", release_evidence)
+        self.assertIn("CLAWHUB_PUBLIC_INDEX_CLOSED_SECURITY_CLEAN", release_evidence)
 
     def test_ul006_and_notice_atoms_have_distinct_terminal_states(self) -> None:
         requirements = read("maintenance/specs/requirements.md")
