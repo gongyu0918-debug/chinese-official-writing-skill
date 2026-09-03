@@ -17,7 +17,7 @@ metadata:
 
 用户明确将体裁指定为新闻评论、时评或评论员文章时，直达 `references/genre-playbook-news-commentary.md`；普通公文内容中出现这些词语，不改变原定文种。
 
-用户要求形成面向政策制定、审核、平台建设运营或材料起草方的合作性意见建议稿、建议反馈或优化建议时，直达 `references/genre-playbook-advisory-feedback.md`。
+用户要求形成面向政策制定、审核、平台建设运营或材料起草方的合作性意见建议稿、建议反馈或优化建议时，直达 `references/genre-playbook-advisory-feedback.md`；具有下行指导、监督整改或审计监督权力关系的意见按对应文种处理。
 
 用户要求以本人或本单位亲历方身份，向有权处理的部门、平台、服务主体或管理单位提交投诉、问题反映或情况反映时，直达 `references/genre-playbook-complaint-reflection.md`。
 
