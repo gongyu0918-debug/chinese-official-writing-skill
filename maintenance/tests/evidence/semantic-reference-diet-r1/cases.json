@@ -8,14 +8,15 @@
     "minimax": "minimax-cn/MiniMax-M3"
   },
   "reasoning_effort": "max",
+  "active_case_ids": ["ADVISORY-GROUPING"],
   "arms": {
     "baseline": {
-      "tag": "d071078c9ce927ad4e20fe55518d1b0790b38367",
-      "commit": "d071078c9ce927ad4e20fe55518d1b0790b38367"
+      "tag": "8e5fa758b63e6967b92901bfab9f09c4079e98ca",
+      "commit": "8e5fa758b63e6967b92901bfab9f09c4079e98ca"
     },
     "candidate": {
-      "tag": "f77f099331d776fd62a837679b3a60ef8634325c",
-      "commit": "f77f099331d776fd62a837679b3a60ef8634325c"
+      "tag": "3a612187c3c64f5426f017715b4266f67c3284b7",
+      "commit": "3a612187c3c64f5426f017715b4266f67c3284b7"
     }
   },
   "cases": [

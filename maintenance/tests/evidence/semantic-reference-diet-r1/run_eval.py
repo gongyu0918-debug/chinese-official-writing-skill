@@ -15,7 +15,7 @@ from pathlib import Path
 HERE = Path(__file__).resolve().parent
 REPO = HERE.parents[3]
 CASES_PATH = HERE / "cases.json"
-OUTPUT_ROOT = REPO / "output" / "semantic-reference-diet-r1" / "semantic-ab-r2"
+OUTPUT_ROOT = REPO / "output" / "semantic-reference-diet-r1" / "semantic-ab-r3"
 CATALOG = Path.home() / ".codex" / "opencodex-catalog.json"
 USER_SKILLS = (
     Path.home() / ".agents/skills/chinese-official-writing/SKILL.md",
@@ -267,8 +267,11 @@ def run_provider(provider_id: str) -> dict:
     result_path.parent.mkdir(parents=True, exist_ok=True)
     provider_index = list(cases["providers"]).index(provider_id)
     arm_order = ["baseline", "candidate"] if provider_index % 2 == 0 else ["candidate", "baseline"]
+    active_case_ids = set(cases.get("active_case_ids", (case["id"] for case in cases["cases"])))
     records = []
     for case in cases["cases"]:
+        if case["id"] not in active_case_ids:
+            continue
         for arm in arm_order:
             records.append(
                 run_one(
