@@ -20,7 +20,7 @@ metadata:
 
 用户明确将体裁指定为新闻评论、时评或评论员文章时，直达 `references/genre-playbook-news-commentary.md`；普通公文内容中出现这些词语，不改变原定文种。
 
-用户要求形成提交给政策制定、审核、平台建设运营或材料起草方的意见建议稿、建议反馈或优化建议时，直达 `references/genre-playbook-advisory-feedback.md`。正式下行指导意见、监督检查意见、安全整改意见和审计纪检建议仍按各自权力关系处理，不因出现“意见”“建议”转入合作性反馈语气。
+用户要求形成面向政策制定、审核、平台建设运营或材料起草方的合作性意见建议稿、建议反馈或优化建议时，直达 `references/genre-playbook-advisory-feedback.md`；具有下行指导、监督整改或审计监督权力关系的意见按对应文种处理。
 
 用户要求以本人或本单位亲历方身份，向有权处理的部门、平台、服务主体或管理单位提交投诉、问题反映或情况反映时，直达 `references/genre-playbook-complaint-reflection.md`。
 
@@ -96,7 +96,7 @@ metadata:
 | --- | --- | --- |
 | `references/information-selection.md` | 起草前/改稿前 | 起草、改稿、压缩或合稿时先读一次，用于按输出模式、材料状态、事项关联性和办理必要性决定信息进入正文、保持状态、省略或短列缺口。 |
 | `references/formulaic-language.md` | 起草中/定稿前 | 起草或复核计划、汇报、调查报告、讲话稿、演讲词、答复、责任书、公开信、倡议书、建议信、新闻发布稿、总结、情况综合、编者按、新闻、短评、讲解稿、宣传手册或宣传材料，且需要核对文种功能、开端、承启、综合或结尾用语时。文种明确、材料单一且该页功能表足以覆盖时，由该页直接结束文种路由；复杂任务再补对应长 reference。 |
-| `references/genre-playbook-advisory-feedback.md` | 按文种选读 | 起草、改写或精简提交给政策制定、审核、平台建设运营或材料起草方的意见建议稿、建议反馈、优化建议时直接读取；正式下行指导意见、监督检查意见、安全整改意见、审计或纪检监察建议不读本页。 |
+| `references/genre-playbook-advisory-feedback.md` | 按文种选读 | 起草、改写或精简面向政策制定、审核、平台建设运营或材料起草方的合作性意见建议、建议反馈或优化建议时直接读取。 |
 | `references/genre-playbook-complaint-reflection.md` | 按文种选读 | 以本人或本单位亲历方身份起草、改写或精简面向有权处理对象的投诉、问题反映或情况反映时直接读取；尤其用于用户要求只说明自身遇到的问题、不提出解决建议的任务。 |
 | `references/task-route-cards.md` | 起草前/改稿前 | 未被 `formulaic-language.md` 直接叶覆盖，且材料稀疏、短稿、低上下文局部修改，或用户明确要求不新增事实、只按已给材料写时，先判断是否完整命中材料稀疏的情况说明/通报/报告、未决事项会议纪要、短通知/限字通知、二次局部修改四类卡片之一；卡片不能覆盖或任务转为复杂时，再读 `workflow.md`、`genre-playbooks.md` 等长 reference。 |
 | `references/short-draft-naturalness.md` | 起草中/定稿前 | 已由“使用顺序”对只有上限或无硬下限的简短正文前置直达；用于避免短稿复用长报告骨架、同义复述和正文外包装，不负责补足明确下限。 |
