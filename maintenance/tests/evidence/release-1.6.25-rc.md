@@ -2,7 +2,7 @@
 
 日期：2026-09-02。
 
-状态：`LOCAL_TAG_FROZEN / PREFLIGHT_PASSED / PUBLICATION_PAUSED_BY_USER`。本记录只证明本地候选冻结和发布前验证；未推送 tag、未创建 GitHub Release，也未向 SkillHub.cn 或 ClawHub 正式提交。
+状态：`PUBLISHED / SEE release-1.6.25.md`。下文保留正式提交前的本地冻结快照；最终回执与传播状态见 [`release-1.6.25.md`](release-1.6.25.md)。
 
 ## 候选边界
 
@@ -27,8 +27,7 @@
 - ClawHub 无 Hook 包位于 `packages/openclaw/skills/chinese_official_writing`，共 35 文件，本地规范化文件树 fingerprint 为 `09ad6064bf1cb9aee91019eef889a5eb36a3b3af7945572c2409b05233a90c4a`；平台 dry-run fingerprint 为 `a1298d045f7ee6aadc5b5304da26530e12fb478c0bb038796ef0444d6f4f6c9e`。平台 dry-run 返回 `would-publish`，slug 为 `chinese-official-writing`、展示名为“中文公文写作”、owner 为 `gongyu0918-debug`、版本为 `1.6.25`、文件数为 35；Hook、付费提纲、红头实现、`agents/openai.yaml` 等禁入项命中为 0。
 - SkillHub.cn 当前账号为 `user_f3d82da7`；公开 latest 为 v1.6.24。ClawHub 当前 owner 为 `gongyu0918-debug`；公开 latest 为 v1.6.24。GitHub 远端不存在 v1.6.25 tag 或 Release。以上均为只读查询或 dry-run，不是发布回执。
 
-## 暂缓与复用边界
+## 发布后边界
 
-- 用户已明确暂缓发布，因此没有执行 `git push`、GitHub Release 创建、SkillHub.cn 正式发布或 ClawHub 正式发布命令。
-- 后续如重新授权发布，应复用 `v1.6.25^{commit}=cf8e181591ea01ba81138352c12b5b93a8acf098` 和上述两个包面；先复核本地 tag、包 fingerprint、远端缺失与账号/slug，再按每个平台一次提交执行。
-- 本记录和后续状态提交位于产品 tag 之后，不改变 v1.6.25 产品字节。若冻结产品提交或包 fingerprint 发生变化，应废弃本候选并重新走发布前门，不能沿用本记录冒充通过。
+- 外部发布复用了 `v1.6.25^{commit}=cf8e181591ea01ba81138352c12b5b93a8acf098` 和上述两个冻结包面；没有重建或移动产品 tag。
+- 本记录和发布回执提交位于产品 tag 之后，不改变 v1.6.25 产品字节；三个公开面与唯一成功提交回执见正式发布记录。

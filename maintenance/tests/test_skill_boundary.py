@@ -19,7 +19,7 @@ OPTIONAL_GATE_FILES = {
 }
 SKILLHUB_CLEAN_PACKAGE_EXCLUDES = {"agents/openai.yaml", "LICENSE"}
 CURRENT_VERSION = "1.6.25"
-PUBLISHED_VERSION = "1.6.24"
+PUBLISHED_VERSION = "1.6.25"
 
 
 def relative_files(root: Path) -> list[str]:
@@ -2078,17 +2078,17 @@ class SkillBoundaryTests(unittest.TestCase):
 
         for term in [
             "下表只保留最近 5 次版本验证",
+            "1.6.25 意见建议、建议反馈与标题版式",
             "1.6.24 短稿语义路由与 Hook 说明顺序",
             "1.6.23 事故入口契约与点名审稿轻页",
             "1.6.22 事故、申请和请示的材料边界",
             "1.6.21 篇幅不足口径与 QwenWork 静态包",
-            "1.6.20 新闻完整日期写后修复与 Hook 使用顺序",
             "明川市政务服务中心服务事项信息变更管理办法（试行）",
+            "release-1.6.25.md",
+            "release-1.6.25-rc.md",
+            "advisory-feedback-tone-r1/result.md",
+            "advisory-feedback-heading-evidence-r1/review.md",
             "release-1.6.24.md",
-            "release-1.6.24-rc.md",
-            "short-route-semantic-r1/result.md",
-            "release-1.6.23.md",
-            "release-1.6.22.md",
             "新闻与评论写作",
             "maintenance/tests/evidence",
             "maintenance/docs/evidence/README.md",

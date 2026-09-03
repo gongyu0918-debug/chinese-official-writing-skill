@@ -12,7 +12,7 @@
 
 ## 逐版发布证据
 
-- v1.6.25 已在本地冻结为 `v1.6.25^{commit}=cf8e181591ea01ba81138352c12b5b93a8acf098`，765项全量、104项聚焦回归、五套 quick validate、84/35文件包体和两平台 dry-run 均已通过；状态为 `LOCAL_TAG_FROZEN / PREFLIGHT_PASSED / PUBLICATION_PAUSED_BY_USER`，未推送、未创建 GitHub Release、未向 SkillHub.cn 或 ClawHub 正式提交。见 [`release-1.6.25-rc.md`](../../tests/evidence/release-1.6.25-rc.md)。
+- v1.6.25 的 GitHub、SkillHub.cn 与 ClawHub 发布回执、产品 tag、84/35文件包体和最终公开状态见 [`release-1.6.25.md`](../../tests/evidence/release-1.6.25.md)；冻结基线、765项全量、104项聚焦回归、五套 quick validate 和两平台 dry-run 见 [`release-1.6.25-rc.md`](../../tests/evidence/release-1.6.25-rc.md)。GitHub Release、SkillHub公开latest与签名以及ClawHub公开latest、精确35文件和clean状态均已闭环；SkillHub提交回执中的三项审核仍为pending，期间未重复成功提交。
 - v1.6.24 的 GitHub、SkillHub.cn 与 ClawHub 唯一发布回执、产品 tag、83/34文件包体和最终公开状态见 [`release-1.6.24.md`](../../tests/evidence/release-1.6.24.md)；冻结基线、756项全量、101项聚焦回归、五套 quick validate 和两平台 dry-run 见 [`release-1.6.24-rc.md`](../../tests/evidence/release-1.6.24-rc.md)。GitHub、SkillHub公开latest与签名以及ClawHub公开latest、精确34文件和clean状态均已闭环；SkillHub外部安全报告仍为queued，期间未重复提交。
 - v1.6.23 的 GitHub、SkillHub.cn 与 ClawHub 唯一发布回执、产品 tag、108项最终定向门和83/34文件包体见 [`release-1.6.23.md`](../../tests/evidence/release-1.6.23.md)；冻结基线、756项全量、111/111双侧确定性消融、20/20 stub smoke和五套 quick validate见 [`release-1.6.23-rc.md`](../../tests/evidence/release-1.6.23-rc.md)。GitHub、SkillHub公开latest以及ClawHub公开latest、精确34文件和clean状态均已闭环；SkillHub外部安全报告仍为queued，期间未重复提交。
 - v1.6.22 的 GitHub、SkillHub.cn 与 ClawHub 发布回执、747项本次全量复跑、82/33文件包体和最终公开状态见 [`release-1.6.22.md`](../../tests/evidence/release-1.6.22.md)；固定候选、真实写稿依据与发布前工程门见 [`release-1.6.22-rc.md`](../../tests/evidence/release-1.6.22-rc.md)。SkillHub `versionId=277452` 已审核通过，公开latest与签名均为1.6.22。
