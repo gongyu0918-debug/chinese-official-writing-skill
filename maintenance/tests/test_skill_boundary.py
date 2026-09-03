@@ -1763,7 +1763,6 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assertIn("## 报告/情况说明", report)
         self.assertIn("## AI 算力与技术服务", ai_compute)
         for term in [
-            "不新增默认联网、API、Word/PDF 或脚本硬门禁",
             "只替换该字段内容，不把多字段合并成一句",
             "拆成独立字段行后不要保留行尾分号或造成 `。；`",
             "字段式周报保留字段和换行，不散文化、不合并字段",
@@ -1932,14 +1931,18 @@ class SkillBoundaryTests(unittest.TestCase):
             self.assertIn("AI 写稿轻量校对", text)
             self.assertIn("引用保真", text)
             self.assertIn("稿内一致性", text)
-        for term in [
+        self.assertIn("用于成稿前检查语言、引用保真和稿内一致性", proofreading)
+        self.assertIn("未核验的引用或数据保持原状态", proofreading)
+        self.assertIn("公开来源核验按 `SKILL.md` 的联网条件执行", proofreading)
+        for maintenance_statement in [
             "不审核人类稿件事实真伪",
             "不核验新闻真实性",
             "不默认联网反查",
             "不新增模型、API、默认联网",
             "真实性核验不属于本技能的默认修正范围",
+            "不改变 `prose_lint.py` 为深度语法纠错器",
         ]:
-            self.assertIn(term, proofreading)
+            self.assertNotIn(maintenance_statement, proofreading)
         for term in [
             "领导讲话、古诗词、名言、政策原文",
             "同语境原样保留",
@@ -1951,7 +1954,7 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assertIn("不改写成 `请核实出处`", proofreading)
         for term in ["错别字错词", "的地得", "量词", "病句", "数据一致性", "逻辑一致性"]:
             self.assertIn(term, proofreading)
-        self.assertIn("不改变 `prose_lint.py` 为深度语法纠错器", proofreading)
+        self.assertIn("脚本只提示语言、格式和重复风险", proofreading)
 
     def test_formalization_keeps_only_explicit_literal_boundaries_verbatim(self) -> None:
         skill = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
