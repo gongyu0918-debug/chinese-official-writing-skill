@@ -38,14 +38,16 @@ class ComplaintReflectionLeafTests(HookCompanionTestMixin, unittest.TestCase):
 
     def test_direct_route_is_separate_from_advisory_and_received_records(self) -> None:
         skill = (CANONICAL / "SKILL.md").read_text(encoding="utf-8")
+        leaf = (CANONICAL / LEAF).read_text(encoding="utf-8")
         formulaic_row = next(
             line for line in skill.splitlines() if line.startswith("| `references/formulaic-language.md`")
         )
 
         self.assertIn("直达 `references/genre-playbook-complaint-reflection.md`", skill)
+        self.assertIn("以本人或本单位亲历方身份", skill)
         self.assertNotIn("情况反映", formulaic_row)
-        self.assertIn("任务目的在于提出改进主张", (CANONICAL / LEAF).read_text(encoding="utf-8"))
-        self.assertIn("整理已收到事项及办理结果", (CANONICAL / LEAF).read_text(encoding="utf-8"))
+        self.assertNotIn("任务目的在于提出改进主张", leaf)
+        self.assertNotIn("整理已收到事项及办理结果", leaf)
 
     def test_leaf_preserves_request_facts_state_and_first_party_scope(self) -> None:
         text = (CANONICAL / LEAF).read_text(encoding="utf-8")

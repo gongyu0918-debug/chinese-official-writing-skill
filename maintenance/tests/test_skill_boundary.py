@@ -577,7 +577,7 @@ class SkillBoundaryTests(unittest.TestCase):
             "`references/genre-checklist-report.md` | 按文种选读 | 报告、情况报告或情况说明需要常规或完整骨架",
             skill,
         )
-        self.assertIn("材料稀疏任务仍按既有轻量路由处理，不重复加载本叶", report)
+        self.assertIn("报告、情况报告或情况说明的常规或完整骨架、专项写法和文种细查", report)
 
     def test_reference_links_form_an_acyclic_graph(self) -> None:
         refs = ROOT / "chinese-official-writing" / "references"

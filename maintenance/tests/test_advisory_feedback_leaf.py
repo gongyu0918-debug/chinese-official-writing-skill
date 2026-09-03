@@ -41,23 +41,23 @@ class AdvisoryFeedbackLeafTests(HookCompanionTestMixin, unittest.TestCase):
         skill = (CANONICAL / "SKILL.md").read_text(encoding="utf-8")
 
         self.assertIn("直达 `references/genre-playbook-advisory-feedback.md`", skill)
-        self.assertIn("正式下行指导意见、监督检查意见、安全整改意见和审计纪检建议", skill)
+        self.assertIn("具有下行指导、监督整改或审计监督权力关系的意见按对应文种处理", skill)
 
     def test_leaf_preserves_grounded_courtesy_authority_and_common_grouping(self) -> None:
         text = (CANONICAL / LEAF).read_text(encoding="utf-8")
 
         self.assertIn("有依据的肯定或礼貌铺垫", text)
         self.assertIn("不为“先夸”编造成绩", text)
-        self.assertIn("只有被建议方有处置权", text)
-        self.assertIn("同一成因、同一处置权和同一处理路径", text)
+        self.assertIn("接收对象及其处置权", text)
+        self.assertIn("共同成因、处置权和处理路径", text)
         self.assertIn("按共性问题或有权主体归并", text)
-        self.assertIn("建议审核部门研究明确", text)
-        self.assertIn("建议平台建设运营方研究优化", text)
+        self.assertIn("首次涉及不同处置权时点明主体和建议状态", text)
+        self.assertIn("建议 + 有权对象或具体动作", text)
 
     def test_external_advice_uses_first_party_evidence_and_explicit_suggestion_headings(self) -> None:
         text = (CANONICAL / LEAF).read_text(encoding="utf-8")
 
-        self.assertIn("我方实际参与、办理、使用感受", text)
+        self.assertIn("实际参与、办理或使用感受", text)
         self.assertIn("外部做法只用于说明可能路径或可行性", text)
         self.assertIn("建议 + 有权对象或具体动作", text)
         self.assertIn("问题标题、参考情况、反馈办理结果", text)
