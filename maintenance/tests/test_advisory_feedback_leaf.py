@@ -111,7 +111,7 @@ class AdvisoryFeedbackLeafTests(HookCompanionTestMixin, unittest.TestCase):
         self.assertIn("`WR-025/025c` 合作性意见建议与建议反馈", coverage)
         self.assertIn("`WR-008b` 并列小标题与 DOCX 主标题缩进", coverage)
         self.assertIn("WR-025c", roadmap)
-        self.assertIn("MERGED_MAIN_POST_V1.6.24", roadmap)
+        self.assertIn("DONE_V1.6.25 / RELEASED", roadmap)
         self.assertIn("`WR-025 / WR-008b`", todo)
         self.assertIn("`WR-025c`", todo)
         self.assertIn("advisory-feedback-tone-r1/result.md", evidence)
