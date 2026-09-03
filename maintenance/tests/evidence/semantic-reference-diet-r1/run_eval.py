@@ -15,7 +15,7 @@ from pathlib import Path
 HERE = Path(__file__).resolve().parent
 REPO = HERE.parents[3]
 CASES_PATH = HERE / "cases.json"
-OUTPUT_ROOT = REPO / "output" / "semantic-reference-diet-r1" / "semantic-ab"
+OUTPUT_ROOT = REPO / "output" / "semantic-reference-diet-r1" / "semantic-ab-r2"
 CATALOG = Path.home() / ".codex" / "opencodex-catalog.json"
 USER_SKILLS = (
     Path.home() / ".agents/skills/chinese-official-writing/SKILL.md",

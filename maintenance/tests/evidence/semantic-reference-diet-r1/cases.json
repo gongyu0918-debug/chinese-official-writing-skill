@@ -10,12 +10,12 @@
   "reasoning_effort": "max",
   "arms": {
     "baseline": {
-      "tag": "f574c06d4586eea17d78911cf40e12114e479656",
-      "commit": "f574c06d4586eea17d78911cf40e12114e479656"
-    },
-    "candidate": {
       "tag": "d071078c9ce927ad4e20fe55518d1b0790b38367",
       "commit": "d071078c9ce927ad4e20fe55518d1b0790b38367"
+    },
+    "candidate": {
+      "tag": "f77f099331d776fd62a837679b3a60ef8634325c",
+      "commit": "f77f099331d776fd62a837679b3a60ef8634325c"
     }
   },
   "cases": [
