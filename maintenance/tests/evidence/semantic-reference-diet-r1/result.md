@@ -64,4 +64,3 @@ OpenClaw 镜像按其既有 manifest 使用 `category` 扩展字段，通用 Cod
 - `task-route-cards.md` 的固定 `800字以上` 与 `review-checklist.md` 的 260/300/500、5—10% 等数字是独立魔法数字原子，需要另做真实任务验证。
 - `final-review-layers.md`、`review-checklist.md` 中更早的重复维护语句未随手批量删除，避免把本次范围扩大成不可归因的大清理。
 - 当前候选已合并本地 `main`，尚未推送或发布；v1.6.26 发行工作树将在发布前运行一次仓库全量门。
-
