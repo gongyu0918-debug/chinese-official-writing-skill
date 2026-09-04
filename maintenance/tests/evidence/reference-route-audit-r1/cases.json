@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "baseline_commit": "5fbb2d26c49d0b780ad11fc4cff008854995ad3f",
+  "case_source": "maintenance/tests/evidence/remediation-plan-r1/cases.json",
+  "case_ids": [
+    "REMEDIATION-SHORT-SERVICE",
+    "REMEDIATION-EDUCATION-LONG"
+  ],
+  "reasoning_effort": "max",
+  "providers": {
+    "alibaba2": "alibaba-token-plan-2/deepseek-v4-flash-0731",
+    "alibaba1": "alibaba-token-plan/deepseek-v4-flash-0731",
+    "ollama": "ollama-cloud/deepseek-v4-flash:0731",
+    "opencode": "opencode-go/deepseek-v4-flash",
+    "minimax": "minimax-cn/MiniMax-M3"
+  }
+}
