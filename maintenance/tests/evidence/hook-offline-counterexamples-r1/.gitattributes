@@ -1,0 +1,13 @@
+# Original artifacts contain mixed LF/CRLF/CRCRLF; preserve their exact bytes.
+# Binary diff treatment prevents their original CR bytes being treated as new whitespace edits.
+date_role_repro.py -text -diff
+date_role_result.json -text -diff
+state_echo_race_repro.py -text -diff
+state_echo_race_result.jsonl -text -diff
+# The separately authored replay uses LF and remains reviewable as a text diff.
+terminal_replay_repro.py -text
+terminal_replay_result.json -text
+new-run-receipt.json -text
+source-manifest.json text eol=lf
+README.md text eol=lf
+.gitattributes text eol=lf

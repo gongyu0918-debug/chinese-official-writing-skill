@@ -1,0 +1,117 @@
+{
+  "schema_version": 1,
+  "baseline_commit": "5fbb2d26c49d0b780ad11fc4cff008854995ad3f",
+  "historical_cases": 3,
+  "new_cases": 1,
+  "new_offline_run_count": 1,
+  "historical_rerun_count_this_archival_task": 0,
+  "artifact_entries": [
+    {
+      "file": "date_role_repro.py",
+      "origin": "historical_source_copied_without_rerun",
+      "sha256": "89021ff88f1b10053255200391b1a7d0e8a5d563b5417cb8394d1ce99761aba8",
+      "bytes": 1888,
+      "newline_byte_counts": {
+        "LF": 27,
+        "CR": 1,
+        "CRLF": 1,
+        "CRCRLF": 0
+      },
+      "newline_count_note": "Byte-pattern counts overlap; no normalization performed.",
+      "exact_copy_verified": true,
+      "source_sha256": "89021ff88f1b10053255200391b1a7d0e8a5d563b5417cb8394d1ce99761aba8",
+      "source": "%LOCALAPPDATA%/Temp/cow-hooks-audit-20260905/date_role_repro.py"
+    },
+    {
+      "file": "date_role_result.json",
+      "origin": "historical_source_copied_without_rerun",
+      "sha256": "99a230675de840bb20022dd05d60fda6d7b946041614050729c858e1be41c539",
+      "bytes": 831,
+      "newline_byte_counts": {
+        "LF": 15,
+        "CR": 15,
+        "CRLF": 15,
+        "CRCRLF": 0
+      },
+      "newline_count_note": "Byte-pattern counts overlap; no normalization performed.",
+      "exact_copy_verified": true,
+      "source_sha256": "99a230675de840bb20022dd05d60fda6d7b946041614050729c858e1be41c539",
+      "source": "%LOCALAPPDATA%/Temp/cow-hooks-audit-20260905/date_role_result.json"
+    },
+    {
+      "file": "state_echo_race_repro.py",
+      "origin": "historical_source_copied_without_rerun",
+      "sha256": "7e1bcbd631b5d9c76bfff8f4110a92e8600f73620c7ab25bec963101b0aa04e1",
+      "bytes": 4353,
+      "newline_byte_counts": {
+        "LF": 66,
+        "CR": 1,
+        "CRLF": 1,
+        "CRCRLF": 0
+      },
+      "newline_count_note": "Byte-pattern counts overlap; no normalization performed.",
+      "exact_copy_verified": true,
+      "source_sha256": "7e1bcbd631b5d9c76bfff8f4110a92e8600f73620c7ab25bec963101b0aa04e1",
+      "source": "%LOCALAPPDATA%/Temp/cow-hooks-audit-20260905/state_echo_race_repro.py"
+    },
+    {
+      "file": "state_echo_race_result.jsonl",
+      "origin": "historical_source_copied_without_rerun",
+      "sha256": "47dbfb10fff62fc3dd7e2318abca39514a76841dd56a8e0aa261b331314da64f",
+      "bytes": 1429,
+      "newline_byte_counts": {
+        "LF": 2,
+        "CR": 2,
+        "CRLF": 2,
+        "CRCRLF": 0
+      },
+      "newline_count_note": "Byte-pattern counts overlap; no normalization performed.",
+      "exact_copy_verified": true,
+      "source_sha256": "47dbfb10fff62fc3dd7e2318abca39514a76841dd56a8e0aa261b331314da64f",
+      "source": "%LOCALAPPDATA%/Temp/cow-hooks-audit-20260905/state_echo_race_result.jsonl"
+    },
+    {
+      "file": "terminal_replay_repro.py",
+      "origin": "new_script_authored_for_archival_gap",
+      "sha256": "686954c7bd23f3e0fa0aee13473e823dcdaf451408ade800b5bc495f5b610771",
+      "bytes": 4640,
+      "newline_byte_counts": {
+        "LF": 86,
+        "CR": 0,
+        "CRLF": 0,
+        "CRCRLF": 0
+      },
+      "newline_count_note": "Byte-pattern counts overlap; no normalization performed."
+    },
+    {
+      "file": "terminal_replay_result.json",
+      "origin": "new_offline_run_once",
+      "sha256": "fe08f28b88a9e9ccb6e6c1b4b27d024f488a386a31248952b842cf25e99e8ac7",
+      "bytes": 4786,
+      "newline_byte_counts": {
+        "LF": 130,
+        "CR": 0,
+        "CRLF": 0,
+        "CRCRLF": 0
+      },
+      "newline_count_note": "Byte-pattern counts overlap; no normalization performed.",
+      "exact_copy_verified": true,
+      "source_sha256": "fe08f28b88a9e9ccb6e6c1b4b27d024f488a386a31248952b842cf25e99e8ac7",
+      "source": "%LOCALAPPDATA%/Temp/cow-terminal-replay-archive-2gk8_kvw/run/result.json"
+    },
+    {
+      "file": "new-run-receipt.json",
+      "origin": "new_offline_run_receipt",
+      "sha256": "c5f4566f5a0efcc6f517ab870dc0345ea6191a220a90c1e829ea09d5fcf943a1",
+      "bytes": 435,
+      "newline_byte_counts": {
+        "LF": 9,
+        "CR": 0,
+        "CRLF": 0,
+        "CRCRLF": 0
+      },
+      "newline_count_note": "Byte-pattern counts overlap; no normalization performed."
+    }
+  ],
+  "scope": "Synthetic offline counterexamples only; no model, network, product change or online incidence estimate."
+}

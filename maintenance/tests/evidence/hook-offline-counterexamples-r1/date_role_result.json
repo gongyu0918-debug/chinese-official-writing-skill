@@ -1,0 +1,15 @@
+{
+  "request": "请写一则新闻稿。活动事实：中心在2026-09-05举办读书交流活动，共20人参加。日期格式示例（不属于活动事实）：2020年9月5日。",
+  "original_d0": "中心举办读书交流活动\n\n9月5日，中心举办读书交流活动，共20人参加。",
+  "selected_output": "中心举办读书交流活动\n\n2020年9月5日，中心举办读书交流活动，共20人参加。",
+  "snapshot_state": "TERMINAL_D0",
+  "selected_label": "D0",
+  "date_audit": {
+    "original_sha256": "e93dbb1d288678c219570df33c67c3484fe63d4735b6816afa50a7106b2c990c",
+    "output_sha256": "65bc1fb9c4560a421796c944e498f788bf3ca54361458e66f73930ad7fb81d50",
+    "reason": "source_bound_full_date_restored",
+    "schema_version": 1,
+    "selected": true
+  },
+  "bug_reproduced": true
+}

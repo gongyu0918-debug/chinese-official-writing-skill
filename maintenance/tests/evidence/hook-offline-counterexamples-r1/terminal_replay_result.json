@@ -1,0 +1,130 @@
+{
+  "case": "terminal_user_prompt_replay_restores_request",
+  "origin": "new offline archival run; not part of the two original scripts",
+  "core_commit": "5fbb2d26c49d0b780ad11fc4cff008854995ad3f",
+  "core_file_sha256": "bb3533d46c99411c4f56c51b437314065696c34e9bdce7d70b42630b3e50cd08",
+  "script_file_sha256": "686954c7bd23f3e0fa0aee13473e823dcdaf451408ade800b5bc495f5b610771",
+  "cwd_provenance": "Each actual event cwd is the resolved --core-root argument, omitted from input_without_cwd; its exact serialized payload is hashed.",
+  "request": "本次关闭Hook。请写一份情况说明。材料：测试工作已完成。",
+  "draft": "情况说明\n\n测试工作已完成。",
+  "steps": [
+    {
+      "step": 1,
+      "input_without_cwd": {
+        "session_id": "offline-archive",
+        "turn_id": "terminal-replay",
+        "hook_event_name": "UserPromptSubmit",
+        "prompt": "本次关闭Hook。请写一份情况说明。材料：测试工作已完成。"
+      },
+      "input_utf8_sha256": "b06592f08e44f087c943b8583ea1f7a2b9f827016910fcd3dc56c075a9d7a8e3",
+      "return_code": 0,
+      "response": {
+        "continue": true
+      },
+      "stdout": "{\"continue\":true}\n",
+      "stderr": "",
+      "record_after": {
+        "bypass": "user_requested",
+        "emit_seen": false,
+        "request": "本次关闭Hook。请写一份情况说明。材料：测试工作已完成。",
+        "schema_version": 1,
+        "skill_seen": false,
+        "stop_attempts": 0
+      },
+      "request_present": true,
+      "data_retention_state": null,
+      "hook_phase": null
+    },
+    {
+      "step": 2,
+      "input_without_cwd": {
+        "session_id": "offline-archive",
+        "turn_id": "terminal-replay",
+        "hook_event_name": "Stop",
+        "stop_hook_active": false,
+        "last_assistant_message": "情况说明\n\n测试工作已完成。"
+      },
+      "input_utf8_sha256": "5c68d17dfa5998e1aa5e3f4981727f0cf636d3648bd68266b6b551c3e7d9141a",
+      "return_code": 0,
+      "response": {
+        "continue": true
+      },
+      "stdout": "{\"continue\":true}\n",
+      "stderr": "",
+      "record_after": {
+        "bypass": "user_requested",
+        "data_retention_state": "raw_turn_data_redacted",
+        "emit_seen": false,
+        "raw_artifact_delete_failures": 0,
+        "schema_version": 1,
+        "skill_seen": false,
+        "stop_attempts": 0
+      },
+      "request_present": false,
+      "data_retention_state": "raw_turn_data_redacted",
+      "hook_phase": null
+    },
+    {
+      "step": 3,
+      "input_without_cwd": {
+        "session_id": "offline-archive",
+        "turn_id": "terminal-replay",
+        "hook_event_name": "UserPromptSubmit",
+        "prompt": "本次关闭Hook。请写一份情况说明。材料：测试工作已完成。"
+      },
+      "input_utf8_sha256": "b06592f08e44f087c943b8583ea1f7a2b9f827016910fcd3dc56c075a9d7a8e3",
+      "return_code": 0,
+      "response": {
+        "continue": true
+      },
+      "stdout": "{\"continue\":true}\n",
+      "stderr": "",
+      "record_after": {
+        "bypass": "user_requested",
+        "data_retention_state": "raw_turn_data_redacted",
+        "emit_seen": false,
+        "raw_artifact_delete_failures": 0,
+        "request": "本次关闭Hook。请写一份情况说明。材料：测试工作已完成。",
+        "schema_version": 1,
+        "skill_seen": false,
+        "stop_attempts": 0
+      },
+      "request_present": true,
+      "data_retention_state": "raw_turn_data_redacted",
+      "hook_phase": null
+    },
+    {
+      "step": 4,
+      "input_without_cwd": {
+        "session_id": "offline-archive",
+        "turn_id": "terminal-replay",
+        "hook_event_name": "Stop",
+        "stop_hook_active": false,
+        "last_assistant_message": "情况说明\n\n测试工作已完成。"
+      },
+      "input_utf8_sha256": "5c68d17dfa5998e1aa5e3f4981727f0cf636d3648bd68266b6b551c3e7d9141a",
+      "return_code": 0,
+      "response": {
+        "continue": true
+      },
+      "stdout": "{\"continue\":true}\n",
+      "stderr": "",
+      "record_after": {
+        "bypass": "user_requested",
+        "data_retention_state": "raw_turn_data_redacted",
+        "emit_seen": false,
+        "raw_artifact_delete_failures": 0,
+        "request": "本次关闭Hook。请写一份情况说明。材料：测试工作已完成。",
+        "schema_version": 1,
+        "skill_seen": false,
+        "stop_attempts": 0
+      },
+      "request_present": true,
+      "data_retention_state": "raw_turn_data_redacted",
+      "hook_phase": null
+    }
+  ],
+  "bug_reproduced": true,
+  "status": "REPRODUCED_OFFLINE",
+  "scope": "Synthetic request and real local core subprocesses; no model, network or product modification. Not an online incidence estimate."
+}

@@ -1,0 +1,9 @@
+{
+  "source_temp_directory": "cow-terminal-replay-archive-2gk8_kvw",
+  "source_result_relative": "run/result.json",
+  "return_code": 0,
+  "stdout_file_sha256": "474b716d9435b0e7d80f17f9daa7df5cdadd57d13d6b7efeb915536c8bde7f8c",
+  "stderr_file_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "new_run_count": 1,
+  "source_file_sha256": "fe08f28b88a9e9ccb6e6c1b4b27d024f488a386a31248952b842cf25e99e8ac7"
+}
