@@ -1,0 +1,50 @@
+diff --git a/chinese-official-writing/hooks/shared/source_bound_dates.py b/chinese-official-writing/hooks/shared/source_bound_dates.py
+index 016a76e8..6e228cdb 100644
+--- a/chinese-official-writing/hooks/shared/source_bound_dates.py
++++ b/chinese-official-writing/hooks/shared/source_bound_dates.py
+@@ -58,6 +58,17 @@ ANY_DATE_RE: Final = re.compile(
+     r"(?P<month>0?[1-9]|1[0-2])月"
+     r"(?P<day>0?[1-9]|[12]\d|3[01])日"
+ )
++AMBIGUOUS_SOURCE_ROLE_RE: Final = re.compile(
++    r"(?:示例|例子|范例|样例|模板|范文|旧稿|原稿|底稿|参考稿|对照稿|"
++    r"历史稿|旧版|上一版|前一版|原版本|旧材料|历史材料)"
++)
++OTHER_YEAR_LITERAL_RE: Final = re.compile(
++    r"(?<!\d)[12]\d{3}\s*年"
++    r"|(?<!\d)[12]\d{3}\s*[-/.]\s*\d{1,2}\s*[-/.]\s*\d{1,2}(?!\d)"
++    r"|(?<!\d)\d{1,2}\s*[-/.]\s*\d{1,2}\s*[-/.]\s*[12]\d{3}(?!\d)"
++    r"|(?<!\d)[12]\d{3}(?:0[1-9]|1[0-2])(?:0[1-9]|[12]\d|3[01])(?!\d)"
++    r"|[一二][零〇○一二三四五六七八九]{3}\s*年"
++)
+
+
+ def _sha256_text(value: str) -> str:
+@@ -96,9 +107,9 @@ def _date_omission_requested(request: str) -> bool:
+ def restore_unique_full_date(request: str, draft: str) -> dict[str, Any]:
+     """Return one exact source-bound repair, or the byte-identical draft.
+
+-    The function deliberately refuses multiple, conflicting, already-complete,
+-    or user-suppressed date mappings.  It never supplies a year that is absent
+-    from the request.
++    The function deliberately refuses mixed source roles, other year-like
++    literals, multiple, conflicting, already-complete, or user-suppressed date
++    mappings. It never supplies a year that is absent from the request.
+     """
+
+     if not isinstance(request, str) or not isinstance(draft, str) or not draft.strip():
+@@ -107,6 +118,14 @@ def restore_unique_full_date(request: str, draft: str) -> dict[str, Any]:
+         return _result("not_explicit_news_task", draft)
+     if _date_omission_requested(request):
+         return _result("user_requested_date_omission", draft)
++    if AMBIGUOUS_SOURCE_ROLE_RE.search(request):
++        return _result("request_date_source_role_ambiguous", draft)
++    # A unique supported spelling does not prove a unique source date. Other
++    # formats (including ISO, spaced dates and Chinese numerals) may describe
++    # the actual event, while the supported spelling belongs to another role.
++    # Decline rather than assigning those literals the same event or year.
++    if OTHER_YEAR_LITERAL_RE.search(FULL_DATE_RE.sub("", request)):
++        return _result("request_has_other_year_literal", draft)
+
+     source_dates: dict[tuple[int, int, int], str] = {}
+     for match in FULL_DATE_RE.finditer(request):

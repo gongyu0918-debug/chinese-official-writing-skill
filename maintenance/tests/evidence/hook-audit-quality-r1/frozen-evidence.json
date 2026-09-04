@@ -1,0 +1,659 @@
+{
+  "schema_version": 1,
+  "scope": "Six pre-existing real D0 drafts; baseline core subprocess events with fresh real Claude CLI continuations. No native host integration claim.",
+  "core_commit": "5fbb2d26c49d0b780ad11fc4cff008854995ad3f",
+  "source_batch": "reference-route-audit-r1/r1",
+  "run_output": "output/hook-audit-quality-r1/r1",
+  "source_fixture_sha256": "8d72fc257a2d4a8fba2b2a4e7dde90f098104ba0c2d10a15fcfcd1ba594acf99",
+  "run_fixture_file_sha256": "ce8e8303718b21e8c0c22e0e9b7c2a82bf5ba186dcaff4c699c4be83942e7aef",
+  "run_summary_file_sha256": "a3f58342768408773d384a4dcf9716c207344b64b6449e419720d46a2706b2a5",
+  "run_wrapper_file_sha256": "4e3f2d6d95cbcb528d501fe323f12b9f75f28ec5ed7e2efc68595e15efdc7807",
+  "base_harness_file_sha256": "452d3f5ac8df257fbd220d7585ce0aef3dd0475a76a51181de77e0f729f0a6ab",
+  "cli_version": "2.1.195 (Claude Code)",
+  "hash_convention": "d0_sha256, final_visible_sha256 and final_sha256 hash UTF-8 text after universal-newline reading (LF). Fields ending in file_sha256 hash original file bytes; Windows replay text files use CRLF.",
+  "cases": {
+    "REMEDIATION-SHORT-SERVICE": {
+      "prompt": "请使用当前仓库中的 `chinese-official-writing` Skill。请根据材料起草《政务服务窗口一次性告知问题整改方案》，供中心内部执行，只输出可直接使用的完整正文，不解释过程。篇幅精炼，不设固定字数。\n\n材料：2026年8月，中心连续开展3次窗口业务抽查，共核对20宗业务，其中7宗申请人需要二次补充材料。7宗中，5宗因网站公开清单与窗口口头告知的材料版本不一致，2宗因首次受理时未说明需要提交原件。现有办事指南由各窗口分别维护，尚未形成统一版本；整改工作尚未开始。中心有权制定本单位办理规范并组织窗口人员执行。\n\n允许在上述事实和常识能够支持的范围内分析直接原因、说明影响并制定未来整改措施。原因尚未核实时使用与证据强度相称的表述，不捏造个人动机、处罚、预算、具体完成日期或已经取得的成效。\n",
+      "prompt_sha256": "a58b7d7eec3553488513e3db9bb5cb11a5388ae9f56b2bb8c7c8ff811b573afa"
+    },
+    "REMEDIATION-EDUCATION-LONG": {
+      "prompt": "请使用当前仓库中的 `chinese-official-writing` Skill。请根据材料起草《本科教育教学审核评估反馈问题整改方案》，只输出可直接使用的完整正文，不解释过程，篇幅控制在1800—2400字。\n\n材料：2026年6月30日，评估组反馈以下情况：一是抽查20门课程，6门课程的目标达成分析只有分数汇总，没有说明结果如何用于教学改进；二是学校现有8个校外实习基地，其中2份合作协议已经到期，尚未续签，但未发生实习安全事故；三是本学期收集教学意见142条，其中37条超过5个工作日才首次答复，目前均已答复；四是4个专业正在修订培养方案，方案尚未批准，现行培养方案继续有效；五是年度教师教学能力培训计划已经形成，但各学院尚未统一报送参训和应用情况数据，效果尚待复核。\n\n整改分工：教务处牵头课程目标分析和培养方案修订，各学院具体落实；实践教学中心牵头实习基地协议事项；质量监测中心牵头意见响应和整改验收；教师发展中心牵头培训数据归集。2026年10月31日前完成可立即纠正和制度补强事项，持续改进事项跟踪至2027年6月30日。\n\n允许结合事实和教育管理常识分析直接原因、说明可能影响，并设计纠偏、制度、执行、复核和持续改进措施。合理归因和未来措施不算事实外扩，但不得虚构预算、人员、系统、上级决定或具体成效，不得把“正在修订”“尚未批准”“尚待复核”升级为已经完成、批准或达标。\n",
+      "prompt_sha256": "9c5671bcb20b7142848935c7bbabd92f399d8b9867ab2af7fe443b70bfd35b8d"
+    }
+  },
+  "samples": [
+    {
+      "sample_id": "alibaba2-REMEDIATION-SHORT-SERVICE-baseline",
+      "source_model": "alibaba-token-plan-2/deepseek-v4-flash-0731",
+      "continuation_model": "alibaba-token-plan-2/deepseek-v4-flash-0731",
+      "route_note": "same_source_route",
+      "status": "allowed",
+      "finding_count": 1,
+      "call_count": 2,
+      "delivery_verified": true,
+      "d0_sha256": "b7b7be021b63eb8e96b4ba195ffcc4502b027f0cda6d9a47d65e9b3b1979eba3",
+      "final_visible_sha256": "b7b7be021b63eb8e96b4ba195ffcc4502b027f0cda6d9a47d65e9b3b1979eba3",
+      "unchanged_from_d0": true,
+      "case_id": "REMEDIATION-SHORT-SERVICE",
+      "source_arm": "baseline",
+      "source_prompt_sha256": "a58b7d7eec3553488513e3db9bb5cb11a5388ae9f56b2bb8c7c8ff811b573afa",
+      "source_trace_file_sha256": "238cce725ac8eec7fabed843c08233e1903814454670486797c922a0587f1c50",
+      "events_file_sha256": "8fe70a5c262a4769fc57404b78c94b526834c25ce1260186c25b0d19fae0bb06",
+      "d0_file_sha256": "66e8fd7ec3410bbb0d52eea26226e6377a073590de2d65d49ee329cec5dacd17",
+      "final_visible_file_sha256": "66e8fd7ec3410bbb0d52eea26226e6377a073590de2d65d49ee329cec5dacd17",
+      "terminal_reason": "replacement_retains_protective_pattern",
+      "d0": "政务服务窗口一次性告知问题整改方案\n\n2026年8月，中心连续开展3次窗口业务抽查，共核对20宗业务，其中7宗申请人需二次补充材料：5宗因网站公开清单与窗口口头告知的材料版本不一致，2宗因首次受理时未说明需要提交原件。目前，整改工作尚未开始。\n\n一、问题情况与影响\n\n上述7宗业务均因申请材料告知环节存在问题，导致申请人未能一次备齐材料，需补充后再次提交，增加往返和时间成本。其中版本不一致情形占多数，说明告知口径不统一的问题较为集中。\n\n二、原因分析\n\n结合现有办事指南由各窗口分别维护、尚未形成统一版本的情况分析，版本不一致问题与公开清单、窗口告知材料未同源管理、更新不同步直接相关；未说明需提交原件，与首次受理时告知内容不完整有关。具体成因尚需结合业务个案进一步核实。\n\n三、整改目标\n\n统一中心各窗口办事指南和申请材料清单，确保网站公开清单与窗口告知内容一致；窗口首次受理时一次性告知材料名称、形式（含是否需提交原件）等全部要求；减少申请人二次补充材料情形。\n\n四、整改措施\n\n（一）统一办事指南和材料清单。由中心归口，对现有办事指南和申请材料清单逐项梳理核对，形成统一版本，明确编制、审核、发布、更新的责任环节；窗口告知材料与网站公开清单同源一致，版本调整时同步更新并注明生效时间，防止新旧版本并存。\n\n（二）规范一次性告知。窗口首次受理时按统一清单逐项告知材料要求，明确是否需要提交原件；材料不齐全的，当场一次性告知全部需补充内容；口头告知与公开清单口径一致，并留存告知记录，便于核对。\n\n（三）组织执行。组织窗口人员学习统一清单和一次性告知要求，统一执行口径。\n\n（四）纳入日常核查。将公开清单与窗口使用材料版本的一致性纳入业务抽查内容，发现不一致的，及时纠正并同步更新。\n\n五、责任与进度\n\n整改由中心统一组织，各窗口负责本窗口清单核对和告知执行。按“先梳理统一、再培训执行、后核查纠偏”的顺序推进，立即启动清单梳理；各环节完成时间由中心结合工作实际另行明确。\n\n六、检查验收\n\n通过后续业务抽查，核查窗口告知材料与网站公开清单是否一致、首次受理告知是否完整，以二次补充材料情形是否减少作为整改效果的重要检验口径；对尚未纠正的问题继续分析原因、跟进整改。",
+      "calls": [
+        {
+          "model": "alibaba-token-plan-2/deepseek-v4-flash-0731",
+          "return_code": 0,
+          "technical_valid": true,
+          "seconds": 162.687,
+          "init_models": [
+            "alibaba-token-plan-2/deepseek-v4-flash-0731"
+          ],
+          "assistant_models": [
+            "alibaba-token-plan-2/deepseek-v4-flash-0731"
+          ],
+          "usage_models": [
+            "alibaba-token-plan-2/deepseek-v4-flash-0731"
+          ],
+          "result_count": 1,
+          "result_subtypes": [
+            "success"
+          ],
+          "result_errors": [
+            false
+          ],
+          "final_sha256": "a2e150e62efdb01b79b4a458928b70342fe3019ecc9acb8ec80a7c9c9975d200",
+          "round": "round-1",
+          "prompt_file_sha256": "ed5a1e2b679302909d1d051210e58da867ad3611950b4d23cda03bd8586ff2d2",
+          "reply_file_sha256": "a2e150e62efdb01b79b4a458928b70342fe3019ecc9acb8ec80a7c9c9975d200",
+          "stream_file_sha256": "fdba52039b68296adb5c1c77cec89d08a527c4a14bfe138da073eb37e1202b2a",
+          "receipt_file_sha256": "bdd4cd7a60749179fd3e5866ca1ac43a7b2985900c5fcb7a40963afa95f6f07f",
+          "cli_reported_usage": [
+            {
+              "usage": {
+                "input_tokens": 3684,
+                "cache_read_input_tokens": 0,
+                "cache_creation_input_tokens": 0,
+                "output_tokens": 14976
+              },
+              "modelUsage": {
+                "alibaba-token-plan-2/deepseek-v4-flash-0731": {
+                  "inputTokens": 6011,
+                  "outputTokens": 15409,
+                  "cacheReadInputTokens": 0,
+                  "cacheCreationInputTokens": 0,
+                  "webSearchRequests": 0,
+                  "costUSD": 0.41528,
+                  "contextWindow": 200000,
+                  "maxOutputTokens": 32000
+                }
+              },
+              "total_cost_usd": 0.41528,
+              "duration_ms": 161216
+            }
+          ]
+        },
+        {
+          "model": "alibaba-token-plan-2/deepseek-v4-flash-0731",
+          "return_code": 0,
+          "technical_valid": true,
+          "seconds": 20.625,
+          "init_models": [
+            "alibaba-token-plan-2/deepseek-v4-flash-0731"
+          ],
+          "assistant_models": [
+            "alibaba-token-plan-2/deepseek-v4-flash-0731"
+          ],
+          "usage_models": [
+            "alibaba-token-plan-2/deepseek-v4-flash-0731"
+          ],
+          "result_count": 1,
+          "result_subtypes": [
+            "success"
+          ],
+          "result_errors": [
+            false
+          ],
+          "final_sha256": "b7b7be021b63eb8e96b4ba195ffcc4502b027f0cda6d9a47d65e9b3b1979eba3",
+          "round": "round-2",
+          "prompt_file_sha256": "0456d6cfb47b866668c0a5160719cfb4170c38ee1c216975099074caf7594a6f",
+          "reply_file_sha256": "66e8fd7ec3410bbb0d52eea26226e6377a073590de2d65d49ee329cec5dacd17",
+          "stream_file_sha256": "2c39cf10542b64a621e81ee6c70147f2629251e006ab867046bf8dc700f39621",
+          "receipt_file_sha256": "857abe8131ad57b90a42ac58ecd829b28470aabb5235a351ef64d7b0aabc6279",
+          "cli_reported_usage": [
+            {
+              "usage": {
+                "input_tokens": 4671,
+                "cache_read_input_tokens": 0,
+                "cache_creation_input_tokens": 0,
+                "output_tokens": 2148
+              },
+              "modelUsage": {
+                "alibaba-token-plan-2/deepseek-v4-flash-0731": {
+                  "inputTokens": 6961,
+                  "outputTokens": 2626,
+                  "cacheReadInputTokens": 1024,
+                  "cacheCreationInputTokens": 0,
+                  "webSearchRequests": 0,
+                  "costUSD": 0.10096700000000002,
+                  "contextWindow": 200000,
+                  "maxOutputTokens": 32000
+                }
+              },
+              "total_cost_usd": 0.10096700000000002,
+              "duration_ms": 19630
+            }
+          ]
+        }
+      ],
+      "source_file_sha256": "43cf6ba242160eda8545114ab255c7210a3adaffcd6d22e4f8301a9b81376b09",
+      "sample_receipt_file_sha256": "5885750165a2695a2fb5652452734ef749b7581f892d268473d0e26204d795ac"
+    },
+    {
+      "sample_id": "alibaba1-REMEDIATION-SHORT-SERVICE-candidate",
+      "source_model": "alibaba-token-plan/deepseek-v4-flash-0731",
+      "continuation_model": "alibaba-token-plan/deepseek-v4-flash-0731",
+      "route_note": "same_source_route",
+      "status": "allowed",
+      "finding_count": 1,
+      "call_count": 2,
+      "delivery_verified": true,
+      "d0_sha256": "3e4b869f35d3f8643500a82bc6b2399dd21e47b9164ff5fbb03daf6dca3623e4",
+      "final_visible_sha256": "3e4b869f35d3f8643500a82bc6b2399dd21e47b9164ff5fbb03daf6dca3623e4",
+      "unchanged_from_d0": true,
+      "case_id": "REMEDIATION-SHORT-SERVICE",
+      "source_arm": "candidate",
+      "source_prompt_sha256": "a58b7d7eec3553488513e3db9bb5cb11a5388ae9f56b2bb8c7c8ff811b573afa",
+      "source_trace_file_sha256": "a504d81577dcdd75fb07c320ec63452a9f0d36afd1239c843d62147830cfbe49",
+      "events_file_sha256": "fd8b97cd1cddb5ab972f628e38a1e397c8f49b0da4fa655f4db2bbaa79f2a176",
+      "d0_file_sha256": "c754e5518e378818082b9ebfbfb9962986f1bd4021983cbac1d6bf4646d6a799",
+      "final_visible_file_sha256": "c754e5518e378818082b9ebfbfb9962986f1bd4021983cbac1d6bf4646d6a799",
+      "terminal_reason": "empty_or_unchanged_candidate",
+      "d0": "政务服务窗口一次性告知问题整改方案\n\n2026年8月，中心连续开展3次窗口业务抽查，共核对20宗业务，其中7宗申请人需二次补充材料，目前整改工作尚未启动。为规范窗口一次性告知，减少申请人往返补件，结合抽查发现问题，制定本方案。\n\n一、问题及原因分析\n\n抽查发现，7宗需二次补充材料的业务中，5宗因网站公开清单与窗口口头告知的材料版本不一致，申请人按网站公开清单准备，与窗口告知要求不符；2宗因首次受理时未说明需要提交原件，申请人需再次补充材料。上述问题增加申请人办事成本和时间，也影响窗口办理效率。\n\n经初步分析，5宗版本不一致问题，与办事指南由各窗口分别维护、尚未形成统一版本有关，网站公开清单与窗口告知缺乏统一依据；2宗未说明原件要求的问题，反映出首次受理告知环节对材料要件说明不完整、缺乏统一规范。\n\n二、整改目标\n\n形成中心统一的办事指南和告知口径，使网站公开清单、窗口口头告知与实际办理要求一致；窗口首次受理时完整告知材料清单、材料版本及是否需提交原件等要求，减少申请人二次补充材料的情形。\n\n三、整改措施\n\n（一）编制统一办事指南。由中心汇总各窗口现行办事要求，编制统一版本的办事指南，逐项明确材料清单、材料版本和是否需提交原件等要素，作为窗口告知和网站公开的唯一依据。\n\n（二）规范首次受理告知。窗口人员首次受理时一次性告知全部材料要求，告知内容与统一办事指南一致；确需补充材料的，一次性列明全部补充事项，避免重复补充。\n\n（三）同步维护公开信息。办事指南修订后及时更新网站公开清单，建立指南与网站信息的同步核对机制，防止版本不一致问题再次发生。\n\n（四）组织窗口人员执行。组织窗口人员学习掌握统一办事指南和告知要求，明确执行口径，将一次性告知落实情况作为窗口日常管理检查事项。\n\n四、责任与进度\n\n整改由中心统一组织实施，中心负责办事指南的编制、审核、发布及网站信息核对，各窗口按照统一口径执行。本方案印发后，先完成办事指南统一，再组织窗口人员执行，通过后续业务抽查检验整改效果。\n\n五、检查验收\n\n继续开展窗口业务抽查，将申请人二次补充材料情况、网站公开清单与窗口告知口径一致性、原件等要求是否在首次受理时告知作为检查重点；发现口径不一致或告知不完整的问题，及时纠正并统一处理口径。以问题是否纠正、二次补充材料情形是否减少作为整改验收依据。",
+      "calls": [
+        {
+          "model": "alibaba-token-plan/deepseek-v4-flash-0731",
+          "return_code": 0,
+          "technical_valid": true,
+          "seconds": 23.453,
+          "init_models": [
+            "alibaba-token-plan/deepseek-v4-flash-0731"
+          ],
+          "assistant_models": [
+            "alibaba-token-plan/deepseek-v4-flash-0731"
+          ],
+          "usage_models": [
+            "alibaba-token-plan/deepseek-v4-flash-0731"
+          ],
+          "result_count": 1,
+          "result_subtypes": [
+            "success"
+          ],
+          "result_errors": [
+            false
+          ],
+          "final_sha256": "b8d10ec841fe271e3511e6072ea02d43809b8846a6880eec34e9645e5bc89127",
+          "round": "round-1",
+          "prompt_file_sha256": "2a91ba921573751f22ebc0d7e667a9f0dcf9dbc5bd4ac738a528b99cf471559d",
+          "reply_file_sha256": "b8d10ec841fe271e3511e6072ea02d43809b8846a6880eec34e9645e5bc89127",
+          "stream_file_sha256": "c5cd8f1452426f48e6835ce55e6c3208af8ff2405dc5ce8e7e1b831847501674",
+          "receipt_file_sha256": "87c578dabceb5e9964e591c83aca51ca6f13c72e43eb82cc2de29bebf8875946",
+          "cli_reported_usage": [
+            {
+              "usage": {
+                "input_tokens": 3697,
+                "cache_read_input_tokens": 0,
+                "cache_creation_input_tokens": 0,
+                "output_tokens": 2254
+              },
+              "modelUsage": {
+                "alibaba-token-plan/deepseek-v4-flash-0731": {
+                  "inputTokens": 6041,
+                  "outputTokens": 2525,
+                  "cacheReadInputTokens": 0,
+                  "cacheCreationInputTokens": 0,
+                  "webSearchRequests": 0,
+                  "costUSD": 0.09333,
+                  "contextWindow": 200000,
+                  "maxOutputTokens": 32000
+                }
+              },
+              "total_cost_usd": 0.09333,
+              "duration_ms": 21934
+            }
+          ]
+        },
+        {
+          "model": "alibaba-token-plan/deepseek-v4-flash-0731",
+          "return_code": 0,
+          "technical_valid": true,
+          "seconds": 7.937,
+          "init_models": [
+            "alibaba-token-plan/deepseek-v4-flash-0731"
+          ],
+          "assistant_models": [
+            "alibaba-token-plan/deepseek-v4-flash-0731"
+          ],
+          "usage_models": [
+            "alibaba-token-plan/deepseek-v4-flash-0731"
+          ],
+          "result_count": 1,
+          "result_subtypes": [
+            "success"
+          ],
+          "result_errors": [
+            false
+          ],
+          "final_sha256": "3e4b869f35d3f8643500a82bc6b2399dd21e47b9164ff5fbb03daf6dca3623e4",
+          "round": "round-2",
+          "prompt_file_sha256": "3bbf8369c37b4b6c869ae191403c74284420295b8ada622a6b707a0509080eaa",
+          "reply_file_sha256": "c754e5518e378818082b9ebfbfb9962986f1bd4021983cbac1d6bf4646d6a799",
+          "stream_file_sha256": "39fd9722ba58fe13e55e993b6a0d8ee9bf331ca2184d091396761f44aa6067ea",
+          "receipt_file_sha256": "86fda43814a4a56c68a130e6c4f4313f02da850f164ff9bf9114ee369b666eb4",
+          "cli_reported_usage": [
+            {
+              "usage": {
+                "input_tokens": 4705,
+                "cache_read_input_tokens": 0,
+                "cache_creation_input_tokens": 0,
+                "output_tokens": 748
+              },
+              "modelUsage": {
+                "alibaba-token-plan/deepseek-v4-flash-0731": {
+                  "inputTokens": 7033,
+                  "outputTokens": 986,
+                  "cacheReadInputTokens": 1024,
+                  "cacheCreationInputTokens": 0,
+                  "webSearchRequests": 0,
+                  "costUSD": 0.060327,
+                  "contextWindow": 200000,
+                  "maxOutputTokens": 32000
+                }
+              },
+              "total_cost_usd": 0.060327,
+              "duration_ms": 6845
+            }
+          ]
+        }
+      ],
+      "source_file_sha256": "f29df3b1e8fdc38a1c5972be5afb22e568dfbb6f0874397ec337ce5c5f11298d",
+      "sample_receipt_file_sha256": "fde0a2af506db4e6f89b9a8bfcf7b1a90ca2a3992cafd0e5ea3d02f935301acc"
+    },
+    {
+      "sample_id": "ollama-REMEDIATION-EDUCATION-LONG-baseline",
+      "source_model": "ollama-cloud/deepseek-v4-flash:0731",
+      "continuation_model": "ollama-cloud/deepseek-v4-flash:0731",
+      "route_note": "same_source_route",
+      "status": "allowed",
+      "finding_count": 1,
+      "call_count": 2,
+      "delivery_verified": true,
+      "d0_sha256": "ab850d1b12c15a7790ad87ec7b90a11e776e1f879d5401fd9e7b7ec3aab56eab",
+      "final_visible_sha256": "ab850d1b12c15a7790ad87ec7b90a11e776e1f879d5401fd9e7b7ec3aab56eab",
+      "unchanged_from_d0": true,
+      "case_id": "REMEDIATION-EDUCATION-LONG",
+      "source_arm": "baseline",
+      "source_prompt_sha256": "9c5671bcb20b7142848935c7bbabd92f399d8b9867ab2af7fe443b70bfd35b8d",
+      "source_trace_file_sha256": "bd8f93d9f8f3520f17bfe9c813884e0bb1546718667f9823d60f79d9cd11c98d",
+      "events_file_sha256": "2d3c4435b2ca9f2bc2366e8308172ae158fad86071c94e8f84327aeed059dab0",
+      "d0_file_sha256": "4fccf561f37078b7c387b872c83bea48a9fd9d8ed8025ccae21b66d1a97a7662",
+      "final_visible_file_sha256": "4fccf561f37078b7c387b872c83bea48a9fd9d8ed8025ccae21b66d1a97a7662",
+      "terminal_reason": "replacement_changes_sensitive_fact_object",
+      "d0": "本科教育教学审核评估反馈问题整改方案\n\n2026年6月30日，审核评估专家组向学校反馈本科教育教学有关问题。学校高度重视，逐项梳理问题表现，分析直接原因，明确整改责任和完成时限，制定本方案。\n\n一、整改目标\n\n坚持问题导向，立行立改与长效治理相结合。对可立即纠正和制度补强事项，于2026年10月31日前完成整改；对需要持续改进的事项，跟踪推进至2027年6月30日。整改工作坚持实事求是，不回避问题、不夸大成效；坚持分类施策，对已确认问题逐项整改，对制度缺口及时补强；坚持标本兼治，把问题整改与制度建设、日常管理结合起来。通过整改，推动课程教学、实践教学、质量监测和教师发展各环节制度执行更加规范，质量保障机制有效运行。\n\n二、主要问题及整改措施\n\n（一）课程目标达成分析未体现教学改进。评估组抽查20门课程，其中6门课程的目标达成分析仅有分数汇总，未说明分析结果如何用于教学改进。反映出部分课程对目标达成分析的功能定位认识不足，分析停留在数据汇总层面，与教学改进衔接不紧；长此以往，课程目标达成情况难以及时转化为教学调整依据，不利于课程质量持续改进。整改措施：一是由教务处组织相关课程逐项核查目标达成情况，补充结果分析和改进建议，明确改进措施落实到后续教学环节；二是修订课程目标达成分析规范，明确分析内容、结果运用和存档要求；三是将达成分析及改进落实情况纳入课程教学检查范围，作为课程质量评价依据。整改完成后，由教务处组织复核，重点核查分析是否说明结果运用及改进落实情况。教务处牵头，各学院具体落实，2026年10月31日前完成。\n\n（二）部分校外实习基地合作协议到期未续签。学校现有8个校外实习基地，其中2份合作协议已经到期、尚未续签，未发生实习安全事故。反映出基地协议管理在到期提醒和续签衔接方面存在流程缺口；协议长期未续签，将影响基地合作关系的稳定性和实习教学的规范性。整改措施：一是对全部实习基地协议进行排查，建立协议到期清单，对已到期协议及时启动续签；二是完善协议到期预警和续签流程，明确提前办理时限和责任环节；三是加强实习过程安全管理，保障实习教学正常开展。整改完成后，由实践教学中心对协议排查和续签进展进行复核。实践教学中心牵头，2026年10月31日前完成。\n\n（三）部分教学意见首次答复超时。本学期收集教学意见142条，其中37条超过5个工作日才首次答复，目前均已答复。反映出意见分办环节时限约束执行不严，首答要求落实不到位；答复不及时，将影响师生参与教学管理的积极性。整改措施：一是对已答复意见开展回看，核实答复质量和办理情况；二是严格执行教学意见限时首答要求，优化分办流程，明确首答时限和督办责任；三是将答复及时率纳入质量监测通报，接受师生监督。整改完成后，由质量监测中心对答复及时率提升情况进行复核。质量监测中心牵头，2026年10月31日前完成。\n\n（四）培养方案修订尚未完成审批。4个专业正在修订培养方案，方案尚未批准，现行培养方案继续有效。反映出方案修订论证和审批程序仍在推进，尚未形成可执行的修订结果。整改措施：一是按程序组织4个专业加快方案论证和报批，确保修订内容符合培养目标和审核评估要求；二是方案批准前，严格执行现行培养方案，不得擅自变更执行；三是方案批准后，及时组织宣贯并做好实施准备。教务处定期跟踪修订进展，及时协调解决论证报批中的问题。教务处牵头，各学院具体落实；制度补强事项于2026年10月31日前完成，方案修订持续跟踪至2027年6月30日。\n\n（五）教师教学能力培训效果尚待复核。年度教师教学能力培训计划已经形成，各学院尚未统一报送参训和应用情况数据，培训效果尚待复核。反映出培训数据归集口径和报送机制尚未统一，效果评估缺乏数据支撑。整改措施：一是统一明确参训和应用情况数据报送口径、内容和时限；二是各学院按要求报送数据，教师发展中心汇总分析培训应用情况；三是结合分析结果，对培训计划进行动态调整，并将应用情况作为后续培训安排参考。教师发展中心对报送数据的完整性和分析结果进行复核。教师发展中心牵头，各学院配合；数据归集于2026年10月31日前完成，效果复核持续至2027年6月30日。\n\n三、组织保障\n\n（一）压实整改责任。各牵头部门对照本方案逐项落实，各学院履行具体落实责任，建立整改清单，明确责任人和完成时限，确保整改措施落地。\n\n（二）加强跟踪督办。质量监测中心负责整改验收，对整改事项逐项核查，以问题是否纠正、目标是否达到、证据是否可核作为验收标准；对未按期完成的事项，督促责任部门说明情况并限期推进。\n\n（三）健全长效机制。对涉及制度层面的问题，及时完善制度并抓好执行；对持续改进事项，跟踪至2027年6月30日，定期检查进展，防止问题反弹，推动本科教育教学质量保障机制持续完善。",
+      "calls": [
+        {
+          "model": "ollama-cloud/deepseek-v4-flash:0731",
+          "return_code": 0,
+          "technical_valid": true,
+          "seconds": 55.344,
+          "init_models": [
+            "ollama-cloud/deepseek-v4-flash:0731"
+          ],
+          "assistant_models": [
+            "ollama-cloud/deepseek-v4-flash:0731"
+          ],
+          "usage_models": [
+            "ollama-cloud/deepseek-v4-flash:0731"
+          ],
+          "result_count": 1,
+          "result_subtypes": [
+            "success"
+          ],
+          "result_errors": [
+            false
+          ],
+          "final_sha256": "2431f7d9fb552fd87a6ccd0f96ced9ce1d96c8cf17990d9085e4be78214f6831",
+          "round": "round-1",
+          "prompt_file_sha256": "8868b38ac2d6bc539407e6e96da43256931484e133a974d804fb6dd6b3278b0d",
+          "reply_file_sha256": "2431f7d9fb552fd87a6ccd0f96ced9ce1d96c8cf17990d9085e4be78214f6831",
+          "stream_file_sha256": "9a168f19413267b0e84127b31f28a6777ed83905f39d6482f88e52115f1ea4ed",
+          "receipt_file_sha256": "e865b10a2194b8614975c4adcd72f61688f05b22471761b1bd60ebf6225bb2fd",
+          "cli_reported_usage": [
+            {
+              "usage": {
+                "input_tokens": 4329,
+                "cache_read_input_tokens": 0,
+                "cache_creation_input_tokens": 0,
+                "output_tokens": 15577
+              },
+              "modelUsage": {
+                "ollama-cloud/deepseek-v4-flash:0731": {
+                  "inputTokens": 4329,
+                  "outputTokens": 15577,
+                  "cacheReadInputTokens": 0,
+                  "cacheCreationInputTokens": 0,
+                  "webSearchRequests": 0,
+                  "costUSD": 0.41107000000000005,
+                  "contextWindow": 200000,
+                  "maxOutputTokens": 32000
+                }
+              },
+              "total_cost_usd": 0.41107000000000005,
+              "duration_ms": 53851
+            }
+          ]
+        },
+        {
+          "model": "ollama-cloud/deepseek-v4-flash:0731",
+          "return_code": 0,
+          "technical_valid": true,
+          "seconds": 6.687,
+          "init_models": [
+            "ollama-cloud/deepseek-v4-flash:0731"
+          ],
+          "assistant_models": [
+            "ollama-cloud/deepseek-v4-flash:0731"
+          ],
+          "usage_models": [
+            "ollama-cloud/deepseek-v4-flash:0731"
+          ],
+          "result_count": 1,
+          "result_subtypes": [
+            "success"
+          ],
+          "result_errors": [
+            false
+          ],
+          "final_sha256": "ab850d1b12c15a7790ad87ec7b90a11e776e1f879d5401fd9e7b7ec3aab56eab",
+          "round": "round-2",
+          "prompt_file_sha256": "bf8fb4b0fcbe9018f92a56cb00e92ef2c63cae4f28157ae2d7b16b84038ea867",
+          "reply_file_sha256": "4fccf561f37078b7c387b872c83bea48a9fd9d8ed8025ccae21b66d1a97a7662",
+          "stream_file_sha256": "5fd3f17efd1f50af97ff24df9ccdc2768e1b5a7ad55fdee7325ee1414efd1ec9",
+          "receipt_file_sha256": "ce9700cd68792b3121739d569023a682991e52a0d3c79d20fbe6486cdfdf6e86",
+          "cli_reported_usage": [
+            {
+              "usage": {
+                "input_tokens": 5824,
+                "cache_read_input_tokens": 0,
+                "cache_creation_input_tokens": 0,
+                "output_tokens": 1240
+              },
+              "modelUsage": {
+                "ollama-cloud/deepseek-v4-flash:0731": {
+                  "inputTokens": 5824,
+                  "outputTokens": 1240,
+                  "cacheReadInputTokens": 0,
+                  "cacheCreationInputTokens": 0,
+                  "webSearchRequests": 0,
+                  "costUSD": 0.06012,
+                  "contextWindow": 200000,
+                  "maxOutputTokens": 32000
+                }
+              },
+              "total_cost_usd": 0.06012,
+              "duration_ms": 5637
+            }
+          ]
+        }
+      ],
+      "source_file_sha256": "7b5c0784f887f3049646593c12a1d32991cfb4858bce262ffe80529e88241c38",
+      "sample_receipt_file_sha256": "e4ddc9468b9b62fd5f93ec63370571e3c26a4e68505b0abfbb42c328f2db7ad9"
+    },
+    {
+      "sample_id": "opencode-REMEDIATION-EDUCATION-LONG-baseline",
+      "source_model": "opencode-go/deepseek-v4-flash",
+      "continuation_model": "opencode-go/deepseek-v4-flash",
+      "route_note": "same_source_route",
+      "status": "allowed",
+      "finding_count": 0,
+      "call_count": 1,
+      "delivery_verified": true,
+      "d0_sha256": "f9358455bede0f7b8943f7cf7c7dde99b74c6c5f35402d5ddc5cf00c8d6e737c",
+      "final_visible_sha256": "f9358455bede0f7b8943f7cf7c7dde99b74c6c5f35402d5ddc5cf00c8d6e737c",
+      "unchanged_from_d0": true,
+      "case_id": "REMEDIATION-EDUCATION-LONG",
+      "source_arm": "baseline",
+      "source_prompt_sha256": "9c5671bcb20b7142848935c7bbabd92f399d8b9867ab2af7fe443b70bfd35b8d",
+      "source_trace_file_sha256": "0a3ed5a3d1057f41704bd4b6a9babf276db2e72f9a5d786d9bbb4bdba583cc29",
+      "events_file_sha256": "70db3c7ede7a1b2188566cbf1e34c7fa2ffad2d19d909e17396d5f39b9f36536",
+      "d0_file_sha256": "270fee6713046023010c5dcfd853052182d6d0c810338dd53f6677391c2bda18",
+      "final_visible_file_sha256": "270fee6713046023010c5dcfd853052182d6d0c810338dd53f6677391c2bda18",
+      "terminal_reason": "no_review_candidate",
+      "d0": "本科教育教学审核评估反馈问题整改方案\n\n2026年6月30日，评估组反馈学校本科教育教学审核评估有关问题，涉及课程目标达成分析、校外实习基地协议管理、教学意见办理、培养方案修订和教师教学能力培训数据归集五个方面。为落实整改要求，补齐教育教学质量保障短板，制定本方案。\n\n一、总体要求\n\n坚持问题导向、即知即改、务求实效。对能够立即纠正和制度补强的事项，2026年10月31日前完成整改并组织验收；对需要持续推进的事项，跟踪整改至2027年6月30日。整改实行牵头负责、分级落实、台账管理，各项任务整改一项、验收一项，防止同类问题反复发生。\n\n二、整改任务与措施\n\n（一）课程目标达成分析结果应用不足问题。评估组抽查20门课程，其中6门课程的目标达成分析仅有分数汇总，未说明分析结果如何用于教学改进。这反映出部分课程对达成分析的功能定位认识不到位，分析停留在数据呈现层面，缺少结果应用的衔接安排。教务处牵头、各学院具体落实：一是组织6门课程任课教师补充目标达成分析，逐门说明达成情况判断、薄弱环节原因及改进措施，并把改进落实于教学内容和考核方式调整；二是制定课程目标达成分析规范，将结果应用情况作为分析报告的必备内容，形成“分析—反馈—改进”的常态化机制；三是各学院组织检查本院课程达成分析情况，教务处抽查复核。2026年10月31日前完成6门课程分析补充和规范制定，后续执行情况跟踪至2027年6月30日。\n\n（二）校外实习基地合作协议到期未续签问题。学校现有8个校外实习基地，其中2份合作协议已经到期、尚未续签，未发生实习安全事故。协议到期未及时续签，反映出协议管理缺少到期预警和办理衔接，存在协议状态与实习活动管理脱节的风险。实践教学中心牵头：一是对8个基地协议逐一核查，建立协议台账，逐份注明签订时间、到期时间和办理状态；二是对2份到期协议按程序启动续签或重新签订，续签完成前，涉及该基地的实习活动严格执行学校实习管理规定，做好安全和质量管理；三是建立合作协议到期预警和续签提醒制度，协议到期前按规定时限启动办理，实现基地协议动态管理。2026年10月31日前完成协议核查、台账建立、预警制度制定，到期协议按程序完成续签或重新签订，后续动态管理跟踪至2027年6月30日。\n\n（三）教学意见答复超时问题。本学期收集教学意见142条，其中37条超过5个工作日才首次答复，目前均已答复。意见虽已全部答复，但首次答复超时反映出意见分办、责任落实和催办环节衔接不畅，影响意见办理时效。质量监测中心牵头：一是梳理教学意见办理流程，明确分办规则、承办责任和5个工作日内首次答复的时限要求；二是建立超期预警和催办机制，对临近时限和超时事项及时提醒督办；三是对37条超时答复的意见逐条核查答复质量，需要补充或修正的及时办理；四是完善意见办理台账，将办理时效作为质量监测内容，定期通报办理情况。2026年10月31日前完成流程完善、台账建立和超时意见质量核查，机制运行情况跟踪至2027年6月30日。\n\n（四）培养方案修订推进问题。4个专业正在修订培养方案，方案尚未批准，现行培养方案继续有效。方案修订目前处于论证和报批阶段，属于正常推进中的工作，但需防止修订期间教学组织衔接失序。教务处牵头、各学院具体落实：一是按程序推进4个专业培养方案修订、论证和审批，明确各环节进度和责任；二是修订期间严格执行现行培养方案，涉及培养计划和教学安排的调整，按学校规定程序办理并做好学生告知；三是把培养方案修订与课程目标达成分析、教学意见办理等工作衔接，及时吸收改进建议。教务处对修订进度实行清单管理、定期调度。修订进展跟踪至2027年6月30日。\n\n（五）教师教学能力培训数据归集和效果复核问题。年度教师教学能力培训计划已经形成，各学院尚未统一报送参训和应用情况数据，培训效果尚待复核。数据未统一归集，反映出报送口径、时限和要求不明确，效果评价环节尚未启动。教师发展中心牵头：一是明确参训人数、培训项目、应用情况等数据报送口径和时间要求，统一归集各学院数据；二是各学院按统一要求及时报送；三是在数据归集基础上组织培训效果复核，分析培训对教学的实际作用，形成改进意见并反馈，推动培训计划调整优化。2026年10月31日前完成数据报送和归集，效果复核和持续改进跟踪至2027年6月30日。\n\n三、组织保障\n\n（一）压实整改责任。教务处牵头课程目标分析和培养方案修订，各学院具体落实；实践教学中心牵头实习基地协议事项；质量监测中心牵头意见响应和整改验收；教师发展中心牵头培训数据归集。牵头单位负责组织协调、业务指导和进度督促，把整改与日常教学质量保障工作结合起来。\n\n（二）强化台账管理与验收复核。建立整改台账，逐项记录问题表现、整改措施、责任单位、完成时限和进展状态。质量监测中心牵头，2026年10月31日前对可立即纠正和制度补强事项组织验收，对照评估反馈问题核查纠正情况、制度落实情况及证据材料；持续改进事项由牵头单位跟踪，2027年6月30日前形成跟踪情况汇总，未完成事项继续督办，确保各项整改任务落到实处。\n\n各责任单位要高度重视评估反馈问题整改，把整改要求融入日常教学管理和质量保障工作，务求取得实效。",
+      "calls": [
+        {
+          "model": "opencode-go/deepseek-v4-flash",
+          "return_code": 0,
+          "technical_valid": true,
+          "seconds": 26.203,
+          "init_models": [
+            "opencode-go/deepseek-v4-flash"
+          ],
+          "assistant_models": [
+            "opencode-go/deepseek-v4-flash"
+          ],
+          "usage_models": [
+            "opencode-go/deepseek-v4-flash"
+          ],
+          "result_count": 1,
+          "result_subtypes": [
+            "success"
+          ],
+          "result_errors": [
+            false
+          ],
+          "final_sha256": "f9358455bede0f7b8943f7cf7c7dde99b74c6c5f35402d5ddc5cf00c8d6e737c",
+          "round": "round-1",
+          "prompt_file_sha256": "46e93b7b692311f42d1786535c1ef8d42b36387147c1e7385b21cbda0b6b018d",
+          "reply_file_sha256": "270fee6713046023010c5dcfd853052182d6d0c810338dd53f6677391c2bda18",
+          "stream_file_sha256": "e9ae59a08b9d73a85bdc63c62024cbdf513f81b2a3071ffe30c49af4ced24dc2",
+          "receipt_file_sha256": "ff521be556d391bc55b957fcfab33822c1c7a55835cad7f2878c7870d538b586",
+          "cli_reported_usage": [
+            {
+              "usage": {
+                "input_tokens": 4803,
+                "cache_read_input_tokens": 0,
+                "cache_creation_input_tokens": 0,
+                "output_tokens": 1427
+              },
+              "modelUsage": {
+                "opencode-go/deepseek-v4-flash": {
+                  "inputTokens": 8256,
+                  "outputTokens": 1641,
+                  "cacheReadInputTokens": 0,
+                  "cacheCreationInputTokens": 0,
+                  "webSearchRequests": 0,
+                  "costUSD": 0.082305,
+                  "contextWindow": 200000,
+                  "maxOutputTokens": 32000
+                }
+              },
+              "total_cost_usd": 0.082305,
+              "duration_ms": 25250
+            }
+          ]
+        }
+      ],
+      "source_file_sha256": "68334a6b0e6c50ccd9ee2f8ff5ac7e08426743f60ad2d4f81f61d376a57bcdb7",
+      "sample_receipt_file_sha256": "dc6e120c2cf3d4f43d5672b28e3da088e6c8e7b81fda3a4e12fb75b23c5037b2"
+    },
+    {
+      "sample_id": "minimax-REMEDIATION-SHORT-SERVICE-baseline",
+      "source_model": "minimax-cn/MiniMax-M3",
+      "continuation_model": "minimax-cn/MiniMax-M3",
+      "route_note": "same_source_route",
+      "status": "allowed",
+      "finding_count": 0,
+      "call_count": 1,
+      "delivery_verified": true,
+      "d0_sha256": "b10b3b51d19fb1fdb13cce686c40c23afea0031e9e12996dd62e20781ad1d424",
+      "final_visible_sha256": "b10b3b51d19fb1fdb13cce686c40c23afea0031e9e12996dd62e20781ad1d424",
+      "unchanged_from_d0": true,
+      "case_id": "REMEDIATION-SHORT-SERVICE",
+      "source_arm": "baseline",
+      "source_prompt_sha256": "a58b7d7eec3553488513e3db9bb5cb11a5388ae9f56b2bb8c7c8ff811b573afa",
+      "source_trace_file_sha256": "abb0e8ee802460c1da866f7fb1ebbf0666edcea67af8445d22945dd1ce6f2c3a",
+      "events_file_sha256": "c962396ed7c87b7efeaaba430ea06cfc3dae25958bd8366da423b387fffbcc58",
+      "d0_file_sha256": "738e87bbcf8833b22a725cb41e19c34be0f41cceb2f9de46f22a03bd12846fb4",
+      "final_visible_file_sha256": "738e87bbcf8833b22a725cb41e19c34be0f41cceb2f9de46f22a03bd12846fb4",
+      "terminal_reason": "no_review_candidate",
+      "d0": "政务服务窗口一次性告知问题整改方案\n\n2026年8月，中心连续开展3次窗口业务抽查，共核对20宗业务，其中7宗需申请人二次补充材料，占35%。7宗中，5宗因网站公开清单与窗口口头告知的材料版本不一致，2宗因首次受理未说明须提交原件。现有办事指南由各窗口分别维护，未形成统一版本。整改工作尚未启动。\n\n一、主要问题\n\n抽查反映出窗口一次性告知存在两方面问题：一是办事材料清单内外口径不统一，网站公示版本与窗口执行版本不一致，申请人据此准备材料后仍需补正；二是首次受理告知不完整，未明确提示原件提交等关键要求，导致申请人重复跑动。\n\n二、原因分析\n\n经对抽查结果梳理，问题可能与以下方面有关：办事指南分散在各窗口维护，未归口中心统一管理，缺乏统一版本控制；受理环节一次性告知要求未形成明确规范，执行口径因人而异；网站清单与窗口执行清单之间缺少同步更新机制。\n\n三、整改目标\n\n依托中心办理规范制定权，建立办事指南统一管理机制，统一一次性告知口径，使申请人依据告知清单备齐材料后能够一次完成受理，减少因告知不一致造成的二次补充。\n\n四、整改措施\n\n（一）归口办事指南管理。中心对各窗口办事指南进行统一梳理、编制和更新，形成对外发布的统一版本；各窗口停止使用原有版本，统一以中心发布版本为准。\n\n（二）明确一次性告知口径。依据统一办事指南，逐事项明确所需材料名称、形式（原件或复印件）、份数及常见补正情形，作为窗口受理和口头告知的共同依据。\n\n（三）同步网站与窗口告知清单。网站公开清单与窗口执行清单保持同一来源；版本发生变更的，由中心同步调整网站公示内容，确保内外口径一致。\n\n（四）规范首次受理告知。窗口受理人员首次接待申请人时，对照统一告知口径完整提示所需材料及形式要求，重点提示原件提交等关键事项。\n\n（五）落实内部核查。中心依托既有抽查机制，定期核对各窗口告知口径与统一指南是否一致、受理告知是否完整，对发现的不一致情形及时纠正并记录。\n\n五、组织实施\n\n本方案由中心统一组织实施。各窗口按照本方案要求执行统一办事指南和一次性告知口径；中心对方案落实情况开展持续核查，作为改进依据。本方案自印发之日起施行。",
+      "calls": [
+        {
+          "model": "minimax-cn/MiniMax-M3",
+          "return_code": 0,
+          "technical_valid": true,
+          "seconds": 3.938,
+          "init_models": [
+            "minimax-cn/MiniMax-M3"
+          ],
+          "assistant_models": [
+            "minimax-cn/MiniMax-M3"
+          ],
+          "usage_models": [
+            "minimax-cn/MiniMax-M3"
+          ],
+          "result_count": 1,
+          "result_subtypes": [
+            "success"
+          ],
+          "result_errors": [
+            false
+          ],
+          "final_sha256": "b10b3b51d19fb1fdb13cce686c40c23afea0031e9e12996dd62e20781ad1d424",
+          "round": "round-1",
+          "prompt_file_sha256": "a0f81e7685acdd309fd26e8ea534b63577301e812ba4cc0686d69850b3ef9c1a",
+          "reply_file_sha256": "738e87bbcf8833b22a725cb41e19c34be0f41cceb2f9de46f22a03bd12846fb4",
+          "stream_file_sha256": "464d6f3c5b5f7a05b7d7ce87529c897fd0ef889c1606fd59cd750170a3384e2a",
+          "receipt_file_sha256": "c2f91d8408ac83d8d07a4b791d7252edd6190be1995db8dd5d8bf3850a1f1d3e",
+          "cli_reported_usage": [
+            {
+              "usage": {
+                "input_tokens": 2911,
+                "cache_read_input_tokens": 128,
+                "cache_creation_input_tokens": 0,
+                "output_tokens": 509
+              },
+              "modelUsage": {
+                "minimax-cn/MiniMax-M3": {
+                  "inputTokens": 2911,
+                  "outputTokens": 509,
+                  "cacheReadInputTokens": 128,
+                  "cacheCreationInputTokens": 0,
+                  "webSearchRequests": 0,
+                  "costUSD": 0.027344,
+                  "contextWindow": 200000,
+                  "maxOutputTokens": 32000
+                }
+              },
+              "total_cost_usd": 0.027344,
+              "duration_ms": 2860
+            }
+          ]
+        }
+      ],
+      "source_file_sha256": "08860c4e82d84f5df990196888e6b6dabc11a5ec8201088f7c5586e0a0fb3e84",
+      "sample_receipt_file_sha256": "f339a5c42be4812f3db6f1af307743e2d3cfa456a7af9d36f40f9b21798b01fa"
+    },
+    {
+      "sample_id": "minimax-REMEDIATION-EDUCATION-LONG-candidate",
+      "source_model": "minimax-cn/MiniMax-M3",
+      "continuation_model": "minimax-cn/MiniMax-M3",
+      "route_note": "same_source_route",
+      "status": "allowed",
+      "finding_count": 0,
+      "call_count": 1,
+      "delivery_verified": true,
+      "d0_sha256": "34d08d470e2670c5e8ab997f8e4e709dc19baaf9f783ab8da995be79c702f5f8",
+      "final_visible_sha256": "34d08d470e2670c5e8ab997f8e4e709dc19baaf9f783ab8da995be79c702f5f8",
+      "unchanged_from_d0": true,
+      "case_id": "REMEDIATION-EDUCATION-LONG",
+      "source_arm": "candidate",
+      "source_prompt_sha256": "9c5671bcb20b7142848935c7bbabd92f399d8b9867ab2af7fe443b70bfd35b8d",
+      "source_trace_file_sha256": "2d20db83ec1d47356aae455d55bb8f5ac6d8a9e7262f3bb65801f4272571e76e",
+      "events_file_sha256": "832b82d05364033ef771c0e82c8acd264428f2158b04ed8c020bcb58fc80d24e",
+      "d0_file_sha256": "e65b5a0ae00f937aaf471792e8723b27b96cd6726da5259787b429fd1a59c4d9",
+      "final_visible_file_sha256": "e65b5a0ae00f937aaf471792e8723b27b96cd6726da5259787b429fd1a59c4d9",
+      "terminal_reason": "no_review_candidate",
+      "d0": "本科教育教学审核评估反馈问题整改方案\n\n为落实本科教育教学审核评估反馈意见，全面整改评估组反馈的五个方面问题，明确整改措施、责任分工和完成节点，现制定本方案。\n\n一、问题归因与整改目标\n\n（一）课程目标达成分析不闭环。评估抽查20门课程，其中6门课程的目标达成分析仅作分数汇总，未说明分析结果如何用于教学改进。反映出部分课程对达成度分析的功能定位认识不到位，分析与教学改进之间缺少制度衔接。\n\n（二）校外实习基地协议管理存在断点。学校现有8个校外实习基地，其中2份合作协议已到期尚未续签，目前未发生实习安全事故。反映出协议到期提醒、续签责任和协议效力核查不够健全，潜藏合规风险。\n\n（三）教学意见首响时限执行不严。本学期收集教学意见142条，其中37条超过5个工作日才首次答复，目前均已答复。反映出意见受理、分办、催办和答复闭环尚未实现全过程留痕与时限管控。\n\n（四）培养方案修订进度需统筹。4个专业正在修订培养方案，方案尚未批准，现行培养方案继续有效。反映出修订过程中调研、论证和审批衔接有待加强。\n\n（五）教师教学能力培训效果尚待复核。年度教师教学能力培训计划已经形成，但各学院尚未统一报送参训和应用情况数据，效果尚待复核。反映出培训数据归集和应用反馈机制尚未健全。\n\n二、整改措施\n\n（一）健全课程目标达成分析与应用闭环。教务处牵头修订课程目标达成度分析规范，明确分析报告须覆盖数据来源、目标对照、问题归因和改进举措四项要素，杜绝单纯分数汇总。各学院组织6门相关课程责任教师在两周内补充完成分析说明，形成问题清单与改进任务，由学院教学指导委员会审议后报教务处备案。教务处将分析结果应用于课程质量监测和教学资源调配。\n\n（二）规范校外实习基地协议管理。实践教学中心牵头全面梳理8个基地协议台账，逐份标注到期时间。对2份已到期协议，立即启动续签谈判，原则上于协议到期后两个月内完成续签；如基地合作意向发生变化，须形成书面情况说明报教务处备案。同步建立协议到期前3个月预警机制，将基地负责人、学院联系人、实践教学中心复核岗三方职责嵌入协议管理流程。\n\n（三）强化教学意见响应时限管控。质量监测中心牵头完善意见受理、分办、答复和回访制度，明确受理登记、初次答复和办结三个时限节点，对超过5个工作日未答复的实行预警和催办。对本学期37条超期意见逐一复核答复内容并回访意见人，确保答复质量和诉求回应到位。后续将意见响应时限纳入学院年度教学质量考核。\n\n（四）统筹推进培养方案修订与现行执行。各学院作为4个专业培养方案修订的责任主体，组织行业企业专家、毕业生代表和在校教师充分论证，明确培养目标、课程体系、实践环节和毕业要求的对齐关系。教务处牵头建立修订周报和关键节点审议制度，对调研、论证、征求反馈和学校审定四个阶段实行台账管理。现行培养方案继续严格执行，不得因修订而影响本学期教学秩序。\n\n（五）健全教师培训数据归集与应用反馈。教师发展中心牵头制定培训数据报送模板，统一参训人员、培训主题、学时、应用案例和教学改进等字段。各学院指定专人负责，按月报送参训情况和应用案例。教师发展中心会同教务处对各学院数据开展复核，将培训效果与课程教学改进和教师教学考核挂钩，形成培训—应用—改进的复核记录。\n\n三、责任分工与进度安排\n\n教务处牵头课程目标分析和培养方案修订工作，负责相关制度修订、规范发布和阶段审议，并对学院落实情况开展核查；各学院作为课程目标和培养方案修订的具体落实单位，对本学院相关课程和专业的整改进度与质量负责。\n\n实践教学中心牵头校外实习基地协议事项，组织协议梳理、续签谈判和台账管理；各学院配合做好基地日常联络和实习组织工作。\n\n质量监测中心牵头教学意见响应和整改验收，负责意见系统管理、时限监测、整改台账和复核销号；各学院承担本学院意见的首响和办理责任。\n\n教师发展中心牵头教师培训数据归集，负责模板制定、数据审核和效果复核；各学院按时报送本学院参训和应用数据。\n\n时间安排上，2026年10月31日前完成课程目标分析补正、协议续签或书面情况说明、教学意见时限制度修订与超期意见回访、培训数据归集模板上线和首轮数据归集等可立即纠正和制度补强事项。培养方案修订按学校既定程序推进，于批准后启动执行；培训效果复核、教师教学能力持续提升和校外实习基地常态化管理等持续改进事项跟踪至2027年6月30日。\n\n四、复核与持续改进\n\n质量监测中心牵头建立整改进度台账，按月汇总各项整改进展、存在的困难和下一步安排，向学校分管教学工作的校领导报告。整改任务逐项明确销号标准：纠正类任务以事实状态和佐证材料为销号依据，制度类任务以文件印发和流程上线为销号依据，效果类任务以复核记录和数据比对为销号依据。\n\n将本次整改与日常教学质量监测有机衔接，针对课程目标达成、协议管理、意见响应、培养方案执行和教师培训等事项完善常态监测指标，纳入下一年度教学质量报告。持续改进事项实行季度复核与年度评估，对未达预期的事项及时调整措施，对新发现的问题一并纳入整改范围。整改情况纳入学院年度教学工作考核和责任部门绩效评价。对整改不力、进度滞后或弄虚作假的，依规追究相关单位和人员责任。\n\n学校将适时组织整改\"回头看\"，确保反馈问题改到位、改彻底，以整改成效推动本科教育教学质量持续提升。",
+      "calls": [
+        {
+          "model": "minimax-cn/MiniMax-M3",
+          "return_code": 0,
+          "technical_valid": true,
+          "seconds": 5.484,
+          "init_models": [
+            "minimax-cn/MiniMax-M3"
+          ],
+          "assistant_models": [
+            "minimax-cn/MiniMax-M3"
+          ],
+          "usage_models": [
+            "minimax-cn/MiniMax-M3"
+          ],
+          "result_count": 1,
+          "result_subtypes": [
+            "success"
+          ],
+          "result_errors": [
+            false
+          ],
+          "final_sha256": "34d08d470e2670c5e8ab997f8e4e709dc19baaf9f783ab8da995be79c702f5f8",
+          "round": "round-1",
+          "prompt_file_sha256": "5524bc5c650ac89c9bcfc9ab4297739ea9daec76ddea1139f82ed8bd4fa4300e",
+          "reply_file_sha256": "e65b5a0ae00f937aaf471792e8723b27b96cd6726da5259787b429fd1a59c4d9",
+          "stream_file_sha256": "d42efdb9881700a84186a42f0b11ba1635335d011ec24c1f33c385ac0814473d",
+          "receipt_file_sha256": "9ec7e1e0bcec770a21f6804f48694677f1e3de17a23bd9a4bf298417f9c4d007",
+          "cli_reported_usage": [
+            {
+              "usage": {
+                "input_tokens": 4468,
+                "cache_read_input_tokens": 163,
+                "cache_creation_input_tokens": 0,
+                "output_tokens": 1231
+              },
+              "modelUsage": {
+                "minimax-cn/MiniMax-M3": {
+                  "inputTokens": 7822,
+                  "outputTokens": 1383,
+                  "cacheReadInputTokens": 163,
+                  "cacheCreationInputTokens": 0,
+                  "webSearchRequests": 0,
+                  "costUSD": 0.0737665,
+                  "contextWindow": 200000,
+                  "maxOutputTokens": 32000
+                }
+              },
+              "total_cost_usd": 0.0737665,
+              "duration_ms": 4405
+            }
+          ]
+        }
+      ],
+      "source_file_sha256": "c033666d7b5d72f298dd626bdd66a55279e45665d9ff357cd0c896bc92816703",
+      "sample_receipt_file_sha256": "ed0d5d64f6df1e22e3b2fba03668b04fdc55331cdb404da55e230c7a7c92a0c6"
+    }
+  ],
+  "summary": {
+    "samples": 6,
+    "real_model_calls": 9,
+    "body_changed": 0,
+    "hook_introduced_new_errors": 0,
+    "new_errors_basis": "Every final visible text equals its source D0; saved replay D0 and final-visible files are also byte-identical. This does not claim D0 is error-free.",
+    "overall_error_rate": "not_estimated",
+    "semantic_verdict_stage_reached": 0
+  }
+}
