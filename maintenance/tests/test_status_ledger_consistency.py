@@ -29,17 +29,17 @@ def section(text: str, heading: str) -> str:
 
 
 class StatusLedgerConsistencyTests(unittest.TestCase):
-    def test_current_release_record_is_v1625(self) -> None:
+    def test_current_release_record_is_v1626(self) -> None:
         public_readme = read("README.md")
         todo = read("maintenance/docs/待办.md")
         roadmap = read("maintenance/specs/roadmap.md")
 
-        self.assertIn("当前产品tag为`v1.6.25^{commit}=cf8e1815", todo)
-        self.assertIn("release-1.6.25.md", todo)
+        self.assertIn("当前产品tag为`v1.6.26^{commit}=41a477b8", todo)
+        self.assertIn("release-1.6.26.md", todo)
         self.assertIn("## v1.6.14 起已发布状态与后续研究", todo)
         self.assertNotIn("候选均保持 HOLD", public_readme)
-        self.assertIn("`v1.6.25` 小版本已发布", roadmap)
-        self.assertNotIn("当前产品tag为`v1.6.24", todo)
+        self.assertIn("`v1.6.26` 小版本已发布", roadmap)
+        self.assertNotIn("当前产品tag为`v1.6.25", todo)
 
     def test_v1621_release_history_is_preserved(self) -> None:
         evidence = read("maintenance/tests/evidence/release-1.6.21.md")
@@ -72,7 +72,7 @@ class StatusLedgerConsistencyTests(unittest.TestCase):
         candidate_evidence = read("maintenance/tests/evidence/release-1.6.22-rc.md")
         evidence_index = read("maintenance/docs/evidence/README.md")
 
-        self.assertIn("chinese-official-writing@1.6.25", public_readme)
+        self.assertIn("chinese-official-writing@1.6.26", public_readme)
         self.assertIn("`v1.6.22` 小版本已发布", section(roadmap, "DONE"))
         self.assertNotIn("v1.6.22", section(roadmap, "IN_PROGRESS"))
         self.assertIn("SkillHub `versionId=277452`", todo)
@@ -148,7 +148,7 @@ class StatusLedgerConsistencyTests(unittest.TestCase):
         candidate_evidence = read("maintenance/tests/evidence/release-1.6.24-rc.md")
         release_evidence = read("maintenance/tests/evidence/release-1.6.24.md")
 
-        self.assertIn("chinese-official-writing@1.6.25", public_readme)
+        self.assertIn("chinese-official-writing@1.6.26", public_readme)
         self.assertIn("固定字符数充当跨文种通用分界", requirements)
         self.assertIn("v1.6.24 发布", coverage_row)
         self.assertIn("`v1.6.24` 小版本已发布", section(roadmap, "DONE"))
@@ -173,8 +173,8 @@ class StatusLedgerConsistencyTests(unittest.TestCase):
         candidate_evidence = read("maintenance/tests/evidence/release-1.6.25-rc.md")
         release_evidence = read("maintenance/tests/evidence/release-1.6.25.md")
 
-        self.assertIn("chinese-official-writing@1.6.25", public_readme)
-        self.assertIn("当前产品tag为`v1.6.25", todo)
+        self.assertIn("chinese-official-writing@1.6.26", public_readme)
+        self.assertIn("v1.6.25 已从", todo)
         self.assertIn("PUBLISHED / SEE release-1.6.25.md", candidate_evidence)
         self.assertIn("cf8e181591ea01ba81138352c12b5b93a8acf098", candidate_evidence)
         self.assertIn("765/765 通过", candidate_evidence)
@@ -390,20 +390,29 @@ class StatusLedgerConsistencyTests(unittest.TestCase):
             with self.subTest(item_id=item_id):
                 self.assertIn(marker, table_row(coverage, item_id))
 
-    def test_mt006_semantic_reference_diet_is_registered_as_v1626_release_candidate(self) -> None:
+    def test_v1626_release_closes_mt006_wr026_and_wr027(self) -> None:
         requirements = read("maintenance/specs/requirements.md")
         coverage_row = table_row(read("maintenance/specs/coverage.md"), "MT-006")
+        wr026_row = table_row(read("maintenance/specs/coverage.md"), "WR-026")
+        wr027_row = table_row(read("maintenance/specs/coverage.md"), "WR-027")
         roadmap = read("maintenance/specs/roadmap.md")
         todo = read("maintenance/docs/待办.md")
         evidence = read("maintenance/docs/evidence/README.md")
+        candidate_evidence = read("maintenance/tests/evidence/release-1.6.26-rc.md")
+        release_evidence = read("maintenance/tests/evidence/release-1.6.26.md")
 
         self.assertIn("### MT-006 运行时语义 Reference 克制", requirements)
         self.assertIn("纯维护文本只需结构断言、镜像一致性和最小 smoke", requirements)
-        self.assertIn("REAL_WRITING_PASSED / ENGINEERING_VERIFIED / MERGED_MAIN / RELEASE_CANDIDATE_V1.6.26", coverage_row)
+        self.assertIn("REAL_WRITING_PASSED / ENGINEERING_VERIFIED / DONE_V1.6.26 / RELEASED", coverage_row)
+        self.assertIn("DONE_V1.6.26 / RELEASED", wr026_row)
+        self.assertIn("DONE_V1.6.26 / RELEASED", wr027_row)
         self.assertIn("2,926 bytes", coverage_row)
         self.assertIn("MT-006-SEMANTIC-REFERENCE-DIET-R1", roadmap)
-        self.assertRegex(todo, r"(?m)^- \[x\] `MT-006-SEMANTIC-REFERENCE-DIET-R1`.*RELEASE_CANDIDATE_V1\.6\.26")
+        self.assertRegex(todo, r"(?m)^- \[x\] `MT-006-SEMANTIC-REFERENCE-DIET-R1`.*DONE_V1\.6\.26.*RELEASED")
         self.assertIn("semantic-reference-diet-r1/result.md", evidence)
+        self.assertIn("PUBLISHED / SEE release-1.6.26.md", candidate_evidence)
+        self.assertIn("versionId=286925", release_evidence)
+        self.assertIn("k970ftnpyf3e1cy84b9mxa87798dsz4x", release_evidence)
         self.assertNotIn("HOLD", coverage_row)
 
     def test_paid_placeholders_follow_the_canonical_local_candidate(self) -> None:

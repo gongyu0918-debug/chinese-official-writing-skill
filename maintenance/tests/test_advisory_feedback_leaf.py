@@ -128,7 +128,7 @@ class AdvisoryFeedbackLeafTests(HookCompanionTestMixin, unittest.TestCase):
         self.assertIn("R4_REAL_WRITING_PASSED / ENGINEERING_VERIFIED", short_advice_result)
         self.assertIn("短意见载体与完整稿件形态", coverage)
         self.assertIn("short-advice-capability-r4/candidate-result.md", evidence)
-        self.assertIn("MERGED_MAIN_POST_V1.6.25_FROZEN", coverage)
+        self.assertIn("DONE_V1.6.26 / RELEASED", coverage)
         self.assertIn("30a75113b962b0017fc20e082f3fc60059f30549", short_advice_merge)
 
 
