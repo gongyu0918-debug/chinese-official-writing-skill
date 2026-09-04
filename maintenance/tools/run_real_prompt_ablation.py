@@ -1363,8 +1363,8 @@ CASES: list[PromptCase] = [
                     "不升级为事实核验流程",
                 ],
                 "chinese-official-writing/references/proofreading-checklist.md": [
-                    "不审核人类稿件事实真伪",
-                    "不默认联网反查",
+                    "未核验的引用或数据保持原状态",
+                    "公开来源核验按 `SKILL.md` 的联网条件执行",
                     "用户提供的领导讲话、古诗词、名言、政策原文",
                     "成语默认同语境保留",
                     "引用表述、出处和发布日期建议由用户按原始材料核实。",
