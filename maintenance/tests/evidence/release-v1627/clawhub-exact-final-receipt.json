@@ -1,0 +1,13 @@
+{
+  "argv": [
+    "C:\\Program Files\\nodejs\\node.exe",
+    "C:\\Users\\admin\\AppData\\Roaming\\npm\\node_modules\\clawhub\\bin\\clawdhub.js",
+    "inspect",
+    "chinese-official-writing",
+    "--version",
+    "1.6.27",
+    "--files",
+    "--json"
+  ],
+  "exit_code": 1
+}

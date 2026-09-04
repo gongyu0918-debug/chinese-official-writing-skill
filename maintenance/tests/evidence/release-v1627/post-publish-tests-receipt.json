@@ -1,0 +1,15 @@
+{
+  "argv": [
+    "C:\\Users\\admin\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+    "-X",
+    "utf8",
+    "-B",
+    "-m",
+    "unittest",
+    "maintenance.tests.test_skill_boundary",
+    "maintenance.tests.test_status_ledger_consistency",
+    "maintenance.tests.test_repository_reachability"
+  ],
+  "exit_code": 0,
+  "seconds": 0.741
+}

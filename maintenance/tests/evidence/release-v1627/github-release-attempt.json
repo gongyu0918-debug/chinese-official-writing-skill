@@ -1,0 +1,16 @@
+{
+  "argv": [
+    "C:\\Program Files\\GitHub CLI\\gh.exe",
+    "release",
+    "create",
+    "v1.6.27",
+    "--repo",
+    "gongyu0918-debug/chinese-official-writing-skill",
+    "--title",
+    "v1.6.27",
+    "--notes-file",
+    "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\release-v1627\\output\\release-v1.6.27\\github-notes.md",
+    "--verify-tag"
+  ],
+  "started_utc": "2026-09-04T23:20:00.645553+00:00"
+}

@@ -1,0 +1,32 @@
+{
+  "argv": [
+    "C:\\Program Files\\nodejs\\node.exe",
+    "C:\\Users\\admin\\AppData\\Roaming\\npm\\node_modules\\clawhub\\bin\\clawdhub.js",
+    "publish",
+    "packages/openclaw/skills/chinese_official_writing",
+    "--slug",
+    "chinese-official-writing",
+    "--name",
+    "中文公文写作",
+    "--owner",
+    "gongyu0918-debug",
+    "--version",
+    "1.6.27",
+    "--tags",
+    "latest",
+    "--topics",
+    "chinese-writing,official-writing,office-productivity,content-creation",
+    "--source-repo",
+    "https://github.com/gongyu0918-debug/chinese-official-writing-skill",
+    "--source-commit",
+    "0a83ecbf3be21815e72a80593f612eb858613be5",
+    "--source-ref",
+    "v1.6.27",
+    "--source-path",
+    "packages/openclaw/skills/chinese_official_writing",
+    "--changelog",
+    "新增整改方案专页，明确现状、措施、责任进度和验收的写作边界；修正校对命令的安装目录路径；精简投诉与情况反映页的重复交付话术，并同步兼容包。",
+    "--json"
+  ],
+  "started_utc": "2026-09-04T23:20:45.972598+00:00"
+}

@@ -42,3 +42,5 @@
 ## 本轮审计与登记
 
 2026-09-05 的[逐项规格审计](../tests/evidence/reference-route-audit-r1/spec-audit.md)记录现有状态、证据入口和 AGENTS 规则保留映射；[审核发现](../tests/evidence/reference-route-audit-r1/audit-findings.md)登记已准入的命令路径修正与待修 Hook 问题，完整结论见[本轮结果](../tests/evidence/reference-route-audit-r1/result.md)。当前新增子项为 `MT-004c` 渐进路由、`MT-002a` 命令可执行、`WR-020c` 批量与多版质量、`AH-002b` 日期来源角色和 `HK-005b` 终态/回显；活动状态见 roadmap，不能用原型或旧测试记 DONE。
+
+本轮获选的命令路径修正和投诉页68-byte删例已随[公开版v1.6.27](../tests/evidence/release-1.6.27.md)发布；新叶清理登记为 `MT-006-RECENT-LEAF-R1`，被拒绝的定向审稿删例、渐进路由原型与未修Hook问题分别保留状态。示例替换已由用户撤销；需求登记继续使用本规格区。

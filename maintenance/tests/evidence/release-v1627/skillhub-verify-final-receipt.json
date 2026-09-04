@@ -1,0 +1,20 @@
+{
+  "argv": [
+    "C:\\Users\\admin\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+    "-X",
+    "utf8",
+    "-B",
+    "C:\\Users\\admin\\.skillhub\\skills_store_cli.py",
+    "--skip-self-upgrade",
+    "verify",
+    "chinese-official-writing",
+    "--namespace",
+    "user_f3d82da7",
+    "--version",
+    "1.6.27",
+    "--zip",
+    "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\release-v1627\\output\\release-v1.6.27\\skillhub-1.6.27.zip",
+    "--json"
+  ],
+  "exit_code": 0
+}

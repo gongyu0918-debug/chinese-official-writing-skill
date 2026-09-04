@@ -1,0 +1,14 @@
+......................................................................................F.................
+======================================================================
+FAIL: test_post_v1624_spec_audit_records_numbering_backlogs_and_paid_sync (maintenance.tests.test_status_ledger_consistency.StatusLedgerConsistencyTests.test_post_v1624_spec_audit_records_numbering_backlogs_and_paid_sync)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "F:\Workspaces\chinese-official-writing-skill-worktrees\release-v1627\maintenance\tests\test_status_ledger_consistency.py", line 290, in test_post_v1624_spec_audit_records_numbering_backlogs_and_paid_sync
+    self.assertIn("WR-028-REMEDIATION-PLAN-R2", in_progress)
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'WR-028-REMEDIATION-PLAN-R2' not found in '## IN_PROGRESS\n\n\n\n- `WR-020c-QUALITY-LOOP-R1`：20稿中19有效，14份未观察到已确认硬问题、5稿至少8项硬问题；只限两道整改题，31条质量提醒另列。4条真实resume七版链28/28技术完成：R3/R7调序4/4、R4完整删除3/4、R5独立插段3/4，R7三稿无已登记硬问题；全链至少12项新问题，不把28相关版本当独立样本。六稿同D0默认Hook复放均保留D0，修正0、新增改坏0，不能当全面语义核验。状态 `IN_PROGRESS / QUALITY_AUDIT_COMPLETE_GAPS_REGISTERED`。[批量结果](../tests/evidence/reference-route-audit-r1/candidate-r1-result.md) [七版链结果](../tests/evidence/revision-stability-audit-r1/result.md)\n- `AH-002b-DATE-SOURCE-ROLE-R1`：格式示例错绑的离线反例保留；[两路自然D0](../tests/evidence/date-source-real-r1/result.md)都写对完整年份，默认Hook保持，故 `REAL_R1_NOT_REPRODUCED / NOT_ADMITTED`，旧旁路仅归档patch；`HK-005b-TERMINAL-ECHO-R1` 的错回显耗尽放行、终态重放与晚到写入三项未修复。问题修复仍未完成；先同一真实 D0 验证再补必要工程，不用旧159项通过否定新反例。[审计](../tests/evidence/reference-route-audit-r1/audit-findings.md)\n'
+
+----------------------------------------------------------------------
+Ran 104 tests in 0.601s
+
+FAILED (failures=1)

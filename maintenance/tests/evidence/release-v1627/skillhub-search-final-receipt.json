@@ -1,0 +1,16 @@
+{
+  "argv": [
+    "C:\\Users\\admin\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+    "-X",
+    "utf8",
+    "-B",
+    "C:\\Users\\admin\\.skillhub\\skills_store_cli.py",
+    "--skip-self-upgrade",
+    "search",
+    "chinese-official-writing",
+    "--search-limit",
+    "5",
+    "--json"
+  ],
+  "exit_code": 0
+}

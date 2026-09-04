@@ -4,6 +4,11 @@
 
 ## DONE
 
+- `v1.6.27` 小版本已发布：产品tag固定 `0a83ecbf`，GitHub Release已公开；SkillHub一次提交返回86文件 `versionId=288487`，三项审核pending；ClawHub一次提交返回37文件无Hook包 `versionId=k97165q125wnh9vc1wdd38ys5d8dsd0h`。公开索引与签名传播另记，不重复上传。最终774项全量、五套quick validate及两平台dry-run通过。[发布记录](../tests/evidence/release-1.6.27.md) [候选记录](../tests/evidence/release-1.6.27-rc.md)
+- `MT-006-RECENT-LEAF-R1`：两路8次真实调用后，仅投诉页68-byte删例获选；定向审稿36-byte删除因候选独有过程说明恢复。直接门与独立范围审查通过，已随v1.6.27发布；无自然路由省读或普遍可靠率声明。示例替换已撤销。[结果](../tests/evidence/recent-leaf-cleanup-r1/result.md)
+- `WR-028-REMEDIATION-PLAN-R2`：R1候选独有状态遗漏经R2消除，五家10份中8份隔离有效、两题各4份保留状态并形成措施；原直接门及本版最终774项全量通过。状态 `DONE_V1.6.27 / RELEASED`，旧工程记录保留当时未合并状态。[R2结果](../tests/evidence/remediation-plan-r1/candidate-r2-result.md) [工程接入](../tests/evidence/remediation-plan-r1/engineering-result.md)
+- `MT-002a-COMMAND-CWD-R1`：两份真实通知在带空格的项目cwd中，原相对命令均exit2，绝对脚本/稿件路径均exit0，正文不变；已准入SKILL及final-review两处路径说明并同步五套普通镜像。89项直接回归与五处quick_validate通过，OpenClaw由专项契约检查。状态 `REAL_DRAFT_COMMAND_PASSED / ENGINEERING_VERIFIED / DONE_V1.6.27 / RELEASED`，净增272 bytes，不称减载。[真实执行](../tests/evidence/command-cwd-real-draft-r1/result.md) [模型实验](../tests/evidence/lint-command-route-r1/result.md)
+
 - `WR-001/002`：v1.6.4 事实与状态规则、保护性外扩精确删除和新闻边界已发布于 `v1.6.4@a737791c`；六份真实写稿和 SOL 校准见 [`v164-real-writing-final/result.md`](../tests/evidence/v164-real-writing-final/result.md)，发行回执见 [`release-1.6.4.md`](../tests/evidence/release-1.6.4.md)。
 - `HK-001/003/004/006`：普通路径独立闭环、capability-first 单协调器及既有宿主 adapter 保持不变；三套国产 CLI adapter 已随 v1.6.15 发布，OpenCode 1.18.23 项目级交互 adapter 已随 v1.6.18 发布。Hermes Agent 0.20.5—0.20.6 新建且不可恢复单题 adapter 已随 v1.6.19 进入 GitHub 与 SkillHub.cn；交互、恢复、one-shot/gateway 继续旁路。Qwen 完成多 Stop/hash/脱敏；Kimi 只完成首次 Stop，宿主单 Stop 上限明确保留。[OpenCode/Hermes R1](../tests/evidence/hk004-opencode-hermes-r1/result.md) · [Hermes R2](../tests/evidence/hk004-hermes-r2/result.md)
 - `HK-004-CLI-REVALIDATION-R1`：已逐一运行本机十个真实CLI入口和当前Skill；CodeBuddy 2.141.0只补齐原生provider真实profile一次Stop、精确终稿、独立hash核对和脱敏，隔离data root、reference读取、S1与OpenCodex provider注入未证明；Claude/Codex/ZCode/Hermes/DSH当前声明范围继续成立。Qwen 0.22.3、Kimi 0.39.1、OpenCode 1.18.25分别以`HOOK_INCOMPATIBLE`、`HOOK_UNSAFE`、`LIFECYCLE_INCOMPATIBLE`精确收口，OpenClaw只记无Hook内容；新闻、说明、纪要、长报告又各有两家低成本provider有效真稿，不继承旧版本成功，不留`HOLD`，产品0差异。[结果](../tests/evidence/host-cli-revalidation-r1/result.md)
@@ -69,12 +74,7 @@
 
 ## IN_PROGRESS
 
-- `MT-006-RECENT-LEAF-R1`：8次真实调用已完成，只选择投诉页68-byte删例，定向审稿页36-byte删除因过程说明回退被拒绝并恢复。5项直接检查与canonical quick validate通过；按用户授权准备以当前main发布1.6.27至GitHub、SkillHub.cn、ClawHub。示例替换已撤销。状态 `REAL_WRITING_PASSED_PARTIAL / RELEASE_PREPARATION`。[结果](../tests/evidence/recent-leaf-cleanup-r1/result.md)
-
-- `WR-028-REMEDIATION-PLAN-R2`：R1五家25份候选发现一处候选独有状态遗漏；R2只强化状态先落位，五家10份中8份候选隔离有效，两题各4份均保留材料状态并形成实际措施，唯一硬回退已消除。五套普通镜像、直接断言、五处quick validate和774项全量回归已经通过；状态改记 `LOCAL_MAIN_INTEGRATED / NOT_RELEASED`：2026-09-05 实查本地 main 为 `5fbb2d26`、本地 origin/main 仍为 `5869234b`，未推送或发布；不改写旧工程证据的当时状态，不改Hook、description和其他文种。[R2结果](../tests/evidence/remediation-plan-r1/candidate-r2-result.md) [工程接入](../tests/evidence/remediation-plan-r1/engineering-result.md)
-
 - `WR-020c-QUALITY-LOOP-R1`：20稿中19有效，14份未观察到已确认硬问题、5稿至少8项硬问题；只限两道整改题，31条质量提醒另列。4条真实resume七版链28/28技术完成：R3/R7调序4/4、R4完整删除3/4、R5独立插段3/4，R7三稿无已登记硬问题；全链至少12项新问题，不把28相关版本当独立样本。六稿同D0默认Hook复放均保留D0，修正0、新增改坏0，不能当全面语义核验。状态 `IN_PROGRESS / QUALITY_AUDIT_COMPLETE_GAPS_REGISTERED`。[批量结果](../tests/evidence/reference-route-audit-r1/candidate-r1-result.md) [七版链结果](../tests/evidence/revision-stability-audit-r1/result.md)
-- `MT-002a-COMMAND-CWD-R1`：两份真实通知在带空格的项目cwd中，原相对命令均exit2，绝对脚本/稿件路径均exit0，正文不变；已准入SKILL及final-review两处路径说明并同步五套普通镜像。89项直接回归与五处quick_validate通过，OpenClaw由专项契约检查。状态 `REAL_DRAFT_COMMAND_PASSED / ENGINEERING_VERIFIED / LOCAL_BRANCH_ONLY / NOT_RELEASED`，净增272 bytes，不称减载。[真实执行](../tests/evidence/command-cwd-real-draft-r1/result.md) [模型实验](../tests/evidence/lint-command-route-r1/result.md)
 - `AH-002b-DATE-SOURCE-ROLE-R1`：格式示例错绑的离线反例保留；[两路自然D0](../tests/evidence/date-source-real-r1/result.md)都写对完整年份，默认Hook保持，故 `REAL_R1_NOT_REPRODUCED / NOT_ADMITTED`，旧旁路仅归档patch；`HK-005b-TERMINAL-ECHO-R1` 的错回显耗尽放行、终态重放与晚到写入三项未修复。问题修复仍未完成；先同一真实 D0 验证再补必要工程，不用旧159项通过否定新反例。[审计](../tests/evidence/reference-route-audit-r1/audit-findings.md)
 
 ## REJECTED

@@ -1,0 +1,270 @@
+{
+  "schema_version": 1,
+  "recorded_utc": "2026-09-04T23:28:09.441700+00:00",
+  "product_tag": "v1.6.27",
+  "product_commit": "0a83ecbf3be21815e72a80593f612eb858613be5",
+  "formal_submission_count": {
+    "github_release": 1,
+    "skillhub": 1,
+    "clawhub": 1
+  },
+  "status": {
+    "github": "PUBLIC_RELEASE_CLOSED",
+    "skillhub": "PUBLIC_LATEST_SIGNATURE_CLOSED_AUDITS_PENDING",
+    "clawhub": "SUBMISSION_ACCEPTED_PUBLIC_INDEX_PENDING"
+  },
+  "read_only_observations": {
+    "skillhub_initial_verify_exit": 2,
+    "skillhub_final_verify_exit": 0,
+    "clawhub_initial_exact_exit": 1,
+    "clawhub_final_exact_exit": 1,
+    "no_resubmission_after_success": true,
+    "clawhub_closeout_exact_exit": 1,
+    "clawhub_exact_read_count": 3
+  },
+  "files": [
+    {
+      "source": "output/release-v1.6.27/github-push-attempt.json",
+      "file": "github-push-attempt.json",
+      "bytes": 284,
+      "sha256": "eed3f4dfe8b428d92c14179e71675b469ec508278879f3548aec3d5c681c74d8"
+    },
+    {
+      "source": "output/release-v1.6.27/github-push.log",
+      "file": "github-push.log",
+      "bytes": 152,
+      "sha256": "7189925e7c5b9619ab382346efff9c0b3b276f327cacd2777d260a7eda102e6a"
+    },
+    {
+      "source": "output/release-v1.6.27/github-release-attempt.json",
+      "file": "github-release-attempt.json",
+      "bytes": 437,
+      "sha256": "05289e03ee4f839087d49653691ea24e54fa932477c8b1e2b3dbc19a15025fb0"
+    },
+    {
+      "source": "output/release-v1.6.27/github-release-create.txt",
+      "file": "github-release-create.txt",
+      "bytes": 88,
+      "sha256": "1dc6315ad5ed17ba4144eee3051cc96ed05f8ed533a89f77fbd7bacaa8a0d5dd"
+    },
+    {
+      "source": "output/release-v1.6.27/github-release-create.stderr",
+      "file": "github-release-create.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "output/release-v1.6.27/github-release.json",
+      "file": "github-release.json",
+      "bytes": 816,
+      "sha256": "c48f6dc629a3fc84febcf73943cb53e7d4423108df1703acceba246831394c53"
+    },
+    {
+      "source": "output/release-v1.6.27/skillhub-publish-attempt.json",
+      "file": "skillhub-publish-attempt.json",
+      "bytes": 720,
+      "sha256": "6cde85a5c9779f44b53a525ef83ede14ff709254c1857cf4b010a77b946d8f4f"
+    },
+    {
+      "source": "output/release-v1.6.27/skillhub-publish.json",
+      "file": "skillhub-publish.json",
+      "bytes": 656,
+      "sha256": "2edb55df9e8f51bd2b2d7b7a72738a125a114694910cf6ecb092b8308fc69f0e"
+    },
+    {
+      "source": "output/release-v1.6.27/skillhub-publish.stderr",
+      "file": "skillhub-publish.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "output/release-v1.6.27/skillhub-publish-receipt.json",
+      "file": "skillhub-publish-receipt.json",
+      "bytes": 45,
+      "sha256": "cfd3fc2c8b9507c5b5609596b49c974fbd04380e40f17998c470a810bc4a36e8"
+    },
+    {
+      "source": "output/release-v1.6.27/clawhub-publish-attempt.json",
+      "file": "clawhub-publish-attempt.json",
+      "bytes": 1111,
+      "sha256": "2200444a82bd5ea045ffcadb1c4c0bfbd6c672c19ea6cbf05e65d2622a55ebc7"
+    },
+    {
+      "source": "output/release-v1.6.27/clawhub-publish.json",
+      "file": "clawhub-publish.json",
+      "bytes": 467,
+      "sha256": "957a93892869424c12a48a7f07d7d5afc8dcc6fea79100d8c5b8ca21dcb4a286"
+    },
+    {
+      "source": "output/release-v1.6.27/clawhub-publish.stderr",
+      "file": "clawhub-publish.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "output/release-v1.6.27/clawhub-publish-receipt.json",
+      "file": "clawhub-publish-receipt.json",
+      "bytes": 46,
+      "sha256": "8329a3f7f53ca2dd58c2fe16b2d281100b6a185c30c9610433080017a28eeda7"
+    },
+    {
+      "source": "output/release-v1.6.27/skillhub-search.json",
+      "file": "skillhub-search.json",
+      "bytes": 38145,
+      "sha256": "f2e41c8a2c7c9f22196e648f6daf98bc83c958f40f4d2069c8266315c6e63b43"
+    },
+    {
+      "source": "output/release-v1.6.27/skillhub-search.stderr",
+      "file": "skillhub-search.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "output/release-v1.6.27/skillhub-verify.json",
+      "file": "skillhub-verify.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "output/release-v1.6.27/skillhub-verify.stderr",
+      "file": "skillhub-verify.stderr",
+      "bytes": 60,
+      "sha256": "6a16b15baf5467067a4cc4c8481941910c7e5db07b209ea9a679a316f7c1681a"
+    },
+    {
+      "source": "output/release-v1.6.27/clawhub-latest.json",
+      "file": "clawhub-latest.json",
+      "bytes": 29010,
+      "sha256": "3a4d551dbb1a0e99c324db4e132aa45ffc5710f46a9873e3e268981ac1f26d5e"
+    },
+    {
+      "source": "output/release-v1.6.27/clawhub-latest.stderr",
+      "file": "clawhub-latest.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "output/release-v1.6.27/clawhub-exact.json",
+      "file": "clawhub-exact.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "output/release-v1.6.27/clawhub-exact.stderr",
+      "file": "clawhub-exact.stderr",
+      "bytes": 73,
+      "sha256": "c39557da5f54fec17d5360921c78cd7a7ca9446a73b40c675769fe49f8f68152"
+    },
+    {
+      "source": "output/release-v1.6.27/skillhub-search-final.json",
+      "file": "skillhub-search-final.json",
+      "bytes": 5593,
+      "sha256": "940bc4d56827f52b3e28cfe3c4137b416c4b81a7fbefc275f09a0327b316ac1a"
+    },
+    {
+      "source": "output/release-v1.6.27/skillhub-search-final.stderr",
+      "file": "skillhub-search-final.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "output/release-v1.6.27/skillhub-search-final-receipt.json",
+      "file": "skillhub-search-final-receipt.json",
+      "bytes": 340,
+      "sha256": "1c9c0465b5a9964d8c2a1064932582c624a52336b6ea0d8f9d87b859734ccec2"
+    },
+    {
+      "source": "output/release-v1.6.27/skillhub-verify-final.json",
+      "file": "skillhub-verify-final.json",
+      "bytes": 649,
+      "sha256": "d4b949c9897fb2401e74323441ff86a52d9a6ce15db2bd28492e2907a624727d"
+    },
+    {
+      "source": "output/release-v1.6.27/skillhub-verify-final.stderr",
+      "file": "skillhub-verify-final.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "output/release-v1.6.27/skillhub-verify-final-receipt.json",
+      "file": "skillhub-verify-final-receipt.json",
+      "bytes": 522,
+      "sha256": "38b2fe803eb8b68217b00bc2306557f8dc1edb94aab4b72e6501227599262450"
+    },
+    {
+      "source": "output/release-v1.6.27/clawhub-exact-final.json",
+      "file": "clawhub-exact-final.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "output/release-v1.6.27/clawhub-exact-final.stderr",
+      "file": "clawhub-exact-final.stderr",
+      "bytes": 73,
+      "sha256": "ddc523cca61947450dfc10f20b4133d3804b2d1b6befbe97edd384586b11b196"
+    },
+    {
+      "source": "output/release-v1.6.27/clawhub-exact-final-receipt.json",
+      "file": "clawhub-exact-final-receipt.json",
+      "bytes": 288,
+      "sha256": "e3b8d33b666705a0e51adc83f59b0b4a3f438ee71b670be6b9a56b47b58bfe06"
+    },
+    {
+      "source": "output/release-v1.6.27/post-publish-tests-first.log",
+      "file": "post-publish-tests-first.log",
+      "bytes": 2274,
+      "sha256": "c5bd5732a410174493698ab324f4259507dcf1094f2729f2f3f08df16092b437"
+    },
+    {
+      "source": "output/release-v1.6.27/post-publish-tests-first-receipt.json",
+      "file": "post-publish-tests-first-receipt.json",
+      "bytes": 366,
+      "sha256": "d3708d73a1ccf9b8e4a1966f8837dd5b0444c3aa6f47da33a8a6b69a1c7a6ee2"
+    },
+    {
+      "source": "output/release-v1.6.27/post-publish-tests.log",
+      "file": "post-publish-tests.log",
+      "bytes": 209,
+      "sha256": "bfcec1bc324325384424bb7c75753583a67024f3090ca2025bd7ffcab206a488"
+    },
+    {
+      "source": "output/release-v1.6.27/post-publish-tests-receipt.json",
+      "file": "post-publish-tests-receipt.json",
+      "bytes": 366,
+      "sha256": "5291dc67867ed98f6d8f61e93f38586d68362e3879ad3357ccf1a25f2f41ed20"
+    },
+    {
+      "source": "output/release-v1.6.27/clawhub-exact-closeout.json",
+      "file": "clawhub-exact-closeout.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "output/release-v1.6.27/clawhub-exact-closeout.stderr",
+      "file": "clawhub-exact-closeout.stderr",
+      "bytes": 73,
+      "sha256": "307c012297f4fa3371cf41e5bfd309774a2e0051b59b44812d1dbabd39a6d400"
+    },
+    {
+      "source": "output/release-v1.6.27/clawhub-exact-closeout-receipt.json",
+      "file": "clawhub-exact-closeout-receipt.json",
+      "bytes": 342,
+      "sha256": "f942552c5830c80e5a5f29933d6e5721e3c9d0185a81cf4d3b9fd615d6de17f6"
+    }
+  ],
+  "post_publication_checks": {
+    "first_targeted_tests": {
+      "count": 104,
+      "failures": 1,
+      "reason": "stale WR-028 in-progress assertion after release"
+    },
+    "final_targeted_tests": {
+      "count": 104,
+      "failures": 0,
+      "seconds": 0.57
+    },
+    "original_example_exact": true,
+    "post_tag_skill_runtime_diff_paths": 0,
+    "local_links_checked": 528
+  }
+}
