@@ -331,4 +331,4 @@ Skill description 会随宿主发现或加载 Skill 进入用户任务上下文�
 
 运行时 `SKILL.md` 与 references 只保留会改变路由、写法、事实状态、文种功能或交付形态的规则。重复的“不属于哪些文种”、`不会新增模型/API/脚本门`、维护命令、实现范围自证和其他只面向仓库维护者的声明应留在维护区，不让普通用户每次加载；删除这类纯维护文本只需结构断言、镜像一致性和最小 smoke，不强制重新消耗多家真实写稿。
 
-若减载同时改动建议对象、处置权、共性归并、正文起笔等真实写稿语义，必须把每个正向语义拆成可归因原子并先跑真实写稿 A/B；只有与改动直接相关的回退才阻断。`MT-006-SEMANTIC-REFERENCE-DIET-R1` 已按此区分完成五路 R2 与最小修复 R3，所选候选相对 `main@f574c06d` 减少 canonical 运行时文件 2,926 bytes，状态为 `REAL_WRITING_PASSED / ENGINEERING_VERIFIED / CANDIDATE_ONLY / NOT_MERGED`。
+若减载同时改动建议对象、处置权、共性归并、正文起笔等真实写稿语义，必须把每个正向语义拆成可归因原子并先跑真实写稿 A/B；只有与改动直接相关的回退才阻断。`MT-006-SEMANTIC-REFERENCE-DIET-R1` 已按此区分完成五路 R2 与最小修复 R3，所选候选相对 `main@f574c06d` 减少 canonical 运行时文件 2,926 bytes，状态为 `REAL_WRITING_PASSED / ENGINEERING_VERIFIED / MERGED_MAIN / RELEASE_CANDIDATE_V1.6.26`。

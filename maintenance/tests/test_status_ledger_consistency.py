@@ -390,7 +390,7 @@ class StatusLedgerConsistencyTests(unittest.TestCase):
             with self.subTest(item_id=item_id):
                 self.assertIn(marker, table_row(coverage, item_id))
 
-    def test_mt006_semantic_reference_diet_is_registered_as_unmerged_candidate(self) -> None:
+    def test_mt006_semantic_reference_diet_is_registered_as_v1626_release_candidate(self) -> None:
         requirements = read("maintenance/specs/requirements.md")
         coverage_row = table_row(read("maintenance/specs/coverage.md"), "MT-006")
         roadmap = read("maintenance/specs/roadmap.md")
@@ -399,10 +399,10 @@ class StatusLedgerConsistencyTests(unittest.TestCase):
 
         self.assertIn("### MT-006 运行时语义 Reference 克制", requirements)
         self.assertIn("纯维护文本只需结构断言、镜像一致性和最小 smoke", requirements)
-        self.assertIn("REAL_WRITING_PASSED / ENGINEERING_VERIFIED / CANDIDATE_ONLY / NOT_MERGED", coverage_row)
+        self.assertIn("REAL_WRITING_PASSED / ENGINEERING_VERIFIED / MERGED_MAIN / RELEASE_CANDIDATE_V1.6.26", coverage_row)
         self.assertIn("2,926 bytes", coverage_row)
         self.assertIn("MT-006-SEMANTIC-REFERENCE-DIET-R1", roadmap)
-        self.assertRegex(todo, r"(?m)^- \[x\] `MT-006-SEMANTIC-REFERENCE-DIET-R1`.*NOT_MERGED")
+        self.assertRegex(todo, r"(?m)^- \[x\] `MT-006-SEMANTIC-REFERENCE-DIET-R1`.*RELEASE_CANDIDATE_V1\.6\.26")
         self.assertIn("semantic-reference-diet-r1/result.md", evidence)
         self.assertNotIn("HOLD", coverage_row)
 

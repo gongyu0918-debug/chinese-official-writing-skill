@@ -103,7 +103,7 @@
 - `MT-004a-PROCUREMENT-REQUEST-ROUTE-R1`：首份 Alibaba2 简单采购申请读取4份额外通用页，但预注册的 Alibaba1 全新复现只读信息选择、轻量卡和申请叶，正文132→219字且事实、状态、合理原因和请批功能通过。跨 provider 稳定过载未成立，不修改 reference；只有另一家低成本 provider 新 trace 再次出现同类过读或真实质量回退才重开。[结果](../tests/evidence/mt004a-procurement-request-route-r1/result.md)
 - `WR-012` 当前基线已覆盖内部情况说明、明确正式报告和普通业务函的主要意图边界；只有当前基线出现新的真实误路由才开新机制，不重抽已拒绝候选。
 - `MT-005` 当前202字 description 已覆盖已知正向和相邻边界；只有新的真实漏触发或误触发才开单原子，不重跑 b2/b3/b4/c 旧组合。
-- `MT-006-SEMANTIC-REFERENCE-DIET-R1` 已把写稿语义与纯维护声明拆开验证：多对象建议、投诉、正式权力关系和内部说明完成五路R2共50份输出，最小正文起笔修复又完成五路R3共10份输出，候选5/5直接交正文且无目标相关硬回退；重复文种排除、模型/API/脚本门和实现范围自证只做结构与镜像验证。候选canonical净减2,926 bytes，92项定向门及五处通用quick validate通过，当前为`CANDIDATE_ONLY / NOT_MERGED`。[结果](../tests/evidence/semantic-reference-diet-r1/result.md)
+- `MT-006-SEMANTIC-REFERENCE-DIET-R1` 已把写稿语义与纯维护声明拆开验证：多对象建议、投诉、正式权力关系和内部说明完成五路R2共50份输出，最小正文起笔修复又完成五路R3共10份输出，候选5/5直接交正文且无目标相关硬回退；重复文种排除、模型/API/脚本门和实现范围自证只做结构与镜像验证。候选canonical净减2,926 bytes，92项定向门及五处通用quick validate通过，已合入本地main并进入`RELEASE_CANDIDATE_V1.6.26`。[结果](../tests/evidence/semantic-reference-diet-r1/result.md)
 - `WR-013c` 当前短采购基线两路均能由资源利用率、排队和等待形成合理原因与低强度预期；只有新的真实稿出现共同过薄或共同既成影响外扩才重开。
 - `WR-014-R6b` 当前OpenCode可以区分已完成、附件未附与真实效果待观察，Ollama单家仍有核验外推；等待不同材料中的跨模型共同反例，不把单家风险扩成全局禁词。
 - `WR-020` 当前长稿基线有写作价值，a2一份有效长稿通过范围目标、另一provider技术失效，b2已覆盖已有稿搬移、删除和只审定位；只有新的有效长稿出现结构、任务归属、结论范围或材料外职责共同反例才重开。

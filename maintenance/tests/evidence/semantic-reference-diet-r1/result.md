@@ -7,7 +7,7 @@
 1. 建议对象与处置权、共性问题归并、正式稿直接交付等会改变成稿的正向语义，完成五条低成本路线的真实写稿 A/B 和一次最小修复复跑。
 2. 重复的“不属于哪些意见”、`不会新增模型/API/脚本门`、`不改变 prose_lint` 等维护声明，只删除运行时冗余，不改变写稿决策；按用户校准不再为其单独消耗真实写稿，只做语义保留断言、镜像一致性和最小校验。
 
-所选候选相对 `main@f574c06d4586eea17d78911cf40e12114e479656` 共减少 canonical 运行时文件 2,926 bytes；不改 Hook、description、版本和发行结构。当前状态为 `REAL_WRITING_PASSED / ENGINEERING_VERIFIED / CANDIDATE_ONLY / NOT_MERGED`。
+所选候选相对 `main@f574c06d4586eea17d78911cf40e12114e479656` 共减少 canonical 运行时文件 2,926 bytes；不改 Hook、description 和发行结构。候选已 fast-forward 合入 `main@b484c4ad45578f930cbdbe33ec3a55a9c8322585`，当前状态为 `REAL_WRITING_PASSED / ENGINEERING_VERIFIED / MERGED_MAIN / RELEASE_CANDIDATE_V1.6.26`。
 
 ## 范围与字节变化
 
@@ -63,5 +63,5 @@ OpenClaw 镜像按其既有 manifest 使用 `category` 扩展字段，通用 Cod
 
 - `task-route-cards.md` 的固定 `800字以上` 与 `review-checklist.md` 的 260/300/500、5—10% 等数字是独立魔法数字原子，需要另做真实任务验证。
 - `final-review-layers.md`、`review-checklist.md` 中更早的重复维护语句未随手批量删除，避免把本次范围扩大成不可归因的大清理。
-- 当前候选未合并 `main`，未推送、未发布；准备合并时再跑一次仓库全量门。
+- 当前候选已合并本地 `main`，尚未推送或发布；v1.6.26 发行工作树将在发布前运行一次仓库全量门。
 
