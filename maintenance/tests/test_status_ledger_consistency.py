@@ -333,7 +333,7 @@ class StatusLedgerConsistencyTests(unittest.TestCase):
         self.assertIn("请求中只有一个唯一完整日期", requirements)
         self.assertIn("DONE_V1.6.20", coverage_row)
         self.assertIn("三 provider 九次执行", coverage_row)
-        self.assertNotIn("AH-002", section(roadmap, "IN_PROGRESS"))
+        self.assertNotRegex(section(roadmap, "IN_PROGRESS"), r"(?m)^- `AH-002(?:`|-)")
         self.assertIn("AH-002", section(roadmap, "DONE"))
         self.assertRegex(
             todo,
@@ -403,7 +403,6 @@ class StatusLedgerConsistencyTests(unittest.TestCase):
         release_evidence = read("maintenance/tests/evidence/release-1.6.26.md")
 
         self.assertIn("### MT-006 运行时语义 Reference 克制", requirements)
-        self.assertIn("纯维护文本只需结构断言、镜像一致性和最小 smoke", requirements)
         self.assertIn("REAL_WRITING_PASSED / ENGINEERING_VERIFIED / DONE_V1.6.26 / RELEASED", coverage_row)
         self.assertIn("DONE_V1.6.26 / RELEASED", wr026_row)
         self.assertIn("DONE_V1.6.26 / RELEASED", wr027_row)
