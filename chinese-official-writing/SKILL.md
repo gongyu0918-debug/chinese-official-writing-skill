@@ -19,6 +19,8 @@ metadata:
 
 用户要求形成面向政策制定、审核、平台建设运营或材料起草方的合作性意见建议稿、建议反馈或优化建议时，直达 `references/genre-playbook-advisory-feedback.md`；具有下行指导、监督整改或审计监督权力关系的意见按对应文种处理。
 
+用户明确要求根据检查、审计、督察、评估反馈或问题清单制定本单位整改方案、专项整改方案或整改工作方案时，直达 `references/genre-playbook-remediation-plan.md`。只报告已有整改进展、反映问题、提出投诉，或起草没有整改背景的普通实施方案时不读该页；不因正文偶然出现“整改”改变原定文种。
+
 用户要求以本人或本单位亲历方身份，向有权处理的部门、平台、服务主体或管理单位提交投诉、问题反映或情况反映时，直达 `references/genre-playbook-complaint-reflection.md`。
 
 不要为以下任务启用本技能：英文写作、文学创作、营销软文、社交媒体文案、代码说明。
@@ -115,6 +117,7 @@ metadata:
 | `references/genre-checklist-feasibility-review.md` | 按文种选读 | 只审或细查可研、可行性研究报告的数据性质、估算依据和文种功能时读取；起草、改写或审后改写仍使用既有 playbook 和论证链。 |
 | `references/genre-playbook-correspondence.md` | 按文种选读 | 普通函起草，以及只改错字、标点、格式或明确局部措辞时读取。 |
 | `references/genre-playbook-work-summary.md` | 按文种选读 | 工作总结、工作要点、周报或月报需要常规或完整骨架时直接读取。 |
+| `references/genre-playbook-remediation-plan.md` | 按文种选读 | 用户明确要求根据检查、审计、督察、评估反馈或问题清单制定本单位整改方案、专项整改方案或整改工作方案时直接读取；该页能够覆盖时不再叠加普通方案叶或材料稀疏任务卡。 |
 | `references/genre-playbook-plan-construction.md` | 按文种选读 | 方案、实施方案或建设方案需要常规或完整骨架时直接读取。 |
 | `references/genre-playbooks.md` | 按文种选读 | 通知、复函、征求意见函、讲话稿、调研/研究/可研、采购公告、审查材料等需要快速进入对应场景骨架时读取；用户提供既有普通函并要求重组事务动作、状态、条件、范围或结构时读取函规则。 |
 | `references/genre-playbook-institution-rules.md` | 按文种选读 | 起草、改写或复核制度、规定、办法、管理办法、实施细则、操作规程，以及需要区分印发通知与制度附件时读取。 |
