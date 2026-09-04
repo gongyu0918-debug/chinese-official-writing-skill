@@ -413,6 +413,9 @@ class StatusLedgerConsistencyTests(unittest.TestCase):
         self.assertIn("PUBLISHED / SEE release-1.6.26.md", candidate_evidence)
         self.assertIn("versionId=286925", release_evidence)
         self.assertIn("k970ftnpyf3e1cy84b9mxa87798dsz4x", release_evidence)
+        self.assertIn("SKILLHUB_PUBLIC_LATEST_SIGNATURE_CLOSED_AUDITS_PENDING", release_evidence)
+        self.assertIn("CLAWHUB_PUBLIC_INDEX_CLOSED_SECURITY_CLEAN_WITH_WARNINGS", release_evidence)
+        self.assertIn("content_hash_match=true", release_evidence)
         self.assertNotIn("HOLD", coverage_row)
 
     def test_paid_placeholders_follow_the_canonical_local_candidate(self) -> None:

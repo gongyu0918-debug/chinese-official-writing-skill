@@ -2,7 +2,7 @@
 
 日期：2026-09-04。
 
-状态：`GITHUB_RELEASE_CLOSED / SKILLHUB_SUBMITTED_AUDITS_AND_PUBLIC_INDEX_PENDING / CLAWHUB_SUBMITTED_PUBLIC_INDEX_PENDING`。
+状态：`GITHUB_RELEASE_CLOSED / SKILLHUB_PUBLIC_LATEST_SIGNATURE_CLOSED_AUDITS_PENDING / CLAWHUB_PUBLIC_INDEX_CLOSED_SECURITY_CLEAN_WITH_WARNINGS`。
 
 ## 发布范围与提交
 
@@ -26,15 +26,15 @@
 
 - slug `chinese-official-writing`、`skillId=70149`、公开坐标 `@user_f3d82da7/chinese-official-writing`、展示名“中文公文写作”保持不变。
 - dry-run 返回 `dryRun=true`、slug 和版本正确；正式提交只执行一次并成功：`ok=true`、`versionId=286925`、`fileCount=85`、平台 fingerprint `b760358dc31125e316db65f56d8f1c068fac290a362f051ad0eba56550b8ba5e`，八个既有 tags 含 `latest` 均在提交回执中指向 1.6.26。
-- 提交回执中的 `reviewStatus`、`securityScanStatus`、`contentAuditStatus` 均为 `pending`。首次公开搜索和精确签名查询仍未发现 1.6.26，属于审核/索引传播未完成；没有重复提交。
+- 提交回执中的 `reviewStatus`、`securityScanStatus`、`contentAuditStatus` 均为 `pending`。随后公开搜索已确认精确坐标、中文展示名和 latest 1.6.26；本地 85 文件 ZIP 的平台签名核验返回 `ok=true`、`content_hash_match=true`，平台与本地 content hash 均为 `987711e88d84da45c30dc6843839096193ddea32cbe5a94d27b0ca31955e9090`。期间没有重复提交。
 
 ## ClawHub 回执
 
 - owner `gongyu0918-debug`、slug `chinese-official-writing`、展示名“中文公文写作”和四个既有 topics 保持不变。
 - dry-run 返回 `would-publish`、36 文件与正确坐标；正式提交只执行一次并成功：`status=published`、`versionId=k970ftnpyf3e1cy84b9mxa87798dsz4x`、`fileCount=36`、平台 fingerprint `a77359597bc67092dc6dca532a774c8959e5144522fe34bfdcbfccf29443cfbb`，source commit 绑定产品提交 `41a477b852062ad9fb66c80a791633cb29ab71f6`。
-- 成功回执中的 `latestVersion` 仍为 1.6.25；首次精确版本查询尚未发现 1.6.26，属于异步传播未完成。没有重复提交。
+- 成功回执中的 `latestVersion` 仍为 1.6.25；随后只读核验确认公开 latest 和精确版本均为 1.6.26、精确文件数为 36，moderation、VirusTotal 与 LLM 扫描为 `clean`。Skillspector 单项仍给出 medium/caution 警告，因此只表述总体 clean 并保留分项警告；期间没有重复提交。四个分类 topics 保持不变，`latest` 指向 1.6.26；历史主题 dist-tags 未随本次只更新 `latest` 的发布调用移动。
 
 ## 剩余边界
 
-- GitHub 产品提交、annotated tag 与 Release 已闭环。SkillHub.cn 和 ClawHub 均已得到唯一成功提交回执，但公开索引、精确版本与平台审核仍待异步完成。
-- 后续只允许做只读传播与审核状态核验；不得因 pending 或短时 `Version not found` 再次提交同一版本。
+- GitHub 产品提交、annotated tag 与 Release、SkillHub.cn 公开 latest 和签名、ClawHub 公开 latest 与精确 36 文件均已闭环。SkillHub.cn 三项审核仍为 pending；ClawHub 总体 clean，但 Skillspector 分项警告和历史主题 dist-tags 状态如上保留。
+- 后续只允许做只读审核状态核验；不得因 pending 再次提交同一版本。
