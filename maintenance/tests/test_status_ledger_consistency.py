@@ -287,7 +287,8 @@ class StatusLedgerConsistencyTests(unittest.TestCase):
 
         in_progress = section(roadmap, "IN_PROGRESS")
         backlog = section(roadmap, "TODO：已登记但不在本轮展开")
-        self.assertIn("当前无活动候选", in_progress)
+        self.assertIn("WR-028-REMEDIATION-PLAN-R2", in_progress)
+        self.assertNotIn("当前无活动候选", in_progress)
         self.assertNotIn("WR-009c", in_progress)
         self.assertNotIn("CL-001-NOHK-R2", in_progress)
         for item_id in ("WR-009c", "CL-001-NOHK-R2", "PAID-PUBLIC-SYNC"):

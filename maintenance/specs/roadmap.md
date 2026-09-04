@@ -69,7 +69,7 @@
 
 ## IN_PROGRESS
 
-- `WR-028-REMEDIATION-PLAN-R2`：R1五家25份候选发现一处候选独有状态遗漏；R2只强化状态先落位，五家10份中8份候选隔离有效，两题各4份均保留材料状态并形成实际措施，唯一硬回退已消除。现同步普通兼容镜像、补直接断言并运行一次合并前工程门；不改Hook、description和其他文种。[R2结果](../tests/evidence/remediation-plan-r1/candidate-r2-result.md) [五提交复核](../tests/evidence/remediation-plan-r1/five-commit-review.md)
+- `WR-028-REMEDIATION-PLAN-R2`：R1五家25份候选发现一处候选独有状态遗漏；R2只强化状态先落位，五家10份中8份候选隔离有效，两题各4份均保留材料状态并形成实际措施，唯一硬回退已消除。五套普通镜像、直接断言、五处quick validate和774项全量回归已经通过；状态为 `MERGE_READY / NOT_MERGED`，等待当次明确授权，不改Hook、description和其他文种。[R2结果](../tests/evidence/remediation-plan-r1/candidate-r2-result.md) [工程接入](../tests/evidence/remediation-plan-r1/engineering-result.md)
 
 ## REJECTED
 
@@ -115,8 +115,9 @@
 
 1. 文件提取失败与降级交付仅作低优先级观察；出现真实扫描 PDF/不支持格式失败后，再验证停止、请求转换和 Markdown 降级，不先并入默认写稿流程。
 2. `WR-009c`（`REGISTERED_BACKLOG`）：只在新的自然反例出现时验证稀疏事务稿把未决字段扩成“待明确后另行报批、按程序组织实施”等材料外程序承诺；不同时收紧WR-013允许的一层合理原因、即时作用和条件性结论。[来源](../tests/evidence/short-inference-r1/cause-hint-result.md)
-3. `CL-001-NOHK-R2`（`REGISTERED_BACKLOG`）：普通无Hook写稿若再次跨provider出现过程说明、正文引导语、横线、自检或commit/测试说明，再以短事务稿、新闻、情况说明和长稿做最小A/B；不增加description。[来源](../tests/evidence/short-inference-r1/cause-hint-result.md)
-4. `PAID-PUBLIC-SYNC`（`SYNC_REQUIRED / PAID_THREAD_OWNED`）：由独立付费线程把当前公开main同步到`codex/paid-outline-review`，重新核对祖先、allowlist、提纲/红头真稿和生命周期；公开分支不执行该同步。
+3. `CL-001-NOHK-R2`（`REGISTERED_NEXT`）：WR-028 R2 的 Alibaba1、Ollama 短稿已跨 provider 再现正文前过程说明，达到重开条件。后续以全新采购申请、活动新闻、情况说明、长报告、讲话改稿和会议纪要做正文交付单原子；不增加description，也不把事实、篇幅或文种差异混入判定。[新反例](../tests/evidence/remediation-plan-r1/candidate-r2-result.md) [原条件](../tests/evidence/short-inference-r1/cause-hint-result.md)
+4. `MT-007-LENGTH-NUMBERS`（`REGISTERED_BACKLOG`）：分别验证 `workflow.md` 的5%—10%上限余量/章节百分比和新闻评论90%—110%约字范围是否真实改善篇幅、结构与后半篇论证；Hook的20字/5%净增量另列，不组合改动。没有真实A/B前不因“魔法数字”观感删除。[审计](../tests/evidence/remediation-plan-r1/reference-audit.md)
+5. `PAID-PUBLIC-SYNC`（`SYNC_REQUIRED / PAID_THREAD_OWNED`）：由独立付费线程把当前公开main同步到`codex/paid-outline-review`，重新核对祖先、allowlist、提纲/红头真稿和生命周期；公开分支不执行该同步。
 
 ## 不再重复
 

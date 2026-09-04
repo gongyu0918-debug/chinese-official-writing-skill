@@ -797,6 +797,38 @@ class SkillBoundaryTests(unittest.TestCase):
         for forbidden in ["计划段展开", "计划补写", "篇幅", "字数", "P0"]:
             self.assertNotIn(forbidden, leaf)
 
+    def test_remediation_plan_has_a_state_preserving_atomic_leaf(self) -> None:
+        skill = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
+        canonical_leaf = (
+            ROOT
+            / "chinese-official-writing"
+            / "references"
+            / "genre-playbook-remediation-plan.md"
+        )
+        leaf = canonical_leaf.read_text(encoding="utf-8")
+
+        self.assertIn("references/genre-playbook-remediation-plan.md", skill)
+        self.assertIn("用户明确要求根据检查、审计、督察、评估反馈或问题清单制定本单位整改方案", skill)
+        self.assertIn("不因正文偶然出现“整改”改变原定文种", skill)
+        self.assertIn("该页能够覆盖时不再叠加普通方案叶或材料稀疏任务卡", skill)
+        self.assertIn("后文拟定措施的将来时不能代替或吞掉该状态", leaf)
+        self.assertIn("每个问题应有可执行的整改措施", leaf)
+        self.assertIn("可以作一层归因或逆推", leaf)
+        self.assertIn("职责范围内的纠正、制度完善、执行复核和持续改进属于拟定的未来措施", leaf)
+        self.assertIn("不套用专班、月报、考核、销号等固定机制", leaf)
+        self.assertIn("用户要求只交正文时，不附写作说明", leaf)
+
+        packaged_leaves = [
+            ROOT / "packages" / "agent-skills" / "skills" / "chinese-official-writing" / "references" / canonical_leaf.name,
+            ROOT / "packages" / "qwen-code" / "skills" / "chinese-official-writing" / "references" / canonical_leaf.name,
+            ROOT / "packages" / "qwenwork" / "skills" / "chinese-official-writing" / "references" / canonical_leaf.name,
+            ROOT / "packages" / "hermes" / "skills" / "chinese-official-writing" / "references" / canonical_leaf.name,
+            ROOT / "packages" / "openclaw" / "skills" / "chinese_official_writing" / "references" / canonical_leaf.name,
+        ]
+        for packaged_leaf in packaged_leaves:
+            with self.subTest(packaged_leaf=packaged_leaf):
+                self.assertEqual(canonical_leaf.read_bytes(), packaged_leaf.read_bytes())
+
     def test_request_review_checklist_is_routed_as_an_atomic_leaf(self) -> None:
         skill = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
         common = (
