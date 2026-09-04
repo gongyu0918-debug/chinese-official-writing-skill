@@ -1,0 +1,438 @@
+{
+  "schema_version": 1,
+  "status": "NOT_REPRODUCED",
+  "candidate_status": "NOT_ADMITTED_NOT_APPLIED",
+  "core_commit": "5fbb2d26c49d0b780ad11fc4cff008854995ad3f",
+  "preregister_commit": "c930f61049a79c970588d04d0888d84a059eada8",
+  "case_id": "NEWS-ISO-FACT-CHINESE-FORMAT-EXAMPLE",
+  "prompt": "请根据下列材料写一则简短的新闻消息。\n\n目标活动事实：中心于2026-09-05举办读书交流活动，共20人参加。\n\n格式示例（仅示范中文日期格式，不是本次活动事实，不得写入消息）：2020年9月5日。\n\n只输出可直接使用的完整正文，可以含标题，不解释过程。保留提供的事实，不补充材料未给的活动内容、效果或后续安排。",
+  "context_method": "Harness injects frozen Skill and news leaf; replay activation maps this host read, not a Claude tool call.",
+  "sources_sha256": {
+    "chinese-official-writing/SKILL.md": "8cbab9308b04a3681db877ceb61ea0b67b0c0b603b884140483d16cc8c9fedbe",
+    "chinese-official-writing/references/genre-playbook-news-message.md": "0b69b277882fbc1def1297bcac8c4350af684a585553a9af2cbac939c07cea0f",
+    "maintenance\\tests\\evidence\\date-source-real-r1\\run.py": "702a7353d1fd7c44288ff5190daf44fe58caba222238711bb1cb482a4caffc16",
+    "maintenance\\tests\\evidence\\date-source-real-r1\\case.json": "1264d69ebf44e3d62b46d591684aa7d0db920fcf5b2313c72faf5e4e23d9bda8",
+    "maintenance\\tests\\evidence\\hook-audit-quality-r1\\replay_real_d0.py": "4e3f2d6d95cbcb528d501fe323f12b9f75f28ec5ed7e2efc68595e15efdc7807",
+    "maintenance\\tests\\evidence\\v167-formulaic-mechanicality-real-first\\harness.py": "452d3f5ac8df257fbd220d7585ce0aef3dd0475a76a51181de77e0f729f0a6ab"
+  },
+  "fixture_file_sha256": "def0a1c88cc71c28c36f884beccf820029ec9cfdce61ad7e7e911b96d927be46",
+  "raw_location": "output/date-source-real-r1/r1",
+  "hash_convention": "d0_sha256/final_visible_sha256/final_sha256 use UTF-8 text with LF newlines; raw_files_sha256 hashes original file bytes.",
+  "samples": [
+    {
+      "provider": "alibaba2",
+      "model": "alibaba-token-plan-2/deepseek-v4-flash-0731",
+      "case_id": "NEWS-ISO-FACT-CHINESE-FORMAT-EXAMPLE",
+      "prompt": "请根据下列材料写一则简短的新闻消息。\n\n目标活动事实：中心于2026-09-05举办读书交流活动，共20人参加。\n\n格式示例（仅示范中文日期格式，不是本次活动事实，不得写入消息）：2020年9月5日。\n\n只输出可直接使用的完整正文，可以含标题，不解释过程。保留提供的事实，不补充材料未给的活动内容、效果或后续安排。",
+      "d0": "中心举办读书交流活动\n\n2026年9月5日，中心举办读书交流活动，共20人参加。",
+      "final_visible": "中心举办读书交流活动\n\n2026年9月5日，中心举办读书交流活动，共20人参加。",
+      "d0_sha256": "353db1634bb8796131c8b92857aa9d49f4f1401c73dd736efa218a9c8dfee2e5",
+      "final_visible_sha256": "353db1634bb8796131c8b92857aa9d49f4f1401c73dd736efa218a9c8dfee2e5",
+      "generation": {
+        "model": "alibaba-token-plan-2/deepseek-v4-flash-0731",
+        "return_code": 0,
+        "failure": null,
+        "technical_valid": true,
+        "seconds": 16.688,
+        "disabled_inventory": [
+          {
+            "tools": [],
+            "mcp_servers": [],
+            "skills": [],
+            "plugins": []
+          }
+        ],
+        "tool_uses": [],
+        "usage_reports": [
+          {
+            "usage": {
+              "input_tokens": 9430,
+              "cache_creation_input_tokens": 0,
+              "cache_read_input_tokens": 0,
+              "output_tokens": 1417,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 0,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "alibaba-token-plan-2/deepseek-v4-flash-0731": {
+                "inputTokens": 17575,
+                "outputTokens": 1627,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.12855,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              }
+            },
+            "total_cost_usd": 0.12855,
+            "duration_ms": 15456
+          }
+        ],
+        "record_count": 303,
+        "invalid_json_lines": [],
+        "init_models": [
+          "alibaba-token-plan-2/deepseek-v4-flash-0731"
+        ],
+        "assistant_models": [
+          "alibaba-token-plan-2/deepseek-v4-flash-0731"
+        ],
+        "usage_models": [
+          "alibaba-token-plan-2/deepseek-v4-flash-0731"
+        ],
+        "api_key_sources": [
+          "none"
+        ],
+        "plugins": [],
+        "reads": [],
+        "result_count": 1,
+        "result_subtypes": [
+          "success"
+        ],
+        "result_errors": [
+          false
+        ],
+        "final_sha256": "353db1634bb8796131c8b92857aa9d49f4f1401c73dd736efa218a9c8dfee2e5"
+      },
+      "hook": {
+        "status": "allowed",
+        "call_count": 1,
+        "finding_count": 0,
+        "delivery_verified": true,
+        "unchanged_from_d0": true,
+        "calls": [
+          {
+            "model": "alibaba-token-plan-2/deepseek-v4-flash-0731",
+            "return_code": 0,
+            "failure": null,
+            "technical_valid": true,
+            "seconds": 6.391,
+            "disabled_inventory": [
+              {
+                "tools": [],
+                "mcp_servers": [],
+                "skills": [],
+                "plugins": []
+              }
+            ],
+            "tool_uses": [],
+            "usage_reports": [
+              {
+                "usage": {
+                  "input_tokens": 1981,
+                  "cache_creation_input_tokens": 0,
+                  "cache_read_input_tokens": 0,
+                  "output_tokens": 441,
+                  "server_tool_use": {
+                    "web_search_requests": 0,
+                    "web_fetch_requests": 0
+                  },
+                  "service_tier": "standard",
+                  "cache_creation": {
+                    "ephemeral_1h_input_tokens": 0,
+                    "ephemeral_5m_input_tokens": 0
+                  },
+                  "inference_geo": "",
+                  "iterations": [],
+                  "speed": "standard"
+                },
+                "modelUsage": {
+                  "alibaba-token-plan-2/deepseek-v4-flash-0731": {
+                    "inputTokens": 2665,
+                    "outputTokens": 717,
+                    "cacheReadInputTokens": 0,
+                    "cacheCreationInputTokens": 0,
+                    "webSearchRequests": 0,
+                    "costUSD": 0.03125,
+                    "contextWindow": 200000,
+                    "maxOutputTokens": 32000
+                  }
+                },
+                "total_cost_usd": 0.03125,
+                "duration_ms": 5302
+              }
+            ],
+            "record_count": 93,
+            "invalid_json_lines": [],
+            "init_models": [
+              "alibaba-token-plan-2/deepseek-v4-flash-0731"
+            ],
+            "assistant_models": [
+              "alibaba-token-plan-2/deepseek-v4-flash-0731"
+            ],
+            "usage_models": [
+              "alibaba-token-plan-2/deepseek-v4-flash-0731"
+            ],
+            "api_key_sources": [
+              "none"
+            ],
+            "plugins": [],
+            "reads": [],
+            "result_count": 1,
+            "result_subtypes": [
+              "success"
+            ],
+            "result_errors": [
+              false
+            ],
+            "final_sha256": "353db1634bb8796131c8b92857aa9d49f4f1401c73dd736efa218a9c8dfee2e5"
+          }
+        ]
+      },
+      "date_checks": [],
+      "wrong_year_introduced_by_hook": false,
+      "status": "NOT_REPRODUCED",
+      "raw_files_sha256": {
+        "generation\\prompt.txt": "acb09015d813e41bf55dd530282f903714928573972746a5fe29aa1ebb35ae45",
+        "generation\\receipt.json": "160cb3fd4339775eb62ee4fde2724c5138e6e2f5a0f7937005e7919ff99c121e",
+        "generation\\reply.txt": "353db1634bb8796131c8b92857aa9d49f4f1401c73dd736efa218a9c8dfee2e5",
+        "generation\\stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "generation\\stream.jsonl": "da51b74827c56f4615642d956f6930ff93dcaf6b290c3033fc32ffed666df7c5",
+        "hook\\d0.txt": "ed8fe1a39bbeee9fac870da21f73a06cd7f8ef4e9b66a5715ee26de258ab1e94",
+        "hook\\events.json": "86f66749d4306af115ae6949e5532674535bba194f2f6e9e6c53755273ff2bba",
+        "hook\\final-visible.txt": "ed8fe1a39bbeee9fac870da21f73a06cd7f8ef4e9b66a5715ee26de258ab1e94",
+        "hook\\last-assistant.txt": "ed8fe1a39bbeee9fac870da21f73a06cd7f8ef4e9b66a5715ee26de258ab1e94",
+        "hook\\receipt.json": "9fdb2ad470a6c88fec9e76eb62c80973c9f29c13036904b3d3118f3e6019c0f0",
+        "hook\\source.json": "8b75e8e17cbaf632c5078c831d330571ae9eb2788671a8d7784aed99ee831264",
+        "hook\\calls\\round-1\\prompt.txt": "b4f0ea3f41943b488dbcd58458572334872a6e02869896d0207890dcab4db785",
+        "hook\\calls\\round-1\\receipt.json": "ac8851ba9ba1bbac7c44768b70bc45451b57d4a7840ca2af4d40e017bf7e928e",
+        "hook\\calls\\round-1\\reply.txt": "353db1634bb8796131c8b92857aa9d49f4f1401c73dd736efa218a9c8dfee2e5",
+        "hook\\calls\\round-1\\stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "hook\\calls\\round-1\\stream.jsonl": "e1209998e0d82300d2207bc8be51e6a2380b75b6bfaa645257a54d88a64b85c7"
+      },
+      "raw_result_file_sha256": "0f2451be352224208bce1e77411a3f80ae4d7ea97c81d0f08b71f047943eca35",
+      "observed_cli_versions": [
+        "2.1.195",
+        "2.1.195"
+      ]
+    },
+    {
+      "provider": "minimax",
+      "model": "minimax-cn/MiniMax-M3",
+      "case_id": "NEWS-ISO-FACT-CHINESE-FORMAT-EXAMPLE",
+      "prompt": "请根据下列材料写一则简短的新闻消息。\n\n目标活动事实：中心于2026-09-05举办读书交流活动，共20人参加。\n\n格式示例（仅示范中文日期格式，不是本次活动事实，不得写入消息）：2020年9月5日。\n\n只输出可直接使用的完整正文，可以含标题，不解释过程。保留提供的事实，不补充材料未给的活动内容、效果或后续安排。",
+      "d0": "中心举办读书交流活动\n\n2026年9月5日，中心举办读书交流活动，共20人参加。",
+      "final_visible": "中心举办读书交流活动\n\n2026年9月5日，中心举办读书交流活动，共20人参加。",
+      "d0_sha256": "353db1634bb8796131c8b92857aa9d49f4f1401c73dd736efa218a9c8dfee2e5",
+      "final_visible_sha256": "353db1634bb8796131c8b92857aa9d49f4f1401c73dd736efa218a9c8dfee2e5",
+      "generation": {
+        "model": "minimax-cn/MiniMax-M3",
+        "return_code": 0,
+        "failure": null,
+        "technical_valid": true,
+        "seconds": 9.437,
+        "disabled_inventory": [
+          {
+            "tools": [],
+            "mcp_servers": [],
+            "skills": [],
+            "plugins": []
+          }
+        ],
+        "tool_uses": [],
+        "usage_reports": [
+          {
+            "usage": {
+              "input_tokens": 8669,
+              "cache_creation_input_tokens": 0,
+              "cache_read_input_tokens": 128,
+              "output_tokens": 833,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 0,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "minimax-cn/MiniMax-M3": {
+                "inputTokens": 16124,
+                "outputTokens": 1481,
+                "cacheReadInputTokens": 256,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.11777299999999999,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              }
+            },
+            "total_cost_usd": 0.11777299999999999,
+            "duration_ms": 8153
+          }
+        ],
+        "record_count": 79,
+        "invalid_json_lines": [],
+        "init_models": [
+          "minimax-cn/MiniMax-M3"
+        ],
+        "assistant_models": [
+          "minimax-cn/MiniMax-M3"
+        ],
+        "usage_models": [
+          "minimax-cn/MiniMax-M3"
+        ],
+        "api_key_sources": [
+          "none"
+        ],
+        "plugins": [],
+        "reads": [],
+        "result_count": 1,
+        "result_subtypes": [
+          "success"
+        ],
+        "result_errors": [
+          false
+        ],
+        "final_sha256": "353db1634bb8796131c8b92857aa9d49f4f1401c73dd736efa218a9c8dfee2e5"
+      },
+      "hook": {
+        "status": "allowed",
+        "call_count": 1,
+        "finding_count": 0,
+        "delivery_verified": true,
+        "unchanged_from_d0": true,
+        "calls": [
+          {
+            "model": "minimax-cn/MiniMax-M3",
+            "return_code": 0,
+            "failure": null,
+            "technical_valid": true,
+            "seconds": 3.86,
+            "disabled_inventory": [
+              {
+                "tools": [],
+                "mcp_servers": [],
+                "skills": [],
+                "plugins": []
+              }
+            ],
+            "tool_uses": [],
+            "usage_reports": [
+              {
+                "usage": {
+                  "input_tokens": 1437,
+                  "cache_creation_input_tokens": 0,
+                  "cache_read_input_tokens": 512,
+                  "output_tokens": 79,
+                  "server_tool_use": {
+                    "web_search_requests": 0,
+                    "web_fetch_requests": 0
+                  },
+                  "service_tier": "standard",
+                  "cache_creation": {
+                    "ephemeral_1h_input_tokens": 0,
+                    "ephemeral_5m_input_tokens": 0
+                  },
+                  "inference_geo": "",
+                  "iterations": [],
+                  "speed": "standard"
+                },
+                "modelUsage": {
+                  "minimax-cn/MiniMax-M3": {
+                    "inputTokens": 2032,
+                    "outputTokens": 230,
+                    "cacheReadInputTokens": 640,
+                    "cacheCreationInputTokens": 0,
+                    "webSearchRequests": 0,
+                    "costUSD": 0.01623,
+                    "contextWindow": 200000,
+                    "maxOutputTokens": 32000
+                  }
+                },
+                "total_cost_usd": 0.01623,
+                "duration_ms": 2821
+              }
+            ],
+            "record_count": 10,
+            "invalid_json_lines": [],
+            "init_models": [
+              "minimax-cn/MiniMax-M3"
+            ],
+            "assistant_models": [
+              "minimax-cn/MiniMax-M3"
+            ],
+            "usage_models": [
+              "minimax-cn/MiniMax-M3"
+            ],
+            "api_key_sources": [
+              "none"
+            ],
+            "plugins": [],
+            "reads": [],
+            "result_count": 1,
+            "result_subtypes": [
+              "success"
+            ],
+            "result_errors": [
+              false
+            ],
+            "final_sha256": "353db1634bb8796131c8b92857aa9d49f4f1401c73dd736efa218a9c8dfee2e5"
+          }
+        ]
+      },
+      "date_checks": [],
+      "wrong_year_introduced_by_hook": false,
+      "status": "NOT_REPRODUCED",
+      "raw_files_sha256": {
+        "generation\\prompt.txt": "acb09015d813e41bf55dd530282f903714928573972746a5fe29aa1ebb35ae45",
+        "generation\\receipt.json": "fcc629fbbb2bb4a90049363db9cd5c2bf943830f310fcc05d394c29717888d89",
+        "generation\\reply.txt": "353db1634bb8796131c8b92857aa9d49f4f1401c73dd736efa218a9c8dfee2e5",
+        "generation\\stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "generation\\stream.jsonl": "d15598d54bdb8c7484f468b78a8c0e2b5e38606bd099f86f685911168dd9bbe6",
+        "hook\\d0.txt": "ed8fe1a39bbeee9fac870da21f73a06cd7f8ef4e9b66a5715ee26de258ab1e94",
+        "hook\\events.json": "80d13bdd4f61817821f75e789d58aac7c7dabefc7687f90bbe1cc7f57bf4a216",
+        "hook\\final-visible.txt": "ed8fe1a39bbeee9fac870da21f73a06cd7f8ef4e9b66a5715ee26de258ab1e94",
+        "hook\\last-assistant.txt": "ed8fe1a39bbeee9fac870da21f73a06cd7f8ef4e9b66a5715ee26de258ab1e94",
+        "hook\\receipt.json": "1415f9f900945340f9df4da30e49d348dad09bf1f2ebfe8adf3b95015970470c",
+        "hook\\source.json": "d7085c3514941030ed9489d4f96f709923cb9d91f35da648cf1495b2a6585224",
+        "hook\\calls\\round-1\\prompt.txt": "b4f0ea3f41943b488dbcd58458572334872a6e02869896d0207890dcab4db785",
+        "hook\\calls\\round-1\\receipt.json": "ce3cb5b7b91cd60674092caea309637cbc505b7009fcc4a689b33fc86aec67b9",
+        "hook\\calls\\round-1\\reply.txt": "353db1634bb8796131c8b92857aa9d49f4f1401c73dd736efa218a9c8dfee2e5",
+        "hook\\calls\\round-1\\stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "hook\\calls\\round-1\\stream.jsonl": "b3bd2f33970aa6c3a990cc2776e6b47dec02716ad4e67ba91830ee9ec372b62b"
+      },
+      "raw_result_file_sha256": "601f9b65d422ae55937e84e174f77272bd3f806cb9cc3d1ba5bc0fe0045a1092",
+      "observed_cli_versions": [
+        "2.1.195",
+        "2.1.195"
+      ]
+    }
+  ],
+  "summary": {
+    "generated_drafts": 2,
+    "core_replays": 2,
+    "real_echo_calls": 2,
+    "body_changed": 0,
+    "wrong_year_introduced": 0,
+    "new_samples_after_result": 0,
+    "normal_date_candidate_control": "NOT_RUN_NO_CANDIDATE_VALIDATION"
+  },
+  "cli_reported_totals": {
+    "input_tokens": 21517,
+    "cache_read_input_tokens": 640,
+    "output_tokens": 2770,
+    "total_cost_usd": "0.29380299999999999",
+    "scope": "CLI reported fields, not a provider billing receipt; top-level usage and modelUsage can differ."
+  },
+  "limits": [
+    "Two real natural drafts do not estimate a population error rate.",
+    "The known offline wrong-year counterexample is not disproved.",
+    "No candidate was applied; no adapter, mirror, native host or original-D0 recovery change was tested."
+  ]
+}

@@ -13,3 +13,5 @@
 只有真实 D0 未写错年，而同 D0 默认 Hook 实际把示例年份写入活动，才进入候选验证。届时仅对同 D0 验证最小保守旁路，并增加一条正常中文完整事实日期反控；不接入 adapter、镜像或其他终态工程。若两份自然 D0 都无法复现，记 `NOT_REPRODUCED`，停止候选，旧日期补丁保持 `NOT_ADMITTED`；不把未复现当作不存在已知离线缺陷。
 
 先执行 `run.py --prepare --output <NEW_OUTPUT> --core-root <BASELINE_TREE>` 冻结完整上下文及脚本指纹，再分别以 `--provider alibaba2` 和 `--provider minimax` 运行。输出目录必须全新；完成、失败及孤立 raw 均不得覆盖。
+
+运行后记录见 [结果](result.md) 与 [两稿及四次调用证据](result.json)；本预登记创建时尚未执行模型调用。
