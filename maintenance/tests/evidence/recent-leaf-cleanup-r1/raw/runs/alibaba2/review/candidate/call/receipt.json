@@ -1,0 +1,76 @@
+{
+  "model": "alibaba-token-plan-2/deepseek-v4-flash-0731",
+  "return_code": 0,
+  "failure": null,
+  "technical_valid": true,
+  "seconds": 42.266,
+  "disabled_inventory": [
+    {
+      "tools": [],
+      "mcp_servers": [],
+      "skills": [],
+      "plugins": []
+    }
+  ],
+  "tool_uses": [],
+  "usage_reports": [
+    {
+      "usage": {
+        "input_tokens": 12390,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0,
+        "output_tokens": 4268,
+        "server_tool_use": {
+          "web_search_requests": 0,
+          "web_fetch_requests": 0
+        },
+        "service_tier": "standard",
+        "cache_creation": {
+          "ephemeral_1h_input_tokens": 0,
+          "ephemeral_5m_input_tokens": 0
+        },
+        "inference_geo": "",
+        "iterations": [],
+        "speed": "standard"
+      },
+      "modelUsage": {
+        "alibaba-token-plan-2/deepseek-v4-flash-0731": {
+          "inputTokens": 16320,
+          "outputTokens": 4467,
+          "cacheReadInputTokens": 7168,
+          "cacheCreationInputTokens": 0,
+          "webSearchRequests": 0,
+          "costUSD": 0.196859,
+          "contextWindow": 200000,
+          "maxOutputTokens": 32000
+        }
+      },
+      "total_cost_usd": 0.196859,
+      "duration_ms": 41275
+    }
+  ],
+  "record_count": 851,
+  "invalid_json_lines": [],
+  "init_models": [
+    "alibaba-token-plan-2/deepseek-v4-flash-0731"
+  ],
+  "assistant_models": [
+    "alibaba-token-plan-2/deepseek-v4-flash-0731"
+  ],
+  "usage_models": [
+    "alibaba-token-plan-2/deepseek-v4-flash-0731"
+  ],
+  "api_key_sources": [
+    "none"
+  ],
+  "plugins": [],
+  "reads": [],
+  "result_count": 1,
+  "result_subtypes": [
+    "success"
+  ],
+  "result_errors": [
+    false
+  ],
+  "final_sha256": "bfeb2b28702c6212919c6b83ada9630ca0202cbee5e038fc86edf3c21c213820"
+}

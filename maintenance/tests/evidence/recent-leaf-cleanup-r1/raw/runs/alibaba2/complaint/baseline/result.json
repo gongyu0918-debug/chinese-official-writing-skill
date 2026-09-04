@@ -1,0 +1,12 @@
+{
+  "provider": "alibaba2",
+  "case_id": "complaint",
+  "arm": "baseline",
+  "model": "alibaba-token-plan-2/deepseek-v4-flash-0731",
+  "session_id": "71342e42-a7cf-4d27-b2f6-5759606162fc",
+  "body": "我公司于2026年8月27日通过县级培训补贴申报平台提交培训补贴申请，上传3份PDF附件，页面均显示上传成功。提交后生成的受理回执仅显示申报总金额12.8万元，未显示项目编号。\n\n2026年8月28日，热线工作人员表示暂时无法按公司名称定位具体项目，要求重新进入各项目页面逐项截图。我公司为此重新核对并提交了6张截图。\n\n截至2026年9月2日，该申请状态仍为“待审核”，尚无审核结论。",
+  "body_sha256": "694d2eaa1ecd4888666b084f5ecb7e77ba6702bfcebe72220d3ef7fea8dea2fd",
+  "context_bytes": 48656,
+  "technical_valid": true,
+  "seconds": 30.078
+}

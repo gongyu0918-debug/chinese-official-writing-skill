@@ -1,0 +1,34 @@
+{
+  "model": "alibaba-token-plan-2/deepseek-v4-flash-0731",
+  "arm": "candidate",
+  "case_id": "review",
+  "argv": [
+    "C:\\Users\\admin\\.local\\bin\\claude.EXE",
+    "--setting-sources",
+    "",
+    "--no-session-persistence",
+    "--disable-slash-commands",
+    "--tools",
+    "",
+    "--strict-mcp-config",
+    "--mcp-config",
+    "{\"mcpServers\":{}}",
+    "--permission-mode",
+    "dontAsk",
+    "--print",
+    "--verbose",
+    "--output-format",
+    "stream-json",
+    "--model",
+    "alibaba-token-plan-2/deepseek-v4-flash-0731",
+    "--effort",
+    "max"
+  ],
+  "prompt_sha256": "27c311695d6fa95373833fed238522d2472c91edef566edcf600cacdd57c07e2",
+  "context_paths": [
+    "SKILL.md",
+    "references/information-selection.md",
+    "references/review-direct-checklist.md",
+    "references/genre-checklist.md"
+  ]
+}

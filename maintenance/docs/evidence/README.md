@@ -12,6 +12,8 @@
 
 ## 逐版发布证据
 
+- `MT-006-RECENT-LEAF-R1` 新叶页冷审、两路8次真实调用、独立盲审和68-byte选择/36-byte拒绝见[结果](../../tests/evidence/recent-leaf-cleanup-r1/result.md)；完整正文、prompt、原始stream及hash均已冻结。发行另记，本项不代表自然路由减载或Hook修复。
+
 - v1.6.26 的 GitHub、SkillHub.cn 与 ClawHub 唯一成功提交回执、85/36文件包体和最终公开状态见 [`release-1.6.26.md`](../../tests/evidence/release-1.6.26.md)；固定产品 tag、773项全量、五套通用 quick validate 与两平台 dry-run 见 [`release-1.6.26-rc.md`](../../tests/evidence/release-1.6.26-rc.md)。SkillHub公开latest与签名、ClawHub公开latest和精确36文件已闭环；ClawHub为无Hook包，SkillHub三项审核仍为pending，期间不得重复提交。
 - v1.6.25 的 GitHub、SkillHub.cn 与 ClawHub 发布回执、产品 tag、84/35文件包体和最终公开状态见 [`release-1.6.25.md`](../../tests/evidence/release-1.6.25.md)；冻结基线、765项全量、104项聚焦回归、五套 quick validate 和两平台 dry-run 见 [`release-1.6.25-rc.md`](../../tests/evidence/release-1.6.25-rc.md)。GitHub Release、SkillHub公开latest与签名以及ClawHub公开latest、精确35文件和clean状态均已闭环；SkillHub提交回执中的三项审核仍为pending，期间未重复成功提交。
 - v1.6.24 的 GitHub、SkillHub.cn 与 ClawHub 唯一发布回执、产品 tag、83/34文件包体和最终公开状态见 [`release-1.6.24.md`](../../tests/evidence/release-1.6.24.md)；冻结基线、756项全量、101项聚焦回归、五套 quick validate 和两平台 dry-run 见 [`release-1.6.24-rc.md`](../../tests/evidence/release-1.6.24-rc.md)。GitHub、SkillHub公开latest与签名以及ClawHub公开latest、精确34文件和clean状态均已闭环；SkillHub外部安全报告仍为queued，期间未重复提交。

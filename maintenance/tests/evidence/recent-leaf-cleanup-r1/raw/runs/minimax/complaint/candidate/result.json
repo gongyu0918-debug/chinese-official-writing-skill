@@ -1,0 +1,12 @@
+{
+  "provider": "minimax",
+  "case_id": "complaint",
+  "arm": "candidate",
+  "model": "minimax-cn/MiniMax-M3",
+  "session_id": "5e125345-a52a-46fa-bad7-e6c6b6a84fcc",
+  "body": "2026年8月27日，我公司通过县级培训补贴申报平台提交申请，上传3份PDF附件，页面均显示上传成功。提交后生成的受理回执只显示申报总金额12.8万元，未显示项目编号。\n\n2026年8月28日，我公司拨打热线咨询，热线工作人员表示暂时无法按公司名称定位具体项目，要求重新进入各项目页面逐项截图。我公司据此重新核对并提交了6张截图。\n\n截至2026年9月2日，该申请状态仍为\"待审核\"，尚未收到审核结论。",
+  "body_sha256": "ceadf8ab691cd85533301632b3c8edd3f92f556eed66120069474ff71defbb24",
+  "context_bytes": 48588,
+  "technical_valid": true,
+  "seconds": 9.781
+}

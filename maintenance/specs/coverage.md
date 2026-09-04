@@ -72,6 +72,8 @@
 
 ## 当前语义层收束
 
+`MT-006-RECENT-LEAF-R1`：两条原有低价路线完成8次独立真实调用，全部技术有效。投诉页四稿未确认候选独有硬回退，选择68-byte删例；定向审稿页因候选独有过程说明恢复36-byte原文，共同误报另记风险。5项直接检查及canonical quick validate通过；状态为 `REAL_WRITING_PASSED_PARTIAL / DIRECT_REVIEW_ATOM_REJECTED / RELEASE_PREPARATION`。不声称自然路由省读、所有稿件无错或Hook修复。[结果与完整证据](../tests/evidence/recent-leaf-cleanup-r1/result.md)
+
 - `WR-003/004` 已随 v1.6.6 发布；`WR-005` 短稿自然收束已随 v1.6.7 发布；常用语默认拆分旧方向已终止。
 - R1 降低了固定开头词频，却增加了事实硬失败和另一类空泛、重复、自证；R2 工程上稳定，但基线6胜、候选4胜、难分2，且候选仍有1个事实硬失败。
 - 单个正式连接词不构成机械化；只有固定开头、承启、总结、结尾或段落骨架成簇复现，且对任务没有功能贡献时，才计入同质化风险。

@@ -69,6 +69,8 @@
 
 ## IN_PROGRESS
 
+- `MT-006-RECENT-LEAF-R1`：8次真实调用已完成，只选择投诉页68-byte删例，定向审稿页36-byte删除因过程说明回退被拒绝并恢复。5项直接检查与canonical quick validate通过；按用户授权准备以当前main发布1.6.27至GitHub、SkillHub.cn、ClawHub。示例替换已撤销。状态 `REAL_WRITING_PASSED_PARTIAL / RELEASE_PREPARATION`。[结果](../tests/evidence/recent-leaf-cleanup-r1/result.md)
+
 - `WR-028-REMEDIATION-PLAN-R2`：R1五家25份候选发现一处候选独有状态遗漏；R2只强化状态先落位，五家10份中8份候选隔离有效，两题各4份均保留材料状态并形成实际措施，唯一硬回退已消除。五套普通镜像、直接断言、五处quick validate和774项全量回归已经通过；状态改记 `LOCAL_MAIN_INTEGRATED / NOT_RELEASED`：2026-09-05 实查本地 main 为 `5fbb2d26`、本地 origin/main 仍为 `5869234b`，未推送或发布；不改写旧工程证据的当时状态，不改Hook、description和其他文种。[R2结果](../tests/evidence/remediation-plan-r1/candidate-r2-result.md) [工程接入](../tests/evidence/remediation-plan-r1/engineering-result.md)
 
 - `WR-020c-QUALITY-LOOP-R1`：20稿中19有效，14份未观察到已确认硬问题、5稿至少8项硬问题；只限两道整改题，31条质量提醒另列。4条真实resume七版链28/28技术完成：R3/R7调序4/4、R4完整删除3/4、R5独立插段3/4，R7三稿无已登记硬问题；全链至少12项新问题，不把28相关版本当独立样本。六稿同D0默认Hook复放均保留D0，修正0、新增改坏0，不能当全面语义核验。状态 `IN_PROGRESS / QUALITY_AUDIT_COMPLETE_GAPS_REGISTERED`。[批量结果](../tests/evidence/reference-route-audit-r1/candidate-r1-result.md) [七版链结果](../tests/evidence/revision-stability-audit-r1/result.md)

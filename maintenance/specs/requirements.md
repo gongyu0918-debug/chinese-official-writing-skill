@@ -363,6 +363,8 @@ Skill description 会随宿主发现或加载 Skill 进入用户任务上下文�
 
 ### MT-006 运行时语义 Reference 克制
 
+`MT-006-RECENT-LEAF-R1` 聚焦近期新增叶页中的工程/维护措辞、无关声明和重复例词，不以整体缩短为目标。保留实际决定写法、事实状态与交付形态的规则；每处删除都先用既有低价模型进行真实写稿或真实稿审查 A/B，再独立选择。用户授权完成后以当前 main 发布 GitHub、SkillHub.cn、ClawHub；示例替换要求已撤销，本轮不修改示例。结果和未解决歧义见[记录](../tests/evidence/recent-leaf-cleanup-r1/result.md)。
+
 运行时 `SKILL.md` 与 references 只保留会改变路由、写法、事实状态、文种功能或交付形态的规则。重复的“不属于哪些文种”、`不会新增模型/API/脚本门`、维护命令、实现范围自证和其他只面向仓库维护者的声明应留在维护区，不让普通用户每次加载；每次 reference 减载，包括纯维护文字删除，均进行真实写稿 A/B，路线与样本随目标风险预登记，再做必要结构、镜像与最小 smoke；当前 R1 的五路设计不固化为后续统一门槛，旧试验当时的验证方式和结论保留。
 
 若减载同时改动建议对象、处置权、共性归并、正文起笔等真实写稿语义，必须把每个正向语义拆成可归因原子并先跑真实写稿 A/B；只有与改动直接相关的回退才阻断。`MT-006-SEMANTIC-REFERENCE-DIET-R1` 已按此区分完成五路 R2 与最小修复 R3，所选候选相对 `main@f574c06d` 减少 canonical 运行时文件 2,926 bytes，状态为 `REAL_WRITING_PASSED / ENGINEERING_VERIFIED / DONE_V1.6.26 / RELEASED`。

@@ -1,0 +1,1153 @@
+{
+  "schema_version": 1,
+  "arms": {
+    "baseline": "92142f640d409bde20a0d16f4ecf185fbe2d427c",
+    "candidate": "8cd54ff6c1342215cd74be7a84efd1f153624deb"
+  },
+  "context_method": "Frozen Skill, common fact rules and task references injected identically except two deleted example spans; content ablation, not autonomous routing or a Hook lifecycle.",
+  "config": {
+    "schema_version": 1,
+    "baseline_commit": "92142f640d409bde20a0d16f4ecf185fbe2d427c",
+    "providers": {
+      "alibaba2": "alibaba-token-plan-2/deepseek-v4-flash-0731",
+      "minimax": "minimax-cn/MiniMax-M3"
+    },
+    "source_provenance": {
+      "maintenance/tests/evidence/complaint-reflection-r1/prompts/complaint-portal-own-experience.txt": {
+        "commit": "92142f640d409bde20a0d16f4ecf185fbe2d427c",
+        "sha256": "8b6ac7911eb3d0b0fac7333f768a78efa0feaad130ffc349431e8a719d7857c5"
+      },
+      "maintenance/tests/evidence/lint-command-route-r1/cases.json": {
+        "commit": "92142f640d409bde20a0d16f4ecf185fbe2d427c",
+        "sha256": "a30193ac5f50cbcbb98ff87a1ef5ab0e60df9717a818ca9cc418593aa0925b8d"
+      },
+      "maintenance/tests/evidence/lint-command-route-r1/restricted-r6/real-ab/raw/minimax/control/final.txt": {
+        "commit": "92142f640d409bde20a0d16f4ecf185fbe2d427c",
+        "sha256": "ab0c49841574622287eaabce822e13e6bd5af8a130628c8d26d7c7f2641765e6"
+      }
+    },
+    "cases": [
+      {
+        "id": "complaint",
+        "prompt": "请使用当前仓库中的 `chinese-official-writing` Skill。请根据下列材料，为政务平台“投诉内容”栏起草可直接提交的正文。页面已经另设标题、单位名称和联系方式字段，只输出投诉内容，不解释过程。\n\n材料：2026年8月27日，我公司通过县级培训补贴申报平台提交申请，上传3份PDF附件，页面均显示上传成功。提交后生成的受理回执只显示申报总金额12.8万元，不显示项目编号。2026年8月28日，热线工作人员表示暂时无法按公司名称定位具体项目，要求重新进入各项目页面逐项截图。我公司为此重新核对并提交了6张截图。截至2026年9月2日，申请状态仍为“待审核”，尚无审核结论。\n\n要求保持专业、克制，只说明我公司实际遇到的问题及当前状态，不提出解决建议，不补责任、原因、期限或结果承诺。\n",
+        "context_files": [
+          "SKILL.md",
+          "references/information-selection.md",
+          "references/genre-playbook-complaint-reflection.md",
+          "references/proofreading-checklist.md",
+          "references/final-review-layers.md"
+        ],
+        "delivery": "complete complaint body only",
+        "review_focus": "all supplied dates,3 PDFs,12.8万元,no project ID,hotline attribution,6 screenshots,pending review retained; no new advice/responsibility/cause/deadline/promise; no processing preamble,extra title or self-review"
+      },
+      {
+        "id": "review",
+        "prompt": "请使用当前仓库中的 chinese-official-writing Skill，只核对下列通知的事实和状态是否与权威材料完整一致，只审不改。输出问题位置、风险层级和修改建议，不重写全文，不解释处理过程。\n\n权威材料：\n**关于报送读书交流活动报名信息的通知**\n\n各科室：\n\n青桥服务中心拟于2026年9月18日15时在三楼会议室举办读书交流活动。活动方案尚未审定，目前只征集报名意向，不作正式参加确认。\n\n请各科室于2026年9月10日17时前，将报名信息交综合科王青，联系电话为内线305。每科室可报1至2人，报名信息包括姓名、所在科室和联系电话，暂不提交交流材料。\n\n综合科将汇总报名信息，供活动筹备使用。交流主题、发言顺序尚待确定，报名不等于已列入发言名单。本次不收取费用，也不要求各科室自行安排接待。请按上述范围报送信息。\n\n青桥服务中心\n2026年9月5日\n\n\n待审正文：\n关于报送读书交流活动报名信息的通知\n\n各科室：\n\n青桥服务中心拟于2026年9月18日15时在三楼会议室举办读书交流活动。活动方案尚未审定，目前只征集报名意向，不作正式参加确认。\n\n请各科室于2026年9月10日17时前，将报名信息交综合科王青，联系电话为内线305。每科室可报1至2人，报名信息包括姓名、所在科室和联系电话，暂不提交交流材料。\n\n综合科将汇总报名信息，供活动筹备使用。交流主题、发言顺序尚待确定。本次不收取费用，也不要求各科室自行安排接待。\n\n青桥服务中心\n2026年9月5日",
+        "context_files": [
+          "SKILL.md",
+          "references/information-selection.md",
+          "references/review-direct-checklist.md",
+          "references/genre-checklist.md"
+        ],
+        "delivery": "locations,risk levels,and revision suggestions only; do not rewrite the notice",
+        "review_focus": "independent speaker-list restriction missing from this actual prior model draft; no unsupported factual errors or extra format/approval demands; no processing or test/self-review wrapper"
+      }
+    ]
+  },
+  "technical_checks": {
+    "outputs": 8,
+    "distinct_sessions": 8,
+    "three_layer_model_binding": "PASS",
+    "empty_tool_skill_plugin_inventory": "PASS",
+    "exact_bodies": "PASS",
+    "rows": [
+      {
+        "provider": "alibaba2",
+        "case_id": "complaint",
+        "arm": "baseline",
+        "session_id": "71342e42-a7cf-4d27-b2f6-5759606162fc",
+        "body_sha256": "694d2eaa1ecd4888666b084f5ecb7e77ba6702bfcebe72220d3ef7fea8dea2fd",
+        "context_bytes": 48656,
+        "seconds": 30.078
+      },
+      {
+        "provider": "alibaba2",
+        "case_id": "complaint",
+        "arm": "candidate",
+        "session_id": "c46642b7-7979-4ac2-ab15-c4c7ba78858b",
+        "body_sha256": "8b516888a03c8f578bc12fd28b6d1c4380d37f8e95de6b8f431b95232d1e5c13",
+        "context_bytes": 48588,
+        "seconds": 26.75
+      },
+      {
+        "provider": "alibaba2",
+        "case_id": "review",
+        "arm": "baseline",
+        "session_id": "a7f058b2-7583-4aa1-9b8a-b9096d3b80f7",
+        "body_sha256": "526c9d293c3f12779675e9ee8b7488fb98cff444c112b54f1642cbab2677cdbe",
+        "context_bytes": 41347,
+        "seconds": 57.687
+      },
+      {
+        "provider": "alibaba2",
+        "case_id": "review",
+        "arm": "candidate",
+        "session_id": "bbe0b199-1d18-47fa-9e49-0e53841d95ff",
+        "body_sha256": "bfeb2b28702c6212919c6b83ada9630ca0202cbee5e038fc86edf3c21c213820",
+        "context_bytes": 41311,
+        "seconds": 42.266
+      },
+      {
+        "provider": "minimax",
+        "case_id": "complaint",
+        "arm": "baseline",
+        "session_id": "507021fa-3142-4500-acd7-5abaca7744cd",
+        "body_sha256": "b974d26340af21aabd2ad14f6f6f41a2d485376504ff0733d39e5c434b62b9c6",
+        "context_bytes": 48656,
+        "seconds": 13.781
+      },
+      {
+        "provider": "minimax",
+        "case_id": "complaint",
+        "arm": "candidate",
+        "session_id": "5e125345-a52a-46fa-bad7-e6c6b6a84fcc",
+        "body_sha256": "ceadf8ab691cd85533301632b3c8edd3f92f556eed66120069474ff71defbb24",
+        "context_bytes": 48588,
+        "seconds": 9.781
+      },
+      {
+        "provider": "minimax",
+        "case_id": "review",
+        "arm": "baseline",
+        "session_id": "cb68c1f0-2e9e-40c4-a7d9-91692b92987c",
+        "body_sha256": "bc23124e1d52b77485cf9b5ee5108ec9f9007131f7cec97a514216a6388c2cba",
+        "context_bytes": 41347,
+        "seconds": 9.906
+      },
+      {
+        "provider": "minimax",
+        "case_id": "review",
+        "arm": "candidate",
+        "session_id": "5f3a2525-7e27-4e52-bfd5-01933f88db30",
+        "body_sha256": "d83f36095b001475409e61a56f2106107b30fed1dff67311201c8ce38099c893",
+        "context_bytes": 41311,
+        "seconds": 13.109
+      }
+    ]
+  },
+  "rows": [
+    {
+      "provider": "alibaba2",
+      "case_id": "complaint",
+      "arm": "baseline",
+      "model": "alibaba-token-plan-2/deepseek-v4-flash-0731",
+      "session_id": "71342e42-a7cf-4d27-b2f6-5759606162fc",
+      "body": "我公司于2026年8月27日通过县级培训补贴申报平台提交培训补贴申请，上传3份PDF附件，页面均显示上传成功。提交后生成的受理回执仅显示申报总金额12.8万元，未显示项目编号。\n\n2026年8月28日，热线工作人员表示暂时无法按公司名称定位具体项目，要求重新进入各项目页面逐项截图。我公司为此重新核对并提交了6张截图。\n\n截至2026年9月2日，该申请状态仍为“待审核”，尚无审核结论。",
+      "body_sha256": "694d2eaa1ecd4888666b084f5ecb7e77ba6702bfcebe72220d3ef7fea8dea2fd",
+      "context_bytes": 48656,
+      "technical_valid": true,
+      "seconds": 30.078,
+      "receipt": {
+        "model": "alibaba-token-plan-2/deepseek-v4-flash-0731",
+        "return_code": 0,
+        "failure": null,
+        "technical_valid": true,
+        "seconds": 30.078,
+        "disabled_inventory": [
+          {
+            "tools": [],
+            "mcp_servers": [],
+            "skills": [],
+            "plugins": []
+          }
+        ],
+        "tool_uses": [],
+        "usage_reports": [
+          {
+            "usage": {
+              "input_tokens": 13883,
+              "cache_creation_input_tokens": 0,
+              "cache_read_input_tokens": 0,
+              "output_tokens": 2939,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 0,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "alibaba-token-plan-2/deepseek-v4-flash-0731": {
+                "inputTokens": 26469,
+                "outputTokens": 3327,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.21552000000000002,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              }
+            },
+            "total_cost_usd": 0.21552000000000002,
+            "duration_ms": 29102
+          }
+        ],
+        "record_count": 614,
+        "invalid_json_lines": [],
+        "init_models": [
+          "alibaba-token-plan-2/deepseek-v4-flash-0731"
+        ],
+        "assistant_models": [
+          "alibaba-token-plan-2/deepseek-v4-flash-0731"
+        ],
+        "usage_models": [
+          "alibaba-token-plan-2/deepseek-v4-flash-0731"
+        ],
+        "api_key_sources": [
+          "none"
+        ],
+        "plugins": [],
+        "reads": [],
+        "result_count": 1,
+        "result_subtypes": [
+          "success"
+        ],
+        "result_errors": [
+          false
+        ],
+        "final_sha256": "694d2eaa1ecd4888666b084f5ecb7e77ba6702bfcebe72220d3ef7fea8dea2fd"
+      }
+    },
+    {
+      "provider": "alibaba2",
+      "case_id": "complaint",
+      "arm": "candidate",
+      "model": "alibaba-token-plan-2/deepseek-v4-flash-0731",
+      "session_id": "c46642b7-7979-4ac2-ab15-c4c7ba78858b",
+      "body": "我公司于2026年8月27日通过县级培训补贴申报平台提交申请，上传3份PDF附件，页面均显示上传成功。提交后生成的受理回执仅显示申报总金额12.8万元，未显示项目编号。\n\n2026年8月28日，热线工作人员表示暂时无法按公司名称定位具体项目，要求重新进入各项目页面逐项截图。我公司为此重新核对并提交了6张截图。\n\n截至2026年9月2日，申请状态仍为“待审核”，尚无审核结论。",
+      "body_sha256": "8b516888a03c8f578bc12fd28b6d1c4380d37f8e95de6b8f431b95232d1e5c13",
+      "context_bytes": 48588,
+      "technical_valid": true,
+      "seconds": 26.75,
+      "receipt": {
+        "model": "alibaba-token-plan-2/deepseek-v4-flash-0731",
+        "return_code": 0,
+        "failure": null,
+        "technical_valid": true,
+        "seconds": 26.75,
+        "disabled_inventory": [
+          {
+            "tools": [],
+            "mcp_servers": [],
+            "skills": [],
+            "plugins": []
+          }
+        ],
+        "tool_uses": [],
+        "usage_reports": [
+          {
+            "usage": {
+              "input_tokens": 13862,
+              "cache_creation_input_tokens": 0,
+              "cache_read_input_tokens": 0,
+              "output_tokens": 2499,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 0,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "alibaba-token-plan-2/deepseek-v4-flash-0731": {
+                "inputTokens": 18235,
+                "outputTokens": 2720,
+                "cacheReadInputTokens": 8192,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.163271,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              }
+            },
+            "total_cost_usd": 0.163271,
+            "duration_ms": 25834
+          }
+        ],
+        "record_count": 508,
+        "invalid_json_lines": [],
+        "init_models": [
+          "alibaba-token-plan-2/deepseek-v4-flash-0731"
+        ],
+        "assistant_models": [
+          "alibaba-token-plan-2/deepseek-v4-flash-0731"
+        ],
+        "usage_models": [
+          "alibaba-token-plan-2/deepseek-v4-flash-0731"
+        ],
+        "api_key_sources": [
+          "none"
+        ],
+        "plugins": [],
+        "reads": [],
+        "result_count": 1,
+        "result_subtypes": [
+          "success"
+        ],
+        "result_errors": [
+          false
+        ],
+        "final_sha256": "8b516888a03c8f578bc12fd28b6d1c4380d37f8e95de6b8f431b95232d1e5c13"
+      }
+    },
+    {
+      "provider": "alibaba2",
+      "case_id": "review",
+      "arm": "baseline",
+      "model": "alibaba-token-plan-2/deepseek-v4-flash-0731",
+      "session_id": "a7f058b2-7583-4aa1-9b8a-b9096d3b80f7",
+      "body": "1. 遗漏状态限定语“报名不等于已列入发言名单”（权威材料第三段：“交流主题、发言顺序尚待确定，报名不等于已列入发言名单。”）。\n位置：待审正文第三段，“交流主题、发言顺序尚待确定。”句号之后缺失该句。\n风险层级：中。\n修改建议：在“交流主题、发言顺序尚待确定”后补回“，报名不等于已列入发言名单”，与前述并列陈述，恢复逗号连接；该句是权威材料对报名与发言名单关系的关键限定，缺失后该状态与材料不完整一致，报名即已列入发言名单的误读未排除。\n\n2. 遗漏收束句“请按上述范围报送信息”（权威材料第三段末句）。\n位置：待审正文第三段末尾，应在“也不要求各科室自行安排接待。”之后。\n风险层级：低。\n修改建议：补回“请按上述范围报送信息。”，恢复通知收束处的报送范围要求，与权威材料保持一致。\n\n通过项：标题、主送、活动时间地点、活动方案尚未审定、仅征集意向不作正式参加确认、报送时限（9月10日17时）、报送对象（综合科王青）、联系电话（内线305）、每科室1至2人、报名信息内容、暂不提交交流材料、费用及接待事项、落款和成文日期均与权威材料一致，正文未新增材料外事实或改变状态强度。",
+      "body_sha256": "526c9d293c3f12779675e9ee8b7488fb98cff444c112b54f1642cbab2677cdbe",
+      "context_bytes": 41347,
+      "technical_valid": true,
+      "seconds": 57.687,
+      "receipt": {
+        "model": "alibaba-token-plan-2/deepseek-v4-flash-0731",
+        "return_code": 0,
+        "failure": null,
+        "technical_valid": true,
+        "seconds": 57.687,
+        "disabled_inventory": [
+          {
+            "tools": [],
+            "mcp_servers": [],
+            "skills": [],
+            "plugins": []
+          }
+        ],
+        "tool_uses": [],
+        "usage_reports": [
+          {
+            "usage": {
+              "input_tokens": 12398,
+              "cache_creation_input_tokens": 0,
+              "cache_read_input_tokens": 0,
+              "output_tokens": 5575,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 0,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "alibaba-token-plan-2/deepseek-v4-flash-0731": {
+                "inputTokens": 16336,
+                "outputTokens": 5895,
+                "cacheReadInputTokens": 7168,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.23263899999999998,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              }
+            },
+            "total_cost_usd": 0.23263899999999998,
+            "duration_ms": 56725
+          }
+        ],
+        "record_count": 1116,
+        "invalid_json_lines": [],
+        "init_models": [
+          "alibaba-token-plan-2/deepseek-v4-flash-0731"
+        ],
+        "assistant_models": [
+          "alibaba-token-plan-2/deepseek-v4-flash-0731"
+        ],
+        "usage_models": [
+          "alibaba-token-plan-2/deepseek-v4-flash-0731"
+        ],
+        "api_key_sources": [
+          "none"
+        ],
+        "plugins": [],
+        "reads": [],
+        "result_count": 1,
+        "result_subtypes": [
+          "success"
+        ],
+        "result_errors": [
+          false
+        ],
+        "final_sha256": "526c9d293c3f12779675e9ee8b7488fb98cff444c112b54f1642cbab2677cdbe"
+      }
+    },
+    {
+      "provider": "alibaba2",
+      "case_id": "review",
+      "arm": "candidate",
+      "model": "alibaba-token-plan-2/deepseek-v4-flash-0731",
+      "session_id": "bbe0b199-1d18-47fa-9e49-0e53841d95ff",
+      "body": "核对范围：事实和状态与权威材料是否完整一致。\n\n1. 位置：第三段第二句“交流主题、发言顺序尚待确定”处\n风险层级：中风险\n修改建议：权威材料原句为“交流主题、发言顺序尚待确定，报名不等于已列入发言名单”，待审正文删去了“报名不等于已列入发言名单”。该句是对首段“只征集报名意向，不作正式参加确认”的状态呼应，直接说明报名与发言名单的关系，建议按权威材料补回。\n\n2. 位置：第三段末句“也不要求各科室自行安排接待”之后\n风险层级：低风险\n修改建议：权威材料段末尚有“请按上述范围报送信息”，待审正文整句缺失。该句是对报送范围的收束性办理要求，建议按权威材料补回。\n\n其余事实（标题、主送“各科室”、活动时间地点（2026年9月18日15时、三楼会议室）、报名时限（2026年9月10日17时前）、接收人及电话（综合科王青、内线305）、每科室1至2人、报名信息内容、“暂不提交交流材料”、汇总用途、“交流主题、发言顺序尚待确定”、不收取费用、不要求自行安排接待，以及落款和成文日期）均与权威材料一致。",
+      "body_sha256": "bfeb2b28702c6212919c6b83ada9630ca0202cbee5e038fc86edf3c21c213820",
+      "context_bytes": 41311,
+      "technical_valid": true,
+      "seconds": 42.266,
+      "receipt": {
+        "model": "alibaba-token-plan-2/deepseek-v4-flash-0731",
+        "return_code": 0,
+        "failure": null,
+        "technical_valid": true,
+        "seconds": 42.266,
+        "disabled_inventory": [
+          {
+            "tools": [],
+            "mcp_servers": [],
+            "skills": [],
+            "plugins": []
+          }
+        ],
+        "tool_uses": [],
+        "usage_reports": [
+          {
+            "usage": {
+              "input_tokens": 12390,
+              "cache_creation_input_tokens": 0,
+              "cache_read_input_tokens": 0,
+              "output_tokens": 4268,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 0,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "alibaba-token-plan-2/deepseek-v4-flash-0731": {
+                "inputTokens": 16320,
+                "outputTokens": 4467,
+                "cacheReadInputTokens": 7168,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.196859,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              }
+            },
+            "total_cost_usd": 0.196859,
+            "duration_ms": 41275
+          }
+        ],
+        "record_count": 851,
+        "invalid_json_lines": [],
+        "init_models": [
+          "alibaba-token-plan-2/deepseek-v4-flash-0731"
+        ],
+        "assistant_models": [
+          "alibaba-token-plan-2/deepseek-v4-flash-0731"
+        ],
+        "usage_models": [
+          "alibaba-token-plan-2/deepseek-v4-flash-0731"
+        ],
+        "api_key_sources": [
+          "none"
+        ],
+        "plugins": [],
+        "reads": [],
+        "result_count": 1,
+        "result_subtypes": [
+          "success"
+        ],
+        "result_errors": [
+          false
+        ],
+        "final_sha256": "bfeb2b28702c6212919c6b83ada9630ca0202cbee5e038fc86edf3c21c213820"
+      }
+    },
+    {
+      "provider": "minimax",
+      "case_id": "complaint",
+      "arm": "baseline",
+      "model": "minimax-cn/MiniMax-M3",
+      "session_id": "507021fa-3142-4500-acd7-5abaca7744cd",
+      "body": "2026年8月27日，我公司通过县级培训补贴申报平台提交培训补贴申请，上传3份PDF附件，页面均显示上传成功。提交后生成的受理回执仅显示申报总金额12.8万元，未显示项目编号。\n\n2026年8月28日，我公司就此情况致电平台热线。工作人员表示暂时无法按公司名称定位具体项目，要求重新进入各项目页面逐项截图。我公司据此重新核对各项目页面，并提交了6张截图。\n\n截至2026年9月2日，该申请状态仍为\"待审核\"，尚无审核结论。",
+      "body_sha256": "b974d26340af21aabd2ad14f6f6f41a2d485376504ff0733d39e5c434b62b9c6",
+      "context_bytes": 48656,
+      "technical_valid": true,
+      "seconds": 13.781,
+      "receipt": {
+        "model": "minimax-cn/MiniMax-M3",
+        "return_code": 0,
+        "failure": null,
+        "technical_valid": true,
+        "seconds": 13.781,
+        "disabled_inventory": [
+          {
+            "tools": [],
+            "mcp_servers": [],
+            "skills": [],
+            "plugins": []
+          }
+        ],
+        "tool_uses": [],
+        "usage_reports": [
+          {
+            "usage": {
+              "input_tokens": 12637,
+              "cache_creation_input_tokens": 0,
+              "cache_read_input_tokens": 128,
+              "output_tokens": 2139,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 0,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "minimax-cn/MiniMax-M3": {
+                "inputTokens": 24053,
+                "outputTokens": 2277,
+                "cacheReadInputTokens": 256,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.177318,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              }
+            },
+            "total_cost_usd": 0.177318,
+            "duration_ms": 12853
+          }
+        ],
+        "record_count": 834,
+        "invalid_json_lines": [],
+        "init_models": [
+          "minimax-cn/MiniMax-M3"
+        ],
+        "assistant_models": [
+          "minimax-cn/MiniMax-M3"
+        ],
+        "usage_models": [
+          "minimax-cn/MiniMax-M3"
+        ],
+        "api_key_sources": [
+          "none"
+        ],
+        "plugins": [],
+        "reads": [],
+        "result_count": 1,
+        "result_subtypes": [
+          "success"
+        ],
+        "result_errors": [
+          false
+        ],
+        "final_sha256": "b974d26340af21aabd2ad14f6f6f41a2d485376504ff0733d39e5c434b62b9c6"
+      }
+    },
+    {
+      "provider": "minimax",
+      "case_id": "complaint",
+      "arm": "candidate",
+      "model": "minimax-cn/MiniMax-M3",
+      "session_id": "5e125345-a52a-46fa-bad7-e6c6b6a84fcc",
+      "body": "2026年8月27日，我公司通过县级培训补贴申报平台提交申请，上传3份PDF附件，页面均显示上传成功。提交后生成的受理回执只显示申报总金额12.8万元，未显示项目编号。\n\n2026年8月28日，我公司拨打热线咨询，热线工作人员表示暂时无法按公司名称定位具体项目，要求重新进入各项目页面逐项截图。我公司据此重新核对并提交了6张截图。\n\n截至2026年9月2日，该申请状态仍为\"待审核\"，尚未收到审核结论。",
+      "body_sha256": "ceadf8ab691cd85533301632b3c8edd3f92f556eed66120069474ff71defbb24",
+      "context_bytes": 48588,
+      "technical_valid": true,
+      "seconds": 9.781,
+      "receipt": {
+        "model": "minimax-cn/MiniMax-M3",
+        "return_code": 0,
+        "failure": null,
+        "technical_valid": true,
+        "seconds": 9.781,
+        "disabled_inventory": [
+          {
+            "tools": [],
+            "mcp_servers": [],
+            "skills": [],
+            "plugins": []
+          }
+        ],
+        "tool_uses": [],
+        "usage_reports": [
+          {
+            "usage": {
+              "input_tokens": 12622,
+              "cache_creation_input_tokens": 0,
+              "cache_read_input_tokens": 128,
+              "output_tokens": 1683,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 0,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "minimax-cn/MiniMax-M3": {
+                "inputTokens": 24162,
+                "outputTokens": 2120,
+                "cacheReadInputTokens": 128,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.173874,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              }
+            },
+            "total_cost_usd": 0.173874,
+            "duration_ms": 8735
+          }
+        ],
+        "record_count": 629,
+        "invalid_json_lines": [],
+        "init_models": [
+          "minimax-cn/MiniMax-M3"
+        ],
+        "assistant_models": [
+          "minimax-cn/MiniMax-M3"
+        ],
+        "usage_models": [
+          "minimax-cn/MiniMax-M3"
+        ],
+        "api_key_sources": [
+          "none"
+        ],
+        "plugins": [],
+        "reads": [],
+        "result_count": 1,
+        "result_subtypes": [
+          "success"
+        ],
+        "result_errors": [
+          false
+        ],
+        "final_sha256": "ceadf8ab691cd85533301632b3c8edd3f92f556eed66120069474ff71defbb24"
+      }
+    },
+    {
+      "provider": "minimax",
+      "case_id": "review",
+      "arm": "baseline",
+      "model": "minimax-cn/MiniMax-M3",
+      "session_id": "cb68c1f0-2e9e-40c4-a7d9-91692b92987c",
+      "body": "问题1\n位置：第三段\"交流主题、发言顺序尚待确定。\"一句末尾。权威材料此处为\"交流主题、发言顺序尚待确定，报名不等于已列入发言名单。\"\n风险层级：中（事实/状态遗漏，影响报名与发言名单关系的明示）\n修改建议：在该句末按权威材料补回\"报名不等于已列入发言名单。\"，避免收件科室将报名意向误解为已取得发言资格。\n\n问题2\n位置：正文末段\"本次不收取费用，也不要求各科室自行安排接待。\"一句之后。权威材料在此句后另起一句\"请按上述范围报送信息。\"\n风险层级：低（事实/状态遗漏，结尾限定语缺失）\n修改建议：在该段末按权威材料补回\"请按上述范围报送信息。\"，恢复对报送范围的收尾限定。",
+      "body_sha256": "bc23124e1d52b77485cf9b5ee5108ec9f9007131f7cec97a514216a6388c2cba",
+      "context_bytes": 41347,
+      "technical_valid": true,
+      "seconds": 9.906,
+      "receipt": {
+        "model": "minimax-cn/MiniMax-M3",
+        "return_code": 0,
+        "failure": null,
+        "technical_valid": true,
+        "seconds": 9.906,
+        "disabled_inventory": [
+          {
+            "tools": [],
+            "mcp_servers": [],
+            "skills": [],
+            "plugins": []
+          }
+        ],
+        "tool_uses": [],
+        "usage_reports": [
+          {
+            "usage": {
+              "input_tokens": 11157,
+              "cache_creation_input_tokens": 0,
+              "cache_read_input_tokens": 128,
+              "output_tokens": 1900,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 0,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "minimax-cn/MiniMax-M3": {
+                "inputTokens": 13812,
+                "outputTokens": 2145,
+                "cacheReadInputTokens": 7552,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.126461,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              }
+            },
+            "total_cost_usd": 0.126461,
+            "duration_ms": 8861
+          }
+        ],
+        "record_count": 627,
+        "invalid_json_lines": [],
+        "init_models": [
+          "minimax-cn/MiniMax-M3"
+        ],
+        "assistant_models": [
+          "minimax-cn/MiniMax-M3"
+        ],
+        "usage_models": [
+          "minimax-cn/MiniMax-M3"
+        ],
+        "api_key_sources": [
+          "none"
+        ],
+        "plugins": [],
+        "reads": [],
+        "result_count": 1,
+        "result_subtypes": [
+          "success"
+        ],
+        "result_errors": [
+          false
+        ],
+        "final_sha256": "bc23124e1d52b77485cf9b5ee5108ec9f9007131f7cec97a514216a6388c2cba"
+      }
+    },
+    {
+      "provider": "minimax",
+      "case_id": "review",
+      "arm": "candidate",
+      "model": "minimax-cn/MiniMax-M3",
+      "session_id": "5f3a2525-7e27-4e52-bfd5-01933f88db30",
+      "body": "按只审不改的定向核对要求，将待审正文与权威材料逐句对照后，发现以下差异：\n\n问题一\n位置：第三段，原文\"综合科将汇总报名信息，供活动筹备使用。交流主题、发言顺序尚待确定。本次不收取费用……\"中，\"尚待确定\"之后、\"本次不收取费用\"之前。\n事实差异：权威材料在\"交流主题、发言顺序尚待确定\"之后用逗号紧接\"报名不等于已列入发言名单\"一句；待审正文漏写该句。\n风险层级：高。该句与第一段\"目前只征集报名意向，不作正式参加确认\"形成状态闭环，直接决定各科室对报名性质的判断，属于本通知事实和状态层面的关键要素。\n修改建议：在\"交流主题、发言顺序尚待确定\"后以逗号承接，补回\"报名不等于已列入发言名单\"。\n\n问题二\n位置：第三段末尾，原文以\"也不要求各科室自行安排接待。\"结束。\n事实差异：权威材料在该句之后另起一句写\"请按上述范围报送信息。\"，作为通知的执行收束；待审正文漏写该句。\n风险层级：中。该句承担通知文种的执行要求落点，与首段\"目前只征集报名意向、不作正式参加确认\"、第二段报送口径共同构成按上述范围报送的收束语；缺失后通知的办理要求缺少闭合。\n修改建议：在\"也不要求各科室自行安排接待。\"之后另起一句，补回\"请按上述范围报送信息。\"。\n\n其他要素（标题、主送、活动时间、地点、报送截止时间、接收人、联系方式、每科室人数、报名信息字段、暂不提交交流材料、综合科汇总、收费与接待口径、落款单位与成文日期）已与权威材料一致，未发现差异。",
+      "body_sha256": "d83f36095b001475409e61a56f2106107b30fed1dff67311201c8ce38099c893",
+      "context_bytes": 41311,
+      "technical_valid": true,
+      "seconds": 13.109,
+      "receipt": {
+        "model": "minimax-cn/MiniMax-M3",
+        "return_code": 0,
+        "failure": null,
+        "technical_valid": true,
+        "seconds": 13.109,
+        "disabled_inventory": [
+          {
+            "tools": [],
+            "mcp_servers": [],
+            "skills": [],
+            "plugins": []
+          }
+        ],
+        "tool_uses": [],
+        "usage_reports": [
+          {
+            "usage": {
+              "input_tokens": 11149,
+              "cache_creation_input_tokens": 0,
+              "cache_read_input_tokens": 128,
+              "output_tokens": 1148,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 0,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "minimax-cn/MiniMax-M3": {
+                "inputTokens": 21081,
+                "outputTokens": 1548,
+                "cacheReadInputTokens": 256,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.144233,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              }
+            },
+            "total_cost_usd": 0.144233,
+            "duration_ms": 12295
+          }
+        ],
+        "record_count": 74,
+        "invalid_json_lines": [],
+        "init_models": [
+          "minimax-cn/MiniMax-M3"
+        ],
+        "assistant_models": [
+          "minimax-cn/MiniMax-M3"
+        ],
+        "usage_models": [
+          "minimax-cn/MiniMax-M3"
+        ],
+        "api_key_sources": [
+          "none"
+        ],
+        "plugins": [],
+        "reads": [],
+        "result_count": 1,
+        "result_subtypes": [
+          "success"
+        ],
+        "result_errors": [
+          false
+        ],
+        "final_sha256": "d83f36095b001475409e61a56f2106107b30fed1dff67311201c8ce38099c893"
+      }
+    }
+  ],
+  "raw_files": [
+    {
+      "path": "fixture.json",
+      "bytes": 127157,
+      "sha256": "8ddfd96e8d61f4540ea32c83c96599b21d5438492bde0ec611072d0ebbef9e9b"
+    },
+    {
+      "path": "root-technical-check.json",
+      "bytes": 2566,
+      "sha256": "aa546e9677b5715950a1a0c2f414ae6851a617051b2214f6ac940ba05416bc37"
+    },
+    {
+      "path": "blind-quality-input.json",
+      "bytes": 11883,
+      "sha256": "1235787f22d9b1d32db50c454fd9330f06761aa6560536fe1999d09cc4d96eec"
+    },
+    {
+      "path": "blind-mapping.json",
+      "bytes": 751,
+      "sha256": "1abd6f971998534183456c0a2ccafc6cd9741e6214809ee804ffc342f75b175a"
+    },
+    {
+      "path": "runs/alibaba2/complaint/baseline/result.json",
+      "bytes": 880,
+      "sha256": "670c9fdaed88bed8160e96b1fe4819fc40c6debfd154a22eb735efafff6edf9a"
+    },
+    {
+      "path": "runs/alibaba2/complaint/baseline/invocation.json",
+      "bytes": 887,
+      "sha256": "38e4ae6bbea0332709ceae62b9fe283c5c9bc8aa91cc2a0b099d62370a253979"
+    },
+    {
+      "path": "runs/alibaba2/complaint/baseline/call/prompt.txt",
+      "bytes": 49969,
+      "sha256": "81990c6f98930609a93cf2776b091c1db55b1adebb7ad67d21406dca80d35ad3"
+    },
+    {
+      "path": "runs/alibaba2/complaint/baseline/call/stream.jsonl",
+      "bytes": 135202,
+      "sha256": "8af7b5d55aa278ec21747dc7d63508a10d551c2d589a6e53c557be1dd012e7f1"
+    },
+    {
+      "path": "runs/alibaba2/complaint/baseline/call/stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "runs/alibaba2/complaint/baseline/call/reply.txt",
+      "bytes": 513,
+      "sha256": "694d2eaa1ecd4888666b084f5ecb7e77ba6702bfcebe72220d3ef7fea8dea2fd"
+    },
+    {
+      "path": "runs/alibaba2/complaint/baseline/call/receipt.json",
+      "bytes": 1844,
+      "sha256": "0f0990f0310554879955baaf8a4e5417e1d6707345ba55baa0d3e31985306179"
+    },
+    {
+      "path": "runs/alibaba2/complaint/candidate/result.json",
+      "bytes": 865,
+      "sha256": "b252647125c662e438567c325d78719d738bd75988298db6bbf08c40063cd9b5"
+    },
+    {
+      "path": "runs/alibaba2/complaint/candidate/invocation.json",
+      "bytes": 888,
+      "sha256": "16c425e3d5b0de6aabe2469fee6fe46bd01181d10650ea4fa7f83fb8a215c455"
+    },
+    {
+      "path": "runs/alibaba2/complaint/candidate/call/prompt.txt",
+      "bytes": 49901,
+      "sha256": "7546b0d1fb66979e5a221bdc31e542d6a0023fc4d9e1dacd0ccbf0fa88a94efd"
+    },
+    {
+      "path": "runs/alibaba2/complaint/candidate/call/stream.jsonl",
+      "bytes": 112943,
+      "sha256": "863570407fb5682fdf050e355a21c8062d4b0ab7434389d2d664ba47391cd819"
+    },
+    {
+      "path": "runs/alibaba2/complaint/candidate/call/stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "runs/alibaba2/complaint/candidate/call/reply.txt",
+      "bytes": 498,
+      "sha256": "8b516888a03c8f578bc12fd28b6d1c4380d37f8e95de6b8f431b95232d1e5c13"
+    },
+    {
+      "path": "runs/alibaba2/complaint/candidate/call/receipt.json",
+      "bytes": 1824,
+      "sha256": "80d97896fe073a965ab6d298849df9aa9644fc85b4b7dddee34710242d8d911b"
+    },
+    {
+      "path": "runs/alibaba2/review/baseline/result.json",
+      "bytes": 1791,
+      "sha256": "38d51f0c8bec86377221de6201dc2bf9e17f1833bf32913aa84176a853d2d255"
+    },
+    {
+      "path": "runs/alibaba2/review/baseline/invocation.json",
+      "bytes": 824,
+      "sha256": "1b992d5d1e4af225a2439dbcc8e7f4dc97342d8121b37ca782dfe891b6d66e49"
+    },
+    {
+      "path": "runs/alibaba2/review/baseline/call/prompt.txt",
+      "bytes": 43348,
+      "sha256": "3c9335e87fd375990efaa217dedd5d1e1cb734b345e4538778cd86b338cd17e1"
+    },
+    {
+      "path": "runs/alibaba2/review/baseline/call/stream.jsonl",
+      "bytes": 247076,
+      "sha256": "10ebd8c2bb7609403447831a45d38ee5b1058d15e895487b68d46de4c08d4379"
+    },
+    {
+      "path": "runs/alibaba2/review/baseline/call/stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "runs/alibaba2/review/baseline/call/reply.txt",
+      "bytes": 1421,
+      "sha256": "526c9d293c3f12779675e9ee8b7488fb98cff444c112b54f1642cbab2677cdbe"
+    },
+    {
+      "path": "runs/alibaba2/review/baseline/call/receipt.json",
+      "bytes": 1848,
+      "sha256": "fa59046ae4001d632167be71138b539e0d072426238a4f81c187e01cbfea0742"
+    },
+    {
+      "path": "runs/alibaba2/review/candidate/result.json",
+      "bytes": 1646,
+      "sha256": "01bf7178539b871fc1c9a47a96cb36f665492396341976824a26feaa46fe0c41"
+    },
+    {
+      "path": "runs/alibaba2/review/candidate/invocation.json",
+      "bytes": 825,
+      "sha256": "d8920153944318bf379cb8408c9c28ef43daa7d142066e8cdbe8d2d77751d052"
+    },
+    {
+      "path": "runs/alibaba2/review/candidate/call/prompt.txt",
+      "bytes": 43312,
+      "sha256": "27c311695d6fa95373833fed238522d2472c91edef566edcf600cacdd57c07e2"
+    },
+    {
+      "path": "runs/alibaba2/review/candidate/call/stream.jsonl",
+      "bytes": 188689,
+      "sha256": "a9e764b192325a8ac722863df41bd3a631cb66e3f8a82b2a49a9f9172edae5bb"
+    },
+    {
+      "path": "runs/alibaba2/review/candidate/call/stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "runs/alibaba2/review/candidate/call/reply.txt",
+      "bytes": 1275,
+      "sha256": "bfeb2b28702c6212919c6b83ada9630ca0202cbee5e038fc86edf3c21c213820"
+    },
+    {
+      "path": "runs/alibaba2/review/candidate/call/receipt.json",
+      "bytes": 1825,
+      "sha256": "c3241668563be01e90c7afe1d277e49bbfd52cd8b26fffcbff7bf6919d1ffb88"
+    },
+    {
+      "path": "runs/minimax/complaint/baseline/result.json",
+      "bytes": 909,
+      "sha256": "5d343f600827d3528acdd3aa055fa8f3435fd4b3fe614f64d66ddde1d71f7d0c"
+    },
+    {
+      "path": "runs/minimax/complaint/baseline/invocation.json",
+      "bytes": 843,
+      "sha256": "31cda42957c849580cca13f1195cc8e3a7c1ac91056a87b2c5ad1162cbb1eb21"
+    },
+    {
+      "path": "runs/minimax/complaint/baseline/call/prompt.txt",
+      "bytes": 49969,
+      "sha256": "81990c6f98930609a93cf2776b091c1db55b1adebb7ad67d21406dca80d35ad3"
+    },
+    {
+      "path": "runs/minimax/complaint/baseline/call/stream.jsonl",
+      "bytes": 174389,
+      "sha256": "76c50d780cd703990677a28c122729422ad8961e18d68b03b70ad01389a42e0d"
+    },
+    {
+      "path": "runs/minimax/complaint/baseline/call/stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "runs/minimax/complaint/baseline/call/reply.txt",
+      "bytes": 563,
+      "sha256": "b974d26340af21aabd2ad14f6f6f41a2d485376504ff0733d39e5c434b62b9c6"
+    },
+    {
+      "path": "runs/minimax/complaint/baseline/call/receipt.json",
+      "bytes": 1716,
+      "sha256": "7453bbe7f211a3574abbf69d6504366a92c158e929c57eb2dea358a7510590b4"
+    },
+    {
+      "path": "runs/minimax/complaint/candidate/result.json",
+      "bytes": 879,
+      "sha256": "9d6e5b8e6da90d4475d535aba55ea35393551907a87025a1701e4c922e117422"
+    },
+    {
+      "path": "runs/minimax/complaint/candidate/invocation.json",
+      "bytes": 844,
+      "sha256": "758debb60ed030584cfc710131ea6f292142a0fd67aa0fed237cac297bcfb8aa"
+    },
+    {
+      "path": "runs/minimax/complaint/candidate/call/prompt.txt",
+      "bytes": 49901,
+      "sha256": "7546b0d1fb66979e5a221bdc31e542d6a0023fc4d9e1dacd0ccbf0fa88a94efd"
+    },
+    {
+      "path": "runs/minimax/complaint/candidate/call/stream.jsonl",
+      "bytes": 133017,
+      "sha256": "f532608ca45e1ea5a91d1ee61ef1ef476ca742782c051f3edfd8b18e7daede06"
+    },
+    {
+      "path": "runs/minimax/complaint/candidate/call/stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "runs/minimax/complaint/candidate/call/reply.txt",
+      "bytes": 533,
+      "sha256": "ceadf8ab691cd85533301632b3c8edd3f92f556eed66120069474ff71defbb24"
+    },
+    {
+      "path": "runs/minimax/complaint/candidate/call/receipt.json",
+      "bytes": 1714,
+      "sha256": "d6773f9854aee03691ffb64757e477ed960454cd48e989c8bd99a2ecd3e19832"
+    },
+    {
+      "path": "runs/minimax/review/baseline/result.json",
+      "bytes": 1172,
+      "sha256": "187a8abc46628c9d51d951de65a2706aaa9ca727133a69ff06ad3ba6c1270a5a"
+    },
+    {
+      "path": "runs/minimax/review/baseline/invocation.json",
+      "bytes": 780,
+      "sha256": "66e168c9f29b0868e52979cfa2c468e43e0aa2dafcc42a9b719770d1ae77930a"
+    },
+    {
+      "path": "runs/minimax/review/baseline/call/prompt.txt",
+      "bytes": 43348,
+      "sha256": "3c9335e87fd375990efaa217dedd5d1e1cb734b345e4538778cd86b338cd17e1"
+    },
+    {
+      "path": "runs/minimax/review/baseline/call/stream.jsonl",
+      "bytes": 133670,
+      "sha256": "542b4090e83bf8f17c795715bf3332dd345354801484edd78d00b489e58be133"
+    },
+    {
+      "path": "runs/minimax/review/baseline/call/stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "runs/minimax/review/baseline/call/reply.txt",
+      "bytes": 816,
+      "sha256": "bc23124e1d52b77485cf9b5ee5108ec9f9007131f7cec97a514216a6388c2cba"
+    },
+    {
+      "path": "runs/minimax/review/baseline/call/receipt.json",
+      "bytes": 1715,
+      "sha256": "4bafeafd020bf05597516ad7e43d4e6060b8f42bcb4009c87b1c834d87d7213e"
+    },
+    {
+      "path": "runs/minimax/review/candidate/result.json",
+      "bytes": 2152,
+      "sha256": "deafb07786a232add4cd18cf2da1438c6e0aabbf2d987c47d093c90f30f2c9bf"
+    },
+    {
+      "path": "runs/minimax/review/candidate/invocation.json",
+      "bytes": 781,
+      "sha256": "53c8dc39c1edd586a8f2ecb133b9c2dcd8adf5972d0cdc44d5913c6b7378e6c1"
+    },
+    {
+      "path": "runs/minimax/review/candidate/call/prompt.txt",
+      "bytes": 43312,
+      "sha256": "27c311695d6fa95373833fed238522d2472c91edef566edcf600cacdd57c07e2"
+    },
+    {
+      "path": "runs/minimax/review/candidate/call/stream.jsonl",
+      "bytes": 23708,
+      "sha256": "ef43003d44b97bf73e8c531b67eec4e0c710331871339f70a2cebbc3b5cc24bd"
+    },
+    {
+      "path": "runs/minimax/review/candidate/call/stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "runs/minimax/review/candidate/call/reply.txt",
+      "bytes": 1774,
+      "sha256": "d83f36095b001475409e61a56f2106107b30fed1dff67311201c8ce38099c893"
+    },
+    {
+      "path": "runs/minimax/review/candidate/call/receipt.json",
+      "bytes": 1715,
+      "sha256": "9281d09433c296b2ee4b891988b7798f0d6754d855d5f6052d1e735ca4d19565"
+    }
+  ],
+  "selection": {
+    "complaint": "SELECTED_68_UTF8_BYTES",
+    "direct_review": "REJECTED_RESTORED",
+    "complaint_context_exact_after_restoration": true,
+    "no_new_model_calls_for_restoration": true
+  },
+  "blind_packet_sha256": "1235787f22d9b1d32db50c454fd9330f06761aa6560536fe1999d09cc4d96eec"
+}

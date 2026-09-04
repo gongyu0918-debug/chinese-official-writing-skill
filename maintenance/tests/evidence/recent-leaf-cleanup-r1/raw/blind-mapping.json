@@ -1,0 +1,42 @@
+{
+  "T1-1": {
+    "provider": "minimax",
+    "arm": "candidate",
+    "case_id": "complaint"
+  },
+  "T1-2": {
+    "provider": "alibaba2",
+    "arm": "baseline",
+    "case_id": "complaint"
+  },
+  "T1-3": {
+    "provider": "minimax",
+    "arm": "baseline",
+    "case_id": "complaint"
+  },
+  "T1-4": {
+    "provider": "alibaba2",
+    "arm": "candidate",
+    "case_id": "complaint"
+  },
+  "T2-1": {
+    "provider": "alibaba2",
+    "arm": "candidate",
+    "case_id": "review"
+  },
+  "T2-2": {
+    "provider": "minimax",
+    "arm": "baseline",
+    "case_id": "review"
+  },
+  "T2-3": {
+    "provider": "alibaba2",
+    "arm": "baseline",
+    "case_id": "review"
+  },
+  "T2-4": {
+    "provider": "minimax",
+    "arm": "candidate",
+    "case_id": "review"
+  }
+}

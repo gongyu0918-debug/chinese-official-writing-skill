@@ -1,0 +1,35 @@
+{
+  "model": "minimax-cn/MiniMax-M3",
+  "arm": "baseline",
+  "case_id": "complaint",
+  "argv": [
+    "C:\\Users\\admin\\.local\\bin\\claude.EXE",
+    "--setting-sources",
+    "",
+    "--no-session-persistence",
+    "--disable-slash-commands",
+    "--tools",
+    "",
+    "--strict-mcp-config",
+    "--mcp-config",
+    "{\"mcpServers\":{}}",
+    "--permission-mode",
+    "dontAsk",
+    "--print",
+    "--verbose",
+    "--output-format",
+    "stream-json",
+    "--model",
+    "minimax-cn/MiniMax-M3",
+    "--effort",
+    "max"
+  ],
+  "prompt_sha256": "81990c6f98930609a93cf2776b091c1db55b1adebb7ad67d21406dca80d35ad3",
+  "context_paths": [
+    "SKILL.md",
+    "references/information-selection.md",
+    "references/genre-playbook-complaint-reflection.md",
+    "references/proofreading-checklist.md",
+    "references/final-review-layers.md"
+  ]
+}
