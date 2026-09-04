@@ -68,8 +68,8 @@ def prepare(output: Path) -> dict:
 
 def command_for(cli: str, writer, root: Path, model: str, effort: str, final: Path, session: str | None) -> list[str]:
     skill = root / ".agents/skills/chinese-official-writing"
-    entries = [f'{{path="{skill.as_posix()}",enabled=true}}']
-    entries.extend(f'{{path="{p.parent.as_posix()}",enabled=false}}' for p in writer.USER_SKILLS)
+    entries = [f'{{path="{(skill / "SKILL.md").as_posix()}",enabled=true}}']
+    entries.extend(f'{{path="{p.as_posix()}",enabled=false}}' for p in writer.USER_SKILLS)
     config = ["features.plugins=false", "features.apps=false", "features.memories=false",
               f"skills.config=[{','.join(entries)}]", 'openai_base_url="http://127.0.0.1:10100/v1"',
               f'model_catalog_json="{writer.CATALOG.as_posix()}"', f'model_reasoning_effort="{effort}"',
@@ -117,7 +117,7 @@ def run_round(output: Path, fixture: dict, provider: str, arm: str, case: dict, 
             pass
     ids = {e.get("thread_id") for e in events if e.get("type") == "thread.started" and e.get("thread_id")}
     observed_id = next(iter(ids)) if len(ids) == 1 else None
-    commands = writer.normalized_commands(stdout)
+    commands = re.sub(r"/+", "/", writer.normalized_commands(stdout).replace("\\", "/"))
     reads = [str(p) for p in writer.USER_SKILLS if p.as_posix().casefold() in commands]
     hook_markers = [m for m in ("<hook_prompt", "chinese-official-writing@chinese-official-writing-local:hooks/",
                                "official-writing-pro@official-writing-pro-local:hooks/") if m in (stdout + stderr).casefold()]

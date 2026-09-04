@@ -13,7 +13,7 @@
 
 本机已检查 Desktop `codex-cli 0.153.1`：`exec --help` 与 `exec resume --help` 均返回 0。初始命令不带 `--ephemeral`，让 CLI 持久化会话；第 2—7 轮使用 `codex exec resume <明确 session ID>`，只发送本轮增量指令，不拼接历史、不重新提供旧稿假装恢复。
 
-沿用 `complaint-reflection-r1/desktop_writer.py` 的 Desktop CLI 选择、当前 Skill 显式启用、用户同名 Skill 禁用、plugins/apps/memories 关闭、既有模型目录与本地模型入口、只读沙箱和 never 审批配置。每轮保留模型与隔离参数；resume 的工作目录固定在对应 runtime。
+沿用 `complaint-reflection-r1/desktop_writer.py` 的 Desktop CLI 选择、plugins/apps/memories 关闭、既有模型目录与本地模型入口、只读沙箱和 never 审批配置。新 runner 的 skills.config 启用与禁用项均指向 SKILL.md 文件，按[官方启停示例](https://learn.chatgpt.com/docs/build-skills#enable-or-disable-local-codex-skills)修正旧 wrapper 使用目录的问题；不改旧二十稿冻结来源。全局同名安装仍保留，并继续依据实际 trace 检查污染。每轮保留模型与隔离参数；resume 的工作目录固定在对应 runtime。
 
 协议依据：[官方非交互模式](https://learn.chatgpt.com/docs/non-interactive-mode)确认指定 ID 的 exec resume，以及 JSONL 中的 `thread.started.thread_id` 和 `turn.completed.usage`。帮助与官方契约只证明命令支持；只有实际 4 条链的日志才能证明本轮真实续写成立。
 
