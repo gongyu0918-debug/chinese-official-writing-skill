@@ -1646,8 +1646,9 @@ CASES: list[PromptCase] = [
         checks={
             "file_terms": {
                 "chinese-official-writing/references/final-review-layers.md": [
-                    "python scripts/prose_lint.py --delivery-mode draft-body --format --structure <draft>",
-                    "`<draft>` 替换为待检查文件路径",
+                    'python "<Skill绝对目录>/scripts/prose_lint.py" --delivery-mode draft-body --format --structure "<草稿绝对路径>"',
+                    "两个占位分别替换为本次已读 `SKILL.md` 所在目录和待检查文件的绝对路径",
+                    "默认返回码 0 表示扫描完成，仍须阅读命中结果",
                     "脚本只提示风险，不自动改写",
                 ],
             },

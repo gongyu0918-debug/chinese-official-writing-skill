@@ -1,6 +1,6 @@
 {
   "name": "chinese-official-writing-gate",
-  "version": "1.6.26",
+  "version": "1.6.27",
   "description": "Packaged opt-in Claude Code adapter for the existing bounded Chinese official-writing delivery gate.",
   "author": {
     "name": "gongyu0918-debug",

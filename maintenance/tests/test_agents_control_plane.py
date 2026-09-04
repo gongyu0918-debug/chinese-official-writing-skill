@@ -14,17 +14,17 @@ class AgentsControlPlaneTests(unittest.TestCase):
         text = path.read_text(encoding="utf-8")
         self.assertLess(len(path.read_bytes()), 12 * 1024)
         for required in [
-            "本文件是仓库唯一活动开发纪律",
-            "产品写稿规则只写入 `chinese-official-writing/SKILL.md` 与 `references/`",
-            "真实结果优先",
-            "全量测试原则上只在准备合并或发布前运行一次",
-            "每累计5次 commit",
-            "未经当次明确授权，不合并 `main`",
-            "`main` 是公开版主线，不包含提纲审核 Hook",
-            "`codex/paid-outline-review` 是“当前 `main` + 付费提纲增量”",
-            "普通 Skill 安装、Hook companion 组装、插件安装、启用、信任和真实执行是不同事实",
-            "当前仓库和仓内包使用根 `LICENSE`（MIT）",
-            "交付时报告修改摘要、branch、commit、实际命令与结果",
+            "本文件是唯一活动开发纪律",
+            "产品规则只放 `chinese-official-writing/SKILL.md` 及其 `references/`",
+            "立即跑真实写稿或生命周期",
+            "全量门原则上只在合并或发布前跑一次",
+            "每累计 5 次 commit",
+            "未获当次明确授权，不合并 main",
+            "main 不含付费提纲 Hook、胶水、测试和详细规格",
+            "`codex/paid-outline-review` 保持“当前 main + 付费提纲增量”",
+            "Skill 安装、companion 组装、插件安装、启用、信任和真实执行分别举证",
+            "仓库及仓内包使用根 [LICENSE](LICENSE)（MIT）",
+            "报告摘要、branch、commit、实际命令与结果",
             "外部写入、发布和删除只在明确授权范围内执行",
         ]:
             self.assertIn(required, text)
