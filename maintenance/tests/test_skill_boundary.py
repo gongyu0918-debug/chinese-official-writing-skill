@@ -18,7 +18,7 @@ OPTIONAL_GATE_FILES = {
     "scripts/review_gate.py",
 }
 SKILLHUB_CLEAN_PACKAGE_EXCLUDES = {"agents/openai.yaml", "LICENSE"}
-CURRENT_VERSION = "1.6.25"
+CURRENT_VERSION = "1.6.26"
 PUBLISHED_VERSION = "1.6.25"
 
 
