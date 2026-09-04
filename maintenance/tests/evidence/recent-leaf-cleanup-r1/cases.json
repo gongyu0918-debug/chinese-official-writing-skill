@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "baseline_commit": "92142f640d409bde20a0d16f4ecf185fbe2d427c",
+  "providers": {
+    "alibaba2": "alibaba-token-plan-2/deepseek-v4-flash-0731",
+    "minimax": "minimax-cn/MiniMax-M3"
+  },
+  "source_provenance": {
+    "maintenance/tests/evidence/complaint-reflection-r1/prompts/complaint-portal-own-experience.txt": {
+      "commit": "92142f640d409bde20a0d16f4ecf185fbe2d427c",
+      "sha256": "8b6ac7911eb3d0b0fac7333f768a78efa0feaad130ffc349431e8a719d7857c5"
+    },
+    "maintenance/tests/evidence/lint-command-route-r1/cases.json": {
+      "commit": "92142f640d409bde20a0d16f4ecf185fbe2d427c",
+      "sha256": "a30193ac5f50cbcbb98ff87a1ef5ab0e60df9717a818ca9cc418593aa0925b8d"
+    },
+    "maintenance/tests/evidence/lint-command-route-r1/restricted-r6/real-ab/raw/minimax/control/final.txt": {
+      "commit": "92142f640d409bde20a0d16f4ecf185fbe2d427c",
+      "sha256": "ab0c49841574622287eaabce822e13e6bd5af8a130628c8d26d7c7f2641765e6"
+    }
+  },
+  "cases": [
+    {
+      "id": "complaint",
+      "prompt": "请使用当前仓库中的 `chinese-official-writing` Skill。请根据下列材料，为政务平台“投诉内容”栏起草可直接提交的正文。页面已经另设标题、单位名称和联系方式字段，只输出投诉内容，不解释过程。\n\n材料：2026年8月27日，我公司通过县级培训补贴申报平台提交申请，上传3份PDF附件，页面均显示上传成功。提交后生成的受理回执只显示申报总金额12.8万元，不显示项目编号。2026年8月28日，热线工作人员表示暂时无法按公司名称定位具体项目，要求重新进入各项目页面逐项截图。我公司为此重新核对并提交了6张截图。截至2026年9月2日，申请状态仍为“待审核”，尚无审核结论。\n\n要求保持专业、克制，只说明我公司实际遇到的问题及当前状态，不提出解决建议，不补责任、原因、期限或结果承诺。\n",
+      "context_files": [
+        "SKILL.md",
+        "references/information-selection.md",
+        "references/genre-playbook-complaint-reflection.md",
+        "references/proofreading-checklist.md",
+        "references/final-review-layers.md"
+      ],
+      "delivery": "complete complaint body only",
+      "review_focus": "all supplied dates,3 PDFs,12.8万元,no project ID,hotline attribution,6 screenshots,pending review retained; no new advice/responsibility/cause/deadline/promise; no processing preamble,extra title or self-review"
+    },
+    {
+      "id": "review",
+      "prompt": "请使用当前仓库中的 chinese-official-writing Skill，只核对下列通知的事实和状态是否与权威材料完整一致，只审不改。输出问题位置、风险层级和修改建议，不重写全文，不解释处理过程。\n\n权威材料：\n**关于报送读书交流活动报名信息的通知**\n\n各科室：\n\n青桥服务中心拟于2026年9月18日15时在三楼会议室举办读书交流活动。活动方案尚未审定，目前只征集报名意向，不作正式参加确认。\n\n请各科室于2026年9月10日17时前，将报名信息交综合科王青，联系电话为内线305。每科室可报1至2人，报名信息包括姓名、所在科室和联系电话，暂不提交交流材料。\n\n综合科将汇总报名信息，供活动筹备使用。交流主题、发言顺序尚待确定，报名不等于已列入发言名单。本次不收取费用，也不要求各科室自行安排接待。请按上述范围报送信息。\n\n青桥服务中心\n2026年9月5日\n\n\n待审正文：\n关于报送读书交流活动报名信息的通知\n\n各科室：\n\n青桥服务中心拟于2026年9月18日15时在三楼会议室举办读书交流活动。活动方案尚未审定，目前只征集报名意向，不作正式参加确认。\n\n请各科室于2026年9月10日17时前，将报名信息交综合科王青，联系电话为内线305。每科室可报1至2人，报名信息包括姓名、所在科室和联系电话，暂不提交交流材料。\n\n综合科将汇总报名信息，供活动筹备使用。交流主题、发言顺序尚待确定。本次不收取费用，也不要求各科室自行安排接待。\n\n青桥服务中心\n2026年9月5日",
+      "context_files": [
+        "SKILL.md",
+        "references/information-selection.md",
+        "references/review-direct-checklist.md",
+        "references/genre-checklist.md"
+      ],
+      "delivery": "locations,risk levels,and revision suggestions only; do not rewrite the notice",
+      "review_focus": "independent speaker-list restriction missing from this actual prior model draft; no unsupported factual errors or extra format/approval demands; no processing or test/self-review wrapper"
+    }
+  ]
+}
