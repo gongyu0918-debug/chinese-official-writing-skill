@@ -20,6 +20,13 @@
 - 未发现指向不存在文件的内部 reference 链接。
 - 未发现未被 canonical Markdown 引用的孤儿 reference 文件。
 
+## 本轮横向检查
+
+- canonical references 体积最大的四页是 `review-checklist.md` 16,510 bytes、`workflow.md` 15,443 bytes、`delivery-review-gate.md` 14,544 bytes、`anti-ai-patterns.md` 14,162 bytes。仅有文件较长不能形成拆叶候选；既往 `REVIEW-LAYER-SPLIT-R1` 因真实路由0/10与0/5已经终止，没有新的跨 provider 读取证据时不复活旧机制。
+- 没有在普通语义叶中发现 `HOLD`、发布状态、候选验证或维护命令残留。`delivery-review-gate.md` 中的 Hook、脚本和状态机说明属于明确的宿主协议页，普通写稿不加载，不应与普通 reference 减载混为一谈。
+- 仍有三组数字值得独立验证而不是因“看起来像魔法数字”直接删除：`workflow.md` 的5%—10%上限余量与章节百分比分配、`genre-playbook-news-commentary.md` 的90%—110%约字范围、`delivery-review-gate.md` 的20字/5%机械净增量。前两组会影响真实篇幅和长稿结构，后者只影响 Hook；应分别固定真实任务做 A/B，不能组合修改。
+- R2 新出现 Alibaba1、Ollama 两份正文前过程说明，已达到 `CL-001-NOHK-R2` 的跨 provider 新反例条件；该问题与整改状态句无关，另开正文交付原子。MiniMax 单家读取9份 reference 的过载尚未跨 provider 复现，只登记观察。
+
 ## 候选处理范围
 
-只新增 `references/genre-playbook-remediation-plan.md`，并在 canonical `SKILL.md` 增加明确意图直达和表项。候选不改 description、Hook、通用短稿页、通用事实边界、普通方案叶或其他文种叶。
+只新增 `references/genre-playbook-remediation-plan.md`，并在 canonical `SKILL.md` 增加明确意图直达和表项。R2 另在专叶强化一处材料状态先落位。候选不改 description、Hook、通用短稿页、通用事实边界、普通方案叶或其他文种叶。

@@ -69,7 +69,7 @@
 
 ## IN_PROGRESS
 
-- `WR-028-REMEDIATION-PLAN-R2`：R1五家25份候选与基线形成21个双臂技术有效对；两个控制题10/10未读专叶，有效短稿未启动状态由基线1/5改善到候选3/4，且保持原因、影响和实际措施。Alibaba2中等审计候选相对基线遗漏“均尚未启动整改”，R1不直接进入工程门；现只强化状态先落位并定向复测，通过后再补镜像和直接断言。[R1结果](../tests/evidence/remediation-plan-r1/candidate-r1-result.md) [五提交复核](../tests/evidence/remediation-plan-r1/five-commit-review.md)
+- `WR-028-REMEDIATION-PLAN-R2`：R1五家25份候选发现一处候选独有状态遗漏；R2只强化状态先落位，五家10份中8份候选隔离有效，两题各4份均保留材料状态并形成实际措施，唯一硬回退已消除。现同步普通兼容镜像、补直接断言并运行一次合并前工程门；不改Hook、description和其他文种。[R2结果](../tests/evidence/remediation-plan-r1/candidate-r2-result.md) [五提交复核](../tests/evidence/remediation-plan-r1/five-commit-review.md)
 
 ## REJECTED
 
