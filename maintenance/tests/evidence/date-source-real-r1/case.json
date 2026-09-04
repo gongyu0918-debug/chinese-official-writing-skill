@@ -1,0 +1,16 @@
+{
+  "id": "NEWS-ISO-FACT-CHINESE-FORMAT-EXAMPLE",
+  "prompt": "请根据下列材料写一则简短的新闻消息。\n\n目标活动事实：中心于2026-09-05举办读书交流活动，共20人参加。\n\n格式示例（仅示范中文日期格式，不是本次活动事实，不得写入消息）：2020年9月5日。\n\n只输出可直接使用的完整正文，可以含标题，不解释过程。保留提供的事实，不补充材料未给的活动内容、效果或后续安排。",
+  "providers": {
+    "alibaba2": "alibaba-token-plan-2/deepseek-v4-flash-0731",
+    "minimax": "minimax-cn/MiniMax-M3"
+  },
+  "core_commit": "5fbb2d26c49d0b780ad11fc4cff008854995ad3f",
+  "context_files": [
+    "chinese-official-writing/SKILL.md",
+    "chinese-official-writing/references/genre-playbook-news-message.md"
+  ],
+  "reasoning_effort": "max",
+  "automatic_retry": false,
+  "automatic_model_fallback": false
+}
