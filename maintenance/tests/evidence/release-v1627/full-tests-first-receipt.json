@@ -1,0 +1,17 @@
+{
+  "argv": [
+    "C:\\Users\\admin\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+    "-X",
+    "utf8",
+    "-B",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "maintenance/tests",
+    "-p",
+    "test_*.py"
+  ],
+  "exit_code": 1,
+  "seconds": 106.223
+}

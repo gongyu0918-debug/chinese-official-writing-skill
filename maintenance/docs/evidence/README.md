@@ -12,6 +12,8 @@
 
 ## 逐版发布证据
 
+- v1.6.27产品已冻结并合入本地main，尚未正式发布；374路径范围审查、真实结果选择、最终774项全量、五套quick validate和86/37文件包dry-run见[候选记录](../../tests/evidence/release-1.6.27-rc.md)。产品tag与后续证据提交分离。
+
 - `MT-006-RECENT-LEAF-R1` 新叶页冷审、两路8次真实调用、独立盲审和68-byte选择/36-byte拒绝见[结果](../../tests/evidence/recent-leaf-cleanup-r1/result.md)；完整正文、prompt、原始stream及hash均已冻结。发行另记，本项不代表自然路由减载或Hook修复。
 
 - v1.6.26 的 GitHub、SkillHub.cn 与 ClawHub 唯一成功提交回执、85/36文件包体和最终公开状态见 [`release-1.6.26.md`](../../tests/evidence/release-1.6.26.md)；固定产品 tag、773项全量、五套通用 quick validate 与两平台 dry-run 见 [`release-1.6.26-rc.md`](../../tests/evidence/release-1.6.26-rc.md)。SkillHub公开latest与签名、ClawHub公开latest和精确36文件已闭环；ClawHub为无Hook包，SkillHub三项审核仍为pending，期间不得重复提交。

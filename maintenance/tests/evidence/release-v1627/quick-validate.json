@@ -1,0 +1,62 @@
+[
+  {
+    "argv": [
+      "C:\\Users\\admin\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+      "-X",
+      "utf8",
+      "-B",
+      "C:\\Users\\admin\\.codex\\skills\\.system\\skill-creator\\scripts\\quick_validate.py",
+      "chinese-official-writing"
+    ],
+    "exit_code": 0,
+    "output": "Skill is valid!\r\n"
+  },
+  {
+    "argv": [
+      "C:\\Users\\admin\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+      "-X",
+      "utf8",
+      "-B",
+      "C:\\Users\\admin\\.codex\\skills\\.system\\skill-creator\\scripts\\quick_validate.py",
+      "packages/agent-skills/skills/chinese-official-writing"
+    ],
+    "exit_code": 0,
+    "output": "Skill is valid!\r\n"
+  },
+  {
+    "argv": [
+      "C:\\Users\\admin\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+      "-X",
+      "utf8",
+      "-B",
+      "C:\\Users\\admin\\.codex\\skills\\.system\\skill-creator\\scripts\\quick_validate.py",
+      "packages/qwen-code/skills/chinese-official-writing"
+    ],
+    "exit_code": 0,
+    "output": "Skill is valid!\r\n"
+  },
+  {
+    "argv": [
+      "C:\\Users\\admin\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+      "-X",
+      "utf8",
+      "-B",
+      "C:\\Users\\admin\\.codex\\skills\\.system\\skill-creator\\scripts\\quick_validate.py",
+      "packages/qwenwork/skills/chinese-official-writing"
+    ],
+    "exit_code": 0,
+    "output": "Skill is valid!\r\n"
+  },
+  {
+    "argv": [
+      "C:\\Users\\admin\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+      "-X",
+      "utf8",
+      "-B",
+      "C:\\Users\\admin\\.codex\\skills\\.system\\skill-creator\\scripts\\quick_validate.py",
+      "packages/hermes/skills/chinese-official-writing"
+    ],
+    "exit_code": 0,
+    "output": "Skill is valid!\r\n"
+  }
+]
