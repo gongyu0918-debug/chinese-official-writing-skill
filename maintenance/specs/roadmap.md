@@ -69,7 +69,7 @@
 
 ## IN_PROGRESS
 
-- `WR-028-REMEDIATION-PLAN-R1`：13份官方整改方案正文和6份规范性材料已完成结构校准；固定 `main@5869234b` 的五家25份基线已收齐，22份隔离有效，短整改4/5遗漏明示未启动状态，中长稿共同存在固定组织和过细流程外扩。现按 [reference审计](../tests/evidence/remediation-plan-r1/reference-audit.md)进入一条直达路由和一页窄叶候选；真实同题 A/B 通过前不补镜像、Hook、description或全量门。[基线结果](../tests/evidence/remediation-plan-r1/baseline-result.md)
+- `WR-028-REMEDIATION-PLAN-R2`：R1五家25份候选与基线形成21个双臂技术有效对；两个控制题10/10未读专叶，有效短稿未启动状态由基线1/5改善到候选3/4，且保持原因、影响和实际措施。Alibaba2中等审计候选相对基线遗漏“均尚未启动整改”，R1不直接进入工程门；现只强化状态先落位并定向复测，通过后再补镜像和直接断言。[R1结果](../tests/evidence/remediation-plan-r1/candidate-r1-result.md) [五提交复核](../tests/evidence/remediation-plan-r1/five-commit-review.md)
 
 ## REJECTED
 
