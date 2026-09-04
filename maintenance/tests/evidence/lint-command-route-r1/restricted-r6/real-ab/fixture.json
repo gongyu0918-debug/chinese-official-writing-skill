@@ -1,0 +1,140 @@
+{
+  "host": "Claude CLI MCP-only; not a native command A/B",
+  "case": {
+    "schema_version": 1,
+    "id": "NOTICE-LINT-01",
+    "baseline_commit": "5fbb2d26c49d0b780ad11fc4cff008854995ad3f",
+    "providers": {
+      "alibaba2": "alibaba-token-plan-2/deepseek-v4-flash-0731",
+      "minimax": "minimax-cn/MiniMax-M3"
+    },
+    "reasoning_effort": "max",
+    "material_filename": "通知原稿.md",
+    "material": "**关于报送读书交流活动报名信息的通知**\n\n各科室：\n\n青桥服务中心拟于2026年9月18日15时在三楼会议室举办读书交流活动。活动方案尚未审定，目前只征集报名意向，不作正式参加确认。\n\n请各科室于2026年9月10日17时前，将报名信息交综合科王青，联系电话为内线305。每科室可报1至2人，报名信息包括姓名、所在科室和联系电话，暂不提交交流材料。\n\n综合科将汇总报名信息，供活动筹备使用。交流主题、发言顺序尚待确定，报名不等于已列入发言名单。本次不收取费用，也不要求各科室自行安排接待。请按上述范围报送信息。\n\n青桥服务中心\n2026年9月5日\n",
+    "prompt": "使用当前项目 .agents/skills/chinese-official-writing/SKILL.md 对应的 Skill，对项目文件“通知原稿.md”做必要的局部修订。该文件是唯一事实来源，保留其中日期、数量、联系人及未决状态，不增加事实或安排。重点核查格式噪点及重复事项，实际运行 Skill 提供的 lint 辅助校对，再结合语义处理提示。最终只输出可直接使用的完整通知正文，不解释过程，不附检查结果。",
+    "required_groups": [
+      [
+        "关于报送读书交流活动报名信息的通知"
+      ],
+      [
+        "各科室"
+      ],
+      [
+        "青桥服务中心"
+      ],
+      [
+        "拟于2026年9月18日15时",
+        "拟于2026年9月18日下午3时"
+      ],
+      [
+        "三楼会议室"
+      ],
+      [
+        "活动方案尚未审定",
+        "活动方案尚待审定"
+      ],
+      [
+        "报名意向"
+      ],
+      [
+        "不作正式参加确认"
+      ],
+      [
+        "2026年9月10日17时",
+        "2026年9月10日下午5时"
+      ],
+      [
+        "综合科王青",
+        "王青"
+      ],
+      [
+        "内线305"
+      ],
+      [
+        "1至2人",
+        "1—2人",
+        "1-2人"
+      ],
+      [
+        "姓名"
+      ],
+      [
+        "所在科室",
+        "科室"
+      ],
+      [
+        "联系电话"
+      ],
+      [
+        "暂不提交交流材料"
+      ],
+      [
+        "汇总报名信息"
+      ],
+      [
+        "活动筹备"
+      ],
+      [
+        "交流主题"
+      ],
+      [
+        "发言顺序"
+      ],
+      [
+        "尚待确定",
+        "尚未确定"
+      ],
+      [
+        "报名不等于已列入发言名单"
+      ],
+      [
+        "不收取费用"
+      ],
+      [
+        "不要求各科室自行安排接待"
+      ],
+      [
+        "2026年9月5日"
+      ]
+    ],
+    "forbidden": [
+      "```",
+      "**",
+      "活动方案已审定"
+    ],
+    "quality_markers": [],
+    "candidate_product_commit": "5cb696fe"
+  },
+  "claude": "C:\\Users\\admin\\.local\\bin\\claude.EXE",
+  "claude_version": "2.1.195 (Claude Code)",
+  "python": "C:\\Users\\admin\\AppData\\Local\\hermes\\hermes-agent\\venv\\Scripts\\python.exe",
+  "python_sha256": "1ece0a42eec257fa8b36392d252cd0844100a969d36c9249627381cc4a65c156",
+  "harness_commit": "70d3c596b373a3e33dbf3df2187e6168683daaac",
+  "arms": {
+    "control": {
+      "commit": "5cb696fe0b1589803495e9a2a7c91d826d0b3a78",
+      "manifest": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\lint-command-route-r1\\output\\lint-command-route-r1\\restricted-r6\\snapshots\\control\\manifest.json",
+      "manifest_sha256": "9e24b931dac53730ee3a2dbed9b3f1a6bfb2fa2a6a157a1e3e092bea4d80385d"
+    },
+    "experiment": {
+      "commit": "70d3c596b373a3e33dbf3df2187e6168683daaac",
+      "manifest": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\lint-command-route-r1\\output\\lint-command-route-r1\\restricted-r6\\snapshots\\experiment\\manifest.json",
+      "manifest_sha256": "e8ad78c18b528c40041a42da74c59f6bcf6375389fde6efd5467708b74eecb84"
+    }
+  },
+  "tool_names": [
+    "mcp__audit__read_document",
+    "mcp__audit__prose_lint"
+  ],
+  "source_sha256": {
+    "maintenance\\tests\\evidence\\lint-command-route-r1\\restricted-r4\\stdio_tools.py": "72ade80156f333d4d83288ce7a90c1710c54e6cf3af148b4a6f6e6153be77431",
+    "maintenance\\tests\\evidence\\lint-command-route-r1\\restricted-r4\\run_restricted.py": "8e83a1cbc1369ecdf35ab83e78a3855bf2cb89fe568fdfd3a77739590fe1d16e",
+    "maintenance\\tests\\evidence\\v167-formulaic-mechanicality-real-first\\harness.py": "452d3f5ac8df257fbd220d7585ce0aef3dd0475a76a51181de77e0f729f0a6ab",
+    "maintenance\\tests\\evidence\\lint-command-route-r1\\restricted-r4\\check_contract.py": "639ea3bb860c7cdbe202e6524aaee4e149ae53ac916bd01949fb715b6f0fde57"
+  },
+  "system_prompt": "你是中文正式材料改稿助手。当前项目的 Skill 入口对应 read_document 的 ID SKILL.md；通知原稿.md 对应 ID D0。参考资料及脚本源码按工具列出的文档 ID 按需读取。校对工具是 prose_lint；没有文件系统、Shell 或网络工具。先读取本次 Skill 和 D0，再完成用户任务。",
+  "prompt_sha256": "f511acf8f4272494bec076c62fa1084a1dbdfe4aca804ef0ae69faf9f0d1d0e9",
+  "product_changed_documents": [
+    "SKILL.md"
+  ]
+}

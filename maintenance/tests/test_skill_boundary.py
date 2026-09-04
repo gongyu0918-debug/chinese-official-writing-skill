@@ -1422,13 +1422,13 @@ class SkillBoundaryTests(unittest.TestCase):
             "禁止直接誊抄代码、脚本、正则、模板库、大段 prompt、固定话术或模板正文",
             maintenance_history,
         )
-        self.assertIn("旧版长文已移至", agents)
-        self.assertIn("只供追溯，不读取为当前指令", agents)
+        self.assertIn("唯一活动开发纪律", agents)
+        self.assertIn("[历史归档](maintenance/docs/archive/AGENTS-legacy-20260819.md)仅供追溯", agents)
         for maintenance_gate in [
-            "真实稿失败时先修产品或停止候选",
-            "不得用扩大量表、增加裁判、重复全量测试或堆工程门替代质量改进",
-            "全量测试原则上只在准备合并或发布前运行一次",
-            "当前仓库和仓内包使用根 `LICENSE`（MIT）",
+            "真实稿失败先修产品或停候选",
+            "不靠扩大量表、裁判和工程门替代质量改进",
+            "全量门原则上只在合并或发布前跑一次",
+            "仓库及仓内包使用根 [LICENSE](LICENSE)（MIT）",
         ]:
             self.assertIn(maintenance_gate, agents)
         for runtime_prompt in [skill, workflow, checklist, genre_checklist, genre_playbooks]:
@@ -2029,10 +2029,10 @@ class SkillBoundaryTests(unittest.TestCase):
         ).read_text(encoding="utf-8")
 
         self.assertIn(
-            "python scripts/prose_lint.py --delivery-mode draft-body --format --structure <draft>",
+            'python "<Skill绝对目录>/scripts/prose_lint.py" --delivery-mode draft-body --format --structure "<草稿绝对路径>"',
             review,
         )
-        self.assertIn("`<draft>` 替换为待检查文件路径", review)
+        self.assertIn("本次已读 `SKILL.md` 所在目录和待检查文件的绝对路径", review)
         skill = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
         self.assertIn("检查终稿正文时按 `references/final-review-layers.md` 使用 `draft-body` 模式", skill)
 

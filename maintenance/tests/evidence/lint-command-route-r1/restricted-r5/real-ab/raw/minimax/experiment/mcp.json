@@ -1,0 +1,16 @@
+{
+  "mcpServers": {
+    "audit": {
+      "command": "C:\\Users\\admin\\AppData\\Local\\hermes\\hermes-agent\\venv\\Scripts\\python.exe",
+      "args": [
+        "-I",
+        "-B",
+        "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\lint-command-route-r1\\maintenance\\tests\\evidence\\lint-command-route-r1\\restricted-r4\\stdio_tools.py",
+        "--manifest",
+        "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\lint-command-route-r1\\output\\lint-command-route-r1\\restricted-r5\\snapshots\\experiment\\manifest.json",
+        "--log",
+        "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\lint-command-route-r1\\output\\lint-command-route-r1\\restricted-r5\\runs\\minimax\\experiment\\tool-calls.jsonl"
+      ]
+    }
+  }
+}

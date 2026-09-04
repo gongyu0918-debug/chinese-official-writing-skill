@@ -1,0 +1,130 @@
+{
+  "case": {
+    "schema_version": 1,
+    "id": "NOTICE-LINT-01",
+    "baseline_commit": "5fbb2d26c49d0b780ad11fc4cff008854995ad3f",
+    "providers": {
+      "alibaba2": "alibaba-token-plan-2/deepseek-v4-flash-0731",
+      "minimax": "minimax-cn/MiniMax-M3"
+    },
+    "reasoning_effort": "max",
+    "material_filename": "通知原稿.md",
+    "material": "**关于报送读书交流活动报名信息的通知**\n\n各科室：\n\n青桥服务中心拟于2026年9月18日15时在三楼会议室举办读书交流活动。活动方案尚未审定，目前只征集报名意向，不作正式参加确认。\n\n请各科室于2026年9月10日17时前，将报名信息交综合科王青，联系电话为内线305。每科室可报1至2人，报名信息包括姓名、所在科室和联系电话，暂不提交交流材料。\n\n综合科将汇总报名信息，供活动筹备使用。交流主题、发言顺序尚待确定，报名不等于已列入发言名单。本次不收取费用，也不要求各科室自行安排接待。请按上述范围报送信息。\n\n青桥服务中心\n2026年9月5日\n",
+    "prompt": "使用当前项目 .agents/skills/chinese-official-writing/SKILL.md 对应的 Skill，对项目文件“通知原稿.md”做必要的局部修订。该文件是唯一事实来源，保留其中日期、数量、联系人及未决状态，不增加事实或安排。重点核查格式噪点及重复事项，实际运行 Skill 提供的 lint 辅助校对，再结合语义处理提示。最终只输出可直接使用的完整通知正文，不解释过程，不附检查结果。",
+    "required_groups": [
+      [
+        "关于报送读书交流活动报名信息的通知"
+      ],
+      [
+        "各科室"
+      ],
+      [
+        "青桥服务中心"
+      ],
+      [
+        "拟于2026年9月18日15时",
+        "拟于2026年9月18日下午3时"
+      ],
+      [
+        "三楼会议室"
+      ],
+      [
+        "活动方案尚未审定",
+        "活动方案尚待审定"
+      ],
+      [
+        "报名意向"
+      ],
+      [
+        "不作正式参加确认"
+      ],
+      [
+        "2026年9月10日17时",
+        "2026年9月10日下午5时"
+      ],
+      [
+        "综合科王青",
+        "王青"
+      ],
+      [
+        "内线305"
+      ],
+      [
+        "1至2人",
+        "1—2人",
+        "1-2人"
+      ],
+      [
+        "姓名"
+      ],
+      [
+        "所在科室",
+        "科室"
+      ],
+      [
+        "联系电话"
+      ],
+      [
+        "暂不提交交流材料"
+      ],
+      [
+        "汇总报名信息"
+      ],
+      [
+        "活动筹备"
+      ],
+      [
+        "交流主题"
+      ],
+      [
+        "发言顺序"
+      ],
+      [
+        "尚待确定",
+        "尚未确定"
+      ],
+      [
+        "报名不等于已列入发言名单"
+      ],
+      [
+        "不收取费用"
+      ],
+      [
+        "不要求各科室自行安排接待"
+      ],
+      [
+        "2026年9月5日"
+      ]
+    ],
+    "forbidden": [
+      "```",
+      "**",
+      "活动方案已审定"
+    ],
+    "quality_markers": [],
+    "candidate_product_commit": "5cb696fe"
+  },
+  "harness_commit": "1419f5f5b53857f71668a6f74102f51ef6404fe7",
+  "cli": "C:\\Users\\admin\\AppData\\Local\\OpenAI\\Codex\\bin\\1e3e57cdf0634c02\\codex.exe",
+  "cli_version": "codex-cli 0.153.1",
+  "runtime": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\lint-command-route-r1\\output\\lint-command-route-r1\\r3 project\\runtime",
+  "arms": {
+    "baseline": {
+      "commit": "5fbb2d26c49d0b780ad11fc4cff008854995ad3f",
+      "file_count": 38,
+      "tree_fingerprint": "bf0e8b476ef3b38f3649b1677f52fe999a6574dfec7641d9b0b8a3b05b3fa38d"
+    },
+    "candidate": {
+      "commit": "5cb696fe0b1589803495e9a2a7c91d826d0b3a78",
+      "file_count": 38,
+      "tree_fingerprint": "a65fd3ff4a649759f8585b4aa1c9c3c05df8cacde2b46345e8b6e3b5096994e1"
+    }
+  },
+  "prompt_sha256": "f511acf8f4272494bec076c62fa1084a1dbdfe4aca804ef0ae69faf9f0d1d0e9",
+  "sources_sha256": {
+    "maintenance\\tests\\evidence\\lint-command-route-r1\\cases.json": "a30193ac5f50cbcbb98ff87a1ef5ab0e60df9717a818ca9cc418593aa0925b8d",
+    "maintenance\\tests\\evidence\\lint-command-route-r1\\run_eval.py": "ab6bef2d89678158fc3be87de5bfca2ef95ce9e426d090c60c418c81041f35ce",
+    "maintenance\\tests\\evidence\\complaint-reflection-r1\\desktop_writer.py": "2d054a2bb584dc7bde1752e89040de195cf1dd005325e6fcb535a5bf4eaeb887",
+    "maintenance\\tests\\evidence\\v1615-like-signal-short-writing-r1\\run_eval.py": "166e01af40b4ba8923c41b85a25fb79206a6c62c46935c619b73a23e9651b505"
+  }
+}

@@ -1,0 +1,108 @@
+{
+  "scope": "Two real R5 candidate drafts, unchanged, scanned by the root agent with the original documented command and the quoted absolute-path command in the same minimal project layout. No new model call, no Hook or native Skill installation claim.",
+  "baseline_commit": "5fbb2d26c49d0b780ad11fc4cff008854995ad3f",
+  "path_prototype_commit": "5cb696fe",
+  "script_sha256": "af6d241367986b40f139e80dd06c96b2c975d7bcf3ca16d85ea9950dec3b8806",
+  "cwd_has_spaces": true,
+  "python_version": "Python 3.11.16",
+  "records": [
+    {
+      "provider": "alibaba2",
+      "source_model": "alibaba-token-plan-2/deepseek-v4-flash-0731",
+      "source_experiment_commit": "4cd78c01205c44c8dd8ee63642aa630bb7863def",
+      "source_final_path": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\lint-command-route-r1\\output\\lint-command-route-r1\\restricted-r5\\runs\\alibaba2\\experiment\\final.txt",
+      "source_final_sha256": "e40ec89757b227bd800cf377f6a649d36ae7fdccf697534b3cd48f7ae6c61aae",
+      "body_exact": "关于报送读书交流活动报名信息的通知\n\n各科室：\n\n青桥服务中心拟于2026年9月18日15时在三楼会议室举办读书交流活动。活动方案尚未审定，目前只征集报名意向，不作正式参加确认。\n\n请各科室于2026年9月10日17时前，将报名信息交综合科王青，联系电话为内线305。每科室可报1至2人，报名信息包括姓名、所在科室和联系电话，暂不提交交流材料。\n\n综合科将汇总报名信息，供活动筹备使用。交流主题、发言顺序尚待确定，报名不等于已列入发言名单。本次不收取费用，也不要求各科室自行安排接待。请按上述范围报送信息。\n\n青桥服务中心\n2026年9月5日",
+      "body_unchanged_after_scan": true,
+      "executions": [
+        {
+          "arm": "baseline",
+          "document_command_after_path_substitution": "python scripts/prose_lint.py --delivery-mode draft-body --format --structure \"F:/Workspaces/chinese-official-writing-skill-worktrees/reference-route-audit-r1/output/command-cwd-real-draft-r1/project with spaces/alibaba2 real draft.md\"",
+          "argv": [
+            "python",
+            "scripts/prose_lint.py",
+            "--delivery-mode",
+            "draft-body",
+            "--format",
+            "--structure",
+            "F:/Workspaces/chinese-official-writing-skill-worktrees/reference-route-audit-r1/output/command-cwd-real-draft-r1/project with spaces/alibaba2 real draft.md"
+          ],
+          "cwd_relative": "output\\command-cwd-real-draft-r1\\project with spaces",
+          "return_code": 2,
+          "stdout": "",
+          "stderr": "python: can't open file 'F:\\\\Workspaces\\\\chinese-official-writing-skill-worktrees\\\\reference-route-audit-r1\\\\output\\\\command-cwd-real-draft-r1\\\\project with spaces\\\\scripts\\\\prose_lint.py': [Errno 2] No such file or directory\n"
+        },
+        {
+          "arm": "quoted_skill_root",
+          "document_command_after_path_substitution": "python \"F:/Workspaces/chinese-official-writing-skill-worktrees/reference-route-audit-r1/output/command-cwd-real-draft-r1/project with spaces/.agents/skills/chinese-official-writing/scripts/prose_lint.py\" --delivery-mode draft-body --format --structure \"F:/Workspaces/chinese-official-writing-skill-worktrees/reference-route-audit-r1/output/command-cwd-real-draft-r1/project with spaces/alibaba2 real draft.md\"",
+          "argv": [
+            "python",
+            "F:/Workspaces/chinese-official-writing-skill-worktrees/reference-route-audit-r1/output/command-cwd-real-draft-r1/project with spaces/.agents/skills/chinese-official-writing/scripts/prose_lint.py",
+            "--delivery-mode",
+            "draft-body",
+            "--format",
+            "--structure",
+            "F:/Workspaces/chinese-official-writing-skill-worktrees/reference-route-audit-r1/output/command-cwd-real-draft-r1/project with spaces/alibaba2 real draft.md"
+          ],
+          "cwd_relative": "output\\command-cwd-real-draft-r1\\project with spaces",
+          "return_code": 0,
+          "stdout": "No prose risks found.\n",
+          "stderr": ""
+        }
+      ]
+    },
+    {
+      "provider": "minimax",
+      "source_model": "minimax-cn/MiniMax-M3",
+      "source_experiment_commit": "4cd78c01205c44c8dd8ee63642aa630bb7863def",
+      "source_final_path": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\lint-command-route-r1\\output\\lint-command-route-r1\\restricted-r5\\runs\\minimax\\experiment\\final.txt",
+      "source_final_sha256": "5be3fc9dbffefd1b71722a2c809e5ddd1007e0898bb76c46d032bb0964e2e939",
+      "body_exact": "关于报送读书交流活动报名信息的通知\n\n各科室：\n\n青桥服务中心拟于2026年9月18日15时在三楼会议室举办读书交流活动。活动方案尚未审定，目前只征集报名意向，不作正式参加确认。\n\n请各科室于2026年9月10日17时前，将报名信息交综合科王青，联系电话为内线305。每科室可报1至2人，报名信息包括姓名、所在科室和联系电话，暂不提交交流材料。\n\n综合科将汇总报名信息，供活动筹备使用。交流主题、发言顺序尚待确定，报名不等于已列入发言名单。本次不收取费用，也不要求各科室自行安排接待。\n\n青桥服务中心\n2026年9月5日",
+      "body_unchanged_after_scan": true,
+      "executions": [
+        {
+          "arm": "baseline",
+          "document_command_after_path_substitution": "python scripts/prose_lint.py --delivery-mode draft-body --format --structure \"F:/Workspaces/chinese-official-writing-skill-worktrees/reference-route-audit-r1/output/command-cwd-real-draft-r1/project with spaces/minimax real draft.md\"",
+          "argv": [
+            "python",
+            "scripts/prose_lint.py",
+            "--delivery-mode",
+            "draft-body",
+            "--format",
+            "--structure",
+            "F:/Workspaces/chinese-official-writing-skill-worktrees/reference-route-audit-r1/output/command-cwd-real-draft-r1/project with spaces/minimax real draft.md"
+          ],
+          "cwd_relative": "output\\command-cwd-real-draft-r1\\project with spaces",
+          "return_code": 2,
+          "stdout": "",
+          "stderr": "python: can't open file 'F:\\\\Workspaces\\\\chinese-official-writing-skill-worktrees\\\\reference-route-audit-r1\\\\output\\\\command-cwd-real-draft-r1\\\\project with spaces\\\\scripts\\\\prose_lint.py': [Errno 2] No such file or directory\n"
+        },
+        {
+          "arm": "quoted_skill_root",
+          "document_command_after_path_substitution": "python \"F:/Workspaces/chinese-official-writing-skill-worktrees/reference-route-audit-r1/output/command-cwd-real-draft-r1/project with spaces/.agents/skills/chinese-official-writing/scripts/prose_lint.py\" --delivery-mode draft-body --format --structure \"F:/Workspaces/chinese-official-writing-skill-worktrees/reference-route-audit-r1/output/command-cwd-real-draft-r1/project with spaces/minimax real draft.md\"",
+          "argv": [
+            "python",
+            "F:/Workspaces/chinese-official-writing-skill-worktrees/reference-route-audit-r1/output/command-cwd-real-draft-r1/project with spaces/.agents/skills/chinese-official-writing/scripts/prose_lint.py",
+            "--delivery-mode",
+            "draft-body",
+            "--format",
+            "--structure",
+            "F:/Workspaces/chinese-official-writing-skill-worktrees/reference-route-audit-r1/output/command-cwd-real-draft-r1/project with spaces/minimax real draft.md"
+          ],
+          "cwd_relative": "output\\command-cwd-real-draft-r1\\project with spaces",
+          "return_code": 0,
+          "stdout": "No prose risks found.\n",
+          "stderr": ""
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "real_drafts": 2,
+    "native_process_invocations": 4,
+    "baseline_exit_2": 2,
+    "quoted_path_exit_0": 2,
+    "bodies_changed": 0
+  },
+  "return_code_boundary": "Exit 0 proves scanning completed, not that findings are absent; stdout is retained."
+}

@@ -1,0 +1,1460 @@
+{
+  "source_commit": "c7b9ff607fda54ce22e3f5cb304e707d050360f0",
+  "source_branch": "codex/lint-command-route-r1",
+  "scope": "maintenance/tests/evidence/lint-command-route-r1/",
+  "files": [
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/attempt-01-invalid-model-route/fixture.json",
+      "bytes": 4538,
+      "sha256": "4582849b94c7c42bfe32fe84c2c2e4d125c6327c383165a8f78cbd8f7467bb85"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/attempt-01-invalid-model-route/providers/alibaba2.json",
+      "bytes": 1834,
+      "sha256": "cc73be3f4d213128b90dd39e4c70da51da794792f4512dd119e54b0bc569bbdd"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/attempt-01-invalid-model-route/providers/minimax.json",
+      "bytes": 1788,
+      "sha256": "754fb7ef216d1efb01423afdb8fe888986cdaee99b235476fcb20a73f1ec0e4e"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/attempt-01-invalid-model-route/raw/alibaba2/baseline/invocation.json",
+      "bytes": 1990,
+      "sha256": "92105d4f29652acc33c6b844865f260d0cd978a321f32ab8b4ca78b895d57ce4"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/attempt-01-invalid-model-route/raw/alibaba2/baseline/record.json",
+      "bytes": 858,
+      "sha256": "1de3838431ef6d89a69e2748f225bba86cae9a334d8b154d911ecb8fdfb68977"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/attempt-01-invalid-model-route/raw/alibaba2/baseline/stderr.txt",
+      "bytes": 2478,
+      "sha256": "2dc37afd0a60e8b52cf25e7811483a918e75a1a691fc9645ecde139f8d26b1e6"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/attempt-01-invalid-model-route/raw/alibaba2/baseline/trace.jsonl",
+      "bytes": 1295,
+      "sha256": "7bfa24b6b76e556acfa060428d796cb79925a57240999a02754838850e878712"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/attempt-01-invalid-model-route/raw/alibaba2/candidate/invocation.json",
+      "bytes": 1994,
+      "sha256": "e6a47ffaa1f4501327fd73a444a70483d9c1a4f50f7117400ea4f8ad4b790c8f"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/attempt-01-invalid-model-route/raw/alibaba2/candidate/record.json",
+      "bytes": 859,
+      "sha256": "ae58e5ac9a541a42914d5682190f4cf52711879bffc104de056ef80477a00419"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/attempt-01-invalid-model-route/raw/alibaba2/candidate/stderr.txt",
+      "bytes": 2478,
+      "sha256": "14b2b8ea672ed737a93cce875b693e673cf826caaa0657e0846aa643b18b8a5e"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/attempt-01-invalid-model-route/raw/alibaba2/candidate/trace.jsonl",
+      "bytes": 1295,
+      "sha256": "2d7f97623a4fd075e32e0f1c3f29f0d2f97773434253a945cf96a44bc1e4b039"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/attempt-01-invalid-model-route/raw/minimax/baseline/invocation.json",
+      "bytes": 1964,
+      "sha256": "45ca77336b48fa79132db26e0bdf698ddff9ee42f21d035355961a7afddfe0d4"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/attempt-01-invalid-model-route/raw/minimax/baseline/record.json",
+      "bytes": 835,
+      "sha256": "bc4352f7149f2cf93d35ec9b704e4d021b559b8d64d553def9b629726ce74006"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/attempt-01-invalid-model-route/raw/minimax/baseline/stderr.txt",
+      "bytes": 2412,
+      "sha256": "04f366699eae5106f120974befc9d6ab0697b501367841a0f3c106d5d337b8d8"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/attempt-01-invalid-model-route/raw/minimax/baseline/trace.jsonl",
+      "bytes": 1273,
+      "sha256": "b85cde86a099696436c13114d0f2d49141f6790aada1331a89f257d9ef739509"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/attempt-01-invalid-model-route/raw/minimax/candidate/invocation.json",
+      "bytes": 1968,
+      "sha256": "e80f02e8ff3b33c4c8d57264f736eb47a0179e922728efc1ccef1734db65619b"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/attempt-01-invalid-model-route/raw/minimax/candidate/record.json",
+      "bytes": 836,
+      "sha256": "471c2e8acf7509ad77f64dda60c9aea0e77c0040a775f96f6e51ecee6d6f2405"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/attempt-01-invalid-model-route/raw/minimax/candidate/stderr.txt",
+      "bytes": 2412,
+      "sha256": "706eff2ebaedd82367558cbb78b67d6f357d21a1d777d1e1f4d12cc0c4f95f6a"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/attempt-01-invalid-model-route/raw/minimax/candidate/trace.jsonl",
+      "bytes": 1273,
+      "sha256": "16a83dde2de6fc131992d024a614fe75b5aa30b8d34985afbf0435aba09fb6c7"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/attempt-02-temp-sandbox/fixture.json",
+      "bytes": 4562,
+      "sha256": "375173dd6ce205352cd3c9e93868b5880d80e021b54fe268f59e4554a1afd9a1"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/attempt-02-temp-sandbox/providers/alibaba2.json",
+      "bytes": 146094,
+      "sha256": "5312eb8b34670f52465beaefc050f11a47412df8acd71ca5f867444749e74ce7"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/attempt-02-temp-sandbox/providers/minimax.json",
+      "bytes": 624550,
+      "sha256": "3f4825ff683605b50cf2fb390f2521d7cd8162b1457bc34071c24cb9031faf6e"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/attempt-02-temp-sandbox/raw/alibaba2/baseline/invocation.json",
+      "bytes": 1980,
+      "sha256": "87c96decbb09a02f69595ab80919d0b1457b63bccbfc4194460b9c922c066b58"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/attempt-02-temp-sandbox/raw/alibaba2/baseline/record.json",
+      "bytes": 145872,
+      "sha256": "1c363f6efb5bedcbf84b23127b71e091b4a6b050e1e4d101a374d372de94db77"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/attempt-02-temp-sandbox/raw/alibaba2/baseline/stderr.txt",
+      "bytes": 1198,
+      "sha256": "da608ddfd84585500dadc932e527cb42b2c2419b910961fe7dcd8bc7c74da870"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/attempt-02-temp-sandbox/raw/alibaba2/baseline/trace.jsonl",
+      "bytes": 149322,
+      "sha256": "0f6cddf82aab47a40917978e3b96ba90c68e940b299f10bad8022306ab348d87"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/attempt-02-temp-sandbox/raw/minimax/candidate/invocation.json",
+      "bytes": 1958,
+      "sha256": "da40a2ed8977ffdbb5940c5e05ab2674f19cefa11d34d1254ad63a2a332d98e8"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/attempt-02-temp-sandbox/raw/minimax/candidate/record.json",
+      "bytes": 624200,
+      "sha256": "29f65935d4ec2280a92817adc2505d1bf1c3231c1a3c37ff3e6152df0cd43547"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/attempt-02-temp-sandbox/raw/minimax/candidate/stderr.txt",
+      "bytes": 414,
+      "sha256": "2f113cfecf6fdfaf2a56631e39baa86561e01066c55c209da761553165c599ad"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/attempt-02-temp-sandbox/raw/minimax/candidate/trace.jsonl",
+      "bytes": 629871,
+      "sha256": "25822e65274edb398c0a34a1012fe299ffd145fa8ad21dcdd7cc7decf75a7982"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/attempt-03-real-ab/SHA256.json",
+      "bytes": 2881,
+      "sha256": "34304d4c18d2b4bda0f40a7126a8004a82a15be16e3d73242c95584eb886fc86"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/attempt-03-real-ab/alibaba2-baseline-manual-read.json",
+      "bytes": 1064,
+      "sha256": "a762fa9cace5b7d8618b3e0c5175e9c95f03b8702c269ded66d7ed30941a0892"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/attempt-03-real-ab/fixture.json",
+      "bytes": 4626,
+      "sha256": "94fdd1b66ae26c049008e1f553a6c7731023e493f160cee1f401d52130dc7867"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/attempt-03-real-ab/manual-review.json",
+      "bytes": 7897,
+      "sha256": "27dc4e524df0b354dd22d084bce666c71b1a10ef2bf82c4a1fb454647c4953f7"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/attempt-03-real-ab/providers/alibaba2.json",
+      "bytes": 193393,
+      "sha256": "3b266473cff6eaf1712bff9e1a48faabdf9e82f020bc6c4edf7a04348cf4f298"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/attempt-03-real-ab/providers/minimax.json",
+      "bytes": 147023,
+      "sha256": "a4707716afa1e8d933d0ec168a778458008e8b85547dff5aceaa5edf2462a5c3"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/attempt-03-real-ab/raw/alibaba2/baseline/final.txt",
+      "bytes": 700,
+      "sha256": "5be3fc9dbffefd1b71722a2c809e5ddd1007e0898bb76c46d032bb0964e2e939"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/attempt-03-real-ab/raw/alibaba2/baseline/invocation.json",
+      "bytes": 2173,
+      "sha256": "68cc15b5764863b2c92d5d2597f678a9a719368e0efc7f62507a0bb69c6b8bc7"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/attempt-03-real-ab/raw/alibaba2/baseline/record.json",
+      "bytes": 53707,
+      "sha256": "d92f4f57be1048b7fcb67497aad32f1687d152760f7f0363fd75fd7f154ed408"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/attempt-03-real-ab/raw/alibaba2/baseline/stderr.txt",
+      "bytes": 414,
+      "sha256": "51c57f658e5116a88cb427f03e1e5a78e77f5b8fe93d4d9a2322633a9561f87d"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/attempt-03-real-ab/raw/alibaba2/baseline/trace.jsonl",
+      "bytes": 57801,
+      "sha256": "527787080f2d76ca700b6a3964d7437aafff4764a4505d9748412d8bae7835e6"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/attempt-03-real-ab/raw/alibaba2/candidate/final.txt",
+      "bytes": 700,
+      "sha256": "5be3fc9dbffefd1b71722a2c809e5ddd1007e0898bb76c46d032bb0964e2e939"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/attempt-03-real-ab/raw/alibaba2/candidate/invocation.json",
+      "bytes": 2177,
+      "sha256": "925402214c1380e05a0d485e9ef8193bdbc7bae18ebeb08d74ea76c6d189d2aa"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/attempt-03-real-ab/raw/alibaba2/candidate/record.json",
+      "bytes": 139111,
+      "sha256": "e2340e8bc50be39ae29caf2f31e3e56e4c4641c0f2f38dc4f27c8b4cbac2bdc4"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/attempt-03-real-ab/raw/alibaba2/candidate/stderr.txt",
+      "bytes": 414,
+      "sha256": "ed9608e386b2d906dcbca0fd61ee4770b4e74bb089c5a648f22a27dc1405317b"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/attempt-03-real-ab/raw/alibaba2/candidate/trace.jsonl",
+      "bytes": 147690,
+      "sha256": "63d113fc59d456689a30236caa86a733551f86313dd072ec19bbf3e291cee24d"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/attempt-03-real-ab/raw/minimax/baseline/final.txt",
+      "bytes": 701,
+      "sha256": "6a43a71b05f0702faf61304c51d25b10a860b1cede19f83b751a4fdaa3fc07e2"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/attempt-03-real-ab/raw/minimax/baseline/invocation.json",
+      "bytes": 2147,
+      "sha256": "55125c0808c020e46502a6c4a31f37b8642e0be385d3acea7974288a3ba617d2"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/attempt-03-real-ab/raw/minimax/baseline/record.json",
+      "bytes": 91311,
+      "sha256": "41b5872d924e36f994af1381db219d824c5f3354ae3c62e2ccf37b2b8caf7394"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/attempt-03-real-ab/raw/minimax/baseline/stderr.txt",
+      "bytes": 414,
+      "sha256": "6ef5fa6efb21ca85ead26aca48f609807adf93ed64cc91629e605c6b5093d539"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/attempt-03-real-ab/raw/minimax/baseline/trace.jsonl",
+      "bytes": 96280,
+      "sha256": "ba82905bc86891dfef4b9dc90d5b050fd11dbc64057e1329f442364fc207818f"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/attempt-03-real-ab/raw/minimax/candidate/final.txt",
+      "bytes": 694,
+      "sha256": "75019d2f71fd282c153b40e24553a6c9612d54925767a8b9f98ef9f23f85007c"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/attempt-03-real-ab/raw/minimax/candidate/invocation.json",
+      "bytes": 2151,
+      "sha256": "71d9665fe33770135583606440417f350261024ffec497d731aba284885ccb30"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/attempt-03-real-ab/raw/minimax/candidate/record.json",
+      "bytes": 55123,
+      "sha256": "2fe933b8bf16b8a54188b1f37e3e7c19c13c26bb34852dbfaeadc942517f9484"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/attempt-03-real-ab/raw/minimax/candidate/stderr.txt",
+      "bytes": 414,
+      "sha256": "310d86fdc64dda051e46f2cdab34990961f92665f6a0b9603671f90287a11080"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/attempt-03-real-ab/raw/minimax/candidate/trace.jsonl",
+      "bytes": 58468,
+      "sha256": "3b98a76a74db7dd6ea41602209a406ca0fb6b8aa25f3518d367dee2e05aea922"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/attempt-03-real-ab/sandbox-preflight.json",
+      "bytes": 932,
+      "sha256": "8312915f05bd9b49c3a9a81b7695f003c2e89bf3f9182f4fa0ca7e7e0b5cd7c3"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/attempt-03-real-ab/tool-scope-excerpt.json",
+      "bytes": 8465,
+      "sha256": "f6edf5a352defa0860d1abdda17141aa971ebf68fd2a4a89bcdf6413dd90c0bb"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/cases.json",
+      "bytes": 2946,
+      "sha256": "a30193ac5f50cbcbb98ff87a1ef5ab0e60df9717a818ca9cc418593aa0925b8d"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/preregister.md",
+      "bytes": 6534,
+      "sha256": "45ebc236534ff57c710636d4984345627252a556a97bbc4c2be0fa8a1fe2ead8"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/r3-result.md",
+      "bytes": 6503,
+      "sha256": "119ac7fe97e47e422ea7143123e13cc245bfe9c01ad27582be5c06fe850d5595"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/reading-surface-audit.json",
+      "bytes": 32677,
+      "sha256": "146a20c69ddbe0be98d9d4bbf0129cb31ab40fb5b95cfd07fd88609d17269a3d"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/restricted-r4/check_contract.py",
+      "bytes": 6159,
+      "sha256": "639ea3bb860c7cdbe202e6524aaee4e149ae53ac916bd01949fb715b6f0fde57"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/restricted-r4/contract-attempt-01/contract/control-calls.jsonl",
+      "bytes": 4760,
+      "sha256": "17d770bda79abe63c2609e58462201fd82e26891aafad926b08e048aea9d09d1"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/restricted-r4/contract-attempt-01/contract/control-stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/restricted-r4/contract-attempt-01/fixture.json",
+      "bytes": 5425,
+      "sha256": "19039e2091b447d3fdc64a28c63c36c6240de7a7916b9cb5693c353c6486a51f"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/restricted-r4/preregister.md",
+      "bytes": 5130,
+      "sha256": "9912995cb68752bff8944d47a1a21578b66a2cf6629ea6295fdebafbe4a58404"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/restricted-r4/real-ab/.gitattributes",
+      "bytes": 31,
+      "sha256": "7a811428379ad200bfd427ade176d3f28c7ee6fb0b421a40c859a84db507e030"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/restricted-r4/real-ab/SHA256.json",
+      "bytes": 3973,
+      "sha256": "cee3754b93f51674ea13102cb34b86d2b2db0da738440d1bcddb7cecac6e1158"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/restricted-r4/real-ab/contract.json",
+      "bytes": 87627,
+      "sha256": "f6bafe81b9213b337c20aef519b64a5960a51763fa1e059f2ea8ef317a75cc2f"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/restricted-r4/real-ab/contract/control-calls.jsonl",
+      "bytes": 13016,
+      "sha256": "deeb6624174eb84ba11d65c4070750fc2966a01dd2cfa756d423c20069eda218"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/restricted-r4/real-ab/contract/control-stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/restricted-r4/real-ab/contract/experiment-calls.jsonl",
+      "bytes": 13025,
+      "sha256": "6c4de386d2d7358ed7cbba635bdfae9c9c7d681ab95df31da1c0d2bd833d525f"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/restricted-r4/real-ab/contract/experiment-stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/restricted-r4/real-ab/fixture.json",
+      "bytes": 5431,
+      "sha256": "0188bfcba09430625f6b444e4d60b29e99d88f3ccfa951a932e79b41a8f2c5d8"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/restricted-r4/real-ab/manifests/control.json",
+      "bytes": 13754,
+      "sha256": "437cc34fffbeb9e92c45678838a1451c514f1f863c9fe27faf64661283f67f7f"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/restricted-r4/real-ab/manifests/experiment.json",
+      "bytes": 13868,
+      "sha256": "2a9d34267b20c9d2f463537f2abb98d2660487247f5f865342b50e998f3af920"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/restricted-r4/real-ab/metrics.json",
+      "bytes": 9794,
+      "sha256": "98e94becf3aecf2b1fa7e425be35e9cb94d111fe60ec47d87e7bd46af4f5e764"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/restricted-r4/real-ab/raw/alibaba2/control/final.txt",
+      "bytes": 733,
+      "sha256": "e40ec89757b227bd800cf377f6a649d36ae7fdccf697534b3cd48f7ae6c61aae"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/restricted-r4/real-ab/raw/alibaba2/control/invocation.json",
+      "bytes": 2027,
+      "sha256": "681e652663c7c44d054b37495d8ef0bed467f21c7e0a3b8b5564bc26b43a67e6"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/restricted-r4/real-ab/raw/alibaba2/control/mcp.json",
+      "bytes": 772,
+      "sha256": "d6fe83584a82f9ae1f85115bb3f0fd3bbc1ae0855277b59546e95624751d493d"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/restricted-r4/real-ab/raw/alibaba2/control/receipt.json",
+      "bytes": 7305,
+      "sha256": "ba42100a5138876ed7f5c9aafe393a488f55d0721885718fafd8701b9ca1c741"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/restricted-r4/real-ab/raw/alibaba2/control/stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/restricted-r4/real-ab/raw/alibaba2/control/stream.jsonl",
+      "bytes": 580245,
+      "sha256": "db5bd9ab474f85341f07086a237eb94d8a493a7d85815627ab82ac614d275fe4"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/restricted-r4/real-ab/raw/alibaba2/control/tool-calls.jsonl",
+      "bytes": 3912,
+      "sha256": "33ea4e19b30f1080cca563f202a516092558b60b5eb58a35d18ebffb492afc0f"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/restricted-r4/real-ab/raw/alibaba2/experiment/final.txt",
+      "bytes": 733,
+      "sha256": "e40ec89757b227bd800cf377f6a649d36ae7fdccf697534b3cd48f7ae6c61aae"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/restricted-r4/real-ab/raw/alibaba2/experiment/invocation.json",
+      "bytes": 2033,
+      "sha256": "86c8cf6c8b992d6813ecf40acba261de4e2d7f07f61de895030c30ad633e2b95"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/restricted-r4/real-ab/raw/alibaba2/experiment/mcp.json",
+      "bytes": 778,
+      "sha256": "57836dc7c20edd5a0c73c93aa9f58359921414b03937683a0b77f273aa7e5492"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/restricted-r4/real-ab/raw/alibaba2/experiment/receipt.json",
+      "bytes": 10049,
+      "sha256": "b7aaf3767bf662112e92d0ef8a878ccf3eba19c40e10f9a8769b73212779b72c"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/restricted-r4/real-ab/raw/alibaba2/experiment/stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/restricted-r4/real-ab/raw/alibaba2/experiment/stream.jsonl",
+      "bytes": 485403,
+      "sha256": "89400fb394abf0ae38f514e67372a042676f4df0fffa9b08dd5df2a51059b8df"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/restricted-r4/real-ab/raw/alibaba2/experiment/tool-calls.jsonl",
+      "bytes": 6307,
+      "sha256": "636423aa05d509071332713e02d4be41213ac036e12c3f14d1a8392717988885"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/restricted-r4/real-ab/raw/minimax/control/final.txt",
+      "bytes": 700,
+      "sha256": "5be3fc9dbffefd1b71722a2c809e5ddd1007e0898bb76c46d032bb0964e2e939"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/restricted-r4/real-ab/raw/minimax/control/invocation.json",
+      "bytes": 1981,
+      "sha256": "da4dcf763a7f23a6bd57d3a82030a904d3506bf4a13456693b273729b18d25b3"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/restricted-r4/real-ab/raw/minimax/control/mcp.json",
+      "bytes": 771,
+      "sha256": "c0f3cc91bae797efa8cd8d70d0944c3632073c5f5ee0890ff6e3d7b44b8bb38f"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/restricted-r4/real-ab/raw/minimax/control/receipt.json",
+      "bytes": 10294,
+      "sha256": "a3f934eef46e2673a21852cfdf346d5603a35505306cece52d2a90b7ed7a5e31"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/restricted-r4/real-ab/raw/minimax/control/stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/restricted-r4/real-ab/raw/minimax/control/stream.jsonl",
+      "bytes": 428842,
+      "sha256": "7a7e20ba10b1a3de10b739466ae532e176f1fa0067f14fde4c79a91cb87dbc2d"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/restricted-r4/real-ab/raw/minimax/control/tool-calls.jsonl",
+      "bytes": 6743,
+      "sha256": "70ea5fb2a838055835ae4cfba11ab5ac04073ad36ac88eb297defef1f83685b4"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/restricted-r4/real-ab/raw/minimax/experiment/final.txt",
+      "bytes": 733,
+      "sha256": "e40ec89757b227bd800cf377f6a649d36ae7fdccf697534b3cd48f7ae6c61aae"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/restricted-r4/real-ab/raw/minimax/experiment/invocation.json",
+      "bytes": 1987,
+      "sha256": "6c6362b27e53a29452a16ffe7a6f2238ffc540697f72bf08c4e0f91c5770c597"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/restricted-r4/real-ab/raw/minimax/experiment/mcp.json",
+      "bytes": 777,
+      "sha256": "815c880499c9f92d6cc9e62271774c1eb2de3f030ee60e5bc25da9278e8bb00e"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/restricted-r4/real-ab/raw/minimax/experiment/receipt.json",
+      "bytes": 8670,
+      "sha256": "7644341bb4c843c30ad168ae106274fc17bcda3034fc778c6dd1b6fa83c33b1d"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/restricted-r4/real-ab/raw/minimax/experiment/stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/restricted-r4/real-ab/raw/minimax/experiment/stream.jsonl",
+      "bytes": 444472,
+      "sha256": "b16a26f0e0a011c2049ad8a68530841d7e89cbfd2e10b9c0a47116cd5bed825a"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/restricted-r4/real-ab/raw/minimax/experiment/tool-calls.jsonl",
+      "bytes": 5325,
+      "sha256": "c25ce1690a35f1511583170a372a3da4c43c6e3ab57a64303d6f180e100c1a6f"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/restricted-r4/result.md",
+      "bytes": 7821,
+      "sha256": "2f19bcb6cc51abdb9967cd6447dde22ade99368f939d4a8b22bbc4d1ef0c296a"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/restricted-r4/run_restricted.py",
+      "bytes": 13904,
+      "sha256": "8e83a1cbc1369ecdf35ab83e78a3855bf2cb89fe568fdfd3a77739590fe1d16e"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/restricted-r4/stdio_tools.py",
+      "bytes": 5148,
+      "sha256": "72ade80156f333d4d83288ce7a90c1710c54e6cf3af148b4a6f6e6153be77431"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/restricted-r5/preregister.md",
+      "bytes": 3236,
+      "sha256": "899b4665f58fe16597ee81e4683965d4950c40d9aa2d50b704277cbea168bab6"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/restricted-r5/real-ab/.gitattributes",
+      "bytes": 31,
+      "sha256": "7a811428379ad200bfd427ade176d3f28c7ee6fb0b421a40c859a84db507e030"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/restricted-r5/real-ab/SHA256.json",
+      "bytes": 3973,
+      "sha256": "5922bc0652e98bf578b807ade1fed7a6bc806611bc282cd6f6b5f690447ca923"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/restricted-r5/real-ab/contract.json",
+      "bytes": 88899,
+      "sha256": "db33aa144ea7a9a231f8f1d4097605c5fd5fbd680926170d085b32e706d2c90f"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/restricted-r5/real-ab/contract/control-calls.jsonl",
+      "bytes": 13007,
+      "sha256": "1d744c69a3343094ea6fa246a6b891fcc7ffc590d490e8915ecad18162989e0d"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/restricted-r5/real-ab/contract/control-stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/restricted-r5/real-ab/contract/experiment-calls.jsonl",
+      "bytes": 13016,
+      "sha256": "3c5038b1c0a6feed71be309b21128a4a23afe7e42fcb15ad61b16000bcc6d5c8"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/restricted-r5/real-ab/contract/experiment-stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/restricted-r5/real-ab/fixture.json",
+      "bytes": 5561,
+      "sha256": "2f1ed0301ebecdc5c278dad0fea02851e1b32d6ed1bdc1fa4317614275767789"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/restricted-r5/real-ab/manifests/control.json",
+      "bytes": 13640,
+      "sha256": "a7f7fb9f0c288fe58b777ede74977c8e7f1911d08959e035c35ffab230fc88fd"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/restricted-r5/real-ab/manifests/experiment.json",
+      "bytes": 13754,
+      "sha256": "88deb23f7d9c8a4711650372838186a0c12021d6dec7d3c9489ab67932732364"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/restricted-r5/real-ab/metrics.json",
+      "bytes": 9850,
+      "sha256": "9129eaacccd7eea81a721a0a2282211ef8cf21ea8abd25a9056025ef5de6a931"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/restricted-r5/real-ab/raw/alibaba2/control/final.txt",
+      "bytes": 694,
+      "sha256": "2536dbea5e0d90f39cbb9d7f40b188e5f11804f9b020548ed6be94ee4d59b118"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/restricted-r5/real-ab/raw/alibaba2/control/invocation.json",
+      "bytes": 2021,
+      "sha256": "18fb709facaff49680c8684115c3cdf5e637a9add2bf9747442ab14ca175e5da"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/restricted-r5/real-ab/raw/alibaba2/control/mcp.json",
+      "bytes": 766,
+      "sha256": "5cde5a8d877a3faedce405707e4bf5ee6953e23a5c453fc613ae9af05e3d3d0c"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/restricted-r5/real-ab/raw/alibaba2/control/receipt.json",
+      "bytes": 10315,
+      "sha256": "8e5f2bc7824ad2c49f8facf1af7dcc7fd3904ecb470627cadc53564130130f88"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/restricted-r5/real-ab/raw/alibaba2/control/stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/restricted-r5/real-ab/raw/alibaba2/control/stream.jsonl",
+      "bytes": 965286,
+      "sha256": "252be909de6a52a040eda489af02eefb5a4f1c2efa54d3336e5bd4cc249310db"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/restricted-r5/real-ab/raw/alibaba2/control/tool-calls.jsonl",
+      "bytes": 6544,
+      "sha256": "18430ad38faf58af2ec07d162fdefa77a816a03260b294d5ea8872aa3434aaac"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/restricted-r5/real-ab/raw/alibaba2/experiment/final.txt",
+      "bytes": 733,
+      "sha256": "e40ec89757b227bd800cf377f6a649d36ae7fdccf697534b3cd48f7ae6c61aae"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/restricted-r5/real-ab/raw/alibaba2/experiment/invocation.json",
+      "bytes": 2027,
+      "sha256": "c219225658934d6e4663941da9eb98b177b357488f9018a7600518dbe010fc12"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/restricted-r5/real-ab/raw/alibaba2/experiment/mcp.json",
+      "bytes": 772,
+      "sha256": "316fd824fa66fb8a5213214cbbc5d1703b8f1fff1ecc4f120cfa8a61ae6e7f28"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/restricted-r5/real-ab/raw/alibaba2/experiment/receipt.json",
+      "bytes": 9782,
+      "sha256": "0789fa0a12572cc2daaa41b95de6f7f9eda2f103630b8dd9ae98a8fe35e7f162"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/restricted-r5/real-ab/raw/alibaba2/experiment/stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/restricted-r5/real-ab/raw/alibaba2/experiment/stream.jsonl",
+      "bytes": 817718,
+      "sha256": "6aa1207d521cdf4ff912e8ffa82f67a5a06984fd13e1a9d862a299dc8b7076bd"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/restricted-r5/real-ab/raw/alibaba2/experiment/tool-calls.jsonl",
+      "bytes": 6084,
+      "sha256": "01f81762602f356a7d983b3b9ec4215f65934b8fb671034528b88aee280d239c"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/restricted-r5/real-ab/raw/minimax/control/final.txt",
+      "bytes": 700,
+      "sha256": "5be3fc9dbffefd1b71722a2c809e5ddd1007e0898bb76c46d032bb0964e2e939"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/restricted-r5/real-ab/raw/minimax/control/invocation.json",
+      "bytes": 1975,
+      "sha256": "b2d92cd66329c412c84572be4dea640acd73fd93497b550008d81ec4e7da56a0"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/restricted-r5/real-ab/raw/minimax/control/mcp.json",
+      "bytes": 765,
+      "sha256": "cc122a9847e9183a958529662c3d4a9fe61366b849fe3294e616749bebfac1ab"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/restricted-r5/real-ab/raw/minimax/control/receipt.json",
+      "bytes": 9931,
+      "sha256": "84e69789bec307f69cd6b6f4189fe7bdea0cea1658e6662d64acdc8693772e07"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/restricted-r5/real-ab/raw/minimax/control/stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/restricted-r5/real-ab/raw/minimax/control/stream.jsonl",
+      "bytes": 424475,
+      "sha256": "3bf6bf88061cf24561c08a113c81d3230bf05974b32ffe949ac61e847ed31334"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/restricted-r5/real-ab/raw/minimax/control/tool-calls.jsonl",
+      "bytes": 6391,
+      "sha256": "0028baaefd1ce5453d3583cc0c49f25f34b3e3cac93688d5b04a8be81b930947"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/restricted-r5/real-ab/raw/minimax/experiment/final.txt",
+      "bytes": 700,
+      "sha256": "5be3fc9dbffefd1b71722a2c809e5ddd1007e0898bb76c46d032bb0964e2e939"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/restricted-r5/real-ab/raw/minimax/experiment/invocation.json",
+      "bytes": 1981,
+      "sha256": "9f399bd00ae99970f6784f94e635e06d901ac613bf25ecd27ef4a56cc244de2d"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/restricted-r5/real-ab/raw/minimax/experiment/mcp.json",
+      "bytes": 771,
+      "sha256": "78dc79bb9c74820a9639bf083a5cbf9935374dc02b2a54fe85047b4485140de6"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/restricted-r5/real-ab/raw/minimax/experiment/receipt.json",
+      "bytes": 8992,
+      "sha256": "600749be08777b0764005a70a31fe332c6f50cc6a7f8dc6d7aa7ae9067292414"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/restricted-r5/real-ab/raw/minimax/experiment/stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/restricted-r5/real-ab/raw/minimax/experiment/stream.jsonl",
+      "bytes": 567433,
+      "sha256": "abfb066474758fbe3abbeabbe6aea74fabb5261f3651c4a780fd3bdcec779fbd"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/restricted-r5/real-ab/raw/minimax/experiment/tool-calls.jsonl",
+      "bytes": 5462,
+      "sha256": "b58daa95e9b96a48b1a0ba0d27d624ce1b2d572d3d6edd4bc7a0b7ac5064d211"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/restricted-r5/result.md",
+      "bytes": 5762,
+      "sha256": "37fc1cd015be5d6246efc893f1f3cd106e10a9559e9214efa6df6c47905ea3f0"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/restricted-r6/preregister.md",
+      "bytes": 3331,
+      "sha256": "9e45b898babd8211e22dc4d180a42f5b3bbb2f051424d211359af53a72f991a6"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/restricted-r6/real-ab/.gitattributes",
+      "bytes": 31,
+      "sha256": "7a811428379ad200bfd427ade176d3f28c7ee6fb0b421a40c859a84db507e030"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/restricted-r6/real-ab/SHA256.json",
+      "bytes": 3973,
+      "sha256": "d97fdd769b7776777e5fa5072363156390c5c95e2ca59c0b9104df3ecc9021f2"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/restricted-r6/real-ab/contract.json",
+      "bytes": 88993,
+      "sha256": "132eea279a9f897502a374ab43da61d1bf361a926b2ed9e6b076ce7ea310e784"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/restricted-r6/real-ab/contract/control-calls.jsonl",
+      "bytes": 13007,
+      "sha256": "59f286bd3aab7929d98e4e29d166ab78258b693caf9958f75cc7800492b583e7"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/restricted-r6/real-ab/contract/control-stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/restricted-r6/real-ab/contract/experiment-calls.jsonl",
+      "bytes": 13016,
+      "sha256": "4955415e6d950ca177e9e4e08c7a5821913fe66b7e37c2699dfb071bed08dc40"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/restricted-r6/real-ab/contract/experiment-stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/restricted-r6/real-ab/fixture.json",
+      "bytes": 5561,
+      "sha256": "db473078e5e2d01c27dd62ff9e39c19bc8418c9a75d6f6dd173902a5edadd426"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/restricted-r6/real-ab/manifests/control.json",
+      "bytes": 13640,
+      "sha256": "9e24b931dac53730ee3a2dbed9b3f1a6bfb2fa2a6a157a1e3e092bea4d80385d"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/restricted-r6/real-ab/manifests/experiment.json",
+      "bytes": 13754,
+      "sha256": "e8ad78c18b528c40041a42da74c59f6bcf6375389fde6efd5467708b74eecb84"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/restricted-r6/real-ab/metrics.json",
+      "bytes": 11000,
+      "sha256": "cbf021daa463cb9f0cf846a2fcba8e07cebc1d24c8e34e09427a4fa67a7b04f9"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/restricted-r6/real-ab/raw/alibaba2/control/final.txt",
+      "bytes": 700,
+      "sha256": "5be3fc9dbffefd1b71722a2c809e5ddd1007e0898bb76c46d032bb0964e2e939"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/restricted-r6/real-ab/raw/alibaba2/control/invocation.json",
+      "bytes": 2021,
+      "sha256": "8331289001daa4215a13c1fc498980e5fb22e10e16361730b90e21c9d6010e3d"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/restricted-r6/real-ab/raw/alibaba2/control/mcp.json",
+      "bytes": 766,
+      "sha256": "7d56bb49b53c830a43f5fa87168250f874a040667163d2fc24e69f90131bf228"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/restricted-r6/real-ab/raw/alibaba2/control/receipt.json",
+      "bytes": 10059,
+      "sha256": "923cbf8c7a7f4bf0c364f22d6faf349fc6281455c9f9aea3507b198076ded787"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/restricted-r6/real-ab/raw/alibaba2/control/stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/restricted-r6/real-ab/raw/alibaba2/control/stream.jsonl",
+      "bytes": 870067,
+      "sha256": "9e28a6c77dcf2c90f6ffc29ca693eb5fb372918eed2c2aeace5491e5366e4c3d"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/restricted-r6/real-ab/raw/alibaba2/control/tool-calls.jsonl",
+      "bytes": 6247,
+      "sha256": "724831255c9166c443165ca0a1fb5b1063cda091fbaed2c95a622d36cc6458c1"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/restricted-r6/real-ab/raw/alibaba2/experiment/final.txt",
+      "bytes": 734,
+      "sha256": "bd5ed64458ff225d80e7e7e65c131111776f5ae5bbc46fe496100402dff48bca"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/restricted-r6/real-ab/raw/alibaba2/experiment/invocation.json",
+      "bytes": 2027,
+      "sha256": "406ddfd1092abc9598b9af2fb0812bafbbd9a19c513d4f8a5291b6329325bc0b"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/restricted-r6/real-ab/raw/alibaba2/experiment/mcp.json",
+      "bytes": 772,
+      "sha256": "68c5a4e0e6d1244790a54bd6badffc11234f74279ad0a1e839cf1f03becce40c"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/restricted-r6/real-ab/raw/alibaba2/experiment/receipt.json",
+      "bytes": 9801,
+      "sha256": "474fc36c7a6236d3d05a316fdd485e1f879feb5a45d6413903af689967a41679"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/restricted-r6/real-ab/raw/alibaba2/experiment/stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/restricted-r6/real-ab/raw/alibaba2/experiment/stream.jsonl",
+      "bytes": 868357,
+      "sha256": "7f1e1d8868867419a320073b11dd3849d73466d82a87c7c4dcfbe0b351b9096a"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/restricted-r6/real-ab/raw/alibaba2/experiment/tool-calls.jsonl",
+      "bytes": 6102,
+      "sha256": "d54baec641ad11b6846502b5fcf2d1b5208a2aad97e97fa1797cabad93e640b4"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/restricted-r6/real-ab/raw/minimax/control/final.txt",
+      "bytes": 661,
+      "sha256": "ab0c49841574622287eaabce822e13e6bd5af8a130628c8d26d7c7f2641765e6"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/restricted-r6/real-ab/raw/minimax/control/invocation.json",
+      "bytes": 1975,
+      "sha256": "f158461f808c5a9f8e605280d44b9b08da67969069ec46b0a1b4a0ea4a360fcb"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/restricted-r6/real-ab/raw/minimax/control/mcp.json",
+      "bytes": 765,
+      "sha256": "3414468c6149ca3eec1a4e5357c6d3aa37360593037a0e076c92537fbccbc765"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/restricted-r6/real-ab/raw/minimax/control/receipt.json",
+      "bytes": 8379,
+      "sha256": "53a0521028e5711a5ab9a7ae3e5af48b7e5a975e0b664dd648141d45a4a3c682"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/restricted-r6/real-ab/raw/minimax/control/stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/restricted-r6/real-ab/raw/minimax/control/stream.jsonl",
+      "bytes": 332409,
+      "sha256": "e939f5e3ac9782f93bad0d16f83f47f238e261a3dc8c3a5dab2837007ca6a627"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/restricted-r6/real-ab/raw/minimax/control/tool-calls.jsonl",
+      "bytes": 5144,
+      "sha256": "153c6c9a027f56f6f23ee8ca21951ecb2aa60ff9021c5fa30e90fc9d5ef29b00"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/restricted-r6/real-ab/raw/minimax/experiment/final.txt",
+      "bytes": 700,
+      "sha256": "5be3fc9dbffefd1b71722a2c809e5ddd1007e0898bb76c46d032bb0964e2e939"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/restricted-r6/real-ab/raw/minimax/experiment/invocation.json",
+      "bytes": 1981,
+      "sha256": "483ac30bcf93bcd8134d9c9a74d00bd0de8efaa431ee5024c5c20a1678c4e1fa"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/restricted-r6/real-ab/raw/minimax/experiment/mcp.json",
+      "bytes": 771,
+      "sha256": "4da7be8d366cb08116c37c115189476360ebb5d329810b7e0d58be31882cc86d"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/restricted-r6/real-ab/raw/minimax/experiment/receipt.json",
+      "bytes": 8760,
+      "sha256": "b17686bab6e9a0d7f86940422cf6cde671d37d71533763d73d4c9e93f81b5650"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/restricted-r6/real-ab/raw/minimax/experiment/stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/restricted-r6/real-ab/raw/minimax/experiment/stream.jsonl",
+      "bytes": 965714,
+      "sha256": "6777218a1958ac7818fd1686349c28d4890b7c16d2b0ae177275ff42fa226250"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/restricted-r6/real-ab/raw/minimax/experiment/tool-calls.jsonl",
+      "bytes": 5151,
+      "sha256": "581d7c0b92a2db8c7e0c762f9902d60266dc698d86e97fc183b892bb83cb0519"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/restricted-r6/result.md",
+      "bytes": 6191,
+      "sha256": "dcf88b258736b629bef7fe4f118b6c6b79fc125fc97c5513cfe3da4826523a10"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/result.md",
+      "bytes": 5344,
+      "sha256": "8d1a1a4299ccd7bc1252b0b88ea3a7d2c9231d85036044e528b850b0f8543243"
+    },
+    {
+      "path": "maintenance/tests/evidence/lint-command-route-r1/run_eval.py",
+      "bytes": 11439,
+      "sha256": "ab6bef2d89678158fc3be87de5bfca2ef95ce9e426d090c60c418c81041f35ce"
+    }
+  ],
+  "source_kind": "raw Git blob via git cat-file --batch",
+  "initial_archive_conversion": {
+    "first_staged_verification_failed_at": "maintenance/tests/evidence/lint-command-route-r1/attempt-01-invalid-model-route/fixture.json",
+    "cause": "git archive produced checkout CRLF for text files while source Git blobs have LF",
+    "resolution": "replace archive copies with exact source Git blob bytes before committing; protected raw traces unchanged",
+    "converted_text_files": [
+      {
+        "path": "maintenance/tests/evidence/lint-command-route-r1/attempt-01-invalid-model-route/fixture.json",
+        "archive_sha256": "8b991d77a87c8a7fa27a5d2e5eed9b567f6768e274c483738c39c4986bb19341",
+        "source_git_blob_sha256": "4582849b94c7c42bfe32fe84c2c2e4d125c6327c383165a8f78cbd8f7467bb85"
+      },
+      {
+        "path": "maintenance/tests/evidence/lint-command-route-r1/attempt-01-invalid-model-route/providers/alibaba2.json",
+        "archive_sha256": "9d30ef1fe442b97f2184f998d331702095b7a24020e1e8e3fcc6aee57d00c7ec",
+        "source_git_blob_sha256": "cc73be3f4d213128b90dd39e4c70da51da794792f4512dd119e54b0bc569bbdd"
+      },
+      {
+        "path": "maintenance/tests/evidence/lint-command-route-r1/attempt-01-invalid-model-route/providers/minimax.json",
+        "archive_sha256": "31c2bcd632bd4b13a0aded909aec9faa1734e8e0100c96bf990193cb96d017ea",
+        "source_git_blob_sha256": "754fb7ef216d1efb01423afdb8fe888986cdaee99b235476fcb20a73f1ec0e4e"
+      },
+      {
+        "path": "maintenance/tests/evidence/lint-command-route-r1/attempt-01-invalid-model-route/raw/alibaba2/baseline/invocation.json",
+        "archive_sha256": "cab3457aa4aa3d2ed4be3a7ff02eee47b1f409dd3bacec1ceced99b4240f6d79",
+        "source_git_blob_sha256": "92105d4f29652acc33c6b844865f260d0cd978a321f32ab8b4ca78b895d57ce4"
+      },
+      {
+        "path": "maintenance/tests/evidence/lint-command-route-r1/attempt-01-invalid-model-route/raw/alibaba2/baseline/record.json",
+        "archive_sha256": "4e79a01aaf4e76b27153c790fa8dde4c91e548ee10433b6313ab8eda214ec94c",
+        "source_git_blob_sha256": "1de3838431ef6d89a69e2748f225bba86cae9a334d8b154d911ecb8fdfb68977"
+      },
+      {
+        "path": "maintenance/tests/evidence/lint-command-route-r1/attempt-01-invalid-model-route/raw/alibaba2/baseline/stderr.txt",
+        "archive_sha256": "81058d5b34fc6893648c353d159bd51dfe93e9a6c9606ad387428fb00c5c06c4",
+        "source_git_blob_sha256": "2dc37afd0a60e8b52cf25e7811483a918e75a1a691fc9645ecde139f8d26b1e6"
+      },
+      {
+        "path": "maintenance/tests/evidence/lint-command-route-r1/attempt-01-invalid-model-route/raw/alibaba2/baseline/trace.jsonl",
+        "archive_sha256": "de7e5780b4274a40e4d0e055739047abcdbeb3dae281671003e6120ed31fc9fa",
+        "source_git_blob_sha256": "7bfa24b6b76e556acfa060428d796cb79925a57240999a02754838850e878712"
+      },
+      {
+        "path": "maintenance/tests/evidence/lint-command-route-r1/attempt-01-invalid-model-route/raw/alibaba2/candidate/invocation.json",
+        "archive_sha256": "91d13850ea9efd61244e0981481117e499cc24ff9a79f0be322e98f944a50dab",
+        "source_git_blob_sha256": "e6a47ffaa1f4501327fd73a444a70483d9c1a4f50f7117400ea4f8ad4b790c8f"
+      },
+      {
+        "path": "maintenance/tests/evidence/lint-command-route-r1/attempt-01-invalid-model-route/raw/alibaba2/candidate/record.json",
+        "archive_sha256": "2a07aec8b8d20f4b2e5e56f381d894291e67c6b47315d2c4d7f1a99d011381ba",
+        "source_git_blob_sha256": "ae58e5ac9a541a42914d5682190f4cf52711879bffc104de056ef80477a00419"
+      },
+      {
+        "path": "maintenance/tests/evidence/lint-command-route-r1/attempt-01-invalid-model-route/raw/alibaba2/candidate/stderr.txt",
+        "archive_sha256": "a80e3739f9a8ffead8b8524cd3a72b61f680c2f9eb6836913867539745ef5a31",
+        "source_git_blob_sha256": "14b2b8ea672ed737a93cce875b693e673cf826caaa0657e0846aa643b18b8a5e"
+      },
+      {
+        "path": "maintenance/tests/evidence/lint-command-route-r1/attempt-01-invalid-model-route/raw/alibaba2/candidate/trace.jsonl",
+        "archive_sha256": "cc66d6de651cecc091ea6abaa40a9d355cf1ec017b2ed33db6c9915bb5a88bd7",
+        "source_git_blob_sha256": "2d7f97623a4fd075e32e0f1c3f29f0d2f97773434253a945cf96a44bc1e4b039"
+      },
+      {
+        "path": "maintenance/tests/evidence/lint-command-route-r1/attempt-01-invalid-model-route/raw/minimax/baseline/invocation.json",
+        "archive_sha256": "aa6d08179bf3496cb020ad4681a8aba0f19020f784885eaa399e98ddf4e9735a",
+        "source_git_blob_sha256": "45ca77336b48fa79132db26e0bdf698ddff9ee42f21d035355961a7afddfe0d4"
+      },
+      {
+        "path": "maintenance/tests/evidence/lint-command-route-r1/attempt-01-invalid-model-route/raw/minimax/baseline/record.json",
+        "archive_sha256": "c652edb9174e5b979a6aff43f780e743384d479a1771fbfa9f2a225535ff44f5",
+        "source_git_blob_sha256": "bc4352f7149f2cf93d35ec9b704e4d021b559b8d64d553def9b629726ce74006"
+      },
+      {
+        "path": "maintenance/tests/evidence/lint-command-route-r1/attempt-01-invalid-model-route/raw/minimax/baseline/stderr.txt",
+        "archive_sha256": "7996bccc12392d78439c3b443fb2d5da524cdfd3c319e3f7f9148a996637ccc1",
+        "source_git_blob_sha256": "04f366699eae5106f120974befc9d6ab0697b501367841a0f3c106d5d337b8d8"
+      },
+      {
+        "path": "maintenance/tests/evidence/lint-command-route-r1/attempt-01-invalid-model-route/raw/minimax/baseline/trace.jsonl",
+        "archive_sha256": "75a2a9a21aac2f60bf27d63aca68bbe6159b440dc4c000218ecb28196f1a39cc",
+        "source_git_blob_sha256": "b85cde86a099696436c13114d0f2d49141f6790aada1331a89f257d9ef739509"
+      },
+      {
+        "path": "maintenance/tests/evidence/lint-command-route-r1/attempt-01-invalid-model-route/raw/minimax/candidate/invocation.json",
+        "archive_sha256": "106a4a1eea88cc74ab475b0c27d79a75c83a0d1acf6ce1ed59ae0e906df15f4c",
+        "source_git_blob_sha256": "e80f02e8ff3b33c4c8d57264f736eb47a0179e922728efc1ccef1734db65619b"
+      },
+      {
+        "path": "maintenance/tests/evidence/lint-command-route-r1/attempt-01-invalid-model-route/raw/minimax/candidate/record.json",
+        "archive_sha256": "b824d5e8c0d0269d0b751692c52d97d97e9befd9b4cdad8c6ee542c529e7ba79",
+        "source_git_blob_sha256": "471c2e8acf7509ad77f64dda60c9aea0e77c0040a775f96f6e51ecee6d6f2405"
+      },
+      {
+        "path": "maintenance/tests/evidence/lint-command-route-r1/attempt-01-invalid-model-route/raw/minimax/candidate/stderr.txt",
+        "archive_sha256": "e74c358b9e19f7c8bdb63aa2f27ac9285f51c267c06316acc06c62d049f32d47",
+        "source_git_blob_sha256": "706eff2ebaedd82367558cbb78b67d6f357d21a1d777d1e1f4d12cc0c4f95f6a"
+      },
+      {
+        "path": "maintenance/tests/evidence/lint-command-route-r1/attempt-01-invalid-model-route/raw/minimax/candidate/trace.jsonl",
+        "archive_sha256": "f954296459375873fdf1bef96ae3dfca1e019e3da9f8e74c8ace608dacdafa23",
+        "source_git_blob_sha256": "16a83dde2de6fc131992d024a614fe75b5aa30b8d34985afbf0435aba09fb6c7"
+      },
+      {
+        "path": "maintenance/tests/evidence/lint-command-route-r1/attempt-02-temp-sandbox/fixture.json",
+        "archive_sha256": "335e614295611ac73b4ec3012f89d982ff214ee99016de33b5d41418e60e5edc",
+        "source_git_blob_sha256": "375173dd6ce205352cd3c9e93868b5880d80e021b54fe268f59e4554a1afd9a1"
+      },
+      {
+        "path": "maintenance/tests/evidence/lint-command-route-r1/attempt-02-temp-sandbox/providers/alibaba2.json",
+        "archive_sha256": "aa4cecebe2e71f7918b94b3caa8ccd47558b523c2ac4eebcca1987dc62f915ba",
+        "source_git_blob_sha256": "5312eb8b34670f52465beaefc050f11a47412df8acd71ca5f867444749e74ce7"
+      },
+      {
+        "path": "maintenance/tests/evidence/lint-command-route-r1/attempt-02-temp-sandbox/providers/minimax.json",
+        "archive_sha256": "6dbeac2a178adf88941afb94c5fc90c0d29fd7da6fde2f685c9d54775c852fc0",
+        "source_git_blob_sha256": "3f4825ff683605b50cf2fb390f2521d7cd8162b1457bc34071c24cb9031faf6e"
+      },
+      {
+        "path": "maintenance/tests/evidence/lint-command-route-r1/attempt-02-temp-sandbox/raw/alibaba2/baseline/invocation.json",
+        "archive_sha256": "0df5c448c528c71760b0cebe301ea3a301551e2d96f95fcfb151cdfa1946f43a",
+        "source_git_blob_sha256": "87c96decbb09a02f69595ab80919d0b1457b63bccbfc4194460b9c922c066b58"
+      },
+      {
+        "path": "maintenance/tests/evidence/lint-command-route-r1/attempt-02-temp-sandbox/raw/alibaba2/baseline/record.json",
+        "archive_sha256": "2231ec8d8de7ee23658c704e4a12756af34d3c2e149402aefb297550262f1883",
+        "source_git_blob_sha256": "1c363f6efb5bedcbf84b23127b71e091b4a6b050e1e4d101a374d372de94db77"
+      },
+      {
+        "path": "maintenance/tests/evidence/lint-command-route-r1/attempt-02-temp-sandbox/raw/alibaba2/baseline/stderr.txt",
+        "archive_sha256": "fb5240073d022e337aa128c1b014f619ae3bea8821732dcd3ce92a044392df75",
+        "source_git_blob_sha256": "da608ddfd84585500dadc932e527cb42b2c2419b910961fe7dcd8bc7c74da870"
+      },
+      {
+        "path": "maintenance/tests/evidence/lint-command-route-r1/attempt-02-temp-sandbox/raw/alibaba2/baseline/trace.jsonl",
+        "archive_sha256": "0bb0674f23a82c4dce671446dc623dae2b18c6e8793e2326082fae6078becc78",
+        "source_git_blob_sha256": "0f6cddf82aab47a40917978e3b96ba90c68e940b299f10bad8022306ab348d87"
+      },
+      {
+        "path": "maintenance/tests/evidence/lint-command-route-r1/attempt-02-temp-sandbox/raw/minimax/candidate/invocation.json",
+        "archive_sha256": "cd0722b080407e10fc7480c0388b4537e88dc0107eff05ea430e487b149bf929",
+        "source_git_blob_sha256": "da40a2ed8977ffdbb5940c5e05ab2674f19cefa11d34d1254ad63a2a332d98e8"
+      },
+      {
+        "path": "maintenance/tests/evidence/lint-command-route-r1/attempt-02-temp-sandbox/raw/minimax/candidate/record.json",
+        "archive_sha256": "d09449917bdcda1382ded8520fff61c70e08357badbbc0fa8b12815a1a39545f",
+        "source_git_blob_sha256": "29f65935d4ec2280a92817adc2505d1bf1c3231c1a3c37ff3e6152df0cd43547"
+      },
+      {
+        "path": "maintenance/tests/evidence/lint-command-route-r1/attempt-02-temp-sandbox/raw/minimax/candidate/stderr.txt",
+        "archive_sha256": "a7a4bf24ed10981d6e9bc517019c856ab0f2b12391f6f8f203186c04188d7032",
+        "source_git_blob_sha256": "2f113cfecf6fdfaf2a56631e39baa86561e01066c55c209da761553165c599ad"
+      },
+      {
+        "path": "maintenance/tests/evidence/lint-command-route-r1/attempt-02-temp-sandbox/raw/minimax/candidate/trace.jsonl",
+        "archive_sha256": "32aaa4748ab572ab26e00b64559623a84a9e1689f2760a946fdcf34d77b4c560",
+        "source_git_blob_sha256": "25822e65274edb398c0a34a1012fe299ffd145fa8ad21dcdd7cc7decf75a7982"
+      },
+      {
+        "path": "maintenance/tests/evidence/lint-command-route-r1/attempt-03-real-ab/SHA256.json",
+        "archive_sha256": "ccb96f899acfe5a99d658c52fe5437ac23afb87e3f953a29dd85587fdb55e207",
+        "source_git_blob_sha256": "34304d4c18d2b4bda0f40a7126a8004a82a15be16e3d73242c95584eb886fc86"
+      },
+      {
+        "path": "maintenance/tests/evidence/lint-command-route-r1/attempt-03-real-ab/alibaba2-baseline-manual-read.json",
+        "archive_sha256": "9566ad6ef5120bb637ce422d2882aa616ce7e0b4e59cae54b31ff4d17232d087",
+        "source_git_blob_sha256": "a762fa9cace5b7d8618b3e0c5175e9c95f03b8702c269ded66d7ed30941a0892"
+      },
+      {
+        "path": "maintenance/tests/evidence/lint-command-route-r1/attempt-03-real-ab/fixture.json",
+        "archive_sha256": "2d564ae2c3a3eaee193a0961adf1be3b36de12878ae5223ea5cbcc84b2a62c62",
+        "source_git_blob_sha256": "94fdd1b66ae26c049008e1f553a6c7731023e493f160cee1f401d52130dc7867"
+      },
+      {
+        "path": "maintenance/tests/evidence/lint-command-route-r1/attempt-03-real-ab/manual-review.json",
+        "archive_sha256": "8004e6c600eb3d9566cd84f0fa0bb5410461bc3dfc85c37da8bd77b574151df5",
+        "source_git_blob_sha256": "27dc4e524df0b354dd22d084bce666c71b1a10ef2bf82c4a1fb454647c4953f7"
+      },
+      {
+        "path": "maintenance/tests/evidence/lint-command-route-r1/attempt-03-real-ab/providers/alibaba2.json",
+        "archive_sha256": "47a48ea8fe0c3fa6ea54e1ceb73cc5da9f21d74dfb9ea60e76d4ac6c1f37ccd1",
+        "source_git_blob_sha256": "3b266473cff6eaf1712bff9e1a48faabdf9e82f020bc6c4edf7a04348cf4f298"
+      },
+      {
+        "path": "maintenance/tests/evidence/lint-command-route-r1/attempt-03-real-ab/providers/minimax.json",
+        "archive_sha256": "88b4192efaf7cabfc06cf659c0081917bbca1c79055ab8b8cbb057b98af78414",
+        "source_git_blob_sha256": "a4707716afa1e8d933d0ec168a778458008e8b85547dff5aceaa5edf2462a5c3"
+      },
+      {
+        "path": "maintenance/tests/evidence/lint-command-route-r1/attempt-03-real-ab/raw/alibaba2/baseline/final.txt",
+        "archive_sha256": "44d6283865f1e8585210874ecdaf6732337dbcab8b0c7e8e69c8ee7ae2656e6c",
+        "source_git_blob_sha256": "5be3fc9dbffefd1b71722a2c809e5ddd1007e0898bb76c46d032bb0964e2e939"
+      },
+      {
+        "path": "maintenance/tests/evidence/lint-command-route-r1/attempt-03-real-ab/raw/alibaba2/baseline/invocation.json",
+        "archive_sha256": "d4d251b57dc7b71a8ee7e282343b159764fc285ba19a9e3faecc8641cea8fcee",
+        "source_git_blob_sha256": "68cc15b5764863b2c92d5d2597f678a9a719368e0efc7f62507a0bb69c6b8bc7"
+      },
+      {
+        "path": "maintenance/tests/evidence/lint-command-route-r1/attempt-03-real-ab/raw/alibaba2/baseline/record.json",
+        "archive_sha256": "54be9133becf18393a2c1e27f9b1ad47c15ca34390f8f4e9bad11d95c4c2fb83",
+        "source_git_blob_sha256": "d92f4f57be1048b7fcb67497aad32f1687d152760f7f0363fd75fd7f154ed408"
+      },
+      {
+        "path": "maintenance/tests/evidence/lint-command-route-r1/attempt-03-real-ab/raw/alibaba2/baseline/stderr.txt",
+        "archive_sha256": "c36bc2a7d694676a69a3e55f32550f9dfe302beece98c8f552750678eabfccef",
+        "source_git_blob_sha256": "51c57f658e5116a88cb427f03e1e5a78e77f5b8fe93d4d9a2322633a9561f87d"
+      },
+      {
+        "path": "maintenance/tests/evidence/lint-command-route-r1/attempt-03-real-ab/raw/alibaba2/baseline/trace.jsonl",
+        "archive_sha256": "99d88e08383825c633b83f7cf6d370fe46a988a8ade43e633ed02400c3bfbf56",
+        "source_git_blob_sha256": "527787080f2d76ca700b6a3964d7437aafff4764a4505d9748412d8bae7835e6"
+      },
+      {
+        "path": "maintenance/tests/evidence/lint-command-route-r1/attempt-03-real-ab/raw/alibaba2/candidate/final.txt",
+        "archive_sha256": "44d6283865f1e8585210874ecdaf6732337dbcab8b0c7e8e69c8ee7ae2656e6c",
+        "source_git_blob_sha256": "5be3fc9dbffefd1b71722a2c809e5ddd1007e0898bb76c46d032bb0964e2e939"
+      },
+      {
+        "path": "maintenance/tests/evidence/lint-command-route-r1/attempt-03-real-ab/raw/alibaba2/candidate/invocation.json",
+        "archive_sha256": "ee352ba0476e5b2990427205f187dd5b2c191497942f4d47ceab860633fe9d84",
+        "source_git_blob_sha256": "925402214c1380e05a0d485e9ef8193bdbc7bae18ebeb08d74ea76c6d189d2aa"
+      },
+      {
+        "path": "maintenance/tests/evidence/lint-command-route-r1/attempt-03-real-ab/raw/alibaba2/candidate/record.json",
+        "archive_sha256": "3c9ac5c7da44caffa040b9cc4b62c5822bc71b3b30484b6589f46b6e70b96607",
+        "source_git_blob_sha256": "e2340e8bc50be39ae29caf2f31e3e56e4c4641c0f2f38dc4f27c8b4cbac2bdc4"
+      },
+      {
+        "path": "maintenance/tests/evidence/lint-command-route-r1/attempt-03-real-ab/raw/alibaba2/candidate/stderr.txt",
+        "archive_sha256": "6560de0533a5fa489bfcabc3c46bede9de138bcccc665fe3a7c2ffecb6d6c812",
+        "source_git_blob_sha256": "ed9608e386b2d906dcbca0fd61ee4770b4e74bb089c5a648f22a27dc1405317b"
+      },
+      {
+        "path": "maintenance/tests/evidence/lint-command-route-r1/attempt-03-real-ab/raw/alibaba2/candidate/trace.jsonl",
+        "archive_sha256": "80a0a3d3b0cda292db7164947851698e9be6c5a243b19bbde3f604690a5ae7e3",
+        "source_git_blob_sha256": "63d113fc59d456689a30236caa86a733551f86313dd072ec19bbf3e291cee24d"
+      },
+      {
+        "path": "maintenance/tests/evidence/lint-command-route-r1/attempt-03-real-ab/raw/minimax/baseline/final.txt",
+        "archive_sha256": "517d7b27b93ec979731bed50352a1476f8a652203af0d7a1e8683247ac491149",
+        "source_git_blob_sha256": "6a43a71b05f0702faf61304c51d25b10a860b1cede19f83b751a4fdaa3fc07e2"
+      },
+      {
+        "path": "maintenance/tests/evidence/lint-command-route-r1/attempt-03-real-ab/raw/minimax/baseline/invocation.json",
+        "archive_sha256": "b263ea7204e4a1a1c807ef870931545418759b855708d4b3e8403b1ec5ec0d00",
+        "source_git_blob_sha256": "55125c0808c020e46502a6c4a31f37b8642e0be385d3acea7974288a3ba617d2"
+      },
+      {
+        "path": "maintenance/tests/evidence/lint-command-route-r1/attempt-03-real-ab/raw/minimax/baseline/record.json",
+        "archive_sha256": "d1d91bd7cb10b7ddf551e961989606c90b9e32bdd4bb76c9e6f5f0ff66ffb2aa",
+        "source_git_blob_sha256": "41b5872d924e36f994af1381db219d824c5f3354ae3c62e2ccf37b2b8caf7394"
+      },
+      {
+        "path": "maintenance/tests/evidence/lint-command-route-r1/attempt-03-real-ab/raw/minimax/baseline/stderr.txt",
+        "archive_sha256": "c866e64bb0d25bc65bf5bab37b1c8ce9d332d761c41373c69541937cbfccfdcb",
+        "source_git_blob_sha256": "6ef5fa6efb21ca85ead26aca48f609807adf93ed64cc91629e605c6b5093d539"
+      },
+      {
+        "path": "maintenance/tests/evidence/lint-command-route-r1/attempt-03-real-ab/raw/minimax/baseline/trace.jsonl",
+        "archive_sha256": "3eeaf30092bf629848f2540fc26cf4bc8b056428fb94f9a22ea0959fda6a8c43",
+        "source_git_blob_sha256": "ba82905bc86891dfef4b9dc90d5b050fd11dbc64057e1329f442364fc207818f"
+      },
+      {
+        "path": "maintenance/tests/evidence/lint-command-route-r1/attempt-03-real-ab/raw/minimax/candidate/final.txt",
+        "archive_sha256": "8d52ce4b2273840339818555fb55672f679e857ab3bd9be2653c099d69b38267",
+        "source_git_blob_sha256": "75019d2f71fd282c153b40e24553a6c9612d54925767a8b9f98ef9f23f85007c"
+      },
+      {
+        "path": "maintenance/tests/evidence/lint-command-route-r1/attempt-03-real-ab/raw/minimax/candidate/invocation.json",
+        "archive_sha256": "3f4d679d426dc6c56f3a2475a0ac05d66dccd6cb8e61928585ef54917600be31",
+        "source_git_blob_sha256": "71d9665fe33770135583606440417f350261024ffec497d731aba284885ccb30"
+      },
+      {
+        "path": "maintenance/tests/evidence/lint-command-route-r1/attempt-03-real-ab/raw/minimax/candidate/record.json",
+        "archive_sha256": "3ba1ee1aa3c9372d59648eadd590ad7abcd58d0063969a3216624e51bfc2e4a1",
+        "source_git_blob_sha256": "2fe933b8bf16b8a54188b1f37e3e7c19c13c26bb34852dbfaeadc942517f9484"
+      },
+      {
+        "path": "maintenance/tests/evidence/lint-command-route-r1/attempt-03-real-ab/raw/minimax/candidate/stderr.txt",
+        "archive_sha256": "dddd3788949a3d81f4e7ebc5c52624cacbc7c643541e86e2d9e3e0c7ccda100f",
+        "source_git_blob_sha256": "310d86fdc64dda051e46f2cdab34990961f92665f6a0b9603671f90287a11080"
+      },
+      {
+        "path": "maintenance/tests/evidence/lint-command-route-r1/attempt-03-real-ab/raw/minimax/candidate/trace.jsonl",
+        "archive_sha256": "8f37d1aa26b51f40c9fc00474193a196973c7a829c589e557904a27a044ab41a",
+        "source_git_blob_sha256": "3b98a76a74db7dd6ea41602209a406ca0fb6b8aa25f3518d367dee2e05aea922"
+      },
+      {
+        "path": "maintenance/tests/evidence/lint-command-route-r1/attempt-03-real-ab/sandbox-preflight.json",
+        "archive_sha256": "27ea1ffbcf01fda79adcdc61b6a6b07a12622f501448ec38096e7257089f688c",
+        "source_git_blob_sha256": "8312915f05bd9b49c3a9a81b7695f003c2e89bf3f9182f4fa0ca7e7e0b5cd7c3"
+      },
+      {
+        "path": "maintenance/tests/evidence/lint-command-route-r1/attempt-03-real-ab/tool-scope-excerpt.json",
+        "archive_sha256": "64330406858afce49a00170285e441680398d4e4fbd30b56e46772d1fcea1b7e",
+        "source_git_blob_sha256": "f6edf5a352defa0860d1abdda17141aa971ebf68fd2a4a89bcdf6413dd90c0bb"
+      },
+      {
+        "path": "maintenance/tests/evidence/lint-command-route-r1/cases.json",
+        "archive_sha256": "460d811caa583d61656182e33cf160d671a62065c65a43d1572e91e6a70c294c",
+        "source_git_blob_sha256": "a30193ac5f50cbcbb98ff87a1ef5ab0e60df9717a818ca9cc418593aa0925b8d"
+      },
+      {
+        "path": "maintenance/tests/evidence/lint-command-route-r1/preregister.md",
+        "archive_sha256": "50ccf30892a2c99f64d80270e6188cee28beed5b45dbed23a6bb6a0b757984b3",
+        "source_git_blob_sha256": "45ebc236534ff57c710636d4984345627252a556a97bbc4c2be0fa8a1fe2ead8"
+      },
+      {
+        "path": "maintenance/tests/evidence/lint-command-route-r1/r3-result.md",
+        "archive_sha256": "7a57ef2152e9ba85c2f30b1daa6df35859a6ea3ea82c0cf267ceb895b852973c",
+        "source_git_blob_sha256": "119ac7fe97e47e422ea7143123e13cc245bfe9c01ad27582be5c06fe850d5595"
+      },
+      {
+        "path": "maintenance/tests/evidence/lint-command-route-r1/reading-surface-audit.json",
+        "archive_sha256": "8f7d5df45c51bf7ca19dbd198172b8cdbf8dc721a2ec47f038858c5c8ca02f31",
+        "source_git_blob_sha256": "146a20c69ddbe0be98d9d4bbf0129cb31ab40fb5b95cfd07fd88609d17269a3d"
+      },
+      {
+        "path": "maintenance/tests/evidence/lint-command-route-r1/restricted-r4/check_contract.py",
+        "archive_sha256": "62d0b4f898ad3ed31033ec6ef618fb43e977dbe8da21b20037b1e9aa2be8db89",
+        "source_git_blob_sha256": "639ea3bb860c7cdbe202e6524aaee4e149ae53ac916bd01949fb715b6f0fde57"
+      },
+      {
+        "path": "maintenance/tests/evidence/lint-command-route-r1/restricted-r4/contract-attempt-01/contract/control-calls.jsonl",
+        "archive_sha256": "2e2d1c40179f501b09646e8a1909cfc5f876c80738b05bf4c0725ae3ada0bd63",
+        "source_git_blob_sha256": "17d770bda79abe63c2609e58462201fd82e26891aafad926b08e048aea9d09d1"
+      },
+      {
+        "path": "maintenance/tests/evidence/lint-command-route-r1/restricted-r4/contract-attempt-01/fixture.json",
+        "archive_sha256": "ea4a7b5a3c8b1489b7d054eed1bb826c437ac73f7aa8674b3f8af7cd99963fe6",
+        "source_git_blob_sha256": "19039e2091b447d3fdc64a28c63c36c6240de7a7916b9cb5693c353c6486a51f"
+      },
+      {
+        "path": "maintenance/tests/evidence/lint-command-route-r1/restricted-r4/preregister.md",
+        "archive_sha256": "294faa2e6a83fc07bb002b98de595af8a98e033e25824b09eeac84f6f61bbea4",
+        "source_git_blob_sha256": "9912995cb68752bff8944d47a1a21578b66a2cf6629ea6295fdebafbe4a58404"
+      },
+      {
+        "path": "maintenance/tests/evidence/lint-command-route-r1/restricted-r4/real-ab/.gitattributes",
+        "archive_sha256": "8169ca1fa5649b365757a3331ae4178b3bab91a047b78561607545b74cd62e83",
+        "source_git_blob_sha256": "7a811428379ad200bfd427ade176d3f28c7ee6fb0b421a40c859a84db507e030"
+      },
+      {
+        "path": "maintenance/tests/evidence/lint-command-route-r1/restricted-r4/real-ab/SHA256.json",
+        "archive_sha256": "6787ae86d148d141b3ed80b364106169027abcb02ea7965ce0f87c060ad11022",
+        "source_git_blob_sha256": "cee3754b93f51674ea13102cb34b86d2b2db0da738440d1bcddb7cecac6e1158"
+      },
+      {
+        "path": "maintenance/tests/evidence/lint-command-route-r1/restricted-r4/real-ab/contract.json",
+        "archive_sha256": "be9cd8f7a3f478f14b7e51141b4b821cbca62f519c3f51d8735d99b566a3466c",
+        "source_git_blob_sha256": "f6bafe81b9213b337c20aef519b64a5960a51763fa1e059f2ea8ef317a75cc2f"
+      },
+      {
+        "path": "maintenance/tests/evidence/lint-command-route-r1/restricted-r4/real-ab/fixture.json",
+        "archive_sha256": "476d815f8f1fb330eb04deaca71a9024cfb5e89e48f0cc30656fdfb3f002cb88",
+        "source_git_blob_sha256": "0188bfcba09430625f6b444e4d60b29e99d88f3ccfa951a932e79b41a8f2c5d8"
+      },
+      {
+        "path": "maintenance/tests/evidence/lint-command-route-r1/restricted-r4/real-ab/manifests/control.json",
+        "archive_sha256": "63eb26eb6f05720e76fc4f7dd7cd20d362a60dd804dac1fe4fef8d476ab7f8f1",
+        "source_git_blob_sha256": "437cc34fffbeb9e92c45678838a1451c514f1f863c9fe27faf64661283f67f7f"
+      },
+      {
+        "path": "maintenance/tests/evidence/lint-command-route-r1/restricted-r4/real-ab/manifests/experiment.json",
+        "archive_sha256": "0bd4ee2cbf5b4a6cc5406c5f6cf2ac7d3af864a9f10b26349f80ea0a4655914c",
+        "source_git_blob_sha256": "2a9d34267b20c9d2f463537f2abb98d2660487247f5f865342b50e998f3af920"
+      },
+      {
+        "path": "maintenance/tests/evidence/lint-command-route-r1/restricted-r4/real-ab/metrics.json",
+        "archive_sha256": "7e1eef29f4773f6a442898f5e0b4c855e64b7c1e08e0eb14a377648704f36915",
+        "source_git_blob_sha256": "98e94becf3aecf2b1fa7e425be35e9cb94d111fe60ec47d87e7bd46af4f5e764"
+      },
+      {
+        "path": "maintenance/tests/evidence/lint-command-route-r1/restricted-r4/result.md",
+        "archive_sha256": "4deddaa463ad6bf262a3e3b968ab06acc22247e28593ec7088d269a5ad789e58",
+        "source_git_blob_sha256": "2f19bcb6cc51abdb9967cd6447dde22ade99368f939d4a8b22bbc4d1ef0c296a"
+      },
+      {
+        "path": "maintenance/tests/evidence/lint-command-route-r1/restricted-r4/run_restricted.py",
+        "archive_sha256": "433f4735feb0c977d5a933cf19b2bf97c5b6b25acc6238c4ee5b9143a546f3e7",
+        "source_git_blob_sha256": "8e83a1cbc1369ecdf35ab83e78a3855bf2cb89fe568fdfd3a77739590fe1d16e"
+      },
+      {
+        "path": "maintenance/tests/evidence/lint-command-route-r1/restricted-r4/stdio_tools.py",
+        "archive_sha256": "9450c55c8f692b7e3535e7c3c61612d4a41d6679f8750f570e5fe3d31d571a6f",
+        "source_git_blob_sha256": "72ade80156f333d4d83288ce7a90c1710c54e6cf3af148b4a6f6e6153be77431"
+      },
+      {
+        "path": "maintenance/tests/evidence/lint-command-route-r1/restricted-r5/preregister.md",
+        "archive_sha256": "e316c04058379b1f67300bdbd3db7a12afba4efacc6f9a167b0efa7fd585f092",
+        "source_git_blob_sha256": "899b4665f58fe16597ee81e4683965d4950c40d9aa2d50b704277cbea168bab6"
+      },
+      {
+        "path": "maintenance/tests/evidence/lint-command-route-r1/restricted-r5/real-ab/.gitattributes",
+        "archive_sha256": "8169ca1fa5649b365757a3331ae4178b3bab91a047b78561607545b74cd62e83",
+        "source_git_blob_sha256": "7a811428379ad200bfd427ade176d3f28c7ee6fb0b421a40c859a84db507e030"
+      },
+      {
+        "path": "maintenance/tests/evidence/lint-command-route-r1/restricted-r5/real-ab/SHA256.json",
+        "archive_sha256": "6d926839c982910627bf3668ab447a9fda735a91bc99741c926859f271c3570c",
+        "source_git_blob_sha256": "5922bc0652e98bf578b807ade1fed7a6bc806611bc282cd6f6b5f690447ca923"
+      },
+      {
+        "path": "maintenance/tests/evidence/lint-command-route-r1/restricted-r5/real-ab/contract.json",
+        "archive_sha256": "0179771527978499fb91e97424bdcaa17b57056e201c9094737aa53311f0ae5b",
+        "source_git_blob_sha256": "db33aa144ea7a9a231f8f1d4097605c5fd5fbd680926170d085b32e706d2c90f"
+      },
+      {
+        "path": "maintenance/tests/evidence/lint-command-route-r1/restricted-r5/real-ab/fixture.json",
+        "archive_sha256": "ccc2ddbaed706560e57d11e3b9a3d7d1bbbdcf219834f932f32a576fc08d9bd0",
+        "source_git_blob_sha256": "2f1ed0301ebecdc5c278dad0fea02851e1b32d6ed1bdc1fa4317614275767789"
+      },
+      {
+        "path": "maintenance/tests/evidence/lint-command-route-r1/restricted-r5/real-ab/manifests/control.json",
+        "archive_sha256": "0a1115eff292e05a37bbdfe8ad1e50e753a59ceedd7d80b1b5f4851f7a0690c7",
+        "source_git_blob_sha256": "a7f7fb9f0c288fe58b777ede74977c8e7f1911d08959e035c35ffab230fc88fd"
+      },
+      {
+        "path": "maintenance/tests/evidence/lint-command-route-r1/restricted-r5/real-ab/manifests/experiment.json",
+        "archive_sha256": "dc74a701c2884372f35b9cb7ce0517dd44cc56dbf7baab52c987f70bc134d3a5",
+        "source_git_blob_sha256": "88deb23f7d9c8a4711650372838186a0c12021d6dec7d3c9489ab67932732364"
+      },
+      {
+        "path": "maintenance/tests/evidence/lint-command-route-r1/restricted-r5/real-ab/metrics.json",
+        "archive_sha256": "965d39ac387e201867eaa4a5caa537663d05fe7b04412eae94c9220b00c55373",
+        "source_git_blob_sha256": "9129eaacccd7eea81a721a0a2282211ef8cf21ea8abd25a9056025ef5de6a931"
+      },
+      {
+        "path": "maintenance/tests/evidence/lint-command-route-r1/restricted-r5/result.md",
+        "archive_sha256": "45d2075054d8006eaad6bb569cbb596cad2260dc456993b2dcb0f52b7359d9be",
+        "source_git_blob_sha256": "37fc1cd015be5d6246efc893f1f3cd106e10a9559e9214efa6df6c47905ea3f0"
+      },
+      {
+        "path": "maintenance/tests/evidence/lint-command-route-r1/restricted-r6/preregister.md",
+        "archive_sha256": "d0ab45e900a54598a43c01a86e69ed302285f1cc4bdba803e9b7f91dd087a806",
+        "source_git_blob_sha256": "9e45b898babd8211e22dc4d180a42f5b3bbb2f051424d211359af53a72f991a6"
+      },
+      {
+        "path": "maintenance/tests/evidence/lint-command-route-r1/restricted-r6/real-ab/.gitattributes",
+        "archive_sha256": "8169ca1fa5649b365757a3331ae4178b3bab91a047b78561607545b74cd62e83",
+        "source_git_blob_sha256": "7a811428379ad200bfd427ade176d3f28c7ee6fb0b421a40c859a84db507e030"
+      },
+      {
+        "path": "maintenance/tests/evidence/lint-command-route-r1/restricted-r6/real-ab/SHA256.json",
+        "archive_sha256": "eeb87f167a55e93c230509b231f4de480ce25e0205bba5fc44c7fb9847ac5f73",
+        "source_git_blob_sha256": "d97fdd769b7776777e5fa5072363156390c5c95e2ca59c0b9104df3ecc9021f2"
+      },
+      {
+        "path": "maintenance/tests/evidence/lint-command-route-r1/restricted-r6/real-ab/contract.json",
+        "archive_sha256": "925f5e9bd05cbc9dd26472c75bfe37ecf9fe6444884d50d8ba3ad98ff3bf22a3",
+        "source_git_blob_sha256": "132eea279a9f897502a374ab43da61d1bf361a926b2ed9e6b076ce7ea310e784"
+      },
+      {
+        "path": "maintenance/tests/evidence/lint-command-route-r1/restricted-r6/real-ab/fixture.json",
+        "archive_sha256": "abc999df626600901fade9004dcf5d76459cce5aaf341d74e3f4ecde1a829690",
+        "source_git_blob_sha256": "db473078e5e2d01c27dd62ff9e39c19bc8418c9a75d6f6dd173902a5edadd426"
+      },
+      {
+        "path": "maintenance/tests/evidence/lint-command-route-r1/restricted-r6/real-ab/manifests/control.json",
+        "archive_sha256": "a0d8bbd827480da74adb2cf2ac5e377e0adc3d5fcd7bc517b40c90f104411f14",
+        "source_git_blob_sha256": "9e24b931dac53730ee3a2dbed9b3f1a6bfb2fa2a6a157a1e3e092bea4d80385d"
+      },
+      {
+        "path": "maintenance/tests/evidence/lint-command-route-r1/restricted-r6/real-ab/manifests/experiment.json",
+        "archive_sha256": "c2ae5568863964e706d973ba80898e85ca07ec763027c25ea0fb06f3b287fc4e",
+        "source_git_blob_sha256": "e8ad78c18b528c40041a42da74c59f6bcf6375389fde6efd5467708b74eecb84"
+      },
+      {
+        "path": "maintenance/tests/evidence/lint-command-route-r1/restricted-r6/real-ab/metrics.json",
+        "archive_sha256": "b9502e0e8badf811653f7ff854ceec367e8fa7354c45d985c75fa975012c5a51",
+        "source_git_blob_sha256": "cbf021daa463cb9f0cf846a2fcba8e07cebc1d24c8e34e09427a4fa67a7b04f9"
+      },
+      {
+        "path": "maintenance/tests/evidence/lint-command-route-r1/restricted-r6/result.md",
+        "archive_sha256": "156bf1e3ac64b7bc1eefb9082b5ada4f3c8606771defd16fc45ea61c7a35a4ff",
+        "source_git_blob_sha256": "dcf88b258736b629bef7fe4f118b6c6b79fc125fc97c5513cfe3da4826523a10"
+      },
+      {
+        "path": "maintenance/tests/evidence/lint-command-route-r1/result.md",
+        "archive_sha256": "2829c342584055627aae291d6b0d7df04cb081c1f1fd7e4780073da6c650512c",
+        "source_git_blob_sha256": "8d1a1a4299ccd7bc1252b0b88ea3a7d2c9231d85036044e528b850b0f8543243"
+      },
+      {
+        "path": "maintenance/tests/evidence/lint-command-route-r1/run_eval.py",
+        "archive_sha256": "99adff84fed029460b8e1901f86d8db21b9fb61c5a35aa1947aa04027ea46366",
+        "source_git_blob_sha256": "ab6bef2d89678158fc3be87de5bfca2ef95ce9e426d090c60c418c81041f35ce"
+      }
+    ]
+  }
+}

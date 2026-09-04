@@ -1,0 +1,33 @@
+{
+  "documents_checked": 24,
+  "local_links_checked": 454,
+  "missing_links": [],
+  "table_errors": [],
+  "scope": [
+    "AGENTS.md",
+    "maintenance/docs/待办.md",
+    "maintenance/specs/coverage.md",
+    "maintenance/specs/public-paid-sync.md",
+    "maintenance/specs/README.md",
+    "maintenance/specs/requirements.md",
+    "maintenance/specs/roadmap.md",
+    "maintenance/tests/evidence/command-cwd-real-draft-r1/result.md",
+    "maintenance/tests/evidence/hook-offline-counterexamples-r1/README.md",
+    "maintenance/tests/evidence/lint-command-route-r1/preregister.md",
+    "maintenance/tests/evidence/lint-command-route-r1/r3-result.md",
+    "maintenance/tests/evidence/lint-command-route-r1/restricted-r4/preregister.md",
+    "maintenance/tests/evidence/lint-command-route-r1/restricted-r4/result.md",
+    "maintenance/tests/evidence/lint-command-route-r1/restricted-r5/preregister.md",
+    "maintenance/tests/evidence/lint-command-route-r1/restricted-r5/result.md",
+    "maintenance/tests/evidence/lint-command-route-r1/restricted-r6/preregister.md",
+    "maintenance/tests/evidence/lint-command-route-r1/restricted-r6/result.md",
+    "maintenance/tests/evidence/lint-command-route-r1/result.md",
+    "maintenance/tests/evidence/reference-route-audit-r1/audit-findings.md",
+    "maintenance/tests/evidence/reference-route-audit-r1/candidate-r1-result.md",
+    "maintenance/tests/evidence/reference-route-audit-r1/integration-validation.md",
+    "maintenance/tests/evidence/reference-route-audit-r1/preregister.md",
+    "maintenance/tests/evidence/reference-route-audit-r1/result.md",
+    "maintenance/tests/evidence/reference-route-audit-r1/spec-audit.md"
+  ],
+  "checks": "local link existence and Markdown table width; not historical evidence recertification"
+}

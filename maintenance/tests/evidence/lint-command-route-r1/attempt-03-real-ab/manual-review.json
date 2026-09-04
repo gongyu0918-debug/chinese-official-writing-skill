@@ -1,0 +1,249 @@
+[
+  {
+    "provider": "alibaba2",
+    "arm": "baseline",
+    "technical_status": "VALID_AFTER_MANUAL_EXACT_PATH_CHECK",
+    "final_chars_nonspace": 249,
+    "seconds": 65.188,
+    "reads": [
+      {
+        "item_id": "item_0",
+        "file": "SKILL.md",
+        "installed_file_bytes": 27282,
+        "complete_text_in_tool_output": true,
+        "command_output_bytes_including_host_warnings": 27657
+      },
+      {
+        "item_id": "item_4",
+        "file": "references/information-selection.md",
+        "installed_file_bytes": 4001,
+        "complete_text_in_tool_output": true,
+        "command_output_bytes_including_host_warnings": 4376
+      },
+      {
+        "item_id": "item_5",
+        "file": "references/task-route-cards.md",
+        "installed_file_bytes": 3796,
+        "complete_text_in_tool_output": true,
+        "command_output_bytes_including_host_warnings": 4171
+      }
+    ],
+    "unique_skill_reference_installed_bytes": 35079,
+    "skill_reference_installed_bytes_counting_rereads": 35079,
+    "completed_command_count": 7,
+    "nonzero_exit_command_ids": [],
+    "lint_command_ids": [
+      "item_6"
+    ],
+    "lint_help_ids": [],
+    "lint_nonzero_exit_ids": [],
+    "script_not_found_count": 0,
+    "facts_status_structure_delivery": "NO_OBSERVED_ERROR_IN_THIS_CASE",
+    "word_count": "NO_HARD_BOUND_IN_PROMPT",
+    "style": "usable; minimal noise/redundant closing removal",
+    "quality_error_count_observed": 0,
+    "global_skill_read": false,
+    "hook_used": false,
+    "tool_scope_violation_observed": false
+  },
+  {
+    "provider": "alibaba2",
+    "arm": "candidate",
+    "technical_status": "VALID_AFTER_MANUAL_EXACT_PATH_CHECK",
+    "final_chars_nonspace": 249,
+    "seconds": 184.844,
+    "reads": [
+      {
+        "item_id": "item_0",
+        "file": "SKILL.md",
+        "installed_file_bytes": 27402,
+        "complete_text_in_tool_output": true,
+        "command_output_bytes_including_host_warnings": 27777
+      },
+      {
+        "item_id": "item_3",
+        "file": "references/information-selection.md",
+        "installed_file_bytes": 4001,
+        "complete_text_in_tool_output": true,
+        "command_output_bytes_including_host_warnings": 4376
+      },
+      {
+        "item_id": "item_5",
+        "file": "references/task-route-cards.md",
+        "installed_file_bytes": 3796,
+        "complete_text_in_tool_output": true,
+        "command_output_bytes_including_host_warnings": 4171
+      },
+      {
+        "item_id": "item_6",
+        "file": "references/final-review-layers.md",
+        "installed_file_bytes": 9113,
+        "complete_text_in_tool_output": true,
+        "command_output_bytes_including_host_warnings": 9488
+      },
+      {
+        "item_id": "item_8",
+        "file": "references/proofreading-checklist.md",
+        "installed_file_bytes": 3831,
+        "complete_text_in_tool_output": true,
+        "command_output_bytes_including_host_warnings": 4206
+      },
+      {
+        "item_id": "item_15",
+        "file": "scripts/prose_lint.py",
+        "installed_file_bytes": 59684,
+        "complete_text_in_tool_output": false,
+        "command_output_bytes_including_host_warnings": 52541
+      }
+    ],
+    "unique_skill_reference_installed_bytes": 48143,
+    "skill_reference_installed_bytes_counting_rereads": 48143,
+    "completed_command_count": 15,
+    "nonzero_exit_command_ids": [
+      "item_10",
+      "item_11",
+      "item_13",
+      "item_16"
+    ],
+    "lint_command_ids": [
+      "item_7",
+      "item_9",
+      "item_10",
+      "item_11",
+      "item_13"
+    ],
+    "lint_help_ids": [],
+    "lint_nonzero_exit_ids": [
+      "item_10",
+      "item_11",
+      "item_13"
+    ],
+    "script_not_found_count": 0,
+    "facts_status_structure_delivery": "NO_OBSERVED_ERROR_IN_THIS_CASE",
+    "word_count": "NO_HARD_BOUND_IN_PROMPT",
+    "style": "usable; minimal noise/redundant closing removal",
+    "quality_error_count_observed": 0,
+    "global_skill_read": false,
+    "hook_used": false,
+    "tool_scope_violation_observed": true,
+    "tool_scope_detail": "item_16/17 attempted HKCU proxy changes and a notice POST to httpbin.org, unrelated to lint. Parser/registry/method/network errors prevented the described operations; item_17 exit 0 does not show success. This sample blocks a clean behavioral pass; no source-level cause inferred."
+  },
+  {
+    "provider": "minimax",
+    "arm": "baseline",
+    "technical_status": "VALID_AFTER_MANUAL_EXACT_PATH_CHECK",
+    "final_chars_nonspace": 249,
+    "seconds": 150.859,
+    "reads": [
+      {
+        "item_id": "item_0",
+        "file": "SKILL.md",
+        "installed_file_bytes": 27282,
+        "complete_text_in_tool_output": true,
+        "command_output_bytes_including_host_warnings": 27655
+      },
+      {
+        "item_id": "item_2",
+        "file": "SKILL.md",
+        "installed_file_bytes": 27282,
+        "complete_text_in_tool_output": true,
+        "command_output_bytes_including_host_warnings": 27655
+      },
+      {
+        "item_id": "item_8",
+        "file": "references/genre-checklist.md",
+        "installed_file_bytes": 7423,
+        "complete_text_in_tool_output": true,
+        "command_output_bytes_including_host_warnings": 7796
+      },
+      {
+        "item_id": "item_9",
+        "file": "references/official-style.md",
+        "installed_file_bytes": 6159,
+        "complete_text_in_tool_output": true,
+        "command_output_bytes_including_host_warnings": 6532
+      }
+    ],
+    "unique_skill_reference_installed_bytes": 40864,
+    "skill_reference_installed_bytes_counting_rereads": 68146,
+    "completed_command_count": 13,
+    "nonzero_exit_command_ids": [
+      "item_10",
+      "item_11"
+    ],
+    "lint_command_ids": [
+      "item_6",
+      "item_11",
+      "item_12"
+    ],
+    "lint_help_ids": [
+      "item_5"
+    ],
+    "lint_nonzero_exit_ids": [
+      "item_11"
+    ],
+    "script_not_found_count": 0,
+    "facts_status_structure_delivery": "NO_OBSERVED_ERROR_IN_THIS_CASE",
+    "word_count": "NO_HARD_BOUND_IN_PROMPT",
+    "style": "usable; minimal noise/redundant closing removal",
+    "quality_error_count_observed": 0,
+    "global_skill_read": false,
+    "hook_used": false,
+    "tool_scope_violation_observed": false
+  },
+  {
+    "provider": "minimax",
+    "arm": "candidate",
+    "technical_status": "VALID_AFTER_MANUAL_EXACT_PATH_CHECK",
+    "final_chars_nonspace": 247,
+    "seconds": 60.266,
+    "reads": [
+      {
+        "item_id": "item_0",
+        "file": "SKILL.md",
+        "installed_file_bytes": 27402,
+        "complete_text_in_tool_output": true,
+        "command_output_bytes_including_host_warnings": 27775
+      },
+      {
+        "item_id": "item_5",
+        "file": "references/genre-playbooks.md",
+        "installed_file_bytes": 5691,
+        "complete_text_in_tool_output": true,
+        "command_output_bytes_including_host_warnings": 6064
+      },
+      {
+        "item_id": "item_6",
+        "file": "references/genre-checklist.md",
+        "installed_file_bytes": 7423,
+        "complete_text_in_tool_output": true,
+        "command_output_bytes_including_host_warnings": 7796
+      }
+    ],
+    "unique_skill_reference_installed_bytes": 40516,
+    "skill_reference_installed_bytes_counting_rereads": 40516,
+    "completed_command_count": 9,
+    "nonzero_exit_command_ids": [
+      "item_7",
+      "item_8"
+    ],
+    "lint_command_ids": [
+      "item_4",
+      "item_7",
+      "item_8"
+    ],
+    "lint_help_ids": [],
+    "lint_nonzero_exit_ids": [
+      "item_7",
+      "item_8"
+    ],
+    "script_not_found_count": 0,
+    "facts_status_structure_delivery": "NO_OBSERVED_ERROR_IN_THIS_CASE",
+    "word_count": "NO_HARD_BOUND_IN_PROMPT",
+    "style": "usable; MiniMax candidate mildly compressed and regrouped supplied states",
+    "quality_error_count_observed": 0,
+    "global_skill_read": false,
+    "hook_used": false,
+    "tool_scope_violation_observed": false
+  }
+]

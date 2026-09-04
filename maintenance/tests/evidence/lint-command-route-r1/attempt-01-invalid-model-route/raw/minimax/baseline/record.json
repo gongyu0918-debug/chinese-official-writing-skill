@@ -1,0 +1,28 @@
+{
+  "provider": "minimax",
+  "model": "opencodex/minimax-cn/MiniMax-M3",
+  "arm": "baseline",
+  "return_code": 1,
+  "seconds": 19.891,
+  "technical_observations": [
+    "nonzero_exit",
+    "missing_final",
+    "missing_turn_completed",
+    "exact_successful_skill_read_needs_manual_resolution"
+  ],
+  "required_literal_observations_only": [
+    "empty_final"
+  ],
+  "final_chars_nonspace": 0,
+  "usage": {},
+  "successful_read_observations": [],
+  "commands": [],
+  "global_skill_paths": [],
+  "hook_markers": [],
+  "sha256": {
+    "invocation.json": "45ca77336b48fa79132db26e0bdf698ddff9ee42f21d035355961a7afddfe0d4",
+    "stderr.txt": "04f366699eae5106f120974befc9d6ab0697b501367841a0f3c106d5d337b8d8",
+    "trace.jsonl": "b85cde86a099696436c13114d0f2d49141f6790aada1331a89f257d9ef739509"
+  },
+  "manual_quality_review": "PENDING"
+}

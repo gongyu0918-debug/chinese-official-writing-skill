@@ -1,0 +1,17 @@
+{
+  "argv": [
+    "C:\\Users\\admin\\AppData\\Local\\OpenAI\\Codex\\bin\\1e3e57cdf0634c02\\codex.exe",
+    "sandbox",
+    "-C",
+    "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\lint-command-route-r1\\output\\lint-command-route-r1\\r3 project\\runtime\\alibaba2\\baseline",
+    "-c",
+    "sandbox_mode=\"read-only\"",
+    "C:\\Users\\admin\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\powershell\\pwsh.exe",
+    "-NoProfile",
+    "-Command",
+    "(Get-Location).Path; Get-Content -LiteralPath '通知原稿.md' -TotalCount 1; Get-Content -LiteralPath '.agents/skills/chinese-official-writing/SKILL.md' -TotalCount 2"
+  ],
+  "exit": 2,
+  "stdout": "",
+  "stderr": "error: the following required arguments were not provided:\n  --permission-profile <NAME>\n\nUsage: codex sandbox --permission-profile <NAME> --cd <DIR> --config <key=value> <COMMAND>...\n\nFor more information, try '--help'.\n"
+}

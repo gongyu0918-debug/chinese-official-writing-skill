@@ -1,0 +1,58 @@
+[
+  {
+    "provider": "minimax",
+    "model": "opencodex/minimax-cn/MiniMax-M3",
+    "arm": "candidate",
+    "return_code": 1,
+    "seconds": 17.593,
+    "technical_observations": [
+      "nonzero_exit",
+      "missing_final",
+      "missing_turn_completed",
+      "exact_successful_skill_read_needs_manual_resolution"
+    ],
+    "required_literal_observations_only": [
+      "empty_final"
+    ],
+    "final_chars_nonspace": 0,
+    "usage": {},
+    "successful_read_observations": [],
+    "commands": [],
+    "global_skill_paths": [],
+    "hook_markers": [],
+    "sha256": {
+      "invocation.json": "e80f02e8ff3b33c4c8d57264f736eb47a0179e922728efc1ccef1734db65619b",
+      "stderr.txt": "706eff2ebaedd82367558cbb78b67d6f357d21a1d777d1e1f4d12cc0c4f95f6a",
+      "trace.jsonl": "16a83dde2de6fc131992d024a614fe75b5aa30b8d34985afbf0435aba09fb6c7"
+    },
+    "manual_quality_review": "PENDING"
+  },
+  {
+    "provider": "minimax",
+    "model": "opencodex/minimax-cn/MiniMax-M3",
+    "arm": "baseline",
+    "return_code": 1,
+    "seconds": 19.891,
+    "technical_observations": [
+      "nonzero_exit",
+      "missing_final",
+      "missing_turn_completed",
+      "exact_successful_skill_read_needs_manual_resolution"
+    ],
+    "required_literal_observations_only": [
+      "empty_final"
+    ],
+    "final_chars_nonspace": 0,
+    "usage": {},
+    "successful_read_observations": [],
+    "commands": [],
+    "global_skill_paths": [],
+    "hook_markers": [],
+    "sha256": {
+      "invocation.json": "45ca77336b48fa79132db26e0bdf698ddff9ee42f21d035355961a7afddfe0d4",
+      "stderr.txt": "04f366699eae5106f120974befc9d6ab0697b501367841a0f3c106d5d337b8d8",
+      "trace.jsonl": "b85cde86a099696436c13114d0f2d49141f6790aada1331a89f257d9ef739509"
+    },
+    "manual_quality_review": "PENDING"
+  }
+]

@@ -2,15 +2,17 @@
 
 固定基线 `5fbb2d26c49d0b780ad11fc4cff008854995ad3f`；审核时 main 干净。冷审和离线故障复现不代表真实成稿总体失败率。
 
+四项Hook反例的脚本、结果及来源已归入[离线证据包](../hook-offline-counterexamples-r1/README.md)：前三项原字节保存，本次没有重跑；终态请求重放另用未修改core的新子进程补证一次。模型真实D0试验与这些受控反例分别保留。
+
 ## 可复现缺陷
 
 | 发现 | 位置（相对仓库根） | 复现与状态 |
 | --- | --- | --- |
-| 自动补日期错绑示例 | `chinese-official-writing/hooks/shared/source_bound_dates.py:111`；`hooks/core/gate_stop_hook.py:1374` | 请求活动事实为2026-09-05，另有明确不属于事实的格式示例2020年9月5日；D0仅写9月5日。首个Stop将其改成2020年9月5日并以TERMINAL_D0选择。根代理独立复现；日期歧义旁路原型在codex/hook-date-binding-audit-r1，未准入、未合并。 |
+| 自动补日期错绑示例 | `chinese-official-writing/hooks/shared/source_bound_dates.py:111`；`hooks/core/gate_stop_hook.py:1374` | 请求活动事实为2026-09-05，另有明确不属于事实的格式示例2020年9月5日；D0仅写9月5日。首个Stop将其改成2020年9月5日并以TERMINAL_D0选择。根代理独立复现；[两路自然D0](../date-source-real-r1/result.md)均完整写对年份，同稿默认Hook保持，本批NOT_REPRODUCED。旧歧义旁路仅归档patch，未应用、未准入；离线缺陷仍保留。 |
 | 错回显预算耗尽放行 | `chinese-official-writing/hooks/core/gate_stop_hook.py:1489` | 选定稿是“测试工作已完成”，连续提供四次“已批准采购”错回显后，返回continue=true、delivery_verified=false，事务已清理。原生adapter无法替换可见正文。根独立复现；未修复。 |
 | 终态重放恢复原请求 | `chinese-official-writing/hooks/core/gate_stop_hook.py:1234`及`:1635` | 禁用Hook的任务到Stop清理后，重放同turn的UserPromptSubmit恢复request；后续Stop看到旧脱敏标志直接放行。根独立复现；未修复。 |
 | 晚到事件覆盖终态 | `chinese-official-writing/hooks/core/gate_stop_hook.py:1276` | 用确定性线程调度暂停PostToolUse写入，先让正确Stop完成清理，再释放旧写入，request与emitted_output回流，已删除txn不能再清理。根独立复现；这是离线并发故障调度，不冒充在线发生率。 |
-| lint命令依赖cwd | `chinese-official-writing/references/final-review-layers.md:74` | 普通包安装在项目.agents/skills下时，在项目cwd执行python scripts/prose_lint.py失败exit2；按SKILL目录解析绝对脚本路径成功并检出同一finding。尚未修改产品文字。 |
+| lint命令依赖cwd | `chinese-official-writing/references/final-review-layers.md:74` | 普通包安装在项目.agents/skills下时，在项目cwd执行python scripts/prose_lint.py失败exit2；按SKILL目录解析绝对脚本路径成功并检出同一finding。另用[两份真实终稿](../command-cwd-real-draft-r1/result.md)执行四次原生命令，均从exit2变为exit0、稿件字节不变；两处路径说明及五套普通镜像已同步。命令正确性准入不表示stdin/源码路由已减载。 |
 | 过期协议前置指向 | `chinese-official-writing/references/delivery-review-gate.md:56` | 指向information-selection.md的写后标记流程已经不存在；普通包排除该协议，不构成普通用户必读负担。尚未修改。 |
 
 ## 质量覆盖边界
@@ -21,9 +23,9 @@
 
 ## references负担与统计边界
 
-Git UTF-8字节：入口27,147；35份references共196,198；其中Hook协议14,400。五套普通兼容包已排除Hook协议、hooks和review_gate.py，因此不能宣传把协议搬目录就让普通写稿每次节省14KB。
+固定基线Git UTF-8字节：入口27,147；35份references共196,198；其中Hook协议14,400。五套普通兼容包已排除Hook协议、hooks和review_gate.py，因此不能宣传把协议搬目录就让普通写稿每次节省14KB。最终仅准入命令路径说明，入口增加120、final-review增加152 bytes；没有减少运行时规则。
 
-入口5行原型的20份真实A/B已完成并依据原trace重算；候选独有硬问题阻断准入，运行时已恢复基线，见[完整结果](candidate-r1-result.md)。旧probe漏记Windows重复分隔符的统计独立保留，不重跑模型掩盖问题。
+入口5行原型的20份真实A/B已完成并依据原trace重算；候选独有硬问题阻断准入，其路由已恢复基线，见[完整结果](candidate-r1-result.md)。旧probe漏记Windows重复分隔符的统计独立保留，不重跑模型掩盖问题。
 
 ## 可缩小的转读范围
 

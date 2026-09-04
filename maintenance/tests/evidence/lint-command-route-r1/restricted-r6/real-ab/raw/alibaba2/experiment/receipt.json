@@ -1,0 +1,220 @@
+{
+  "provider": "alibaba2",
+  "arm": "experiment",
+  "seconds": 89.156,
+  "return_code": 0,
+  "technical_violations": [],
+  "parsed": {
+    "record_count": 3475,
+    "invalid_json_lines": [],
+    "init_models": [
+      "alibaba-token-plan-2/deepseek-v4-flash-0731"
+    ],
+    "assistant_models": [
+      "alibaba-token-plan-2/deepseek-v4-flash-0731"
+    ],
+    "usage_models": [
+      "alibaba-token-plan-2/deepseek-v4-flash-0731"
+    ],
+    "api_key_sources": [
+      "none"
+    ],
+    "plugins": [],
+    "reads": [],
+    "result_count": 1,
+    "result_subtypes": [
+      "success"
+    ],
+    "result_errors": [
+      false
+    ],
+    "final": "关于报送读书交流活动报名信息的通知\n\n各科室：\n\n青桥服务中心拟于2026年9月18日15时在三楼会议室举办读书交流活动。活动方案尚未审定，目前只征集报名意向，不作正式参加确认。\n\n请各科室于2026年9月10日17时前，将报名信息交综合科王青，联系电话为内线305。每科室可报1至2人，报送内容包括姓名、所在科室和联系电话，暂不提交交流材料。\n\n综合科将汇总报名信息，供活动筹备使用。交流主题、发言顺序尚待确定，报名不等于已列入发言名单。本次不收取费用，也不要求各科室自行安排接待。请按上述范围报送信息。\n\n青桥服务中心\n\n2026年9月5日",
+    "final_sha256": "bd5ed64458ff225d80e7e7e65c131111776f5ae5bbc46fe496100402dff48bca"
+  },
+  "tools_exposed": [
+    "mcp__audit__prose_lint",
+    "mcp__audit__read_document"
+  ],
+  "mcp_servers": [
+    {
+      "name": "audit",
+      "status": "connected"
+    }
+  ],
+  "tool_calls": [
+    {
+      "sequence": 1,
+      "tool": "read_document",
+      "id": "SKILL.md",
+      "status": "OK",
+      "returned_utf8_bytes": 27461,
+      "sha256": "765f4cfd786f8d6e2b1e50d49179b58cad6238223b8e28c3bbd9e3a3e7b679b9"
+    },
+    {
+      "sequence": 2,
+      "tool": "read_document",
+      "id": "D0",
+      "status": "OK",
+      "returned_utf8_bytes": 738,
+      "sha256": "773c0c72d558dbad67f2c9ffa2c6b061908ab0f34d21fb51da893b73cec6787c"
+    },
+    {
+      "sequence": 3,
+      "tool": "read_document",
+      "id": "references/information-selection.md",
+      "status": "OK",
+      "returned_utf8_bytes": 3987,
+      "sha256": "188c9def1553cb01423f5214ebaee6f122c3157aac39b60f54077d78df97d595"
+    },
+    {
+      "sequence": 4,
+      "tool": "read_document",
+      "id": "references/task-route-cards.md",
+      "status": "OK",
+      "returned_utf8_bytes": 3758,
+      "sha256": "5486d59cfaafd25f6b49623d2f7b4e0559183edb325fda6809c32cc65a273a0d"
+    },
+    {
+      "sequence": 5,
+      "tool": "read_document",
+      "id": "references/proofreading-checklist.md",
+      "status": "OK",
+      "returned_utf8_bytes": 3793,
+      "sha256": "aa56802a0e984aadb1deed4603181fc85b237b8c534ae0973e3c9d9413d859d2"
+    },
+    {
+      "sequence": 6,
+      "tool": "read_document",
+      "id": "references/final-review-layers.md",
+      "status": "OK",
+      "returned_utf8_bytes": 9029,
+      "sha256": "0204ee133951e5ca0839312e8c60524d2edc529161e9b2846a314e1e7232e546"
+    },
+    {
+      "sequence": 7,
+      "tool": "prose_lint",
+      "args": [
+        "--help"
+      ],
+      "text": "",
+      "status": "EXECUTED",
+      "argv": [
+        "C:\\Users\\admin\\AppData\\Local\\hermes\\hermes-agent\\venv\\Scripts\\python.exe",
+        "-I",
+        "-B",
+        "-X",
+        "utf8",
+        "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\lint-command-route-r1\\output\\lint-command-route-r1\\restricted-r6\\snapshots\\experiment\\scripts\\prose_lint.py",
+        "--help"
+      ],
+      "shell": false,
+      "input_utf8_bytes": 0,
+      "text_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "return_code": 0,
+      "stdout": "usage: prose_lint.py [-h] [--encoding ENCODING] [--json] [--format]\n                     [--structure]\n                     [--delivery-mode {generic,draft-body,review-only,gap-note-allowed}]\n                     [--strict] [--fail-on {low,medium,high}]\n                     files [files ...]\n\nWarn about Chinese official-writing prose risks.\n\npositional arguments:\n  files                 Text/Markdown/DOCX files to scan, or '-' for stdin.\n\noptions:\n  -h, --help            show this help message and exit\n  --encoding ENCODING   Encoding for plain-text files.\n  --json                Emit JSON findings.\n  --format              Also scan punctuation, number, list-marker, and emoji\n                        format risks.\n  --structure           Also scan adjacent paragraphs for repeated matters.\n  --delivery-mode {generic,draft-body,review-only,gap-note-allowed}\n                        Opt in to mode-aware delivery checks; default generic\n                        keeps existing lint behavior.\n  --strict              Return exit code 1 when findings exist.\n  --fail-on {low,medium,high}\n                        With --strict, fail only when findings at this\n                        severity or higher exist.\n",
+      "stderr": ""
+    },
+    {
+      "sequence": 8,
+      "tool": "prose_lint",
+      "args": [
+        "--delivery-mode",
+        "draft-body",
+        "--format",
+        "--structure",
+        "-"
+      ],
+      "text": "**关于报送读书交流活动报名信息的通知**\n\n各科室：\n\n青桥服务中心拟于2026年9月18日15时在三楼会议室举办读书交流活动。活动方案尚未审定，目前只征集报名意向，不作正式参加确认。\n\n请各科室于2026年9月10日17时前，将报名信息交综合科王青，联系电话为内线305。每科室可报1至2人，报名信息包括姓名、所在科室和联系电话，暂不提交交流材料。\n\n综合科将汇总报名信息，供活动筹备使用。交流主题、发言顺序尚待确定，报名不等于已列入发言名单。本次不收取费用，也不要求各科室自行安排接待。请按上述范围报送信息。\n\n青桥服务中心\n2026年9月5日",
+      "status": "EXECUTED",
+      "argv": [
+        "C:\\Users\\admin\\AppData\\Local\\hermes\\hermes-agent\\venv\\Scripts\\python.exe",
+        "-I",
+        "-B",
+        "-X",
+        "utf8",
+        "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\lint-command-route-r1\\output\\lint-command-route-r1\\restricted-r6\\snapshots\\experiment\\scripts\\prose_lint.py",
+        "--delivery-mode",
+        "draft-body",
+        "--format",
+        "--structure",
+        "-"
+      ],
+      "shell": false,
+      "input_utf8_bytes": 737,
+      "text_sha256": "3f5a404e9ac87c559734df28637642a00c5c5196931e850a405511bacc85bd9d",
+      "return_code": 0,
+      "stdout": "<stdin>:1: low: markdown-bold: **关于报送读书交流活动报名信息的通知**\n  **关于报送读书交流活动报名信息的通知** | 正式公文正文不要用 Markdown 加粗标记；改为普通小标题或正文。\n",
+      "stderr": ""
+    },
+    {
+      "sequence": 9,
+      "tool": "prose_lint",
+      "args": [
+        "--delivery-mode",
+        "draft-body",
+        "--format",
+        "--structure",
+        "-"
+      ],
+      "text": "关于报送读书交流活动报名信息的通知\n\n各科室：\n\n青桥服务中心拟于2026年9月18日15时在三楼会议室举办读书交流活动。活动方案尚未审定，目前只征集报名意向，不作正式参加确认。\n\n请各科室于2026年9月10日17时前，将报名信息交综合科王青，联系电话为内线305。每科室可报1至2人，报送内容包括姓名、所在科室和联系电话，暂不提交交流材料。\n\n综合科将汇总报名信息，供活动筹备使用。交流主题、发言顺序尚待确定，报名不等于已列入发言名单。本次不收取费用，也不要求各科室自行安排接待。请按上述范围报送信息。\n\n青桥服务中心\n2026年9月5日",
+      "status": "EXECUTED",
+      "argv": [
+        "C:\\Users\\admin\\AppData\\Local\\hermes\\hermes-agent\\venv\\Scripts\\python.exe",
+        "-I",
+        "-B",
+        "-X",
+        "utf8",
+        "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\lint-command-route-r1\\output\\lint-command-route-r1\\restricted-r6\\snapshots\\experiment\\scripts\\prose_lint.py",
+        "--delivery-mode",
+        "draft-body",
+        "--format",
+        "--structure",
+        "-"
+      ],
+      "shell": false,
+      "input_utf8_bytes": 733,
+      "text_sha256": "af8573dbace25d5b7ec35db65b8bd220bcd9876530618462140c42eef43d99b6",
+      "return_code": 0,
+      "stdout": "No prose risks found.\n",
+      "stderr": ""
+    }
+  ],
+  "read_utf8_bytes": 48766,
+  "reported_cost_and_usage": [
+    {
+      "total_cost_usd": 0.265864,
+      "usage": {
+        "input_tokens": 9053,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 43008,
+        "output_tokens": 7511,
+        "server_tool_use": {
+          "web_search_requests": 0,
+          "web_fetch_requests": 0
+        },
+        "service_tier": "standard",
+        "cache_creation": {
+          "ephemeral_1h_input_tokens": 0,
+          "ephemeral_5m_input_tokens": 0
+        },
+        "inference_geo": "",
+        "iterations": [],
+        "speed": "standard"
+      },
+      "modelUsage": {
+        "alibaba-token-plan-2/deepseek-v4-flash-0731": {
+          "inputTokens": 9562,
+          "outputTokens": 7862,
+          "cacheReadInputTokens": 43008,
+          "cacheCreationInputTokens": 0,
+          "webSearchRequests": 0,
+          "costUSD": 0.265864,
+          "contextWindow": 200000,
+          "maxOutputTokens": 32000
+        }
+      },
+      "num_turns": 10
+    }
+  ],
+  "cost_scope": "CLI-reported estimate and usage; not a provider billing receipt"
+}

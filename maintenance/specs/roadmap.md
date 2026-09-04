@@ -72,12 +72,12 @@
 - `WR-028-REMEDIATION-PLAN-R2`：R1五家25份候选发现一处候选独有状态遗漏；R2只强化状态先落位，五家10份中8份候选隔离有效，两题各4份均保留材料状态并形成实际措施，唯一硬回退已消除。五套普通镜像、直接断言、五处quick validate和774项全量回归已经通过；状态改记 `LOCAL_MAIN_INTEGRATED / NOT_RELEASED`：2026-09-05 实查本地 main 为 `5fbb2d26`、本地 origin/main 仍为 `5869234b`，未推送或发布；不改写旧工程证据的当时状态，不改Hook、description和其他文种。[R2结果](../tests/evidence/remediation-plan-r1/candidate-r2-result.md) [工程接入](../tests/evidence/remediation-plan-r1/engineering-result.md)
 
 - `WR-020c-QUALITY-LOOP-R1`：20稿中19有效，14份未观察到已确认硬问题、5稿至少8项硬问题；只限两道整改题，31条质量提醒另列。4条真实resume七版链28/28技术完成：R3/R7调序4/4、R4完整删除3/4、R5独立插段3/4，R7三稿无已登记硬问题；全链至少12项新问题，不把28相关版本当独立样本。六稿同D0默认Hook复放均保留D0，修正0、新增改坏0，不能当全面语义核验。状态 `IN_PROGRESS / QUALITY_AUDIT_COMPLETE_GAPS_REGISTERED`。[批量结果](../tests/evidence/reference-route-audit-r1/candidate-r1-result.md) [七版链结果](../tests/evidence/revision-stability-audit-r1/result.md)
-- `MT-002a-COMMAND-CWD-R1`：项目 cwd 中相对 lint 命令失败已复现，绝对脚本路径成功；命令原型尚未实施，后续 reference 减载须真实写稿 A/B，路线与样本按目标风险预登记。状态 `IN_PROGRESS / REPRODUCED_NOT_FIXED`。[审计](../tests/evidence/reference-route-audit-r1/audit-findings.md)
-- `AH-002b-DATE-SOURCE-ROLE-R1`：格式示例日期被补入目标新闻已复现，独立分支只有未准入的歧义旁路原型；`HK-005b-TERMINAL-ECHO-R1` 的错回显耗尽放行、终态重放与晚到写入三项未修复。均为 `IN_PROGRESS`；先同一真实 D0 验证再补必要工程，不用旧159项通过否定新反例。[审计](../tests/evidence/reference-route-audit-r1/audit-findings.md)
+- `MT-002a-COMMAND-CWD-R1`：两份真实通知在带空格的项目cwd中，原相对命令均exit2，绝对脚本/稿件路径均exit0，正文不变；已准入SKILL及final-review两处路径说明并同步五套普通镜像。89项直接回归与五处quick_validate通过，OpenClaw由专项契约检查。状态 `REAL_DRAFT_COMMAND_PASSED / ENGINEERING_VERIFIED / LOCAL_BRANCH_ONLY / NOT_RELEASED`，净增272 bytes，不称减载。[真实执行](../tests/evidence/command-cwd-real-draft-r1/result.md) [模型实验](../tests/evidence/lint-command-route-r1/result.md)
+- `AH-002b-DATE-SOURCE-ROLE-R1`：格式示例错绑的离线反例保留；[两路自然D0](../tests/evidence/date-source-real-r1/result.md)都写对完整年份，默认Hook保持，故 `REAL_R1_NOT_REPRODUCED / NOT_ADMITTED`，旧旁路仅归档patch；`HK-005b-TERMINAL-ECHO-R1` 的错回显耗尽放行、终态重放与晚到写入三项未修复。问题修复仍未完成；先同一真实 D0 验证再补必要工程，不用旧159项通过否定新反例。[审计](../tests/evidence/reference-route-audit-r1/audit-findings.md)
 
 ## REJECTED
 
-- `MT-004c-REFERENCE-ROUTE-R1`：五路20稿中19份隔离有效，9个有效对5个少读、4个多读；候选独有标题事实改变、漏日期和系统对象新增，状态 `REJECTED / PRODUCT_RESTORED`。入口原型22772262保留追溯，运行时恢复5fbb2d26，不镜像或发布。[结果](../tests/evidence/reference-route-audit-r1/candidate-r1-result.md)
+- `MT-004c-REFERENCE-ROUTE-R1`：五路20稿中19份隔离有效，9个有效对5个少读、4个多读；候选独有标题事实改变、漏日期和系统对象新增，状态 `REJECTED / PRODUCT_RESTORED`。入口原型22772262保留追溯，失败路由未镜像或发布。命令stdin/源码提示R4—R6各四份真实稿，最后两路可见文档响应−10,536/+67,774 bytes，`COMMAND_ROUTE_REJECTED_NO_CONSISTENT_LOAD_GAIN`；三项提示均撤回，路径可执行性另记MT-002a。[入口结果](../tests/evidence/reference-route-audit-r1/candidate-r1-result.md) [命令读取结果](../tests/evidence/lint-command-route-r1/result.md)
 
 - `FINAL-BODY-LEAF-R1`：稀疏采购、活动新闻、普通长报告对完整总审页的实际读取依次为1/5、0/5、1/5，没有稳定可归因减载入口，不做产品原型。[基线结果](../tests/evidence/reference-slimming-r2/baseline-result.md)
 - `WORKFLOW-REVISION-LEAF-R1`：普通长报告0/5读取 `workflow.md`，多材料改稿也只有1/4有效读取；物理拆分不能解决当前路由，不做产品原型。[基线结果](../tests/evidence/reference-slimming-r2/baseline-result.md)

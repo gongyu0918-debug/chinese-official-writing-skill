@@ -1,0 +1,28 @@
+{
+  "provider": "alibaba2",
+  "model": "opencodex/alibaba-token-plan-2/deepseek-v4-flash-0731",
+  "arm": "baseline",
+  "return_code": 1,
+  "seconds": 18.781,
+  "technical_observations": [
+    "nonzero_exit",
+    "missing_final",
+    "missing_turn_completed",
+    "exact_successful_skill_read_needs_manual_resolution"
+  ],
+  "required_literal_observations_only": [
+    "empty_final"
+  ],
+  "final_chars_nonspace": 0,
+  "usage": {},
+  "successful_read_observations": [],
+  "commands": [],
+  "global_skill_paths": [],
+  "hook_markers": [],
+  "sha256": {
+    "invocation.json": "92105d4f29652acc33c6b844865f260d0cd978a321f32ab8b4ca78b895d57ce4",
+    "stderr.txt": "2dc37afd0a60e8b52cf25e7811483a918e75a1a691fc9645ecde139f8d26b1e6",
+    "trace.jsonl": "7bfa24b6b76e556acfa060428d796cb79925a57240999a02754838850e878712"
+  },
+  "manual_quality_review": "PENDING"
+}

@@ -1,0 +1,179 @@
+{
+  "provider": "alibaba2",
+  "arm": "control",
+  "seconds": 50.594,
+  "return_code": 0,
+  "technical_violations": [],
+  "parsed": {
+    "record_count": 1429,
+    "invalid_json_lines": [],
+    "init_models": [
+      "alibaba-token-plan-2/deepseek-v4-flash-0731"
+    ],
+    "assistant_models": [
+      "alibaba-token-plan-2/deepseek-v4-flash-0731"
+    ],
+    "usage_models": [
+      "alibaba-token-plan-2/deepseek-v4-flash-0731"
+    ],
+    "api_key_sources": [
+      "none"
+    ],
+    "plugins": [],
+    "reads": [],
+    "result_count": 1,
+    "result_subtypes": [
+      "success"
+    ],
+    "result_errors": [
+      false
+    ],
+    "final": "关于报送读书交流活动报名信息的通知\n\n各科室：\n\n青桥服务中心拟于2026年9月18日15时在三楼会议室举办读书交流活动。活动方案尚未审定，目前只征集报名意向，不作正式参加确认。\n\n请各科室于2026年9月10日17时前，将报名信息交综合科王青，联系电话为内线305。每科室可报1至2人，报名信息包括姓名、所在科室和联系电话，暂不提交交流材料。\n\n综合科将汇总报名信息，供活动筹备使用。交流主题、发言顺序尚待确定，报名不等于已列入发言名单。本次不收取费用，也不要求各科室自行安排接待。请按上述范围报送信息。\n\n青桥服务中心\n2026年9月5日",
+    "final_sha256": "e40ec89757b227bd800cf377f6a649d36ae7fdccf697534b3cd48f7ae6c61aae"
+  },
+  "tools_exposed": [
+    "mcp__audit__prose_lint",
+    "mcp__audit__read_document"
+  ],
+  "mcp_servers": [
+    {
+      "name": "audit",
+      "status": "connected"
+    }
+  ],
+  "tool_calls": [
+    {
+      "sequence": 1,
+      "tool": "read_document",
+      "id": "SKILL.md",
+      "status": "OK",
+      "returned_utf8_bytes": 27267,
+      "sha256": "094e214bdd8e32d0ee69dfad2e3a796a08557e35a531e19ba18748365510ebc8"
+    },
+    {
+      "sequence": 2,
+      "tool": "read_document",
+      "id": "D0",
+      "status": "OK",
+      "returned_utf8_bytes": 738,
+      "sha256": "773c0c72d558dbad67f2c9ffa2c6b061908ab0f34d21fb51da893b73cec6787c"
+    },
+    {
+      "sequence": 3,
+      "tool": "read_document",
+      "id": "references/information-selection.md",
+      "status": "OK",
+      "returned_utf8_bytes": 3987,
+      "sha256": "188c9def1553cb01423f5214ebaee6f122c3157aac39b60f54077d78df97d595"
+    },
+    {
+      "sequence": 4,
+      "tool": "read_document",
+      "id": "references/task-route-cards.md",
+      "status": "OK",
+      "returned_utf8_bytes": 3758,
+      "sha256": "5486d59cfaafd25f6b49623d2f7b4e0559183edb325fda6809c32cc65a273a0d"
+    },
+    {
+      "sequence": 5,
+      "tool": "read_document",
+      "id": "scripts/prose_lint.py",
+      "status": "OK",
+      "returned_utf8_bytes": 58290,
+      "sha256": "af6d241367986b40f139e80dd06c96b2c975d7bcf3ca16d85ea9950dec3b8806"
+    },
+    {
+      "sequence": 6,
+      "tool": "prose_lint",
+      "args": [
+        "--structure",
+        "--format"
+      ],
+      "text": "**关于报送读书交流活动报名信息的通知**\n\n各科室：\n\n青桥服务中心拟于2026年9月18日15时在三楼会议室举办读书交流活动。活动方案尚未审定，目前只征集报名意向，不作正式参加确认。\n\n请各科室于2026年9月10日17时前，将报名信息交综合科王青，联系电话为内线305。每科室可报1至2人，报名信息包括姓名、所在科室和联系电话，暂不提交交流材料。\n\n综合科将汇总报名信息，供活动筹备使用。交流主题、发言顺序尚待确定，报名不等于已列入发言名单。本次不收取费用，也不要求各科室自行安排接待。请按上述范围报送信息。\n\n青桥服务中心\n2026年9月5日",
+      "status": "REJECTED",
+      "reason": "file input is unavailable; use stdin '-' or standalone --help"
+    },
+    {
+      "sequence": 7,
+      "tool": "prose_lint",
+      "args": [
+        "--structure",
+        "--format",
+        "-"
+      ],
+      "text": "**关于报送读书交流活动报名信息的通知**\n\n各科室：\n\n青桥服务中心拟于2026年9月18日15时在三楼会议室举办读书交流活动。活动方案尚未审定，目前只征集报名意向，不作正式参加确认。\n\n请各科室于2026年9月10日17时前，将报名信息交综合科王青，联系电话为内线305。每科室可报1至2人，报名信息包括姓名、所在科室和联系电话，暂不提交交流材料。\n\n综合科将汇总报名信息，供活动筹备使用。交流主题、发言顺序尚待确定，报名不等于已列入发言名单。本次不收取费用，也不要求各科室自行安排接待。请按上述范围报送信息。\n\n青桥服务中心\n2026年9月5日",
+      "status": "EXECUTED",
+      "argv": [
+        "C:\\Users\\admin\\AppData\\Local\\hermes\\hermes-agent\\venv\\Scripts\\python.exe",
+        "-I",
+        "-B",
+        "-X",
+        "utf8",
+        "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\lint-command-route-r1\\output\\lint-command-route-r1\\restricted-r4-r2\\snapshots\\control\\scripts\\prose_lint.py",
+        "--structure",
+        "--format",
+        "-"
+      ],
+      "shell": false,
+      "input_utf8_bytes": 737,
+      "text_sha256": "3f5a404e9ac87c559734df28637642a00c5c5196931e850a405511bacc85bd9d",
+      "return_code": 0,
+      "stdout": "<stdin>:1: low: markdown-bold: **关于报送读书交流活动报名信息的通知**\n  **关于报送读书交流活动报名信息的通知** | 正式公文正文不要用 Markdown 加粗标记；改为普通小标题或正文。\n",
+      "stderr": ""
+    },
+    {
+      "sequence": 8,
+      "tool": "read_document",
+      "id": "references/proofreading-checklist.md",
+      "status": "OK",
+      "returned_utf8_bytes": 3793,
+      "sha256": "aa56802a0e984aadb1deed4603181fc85b237b8c534ae0973e3c9d9413d859d2"
+    },
+    {
+      "sequence": 9,
+      "tool": "read_document",
+      "id": "references/final-review-layers.md",
+      "status": "OK",
+      "returned_utf8_bytes": 9029,
+      "sha256": "0204ee133951e5ca0839312e8c60524d2edc529161e9b2846a314e1e7232e546"
+    }
+  ],
+  "read_utf8_bytes": 106862,
+  "reported_cost_and_usage": [
+    {
+      "total_cost_usd": 0.207927,
+      "usage": {
+        "input_tokens": 17053,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 41984,
+        "output_tokens": 3597,
+        "server_tool_use": {
+          "web_search_requests": 0,
+          "web_fetch_requests": 0
+        },
+        "service_tier": "standard",
+        "cache_creation": {
+          "ephemeral_1h_input_tokens": 0,
+          "ephemeral_5m_input_tokens": 0
+        },
+        "inference_geo": "",
+        "iterations": [],
+        "speed": "standard"
+      },
+      "modelUsage": {
+        "alibaba-token-plan-2/deepseek-v4-flash-0731": {
+          "inputTokens": 17562,
+          "outputTokens": 3965,
+          "cacheReadInputTokens": 41984,
+          "cacheCreationInputTokens": 0,
+          "webSearchRequests": 0,
+          "costUSD": 0.207927,
+          "contextWindow": 200000,
+          "maxOutputTokens": 32000
+        }
+      },
+      "num_turns": 10
+    }
+  ],
+  "cost_scope": "CLI-reported estimate and usage; not a provider billing receipt"
+}

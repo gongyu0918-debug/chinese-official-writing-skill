@@ -1,0 +1,86 @@
+{
+  "baseline": "5fbb2d26c49d0b780ad11fc4cff008854995ad3f",
+  "selected_product_prototype": "5cb696fe",
+  "runtime_changed_files": 12,
+  "checks": [
+    {
+      "path": "chinese-official-writing/SKILL.md",
+      "delta_utf8_lf": 120,
+      "restores_baseline_exactly": true,
+      "sha256_lf": "094e214bdd8e32d0ee69dfad2e3a796a08557e35a531e19ba18748365510ebc8"
+    },
+    {
+      "path": "chinese-official-writing/references/final-review-layers.md",
+      "delta_utf8_lf": 152,
+      "restores_baseline_exactly": true,
+      "sha256_lf": "0204ee133951e5ca0839312e8c60524d2edc529161e9b2846a314e1e7232e546"
+    },
+    {
+      "path": "packages/agent-skills/skills/chinese-official-writing/SKILL.md",
+      "delta_utf8_lf": 120,
+      "restores_baseline_exactly": true,
+      "sha256_lf": "7f05054b0cfeb49b504d741764ed693aaacdbc735e0c36301fbf277f16c8e9a0"
+    },
+    {
+      "path": "packages/agent-skills/skills/chinese-official-writing/references/final-review-layers.md",
+      "delta_utf8_lf": 152,
+      "restores_baseline_exactly": true,
+      "sha256_lf": "0204ee133951e5ca0839312e8c60524d2edc529161e9b2846a314e1e7232e546"
+    },
+    {
+      "path": "packages/hermes/skills/chinese-official-writing/SKILL.md",
+      "delta_utf8_lf": 120,
+      "restores_baseline_exactly": true,
+      "sha256_lf": "7f05054b0cfeb49b504d741764ed693aaacdbc735e0c36301fbf277f16c8e9a0"
+    },
+    {
+      "path": "packages/hermes/skills/chinese-official-writing/references/final-review-layers.md",
+      "delta_utf8_lf": 152,
+      "restores_baseline_exactly": true,
+      "sha256_lf": "0204ee133951e5ca0839312e8c60524d2edc529161e9b2846a314e1e7232e546"
+    },
+    {
+      "path": "packages/openclaw/skills/chinese_official_writing/SKILL.md",
+      "delta_utf8_lf": 120,
+      "restores_baseline_exactly": true,
+      "sha256_lf": "64f30cfc47bf3de957030079460c49ac41a19b2863c938892acd3e00a6906ae8"
+    },
+    {
+      "path": "packages/openclaw/skills/chinese_official_writing/references/final-review-layers.md",
+      "delta_utf8_lf": 152,
+      "restores_baseline_exactly": true,
+      "sha256_lf": "0204ee133951e5ca0839312e8c60524d2edc529161e9b2846a314e1e7232e546"
+    },
+    {
+      "path": "packages/qwen-code/skills/chinese-official-writing/SKILL.md",
+      "delta_utf8_lf": 120,
+      "restores_baseline_exactly": true,
+      "sha256_lf": "7f05054b0cfeb49b504d741764ed693aaacdbc735e0c36301fbf277f16c8e9a0"
+    },
+    {
+      "path": "packages/qwen-code/skills/chinese-official-writing/references/final-review-layers.md",
+      "delta_utf8_lf": 152,
+      "restores_baseline_exactly": true,
+      "sha256_lf": "0204ee133951e5ca0839312e8c60524d2edc529161e9b2846a314e1e7232e546"
+    },
+    {
+      "path": "packages/qwenwork/skills/chinese-official-writing/SKILL.md",
+      "delta_utf8_lf": 120,
+      "restores_baseline_exactly": true,
+      "sha256_lf": "7f05054b0cfeb49b504d741764ed693aaacdbc735e0c36301fbf277f16c8e9a0"
+    },
+    {
+      "path": "packages/qwenwork/skills/chinese-official-writing/references/final-review-layers.md",
+      "delta_utf8_lf": 152,
+      "restores_baseline_exactly": true,
+      "sha256_lf": "0204ee133951e5ca0839312e8c60524d2edc529161e9b2846a314e1e7232e546"
+    }
+  ],
+  "excluded_directions": [
+    "global-five-line-route",
+    "stdin-guidance",
+    "source-reading-condition"
+  ],
+  "product_scripts_and_hooks_unchanged": true,
+  "red_skillhub_unchanged": true
+}

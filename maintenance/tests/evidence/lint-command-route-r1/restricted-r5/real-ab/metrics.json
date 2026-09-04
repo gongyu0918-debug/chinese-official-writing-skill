@@ -1,0 +1,291 @@
+{
+  "schema_version": 1,
+  "rows": [
+    {
+      "provider": "alibaba2",
+      "arm": "control",
+      "seconds": 80.75,
+      "technical_violations": [],
+      "read_utf8_bytes_total": 110033,
+      "read_utf8_bytes_unique": 110033,
+      "read_ids": [
+        "SKILL.md",
+        "D0",
+        "references/information-selection.md",
+        "references/task-route-cards.md",
+        "references/genre-playbooks.md",
+        "references/short-draft-naturalness.md",
+        "scripts/prose_lint.py",
+        "references/final-review-layers.md"
+      ],
+      "script_reads": 1,
+      "lint_rejected": 0,
+      "lint_executed": 3,
+      "successful_help": 1,
+      "exact_final_format_structure_scans": 1,
+      "final_sha256": "2536dbea5e0d90f39cbb9d7f40b188e5f11804f9b020548ed6be94ee4d59b118",
+      "nonspace_chars": 247,
+      "required_anchor_missing": [
+        [
+          "报名不等于已列入发言名单"
+        ]
+      ],
+      "forbidden_found": [],
+      "reported_cost_and_usage": [
+        {
+          "total_cost_usd": 0.25430600000000003,
+          "usage": {
+            "input_tokens": 8929,
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 44032,
+            "output_tokens": 7140,
+            "server_tool_use": {
+              "web_search_requests": 0,
+              "web_fetch_requests": 0
+            },
+            "service_tier": "standard",
+            "cache_creation": {
+              "ephemeral_1h_input_tokens": 0,
+              "ephemeral_5m_input_tokens": 0
+            },
+            "inference_geo": "",
+            "iterations": [],
+            "speed": "standard"
+          },
+          "modelUsage": {
+            "alibaba-token-plan-2/deepseek-v4-flash-0731": {
+              "inputTokens": 9438,
+              "outputTokens": 7404,
+              "cacheReadInputTokens": 44032,
+              "cacheCreationInputTokens": 0,
+              "webSearchRequests": 0,
+              "costUSD": 0.25430600000000003,
+              "contextWindow": 200000,
+              "maxOutputTokens": 32000
+            }
+          },
+          "num_turns": 12
+        }
+      ],
+      "manual_review": {
+        "facts_errors": 0,
+        "state_errors": 1,
+        "structure_errors": 0,
+        "body_delivery_errors": 0,
+        "format_noise_errors": 0,
+        "scope": "one supplied notice; no requested hard length limit",
+        "observation": "Alibaba2 control omitted the independent speaker-list restriction 报名不等于已列入发言名单; retaining the participation-confirmation restriction is not equivalent."
+      }
+    },
+    {
+      "provider": "alibaba2",
+      "arm": "experiment",
+      "seconds": 71.156,
+      "technical_violations": [],
+      "read_utf8_bytes_total": 101392,
+      "read_utf8_bytes_unique": 101392,
+      "read_ids": [
+        "SKILL.md",
+        "D0",
+        "references/information-selection.md",
+        "references/task-route-cards.md",
+        "references/genre-checklist.md",
+        "scripts/prose_lint.py"
+      ],
+      "script_reads": 1,
+      "lint_rejected": 0,
+      "lint_executed": 3,
+      "successful_help": 1,
+      "exact_final_format_structure_scans": 1,
+      "final_sha256": "e40ec89757b227bd800cf377f6a649d36ae7fdccf697534b3cd48f7ae6c61aae",
+      "nonspace_chars": 260,
+      "required_anchor_missing": [],
+      "forbidden_found": [],
+      "reported_cost_and_usage": [
+        {
+          "total_cost_usd": 0.229703,
+          "usage": {
+            "input_tokens": 8917,
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 55296,
+            "output_tokens": 5974,
+            "server_tool_use": {
+              "web_search_requests": 0,
+              "web_fetch_requests": 0
+            },
+            "service_tier": "standard",
+            "cache_creation": {
+              "ephemeral_1h_input_tokens": 0,
+              "ephemeral_5m_input_tokens": 0
+            },
+            "inference_geo": "",
+            "iterations": [],
+            "speed": "standard"
+          },
+          "modelUsage": {
+            "alibaba-token-plan-2/deepseek-v4-flash-0731": {
+              "inputTokens": 9426,
+              "outputTokens": 6197,
+              "cacheReadInputTokens": 55296,
+              "cacheCreationInputTokens": 0,
+              "webSearchRequests": 0,
+              "costUSD": 0.229703,
+              "contextWindow": 200000,
+              "maxOutputTokens": 32000
+            }
+          },
+          "num_turns": 10
+        }
+      ],
+      "manual_review": {
+        "facts_errors": 0,
+        "state_errors": 0,
+        "structure_errors": 0,
+        "body_delivery_errors": 0,
+        "format_noise_errors": 0,
+        "scope": "one supplied notice; no requested hard length limit",
+        "observation": "All substantive facts and pending/restricted states retained; title bold removed. MiniMax bodies additionally remove only the repeated final request sentence."
+      }
+    },
+    {
+      "provider": "minimax",
+      "arm": "control",
+      "seconds": 27.859,
+      "technical_violations": [],
+      "read_utf8_bytes_total": 86295,
+      "read_utf8_bytes_unique": 86295,
+      "read_ids": [
+        "SKILL.md",
+        "D0",
+        "scripts/prose_lint.py"
+      ],
+      "script_reads": 1,
+      "lint_rejected": 1,
+      "lint_executed": 3,
+      "successful_help": 1,
+      "exact_final_format_structure_scans": 1,
+      "final_sha256": "5be3fc9dbffefd1b71722a2c809e5ddd1007e0898bb76c46d032bb0964e2e939",
+      "nonspace_chars": 249,
+      "required_anchor_missing": [],
+      "forbidden_found": [],
+      "reported_cost_and_usage": [
+        {
+          "total_cost_usd": 0.16378849999999998,
+          "usage": {
+            "input_tokens": 10657,
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 48968,
+            "output_tokens": 3361,
+            "server_tool_use": {
+              "web_search_requests": 0,
+              "web_fetch_requests": 0
+            },
+            "service_tier": "standard",
+            "cache_creation": {
+              "ephemeral_1h_input_tokens": 0,
+              "ephemeral_5m_input_tokens": 0
+            },
+            "inference_geo": "",
+            "iterations": [],
+            "speed": "standard"
+          },
+          "modelUsage": {
+            "minimax-cn/MiniMax-M3": {
+              "inputTokens": 10658,
+              "outputTokens": 3429,
+              "cacheReadInputTokens": 49547,
+              "cacheCreationInputTokens": 0,
+              "webSearchRequests": 0,
+              "costUSD": 0.16378849999999998,
+              "contextWindow": 200000,
+              "maxOutputTokens": 32000
+            }
+          },
+          "num_turns": 8
+        }
+      ],
+      "manual_review": {
+        "facts_errors": 0,
+        "state_errors": 0,
+        "structure_errors": 0,
+        "body_delivery_errors": 0,
+        "format_noise_errors": 0,
+        "scope": "one supplied notice; no requested hard length limit",
+        "observation": "All substantive facts and pending/restricted states retained; title bold removed. MiniMax bodies additionally remove only the repeated final request sentence."
+      }
+    },
+    {
+      "provider": "minimax",
+      "arm": "experiment",
+      "seconds": 25.703,
+      "technical_violations": [],
+      "read_utf8_bytes_total": 103264,
+      "read_utf8_bytes_unique": 103264,
+      "read_ids": [
+        "SKILL.md",
+        "D0",
+        "references/genre-playbooks.md",
+        "scripts/prose_lint.py",
+        "references/information-selection.md",
+        "references/genre-checklist.md"
+      ],
+      "script_reads": 1,
+      "lint_rejected": 0,
+      "lint_executed": 3,
+      "successful_help": 0,
+      "exact_final_format_structure_scans": 1,
+      "final_sha256": "5be3fc9dbffefd1b71722a2c809e5ddd1007e0898bb76c46d032bb0964e2e939",
+      "nonspace_chars": 249,
+      "required_anchor_missing": [],
+      "forbidden_found": [],
+      "reported_cost_and_usage": [
+        {
+          "total_cost_usd": 0.219101,
+          "usage": {
+            "input_tokens": 15559,
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 60473,
+            "output_tokens": 4294,
+            "server_tool_use": {
+              "web_search_requests": 0,
+              "web_fetch_requests": 0
+            },
+            "service_tier": "standard",
+            "cache_creation": {
+              "ephemeral_1h_input_tokens": 0,
+              "ephemeral_5m_input_tokens": 0
+            },
+            "inference_geo": "",
+            "iterations": [],
+            "speed": "standard"
+          },
+          "modelUsage": {
+            "minimax-cn/MiniMax-M3": {
+              "inputTokens": 15560,
+              "outputTokens": 4431,
+              "cacheReadInputTokens": 61052,
+              "cacheCreationInputTokens": 0,
+              "webSearchRequests": 0,
+              "costUSD": 0.219101,
+              "contextWindow": 200000,
+              "maxOutputTokens": 32000
+            }
+          },
+          "num_turns": 10
+        }
+      ],
+      "manual_review": {
+        "facts_errors": 0,
+        "state_errors": 0,
+        "structure_errors": 0,
+        "body_delivery_errors": 0,
+        "format_noise_errors": 0,
+        "scope": "one supplied notice; no requested hard length limit",
+        "observation": "All substantive facts and pending/restricted states retained; title bold removed. MiniMax bodies additionally remove only the repeated final request sentence."
+      }
+    }
+  ],
+  "quality_review": "author read all full bodies and compared the only D0; not an external blind judge",
+  "read_scope": "successful read_document UTF-8 bytes including D0/source; no repeated IDs",
+  "rescan_definition": "successful stdin equals final after surrounding whitespace, with format and structure flags"
+}

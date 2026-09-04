@@ -1,0 +1,843 @@
+{
+  "schema_version": 1,
+  "scope": "Read-only post-run measurement correction; no reruns or raw/fixture changes. Counts host stream tool_result content UTF-8 (strings directly, non-strings JSON serialized), including visible wrappers/previews. Not API tokens or provider-billed context. Earlier server read_document bytes measure returned document data only.",
+  "observation": "All nine successful full-source requests were replaced in the host-visible stream by persisted-output previews; no claim that the full 58,290 server bytes entered model context. No tools can arbitrarily read persisted output paths.",
+  "rows": [
+    {
+      "phase": "restricted-r4",
+      "provider": "alibaba2",
+      "arm": "control",
+      "trace": "restricted-r4/real-ab/raw/alibaba2/control/stream.jsonl",
+      "trace_sha256": "db5bd9ab474f85341f07086a237eb94d8a493a7d85815627ab82ac614d275fe4",
+      "server_document_utf8_bytes": 106862,
+      "visible_read_tool_result_utf8_bytes": 52275,
+      "source_requests": 1,
+      "source_visible_bytes": 3300,
+      "persisted_previews": 1,
+      "reads": [
+        {
+          "id": "SKILL.md",
+          "tool_use_id": "call_55fefe78c7264ebc979893fd",
+          "visible_tool_result_utf8_bytes": 27415,
+          "visible_sha256": "4fce975c2c417aa55583bf5a108f74d6a2aaa31551af55f9da4fb065b21d0532",
+          "persisted_preview": false,
+          "is_error": false
+        },
+        {
+          "id": "D0",
+          "tool_use_id": "call_3f09c32c018a4daeac26cad9",
+          "visible_tool_result_utf8_bytes": 763,
+          "visible_sha256": "ee902bd7644891d05924908ed4196c41ab328a058aeced099128edd7d7a3799a",
+          "persisted_preview": false,
+          "is_error": false
+        },
+        {
+          "id": "references/information-selection.md",
+          "tool_use_id": "call_93f9c39b86394d0194615130",
+          "visible_tool_result_utf8_bytes": 4014,
+          "visible_sha256": "4201f4d77713ad7147b07bdc80019153ede4d8b9ced95838ead1fe81ed0fb9a1",
+          "persisted_preview": false,
+          "is_error": false
+        },
+        {
+          "id": "references/task-route-cards.md",
+          "tool_use_id": "call_2ed573eded58498f9aa06930",
+          "visible_tool_result_utf8_bytes": 3809,
+          "visible_sha256": "a53d06738662669cb073fcb502f4c8595f7a6c43726de245dd4f7abc1db50801",
+          "persisted_preview": false,
+          "is_error": false
+        },
+        {
+          "id": "scripts/prose_lint.py",
+          "tool_use_id": "call_e062a19453674180a4cd3a55",
+          "visible_tool_result_utf8_bytes": 3300,
+          "visible_sha256": "ded2e816ad1031dd712400d5908ca889504c461a75925a16f66480fe288c14b2",
+          "persisted_preview": true,
+          "is_error": false
+        },
+        {
+          "id": "references/proofreading-checklist.md",
+          "tool_use_id": "call_7b180ff184ff435db9ea17f4",
+          "visible_tool_result_utf8_bytes": 3844,
+          "visible_sha256": "16da808dd9639f6b5d5a3a15bfd58270621a0fd5404c65a3d5852bd27edf0436",
+          "persisted_preview": false,
+          "is_error": false
+        },
+        {
+          "id": "references/final-review-layers.md",
+          "tool_use_id": "call_68df50d85ecd465092714f40",
+          "visible_tool_result_utf8_bytes": 9130,
+          "visible_sha256": "d0a6214582c6f68c002817024145c76afa535700b687a649f14341e019477417",
+          "persisted_preview": false,
+          "is_error": false
+        }
+      ],
+      "init_tools": [
+        "mcp__audit__prose_lint",
+        "mcp__audit__read_document"
+      ],
+      "actual_tool_use_names": [
+        "mcp__audit__prose_lint",
+        "mcp__audit__read_document"
+      ],
+      "skills_and_plugins_empty": true
+    },
+    {
+      "phase": "restricted-r4",
+      "provider": "alibaba2",
+      "arm": "experiment",
+      "trace": "restricted-r4/real-ab/raw/alibaba2/experiment/stream.jsonl",
+      "trace_sha256": "89400fb394abf0ae38f514e67372a042676f4df0fffa9b08dd5df2a51059b8df",
+      "server_document_utf8_bytes": 108834,
+      "visible_read_tool_result_utf8_bytes": 54276,
+      "source_requests": 1,
+      "source_visible_bytes": 3306,
+      "persisted_previews": 1,
+      "reads": [
+        {
+          "id": "SKILL.md",
+          "tool_use_id": "call_c458a4a3961b41f8918e595f",
+          "visible_tool_result_utf8_bytes": 27415,
+          "visible_sha256": "4fce975c2c417aa55583bf5a108f74d6a2aaa31551af55f9da4fb065b21d0532",
+          "persisted_preview": false,
+          "is_error": false
+        },
+        {
+          "id": "D0",
+          "tool_use_id": "call_6674fcb1306a4d32a0961365",
+          "visible_tool_result_utf8_bytes": 763,
+          "visible_sha256": "ee902bd7644891d05924908ed4196c41ab328a058aeced099128edd7d7a3799a",
+          "persisted_preview": false,
+          "is_error": false
+        },
+        {
+          "id": "references/information-selection.md",
+          "tool_use_id": "call_6687b940b9cd4e3a9e7992f0",
+          "visible_tool_result_utf8_bytes": 4014,
+          "visible_sha256": "4201f4d77713ad7147b07bdc80019153ede4d8b9ced95838ead1fe81ed0fb9a1",
+          "persisted_preview": false,
+          "is_error": false
+        },
+        {
+          "id": "references/genre-playbooks.md",
+          "tool_use_id": "call_5f39efb95b7f4842845a8da8",
+          "visible_tool_result_utf8_bytes": 5704,
+          "visible_sha256": "dddbdb5f3d2fa085c4dbe286565362eba0eabbd178192e6e5e7fa6e4d2929176",
+          "persisted_preview": false,
+          "is_error": false
+        },
+        {
+          "id": "references/proofreading-checklist.md",
+          "tool_use_id": "call_f25776a85bba407fa89e372a",
+          "visible_tool_result_utf8_bytes": 3844,
+          "visible_sha256": "16da808dd9639f6b5d5a3a15bfd58270621a0fd5404c65a3d5852bd27edf0436",
+          "persisted_preview": false,
+          "is_error": false
+        },
+        {
+          "id": "references/final-review-layers.md",
+          "tool_use_id": "call_2d110191abb54b059f82ae78",
+          "visible_tool_result_utf8_bytes": 9230,
+          "visible_sha256": "fc3de6982bc13de2f122e011e0c7a16420fdd55df2669ba87e663331a3483c33",
+          "persisted_preview": false,
+          "is_error": false
+        },
+        {
+          "id": "scripts/prose_lint.py",
+          "tool_use_id": "call_857c9c15f44b42e2bfb4b8f2",
+          "visible_tool_result_utf8_bytes": 3306,
+          "visible_sha256": "0d797a4ace31091634d5c73f33fd5bf3e79ef43f3aa8830c9fb2d470a948228c",
+          "persisted_preview": true,
+          "is_error": false
+        }
+      ],
+      "init_tools": [
+        "mcp__audit__prose_lint",
+        "mcp__audit__read_document"
+      ],
+      "actual_tool_use_names": [
+        "mcp__audit__prose_lint",
+        "mcp__audit__read_document"
+      ],
+      "skills_and_plugins_empty": true
+    },
+    {
+      "phase": "restricted-r4",
+      "provider": "minimax",
+      "arm": "control",
+      "trace": "restricted-r4/real-ab/raw/minimax/control/stream.jsonl",
+      "trace_sha256": "7a7e20ba10b1a3de10b739466ae532e176f1fa0067f14fde4c79a91cb87dbc2d",
+      "server_document_utf8_bytes": 86295,
+      "visible_read_tool_result_utf8_bytes": 31476,
+      "source_requests": 1,
+      "source_visible_bytes": 3298,
+      "persisted_previews": 1,
+      "reads": [
+        {
+          "id": "SKILL.md",
+          "tool_use_id": "call_01a06e551b377750a083026f",
+          "visible_tool_result_utf8_bytes": 27415,
+          "visible_sha256": "4fce975c2c417aa55583bf5a108f74d6a2aaa31551af55f9da4fb065b21d0532",
+          "persisted_preview": false,
+          "is_error": false
+        },
+        {
+          "id": "D0",
+          "tool_use_id": "call_01a06e551b377750a0830277",
+          "visible_tool_result_utf8_bytes": 763,
+          "visible_sha256": "ee902bd7644891d05924908ed4196c41ab328a058aeced099128edd7d7a3799a",
+          "persisted_preview": false,
+          "is_error": false
+        },
+        {
+          "id": "scripts/prose_lint.py",
+          "tool_use_id": "call_01a06e55290e74528fb0e657",
+          "visible_tool_result_utf8_bytes": 3298,
+          "visible_sha256": "461e3133743e6cd45533d0a34e8bf94fbf384f162357ada704018a289519258e",
+          "persisted_preview": true,
+          "is_error": false
+        }
+      ],
+      "init_tools": [
+        "mcp__audit__prose_lint",
+        "mcp__audit__read_document"
+      ],
+      "actual_tool_use_names": [
+        "mcp__audit__prose_lint",
+        "mcp__audit__read_document"
+      ],
+      "skills_and_plugins_empty": true
+    },
+    {
+      "phase": "restricted-r4",
+      "provider": "minimax",
+      "arm": "experiment",
+      "trace": "restricted-r4/real-ab/raw/minimax/experiment/stream.jsonl",
+      "trace_sha256": "b16a26f0e0a011c2049ad8a68530841d7e89cbfd2e10b9c0a47116cd5bed825a",
+      "server_document_utf8_bytes": 86295,
+      "visible_read_tool_result_utf8_bytes": 31482,
+      "source_requests": 1,
+      "source_visible_bytes": 3304,
+      "persisted_previews": 1,
+      "reads": [
+        {
+          "id": "SKILL.md",
+          "tool_use_id": "call_01a06e5350d07a20b6422f9d",
+          "visible_tool_result_utf8_bytes": 27415,
+          "visible_sha256": "4fce975c2c417aa55583bf5a108f74d6a2aaa31551af55f9da4fb065b21d0532",
+          "persisted_preview": false,
+          "is_error": false
+        },
+        {
+          "id": "D0",
+          "tool_use_id": "call_01a06e5350d07a20b6422fa2",
+          "visible_tool_result_utf8_bytes": 763,
+          "visible_sha256": "ee902bd7644891d05924908ed4196c41ab328a058aeced099128edd7d7a3799a",
+          "persisted_preview": false,
+          "is_error": false
+        },
+        {
+          "id": "scripts/prose_lint.py",
+          "tool_use_id": "call_01a06e535ef17b51bd905388",
+          "visible_tool_result_utf8_bytes": 3304,
+          "visible_sha256": "b6ef1be50345e1deb6e8d6e1b0413f6651d87d896e76973e055564d52a03d0a5",
+          "persisted_preview": true,
+          "is_error": false
+        }
+      ],
+      "init_tools": [
+        "mcp__audit__prose_lint",
+        "mcp__audit__read_document"
+      ],
+      "actual_tool_use_names": [
+        "mcp__audit__prose_lint",
+        "mcp__audit__read_document"
+      ],
+      "skills_and_plugins_empty": true
+    },
+    {
+      "phase": "restricted-r5",
+      "provider": "alibaba2",
+      "arm": "control",
+      "trace": "restricted-r5/real-ab/raw/alibaba2/control/stream.jsonl",
+      "trace_sha256": "252be909de6a52a040eda489af02eefb5a4f1c2efa54d3336e5bd4cc249310db",
+      "server_document_utf8_bytes": 110033,
+      "visible_read_tool_result_utf8_bytes": 55485,
+      "source_requests": 1,
+      "source_visible_bytes": 3294,
+      "persisted_previews": 1,
+      "reads": [
+        {
+          "id": "SKILL.md",
+          "tool_use_id": "call_87d9a89fbe914e79b43f6876",
+          "visible_tool_result_utf8_bytes": 27415,
+          "visible_sha256": "4fce975c2c417aa55583bf5a108f74d6a2aaa31551af55f9da4fb065b21d0532",
+          "persisted_preview": false,
+          "is_error": false
+        },
+        {
+          "id": "D0",
+          "tool_use_id": "call_136c170a249b459495dcfc29",
+          "visible_tool_result_utf8_bytes": 763,
+          "visible_sha256": "ee902bd7644891d05924908ed4196c41ab328a058aeced099128edd7d7a3799a",
+          "persisted_preview": false,
+          "is_error": false
+        },
+        {
+          "id": "references/information-selection.md",
+          "tool_use_id": "call_89bf1fa1819c4f3cbbaf8b65",
+          "visible_tool_result_utf8_bytes": 4014,
+          "visible_sha256": "4201f4d77713ad7147b07bdc80019153ede4d8b9ced95838ead1fe81ed0fb9a1",
+          "persisted_preview": false,
+          "is_error": false
+        },
+        {
+          "id": "references/task-route-cards.md",
+          "tool_use_id": "call_eb36590a0c884b07aa497fcf",
+          "visible_tool_result_utf8_bytes": 3809,
+          "visible_sha256": "a53d06738662669cb073fcb502f4c8595f7a6c43726de245dd4f7abc1db50801",
+          "persisted_preview": false,
+          "is_error": false
+        },
+        {
+          "id": "references/genre-playbooks.md",
+          "tool_use_id": "call_47fbf7b45dd6494e92e20709",
+          "visible_tool_result_utf8_bytes": 5704,
+          "visible_sha256": "dddbdb5f3d2fa085c4dbe286565362eba0eabbd178192e6e5e7fa6e4d2929176",
+          "persisted_preview": false,
+          "is_error": false
+        },
+        {
+          "id": "references/short-draft-naturalness.md",
+          "tool_use_id": "call_20c58ee47d074bf9ba9450ed",
+          "visible_tool_result_utf8_bytes": 1356,
+          "visible_sha256": "5645889bf15305ed1cc2072f4999302e6333fd8684f199b4d45fc389d1221e8a",
+          "persisted_preview": false,
+          "is_error": false
+        },
+        {
+          "id": "scripts/prose_lint.py",
+          "tool_use_id": "call_ba7b4a41a7ea4a408d278498",
+          "visible_tool_result_utf8_bytes": 3294,
+          "visible_sha256": "9ff93e3841da4d88a8f24eda7abdd84dcb3226c69e04d3b2d8bd3db5bae2f6f0",
+          "persisted_preview": true,
+          "is_error": false
+        },
+        {
+          "id": "references/final-review-layers.md",
+          "tool_use_id": "call_dfffd78e458e40378a532ba9",
+          "visible_tool_result_utf8_bytes": 9130,
+          "visible_sha256": "d0a6214582c6f68c002817024145c76afa535700b687a649f14341e019477417",
+          "persisted_preview": false,
+          "is_error": false
+        }
+      ],
+      "init_tools": [
+        "mcp__audit__prose_lint",
+        "mcp__audit__read_document"
+      ],
+      "actual_tool_use_names": [
+        "mcp__audit__prose_lint",
+        "mcp__audit__read_document"
+      ],
+      "skills_and_plugins_empty": true
+    },
+    {
+      "phase": "restricted-r5",
+      "provider": "alibaba2",
+      "arm": "experiment",
+      "trace": "restricted-r5/real-ab/raw/alibaba2/experiment/stream.jsonl",
+      "trace_sha256": "6aa1207d521cdf4ff912e8ffa82f67a5a06984fd13e1a9d862a299dc8b7076bd",
+      "server_document_utf8_bytes": 101392,
+      "visible_read_tool_result_utf8_bytes": 46837,
+      "source_requests": 1,
+      "source_visible_bytes": 3300,
+      "persisted_previews": 1,
+      "reads": [
+        {
+          "id": "SKILL.md",
+          "tool_use_id": "call_79e23ba571254e8ba29385c4",
+          "visible_tool_result_utf8_bytes": 27515,
+          "visible_sha256": "aaad08522cf41a22448626179f0ba4da1ec816bcd75d02a30a79435d863ac25f",
+          "persisted_preview": false,
+          "is_error": false
+        },
+        {
+          "id": "D0",
+          "tool_use_id": "call_85f2fb5de9094c3aaa0563e9",
+          "visible_tool_result_utf8_bytes": 763,
+          "visible_sha256": "ee902bd7644891d05924908ed4196c41ab328a058aeced099128edd7d7a3799a",
+          "persisted_preview": false,
+          "is_error": false
+        },
+        {
+          "id": "references/information-selection.md",
+          "tool_use_id": "call_2360a7618b7f43d5aa5deed6",
+          "visible_tool_result_utf8_bytes": 4014,
+          "visible_sha256": "4201f4d77713ad7147b07bdc80019153ede4d8b9ced95838ead1fe81ed0fb9a1",
+          "persisted_preview": false,
+          "is_error": false
+        },
+        {
+          "id": "references/task-route-cards.md",
+          "tool_use_id": "call_bd160a965dfc49a68b8590f9",
+          "visible_tool_result_utf8_bytes": 3809,
+          "visible_sha256": "a53d06738662669cb073fcb502f4c8595f7a6c43726de245dd4f7abc1db50801",
+          "persisted_preview": false,
+          "is_error": false
+        },
+        {
+          "id": "references/genre-checklist.md",
+          "tool_use_id": "call_e5be114c61b24b6c8cdd89cd",
+          "visible_tool_result_utf8_bytes": 7436,
+          "visible_sha256": "523a419800a8d0c529bafe9982899f43b48b3b1dadc4ec635c8c14f2806e2bc2",
+          "persisted_preview": false,
+          "is_error": false
+        },
+        {
+          "id": "scripts/prose_lint.py",
+          "tool_use_id": "call_0e89297857de45aa95403be9",
+          "visible_tool_result_utf8_bytes": 3300,
+          "visible_sha256": "90520d492275cb3f3f3eb2b9237b15f7d2fbba65a8fa8c6f280e6ac53cefcdca",
+          "persisted_preview": true,
+          "is_error": false
+        }
+      ],
+      "init_tools": [
+        "mcp__audit__prose_lint",
+        "mcp__audit__read_document"
+      ],
+      "actual_tool_use_names": [
+        "mcp__audit__prose_lint",
+        "mcp__audit__read_document"
+      ],
+      "skills_and_plugins_empty": true
+    },
+    {
+      "phase": "restricted-r5",
+      "provider": "minimax",
+      "arm": "control",
+      "trace": "restricted-r5/real-ab/raw/minimax/control/stream.jsonl",
+      "trace_sha256": "3bf6bf88061cf24561c08a113c81d3230bf05974b32ffe949ac61e847ed31334",
+      "server_document_utf8_bytes": 86295,
+      "visible_read_tool_result_utf8_bytes": 31470,
+      "source_requests": 1,
+      "source_visible_bytes": 3292,
+      "persisted_previews": 1,
+      "reads": [
+        {
+          "id": "SKILL.md",
+          "tool_use_id": "call_01a06e5e25547ba19d61fe87",
+          "visible_tool_result_utf8_bytes": 27415,
+          "visible_sha256": "4fce975c2c417aa55583bf5a108f74d6a2aaa31551af55f9da4fb065b21d0532",
+          "persisted_preview": false,
+          "is_error": false
+        },
+        {
+          "id": "D0",
+          "tool_use_id": "call_01a06e5e25547ba19d61fe90",
+          "visible_tool_result_utf8_bytes": 763,
+          "visible_sha256": "ee902bd7644891d05924908ed4196c41ab328a058aeced099128edd7d7a3799a",
+          "persisted_preview": false,
+          "is_error": false
+        },
+        {
+          "id": "scripts/prose_lint.py",
+          "tool_use_id": "call_01a06e5e660873b3988a9ec2",
+          "visible_tool_result_utf8_bytes": 3292,
+          "visible_sha256": "d53c201b56480326d9ff500849649744fec7e34a2513b94758c362cc8cf618c9",
+          "persisted_preview": true,
+          "is_error": false
+        }
+      ],
+      "init_tools": [
+        "mcp__audit__prose_lint",
+        "mcp__audit__read_document"
+      ],
+      "actual_tool_use_names": [
+        "mcp__audit__prose_lint",
+        "mcp__audit__read_document"
+      ],
+      "skills_and_plugins_empty": true
+    },
+    {
+      "phase": "restricted-r5",
+      "provider": "minimax",
+      "arm": "experiment",
+      "trace": "restricted-r5/real-ab/raw/minimax/experiment/stream.jsonl",
+      "trace_sha256": "abfb066474758fbe3abbeabbe6aea74fabb5261f3651c4a780fd3bdcec779fbd",
+      "server_document_utf8_bytes": 103264,
+      "visible_read_tool_result_utf8_bytes": 48730,
+      "source_requests": 1,
+      "source_visible_bytes": 3298,
+      "persisted_previews": 1,
+      "reads": [
+        {
+          "id": "SKILL.md",
+          "tool_use_id": "call_01a06e6065ff71b0bb4bb207",
+          "visible_tool_result_utf8_bytes": 27515,
+          "visible_sha256": "aaad08522cf41a22448626179f0ba4da1ec816bcd75d02a30a79435d863ac25f",
+          "persisted_preview": false,
+          "is_error": false
+        },
+        {
+          "id": "D0",
+          "tool_use_id": "call_01a06e6065ff71b0bb4bb215",
+          "visible_tool_result_utf8_bytes": 763,
+          "visible_sha256": "ee902bd7644891d05924908ed4196c41ab328a058aeced099128edd7d7a3799a",
+          "persisted_preview": false,
+          "is_error": false
+        },
+        {
+          "id": "references/genre-playbooks.md",
+          "tool_use_id": "call_01a06e606adb78138e077713",
+          "visible_tool_result_utf8_bytes": 5704,
+          "visible_sha256": "dddbdb5f3d2fa085c4dbe286565362eba0eabbd178192e6e5e7fa6e4d2929176",
+          "persisted_preview": false,
+          "is_error": false
+        },
+        {
+          "id": "scripts/prose_lint.py",
+          "tool_use_id": "call_01a06e606adb78138e077720",
+          "visible_tool_result_utf8_bytes": 3298,
+          "visible_sha256": "53cb46c71c874f613acfcb8cd12f27b3c4dd306682b0620f7f282708395270a2",
+          "persisted_preview": true,
+          "is_error": false
+        },
+        {
+          "id": "references/information-selection.md",
+          "tool_use_id": "call_01a06e606eb17db3b9419b2a",
+          "visible_tool_result_utf8_bytes": 4014,
+          "visible_sha256": "4201f4d77713ad7147b07bdc80019153ede4d8b9ced95838ead1fe81ed0fb9a1",
+          "persisted_preview": false,
+          "is_error": false
+        },
+        {
+          "id": "references/genre-checklist.md",
+          "tool_use_id": "call_01a06e606eb17db3b9419b3f",
+          "visible_tool_result_utf8_bytes": 7436,
+          "visible_sha256": "523a419800a8d0c529bafe9982899f43b48b3b1dadc4ec635c8c14f2806e2bc2",
+          "persisted_preview": false,
+          "is_error": false
+        }
+      ],
+      "init_tools": [
+        "mcp__audit__prose_lint",
+        "mcp__audit__read_document"
+      ],
+      "actual_tool_use_names": [
+        "mcp__audit__prose_lint",
+        "mcp__audit__read_document"
+      ],
+      "skills_and_plugins_empty": true
+    },
+    {
+      "phase": "restricted-r6",
+      "provider": "alibaba2",
+      "arm": "control",
+      "trace": "restricted-r6/real-ab/raw/alibaba2/control/stream.jsonl",
+      "trace_sha256": "9e28a6c77dcf2c90f6ffc29ca693eb5fb372918eed2c2aeace5491e5366e4c3d",
+      "server_document_utf8_bytes": 114114,
+      "visible_read_tool_result_utf8_bytes": 59705,
+      "source_requests": 1,
+      "source_visible_bytes": 3294,
+      "persisted_previews": 1,
+      "reads": [
+        {
+          "id": "SKILL.md",
+          "tool_use_id": "call_817b1d856952455c878c3842",
+          "visible_tool_result_utf8_bytes": 27415,
+          "visible_sha256": "4fce975c2c417aa55583bf5a108f74d6a2aaa31551af55f9da4fb065b21d0532",
+          "persisted_preview": false,
+          "is_error": false
+        },
+        {
+          "id": "D0",
+          "tool_use_id": "call_05adbda975aa4536ad7c84f3",
+          "visible_tool_result_utf8_bytes": 763,
+          "visible_sha256": "ee902bd7644891d05924908ed4196c41ab328a058aeced099128edd7d7a3799a",
+          "persisted_preview": false,
+          "is_error": false
+        },
+        {
+          "id": "references/information-selection.md",
+          "tool_use_id": "call_4160eabd354b44c3b75a25c9",
+          "visible_tool_result_utf8_bytes": 4014,
+          "visible_sha256": "4201f4d77713ad7147b07bdc80019153ede4d8b9ced95838ead1fe81ed0fb9a1",
+          "persisted_preview": false,
+          "is_error": false
+        },
+        {
+          "id": "references/task-route-cards.md",
+          "tool_use_id": "call_57e1622be9524da9928313e6",
+          "visible_tool_result_utf8_bytes": 3809,
+          "visible_sha256": "a53d06738662669cb073fcb502f4c8595f7a6c43726de245dd4f7abc1db50801",
+          "persisted_preview": false,
+          "is_error": false
+        },
+        {
+          "id": "references/proofreading-checklist.md",
+          "tool_use_id": "call_5ee43fbea51b44698d9fa6d1",
+          "visible_tool_result_utf8_bytes": 3844,
+          "visible_sha256": "16da808dd9639f6b5d5a3a15bfd58270621a0fd5404c65a3d5852bd27edf0436",
+          "persisted_preview": false,
+          "is_error": false
+        },
+        {
+          "id": "references/final-review-layers.md",
+          "tool_use_id": "call_fb21f546da4149828fdb866d",
+          "visible_tool_result_utf8_bytes": 9130,
+          "visible_sha256": "d0a6214582c6f68c002817024145c76afa535700b687a649f14341e019477417",
+          "persisted_preview": false,
+          "is_error": false
+        },
+        {
+          "id": "scripts/prose_lint.py",
+          "tool_use_id": "call_e49d017b370e4daea5011900",
+          "visible_tool_result_utf8_bytes": 3294,
+          "visible_sha256": "2ecfe8bf3f8374f70364116b933a0ff3e0bb797f57baf53f50c47b9bcf25f561",
+          "persisted_preview": true,
+          "is_error": false
+        },
+        {
+          "id": "references/genre-checklist.md",
+          "tool_use_id": "call_2836690c8aa74f67911e93c4",
+          "visible_tool_result_utf8_bytes": 7436,
+          "visible_sha256": "523a419800a8d0c529bafe9982899f43b48b3b1dadc4ec635c8c14f2806e2bc2",
+          "persisted_preview": false,
+          "is_error": false
+        }
+      ],
+      "init_tools": [
+        "mcp__audit__prose_lint",
+        "mcp__audit__read_document"
+      ],
+      "actual_tool_use_names": [
+        "mcp__audit__prose_lint",
+        "mcp__audit__read_document"
+      ],
+      "skills_and_plugins_empty": true
+    },
+    {
+      "phase": "restricted-r6",
+      "provider": "alibaba2",
+      "arm": "experiment",
+      "trace": "restricted-r6/real-ab/raw/alibaba2/experiment/stream.jsonl",
+      "trace_sha256": "7f1e1d8868867419a320073b11dd3849d73466d82a87c7c4dcfbe0b351b9096a",
+      "server_document_utf8_bytes": 48766,
+      "visible_read_tool_result_utf8_bytes": 49169,
+      "source_requests": 0,
+      "source_visible_bytes": 0,
+      "persisted_previews": 0,
+      "reads": [
+        {
+          "id": "SKILL.md",
+          "tool_use_id": "call_0185922ddbbb491097f4c9e4",
+          "visible_tool_result_utf8_bytes": 27609,
+          "visible_sha256": "c7843f12d1ca230caea6e5254e3c35b61bb8f13d1a80492123b6e39b28d3c541",
+          "persisted_preview": false,
+          "is_error": false
+        },
+        {
+          "id": "D0",
+          "tool_use_id": "call_79e017e134a14731a3974cca",
+          "visible_tool_result_utf8_bytes": 763,
+          "visible_sha256": "ee902bd7644891d05924908ed4196c41ab328a058aeced099128edd7d7a3799a",
+          "persisted_preview": false,
+          "is_error": false
+        },
+        {
+          "id": "references/information-selection.md",
+          "tool_use_id": "call_f36dd0c1e7e14dc9ab4de8bf",
+          "visible_tool_result_utf8_bytes": 4014,
+          "visible_sha256": "4201f4d77713ad7147b07bdc80019153ede4d8b9ced95838ead1fe81ed0fb9a1",
+          "persisted_preview": false,
+          "is_error": false
+        },
+        {
+          "id": "references/task-route-cards.md",
+          "tool_use_id": "call_ccf2239ed009425d88c1f96d",
+          "visible_tool_result_utf8_bytes": 3809,
+          "visible_sha256": "a53d06738662669cb073fcb502f4c8595f7a6c43726de245dd4f7abc1db50801",
+          "persisted_preview": false,
+          "is_error": false
+        },
+        {
+          "id": "references/proofreading-checklist.md",
+          "tool_use_id": "call_59068554f9144bca962057b4",
+          "visible_tool_result_utf8_bytes": 3844,
+          "visible_sha256": "16da808dd9639f6b5d5a3a15bfd58270621a0fd5404c65a3d5852bd27edf0436",
+          "persisted_preview": false,
+          "is_error": false
+        },
+        {
+          "id": "references/final-review-layers.md",
+          "tool_use_id": "call_04187aec28d2408a861e19f7",
+          "visible_tool_result_utf8_bytes": 9130,
+          "visible_sha256": "d0a6214582c6f68c002817024145c76afa535700b687a649f14341e019477417",
+          "persisted_preview": false,
+          "is_error": false
+        }
+      ],
+      "init_tools": [
+        "mcp__audit__prose_lint",
+        "mcp__audit__read_document"
+      ],
+      "actual_tool_use_names": [
+        "mcp__audit__prose_lint",
+        "mcp__audit__read_document"
+      ],
+      "skills_and_plugins_empty": true
+    },
+    {
+      "phase": "restricted-r6",
+      "provider": "minimax",
+      "arm": "control",
+      "trace": "restricted-r6/real-ab/raw/minimax/control/stream.jsonl",
+      "trace_sha256": "e939f5e3ac9782f93bad0d16f83f47f238e261a3dc8c3a5dab2837007ca6a627",
+      "server_document_utf8_bytes": 28005,
+      "visible_read_tool_result_utf8_bytes": 28178,
+      "source_requests": 0,
+      "source_visible_bytes": 0,
+      "persisted_previews": 0,
+      "reads": [
+        {
+          "id": "SKILL.md",
+          "tool_use_id": "call_01a06e68c080765298b1d30c",
+          "visible_tool_result_utf8_bytes": 27415,
+          "visible_sha256": "4fce975c2c417aa55583bf5a108f74d6a2aaa31551af55f9da4fb065b21d0532",
+          "persisted_preview": false,
+          "is_error": false
+        },
+        {
+          "id": "D0",
+          "tool_use_id": "call_01a06e68c080765298b1d31c",
+          "visible_tool_result_utf8_bytes": 763,
+          "visible_sha256": "ee902bd7644891d05924908ed4196c41ab328a058aeced099128edd7d7a3799a",
+          "persisted_preview": false,
+          "is_error": false
+        }
+      ],
+      "init_tools": [
+        "mcp__audit__prose_lint",
+        "mcp__audit__read_document"
+      ],
+      "actual_tool_use_names": [
+        "mcp__audit__prose_lint",
+        "mcp__audit__read_document"
+      ],
+      "skills_and_plugins_empty": true
+    },
+    {
+      "phase": "restricted-r6",
+      "provider": "minimax",
+      "arm": "experiment",
+      "trace": "restricted-r6/real-ab/raw/minimax/experiment/stream.jsonl",
+      "trace_sha256": "6777218a1958ac7818fd1686349c28d4890b7c16d2b0ae177275ff42fa226250",
+      "server_document_utf8_bytes": 94829,
+      "visible_read_tool_result_utf8_bytes": 95952,
+      "source_requests": 0,
+      "source_visible_bytes": 0,
+      "persisted_previews": 0,
+      "reads": [
+        {
+          "id": "SKILL.md",
+          "tool_use_id": "call_01a06e65c3dc7533b5f1f75f",
+          "visible_tool_result_utf8_bytes": 27609,
+          "visible_sha256": "c7843f12d1ca230caea6e5254e3c35b61bb8f13d1a80492123b6e39b28d3c541",
+          "persisted_preview": false,
+          "is_error": false
+        },
+        {
+          "id": "D0",
+          "tool_use_id": "call_01a06e65c3dc7533b5f1f76a",
+          "visible_tool_result_utf8_bytes": 763,
+          "visible_sha256": "ee902bd7644891d05924908ed4196c41ab328a058aeced099128edd7d7a3799a",
+          "persisted_preview": false,
+          "is_error": false
+        },
+        {
+          "id": "references/information-selection.md",
+          "tool_use_id": "call_01a06e65ce2e74e19650718e",
+          "visible_tool_result_utf8_bytes": 4014,
+          "visible_sha256": "4201f4d77713ad7147b07bdc80019153ede4d8b9ced95838ead1fe81ed0fb9a1",
+          "persisted_preview": false,
+          "is_error": false
+        },
+        {
+          "id": "references/genre-checklist.md",
+          "tool_use_id": "call_01a06e65ce2e74e19650719f",
+          "visible_tool_result_utf8_bytes": 7436,
+          "visible_sha256": "523a419800a8d0c529bafe9982899f43b48b3b1dadc4ec635c8c14f2806e2bc2",
+          "persisted_preview": false,
+          "is_error": false
+        },
+        {
+          "id": "references/handling-elements.md",
+          "tool_use_id": "call_01a06e65df907311948aa42e",
+          "visible_tool_result_utf8_bytes": 8142,
+          "visible_sha256": "59a990f0095932ae8a9e05c52dd172fe6446abc3c9eddc49b129873c4b24e9e4",
+          "persisted_preview": false,
+          "is_error": false
+        },
+        {
+          "id": "references/proofreading-checklist.md",
+          "tool_use_id": "call_01a06e65df907311948aa43a",
+          "visible_tool_result_utf8_bytes": 3844,
+          "visible_sha256": "16da808dd9639f6b5d5a3a15bfd58270621a0fd5404c65a3d5852bd27edf0436",
+          "persisted_preview": false,
+          "is_error": false
+        },
+        {
+          "id": "references/anti-ai-patterns.md",
+          "tool_use_id": "call_01a06e65df907311948aa442",
+          "visible_tool_result_utf8_bytes": 14175,
+          "visible_sha256": "57d07025706adb0aded900daa0c001873e2a94e1757dace4691d760b775b6e48",
+          "persisted_preview": false,
+          "is_error": false
+        },
+        {
+          "id": "references/genre-playbooks.md",
+          "tool_use_id": "call_01a06e65e4517853a03b91be",
+          "visible_tool_result_utf8_bytes": 5704,
+          "visible_sha256": "dddbdb5f3d2fa085c4dbe286565362eba0eabbd178192e6e5e7fa6e4d2929176",
+          "persisted_preview": false,
+          "is_error": false
+        },
+        {
+          "id": "references/format-gbt9704.md",
+          "tool_use_id": "call_01a06e65e4517853a03b91c7",
+          "visible_tool_result_utf8_bytes": 8963,
+          "visible_sha256": "027a58af4f250b6ad0db7c55d08e07c82fbaa41d70d720ec3785d9cdaa623291",
+          "persisted_preview": false,
+          "is_error": false
+        },
+        {
+          "id": "references/official-style.md",
+          "tool_use_id": "call_01a06e65e8b97b509d064fda",
+          "visible_tool_result_utf8_bytes": 6172,
+          "visible_sha256": "9dd1a3506d413f2500805099810a5d47a7fb5a5fe9a90a58e62e96575da168a5",
+          "persisted_preview": false,
+          "is_error": false
+        },
+        {
+          "id": "references/final-review-layers.md",
+          "tool_use_id": "call_01a06e65e8b97b509d064fee",
+          "visible_tool_result_utf8_bytes": 9130,
+          "visible_sha256": "d0a6214582c6f68c002817024145c76afa535700b687a649f14341e019477417",
+          "persisted_preview": false,
+          "is_error": false
+        }
+      ],
+      "init_tools": [
+        "mcp__audit__prose_lint",
+        "mcp__audit__read_document"
+      ],
+      "actual_tool_use_names": [
+        "mcp__audit__prose_lint",
+        "mcp__audit__read_document"
+      ],
+      "skills_and_plugins_empty": true
+    }
+  ]
+}

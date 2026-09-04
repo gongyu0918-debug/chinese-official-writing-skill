@@ -1,0 +1,303 @@
+{
+  "schema_version": 1,
+  "rows": [
+    {
+      "provider": "alibaba2",
+      "arm": "control",
+      "seconds": 75.219,
+      "technical_violations": [],
+      "read_utf8_bytes_total": 114114,
+      "read_utf8_bytes_unique": 114114,
+      "read_ids": [
+        "SKILL.md",
+        "D0",
+        "references/information-selection.md",
+        "references/task-route-cards.md",
+        "references/proofreading-checklist.md",
+        "references/final-review-layers.md",
+        "scripts/prose_lint.py",
+        "references/genre-checklist.md"
+      ],
+      "script_reads": 1,
+      "script_reads_scope": "full-source requests returned by server; host-visible bytes are in reading-surface-audit.json",
+      "lint_rejected": 0,
+      "lint_executed": 3,
+      "successful_help": 1,
+      "exact_final_format_structure_scans": 1,
+      "whitespace_normalized_final_scans": 1,
+      "final_sha256": "5be3fc9dbffefd1b71722a2c809e5ddd1007e0898bb76c46d032bb0964e2e939",
+      "nonspace_chars": 249,
+      "required_anchor_missing": [],
+      "forbidden_found": [],
+      "reported_cost_and_usage": [
+        {
+          "total_cost_usd": 0.24899000000000002,
+          "usage": {
+            "input_tokens": 10628,
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 66560,
+            "output_tokens": 6177,
+            "server_tool_use": {
+              "web_search_requests": 0,
+              "web_fetch_requests": 0
+            },
+            "service_tier": "standard",
+            "cache_creation": {
+              "ephemeral_1h_input_tokens": 0,
+              "ephemeral_5m_input_tokens": 0
+            },
+            "inference_geo": "",
+            "iterations": [],
+            "speed": "standard"
+          },
+          "modelUsage": {
+            "alibaba-token-plan-2/deepseek-v4-flash-0731": {
+              "inputTokens": 11137,
+              "outputTokens": 6401,
+              "cacheReadInputTokens": 66560,
+              "cacheCreationInputTokens": 0,
+              "webSearchRequests": 0,
+              "costUSD": 0.24899000000000002,
+              "contextWindow": 200000,
+              "maxOutputTokens": 32000
+            }
+          },
+          "num_turns": 12
+        }
+      ],
+      "manual_review": {
+        "facts_errors": 0,
+        "state_errors": 0,
+        "structure_errors": 0,
+        "body_delivery_errors": 0,
+        "format_noise_errors": 0,
+        "scope": "one supplied notice; no requested hard length limit",
+        "observation": "All substantive facts and pending/restricted states retained; title bold removed. Alibaba2 experiment uses 报送内容 instead of 报名信息 and adds a blank line before the signed date, both semantically harmless."
+      }
+    },
+    {
+      "provider": "alibaba2",
+      "arm": "experiment",
+      "seconds": 89.156,
+      "technical_violations": [],
+      "read_utf8_bytes_total": 48766,
+      "read_utf8_bytes_unique": 48766,
+      "read_ids": [
+        "SKILL.md",
+        "D0",
+        "references/information-selection.md",
+        "references/task-route-cards.md",
+        "references/proofreading-checklist.md",
+        "references/final-review-layers.md"
+      ],
+      "script_reads": 0,
+      "script_reads_scope": "full-source requests returned by server; host-visible bytes are in reading-surface-audit.json",
+      "lint_rejected": 0,
+      "lint_executed": 3,
+      "successful_help": 1,
+      "exact_final_format_structure_scans": 0,
+      "whitespace_normalized_final_scans": 1,
+      "final_sha256": "bd5ed64458ff225d80e7e7e65c131111776f5ae5bbc46fe496100402dff48bca",
+      "nonspace_chars": 260,
+      "required_anchor_missing": [],
+      "forbidden_found": [],
+      "reported_cost_and_usage": [
+        {
+          "total_cost_usd": 0.265864,
+          "usage": {
+            "input_tokens": 9053,
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 43008,
+            "output_tokens": 7511,
+            "server_tool_use": {
+              "web_search_requests": 0,
+              "web_fetch_requests": 0
+            },
+            "service_tier": "standard",
+            "cache_creation": {
+              "ephemeral_1h_input_tokens": 0,
+              "ephemeral_5m_input_tokens": 0
+            },
+            "inference_geo": "",
+            "iterations": [],
+            "speed": "standard"
+          },
+          "modelUsage": {
+            "alibaba-token-plan-2/deepseek-v4-flash-0731": {
+              "inputTokens": 9562,
+              "outputTokens": 7862,
+              "cacheReadInputTokens": 43008,
+              "cacheCreationInputTokens": 0,
+              "webSearchRequests": 0,
+              "costUSD": 0.265864,
+              "contextWindow": 200000,
+              "maxOutputTokens": 32000
+            }
+          },
+          "num_turns": 10
+        }
+      ],
+      "manual_review": {
+        "facts_errors": 0,
+        "state_errors": 0,
+        "structure_errors": 0,
+        "body_delivery_errors": 0,
+        "format_noise_errors": 0,
+        "scope": "one supplied notice; no requested hard length limit",
+        "observation": "All substantive facts and pending/restricted states retained; title bold removed. Alibaba2 experiment uses 报送内容 instead of 报名信息 and adds a blank line before the signed date, both semantically harmless."
+      }
+    },
+    {
+      "provider": "minimax",
+      "arm": "control",
+      "seconds": 26.0,
+      "technical_violations": [],
+      "read_utf8_bytes_total": 28005,
+      "read_utf8_bytes_unique": 28005,
+      "read_ids": [
+        "SKILL.md",
+        "D0"
+      ],
+      "script_reads": 0,
+      "script_reads_scope": "full-source requests returned by server; host-visible bytes are in reading-surface-audit.json",
+      "lint_rejected": 2,
+      "lint_executed": 2,
+      "successful_help": 0,
+      "exact_final_format_structure_scans": 0,
+      "whitespace_normalized_final_scans": 0,
+      "final_sha256": "ab0c49841574622287eaabce822e13e6bd5af8a130628c8d26d7c7f2641765e6",
+      "nonspace_chars": 236,
+      "required_anchor_missing": [
+        [
+          "报名不等于已列入发言名单"
+        ]
+      ],
+      "forbidden_found": [],
+      "reported_cost_and_usage": [
+        {
+          "total_cost_usd": 0.1664165,
+          "usage": {
+            "input_tokens": 8067,
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 36724,
+            "output_tokens": 4102,
+            "server_tool_use": {
+              "web_search_requests": 0,
+              "web_fetch_requests": 0
+            },
+            "service_tier": "standard",
+            "cache_creation": {
+              "ephemeral_1h_input_tokens": 0,
+              "ephemeral_5m_input_tokens": 0
+            },
+            "inference_geo": "",
+            "iterations": [],
+            "speed": "standard"
+          },
+          "modelUsage": {
+            "minimax-cn/MiniMax-M3": {
+              "inputTokens": 8068,
+              "outputTokens": 4297,
+              "cacheReadInputTokens": 37303,
+              "cacheCreationInputTokens": 0,
+              "webSearchRequests": 0,
+              "costUSD": 0.1664165,
+              "contextWindow": 200000,
+              "maxOutputTokens": 32000
+            }
+          },
+          "num_turns": 7
+        }
+      ],
+      "manual_review": {
+        "facts_errors": 0,
+        "state_errors": 1,
+        "structure_errors": 0,
+        "body_delivery_errors": 0,
+        "format_noise_errors": 0,
+        "scope": "one supplied notice; no requested hard length limit",
+        "observation": "MiniMax control omitted the independent speaker-list restriction 报名不等于已列入发言名单; retaining participation confirmation is not equivalent."
+      }
+    },
+    {
+      "provider": "minimax",
+      "arm": "experiment",
+      "seconds": 56.297,
+      "technical_violations": [],
+      "read_utf8_bytes_total": 94829,
+      "read_utf8_bytes_unique": 94829,
+      "read_ids": [
+        "SKILL.md",
+        "D0",
+        "references/information-selection.md",
+        "references/genre-checklist.md",
+        "references/handling-elements.md",
+        "references/proofreading-checklist.md",
+        "references/anti-ai-patterns.md",
+        "references/genre-playbooks.md",
+        "references/format-gbt9704.md",
+        "references/official-style.md",
+        "references/final-review-layers.md"
+      ],
+      "script_reads": 0,
+      "script_reads_scope": "full-source requests returned by server; host-visible bytes are in reading-surface-audit.json",
+      "lint_rejected": 0,
+      "lint_executed": 2,
+      "successful_help": 0,
+      "exact_final_format_structure_scans": 1,
+      "whitespace_normalized_final_scans": 1,
+      "final_sha256": "5be3fc9dbffefd1b71722a2c809e5ddd1007e0898bb76c46d032bb0964e2e939",
+      "nonspace_chars": 249,
+      "required_anchor_missing": [],
+      "forbidden_found": [],
+      "reported_cost_and_usage": [
+        {
+          "total_cost_usd": 0.45140749999999996,
+          "usage": {
+            "input_tokens": 31422,
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 118856,
+            "output_tokens": 9237,
+            "server_tool_use": {
+              "web_search_requests": 0,
+              "web_fetch_requests": 0
+            },
+            "service_tier": "standard",
+            "cache_creation": {
+              "ephemeral_1h_input_tokens": 0,
+              "ephemeral_5m_input_tokens": 0
+            },
+            "inference_geo": "",
+            "iterations": [],
+            "speed": "standard"
+          },
+          "modelUsage": {
+            "minimax-cn/MiniMax-M3": {
+              "inputTokens": 31423,
+              "outputTokens": 9383,
+              "cacheReadInputTokens": 119435,
+              "cacheCreationInputTokens": 0,
+              "webSearchRequests": 0,
+              "costUSD": 0.45140749999999996,
+              "contextWindow": 200000,
+              "maxOutputTokens": 32000
+            }
+          },
+          "num_turns": 15
+        }
+      ],
+      "manual_review": {
+        "facts_errors": 0,
+        "state_errors": 0,
+        "structure_errors": 0,
+        "body_delivery_errors": 0,
+        "format_noise_errors": 0,
+        "scope": "one supplied notice; no requested hard length limit",
+        "observation": "All substantive facts and pending/restricted states retained; title bold removed. Alibaba2 experiment uses 报送内容 instead of 报名信息 and adds a blank line before the signed date, both semantically harmless."
+      }
+    }
+  ],
+  "quality_review": "author read all full bodies and compared the only D0; not an external blind judge",
+  "read_scope": "successful server read_document UTF-8 bytes, distinct from host-visible tool_result; see separate reading-surface audit",
+  "rescan_definition": "exact metric: successful stdin equals final after surrounding whitespace and has format/structure; whitespace-only variant reported separately"
+}

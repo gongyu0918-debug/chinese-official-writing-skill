@@ -1,0 +1,194 @@
+{
+  "commit": "70d3c596b373a3e33dbf3df2187e6168683daaac",
+  "documents": {
+    "SKILL.md": {
+      "path": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\lint-command-route-r1\\output\\lint-command-route-r1\\restricted-r6\\snapshots\\experiment\\SKILL.md",
+      "sha256": "765f4cfd786f8d6e2b1e50d49179b58cad6238223b8e28c3bbd9e3a3e7b679b9",
+      "bytes": 27461
+    },
+    "references/ai-compute-docs.md": {
+      "path": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\lint-command-route-r1\\output\\lint-command-route-r1\\restricted-r6\\snapshots\\experiment\\references\\ai-compute-docs.md",
+      "sha256": "b33be9b50d8b1e6a41483cbba972e112996a7dfd1f613e7b86adc1df8a7ae94b",
+      "bytes": 10402
+    },
+    "references/anti-ai-patterns.md": {
+      "path": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\lint-command-route-r1\\output\\lint-command-route-r1\\restricted-r6\\snapshots\\experiment\\references\\anti-ai-patterns.md",
+      "sha256": "c77202b6685b57bef8ae98499c05e1e21427fce90c56a18adba0472da07e4f2f",
+      "bytes": 13966
+    },
+    "references/argument-chains.md": {
+      "path": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\lint-command-route-r1\\output\\lint-command-route-r1\\restricted-r6\\snapshots\\experiment\\references\\argument-chains.md",
+      "sha256": "dbe855c11eba2c35726aa383101a7c3a7d13c93226a6c98e2f7bc221d29209bf",
+      "bytes": 4597
+    },
+    "references/external-research.md": {
+      "path": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\lint-command-route-r1\\output\\lint-command-route-r1\\restricted-r6\\snapshots\\experiment\\references\\external-research.md",
+      "sha256": "e3c719b4b848a94f47cda2faaa85acee7cfdb035a289b4f9d40b6b9806f6af35",
+      "bytes": 2194
+    },
+    "references/final-review-layers.md": {
+      "path": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\lint-command-route-r1\\output\\lint-command-route-r1\\restricted-r6\\snapshots\\experiment\\references\\final-review-layers.md",
+      "sha256": "0204ee133951e5ca0839312e8c60524d2edc529161e9b2846a314e1e7232e546",
+      "bytes": 9029
+    },
+    "references/formal-addressing.md": {
+      "path": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\lint-command-route-r1\\output\\lint-command-route-r1\\restricted-r6\\snapshots\\experiment\\references\\formal-addressing.md",
+      "sha256": "4fe40b280d3f09faac845bc23526aa2a62633da7fb6f22e57d61f572d3291a96",
+      "bytes": 3342
+    },
+    "references/format-gbt9704.md": {
+      "path": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\lint-command-route-r1\\output\\lint-command-route-r1\\restricted-r6\\snapshots\\experiment\\references\\format-gbt9704.md",
+      "sha256": "01ca736728ba08df703d8cdc63dcbedcb474dd18059a7fcbdde0ce3cfe1d7fd6",
+      "bytes": 8842
+    },
+    "references/formulaic-language.md": {
+      "path": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\lint-command-route-r1\\output\\lint-command-route-r1\\restricted-r6\\snapshots\\experiment\\references\\formulaic-language.md",
+      "sha256": "a4940b83c337ec5e0a7f0389de49113df8ccf3ae012b5c3fc498f0982b73bb16",
+      "bytes": 7724
+    },
+    "references/genre-checklist-feasibility-review.md": {
+      "path": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\lint-command-route-r1\\output\\lint-command-route-r1\\restricted-r6\\snapshots\\experiment\\references\\genre-checklist-feasibility-review.md",
+      "sha256": "8ccfa9923dd38ff5390c6234c85dcdcd8b8753863ff00b0a460c5bc171bdd1b7",
+      "bytes": 1880
+    },
+    "references/genre-checklist-report.md": {
+      "path": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\lint-command-route-r1\\output\\lint-command-route-r1\\restricted-r6\\snapshots\\experiment\\references\\genre-checklist-report.md",
+      "sha256": "e6b42379ed812e8ef8217e6358fc9fae586a571d2a6c0783829f25fda30e713e",
+      "bytes": 2855
+    },
+    "references/genre-checklist-request.md": {
+      "path": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\lint-command-route-r1\\output\\lint-command-route-r1\\restricted-r6\\snapshots\\experiment\\references\\genre-checklist-request.md",
+      "sha256": "b011444af07dab83a5f61099e3589abd8bf49c9f8addf3c180f7db393f1ef44f",
+      "bytes": 2198
+    },
+    "references/genre-checklist.md": {
+      "path": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\lint-command-route-r1\\output\\lint-command-route-r1\\restricted-r6\\snapshots\\experiment\\references\\genre-checklist.md",
+      "sha256": "745f2d7b35beb8562acf8d4e6d2198e48fe419eb6439af35ca5dad860b4df29c",
+      "bytes": 7252
+    },
+    "references/genre-playbook-advisory-feedback.md": {
+      "path": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\lint-command-route-r1\\output\\lint-command-route-r1\\restricted-r6\\snapshots\\experiment\\references\\genre-playbook-advisory-feedback.md",
+      "sha256": "c6256e8e4be04c16ce5d3a050a45b85734a1acdadcb4972e65ad9e3c5e045c7f",
+      "bytes": 5449
+    },
+    "references/genre-playbook-complaint-reflection.md": {
+      "path": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\lint-command-route-r1\\output\\lint-command-route-r1\\restricted-r6\\snapshots\\experiment\\references\\genre-playbook-complaint-reflection.md",
+      "sha256": "4625598a2fca940c3a063a0ffa12ba9043f651ef41ad177b73ef812bfd24ba38",
+      "bytes": 4580
+    },
+    "references/genre-playbook-correspondence.md": {
+      "path": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\lint-command-route-r1\\output\\lint-command-route-r1\\restricted-r6\\snapshots\\experiment\\references\\genre-playbook-correspondence.md",
+      "sha256": "142b4ad3aaeb6088cfa5e3ba711c58b8c82101ec9c852300df7f3a134e3ddeda",
+      "bytes": 1528
+    },
+    "references/genre-playbook-institution-rules.md": {
+      "path": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\lint-command-route-r1\\output\\lint-command-route-r1\\restricted-r6\\snapshots\\experiment\\references\\genre-playbook-institution-rules.md",
+      "sha256": "f10d04e86c50deefea05198fddb2a422cf0799a6433d8a726b012c2d58e17928",
+      "bytes": 3796
+    },
+    "references/genre-playbook-minutes.md": {
+      "path": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\lint-command-route-r1\\output\\lint-command-route-r1\\restricted-r6\\snapshots\\experiment\\references\\genre-playbook-minutes.md",
+      "sha256": "ce1b195a3aa043268e4452355a001366f4008727be5692336c8859208f181bb5",
+      "bytes": 2028
+    },
+    "references/genre-playbook-news-commentary.md": {
+      "path": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\lint-command-route-r1\\output\\lint-command-route-r1\\restricted-r6\\snapshots\\experiment\\references\\genre-playbook-news-commentary.md",
+      "sha256": "4bc3a2670ce10e4d6946ebe8d5b66edc9ac3f12a399b305d585d46bad2267347",
+      "bytes": 1054
+    },
+    "references/genre-playbook-news-message.md": {
+      "path": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\lint-command-route-r1\\output\\lint-command-route-r1\\restricted-r6\\snapshots\\experiment\\references\\genre-playbook-news-message.md",
+      "sha256": "5e1ff59fb5c02fccbc3176675cb13d68cea0533c47081fe57e43ce900950e4de",
+      "bytes": 4253
+    },
+    "references/genre-playbook-plan-construction.md": {
+      "path": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\lint-command-route-r1\\output\\lint-command-route-r1\\restricted-r6\\snapshots\\experiment\\references\\genre-playbook-plan-construction.md",
+      "sha256": "f0719d7884e13afc967fbc6d3383ade3f9f06f36cac7e46cdea91fba85d3e24a",
+      "bytes": 1019
+    },
+    "references/genre-playbook-remediation-plan.md": {
+      "path": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\lint-command-route-r1\\output\\lint-command-route-r1\\restricted-r6\\snapshots\\experiment\\references\\genre-playbook-remediation-plan.md",
+      "sha256": "70ba20fb0f119067de45c972e9481a2f2fc009ae547912b871d08e7f7a133ec7",
+      "bytes": 2858
+    },
+    "references/genre-playbook-request.md": {
+      "path": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\lint-command-route-r1\\output\\lint-command-route-r1\\restricted-r6\\snapshots\\experiment\\references\\genre-playbook-request.md",
+      "sha256": "458a3353b9254256cf6302cae738a5372964328cb3bbf9cf78bab97550b62b88",
+      "bytes": 3536
+    },
+    "references/genre-playbook-work-summary.md": {
+      "path": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\lint-command-route-r1\\output\\lint-command-route-r1\\restricted-r6\\snapshots\\experiment\\references\\genre-playbook-work-summary.md",
+      "sha256": "ab34551c8df751bf4a7d882a5f5f1ee8d12291e735e3f45cf8ad1e1d4c68e026",
+      "bytes": 1804
+    },
+    "references/genre-playbooks.md": {
+      "path": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\lint-command-route-r1\\output\\lint-command-route-r1\\restricted-r6\\snapshots\\experiment\\references\\genre-playbooks.md",
+      "sha256": "d209e23f5496d34aa0fabf1449f7cd2ca44bdc318778f3a81a5839c414de343b",
+      "bytes": 5630
+    },
+    "references/genre-routing.md": {
+      "path": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\lint-command-route-r1\\output\\lint-command-route-r1\\restricted-r6\\snapshots\\experiment\\references\\genre-routing.md",
+      "sha256": "f31c8433417923d4064e75358cec53f41d30b135c7fd40699758077feddf19b2",
+      "bytes": 8601
+    },
+    "references/handling-elements.md": {
+      "path": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\lint-command-route-r1\\output\\lint-command-route-r1\\restricted-r6\\snapshots\\experiment\\references\\handling-elements.md",
+      "sha256": "e652dac11d5fec9458cc6bb63d41e884e206b359dfe6776731016b7c7a8e7fa4",
+      "bytes": 8058
+    },
+    "references/information-selection.md": {
+      "path": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\lint-command-route-r1\\output\\lint-command-route-r1\\restricted-r6\\snapshots\\experiment\\references\\information-selection.md",
+      "sha256": "188c9def1553cb01423f5214ebaee6f122c3157aac39b60f54077d78df97d595",
+      "bytes": 3987
+    },
+    "references/official-style.md": {
+      "path": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\lint-command-route-r1\\output\\lint-command-route-r1\\restricted-r6\\snapshots\\experiment\\references\\official-style.md",
+      "sha256": "82b97cc58bca9fce3f81c79ece4a5804d17a1869a5bbd3f6de191612440d505a",
+      "bytes": 6073
+    },
+    "references/proofreading-checklist.md": {
+      "path": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\lint-command-route-r1\\output\\lint-command-route-r1\\restricted-r6\\snapshots\\experiment\\references\\proofreading-checklist.md",
+      "sha256": "aa56802a0e984aadb1deed4603181fc85b237b8c534ae0973e3c9d9413d859d2",
+      "bytes": 3793
+    },
+    "references/review-checklist.md": {
+      "path": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\lint-command-route-r1\\output\\lint-command-route-r1\\restricted-r6\\snapshots\\experiment\\references\\review-checklist.md",
+      "sha256": "680e021d858f85c65ec963af95d5eee6f0396f0d4bae0073f0ff73e7ea422c5c",
+      "bytes": 16393
+    },
+    "references/review-direct-checklist.md": {
+      "path": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\lint-command-route-r1\\output\\lint-command-route-r1\\restricted-r6\\snapshots\\experiment\\references\\review-direct-checklist.md",
+      "sha256": "ae0b2fa2a9bbb778be215f9728d6ba836ace16166ca15235af90ca9ef2bceadf",
+      "bytes": 2841
+    },
+    "references/short-draft-naturalness.md": {
+      "path": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\lint-command-route-r1\\output\\lint-command-route-r1\\restricted-r6\\snapshots\\experiment\\references\\short-draft-naturalness.md",
+      "sha256": "100b89b6216d872f35b568164f13b4bcc448346b1dd39d9b100fa9bf6f30f7ba",
+      "bytes": 1334
+    },
+    "references/task-route-cards.md": {
+      "path": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\lint-command-route-r1\\output\\lint-command-route-r1\\restricted-r6\\snapshots\\experiment\\references\\task-route-cards.md",
+      "sha256": "5486d59cfaafd25f6b49623d2f7b4e0559183edb325fda6809c32cc65a273a0d",
+      "bytes": 3758
+    },
+    "references/workflow.md": {
+      "path": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\lint-command-route-r1\\output\\lint-command-route-r1\\restricted-r6\\snapshots\\experiment\\references\\workflow.md",
+      "sha256": "0a0f6f27d3fdd458035e17ec420c321ed8b394c9d18f5e2e69dbf71f449dbe28",
+      "bytes": 15296
+    },
+    "scripts/prose_lint.py": {
+      "path": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\lint-command-route-r1\\output\\lint-command-route-r1\\restricted-r6\\snapshots\\experiment\\scripts\\prose_lint.py",
+      "sha256": "af6d241367986b40f139e80dd06c96b2c975d7bcf3ca16d85ea9950dec3b8806",
+      "bytes": 58290
+    },
+    "D0": {
+      "path": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\lint-command-route-r1\\output\\lint-command-route-r1\\restricted-r6\\snapshots\\experiment\\D0.txt",
+      "sha256": "773c0c72d558dbad67f2c9ffa2c6b061908ab0f34d21fb51da893b73cec6787c",
+      "bytes": 738
+    }
+  },
+  "script": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\lint-command-route-r1\\output\\lint-command-route-r1\\restricted-r6\\snapshots\\experiment\\scripts\\prose_lint.py",
+  "script_sha256": "af6d241367986b40f139e80dd06c96b2c975d7bcf3ca16d85ea9950dec3b8806",
+  "python": "C:\\Users\\admin\\AppData\\Local\\hermes\\hermes-agent\\venv\\Scripts\\python.exe",
+  "python_sha256": "1ece0a42eec257fa8b36392d252cd0844100a969d36c9249627381cc4a65c156"
+}

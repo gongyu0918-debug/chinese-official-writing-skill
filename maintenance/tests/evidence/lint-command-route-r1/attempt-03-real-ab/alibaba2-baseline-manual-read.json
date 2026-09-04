@@ -1,0 +1,11 @@
+{
+  "provider": "alibaba2",
+  "arm": "baseline",
+  "verdict": "VALID_EXACT_RUNTIME_SKILL_READ_MANUALLY_CONFIRMED",
+  "item_id": "item_0",
+  "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"Get-Content -Raw -LiteralPath \\\"F:\\\\Workspaces\\\\chinese-official-writing-skill-worktrees\\\\lint-command-route-r1\\\\output\\\\lint-command-route-r1\\\\r3 project\\\\runtime\\\\alibaba2\\\\baseline\\\\.agents\\\\skills\\\\chinese-official-writing\\\\SKILL.md\\\"\"",
+  "expected_path": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\lint-command-route-r1\\output\\lint-command-route-r1\\r3 project\\runtime\\alibaba2\\baseline\\.agents\\skills\\chinese-official-writing\\SKILL.md",
+  "output_contains_scripts_section": true,
+  "output_bytes": 27657,
+  "parser_issue": "CLI outer command retains escaped quotes; conservative regexp did not accept quote-escape separator. Absolute path and matching Skill output manually verified; no rerun of this arm."
+}

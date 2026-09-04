@@ -85,10 +85,10 @@
 
 | 编号 | 需求与验证范围 | 当前登记 |
 | --- | --- | --- |
-| MT-004c | 单一加载条件，逐原子真实写稿 A/B，按风险登记路线；当前 R1 为五路，实际省读与成稿同时判断 | [20稿结果](candidate-r1-result.md)：候选有独有硬问题，REJECTED / PRODUCT_RESTORED |
-| MT-002a | 安装目录与cwd分离时命令可执行；保持lint提示/局部语义修正 | 相对路径失败、绝对路径成功已复现；REPRODUCED_NOT_FIXED |
+| MT-004c | 单一加载条件，逐原子真实写稿 A/B，按风险登记路线；当前 R1 为五路，实际省读与成稿同时判断 | [20稿结果](candidate-r1-result.md)候选有独有硬问题；[命令读取R4—R6](../lint-command-route-r1/result.md)未一致减载，stdin/源码提示撤回；REJECTED / PRODUCT_RESTORED |
+| MT-002a | 安装目录与cwd分离时命令可执行；保持lint提示/局部语义修正 | [两份真实终稿、四次命令](../command-cwd-real-draft-r1/result.md)均exit2→exit0且正文不变；两处说明及五镜像已同步，89项回归与五处quick_validate通过；ENGINEERING_VERIFIED / LOCAL_BRANCH_ONLY / NOT_RELEASED，不称减载 |
 | WR-020c | 短/长稿批量无错率及实际错误数；真实resume同稿4—7版；D0/Hook终稿分开 | [20稿结果](candidate-r1-result.md)已完成；[七版链结果](../revision-stability-audit-r1/result.md)：28/28技术完成，已按原题面纠正合段过严判定，QUALITY_AUDIT_COMPLETE_GAPS_REGISTERED |
-| AH-002b | 目标事实日期与格式示例、旧稿/排除材料的来源角色绑定 | 独立分支旁路原型未准入，PROTOTYPE_ONLY |
+| AH-002b | 目标事实日期与格式示例、旧稿/排除材料的来源角色绑定 | [两路自然D0](../date-source-real-r1/result.md)均正确、默认Hook保持；REAL_R1_NOT_REPRODUCED / NOT_ADMITTED，旧旁路仅归档patch |
 | HK-005b | 错回显耗尽、终态重放、晚到事件覆盖与数据回流 | 根代理已离线复现，REPRODUCED_NOT_FIXED |
 
 WR-020c 的无错率只在明示检查范围内成立；错误稿件数、实际错误总数和分项错误数都须保留。技术无效与质量错误分开，四条相关会话不当作28个独立样本；合法的最新修改不判回退，初稿错误不直接否定整个质量闭环。20稿中19份有效、14份未观察到已确认硬问题，仅限两道整改题；六稿同D0默认Hook复放均保留D0，不能推广为总体无错或完整语义核验。
@@ -125,3 +125,5 @@ WR-020c 的无错率只在明示检查范围内成立；错误稿件数、实际
 初次规格审计仅执行Git状态/祖先检查、本地Markdown链接存在性检查、需求编号到覆盖矩阵检查和 `git diff --check`：当时8份活动/审计文档299处本地链接无缺失，56个需求编号无重复且均有coverage映射。它不替代另立的真实写稿结果。
 
 基线以来第5次提交 `c9898219` 后已暂停做独立review、基线diff、轻量消融和相关回归：canonical与五套普通包恢复基线；20稿保留原型开关对照；23项可达性/台账测试通过。review指出压缩AGENTS时漏了脚本验证和通用外部写入授权边界，现已补回；最终减载以本页15.12%为准。七版链fixture漏列动态导入probe依赖，运行后另存补证、比对其规范化字节等于固定基线，不回写冻结fixture，不把事后补证冒充事前冻结。
+
+第10次提交前再次完成[范围扩大检查](integration-validation.md)：命令路径原子获选，整体路由与stdin/源码提示撤回；12份产品文件各仅一行路径说明增量，112项直接回归和五处quick_validate通过。主代理复核193份导入证据及12份真实stream的模型/工具/可见读取量，独立review的两处文档终态/字段含义问题已纠正。不修改上述第5次检查的当时事实。

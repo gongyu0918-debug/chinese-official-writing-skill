@@ -41,4 +41,4 @@
 
 ## 本轮审计与登记
 
-2026-09-05 的[逐项规格审计](../tests/evidence/reference-route-audit-r1/spec-audit.md)记录现有状态、证据入口和 AGENTS 规则保留映射；[审核发现](../tests/evidence/reference-route-audit-r1/audit-findings.md)登记已复现但未准入的命令与 Hook 问题。当前新增子项为 `MT-004c` 渐进路由、`MT-002a` 命令可执行、`WR-020c` 批量与多版质量、`AH-002b` 日期来源角色和 `HK-005b` 终态/回显；活动状态见 roadmap，不能用原型或旧测试记 DONE。
+2026-09-05 的[逐项规格审计](../tests/evidence/reference-route-audit-r1/spec-audit.md)记录现有状态、证据入口和 AGENTS 规则保留映射；[审核发现](../tests/evidence/reference-route-audit-r1/audit-findings.md)登记已准入的命令路径修正与待修 Hook 问题，完整结论见[本轮结果](../tests/evidence/reference-route-audit-r1/result.md)。当前新增子项为 `MT-004c` 渐进路由、`MT-002a` 命令可执行、`WR-020c` 批量与多版质量、`AH-002b` 日期来源角色和 `HK-005b` 终态/回显；活动状态见 roadmap，不能用原型或旧测试记 DONE。

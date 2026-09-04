@@ -1,0 +1,118 @@
+{
+  "imported_files_verified": 193,
+  "real_outputs_verified": 12,
+  "source_request_previews": 9,
+  "rows": [
+    {
+      "phase": "restricted-r4",
+      "provider": "alibaba2",
+      "arm": "control",
+      "visible_read_bytes": 52275,
+      "source_requests": 1,
+      "models_and_tools_valid": true,
+      "body_sha256": "e40ec89757b227bd800cf377f6a649d36ae7fdccf697534b3cd48f7ae6c61aae"
+    },
+    {
+      "phase": "restricted-r4",
+      "provider": "alibaba2",
+      "arm": "experiment",
+      "visible_read_bytes": 54276,
+      "source_requests": 1,
+      "models_and_tools_valid": true,
+      "body_sha256": "e40ec89757b227bd800cf377f6a649d36ae7fdccf697534b3cd48f7ae6c61aae"
+    },
+    {
+      "phase": "restricted-r4",
+      "provider": "minimax",
+      "arm": "control",
+      "visible_read_bytes": 31476,
+      "source_requests": 1,
+      "models_and_tools_valid": true,
+      "body_sha256": "5be3fc9dbffefd1b71722a2c809e5ddd1007e0898bb76c46d032bb0964e2e939"
+    },
+    {
+      "phase": "restricted-r4",
+      "provider": "minimax",
+      "arm": "experiment",
+      "visible_read_bytes": 31482,
+      "source_requests": 1,
+      "models_and_tools_valid": true,
+      "body_sha256": "e40ec89757b227bd800cf377f6a649d36ae7fdccf697534b3cd48f7ae6c61aae"
+    },
+    {
+      "phase": "restricted-r5",
+      "provider": "alibaba2",
+      "arm": "control",
+      "visible_read_bytes": 55485,
+      "source_requests": 1,
+      "models_and_tools_valid": true,
+      "body_sha256": "2536dbea5e0d90f39cbb9d7f40b188e5f11804f9b020548ed6be94ee4d59b118"
+    },
+    {
+      "phase": "restricted-r5",
+      "provider": "alibaba2",
+      "arm": "experiment",
+      "visible_read_bytes": 46837,
+      "source_requests": 1,
+      "models_and_tools_valid": true,
+      "body_sha256": "e40ec89757b227bd800cf377f6a649d36ae7fdccf697534b3cd48f7ae6c61aae"
+    },
+    {
+      "phase": "restricted-r5",
+      "provider": "minimax",
+      "arm": "control",
+      "visible_read_bytes": 31470,
+      "source_requests": 1,
+      "models_and_tools_valid": true,
+      "body_sha256": "5be3fc9dbffefd1b71722a2c809e5ddd1007e0898bb76c46d032bb0964e2e939"
+    },
+    {
+      "phase": "restricted-r5",
+      "provider": "minimax",
+      "arm": "experiment",
+      "visible_read_bytes": 48730,
+      "source_requests": 1,
+      "models_and_tools_valid": true,
+      "body_sha256": "5be3fc9dbffefd1b71722a2c809e5ddd1007e0898bb76c46d032bb0964e2e939"
+    },
+    {
+      "phase": "restricted-r6",
+      "provider": "alibaba2",
+      "arm": "control",
+      "visible_read_bytes": 59705,
+      "source_requests": 1,
+      "models_and_tools_valid": true,
+      "body_sha256": "5be3fc9dbffefd1b71722a2c809e5ddd1007e0898bb76c46d032bb0964e2e939"
+    },
+    {
+      "phase": "restricted-r6",
+      "provider": "alibaba2",
+      "arm": "experiment",
+      "visible_read_bytes": 49169,
+      "source_requests": 0,
+      "models_and_tools_valid": true,
+      "body_sha256": "bd5ed64458ff225d80e7e7e65c131111776f5ae5bbc46fe496100402dff48bca"
+    },
+    {
+      "phase": "restricted-r6",
+      "provider": "minimax",
+      "arm": "control",
+      "visible_read_bytes": 28178,
+      "source_requests": 0,
+      "models_and_tools_valid": true,
+      "body_sha256": "ab0c49841574622287eaabce822e13e6bd5af8a130628c8d26d7c7f2641765e6"
+    },
+    {
+      "phase": "restricted-r6",
+      "provider": "minimax",
+      "arm": "experiment",
+      "visible_read_bytes": 95952,
+      "source_requests": 0,
+      "models_and_tools_valid": true,
+      "body_sha256": "5be3fc9dbffefd1b71722a2c809e5ddd1007e0898bb76c46d032bb0964e2e939"
+    }
+  ],
+  "manual_r6_review": "Root read all four final bodies; MiniMax control omits independent speaker-list restriction; both candidates retain all facts and states; Alibaba candidate final whitespace differs from its rescan without a substantive hard error.",
+  "source_local_and_staged_git_blobs_verified": 193,
+  "import_source": "raw source Git blobs via git cat-file --batch; see import-receipt.json for archive conversion correction"
+}
