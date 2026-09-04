@@ -71,7 +71,7 @@
 
 ## 工具提示
 
-可使用 `python scripts/prose_lint.py --delivery-mode draft-body --format --structure <draft>` 扫描纯文本、Markdown 或提取出的 DOCX 文本，其中 `<draft>` 替换为待检查文件路径。脚本只提示风险，不自动改写；不得把脚本命中当成不加判断的硬性清洗命令。
+可使用 `python "<Skill绝对目录>/scripts/prose_lint.py" --delivery-mode draft-body --format --structure "<草稿绝对路径>"` 扫描纯文本、Markdown 或提取出的 DOCX 文本；两个占位分别替换为本次已读 `SKILL.md` 所在目录和待检查文件的绝对路径。默认返回码 0 表示扫描完成，仍须阅读命中结果。脚本只提示风险，不自动改写；不得把脚本命中当成不加判断的硬性清洗命令。
 
 脚本命中后，逐条结合位置、风险等级、命中片段和随附建议作一次内部判断：高、中风险选择保留、局部改写或删除，低风险只在有明确质量收益时处理；以材料事实、文种功能和用户要求为准，不因命中补造事实。
 
