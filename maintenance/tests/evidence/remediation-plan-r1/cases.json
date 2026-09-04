@@ -1,0 +1,59 @@
+{
+  "schema_version": 1,
+  "baseline_commit": "5869234bcfee5aeb7f70762035a8ee593569fbc3",
+  "reasoning_effort": "max",
+  "providers": {
+    "alibaba2": "alibaba-token-plan-2/deepseek-v4-flash-0731",
+    "alibaba1": "alibaba-token-plan/deepseek-v4-flash-0731",
+    "ollama": "ollama-cloud/deepseek-v4-flash:0731",
+    "opencode": "opencode-go/deepseek-v4-flash",
+    "minimax": "minimax-cn/MiniMax-M3"
+  },
+  "cases": [
+    {
+      "id": "REMEDIATION-SHORT-SERVICE",
+      "atoms": ["WR-028-SHORT-PROBLEM-CAUSE-MEASURE"],
+      "prompt_file": "prompts/short-service.txt",
+      "material": "三次抽查20宗业务中7宗需二次补材料，含清单版本差异和首次口头告知遗漏；统一版本及整改均未形成。",
+      "required_groups": [["2026年8月"], ["3次", "三次"], ["20宗"], ["7宗"], ["5宗"], ["2宗"], ["尚未形成统一版本"], ["整改工作尚未开始"]],
+      "forbidden": ["已形成统一版本", "已经形成统一版本", "已完成整改", "整改工作已经完成", "工作人员故意", "造成重大损失"],
+      "quality_markers": ["原因", "整改措施", "统一", "复核"]
+    },
+    {
+      "id": "REMEDIATION-AUDIT-MEDIUM",
+      "atoms": ["WR-028-AUDIT-MAPPING"],
+      "prompt_file": "prompts/audit-medium.txt",
+      "material": "专项审计发现凭证审批、资产登记、合同台账和采购培训四类问题，给定分工与2026年10月31日统一期限，均未整改。",
+      "required_groups": [["2026年8月15日"], ["12笔"], ["4笔"], ["3台"], ["2台"], ["6份"], ["3份"], ["2026年"], ["财务部"], ["综合办公室"], ["采购中心"], ["2026年10月31日"], ["尚未启动整改"]],
+      "forbidden": ["已完成整改", "全部整改完成", "造成资金损失", "已追究责任", "审计认定相关人员"] ,
+      "quality_markers": ["原因分析", "整改措施", "责任", "时限", "复核"]
+    },
+    {
+      "id": "REMEDIATION-EDUCATION-LONG",
+      "atoms": ["WR-028-LONG-STRUCTURE-STATE"],
+      "prompt_file": "prompts/education-long.txt",
+      "material": "教育评估反馈的课程目标分析、实习基地协议、意见响应、培养方案修订和教师培训数据五类问题，含责任分工、两个阶段时限及未决状态。",
+      "required_groups": [["2026年6月30日"], ["20门"], ["6门"], ["8个"], ["2份"], ["142条"], ["37条"], ["4个专业"], ["尚未批准"], ["教务处"], ["质量监测中心"], ["2026年10月31日"], ["2027年6月30日"]],
+      "forbidden": ["培养方案已获批准", "培养方案已经批准", "已全部达标", "已经全部达标", "发生安全事故", "投入专项资金"],
+      "quality_markers": ["整改目标", "原因", "整改措施", "责任", "验收"]
+    },
+    {
+      "id": "CONTROL-REMEDIATION-PROGRESS",
+      "atoms": ["WR-028-PROGRESS-CONTROL"],
+      "prompt_file": "prompts/control-progress.txt",
+      "material": "整改进展情况报告：两项已完成，一项正在复核，一项尚未启动；不得另拟整改方案。",
+      "required_groups": [["2026年7月12日"], ["4项"], ["2项"], ["1项"], ["正在复核"], ["尚未启动"], ["2026年9月30日"]],
+      "forbidden": ["制定如下整改方案", "现制定本方案", "全部整改完成", "已全部完成"],
+      "quality_markers": ["进展", "已完成", "正在复核", "尚未启动"]
+    },
+    {
+      "id": "CONTROL-IMPLEMENTATION-PLAN",
+      "atoms": ["WR-028-GENERIC-PLAN-CONTROL"],
+      "prompt_file": "prompts/control-implementation-plan.txt",
+      "material": "预约系统上线实施方案，无检查反馈和整改背景，含试运行、切换、责任和时间。",
+      "required_groups": [["2026年9月15日"], ["2026年9月22日"], ["信息中心"], ["实验室管理处"], ["账号迁移"], ["历史预约记录只读保留"]],
+      "forbidden": ["整改方案", "整改问题", "整改销号", "督察反馈", "审计发现"],
+      "quality_markers": ["实施", "试运行", "切换", "责任"]
+    }
+  ]
+}
