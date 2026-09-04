@@ -71,7 +71,7 @@
 
 - `WR-028-REMEDIATION-PLAN-R2`：R1五家25份候选发现一处候选独有状态遗漏；R2只强化状态先落位，五家10份中8份候选隔离有效，两题各4份均保留材料状态并形成实际措施，唯一硬回退已消除。五套普通镜像、直接断言、五处quick validate和774项全量回归已经通过；状态改记 `LOCAL_MAIN_INTEGRATED / NOT_RELEASED`：2026-09-05 实查本地 main 为 `5fbb2d26`、本地 origin/main 仍为 `5869234b`，未推送或发布；不改写旧工程证据的当时状态，不改Hook、description和其他文种。[R2结果](../tests/evidence/remediation-plan-r1/candidate-r2-result.md) [工程接入](../tests/evidence/remediation-plan-r1/engineering-result.md)
 
-- `WR-020c-QUALITY-LOOP-R1`：20稿中19有效，14份未观察到已确认硬问题、5稿至少8项硬问题；只限两道整改题，31条质量提醒另列。4条真实resume七版链已启动，尚待完整结果；六稿同D0默认Hook复放终稿均等于D0，修正0、新增改坏0，不能当全面语义核验。状态 `IN_PROGRESS / REVISION_CHAIN_RUNNING`。[批量结果](../tests/evidence/reference-route-audit-r1/candidate-r1-result.md) [链预注册](../tests/evidence/revision-stability-audit-r1/preregister.md)
+- `WR-020c-QUALITY-LOOP-R1`：20稿中19有效，14份未观察到已确认硬问题、5稿至少8项硬问题；只限两道整改题，31条质量提醒另列。4条真实resume七版链28/28技术完成：R3/R7调序4/4、R4完整删除3/4、R5独立插段3/4，R7三稿无已登记硬问题；全链至少12项新问题，不把28相关版本当独立样本。六稿同D0默认Hook复放均保留D0，修正0、新增改坏0，不能当全面语义核验。状态 `IN_PROGRESS / QUALITY_AUDIT_COMPLETE_GAPS_REGISTERED`。[批量结果](../tests/evidence/reference-route-audit-r1/candidate-r1-result.md) [七版链结果](../tests/evidence/revision-stability-audit-r1/result.md)
 - `MT-002a-COMMAND-CWD-R1`：项目 cwd 中相对 lint 命令失败已复现，绝对脚本路径成功；命令原型尚未实施，后续 reference 减载须真实写稿 A/B，路线与样本按目标风险预登记。状态 `IN_PROGRESS / REPRODUCED_NOT_FIXED`。[审计](../tests/evidence/reference-route-audit-r1/audit-findings.md)
 - `AH-002b-DATE-SOURCE-ROLE-R1`：格式示例日期被补入目标新闻已复现，独立分支只有未准入的歧义旁路原型；`HK-005b-TERMINAL-ECHO-R1` 的错回显耗尽放行、终态重放与晚到写入三项未修复。均为 `IN_PROGRESS`；先同一真实 D0 验证再补必要工程，不用旧159项通过否定新反例。[审计](../tests/evidence/reference-route-audit-r1/audit-findings.md)
 

@@ -66,7 +66,7 @@
 
 | `MT-004c` 渐进路由单一条件 | 原型22772262保留追溯，运行时SKILL已恢复5fbb2d26 | [20稿结果和完整正文](../tests/evidence/reference-route-audit-r1/candidate-r1-result.md)：19有效，9个有效对5个少读、4个多读；候选存在标题事实改变、日期遗漏和系统对象新增 | 520静态bytes与合计3.88%的读取字节上界下降均不足以越过硬回退门；未镜像 | `REJECTED / PRODUCT_RESTORED`；不宣称已完成产品减载 |
 | `MT-002a` 命令可执行 | 当前 final-review 的相对脚本命令尚未修改 | [命令复现](../tests/evidence/reference-route-audit-r1/audit-findings.md)：项目 cwd 原命令 exit 2；绝对脚本路径检出同一 finding；五套普通包 --help 可用 | 仅临时稿与命令验证，未以模型证实指令修改收益 | `IN_PROGRESS / REPRODUCED_NOT_FIXED`；保留 lint 提示与人工语义处置 |
-| `WR-020c` 批量与多版质量稳定性 | 普通写稿不增加新Hook或状态机 | [批量结果](../tests/evidence/reference-route-audit-r1/candidate-r1-result.md)：19有效、14无已确认硬问题；[七版链](../tests/evidence/revision-stability-audit-r1/preregister.md)已实际启动4条独立resume会话 | D0、各版正文、同D0的Hook终稿分开；两题结果不推广为一般可靠率，31条质量提醒独立保留 | `IN_PROGRESS / REVISION_CHAIN_RUNNING`；未宣称多版通过 |
+| `WR-020c` 批量与多版质量稳定性 | 普通写稿不增加新Hook或状态机 | [批量结果](../tests/evidence/reference-route-audit-r1/candidate-r1-result.md)：19有效、14无已确认硬问题；[七版链结果](../tests/evidence/revision-stability-audit-r1/result.md)：4条实际resume链28/28技术完成，R3/R7精确调序4/4、漏删1链、R5插段失败1链；R7三稿无登记硬问题 | D0、各版正文、同D0的Hook终稿分开；两题结果不推广为一般可靠率，31条质量提醒独立保留 | `IN_PROGRESS / QUALITY_AUDIT_COMPLETE_GAPS_REGISTERED`；至少12项首次错误，已登记原文与修复/持续轨迹，不以28相关版本估算总体正确率 |
 | `AH-002b` 日期来源角色 | 独立 Hook worktree 的歧义旁路原型，未进入本候选 | [已复现示例错绑](../tests/evidence/reference-route-audit-r1/audit-findings.md)：目标事实 2026-09-05 被示例 2020年9月5日补年 | 离线根代理复现；真实 D0 与宿主终稿收益待验证 | `IN_PROGRESS / PROTOTYPE_ONLY`；旧 AH-002 窄范围发布事实不改写 |
 | `HK-005b` 终态与错回显 | 当前 coordinator 尚未修复 | [三项复现](../tests/evidence/reference-route-audit-r1/audit-findings.md)：错回显耗尽放行、终态 UserPromptSubmit 重放、晚到 PostToolUse 覆盖 | 受控离线复现不作在线发生率；同稿修订与可见终稿未补证据 | `IN_PROGRESS / REPRODUCED_NOT_FIXED`；与 HK-008 终态留存边界一并复核 |
 
