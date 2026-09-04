@@ -69,7 +69,7 @@
 
 ## IN_PROGRESS
 
-- `WR-028-REMEDIATION-PLAN-R1`：13份官方整改方案正文和6份规范性材料已完成结构校准；当前固定 `main@5869234b`，先运行五家低成本 provider 的短整改、审计整改、长教育整改及两个控制题。只有基线复现共同目标缺口，才新增整改方案直达路由和一页专叶；真实 A/B 通过前不补镜像、Hook、description或全量门。[预登记](../tests/evidence/remediation-plan-r1/preregister.md)
+- `WR-028-REMEDIATION-PLAN-R1`：13份官方整改方案正文和6份规范性材料已完成结构校准；固定 `main@5869234b` 的五家25份基线已收齐，22份隔离有效，短整改4/5遗漏明示未启动状态，中长稿共同存在固定组织和过细流程外扩。现按 [reference审计](../tests/evidence/remediation-plan-r1/reference-audit.md)进入一条直达路由和一页窄叶候选；真实同题 A/B 通过前不补镜像、Hook、description或全量门。[基线结果](../tests/evidence/remediation-plan-r1/baseline-result.md)
 
 ## REJECTED
 

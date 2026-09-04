@@ -97,13 +97,19 @@ def run_provider(provider_id: str) -> dict:
     if not (OUTPUT_ROOT / "fixture.json").is_file():
         raise RuntimeError("run --prepare first")
     result_path = OUTPUT_ROOT / "providers" / f"{provider_id}.json"
-    if result_path.exists():
-        raise RuntimeError(f"provider result already exists: {result_path}")
     result_path.parent.mkdir(parents=True, exist_ok=True)
     base = load_base_runner()
     writer = base.load_writer()
     records = []
+    if result_path.exists():
+        payload = json.loads(result_path.read_text(encoding="utf-8"))
+        if payload.get("provider_id") != provider_id:
+            raise RuntimeError(f"provider result mismatch: {result_path}")
+        records = payload.get("records", [])
+    completed = {record["case_id"] for record in records}
     for case in config["cases"]:
+        if case["id"] in completed:
+            continue
         record = writer.run_one(
             provider_id, config["providers"][provider_id], "baseline", case, config["reasoning_effort"]
         )
@@ -118,7 +124,11 @@ def run_provider(provider_id: str) -> dict:
             encoding="utf-8",
             newline="\n",
         )
-    return {"provider_id": provider_id, "record_count": len(records)}
+    return {
+        "provider_id": provider_id,
+        "record_count": len(records),
+        "resumed_from": len(completed),
+    }
 
 
 def summarize() -> dict:
