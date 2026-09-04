@@ -16,6 +16,7 @@ CASES_PATH = HERE / "cases.json"
 CONFIG_PATH = HERE / "candidate-config.json"
 OUTPUT_ROOT = REPO / "output/remediation-plan-r1/candidate-r1"
 BASELINE_OUTPUT = REPO / "output/remediation-plan-r1/baseline"
+WRITER_OUTPUT_ROOT = BASELINE_OUTPUT
 BASELINE_RUNNER_PATH = HERE / "run_baseline.py"
 
 
@@ -45,9 +46,82 @@ def git_text(*args: str) -> str:
 
 def load_writer():
     baseline = load_baseline_runner()
+    baseline.OUTPUT_ROOT = WRITER_OUTPUT_ROOT
     base = baseline.load_base_runner()
-    base.OUTPUT_ROOT = OUTPUT_ROOT
     return base, base.load_writer()
+
+
+def recover_record(provider_id: str, model: str, case: dict, effort: str, writer) -> dict | None:
+    root = writer.runtime_root(provider_id, "candidate")
+    raw = WRITER_OUTPUT_ROOT / "raw" / provider_id
+    stem = f"{case['id']}-candidate"
+    final_path = raw / f"{stem}.final.txt"
+    trace_path = raw / f"{stem}.trace.jsonl"
+    stderr_path = raw / f"{stem}.stderr.txt"
+    if not (final_path.is_file() and trace_path.is_file() and stderr_path.is_file()):
+        return None
+
+    final = final_path.read_text(encoding="utf-8", errors="replace")
+    stdout = trace_path.read_text(encoding="utf-8", errors="replace")
+    stderr = stderr_path.read_text(encoding="utf-8", errors="replace")
+    commands = writer.normalized_commands(stdout)
+    exact_skill = (root / ".agents/skills/chinese-official-writing/SKILL.md").as_posix().casefold()
+    exact_seen = exact_skill in commands or ".agents/skills/chinese-official-writing/skill.md" in commands
+    global_seen = [
+        path.as_posix() for path in writer.USER_SKILLS if path.as_posix().casefold() in commands
+    ]
+    combined_log = f"{stdout}\n{stderr}".casefold()
+    hook_markers = [
+        marker
+        for marker in (
+            "<hook_prompt",
+            "chinese-official-writing@chinese-official-writing-local:hooks/",
+            "official-writing-pro@official-writing-pro-local:hooks/",
+        )
+        if marker in combined_log
+    ]
+    completed_trace = '"type":"turn.completed"' in stdout
+    technical = []
+    if not completed_trace:
+        technical.append("recovered_trace_incomplete")
+    if not final.strip():
+        technical.append("missing_final")
+    if not exact_seen:
+        technical.append("missing_exact_skill_trace")
+    if global_seen:
+        technical.append("user_skill_contamination")
+    if hook_markers:
+        technical.append("hook_contamination")
+    body_chars = len(writer.compact(final))
+    return {
+        "provider_id": provider_id,
+        "model": model,
+        "case_id": case["id"],
+        "arm": "candidate",
+        "return_code": 0 if completed_trace else None,
+        "seconds": None,
+        "codex_path": None,
+        "codex_version": None,
+        "exact_skill_trace": exact_seen,
+        "user_skill_paths_in_trace": global_seen,
+        "hook_contamination_markers": hook_markers,
+        "technical_failures": technical,
+        "hard_failures": [] if technical else writer.hard_failures(case, final),
+        "prompt_chars_nonspace": len(writer.compact(case["prompt"])),
+        "material_chars_nonspace": len(writer.compact(case["material"])),
+        "final_chars_nonspace": body_chars,
+        "shorter_than_prompt": body_chars < len(writer.compact(case["prompt"])),
+        "shorter_than_material": body_chars < len(writer.compact(case["material"])),
+        "quality_markers_present": [
+            marker for marker in case["quality_markers"] if marker in final
+        ],
+        "usage": writer.trace_usage(stdout),
+        "final_sha256": writer.sha256_bytes(final.encode("utf-8")) if final else None,
+        "final_file": str(final_path.relative_to(WRITER_OUTPUT_ROOT)),
+        "trace_file": str(trace_path.relative_to(WRITER_OUTPUT_ROOT)),
+        "stderr_file": str(stderr_path.relative_to(WRITER_OUTPUT_ROOT)),
+        "recovered_after_runner_path_error": True,
+    }
 
 
 def prepare() -> dict:
@@ -114,9 +188,35 @@ def run_provider(provider_id: str) -> dict:
         if payload.get("provider_id") != provider_id:
             raise RuntimeError(f"provider result mismatch: {result_path}")
         records = payload.get("records", [])
-    completed = {record["case_id"] for record in records}
-
     base, writer = load_writer()
+    completed = {record["case_id"] for record in records}
+    for case in cases:
+        if case["id"] in completed:
+            continue
+        recovered = recover_record(
+            provider_id,
+            cases_config["providers"][provider_id],
+            case,
+            cases_config["reasoning_effort"],
+            writer,
+        )
+        if recovered is not None:
+            recovered["atoms"] = case["atoms"]
+            files, loaded_bytes = base.skill_reads(
+                (WRITER_OUTPUT_ROOT / recovered["trace_file"]).read_text(
+                    encoding="utf-8", errors="replace"
+                ),
+                writer.runtime_root(provider_id, "candidate"),
+            )
+            recovered["skill_files_read"] = files
+            recovered["loaded_bytes"] = loaded_bytes
+            records.append(recovered)
+            completed.add(case["id"])
+    result_path.write_text(
+        json.dumps({"provider_id": provider_id, "records": records}, ensure_ascii=False, indent=2),
+        encoding="utf-8",
+        newline="\n",
+    )
     for case in cases:
         if case["id"] in completed:
             continue
@@ -127,11 +227,14 @@ def run_provider(provider_id: str) -> dict:
             case,
             cases_config["reasoning_effort"],
         )
-        trace = (OUTPUT_ROOT / record["trace_file"]).read_text(encoding="utf-8", errors="replace")
+        trace = (WRITER_OUTPUT_ROOT / record["trace_file"]).read_text(
+            encoding="utf-8", errors="replace"
+        )
         files, loaded_bytes = base.skill_reads(trace, writer.runtime_root(provider_id, "candidate"))
         record["atoms"] = case["atoms"]
         record["skill_files_read"] = files
         record["loaded_bytes"] = loaded_bytes
+        record["recovered_after_runner_path_error"] = False
         records.append(record)
         result_path.write_text(
             json.dumps({"provider_id": provider_id, "records": records}, ensure_ascii=False, indent=2),
@@ -142,6 +245,7 @@ def run_provider(provider_id: str) -> dict:
         "provider_id": provider_id,
         "record_count": len(records),
         "resumed_from": len(completed),
+        "artifact_root": str(WRITER_OUTPUT_ROOT.relative_to(REPO)),
     }
 
 
@@ -203,6 +307,7 @@ def summarize() -> dict:
         "pair_count": len(pairs),
         "technical_pair_count": sum(pair["technical_ok"] for pair in pairs),
         "candidate_read_counts": read_counts,
+        "candidate_artifact_root": str(WRITER_OUTPUT_ROOT.relative_to(REPO)),
         "pairs": pairs,
     }
     (OUTPUT_ROOT / "summary.json").write_text(
