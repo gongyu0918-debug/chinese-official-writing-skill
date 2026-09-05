@@ -1149,6 +1149,29 @@ class GateStopHookTests(unittest.TestCase):
             response = HOOK.handle_stop(self._event("Stop", stop_hook_active=True, last_assistant_message="错误回显"))
         self.assertIs(response["continue"], False)
 
+    def test_explicit_optout_is_not_blocked_by_unavailable_cleanup_lock(self):
+        prompt = "本次关闭Hook。请写情况说明。材料：测试工作已完成。"
+        for failure in ("contention", "io_error"):
+            with self.subTest(failure=failure):
+                event = self._event("Stop", turn_id="optout-" + failure,
+                                    last_assistant_message="测试工作已完成。")
+                HOOK.handle({**event, "hook_event_name": "UserPromptSubmit", "prompt": prompt})
+                path = HOOK._record_path(event)
+                # A delayed Skill-read marker must not override explicit opt-out.
+                HOOK._mark_skill_seen(path)
+                if failure == "contention":
+                    with HOOK._record_lock(path), mock.patch.object(HOOK, "RECORD_LOCK_TIMEOUT_SECONDS", 0.02):
+                        response = HOOK.handle_stop(event)
+                else:
+                    with mock.patch.object(HOOK, "_acquire_file_lock", side_effect=OSError("unavailable")):
+                        response = HOOK.handle_stop(event)
+                self.assertEqual({"continue": True}, response)
+                self.assertNotIn("txn", HOOK._read_json(path))
+                self.assertEqual({"continue": True}, HOOK.handle_stop(event))
+                final = HOOK._read_json(path)
+                self.assertEqual(HOOK.REDACTED_RECORD_STATE, final["data_retention_state"])
+                self.assertNotIn("request", final)
+
     def test_stale_echo_writer_cannot_reopen_completed_delivery(self):
         self._record_prompt_and_skill_read()
         draft = "情况报告\n\n测试工作已完成。"
