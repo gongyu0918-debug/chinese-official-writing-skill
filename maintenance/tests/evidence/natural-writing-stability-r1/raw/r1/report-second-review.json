@@ -1,0 +1,536 @@
+{
+  "schema_version": 1,
+  "input_file": "report-second-packet.json",
+  "input_sha256": "13765cd0feca4fa7bd3c20ccfc6212c6829e0c1a9eb2a918f6d8232edaf152c8",
+  "scope": "只读取授权匿名包中的P3/P4两条报告链各5版及其题面；未读取mapping、产品、冷审、其他输出，未调用模型。只新增本审查JSON。",
+  "interpretation": [
+    "原任务明确允许分析，并要求下一步考虑。因此材料直接支持的归纳、一般因果分析和拟议建议可接受；不把考虑部分的动作祈使句自动判成已安排、已实施。",
+    "硬错只记可定位的材料外具体已发生步骤、职责或核验范围，以及把限定材料改成另一事实前提的评价。没有时限、完成标准或制度清单时，对阶段和进度的偏强评价另列疑点。",
+    "R2其他内容保留允许更新事实的必要连带改句；R3只删除交流及相关段落和必要序号调整；R4允许新增段落中的近义改写，检查独立段和非目标全文。",
+    "字数按标题在内、去空白字符为主；另保存去Markdown标记后的显示字符及含空白长度。末轮两稿即使算入空白也不到700，不存在计数口径翻转。",
+    "R3按用户要求删除后P3显示正文895字，低于最初900下限；后续明确要求删该事项且其他内容不动，本审不要求填充凑数，也不把这一点记为硬回退。"
+  ],
+  "verification": {
+    "text_hashes_verified": 10,
+    "counts_verified": 10,
+    "source_paths_read": [
+      "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\natural-writing-stability-r1\\output\\natural-writing-stability-r1\\r1\\report-second-packet.json"
+    ],
+    "mapping_read": false,
+    "model_calls": 0,
+    "mechanical_adjacent_checks": {
+      "P3_R3": "只删交流段和以该交流为依据的问题段，并将四是改三是；其余逐字相同",
+      "P4_R3": "只删交流进展、交流问题、交流建议三段；其余逐字相同",
+      "P3_R4": "删除唯一新增自然段后与R3全文逐字相同；位置为问题部分最后一段",
+      "P4_R4": "删除唯一新增自然段后与R3全文逐字相同；新段后仍有原问题综述段，位置疑点单列"
+    }
+  },
+  "length_and_delivery": [
+    {
+      "chain": "P3",
+      "rounds": [
+        {
+          "round": 1,
+          "text_sha256": "650c38450aaf52f9281dd34e70300c6292a8d0a497a4c47622dc7a0af236d154",
+          "final_nonspace_chars": 988,
+          "rendered_nonspace_chars_including_title": 949,
+          "chars_including_whitespace": 1026,
+          "complete_report_body_present": true,
+          "external_process_commentary": false
+        },
+        {
+          "round": 2,
+          "text_sha256": "14f7e8a35825b914cf77a414820892eead80ae92336f287818b6b68642c729b1",
+          "final_nonspace_chars": 1085,
+          "rendered_nonspace_chars_including_title": 1046,
+          "chars_including_whitespace": 1123,
+          "complete_report_body_present": true,
+          "external_process_commentary": false
+        },
+        {
+          "round": 3,
+          "text_sha256": "9724310000c74bb6a4b6042558ba7edaf1cf0a7f663f68ce1a384cb591b57f55",
+          "final_nonspace_chars": 926,
+          "rendered_nonspace_chars_including_title": 895,
+          "chars_including_whitespace": 960,
+          "complete_report_body_present": true,
+          "external_process_commentary": false
+        },
+        {
+          "round": 4,
+          "text_sha256": "30663cab47ddcd358f82b66d6989cb962d0c588fea3e27aa1ad1a0bcd3cec896",
+          "final_nonspace_chars": 972,
+          "rendered_nonspace_chars_including_title": 941,
+          "chars_including_whitespace": 1008,
+          "complete_report_body_present": true,
+          "external_process_commentary": false
+        },
+        {
+          "round": 5,
+          "text_sha256": "d7e86dd45c36901be339c1fff7e1e8f2b1ced36ec1f2153ae69ef053eb2266ba",
+          "final_nonspace_chars": 606,
+          "rendered_nonspace_chars_including_title": 606,
+          "chars_including_whitespace": 638,
+          "complete_report_body_present": true,
+          "external_process_commentary": false
+        }
+      ]
+    },
+    {
+      "chain": "P4",
+      "rounds": [
+        {
+          "round": 1,
+          "text_sha256": "480ad98713795092a03ba42a6beeb4aa5a2f71cf972e1e37346f2a1344caa0b8",
+          "final_nonspace_chars": 999,
+          "rendered_nonspace_chars_including_title": 999,
+          "chars_including_whitespace": 1041,
+          "complete_report_body_present": true,
+          "external_process_commentary": false
+        },
+        {
+          "round": 2,
+          "text_sha256": "ce63970b59ceb2fedbf638ed360c8fbfee04725721ee7a434c5844d0f6ecaa9f",
+          "final_nonspace_chars": 1097,
+          "rendered_nonspace_chars_including_title": 1097,
+          "chars_including_whitespace": 1139,
+          "complete_report_body_present": true,
+          "external_process_commentary": false
+        },
+        {
+          "round": 3,
+          "text_sha256": "ffb8930ee52b0ad336634767eaa9440e8bb2d7bf8b2dcb8639ba0e5628e6c0ed",
+          "final_nonspace_chars": 917,
+          "rendered_nonspace_chars_including_title": 917,
+          "chars_including_whitespace": 953,
+          "complete_report_body_present": true,
+          "external_process_commentary": false
+        },
+        {
+          "round": 4,
+          "text_sha256": "991d1801036ceb2b1b452203a70c2c63d3e9c2da007e6e88bda4441404f48ddd",
+          "final_nonspace_chars": 962,
+          "rendered_nonspace_chars_including_title": 962,
+          "chars_including_whitespace": 1000,
+          "complete_report_body_present": true,
+          "external_process_commentary": false
+        },
+        {
+          "round": 5,
+          "text_sha256": "739d45ed221f172ea21b46ad89a83bacf56a2b1a4ac0484565f52e2b9bd292e5",
+          "final_nonspace_chars": 598,
+          "rendered_nonspace_chars_including_title": 598,
+          "chars_including_whitespace": 630,
+          "complete_report_body_present": true,
+          "external_process_commentary": false
+        }
+      ]
+    }
+  ],
+  "chains": [
+    {
+      "id": "P3",
+      "summary": "5版均有完整正文且无正文外过程解释；更新、删除、插段目标执行完整。首稿新增目录处置步骤、市信息中心目录核验职责、安全核验范围，以及议而不决的错误评价前提。交流评价在R3删除，步骤/安全范围在R5压缩中消失；目录核验职责一直保留到末稿。",
+      "hard_issue_groups": [
+        {
+          "id": "P3-H01",
+          "category": "材料外已发生动作/具体流程",
+          "first_round": 1,
+          "affected_rounds": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "resolved_round": 5,
+          "severity": "hard",
+          "source_basis": "R1材料只给收到目录260项、已纳入190项、待核70项及两单位职责；R2仅更新数量，未提供收集主体、分类审核、合规初筛等已实施流程。",
+          "evidence": [
+            {
+              "rounds": [
+                1,
+                2,
+                3,
+                4
+              ],
+              "quote": "试点启动以来，市数据局会同市信息中心持续收集各业务部门提交的公共数据目录"
+            },
+            {
+              "rounds": [
+                1,
+                2,
+                3,
+                4
+              ],
+              "quote": "按照公共数据授权运营有关要求，市数据局对目录进行分类审核与合规初筛"
+            }
+          ],
+          "reason": "把统计结果扩写成具体单位已经协同实施的收集、分类审核、合规初筛。并非下一步建议，也不是从数字可直接得出的分析。R5只保留收到/纳入/待核数字，已消除这组新增步骤。"
+        },
+        {
+          "id": "P3-H02",
+          "category": "职责增设",
+          "first_round": 1,
+          "affected_rounds": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "resolved_round": null,
+          "severity": "hard",
+          "source_basis": "唯一明确职责为“市数据局负责统筹，市信息中心负责技术核验”；目录核验没有明确分配给市信息中心。",
+          "evidence": [
+            {
+              "rounds": [
+                1,
+                2,
+                3,
+                4,
+                5
+              ],
+              "quote": "市信息中心承担目录核验和技术核验工作"
+            }
+          ],
+          "reason": "增加目录核验这一具体职责。R2—R5是继承同一错误，不重复计作5个独立新增错误；R5要求保留各单位职责不使首稿伪增职责获得事实依据。市数据局统筹协调本身可视为原职责近义表达，不另判错。"
+        },
+        {
+          "id": "P3-H03",
+          "category": "材料外核验范围",
+          "first_round": 1,
+          "affected_rounds": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "resolved_round": 5,
+          "severity": "hard",
+          "source_basis": "材料只明确完成技术核验、结论待复核以及不代表正式上线批准，没有给出安全核验范围或安全可行性结论。",
+          "evidence": [
+            {
+              "rounds": [
+                1
+              ],
+              "quote": "技术核验仅反映技术与安全层面的可行性"
+            },
+            {
+              "rounds": [
+                2,
+                3,
+                4
+              ],
+              "quote": "技术核验与复核仅反映技术与安全层面的可行性"
+            }
+          ],
+          "reason": "问题限定在新增“安全层面”及其可行性承载，不把“技术核验不等于上线批准”的必要解释判错。R5删除该范围扩写，保留尚未获批状态，已消除。"
+        },
+        {
+          "id": "P3-H04",
+          "category": "分析采用材料未给的事实前提",
+          "first_round": 1,
+          "affected_rounds": [
+            1,
+            2
+          ],
+          "resolved_round": 3,
+          "severity": "hard",
+          "source_basis": "交流“仅介绍目录录入方法，未形成工作决定”；没有讨论待决议题或应作工作决定的材料。",
+          "evidence": [
+            {
+              "rounds": [
+                1,
+                2
+              ],
+              "quote": "未就运营单位遴选、收费方案、授权范围、试运行安排等关键事项形成工作决定，议而不决的问题需要在后续工作中加以改进。"
+            }
+          ],
+          "reason": "“议而不决”把方法介绍会定性为议了决策事项但没有决断，改变了评价的事实前提。可以分析方法交流对决策支撑有限，但不能据此确认存在议而不决。R3按要求连同交流问题段删除，后续未回流。"
+        }
+      ],
+      "doubts_not_counted_as_hard": [
+        {
+          "id": "P3-Q01",
+          "category": "问题诊断依据不足/评价偏强",
+          "first_round": 1,
+          "affected_rounds": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "evidence": [
+            {
+              "rounds": [
+                1,
+                2,
+                3,
+                4
+              ],
+              "quote": "分类口径与合规边界有待进一步明确，整体推进节奏受到一定影响。"
+            },
+            {
+              "rounds": [
+                5
+              ],
+              "quote": "一是目录清理偏慢，75项目录待核，影响整体节奏。"
+            }
+          ],
+          "reason": "待核数量能支持尚有处理工作，不直接证明分类口径不清；“偏慢”缺少计划时限或比较基准。用户允许分析，故将这些推断强度问题与已发生流程/职责硬错分开。“待核会约束后续推进”这类一般分析本身不单列硬错。"
+        }
+      ],
+      "round_checks": [
+        {
+          "round": 1,
+          "body_complete": true,
+          "initial_900_1100": "PASS: 显示正文949",
+          "facts_state": "原数字/待办状态覆盖；H01—H04为首稿新增",
+          "format": "结构清楚；Markdown标题和多处加粗可渲染，不是过程说明。进展/问题/考虑多处复述，观感偏机械，但不列硬错。"
+        },
+        {
+          "round": 2,
+          "target_update": "PASS",
+          "details": "2026-09-09、280/205/75更新完整；停车复核通过、另两项待复核、三个均未正式批准，均未升级或回退；其余改句属于必要联动。H01—H04持续。"
+        },
+        {
+          "round": 3,
+          "target_deletion": "PASS",
+          "non_target_preservation": "PASS except necessary 四是→三是",
+          "details": "交流事实及相关问题评价删除；H04消除，职责等非目标内容未误删。"
+        },
+        {
+          "round": 4,
+          "independent_paragraph": "PASS",
+          "section_end": "PASS",
+          "non_target_preservation": "EXACT_PASS",
+          "details": "15/5、退回材料提供单位、补充未收到完整；“另据抽查”与题意一致，未新增抽查时点或实施单位。"
+        },
+        {
+          "round": 5,
+          "within_700_including_title": "PASS: 606去空白，638含空白",
+          "latest_anchor_preservation": "PASS for latest supplied facts",
+          "details": "日期、280/205/75、三个场景名、复核/未批准、统筹/技术核验/主管部门复核、遴选未完、收费未定、15/5及补充未到、试运行未定均保留；“另两个”承接清楚。专题交流未回流。H01/H03消除，H02职责错绑持续。",
+          "final_fact_verdict": "FAIL_DUE_TO_P3_H02",
+          "format": "改为普通标题、三级自然条目，直接可用性和简洁程度较前版好；下一步2/4复核表述仍有可压缩重叠。"
+        }
+      ],
+      "allowed_analysis_or_proposals": [
+        {
+          "quote": "上线条件尚不完备",
+          "reason": "从技术结论复核、授权范围、运营单位与收费方案等尚待办理事项可直接概括，不是事实增设。"
+        },
+        {
+          "quote": "一是抓紧完成75项待核目录的审核归类，按程序作出纳入或退回处理。",
+          "reason": "位于“下一步考虑”，属于处理建议；不当成已经执行的纳入/退回流程，也不因材料未给具体计划而全部判错。"
+        },
+        {
+          "quote": "视复核情况研究是否安排试运行；试运行安排暂未决定",
+          "reason": "保留未决定状态，属于条件性考虑，不是既定试运行安排。"
+        }
+      ]
+    },
+    {
+      "id": "P4",
+      "summary": "5版均完整、正文交付稳定；更新、删除和新增段事实准确。未确认P3那类新增具体执行步骤/职责错绑；但“基础工作已基本完成”等分析语气偏满，插段在部分综述之前而非物理最后一段，分别列疑点。末稿保留主要原始事实与待办状态，700字内。",
+      "hard_issue_groups": [],
+      "doubts_not_counted_as_hard": [
+        {
+          "id": "P4-Q01",
+          "category": "阶段/完成程度判断偏强",
+          "first_round": 1,
+          "affected_rounds": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "evidence": [
+            {
+              "rounds": [
+                1,
+                2,
+                3,
+                4
+              ],
+              "quote": "试点目录归集、场景技术核验等基础工作已基本完成"
+            },
+            {
+              "rounds": [
+                1,
+                2,
+                3,
+                4
+              ],
+              "quote": "试点前期基础性工作已基本完成，正进入运营机制建设和上线条件确认的关键阶段。"
+            },
+            {
+              "rounds": [
+                5
+              ],
+              "quote": "目录归集、场景技术核验等基础工作已基本完成"
+            }
+          ],
+          "source_basis": "技术核验明确已完成；目录仍有70/75项待核，授权范围等仍待办理。材料没有定义基础工作完成标准或阶段转换。",
+          "reason": "已完成技术核验和纳入多数目录能支持已有基础、取得进展；扩展成整体基础工作基本完成与阶段划转有偏满风险。但原任务允许分析，且未规定“基本完成”的阈值，不能仅凭剩余目录数量证明该评价必然错误，因此不并入硬事实错误统计。最终仍需主代理判断是否需降语气。"
+        },
+        {
+          "id": "P4-Q02",
+          "category": "概括范围偏宽",
+          "first_round": 1,
+          "affected_rounds": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "evidence": [
+            {
+              "rounds": [
+                1,
+                2,
+                3,
+                4,
+                5
+              ],
+              "quote": "运营机制尚未建立"
+            }
+          ],
+          "source_basis": "材料只明确运营单位遴选未完成、收费方案未确定，没有完整描述运营机制是否已有其他部分。",
+          "reason": "可概括关键运营条件未就绪；“机制尚未建立”可能把部分未定扩大为整体不存在。作为概括分析列疑点，不推断稿件一定虚构了具体制度状态。"
+        },
+        {
+          "id": "P4-Q03",
+          "category": "交流对象措辞",
+          "first_round": 1,
+          "affected_rounds": [
+            1,
+            2
+          ],
+          "resolved_round": 3,
+          "evidence": [
+            {
+              "rounds": [
+                1,
+                2
+              ],
+              "quote": "已开展的专题交流仅面向平台技术人员"
+            }
+          ],
+          "source_basis": "材料给18名平台技术人员参加，未单独给活动受众范围。",
+          "reason": "参加者事实与“仅面向”的组织对象范围不完全同义；但当前材料只给这一组参与者，列措辞疑点，不拆成独立硬错。R3删除。"
+        },
+        {
+          "id": "P4-Q04",
+          "category": "插段位置的轻微指令疑点",
+          "first_round": 4,
+          "affected_rounds": [
+            4
+          ],
+          "resolved_round": 5,
+          "evidence": [
+            {
+              "rounds": [
+                4
+              ],
+              "quote": "抽查15份登记记录，其中5份缺少更新频率说明，已经退回材料提供单位补充，补充材料尚未收到。"
+            },
+            {
+              "rounds": [
+                4
+              ],
+              "quote": "上述问题涉及运营、收费、授权、上线等关键环节，均未形成最终安排，直接影响试点从技术验证转入实际运营的进程。"
+            }
+          ],
+          "source_basis": "R4要求“在存在问题部分末尾加一个独立自然段”。",
+          "reason": "新段确为独立自然段，删除它后其余全文逐字保持；但它位于原问题综述之前，非该部分物理最后一段。自然任务下也可理解为放在问题条目尾部、保留综述收束，故列位置疑点而不将整稿判硬失败。R5无该综述段，新段成为问题部分最后一段。"
+        }
+      ],
+      "round_checks": [
+        {
+          "round": 1,
+          "body_complete": true,
+          "initial_900_1100": "PASS: 999",
+          "facts_state": "三项技术核验已完成/结论待复核、未批准、各单位职责和未决事项保留；无确认的材料外具体实施步骤。",
+          "format": "标题和分级整齐，进展—问题—考虑顺序清楚。导语、总体判断和问题综述重复较多，“有序推进/基本完成/关键阶段”连用显得笼统偏满。"
+        },
+        {
+          "round": 2,
+          "target_update": "PASS",
+          "non_target_preservation": "PASS with necessary linked replacements",
+          "details": "日期/280/205/75及停车通过、其余2待复核、三个未获批一致；原专题交流及其他段未意外变动；Q01/Q02/Q03持续。"
+        },
+        {
+          "round": 3,
+          "target_deletion": "PASS",
+          "non_target_preservation": "EXACT_PASS",
+          "details": "删除交流进展、问题与后续交流建议三段，其他段逐字保持，未误删统筹职责；交流不再出现。"
+        },
+        {
+          "round": 4,
+          "independent_paragraph": "PASS",
+          "new_facts_state": "PASS",
+          "non_target_preservation": "EXACT_PASS",
+          "section_end": "DOUBT_P4_Q04",
+          "details": "15份/5份/已退回提供单位/补充尚未收到均准确；除新段无其他改动。"
+        },
+        {
+          "round": 5,
+          "within_700_including_title": "PASS: 598去空白，630含空白",
+          "latest_anchor_preservation": "PASS",
+          "details": "日期/280/205/75、3个场景完整名称、公共停车已复核/其余待复核/三个未获批、数据局统筹/信息中心技术核验/主管部门授权范围复核、运营遴选/收费未定、抽查15/5/补充未到、试运行未决定均保留。交流未回流。",
+          "final_fact_verdict": "NO_CONFIRMED_HARD_ERROR_WITH_STATED_DOUBTS",
+          "format": "结构完整且简洁，正文前后没有自检或过程说明；Q01/Q02仍在。新增跟踪补充材料建议见允许建议说明。"
+        }
+      ],
+      "allowed_analysis_or_proposals": [
+        {
+          "quote": "目录基础初步形成，为后续场景运营提供了数据支撑。",
+          "reason": "多数目录已纳入，可分析形成初步基础；“为后续”不等于已经对外上线或实现实际运营收益，不按已上线成效判错。"
+        },
+        {
+          "quote": "对试点决策支撑不足",
+          "reason": "方法交流内容限定为录入、未形成决定，可评价对运营决策支撑有限；未出现P3的“议而不决”这一改变交流性质的事实前提。"
+        },
+        {
+          "quote": "（五）视需要扩大专题交流范围，围绕运营、收费、授权等关键事项组织交流研讨，强化对试点决策的支撑。",
+          "reason": "R1/R2明确置于下一步考虑且写视需要，是建议，不是已组织或已安排的新会议。R3依要求删除。"
+        },
+        {
+          "quote": "市数据局将持续抓好统筹推进，会同相关方面加快补齐短板，推动试点规范有序开展。",
+          "reason": "在下一步考虑尾部、动作是已给统筹职责的泛化表达，未规定新会议/时点/责任单位；不只因“将”字即认定新增既定安排。语气可更克制，但不单列硬错；R5删除。"
+        },
+        {
+          "quote": "（五）跟踪补充材料收取情况，推动相关问题解决。",
+          "reason": "R5新增、非纯压缩继承，严格编辑上可省略；但直接承接已给的退回补充且尚未收到事项，位于下一步考虑，不是新事实或已定执行安排，故不记事实硬回退。"
+        }
+      ]
+    }
+  ],
+  "overall": {
+    "chains": 2,
+    "correlated_versions": 10,
+    "complete_body_versions": 10,
+    "body_only_versions": 10,
+    "confirmed_hard_issue_groups": 4,
+    "versions_with_confirmed_hard_issues": 5,
+    "final_versions_with_confirmed_hard_issues": 1,
+    "final_versions_with_doubts_but_no_confirmed_hard_issue": 1,
+    "initial_length_pass": 2,
+    "final_under700_pass": 2,
+    "update_no_old_values_or_approval_upgrade_confirmed": 2,
+    "target_deletion_and_non_target_preservation_pass": 2,
+    "independent_insertion_and_other_text_exact_preservation_pass": 2,
+    "insertion_at_literal_section_end": {
+      "P3": true,
+      "P4": false,
+      "P4_classification": "placement doubt, not a hard factual error"
+    },
+    "confirmed_old_statistics_revival": 0,
+    "confirmed_exchange_revival": 0,
+    "conclusion": "修改动作稳定不等于事实安全：两条链更新、删除、插段、压缩均能交付完整稿，P3却持续继承首稿新增职责；P4主要是偏强概括和插段位置疑点。只依据本包，不推断匿名模型/臂或通用可靠率。"
+  }
+}

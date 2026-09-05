@@ -1,0 +1,209 @@
+{
+  "schema_version": 1,
+  "review": "ANONYMOUS_SINGLE_PACKET_REVIEW",
+  "input": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\natural-writing-stability-r1\\output\\natural-writing-stability-r1\\r2\\minutes-second-packet.json",
+  "packet_sha256": "b2c2089a68641d766f9fc973c540ac0046692f0c07eff422206befa13ae29104",
+  "packet_hash_verified": true,
+  "scope": "仅读取指定minutes-second-packet.json；不读取映射、产品diff或其他结果，不推断模型/实验臂；未运行模型或修改产品。",
+  "count_method": "按同一条链内独立风险分组，重复版本不重复计组；同一归属推断导致的演示介绍人与组织者两项新增事实合为一组，并保留两句证据。5版是相关版本，不估计总体正确率。",
+  "summary": {
+    "chain": "M5",
+    "related_versions": 5,
+    "hard_problem_groups": 3,
+    "affected_versions_any_hard_problem": 5,
+    "affected_versions_fact_or_state": 2,
+    "first_fact_problem_round": 1,
+    "fact_groups_removed_at_round": 3,
+    "final_body": "未确认新的事实、状态或指令硬回退；仍有两项泛化措辞疑点。",
+    "final_delivery": "正文前仍有过程与自证说明，未满足直接发正文。",
+    "length": "首轮正文含/不含标题均满足600—800；末轮正文及完整回复均≤500。"
+  },
+  "hard_problem_groups": [
+    {
+      "id": "M5-F1",
+      "kind": "fact_attribution",
+      "first_round": 1,
+      "affected_rounds": [
+        1,
+        2
+      ],
+      "removed_at_round": 3,
+      "end_state": "REMOVED_WITH_REQUESTED_ITEM",
+      "evidence": [
+        {
+          "round": 1,
+          "quote": "以及信息部关于预约系统操作演示情况的介绍"
+        },
+        {
+          "round": 1,
+          "quote": "8月26日，信息部组织开展了预约系统操作演示"
+        }
+      ],
+      "why": "材料只说会上介绍了演示、9名馆员参加，没有确定介绍部门或组织部门；将两项归给信息部不是对已给主体的自然承接。R3同时删除综述中的介绍归属和演示整段。"
+    },
+    {
+      "id": "M5-S1",
+      "kind": "unsupported_stage",
+      "first_round": 1,
+      "affected_rounds": [
+        1,
+        2
+      ],
+      "removed_at_round": 3,
+      "end_state": "REMOVED_WITH_REQUESTED_ITEM",
+      "evidence": [
+        {
+          "round": 1,
+          "quote": "预约系统尚处于操作演示阶段"
+        }
+      ],
+      "why": "一次操作演示、未形成验收结论，不足以确定系统当前整体阶段仍是操作演示；这是新增阶段判断。R3随演示整项删除，R4/R5未恢复。"
+    },
+    {
+      "id": "M5-D1",
+      "kind": "delivery",
+      "first_round": 1,
+      "affected_rounds": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "end_state": "PERSISTS_AT_R5",
+      "evidence": [
+        {
+          "round": 1,
+          "quote": "已按技能要求整理完毕"
+        },
+        {
+          "round": 5,
+          "quote": "事项、责任部门、期限及未决状态均保留，演示内容未恢复。正文如下："
+        }
+      ],
+      "why": "每版均先给操作、计数或自证说明，最后一轮明确直接发纪要正文后仍保留；正文自身完整，问题不是没有交付正文。"
+    }
+  ],
+  "round_checks": [
+    {
+      "round": 1,
+      "result": "主体、会议日期、三部门原职责、24/18/6、两个期限及建议未决状态均在；主持人、参会名单没有填造。新增演示归属和系统阶段两组风险。正文618/602字；完整回复692字。"
+    },
+    {
+      "round": 2,
+      "result": "正文只修改两处相关段落，24→23、剩余6→5、9月12→13全部同步；已答复18、综合部9月15及其余事项保留，未确认越界改动。两组既有事实风险继续存在。"
+    },
+    {
+      "round": 3,
+      "result": "正文差异仅删除开头对应演示介绍及演示整段；未误删业务部意见、信息部试点建议、综合部建议或已定责任期限。两组事实风险因此消除，不表示主动识别纠正。正文因指定删除降为502字，不为维持旧下限要求补造内容。"
+    },
+    {
+      "round": 4,
+      "result": "相对R3正文仅新增一个独立自然段；信息部、9月16日前、技术条件说明和提交不表示批准均写全，其余段落逐字保留。新增段末泛化办理措辞单列疑点。"
+    },
+    {
+      "round": 5,
+      "result": "压缩保留最新23/18/5、三部门及9月13/15/16日、二楼阅览区、周五延后半小时建议、成本前置和不作新增预算承诺；两项是否实施仍未决定，提交说明不等于批准。演示未回流。正文含标题431、除标题415；完整回复493，均≤500。"
+    }
+  ],
+  "doubts_not_hard_groups": [
+    {
+      "rounds": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "evidence": [
+        {
+          "round": 1,
+          "quote": "待成本测算完成后另行研究"
+        },
+        {
+          "round": 5,
+          "quote": "待测算完成后另行研究"
+        }
+      ],
+      "assessment": "题面已有开放时间调整前先核算成本且本次未决定，此句可理解为自然延续，但也可能被读成已经安排后续研究。未新增具体会议、主体、期限或确定程序，本次不列确定硬错，不与无依据系统阶段同判。"
+    },
+    {
+      "rounds": [
+        4,
+        5
+      ],
+      "evidence": [
+        {
+          "round": 4,
+          "quote": "是否开展试点仍按会议研究事项办理"
+        },
+        {
+          "round": 5,
+          "quote": "是否试点仍按会议研究事项办理"
+        }
+      ],
+      "assessment": "可能只是回指第二节的未决状态，也可能被误读为存在已确定办理程序；表述空泛，但紧邻提交不等于批准且未添具体流程，本次不判状态已升级。"
+    }
+  ],
+  "accepted_natural_wording": [
+    {
+      "quote": "为回应读者诉求、改进服务质量",
+      "reason": "与服务改进专题会及读者意见直接相连的一般目的，不是新增具体活动结果。"
+    },
+    {
+      "quote": "相关核实工作正在开展",
+      "reason": "材料已给具体待核实意见、业务部及其核实职责；同一事项的进行态按本次审查边界接受，不机械判新增动作。"
+    },
+    {
+      "quote": "各责任部门须按确定时限抓好落实",
+      "reason": "只复述两项已经明确的职责和期限，没有扩大到落实未决试点或开放时间建议。"
+    },
+    {
+      "quote": "2026年8月",
+      "reason": "9月4日会议及同一材料语境明确对应年份，未另造日期来源。"
+    }
+  ],
+  "length_method": "按去空白字符计数，保留标点和数字；正文从固定纪要标题起至末尾，开头说明独立计入完整回复。首轮和末轮分别给含标题、除标题与完整回复；不以附注补正文下限，也不误称正文因附注超限。",
+  "measurements": [
+    {
+      "round": 1,
+      "sha256": "dc71a81d5fce59d799c9c42814ed93ae64e6c8c7fe76bf4adea9745c47094868",
+      "hash_verified": true,
+      "body_including_title": 618,
+      "body_excluding_title": 602,
+      "complete_reply": 692
+    },
+    {
+      "round": 2,
+      "sha256": "70ef0494f920de5130ca1d1083ccf71e84fc6259ed887c7ee9bd7a9bc5a764bf",
+      "hash_verified": true,
+      "body_including_title": 618,
+      "body_excluding_title": 602,
+      "complete_reply": 699
+    },
+    {
+      "round": 3,
+      "sha256": "a9d886c7ef4b4f814263958f3924fc7385125d7f3c281674034a43016778522b",
+      "hash_verified": true,
+      "body_including_title": 502,
+      "body_excluding_title": 486,
+      "complete_reply": 600
+    },
+    {
+      "round": 4,
+      "sha256": "a0d919ecfbdb46c84a5cdf6999cf62a31bd65dad71cb502e1b4557e9adb7c8d8",
+      "hash_verified": true,
+      "body_including_title": 583,
+      "body_excluding_title": 567,
+      "complete_reply": 663
+    },
+    {
+      "round": 5,
+      "sha256": "56e1472236d5d863135fe519b8c94cca3d633643d9a06ce2b340b505ec788e88",
+      "hash_verified": true,
+      "body_including_title": 431,
+      "body_excluding_title": 415,
+      "complete_reply": 493
+    }
+  ]
+}

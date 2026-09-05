@@ -1,0 +1,172 @@
+{
+  "provider_id": "minimax",
+  "arm": "baseline",
+  "scenario": "meeting-minutes",
+  "thread_id": "01a07157-d042-7a21-b393-e1bc1e289dcf",
+  "records": [
+    {
+      "provider_id": "minimax",
+      "arm": "baseline",
+      "round": 1,
+      "source_session_id": null,
+      "thread_id": "01a07157-d042-7a21-b393-e1bc1e289dcf",
+      "resumed": false,
+      "return_code": 0,
+      "seconds": 122.922,
+      "technical_failures": [],
+      "hard_failures_observation_only": [],
+      "final_chars_nonspace": 766,
+      "usage": {
+        "input_tokens": 177080,
+        "cached_input_tokens": 146176,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 8227,
+        "reasoning_output_tokens": 6270
+      },
+      "skill_files_read": [
+        "SKILL.md"
+      ],
+      "loaded_bytes": 27402,
+      "read_events": [
+        {
+          "trace_line": 9,
+          "files": [
+            "SKILL.md"
+          ]
+        }
+      ],
+      "user_skill_paths_in_trace": [],
+      "hook_contamination_markers": [],
+      "final_sha256": "cc60cdfcf9a014133ea38eff95c45c9284e7c66eb55a9c64c9f6e4725eb22f83",
+      "trace_sha256": "06680c9fe5629e6a3f3a8d59d466ec6a9f2d3ef6030225123956ffeb02d86dd3",
+      "final_file": "raw\\minimax\\baseline\\round-01.final.txt",
+      "trace_file": "raw\\minimax\\baseline\\round-01.trace.jsonl",
+      "stderr_file": "raw\\minimax\\baseline\\round-01.stderr.txt",
+      "activation_observations": []
+    },
+    {
+      "provider_id": "minimax",
+      "arm": "baseline",
+      "round": 2,
+      "source_session_id": "01a07157-d042-7a21-b393-e1bc1e289dcf",
+      "thread_id": "01a07157-d042-7a21-b393-e1bc1e289dcf",
+      "resumed": true,
+      "return_code": 0,
+      "seconds": 18.515,
+      "technical_failures": [],
+      "hard_failures_observation_only": [],
+      "final_chars_nonspace": 709,
+      "usage": {
+        "input_tokens": 257720,
+        "cached_input_tokens": 225024,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 9368,
+        "reasoning_output_tokens": 6501
+      },
+      "skill_files_read": [],
+      "loaded_bytes": 0,
+      "read_events": [],
+      "user_skill_paths_in_trace": [],
+      "hook_contamination_markers": [],
+      "final_sha256": "50c3ab6014b79010a28f0fd00f60effc4a6ac6d3c24d1ae9c07107fafdba533b",
+      "trace_sha256": "67b3ae7897837ece5c338792973d7c876595dc3ec3ce8f0a65c68ab865d5e052",
+      "final_file": "raw\\minimax\\baseline\\round-02.final.txt",
+      "trace_file": "raw\\minimax\\baseline\\round-02.trace.jsonl",
+      "stderr_file": "raw\\minimax\\baseline\\round-02.stderr.txt",
+      "activation_observations": []
+    },
+    {
+      "provider_id": "minimax",
+      "arm": "baseline",
+      "round": 3,
+      "source_session_id": "01a07157-d042-7a21-b393-e1bc1e289dcf",
+      "thread_id": "01a07157-d042-7a21-b393-e1bc1e289dcf",
+      "resumed": true,
+      "return_code": 0,
+      "seconds": 63.875,
+      "technical_failures": [],
+      "hard_failures_observation_only": [],
+      "final_chars_nonspace": 678,
+      "usage": {
+        "input_tokens": 517455,
+        "cached_input_tokens": 479744,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 13374,
+        "reasoning_output_tokens": 7963
+      },
+      "skill_files_read": [],
+      "loaded_bytes": 0,
+      "read_events": [],
+      "user_skill_paths_in_trace": [],
+      "hook_contamination_markers": [],
+      "final_sha256": "cb8ce9cafec740d59f028d380f70fa0c6df8601cf971b4c7908ec8e67e8bf16a",
+      "trace_sha256": "c6a11fc0aa18bf34aa3ec181b6b5ac4ba97ad0ad967d20d8d0035fd8e09cefe1",
+      "final_file": "raw\\minimax\\baseline\\round-03.final.txt",
+      "trace_file": "raw\\minimax\\baseline\\round-03.trace.jsonl",
+      "stderr_file": "raw\\minimax\\baseline\\round-03.stderr.txt",
+      "activation_observations": []
+    },
+    {
+      "provider_id": "minimax",
+      "arm": "baseline",
+      "round": 4,
+      "source_session_id": "01a07157-d042-7a21-b393-e1bc1e289dcf",
+      "thread_id": "01a07157-d042-7a21-b393-e1bc1e289dcf",
+      "resumed": true,
+      "return_code": 0,
+      "seconds": 25.75,
+      "technical_failures": [],
+      "hard_failures_observation_only": [],
+      "final_chars_nonspace": 787,
+      "usage": {
+        "input_tokens": 609522,
+        "cached_input_tokens": 569856,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 15002,
+        "reasoning_output_tokens": 8622
+      },
+      "skill_files_read": [],
+      "loaded_bytes": 0,
+      "read_events": [],
+      "user_skill_paths_in_trace": [],
+      "hook_contamination_markers": [],
+      "final_sha256": "123b743e0a3a8bc645c9269cbfb311bdf862fd3e20a05e26e8e7ba79a4a08865",
+      "trace_sha256": "4229464a72fd333d9719b107ffed12c7b657c81e8b402d0b78ce21ab032f5795",
+      "final_file": "raw\\minimax\\baseline\\round-04.final.txt",
+      "trace_file": "raw\\minimax\\baseline\\round-04.trace.jsonl",
+      "stderr_file": "raw\\minimax\\baseline\\round-04.stderr.txt",
+      "activation_observations": []
+    },
+    {
+      "provider_id": "minimax",
+      "arm": "baseline",
+      "round": 5,
+      "source_session_id": "01a07157-d042-7a21-b393-e1bc1e289dcf",
+      "thread_id": "01a07157-d042-7a21-b393-e1bc1e289dcf",
+      "resumed": true,
+      "return_code": 0,
+      "seconds": 32.89,
+      "technical_failures": [],
+      "hard_failures_observation_only": [],
+      "final_chars_nonspace": 515,
+      "usage": {
+        "input_tokens": 753566,
+        "cached_input_tokens": 711680,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 16901,
+        "reasoning_output_tokens": 9453
+      },
+      "skill_files_read": [],
+      "loaded_bytes": 0,
+      "read_events": [],
+      "user_skill_paths_in_trace": [],
+      "hook_contamination_markers": [],
+      "final_sha256": "b1adf7a0d375cb8ffefbe3590c67126f59585af5b7f02c0729a629e6e70441d9",
+      "trace_sha256": "08895e9a1d2ef147477e04f9a5c248c8751862e7bd8a0bf3ece48a583266c0ed",
+      "final_file": "raw\\minimax\\baseline\\round-05.final.txt",
+      "trace_file": "raw\\minimax\\baseline\\round-05.trace.jsonl",
+      "stderr_file": "raw\\minimax\\baseline\\round-05.stderr.txt",
+      "activation_observations": []
+    }
+  ]
+}

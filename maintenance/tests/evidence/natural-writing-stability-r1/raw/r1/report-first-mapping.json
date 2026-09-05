@@ -1,0 +1,10 @@
+{
+  "P1": {
+    "provider": "alibaba2",
+    "arm": "baseline"
+  },
+  "P2": {
+    "provider": "minimax",
+    "arm": "baseline"
+  }
+}

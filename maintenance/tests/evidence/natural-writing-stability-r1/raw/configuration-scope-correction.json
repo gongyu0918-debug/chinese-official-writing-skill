@@ -1,0 +1,14 @@
+{
+  "scope": "Post-execution correction of broad configuration labels; original fixture and driver preserved",
+  "actual_argv": "Two same-named global personal Skill installations explicitly disabled; plugins/apps/memories false",
+  "trace_observation": "No observed other Skill reads in 60 completed turns",
+  "not_proven": "All personal Skills disabled or absence of global coding AGENTS preferences",
+  "applies_to": [
+    "r1/fixture-baseline.json",
+    "r1/fixture-candidate.json",
+    "r2/fixture-candidate.json",
+    "original preregister and run.py metadata hook_mode labels"
+  ],
+  "samples_changed": false,
+  "decision_changed": false
+}

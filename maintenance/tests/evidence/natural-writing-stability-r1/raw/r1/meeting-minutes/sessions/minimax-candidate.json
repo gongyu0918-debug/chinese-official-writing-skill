@@ -1,0 +1,211 @@
+{
+  "provider_id": "minimax",
+  "arm": "candidate",
+  "scenario": "meeting-minutes",
+  "thread_id": "01a0715b-4696-75b2-94cb-760e14000ce9",
+  "records": [
+    {
+      "provider_id": "minimax",
+      "arm": "candidate",
+      "round": 1,
+      "source_session_id": null,
+      "thread_id": "01a0715b-4696-75b2-94cb-760e14000ce9",
+      "resumed": false,
+      "return_code": 0,
+      "seconds": 82.906,
+      "technical_failures": [],
+      "hard_failures_observation_only": [],
+      "final_chars_nonspace": 767,
+      "usage": {
+        "input_tokens": 195082,
+        "cached_input_tokens": 172368,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 9505,
+        "reasoning_output_tokens": 7707
+      },
+      "skill_files_read": [
+        "SKILL.md",
+        "references/genre-playbook-minutes.md",
+        "references/information-selection.md",
+        "references/short-draft-naturalness.md"
+      ],
+      "loaded_bytes": 34790,
+      "read_events": [
+        {
+          "trace_line": 5,
+          "files": [
+            "SKILL.md"
+          ]
+        },
+        {
+          "trace_line": 7,
+          "files": [
+            "SKILL.md"
+          ]
+        },
+        {
+          "trace_line": 9,
+          "files": [
+            "SKILL.md"
+          ]
+        },
+        {
+          "trace_line": 13,
+          "files": [
+            "SKILL.md"
+          ]
+        },
+        {
+          "trace_line": 15,
+          "files": [
+            "references/genre-playbook-minutes.md"
+          ]
+        },
+        {
+          "trace_line": 17,
+          "files": [
+            "references/information-selection.md"
+          ]
+        },
+        {
+          "trace_line": 19,
+          "files": [
+            "references/short-draft-naturalness.md"
+          ]
+        }
+      ],
+      "user_skill_paths_in_trace": [],
+      "hook_contamination_markers": [],
+      "final_sha256": "429e48bff635df33b6a67e8200394d9b0f3f6b1d15b5bd044e67ff3e1bbff972",
+      "trace_sha256": "5c3561ca6be08bd284ff1021f79e551b5da17748dd82b5f12ec791b51ec06e6d",
+      "final_file": "raw\\minimax\\candidate\\round-01.final.txt",
+      "trace_file": "raw\\minimax\\candidate\\round-01.trace.jsonl",
+      "stderr_file": "raw\\minimax\\candidate\\round-01.stderr.txt",
+      "activation_observations": []
+    },
+    {
+      "provider_id": "minimax",
+      "arm": "candidate",
+      "round": 2,
+      "source_session_id": "01a0715b-4696-75b2-94cb-760e14000ce9",
+      "thread_id": "01a0715b-4696-75b2-94cb-760e14000ce9",
+      "resumed": true,
+      "return_code": 0,
+      "seconds": 11.5,
+      "technical_failures": [],
+      "hard_failures_observation_only": [],
+      "final_chars_nonspace": 591,
+      "usage": {
+        "input_tokens": 225738,
+        "cached_input_tokens": 195210,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 10654,
+        "reasoning_output_tokens": 8487
+      },
+      "skill_files_read": [],
+      "loaded_bytes": 0,
+      "read_events": [],
+      "user_skill_paths_in_trace": [],
+      "hook_contamination_markers": [],
+      "final_sha256": "69b181c885d32fea2a01499744098be7cecdc7aaedc345ac7fea0d9512cc140f",
+      "trace_sha256": "12f2fbc48990ffa2cee6418026b473447fcaa36952e5637651129576baa3b164",
+      "final_file": "raw\\minimax\\candidate\\round-02.final.txt",
+      "trace_file": "raw\\minimax\\candidate\\round-02.trace.jsonl",
+      "stderr_file": "raw\\minimax\\candidate\\round-02.stderr.txt",
+      "activation_observations": []
+    },
+    {
+      "provider_id": "minimax",
+      "arm": "candidate",
+      "round": 3,
+      "source_session_id": "01a0715b-4696-75b2-94cb-760e14000ce9",
+      "thread_id": "01a0715b-4696-75b2-94cb-760e14000ce9",
+      "resumed": true,
+      "return_code": 0,
+      "seconds": 7.813,
+      "technical_failures": [],
+      "hard_failures_observation_only": [],
+      "final_chars_nonspace": 530,
+      "usage": {
+        "input_tokens": 257589,
+        "cached_input_tokens": 225866,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 11362,
+        "reasoning_output_tokens": 8871
+      },
+      "skill_files_read": [],
+      "loaded_bytes": 0,
+      "read_events": [],
+      "user_skill_paths_in_trace": [],
+      "hook_contamination_markers": [],
+      "final_sha256": "725fd01cd3153330f46dac0b98aa602ad812a3e6913ae60ffbbede1a6be09e48",
+      "trace_sha256": "2ffb54c2bd508df8fa1239fec25fa457e955e06cfd7c5c304c642b95e2aa1bfd",
+      "final_file": "raw\\minimax\\candidate\\round-03.final.txt",
+      "trace_file": "raw\\minimax\\candidate\\round-03.trace.jsonl",
+      "stderr_file": "raw\\minimax\\candidate\\round-03.stderr.txt",
+      "activation_observations": []
+    },
+    {
+      "provider_id": "minimax",
+      "arm": "candidate",
+      "round": 4,
+      "source_session_id": "01a0715b-4696-75b2-94cb-760e14000ce9",
+      "thread_id": "01a0715b-4696-75b2-94cb-760e14000ce9",
+      "resumed": true,
+      "return_code": 0,
+      "seconds": 13.828,
+      "technical_failures": [],
+      "hard_failures_observation_only": [],
+      "final_chars_nonspace": 607,
+      "usage": {
+        "input_tokens": 290197,
+        "cached_input_tokens": 257717,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 12976,
+        "reasoning_output_tokens": 10114
+      },
+      "skill_files_read": [],
+      "loaded_bytes": 0,
+      "read_events": [],
+      "user_skill_paths_in_trace": [],
+      "hook_contamination_markers": [],
+      "final_sha256": "f59935c2fd36cb97e8b8cf3ddfef54cb7fd2d0f326cec4a5db4f4fe608799c3a",
+      "trace_sha256": "1f5712bdea708f7b5c6ee2f97e671a86a02861e2e5ef40260ec92b41e74488a7",
+      "final_file": "raw\\minimax\\candidate\\round-04.final.txt",
+      "trace_file": "raw\\minimax\\candidate\\round-04.trace.jsonl",
+      "stderr_file": "raw\\minimax\\candidate\\round-04.stderr.txt",
+      "activation_observations": []
+    },
+    {
+      "provider_id": "minimax",
+      "arm": "candidate",
+      "round": 5,
+      "source_session_id": "01a0715b-4696-75b2-94cb-760e14000ce9",
+      "thread_id": "01a0715b-4696-75b2-94cb-760e14000ce9",
+      "resumed": true,
+      "return_code": 0,
+      "seconds": 16.578,
+      "technical_failures": [],
+      "hard_failures_observation_only": [],
+      "final_chars_nonspace": 460,
+      "usage": {
+        "input_tokens": 324462,
+        "cached_input_tokens": 290325,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 14855,
+        "reasoning_output_tokens": 11699
+      },
+      "skill_files_read": [],
+      "loaded_bytes": 0,
+      "read_events": [],
+      "user_skill_paths_in_trace": [],
+      "hook_contamination_markers": [],
+      "final_sha256": "66eb1ca8fa9e411811a3c048a7ab2b97602a4ecc5a4555ef163c40e72d5997af",
+      "trace_sha256": "b187458d6ef622e6996cf8116c7f799efc090e279435418873b3c27d2e970a4a",
+      "final_file": "raw\\minimax\\candidate\\round-05.final.txt",
+      "trace_file": "raw\\minimax\\candidate\\round-05.trace.jsonl",
+      "stderr_file": "raw\\minimax\\candidate\\round-05.stderr.txt",
+      "activation_observations": []
+    }
+  ]
+}

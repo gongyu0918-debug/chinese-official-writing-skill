@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "scope": "仅复核P2专题交流的系统操作要点是否应新增确认硬问题H08；不重新审查其他判断。",
+  "packet_sha256": "e360c8d947ac134824e470148ae67010d77b6cba94d1af944f2e0de6cdfe9c07",
+  "original_review_file": "report-first-review.json",
+  "original_review_sha256": "262145f266a17bed242632c973328f076aee9278d2d3d03b6d3ab21bedfcc420",
+  "original_review_modified": false,
+  "candidate_issue_id": "P2-H08",
+  "add_as_confirmed_hard_issue": false,
+  "classification": "已发生内容的范围疑点，维持单列观察",
+  "material": {
+    "round": 1,
+    "quote": "8月20日举办过1次专题交流，18名平台技术人员参加，仅介绍目录录入方法，未形成工作决定。"
+  },
+  "trajectory": [
+    {
+      "round": 1,
+      "status": "首次出现范围扩写疑点",
+      "quote": "会议主要介绍目录录入方法和系统操作要点"
+    },
+    {
+      "round": 2,
+      "status": "原句延续",
+      "quote": "会议主要介绍目录录入方法和系统操作要点"
+    },
+    {
+      "round": 3,
+      "status": "该句及系统操作要点消除",
+      "evidence": "报告正文删除整件专题交流；系统操作要点在整份回复中也不再出现。"
+    }
+  ],
+  "reason": [
+    "该句明确在陈述已经发生的交流内容，不是建议；原审查并未因允许分析或合理建议而豁免它。",
+    "仅被改成主要，并并列加入未由材料明示的系统操作要点，确实削弱了活动范围边界，值得保留疑点。",
+    "但系统操作要点也可能指目录录入操作的方法细化；句中没有明确列出目录录入之外的模块、操作或独立主题。并列连接本身不足以排除内容重叠，因此本包不足以确认发生了材料外的另一项活动内容。",
+    "若把它算成H08，需要额外确定系统操作要点指向目录录入之外的内容；现有材料没有提供这一范围。维持原来的保守分层，不把无法确认的外延直接计为确定事实错误。"
+  ],
+  "count_effect": {
+    "confirmed_hard_issue_groups": 7,
+    "versions_with_confirmed_hard_issues": 5,
+    "P2_final_round_confirmed_groups": 2,
+    "note": "不增计H08；R1/R2本已在相关问题版本中，疑点另列。"
+  },
+  "model_calls": 0,
+  "product_files_modified": false
+}

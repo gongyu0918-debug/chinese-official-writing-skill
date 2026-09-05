@@ -1,0 +1,15 @@
+{
+  "scope": "Read trace and one exact CLI rollout; no profile or credentials copied",
+  "session_id": "01a0715c-9406-7ef2-85d1-bff2caae8a54",
+  "observation": "Model attempted reading a path without the dot in .agents, followed by failed alternative path. Actual expected Skill was present; no successful Skill read before writing. Retained as real execution/routing failure, not invalidated.",
+  "expected_relative_path": ".agents/skills/chinese-official-writing/SKILL.md",
+  "first_attempt_relative_path": "agents/skills/chinese-official-writing/SKILL.md",
+  "skill_present": true,
+  "runtime_git_root_is_runtime": true,
+  "cli_version": "0.153.1",
+  "model": "alibaba-token-plan-2/deepseek-v4-flash-0731",
+  "user_global_agents_instruction_present": true,
+  "global_instruction_evidence": "Initial user AGENTS instruction message includes generic coding commit/validation/reporting preferences; current natural task requests complete body. No absence of global preferences is claimed.",
+  "base_and_candidate_host_settings_same": true,
+  "provenance_note": "The initial coding preferences are from the configured host instruction environment; this observation does not prove the report leaf caused or prevented the output commentary."
+}

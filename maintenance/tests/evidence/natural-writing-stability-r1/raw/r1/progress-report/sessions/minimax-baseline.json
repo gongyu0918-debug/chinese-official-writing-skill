@@ -1,0 +1,200 @@
+{
+  "provider_id": "minimax",
+  "arm": "baseline",
+  "scenario": "progress-report",
+  "thread_id": "01a07151-cfd7-7ce3-9614-52e1adab70cc",
+  "records": [
+    {
+      "provider_id": "minimax",
+      "arm": "baseline",
+      "round": 1,
+      "source_session_id": null,
+      "thread_id": "01a07151-cfd7-7ce3-9614-52e1adab70cc",
+      "resumed": false,
+      "return_code": 0,
+      "seconds": 160.766,
+      "technical_failures": [],
+      "hard_failures_observation_only": [],
+      "final_chars_nonspace": 1143,
+      "usage": {
+        "input_tokens": 137157,
+        "cached_input_tokens": 114176,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 11270,
+        "reasoning_output_tokens": 10070
+      },
+      "skill_files_read": [
+        "SKILL.md",
+        "references/anti-ai-patterns.md",
+        "references/genre-checklist-report.md",
+        "references/information-selection.md",
+        "references/task-route-cards.md"
+      ],
+      "loaded_bytes": 52240,
+      "read_events": [
+        {
+          "trace_line": 5,
+          "files": [
+            "SKILL.md"
+          ]
+        },
+        {
+          "trace_line": 8,
+          "files": [
+            "references/task-route-cards.md"
+          ]
+        },
+        {
+          "trace_line": 10,
+          "files": [
+            "references/information-selection.md"
+          ]
+        },
+        {
+          "trace_line": 12,
+          "files": [
+            "references/genre-checklist-report.md"
+          ]
+        },
+        {
+          "trace_line": 14,
+          "files": [
+            "references/anti-ai-patterns.md"
+          ]
+        }
+      ],
+      "user_skill_paths_in_trace": [],
+      "hook_contamination_markers": [],
+      "final_sha256": "189eeb3b19cef1fdb9dbed3c99a44c65ee9b2ba08702b02e15ccb693546eb4e0",
+      "trace_sha256": "962dbed9beb844c4c34b10006aa575a1d53bb3103786e50a0c6fffcf4ec35382",
+      "final_file": "raw\\minimax\\baseline\\round-01.final.txt",
+      "trace_file": "raw\\minimax\\baseline\\round-01.trace.jsonl",
+      "stderr_file": "raw\\minimax\\baseline\\round-01.stderr.txt",
+      "activation_observations": []
+    },
+    {
+      "provider_id": "minimax",
+      "arm": "baseline",
+      "round": 2,
+      "source_session_id": "01a07151-cfd7-7ce3-9614-52e1adab70cc",
+      "thread_id": "01a07151-cfd7-7ce3-9614-52e1adab70cc",
+      "resumed": true,
+      "return_code": 0,
+      "seconds": 55.344,
+      "technical_failures": [],
+      "hard_failures_observation_only": [],
+      "final_chars_nonspace": 1262,
+      "usage": {
+        "input_tokens": 173312,
+        "cached_input_tokens": 140288,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 15108,
+        "reasoning_output_tokens": 13184
+      },
+      "skill_files_read": [],
+      "loaded_bytes": 0,
+      "read_events": [],
+      "user_skill_paths_in_trace": [],
+      "hook_contamination_markers": [],
+      "final_sha256": "0c175a4a12d7fd0449778638b9bd70fb076291e6867d2043edfcbe930dc34420",
+      "trace_sha256": "b9a2fbf4c8e137a582f8825e10e0457a7386f4753a80b9e39ee901dad6bd7cdc",
+      "final_file": "raw\\minimax\\baseline\\round-02.final.txt",
+      "trace_file": "raw\\minimax\\baseline\\round-02.trace.jsonl",
+      "stderr_file": "raw\\minimax\\baseline\\round-02.stderr.txt",
+      "activation_observations": []
+    },
+    {
+      "provider_id": "minimax",
+      "arm": "baseline",
+      "round": 3,
+      "source_session_id": "01a07151-cfd7-7ce3-9614-52e1adab70cc",
+      "thread_id": "01a07151-cfd7-7ce3-9614-52e1adab70cc",
+      "resumed": true,
+      "return_code": 0,
+      "seconds": 39.421,
+      "technical_failures": [],
+      "hard_failures_observation_only": [],
+      "final_chars_nonspace": 1043,
+      "usage": {
+        "input_tokens": 213338,
+        "cached_input_tokens": 176384,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 17515,
+        "reasoning_output_tokens": 14999
+      },
+      "skill_files_read": [],
+      "loaded_bytes": 0,
+      "read_events": [],
+      "user_skill_paths_in_trace": [],
+      "hook_contamination_markers": [],
+      "final_sha256": "e8927b952adc9ac27fa0ce9f63b3851a29e5574449ed5a90a65cf8640b7fb45d",
+      "trace_sha256": "64998aba9d6ce093d06c57e96693f34f058616ed9a217be5e53a80b1e03ce704",
+      "final_file": "raw\\minimax\\baseline\\round-03.final.txt",
+      "trace_file": "raw\\minimax\\baseline\\round-03.trace.jsonl",
+      "stderr_file": "raw\\minimax\\baseline\\round-03.stderr.txt",
+      "activation_observations": []
+    },
+    {
+      "provider_id": "minimax",
+      "arm": "baseline",
+      "round": 4,
+      "source_session_id": "01a07151-cfd7-7ce3-9614-52e1adab70cc",
+      "thread_id": "01a07151-cfd7-7ce3-9614-52e1adab70cc",
+      "resumed": true,
+      "return_code": 0,
+      "seconds": 22.891,
+      "technical_failures": [],
+      "hard_failures_observation_only": [],
+      "final_chars_nonspace": 1084,
+      "usage": {
+        "input_tokens": 255822,
+        "cached_input_tokens": 216320,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 19372,
+        "reasoning_output_tokens": 16243
+      },
+      "skill_files_read": [],
+      "loaded_bytes": 0,
+      "read_events": [],
+      "user_skill_paths_in_trace": [],
+      "hook_contamination_markers": [],
+      "final_sha256": "e8280b757bc2a4995d8f98a298b6e400864d3d34d4b196d14581a84a19ff8792",
+      "trace_sha256": "d33d8a7cfa8ab1822db55cbfff728c47f31d70f4b57312536594ee78eda7a189",
+      "final_file": "raw\\minimax\\baseline\\round-04.final.txt",
+      "trace_file": "raw\\minimax\\baseline\\round-04.trace.jsonl",
+      "stderr_file": "raw\\minimax\\baseline\\round-04.stderr.txt",
+      "activation_observations": []
+    },
+    {
+      "provider_id": "minimax",
+      "arm": "baseline",
+      "round": 5,
+      "source_session_id": "01a07151-cfd7-7ce3-9614-52e1adab70cc",
+      "thread_id": "01a07151-cfd7-7ce3-9614-52e1adab70cc",
+      "resumed": true,
+      "return_code": 0,
+      "seconds": 114.687,
+      "technical_failures": [],
+      "hard_failures_observation_only": [],
+      "final_chars_nonspace": 661,
+      "usage": {
+        "input_tokens": 300212,
+        "cached_input_tokens": 258560,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 30277,
+        "reasoning_output_tokens": 26770
+      },
+      "skill_files_read": [],
+      "loaded_bytes": 0,
+      "read_events": [],
+      "user_skill_paths_in_trace": [],
+      "hook_contamination_markers": [],
+      "final_sha256": "31c77ce84f100cb6665227dd2f3aea5d7dc11a878827e38154c9c783f4e43270",
+      "trace_sha256": "db3deca26556952fb4f050148e3e5dd65d80e2499b91ceaaafe74d9e8b9b4b97",
+      "final_file": "raw\\minimax\\baseline\\round-05.final.txt",
+      "trace_file": "raw\\minimax\\baseline\\round-05.trace.jsonl",
+      "stderr_file": "raw\\minimax\\baseline\\round-05.stderr.txt",
+      "activation_observations": []
+    }
+  ]
+}

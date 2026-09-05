@@ -1,0 +1,14 @@
+usage: run.py [-h] --output OUTPUT --arm {baseline,candidate}
+              (--prepare | --provider {alibaba2,minimax}) [--config CONFIG]
+              [--commit COMMIT]
+
+Thin natural-prompt wrapper over the repository's real persistent CLI runner.
+
+options:
+  -h, --help            show this help message and exit
+  --output OUTPUT
+  --arm {baseline,candidate}
+  --prepare
+  --provider {alibaba2,minimax}
+  --config CONFIG
+  --commit COMMIT

@@ -81,6 +81,8 @@
 
 ## REJECTED
 
+- `NATURAL-WRITING-STABILITY-R1`：两个正常自然语言题面、两家低价模型、12条实际resume五版链共60次真实写稿/修改，全部技术完成。报告页51-byte删句缺少实际读页下的可归因收益；信息选择页111-byte改写在已读页纪要中新增演示主体与系统阶段，两处均撤回，产品净差异0。状态 `REJECTED / PRODUCT_RESTORED`；`WR-020c`质量需求继续IN_PROGRESS。保留未读Skill、过程说明和判读疑点，不补样、不声称稳定率提升。[结果与原稿](../tests/evidence/natural-writing-stability-r1/result.md)
+
 - `MT-004c-REFERENCE-ROUTE-R1`：五路20稿中19份隔离有效，9个有效对5个少读、4个多读；候选独有标题事实改变、漏日期和系统对象新增，状态 `REJECTED / PRODUCT_RESTORED`。入口原型22772262保留追溯，失败路由未镜像或发布。命令stdin/源码提示R4—R6各四份真实稿，最后两路可见文档响应−10,536/+67,774 bytes，`COMMAND_ROUTE_REJECTED_NO_CONSISTENT_LOAD_GAIN`；三项提示均撤回，路径可执行性另记MT-002a。[入口结果](../tests/evidence/reference-route-audit-r1/candidate-r1-result.md) [命令读取结果](../tests/evidence/lint-command-route-r1/result.md)
 
 - `FINAL-BODY-LEAF-R1`：稀疏采购、活动新闻、普通长报告对完整总审页的实际读取依次为1/5、0/5、1/5，没有稳定可归因减载入口，不做产品原型。[基线结果](../tests/evidence/reference-slimming-r2/baseline-result.md)

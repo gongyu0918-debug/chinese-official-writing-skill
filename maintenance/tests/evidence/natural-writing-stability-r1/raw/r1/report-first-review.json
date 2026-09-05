@@ -1,0 +1,530 @@
+{
+  "schema_version": 1,
+  "packet_file": "report-first-packet.json",
+  "packet_sha256": "e360c8d947ac134824e470148ae67010d77b6cba94d1af944f2e0de6cdfe9c07",
+  "scope": "仅根据匿名包原始自然任务和逐轮材料审查2链10版；未读取mapping、产品或其他输出，未调用模型。",
+  "counting": {
+    "hard_issue_groups": 7,
+    "versions_with_confirmed_hard_issues": 5,
+    "reviewed_chains": 2,
+    "reviewed_versions": 10,
+    "final_versions_with_confirmed_hard_issues": 1,
+    "note": "问题组按独立事实、状态或交付失误划分；持续版本不当作新增独立样本，不估总体可靠率。"
+  },
+  "chains": [
+    {
+      "id": "P1",
+      "hard_issue_groups": [],
+      "versions_with_confirmed_hard_issues": [],
+      "trajectory": [
+        {
+          "round": 1,
+          "result": "事实数字、场景、单位、待办状态与三部分结构总体保留；未确认硬错。"
+        },
+        {
+          "round": 2,
+          "result": "时点、全部目录数量及停车已复核/其余待复核已联动更新，其他正文改动围绕本次更新。"
+        },
+        {
+          "round": 3,
+          "result": "交流事项及问题段相关介绍全文删除；其余正文保留，市数据局统筹、市信息中心核验、业务主管部门授权范围复核均未误删。"
+        },
+        {
+          "round": 4,
+          "result": "只插入存在问题末尾独立自然段；15/5、退回材料提供单位、尚未收到均保留，其他文字逐字不变。"
+        },
+        {
+          "round": 5,
+          "result": "允许压缩重写；最新数字、三场景名称、职责和待办状态均保留，交流未复活，仅正文622字符，符合700以内。R5未要求冻结R4段落边界，合段不算错。"
+        }
+      ],
+      "observations": [
+        {
+          "type": "待根代理核实，不计硬错",
+          "evidence": [
+            {
+              "rounds": [
+                1,
+                2,
+                3,
+                4
+              ],
+              "quote": "试点已完成目录归集、场景技术核验等阶段性工作"
+            }
+          ],
+          "reason": "材料给出收到、已纳入、待核数量，没有宣告目录归集全部结束；但此句限定为阶段性工作，正文也保留待核数量，存在阶段概括解释空间。"
+        },
+        {
+          "type": "待根代理核实，不计硬错",
+          "evidence": [
+            {
+              "rounds": [
+                1,
+                2,
+                3,
+                4
+              ],
+              "quote": "试点运营主体和运营方式尚未确定"
+            },
+            {
+              "rounds": [
+                5
+              ],
+              "quote": "运营主体和运营方式尚未明确"
+            }
+          ],
+          "reason": "主体未定可由遴选未完成支持；运营方式若泛指收费等配套可作概括，若指完整运营模式则超出材料。未按更宽含义强判。"
+        },
+        {
+          "type": "篇幅口径观察，不计独立硬错",
+          "rounds": [
+            2
+          ],
+          "quote": "其他内容保留，给我完整稿。",
+          "reason": "P1 R2含标点不含空白为1117字符，比R1上限1100多17；但R2要求增补最新状态并保留其他内容，未重申硬上限，且去标点后的汉字/字母/数字为1004。不能以事后统一字符口径强算确定失败。"
+        },
+        {
+          "type": "一般观感",
+          "evidence": [
+            {
+              "rounds": [
+                1,
+                2,
+                3,
+                4,
+                5
+              ],
+              "quote": "授权合规性审查滞后"
+            }
+          ],
+          "reason": "滞后带有进度评价，材料未给时限，措辞偏重；本任务允许分析问题，此处不单列事实硬错。R1—R4上线条件等重复较多，也只属观感。"
+        }
+      ]
+    },
+    {
+      "id": "P2",
+      "hard_issue_groups": [
+        {
+          "id": "P2-H01",
+          "category": "正文交付",
+          "first_round": 1,
+          "affected_rounds": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "cleared_round": 5,
+          "evidence": [
+            {
+              "rounds": [
+                1
+              ],
+              "quote": "下面是正文，按您给出的结构组织，控制在大约 920 字左右："
+            },
+            {
+              "rounds": [
+                2
+              ],
+              "quote": "几点对照说明："
+            },
+            {
+              "rounds": [
+                3,
+                4
+              ],
+              "quote": "调整说明："
+            }
+          ],
+          "material_round": 1,
+          "material_quote": "直接给我正文",
+          "reason": "R1—R4均在完整报告前后附加说明、自检或修改清单，违反正文交付要求；R5已只给正文。R3附注再提专题交流计入本组，不重复统计为正文事实复活。"
+        },
+        {
+          "id": "P2-H02",
+          "category": "事实／新增职责",
+          "first_round": 1,
+          "affected_rounds": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "cleared_round": null,
+          "evidence": [
+            {
+              "rounds": [
+                1,
+                2,
+                3,
+                4
+              ],
+              "quote": "市信息中心承担目录接入和场景技术核验任务"
+            },
+            {
+              "rounds": [
+                5
+              ],
+              "quote": "市信息中心承担目录接入和技术核验"
+            }
+          ],
+          "material_round": 1,
+          "material_quote": "市数据局负责统筹，市信息中心负责技术核验。",
+          "reason": "把材料未分配的目录接入工作写成市信息中心现有职责；并非下一步建议。R5压缩后仍保留。"
+        },
+        {
+          "id": "P2-H03",
+          "category": "事实／既成流程",
+          "first_round": 1,
+          "affected_rounds": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "cleared_round": 5,
+          "evidence": [
+            {
+              "rounds": [
+                1,
+                2,
+                3,
+                4
+              ],
+              "quote": "经合规性初核"
+            }
+          ],
+          "material_round": 1,
+          "material_quote": "已纳入190项，待核70项",
+          "reason": "已纳入数量不能证明这些目录已实施合规性初核。R1新增既成审核程序，R2—R4继承，R5删除。"
+        },
+        {
+          "id": "P2-H04",
+          "category": "事实／既成调研",
+          "first_round": 1,
+          "affected_rounds": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "cleared_round": 5,
+          "evidence": [
+            {
+              "rounds": [
+                1,
+                2,
+                3,
+                4
+              ],
+              "quote": "结合企业群众高频办事需求和前期调研情况"
+            }
+          ],
+          "material_round": 1,
+          "material_quote": "拟试点企业信用核验、惠企政策匹配、公共停车查询3个场景",
+          "reason": "以既有前期调研作为场景选择依据，材料没有调研事实。这里确认的问题是已发生调研，不把一般需求分析本身判错。"
+        },
+        {
+          "id": "P2-H05",
+          "category": "事实／活动组织单位",
+          "first_round": 1,
+          "affected_rounds": [
+            1,
+            2
+          ],
+          "cleared_round": 3,
+          "evidence": [
+            {
+              "rounds": [
+                1,
+                2
+              ],
+              "quote": "市数据局会同市信息中心召开专题交流"
+            }
+          ],
+          "material_round": 1,
+          "material_quote": "8月20日举办过1次专题交流，18名平台技术人员参加，仅介绍目录录入方法，未形成工作决定。",
+          "reason": "材料未给专题交流的召开或组织单位。一般统筹、技术核验职责不能证明两单位实际共同召开该活动；R3删除活动后消除。"
+        },
+        {
+          "id": "P2-H06",
+          "category": "办理状态",
+          "first_round": 1,
+          "affected_rounds": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "cleared_round": null,
+          "evidence": [
+            {
+              "rounds": [
+                1,
+                2,
+                3,
+                4
+              ],
+              "quote": "目前复核工作尚未实质启动"
+            },
+            {
+              "rounds": [
+                5
+              ],
+              "quote": "目前尚未实质启动"
+            }
+          ],
+          "material_round": 1,
+          "material_quote": "已纳入目录的授权范围尚待业务主管部门复核",
+          "reason": "尚待复核仅说明未办结，不能推出尚未实质启动。R1新增未启动状态，R5仍保留。"
+        },
+        {
+          "id": "P2-H07",
+          "category": "办理流程／单位",
+          "first_round": 1,
+          "affected_rounds": [
+            1
+          ],
+          "cleared_round": 2,
+          "evidence": [
+            {
+              "rounds": [
+                1
+              ],
+              "quote": "核验结论未经业务主管部门和合规法务部门会签复核"
+            }
+          ],
+          "material_round": 1,
+          "material_quote": "目前均已完成技术核验，核验结论尚待复核",
+          "reason": "把待复核具体化成由业务主管部门、合规法务部门会签的既定流程，材料未指定该流程和核验结论复核单位。R2的问题段已删除这一当前流程断言；后续建议会同相关部门属于可建议安排，不按本组持续。"
+        }
+      ],
+      "versions_with_confirmed_hard_issues": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "trajectory": [
+        {
+          "round": 1,
+          "result": "7组确认问题均首次出现；完整报告存在，但带额外说明。"
+        },
+        {
+          "round": 2,
+          "result": "数字及场景状态正确更新；H07当前会签流程断言消除，其余6组继承。"
+        },
+        {
+          "round": 3,
+          "result": "报告正文中的交流事项全部删除，H05消除；四个短板改为三个属于删除所需调整，原有单位职责未误删。附注再提交流属于H01交付包装。"
+        },
+        {
+          "round": 4,
+          "result": "独立新增段位置正确，15/5及退回未收状态准确；原有报告正文逐字保留。新段的记录质量和目前未收到属于直接含义，不新增硬错；H01等5组继承。"
+        },
+        {
+          "round": 5,
+          "result": "正文661字符，符合700以内；保留最新数字、三场景和待办状态，交流未复活。H01/H03/H04消除，目录接入职责H02与尚未实质启动H06仍在。"
+        }
+      ],
+      "observations": [
+        {
+          "type": "方法细化疑点，不计硬错",
+          "evidence": [
+            {
+              "rounds": [
+                1,
+                2
+              ],
+              "quote": "会议主要介绍目录录入方法和系统操作要点"
+            }
+          ],
+          "reason": "系统操作要点可能只是目录录入方法的细化，单凭该词不能确定增加了独立活动内容；主要替代仅降低边界清晰度，供根代理核实。"
+        },
+        {
+          "type": "允许的分析／建议",
+          "evidence": [
+            {
+              "rounds": [
+                1,
+                2,
+                3,
+                4
+              ],
+              "quote": "授权运营协议签订缺乏主体依托"
+            },
+            {
+              "rounds": [
+                2,
+                3,
+                4
+              ],
+              "quote": "会同市信息中心、业务主管部门和合规法务部门"
+            }
+          ],
+          "reason": "前句可由运营主体尚未确定支持；后句处在建议统领的下一步考虑中，不能与H07已写成现有会签流程的句子混同。未把合理分析和拟议安排一概判作材料外事实。"
+        }
+      ]
+    }
+  ],
+  "round_checks": [
+    {
+      "id": "P1",
+      "round": 1,
+      "sha256_verified": true,
+      "body_chars_without_whitespace": 1024,
+      "reply_chars_without_whitespace": 1024,
+      "hard_issue_ids": [],
+      "new_hard_issue_ids": [],
+      "cleared_issue_ids": []
+    },
+    {
+      "id": "P1",
+      "round": 2,
+      "sha256_verified": true,
+      "body_chars_without_whitespace": 1117,
+      "reply_chars_without_whitespace": 1117,
+      "hard_issue_ids": [],
+      "new_hard_issue_ids": [],
+      "cleared_issue_ids": []
+    },
+    {
+      "id": "P1",
+      "round": 3,
+      "sha256_verified": true,
+      "body_chars_without_whitespace": 1001,
+      "reply_chars_without_whitespace": 1001,
+      "hard_issue_ids": [],
+      "new_hard_issue_ids": [],
+      "cleared_issue_ids": []
+    },
+    {
+      "id": "P1",
+      "round": 4,
+      "sha256_verified": true,
+      "body_chars_without_whitespace": 1048,
+      "reply_chars_without_whitespace": 1048,
+      "hard_issue_ids": [],
+      "new_hard_issue_ids": [],
+      "cleared_issue_ids": []
+    },
+    {
+      "id": "P1",
+      "round": 5,
+      "sha256_verified": true,
+      "body_chars_without_whitespace": 622,
+      "reply_chars_without_whitespace": 622,
+      "hard_issue_ids": [],
+      "new_hard_issue_ids": [],
+      "cleared_issue_ids": []
+    },
+    {
+      "id": "P2",
+      "round": 1,
+      "sha256_verified": true,
+      "body_chars_without_whitespace": 921,
+      "reply_chars_without_whitespace": 1143,
+      "hard_issue_ids": [
+        "P2-H01",
+        "P2-H02",
+        "P2-H03",
+        "P2-H04",
+        "P2-H05",
+        "P2-H06",
+        "P2-H07"
+      ],
+      "new_hard_issue_ids": [
+        "P2-H01",
+        "P2-H02",
+        "P2-H03",
+        "P2-H04",
+        "P2-H05",
+        "P2-H06",
+        "P2-H07"
+      ],
+      "cleared_issue_ids": []
+    },
+    {
+      "id": "P2",
+      "round": 2,
+      "sha256_verified": true,
+      "body_chars_without_whitespace": 1013,
+      "reply_chars_without_whitespace": 1262,
+      "hard_issue_ids": [
+        "P2-H01",
+        "P2-H02",
+        "P2-H03",
+        "P2-H04",
+        "P2-H05",
+        "P2-H06"
+      ],
+      "new_hard_issue_ids": [],
+      "cleared_issue_ids": [
+        "P2-H07"
+      ]
+    },
+    {
+      "id": "P2",
+      "round": 3,
+      "sha256_verified": true,
+      "body_chars_without_whitespace": 854,
+      "reply_chars_without_whitespace": 1043,
+      "hard_issue_ids": [
+        "P2-H01",
+        "P2-H02",
+        "P2-H03",
+        "P2-H04",
+        "P2-H06"
+      ],
+      "new_hard_issue_ids": [],
+      "cleared_issue_ids": [
+        "P2-H05"
+      ]
+    },
+    {
+      "id": "P2",
+      "round": 4,
+      "sha256_verified": true,
+      "body_chars_without_whitespace": 912,
+      "reply_chars_without_whitespace": 1084,
+      "hard_issue_ids": [
+        "P2-H01",
+        "P2-H02",
+        "P2-H03",
+        "P2-H04",
+        "P2-H06"
+      ],
+      "new_hard_issue_ids": [],
+      "cleared_issue_ids": []
+    },
+    {
+      "id": "P2",
+      "round": 5,
+      "sha256_verified": true,
+      "body_chars_without_whitespace": 661,
+      "reply_chars_without_whitespace": 661,
+      "hard_issue_ids": [
+        "P2-H02",
+        "P2-H06"
+      ],
+      "new_hard_issue_ids": [],
+      "cleared_issue_ids": [
+        "P2-H01",
+        "P2-H03",
+        "P2-H04"
+      ]
+    }
+  ],
+  "dimensions": {
+    "fact_status": "确认硬问题集中在P2初稿的既成事实、职责与状态，并有继承；未发现最新数字及三场景更新错误。",
+    "non_target_edits": "R3两稿均未误删其他职责；R4两稿报告正文均仅插入独立段，包装变动另计H01。",
+    "structure": "三部分结构均满足；R4独立自然段2/2，R5允许压缩重写和合段。",
+    "delivery": "10/10回复含完整报告；P2 R1—R4附加包装，故正文直接交付6/10。",
+    "hard_length": "R1报告主体为1024/921字符，均处900—1100范围；R5含现有标题/各级标题的完整回复为622/661字符，均低于700。不把授权删除造成的缩短按旧下限重判。"
+  },
+  "length_method": "记录可见Unicode字符数，去除空白但保留标点；P2单独剥离明确的前后说明以记录报告主体。原任务未定义标点计数，边界疑点单列，R5两个完整回复均明显合规。",
+  "final_verdict": "P1未确认硬错，有已列边界疑点；P2最后一版仍有2组继承硬问题。需要根代理复核各引文，不由匿名两链推断模型身份或通用效果。"
+}

@@ -1,0 +1,188 @@
+{
+  "provider_id": "alibaba2",
+  "arm": "baseline",
+  "scenario": "meeting-minutes",
+  "thread_id": "01a07156-34b2-7b43-8e36-3f66643a9063",
+  "records": [
+    {
+      "provider_id": "alibaba2",
+      "arm": "baseline",
+      "round": 1,
+      "source_session_id": null,
+      "thread_id": "01a07156-34b2-7b43-8e36-3f66643a9063",
+      "resumed": false,
+      "return_code": 0,
+      "seconds": 370.859,
+      "technical_failures": [],
+      "hard_failures_observation_only": [],
+      "final_chars_nonspace": 725,
+      "usage": {
+        "input_tokens": 388541,
+        "cached_input_tokens": 354304,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 34042,
+        "reasoning_output_tokens": 27785
+      },
+      "skill_files_read": [
+        "SKILL.md",
+        "references/genre-playbook-minutes.md",
+        "references/information-selection.md",
+        "references/task-route-cards.md"
+      ],
+      "loaded_bytes": 37243,
+      "read_events": [
+        {
+          "trace_line": 6,
+          "files": [
+            "SKILL.md"
+          ]
+        },
+        {
+          "trace_line": 9,
+          "files": [
+            "references/information-selection.md",
+            "references/task-route-cards.md"
+          ]
+        },
+        {
+          "trace_line": 12,
+          "files": [
+            "references/genre-playbook-minutes.md"
+          ]
+        }
+      ],
+      "user_skill_paths_in_trace": [],
+      "hook_contamination_markers": [],
+      "final_sha256": "27ec2057a0c689a9b09844d617a7ad6673a1e027e9278c2a54694dc970410fe7",
+      "trace_sha256": "1871be9d70d434bd6ce55fbf5b542abdccd27d662f70355cd2ced9aa87968a08",
+      "final_file": "raw\\alibaba2\\baseline\\round-01.final.txt",
+      "trace_file": "raw\\alibaba2\\baseline\\round-01.trace.jsonl",
+      "stderr_file": "raw\\alibaba2\\baseline\\round-01.stderr.txt",
+      "activation_observations": []
+    },
+    {
+      "provider_id": "alibaba2",
+      "arm": "baseline",
+      "round": 2,
+      "source_session_id": "01a07156-34b2-7b43-8e36-3f66643a9063",
+      "thread_id": "01a07156-34b2-7b43-8e36-3f66643a9063",
+      "resumed": true,
+      "return_code": 0,
+      "seconds": 16.531,
+      "technical_failures": [],
+      "hard_failures_observation_only": [],
+      "final_chars_nonspace": 662,
+      "usage": {
+        "input_tokens": 454204,
+        "cached_input_tokens": 417792,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 35573,
+        "reasoning_output_tokens": 28353
+      },
+      "skill_files_read": [],
+      "loaded_bytes": 0,
+      "read_events": [],
+      "user_skill_paths_in_trace": [],
+      "hook_contamination_markers": [],
+      "final_sha256": "2488d39d8114d1189ade0a06881dc70d9b909437b7f73b4e2b6c949c8b7248d0",
+      "trace_sha256": "474be3ff48b9f23e0c1c0c2dcb3c15834038453f3c1d5ff1bdfb89ae436a16de",
+      "final_file": "raw\\alibaba2\\baseline\\round-02.final.txt",
+      "trace_file": "raw\\alibaba2\\baseline\\round-02.trace.jsonl",
+      "stderr_file": "raw\\alibaba2\\baseline\\round-02.stderr.txt",
+      "activation_observations": []
+    },
+    {
+      "provider_id": "alibaba2",
+      "arm": "baseline",
+      "round": 3,
+      "source_session_id": "01a07156-34b2-7b43-8e36-3f66643a9063",
+      "thread_id": "01a07156-34b2-7b43-8e36-3f66643a9063",
+      "resumed": true,
+      "return_code": 0,
+      "seconds": 9.297,
+      "technical_failures": [],
+      "hard_failures_observation_only": [],
+      "final_chars_nonspace": 636,
+      "usage": {
+        "input_tokens": 487961,
+        "cached_input_tokens": 450560,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 36188,
+        "reasoning_output_tokens": 28579
+      },
+      "skill_files_read": [],
+      "loaded_bytes": 0,
+      "read_events": [],
+      "user_skill_paths_in_trace": [],
+      "hook_contamination_markers": [],
+      "final_sha256": "fe152a41120b94519a0c5d77229306b15eb766cc955eed931d0d3322ff29ab7f",
+      "trace_sha256": "8819bc7b634e670a6900fb2833eb5cb568cd9e93437d709d991118c7a879590d",
+      "final_file": "raw\\alibaba2\\baseline\\round-03.final.txt",
+      "trace_file": "raw\\alibaba2\\baseline\\round-03.trace.jsonl",
+      "stderr_file": "raw\\alibaba2\\baseline\\round-03.stderr.txt",
+      "activation_observations": []
+    },
+    {
+      "provider_id": "alibaba2",
+      "arm": "baseline",
+      "round": 4,
+      "source_session_id": "01a07156-34b2-7b43-8e36-3f66643a9063",
+      "thread_id": "01a07156-34b2-7b43-8e36-3f66643a9063",
+      "resumed": true,
+      "return_code": 0,
+      "seconds": 30.828,
+      "technical_failures": [],
+      "hard_failures_observation_only": [],
+      "final_chars_nonspace": 716,
+      "usage": {
+        "input_tokens": 522155,
+        "cached_input_tokens": 483328,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 39387,
+        "reasoning_output_tokens": 31340
+      },
+      "skill_files_read": [],
+      "loaded_bytes": 0,
+      "read_events": [],
+      "user_skill_paths_in_trace": [],
+      "hook_contamination_markers": [],
+      "final_sha256": "89a1ff1d1a220327167eaec47f9de8fd18e5c240bf305f06ed06507063f75808",
+      "trace_sha256": "0efd1d0c696941b91aca9af3941c8c4295049e4db369769383f829bf6514e0c8",
+      "final_file": "raw\\alibaba2\\baseline\\round-04.final.txt",
+      "trace_file": "raw\\alibaba2\\baseline\\round-04.trace.jsonl",
+      "stderr_file": "raw\\alibaba2\\baseline\\round-04.stderr.txt",
+      "activation_observations": []
+    },
+    {
+      "provider_id": "alibaba2",
+      "arm": "baseline",
+      "round": 5,
+      "source_session_id": "01a07156-34b2-7b43-8e36-3f66643a9063",
+      "thread_id": "01a07156-34b2-7b43-8e36-3f66643a9063",
+      "resumed": true,
+      "return_code": 0,
+      "seconds": 17.047,
+      "technical_failures": [],
+      "hard_failures_observation_only": [],
+      "final_chars_nonspace": 417,
+      "usage": {
+        "input_tokens": 592109,
+        "cached_input_tokens": 550912,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 40926,
+        "reasoning_output_tokens": 32272
+      },
+      "skill_files_read": [],
+      "loaded_bytes": 0,
+      "read_events": [],
+      "user_skill_paths_in_trace": [],
+      "hook_contamination_markers": [],
+      "final_sha256": "8eb72f0590ad22ee20df8a830d6e9af0b1ac3f70fadf497efb89855aeebabe12",
+      "trace_sha256": "2847800257b977ae8d78531610c309825e413bbfa352c6c05fdf14348ea01454",
+      "final_file": "raw\\alibaba2\\baseline\\round-05.final.txt",
+      "trace_file": "raw\\alibaba2\\baseline\\round-05.trace.jsonl",
+      "stderr_file": "raw\\alibaba2\\baseline\\round-05.stderr.txt",
+      "activation_observations": []
+    }
+  ]
+}

@@ -1,0 +1,106 @@
+{
+  "schema_version": 1,
+  "config": {
+    "schema_version": 1,
+    "scenario": "Natural Chinese writing requests with real persistent revisions; Skill is available but never named in prompts",
+    "providers": {
+      "alibaba2": "alibaba-token-plan-2/deepseek-v4-flash-0731",
+      "minimax": "minimax-cn/MiniMax-M3"
+    },
+    "reasoning_effort": "max",
+    "cases": [
+      {
+        "id": "progress-report",
+        "rounds": [
+          {
+            "round": 1,
+            "prompt": "请根据这些材料写一份海岚市公共数据授权运营试点进展报告，供分管领导了解情况。900—1100字，分为试点进展、存在问题和下一步考虑，直接给我正文。可以分析材料反映的问题，事实和办理状态要准确。\n\n截至2026年9月5日，海岚市公共数据授权运营试点收到目录260项，已纳入190项，待核70项。拟试点企业信用核验、惠企政策匹配、公共停车查询3个场景，目前均已完成技术核验，核验结论尚待复核，技术核验不代表正式上线批准。市数据局负责统筹，市信息中心负责技术核验。运营单位遴选尚未完成，收费方案尚未确定；已纳入目录的授权范围尚待业务主管部门复核。8月20日举办过1次专题交流，18名平台技术人员参加，仅介绍目录录入方法，未形成工作决定。建议把上线条件复核列入下一步考虑，是否安排试运行尚未决定。",
+            "required_groups": [],
+            "forbidden": []
+          },
+          {
+            "round": 2,
+            "prompt": "刚收到更新：统计时点改为2026年9月9日，目录合计280项，其中已纳入205项、待核75项；公共停车查询场景的核验结论已经复核通过，其他两个场景的核验结论仍待复核。都还没有取得正式上线批准。请据此修改刚才的报告，其他内容保留，给我完整稿。",
+            "required_groups": [],
+            "forbidden": []
+          },
+          {
+            "round": 3,
+            "prompt": "专题交流的内容不放进这份报告了，请把这件事及相关介绍删掉，其他内容不动，发我修改后的全文。",
+            "required_groups": [],
+            "forbidden": []
+          },
+          {
+            "round": 4,
+            "prompt": "再在存在问题部分末尾加一个独立自然段：抽查15份登记记录，其中5份缺少更新频率说明，已经退回材料提供单位补充，补充材料还没有收到。别改其他部分，给我完整稿。",
+            "required_groups": [],
+            "forbidden": []
+          },
+          {
+            "round": 5,
+            "prompt": "现在把全文压到700字以内，标题也算在内。保留最新数字、三个场景名称、各单位职责和仍待办理的事项，删掉的专题交流不要再带回来。只发正文。",
+            "required_groups": [],
+            "forbidden": []
+          }
+        ]
+      },
+      {
+        "id": "meeting-minutes",
+        "rounds": [
+          {
+            "round": 1,
+            "prompt": "把下面的会议记录整理成一份正式会议纪要，内容写清楚，建议和会议决定分开，600—800字即可。主持人、参会名单和其他材料没有提供。请给我可以直接使用的完整正文。\n\n2026年9月4日，清源图书馆召开服务改进专题会。业务部反映8月读者意见共24条，已答复18条，另6条需核实后答复。信息部提出先在二楼阅览区试点预约系统，目前只是建议，是否试点尚未决定。综合部建议将周五闭馆时间延后半小时，需先核算人员成本，本次会议没有决定调整开放时间。会议确定由业务部在9月12日前核实剩余6条意见并报送核实情况；综合部在9月15日前提交人员成本测算，不作新增预算承诺。会上还介绍了8月26日一次预约系统操作演示，共9名馆员参加，这不是业务培训，也没有形成系统验收结论。",
+            "required_groups": [],
+            "forbidden": []
+          },
+          {
+            "round": 2,
+            "prompt": "记录人作了更正：剩余意见是5条，不是6条，8月总数为23条，已答复仍是18条。业务部报送核实情况的期限改成9月13日；其他事项没变。按这个更正更新上一稿，给我全文。",
+            "required_groups": [],
+            "forbidden": []
+          },
+          {
+            "round": 3,
+            "prompt": "操作演示和这次会议要形成的纪要关系不大，把8月26日演示那一项删掉。其余意见、责任分工和期限都保留，输出修改后的完整纪要。",
+            "required_groups": [],
+            "forbidden": []
+          },
+          {
+            "round": 4,
+            "prompt": "补充一条会上确定的事：信息部于9月16日前提交预约系统试点的技术条件说明，但提交说明不表示已经批准试点。单独加一段，其他段落先不改，给我完整稿。",
+            "required_groups": [],
+            "forbidden": []
+          },
+          {
+            "round": 5,
+            "prompt": "请把最新稿压缩到500字以内，保留事项、责任部门、期限和尚未作出决定的状态。已删除的演示不要恢复，直接发纪要正文。",
+            "required_groups": [],
+            "forbidden": []
+          }
+        ]
+      }
+    ],
+    "judgment": "Track natural skill activation, actual reads, complete body, fact/state preservation, edits and length separately. Missing skill read is an observed routing outcome, not grounds to discard an otherwise completed run. Only transport/contamination/resume failures stop a chain. Failed writing is retained without replacement."
+  },
+  "cli": "C:\\Users\\admin\\AppData\\Local\\OpenAI\\Codex\\bin\\1e3e57cdf0634c02\\codex.exe",
+  "cli_version": "codex-cli 0.153.1",
+  "arms": {
+    "baseline": {
+      "commit": "a2a817d1ddf82c9ba0dcc6bbcc9df684767f9b41",
+      "file_count": 86,
+      "tree_fingerprint": "d871fa897f4ec02e0763a6a3032f6788f30c694c1364afb45aa2bb9553f8dd19"
+    }
+  },
+  "sources_sha256": {
+    "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\natural-writing-stability-r1\\output\\natural-writing-stability-r1\\cases.json": "57fe3c6caa8b6e19c3ef7f54770ddc9882382ea47761c4d0ca2a93f0a177c210",
+    "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\natural-writing-stability-r1\\output\\natural-writing-stability-r1\\run.py": "44ae0045128ab9523320af9fd52df073adc7377f7a646826a1adecd5f8fe2e82",
+    "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\natural-writing-stability-r1\\maintenance\\tests\\evidence\\revision-stability-audit-r1\\run_chain.py": "9e301d8953bcfcf582e3cc219367afb319eba938bd3ab7ccc6b3f38bacdf92d8",
+    "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\natural-writing-stability-r1\\maintenance\\tests\\evidence\\reference-route-audit-r1\\run_eval.py": "59bd59ec050bae6027a288212fd2d5f7548514dee08f878141c9bb8d99fa6d27",
+    "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\natural-writing-stability-r1\\maintenance\\tests\\evidence\\complaint-reflection-r1\\desktop_writer.py": "2d054a2bb584dc7bde1752e89040de195cf1dd005325e6fcb535a5bf4eaeb887",
+    "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\natural-writing-stability-r1\\maintenance\\tests\\evidence\\reference-slimming-r2\\run_probe.py": "0caad5de8352dab2a284ebb186f10d15b98264a0d449885bb690f9ceb86b805c",
+    "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\natural-writing-stability-r1\\maintenance\\tests\\evidence\\v1615-like-signal-short-writing-r1\\run_eval.py": "166e01af40b4ba8923c41b85a25fb79206a6c62c46935c619b73a23e9651b505"
+  },
+  "context_method": "Skill installed and discoverable; natural language only; real same-thread exec resume",
+  "hook_mode": "No Hook; plugins/apps/memories disabled; other installed Skills disabled",
+  "activation_policy": "Missing natural activation is an observed outcome, not discarded as technical failure."
+}

@@ -1,0 +1,69 @@
+{
+  "scope": "Exact local CLI rollout metadata; raw session stores not archived",
+  "sessions": [
+    {
+      "session_id": "01a07171-1201-7f41-a00d-0153f53636a9",
+      "scenario": "meeting-minutes",
+      "arm": "candidate",
+      "provider": "alibaba2",
+      "observed_turn_models": [
+        "alibaba-token-plan-2/deepseek-v4-flash-0731"
+      ],
+      "observed_efforts": [
+        "max"
+      ],
+      "turn_context_count": 5,
+      "configured_host_coding_preferences_present": true,
+      "local_rollout_sha256": "577dcb5c0811ef656fc5fe080fc893fdb68682b39bc549988ae9f623fb85d751",
+      "source_included": false
+    },
+    {
+      "session_id": "01a07173-aae1-7b42-92f3-5d57203fd501",
+      "scenario": "meeting-minutes",
+      "arm": "candidate",
+      "provider": "minimax",
+      "observed_turn_models": [
+        "minimax-cn/MiniMax-M3"
+      ],
+      "observed_efforts": [
+        "max"
+      ],
+      "turn_context_count": 5,
+      "configured_host_coding_preferences_present": true,
+      "local_rollout_sha256": "4034455d5e735c962d6824811b0d8d6fb1c7db1640c6fb818c4285c1e9cdbf1d",
+      "source_included": false
+    },
+    {
+      "session_id": "01a0716b-6fe2-7db0-bb6a-ba51e13a4f77",
+      "scenario": "progress-report",
+      "arm": "candidate",
+      "provider": "alibaba2",
+      "observed_turn_models": [
+        "alibaba-token-plan-2/deepseek-v4-flash-0731"
+      ],
+      "observed_efforts": [
+        "max"
+      ],
+      "turn_context_count": 5,
+      "configured_host_coding_preferences_present": true,
+      "local_rollout_sha256": "6cbff765809b7db9990106f180433951575a6d5803bf4500ff0b96cab520ca82",
+      "source_included": false
+    },
+    {
+      "session_id": "01a0716b-7052-7bf0-b3ae-95e00f29e58f",
+      "scenario": "progress-report",
+      "arm": "candidate",
+      "provider": "minimax",
+      "observed_turn_models": [
+        "minimax-cn/MiniMax-M3"
+      ],
+      "observed_efforts": [
+        "max"
+      ],
+      "turn_context_count": 5,
+      "configured_host_coding_preferences_present": true,
+      "local_rollout_sha256": "48854b6e93ba802b767b924b7661e1523672671dae671794cdeda1fcc56b3c38",
+      "source_included": false
+    }
+  ]
+}

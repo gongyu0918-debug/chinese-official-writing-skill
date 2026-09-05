@@ -1,0 +1,186 @@
+{
+  "provider_id": "minimax",
+  "arm": "candidate",
+  "scenario": "meeting-minutes",
+  "thread_id": "01a07173-aae1-7b42-92f3-5d57203fd501",
+  "records": [
+    {
+      "provider_id": "minimax",
+      "arm": "candidate",
+      "round": 1,
+      "source_session_id": null,
+      "thread_id": "01a07173-aae1-7b42-92f3-5d57203fd501",
+      "resumed": false,
+      "return_code": 0,
+      "seconds": 239.422,
+      "technical_failures": [],
+      "hard_failures_observation_only": [],
+      "final_chars_nonspace": 934,
+      "usage": {
+        "input_tokens": 177374,
+        "cached_input_tokens": 154112,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 14215,
+        "reasoning_output_tokens": 11169
+      },
+      "skill_files_read": [
+        "SKILL.md",
+        "references/genre-playbook-minutes.md",
+        "references/information-selection.md"
+      ],
+      "loaded_bytes": 33558,
+      "read_events": [
+        {
+          "trace_line": 5,
+          "files": [
+            "SKILL.md"
+          ]
+        },
+        {
+          "trace_line": 9,
+          "files": [
+            "references/genre-playbook-minutes.md"
+          ]
+        },
+        {
+          "trace_line": 11,
+          "files": [
+            "references/information-selection.md"
+          ]
+        }
+      ],
+      "user_skill_paths_in_trace": [],
+      "hook_contamination_markers": [],
+      "final_sha256": "20e953b839254fd1d05ce8d7f7f067f98f44fe23e8fb2854e0c1defe27880957",
+      "trace_sha256": "286838330b260ba6dba19273f144acb5f4656090e9f430c06bc0d528f26b92ad",
+      "final_file": "raw\\minimax\\candidate\\round-01.final.txt",
+      "trace_file": "raw\\minimax\\candidate\\round-01.trace.jsonl",
+      "stderr_file": "raw\\minimax\\candidate\\round-01.stderr.txt",
+      "activation_observations": []
+    },
+    {
+      "provider_id": "minimax",
+      "arm": "candidate",
+      "round": 2,
+      "source_session_id": "01a07173-aae1-7b42-92f3-5d57203fd501",
+      "thread_id": "01a07173-aae1-7b42-92f3-5d57203fd501",
+      "resumed": true,
+      "return_code": 0,
+      "seconds": 34.844,
+      "technical_failures": [],
+      "hard_failures_observation_only": [],
+      "final_chars_nonspace": 785,
+      "usage": {
+        "input_tokens": 243979,
+        "cached_input_tokens": 217600,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 15928,
+        "reasoning_output_tokens": 11665
+      },
+      "skill_files_read": [],
+      "loaded_bytes": 0,
+      "read_events": [],
+      "user_skill_paths_in_trace": [],
+      "hook_contamination_markers": [],
+      "final_sha256": "9d0f88845bf37c52290c60cb32aed3e7b1dbd0439953e73d912d6440e73ab419",
+      "trace_sha256": "6450c40f8f42c5eb29979bd76327e48b3757f526490287f9c2fd6a6eb5705ec9",
+      "final_file": "raw\\minimax\\candidate\\round-02.final.txt",
+      "trace_file": "raw\\minimax\\candidate\\round-02.trace.jsonl",
+      "stderr_file": "raw\\minimax\\candidate\\round-02.stderr.txt",
+      "activation_observations": []
+    },
+    {
+      "provider_id": "minimax",
+      "arm": "candidate",
+      "round": 3,
+      "source_session_id": "01a07173-aae1-7b42-92f3-5d57203fd501",
+      "thread_id": "01a07173-aae1-7b42-92f3-5d57203fd501",
+      "resumed": true,
+      "return_code": 0,
+      "seconds": 72.093,
+      "technical_failures": [],
+      "hard_failures_observation_only": [],
+      "final_chars_nonspace": 741,
+      "usage": {
+        "input_tokens": 352485,
+        "cached_input_tokens": 321536,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 19656,
+        "reasoning_output_tokens": 13463
+      },
+      "skill_files_read": [],
+      "loaded_bytes": 0,
+      "read_events": [],
+      "user_skill_paths_in_trace": [],
+      "hook_contamination_markers": [],
+      "final_sha256": "4fdb41068e2637fe76d106bcccb5102178d8d749b949b1f833288aaff40fdf5c",
+      "trace_sha256": "5abd43fc853d69f06c87c4061bde874e9b63cfa6bec3b889dcde4eeae8e5a004",
+      "final_file": "raw\\minimax\\candidate\\round-03.final.txt",
+      "trace_file": "raw\\minimax\\candidate\\round-03.trace.jsonl",
+      "stderr_file": "raw\\minimax\\candidate\\round-03.stderr.txt",
+      "activation_observations": []
+    },
+    {
+      "provider_id": "minimax",
+      "arm": "candidate",
+      "round": 4,
+      "source_session_id": "01a07173-aae1-7b42-92f3-5d57203fd501",
+      "thread_id": "01a07173-aae1-7b42-92f3-5d57203fd501",
+      "resumed": true,
+      "return_code": 0,
+      "seconds": 61.797,
+      "technical_failures": [],
+      "hard_failures_observation_only": [],
+      "final_chars_nonspace": 781,
+      "usage": {
+        "input_tokens": 472800,
+        "cached_input_tokens": 438016,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 22862,
+        "reasoning_output_tokens": 14861
+      },
+      "skill_files_read": [],
+      "loaded_bytes": 0,
+      "read_events": [],
+      "user_skill_paths_in_trace": [],
+      "hook_contamination_markers": [],
+      "final_sha256": "f15a2b3f0a5969027b94cbbcb5db619ea7cd3b4547d9c9485a414c37c6e22d2b",
+      "trace_sha256": "7ff9a37704a64e2ec1d0c134549b475a3f12a17b2bb71a3109d1bfa3b23469bb",
+      "final_file": "raw\\minimax\\candidate\\round-04.final.txt",
+      "trace_file": "raw\\minimax\\candidate\\round-04.trace.jsonl",
+      "stderr_file": "raw\\minimax\\candidate\\round-04.stderr.txt",
+      "activation_observations": []
+    },
+    {
+      "provider_id": "minimax",
+      "arm": "candidate",
+      "round": 5,
+      "source_session_id": "01a07173-aae1-7b42-92f3-5d57203fd501",
+      "thread_id": "01a07173-aae1-7b42-92f3-5d57203fd501",
+      "resumed": true,
+      "return_code": 0,
+      "seconds": 46.547,
+      "technical_failures": [],
+      "hard_failures_observation_only": [],
+      "final_chars_nonspace": 579,
+      "usage": {
+        "input_tokens": 559048,
+        "cached_input_tokens": 520960,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 25545,
+        "reasoning_output_tokens": 16517
+      },
+      "skill_files_read": [],
+      "loaded_bytes": 0,
+      "read_events": [],
+      "user_skill_paths_in_trace": [],
+      "hook_contamination_markers": [],
+      "final_sha256": "8c3d2b83b83fd095553ab2d8d013bd868066a098cfd26e364414bc26e935e343",
+      "trace_sha256": "e95163edfb878c3229fe149a9fedb6c8a1120b8578a13fe9ea87fa204e938a8d",
+      "final_file": "raw\\minimax\\candidate\\round-05.final.txt",
+      "trace_file": "raw\\minimax\\candidate\\round-05.trace.jsonl",
+      "stderr_file": "raw\\minimax\\candidate\\round-05.stderr.txt",
+      "activation_observations": []
+    }
+  ]
+}

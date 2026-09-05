@@ -1,0 +1,180 @@
+{
+  "schema_version": 1,
+  "writing_turns": 40,
+  "unique_sessions": 8,
+  "technical_failures": 0,
+  "hook_enabled": false,
+  "natural_prompts_only": true,
+  "forced_reference_context": false,
+  "sessions": [
+    {
+      "scenario": "meeting-minutes",
+      "provider": "alibaba2",
+      "arm": "baseline",
+      "thread_id": "01a07156-34b2-7b43-8e36-3f66643a9063",
+      "turns": 5,
+      "initial_skill_files_read": [
+        "SKILL.md",
+        "references/genre-playbook-minutes.md",
+        "references/information-selection.md",
+        "references/task-route-cards.md"
+      ],
+      "initial_activation_observations": [],
+      "nonspace_reply_chars": [
+        725,
+        662,
+        636,
+        716,
+        417
+      ],
+      "session_sha256": "0cdb0dc50109105a459bf9280fabc3a5bb5cb2c001051ff8717e874dc79eca6c"
+    },
+    {
+      "scenario": "meeting-minutes",
+      "provider": "alibaba2",
+      "arm": "candidate",
+      "thread_id": "01a0715c-9406-7ef2-85d1-bff2caae8a54",
+      "turns": 5,
+      "initial_skill_files_read": [],
+      "initial_activation_observations": [
+        "missing_initial_successful_skill_read"
+      ],
+      "nonspace_reply_chars": [
+        1043,
+        802,
+        799,
+        847,
+        546
+      ],
+      "session_sha256": "98382e12d69730318ed9b42666c77ab1c4873124b0b5a55dae00aea2541ebf97"
+    },
+    {
+      "scenario": "meeting-minutes",
+      "provider": "minimax",
+      "arm": "baseline",
+      "thread_id": "01a07157-d042-7a21-b393-e1bc1e289dcf",
+      "turns": 5,
+      "initial_skill_files_read": [
+        "SKILL.md"
+      ],
+      "initial_activation_observations": [],
+      "nonspace_reply_chars": [
+        766,
+        709,
+        678,
+        787,
+        515
+      ],
+      "session_sha256": "b50228a2d9b0c8c3c5b07a0f0ffc13c2ff12c9e215b3130b0173876b8f8eb532"
+    },
+    {
+      "scenario": "meeting-minutes",
+      "provider": "minimax",
+      "arm": "candidate",
+      "thread_id": "01a0715b-4696-75b2-94cb-760e14000ce9",
+      "turns": 5,
+      "initial_skill_files_read": [
+        "SKILL.md",
+        "references/genre-playbook-minutes.md",
+        "references/information-selection.md",
+        "references/short-draft-naturalness.md"
+      ],
+      "initial_activation_observations": [],
+      "nonspace_reply_chars": [
+        767,
+        591,
+        530,
+        607,
+        460
+      ],
+      "session_sha256": "6fd83e01b441189509faa69b218b7f7745a77eb05136caa443233b47ec7df496"
+    },
+    {
+      "scenario": "progress-report",
+      "provider": "alibaba2",
+      "arm": "baseline",
+      "thread_id": "01a07151-cfa7-7342-952e-5a424f6bf487",
+      "turns": 5,
+      "initial_skill_files_read": [
+        "SKILL.md",
+        "references/genre-checklist-report.md",
+        "references/information-selection.md"
+      ],
+      "initial_activation_observations": [],
+      "nonspace_reply_chars": [
+        1024,
+        1117,
+        1001,
+        1048,
+        622
+      ],
+      "session_sha256": "3855fda12491113070f5f15922ce62f7aba43565e853e6013088a74e63264387"
+    },
+    {
+      "scenario": "progress-report",
+      "provider": "alibaba2",
+      "arm": "candidate",
+      "thread_id": "01a07159-2b03-7003-b486-2127458f496a",
+      "turns": 5,
+      "initial_skill_files_read": [
+        "SKILL.md",
+        "references/genre-checklist-report.md",
+        "references/information-selection.md",
+        "references/short-draft-naturalness.md",
+        "references/task-route-cards.md"
+      ],
+      "initial_activation_observations": [],
+      "nonspace_reply_chars": [
+        999,
+        1097,
+        917,
+        962,
+        598
+      ],
+      "session_sha256": "9068f169946919cfde0130734fc8982889a55e29bb4113e944448e988f5e431d"
+    },
+    {
+      "scenario": "progress-report",
+      "provider": "minimax",
+      "arm": "baseline",
+      "thread_id": "01a07151-cfd7-7ce3-9614-52e1adab70cc",
+      "turns": 5,
+      "initial_skill_files_read": [
+        "SKILL.md",
+        "references/anti-ai-patterns.md",
+        "references/genre-checklist-report.md",
+        "references/information-selection.md",
+        "references/task-route-cards.md"
+      ],
+      "initial_activation_observations": [],
+      "nonspace_reply_chars": [
+        1143,
+        1262,
+        1043,
+        1084,
+        661
+      ],
+      "session_sha256": "783282c5f7a468499a0f4569885ab32aa89ab8fe1cfbc66f82c3da5cc7fdd29e"
+    },
+    {
+      "scenario": "progress-report",
+      "provider": "minimax",
+      "arm": "candidate",
+      "thread_id": "01a07159-2a9d-78f0-bed5-9e5b83a7156a",
+      "turns": 5,
+      "initial_skill_files_read": [
+        "SKILL.md"
+      ],
+      "initial_activation_observations": [],
+      "nonspace_reply_chars": [
+        988,
+        1085,
+        926,
+        972,
+        606
+      ],
+      "session_sha256": "49b8a16f0797f7e1215348329a1b63073f0244ed9c01eba92a5fe62ac1f56c57"
+    }
+  ],
+  "counts_not_independent_samples": true
+}

@@ -1,0 +1,10 @@
+{
+  "raw_file_count": 297,
+  "raw_bytes": 1796776,
+  "raw_manifest_sha256": "135eb7109c87a104a0373e4d47ae28cd5dd8a9a793f81ee9ac494225edcc282a",
+  "staged_git_blob_sha256_matches": 297,
+  "mismatches": [],
+  "canonical_tree": "0f54a75891ea298f380a906b17d84803103231eb",
+  "packages_tree": "6a15c0dbb80542022864f55c5342078cda3b9a26",
+  "validation": "All listed raw files hash-identical in the Git index; no raw-session store/profile included."
+}

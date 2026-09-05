@@ -1,0 +1,121 @@
+{
+  "schema_version": 1,
+  "decision": "PASS_WITH_LIMITS",
+  "blocking_findings": [],
+  "scope": "只读审查本轮候选恢复、已冻结的薄驱动/题面及R1/R2实际会话证据；不是发布许可，也不是整体写作稳定性通过。未运行新模型、新裁判或全量测试，未读取私有session store、整个runtime/profile、付费工作树。除本报告外未改文件或提交。",
+  "git": {
+    "branch": "codex/natural-writing-stability-r1",
+    "comparison_baseline": "d8a942c334152b5e1b0f3d50a4f0454eda0dda7c",
+    "frozen_head": "139e2f3f95e31a897a51d76a15fb885223e9e260",
+    "five_commit_accounting": [
+      "a2a817d1ddf82c9ba0dcc6bbcc9df684767f9b41",
+      "d8a942c334152b5e1b0f3d50a4f0454eda0dda7c",
+      "d4859fb995a38ff97759b96efe0ecefb21f884e4",
+      "ecf9e361c94b037dd5cb0ddc428bd288ed118be2",
+      "139e2f3f95e31a897a51d76a15fb885223e9e260"
+    ],
+    "accounting_note": "累计五次含已授权合入main的a2a及d8文档提交；d8..139实验差异实际为后三次。本审查不重新声称已复核a2a核心代码或重跑其806项测试。",
+    "committed_diff_files": [
+      "maintenance/tests/evidence/natural-writing-stability-r1/preregister.md",
+      "maintenance/tests/evidence/natural-writing-stability-r1/run.py",
+      "maintenance/tests/evidence/natural-writing-stability-r1/cases.json"
+    ],
+    "committed_product_diff": "EMPTY",
+    "working_tree_product_diff_at_check": "EMPTY",
+    "canonical_tree_in_both": "0f54a75891ea298f380a906b17d84803103231eb",
+    "packages_tree_in_both": "6a15c0dbb80542022864f55c5342078cda3b9a26",
+    "restoration": "R1报告条件前缀51-byte删除在ecf9恢复原blob；R2信息选择开头替换在139恢复原blob。canonical整树与packages整树均等于d8，覆盖SKILL、references、Hook及所有镜像；没有隐藏产品增量。",
+    "working_state_limit": "审查开始时requirements修改与raw归档未提交，主代理随后继续收口文档；不把它们说成已存在于冻结139。最终result/R2总裁定和归档验证另过文档门。"
+  },
+  "verified_evidence": {
+    "fixtures": "R1 baseline=a2a、candidate=d485；R2 candidate=ecf9，基线沿用R1。三个fixture的config均等于登记cases.json，run.py/cases的冻结SHA与维护副本字节一致。",
+    "writing_turns": 60,
+    "distinct_sessions": 12,
+    "r1_turns_and_sessions": [
+      40,
+      8
+    ],
+    "r2_new_turns_and_sessions": [
+      20,
+      4
+    ],
+    "real_resume_calls": 48,
+    "invocation_prompts": "60/60逐字等于各场景对应轮题面；没有点Skill、指定reference或注入规则；续写只发本轮增量。",
+    "lifecycle": "12个初始exec；48个exec resume的目标ID、source_session_id和trace thread.started全部相同，60个trace均有一次turn.completed。没有重复计入迁移基线的新调用。",
+    "integrity": "60份final与60份trace均匹配会话记录SHA；12份session均匹配summary SHA。所审记录均return_code=0、technical_failures为空。",
+    "binding": "60份argv的精确model及max配置匹配题面路线；12份model-binding回执均列对应模型、max、5个turn_context。底层私有store未读取，因此不能把其来源真实性表述为本审查独立验证。",
+    "configuration": "60份argv均见两处同名个人Skill文件路径enabled=false、对应runtime SKILL.md enabled=true及plugins/apps/memories=false、read-only sandbox。模型command_execution未见读取两处全局同名Skill；记录未见Hook污染标记。",
+    "host_boundary": "所有model-binding记录均注明宿主coding preferences存在；环境不是没有通用指令的环境。不由未观察到污染推导所有个人Skill或所有Hook已被彻底关闭。",
+    "read_load_boundary": "read_events可证明具体页面返回；loaded_bytes/输出字符数不能直接当完整模型输入token或减载收益。"
+  },
+  "candidate_adjudication": [
+    {
+      "round": "R1",
+      "decision": "REJECTED_NO_ATTRIBUTABLE_BENEFIT",
+      "atom": "报告叶第16行仅删除条件前缀17字/51 UTF-8 bytes。",
+      "exposure": "Alibaba候选报告D0 trace第8行实际返回删除后的风险句；MiniMax候选五版只见入口读取，未见目标报告叶。",
+      "quality_basis": "独立报告审查P1/P4均无确认硬问题；P2/P3仍有材料外职责/审核经过等具体风险。原审查及补充判读均保留，root-adjudication引用的7份审查/读取/绑定/summary哈希均匹配。",
+      "inference": "实际接触修改页的Alibaba对照没有观察到可用于准入的目标风险下降。MiniMax分组差异不能归于没有读到的句子；未改纪要页的波动也不证明报告叶作用。字数或7组到4组的差别不是准入依据。",
+      "restored_in": "ecf9e361c94b037dd5cb0ddc428bd288ed118be2"
+    },
+    {
+      "round": "R2",
+      "decision": "REJECTED_OBSERVED_CANDIDATE_ONLY_HARD_RISK",
+      "atom": "报告叶先恢复；仅替换information-selection第10行第一句，保留后续一般目的、进行态及主体继承边界。",
+      "exposure": "四个候选D0均成功返回新增句；M5对应纪要trace第15行返回完整分析/事实经过边界。",
+      "quality_basis": "M5的5份审查正文SHA均与Alibaba候选会话回执吻合。其D0/R2新增“信息部组织开展了预约系统操作演示”及“预约系统尚处于操作演示阶段”，固定基线没有这些断言；独立盲审明确为组织/介绍归属与整体阶段两组风险。它们在R3随用户删除整项消除，不能把末稿清除当原子已经有效。",
+      "inference": "读取已发生，但仍有预登记不允许的候选独有事实风险，足以停止候选；不声称单次A/B已证明该句统计上导致回退，也不以报告字数或错误组数的减少抵消纪要回退。",
+      "other_completed_review": "M6最后独立盲审已校验SHA a56c7be1db3caeefd0a12a279447cc10cc178375fbbc6323405f8fd23609a3a2；记录5组问题及末稿地点/交付问题。R2共20版已有对应独立报告；本次不重新增加裁判。",
+      "restored_in": "139e2f3f95e31a897a51d76a15fb885223e9e260"
+    }
+  ],
+  "natural_activation_retention": {
+    "case": "R1 Alibaba candidate meeting-minutes",
+    "evidence": "D0 trace第6/17行尝试agents/skills而非.agents/skills，返回Cannot find path；记录initial_skill_files_read为空，activation_observations保留missing_initial_successful_skill_read。",
+    "result": "该链仍完成五版并出现在40回合summary及盲审中，没有因为未读页而删除、重试或替样；未观察到成功读取隔离外Skill。",
+    "policy_boundary": "正常触发未读/路径尝试失败与成功读取隔离外资源必须区分；后者仍属于规格已有的隔离失败边界。"
+  },
+  "requirements_review": {
+    "path": "maintenance/specs/requirements.md:127",
+    "scope": "仅WR-020c工作树差异。",
+    "assessment": "新增自然题面、实际读页归因、正常完成但未激活/未交正文不丢样，与本轮事实一致；保留传输/会话绑定/隔离失败、同一真实resume、相关版本及D0/Hook终稿分开统计。没有把本轮失败原型写成完成能力，也未追加任意环境穷举验收。"
+  },
+  "nonblocking_limits": [
+    "preregister原“其他个人Skill关闭”和fixture hook_mode是过宽标签；主代理已接受并报告完成文档更正。原始fixture不回写，结论以实际argv/trace为准。本次未查所有全局配置，不补作完全隔离保证。",
+    "model-binding底层私有store按授权未读；已复核回执模型字段与所有实际argv相符，不声称额外完成原始store审计。",
+    "只覆盖两种正常任务、两条模型路线和各五版；R2迁移R1基线。没有用相关版本计算一般可靠率，也没有证明整体长期写作质量已提高。",
+    "R1盲审明确疑点与硬错不同：一般目的、合理分析、建议、透明算术不一概当新增事实；正文与完整回复篇幅分开。R2总裁定、最终result和归档文档验证由主代理另提交，不在冻结139的已提交范围内。"
+  ],
+  "light_ablation": "只使用已经完成的同题单原子对照：d8/a2对d485，再用同一冻结基线对ecf9；两候选各自恢复。未增加新样本或全量检查。",
+  "executed_checks": [
+    {
+      "command": "git log --format=oneline d8a942c3..139e2f3f",
+      "result": "3个实验提交；累计五次另包括a2a和d8。"
+    },
+    {
+      "command": "git diff --stat/--name-status d8a942c3 139e2f3f",
+      "result": "仅新增3个维护证据文件，217行。"
+    },
+    {
+      "command": "git diff d8a942c3 139e2f3f -- chinese-official-writing packages",
+      "result": "无输出；两棵产品Git tree相同。"
+    },
+    {
+      "command": "git diff 139e2f3f -- chinese-official-writing packages",
+      "result": "检查时无输出。"
+    },
+    {
+      "command": "git show d4859fb9 / ecf9e361 / 139e2f3f -- chinese-official-writing/references",
+      "result": "确认两个独立原子及逐项还原；无其他产品修改。"
+    },
+    {
+      "command": "python -（只读fixture、summary、model-binding、会话回执、invocation及必要trace/hash核对）",
+      "result": "60回合、48次resume、12会话，校验差异0；修改页曝光与未读保留策略和裁定一致。"
+    },
+    {
+      "command": "git diff --check",
+      "result": "exit 0，无输出。"
+    }
+  ],
+  "conclusion": "本次限定范围内无阻断项：两候选已拒绝并完全恢复，真实失败、未读行为和判读分歧保留。PASS_WITH_LIMITS仅确认这一收口事实与证据口径，不准入候选或宣称普遍质量提升。"
+}

@@ -1,0 +1,133 @@
+{
+  "scope": "Exact local CLI rollout metadata; raw session stores not archived",
+  "sessions": [
+    {
+      "session_id": "01a07151-cfa7-7342-952e-5a424f6bf487",
+      "scenario": "progress-report",
+      "arm": "baseline",
+      "provider": "alibaba2",
+      "observed_turn_models": [
+        "alibaba-token-plan-2/deepseek-v4-flash-0731"
+      ],
+      "observed_efforts": [
+        "max"
+      ],
+      "turn_context_count": 5,
+      "configured_host_coding_preferences_present": true,
+      "local_rollout_sha256": "b163461e22534d4226e54815db094cd11fc5e2f131f601a5867f5e4895c35beb",
+      "source_included": false
+    },
+    {
+      "session_id": "01a07151-cfd7-7ce3-9614-52e1adab70cc",
+      "scenario": "progress-report",
+      "arm": "baseline",
+      "provider": "minimax",
+      "observed_turn_models": [
+        "minimax-cn/MiniMax-M3"
+      ],
+      "observed_efforts": [
+        "max"
+      ],
+      "turn_context_count": 5,
+      "configured_host_coding_preferences_present": true,
+      "local_rollout_sha256": "97b13499af73955426770f5e278cb5ad772a64609a576c8fd56d559ce62c52aa",
+      "source_included": false
+    },
+    {
+      "session_id": "01a07156-34b2-7b43-8e36-3f66643a9063",
+      "scenario": "meeting-minutes",
+      "arm": "baseline",
+      "provider": "alibaba2",
+      "observed_turn_models": [
+        "alibaba-token-plan-2/deepseek-v4-flash-0731"
+      ],
+      "observed_efforts": [
+        "max"
+      ],
+      "turn_context_count": 5,
+      "configured_host_coding_preferences_present": true,
+      "local_rollout_sha256": "68525259a8070619f07723d5fc42bfeadaa4c18a04f148afc5cfdf5aa3c9bc4b",
+      "source_included": false
+    },
+    {
+      "session_id": "01a07157-d042-7a21-b393-e1bc1e289dcf",
+      "scenario": "meeting-minutes",
+      "arm": "baseline",
+      "provider": "minimax",
+      "observed_turn_models": [
+        "minimax-cn/MiniMax-M3"
+      ],
+      "observed_efforts": [
+        "max"
+      ],
+      "turn_context_count": 5,
+      "configured_host_coding_preferences_present": true,
+      "local_rollout_sha256": "c1c9ab1e6dbbe65d628150c220eac13d8f221374e0057153f5126d4a3874cbb9",
+      "source_included": false
+    },
+    {
+      "session_id": "01a07159-2a9d-78f0-bed5-9e5b83a7156a",
+      "scenario": "progress-report",
+      "arm": "candidate",
+      "provider": "minimax",
+      "observed_turn_models": [
+        "minimax-cn/MiniMax-M3"
+      ],
+      "observed_efforts": [
+        "max"
+      ],
+      "turn_context_count": 5,
+      "configured_host_coding_preferences_present": true,
+      "local_rollout_sha256": "a229a2bc1393424b638e1cc0d268241d915e04d62c0d6e2d830ae6a5267ae073",
+      "source_included": false
+    },
+    {
+      "session_id": "01a07159-2b03-7003-b486-2127458f496a",
+      "scenario": "progress-report",
+      "arm": "candidate",
+      "provider": "alibaba2",
+      "observed_turn_models": [
+        "alibaba-token-plan-2/deepseek-v4-flash-0731"
+      ],
+      "observed_efforts": [
+        "max"
+      ],
+      "turn_context_count": 5,
+      "configured_host_coding_preferences_present": true,
+      "local_rollout_sha256": "215ece454d90363863d6d1071fc5b3e90b27b726aba238b2540bff60685db9a9",
+      "source_included": false
+    },
+    {
+      "session_id": "01a0715b-4696-75b2-94cb-760e14000ce9",
+      "scenario": "meeting-minutes",
+      "arm": "candidate",
+      "provider": "minimax",
+      "observed_turn_models": [
+        "minimax-cn/MiniMax-M3"
+      ],
+      "observed_efforts": [
+        "max"
+      ],
+      "turn_context_count": 5,
+      "configured_host_coding_preferences_present": true,
+      "local_rollout_sha256": "04b8f1e3074344abb0c4ffea6240cf68f022366fc48b95ad0d5399219f8a43ce",
+      "source_included": false
+    },
+    {
+      "session_id": "01a0715c-9406-7ef2-85d1-bff2caae8a54",
+      "scenario": "meeting-minutes",
+      "arm": "candidate",
+      "provider": "alibaba2",
+      "observed_turn_models": [
+        "alibaba-token-plan-2/deepseek-v4-flash-0731"
+      ],
+      "observed_efforts": [
+        "max"
+      ],
+      "turn_context_count": 5,
+      "configured_host_coding_preferences_present": true,
+      "local_rollout_sha256": "2b2d287d310b66b00d9f63525525204c8f69c896e59ec7c82d40c635bfa72341",
+      "source_included": false
+    }
+  ]
+}
