@@ -1706,12 +1706,16 @@ def _handle_stop(event: dict[str, Any]) -> dict[str, Any]:
         if record.get("failure_reason") == "hook_selected_output_echo_budget_exhausted":
             return _unverified_delivery_stop()
         return _allow()
+    if record.get("bypass") == "user_requested" and not record.get("txn"):
+        try:
+            _redact_turn_data(record_path, record)
+        except RecordLockUnavailable:
+            # Explicit opt-out still applies when best-effort cleanup must wait.
+            pass
+        return _allow()
     if _skill_was_seen(record_path, record) and record.get("skill_seen") is not True:
         record["skill_seen"] = True
         _write_record(record_path, record)
-    if record.get("bypass") == "user_requested" and not record.get("txn"):
-        _redact_turn_data(record_path, record)
-        return _allow()
     delivery_cleanliness = _handle_delivery_cleanliness_capability(event, record_path, record)
     if delivery_cleanliness is not None:
         return _finish_stop_response(record_path, record, delivery_cleanliness)
