@@ -130,6 +130,241 @@ class GateStopHookTests(unittest.TestCase):
         self.assertEqual("failed_open_host_abort", record["hook_phase"])
         self._assert_gate_root_omits(request)
 
+    def test_host_abort_during_bootstrap_input_write_cleans_after_owner_exits(self):
+        request = "请起草包含内部编号HK008-CANCEL的情况报告。"
+        draft = "情况报告\n\n内部编号HK008-CANCEL已完成核验。"
+        self._record_prompt_and_skill_read(request)
+        record_path = HOOK._record_path(self._event("Stop"))
+        entered, resume = threading.Event(), threading.Event()
+        original_write = HOOK._atomic_write_text
+        results, errors = [], []
+
+        def paused_write(path, text):
+            if not entered.is_set():
+                entered.set()
+                if not resume.wait(5):
+                    raise RuntimeError("bootstrap test scheduler timed out")
+            return original_write(path, text)
+
+        def bootstrap():
+            try:
+                results.append(HOOK.handle(self._event("Stop", last_assistant_message=draft)))
+            except BaseException as exc:
+                errors.append(exc)
+
+        with mock.patch.object(HOOK, "_atomic_write_text", side_effect=paused_write), \
+                mock.patch.object(HOOK, "RECORD_LOCK_TIMEOUT_SECONDS", 0.03), \
+                mock.patch.object(HOOK, "_run_review_gate_subprocess", wraps=HOOK._run_review_gate_subprocess) as detect:
+            worker = threading.Thread(target=bootstrap)
+            worker.start()
+            self.assertTrue(entered.wait(5))
+            try:
+                response = HOOK.handle(self._event("HostAbort", abort_reason="turn_changed"))
+                self.assertEqual({"continue": True}, response)
+                self.assertTrue(HOOK._host_abort_marker_path(record_path).is_file())
+                self.assertNotEqual(HOOK.REDACTED_RECORD_STATE, HOOK._read_json(record_path).get("data_retention_state"))
+            finally:
+                resume.set()
+                worker.join(10)
+            self.assertFalse(worker.is_alive())
+            self.assertEqual([], errors)
+            detect.assert_not_called()
+        self.assertEqual([{"continue": True}], results)
+        record = HOOK._read_json(record_path)
+        self.assertEqual(HOOK.REDACTED_RECORD_STATE, record["data_retention_state"])
+        self.assertEqual("turn_changed", record["host_abort_reason"])
+        self.assertEqual(0, record["raw_artifact_delete_failures"])
+        self.assertFalse(HOOK._host_abort_marker_path(record_path).exists())
+        self._assert_gate_root_omits(request, draft, "HK008-CANCEL")
+
+    def test_host_abort_state_lock_failure_is_consumed_by_later_turn_event(self):
+        request = "请起草包含内部编号HK008-RETRY的情况报告。"
+        self._record_prompt_and_skill_read(request)
+        record_path = HOOK._record_path(self._event("HostAbort"))
+        other_turn = HOOK._record_path(self._event("Stop", turn_id="other-turn"))
+        HOOK._atomic_write(other_turn, {"request": "另一任务原文"})
+        with HOOK._record_lock(record_path), mock.patch.object(HOOK, "RECORD_LOCK_TIMEOUT_SECONDS", 0.03):
+            response = HOOK.handle(self._event("HostAbort", abort_reason="turn_changed"))
+        self.assertEqual({"continue": True}, response)
+        self.assertEqual(request, HOOK._read_json(record_path)["request"])
+        self.assertEqual("turn_changed", HOOK._pending_host_abort(record_path))
+        response = HOOK.handle(self._event("PostToolUse", tool_input={"cmd": "Get-Content late.txt"}, tool_response={"exit_code": 0}))
+        self.assertEqual({"continue": True}, response)
+        self.assertEqual(HOOK.REDACTED_RECORD_STATE, HOOK._read_json(record_path)["data_retention_state"])
+        self.assertFalse(HOOK._host_abort_marker_path(record_path).exists())
+        self.assertEqual({"request": "另一任务原文"}, HOOK._read_json(other_turn))
+        self._assert_gate_root_omits(request, "HK008-RETRY")
+
+    def test_host_abort_lock_io_error_recovers_on_stop_without_new_emit(self):
+        request = "请起草包含内部编号HK008-IO的情况报告。"
+        self._record_prompt_and_skill_read(request)
+        record_path = HOOK._record_path(self._event("HostAbort"))
+        with mock.patch.object(HOOK, "_acquire_file_lock", side_effect=OSError(errno.EIO, "lock I/O")):
+            response = HOOK.handle(self._event("HostAbort", abort_reason="host_ceiling"))
+        self.assertEqual({"continue": True}, response)
+        self.assertEqual(request, HOOK._read_json(record_path)["request"])
+        self.assertEqual("host_ceiling", HOOK._pending_host_abort(record_path))
+        with mock.patch.object(HOOK, "_run_review_gate_subprocess", wraps=HOOK._run_review_gate_subprocess) as gate:
+            response = HOOK.handle(self._event("Stop", last_assistant_message="情况报告\n\n内部编号HK008-IO。"))
+            gate.assert_not_called()
+        self.assertEqual({"continue": True}, response)
+        self.assertEqual(HOOK.REDACTED_RECORD_STATE, HOOK._read_json(record_path)["data_retention_state"])
+        self._assert_gate_root_omits(request, "HK008-IO")
+
+    def test_redacted_stop_retries_exact_late_bootstrap_paths(self):
+        self._record_prompt_and_skill_read("请起草内部编号HK008-ORPHAN的情况报告。")
+        HOOK.handle(self._event("Stop", last_assistant_message="情况报告\n\n内部编号HK008-ORPHAN。"))
+        HOOK.handle(self._event("HostAbort", abort_reason="turn_changed"))
+        record_path = HOOK._record_path(self._event("Stop"))
+        self.assertTrue(HOOK._read_json(record_path)["bootstrap_artifacts"])
+        txn = HOOK._data_root() / "transactions" / record_path.parent.name / record_path.stem
+        inputs = txn.parent / f"{txn.name}-inputs"
+        txn.mkdir(parents=True)
+        inputs.mkdir()
+        (txn / "late.txt").write_text("HK008-ORPHAN原文", encoding="utf-8")
+        (inputs / "draft.txt").write_text("HK008-ORPHAN原稿", encoding="utf-8")
+        other = txn.parent / "other-turn-inputs"
+        other.mkdir()
+        (other / "draft.txt").write_text("其他任务原稿", encoding="utf-8")
+        response = HOOK.handle(self._event("Stop", last_assistant_message="HK008-ORPHAN原稿"))
+        self.assertEqual({"continue": True}, response)
+        self.assertFalse(txn.exists())
+        self.assertFalse(inputs.exists())
+        self.assertEqual("其他任务原稿", (other / "draft.txt").read_text(encoding="utf-8"))
+        self._assert_gate_root_omits("HK008-ORPHAN")
+
+    def test_late_host_abort_and_stop_preserve_unverified_terminal(self):
+        record_path = HOOK._record_path(self._event("Stop"))
+        record = {
+            "hook_phase": "failed_bounded",
+            "failure_reason": "hook_selected_output_echo_budget_exhausted",
+            "delivery_verified": False,
+        }
+        HOOK._atomic_write(record_path, record)
+        self.assertFalse(HOOK.handle(self._event("HostAbort", abort_reason="turn_changed"))["continue"])
+        self.assertEqual("failed_bounded", HOOK._read_json(record_path)["hook_phase"])
+        before = record_path.read_bytes()
+        for event in (
+            self._event("HostAbort", abort_reason="turn_changed"),
+            self._event("Stop"),
+            self._event("Stop"),
+        ):
+            self.assertFalse(HOOK.handle(event)["continue"])
+            self.assertEqual(before, record_path.read_bytes())
+
+    def test_redacted_failure_receipt_survives_stop_or_abort_refresh_error(self):
+        for trigger in ("Stop", "HostAbort"):
+            with self.subTest(trigger=trigger):
+                event = self._event(trigger, turn_id=f"refresh-{trigger}", abort_reason="turn_changed")
+                record_path = HOOK._record_path(event)
+                HOOK._atomic_write(record_path, {
+                    "data_retention_state": HOOK.REDACTED_RECORD_STATE,
+                    "raw_artifact_delete_failures": 0,
+                    "hook_phase": "failed_bounded",
+                    "failure_reason": "hook_selected_output_echo_budget_exhausted",
+                    "delivery_verified": False,
+                })
+                before = record_path.read_bytes()
+                with mock.patch.object(HOOK.os, "replace", side_effect=OSError("one receipt refresh failure")):
+                    self.assertFalse(HOOK.handle(event)["continue"])
+                self.assertEqual(before, record_path.read_bytes())
+                self.assertFalse(HOOK.handle({**event, "hook_event_name": "Stop"})["continue"])
+                self.assertEqual(before, record_path.read_bytes())
+
+    def test_unbootstrapped_abort_does_not_own_neighbor_turn_transaction(self):
+        draft = "情况报告\n\n测试工作已完成。"
+        self._record_prompt_and_skill_read(turn_id="t-inputs")
+        first = HOOK.handle(self._event("Stop", turn_id="t-inputs", last_assistant_message=draft))
+        self.assertEqual("block", first["decision"])
+        other_record_path = HOOK._record_path(self._event("Stop", turn_id="t-inputs"))
+        other_record = HOOK._read_json(other_record_path)
+        txn = Path(other_record["txn"])
+        before = {path.relative_to(txn): path.read_bytes() for path in txn.rglob("*") if path.is_file()}
+        self._record_prompt_and_skill_read(turn_id="t")
+        response = HOOK.handle(self._event("HostAbort", turn_id="t", abort_reason="turn_changed"))
+        self.assertEqual({"continue": True}, response)
+        self.assertEqual(before, {path.relative_to(txn): path.read_bytes() for path in txn.rglob("*") if path.is_file()})
+        cancelled = HOOK._read_json(HOOK._record_path(self._event("Stop", turn_id="t")))
+        self.assertNotIn("bootstrap_artifacts", cancelled)
+        final = HOOK.handle(self._event("Stop", turn_id="t-inputs", last_assistant_message=other_record["emitted_output"]))
+        self.assertEqual({"continue": True}, final)
+        self.assertTrue(HOOK._read_json(other_record_path)["delivery_verified"])
+
+    def test_bootstrap_finally_keeps_original_exception_when_cleanup_lock_fails(self):
+        self._record_prompt_and_skill_read()
+        event = self._event("Stop", last_assistant_message="情况报告\n\n测试工作已完成。")
+        record_path = HOOK._record_path(event)
+        record = HOOK._read_json(record_path)
+
+        def failed_bootstrap(*args):
+            HOOK._mark_host_abort(record_path, "turn_changed")
+            raise RuntimeError("original producer failure")
+
+        with mock.patch.object(HOOK, "_bootstrap_transaction_locked", side_effect=failed_bootstrap), \
+                mock.patch.object(HOOK, "_redact_turn_data", side_effect=HOOK.RecordLockUnavailable("still locked")):
+            with self.assertRaisesRegex(RuntimeError, "original producer failure"):
+                HOOK._bootstrap_transaction(event, record_path, record)
+        self.assertEqual("turn_changed", HOOK._pending_host_abort(record_path))
+        self.assertNotEqual(HOOK.REDACTED_RECORD_STATE, HOOK._read_json(record_path).get("data_retention_state"))
+        lock = HOOK._acquire_bootstrap_lock(record_path)
+        self.assertIsNotNone(lock)
+        HOOK._release_bootstrap_lock(*lock)
+
+    def test_bootstrap_finally_pending_cleanup_cannot_emit(self):
+        self._record_prompt_and_skill_read()
+        event = self._event("Stop", last_assistant_message="情况报告\n\n测试工作已完成。")
+        record_path = HOOK._record_path(event)
+
+        def completed_bootstrap(*args):
+            HOOK._mark_host_abort(record_path, "turn_changed")
+            return {"state": "TERMINAL_D0", "run_id": "synthetic-cleanup-control"}
+
+        with mock.patch.object(HOOK, "_bootstrap_transaction_locked", side_effect=completed_bootstrap), \
+                mock.patch.object(HOOK, "_redact_turn_data", side_effect=HOOK.RecordLockUnavailable("still locked")), \
+                mock.patch.object(HOOK, "_run_review_gate_subprocess") as gate:
+            response = HOOK.handle(event)
+        self.assertFalse(response["continue"])
+        gate.assert_not_called()
+        self.assertEqual("turn_changed", HOOK._pending_host_abort(record_path))
+        self.assertNotEqual(HOOK.REDACTED_RECORD_STATE, HOOK._read_json(record_path).get("data_retention_state"))
+        self.assertEqual({"continue": True}, HOOK.handle(event))
+        self.assertEqual(HOOK.REDACTED_RECORD_STATE, HOOK._read_json(record_path)["data_retention_state"])
+
+    def test_abort_delete_failure_receipt_and_marker_retry_truthfully(self):
+        self._record_prompt_and_skill_read("请起草内部编号HK008-DELETE的情况报告。")
+        HOOK.handle(self._event("Stop", last_assistant_message="情况报告\n\n内部编号HK008-DELETE。"))
+        record_path = HOOK._record_path(self._event("Stop"))
+        self.assertTrue(HOOK._read_json(record_path)["bootstrap_artifacts"])
+        inputs = HOOK._data_root() / "transactions" / record_path.parent.name / f"{record_path.stem}-inputs"
+        with mock.patch.object(HOOK, "_remove_turn_artifact", return_value=False):
+            response = HOOK.handle(self._event("HostAbort", abort_reason="turn_changed"))
+        self.assertEqual({"continue": True}, response)
+        record = HOOK._read_json(record_path)
+        self.assertEqual(HOOK.REDACTED_RECORD_STATE, record["data_retention_state"])
+        self.assertEqual(2, record["raw_artifact_delete_failures"])
+        self.assertNotIn("request", record)
+        self.assertTrue(inputs.is_dir())
+        self.assertEqual("turn_changed", HOOK._pending_host_abort(record_path))
+        HOOK.handle(self._event("Stop"))
+        self.assertFalse(inputs.exists())
+        self.assertEqual(0, HOOK._read_json(record_path)["raw_artifact_delete_failures"])
+        self.assertFalse(HOOK._host_abort_marker_path(record_path).exists())
+        self._assert_gate_root_omits("HK008-DELETE")
+
+    def test_cleanup_cannot_unlink_a_held_bootstrap_lock(self):
+        record_path = HOOK._record_path(self._event("Stop"))
+        lock = HOOK._acquire_bootstrap_lock(record_path)
+        self.assertIsNotNone(lock)
+        try:
+            HOOK._cleanup_bootstrap_lock_file(record_path)
+            self.assertTrue(HOOK._bootstrap_lock_path(record_path).exists())
+            self.assertIsNone(HOOK._acquire_bootstrap_lock(record_path))
+        finally:
+            HOOK._release_bootstrap_lock(*lock)
+        recovered = HOOK._acquire_bootstrap_lock(record_path)
+        self.assertIsNotNone(recovered)
+        HOOK._release_bootstrap_lock(*recovered)
+
     def test_co_located_skill_root_is_recognized_for_flat_packages(self):
         skill = MODULE_PATH.parents[1] / "SKILL.md"
         self.assertTrue(HOOK._reads_this_skill(f'Get-Content "{skill}"'))

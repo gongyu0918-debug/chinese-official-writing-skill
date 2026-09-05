@@ -51,6 +51,7 @@ const messages = [
 ]
 const prompts = []
 const logs = []
+const toasts = []
 let releaseDispatch = null
 const dispatchBarrier = mode === "dispatch-reload"
   ? new Promise((resolve) => {
@@ -79,6 +80,12 @@ function assertRawRedacted() {
 }
 
 const client = {
+  tui: {
+    showToast: async (request) => {
+      if (mode === "hard-stop-no-notice") throw new Error("TUI unavailable")
+      toasts.push(request)
+    },
+  },
   app: {
     log: async (request) => {
       logs.push(request)
@@ -106,6 +113,17 @@ const client = {
 
 const hook = await ChineseOfficialWritingGate({ client, directory: companionRoot })
 await hook.event({ event: { type: "session.idle", properties: { sessionID: "session-1" } } })
+
+if (mode.startsWith("hard-stop")) {
+  await hook.event({ event: { type: "session.idle", properties: { sessionID: "session-1" } } })
+  const restarted = await import(`${pluginURL.href}?hard-stop-replay=1`)
+  await (await restarted.ChineseOfficialWritingGate({ client, directory: companionRoot })).event({
+    event: { type: "session.idle", properties: { sessionID: "session-1" } },
+  })
+  await new Promise((resolve) => setTimeout(resolve, 50))
+  console.log(JSON.stringify({ prompts: prompts.length, logs, toasts }))
+  process.exit(0)
+}
 
 if (mode === "stale-skill") {
   if (prompts.length !== 0) throw new Error("a same-name external skill armed the project gate")

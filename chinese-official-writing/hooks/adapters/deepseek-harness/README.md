@@ -24,3 +24,5 @@ opencodex export --client dsh --out <new-settings-yaml>
 默认数据父目录是 `$DSH_HOME/plugin-data/chinese-official-writing-gate`；只有绝对路径环境变量 `COW_DSH_GATE_DATA` 才会覆盖它。共享核心在其下创建 `candidate-ai-gate-hook`，终态删除正文、请求和事务文件，只保留 hash/阶段回执；异常退出仍可能留下当前未完成事务，需先停用 companion，再只清理这个精确数据子目录。
 
 组装时必须明确能力：默认 `delivery_review`；还可静态选择 `protective_expansion`、`under_length`、`over_length`、`delivery_cleanliness`、`repetition_cleanup`。当前在线证据只覆盖 Windows、DSH 0.1.1-rc.2、headless profile 和 `delivery_review` 多 Stop 闭环；TUI、Web 及其他 capability 不据此宣称在线通过。Python/core 不可用或超过宿主 Stop 上限时，adapter 优先逐字回退本轮 D0。
+
+core 独立硬停或回退 D0 仍回显错误时，adapter 用 `agent.cancel({kind:'hook', reason}, {keepInbox:true})` 停止当前回合并保留待处理用户队列，不将其记为校验通过。取消已通过本机 0.1.1-rc.2 AgentLoop 与固定正文 MockAdapter 的无网络验证；当前原生 CLI 尚未重跑，已显示正文也不能撤回。

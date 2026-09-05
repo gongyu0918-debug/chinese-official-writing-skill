@@ -19,6 +19,8 @@ Kimi 会把非空的 UserPromptSubmit Hook 标准输出注入模型上下文，�
 
 Kimi 每回合最多接受一次会让模型续写的 Stop block；这一宿主限制低于 Codex、Claude、CodeBuddy、Qwen 和 ZCode 的重复 Stop 能力。adapter 会完整接入首次 D0 与共享核心，但需要多次 Stop 的修订、语义复核和最终回显不能据此宣称闭环。组装器仍提供全部静态能力选择，启用前应以当前版本真实生命周期确认目标能力；无法确认时使用普通 Skill。
 
+当前命令 Hook 协议只有放行和要求续写的阻断，没有已核实的独立硬停接口；adapter 仍会把 core 的 `continue:false` 放行。失败回显需人工核对；可停用 companion，继续使用普通 Skill。
+
 组装时必须明确能力：默认 `delivery_review`；其余可选值为 `protective_expansion`、`under_length`、`over_length`、`delivery_cleanliness`、`repetition_cleanup`。每次只选一项，选择结果写入 plugin 根 `hook-capability.json`。当前静态命令与在线证据使用 Windows `py -3`；其他平台未完成在线验证。
 
 启用后的 Hook 在 `KIMI_CODE_HOME/plugin-data/chinese-official-writing-gate` 暂存当前门禁状态，核心到达终态时按统一规则脱敏；它不主动联网。

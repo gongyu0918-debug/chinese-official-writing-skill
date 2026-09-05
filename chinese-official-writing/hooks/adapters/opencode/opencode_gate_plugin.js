@@ -319,6 +319,26 @@ async function log(client, level, message, extra = {}) {
   }
 }
 
+async function reportHardStop(client, response, extra) {
+  const message = [response?.stopReason, response?.systemMessage].find(
+    (value) => typeof value === "string" && value.trim(),
+  ) || "交付门禁已停止自动交付。"
+  await log(client, "error", "shared gate stopped without verified delivery", {
+    ...extra,
+    decision: "halt",
+    stopReason: message,
+    deliveryVerified: false,
+  })
+  try {
+    await client.tui.showToast({
+      body: { title: "终稿未验证", message, variant: "error", duration: 10000 },
+      throwOnError: true,
+    })
+  } catch {
+    await log(client, "error", "delivery failure notification unavailable")
+  }
+}
+
 function isHeadlessRun() {
   return process.argv.slice(2).some((value) => value === "run")
 }
@@ -375,6 +395,16 @@ async function handleIdle({ client, directory, event }) {
   if (hasTerminalReceipt(sessionID, turnID)) {
     clearAdapterState(sessionID, turnID)
     state.terminal = true
+    const terminal = runCore({
+      ...common,
+      hook_event_name: "Stop",
+      stop_hook_active: continuationCount > 0,
+      last_assistant_message: assistant.text,
+    }, selectedCapability, directory)
+    if (!terminal || terminal.continue === false) {
+      await reportHardStop(client, terminal, { sessionID, turnID, capability: selectedCapability, continuationCount })
+      return
+    }
     await log(client, "info", "terminal receipt already exists; skipping a replayed idle", {
       capability: selectedCapability,
       continuationCount,
@@ -493,6 +523,12 @@ async function handleIdle({ client, directory, event }) {
     abortTurn(common, selectedCapability, directory, "adapter_failure", processedKey)
     state.terminal = true
     await log(client, "error", "shared gate call failed; leaving the current draft unchanged")
+    return
+  }
+  if (response.continue === false) {
+    clearAdapterState(sessionID, turnID, processedKey)
+    state.terminal = true
+    await reportHardStop(client, response, { sessionID, turnID, capability: selectedCapability, continuationCount })
     return
   }
   if (response.decision !== "block" || typeof response.reason !== "string") {

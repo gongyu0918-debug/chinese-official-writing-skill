@@ -4,6 +4,7 @@ import { pathToFileURL } from 'node:url'
 
 const companion = resolve(process.argv[2])
 const gateData = resolve(process.argv[3])
+const mode = process.argv[4] || 'normal'
 process.env.COW_DSH_GATE_DATA = gateData
 
 const plugin = await import(pathToFileURL(join(companion, 'index.mjs')).href)
@@ -40,10 +41,15 @@ function message(text, source = { kind: 'user' }) {
 
 function agent(id) {
   const steers = []
+  const cancels = []
+  const cancelOptions = []
   return {
     session: { header: { id, cwd: companion }, events: [] },
     steers,
+    cancels,
+    cancelOptions,
     steer(value) { steers.push(value) },
+    cancel(cause, options) { cancels.push(cause); cancelOptions.push(options) },
   }
 }
 
@@ -96,6 +102,29 @@ async function stop(target, turn) {
 }
 
 const d0 = '情况报告\n\n测试工作已完成。'
+if (mode !== 'normal') {
+  const target = agent('session-halt-protocol')
+  await start(target, 1, '请起草一份情况报告。')
+  assistant(target, 1, d0)
+  if (mode === 'late-halt') {
+    const pending = stop(target, 1)
+    await start(target, 2, '另一用户请求')
+    await pending
+  } else {
+    await stop(target, 1)
+  }
+  if (mode.startsWith('fallback-')) {
+    assistant(target, 1, '错误修订稿')
+    await stop(target, 1)
+    assistant(target, 1, mode === 'fallback-exact' ? d0 : '错误回显稿')
+    await stop(target, 1)
+  }
+  await stop(target, 1)
+  const receipts = await readFile(join(gateData, 'dsh-adapter-receipts.jsonl'), 'utf8')
+    .then(text => text.trim().split('\n').map(JSON.parse)).catch(() => [])
+  console.log(JSON.stringify({ steers: target.steers.length, cancels: target.cancels, cancelOptions: target.cancelOptions, receipts }))
+  process.exit(0)
+}
 const live = agent('session-smoke-live')
 await start(live, 1, '请使用 chinese-official-writing 技能起草一份情况报告。')
 await loadSkill(live)
