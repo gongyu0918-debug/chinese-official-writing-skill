@@ -13,6 +13,7 @@ verifies the final output hash, and redacts raw turn data after terminal Stop.
 from __future__ import annotations
 
 import errno
+from contextlib import contextmanager
 from contextvars import ContextVar
 import hashlib
 import importlib.util
@@ -36,6 +37,8 @@ STATE_SCHEMA_VERSION = 1
 SAFE_KEY_MAX_LENGTH = 120
 GATE_SUBPROCESS_TIMEOUT_SECONDS = 20
 STOP_SUBPROCESS_BUDGET_SECONDS = 25.0
+RECORD_LOCK_TIMEOUT_SECONDS = 2.0
+RECORD_LOCK_POLL_SECONDS = 0.01
 _STOP_GATE_DEADLINE: ContextVar[float | None] = ContextVar(
     "official_writing_stop_gate_deadline", default=None
 )
@@ -248,7 +251,10 @@ def _bootstrap_lock_path(record_path: Path) -> Path:
 
 
 def _acquire_bootstrap_lock(record_path: Path) -> tuple[Path, Any] | None:
-    lock_path = _bootstrap_lock_path(record_path)
+    return _acquire_file_lock(_bootstrap_lock_path(record_path))
+
+
+def _acquire_file_lock(lock_path: Path) -> tuple[Path, Any] | None:
     lock_path.parent.mkdir(parents=True, exist_ok=True)
     try:
         handle = lock_path.open("a+b")
@@ -332,7 +338,50 @@ def _cleanup_bootstrap_lock_file(record_path: Path) -> None:
         pass
 
 
+class RecordLockUnavailable(RuntimeError):
+    """The current turn cannot commit or clean its state within the event budget."""
+
+
+@contextmanager
+def _record_lock(record_path: Path):
+    # Keep the inode stable; terminal records and this one-byte lock contain no body.
+    deadline = time.monotonic() + RECORD_LOCK_TIMEOUT_SECONDS
+    while True:
+        try:
+            lock = _acquire_file_lock(record_path.with_suffix(".state-lock"))
+        except OSError as exc:
+            raise RecordLockUnavailable("turn record lock unavailable") from exc
+        if lock is not None:
+            break
+        if time.monotonic() >= deadline:
+            raise RecordLockUnavailable("turn record lock unavailable")
+        time.sleep(RECORD_LOCK_POLL_SECONDS)
+    try:
+        yield
+    finally:
+        _release_bootstrap_lock(*lock)
+
+
+def _write_record(record_path: Path, record: dict[str, Any]) -> bool:
+    with _record_lock(record_path):
+        current = _read_json(record_path)
+        if current and _record_is_terminal(current):
+            record.clear()
+            record.update(current)
+            return False
+        _atomic_write(record_path, record)
+        return True
+
+
 def _mark_skill_seen(record_path: Path) -> None:
+    with _record_lock(record_path):
+        current = _read_json(record_path)
+        if current and _record_is_terminal(current):
+            return
+        _mark_skill_seen_locked(record_path)
+
+
+def _mark_skill_seen_locked(record_path: Path) -> None:
     marker = _skill_seen_marker_path(record_path)
     marker.parent.mkdir(parents=True, exist_ok=True)
     try:
@@ -448,6 +497,16 @@ def _remove_turn_artifact(path: Path, data_root: Path) -> bool:
 
 
 def _redact_turn_data(record_path: Path, record: dict[str, Any]) -> None:
+    with _record_lock(record_path):
+        current = _read_json(record_path)
+        if current and current.get("data_retention_state") == REDACTED_RECORD_STATE:
+            record.clear()
+            record.update(current)
+            return
+        _redact_turn_data_locked(record_path, record)
+
+
+def _redact_turn_data_locked(record_path: Path, record: dict[str, Any]) -> None:
     data_root = _data_root()
     if data_root is None:
         return
@@ -497,6 +556,10 @@ def _redact_turn_data(record_path: Path, record: dict[str, Any]) -> None:
 def _finish_stop_response(
     record_path: Path, record: dict[str, Any], response: dict[str, Any]
 ) -> dict[str, Any]:
+    if record.get("failure_reason") == "hook_selected_output_echo_budget_exhausted":
+        return _unverified_delivery_stop()
+    if record.get("data_retention_state") == REDACTED_RECORD_STATE:
+        return _allow()
     if response.get("continue") is True and _record_is_terminal(record):
         _redact_turn_data(record_path, record)
     return response
@@ -605,6 +668,11 @@ def _continue_once(message: str) -> dict[str, Any]:
 
 def _sha256_text(value: str) -> str:
     return hashlib.sha256(value.encode("utf-8")).hexdigest()
+
+
+def _unverified_delivery_stop() -> dict[str, Any]:
+    message = "终稿回显校验未通过，已停止自动重试。"
+    return {"continue": False, "stopReason": message, "systemMessage": message}
 
 
 def _load_protective_runtime():
@@ -757,11 +825,11 @@ def _protective_runtime_failure(
     if record.get("protective_phase") == "runtime_failure_fallback" and isinstance(delivered, str) and _sha256_text(delivered) == record.get("protective_original_sha256"):
         record["protective_phase"] = "complete"
         record["protective_delivery_verified"] = True
-        _atomic_write(record_path, record)
+        _write_record(record_path, record)
         return _allow()
     record["protective_phase"] = "runtime_failure_fallback"
     record["protective_delivery_verified"] = False
-    _atomic_write(record_path, record)
+    _write_record(record_path, record)
     return _continue_once("纯删除模块不可用，已回退原始完整稿。请逐字输出下列正文，不要调用工具、不要加说明：\n" + original)
 
 
@@ -826,14 +894,14 @@ def _handle_under_length_capability(
             "original_sha256": _sha256_text(original),
             "delivery_verified": False,
         }
-        _atomic_write(record_path, record)
+        _write_record(record_path, record)
         return _continue_once(
             "篇幅复核模块不可用，已回退原始稿。请逐字输出下列 D0，不要调用工具、不要加说明：\n"
             + original
         )
     if active:
         response = runtime.advance(event, record)
-        _atomic_write(record_path, record)
+        _write_record(record_path, record)
         return response
     eligible = (
         record.get("bypass") != "user_requested"
@@ -852,7 +920,7 @@ def _handle_under_length_capability(
     before = dict(record)
     response = runtime.start(event, record, review_gate)
     if response is not None or record != before:
-        _atomic_write(record_path, record)
+        _write_record(record_path, record)
     return response
 
 
@@ -870,7 +938,7 @@ def _handle_over_length_capability(
         return _over_length_runtime_failure(event, record_path, record)
     if active:
         response = runtime.advance(event, record)
-        _atomic_write(record_path, record)
+        _write_record(record_path, record)
         return response
     eligible = (
         record.get("bypass") != "user_requested"
@@ -885,7 +953,7 @@ def _handle_over_length_capability(
         return None
     response = runtime.start(event, record)
     if response is not None:
-        _atomic_write(record_path, record)
+        _write_record(record_path, record)
     return response
 
 
@@ -906,7 +974,7 @@ def _over_length_runtime_failure(
         if isinstance(delivered, str) and _sha256_text(delivered) == original_sha256:
             state["phase"] = "over_length_complete"
             state["audit"]["delivery_verified"] = True
-            _atomic_write(record_path, record)
+            _write_record(record_path, record)
             return _allow()
         attempts = int(state.get("runtime_failure_reprompts") or 0)
         if attempts >= OVER_LENGTH_RUNTIME_FAILURE_REPROMPTS:
@@ -917,7 +985,7 @@ def _over_length_runtime_failure(
                     "delivery_verified": False,
                 }
             )
-            _atomic_write(record_path, record)
+            _write_record(record_path, record)
             return _allow()
         state["runtime_failure_reprompts"] = attempts + 1
     else:
@@ -932,7 +1000,7 @@ def _over_length_runtime_failure(
             "delivery_sha256": original_sha256,
             "delivery_verified": False,
         }
-    _atomic_write(record_path, record)
+    _write_record(record_path, record)
     return _continue_once(
         "篇幅收束模块不可用，已回退原始稿。请逐字输出下列 D0，不要调用工具、不要加说明：\n"
         + original
@@ -967,14 +1035,14 @@ def _handle_delivery_cleanliness_capability(
             "original_sha256": _sha256_text(original),
             "delivery_verified": False,
         }
-        _atomic_write(record_path, record)
+        _write_record(record_path, record)
         return _continue_once(
             "交付洁净度模块不可用，已回退原始稿。请逐字输出下列 D0，不要调用工具、不要加说明：\n"
             + original
         )
     if active:
         response = runtime.advance(event, record)
-        _atomic_write(record_path, record)
+        _write_record(record_path, record)
         return response
     eligible = (
         record.get("bypass") != "user_requested"
@@ -989,7 +1057,7 @@ def _handle_delivery_cleanliness_capability(
         return None
     response = runtime.start(event, record)
     if response is not None:
-        _atomic_write(record_path, record)
+        _write_record(record_path, record)
     return response
 
 
@@ -1161,7 +1229,7 @@ def _emit_and_request_exact_output(
                 "delivery_verified": False,
             }
         )
-        _atomic_write(record_path, record)
+        _write_record(record_path, record)
         _redact_turn_data(record_path, record)
         return _continue_once(
             "交付门禁无法恢复可信初稿，已停止自动交付。请只告知用户关闭本任务 Hook 后重新请求原稿，"
@@ -1176,7 +1244,7 @@ def _emit_and_request_exact_output(
             "emitted_output": output,
         }
     )
-    _atomic_write(record_path, record)
+    _write_record(record_path, record)
     return _continue_once(
         "交付门禁已由 Hook 完成 emit。请将下列终稿逐字作为整条最终回复，不要调用工具、不要加说明：\n"
         + output
@@ -1232,6 +1300,8 @@ def handle_user_prompt(event: dict[str, Any]) -> dict[str, Any]:
     if record_path is None or not isinstance(prompt, str) or not prompt.strip():
         return _allow()
     existing = _read_json(record_path) or {}
+    if _record_is_terminal(existing):
+        return _allow()
     if not isinstance(existing.get("request"), str):
         existing.update(
             {
@@ -1243,7 +1313,7 @@ def handle_user_prompt(event: dict[str, Any]) -> dict[str, Any]:
                 "stop_attempts": int(existing.get("stop_attempts") or 0),
             }
         )
-        _atomic_write(record_path, existing)
+        _write_record(record_path, existing)
     return _allow()
 
 
@@ -1274,7 +1344,7 @@ def handle_post_tool(event: dict[str, Any]) -> dict[str, Any]:
     if record_path is None:
         return _allow()
     existing = _read_json(record_path) or {}
-    if existing.get("bypass") == "user_requested":
+    if _record_is_terminal(existing) or existing.get("bypass") == "user_requested":
         return _allow()
     if _reads_this_skill(command):
         _mark_skill_seen(record_path)
@@ -1286,7 +1356,7 @@ def handle_post_tool(event: dict[str, Any]) -> dict[str, Any]:
                 "stop_attempts": int(existing.get("stop_attempts") or 0),
             }
         )
-        _atomic_write(record_path, existing)
+        _write_record(record_path, existing)
     elif command:
         skill_seen = _skill_was_seen(record_path, existing)
         existing.update(
@@ -1297,7 +1367,7 @@ def handle_post_tool(event: dict[str, Any]) -> dict[str, Any]:
         )
         if skill_seen:
             existing["skill_seen"] = True
-        _atomic_write(record_path, existing)
+        _write_record(record_path, existing)
     if parsed is None:
         return _allow()
     action, txn = parsed
@@ -1315,7 +1385,7 @@ def handle_post_tool(event: dict[str, Any]) -> dict[str, Any]:
             "stop_attempts": int(existing.get("stop_attempts") or 0),
         }
     )
-    _atomic_write(record_path, existing)
+    _write_record(record_path, existing)
     return _allow()
 
 
@@ -1385,7 +1455,7 @@ def _bootstrap_transaction_locked(
             "bootstrap_pending": True,
         }
     )
-    _atomic_write(record_path, record)
+    _write_record(record_path, record)
     try:
         _atomic_write_text(request_path, request)
         _atomic_write_text(draft_path, draft_for_gate)
@@ -1426,7 +1496,7 @@ def _bootstrap_transaction_locked(
     )
     record.clear()
     record.update(latest)
-    _atomic_write(record_path, record)
+    _write_record(record_path, record)
     return state
 
 
@@ -1484,16 +1554,16 @@ def _handle_selected_output_echo(
             record["delivery_verified"] = True
             record["hook_phase"] = "complete"
             record.pop("emitted_output", None)
-            _atomic_write(record_path, record)
+            _write_record(record_path, record)
             return _allow()
         if attempts >= MAX_STOP_ATTEMPTS:
             record["delivery_verified"] = False
             record["hook_phase"] = "failed_bounded"
-            record.pop("emitted_output", None)
-            _atomic_write(record_path, record)
-            return _allow()
+            record["failure_reason"] = "hook_selected_output_echo_budget_exhausted"
+            _redact_turn_data(record_path, record)
+            return _unverified_delivery_stop()
         record["stop_attempts"] = attempts + 1
-        _atomic_write(record_path, record)
+        _write_record(record_path, record)
         return _continue_once(
             "终稿回显与 emit 哈希不一致。请只逐字输出下列已选终稿，不要调用工具、不要加说明：\n"
             + str(record.get("emitted_output") or "")
@@ -1525,7 +1595,7 @@ def _consume_repair_response(
                 record["hook_phase"] = "awaiting_verdict"
                 record["last_action"] = "prepare"
                 record["stop_attempts"] = attempts + 1
-                _atomic_write(record_path, record)
+                _write_record(record_path, record)
                 return state, _continue_once(instruction)
             state = _abort(txn, "hook_verdict_packet_missing") or state
     return state, None
@@ -1582,14 +1652,14 @@ def _dispatch_ordinary_state(
         ):
             record["hook_phase"] = "failed_bounded"
             record["delivery_verified"] = False
-            _atomic_write(record_path, record)
+            _write_record(record_path, record)
             return _allow()
         if attempts >= MAX_STOP_ATTEMPTS:
             return _fail_bounded_and_redact(
                 record_path, record, "hook_terminal_delivery_budget_exhausted"
             )
         record["stop_attempts"] = attempts + 1
-        _atomic_write(record_path, record)
+        _write_record(record_path, record)
         return _emit_and_request_exact_output(txn, record_path, record)
 
     if state_name == STATE_AWAITING_REPAIR:
@@ -1610,7 +1680,7 @@ def _dispatch_ordinary_state(
             )
         record["hook_phase"] = "awaiting_repair"
         record["stop_attempts"] = attempts + 1
-        _atomic_write(record_path, record)
+        _write_record(record_path, record)
         return _continue_once(instruction)
 
     if attempts >= MAX_STOP_ATTEMPTS:
@@ -1621,7 +1691,7 @@ def _dispatch_ordinary_state(
             record_path, record, "hook_unknown_state_abort_failed"
         )
     record["stop_attempts"] = attempts + 1
-    _atomic_write(record_path, record)
+    _write_record(record_path, record)
     return _continue_once("交付门禁正在收口，请只继续当前有限状态，不要重新起草。")
 
 
@@ -1633,10 +1703,12 @@ def _handle_stop(event: dict[str, Any]) -> dict[str, Any]:
     if record is None:
         return _allow()
     if record.get("data_retention_state") == REDACTED_RECORD_STATE:
+        if record.get("failure_reason") == "hook_selected_output_echo_budget_exhausted":
+            return _unverified_delivery_stop()
         return _allow()
     if _skill_was_seen(record_path, record) and record.get("skill_seen") is not True:
         record["skill_seen"] = True
-        _atomic_write(record_path, record)
+        _write_record(record_path, record)
     if record.get("bypass") == "user_requested" and not record.get("txn"):
         _redact_turn_data(record_path, record)
         return _allow()
@@ -1693,6 +1765,9 @@ def handle_stop(event: dict[str, Any]) -> dict[str, Any]:
     )
     try:
         return _handle_stop(event)
+    except RecordLockUnavailable:
+        message = "终稿状态暂不可写，已停止自动重试。"
+        return {"continue": False, "stopReason": message, "systemMessage": message}
     finally:
         _STOP_GATE_DEADLINE.reset(token)
 
