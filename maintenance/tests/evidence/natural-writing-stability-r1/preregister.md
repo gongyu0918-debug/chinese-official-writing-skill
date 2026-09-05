@@ -1,0 +1,19 @@
+# 自然任务下的写稿与多版修改 R1
+
+基线产品 `a2a817d1ddf82c9ba0dcc6bbcc9df684767f9b41` 已合入main；后续文档 `d8a942c3` 不改变产品。本轮在 `codex/natural-writing-stability-r1` 独立验证。用户明确要求正常自然语言触发，不讨论穷举任意环境或提示词。
+
+## 先运行的正常基线
+
+[题面](cases.json)在调用前固定：进展报告、会议纪要两类，各5轮，原始起草→数据/期限更正→删除事项→增加事实→压缩；两家模型为Alibaba2 DeepSeek V4 Flash与MiniMax-M3，max。题面不点名Skill或文件，不注入reference全文。Skill只在独立运行目录中安装为可发现资源，其他个人Skill、插件、Hook、应用和记忆关闭；初始 `exec` 后实际 `exec resume` 同一ID。未启用技能或已完成但无正文均保留为行为结果，不丢弃样本；传输、污染和会话绑定错误才停止该链。
+
+两条基线报告均自然读取报告页。MiniMax初稿补出合规初核、前期调研、技术职责、会议主办及法务会签等材料外事实，附前后说明并有不实自证；Alibaba初稿也有新增运营方式状态和会议培训分类等需要独立审查的观察。候选在看过这些基线后选定，不伪装为预先盲选。
+
+## 唯一候选原子
+
+仅从 `genre-checklist-report.md` 的事实风险句删去“用户写明“材料只有”或事实很少时，”，规范化UTF-8少51 bytes。不改后面的禁补范围、其他规则、SKILL入口、workflow、Hook或任何阈值。假设：事实限制适用于普通长报告，不应靠用户额外强调“只有”才生效。
+
+两家模型均使用相同题面、同一初始状态重新建立候选5版报告链；两家5版纪要链作为未改文种的相邻观察。保留完整原稿、原始trace、实际读取、用量、session ID及逐版错误轨迹。没有目标风险下降或出现候选独有事实/状态/文种/完整交付硬回退则拒绝，不补镜像。通过真实结果后才同步镜像和补相关工程验证。不同链版本相关，不换算总体稳定率。
+
+复用[现有CLI链驱动](../revision-stability-audit-r1/run_chain.py)的[薄封装](run.py)；唯一行为调整是将自然未激活/已完成空输出从技术无效中分出，不为写稿失败补样或重试。初始题面的自然措辞和不同文种分别观察，不把单个措辞当成模型在所有提示词上的证明。
+
+研究采用[Agent Skills规范](https://agentskills.io/specification)的按需资源读取、[Anthropic Skill Creator](https://github.com/anthropics/skills/blob/main/skills/skill-creator/SKILL.md)的真实任务前向验证，以及[社区编辑遗漏问题](https://github.com/anthropics/claude-code/issues/27137)作为线索。它们不代替本仓库真实稿结果；不照搬更强触发或扩张说明文案。
