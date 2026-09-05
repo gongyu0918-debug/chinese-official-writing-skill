@@ -12,7 +12,7 @@
 
 ## 逐版发布证据
 
-- [剩余Hook与写稿规则修复R1](../../tests/evidence/remaining-hook-quality-r1/result.md)：本地候选的取消清理、宿主失败分类与新闻日期规则；50次真实写稿/修改执行、七版链失败、workflow撤回、独立复核及未完成边界。不是发布记录，未合入main。
+- [剩余Hook与写稿规则修复R1](../../tests/evidence/remaining-hook-quality-r1/result.md)：本地候选的取消清理、宿主失败分类与新闻日期规则；50次真实写稿/修改执行、七版链失败、workflow撤回、独立复核及未完成边界。原候选记录不改写；后续纯helper重构、806项全量与本地main合并见[合并记录](../../tests/evidence/remaining-hook-quality-merge-r1/result.md)，未发布。
 
 - v1.6.27的GitHub Release、SkillHub 86文件和ClawHub 37文件唯一提交回执与公开传播状态见[发布记录](../../tests/evidence/release-1.6.27.md)；固定产品、374路径范围审查、真实结果选择、最终774项全量、五套quick validate和两平台dry-run见[候选记录](../../tests/evidence/release-1.6.27-rc.md)。产品tag与后续证据提交分离。
 

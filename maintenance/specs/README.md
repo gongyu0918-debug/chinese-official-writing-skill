@@ -47,4 +47,6 @@
 
 用户随后授权修复四项Hook问题并在合理时合并。[核心修复与真实同稿验证](../tests/evidence/hook-four-fixes-r1/result.md)通过后，合并前补修显式关闭Hook遇清理锁故障仍被阻断的问题；最终788项全量通过，产品提交 `3ce9241e` 已快进合入本地main，未推送或发布。[合并记录](../tests/evidence/hook-four-fixes-merge-r1/result.md)保留原文清理、未适配宿主、成稿事实与多版修改的未完成项；当前状态以roadmap/coverage为准。
 
-本轮继续修复登记为 `REMAINING-HOOK-QUALITY-R1 / CANDIDATE / NOT_MERGED`：已保留 HK-008 取消清理、DSH 当前回合取消、OpenCode 失败分类和新闻事实年份规则；22次隔离真实调用与4条真实resume七版链共50次真实写稿/修改执行均留证。workflow候选因完整正文缺失及附说明等回退撤回，CodeBuddy/Kimi硬停仍不支持；写稿质量、多版稳定性和原生宿主边界未闭环。详情见[本轮结果](../tests/evidence/remaining-hook-quality-r1/result.md)，本轮没有推送或发布。
+本轮继续修复登记为 `REMAINING-HOOK-QUALITY-R1 / MERGED_MAIN / NOT_RELEASED`：已保留 HK-008 取消清理、DSH 当前回合取消、OpenCode 失败分类和新闻事实年份规则；22次隔离真实调用与4条真实resume七版链共50次真实写稿/修改执行均留证。workflow候选因完整正文缺失及附说明等回退撤回，CodeBuddy/Kimi硬停仍不支持；写稿质量、多版稳定性和原生宿主边界未闭环。详情见[本轮结果](../tests/evidence/remaining-hook-quality-r1/result.md)，本轮没有推送或发布。
+
+2026-09-05 后续授权合并已完成：产品 `a2a817d1`，最终806项全量通过，未推送或发布；纯helper重构与边界见[合并记录](../tests/evidence/remaining-hook-quality-merge-r1/result.md)。随后转入普通自然语言触发的真实写稿和连续改稿验证，失败候选与已知质量缺口继续保留。

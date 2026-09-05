@@ -1,0 +1,84 @@
+{
+  "schema_version": 1,
+  "status": "REFACTOR_VALIDATED_PENDING_ROOT_COMMIT_AND_FINAL_FULL_GATE",
+  "branch": "codex/remaining-hook-quality-merge-r1",
+  "base_commit": "cda59d8baeeff20ed5b496a3410c15509683bca7",
+  "scope": "two responsibility helpers only; no threshold/test changes, no adapter/reference changes",
+  "changed_product_files": [
+    "chinese-official-writing/hooks/core/gate_stop_hook.py"
+  ],
+  "core_after_sha256": "9df0fe940fdf74f98f11a6d4d133ebab31319e1a547db91e5e3707c53a826516",
+  "core_after_normalized_lf_sha256": "1168df9b1e233442c6a1443c64ce2ffe3dc08a641aa803a6f2b0ce0dbe50d703",
+  "metrics_after": {
+    "_write_bootstrap_inputs": [
+      15,
+      4
+    ],
+    "_bootstrap_transaction_locked": [
+      76,
+      17
+    ],
+    "_handle_redacted_stop": [
+      8,
+      2
+    ],
+    "_handle_stop": [
+      64,
+      24
+    ]
+  },
+  "model_calls": 0,
+  "models_new_cost": 0,
+  "real_d0_sha256": "353db1634bb8796131c8b92857aa9d49f4f1401c73dd736efa218a9c8dfee2e5",
+  "cleanup": [
+    {
+      "scenario": "bootstrap_abort",
+      "raw_after_followup": 0,
+      "request_in_record": false,
+      "delete_failures": 0,
+      "followup_response": {
+        "continue": true
+      }
+    },
+    {
+      "scenario": "abort_lock_recovery",
+      "raw_after_followup": 0,
+      "request_in_record": false,
+      "delete_failures": 0,
+      "followup_response": {
+        "continue": true
+      }
+    }
+  ],
+  "normal": {
+    "selected_unchanged": true,
+    "selected_sha256": "353db1634bb8796131c8b92857aa9d49f4f1401c73dd736efa218a9c8dfee2e5",
+    "delivery_verified": true,
+    "duplicate": {
+      "continue": true
+    }
+  },
+  "receipt_refresh": {
+    "Stop_and_HostAbort_original_terminal_bytes_preserved": true,
+    "subsequent_stop_remains_false": true
+  },
+  "turn_collision": {
+    "active_artifact_hashes_preserved": true,
+    "delivery_verified": true
+  },
+  "validation": {
+    "command": "python -B -X utf8 -m unittest maintenance.tests.test_complexity_contract maintenance.tests.test_gate_stop_hook -v",
+    "exit_code": 0,
+    "tests": 68,
+    "seconds": 28.755,
+    "git_diff_check_exit": 0,
+    "thresholds_unchanged": true
+  },
+  "evidence_migration": "Current integration worktree (including admitted reference/adapter changes) used for subprocess replays. Before core normalizedLF hash matches original cda Git blob; checkout CRLF means raw SHA differs from prior R2. No new model reply was generated; selected exact echo is driver copy. Existing writing/native evidence keeps its original limits.",
+  "remaining_limits": [
+    "Only targeted sameD0 behavior was compared; root final full gate pending.",
+    "Original HK008/host/writing limits remain; no claim of98percent or seven-version quality improvement."
+  ],
+  "root_independent_review": "Root inspected exact helper extraction: paths, lock extent, finally, redacted Stop response preserved.",
+  "commit_by_this_agent": null
+}
