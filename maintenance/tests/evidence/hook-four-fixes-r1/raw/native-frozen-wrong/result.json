@@ -1,0 +1,65 @@
+{
+  "return_code": 0,
+  "failure": null,
+  "seconds": 28.594,
+  "stream": {
+    "record_count": 820,
+    "invalid_json_lines": [],
+    "init_models": [
+      "alibaba-token-plan-2/deepseek-v4-flash-0731"
+    ],
+    "assistant_models": [
+      "alibaba-token-plan-2/deepseek-v4-flash-0731"
+    ],
+    "usage_models": [
+      "alibaba-token-plan-2/deepseek-v4-flash-0731"
+    ],
+    "api_key_sources": [
+      "none"
+    ],
+    "plugins": [
+      {
+        "name": "chinese-official-writing-gate",
+        "path": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\hook-four-fixes-r1\\output\\hook-four-fixes-r1\\native-frozen-wrong\\companion",
+        "source": "chinese-official-writing-gate@inline"
+      }
+    ],
+    "reads": [
+      "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\hook-four-fixes-r1\\output\\hook-four-fixes-r1\\native-frozen-wrong\\companion\\skills\\chinese-official-writing\\SKILL.md",
+      "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\hook-four-fixes-r1\\output\\hook-four-fixes-r1\\native-frozen-wrong\\companion\\skills\\chinese-official-writing\\references\\genre-playbook-news-message.md"
+    ],
+    "result_count": 1,
+    "result_subtypes": [
+      "success"
+    ],
+    "result_errors": [
+      false
+    ],
+    "final_sha256": "317baecbd456d4bf4b373dc41bfc5480a65198ca91e0511a54805db22274fd18"
+  },
+  "stop_responses": [
+    {
+      "decision": "block",
+      "reason": "交付门禁已由 Hook 完成 emit。请将下列终稿逐字作为整条最终回复，不要调用工具、不要加说明：\n中心举办读书交流活动\n\n2026年9月5日，中心举办读书交流活动，共20人参加，参加人员现场交流了读书心得。"
+    },
+    {
+      "decision": "block",
+      "reason": "终稿回显与 emit 哈希不一致。请只逐字输出下列已选终稿，不要调用工具、不要加说明：\n中心举办读书交流活动\n\n2026年9月5日，中心举办读书交流活动，共20人参加，参加人员现场交流了读书心得。"
+    },
+    {
+      "decision": "block",
+      "reason": "终稿回显与 emit 哈希不一致。请只逐字输出下列已选终稿，不要调用工具、不要加说明：\n中心举办读书交流活动\n\n2026年9月5日，中心举办读书交流活动，共20人参加，参加人员现场交流了读书心得。"
+    },
+    {
+      "decision": "block",
+      "reason": "终稿回显与 emit 哈希不一致。请只逐字输出下列已选终稿，不要调用工具、不要加说明：\n中心举办读书交流活动\n\n2026年9月5日，中心举办读书交流活动，共20人参加，参加人员现场交流了读书心得。"
+    },
+    {
+      "continue": false,
+      "stopReason": "终稿回显校验未通过，已停止自动重试。",
+      "systemMessage": "终稿回显校验未通过，已停止自动重试。"
+    }
+  ],
+  "fault_injected": 4,
+  "final": "中心举办读书交流活动\n\n2026年9月5日，中心举办读书交流活动，共20人参加，参加人员现场交流了读书心得。"
+}

@@ -1,0 +1,199 @@
+{
+  "scope": "OFFLINE_CORE_PROTOTYPE_ONLY_NOT_NATIVE_HOST",
+  "model_calls": 0,
+  "baseline_commit": "3532afd6619ac6256558e9552b92d03da5ae9c0f",
+  "rows": [
+    {
+      "arm": "baseline",
+      "case": "exact_echo",
+      "stop_outcomes": [
+        {
+          "continue": true,
+          "decision": null,
+          "stopReason": null,
+          "stop_attempts": 1,
+          "phase": "complete",
+          "delivery_verified": true,
+          "retention": "raw_turn_data_redacted"
+        }
+      ],
+      "raw_keys_remaining": [],
+      "events_sha256": "29ead78c3a4423e3b0747dc44726c4e4b7dd0bf9fbb5c6e1c1dc4c3e2a66563e"
+    },
+    {
+      "arm": "baseline",
+      "case": "one_wrong_then_exact",
+      "stop_outcomes": [
+        {
+          "continue": null,
+          "decision": "block",
+          "stopReason": null,
+          "stop_attempts": 2,
+          "phase": "awaiting_final_output",
+          "delivery_verified": null,
+          "retention": null
+        },
+        {
+          "continue": true,
+          "decision": null,
+          "stopReason": null,
+          "stop_attempts": 2,
+          "phase": "complete",
+          "delivery_verified": true,
+          "retention": "raw_turn_data_redacted"
+        }
+      ],
+      "raw_keys_remaining": [],
+      "events_sha256": "5d5bd61c371c1e9bab89816b89b0c60918364d1c1bd48e6eaa197f59292da75d"
+    },
+    {
+      "arm": "baseline",
+      "case": "repeat_wrong_to_budget_and_terminal_replay",
+      "stop_outcomes": [
+        {
+          "continue": null,
+          "decision": "block",
+          "stopReason": null,
+          "stop_attempts": 2,
+          "phase": "awaiting_final_output",
+          "delivery_verified": null,
+          "retention": null
+        },
+        {
+          "continue": null,
+          "decision": "block",
+          "stopReason": null,
+          "stop_attempts": 3,
+          "phase": "awaiting_final_output",
+          "delivery_verified": null,
+          "retention": null
+        },
+        {
+          "continue": null,
+          "decision": "block",
+          "stopReason": null,
+          "stop_attempts": 4,
+          "phase": "awaiting_final_output",
+          "delivery_verified": null,
+          "retention": null
+        },
+        {
+          "continue": true,
+          "decision": null,
+          "stopReason": null,
+          "stop_attempts": 4,
+          "phase": "failed_bounded",
+          "delivery_verified": false,
+          "retention": "raw_turn_data_redacted"
+        },
+        {
+          "continue": true,
+          "decision": null,
+          "stopReason": null,
+          "stop_attempts": 4,
+          "phase": "failed_bounded",
+          "delivery_verified": false,
+          "retention": "raw_turn_data_redacted"
+        }
+      ],
+      "raw_keys_remaining": [],
+      "events_sha256": "d5daf2d901242b64d3abf2e024288133d8210e984edb7dc26c462e1b0bda37c9"
+    },
+    {
+      "arm": "candidate",
+      "case": "exact_echo",
+      "stop_outcomes": [
+        {
+          "continue": true,
+          "decision": null,
+          "stopReason": null,
+          "stop_attempts": 1,
+          "phase": "complete",
+          "delivery_verified": true,
+          "retention": "raw_turn_data_redacted"
+        }
+      ],
+      "raw_keys_remaining": [],
+      "events_sha256": "a384093379ddb9c78962175090df2dd61adee7f2decbc3d85cdeb5228a574ecf"
+    },
+    {
+      "arm": "candidate",
+      "case": "one_wrong_then_exact",
+      "stop_outcomes": [
+        {
+          "continue": null,
+          "decision": "block",
+          "stopReason": null,
+          "stop_attempts": 2,
+          "phase": "awaiting_final_output",
+          "delivery_verified": null,
+          "retention": null
+        },
+        {
+          "continue": true,
+          "decision": null,
+          "stopReason": null,
+          "stop_attempts": 2,
+          "phase": "complete",
+          "delivery_verified": true,
+          "retention": "raw_turn_data_redacted"
+        }
+      ],
+      "raw_keys_remaining": [],
+      "events_sha256": "f911a76ac6461b4b82f6fc1c7b3971b6db181b8d28cf82c9ffce328222a9aa8d"
+    },
+    {
+      "arm": "candidate",
+      "case": "repeat_wrong_to_budget_and_terminal_replay",
+      "stop_outcomes": [
+        {
+          "continue": null,
+          "decision": "block",
+          "stopReason": null,
+          "stop_attempts": 2,
+          "phase": "awaiting_final_output",
+          "delivery_verified": null,
+          "retention": null
+        },
+        {
+          "continue": null,
+          "decision": "block",
+          "stopReason": null,
+          "stop_attempts": 3,
+          "phase": "awaiting_final_output",
+          "delivery_verified": null,
+          "retention": null
+        },
+        {
+          "continue": null,
+          "decision": "block",
+          "stopReason": null,
+          "stop_attempts": 4,
+          "phase": "awaiting_final_output",
+          "delivery_verified": null,
+          "retention": null
+        },
+        {
+          "continue": false,
+          "decision": null,
+          "stopReason": "终稿回显校验未通过，已停止自动交付。",
+          "stop_attempts": 4,
+          "phase": "failed_bounded",
+          "delivery_verified": false,
+          "retention": "raw_turn_data_redacted"
+        },
+        {
+          "continue": false,
+          "decision": null,
+          "stopReason": "终稿回显校验未通过，已停止自动交付。",
+          "stop_attempts": 4,
+          "phase": "failed_bounded",
+          "delivery_verified": false,
+          "retention": "raw_turn_data_redacted"
+        }
+      ],
+      "raw_keys_remaining": [],
+      "events_sha256": "fa1eba9e9bdc991e6e28f54e815401b45c3e488d99ed1bc73f1cab5c1df80c9a"
+    }
+  ]
+}

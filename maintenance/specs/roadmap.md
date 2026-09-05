@@ -75,7 +75,7 @@
 ## IN_PROGRESS
 
 - `WR-020c-QUALITY-LOOP-R1`：20稿中19有效，14份未观察到已确认硬问题、5稿至少8项硬问题；只限两道整改题，31条质量提醒另列。4条真实resume七版链28/28技术完成：R3/R7调序4/4、R4完整删除3/4、R5独立插段3/4，R7三稿无已登记硬问题；全链至少12项新问题，不把28相关版本当独立样本。六稿同D0默认Hook复放均保留D0，修正0、新增改坏0，不能当全面语义核验。状态 `IN_PROGRESS / QUALITY_AUDIT_COMPLETE_GAPS_REGISTERED`。[批量结果](../tests/evidence/reference-route-audit-r1/candidate-r1-result.md) [七版链结果](../tests/evidence/revision-stability-audit-r1/result.md)
-- `AH-002b-DATE-SOURCE-ROLE-R1`：格式示例错绑的离线反例保留；[两路自然D0](../tests/evidence/date-source-real-r1/result.md)都写对完整年份，默认Hook保持，故 `REAL_R1_NOT_REPRODUCED / NOT_ADMITTED`，旧旁路仅归档patch；`HK-005b-TERMINAL-ECHO-R1` 的错回显耗尽放行、终态重放与晚到写入三项未修复。问题修复仍未完成；先同一真实 D0 验证再补必要工程，不用旧159项通过否定新反例。[审计](../tests/evidence/reference-route-audit-r1/audit-findings.md)
+- `AH-002b / HK-005b-FOUR-FIXES-R1`：独立分支已完成四项已知反例的核心修复，核心 `976bb8a4`、适配器 `81b21621`；真实D0同输入复放、最终Claude原生正常/注入链和208项直接门通过。日期修复只防错误补年，真实漏年稿与材料外活动内容仍登记；CodeBuddy、Kimi、OpenCode、DSH硬停和原生可见输出边界仍未完成，故整体保留 `IN_PROGRESS / CORE_FIXED_LOCAL / HOSTS_PARTIAL / NOT_RELEASED`。旧 `REAL_R1_NOT_REPRODUCED` 证据不改写。[结果](../tests/evidence/hook-four-fixes-r1/result.md)
 
 ## REJECTED
 

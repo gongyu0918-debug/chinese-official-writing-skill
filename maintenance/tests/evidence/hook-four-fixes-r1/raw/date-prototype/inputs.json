@@ -1,0 +1,291 @@
+{
+  "schema_version": 1,
+  "status": "FROZEN_BEFORE_PROTOTYPE_REPLAY",
+  "scope": "same-input pure source_bound_dates helper comparison; no model call or native/core lifecycle",
+  "baseline_commit": "3532afd6619ac6256558e9552b92d03da5ae9c0f",
+  "model_calls": 0,
+  "raw_source_root_mapping": {
+    "ARCHIVED_AH002_WORKTREE": "The existing ah002-news-date-completeness-r1 worktree, HEAD e1f506a0bef7fd9e817c167d87e7302b80b53140"
+  },
+  "case_count": 10,
+  "cases": [
+    {
+      "id": "AH2-REPAIR-TRAINING",
+      "kind": "archived_original_natural_d0_pair",
+      "source": {
+        "case_file": "maintenance/tests/evidence/ah002-news-date-completeness-r1/cases.json",
+        "case_file_sha256": "2367fd9e2e0aee103336c14d1e63c2dc6ec03dc1290b4d7554c2906c077ae416",
+        "repair_file": "maintenance/tests/evidence/ah002-news-date-completeness-r1/repair_cases.json",
+        "repair_file_sha256": "7730e6a6f45e4bee36f432d91e638e678d06b5451d0ad581b533e1bf4392b152",
+        "original_case_id": "AH2-TRAINING",
+        "provider": "ollama",
+        "model": "ollama-cloud/deepseek-v4-flash:0731",
+        "raw_root_alias": "ARCHIVED_AH002_WORKTREE",
+        "raw_relative_path": "output/ah002-news-date-completeness-r1/baseline/raw/ollama/AH2-TRAINING-baseline.final.txt",
+        "raw_file_sha256": "17a3dcf945d316b7a95b22a1a60b67480c099fe9fcd71391aaa53f1033731f2a",
+        "raw_bytes_equal_preserved_d0": true
+      },
+      "original_request": "请以临江区政务服务中心发布者视角起草一则活动新闻稿，只输出可直接使用的完整正文，不解释过程，不限定字数。材料：2026年9月2日，临江区政务服务中心举办窗口业务规范培训，47名工作人员参加。培训设置政策要点讲解、材料核验练习和案例复盘三个环节；43人完成全部练习，4人因值班提前离场，未完成练习。现场回收意见表45份，尚未分类汇总。允许写由已给培训环节直接支持的一层学习、交流或实践作用；不得把43人完成练习扩大成47人全体成效，不得补材料未给的活动过程、反馈结论或后续安排。",
+      "request": "请以临江区政务服务中心发布者视角起草一则活动新闻稿，只输出可直接使用的完整正文，不解释过程，不限定字数。材料：2026年9月2日，临江区政务服务中心举办窗口业务规范培训，47名工作人员参加。培训设置政策要点讲解、材料核验练习和案例复盘三个环节；43人完成全部练习，4人因值班提前离场，未完成练习。现场回收意见表45份，尚未分类汇总。允许写由已给培训环节直接支持的一层学习、交流或实践作用；不得把43人完成练习扩大成47人全体成效，不得补材料未给的活动过程、反馈结论或后续安排。",
+      "d0": "临江区政务服务中心开展窗口业务规范培训\n\n9月2日，临江区政务服务中心举办窗口业务规范培训，47名工作人员参加。培训设置政策要点讲解、材料核验练习和案例复盘三个环节，帮助参训人员进一步理解政策要求、熟悉材料核验流程，并通过案例复盘交流业务经验。\n\n培训中，43名工作人员完成全部练习，4人因值班提前离场，未完成练习。现场共回收意见表45份，目前尚未分类汇总。",
+      "expected": {
+        "baseline_output": "临江区政务服务中心开展窗口业务规范培训\n\n2026年9月2日，临江区政务服务中心举办窗口业务规范培训，47名工作人员参加。培训设置政策要点讲解、材料核验练习和案例复盘三个环节，帮助参训人员进一步理解政策要求、熟悉材料核验流程，并通过案例复盘交流业务经验。\n\n培训中，43名工作人员完成全部练习，4人因值班提前离场，未完成练习。现场共回收意见表45份，目前尚未分类汇总。",
+        "candidate_output": "临江区政务服务中心开展窗口业务规范培训\n\n2026年9月2日，临江区政务服务中心举办窗口业务规范培训，47名工作人员参加。培训设置政策要点讲解、材料核验练习和案例复盘三个环节，帮助参训人员进一步理解政策要求、熟悉材料核验流程，并通过案例复盘交流业务经验。\n\n培训中，43名工作人员完成全部练习，4人因值班提前离场，未完成练习。现场共回收意见表45份，目前尚未分类汇总。",
+        "baseline_output_sha256": "f5bee61313afcf7e9857c1df13f34e1360b39da1c180fb8079ffbe1e65b25436",
+        "candidate_output_sha256": "f5bee61313afcf7e9857c1df13f34e1360b39da1c180fb8079ffbe1e65b25436"
+      },
+      "request_sha256": "0d7f7dce96c0931ffe4736655b278ccf8043abc333de03b3a53efd77a0edf6dd",
+      "original_request_sha256": "0d7f7dce96c0931ffe4736655b278ccf8043abc333de03b3a53efd77a0edf6dd",
+      "d0_sha256": "17a3dcf945d316b7a95b22a1a60b67480c099fe9fcd71391aaa53f1033731f2a"
+    },
+    {
+      "id": "AH2-REPAIR-OPEN-DAY",
+      "kind": "archived_original_natural_d0_pair",
+      "source": {
+        "case_file": "maintenance/tests/evidence/ah002-news-date-completeness-r1/cases.json",
+        "case_file_sha256": "2367fd9e2e0aee103336c14d1e63c2dc6ec03dc1290b4d7554c2906c077ae416",
+        "repair_file": "maintenance/tests/evidence/ah002-news-date-completeness-r1/repair_cases.json",
+        "repair_file_sha256": "7730e6a6f45e4bee36f432d91e638e678d06b5451d0ad581b533e1bf4392b152",
+        "original_case_id": "AH2-OPEN-DAY",
+        "provider": "ollama",
+        "model": "ollama-cloud/deepseek-v4-flash:0731",
+        "raw_root_alias": "ARCHIVED_AH002_WORKTREE",
+        "raw_relative_path": "output/ah002-news-date-completeness-r1/baseline/raw/ollama/AH2-OPEN-DAY-baseline.final.txt",
+        "raw_file_sha256": "02359dbe8936d3d60d6ddcd5a87f7f3dc5cd03790ad097d5299e5c59726eeed3",
+        "raw_bytes_equal_preserved_d0": true
+      },
+      "original_request": "请以青禾市博物馆发布者视角起草一则活动新闻稿，只输出可直接使用的完整正文，不解释过程，不限定字数。材料：2026年9月6日，青禾市博物馆举办馆藏保护公众开放日活动，68名市民参加。活动设置库房参观、保护流程讲解和现场问答三个环节。现场回收问卷62份，其中52份勾选“了解了基本保护流程”，其余10份未选择该项；问卷尚未作进一步统计。可以写活动为公众了解馆藏保护提供了直接机会；不得把52份问卷结果扩大成68名参加者全体成效，不得补未给的展品、路线、讲解内容或后续安排。",
+      "request": "请以青禾市博物馆发布者视角起草一则活动新闻稿，只输出可直接使用的完整正文，不解释过程，不限定字数。材料：2026年9月6日，青禾市博物馆举办馆藏保护公众开放日活动，68名市民参加。活动设置库房参观、保护流程讲解和现场问答三个环节。现场回收问卷62份，其中52份勾选“了解了基本保护流程”，其余10份未选择该项；问卷尚未作进一步统计。可以写活动为公众了解馆藏保护提供了直接机会；不得把52份问卷结果扩大成68名参加者全体成效，不得补未给的展品、路线、讲解内容或后续安排。",
+      "d0": "青禾市博物馆举办馆藏保护公众开放日活动\n\n9月6日，青禾市博物馆举办馆藏保护公众开放日活动，68名市民参加。活动设置库房参观、保护流程讲解和现场问答三个环节，为公众了解馆藏保护提供了直接机会。\n\n活动现场回收问卷62份，其中52份勾选\"了解了基本保护流程\"，其余10份未选择该项。问卷尚未作进一步统计。",
+      "expected": {
+        "baseline_output": "青禾市博物馆举办馆藏保护公众开放日活动\n\n2026年9月6日，青禾市博物馆举办馆藏保护公众开放日活动，68名市民参加。活动设置库房参观、保护流程讲解和现场问答三个环节，为公众了解馆藏保护提供了直接机会。\n\n活动现场回收问卷62份，其中52份勾选\"了解了基本保护流程\"，其余10份未选择该项。问卷尚未作进一步统计。",
+        "candidate_output": "青禾市博物馆举办馆藏保护公众开放日活动\n\n2026年9月6日，青禾市博物馆举办馆藏保护公众开放日活动，68名市民参加。活动设置库房参观、保护流程讲解和现场问答三个环节，为公众了解馆藏保护提供了直接机会。\n\n活动现场回收问卷62份，其中52份勾选\"了解了基本保护流程\"，其余10份未选择该项。问卷尚未作进一步统计。",
+        "baseline_output_sha256": "ce7d2714cba64c44d21e53c280a032109072b29b2d65a2ce0fd20316637e6621",
+        "candidate_output_sha256": "ce7d2714cba64c44d21e53c280a032109072b29b2d65a2ce0fd20316637e6621"
+      },
+      "request_sha256": "d39a2ad0ccc6399715e51267e940715671aeb76f49a93746484de48972f3ee91",
+      "original_request_sha256": "d39a2ad0ccc6399715e51267e940715671aeb76f49a93746484de48972f3ee91",
+      "d0_sha256": "02359dbe8936d3d60d6ddcd5a87f7f3dc5cd03790ad097d5299e5c59726eeed3"
+    },
+    {
+      "id": "AH2-REPAIR-DRILL",
+      "kind": "archived_original_natural_d0_pair",
+      "source": {
+        "case_file": "maintenance/tests/evidence/ah002-news-date-completeness-r1/cases.json",
+        "case_file_sha256": "2367fd9e2e0aee103336c14d1e63c2dc6ec03dc1290b4d7554c2906c077ae416",
+        "repair_file": "maintenance/tests/evidence/ah002-news-date-completeness-r1/repair_cases.json",
+        "repair_file_sha256": "7730e6a6f45e4bee36f432d91e638e678d06b5451d0ad581b533e1bf4392b152",
+        "original_case_id": "AH2-DRILL",
+        "provider": "ollama",
+        "model": "ollama-cloud/deepseek-v4-flash:0731",
+        "raw_root_alias": "ARCHIVED_AH002_WORKTREE",
+        "raw_relative_path": "output/ah002-news-date-completeness-r1/baseline/raw/ollama/AH2-DRILL-baseline.final.txt",
+        "raw_file_sha256": "72113ddbfea808b77bff25c0444bd13a20194e9cdf8e0f3d24c1623401b69ad8",
+        "raw_bytes_equal_preserved_d0": true
+      },
+      "original_request": "请以东澜市档案馆发布者视角起草一则活动新闻稿，只输出可直接使用的完整正文，不解释过程，不限定字数。材料：2026年9月9日，东澜市档案馆组织消防疏散演练，32名工作人员参加。演练设置警报响应、疏散集合和设备检查三个环节；29人完成全部环节，3人因外出未参加设备检查。演练后记录2处标识不清，是否调整及调整方式尚未决定。允许概括演练为检视响应和疏散环节提供了实践条件；不得把29人完成全部环节扩大成32人全体完成，不得写标识已经整改或已有调整安排。",
+      "request": "请以东澜市档案馆发布者视角起草一则活动新闻稿，只输出可直接使用的完整正文，不解释过程，不限定字数。材料：2026年9月9日，东澜市档案馆组织消防疏散演练，32名工作人员参加。演练设置警报响应、疏散集合和设备检查三个环节；29人完成全部环节，3人因外出未参加设备检查。演练后记录2处标识不清，是否调整及调整方式尚未决定。允许概括演练为检视响应和疏散环节提供了实践条件；不得把29人完成全部环节扩大成32人全体完成，不得写标识已经整改或已有调整安排。",
+      "d0": "东澜市档案馆开展消防疏散演练\n\n9月9日，东澜市档案馆组织消防疏散演练，32名工作人员参加。演练设置警报响应、疏散集合和设备检查三个环节，为检视应急响应和疏散环节提供了实践条件。\n\n演练中，参演人员按警报提示有序响应并完成疏散集合，随后开展设备检查。29人完成全部环节，3人因外出未参加设备检查。\n\n演练结束后，工作人员记录2处标识不清。是否调整及调整方式尚未决定。",
+      "expected": {
+        "baseline_output": "东澜市档案馆开展消防疏散演练\n\n2026年9月9日，东澜市档案馆组织消防疏散演练，32名工作人员参加。演练设置警报响应、疏散集合和设备检查三个环节，为检视应急响应和疏散环节提供了实践条件。\n\n演练中，参演人员按警报提示有序响应并完成疏散集合，随后开展设备检查。29人完成全部环节，3人因外出未参加设备检查。\n\n演练结束后，工作人员记录2处标识不清。是否调整及调整方式尚未决定。",
+        "candidate_output": "东澜市档案馆开展消防疏散演练\n\n2026年9月9日，东澜市档案馆组织消防疏散演练，32名工作人员参加。演练设置警报响应、疏散集合和设备检查三个环节，为检视应急响应和疏散环节提供了实践条件。\n\n演练中，参演人员按警报提示有序响应并完成疏散集合，随后开展设备检查。29人完成全部环节，3人因外出未参加设备检查。\n\n演练结束后，工作人员记录2处标识不清。是否调整及调整方式尚未决定。",
+        "baseline_output_sha256": "10438e3179dd2c7e95f98239b535468127e2929d7d2a73e75a6c3c72266f5289",
+        "candidate_output_sha256": "10438e3179dd2c7e95f98239b535468127e2929d7d2a73e75a6c3c72266f5289"
+      },
+      "request_sha256": "7350d0b894622c55ddd2e8ebe6cb8e95b12c22976680a4d102ee98656d1d277a",
+      "original_request_sha256": "7350d0b894622c55ddd2e8ebe6cb8e95b12c22976680a4d102ee98656d1d277a",
+      "d0_sha256": "72113ddbfea808b77bff25c0444bd13a20194e9cdf8e0f3d24c1623401b69ad8"
+    },
+    {
+      "id": "AH2-CONTROL-COMPLETE",
+      "kind": "archived_original_natural_d0_pair",
+      "source": {
+        "case_file": "maintenance/tests/evidence/ah002-news-date-completeness-r1/cases.json",
+        "case_file_sha256": "2367fd9e2e0aee103336c14d1e63c2dc6ec03dc1290b4d7554c2906c077ae416",
+        "repair_file": "maintenance/tests/evidence/ah002-news-date-completeness-r1/repair_cases.json",
+        "repair_file_sha256": "7730e6a6f45e4bee36f432d91e638e678d06b5451d0ad581b533e1bf4392b152",
+        "original_case_id": "AH2-TRAINING",
+        "provider": "minimax",
+        "model": "minimax-cn/MiniMax-M3",
+        "raw_root_alias": "ARCHIVED_AH002_WORKTREE",
+        "raw_relative_path": "output/ah002-news-date-completeness-r1/baseline/raw/minimax/AH2-TRAINING-baseline.final.txt",
+        "raw_file_sha256": "d630c877032be6d932a1fe0fdb31dd71701c40d7acf4f84819eb8bf03da35957",
+        "raw_bytes_equal_preserved_d0": true
+      },
+      "original_request": "请以临江区政务服务中心发布者视角起草一则活动新闻稿，只输出可直接使用的完整正文，不解释过程，不限定字数。材料：2026年9月2日，临江区政务服务中心举办窗口业务规范培训，47名工作人员参加。培训设置政策要点讲解、材料核验练习和案例复盘三个环节；43人完成全部练习，4人因值班提前离场，未完成练习。现场回收意见表45份，尚未分类汇总。允许写由已给培训环节直接支持的一层学习、交流或实践作用；不得把43人完成练习扩大成47人全体成效，不得补材料未给的活动过程、反馈结论或后续安排。",
+      "request": "请以临江区政务服务中心发布者视角起草一则活动新闻稿，只输出可直接使用的完整正文，不解释过程，不限定字数。材料：2026年9月2日，临江区政务服务中心举办窗口业务规范培训，47名工作人员参加。培训设置政策要点讲解、材料核验练习和案例复盘三个环节；43人完成全部练习，4人因值班提前离场，未完成练习。现场回收意见表45份，尚未分类汇总。允许写由已给培训环节直接支持的一层学习、交流或实践作用；不得把43人完成练习扩大成47人全体成效，不得补材料未给的活动过程、反馈结论或后续安排。",
+      "d0": "临江区政务服务中心举办窗口业务规范培训\n\n2026年9月2日，临江区政务服务中心举办窗口业务规范培训，47名窗口工作人员参加。\n\n培训设置政策要点讲解、材料核验练习和案例复盘三个环节。政策要点讲解环节对窗口业务相关政策要点作系统梳理，材料核验练习环节按规范要求组织实操演练，案例复盘环节围绕日常办理中的典型案例开展研讨交流，帮助参训人员把握政策要点、熟悉核验要求、增进业务交流。\n\n培训期间，43人完成全部练习环节；4人因值班提前离场，未完成相关练习。现场回收意见表45份，目前尚未分类汇总。",
+      "expected": {
+        "baseline_output": "临江区政务服务中心举办窗口业务规范培训\n\n2026年9月2日，临江区政务服务中心举办窗口业务规范培训，47名窗口工作人员参加。\n\n培训设置政策要点讲解、材料核验练习和案例复盘三个环节。政策要点讲解环节对窗口业务相关政策要点作系统梳理，材料核验练习环节按规范要求组织实操演练，案例复盘环节围绕日常办理中的典型案例开展研讨交流，帮助参训人员把握政策要点、熟悉核验要求、增进业务交流。\n\n培训期间，43人完成全部练习环节；4人因值班提前离场，未完成相关练习。现场回收意见表45份，目前尚未分类汇总。",
+        "candidate_output": "临江区政务服务中心举办窗口业务规范培训\n\n2026年9月2日，临江区政务服务中心举办窗口业务规范培训，47名窗口工作人员参加。\n\n培训设置政策要点讲解、材料核验练习和案例复盘三个环节。政策要点讲解环节对窗口业务相关政策要点作系统梳理，材料核验练习环节按规范要求组织实操演练，案例复盘环节围绕日常办理中的典型案例开展研讨交流，帮助参训人员把握政策要点、熟悉核验要求、增进业务交流。\n\n培训期间，43人完成全部练习环节；4人因值班提前离场，未完成相关练习。现场回收意见表45份，目前尚未分类汇总。",
+        "baseline_output_sha256": "d630c877032be6d932a1fe0fdb31dd71701c40d7acf4f84819eb8bf03da35957",
+        "candidate_output_sha256": "d630c877032be6d932a1fe0fdb31dd71701c40d7acf4f84819eb8bf03da35957"
+      },
+      "request_sha256": "0d7f7dce96c0931ffe4736655b278ccf8043abc333de03b3a53efd77a0edf6dd",
+      "original_request_sha256": "0d7f7dce96c0931ffe4736655b278ccf8043abc333de03b3a53efd77a0edf6dd",
+      "d0_sha256": "d630c877032be6d932a1fe0fdb31dd71701c40d7acf4f84819eb8bf03da35957"
+    },
+    {
+      "id": "REAL-D0-ISO-FORMAT-EXAMPLE",
+      "kind": "real_d0_source_role_request_variant",
+      "derived_from": "AH2-REPAIR-TRAINING",
+      "source": {
+        "case_file": "maintenance/tests/evidence/ah002-news-date-completeness-r1/cases.json",
+        "case_file_sha256": "2367fd9e2e0aee103336c14d1e63c2dc6ec03dc1290b4d7554c2906c077ae416",
+        "repair_file": "maintenance/tests/evidence/ah002-news-date-completeness-r1/repair_cases.json",
+        "repair_file_sha256": "7730e6a6f45e4bee36f432d91e638e678d06b5451d0ad581b533e1bf4392b152",
+        "original_case_id": "AH2-TRAINING",
+        "provider": "ollama",
+        "model": "ollama-cloud/deepseek-v4-flash:0731",
+        "raw_root_alias": "ARCHIVED_AH002_WORKTREE",
+        "raw_relative_path": "output/ah002-news-date-completeness-r1/baseline/raw/ollama/AH2-TRAINING-baseline.final.txt",
+        "raw_file_sha256": "17a3dcf945d316b7a95b22a1a60b67480c099fe9fcd71391aaa53f1033731f2a",
+        "raw_bytes_equal_preserved_d0": true
+      },
+      "original_request": "请以临江区政务服务中心发布者视角起草一则活动新闻稿，只输出可直接使用的完整正文，不解释过程，不限定字数。材料：2026年9月2日，临江区政务服务中心举办窗口业务规范培训，47名工作人员参加。培训设置政策要点讲解、材料核验练习和案例复盘三个环节；43人完成全部练习，4人因值班提前离场，未完成练习。现场回收意见表45份，尚未分类汇总。允许写由已给培训环节直接支持的一层学习、交流或实践作用；不得把43人完成练习扩大成47人全体成效，不得补材料未给的活动过程、反馈结论或后续安排。",
+      "request": "请以临江区政务服务中心发布者视角起草一则活动新闻稿，只输出可直接使用的完整正文，不解释过程，不限定字数。材料：2026-09-02，临江区政务服务中心举办窗口业务规范培训，47名工作人员参加。培训设置政策要点讲解、材料核验练习和案例复盘三个环节；43人完成全部练习，4人因值班提前离场，未完成练习。现场回收意见表45份，尚未分类汇总。允许写由已给培训环节直接支持的一层学习、交流或实践作用；不得把43人完成练习扩大成47人全体成效，不得补材料未给的活动过程、反馈结论或后续安排。\n\n日期格式示例（仅用于格式演示，不属于本次活动事实）：2020年9月2日。",
+      "d0": "临江区政务服务中心开展窗口业务规范培训\n\n9月2日，临江区政务服务中心举办窗口业务规范培训，47名工作人员参加。培训设置政策要点讲解、材料核验练习和案例复盘三个环节，帮助参训人员进一步理解政策要求、熟悉材料核验流程，并通过案例复盘交流业务经验。\n\n培训中，43名工作人员完成全部练习，4人因值班提前离场，未完成练习。现场共回收意见表45份，目前尚未分类汇总。",
+      "transformation": "Only the original request changes: same-value factual date becomes ISO; append explicitly nonfactual format example. D0 bytes unchanged. This is not a natural original drafting pair.",
+      "expected": {
+        "baseline_output": "临江区政务服务中心开展窗口业务规范培训\n\n2020年9月2日，临江区政务服务中心举办窗口业务规范培训，47名工作人员参加。培训设置政策要点讲解、材料核验练习和案例复盘三个环节，帮助参训人员进一步理解政策要求、熟悉材料核验流程，并通过案例复盘交流业务经验。\n\n培训中，43名工作人员完成全部练习，4人因值班提前离场，未完成练习。现场共回收意见表45份，目前尚未分类汇总。",
+        "candidate_output": "临江区政务服务中心开展窗口业务规范培训\n\n9月2日，临江区政务服务中心举办窗口业务规范培训，47名工作人员参加。培训设置政策要点讲解、材料核验练习和案例复盘三个环节，帮助参训人员进一步理解政策要求、熟悉材料核验流程，并通过案例复盘交流业务经验。\n\n培训中，43名工作人员完成全部练习，4人因值班提前离场，未完成练习。现场共回收意见表45份，目前尚未分类汇总。",
+        "baseline_output_sha256": "a548568de3af04b0b6d78f83817a95738fd3fad4e37c4ab8ce4d04c66993b4be",
+        "candidate_output_sha256": "17a3dcf945d316b7a95b22a1a60b67480c099fe9fcd71391aaa53f1033731f2a"
+      },
+      "request_sha256": "05c80710e7abc400784b4f0bf1905c7e981523e055c2fe6b6cb529cf3cdba897",
+      "original_request_sha256": "0d7f7dce96c0931ffe4736655b278ccf8043abc333de03b3a53efd77a0edf6dd",
+      "d0_sha256": "17a3dcf945d316b7a95b22a1a60b67480c099fe9fcd71391aaa53f1033731f2a"
+    },
+    {
+      "id": "REAL-D0-ISO-OLD-DRAFT",
+      "kind": "real_d0_source_role_request_variant",
+      "derived_from": "AH2-REPAIR-TRAINING",
+      "source": {
+        "case_file": "maintenance/tests/evidence/ah002-news-date-completeness-r1/cases.json",
+        "case_file_sha256": "2367fd9e2e0aee103336c14d1e63c2dc6ec03dc1290b4d7554c2906c077ae416",
+        "repair_file": "maintenance/tests/evidence/ah002-news-date-completeness-r1/repair_cases.json",
+        "repair_file_sha256": "7730e6a6f45e4bee36f432d91e638e678d06b5451d0ad581b533e1bf4392b152",
+        "original_case_id": "AH2-TRAINING",
+        "provider": "ollama",
+        "model": "ollama-cloud/deepseek-v4-flash:0731",
+        "raw_root_alias": "ARCHIVED_AH002_WORKTREE",
+        "raw_relative_path": "output/ah002-news-date-completeness-r1/baseline/raw/ollama/AH2-TRAINING-baseline.final.txt",
+        "raw_file_sha256": "17a3dcf945d316b7a95b22a1a60b67480c099fe9fcd71391aaa53f1033731f2a",
+        "raw_bytes_equal_preserved_d0": true
+      },
+      "original_request": "请以临江区政务服务中心发布者视角起草一则活动新闻稿，只输出可直接使用的完整正文，不解释过程，不限定字数。材料：2026年9月2日，临江区政务服务中心举办窗口业务规范培训，47名工作人员参加。培训设置政策要点讲解、材料核验练习和案例复盘三个环节；43人完成全部练习，4人因值班提前离场，未完成练习。现场回收意见表45份，尚未分类汇总。允许写由已给培训环节直接支持的一层学习、交流或实践作用；不得把43人完成练习扩大成47人全体成效，不得补材料未给的活动过程、反馈结论或后续安排。",
+      "request": "请以临江区政务服务中心发布者视角起草一则活动新闻稿，只输出可直接使用的完整正文，不解释过程，不限定字数。材料：2026-09-02，临江区政务服务中心举办窗口业务规范培训，47名工作人员参加。培训设置政策要点讲解、材料核验练习和案例复盘三个环节；43人完成全部练习，4人因值班提前离场，未完成练习。现场回收意见表45份，尚未分类汇总。允许写由已给培训环节直接支持的一层学习、交流或实践作用；不得把43人完成练习扩大成47人全体成效，不得补材料未给的活动过程、反馈结论或后续安排。\n\n旧稿示例（只展示格式，不属于本次活动事实）：2020年9月2日。",
+      "d0": "临江区政务服务中心开展窗口业务规范培训\n\n9月2日，临江区政务服务中心举办窗口业务规范培训，47名工作人员参加。培训设置政策要点讲解、材料核验练习和案例复盘三个环节，帮助参训人员进一步理解政策要求、熟悉材料核验流程，并通过案例复盘交流业务经验。\n\n培训中，43名工作人员完成全部练习，4人因值班提前离场，未完成练习。现场共回收意见表45份，目前尚未分类汇总。",
+      "transformation": "Only the original request changes: same-value factual date becomes ISO; append explicitly nonfactual old-draft example. D0 bytes unchanged. This is not a natural original drafting pair.",
+      "expected": {
+        "baseline_output": "临江区政务服务中心开展窗口业务规范培训\n\n2020年9月2日，临江区政务服务中心举办窗口业务规范培训，47名工作人员参加。培训设置政策要点讲解、材料核验练习和案例复盘三个环节，帮助参训人员进一步理解政策要求、熟悉材料核验流程，并通过案例复盘交流业务经验。\n\n培训中，43名工作人员完成全部练习，4人因值班提前离场，未完成练习。现场共回收意见表45份，目前尚未分类汇总。",
+        "candidate_output": "临江区政务服务中心开展窗口业务规范培训\n\n9月2日，临江区政务服务中心举办窗口业务规范培训，47名工作人员参加。培训设置政策要点讲解、材料核验练习和案例复盘三个环节，帮助参训人员进一步理解政策要求、熟悉材料核验流程，并通过案例复盘交流业务经验。\n\n培训中，43名工作人员完成全部练习，4人因值班提前离场，未完成练习。现场共回收意见表45份，目前尚未分类汇总。",
+        "baseline_output_sha256": "a548568de3af04b0b6d78f83817a95738fd3fad4e37c4ab8ce4d04c66993b4be",
+        "candidate_output_sha256": "17a3dcf945d316b7a95b22a1a60b67480c099fe9fcd71391aaa53f1033731f2a"
+      },
+      "request_sha256": "465cad5c292fc60c0cdf68fa45e8b6040e6e313452acc9bc8a4709430bc32b4e",
+      "original_request_sha256": "0d7f7dce96c0931ffe4736655b278ccf8043abc333de03b3a53efd77a0edf6dd",
+      "d0_sha256": "17a3dcf945d316b7a95b22a1a60b67480c099fe9fcd71391aaa53f1033731f2a"
+    },
+    {
+      "id": "GUARD-PREVIOUS-TEXT-AND-TEMPLATE-MENTION",
+      "kind": "constructed_request_control_with_real_d0",
+      "derived_from": "AH2-REPAIR-TRAINING",
+      "source": {
+        "case_file": "maintenance/tests/evidence/ah002-news-date-completeness-r1/cases.json",
+        "case_file_sha256": "2367fd9e2e0aee103336c14d1e63c2dc6ec03dc1290b4d7554c2906c077ae416",
+        "repair_file": "maintenance/tests/evidence/ah002-news-date-completeness-r1/repair_cases.json",
+        "repair_file_sha256": "7730e6a6f45e4bee36f432d91e638e678d06b5451d0ad581b533e1bf4392b152",
+        "original_case_id": "AH2-TRAINING",
+        "provider": "ollama",
+        "model": "ollama-cloud/deepseek-v4-flash:0731",
+        "raw_root_alias": "ARCHIVED_AH002_WORKTREE",
+        "raw_relative_path": "output/ah002-news-date-completeness-r1/baseline/raw/ollama/AH2-TRAINING-baseline.final.txt",
+        "raw_file_sha256": "17a3dcf945d316b7a95b22a1a60b67480c099fe9fcd71391aaa53f1033731f2a",
+        "raw_bytes_equal_preserved_d0": true
+      },
+      "original_request": "请以临江区政务服务中心发布者视角起草一则活动新闻稿，只输出可直接使用的完整正文，不解释过程，不限定字数。材料：2026年9月2日，临江区政务服务中心举办窗口业务规范培训，47名工作人员参加。培训设置政策要点讲解、材料核验练习和案例复盘三个环节；43人完成全部练习，4人因值班提前离场，未完成练习。现场回收意见表45份，尚未分类汇总。允许写由已给培训环节直接支持的一层学习、交流或实践作用；不得把43人完成练习扩大成47人全体成效，不得补材料未给的活动过程、反馈结论或后续安排。",
+      "request": "前文已说明本次任务；请以原稿材料中的事实为准，不要套用模板示例。\n请以临江区政务服务中心发布者视角起草一则活动新闻稿，只输出可直接使用的完整正文，不解释过程，不限定字数。材料：2026年9月2日，临江区政务服务中心举办窗口业务规范培训，47名工作人员参加。培训设置政策要点讲解、材料核验练习和案例复盘三个环节；43人完成全部练习，4人因值班提前离场，未完成练习。现场回收意见表45份，尚未分类汇总。允许写由已给培训环节直接支持的一层学习、交流或实践作用；不得把43人完成练习扩大成47人全体成效，不得补材料未给的活动过程、反馈结论或后续安排。",
+      "d0": "临江区政务服务中心开展窗口业务规范培训\n\n9月2日，临江区政务服务中心举办窗口业务规范培训，47名工作人员参加。培训设置政策要点讲解、材料核验练习和案例复盘三个环节，帮助参训人员进一步理解政策要求、熟悉材料核验流程，并通过案例复盘交流业务经验。\n\n培训中，43名工作人员完成全部练习，4人因值班提前离场，未完成练习。现场共回收意见表45份，目前尚未分类汇总。",
+      "transformation": "Prefix adds ordinary mentions of previous text, original draft, and template; no date or fact changes. This is a constructed guard control.",
+      "expected": {
+        "baseline_output": "临江区政务服务中心开展窗口业务规范培训\n\n2026年9月2日，临江区政务服务中心举办窗口业务规范培训，47名工作人员参加。培训设置政策要点讲解、材料核验练习和案例复盘三个环节，帮助参训人员进一步理解政策要求、熟悉材料核验流程，并通过案例复盘交流业务经验。\n\n培训中，43名工作人员完成全部练习，4人因值班提前离场，未完成练习。现场共回收意见表45份，目前尚未分类汇总。",
+        "candidate_output": "临江区政务服务中心开展窗口业务规范培训\n\n2026年9月2日，临江区政务服务中心举办窗口业务规范培训，47名工作人员参加。培训设置政策要点讲解、材料核验练习和案例复盘三个环节，帮助参训人员进一步理解政策要求、熟悉材料核验流程，并通过案例复盘交流业务经验。\n\n培训中，43名工作人员完成全部练习，4人因值班提前离场，未完成练习。现场共回收意见表45份，目前尚未分类汇总。",
+        "baseline_output_sha256": "f5bee61313afcf7e9857c1df13f34e1360b39da1c180fb8079ffbe1e65b25436",
+        "candidate_output_sha256": "f5bee61313afcf7e9857c1df13f34e1360b39da1c180fb8079ffbe1e65b25436"
+      },
+      "request_sha256": "7f74ed0381a27c4522dd953371941f77a71045a47adb9db72199cc0381f59620",
+      "original_request_sha256": "0d7f7dce96c0931ffe4736655b278ccf8043abc333de03b3a53efd77a0edf6dd",
+      "d0_sha256": "17a3dcf945d316b7a95b22a1a60b67480c099fe9fcd71391aaa53f1033731f2a"
+    },
+    {
+      "id": "GUARD-QUOTED-FACT-DATE",
+      "kind": "constructed_request_control_with_real_d0",
+      "derived_from": "AH2-REPAIR-TRAINING",
+      "source": {
+        "case_file": "maintenance/tests/evidence/ah002-news-date-completeness-r1/cases.json",
+        "case_file_sha256": "2367fd9e2e0aee103336c14d1e63c2dc6ec03dc1290b4d7554c2906c077ae416",
+        "repair_file": "maintenance/tests/evidence/ah002-news-date-completeness-r1/repair_cases.json",
+        "repair_file_sha256": "7730e6a6f45e4bee36f432d91e638e678d06b5451d0ad581b533e1bf4392b152",
+        "original_case_id": "AH2-TRAINING",
+        "provider": "ollama",
+        "model": "ollama-cloud/deepseek-v4-flash:0731",
+        "raw_root_alias": "ARCHIVED_AH002_WORKTREE",
+        "raw_relative_path": "output/ah002-news-date-completeness-r1/baseline/raw/ollama/AH2-TRAINING-baseline.final.txt",
+        "raw_file_sha256": "17a3dcf945d316b7a95b22a1a60b67480c099fe9fcd71391aaa53f1033731f2a",
+        "raw_bytes_equal_preserved_d0": true
+      },
+      "original_request": "请以临江区政务服务中心发布者视角起草一则活动新闻稿，只输出可直接使用的完整正文，不解释过程，不限定字数。材料：2026年9月2日，临江区政务服务中心举办窗口业务规范培训，47名工作人员参加。培训设置政策要点讲解、材料核验练习和案例复盘三个环节；43人完成全部练习，4人因值班提前离场，未完成练习。现场回收意见表45份，尚未分类汇总。允许写由已给培训环节直接支持的一层学习、交流或实践作用；不得把43人完成练习扩大成47人全体成效，不得补材料未给的活动过程、反馈结论或后续安排。",
+      "request": "请以临江区政务服务中心发布者视角起草一则活动新闻稿，只输出可直接使用的完整正文，不解释过程，不限定字数。材料：“2026年9月2日”，临江区政务服务中心举办窗口业务规范培训，47名工作人员参加。培训设置政策要点讲解、材料核验练习和案例复盘三个环节；43人完成全部练习，4人因值班提前离场，未完成练习。现场回收意见表45份，尚未分类汇总。允许写由已给培训环节直接支持的一层学习、交流或实践作用；不得把43人完成练习扩大成47人全体成效，不得补材料未给的活动过程、反馈结论或后续安排。",
+      "d0": "临江区政务服务中心开展窗口业务规范培训\n\n9月2日，临江区政务服务中心举办窗口业务规范培训，47名工作人员参加。培训设置政策要点讲解、材料核验练习和案例复盘三个环节，帮助参训人员进一步理解政策要求、熟悉材料核验流程，并通过案例复盘交流业务经验。\n\n培训中，43名工作人员完成全部练习，4人因值班提前离场，未完成练习。现场共回收意见表45份，目前尚未分类汇总。",
+      "transformation": "Quote the same factual date. This is a constructed guard control, not newly generated D0.",
+      "expected": {
+        "baseline_output": "临江区政务服务中心开展窗口业务规范培训\n\n2026年9月2日，临江区政务服务中心举办窗口业务规范培训，47名工作人员参加。培训设置政策要点讲解、材料核验练习和案例复盘三个环节，帮助参训人员进一步理解政策要求、熟悉材料核验流程，并通过案例复盘交流业务经验。\n\n培训中，43名工作人员完成全部练习，4人因值班提前离场，未完成练习。现场共回收意见表45份，目前尚未分类汇总。",
+        "candidate_output": "临江区政务服务中心开展窗口业务规范培训\n\n2026年9月2日，临江区政务服务中心举办窗口业务规范培训，47名工作人员参加。培训设置政策要点讲解、材料核验练习和案例复盘三个环节，帮助参训人员进一步理解政策要求、熟悉材料核验流程，并通过案例复盘交流业务经验。\n\n培训中，43名工作人员完成全部练习，4人因值班提前离场，未完成练习。现场共回收意见表45份，目前尚未分类汇总。",
+        "baseline_output_sha256": "f5bee61313afcf7e9857c1df13f34e1360b39da1c180fb8079ffbe1e65b25436",
+        "candidate_output_sha256": "f5bee61313afcf7e9857c1df13f34e1360b39da1c180fb8079ffbe1e65b25436"
+      },
+      "request_sha256": "a6e08ee3a49ef4667f9cf3b81d3aefe1e13d312be9fae9c493b4e1bb2a6c5e1d",
+      "original_request_sha256": "0d7f7dce96c0931ffe4736655b278ccf8043abc333de03b3a53efd77a0edf6dd",
+      "d0_sha256": "17a3dcf945d316b7a95b22a1a60b67480c099fe9fcd71391aaa53f1033731f2a"
+    },
+    {
+      "id": "SYNTHETIC-HISTORICAL-DATE-ROLE",
+      "kind": "archived_synthetic_fault_control",
+      "source": {
+        "script": "maintenance/tests/evidence/hook-offline-counterexamples-r1/date_role_repro.py",
+        "script_sha256": "89021ff88f1b10053255200391b1a7d0e8a5d563b5417cb8394d1ce99761aba8",
+        "extracted_without_executing_original_script": true
+      },
+      "original_request": "请写一则新闻稿。活动事实：中心在2026-09-05举办读书交流活动，共20人参加。日期格式示例（不属于活动事实）：2020年9月5日。",
+      "request": "请写一则新闻稿。活动事实：中心在2026-09-05举办读书交流活动，共20人参加。日期格式示例（不属于活动事实）：2020年9月5日。",
+      "d0": "中心举办读书交流活动\n\n9月5日，中心举办读书交流活动，共20人参加。",
+      "expected": {
+        "baseline_output": "中心举办读书交流活动\n\n2020年9月5日，中心举办读书交流活动，共20人参加。",
+        "candidate_output": "中心举办读书交流活动\n\n9月5日，中心举办读书交流活动，共20人参加。",
+        "baseline_output_sha256": "65bc1fb9c4560a421796c944e498f788bf3ca54361458e66f73930ad7fb81d50",
+        "candidate_output_sha256": "e93dbb1d288678c219570df33c67c3484fe63d4735b6816afa50a7106b2c990c"
+      },
+      "request_sha256": "e6fe0c643c7afbca36ef688a6c27842680bf78c05f88d7957280f04f0fd42fbd",
+      "original_request_sha256": "e6fe0c643c7afbca36ef688a6c27842680bf78c05f88d7957280f04f0fd42fbd",
+      "d0_sha256": "e93dbb1d288678c219570df33c67c3484fe63d4735b6816afa50a7106b2c990c"
+    },
+    {
+      "id": "SYNTHETIC-NONFACT-EXAMPLE-ONLY",
+      "kind": "new_synthetic_fault_control",
+      "original_request": null,
+      "request": "请写一则新闻稿。中心举办读书交流活动，共20人参加。日期格式示例（不属于本次活动事实）：2020年9月5日。",
+      "d0": "中心举办读书交流活动\n\n9月5日，中心举办读书交流活动，共20人参加。",
+      "transformation": "New synthetic request exercises an explicit nonfact label without an alternate date; not a historical run or real model output.",
+      "expected": {
+        "baseline_output": "中心举办读书交流活动\n\n2020年9月5日，中心举办读书交流活动，共20人参加。",
+        "candidate_output": "中心举办读书交流活动\n\n9月5日，中心举办读书交流活动，共20人参加。",
+        "baseline_output_sha256": "65bc1fb9c4560a421796c944e498f788bf3ca54361458e66f73930ad7fb81d50",
+        "candidate_output_sha256": "e93dbb1d288678c219570df33c67c3484fe63d4735b6816afa50a7106b2c990c"
+      },
+      "request_sha256": "3148649f47d53fc202f39a5b0e4de20973ae9b7462f87e9a867fb97c074dbc5e",
+      "original_request_sha256": null,
+      "d0_sha256": "e93dbb1d288678c219570df33c67c3484fe63d4735b6816afa50a7106b2c990c"
+    }
+  ]
+}

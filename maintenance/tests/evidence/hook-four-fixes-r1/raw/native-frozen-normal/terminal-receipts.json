@@ -1,0 +1,21 @@
+[
+  {
+    "path": "runtime\\claude-config\\plugins\\data\\chinese-official-writing-gate-inline\\claude-gate-core\\candidate-ai-gate-hook\\17dfc77a-eedc-4c3b-848a-adbb10cc47f3\\claude-1-a634e6cb058ca444.json",
+    "sha256": "034d9da77579c5f86d57bb8cc268e92715e73e17e12375307de2dd029298f2d8",
+    "record": {
+      "bootstrapped_by_stop": true,
+      "bypass": null,
+      "data_retention_state": "raw_turn_data_redacted",
+      "delivery_verified": true,
+      "emit_seen": true,
+      "emitted_sha256": "d0928563b721c2adf6d2e0246591553e8a06df03c48cccb4ecbd486933059e6a",
+      "hook_phase": "complete",
+      "last_action": "emit",
+      "raw_artifact_delete_failures": 0,
+      "run_id": "7d86b915-4081-4ddd-8cb7-0862f7ee7b22",
+      "schema_version": 1,
+      "skill_seen": true,
+      "stop_attempts": 1
+    }
+  }
+]

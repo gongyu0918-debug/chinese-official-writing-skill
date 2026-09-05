@@ -1,0 +1,60 @@
+{
+  "scope": "Offline lock and stale-writer checks only. Original short D0 is reused. Other capability handlers are bypassed; no gate subprocess or model is invoked. No bootstrap/HostAbort claim.",
+  "core_sha256": "f6d5b2967cb4bf51ed8e40ad8ab53d8a887ac2ab3b9fdcee10e2f6d6ef738f64",
+  "d0_sha256": "353db1634bb8796131c8b92857aa9d49f4f1401c73dd736efa218a9c8dfee2e5",
+  "model_calls": 0,
+  "lock_timeout": {
+    "held": {
+      "response": {
+        "continue": false,
+        "stopReason": "终稿状态暂不可写，已停止自动重试。",
+        "systemMessage": "终稿状态暂不可写，已停止自动重试。"
+      },
+      "exit_code": 0,
+      "seconds": 2.0
+    },
+    "after_release": {
+      "response": {
+        "decision": "block",
+        "reason": "终稿回显与 emit 哈希不一致。请只逐字输出下列已选终稿，不要调用工具、不要加说明：\n中心举办读书交流活动\n\n2026年9月5日，中心举办读书交流活动，共20人参加。"
+      },
+      "exit_code": 0,
+      "seconds": 0.0
+    },
+    "pass": true
+  },
+  "stale_terminal": [
+    {
+      "terminal": "failed",
+      "caller_refreshed": true,
+      "record_unchanged": true,
+      "raw_keys_in_record": [],
+      "response_before_finish": {
+        "decision": "block",
+        "reason": "终稿回显与 emit 哈希不一致。请只逐字输出下列已选终稿，不要调用工具、不要加说明：\n"
+      },
+      "response": {
+        "continue": false,
+        "stopReason": "终稿回显校验未通过，已停止自动重试。",
+        "systemMessage": "终稿回显校验未通过，已停止自动重试。"
+      },
+      "pass": true
+    },
+    {
+      "terminal": "complete",
+      "caller_refreshed": true,
+      "record_unchanged": true,
+      "raw_keys_in_record": [],
+      "response_before_finish": {
+        "decision": "block",
+        "reason": "终稿回显与 emit 哈希不一致。请只逐字输出下列已选终稿，不要调用工具、不要加说明：\n"
+      },
+      "response": {
+        "decision": "block",
+        "reason": "终稿回显与 emit 哈希不一致。请只逐字输出下列已选终稿，不要调用工具、不要加说明：\n"
+      },
+      "pass": false
+    }
+  ],
+  "pass": false
+}

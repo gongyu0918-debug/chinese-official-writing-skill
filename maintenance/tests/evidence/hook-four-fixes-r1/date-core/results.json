@@ -1,0 +1,321 @@
+{
+  "schema_version": 1,
+  "baseline_commit": "3532afd6619ac6256558e9552b92d03da5ae9c0f",
+  "candidate_head": "976bb8a4e11a56e314c7328ff163267e805ad9f9",
+  "baseline_export": "git cat-file --batch raw binary stdout; no newline conversion",
+  "model_calls": 0,
+  "new_cases": 0,
+  "core_subprocess_events": 48,
+  "all_exact_echo_terminal": true,
+  "all_visible_outputs_match_helper_expectations": true,
+  "original_frozen_case_records_unchanged": true,
+  "inputs_sha256": "0d7e15949cd2ef9abe07629ff285ac039ef164efdb8f4f2694ca8cc80583acaa",
+  "replay_script_sha256": "e0ffc9d36bd416d87e81ad29df541035eadea5ed49a7e7f8ee8f142049c44962",
+  "raw_output_relative_path": "output/hook-four-fixes-r1/date-core/run-final/results.json",
+  "raw_results_sha256": "93d2b8832470f707b0c8a57724cedfc6cc974a366a938fae23f3d2769f40c5fe",
+  "raw_preregistration_sha256": "837c2da408e6109b0d769c17d894f9586f3eb3dbf88d46f22f882073c948f9ba",
+  "executed_source_sha256": {
+    "baseline": {
+      "chinese-official-writing/hooks/core/gate_stop_hook.py": "049d153a66edf5ce0f3a24fb07aa25153778fad89bdebdd19584c32e202c0b62",
+      "chinese-official-writing/hooks/shared/source_bound_dates.py": "d1e5b9da5607bfa7b3e27be8642e77e34a352617c52cf8d41fba8c19e0fbd015",
+      "chinese-official-writing/scripts/review_gate.py": "ffe66ece91e15231d3bbbf8122091ecd00e05580bd2e9317b864b7ada5f0ad19"
+    },
+    "candidate": {
+      "chinese-official-writing/hooks/core/gate_stop_hook.py": "969235f48c8a7f8592b84742257b08315e823326c76d4198e7e12b7cc5eb32ea",
+      "chinese-official-writing/hooks/shared/source_bound_dates.py": "5f28a20b0b32cda9f4610fbbabfbb7592819272662abba852d8c3f96b85aae3a",
+      "chinese-official-writing/scripts/review_gate.py": "8505838e71f630233311c3dca56d5526b4e81400990917fdc798cb39baaff0ff"
+    }
+  },
+  "echo_provenance": "Harness echoes only core-emitted exact text; this is not a model-generated response or native host integration proof.",
+  "cases": [
+    {
+      "case_id": "AH2-REPAIR-TRAINING",
+      "kind": "archived_original_natural_d0_pair",
+      "arms": {
+        "baseline": {
+          "status": "EXACT_ECHO_TERMINAL",
+          "request_sha256": "0d7f7dce96c0931ffe4736655b278ccf8043abc333de03b3a53efd77a0edf6dd",
+          "d0_sha256": "17a3dcf945d316b7a95b22a1a60b67480c099fe9fcd71391aaa53f1033731f2a",
+          "date_audit_after_first_stop": {
+            "original_sha256": "17a3dcf945d316b7a95b22a1a60b67480c099fe9fcd71391aaa53f1033731f2a",
+            "output_sha256": "f5bee61313afcf7e9857c1df13f34e1360b39da1c180fb8079ffbe1e65b25436",
+            "reason": "source_bound_full_date_restored",
+            "schema_version": 1,
+            "selected": true
+          },
+          "state_after_first_stop": "TERMINAL_D0",
+          "selected_after_first_stop": "D0",
+          "visible_final_sha256": "f5bee61313afcf7e9857c1df13f34e1360b39da1c180fb8079ffbe1e65b25436",
+          "visible_final_equals_d0": false,
+          "matches_pure_helper_expected_output": true,
+          "delivery_verified": true,
+          "hook_phase": "complete",
+          "data_retention_state": "raw_turn_data_redacted",
+          "raw_artifact_delete_failures": 0,
+          "core_events": 4
+        },
+        "candidate": {
+          "status": "EXACT_ECHO_TERMINAL",
+          "request_sha256": "0d7f7dce96c0931ffe4736655b278ccf8043abc333de03b3a53efd77a0edf6dd",
+          "d0_sha256": "17a3dcf945d316b7a95b22a1a60b67480c099fe9fcd71391aaa53f1033731f2a",
+          "date_audit_after_first_stop": {
+            "original_sha256": "17a3dcf945d316b7a95b22a1a60b67480c099fe9fcd71391aaa53f1033731f2a",
+            "output_sha256": "f5bee61313afcf7e9857c1df13f34e1360b39da1c180fb8079ffbe1e65b25436",
+            "reason": "source_bound_full_date_restored",
+            "schema_version": 1,
+            "selected": true
+          },
+          "state_after_first_stop": "TERMINAL_D0",
+          "selected_after_first_stop": "D0",
+          "visible_final_sha256": "f5bee61313afcf7e9857c1df13f34e1360b39da1c180fb8079ffbe1e65b25436",
+          "visible_final_equals_d0": false,
+          "matches_pure_helper_expected_output": true,
+          "delivery_verified": true,
+          "hook_phase": "complete",
+          "data_retention_state": "raw_turn_data_redacted",
+          "raw_artifact_delete_failures": 0,
+          "core_events": 4
+        }
+      }
+    },
+    {
+      "case_id": "AH2-REPAIR-OPEN-DAY",
+      "kind": "archived_original_natural_d0_pair",
+      "arms": {
+        "baseline": {
+          "status": "EXACT_ECHO_TERMINAL",
+          "request_sha256": "d39a2ad0ccc6399715e51267e940715671aeb76f49a93746484de48972f3ee91",
+          "d0_sha256": "02359dbe8936d3d60d6ddcd5a87f7f3dc5cd03790ad097d5299e5c59726eeed3",
+          "date_audit_after_first_stop": {
+            "original_sha256": "02359dbe8936d3d60d6ddcd5a87f7f3dc5cd03790ad097d5299e5c59726eeed3",
+            "output_sha256": "ce7d2714cba64c44d21e53c280a032109072b29b2d65a2ce0fd20316637e6621",
+            "reason": "source_bound_full_date_restored",
+            "schema_version": 1,
+            "selected": true
+          },
+          "state_after_first_stop": "TERMINAL_D0",
+          "selected_after_first_stop": "D0",
+          "visible_final_sha256": "ce7d2714cba64c44d21e53c280a032109072b29b2d65a2ce0fd20316637e6621",
+          "visible_final_equals_d0": false,
+          "matches_pure_helper_expected_output": true,
+          "delivery_verified": true,
+          "hook_phase": "complete",
+          "data_retention_state": "raw_turn_data_redacted",
+          "raw_artifact_delete_failures": 0,
+          "core_events": 4
+        },
+        "candidate": {
+          "status": "EXACT_ECHO_TERMINAL",
+          "request_sha256": "d39a2ad0ccc6399715e51267e940715671aeb76f49a93746484de48972f3ee91",
+          "d0_sha256": "02359dbe8936d3d60d6ddcd5a87f7f3dc5cd03790ad097d5299e5c59726eeed3",
+          "date_audit_after_first_stop": {
+            "original_sha256": "02359dbe8936d3d60d6ddcd5a87f7f3dc5cd03790ad097d5299e5c59726eeed3",
+            "output_sha256": "ce7d2714cba64c44d21e53c280a032109072b29b2d65a2ce0fd20316637e6621",
+            "reason": "source_bound_full_date_restored",
+            "schema_version": 1,
+            "selected": true
+          },
+          "state_after_first_stop": "TERMINAL_D0",
+          "selected_after_first_stop": "D0",
+          "visible_final_sha256": "ce7d2714cba64c44d21e53c280a032109072b29b2d65a2ce0fd20316637e6621",
+          "visible_final_equals_d0": false,
+          "matches_pure_helper_expected_output": true,
+          "delivery_verified": true,
+          "hook_phase": "complete",
+          "data_retention_state": "raw_turn_data_redacted",
+          "raw_artifact_delete_failures": 0,
+          "core_events": 4
+        }
+      }
+    },
+    {
+      "case_id": "AH2-REPAIR-DRILL",
+      "kind": "archived_original_natural_d0_pair",
+      "arms": {
+        "baseline": {
+          "status": "EXACT_ECHO_TERMINAL",
+          "request_sha256": "7350d0b894622c55ddd2e8ebe6cb8e95b12c22976680a4d102ee98656d1d277a",
+          "d0_sha256": "72113ddbfea808b77bff25c0444bd13a20194e9cdf8e0f3d24c1623401b69ad8",
+          "date_audit_after_first_stop": {
+            "original_sha256": "72113ddbfea808b77bff25c0444bd13a20194e9cdf8e0f3d24c1623401b69ad8",
+            "output_sha256": "10438e3179dd2c7e95f98239b535468127e2929d7d2a73e75a6c3c72266f5289",
+            "reason": "source_bound_full_date_restored",
+            "schema_version": 1,
+            "selected": true
+          },
+          "state_after_first_stop": "TERMINAL_D0",
+          "selected_after_first_stop": "D0",
+          "visible_final_sha256": "10438e3179dd2c7e95f98239b535468127e2929d7d2a73e75a6c3c72266f5289",
+          "visible_final_equals_d0": false,
+          "matches_pure_helper_expected_output": true,
+          "delivery_verified": true,
+          "hook_phase": "complete",
+          "data_retention_state": "raw_turn_data_redacted",
+          "raw_artifact_delete_failures": 0,
+          "core_events": 4
+        },
+        "candidate": {
+          "status": "EXACT_ECHO_TERMINAL",
+          "request_sha256": "7350d0b894622c55ddd2e8ebe6cb8e95b12c22976680a4d102ee98656d1d277a",
+          "d0_sha256": "72113ddbfea808b77bff25c0444bd13a20194e9cdf8e0f3d24c1623401b69ad8",
+          "date_audit_after_first_stop": {
+            "original_sha256": "72113ddbfea808b77bff25c0444bd13a20194e9cdf8e0f3d24c1623401b69ad8",
+            "output_sha256": "10438e3179dd2c7e95f98239b535468127e2929d7d2a73e75a6c3c72266f5289",
+            "reason": "source_bound_full_date_restored",
+            "schema_version": 1,
+            "selected": true
+          },
+          "state_after_first_stop": "TERMINAL_D0",
+          "selected_after_first_stop": "D0",
+          "visible_final_sha256": "10438e3179dd2c7e95f98239b535468127e2929d7d2a73e75a6c3c72266f5289",
+          "visible_final_equals_d0": false,
+          "matches_pure_helper_expected_output": true,
+          "delivery_verified": true,
+          "hook_phase": "complete",
+          "data_retention_state": "raw_turn_data_redacted",
+          "raw_artifact_delete_failures": 0,
+          "core_events": 4
+        }
+      }
+    },
+    {
+      "case_id": "AH2-CONTROL-COMPLETE",
+      "kind": "archived_original_natural_d0_pair",
+      "arms": {
+        "baseline": {
+          "status": "EXACT_ECHO_TERMINAL",
+          "request_sha256": "0d7f7dce96c0931ffe4736655b278ccf8043abc333de03b3a53efd77a0edf6dd",
+          "d0_sha256": "d630c877032be6d932a1fe0fdb31dd71701c40d7acf4f84819eb8bf03da35957",
+          "date_audit_after_first_stop": null,
+          "state_after_first_stop": "TERMINAL_D0",
+          "selected_after_first_stop": "D0",
+          "visible_final_sha256": "d630c877032be6d932a1fe0fdb31dd71701c40d7acf4f84819eb8bf03da35957",
+          "visible_final_equals_d0": true,
+          "matches_pure_helper_expected_output": true,
+          "delivery_verified": true,
+          "hook_phase": "complete",
+          "data_retention_state": "raw_turn_data_redacted",
+          "raw_artifact_delete_failures": 0,
+          "core_events": 4
+        },
+        "candidate": {
+          "status": "EXACT_ECHO_TERMINAL",
+          "request_sha256": "0d7f7dce96c0931ffe4736655b278ccf8043abc333de03b3a53efd77a0edf6dd",
+          "d0_sha256": "d630c877032be6d932a1fe0fdb31dd71701c40d7acf4f84819eb8bf03da35957",
+          "date_audit_after_first_stop": null,
+          "state_after_first_stop": "TERMINAL_D0",
+          "selected_after_first_stop": "D0",
+          "visible_final_sha256": "d630c877032be6d932a1fe0fdb31dd71701c40d7acf4f84819eb8bf03da35957",
+          "visible_final_equals_d0": true,
+          "matches_pure_helper_expected_output": true,
+          "delivery_verified": true,
+          "hook_phase": "complete",
+          "data_retention_state": "raw_turn_data_redacted",
+          "raw_artifact_delete_failures": 0,
+          "core_events": 4
+        }
+      }
+    },
+    {
+      "case_id": "REAL-D0-ISO-FORMAT-EXAMPLE",
+      "kind": "real_d0_source_role_request_variant",
+      "arms": {
+        "baseline": {
+          "status": "EXACT_ECHO_TERMINAL",
+          "request_sha256": "05c80710e7abc400784b4f0bf1905c7e981523e055c2fe6b6cb529cf3cdba897",
+          "d0_sha256": "17a3dcf945d316b7a95b22a1a60b67480c099fe9fcd71391aaa53f1033731f2a",
+          "date_audit_after_first_stop": {
+            "original_sha256": "17a3dcf945d316b7a95b22a1a60b67480c099fe9fcd71391aaa53f1033731f2a",
+            "output_sha256": "a548568de3af04b0b6d78f83817a95738fd3fad4e37c4ab8ce4d04c66993b4be",
+            "reason": "source_bound_full_date_restored",
+            "schema_version": 1,
+            "selected": true
+          },
+          "state_after_first_stop": "TERMINAL_D0",
+          "selected_after_first_stop": "D0",
+          "visible_final_sha256": "a548568de3af04b0b6d78f83817a95738fd3fad4e37c4ab8ce4d04c66993b4be",
+          "visible_final_equals_d0": false,
+          "matches_pure_helper_expected_output": true,
+          "delivery_verified": true,
+          "hook_phase": "complete",
+          "data_retention_state": "raw_turn_data_redacted",
+          "raw_artifact_delete_failures": 0,
+          "core_events": 4
+        },
+        "candidate": {
+          "status": "EXACT_ECHO_TERMINAL",
+          "request_sha256": "05c80710e7abc400784b4f0bf1905c7e981523e055c2fe6b6cb529cf3cdba897",
+          "d0_sha256": "17a3dcf945d316b7a95b22a1a60b67480c099fe9fcd71391aaa53f1033731f2a",
+          "date_audit_after_first_stop": null,
+          "state_after_first_stop": "TERMINAL_D0",
+          "selected_after_first_stop": "D0",
+          "visible_final_sha256": "17a3dcf945d316b7a95b22a1a60b67480c099fe9fcd71391aaa53f1033731f2a",
+          "visible_final_equals_d0": true,
+          "matches_pure_helper_expected_output": true,
+          "delivery_verified": true,
+          "hook_phase": "complete",
+          "data_retention_state": "raw_turn_data_redacted",
+          "raw_artifact_delete_failures": 0,
+          "core_events": 4
+        }
+      }
+    },
+    {
+      "case_id": "REAL-D0-ISO-OLD-DRAFT",
+      "kind": "real_d0_source_role_request_variant",
+      "arms": {
+        "baseline": {
+          "status": "EXACT_ECHO_TERMINAL",
+          "request_sha256": "465cad5c292fc60c0cdf68fa45e8b6040e6e313452acc9bc8a4709430bc32b4e",
+          "d0_sha256": "17a3dcf945d316b7a95b22a1a60b67480c099fe9fcd71391aaa53f1033731f2a",
+          "date_audit_after_first_stop": {
+            "original_sha256": "17a3dcf945d316b7a95b22a1a60b67480c099fe9fcd71391aaa53f1033731f2a",
+            "output_sha256": "a548568de3af04b0b6d78f83817a95738fd3fad4e37c4ab8ce4d04c66993b4be",
+            "reason": "source_bound_full_date_restored",
+            "schema_version": 1,
+            "selected": true
+          },
+          "state_after_first_stop": "TERMINAL_D0",
+          "selected_after_first_stop": "D0",
+          "visible_final_sha256": "a548568de3af04b0b6d78f83817a95738fd3fad4e37c4ab8ce4d04c66993b4be",
+          "visible_final_equals_d0": false,
+          "matches_pure_helper_expected_output": true,
+          "delivery_verified": true,
+          "hook_phase": "complete",
+          "data_retention_state": "raw_turn_data_redacted",
+          "raw_artifact_delete_failures": 0,
+          "core_events": 4
+        },
+        "candidate": {
+          "status": "EXACT_ECHO_TERMINAL",
+          "request_sha256": "465cad5c292fc60c0cdf68fa45e8b6040e6e313452acc9bc8a4709430bc32b4e",
+          "d0_sha256": "17a3dcf945d316b7a95b22a1a60b67480c099fe9fcd71391aaa53f1033731f2a",
+          "date_audit_after_first_stop": null,
+          "state_after_first_stop": "TERMINAL_D0",
+          "selected_after_first_stop": "D0",
+          "visible_final_sha256": "17a3dcf945d316b7a95b22a1a60b67480c099fe9fcd71391aaa53f1033731f2a",
+          "visible_final_equals_d0": true,
+          "matches_pure_helper_expected_output": true,
+          "delivery_verified": true,
+          "hook_phase": "complete",
+          "data_retention_state": "raw_turn_data_redacted",
+          "raw_artifact_delete_failures": 0,
+          "core_events": 4
+        }
+      }
+    }
+  ],
+  "visible_text_by_sha256": {
+    "f5bee61313afcf7e9857c1df13f34e1360b39da1c180fb8079ffbe1e65b25436": "临江区政务服务中心开展窗口业务规范培训\n\n2026年9月2日，临江区政务服务中心举办窗口业务规范培训，47名工作人员参加。培训设置政策要点讲解、材料核验练习和案例复盘三个环节，帮助参训人员进一步理解政策要求、熟悉材料核验流程，并通过案例复盘交流业务经验。\n\n培训中，43名工作人员完成全部练习，4人因值班提前离场，未完成练习。现场共回收意见表45份，目前尚未分类汇总。",
+    "ce7d2714cba64c44d21e53c280a032109072b29b2d65a2ce0fd20316637e6621": "青禾市博物馆举办馆藏保护公众开放日活动\n\n2026年9月6日，青禾市博物馆举办馆藏保护公众开放日活动，68名市民参加。活动设置库房参观、保护流程讲解和现场问答三个环节，为公众了解馆藏保护提供了直接机会。\n\n活动现场回收问卷62份，其中52份勾选\"了解了基本保护流程\"，其余10份未选择该项。问卷尚未作进一步统计。",
+    "10438e3179dd2c7e95f98239b535468127e2929d7d2a73e75a6c3c72266f5289": "东澜市档案馆开展消防疏散演练\n\n2026年9月9日，东澜市档案馆组织消防疏散演练，32名工作人员参加。演练设置警报响应、疏散集合和设备检查三个环节，为检视应急响应和疏散环节提供了实践条件。\n\n演练中，参演人员按警报提示有序响应并完成疏散集合，随后开展设备检查。29人完成全部环节，3人因外出未参加设备检查。\n\n演练结束后，工作人员记录2处标识不清。是否调整及调整方式尚未决定。",
+    "d630c877032be6d932a1fe0fdb31dd71701c40d7acf4f84819eb8bf03da35957": "临江区政务服务中心举办窗口业务规范培训\n\n2026年9月2日，临江区政务服务中心举办窗口业务规范培训，47名窗口工作人员参加。\n\n培训设置政策要点讲解、材料核验练习和案例复盘三个环节。政策要点讲解环节对窗口业务相关政策要点作系统梳理，材料核验练习环节按规范要求组织实操演练，案例复盘环节围绕日常办理中的典型案例开展研讨交流，帮助参训人员把握政策要点、熟悉核验要求、增进业务交流。\n\n培训期间，43人完成全部练习环节；4人因值班提前离场，未完成相关练习。现场回收意见表45份，目前尚未分类汇总。",
+    "a548568de3af04b0b6d78f83817a95738fd3fad4e37c4ab8ce4d04c66993b4be": "临江区政务服务中心开展窗口业务规范培训\n\n2020年9月2日，临江区政务服务中心举办窗口业务规范培训，47名工作人员参加。培训设置政策要点讲解、材料核验练习和案例复盘三个环节，帮助参训人员进一步理解政策要求、熟悉材料核验流程，并通过案例复盘交流业务经验。\n\n培训中，43名工作人员完成全部练习，4人因值班提前离场，未完成练习。现场共回收意见表45份，目前尚未分类汇总。",
+    "17a3dcf945d316b7a95b22a1a60b67480c099fe9fcd71391aaa53f1033731f2a": "临江区政务服务中心开展窗口业务规范培训\n\n9月2日，临江区政务服务中心举办窗口业务规范培训，47名工作人员参加。培训设置政策要点讲解、材料核验练习和案例复盘三个环节，帮助参训人员进一步理解政策要求、熟悉材料核验流程，并通过案例复盘交流业务经验。\n\n培训中，43名工作人员完成全部练习，4人因值班提前离场，未完成练习。现场共回收意见表45份，目前尚未分类汇总。"
+  },
+  "previous_r1": {
+    "status": "retained; superseded for exact-byte baseline/candidate proof",
+    "reason": "R1 git archive converted LF to CRLF and candidate predates final stale-block guard.",
+    "raw_results_sha256": "18509142c14e72244034e2ce96a3c264340b77eb481af88a346af507bd6bd28e"
+  }
+}

@@ -1,0 +1,144 @@
+{
+  "schema_version": 1,
+  "all_checks_passed": true,
+  "checks": [
+    {
+      "check": "python_ast",
+      "file": "replay.py",
+      "passed": true
+    },
+    {
+      "check": "python_ast",
+      "file": "source_bound_dates_baseline.py",
+      "passed": true
+    },
+    {
+      "check": "python_ast",
+      "file": "source_bound_dates_candidate.py",
+      "passed": true
+    },
+    {
+      "check": "json_parse",
+      "file": "inputs.json",
+      "passed": true
+    },
+    {
+      "check": "json_parse",
+      "file": "prototype-origin.json",
+      "passed": true
+    },
+    {
+      "check": "json_parse",
+      "file": "results.json",
+      "passed": true
+    },
+    {
+      "check": "local_doc_link",
+      "target": "inputs.json",
+      "passed": true
+    },
+    {
+      "check": "local_doc_link",
+      "target": "results.json",
+      "passed": true
+    },
+    {
+      "check": "local_doc_link",
+      "target": "candidate.patch",
+      "passed": true
+    },
+    {
+      "check": "local_doc_link",
+      "target": "source_bound_dates_candidate.py",
+      "passed": true
+    },
+    {
+      "check": "local_doc_link",
+      "target": "source_bound_dates_baseline.py",
+      "passed": true
+    },
+    {
+      "check": "local_doc_link",
+      "target": "validation.json",
+      "passed": true
+    },
+    {
+      "check": "baseline_copy_equals_fixed_git_blob",
+      "passed": true,
+      "sha256": "d1e5b9da5607bfa7b3e27be8642e77e34a352617c52cf8d41fba8c19e0fbd015"
+    },
+    {
+      "check": "command",
+      "argv": [
+        "git",
+        "diff",
+        "3532afd6619ac6256558e9552b92d03da5ae9c0f",
+        "--",
+        "chinese-official-writing/hooks/shared/source_bound_dates.py"
+      ],
+      "exit_code": 0,
+      "stdout_bytes": 0,
+      "stderr_bytes": 0,
+      "passed": true
+    },
+    {
+      "check": "command",
+      "argv": [
+        "git",
+        "apply",
+        "--check",
+        "output/hook-four-fixes-r1/date-prototype/candidate.patch"
+      ],
+      "exit_code": 0,
+      "stdout_bytes": 0,
+      "stderr_bytes": 0,
+      "passed": true
+    },
+    {
+      "check": "command",
+      "argv": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "exit_code": 0,
+      "stdout_bytes": 0,
+      "stderr_bytes": 1301,
+      "passed": true
+    },
+    {
+      "check": "command",
+      "argv": [
+        "python",
+        "-B",
+        "-X",
+        "utf8",
+        "output/hook-four-fixes-r1/date-prototype/replay.py",
+        "--help"
+      ],
+      "exit_code": 0,
+      "stdout_bytes": 266,
+      "stderr_bytes": 0,
+      "passed": true
+    },
+    {
+      "check": "patch_hash_matches_origin",
+      "passed": true
+    },
+    {
+      "check": "tracked_product_edits_by_this_prototype",
+      "passed": true,
+      "note": "Only output/date-prototype files written by this task; concurrent tracked lifecycle/core changes belong to root and were not edited here."
+    }
+  ],
+  "artifact_sha256": {
+    "candidate.patch": "7e9086a6a108513dc9cfbccc9937b3523215d8f47700b63118ad70e956922542",
+    "inputs.json": "6ade05483c423b58141458791185e18845d332abf5e402a97045d5767be8a7c1",
+    "prototype-origin.json": "b6fbbbe39c298a07cad223235d9b18109c102796fefd3568238e6b7a3da2ec57",
+    "replay.py": "8a98a94b96dd807c191a68c83361fdea10a5952f66818fb6de67044a2dab4c2f",
+    "result.md": "5789509bbbf8906d5bdee498dec82d2b41d224da9635768624a709ce93159da4",
+    "results.json": "dc4bc429becdefa803912018a9677e5bd9850945875565f1b063cb6b51f2608d",
+    "source_bound_dates_baseline.py": "d1e5b9da5607bfa7b3e27be8642e77e34a352617c52cf8d41fba8c19e0fbd015",
+    "source_bound_dates_candidate.py": "5f28a20b0b32cda9f4610fbbabfbb7592819272662abba852d8c3f96b85aae3a"
+  }
+}

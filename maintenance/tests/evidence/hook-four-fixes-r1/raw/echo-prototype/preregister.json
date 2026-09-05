@@ -1,0 +1,25 @@
+{
+  "baseline_commit": "3532afd6619ac6256558e9552b92d03da5ae9c0f",
+  "source_file": "F:\\Workspaces\\chinese-official-writing-skill\\maintenance\\tests\\evidence\\hook-audit-quality-r1\\frozen-evidence.json",
+  "source_file_sha256": "be9eb2d679226255936f6a309162a88f0ebf8b4891361df18ec34bae64c6342b",
+  "d0_sample": "minimax-REMEDIATION-SHORT-SERVICE-baseline",
+  "d0_model": "minimax-cn/MiniMax-M3",
+  "d0_sha256": "b10b3b51d19fb1fdb13cce686c40c23afea0031e9e12996dd62e20781ad1d424",
+  "wrong_sample": "alibaba1-REMEDIATION-SHORT-SERVICE-candidate",
+  "wrong_model": "alibaba-token-plan/deepseek-v4-flash-0731",
+  "wrong_sha256": "3e4b869f35d3f8643500a82bc6b2399dd21e47b9164ff5fbb03daf6dca3623e4",
+  "wrong_kind": "fault_injected_other_real_draft_same_task_not_observed_natural_echo",
+  "scope": "offline_core_probe_with_frozen_real_D0_only_no_model_or_native_host",
+  "cases": [
+    "exact_echo",
+    "one_wrong_then_exact",
+    "repeat_wrong_to_budget_and_terminal_replay"
+  ],
+  "candidate_core_sha256": "e336b9272779631b8808c905ea74cfbcbaea5c4e3c287eb5b2953493c9336ca0",
+  "baseline_core_sha256": "bb3533d46c99411c4f56c51b437314065696c34e9bdce7d70b42630b3e50cd08",
+  "claims_excluded": [
+    "no_claim_of_native_host_stop",
+    "no_claim_of_visible_text_retraction",
+    "no_product_change_or_admission"
+  ]
+}

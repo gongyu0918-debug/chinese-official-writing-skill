@@ -1,0 +1,116 @@
+{
+  "scope": "Two bounded offline fault schedules. No model calls. Bootstrap detect is stubbed to stop after observing the raw-input writes. Echo test uses actual core.main and actual OS byte-range locks with capability handlers bypassed.",
+  "baseline_commit": "3532afd6",
+  "baseline_core_sha256": "049d153a66edf5ce0f3a24fb07aa25153778fad89bdebdd19584c32e202c0b62",
+  "prototype_core_sha256": "d74b431f060f014ed5da1f5ef2f1968ff846c2e88a8cd629c37b441769f777d0",
+  "d0_sha256": "353db1634bb8796131c8b92857aa9d49f4f1401c73dd736efa218a9c8dfee2e5",
+  "bootstrap_abort": [
+    {
+      "arm": "baseline",
+      "abort_response": {
+        "continue": true
+      },
+      "terminal_before_resume": "raw_turn_data_redacted",
+      "record_after": {
+        "data_retention_state": "raw_turn_data_redacted",
+        "hook_phase": "failed_open_host_abort",
+        "host_abort_reason": "turn_changed",
+        "raw_artifact_delete_failures": 0,
+        "schema_version": 1,
+        "skill_seen": true,
+        "stop_attempts": 0
+      },
+      "post_terminal_stop": {
+        "continue": true
+      },
+      "raw_files_after_terminal": [
+        {
+          "path": "bootstrap_abort_baseline\\data\\transactions\\review\\bootstrap-inputs\\draft.txt",
+          "sha256": "353db1634bb8796131c8b92857aa9d49f4f1401c73dd736efa218a9c8dfee2e5"
+        },
+        {
+          "path": "bootstrap_abort_baseline\\data\\transactions\\review\\bootstrap-inputs\\request.txt",
+          "sha256": "57720380f1291846359ccf3bd4fe9c6da205b4ddd7e221b4f047ce9c0b60fe28"
+        }
+      ],
+      "detect_stub_called_after_abort": 1,
+      "worker_errors": []
+    },
+    {
+      "arm": "candidate",
+      "abort_response": {
+        "continue": true
+      },
+      "terminal_before_resume": "raw_turn_data_redacted",
+      "record_after": {
+        "data_retention_state": "raw_turn_data_redacted",
+        "hook_phase": "failed_open_host_abort",
+        "host_abort_reason": "turn_changed",
+        "raw_artifact_delete_failures": 0,
+        "schema_version": 1,
+        "skill_seen": true,
+        "stop_attempts": 0
+      },
+      "post_terminal_stop": {
+        "continue": true
+      },
+      "raw_files_after_terminal": [
+        {
+          "path": "bootstrap_abort_candidate\\data\\transactions\\review\\bootstrap-inputs\\draft.txt",
+          "sha256": "353db1634bb8796131c8b92857aa9d49f4f1401c73dd736efa218a9c8dfee2e5"
+        },
+        {
+          "path": "bootstrap_abort_candidate\\data\\transactions\\review\\bootstrap-inputs\\request.txt",
+          "sha256": "57720380f1291846359ccf3bd4fe9c6da205b4ddd7e221b4f047ce9c0b60fe28"
+        }
+      ],
+      "detect_stub_called_after_abort": 1,
+      "worker_errors": []
+    }
+  ],
+  "lock_timeout_echo": [
+    {
+      "arm": "baseline",
+      "while_locked": {
+        "response": {
+          "decision": "block",
+          "reason": "终稿回显与 emit 哈希不一致。请只逐字输出下列已选终稿，不要调用工具、不要加说明：\n中心举办读书交流活动\n\n2026年9月5日，中心举办读书交流活动，共20人参加。"
+        },
+        "exit_code": 0,
+        "seconds": 0.016
+      },
+      "after_release": {
+        "response": {
+          "decision": "block",
+          "reason": "终稿回显与 emit 哈希不一致。请只逐字输出下列已选终稿，不要调用工具、不要加说明：\n中心举办读书交流活动\n\n2026年9月5日，中心举办读书交流活动，共20人参加。"
+        },
+        "exit_code": 0,
+        "seconds": 0.0
+      },
+      "retained_phase_after_locked_stop": "awaiting_final_output",
+      "retained_attempts_after_locked_stop": 2,
+      "raw_request_remained": true
+    },
+    {
+      "arm": "candidate",
+      "while_locked": {
+        "response": {
+          "continue": true
+        },
+        "exit_code": 0,
+        "seconds": 2.015
+      },
+      "after_release": {
+        "response": {
+          "decision": "block",
+          "reason": "终稿回显与 emit 哈希不一致。请只逐字输出下列已选终稿，不要调用工具、不要加说明：\n中心举办读书交流活动\n\n2026年9月5日，中心举办读书交流活动，共20人参加。"
+        },
+        "exit_code": 0,
+        "seconds": 0.016
+      },
+      "retained_phase_after_locked_stop": "awaiting_final_output",
+      "retained_attempts_after_locked_stop": 1,
+      "raw_request_remained": true
+    }
+  ]
+}

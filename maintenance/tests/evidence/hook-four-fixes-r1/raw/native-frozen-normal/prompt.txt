@@ -1,0 +1,9 @@
+先用 Read 读取本次插件的 F:\Workspaces\chinese-official-writing-skill-worktrees\hook-four-fixes-r1\output\hook-four-fixes-r1\native-frozen-normal\companion\skills\chinese-official-writing\SKILL.md 与 F:\Workspaces\chinese-official-writing-skill-worktrees\hook-four-fixes-r1\output\hook-four-fixes-r1\native-frozen-normal\companion\skills\chinese-official-writing\references\genre-playbook-news-message.md。只读取这两份文件，随后完成用户任务。不要联网，不要写文件。
+
+请根据下列材料写一则简短的新闻消息。
+
+目标活动事实：中心于2026-09-05举办读书交流活动，共20人参加。
+
+格式示例（仅示范中文日期格式，不是本次活动事实，不得写入消息）：2020年9月5日。
+
+只输出可直接使用的完整正文，可以含标题，不解释过程。保留提供的事实，不补充材料未给的活动内容、效果或后续安排。

@@ -1,0 +1,77 @@
+{
+  "model_calls": 0,
+  "new_generation_calls": 0,
+  "case_id": "NATIVE-FROZEN-NORMAL-REAL-D0",
+  "request_sha256": "a634e6cb058ca4449f2e05772b0ee3229d89439683cc49682e054b3ada712b68",
+  "d0_sha256": "d0928563b721c2adf6d2e0246591553e8a06df03c48cccb4ecbd486933059e6a",
+  "core_subprocess_events": 8,
+  "all_exact_echo_terminal": true,
+  "all_frozen_expectations_met": true,
+  "candidate_date_completeness": "FAIL: original bare month/day is preserved",
+  "script_sha256": "dafd7308cdf979e4e52a96aa003985b5b78b9ec2d1a2b78d482116d3444d2a78",
+  "baseline_commit": "3532afd6619ac6256558e9552b92d03da5ae9c0f",
+  "candidate_product_commit": "976bb8a4e11a56e314c7328ff163267e805ad9f9",
+  "source_trace_sha256": "cc27c8b019786fb4d87016aeef04e9fab386c4732e30507cdc74044b6640e55f",
+  "request_line": 1,
+  "first_stop_line": 4,
+  "first_native_stop_fault_injected": false,
+  "raw_output_relative_path": "output/hook-four-fixes-r1/date-core/run-native-natural/results.json",
+  "raw_results_sha256": "2a2a0c8e9d5390feffff0005d327c82cb2b9c4641a51db48603ca72f6122eba0",
+  "raw_preregistration_sha256": "a7f0fe4fc771db40e6181c6c7d0eac7bc65e0010661d8620fdf5bc50367dfdfb",
+  "executed_source_sha256": {
+    "baseline": {
+      "chinese-official-writing/hooks/core/gate_stop_hook.py": "049d153a66edf5ce0f3a24fb07aa25153778fad89bdebdd19584c32e202c0b62",
+      "chinese-official-writing/hooks/shared/source_bound_dates.py": "d1e5b9da5607bfa7b3e27be8642e77e34a352617c52cf8d41fba8c19e0fbd015"
+    },
+    "candidate": {
+      "chinese-official-writing/hooks/core/gate_stop_hook.py": "969235f48c8a7f8592b84742257b08315e823326c76d4198e7e12b7cc5eb32ea",
+      "chinese-official-writing/hooks/shared/source_bound_dates.py": "5f28a20b0b32cda9f4610fbbabfbb7592819272662abba852d8c3f96b85aae3a"
+    }
+  },
+  "arms": {
+    "baseline": {
+      "status": "EXACT_ECHO_TERMINAL",
+      "request_sha256": "a634e6cb058ca4449f2e05772b0ee3229d89439683cc49682e054b3ada712b68",
+      "d0_sha256": "d0928563b721c2adf6d2e0246591553e8a06df03c48cccb4ecbd486933059e6a",
+      "date_audit_after_first_stop": {
+        "original_sha256": "d0928563b721c2adf6d2e0246591553e8a06df03c48cccb4ecbd486933059e6a",
+        "output_sha256": "9bd1df2ddf9de0ce969f93702e383850cd43ad5bc48bda0a330214084b3c9d73",
+        "reason": "source_bound_full_date_restored",
+        "schema_version": 1,
+        "selected": true
+      },
+      "state_after_first_stop": "TERMINAL_D0",
+      "selected_after_first_stop": "D0",
+      "visible_final_sha256": "9bd1df2ddf9de0ce969f93702e383850cd43ad5bc48bda0a330214084b3c9d73",
+      "visible_final_equals_d0": false,
+      "visible_final": "**中心举办读书交流活动**\n\n2020年9月5日，中心举办读书交流活动，共20人参加。",
+      "matches_frozen_expected_output": true,
+      "delivery_verified": true,
+      "hook_phase": "complete",
+      "data_retention_state": "raw_turn_data_redacted",
+      "raw_artifact_delete_failures": 0,
+      "core_events": 4
+    },
+    "candidate": {
+      "status": "EXACT_ECHO_TERMINAL",
+      "request_sha256": "a634e6cb058ca4449f2e05772b0ee3229d89439683cc49682e054b3ada712b68",
+      "d0_sha256": "d0928563b721c2adf6d2e0246591553e8a06df03c48cccb4ecbd486933059e6a",
+      "date_audit_after_first_stop": null,
+      "state_after_first_stop": "TERMINAL_D0",
+      "selected_after_first_stop": "D0",
+      "visible_final_sha256": "d0928563b721c2adf6d2e0246591553e8a06df03c48cccb4ecbd486933059e6a",
+      "visible_final_equals_d0": true,
+      "visible_final": "**中心举办读书交流活动**\n\n9月5日，中心举办读书交流活动，共20人参加。",
+      "matches_frozen_expected_output": true,
+      "delivery_verified": true,
+      "hook_phase": "complete",
+      "data_retention_state": "raw_turn_data_redacted",
+      "raw_artifact_delete_failures": 0,
+      "core_events": 4
+    }
+  },
+  "damage_prevention": "PASS on this original natural D0: candidate emits the exact original D0, while baseline introduces the example year 2020.",
+  "date_completeness": "FAIL: candidate leaves the original month/day without the factual 2026 year.",
+  "occurrence_rate": "Not estimated from one observed native D0.",
+  "echo_provenance": "Only core-emitted exact text is echoed by the offline harness; no model-generated repair/verdict or new native execution."
+}

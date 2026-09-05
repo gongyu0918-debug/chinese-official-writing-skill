@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "normal_model_route": "Existing Claude CLI bound to alibaba-token-plan-2/deepseek-v4-flash-0731 (root-controlled native run)",
+  "new_model_calls_for_this_replay": 0,
+  "cases": [
+    {
+      "id": "native-frozen-normal",
+      "source_path": "output/hook-four-fixes-r1/native-frozen-normal/native-events.jsonl",
+      "source_file_sha256": "cc27c8b019786fb4d87016aeef04e9fab386c4732e30507cdc74044b6640e55f",
+      "request_line": 1,
+      "first_stop_line": 4,
+      "request_sha256": "a634e6cb058ca4449f2e05772b0ee3229d89439683cc49682e054b3ada712b68",
+      "d0_sha256": "d0928563b721c2adf6d2e0246591553e8a06df03c48cccb4ecbd486933059e6a",
+      "first_stop_fault_injected": false,
+      "d0": "**中心举办读书交流活动**\n\n9月5日，中心举办读书交流活动，共20人参加。",
+      "request_display_redacted": "先用 Read 读取本次插件的 <NATIVE_PLUGIN_ROOT>\\skills\\chinese-official-writing\\SKILL.md 与 <NATIVE_PLUGIN_ROOT>\\skills\\chinese-official-writing\\references\\genre-playbook-news-message.md。只读取这两份文件，随后完成用户任务。不要联网，不要写文件。\r\n\r\n请根据下列材料写一则简短的新闻消息。\r\n\r\n目标活动事实：中心于2026-09-05举办读书交流活动，共20人参加。\r\n\r\n格式示例（仅示范中文日期格式，不是本次活动事实，不得写入消息）：2020年9月5日。\r\n\r\n只输出可直接使用的完整正文，可以含标题，不解释过程。保留提供的事实，不补充材料未给的活动内容、效果或后续安排。",
+      "redaction_note": "The two local plugin path prefixes are replaced for display only. Actual core replay extracts and uses the original prompt string unchanged from the hash-bound source JSONL."
+    },
+    {
+      "id": "native-frozen-wrong",
+      "source_path": "output/hook-four-fixes-r1/native-frozen-wrong/native-events.jsonl",
+      "source_file_sha256": "7c5e9a97dd05a004b40dedba1d495d0a382428792660ac692c98e79741c289c8",
+      "request_line": 1,
+      "first_stop_line": 4,
+      "request_sha256": "e05040e5347fe52a0c5c3c866e9f4dcc8bb6ccbe345f694e959f2972836452a1",
+      "d0_sha256": "317baecbd456d4bf4b373dc41bfc5480a65198ca91e0511a54805db22274fd18",
+      "first_stop_fault_injected": false,
+      "d0": "中心举办读书交流活动\n\n2026年9月5日，中心举办读书交流活动，共20人参加，参加人员现场交流了读书心得。",
+      "observed_d0_issue": "参加人员现场交流了读书心得 is not supplied by the activity facts. This already appears in the first native Stop D0; it is not a candidate-created regression or a correction demonstrated by this date replay."
+    }
+  ]
+}
