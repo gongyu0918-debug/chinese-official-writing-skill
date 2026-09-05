@@ -1,5 +1,6 @@
 import errno
 import importlib.util
+import itertools
 import json
 import os
 from pathlib import Path
@@ -357,7 +358,7 @@ class GateStopHookTests(unittest.TestCase):
         )
 
         with mock.patch.object(
-            HOOK.time, "monotonic", side_effect=[100.0, 126.0, 126.0]
+            HOOK.time, "monotonic", side_effect=itertools.chain([100.0], itertools.repeat(126.0))
         ), mock.patch.object(HOOK.subprocess, "run") as runner:
             result = HOOK.handle_stop(event)
 
@@ -1097,6 +1098,125 @@ class GateStopHookTests(unittest.TestCase):
         self.assertTrue(third["continue"])
         record = HOOK._read_json(HOOK._record_path(self._event("Stop")))
         self.assertTrue(record["delivery_verified"])
+
+    def test_exhausted_wrong_echo_stops_and_replay_cannot_allow_it(self):
+        self._record_prompt_and_skill_read()
+        draft = "情况报告\n\n测试工作已完成。"
+        HOOK.handle(self._event("Stop", last_assistant_message=draft))
+        for _ in range(HOOK.MAX_STOP_ATTEMPTS - 1):
+            response = HOOK.handle(self._event("Stop", stop_hook_active=True, last_assistant_message="错误回显"))
+            self.assertEqual("block", response["decision"])
+        response = HOOK.handle(self._event("Stop", stop_hook_active=True, last_assistant_message="错误回显"))
+        self.assertIs(response["continue"], False)
+        self.assertIn("未通过", response["stopReason"])
+        self.assertNotIn("decision", response)
+        path = HOOK._record_path(self._event("Stop"))
+        terminal = HOOK._read_json(path)
+        self.assertFalse(terminal["delivery_verified"])
+        self.assertEqual(HOOK.REDACTED_RECORD_STATE, terminal["data_retention_state"])
+        for text in ("错误回显", draft):
+            replay = HOOK.handle(self._event("Stop", stop_hook_active=True, last_assistant_message=text))
+            self.assertEqual(response, replay)
+            self.assertEqual(terminal, HOOK._read_json(path))
+        self._assert_gate_root_omits(draft, "请起草一份情况报告。")
+
+    def test_stop_record_lock_contention_is_a_bounded_failure_not_allow(self):
+        self._record_prompt_and_skill_read()
+        draft = "情况报告\n\n测试工作已完成。"
+        HOOK.handle(self._event("Stop", last_assistant_message=draft))
+        path = HOOK._record_path(self._event("Stop"))
+        before = HOOK._read_json(path)
+        lock = HOOK._acquire_file_lock(path.with_suffix(".state-lock"))
+        self.assertIsNotNone(lock)
+        try:
+            completed = subprocess.run([sys.executable, "-B", str(MODULE_PATH)],
+                                       input=json.dumps(self._event("Stop", stop_hook_active=True, last_assistant_message="错误回显")),
+                                       text=True, encoding="utf-8", capture_output=True, check=True, timeout=8)
+            response = json.loads(completed.stdout)
+            self.assertIs(response["continue"], False)
+            self.assertIn("暂不可写", response["stopReason"])
+            self.assertEqual(before, HOOK._read_json(path))
+        finally:
+            HOOK._release_bootstrap_lock(*lock)
+        retry = HOOK.handle(self._event("Stop", stop_hook_active=True, last_assistant_message=draft))
+        self.assertTrue(retry["continue"])
+
+    def test_stop_record_lock_io_error_does_not_allow_unverified_output(self):
+        self._record_prompt_and_skill_read()
+        draft = "情况报告\n\n测试工作已完成。"
+        HOOK.handle(self._event("Stop", last_assistant_message=draft))
+        with mock.patch.object(HOOK, "_acquire_file_lock", side_effect=OSError("unavailable")):
+            response = HOOK.handle_stop(self._event("Stop", stop_hook_active=True, last_assistant_message="错误回显"))
+        self.assertIs(response["continue"], False)
+
+    def test_stale_echo_writer_cannot_reopen_completed_delivery(self):
+        self._record_prompt_and_skill_read()
+        draft = "情况报告\n\n测试工作已完成。"
+        event = self._event("Stop", stop_hook_active=True, last_assistant_message="错误回显")
+        HOOK.handle(self._event("Stop", last_assistant_message=draft))
+        path = HOOK._record_path(event)
+        stale = HOOK._read_json(path)
+        HOOK.handle(self._event("Stop", stop_hook_active=True, last_assistant_message=draft))
+        terminal = HOOK._read_json(path)
+        response = HOOK._handle_selected_output_echo(event, path, stale, 1)
+        final = HOOK._finish_stop_response(path, stale, response)
+        self.assertEqual({"continue": True}, final)
+        self.assertEqual(terminal, HOOK._read_json(path))
+        self.assertNotIn("emitted_output", stale)
+
+    def test_terminal_user_and_tool_replay_do_not_restore_raw_or_marker(self):
+        prompt = "本次关闭Hook。请写情况说明。材料：测试工作已完成。"
+        event = self._event("UserPromptSubmit", prompt=prompt)
+        for payload in (event, self._event("Stop", last_assistant_message="测试工作已完成。"), event):
+            completed = subprocess.run([sys.executable, "-B", str(MODULE_PATH)], input=json.dumps(payload),
+                                       text=True, encoding="utf-8", capture_output=True, check=True)
+            self.assertEqual({"continue": True}, json.loads(completed.stdout))
+        path = HOOK._record_path(event)
+        terminal = HOOK._read_json(path)
+        self.assertEqual(HOOK.REDACTED_RECORD_STATE, terminal["data_retention_state"])
+        self.assertNotIn("request", terminal)
+        self._record_prompt_and_skill_read(prompt)
+        self.assertEqual(terminal, HOOK._read_json(path))
+        self.assertFalse(HOOK._skill_seen_marker_path(path).exists())
+
+    def test_late_post_tool_commit_cannot_overwrite_terminal_cleanup(self):
+        self._record_prompt_and_skill_read()
+        draft = "情况报告\n\n测试工作已完成。"
+        HOOK.handle(self._event("Stop", last_assistant_message=draft))
+        paused, resume = threading.Event(), threading.Event()
+        errors = []
+        original = HOOK._write_record
+
+        def delayed(*args, **kwargs):
+            if threading.current_thread().name == "late-tool":
+                paused.set()
+                if not resume.wait(5):
+                    raise RuntimeError("scheduler timeout")
+            return original(*args, **kwargs)
+
+        def worker():
+            try:
+                HOOK.handle(self._event("PostToolUse", tool_input={"cmd": "Get-Content material.txt"},
+                                        tool_response={"exit_code": 0}))
+            except Exception as exc:
+                errors.append(exc)
+
+        with mock.patch.object(HOOK, "_write_record", side_effect=delayed):
+            thread = threading.Thread(target=worker, name="late-tool")
+            thread.start()
+            try:
+                self.assertTrue(paused.wait(5))
+                result = HOOK.handle(self._event("Stop", stop_hook_active=True, last_assistant_message=draft))
+                self.assertTrue(result["continue"])
+            finally:
+                resume.set()
+                thread.join(5)
+        self.assertFalse(thread.is_alive())
+        self.assertEqual([], errors)
+        terminal = HOOK._read_json(HOOK._record_path(self._event("Stop")))
+        self.assertTrue(terminal["delivery_verified"])
+        self.assertEqual(HOOK.REDACTED_RECORD_STATE, terminal["data_retention_state"])
+        self._assert_gate_root_omits(draft, "请起草一份情况报告。")
 
     def test_hook_drives_one_repair_finalize_and_emit_without_agent_tool_call(self):
         self._record_prompt_and_skill_read()

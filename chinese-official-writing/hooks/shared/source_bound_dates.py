@@ -60,6 +60,22 @@ ANY_DATE_RE: Final = re.compile(
 )
 
 
+# Alternate full-date spellings are detection-only: they never supply a year.
+OTHER_FULL_DATE_RE: Final = re.compile(
+    r"(?<!\d)[12]\d{3}[ \t]*[-/.][ \t]*\d{1,2}[ \t]*[-/.][ \t]*\d{1,2}(?!\d)"
+    r"|(?<!\d)\d{1,2}[ \t]*[-/.][ \t]*\d{1,2}[ \t]*[-/.][ \t]*[12]\d{3}(?!\d)"
+    r"|(?<!\d)[12]\d{3}[ \t]*年[ \t]*\d{1,2}[ \t]*月[ \t]*\d{1,2}[ \t]*日"
+    r"|[一二][零〇一二三四五六七八九]{3}年[零〇一二三四五六七八九十0-9]{1,3}月"
+    r"[零〇一二三四五六七八九十0-9]{1,3}日"
+)
+# Match only a label immediately before its date, not general mentions of
+# earlier text, the current draft, quoted facts, or templates elsewhere.
+NONFACT_DATE_PREFIX_RE: Final = re.compile(
+    r"(?:日期(?:格式|写法)?示例|格式示例|模板示例|旧稿示例|非事实日期)"
+    r"(?:[（(][^）)\n]*[）)])?[ \t]*[:：]?[ \t]*[“\"「『]?$"
+)
+
+
 def _sha256_text(value: str) -> str:
     return hashlib.sha256(value.encode("utf-8")).hexdigest()
 
@@ -108,8 +124,16 @@ def restore_unique_full_date(request: str, draft: str) -> dict[str, Any]:
     if _date_omission_requested(request):
         return _result("user_requested_date_omission", draft)
 
+    full_matches = list(FULL_DATE_RE.finditer(request))
+    if OTHER_FULL_DATE_RE.search(FULL_DATE_RE.sub("", request)):
+        return _result("request_has_unclassified_full_date", draft)
+    if full_matches and all(
+        NONFACT_DATE_PREFIX_RE.search(request[:match.start()]) for match in full_matches
+    ):
+        return _result("request_full_dates_are_nonfactual_examples", draft)
+
     source_dates: dict[tuple[int, int, int], str] = {}
-    for match in FULL_DATE_RE.finditer(request):
+    for match in full_matches:
         year = int(match.group("year"))
         month = int(match.group("month"))
         day = int(match.group("day"))

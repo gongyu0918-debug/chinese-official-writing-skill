@@ -27,6 +27,29 @@ DATES = load_module()
 
 
 class SourceBoundDateTests(unittest.TestCase):
+    def test_format_example_cannot_supply_year_for_other_date_notation(self) -> None:
+        draft = "读书交流活动举行\n\n9月5日，中心举办读书交流活动，共20人参加。"
+        for date in ("2026-09-05", "2026/9/5", "2026.9.5", "2026 年 9 月 5 日", "二〇二六年九月五日"):
+            with self.subTest(date=date):
+                request = f"请写新闻稿。活动事实：{date}举办读书交流活动，共20人参加。日期格式示例（不属于活动事实）：2020年9月5日。"
+                result = DATES.restore_unique_full_date(request, draft)
+                self.assertFalse(result["selected"])
+                self.assertEqual(draft, result["output"])
+
+    def test_only_nonfactual_date_does_not_become_a_fact(self) -> None:
+        draft = "9月5日，中心举办读书交流活动。"
+        request = "请写新闻稿。活动事实：中心举办读书交流活动。格式示例（不是活动事实）：2020年9月5日。"
+        result = DATES.restore_unique_full_date(request, draft)
+        self.assertFalse(result["selected"])
+        self.assertEqual(draft, result["output"])
+
+    def test_mentions_of_prior_text_and_quoted_facts_keep_normal_restoration(self) -> None:
+        draft = "9月5日，中心举办读书交流活动。"
+        request = "请依据前文事实修改新闻稿，保留原稿结构，模板仅供结构参考。已核实事实：‘2026年9月5日，中心举办读书交流活动。’"
+        result = DATES.restore_unique_full_date(request, draft)
+        self.assertTrue(result["selected"])
+        self.assertEqual("2026年9月5日，中心举办读书交流活动。", result["output"])
+
     def test_frozen_natural_omissions_have_exact_mechanical_repairs(self) -> None:
         cases = json.loads(CASES_PATH.read_text(encoding="utf-8"))["cases"]
         for case in cases:
