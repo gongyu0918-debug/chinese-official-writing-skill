@@ -1,0 +1,14 @@
+{
+  "D01": "alibaba2/delete/candidate",
+  "D02": "alibaba2/insert/baseline",
+  "D03": "alibaba2/delete/baseline",
+  "D04": "alibaba2/insert/candidate",
+  "D05": "alibaba2/news/baseline",
+  "D06": "minimax/insert/baseline",
+  "D07": "minimax/news/baseline",
+  "D08": "minimax/delete/candidate",
+  "D09": "minimax/news/candidate",
+  "D10": "minimax/delete/baseline",
+  "D11": "alibaba2/news/candidate",
+  "D12": "minimax/insert/candidate"
+}

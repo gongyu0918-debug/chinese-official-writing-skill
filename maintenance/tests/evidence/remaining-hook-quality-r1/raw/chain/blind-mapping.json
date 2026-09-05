@@ -1,0 +1,6 @@
+{
+  "L1": "minimax/baseline",
+  "L2": "minimax/candidate",
+  "L3": "alibaba2/baseline",
+  "L4": "alibaba2/candidate"
+}

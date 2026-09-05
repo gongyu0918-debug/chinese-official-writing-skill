@@ -12,6 +12,8 @@
 
 ## 逐版发布证据
 
+- [剩余Hook与写稿规则修复R1](../../tests/evidence/remaining-hook-quality-r1/result.md)：本地候选的取消清理、宿主失败分类与新闻日期规则；50次真实写稿/修改执行、七版链失败、workflow撤回、独立复核及未完成边界。不是发布记录，未合入main。
+
 - v1.6.27的GitHub Release、SkillHub 86文件和ClawHub 37文件唯一提交回执与公开传播状态见[发布记录](../../tests/evidence/release-1.6.27.md)；固定产品、374路径范围审查、真实结果选择、最终774项全量、五套quick validate和两平台dry-run见[候选记录](../../tests/evidence/release-1.6.27-rc.md)。产品tag与后续证据提交分离。
 
 - `MT-006-RECENT-LEAF-R1` 新叶页冷审、两路8次真实调用、独立盲审和68-byte选择/36-byte拒绝见[结果](../../tests/evidence/recent-leaf-cleanup-r1/result.md)；完整正文、prompt、原始stream及hash均已冻结。发行另记，本项不代表自然路由减载或Hook修复。

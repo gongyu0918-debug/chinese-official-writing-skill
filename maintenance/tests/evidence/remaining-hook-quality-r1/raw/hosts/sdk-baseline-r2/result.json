@@ -1,0 +1,12 @@
+{
+  "scope": "INSTALLED_DSH_AGENT_LOOP_WITH_MOCK_ADAPTER_NOT_NATIVE_CLI_OR_MODEL",
+  "version": "0.1.1-rc.2",
+  "model_calls": 0,
+  "mock_requests": 1,
+  "d0_sha256": "b10b3b51d19fb1fdb13cce686c40c23afea0031e9e12996dd62e20781ad1d424",
+  "terminal": [
+    {
+      "kind": "completed"
+    }
+  ]
+}

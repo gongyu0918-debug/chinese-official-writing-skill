@@ -1,0 +1,40 @@
+{
+  "product_commit": "b2cb9381c589aabdc96f56cc118eb5941e19e6c0",
+  "main_head": "37f22146f64cf2dfcaea7a8a5afba40750215803",
+  "main_clean": true,
+  "product_paths": [
+    "chinese-official-writing/hooks/adapters/codebuddy/README.md",
+    "chinese-official-writing/hooks/adapters/deepseek-harness/README.md",
+    "chinese-official-writing/hooks/adapters/deepseek-harness/index.mjs",
+    "chinese-official-writing/hooks/adapters/kimi-code/README.md",
+    "chinese-official-writing/hooks/adapters/opencode/README.md",
+    "chinese-official-writing/hooks/adapters/opencode/opencode_gate_plugin.js",
+    "chinese-official-writing/hooks/core/gate_stop_hook.py",
+    "chinese-official-writing/hooks/host-capabilities.json",
+    "chinese-official-writing/references/genre-playbook-news-message.md",
+    "packages/agent-skills/skills/chinese-official-writing/references/genre-playbook-news-message.md",
+    "packages/hermes/skills/chinese-official-writing/references/genre-playbook-news-message.md",
+    "packages/openclaw/skills/chinese_official_writing/references/genre-playbook-news-message.md",
+    "packages/qwen-code/skills/chinese-official-writing/references/genre-playbook-news-message.md",
+    "packages/qwenwork/skills/chinese-official-writing/references/genre-playbook-news-message.md"
+  ],
+  "final_file_sha256": {
+    "chinese-official-writing/hooks/adapters/codebuddy/README.md": "e63ee3fe6d9cc22822b0428b2067a1a4c2025a1be8bff64a41b144cb8af57b9e",
+    "chinese-official-writing/hooks/adapters/deepseek-harness/README.md": "6d1c8e9f51089b455782a6f07be12b345dab89917e7391217a9250574dc67579",
+    "chinese-official-writing/hooks/adapters/deepseek-harness/index.mjs": "35213b67dfe030987c25058d82104976f01a64e23f8d52786d61cd46c61eafc9",
+    "chinese-official-writing/hooks/adapters/kimi-code/README.md": "dc6b4ac86a42f06d02140a6d93bb26928caf7cdab1fb66855bab1b95f638224c",
+    "chinese-official-writing/hooks/adapters/opencode/README.md": "cf162c1c88a7e0917966352b16314aa2da1a3ace8e4d7d4aafc373dadd77b774",
+    "chinese-official-writing/hooks/adapters/opencode/opencode_gate_plugin.js": "24a30be2ba5cfd1417303f4b61b91215e8045eb6df01b9a94ed238ab18bc72c8",
+    "chinese-official-writing/hooks/core/gate_stop_hook.py": "7763991df28fddcf7483737a44658948e7bb520602fa109d1fa36da9978fee38",
+    "chinese-official-writing/hooks/host-capabilities.json": "9f31fd9b5337d6de5f3ce558d14ccbadedbd1b7dfd02345c548de3b5c72d5be5",
+    "chinese-official-writing/references/genre-playbook-news-message.md": "a3c503d493b3fc7b65524d2dfa43849a4f2d33dbf67fd09a346af12c1238f601",
+    "packages/agent-skills/skills/chinese-official-writing/references/genre-playbook-news-message.md": "a3c503d493b3fc7b65524d2dfa43849a4f2d33dbf67fd09a346af12c1238f601",
+    "packages/hermes/skills/chinese-official-writing/references/genre-playbook-news-message.md": "a3c503d493b3fc7b65524d2dfa43849a4f2d33dbf67fd09a346af12c1238f601",
+    "packages/openclaw/skills/chinese_official_writing/references/genre-playbook-news-message.md": "a3c503d493b3fc7b65524d2dfa43849a4f2d33dbf67fd09a346af12c1238f601",
+    "packages/qwen-code/skills/chinese-official-writing/references/genre-playbook-news-message.md": "a3c503d493b3fc7b65524d2dfa43849a4f2d33dbf67fd09a346af12c1238f601",
+    "packages/qwenwork/skills/chinese-official-writing/references/genre-playbook-news-message.md": "a3c503d493b3fc7b65524d2dfa43849a4f2d33dbf67fd09a346af12c1238f601"
+  },
+  "skill_and_workflow_equal_baseline_git_blob": true,
+  "full_merge_release_gate_run": false,
+  "next_required_gate": "Run full gate once if/when this candidate is authorized for merge or release."
+}

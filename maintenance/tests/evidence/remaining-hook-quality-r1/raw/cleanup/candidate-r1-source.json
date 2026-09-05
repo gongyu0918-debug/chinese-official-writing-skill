@@ -1,0 +1,6 @@
+{
+  "core_sha256": "31185c54cc9d298ff344c0b6c70d7ede9c436c2b719bea910f02e5c82889b9b7",
+  "source_root": "source-candidate-r1",
+  "dependency_source": "source-baseline at 37f22146",
+  "change_scope": "Only core overlaid; same real D0 and unchanged baseline Skill/scripts/refs dependencies."
+}

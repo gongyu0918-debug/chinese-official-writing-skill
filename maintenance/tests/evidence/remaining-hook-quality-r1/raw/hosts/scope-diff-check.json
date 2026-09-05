@@ -1,0 +1,22 @@
+{
+  "argv": [
+    "git",
+    "diff",
+    "--check",
+    "--",
+    "chinese-official-writing/hooks/adapters/deepseek-harness/index.mjs",
+    "chinese-official-writing/hooks/adapters/opencode/opencode_gate_plugin.js",
+    "maintenance/tests/deepseek_harness_adapter_smoke.mjs",
+    "maintenance/tests/opencode_adapter_smoke.mjs",
+    "maintenance/tests/test_deepseek_harness_gate_adapter.py",
+    "maintenance/tests/test_opencode_gate_adapter.py",
+    "chinese-official-writing/hooks/adapters/codebuddy/README.md",
+    "chinese-official-writing/hooks/adapters/kimi-code/README.md",
+    "chinese-official-writing/hooks/adapters/opencode/README.md",
+    "chinese-official-writing/hooks/adapters/deepseek-harness/README.md",
+    "chinese-official-writing/hooks/host-capabilities.json"
+  ],
+  "exit_code": 0,
+  "stdout": "",
+  "stderr": "warning: in the working copy of 'chinese-official-writing/hooks/adapters/codebuddy/README.md', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'chinese-official-writing/hooks/adapters/deepseek-harness/README.md', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'chinese-official-writing/hooks/adapters/deepseek-harness/index.mjs', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'chinese-official-writing/hooks/adapters/kimi-code/README.md', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'chinese-official-writing/hooks/adapters/opencode/README.md', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'chinese-official-writing/hooks/adapters/opencode/opencode_gate_plugin.js', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'chinese-official-writing/hooks/host-capabilities.json', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'maintenance/tests/deepseek_harness_adapter_smoke.mjs', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'maintenance/tests/opencode_adapter_smoke.mjs', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'maintenance/tests/test_deepseek_harness_gate_adapter.py', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'maintenance/tests/test_opencode_gate_adapter.py', LF will be replaced by CRLF the next time Git touches it\n"
+}

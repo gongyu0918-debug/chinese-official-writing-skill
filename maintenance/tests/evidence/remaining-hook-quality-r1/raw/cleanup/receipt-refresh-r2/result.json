@@ -1,0 +1,102 @@
+{
+  "core_sha256": "7763991df28fddcf7483737a44658948e7bb520602fa109d1fa36da9978fee38",
+  "script_sha256": "b341b06930b785fe2696b1344d86b5dbb01bbe3d2b56947e89b5771d383bfa14",
+  "model_calls": 0,
+  "evidence_type": "synthetic terminal plus one OS replace failure; not natural model output",
+  "cases": [
+    {
+      "trigger": "Stop",
+      "initial": {
+        "data_retention_state": "raw_turn_data_redacted",
+        "raw_artifact_delete_failures": 0,
+        "hook_phase": "failed_bounded",
+        "failure_reason": "hook_selected_output_echo_budget_exhausted",
+        "delivery_verified": false
+      },
+      "original_sha256": "a12cb45b034d7421570df922ed26e4f03eabcf7c7093208032e74ff449fc279b",
+      "failure_injected": [
+        "one receipt os.replace OSError; unlink remains available"
+      ],
+      "first": {
+        "continue": false,
+        "stopReason": "终稿回显校验未通过，已停止自动重试。",
+        "systemMessage": "终稿回显校验未通过，已停止自动重试。"
+      },
+      "after_first": {
+        "exists": true,
+        "sha256": "a12cb45b034d7421570df922ed26e4f03eabcf7c7093208032e74ff449fc279b",
+        "record": {
+          "data_retention_state": "raw_turn_data_redacted",
+          "delivery_verified": false,
+          "failure_reason": "hook_selected_output_echo_budget_exhausted",
+          "hook_phase": "failed_bounded",
+          "raw_artifact_delete_failures": 0
+        }
+      },
+      "second": {
+        "continue": false,
+        "stopReason": "终稿回显校验未通过，已停止自动重试。",
+        "systemMessage": "终稿回显校验未通过，已停止自动重试。"
+      },
+      "after_second": {
+        "exists": true,
+        "sha256": "a12cb45b034d7421570df922ed26e4f03eabcf7c7093208032e74ff449fc279b",
+        "record": {
+          "data_retention_state": "raw_turn_data_redacted",
+          "delivery_verified": false,
+          "failure_reason": "hook_selected_output_echo_budget_exhausted",
+          "hook_phase": "failed_bounded",
+          "raw_artifact_delete_failures": 0
+        }
+      },
+      "neighbor_unchanged": true
+    },
+    {
+      "trigger": "HostAbort",
+      "initial": {
+        "data_retention_state": "raw_turn_data_redacted",
+        "raw_artifact_delete_failures": 0,
+        "hook_phase": "failed_bounded",
+        "failure_reason": "hook_selected_output_echo_budget_exhausted",
+        "delivery_verified": false
+      },
+      "original_sha256": "a12cb45b034d7421570df922ed26e4f03eabcf7c7093208032e74ff449fc279b",
+      "failure_injected": [
+        "one receipt os.replace OSError; unlink remains available"
+      ],
+      "first": {
+        "continue": false,
+        "stopReason": "终稿回显校验未通过，已停止自动重试。",
+        "systemMessage": "终稿回显校验未通过，已停止自动重试。"
+      },
+      "after_first": {
+        "exists": true,
+        "sha256": "a12cb45b034d7421570df922ed26e4f03eabcf7c7093208032e74ff449fc279b",
+        "record": {
+          "data_retention_state": "raw_turn_data_redacted",
+          "delivery_verified": false,
+          "failure_reason": "hook_selected_output_echo_budget_exhausted",
+          "hook_phase": "failed_bounded",
+          "raw_artifact_delete_failures": 0
+        }
+      },
+      "second": {
+        "continue": false,
+        "stopReason": "终稿回显校验未通过，已停止自动重试。",
+        "systemMessage": "终稿回显校验未通过，已停止自动重试。"
+      },
+      "after_second": {
+        "exists": true,
+        "sha256": "a12cb45b034d7421570df922ed26e4f03eabcf7c7093208032e74ff449fc279b",
+        "record": {
+          "data_retention_state": "raw_turn_data_redacted",
+          "delivery_verified": false,
+          "failure_reason": "hook_selected_output_echo_budget_exhausted",
+          "hook_phase": "failed_bounded",
+          "raw_artifact_delete_failures": 0
+        }
+      },
+      "neighbor_unchanged": true
+    }
+  ]
+}

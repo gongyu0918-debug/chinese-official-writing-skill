@@ -1,0 +1,8 @@
+{
+  "chinese-official-writing/hooks/adapters/deepseek-harness/index.mjs": "35213b67dfe030987c25058d82104976f01a64e23f8d52786d61cd46c61eafc9",
+  "chinese-official-writing/hooks/adapters/opencode/opencode_gate_plugin.js": "ced7a93b6fccfd35214e770530b99131cd1f7821404e9b0d7c49c71410978aac",
+  "maintenance/tests/deepseek_harness_adapter_smoke.mjs": "186abad2c23b47a526039ce5fd571209d6db02afc655fd9d9440434efe375559",
+  "maintenance/tests/opencode_adapter_smoke.mjs": "97dc68c3608da24a0434bffc23b0b5f6aa4c8a2271dd09b07a06aa86ccf05cd1",
+  "maintenance/tests/test_deepseek_harness_gate_adapter.py": "90babef4020bf2f61fd6ef4b00476e4d12bdcc17156350e600b5487bed87bb6e",
+  "maintenance/tests/test_opencode_gate_adapter.py": "4d1959e98b6548fff171c5a4c40eff9d4602932b025f5568b6c5eee4dabd9989"
+}

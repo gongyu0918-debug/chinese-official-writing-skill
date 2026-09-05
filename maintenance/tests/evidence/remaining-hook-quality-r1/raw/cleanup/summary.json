@@ -1,0 +1,283 @@
+{
+  "baseline_commit": "37f22146f64cf2dfcaea7a8a5afba40750215803",
+  "model_calls": 0,
+  "cases": [
+    {
+      "arm": "baseline-r2",
+      "core_sha256": "26d79b97e01515f50916232e14a9873a77320e196eacfd4e966faac788772900",
+      "scenario": "bootstrap_abort",
+      "stages": {
+        "before_abort": {
+          "raw_file_count": 0,
+          "request_in_record": true,
+          "raw_retention_state": null,
+          "delete_failures": null,
+          "hook_phase": null,
+          "host_abort_reason": null
+        },
+        "after_abort": {
+          "raw_file_count": 0,
+          "request_in_record": false,
+          "raw_retention_state": "raw_turn_data_redacted",
+          "delete_failures": 0,
+          "hook_phase": "failed_open_host_abort",
+          "host_abort_reason": "turn_changed"
+        },
+        "after_producer_or_lock_release": {
+          "raw_file_count": 4,
+          "request_in_record": false,
+          "raw_retention_state": "raw_turn_data_redacted",
+          "delete_failures": 0,
+          "hook_phase": "failed_open_host_abort",
+          "host_abort_reason": "turn_changed"
+        },
+        "after_followup_stop": {
+          "raw_file_count": 4,
+          "request_in_record": false,
+          "raw_retention_state": "raw_turn_data_redacted",
+          "delete_failures": 0,
+          "hook_phase": "failed_open_host_abort",
+          "host_abort_reason": "turn_changed"
+        }
+      },
+      "followup_response": {
+        "continue": true
+      },
+      "followup_emits_body": false
+    },
+    {
+      "arm": "baseline-r2",
+      "core_sha256": "26d79b97e01515f50916232e14a9873a77320e196eacfd4e966faac788772900",
+      "scenario": "abort_lock_recovery",
+      "stages": {
+        "before_abort": {
+          "raw_file_count": 0,
+          "request_in_record": true,
+          "raw_retention_state": null,
+          "delete_failures": null,
+          "hook_phase": null,
+          "host_abort_reason": null
+        },
+        "after_abort": {
+          "raw_file_count": 0,
+          "request_in_record": true,
+          "raw_retention_state": null,
+          "delete_failures": null,
+          "hook_phase": null,
+          "host_abort_reason": null
+        },
+        "after_producer_or_lock_release": {
+          "raw_file_count": 0,
+          "request_in_record": true,
+          "raw_retention_state": null,
+          "delete_failures": null,
+          "hook_phase": null,
+          "host_abort_reason": null
+        },
+        "after_followup_stop": {
+          "raw_file_count": 5,
+          "request_in_record": true,
+          "raw_retention_state": null,
+          "delete_failures": null,
+          "hook_phase": "awaiting_final_output",
+          "host_abort_reason": null
+        }
+      },
+      "followup_response": {
+        "decision": "block"
+      },
+      "followup_emits_body": true
+    },
+    {
+      "arm": "candidate-r1",
+      "core_sha256": "31185c54cc9d298ff344c0b6c70d7ede9c436c2b719bea910f02e5c82889b9b7",
+      "scenario": "bootstrap_abort",
+      "stages": {
+        "before_abort": {
+          "raw_file_count": 0,
+          "request_in_record": true,
+          "raw_retention_state": null,
+          "delete_failures": null,
+          "hook_phase": null,
+          "host_abort_reason": null
+        },
+        "after_abort": {
+          "raw_file_count": 0,
+          "request_in_record": true,
+          "raw_retention_state": null,
+          "delete_failures": null,
+          "hook_phase": null,
+          "host_abort_reason": null
+        },
+        "after_producer_or_lock_release": {
+          "raw_file_count": 0,
+          "request_in_record": false,
+          "raw_retention_state": "raw_turn_data_redacted",
+          "delete_failures": 0,
+          "hook_phase": "failed_open_host_abort",
+          "host_abort_reason": "turn_changed"
+        },
+        "after_followup_stop": {
+          "raw_file_count": 0,
+          "request_in_record": false,
+          "raw_retention_state": "raw_turn_data_redacted",
+          "delete_failures": 0,
+          "hook_phase": "failed_open_host_abort",
+          "host_abort_reason": "turn_changed"
+        }
+      },
+      "followup_response": {
+        "continue": true
+      },
+      "followup_emits_body": false
+    },
+    {
+      "arm": "candidate-r1",
+      "core_sha256": "31185c54cc9d298ff344c0b6c70d7ede9c436c2b719bea910f02e5c82889b9b7",
+      "scenario": "abort_lock_recovery",
+      "stages": {
+        "before_abort": {
+          "raw_file_count": 0,
+          "request_in_record": true,
+          "raw_retention_state": null,
+          "delete_failures": null,
+          "hook_phase": null,
+          "host_abort_reason": null
+        },
+        "after_abort": {
+          "raw_file_count": 0,
+          "request_in_record": true,
+          "raw_retention_state": null,
+          "delete_failures": null,
+          "hook_phase": null,
+          "host_abort_reason": null
+        },
+        "after_producer_or_lock_release": {
+          "raw_file_count": 0,
+          "request_in_record": true,
+          "raw_retention_state": null,
+          "delete_failures": null,
+          "hook_phase": null,
+          "host_abort_reason": null
+        },
+        "after_followup_stop": {
+          "raw_file_count": 0,
+          "request_in_record": false,
+          "raw_retention_state": "raw_turn_data_redacted",
+          "delete_failures": 0,
+          "hook_phase": "failed_open_host_abort",
+          "host_abort_reason": "turn_changed"
+        }
+      },
+      "followup_response": {
+        "continue": true
+      },
+      "followup_emits_body": false
+    },
+    {
+      "arm": "candidate-final",
+      "core_sha256": "4a4b46139e2b875c29082bd64f9697e10b9727c887068f99bec78a4acade920c",
+      "scenario": "bootstrap_abort",
+      "stages": {
+        "before_abort": {
+          "raw_file_count": 0,
+          "request_in_record": true,
+          "raw_retention_state": null,
+          "delete_failures": null,
+          "hook_phase": null,
+          "host_abort_reason": null
+        },
+        "after_abort": {
+          "raw_file_count": 0,
+          "request_in_record": true,
+          "raw_retention_state": null,
+          "delete_failures": null,
+          "hook_phase": null,
+          "host_abort_reason": null
+        },
+        "after_producer_or_lock_release": {
+          "raw_file_count": 0,
+          "request_in_record": false,
+          "raw_retention_state": "raw_turn_data_redacted",
+          "delete_failures": 0,
+          "hook_phase": "failed_open_host_abort",
+          "host_abort_reason": "turn_changed"
+        },
+        "after_followup_stop": {
+          "raw_file_count": 0,
+          "request_in_record": false,
+          "raw_retention_state": "raw_turn_data_redacted",
+          "delete_failures": 0,
+          "hook_phase": "failed_open_host_abort",
+          "host_abort_reason": "turn_changed"
+        }
+      },
+      "followup_response": {
+        "continue": true
+      },
+      "followup_emits_body": false
+    },
+    {
+      "arm": "candidate-final",
+      "core_sha256": "4a4b46139e2b875c29082bd64f9697e10b9727c887068f99bec78a4acade920c",
+      "scenario": "abort_lock_recovery",
+      "stages": {
+        "before_abort": {
+          "raw_file_count": 0,
+          "request_in_record": true,
+          "raw_retention_state": null,
+          "delete_failures": null,
+          "hook_phase": null,
+          "host_abort_reason": null
+        },
+        "after_abort": {
+          "raw_file_count": 0,
+          "request_in_record": true,
+          "raw_retention_state": null,
+          "delete_failures": null,
+          "hook_phase": null,
+          "host_abort_reason": null
+        },
+        "after_producer_or_lock_release": {
+          "raw_file_count": 0,
+          "request_in_record": true,
+          "raw_retention_state": null,
+          "delete_failures": null,
+          "hook_phase": null,
+          "host_abort_reason": null
+        },
+        "after_followup_stop": {
+          "raw_file_count": 0,
+          "request_in_record": false,
+          "raw_retention_state": "raw_turn_data_redacted",
+          "delete_failures": 0,
+          "hook_phase": "failed_open_host_abort",
+          "host_abort_reason": "turn_changed"
+        }
+      },
+      "followup_response": {
+        "continue": true
+      },
+      "followup_emits_body": false
+    }
+  ],
+  "sensor_limitation": "raw_file_count matches literal body/request bytes; escaped request in JSON is separately checked by request_in_record",
+  "normal_control": {
+    "core_sha256": "4a4b46139e2b875c29082bd64f9697e10b9727c887068f99bec78a4acade920c",
+    "skill_sha256": "094e214bdd8e32d0ee69dfad2e3a796a08557e35a531e19ba18748365510ebc8",
+    "sample_sha256": "0a66c456842dbd883b3f331abf4d3ce9c9cf3fbd42f1ecd7c39753e5a375b857",
+    "script_sha256": "57b791739c7146586020ee4603271dc2117615e44b7d24d2fc01e6bbe48a260a",
+    "d0_sha256": "353db1634bb8796131c8b92857aa9d49f4f1401c73dd736efa218a9c8dfee2e5",
+    "selected_sha256": "353db1634bb8796131c8b92857aa9d49f4f1401c73dd736efa218a9c8dfee2e5",
+    "model_calls": 0,
+    "exact_echo_is_driver_copy": true,
+    "selected_unchanged": true,
+    "final": {
+      "continue": true
+    },
+    "duplicate": {
+      "continue": true
+    },
+    "raw_content_files": []
+  }
+}

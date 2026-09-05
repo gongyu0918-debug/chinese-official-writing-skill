@@ -1,0 +1,35 @@
+{
+  "at_utc": "2026-09-05T10:03:04.991973+00:00",
+  "rows": [
+    {
+      "file": "codebuddy-hooks.html",
+      "url": "https://www.codebuddy.ai/docs/cli/hooks",
+      "bytes": 268163,
+      "status": "ok"
+    },
+    {
+      "file": "kimi-hooks.html",
+      "url": "https://www.kimi.com/code/docs/en/kimi-code-cli/customization/hooks.html",
+      "bytes": 55184,
+      "status": "ok"
+    },
+    {
+      "file": "kimi-repo.json",
+      "url": "https://api.github.com/repos/MoonshotAI/kimi-code",
+      "bytes": 6362,
+      "status": "ok"
+    },
+    {
+      "file": "opencode-repo.json",
+      "url": "https://api.github.com/repos/anomalyco/opencode",
+      "bytes": 6255,
+      "status": "ok"
+    },
+    {
+      "file": "dsh-repo.json",
+      "url": "https://api.github.com/repos/deepseek-ai/deepseek-harness",
+      "bytes": 6765,
+      "status": "ok"
+    }
+  ]
+}

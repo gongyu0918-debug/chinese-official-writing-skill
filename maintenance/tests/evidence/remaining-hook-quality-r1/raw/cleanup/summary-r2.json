@@ -1,0 +1,297 @@
+{
+  "baseline_commit": "37f22146f64cf2dfcaea7a8a5afba40750215803",
+  "candidate_core_sha256": "7763991df28fddcf7483737a44658948e7bb520602fa109d1fa36da9978fee38",
+  "model_calls": 0,
+  "cleanup": [
+    {
+      "arm": "baseline-r2",
+      "core_sha256": "26d79b97e01515f50916232e14a9873a77320e196eacfd4e966faac788772900",
+      "scenario": "bootstrap_abort",
+      "stages": {
+        "before_abort": {
+          "raw_file_count": 0,
+          "request_in_record": true,
+          "retention_state": null,
+          "delete_failures": null,
+          "bootstrap_artifacts": null,
+          "host_abort_reason": null
+        },
+        "after_abort": {
+          "raw_file_count": 0,
+          "request_in_record": false,
+          "retention_state": "raw_turn_data_redacted",
+          "delete_failures": 0,
+          "bootstrap_artifacts": null,
+          "host_abort_reason": "turn_changed"
+        },
+        "after_producer_or_lock_release": {
+          "raw_file_count": 4,
+          "request_in_record": false,
+          "retention_state": "raw_turn_data_redacted",
+          "delete_failures": 0,
+          "bootstrap_artifacts": null,
+          "host_abort_reason": "turn_changed"
+        },
+        "after_followup_stop": {
+          "raw_file_count": 4,
+          "request_in_record": false,
+          "retention_state": "raw_turn_data_redacted",
+          "delete_failures": 0,
+          "bootstrap_artifacts": null,
+          "host_abort_reason": "turn_changed"
+        }
+      },
+      "followup_response": {
+        "continue": true
+      },
+      "followup_emits_body": false
+    },
+    {
+      "arm": "baseline-r2",
+      "core_sha256": "26d79b97e01515f50916232e14a9873a77320e196eacfd4e966faac788772900",
+      "scenario": "abort_lock_recovery",
+      "stages": {
+        "before_abort": {
+          "raw_file_count": 0,
+          "request_in_record": true,
+          "retention_state": null,
+          "delete_failures": null,
+          "bootstrap_artifacts": null,
+          "host_abort_reason": null
+        },
+        "after_abort": {
+          "raw_file_count": 0,
+          "request_in_record": true,
+          "retention_state": null,
+          "delete_failures": null,
+          "bootstrap_artifacts": null,
+          "host_abort_reason": null
+        },
+        "after_producer_or_lock_release": {
+          "raw_file_count": 0,
+          "request_in_record": true,
+          "retention_state": null,
+          "delete_failures": null,
+          "bootstrap_artifacts": null,
+          "host_abort_reason": null
+        },
+        "after_followup_stop": {
+          "raw_file_count": 5,
+          "request_in_record": true,
+          "retention_state": null,
+          "delete_failures": null,
+          "bootstrap_artifacts": null,
+          "host_abort_reason": null
+        }
+      },
+      "followup_response": {
+        "decision": "block"
+      },
+      "followup_emits_body": true
+    },
+    {
+      "arm": "candidate-r2",
+      "core_sha256": "7763991df28fddcf7483737a44658948e7bb520602fa109d1fa36da9978fee38",
+      "scenario": "bootstrap_abort",
+      "stages": {
+        "before_abort": {
+          "raw_file_count": 0,
+          "request_in_record": true,
+          "retention_state": null,
+          "delete_failures": null,
+          "bootstrap_artifacts": true,
+          "host_abort_reason": null
+        },
+        "after_abort": {
+          "raw_file_count": 0,
+          "request_in_record": true,
+          "retention_state": null,
+          "delete_failures": null,
+          "bootstrap_artifacts": true,
+          "host_abort_reason": null
+        },
+        "after_producer_or_lock_release": {
+          "raw_file_count": 0,
+          "request_in_record": false,
+          "retention_state": "raw_turn_data_redacted",
+          "delete_failures": 0,
+          "bootstrap_artifacts": true,
+          "host_abort_reason": "turn_changed"
+        },
+        "after_followup_stop": {
+          "raw_file_count": 0,
+          "request_in_record": false,
+          "retention_state": "raw_turn_data_redacted",
+          "delete_failures": 0,
+          "bootstrap_artifacts": true,
+          "host_abort_reason": "turn_changed"
+        }
+      },
+      "followup_response": {
+        "continue": true
+      },
+      "followup_emits_body": false
+    },
+    {
+      "arm": "candidate-r2",
+      "core_sha256": "7763991df28fddcf7483737a44658948e7bb520602fa109d1fa36da9978fee38",
+      "scenario": "abort_lock_recovery",
+      "stages": {
+        "before_abort": {
+          "raw_file_count": 0,
+          "request_in_record": true,
+          "retention_state": null,
+          "delete_failures": null,
+          "bootstrap_artifacts": null,
+          "host_abort_reason": null
+        },
+        "after_abort": {
+          "raw_file_count": 0,
+          "request_in_record": true,
+          "retention_state": null,
+          "delete_failures": null,
+          "bootstrap_artifacts": null,
+          "host_abort_reason": null
+        },
+        "after_producer_or_lock_release": {
+          "raw_file_count": 0,
+          "request_in_record": true,
+          "retention_state": null,
+          "delete_failures": null,
+          "bootstrap_artifacts": null,
+          "host_abort_reason": null
+        },
+        "after_followup_stop": {
+          "raw_file_count": 0,
+          "request_in_record": false,
+          "retention_state": "raw_turn_data_redacted",
+          "delete_failures": 0,
+          "bootstrap_artifacts": null,
+          "host_abort_reason": "turn_changed"
+        }
+      },
+      "followup_response": {
+        "continue": true
+      },
+      "followup_emits_body": false
+    }
+  ],
+  "receipt_refresh_offline_controls": [
+    {
+      "arm": "baseline",
+      "core_sha256": "26d79b97e01515f50916232e14a9873a77320e196eacfd4e966faac788772900",
+      "cases": [
+        {
+          "trigger": "Stop",
+          "fault_injected": false,
+          "first_continue": false,
+          "second_continue": false,
+          "receipt_original_bytes_preserved": true,
+          "neighbor_unchanged": true
+        },
+        {
+          "trigger": "HostAbort",
+          "fault_injected": false,
+          "first_continue": true,
+          "second_continue": false,
+          "receipt_original_bytes_preserved": true,
+          "neighbor_unchanged": true
+        }
+      ]
+    },
+    {
+      "arm": "r1",
+      "core_sha256": "4a4b46139e2b875c29082bd64f9697e10b9727c887068f99bec78a4acade920c",
+      "cases": [
+        {
+          "trigger": "Stop",
+          "fault_injected": true,
+          "first_continue": false,
+          "second_continue": true,
+          "receipt_original_bytes_preserved": false,
+          "neighbor_unchanged": true
+        },
+        {
+          "trigger": "HostAbort",
+          "fault_injected": true,
+          "first_continue": false,
+          "second_continue": true,
+          "receipt_original_bytes_preserved": false,
+          "neighbor_unchanged": true
+        }
+      ]
+    },
+    {
+      "arm": "r2",
+      "core_sha256": "7763991df28fddcf7483737a44658948e7bb520602fa109d1fa36da9978fee38",
+      "cases": [
+        {
+          "trigger": "Stop",
+          "fault_injected": true,
+          "first_continue": false,
+          "second_continue": false,
+          "receipt_original_bytes_preserved": true,
+          "neighbor_unchanged": true
+        },
+        {
+          "trigger": "HostAbort",
+          "fault_injected": true,
+          "first_continue": false,
+          "second_continue": false,
+          "receipt_original_bytes_preserved": true,
+          "neighbor_unchanged": true
+        }
+      ]
+    }
+  ],
+  "same_real_d0_turn_collision": [
+    {
+      "core_sha256": "26d79b97e01515f50916232e14a9873a77320e196eacfd4e966faac788772900",
+      "d0_sha256": "353db1634bb8796131c8b92857aa9d49f4f1401c73dd736efa218a9c8dfee2e5",
+      "active_artifacts_unchanged": true,
+      "delivery_verified": true,
+      "model_calls": 0,
+      "arm": "baseline"
+    },
+    {
+      "core_sha256": "4a4b46139e2b875c29082bd64f9697e10b9727c887068f99bec78a4acade920c",
+      "d0_sha256": "353db1634bb8796131c8b92857aa9d49f4f1401c73dd736efa218a9c8dfee2e5",
+      "active_artifacts_unchanged": false,
+      "delivery_verified": false,
+      "model_calls": 0,
+      "arm": "r1"
+    },
+    {
+      "core_sha256": "7763991df28fddcf7483737a44658948e7bb520602fa109d1fa36da9978fee38",
+      "d0_sha256": "353db1634bb8796131c8b92857aa9d49f4f1401c73dd736efa218a9c8dfee2e5",
+      "active_artifacts_unchanged": true,
+      "delivery_verified": true,
+      "model_calls": 0,
+      "arm": "r2"
+    }
+  ],
+  "normal_control": {
+    "core_sha256": "7763991df28fddcf7483737a44658948e7bb520602fa109d1fa36da9978fee38",
+    "skill_sha256": "094e214bdd8e32d0ee69dfad2e3a796a08557e35a531e19ba18748365510ebc8",
+    "sample_sha256": "0a66c456842dbd883b3f331abf4d3ce9c9cf3fbd42f1ecd7c39753e5a375b857",
+    "script_sha256": "57b791739c7146586020ee4603271dc2117615e44b7d24d2fc01e6bbe48a260a",
+    "d0_sha256": "353db1634bb8796131c8b92857aa9d49f4f1401c73dd736efa218a9c8dfee2e5",
+    "selected_sha256": "353db1634bb8796131c8b92857aa9d49f4f1401c73dd736efa218a9c8dfee2e5",
+    "model_calls": 0,
+    "exact_echo_is_driver_copy": true,
+    "selected_unchanged": true,
+    "final": {
+      "continue": true
+    },
+    "duplicate": {
+      "continue": true
+    },
+    "raw_content_files": []
+  },
+  "admission": "R1 rejected by independent review; R2 pending root review/commit",
+  "inherited_limits": [
+    "both turns bootstrapping into suffix-colliding directories",
+    "persistent I/O failure or no future lifecycle event",
+    "old redacted orphan without ownership fact"
+  ]
+}

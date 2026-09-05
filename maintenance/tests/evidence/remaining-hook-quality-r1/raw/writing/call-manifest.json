@@ -1,0 +1,354 @@
+[
+  {
+    "round": "writing-prototype-r1",
+    "provider": "alibaba2",
+    "case": "delete",
+    "arm": "baseline",
+    "files_sha256": {
+      "prompt.txt": "c89840fcb417e73009da1baa97496cd0628f1c2a37deabd669693268ac636fa0",
+      "receipt.json": "64c0bb48a008d0b66fd6420807ee91021f9b8a62d42f91d83c36ccca8e8170d4",
+      "reply.txt": "59d82cb861cf23d8bfa7c26a9559287fdca7da07a2e41aa4d9075c3c67286a86",
+      "stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stream.jsonl": "1f65dc9da2c32bfdaaffd88ad8758bdfa1cabb5a9d163aa9142327d708b49336"
+    },
+    "prompt_reconstructed_from_fixture": true,
+    "context_method": "injected exact routed context; no natural file reads",
+    "raw_stream_retained_at": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\remaining-hook-quality-r1\\output\\remaining-hook-quality-r1\\writing-prototype-r1\\alibaba2\\delete\\baseline\\stream.jsonl"
+  },
+  {
+    "round": "writing-prototype-r1",
+    "provider": "alibaba2",
+    "case": "delete",
+    "arm": "candidate",
+    "files_sha256": {
+      "prompt.txt": "c7bd5b6628a1f6502779899d9f4557e48d4d50dc4ec69f8fe0553e0d7a321d12",
+      "receipt.json": "05070e20d689698821e6edc550a14180b575c996b84404a035b1f19852596650",
+      "reply.txt": "59d82cb861cf23d8bfa7c26a9559287fdca7da07a2e41aa4d9075c3c67286a86",
+      "stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stream.jsonl": "0fa7db584b0147a34e88c613b2a43214c381688b3be1c71dfeee167bc99fcf22"
+    },
+    "prompt_reconstructed_from_fixture": true,
+    "context_method": "injected exact routed context; no natural file reads",
+    "raw_stream_retained_at": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\remaining-hook-quality-r1\\output\\remaining-hook-quality-r1\\writing-prototype-r1\\alibaba2\\delete\\candidate\\stream.jsonl"
+  },
+  {
+    "round": "writing-prototype-r1",
+    "provider": "alibaba2",
+    "case": "insert",
+    "arm": "baseline",
+    "files_sha256": {
+      "prompt.txt": "6538da3bcd4b75d4c82d7e9834a7b69e983004feca63e37b7ab97ce8629b2465",
+      "receipt.json": "f63d6fa6cbcd4f7c33ff40e66871e7b503eebe79ae0b5b76326edbf0db0b57ae",
+      "reply.txt": "f0b11a4c5bd8988e63afb098806c4eef5f93b127753602c8baf8ebf439550139",
+      "stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stream.jsonl": "d212867643ff24c560928b4c7f519e770cd8c0b62811e99d34ceb3ecc2930e18"
+    },
+    "prompt_reconstructed_from_fixture": true,
+    "context_method": "injected exact routed context; no natural file reads",
+    "raw_stream_retained_at": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\remaining-hook-quality-r1\\output\\remaining-hook-quality-r1\\writing-prototype-r1\\alibaba2\\insert\\baseline\\stream.jsonl"
+  },
+  {
+    "round": "writing-prototype-r1",
+    "provider": "alibaba2",
+    "case": "insert",
+    "arm": "candidate",
+    "files_sha256": {
+      "prompt.txt": "c19e3a3e3bf95a8c3b350566c954e45e709c6fb70753a01febea906fa87479d1",
+      "receipt.json": "dcb807e8a797cc1c556a4ac5fea9bfe4ab34e2a9b25626db94cd25af2c74304d",
+      "reply.txt": "f0b11a4c5bd8988e63afb098806c4eef5f93b127753602c8baf8ebf439550139",
+      "stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stream.jsonl": "5b4438b5cabd6ded7b0ee9f3512ad84a66cc5b8bb98c490c6837edfa627aa187"
+    },
+    "prompt_reconstructed_from_fixture": true,
+    "context_method": "injected exact routed context; no natural file reads",
+    "raw_stream_retained_at": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\remaining-hook-quality-r1\\output\\remaining-hook-quality-r1\\writing-prototype-r1\\alibaba2\\insert\\candidate\\stream.jsonl"
+  },
+  {
+    "round": "writing-prototype-r1",
+    "provider": "alibaba2",
+    "case": "news",
+    "arm": "baseline",
+    "files_sha256": {
+      "prompt.txt": "592dcb064ec690304e4fb69f4cbb9cb941d6c44793fc0cc56dcdac8833d7b3c6",
+      "receipt.json": "cb8cffae5398d75ee1c4e2e3d373b30cc215ebdb15fbfc6b89757d6309c90687",
+      "reply.txt": "e93dbb1d288678c219570df33c67c3484fe63d4735b6816afa50a7106b2c990c",
+      "stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stream.jsonl": "5eebccdd707bcd0b755e3d77091e23c7ce595ebd10313e7eaa15734274fc1c7e"
+    },
+    "prompt_reconstructed_from_fixture": true,
+    "context_method": "injected exact routed context; no natural file reads",
+    "raw_stream_retained_at": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\remaining-hook-quality-r1\\output\\remaining-hook-quality-r1\\writing-prototype-r1\\alibaba2\\news\\baseline\\stream.jsonl"
+  },
+  {
+    "round": "writing-prototype-r1",
+    "provider": "alibaba2",
+    "case": "news",
+    "arm": "candidate",
+    "files_sha256": {
+      "prompt.txt": "982abe4534b5272589216dea741409784773eb43540aecea9703e6ce6d6af28d",
+      "receipt.json": "1b87b35496157335ef125fb0c1e97813a14e7e2b31f9ec25b3372de557076988",
+      "reply.txt": "353db1634bb8796131c8b92857aa9d49f4f1401c73dd736efa218a9c8dfee2e5",
+      "stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stream.jsonl": "ac25d957c6cfb4408b4fbf5fa1918aa7a840444c6644dc852204cb4bdfe8b184"
+    },
+    "prompt_reconstructed_from_fixture": true,
+    "context_method": "injected exact routed context; no natural file reads",
+    "raw_stream_retained_at": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\remaining-hook-quality-r1\\output\\remaining-hook-quality-r1\\writing-prototype-r1\\alibaba2\\news\\candidate\\stream.jsonl"
+  },
+  {
+    "round": "writing-prototype-r1",
+    "provider": "minimax",
+    "case": "delete",
+    "arm": "baseline",
+    "files_sha256": {
+      "prompt.txt": "c89840fcb417e73009da1baa97496cd0628f1c2a37deabd669693268ac636fa0",
+      "receipt.json": "18a37c7e0c8e26d19dfefba4a4d5f8faa1a7653b9b9edd54fbce39edec6fd102",
+      "reply.txt": "1d92ca3219fe3a07015ec22a43dcd48e28cf32599e49d7687b02804a0f721cbf",
+      "stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stream.jsonl": "359cf566db03082d52b5b2a4ba029ec732bf60f620909cc8bad6b0c26457e149"
+    },
+    "prompt_reconstructed_from_fixture": true,
+    "context_method": "injected exact routed context; no natural file reads",
+    "raw_stream_retained_at": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\remaining-hook-quality-r1\\output\\remaining-hook-quality-r1\\writing-prototype-r1\\minimax\\delete\\baseline\\stream.jsonl"
+  },
+  {
+    "round": "writing-prototype-r1",
+    "provider": "minimax",
+    "case": "delete",
+    "arm": "candidate",
+    "files_sha256": {
+      "prompt.txt": "c7bd5b6628a1f6502779899d9f4557e48d4d50dc4ec69f8fe0553e0d7a321d12",
+      "receipt.json": "6648618e2a3caa5c4b7a9a09a2f37d05afa773b9210442963bf5b46589dbabca",
+      "reply.txt": "e8b0bf5e7fdcdb2c330eefcc94f3ec1c93697b5dddcb70b58a6968574c514e57",
+      "stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stream.jsonl": "aa232f295db9938e2f1925caea9d91248c26b168ff68198a5eb62802ed6ba3e7"
+    },
+    "prompt_reconstructed_from_fixture": true,
+    "context_method": "injected exact routed context; no natural file reads",
+    "raw_stream_retained_at": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\remaining-hook-quality-r1\\output\\remaining-hook-quality-r1\\writing-prototype-r1\\minimax\\delete\\candidate\\stream.jsonl"
+  },
+  {
+    "round": "writing-prototype-r1",
+    "provider": "minimax",
+    "case": "insert",
+    "arm": "baseline",
+    "files_sha256": {
+      "prompt.txt": "6538da3bcd4b75d4c82d7e9834a7b69e983004feca63e37b7ab97ce8629b2465",
+      "receipt.json": "72d148f7dee0ada8ac65bd691269d169789c910168c74e2a62552412ac3ce800",
+      "reply.txt": "e8b7287a8d4b47df7f8c037efe4a5f7ad3f17e4c954fedbfe23724adf07b32b8",
+      "stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stream.jsonl": "d4b3bd841a249056e07916f3337edea36209a8ec77411cc6b6be271fa7d80a8b"
+    },
+    "prompt_reconstructed_from_fixture": true,
+    "context_method": "injected exact routed context; no natural file reads",
+    "raw_stream_retained_at": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\remaining-hook-quality-r1\\output\\remaining-hook-quality-r1\\writing-prototype-r1\\minimax\\insert\\baseline\\stream.jsonl"
+  },
+  {
+    "round": "writing-prototype-r1",
+    "provider": "minimax",
+    "case": "insert",
+    "arm": "candidate",
+    "files_sha256": {
+      "prompt.txt": "c19e3a3e3bf95a8c3b350566c954e45e709c6fb70753a01febea906fa87479d1",
+      "receipt.json": "d19540bedfc495904ad4766acdd4164495063c6933642b982cb627246a5ed84e",
+      "reply.txt": "53af8da94501f437cfbffd8843d9a6089c7b9e08a34dbbd7bdee37c328df703f",
+      "stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stream.jsonl": "c77cce12221d727c713b0c05a1681305b998739198d7b797cbb198dffb98cc1b"
+    },
+    "prompt_reconstructed_from_fixture": true,
+    "context_method": "injected exact routed context; no natural file reads",
+    "raw_stream_retained_at": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\remaining-hook-quality-r1\\output\\remaining-hook-quality-r1\\writing-prototype-r1\\minimax\\insert\\candidate\\stream.jsonl"
+  },
+  {
+    "round": "writing-prototype-r1",
+    "provider": "minimax",
+    "case": "news",
+    "arm": "baseline",
+    "files_sha256": {
+      "prompt.txt": "592dcb064ec690304e4fb69f4cbb9cb941d6c44793fc0cc56dcdac8833d7b3c6",
+      "receipt.json": "1ce73d356cd23dc2ae0f1ba93254a1554eb09b373fb17e9ecab8f40d558e9b88",
+      "reply.txt": "353db1634bb8796131c8b92857aa9d49f4f1401c73dd736efa218a9c8dfee2e5",
+      "stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stream.jsonl": "3d5d3718078aa511ecbf1603b2d5ec0b46158c33f8d55e24d207d95cdc11a713"
+    },
+    "prompt_reconstructed_from_fixture": true,
+    "context_method": "injected exact routed context; no natural file reads",
+    "raw_stream_retained_at": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\remaining-hook-quality-r1\\output\\remaining-hook-quality-r1\\writing-prototype-r1\\minimax\\news\\baseline\\stream.jsonl"
+  },
+  {
+    "round": "writing-prototype-r1",
+    "provider": "minimax",
+    "case": "news",
+    "arm": "candidate",
+    "files_sha256": {
+      "prompt.txt": "982abe4534b5272589216dea741409784773eb43540aecea9703e6ce6d6af28d",
+      "receipt.json": "2cfa1827c06e5bed818e085d8e55baf8d3926f23033a79e78e6934478907bada",
+      "reply.txt": "353db1634bb8796131c8b92857aa9d49f4f1401c73dd736efa218a9c8dfee2e5",
+      "stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stream.jsonl": "d122bd3132dc7a8b93f6d7b42fa3197ccaa14dfc3cbf0546381f68f945d86eeb"
+    },
+    "prompt_reconstructed_from_fixture": true,
+    "context_method": "injected exact routed context; no natural file reads",
+    "raw_stream_retained_at": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\remaining-hook-quality-r1\\output\\remaining-hook-quality-r1\\writing-prototype-r1\\minimax\\news\\candidate\\stream.jsonl"
+  },
+  {
+    "round": "writing-prototype-r2",
+    "provider": "alibaba2",
+    "case": "delete",
+    "arm": "candidate",
+    "files_sha256": {
+      "prompt.txt": "a3782a012f3d8f55f0ca408d2c1217f5b9dc66345a82a69d7614d29d5fbddfe0",
+      "receipt.json": "bd0ab97bdf7e3b0a9f5b78c1f5a4f150f155f940ca30131cb3e3b6dfb459e102",
+      "reply.txt": "59d82cb861cf23d8bfa7c26a9559287fdca7da07a2e41aa4d9075c3c67286a86",
+      "stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stream.jsonl": "747342e10b4a68a3441024895ad5330ddaabd8ec1a7eb9af97d45367cd457b9e"
+    },
+    "prompt_reconstructed_from_fixture": true,
+    "context_method": "injected exact routed context; no natural file reads",
+    "raw_stream_retained_at": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\remaining-hook-quality-r1\\output\\remaining-hook-quality-r1\\writing-prototype-r2\\alibaba2\\delete\\candidate\\stream.jsonl"
+  },
+  {
+    "round": "writing-prototype-r2",
+    "provider": "alibaba2",
+    "case": "insert",
+    "arm": "candidate",
+    "files_sha256": {
+      "prompt.txt": "eb71681951d3d281a96f62121492e12d84eeee14c16f3a404aa725d8b8f698c6",
+      "receipt.json": "3b277f066c11f5b549b5d3fd9ee7a0233b1654d01e8e8cf5d8f4de04a147e752",
+      "reply.txt": "2f93292e2da33dc3fe80872d2aec0df53cfd49ca20a0a6b57657923a10937ddb",
+      "stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stream.jsonl": "611021a0162fe5d4ab1640b95fdcb088dd69603f5cafbce2f404d8d3890e81cc"
+    },
+    "prompt_reconstructed_from_fixture": true,
+    "context_method": "injected exact routed context; no natural file reads",
+    "raw_stream_retained_at": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\remaining-hook-quality-r1\\output\\remaining-hook-quality-r1\\writing-prototype-r2\\alibaba2\\insert\\candidate\\stream.jsonl"
+  },
+  {
+    "round": "writing-prototype-r2",
+    "provider": "alibaba2",
+    "case": "news",
+    "arm": "candidate",
+    "files_sha256": {
+      "prompt.txt": "ec5edf2fcdcc3490c80fb00de3850a0b99d811fea2c344c709420d4912b4e734",
+      "receipt.json": "0ea0f72a79d8937a1790f145757e5c41db5b1134d1365290d9800d68fffb0f43",
+      "reply.txt": "353db1634bb8796131c8b92857aa9d49f4f1401c73dd736efa218a9c8dfee2e5",
+      "stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stream.jsonl": "b237067a7d272dbd4a27ae3f9fa420fc6a164391a691a08f1cf99752aaaae69b"
+    },
+    "prompt_reconstructed_from_fixture": true,
+    "context_method": "injected exact routed context; no natural file reads",
+    "raw_stream_retained_at": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\remaining-hook-quality-r1\\output\\remaining-hook-quality-r1\\writing-prototype-r2\\alibaba2\\news\\candidate\\stream.jsonl"
+  },
+  {
+    "round": "writing-prototype-r2",
+    "provider": "minimax",
+    "case": "delete",
+    "arm": "candidate",
+    "files_sha256": {
+      "prompt.txt": "a3782a012f3d8f55f0ca408d2c1217f5b9dc66345a82a69d7614d29d5fbddfe0",
+      "receipt.json": "5c4eabf167aa7714d3063edc383f9c4c50d8defe74ce672fd47825bd68078479",
+      "reply.txt": "1d92ca3219fe3a07015ec22a43dcd48e28cf32599e49d7687b02804a0f721cbf",
+      "stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stream.jsonl": "e4a008ffb355e93887e1ca40ede4e50d2cd46109d93f28c075d2c3e0001b216c"
+    },
+    "prompt_reconstructed_from_fixture": true,
+    "context_method": "injected exact routed context; no natural file reads",
+    "raw_stream_retained_at": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\remaining-hook-quality-r1\\output\\remaining-hook-quality-r1\\writing-prototype-r2\\minimax\\delete\\candidate\\stream.jsonl"
+  },
+  {
+    "round": "writing-prototype-r2",
+    "provider": "minimax",
+    "case": "insert",
+    "arm": "candidate",
+    "files_sha256": {
+      "prompt.txt": "eb71681951d3d281a96f62121492e12d84eeee14c16f3a404aa725d8b8f698c6",
+      "receipt.json": "4f4957abd6a9f7c9ac4d4eb36e4a29235653267a62b58aea8793cc3b3d72c501",
+      "reply.txt": "ec28128777c78ffc10ea62614aa5269741abbe303788c389abad13f6bab190bc",
+      "stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stream.jsonl": "c285be1494265a6cd0aface01be88513f01299b0132397412d0267f07011b469"
+    },
+    "prompt_reconstructed_from_fixture": true,
+    "context_method": "injected exact routed context; no natural file reads",
+    "raw_stream_retained_at": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\remaining-hook-quality-r1\\output\\remaining-hook-quality-r1\\writing-prototype-r2\\minimax\\insert\\candidate\\stream.jsonl"
+  },
+  {
+    "round": "writing-prototype-r2",
+    "provider": "minimax",
+    "case": "news",
+    "arm": "candidate",
+    "files_sha256": {
+      "prompt.txt": "ec5edf2fcdcc3490c80fb00de3850a0b99d811fea2c344c709420d4912b4e734",
+      "receipt.json": "ca04079503bb9f60b039f9998c8a157b7420c49a229cf6dcc098d830dac4e4cf",
+      "reply.txt": "353db1634bb8796131c8b92857aa9d49f4f1401c73dd736efa218a9c8dfee2e5",
+      "stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stream.jsonl": "e5fd58708fbd49203fa1bc70092769f44e54cd19f64f3543d88e825fe39749e3"
+    },
+    "prompt_reconstructed_from_fixture": true,
+    "context_method": "injected exact routed context; no natural file reads",
+    "raw_stream_retained_at": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\remaining-hook-quality-r1\\output\\remaining-hook-quality-r1\\writing-prototype-r2\\minimax\\news\\candidate\\stream.jsonl"
+  },
+  {
+    "round": "news-controls-r1",
+    "provider": "alibaba2",
+    "case": "missing-year",
+    "arm": "candidate",
+    "files_sha256": {
+      "prompt.txt": "fb171f1d42c7720904d2cfae2a4756d9d248e7e8fc175aab84b80bc5b2196a2f",
+      "receipt.json": "6043db2dc7e48dc5eca1f0183ab3b72ffb9b308eab78e11ffe182205344dcb12",
+      "reply.txt": "e93dbb1d288678c219570df33c67c3484fe63d4735b6816afa50a7106b2c990c",
+      "stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stream.jsonl": "362b82ce22830490b5258958ab918ab4e83bb58f3dd95ba467097efebf8d9593"
+    },
+    "prompt_reconstructed_from_fixture": true,
+    "context_method": "injected exact routed context; no natural file reads",
+    "raw_stream_retained_at": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\remaining-hook-quality-r1\\output\\remaining-hook-quality-r1\\news-controls-r1\\alibaba2\\missing-year\\candidate\\stream.jsonl"
+  },
+  {
+    "round": "news-controls-r1",
+    "provider": "alibaba2",
+    "case": "month-only",
+    "arm": "candidate",
+    "files_sha256": {
+      "prompt.txt": "bceed84db75b3899d9c04da57f9dd065a3a672074ef30299db0e7598225d7d2e",
+      "receipt.json": "481d681f51f7c83a2008029efa3f60a19fbf38442fb3bb6ec9f1954480d14495",
+      "reply.txt": "e93dbb1d288678c219570df33c67c3484fe63d4735b6816afa50a7106b2c990c",
+      "stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stream.jsonl": "6e93a6a65b3c7f4c5ed0cc5d5d5e944184487e118639c4e0ffc6d03bde238b72"
+    },
+    "prompt_reconstructed_from_fixture": true,
+    "context_method": "injected exact routed context; no natural file reads",
+    "raw_stream_retained_at": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\remaining-hook-quality-r1\\output\\remaining-hook-quality-r1\\news-controls-r1\\alibaba2\\month-only\\candidate\\stream.jsonl"
+  },
+  {
+    "round": "news-controls-r1",
+    "provider": "minimax",
+    "case": "missing-year",
+    "arm": "candidate",
+    "files_sha256": {
+      "prompt.txt": "fb171f1d42c7720904d2cfae2a4756d9d248e7e8fc175aab84b80bc5b2196a2f",
+      "receipt.json": "a61db00fe2a1c04a02f1afd1c6dab4c0f0579d7264e78aa9974f4f8a5fe5d317",
+      "reply.txt": "e93dbb1d288678c219570df33c67c3484fe63d4735b6816afa50a7106b2c990c",
+      "stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stream.jsonl": "278b69b1e3fad2edd9f85489c54ebf9f81e669a4fed907728a85dc91b883558e"
+    },
+    "prompt_reconstructed_from_fixture": true,
+    "context_method": "injected exact routed context; no natural file reads",
+    "raw_stream_retained_at": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\remaining-hook-quality-r1\\output\\remaining-hook-quality-r1\\news-controls-r1\\minimax\\missing-year\\candidate\\stream.jsonl"
+  },
+  {
+    "round": "news-controls-r1",
+    "provider": "minimax",
+    "case": "month-only",
+    "arm": "candidate",
+    "files_sha256": {
+      "prompt.txt": "bceed84db75b3899d9c04da57f9dd065a3a672074ef30299db0e7598225d7d2e",
+      "receipt.json": "bf4d684bc2abdca3575a0330491f58621e1d3a4901c433fa64ba266797af0cbb",
+      "reply.txt": "e93dbb1d288678c219570df33c67c3484fe63d4735b6816afa50a7106b2c990c",
+      "stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stream.jsonl": "a30b442ac4d9a5d435a3f0c7a8af94d4e2f9fe3913bbc1e1db03a77cff8242a7"
+    },
+    "prompt_reconstructed_from_fixture": true,
+    "context_method": "injected exact routed context; no natural file reads",
+    "raw_stream_retained_at": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\remaining-hook-quality-r1\\output\\remaining-hook-quality-r1\\news-controls-r1\\minimax\\month-only\\candidate\\stream.jsonl"
+  }
+]

@@ -1,0 +1,197 @@
+diff --git a/chinese-official-writing/hooks/core/gate_stop_hook.py b/chinese-official-writing/hooks/core/gate_stop_hook.py
+index efda5f25..7557ba47 100644
+--- a/chinese-official-writing/hooks/core/gate_stop_hook.py
++++ b/chinese-official-writing/hooks/core/gate_stop_hook.py
+@@ -246,6 +246,29 @@ def _skill_seen_marker_path(record_path: Path) -> Path:
+     return record_path.with_suffix(".skill-seen")
+ 
+ 
++def _host_abort_marker_path(record_path: Path) -> Path:
++    return record_path.with_suffix(".host-abort")
++
++
++def _pending_host_abort(record_path: Path) -> str | None:
++    try:
++        reason = _host_abort_marker_path(record_path).read_text(encoding="utf-8").strip()
++    except OSError:
++        return None
++    return reason if reason in HOST_ABORT_REASONS else "adapter_failure"
++
++
++def _mark_host_abort(record_path: Path, reason: str) -> None:
++    # Cancellation must survive a busy state lock without retaining request/draft text.
++    marker = _host_abort_marker_path(record_path)
++    marker.parent.mkdir(parents=True, exist_ok=True)
++    try:
++        with marker.open("x", encoding="utf-8", newline="\n") as handle:
++            handle.write(reason + "\n")
++    except FileExistsError:
++        pass
++
++
+ def _bootstrap_lock_path(record_path: Path) -> Path:
+     return record_path.with_suffix(".bootstrap-lock")
+ 
+@@ -499,18 +522,32 @@ def _remove_turn_artifact(path: Path, data_root: Path) -> bool:
+ def _redact_turn_data(record_path: Path, record: dict[str, Any]) -> None:
+     with _record_lock(record_path):
+         current = _read_json(record_path)
+-        if current and current.get("data_retention_state") == REDACTED_RECORD_STATE:
++        if current and _record_is_terminal(current):
+             record.clear()
+             record.update(current)
+-            return
+-        _redact_turn_data_locked(record_path, record)
++        elif current:
++            for key in ("txn", "protective_txn"):
++                if current.get(key):
++                    record[key] = current[key]
++        _redact_turn_data_locked(
++            record_path, record,
++            preserve_redacted_receipt=bool(
++                current and current.get("data_retention_state") == REDACTED_RECORD_STATE
++            ),
++        )
+ 
+ 
+-def _redact_turn_data_locked(record_path: Path, record: dict[str, Any]) -> None:
++def _redact_turn_data_locked(
++    record_path: Path, record: dict[str, Any], *, preserve_redacted_receipt: bool
++) -> None:
+     data_root = _data_root()
+     if data_root is None:
+         return
++    turn_txn = data_root / "transactions" / record_path.parent.name / record_path.stem
+     targets: list[Path] = []
++    # A redacted owner may need to remove late writes; an unstarted turn owns none.
++    if record.get("bootstrap_artifacts") is True:
++        targets.extend([turn_txn, turn_txn.parent / f"{turn_txn.name}-inputs"])
+     ordinary_txn = _contained_data_path(record.get("txn"), data_root)
+     if ordinary_txn is not None:
+         targets.extend(
+@@ -541,6 +578,9 @@ def _redact_turn_data_locked(record_path: Path, record: dict[str, Any]) -> None:
+     try:
+         _atomic_write(record_path, redacted)
+     except OSError:
++        if preserve_redacted_receipt:
++            # A failed refresh must not erase the existing terminal decision.
++            return
+         # Prefer losing the nonessential receipt to retaining the raw turn when
+         # the filesystem cannot replace the record after terminal cleanup.
+         try:
+@@ -550,6 +590,11 @@ def _redact_turn_data_locked(record_path: Path, record: dict[str, Any]) -> None:
+         return
+     record.clear()
+     record.update(redacted)
++    if failures == 0:
++        try:
++            _host_abort_marker_path(record_path).unlink(missing_ok=True)
++        except OSError:
++            pass
+     _cleanup_bootstrap_lock_file(record_path)
+ 
+ 
+@@ -1322,15 +1367,23 @@ def handle_host_abort(event: dict[str, Any]) -> dict[str, Any]:
+     record_path = _record_path(event)
+     if record_path is None:
+         return _allow()
+-    record = _read_json(record_path)
+-    if record is None or record.get("data_retention_state") == REDACTED_RECORD_STATE:
+-        return _allow()
+     reason = str(event.get("abort_reason") or "")
+-    record["host_abort_reason"] = (
+-        reason if reason in HOST_ABORT_REASONS else "adapter_failure"
+-    )
+-    record["hook_phase"] = "failed_open_host_abort"
+-    _redact_turn_data(record_path, record)
++    reason = reason if reason in HOST_ABORT_REASONS else "adapter_failure"
++    try:
++        _mark_host_abort(record_path, reason)
++    except OSError:
++        pass
++    record = _read_json(record_path) or {}
++    if not _record_is_terminal(record):
++        record["host_abort_reason"] = _pending_host_abort(record_path) or reason
++        record["hook_phase"] = "failed_open_host_abort"
++    try:
++        _redact_turn_data(record_path, record)
++    except RecordLockUnavailable:
++        # The host has already cancelled. A later owner/event consumes the marker.
++        pass
++    if record.get("failure_reason") == "hook_selected_output_echo_budget_exhausted":
++        return _unverified_delivery_stop()
+     return _allow()
+ 
+ 
+@@ -1420,7 +1473,24 @@ def _bootstrap_transaction(
+             return _read_json(Path(str(record["txn"])) / "state.json")
+         return _bootstrap_transaction_locked(record_path, record, draft)
+     finally:
+-        _release_bootstrap_lock(lock_path, lock_handle)
++        exiting_with_error = sys.exc_info()[0] is not None
++        try:
++            pending_abort = _pending_host_abort(record_path)
++            current = _read_json(record_path) or {}
++            if pending_abort:
++                handle_host_abort({**event, "abort_reason": pending_abort})
++                current = _read_json(record_path) or current
++                record.clear()
++                record.update(current)
++                if _pending_host_abort(record_path):
++                    raise RecordLockUnavailable("cancelled bootstrap cleanup pending")
++            elif _record_is_terminal(current):
++                _redact_turn_data(record_path, current)
++        except (OSError, RecordLockUnavailable):
++            if not exiting_with_error:
++                raise
++        finally:
++            _release_bootstrap_lock(lock_path, lock_handle)
+ 
+ 
+ def _bootstrap_transaction_locked(
+@@ -1455,10 +1525,20 @@ def _bootstrap_transaction_locked(
+             "bootstrap_pending": True,
+         }
+     )
+-    _write_record(record_path, record)
+     try:
+-        _atomic_write_text(request_path, request)
+-        _atomic_write_text(draft_path, draft_for_gate)
++        # Only the two small input writes share the cleanup lock, never detect.
++        with _record_lock(record_path):
++            current = _read_json(record_path) or {}
++            if _record_is_terminal(current) or _pending_host_abort(record_path):
++                record.clear()
++                record.update(current)
++                return None
++            record["bootstrap_artifacts"] = True
++            _atomic_write(record_path, record)
++            _atomic_write_text(request_path, request)
++            _atomic_write_text(draft_path, draft_for_gate)
++        if _pending_host_abort(record_path) or _record_is_terminal(_read_json(record_path) or {}):
++            return None
+         completed = _run_review_gate_subprocess(
+             [
+                 sys.executable,
+@@ -1703,6 +1783,10 @@ def _handle_stop(event: dict[str, Any]) -> dict[str, Any]:
+     if record is None:
+         return _allow()
+     if record.get("data_retention_state") == REDACTED_RECORD_STATE:
++        try:
++            _redact_turn_data(record_path, record)
++        except RecordLockUnavailable:
++            pass
+         if record.get("failure_reason") == "hook_selected_output_echo_budget_exhausted":
+             return _unverified_delivery_stop()
+         return _allow()
+@@ -1778,6 +1862,10 @@ def handle_stop(event: dict[str, Any]) -> dict[str, Any]:
+ 
+ def handle(event: dict[str, Any]) -> dict[str, Any]:
+     name = str(event.get("hook_event_name") or "")
++    record_path = _record_path(event)
++    pending_abort = _pending_host_abort(record_path) if record_path is not None else None
++    if pending_abort and name != "HostAbort":
++        return handle_host_abort({**event, "abort_reason": pending_abort})
+     if name == "UserPromptSubmit":
+         return handle_user_prompt(event)
+     if name == "HostAbort":

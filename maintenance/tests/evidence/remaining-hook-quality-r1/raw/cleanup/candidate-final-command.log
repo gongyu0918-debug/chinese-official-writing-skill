@@ -1,0 +1,1 @@
+{"core_sha256": "4a4b46139e2b875c29082bd64f9697e10b9727c887068f99bec78a4acade920c", "cases": [{"scenario": "bootstrap_abort", "raw_after_producer_or_release": 0, "raw_after_followup_stop": 0, "followup_response": {"continue": true}}, {"scenario": "abort_lock_recovery", "raw_after_producer_or_release": 0, "raw_after_followup_stop": 0, "followup_response": {"continue": true}}]}

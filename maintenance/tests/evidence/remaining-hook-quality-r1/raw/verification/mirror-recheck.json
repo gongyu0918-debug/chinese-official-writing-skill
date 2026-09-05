@@ -1,0 +1,17 @@
+{
+  "command": [
+    "C:/Users/admin/AppData/Local/Programs/Python/Python313/python.exe",
+    "-X",
+    "utf8",
+    "-B",
+    "-m",
+    "unittest",
+    "maintenance.tests.test_skill_boundary.SkillBoundaryTests.test_packaged_resource_mirrors_match_canonical_bytes"
+  ],
+  "exit_code": 0,
+  "seconds": 0.21,
+  "reason": "restore rejected workflow using original working-tree CRLF bytes; no semantic change; original related-tests failure retained",
+  "stdout": "",
+  "stderr": ".\n----------------------------------------------------------------------\nRan 1 test in 0.040s\n\nOK\n",
+  "workflow_git_blob_equal_baseline": true
+}

@@ -1,0 +1,356 @@
+{
+  "schema_version": 1,
+  "input_file": "blind-packet.json",
+  "input_sha256": "0151395c65366a69c526dc0b5829052bcc484d0d54fcdcd508a1475dfed8d369",
+  "scope": "只依据匿名包题面及12份完整输出；不读取fixture、mapping、产品或其他输出，不推测模型和实验臂身份。",
+  "text_hashes_verified": 12,
+  "documents": [
+    {
+      "id": "D01",
+      "case": "delete",
+      "text_sha256": "59d82cb861cf23d8bfa7c26a9559287fdca7da07a2e41aa4d9075c3c67286a86",
+      "checks": {
+        "target_operation": "PASS",
+        "new_facts": "NONE",
+        "non_target_rewrites": "NONE",
+        "body_only_delivery": "PASS"
+      },
+      "hard_issues": [],
+      "inherited_issues": [],
+      "inherited_observations": [],
+      "nonhard_observations": [],
+      "requested_task_pass": true,
+      "target_evidence": {
+        "quote": "目录归集、场景核验等事项均有阶段性进展",
+        "reason": "删除了专题交流小节及其完整事项；总述中同一事项也已删除，其余文字和顺序保持。"
+      }
+    },
+    {
+      "id": "D02",
+      "case": "insert",
+      "text_sha256": "f0b11a4c5bd8988e63afb098806c4eef5f93b127753602c8baf8ebf439550139",
+      "checks": {
+        "target_operation": "PASS",
+        "new_facts": "NONE",
+        "non_target_rewrites": "NONE",
+        "body_only_delivery": "PASS"
+      },
+      "hard_issues": [],
+      "inherited_issues": [],
+      "inherited_observations": [
+        {
+          "quote": "归集工作总体按计划推进，归集覆盖面持续扩大。",
+          "reason": "该现状判断原已存在于本轮唯一底稿并原样保留，不是此次新增。包内没有更早的业务来源材料，不能在本次盲审中确认其依据或据此增加本轮硬错。"
+        },
+        {
+          "quote": "技术核验完成且核验结论经复核通过，仍不等同于正式上线批准",
+          "reason": "原底稿已有的条件性表述；前文仍明确核验结论尚待复核，不将此条件句判为本轮把结论升级为已通过。"
+        }
+      ],
+      "nonhard_observations": [],
+      "requested_task_pass": true,
+      "target_evidence": {
+        "quote": "此外，抽查12份登记记录，其中4份缺少更新频率说明，已退回材料提供单位补充，补充材料尚未收到。",
+        "reason": "新增内容位于存在问题末尾，前后均有空行，未新增标题；12份、4份、缺少更新频率、已退回和补充材料尚未收到均保留。删除该新增段后，全文与唯一底稿逐字相同。"
+      }
+    },
+    {
+      "id": "D03",
+      "case": "delete",
+      "text_sha256": "59d82cb861cf23d8bfa7c26a9559287fdca7da07a2e41aa4d9075c3c67286a86",
+      "checks": {
+        "target_operation": "PASS",
+        "new_facts": "NONE",
+        "non_target_rewrites": "NONE",
+        "body_only_delivery": "PASS"
+      },
+      "hard_issues": [],
+      "inherited_issues": [],
+      "inherited_observations": [],
+      "nonhard_observations": [],
+      "requested_task_pass": true,
+      "target_evidence": {
+        "quote": "目录归集、场景核验等事项均有阶段性进展",
+        "reason": "删除了专题交流小节及其完整事项；总述中同一事项也已删除，其余文字和顺序保持。"
+      }
+    },
+    {
+      "id": "D04",
+      "case": "insert",
+      "text_sha256": "f0b11a4c5bd8988e63afb098806c4eef5f93b127753602c8baf8ebf439550139",
+      "checks": {
+        "target_operation": "PASS",
+        "new_facts": "NONE",
+        "non_target_rewrites": "NONE",
+        "body_only_delivery": "PASS"
+      },
+      "hard_issues": [],
+      "inherited_issues": [],
+      "inherited_observations": [
+        {
+          "quote": "归集工作总体按计划推进，归集覆盖面持续扩大。",
+          "reason": "该现状判断原已存在于本轮唯一底稿并原样保留，不是此次新增。包内没有更早的业务来源材料，不能在本次盲审中确认其依据或据此增加本轮硬错。"
+        },
+        {
+          "quote": "技术核验完成且核验结论经复核通过，仍不等同于正式上线批准",
+          "reason": "原底稿已有的条件性表述；前文仍明确核验结论尚待复核，不将此条件句判为本轮把结论升级为已通过。"
+        }
+      ],
+      "nonhard_observations": [],
+      "requested_task_pass": true,
+      "target_evidence": {
+        "quote": "此外，抽查12份登记记录，其中4份缺少更新频率说明，已退回材料提供单位补充，补充材料尚未收到。",
+        "reason": "新增内容位于存在问题末尾，前后均有空行，未新增标题；12份、4份、缺少更新频率、已退回和补充材料尚未收到均保留。删除该新增段后，全文与唯一底稿逐字相同。"
+      }
+    },
+    {
+      "id": "D05",
+      "case": "news",
+      "text_sha256": "e93dbb1d288678c219570df33c67c3484fe63d4735b6816afa50a7106b2c990c",
+      "checks": {
+        "target_operation": "FAIL",
+        "new_facts": "NONE",
+        "non_target_rewrites": "NONE",
+        "body_only_delivery": "PASS"
+      },
+      "hard_issues": [
+        {
+          "category": "日期事实遗漏",
+          "quote": "9月5日，中心举办读书交流活动，共20人参加。",
+          "reason": "目标事实给出2026-09-05，并要求保留提供的事实；完整成稿没有2026年，月日表达未保留给定年份。未写2020年不等于日期完整。"
+        }
+      ],
+      "inherited_issues": [],
+      "inherited_observations": [],
+      "nonhard_observations": [],
+      "requested_task_pass": false,
+      "target_evidence": {
+        "quote": "9月5日，中心举办读书交流活动，共20人参加。",
+        "reason": "活动、中心、月日和20人保留，未写入格式示例或新增活动内容，但遗漏目标年份。"
+      }
+    },
+    {
+      "id": "D06",
+      "case": "insert",
+      "text_sha256": "e8b7287a8d4b47df7f8c037efe4a5f7ad3f17e4c954fedbfe23724adf07b32b8",
+      "checks": {
+        "target_operation": "PASS",
+        "new_facts": "FAIL",
+        "non_target_rewrites": "NONE",
+        "body_only_delivery": "PASS"
+      },
+      "hard_issues": [
+        {
+          "category": "新增事实/抽查对象范围",
+          "quote": "对已纳入目录涉及的登记记录组织抽查",
+          "reason": "补充材料只说抽查12份登记记录，没有限定这12份属于已纳入目录；底稿同时存在已纳入190项和待核70项。新增“已纳入目录涉及的”把未给定的归属范围写成既成事实，不能由上下文推出。"
+        }
+      ],
+      "inherited_issues": [],
+      "inherited_observations": [
+        {
+          "quote": "归集工作总体按计划推进，归集覆盖面持续扩大。",
+          "reason": "该现状判断原已存在于本轮唯一底稿并原样保留，不是此次新增。包内没有更早的业务来源材料，不能在本次盲审中确认其依据或据此增加本轮硬错。"
+        },
+        {
+          "quote": "技术核验完成且核验结论经复核通过，仍不等同于正式上线批准",
+          "reason": "原底稿已有的条件性表述；前文仍明确核验结论尚待复核，不将此条件句判为本轮把结论升级为已通过。"
+        }
+      ],
+      "nonhard_observations": [
+        {
+          "quote": "近期",
+          "reason": "补充材料没有抽查发生时间，该模糊时距为新增修饰；列为来源范围观察，交根代理确认是否按本轮固定口径独立计作时间事实硬错，不与已确认的对象范围错重复计数。"
+        },
+        {
+          "quote": "相关目录要素完整性有待进一步核实",
+          "reason": "可理解为由缺少更新频率说明且尚未补回所引出的一层问题概括；单独不确认为新实施状态或新增流程硬错。"
+        }
+      ],
+      "requested_task_pass": false,
+      "target_evidence": {
+        "quote": "近期对已纳入目录涉及的登记记录组织抽查，共抽查12份，其中4份缺少更新频率说明，已退回材料提供单位补充，截至目前补充材料尚未收到，相关目录要素完整性有待进一步核实。",
+        "reason": "新增内容位于存在问题末尾，前后均有空行，未新增标题；12份、4份、缺少更新频率、已退回和补充材料尚未收到均保留。删除该新增段后，全文与唯一底稿逐字相同。"
+      }
+    },
+    {
+      "id": "D07",
+      "case": "news",
+      "text_sha256": "353db1634bb8796131c8b92857aa9d49f4f1401c73dd736efa218a9c8dfee2e5",
+      "checks": {
+        "target_operation": "PASS",
+        "new_facts": "NONE",
+        "non_target_rewrites": "NONE",
+        "body_only_delivery": "PASS"
+      },
+      "hard_issues": [],
+      "inherited_issues": [],
+      "inherited_observations": [],
+      "nonhard_observations": [],
+      "requested_task_pass": true,
+      "target_evidence": {
+        "quote": "2026年9月5日，中心举办读书交流活动，共20人参加。",
+        "reason": "正文只陈述目标活动、中心、日期和20人；未写入2020年格式示例，未增加现场活动内容、效果或后续安排。"
+      }
+    },
+    {
+      "id": "D08",
+      "case": "delete",
+      "text_sha256": "e8b0bf5e7fdcdb2c330eefcc94f3ec1c93697b5dddcb70b58a6968574c514e57",
+      "checks": {
+        "target_operation": "FAIL",
+        "new_facts": "NONE",
+        "non_target_rewrites": "NONE",
+        "body_only_delivery": "PASS"
+      },
+      "hard_issues": [
+        {
+          "category": "明确指令/删除不完整",
+          "quote": "目录归集、场景核验和专题交流等事项均有阶段性进展",
+          "reason": "用户要求删除8月20日专题交流事项及相关说明。全文只提供这一次专题交流，总述仍把专题交流列为已有进展，属于目标事项残留；删除小节本身未完成整项删除。"
+        }
+      ],
+      "inherited_issues": [],
+      "inherited_observations": [],
+      "nonhard_observations": [],
+      "requested_task_pass": false,
+      "target_evidence": {
+        "quote": "目录归集、场景核验和专题交流等事项均有阶段性进展",
+        "reason": "专题交流小节已删除，但总述仍保留同一事项。"
+      }
+    },
+    {
+      "id": "D09",
+      "case": "news",
+      "text_sha256": "353db1634bb8796131c8b92857aa9d49f4f1401c73dd736efa218a9c8dfee2e5",
+      "checks": {
+        "target_operation": "PASS",
+        "new_facts": "NONE",
+        "non_target_rewrites": "NONE",
+        "body_only_delivery": "PASS"
+      },
+      "hard_issues": [],
+      "inherited_issues": [],
+      "inherited_observations": [],
+      "nonhard_observations": [],
+      "requested_task_pass": true,
+      "target_evidence": {
+        "quote": "2026年9月5日，中心举办读书交流活动，共20人参加。",
+        "reason": "正文只陈述目标活动、中心、日期和20人；未写入2020年格式示例，未增加现场活动内容、效果或后续安排。"
+      }
+    },
+    {
+      "id": "D10",
+      "case": "delete",
+      "text_sha256": "1d92ca3219fe3a07015ec22a43dcd48e28cf32599e49d7687b02804a0f721cbf",
+      "checks": {
+        "target_operation": "PASS",
+        "new_facts": "NONE",
+        "non_target_rewrites": "NONE",
+        "body_only_delivery": "PASS"
+      },
+      "hard_issues": [],
+      "inherited_issues": [],
+      "inherited_observations": [],
+      "nonhard_observations": [
+        {
+          "quote": "目录归集和场景核验",
+          "reason": "删除并列第三项后将顿号改为连接词，属于目标删除的必要局部衔接，不计非目标改写。"
+        }
+      ],
+      "requested_task_pass": true,
+      "target_evidence": {
+        "quote": "目录归集和场景核验等事项均有阶段性进展",
+        "reason": "删除了专题交流小节及其完整事项；总述中同一事项也已删除，其余文字和顺序保持。"
+      }
+    },
+    {
+      "id": "D11",
+      "case": "news",
+      "text_sha256": "353db1634bb8796131c8b92857aa9d49f4f1401c73dd736efa218a9c8dfee2e5",
+      "checks": {
+        "target_operation": "PASS",
+        "new_facts": "NONE",
+        "non_target_rewrites": "NONE",
+        "body_only_delivery": "PASS"
+      },
+      "hard_issues": [],
+      "inherited_issues": [],
+      "inherited_observations": [],
+      "nonhard_observations": [],
+      "requested_task_pass": true,
+      "target_evidence": {
+        "quote": "2026年9月5日，中心举办读书交流活动，共20人参加。",
+        "reason": "正文只陈述目标活动、中心、日期和20人；未写入2020年格式示例，未增加现场活动内容、效果或后续安排。"
+      }
+    },
+    {
+      "id": "D12",
+      "case": "insert",
+      "text_sha256": "53af8da94501f437cfbffd8843d9a6089c7b9e08a34dbbd7bdee37c328df703f",
+      "checks": {
+        "target_operation": "PASS",
+        "new_facts": "NONE",
+        "non_target_rewrites": "NONE",
+        "body_only_delivery": "PASS"
+      },
+      "hard_issues": [],
+      "inherited_issues": [],
+      "inherited_observations": [
+        {
+          "quote": "归集工作总体按计划推进，归集覆盖面持续扩大。",
+          "reason": "该现状判断原已存在于本轮唯一底稿并原样保留，不是此次新增。包内没有更早的业务来源材料，不能在本次盲审中确认其依据或据此增加本轮硬错。"
+        },
+        {
+          "quote": "技术核验完成且核验结论经复核通过，仍不等同于正式上线批准",
+          "reason": "原底稿已有的条件性表述；前文仍明确核验结论尚待复核，不将此条件句判为本轮把结论升级为已通过。"
+        }
+      ],
+      "nonhard_observations": [
+        {
+          "quote": "近日",
+          "reason": "补充材料没有抽查发生时间，该模糊时距为新增修饰；列为来源范围观察，交根代理确认是否按本轮固定口径独立计作时间事实硬错。"
+        },
+        {
+          "quote": "登记环节管理仍需进一步规范",
+          "reason": "这是由登记缺项引出的一般问题判断，题面并未要求新增段逐字照录。可讨论它是否偏宽，但尚不足以确认为已发生的新管理动作、具体职责或事实硬错；不按语言偏好否决。"
+        },
+        {
+          "quote": "登记信息完整性有待补齐",
+          "reason": "可由4份记录缺少说明且补充材料尚未收到直接支持，不另计新事实。"
+        }
+      ],
+      "requested_task_pass": true,
+      "target_evidence": {
+        "quote": "此外，登记环节管理仍需进一步规范。近日抽查12份登记记录，发现其中4份缺少更新频率说明，已将有关情况退回材料提供单位补充，截至目前补充材料尚未收到，登记信息完整性有待补齐。",
+        "reason": "新增内容位于存在问题末尾，前后均有空行，未新增标题；12份、4份、缺少更新频率、已退回和补充材料尚未收到均保留。删除该新增段后，全文与唯一底稿逐字相同。"
+      }
+    }
+  ],
+  "summary": {
+    "documents": 12,
+    "documents_with_confirmed_hard_issues": 3,
+    "confirmed_hard_issues": 3,
+    "documents_without_confirmed_new_hard_issues": 9,
+    "hard_issue_ids": [
+      "D05",
+      "D06",
+      "D08"
+    ],
+    "delete_target_pass": 3,
+    "delete_total": 4,
+    "insert_structure_pass": 4,
+    "insert_total": 4,
+    "news_date_and_fact_pass": 3,
+    "news_total": 4,
+    "non_target_rewrite_failures": 0,
+    "body_only_delivery_pass": 12
+  },
+  "notes": [
+    "NONE和空问题列表表示在本包授权范围未确认问题，不表示全部历史事实或文采已认证。requested_task_pass只评价这次请求；继承底稿内容单列，不计作本次新增。",
+    "非目标核对以包内唯一底稿逐字比较；修改差异只是线索，删除后的并列衔接经语义判断允许。",
+    "插段任务没有提供最初业务材料，不能将原底稿已有判断重新认定为本次捏造；也不能把保留原底稿说成修正了其历史事实风险。",
+    "D06和D12的模糊新增时间修饰、D12的一般评价已单列供根代理复核，不擅自提升为确定硬错。",
+    "上述为12份匿名输出的本次观察数量，不推算总体可靠率，不说明模型、臂或多轮链的优劣。"
+  ]
+}

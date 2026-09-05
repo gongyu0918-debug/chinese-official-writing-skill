@@ -1,0 +1,17 @@
+{
+  "argv": [
+    "C:\\Users\\admin\\AppData\\Local\\hermes\\hermes-agent\\venv\\Scripts\\python.exe",
+    "-X",
+    "utf8",
+    "-B",
+    "-m",
+    "unittest",
+    "maintenance.tests.test_opencode_gate_adapter.OpenCodeGateAdapterTests.test_hard_stop_is_failure_without_retry_including_terminal_replay",
+    "maintenance.tests.test_opencode_gate_adapter.OpenCodeGateAdapterTests.test_unavailable_failure_notice_keeps_error_and_no_retry",
+    "maintenance.tests.test_hook_layer_contract.HookLayerContractTests.test_capabilities_describe_static_opt_in_adapters"
+  ],
+  "exit_code": 0,
+  "stdout": "",
+  "stderr": "...\n----------------------------------------------------------------------\nRan 3 tests in 1.610s\n\nOK\n",
+  "seconds": 1.843
+}

@@ -1,0 +1,16 @@
+{
+  "command": [
+    "C:\\Users\\admin\\AppData\\Local\\hermes\\hermes-agent\\venv\\Scripts\\python.exe",
+    "-X",
+    "utf8",
+    "-B",
+    "-m",
+    "unittest",
+    "maintenance.tests.test_repository_reachability",
+    "maintenance.tests.test_status_ledger_consistency"
+  ],
+  "exit_code": 0,
+  "seconds": 1.125,
+  "stdout": "",
+  "stderr": ".......................\n----------------------------------------------------------------------\nRan 23 tests in 0.900s\n\nOK\n"
+}
