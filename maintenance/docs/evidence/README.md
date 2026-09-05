@@ -12,6 +12,8 @@
 
 ## 逐版发布证据
 
+- [v1.6.28](../../tests/evidence/release-1.6.28.md)：当前main已准入Hook修复、新闻完整事实日期与806项回归；三平台唯一提交回执、包hash及公开传播/审核边界。
+
 - [自然写稿与五版修改R1/R2](../../tests/evidence/natural-writing-stability-r1/result.md)：60次两家低价模型执行、实际自主读页与resume、完整稿/trace/匿名审查；两处reference候选撤回，最终产品0差异。自然触发口径已进入WR-020c，本项不代表Hook终稿验证或发布。
 
 - [剩余Hook与写稿规则修复R1](../../tests/evidence/remaining-hook-quality-r1/result.md)：本地候选的取消清理、宿主失败分类与新闻日期规则；50次真实写稿/修改执行、七版链失败、workflow撤回、独立复核及未完成边界。原候选记录不改写；后续纯helper重构、806项全量与本地main合并见[合并记录](../../tests/evidence/remaining-hook-quality-merge-r1/result.md)，未发布。

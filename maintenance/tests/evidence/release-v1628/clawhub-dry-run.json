@@ -1,0 +1,11 @@
+{
+  "ok": true,
+  "status": "would-publish",
+  "slug": "chinese-official-writing",
+  "displayName": "中文公文写作",
+  "folder": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\release-v1628\\packages\\openclaw\\skills\\chinese_official_writing",
+  "version": "1.6.28",
+  "latestVersion": "1.6.26",
+  "fileCount": 37,
+  "fingerprint": "bd9b19d6faaffc48b26be43c9b2189fefec19e47b5933c31aca1f82767ae34a5"
+}

@@ -4,6 +4,8 @@
 
 ## DONE
 
+- `v1.6.28` 小版本已发布：当前main已准入Hook修复和新闻完整事实日期，产品tag `1d705aea`；GitHub已公开，SkillHub 86文件 `versionId=291966`、ClawHub 37文件 `versionId=k97dh3rey9y8sjd39f94a7exk58dvsav`各一次接受，公开传播/审核尚待；806项全量和五套校验通过。[发布记录](../tests/evidence/release-1.6.28.md)
+
 - `v1.6.27` 小版本已发布：产品tag固定 `0a83ecbf`，GitHub Release已公开；SkillHub一次提交返回86文件 `versionId=288487`，三项审核pending；ClawHub一次提交返回37文件无Hook包 `versionId=k97165q125wnh9vc1wdd38ys5d8dsd0h`。公开索引与签名传播另记，不重复上传。最终774项全量、五套quick validate及两平台dry-run通过。[发布记录](../tests/evidence/release-1.6.27.md) [候选记录](../tests/evidence/release-1.6.27-rc.md)
 - `MT-006-RECENT-LEAF-R1`：两路8次真实调用后，仅投诉页68-byte删例获选；定向审稿36-byte删除因候选独有过程说明恢复。直接门与独立范围审查通过，已随v1.6.27发布；无自然路由省读或普遍可靠率声明。示例替换已撤销。[结果](../tests/evidence/recent-leaf-cleanup-r1/result.md)
 - `WR-028-REMEDIATION-PLAN-R2`：R1候选独有状态遗漏经R2消除，五家10份中8份隔离有效、两题各4份保留状态并形成措施；原直接门及本版最终774项全量通过。状态 `DONE_V1.6.27 / RELEASED`，旧工程记录保留当时未合并状态。[R2结果](../tests/evidence/remediation-plan-r1/candidate-r2-result.md) [工程接入](../tests/evidence/remediation-plan-r1/engineering-result.md)
@@ -74,10 +76,10 @@
 
 ## IN_PROGRESS
 
-- `REMAINING-HOOK-QUALITY-R1`：基于本地main `37f22146` 的已合入main的修复，保留取消后4/5份原文残留降为0、DSH SDK取消当前回合且保留排队请求、OpenCode失败分类，以及新闻页完整事实日期句（+129 bytes）。22次隔离真稿和4条七版真实resume链共50次真实写稿/修改执行；链中9组硬问题影响14个相关版本，workflow候选撤回，不能声称稳定性提升。CodeBuddy/Kimi硬停仍不支持，其他原生宿主边界保留。经纯helper重构与最终806项全量通过，产品 `a2a817d1` 已合入main，状态 `MERGED_MAIN / NOT_RELEASED`；不改写下列旧轮结果。[结果与失败证据](../tests/evidence/remaining-hook-quality-r1/result.md) [合并记录](../tests/evidence/remaining-hook-quality-merge-r1/result.md)
+- `REMAINING-HOOK-QUALITY-R1`：基于本地main `37f22146` 的已合入main的修复，保留取消后4/5份原文残留降为0、DSH SDK取消当前回合且保留排队请求、OpenCode失败分类，以及新闻页完整事实日期句（+129 bytes）。22次隔离真稿和4条七版真实resume链共50次真实写稿/修改执行；链中9组硬问题影响14个相关版本，workflow候选撤回，不能声称稳定性提升。CodeBuddy/Kimi硬停仍不支持，其他原生宿主边界保留。经纯helper重构与最终806项全量通过，产品 `a2a817d1` 已合入main，状态 `MERGED_MAIN / DONE_V1.6.28`；不改写下列旧轮结果。[结果与失败证据](../tests/evidence/remaining-hook-quality-r1/result.md) [合并记录](../tests/evidence/remaining-hook-quality-merge-r1/result.md)
 
 - `WR-020c-QUALITY-LOOP-R1`：20稿中19有效，14份未观察到已确认硬问题、5稿至少8项硬问题；只限两道整改题，31条质量提醒另列。4条真实resume七版链28/28技术完成：R3/R7调序4/4、R4完整删除3/4、R5独立插段3/4，R7三稿无已登记硬问题；全链至少12项新问题，不把28相关版本当独立样本。六稿同D0默认Hook复放均保留D0，修正0、新增改坏0，不能当全面语义核验。状态 `IN_PROGRESS / QUALITY_AUDIT_COMPLETE_GAPS_REGISTERED`。[批量结果](../tests/evidence/reference-route-audit-r1/candidate-r1-result.md) [七版链结果](../tests/evidence/revision-stability-audit-r1/result.md)
-- `AH-002b / HK-005b-FOUR-FIXES-R1`：四项已知反例修复及合并前显式关闭Hook的锁故障回退修正，已随产品提交 `3ce9241e` 快进合入本地main。真实D0同输入复放、Claude原生正常/故障注入链、补充原生关闭链及最终788项全量通过。日期修复只防错误补年，真实漏年稿与材料外活动内容仍登记；CodeBuddy、Kimi、OpenCode、DSH硬停、原生可见输出和HK-008原文清理边界仍未完成，整体保留 `IN_PROGRESS / CORE_MERGED_MAIN / HOSTS_PARTIAL / NOT_RELEASED`。旧 `REAL_R1_NOT_REPRODUCED` 和候选证据不改写；未推送。[四项结果](../tests/evidence/hook-four-fixes-r1/result.md) [合并与剩余修复](../tests/evidence/hook-four-fixes-merge-r1/result.md)
+- `AH-002b / HK-005b-FOUR-FIXES-R1`：四项已知反例修复及合并前显式关闭Hook的锁故障回退修正，已随产品提交 `3ce9241e` 快进合入本地main。真实D0同输入复放、Claude原生正常/故障注入链、补充原生关闭链及最终788项全量通过。日期修复只防错误补年，真实漏年稿与材料外活动内容仍登记；CodeBuddy、Kimi、OpenCode、DSH硬停、原生可见输出和HK-008原文清理边界仍未完成，整体保留 `IN_PROGRESS / CORE_MERGED_MAIN / HOSTS_PARTIAL / DONE_V1.6.28`。旧 `REAL_R1_NOT_REPRODUCED` 和候选证据不改写；未推送。[四项结果](../tests/evidence/hook-four-fixes-r1/result.md) [合并与剩余修复](../tests/evidence/hook-four-fixes-merge-r1/result.md)
 
 ## REJECTED
 

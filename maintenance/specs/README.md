@@ -1,5 +1,7 @@
 # 轻量需求规格
 
+2026-09-06：[v1.6.28发布记录](../tests/evidence/release-1.6.28.md)为当前发行事实；已合入main的两轮Hook修复及新闻日期规则已发布，下文旧轮“未发布”仅指当时。宿主限制、批量与多版质量仍未闭环，市场公开传播与审核单列。
+
 本目录是产品需求、当前变更和验证覆盖的中间层。它借鉴 OpenSpec 的“需求为真、变更单独记录、证据可追踪”，但不安装 OpenSpec，不增加 slash command、审批流或归档工具。
 
 ## 文件
@@ -47,6 +49,6 @@
 
 用户随后授权修复四项Hook问题并在合理时合并。[核心修复与真实同稿验证](../tests/evidence/hook-four-fixes-r1/result.md)通过后，合并前补修显式关闭Hook遇清理锁故障仍被阻断的问题；最终788项全量通过，产品提交 `3ce9241e` 已快进合入本地main，未推送或发布。[合并记录](../tests/evidence/hook-four-fixes-merge-r1/result.md)保留原文清理、未适配宿主、成稿事实与多版修改的未完成项；当前状态以roadmap/coverage为准。
 
-本轮继续修复登记为 `REMAINING-HOOK-QUALITY-R1 / MERGED_MAIN / NOT_RELEASED`：已保留 HK-008 取消清理、DSH 当前回合取消、OpenCode 失败分类和新闻事实年份规则；22次隔离真实调用与4条真实resume七版链共50次真实写稿/修改执行均留证。workflow候选因完整正文缺失及附说明等回退撤回，CodeBuddy/Kimi硬停仍不支持；写稿质量、多版稳定性和原生宿主边界未闭环。详情见[本轮结果](../tests/evidence/remaining-hook-quality-r1/result.md)，本轮没有推送或发布。
+本轮继续修复登记为 `REMAINING-HOOK-QUALITY-R1 / MERGED_MAIN / DONE_V1.6.28`：已保留 HK-008 取消清理、DSH 当前回合取消、OpenCode 失败分类和新闻事实年份规则；22次隔离真实调用与4条真实resume七版链共50次真实写稿/修改执行均留证。workflow候选因完整正文缺失及附说明等回退撤回，CodeBuddy/Kimi硬停仍不支持；写稿质量、多版稳定性和原生宿主边界未闭环。详情见[本轮结果](../tests/evidence/remaining-hook-quality-r1/result.md)，本轮没有推送或发布。
 
 2026-09-05 后续授权合并已完成：产品 `a2a817d1`，最终806项全量通过，未推送或发布；纯helper重构与边界见[合并记录](../tests/evidence/remaining-hook-quality-merge-r1/result.md)。随后完成[60次自然任务与五版修改验证](../tests/evidence/natural-writing-stability-r1/result.md)：两处reference候选均拒绝并恢复；自然触发和失败保留口径已写入WR-020c，成稿及多版质量仍在改进。

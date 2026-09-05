@@ -29,12 +29,12 @@ def section(text: str, heading: str) -> str:
 
 
 class StatusLedgerConsistencyTests(unittest.TestCase):
-    def test_current_release_record_is_v1627(self) -> None:
+    def test_current_release_record_is_v1628(self) -> None:
         public_readme = read("README.md")
         todo = read("maintenance/docs/待办.md")
         roadmap = read("maintenance/specs/roadmap.md")
 
-        self.assertIn("当前产品tag为`v1.6.27^{commit}=0a83ecbf", todo)
+        self.assertIn("当前产品tag为`v1.6.28^{commit}=1d705aeadbcbdc5a818dd7f990e1905249c5f1e8`", todo)
         self.assertIn("release-1.6.27.md", todo)
         self.assertIn("## v1.6.14 起已发布状态与后续研究", todo)
         self.assertNotIn("候选均保持 HOLD", public_readme)

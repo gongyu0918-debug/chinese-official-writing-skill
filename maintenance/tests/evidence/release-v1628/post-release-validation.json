@@ -1,0 +1,20 @@
+{
+  "command": [
+    "C:/Users/admin/AppData/Local/Programs/Python/Python313/python.exe",
+    "-B",
+    "-X",
+    "utf8",
+    "-m",
+    "unittest",
+    "maintenance.tests.test_skill_boundary",
+    "maintenance.tests.test_status_ledger_consistency",
+    "maintenance.tests.test_repository_reachability"
+  ],
+  "exit_code": 0,
+  "summary": [
+    "Ran 104 tests in 0.649s",
+    "OK"
+  ],
+  "product_commit": "1d705aeadbcbdc5a818dd7f990e1905249c5f1e8",
+  "note": "After review corrected a short-prefix substitution that retained the previous tag hash suffix in the active ledger; full tag hash assertion now enforced. No product change."
+}

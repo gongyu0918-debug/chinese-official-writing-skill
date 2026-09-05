@@ -1,0 +1,16 @@
+{
+  "command": [
+    "gh",
+    "release",
+    "create",
+    "v1.6.28",
+    "--verify-tag",
+    "--title",
+    "v1.6.28",
+    "--notes-file",
+    "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\release-v1628\\output\\release-v1.6.28\\release-notes.md"
+  ],
+  "exit_code": 0,
+  "stdout": "https://github.com/gongyu0918-debug/chinese-official-writing-skill/releases/tag/v1.6.28\n",
+  "stderr": ""
+}

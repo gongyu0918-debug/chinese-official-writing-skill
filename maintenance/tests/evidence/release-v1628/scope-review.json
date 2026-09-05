@@ -1,0 +1,398 @@
+{
+  "schema_version": 1,
+  "recorded_utc": "2026-09-05T22:25:58.215140+00:00",
+  "verdict": "NO_SCOPE_BLOCKER",
+  "blocking_findings": [],
+  "scope": {
+    "worktree": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\release-v1628",
+    "branch": "codex/release-v1.6.28",
+    "reviewed_main": "01ade37fb798eb087e976bb20407a0f0261fc783",
+    "origin_main_at_review": "3532afd6619ac6256558e9552b92d03da5ae9c0f",
+    "previous_tag": "v1.6.27",
+    "previous_tag_commit": "0a83ecbf3be21815e72a80593f612eb858613be5",
+    "excluded_audit_commit": "60133253",
+    "requested_release": "v1.6.28",
+    "write_scope": "Only this output JSON; no product edits, commits, model calls, installations, publishing or external writes by this reviewer.",
+    "reviewed_release_commit": "1d705aeadbcbdc5a818dd7f990e1905249c5f1e8"
+  },
+  "summary": "发布范围只包含此前已准入的Hook日期/终态/取消清理修复、部分宿主失败分类和新闻事实年份规则；失败workflow及两处自然写稿reference候选已撤回。新机会审计60133253未进入main。未发现阻断项；此范围审核不替代根代理当前发行提交的全量门、清洁包、版本与平台回执。",
+  "exact_scope": {
+    "all_changed_files_since_tag": 792,
+    "product_changed_files_since_tag": 19,
+    "product_paths_and_sha256_git_blob": {
+      "chinese-official-writing/hooks/adapters/claude-code/gate_stop_hook.py": "1dffb93b156613619209c13e6dcb2cac69357639dd1090600b683f7685115a2c",
+      "chinese-official-writing/hooks/adapters/codebuddy/README.md": "6ff16c9eb57f576ea57a40a9256569a592ec0e4df360c39b1de1c5e84aafcf78",
+      "chinese-official-writing/hooks/adapters/deepseek-harness/README.md": "348e4c7536450b9135830370612c733eba97f307fafd7d5e68ccb5cc185b4bc6",
+      "chinese-official-writing/hooks/adapters/deepseek-harness/index.mjs": "8c873142194c7d51046cd9c68efc32560788e703ae2927c3fd1ebe9e338d67b1",
+      "chinese-official-writing/hooks/adapters/host_gate_adapter.py": "83a69d267faa52a87515c278e15bda5922614de7371d027f40496d1c8ec0061a",
+      "chinese-official-writing/hooks/adapters/kimi-code/README.md": "34e613439acc6c790759afc519ef4e0279f902c0ac07a0cbc85adcfd1a72f23f",
+      "chinese-official-writing/hooks/adapters/opencode/README.md": "8ef0d93adc9ef56ed07610673aa7834e66562657ed2b7469cc25127dfeb25570",
+      "chinese-official-writing/hooks/adapters/opencode/opencode_gate_plugin.js": "de3296eab6b3684b43201307d4b9bf1e848745f5f6b1f02570def2e4e4ef5fbd",
+      "chinese-official-writing/hooks/adapters/qwen-code/gate_stop_hook.py": "b74096619febcc0ce4590c9e344d59c5a05742df699b8898cd787b8b17470506",
+      "chinese-official-writing/hooks/core/gate_stop_hook.py": "1168df9b1e233442c6a1443c64ce2ffe3dc08a641aa803a6f2b0ce0dbe50d703",
+      "chinese-official-writing/hooks/host-capabilities.json": "8a809e96f26c4da24011d0a6ddf2834af74d370633cb4b37eff616710230e6f2",
+      "chinese-official-writing/hooks/shared/source_bound_dates.py": "5f28a20b0b32cda9f4610fbbabfbb7592819272662abba852d8c3f96b85aae3a",
+      "chinese-official-writing/references/genre-playbook-news-message.md": "a3c503d493b3fc7b65524d2dfa43849a4f2d33dbf67fd09a346af12c1238f601",
+      "packages/agent-skills/skills/chinese-official-writing/references/genre-playbook-news-message.md": "a3c503d493b3fc7b65524d2dfa43849a4f2d33dbf67fd09a346af12c1238f601",
+      "packages/hermes/skills/chinese-official-writing/references/genre-playbook-news-message.md": "a3c503d493b3fc7b65524d2dfa43849a4f2d33dbf67fd09a346af12c1238f601",
+      "packages/openclaw/README.md": "b301e9ba11841da9dd214476457430cfaae53c946dc833f6ff1326a04ac39bbf",
+      "packages/openclaw/skills/chinese_official_writing/references/genre-playbook-news-message.md": "a3c503d493b3fc7b65524d2dfa43849a4f2d33dbf67fd09a346af12c1238f601",
+      "packages/qwen-code/skills/chinese-official-writing/references/genre-playbook-news-message.md": "a3c503d493b3fc7b65524d2dfa43849a4f2d33dbf67fd09a346af12c1238f601",
+      "packages/qwenwork/skills/chinese-official-writing/references/genre-playbook-news-message.md": "a3c503d493b3fc7b65524d2dfa43849a4f2d33dbf67fd09a346af12c1238f601"
+    },
+    "product_numstat": "7\t0\tchinese-official-writing/hooks/adapters/claude-code/gate_stop_hook.py\n2\t0\tchinese-official-writing/hooks/adapters/codebuddy/README.md\n2\t0\tchinese-official-writing/hooks/adapters/deepseek-harness/README.md\n26\t2\tchinese-official-writing/hooks/adapters/deepseek-harness/index.mjs\n7\t0\tchinese-official-writing/hooks/adapters/host_gate_adapter.py\n2\t0\tchinese-official-writing/hooks/adapters/kimi-code/README.md\n2\t0\tchinese-official-writing/hooks/adapters/opencode/README.md\n36\t0\tchinese-official-writing/hooks/adapters/opencode/opencode_gate_plugin.js\n7\t0\tchinese-official-writing/hooks/adapters/qwen-code/gate_stop_hook.py\n227\t48\tchinese-official-writing/hooks/core/gate_stop_hook.py\n5\t1\tchinese-official-writing/hooks/host-capabilities.json\n25\t1\tchinese-official-writing/hooks/shared/source_bound_dates.py\n1\t1\tchinese-official-writing/references/genre-playbook-news-message.md\n1\t1\tpackages/agent-skills/skills/chinese-official-writing/references/genre-playbook-news-message.md\n1\t1\tpackages/hermes/skills/chinese-official-writing/references/genre-playbook-news-message.md\n1\t1\tpackages/openclaw/README.md\n1\t1\tpackages/openclaw/skills/chinese_official_writing/references/genre-playbook-news-message.md\n1\t1\tpackages/qwen-code/skills/chinese-official-writing/references/genre-playbook-news-message.md\n1\t1\tpackages/qwenwork/skills/chinese-official-writing/references/genre-playbook-news-message.md",
+    "notes": "19项=12项Hook代码/描述、1份canonical新闻页、5份新闻镜像、1项OpenClaw README从遗留1.6.26校正至1.6.27。1.6.28版本升级另列，不将坐标变更算作质量改善。",
+    "news_mirrors_blob_sha256": {
+      "chinese-official-writing/references/genre-playbook-news-message.md": "a3c503d493b3fc7b65524d2dfa43849a4f2d33dbf67fd09a346af12c1238f601",
+      "packages/agent-skills/skills/chinese-official-writing/references/genre-playbook-news-message.md": "a3c503d493b3fc7b65524d2dfa43849a4f2d33dbf67fd09a346af12c1238f601",
+      "packages/hermes/skills/chinese-official-writing/references/genre-playbook-news-message.md": "a3c503d493b3fc7b65524d2dfa43849a4f2d33dbf67fd09a346af12c1238f601",
+      "packages/openclaw/skills/chinese_official_writing/references/genre-playbook-news-message.md": "a3c503d493b3fc7b65524d2dfa43849a4f2d33dbf67fd09a346af12c1238f601",
+      "packages/qwen-code/skills/chinese-official-writing/references/genre-playbook-news-message.md": "a3c503d493b3fc7b65524d2dfa43849a4f2d33dbf67fd09a346af12c1238f601",
+      "packages/qwenwork/skills/chinese-official-writing/references/genre-playbook-news-message.md": "a3c503d493b3fc7b65524d2dfa43849a4f2d33dbf67fd09a346af12c1238f601"
+    },
+    "forbidden_changed_paths": [],
+    "excluded_audit_evidence_present_in_main": [],
+    "exclusion_reason": "60133253非main祖先；该分支相对main仅维护审计记录，main中hook-quality-opportunities-r1证据目录不存在。canonical/packages又与最后准入a2a817d1逐字一致，排除以其他提交拷入产品原型。",
+    "immutable_checks": {
+      "tag_is_ancestor": {
+        "command": [
+          "git",
+          "merge-base",
+          "--is-ancestor",
+          "v1.6.27",
+          "01ade37fb798eb087e976bb20407a0f0261fc783"
+        ],
+        "exit_code": 0,
+        "stdout": "",
+        "stderr": ""
+      },
+      "audit_branch_is_not_ancestor": {
+        "command": [
+          "git",
+          "merge-base",
+          "--is-ancestor",
+          "60133253",
+          "01ade37fb798eb087e976bb20407a0f0261fc783"
+        ],
+        "exit_code": 1,
+        "stdout": "",
+        "stderr": ""
+      },
+      "main_product_equals_admitted_a2a817d1": {
+        "command": [
+          "git",
+          "diff",
+          "--exit-code",
+          "a2a817d1",
+          "01ade37fb798eb087e976bb20407a0f0261fc783",
+          "--",
+          "chinese-official-writing",
+          "packages"
+        ],
+        "exit_code": 0,
+        "stdout": "",
+        "stderr": ""
+      },
+      "skill_workflow_report_information_selection_unchanged_from_tag": {
+        "command": [
+          "git",
+          "diff",
+          "--exit-code",
+          "v1.6.27",
+          "01ade37fb798eb087e976bb20407a0f0261fc783",
+          "--",
+          "chinese-official-writing/SKILL.md",
+          "chinese-official-writing/references/workflow.md",
+          "chinese-official-writing/references/genre-playbook-report.md",
+          "chinese-official-writing/references/information-selection.md"
+        ],
+        "exit_code": 0,
+        "stdout": "",
+        "stderr": ""
+      },
+      "capability_runtimes_and_review_gate_unchanged_from_tag": {
+        "command": [
+          "git",
+          "diff",
+          "--exit-code",
+          "v1.6.27",
+          "01ade37fb798eb087e976bb20407a0f0261fc783",
+          "--",
+          "chinese-official-writing/hooks/capabilities",
+          "chinese-official-writing/scripts/review_gate.py"
+        ],
+        "exit_code": 0,
+        "stdout": "",
+        "stderr": ""
+      },
+      "git_diff_check": {
+        "command": [
+          "git",
+          "diff",
+          "--check"
+        ],
+        "exit_code": 0,
+        "stdout": "",
+        "stderr": ""
+      }
+    },
+    "version_overlay": {
+      "release_commit": "1d705aeadbcbdc5a818dd7f990e1905249c5f1e8",
+      "base_main": "01ade37fb798eb087e976bb20407a0f0261fc783",
+      "observed_changed_files": 14,
+      "checks": [
+        {
+          "path": "README.md",
+          "only_selected_1_6_27_to_1_6_28_substitutions": true,
+          "release_blob_sha256": "c240031ae266bffa3f37fba2d943dd4dcf0ca3c974efcecdcbdcba3e150ced57"
+        },
+        {
+          "path": "chinese-official-writing/hooks/adapters/claude-code/manifest.json",
+          "only_selected_1_6_27_to_1_6_28_substitutions": true,
+          "release_blob_sha256": "7a897dae957975359ce8cad9fe2d6a753e74e80c15ef73a233166cf389e67bd7"
+        },
+        {
+          "path": "chinese-official-writing/hooks/adapters/codebuddy/manifest.json",
+          "only_selected_1_6_27_to_1_6_28_substitutions": true,
+          "release_blob_sha256": "a84d20223be55747bb555eb4c6b9cdf2190d1f9b89c8a3b16e7de56c00cc484a"
+        },
+        {
+          "path": "chinese-official-writing/hooks/adapters/codex/manifest.json",
+          "only_selected_1_6_27_to_1_6_28_substitutions": true,
+          "release_blob_sha256": "09262f9116b5baceabd8b645aab3540d6c26cbf57963183b054495e2ade05257"
+        },
+        {
+          "path": "chinese-official-writing/hooks/adapters/deepseek-harness/package.json",
+          "only_selected_1_6_27_to_1_6_28_substitutions": true,
+          "release_blob_sha256": "ca78343b0f946f92120ed1b5ef317eb5d0ec0885e5785dba06f5067e04c47158"
+        },
+        {
+          "path": "chinese-official-writing/hooks/adapters/hermes-agent/plugin.yaml",
+          "only_selected_1_6_27_to_1_6_28_substitutions": true,
+          "release_blob_sha256": "d8fc6046d546a4bc3084f30548c0109e74db2fd1b4259d3be27e854692fb202e"
+        },
+        {
+          "path": "chinese-official-writing/hooks/adapters/kimi-code/manifest.json",
+          "only_selected_1_6_27_to_1_6_28_substitutions": true,
+          "release_blob_sha256": "14bca594d3cdce2ef075d189e9b01bd008f21bce88bbe4088585f8435dce9931"
+        },
+        {
+          "path": "chinese-official-writing/hooks/adapters/qwen-code/manifest.json",
+          "only_selected_1_6_27_to_1_6_28_substitutions": true,
+          "release_blob_sha256": "693ef99a4cd5aaddee64c64e8be03dba315905ead2bfe977c1126389c0918c98"
+        },
+        {
+          "path": "chinese-official-writing/hooks/adapters/zcode/manifest.json",
+          "only_selected_1_6_27_to_1_6_28_substitutions": true,
+          "release_blob_sha256": "6ab95c9b2bddf6f40dbd8a8af6d58011dd11d6881d52abd2723dde2ebc527b14"
+        },
+        {
+          "path": "maintenance/tests/test_skill_boundary.py",
+          "only_selected_1_6_27_to_1_6_28_substitutions": true,
+          "release_blob_sha256": "85175c66e224a2a815178f61d041a91eb56066355d73f6a6393fbe805e2cec4a"
+        },
+        {
+          "path": "maintenance/tests/test_status_ledger_consistency.py",
+          "only_selected_1_6_27_to_1_6_28_substitutions": true,
+          "release_blob_sha256": "4c0bfdf322f394f45cff2f4a921c86cc7d8ae0c5039261bec6d2ef64224cecd5"
+        },
+        {
+          "path": "maintenance/tools/sync_adapters.py",
+          "only_selected_1_6_27_to_1_6_28_substitutions": true,
+          "release_blob_sha256": "86236a981717c73d6ac5e6646918c27dde5952e5a733a6037cee48148b2ccc59"
+        },
+        {
+          "path": "packages/openclaw/README.md",
+          "only_selected_1_6_27_to_1_6_28_substitutions": true,
+          "release_blob_sha256": "1810e643bb454edd59b05dd60d4eb7d1fb96bb691e6cf4ab2202d3fefec5e27a"
+        },
+        {
+          "path": "packages/openclaw/skills/chinese_official_writing/SKILL.md",
+          "only_selected_1_6_27_to_1_6_28_substitutions": true,
+          "release_blob_sha256": "f9c9e6be02d3cf7fd1aed68bcc99825f1ac846cd09ea410175753222e3d73023"
+        }
+      ],
+      "result": "All 14 committed release changes contain only selected numeric 1.6.27 to 1.6.28 substitutions after newline normalization; historical version citations remain unchanged.",
+      "race_note": "Root committed the previously reviewed overlay during report creation; final comparison explicitly binds01ade37f..1d705aea."
+    }
+  },
+  "admitted_changes": [
+    {
+      "area": "日期来源与新闻完整事实日期",
+      "commits": [
+        "976bb8a4",
+        "89624a57",
+        "511c4856"
+      ],
+      "change": "识别输入中的其他完整日期写法和明确非事实示例，歧义时停止机械补年；新闻页明确完整事实年月日保留年份、用户只写月日时遵从、格式示例不作事实日期。",
+      "evidence": [
+        {
+          "path": "maintenance/tests/evidence/hook-four-fixes-r1/date-core/README.md",
+          "sha256_git_blob": "62d7bdd36b5f98a7bacfee28553cd11fac5f48cbfa856f8654400dda91bdf032",
+          "supports": "自然真实D0同请求双臂：baseline引入2020，candidate逐字保留9月5日；三份原始真实漏年配对正常补2026，完整日期反控不变。"
+        },
+        {
+          "path": "maintenance/tests/evidence/remaining-hook-quality-r1/result.md",
+          "sha256_git_blob": "c1078b483ec3a33b1c1e578e567e588e42b624d9eea138124bb6b8c3824c417e",
+          "supports": "新闻原子R1/R2与两路4次日期反控；仅日期句准入、五镜像一致。"
+        }
+      ],
+      "limits": "日期防损不是全面日期完整性修复；保留漏年的同稿仍漏年。新闻真实结果只覆盖冻结材料，不是通用来源角色识别器。"
+    },
+    {
+      "area": "终态重放、晚到写入、有限回显及显式关闭",
+      "commits": [
+        "976bb8a4",
+        "3ce9241e"
+      ],
+      "change": "终态拒绝重录原请求和迟到Skill标记；状态写入与清理复用短锁；默认回显耗尽返回continue:false并保留失败分类；显式关闭Hook在清理暂不可用时仍遵从。",
+      "evidence": [
+        {
+          "path": "maintenance/tests/evidence/hook-four-fixes-r1/result.md",
+          "sha256_git_blob": "f13d5adc408dc521e7ce2d151415c216c6e30d6261f6b8e636362dd10aeb6b23",
+          "supports": "真实D0 core复放、实际Claude正常/故障链及208项定向测试，故障输入与自然D0错误分开登记。"
+        },
+        {
+          "path": "maintenance/tests/evidence/hook-four-fixes-merge-r1/result.md",
+          "sha256_git_blob": "1a06023f132b782f3628c87b978518527557632a818d61975b65c268d3b43541",
+          "supports": "新发现opt-out回退修正；最终788项全量；Claude原生关闭Hook+受控清理锁故障仍allow。"
+        }
+      ],
+      "limits": "错回显链含明确故障注入，不是自然模型错误率；Stop不能撤回已显示文字，CLI success不等于写作质量通过。"
+    },
+    {
+      "area": "取消后的原文清理与回执保持",
+      "commits": [
+        "b2cb9381",
+        "a2a817d1"
+      ],
+      "change": "无正文取消标记保留取消意图；短状态锁内登记bootstrap归属并写输入；producer退出或后续事件重试清理；刷新已脱敏失败回执失败时保留旧回执；未启动turn不能按派生名删除邻接活动事务。最后只做两个职责helper提取。",
+      "evidence": [
+        {
+          "path": "maintenance/tests/evidence/remaining-hook-quality-r1/raw/cleanup/result.md",
+          "sha256_git_blob": "495d2a52358ea4513e571d9e3c965caf76ead6b6038dc4a16dc3d898efbcc02c",
+          "supports": "同一真实D0两种受控时序原文字件4/5份降至0；失败回执、邻接turn、正常selected等直接反控。"
+        },
+        {
+          "path": "maintenance/tests/evidence/remaining-hook-quality-merge-r1/raw/refactor/result.json",
+          "sha256_git_blob": "321c9572bc08ef50fd7201d81902b8a2043a08d83faa1a52b31fbaa25648a63c",
+          "supports": "最终normalized-LF core SHA与本发布Git blob一致；两时序及正常/回执/邻接复放保持，68项定向通过。"
+        },
+        {
+          "path": "maintenance/tests/evidence/remaining-hook-quality-merge-r1/raw/full-tests-final.json",
+          "sha256_git_blob": "5839f58c3e2de56e9f7810122b8ce67f7ac3bee5b34c78e018bf4e07f9ac553e",
+          "supports": "a2a817d1最终806项全量通过，142.069秒；首次复杂度失败保留并由纯helper修复。"
+        }
+      ],
+      "limits": "持续IO不可用、取消标记本身无法写入、无producer退出或后续事件、历史丢归属孤儿和两个turn都bootstrap的后缀碰撞未解决；这是受控生命周期收益。"
+    },
+    {
+      "area": "宿主失败状态",
+      "commits": [
+        "81b21621",
+        "b2cb9381"
+      ],
+      "change": "Codex/Claude/Qwen JSON适配透传硬停；ZCode复用Claude路径。DSH取消当前回合并保留用户队列，OpenCode停止插件续写并保留失败分类/请求提示；公开不支持宿主边界。",
+      "evidence": [
+        {
+          "path": "maintenance/tests/evidence/remaining-hook-quality-r1/raw/hosts/result.md",
+          "sha256_git_blob": "b93817b1963058532f3c51a5d8e0c29e0391335ef6d6830868e123787f9617e1",
+          "supports": "DSH真实已安装AgentLoop+MockAdapter由completed到aborted且keepInbox；OpenCode协议反控，16项直接测试，失败/无效早期探针保留。"
+        }
+      ],
+      "limits": "DSH不是当前原生CLI/模型取消证明；OpenCode不是当前原生UI证明；CodeBuddy/Kimi独立硬停仍unsupported。"
+    }
+  ],
+  "rejected_candidates_not_shipped": [
+    {
+      "candidate": "workflow局部改稿规则R1/R2",
+      "evidence": "maintenance/tests/evidence/remaining-hook-quality-r1/result.md",
+      "proof": "最终workflow与v1.6.27/main基线Git内容相同；完整正文缺失、删除未净、附说明等真实失败保留。"
+    },
+    {
+      "candidate": "R1报告事实条件删减、R2分析与事实经过改写",
+      "evidence": "maintenance/tests/evidence/natural-writing-stability-r1/result.md",
+      "proof": "d4859fb9/ecf9e361试验最终由139e2f3f撤回；main的canonical/packages全树等于a2a817d1。60次无Hook普通Skill写稿只用于记录失败与候选拒绝，不支持Hook质量提升。"
+    },
+    {
+      "candidate": "60133253 Hook质量机会审计",
+      "proof": "不在main ancestry且证据目录不在main；本版不引入其建议、解析器或默认入口改造。"
+    },
+    {
+      "candidate": "付费Pro/红头/提纲",
+      "proof": "本次公开产品和兼容包改动路径无此类文件；未读写其独立工作树或用户安装。"
+    }
+  ],
+  "host_boundary_for_release_notes": {
+    "Claude_Code": "已记录2.1.195当前companion原生正常/故障停止及显式关闭链；故障输入是注入，末稿已显示且CLI仍可success。后续纯生命周期/helper改动未重新扩展原生矩阵。",
+    "Codex_ZCode_Qwen": "硬停透传协议反控；本次未重跑原生在线生命周期。Qwen已有重复正文边界未改变。",
+    "DeepSeek_Harness": "0.1.1-rc.2真实SDK AgentLoop配固定MockAdapter验证取消和保留队列；当前headless/TUI/Web原生CLI未重跑新失败路径。",
+    "OpenCode": "只停止插件自动续写并记录失败/请求TUI提示；当前原生UI未验证，不是同步abort，无法撤回已显示正文。",
+    "CodeBuddy_Kimi": "独立硬停未支持，当前adapter对core continue:false仍可能allow；普通Skill和人工核对仍为边界。",
+    "others": "未改协议/胶水的旧在线证据只按原验证范围迁移，不宣称本轮所有宿主重测成功。"
+  },
+  "sensitive_scan": {
+    "exact_range": "3532afd6619ac6256558e9552b92d03da5ae9c0f..01ade37fb798eb087e976bb20407a0f0261fc783",
+    "maintenance_scope": "added or modified tracked maintenance files, immutable Git blobs",
+    "maintenance_files_scanned": 712,
+    "maintenance_bytes_scanned": 5839333,
+    "types": [
+      "private key PEM/OpenSSH header",
+      "GitHub token literals",
+      "sk- provider key literals",
+      "AWS access ID",
+      "literal Bearer token",
+      "common credential-name literal assignments",
+      "RFC1918 private IPv4"
+    ],
+    "findings": [],
+    "additional_tag_to_main_scan": {
+      "files": 792,
+      "bytes": 6396252,
+      "findings": [],
+      "types": "private key/GitHub/provider/AWS and private IPv4 URL patterns"
+    },
+    "product_forbidden_path_scan": {
+      "findings": [],
+      "categories": [
+        "paid-outline/Pro/redhead",
+        "credentials/cache/build/output/maintenance paths inside product"
+      ]
+    },
+    "implementation": "git diff --name-only --diff-filter=AM <origin> <main> -- maintenance; git cat-file --batch; scan raw bytes in memory; output only path/type/count for any match. No secret values printed and no credential/profile files read.",
+    "limits": "Lightweight high-signal pattern scan, not a proof of absence of every possible secret or private identifier. Local CLI paths and fictional test units/dates are not treated as secrets."
+  },
+  "release_notes_recommended": [
+    "改进新闻事实日期保留，并收窄Hook自动补年的来源判断，减少把格式示例年份补入正文的风险。",
+    "修复Hook终态重放与晚到写入、取消后的原文清理恢复，以及默认终稿回显耗尽后的失败处理；显式关闭Hook在清理暂不可用时仍遵从。",
+    "补齐部分宿主失败状态处理：DeepSeek Harness取消当前回合并保留队列，OpenCode停止插件续写并标记未验证；公开各宿主已验证和不支持的边界。",
+    "保留真实写稿与多版修改失败记录；未通过的reference/workflow候选已撤回。此版不宣称整体成稿正确率或多轮写作稳定性已达标。"
+  ],
+  "release_notes_do_not_claim": [
+    "所有宿主已修复/已在线验证硬停",
+    "取消后任何IO或离线条件都保证零原文残留",
+    "所有日期/来源角色错误已修复",
+    "60稿是Hook on/off收益或Hook真实失败率",
+    "98%/100%可靠、长程多版稳定性已经闭环",
+    "撤回的reference减载或分析规则已发布"
+  ],
+  "validation_and_remaining": {
+    "performed_by_this_reviewer": [
+      "Read exact immutable tag-to-main canonical/hooks/packages diff",
+      "Verify ancestry/exclusions/restored product equality and five news mirrors",
+      "Read bounded admitted real/lifecycle evidence and superseding merge records",
+      "Check observed version overlay is exact numeric substitution",
+      "Run bounded changed-blob sensitive scans",
+      "git diff --check"
+    ],
+    "not_performed": [
+      "No new model call",
+      "No full/unit test rerun",
+      "No Hook installation/enablement",
+      "No release upload/push/tag/merge",
+      "No platform authentication or status query"
+    ],
+    "root_owned_current_release_gates": "Root owns final Python313 full-gate, five quick validate,86/37 package receipts and publication. This reviewer checked scope only and does not substitute historical test results for current release receipts.",
+    "handoff_conditions": "Root must bind final release commit/tag and package fingerprints to the reviewed main+version-only overlay, finish current full gate, then retain one accepted submission receipt per platform; any new semantic product change requires updated scope review."
+  }
+}

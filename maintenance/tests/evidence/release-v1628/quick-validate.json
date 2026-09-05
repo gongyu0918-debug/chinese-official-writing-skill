@@ -1,0 +1,27 @@
+[
+  {
+    "path": "chinese-official-writing",
+    "exit_code": 1,
+    "output": "Traceback (most recent call last):\n  File \"C:\\Users\\admin\\.codex\\skills\\.system\\skill-creator\\scripts\\quick_validate.py\", line 10, in <module>\n    import yaml\nModuleNotFoundError: No module named 'yaml'\n"
+  },
+  {
+    "path": "packages/agent-skills/skills/chinese-official-writing",
+    "exit_code": 1,
+    "output": "Traceback (most recent call last):\n  File \"C:\\Users\\admin\\.codex\\skills\\.system\\skill-creator\\scripts\\quick_validate.py\", line 10, in <module>\n    import yaml\nModuleNotFoundError: No module named 'yaml'\n"
+  },
+  {
+    "path": "packages/qwen-code/skills/chinese-official-writing",
+    "exit_code": 1,
+    "output": "Traceback (most recent call last):\n  File \"C:\\Users\\admin\\.codex\\skills\\.system\\skill-creator\\scripts\\quick_validate.py\", line 10, in <module>\n    import yaml\nModuleNotFoundError: No module named 'yaml'\n"
+  },
+  {
+    "path": "packages/qwenwork/skills/chinese-official-writing",
+    "exit_code": 1,
+    "output": "Traceback (most recent call last):\n  File \"C:\\Users\\admin\\.codex\\skills\\.system\\skill-creator\\scripts\\quick_validate.py\", line 10, in <module>\n    import yaml\nModuleNotFoundError: No module named 'yaml'\n"
+  },
+  {
+    "path": "packages/hermes/skills/chinese-official-writing",
+    "exit_code": 1,
+    "output": "Traceback (most recent call last):\n  File \"C:\\Users\\admin\\.codex\\skills\\.system\\skill-creator\\scripts\\quick_validate.py\", line 10, in <module>\n    import yaml\nModuleNotFoundError: No module named 'yaml'\n"
+  }
+]

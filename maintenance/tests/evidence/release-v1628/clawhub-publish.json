@@ -1,0 +1,5 @@
+{
+  "exit_code": 0,
+  "stdout": "{\n  \"ok\": true,\n  \"status\": \"published\",\n  \"slug\": \"chinese-official-writing\",\n  \"displayName\": \"中文公文写作\",\n  \"folder\": \"F:\\\\Workspaces\\\\chinese-official-writing-skill-worktrees\\\\release-v1628\\\\packages\\\\openclaw\\\\skills\\\\chinese_official_writing\",\n  \"version\": \"1.6.28\",\n  \"latestVersion\": \"1.6.26\",\n  \"fileCount\": 37,\n  \"fingerprint\": \"bd9b19d6faaffc48b26be43c9b2189fefec19e47b5933c31aca1f82767ae34a5\",\n  \"versionId\": \"k97dh3rey9y8sjd39f94a7exk58dvsav\"\n}\n",
+  "stderr": ""
+}

@@ -82,11 +82,11 @@ QwenWork 可使用 [`packages/qwenwork/`](packages/qwenwork/) 中的无 Hook 静
 
 | 调试方向 | 主要稿件与边界 | 当前证据 |
 | --- | --- | --- |
+| 1.6.28 Hook修复与新闻事实日期 | 修复日期来源判断、终态重放、晚到事件、错回显与取消清理；新闻保留材料中的完整事实日期 | 复用已准入同稿及生命周期证据；发布前806项全量、五套Skill校验、86/37文件包预检通过；宿主和多版质量边界保留 |
 | 1.6.27 整改方案、命令路径与投诉页精简 | 整改方案区分现状、后续措施、责任进度与验收要求；校对命令使用当前Skill目录和稿件的引号绝对路径；投诉页删去重复交付话术 | 整改专叶R2有8份隔离有效真稿；新叶两路8次真实调用，只保留通过的投诉删例；最终774项回归和五套Skill校验通过 |
 | 1.6.26 短意见、投诉反映与语义减载 | 短意见按载体形成紧凑但完整的正文；投诉和情况反映保持亲历事实、未决状态与明确请求，不替接收方编写内部方案；运行时说明删去不改变写稿的重复自证 | 四家短意见40份同题真稿、五家投诉反映R1/R2与五家语义减载R2/R3通过；发布前773项全量、五套普通 Skill 校验及85/36文件包体门通过 |
 | 1.6.25 意见建议、建议反馈与标题版式 | 对外建议优先承接建议方实际申报、办理或使用经历，区分建议对象及其处置权限，合并同因同机制问题；并列建议标题明确建议行为，正式 Word 稿中的统领型小标题独立成段且不带句号 | 五家建议反馈 R3、23 组有效 A/B 与 5 组正式长意见留出形成可复现正收益；发布前104项聚焦、765项全量、五套普通 Skill 校验及84/35文件包体门通过 |
 | 1.6.24 短稿语义路由与 Hook 说明顺序 | 短稿不再用固定字符数作跨文种分界；明确简短时直达，只有上限时结合文种、材料密度和交付形态判断；Hook README 先介绍使用，再说明暂停和关闭 | 五家累计100份真实调用，最终候选15/15有效，完整讲话误读短稿页由2/5降为0/5；发布前101项聚焦、756项全量及五套普通 Skill 校验通过 |
-| 1.6.23 事故入口契约与点名审稿轻页 | 阶段性事故通报的隐式补足入口收窄为单一类型；共享 Stop 预算、可信恢复与失败脱敏闭合；点名只审任务优先读取轻量检查页 | 事故与宿主契约定向反控、五路点名审稿真稿、111/111双侧消融及756项全量通过；ClawHub 继续34文件无 Hook 包 |
 
 ### 制度正文示例
 
@@ -116,7 +116,7 @@ QwenWork 可使用 [`packages/qwenwork/`](packages/qwenwork/) 中的无 Hook 静
 
 技能规则、references 和 scripts 在本仓库持续迭代，各平台技能目录由 canonical 包同步生成。规范与社区项目用于校验文种、流程形态和风险维度；具体规则经过复现、取舍和 A/B 后进入主线，Git 历史记录每次修改和验证。
 
-最近 5 份证据：[`release-1.6.27.md`](maintenance/tests/evidence/release-1.6.27.md) · [`release-1.6.27-rc.md`](maintenance/tests/evidence/release-1.6.27-rc.md) · [`remediation-plan-r1/candidate-r2-result.md`](maintenance/tests/evidence/remediation-plan-r1/candidate-r2-result.md) · [`recent-leaf-cleanup-r1/result.md`](maintenance/tests/evidence/recent-leaf-cleanup-r1/result.md) · [`reference-route-audit-r1/result.md`](maintenance/tests/evidence/reference-route-audit-r1/result.md)。完整记录见 [`maintenance/docs/evidence/README.md`](maintenance/docs/evidence/README.md)。
+本次发布见 [`release-1.6.28.md`](maintenance/tests/evidence/release-1.6.28.md)。此前最近 5 份证据：[`release-1.6.27.md`](maintenance/tests/evidence/release-1.6.27.md) · [`release-1.6.27-rc.md`](maintenance/tests/evidence/release-1.6.27-rc.md) · [`remediation-plan-r1/candidate-r2-result.md`](maintenance/tests/evidence/remediation-plan-r1/candidate-r2-result.md) · [`recent-leaf-cleanup-r1/result.md`](maintenance/tests/evidence/recent-leaf-cleanup-r1/result.md) · [`reference-route-audit-r1/result.md`](maintenance/tests/evidence/reference-route-audit-r1/result.md)。完整记录见 [`maintenance/docs/evidence/README.md`](maintenance/docs/evidence/README.md)。
 
 ## 目录结构
 
