@@ -1,0 +1,21 @@
+{
+  ".gitattributes": "85e48d232edc7b02f6cecf8fbbf905f3b126c467b594d8dd16c4f8fa283a8320",
+  "final-scope-and-doc-check.json": "4788fec9692e7680b3a69744a0aac7be3b4b4626afc0a05d6f091d746263838f",
+  "full-tests-final.json": "b9d543d397ee9e216dbccc29130f0a84b7ea402a7f8d10bffbd808f328c7f6ea",
+  "full-tests.json": "02cc3376ca1fca1bedd14f14e6a2c5885942e5ae92efba3054e7a855783f8286",
+  "merge-receipt.json": "050eed4a463570d3ef53e1dce053c65fbd272da935387e191aea7c37212de7e0",
+  "native-optout/assembly.json": "7e67da7d59ecf7ce739de511d25bec75292a38da751f79a6c5e1eb1239a45908",
+  "native-optout/final.txt": "353db1634bb8796131c8b92857aa9d49f4f1401c73dd736efa218a9c8dfee2e5",
+  "native-optout/fixture.json": "c3bf1f51bcfd5d64b7b902bcdc3ada9b3f3d65e25ed9f40d7f0f98e2f86ab63b",
+  "native-optout/native-events.jsonl": "916c75872060fcad2d6249a1e91b7d809be991ebeebaf3af72246df0ff7a88ef",
+  "native-optout/prompt.txt": "d0a41a4d72b4dca32408ff1b997c224bd0d7d3863641d5a19a9a451e3a2aafee",
+  "native-optout/result.json": "087205be33000af7f0394ebbc6e979db1b83c646aca007e3f0c8bc61ffcfa647",
+  "native-optout/stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "native-optout/stream.jsonl": "df4c796d7f5cc1c4a36b47ed14161e1c9fc9fae864dc260cd6ec7fda5f4a4cc5",
+  "optout-probe.json": "f63d622dc402efd71e5049779b3c9c34912ca91f4bc0902244d7247017b334fa",
+  "optout-prototype-result.json": "02746b28765af251ea699008d6bcb248aaa3de26677193e055ca1ab8fc862e16",
+  "package-check-final.json": "32bddf60650c6b0718a61f8686b210e71ec4ca91827bcc19f2b57b2bec763fa5",
+  "package-check.json": "c73af2d693aad0272d24f3a939be73d8f65179b86e7cb95ca8cabe253d08ed69",
+  "run_native_optout.py": "6a7016bf7371976c76c0c8f96620c522d03605c1f1319938d523008ee5f1afeb",
+  "scope-check.json": "c352bbe04a2ace1cf400d6995c2f2c540ae9f86f28cb5c303278e98c3ff865ca"
+}

@@ -45,4 +45,4 @@
 
 本轮获选的命令路径修正和投诉页68-byte删例已随[公开版v1.6.27](../tests/evidence/release-1.6.27.md)发布；新叶清理登记为 `MT-006-RECENT-LEAF-R1`，被拒绝的定向审稿删例、渐进路由原型与未修Hook问题分别保留状态。示例替换已由用户撤销；需求登记继续使用本规格区。
 
-用户随后授权修复四项Hook问题，独立分支已完成[核心修复与真实同稿验证](../tests/evidence/hook-four-fixes-r1/result.md)，同时保留未适配宿主、原生可见输出和源稿质量缺陷。当前状态以roadmap/coverage为准，本次未合并或发布。
+用户随后授权修复四项Hook问题并在合理时合并。[核心修复与真实同稿验证](../tests/evidence/hook-four-fixes-r1/result.md)通过后，合并前补修显式关闭Hook遇清理锁故障仍被阻断的问题；最终788项全量通过，产品提交 `3ce9241e` 已快进合入本地main，未推送或发布。[合并记录](../tests/evidence/hook-four-fixes-merge-r1/result.md)保留原文清理、未适配宿主、成稿事实与多版修改的未完成项；当前状态以roadmap/coverage为准。

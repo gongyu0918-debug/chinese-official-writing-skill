@@ -1,0 +1,38 @@
+{
+  "scope": "same frozen real D0; explicit opt-out request variant; injected state-lock contention, zero model calls",
+  "source_sample_sha256": "0a66c456842dbd883b3f331abf4d3ce9c9cf3fbd42f1ecd7c39753e5a375b857",
+  "request": "本次关闭Hook。请根据下列材料写一则简短的新闻消息。\n\n目标活动事实：中心于2026-09-05举办读书交流活动，共20人参加。\n\n格式示例（仅示范中文日期格式，不是本次活动事实，不得写入消息）：2020年9月5日。\n\n只输出可直接使用的完整正文，可以含标题，不解释过程。保留提供的事实，不补充材料未给的活动内容、效果或后续安排。",
+  "d0": "中心举办读书交流活动\n\n2026年9月5日，中心举办读书交流活动，共20人参加。",
+  "arms": [
+    {
+      "arm": "baseline",
+      "code_sha256": "049d153a66edf5ce0f3a24fb07aa25153778fad89bdebdd19584c32e202c0b62",
+      "response": {
+        "continue": true
+      },
+      "bypass": "user_requested",
+      "raw_request_retained": false
+    },
+    {
+      "arm": "candidate_before",
+      "code_sha256": "969235f48c8a7f8592b84742257b08315e823326c76d4198e7e12b7cc5eb32ea",
+      "response": {
+        "continue": false,
+        "stopReason": "终稿状态暂不可写，已停止自动重试。",
+        "systemMessage": "终稿状态暂不可写，已停止自动重试。"
+      },
+      "bypass": "user_requested",
+      "raw_request_retained": true
+    },
+    {
+      "arm": "optout_prototype",
+      "code_sha256": "ec854caca9e7e69553317de7f1abe3f4dc3223f2834d9c3311796e6534c1679c",
+      "response": {
+        "continue": true
+      },
+      "bypass": "user_requested",
+      "raw_request_retained": true
+    }
+  ],
+  "prototype_pass": true
+}

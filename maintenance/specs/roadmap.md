@@ -75,7 +75,7 @@
 ## IN_PROGRESS
 
 - `WR-020c-QUALITY-LOOP-R1`：20稿中19有效，14份未观察到已确认硬问题、5稿至少8项硬问题；只限两道整改题，31条质量提醒另列。4条真实resume七版链28/28技术完成：R3/R7调序4/4、R4完整删除3/4、R5独立插段3/4，R7三稿无已登记硬问题；全链至少12项新问题，不把28相关版本当独立样本。六稿同D0默认Hook复放均保留D0，修正0、新增改坏0，不能当全面语义核验。状态 `IN_PROGRESS / QUALITY_AUDIT_COMPLETE_GAPS_REGISTERED`。[批量结果](../tests/evidence/reference-route-audit-r1/candidate-r1-result.md) [七版链结果](../tests/evidence/revision-stability-audit-r1/result.md)
-- `AH-002b / HK-005b-FOUR-FIXES-R1`：独立分支已完成四项已知反例的核心修复，核心 `976bb8a4`、适配器 `81b21621`；真实D0同输入复放、最终Claude原生正常/注入链和208项直接门通过。日期修复只防错误补年，真实漏年稿与材料外活动内容仍登记；CodeBuddy、Kimi、OpenCode、DSH硬停和原生可见输出边界仍未完成，故整体保留 `IN_PROGRESS / CORE_FIXED_LOCAL / HOSTS_PARTIAL / NOT_RELEASED`。旧 `REAL_R1_NOT_REPRODUCED` 证据不改写。[结果](../tests/evidence/hook-four-fixes-r1/result.md)
+- `AH-002b / HK-005b-FOUR-FIXES-R1`：四项已知反例修复及合并前显式关闭Hook的锁故障回退修正，已随产品提交 `3ce9241e` 快进合入本地main。真实D0同输入复放、Claude原生正常/故障注入链、补充原生关闭链及最终788项全量通过。日期修复只防错误补年，真实漏年稿与材料外活动内容仍登记；CodeBuddy、Kimi、OpenCode、DSH硬停、原生可见输出和HK-008原文清理边界仍未完成，整体保留 `IN_PROGRESS / CORE_MERGED_MAIN / HOSTS_PARTIAL / NOT_RELEASED`。旧 `REAL_R1_NOT_REPRODUCED` 和候选证据不改写；未推送。[四项结果](../tests/evidence/hook-four-fixes-r1/result.md) [合并与剩余修复](../tests/evidence/hook-four-fixes-merge-r1/result.md)
 
 ## REJECTED
 

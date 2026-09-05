@@ -1,0 +1,21 @@
+{
+  "product_commit": "3ce9241eab6bc26d45e1b9b63371da119d0cb123",
+  "baseline": "3532afd6619ac6256558e9552b92d03da5ae9c0f",
+  "product_diff_paths": [
+    "chinese-official-writing/hooks/adapters/claude-code/gate_stop_hook.py",
+    "chinese-official-writing/hooks/adapters/host_gate_adapter.py",
+    "chinese-official-writing/hooks/adapters/qwen-code/gate_stop_hook.py",
+    "chinese-official-writing/hooks/core/gate_stop_hook.py",
+    "chinese-official-writing/hooks/shared/source_bound_dates.py"
+  ],
+  "packages_unchanged": true,
+  "old_evidence_blob_hashes_checked": 85,
+  "new_raw_hashes_checked": 18,
+  "local_markdown_links_checked": 323,
+  "json_records_parsed": 349,
+  "package_files_verified": 86,
+  "package_fingerprint": "621e98ed3fa5c082bd4355c3ab2fc946767e1a3d24c57059c23e0781d5960f50",
+  "sensitive_pattern_matches": [],
+  "git_diff_check_exit_code": 0,
+  "passed": true
+}
