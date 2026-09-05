@@ -114,6 +114,7 @@
         "Stop"
       ],
       "host_version_scope": "WorkBuddy 5.3.13 embedded CodeBuddy CLI 2.115.0",
+      "hard_stop_status": "unsupported: command Stop continue:false or exit 2 requests continuation; core hard stop is currently allowed",
       "required_stop_field": "last_assistant_message",
       "data_root_environment": "CODEBUDDY_PLUGIN_DATA",
       "continuation_limit": 4,
@@ -218,6 +219,7 @@
         "PostToolUse:Bash"
       ],
       "host_version_scope": "Kimi Code CLI 0.38.0",
+      "hard_stop_status": "unsupported: command hooks expose allow or continuation block only; core hard stop is currently allowed",
       "platform_scope": "Windows",
       "required_stop_field": null,
       "current_draft_source": "exact session_index entry plus current-turn wire byte offset and last completed main-agent step",
@@ -239,6 +241,7 @@
         "SDK session.prompt"
       ],
       "host_version_scope": "OpenCode 1.18.23 interactive mini CLI",
+      "hard_stop_status": "adapter stops retries and reports failure; no synchronous abort or withdrawal of displayed text; native UI display compatibility is not guaranteed",
       "platform_scope": "Windows",
       "headless_run_supported": false,
       "visible_intermediate_outputs": true,
@@ -303,6 +306,7 @@
         "tools/post-execute:bash|pwsh"
       ],
       "host_version_scope": "DeepSeek Harness 0.1.1-rc.2 headless profile",
+      "hard_stop_status": "hook cancellation with keepInbox:true; native CLI cancellation compatibility is not guaranteed",
       "platform_scope": "Windows",
       "known_compatible_capabilities": [
         "delivery_review"
@@ -315,7 +319,7 @@
       "over_length_continuation_limit": 7,
       "host_stop_ceiling": 9,
       "activation": "explicit dsh plugin add of the assembled Profile Bundle followed by profile restart",
-      "failure_action": "original_draft",
+      "failure_action": "original_draft_or_hook_cancel_for_core_hard_stop_or_fallback_echo_mismatch",
       "official_bridge_limit": "@deepseek-ai/dsh-hooks-claude-code 0.1.1-rc.2 omits last_assistant_message from Stop, so this companion uses the native Cordis lifecycle instead"
     },
     "openclaw": {

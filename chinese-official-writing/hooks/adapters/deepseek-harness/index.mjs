@@ -132,6 +132,12 @@ function runPython(command, prefix, event, capability, root, signal) {
       if (code !== 0) return finish({ kind: 'error', code: 'core_exit' })
       try {
         const value = JSON.parse(stdout)
+        if (value?.continue === false) {
+          const reason = [value.stopReason, value.systemMessage].find(
+            message => typeof message === 'string' && message.trim(),
+          ) || '交付门禁已停止自动交付。'
+          return finish({ kind: 'halt', reason })
+        }
         if (value?.decision === 'block' && typeof value.reason === 'string') {
           return finish({ kind: 'block', reason: value.reason })
         }
@@ -279,6 +285,12 @@ export function apply(ctx) {
       hook_event_name: 'UserPromptSubmit',
       prompt,
     }), capability, root, signal)
+    if (submitted.kind === 'halt') {
+      if (states.get(agent) !== state || signal?.aborted) return decision
+      states.delete(agent)
+      agent.cancel({ kind: 'hook', reason: submitted.reason }, { keepInbox: true })
+      return decision
+    }
     if (submitted.kind === 'error') {
       await abortState(state, capability, root, 'adapter_failure')
       states.delete(agent)
@@ -337,15 +349,20 @@ export function apply(ctx) {
     state.stopCount += 1
 
     if (state.fallbackPending) {
+      const matchesOriginal = digest(draft) === digest(state.originalDraft)
       await recordReceipt(root, {
         session_id: state.sessionId,
         turn_id: state.turnId,
         turn,
         stop_position: stopPosition,
         draft_sha256: digest(draft),
-        decision: digest(draft) === digest(state.originalDraft) ? 'allow_d0_fallback' : 'allow_fallback_mismatch',
+        decision: matchesOriginal ? 'allow_d0_fallback' : 'halt_fallback_mismatch',
       })
+      if (states.get(agent) !== state || signal?.aborted) return
       states.delete(agent)
+      if (!matchesOriginal) {
+        agent.cancel({ kind: 'hook', reason: '原稿回显校验未通过，已停止自动重试。' }, { keepInbox: true })
+      }
       return
     }
 
@@ -360,10 +377,17 @@ export function apply(ctx) {
       turn,
       stop_position: stopPosition,
       draft_sha256: digest(draft),
-      decision: outcome.kind === 'block' ? 'block' : outcome.kind === 'allow' ? 'allow' : 'core_error',
+      decision: outcome.kind === 'error' ? 'core_error' : outcome.kind,
+      ...(outcome.kind === 'halt' ? { stop_reason: outcome.reason, delivery_verified: false } : {}),
       ...(outcome.kind === 'error' ? { error_code: outcome.code } : {}),
     })
+    if (states.get(agent) !== state || signal?.aborted) return
 
+    if (outcome.kind === 'halt') {
+      states.delete(agent)
+      agent.cancel({ kind: 'hook', reason: outcome.reason }, { keepInbox: true })
+      return
+    }
     if (outcome.kind === 'block' && stopPosition < MAX_HOST_STOPS) {
       steer(agent, outcome.reason)
       return
