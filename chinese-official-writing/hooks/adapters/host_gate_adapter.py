@@ -292,6 +292,13 @@ def _bridge_environment(data_root: Path) -> Iterator[None]:
 def _host_response(host: str, value: Any) -> dict[str, Any]:
     if not isinstance(value, dict):
         return _allow()
+    if host == "codex" and value.get("continue") is False:
+        response = {"continue": False, "stopReason": "交付门禁已停止自动交付。"}
+        for key in ("stopReason", "systemMessage"):
+            message = value.get(key)
+            if isinstance(message, str) and message.strip():
+                response[key] = message
+        return response
     reason = value.get("reason")
     if value.get("decision") != "block" or not isinstance(reason, str):
         return _allow()
