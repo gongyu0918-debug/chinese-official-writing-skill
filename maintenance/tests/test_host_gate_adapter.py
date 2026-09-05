@@ -163,6 +163,19 @@ class HostGateAdapterTests(HookCompanionTestMixin, unittest.TestCase):
         self.assertEqual(expected_returncode, completed.returncode, completed.stderr)
         return result
 
+    def test_codex_hard_stop_precedes_continuation_and_keeps_failure_message(self):
+        adapter = self.ADAPTERS["codex"]
+        stopped = {"continue": False, "stopReason": "终稿回显校验未通过。", "systemMessage": "自动交付已停止。"}
+        value = {**stopped, "decision": "block", "reason": "不应触发续写", "raw_draft": "不应透传"}
+        self.assertEqual(stopped, adapter._host_response("codex", value))
+        self.assertEqual(
+            {"continue": False, "stopReason": "交付门禁已停止自动交付。"},
+            adapter._host_response("codex", {"continue": False, "stopReason": " ", "systemMessage": 7}),
+        )
+        self.assertEqual({"decision": "block", "reason": "继续校验"}, adapter._host_response("codex", {"decision": "block", "reason": "继续校验"}))
+        self.assertEqual({"continue": True}, adapter._host_response("codex", {"continue": True}))
+        self.assertEqual({"continue": False, "reason": "继续校验"}, adapter._host_response("workbuddy", {"decision": "block", "reason": "继续校验"}))
+
     def test_emit_fallback_keeps_adapter_stdout_as_one_json_object(self):
         adapter = self.ADAPTERS["codex"]
         bridge = adapter._load_core_bridge()

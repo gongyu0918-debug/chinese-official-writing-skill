@@ -62,6 +62,17 @@ class ClaudeGateAdapterTests(unittest.TestCase):
         event.update(extra)
         return event
 
+    def test_hard_stop_precedes_continuation_and_keeps_failure_message(self):
+        stopped = {"continue": False, "stopReason": "终稿回显校验未通过。", "systemMessage": "自动交付已停止。"}
+        value = {**stopped, "decision": "block", "reason": "不应触发续写", "raw_draft": "不应透传"}
+        self.assertEqual(stopped, self.adapter._valid_response(value))
+        self.assertEqual(
+            {"continue": False, "stopReason": "交付门禁已停止自动交付。"},
+            self.adapter._valid_response({"continue": False, "stopReason": " ", "systemMessage": 7}),
+        )
+        self.assertEqual({"decision": "block", "reason": "继续校验"}, self.adapter._valid_response({"decision": "block", "reason": "继续校验"}))
+        self.assertEqual({"continue": True}, self.adapter._valid_response({"continue": True}))
+
     def test_contract_manifest_and_capabilities_are_explicitly_opt_in(self):
         capabilities = json.loads(CAPABILITIES_PATH.read_text(encoding="utf-8"))
         self.assertFalse(capabilities["activation"]["ordinary_skill_install_enables_hooks"])
