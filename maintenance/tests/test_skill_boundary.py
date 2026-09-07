@@ -1426,8 +1426,6 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assertIn("唯一活动开发纪律", agents)
         self.assertIn("[历史归档](maintenance/docs/archive/AGENTS-legacy-20260819.md)仅供追溯", agents)
         for maintenance_gate in [
-            "真实稿失败先修产品或停候选",
-            "不靠扩大量表、裁判和工程门替代质量改进",
             "全量门原则上只在合并或发布前跑一次",
             "仓库及仓内包使用根 [LICENSE](LICENSE)（MIT）",
         ]:

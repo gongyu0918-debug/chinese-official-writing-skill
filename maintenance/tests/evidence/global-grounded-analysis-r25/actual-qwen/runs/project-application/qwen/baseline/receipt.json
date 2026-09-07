@@ -1,0 +1,90 @@
+{
+  "arm": "baseline",
+  "provider": "qwen",
+  "model": "alibaba-token-plan/qwen3.8-max",
+  "case": "project-application",
+  "session": "27c3e88e-75fb-480a-945d-ee60e9038205",
+  "technical_valid": false,
+  "return_code": 0,
+  "failure": null,
+  "seconds": 255.23,
+  "frozen_unchanged": true,
+  "final_chars": 80,
+  "init_models": [
+    "alibaba-token-plan/qwen3.8-max"
+  ],
+  "assistant_models": [
+    "alibaba-token-plan/qwen3.8-max"
+  ],
+  "usage_models": [
+    "alibaba-token-plan/qwen3.8-max"
+  ],
+  "result_count": 1,
+  "result_subtypes": [
+    "success"
+  ],
+  "result_errors": [
+    false
+  ],
+  "source_receipt_sha256": "d0f8618b814a1e057d1aa5ccf8859ef601eca5e8d2d6207f2d6ddabaf9ebfd79",
+  "final_path": "runs/project-application/qwen/baseline/final.txt",
+  "final_sha256": "f770b3095e6c47fcf54e453d1129e881da45e5d098800138465be420d005ec48",
+  "source_final_sha256": "f770b3095e6c47fcf54e453d1129e881da45e5d098800138465be420d005ec48",
+  "final_redaction": {
+    "replacement_count": 0,
+    "archive_is_original_bytes": true,
+    "scope": "Only this lane approved runtime/work prefix; source bytes unchanged."
+  },
+  "documents": [
+    {
+      "work_relative_path": "draft-lixiang-shenqing.md",
+      "archive_path": "runs/project-application/qwen/baseline/working-file-1.md",
+      "sha256": "97816109a25f300db3a4e2ffe6016f621761c53a615f31b5a1371665d43496d0",
+      "bytes": 4470,
+      "delivery_state": "invalid_scope_diagnostic"
+    }
+  ],
+  "hook_enabled": false,
+  "paired_quality_eligible": false,
+  "omissions": [
+    "outside-work memory files",
+    "raw stream",
+    "runtime configuration",
+    "original argv",
+    "tool arguments"
+  ],
+  "observation": "All remaining files inside this lane work are retained; no claim that interrupted files were delivered.",
+  "runner_technical_valid": true,
+  "scope_audit": {
+    "pass": false,
+    "source_receipt_sha256": "d0f8618b814a1e057d1aa5ccf8859ef601eca5e8d2d6207f2d6ddabaf9ebfd79",
+    "review": "Root reviewed all tool arguments and results. Allowed reads are this frozen Skill/current work; allowed shell calls run supplied lint on own manuscripts or inspect runtime version/current work. Baseline has two successful memory writes and one failed memory read outside allowed work, within its private runtime; no external memory content obtained.",
+    "tool_calls": 12,
+    "violations": [
+      {
+        "tool_id": "call_b00ba35d9c704f6eb09e9b68",
+        "tool": "Write",
+        "scope": "outside_work_in_this_isolated_runtime_memory",
+        "succeeded": true,
+        "file_path_sha256": "70634bc807b40c540bb658d72c49d1289699e861744207f5127bc989596278ce"
+      },
+      {
+        "tool_id": "call_48e5d1fe9fa641a3962f9f40",
+        "tool": "Read",
+        "scope": "outside_work_in_this_isolated_runtime_memory",
+        "succeeded": false,
+        "file_path_sha256": "8eea26ba65fed404427bf6c17d399aa3fdd39c7246770ec835093b347aba1b1d"
+      },
+      {
+        "tool_id": "call_5ae96b9fa010457aaee2b905",
+        "tool": "Write",
+        "scope": "outside_work_in_this_isolated_runtime_memory",
+        "succeeded": true,
+        "file_path_sha256": "8eea26ba65fed404427bf6c17d399aa3fdd39c7246770ec835093b347aba1b1d"
+      }
+    ],
+    "observations": [
+      "Baseline scope invalid even though completed final and no external memory acquired"
+    ]
+  }
+}

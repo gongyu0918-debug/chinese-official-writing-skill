@@ -43,6 +43,8 @@
 
 ## 本轮审计与登记
 
+2026-09-08：[R25全局有据分析原子](../tests/evidence/global-grounded-analysis-r25/preregister.md)从当前main独立验证，参考付费版已验证的入口摘要与规则页分工；三题两臂12次真实调用完成；按用户写作质量优先的澄清保留全局原则和两个规则位置，已同步普通镜像，未合并发布。[结果](../tests/evidence/global-grounded-analysis-r25/result.md)
+
 2026-09-07继续立项申请主线：独立worktree完成[四处规则原型与14次真实调用](../tests/evidence/application-materials-r13/result.md)，R13—R16均未准入，产品恢复当前main；正常新提示发现原题未暴露的工期虚构。WR-023b保持开放，README、发布及Hook已完成项不替代首稿质量。
 
 2026-09-06 继续构建四项 Hook 质量问题，登记为 `HK-002a` 同稿接续、`CL-001` 默认正文清理、`HK-010` 自然篇幅要求、`HK-002b` 原稿事实复核。工作基线为已发布 main `b77f6381`，独立分支 `codex/hook-quality-build-r1`；[本轮记录](../tests/evidence/hook-quality-build-r1/result.md)分别保留真实参与、正文质量、技术失败与未准入候选，不把全部需求标为完成。

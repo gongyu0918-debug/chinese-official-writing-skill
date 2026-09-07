@@ -1,0 +1,2 @@
+# Anonymous deliveries retain exact archived bytes and whitespace.
+* -text -whitespace

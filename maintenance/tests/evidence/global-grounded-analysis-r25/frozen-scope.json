@@ -1,0 +1,21 @@
+{
+  "verified_files": 82,
+  "diff": [
+    {
+      "path": "SKILL.md",
+      "baseline_bytes": 27911,
+      "candidate_bytes": 28330,
+      "delta_bytes": 419,
+      "baseline_sha256": "64a414e5ee69eb6161658529e9807460c3c612eeb458bd81925cc2ad6b494e96",
+      "candidate_sha256": "190ca5591de28e179547ab53a9f13cfe5642a651185498e8f3cc7b34f8039f36"
+    },
+    {
+      "path": "references/information-selection.md",
+      "baseline_bytes": 3987,
+      "candidate_bytes": 4922,
+      "delta_bytes": 935,
+      "baseline_sha256": "188c9def1553cb01423f5214ebaee6f122c3157aac39b60f54077d78df97d595",
+      "candidate_sha256": "bf1aff9c90a6ba901fb2514ed98b3796a67616a4f934bfeac45fa4e3c0c01787"
+    }
+  ]
+}

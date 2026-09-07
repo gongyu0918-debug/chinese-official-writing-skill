@@ -1,0 +1,157 @@
+{
+  "baseline_commit": "176da7422b4ec2ffea82145c35498b09eddfea69",
+  "attempts": 6,
+  "technical_valid": 4,
+  "runs": [
+    {
+      "case": "project-application",
+      "provider": "qwen",
+      "arm": "baseline",
+      "technical_valid": false,
+      "receipt": "runs/project-application/qwen/baseline/receipt.json",
+      "artifacts": 1,
+      "quality_eligible": false,
+      "scope_pass": false
+    },
+    {
+      "case": "project-application",
+      "provider": "qwen",
+      "arm": "candidate",
+      "technical_valid": true,
+      "receipt": "runs/project-application/qwen/candidate/receipt.json",
+      "artifacts": 2,
+      "written_documents": 2,
+      "missing_work_files": 0,
+      "skill_read": true,
+      "skill_launch_success_observed": false,
+      "routing": {
+        "reference_paths": [
+          "references/anti-ai-patterns.md",
+          "references/argument-chains.md",
+          "references/genre-playbook-request.md",
+          "references/handling-elements.md",
+          "references/information-selection.md",
+          "references/proofreading-checklist.md",
+          "references/workflow.md"
+        ],
+        "references_distinct_pages": 7,
+        "references_distinct_file_bytes": 54168,
+        "skill_direct_read_file_bytes": 28330
+      },
+      "tool_error_count": 0,
+      "failed_read_count": 0,
+      "unresolved_failed_read_count": 0,
+      "final_path_redactions": 0,
+      "argument_chains_read": true,
+      "ai_compute_read": false,
+      "scope_pass": true
+    },
+    {
+      "case": "equipment-request",
+      "provider": "qwen",
+      "arm": "baseline",
+      "technical_valid": true,
+      "receipt": "runs/equipment-request/qwen/baseline/receipt.json",
+      "artifacts": 1,
+      "written_documents": 1,
+      "missing_work_files": 0,
+      "skill_read": true,
+      "skill_launch_success_observed": false,
+      "routing": {
+        "reference_paths": [
+          "references/argument-chains.md",
+          "references/final-review-layers.md",
+          "references/formal-addressing.md",
+          "references/genre-playbook-request.md",
+          "references/information-selection.md",
+          "references/proofreading-checklist.md",
+          "references/short-draft-naturalness.md"
+        ],
+        "references_distinct_pages": 7,
+        "references_distinct_file_bytes": 29618,
+        "skill_direct_read_file_bytes": 27911
+      },
+      "tool_error_count": 0,
+      "failed_read_count": 0,
+      "unresolved_failed_read_count": 0,
+      "final_path_redactions": 0,
+      "argument_chains_read": true,
+      "ai_compute_read": false,
+      "scope_pass": true
+    },
+    {
+      "case": "equipment-request",
+      "provider": "qwen",
+      "arm": "candidate",
+      "technical_valid": false,
+      "receipt": "runs/equipment-request/qwen/candidate/receipt.json",
+      "artifacts": 1,
+      "quality_eligible": false,
+      "scope_pass": true
+    },
+    {
+      "case": "service-report",
+      "provider": "qwen",
+      "arm": "baseline",
+      "technical_valid": true,
+      "receipt": "runs/service-report/qwen/baseline/receipt.json",
+      "artifacts": 1,
+      "written_documents": 1,
+      "missing_work_files": 0,
+      "skill_read": false,
+      "skill_launch_success_observed": true,
+      "routing": {
+        "reference_paths": [
+          "references/argument-chains.md",
+          "references/final-review-layers.md",
+          "references/genre-checklist-report.md",
+          "references/information-selection.md",
+          "references/proofreading-checklist.md",
+          "references/task-route-cards.md"
+        ],
+        "references_distinct_pages": 6,
+        "references_distinct_file_bytes": 28019,
+        "skill_direct_read_file_bytes": 0
+      },
+      "tool_error_count": 0,
+      "failed_read_count": 0,
+      "unresolved_failed_read_count": 0,
+      "final_path_redactions": 0,
+      "argument_chains_read": true,
+      "ai_compute_read": false,
+      "scope_pass": true
+    },
+    {
+      "case": "service-report",
+      "provider": "qwen",
+      "arm": "candidate",
+      "technical_valid": true,
+      "receipt": "runs/service-report/qwen/candidate/receipt.json",
+      "artifacts": 1,
+      "written_documents": 1,
+      "missing_work_files": 0,
+      "skill_read": false,
+      "skill_launch_success_observed": true,
+      "routing": {
+        "reference_paths": [
+          "references/argument-chains.md",
+          "references/final-review-layers.md",
+          "references/genre-checklist-report.md",
+          "references/information-selection.md",
+          "references/proofreading-checklist.md"
+        ],
+        "references_distinct_pages": 5,
+        "references_distinct_file_bytes": 25196,
+        "skill_direct_read_file_bytes": 0
+      },
+      "tool_error_count": 0,
+      "failed_read_count": 0,
+      "unresolved_failed_read_count": 0,
+      "final_path_redactions": 0,
+      "argument_chains_read": true,
+      "ai_compute_read": false,
+      "scope_pass": true
+    }
+  ],
+  "quality": "Not judged by extractor; invalid scope samples remain in actual but excluded from paired blind delivery"
+}

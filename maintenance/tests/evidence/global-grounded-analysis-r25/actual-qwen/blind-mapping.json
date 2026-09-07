@@ -1,0 +1,113 @@
+{
+  "seed": "r25-global-analysis-v1",
+  "method": "SHA256 sort for pair order; SHA256 parity for left/right",
+  "root_only": true,
+  "pairs": [
+    {
+      "pair": "P03",
+      "case": "project-application",
+      "provider": "qwen",
+      "sides": {
+        "A": {
+          "arm": "baseline",
+          "model": "alibaba-token-plan/qwen3.8-max",
+          "technical_valid": false,
+          "actual_receipt": "runs/project-application/qwen/baseline/receipt.json",
+          "copies": []
+        },
+        "B": {
+          "arm": "candidate",
+          "model": "alibaba-token-plan/qwen3.8-max",
+          "technical_valid": true,
+          "actual_receipt": "runs/project-application/qwen/candidate/receipt.json",
+          "copies": [
+            {
+              "actual": "runs/project-application/qwen/candidate/final.txt",
+              "blind": "P03/B-delivery.txt"
+            },
+            {
+              "actual": "runs/project-application/qwen/candidate/document-1.txt",
+              "blind": "P03/B-manuscript-1.txt"
+            },
+            {
+              "actual": "runs/project-application/qwen/candidate/document-2.txt",
+              "blind": "P03/B-manuscript-2.txt"
+            }
+          ]
+        }
+      },
+      "paired_quality_eligible": false
+    },
+    {
+      "pair": "P04",
+      "case": "equipment-request",
+      "provider": "qwen",
+      "sides": {
+        "A": {
+          "arm": "candidate",
+          "model": "alibaba-token-plan/qwen3.8-max",
+          "technical_valid": false,
+          "actual_receipt": "runs/equipment-request/qwen/candidate/receipt.json",
+          "copies": []
+        },
+        "B": {
+          "arm": "baseline",
+          "model": "alibaba-token-plan/qwen3.8-max",
+          "technical_valid": true,
+          "actual_receipt": "runs/equipment-request/qwen/baseline/receipt.json",
+          "copies": [
+            {
+              "actual": "runs/equipment-request/qwen/baseline/final.txt",
+              "blind": "P04/B-delivery.txt"
+            },
+            {
+              "actual": "runs/equipment-request/qwen/baseline/document-1.txt",
+              "blind": "P04/B-manuscript-1.txt"
+            }
+          ]
+        }
+      },
+      "paired_quality_eligible": false
+    },
+    {
+      "pair": "P05",
+      "case": "service-report",
+      "provider": "qwen",
+      "sides": {
+        "A": {
+          "arm": "candidate",
+          "model": "alibaba-token-plan/qwen3.8-max",
+          "technical_valid": true,
+          "actual_receipt": "runs/service-report/qwen/candidate/receipt.json",
+          "copies": [
+            {
+              "actual": "runs/service-report/qwen/candidate/final.txt",
+              "blind": "P05/A-delivery.txt"
+            },
+            {
+              "actual": "runs/service-report/qwen/candidate/document-1.txt",
+              "blind": "P05/A-manuscript-1.txt"
+            }
+          ]
+        },
+        "B": {
+          "arm": "baseline",
+          "model": "alibaba-token-plan/qwen3.8-max",
+          "technical_valid": true,
+          "actual_receipt": "runs/service-report/qwen/baseline/receipt.json",
+          "copies": [
+            {
+              "actual": "runs/service-report/qwen/baseline/final.txt",
+              "blind": "P05/B-delivery.txt"
+            },
+            {
+              "actual": "runs/service-report/qwen/baseline/document-1.txt",
+              "blind": "P05/B-manuscript-1.txt"
+            }
+          ]
+        }
+      },
+      "paired_quality_eligible": true
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "A": {
+    "actual_final_response": "A-delivery.txt",
+    "written_text_files": [],
+    "delivery_mode": "final_response_only"
+  },
+  "B": {
+    "actual_final_response": "B-delivery.txt",
+    "written_text_files": [
+      "B-manuscript-1.txt"
+    ],
+    "delivery_mode": "written_files_with_final_response"
+  }
+}
