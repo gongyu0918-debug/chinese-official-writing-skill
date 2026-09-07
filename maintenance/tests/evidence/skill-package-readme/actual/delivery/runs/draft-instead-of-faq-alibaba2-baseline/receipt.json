@@ -1,0 +1,39 @@
+{
+  "arm_id": "draft-instead-of-faq-alibaba2-baseline",
+  "case_id": "draft-instead-of-faq-alibaba2",
+  "provider": "alibaba2",
+  "model": "alibaba-token-plan-2/deepseek-v4-flash-0731",
+  "treatment": "baseline",
+  "effort": "max",
+  "timeout_seconds": 480,
+  "retry_count": 0,
+  "started_utc": "2026-09-07T09:59:28.650018+00:00",
+  "finished_utc": "2026-09-07T09:59:50.552117+00:00",
+  "duration_seconds": 21.902,
+  "return_code": 0,
+  "timed_out": false,
+  "technical_valid": true,
+  "checks": {
+    "api_key_source_none": true,
+    "entry_read": true,
+    "final_nonempty": true,
+    "model_bound": true,
+    "no_plugins": true,
+    "not_timed_out": true,
+    "read_scope": true,
+    "return_code_zero": true,
+    "single_result": true,
+    "terminal_success": true,
+    "valid_stream": true
+  },
+  "final_sha256": "84ec21f02cfa30edbfdd56cf18f562bc8919388f114a3fa1c9849c2c7220ce9c",
+  "phase": "delivery",
+  "reads": [
+    "SKILL.md",
+    "references/information-selection.md",
+    "references/task-route-cards.md",
+    "references/genre-playbook-request.md"
+  ],
+  "final_chars": 106,
+  "final_bytes_sha256": "84ec21f02cfa30edbfdd56cf18f562bc8919388f114a3fa1c9849c2c7220ce9c"
+}

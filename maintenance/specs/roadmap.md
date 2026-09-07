@@ -4,12 +4,16 @@
 
 ## 本轮分支候选
 
+- `WR-023b / IN_PROGRESS`：README之前的主线仍为增项申请首稿论证；R1–R10证据在研究提交3c441912，候选未准入。R11/R12新增6次真实首稿调用，5次技术有效、1次无效，仍有硬回退且两轮均未准入；需求保持开放，不以DOC-001完成替代。[需求](requirements.md#wr-023b-既有项目增项申请的首稿论证衔接)
+
 - `HK-002a / PARTIAL_V1.6.29_CLAUDE`：Claude Code 同稿接续与用户材料绑定已随v1.6.29发布，保留五版原型、八版报告、五版纪要的原生证据。旧措辞漏入及后续修复分别登记；进入门禁不等于原稿事实、长度全部正确。本轮有限能力已发布，其他宿主及多版质量仍待验证。
 - `CL-001-DEFAULT / PARTIAL_V1.6.29`：严格正文交付的包装清理、完整 JSON 围栏解析、清理后继续既有审查；两份固定真实 D0 的正文逐字保全。自然新变体与边界见[本轮记录](../tests/evidence/hook-quality-build-r1/result.md)，不改变原可选能力已发布状态。
 - `HK-010 / HOLD`：两个自然上限解析原型已撤回。原回复硬锚冲突使两路回退，分离正文后的唯一压缩调用超时；下一原子仍需从无包装真实 D0 完成压缩、验收、回显，10%容差单独验证。
 - `HK-002b / HOLD`：真实模型能局部删除无据主体/程序，原单次合同最终均保留 D0。下一原子先验证独立来源关系核验，再考虑接入，不能直接解除硬锚。原始失败与后续收窄均保留。
 
 ## DONE
+
+- `DOC-001 / DONE / NOT_MERGED / NOT_RELEASED`：包内README提供能力答复、功能示例及免费/MIT说明；SKILL区分能力与适用范围咨询、Hook问题和真实写稿，两份README互链。两路最终能力问答与R2读页迁移支持有限路由完成，早期漏读和真实申请质量风险保留；五套兼容镜像、107项相关检查及88文件清洁包通过，不替代 `WR-023b / IN_PROGRESS`。[结果](../tests/evidence/skill-package-readme/result.md)
 
 - `v1.6.29` 小版本已发布：Claude有限同稿接续与默认正文清理；产品tag `52d60597`，817项回归，GitHub公开、SkillHub 87文件和ClawHub无Hook 37文件各一次接受，传播/审核待核。[发布记录](../tests/evidence/release-1.6.29.md)
 - `v1.6.28` 小版本已发布：当前main已准入Hook修复和新闻完整事实日期，产品tag `1d705aea`；GitHub已公开，SkillHub 86文件 `versionId=291966`、ClawHub 37文件 `versionId=k97dh3rey9y8sjd39f94a7exk58dvsav`各一次接受，公开传播/审核尚待；806项全量和五套校验通过。[发布记录](../tests/evidence/release-1.6.28.md)

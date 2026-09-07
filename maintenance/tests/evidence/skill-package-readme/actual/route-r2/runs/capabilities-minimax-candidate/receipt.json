@@ -1,0 +1,37 @@
+{
+  "arm_id": "capabilities-minimax-candidate",
+  "case_id": "capabilities-minimax",
+  "provider": "minimax",
+  "model": "minimax-cn/MiniMax-M3",
+  "treatment": "candidate",
+  "effort": "max",
+  "timeout_seconds": 480,
+  "retry_count": 0,
+  "started_utc": "2026-09-07T09:50:42.998245+00:00",
+  "finished_utc": "2026-09-07T09:51:09.213918+00:00",
+  "duration_seconds": 26.216,
+  "return_code": 0,
+  "timed_out": false,
+  "technical_valid": true,
+  "checks": {
+    "api_key_source_none": true,
+    "entry_read": true,
+    "final_nonempty": true,
+    "model_bound": true,
+    "no_plugins": true,
+    "not_timed_out": true,
+    "read_scope": true,
+    "return_code_zero": true,
+    "single_result": true,
+    "terminal_success": true,
+    "valid_stream": true
+  },
+  "final_sha256": "21522e36a3c6634bb6d1a1207119f42131c558d58553e89c542579f4f8ce7945",
+  "phase": "route-r2",
+  "reads": [
+    "SKILL.md",
+    "README.md"
+  ],
+  "final_chars": 1024,
+  "final_bytes_sha256": "21522e36a3c6634bb6d1a1207119f42131c558d58553e89c542579f4f8ce7945"
+}

@@ -1,0 +1,37 @@
+{
+  "arm_id": "capabilities-alibaba2-candidate",
+  "case_id": "capabilities-alibaba2",
+  "provider": "alibaba2",
+  "model": "alibaba-token-plan-2/deepseek-v4-flash-0731",
+  "treatment": "candidate",
+  "effort": "max",
+  "timeout_seconds": 480,
+  "retry_count": 0,
+  "started_utc": "2026-09-07T09:50:42.998325+00:00",
+  "finished_utc": "2026-09-07T09:50:59.153580+00:00",
+  "duration_seconds": 16.155,
+  "return_code": 0,
+  "timed_out": false,
+  "technical_valid": true,
+  "checks": {
+    "api_key_source_none": true,
+    "entry_read": true,
+    "final_nonempty": true,
+    "model_bound": true,
+    "no_plugins": true,
+    "not_timed_out": true,
+    "read_scope": true,
+    "return_code_zero": true,
+    "single_result": true,
+    "terminal_success": true,
+    "valid_stream": true
+  },
+  "final_sha256": "0135f94242f3fdc9b3186175c07dc2f20a075d3353320e8b67c2386479338170",
+  "phase": "route-r2",
+  "reads": [
+    "SKILL.md",
+    "README.md"
+  ],
+  "final_chars": 842,
+  "final_bytes_sha256": "0135f94242f3fdc9b3186175c07dc2f20a075d3353320e8b67c2386479338170"
+}

@@ -1,0 +1,266 @@
+{
+  ".gitattributes": {
+    "bytes": 8,
+    "sha256": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da"
+  },
+  "delivery/manifest.json": {
+    "bytes": 14126,
+    "sha256": "2747c34f7a48d9609dc98e3a3180c336ed3a246c9f2cef57f16d5a98db97f3d2"
+  },
+  "delivery/prompts.json": {
+    "bytes": 580,
+    "sha256": "ce0c01411c97dc9748133d05a23c62d2c363616f29403e81503ceeb135669cd3"
+  },
+  "delivery/protocol.json": {
+    "bytes": 454,
+    "sha256": "f80ad51a069535d77ebb52a73af1fdeef5b356d064108f022074424cb53e810a"
+  },
+  "delivery/runs/capabilities-alibaba2-candidate/final.txt": {
+    "bytes": 2087,
+    "sha256": "662b22d70836fe2dc332f8e5ef81f625af127081ecc57f0fafc25e4100026b28"
+  },
+  "delivery/runs/capabilities-alibaba2-candidate/receipt.json": {
+    "bytes": 1060,
+    "sha256": "31b18985753cee24ee473a9e03f66892d6d03bfde87ff787267a27acf3acd361"
+  },
+  "delivery/runs/capabilities-minimax-candidate/final.txt": {
+    "bytes": 2731,
+    "sha256": "69142855bae5b1bc679221ce5de33ed6b2a6b48ccef72d336e0686b3cb19a10e"
+  },
+  "delivery/runs/capabilities-minimax-candidate/receipt.json": {
+    "bytes": 1036,
+    "sha256": "e95e1af815856c5e880e7c096f4ed774a70c9c41abc53f2af50a9c26eb3ebd20"
+  },
+  "delivery/runs/draft-instead-of-faq-alibaba2-baseline/final.txt": {
+    "bytes": 288,
+    "sha256": "84ec21f02cfa30edbfdd56cf18f562bc8919388f114a3fa1c9849c2c7220ce9c"
+  },
+  "delivery/runs/draft-instead-of-faq-alibaba2-baseline/receipt.json": {
+    "bytes": 1182,
+    "sha256": "48e9228ed86decfac1cbaaee7994963baa6d92e73d66f16bd0ab4642f0b9edc2"
+  },
+  "delivery/runs/draft-instead-of-faq-minimax-baseline/final.txt": {
+    "bytes": 352,
+    "sha256": "34935e6631c8f2212e5b76501cd197c8c6f82355ac075584f38030a48266656e"
+  },
+  "delivery/runs/draft-instead-of-faq-minimax-baseline/receipt.json": {
+    "bytes": 1119,
+    "sha256": "059d4c8572e7a275496c1027ef4b98b322f7480ea1ab79c0902d2aa3862b20a1"
+  },
+  "delivery/snapshot/hooks/README.md": {
+    "bytes": 14239,
+    "sha256": "46c6ad19952a5aa4b3adfcb52ce34e321647a6a0eeb44295e309f60120b79ca0"
+  },
+  "delivery/snapshot/README.md": {
+    "bytes": 4258,
+    "sha256": "942bf5e9f75db5be996db70778d798ad4ea3d6be43b0e5ba30e11e97b42013dd"
+  },
+  "delivery/snapshot/SKILL.md": {
+    "bytes": 27911,
+    "sha256": "64a414e5ee69eb6161658529e9807460c3c612eeb458bd81925cc2ad6b494e96"
+  },
+  "initial/manifest.json": {
+    "bytes": 14126,
+    "sha256": "d014c5257116c0ee55ecf0adb6a110ca3cad9a95555db452a80204c6a2036d35"
+  },
+  "initial/prompts.json": {
+    "bytes": 580,
+    "sha256": "4d311810f7179cf82f3cb934fda6097e85216407cdfbf24f2cefaf73ee31c6f6"
+  },
+  "initial/protocol.json": {
+    "bytes": 454,
+    "sha256": "f80ad51a069535d77ebb52a73af1fdeef5b356d064108f022074424cb53e810a"
+  },
+  "initial/runs/capabilities-alibaba2-candidate/final.txt": {
+    "bytes": 1947,
+    "sha256": "2501d995878c467a5ec923dba5b9ba087cefebf8514382b1d53169006d432366"
+  },
+  "initial/runs/capabilities-alibaba2-candidate/receipt.json": {
+    "bytes": 1059,
+    "sha256": "5b7e71ce98e5b4cdd6e26188c983223ded8f4949a63cc8cba1bfd425fb83bfb2"
+  },
+  "initial/runs/capabilities-minimax-candidate/final.txt": {
+    "bytes": 2183,
+    "sha256": "97008f1ceaab3fe1407ce0d02c92d287138c38bf9f2b1e6f6ef308f41ad7cbed"
+  },
+  "initial/runs/capabilities-minimax-candidate/receipt.json": {
+    "bytes": 1034,
+    "sha256": "5c77947d1772f90d9ada0858ec2ed6cd56b404553ddc89552b5e018654b370f4"
+  },
+  "initial/runs/draft-instead-of-faq-alibaba2-candidate/final.txt": {
+    "bytes": 304,
+    "sha256": "4ee75a11174ab0be8d4c65112bdcc7d84cf1f7a1bd162f7a24052208732f438c"
+  },
+  "initial/runs/draft-instead-of-faq-alibaba2-candidate/receipt.json": {
+    "bytes": 1145,
+    "sha256": "95933e9f91d26361af52a6b2300a05efe5789024f77d1f8e8e5882e9a24f2996"
+  },
+  "initial/runs/draft-instead-of-faq-minimax-candidate/final.txt": {
+    "bytes": 338,
+    "sha256": "ea5e76cb196e919d4d105661283ad1e2c11fb10cd1e93acea7aa340dc2b3355f"
+  },
+  "initial/runs/draft-instead-of-faq-minimax-candidate/receipt.json": {
+    "bytes": 1120,
+    "sha256": "d57c4fd9963cff21c816ef45475ad762e55af666914df7bdd9e69a29a17ae8d8"
+  },
+  "initial/runs/hook-help-alibaba2-candidate/final.txt": {
+    "bytes": 3066,
+    "sha256": "73e2c3b495793c5c18ac076e5563569b863aac2ee50d7caee9f8efcd1b5c7e10"
+  },
+  "initial/runs/hook-help-alibaba2-candidate/receipt.json": {
+    "bytes": 1060,
+    "sha256": "95ebcb90f404d1e1079f06da542f45ebcc78f8e5f68e4f3064bfbfded9f6e243"
+  },
+  "initial/runs/hook-help-minimax-candidate/final.txt": {
+    "bytes": 3500,
+    "sha256": "eb97e7f29d39d6ddc96a7bd0de1f052575cbed2c19237ca0e215b0629e44af4f"
+  },
+  "initial/runs/hook-help-minimax-candidate/receipt.json": {
+    "bytes": 1035,
+    "sha256": "9cbc0877acec228913162e4fa1b2c12e05f2ab2cd3113bfba171e5ec101fd0f1"
+  },
+  "initial/snapshot/hooks/README.md": {
+    "bytes": 14239,
+    "sha256": "46c6ad19952a5aa4b3adfcb52ce34e321647a6a0eeb44295e309f60120b79ca0"
+  },
+  "initial/snapshot/README.md": {
+    "bytes": 4959,
+    "sha256": "06e6635f060b0287c5de195c7657015938c9929023c216528c880a9e161dc236"
+  },
+  "initial/snapshot/SKILL.md": {
+    "bytes": 27732,
+    "sha256": "c560e7fbb96e7fd0151b1a260328f5b0099aa88890fad1a476eddc94a2698640"
+  },
+  "route-r2/manifest.json": {
+    "bytes": 14126,
+    "sha256": "54610b580ebb8f12ba89230b001bc503ac1eb2229acb7cd725b89ddabdaf6e25"
+  },
+  "route-r2/prompts.json": {
+    "bytes": 580,
+    "sha256": "ce0c01411c97dc9748133d05a23c62d2c363616f29403e81503ceeb135669cd3"
+  },
+  "route-r2/protocol.json": {
+    "bytes": 454,
+    "sha256": "f80ad51a069535d77ebb52a73af1fdeef5b356d064108f022074424cb53e810a"
+  },
+  "route-r2/runs/capabilities-alibaba2-candidate/final.txt": {
+    "bytes": 2150,
+    "sha256": "0135f94242f3fdc9b3186175c07dc2f20a075d3353320e8b67c2386479338170"
+  },
+  "route-r2/runs/capabilities-alibaba2-candidate/receipt.json": {
+    "bytes": 1060,
+    "sha256": "122f6b83888f4a9a866b21a3f47fa21f6e31d352c61c3bff8604172c690a20ba"
+  },
+  "route-r2/runs/capabilities-minimax-candidate/final.txt": {
+    "bytes": 2702,
+    "sha256": "21522e36a3c6634bb6d1a1207119f42131c558d58553e89c542579f4f8ce7945"
+  },
+  "route-r2/runs/capabilities-minimax-candidate/receipt.json": {
+    "bytes": 1036,
+    "sha256": "e12fb2e6e32a6abb2eb4745e8e8ad9232891145d1611ac8f43efa8ffe5cd494d"
+  },
+  "route-r2/runs/draft-instead-of-faq-alibaba2-candidate/final.txt": {
+    "bytes": 524,
+    "sha256": "f9802a98b05690ebd5c83b0c7ca1890637a4cf227da4523d58466a9f7a314867"
+  },
+  "route-r2/runs/draft-instead-of-faq-alibaba2-candidate/receipt.json": {
+    "bytes": 1184,
+    "sha256": "211b9c79bb77f1d0e9f8579fda7e73fd0f1bf23af3a606ccbc1448a3385106ec"
+  },
+  "route-r2/runs/draft-instead-of-faq-minimax-candidate/final.txt": {
+    "bytes": 334,
+    "sha256": "75c131cfba3f5b992d023db27b1c46bb0d706985ebb0847ecd525ddb423fbc38"
+  },
+  "route-r2/runs/draft-instead-of-faq-minimax-candidate/receipt.json": {
+    "bytes": 1166,
+    "sha256": "80457b5f111399a23513d3df7cbf8795607800853414b4bb0d59bcbcd1e4e5e2"
+  },
+  "route-r2/runs/hook-help-alibaba2-candidate/final.txt": {
+    "bytes": 2632,
+    "sha256": "8a410364556b17faa714223231bbbad04c3196c9a274910256955b60a07f279f"
+  },
+  "route-r2/runs/hook-help-alibaba2-candidate/receipt.json": {
+    "bytes": 1060,
+    "sha256": "32f04b845c494dd4ed2c5977ffb7a73f6a94592ba0d2e95cc04c81570de1c078"
+  },
+  "route-r2/runs/hook-help-minimax-candidate/final.txt": {
+    "bytes": 3967,
+    "sha256": "15b930001eb96b69c9b3484d914aee9a59f6a51be83eb8748ff5e4a66cd3b48f"
+  },
+  "route-r2/runs/hook-help-minimax-candidate/receipt.json": {
+    "bytes": 1036,
+    "sha256": "1a4bcb9f2c1e7eb408225e8821119710f76b2d5979cd915523e3db8a2a9c8cf1"
+  },
+  "route-r2/snapshot/hooks/README.md": {
+    "bytes": 14239,
+    "sha256": "46c6ad19952a5aa4b3adfcb52ce34e321647a6a0eeb44295e309f60120b79ca0"
+  },
+  "route-r2/snapshot/README.md": {
+    "bytes": 4995,
+    "sha256": "36759d8bdafbbbf41c7487f9951e9952cdec79c04fd6ec377182c5165086fc00"
+  },
+  "route-r2/snapshot/SKILL.md": {
+    "bytes": 27911,
+    "sha256": "64a414e5ee69eb6161658529e9807460c3c612eeb458bd81925cc2ad6b494e96"
+  },
+  "summary.json": {
+    "bytes": 1738,
+    "sha256": "f6c7c18db26d15135dc5ace9b938261846885c80fba1d2a7e54a697ba41901ac"
+  },
+  "wording/manifest.json": {
+    "bytes": 14126,
+    "sha256": "9fb8b4fa0579df57e84c4ae2cfc521134c1c79c0ae2372a7a8ce8a1d35ee84a1"
+  },
+  "wording/prompts.json": {
+    "bytes": 580,
+    "sha256": "ce0c01411c97dc9748133d05a23c62d2c363616f29403e81503ceeb135669cd3"
+  },
+  "wording/protocol.json": {
+    "bytes": 454,
+    "sha256": "f80ad51a069535d77ebb52a73af1fdeef5b356d064108f022074424cb53e810a"
+  },
+  "wording/runs/capabilities-alibaba2-candidate/final.txt": {
+    "bytes": 1933,
+    "sha256": "4222332657485fb1f8b973dfb98c2c8839046e6a69078ad8b45027e32ce1650a"
+  },
+  "wording/runs/capabilities-alibaba2-candidate/receipt.json": {
+    "bytes": 1059,
+    "sha256": "5216b487559ea9e557a70133fc05644acb6085aa060c5108f0abcbbff9473745"
+  },
+  "wording/runs/capabilities-minimax-candidate/final.txt": {
+    "bytes": 2635,
+    "sha256": "120e9298f8f6f29dbc0e563dcd2bd31a481d9cedb1e78f64dd65be6a0888d10f"
+  },
+  "wording/runs/capabilities-minimax-candidate/receipt.json": {
+    "bytes": 1018,
+    "sha256": "ff70b3b4688f11b7b191863668ddb60d9d1cdf53e8132c44592bc3771d948808"
+  },
+  "wording/runs/draft-instead-of-faq-alibaba2-candidate/final.txt": {
+    "bytes": 271,
+    "sha256": "cda27a73e1c756900ec4af0d84b7963e497f384ad44243e53be7d9ed6afb8545"
+  },
+  "wording/runs/draft-instead-of-faq-alibaba2-candidate/receipt.json": {
+    "bytes": 1144,
+    "sha256": "e0d8dfa638d9e803a8e6e8a9e288ec66fd63092c92480b2cfb28995805b742cb"
+  },
+  "wording/runs/draft-instead-of-faq-minimax-candidate/final.txt": {
+    "bytes": 391,
+    "sha256": "abd9cde57edcb9d12f3e906457aec692ad12cd38e372bfa7516ef120ed6bb7ea"
+  },
+  "wording/runs/draft-instead-of-faq-minimax-candidate/receipt.json": {
+    "bytes": 1120,
+    "sha256": "54d0e1afc408eafb08f2de0c587b2f53b4db5e4f16e44e87a073937ae865994d"
+  },
+  "wording/snapshot/hooks/README.md": {
+    "bytes": 14239,
+    "sha256": "46c6ad19952a5aa4b3adfcb52ce34e321647a6a0eeb44295e309f60120b79ca0"
+  },
+  "wording/snapshot/README.md": {
+    "bytes": 4995,
+    "sha256": "36759d8bdafbbbf41c7487f9951e9952cdec79c04fd6ec377182c5165086fc00"
+  },
+  "wording/snapshot/SKILL.md": {
+    "bytes": 27732,
+    "sha256": "c560e7fbb96e7fd0151b1a260328f5b0099aa88890fad1a476eddc94a2698640"
+  }
+}

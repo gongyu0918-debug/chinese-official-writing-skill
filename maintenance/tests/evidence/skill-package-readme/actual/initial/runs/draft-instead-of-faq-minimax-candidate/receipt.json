@@ -1,0 +1,38 @@
+{
+  "arm_id": "draft-instead-of-faq-minimax-candidate",
+  "case_id": "draft-instead-of-faq-minimax",
+  "provider": "minimax",
+  "model": "minimax-cn/MiniMax-M3",
+  "treatment": "candidate",
+  "effort": "max",
+  "timeout_seconds": 480,
+  "retry_count": 0,
+  "started_utc": "2026-09-07T09:46:41.341602+00:00",
+  "finished_utc": "2026-09-07T09:47:00.118422+00:00",
+  "duration_seconds": 18.777,
+  "return_code": 0,
+  "timed_out": false,
+  "technical_valid": true,
+  "checks": {
+    "api_key_source_none": true,
+    "entry_read": true,
+    "final_nonempty": true,
+    "model_bound": true,
+    "no_plugins": true,
+    "not_timed_out": true,
+    "read_scope": true,
+    "return_code_zero": true,
+    "single_result": true,
+    "terminal_success": true,
+    "valid_stream": true
+  },
+  "final_sha256": "ea5e76cb196e919d4d105661283ad1e2c11fb10cd1e93acea7aa340dc2b3355f",
+  "phase": "initial",
+  "reads": [
+    "SKILL.md",
+    "references/genre-playbook-request.md",
+    "references/information-selection.md"
+  ],
+  "final_chars": 120,
+  "final_bytes_sha256": "ea5e76cb196e919d4d105661283ad1e2c11fb10cd1e93acea7aa340dc2b3355f"
+}

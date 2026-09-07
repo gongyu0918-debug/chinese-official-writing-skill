@@ -1,0 +1,50 @@
+{
+  "attempts": 20,
+  "api_valid": 20,
+  "candidate_calls": 18,
+  "baseline_calls": 2,
+  "selected_capability_phase": "delivery",
+  "selected_hook_and_draft_phase": "route-r2",
+  "migrated_read_sets": [
+    {
+      "arm_id": "draft-instead-of-faq-alibaba2-candidate",
+      "read_files": [
+        "SKILL.md",
+        "references/information-selection.md",
+        "references/genre-playbook-request.md",
+        "references/task-route-cards.md"
+      ],
+      "read_file_hashes_match_final": true
+    },
+    {
+      "arm_id": "draft-instead-of-faq-minimax-candidate",
+      "read_files": [
+        "SKILL.md",
+        "references/genre-playbook-request.md",
+        "references/information-selection.md",
+        "references/short-draft-naturalness.md"
+      ],
+      "read_file_hashes_match_final": true
+    },
+    {
+      "arm_id": "hook-help-alibaba2-candidate",
+      "read_files": [
+        "SKILL.md",
+        "hooks/README.md"
+      ],
+      "read_file_hashes_match_final": true
+    },
+    {
+      "arm_id": "hook-help-minimax-candidate",
+      "read_files": [
+        "SKILL.md",
+        "hooks/README.md"
+      ],
+      "read_file_hashes_match_final": true
+    }
+  ],
+  "post_test_editorial_delta": "Only the explicitly supplied free Skill page hyperlink was added; no route, feature, instruction, or example change.",
+  "current_readme_sha256": "69de332a0a8d128acebad1b2d6a138a29fd87ad8cabc10d6e446419cd8c01654",
+  "failed_route_attempt": "wording/capabilities-minimax-candidate: did not read README and added required-input table and blank placeholders advice",
+  "draft_quality": "Routing succeeded. Body-only wrappers and unprovided details remain in both baseline/candidate samples; do not claim writing quality solved."
+}

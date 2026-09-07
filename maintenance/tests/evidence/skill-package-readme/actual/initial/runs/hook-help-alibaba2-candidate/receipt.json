@@ -1,0 +1,37 @@
+{
+  "arm_id": "hook-help-alibaba2-candidate",
+  "case_id": "hook-help-alibaba2",
+  "provider": "alibaba2",
+  "model": "alibaba-token-plan-2/deepseek-v4-flash-0731",
+  "treatment": "candidate",
+  "effort": "max",
+  "timeout_seconds": 480,
+  "retry_count": 0,
+  "started_utc": "2026-09-07T09:45:29.712140+00:00",
+  "finished_utc": "2026-09-07T09:45:50.559753+00:00",
+  "duration_seconds": 20.848,
+  "return_code": 0,
+  "timed_out": false,
+  "technical_valid": true,
+  "checks": {
+    "api_key_source_none": true,
+    "entry_read": true,
+    "final_nonempty": true,
+    "model_bound": true,
+    "no_plugins": true,
+    "not_timed_out": true,
+    "read_scope": true,
+    "return_code_zero": true,
+    "single_result": true,
+    "terminal_success": true,
+    "valid_stream": true
+  },
+  "final_sha256": "73e2c3b495793c5c18ac076e5563569b863aac2ee50d7caee9f8efcd1b5c7e10",
+  "phase": "initial",
+  "reads": [
+    "SKILL.md",
+    "hooks/README.md"
+  ],
+  "final_chars": 1490,
+  "final_bytes_sha256": "73e2c3b495793c5c18ac076e5563569b863aac2ee50d7caee9f8efcd1b5c7e10"
+}

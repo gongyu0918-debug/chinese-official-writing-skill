@@ -117,7 +117,8 @@ class SkillBoundaryTests(unittest.TestCase):
         }
         self.assertEqual(set(relative_files(package_root)), expected_files)
         self.assertEqual((package_root / "LICENSE").read_bytes(), (ROOT / "LICENSE").read_bytes())
-        for forbidden in OPTIONAL_GATE_FILES | {"agents/openai.yaml", "README.md"}:
+        self.assertEqual((package_root / "README.md").read_bytes(), (CANONICAL / "README.md").read_bytes())
+        for forbidden in OPTIONAL_GATE_FILES | {"agents/openai.yaml"}:
             self.assertFalse((package_root / forbidden).exists(), forbidden)
 
         sync_script = (ROOT / "maintenance" / "tools" / "sync_adapters.py").read_text(encoding="utf-8")

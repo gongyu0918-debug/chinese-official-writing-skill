@@ -1,0 +1,37 @@
+{
+  "arm_id": "hook-help-minimax-candidate",
+  "case_id": "hook-help-minimax",
+  "provider": "minimax",
+  "model": "minimax-cn/MiniMax-M3",
+  "treatment": "candidate",
+  "effort": "max",
+  "timeout_seconds": 480,
+  "retry_count": 0,
+  "started_utc": "2026-09-07T09:45:29.815310+00:00",
+  "finished_utc": "2026-09-07T09:45:42.693136+00:00",
+  "duration_seconds": 12.878,
+  "return_code": 0,
+  "timed_out": false,
+  "technical_valid": true,
+  "checks": {
+    "api_key_source_none": true,
+    "entry_read": true,
+    "final_nonempty": true,
+    "model_bound": true,
+    "no_plugins": true,
+    "not_timed_out": true,
+    "read_scope": true,
+    "return_code_zero": true,
+    "single_result": true,
+    "terminal_success": true,
+    "valid_stream": true
+  },
+  "final_sha256": "eb97e7f29d39d6ddc96a7bd0de1f052575cbed2c19237ca0e215b0629e44af4f",
+  "phase": "initial",
+  "reads": [
+    "SKILL.md",
+    "hooks/README.md"
+  ],
+  "final_chars": 1702,
+  "final_bytes_sha256": "eb97e7f29d39d6ddc96a7bd0de1f052575cbed2c19237ca0e215b0629e44af4f"
+}
