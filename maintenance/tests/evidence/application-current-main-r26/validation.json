@@ -6,7 +6,7 @@
   "branch": "codex/application-current-main-r26",
   "last_release_tag": "v1.6.29",
   "release_tag_is_baseline_ancestor": true,
-  "decision": "SELECTED_ROUTE_READY_TO_MERGE",
+  "decision": "R26_SELECTED_ROUTE_MERGED_LOCAL_NOT_RELEASED",
   "writing": {
     "command": "python -B -X utf8 maintenance/tests/evidence/application-current-main-r26/run_real.py suite",
     "models": {
@@ -127,5 +127,16 @@
     "No new Hook-on or multi-version lifecycle validation",
     "No current pure-new third arm; historical R23/R24 comparison retained"
   ],
-  "local_installation": "Not changed in this task per user clarification; real writing already ran through isolated Claude Code CLI sessions."
+  "local_installation": "Not changed in this task per user clarification; real writing already ran through isolated Claude Code CLI sessions.",
+  "integration": {
+    "product_commit": "362dc826203bad108b587232405f1f359b14bcb1",
+    "previous_main": "2fe748fb5c4e11e3cb890e260f402fdbb380ed5d",
+    "command": "git merge --ff-only --no-stat codex/application-current-main-r26",
+    "result": "PASS",
+    "main_clean_after_product_merge": true,
+    "product_and_tests_unchanged_by_docs_only_rebase": true,
+    "initial_attempt": "Transient concurrent index.lock; retained lock and retried only after it disappeared; no cleanup/reset used.",
+    "pushed": false,
+    "released": false
+  }
 }

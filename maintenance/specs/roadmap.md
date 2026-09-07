@@ -4,7 +4,7 @@
 
 ## 本轮分支候选
 
-- `WR-023b / IN_PROGRESS / R26_SELECTED_ROUTE / READY_TO_MERGE`：[R26结果](../tests/evidence/application-current-main-r26/result.md)补回R23/R24取舍与当前main复验，选定精简混合路线。12次真实写稿完成，11次范围合格、1次路径差错保留；五组成对混合2/旧2/平1，加载有收益，未宣称整体正确率提高。镜像与817项回归通过；具体事实、多版改稿与Hook校正保持开放。
+- `WR-023b / IN_PROGRESS / R26_SELECTED_ROUTE / MERGED_LOCAL / NOT_RELEASED`：[R26结果](../tests/evidence/application-current-main-r26/result.md)补回R23/R24取舍与当前main复验，选定精简混合路线。12次真实写稿完成，11次范围合格、1次路径差错保留；五组成对混合2/旧2/平1，加载有收益，未宣称整体正确率提高。镜像与817项回归通过；具体事实、多版改稿与Hook校正保持开放。
 
 - `HK-002a / PARTIAL_V1.6.29_CLAUDE`：Claude Code 同稿接续与用户材料绑定已随v1.6.29发布，保留五版原型、八版报告、五版纪要的原生证据。旧措辞漏入及后续修复分别登记；进入门禁不等于原稿事实、长度全部正确。本轮有限能力已发布，其他宿主及多版质量仍待验证。
 - `CL-001-DEFAULT / PARTIAL_V1.6.29`：严格正文交付的包装清理、完整 JSON 围栏解析、清理后继续既有审查；两份固定真实 D0 的正文逐字保全。自然新变体与边界见[本轮记录](../tests/evidence/hook-quality-build-r1/result.md)，不改变原可选能力已发布状态。
