@@ -1,0 +1,66 @@
+[
+  {
+    "packet": "blind-r13-minimax",
+    "mapping": {
+      "A": "candidate",
+      "B": "baseline"
+    },
+    "inputs": [
+      {
+        "name": "A-document.txt",
+        "sha256": "31eef19fe0dd4f21c2b5459467c47cf677a61d66de7f95259abb2a4f131f1e80"
+      },
+      {
+        "name": "A-final.txt",
+        "sha256": "37eaead0ea1aa4999c4c8b6632d7c46705f4974b96d28c5cfb800d4a017415d2"
+      },
+      {
+        "name": "B-document.txt",
+        "sha256": "f703384d70a30d51116aba32ba5d254c5ad0442345ab233bc743ac2c21821d7c"
+      },
+      {
+        "name": "B-final.txt",
+        "sha256": "00abf412b26a44b84a745f7f94fde0431bb7ee3d7edce7e7a5bce8bc459640fa"
+      },
+      {
+        "name": "request.txt",
+        "sha256": "010a7e68e4bd91fb72c52b34e02a0044f80eb958276213bfedfe34a87f303881"
+      }
+    ],
+    "allowed_inputs_only_declared_by_reviewer": true,
+    "review_notes": "result.md: 全稿质量与归因 / R16；主代理复核，不以裁判意见覆盖事实边界。",
+    "original_review": "review-r13-minimax.md"
+  },
+  {
+    "packet": "blind-r16-alibaba",
+    "mapping": {
+      "A": "baseline",
+      "B": "candidate-r16"
+    },
+    "inputs": [
+      {
+        "name": "A-document.txt",
+        "sha256": "2262b96712c3f656037a069c3b8bea70502aad57cdd42edfab12e2a8a9b06b83"
+      },
+      {
+        "name": "A-final.txt",
+        "sha256": "be991022003f69df73fe8048475d0d00894e3df9731380c6d00bbb4527c109cd"
+      },
+      {
+        "name": "B-document.txt",
+        "sha256": "85f527a3203460183b0dd9a3deb4e0c1e34fb6400f3f162c9af3869f5603253b"
+      },
+      {
+        "name": "B-final.txt",
+        "sha256": "90971db863f5d8ed8c2a5ee3fcdac6d9f1185acd5778376c0bba5d7437b49148"
+      },
+      {
+        "name": "request.txt",
+        "sha256": "010a7e68e4bd91fb72c52b34e02a0044f80eb958276213bfedfe34a87f303881"
+      }
+    ],
+    "allowed_inputs_only_declared_by_reviewer": true,
+    "review_notes": "result.md: 全稿质量与归因 / R16；主代理复核，不以裁判意见覆盖事实边界。",
+    "original_review": "review-r16-alibaba.md"
+  }
+]

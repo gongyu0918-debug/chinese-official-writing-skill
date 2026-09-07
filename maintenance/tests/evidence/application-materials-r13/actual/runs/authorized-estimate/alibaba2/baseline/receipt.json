@@ -1,0 +1,157 @@
+{
+  "arm": "baseline",
+  "provider": "alibaba2",
+  "model": "alibaba-token-plan-2/deepseek-v4-flash-0731",
+  "case": "authorized-estimate",
+  "session": "de3e98f3-4bfb-4892-a71a-4b7f124d1888",
+  "technical_valid": true,
+  "return_code": 0,
+  "failure": null,
+  "seconds": 133.92,
+  "client_tools": "Read,Skill,Write,Edit,Bash",
+  "explicit_entry": true,
+  "frozen_unchanged": true,
+  "final_chars": 500,
+  "init_models": [
+    "alibaba-token-plan-2/deepseek-v4-flash-0731"
+  ],
+  "assistant_models": [
+    "alibaba-token-plan-2/deepseek-v4-flash-0731"
+  ],
+  "usage_models": [
+    "alibaba-token-plan-2/deepseek-v4-flash-0731"
+  ],
+  "result_count": 1,
+  "result_subtypes": [
+    "success"
+  ],
+  "result_errors": [
+    false
+  ],
+  "final_path": "runs/authorized-estimate/alibaba2/baseline/final.txt",
+  "final_sha256": "c4476fd9f6dc064fcfe477514135eb4cc68c6d1f0a0f7c2a1cf1f17f1e8e370b",
+  "source_final_sha256": "c4476fd9f6dc064fcfe477514135eb4cc68c6d1f0a0f7c2a1cf1f17f1e8e370b",
+  "source_final_logical_sha256": "bfcc46025eeb6f4353b143b7b6a3ce03cb86e122b52cd67b172e816d3c982e29",
+  "final_redaction": {
+    "replacement_count": 0,
+    "replacement": "<isolated-work>",
+    "scope": "Only this lane approved runtime/work prefix; slash variants accepted.",
+    "source_unchanged": true,
+    "archive_is_original_bytes": true
+  },
+  "hook_enabled": false,
+  "timeout_seconds": 480,
+  "automatic_retries": 0,
+  "effort": "max",
+  "invalid_json_line_count": 0,
+  "reads": [
+    "SKILL.md",
+    "references/information-selection.md",
+    "references/genre-playbook-request.md"
+  ],
+  "tool_evidence": [
+    {
+      "sequence": 1,
+      "id": "call_2fde07f79a194ff1a7facc43",
+      "name": "Read",
+      "result": {
+        "observed": true,
+        "is_error_field": null,
+        "content_bytes": 28638,
+        "content_sha256": "e10a5704b01f726deed97e97ccda306b4e0bcddaf253201c94b2482028892f98",
+        "skill_launch_acknowledgement": null
+      },
+      "scope": "package",
+      "package_path": "SKILL.md",
+      "frozen_file_sha256": "64a414e5ee69eb6161658529e9807460c3c612eeb458bd81925cc2ad6b494e96",
+      "read_success_observed": true
+    },
+    {
+      "sequence": 2,
+      "id": "call_12818ba064af40a0939b32ff",
+      "name": "Read",
+      "result": {
+        "observed": true,
+        "is_error_field": null,
+        "content_bytes": 4054,
+        "content_sha256": "d2b4eea1af80a15a60a3f07e9fe52bb890cf40e43a488a06a8254a7a538dd1fe",
+        "skill_launch_acknowledgement": null
+      },
+      "scope": "package",
+      "package_path": "references/information-selection.md",
+      "frozen_file_sha256": "188c9def1553cb01423f5214ebaee6f122c3157aac39b60f54077d78df97d595",
+      "read_success_observed": true
+    },
+    {
+      "sequence": 3,
+      "id": "call_3f604b0b7d544f6badea78a2",
+      "name": "Read",
+      "result": {
+        "observed": true,
+        "is_error_field": null,
+        "content_bytes": 3633,
+        "content_sha256": "07d7e667ad79b4f4df72d59744302ed4e126f984beeb65b3026e1922f9b59e35",
+        "skill_launch_acknowledgement": null
+      },
+      "scope": "package",
+      "package_path": "references/genre-playbook-request.md",
+      "frozen_file_sha256": "458a3353b9254256cf6302cae738a5372964328cb3bbf9cf78bab97550b62b88",
+      "read_success_observed": true
+    },
+    {
+      "sequence": 4,
+      "id": "call_6090c1369d634da1a3bd187a",
+      "name": "Bash",
+      "result": {
+        "observed": true,
+        "is_error_field": false,
+        "content_bytes": 98,
+        "content_sha256": "b80ad00af5b006fa4e3479e503e8d652f47de778c72fedd8fa0c07a1b25595de",
+        "skill_launch_acknowledgement": null
+      },
+      "command_sha256": "dc5392b69241fe58c608bf7f9b3bb9229713e529e9ec341f9deb3c32dd78ffc4",
+      "arguments_omitted": true
+    },
+    {
+      "sequence": 5,
+      "id": "call_a26f1a108ab94e99b7b68aa0",
+      "name": "Write",
+      "result": {
+        "observed": true,
+        "is_error_field": null,
+        "content_bytes": 358,
+        "content_sha256": "cfeeedab74232b709037b1561b2a3b0bb24a04fb0af15a491275ec6ff5af65ba",
+        "skill_launch_acknowledgement": null
+      },
+      "scope": "work",
+      "work_relative_path": "内部工具处理进度查询功能-开发工具经费申请（估算）.md",
+      "archive_path": "runs/authorized-estimate/alibaba2/baseline/document-1.txt",
+      "content_sha256": "58ce74870f74536ad8f87d0f9130cf460b666d8c05426f299338e280908fbb13"
+    }
+  ],
+  "documents": [
+    {
+      "work_relative_path": "内部工具处理进度查询功能-开发工具经费申请（估算）.md",
+      "archive_path": "runs/authorized-estimate/alibaba2/baseline/document-1.txt",
+      "sha256": "58ce74870f74536ad8f87d0f9130cf460b666d8c05426f299338e280908fbb13",
+      "bytes": 1054,
+      "file_state": "last_on_disk_artifact",
+      "delivery_state": "completed_run_artifact_quality_unreviewed",
+      "read_sequences": [],
+      "write_sequences": [
+        5
+      ],
+      "edit_sequences": []
+    }
+  ],
+  "helper_sha256": "452d3f5ac8df257fbd220d7585ce0aef3dd0475a76a51181de77e0f729f0a6ab",
+  "prompt_path": "prompts/authorized-estimate.txt",
+  "omissions": [
+    "raw stream",
+    "runtime",
+    "provider state",
+    "original argv",
+    "absolute paths",
+    "shell arguments and stdout"
+  ]
+}

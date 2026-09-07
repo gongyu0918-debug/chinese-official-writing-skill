@@ -1,0 +1,277 @@
+{
+  "arm": "candidate-r15",
+  "provider": "minimax",
+  "model": "minimax-cn/MiniMax-M3",
+  "case": "first-draft",
+  "session": "c46be539-1428-45b5-89ef-eb94c36cdedc",
+  "technical_valid": true,
+  "return_code": 0,
+  "failure": null,
+  "seconds": 93.96,
+  "client_tools": "Read,Skill,Write,Edit,Bash",
+  "explicit_entry": true,
+  "frozen_unchanged": true,
+  "final_chars": 1220,
+  "init_models": [
+    "minimax-cn/MiniMax-M3"
+  ],
+  "assistant_models": [
+    "minimax-cn/MiniMax-M3"
+  ],
+  "usage_models": [
+    "minimax-cn/MiniMax-M3"
+  ],
+  "result_count": 1,
+  "result_subtypes": [
+    "success"
+  ],
+  "result_errors": [
+    false
+  ],
+  "final_path": "runs/first-draft/minimax/candidate-r15/final.txt",
+  "final_sha256": "fd80f413437a362130cbf2b640a907bf2291ea1bbb8532e4f5ad8acc98f8d029",
+  "source_final_sha256": "56a2e2df10bd1caec40e15592a4159b961340a9e47f8efc7f6eae73deccb03c0",
+  "source_final_logical_sha256": "98f72508d8583406c8597d5e69f479f01c9fbce0056dfd9e794b3f6188893242",
+  "final_redaction": {
+    "replacement_count": 1,
+    "replacement": "<isolated-work>",
+    "scope": "Only this lane approved runtime/work prefix; slash variants accepted.",
+    "source_unchanged": true,
+    "archive_is_original_bytes": false
+  },
+  "hook_enabled": false,
+  "timeout_seconds": 480,
+  "automatic_retries": 0,
+  "effort": "max",
+  "invalid_json_line_count": 0,
+  "reads": [
+    "references/information-selection.md",
+    "references/genre-playbook-request.md",
+    "references/handling-elements.md",
+    "references/argument-chains.md",
+    "references/formal-addressing.md",
+    "references/official-style.md",
+    "references/anti-ai-patterns.md",
+    "references/proofreading-checklist.md"
+  ],
+  "tool_evidence": [
+    {
+      "sequence": 1,
+      "id": "chatcmpl-tool-814a480091646ae0",
+      "name": "Skill",
+      "result": {
+        "observed": true,
+        "is_error_field": null,
+        "content_bytes": 65,
+        "content_sha256": "2208255ee679ba4f9d37caea5978009b3ee3459ba286dd41d1e923554c8abad8",
+        "skill_launch_acknowledgement": "official-writing-eval:chinese-official-writing"
+      },
+      "skill_name": "official-writing-eval:chinese-official-writing",
+      "launch_success_observed": true,
+      "response_visibility": "launch_acknowledgement_only_no_skill_body"
+    },
+    {
+      "sequence": 2,
+      "id": "chatcmpl-tool-9485f7be81b9e7d2",
+      "name": "Read",
+      "result": {
+        "observed": true,
+        "is_error_field": null,
+        "content_bytes": 4054,
+        "content_sha256": "d2b4eea1af80a15a60a3f07e9fe52bb890cf40e43a488a06a8254a7a538dd1fe",
+        "skill_launch_acknowledgement": null
+      },
+      "scope": "package",
+      "package_path": "references/information-selection.md",
+      "frozen_file_sha256": "188c9def1553cb01423f5214ebaee6f122c3157aac39b60f54077d78df97d595",
+      "read_success_observed": true
+    },
+    {
+      "sequence": 3,
+      "id": "chatcmpl-tool-ac69c1d8c48e0860",
+      "name": "Read",
+      "result": {
+        "observed": true,
+        "is_error_field": null,
+        "content_bytes": 3633,
+        "content_sha256": "07d7e667ad79b4f4df72d59744302ed4e126f984beeb65b3026e1922f9b59e35",
+        "skill_launch_acknowledgement": null
+      },
+      "scope": "package",
+      "package_path": "references/genre-playbook-request.md",
+      "frozen_file_sha256": "458a3353b9254256cf6302cae738a5372964328cb3bbf9cf78bab97550b62b88",
+      "read_success_observed": true
+    },
+    {
+      "sequence": 4,
+      "id": "chatcmpl-tool-94465b9cb0bf2477",
+      "name": "Read",
+      "result": {
+        "observed": true,
+        "is_error_field": null,
+        "content_bytes": 8410,
+        "content_sha256": "2373bc5039d28db2e53cccb7e76113ca106d22fdac48f2d4a27dcbb8e636bc03",
+        "skill_launch_acknowledgement": null
+      },
+      "scope": "package",
+      "package_path": "references/handling-elements.md",
+      "frozen_file_sha256": "e652dac11d5fec9458cc6bb63d41e884e206b359dfe6776731016b7c7a8e7fa4",
+      "read_success_observed": true
+    },
+    {
+      "sequence": 5,
+      "id": "chatcmpl-tool-a385dcae3eb31bd8",
+      "name": "Read",
+      "result": {
+        "observed": true,
+        "is_error_field": null,
+        "content_bytes": 5090,
+        "content_sha256": "d91cf242a46146d3271009fb2fabacbedb134faa3a58536283c36b69d947734d",
+        "skill_launch_acknowledgement": null
+      },
+      "scope": "package",
+      "package_path": "references/argument-chains.md",
+      "frozen_file_sha256": "dbe855c11eba2c35726aa383101a7c3a7d13c93226a6c98e2f7bc221d29209bf",
+      "read_success_observed": true
+    },
+    {
+      "sequence": 6,
+      "id": "chatcmpl-tool-a6d0ef12d614e21f",
+      "name": "Read",
+      "result": {
+        "observed": true,
+        "is_error_field": null,
+        "content_bytes": 3629,
+        "content_sha256": "53bd7cf7f0b4fbd2dc2304a6d75a4ea81abb16ed63e4187676c9bef9eadc60f6",
+        "skill_launch_acknowledgement": null
+      },
+      "scope": "package",
+      "package_path": "references/formal-addressing.md",
+      "frozen_file_sha256": "4fe40b280d3f09faac845bc23526aa2a62633da7fb6f22e57d61f572d3291a96",
+      "read_success_observed": true
+    },
+    {
+      "sequence": 7,
+      "id": "chatcmpl-tool-9eea9f6c84ab1245",
+      "name": "Read",
+      "result": {
+        "observed": true,
+        "is_error_field": null,
+        "content_bytes": 6500,
+        "content_sha256": "fb2f2d445b02064075e4a188810fe916bab16b578d278c01ab0b14ab64e6794f",
+        "skill_launch_acknowledgement": null
+      },
+      "scope": "package",
+      "package_path": "references/official-style.md",
+      "frozen_file_sha256": "82b97cc58bca9fce3f81c79ece4a5804d17a1869a5bbd3f6de191612440d505a",
+      "read_success_observed": true
+    },
+    {
+      "sequence": 8,
+      "id": "chatcmpl-tool-ba0275d5438b50c0",
+      "name": "Read",
+      "result": {
+        "observed": true,
+        "is_error_field": null,
+        "content_bytes": 15041,
+        "content_sha256": "30b5e73d21be16753fbb5a4fde30e8accf79cd2b9746124413f5791ef20e0adf",
+        "skill_launch_acknowledgement": null
+      },
+      "scope": "package",
+      "package_path": "references/anti-ai-patterns.md",
+      "frozen_file_sha256": "c77202b6685b57bef8ae98499c05e1e21427fce90c56a18adba0472da07e4f2f",
+      "read_success_observed": true
+    },
+    {
+      "sequence": 9,
+      "id": "chatcmpl-tool-a27c235d1dbb144d",
+      "name": "Read",
+      "result": {
+        "observed": true,
+        "is_error_field": null,
+        "content_bytes": 3980,
+        "content_sha256": "2609504659ce8f388adac655ae04ffa3111392456ba96f60ae080673612c3600",
+        "skill_launch_acknowledgement": null
+      },
+      "scope": "package",
+      "package_path": "references/proofreading-checklist.md",
+      "frozen_file_sha256": "aa56802a0e984aadb1deed4603181fc85b237b8c534ae0973e3c9d9413d859d2",
+      "read_success_observed": true
+    },
+    {
+      "sequence": 10,
+      "id": "chatcmpl-tool-83ed4b810cadcb8b",
+      "name": "Bash",
+      "result": {
+        "observed": true,
+        "is_error_field": false,
+        "content_bytes": 33,
+        "content_sha256": "9cef1004a72776b0430d10e19df35f56eb801506643c5b3369e1ea996d106a80",
+        "skill_launch_acknowledgement": null
+      },
+      "command_sha256": "5ffb7ea48d0d89eaddda8f55192783e3d9d2b5b72f0d9dc4465966c8a757081a",
+      "arguments_omitted": true
+    },
+    {
+      "sequence": 11,
+      "id": "chatcmpl-tool-b9a94d21eefc2bde",
+      "name": "Write",
+      "result": {
+        "observed": true,
+        "is_error_field": null,
+        "content_bytes": 323,
+        "content_sha256": "33cab59302bda4cd0b0c38d4a5154d1bbfd9102e1af5c500a48f74285dd8d7c4",
+        "skill_launch_acknowledgement": null
+      },
+      "scope": "work",
+      "work_relative_path": "立项申请_版慎通公文AI写作功能.md",
+      "archive_path": "runs/first-draft/minimax/candidate-r15/document-1.txt",
+      "content_sha256": "1628c18f40f6e41be818d67d641184de7d1c7db484b42f5355d96be7ad413631"
+    },
+    {
+      "sequence": 12,
+      "id": "chatcmpl-tool-9092a59e13154894",
+      "name": "Edit",
+      "result": {
+        "observed": true,
+        "is_error_field": null,
+        "content_bytes": 333,
+        "content_sha256": "f71bdbbbb5beb66920d50d70eb395e3d1947091b63dc4f73cbcbbac0e1a07979",
+        "skill_launch_acknowledgement": null
+      },
+      "scope": "work",
+      "work_relative_path": "立项申请_版慎通公文AI写作功能.md",
+      "archive_path": "runs/first-draft/minimax/candidate-r15/document-1.txt",
+      "replace_all": false,
+      "old_string_sha256": "50957b75e7e46cb27a1a3468a7eb1ea5d5d6a7c5e609b63999413d0e3c223839",
+      "new_string_sha256": "2ac2af7f317fda4c3652b3c804e10e03be5f7a0615a11e23d342f989d15825fb"
+    }
+  ],
+  "documents": [
+    {
+      "work_relative_path": "立项申请_版慎通公文AI写作功能.md",
+      "archive_path": "runs/first-draft/minimax/candidate-r15/document-1.txt",
+      "sha256": "0c81e52015d08e0b973f2a6f65f8c456fe190467de55578b54829ddd9c1cdc9b",
+      "bytes": 8330,
+      "file_state": "last_on_disk_artifact",
+      "delivery_state": "completed_run_artifact_quality_unreviewed",
+      "read_sequences": [],
+      "write_sequences": [
+        11
+      ],
+      "edit_sequences": [
+        12
+      ]
+    }
+  ],
+  "helper_sha256": "452d3f5ac8df257fbd220d7585ce0aef3dd0475a76a51181de77e0f729f0a6ab",
+  "prompt_path": "prompts/first-draft.txt",
+  "omissions": [
+    "raw stream",
+    "runtime",
+    "provider state",
+    "original argv",
+    "absolute paths",
+    "shell arguments and stdout"
+  ]
+}

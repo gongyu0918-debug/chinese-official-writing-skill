@@ -1,0 +1,2 @@
+# Preserve the original user prompt, including its trailing space.
+first-draft.txt -text -whitespace

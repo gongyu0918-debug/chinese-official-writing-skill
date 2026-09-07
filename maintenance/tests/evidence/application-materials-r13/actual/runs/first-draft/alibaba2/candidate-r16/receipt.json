@@ -1,0 +1,635 @@
+{
+  "arm": "candidate-r16",
+  "provider": "alibaba2",
+  "model": "alibaba-token-plan-2/deepseek-v4-flash-0731",
+  "case": "first-draft",
+  "session": "05106db8-e1ea-46cb-9ea5-97fcf1cc7201",
+  "technical_valid": true,
+  "return_code": 0,
+  "failure": null,
+  "seconds": 292.23,
+  "client_tools": "Read,Skill,Write,Edit,Bash",
+  "explicit_entry": true,
+  "frozen_unchanged": true,
+  "final_chars": 833,
+  "init_models": [
+    "alibaba-token-plan-2/deepseek-v4-flash-0731"
+  ],
+  "assistant_models": [
+    "alibaba-token-plan-2/deepseek-v4-flash-0731"
+  ],
+  "usage_models": [
+    "alibaba-token-plan-2/deepseek-v4-flash-0731"
+  ],
+  "result_count": 1,
+  "result_subtypes": [
+    "success"
+  ],
+  "result_errors": [
+    false
+  ],
+  "final_path": "runs/first-draft/alibaba2/candidate-r16/final.txt",
+  "final_sha256": "90971db863f5d8ed8c2a5ee3fcdac6d9f1185acd5778376c0bba5d7437b49148",
+  "source_final_sha256": "90971db863f5d8ed8c2a5ee3fcdac6d9f1185acd5778376c0bba5d7437b49148",
+  "source_final_logical_sha256": "d55e2a61365f2ca1c98f115ae350618532b74424d4b0fbf74302d80a90e0217c",
+  "final_redaction": {
+    "replacement_count": 0,
+    "replacement": "<isolated-work>",
+    "scope": "Only this lane approved runtime/work prefix; slash variants accepted.",
+    "source_unchanged": true,
+    "archive_is_original_bytes": true
+  },
+  "hook_enabled": false,
+  "timeout_seconds": 480,
+  "automatic_retries": 0,
+  "effort": "max",
+  "invalid_json_line_count": 0,
+  "reads": [
+    "SKILL.md",
+    "references/genre-playbook-request.md",
+    "references/handling-elements.md",
+    "references/information-selection.md",
+    "references/argument-chains.md",
+    "references/genre-checklist-request.md",
+    "references/ai-compute-docs.md",
+    "references/final-review-layers.md"
+  ],
+  "tool_evidence": [
+    {
+      "sequence": 1,
+      "id": "call_d5c93fa7e0a5412f9714f93e",
+      "name": "Read",
+      "result": {
+        "observed": true,
+        "is_error_field": null,
+        "content_bytes": 28638,
+        "content_sha256": "e10a5704b01f726deed97e97ccda306b4e0bcddaf253201c94b2482028892f98",
+        "skill_launch_acknowledgement": null
+      },
+      "scope": "package",
+      "package_path": "SKILL.md",
+      "frozen_file_sha256": "64a414e5ee69eb6161658529e9807460c3c612eeb458bd81925cc2ad6b494e96",
+      "read_success_observed": true
+    },
+    {
+      "sequence": 2,
+      "id": "call_15bc5e4e79c74a6faff83c27",
+      "name": "Read",
+      "result": {
+        "observed": true,
+        "is_error_field": null,
+        "content_bytes": 3633,
+        "content_sha256": "07d7e667ad79b4f4df72d59744302ed4e126f984beeb65b3026e1922f9b59e35",
+        "skill_launch_acknowledgement": null
+      },
+      "scope": "package",
+      "package_path": "references/genre-playbook-request.md",
+      "frozen_file_sha256": "458a3353b9254256cf6302cae738a5372964328cb3bbf9cf78bab97550b62b88",
+      "read_success_observed": true
+    },
+    {
+      "sequence": 3,
+      "id": "call_a045b66c6b4c42659c952d06",
+      "name": "Read",
+      "result": {
+        "observed": true,
+        "is_error_field": null,
+        "content_bytes": 8410,
+        "content_sha256": "2373bc5039d28db2e53cccb7e76113ca106d22fdac48f2d4a27dcbb8e636bc03",
+        "skill_launch_acknowledgement": null
+      },
+      "scope": "package",
+      "package_path": "references/handling-elements.md",
+      "frozen_file_sha256": "e652dac11d5fec9458cc6bb63d41e884e206b359dfe6776731016b7c7a8e7fa4",
+      "read_success_observed": true
+    },
+    {
+      "sequence": 4,
+      "id": "call_52bec07901724a57a1c0228b",
+      "name": "Read",
+      "result": {
+        "observed": true,
+        "is_error_field": null,
+        "content_bytes": 4054,
+        "content_sha256": "d2b4eea1af80a15a60a3f07e9fe52bb890cf40e43a488a06a8254a7a538dd1fe",
+        "skill_launch_acknowledgement": null
+      },
+      "scope": "package",
+      "package_path": "references/information-selection.md",
+      "frozen_file_sha256": "188c9def1553cb01423f5214ebaee6f122c3157aac39b60f54077d78df97d595",
+      "read_success_observed": true
+    },
+    {
+      "sequence": 5,
+      "id": "call_344ba9f49cec4f56a13ccdb3",
+      "name": "Read",
+      "result": {
+        "observed": true,
+        "is_error_field": null,
+        "content_bytes": 4566,
+        "content_sha256": "33df8f1d7b0b8fbc8c86de6790ff5a668c1c902664fd5264bdfd1d1bc451f09c",
+        "skill_launch_acknowledgement": null
+      },
+      "scope": "package",
+      "package_path": "references/argument-chains.md",
+      "frozen_file_sha256": "234ab85b1d44e619231f2322325bf144174d1038af99387bc827ce06bbf0e949",
+      "read_success_observed": true
+    },
+    {
+      "sequence": 6,
+      "id": "call_861a9565cdd048a38467a9f2",
+      "name": "Read",
+      "result": {
+        "observed": true,
+        "is_error_field": null,
+        "content_bytes": 2310,
+        "content_sha256": "063775db60689ae1babdb38eeb8e59e2792772a161b9c8cfa3eab7bde02fd38a",
+        "skill_launch_acknowledgement": null
+      },
+      "scope": "package",
+      "package_path": "references/genre-checklist-request.md",
+      "frozen_file_sha256": "b011444af07dab83a5f61099e3589abd8bf49c9f8addf3c180f7db393f1ef44f",
+      "read_success_observed": true
+    },
+    {
+      "sequence": 7,
+      "id": "call_6dc273a06a754853bc64205d",
+      "name": "Read",
+      "result": {
+        "observed": true,
+        "is_error_field": null,
+        "content_bytes": 11297,
+        "content_sha256": "8ac5b5868ba64e29a6507789240db600e871b768129b1da0caba286b8ef78fb1",
+        "skill_launch_acknowledgement": null
+      },
+      "scope": "package",
+      "package_path": "references/ai-compute-docs.md",
+      "frozen_file_sha256": "b33be9b50d8b1e6a41483cbba972e112996a7dfd1f613e7b86adc1df8a7ae94b",
+      "read_success_observed": true
+    },
+    {
+      "sequence": 8,
+      "id": "call_d316dba3cbc04cb28305b4ff",
+      "name": "Read",
+      "result": {
+        "observed": true,
+        "is_error_field": null,
+        "content_bytes": 9450,
+        "content_sha256": "f0fb6965987cf35c05536dfda4f5bc1a9bddf74938da0da4f4b57b7350757ca6",
+        "skill_launch_acknowledgement": null
+      },
+      "scope": "package",
+      "package_path": "references/final-review-layers.md",
+      "frozen_file_sha256": "0204ee133951e5ca0839312e8c60524d2edc529161e9b2846a314e1e7232e546",
+      "read_success_observed": true
+    },
+    {
+      "sequence": 9,
+      "id": "call_95e2809a4bf543588d679feb",
+      "name": "Write",
+      "result": {
+        "observed": true,
+        "is_error_field": null,
+        "content_bytes": 330,
+        "content_sha256": "15b9495e545da5f9fbbbe0961e445314a22244400fabdd50b8acfad65faab449",
+        "skill_launch_acknowledgement": null
+      },
+      "scope": "work",
+      "work_relative_path": "立项申请-版慎通新增公文AI写作功能.md",
+      "archive_path": "runs/first-draft/alibaba2/candidate-r16/document-1.txt",
+      "content_sha256": "de1b4ce5e5f69ffcbc01e246c0dc53772c64e28f24a9e18df2c90ded4d20b43a"
+    },
+    {
+      "sequence": 10,
+      "id": "call_75a601282c784279a04ceaee",
+      "name": "Bash",
+      "result": {
+        "observed": true,
+        "is_error_field": false,
+        "content_bytes": 11973,
+        "content_sha256": "42f0b61681aaacafeb5c05b8bc6d39bc607cca781cba47602a50fe6666199681",
+        "skill_launch_acknowledgement": null
+      },
+      "command_sha256": "03b48c06b32017de7cea29c03c7fd0308ea5b8b43fb9ec5612fbebf3c34fb15d",
+      "arguments_omitted": true
+    },
+    {
+      "sequence": 11,
+      "id": "call_d9b5c3a291cb46e7a9db1e34",
+      "name": "Edit",
+      "result": {
+        "observed": true,
+        "is_error_field": null,
+        "content_bytes": 340,
+        "content_sha256": "644ed371269bdf0e698fdce4b7b2f3e216d3f3ec3fbee9318e6ec10483017fba",
+        "skill_launch_acknowledgement": null
+      },
+      "scope": "work",
+      "work_relative_path": "立项申请-版慎通新增公文AI写作功能.md",
+      "archive_path": "runs/first-draft/alibaba2/candidate-r16/document-1.txt",
+      "replace_all": false,
+      "old_string_sha256": "ff72e67dc40bccd3a1f64386386f46c9d6aaaff6efb41b0d6abb3ff39ac30fae",
+      "new_string_sha256": "d62548cbb10d6463d9315ad69dcd28004115c4c25cb4eb3086823b4d87239dd2"
+    },
+    {
+      "sequence": 12,
+      "id": "call_49f996f4770a456d94ea8377",
+      "name": "Edit",
+      "result": {
+        "observed": true,
+        "is_error_field": null,
+        "content_bytes": 340,
+        "content_sha256": "644ed371269bdf0e698fdce4b7b2f3e216d3f3ec3fbee9318e6ec10483017fba",
+        "skill_launch_acknowledgement": null
+      },
+      "scope": "work",
+      "work_relative_path": "立项申请-版慎通新增公文AI写作功能.md",
+      "archive_path": "runs/first-draft/alibaba2/candidate-r16/document-1.txt",
+      "replace_all": false,
+      "old_string_sha256": "0aea1007d5441f146ee6c5290ac66fd1ddcf15814ccb34df4b38b76fcc69a803",
+      "new_string_sha256": "c87c8ad06416a8856c7f6909805080629b3df0e534ad2e181a5b8e7bb9ad4777"
+    },
+    {
+      "sequence": 13,
+      "id": "call_04bc578859974bfaa0fabe2a",
+      "name": "Edit",
+      "result": {
+        "observed": true,
+        "is_error_field": true,
+        "content_bytes": 309,
+        "content_sha256": "408dfb52065d309170304f4639d583b678847e1ca73ba54e92567cd9914da84d",
+        "skill_launch_acknowledgement": null
+      },
+      "scope": "work",
+      "work_relative_path": "立项申请-版慎通新增公文AI写作功能.md",
+      "archive_path": "runs/first-draft/alibaba2/candidate-r16/document-1.txt",
+      "replace_all": false,
+      "old_string_sha256": "4f458fba54728857a148fe8c8a043a32468077a2530e69749e8404b56a4df04d",
+      "new_string_sha256": "05034bfed2c9b7a2768a8dfe66fdd1eed8f0f04a318eb4a5d4ad9e6921303b3b"
+    },
+    {
+      "sequence": 14,
+      "id": "call_d7d2b642d6c7493896ad3123",
+      "name": "Edit",
+      "result": {
+        "observed": true,
+        "is_error_field": null,
+        "content_bytes": 340,
+        "content_sha256": "644ed371269bdf0e698fdce4b7b2f3e216d3f3ec3fbee9318e6ec10483017fba",
+        "skill_launch_acknowledgement": null
+      },
+      "scope": "work",
+      "work_relative_path": "立项申请-版慎通新增公文AI写作功能.md",
+      "archive_path": "runs/first-draft/alibaba2/candidate-r16/document-1.txt",
+      "replace_all": false,
+      "old_string_sha256": "b12c8c6e7c9158adee19d8955ad4047c02ef4bafbbcdbe01df74e703e9128628",
+      "new_string_sha256": "3698fd0012d4d093669a5df6bcfcd7b212b2d8eea4ad96db5ff47f9fa0688067"
+    },
+    {
+      "sequence": 15,
+      "id": "call_3b8fde9fb054460483260536",
+      "name": "Edit",
+      "result": {
+        "observed": true,
+        "is_error_field": null,
+        "content_bytes": 340,
+        "content_sha256": "644ed371269bdf0e698fdce4b7b2f3e216d3f3ec3fbee9318e6ec10483017fba",
+        "skill_launch_acknowledgement": null
+      },
+      "scope": "work",
+      "work_relative_path": "立项申请-版慎通新增公文AI写作功能.md",
+      "archive_path": "runs/first-draft/alibaba2/candidate-r16/document-1.txt",
+      "replace_all": false,
+      "old_string_sha256": "ae3ab00040e1af9df2d7eccb29964d7598354c3baf5ced47d587356e0b10d51f",
+      "new_string_sha256": "52b0d9a40c5d5a928cdc7d4f36929e66001613f764e24485a05632651dbad404"
+    },
+    {
+      "sequence": 16,
+      "id": "call_ea4938701c39410faf48c242",
+      "name": "Edit",
+      "result": {
+        "observed": true,
+        "is_error_field": null,
+        "content_bytes": 340,
+        "content_sha256": "644ed371269bdf0e698fdce4b7b2f3e216d3f3ec3fbee9318e6ec10483017fba",
+        "skill_launch_acknowledgement": null
+      },
+      "scope": "work",
+      "work_relative_path": "立项申请-版慎通新增公文AI写作功能.md",
+      "archive_path": "runs/first-draft/alibaba2/candidate-r16/document-1.txt",
+      "replace_all": false,
+      "old_string_sha256": "ea4af7359007b7c2833391cd049af0c0516e0770f85ed94a3511f1f0ce8de274",
+      "new_string_sha256": "50f2bf69fa0db0cd2794cfefa0f196151f2180a95a0f1f3d3fd5349d6d8dcd69"
+    },
+    {
+      "sequence": 17,
+      "id": "call_b219c30c45724a888234b417",
+      "name": "Edit",
+      "result": {
+        "observed": true,
+        "is_error_field": null,
+        "content_bytes": 340,
+        "content_sha256": "644ed371269bdf0e698fdce4b7b2f3e216d3f3ec3fbee9318e6ec10483017fba",
+        "skill_launch_acknowledgement": null
+      },
+      "scope": "work",
+      "work_relative_path": "立项申请-版慎通新增公文AI写作功能.md",
+      "archive_path": "runs/first-draft/alibaba2/candidate-r16/document-1.txt",
+      "replace_all": false,
+      "old_string_sha256": "acd882720a4c88332c769a4ff84ca412e8c6edd3cc319e8c653c18dbed2f2450",
+      "new_string_sha256": "dd93d1cf05dc0d753496c970da261c4dd85e9d3181476a4e4fa1191ae0a2bff5"
+    },
+    {
+      "sequence": 18,
+      "id": "call_33d9d5c321444be09af4ba1f",
+      "name": "Edit",
+      "result": {
+        "observed": true,
+        "is_error_field": null,
+        "content_bytes": 340,
+        "content_sha256": "644ed371269bdf0e698fdce4b7b2f3e216d3f3ec3fbee9318e6ec10483017fba",
+        "skill_launch_acknowledgement": null
+      },
+      "scope": "work",
+      "work_relative_path": "立项申请-版慎通新增公文AI写作功能.md",
+      "archive_path": "runs/first-draft/alibaba2/candidate-r16/document-1.txt",
+      "replace_all": false,
+      "old_string_sha256": "26bbd67b9ef783de8946f69d9a8a86824a809d0b0753e7db8c07ed04092a14b5",
+      "new_string_sha256": "88a279e0cbd79a3bf009658e0f8f84c61e990fc0052027be97f77ebeec8f4386"
+    },
+    {
+      "sequence": 19,
+      "id": "call_4fe5775f73bf44c8b8900f1f",
+      "name": "Edit",
+      "result": {
+        "observed": true,
+        "is_error_field": null,
+        "content_bytes": 340,
+        "content_sha256": "644ed371269bdf0e698fdce4b7b2f3e216d3f3ec3fbee9318e6ec10483017fba",
+        "skill_launch_acknowledgement": null
+      },
+      "scope": "work",
+      "work_relative_path": "立项申请-版慎通新增公文AI写作功能.md",
+      "archive_path": "runs/first-draft/alibaba2/candidate-r16/document-1.txt",
+      "replace_all": false,
+      "old_string_sha256": "50125e0b69d7db9f02168bc759ef71d8a70f8f253c5d6e55d0cf55e380c4af7e",
+      "new_string_sha256": "89f4b8918972a25823941f2bdc3817c7860e512d5d579148d95242e009328a0b"
+    },
+    {
+      "sequence": 20,
+      "id": "call_ab493ed80b25431da07ff54a",
+      "name": "Edit",
+      "result": {
+        "observed": true,
+        "is_error_field": true,
+        "content_bytes": 275,
+        "content_sha256": "fdc68aa87607acf91a906ad9b6b7ed67bb4bd6fb605b0f1585757e4fbb21498d",
+        "skill_launch_acknowledgement": null
+      },
+      "scope": "work",
+      "work_relative_path": "立项申请-版慎通新增公文AI写作功能.md",
+      "archive_path": "runs/first-draft/alibaba2/candidate-r16/document-1.txt",
+      "replace_all": false,
+      "old_string_sha256": "7cc161579b19a1b87b5647ef1388a0c793f75999c0a7401275d58849581a10f8",
+      "new_string_sha256": "90ec67de83ea663cf3ef377a18fec776f6eabb605b94beb1ba45a85b7fa76b26"
+    },
+    {
+      "sequence": 21,
+      "id": "call_6ba6f429a4d34ae1b6dc7f53",
+      "name": "Edit",
+      "result": {
+        "observed": true,
+        "is_error_field": null,
+        "content_bytes": 340,
+        "content_sha256": "644ed371269bdf0e698fdce4b7b2f3e216d3f3ec3fbee9318e6ec10483017fba",
+        "skill_launch_acknowledgement": null
+      },
+      "scope": "work",
+      "work_relative_path": "立项申请-版慎通新增公文AI写作功能.md",
+      "archive_path": "runs/first-draft/alibaba2/candidate-r16/document-1.txt",
+      "replace_all": false,
+      "old_string_sha256": "41503e7e6059bc228cb62300e6fbd779c3ea1bc91f7d10b8faead009e37fe5ce",
+      "new_string_sha256": "f7090d1348a0a265d0d4cc24d54ca115338fc6a1984c0bf93c173d3e6660af05"
+    },
+    {
+      "sequence": 22,
+      "id": "call_44e4375614904ad79b18d831",
+      "name": "Edit",
+      "result": {
+        "observed": true,
+        "is_error_field": null,
+        "content_bytes": 340,
+        "content_sha256": "644ed371269bdf0e698fdce4b7b2f3e216d3f3ec3fbee9318e6ec10483017fba",
+        "skill_launch_acknowledgement": null
+      },
+      "scope": "work",
+      "work_relative_path": "立项申请-版慎通新增公文AI写作功能.md",
+      "archive_path": "runs/first-draft/alibaba2/candidate-r16/document-1.txt",
+      "replace_all": false,
+      "old_string_sha256": "a524b134c6bc86cc4a11ac9b57aa9e5849629df30d17fc710271f6410b20c8be",
+      "new_string_sha256": "261e3f659808dcaf86b5e034da63728848789a02f3929e625b008c7c631ebf27"
+    },
+    {
+      "sequence": 23,
+      "id": "call_9a7ad70bc849442db638cf79",
+      "name": "Edit",
+      "result": {
+        "observed": true,
+        "is_error_field": null,
+        "content_bytes": 340,
+        "content_sha256": "644ed371269bdf0e698fdce4b7b2f3e216d3f3ec3fbee9318e6ec10483017fba",
+        "skill_launch_acknowledgement": null
+      },
+      "scope": "work",
+      "work_relative_path": "立项申请-版慎通新增公文AI写作功能.md",
+      "archive_path": "runs/first-draft/alibaba2/candidate-r16/document-1.txt",
+      "replace_all": false,
+      "old_string_sha256": "9af27d5bda779f4ba6ef8933b3df3c8bb8eb8c6e1f1655e21862a40a787a6db9",
+      "new_string_sha256": "ae1373307778ca46ff671fb4cc4d396d2d7cb94ff1d43421b298f9a907cab433"
+    },
+    {
+      "sequence": 24,
+      "id": "call_c7343035eab643fba58d9226",
+      "name": "Read",
+      "result": {
+        "observed": true,
+        "is_error_field": null,
+        "content_bytes": 6577,
+        "content_sha256": "2affa15c3b200865af85095e690003740b7ce1aa28ae3474e924afe8662d36bb",
+        "skill_launch_acknowledgement": null
+      },
+      "scope": "work",
+      "work_relative_path": "立项申请-版慎通新增公文AI写作功能.md",
+      "archive_path": "runs/first-draft/alibaba2/candidate-r16/document-1.txt"
+    },
+    {
+      "sequence": 25,
+      "id": "call_b3ffc0ef46434d4abb2506f6",
+      "name": "Edit",
+      "result": {
+        "observed": true,
+        "is_error_field": null,
+        "content_bytes": 340,
+        "content_sha256": "644ed371269bdf0e698fdce4b7b2f3e216d3f3ec3fbee9318e6ec10483017fba",
+        "skill_launch_acknowledgement": null
+      },
+      "scope": "work",
+      "work_relative_path": "立项申请-版慎通新增公文AI写作功能.md",
+      "archive_path": "runs/first-draft/alibaba2/candidate-r16/document-1.txt",
+      "replace_all": false,
+      "old_string_sha256": "fda8a7e49598502bf1a6864bf30fa4365555afd5e2e5b4f2827611545a173dff",
+      "new_string_sha256": "b241141b87deeb63a054127ba149c1398cc2b378b70afb5ff64aed10013ad2f2"
+    },
+    {
+      "sequence": 26,
+      "id": "call_4dd9103883264cb281f1d874",
+      "name": "Edit",
+      "result": {
+        "observed": true,
+        "is_error_field": null,
+        "content_bytes": 340,
+        "content_sha256": "644ed371269bdf0e698fdce4b7b2f3e216d3f3ec3fbee9318e6ec10483017fba",
+        "skill_launch_acknowledgement": null
+      },
+      "scope": "work",
+      "work_relative_path": "立项申请-版慎通新增公文AI写作功能.md",
+      "archive_path": "runs/first-draft/alibaba2/candidate-r16/document-1.txt",
+      "replace_all": false,
+      "old_string_sha256": "fdba120c1d01fa1e1786595f9e410f7bbeef5605105785e5aa9dce9f68188840",
+      "new_string_sha256": "3ffa5511196a6a6189cbbf5dd9d12ad44c780d25d0d2110b69f583dd25cd2dcb"
+    },
+    {
+      "sequence": 27,
+      "id": "call_6f142ac8362648a5b63cd503",
+      "name": "Edit",
+      "result": {
+        "observed": true,
+        "is_error_field": null,
+        "content_bytes": 340,
+        "content_sha256": "644ed371269bdf0e698fdce4b7b2f3e216d3f3ec3fbee9318e6ec10483017fba",
+        "skill_launch_acknowledgement": null
+      },
+      "scope": "work",
+      "work_relative_path": "立项申请-版慎通新增公文AI写作功能.md",
+      "archive_path": "runs/first-draft/alibaba2/candidate-r16/document-1.txt",
+      "replace_all": false,
+      "old_string_sha256": "4a617955c3868677d21ed17df0d8306a49a8a1599b8f69d4e150cd573fb604a0",
+      "new_string_sha256": "59f932036008b599df592c15f8d8d708292c8f40e74fea74cc7c80051991c603"
+    },
+    {
+      "sequence": 28,
+      "id": "call_ac32218f5d4d442e863ee7f9",
+      "name": "Bash",
+      "result": {
+        "observed": true,
+        "is_error_field": false,
+        "content_bytes": 33,
+        "content_sha256": "118df3ca70176034d5a941602271d993996b8fc790a224d92d084db3a5c67483",
+        "skill_launch_acknowledgement": null
+      },
+      "command_sha256": "9f9506abbd8b84174de6e2e90c78da6f8f7b2e3727f88f233b462490bf2985c5",
+      "arguments_omitted": true
+    },
+    {
+      "sequence": 29,
+      "id": "call_6b2c1604d58b4967964f15f2",
+      "name": "Edit",
+      "result": {
+        "observed": true,
+        "is_error_field": null,
+        "content_bytes": 340,
+        "content_sha256": "644ed371269bdf0e698fdce4b7b2f3e216d3f3ec3fbee9318e6ec10483017fba",
+        "skill_launch_acknowledgement": null
+      },
+      "scope": "work",
+      "work_relative_path": "立项申请-版慎通新增公文AI写作功能.md",
+      "archive_path": "runs/first-draft/alibaba2/candidate-r16/document-1.txt",
+      "replace_all": false,
+      "old_string_sha256": "1d1c3c4f8989183fa2969aef26070fe8893b106753abbc6394155b4809c5ed66",
+      "new_string_sha256": "1d40559c1220b9fed4adc3c606bb4820b3b5bd1e066eb88d39f3a6dcaef002f1"
+    },
+    {
+      "sequence": 30,
+      "id": "call_6607fa25300f4aa79a499e00",
+      "name": "Edit",
+      "result": {
+        "observed": true,
+        "is_error_field": null,
+        "content_bytes": 340,
+        "content_sha256": "644ed371269bdf0e698fdce4b7b2f3e216d3f3ec3fbee9318e6ec10483017fba",
+        "skill_launch_acknowledgement": null
+      },
+      "scope": "work",
+      "work_relative_path": "立项申请-版慎通新增公文AI写作功能.md",
+      "archive_path": "runs/first-draft/alibaba2/candidate-r16/document-1.txt",
+      "replace_all": false,
+      "old_string_sha256": "944464c05a0d630dc9af662864394bfce49ee5c1e78119e71ea5d0248a3b6573",
+      "new_string_sha256": "d065e67aaf4bd4047faaa817d47a6c14bd4ebbd67623aed31642b216e3b29d57"
+    },
+    {
+      "sequence": 31,
+      "id": "call_37302e099fbe41d6954f3760",
+      "name": "Edit",
+      "result": {
+        "observed": true,
+        "is_error_field": null,
+        "content_bytes": 340,
+        "content_sha256": "644ed371269bdf0e698fdce4b7b2f3e216d3f3ec3fbee9318e6ec10483017fba",
+        "skill_launch_acknowledgement": null
+      },
+      "scope": "work",
+      "work_relative_path": "立项申请-版慎通新增公文AI写作功能.md",
+      "archive_path": "runs/first-draft/alibaba2/candidate-r16/document-1.txt",
+      "replace_all": false,
+      "old_string_sha256": "844c275724b00307a9ccd55edafe0f7b0adc9a6dcd523bd234f86643031ca4d6",
+      "new_string_sha256": "a78c860fd0ce261eaa31a54dbb2fb5e298929f09d948d691ecc9de2c2e471bd0"
+    }
+  ],
+  "documents": [
+    {
+      "work_relative_path": "立项申请-版慎通新增公文AI写作功能.md",
+      "archive_path": "runs/first-draft/alibaba2/candidate-r16/document-1.txt",
+      "sha256": "85f527a3203460183b0dd9a3deb4e0c1e34fb6400f3f162c9af3869f5603253b",
+      "bytes": 6344,
+      "file_state": "last_on_disk_artifact",
+      "delivery_state": "completed_run_artifact_quality_unreviewed",
+      "read_sequences": [
+        24
+      ],
+      "write_sequences": [
+        9
+      ],
+      "edit_sequences": [
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        25,
+        26,
+        27,
+        29,
+        30,
+        31
+      ]
+    }
+  ],
+  "helper_sha256": "452d3f5ac8df257fbd220d7585ce0aef3dd0475a76a51181de77e0f729f0a6ab",
+  "prompt_path": "prompts/first-draft.txt",
+  "omissions": [
+    "raw stream",
+    "runtime",
+    "provider state",
+    "original argv",
+    "absolute paths",
+    "shell arguments and stdout"
+  ]
+}

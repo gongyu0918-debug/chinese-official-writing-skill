@@ -1,0 +1,12 @@
+{
+  "source_commit": "8b13b623",
+  "source_path": "maintenance/tests/evidence/application-project-r1/run_natural.py",
+  "source_sha256": "1c62b2e0abbc62abd64c7eaafd5cb39acc01cc73f39b70c4c276649ea3e1b77d",
+  "changes": [
+    "current main baseline/output path",
+    "declare Edit symmetrically to avoid prior undeclared-tool failure",
+    "explicit real Skill entry for both arms",
+    "case choices only"
+  ],
+  "first_prompt_sha256": "010a7e68e4bd91fb72c52b34e02a0044f80eb958276213bfedfe34a87f303881"
+}

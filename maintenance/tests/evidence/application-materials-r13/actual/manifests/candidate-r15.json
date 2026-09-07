@@ -1,0 +1,207 @@
+[
+  {
+    "path": "LICENSE",
+    "bytes": 1090,
+    "sha256": "80f0c345dc22aed5f59c33d0354c43a27642bdf78ec1b0e054bacca4443879ec"
+  },
+  {
+    "path": "README.md",
+    "bytes": 4399,
+    "sha256": "bf8af51dcb5988ace3eba17528ed020f68d2aa0bd48fabb82f1e421d4d26ec4f"
+  },
+  {
+    "path": "SKILL.md",
+    "bytes": 28076,
+    "sha256": "3f3fca1a24d8a6ed7184def972b27d61c9f14acd32cdd38e9ee98bcfa8456e59"
+  },
+  {
+    "path": "agents/openai.yaml",
+    "bytes": 346,
+    "sha256": "3d61ce9e512d6899d7e3ff40726b4fa98f3a46a0e0f549bd2a277714f5458558"
+  },
+  {
+    "path": "references/ai-compute-docs.md",
+    "bytes": 10402,
+    "sha256": "b33be9b50d8b1e6a41483cbba972e112996a7dfd1f613e7b86adc1df8a7ae94b"
+  },
+  {
+    "path": "references/anti-ai-patterns.md",
+    "bytes": 13966,
+    "sha256": "c77202b6685b57bef8ae98499c05e1e21427fce90c56a18adba0472da07e4f2f"
+  },
+  {
+    "path": "references/argument-chains.md",
+    "bytes": 4597,
+    "sha256": "dbe855c11eba2c35726aa383101a7c3a7d13c93226a6c98e2f7bc221d29209bf"
+  },
+  {
+    "path": "references/delivery-review-gate.md",
+    "bytes": 14400,
+    "sha256": "1c5fb0bbb687282ce0e0023efdfc07940ea0d5f75b7c53de591747a8c78a17e2"
+  },
+  {
+    "path": "references/external-research.md",
+    "bytes": 2194,
+    "sha256": "e3c719b4b848a94f47cda2faaa85acee7cfdb035a289b4f9d40b6b9806f6af35"
+  },
+  {
+    "path": "references/final-review-layers.md",
+    "bytes": 9029,
+    "sha256": "0204ee133951e5ca0839312e8c60524d2edc529161e9b2846a314e1e7232e546"
+  },
+  {
+    "path": "references/formal-addressing.md",
+    "bytes": 3342,
+    "sha256": "4fe40b280d3f09faac845bc23526aa2a62633da7fb6f22e57d61f572d3291a96"
+  },
+  {
+    "path": "references/format-gbt9704.md",
+    "bytes": 8842,
+    "sha256": "01ca736728ba08df703d8cdc63dcbedcb474dd18059a7fcbdde0ce3cfe1d7fd6"
+  },
+  {
+    "path": "references/formulaic-language.md",
+    "bytes": 7724,
+    "sha256": "a4940b83c337ec5e0a7f0389de49113df8ccf3ae012b5c3fc498f0982b73bb16"
+  },
+  {
+    "path": "references/genre-checklist-feasibility-review.md",
+    "bytes": 1880,
+    "sha256": "8ccfa9923dd38ff5390c6234c85dcdcd8b8753863ff00b0a460c5bc171bdd1b7"
+  },
+  {
+    "path": "references/genre-checklist-report.md",
+    "bytes": 2855,
+    "sha256": "e6b42379ed812e8ef8217e6358fc9fae586a571d2a6c0783829f25fda30e713e"
+  },
+  {
+    "path": "references/genre-checklist-request.md",
+    "bytes": 2198,
+    "sha256": "b011444af07dab83a5f61099e3589abd8bf49c9f8addf3c180f7db393f1ef44f"
+  },
+  {
+    "path": "references/genre-checklist.md",
+    "bytes": 7252,
+    "sha256": "745f2d7b35beb8562acf8d4e6d2198e48fe419eb6439af35ca5dad860b4df29c"
+  },
+  {
+    "path": "references/genre-playbook-advisory-feedback.md",
+    "bytes": 5449,
+    "sha256": "c6256e8e4be04c16ce5d3a050a45b85734a1acdadcb4972e65ad9e3c5e045c7f"
+  },
+  {
+    "path": "references/genre-playbook-complaint-reflection.md",
+    "bytes": 4512,
+    "sha256": "7bf4c0615858c3422fdc712624d32398a5ac16332d6197bb192bf44c2c6e2bab"
+  },
+  {
+    "path": "references/genre-playbook-correspondence.md",
+    "bytes": 1528,
+    "sha256": "142b4ad3aaeb6088cfa5e3ba711c58b8c82101ec9c852300df7f3a134e3ddeda"
+  },
+  {
+    "path": "references/genre-playbook-institution-rules.md",
+    "bytes": 3796,
+    "sha256": "f10d04e86c50deefea05198fddb2a422cf0799a6433d8a726b012c2d58e17928"
+  },
+  {
+    "path": "references/genre-playbook-minutes.md",
+    "bytes": 2028,
+    "sha256": "ce1b195a3aa043268e4452355a001366f4008727be5692336c8859208f181bb5"
+  },
+  {
+    "path": "references/genre-playbook-news-commentary.md",
+    "bytes": 1054,
+    "sha256": "4bc3a2670ce10e4d6946ebe8d5b66edc9ac3f12a399b305d585d46bad2267347"
+  },
+  {
+    "path": "references/genre-playbook-news-message.md",
+    "bytes": 4382,
+    "sha256": "a3c503d493b3fc7b65524d2dfa43849a4f2d33dbf67fd09a346af12c1238f601"
+  },
+  {
+    "path": "references/genre-playbook-plan-construction.md",
+    "bytes": 1019,
+    "sha256": "f0719d7884e13afc967fbc6d3383ade3f9f06f36cac7e46cdea91fba85d3e24a"
+  },
+  {
+    "path": "references/genre-playbook-remediation-plan.md",
+    "bytes": 2858,
+    "sha256": "70ba20fb0f119067de45c972e9481a2f2fc009ae547912b871d08e7f7a133ec7"
+  },
+  {
+    "path": "references/genre-playbook-request.md",
+    "bytes": 3536,
+    "sha256": "458a3353b9254256cf6302cae738a5372964328cb3bbf9cf78bab97550b62b88"
+  },
+  {
+    "path": "references/genre-playbook-work-summary.md",
+    "bytes": 1804,
+    "sha256": "ab34551c8df751bf4a7d882a5f5f1ee8d12291e735e3f45cf8ad1e1d4c68e026"
+  },
+  {
+    "path": "references/genre-playbooks.md",
+    "bytes": 5630,
+    "sha256": "d209e23f5496d34aa0fabf1449f7cd2ca44bdc318778f3a81a5839c414de343b"
+  },
+  {
+    "path": "references/genre-routing.md",
+    "bytes": 8601,
+    "sha256": "f31c8433417923d4064e75358cec53f41d30b135c7fd40699758077feddf19b2"
+  },
+  {
+    "path": "references/handling-elements.md",
+    "bytes": 8058,
+    "sha256": "e652dac11d5fec9458cc6bb63d41e884e206b359dfe6776731016b7c7a8e7fa4"
+  },
+  {
+    "path": "references/information-selection.md",
+    "bytes": 3987,
+    "sha256": "188c9def1553cb01423f5214ebaee6f122c3157aac39b60f54077d78df97d595"
+  },
+  {
+    "path": "references/official-style.md",
+    "bytes": 6073,
+    "sha256": "82b97cc58bca9fce3f81c79ece4a5804d17a1869a5bbd3f6de191612440d505a"
+  },
+  {
+    "path": "references/proofreading-checklist.md",
+    "bytes": 3793,
+    "sha256": "aa56802a0e984aadb1deed4603181fc85b237b8c534ae0973e3c9d9413d859d2"
+  },
+  {
+    "path": "references/review-checklist.md",
+    "bytes": 16393,
+    "sha256": "680e021d858f85c65ec963af95d5eee6f0396f0d4bae0073f0ff73e7ea422c5c"
+  },
+  {
+    "path": "references/review-direct-checklist.md",
+    "bytes": 2841,
+    "sha256": "ae0b2fa2a9bbb778be215f9728d6ba836ace16166ca15235af90ca9ef2bceadf"
+  },
+  {
+    "path": "references/short-draft-naturalness.md",
+    "bytes": 1334,
+    "sha256": "100b89b6216d872f35b568164f13b4bcc448346b1dd39d9b100fa9bf6f30f7ba"
+  },
+  {
+    "path": "references/task-route-cards.md",
+    "bytes": 3758,
+    "sha256": "5486d59cfaafd25f6b49623d2f7b4e0559183edb325fda6809c32cc65a273a0d"
+  },
+  {
+    "path": "references/workflow.md",
+    "bytes": 15296,
+    "sha256": "0a0f6f27d3fdd458035e17ec420c321ed8b394c9d18f5e2e69dbf71f449dbe28"
+  },
+  {
+    "path": "scripts/prose_lint.py",
+    "bytes": 58290,
+    "sha256": "af6d241367986b40f139e80dd06c96b2c975d7bcf3ca16d85ea9950dec3b8806"
+  },
+  {
+    "path": "scripts/review_gate.py",
+    "bytes": 138927,
+    "sha256": "ffe66ece91e15231d3bbbf8122091ecd00e05580bd2e9317b864b7ada5f0ad19"
+  }
+]

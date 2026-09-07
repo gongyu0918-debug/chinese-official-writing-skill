@@ -1,0 +1,350 @@
+{
+  "arm": "candidate-r16",
+  "provider": "minimax",
+  "model": "minimax-cn/MiniMax-M3",
+  "case": "first-draft",
+  "session": "16af3a58-b3ff-45cf-b6f3-39a215926cb7",
+  "technical_valid": true,
+  "return_code": 0,
+  "failure": null,
+  "seconds": 463.75,
+  "client_tools": "Read,Skill,Write,Edit,Bash",
+  "explicit_entry": true,
+  "frozen_unchanged": true,
+  "final_chars": 1043,
+  "init_models": [
+    "minimax-cn/MiniMax-M3"
+  ],
+  "assistant_models": [
+    "minimax-cn/MiniMax-M3"
+  ],
+  "usage_models": [
+    "minimax-cn/MiniMax-M3"
+  ],
+  "result_count": 1,
+  "result_subtypes": [
+    "success"
+  ],
+  "result_errors": [
+    false
+  ],
+  "final_path": "runs/first-draft/minimax/candidate-r16/final.txt",
+  "final_sha256": "6ed2c367eb1fa8532149ddd25d5210af695f047f4a6b847634b8e5e8a1b5eea8",
+  "source_final_sha256": "6ed2c367eb1fa8532149ddd25d5210af695f047f4a6b847634b8e5e8a1b5eea8",
+  "source_final_logical_sha256": "ee62ebd7244bb329717c786773f4d8fdb81f177771800abc74d95d270aed66b7",
+  "final_redaction": {
+    "replacement_count": 0,
+    "replacement": "<isolated-work>",
+    "scope": "Only this lane approved runtime/work prefix; slash variants accepted.",
+    "source_unchanged": true,
+    "archive_is_original_bytes": true
+  },
+  "hook_enabled": false,
+  "timeout_seconds": 480,
+  "automatic_retries": 0,
+  "effort": "max",
+  "invalid_json_line_count": 0,
+  "reads": [
+    "references/information-selection.md",
+    "references/genre-playbook-request.md",
+    "references/argument-chains.md",
+    "references/handling-elements.md",
+    "references/genre-checklist-request.md",
+    "references/official-style.md",
+    "references/anti-ai-patterns.md",
+    "references/formulaic-language.md",
+    "references/proofreading-checklist.md",
+    "references/final-review-layers.md"
+  ],
+  "tool_evidence": [
+    {
+      "sequence": 1,
+      "id": "call_9ea06fe8ed014ca986eea8ed",
+      "name": "Skill",
+      "result": {
+        "observed": true,
+        "is_error_field": null,
+        "content_bytes": 65,
+        "content_sha256": "2208255ee679ba4f9d37caea5978009b3ee3459ba286dd41d1e923554c8abad8",
+        "skill_launch_acknowledgement": "official-writing-eval:chinese-official-writing"
+      },
+      "skill_name": "official-writing-eval:chinese-official-writing",
+      "launch_success_observed": true,
+      "response_visibility": "launch_acknowledgement_only_no_skill_body"
+    },
+    {
+      "sequence": 2,
+      "id": "call_62787e51999843b788f73b92",
+      "name": "Read",
+      "result": {
+        "observed": true,
+        "is_error_field": null,
+        "content_bytes": 4054,
+        "content_sha256": "d2b4eea1af80a15a60a3f07e9fe52bb890cf40e43a488a06a8254a7a538dd1fe",
+        "skill_launch_acknowledgement": null
+      },
+      "scope": "package",
+      "package_path": "references/information-selection.md",
+      "frozen_file_sha256": "188c9def1553cb01423f5214ebaee6f122c3157aac39b60f54077d78df97d595",
+      "read_success_observed": true
+    },
+    {
+      "sequence": 3,
+      "id": "call_923327b4d5c24b08802d88b6",
+      "name": "Read",
+      "result": {
+        "observed": true,
+        "is_error_field": null,
+        "content_bytes": 3633,
+        "content_sha256": "07d7e667ad79b4f4df72d59744302ed4e126f984beeb65b3026e1922f9b59e35",
+        "skill_launch_acknowledgement": null
+      },
+      "scope": "package",
+      "package_path": "references/genre-playbook-request.md",
+      "frozen_file_sha256": "458a3353b9254256cf6302cae738a5372964328cb3bbf9cf78bab97550b62b88",
+      "read_success_observed": true
+    },
+    {
+      "sequence": 4,
+      "id": "call_41a0bd59f1e84d8db96f3309",
+      "name": "Read",
+      "result": {
+        "observed": true,
+        "is_error_field": true,
+        "content_bytes": 240,
+        "content_sha256": "abb4c2f7f9ee04ea32a738a937205578a53c98f6852148ce31de21e4d86b7fa0",
+        "skill_launch_acknowledgement": null
+      },
+      "scope": "unresolved_failed_read",
+      "file_path_sha256": "b078be7d721070f3461b4a4ce193c035b1fa47c4bf1f9627d05cbd0908f0ed4c",
+      "canonical_input_sha256": "605cf565b54bf16684c587b34efa69c26923bd7f88d4f22cccc72aac4a97ff19"
+    },
+    {
+      "sequence": 5,
+      "id": "call_0e217c3c61de441ba285bd85",
+      "name": "Read",
+      "result": {
+        "observed": true,
+        "is_error_field": null,
+        "content_bytes": 4566,
+        "content_sha256": "33df8f1d7b0b8fbc8c86de6790ff5a668c1c902664fd5264bdfd1d1bc451f09c",
+        "skill_launch_acknowledgement": null
+      },
+      "scope": "package",
+      "package_path": "references/argument-chains.md",
+      "frozen_file_sha256": "234ab85b1d44e619231f2322325bf144174d1038af99387bc827ce06bbf0e949",
+      "read_success_observed": true
+    },
+    {
+      "sequence": 6,
+      "id": "call_f5812e0da7ca43a6a4cca39e",
+      "name": "Read",
+      "result": {
+        "observed": true,
+        "is_error_field": null,
+        "content_bytes": 8410,
+        "content_sha256": "2373bc5039d28db2e53cccb7e76113ca106d22fdac48f2d4a27dcbb8e636bc03",
+        "skill_launch_acknowledgement": null
+      },
+      "scope": "package",
+      "package_path": "references/handling-elements.md",
+      "frozen_file_sha256": "e652dac11d5fec9458cc6bb63d41e884e206b359dfe6776731016b7c7a8e7fa4",
+      "read_success_observed": true
+    },
+    {
+      "sequence": 7,
+      "id": "call_b7172b41a8e74809830fd743",
+      "name": "Read",
+      "result": {
+        "observed": true,
+        "is_error_field": null,
+        "content_bytes": 2310,
+        "content_sha256": "063775db60689ae1babdb38eeb8e59e2792772a161b9c8cfa3eab7bde02fd38a",
+        "skill_launch_acknowledgement": null
+      },
+      "scope": "package",
+      "package_path": "references/genre-checklist-request.md",
+      "frozen_file_sha256": "b011444af07dab83a5f61099e3589abd8bf49c9f8addf3c180f7db393f1ef44f",
+      "read_success_observed": true
+    },
+    {
+      "sequence": 8,
+      "id": "call_19dcd2ce5d4f4ec6acde529b",
+      "name": "Read",
+      "result": {
+        "observed": true,
+        "is_error_field": null,
+        "content_bytes": 6500,
+        "content_sha256": "fb2f2d445b02064075e4a188810fe916bab16b578d278c01ab0b14ab64e6794f",
+        "skill_launch_acknowledgement": null
+      },
+      "scope": "package",
+      "package_path": "references/official-style.md",
+      "frozen_file_sha256": "82b97cc58bca9fce3f81c79ece4a5804d17a1869a5bbd3f6de191612440d505a",
+      "read_success_observed": true
+    },
+    {
+      "sequence": 9,
+      "id": "call_3f7f3d8444c34505b2cde23d",
+      "name": "Read",
+      "result": {
+        "observed": true,
+        "is_error_field": true,
+        "content_bytes": 240,
+        "content_sha256": "abb4c2f7f9ee04ea32a738a937205578a53c98f6852148ce31de21e4d86b7fa0",
+        "skill_launch_acknowledgement": null
+      },
+      "scope": "unresolved_failed_read",
+      "file_path_sha256": "dc4ff0adc122654c90485c13678a36a036eba7bdc3bc31ba6fab27d61e0c8bc8",
+      "canonical_input_sha256": "60a3f1a126a1be12c97c23af6d38f08ffaf0b8366b268f0465138f6cf5f6559e"
+    },
+    {
+      "sequence": 10,
+      "id": "call_76bec5cf25b24f80aded9c35",
+      "name": "Read",
+      "result": {
+        "observed": true,
+        "is_error_field": null,
+        "content_bytes": 15041,
+        "content_sha256": "30b5e73d21be16753fbb5a4fde30e8accf79cd2b9746124413f5791ef20e0adf",
+        "skill_launch_acknowledgement": null
+      },
+      "scope": "package",
+      "package_path": "references/anti-ai-patterns.md",
+      "frozen_file_sha256": "c77202b6685b57bef8ae98499c05e1e21427fce90c56a18adba0472da07e4f2f",
+      "read_success_observed": true
+    },
+    {
+      "sequence": 11,
+      "id": "call_ebc0c39a140941b6aa02c1af",
+      "name": "Read",
+      "result": {
+        "observed": true,
+        "is_error_field": true,
+        "content_bytes": 240,
+        "content_sha256": "abb4c2f7f9ee04ea32a738a937205578a53c98f6852148ce31de21e4d86b7fa0",
+        "skill_launch_acknowledgement": null
+      },
+      "scope": "unresolved_failed_read",
+      "file_path_sha256": "624172128b798937220c80b60efa224f6ad3db91771d56912b5d585e6b80c1bb",
+      "canonical_input_sha256": "c615322479c567a831a08eba9328e52286a43e5ff283752dae537db31f68fea5"
+    },
+    {
+      "sequence": 12,
+      "id": "call_4ab8a7f1e36d48ea8766d471",
+      "name": "Read",
+      "result": {
+        "observed": true,
+        "is_error_field": null,
+        "content_bytes": 8196,
+        "content_sha256": "5f8316d3ee96b681a970bd641dd06497d8398280b16eb509daceaeabede3539d",
+        "skill_launch_acknowledgement": null
+      },
+      "scope": "package",
+      "package_path": "references/formulaic-language.md",
+      "frozen_file_sha256": "a4940b83c337ec5e0a7f0389de49113df8ccf3ae012b5c3fc498f0982b73bb16",
+      "read_success_observed": true
+    },
+    {
+      "sequence": 13,
+      "id": "call_fd168033a69947ad892ce3a7",
+      "name": "Bash",
+      "result": {
+        "observed": true,
+        "is_error_field": true,
+        "content_bytes": 90,
+        "content_sha256": "7b9b9183b8977068102f2cbac24bf8fd038a9f0eb2b602610576c7282a6cda67",
+        "skill_launch_acknowledgement": null
+      },
+      "command_sha256": "ff6a55a994014d0131838cf0b2dc74c99a097f7430e3072ed144e7188cd8d9c3",
+      "arguments_omitted": true
+    },
+    {
+      "sequence": 14,
+      "id": "call_f62007e84c144d5dae86ec1b",
+      "name": "Bash",
+      "result": {
+        "observed": true,
+        "is_error_field": false,
+        "content_bytes": 927,
+        "content_sha256": "a045a0a34cd7df81cb6816b59b4254faae190a33f477ee3d27d8acff584328db",
+        "skill_launch_acknowledgement": null
+      },
+      "command_sha256": "df05c0180bece2ed6343d937370f4c82176d17288a659f0dad0a2a948ff5db07",
+      "arguments_omitted": true
+    },
+    {
+      "sequence": 15,
+      "id": "call_b88cce6812884f35b077e245",
+      "name": "Read",
+      "result": {
+        "observed": true,
+        "is_error_field": null,
+        "content_bytes": 3980,
+        "content_sha256": "2609504659ce8f388adac655ae04ffa3111392456ba96f60ae080673612c3600",
+        "skill_launch_acknowledgement": null
+      },
+      "scope": "package",
+      "package_path": "references/proofreading-checklist.md",
+      "frozen_file_sha256": "aa56802a0e984aadb1deed4603181fc85b237b8c534ae0973e3c9d9413d859d2",
+      "read_success_observed": true
+    },
+    {
+      "sequence": 16,
+      "id": "call_4a45e586abd04e5e9c47f4e2",
+      "name": "Read",
+      "result": {
+        "observed": true,
+        "is_error_field": null,
+        "content_bytes": 9450,
+        "content_sha256": "f0fb6965987cf35c05536dfda4f5bc1a9bddf74938da0da4f4b57b7350757ca6",
+        "skill_launch_acknowledgement": null
+      },
+      "scope": "package",
+      "package_path": "references/final-review-layers.md",
+      "frozen_file_sha256": "0204ee133951e5ca0839312e8c60524d2edc529161e9b2846a314e1e7232e546",
+      "read_success_observed": true
+    },
+    {
+      "sequence": 17,
+      "id": "call_8ed7bb8a69a84e3391dce753",
+      "name": "Write",
+      "result": {
+        "observed": true,
+        "is_error_field": null,
+        "content_bytes": 341,
+        "content_sha256": "66ebe39375a39fe9f439459c8d598990bf06337f0dd82ffa87c4f3ef4ebd3c31",
+        "skill_launch_acknowledgement": null
+      },
+      "scope": "work",
+      "work_relative_path": "立项申请_版慎通智能审校系统公文AI写作模块.md",
+      "archive_path": "runs/first-draft/minimax/candidate-r16/document-1.txt",
+      "content_sha256": "04329814a41ddbf45bc0c71185d87c690f03abe82e83bebd0653d2198cda73b6"
+    }
+  ],
+  "documents": [
+    {
+      "work_relative_path": "立项申请_版慎通智能审校系统公文AI写作模块.md",
+      "archive_path": "runs/first-draft/minimax/candidate-r16/document-1.txt",
+      "sha256": "04329814a41ddbf45bc0c71185d87c690f03abe82e83bebd0653d2198cda73b6",
+      "bytes": 6120,
+      "file_state": "last_on_disk_artifact",
+      "delivery_state": "completed_run_artifact_quality_unreviewed",
+      "read_sequences": [],
+      "write_sequences": [
+        17
+      ],
+      "edit_sequences": []
+    }
+  ],
+  "helper_sha256": "452d3f5ac8df257fbd220d7585ce0aef3dd0475a76a51181de77e0f729f0a6ab",
+  "prompt_path": "prompts/first-draft.txt",
+  "omissions": [
+    "raw stream",
+    "runtime",
+    "provider state",
+    "original argv",
+    "absolute paths",
+    "shell arguments and stdout"
+  ]
+}

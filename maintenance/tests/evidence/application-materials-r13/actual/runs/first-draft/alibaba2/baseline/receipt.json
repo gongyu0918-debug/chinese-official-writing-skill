@@ -1,0 +1,263 @@
+{
+  "arm": "baseline",
+  "provider": "alibaba2",
+  "model": "alibaba-token-plan-2/deepseek-v4-flash-0731",
+  "case": "first-draft",
+  "session": "ddad51f5-50a2-436e-92bf-e92559424deb",
+  "technical_valid": true,
+  "return_code": 0,
+  "failure": null,
+  "seconds": 232.9,
+  "client_tools": "Read,Skill,Write,Edit,Bash",
+  "explicit_entry": true,
+  "frozen_unchanged": true,
+  "final_chars": 3223,
+  "init_models": [
+    "alibaba-token-plan-2/deepseek-v4-flash-0731"
+  ],
+  "assistant_models": [
+    "alibaba-token-plan-2/deepseek-v4-flash-0731"
+  ],
+  "usage_models": [
+    "alibaba-token-plan-2/deepseek-v4-flash-0731"
+  ],
+  "result_count": 1,
+  "result_subtypes": [
+    "success"
+  ],
+  "result_errors": [
+    false
+  ],
+  "final_path": "runs/first-draft/alibaba2/baseline/final.txt",
+  "final_sha256": "be991022003f69df73fe8048475d0d00894e3df9731380c6d00bbb4527c109cd",
+  "source_final_sha256": "be991022003f69df73fe8048475d0d00894e3df9731380c6d00bbb4527c109cd",
+  "source_final_logical_sha256": "f47c410bbb31abb1bf117cdb6d5e32f5980236a17490687f85a2890f817210ca",
+  "final_redaction": {
+    "replacement_count": 0,
+    "replacement": "<isolated-work>",
+    "scope": "Only this lane approved runtime/work prefix; slash variants accepted.",
+    "source_unchanged": true,
+    "archive_is_original_bytes": true
+  },
+  "hook_enabled": false,
+  "timeout_seconds": 480,
+  "automatic_retries": 0,
+  "effort": "max",
+  "invalid_json_line_count": 0,
+  "reads": [
+    "SKILL.md",
+    "references/information-selection.md",
+    "references/handling-elements.md",
+    "references/genre-playbook-request.md",
+    "references/argument-chains.md"
+  ],
+  "tool_evidence": [
+    {
+      "sequence": 1,
+      "id": "call_6cf25afdd3ed461689b6e8d0",
+      "name": "Read",
+      "result": {
+        "observed": true,
+        "is_error_field": null,
+        "content_bytes": 28638,
+        "content_sha256": "e10a5704b01f726deed97e97ccda306b4e0bcddaf253201c94b2482028892f98",
+        "skill_launch_acknowledgement": null
+      },
+      "scope": "package",
+      "package_path": "SKILL.md",
+      "frozen_file_sha256": "64a414e5ee69eb6161658529e9807460c3c612eeb458bd81925cc2ad6b494e96",
+      "read_success_observed": true
+    },
+    {
+      "sequence": 2,
+      "id": "call_83ed3bb75a3144199862b2a2",
+      "name": "Read",
+      "result": {
+        "observed": true,
+        "is_error_field": null,
+        "content_bytes": 4054,
+        "content_sha256": "d2b4eea1af80a15a60a3f07e9fe52bb890cf40e43a488a06a8254a7a538dd1fe",
+        "skill_launch_acknowledgement": null
+      },
+      "scope": "package",
+      "package_path": "references/information-selection.md",
+      "frozen_file_sha256": "188c9def1553cb01423f5214ebaee6f122c3157aac39b60f54077d78df97d595",
+      "read_success_observed": true
+    },
+    {
+      "sequence": 3,
+      "id": "call_7c3b4ed8f8b14b368d4a9c4e",
+      "name": "Read",
+      "result": {
+        "observed": true,
+        "is_error_field": null,
+        "content_bytes": 8410,
+        "content_sha256": "2373bc5039d28db2e53cccb7e76113ca106d22fdac48f2d4a27dcbb8e636bc03",
+        "skill_launch_acknowledgement": null
+      },
+      "scope": "package",
+      "package_path": "references/handling-elements.md",
+      "frozen_file_sha256": "e652dac11d5fec9458cc6bb63d41e884e206b359dfe6776731016b7c7a8e7fa4",
+      "read_success_observed": true
+    },
+    {
+      "sequence": 4,
+      "id": "call_563bd72e96dd4a9c8c25b3f3",
+      "name": "Read",
+      "result": {
+        "observed": true,
+        "is_error_field": null,
+        "content_bytes": 3633,
+        "content_sha256": "07d7e667ad79b4f4df72d59744302ed4e126f984beeb65b3026e1922f9b59e35",
+        "skill_launch_acknowledgement": null
+      },
+      "scope": "package",
+      "package_path": "references/genre-playbook-request.md",
+      "frozen_file_sha256": "458a3353b9254256cf6302cae738a5372964328cb3bbf9cf78bab97550b62b88",
+      "read_success_observed": true
+    },
+    {
+      "sequence": 5,
+      "id": "call_4176cdbb4dfc490298ef37ec",
+      "name": "Read",
+      "result": {
+        "observed": true,
+        "is_error_field": null,
+        "content_bytes": 5090,
+        "content_sha256": "d91cf242a46146d3271009fb2fabacbedb134faa3a58536283c36b69d947734d",
+        "skill_launch_acknowledgement": null
+      },
+      "scope": "package",
+      "package_path": "references/argument-chains.md",
+      "frozen_file_sha256": "dbe855c11eba2c35726aa383101a7c3a7d13c93226a6c98e2f7bc221d29209bf",
+      "read_success_observed": true
+    },
+    {
+      "sequence": 6,
+      "id": "call_27012ca887f441059340f3b4",
+      "name": "Write",
+      "result": {
+        "observed": true,
+        "is_error_field": null,
+        "content_bytes": 297,
+        "content_sha256": "53e95f0d211d3e41a58447a8812c4a9e3bda2a660964c69513d11362beea6c90",
+        "skill_launch_acknowledgement": null
+      },
+      "scope": "work",
+      "work_relative_path": "立项申请-草稿.txt",
+      "archive_path": "runs/first-draft/alibaba2/baseline/document-1.txt",
+      "content_sha256": "8b3ffec6cdbd34c7c4d590c5b5d0fb3960a7fd19a04f11668fd40f9839fca9b2"
+    },
+    {
+      "sequence": 7,
+      "id": "call_47fe0c73cd604297bc7b89fb",
+      "name": "Bash",
+      "result": {
+        "observed": true,
+        "is_error_field": false,
+        "content_bytes": 2084,
+        "content_sha256": "54fc91c5476391b450696a80a054c477813d3a66dd6c5759395402e4241da064",
+        "skill_launch_acknowledgement": null
+      },
+      "command_sha256": "ecd382eaca7f54c3e71fac7874150ff2d4b2894611c18a191139e8425a5ff155",
+      "arguments_omitted": true
+    },
+    {
+      "sequence": 8,
+      "id": "call_8c8b6203684f40bfa8c08c5a",
+      "name": "Edit",
+      "result": {
+        "observed": true,
+        "is_error_field": null,
+        "content_bytes": 307,
+        "content_sha256": "0ad49115bc1960c87e7b774c87a5fca224340a2264bd37b3cab5e5d0abe0533b",
+        "skill_launch_acknowledgement": null
+      },
+      "scope": "work",
+      "work_relative_path": "立项申请-草稿.txt",
+      "archive_path": "runs/first-draft/alibaba2/baseline/document-1.txt",
+      "replace_all": false,
+      "old_string_sha256": "9c231861210ffaf4396ceeb9c0d324747b23581f4fd925c27e27c182f4072891",
+      "new_string_sha256": "480aa22382c7d89fb00c29d4430089e57c795a08754056090838486063ee85e1"
+    },
+    {
+      "sequence": 9,
+      "id": "call_8e9b028dcbbd4c1ead517300",
+      "name": "Edit",
+      "result": {
+        "observed": true,
+        "is_error_field": null,
+        "content_bytes": 307,
+        "content_sha256": "0ad49115bc1960c87e7b774c87a5fca224340a2264bd37b3cab5e5d0abe0533b",
+        "skill_launch_acknowledgement": null
+      },
+      "scope": "work",
+      "work_relative_path": "立项申请-草稿.txt",
+      "archive_path": "runs/first-draft/alibaba2/baseline/document-1.txt",
+      "replace_all": false,
+      "old_string_sha256": "ca6a76eb562251ea2b52bad1a6614c6411ffb4ff165ccfd8d535cd81c8079ffb",
+      "new_string_sha256": "88b1730c4ba44c0efd60fe4063d5c3a9bf2021c574ab7578f9d81d63b7a1e652"
+    },
+    {
+      "sequence": 10,
+      "id": "call_7ad7abdabc814974a92b3be3",
+      "name": "Edit",
+      "result": {
+        "observed": true,
+        "is_error_field": null,
+        "content_bytes": 307,
+        "content_sha256": "0ad49115bc1960c87e7b774c87a5fca224340a2264bd37b3cab5e5d0abe0533b",
+        "skill_launch_acknowledgement": null
+      },
+      "scope": "work",
+      "work_relative_path": "立项申请-草稿.txt",
+      "archive_path": "runs/first-draft/alibaba2/baseline/document-1.txt",
+      "replace_all": false,
+      "old_string_sha256": "6af35b2fbff7f419eec5e854d3aeb5cb040ee7e46bb27fee136aeb5b214aa8bd",
+      "new_string_sha256": "c6c60f67ec4bf3b794172b00fb010f4e106c4e6556c29ab27dae870c2691a3af"
+    },
+    {
+      "sequence": 11,
+      "id": "call_e40e46ef763340608c091730",
+      "name": "Bash",
+      "result": {
+        "observed": true,
+        "is_error_field": false,
+        "content_bytes": 2084,
+        "content_sha256": "54fc91c5476391b450696a80a054c477813d3a66dd6c5759395402e4241da064",
+        "skill_launch_acknowledgement": null
+      },
+      "command_sha256": "ecd382eaca7f54c3e71fac7874150ff2d4b2894611c18a191139e8425a5ff155",
+      "arguments_omitted": true
+    }
+  ],
+  "documents": [
+    {
+      "work_relative_path": "立项申请-草稿.txt",
+      "archive_path": "runs/first-draft/alibaba2/baseline/document-1.txt",
+      "sha256": "2262b96712c3f656037a069c3b8bea70502aad57cdd42edfab12e2a8a9b06b83",
+      "bytes": 7256,
+      "file_state": "last_on_disk_artifact",
+      "delivery_state": "completed_run_artifact_quality_unreviewed",
+      "read_sequences": [],
+      "write_sequences": [
+        6
+      ],
+      "edit_sequences": [
+        8,
+        9,
+        10
+      ]
+    }
+  ],
+  "helper_sha256": "452d3f5ac8df257fbd220d7585ce0aef3dd0475a76a51181de77e0f729f0a6ab",
+  "prompt_path": "prompts/first-draft.txt",
+  "omissions": [
+    "raw stream",
+    "runtime",
+    "provider state",
+    "original argv",
+    "absolute paths",
+    "shell arguments and stdout"
+  ]
+}

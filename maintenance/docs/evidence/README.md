@@ -2,6 +2,8 @@
 
 本目录保存不需要在每次 Codex run 中注入、但必须长期可追溯的项目维护记录。这里的材料是证据和历史背景，不是当前运行时指令；当前规则以仓库根 [`AGENTS.md`](../../../AGENTS.md) 为准。
 
+- [立项申请R13—R16](../../tests/evidence/application-materials-r13/result.md)：四处独立规则原型、14次真实调用和日常增项/授权估算控制；全部候选恢复，原稿、读页错误与质量结论保留，不代表产品修复或发布。
+
 ## AGENTS 历史快照
 
 - [`AGENTS-control-plane-v1.6.0-pre-v1601.md`](AGENTS-control-plane-v1.6.0-pre-v1601.md) 是本轮进一步去重前的 v1.6.0 轻量工程控制面快照；与当时根文件规范化文本一致。

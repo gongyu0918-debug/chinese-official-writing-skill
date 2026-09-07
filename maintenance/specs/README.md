@@ -43,6 +43,8 @@
 
 ## 本轮审计与登记
 
+2026-09-07继续立项申请主线：独立worktree完成[四处规则原型与14次真实调用](../tests/evidence/application-materials-r13/result.md)，R13—R16均未准入，产品恢复当前main；正常新提示发现原题未暴露的工期虚构。WR-023b保持开放，README、发布及Hook已完成项不替代首稿质量。
+
 2026-09-06 继续构建四项 Hook 质量问题，登记为 `HK-002a` 同稿接续、`CL-001` 默认正文清理、`HK-010` 自然篇幅要求、`HK-002b` 原稿事实复核。工作基线为已发布 main `b77f6381`，独立分支 `codex/hook-quality-build-r1`；[本轮记录](../tests/evidence/hook-quality-build-r1/result.md)分别保留真实参与、正文质量、技术失败与未准入候选，不把全部需求标为完成。
 
 2026-09-05 的[逐项规格审计](../tests/evidence/reference-route-audit-r1/spec-audit.md)记录现有状态、证据入口和 AGENTS 规则保留映射；[审核发现](../tests/evidence/reference-route-audit-r1/audit-findings.md)登记已准入的命令路径修正与待修 Hook 问题，完整结论见[本轮结果](../tests/evidence/reference-route-audit-r1/result.md)。当前新增子项为 `MT-004c` 渐进路由、`MT-002a` 命令可执行、`WR-020c` 批量与多版质量、`AH-002b` 日期来源角色和 `HK-005b` 终态/回显；活动状态见 roadmap，不能用原型或旧测试记 DONE。

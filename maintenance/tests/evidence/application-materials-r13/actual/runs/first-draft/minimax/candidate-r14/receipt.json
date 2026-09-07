@@ -1,0 +1,232 @@
+{
+  "arm": "candidate-r14",
+  "provider": "minimax",
+  "model": "minimax-cn/MiniMax-M3",
+  "case": "first-draft",
+  "session": "36773f6e-dc97-4435-b1bb-def7fa7c43b4",
+  "technical_valid": true,
+  "return_code": 0,
+  "failure": null,
+  "seconds": 44.11,
+  "client_tools": "Read,Skill,Write,Edit,Bash",
+  "explicit_entry": true,
+  "frozen_unchanged": true,
+  "final_chars": 3347,
+  "init_models": [
+    "minimax-cn/MiniMax-M3"
+  ],
+  "assistant_models": [
+    "minimax-cn/MiniMax-M3"
+  ],
+  "usage_models": [
+    "minimax-cn/MiniMax-M3"
+  ],
+  "result_count": 1,
+  "result_subtypes": [
+    "success"
+  ],
+  "result_errors": [
+    false
+  ],
+  "final_path": "runs/first-draft/minimax/candidate-r14/final.txt",
+  "final_sha256": "830e3e342f503c3ef28a32f4f750b969dbc9de75091cd4ce91b99cf06bd0e505",
+  "source_final_sha256": "830e3e342f503c3ef28a32f4f750b969dbc9de75091cd4ce91b99cf06bd0e505",
+  "source_final_logical_sha256": "d74bd91b17ef99687c7d544454fecace24b4e9359a3ae188a2f2f36925dfe4a9",
+  "final_redaction": {
+    "replacement_count": 0,
+    "replacement": "<isolated-work>",
+    "scope": "Only this lane approved runtime/work prefix; slash variants accepted.",
+    "source_unchanged": true,
+    "archive_is_original_bytes": true
+  },
+  "hook_enabled": false,
+  "timeout_seconds": 480,
+  "automatic_retries": 0,
+  "effort": "max",
+  "invalid_json_line_count": 0,
+  "reads": [
+    "SKILL.md",
+    "references/information-selection.md",
+    "references/handling-elements.md",
+    "references/genre-playbook-request.md",
+    "references/argument-chains.md",
+    "references/official-style.md",
+    "references/formal-addressing.md",
+    "references/genre-routing.md",
+    "references/anti-ai-patterns.md",
+    "references/final-review-layers.md"
+  ],
+  "tool_evidence": [
+    {
+      "sequence": 1,
+      "id": "call_01a07bb461c07ff2ac4e2379",
+      "name": "Read",
+      "result": {
+        "observed": true,
+        "is_error_field": null,
+        "content_bytes": 28815,
+        "content_sha256": "8787558167a2f7a1691949af990e0d829928c144301cce6da22a61d1c2b176c5",
+        "skill_launch_acknowledgement": null
+      },
+      "scope": "package",
+      "package_path": "SKILL.md",
+      "frozen_file_sha256": "04879e7c7d042359c167e45a47627d9977adb1e03501f2ba29e240fa767334ef",
+      "read_success_observed": true
+    },
+    {
+      "sequence": 2,
+      "id": "call_01a07bb483c5732191160acf",
+      "name": "Read",
+      "result": {
+        "observed": true,
+        "is_error_field": null,
+        "content_bytes": 4054,
+        "content_sha256": "d2b4eea1af80a15a60a3f07e9fe52bb890cf40e43a488a06a8254a7a538dd1fe",
+        "skill_launch_acknowledgement": null
+      },
+      "scope": "package",
+      "package_path": "references/information-selection.md",
+      "frozen_file_sha256": "188c9def1553cb01423f5214ebaee6f122c3157aac39b60f54077d78df97d595",
+      "read_success_observed": true
+    },
+    {
+      "sequence": 3,
+      "id": "call_01a07bb488347cf09accf353",
+      "name": "Read",
+      "result": {
+        "observed": true,
+        "is_error_field": null,
+        "content_bytes": 8410,
+        "content_sha256": "2373bc5039d28db2e53cccb7e76113ca106d22fdac48f2d4a27dcbb8e636bc03",
+        "skill_launch_acknowledgement": null
+      },
+      "scope": "package",
+      "package_path": "references/handling-elements.md",
+      "frozen_file_sha256": "e652dac11d5fec9458cc6bb63d41e884e206b359dfe6776731016b7c7a8e7fa4",
+      "read_success_observed": true
+    },
+    {
+      "sequence": 4,
+      "id": "call_01a07bb48c647b01bf661d16",
+      "name": "Read",
+      "result": {
+        "observed": true,
+        "is_error_field": null,
+        "content_bytes": 3633,
+        "content_sha256": "07d7e667ad79b4f4df72d59744302ed4e126f984beeb65b3026e1922f9b59e35",
+        "skill_launch_acknowledgement": null
+      },
+      "scope": "package",
+      "package_path": "references/genre-playbook-request.md",
+      "frozen_file_sha256": "458a3353b9254256cf6302cae738a5372964328cb3bbf9cf78bab97550b62b88",
+      "read_success_observed": true
+    },
+    {
+      "sequence": 5,
+      "id": "call_01a07bb490907b719d5879c9",
+      "name": "Read",
+      "result": {
+        "observed": true,
+        "is_error_field": null,
+        "content_bytes": 5090,
+        "content_sha256": "d91cf242a46146d3271009fb2fabacbedb134faa3a58536283c36b69d947734d",
+        "skill_launch_acknowledgement": null
+      },
+      "scope": "package",
+      "package_path": "references/argument-chains.md",
+      "frozen_file_sha256": "dbe855c11eba2c35726aa383101a7c3a7d13c93226a6c98e2f7bc221d29209bf",
+      "read_success_observed": true
+    },
+    {
+      "sequence": 6,
+      "id": "call_01a07bb498417b10b71278a7",
+      "name": "Read",
+      "result": {
+        "observed": true,
+        "is_error_field": null,
+        "content_bytes": 6500,
+        "content_sha256": "fb2f2d445b02064075e4a188810fe916bab16b578d278c01ab0b14ab64e6794f",
+        "skill_launch_acknowledgement": null
+      },
+      "scope": "package",
+      "package_path": "references/official-style.md",
+      "frozen_file_sha256": "82b97cc58bca9fce3f81c79ece4a5804d17a1869a5bbd3f6de191612440d505a",
+      "read_success_observed": true
+    },
+    {
+      "sequence": 7,
+      "id": "call_01a07bb49c827d22a6c54f83",
+      "name": "Read",
+      "result": {
+        "observed": true,
+        "is_error_field": null,
+        "content_bytes": 3629,
+        "content_sha256": "53bd7cf7f0b4fbd2dc2304a6d75a4ea81abb16ed63e4187676c9bef9eadc60f6",
+        "skill_launch_acknowledgement": null
+      },
+      "scope": "package",
+      "package_path": "references/formal-addressing.md",
+      "frozen_file_sha256": "4fe40b280d3f09faac845bc23526aa2a62633da7fb6f22e57d61f572d3291a96",
+      "read_success_observed": true
+    },
+    {
+      "sequence": 8,
+      "id": "call_01a07bb4a4367941b917606a",
+      "name": "Read",
+      "result": {
+        "observed": true,
+        "is_error_field": null,
+        "content_bytes": 9232,
+        "content_sha256": "e3ec5b0afc6232e43fc7ea85d40240ed9379670ed003619a3d1d38ddccb4d2e2",
+        "skill_launch_acknowledgement": null
+      },
+      "scope": "package",
+      "package_path": "references/genre-routing.md",
+      "frozen_file_sha256": "f31c8433417923d4064e75358cec53f41d30b135c7fd40699758077feddf19b2",
+      "read_success_observed": true
+    },
+    {
+      "sequence": 9,
+      "id": "call_01a07bb4a88f7970b3f99873",
+      "name": "Read",
+      "result": {
+        "observed": true,
+        "is_error_field": null,
+        "content_bytes": 15041,
+        "content_sha256": "30b5e73d21be16753fbb5a4fde30e8accf79cd2b9746124413f5791ef20e0adf",
+        "skill_launch_acknowledgement": null
+      },
+      "scope": "package",
+      "package_path": "references/anti-ai-patterns.md",
+      "frozen_file_sha256": "c77202b6685b57bef8ae98499c05e1e21427fce90c56a18adba0472da07e4f2f",
+      "read_success_observed": true
+    },
+    {
+      "sequence": 10,
+      "id": "call_01a07bb4acee760385f33014",
+      "name": "Read",
+      "result": {
+        "observed": true,
+        "is_error_field": null,
+        "content_bytes": 9450,
+        "content_sha256": "f0fb6965987cf35c05536dfda4f5bc1a9bddf74938da0da4f4b57b7350757ca6",
+        "skill_launch_acknowledgement": null
+      },
+      "scope": "package",
+      "package_path": "references/final-review-layers.md",
+      "frozen_file_sha256": "0204ee133951e5ca0839312e8c60524d2edc529161e9b2846a314e1e7232e546",
+      "read_success_observed": true
+    }
+  ],
+  "documents": [],
+  "helper_sha256": "452d3f5ac8df257fbd220d7585ce0aef3dd0475a76a51181de77e0f729f0a6ab",
+  "prompt_path": "prompts/first-draft.txt",
+  "omissions": [
+    "raw stream",
+    "runtime",
+    "provider state",
+    "original argv",
+    "absolute paths",
+    "shell arguments and stdout"
+  ]
+}
