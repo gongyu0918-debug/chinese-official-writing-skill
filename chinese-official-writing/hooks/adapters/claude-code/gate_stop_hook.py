@@ -190,6 +190,12 @@ def _map_event(event: dict[str, Any], data_root: Path) -> dict[str, Any] | None:
         return None
     mapped["stop_hook_active"] = stop_hook_active
     mapped["last_assistant_message"] = message
+    transcript_path = event.get("transcript_path")
+    if isinstance(transcript_path, str) and transcript_path:
+        mapped["revision_transcript"] = {
+            "format": "claude-code",
+            "path": transcript_path,
+        }
     return mapped
 
 

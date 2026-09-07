@@ -126,6 +126,7 @@ DELIVERY_CLEANLINESS_RUNTIME_PATH = (
     SKILL_ROOT / "hooks" / "capabilities" / "delivery_cleanliness" / "runtime.py"
 )
 SOURCE_BOUND_DATES_PATH = SKILL_ROOT / "hooks" / "shared" / "source_bound_dates.py"
+REVISION_CONTEXT_PATH = SKILL_ROOT / "hooks" / "shared" / "revision_context.py"
 GATE_COMMAND_RE = re.compile(
     r"review_gate\.py(?:\"|'|\s)+(detect|dispatch|prepare|finalize|emit|abort)\b",
     re.IGNORECASE,
@@ -1052,6 +1053,26 @@ def _over_length_runtime_failure(
     )
 
 
+def _body_only_has_wrapper(request: str, draft: str) -> bool:
+    """Route explicit body delivery with visible commentary to deletion review."""
+    body_only = re.search(
+        r"(?:只|仅|直接)(?:输出|发|给|交付)(?:我)?(?:完整|纪要|报告)?正文",
+        request,
+    )
+    if not body_only or re.search(
+        r"(?:保留|附上|附带|需要|要求)[^。；\n]{0,24}(?:前言|前导语|字数统计|修改说明|改动说明)",
+        request,
+    ):
+        return False
+    first_paragraph = draft.strip().split("\n\n", 1)[0]
+    return bool(re.search(
+        r"^(?:下面|以下)(?:是|为)[^\n]{0,40}(?:稿|正文)"
+        r"|(?:正文|完整稿)如下[。：:]?\s*$"
+        r"|^压缩[到为至]\s*\d+\s*字",
+        first_paragraph,
+    ))
+
+
 def _handle_delivery_cleanliness_capability(
     event: dict[str, Any], record_path: Path, record: dict[str, Any]
 ) -> dict[str, Any] | None:
@@ -1060,12 +1081,23 @@ def _handle_delivery_cleanliness_capability(
         os.environ.get(PROTECTIVE_CAPABILITY_ENV)
         == DELIVERY_CLEANLINESS_CAPABILITY_NAME
     )
-    if not active and not selected:
+    default_wrapper = (
+        os.environ.get(PROTECTIVE_CAPABILITY_ENV, "delivery_review") == "delivery_review"
+        and _body_only_has_wrapper(
+            str(record.get("request") or ""),
+            str(event.get("last_assistant_message") or ""),
+        )
+    )
+    if not active and not selected and not default_wrapper:
         return None
     runtime = _load_delivery_cleanliness_runtime()
     if runtime is None:
         if not active:
             return None
+        if record.get("cleanliness_prepass") is True:
+            record["failure_reason"] = "hook_selected_output_echo_budget_exhausted"
+            _redact_turn_data(record_path, record)
+            return _unverified_delivery_stop()
         original = record.get("delivery_cleanliness", {}).get("original")
         if not isinstance(original, str) or not original:
             return _allow()
@@ -1087,6 +1119,19 @@ def _handle_delivery_cleanliness_capability(
         )
     if active:
         response = runtime.advance(event, record)
+        state = record["delivery_cleanliness"]
+        if record.get("cleanliness_prepass") is True:
+            if state.get("phase") == runtime.PHASE_COMPLETE and state.get("audit", {}).get("delivery_verified") is True:
+                record["cleanliness_prepass_audit"] = dict(state["audit"])
+                record["cleanliness_prepass_complete"] = True
+                record.pop("delivery_cleanliness")
+                record.pop("delivery_cleanliness_selected_sha256", None)
+                _write_record(record_path, record)
+                return None
+            if state.get("phase") == runtime.PHASE_FAILED:
+                record["failure_reason"] = "hook_selected_output_echo_budget_exhausted"
+                _redact_turn_data(record_path, record)
+                return _unverified_delivery_stop()
         _write_record(record_path, record)
         return response
     eligible = (
@@ -1100,6 +1145,8 @@ def _handle_delivery_cleanliness_capability(
     )
     if not eligible:
         return None
+    if default_wrapper:
+        record["cleanliness_prepass"] = True
     response = runtime.start(event, record)
     if response is not None:
         _write_record(record_path, record)
@@ -1496,7 +1543,7 @@ def _bootstrap_transaction(
 def _write_bootstrap_inputs(
     record_path: Path, record: dict[str, Any], inputs: Path, request: str, draft: str
 ) -> bool:
-    # Only the two small input writes share the cleanup lock, never detect.
+    # Only bounded input writes share the cleanup lock, never detect.
     with _record_lock(record_path):
         current = _read_json(record_path) or {}
         if _record_is_terminal(current) or _pending_host_abort(record_path):
@@ -1507,6 +1554,8 @@ def _write_bootstrap_inputs(
         _atomic_write(record_path, record)
         _atomic_write_text(inputs / "request.txt", request)
         _atomic_write_text(inputs / "draft.txt", draft)
+        if isinstance(record.get("source_text"), str):
+            _atomic_write_text(inputs / "source.txt", record["source_text"])
     return True
 
 
@@ -1558,6 +1607,7 @@ def _bootstrap_transaction_locked(
                 str(draft_path),
                 "--txn",
                 str(txn),
+                *(["--source", str(inputs / "source.txt")] if record.get("source_text") else []),
             ]
         )
     except OSError:
@@ -1793,6 +1843,55 @@ def _handle_redacted_stop(record_path: Path, record: dict[str, Any]) -> dict[str
     return _allow()
 
 
+def _bind_revision_context(event: dict[str, Any], record_path: Path, record: dict[str, Any]) -> None:
+    transcript = event.get("revision_transcript")
+    if (not isinstance(transcript, dict) or transcript.get("format") != "claude-code"
+            or not isinstance(transcript.get("path"), str) or record.get("txn")
+            or event.get("stop_hook_active") is True or not record.get("request")
+            or _is_review_only_request(str(record["request"]))):
+        return
+    try:
+        spec = importlib.util.spec_from_file_location("cow_revision_context", REVISION_CONTEXT_PATH)
+        if spec is None or spec.loader is None:
+            return
+        module = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(module)
+        context = module.recover(transcript["path"], event["session_id"], record["request"], SKILL_ROOT)
+    except (OSError, UnicodeError, ValueError, ImportError, TypeError, KeyError):
+        return
+    if context is not None:
+        with _record_lock(record_path):
+            current = _read_json(record_path) or {}
+            if (current.get("txn") or _record_is_terminal(current)
+                    or _pending_host_abort(record_path)
+                    or current.get("bypass") == "user_requested"
+                    or current.get("request") != record.get("request")):
+                record.clear()
+                record.update(current)
+                return
+            current.update(
+                skill_seen=True,
+                source_text=context["source_text"],
+                revision_context={"turn_count": context["turn_count"], "sha256": context["sha256"]},
+            )
+            _atomic_write(record_path, current)
+            record.clear()
+            record.update(current)
+
+
+def _prepare_stop_context(event: dict[str, Any], record_path: Path, record: dict[str, Any]) -> dict[str, Any] | None:
+    if _skill_was_seen(record_path, record) and record.get("skill_seen") is not True:
+        record["skill_seen"] = True
+        _write_record(record_path, record)
+    _bind_revision_context(event, record_path, record)
+    pending_abort = _pending_host_abort(record_path)
+    if pending_abort:
+        return handle_host_abort({**event, "abort_reason": pending_abort})
+    if record.get("data_retention_state") == REDACTED_RECORD_STATE:
+        return _handle_redacted_stop(record_path, record)
+    return None
+
+
 def _handle_stop(event: dict[str, Any]) -> dict[str, Any]:
     record_path = _record_path(event)
     if record_path is None:
@@ -1809,12 +1908,14 @@ def _handle_stop(event: dict[str, Any]) -> dict[str, Any]:
             # Explicit opt-out still applies when best-effort cleanup must wait.
             pass
         return _allow()
-    if _skill_was_seen(record_path, record) and record.get("skill_seen") is not True:
-        record["skill_seen"] = True
-        _write_record(record_path, record)
+    context_response = _prepare_stop_context(event, record_path, record)
+    if context_response is not None:
+        return context_response
     delivery_cleanliness = _handle_delivery_cleanliness_capability(event, record_path, record)
     if delivery_cleanliness is not None:
         return _finish_stop_response(record_path, record, delivery_cleanliness)
+    if record.get("data_retention_state") == REDACTED_RECORD_STATE:
+        return _handle_redacted_stop(record_path, record)
     protective = _handle_protective_capability(event, record_path, record)
     if protective is not None:
         return _finish_stop_response(record_path, record, protective)
@@ -1825,7 +1926,7 @@ def _handle_stop(event: dict[str, Any]) -> dict[str, Any]:
     if over_length is not None:
         return _finish_stop_response(record_path, record, over_length)
     if not record.get("txn"):
-        if event.get("stop_hook_active") is True:
+        if event.get("stop_hook_active") is True and record.get("cleanliness_prepass_complete") is not True:
             return _allow()
         bootstrap = _bootstrap_transaction(event, record_path, record)
         if bootstrap is _BOOTSTRAP_BUSY:
@@ -1864,7 +1965,12 @@ def handle_stop(event: dict[str, Any]) -> dict[str, Any]:
         time.monotonic() + STOP_SUBPROCESS_BUDGET_SECONDS
     )
     try:
-        return _handle_stop(event)
+        response = _handle_stop(event)
+        record_path = _record_path(event)
+        pending_abort = _pending_host_abort(record_path) if record_path else None
+        if pending_abort:
+            return handle_host_abort({**event, "abort_reason": pending_abort})
+        return response
     except RecordLockUnavailable:
         message = "终稿状态暂不可写，已停止自动重试。"
         return {"continue": False, "stopReason": message, "systemMessage": message}

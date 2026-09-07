@@ -117,8 +117,12 @@ def _verdict_instruction(
 def _parse_json(value: Any) -> dict[str, Any] | None:
     if not isinstance(value, str):
         return None
+    text = value.strip()
+    lines = text.splitlines()
+    if len(lines) >= 3 and lines[0] in {"```", "```json"} and lines[-1] == "```":
+        text = "\n".join(lines[1:-1]).strip()
     try:
-        parsed = json.loads(value.strip())
+        parsed = json.loads(text)
     except json.JSONDecodeError:
         return None
     return parsed if isinstance(parsed, dict) else None
