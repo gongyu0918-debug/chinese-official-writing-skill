@@ -145,7 +145,7 @@ D0 有错不直接等于整个闭环不可用。普通 Skill 的 D0、人工反�
 
 这是用户提出README之前正在进行的主线，README/DOC-001不替代本项。仅以未经人工补原因的真实首稿评价：材料已经提供的既有基础、新需求和能力缺口应自然引出申请；建设内容、技术证据和资源费用应服务本次请批目的。不强制称赞原项目，不补造预算总额、工期、项目成效、主体或办理程序，保留备选方案与当前未决状态。
 
-状态 `IN_PROGRESS / PARTIAL_GAIN / NOT_ADMITTED`。独立研究分支 `codex/application-reason-reference-r1@3c441912` 已保留R1–R10的35次尝试（33新调用、2基线复用）：局部首段改善，但仍有专名、无据事实/状态与交付硬问题，未准入reference；全部协议、失败稿及结果在该分支的 `maintenance/tests/evidence/application-reason-reference-r1/`。后续R11/R12在独立worktree新增6次首稿调用，5次技术有效，1次MiniMax因调用未声明Edit而无效；原因前置未稳定改善，仍有候选新增无据预算、工期或分工，R12另有未读修改页的归因限制，两轮均未准入，需求保持开放。先真实写稿、目标获益且无候选独有硬回退，再补镜像和必要工程；不把README问答测试、API技术完成率或人工改后稿当成本项通过。
+状态 `IN_PROGRESS / PARTIAL_GAIN / NOT_ADMITTED`。独立研究分支 `codex/application-reason-reference-r1@3c441912` 已保留R1–R10的35次尝试（33新调用、2基线复用）：局部首段改善，但仍有专名、无据事实/状态与交付硬问题，未准入reference；全部协议、失败稿及结果在该分支的 `maintenance/tests/evidence/application-reason-reference-r1/`。后续R11/R12证据在 `codex/application-opening-r11@8b13b623` 的 `maintenance/tests/evidence/application-opening-r11/`，独立worktree新增6次首稿调用，5次技术有效，1次MiniMax因调用未声明Edit而无效；原因前置未稳定改善，仍有候选新增无据预算、工期或分工，R12另有未读修改页的归因限制，两轮均未准入，需求保持开放。先真实写稿、目标获益且无候选独有硬回退，再补镜像和必要工程；不把README问答测试、API技术完成率或人工改后稿当成本项通过。
 
 后续仍需验证自然增项提示、正常多轮修改与多篇质量；Hook能否拦下现稿虚构预算、工期是关联质量问题，单独保留，不用Hook兜底替代首稿规则修复。不报未经证明的长程稳定率。
 

@@ -13,7 +13,7 @@
 
 ## DONE
 
-- `DOC-001 / DONE / NOT_MERGED / NOT_RELEASED`：包内README提供能力答复、功能示例及免费/MIT说明；SKILL区分能力与适用范围咨询、Hook问题和真实写稿，两份README互链。两路最终能力问答与R2读页迁移支持有限路由完成，早期漏读和真实申请质量风险保留；五套兼容镜像、107项相关检查及88文件清洁包通过，不替代 `WR-023b / IN_PROGRESS`。[结果](../tests/evidence/skill-package-readme/result.md)
+- `DOC-001 / DONE / MERGED_LOCAL / NOT_RELEASED`：包内README提供能力答复、功能示例及免费/MIT说明；SKILL区分能力与适用范围咨询、Hook问题和真实写稿，两份README互链。两路最终能力问答与R2读页迁移支持有限路由完成，早期漏读和真实申请质量风险保留；五套兼容镜像、107项相关检查、817项全量及88文件清洁包通过，不替代 `WR-023b / IN_PROGRESS`。[合并登记](../tests/evidence/skill-package-readme/integration.md)
 
 - `v1.6.29` 小版本已发布：Claude有限同稿接续与默认正文清理；产品tag `52d60597`，817项回归，GitHub公开、SkillHub 87文件和ClawHub无Hook 37文件各一次接受，传播/审核待核。[发布记录](../tests/evidence/release-1.6.29.md)
 - `v1.6.28` 小版本已发布：当前main已准入Hook修复和新闻完整事实日期，产品tag `1d705aea`；GitHub已公开，SkillHub 86文件 `versionId=291966`、ClawHub 37文件 `versionId=k97dh3rey9y8sjd39f94a7exk58dvsav`各一次接受，公开传播/审核尚待；806项全量和五套校验通过。[发布记录](../tests/evidence/release-1.6.28.md)
