@@ -1,0 +1,34 @@
+{
+  "date": "2026-09-07",
+  "product_commit": "52d60597c3850d9922b8959a619be80e21e9af83",
+  "read_only": true,
+  "formal_submission_count_per_platform": 1,
+  "skillhub": {
+    "version": "1.6.29",
+    "issuer": "skillhub.cn",
+    "content_hash_match": true,
+    "content_hash": "b952326da9b02a57e297a1c40e749c5d7e6732c073a4bff0e2a7abd105ce312b",
+    "audit_status": "not re-queried; submission receipt pending"
+  },
+  "clawhub": {
+    "latest": "1.6.29",
+    "version": "1.6.29",
+    "submitted_files_matched": 37,
+    "public_files": 38,
+    "extra_files": [
+      {
+        "path": "skill-card.md",
+        "size": 3049,
+        "sha256": "2a66070968552bfd6c9374f5b4885a9bd38002122a5169622465f21ba985eef4",
+        "contentType": "text/markdown"
+      }
+    ],
+    "missing": [],
+    "hash_mismatch": [],
+    "moderation": "clean",
+    "security_status": "clean",
+    "security_has_warnings": true,
+    "platform_license_metadata": "MIT-0",
+    "packaged_license": "MIT file matches submitted bytes; no repository license change"
+  }
+}

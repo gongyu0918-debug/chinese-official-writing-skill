@@ -8,8 +8,8 @@
   },
   "status": {
     "github": "PUBLIC_RELEASE_CLOSED",
-    "skillhub": "SUBMISSION_ACCEPTED_SIGNATURE_PENDING_AUDITS_PENDING",
-    "clawhub": "SUBMISSION_ACCEPTED_PUBLIC_INDEX_PENDING"
+    "skillhub": "EXACT_SIGNATURE_VERIFIED_AUDITS_UNCONFIRMED",
+    "clawhub": "PUBLIC_EXACT_VERSION_AND_SUBMITTED_FILES_VERIFIED"
   },
   "files": [
     {
@@ -161,6 +161,26 @@
       "file": "zip-check.json",
       "bytes": 384,
       "sha256": "aa7a6e8d577b21e59c8ad2dc2ef9e76b4b2f9d791823b1658b026b03e205b080"
+    },
+    {
+      "file": "skillhub-public-final.json",
+      "bytes": 1256,
+      "sha256": "fbf9b5475e0deb9c78f282e02487957d8c3ce49e0fbadbc9f6bf7fe7a8bfdc8e"
+    },
+    {
+      "file": "clawhub-public-final.json",
+      "bytes": 44347,
+      "sha256": "3f1127c8ee19aa971b11ecbe93cf11ff16c3bafc700773d8580305bfa15cdc85"
+    },
+    {
+      "file": "propagation-final.json",
+      "bytes": 1072,
+      "sha256": "914d77761903a7dce491a352f98c09dc49d0fdb5bf11bff7994d576ee2ffcfab"
     }
-  ]
+  ],
+  "initial_status": {
+    "github": "PUBLIC_RELEASE_CLOSED",
+    "skillhub": "SUBMISSION_ACCEPTED_SIGNATURE_PENDING_AUDITS_PENDING",
+    "clawhub": "SUBMISSION_ACCEPTED_PUBLIC_INDEX_PENDING"
+  }
 }

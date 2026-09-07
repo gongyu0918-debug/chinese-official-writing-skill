@@ -1,0 +1,23 @@
+{
+  "command": [
+    "C:/Users/admin/AppData/Local/Programs/Python/Python313/python.exe",
+    "-B",
+    "-X",
+    "utf8",
+    "C:/Users/admin/.skillhub/skills_store_cli.py",
+    "--skip-self-upgrade",
+    "verify",
+    "chinese-official-writing",
+    "--namespace",
+    "user_f3d82da7",
+    "--version",
+    "1.6.29",
+    "--zip",
+    "output/release-v1.6.29/chinese-official-writing-1.6.29-skillhub.zip",
+    "--json"
+  ],
+  "exit_code": 0,
+  "seconds": 0.612,
+  "stdout": "{\"ok\": true, \"slug\": \"chinese-official-writing\", \"version\": \"1.6.29\", \"key_id\": \"skillhub-platform-v1\", \"verify_mode\": \"local\", \"issuer\": \"skillhub.cn\", \"publisher_user_name\": \"user_f3d82da7\", \"publisher_real_name_verified\": true, \"issued_at\": 1788761348324, \"content_hash\": \"b952326da9b02a57e297a1c40e749c5d7e6732c073a4bff0e2a7abd105ce312b\", \"content_hash_match\": true, \"content_hash_mode\": \"content\", \"actual_content_hash\": \"b952326da9b02a57e297a1c40e749c5d7e6732c073a4bff0e2a7abd105ce312b\", \"zip_path\": \"F:\\\\Workspaces\\\\chinese-official-writing-skill-worktrees\\\\release-v1629\\\\output\\\\release-v1.6.29\\\\chinese-official-writing-1.6.29-skillhub.zip\", \"local_kind\": \"zip\"}\n",
+  "stderr": ""
+}

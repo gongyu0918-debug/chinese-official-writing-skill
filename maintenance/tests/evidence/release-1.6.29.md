@@ -1,6 +1,6 @@
 # v1.6.29 发布记录
 
-日期：2026-09-07（Asia/Taipei）。状态：`GITHUB_PUBLIC_RELEASE_CLOSED / SKILLHUB_SUBMISSION_ACCEPTED_SIGNATURE_PENDING_AUDITS_PENDING / CLAWHUB_SUBMISSION_ACCEPTED_PUBLIC_INDEX_PENDING`。
+日期：2026-09-07（Asia/Taipei）。状态：`GITHUB_PUBLIC_RELEASE_CLOSED / SKILLHUB_EXACT_SIGNATURE_VERIFIED_AUDITS_UNCONFIRMED / CLAWHUB_PUBLIC_EXACT_VERSION_AND_SUBMITTED_FILES_VERIFIED`。初次传播未到齐，随后仅做只读复查，未重新提交。
 
 ## 产品与验证
 
@@ -27,10 +27,12 @@ git push --atomic origin HEAD:main refs/tags/v1.6.29
 ## 平台结果
 
 - [GitHub Release](https://github.com/gongyu0918-debug/chinese-official-writing-skill/releases/tag/v1.6.29) 已公开，`isDraft=false`、`isPrerelease=false`，`publishedAt=2026-09-07T06:08:55Z`。
-- SkillHub.cn `@user_f3d82da7/chinese-official-writing` 唯一正式提交 `ok=true`，`skillId=70149`、`versionId=295346`、87 文件、fingerprint `485699313970764c1f125637bd0a978359bffaef847edb3194dcd7930d2da3de`，八个 tags 均指向 1.6.29。review/security/content 三项 pending；精确版本签名只读查询返回找不到该版本，公开签名传播尚待。
-- ClawHub `gongyu0918-debug/chinese-official-writing` 唯一正式提交 `status=published`，`versionId=k978wxz7mfd37y3tkp1vg6h0b98dz4c3`、37 文件、fingerprint `bb199eb85fc0473a8b2030e1617b7fb76aeb2501f3bb8c3b588c727b1845954a` 与 dry-run 一致。source commit/ref 绑定产品 tag。精确版本只读查询为 `Version not found`，公开索引尚待。ClawHub 无 Hook，本次仅同步版本。
+- SkillHub.cn `@user_f3d82da7/chinese-official-writing` 唯一正式提交 `ok=true`，`skillId=70149`、`versionId=295346`、87 文件、fingerprint `485699313970764c1f125637bd0a978359bffaef847edb3194dcd7930d2da3de`，八个 tags 均指向 1.6.29。精确版本签名首查找不到，后续`verify --version 1.6.29 --zip ... --json`已返回`ok=true / content_hash_match=true`，签名issuer为skillhub.cn，与上传包content hash完全一致。三项审核在提交时为pending，本次签名校验不等于审核状态核验。
+- ClawHub `gongyu0918-debug/chinese-official-writing` 唯一正式提交 `status=published`，`versionId=k978wxz7mfd37y3tkp1vg6h0b98dz4c3`、37 文件、fingerprint `bb199eb85fc0473a8b2030e1617b7fb76aeb2501f3bb8c3b588c727b1845954a` 与 dry-run 一致。source commit/ref绑定产品tag。后续`inspect --version 1.6.29 --files --json`已返回latest和精确版本1.6.29，所提交37文件全部逐项SHA-256一致，无缺失或变化；公开清单另有上传清单外的`skill-card.md`，共38项，不能称公开清单恰为37项。moderation verdict与汇总security status为clean，但security仍有hasWarnings，个别scanner报告未一致，不能称所有审核均通过。平台license元数据为MIT-0，包内LICENSE仍与发布的MIT文件hash一致；未修改仓库许可或重提版本。ClawHub无Hook，本次仅同步版本。
 
 每个平台只提交一次，不因传播延迟重提，不把接受回执或旧版审核当作新版审核通过。
+
+传播复查的原始结果及逐文件比较见[最终公开核验](release-v1629/propagation-final.json)。本次只更新证据，产品tag和包字节不变。
 
 ## 保留边界
 
