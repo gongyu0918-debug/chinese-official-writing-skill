@@ -2,6 +2,8 @@
 
 交付复核 Hook 是中文公文写作 Skill 的可选增强。普通 Skill 可以独立完成起草、改写、压缩和复核；启用 Hook 后，Agent 会在完整初稿形成后增加一次有界交付检查，帮助发现其已覆盖的事实、状态和结构风险。检查未通过或运行异常时，优先交付原始完整稿，不反复改写。
 
+普通写稿能力与用法见 [Skill 使用说明](https://github.com/gongyu0918-debug/chinese-official-writing-skill/blob/main/chinese-official-writing/README.md)。
+
 ## 适合什么时候用
 
 - 对数字、主体、未决状态和办理表述较敏感的正式材料；
