@@ -1,0 +1,27 @@
+{
+  "candidate_commit": "a440f97e8787a1143835c2c04342a3d28e00068f",
+  "baseline": "176da7422b4ec2ffea82145c35498b09eddfea69",
+  "previous_release": "v1.6.29",
+  "ancestry": "PASS",
+  "canonical_diff": [
+    "chinese-official-writing/SKILL.md",
+    "chinese-official-writing/references/information-selection.md"
+  ],
+  "canonical_added_bytes": 1354,
+  "new_reference_pages": 0,
+  "files": 88,
+  "local_package_only": true,
+  "version_unchanged": "1.6.29",
+  "fingerprint": "71833989ce168ea55362e06494123b9496bcc1845236d22ec954ee921a619077",
+  "fingerprint_method": "SHA256 of UTF8 compact JSON list of sorted relative path and raw file SHA256",
+  "forbidden_paths": "PASS",
+  "merged_to": "main",
+  "product_commit": "a440f97e8787a1143835c2c04342a3d28e00068f",
+  "merge_method": "fast-forward",
+  "full_test_command": "python -B -X utf8 -m unittest discover -s maintenance/tests -p test_*.py",
+  "full_test_count": 817,
+  "full_test_seconds": 134.365,
+  "full_test_result": "PASS",
+  "push": false,
+  "publication": false
+}

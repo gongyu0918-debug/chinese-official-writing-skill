@@ -43,7 +43,7 @@
 
 ## 本轮审计与登记
 
-2026-09-08：[R25全局有据分析原子](../tests/evidence/global-grounded-analysis-r25/preregister.md)从当前main独立验证，参考付费版已验证的入口摘要与规则页分工；三题两臂12次真实调用完成；按用户写作质量优先的澄清保留全局原则和两个规则位置，已同步普通镜像，未合并发布。[结果](../tests/evidence/global-grounded-analysis-r25/result.md)
+2026-09-08：[R25全局有据分析原子](../tests/evidence/global-grounded-analysis-r25/preregister.md)从当前main独立验证，参考付费版已验证的入口摘要与规则页分工；三题两臂12次真实调用完成；按用户写作质量优先的澄清保留全局原则和两个规则位置，已同步普通镜像，已合入本地main（产品 `a440f97e`），未推送发布。[结果](../tests/evidence/global-grounded-analysis-r25/result.md) [合并记录](../tests/evidence/global-grounded-analysis-r25/integration.md)
 
 2026-09-07继续立项申请主线：独立worktree完成[四处规则原型与14次真实调用](../tests/evidence/application-materials-r13/result.md)，R13—R16均未准入，产品恢复当前main；正常新提示发现原题未暴露的工期虚构。WR-023b保持开放，README、发布及Hook已完成项不替代首稿质量。
 
