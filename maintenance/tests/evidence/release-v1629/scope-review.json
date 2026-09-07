@@ -1,0 +1,50 @@
+{
+  "baseline": "b77f6381438c8fa01f8576c205d13af4b8a987fd",
+  "hook_commit": "07c822de2d0788062f3bfdab36f4e1c025624202",
+  "previous_tag": "v1.6.28",
+  "tag_ancestor": true,
+  "canonical_from_previous_tag": [
+    "5\t1\tchinese-official-writing/hooks/README.md",
+    "4\t0\tchinese-official-writing/hooks/adapters/claude-code/README.md",
+    "6\t0\tchinese-official-writing/hooks/adapters/claude-code/gate_stop_hook.py",
+    "1\t1\tchinese-official-writing/hooks/adapters/claude-code/manifest.json",
+    "1\t1\tchinese-official-writing/hooks/adapters/codebuddy/manifest.json",
+    "1\t1\tchinese-official-writing/hooks/adapters/codex/manifest.json",
+    "1\t1\tchinese-official-writing/hooks/adapters/deepseek-harness/package.json",
+    "1\t1\tchinese-official-writing/hooks/adapters/hermes-agent/plugin.yaml",
+    "1\t1\tchinese-official-writing/hooks/adapters/kimi-code/manifest.json",
+    "1\t1\tchinese-official-writing/hooks/adapters/qwen-code/manifest.json",
+    "1\t1\tchinese-official-writing/hooks/adapters/zcode/manifest.json",
+    "5\t1\tchinese-official-writing/hooks/capabilities/delivery_cleanliness/runtime.py",
+    "113\t7\tchinese-official-writing/hooks/core/gate_stop_hook.py",
+    "83\t0\tchinese-official-writing/hooks/shared/revision_context.py"
+  ],
+  "version_only_changes": [
+    "2\t2\tREADME.md",
+    "1\t1\tchinese-official-writing/hooks/adapters/claude-code/manifest.json",
+    "1\t1\tchinese-official-writing/hooks/adapters/codebuddy/manifest.json",
+    "1\t1\tchinese-official-writing/hooks/adapters/codex/manifest.json",
+    "1\t1\tchinese-official-writing/hooks/adapters/deepseek-harness/package.json",
+    "1\t1\tchinese-official-writing/hooks/adapters/hermes-agent/plugin.yaml",
+    "1\t1\tchinese-official-writing/hooks/adapters/kimi-code/manifest.json",
+    "1\t1\tchinese-official-writing/hooks/adapters/qwen-code/manifest.json",
+    "1\t1\tchinese-official-writing/hooks/adapters/zcode/manifest.json",
+    "2\t2\tmaintenance/tests/test_skill_boundary.py",
+    "3\t3\tmaintenance/tests/test_status_ledger_consistency.py",
+    "1\t1\tmaintenance/tools/sync_adapters.py",
+    "1\t1\tpackages/openclaw/README.md",
+    "1\t1\tpackages/openclaw/skills/chinese_official_writing/SKILL.md"
+  ],
+  "public_forbidden_paths": [],
+  "native_hosts_not_rerun": [
+    "Codex",
+    "CodeBuddy",
+    "ZCode",
+    "Qwen Code",
+    "Kimi",
+    "OpenCode",
+    "Hermes",
+    "DeepSeek Harness"
+  ],
+  "claim": "Claude bounded user-material continuation; exact verified body cleanup then existing default review; no D0 fact or natural-length fix"
+}

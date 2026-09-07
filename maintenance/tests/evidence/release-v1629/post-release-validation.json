@@ -1,0 +1,11 @@
+{
+  "post_release_tests": {
+    "initial": "97 tests, 1 failure: README gained one release row; row-count assertion stale",
+    "final": "97/97 PASS in 0.129s",
+    "product_changed": false
+  },
+  "relative_links": 555,
+  "broken_links": [],
+  "git_diff_check": "PASS",
+  "product_tag_unchanged": "52d60597c3850d9922b8959a619be80e21e9af83"
+}

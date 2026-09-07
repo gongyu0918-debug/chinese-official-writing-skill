@@ -1,0 +1,8 @@
+{
+  "zip_sha256": "79bc71e180bee437b2f09a99397983603cda23d37928ca899ee7a97553d87ea9",
+  "content_hash": "b952326da9b02a57e297a1c40e749c5d7e6732c073a4bff0e2a7abd105ce312b",
+  "zip_members_exact": true,
+  "skillhub_files": 87,
+  "clawhub_files": 37,
+  "initial_helper_import": "skills_upgrade unavailable until CLI directory added to this process sys.path; no product change"
+}

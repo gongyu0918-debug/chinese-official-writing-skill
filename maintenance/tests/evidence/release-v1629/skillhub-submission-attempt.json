@@ -1,0 +1,18 @@
+{
+  "formal_attempt": 1,
+  "command": [
+    "C:/Users/admin/AppData/Local/Programs/Python/Python313/python.exe",
+    "-B",
+    "-X",
+    "utf8",
+    "C:/Users/admin/.skillhub/skills_store_cli.py",
+    "--skip-self-upgrade",
+    "publish",
+    "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\release-v1629\\output\\release-v1.6.29\\skillhub\\chinese-official-writing",
+    "--version",
+    "1.6.29",
+    "--changelog",
+    "改善Claude同稿连续修改的门禁接续和用户材料绑定；明确只发正文时，核验删除常见正文外说明后继续默认审查；修复完整JSON围栏误拒。Hook仍默认关闭，ClawHub保持无Hook包。自然字数解析及原稿事实纠错未准入。",
+    "--json"
+  ]
+}

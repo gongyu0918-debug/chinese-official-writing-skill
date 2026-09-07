@@ -12,7 +12,9 @@
 
 ## 逐版发布证据
 
-- [Hook质量构建R1](../../tests/evidence/hook-quality-build-r1/result.md)：独立分支的Claude连续改稿与默认正文清理；真实八版报告、五版纪要及同稿修订，817项回归。自然字数、原稿事实核验和新前言变体保留HOLD，未合并或发布。
+- [Hook质量构建R1](../../tests/evidence/hook-quality-build-r1/result.md)：独立分支的Claude连续改稿与默认正文清理；真实八版报告、五版纪要及同稿修订，817项回归。有限同稿接续与默认清理随v1.6.29发布；自然字数、原稿事实核验和新前言变体保留HOLD。
+
+- [v1.6.29](../../tests/evidence/release-1.6.29.md)：Claude有限同稿接续与默认正文清理；817项回归，三平台唯一提交及传播/审核边界。
 
 - [v1.6.28](../../tests/evidence/release-1.6.28.md)：当前main已准入Hook修复、新闻完整事实日期与806项回归；三平台唯一提交回执、包hash及公开传播/审核边界。
 

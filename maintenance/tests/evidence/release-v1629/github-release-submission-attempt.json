@@ -1,0 +1,16 @@
+{
+  "formal_attempt": 1,
+  "command": [
+    "gh",
+    "release",
+    "create",
+    "v1.6.29",
+    "--repo",
+    "gongyu0918-debug/chinese-official-writing-skill",
+    "--verify-tag",
+    "--title",
+    "v1.6.29",
+    "--notes-file",
+    "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\release-v1629\\output\\release-v1.6.29\\release-notes.md"
+  ]
+}

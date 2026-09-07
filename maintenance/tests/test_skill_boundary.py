@@ -2131,7 +2131,7 @@ class SkillBoundaryTests(unittest.TestCase):
         ]:
             self.assertIn(term, text)
         recent_table = text.split("## 模型消融与真实写稿", 1)[1].split("### 制度正文示例", 1)[0]
-        self.assertEqual(7, sum(1 for line in recent_table.splitlines() if line.startswith("|")))
+        self.assertEqual(8, sum(1 for line in recent_table.splitlines() if line.startswith("|")))
         self.assertNotIn("50k+", recent_table)
         self.assertNotIn("SkillHub downloads", recent_table)
         for removed in [

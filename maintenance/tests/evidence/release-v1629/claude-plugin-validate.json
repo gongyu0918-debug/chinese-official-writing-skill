@@ -1,0 +1,13 @@
+{
+  "command": [
+    "claude",
+    "plugin",
+    "validate",
+    "output/release-v1.6.29/claude-companion",
+    "--strict"
+  ],
+  "exit_code": 0,
+  "seconds": 0.483,
+  "stdout": "Validating plugin manifest: F:\\Workspaces\\chinese-official-writing-skill-worktrees\\release-v1629\\output\\release-v1.6.29\\claude-companion\\.claude-plugin\\plugin.json\n\n√ Validation passed\n",
+  "stderr": ""
+}

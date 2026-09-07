@@ -1,0 +1,166 @@
+{
+  "product_tag": "v1.6.29",
+  "product_commit": "52d60597c3850d9922b8959a619be80e21e9af83",
+  "formal_submission_count": {
+    "github_release": 1,
+    "skillhub": 1,
+    "clawhub": 1
+  },
+  "status": {
+    "github": "PUBLIC_RELEASE_CLOSED",
+    "skillhub": "SUBMISSION_ACCEPTED_SIGNATURE_PENDING_AUDITS_PENDING",
+    "clawhub": "SUBMISSION_ACCEPTED_PUBLIC_INDEX_PENDING"
+  },
+  "files": [
+    {
+      "file": ".gitattributes",
+      "bytes": 29,
+      "sha256": "730a35ae3d558080083c3103d9ac8100c3f6561678092abe341701dfa331eb1d"
+    },
+    {
+      "file": "claude-plugin-validate.json",
+      "bytes": 410,
+      "sha256": "68bc8a17abdc0e0811d437f6c8496531b8740a010fc8c7591119707c509f6ba6"
+    },
+    {
+      "file": "clawhub-dry-run.json",
+      "bytes": 1093,
+      "sha256": "778de8c9f95b1635b5fd852405c4f2c5da76ed2cc8b7c426b449a1ff90d404c0"
+    },
+    {
+      "file": "clawhub-public.json",
+      "bytes": 409,
+      "sha256": "aa00673752e35024a7854b456967c0bc5c3ffaa6a822b274c2116dc018d6cc40"
+    },
+    {
+      "file": "clawhub-publish.json",
+      "bytes": 1725,
+      "sha256": "7ae821515c57c1e433032061e108e47bccd9a46c96b57f5f792095d2e5df5fa5"
+    },
+    {
+      "file": "clawhub-submission-attempt.json",
+      "bytes": 1145,
+      "sha256": "87538600e33b9a877f4f6b892663b699d03e06506287d6759d73c2bff748300c"
+    },
+    {
+      "file": "full-tests.json",
+      "bytes": 1246,
+      "sha256": "546efb93fdf408ae08649d0946b0c5370dd6529d9a71eec81b4da2cfa1cb450f"
+    },
+    {
+      "file": "github-public.json",
+      "bytes": 549,
+      "sha256": "1fa336a365a250faa6449f473d6323f4fccc1a094a025ec1ff9d3a7253810efc"
+    },
+    {
+      "file": "github-push.json",
+      "bytes": 356,
+      "sha256": "027d80e83f211cb1e9f51cff3399d7289eb2eb19ca64d2058284dafee2a7fc37"
+    },
+    {
+      "file": "github-release-publish.json",
+      "bytes": 515,
+      "sha256": "67b09370558a51a6552051ee957135e28f8438aa2c5ba870b68e552aca6618c8"
+    },
+    {
+      "file": "github-release-submission-attempt.json",
+      "bytes": 376,
+      "sha256": "5b8a096ea6fd9da21c5804e8ae83eafbbeed233279bcd2b506b4296a42959b31"
+    },
+    {
+      "file": "package-manifest.json",
+      "bytes": 21766,
+      "sha256": "05d0877d885133ea969045abe3ab2e75f711ffe58181c96b071d6f99dcba5b98"
+    },
+    {
+      "file": "post-release-tests-final.json",
+      "bytes": 541,
+      "sha256": "ed45bc0e9c607f5a55a75a0608e7fdbd5faec62a7db22f497d53992a9f688800"
+    },
+    {
+      "file": "post-release-tests.json",
+      "bytes": 1372,
+      "sha256": "63f18d70be089bc594c86406d12f2e16ed6d4c39fd93c216fcac936e3ade4a98"
+    },
+    {
+      "file": "post-release-validation.json",
+      "bytes": 353,
+      "sha256": "cf4dd42530673add6bb0923adffa8a0e0c5bf02c92f4f3338b52f3b077d68ec5"
+    },
+    {
+      "file": "publish.py",
+      "bytes": 1823,
+      "sha256": "bcde922e930535db5793137ba0289d4d12f858baa10bc992842286ac369453ed"
+    },
+    {
+      "file": "quick-0.json",
+      "bytes": 344,
+      "sha256": "f17d0869def6d7339e1200abb4469e0a915b25821c33ae5f24f683a08989e1f8"
+    },
+    {
+      "file": "quick-1.json",
+      "bytes": 371,
+      "sha256": "0ff7c981c7722a99082004fe957ee08d1ddd3c42ebf46f02e30715fed0ba6504"
+    },
+    {
+      "file": "quick-2.json",
+      "bytes": 370,
+      "sha256": "75812c0f708f6b2a6c0d3a640a543bebc41c3f988b3da59c23ff646929ac844c"
+    },
+    {
+      "file": "quick-3.json",
+      "bytes": 369,
+      "sha256": "74834a37e4b8276388ce25d246a4890cedea4cf6d7a9cb2f28584a4eb6d6e134"
+    },
+    {
+      "file": "quick-4.json",
+      "bytes": 367,
+      "sha256": "f8f1cb437ee57ed3dc7abce789913268408cfca5881785df3994e522e17507b0"
+    },
+    {
+      "file": "release-notes.md",
+      "bytes": 997,
+      "sha256": "11a761b76d22b6e557e7fe3bc505d2349d0cb74d79db53e9757ec9f1d4ee0f97"
+    },
+    {
+      "file": "run.py",
+      "bytes": 2685,
+      "sha256": "0eba691e10e17bc96e70dd5e9d2efa16c65a2166bac0aec8b42501a275ec3a8e"
+    },
+    {
+      "file": "scope-review.json",
+      "bytes": 2615,
+      "sha256": "4b21dde9aff72a6ab2c901aa9271d6665f87823cf01f4e4d4d96ffc516086d8e"
+    },
+    {
+      "file": "skillhub-dry-run.json",
+      "bytes": 522,
+      "sha256": "0af71b76802ea78c9b0c392f1035455e9a115c5ec96daa2618d67d84fef05efa"
+    },
+    {
+      "file": "skillhub-public.json",
+      "bytes": 578,
+      "sha256": "7cac5b9af87abea1497af528b84b9e644231d53c53aa2c7b7e740bd910e71c6e"
+    },
+    {
+      "file": "skillhub-publish.json",
+      "bytes": 1539,
+      "sha256": "241ff11db4c67076486e4114dea3d54fd507fbdc2816497e2d688602ac9ac23f"
+    },
+    {
+      "file": "skillhub-submission-attempt.json",
+      "bytes": 754,
+      "sha256": "a9b712f8a53ab2613f10232889dd94ecb2bf9c2a1fa6de393f9a8f61257b179e"
+    },
+    {
+      "file": "sync-target-preflight.json",
+      "bytes": 668,
+      "sha256": "8534b31ba2ac6d0a5bd7a3634066f796ab3396d48772ff94bde9272ab5fa0ce7"
+    },
+    {
+      "file": "zip-check.json",
+      "bytes": 384,
+      "sha256": "aa7a6e8d577b21e59c8ad2dc2ef9e76b4b2f9d791823b1658b026b03e205b080"
+    }
+  ]
+}

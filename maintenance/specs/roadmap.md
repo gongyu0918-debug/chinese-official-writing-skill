@@ -4,13 +4,14 @@
 
 ## 本轮分支候选
 
-- `HK-002a / IN_PROGRESS / VERIFIED_CANDIDATE`：Claude Code 同稿接续与用户材料绑定已在独立分支构建，保留五版原型、八版报告、五版纪要的原生证据。旧措辞漏入及后续修复分别登记；进入门禁不等于原稿事实、长度全部正确。未合并、未发布。
-- `CL-001-DEFAULT / IN_PROGRESS / VERIFIED_CANDIDATE`：严格正文交付的包装清理、完整 JSON 围栏解析、清理后继续既有审查；两份固定真实 D0 的正文逐字保全。自然新变体与边界见[本轮记录](../tests/evidence/hook-quality-build-r1/result.md)，不改变原可选能力已发布状态。
+- `HK-002a / PARTIAL_V1.6.29_CLAUDE`：Claude Code 同稿接续与用户材料绑定已随v1.6.29发布，保留五版原型、八版报告、五版纪要的原生证据。旧措辞漏入及后续修复分别登记；进入门禁不等于原稿事实、长度全部正确。本轮有限能力已发布，其他宿主及多版质量仍待验证。
+- `CL-001-DEFAULT / PARTIAL_V1.6.29`：严格正文交付的包装清理、完整 JSON 围栏解析、清理后继续既有审查；两份固定真实 D0 的正文逐字保全。自然新变体与边界见[本轮记录](../tests/evidence/hook-quality-build-r1/result.md)，不改变原可选能力已发布状态。
 - `HK-010 / HOLD`：两个自然上限解析原型已撤回。原回复硬锚冲突使两路回退，分离正文后的唯一压缩调用超时；下一原子仍需从无包装真实 D0 完成压缩、验收、回显，10%容差单独验证。
 - `HK-002b / HOLD`：真实模型能局部删除无据主体/程序，原单次合同最终均保留 D0。下一原子先验证独立来源关系核验，再考虑接入，不能直接解除硬锚。原始失败与后续收窄均保留。
 
 ## DONE
 
+- `v1.6.29` 小版本已发布：Claude有限同稿接续与默认正文清理；产品tag `52d60597`，817项回归，GitHub公开、SkillHub 87文件和ClawHub无Hook 37文件各一次接受，传播/审核待核。[发布记录](../tests/evidence/release-1.6.29.md)
 - `v1.6.28` 小版本已发布：当前main已准入Hook修复和新闻完整事实日期，产品tag `1d705aea`；GitHub已公开，SkillHub 86文件 `versionId=291966`、ClawHub 37文件 `versionId=k97dh3rey9y8sjd39f94a7exk58dvsav`各一次接受，公开传播/审核尚待；806项全量和五套校验通过。[发布记录](../tests/evidence/release-1.6.28.md)
 
 - `v1.6.27` 小版本已发布：产品tag固定 `0a83ecbf`，GitHub Release已公开；SkillHub一次提交返回86文件 `versionId=288487`，三项审核pending；ClawHub一次提交返回37文件无Hook包 `versionId=k97165q125wnh9vc1wdd38ys5d8dsd0h`。公开索引与签名传播另记，不重复上传。最终774项全量、五套quick validate及两平台dry-run通过。[发布记录](../tests/evidence/release-1.6.27.md) [候选记录](../tests/evidence/release-1.6.27-rc.md)

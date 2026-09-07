@@ -1,0 +1,32 @@
+{
+  "formal_attempt": 1,
+  "command": [
+    "C:/Program Files/nodejs/node.exe",
+    "C:/Users/admin/AppData/Roaming/npm/node_modules/clawhub/bin/clawdhub.js",
+    "publish",
+    "packages/openclaw/skills/chinese_official_writing",
+    "--slug",
+    "chinese-official-writing",
+    "--name",
+    "中文公文写作",
+    "--owner",
+    "gongyu0918-debug",
+    "--version",
+    "1.6.29",
+    "--tags",
+    "latest",
+    "--topics",
+    "chinese-writing,official-writing,office-productivity,content-creation",
+    "--source-repo",
+    "https://github.com/gongyu0918-debug/chinese-official-writing-skill",
+    "--source-commit",
+    "52d60597c3850d9922b8959a619be80e21e9af83",
+    "--source-ref",
+    "v1.6.29",
+    "--source-path",
+    "packages/openclaw/skills/chinese_official_writing",
+    "--changelog",
+    "改善Claude同稿连续修改的门禁接续和用户材料绑定；明确只发正文时，核验删除常见正文外说明后继续默认审查；修复完整JSON围栏误拒。Hook仍默认关闭，ClawHub保持无Hook包。自然字数解析及原稿事实纠错未准入。",
+    "--json"
+  ]
+}

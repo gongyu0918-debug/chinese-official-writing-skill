@@ -1,0 +1,16 @@
+{
+  "command": [
+    "C:/Users/admin/AppData/Local/Programs/Python/Python313/python.exe",
+    "-B",
+    "-X",
+    "utf8",
+    "-m",
+    "unittest",
+    "maintenance.tests.test_status_ledger_consistency",
+    "maintenance.tests.test_skill_boundary"
+  ],
+  "exit_code": 1,
+  "seconds": 0.341,
+  "stdout": "",
+  "stderr": "..............................................................F..................................\n======================================================================\nFAIL: test_readme_summarizes_current_engineering_and_real_writing_evidence (maintenance.tests.test_skill_boundary.SkillBoundaryTests.test_readme_summarizes_current_engineering_and_real_writing_evidence)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"F:\\Workspaces\\chinese-official-writing-skill-worktrees\\release-v1629\\maintenance\\tests\\test_skill_boundary.py\", line 2134, in test_readme_summarizes_current_engineering_and_real_writing_evidence\n    self.assertEqual(7, sum(1 for line in recent_table.splitlines() if line.startswith(\"|\")))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 7 != 8\n\n----------------------------------------------------------------------\nRan 97 tests in 0.152s\n\nFAILED (failures=1)\n"
+}
