@@ -1,0 +1,33 @@
+{
+  "baseline_commit": "fe1c30fac2b57661f077a36d1243c42eb4a0415b",
+  "candidate_base_commit": "fe1c30fac2b57661f077a36d1243c42eb4a0415b",
+  "overlay_paths": [
+    "SKILL.md",
+    "references/genre-playbook-project-application.md"
+  ],
+  "models": {
+    "qwen": "alibaba-token-plan/qwen3.8-max",
+    "minimax": "minimax-cn/MiniMax-M3"
+  },
+  "cases": [
+    "first-draft",
+    "ordinary-extension",
+    "budget-authorized"
+  ],
+  "new_calls": 12,
+  "harness_commit": "7bde6c3e4bbd87a304d01d74be178673fe048f67",
+  "harness_source_hashes": {
+    "maintenance/tests/evidence/application-route-rewrite-r20/run_real.py": "bfbb39574c7a62df29da7d45ce26ad3623f79951ae5f497c0ba3410ee96fdb1b",
+    "maintenance/tests/evidence/application-rule-efficacy-r23/archive_actual.py": "7801f38b077ec2c6753666fcd7872e1dfa3dc6deb4fd64507422631e119bf873"
+  },
+  "prompt_hashes": {
+    "first-draft": "010a7e68e4bd91fb72c52b34e02a0044f80eb958276213bfedfe34a87f303881",
+    "ordinary-extension": "59b7938deb18d9efa368a075aaa70febc3f288d262ee9bc0a4f0d9d932e3ef95",
+    "budget-authorized": "5ea072d06a3accb1cef7e08827aa9fbba38e0be0d77351027c1d56b3fa0fb42c"
+  },
+  "preregister_sha256": "9a340df68a3fd72dc127a686446ba5b8f99670f8ade9e42db7a42597b6f559b2",
+  "hook_enabled": false,
+  "automatic_retries": 0,
+  "timeout_seconds": 1200,
+  "effort": "max"
+}

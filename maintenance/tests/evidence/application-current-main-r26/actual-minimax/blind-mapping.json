@@ -1,0 +1,123 @@
+{
+  "seed": "r26-current-main-application-v1",
+  "method": "SHA256 sort for pair order; SHA256 parity for left/right",
+  "root_only": true,
+  "pairs": [
+    {
+      "pair": "P01",
+      "case": "ordinary-extension",
+      "provider": "minimax",
+      "sides": {
+        "A": {
+          "arm": "baseline",
+          "model": "minimax-cn/MiniMax-M3",
+          "technical_valid": true,
+          "actual_receipt": "runs/ordinary-extension/minimax/baseline/receipt.json",
+          "copies": [
+            {
+              "actual": "runs/ordinary-extension/minimax/baseline/final.txt",
+              "blind": "P01/A-delivery.txt"
+            },
+            {
+              "actual": "runs/ordinary-extension/minimax/baseline/document-1.txt",
+              "blind": "P01/A-manuscript-1.txt"
+            }
+          ]
+        },
+        "B": {
+          "arm": "candidate",
+          "model": "minimax-cn/MiniMax-M3",
+          "technical_valid": true,
+          "actual_receipt": "runs/ordinary-extension/minimax/candidate/receipt.json",
+          "copies": [
+            {
+              "actual": "runs/ordinary-extension/minimax/candidate/final.txt",
+              "blind": "P01/B-delivery.txt"
+            }
+          ]
+        }
+      },
+      "paired_quality_eligible": true
+    },
+    {
+      "pair": "P02",
+      "case": "budget-authorized",
+      "provider": "minimax",
+      "sides": {
+        "A": {
+          "arm": "baseline",
+          "model": "minimax-cn/MiniMax-M3",
+          "technical_valid": true,
+          "actual_receipt": "runs/budget-authorized/minimax/baseline/receipt.json",
+          "copies": [
+            {
+              "actual": "runs/budget-authorized/minimax/baseline/final.txt",
+              "blind": "P02/A-delivery.txt"
+            },
+            {
+              "actual": "runs/budget-authorized/minimax/baseline/document-1.txt",
+              "blind": "P02/A-manuscript-1.txt"
+            }
+          ]
+        },
+        "B": {
+          "arm": "candidate",
+          "model": "minimax-cn/MiniMax-M3",
+          "technical_valid": true,
+          "actual_receipt": "runs/budget-authorized/minimax/candidate/receipt.json",
+          "copies": [
+            {
+              "actual": "runs/budget-authorized/minimax/candidate/final.txt",
+              "blind": "P02/B-delivery.txt"
+            },
+            {
+              "actual": "runs/budget-authorized/minimax/candidate/document-1.txt",
+              "blind": "P02/B-manuscript-1.txt"
+            }
+          ]
+        }
+      },
+      "paired_quality_eligible": true
+    },
+    {
+      "pair": "P04",
+      "case": "first-draft",
+      "provider": "minimax",
+      "sides": {
+        "A": {
+          "arm": "baseline",
+          "model": "minimax-cn/MiniMax-M3",
+          "technical_valid": true,
+          "actual_receipt": "runs/first-draft/minimax/baseline/receipt.json",
+          "copies": [
+            {
+              "actual": "runs/first-draft/minimax/baseline/final.txt",
+              "blind": "P04/A-delivery.txt"
+            },
+            {
+              "actual": "runs/first-draft/minimax/baseline/document-1.txt",
+              "blind": "P04/A-manuscript-1.txt"
+            }
+          ]
+        },
+        "B": {
+          "arm": "candidate",
+          "model": "minimax-cn/MiniMax-M3",
+          "technical_valid": true,
+          "actual_receipt": "runs/first-draft/minimax/candidate/receipt.json",
+          "copies": [
+            {
+              "actual": "runs/first-draft/minimax/candidate/final.txt",
+              "blind": "P04/B-delivery.txt"
+            },
+            {
+              "actual": "runs/first-draft/minimax/candidate/document-1.txt",
+              "blind": "P04/B-manuscript-1.txt"
+            }
+          ]
+        }
+      },
+      "paired_quality_eligible": true
+    }
+  ]
+}

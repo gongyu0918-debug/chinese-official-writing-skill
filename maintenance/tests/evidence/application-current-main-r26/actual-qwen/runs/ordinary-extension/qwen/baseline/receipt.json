@@ -1,0 +1,88 @@
+{
+  "arm": "baseline",
+  "provider": "qwen",
+  "model": "alibaba-token-plan/qwen3.8-max",
+  "case": "ordinary-extension",
+  "session": "bcb250b7-4b4f-44c9-9233-24645c8841b4",
+  "technical_valid": false,
+  "return_code": 0,
+  "failure": null,
+  "seconds": 341.19,
+  "frozen_unchanged": true,
+  "final_chars": 275,
+  "init_models": [
+    "alibaba-token-plan/qwen3.8-max"
+  ],
+  "assistant_models": [
+    "alibaba-token-plan/qwen3.8-max"
+  ],
+  "usage_models": [
+    "alibaba-token-plan/qwen3.8-max"
+  ],
+  "result_count": 1,
+  "result_subtypes": [
+    "success"
+  ],
+  "result_errors": [
+    false
+  ],
+  "source_receipt_sha256": "82b56bdba0000a558ae50ab2e69ef0f99e73cd0cdb2a34b5cc435f09e3edf715",
+  "final_path": "runs/ordinary-extension/qwen/baseline/final.txt",
+  "final_sha256": "ad73b59c1058578caeecffff73c6ed7493e4e472de3f47a94cb98ddfff828c59",
+  "source_final_sha256": "ad73b59c1058578caeecffff73c6ed7493e4e472de3f47a94cb98ddfff828c59",
+  "final_redaction": {
+    "replacement_count": 0,
+    "archive_is_original_bytes": true,
+    "scope": "Only this lane approved runtime/work prefix; source bytes unchanged."
+  },
+  "documents": [
+    {
+      "work_relative_path": "draft-zengxiang-shenqing.md",
+      "archive_path": "runs/ordinary-extension/qwen/baseline/working-file-1.md",
+      "sha256": "9674b42706f202e37f0584f6316669bae89f40937a9f8cb5644b2f67a73242dd",
+      "bytes": 802,
+      "delivery_state": "invalid_scope_diagnostic"
+    }
+  ],
+  "hook_enabled": false,
+  "paired_quality_eligible": false,
+  "omissions": [
+    "outside-work memory files",
+    "raw stream",
+    "runtime configuration",
+    "original argv",
+    "tool arguments"
+  ],
+  "observation": "All remaining files inside this lane work are retained; no claim that interrupted files were delivered.",
+  "runner_technical_valid": true,
+  "scope_audit": {
+    "pass": false,
+    "source_receipt_sha256": "82b56bdba0000a558ae50ab2e69ef0f99e73cd0cdb2a34b5cc435f09e3edf715",
+    "tool_calls": 13,
+    "violations": [
+      {
+        "sequence": 10,
+        "tool": "Write",
+        "path_sha256": "8c19b605a6789658ed8ea6a44b8ffa60365536876eb9df69fbedc2b11d8672c8",
+        "issue": "Draft first written to a newly created sibling directory inside this experiment output, then moved into the correct lane work; no outside source content read."
+      }
+    ],
+    "observations": [
+      {
+        "sequence": 11,
+        "command_sha256": "a1159e9df3670d549d04524532629f5477ceb7deec9b45e47e8c009506ecb2c8",
+        "review": "Root read command: pwd; relocate own mislocated draft and remove the two directories just created for it, then list correct work; supplied prose_lint on relocated draft. Path deviation recorded separately."
+      },
+      {
+        "sequence": 12,
+        "command_sha256": "fe58affd1387b1a3a660a086d5d0c33d6c445bd9e919710e4e578ba421383a7f",
+        "review": "Root read command: pwd; relocate own mislocated draft and remove the two directories just created for it, then list correct work; supplied prose_lint on relocated draft. Path deviation recorded separately."
+      },
+      {
+        "sequence": 13,
+        "command_sha256": "5bac43be66bdf43a7a7b8759d41704c059ad996dce561b6ca1b8a598069465da",
+        "review": "Root read command: pwd; relocate own mislocated draft and remove the two directories just created for it, then list correct work; supplied prose_lint on relocated draft. Path deviation recorded separately."
+      }
+    ]
+  }
+}

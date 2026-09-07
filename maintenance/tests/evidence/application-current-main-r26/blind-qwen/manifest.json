@@ -1,0 +1,87 @@
+[
+  {
+    "path": ".gitattributes",
+    "bytes": 87,
+    "sha256": "50045cc37d25e07498c8b21ec39700fb7650728cc3eb52cb1cc70307c6522229"
+  },
+  {
+    "path": "P03/B-delivery.txt",
+    "bytes": 844,
+    "sha256": "565dac6ad479438efc704d705e4e4c09d1e96b0e90c90b2fdacc0cbbc265b66c"
+  },
+  {
+    "path": "P03/B-manuscript-1.txt",
+    "bytes": 837,
+    "sha256": "ca09f8ab4a81cae11a14e63222766e4c10e20b64d9bf7159df6f617e0b6f50d3"
+  },
+  {
+    "path": "P03/delivery.json",
+    "bytes": 183,
+    "sha256": "cc3eeb54d9bbdd5bc16f5a3deccdcff729104b099e5e765c808d9e06f59e3627"
+  },
+  {
+    "path": "P03/materials.txt",
+    "bytes": 894,
+    "sha256": "59b7938deb18d9efa368a075aaa70febc3f288d262ee9bc0a4f0d9d932e3ef95"
+  },
+  {
+    "path": "P05/A-delivery.txt",
+    "bytes": 6561,
+    "sha256": "8abdfd1160d32fec630b8520a4af00acc9bc14d394d011b9b86794ea32103ef7"
+  },
+  {
+    "path": "P05/A-manuscript-1.txt",
+    "bytes": 5401,
+    "sha256": "035c9c9f885ee609e9bb3581d704667282e255a8402a6653a1b06156f1fc5e75"
+  },
+  {
+    "path": "P05/B-delivery.txt",
+    "bytes": 5779,
+    "sha256": "52795f46d28b432fb60b5e55e8471e75c03cc085368da257fbc6268c631d7bb4"
+  },
+  {
+    "path": "P05/delivery.json",
+    "bytes": 317,
+    "sha256": "87122db32ba4945c33988dd9e7c08b7bd4d8a0a7828477a057fdf391a8ea3b9b"
+  },
+  {
+    "path": "P05/materials.txt",
+    "bytes": 3257,
+    "sha256": "010a7e68e4bd91fb72c52b34e02a0044f80eb958276213bfedfe34a87f303881"
+  },
+  {
+    "path": "P06/A-delivery.txt",
+    "bytes": 1092,
+    "sha256": "682a2e57a40f6d280cf95866f4268f9ecd0ba2e11f899ff72ed32fe0ea9da04f"
+  },
+  {
+    "path": "P06/A-manuscript-1.txt",
+    "bytes": 981,
+    "sha256": "3647564b773b995b8867c039a7c91008feeda681e9704cbde002be7a7285d8d9"
+  },
+  {
+    "path": "P06/B-delivery.txt",
+    "bytes": 1049,
+    "sha256": "86619efcb205ee55f5aed0cc861f202a4e47a6bb46681f75ff1ca3cac5eb73ff"
+  },
+  {
+    "path": "P06/B-manuscript-1.txt",
+    "bytes": 1042,
+    "sha256": "82c1c853ecb17c593a8ce9d555c3e676caaefdd3f70b128497416fbb750b4e2a"
+  },
+  {
+    "path": "P06/delivery.json",
+    "bytes": 363,
+    "sha256": "90144c5c569f917c3de0318a73ae14311c05736419c13b949448895d85ac470f"
+  },
+  {
+    "path": "P06/materials.txt",
+    "bytes": 848,
+    "sha256": "5ea072d06a3accb1cef7e08827aa9fbba38e0be0d77351027c1d56b3fa0fb42c"
+  },
+  {
+    "path": "README.md",
+    "bytes": 1079,
+    "sha256": "3828f4e2986a1d81ba37c347fa161cf4055774090d7ff7d201ed95e42c776d6b"
+  }
+]

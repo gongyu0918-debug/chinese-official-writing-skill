@@ -1,0 +1,33 @@
+diff --git a/chinese-official-writing/SKILL.md b/chinese-official-writing/SKILL.md
+index 87df3e26..57937ec9 100644
+--- a/chinese-official-writing/SKILL.md
++++ b/chinese-official-writing/SKILL.md
+@@ -56,6 +56,8 @@ metadata:
+ 
+ ## 核心流程
+ 
++起草、整体改写或整理在现有项目、系统或平台上增加功能、服务或实施内容的立项、增项申请时，读取信息选择页后直达 `references/genre-playbook-project-application.md`，由该页完成内容组织、语言整理和成稿复核，不进入下文通用完整流程。只审不改或只改指定字段、局部文字时，仍按前文相应任务模式处理。普通采购、请假、新建项目和可研仍走各自文种路线；增项材料中出现技术、模型、费用等内容，不因此叠加通用论证、办理要素、语言或算力专项页。用户另行要求Word版式或外部核验时再读相应专项页。
++
+ 先确定起草、改稿、复核（默认只审不改）、排版交付模式，再按下文“参考资料”表选择 reference。起草、改稿、压缩或合稿已读取 `references/information-selection.md` 后，材料稀疏、短稿、低上下文局部修改或用户明确限定事实时，判断是否命中 `references/task-route-cards.md`；命中 `references/task-route-cards.md` 且卡片能够覆盖任务时，由卡片完成，不再读取长 reference，完成正文后仍执行本文件硬边界和必要的交付复核；未命中时不扩大轻量卡的适用范围。未命中、命中转读条件或卡片不能覆盖时，进入以下完整流程，并按表中任务模式、文种和专项条件读取对应资料。不因文种名称已知而自动预读下列全部长 reference；一次只加载实际命中的表项，叠加关系以表中加载条件为准。
+ 
+ 1. 先判断文稿类别、文种和行文关系，再抽取办理要素，再选择论证链条，最后进入语言和格式复核。
+@@ -117,8 +119,9 @@ metadata:
+ | `references/review-direct-checklist.md` | 复核时 | 用户已点名核对范围且只审不改时；与命中的文种叶配合，覆盖后不再加载综合审稿页。 |
+ | `references/review-checklist.md` | 定稿前 | 需要段落、小节、全文三级执行清单，或同时核验格式、语气、AI 味等多个层面时。 |
+ | `references/genre-playbook-minutes.md` | 按文种选读 | 会议纪要需要常规或完整骨架，或材料已经形成决定、议定事项、责任分工或期限时读取。 |
+-| `references/genre-playbook-request.md` | 按文种选读 | 请示、申请需要常规或完整骨架时直接读取。 |
+-| `references/genre-checklist-request.md` | 按文种选读 | 只审或细查请示、申请的文种功能和办理要素时读取；同时要求审后改写时与起草叶叠加。 |
++| `references/genre-playbook-project-application.md` | 增项申请 | 在现有项目、系统或平台上增加内容的立项、增项申请，起草、整体改写和语言整理时直接读取，由该页完成材料组织与成稿复核；只审不改、指定字段或局部修改按任务模式处理。 |
++| `references/genre-playbook-request.md` | 按文种选读 | 其他请示、申请需要常规或完整骨架时直接读取。 |
++| `references/genre-checklist-request.md` | 按文种选读 | 用户只审或专门细查请示、申请的文种功能和办理要素时读取；已由增项专页起草或整体改写的稿件不重复读本页，其他申请同时要求审后改写时与起草叶叠加。 |
+ | `references/genre-checklist-feasibility-review.md` | 按文种选读 | 只审或细查可研、可行性研究报告的数据性质、估算依据和文种功能时读取；起草、改写或审后改写仍使用既有 playbook 和论证链。 |
+ | `references/genre-playbook-correspondence.md` | 按文种选读 | 普通函起草，以及只改错字、标点、格式或明确局部措辞时读取。 |
+ | `references/genre-playbook-work-summary.md` | 按文种选读 | 工作总结、工作要点、周报或月报需要常规或完整骨架时直接读取。 |
+@@ -135,6 +138,6 @@ metadata:
+ 
+ ## 脚本
+ 
+-检查 `.txt`、`.md` 或 `.docx` 草稿时可使用 `scripts/prose_lint.py`。执行时，以本次已读 `SKILL.md` 所在目录解析脚本路径，使用带引号的脚本与草稿绝对路径。需要检查重复事项和格式噪点时加 `--structure --format`。脚本只提示语言、格式和重复风险，不检查文种要素完整性；文种和办理要素仍按 `references/handling-elements.md` 与命中的文种检查叶复核，报告使用 `references/genre-checklist-report.md`，请示和申请使用 `references/genre-checklist-request.md`，可研只审使用 `references/genre-checklist-feasibility-review.md`，其他文种使用 `references/genre-checklist.md`。脚本不自动改写；不得把脚本结果作为不加判断的硬性清洗命令。
++检查 `.txt`、`.md` 或 `.docx` 草稿时可使用 `scripts/prose_lint.py`。执行时，以本次已读 `SKILL.md` 所在目录解析脚本路径，使用带引号的脚本与草稿绝对路径。需要检查重复事项和格式噪点时加 `--structure --format`。脚本只提示语言、格式和重复风险，不检查文种要素完整性；已按增项专页起草或整体改写的稿件由该页完成成稿复核；其他文种和办理要素仍按 `references/handling-elements.md` 与命中的文种检查叶复核，报告使用 `references/genre-checklist-report.md`，请示和申请使用 `references/genre-checklist-request.md`，可研只审使用 `references/genre-checklist-feasibility-review.md`，其他文种使用 `references/genre-checklist.md`。脚本不自动改写；不得把脚本结果作为不加判断的硬性清洗命令。
+ 
+ 用户明确要求处理交付门禁 Hook 时，读取 `hooks/README.md`。普通起草、改稿、压缩和复核不加载该页，也不自动启用 Hook。

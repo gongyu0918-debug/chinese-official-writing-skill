@@ -1,0 +1,181 @@
+{
+  "arm": "candidate",
+  "provider": "qwen",
+  "model": "alibaba-token-plan/qwen3.8-max",
+  "case": "budget-authorized",
+  "session": "0ce8b46f-ce47-481d-a689-c4eb8be35180",
+  "technical_valid": true,
+  "return_code": 0,
+  "failure": null,
+  "seconds": 109.61,
+  "client_tools": "Read,Skill,Write,Edit,Bash",
+  "explicit_entry": true,
+  "frozen_unchanged": true,
+  "final_chars": 363,
+  "init_models": [
+    "alibaba-token-plan/qwen3.8-max"
+  ],
+  "assistant_models": [
+    "alibaba-token-plan/qwen3.8-max"
+  ],
+  "usage_models": [
+    "alibaba-token-plan/qwen3.8-max"
+  ],
+  "result_count": 1,
+  "result_subtypes": [
+    "success"
+  ],
+  "result_errors": [
+    false
+  ],
+  "final_path": "runs/budget-authorized/qwen/candidate/final.txt",
+  "final_sha256": "86619efcb205ee55f5aed0cc861f202a4e47a6bb46681f75ff1ca3cac5eb73ff",
+  "source_final_sha256": "86619efcb205ee55f5aed0cc861f202a4e47a6bb46681f75ff1ca3cac5eb73ff",
+  "source_final_logical_sha256": "33090070c8e2d0230a1da83c9ea9dc114bdaa6ec035e2d24b5eb0ee903367892",
+  "final_redaction": {
+    "replacement_count": 0,
+    "replacement": "<isolated-work>",
+    "scope": "Only this lane approved runtime/work prefix; slash variants accepted.",
+    "source_unchanged": true,
+    "archive_is_original_bytes": true
+  },
+  "hook_enabled": false,
+  "timeout_seconds": 1200,
+  "automatic_retries": 0,
+  "effort": "max",
+  "invalid_json_line_count": 0,
+  "reads": [
+    "SKILL.md",
+    "references/information-selection.md",
+    "references/genre-playbook-project-application.md"
+  ],
+  "routing": {
+    "reference_paths": [
+      "references/genre-playbook-project-application.md",
+      "references/information-selection.md"
+    ],
+    "references_distinct_pages": 2,
+    "references_distinct_file_bytes": 9364,
+    "skill_direct_read_file_bytes": 29504
+  },
+  "tool_evidence": [
+    {
+      "sequence": 1,
+      "id": "call_439597d282064316af79e111",
+      "name": "Read",
+      "result": {
+        "observed": true,
+        "is_error_field": null,
+        "content_bytes": 30261,
+        "content_sha256": "23b7babc836240252e99eab2bcfbc0da91c0ffab912fd739ec3537a776d98de0",
+        "skill_launch_acknowledgement": null
+      },
+      "scope": "package",
+      "package_path": "SKILL.md",
+      "frozen_file_sha256": "beec7a345c2c0ea569cea2c32e00079f7e3eba2fff4aed2b6cf93e59be24e4c2",
+      "read_success_observed": true
+    },
+    {
+      "sequence": 2,
+      "id": "call_fdc69d8e2fd8477c84b7237c",
+      "name": "Read",
+      "result": {
+        "observed": true,
+        "is_error_field": null,
+        "content_bytes": 5029,
+        "content_sha256": "69a66166a0c9eba32cafe95347b005234a2e741805ef6e5eba6f9f58f9b38c5c",
+        "skill_launch_acknowledgement": null
+      },
+      "scope": "package",
+      "package_path": "references/information-selection.md",
+      "frozen_file_sha256": "bf1aff9c90a6ba901fb2514ed98b3796a67616a4f934bfeac45fa4e3c0c01787",
+      "read_success_observed": true
+    },
+    {
+      "sequence": 3,
+      "id": "call_15eef94cd4b44deb8a23fe16",
+      "name": "Read",
+      "result": {
+        "observed": true,
+        "is_error_field": null,
+        "content_bytes": 4614,
+        "content_sha256": "df3f256e8beb972b11b8c89c16adb7f159d57e370908c3cdd73718b57de3885c",
+        "skill_launch_acknowledgement": null
+      },
+      "scope": "package",
+      "package_path": "references/genre-playbook-project-application.md",
+      "frozen_file_sha256": "bcc4b8429aa23f065c7f22b7928476c21c1967cca0454911c3b565f5000b6caa",
+      "read_success_observed": true
+    },
+    {
+      "sequence": 4,
+      "id": "call_4c3288053d6343c787056219",
+      "name": "Write",
+      "result": {
+        "observed": true,
+        "is_error_field": null,
+        "content_bytes": 303,
+        "content_sha256": "bb56b363bee87298750cb8195abba80d88d7e121889608af51231614f944d535",
+        "skill_launch_acknowledgement": null
+      },
+      "scope": "work",
+      "work_relative_path": "draft-application.md",
+      "archive_path": "runs/budget-authorized/qwen/candidate/document-1.txt",
+      "content_sha256": "82c1c853ecb17c593a8ce9d555c3e676caaefdd3f70b128497416fbb750b4e2a"
+    },
+    {
+      "sequence": 5,
+      "id": "call_1880ca514fcf42e2a77187ad",
+      "name": "Bash",
+      "result": {
+        "observed": true,
+        "is_error_field": false,
+        "content_bytes": 23,
+        "content_sha256": "d89072ad4ee8e59e3e3a12f0668c049e2877be37a72a0918c7956b9d90e5c63d",
+        "skill_launch_acknowledgement": null
+      },
+      "command_sha256": "0ca8e5154a89f2f4a51cce3af6bed63758fc090558026b24d4e52e6ceb1c7d74",
+      "arguments_omitted": true
+    }
+  ],
+  "documents": [
+    {
+      "work_relative_path": "draft-application.md",
+      "archive_path": "runs/budget-authorized/qwen/candidate/document-1.txt",
+      "sha256": "82c1c853ecb17c593a8ce9d555c3e676caaefdd3f70b128497416fbb750b4e2a",
+      "bytes": 1042,
+      "file_state": "last_on_disk_artifact",
+      "artifact_role": "written_text",
+      "delivery_state": "completed_run_artifact_quality_unreviewed",
+      "read_sequences": [],
+      "write_sequences": [
+        4
+      ],
+      "edit_sequences": []
+    }
+  ],
+  "helper_sha256": "452d3f5ac8df257fbd220d7585ce0aef3dd0475a76a51181de77e0f729f0a6ab",
+  "prompt_path": "prompts/budget-authorized.txt",
+  "omissions": [
+    "raw stream",
+    "runtime",
+    "provider state",
+    "original argv",
+    "absolute paths",
+    "shell arguments and stdout"
+  ],
+  "runner_technical_valid": true,
+  "scope_audit": {
+    "pass": true,
+    "source_receipt_sha256": "e18dff8777a87de6c0304d5cba68e1caf209c7b92e05ae1a96b882777717cb8e",
+    "tool_calls": 5,
+    "violations": [],
+    "observations": [
+      {
+        "sequence": 5,
+        "command_sha256": "0ca8e5154a89f2f4a51cce3af6bed63758fc090558026b24d4e52e6ceb1c7d74",
+        "review": "Root read command: list supplied package, or cd to supplied package and run its prose_lint on this lane draft."
+      }
+    ]
+  }
+}

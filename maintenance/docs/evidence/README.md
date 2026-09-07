@@ -1,5 +1,7 @@
 # 项目维护历史索引
 
+- [R26立项申请接续](../../tests/evidence/application-current-main-r26/result.md)：补回R23/R24登记，在共享R25的当前main完成12次首稿；有限组合已选定、工程通过，真实错误及路径偏差保留。
+
 
 - R25全局有据分析：12次强弱模型真实调用，按用户质量优先要求保留入口摘要和信息选择页边界，旧一层范围不再作全局上限；已合入本地main（产品 `a440f97e`），未推送发布，实际失败与范围偏差均保留。[结果](../../tests/evidence/global-grounded-analysis-r25/result.md) [合并记录](../../tests/evidence/global-grounded-analysis-r25/integration.md)
 

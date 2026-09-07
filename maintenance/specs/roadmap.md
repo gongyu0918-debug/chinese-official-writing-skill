@@ -4,7 +4,7 @@
 
 ## 本轮分支候选
 
-- `WR-023b / IN_PROGRESS`：R13—R16分别试验办理要素、算力路由、估算依据与重复申请骨架；14次新真实调用均技术有效，四处候选均未准入并恢复产品。R15原题安全仍被日常增项新题的“两个月”推翻，授权估算未误禁；R16仍补额度、管理程序和空附件。原首稿、落盘稿与过程错误分别归档，不报可靠率；多版与Hook事实兜底仍未完成。[本轮结果](../tests/evidence/application-materials-r13/result.md) [需求](requirements.md#wr-023b-既有项目增项申请的首稿论证衔接)
+- `WR-023b / IN_PROGRESS / R26_SELECTED_ROUTE / READY_TO_MERGE`：[R26结果](../tests/evidence/application-current-main-r26/result.md)补回R23/R24取舍与当前main复验，选定精简混合路线。12次真实写稿完成，11次范围合格、1次路径差错保留；五组成对混合2/旧2/平1，加载有收益，未宣称整体正确率提高。镜像与817项回归通过；具体事实、多版改稿与Hook校正保持开放。
 
 - `HK-002a / PARTIAL_V1.6.29_CLAUDE`：Claude Code 同稿接续与用户材料绑定已随v1.6.29发布，保留五版原型、八版报告、五版纪要的原生证据。旧措辞漏入及后续修复分别登记；进入门禁不等于原稿事实、长度全部正确。本轮有限能力已发布，其他宿主及多版质量仍待验证。
 - `CL-001-DEFAULT / PARTIAL_V1.6.29`：严格正文交付的包装清理、完整 JSON 围栏解析、清理后继续既有审查；两份固定真实 D0 的正文逐字保全。自然新变体与边界见[本轮记录](../tests/evidence/hook-quality-build-r1/result.md)，不改变原可选能力已发布状态。

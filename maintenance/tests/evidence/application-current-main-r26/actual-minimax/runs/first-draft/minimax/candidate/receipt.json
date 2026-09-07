@@ -1,0 +1,179 @@
+{
+  "arm": "candidate",
+  "provider": "minimax",
+  "model": "minimax-cn/MiniMax-M3",
+  "case": "first-draft",
+  "session": "23644b1a-d10d-4ef0-b3d2-719edb250c19",
+  "technical_valid": true,
+  "return_code": 0,
+  "failure": null,
+  "seconds": 45.92,
+  "client_tools": "Read,Skill,Write,Edit,Bash",
+  "explicit_entry": true,
+  "frozen_unchanged": true,
+  "final_chars": 826,
+  "init_models": [
+    "minimax-cn/MiniMax-M3"
+  ],
+  "assistant_models": [
+    "minimax-cn/MiniMax-M3"
+  ],
+  "usage_models": [
+    "minimax-cn/MiniMax-M3"
+  ],
+  "result_count": 1,
+  "result_subtypes": [
+    "success"
+  ],
+  "result_errors": [
+    false
+  ],
+  "final_path": "runs/first-draft/minimax/candidate/final.txt",
+  "final_sha256": "4e27c3ffc106a6460458097cd39fc3d29ae89782c65abc245d1a251e93feee28",
+  "source_final_sha256": "4e27c3ffc106a6460458097cd39fc3d29ae89782c65abc245d1a251e93feee28",
+  "source_final_logical_sha256": "e2ad8d4e05f7d254540b852a0e01df225f4a8884de7dd01a5fc179986c126afe",
+  "final_redaction": {
+    "replacement_count": 0,
+    "replacement": "<isolated-work>",
+    "scope": "Only this lane approved runtime/work prefix; slash variants accepted.",
+    "source_unchanged": true,
+    "archive_is_original_bytes": true
+  },
+  "hook_enabled": false,
+  "timeout_seconds": 1200,
+  "automatic_retries": 0,
+  "effort": "max",
+  "invalid_json_line_count": 0,
+  "reads": [
+    "SKILL.md",
+    "references/genre-playbook-project-application.md",
+    "references/information-selection.md",
+    "references/handling-elements.md"
+  ],
+  "routing": {
+    "reference_paths": [
+      "references/genre-playbook-project-application.md",
+      "references/handling-elements.md",
+      "references/information-selection.md"
+    ],
+    "references_distinct_pages": 3,
+    "references_distinct_file_bytes": 17422,
+    "skill_direct_read_file_bytes": 29504
+  },
+  "tool_evidence": [
+    {
+      "sequence": 1,
+      "id": "call_ae416eb5fbd45071",
+      "name": "Read",
+      "result": {
+        "observed": true,
+        "is_error_field": null,
+        "content_bytes": 30261,
+        "content_sha256": "23b7babc836240252e99eab2bcfbc0da91c0ffab912fd739ec3537a776d98de0",
+        "skill_launch_acknowledgement": null
+      },
+      "scope": "package",
+      "package_path": "SKILL.md",
+      "frozen_file_sha256": "beec7a345c2c0ea569cea2c32e00079f7e3eba2fff4aed2b6cf93e59be24e4c2",
+      "read_success_observed": true
+    },
+    {
+      "sequence": 2,
+      "id": "call_b2fc30eb39ace818",
+      "name": "Read",
+      "result": {
+        "observed": true,
+        "is_error_field": null,
+        "content_bytes": 4614,
+        "content_sha256": "df3f256e8beb972b11b8c89c16adb7f159d57e370908c3cdd73718b57de3885c",
+        "skill_launch_acknowledgement": null
+      },
+      "scope": "package",
+      "package_path": "references/genre-playbook-project-application.md",
+      "frozen_file_sha256": "bcc4b8429aa23f065c7f22b7928476c21c1967cca0454911c3b565f5000b6caa",
+      "read_success_observed": true
+    },
+    {
+      "sequence": 3,
+      "id": "call_85edf6c1ed67835f",
+      "name": "Read",
+      "result": {
+        "observed": true,
+        "is_error_field": null,
+        "content_bytes": 5029,
+        "content_sha256": "69a66166a0c9eba32cafe95347b005234a2e741805ef6e5eba6f9f58f9b38c5c",
+        "skill_launch_acknowledgement": null
+      },
+      "scope": "package",
+      "package_path": "references/information-selection.md",
+      "frozen_file_sha256": "bf1aff9c90a6ba901fb2514ed98b3796a67616a4f934bfeac45fa4e3c0c01787",
+      "read_success_observed": true
+    },
+    {
+      "sequence": 4,
+      "id": "call_904a692c57de5bf7",
+      "name": "Read",
+      "result": {
+        "observed": true,
+        "is_error_field": null,
+        "content_bytes": 8410,
+        "content_sha256": "2373bc5039d28db2e53cccb7e76113ca106d22fdac48f2d4a27dcbb8e636bc03",
+        "skill_launch_acknowledgement": null
+      },
+      "scope": "package",
+      "package_path": "references/handling-elements.md",
+      "frozen_file_sha256": "e652dac11d5fec9458cc6bb63d41e884e206b359dfe6776731016b7c7a8e7fa4",
+      "read_success_observed": true
+    },
+    {
+      "sequence": 5,
+      "id": "call_bb8e20dccf017019",
+      "name": "Write",
+      "result": {
+        "observed": true,
+        "is_error_field": null,
+        "content_bytes": 302,
+        "content_sha256": "6ec3f0c20f078eafb8060c9b32c7db133110955a5dd3d4a780c3aca84bb14ad7",
+        "skill_launch_acknowledgement": null
+      },
+      "scope": "work",
+      "work_relative_path": "project-application.md",
+      "archive_path": "runs/first-draft/minimax/candidate/document-1.txt",
+      "content_sha256": "5f64b6ba762679c55cdbfc1ae6235321b1f7d4d831c13749ba04cb8e1c80fe46"
+    }
+  ],
+  "documents": [
+    {
+      "work_relative_path": "project-application.md",
+      "archive_path": "runs/first-draft/minimax/candidate/document-1.txt",
+      "sha256": "5f64b6ba762679c55cdbfc1ae6235321b1f7d4d831c13749ba04cb8e1c80fe46",
+      "bytes": 7553,
+      "file_state": "last_on_disk_artifact",
+      "artifact_role": "written_text",
+      "delivery_state": "completed_run_artifact_quality_unreviewed",
+      "read_sequences": [],
+      "write_sequences": [
+        5
+      ],
+      "edit_sequences": []
+    }
+  ],
+  "helper_sha256": "452d3f5ac8df257fbd220d7585ce0aef3dd0475a76a51181de77e0f729f0a6ab",
+  "prompt_path": "prompts/first-draft.txt",
+  "omissions": [
+    "raw stream",
+    "runtime",
+    "provider state",
+    "original argv",
+    "absolute paths",
+    "shell arguments and stdout"
+  ],
+  "runner_technical_valid": true,
+  "scope_audit": {
+    "pass": true,
+    "source_receipt_sha256": "dfd3a8aa6dc87c246cbea89616d5248ea0c957d8b67c20b7e206bb09881dd658",
+    "tool_calls": 5,
+    "violations": [],
+    "observations": []
+  }
+}

@@ -1,0 +1,131 @@
+{
+  "date": "2026-09-08",
+  "baseline_commit": "fe1c30fac2b57661f077a36d1243c42eb4a0415b",
+  "concurrent_main_before_integration": "2fe748fb5c4e11e3cb890e260f402fdbb380ed5d",
+  "concurrent_main_change": "AGENTS and two maintenance documents only; product and tests unchanged; preserved on integration",
+  "branch": "codex/application-current-main-r26",
+  "last_release_tag": "v1.6.29",
+  "release_tag_is_baseline_ancestor": true,
+  "decision": "SELECTED_ROUTE_READY_TO_MERGE",
+  "writing": {
+    "command": "python -B -X utf8 maintenance/tests/evidence/application-current-main-r26/run_real.py suite",
+    "models": {
+      "qwen": "alibaba-token-plan/qwen3.8-max",
+      "minimax": "minimax-cn/MiniMax-M3"
+    },
+    "new_calls": 12,
+    "runner_completed": 12,
+    "strict_scope_pass": 11,
+    "timeouts": 0,
+    "automatic_retries": 0,
+    "strict_pairs": 5,
+    "independent_preference": {
+      "hybrid": 2,
+      "baseline": 2,
+      "tie": 1
+    },
+    "hook_enabled": false,
+    "quality_pass_rate_claimed": false
+  },
+  "loading_proxy": {
+    "eligible_pairs": 5,
+    "baseline_reference_read_count": 28,
+    "candidate_reference_read_count": 11,
+    "baseline_full_file_bytes": 164567,
+    "candidate_full_file_bytes": 54878,
+    "reduction_percent": 66.65309569962386,
+    "excludes": "SKILL.md; not API bytes, tokens, cost, or stability rate"
+  },
+  "frozen_source": {
+    "baseline_files": 41,
+    "candidate_files": 42,
+    "overlay_paths": [
+      "SKILL.md",
+      "references/genre-playbook-project-application.md"
+    ],
+    "index_and_canonical_match_frozen_candidate": true
+  },
+  "product_lf_bytes": {
+    "new_leaf": 4442,
+    "entry_increase": 1174,
+    "total_increase": 5616
+  },
+  "checks": [
+    {
+      "command": "python -B -X utf8 -m unittest discover -s maintenance/tests -p test_*.py",
+      "result": "INITIAL_FAIL",
+      "tests": 817,
+      "seconds": 163.231,
+      "reason": "One legacy exact-string route assertion; changed to inspect review modes within the target routing row; product unchanged."
+    },
+    {
+      "command": "py -3.13 -B -X utf8 -m unittest discover -s maintenance/tests -p test_*.py",
+      "result": "PASS",
+      "tests": 817,
+      "seconds": 143.486
+    },
+    {
+      "command": "python -B -X utf8 <skill-creator>/scripts/quick_validate.py chinese-official-writing",
+      "result": "ENVIRONMENT_FAILURE",
+      "reason": "Default Hermes Python lacks yaml. Existing Python 3.13 used without installing dependencies."
+    },
+    {
+      "command": "py -3.13 -B -X utf8 <skill-creator>/scripts/quick_validate.py <skill-path>",
+      "result": "PASS",
+      "paths": [
+        "chinese-official-writing",
+        "packages/agent-skills/skills/chinese-official-writing",
+        "packages/qwen-code/skills/chinese-official-writing",
+        "packages/qwenwork/skills/chinese-official-writing",
+        "packages/hermes/skills/chinese-official-writing"
+      ],
+      "openclaw": "Platform-specific metadata covered by existing full-suite contract."
+    },
+    {
+      "command": "py -3.13 -B -X utf8 maintenance/tools/build_skillhub_package.py --output output/application-current-main-r26/merge-skillhub-final --version 1.6.29",
+      "result": "PASS",
+      "files": 89,
+      "initial_preview": "88 files before the new leaf was staged; not used as final package evidence."
+    },
+    {
+      "check": "Frozen product/index bytes, reviewer original bytes, JSON parse, wrapper AST, tracked-only package allowlist and required references",
+      "result": "PASS"
+    },
+    {
+      "check": "Final edited documentation links and nonempty structure",
+      "result": "PASS",
+      "files": 13,
+      "relative_links": 573
+    },
+    {
+      "command": "py -3.13 -B -X utf8 maintenance/tests/evidence/application-current-main-r26/archive_actual.py --provider <qwen|minimax> --verify-only",
+      "result": "PASS",
+      "source_bound_lanes": 12,
+      "actual_files_per_profile": 30,
+      "strict_pairs": 5
+    },
+    {
+      "check": "Final git diff --cached --check and git diff --check; all staged evidence bytes and frozen preregistration/prompt hashes",
+      "result": "PASS",
+      "evidence_line_endings": "Preserved with scoped attributes; raw prompt trailing space and diff context spaces intentionally retained."
+    }
+  ],
+  "package": {
+    "path": "output/application-current-main-r26/merge-skillhub-final",
+    "files": 89,
+    "manifest": "package-manifest.json",
+    "fingerprint_sha256": "cdb421f6b793a87a58f38988210aefd3e4226eff3494e8c4a2f3eb842c99e21a",
+    "fingerprint_definition": "SHA256 of UTF-8 package-manifest.json bytes including final LF; each row binds path, bytes and SHA256",
+    "required_reference_files": 35,
+    "local_preview_only": true,
+    "version": "1.6.29",
+    "published": false
+  },
+  "remaining": [
+    "Concrete factual additions on weaker model",
+    "Occasional omitted pending state and delivery wrapper",
+    "No new Hook-on or multi-version lifecycle validation",
+    "No current pure-new third arm; historical R23/R24 comparison retained"
+  ],
+  "local_installation": "Not changed in this task per user clarification; real writing already ran through isolated Claude Code CLI sessions."
+}

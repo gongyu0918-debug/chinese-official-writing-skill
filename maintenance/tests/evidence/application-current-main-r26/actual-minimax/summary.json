@@ -1,0 +1,186 @@
+{
+  "baseline_commit": "fe1c30fac2b57661f077a36d1243c42eb4a0415b",
+  "attempts": 6,
+  "technical_valid": 6,
+  "runs": [
+    {
+      "case": "first-draft",
+      "provider": "minimax",
+      "arm": "baseline",
+      "technical_valid": true,
+      "receipt": "runs/first-draft/minimax/baseline/receipt.json",
+      "artifacts": 1,
+      "written_documents": 1,
+      "missing_work_files": 0,
+      "skill_read": true,
+      "skill_launch_success_observed": false,
+      "routing": {
+        "reference_paths": [
+          "references/anti-ai-patterns.md",
+          "references/argument-chains.md",
+          "references/genre-checklist-request.md",
+          "references/genre-playbook-request.md",
+          "references/handling-elements.md",
+          "references/information-selection.md",
+          "references/official-style.md"
+        ],
+        "references_distinct_pages": 7,
+        "references_distinct_file_bytes": 43350,
+        "skill_direct_read_file_bytes": 28330
+      },
+      "tool_error_count": 0,
+      "failed_read_count": 0,
+      "unresolved_failed_read_count": 0,
+      "final_path_redactions": 0,
+      "argument_chains_read": true,
+      "ai_compute_read": false,
+      "scope_pass": true
+    },
+    {
+      "case": "first-draft",
+      "provider": "minimax",
+      "arm": "candidate",
+      "technical_valid": true,
+      "receipt": "runs/first-draft/minimax/candidate/receipt.json",
+      "artifacts": 1,
+      "written_documents": 1,
+      "missing_work_files": 0,
+      "skill_read": true,
+      "skill_launch_success_observed": false,
+      "routing": {
+        "reference_paths": [
+          "references/genre-playbook-project-application.md",
+          "references/handling-elements.md",
+          "references/information-selection.md"
+        ],
+        "references_distinct_pages": 3,
+        "references_distinct_file_bytes": 17422,
+        "skill_direct_read_file_bytes": 29504
+      },
+      "tool_error_count": 0,
+      "failed_read_count": 0,
+      "unresolved_failed_read_count": 0,
+      "final_path_redactions": 0,
+      "argument_chains_read": false,
+      "ai_compute_read": false,
+      "scope_pass": true
+    },
+    {
+      "case": "ordinary-extension",
+      "provider": "minimax",
+      "arm": "baseline",
+      "technical_valid": true,
+      "receipt": "runs/ordinary-extension/minimax/baseline/receipt.json",
+      "artifacts": 1,
+      "written_documents": 1,
+      "missing_work_files": 0,
+      "skill_read": false,
+      "skill_launch_success_observed": true,
+      "routing": {
+        "reference_paths": [
+          "references/formal-addressing.md",
+          "references/genre-checklist-request.md",
+          "references/genre-playbook-request.md",
+          "references/information-selection.md",
+          "references/official-style.md",
+          "references/short-draft-naturalness.md"
+        ],
+        "references_distinct_pages": 6,
+        "references_distinct_file_bytes": 21405,
+        "skill_direct_read_file_bytes": 0
+      },
+      "tool_error_count": 0,
+      "failed_read_count": 0,
+      "unresolved_failed_read_count": 0,
+      "final_path_redactions": 0,
+      "argument_chains_read": false,
+      "ai_compute_read": false,
+      "scope_pass": true
+    },
+    {
+      "case": "ordinary-extension",
+      "provider": "minimax",
+      "arm": "candidate",
+      "technical_valid": true,
+      "receipt": "runs/ordinary-extension/minimax/candidate/receipt.json",
+      "artifacts": 0,
+      "written_documents": 0,
+      "missing_work_files": 0,
+      "skill_read": true,
+      "skill_launch_success_observed": false,
+      "routing": {
+        "reference_paths": [
+          "references/genre-playbook-project-application.md",
+          "references/information-selection.md"
+        ],
+        "references_distinct_pages": 2,
+        "references_distinct_file_bytes": 9364,
+        "skill_direct_read_file_bytes": 29504
+      },
+      "tool_error_count": 0,
+      "failed_read_count": 0,
+      "unresolved_failed_read_count": 0,
+      "final_path_redactions": 0,
+      "argument_chains_read": false,
+      "ai_compute_read": false,
+      "scope_pass": true
+    },
+    {
+      "case": "budget-authorized",
+      "provider": "minimax",
+      "arm": "baseline",
+      "technical_valid": true,
+      "receipt": "runs/budget-authorized/minimax/baseline/receipt.json",
+      "artifacts": 1,
+      "written_documents": 1,
+      "missing_work_files": 0,
+      "skill_read": true,
+      "skill_launch_success_observed": false,
+      "routing": {
+        "reference_paths": [
+          "references/genre-playbook-request.md",
+          "references/information-selection.md"
+        ],
+        "references_distinct_pages": 2,
+        "references_distinct_file_bytes": 8458,
+        "skill_direct_read_file_bytes": 28330
+      },
+      "tool_error_count": 0,
+      "failed_read_count": 0,
+      "unresolved_failed_read_count": 0,
+      "final_path_redactions": 0,
+      "argument_chains_read": false,
+      "ai_compute_read": false,
+      "scope_pass": true
+    },
+    {
+      "case": "budget-authorized",
+      "provider": "minimax",
+      "arm": "candidate",
+      "technical_valid": true,
+      "receipt": "runs/budget-authorized/minimax/candidate/receipt.json",
+      "artifacts": 1,
+      "written_documents": 1,
+      "missing_work_files": 0,
+      "skill_read": true,
+      "skill_launch_success_observed": false,
+      "routing": {
+        "reference_paths": [
+          "references/genre-playbook-project-application.md",
+          "references/information-selection.md"
+        ],
+        "references_distinct_pages": 2,
+        "references_distinct_file_bytes": 9364,
+        "skill_direct_read_file_bytes": 29504
+      },
+      "tool_error_count": 0,
+      "failed_read_count": 0,
+      "unresolved_failed_read_count": 0,
+      "final_path_redactions": 1,
+      "argument_chains_read": false,
+      "ai_compute_read": false,
+      "scope_pass": true
+    }
+  ],
+  "quality": "Not judged by extractor; invalid scope samples remain in actual but excluded from paired blind delivery"
+}

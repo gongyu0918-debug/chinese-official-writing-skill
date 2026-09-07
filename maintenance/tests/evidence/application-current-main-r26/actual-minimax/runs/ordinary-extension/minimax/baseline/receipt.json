@@ -1,0 +1,231 @@
+{
+  "arm": "baseline",
+  "provider": "minimax",
+  "model": "minimax-cn/MiniMax-M3",
+  "case": "ordinary-extension",
+  "session": "c5c52586-5e74-450b-9c25-dcbd3df77788",
+  "technical_valid": true,
+  "return_code": 0,
+  "failure": null,
+  "seconds": 11.61,
+  "client_tools": "Read,Skill,Write,Edit,Bash",
+  "explicit_entry": true,
+  "frozen_unchanged": true,
+  "final_chars": 770,
+  "init_models": [
+    "minimax-cn/MiniMax-M3"
+  ],
+  "assistant_models": [
+    "minimax-cn/MiniMax-M3"
+  ],
+  "usage_models": [
+    "minimax-cn/MiniMax-M3"
+  ],
+  "result_count": 1,
+  "result_subtypes": [
+    "success"
+  ],
+  "result_errors": [
+    false
+  ],
+  "final_path": "runs/ordinary-extension/minimax/baseline/final.txt",
+  "final_sha256": "b08cbc60ef5c137052df8bcf3a928ea825b1af2fe456df2e607a4219fb974df3",
+  "source_final_sha256": "b08cbc60ef5c137052df8bcf3a928ea825b1af2fe456df2e607a4219fb974df3",
+  "source_final_logical_sha256": "6b9d47e195237548b222b2c21f279228949bc1129a76c27e07870ce2e9c1f079",
+  "final_redaction": {
+    "replacement_count": 0,
+    "replacement": "<isolated-work>",
+    "scope": "Only this lane approved runtime/work prefix; slash variants accepted.",
+    "source_unchanged": true,
+    "archive_is_original_bytes": true
+  },
+  "hook_enabled": false,
+  "timeout_seconds": 1200,
+  "automatic_retries": 0,
+  "effort": "max",
+  "invalid_json_line_count": 0,
+  "reads": [
+    "references/genre-playbook-request.md",
+    "references/information-selection.md",
+    "references/formal-addressing.md",
+    "references/official-style.md",
+    "references/short-draft-naturalness.md",
+    "references/genre-checklist-request.md"
+  ],
+  "routing": {
+    "reference_paths": [
+      "references/formal-addressing.md",
+      "references/genre-checklist-request.md",
+      "references/genre-playbook-request.md",
+      "references/information-selection.md",
+      "references/official-style.md",
+      "references/short-draft-naturalness.md"
+    ],
+    "references_distinct_pages": 6,
+    "references_distinct_file_bytes": 21405,
+    "skill_direct_read_file_bytes": 0
+  },
+  "tool_evidence": [
+    {
+      "sequence": 1,
+      "id": "call_01a07d0651647d90b43bfe8b",
+      "name": "Skill",
+      "result": {
+        "observed": true,
+        "is_error_field": null,
+        "content_bytes": 65,
+        "content_sha256": "2208255ee679ba4f9d37caea5978009b3ee3459ba286dd41d1e923554c8abad8",
+        "skill_launch_acknowledgement": "official-writing-eval:chinese-official-writing"
+      },
+      "skill_name": "official-writing-eval:chinese-official-writing",
+      "launch_success_observed": true,
+      "response_visibility": "launch_acknowledgement_only_no_skill_body"
+    },
+    {
+      "sequence": 2,
+      "id": "call_01a07d0658fe7b518266fc48",
+      "name": "Read",
+      "result": {
+        "observed": true,
+        "is_error_field": null,
+        "content_bytes": 3633,
+        "content_sha256": "07d7e667ad79b4f4df72d59744302ed4e126f984beeb65b3026e1922f9b59e35",
+        "skill_launch_acknowledgement": null
+      },
+      "scope": "package",
+      "package_path": "references/genre-playbook-request.md",
+      "frozen_file_sha256": "458a3353b9254256cf6302cae738a5372964328cb3bbf9cf78bab97550b62b88",
+      "read_success_observed": true
+    },
+    {
+      "sequence": 3,
+      "id": "call_01a07d0658fe7b518266fc58",
+      "name": "Read",
+      "result": {
+        "observed": true,
+        "is_error_field": null,
+        "content_bytes": 5029,
+        "content_sha256": "69a66166a0c9eba32cafe95347b005234a2e741805ef6e5eba6f9f58f9b38c5c",
+        "skill_launch_acknowledgement": null
+      },
+      "scope": "package",
+      "package_path": "references/information-selection.md",
+      "frozen_file_sha256": "bf1aff9c90a6ba901fb2514ed98b3796a67616a4f934bfeac45fa4e3c0c01787",
+      "read_success_observed": true
+    },
+    {
+      "sequence": 4,
+      "id": "call_01a07d065d1c7ab3b3e5701d",
+      "name": "Read",
+      "result": {
+        "observed": true,
+        "is_error_field": null,
+        "content_bytes": 3629,
+        "content_sha256": "53bd7cf7f0b4fbd2dc2304a6d75a4ea81abb16ed63e4187676c9bef9eadc60f6",
+        "skill_launch_acknowledgement": null
+      },
+      "scope": "package",
+      "package_path": "references/formal-addressing.md",
+      "frozen_file_sha256": "4fe40b280d3f09faac845bc23526aa2a62633da7fb6f22e57d61f572d3291a96",
+      "read_success_observed": true
+    },
+    {
+      "sequence": 5,
+      "id": "call_01a07d065d1c7ab3b3e57026",
+      "name": "Read",
+      "result": {
+        "observed": true,
+        "is_error_field": null,
+        "content_bytes": 6500,
+        "content_sha256": "fb2f2d445b02064075e4a188810fe916bab16b578d278c01ab0b14ab64e6794f",
+        "skill_launch_acknowledgement": null
+      },
+      "scope": "package",
+      "package_path": "references/official-style.md",
+      "frozen_file_sha256": "82b97cc58bca9fce3f81c79ece4a5804d17a1869a5bbd3f6de191612440d505a",
+      "read_success_observed": true
+    },
+    {
+      "sequence": 6,
+      "id": "call_01a07d0661457860953f2a03",
+      "name": "Read",
+      "result": {
+        "observed": true,
+        "is_error_field": null,
+        "content_bytes": 1376,
+        "content_sha256": "0ac8545d17cc66ddf36a92f31051622734c3159b4445b469de529ab0451e1624",
+        "skill_launch_acknowledgement": null
+      },
+      "scope": "package",
+      "package_path": "references/short-draft-naturalness.md",
+      "frozen_file_sha256": "100b89b6216d872f35b568164f13b4bcc448346b1dd39d9b100fa9bf6f30f7ba",
+      "read_success_observed": true
+    },
+    {
+      "sequence": 7,
+      "id": "call_01a07d0661467b63ac2e4834",
+      "name": "Read",
+      "result": {
+        "observed": true,
+        "is_error_field": null,
+        "content_bytes": 2310,
+        "content_sha256": "063775db60689ae1babdb38eeb8e59e2792772a161b9c8cfa3eab7bde02fd38a",
+        "skill_launch_acknowledgement": null
+      },
+      "scope": "package",
+      "package_path": "references/genre-checklist-request.md",
+      "frozen_file_sha256": "b011444af07dab83a5f61099e3589abd8bf49c9f8addf3c180f7db393f1ef44f",
+      "read_success_observed": true
+    },
+    {
+      "sequence": 8,
+      "id": "call_01a07d066e327512991b7149",
+      "name": "Write",
+      "result": {
+        "observed": true,
+        "is_error_field": null,
+        "content_bytes": 317,
+        "content_sha256": "c1eb9637a94f9007016e8de6bdebf52c778ae5e286baeb4da317e521c3232bd3",
+        "skill_launch_acknowledgement": null
+      },
+      "scope": "work",
+      "work_relative_path": "application-current-main-r26.md",
+      "archive_path": "runs/ordinary-extension/minimax/baseline/document-1.txt",
+      "content_sha256": "f0f15c14d16183318779ab60d04a08a5fd2bd01066369183705f05bfcc76fa61"
+    }
+  ],
+  "documents": [
+    {
+      "work_relative_path": "application-current-main-r26.md",
+      "archive_path": "runs/ordinary-extension/minimax/baseline/document-1.txt",
+      "sha256": "f0f15c14d16183318779ab60d04a08a5fd2bd01066369183705f05bfcc76fa61",
+      "bytes": 1686,
+      "file_state": "last_on_disk_artifact",
+      "artifact_role": "written_text",
+      "delivery_state": "completed_run_artifact_quality_unreviewed",
+      "read_sequences": [],
+      "write_sequences": [
+        8
+      ],
+      "edit_sequences": []
+    }
+  ],
+  "helper_sha256": "452d3f5ac8df257fbd220d7585ce0aef3dd0475a76a51181de77e0f729f0a6ab",
+  "prompt_path": "prompts/ordinary-extension.txt",
+  "omissions": [
+    "raw stream",
+    "runtime",
+    "provider state",
+    "original argv",
+    "absolute paths",
+    "shell arguments and stdout"
+  ],
+  "runner_technical_valid": true,
+  "scope_audit": {
+    "pass": true,
+    "source_receipt_sha256": "dbce90f163eb6f5d1aa33fd4dd61f1d9f4c1e68afe22c953a1ed61f49faeef72",
+    "tool_calls": 8,
+    "violations": [],
+    "observations": []
+  }
+}

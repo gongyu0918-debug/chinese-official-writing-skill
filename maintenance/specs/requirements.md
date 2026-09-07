@@ -145,13 +145,17 @@ D0 有错不直接等于整个闭环不可用。普通 Skill 的 D0、人工反�
 
 ### WR-023b 既有项目增项申请的首稿论证衔接
 
+接续记录：R23已完成旧/新路线18份有效首稿，R24完成A/B/C组合28次新首稿；此前只保存在独立研究分支，main记录遗漏了这段。R25明确全局有据分析并合入后，申请路线的选择与复验没有同步完成。[R26接续结果](../tests/evidence/application-current-main-r26/result.md)从 `fe1c30fa` 独立验证当前main与精选混合版，原三道自然任务、Qwen 3.8 Max与MiniMax M3两臂共12次；本轮选定精简混合的有限路由与组织收益，真实写稿及工程验证完成，合并状态单列登记。历史全量证据的提交与路径列于该登记，不把原型停止推定为整条新路线无效。
+
 这是用户提出README之前正在进行的主线，README/DOC-001不替代本项。仅以未经人工补原因的真实首稿评价：材料已经提供的既有基础、新需求和能力缺口应自然引出申请；建设内容、技术证据和资源费用应服务本次请批目的。不强制称赞原项目，不补造预算总额、工期、项目成效、主体或办理程序，保留备选方案与当前未决状态。
 
-状态 `IN_PROGRESS / PARTIAL_GAIN / NOT_ADMITTED`。独立研究分支 `codex/application-reason-reference-r1@3c441912` 已保留R1–R10的35次尝试（33新调用、2基线复用）：局部首段改善，但仍有专名、无据事实/状态与交付硬问题，未准入reference；全部协议、失败稿及结果在该分支的 `maintenance/tests/evidence/application-reason-reference-r1/`。后续R11/R12证据在 `codex/application-opening-r11@8b13b623` 的 `maintenance/tests/evidence/application-opening-r11/`，独立worktree新增6次首稿调用，5次技术有效，1次MiniMax因调用未声明Edit而无效；原因前置未稳定改善，仍有候选新增无据预算、工期或分工，R12另有未读修改页的归因限制，两轮均未准入，需求保持开放。先真实写稿、目标获益且无候选独有硬回退，再补镜像和必要工程；不把README问答测试、API技术完成率或人工改后稿当成本项通过。
+当前状态 `IN_PROGRESS / R26_SELECTED_ROUTE / READY_TO_MERGE`：精选增项专页已在共享R25的当前main背景完成12次真实写稿；11次符合约定工具范围，另1次操作路径偏差稿完整留存。五组严格成对偏好混合2、旧2、平1，实际reference文件读取量下降，但未证明整体正确率提高。具体事实、局部状态与交付问题，以及多版和Hook事实校正继续开放。以下R1—R16未准入状态仅为历史。
+
+独立研究分支 `codex/application-reason-reference-r1@3c441912` 已保留R1–R10的35次尝试（33新调用、2基线复用）：局部首段改善，但仍有专名、无据事实/状态与交付硬问题，未准入reference；全部协议、失败稿及结果在该分支的 `maintenance/tests/evidence/application-reason-reference-r1/`。后续R11/R12证据在 `codex/application-opening-r11@8b13b623` 的 `maintenance/tests/evidence/application-opening-r11/`，独立worktree新增6次首稿调用，5次技术有效，1次MiniMax因调用未声明Edit而无效；原因前置未稳定改善，仍有候选新增无据预算、工期或分工，R12另有未读修改页的归因限制，两轮均未准入，需求保持开放。先真实写稿，综合判断目标收益、错误影响与复现情况，再补镜像和必要工程；不因一次独立采样差异机械否决，不把README问答测试、API技术完成率或人工改后稿当成本项通过。
 
 后续仍需验证自然增项提示、正常多轮修改与多篇质量；Hook能否拦下现稿虚构预算、工期是关联质量问题，单独保留，不用Hook兜底替代首稿规则修复。不报未经证明的长程稳定率。
 
-验证除原始复杂增项外，还应覆盖新的日常增项与用户明确要求的预算情景：区分未给工期与明给测算月份、无据计划与已给承诺，不能为禁止虚构而禁止正常算术，也不能以单一原题未出错替代多提示下的目标收益。当前候选及拒绝理由统一见[研究结果](../tests/evidence/application-materials-r13/result.md)，不作为新增运行时规则。
+验证除原始复杂增项外，还应覆盖新的日常增项与用户明确要求的预算情景：区分未给工期与明给测算月份、无据计划与已给承诺，不能为禁止虚构而禁止正常算术，也不能以单一原题未出错替代多提示下的目标收益。R13—R16历史候选及拒绝理由见[研究结果](../tests/evidence/application-materials-r13/result.md)，不作为新增运行时规则。
 
 ### WR-024 请示缘由、依据与材料缺口
 

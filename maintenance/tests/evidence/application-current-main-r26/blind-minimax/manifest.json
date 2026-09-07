@@ -1,0 +1,97 @@
+[
+  {
+    "path": ".gitattributes",
+    "bytes": 87,
+    "sha256": "50045cc37d25e07498c8b21ec39700fb7650728cc3eb52cb1cc70307c6522229"
+  },
+  {
+    "path": "P01/A-delivery.txt",
+    "bytes": 2218,
+    "sha256": "b08cbc60ef5c137052df8bcf3a928ea825b1af2fe456df2e607a4219fb974df3"
+  },
+  {
+    "path": "P01/A-manuscript-1.txt",
+    "bytes": 1686,
+    "sha256": "f0f15c14d16183318779ab60d04a08a5fd2bd01066369183705f05bfcc76fa61"
+  },
+  {
+    "path": "P01/B-delivery.txt",
+    "bytes": 1484,
+    "sha256": "009fe3ec6f57f795c4348170782c7f019126000ebc5a1d0893c137b5db1839ab"
+  },
+  {
+    "path": "P01/delivery.json",
+    "bytes": 317,
+    "sha256": "87122db32ba4945c33988dd9e7c08b7bd4d8a0a7828477a057fdf391a8ea3b9b"
+  },
+  {
+    "path": "P01/materials.txt",
+    "bytes": 894,
+    "sha256": "59b7938deb18d9efa368a075aaa70febc3f288d262ee9bc0a4f0d9d932e3ef95"
+  },
+  {
+    "path": "P02/A-delivery.txt",
+    "bytes": 1533,
+    "sha256": "ab06a779cce9f214bae23e6c4c59629b7fe1fc235e5de30197617e83c8fe2088"
+  },
+  {
+    "path": "P02/A-manuscript-1.txt",
+    "bytes": 1519,
+    "sha256": "0d05d6dbdb34d5477bf5b8a417e8149641d829e0ad941276c1e32ae552eb5dbc"
+  },
+  {
+    "path": "P02/B-delivery.txt",
+    "bytes": 678,
+    "sha256": "a5ef34e445e7b3e390ad3bd43279d18fd81fd73ccc76ac7c12bc7b0d13923841"
+  },
+  {
+    "path": "P02/B-manuscript-1.txt",
+    "bytes": 1153,
+    "sha256": "7bc6d802c37a87d2bdf40c9e26f0079303bfd8973d2570f079a6b85c6d005268"
+  },
+  {
+    "path": "P02/delivery.json",
+    "bytes": 363,
+    "sha256": "90144c5c569f917c3de0318a73ae14311c05736419c13b949448895d85ac470f"
+  },
+  {
+    "path": "P02/materials.txt",
+    "bytes": 848,
+    "sha256": "5ea072d06a3accb1cef7e08827aa9fbba38e0be0d77351027c1d56b3fa0fb42c"
+  },
+  {
+    "path": "P04/A-delivery.txt",
+    "bytes": 2676,
+    "sha256": "517dc64c98d1ecbb66137104224846c103089e0e19ae956273f44c536456015f"
+  },
+  {
+    "path": "P04/A-manuscript-1.txt",
+    "bytes": 7640,
+    "sha256": "43b4e926b8e2e7ffb0d6ae7143d715f28e0e8a5b20fede055bddcd8a7ece8625"
+  },
+  {
+    "path": "P04/B-delivery.txt",
+    "bytes": 1893,
+    "sha256": "4e27c3ffc106a6460458097cd39fc3d29ae89782c65abc245d1a251e93feee28"
+  },
+  {
+    "path": "P04/B-manuscript-1.txt",
+    "bytes": 7553,
+    "sha256": "5f64b6ba762679c55cdbfc1ae6235321b1f7d4d831c13749ba04cb8e1c80fe46"
+  },
+  {
+    "path": "P04/delivery.json",
+    "bytes": 363,
+    "sha256": "90144c5c569f917c3de0318a73ae14311c05736419c13b949448895d85ac470f"
+  },
+  {
+    "path": "P04/materials.txt",
+    "bytes": 3257,
+    "sha256": "010a7e68e4bd91fb72c52b34e02a0044f80eb958276213bfedfe34a87f303881"
+  },
+  {
+    "path": "README.md",
+    "bytes": 1079,
+    "sha256": "3828f4e2986a1d81ba37c347fa161cf4055774090d7ff7d201ed95e42c776d6b"
+  }
+]

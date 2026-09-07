@@ -1,0 +1,147 @@
+[
+  {
+    "path": ".gitattributes",
+    "bytes": 20,
+    "sha256": "e97602ab9cac70102245345c5ab0fc9830df8b17f1072b188265a662a3a547ae"
+  },
+  {
+    "path": "blind-mapping.json",
+    "bytes": 3505,
+    "sha256": "58a04296e6054a5a963ee10f331aaa0d28a1f6702da766fd109c222616b5e6df"
+  },
+  {
+    "path": "freeze.json",
+    "bytes": 1358,
+    "sha256": "76cfd886527880ff859a4005e4b1dd8b3a2af1325c9bc52235e6598261d2e740"
+  },
+  {
+    "path": "manifests/baseline.json",
+    "bytes": 6463,
+    "sha256": "b9e0909316990aa7ebc43a3bf02aa11b565b7cc9f9972d794a98755cc72c9e84"
+  },
+  {
+    "path": "manifests/candidate.json",
+    "bytes": 6636,
+    "sha256": "22c694b4ae96b0da1660255de6e2bd6f4b2188cbfd0bde56af29b14515dea909"
+  },
+  {
+    "path": "prompts/budget-authorized.txt",
+    "bytes": 848,
+    "sha256": "5ea072d06a3accb1cef7e08827aa9fbba38e0be0d77351027c1d56b3fa0fb42c"
+  },
+  {
+    "path": "prompts/first-draft.txt",
+    "bytes": 3257,
+    "sha256": "010a7e68e4bd91fb72c52b34e02a0044f80eb958276213bfedfe34a87f303881"
+  },
+  {
+    "path": "prompts/ordinary-extension.txt",
+    "bytes": 894,
+    "sha256": "59b7938deb18d9efa368a075aaa70febc3f288d262ee9bc0a4f0d9d932e3ef95"
+  },
+  {
+    "path": "runs/budget-authorized/qwen/baseline/document-1.txt",
+    "bytes": 981,
+    "sha256": "3647564b773b995b8867c039a7c91008feeda681e9704cbde002be7a7285d8d9"
+  },
+  {
+    "path": "runs/budget-authorized/qwen/baseline/final.txt",
+    "bytes": 1092,
+    "sha256": "682a2e57a40f6d280cf95866f4268f9ecd0ba2e11f899ff72ed32fe0ea9da04f"
+  },
+  {
+    "path": "runs/budget-authorized/qwen/baseline/receipt.json",
+    "bytes": 7961,
+    "sha256": "a0a44696c59fd8f103958354a13ef9411f6353de02612ecde3bcbc16e9e557f6"
+  },
+  {
+    "path": "runs/budget-authorized/qwen/candidate/document-1.txt",
+    "bytes": 1042,
+    "sha256": "82c1c853ecb17c593a8ce9d555c3e676caaefdd3f70b128497416fbb750b4e2a"
+  },
+  {
+    "path": "runs/budget-authorized/qwen/candidate/final.txt",
+    "bytes": 1049,
+    "sha256": "86619efcb205ee55f5aed0cc861f202a4e47a6bb46681f75ff1ca3cac5eb73ff"
+  },
+  {
+    "path": "runs/budget-authorized/qwen/candidate/receipt.json",
+    "bytes": 5944,
+    "sha256": "908fbc900aa91982e4378520ff297a81f3fc5ffbbe70b9f00ff419112acd3d38"
+  },
+  {
+    "path": "runs/first-draft/qwen/baseline/document-1.txt",
+    "bytes": 5401,
+    "sha256": "035c9c9f885ee609e9bb3581d704667282e255a8402a6653a1b06156f1fc5e75"
+  },
+  {
+    "path": "runs/first-draft/qwen/baseline/final.txt",
+    "bytes": 6561,
+    "sha256": "8abdfd1160d32fec630b8520a4af00acc9bc14d394d011b9b86794ea32103ef7"
+  },
+  {
+    "path": "runs/first-draft/qwen/baseline/receipt.json",
+    "bytes": 11856,
+    "sha256": "a861b416be97363d52fc18fa065198f62168be4c926814e6c6ae65b6e6237fde"
+  },
+  {
+    "path": "runs/first-draft/qwen/candidate/final.txt",
+    "bytes": 5779,
+    "sha256": "52795f46d28b432fb60b5e55e8471e75c03cc085368da257fbc6268c631d7bb4"
+  },
+  {
+    "path": "runs/first-draft/qwen/candidate/receipt.json",
+    "bytes": 4801,
+    "sha256": "b53fe54be8fbb4bebbcd941c1e2619ad175d4b3fbd17bc608ea26e2094468102"
+  },
+  {
+    "path": "runs/ordinary-extension/qwen/baseline/final.txt",
+    "bytes": 807,
+    "sha256": "ad73b59c1058578caeecffff73c6ed7493e4e472de3f47a94cb98ddfff828c59"
+  },
+  {
+    "path": "runs/ordinary-extension/qwen/baseline/receipt.json",
+    "bytes": 3447,
+    "sha256": "c6b2af456f982c4bfe35f6b1b2b045167facf861fde17b3530ee3d7d6e9eea20"
+  },
+  {
+    "path": "runs/ordinary-extension/qwen/baseline/working-file-1.md",
+    "bytes": 802,
+    "sha256": "9674b42706f202e37f0584f6316669bae89f40937a9f8cb5644b2f67a73242dd"
+  },
+  {
+    "path": "runs/ordinary-extension/qwen/candidate/document-1.txt",
+    "bytes": 837,
+    "sha256": "ca09f8ab4a81cae11a14e63222766e4c10e20b64d9bf7159df6f617e0b6f50d3"
+  },
+  {
+    "path": "runs/ordinary-extension/qwen/candidate/final.txt",
+    "bytes": 844,
+    "sha256": "565dac6ad479438efc704d705e4e4c09d1e96b0e90c90b2fdacc0cbbc265b66c"
+  },
+  {
+    "path": "runs/ordinary-extension/qwen/candidate/receipt.json",
+    "bytes": 5921,
+    "sha256": "e433d690ec09888a681bdc78ec4df9c70410a1d98ddc17edc92f43d0e3d836ea"
+  },
+  {
+    "path": "snapshots/baseline/SKILL.md",
+    "bytes": 28330,
+    "sha256": "190ca5591de28e179547ab53a9f13cfe5642a651185498e8f3cc7b34f8039f36"
+  },
+  {
+    "path": "snapshots/candidate/references/genre-playbook-project-application.md",
+    "bytes": 4442,
+    "sha256": "bcc4b8429aa23f065c7f22b7928476c21c1967cca0454911c3b565f5000b6caa"
+  },
+  {
+    "path": "snapshots/candidate/SKILL.md",
+    "bytes": 29504,
+    "sha256": "beec7a345c2c0ea569cea2c32e00079f7e3eba2fff4aed2b6cf93e59be24e4c2"
+  },
+  {
+    "path": "summary.json",
+    "bytes": 5361,
+    "sha256": "43db510a03c2c1efd5731b7dc6b1562e2c3a3f9bb2dd9a3abeb4954f004ef7fc"
+  }
+]

@@ -1,0 +1,161 @@
+{
+  "arm": "candidate",
+  "provider": "minimax",
+  "model": "minimax-cn/MiniMax-M3",
+  "case": "budget-authorized",
+  "session": "c98a3aa1-d266-422d-b0f1-c59809220156",
+  "technical_valid": true,
+  "return_code": 0,
+  "failure": null,
+  "seconds": 101.72,
+  "client_tools": "Read,Skill,Write,Edit,Bash",
+  "explicit_entry": true,
+  "frozen_unchanged": true,
+  "final_chars": 436,
+  "init_models": [
+    "minimax-cn/MiniMax-M3"
+  ],
+  "assistant_models": [
+    "minimax-cn/MiniMax-M3"
+  ],
+  "usage_models": [
+    "minimax-cn/MiniMax-M3"
+  ],
+  "result_count": 1,
+  "result_subtypes": [
+    "success"
+  ],
+  "result_errors": [
+    false
+  ],
+  "final_path": "runs/budget-authorized/minimax/candidate/final.txt",
+  "final_sha256": "a5ef34e445e7b3e390ad3bd43279d18fd81fd73ccc76ac7c12bc7b0d13923841",
+  "source_final_sha256": "0bd4bbd2e9605661bf97732a4ffa6918dd11084912052ed7a8671a60de23e683",
+  "source_final_logical_sha256": "c4b9cb41c215cfa930824d9fde9db421d228eb2c40bc2df9fb87d2461e0b10db",
+  "final_redaction": {
+    "replacement_count": 1,
+    "replacement": "<isolated-work>",
+    "scope": "Only this lane approved runtime/work prefix; slash variants accepted.",
+    "source_unchanged": true,
+    "archive_is_original_bytes": false
+  },
+  "hook_enabled": false,
+  "timeout_seconds": 1200,
+  "automatic_retries": 0,
+  "effort": "max",
+  "invalid_json_line_count": 0,
+  "reads": [
+    "SKILL.md",
+    "references/genre-playbook-project-application.md",
+    "references/information-selection.md"
+  ],
+  "routing": {
+    "reference_paths": [
+      "references/genre-playbook-project-application.md",
+      "references/information-selection.md"
+    ],
+    "references_distinct_pages": 2,
+    "references_distinct_file_bytes": 9364,
+    "skill_direct_read_file_bytes": 29504
+  },
+  "tool_evidence": [
+    {
+      "sequence": 1,
+      "id": "chatcmpl-tool-84ae6e00a142e3b4",
+      "name": "Read",
+      "result": {
+        "observed": true,
+        "is_error_field": null,
+        "content_bytes": 30261,
+        "content_sha256": "23b7babc836240252e99eab2bcfbc0da91c0ffab912fd739ec3537a776d98de0",
+        "skill_launch_acknowledgement": null
+      },
+      "scope": "package",
+      "package_path": "SKILL.md",
+      "frozen_file_sha256": "beec7a345c2c0ea569cea2c32e00079f7e3eba2fff4aed2b6cf93e59be24e4c2",
+      "read_success_observed": true
+    },
+    {
+      "sequence": 2,
+      "id": "chatcmpl-tool-b616ea93e6dab341",
+      "name": "Read",
+      "result": {
+        "observed": true,
+        "is_error_field": null,
+        "content_bytes": 4614,
+        "content_sha256": "df3f256e8beb972b11b8c89c16adb7f159d57e370908c3cdd73718b57de3885c",
+        "skill_launch_acknowledgement": null
+      },
+      "scope": "package",
+      "package_path": "references/genre-playbook-project-application.md",
+      "frozen_file_sha256": "bcc4b8429aa23f065c7f22b7928476c21c1967cca0454911c3b565f5000b6caa",
+      "read_success_observed": true
+    },
+    {
+      "sequence": 3,
+      "id": "chatcmpl-tool-97a3e924c49294a1",
+      "name": "Read",
+      "result": {
+        "observed": true,
+        "is_error_field": null,
+        "content_bytes": 5029,
+        "content_sha256": "69a66166a0c9eba32cafe95347b005234a2e741805ef6e5eba6f9f58f9b38c5c",
+        "skill_launch_acknowledgement": null
+      },
+      "scope": "package",
+      "package_path": "references/information-selection.md",
+      "frozen_file_sha256": "bf1aff9c90a6ba901fb2514ed98b3796a67616a4f934bfeac45fa4e3c0c01787",
+      "read_success_observed": true
+    },
+    {
+      "sequence": 4,
+      "id": "chatcmpl-tool-a1b607faca7e0519",
+      "name": "Write",
+      "result": {
+        "observed": true,
+        "is_error_field": null,
+        "content_bytes": 314,
+        "content_sha256": "452ad2aab2bfdffd325331922e8f39f33f8e0a03576f83d38fd44f6840c95126",
+        "skill_launch_acknowledgement": null
+      },
+      "scope": "work",
+      "work_relative_path": "立项申请_到期提醒.md",
+      "archive_path": "runs/budget-authorized/minimax/candidate/document-1.txt",
+      "content_sha256": "7bc6d802c37a87d2bdf40c9e26f0079303bfd8973d2570f079a6b85c6d005268"
+    }
+  ],
+  "documents": [
+    {
+      "work_relative_path": "立项申请_到期提醒.md",
+      "archive_path": "runs/budget-authorized/minimax/candidate/document-1.txt",
+      "sha256": "7bc6d802c37a87d2bdf40c9e26f0079303bfd8973d2570f079a6b85c6d005268",
+      "bytes": 1153,
+      "file_state": "last_on_disk_artifact",
+      "artifact_role": "written_text",
+      "delivery_state": "completed_run_artifact_quality_unreviewed",
+      "read_sequences": [],
+      "write_sequences": [
+        4
+      ],
+      "edit_sequences": []
+    }
+  ],
+  "helper_sha256": "452d3f5ac8df257fbd220d7585ce0aef3dd0475a76a51181de77e0f729f0a6ab",
+  "prompt_path": "prompts/budget-authorized.txt",
+  "omissions": [
+    "raw stream",
+    "runtime",
+    "provider state",
+    "original argv",
+    "absolute paths",
+    "shell arguments and stdout"
+  ],
+  "runner_technical_valid": true,
+  "scope_audit": {
+    "pass": true,
+    "source_receipt_sha256": "e0ac2a2852154fb43884bb21e7c2b17d7bb4ed46257e8a9ff370154055bad817",
+    "tool_calls": 4,
+    "violations": [],
+    "observations": []
+  }
+}

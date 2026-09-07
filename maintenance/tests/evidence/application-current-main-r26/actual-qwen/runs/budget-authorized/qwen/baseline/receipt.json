@@ -1,0 +1,236 @@
+{
+  "arm": "baseline",
+  "provider": "qwen",
+  "model": "alibaba-token-plan/qwen3.8-max",
+  "case": "budget-authorized",
+  "session": "3c015fa8-ebe8-47fd-8e2d-6d8f55b646e9",
+  "technical_valid": true,
+  "return_code": 0,
+  "failure": null,
+  "seconds": 178.17,
+  "client_tools": "Read,Skill,Write,Edit,Bash",
+  "explicit_entry": true,
+  "frozen_unchanged": true,
+  "final_chars": 391,
+  "init_models": [
+    "alibaba-token-plan/qwen3.8-max"
+  ],
+  "assistant_models": [
+    "alibaba-token-plan/qwen3.8-max"
+  ],
+  "usage_models": [
+    "alibaba-token-plan/qwen3.8-max"
+  ],
+  "result_count": 1,
+  "result_subtypes": [
+    "success"
+  ],
+  "result_errors": [
+    false
+  ],
+  "final_path": "runs/budget-authorized/qwen/baseline/final.txt",
+  "final_sha256": "682a2e57a40f6d280cf95866f4268f9ecd0ba2e11f899ff72ed32fe0ea9da04f",
+  "source_final_sha256": "682a2e57a40f6d280cf95866f4268f9ecd0ba2e11f899ff72ed32fe0ea9da04f",
+  "source_final_logical_sha256": "ef6d094c0fa23e21e651cfdbe178eca80420b66c3ecb6b2ed70ce5c7f751fe59",
+  "final_redaction": {
+    "replacement_count": 0,
+    "replacement": "<isolated-work>",
+    "scope": "Only this lane approved runtime/work prefix; slash variants accepted.",
+    "source_unchanged": true,
+    "archive_is_original_bytes": true
+  },
+  "hook_enabled": false,
+  "timeout_seconds": 1200,
+  "automatic_retries": 0,
+  "effort": "max",
+  "invalid_json_line_count": 0,
+  "reads": [
+    "SKILL.md",
+    "references/information-selection.md",
+    "references/genre-playbook-request.md",
+    "references/argument-chains.md",
+    "references/final-review-layers.md"
+  ],
+  "routing": {
+    "reference_paths": [
+      "references/argument-chains.md",
+      "references/final-review-layers.md",
+      "references/genre-playbook-request.md",
+      "references/information-selection.md"
+    ],
+    "references_distinct_pages": 4,
+    "references_distinct_file_bytes": 22084,
+    "skill_direct_read_file_bytes": 28330
+  },
+  "tool_evidence": [
+    {
+      "sequence": 1,
+      "id": "call_0741d90993664775a3438c53",
+      "name": "Read",
+      "result": {
+        "observed": true,
+        "is_error_field": null,
+        "content_bytes": 29069,
+        "content_sha256": "40aeb42863d4c97d216c5f0d6278294291652479d4e7d0f7ca7523fc86ff6c79",
+        "skill_launch_acknowledgement": null
+      },
+      "scope": "package",
+      "package_path": "SKILL.md",
+      "frozen_file_sha256": "190ca5591de28e179547ab53a9f13cfe5642a651185498e8f3cc7b34f8039f36",
+      "read_success_observed": true
+    },
+    {
+      "sequence": 2,
+      "id": "call_63b336cdb4fe4804bcd33755",
+      "name": "Bash",
+      "result": {
+        "observed": true,
+        "is_error_field": false,
+        "content_bytes": 927,
+        "content_sha256": "a045a0a34cd7df81cb6816b59b4254faae190a33f477ee3d27d8acff584328db",
+        "skill_launch_acknowledgement": null
+      },
+      "command_sha256": "6cf64e6eaa4691b913fe4432b1b3354dd92f4ba36affc253b8a48adcf8952a52",
+      "arguments_omitted": true
+    },
+    {
+      "sequence": 3,
+      "id": "call_fb7e091e2de54373b3df7625",
+      "name": "Read",
+      "result": {
+        "observed": true,
+        "is_error_field": null,
+        "content_bytes": 5029,
+        "content_sha256": "69a66166a0c9eba32cafe95347b005234a2e741805ef6e5eba6f9f58f9b38c5c",
+        "skill_launch_acknowledgement": null
+      },
+      "scope": "package",
+      "package_path": "references/information-selection.md",
+      "frozen_file_sha256": "bf1aff9c90a6ba901fb2514ed98b3796a67616a4f934bfeac45fa4e3c0c01787",
+      "read_success_observed": true
+    },
+    {
+      "sequence": 4,
+      "id": "call_3d8c9b0e5c404894b4f8e119",
+      "name": "Read",
+      "result": {
+        "observed": true,
+        "is_error_field": null,
+        "content_bytes": 3633,
+        "content_sha256": "07d7e667ad79b4f4df72d59744302ed4e126f984beeb65b3026e1922f9b59e35",
+        "skill_launch_acknowledgement": null
+      },
+      "scope": "package",
+      "package_path": "references/genre-playbook-request.md",
+      "frozen_file_sha256": "458a3353b9254256cf6302cae738a5372964328cb3bbf9cf78bab97550b62b88",
+      "read_success_observed": true
+    },
+    {
+      "sequence": 5,
+      "id": "call_afe4f6f4322445638541621d",
+      "name": "Read",
+      "result": {
+        "observed": true,
+        "is_error_field": null,
+        "content_bytes": 5090,
+        "content_sha256": "d91cf242a46146d3271009fb2fabacbedb134faa3a58536283c36b69d947734d",
+        "skill_launch_acknowledgement": null
+      },
+      "scope": "package",
+      "package_path": "references/argument-chains.md",
+      "frozen_file_sha256": "dbe855c11eba2c35726aa383101a7c3a7d13c93226a6c98e2f7bc221d29209bf",
+      "read_success_observed": true
+    },
+    {
+      "sequence": 6,
+      "id": "call_c1402e469dfc42da968cc50e",
+      "name": "Read",
+      "result": {
+        "observed": true,
+        "is_error_field": null,
+        "content_bytes": 9450,
+        "content_sha256": "f0fb6965987cf35c05536dfda4f5bc1a9bddf74938da0da4f4b57b7350757ca6",
+        "skill_launch_acknowledgement": null
+      },
+      "scope": "package",
+      "package_path": "references/final-review-layers.md",
+      "frozen_file_sha256": "0204ee133951e5ca0839312e8c60524d2edc529161e9b2846a314e1e7232e546",
+      "read_success_observed": true
+    },
+    {
+      "sequence": 7,
+      "id": "call_e173b0aab3274722b8aea9a6",
+      "name": "Write",
+      "result": {
+        "observed": true,
+        "is_error_field": null,
+        "content_bytes": 307,
+        "content_sha256": "513df97eb97b7299b179531ed74e0c2fa7257cdc716de501fa387e75e2b3c3eb",
+        "skill_launch_acknowledgement": null
+      },
+      "scope": "work",
+      "work_relative_path": "draft-lixiang-shenqing.md",
+      "archive_path": "runs/budget-authorized/qwen/baseline/document-1.txt",
+      "content_sha256": "3647564b773b995b8867c039a7c91008feeda681e9704cbde002be7a7285d8d9"
+    },
+    {
+      "sequence": 8,
+      "id": "call_3bbd8e14abbb446498d004c7",
+      "name": "Bash",
+      "result": {
+        "observed": true,
+        "is_error_field": false,
+        "content_bytes": 23,
+        "content_sha256": "d89072ad4ee8e59e3e3a12f0668c049e2877be37a72a0918c7956b9d90e5c63d",
+        "skill_launch_acknowledgement": null
+      },
+      "command_sha256": "e9fba156217fa4e7910ca9b0fdcd8f4d4eb66120dfa88457e9c716aa1c7e2d76",
+      "arguments_omitted": true
+    }
+  ],
+  "documents": [
+    {
+      "work_relative_path": "draft-lixiang-shenqing.md",
+      "archive_path": "runs/budget-authorized/qwen/baseline/document-1.txt",
+      "sha256": "3647564b773b995b8867c039a7c91008feeda681e9704cbde002be7a7285d8d9",
+      "bytes": 981,
+      "file_state": "last_on_disk_artifact",
+      "artifact_role": "written_text",
+      "delivery_state": "completed_run_artifact_quality_unreviewed",
+      "read_sequences": [],
+      "write_sequences": [
+        7
+      ],
+      "edit_sequences": []
+    }
+  ],
+  "helper_sha256": "452d3f5ac8df257fbd220d7585ce0aef3dd0475a76a51181de77e0f729f0a6ab",
+  "prompt_path": "prompts/budget-authorized.txt",
+  "omissions": [
+    "raw stream",
+    "runtime",
+    "provider state",
+    "original argv",
+    "absolute paths",
+    "shell arguments and stdout"
+  ],
+  "runner_technical_valid": true,
+  "scope_audit": {
+    "pass": true,
+    "source_receipt_sha256": "0ca774959500127f4172efb8d0c1645cfdebe0505c260f888626a526290db3f3",
+    "tool_calls": 8,
+    "violations": [],
+    "observations": [
+      {
+        "sequence": 2,
+        "command_sha256": "6cf64e6eaa4691b913fe4432b1b3354dd92f4ba36affc253b8a48adcf8952a52",
+        "review": "Root read command: list supplied package, or cd to supplied package and run its prose_lint on this lane draft."
+      },
+      {
+        "sequence": 8,
+        "command_sha256": "e9fba156217fa4e7910ca9b0fdcd8f4d4eb66120dfa88457e9c716aa1c7e2d76",
+        "review": "Root read command: list supplied package, or cd to supplied package and run its prose_lint on this lane draft."
+      }
+    ]
+  }
+}

@@ -843,7 +843,12 @@ class SkillBoundaryTests(unittest.TestCase):
         ).read_text(encoding="utf-8")
 
         self.assertIn("references/genre-checklist-request.md", skill)
-        self.assertIn("只审或细查请示、申请", skill)
+        review_route = next(
+            line for line in skill.splitlines()
+            if line.startswith("| `references/genre-checklist-request.md`")
+        )
+        self.assertIn("只审", review_route)
+        self.assertIn("细查", review_route)
         self.assertNotIn("## 请示\n", common)
         self.assertNotIn("## 申请\n", common)
         self.assertIn("## 请示\n", review)
