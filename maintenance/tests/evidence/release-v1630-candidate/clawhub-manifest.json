@@ -1,0 +1,192 @@
+[
+  {
+    "path": "LICENSE",
+    "bytes": 1110,
+    "sha256": "ead35e40076582d7053fb0908588adb878ff5108601a76647b9f5626b3a0d5f8"
+  },
+  {
+    "path": "README.md",
+    "bytes": 4399,
+    "sha256": "bf8af51dcb5988ace3eba17528ed020f68d2aa0bd48fabb82f1e421d4d26ec4f"
+  },
+  {
+    "path": "references/ai-compute-docs.md",
+    "bytes": 10568,
+    "sha256": "70181ad09f0b83aa7e19b371be0213fc4efb481c634bbed9b57d68b04cb8c1fd"
+  },
+  {
+    "path": "references/anti-ai-patterns.md",
+    "bytes": 14162,
+    "sha256": "8e6e8bbee1a09de4aac03ffb3a0da59f9d8e2bbd5a530aea2101383f3bbfde65"
+  },
+  {
+    "path": "references/argument-chains.md",
+    "bytes": 4696,
+    "sha256": "9e10174e5c98dc8e6f4ed33c4524a22bff4c936a262a1b46b0d6c83f69217d46"
+  },
+  {
+    "path": "references/external-research.md",
+    "bytes": 2207,
+    "sha256": "a147e664cd018af083ad4568a6f11a6e53dbe32757c036c97d7a23be4de8259f"
+  },
+  {
+    "path": "references/final-review-layers.md",
+    "bytes": 9113,
+    "sha256": "6095531efb7486cd25650021db2baeb815dd0902d9bbacbcb49cd78987cab35a"
+  },
+  {
+    "path": "references/formal-addressing.md",
+    "bytes": 3400,
+    "sha256": "c1cb4c7b53180da510fdf98bb5186c5fd1c72a523a24d484e8a7efcd8256db0a"
+  },
+  {
+    "path": "references/format-gbt9704.md",
+    "bytes": 8949,
+    "sha256": "6cfc9c6dc2543872c9a96cf83472df3dabc1a876061b168dff45af95dfffc4cd"
+  },
+  {
+    "path": "references/formulaic-language.md",
+    "bytes": 7819,
+    "sha256": "278e36f7d1774551b28efb0d108107e01b82054380d79c260c3e9969ba2a3d40"
+  },
+  {
+    "path": "references/genre-checklist-feasibility-review.md",
+    "bytes": 1890,
+    "sha256": "825ec7fe532c88b3ebbf3a70777c3875c85ce4932a2595d377502516f394888c"
+  },
+  {
+    "path": "references/genre-checklist-report.md",
+    "bytes": 2879,
+    "sha256": "2fbf96e6aaf49b58ae8e7ff0a6711b7c8073f1a18297012ae627070217a9ccf5"
+  },
+  {
+    "path": "references/genre-checklist-request.md",
+    "bytes": 2221,
+    "sha256": "1fc28e0be14e9b90999c5d7f42a4bf4bb3d28b116c15738a2b09ac4623d0ecb5"
+  },
+  {
+    "path": "references/genre-checklist.md",
+    "bytes": 7423,
+    "sha256": "790fb7c66b17b5a2e0575d6f6f79ffc46e454812db99ab1ed7573e950f102311"
+  },
+  {
+    "path": "references/genre-playbook-advisory-feedback.md",
+    "bytes": 5489,
+    "sha256": "376d919865e748e3a9d55368f7224042e37572338bb50743d7e1c2a21e4a2ca9"
+  },
+  {
+    "path": "references/genre-playbook-complaint-reflection.md",
+    "bytes": 4550,
+    "sha256": "242b414499946a55f888142b18f90c7318209be8b461ab58ee4ba6897d980d36"
+  },
+  {
+    "path": "references/genre-playbook-correspondence.md",
+    "bytes": 1544,
+    "sha256": "e7a8f855ddc6d9550d91a7b1cd98efb9df05168eb3d183bb9dc85b771c5aaf9e"
+  },
+  {
+    "path": "references/genre-playbook-institution-rules.md",
+    "bytes": 3839,
+    "sha256": "ed3b45dae82bc3a7177448dbb572e056c6595d0bb781c88cedda374f46a46efd"
+  },
+  {
+    "path": "references/genre-playbook-minutes.md",
+    "bytes": 2044,
+    "sha256": "dbc789d50e5acb2b615932e67fa92160935fecb153cd1cdb68d750820a04bd6a"
+  },
+  {
+    "path": "references/genre-playbook-news-commentary.md",
+    "bytes": 1063,
+    "sha256": "a8f8a559b44d912fcd147037ba60d4da1b89b0c2294ec7d298d4f7bf675ad966"
+  },
+  {
+    "path": "references/genre-playbook-news-message.md",
+    "bytes": 4397,
+    "sha256": "f16c3ef5ddbddac41a5a6c73ea68597e8118d8f43eb18eddf891849e65de040c"
+  },
+  {
+    "path": "references/genre-playbook-plan-construction.md",
+    "bytes": 1034,
+    "sha256": "703cba0f6a6f6175e7579fd2eeb2caef74711884097fdb8e7ceba91a8a780cf1"
+  },
+  {
+    "path": "references/genre-playbook-remediation-plan.md",
+    "bytes": 2878,
+    "sha256": "a520411418893e901462f99edf6d04497ae79ae27f34fa671ca6a609cc97090b"
+  },
+  {
+    "path": "references/genre-playbook-request.md",
+    "bytes": 3556,
+    "sha256": "0fbfd4a4eee878561e0a332701e118c44cfd1496b5cdf39485615e37e934bd6a"
+  },
+  {
+    "path": "references/genre-playbook-work-summary.md",
+    "bytes": 1816,
+    "sha256": "f8f3ef33f6588d096a95a10cbfd14e39b7f5ac0c345c7f4ddb7d82279437a117"
+  },
+  {
+    "path": "references/genre-playbooks.md",
+    "bytes": 5691,
+    "sha256": "fc59712e3af40a71c32f6f6611c4299976ada0aae0a377d7985e7aa293d65576"
+  },
+  {
+    "path": "references/genre-routing.md",
+    "bytes": 8723,
+    "sha256": "069e1771bcd01d4acb0a0506e0a9cd76d4299addb45b4b89e7b9b83b9d715308"
+  },
+  {
+    "path": "references/handling-elements.md",
+    "bytes": 8129,
+    "sha256": "c59ec7ee7fa2d8e953fa572cd7df7821278c89318a02113941e3423c44bbf70b"
+  },
+  {
+    "path": "references/information-selection.md",
+    "bytes": 4001,
+    "sha256": "4e60cd69209013018d511d7c1a79eec3b4ab94124d75c421126f8cb88546f3f7"
+  },
+  {
+    "path": "references/official-style.md",
+    "bytes": 6159,
+    "sha256": "8d3929523fc3943ab44e3f13a4c96cc49185bb440e118d5457f0168f566539eb"
+  },
+  {
+    "path": "references/proofreading-checklist.md",
+    "bytes": 3831,
+    "sha256": "595995ac1d2ffddb7ed85f554167b54e7ca3ad2ce78fbc19fc79f1fa6c11592f"
+  },
+  {
+    "path": "references/review-checklist.md",
+    "bytes": 16510,
+    "sha256": "14cd08e194a348c194c98e56ad509fc6ed7748cec714e0602396a6768404903d"
+  },
+  {
+    "path": "references/review-direct-checklist.md",
+    "bytes": 2864,
+    "sha256": "4d83392468e20f2c8503e2a76322857c55f272deccf310f1b91498c3a65e497e"
+  },
+  {
+    "path": "references/short-draft-naturalness.md",
+    "bytes": 1343,
+    "sha256": "e83a60ecbabe6f6f5ad53be2626de667be89702f19cadf8ddc5d61049367326a"
+  },
+  {
+    "path": "references/task-route-cards.md",
+    "bytes": 3796,
+    "sha256": "13e2c51d17729cfa3f7786bc545414e9b2bd2535a48ff15c11d90ff493a1ac22"
+  },
+  {
+    "path": "references/workflow.md",
+    "bytes": 15443,
+    "sha256": "320019c6e555ce118a9b9ff9c1c1110b5840d81c90a1582aa4949ef6f19cdcd4"
+  },
+  {
+    "path": "scripts/prose_lint.py",
+    "bytes": 59684,
+    "sha256": "013c9d00878c7e23efed7a26e38b0ab6e98806c844c482511c1169e0d07a27dd"
+  },
+  {
+    "path": "SKILL.md",
+    "bytes": 27802,
+    "sha256": "d1657935f407003b5757e45287362559611c0571cf784a70b3629ac91ace8373"
+  }
+]

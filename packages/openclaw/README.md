@@ -19,3 +19,5 @@ python .\maintenance\tools\sync_adapters.py
 ```
 
 本目录的更新只表示 GitHub 兼容包已同步，不代表 ClawHub 或其他外部市场已经发布同一版本。
+
+本分支的1.6.30为冻结候选，尚未发布。
