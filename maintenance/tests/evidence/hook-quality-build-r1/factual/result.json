@@ -1,0 +1,356 @@
+{
+  "schema_version": 1,
+  "experiment": "fixed-real-D0-source-factual-review",
+  "base_commit": "b77f6381438c8fa01f8576c205d13af4b8a987fd",
+  "branch": "codex/hook-quality-build-r1",
+  "product_files_modified_by_this_atom": [],
+  "model_calls": 6,
+  "model": "alibaba-token-plan-2/deepseek-v4-flash-0731",
+  "technical_valid_calls": 5,
+  "technical_failed_calls": 1,
+  "technical_failure_boundary": "P6 initial baseline TimeoutExpired after 180.047 seconds, no assistant or result; preserve raw, no retry or fallback, not a quality failure.",
+  "input_binding": {
+    "source_round": 1,
+    "cases": [
+      {
+        "id": "P6",
+        "source_packet": "maintenance\\tests\\evidence\\natural-writing-stability-r1\\raw\\r2\\report-fourth-packet.json",
+        "source_packet_sha256": "3127a9501441b66a585be4f3ddcb811a61ea3de1f5f6357dd8baa813be4c4124",
+        "request_sha256": "7c1b82c6045ac89e453171170783de0b6dfe1040da243ea99fc934c896ef10fc",
+        "d0_sha256": "7e31ca1799731a87d4f38f5f31aac13a1c322eda97e4db9a3cae49c771dc1351"
+      },
+      {
+        "id": "M5",
+        "source_packet": "maintenance\\tests\\evidence\\natural-writing-stability-r1\\raw\\r2\\minutes-second-packet.json",
+        "source_packet_sha256": "b2c2089a68641d766f9fc973c540ac0046692f0c07eff422206befa13ae29104",
+        "request_sha256": "74dbf88116c69b2906bf0971375577c373de76743156c43c1965f01d66993736",
+        "d0_sha256": "dc71a81d5fce59d799c9c42814ed93ae64e6c8c7fe76bf4adea9745c47094868"
+      }
+    ],
+    "initial_fixture_sha256": "509844e7f1b0da6d4e2890d48ca7b45aa3fdd3bde5c4fd169898a93c9dc1ce36",
+    "candidate_r2_fixture_sha256": "6228a6a41cf137fbbbcdc48cc2c1bdc37fddecfa1edc3cb33c6075a1e5e3ec2d"
+  },
+  "method": "现成无工具Claude CLI，固定single_pass system/user文本；独立真实会话修同一份完整D0；真实JSON提案通过冻结的原parse_selection选稿。未执行原生Hook或持续会话改稿。",
+  "records": [
+    {
+      "stage": "initial",
+      "case": "M5",
+      "arm": "baseline",
+      "directory": "calls/M5/baseline",
+      "session_id": "6f4c1266-a4b8-43f5-94af-8c2d1babe84a",
+      "model": "alibaba-token-plan-2/deepseek-v4-flash-0731",
+      "technical_valid": true,
+      "failure": null,
+      "seconds": 168.625,
+      "init_inventory_empty": true,
+      "actual_tool_calls": 0,
+      "model_binding_init_assistant_usage": true,
+      "usage_reports": [
+        {
+          "usage": {
+            "input_tokens": 1551,
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 0,
+            "output_tokens": 15719,
+            "server_tool_use": {
+              "web_search_requests": 0,
+              "web_fetch_requests": 0
+            },
+            "service_tier": "standard",
+            "cache_creation": {
+              "ephemeral_1h_input_tokens": 0,
+              "ephemeral_5m_input_tokens": 0
+            },
+            "inference_geo": "",
+            "iterations": [],
+            "speed": "standard"
+          },
+          "modelUsage": {
+            "alibaba-token-plan-2/deepseek-v4-flash-0731": {
+              "inputTokens": 2648,
+              "outputTokens": 15793,
+              "cacheReadInputTokens": 0,
+              "cacheCreationInputTokens": 0,
+              "webSearchRequests": 0,
+              "costUSD": 0.408065,
+              "contextWindow": 200000,
+              "maxOutputTokens": 32000
+            }
+          },
+          "total_cost_usd": 0.408065,
+          "duration_ms": 167663
+        }
+      ],
+      "receipt_sha256": "2ba37c465a142f032fa090d0bef9705ab5358af12f19cfcccd0ca00beb3c3c3a",
+      "stream_sha256": "592ff48d080aeb50721f9d34e483b50a0070f4d37d064380ef34988fc5c187b2",
+      "reply_sha256": "51b08b4b811a0a6b68003d41419ab15235f97e3ee5eff1953403e82f6ac8d13b"
+    },
+    {
+      "stage": "initial",
+      "case": "M5",
+      "arm": "candidate",
+      "directory": "calls/M5/candidate",
+      "session_id": "ee4a3da9-596d-49b7-956c-1b9b8b5a2e77",
+      "model": "alibaba-token-plan-2/deepseek-v4-flash-0731",
+      "technical_valid": true,
+      "failure": null,
+      "seconds": 153.078,
+      "init_inventory_empty": true,
+      "actual_tool_calls": 0,
+      "model_binding_init_assistant_usage": true,
+      "usage_reports": [
+        {
+          "usage": {
+            "input_tokens": 1693,
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 0,
+            "output_tokens": 17518,
+            "server_tool_use": {
+              "web_search_requests": 0,
+              "web_fetch_requests": 0
+            },
+            "service_tier": "standard",
+            "cache_creation": {
+              "ephemeral_1h_input_tokens": 0,
+              "ephemeral_5m_input_tokens": 0
+            },
+            "inference_geo": "",
+            "iterations": [],
+            "speed": "standard"
+          },
+          "modelUsage": {
+            "alibaba-token-plan-2/deepseek-v4-flash-0731": {
+              "inputTokens": 1766,
+              "outputTokens": 17812,
+              "cacheReadInputTokens": 1024,
+              "cacheCreationInputTokens": 0,
+              "webSearchRequests": 0,
+              "costUSD": 0.45464199999999994,
+              "contextWindow": 200000,
+              "maxOutputTokens": 32000
+            }
+          },
+          "total_cost_usd": 0.45464199999999994,
+          "duration_ms": 152024
+        }
+      ],
+      "receipt_sha256": "b804aa88fc635bec13f3de3bc5807b0044720e9b32232bf2fce2375e652c4df6",
+      "stream_sha256": "4102f31a370f67748a02740d4e60d57ca297483e59b3bfe2385395c6bde6df13",
+      "reply_sha256": "637ac4c683029da065f8cfd002443f232a4837cb1c09e80a110ee934cc0efbfb"
+    },
+    {
+      "stage": "initial",
+      "case": "P6",
+      "arm": "baseline",
+      "directory": "calls/P6/baseline",
+      "session_id": "acada49e-fe10-4ae5-b48f-65284ebd07d4",
+      "model": "alibaba-token-plan-2/deepseek-v4-flash-0731",
+      "technical_valid": false,
+      "failure": "TimeoutExpired",
+      "seconds": 180.047,
+      "init_inventory_empty": true,
+      "actual_tool_calls": 0,
+      "model_binding_init_assistant_usage": false,
+      "usage_reports": [],
+      "receipt_sha256": "1345929ba71f2939a793d5947a3f6b2e0d0f7b72a39a6ab6b5052289ea210da0",
+      "stream_sha256": "b7302615a21d466550dad398299058e80a093211b9126393908496fe63637149",
+      "reply_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "stage": "initial",
+      "case": "P6",
+      "arm": "candidate",
+      "directory": "calls/P6/candidate",
+      "session_id": "36d9df75-c498-41bc-b7dc-32437df4e32d",
+      "model": "alibaba-token-plan-2/deepseek-v4-flash-0731",
+      "technical_valid": true,
+      "failure": null,
+      "seconds": 94.344,
+      "init_inventory_empty": true,
+      "actual_tool_calls": 0,
+      "model_binding_init_assistant_usage": true,
+      "usage_reports": [
+        {
+          "usage": {
+            "input_tokens": 2022,
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 0,
+            "output_tokens": 9063,
+            "server_tool_use": {
+              "web_search_requests": 0,
+              "web_fetch_requests": 0
+            },
+            "service_tier": "standard",
+            "cache_creation": {
+              "ephemeral_1h_input_tokens": 0,
+              "ephemeral_5m_input_tokens": 0
+            },
+            "inference_geo": "",
+            "iterations": [],
+            "speed": "standard"
+          },
+          "modelUsage": {
+            "alibaba-token-plan-2/deepseek-v4-flash-0731": {
+              "inputTokens": 2424,
+              "outputTokens": 9443,
+              "cacheReadInputTokens": 1024,
+              "cacheCreationInputTokens": 0,
+              "webSearchRequests": 0,
+              "costUSD": 0.248707,
+              "contextWindow": 200000,
+              "maxOutputTokens": 32000
+            }
+          },
+          "total_cost_usd": 0.248707,
+          "duration_ms": 93379
+        }
+      ],
+      "receipt_sha256": "536c9069e854897ee4383de7112cb5766374b2b7aad1962e313329a1873cdf52",
+      "stream_sha256": "49cd9862635d2b25a62bb6d0507b98252d3680112290fa2ffe25638acfb1e993",
+      "reply_sha256": "a9e58cc4794f5d2bfed88ee2840e2e7aa67b393605b163e06d52708cf2b9bae3"
+    },
+    {
+      "stage": "candidate-r2",
+      "case": "M5",
+      "arm": "candidate",
+      "directory": "candidate-r2/calls/M5/candidate",
+      "session_id": "976e3f1e-51ce-4670-9117-d373f1ef107c",
+      "model": "alibaba-token-plan-2/deepseek-v4-flash-0731",
+      "technical_valid": true,
+      "failure": null,
+      "seconds": 145.25,
+      "init_inventory_empty": true,
+      "actual_tool_calls": 0,
+      "model_binding_init_assistant_usage": true,
+      "usage_reports": [
+        {
+          "usage": {
+            "input_tokens": 1696,
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 0,
+            "output_tokens": 14929,
+            "server_tool_use": {
+              "web_search_requests": 0,
+              "web_fetch_requests": 0
+            },
+            "service_tier": "standard",
+            "cache_creation": {
+              "ephemeral_1h_input_tokens": 0,
+              "ephemeral_5m_input_tokens": 0
+            },
+            "inference_geo": "",
+            "iterations": [],
+            "speed": "standard"
+          },
+          "modelUsage": {
+            "alibaba-token-plan-2/deepseek-v4-flash-0731": {
+              "inputTokens": 1769,
+              "outputTokens": 15084,
+              "cacheReadInputTokens": 1024,
+              "cacheCreationInputTokens": 0,
+              "webSearchRequests": 0,
+              "costUSD": 0.38645699999999994,
+              "contextWindow": 200000,
+              "maxOutputTokens": 32000
+            }
+          },
+          "total_cost_usd": 0.38645699999999994,
+          "duration_ms": 144221
+        }
+      ],
+      "receipt_sha256": "40c9789cd47a4aa347a9a37b83ac693c82fee535b7960cd0ae6a26f7d2b70080",
+      "stream_sha256": "cebd3356ec4f0f9df02a41bb880ff6d8b9964606248ee31fd892559317f21cd8",
+      "reply_sha256": "dfddb4edaa29b60b93c1d68b94f6e70db66aeab1cc262eeb5f2158e79dfdb5a7"
+    },
+    {
+      "stage": "candidate-r2",
+      "case": "P6",
+      "arm": "candidate",
+      "directory": "candidate-r2/calls/P6/candidate",
+      "session_id": "41067a95-d3cd-4656-9bcb-916dad9d8bc3",
+      "model": "alibaba-token-plan-2/deepseek-v4-flash-0731",
+      "technical_valid": true,
+      "failure": null,
+      "seconds": 156.656,
+      "init_inventory_empty": true,
+      "actual_tool_calls": 0,
+      "model_binding_init_assistant_usage": true,
+      "usage_reports": [
+        {
+          "usage": {
+            "input_tokens": 2025,
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 0,
+            "output_tokens": 15808,
+            "server_tool_use": {
+              "web_search_requests": 0,
+              "web_fetch_requests": 0
+            },
+            "service_tier": "standard",
+            "cache_creation": {
+              "ephemeral_1h_input_tokens": 0,
+              "ephemeral_5m_input_tokens": 0
+            },
+            "inference_geo": "",
+            "iterations": [],
+            "speed": "standard"
+          },
+          "modelUsage": {
+            "alibaba-token-plan-2/deepseek-v4-flash-0731": {
+              "inputTokens": 2427,
+              "outputTokens": 16057,
+              "cacheReadInputTokens": 1024,
+              "cacheCreationInputTokens": 0,
+              "webSearchRequests": 0,
+              "costUSD": 0.414072,
+              "contextWindow": 200000,
+              "maxOutputTokens": 32000
+            }
+          },
+          "total_cost_usd": 0.414072,
+          "duration_ms": 155588
+        }
+      ],
+      "receipt_sha256": "20273ccca21553eaf90fb406bcc58f3e1ade7d09d35645d76b5b6031fb1ee4ac",
+      "stream_sha256": "2362d34654db7163d6a4d77af38b24cbd33c27d8221dba6d40fcc81726c1a1aa",
+      "reply_sha256": "12aa82c8386e763a1dac512c67736d7a223f90743df750c90f3b0223c951e311"
+    }
+  ],
+  "quality_reports": {
+    "initial": "initial-review.json",
+    "initial_sha256": "371b3b7ccc3609a87887d3cbccfd7b0c9f7451c9aa5675b93d4b0d59555e5d54",
+    "candidate_r2": "candidate-r2/review.json",
+    "candidate_r2_sha256": "dff8bc8460f0425ef1e892fb73db7bc938de23746b6fef53a8b7fa4bcabf5b01"
+  },
+  "confirmed_result": {
+    "M5_valid_same_D0_comparison": "初始baseline保留两处信息部归属与整体系统阶段；R2候选纠正三处具体断言（两组风险），并保留给定角色/期限/数字/建议状态及同事项进行态。",
+    "P6_boundary": "R1和R2两份候选均纠正材料外审核程序/主办方，但baseline超时；只可说相对真实D0有修正，不能证明对当前提示的P6净收益。",
+    "known_remaining_fact_issue": "P6仍把未覆盖业务主管部门和决策层级作为已知参会范围。",
+    "explicit_source_preservation": "R2两份未确认候选独有的材料明确事实、角色、日期数字或状态硬回退。",
+    "reasonable_expression_control": "并非全部通过：M5仍删除可接受的待成本测算后另行研究，baseline也删除；两句非目标重复引导语另列。",
+    "delivery": "5份技术有效提案全部因未改锚合同返回D0，交付修正数为0；不得把原始提案修正计为当前Hook最终修正。"
+  },
+  "minimal_integration_advice": [
+    {
+      "status": "有局部真实依据，需主代理裁量",
+      "location": "candidate-r2-system.txt 的补充原稿事实来源核对段",
+      "proposal": "复用现有single_pass的一次语义审稿，让原始材料核对D0已存在的具体主体/程序/整体状态，不只比较D1新增；无需新增审稿模型或手写verdict。"
+    },
+    {
+      "status": "独立配套原子前置，未在本原子改动",
+      "proposal": "外围自评计数字及形式化引语使正确提案回退；在统一最小接入时复验既有清理/锚合同方案。不能通过忽略所有硬锚强放此提案；P6尚有继承错误。"
+    },
+    {
+      "status": "不能声称完成",
+      "proposal": "保留合理承接误删和P6参会范围遗留；本结果不证明全稿事实安全、原生Hook效果、所有宿主或多版稳定性。"
+    }
+  ],
+  "actual_commands": [
+    "python -B -X utf8 output/hook-quality-build-r1/factual/run_factual.py --prepare",
+    "python -B -X utf8 output/hook-quality-build-r1/factual/run_factual.py --case {P6|M5} --arm {baseline|candidate} （四次独立调用）",
+    "python -B -X utf8 output/hook-quality-build-r1/factual/run_candidate_r2.py --prepare",
+    "python -B -X utf8 output/hook-quality-build-r1/factual/run_candidate_r2.py --case {P6|M5} （两次独立调用）"
+  ],
+  "verification": "已核对两输入包/嵌入D0 hash、两冻结fixture、6独立session、各init零工具/Skill/插件/MCP、5有效调用init/assistant/usage模型、5次原合同精确选回D0与原始全文hash；JSON可解析。未运行产品全量测试、不安装Hook、不修改/提交产品。",
+  "no_general_reliability_claim": true
+}

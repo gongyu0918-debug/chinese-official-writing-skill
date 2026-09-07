@@ -1,0 +1,31 @@
+{
+  "argv": [
+    "C:\\Users\\admin\\.local\\bin\\claude.EXE",
+    "--setting-sources",
+    "",
+    "--tools",
+    "Read,Skill",
+    "--strict-mcp-config",
+    "--mcp-config",
+    "{\"mcpServers\":{}}",
+    "--permission-mode",
+    "dontAsk",
+    "--include-hook-events",
+    "--print",
+    "--verbose",
+    "--output-format",
+    "stream-json",
+    "--model",
+    "minimax-cn/MiniMax-M3",
+    "--effort",
+    "max",
+    "--plugin-dir",
+    "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\hook-quality-build-r1\\output\\hook-quality-build-r1\\continuity\\companion-minutes",
+    "--add-dir",
+    "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\hook-quality-build-r1\\output\\hook-quality-build-r1\\continuity\\companion-minutes",
+    "--resume",
+    "19a8f3ac-6aa8-4767-8779-9674f118aac1"
+  ],
+  "prompt": "操作演示和这次会议要形成的纪要关系不大，把8月26日演示那一项删掉。其余意见、责任分工和期限都保留，输出修改后的完整纪要。",
+  "session": "19a8f3ac-6aa8-4767-8779-9674f118aac1"
+}

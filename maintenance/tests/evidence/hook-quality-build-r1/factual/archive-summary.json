@@ -1,0 +1,544 @@
+{
+  "schema_version": 1,
+  "status": "HOLD",
+  "base_commit": "b77f6381438c8fa01f8576c205d13af4b8a987fd",
+  "branch": "codex/hook-quality-build-r1",
+  "model": "alibaba-token-plan-2/deepseek-v4-flash-0731",
+  "scope": "具体主体/已实施程序的同一真实D0事实来源修正；七次独立CLI模型会话，未安装或运行原生Hook，不构成完整事实核验。",
+  "stages": [
+    {
+      "stage": "R1",
+      "calls": 4,
+      "technically_valid": 3,
+      "record": "initial-review.json",
+      "result": "M5候选修掉具体归属但误删合理进行态，整体系统阶段仍在；P6候选修掉程序/主办方；P6 baseline超时。"
+    },
+    {
+      "stage": "R2",
+      "calls": 2,
+      "technically_valid": 2,
+      "record": "candidate-r2/review.json",
+      "result": "M5纠正具体归属和整体阶段，保留进行态；P6重复观察到目标修正。合理承接保留未全通过，P6参会范围错误仍在。"
+    },
+    {
+      "stage": "R3",
+      "calls": 1,
+      "technically_valid": 1,
+      "record": "candidate-r3/review.json",
+      "result": "按明确实验约束保留全部包装和其他文字，真实M5只删除两处无据信息部；机械锚通过，但四项数字上下文关系包使原合同回退。"
+    }
+  ],
+  "attempted_real_calls": 7,
+  "technically_valid_calls": 6,
+  "technical_failures": 1,
+  "technical_failure": "R1 P6 baseline：180.047秒TimeoutExpired，无assistant/result，不作质量判定、不重试。",
+  "raw_target_correction_local_gain": "M5具有效同D0提示对照，R2消除两处具体归属和无据系统阶段；P6基线无效，只能说候选对真实D0产生局部修正。",
+  "actual_final_delivery_target_corrections": 0,
+  "actual_unchanged_contract_keep_d0_count": 6,
+  "hold_reason": "当前single_pass按设计没有独立关系verifier；不能把材料支持的主体纠正与任意主体篡改等同，但也不能直接放宽硬锚。原合同没有选中任何修正D1，停止本原子工程。",
+  "remaining": [
+    "P6无据参会范围继承；未声称完整事实核验。",
+    "M5可接受条件性承接在R2仍有保守删除，泛化引导语有非目标变化。",
+    "R3包装与无据系统阶段为实验明确保留；不把它当可用成稿。",
+    "未证明自然触发、原生生命周期、跨版事实源绑定、其他宿主或通用可靠率。"
+  ],
+  "no_hand_written_d1_or_pass": true,
+  "no_independent_source_verifier_called": true,
+  "product_code_changes": [],
+  "archive_policy": {
+    "runtime_home_config_excluded": true,
+    "full_streams": "留在output原路径，归档仅实际init/result与assistant模型/正文摘录和全流hash；摘录非完整事件流。",
+    "original_r1_r2_reports_unchanged": true,
+    "historical_result_json_scope": "result.json为R1+R2的6次；本archive-summary.json纳入R3后的累计7次。",
+    "runner_scope": "复制原始output驱动供追溯。相对HERE布局绑定原output路径，不声称直接从本归档目录执行可复跑；本轮不再发模型。"
+  },
+  "source_report_hashes": {
+    "r1_r2_result": "8238cb274ff50971b4e8b62f4d020f93643451a0430d109b1643463d06062ef6",
+    "r1_review": "371b3b7ccc3609a87887d3cbccfd7b0c9f7451c9aa5675b93d4b0d59555e5d54",
+    "r2_review": "dff8bc8460f0425ef1e892fb73db7bc938de23746b6fef53a8b7fa4bcabf5b01",
+    "r3_review": "7389d5aa6112beb6c150142682146a74444a48592e46f0d4be512af4aa4d87cc"
+  },
+  "copied_sources": [
+    {
+      "source": "output/hook-quality-build-r1/factual/artifact-manifest.json",
+      "archived": "source-artifact-manifest.json",
+      "sha256": "1a49593447fb07d974533bf3050e72da275873468bd097dfc3c74405ab3c1488"
+    },
+    {
+      "source": "output/hook-quality-build-r1/factual/baseline-system.txt",
+      "archived": "baseline-system.txt",
+      "sha256": "1e01b1f40a261c435ea91330a32a60e0c06ae93ef8030bf7d30b8a0c056457f0"
+    },
+    {
+      "source": "output/hook-quality-build-r1/factual/calls/M5/baseline/contract-selected.txt",
+      "archived": "calls/M5/baseline/contract-selected.txt",
+      "sha256": "dc71a81d5fce59d799c9c42814ed93ae64e6c8c7fe76bf4adea9745c47094868"
+    },
+    {
+      "source": "output/hook-quality-build-r1/factual/calls/M5/baseline/invocation.json",
+      "archived": "calls/M5/baseline/invocation.json",
+      "sha256": "85844e09dac554dc887df523966822014d94653339b08bba105479f5cfcdcfed"
+    },
+    {
+      "source": "output/hook-quality-build-r1/factual/calls/M5/baseline/model-proposal.txt",
+      "archived": "calls/M5/baseline/model-proposal.txt",
+      "sha256": "8147e838dc3c5666f3e11cdcbcff0f3fb215bf9aeef76f2658b98ee6df12727e"
+    },
+    {
+      "source": "output/hook-quality-build-r1/factual/calls/M5/baseline/prompt.txt",
+      "archived": "calls/M5/baseline/prompt.txt",
+      "sha256": "a484b0ba96f8395b5d5774fba619379cc02637ba3155534bdd42c62600a4407b"
+    },
+    {
+      "source": "output/hook-quality-build-r1/factual/calls/M5/baseline/receipt.json",
+      "archived": "calls/M5/baseline/receipt.json",
+      "sha256": "2ba37c465a142f032fa090d0bef9705ab5358af12f19cfcccd0ca00beb3c3c3a"
+    },
+    {
+      "source": "output/hook-quality-build-r1/factual/calls/M5/baseline/reply.txt",
+      "archived": "calls/M5/baseline/reply.txt",
+      "sha256": "51b08b4b811a0a6b68003d41419ab15235f97e3ee5eff1953403e82f6ac8d13b"
+    },
+    {
+      "source": "output/hook-quality-build-r1/factual/calls/M5/baseline/result.json",
+      "archived": "calls/M5/baseline/result.json",
+      "sha256": "5a6140e3df4a4c41f8eca4c0ace2ce9be47427d5616995c3eac00beec61131d9"
+    },
+    {
+      "source": "output/hook-quality-build-r1/factual/calls/M5/baseline/stderr.txt",
+      "archived": "calls/M5/baseline/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "output/hook-quality-build-r1/factual/calls/M5/candidate/contract-selected.txt",
+      "archived": "calls/M5/candidate/contract-selected.txt",
+      "sha256": "dc71a81d5fce59d799c9c42814ed93ae64e6c8c7fe76bf4adea9745c47094868"
+    },
+    {
+      "source": "output/hook-quality-build-r1/factual/calls/M5/candidate/invocation.json",
+      "archived": "calls/M5/candidate/invocation.json",
+      "sha256": "ad07657816c65812d95e16a4ea1cd01d7a42d705edbd0095d6030c3ce3fe5e26"
+    },
+    {
+      "source": "output/hook-quality-build-r1/factual/calls/M5/candidate/model-proposal.txt",
+      "archived": "calls/M5/candidate/model-proposal.txt",
+      "sha256": "5c6e78cf88b23664f4e76d679c45a90b209004fcaed43b086b685b4bab434c78"
+    },
+    {
+      "source": "output/hook-quality-build-r1/factual/calls/M5/candidate/prompt.txt",
+      "archived": "calls/M5/candidate/prompt.txt",
+      "sha256": "a484b0ba96f8395b5d5774fba619379cc02637ba3155534bdd42c62600a4407b"
+    },
+    {
+      "source": "output/hook-quality-build-r1/factual/calls/M5/candidate/receipt.json",
+      "archived": "calls/M5/candidate/receipt.json",
+      "sha256": "b804aa88fc635bec13f3de3bc5807b0044720e9b32232bf2fce2375e652c4df6"
+    },
+    {
+      "source": "output/hook-quality-build-r1/factual/calls/M5/candidate/reply.txt",
+      "archived": "calls/M5/candidate/reply.txt",
+      "sha256": "637ac4c683029da065f8cfd002443f232a4837cb1c09e80a110ee934cc0efbfb"
+    },
+    {
+      "source": "output/hook-quality-build-r1/factual/calls/M5/candidate/result.json",
+      "archived": "calls/M5/candidate/result.json",
+      "sha256": "674d7a08720fce91cdb714f0d3715c38ef655067dc278e532d793fdfc6862464"
+    },
+    {
+      "source": "output/hook-quality-build-r1/factual/calls/M5/candidate/stderr.txt",
+      "archived": "calls/M5/candidate/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "output/hook-quality-build-r1/factual/calls/P6/baseline/invocation.json",
+      "archived": "calls/P6/baseline/invocation.json",
+      "sha256": "71d2760c4ac2e894ea456a6eca9628d1e3ada0220b4e88581e4c9d1f19e2b05a"
+    },
+    {
+      "source": "output/hook-quality-build-r1/factual/calls/P6/baseline/prompt.txt",
+      "archived": "calls/P6/baseline/prompt.txt",
+      "sha256": "f4ccd17f70e21dbc0726447e4f09cd3776e7ba1bdbc538649d32b7e97caeab42"
+    },
+    {
+      "source": "output/hook-quality-build-r1/factual/calls/P6/baseline/receipt.json",
+      "archived": "calls/P6/baseline/receipt.json",
+      "sha256": "1345929ba71f2939a793d5947a3f6b2e0d0f7b72a39a6ab6b5052289ea210da0"
+    },
+    {
+      "source": "output/hook-quality-build-r1/factual/calls/P6/baseline/reply.txt",
+      "archived": "calls/P6/baseline/reply.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "output/hook-quality-build-r1/factual/calls/P6/baseline/stderr.txt",
+      "archived": "calls/P6/baseline/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "output/hook-quality-build-r1/factual/calls/P6/candidate/contract-selected.txt",
+      "archived": "calls/P6/candidate/contract-selected.txt",
+      "sha256": "7e31ca1799731a87d4f38f5f31aac13a1c322eda97e4db9a3cae49c771dc1351"
+    },
+    {
+      "source": "output/hook-quality-build-r1/factual/calls/P6/candidate/invocation.json",
+      "archived": "calls/P6/candidate/invocation.json",
+      "sha256": "a022a16d5cc4488c8f6cce52f961e5d9f736001791e31bdcb88924b8990980cc"
+    },
+    {
+      "source": "output/hook-quality-build-r1/factual/calls/P6/candidate/model-proposal.txt",
+      "archived": "calls/P6/candidate/model-proposal.txt",
+      "sha256": "0c5cec02feffb40992e276718e140d681efee379070eb81df4e74b9c59ba7fa4"
+    },
+    {
+      "source": "output/hook-quality-build-r1/factual/calls/P6/candidate/prompt.txt",
+      "archived": "calls/P6/candidate/prompt.txt",
+      "sha256": "f4ccd17f70e21dbc0726447e4f09cd3776e7ba1bdbc538649d32b7e97caeab42"
+    },
+    {
+      "source": "output/hook-quality-build-r1/factual/calls/P6/candidate/receipt.json",
+      "archived": "calls/P6/candidate/receipt.json",
+      "sha256": "536c9069e854897ee4383de7112cb5766374b2b7aad1962e313329a1873cdf52"
+    },
+    {
+      "source": "output/hook-quality-build-r1/factual/calls/P6/candidate/reply.txt",
+      "archived": "calls/P6/candidate/reply.txt",
+      "sha256": "a9e58cc4794f5d2bfed88ee2840e2e7aa67b393605b163e06d52708cf2b9bae3"
+    },
+    {
+      "source": "output/hook-quality-build-r1/factual/calls/P6/candidate/result.json",
+      "archived": "calls/P6/candidate/result.json",
+      "sha256": "bff8ddc6b10a9ac9dd8cdff8eb5d52b96ae67660c83f21bc7de0d3008ca9dfa4"
+    },
+    {
+      "source": "output/hook-quality-build-r1/factual/calls/P6/candidate/stderr.txt",
+      "archived": "calls/P6/candidate/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "output/hook-quality-build-r1/factual/candidate-r2/baseline-system.txt",
+      "archived": "candidate-r2/baseline-system.txt",
+      "sha256": "1e01b1f40a261c435ea91330a32a60e0c06ae93ef8030bf7d30b8a0c056457f0"
+    },
+    {
+      "source": "output/hook-quality-build-r1/factual/candidate-r2/calls/M5/candidate/contract-selected.txt",
+      "archived": "candidate-r2/calls/M5/candidate/contract-selected.txt",
+      "sha256": "dc71a81d5fce59d799c9c42814ed93ae64e6c8c7fe76bf4adea9745c47094868"
+    },
+    {
+      "source": "output/hook-quality-build-r1/factual/candidate-r2/calls/M5/candidate/invocation.json",
+      "archived": "candidate-r2/calls/M5/candidate/invocation.json",
+      "sha256": "880dee2c4f0fc5ab359e8c9e148ba9110792aec881e788d5e9f027118a5d6033"
+    },
+    {
+      "source": "output/hook-quality-build-r1/factual/candidate-r2/calls/M5/candidate/model-proposal.txt",
+      "archived": "candidate-r2/calls/M5/candidate/model-proposal.txt",
+      "sha256": "3faa8028a1b6be9cb15aaac2d7d62cd41a5537050bde8018f81a20357c414522"
+    },
+    {
+      "source": "output/hook-quality-build-r1/factual/candidate-r2/calls/M5/candidate/prompt.txt",
+      "archived": "candidate-r2/calls/M5/candidate/prompt.txt",
+      "sha256": "a484b0ba96f8395b5d5774fba619379cc02637ba3155534bdd42c62600a4407b"
+    },
+    {
+      "source": "output/hook-quality-build-r1/factual/candidate-r2/calls/M5/candidate/receipt.json",
+      "archived": "candidate-r2/calls/M5/candidate/receipt.json",
+      "sha256": "40c9789cd47a4aa347a9a37b83ac693c82fee535b7960cd0ae6a26f7d2b70080"
+    },
+    {
+      "source": "output/hook-quality-build-r1/factual/candidate-r2/calls/M5/candidate/reply.txt",
+      "archived": "candidate-r2/calls/M5/candidate/reply.txt",
+      "sha256": "dfddb4edaa29b60b93c1d68b94f6e70db66aeab1cc262eeb5f2158e79dfdb5a7"
+    },
+    {
+      "source": "output/hook-quality-build-r1/factual/candidate-r2/calls/M5/candidate/result.json",
+      "archived": "candidate-r2/calls/M5/candidate/result.json",
+      "sha256": "997a2f8c65ef06362f606e33b520ede2088ce257dbc24fb3be5cd02be7dcb99e"
+    },
+    {
+      "source": "output/hook-quality-build-r1/factual/candidate-r2/calls/M5/candidate/stderr.txt",
+      "archived": "candidate-r2/calls/M5/candidate/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "output/hook-quality-build-r1/factual/candidate-r2/calls/P6/candidate/contract-selected.txt",
+      "archived": "candidate-r2/calls/P6/candidate/contract-selected.txt",
+      "sha256": "7e31ca1799731a87d4f38f5f31aac13a1c322eda97e4db9a3cae49c771dc1351"
+    },
+    {
+      "source": "output/hook-quality-build-r1/factual/candidate-r2/calls/P6/candidate/invocation.json",
+      "archived": "candidate-r2/calls/P6/candidate/invocation.json",
+      "sha256": "2afed7395a626667b4e616470f470112e2470bd8b1aa726cde866fee35addf3a"
+    },
+    {
+      "source": "output/hook-quality-build-r1/factual/candidate-r2/calls/P6/candidate/model-proposal.txt",
+      "archived": "candidate-r2/calls/P6/candidate/model-proposal.txt",
+      "sha256": "247680e05b66aabc0e98fdae2c7cc9da30239f97398393879a15004012f5edef"
+    },
+    {
+      "source": "output/hook-quality-build-r1/factual/candidate-r2/calls/P6/candidate/prompt.txt",
+      "archived": "candidate-r2/calls/P6/candidate/prompt.txt",
+      "sha256": "f4ccd17f70e21dbc0726447e4f09cd3776e7ba1bdbc538649d32b7e97caeab42"
+    },
+    {
+      "source": "output/hook-quality-build-r1/factual/candidate-r2/calls/P6/candidate/receipt.json",
+      "archived": "candidate-r2/calls/P6/candidate/receipt.json",
+      "sha256": "20273ccca21553eaf90fb406bcc58f3e1ade7d09d35645d76b5b6031fb1ee4ac"
+    },
+    {
+      "source": "output/hook-quality-build-r1/factual/candidate-r2/calls/P6/candidate/reply.txt",
+      "archived": "candidate-r2/calls/P6/candidate/reply.txt",
+      "sha256": "12aa82c8386e763a1dac512c67736d7a223f90743df750c90f3b0223c951e311"
+    },
+    {
+      "source": "output/hook-quality-build-r1/factual/candidate-r2/calls/P6/candidate/result.json",
+      "archived": "candidate-r2/calls/P6/candidate/result.json",
+      "sha256": "ac1e78c46603f555e85bb4ae91c40b7f772a69ed6dc0e25aa969b69dbcdc81f3"
+    },
+    {
+      "source": "output/hook-quality-build-r1/factual/candidate-r2/calls/P6/candidate/stderr.txt",
+      "archived": "candidate-r2/calls/P6/candidate/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "output/hook-quality-build-r1/factual/candidate-r2/candidate-system.txt",
+      "archived": "candidate-r2/candidate-system.txt",
+      "sha256": "95f63fd737f3bdbe28884c4cb307da688fada71b5cb89ef41c5a91789597852d"
+    },
+    {
+      "source": "output/hook-quality-build-r1/factual/candidate-r2/fixture.json",
+      "archived": "candidate-r2/fixture.json",
+      "sha256": "6228a6a41cf137fbbbcdc48cc2c1bdc37fddecfa1edc3cb33c6075a1e5e3ec2d"
+    },
+    {
+      "source": "output/hook-quality-build-r1/factual/candidate-r2/frozen-product/chinese-official-writing/hooks/core/single_pass_final_review.py",
+      "archived": "candidate-r2/frozen-product/chinese-official-writing/hooks/core/single_pass_final_review.py",
+      "sha256": "d3377485b1fff1208f5c75ad890adf3b0ded51ff8613d4d55eeac3a1b6e499d9"
+    },
+    {
+      "source": "output/hook-quality-build-r1/factual/candidate-r2/frozen-product/chinese-official-writing/hooks/shared/hard_anchors.py",
+      "archived": "candidate-r2/frozen-product/chinese-official-writing/hooks/shared/hard_anchors.py",
+      "sha256": "a563fe3bb8813e30a36bfb3b6657549abdb630bde839b45d190e3dbe9068fad9"
+    },
+    {
+      "source": "output/hook-quality-build-r1/factual/candidate-r2/review.json",
+      "archived": "candidate-r2/review.json",
+      "sha256": "dff8bc8460f0425ef1e892fb73db7bc938de23746b6fef53a8b7fa4bcabf5b01"
+    },
+    {
+      "source": "output/hook-quality-build-r1/factual/candidate-r3/artifact-manifest.json",
+      "archived": "candidate-r3/source-artifact-manifest.json",
+      "sha256": "681c888384050519b5989ebb9a1f4a180f9bc18f59beb454d110787f7c3ae81e"
+    },
+    {
+      "source": "output/hook-quality-build-r1/factual/candidate-r3/baseline-system.txt",
+      "archived": "candidate-r3/baseline-system.txt",
+      "sha256": "1e01b1f40a261c435ea91330a32a60e0c06ae93ef8030bf7d30b8a0c056457f0"
+    },
+    {
+      "source": "output/hook-quality-build-r1/factual/candidate-r3/calls/M5/candidate/contract-selected.txt",
+      "archived": "candidate-r3/calls/M5/candidate/contract-selected.txt",
+      "sha256": "dc71a81d5fce59d799c9c42814ed93ae64e6c8c7fe76bf4adea9745c47094868"
+    },
+    {
+      "source": "output/hook-quality-build-r1/factual/candidate-r3/calls/M5/candidate/invocation.json",
+      "archived": "candidate-r3/calls/M5/candidate/invocation.json",
+      "sha256": "3af9ececa0d4dad1b0374adb977ff935eba3f78fabc05f0d4f0496fe955c68fa"
+    },
+    {
+      "source": "output/hook-quality-build-r1/factual/candidate-r3/calls/M5/candidate/model-proposal.txt",
+      "archived": "candidate-r3/calls/M5/candidate/model-proposal.txt",
+      "sha256": "7a96938b8e1c23708574ddf7a57b962ad6da157dac1e99c665b85fea39fdd331"
+    },
+    {
+      "source": "output/hook-quality-build-r1/factual/candidate-r3/calls/M5/candidate/prompt.txt",
+      "archived": "candidate-r3/calls/M5/candidate/prompt.txt",
+      "sha256": "a484b0ba96f8395b5d5774fba619379cc02637ba3155534bdd42c62600a4407b"
+    },
+    {
+      "source": "output/hook-quality-build-r1/factual/candidate-r3/calls/M5/candidate/receipt.json",
+      "archived": "candidate-r3/calls/M5/candidate/receipt.json",
+      "sha256": "c33c205426e350fe8a6ba050d4c1301ceee528ab5a2af658c946b70264dbad81"
+    },
+    {
+      "source": "output/hook-quality-build-r1/factual/candidate-r3/calls/M5/candidate/reply.txt",
+      "archived": "candidate-r3/calls/M5/candidate/reply.txt",
+      "sha256": "1d805b867aa439eecb31829c314518b68208e6f4a4d05006e57190f47d62ff24"
+    },
+    {
+      "source": "output/hook-quality-build-r1/factual/candidate-r3/calls/M5/candidate/result.json",
+      "archived": "candidate-r3/calls/M5/candidate/result.json",
+      "sha256": "f3883f4b29dfd2b4274715b408a0bae5d51ed95451e3ee7f1fc41829bef4f832"
+    },
+    {
+      "source": "output/hook-quality-build-r1/factual/candidate-r3/calls/M5/candidate/stderr.txt",
+      "archived": "candidate-r3/calls/M5/candidate/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "output/hook-quality-build-r1/factual/candidate-r3/candidate-system.txt",
+      "archived": "candidate-r3/candidate-system.txt",
+      "sha256": "857951ae78f6d0da434c13efccdfab47227527526002baed43f48114a7c48dbf"
+    },
+    {
+      "source": "output/hook-quality-build-r1/factual/candidate-r3/fixture.json",
+      "archived": "candidate-r3/fixture.json",
+      "sha256": "c06e775fed2a6aa8bc007b411c45b359cd97c0784d4621e33a8ae21ff18e611d"
+    },
+    {
+      "source": "output/hook-quality-build-r1/factual/candidate-r3/frozen-product/chinese-official-writing/hooks/core/single_pass_final_review.py",
+      "archived": "candidate-r3/frozen-product/chinese-official-writing/hooks/core/single_pass_final_review.py",
+      "sha256": "d3377485b1fff1208f5c75ad890adf3b0ded51ff8613d4d55eeac3a1b6e499d9"
+    },
+    {
+      "source": "output/hook-quality-build-r1/factual/candidate-r3/frozen-product/chinese-official-writing/hooks/shared/hard_anchors.py",
+      "archived": "candidate-r3/frozen-product/chinese-official-writing/hooks/shared/hard_anchors.py",
+      "sha256": "a563fe3bb8813e30a36bfb3b6657549abdb630bde839b45d190e3dbe9068fad9"
+    },
+    {
+      "source": "output/hook-quality-build-r1/factual/candidate-r3/result.md",
+      "archived": "candidate-r3/result.md",
+      "sha256": "692e0e8d303c4cbd4a49428908947947abef82072ed19dbcc2c98aafef818d6d"
+    },
+    {
+      "source": "output/hook-quality-build-r1/factual/candidate-r3/review.json",
+      "archived": "candidate-r3/review.json",
+      "sha256": "7389d5aa6112beb6c150142682146a74444a48592e46f0d4be512af4aa4d87cc"
+    },
+    {
+      "source": "output/hook-quality-build-r1/factual/candidate-system.txt",
+      "archived": "candidate-system.txt",
+      "sha256": "07c59c6bae858cf020a05b03f898a0e39cdfc7d1dbc8f918c60615bb1e9e97e4"
+    },
+    {
+      "source": "output/hook-quality-build-r1/factual/fixture.json",
+      "archived": "fixture.json",
+      "sha256": "509844e7f1b0da6d4e2890d48ca7b45aa3fdd3bde5c4fd169898a93c9dc1ce36"
+    },
+    {
+      "source": "output/hook-quality-build-r1/factual/frozen-product/chinese-official-writing/hooks/core/single_pass_final_review.py",
+      "archived": "frozen-product/chinese-official-writing/hooks/core/single_pass_final_review.py",
+      "sha256": "d3377485b1fff1208f5c75ad890adf3b0ded51ff8613d4d55eeac3a1b6e499d9"
+    },
+    {
+      "source": "output/hook-quality-build-r1/factual/frozen-product/chinese-official-writing/hooks/shared/hard_anchors.py",
+      "archived": "frozen-product/chinese-official-writing/hooks/shared/hard_anchors.py",
+      "sha256": "a563fe3bb8813e30a36bfb3b6657549abdb630bde839b45d190e3dbe9068fad9"
+    },
+    {
+      "source": "output/hook-quality-build-r1/factual/initial-review.json",
+      "archived": "initial-review.json",
+      "sha256": "371b3b7ccc3609a87887d3cbccfd7b0c9f7451c9aa5675b93d4b0d59555e5d54"
+    },
+    {
+      "source": "output/hook-quality-build-r1/factual/result.json",
+      "archived": "result.json",
+      "sha256": "8238cb274ff50971b4e8b62f4d020f93643451a0430d109b1643463d06062ef6"
+    },
+    {
+      "source": "output/hook-quality-build-r1/factual/result.md",
+      "archived": "result.md",
+      "sha256": "586f59b1331308e98780e89dcde27cb68a1c1caf14310a6dce493ee8bc3071f7"
+    },
+    {
+      "source": "output/hook-quality-build-r1/factual/run_candidate_r2.py",
+      "archived": "run_candidate_r2.py",
+      "sha256": "7276061879084adb3e9345ecc01cd306db0eb33d4c94bb0f3b55d415b5282d6d"
+    },
+    {
+      "source": "output/hook-quality-build-r1/factual/run_candidate_r3.py",
+      "archived": "run_candidate_r3.py",
+      "sha256": "f77d222b25f96c17a1cd53647da967e3781a742e482e62c351ceecce02b3c6fc"
+    },
+    {
+      "source": "output/hook-quality-build-r1/factual/run_factual.py",
+      "archived": "run_factual.py",
+      "sha256": "a5bea5f06f52dc6bdf94037594df6b36377f1269c1d1e65887932ab4c6fda8d5"
+    }
+  ],
+  "stream_sources": [
+    {
+      "source": "output/hook-quality-build-r1/factual/calls/M5/baseline/stream.jsonl",
+      "sha256": "592ff48d080aeb50721f9d34e483b50a0070f4d37d064380ef34988fc5c187b2",
+      "bytes": 721418,
+      "excerpt": "calls/M5/baseline/stream-excerpt.json",
+      "excerpt_sha256": "5a91287154cfb2b6c48e2f3bc618d394d1b7c070b9386884a6164bde142d83f9",
+      "init_count": 1,
+      "result_count": 1
+    },
+    {
+      "source": "output/hook-quality-build-r1/factual/calls/M5/candidate/stream.jsonl",
+      "sha256": "4102f31a370f67748a02740d4e60d57ca297483e59b3bfe2385395c6bde6df13",
+      "bytes": 806627,
+      "excerpt": "calls/M5/candidate/stream-excerpt.json",
+      "excerpt_sha256": "09e7c6a614a6dbfd1651a0b53f73012055acc6d7a6a5c8ca2345c11f3b7d9c83",
+      "init_count": 1,
+      "result_count": 1
+    },
+    {
+      "source": "output/hook-quality-build-r1/factual/calls/P6/baseline/stream.jsonl",
+      "sha256": "b7302615a21d466550dad398299058e80a093211b9126393908496fe63637149",
+      "bytes": 815395,
+      "excerpt": "calls/P6/baseline/stream-excerpt.json",
+      "excerpt_sha256": "9a852d4d8899d60b2ce212efaf933425f2c6a5639eba2225f590f1f0c3f9dfb6",
+      "init_count": 1,
+      "result_count": 0
+    },
+    {
+      "source": "output/hook-quality-build-r1/factual/calls/P6/candidate/stream.jsonl",
+      "sha256": "49cd9862635d2b25a62bb6d0507b98252d3680112290fa2ffe25638acfb1e993",
+      "bytes": 399850,
+      "excerpt": "calls/P6/candidate/stream-excerpt.json",
+      "excerpt_sha256": "c21a16b1ff55b8678b92050e2c7fcfc04c169900e9c79333cdd013d6c8e387e2",
+      "init_count": 1,
+      "result_count": 1
+    },
+    {
+      "source": "output/hook-quality-build-r1/factual/candidate-r2/calls/M5/candidate/stream.jsonl",
+      "sha256": "cebd3356ec4f0f9df02a41bb880ff6d8b9964606248ee31fd892559317f21cd8",
+      "bytes": 686296,
+      "excerpt": "candidate-r2/calls/M5/candidate/stream-excerpt.json",
+      "excerpt_sha256": "3da05c35e4a63d2772d3083d1732083bc9103c8229ebd7a7a317e9789cc74223",
+      "init_count": 1,
+      "result_count": 1
+    },
+    {
+      "source": "output/hook-quality-build-r1/factual/candidate-r2/calls/P6/candidate/stream.jsonl",
+      "sha256": "2362d34654db7163d6a4d77af38b24cbd33c27d8221dba6d40fcc81726c1a1aa",
+      "bytes": 704906,
+      "excerpt": "candidate-r2/calls/P6/candidate/stream-excerpt.json",
+      "excerpt_sha256": "a28c1f74f06a18fb54deabf19aea1159906b34334aaf46130b3a92c038cf8d0c",
+      "init_count": 1,
+      "result_count": 1
+    },
+    {
+      "source": "output/hook-quality-build-r1/factual/candidate-r3/calls/M5/candidate/stream.jsonl",
+      "sha256": "f2a0377877080d2a3f4a9bb76ef7b41cf935a7ab8b3a0e69c83278eea7bb589c",
+      "bytes": 344151,
+      "excerpt": "candidate-r3/calls/M5/candidate/stream-excerpt.json",
+      "excerpt_sha256": "aac33ad261a064da68cdf42988b98056f8c41c6ee4957f18cf6e71d33aa11d76",
+      "init_count": 1,
+      "result_count": 1
+    }
+  ],
+  "prompt_diffs": [
+    {
+      "path": "prompt-diffs/baseline-to-r1.patch",
+      "sha256": "40770b346d9cf159e3327117e79f2d9a5db902e66345fe71d71e683e7dce678b",
+      "before_sha256": "1e01b1f40a261c435ea91330a32a60e0c06ae93ef8030bf7d30b8a0c056457f0",
+      "after_sha256": "07c59c6bae858cf020a05b03f898a0e39cdfc7d1dbc8f918c60615bb1e9e97e4"
+    },
+    {
+      "path": "prompt-diffs/r1-to-r2.patch",
+      "sha256": "f94ef10d853810ded3a52bf763e353824f963510da8e579008473e28fed3bbfa",
+      "before_sha256": "07c59c6bae858cf020a05b03f898a0e39cdfc7d1dbc8f918c60615bb1e9e97e4",
+      "after_sha256": "95f63fd737f3bdbe28884c4cb307da688fada71b5cb89ef41c5a91789597852d"
+    },
+    {
+      "path": "prompt-diffs/r2-to-r3-experiment.patch",
+      "sha256": "18d600b12d8c7c7b65d1107e7e17bb8b719ab5c092b87d2d062f70a8c2de0e12",
+      "before_sha256": "95f63fd737f3bdbe28884c4cb307da688fada71b5cb89ef41c5a91789597852d",
+      "after_sha256": "857951ae78f6d0da434c13efccdfab47227527526002baed43f48114a7c48dbf"
+    }
+  ],
+  "verification": "全部复制文件hash精确一致；7份init零tools/skills/plugins/mcp且session互异；6有效回复init/assistant/usage模型一致；实际parse_selection全6份精确回原D0；R3字符diff仅2次信息部删除、无其他变动。没有产品代码改动、模型补跑、手写裁决或完整测试。"
+}

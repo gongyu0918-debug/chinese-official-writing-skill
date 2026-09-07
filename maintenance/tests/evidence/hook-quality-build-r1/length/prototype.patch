@@ -1,0 +1,62 @@
+diff --git a/chinese-official-writing/hooks/capabilities/over_length/runtime.py b/chinese-official-writing/hooks/capabilities/over_length/runtime.py
+index 3982d10b..206bedbf 100644
+--- a/chinese-official-writing/hooks/capabilities/over_length/runtime.py
++++ b/chinese-official-writing/hooks/capabilities/over_length/runtime.py
+@@ -43,6 +43,11 @@ ACTION_RANGE_RE: Final = re.compile(
+     r"(?:起草|撰写|拟写|写一(?:篇|份)|压缩|精简)[^，,。；;\n]{0,20}?[，,：:]?\s*"
+     r"(?P<minimum>\d{2,5})\s*(?:—|－|-|~|至|到)\s*(?P<maximum>\d{2,5})\s*字"
+ )
++COMPRESS_MAX_RE: Final = re.compile(
++    r"(?:请|现在)?(?:把|将)?(?P<scope>正文|成稿|回复|输出|全文|终稿|最新稿)?\s*"
++    r"(?:压到|压缩到)\s*(?P<maximum>\d{2,5})\s*字以内"
++)
++QUOTED_LENGTH_RE: Final = re.compile(r'“[^”]*”|‘[^’]*’|"[^"]*"|\'[^\']*\'|「[^」]*」|『[^』]*』')
+ MATERIAL_CONTEXT_RE: Final = re.compile(
+     r"(?:材料|附件|引语|原文|背景|摘录|写明|载明|提到|如下|制度|合同|条款).{0,18}$"
+ )
+@@ -160,6 +165,11 @@ def parse_spec(request: str) -> dict[str, Any] | None:
+             for match in pattern.finditer(request)
+             if _authoritative_match(request, match, output_action=output_action)
+         )
++    for match in COMPRESS_MAX_RE.finditer(request):
++        if any(quote.start() <= match.start() < quote.end() for quote in QUOTED_LENGTH_RE.finditer(request)):
++            continue
++        if _authoritative_match(request, match, output_action=False):
++            matches.append(("maximum", match))
+     if not matches:
+         return None
+     kind, match = max(matches, key=lambda item: item[1].start())
+diff --git a/chinese-official-writing/scripts/review_gate.py b/chinese-official-writing/scripts/review_gate.py
+index 68efdfdc..891501cf 100644
+--- a/chinese-official-writing/scripts/review_gate.py
++++ b/chinese-official-writing/scripts/review_gate.py
+@@ -291,6 +291,11 @@ HEADING_RE = re.compile(
+ RANGE_RE = re.compile(r"(\d{2,5})\s*(?:—|–|-|至|到|~|～)\s*(\d{2,5})\s*(?:字|字符)")
+ MIN_RE = re.compile(r"(?:不少于|不低于|至少)\s*(\d{2,5})\s*(?:字|字符)")
+ MAX_RE = re.compile(r"(?:不超过|不多于|最多|控制在)\s*(\d{2,5})\s*(?:字|字符)(?:以内)?")
++COMPRESS_MAX_RE = re.compile(
++    r"(?:请|现在)?(?:把|将)?(?:正文|成稿|回复|输出|全文|终稿|最新稿)?\s*"
++    r"(?:压到|压缩到)\s*(\d{2,5})\s*(?:字|字符)以内"
++)
++QUOTED_LENGTH_RE = re.compile(r'“[^”]*”|‘[^’]*’|"[^"]*"|\'[^\']*\'|「[^」]*」|『[^』]*』')
+ POSITIVE_SETTLED_RE = re.compile(
+     r"(?:已经|已)[^，。；！？\n]{0,8}(?:完成|解决|确定|决定|明确|同意|批准|实施|办结|恢复|形成)"
+ )
+@@ -995,6 +1000,17 @@ def _length_bounds(request: str) -> tuple[int | None, int | None, str]:
+         return int(range_match.group(1)), int(range_match.group(2)), "cjk" if use_cjk else "nonspace"
+     min_match = MIN_RE.search(request)
+     max_match = MAX_RE.search(request)
++    if max_match is None:
++        for match in COMPRESS_MAX_RE.finditer(request):
++            prefix = request[max(0, match.start() - 24):match.start()]
++            suffix = request[match.end():match.end() + 4]
++            if any(quote.start() <= match.start() < quote.end() for quote in QUOTED_LENGTH_RE.finditer(request)):
++                continue
++            if re.search(r"(?:约|左右|上下)", prefix + match.group(0) + suffix):
++                continue
++            if re.search(r"(?:材料|附件|引语|原文|背景|摘录|写明|载明|提到|如下|制度|合同|条款).{0,18}$", prefix):
++                continue
++            max_match = match
+     minimum = int(min_match.group(1)) if min_match else None
+     maximum = int(max_match.group(1)) if max_match else None
+     return minimum, maximum, "cjk" if use_cjk else "nonspace"

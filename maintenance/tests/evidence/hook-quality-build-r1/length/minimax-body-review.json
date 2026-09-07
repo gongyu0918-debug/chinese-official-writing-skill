@@ -1,0 +1,33 @@
+{
+  "provider": "minimax",
+  "candidate_sha256": "3305801219fea03b6227808897a6e2f335f4f76572a54153aaa9a3ba90e2a2a3",
+  "comparison_reason": "numbers",
+  "violations": {
+    "missing_numbers": [
+      "468",
+      "500"
+    ],
+    "added_numbers": [],
+    "missing_quantities": [],
+    "added_quantities": [],
+    "missing_quotes": [
+      "\"书面报送核实情况\"",
+      "\"四、其他\"",
+      "\"待综合部完成测算后再行研究\"",
+      "\"报送本馆\"",
+      "\"留待后续研究\""
+    ],
+    "added_quotes": [],
+    "fields_changed": true
+  },
+  "human_body_review": {
+    "candidate_nonspace": 427,
+    "all_d0_document_business_facts_retained": true,
+    "all_d0_departments_dates_undecided_states_retained": true,
+    "deleted_demo_not_restored": true,
+    "direct_body": true,
+    "original_unsupported_location_retained": true,
+    "full_loop_pass": false
+  },
+  "scope": "D0-relative revision inspection; not a fresh fact check of the original D0 against all historical material. No semantic-verdict model call occurred."
+}

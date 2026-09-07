@@ -1,0 +1,38 @@
+{
+  "json_files_parsed": 71,
+  "python_ast_files_parsed": [
+    "replay_saved.py",
+    "runtime-baseline.py",
+    "runtime-candidate-r2.py",
+    "source/run_candidate_r2.py",
+    "source/run_cleanliness.py"
+  ],
+  "readme_links_checked": [
+    "fixture.json",
+    "result.json",
+    "archive-provenance.json",
+    "offline-replay.json",
+    "source/run_cleanliness.py",
+    "source/run_candidate_r2.py",
+    "quick-validate.json"
+  ],
+  "diff_check": {
+    "command": [
+      "git",
+      "diff",
+      "--check",
+      "--",
+      "chinese-official-writing/hooks/capabilities/delivery_cleanliness/runtime.py",
+      "maintenance/tests/test_delivery_cleanliness_capability.py"
+    ],
+    "exit_code": 0,
+    "stdout": "",
+    "stderr": "warning: in the working copy of 'chinese-official-writing/hooks/capabilities/delivery_cleanliness/runtime.py', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'maintenance/tests/test_delivery_cleanliness_capability.py', LF will be replaced by CRLF the next time Git touches it\n"
+  },
+  "replay_help_exit_code": 0,
+  "lightweight_secret_scan": {
+    "scope": "this archive only; token/private-key/private IPv4 signatures; paths/types/counts only",
+    "hits": []
+  },
+  "no_full_suite": true
+}

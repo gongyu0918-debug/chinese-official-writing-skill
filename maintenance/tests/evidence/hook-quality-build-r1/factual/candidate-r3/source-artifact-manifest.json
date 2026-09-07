@@ -1,0 +1,25 @@
+{
+  "files": {
+    "baseline-system.txt": "1e01b1f40a261c435ea91330a32a60e0c06ae93ef8030bf7d30b8a0c056457f0",
+    "calls/M5/candidate/contract-selected.txt": "dc71a81d5fce59d799c9c42814ed93ae64e6c8c7fe76bf4adea9745c47094868",
+    "calls/M5/candidate/invocation.json": "3af9ececa0d4dad1b0374adb977ff935eba3f78fabc05f0d4f0496fe955c68fa",
+    "calls/M5/candidate/model-proposal.txt": "7a96938b8e1c23708574ddf7a57b962ad6da157dac1e99c665b85fea39fdd331",
+    "calls/M5/candidate/prompt.txt": "a484b0ba96f8395b5d5774fba619379cc02637ba3155534bdd42c62600a4407b",
+    "calls/M5/candidate/receipt.json": "c33c205426e350fe8a6ba050d4c1301ceee528ab5a2af658c946b70264dbad81",
+    "calls/M5/candidate/reply.txt": "1d805b867aa439eecb31829c314518b68208e6f4a4d05006e57190f47d62ff24",
+    "calls/M5/candidate/result.json": "f3883f4b29dfd2b4274715b408a0bae5d51ed95451e3ee7f1fc41829bef4f832",
+    "calls/M5/candidate/stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "calls/M5/candidate/stream.jsonl": "f2a0377877080d2a3f4a9bb76ef7b41cf935a7ab8b3a0e69c83278eea7bb589c",
+    "candidate-system.txt": "857951ae78f6d0da434c13efccdfab47227527526002baed43f48114a7c48dbf",
+    "fixture.json": "c06e775fed2a6aa8bc007b411c45b359cd97c0784d4621e33a8ae21ff18e611d",
+    "frozen-product/chinese-official-writing/hooks/core/single_pass_final_review.py": "d3377485b1fff1208f5c75ad890adf3b0ded51ff8613d4d55eeac3a1b6e499d9",
+    "frozen-product/chinese-official-writing/hooks/shared/hard_anchors.py": "a563fe3bb8813e30a36bfb3b6657549abdb630bde839b45d190e3dbe9068fad9",
+    "result.md": "692e0e8d303c4cbd4a49428908947947abef82072ed19dbcc2c98aafef818d6d",
+    "review.json": "7389d5aa6112beb6c150142682146a74444a48592e46f0d4be512af4aa4d87cc"
+  },
+  "excluded_directory_names": [
+    "runtime"
+  ],
+  "driver": "../run_candidate_r3.py",
+  "driver_sha256": "f77d222b25f96c17a1cd53647da967e3781a742e482e62c351ceecce02b3c6fc"
+}

@@ -1,0 +1,456 @@
+{
+  "schema_version": 1,
+  "atom": "delivery_cleanliness_whole_single_json_fence",
+  "base_commit": "b77f6381438c8fa01f8576c205d13af4b8a987fd",
+  "product_scope": [
+    "chinese-official-writing/hooks/capabilities/delivery_cleanliness/runtime.py",
+    "maintenance/tests/test_delivery_cleanliness_capability.py"
+  ],
+  "candidate_sha256": "9b2988d00ba341a708a04f661f3fae1afd6a5e1510e1a017304ea10da783824c",
+  "canonical_runtime_sha256": "9b2988d00ba341a708a04f661f3fae1afd6a5e1510e1a017304ea10da783824c",
+  "candidate_and_canonical_raw_bytes_identical": true,
+  "fixture_sha256": "afd32927200a4a3ed7bef461b1f0f01dd5904bec162caac08fe92515fe29725e",
+  "preregister_sha256": "80f7536a0b7190c64935cdf2fdc881183faa9e6190818c3f223a5b0aa406ba13",
+  "real_calls": {
+    "baseline_r1": 14,
+    "candidate_paired_echo_new": 1,
+    "candidate_full_chain_new": 3,
+    "total_unique_actual_calls": 18,
+    "unique_sessions": 18,
+    "technical_valid": 18,
+    "tool_uses": 0,
+    "model_retries": 0,
+    "all_init_assistant_usage_models_bound": true,
+    "all_tool_skill_plugin_mcp_inventories_empty": true
+  },
+  "case_results": {
+    "r1/P6": {
+      "status": "finished",
+      "functional_pass": true,
+      "expected_exact": true,
+      "body_exactly_retained": true,
+      "final_visible_sha256": "c58996735777d9dc463d49ab90f30266b1b2732bb61c32810a8d832fdf75a752",
+      "selected_sha256": "c58996735777d9dc463d49ab90f30266b1b2732bb61c32810a8d832fdf75a752",
+      "audit": {
+        "schema_version": 1,
+        "capability": "delivery_cleanliness",
+        "original_sha256": "586720c868897f08513d9421ef2b930d19b3cabb6a0b4d230c621025c9d9de5f",
+        "candidate_sha256": "c58996735777d9dc463d49ab90f30266b1b2732bb61c32810a8d832fdf75a752",
+        "selection": "D1",
+        "reason": "semantic_pass",
+        "delivery_sha256": "c58996735777d9dc463d49ab90f30266b1b2732bb61c32810a8d832fdf75a752",
+        "delivery_verified": true
+      },
+      "counts_nonspace": {
+        "original": 755,
+        "expected": 589,
+        "visible": 589
+      }
+    },
+    "r1/M6": {
+      "status": "finished",
+      "functional_pass": false,
+      "expected_exact": false,
+      "body_exactly_retained": true,
+      "final_visible_sha256": "8c3d2b83b83fd095553ab2d8d013bd868066a098cfd26e364414bc26e935e343",
+      "selected_sha256": "8c3d2b83b83fd095553ab2d8d013bd868066a098cfd26e364414bc26e935e343",
+      "audit": {
+        "schema_version": 1,
+        "capability": "delivery_cleanliness",
+        "original_sha256": "8c3d2b83b83fd095553ab2d8d013bd868066a098cfd26e364414bc26e935e343",
+        "candidate_sha256": "761c588587bbf7831d5072059a813f07460ef2bb843f31f1471db0fcf23eacc4",
+        "selection": "D0",
+        "reason": "semantic_rejected",
+        "delivery_sha256": "8c3d2b83b83fd095553ab2d8d013bd868066a098cfd26e364414bc26e935e343",
+        "delivery_verified": true
+      },
+      "counts_nonspace": {
+        "original": 579,
+        "expected": 447,
+        "visible": 579
+      }
+    },
+    "r1/C4": {
+      "status": "finished",
+      "functional_pass": true,
+      "expected_exact": true,
+      "body_exactly_retained": true,
+      "final_visible_sha256": "e07b7132d166df23aa8df6d2e4268fe639e9ae48b3c0b93d92b85988c7719b21",
+      "selected_sha256": "e07b7132d166df23aa8df6d2e4268fe639e9ae48b3c0b93d92b85988c7719b21",
+      "audit": {
+        "schema_version": 1,
+        "capability": "delivery_cleanliness",
+        "original_sha256": "e07b7132d166df23aa8df6d2e4268fe639e9ae48b3c0b93d92b85988c7719b21",
+        "candidate_sha256": null,
+        "selection": "D0",
+        "reason": "clean_or_requested_format_preserved",
+        "delivery_sha256": "e07b7132d166df23aa8df6d2e4268fe639e9ae48b3c0b93d92b85988c7719b21",
+        "delivery_verified": true
+      },
+      "counts_nonspace": {
+        "original": 65,
+        "expected": 65,
+        "visible": 65
+      }
+    },
+    "r1/C5": {
+      "status": "finished",
+      "functional_pass": true,
+      "expected_exact": true,
+      "body_exactly_retained": true,
+      "final_visible_sha256": "d70987f549319e8b9163aa4e0cdd903f11f72538aded3792c4b4cfeac12b150e",
+      "selected_sha256": "d70987f549319e8b9163aa4e0cdd903f11f72538aded3792c4b4cfeac12b150e",
+      "audit": {
+        "schema_version": 1,
+        "capability": "delivery_cleanliness",
+        "original_sha256": "d70987f549319e8b9163aa4e0cdd903f11f72538aded3792c4b4cfeac12b150e",
+        "candidate_sha256": null,
+        "selection": "D0",
+        "reason": "clean_or_requested_format_preserved",
+        "delivery_sha256": "d70987f549319e8b9163aa4e0cdd903f11f72538aded3792c4b4cfeac12b150e",
+        "delivery_verified": true
+      },
+      "counts_nonspace": {
+        "original": 59,
+        "expected": 59,
+        "visible": 59
+      }
+    },
+    "r1/C6": {
+      "status": "finished",
+      "functional_pass": true,
+      "expected_exact": true,
+      "body_exactly_retained": true,
+      "final_visible_sha256": "586720c868897f08513d9421ef2b930d19b3cabb6a0b4d230c621025c9d9de5f",
+      "selected_sha256": "586720c868897f08513d9421ef2b930d19b3cabb6a0b4d230c621025c9d9de5f",
+      "audit": {
+        "schema_version": 1,
+        "capability": "delivery_cleanliness",
+        "original_sha256": "586720c868897f08513d9421ef2b930d19b3cabb6a0b4d230c621025c9d9de5f",
+        "candidate_sha256": null,
+        "selection": "D0",
+        "reason": "clean_or_requested_format_preserved",
+        "delivery_sha256": "586720c868897f08513d9421ef2b930d19b3cabb6a0b4d230c621025c9d9de5f",
+        "delivery_verified": true
+      },
+      "counts_nonspace": {
+        "original": 755,
+        "expected": 755,
+        "visible": 755
+      }
+    },
+    "r2-paired-echo": {
+      "status": "finished",
+      "functional_pass": true,
+      "expected_exact": true,
+      "body_exactly_retained": true,
+      "final_visible_sha256": "761c588587bbf7831d5072059a813f07460ef2bb843f31f1471db0fcf23eacc4",
+      "selected_sha256": "761c588587bbf7831d5072059a813f07460ef2bb843f31f1471db0fcf23eacc4",
+      "audit": {
+        "schema_version": 1,
+        "capability": "delivery_cleanliness",
+        "original_sha256": "8c3d2b83b83fd095553ab2d8d013bd868066a098cfd26e364414bc26e935e343",
+        "candidate_sha256": "761c588587bbf7831d5072059a813f07460ef2bb843f31f1471db0fcf23eacc4",
+        "selection": "D1",
+        "reason": "semantic_pass",
+        "delivery_sha256": "761c588587bbf7831d5072059a813f07460ef2bb843f31f1471db0fcf23eacc4",
+        "delivery_verified": true
+      },
+      "counts_nonspace": {
+        "d0": 579,
+        "expected": 447,
+        "visible": 447
+      }
+    },
+    "r2-full/M6": {
+      "status": "finished",
+      "functional_pass": true,
+      "expected_exact": true,
+      "body_exactly_retained": true,
+      "final_visible_sha256": "761c588587bbf7831d5072059a813f07460ef2bb843f31f1471db0fcf23eacc4",
+      "selected_sha256": "761c588587bbf7831d5072059a813f07460ef2bb843f31f1471db0fcf23eacc4",
+      "audit": {
+        "schema_version": 1,
+        "capability": "delivery_cleanliness",
+        "original_sha256": "8c3d2b83b83fd095553ab2d8d013bd868066a098cfd26e364414bc26e935e343",
+        "candidate_sha256": "761c588587bbf7831d5072059a813f07460ef2bb843f31f1471db0fcf23eacc4",
+        "selection": "D1",
+        "reason": "semantic_pass",
+        "delivery_sha256": "761c588587bbf7831d5072059a813f07460ef2bb843f31f1471db0fcf23eacc4",
+        "delivery_verified": true
+      },
+      "counts_nonspace": {
+        "d0": 579,
+        "expected": 447,
+        "visible": 447
+      }
+    }
+  },
+  "main_findings": [
+    "P6 baseline real cleanup, verdict and echo succeeded; complete body exact, reply 755 to589 nonspace characters.",
+    "M6 baseline real revision exactly preserved body, but one complete json-fenced real verdict was rejected by strict json.loads, selecting dirtyD0; its firstD0echo also mismatched and the bounded runtime reprompt returned exact dirtyD0.",
+    "Candidate changes only complete plain/json fence parsing. Same originalM6 request/D0 and two original real replies yield D1; a fresh model echo returns that exactD1. Revision/verdict reasons were byte-identical before evidence migration.",
+    "Independent full candidateM6 chain used3 new real MiniMax replies; its real verdict was again one complete json fence and passed unchanged hash/span/check validation. Reply579 to447; body exact.",
+    "Clean draft,C4,requestedMarkdown,C5,and explicit-preserve-explanation requestvariant,C6,all preserve fullD0 in baseline realruns. C6 needed one bounded output reprompt. Parser-only candidate replays these actual replies with exactly equal prompts and unchanged result; no new candidate control model calls."
+  ],
+  "claims_and_limits": [
+    "P6/M6 original source drafts were generated with Hook disabled; their source failures are not Hook failure-rate evidence.",
+    "Runtime functions receive actual model replies. Eachphase uses a fresh isolated ClaudeCLI process; this is not an installednativeHook or a persistentnativeconversation. Core/defaultentry and allotherhosts not exercised by this atom.",
+    "Only deletes unrequested outside-body spans; existing body facts/states/errors are preserved, not independently corrected. No newbodyfact/state can be claimed introduced in the exact-body final successes.",
+    "One observed MiniMax parsefailure and same-D0 fix; no population reliability claim.",
+    "No prompt, semantic verdict criteria, deletion contract, output retry limit or echo fallback rule changed.",
+    "CLI reported usage/result and modelUsage totals may differ; both are preserved separately. Reported USD is CLI accounting estimate, not proof of billed spending.",
+    "All raw streams, runtime directories and originalfailure records remain in output; archive extracts actualinit/result only and binds fullstream hashes. No newmodelinstallation, machineconfig change, Hook enablement, commit, merge or publication by this atom."
+  ],
+  "usage_by_model": {
+    "alibaba-token-plan-2/deepseek-v4-flash-0731": {
+      "calls": 7,
+      "seconds": 128.829,
+      "cli_reported_cost_usd": 0.44069,
+      "result_usage": {
+        "input_tokens": 15308,
+        "output_tokens": 13008,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0
+      },
+      "modelUsage_totals": {
+        "inputTokens": 19218,
+        "outputTokens": 13784,
+        "cacheReadInputTokens": 0,
+        "cacheCreationInputTokens": 0,
+        "webSearchRequests": 0
+      }
+    },
+    "minimax-cn/MiniMax-M3": {
+      "calls": 11,
+      "seconds": 226.063,
+      "cli_reported_cost_usd": 0.524689,
+      "result_usage": {
+        "input_tokens": 22996,
+        "output_tokens": 13240,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 3200
+      },
+      "modelUsage_totals": {
+        "inputTokens": 29257,
+        "outputTokens": 14980,
+        "cacheReadInputTokens": 7808,
+        "cacheCreationInputTokens": 0,
+        "webSearchRequests": 0
+      }
+    }
+  },
+  "calls": [
+    {
+      "call": "r1/P6/calls/1",
+      "model": "alibaba-token-plan-2/deepseek-v4-flash-0731",
+      "session_id": "4cd1696c-f54d-472b-b202-43f4757f647c",
+      "technical_valid": true,
+      "seconds": 18.625,
+      "prompt_sha256": "a43749a6945fd8c60f340b9df54969fc39ab3adb8763c5134bfa4fde699272f6",
+      "reply_sha256": "c58996735777d9dc463d49ab90f30266b1b2732bb61c32810a8d832fdf75a752",
+      "receipt_sha256": "5e0969a37ba06a7e1e60497b3cabd4e428852655a213373733293eca5b190b04",
+      "original_stream_sha256": "b90b5a3fb8971958376e3dbf8d6d635960e673daf20f2b5598292a8b1955cd7b"
+    },
+    {
+      "call": "r1/P6/calls/2",
+      "model": "alibaba-token-plan-2/deepseek-v4-flash-0731",
+      "session_id": "5659de1a-48c8-482c-87fc-b5828b2a1fc2",
+      "technical_valid": true,
+      "seconds": 74.969,
+      "prompt_sha256": "c6eddc0e1976f12eec4baaab4503bd9b5c586a29a7e86817fc49a2fd672bf9cf",
+      "reply_sha256": "39c5af9aba1aec1e05e85587846f7e541e00a0b45e25314a3a81a46edd0c50f5",
+      "receipt_sha256": "4f7a03f9910210444059223939026c0d9aea20b8862e2d1e060d0403db6fe026",
+      "original_stream_sha256": "86836c98f362065423524376bf917d24e7746a2340c134d5c699b41e775711ba"
+    },
+    {
+      "call": "r1/P6/calls/3",
+      "model": "alibaba-token-plan-2/deepseek-v4-flash-0731",
+      "session_id": "c7b4f349-afaa-4ec5-9daf-3846c7c6e2d6",
+      "technical_valid": true,
+      "seconds": 5.75,
+      "prompt_sha256": "a121803a2f24736a76b9dee2dbef8b0dd34a021ed6bcec94245d013e6ef199fa",
+      "reply_sha256": "c58996735777d9dc463d49ab90f30266b1b2732bb61c32810a8d832fdf75a752",
+      "receipt_sha256": "f3268e84fcf5e0093dbb13cf2331adf672ece86900e586f1913903f87ffde404",
+      "original_stream_sha256": "b13213f8259d492ab705f0d630489c7454561f5fb79734085dd0035a37620424"
+    },
+    {
+      "call": "r1/M6/calls/1",
+      "model": "minimax-cn/MiniMax-M3",
+      "session_id": "3dceb767-efa0-44dc-9f4f-24835dc977da",
+      "technical_valid": true,
+      "seconds": 20.828,
+      "prompt_sha256": "738f2bd58de5b4925b52467b459f45fcc3ac6c46ed11ce99c4a0a84b505d20ad",
+      "reply_sha256": "761c588587bbf7831d5072059a813f07460ef2bb843f31f1471db0fcf23eacc4",
+      "receipt_sha256": "eedc5a18b72f8c57467005f29e15d2dfc9688885de3473df9a10a837c7276d4f",
+      "original_stream_sha256": "b0ce450284def87cf18d7940b0c2786b01ea1eed6260aadc7cdefdbb2713743e"
+    },
+    {
+      "call": "r1/M6/calls/2",
+      "model": "minimax-cn/MiniMax-M3",
+      "session_id": "10be4507-c7e2-47bf-991b-2f91387d06bd",
+      "technical_valid": true,
+      "seconds": 102.641,
+      "prompt_sha256": "56b0a5ad5ec65eafd1547a22cdfdb63a63cc9da67c75393a4e6107152ad2314a",
+      "reply_sha256": "69fa5485b9330a7842b7577ed52f35f13ee7579bd227b2e3a5551439ad782fb3",
+      "receipt_sha256": "a25bc4643256175332be5433af83e3f3fce2a4863b1357480b28b317e9e4147e",
+      "original_stream_sha256": "a810a4be0404bfc76768313b63b77392e4c1f2a0c03f363c0308e407437dd7e2"
+    },
+    {
+      "call": "r1/M6/calls/3",
+      "model": "minimax-cn/MiniMax-M3",
+      "session_id": "b088fe87-0375-43a0-95a7-7a9166ada94b",
+      "technical_valid": true,
+      "seconds": 9.406,
+      "prompt_sha256": "11040cff875c963b714f824373f6aaaabe64be8524c39347fcb9ce0501013b3b",
+      "reply_sha256": "761c588587bbf7831d5072059a813f07460ef2bb843f31f1471db0fcf23eacc4",
+      "receipt_sha256": "5c9114ecd38209d6b26480d40f09804e504b0c04c806a0319127510d84b0513d",
+      "original_stream_sha256": "85ef22f33ace4ad2e71ae45dffc10701f55aef1b2180e5c7a941ee5886890b61"
+    },
+    {
+      "call": "r1/M6/calls/4",
+      "model": "minimax-cn/MiniMax-M3",
+      "session_id": "9a332cb4-8792-4ca4-ac52-2fe0fbb2de6c",
+      "technical_valid": true,
+      "seconds": 6.109,
+      "prompt_sha256": "ae3ee9d889f5e627e7c4cad8926acee7ac745c8f12aa4da98b683f8a0485566b",
+      "reply_sha256": "8c3d2b83b83fd095553ab2d8d013bd868066a098cfd26e364414bc26e935e343",
+      "receipt_sha256": "1f0f5dcd7161e47907664e379b7d5f6f4abab711a81e8987c34761443b18d93e",
+      "original_stream_sha256": "feec06e7db94609937a16b9a4dc883cde94d320ee9a01478f82747fee2cb6a9c"
+    },
+    {
+      "call": "r1/C4/calls/1",
+      "model": "alibaba-token-plan-2/deepseek-v4-flash-0731",
+      "session_id": "47264416-0836-415f-97d8-0a5ed78103ef",
+      "technical_valid": true,
+      "seconds": 4.985,
+      "prompt_sha256": "8a56851b48901e565739000636632da6612ef264861bca6dc8a7609a24db8d4e",
+      "reply_sha256": "e07b7132d166df23aa8df6d2e4268fe639e9ae48b3c0b93d92b85988c7719b21",
+      "receipt_sha256": "3283cf33550e5c32e2a151231caa79fdddfd4d809cab3ec3085554d6831c8de3",
+      "original_stream_sha256": "98df137eb30cd44a19dc4b05b363310fad563cd035a4df633d2ef1a1f5df3a0e"
+    },
+    {
+      "call": "r1/C4/calls/2",
+      "model": "alibaba-token-plan-2/deepseek-v4-flash-0731",
+      "session_id": "42c96ed3-3cbb-416b-8abe-f7387622599f",
+      "technical_valid": true,
+      "seconds": 3.578,
+      "prompt_sha256": "4bad1998cf8632f9c4b1f395a2b05c4e3b3e342950cf6280b572506507296be6",
+      "reply_sha256": "e07b7132d166df23aa8df6d2e4268fe639e9ae48b3c0b93d92b85988c7719b21",
+      "receipt_sha256": "46569692ad2ab3d7254b0afbb46de2eb2db4f9c0b9ec9b983ba48c5b58654814",
+      "original_stream_sha256": "9727ff0455a674ff239eb2499811954fbd7275da77c9a0ff1786795845dc356e"
+    },
+    {
+      "call": "r1/C5/calls/1",
+      "model": "alibaba-token-plan-2/deepseek-v4-flash-0731",
+      "session_id": "57229b78-a7f3-4d52-9e4b-ea52c51a6549",
+      "technical_valid": true,
+      "seconds": 17.954,
+      "prompt_sha256": "4790987ab46a721ad98ec930823b277c797430e55eda02bebc12e6d113fa5c20",
+      "reply_sha256": "d70987f549319e8b9163aa4e0cdd903f11f72538aded3792c4b4cfeac12b150e",
+      "receipt_sha256": "da04a3ea5771d8a43186be38ae5ece0b5cfda75ff0f30d45666ee43ee67792b8",
+      "original_stream_sha256": "3caaa74c1c8b41767a8add3e64f78d462a69b0fffcf5d6fa223691bf8c519228"
+    },
+    {
+      "call": "r1/C5/calls/2",
+      "model": "alibaba-token-plan-2/deepseek-v4-flash-0731",
+      "session_id": "7882a1ee-a558-41c9-8478-cb71bb8f0c58",
+      "technical_valid": true,
+      "seconds": 2.968,
+      "prompt_sha256": "017773b79ab2a2ceb5825f5c6f74a8cc183974d7dfac3881f52bda22a4ec7eae",
+      "reply_sha256": "d70987f549319e8b9163aa4e0cdd903f11f72538aded3792c4b4cfeac12b150e",
+      "receipt_sha256": "c018065344986a53038b9a319689754fcc0b7476d7c7a0d19b48afe3190bba57",
+      "original_stream_sha256": "52004b57bb0e2b5b4b5b153cc4edd70802551c56bf780aae7cb7e6d7f846d0ab"
+    },
+    {
+      "call": "r1/C6/calls/1",
+      "model": "minimax-cn/MiniMax-M3",
+      "session_id": "1b250f8c-c1cb-4265-9431-cedbc272e7b7",
+      "technical_valid": true,
+      "seconds": 11.172,
+      "prompt_sha256": "5ba6931d31ece79337d73d65bd8932e8d2e053b5bdf2737dd0384a7ab19eebc3",
+      "reply_sha256": "586720c868897f08513d9421ef2b930d19b3cabb6a0b4d230c621025c9d9de5f",
+      "receipt_sha256": "5ac1f292e50b14c901516a60998b6242d2e4b86ddd14649578e3bf239eb9dc17",
+      "original_stream_sha256": "bd8c9d64e8767c774ca92dacce117a0f0afee0f6228d73cab4060bda9c479689"
+    },
+    {
+      "call": "r1/C6/calls/2",
+      "model": "minimax-cn/MiniMax-M3",
+      "session_id": "89bfef16-d0ac-4dac-9990-5741c9133198",
+      "technical_valid": true,
+      "seconds": 8.281,
+      "prompt_sha256": "d8dcf64f141d9f387c3982c8bf6d2f8d4d996ffc047bbd84f04335d3936ec101",
+      "reply_sha256": "c58996735777d9dc463d49ab90f30266b1b2732bb61c32810a8d832fdf75a752",
+      "receipt_sha256": "0f5233c1807c7da52e1ca5652fa02e40622aa04038b4575c2dcfcddc56725f0f",
+      "original_stream_sha256": "afe3b527717a4a49aaa9d94ba3f2b5900bc7ead4b57799a14821f9cfbf58a905"
+    },
+    {
+      "call": "r1/C6/calls/3",
+      "model": "minimax-cn/MiniMax-M3",
+      "session_id": "05bab313-fcd3-4896-9711-2cda3aa75e83",
+      "technical_valid": true,
+      "seconds": 7.547,
+      "prompt_sha256": "7f48225a4bd9d0bbb90ffb03f6bd7db64663fb4229a39268654a3a58f4d191a3",
+      "reply_sha256": "586720c868897f08513d9421ef2b930d19b3cabb6a0b4d230c621025c9d9de5f",
+      "receipt_sha256": "d98408608d48e9bea4b93b2deb34425f4a989b1868d5b0f18eb0346b41c36c3b",
+      "original_stream_sha256": "85707fdfcf44984518c29c3107d654d6b4cbf5d2e43ae3471ad91cac6b553f33"
+    },
+    {
+      "call": "r2-paired-echo/calls/1",
+      "model": "minimax-cn/MiniMax-M3",
+      "session_id": "e3c6aa78-7253-456a-891e-f666c58a3d2b",
+      "technical_valid": true,
+      "seconds": 9.031,
+      "prompt_sha256": "5f5ba03f6f447a77f5e5b463aaf6223bf9df443c8f750f5c9ac5dde7de206a5b",
+      "reply_sha256": "761c588587bbf7831d5072059a813f07460ef2bb843f31f1471db0fcf23eacc4",
+      "receipt_sha256": "961fcfde1c74bf0ecc165823cf2255221ad677d463e87865100c8d4b4cfaf8be",
+      "original_stream_sha256": "f03b770b38325df5b2d28b5b6372739cb676ac236b94fe4754f6fe059b99dc5d"
+    },
+    {
+      "call": "r2-full/M6/calls/1",
+      "model": "minimax-cn/MiniMax-M3",
+      "session_id": "5b51eb01-9530-48a6-9606-c69f849c2627",
+      "technical_valid": true,
+      "seconds": 9.641,
+      "prompt_sha256": "738f2bd58de5b4925b52467b459f45fcc3ac6c46ed11ce99c4a0a84b505d20ad",
+      "reply_sha256": "761c588587bbf7831d5072059a813f07460ef2bb843f31f1471db0fcf23eacc4",
+      "receipt_sha256": "8f16196c334ad9fbd44a52ae35fe67452ed747bf283dd1d371f23f9a8e730880",
+      "original_stream_sha256": "a4ac00e1ff3807799602bbb6d38e89d6dd4f783b8aa8ef5b260b0f288133b73b"
+    },
+    {
+      "call": "r2-full/M6/calls/2",
+      "model": "minimax-cn/MiniMax-M3",
+      "session_id": "434f6ce3-2d90-4c66-a638-c8ae87a3385e",
+      "technical_valid": true,
+      "seconds": 31.579,
+      "prompt_sha256": "56b0a5ad5ec65eafd1547a22cdfdb63a63cc9da67c75393a4e6107152ad2314a",
+      "reply_sha256": "d69cbc0ec6c813a1ad453e22ee0605767f55a824a5bdac0f768caab72c8fd676",
+      "receipt_sha256": "159733c6eed011ce556b372c9c1041ac92313a38a600ec87034c7e6ddb7cd8fd",
+      "original_stream_sha256": "8cc2772670c9e7c0f65f7dc1d78cd4f5787739f068fbce8ac4d5c20dc8699fde"
+    },
+    {
+      "call": "r2-full/M6/calls/3",
+      "model": "minimax-cn/MiniMax-M3",
+      "session_id": "5cf408db-d723-44e2-b550-be2346a8ef93",
+      "technical_valid": true,
+      "seconds": 9.828,
+      "prompt_sha256": "5f5ba03f6f447a77f5e5b463aaf6223bf9df443c8f750f5c9ac5dde7de206a5b",
+      "reply_sha256": "761c588587bbf7831d5072059a813f07460ef2bb843f31f1471db0fcf23eacc4",
+      "receipt_sha256": "d38453fc15671834e3f0b8128c14c3ce5e14ee26dd6a61b4a22fb7795da6965a",
+      "original_stream_sha256": "90374b61ea98fd64ac5148f3160b8671a67141db25eb0da067f0653a0d148582"
+    }
+  ],
+  "verification": {
+    "unit": {
+      "command": "python -B -X utf8 -m unittest maintenance.tests.test_delivery_cleanliness_capability",
+      "exit_code": 0,
+      "tests": 9,
+      "seconds": 2.275,
+      "source": "Observed tool execution output, not a rerun reconstructed from a model verdict."
+    },
+    "quick_validate": "quick-validate.json",
+    "saved_actual_reply_replay": "offline-replay.json",
+    "full_suite_run": false
+  },
+  "default_route_status": "PROPOSAL_ONLY_ROOT_OWNS_CORE_AND_NATIVE_VALIDATION"
+}

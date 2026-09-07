@@ -1,0 +1,1 @@
+{"plan": "Feed genuine P6/M6 cleaned final bodies into unchanged default gate. New independent real model replies for any requested verdict/echo; no retries. Do not integrate prepass before observing preservation. No host claims.", "cases": ["P6", "M6"], "maximum_calls_per_case": 3}

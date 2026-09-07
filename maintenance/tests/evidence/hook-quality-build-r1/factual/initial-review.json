@@ -1,0 +1,202 @@
+{
+  "schema_version": 1,
+  "stage": "initial-four-calls",
+  "base_commit": "b77f6381438c8fa01f8576c205d13af4b8a987fd",
+  "model": "alibaba-token-plan-2/deepseek-v4-flash-0731",
+  "fixture_sha256": "509844e7f1b0da6d4e2890d48ca7b45aa3fdd3bde5c4fd169898a93c9dc1ce36",
+  "method": "人工逐稿复核真实模型输出；模型 issues 不直接充当正确裁决；沿用原审合理推断边界。",
+  "attempted_calls": 4,
+  "technical_valid_calls": 3,
+  "technical_failures": 1,
+  "valid_paired_cases": [
+    "M5"
+  ],
+  "unpaired_case_due_to_baseline_timeout": [
+    "P6"
+  ],
+  "reviews": [
+    {
+      "case": "P6",
+      "arm": "baseline",
+      "technical_valid": false,
+      "seconds": 180.047,
+      "receipt_sha256": "1345929ba71f2939a793d5947a3f6b2e0d0f7b72a39a6ab6b5052289ea210da0",
+      "quality_review": "NOT_EVALUABLE",
+      "technical_reason": "TimeoutExpired",
+      "final_count": 0,
+      "automatic_retry": false
+    },
+    {
+      "case": "M5",
+      "arm": "baseline",
+      "technical_valid": true,
+      "seconds": 168.625,
+      "receipt_sha256": "2ba37c465a142f032fa090d0bef9705ab5358af12f19cfcccd0ca00beb3c3c3a",
+      "session_ids": [
+        "6f4c1266-a4b8-43f5-94af-8c2d1babe84a"
+      ],
+      "proposal_sha256": "8147e838dc3c5666f3e11cdcbcff0f3fb215bf9aeef76f2658b98ee6df12727e",
+      "proposal_chars_nonspace_including_title": 618,
+      "contract_action": "KEEP",
+      "contract_reason": "hard_anchor_violation",
+      "contract_selected_is_exact_d0": true,
+      "anchor_violations": {
+        "missing_numbers": [
+          "600",
+          "602",
+          "618",
+          "800"
+        ],
+        "added_numbers": [],
+        "missing_quantities": [],
+        "added_quantities": [],
+        "missing_quotes": [],
+        "added_quotes": [],
+        "fields_changed": false
+      },
+      "target_result": {
+        "unsupported_presenter": "PERSISTS",
+        "unsupported_organizer": "PERSISTS"
+      },
+      "evidence": [
+        "以及信息部关于预约系统操作演示情况的介绍",
+        "信息部组织开展了预约系统操作演示",
+        "预约系统尚处于操作演示阶段"
+      ],
+      "positive_controls": {
+        "supplied_roles_deadlines_proposal_status": "PRESERVED",
+        "same_matter_ongoing": "PRESERVED",
+        "general_purpose": "PRESERVED"
+      },
+      "non_target_changes": [
+        {
+          "old_quote": "待成本测算完成后另行研究",
+          "new_quote": "本次会议未作出调整开放时间的决定。",
+          "assessment": "原审接受的条件性承接被删除；不是新增硬事实，也不把这处删除算作本轮目标风险修正。"
+        }
+      ]
+    },
+    {
+      "case": "P6",
+      "arm": "candidate",
+      "technical_valid": true,
+      "seconds": 94.344,
+      "receipt_sha256": "536c9069e854897ee4383de7112cb5766374b2b7aad1962e313329a1873cdf52",
+      "session_ids": [
+        "36d9df75-c498-41bc-b7dc-32437df4e32d"
+      ],
+      "proposal_sha256": "0c5cec02feffb40992e276718e140d681efee379070eb81df4e74b9c59ba7fa4",
+      "proposal_chars_nonspace_including_title": 946,
+      "contract_action": "KEEP",
+      "contract_reason": "hard_anchor_violation",
+      "contract_selected_is_exact_d0": true,
+      "anchor_violations": {
+        "missing_numbers": [
+          "920"
+        ],
+        "added_numbers": [],
+        "missing_quantities": [],
+        "added_quantities": [],
+        "missing_quotes": [
+          "\"仅介绍目录录入方法、未形成工作决定\"",
+          "\"先复核、后上线\"",
+          "\"扩展专题交流参会范围\"",
+          "\"技术核验完成\"",
+          "\"把上线条件复核列入下一步考虑\"",
+          "\"报分管领导审定后再研究上线安排\"",
+          "\"是否安排试运行尚未决定\"",
+          "\"核验结论待复核、上线条件不具备\""
+        ],
+        "added_quotes": [
+          "“先复核、后上线”"
+        ],
+        "fields_changed": false
+      },
+      "target_result": {
+        "unsupported_completed_review": "CORRECTED",
+        "unsupported_exchange_organizer": "CORRECTED"
+      },
+      "evidence": [
+        "目录征集累计收到260项，已纳入190项、待核70项",
+        "8月20日举办过1次专题交流，18名平台技术人员参加"
+      ],
+      "positive_controls": {
+        "explicit_data_bureau_center_business_department_roles": "PRESERVED",
+        "center_combined_role_and_completed_technical_check": "PRESERVED",
+        "percent_direct_calculation": "PRESERVED",
+        "reasonable_problem_analysis_and_next_step_proposals": "PRESERVED",
+        "supplied_numbers_dates_pending_states": "PRESERVED"
+      },
+      "remaining_inherited_hard_fact": [
+        {
+          "quote": "未覆盖业务主管部门和决策层级",
+          "reason": "18名平台技术人员不证明完整参会范围中没有业务主管部门人员和决策人员；不是下一步建议。"
+        }
+      ]
+    },
+    {
+      "case": "M5",
+      "arm": "candidate",
+      "technical_valid": true,
+      "seconds": 153.078,
+      "receipt_sha256": "b804aa88fc635bec13f3de3bc5807b0044720e9b32232bf2fce2375e652c4df6",
+      "session_ids": [
+        "ee4a3da9-596d-49b7-956c-1b9b8b5a2e77"
+      ],
+      "proposal_sha256": "5c6e78cf88b23664f4e76d679c45a90b209004fcaed43b086b685b4bab434c78",
+      "proposal_chars_nonspace_including_title": 605,
+      "contract_action": "KEEP",
+      "contract_reason": "hard_anchor_violation",
+      "contract_selected_is_exact_d0": true,
+      "anchor_violations": {
+        "missing_numbers": [
+          "600",
+          "602",
+          "618",
+          "800"
+        ],
+        "added_numbers": [],
+        "missing_quantities": [],
+        "added_quantities": [],
+        "missing_quotes": [],
+        "added_quotes": [],
+        "fields_changed": false
+      },
+      "target_result": {
+        "unsupported_presenter": "CORRECTED",
+        "unsupported_organizer": "CORRECTED"
+      },
+      "evidence": [
+        "以及预约系统操作演示情况的介绍",
+        "会上介绍了8月26日开展的预约系统操作演示，共有9名馆员参加"
+      ],
+      "positive_controls": {
+        "supplied_roles_deadlines_proposal_status": "PRESERVED",
+        "same_matter_ongoing": "REMOVED_POSITIVE_CONTROL_FAILURE",
+        "general_purpose": "PRESERVED",
+        "existing_deadline_implementation_summary": "PRESERVED"
+      },
+      "non_target_changes": [
+        {
+          "old_quote": "相关核实工作正在开展",
+          "new_quote": "待核实完成后予以答复。",
+          "assessment": "原审接受材料已给职责事项的同一进行态；候选删除，基线保留。记合理归纳保留反控失败，不将其偷换为材料明确原句丢失或新编事实。"
+        }
+      ],
+      "remaining_inherited_hard_fact": [
+        {
+          "quote": "预约系统尚处于操作演示阶段",
+          "reason": "单次演示和未形成验收结论不能确定整个系统当前阶段。"
+        }
+      ]
+    }
+  ],
+  "conclusion": {
+    "raw_candidate_target_facts": "两份候选都删除其目标无据主体/程序；M5对现有提示有有效同稿收益，P6只能与原D0比较。",
+    "positive_control": "M5同事项进行态出现非目标删除，原型不直接接入产品；已保留失败并收窄一个提示段。",
+    "contract_delivered_corrections": 0,
+    "contract_boundary": "三份有效回复均被未改parse_selection退回原D0，不能把模型提案修正当成最终交付修正。",
+    "general_reliability_claim": false,
+    "next_step": "只验证两份固定D0的收窄候选，不补跑超时基线、不增加裁判模型。"
+  }
+}

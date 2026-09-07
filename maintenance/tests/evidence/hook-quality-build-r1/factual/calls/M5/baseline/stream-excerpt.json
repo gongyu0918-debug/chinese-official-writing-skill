@@ -1,0 +1,106 @@
+{
+  "source_stream": "output/hook-quality-build-r1/factual/calls/M5/baseline/stream.jsonl",
+  "source_stream_sha256": "592ff48d080aeb50721f9d34e483b50a0070f4d37d064380ef34988fc5c187b2",
+  "source_stream_bytes": 721418,
+  "full_stream_archived": false,
+  "full_stream_retained_at_source": true,
+  "extraction": "init选择身份和工具清单字段；result事件原样；assistant仅保留模型、文本块及hash，不保留思考内容。",
+  "init_events": [
+    {
+      "source_line": 1,
+      "event": {
+        "type": "system",
+        "subtype": "init",
+        "session_id": "6f4c1266-a4b8-43f5-94af-8c2d1babe84a",
+        "model": "alibaba-token-plan-2/deepseek-v4-flash-0731",
+        "tools": [],
+        "mcp_servers": [],
+        "skills": [],
+        "plugins": [],
+        "claude_code_version": "2.1.195"
+      }
+    }
+  ],
+  "assistant_binding_and_text": [
+    {
+      "source_line": 3313,
+      "type": "assistant",
+      "session_id": "6f4c1266-a4b8-43f5-94af-8c2d1babe84a",
+      "message_id": "msg_27971f8c30f04a6eb242ef4734d9168d",
+      "model": "alibaba-token-plan-2/deepseek-v4-flash-0731",
+      "stop_reason": null,
+      "text_blocks": [],
+      "text_blocks_sha256": []
+    },
+    {
+      "source_line": 3314,
+      "type": "assistant",
+      "session_id": "6f4c1266-a4b8-43f5-94af-8c2d1babe84a",
+      "message_id": "msg_27971f8c30f04a6eb242ef4734d9168d",
+      "model": "alibaba-token-plan-2/deepseek-v4-flash-0731",
+      "stop_reason": null,
+      "text_blocks": [
+        "{\"action\":\"REPLACE\",\"issues\":[\"WRAPPER_OR_GENRE\",\"NEW_FACT_OR_PROCEDURE\"],\"final_text\":\"清源图书馆服务改进专题会会议纪要\\n\\n为回应读者诉求、改进服务质量，清源图书馆于2026年9月4日召开服务改进专题会。会议听取了业务部关于2026年8月读者意见办理情况的汇报，以及信息部关于预约系统操作演示情况的介绍；研究了预约系统试点和开放时间调整等事项，并明确了有关事项的责任分工和完成时限。现将会议主要内容和有关决定纪要如下。\\n\\n一、会议听取情况\\n\\n（一）读者意见办理情况。业务部反映，2026年8月共收到读者意见24条，其中已答复18条；其余6条意见涉及情况需进一步核实，待核实完成后予以答复，相关核实工作正在开展。\\n\\n（二）预约系统操作演示情况。8月26日，信息部组织开展了预约系统操作演示，共有9名馆员参加。该次演示内容为预约系统操作展示，不属于业务培训，也未形成系统验收结论，预约系统尚处于操作演示阶段。\\n\\n二、会议研究事项\\n\\n（一）预约系统试点建议。信息部建议在二楼阅览区先行试点预约系统。目前该事项仍处于建议阶段，是否开展试点尚未决定。\\n\\n（二）开放时间调整建议。综合部建议将周五闭馆时间延后半小时。该项调整需先核算人员成本，本次会议未作出调整开放时间的决定。\\n\\n三、会议议定事项\\n\\n经会议研究，现就有关事项明确如下，请各责任部门严格按确定时限抓好落实。\\n\\n（一）读者意见核实。由业务部负责，对剩余6条读者意见逐条进行核实，于9月12日前完成核实，并报送核实情况。\\n\\n（二）人员成本测算。由综合部负责，于9月15日前提交人员成本测算结果；本次会议不作新增预算承诺。\"}"
+      ],
+      "text_blocks_sha256": [
+        "51b08b4b811a0a6b68003d41419ab15235f97e3ee5eff1953403e82f6ac8d13b"
+      ]
+    }
+  ],
+  "result_events": [
+    {
+      "source_line": 3315,
+      "event": {
+        "type": "result",
+        "subtype": "success",
+        "is_error": false,
+        "api_error_status": null,
+        "duration_ms": 167663,
+        "duration_api_ms": 169710,
+        "ttft_ms": 164806,
+        "ttft_stream_ms": 1254,
+        "time_to_request_ms": 188,
+        "num_turns": 1,
+        "result": "{\"action\":\"REPLACE\",\"issues\":[\"WRAPPER_OR_GENRE\",\"NEW_FACT_OR_PROCEDURE\"],\"final_text\":\"清源图书馆服务改进专题会会议纪要\\n\\n为回应读者诉求、改进服务质量，清源图书馆于2026年9月4日召开服务改进专题会。会议听取了业务部关于2026年8月读者意见办理情况的汇报，以及信息部关于预约系统操作演示情况的介绍；研究了预约系统试点和开放时间调整等事项，并明确了有关事项的责任分工和完成时限。现将会议主要内容和有关决定纪要如下。\\n\\n一、会议听取情况\\n\\n（一）读者意见办理情况。业务部反映，2026年8月共收到读者意见24条，其中已答复18条；其余6条意见涉及情况需进一步核实，待核实完成后予以答复，相关核实工作正在开展。\\n\\n（二）预约系统操作演示情况。8月26日，信息部组织开展了预约系统操作演示，共有9名馆员参加。该次演示内容为预约系统操作展示，不属于业务培训，也未形成系统验收结论，预约系统尚处于操作演示阶段。\\n\\n二、会议研究事项\\n\\n（一）预约系统试点建议。信息部建议在二楼阅览区先行试点预约系统。目前该事项仍处于建议阶段，是否开展试点尚未决定。\\n\\n（二）开放时间调整建议。综合部建议将周五闭馆时间延后半小时。该项调整需先核算人员成本，本次会议未作出调整开放时间的决定。\\n\\n三、会议议定事项\\n\\n经会议研究，现就有关事项明确如下，请各责任部门严格按确定时限抓好落实。\\n\\n（一）读者意见核实。由业务部负责，对剩余6条读者意见逐条进行核实，于9月12日前完成核实，并报送核实情况。\\n\\n（二）人员成本测算。由综合部负责，于9月15日前提交人员成本测算结果；本次会议不作新增预算承诺。\"}",
+        "stop_reason": "end_turn",
+        "session_id": "6f4c1266-a4b8-43f5-94af-8c2d1babe84a",
+        "total_cost_usd": 0.408065,
+        "usage": {
+          "input_tokens": 1551,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "output_tokens": 15719,
+          "server_tool_use": {
+            "web_search_requests": 0,
+            "web_fetch_requests": 0
+          },
+          "service_tier": "standard",
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "inference_geo": "",
+          "iterations": [],
+          "speed": "standard"
+        },
+        "modelUsage": {
+          "alibaba-token-plan-2/deepseek-v4-flash-0731": {
+            "inputTokens": 2648,
+            "outputTokens": 15793,
+            "cacheReadInputTokens": 0,
+            "cacheCreationInputTokens": 0,
+            "webSearchRequests": 0,
+            "costUSD": 0.408065,
+            "contextWindow": 200000,
+            "maxOutputTokens": 32000
+          }
+        },
+        "permission_denials": [],
+        "terminal_reason": "completed",
+        "fast_mode_state": "off",
+        "uuid": "b7628b64-baa4-4750-b60f-367e607c4829"
+      }
+    }
+  ],
+  "record_count": 3315
+}

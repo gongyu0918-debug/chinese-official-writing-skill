@@ -1,0 +1,70 @@
+{
+  "baseline_commit": "b77f6381438c8fa01f8576c205d13af4b8a987fd",
+  "branch": "codex/hook-quality-build-r1",
+  "python": "C:/Users/admin/AppData/Local/Programs/Python/Python313/python.exe",
+  "full_suite": {
+    "command": "python -B -X utf8 -m unittest discover -s maintenance/tests -p test_*.py",
+    "initial": {
+      "tests": 817,
+      "failures": 2,
+      "reasons": [
+        "Stop complexity 28 > 25",
+        "new shared helper lacked link"
+      ]
+    },
+    "final": {
+      "tests": 817,
+      "failures": 0,
+      "seconds": 123.005,
+      "log": "full-final.log"
+    }
+  },
+  "targeted_final": {
+    "tests": 84,
+    "failures": 0,
+    "seconds": 20.468
+  },
+  "core_review_probe": "PASS; re-run after final helper extraction",
+  "source_replay": {
+    "requests": 13,
+    "native_source_hash_matches": 10,
+    "status": "PASS"
+  },
+  "quick_validate": {
+    "canonical": "PASS"
+  },
+  "claude_plugin_validate_strict": "PASS",
+  "final_companion": {
+    "files": 60,
+    "fingerprint": "a1cde757ac69f0d6dcb7e3551a59e9dbe293872e8d33eedc320a500f17491bcf",
+    "installed": false
+  },
+  "secret_scan": {
+    "private_runtime_paths": [],
+    "high_confidence_key_pattern_files": []
+  },
+  "product_sha256": {
+    "chinese-official-writing/hooks/core/gate_stop_hook.py": "3d60aeadd30f933b75850287b4dd10ae283eaedf0e45213a0e73b01dd67f8aea",
+    "chinese-official-writing/hooks/shared/revision_context.py": "c30515769bbd04ad351d03447245f7798352f9132ab45e1eba7043496ff0c00c",
+    "chinese-official-writing/hooks/adapters/claude-code/gate_stop_hook.py": "ec180bb1e6e67c9e5a7ee18d6fcb4915db23b743c367de9ae94ddc3a49dcf663",
+    "chinese-official-writing/hooks/capabilities/delivery_cleanliness/runtime.py": "9b2988d00ba341a708a04f661f3fae1afd6a5e1510e1a017304ea10da783824c"
+  },
+  "archive_structure": {
+    "relative_links": 457,
+    "broken_links": 0,
+    "parsed_json": 249,
+    "parsed_python": 50
+  },
+  "precommit_recheck": {
+    "date": "2026-09-07",
+    "core_review_probe": "PASS",
+    "continuity_replay": "PASS 13 requests / 10 native source hashes",
+    "cleanliness_replay": "PASS 11 saved runtime behaviors",
+    "stream_compaction": "14 originals verified in output; 5187633 to 118215 bytes",
+    "parsed_archive": {
+      "json": 266,
+      "python": 50
+    },
+    "product_change_after_full_suite": "Hook README clarification only; no code change"
+  }
+}

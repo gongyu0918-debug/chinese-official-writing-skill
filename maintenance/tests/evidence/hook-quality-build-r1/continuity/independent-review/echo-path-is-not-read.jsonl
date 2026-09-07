@@ -1,0 +1,5 @@
+{"type": "user", "sessionId": "offline-review-session", "message": {"content": "请根据材料写一份进展报告：收到目录260项，已纳入190项、待核70项。只输出正文。"}}
+{"type": "assistant", "sessionId": "offline-review-session", "message": {"content": [{"type": "tool_use", "id": "read-1", "name": "Bash", "input": {"command": "echo \"F:\\Workspaces\\chinese-official-writing-skill-worktrees\\hook-quality-build-r1\\chinese-official-writing/SKILL.md\""}}]}}
+{"type": "user", "sessionId": "offline-review-session", "message": {"content": [{"type": "tool_result", "tool_use_id": "read-1", "is_error": false, "content": "Synthetic successful tool-result fixture; no actual tool execution."}]}}
+{"type": "assistant", "sessionId": "offline-review-session", "message": {"content": "助理旧稿中的999项不是来源事实。"}}
+{"type": "user", "sessionId": "offline-review-session", "message": {"content": "这个任务已经结束，请删掉刚才的临时文件。"}}

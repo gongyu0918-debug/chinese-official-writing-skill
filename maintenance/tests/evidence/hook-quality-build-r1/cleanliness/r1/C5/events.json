@@ -1,0 +1,77 @@
+[
+  {
+    "index": 0,
+    "actual_model_reply": false,
+    "response": {
+      "decision": "block",
+      "reason": "请做一次交付洁净度整理，只输出可直接交付的完整终稿。只删除用户没有要求的过程说明、工具或权限状态、协议 JSON、代码围栏和纯包装性标题标记；正文中的文字、顺序、标点、数字、状态和换行必须原样保留。用户明确要求 Markdown、JSON 或解释过程时必须保留相应格式与内容。若没有可安全删除的包装，逐字返回 D0；不得改写、概括、补充或重排正文。\n【原请求】\n请使用 Markdown 二级标题组织工作简报，保留 Markdown 格式，只输出简报正文。\n【D0】\n# 工作简报\n\n## 一、工作进展\n\n本周完成系统巡检2次，发现并处理配置问题1项。\n\n## 二、下一步安排\n\n下周继续按计划开展系统巡检。"
+    },
+    "state": {
+      "request": "请使用 Markdown 二级标题组织工作简报，保留 Markdown 格式，只输出简报正文。",
+      "delivery_cleanliness": {
+        "schema_version": 1,
+        "capability": "delivery_cleanliness",
+        "phase": "delivery_cleanliness_awaiting_revision",
+        "original": "# 工作简报\n\n## 一、工作进展\n\n本周完成系统巡检2次，发现并处理配置问题1项。\n\n## 二、下一步安排\n\n下周继续按计划开展系统巡检。"
+      }
+    }
+  },
+  {
+    "index": 1,
+    "actual_model_reply": true,
+    "model_reply_sha256": "d70987f549319e8b9163aa4e0cdd903f11f72538aded3792c4b4cfeac12b150e",
+    "response": {
+      "decision": "block",
+      "reason": "交付洁净度整理已完成。请逐字输出下列已选终稿，不要调用工具、不要加说明：\n# 工作简报\n\n## 一、工作进展\n\n本周完成系统巡检2次，发现并处理配置问题1项。\n\n## 二、下一步安排\n\n下周继续按计划开展系统巡检。"
+    },
+    "state": {
+      "request": "请使用 Markdown 二级标题组织工作简报，保留 Markdown 格式，只输出简报正文。",
+      "delivery_cleanliness": {
+        "schema_version": 1,
+        "capability": "delivery_cleanliness",
+        "phase": "delivery_cleanliness_awaiting_output",
+        "original": "# 工作简报\n\n## 一、工作进展\n\n本周完成系统巡检2次，发现并处理配置问题1项。\n\n## 二、下一步安排\n\n下周继续按计划开展系统巡检。",
+        "audit": {
+          "schema_version": 1,
+          "capability": "delivery_cleanliness",
+          "original_sha256": "d70987f549319e8b9163aa4e0cdd903f11f72538aded3792c4b4cfeac12b150e",
+          "candidate_sha256": null,
+          "selection": "D0",
+          "reason": "clean_or_requested_format_preserved",
+          "delivery_sha256": "d70987f549319e8b9163aa4e0cdd903f11f72538aded3792c4b4cfeac12b150e",
+          "delivery_verified": false
+        }
+      },
+      "delivery_cleanliness_selected_output": "# 工作简报\n\n## 一、工作进展\n\n本周完成系统巡检2次，发现并处理配置问题1项。\n\n## 二、下一步安排\n\n下周继续按计划开展系统巡检。",
+      "delivery_cleanliness_selected_sha256": "d70987f549319e8b9163aa4e0cdd903f11f72538aded3792c4b4cfeac12b150e"
+    }
+  },
+  {
+    "index": 2,
+    "actual_model_reply": true,
+    "model_reply_sha256": "d70987f549319e8b9163aa4e0cdd903f11f72538aded3792c4b4cfeac12b150e",
+    "response": {
+      "continue": true
+    },
+    "state": {
+      "request": "请使用 Markdown 二级标题组织工作简报，保留 Markdown 格式，只输出简报正文。",
+      "delivery_cleanliness": {
+        "schema_version": 1,
+        "capability": "delivery_cleanliness",
+        "phase": "delivery_cleanliness_complete",
+        "original": "# 工作简报\n\n## 一、工作进展\n\n本周完成系统巡检2次，发现并处理配置问题1项。\n\n## 二、下一步安排\n\n下周继续按计划开展系统巡检。",
+        "audit": {
+          "schema_version": 1,
+          "capability": "delivery_cleanliness",
+          "original_sha256": "d70987f549319e8b9163aa4e0cdd903f11f72538aded3792c4b4cfeac12b150e",
+          "candidate_sha256": null,
+          "selection": "D0",
+          "reason": "clean_or_requested_format_preserved",
+          "delivery_sha256": "d70987f549319e8b9163aa4e0cdd903f11f72538aded3792c4b4cfeac12b150e",
+          "delivery_verified": true
+        }
+      },
+      "delivery_cleanliness_selected_sha256": "d70987f549319e8b9163aa4e0cdd903f11f72538aded3792c4b4cfeac12b150e"
+    }
+  }
+]

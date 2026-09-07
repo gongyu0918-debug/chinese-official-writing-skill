@@ -1,0 +1,31 @@
+{
+  "argv": [
+    "C:\\Users\\admin\\.local\\bin\\claude.EXE",
+    "--setting-sources",
+    "",
+    "--tools",
+    "Read,Skill",
+    "--strict-mcp-config",
+    "--mcp-config",
+    "{\"mcpServers\":{}}",
+    "--permission-mode",
+    "dontAsk",
+    "--include-hook-events",
+    "--print",
+    "--verbose",
+    "--output-format",
+    "stream-json",
+    "--model",
+    "alibaba-token-plan-2/deepseek-v4-flash-0731",
+    "--effort",
+    "max",
+    "--plugin-dir",
+    "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\hook-quality-build-r1\\output\\hook-quality-build-r1\\continuity\\companion-production",
+    "--add-dir",
+    "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\hook-quality-build-r1\\output\\hook-quality-build-r1\\continuity\\companion-production",
+    "--resume",
+    "b8d4c287-7c9c-4908-a149-0a73b311c1dc"
+  ],
+  "prompt": "再在存在问题部分末尾加一个独立自然段：抽查15份登记记录，其中5份缺少更新频率说明，已经退回材料提供单位补充，补充材料还没有收到。别改其他部分，给我完整稿。",
+  "session": "b8d4c287-7c9c-4908-a149-0a73b311c1dc"
+}

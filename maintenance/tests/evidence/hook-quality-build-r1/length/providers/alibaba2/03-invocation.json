@@ -1,0 +1,29 @@
+{
+  "argv": [
+    "C:\\Users\\admin\\.local\\bin\\claude.EXE",
+    "--setting-sources",
+    "",
+    "--no-session-persistence",
+    "--disable-slash-commands",
+    "--tools",
+    "",
+    "--strict-mcp-config",
+    "--mcp-config",
+    "{\"mcpServers\":{}}",
+    "--permission-mode",
+    "dontAsk",
+    "--print",
+    "--verbose",
+    "--output-format",
+    "stream-json",
+    "--model",
+    "alibaba-token-plan-2/deepseek-v4-flash-0731",
+    "--effort",
+    "max"
+  ],
+  "stdin_sha256": "f0af2535e11776c1e9147bd57bbc516825fe899ed053373913d68313ac17c056",
+  "cwd": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\hook-quality-build-r1\\output\\hook-quality-build-r1\\length\\providers\\alibaba2\\03-over_length_awaiting_output\\runtime\\work",
+  "phase": "over_length_awaiting_output",
+  "timeout_seconds": 300,
+  "retry_count": 0
+}

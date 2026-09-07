@@ -1,0 +1,52 @@
+{
+  "reviewed_sha256": "27212fcce6a91a305ab52331081c0cad51d158546863810779439a5b7f3996cc",
+  "source": "same saved canonical snapshot; synthetic transcripts only; revised-current guards kept true to isolate tool/session tests",
+  "results": [
+    {
+      "id": "successful-read",
+      "is_revision": true,
+      "recovered": true,
+      "assistant_as_fact": false,
+      "fixture_sha256": "cb73938c412dfe0a64f9f662abc49829293bc01d1276b18d143994a46f0541cb"
+    },
+    {
+      "id": "failed-read",
+      "is_revision": true,
+      "recovered": false,
+      "assistant_as_fact": false,
+      "fixture_sha256": "c2ac379ecf9f85f9117439acccf111d7448d617a63dcc1af26b511b72e200e46"
+    },
+    {
+      "id": "other-session",
+      "is_revision": true,
+      "recovered": false,
+      "assistant_as_fact": false,
+      "fixture_sha256": "ed01929fbcc9f3b01fb992ba364e0ac68939f9dc4ca01e3588c75ecd6e8fbab2"
+    },
+    {
+      "id": "echo-path-is-not-read",
+      "is_revision": true,
+      "recovered": true,
+      "assistant_as_fact": false,
+      "fixture_sha256": "9b6b017b4b7e7c2d92d6232712cc00cc9caa138c83c9944cb4c15af9e0e60d77"
+    }
+  ],
+  "phrase_controls": [
+    {
+      "text": "请把最新稿压缩到500字以内，直接发纪要正文。",
+      "result": true
+    },
+    {
+      "text": "请据此更新报告，其他内容保留。",
+      "result": false
+    },
+    {
+      "text": "请把最新稿的日期改为9月9日，其他部分保留。",
+      "result": true
+    },
+    {
+      "text": "请修改刚才的报告，其他内容保留。",
+      "result": true
+    }
+  ]
+}

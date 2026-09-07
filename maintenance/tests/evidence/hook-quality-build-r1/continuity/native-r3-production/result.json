@@ -1,0 +1,58 @@
+[
+  {
+    "round": 1,
+    "exit_code": 0,
+    "seconds": 511.01,
+    "session": "b8d4c287-7c9c-4908-a149-0a73b311c1dc",
+    "result_subtype": "success",
+    "final_chars": 1019
+  },
+  {
+    "round": 2,
+    "exit_code": 0,
+    "seconds": 80.49,
+    "session": "b8d4c287-7c9c-4908-a149-0a73b311c1dc",
+    "result_subtype": "success",
+    "final_chars": 1077
+  },
+  {
+    "round": 3,
+    "exit_code": 0,
+    "seconds": 211.52,
+    "session": "b8d4c287-7c9c-4908-a149-0a73b311c1dc",
+    "result_subtype": "success",
+    "final_chars": 979
+  },
+  {
+    "round": 4,
+    "exit_code": 0,
+    "seconds": 24.78,
+    "session": "b8d4c287-7c9c-4908-a149-0a73b311c1dc",
+    "result_subtype": "success",
+    "final_chars": 1024
+  },
+  {
+    "round": 5,
+    "exit_code": 0,
+    "seconds": 41.78,
+    "session": "b8d4c287-7c9c-4908-a149-0a73b311c1dc",
+    "result_subtype": "success",
+    "final_chars": 658
+  },
+  {
+    "round": 6,
+    "exit_code": 0,
+    "seconds": 24.0,
+    "session": "b8d4c287-7c9c-4908-a149-0a73b311c1dc",
+    "result_subtype": "success",
+    "final_chars": 563
+  },
+  {
+    "round": 7,
+    "exit_code": 0,
+    "seconds": 9.09,
+    "session": "b8d4c287-7c9c-4908-a149-0a73b311c1dc",
+    "result_subtype": "success",
+    "final_chars": 563
+  }
+]

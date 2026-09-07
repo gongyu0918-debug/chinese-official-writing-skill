@@ -17,3 +17,7 @@ Agent 组装胶水层前必须展示目标目录和文件清单。固定映射�
 组装时必须明确能力：默认 `delivery_review`；其余可选值为 `protective_expansion`、`under_length`、`over_length`、`delivery_cleanliness`、`repetition_cleanup`。每次只选一项，选择结果写入插件根 `hook-capability.json`，运行时不再动态探测或生成文件。各能力的用途和边界见上级 `hooks/README.md`。
 
 启用后的 Hook 使用宿主提供的插件数据目录保存本次门禁状态，不扫描其他 Agent，也不主动联网。
+
+同一会话连续改稿时，若本篇已通过 `Read` 成功读取本 Skill，后续明确修改上一稿的请求可继续进入门禁。只读取宿主在 Stop 提供的当前会话记录，最多恢复连续8回合、4 MB记录及4万字符用户要求；按时间绑定材料，更正和删除要求优先，不将助手旧稿作为事实来源。恢复的原文仅在当前门禁内暂存，终态仍按上级说明清理。
+
+任务切换、来源记录缺失或越界时不恢复旧材料。此接续入口仅适配 Claude Code；其他宿主、分支会话和更长历史尚未验证。

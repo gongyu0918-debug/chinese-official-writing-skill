@@ -1,0 +1,20 @@
+{
+  "status": "complete",
+  "original_clean_body_unchanged": true,
+  "record": {
+    "bootstrap_artifacts": true,
+    "bootstrapped_by_stop": true,
+    "bypass": null,
+    "data_retention_state": "raw_turn_data_redacted",
+    "delivery_verified": true,
+    "emit_seen": true,
+    "emitted_sha256": "c58996735777d9dc463d49ab90f30266b1b2732bb61c32810a8d832fdf75a752",
+    "hook_phase": "complete",
+    "last_action": "emit",
+    "raw_artifact_delete_failures": 0,
+    "run_id": "c9664b9e-8438-4157-9a4c-8a377f1e7671",
+    "schema_version": 1,
+    "skill_seen": true,
+    "stop_attempts": 2
+  }
+}

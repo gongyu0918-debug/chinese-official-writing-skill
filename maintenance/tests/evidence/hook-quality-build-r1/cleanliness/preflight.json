@@ -1,0 +1,10 @@
+{
+  "fixture_sha256": "afd32927200a4a3ed7bef461b1f0f01dd5904bec162caac08fe92515fe29725e",
+  "claude_version": "2.1.195 (Claude Code)",
+  "cli": "C:\\Users\\admin\\.local\\bin\\claude.EXE",
+  "models": {
+    "alibaba2": "alibaba-token-plan-2/deepseek-v4-flash-0731",
+    "minimax": "minimax-cn/MiniMax-M3"
+  },
+  "no_install": true
+}

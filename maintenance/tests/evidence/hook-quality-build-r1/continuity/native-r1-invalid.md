@@ -1,0 +1,1 @@
+Native R1 is INVALID for Hook efficacy: all Hook commands failed because the Windows relay path was escaped incorrectly. Five model replies are retained, but no core events occurred. No Skill read occurred with Read-only tools. R2 fixes only the harness path and permits the native Skill tool; it uses a fresh isolated session. No production change is admitted on R1.

@@ -1,0 +1,50 @@
+{
+  "case": {
+    "id": "NATIVE-MINUTES-R4-R5-PREFIX",
+    "kind": "native_real_D0_cleanliness_replay",
+    "provider": "alibaba2",
+    "request": "请把最新稿压缩到500字以内，保留事项、责任部门、期限和尚未作出决定的状态。已删除的演示不要恢复，直接发纪要正文。",
+    "d0": "以下正文约 500 字以内，建议事项（第二节）与会议决定（第三节）分别独立成节，主持人、参会名单等未提供的材料已在开篇据实注明，未作补全。\n\n---\n\n清源图书馆服务改进专题会议纪要\n\n2026年9月4日，清源图书馆召开服务改进专题会议，听取8月读者意见办理情况汇报，研究近期服务运行中需要改进的事项。主持人、参会人员和其他材料未提供。现将会议情况纪要如下。\n\n一、议题汇报情况\n\n业务部汇报了8月读者意见办理情况：8月共收到读者意见23条，截至会议召开已答复18条，另有5条需进一步核实后再行答复。\n\n二、建议事项\n\n会议听取了相关部门提出的工作建议。关于预约系统试点和周五开放时间调整，会议未作出决定，列入后续研究。\n\n（一）关于预约系统试点。信息部建议先在二楼阅览区开展预约系统试点，以积累运行经验。本次会议未就此作出决定，是否试点将结合馆舍条件、读者需求和运行成本等情况进一步评估后另行研究。\n\n（二）关于周五开放时间。综合部建议将周五闭馆时间延后半小时。本次会议未决定调整开放时间，将待综合部提交人员成本测算后再行研究。\n\n三、会议决定\n\n经会议研究，决定事项如下：\n\n（一）业务部于2026年9月13日前完成剩余5条读者意见的核实工作，并将核实情况报送馆内。\n\n（二）综合部于2026年9月15日前完成周五闭馆时间延后半小时的人员成本测算，并将测算结果报送馆内。会议明确，本次测算不构成新增预算承诺。\n\n（三）信息部于2026年9月16日前提交预约系统试点的技术条件说明，提交说明不表示已经批准试点。",
+    "expected": "清源图书馆服务改进专题会议纪要\n\n2026年9月4日，清源图书馆召开服务改进专题会议，听取8月读者意见办理情况汇报，研究近期服务运行中需要改进的事项。主持人、参会人员和其他材料未提供。现将会议情况纪要如下。\n\n一、议题汇报情况\n\n业务部汇报了8月读者意见办理情况：8月共收到读者意见23条，截至会议召开已答复18条，另有5条需进一步核实后再行答复。\n\n二、建议事项\n\n会议听取了相关部门提出的工作建议。关于预约系统试点和周五开放时间调整，会议未作出决定，列入后续研究。\n\n（一）关于预约系统试点。信息部建议先在二楼阅览区开展预约系统试点，以积累运行经验。本次会议未就此作出决定，是否试点将结合馆舍条件、读者需求和运行成本等情况进一步评估后另行研究。\n\n（二）关于周五开放时间。综合部建议将周五闭馆时间延后半小时。本次会议未决定调整开放时间，将待综合部提交人员成本测算后再行研究。\n\n三、会议决定\n\n经会议研究，决定事项如下：\n\n（一）业务部于2026年9月13日前完成剩余5条读者意见的核实工作，并将核实情况报送馆内。\n\n（二）综合部于2026年9月15日前完成周五闭馆时间延后半小时的人员成本测算，并将测算结果报送馆内。会议明确，本次测算不构成新增预算承诺。\n\n（三）信息部于2026年9月16日前提交预约系统试点的技术条件说明，提交说明不表示已经批准试点。",
+    "body": "清源图书馆服务改进专题会议纪要\n\n2026年9月4日，清源图书馆召开服务改进专题会议，听取8月读者意见办理情况汇报，研究近期服务运行中需要改进的事项。主持人、参会人员和其他材料未提供。现将会议情况纪要如下。\n\n一、议题汇报情况\n\n业务部汇报了8月读者意见办理情况：8月共收到读者意见23条，截至会议召开已答复18条，另有5条需进一步核实后再行答复。\n\n二、建议事项\n\n会议听取了相关部门提出的工作建议。关于预约系统试点和周五开放时间调整，会议未作出决定，列入后续研究。\n\n（一）关于预约系统试点。信息部建议先在二楼阅览区开展预约系统试点，以积累运行经验。本次会议未就此作出决定，是否试点将结合馆舍条件、读者需求和运行成本等情况进一步评估后另行研究。\n\n（二）关于周五开放时间。综合部建议将周五闭馆时间延后半小时。本次会议未决定调整开放时间，将待综合部提交人员成本测算后再行研究。\n\n三、会议决定\n\n经会议研究，决定事项如下：\n\n（一）业务部于2026年9月13日前完成剩余5条读者意见的核实工作，并将核实情况报送馆内。\n\n（二）综合部于2026年9月15日前完成周五闭馆时间延后半小时的人员成本测算，并将测算结果报送馆内。会议明确，本次测算不构成新增预算承诺。\n\n（三）信息部于2026年9月16日前提交预约系统试点的技术条件说明，提交说明不表示已经批准试点。",
+    "expected_method": "Delete first paragraph plus separator only. Oracle is never injected as a revision or verdict.",
+    "request_sha256": "dd4875114101a65a4b8238065f373984093177ec54b63291003af8cb949d45e3",
+    "d0_sha256": "17ad73b7212d42078beae4a3ebf11e131eb4de9d6cd0ebcd3c6e4e510a0f20ea",
+    "expected_sha256": "b0444fbb499f0717c9fddec1d6a3187cd7f954634c93727a03b3ea969a863740",
+    "body_sha256": "b0444fbb499f0717c9fddec1d6a3187cd7f954634c93727a03b3ea969a863740"
+  },
+  "source_proof": {
+    "source": "output\\hook-quality-build-r1\\continuity\\native-r4-minutes\\round-5",
+    "source_sha256": {
+      "stream.jsonl": "47efa938d2ac0c9c347928448ecb4ea70116977c2d868060aa56d7a9a5db0dde",
+      "invocation.json": "a9acf757797fe2afa54c638a73e10bc19eb1dbb3b6ab524112e75bb0d0fee2f6",
+      "final.txt": "3112b34d5cd0dc8fcbe1a48708c68c2d9cc743a6e2383c287106a9db8f0efd6f"
+    },
+    "native_result_count": 1,
+    "session_id": "19a8f3ac-6aa8-4767-8779-9674f118aac1",
+    "assistant_text_sha256": [
+      "17ad73b7212d42078beae4a3ebf11e131eb4de9d6cd0ebcd3c6e4e510a0f20ea",
+      "9564a8ea969aaedf380ac195b8b7fbee3f7ee6e8c722d53f1c36d5af299e7cc4",
+      "3f55e51bb8dc2f75654eb044c344bcfefa593e33ed66ea4d4c978693e428579b",
+      "17ad73b7212d42078beae4a3ebf11e131eb4de9d6cd0ebcd3c6e4e510a0f20ea"
+    ],
+    "result_matches_assistant_D0": true,
+    "result_matches_final_file": true,
+    "removed_prefix": "以下正文约 500 字以内，建议事项（第二节）与会议决定（第三节）分别独立成节，主持人、参会名单等未提供的材料已在开篇据实注明，未作补全。",
+    "counts_nonspace": {
+      "d0": 626,
+      "body": 556
+    }
+  },
+  "models": {
+    "alibaba2": "alibaba-token-plan-2/deepseek-v4-flash-0731"
+  },
+  "max_continuations_per_case": 4,
+  "call_timeout_seconds": 180,
+  "retry_count": 0,
+  "runtime_sha256": "9b2988d00ba341a708a04f661f3fae1afd6a5e1510e1a017304ea10da783824c",
+  "helper_sha256": "e94019a61de89eb00ca311fbc5f195d2392d70948a3f3cc7a522c94b31150c6e",
+  "cli_helper_sha256": "a8b3b0fe4157a40cf2b801fa6e86a1c3eb5cecddc002dc03354ed48b6be79e90",
+  "method": "Native real D0 source; current cleanliness runtime driven with real isolated no-tool replies. This new cleanup replay is not a native Hook run.",
+  "acceptance": "Revision, real verdict, selected D1 and actual final must match original body bytes; original body length/factual problems are outside this cleanup target."
+}

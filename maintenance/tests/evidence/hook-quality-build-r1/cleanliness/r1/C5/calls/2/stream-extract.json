@@ -1,0 +1,64 @@
+{
+  "original_stream_sha256": "52004b57bb0e2b5b4b5b153cc4edd70802551c56bf780aae7cb7e6d7f846d0ab",
+  "original_stream_bytes": 5365,
+  "extraction": "Only actual init/result records; selected fields retain original values. No assistant/thinking/system counters, local cwd or auth-source metadata. Exact final result is also in reply.txt. Full original retained in output.",
+  "records": [
+    {
+      "type": "system",
+      "subtype": "init",
+      "session_id": "7882a1ee-a558-41c9-8478-cb71bb8f0c58",
+      "tools": [],
+      "mcp_servers": [],
+      "model": "alibaba-token-plan-2/deepseek-v4-flash-0731",
+      "permissionMode": "dontAsk",
+      "slash_commands": [],
+      "claude_code_version": "2.1.195",
+      "skills": [],
+      "plugins": []
+    },
+    {
+      "type": "result",
+      "subtype": "success",
+      "is_error": false,
+      "api_error_status": null,
+      "duration_ms": 1952,
+      "num_turns": 1,
+      "result": "# 工作简报\n\n## 一、工作进展\n\n本周完成系统巡检2次，发现并处理配置问题1项。\n\n## 二、下一步安排\n\n下周继续按计划开展系统巡检。",
+      "stop_reason": "end_turn",
+      "session_id": "7882a1ee-a558-41c9-8478-cb71bb8f0c58",
+      "total_cost_usd": 0.01093,
+      "usage": {
+        "input_tokens": 1776,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0,
+        "output_tokens": 82,
+        "server_tool_use": {
+          "web_search_requests": 0,
+          "web_fetch_requests": 0
+        },
+        "service_tier": "standard",
+        "cache_creation": {
+          "ephemeral_1h_input_tokens": 0,
+          "ephemeral_5m_input_tokens": 0
+        },
+        "inference_geo": "",
+        "iterations": [],
+        "speed": "standard"
+      },
+      "modelUsage": {
+        "alibaba-token-plan-2/deepseek-v4-flash-0731": {
+          "inputTokens": 1776,
+          "outputTokens": 82,
+          "cacheReadInputTokens": 0,
+          "cacheCreationInputTokens": 0,
+          "webSearchRequests": 0,
+          "costUSD": 0.01093,
+          "contextWindow": 200000,
+          "maxOutputTokens": 32000
+        }
+      },
+      "permission_denials": [],
+      "terminal_reason": "completed"
+    }
+  ]
+}

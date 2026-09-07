@@ -1,0 +1,29 @@
+{
+  "case": "M6-CLEAN-BODY-400",
+  "request": "请把这份纪要压到400字以内，保留全部事实、责任、期限和未决状态，只输出完整正文。",
+  "request_sha256": "ff27d67ab1d14f06debcb2c2ad0dc964aae4ae4dcb215a67f76deac4a6606c54",
+  "d0": "清源图书馆服务改进专题会议纪要\n\n时间：2026年9月4日\n地点：清源图书馆\n\n2026年9月4日，清源图书馆召开服务改进专题会议，听取业务部、信息部、综合部近期工作情况汇报，就读者意见办理、预约系统试点、开放时间调整等事项进行了研究。现纪要如下。\n\n一、读者意见办理情况\n业务部通报，2026年8月共受理读者意见23条，已答复18条；其余5条需进一步核实后，再行答复读者。\n\n二、有关建议（本次会议未予决议）\n（一）信息部建议，拟在二楼阅览区开展预约系统试点运行，以检验系统稳定性及读者使用情况。\n（二）综合部建议，将周五闭馆时间延后半小时；调整方案需先核算人员成本。\n\n三、会议议定事项\n（一）由业务部于2026年9月13日前完成剩余5条意见核实，并报送本馆。\n（二）由综合部于2026年9月15日前完成周五延后闭馆人员成本测算，并报送本馆；本次测算不作新增预算承诺。\n（三）预约系统本次会议未予部署。\n（四）由信息部于2026年9月16日前提交预约系统试点技术条件说明；提交说明不表示已批准试点。\n\n清源图书馆\n2026年9月4日",
+  "d0_sha256": "761c588587bbf7831d5072059a813f07460ef2bb843f31f1471db0fcf23eacc4",
+  "d0_count": 447,
+  "maximum": 400,
+  "original_M6_request_reused": false,
+  "source_path": "output\\hook-quality-build-r1\\cleanliness\\r2-full\\M6",
+  "source_result_sha256": "c7cbfdfe15e4c0e90459e91053318f02dbd5120bff95a7f59abeb05cd1867ccd",
+  "frozen_sha256": {
+    "baseline": {
+      "chinese-official-writing/hooks/capabilities/over_length/runtime.py": "2857ca4f6e541f4ca60927cd529e9e3c2d659c7c827dc120c7a94695f3095a72",
+      "chinese-official-writing/scripts/review_gate.py": "ffe66ece91e15231d3bbbf8122091ecd00e05580bd2e9317b864b7ada5f0ad19",
+      "chinese-official-writing/hooks/capabilities/protective_expansion/contract.py": "a31c4d926b3da89acfa785da37671b860eb0acb38c9a2fe390dc15f508dd3af6",
+      "chinese-official-writing/hooks/shared/hard_anchors.py": "a563fe3bb8813e30a36bfb3b6657549abdb630bde839b45d190e3dbe9068fad9"
+    },
+    "candidate": {
+      "chinese-official-writing/hooks/capabilities/over_length/runtime.py": "08e47573c2341b39a4906bd33a82aad257d0d63fff74be69c6d9f80ba89acff8",
+      "chinese-official-writing/scripts/review_gate.py": "dd05c6794fb432f4198bb73456c23979e665e0e639f8fb44d24cea395d548d4a",
+      "chinese-official-writing/hooks/capabilities/protective_expansion/contract.py": "a31c4d926b3da89acfa785da37671b860eb0acb38c9a2fe390dc15f508dd3af6",
+      "chinese-official-writing/hooks/shared/hard_anchors.py": "a563fe3bb8813e30a36bfb3b6657549abdb630bde839b45d190e3dbe9068fad9"
+    }
+  },
+  "model": "minimax-cn/MiniMax-M3",
+  "retry_count": 0,
+  "method": "Explicit new 400-char request on the verified cleanliness D1; offline capability runtime with real no-tool CLI continuations. Not the original M6 request or a native host Hook."
+}

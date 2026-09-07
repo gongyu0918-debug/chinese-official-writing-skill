@@ -1,0 +1,61 @@
+{
+  "source_sha256": "27212fcce6a91a305ab52331081c0cad51d158546863810779439a5b7f3996cc",
+  "results": [
+    {
+      "id": "ended-task-temp-cleanup",
+      "synthetic_offline_only": true,
+      "transcript_sha256": "fbf41f82eece553d0bf375e79ccee839eabe472755947e5dd36a661f187deffc",
+      "current": "这个任务已经结束，请删掉刚才的临时文件。",
+      "is_revision": false,
+      "recovered": false,
+      "turn_count": null,
+      "assistant_as_fact": false,
+      "source_sha256": null
+    },
+    {
+      "id": "failed-read",
+      "synthetic_offline_only": true,
+      "transcript_sha256": "736c86aa131fa322a24e2ee111107ab8aa31a06d9685b0b9a4c84eb87907557e",
+      "current": "这个任务已经结束，请删掉刚才的临时文件。",
+      "is_revision": false,
+      "recovered": false,
+      "turn_count": null,
+      "assistant_as_fact": false,
+      "source_sha256": null
+    },
+    {
+      "id": "other-session",
+      "synthetic_offline_only": true,
+      "transcript_sha256": "a0ee67fa8409f6a37c83a416e1ff9aa8055a5b12806bba88de6ac2d7f09d4cfd",
+      "current": "这个任务已经结束，请删掉刚才的临时文件。",
+      "is_revision": false,
+      "recovered": false,
+      "turn_count": null,
+      "assistant_as_fact": false,
+      "source_sha256": null
+    },
+    {
+      "id": "echo-path-is-not-read",
+      "synthetic_offline_only": true,
+      "transcript_sha256": "848ba8059a345570156e225a5e7b39023f82cca7c4d0bd8ca4a224f2d6c87196",
+      "current": "这个任务已经结束，请删掉刚才的临时文件。",
+      "is_revision": false,
+      "recovered": false,
+      "turn_count": null,
+      "assistant_as_fact": false,
+      "source_sha256": null
+    },
+    {
+      "id": "legitimate-post-final-correction",
+      "synthetic_offline_only": true,
+      "transcript_sha256": "cb73938c412dfe0a64f9f662abc49829293bc01d1276b18d143994a46f0541cb",
+      "current": "刚才的报告已定稿，但请把其中日期更正为9月9日，其他内容保留。",
+      "is_revision": true,
+      "recovered": true,
+      "turn_count": 2,
+      "assistant_as_fact": false,
+      "source_sha256": "69676db29cff7aa233045ea01bfbe24cb684aa0ba001250cd043c698d90ed15a"
+    }
+  ],
+  "note": "All transcript fixtures synthetic, no actual model/tool execution and no native-error rate inference. Parent is editing current canonical concurrently; this snapshot is the reviewed exact source."
+}

@@ -1,0 +1,547 @@
+{
+  "status": "HOLD_NO_VERIFIED_DELIVERY_AND_REVIEW_QUESTION_BOUNDARY",
+  "baseline_commit": "b77f6381438c8fa01f8576c205d13af4b8a987fd",
+  "method": "Offline capability runtime dispatch with real no-tool CLI continuations; historical D0, not native host Hook or newly generated D0.",
+  "fixture_sha256": "5b21d413fad1fde6588ce32445ab2308878f0f8ad9eadfe2e7cdc14074128133",
+  "providers": [
+    {
+      "provider": "alibaba2",
+      "model": "alibaba-token-plan-2/deepseek-v4-flash-0731",
+      "d0_count": 579,
+      "candidate_count": 399,
+      "candidate_sha256": "d1305af5f19a13aaabc5e351d9d7249a90f764f9310101d4cfc70a3d51f24259",
+      "initial_selection_reason": "over_length_number_added_dropped_or_changed",
+      "selection": "D0",
+      "actual_final_count": 447,
+      "actual_final_sha256": "761c588587bbf7831d5072059a813f07460ef2bb843f31f1471db0fcf23eacc4",
+      "delivery_verified": false,
+      "terminal_phase": "over_length_technical_failure",
+      "runtime_response": {
+        "continue": true
+      },
+      "semantic_verdict_calls": 0,
+      "calls": [
+        {
+          "phase": "over_length_awaiting_repetition_observation",
+          "technical_valid": true,
+          "seconds": 110.953,
+          "usage_reports": [
+            {
+              "usage": {
+                "input_tokens": 8355,
+                "cache_creation_input_tokens": 0,
+                "cache_read_input_tokens": 0,
+                "output_tokens": 10719,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [],
+                "speed": "standard"
+              },
+              "modelUsage": {
+                "alibaba-token-plan-2/deepseek-v4-flash-0731": {
+                  "inputTokens": 15366,
+                  "outputTokens": 11012,
+                  "cacheReadInputTokens": 0,
+                  "cacheCreationInputTokens": 0,
+                  "webSearchRequests": 0,
+                  "costUSD": 0.35212999999999994,
+                  "contextWindow": 200000,
+                  "maxOutputTokens": 32000
+                }
+              },
+              "total_cost_usd": 0.35212999999999994,
+              "duration_ms": 109994
+            }
+          ],
+          "init_models": [
+            "alibaba-token-plan-2/deepseek-v4-flash-0731"
+          ],
+          "assistant_models": [
+            "alibaba-token-plan-2/deepseek-v4-flash-0731"
+          ],
+          "usage_models": [
+            "alibaba-token-plan-2/deepseek-v4-flash-0731"
+          ],
+          "inventory": [
+            {
+              "tools": [],
+              "mcp_servers": [],
+              "skills": [],
+              "plugins": []
+            }
+          ]
+        },
+        {
+          "phase": "over_length_awaiting_revision",
+          "technical_valid": true,
+          "seconds": 88.14,
+          "usage_reports": [
+            {
+              "usage": {
+                "input_tokens": 2901,
+                "cache_creation_input_tokens": 0,
+                "cache_read_input_tokens": 0,
+                "output_tokens": 10502,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [],
+                "speed": "standard"
+              },
+              "modelUsage": {
+                "alibaba-token-plan-2/deepseek-v4-flash-0731": {
+                  "inputTokens": 4464,
+                  "outputTokens": 10676,
+                  "cacheReadInputTokens": 0,
+                  "cacheCreationInputTokens": 0,
+                  "webSearchRequests": 0,
+                  "costUSD": 0.28922,
+                  "contextWindow": 200000,
+                  "maxOutputTokens": 32000
+                }
+              },
+              "total_cost_usd": 0.28922,
+              "duration_ms": 87197
+            }
+          ],
+          "init_models": [
+            "alibaba-token-plan-2/deepseek-v4-flash-0731"
+          ],
+          "assistant_models": [
+            "alibaba-token-plan-2/deepseek-v4-flash-0731"
+          ],
+          "usage_models": [
+            "alibaba-token-plan-2/deepseek-v4-flash-0731"
+          ],
+          "inventory": [
+            {
+              "tools": [],
+              "mcp_servers": [],
+              "skills": [],
+              "plugins": []
+            }
+          ]
+        },
+        {
+          "phase": "over_length_awaiting_output",
+          "technical_valid": true,
+          "seconds": 10.406,
+          "usage_reports": [
+            {
+              "usage": {
+                "input_tokens": 2209,
+                "cache_creation_input_tokens": 0,
+                "cache_read_input_tokens": 0,
+                "output_tokens": 1043,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [],
+                "speed": "standard"
+              },
+              "modelUsage": {
+                "alibaba-token-plan-2/deepseek-v4-flash-0731": {
+                  "inputTokens": 3082,
+                  "outputTokens": 1377,
+                  "cacheReadInputTokens": 0,
+                  "cacheCreationInputTokens": 0,
+                  "webSearchRequests": 0,
+                  "costUSD": 0.049835000000000004,
+                  "contextWindow": 200000,
+                  "maxOutputTokens": 32000
+                }
+              },
+              "total_cost_usd": 0.049835000000000004,
+              "duration_ms": 9337
+            }
+          ],
+          "init_models": [
+            "alibaba-token-plan-2/deepseek-v4-flash-0731"
+          ],
+          "assistant_models": [
+            "alibaba-token-plan-2/deepseek-v4-flash-0731"
+          ],
+          "usage_models": [
+            "alibaba-token-plan-2/deepseek-v4-flash-0731"
+          ],
+          "inventory": [
+            {
+              "tools": [],
+              "mcp_servers": [],
+              "skills": [],
+              "plugins": []
+            }
+          ]
+        },
+        {
+          "phase": "over_length_awaiting_output",
+          "technical_valid": true,
+          "seconds": 6.531,
+          "usage_reports": [
+            {
+              "usage": {
+                "input_tokens": 2208,
+                "cache_creation_input_tokens": 0,
+                "cache_read_input_tokens": 0,
+                "output_tokens": 523,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [],
+                "speed": "standard"
+              },
+              "modelUsage": {
+                "alibaba-token-plan-2/deepseek-v4-flash-0731": {
+                  "inputTokens": 3080,
+                  "outputTokens": 682,
+                  "cacheReadInputTokens": 0,
+                  "cacheCreationInputTokens": 0,
+                  "webSearchRequests": 0,
+                  "costUSD": 0.03244999999999999,
+                  "contextWindow": 200000,
+                  "maxOutputTokens": 32000
+                }
+              },
+              "total_cost_usd": 0.03244999999999999,
+              "duration_ms": 5446
+            }
+          ],
+          "init_models": [
+            "alibaba-token-plan-2/deepseek-v4-flash-0731"
+          ],
+          "assistant_models": [
+            "alibaba-token-plan-2/deepseek-v4-flash-0731"
+          ],
+          "usage_models": [
+            "alibaba-token-plan-2/deepseek-v4-flash-0731"
+          ],
+          "inventory": [
+            {
+              "tools": [],
+              "mcp_servers": [],
+              "skills": [],
+              "plugins": []
+            }
+          ]
+        }
+      ],
+      "human_review": {
+        "scope": "Only change relative to frozen D0 document body, not full original source correctness.",
+        "business_facts_retained": true,
+        "departments_deadlines_undecided_states_retained": true,
+        "demo_not_restored": true,
+        "direct_body": true,
+        "unsupported_D0_location_retained": true,
+        "full_loop_pass": false
+      }
+    },
+    {
+      "provider": "minimax",
+      "model": "minimax-cn/MiniMax-M3",
+      "d0_count": 579,
+      "candidate_count": 427,
+      "candidate_sha256": "3305801219fea03b6227808897a6e2f335f4f76572a54153aaa9a3ba90e2a2a3",
+      "initial_selection_reason": "over_length_number_added_dropped_or_changed",
+      "selection": "D0",
+      "actual_final_count": 447,
+      "actual_final_sha256": "761c588587bbf7831d5072059a813f07460ef2bb843f31f1471db0fcf23eacc4",
+      "delivery_verified": false,
+      "terminal_phase": "over_length_technical_failure",
+      "runtime_response": {
+        "continue": true
+      },
+      "semantic_verdict_calls": 0,
+      "calls": [
+        {
+          "phase": "over_length_awaiting_repetition_observation",
+          "technical_valid": true,
+          "seconds": 49.515,
+          "usage_reports": [
+            {
+              "usage": {
+                "input_tokens": 7587,
+                "cache_creation_input_tokens": 0,
+                "cache_read_input_tokens": 512,
+                "output_tokens": 2979,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [],
+                "speed": "standard"
+              },
+              "modelUsage": {
+                "minimax-cn/MiniMax-M3": {
+                  "inputTokens": 14157,
+                  "outputTokens": 3276,
+                  "cacheReadInputTokens": 768,
+                  "cacheCreationInputTokens": 0,
+                  "webSearchRequests": 0,
+                  "costUSD": 0.153069,
+                  "contextWindow": 200000,
+                  "maxOutputTokens": 32000
+                }
+              },
+              "total_cost_usd": 0.153069,
+              "duration_ms": 48595
+            }
+          ],
+          "init_models": [
+            "minimax-cn/MiniMax-M3"
+          ],
+          "assistant_models": [
+            "minimax-cn/MiniMax-M3"
+          ],
+          "usage_models": [
+            "minimax-cn/MiniMax-M3"
+          ],
+          "inventory": [
+            {
+              "tools": [],
+              "mcp_servers": [],
+              "skills": [],
+              "plugins": []
+            }
+          ]
+        },
+        {
+          "phase": "over_length_awaiting_revision",
+          "technical_valid": true,
+          "seconds": 83.766,
+          "usage_reports": [
+            {
+              "usage": {
+                "input_tokens": 2649,
+                "cache_creation_input_tokens": 0,
+                "cache_read_input_tokens": 128,
+                "output_tokens": 13656,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [],
+                "speed": "standard"
+              },
+              "modelUsage": {
+                "minimax-cn/MiniMax-M3": {
+                  "inputTokens": 4031,
+                  "outputTokens": 13792,
+                  "cacheReadInputTokens": 256,
+                  "cacheCreationInputTokens": 0,
+                  "webSearchRequests": 0,
+                  "costUSD": 0.365083,
+                  "contextWindow": 200000,
+                  "maxOutputTokens": 32000
+                }
+              },
+              "total_cost_usd": 0.365083,
+              "duration_ms": 82856
+            }
+          ],
+          "init_models": [
+            "minimax-cn/MiniMax-M3"
+          ],
+          "assistant_models": [
+            "minimax-cn/MiniMax-M3"
+          ],
+          "usage_models": [
+            "minimax-cn/MiniMax-M3"
+          ],
+          "inventory": [
+            {
+              "tools": [],
+              "mcp_servers": [],
+              "skills": [],
+              "plugins": []
+            }
+          ]
+        },
+        {
+          "phase": "over_length_awaiting_output",
+          "technical_valid": true,
+          "seconds": 5.844,
+          "usage_reports": [
+            {
+              "usage": {
+                "input_tokens": 1660,
+                "cache_creation_input_tokens": 0,
+                "cache_read_input_tokens": 512,
+                "output_tokens": 333,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [],
+                "speed": "standard"
+              },
+              "modelUsage": {
+                "minimax-cn/MiniMax-M3": {
+                  "inputTokens": 2309,
+                  "outputTokens": 510,
+                  "cacheReadInputTokens": 768,
+                  "cacheCreationInputTokens": 0,
+                  "webSearchRequests": 0,
+                  "costUSD": 0.024679,
+                  "contextWindow": 200000,
+                  "maxOutputTokens": 32000
+                }
+              },
+              "total_cost_usd": 0.024679,
+              "duration_ms": 4807
+            }
+          ],
+          "init_models": [
+            "minimax-cn/MiniMax-M3"
+          ],
+          "assistant_models": [
+            "minimax-cn/MiniMax-M3"
+          ],
+          "usage_models": [
+            "minimax-cn/MiniMax-M3"
+          ],
+          "inventory": [
+            {
+              "tools": [],
+              "mcp_servers": [],
+              "skills": [],
+              "plugins": []
+            }
+          ]
+        },
+        {
+          "phase": "over_length_awaiting_output",
+          "technical_valid": true,
+          "seconds": 5.312,
+          "usage_reports": [
+            {
+              "usage": {
+                "input_tokens": 1659,
+                "cache_creation_input_tokens": 0,
+                "cache_read_input_tokens": 512,
+                "output_tokens": 303,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [],
+                "speed": "standard"
+              },
+              "modelUsage": {
+                "minimax-cn/MiniMax-M3": {
+                  "inputTokens": 1659,
+                  "outputTokens": 303,
+                  "cacheReadInputTokens": 512,
+                  "cacheCreationInputTokens": 0,
+                  "webSearchRequests": 0,
+                  "costUSD": 0.016126,
+                  "contextWindow": 200000,
+                  "maxOutputTokens": 32000
+                }
+              },
+              "total_cost_usd": 0.016126,
+              "duration_ms": 4257
+            }
+          ],
+          "init_models": [
+            "minimax-cn/MiniMax-M3"
+          ],
+          "assistant_models": [
+            "minimax-cn/MiniMax-M3"
+          ],
+          "usage_models": [
+            "minimax-cn/MiniMax-M3"
+          ],
+          "inventory": [
+            {
+              "tools": [],
+              "mcp_servers": [],
+              "skills": [],
+              "plugins": []
+            }
+          ]
+        }
+      ],
+      "human_review": {
+        "scope": "Only change relative to frozen D0 document body, not full original source correctness.",
+        "business_facts_retained": true,
+        "departments_deadlines_undecided_states_retained": true,
+        "demo_not_restored": true,
+        "direct_body": true,
+        "unsupported_D0_location_retained": true,
+        "full_loop_pass": false
+      }
+    }
+  ],
+  "calls": 8,
+  "technical_valid_calls": 8,
+  "retry_count": 0,
+  "P6": {
+    "maximum": 700,
+    "count": 755,
+    "trigger_ceiling": 770,
+    "triggered_baseline": false,
+    "triggered_candidate": false
+  },
+  "control_result": {
+    "passed": 11,
+    "failed": 1
+  },
+  "existing_unit_result": {
+    "command": "python -B -m unittest maintenance.tests.test_over_length_capability.OverLengthCapabilityTests.test_trigger_requires_more_than_ten_percent_over maintenance.tests.test_over_length_capability.OverLengthCapabilityTests.test_range_and_material_mentions_are_distinguished maintenance.tests.test_review_gate.ReviewGateTests.test_existing_length_violation_may_improve_without_becoming_compliant",
+    "passed": 3,
+    "seconds": 0.01
+  }
+}

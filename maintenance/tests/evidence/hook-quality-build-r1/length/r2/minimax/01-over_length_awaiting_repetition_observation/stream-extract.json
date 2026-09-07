@@ -1,0 +1,105 @@
+{
+  "original_stream_path": "output/hook-quality-build-r1/length/r2/minimax/01-over_length_awaiting_repetition_observation/stream.jsonl",
+  "original_stream_sha256": "a0faffa7d4bff241af9ca893a10347d38fd0a125a18b636b2a4d00805efd130b",
+  "original_stream_bytes": 32244,
+  "original_record_count": 136,
+  "extraction": "Derived archive: exact selected init/result fields, assistant text and tool blocks, user continuation/tool-result blocks, and Hook lifecycle responses. Thinking blocks, thinking counters, local cwd and auth-source metadata omitted. No missing result is synthesized. Full original retained under output and verified byte-for-byte before removing archive copy. Records carry one-based original line numbers.",
+  "discarded_record_counts": {
+    "system:thinking_tokens": 132,
+    "empty_after_thinking_removal": 1
+  },
+  "records": [
+    {
+      "original_line": 1,
+      "record": {
+        "type": "system",
+        "subtype": "init",
+        "session_id": "48d1d632-74ff-4abb-ac1b-b1669c73564f",
+        "tools": [],
+        "mcp_servers": [],
+        "model": "minimax-cn/MiniMax-M3",
+        "permissionMode": "dontAsk",
+        "slash_commands": [],
+        "claude_code_version": "2.1.195",
+        "skills": [],
+        "plugins": [],
+        "output_style": "default"
+      }
+    },
+    {
+      "original_line": 135,
+      "record": {
+        "type": "assistant",
+        "parent_tool_use_id": null,
+        "session_id": "48d1d632-74ff-4abb-ac1b-b1669c73564f",
+        "uuid": "01fef504-260e-42be-b081-fe2150e2cb47",
+        "message": {
+          "id": "msg_58a7fac589ba429dae58cb6fb26d9c60",
+          "type": "message",
+          "role": "assistant",
+          "model": "minimax-cn/MiniMax-M3",
+          "stop_reason": null,
+          "stop_sequence": null,
+          "usage": {
+            "input_tokens": 0,
+            "output_tokens": 0
+          },
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"schema_version\": 1, \"packet_sha256\": \"4daab2d6f37f719d17ac112d93c1d3bff48e03e29514c728e0dd1c2c0e72af43\", \"request_sha256\": \"ff27d67ab1d14f06debcb2c2ad0dc964aae4ae4dcb215a67f76deac4a6606c54\", \"draft_sha256\": \"761c588587bbf7831d5072059a813f07460ef2bb843f31f1471db0fcf23eacc4\", \"decision\": \"CLEAR\", \"selections\": []}"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "original_line": 136,
+      "record": {
+        "type": "result",
+        "subtype": "success",
+        "is_error": false,
+        "api_error_status": null,
+        "duration_ms": 14010,
+        "duration_api_ms": 16196,
+        "num_turns": 1,
+        "result": "{\"schema_version\": 1, \"packet_sha256\": \"4daab2d6f37f719d17ac112d93c1d3bff48e03e29514c728e0dd1c2c0e72af43\", \"request_sha256\": \"ff27d67ab1d14f06debcb2c2ad0dc964aae4ae4dcb215a67f76deac4a6606c54\", \"draft_sha256\": \"761c588587bbf7831d5072059a813f07460ef2bb843f31f1471db0fcf23eacc4\", \"decision\": \"CLEAR\", \"selections\": []}",
+        "stop_reason": "end_turn",
+        "session_id": "48d1d632-74ff-4abb-ac1b-b1669c73564f",
+        "total_cost_usd": 0.084053,
+        "usage": {
+          "input_tokens": 6493,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 512,
+          "output_tokens": 854,
+          "server_tool_use": {
+            "web_search_requests": 0,
+            "web_fetch_requests": 0
+          },
+          "service_tier": "standard",
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "inference_geo": "",
+          "iterations": [],
+          "speed": "standard"
+        },
+        "modelUsage": {
+          "minimax-cn/MiniMax-M3": {
+            "inputTokens": 11963,
+            "outputTokens": 957,
+            "cacheReadInputTokens": 626,
+            "cacheCreationInputTokens": 0,
+            "webSearchRequests": 0,
+            "costUSD": 0.084053,
+            "contextWindow": 200000,
+            "maxOutputTokens": 32000
+          }
+        },
+        "permission_denials": [],
+        "terminal_reason": "completed"
+      }
+    }
+  ]
+}

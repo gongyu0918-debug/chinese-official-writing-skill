@@ -1,0 +1,372 @@
+{
+  "schema_version": 1,
+  "review_scope": "native-r2 five report versions; supplied event/final/cases artifacts plus current core/shared/Claude diff. No other chains, new models, product modifications or host matrix.",
+  "base_commit": "b77f6381438c8fa01f8576c205d13af4b8a987fd",
+  "sources_sha256": {
+    "maintenance/tests/evidence/natural-writing-stability-r1/cases.json": "874e1fbdcd0f08e53455461c040bda222508cfdf482abeb1d7d22b6d294eff1e",
+    "output/hook-quality-build-r1/continuity/revision_context.py": "657fcee14008676da338cc296a02fd84b047eace07da04b3503ae214d5470885",
+    "output/hook-quality-build-r1/continuity/independent-review/revision_context-reviewed.py": "27212fcce6a91a305ab52331081c0cad51d158546863810779439a5b7f3996cc",
+    "chinese-official-writing/hooks/core/gate_stop_hook.py": "c072bd17f48b178724feefc75248a13e1e77da61b901ed358273cb871d700bba",
+    "chinese-official-writing/hooks/adapters/claude-code/gate_stop_hook.py": "ec180bb1e6e67c9e5a7ee18d6fcb4915db23b743c367de9ae94ddc3a49dcf663"
+  },
+  "participation_summary": {
+    "followup_versions_entered": 4,
+    "followup_versions_expected": 4,
+    "host_session_count": 1,
+    "all5_final_text_equal_same_version_D0": true,
+    "same_D0_hook_added_body_facts_or_states": 0,
+    "same_D0_quality_improvement_observed": 0,
+    "proof": "Entry and user-source binding only, not correction success or population reliability."
+  },
+  "rounds": [
+    {
+      "round": 1,
+      "actual_request_sha256": "1ce6fae253a2286257b33dbf699d7d032d7de717734acbf3f3c03240337e93a0",
+      "fixture_request_sha256": "7c1b82c6045ac89e453171170783de0b6dfe1040da243ea99fc934c896ef10fc",
+      "request_equal_after_CRLF_to_LF": true,
+      "user_event": "b1533e0d6c7d4fe28c46e59bd7ce22b2.json",
+      "stop_events": [
+        {
+          "file": "f53c2a7a4d384c8298c8b0a2fe44f2eb.json",
+          "sha256": "e6a9ad7fb5d39f19a2c3cd9af902f4d76f713d376036e4990da66e414f466dde",
+          "phase": "awaiting_repair",
+          "action": "detect",
+          "response": {
+            "decision": "block"
+          }
+        },
+        {
+          "file": "3b84869c8be54f0ea380b2ca634b15a6.json",
+          "sha256": "6168c0f22d6e845ca30b76091b8636fe0bdbc45ebeacea7c33cd306875881cb5",
+          "phase": "awaiting_final_output",
+          "action": "emit",
+          "response": {
+            "decision": "block"
+          }
+        },
+        {
+          "file": "d81fae6e12e64be7b9e51f8c05f5c077.json",
+          "sha256": "7fa55fd2bf486e18d063a6d3c2d3a4c5299c5d679688753a7516bbcf8f23759b",
+          "phase": "complete",
+          "action": "emit",
+          "response": {
+            "continue": true
+          }
+        }
+      ],
+      "participated": true,
+      "revision_source_turn_count": null,
+      "source_sha256": null,
+      "source_equals_ordered_actual_user_requests": true,
+      "d0_text_sha256": "a23df334a9c703e16a25d49ed2039d15df8a2dfcb31bd241aeb4a71e97bc175d",
+      "final_text_sha256": "a23df334a9c703e16a25d49ed2039d15df8a2dfcb31bd241aeb4a71e97bc175d",
+      "final_file_raw_sha256": "b6d5dda2aa7539d29f5d738ea4bc53cd96e7f0b34d5175dca33226db5f2b646d",
+      "terminal_selected_sha256": "a23df334a9c703e16a25d49ed2039d15df8a2dfcb31bd241aeb4a71e97bc175d",
+      "body_change_by_hook": false,
+      "final_nonspace_characters_title_included": 993,
+      "complete_body_only": true
+    },
+    {
+      "round": 2,
+      "actual_request_sha256": "696a1d2260590ff0fe641c1c0a1284ea5081757af396eb72359e1090c0cf019b",
+      "fixture_request_sha256": "696a1d2260590ff0fe641c1c0a1284ea5081757af396eb72359e1090c0cf019b",
+      "request_equal_after_CRLF_to_LF": true,
+      "user_event": "54c4b4da05fd4ef1b5b148640c3c59c0.json",
+      "stop_events": [
+        {
+          "file": "7e5d62a852784784affe353571d53789.json",
+          "sha256": "375ac82f77efaa00f51bbf61c712c3102b782baa594ad0e4c48b12cb8f603318",
+          "phase": "awaiting_repair",
+          "action": "detect",
+          "response": {
+            "decision": "block"
+          }
+        },
+        {
+          "file": "8b29b60a44d64aafae4c73148502daac.json",
+          "sha256": "0d05890960cc06e4e5c31819589877bba0ebc43be3396a0a845b62a7f1d20522",
+          "phase": "awaiting_final_output",
+          "action": "emit",
+          "response": {
+            "decision": "block"
+          }
+        },
+        {
+          "file": "6e1b0fca8bd4403d85e9c35876f75454.json",
+          "sha256": "b5134820f6f29d1cb0ea05c6338fe2b2684844546f93a30fcf1ae691180aea17",
+          "phase": "complete",
+          "action": "emit",
+          "response": {
+            "continue": true
+          }
+        }
+      ],
+      "participated": true,
+      "revision_source_turn_count": 2,
+      "source_sha256": "c59e3b7208bb7fab83235181a370959379f17e06c4b79d91b6f7935db09a6267",
+      "source_equals_ordered_actual_user_requests": true,
+      "d0_text_sha256": "d7c772697fa27c6210cc82d65c12a3b2fe450c34d76cd5844ff9f712fb62be13",
+      "final_text_sha256": "d7c772697fa27c6210cc82d65c12a3b2fe450c34d76cd5844ff9f712fb62be13",
+      "final_file_raw_sha256": "a23a07bd7a73c356314807e50a49fda1f46020d98c46286fcd520aa171572fa1",
+      "terminal_selected_sha256": "d7c772697fa27c6210cc82d65c12a3b2fe450c34d76cd5844ff9f712fb62be13",
+      "body_change_by_hook": false,
+      "final_nonspace_characters_title_included": 1048,
+      "complete_body_only": true
+    },
+    {
+      "round": 3,
+      "actual_request_sha256": "cb5009c5018f43c5a0efedf47c7b616bc5d0ce0465493871c1bb20a000cad793",
+      "fixture_request_sha256": "cb5009c5018f43c5a0efedf47c7b616bc5d0ce0465493871c1bb20a000cad793",
+      "request_equal_after_CRLF_to_LF": true,
+      "user_event": "61ca1cf6f6f441c3b26adb7b035092f7.json",
+      "stop_events": [
+        {
+          "file": "68e702fea53148bb8838aee83b1b32d2.json",
+          "sha256": "03d1665e9036d7c499135a638d2e858cc78932f1d83f32cd72a5fbe7aeb19b02",
+          "phase": "awaiting_repair",
+          "action": "detect",
+          "response": {
+            "decision": "block"
+          }
+        },
+        {
+          "file": "3370e329123b48e3b9d97bc975f49112.json",
+          "sha256": "f08ac1d70732b641c1bf81e3920c5fba913354375bd5e91e017ff897448a063b",
+          "phase": "awaiting_final_output",
+          "action": "emit",
+          "response": {
+            "decision": "block"
+          }
+        },
+        {
+          "file": "cdff9fcdb63646d1971f35a693873693.json",
+          "sha256": "17222e9d6559ee7bdd5a16e67ddf232131bfdd539c59d41601c6c10c5fbe03f8",
+          "phase": "complete",
+          "action": "emit",
+          "response": {
+            "continue": true
+          }
+        }
+      ],
+      "participated": true,
+      "revision_source_turn_count": 3,
+      "source_sha256": "235c593de867c5e39bef44a4b8c8369603e226724e21846e5dd0af4530c36a30",
+      "source_equals_ordered_actual_user_requests": true,
+      "d0_text_sha256": "ee02dcddba84ad81d4b28475c3b4ec8fddb3c293493fcaa3f9e0b88a3cee5a1c",
+      "final_text_sha256": "ee02dcddba84ad81d4b28475c3b4ec8fddb3c293493fcaa3f9e0b88a3cee5a1c",
+      "final_file_raw_sha256": "260aeb3a0299d8d3f6e92912ebd90c3e9476fa7aa4daed3c83fa4bb82e9407c5",
+      "terminal_selected_sha256": "ee02dcddba84ad81d4b28475c3b4ec8fddb3c293493fcaa3f9e0b88a3cee5a1c",
+      "body_change_by_hook": false,
+      "final_nonspace_characters_title_included": 939,
+      "complete_body_only": true
+    },
+    {
+      "round": 4,
+      "actual_request_sha256": "001e48487cf9edee0bd8446c3ffa76d75b97f6cf22596f4b928395563355704e",
+      "fixture_request_sha256": "001e48487cf9edee0bd8446c3ffa76d75b97f6cf22596f4b928395563355704e",
+      "request_equal_after_CRLF_to_LF": true,
+      "user_event": "565ccddc0b98460594b142724bb84a18.json",
+      "stop_events": [
+        {
+          "file": "5c9c1ed947714a0fb9b62eee745e994b.json",
+          "sha256": "d320a525ccbb06757fdf98904b7b113bc7b4280afe4ba611cd795bf88668bfb4",
+          "phase": "awaiting_repair",
+          "action": "detect",
+          "response": {
+            "decision": "block"
+          }
+        },
+        {
+          "file": "f29be26d225840deb4ad6e6b34587de6.json",
+          "sha256": "e72aa07d1ebd06c431aeb1ba1447ae2eabac5f7164c4d3a50dcc8e91e7b29de8",
+          "phase": "awaiting_final_output",
+          "action": "emit",
+          "response": {
+            "decision": "block"
+          }
+        },
+        {
+          "file": "68cc0bd3ead343f18c0160c6399f05ef.json",
+          "sha256": "dd9b0054535f7e4bdc26f6bd213887d5d930fba972b3c3c47ce2d71133b50328",
+          "phase": "complete",
+          "action": "emit",
+          "response": {
+            "continue": true
+          }
+        }
+      ],
+      "participated": true,
+      "revision_source_turn_count": 4,
+      "source_sha256": "fb9abb28c3be775883d45b05c0b468d6b8cec686561b35d7735fbe9e56232b88",
+      "source_equals_ordered_actual_user_requests": true,
+      "d0_text_sha256": "f2e722140ef59c25b0532fa1d3096787b5443f84c5e4b924b27e174340651edb",
+      "final_text_sha256": "f2e722140ef59c25b0532fa1d3096787b5443f84c5e4b924b27e174340651edb",
+      "final_file_raw_sha256": "66405ceb735463187a2e59a3663869d29f3235f73c7218b5bd6d6e113002f606",
+      "terminal_selected_sha256": "f2e722140ef59c25b0532fa1d3096787b5443f84c5e4b924b27e174340651edb",
+      "body_change_by_hook": false,
+      "final_nonspace_characters_title_included": 985,
+      "complete_body_only": true
+    },
+    {
+      "round": 5,
+      "actual_request_sha256": "48f97efd74fbfade020f1843c4788b01588c9090978dd68c53fc9fa9bb2bdd5b",
+      "fixture_request_sha256": "48f97efd74fbfade020f1843c4788b01588c9090978dd68c53fc9fa9bb2bdd5b",
+      "request_equal_after_CRLF_to_LF": true,
+      "user_event": "60b633e8f738459ca2d07521df74fa11.json",
+      "stop_events": [
+        {
+          "file": "9c1af7e1fb3047e8aa2a0c968731c1e6.json",
+          "sha256": "73711f7a06881e511e689bb9d4a0b023a54d013b2fe478926a32eba2f8908e5d",
+          "phase": "awaiting_repair",
+          "action": "detect",
+          "response": {
+            "decision": "block"
+          }
+        },
+        {
+          "file": "0495dbfe43af4013841a2a9e8e85c8f4.json",
+          "sha256": "f0d48cde2b81c4ab069c8d57964ede666b537afe1d799d06c8d77cd277acf70c",
+          "phase": "awaiting_final_output",
+          "action": "emit",
+          "response": {
+            "decision": "block"
+          }
+        },
+        {
+          "file": "6828bf5e74124ea1b9b1885b6118a634.json",
+          "sha256": "6bce6e8edf7c451d9ff8cdf7fbf59921c88771d2c07dcf2002a184a5d26ec773",
+          "phase": "complete",
+          "action": "emit",
+          "response": {
+            "continue": true
+          }
+        }
+      ],
+      "participated": true,
+      "revision_source_turn_count": 5,
+      "source_sha256": "5b3c360d13a78057916782f3552ae03f670af1762e39cd977c095d3d29466d3b",
+      "source_equals_ordered_actual_user_requests": true,
+      "d0_text_sha256": "f7cdfe19982db834123e74336880918fc00c5a7f77c276077c408a9c8d91d30c",
+      "final_text_sha256": "f7cdfe19982db834123e74336880918fc00c5a7f77c276077c408a9c8d91d30c",
+      "final_file_raw_sha256": "c35545e6c19223988f48ab571bd2c7c3a9c17fc3b769981d20a9195b5f9c7584",
+      "terminal_selected_sha256": "f7cdfe19982db834123e74336880918fc00c5a7f77c276077c408a9c8d91d30c",
+      "body_change_by_hook": false,
+      "final_nonspace_characters_title_included": 624,
+      "complete_body_only": true
+    }
+  ],
+  "instruction_and_scope_review": [
+    {
+      "round": 2,
+      "verdict": "PASS_TARGET",
+      "detail": "日期改为9月9日，目录280/205/75，公共停车查询已复核，其余2个仍待复核；3个场景未获正式上线批准。未见无关正文改写。"
+    },
+    {
+      "round": 3,
+      "verdict": "PASS_TARGET",
+      "detail": "交流事项、8月20日、18人及相关评价删除；总述四个方面改为三个属于删除后的必要一致性调整。"
+    },
+    {
+      "round": 4,
+      "verdict": "PASS_TARGET",
+      "detail": "在问题部分末尾插入用户指定独立自然段，15/5、已退回、尚未收到均保留；其余段落未改。"
+    },
+    {
+      "round": 5,
+      "verdict": "PASS_LENGTH_AND_REQUIRED_GROUPS_WITH_D0_CAVEATS",
+      "detail": "624个非空白字符，含标题，回复无正文外附注；三个场景、各单位职责、最新数字及待办均在，交流未恢复。试运行未决定未被写成已批准；措辞仍有下列歧义。"
+    }
+  ],
+  "d0_quality_observations": [
+    {
+      "id": "D0-PROCESS-1",
+      "classification": "unsupported_procedural_assertion",
+      "first_round": 1,
+      "rounds_present": [
+        1
+      ],
+      "resolution_round": 2,
+      "quote": "场景正式上线以复核确认后的结论为准。",
+      "basis": "用户只给出技术核验不代表正式上线批准，没有给出以该复核结论决定正式上线的程序规则。该句超出已给规则；不据此推断实际法律程序。",
+      "hook_relation": "该句在首Stop D0中已有，Hook逐字保留；第二版用户状态更正后的D0移除。不是Hook新增，也不是Hook修好。"
+    },
+    {
+      "id": "D0-EVALUATION-1",
+      "classification": "questionable_evaluation_not_definite_fact_error",
+      "first_round": 1,
+      "rounds_present": [
+        1,
+        2
+      ],
+      "resolution_round": 3,
+      "quote": "四是专题交流深度不足。……对试点整体推进的支撑有限。",
+      "basis": "材料说交流仅介绍目录录入方法、未形成决定；允许分析，但未给出该活动承担决策或深入研讨目标，不能仅以未形成决定判定成效不足。一般作用分析与该评价前提要分开。",
+      "hook_relation": "D0已有，第三版按用户要求删掉交流时消除，Hook未改。"
+    },
+    {
+      "id": "D0-PLAN-1",
+      "classification": "ambiguous_planning_commitment_not_approval_upgrade",
+      "first_round": 1,
+      "rounds_present": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "resolution_round": null,
+      "quote": "将在上线条件复核及相关准备工作明确后统筹考虑。",
+      "basis": "材料只给是否安排试运行尚未决定；这句新增考虑时机。放在下一步考虑下可以解释为建议，故列疑点而非已批准的硬状态错误。正文其他一般目的、分工可支撑性分析及建议不机械判错。",
+      "hook_relation": "D0已有，五版保留或压缩保留；Hook未改。"
+    }
+  ],
+  "code_controls_positive": [
+    "Only Claude Stop maps the host-provided transcript_path; helper does not search global histories or private directories. This is a trusted-host event boundary, not filesystem authorization.",
+    "Bounded snapshot:4,000,000 bytes,2..8 contiguous user turns,40,000 source characters; rejectsoversize/malformedJSON/unmatchedlatestprompt/nonrevision/other-session/sidechain.",
+    "Only type=user nonmeta text becomes source; assistant drafts and toolresult content are not factual source. Synthetic assistant999 countervalue was not included.",
+    "Initial task must have a matched successful toolresult; synthetic failed Read and other-session controls returnNone.",
+    "Core skips review-only, existingtransaction and continuationStop, then lock-rechecks request,terminal,bypass and txn before binding; the reviewed diff retains terminal after-recovery handling.",
+    "Source.txt uses existing bootstrap cleanup lock and --source coordinator contract; raw source_text is in the existing raw-text redaction set. No new coordinator."
+  ],
+  "parser_boundary_findings": [
+    {
+      "id": "REV-PARSE-1",
+      "priority": "P2",
+      "status": "concrete_offline_false_negative",
+      "snapshot_sha256": "27212fcce6a91a305ab52331081c0cad51d158546863810779439a5b7f3996cc",
+      "location": "hooks/shared/revision_context.py:is_revision negative new-task pattern",
+      "input": "请据此更新报告，其他内容保留。",
+      "observed": false,
+      "impact": "新报告 pattern catches the substring of 更新报告. It can end a legitimate continuous chain; no native failure rate inferred.",
+      "minimum_fix": "Distinguish explicit new report from the verb 更新; keep explicit newtask/reset boundaries. No extra model sample needed for this parser fact."
+    },
+    {
+      "id": "REV-PARSE-2",
+      "priority": "P2",
+      "status": "concrete_offline_activation_false_positive",
+      "snapshot_sha256": "27212fcce6a91a305ab52331081c0cad51d158546863810779439a5b7f3996cc",
+      "location": "hooks/shared/revision_context.py:recover tool_use command path matching",
+      "input": "Bash echo of the current Skill/SKILL.md path followed by successful tool_result, then a valid revision request.",
+      "observed": "recover returns source although the synthetic command only echoes a path.",
+      "impact": "A path mention is accepted as the initial Skill read. It only widens participation; tool output still is not put into source. No actual native mis-edit observed.",
+      "minimum_fix": "Reuse a concrete Read target / recognized read-command boundary instead of any Bash path substring."
+    },
+    {
+      "id": "REV-PARSE-0",
+      "priority": "P2",
+      "status": "reported_then_fixed_during_review",
+      "input": "这个任务已经结束，请删掉刚才的临时文件。",
+      "observed_before": "is_revision True in earlier tool output",
+      "observed_saved_snapshot": "False; valid post-final datecorrection stays True",
+      "minimum_fix": "The parent already added a narrow temporary-file/cache management guard; do not ban every 已定稿 occurrence."
+    }
+  ],
+  "default_cleanliness_route_note": "Currentcore helper catches first-paragraph commentary. Tail-only wrapper coverage and explicitrequestedMarkdown with a wrapper are not proved by C5 cleanMarkdown. Keep this as limitedrouting scope, and verify default entry through actualprompt-boundcore replay before admission.",
+  "admission_conclusion": "R2 supports 4/4 followup participation and exactuser-material binding without Hook-addedbodyregression. It does not show better writing quality. Resolve or explicitly bound the two parser edge findings before broad claim; no extra semantic-product expansion or model repetition is justified by this review. Formalnewglue nativeR3/R4 belongs to parent and was not reviewed here.",
+  "remaining_limits": [
+    "A regex revision recognizer cannot resolve everytopic switch or ambiguousreference; stay narrow and failopen without recovering assistanttext as material.",
+    "Current canonical was being edited concurrently; parser conclusions bind the saved snapshot, not an assertion about futureparent edits.",
+    "Firstuserprompt differed from cases only in CRLF; final.txt files also use CRLF on disk. Text SHA uses decodedactualhostmessage UTF-8 and matches selected; rawfileSHA is separately recorded.",
+    "No claim of arbitraryturnID/source trust, total writing reliability, allhost support, or effect from otheragents atoms."
+  ]
+}

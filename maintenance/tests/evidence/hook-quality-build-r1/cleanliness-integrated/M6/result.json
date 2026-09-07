@@ -1,0 +1,32 @@
+{
+  "status": "complete",
+  "original_clean_body_unchanged": true,
+  "record": {
+    "bootstrap_artifacts": true,
+    "bootstrapped_by_stop": true,
+    "bypass": null,
+    "cleanliness_prepass": true,
+    "cleanliness_prepass_audit": {
+      "candidate_sha256": "761c588587bbf7831d5072059a813f07460ef2bb843f31f1471db0fcf23eacc4",
+      "capability": "delivery_cleanliness",
+      "delivery_sha256": "761c588587bbf7831d5072059a813f07460ef2bb843f31f1471db0fcf23eacc4",
+      "delivery_verified": true,
+      "original_sha256": "8c3d2b83b83fd095553ab2d8d013bd868066a098cfd26e364414bc26e935e343",
+      "reason": "semantic_pass",
+      "schema_version": 1,
+      "selection": "D1"
+    },
+    "cleanliness_prepass_complete": true,
+    "data_retention_state": "raw_turn_data_redacted",
+    "delivery_verified": true,
+    "emit_seen": true,
+    "emitted_sha256": "761c588587bbf7831d5072059a813f07460ef2bb843f31f1471db0fcf23eacc4",
+    "hook_phase": "complete",
+    "last_action": "emit",
+    "raw_artifact_delete_failures": 0,
+    "run_id": "1f1430f8-36d3-4e97-841f-be20a0dd6ff3",
+    "schema_version": 1,
+    "skill_seen": true,
+    "stop_attempts": 1
+  }
+}

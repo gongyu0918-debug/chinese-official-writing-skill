@@ -12,6 +12,8 @@
 
 ## 逐版发布证据
 
+- [Hook质量构建R1](../../tests/evidence/hook-quality-build-r1/result.md)：独立分支的Claude连续改稿与默认正文清理；真实八版报告、五版纪要及同稿修订，817项回归。自然字数、原稿事实核验和新前言变体保留HOLD，未合并或发布。
+
 - [v1.6.28](../../tests/evidence/release-1.6.28.md)：当前main已准入Hook修复、新闻完整事实日期与806项回归；三平台唯一提交回执、包hash及公开传播/审核边界。
 
 - [自然写稿与五版修改R1/R2](../../tests/evidence/natural-writing-stability-r1/result.md)：60次两家低价模型执行、实际自主读页与resume、完整稿/trace/匿名审查；两处reference候选撤回，最终产品0差异。自然触发口径已进入WR-020c，本项不代表Hook终稿验证或发布。

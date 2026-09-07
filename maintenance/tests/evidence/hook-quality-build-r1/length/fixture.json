@@ -1,0 +1,46 @@
+{
+  "base_commit": "b77f6381438c8fa01f8576c205d13af4b8a987fd",
+  "models": {
+    "alibaba2": "alibaba-token-plan-2/deepseek-v4-flash-0731",
+    "minimax": "minimax-cn/MiniMax-M3"
+  },
+  "retry_count": 0,
+  "timeout_per_call_seconds": 300,
+  "frozen_sha256": {
+    "baseline": {
+      "chinese-official-writing/hooks/capabilities/over_length/runtime.py": "2857ca4f6e541f4ca60927cd529e9e3c2d659c7c827dc120c7a94695f3095a72",
+      "chinese-official-writing/scripts/review_gate.py": "ffe66ece91e15231d3bbbf8122091ecd00e05580bd2e9317b864b7ada5f0ad19",
+      "chinese-official-writing/hooks/capabilities/protective_expansion/contract.py": "a31c4d926b3da89acfa785da37671b860eb0acb38c9a2fe390dc15f508dd3af6",
+      "chinese-official-writing/hooks/shared/hard_anchors.py": "a563fe3bb8813e30a36bfb3b6657549abdb630bde839b45d190e3dbe9068fad9"
+    },
+    "candidate": {
+      "chinese-official-writing/hooks/capabilities/over_length/runtime.py": "343d0ec08c341d67630251758ac15dcf12cddb27b002580b7be70bce331df583",
+      "chinese-official-writing/scripts/review_gate.py": "3a0924657e065e739e712ea8d11d0b11cb981e7a9488bb6dca1d37f4afb018c3",
+      "chinese-official-writing/hooks/capabilities/protective_expansion/contract.py": "a31c4d926b3da89acfa785da37671b860eb0acb38c9a2fe390dc15f508dd3af6",
+      "chinese-official-writing/hooks/shared/hard_anchors.py": "a563fe3bb8813e30a36bfb3b6657549abdb630bde839b45d190e3dbe9068fad9"
+    }
+  },
+  "cases": {
+    "P6": {
+      "packet": "maintenance\\tests\\evidence\\natural-writing-stability-r1\\raw\\r2\\report-fourth-packet.json",
+      "packet_sha256": "3127a9501441b66a585be4f3ddcb811a61ea3de1f5f6357dd8baa813be4c4124",
+      "request": "现在把全文压到700字以内，标题也算在内。保留最新数字、三个场景名称、各单位职责和仍待办理的事项，删掉的专题交流不要再带回来。只发正文。",
+      "request_sha256": "48f97efd74fbfade020f1843c4788b01588c9090978dd68c53fc9fa9bb2bdd5b",
+      "d0": "下面是压缩后的完整稿。\n\n---\n\n海岚市公共数据授权运营试点进展报告\n\n一、试点进展\n\n截至2026年9月9日，目录征集累计收到280项，已纳入205项、待核75项，待核目录约占27%。3个拟试点场景为企业信用核验、惠企政策匹配、公共停车查询。市信息中心已组织完成技术核验，其中公共停车查询核验结论已经复核通过，企业信用核验、惠企政策匹配2个场景核验结论仍待复核；3个场景均尚未取得正式上线批准。市数据局统筹，市信息中心承担技术核验，业务主管部门负责授权范围复核。\n\n二、存在问题\n\n一是目录完整度仍需提升。75项待核目录需逐项明确归类口径、数据权属和可用性范围，影响后续授权对接和场景落地。二是关键审批环节尚未闭环。已纳入205项目录的授权范围尚待业务主管部门复核；公共停车查询核验结论已经复核通过，其他2个场景仍待复核；3个场景均尚未取得正式上线批准。三是运营机制尚未到位。运营单位遴选尚未完成，收费方案尚未确定，试点由谁运营、按何种规则计费尚无明确安排。\n\n抽查15份登记记录，其中5份缺少更新频率说明，已退回材料提供单位补充，补充材料尚未收到。\n\n三、下一步考虑\n\n建议把上线条件复核作为下一步工作重点，对3个场景核验结论、已纳入目录的授权范围逐项复核，逐场景明确上线条件及上线前提，报分管领导审定后再研究上线安排。继续推进75项待核目录清理、运营单位遴选，研究形成收费方案。试运行是否安排，待复核结论明确、运营机制到位后再作研究。\n\n---\n\n含标题共约 600 字。最新数字（280/205/75、27%、15/5）、三个场景名称、各单位职责（市数据局统筹、市信息中心技术核验、业务主管部门授权范围复核）、仍待办理事项（75项待核目录清理、授权范围复核、运营单位遴选、收费方案、上线条件复核、试运行、补充材料）均已保留，专题交流相关内容未带回。",
+      "d0_sha256": "586720c868897f08513d9421ef2b930d19b3cabb6a0b4d230c621025c9d9de5f",
+      "original_hook_mode": "off",
+      "round": 5
+    },
+    "M6": {
+      "packet": "maintenance\\tests\\evidence\\natural-writing-stability-r1\\raw\\r2\\minutes-third-packet.json",
+      "packet_sha256": "e203b8981e83ed9e7f81236ed9b3c3a2f4f9a89d62abbe426f3c6dd82e4b5178",
+      "request": "请把最新稿压缩到500字以内，保留事项、责任部门、期限和尚未作出决定的状态。已删除的演示不要恢复，直接发纪要正文。",
+      "request_sha256": "dd4875114101a65a4b8238065f373984093177ec54b63291003af8cb949d45e3",
+      "d0": "压缩到 468 字，已在 500 字以内，要素齐全。纪要正文如下。\n\n---\n\n清源图书馆服务改进专题会议纪要\n\n时间：2026年9月4日\n地点：清源图书馆\n\n2026年9月4日，清源图书馆召开服务改进专题会议，听取业务部、信息部、综合部近期工作情况汇报，就读者意见办理、预约系统试点、开放时间调整等事项进行了研究。现纪要如下。\n\n一、读者意见办理情况\n业务部通报，2026年8月共受理读者意见23条，已答复18条；其余5条需进一步核实后，再行答复读者。\n\n二、有关建议（本次会议未予决议）\n（一）信息部建议，拟在二楼阅览区开展预约系统试点运行，以检验系统稳定性及读者使用情况。\n（二）综合部建议，将周五闭馆时间延后半小时；调整方案需先核算人员成本。\n\n三、会议议定事项\n（一）由业务部于2026年9月13日前完成剩余5条意见核实，并报送本馆。\n（二）由综合部于2026年9月15日前完成周五延后闭馆人员成本测算，并报送本馆；本次测算不作新增预算承诺。\n（三）预约系统本次会议未予部署。\n（四）由信息部于2026年9月16日前提交预约系统试点技术条件说明；提交说明不表示已批准试点。\n\n清源图书馆\n2026年9月4日\n\n---\n\n主要精简：去掉主持人、出席、列席、记录占位行与\"四、其他\"段；建议项去掉\"留待后续研究\"\"待综合部完成测算后再行研究\"等延伸表述；议定项里\"书面报送核实情况\"压缩为\"报送本馆\"。演示段落未恢复。",
+      "d0_sha256": "8c3d2b83b83fd095553ab2d8d013bd868066a098cfd26e364414bc26e935e343",
+      "original_hook_mode": "off",
+      "round": 5
+    }
+  },
+  "method": "Offline capability runtime dispatch with real no-tool CLI continuations; historical D0, not native host Hook or newly generated D0."
+}

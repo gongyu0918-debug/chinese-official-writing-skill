@@ -27,6 +27,8 @@ Hermes Agent 的单次同步复核不建立磁盘事务：请求、D0 和候选�
 
 ## 宿主适配说明
 
+Claude Code 连续改稿的有界材料恢复由共享的 [`revision_context.py`](shared/revision_context.py) 实现；适配器只传入当前宿主会话记录的位置。
+
 内部按“能力核心 + 静态适配层”组织。`core/` 只有一份门禁能力；`adapters/<host>/` 只保存对应宿主的 manifest、事件配置、薄适配器和说明。Agent 不应把 adapter 目录本身当成可安装插件，也不得跨目录建立运行时相对引用。
 
 | 宿主 | 适配说明 | 启用前检查 |
@@ -45,7 +47,9 @@ Qwen Code 必须使用 native extension；便携 Agent Plugin v1 仍不会加载
 
 ## 可选能力
 
-companion 默认使用既有交付复核。用户也可在组装前明确选择[保护性外扩精确删除](capabilities/protective_expansion/README.md)、[篇幅不足补足](capabilities/under_length/README.md)、[超长收束](capabilities/over_length/README.md)、[交付洁净度](capabilities/delivery_cleanliness/README.md)或[重复句整理](capabilities/repetition_cleanup/README.md)。超长收束先查重复，再压缩衔接和句式；其余能力各自只处理说明页列明的单一风险。六种能力静态互斥，判断不确定时保留原稿。
+companion 默认使用既有交付复核。用户也可在组装前明确选择[保护性外扩精确删除](capabilities/protective_expansion/README.md)、[篇幅不足补足](capabilities/under_length/README.md)、[超长收束](capabilities/over_length/README.md)、[交付洁净度](capabilities/delivery_cleanliness/README.md)或[重复句整理](capabilities/repetition_cleanup/README.md)。超长收束先查重复，再压缩衔接和句式；其余能力各自只处理说明页列明的单一风险。六种顶层能力选择静态互斥，判断不确定时保留原稿。
+
+默认复核遇到明确的正文交付要求，以及稿首“下面是完整稿”“压缩到……字”等交付说明时，会先复用交付洁净度的仅删除、独立核验和逐字回显流程，再继续原有复核。明确要求保留说明时不走该入口；正文内部事实是否正确仍需来源复核，清除附言不代表完成事实核验。
 
 ## 工作方式
 

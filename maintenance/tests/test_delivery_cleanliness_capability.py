@@ -79,6 +79,46 @@ class DeliveryCleanlinessCapabilityTests(unittest.TestCase):
         self.assertTrue(completed["continue"])
         self.assertTrue(record["delivery_cleanliness"]["audit"]["delivery_verified"])
 
+    def test_verdict_json_requires_one_complete_object(self):
+        payload = '{"verdict": "PASS"}'
+        for value in (payload, f"```json\n{payload}\n```", f"```\n{payload}\n```"):
+            with self.subTest(value=value):
+                self.assertEqual({"verdict": "PASS"}, RUNTIME._parse_json(value))
+        for value in (
+            f"核验结果：\n```json\n{payload}\n```",
+            f"```json\n{payload}\n```\n请查收。",
+            f"```json\n{payload}\n{payload}\n```",
+            f"```json\n{payload}\n```\n```json\n{payload}\n```",
+            f"```python\n{payload}\n```",
+            "```json\n[]\n```",
+            "```json\nnull\n```",
+            None,
+        ):
+            with self.subTest(value=value):
+                self.assertIsNone(RUNTIME._parse_json(value))
+
+    def test_fenced_verdict_keeps_hash_and_deletion_binding(self):
+        original = "以下是整理后的正文。\n\n情况说明\n\n系统运行状态仍待核对，处置方案尚未确定。"
+        candidate = "情况说明\n\n系统运行状态仍待核对，处置方案尚未确定。"
+        for fault in (None, "request_hash", "deletion_span"):
+            with self.subTest(fault=fault):
+                record = {"request": "请起草情况说明，只输出正文。"}
+                RUNTIME.start({"last_assistant_message": original}, record)
+                RUNTIME.advance({"last_assistant_message": candidate}, record)
+                verdict = json.loads(self._verdict(record))
+                if fault == "request_hash":
+                    verdict["request_sha256"] = "0" * 64
+                elif fault == "deletion_span":
+                    verdict["deletions"][0]["start"] += 1
+                RUNTIME.advance(
+                    {"last_assistant_message": "```json\n" + json.dumps(verdict) + "\n```"},
+                    record,
+                )
+                self.assertEqual(
+                    "D1" if fault is None else "D0",
+                    record["delivery_cleanliness"]["audit"]["selection"],
+                )
+
     def test_clean_and_requested_markdown_are_byte_identical_d0(self):
         for request, original in (
             ("请起草情况说明，只输出正文。", "情况说明\n\n经核查，系统运行正常。"),

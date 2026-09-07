@@ -1,0 +1,405 @@
+{
+  "case": "M5",
+  "arm": "candidate",
+  "model": "alibaba-token-plan-2/deepseek-v4-flash-0731",
+  "technical_valid": true,
+  "session_ids": [
+    "ee4a3da9-596d-49b7-956c-1b9b8b5a2e77"
+  ],
+  "source_round": 1,
+  "seconds": 153.078,
+  "request_sha256": "74dbf88116c69b2906bf0971375577c373de76743156c43c1965f01d66993736",
+  "d0_sha256": "dc71a81d5fce59d799c9c42814ed93ae64e6c8c7fe76bf4adea9745c47094868",
+  "raw_model_payload": {
+    "action": "REPLACE",
+    "issues": [
+      "NEW_FACT_OR_PROCEDURE",
+      "WRAPPER_OR_GENRE"
+    ],
+    "final_text": "清源图书馆服务改进专题会会议纪要\n\n为回应读者诉求、改进服务质量，清源图书馆于2026年9月4日召开服务改进专题会。会议听取了业务部关于2026年8月读者意见办理情况的汇报，以及预约系统操作演示情况的介绍，研究了预约系统试点和开放时间调整等事项，并明确了有关事项的责任分工和完成时限。现将会议主要内容纪要如下。\n\n一、会议听取情况\n\n（一）读者意见办理情况。业务部反映，2026年8月共收到读者意见24条，其中已答复18条；其余6条涉及情况需进一步核实，待核实完成后予以答复。\n\n（二）预约系统操作演示情况。会上介绍了8月26日开展的预约系统操作演示，共有9名馆员参加。该次演示内容为预约系统操作展示，不属于业务培训，也未形成系统验收结论，预约系统尚处于操作演示阶段。\n\n二、会议研究事项\n\n（一）预约系统试点建议。信息部建议在二楼阅览区先行试点预约系统。目前该事项仍处于建议阶段，是否开展试点尚未决定。\n\n（二）开放时间调整建议。综合部建议将周五闭馆时间延后半小时。该项调整需先核算人员成本，本次会议未作出调整开放时间的决定，待成本测算完成后另行研究。\n\n三、会议议定事项\n\n经会议研究，现明确以下议定事项，各责任部门须严格按照确定时限抓好落实。\n\n（一）读者意见核实。由业务部负责，对剩余6条读者意见进行核实，于9月12日前完成核实，并报送核实情况。\n\n（二）人员成本测算。由综合部负责，于9月15日前提交人员成本测算结果；本次会议不作新增预算承诺。\n"
+  },
+  "raw_reply_sha256": "637ac4c683029da065f8cfd002443f232a4837cb1c09e80a110ee934cc0efbfb",
+  "contract_selection": {
+    "action": "KEEP",
+    "text": "已按技能要求整理完毕，全文（含标题）618 字，正文 602 字，符合 600—800 字要求；建议与会议决定分区写明，主持人、参会名单等未提供内容未作编造。\n\n清源图书馆服务改进专题会会议纪要\n\n为回应读者诉求、改进服务质量，清源图书馆于2026年9月4日召开服务改进专题会。会议听取了业务部关于2026年8月读者意见办理情况的汇报，以及信息部关于预约系统操作演示情况的介绍；研究了预约系统试点和开放时间调整等事项，并明确了有关事项的责任分工和完成时限。现将会议主要内容纪要如下。\n\n一、会议听取情况\n\n（一）读者意见办理情况。业务部反映，2026年8月共收到读者意见24条，其中已答复18条；其余6条涉及情况需进一步核实，待核实完成后予以答复，相关核实工作正在开展。\n\n（二）预约系统操作演示情况。8月26日，信息部组织开展了预约系统操作演示，共有9名馆员参加。该次演示内容为预约系统操作展示，不属于业务培训，也未形成系统验收结论，预约系统尚处于操作演示阶段。\n\n二、会议研究事项\n\n（一）预约系统试点建议。信息部建议在二楼阅览区先行试点预约系统。目前该事项仍处于建议阶段，是否开展试点尚未决定。\n\n（二）开放时间调整建议。综合部建议将周五闭馆时间延后半小时。该项调整需先核算人员成本，本次会议未作出调整开放时间的决定，待成本测算完成后另行研究。\n\n三、会议议定事项\n\n经会议研究，明确以下议定事项，各责任部门须按确定时限抓好落实。\n\n（一）读者意见核实。由业务部负责，对剩余6条读者意见进行核实，于9月12日前完成核实，并报送核实情况。\n\n（二）人员成本测算。由综合部负责，于9月15日前提交人员成本测算结果；本次会议不作新增预算承诺。",
+    "issues": [],
+    "reason": "hard_anchor_violation"
+  },
+  "contract_selected_sha256": "dc71a81d5fce59d799c9c42814ed93ae64e6c8c7fe76bf4adea9745c47094868",
+  "hard_anchor_comparison": {
+    "status": "fallback",
+    "mechanical_ok": false,
+    "reason": "numbers",
+    "violations": {
+      "missing_numbers": [
+        "600",
+        "602",
+        "618",
+        "800"
+      ],
+      "added_numbers": [],
+      "missing_quantities": [],
+      "added_quantities": [],
+      "missing_quotes": [],
+      "added_quotes": [],
+      "fields_changed": false
+    },
+    "count_reductions": [],
+    "relation_packet": [],
+    "original": {
+      "numbers": [
+        {
+          "kind": "number",
+          "value": "618",
+          "start": 18,
+          "end": 21,
+          "context": "已按技能要求整理完毕，全文（含标题）618字，正文602字，符合600—800字要求",
+          "is_length_bound": true
+        },
+        {
+          "kind": "number",
+          "value": "602",
+          "start": 27,
+          "end": 30,
+          "context": "已按技能要求整理完毕，全文（含标题）618字，正文602字，符合600—800字要求",
+          "is_length_bound": true
+        },
+        {
+          "kind": "number",
+          "value": "600",
+          "start": 36,
+          "end": 39,
+          "context": "已按技能要求整理完毕，全文（含标题）618字，正文602字，符合600—800字要求",
+          "is_length_bound": true
+        },
+        {
+          "kind": "number",
+          "value": "800",
+          "start": 40,
+          "end": 43,
+          "context": "已按技能要求整理完毕，全文（含标题）618字，正文602字，符合600—800字要求",
+          "is_length_bound": true
+        },
+        {
+          "kind": "number",
+          "value": "2026年",
+          "start": 120,
+          "end": 125,
+          "context": "为回应读者诉求、改进服务质量，清源图书馆于2026年9月4日召开服务改进专题会",
+          "is_length_bound": false
+        },
+        {
+          "kind": "number",
+          "value": "9月",
+          "start": 125,
+          "end": 127,
+          "context": "为回应读者诉求、改进服务质量，清源图书馆于2026年9月4日召开服务改进专题会",
+          "is_length_bound": false
+        },
+        {
+          "kind": "number",
+          "value": "4日",
+          "start": 127,
+          "end": 129,
+          "context": "为回应读者诉求、改进服务质量，清源图书馆于2026年9月4日召开服务改进专题会",
+          "is_length_bound": false
+        },
+        {
+          "kind": "number",
+          "value": "2026年",
+          "start": 149,
+          "end": 154,
+          "context": "会议听取了业务部关于2026年8月读者意见办理情况的汇报，以及信息部关于预约系统操作演示情况的介绍",
+          "is_length_bound": false
+        },
+        {
+          "kind": "number",
+          "value": "8月",
+          "start": 154,
+          "end": 156,
+          "context": "会议听取了业务部关于2026年8月读者意见办理情况的汇报，以及信息部关于预约系统操作演示情况的介绍",
+          "is_length_bound": false
+        },
+        {
+          "kind": "number",
+          "value": "2026年",
+          "start": 271,
+          "end": 276,
+          "context": "业务部反映，2026年8月共收到读者意见24条，其中已答复18条",
+          "is_length_bound": false
+        },
+        {
+          "kind": "number",
+          "value": "8月",
+          "start": 276,
+          "end": 278,
+          "context": "业务部反映，2026年8月共收到读者意见24条，其中已答复18条",
+          "is_length_bound": false
+        },
+        {
+          "kind": "number",
+          "value": "24条",
+          "start": 285,
+          "end": 288,
+          "context": "业务部反映，2026年8月共收到读者意见24条，其中已答复18条",
+          "is_length_bound": false
+        },
+        {
+          "kind": "number",
+          "value": "18条",
+          "start": 294,
+          "end": 297,
+          "context": "业务部反映，2026年8月共收到读者意见24条，其中已答复18条",
+          "is_length_bound": false
+        },
+        {
+          "kind": "number",
+          "value": "6条",
+          "start": 300,
+          "end": 302,
+          "context": "其余6条涉及情况需进一步核实，待核实完成后予以答复，相关核实工作正在开展",
+          "is_length_bound": false
+        },
+        {
+          "kind": "number",
+          "value": "8月",
+          "start": 351,
+          "end": 353,
+          "context": "8月26日，信息部组织开展了预约系统操作演示，共有9名馆员参加",
+          "is_length_bound": false
+        },
+        {
+          "kind": "number",
+          "value": "26日",
+          "start": 353,
+          "end": 356,
+          "context": "8月26日，信息部组织开展了预约系统操作演示，共有9名馆员参加",
+          "is_length_bound": false
+        },
+        {
+          "kind": "number",
+          "value": "9名",
+          "start": 376,
+          "end": 378,
+          "context": "8月26日，信息部组织开展了预约系统操作演示，共有9名馆员参加",
+          "is_length_bound": false
+        },
+        {
+          "kind": "number",
+          "value": "6条",
+          "start": 640,
+          "end": 642,
+          "context": "由业务部负责，对剩余6条读者意见进行核实，于9月12日前完成核实，并报送核实情况",
+          "is_length_bound": false
+        },
+        {
+          "kind": "number",
+          "value": "9月",
+          "start": 652,
+          "end": 654,
+          "context": "由业务部负责，对剩余6条读者意见进行核实，于9月12日前完成核实，并报送核实情况",
+          "is_length_bound": false
+        },
+        {
+          "kind": "number",
+          "value": "12日",
+          "start": 654,
+          "end": 657,
+          "context": "由业务部负责，对剩余6条读者意见进行核实，于9月12日前完成核实，并报送核实情况",
+          "is_length_bound": false
+        },
+        {
+          "kind": "number",
+          "value": "9月",
+          "start": 691,
+          "end": 693,
+          "context": "由综合部负责，于9月15日前提交人员成本测算结果",
+          "is_length_bound": false
+        },
+        {
+          "kind": "number",
+          "value": "15日",
+          "start": 693,
+          "end": 696,
+          "context": "由综合部负责，于9月15日前提交人员成本测算结果",
+          "is_length_bound": false
+        }
+      ],
+      "quantities": [],
+      "quotes": [],
+      "fields": [],
+      "state_contexts": [
+        "其余6条涉及情况需进一步核实，待核实完成后予以答复，相关核实工作正在开展",
+        "该次演示内容为预约系统操作展示，不属于业务培训，也未形成系统验收结论，预约系统尚处于操作演示阶段",
+        "目前该事项仍处于建议阶段，是否开展试点尚未决定"
+      ]
+    },
+    "candidate": {
+      "numbers": [
+        {
+          "kind": "number",
+          "value": "2026年",
+          "start": 39,
+          "end": 44,
+          "context": "为回应读者诉求、改进服务质量，清源图书馆于2026年9月4日召开服务改进专题会",
+          "is_length_bound": false
+        },
+        {
+          "kind": "number",
+          "value": "9月",
+          "start": 44,
+          "end": 46,
+          "context": "为回应读者诉求、改进服务质量，清源图书馆于2026年9月4日召开服务改进专题会",
+          "is_length_bound": false
+        },
+        {
+          "kind": "number",
+          "value": "4日",
+          "start": 46,
+          "end": 48,
+          "context": "为回应读者诉求、改进服务质量，清源图书馆于2026年9月4日召开服务改进专题会",
+          "is_length_bound": false
+        },
+        {
+          "kind": "number",
+          "value": "2026年",
+          "start": 68,
+          "end": 73,
+          "context": "会议听取了业务部关于2026年8月读者意见办理情况的汇报，以及预约系统操作演示情况的介绍，研究了预约系统试点和开放时间调整等事项，并明确了有关事项的责任分工和完成时限",
+          "is_length_bound": false
+        },
+        {
+          "kind": "number",
+          "value": "8月",
+          "start": 73,
+          "end": 75,
+          "context": "会议听取了业务部关于2026年8月读者意见办理情况的汇报，以及预约系统操作演示情况的介绍，研究了预约系统试点和开放时间调整等事项，并明确了有关事项的责任分工和完成时限",
+          "is_length_bound": false
+        },
+        {
+          "kind": "number",
+          "value": "2026年",
+          "start": 185,
+          "end": 190,
+          "context": "业务部反映，2026年8月共收到读者意见24条，其中已答复18条",
+          "is_length_bound": false
+        },
+        {
+          "kind": "number",
+          "value": "8月",
+          "start": 190,
+          "end": 192,
+          "context": "业务部反映，2026年8月共收到读者意见24条，其中已答复18条",
+          "is_length_bound": false
+        },
+        {
+          "kind": "number",
+          "value": "24条",
+          "start": 199,
+          "end": 202,
+          "context": "业务部反映，2026年8月共收到读者意见24条，其中已答复18条",
+          "is_length_bound": false
+        },
+        {
+          "kind": "number",
+          "value": "18条",
+          "start": 208,
+          "end": 211,
+          "context": "业务部反映，2026年8月共收到读者意见24条，其中已答复18条",
+          "is_length_bound": false
+        },
+        {
+          "kind": "number",
+          "value": "6条",
+          "start": 214,
+          "end": 216,
+          "context": "其余6条涉及情况需进一步核实，待核实完成后予以答复",
+          "is_length_bound": false
+        },
+        {
+          "kind": "number",
+          "value": "8月",
+          "start": 259,
+          "end": 261,
+          "context": "会上介绍了8月26日开展的预约系统操作演示，共有9名馆员参加",
+          "is_length_bound": false
+        },
+        {
+          "kind": "number",
+          "value": "26日",
+          "start": 261,
+          "end": 264,
+          "context": "会上介绍了8月26日开展的预约系统操作演示，共有9名馆员参加",
+          "is_length_bound": false
+        },
+        {
+          "kind": "number",
+          "value": "9名",
+          "start": 278,
+          "end": 280,
+          "context": "会上介绍了8月26日开展的预约系统操作演示，共有9名馆员参加",
+          "is_length_bound": false
+        },
+        {
+          "kind": "number",
+          "value": "6条",
+          "start": 546,
+          "end": 548,
+          "context": "由业务部负责，对剩余6条读者意见进行核实，于9月12日前完成核实，并报送核实情况",
+          "is_length_bound": false
+        },
+        {
+          "kind": "number",
+          "value": "9月",
+          "start": 558,
+          "end": 560,
+          "context": "由业务部负责，对剩余6条读者意见进行核实，于9月12日前完成核实，并报送核实情况",
+          "is_length_bound": false
+        },
+        {
+          "kind": "number",
+          "value": "12日",
+          "start": 560,
+          "end": 563,
+          "context": "由业务部负责，对剩余6条读者意见进行核实，于9月12日前完成核实，并报送核实情况",
+          "is_length_bound": false
+        },
+        {
+          "kind": "number",
+          "value": "9月",
+          "start": 597,
+          "end": 599,
+          "context": "由综合部负责，于9月15日前提交人员成本测算结果",
+          "is_length_bound": false
+        },
+        {
+          "kind": "number",
+          "value": "15日",
+          "start": 599,
+          "end": 602,
+          "context": "由综合部负责，于9月15日前提交人员成本测算结果",
+          "is_length_bound": false
+        }
+      ],
+      "quantities": [],
+      "quotes": [],
+      "fields": [],
+      "state_contexts": [
+        "其余6条涉及情况需进一步核实，待核实完成后予以答复",
+        "该次演示内容为预约系统操作展示，不属于业务培训，也未形成系统验收结论，预约系统尚处于操作演示阶段",
+        "目前该事项仍处于建议阶段，是否开展试点尚未决定"
+      ]
+    }
+  },
+  "human_quality_review": "pending; model issues are model claims only",
+  "raw_files_sha256": {
+    "contract-selected.txt": "dc71a81d5fce59d799c9c42814ed93ae64e6c8c7fe76bf4adea9745c47094868",
+    "invocation.json": "ad07657816c65812d95e16a4ea1cd01d7a42d705edbd0095d6030c3ce3fe5e26",
+    "model-proposal.txt": "5c6e78cf88b23664f4e76d679c45a90b209004fcaed43b086b685b4bab434c78",
+    "prompt.txt": "a484b0ba96f8395b5d5774fba619379cc02637ba3155534bdd42c62600a4407b",
+    "receipt.json": "b804aa88fc635bec13f3de3bc5807b0044720e9b32232bf2fce2375e652c4df6",
+    "reply.txt": "637ac4c683029da065f8cfd002443f232a4837cb1c09e80a110ee934cc0efbfb",
+    "stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stream.jsonl": "4102f31a370f67748a02740d4e60d57ca297483e59b3bfe2385395c6bde6df13"
+  }
+}

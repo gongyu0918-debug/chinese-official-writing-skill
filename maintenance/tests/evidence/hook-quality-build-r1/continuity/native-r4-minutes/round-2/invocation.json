@@ -1,0 +1,31 @@
+{
+  "argv": [
+    "C:\\Users\\admin\\.local\\bin\\claude.EXE",
+    "--setting-sources",
+    "",
+    "--tools",
+    "Read,Skill",
+    "--strict-mcp-config",
+    "--mcp-config",
+    "{\"mcpServers\":{}}",
+    "--permission-mode",
+    "dontAsk",
+    "--include-hook-events",
+    "--print",
+    "--verbose",
+    "--output-format",
+    "stream-json",
+    "--model",
+    "minimax-cn/MiniMax-M3",
+    "--effort",
+    "max",
+    "--plugin-dir",
+    "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\hook-quality-build-r1\\output\\hook-quality-build-r1\\continuity\\companion-minutes",
+    "--add-dir",
+    "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\hook-quality-build-r1\\output\\hook-quality-build-r1\\continuity\\companion-minutes",
+    "--resume",
+    "19a8f3ac-6aa8-4767-8779-9674f118aac1"
+  ],
+  "prompt": "记录人作了更正：剩余意见是5条，不是6条，8月总数为23条，已答复仍是18条。业务部报送核实情况的期限改成9月13日；其他事项没变。按这个更正更新上一稿，给我全文。",
+  "session": "19a8f3ac-6aa8-4767-8779-9674f118aac1"
+}

@@ -1,0 +1,31 @@
+{
+  "argv": [
+    "C:\\Users\\admin\\.local\\bin\\claude.EXE",
+    "--setting-sources",
+    "",
+    "--tools",
+    "Read",
+    "--strict-mcp-config",
+    "--mcp-config",
+    "{\"mcpServers\":{}}",
+    "--permission-mode",
+    "dontAsk",
+    "--include-hook-events",
+    "--print",
+    "--verbose",
+    "--output-format",
+    "stream-json",
+    "--model",
+    "alibaba-token-plan-2/deepseek-v4-flash-0731",
+    "--effort",
+    "max",
+    "--plugin-dir",
+    "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\hook-quality-build-r1\\output\\hook-quality-build-r1\\continuity\\companion",
+    "--add-dir",
+    "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\hook-quality-build-r1\\output\\hook-quality-build-r1\\continuity\\companion",
+    "--resume",
+    "7f837c8a-741e-4540-ad45-c5e154aab585"
+  ],
+  "prompt": "现在把全文压到700字以内，标题也算在内。保留最新数字、三个场景名称、各单位职责和仍待办理的事项，删掉的专题交流不要再带回来。只发正文。",
+  "session": "7f837c8a-741e-4540-ad45-c5e154aab585"
+}

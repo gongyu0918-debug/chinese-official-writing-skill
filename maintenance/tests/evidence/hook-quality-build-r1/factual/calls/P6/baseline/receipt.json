@@ -1,0 +1,33 @@
+{
+  "model": "alibaba-token-plan-2/deepseek-v4-flash-0731",
+  "return_code": null,
+  "failure": "TimeoutExpired",
+  "technical_valid": false,
+  "seconds": 180.047,
+  "disabled_inventory": [
+    {
+      "tools": [],
+      "mcp_servers": [],
+      "skills": [],
+      "plugins": []
+    }
+  ],
+  "tool_uses": [],
+  "usage_reports": [],
+  "record_count": 4171,
+  "invalid_json_lines": [],
+  "init_models": [
+    "alibaba-token-plan-2/deepseek-v4-flash-0731"
+  ],
+  "assistant_models": [],
+  "usage_models": [],
+  "api_key_sources": [
+    "none"
+  ],
+  "plugins": [],
+  "reads": [],
+  "result_count": 0,
+  "result_subtypes": [],
+  "result_errors": [],
+  "final_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

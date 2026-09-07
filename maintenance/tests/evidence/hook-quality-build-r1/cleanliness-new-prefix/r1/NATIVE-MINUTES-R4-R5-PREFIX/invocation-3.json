@@ -1,0 +1,30 @@
+{
+  "argv": [
+    "C:\\Users\\admin\\.local\\bin\\claude.EXE",
+    "--setting-sources",
+    "",
+    "--no-session-persistence",
+    "--disable-slash-commands",
+    "--tools",
+    "",
+    "--strict-mcp-config",
+    "--mcp-config",
+    "{\"mcpServers\":{}}",
+    "--permission-mode",
+    "dontAsk",
+    "--print",
+    "--verbose",
+    "--output-format",
+    "stream-json",
+    "--model",
+    "alibaba-token-plan-2/deepseek-v4-flash-0731",
+    "--effort",
+    "max"
+  ],
+  "phase": "delivery_cleanliness_awaiting_output",
+  "cwd": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\hook-quality-build-r1\\output\\hook-quality-build-r1\\cleanliness-new-prefix\\r1\\NATIVE-MINUTES-R4-R5-PREFIX\\calls\\3\\runtime\\work",
+  "prompt_sha256": "675eb9d7f611999557951d5cb30a2b5c72c66809e877837f9344f350d89a7f96",
+  "model": "alibaba-token-plan-2/deepseek-v4-flash-0731",
+  "effort": "max",
+  "isolation": "existing per-call isolated HOME/USERPROFILE/CLAUDE_CONFIG_DIR; no tools,Skills,plugins,MCP; dummy local gateway auth only; environment values omitted"
+}

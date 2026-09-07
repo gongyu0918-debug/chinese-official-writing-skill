@@ -1,0 +1,169 @@
+{
+  "schema_version": 1,
+  "source": "output/hook-quality-build-r1/cleanliness-new-prefix",
+  "excluded": [
+    "per-call runtime/HOME/config directories",
+    "__pycache__"
+  ],
+  "scope": "One native real D0 source, three isolated actual cleanup calls, protocol failure and verified D0 fallback. No product changes or retries.",
+  "files": {
+    ".gitattributes": {
+      "sha256": "730a35ae3d558080083c3103d9ac8100c3f6561678092abe341701dfa331eb1d",
+      "bytes": 29
+    },
+    "assessment.json": {
+      "sha256": "6a66070461a428b2ca0dd87385fea2b2f36ae6648eb0360cca99caa89e2ceb42",
+      "bytes": 1294
+    },
+    "fixture.json": {
+      "sha256": "33c0e981ec857e298d68fd8b89d41462849c41d859c1c851e09c3f4bdd8782fd",
+      "bytes": 7953
+    },
+    "helper-snapshot.py": {
+      "sha256": "e94019a61de89eb00ca311fbc5f195d2392d70948a3f3cc7a522c94b31150c6e",
+      "bytes": 11187
+    },
+    "preregister.md": {
+      "sha256": "790ecceeef53b20ce3e4d894d3338e918dfac9c53b6252cc143cadf3d9336d38",
+      "bytes": 1121
+    },
+    "r1/NATIVE-MINUTES-R4-R5-PREFIX/calls/1/prompt.txt": {
+      "sha256": "1094f4adee66c9ee277374593f2ffb4f2514295b6f63467df5b29a8a6126dded",
+      "bytes": 2494
+    },
+    "r1/NATIVE-MINUTES-R4-R5-PREFIX/calls/1/receipt.json": {
+      "sha256": "45c7df38ca8a725143080e5d01e187d58c74f3d2a0066458486bd02c1994f212",
+      "bytes": 1842
+    },
+    "r1/NATIVE-MINUTES-R4-R5-PREFIX/calls/1/reply.txt": {
+      "sha256": "b0444fbb499f0717c9fddec1d6a3187cd7f954634c93727a03b3ea969a863740",
+      "bytes": 1620
+    },
+    "r1/NATIVE-MINUTES-R4-R5-PREFIX/calls/1/stderr.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "r1/NATIVE-MINUTES-R4-R5-PREFIX/calls/1/stream-extract.json": {
+      "sha256": "da76869256b0bf37f8effe4f9fb5981fbe80d2a737265e7fa7b8e218e772ebce",
+      "bytes": 6835
+    },
+    "r1/NATIVE-MINUTES-R4-R5-PREFIX/calls/2/prompt.txt": {
+      "sha256": "afa9c80c8f71255ff5984ebbb56d259a05455f97b10d21b0acb958af9f1d29e4",
+      "bytes": 5393
+    },
+    "r1/NATIVE-MINUTES-R4-R5-PREFIX/calls/2/receipt.json": {
+      "sha256": "82b933275f6fa71afe42d373fa323048caefaeaa170ba3d446a08914c47eb26c",
+      "bytes": 1847
+    },
+    "r1/NATIVE-MINUTES-R4-R5-PREFIX/calls/2/reply.txt": {
+      "sha256": "d309211e9fe9b0a36acea3274dd9953ba0e52fe44a1376acc0f3013d10765915",
+      "bytes": 2811
+    },
+    "r1/NATIVE-MINUTES-R4-R5-PREFIX/calls/2/stderr.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "r1/NATIVE-MINUTES-R4-R5-PREFIX/calls/2/stream-extract.json": {
+      "sha256": "b6a7ea470ae483714526ef5556028e60ecf2a6df35407d46665961bc7899c83c",
+      "bytes": 9351
+    },
+    "r1/NATIVE-MINUTES-R4-R5-PREFIX/calls/3/prompt.txt": {
+      "sha256": "675eb9d7f611999557951d5cb30a2b5c72c66809e877837f9344f350d89a7f96",
+      "bytes": 1933
+    },
+    "r1/NATIVE-MINUTES-R4-R5-PREFIX/calls/3/receipt.json": {
+      "sha256": "1fa54fe3c8160ddb039f9dc929b8e8ab9cf258e9dad1c6d60ffcdbb4a70ba4e2",
+      "bytes": 1813
+    },
+    "r1/NATIVE-MINUTES-R4-R5-PREFIX/calls/3/reply.txt": {
+      "sha256": "17ad73b7212d42078beae4a3ebf11e131eb4de9d6cd0ebcd3c6e4e510a0f20ea",
+      "bytes": 1824
+    },
+    "r1/NATIVE-MINUTES-R4-R5-PREFIX/calls/3/stderr.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "r1/NATIVE-MINUTES-R4-R5-PREFIX/calls/3/stream-extract.json": {
+      "sha256": "855149c7db8da8b61832f2f62d5b48b25bd90a5c59dda5e7f49b4efa076e4cea",
+      "bytes": 7217
+    },
+    "r1/NATIVE-MINUTES-R4-R5-PREFIX/calls.json": {
+      "sha256": "2c366851b59fd3ab5a7c1e89d67c74f0329894a722d42579dd85e697f648d9f0",
+      "bytes": 7170
+    },
+    "r1/NATIVE-MINUTES-R4-R5-PREFIX/events.json": {
+      "sha256": "254473d8673a5ab253c2e0ec3dcc9c1f3d13242cf69d3dcc635a94d82aae85bd",
+      "bytes": 29311
+    },
+    "r1/NATIVE-MINUTES-R4-R5-PREFIX/final-visible.txt": {
+      "sha256": "17ad73b7212d42078beae4a3ebf11e131eb4de9d6cd0ebcd3c6e4e510a0f20ea",
+      "bytes": 1824
+    },
+    "r1/NATIVE-MINUTES-R4-R5-PREFIX/input.json": {
+      "sha256": "dda49bd0a6ea26ae5f42e3648ced6a531e1d4314eb8ee99d77d8e82433200cab",
+      "bytes": 5945
+    },
+    "r1/NATIVE-MINUTES-R4-R5-PREFIX/invocation-1.json": {
+      "sha256": "468ac61bbd7d78bd922caae54b4788d02b9139a510fcf9a6dac73b1b10ce1fb8",
+      "bytes": 1059
+    },
+    "r1/NATIVE-MINUTES-R4-R5-PREFIX/invocation-2.json": {
+      "sha256": "3633c6689bffbfce50ad85d2afa365bf31f0ec658fdcf0b97d54cddeba097688",
+      "bytes": 1058
+    },
+    "r1/NATIVE-MINUTES-R4-R5-PREFIX/invocation-3.json": {
+      "sha256": "fdca51e6e43dd6e12d2a91e663e5808c5f743b3eecd9fd1de65b1a7f7d3144ce",
+      "bytes": 1057
+    },
+    "r1/NATIVE-MINUTES-R4-R5-PREFIX/last-assistant.txt": {
+      "sha256": "17ad73b7212d42078beae4a3ebf11e131eb4de9d6cd0ebcd3c6e4e510a0f20ea",
+      "bytes": 1824
+    },
+    "r1/NATIVE-MINUTES-R4-R5-PREFIX/result.json": {
+      "sha256": "6a8dce11094f8539b8c2db1b33134ab840096948ea7ff9034aca45f389f3182f",
+      "bytes": 9234
+    },
+    "README.md": {
+      "sha256": "c00635076c9d24e479f38afd44d444d86791958d85fcb13c040ebda81af28d7a",
+      "bytes": 887
+    },
+    "result.json": {
+      "sha256": "6a8dce11094f8539b8c2db1b33134ab840096948ea7ff9034aca45f389f3182f",
+      "bytes": 9234
+    },
+    "result.md": {
+      "sha256": "1081b59e192adcfb063efe0d65df5ed62f7178c7e86c62279d8c13d572c2bfef",
+      "bytes": 2517
+    },
+    "run.py": {
+      "sha256": "11dac076f21b11472cb8742e4e696eef1b7652e00f7402f7f95978070df7f9d2",
+      "bytes": 5681
+    },
+    "runtime-baseline.py": {
+      "sha256": "9b2988d00ba341a708a04f661f3fae1afd6a5e1510e1a017304ea10da783824c",
+      "bytes": 11455
+    },
+    "source/final.txt": {
+      "sha256": "3112b34d5cd0dc8fcbe1a48708c68c2d9cc743a6e2383c287106a9db8f0efd6f",
+      "bytes": 1852
+    },
+    "source/invocation.json": {
+      "sha256": "a9acf757797fe2afa54c638a73e10bc19eb1dbb3b6ab524112e75bb0d0fee2f6",
+      "bytes": 1080
+    },
+    "source/stream-extract.json": {
+      "sha256": "8767f957743c511d6d90a3853cb09440766ee4bffd3713179612ac3d5a0a738f",
+      "bytes": 45003
+    },
+    "stream-compaction.json": {
+      "sha256": "0064d3f65015c2c121f830e05df1ed9e0357ddbaa18da33712e2e2951029c4fd",
+      "bytes": 2848
+    },
+    "validation.json": {
+      "sha256": "f7f67f14a76066b44484ccd55abd5abb9246df684d2896323a2315ace61a19ef",
+      "bytes": 787
+    }
+  },
+  "method": "Curated archive. Prompt/reply/receipt bytes retained; raw stream copies replaced by explicitly derived, line-indexed stream-extract.json after verifying the intact output original. Original drivers retain output layout. No model rerun.",
+  "current_archived_file_count": 39
+}

@@ -1,0 +1,184 @@
+{
+  "schema_version": 1,
+  "stage": "candidate-r3",
+  "purpose": "以真实模型回复保留全部外围文字，隔离具体主体纠正是否仍被正文关系门拦回；不是最终交付原型。",
+  "base_commit": "b77f6381438c8fa01f8576c205d13af4b8a987fd",
+  "model": "alibaba-token-plan-2/deepseek-v4-flash-0731",
+  "new_real_calls": 1,
+  "cumulative_real_calls_in_factual_atom": 7,
+  "cumulative_technical_valid_calls": 6,
+  "preserved_technical_failure": "initial P6 baseline 180.047 seconds TimeoutExpired; no retry.",
+  "session_ids": [
+    "7e4c5de4-4d04-47c8-947d-c5ffe77b80af"
+  ],
+  "seconds": 75.422,
+  "technical_valid": true,
+  "input_binding": {
+    "fixture_sha256": "c06e775fed2a6aa8bc007b411c45b359cd97c0784d4621e33a8ae21ff18e611d",
+    "request_sha256": "74dbf88116c69b2906bf0971375577c373de76743156c43c1965f01d66993736",
+    "d0_sha256": "dc71a81d5fce59d799c9c42814ed93ae64e6c8c7fe76bf4adea9745c47094868",
+    "source_packet_sha256": "b2c2089a68641d766f9fc973c540ac0046692f0c07eff422206befa13ae29104"
+  },
+  "actual_model_output": {
+    "action": "REPLACE",
+    "issues_model_claim_only": [
+      "NEW_FACT_OR_PROCEDURE"
+    ],
+    "reply_sha256": "1d805b867aa439eecb31829c314518b68208e6f4a4d05006e57190f47d62ff24",
+    "proposal_sha256": "7a96938b8e1c23708574ddf7a57b962ad6da157dac1e99c665b85fea39fdd331",
+    "proposal_file": "calls/M5/candidate/model-proposal.txt"
+  },
+  "human_target_review": [
+    {
+      "before": "以及信息部关于预约系统操作演示情况的介绍",
+      "after": "以及关于预约系统操作演示情况的介绍",
+      "result": "CORRECTED",
+      "reason": "原材料仅说会上介绍了演示，没有给介绍主体；删无据归属、保留活动。"
+    },
+    {
+      "before": "8月26日，信息部组织开展了预约系统操作演示",
+      "after": "8月26日，组织开展了预约系统操作演示",
+      "result": "CORRECTED",
+      "reason": "原材料只给演示发生时间、人数和活动性质，未给信息部组织该次演示。"
+    }
+  ],
+  "scope_verification": {
+    "character_edits": [
+      {
+        "operation": "delete",
+        "old_start": 170,
+        "old_end": 173,
+        "new_start": 170,
+        "new_end": 170,
+        "old_text": "信息部",
+        "new_text": ""
+      },
+      {
+        "operation": "delete",
+        "old_start": 357,
+        "old_end": 360,
+        "new_start": 354,
+        "new_end": 354,
+        "old_text": "信息部",
+        "new_text": ""
+      }
+    ],
+    "only_two_named_actor_deletions": true,
+    "all_other_characters_exactly_preserved": true,
+    "entire_wrapper_prefix_exactly_preserved": true,
+    "legitimate_information_department_trial_proposal_preserved": true,
+    "same_matter_ongoing_preserved": true,
+    "reasonable_conditional_future_consideration_preserved": true,
+    "no_new_fact_status_role_or_length_claim_added": true,
+    "note": "保留全部外围字数和自证是本轮明确实验约束；原有整体系统阶段也不在此次仅主体/程序修正范围，不把其保留算新回退，不将全文视为直接可用。"
+  },
+  "unchanged_contract": {
+    "mechanical_ok": true,
+    "violations": {
+      "missing_numbers": [],
+      "added_numbers": [],
+      "missing_quantities": [],
+      "added_quantities": [],
+      "missing_quotes": [],
+      "added_quotes": [],
+      "fields_changed": false
+    },
+    "count_reductions": [],
+    "relation_packet": [
+      {
+        "kind": "number",
+        "value": "2026年",
+        "original_contexts": [
+          "为回应读者诉求、改进服务质量，清源图书馆于2026年9月4日召开服务改进专题会",
+          "会议听取了业务部关于2026年8月读者意见办理情况的汇报，以及信息部关于预约系统操作演示情况的介绍",
+          "业务部反映，2026年8月共收到读者意见24条，其中已答复18条"
+        ],
+        "candidate_contexts": [
+          "为回应读者诉求、改进服务质量，清源图书馆于2026年9月4日召开服务改进专题会",
+          "会议听取了业务部关于2026年8月读者意见办理情况的汇报，以及关于预约系统操作演示情况的介绍",
+          "业务部反映，2026年8月共收到读者意见24条，其中已答复18条"
+        ],
+        "check": "same_subject_object_matter_and_state"
+      },
+      {
+        "kind": "number",
+        "value": "26日",
+        "original_contexts": [
+          "8月26日，信息部组织开展了预约系统操作演示，共有9名馆员参加"
+        ],
+        "candidate_contexts": [
+          "8月26日，组织开展了预约系统操作演示，共有9名馆员参加"
+        ],
+        "check": "same_subject_object_matter_and_state"
+      },
+      {
+        "kind": "number",
+        "value": "8月",
+        "original_contexts": [
+          "会议听取了业务部关于2026年8月读者意见办理情况的汇报，以及信息部关于预约系统操作演示情况的介绍",
+          "业务部反映，2026年8月共收到读者意见24条，其中已答复18条",
+          "8月26日，信息部组织开展了预约系统操作演示，共有9名馆员参加"
+        ],
+        "candidate_contexts": [
+          "会议听取了业务部关于2026年8月读者意见办理情况的汇报，以及关于预约系统操作演示情况的介绍",
+          "业务部反映，2026年8月共收到读者意见24条，其中已答复18条",
+          "8月26日，组织开展了预约系统操作演示，共有9名馆员参加"
+        ],
+        "check": "same_subject_object_matter_and_state"
+      },
+      {
+        "kind": "number",
+        "value": "9名",
+        "original_contexts": [
+          "8月26日，信息部组织开展了预约系统操作演示，共有9名馆员参加"
+        ],
+        "candidate_contexts": [
+          "8月26日，组织开展了预约系统操作演示，共有9名馆员参加"
+        ],
+        "check": "same_subject_object_matter_and_state"
+      }
+    ],
+    "relation_item_count": 4,
+    "actual_selection_action": "KEEP",
+    "actual_selection_reason": "anchor_relation_unverified",
+    "selected_is_exact_d0": true,
+    "selected_sha256": "dc71a81d5fce59d799c9c42814ed93ae64e6c8c7fe76bf4adea9745c47094868",
+    "actual_delivered_target_corrections": 0
+  },
+  "finding": {
+    "status": "BODY_RELATION_GATE_BARRIER_CONFIRMED_WITH_REAL_D1",
+    "explanation": "外围计数/引语均保持后，两个具体错误主体的局部删除仍使含2026年、8月、26日、9名的句子上下文变化。shared关系包仅报告待语义核对，并未发现数字丢失、增加或状态升级；single_pass对任一非空关系包直接回退，因此事实修正仍未被选中。",
+    "code_locations": [
+      {
+        "file": "frozen-product/chinese-official-writing/hooks/shared/hard_anchors.py",
+        "lines": "267-284",
+        "fact": "数字/数量/引语同值上下文列表变化即加入same_subject_object_matter_and_state关系项。"
+      },
+      {
+        "file": "frozen-product/chinese-official-writing/hooks/core/single_pass_final_review.py",
+        "symbol": "parse_selection / anchor_relation_unverified",
+        "fact": "relation_packet非空即KEEP原始D0，不在该合同内核验原始材料对纠错的支持。"
+      }
+    ],
+    "not_claimed": [
+      "不是数字丢失或改变已给角色的实质错误",
+      "不是已完成Hook最终修稿",
+      "不是原生宿主验证",
+      "不证明应无条件忽略全部关系包"
+    ]
+  },
+  "next_step_boundary": "按根代理条件，实际D1未被原合同选中，本轮不启动独立来源verifier、不写手工PASS、不再跑模型或扩大工程。",
+  "prior_r1_r2_archive": {
+    "result": "../result.json",
+    "result_sha256": "8238cb274ff50971b4e8b62f4d020f93643451a0430d109b1643463d06062ef6",
+    "initial_review": "../initial-review.json",
+    "initial_review_sha256": "371b3b7ccc3609a87887d3cbccfd7b0c9f7451c9aa5675b93d4b0d59555e5d54",
+    "r2_review": "../candidate-r2/review.json",
+    "r2_review_sha256": "dff8bc8460f0425ef1e892fb73db7bc938de23746b6fef53a8b7fa4bcabf5b01"
+  },
+  "actual_commands": [
+    "python -B -X utf8 output/hook-quality-build-r1/factual/run_candidate_r3.py --prepare",
+    "python -B -X utf8 output/hook-quality-build-r1/factual/run_candidate_r3.py --run"
+  ],
+  "verification": "真实调用及字符差异/包hash/原合同精确选回D0验证完成；没有人工构造D1或PASS裁决。"
+}

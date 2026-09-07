@@ -1,0 +1,76 @@
+{
+  "model": "minimax-cn/MiniMax-M3",
+  "return_code": 0,
+  "failure": null,
+  "technical_valid": true,
+  "seconds": 6.109,
+  "disabled_inventory": [
+    {
+      "tools": [],
+      "mcp_servers": [],
+      "skills": [],
+      "plugins": []
+    }
+  ],
+  "tool_uses": [],
+  "usage_reports": [
+    {
+      "usage": {
+        "input_tokens": 2116,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0,
+        "output_tokens": 454,
+        "server_tool_use": {
+          "web_search_requests": 0,
+          "web_fetch_requests": 0
+        },
+        "service_tier": "standard",
+        "cache_creation": {
+          "ephemeral_1h_input_tokens": 0,
+          "ephemeral_5m_input_tokens": 0
+        },
+        "inference_geo": "",
+        "iterations": [],
+        "speed": "standard"
+      },
+      "modelUsage": {
+        "minimax-cn/MiniMax-M3": {
+          "inputTokens": 2116,
+          "outputTokens": 454,
+          "cacheReadInputTokens": 0,
+          "cacheCreationInputTokens": 0,
+          "webSearchRequests": 0,
+          "costUSD": 0.021929999999999998,
+          "contextWindow": 200000,
+          "maxOutputTokens": 32000
+        }
+      },
+      "total_cost_usd": 0.021929999999999998,
+      "duration_ms": 5044
+    }
+  ],
+  "record_count": 9,
+  "invalid_json_lines": [],
+  "init_models": [
+    "minimax-cn/MiniMax-M3"
+  ],
+  "assistant_models": [
+    "minimax-cn/MiniMax-M3"
+  ],
+  "usage_models": [
+    "minimax-cn/MiniMax-M3"
+  ],
+  "api_key_sources": [
+    "none"
+  ],
+  "plugins": [],
+  "reads": [],
+  "result_count": 1,
+  "result_subtypes": [
+    "success"
+  ],
+  "result_errors": [
+    false
+  ],
+  "final_sha256": "8c3d2b83b83fd095553ab2d8d013bd868066a098cfd26e364414bc26e935e343"
+}

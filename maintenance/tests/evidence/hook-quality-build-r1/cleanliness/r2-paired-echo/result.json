@@ -1,0 +1,122 @@
+{
+  "id": "M6",
+  "status": "finished",
+  "candidate_sha256": "9b2988d00ba341a708a04f661f3fae1afd6a5e1510e1a017304ea10da783824c",
+  "request_sha256": "dd4875114101a65a4b8238065f373984093177ec54b63291003af8cb949d45e3",
+  "d0_sha256": "8c3d2b83b83fd095553ab2d8d013bd868066a098cfd26e364414bc26e935e343",
+  "expected_sha256": "761c588587bbf7831d5072059a813f07460ef2bb843f31f1471db0fcf23eacc4",
+  "selected_sha256": "761c588587bbf7831d5072059a813f07460ef2bb843f31f1471db0fcf23eacc4",
+  "final_visible_sha256": "761c588587bbf7831d5072059a813f07460ef2bb843f31f1471db0fcf23eacc4",
+  "body_exactly_retained": true,
+  "expected_exact": true,
+  "original_unchanged": false,
+  "audit": {
+    "schema_version": 1,
+    "capability": "delivery_cleanliness",
+    "original_sha256": "8c3d2b83b83fd095553ab2d8d013bd868066a098cfd26e364414bc26e935e343",
+    "candidate_sha256": "761c588587bbf7831d5072059a813f07460ef2bb843f31f1471db0fcf23eacc4",
+    "selection": "D1",
+    "reason": "semantic_pass",
+    "delivery_sha256": "761c588587bbf7831d5072059a813f07460ef2bb843f31f1471db0fcf23eacc4",
+    "delivery_verified": true
+  },
+  "phase": "delivery_cleanliness_complete",
+  "last_response": {
+    "continue": true
+  },
+  "new_call_count": 1,
+  "reused_real_call_count": 2,
+  "calls": [
+    {
+      "index": 1,
+      "phase": "delivery_cleanliness_awaiting_output",
+      "reply_sha256": "761c588587bbf7831d5072059a813f07460ef2bb843f31f1471db0fcf23eacc4",
+      "receipt": {
+        "model": "minimax-cn/MiniMax-M3",
+        "return_code": 0,
+        "failure": null,
+        "technical_valid": true,
+        "seconds": 9.031,
+        "disabled_inventory": [
+          {
+            "tools": [],
+            "mcp_servers": [],
+            "skills": [],
+            "plugins": []
+          }
+        ],
+        "tool_uses": [],
+        "usage_reports": [
+          {
+            "usage": {
+              "input_tokens": 1565,
+              "cache_creation_input_tokens": 0,
+              "cache_read_input_tokens": 512,
+              "output_tokens": 340,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 0,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "minimax-cn/MiniMax-M3": {
+                "inputTokens": 1565,
+                "outputTokens": 340,
+                "cacheReadInputTokens": 512,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.016581,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              }
+            },
+            "total_cost_usd": 0.016581,
+            "duration_ms": 7983
+          }
+        ],
+        "record_count": 15,
+        "invalid_json_lines": [],
+        "init_models": [
+          "minimax-cn/MiniMax-M3"
+        ],
+        "assistant_models": [
+          "minimax-cn/MiniMax-M3"
+        ],
+        "usage_models": [
+          "minimax-cn/MiniMax-M3"
+        ],
+        "api_key_sources": [
+          "none"
+        ],
+        "plugins": [],
+        "reads": [],
+        "result_count": 1,
+        "result_subtypes": [
+          "success"
+        ],
+        "result_errors": [
+          false
+        ],
+        "final_sha256": "761c588587bbf7831d5072059a813f07460ef2bb843f31f1471db0fcf23eacc4"
+      },
+      "session_ids": [
+        "e3c6aa78-7253-456a-891e-f666c58a3d2b"
+      ]
+    }
+  ],
+  "counts_nonspace": {
+    "d0": 579,
+    "expected": 447,
+    "visible": 447
+  },
+  "actual_native_hook_run": false,
+  "functional_pass": true
+}
