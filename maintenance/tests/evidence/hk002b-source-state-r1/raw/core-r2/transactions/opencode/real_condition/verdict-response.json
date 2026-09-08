@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "run_id": "b26c0d93-3273-403b-a188-58f11758eb5f",
+  "request_sha256": "38e6e665c5d67b790bc6cd067e572c892ce3618264510b18134429959944db2f",
+  "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "draft_sha256": "579dc45af24cbf4e4004a495911e21a2fde3f11a2725906ee83e19a219570fd5",
+  "candidate_sha256": "9f7229793ebd3cc3af380789df7d8bc095a1dca0484e1d2fd2f881748c3dafe9",
+  "verdict": "PASS",
+  "checks": {
+    "no_new_fact_action_or_actor": true,
+    "decision_and_unresolved_state_preserved": true,
+    "necessary_content_preserved": true,
+    "p0_expression_removed_or_reduced": true,
+    "genre_structure_and_usability_preserved": true,
+    "source_fact_corrections_verified": true
+  },
+  "source_relation_packet_sha256": "bd20e6368d874542a3191287d511de77bc36fd85107a9bb6597df1c18583a3f8",
+  "source_relations": [
+    {
+      "finding_id": "P003",
+      "d0_issue_status": "error",
+      "d0_issue_resolved": true,
+      "source_relation_supported": true,
+      "other_facts_preserved": true,
+      "reason": "请求只说明附件归属核实未约定反馈日期、图像抽检安排已定但完成时间未定，未说明这两个日期明确后目录核对和验收即可推进；D1删除无据前置条件句，仅保留两项未定状态。其余主体、数量、时间、范围、条件、结构和必要内容与D0一致。"
+    }
+  ]
+}

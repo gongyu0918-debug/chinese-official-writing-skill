@@ -1,0 +1,2 @@
+各job相互独立，逐项执行instruction。只返回JSON对象{"results":[{"id":"job id","response":该job要求的JSON对象}]}。不要用工具、读文件、联网、返回正文或增添解释。各job数据不互相借用。
+{"jobs": []}

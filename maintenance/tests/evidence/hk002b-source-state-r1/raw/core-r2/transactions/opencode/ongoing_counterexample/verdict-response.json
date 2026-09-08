@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "run_id": "aa164c49-dc9b-49fd-bde0-a104674d466e",
+  "request_sha256": "7b3b33a21264e58c26f74f26ffe4472ae9f4fd6f77aca3e6fdea0a305c14f0e6",
+  "source_sha256": "897b3a40cbf91acc92d09ad9190c105334602e37be80d62b271ff319c015de2e",
+  "draft_sha256": "b6e29da8149c39486319fc1922b0a4384c57cccaff4ba44cba5d0514c152a75c",
+  "candidate_sha256": "987bbdc8afc131736f2be2eace9138160735d4d651a2a12c548d59aa25d28e1e",
+  "verdict": "PASS",
+  "checks": {
+    "no_new_fact_action_or_actor": true,
+    "decision_and_unresolved_state_preserved": true,
+    "necessary_content_preserved": true,
+    "p0_expression_removed_or_reduced": true,
+    "genre_structure_and_usability_preserved": true,
+    "source_fact_corrections_verified": true
+  },
+  "source_relation_packet_sha256": "8b79f972d9baf9b5e7872b36ce396c9ae42f081900b90b2e95964415e466bf1a",
+  "source_relations": [
+    {
+      "finding_id": "P001",
+      "d0_issue_status": "error",
+      "d0_issue_resolved": true,
+      "source_relation_supported": true,
+      "other_facts_preserved": true,
+      "reason": "source明确截至9月4日业务科正在核对18份附件且10份已完成、8份未完成；D0写“尚未开展”与“10份已经完成”直接矛盾。D1改为“正在核对”，主体、对象、分项数量和阶段一致，且标题、反馈日期未定及核对结果用途均保留。"
+    }
+  ]
+}

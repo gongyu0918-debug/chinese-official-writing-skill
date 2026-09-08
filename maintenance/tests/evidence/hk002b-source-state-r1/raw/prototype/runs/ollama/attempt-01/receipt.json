@@ -1,0 +1,26 @@
+{
+  "provider": "ollama",
+  "requested_model": "ollama-cloud/glm-5.3-flash",
+  "effort": "max",
+  "host_turn_context": [
+    {
+      "model": "ollama-cloud/glm-5.3-flash",
+      "effort": "max"
+    }
+  ],
+  "upstream_response_model_observed": false,
+  "attempt": "01",
+  "return_code": 0,
+  "failure": null,
+  "seconds": 51.45,
+  "technical_completed": true,
+  "tool_count": 0,
+  "final_sha256": "46dad07c585b8f4dacbf23cd7c33236402898586f467e663c43dda1d5b81715a",
+  "final_bytes": 1595,
+  "usage": {
+    "input_tokens": 12005,
+    "cached_input_tokens": 0,
+    "output_tokens": 5380,
+    "reasoning_output_tokens": 0
+  }
+}

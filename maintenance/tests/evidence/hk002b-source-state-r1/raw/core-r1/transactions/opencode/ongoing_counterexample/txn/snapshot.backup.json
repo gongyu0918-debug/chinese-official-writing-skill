@@ -1,0 +1,15 @@
+{
+  "schema_version": 2,
+  "run_id": "66cdc771-775d-4a58-a1a9-0e8899ca88b6",
+  "request_sha256": "7b3b33a21264e58c26f74f26ffe4472ae9f4fd6f77aca3e6fdea0a305c14f0e6",
+  "source_sha256": "897b3a40cbf91acc92d09ad9190c105334602e37be80d62b271ff319c015de2e",
+  "d0_sha256": "b6e29da8149c39486319fc1922b0a4384c57cccaff4ba44cba5d0514c152a75c",
+  "request_b64": "5o2u5p2Q5paZ5YaZ6L+b5bGV6K+05piO77yM5L+d55WZ5pyJ5o2u5YiG5p6Q44CC",
+  "source_b64": "5oiq6IezOeaciDTml6XvvIzkuJrliqHnp5HmraPlnKjmoLjlr7kxOOS7vemZhOS7tu+8jOWFtuS4rTEw5Lu95bey57uP5qC45a+55a6M5oiQ77yM5Ymp5L2ZOOS7veWwmuacquWujOaIkOOAguWPjemmiOaXpeacn+acquWumuOAgg==",
+  "d0_b64": "6ZmE5Lu25qC45a+55oOF5Ya1CgrkuJrliqHnp5HlsJrmnKrlvIDlsZUxOOS7vemZhOS7tuaguOWvue+8jOWFtuS4rTEw5Lu95bey57uP5a6M5oiQ77yM5Ymp5L2ZOOS7veWwmuacquWujOaIkOOAguWPjemmiOaXpeacn+acquWumuOAguaguOWvuee7k+aenOacieWKqeS6juWOmOa4hemZhOS7tuW9kuWxnuOAgg==",
+  "dispatch_input_sha256": "b6e29da8149c39486319fc1922b0a4384c57cccaff4ba44cba5d0514c152a75c",
+  "guided_marker_parse_status": "NONE",
+  "postdraft_marker_pass_verified": null,
+  "postdraft_marker_binding_mode": "LEGACY",
+  "guided_marker_binding_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

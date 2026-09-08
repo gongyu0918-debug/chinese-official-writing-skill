@@ -1,0 +1,42 @@
+[
+  {
+    "writer": "opencode",
+    "case": "real_condition"
+  },
+  {
+    "writer": "opencode",
+    "case": "ongoing_counterexample"
+  },
+  {
+    "writer": "ollama",
+    "case": "real_condition"
+  },
+  {
+    "writer": "ollama",
+    "case": "ongoing_counterexample"
+  },
+  {
+    "writer": "ali1",
+    "case": "real_condition"
+  },
+  {
+    "writer": "ali1",
+    "case": "ongoing_counterexample"
+  },
+  {
+    "writer": "ali2",
+    "case": "real_condition"
+  },
+  {
+    "writer": "ali2",
+    "case": "ongoing_counterexample"
+  },
+  {
+    "writer": "minimax",
+    "case": "real_condition"
+  },
+  {
+    "writer": "minimax",
+    "case": "ongoing_counterexample"
+  }
+]

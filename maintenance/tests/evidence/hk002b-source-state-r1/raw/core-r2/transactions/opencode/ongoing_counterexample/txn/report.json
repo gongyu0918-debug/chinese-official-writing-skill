@@ -1,0 +1,25 @@
+{
+  "schema_version": 2,
+  "run_id": "aa164c49-dc9b-49fd-bde0-a104674d466e",
+  "state": "TERMINAL_D1",
+  "detect_count": 1,
+  "repair_count": 1,
+  "mechanical_check_count": 1,
+  "verify_count": 1,
+  "repair_agent_call_count": 0,
+  "verdict_agent_call_count": 0,
+  "postdraft_marker_pass_verified": null,
+  "guided_marker_parse_status": "NONE",
+  "guided_marker_count": 0,
+  "selected": "D1",
+  "reason": "semantic_verdict_passed",
+  "state_trace": [
+    "DETECTING",
+    "AWAITING_REPAIR",
+    "MECHANICAL_VERIFYING",
+    "AWAITING_VERDICT",
+    "SEMANTIC_VERIFYING",
+    "TERMINAL_D1"
+  ],
+  "output_sha256": "987bbdc8afc131736f2be2eace9138160735d4d651a2a12c548d59aa25d28e1e"
+}

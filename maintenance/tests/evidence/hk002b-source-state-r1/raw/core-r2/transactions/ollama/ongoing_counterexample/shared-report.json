@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "scope": [
+    "state_mismatch",
+    "unsupported_prerequisite"
+  ],
+  "request_sha256": "7b3b33a21264e58c26f74f26ffe4472ae9f4fd6f77aca3e6fdea0a305c14f0e6",
+  "source_sha256": "897b3a40cbf91acc92d09ad9190c105334602e37be80d62b271ff319c015de2e",
+  "d0_sha256": "b6e29da8149c39486319fc1922b0a4384c57cccaff4ba44cba5d0514c152a75c",
+  "d1_sha256": "987bbdc8afc131736f2be2eace9138160735d4d651a2a12c548d59aa25d28e1e",
+  "source_relation_packet_sha256": "8b79f972d9baf9b5e7872b36ce396c9ae42f081900b90b2e95964415e466bf1a",
+  "findings": [
+    {
+      "finding_id": "P001",
+      "draft_quote": "业务科尚未开展18份附件核对，其中10份已经完成，剩余8份尚未完成。",
+      "draft_span": [
+        8,
+        42
+      ],
+      "source_relation": {
+        "kind": "state_mismatch",
+        "evidence": [
+          {
+            "origin": "source",
+            "quote": "截至9月4日，业务科正在核对18份附件，其中10份已经核对完成，剩余8份尚未完成。",
+            "span_start": 0,
+            "span_end": 41
+          }
+        ],
+        "relation": "核对状态或完成范围的词面差异是否对应同一主体、对象和阶段；不同分项、时间或最新更正可能使原稿成立。"
+      },
+      "assessment_status": "error",
+      "assessment_reason": "来源明确同一主体同一事项正在进行核对，10份已完成、8份未完成；原句“尚未开展”与该状态矛盾。",
+      "verifier_issue_status": "error",
+      "verifier_reason": "source 明确“业务科正在核对18份附件，其中10份已经核对完成，剩余8份尚未完成”，即核对工作已在进行且已完成10份；D0 写作“尚未开展18份附件核对”，既与来源状态相反，又与同句“其中10份已经完成、剩余8份尚未完成”自相矛盾，属实质性状态错误，而非可成立的不同分项或最新更正。D1 将“尚未开展……核对”改为“正在核对18份附件”，与来源同一主体、同一对象、同一阶段，且与后文10份已完成、8份未完成一致，原错误已消除且未引入新的动作或事实。除该处外，标题、主体、数字18/10/8、“反馈日期未定”及有据分析“核对结果有助于厘清附件归属”在 D1 中与 D0 逐字保持一致，进展说明体裁与可直接使用性未受影响；来源中的“截至9月4日”在 D0、D1 同样未出现，非本次改动引入。",
+      "candidate_resolves_issue": true,
+      "delivered_issue_resolved": true
+    }
+  ],
+  "unknown_ids": [],
+  "unresolved_ids": [],
+  "candidate_verdict": "PASS",
+  "candidate_verdict_reason": "semantic_verdict_passed",
+  "selected": "D1",
+  "selected_sha256": "987bbdc8afc131736f2be2eace9138160735d4d651a2a12c548d59aa25d28e1e",
+  "observed_output_sha256": "987bbdc8afc131736f2be2eace9138160735d4d651a2a12c548d59aa25d28e1e",
+  "delivery_verified": true,
+  "full_draft_fact_verified": false
+}

@@ -1,0 +1,369 @@
+{
+  "schema_version": 17,
+  "shared_gate_core": "chinese-official-writing/scripts/review_gate.py",
+  "activation": {
+    "default": "disabled",
+    "ordinary_skill_install_enables_hooks": false,
+    "configuration_mutation": "forbidden",
+    "runtime_host_detection": false,
+    "automatic_file_generation": false,
+    "automatic_installation": false,
+    "network_access": false,
+    "task_opt_out_supported": true,
+    "task_opt_out_record": "bypass=user_requested"
+  },
+  "data_retention": {
+    "active_turn_raw_data": "request_d0_candidate_and_verification_packets_in_plugin_data",
+    "terminal_action": "redact_raw_text_and_delete_turn_transaction_files",
+    "retained_receipt": "hash_count_phase_selection_and_delivery_status_only",
+    "interrupted_turn": "may_remain_until_exact_plugin_data_cleanup",
+    "data_root": "PLUGIN_DATA/candidate-ai-gate-hook",
+    "network_exfiltration": false
+  },
+  "length_gate": {
+    "automatic_expansion": true,
+    "automatic_compression": false,
+    "status": "available_opt_in",
+    "activation": "explicit_static_companion_selection",
+    "configuration_file": "hook-capability.json",
+    "default_selected": false,
+    "trigger": "explicit_lower_bound_and_more_than_ten_percent_short_or_incident_bulletin_implicit_near_material_paraphrase",
+    "implicit_genres": [
+      "incident_bulletin"
+    ],
+    "implicit_entry": {
+      "requires_numeric_bound": false,
+      "requires_separable_fact_material": true,
+      "requires_near_material_paraphrase": true,
+      "excluded_genres": [
+        "situation_explanation",
+        "action_notice",
+        "meeting_minutes"
+      ]
+    },
+    "revision_limit": 1,
+    "failure_action": "original_draft"
+  },
+  "over_length_gate": {
+    "status": "available_opt_in",
+    "automatic_compression": true,
+    "activation": "explicit_static_companion_selection",
+    "configuration_file": "hook-capability.json",
+    "default_selected": false,
+    "trigger": "explicit_upper_bound_and_more_than_ten_percent_over",
+    "sequence": [
+      "semantic_repetition_observation",
+      "bounded_compression",
+      "semantic_verdict",
+      "hash_bound_delivery"
+    ],
+    "compression_limit": 2,
+    "failure_action": "original_draft"
+  },
+  "protective_expansion_gate": {
+    "status": "available_opt_in",
+    "activation": "explicit_static_companion_selection",
+    "configuration_file": "hook-capability.json",
+    "default_selected": false,
+    "operation": "delete_exact_spans_only",
+    "source_visibility": "request_and_observed_tool-read boundary",
+    "uncertain_authority_action": "preserve_original"
+  },
+  "delivery_cleanliness_gate": {
+    "status": "available_opt_in",
+    "activation": "explicit_static_companion_selection",
+    "configuration_file": "hook-capability.json",
+    "default_selected": false,
+    "operation": "delete_unrequested_delivery_wrappers_only",
+    "revision_limit": 1,
+    "verdict_limit": 1,
+    "failure_action": "original_draft"
+  },
+  "repetition_cleanup_gate": {
+    "status": "available_opt_in",
+    "activation": "explicit_static_companion_selection",
+    "configuration_file": "hook-capability.json",
+    "default_selected": false,
+    "operation": "delete_semantically_redundant_frozen_spans_only",
+    "exact_duplicate_action": "candidate_only",
+    "high_similarity_action": "semantic_observation_required",
+    "failure_action": "original_draft"
+  },
+  "hosts": {
+    "codex": {
+      "status": "lifecycle_verified",
+      "adapter_source": "hooks/adapters/codex",
+      "runtime_adapter": "scripts/host_gate_adapter.py",
+      "events": [
+        "UserPromptSubmit",
+        "PostToolUse:Bash|Read",
+        "Stop"
+      ],
+      "verified_scope": "manifest_validation_registration_and_current_model_lifecycle",
+      "verified_host_scope": "Codex CLI 0.144.6",
+      "evidence": "maintenance/tests/evidence/post-v1610-host-capability-gaps-result-20260819.md",
+      "live_lifecycle_verified": true,
+      "data_root_environment": "PLUGIN_DATA",
+      "continuation_limit": 4,
+      "over_length_continuation_limit": 7
+    },
+    "codebuddy": {
+      "status": "lifecycle_verified",
+      "adapter_source": "hooks/adapters/codebuddy",
+      "runtime_adapter": "scripts/host_gate_adapter.py",
+      "events": [
+        "UserPromptSubmit",
+        "PostToolUse:Bash|Read|Skill",
+        "Stop"
+      ],
+      "verified_scope": "official_manifest_contract_local_validation_and_workbuddy_embedded_codebuddy_lifecycle",
+      "verified_host_scope": "WorkBuddy 5.3.13 embedded CodeBuddy CLI 2.115.0",
+      "hard_stop_status": "unsupported: command Stop continue:false or exit 2 requests continuation; core hard stop is currently allowed",
+      "evidence": "maintenance/tests/evidence/post-v1611-research-closeout-20260820.md",
+      "live_lifecycle_verified": true,
+      "required_stop_field": "last_assistant_message",
+      "data_root_environment": "CODEBUDDY_PLUGIN_DATA",
+      "continuation_limit": 4,
+      "over_length_continuation_limit": 7
+    },
+    "claude_code": {
+      "status": "lifecycle_verified",
+      "adapter_source": "hooks/adapters/claude-code",
+      "runtime_adapter": "scripts/gate_stop_hook.py",
+      "events": [
+        "UserPromptSubmit",
+        "PostToolUse:Bash|Read",
+        "Stop"
+      ],
+      "verified_events": [
+        "UserPromptSubmit",
+        "PostToolUse:Read",
+        "Stop"
+      ],
+      "unverified_events": [
+        "PostToolUse:Bash"
+      ],
+      "verified_transport": "anthropic_messages_gateway",
+      "first_party_login_required": false,
+      "data_root_environment": "CLAUDE_PLUGIN_DATA",
+      "minimum_version": "2.1.195",
+      "continuation_limit": 4,
+      "over_length_continuation_limit": 7,
+      "activation": "explicit plugin load only"
+    },
+    "zcode": {
+      "status": "lifecycle_verified",
+      "adapter_source": "hooks/adapters/zcode",
+      "runtime_adapter": "scripts/gate_stop_hook.py",
+      "events": [
+        "UserPromptSubmit",
+        "PostToolUse:Bash|Read",
+        "Stop"
+      ],
+      "verified_events": [
+        "UserPromptSubmit",
+        "PostToolUse:Read",
+        "Stop"
+      ],
+      "unverified_events": [
+        "PostToolUse:Bash"
+      ],
+      "verified_transport": "anthropic_messages_gateway_via_opencodex",
+      "verified_scope": "plugin_discovery_current_skill_real_writing_and_stop_delivery_hash",
+      "verified_host_scope": "ZCode Agent runtime 0.16.3 via community zcode-app-cli 3.8.1-15",
+      "verified_platform": "Windows",
+      "evidence": "maintenance/tests/evidence/domestic-cli-hooks-v1615/result.md",
+      "live_lifecycle_verified": true,
+      "required_stop_field": "last_assistant_message",
+      "data_root_environment": "ZCODE_PLUGIN_DATA or the host-provided CLAUDE_PLUGIN_DATA compatibility alias",
+      "first_party_login_required": false,
+      "continuation_limit": 4,
+      "over_length_continuation_limit": 7,
+      "activation": "explicit plugin load only",
+      "distribution_limit": "community CLI wrapper carrying the ZCode runtime; not an official standalone CLI"
+    },
+    "qwen_code": {
+      "status": "lifecycle_verified",
+      "adapter_source": "hooks/adapters/qwen-code",
+      "runtime_adapter": "scripts/gate_stop_hook.py",
+      "skill_package": "packages/qwen-code/skills/chinese-official-writing",
+      "events": [
+        "UserPromptSubmit",
+        "PostToolUse:skill|read_file|run_shell_command",
+        "Stop"
+      ],
+      "verified_events": [
+        "UserPromptSubmit",
+        "PostToolUse:read_file",
+        "Stop"
+      ],
+      "unverified_events": [
+        "PostToolUse:run_shell_command"
+      ],
+      "verified_transport": "openai_compatible_gateway_via_opencodex",
+      "verified_scope": "native_extension_install_current_skill_real_writing_three_stop_hash_bound_delivery",
+      "verified_host_scope": "Qwen Code CLI 0.22.0",
+      "verified_platform": "Windows",
+      "evidence": "maintenance/tests/evidence/domestic-cli-hooks-v1615/result-r2.md",
+      "live_lifecycle_verified": true,
+      "required_stop_field": "last_assistant_message",
+      "data_root_environment": "QWEN_RUNTIME_DIR, QWEN_HOME, or the exact transcript runtime root",
+      "first_party_login_required": false,
+      "continuation_limit": 4,
+      "over_length_continuation_limit": 7,
+      "activation": "explicit native extension install only",
+      "distribution_limit": "portable Agent Plugin v1 ignores hooks and is not a substitute for the native extension",
+      "compatibility_normalization": "Qwen 0.22.0 reports stop_hook_active=true on every Stop; the adapter reconstructs first versus continuation Stop from the current-turn counter"
+    },
+    "kimi_code_cli": {
+      "status": "lifecycle_verified_single_stop",
+      "adapter_source": "hooks/adapters/kimi-code",
+      "runtime_adapter": "scripts/gate_stop_hook.py",
+      "skill_package": "packages/agent-skills/skills/chinese-official-writing",
+      "events": [
+        "UserPromptSubmit",
+        "PostToolUse:Skill|Read|ReadFile|Bash",
+        "Stop"
+      ],
+      "verified_events": [
+        "UserPromptSubmit",
+        "PostToolUse:Skill|Read",
+        "Stop"
+      ],
+      "unverified_events": [
+        "PostToolUse:Bash"
+      ],
+      "verified_transport": "openai_compatible_gateway_via_opencodex",
+      "verified_scope": "native_plugin_install_current_skill_real_writing_exact_current_wire_d0_and_first_stop_block",
+      "verified_host_scope": "Kimi Code CLI 0.38.0",
+      "hard_stop_status": "unsupported: command hooks expose allow or continuation block only; core hard stop is currently allowed",
+      "verified_platform": "Windows",
+      "evidence": "maintenance/tests/evidence/domestic-cli-hooks-v1615/result-r2.md",
+      "live_lifecycle_verified": true,
+      "required_stop_field": null,
+      "current_draft_source": "exact session_index entry plus current-turn wire byte offset and last completed main-agent step",
+      "data_root_environment": "KIMI_CODE_HOME/plugin-data/chinese-official-writing-gate",
+      "first_party_login_required": false,
+      "continuation_limit": 1,
+      "over_length_continuation_limit": 1,
+      "activation": "explicit native plugin install only",
+      "host_limit": "Kimi 0.38.0 runs Stop only before the first hook-requested continuation; the revised final draft is delivered without a second Stop verification"
+    },
+    "opencode": {
+      "status": "lifecycle_verified_interactive_only",
+      "adapter_source": "hooks/adapters/opencode",
+      "runtime_adapter": ".opencode/plugins/chinese-official-writing-gate.js",
+      "skill_package": ".opencode/skills/chinese-official-writing",
+      "events": [
+        "session.idle",
+        "SDK session.messages",
+        "SDK session.prompt"
+      ],
+      "verified_transport": "opencodex_openai_compatible_gateway",
+      "verified_scope": "project_plugin_current_skill_same_session_real_writing_hash_bound_echo_terminal_redaction_turn_rebind_pending_restart_abort_and_single_dispatch_owner",
+      "verified_host_scope": "OpenCode 1.18.23 interactive mini CLI",
+      "hard_stop_status": "adapter stops retries and reports unverified failure; no synchronous abort or withdrawal of displayed text; current native UI not revalidated",
+      "verified_platform": "Windows",
+      "evidence": "maintenance/tests/evidence/hk004-opencode-hermes-r1/result.md",
+      "live_lifecycle_verified": true,
+      "headless_run_supported": false,
+      "visible_intermediate_outputs": true,
+      "required_stop_field": null,
+      "current_draft_source": "latest assistant text after the current external user message",
+      "data_root_environment": "COW_OPENCODE_GATE_DATA, absolute OPENCODE_DB sibling, or the OpenCode XDG data root",
+      "first_party_login_required": false,
+      "continuation_limit": 4,
+      "over_length_continuation_limit": 7,
+      "host_continuation_ceiling": 8,
+      "activation": "explicit project-level .opencode overlay only",
+      "distribution_limit": "interactive CLI only; opencode run exits before a reliable asynchronous continuation and is explicitly bypassed",
+      "skill_collision_limit": "the adapter arms only when the loaded skill directory exactly matches the packaged project skill",
+      "restart_and_race_policy": "a changed external turn or an unfinished consumed cycle is not replayed; the visible D0 is retained while the exact old transaction is aborted and redacted; a same-process reload during prompt dispatch observes the existing owner and does not send a duplicate prompt"
+    },
+    "hermes_agent": {
+      "status": "lifecycle_verified_fresh_query_single_pass",
+      "adapter_source": "hooks/adapters/hermes-agent",
+      "runtime_adapter": "__init__.py",
+      "skill_package": "skills/chinese-official-writing",
+      "events": [
+        "on_skill_lifecycle",
+        "on_session_start",
+        "pre_llm_call",
+        "transform_llm_output",
+        "post_llm_call",
+        "on_session_finalize|on_session_reset"
+      ],
+      "verified_scope": "profile user plugin current-skill preload, bounded cross-thread fresh-query binding, synchronous one-call review, strict JSON selection, fail-open D0, exact post task/turn/visible-response hash closure, inline and query-file markers, real drafts across sparse procurement and unresolved-situation tasks including a 0.20.6 rerun, one fixed-D0 replacement and a transform-persistence counterexample",
+      "verified_host_scope": "Hermes Agent CLI 0.20.5 upstream a9611f3c and 0.20.6 upstream 5fc308a7",
+      "verified_platform": "Windows new non-resumed hermes chat -q/--query/--query-file only",
+      "verified_transport": "ollama_cloud_and_opencodex_openai_compatible_gateway",
+      "verified_model": "Alibaba Token Plan 2 DeepSeek V4 Flash 0731; Ollama Cloud DeepSeek V4 Flash marker and real draft",
+      "evidence": "maintenance/tests/evidence/hk004-hermes-r2/result.md",
+      "live_transform_marker_verified": true,
+      "live_writing_adapter_verified": true,
+      "interactive_cli_supported": false,
+      "resumable_session_supported": false,
+      "oneshot_supported": false,
+      "gateway_live_verified": false,
+      "supported_capabilities": [
+        "delivery_review"
+      ],
+      "additional_llm_calls": 1,
+      "continuation_limit": 0,
+      "current_draft_source": "response_text supplied synchronously to transform_llm_output after the main tool loop",
+      "data_retention": "the plugin keeps request, D0 and candidate in process memory for one turn and logs hashes/counts only; Hermes 0.20.5-0.20.6 itself persists the pre-transform D0 in normal session storage, so the transformed session must not be resumed",
+      "activation": "explicit profile user plugin enable plus exact companion skill preload in a fresh hermes chat -q/--query/--query-file process with chat as the first command token; a sessionless preload binds once only when its non-empty task_id exactly matches the CLI session_id within 30 seconds",
+      "project_plugin_cli_limit": "0.20.5 runtime scans opted-in project plugins, but plugins list/enable does not enumerate them",
+      "failure_action": "original_draft",
+      "host_limit": "one synchronous host-owned completion and deterministic anchor check; Hermes persists D0 before transform, so interactive and resumed sessions are refused; --oneshot does not reliably finish plugin loading before preloaded-skill lifecycle; gateway is unverified; not equivalent to the shared multi-stage Stop gate, other capabilities are refused"
+    },
+    "deepseek_harness": {
+      "status": "lifecycle_verified_headless",
+      "adapter_source": "hooks/adapters/deepseek-harness",
+      "runtime_adapter": "index.mjs",
+      "skill_package": "skills/chinese-official-writing",
+      "events": [
+        "agent/pre-step",
+        "tools/post-execute:skill|read|read_file|bash|pwsh",
+        "agent/turn-stopping"
+      ],
+      "verified_events": [
+        "agent/pre-step",
+        "tools/post-execute:skill|read",
+        "agent/turn-stopping"
+      ],
+      "unverified_events": [
+        "tools/post-execute:bash|pwsh"
+      ],
+      "verified_scope": "native profile bundle install, exact packaged-skill binding, current open-turn D0, three-stop hash-bound delivery, terminal redaction, default compressed session persistence and current-skill procurement writing",
+      "verified_host_scope": "DeepSeek Harness 0.1.1-rc.2 headless profile",
+      "hard_stop_status": "hook cancellation with keepInbox:true verified using installed 0.1.1-rc.2 AgentLoop and MockAdapter; current native CLI not revalidated",
+      "verified_platform": "Windows",
+      "verified_transport": "opencodex_openai_responses_gateway",
+      "verified_model": "Alibaba Token Plan 2 DeepSeek V4 Flash 0731 using provider-default reasoning because the exported model row advertises no reasoningEfforts",
+      "evidence": "maintenance/tests/evidence/hk004-deepseek-harness-r1/result.md",
+      "live_lifecycle_verified": true,
+      "live_writing_adapter_verified": true,
+      "headless_profile_verified": true,
+      "tui_profile_verified": false,
+      "web_profile_verified": false,
+      "online_verified_capabilities": [
+        "delivery_review"
+      ],
+      "required_stop_field": null,
+      "current_draft_source": "last non-interrupted assistant/message for the current open turn in agent.session.events",
+      "data_root_environment": "absolute COW_DSH_GATE_DATA or DSH_HOME/plugin-data/chinese-official-writing-gate",
+      "first_party_login_required": false,
+      "continuation_limit": 4,
+      "over_length_continuation_limit": 7,
+      "host_stop_ceiling": 9,
+      "activation": "explicit dsh plugin add of the assembled Profile Bundle followed by profile restart",
+      "failure_action": "original_draft_or_hook_cancel_for_core_hard_stop_or_fallback_echo_mismatch",
+      "official_bridge_limit": "@deepseek-ai/dsh-hooks-claude-code 0.1.1-rc.2 omits last_assistant_message from Stop, so this companion uses the native Cordis lifecycle instead"
+    },
+    "openclaw": {
+      "status": "skill_only",
+      "adapter": null
+    }
+  }
+}

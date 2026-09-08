@@ -1,0 +1,11 @@
+{
+  "schema_version": 2,
+  "request_sha256": "38e6e665c5d67b790bc6cd067e572c892ce3618264510b18134429959944db2f",
+  "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "draft_sha256": "518dab9a324b1c1662f943ee16b80732dbd1226cbfa45f9e710a5ad83718ce71",
+  "revision_budget": 1,
+  "verify_budget": 1,
+  "findings": [],
+  "guided_marker_sha256": null,
+  "run_id": "f549e3e3-c7fd-4f60-aa5f-bd0e39c01ad8"
+}

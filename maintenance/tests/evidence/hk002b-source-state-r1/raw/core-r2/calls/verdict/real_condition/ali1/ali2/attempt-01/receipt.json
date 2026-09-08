@@ -1,0 +1,26 @@
+{
+  "provider": "ali2",
+  "requested_model": "alibaba-token-plan-2/qwen3.8-flash",
+  "effort": "max",
+  "host_turn_context": [
+    {
+      "model": "alibaba-token-plan-2/qwen3.8-flash",
+      "effort": "max"
+    }
+  ],
+  "upstream_response_model_observed": false,
+  "attempt": "01",
+  "return_code": 0,
+  "failure": null,
+  "seconds": 30.45,
+  "technical_completed": true,
+  "tool_count": 0,
+  "final_sha256": "1c2677678fb2697019f30e09266eb2dbf0975a489f2cfbdb69518ad42385af17",
+  "final_bytes": 2411,
+  "usage": {
+    "input_tokens": 13572,
+    "cached_input_tokens": 7168,
+    "output_tokens": 2439,
+    "reasoning_output_tokens": 1568
+  }
+}

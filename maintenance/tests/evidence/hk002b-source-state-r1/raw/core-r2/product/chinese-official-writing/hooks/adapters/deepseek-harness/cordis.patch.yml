@@ -1,0 +1,5 @@
+# Optional DeepSeek Harness Profile Bundle. Installing it adds only this
+# companion; ordinary Skill installation does not activate the Hook.
+- insert:
+    - id: chinese-official-writing-gate-dsh
+      name: chinese-official-writing-gate-dsh

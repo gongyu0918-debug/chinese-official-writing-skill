@@ -1,0 +1,1 @@
+2026-09-08T17:05:52.833514Z ERROR codex_api::endpoint::responses_websocket: failed to connect to websocket: HTTP error: 426 Upgrade Required, url: ws://127.0.0.1:10100/v1/responses

@@ -1,0 +1,22 @@
+{
+  "base": "f69534f05a2ae8c2da4f39d35a35497a90d0efff",
+  "models": {
+    "opencode": "opencode-go/deepseek-v4-flash",
+    "ollama": "ollama-cloud/glm-5.3-flash",
+    "ali1": "alibaba-token-plan/qwen3.8-flash",
+    "ali2": "alibaba-token-plan-2/qwen3.8-flash",
+    "minimax": "minimax-cn/MiniMax-M3"
+  },
+  "verifier_routes": {
+    "opencode": "ollama",
+    "ollama": "ali1",
+    "ali1": "ali2",
+    "ali2": "minimax",
+    "minimax": "opencode"
+  },
+  "effort": "max",
+  "cases": 5,
+  "frozen_files": 90,
+  "native_host_installation_tested": false,
+  "method": "Frozen canonical core lifecycle with fresh Codex CLI repair and separate-route verification; exact final echoes separately recorded."
+}

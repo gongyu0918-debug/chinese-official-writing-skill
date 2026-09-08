@@ -1,0 +1,65 @@
+[
+  {
+    "writer": "opencode",
+    "case": "real_condition",
+    "state": "TERMINAL_D1",
+    "selected": "D1",
+    "reason": "semantic_verdict_passed"
+  },
+  {
+    "writer": "opencode",
+    "case": "ongoing_counterexample",
+    "state": "TERMINAL_D1",
+    "selected": "D1",
+    "reason": "semantic_verdict_passed"
+  },
+  {
+    "writer": "ollama",
+    "case": "real_condition",
+    "state": "TERMINAL_D1",
+    "selected": "D1",
+    "reason": "semantic_verdict_passed"
+  },
+  {
+    "writer": "ollama",
+    "case": "ongoing_counterexample",
+    "state": "TERMINAL_D1",
+    "selected": "D1",
+    "reason": "semantic_verdict_passed"
+  },
+  {
+    "writer": "ali1",
+    "case": "real_condition",
+    "state": "TERMINAL_D1",
+    "selected": "D1",
+    "reason": "semantic_verdict_passed"
+  },
+  {
+    "writer": "ali1",
+    "case": "ongoing_counterexample",
+    "state": "TERMINAL_D1",
+    "selected": "D1",
+    "reason": "semantic_verdict_passed"
+  },
+  {
+    "writer": "ali2",
+    "case": "real_condition",
+    "state": "TERMINAL_D1",
+    "selected": "D1",
+    "reason": "semantic_verdict_passed"
+  },
+  {
+    "writer": "ali2",
+    "case": "ongoing_counterexample",
+    "state": "TERMINAL_D1",
+    "selected": "D1",
+    "reason": "semantic_verdict_passed"
+  },
+  {
+    "writer": "minimax",
+    "case": "ongoing_counterexample",
+    "state": "TERMINAL_D0",
+    "selected": "D0",
+    "reason": "semantic_verdict_missing"
+  }
+]

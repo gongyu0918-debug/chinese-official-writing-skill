@@ -1,0 +1,119 @@
+{
+  "models": {
+    "opencode": "opencode-go/deepseek-v4-flash",
+    "ollama": "ollama-cloud/glm-5.3-flash",
+    "ali1": "alibaba-token-plan/qwen3.8-flash",
+    "ali2": "alibaba-token-plan-2/qwen3.8-flash",
+    "minimax": "minimax-cn/MiniMax-M3"
+  },
+  "effort": "max",
+  "cli_calls": 42,
+  "technical_cli_completed": 42,
+  "upstream_response_model_observed": false,
+  "calls_by_route": {
+    "opencode": 7,
+    "ollama": 10,
+    "ali1": 8,
+    "ali2": 8,
+    "minimax": 9
+  },
+  "r2": [
+    {
+      "writer": "opencode",
+      "case": "real_condition",
+      "selected": "D1",
+      "candidate_verdict": "PASS",
+      "delivery_verified": true,
+      "delivered_corrections": 1,
+      "unresolved_ids": []
+    },
+    {
+      "writer": "opencode",
+      "case": "ongoing_counterexample",
+      "selected": "D1",
+      "candidate_verdict": "PASS",
+      "delivery_verified": true,
+      "delivered_corrections": 1,
+      "unresolved_ids": []
+    },
+    {
+      "writer": "ollama",
+      "case": "real_condition",
+      "selected": "D1",
+      "candidate_verdict": "PASS",
+      "delivery_verified": true,
+      "delivered_corrections": 1,
+      "unresolved_ids": []
+    },
+    {
+      "writer": "ollama",
+      "case": "ongoing_counterexample",
+      "selected": "D1",
+      "candidate_verdict": "PASS",
+      "delivery_verified": true,
+      "delivered_corrections": 1,
+      "unresolved_ids": []
+    },
+    {
+      "writer": "ali1",
+      "case": "real_condition",
+      "selected": "D1",
+      "candidate_verdict": "PASS",
+      "delivery_verified": true,
+      "delivered_corrections": 1,
+      "unresolved_ids": []
+    },
+    {
+      "writer": "ali1",
+      "case": "ongoing_counterexample",
+      "selected": "D1",
+      "candidate_verdict": "PASS",
+      "delivery_verified": true,
+      "delivered_corrections": 1,
+      "unresolved_ids": []
+    },
+    {
+      "writer": "ali2",
+      "case": "real_condition",
+      "selected": "D1",
+      "candidate_verdict": "PASS",
+      "delivery_verified": true,
+      "delivered_corrections": 1,
+      "unresolved_ids": []
+    },
+    {
+      "writer": "ali2",
+      "case": "ongoing_counterexample",
+      "selected": "D1",
+      "candidate_verdict": "PASS",
+      "delivery_verified": true,
+      "delivered_corrections": 1,
+      "unresolved_ids": []
+    },
+    {
+      "writer": "minimax",
+      "case": "real_condition",
+      "selected": "D0",
+      "candidate_verdict": "NOT_RUN",
+      "delivery_verified": true,
+      "delivered_corrections": 0,
+      "unresolved_ids": [
+        "P003"
+      ]
+    },
+    {
+      "writer": "minimax",
+      "case": "ongoing_counterexample",
+      "selected": "D0",
+      "candidate_verdict": "NOT_RUN",
+      "delivery_verified": true,
+      "delivered_corrections": 0,
+      "unresolved_ids": [
+        "P001"
+      ]
+    }
+  ],
+  "actual_corrected_deliveries": 8,
+  "retained_d0": 2,
+  "exact_echoes": 10
+}

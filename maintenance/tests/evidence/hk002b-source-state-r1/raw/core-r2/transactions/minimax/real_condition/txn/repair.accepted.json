@@ -1,0 +1,33 @@
+{
+  "schema_version": 2,
+  "run_id": "51baecbb-3628-4e6c-9fcb-992135c21f9f",
+  "request_sha256": "38e6e665c5d67b790bc6cd067e572c892ce3618264510b18134429959944db2f",
+  "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "draft_sha256": "579dc45af24cbf4e4004a495911e21a2fde3f11a2725906ee83e19a219570fd5",
+  "revision_count": 1,
+  "repair_mode": "decisions",
+  "repairs": [
+    {
+      "finding_id": "P001",
+      "decision": "KEEP",
+      "replacement": "其余8盒的目录问题需待业务科室核实合同附件归属后处理；这8盒中，5盒已经扫描，3盒尚未扫描，未扫描的3盒均包含在尚未扫描的30盒内。"
+    },
+    {
+      "finding_id": "P002",
+      "decision": "KEEP",
+      "replacement": "截至8月底，已完成扫描210盒，剩余30盒尚未扫描，其中包括待核实附件归属的3盒。"
+    },
+    {
+      "finding_id": "P003",
+      "decision": "REWRITE",
+      "replacement": "目前，8盒档案附件归属核实的反馈日期尚未约定，已扫描图像抽检完成时间未定，档案室已确定下一步先对已扫描图像进行抽检。"
+    }
+  ],
+  "source_assessments": [
+    {
+      "finding_id": "P003",
+      "status": "error",
+      "reason": "材料仅说明业务科室核实附件归属反馈日期尚未约定、抽检完成时间未定，并未将这两项未定时间列为目录核对和验收工作推进的前置条件；后半句'上述时间明确后，目录核对和验收工作可相应推进'添加了无据的等待依赖。"
+    }
+  ]
+}

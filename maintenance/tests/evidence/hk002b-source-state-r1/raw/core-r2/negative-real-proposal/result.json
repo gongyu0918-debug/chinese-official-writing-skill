@@ -1,0 +1,125 @@
+{
+  "proposal_origin": "prototype/ali1/attempt-01/final.txt real_condition",
+  "proposal_sha256": "356ce611d98899a4ca8274505af176332d4daefa58e1d2e68ec1a796de6ac2cc",
+  "synthesized_new_replacement": false,
+  "new_repair_model_calls": 0,
+  "state": {
+    "schema_version": 2,
+    "run_id": "6963bbd0-2c86-434f-96d0-ea0d8d7e6374",
+    "state": "TERMINAL_D0",
+    "request_sha256": "38e6e665c5d67b790bc6cd067e572c892ce3618264510b18134429959944db2f",
+    "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "d0_sha256": "579dc45af24cbf4e4004a495911e21a2fde3f11a2725906ee83e19a219570fd5",
+    "dispatch_input_sha256": "579dc45af24cbf4e4004a495911e21a2fde3f11a2725906ee83e19a219570fd5",
+    "postdraft_marker_pass_verified": null,
+    "postdraft_marker_binding_mode": "LEGACY",
+    "guided_marker_sha256": null,
+    "guided_marker_binding_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "guided_marker_parse_status": "NONE",
+    "guided_marker_count": 0,
+    "detection_sha256": "9012dad86eb4b2e37d56dccffd98f55356349651c9829b54324249cf8956e2a6",
+    "d1_sha256": "53e82f11acb2399ff81372591003a19b247ef88ccf884825679b1d18a0157bd6",
+    "detect_count": 1,
+    "repair_count": 1,
+    "mechanical_check_count": 1,
+    "verify_count": 1,
+    "repair_agent_call_count": 0,
+    "verdict_agent_call_count": 0,
+    "selected": "D0",
+    "reason": "source_relation_unverified_or_unresolved",
+    "repair_timeout_seconds": 1800,
+    "verdict_timeout_seconds": 1800,
+    "repair_deadline_utc": "2026-09-08T18:35:35.324559+00:00",
+    "verdict_deadline_utc": "2026-09-08T18:35:35.378431+00:00",
+    "verification_packet_sha256": "dc7b8c5e60aa35f516fe7a9a5973860358852caabb47f24d16b439fdb33540d7",
+    "repair_packet_sha256": "47dec84350d0e031a1bff0d01112780c3ae8de4ec57438d165aaf3d48112aa83",
+    "semantic_pass_receipt_sha256": null,
+    "state_trace": [
+      "DETECTING",
+      "AWAITING_REPAIR",
+      "MECHANICAL_VERIFYING",
+      "AWAITING_VERDICT",
+      "SEMANTIC_VERIFYING",
+      "TERMINAL_D0"
+    ],
+    "source_relation_packet_sha256": "67d83bb26bf907904d0e6a713da02b04bc046d817a97f7428d1f7968dc3aa81d",
+    "source_relation_ids": [
+      "P003"
+    ],
+    "output_sha256": "579dc45af24cbf4e4004a495911e21a2fde3f11a2725906ee83e19a219570fd5"
+  },
+  "report": {
+    "schema_version": 1,
+    "scope": [
+      "state_mismatch",
+      "unsupported_prerequisite"
+    ],
+    "request_sha256": "38e6e665c5d67b790bc6cd067e572c892ce3618264510b18134429959944db2f",
+    "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "d0_sha256": "579dc45af24cbf4e4004a495911e21a2fde3f11a2725906ee83e19a219570fd5",
+    "d1_sha256": "53e82f11acb2399ff81372591003a19b247ef88ccf884825679b1d18a0157bd6",
+    "source_relation_packet_sha256": "67d83bb26bf907904d0e6a713da02b04bc046d817a97f7428d1f7968dc3aa81d",
+    "findings": [
+      {
+        "finding_id": "P003",
+        "draft_quote": "目前，8盒档案附件归属核实的反馈日期和已扫描图像抽检的完成时间尚未确定；上述时间明确后，目录核对和验收工作可相应推进。",
+        "draft_span": [
+          501,
+          560
+        ],
+        "source_relation": {
+          "kind": "unsupported_prerequisite",
+          "evidence": [
+            {
+              "origin": "request",
+              "quote": "业务科室核实附件归属还没有约定反馈日期。",
+              "span_start": 349,
+              "span_end": 369
+            },
+            {
+              "origin": "request",
+              "quote": "档案室下一步准备先对已扫描图像抽检；这项安排已定，具体完成时间未定。",
+              "span_start": 315,
+              "span_end": 349
+            },
+            {
+              "origin": "request",
+              "quote": "到8月底，扫描量为210盒，仍未完成抽检；剩余30盒尚未扫描。",
+              "span_start": 214,
+              "span_end": 245
+            },
+            {
+              "origin": "request",
+              "quote": "6月完成扫描150盒，图像已保存，尚未完成抽检，不能作为最终验收量。",
+              "span_start": 162,
+              "span_end": 196
+            }
+          ],
+          "relation": "核对是否将材料未定字段写成推进同一事项的等待条件；未定字段本身不证明必须等待。",
+          "draft_context": {
+            "quote": "目前，8盒档案附件归属核实的反馈日期和已扫描图像抽检的完成时间尚未确定",
+            "span_start": 501,
+            "span_end": 536
+          }
+        },
+        "assessment_status": "error",
+        "assessment_reason": "同一事项（抽检安排）的状态被改动：材料明确抽检安排已定、只是完成时间未定，业务科室事项也只是反馈日期未定；稿件把\"日期明确\"新增为目录核对和验收工作得以推进的前提条件。材料规定的实际前置条件是业务科室核实附件归属，而非日期确定，时间未定不等于安排未定。",
+        "verifier_issue_status": "error",
+        "verifier_reason": "请求仅说明抽检安排已定、具体完成时间未定（'档案室下一步准备先对已扫描图像抽检；这项安排已定，具体完成时间未定'）且截至8月底'仍未完成抽检'；D0将'上述时间明确后，目录核对和验收工作可相应推进'写成以未定日期为前置的等待条件，材料无此依据，原有无据前置条件问题成立。但D1替换句'抽检已按确定的安排先行开展'把'安排已定、完成时间未定'反推为抽检已经开展，而材料只把该抽检列为'下一步准备'事项，未说已开始，验证要求明确禁止此类反推；原错误被换成另一处无据事实断言，纠正不成立。其余主体、数字、时间、范围、条件及公文结构内容未变。",
+        "candidate_resolves_issue": null,
+        "delivered_issue_resolved": null
+      }
+    ],
+    "unknown_ids": [],
+    "unresolved_ids": [
+      "P003"
+    ],
+    "candidate_verdict": "FAIL_OR_INVALID",
+    "candidate_verdict_reason": "source_relation_unverified_or_unresolved",
+    "selected": "D0",
+    "selected_sha256": "579dc45af24cbf4e4004a495911e21a2fde3f11a2725906ee83e19a219570fd5",
+    "observed_output_sha256": null,
+    "delivery_verified": null,
+    "full_draft_fact_verified": false
+  }
+}

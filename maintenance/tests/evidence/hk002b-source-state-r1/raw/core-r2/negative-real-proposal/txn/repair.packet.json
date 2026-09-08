@@ -1,0 +1,117 @@
+{
+  "schema_version": 1,
+  "response_schema_version": 2,
+  "response_revision_count": 1,
+  "response_repair_mode": "decisions",
+  "phase": "repair",
+  "run_id": "6963bbd0-2c86-434f-96d0-ea0d8d7e6374",
+  "request_sha256": "38e6e665c5d67b790bc6cd067e572c892ce3618264510b18134429959944db2f",
+  "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "draft_sha256": "579dc45af24cbf4e4004a495911e21a2fde3f11a2725906ee83e19a219570fd5",
+  "detection_sha256": "9012dad86eb4b2e37d56dccffd98f55356349651c9829b54324249cf8956e2a6",
+  "files": {
+    "request": "request.snapshot.txt",
+    "source": "source.snapshot.txt",
+    "draft": "d0.snapshot.txt",
+    "detection": "detection.json",
+    "guided_markers": null
+  },
+  "finding_count": 3,
+  "max_findings": 12,
+  "allowed_decisions": [
+    "KEEP",
+    "DELETE",
+    "REWRITE"
+  ],
+  "guided_marker_sha256": null,
+  "findings": [
+    {
+      "finding_id": "P001",
+      "labels": [
+        "peripheral-pending-cluster"
+      ],
+      "line": 7,
+      "target": "其余8盒的目录问题需待业务科室核实合同附件归属后处理；这8盒中，5盒已经扫描，3盒尚未扫描，未扫描的3盒均包含在尚未扫描的30盒内。",
+      "source_exact": false,
+      "request_exact": false,
+      "span_start": 262,
+      "span_end": 328,
+      "allowed_decisions": [
+        "KEEP",
+        "REWRITE"
+      ],
+      "delete_block_reason": "semantic_sensitive_finding"
+    },
+    {
+      "finding_id": "P002",
+      "labels": [
+        "peripheral-pending-cluster"
+      ],
+      "line": 11,
+      "target": "截至8月底，已完成扫描210盒，剩余30盒尚未扫描，其中包括待核实附件归属的3盒。",
+      "source_exact": false,
+      "request_exact": false,
+      "span_start": 340,
+      "span_end": 381,
+      "allowed_decisions": [
+        "KEEP",
+        "REWRITE"
+      ],
+      "delete_block_reason": "semantic_sensitive_finding"
+    },
+    {
+      "finding_id": "P003",
+      "labels": [
+        "multi-object-pending-tail",
+        "source-unsupported-prerequisite"
+      ],
+      "line": 17,
+      "target": "目前，8盒档案附件归属核实的反馈日期和已扫描图像抽检的完成时间尚未确定；上述时间明确后，目录核对和验收工作可相应推进。",
+      "source_exact": false,
+      "request_exact": false,
+      "span_start": 501,
+      "span_end": 560,
+      "source_relation": {
+        "kind": "unsupported_prerequisite",
+        "evidence": [
+          {
+            "origin": "request",
+            "quote": "业务科室核实附件归属还没有约定反馈日期。",
+            "span_start": 349,
+            "span_end": 369
+          },
+          {
+            "origin": "request",
+            "quote": "档案室下一步准备先对已扫描图像抽检；这项安排已定，具体完成时间未定。",
+            "span_start": 315,
+            "span_end": 349
+          },
+          {
+            "origin": "request",
+            "quote": "到8月底，扫描量为210盒，仍未完成抽检；剩余30盒尚未扫描。",
+            "span_start": 214,
+            "span_end": 245
+          },
+          {
+            "origin": "request",
+            "quote": "6月完成扫描150盒，图像已保存，尚未完成抽检，不能作为最终验收量。",
+            "span_start": 162,
+            "span_end": 196
+          }
+        ],
+        "relation": "核对是否将材料未定字段写成推进同一事项的等待条件；未定字段本身不证明必须等待。",
+        "draft_context": {
+          "quote": "目前，8盒档案附件归属核实的反馈日期和已扫描图像抽检的完成时间尚未确定",
+          "span_start": 501,
+          "span_end": 536
+        }
+      },
+      "assessment_status": "pending",
+      "allowed_decisions": [
+        "KEEP",
+        "REWRITE"
+      ],
+      "delete_block_reason": "source_relation_verdict_required"
+    }
+  ]
+}

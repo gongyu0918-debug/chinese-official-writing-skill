@@ -1,0 +1,16 @@
+[
+  {
+    "writer": "opencode",
+    "case": "ongoing_counterexample",
+    "state": "TERMINAL_D1",
+    "selected": "D1",
+    "reason": "semantic_verdict_passed"
+  },
+  {
+    "writer": "ali2",
+    "case": "ongoing_counterexample",
+    "state": "TERMINAL_D1",
+    "selected": "D1",
+    "reason": "semantic_verdict_passed"
+  }
+]

@@ -1,0 +1,26 @@
+{
+  "provider": "opencode",
+  "requested_model": "opencode-go/deepseek-v4-flash",
+  "effort": "max",
+  "host_turn_context": [
+    {
+      "model": "opencode-go/deepseek-v4-flash",
+      "effort": "max"
+    }
+  ],
+  "upstream_response_model_observed": false,
+  "attempt": "01",
+  "return_code": 0,
+  "failure": null,
+  "seconds": 32.62,
+  "technical_completed": true,
+  "tool_count": 0,
+  "final_sha256": "56a8088d0bc6c794ca834691d9c20d4981aeb67df26411c880aa51cca64167e9",
+  "final_bytes": 1926,
+  "usage": {
+    "input_tokens": 12428,
+    "cached_input_tokens": 0,
+    "output_tokens": 4003,
+    "reasoning_output_tokens": 3378
+  }
+}

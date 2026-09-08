@@ -1,0 +1,21 @@
+{
+  "schema_version": 2,
+  "run_id": "83daa18e-553d-49d1-8590-f24da00b7d43",
+  "state": "TERMINAL_D0",
+  "detect_count": 1,
+  "repair_count": 0,
+  "mechanical_check_count": 0,
+  "verify_count": 0,
+  "repair_agent_call_count": 0,
+  "verdict_agent_call_count": 0,
+  "postdraft_marker_pass_verified": null,
+  "guided_marker_parse_status": "NONE",
+  "guided_marker_count": 0,
+  "selected": "D0",
+  "reason": "no_review_candidate",
+  "state_trace": [
+    "DETECTING",
+    "TERMINAL_D0"
+  ],
+  "output_sha256": "518dab9a324b1c1662f943ee16b80732dbd1226cbfa45f9e710a5ad83718ce71"
+}

@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "scope": [
+    "state_mismatch",
+    "unsupported_prerequisite"
+  ],
+  "request_sha256": "7b3b33a21264e58c26f74f26ffe4472ae9f4fd6f77aca3e6fdea0a305c14f0e6",
+  "source_sha256": "897b3a40cbf91acc92d09ad9190c105334602e37be80d62b271ff319c015de2e",
+  "d0_sha256": "b6e29da8149c39486319fc1922b0a4384c57cccaff4ba44cba5d0514c152a75c",
+  "d1_sha256": "987bbdc8afc131736f2be2eace9138160735d4d651a2a12c548d59aa25d28e1e",
+  "source_relation_packet_sha256": "8b79f972d9baf9b5e7872b36ce396c9ae42f081900b90b2e95964415e466bf1a",
+  "findings": [
+    {
+      "finding_id": "P001",
+      "draft_quote": "业务科尚未开展18份附件核对，其中10份已经完成，剩余8份尚未完成。",
+      "draft_span": [
+        8,
+        42
+      ],
+      "source_relation": {
+        "kind": "state_mismatch",
+        "evidence": [
+          {
+            "origin": "source",
+            "quote": "截至9月4日，业务科正在核对18份附件，其中10份已经核对完成，剩余8份尚未完成。",
+            "span_start": 0,
+            "span_end": 41
+          }
+        ],
+        "relation": "核对状态或完成范围的词面差异是否对应同一主体、对象和阶段；不同分项、时间或最新更正可能使原稿成立。"
+      },
+      "assessment_status": "error",
+      "assessment_reason": "同一主体业务科、同一对象18份附件、同一分项（10份完成、8份未完成）下，材料记载该核对工作截至9月4日已在进行中，原稿把已明确进行的状态写成尚未开展，压低并反转了完成范围，属状态词面误写；只纠正该状态谓语，不补入材料才有但原稿没有的日期，也不改变各数字及出现次数。",
+      "verifier_issue_status": "error",
+      "verifier_reason": "材料原文为“截至9月4日，业务科正在核对18份附件，其中10份已经核对完成，剩余8份尚未完成。反馈日期未定。”D0 写成“尚未开展18份附件核对”，既与材料“正在核对”的状态相反，又与同句“10份已经完成、剩余8份尚未完成”自相矛盾，属实质性状态错误而非可成立的词面差异；主体（业务科）、对象（18份附件）、阶段（部分完成）与材料一致，故 state_mismatch 关系成立。D1 改为“正在核对18份附件”，与材料同一口径，消除矛盾且未把已完成项说成未开始或反之。其余事实全部保留：10份完成、8份未完成、反馈日期未定，以及“核对结果有助于厘清附件归属”这一有据分析；未新增主体、动作、数字或时间条件。材料只说反馈日期未定，D1 未据此推出需等待或事项已开展。标题与正文结构、进展说明体裁和可直接使用性保持不变，因此各项通过。",
+      "candidate_resolves_issue": true,
+      "delivered_issue_resolved": true
+    }
+  ],
+  "unknown_ids": [],
+  "unresolved_ids": [],
+  "candidate_verdict": "PASS",
+  "candidate_verdict_reason": "semantic_verdict_passed",
+  "selected": "D1",
+  "selected_sha256": "987bbdc8afc131736f2be2eace9138160735d4d651a2a12c548d59aa25d28e1e",
+  "observed_output_sha256": "987bbdc8afc131736f2be2eace9138160735d4d651a2a12c548d59aa25d28e1e",
+  "delivery_verified": true,
+  "full_draft_fact_verified": false
+}

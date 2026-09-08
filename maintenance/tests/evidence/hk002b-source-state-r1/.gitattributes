@@ -1,0 +1,5 @@
+# Preserve exact UTF-8 prompts, replies, snapshots and their recorded hashes.
+raw/** -text -diff
+archive-manifest.json -text
+samples.json -text
+*.log -text -diff

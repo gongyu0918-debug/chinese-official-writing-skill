@@ -1,0 +1,107 @@
+[
+  {
+    "writer": "opencode",
+    "case": "real_state",
+    "state": "TERMINAL_D0",
+    "selected": "D0",
+    "reason": "empty_or_unchanged_candidate"
+  },
+  {
+    "writer": "opencode",
+    "case": "real_condition",
+    "state": "TERMINAL_D0",
+    "selected": "D0",
+    "reason": "replacement_strengthens_status"
+  },
+  {
+    "writer": "opencode",
+    "case": "ongoing_counterexample",
+    "state": "AWAITING_VERDICT",
+    "selected": null,
+    "reason": "mechanical_checks_passed"
+  },
+  {
+    "writer": "ollama",
+    "case": "real_state",
+    "state": "TERMINAL_D0",
+    "selected": "D0",
+    "reason": "empty_or_unchanged_candidate"
+  },
+  {
+    "writer": "ollama",
+    "case": "real_condition",
+    "state": "TERMINAL_D0",
+    "selected": "D0",
+    "reason": "replacement_strengthens_status"
+  },
+  {
+    "writer": "ollama",
+    "case": "ongoing_counterexample",
+    "state": "TERMINAL_D0",
+    "selected": "D0",
+    "reason": "hard_anchor_added"
+  },
+  {
+    "writer": "ali1",
+    "case": "real_state",
+    "state": "TERMINAL_D0",
+    "selected": "D0",
+    "reason": "repair_missing"
+  },
+  {
+    "writer": "ali1",
+    "case": "real_condition",
+    "state": "TERMINAL_D0",
+    "selected": "D0",
+    "reason": "repair_missing"
+  },
+  {
+    "writer": "ali1",
+    "case": "ongoing_counterexample",
+    "state": "TERMINAL_D0",
+    "selected": "D0",
+    "reason": "repair_missing"
+  },
+  {
+    "writer": "ali2",
+    "case": "real_state",
+    "state": "TERMINAL_D0",
+    "selected": "D0",
+    "reason": "empty_or_unchanged_candidate"
+  },
+  {
+    "writer": "ali2",
+    "case": "real_condition",
+    "state": "TERMINAL_D0",
+    "selected": "D0",
+    "reason": "replacement_strengthens_status"
+  },
+  {
+    "writer": "ali2",
+    "case": "ongoing_counterexample",
+    "state": "AWAITING_VERDICT",
+    "selected": null,
+    "reason": "mechanical_checks_passed"
+  },
+  {
+    "writer": "minimax",
+    "case": "real_state",
+    "state": "TERMINAL_D0",
+    "selected": "D0",
+    "reason": "empty_or_unchanged_candidate"
+  },
+  {
+    "writer": "minimax",
+    "case": "real_condition",
+    "state": "TERMINAL_D0",
+    "selected": "D0",
+    "reason": "replacement_strengthens_status"
+  },
+  {
+    "writer": "minimax",
+    "case": "ongoing_counterexample",
+    "state": "TERMINAL_D0",
+    "selected": "D0",
+    "reason": "hard_anchor_added"
+  }
+]

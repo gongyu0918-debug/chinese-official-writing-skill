@@ -1,0 +1,32 @@
+{
+  "argv": [
+    "C:\\Users\\admin\\AppData\\Roaming\\npm\\node_modules\\@openai\\codex\\node_modules\\@openai\\codex-win32-x64\\vendor\\x86_64-pc-windows-msvc\\bin\\codex.exe",
+    "-a",
+    "never",
+    "exec",
+    "--ignore-user-config",
+    "--ignore-rules",
+    "--skip-git-repo-check",
+    "-C",
+    "C:\\Users\\admin\\.codex\\worktrees\\5039\\chinese-official-writing-skill\\output\\hk002b-r1\\output\\hk002b-core-r2\\calls\\echo\\real_condition\\ali2\\attempt-01\\work",
+    "-m",
+    "alibaba-token-plan-2/qwen3.8-flash",
+    "-c",
+    "openai_base_url=\"http://127.0.0.1:10100/v1\"",
+    "-c",
+    "model_catalog_json=\"C:/Users/admin/.codex/worktrees/5039/chinese-official-writing-skill/output/hk002b-r1/output/hk002b-prototype-r1-glm/catalog.json\"",
+    "-c",
+    "model_reasoning_effort=\"max\"",
+    "-s",
+    "read-only",
+    "--json",
+    "--color",
+    "never",
+    "-o",
+    "C:\\Users\\admin\\.codex\\worktrees\\5039\\chinese-official-writing-skill\\output\\hk002b-r1\\output\\hk002b-core-r2\\calls\\echo\\real_condition\\ali2\\attempt-01\\final.txt",
+    "-"
+  ],
+  "model": "alibaba-token-plan-2/qwen3.8-flash",
+  "effort": "max",
+  "prompt_sha256": "03e3dbca3c79df2edfe50f5dc0519524ac63477238c0631e49e9fbecc9a31bb5"
+}

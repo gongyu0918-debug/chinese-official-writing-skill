@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "scope": [
+    "state_mismatch",
+    "unsupported_prerequisite"
+  ],
+  "request_sha256": "7b3b33a21264e58c26f74f26ffe4472ae9f4fd6f77aca3e6fdea0a305c14f0e6",
+  "source_sha256": "897b3a40cbf91acc92d09ad9190c105334602e37be80d62b271ff319c015de2e",
+  "d0_sha256": "b6e29da8149c39486319fc1922b0a4384c57cccaff4ba44cba5d0514c152a75c",
+  "d1_sha256": "4c07fbbe63404900301d82992a086371d8d7050c5b3cc4be84f36519881e4745",
+  "source_relation_packet_sha256": "8bb7398ddf1aa1814eb9a4e0a3e591c96f0e0c0781416514c101e5b83e15d583",
+  "findings": [
+    {
+      "finding_id": "P001",
+      "draft_quote": "业务科尚未开展18份附件核对，其中10份已经完成，剩余8份尚未完成。",
+      "draft_span": [
+        8,
+        42
+      ],
+      "source_relation": {
+        "kind": "state_mismatch",
+        "evidence": [
+          {
+            "origin": "source",
+            "quote": "截至9月4日，业务科正在核对18份附件，其中10份已经核对完成，剩余8份尚未完成。",
+            "span_start": 0,
+            "span_end": 41
+          }
+        ],
+        "relation": "核对状态或完成范围的词面差异是否对应同一主体、对象和阶段；不同分项、时间或最新更正可能使原稿成立。"
+      },
+      "assessment_status": "error",
+      "assessment_reason": "同一主体业务科、同一对象18份附件、同一阶段：材料明确为正在核对且已完成10份，稿件写成尚未开展，与材料状态自相矛盾，把进行中的工作写成未开始。",
+      "verifier_issue_status": "error",
+      "verifier_reason": "D0原句'业务科尚未开展18份附件核对，其中10份已经完成'自相矛盾（尚未开展却已有10份完成），与source'业务科正在核对18份附件，其中10份已经核对完成'不一致。D1改为'业务科正在核对18份附件，其中10份已经核对完成'，动词时态、对象、数量（18/10/8）、'反馈日期未定'、'核对结果有助于厘清附件归属'均与source一致，原矛盾消除，未新增事实或主体。",
+      "candidate_resolves_issue": true,
+      "delivered_issue_resolved": null
+    }
+  ],
+  "unknown_ids": [],
+  "unresolved_ids": [
+    "P001"
+  ],
+  "candidate_verdict": "PASS",
+  "candidate_verdict_reason": "semantic_verdict_passed",
+  "selected": "D1",
+  "selected_sha256": "4c07fbbe63404900301d82992a086371d8d7050c5b3cc4be84f36519881e4745",
+  "observed_output_sha256": null,
+  "delivery_verified": null,
+  "full_draft_fact_verified": false
+}

@@ -1,0 +1,74 @@
+{
+  "schema_version": 1,
+  "scope": [
+    "state_mismatch",
+    "unsupported_prerequisite"
+  ],
+  "request_sha256": "38e6e665c5d67b790bc6cd067e572c892ce3618264510b18134429959944db2f",
+  "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "d0_sha256": "579dc45af24cbf4e4004a495911e21a2fde3f11a2725906ee83e19a219570fd5",
+  "d1_sha256": null,
+  "source_relation_packet_sha256": null,
+  "findings": [
+    {
+      "finding_id": "S001",
+      "draft_quote": "；上述时间明确后，目录核对和验收工作可相应推进",
+      "draft_span": [
+        536,
+        559
+      ],
+      "source_relation": {
+        "kind": "unsupported_prerequisite",
+        "evidence": [
+          {
+            "origin": "request",
+            "quote": "业务科室核实附件归属还没有约定反馈日期。",
+            "span_start": 349,
+            "span_end": 369
+          },
+          {
+            "origin": "request",
+            "quote": "档案室下一步准备先对已扫描图像抽检；这项安排已定，具体完成时间未定。",
+            "span_start": 315,
+            "span_end": 349
+          },
+          {
+            "origin": "request",
+            "quote": "到8月底，扫描量为210盒，仍未完成抽检；剩余30盒尚未扫描。",
+            "span_start": 214,
+            "span_end": 245
+          },
+          {
+            "origin": "request",
+            "quote": "6月完成扫描150盒，图像已保存，尚未完成抽检，不能作为最终验收量。",
+            "span_start": 162,
+            "span_end": 196
+          }
+        ],
+        "relation": "核对是否将材料未定字段写成推进同一事项的等待条件；未定字段本身不证明必须等待。",
+        "draft_context": {
+          "quote": "目前，8盒档案附件归属核实的反馈日期和已扫描图像抽检的完成时间尚未确定",
+          "span_start": 501,
+          "span_end": 536
+        }
+      },
+      "assessment_status": "error",
+      "assessment_reason": "材料仅说反馈日期未定、抽检完成时间未定，未把时间确定作为推进目录核对和验收工作的前置条件；原稿将未定时间等同于必须等待后推进，属无据前置依赖。",
+      "verifier_issue_status": null,
+      "verifier_reason": null,
+      "candidate_resolves_issue": null,
+      "delivered_issue_resolved": null
+    }
+  ],
+  "unknown_ids": [],
+  "unresolved_ids": [
+    "S001"
+  ],
+  "candidate_verdict": "NOT_RUN",
+  "candidate_verdict_reason": "semantic_verdict_missing_or_invalid",
+  "selected": "D0",
+  "selected_sha256": "579dc45af24cbf4e4004a495911e21a2fde3f11a2725906ee83e19a219570fd5",
+  "observed_output_sha256": null,
+  "delivery_verified": null,
+  "full_draft_fact_verified": false
+}

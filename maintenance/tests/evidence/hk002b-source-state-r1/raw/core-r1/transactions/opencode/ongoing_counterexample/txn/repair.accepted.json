@@ -1,0 +1,24 @@
+{
+  "schema_version": 2,
+  "run_id": "66cdc771-775d-4a58-a1a9-0e8899ca88b6",
+  "request_sha256": "7b3b33a21264e58c26f74f26ffe4472ae9f4fd6f77aca3e6fdea0a305c14f0e6",
+  "source_sha256": "897b3a40cbf91acc92d09ad9190c105334602e37be80d62b271ff319c015de2e",
+  "draft_sha256": "b6e29da8149c39486319fc1922b0a4384c57cccaff4ba44cba5d0514c152a75c",
+  "revision_count": 1,
+  "repair_mode": "decisions",
+  "repairs": [
+    {
+      "finding_id": "P001",
+      "target": "业务科尚未开展18份附件核对，其中10份已经完成，剩余8份尚未完成。",
+      "decision": "REWRITE",
+      "replacement": "业务科正在核对18份附件，其中10份已经完成，剩余8份尚未完成。"
+    }
+  ],
+  "source_assessments": [
+    {
+      "finding_id": "P001",
+      "status": "error",
+      "reason": "状态错配：材料明确截至9月4日业务科正在核对18份附件，已开展且处于进行中，其中10份已经核对完成、8份尚未完成；稿件写成“尚未开展18份附件核对”，把进行中的事项表述为未开始，与材料同一主体同一事项的状态不符，且与句内“其中10份已经完成”自相矛盾。"
+    }
+  ]
+}

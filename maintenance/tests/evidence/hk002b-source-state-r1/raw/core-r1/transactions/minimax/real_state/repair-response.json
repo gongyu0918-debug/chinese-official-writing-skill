@@ -1,0 +1,17 @@
+{
+  "schema_version": 2,
+  "run_id": "ee135443-7ca3-4933-8e8c-d48ac9cff904",
+  "request_sha256": "38e6e665c5d67b790bc6cd067e572c892ce3618264510b18134429959944db2f",
+  "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "draft_sha256": "f52dfa2d722c029d51f092af70168fec7126d43038fa55d1eeaa6b0ddb1ea586",
+  "revision_count": 1,
+  "repair_mode": "decisions",
+  "repairs": [
+    {
+      "finding_id": "P001",
+      "target": "截至8月底，累计完成扫描210盒、剩余30盒尚未扫描，已扫描图像尚未抽检，不能作为最终验收量；目录存疑的18盒中已解决10盒，余8盒待业务科室核实附件归属。",
+      "decision": "KEEP",
+      "replacement": "截至8月底，累计完成扫描210盒、剩余30盒尚未扫描，已扫描图像尚未抽检，不能作为最终验收量；目录存疑的18盒中已解决10盒，余8盒待业务科室核实附件归属。"
+    }
+  ]
+}

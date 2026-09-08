@@ -19,6 +19,7 @@ HOOK_ROOT: Final = SKILL_ROOT / "hooks"
 ADAPTER_ROOT: Final = HOOK_ROOT / "adapters"
 CORE_PATH: Final = HOOK_ROOT / "core" / "gate_stop_hook.py"
 SINGLE_PASS_REVIEW_PATH: Final = HOOK_ROOT / "core" / "single_pass_final_review.py"
+SOURCE_FACT_REVIEW_PATH: Final = HOOK_ROOT / "core" / "source_fact_review.py"
 SHARED_HOST_ADAPTER: Final = ADAPTER_ROOT / "host_gate_adapter.py"
 
 
@@ -165,6 +166,7 @@ def _copy_skill(output: Path, adapter: HostAdapter) -> None:
         if not _is_excluded(relative, adapter):
             _copy(source, packaged_skill / relative)
     _copy(CORE_PATH, packaged_skill / "hooks" / "gate_stop_hook.py")
+    _copy(SOURCE_FACT_REVIEW_PATH, packaged_skill / "hooks" / "source_fact_review.py")
     if adapter.name == "hermes-agent":
         _copy(
             SINGLE_PASS_REVIEW_PATH,
@@ -198,6 +200,7 @@ def _validate(output: Path, adapter: HostAdapter) -> None:
         output / adapter.adapter_target,
         packaged_skill / "SKILL.md",
         packaged_skill / "hooks/gate_stop_hook.py",
+        packaged_skill / "hooks/source_fact_review.py",
         packaged_skill / "hooks/capabilities/protective_expansion/contract.py",
         packaged_skill / "hooks/capabilities/protective_expansion/runtime.py",
         packaged_skill / "hooks/capabilities/under_length/runtime.py",

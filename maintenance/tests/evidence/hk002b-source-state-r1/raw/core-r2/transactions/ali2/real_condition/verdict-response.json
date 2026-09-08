@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "run_id": "6c552512-cea2-4644-9ce4-1c619be99b39",
+  "request_sha256": "38e6e665c5d67b790bc6cd067e572c892ce3618264510b18134429959944db2f",
+  "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "draft_sha256": "579dc45af24cbf4e4004a495911e21a2fde3f11a2725906ee83e19a219570fd5",
+  "candidate_sha256": "9f7229793ebd3cc3af380789df7d8bc095a1dca0484e1d2fd2f881748c3dafe9",
+  "verdict": "PASS",
+  "checks": {
+    "no_new_fact_action_or_actor": true,
+    "decision_and_unresolved_state_preserved": true,
+    "necessary_content_preserved": true,
+    "p0_expression_removed_or_reduced": true,
+    "genre_structure_and_usability_preserved": true,
+    "source_fact_corrections_verified": true
+  },
+  "source_relation_packet_sha256": "bd20e6368d874542a3191287d511de77bc36fd85107a9bb6597df1c18583a3f8",
+  "source_relations": [
+    {
+      "finding_id": "P003",
+      "d0_issue_status": "error",
+      "d0_issue_resolved": true,
+      "source_relation_supported": true,
+      "other_facts_preserved": true,
+      "reason": "D0原稿在‘反馈日期和抽检完成时间尚未确定’后追加‘上述时间明确后，目录核对和验收工作可相应推进’，将未定字段上升为推进同一事项的必要前置；材料仅说‘业务科室核实附件归属还没有约定反馈日期’和‘抽检安排已定、具体完成时间未定’，并未把日期明确作为后续工作的等待条件，因此该句确为无据前置条件。D1删除该句，仅保留未定日期的事实陈述，符合材料。其它主体、对象、数字、时间、范围、条件及必要内容（240盒、2018-2020年、2017年不在范围、清点完成、18盒目录问题、5月两次核对解决10盒、余8盒、其中5盒已扫3盒未扫、扫描210盒、剩余30盒、7月设备维护3天、抽检未完成不能作为最终验收量、抽检安排已定、剩余30盒扫完后240盒扫描全部完成）均完整保留。"
+    }
+  ]
+}

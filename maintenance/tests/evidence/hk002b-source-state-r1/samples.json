@@ -1,0 +1,97 @@
+[
+  {
+    "kind": "pass_delivered",
+    "inputs": {
+      "request": {
+        "path": "raw/core-r2/transactions/opencode/ongoing_counterexample/txn/request.snapshot.txt",
+        "sha256": "7b3b33a21264e58c26f74f26ffe4472ae9f4fd6f77aca3e6fdea0a305c14f0e6",
+        "bytes": 48
+      },
+      "source": {
+        "path": "raw/core-r2/transactions/opencode/ongoing_counterexample/txn/source.snapshot.txt",
+        "sha256": "897b3a40cbf91acc92d09ad9190c105334602e37be80d62b271ff319c015de2e",
+        "bytes": 130
+      },
+      "d0": {
+        "path": "raw/core-r2/transactions/opencode/ongoing_counterexample/txn/d0.snapshot.txt",
+        "sha256": "b6e29da8149c39486319fc1922b0a4384c57cccaff4ba44cba5d0514c152a75c",
+        "bytes": 175
+      },
+      "d1": {
+        "path": "raw/core-r2/transactions/opencode/ongoing_counterexample/txn/d1.candidate.txt",
+        "sha256": "987bbdc8afc131736f2be2eace9138160735d4d651a2a12c548d59aa25d28e1e",
+        "bytes": 169
+      }
+    },
+    "report": "raw/core-r2/transactions/opencode/ongoing_counterexample/shared-report.json",
+    "original_verdict": "raw/core-r2/calls/verdict/ongoing_counterexample/opencode/ollama/attempt-01/final.txt",
+    "actual_echo": "raw/core-r2/calls/echo/ongoing_counterexample/opencode/attempt-01/final.txt",
+    "selected": "D1",
+    "delivery_verified": true,
+    "unresolved_ids": []
+  },
+  {
+    "kind": "pass_delivered_request_as_material",
+    "inputs": {
+      "request": {
+        "path": "raw/core-r2/transactions/opencode/real_condition/txn/request.snapshot.txt",
+        "sha256": "38e6e665c5d67b790bc6cd067e572c892ce3618264510b18134429959944db2f",
+        "bytes": 1004
+      },
+      "source": {
+        "path": "raw/core-r2/transactions/opencode/real_condition/txn/source.snapshot.txt",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      },
+      "d0": {
+        "path": "raw/core-r2/transactions/opencode/real_condition/txn/d0.snapshot.txt",
+        "sha256": "579dc45af24cbf4e4004a495911e21a2fde3f11a2725906ee83e19a219570fd5",
+        "bytes": 1632
+      },
+      "d1": {
+        "path": "raw/core-r2/transactions/opencode/real_condition/txn/d1.candidate.txt",
+        "sha256": "9f7229793ebd3cc3af380789df7d8bc095a1dca0484e1d2fd2f881748c3dafe9",
+        "bytes": 1563
+      }
+    },
+    "report": "raw/core-r2/transactions/opencode/real_condition/shared-report.json",
+    "original_verdict": "raw/core-r2/calls/verdict/real_condition/opencode/ollama/attempt-01/final.txt",
+    "actual_echo": "raw/core-r2/calls/echo/real_condition/opencode/attempt-01/final.txt",
+    "selected": "D1",
+    "delivery_verified": true,
+    "unresolved_ids": []
+  },
+  {
+    "kind": "d0_unresolved_invalid_verdict",
+    "inputs": {
+      "request": {
+        "path": "raw/core-r2/transactions/minimax/ongoing_counterexample/txn/request.snapshot.txt",
+        "sha256": "7b3b33a21264e58c26f74f26ffe4472ae9f4fd6f77aca3e6fdea0a305c14f0e6",
+        "bytes": 48
+      },
+      "source": {
+        "path": "raw/core-r2/transactions/minimax/ongoing_counterexample/txn/source.snapshot.txt",
+        "sha256": "897b3a40cbf91acc92d09ad9190c105334602e37be80d62b271ff319c015de2e",
+        "bytes": 130
+      },
+      "d0": {
+        "path": "raw/core-r2/transactions/minimax/ongoing_counterexample/txn/d0.snapshot.txt",
+        "sha256": "b6e29da8149c39486319fc1922b0a4384c57cccaff4ba44cba5d0514c152a75c",
+        "bytes": 175
+      },
+      "d1": {
+        "path": "raw/core-r2/transactions/minimax/ongoing_counterexample/txn/d1.candidate.txt",
+        "sha256": "987bbdc8afc131736f2be2eace9138160735d4d651a2a12c548d59aa25d28e1e",
+        "bytes": 169
+      }
+    },
+    "report": "raw/core-r2/transactions/minimax/ongoing_counterexample/shared-report.json",
+    "original_verdict": "raw/core-r2/calls/verdict/ongoing_counterexample/minimax/opencode/attempt-01/final.txt",
+    "actual_echo": "raw/core-r2/calls/echo/ongoing_counterexample/minimax/attempt-01/final.txt",
+    "selected": "D0",
+    "delivery_verified": true,
+    "unresolved_ids": [
+      "P001"
+    ]
+  }
+]

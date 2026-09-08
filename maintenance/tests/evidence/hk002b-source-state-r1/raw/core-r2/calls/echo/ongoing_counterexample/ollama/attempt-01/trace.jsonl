@@ -1,0 +1,4 @@
+{"type":"thread.started","thread_id":"01a08235-dabb-7f02-8ff6-e1f3a5adc731"}
+{"type":"turn.started"}
+{"type":"item.completed","item":{"id":"item_0","type":"agent_message","text":"附件核对情况\n\n业务科正在核对18份附件，其中10份已经完成，剩余8份尚未完成。反馈日期未定。核对结果有助于厘清附件归属。"}}
+{"type":"turn.completed","usage":{"input_tokens":9383,"cached_input_tokens":0,"output_tokens":151,"reasoning_output_tokens":0}}

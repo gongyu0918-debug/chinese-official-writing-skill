@@ -1,0 +1,29 @@
+{
+  "base": "f69534f05a2ae8c2da4f39d35a35497a90d0efff",
+  "models": {
+    "opencode": "opencode-go/deepseek-v4-flash",
+    "ollama": "ollama-cloud/glm-5.3-flash",
+    "ali1": "alibaba-token-plan/qwen3.8-flash",
+    "ali2": "alibaba-token-plan-2/qwen3.8-flash",
+    "minimax": "minimax-cn/MiniMax-M3"
+  },
+  "verifier_routes": {
+    "opencode": "ollama",
+    "ollama": "ali1",
+    "ali1": "ali2",
+    "ali2": "minimax",
+    "minimax": "opencode"
+  },
+  "effort": "max",
+  "cases": 4,
+  "repair_jobs": 10,
+  "frozen_files": 90,
+  "native_host_installation_tested": false,
+  "changes_from_r1": [
+    "one complete instruction per CLI call",
+    "merge enclosed source and existing findings without deleting existing labels",
+    "predicate-only repair instruction preserves local anchors",
+    "verification proof reconstructed from frozen snapshots on finalize and recovery"
+  ],
+  "method": "canonical detect/prepare/finalize/emit with real separate-route CLI responses; final CLI echo separately observed"
+}

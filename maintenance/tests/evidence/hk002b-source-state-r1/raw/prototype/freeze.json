@@ -1,0 +1,17 @@
+{
+  "base": "f69534f05a2ae8c2da4f39d35a35497a90d0efff",
+  "models": {
+    "opencode": "opencode-go/deepseek-v4-flash",
+    "ollama": "ollama-cloud/glm-5.3-flash",
+    "ali1": "alibaba-token-plan/qwen3.8-flash",
+    "ali2": "alibaba-token-plan-2/qwen3.8-flash",
+    "minimax": "minimax-cn/MiniMax-M3"
+  },
+  "effort": "max",
+  "prompt_sha256": "d65c70179671af68993e87ac6241a7b049cfbb48ac057ffd39a5bbc9d3c47280",
+  "cases_sha256": "3c0502a762c128b0a0c0bd0c25e62f1ff1128c5b2cb4225ac5fce16332eab429",
+  "runner_sha256": "581f571fb86e734103d80fff828ef6c95d2a9e230bd8fee9b1288c96427a79fa",
+  "host": "Codex CLI",
+  "native_hook": false,
+  "purpose": "fixed same D0 detection and proposed local correction; no first-draft generation"
+}

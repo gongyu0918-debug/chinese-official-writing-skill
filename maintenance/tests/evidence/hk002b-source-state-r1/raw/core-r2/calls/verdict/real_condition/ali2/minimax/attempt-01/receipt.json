@@ -1,0 +1,26 @@
+{
+  "provider": "minimax",
+  "requested_model": "minimax-cn/MiniMax-M3",
+  "effort": "max",
+  "host_turn_context": [
+    {
+      "model": "minimax-cn/MiniMax-M3",
+      "effort": "max"
+    }
+  ],
+  "upstream_response_model_observed": false,
+  "attempt": "01",
+  "return_code": 0,
+  "failure": null,
+  "seconds": 21.69,
+  "technical_completed": true,
+  "tool_count": 0,
+  "final_sha256": "0b0236b9747a53a77e33ff3bf622736a175feba557841d4b005a85483c2af809",
+  "final_bytes": 1855,
+  "usage": {
+    "input_tokens": 12913,
+    "cached_input_tokens": 3717,
+    "output_tokens": 2083,
+    "reasoning_output_tokens": 1524
+  }
+}

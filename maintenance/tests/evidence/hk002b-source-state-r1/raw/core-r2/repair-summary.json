@@ -1,0 +1,72 @@
+[
+  {
+    "writer": "opencode",
+    "case": "real_condition",
+    "state": "AWAITING_VERDICT",
+    "selected": null,
+    "reason": "mechanical_checks_passed"
+  },
+  {
+    "writer": "opencode",
+    "case": "ongoing_counterexample",
+    "state": "AWAITING_VERDICT",
+    "selected": null,
+    "reason": "mechanical_checks_passed"
+  },
+  {
+    "writer": "ollama",
+    "case": "real_condition",
+    "state": "AWAITING_VERDICT",
+    "selected": null,
+    "reason": "mechanical_checks_passed"
+  },
+  {
+    "writer": "ollama",
+    "case": "ongoing_counterexample",
+    "state": "AWAITING_VERDICT",
+    "selected": null,
+    "reason": "mechanical_checks_passed"
+  },
+  {
+    "writer": "ali1",
+    "case": "real_condition",
+    "state": "AWAITING_VERDICT",
+    "selected": null,
+    "reason": "mechanical_checks_passed"
+  },
+  {
+    "writer": "ali1",
+    "case": "ongoing_counterexample",
+    "state": "AWAITING_VERDICT",
+    "selected": null,
+    "reason": "mechanical_checks_passed"
+  },
+  {
+    "writer": "ali2",
+    "case": "real_condition",
+    "state": "AWAITING_VERDICT",
+    "selected": null,
+    "reason": "mechanical_checks_passed"
+  },
+  {
+    "writer": "ali2",
+    "case": "ongoing_counterexample",
+    "state": "AWAITING_VERDICT",
+    "selected": null,
+    "reason": "mechanical_checks_passed"
+  },
+  {
+    "writer": "minimax",
+    "case": "real_condition",
+    "state": "TERMINAL_D0",
+    "selected": "D0",
+    "reason": "decision_item_schema_mismatch"
+  },
+  {
+    "writer": "minimax",
+    "case": "ongoing_counterexample",
+    "state": "AWAITING_VERDICT",
+    "selected": null,
+    "reason": "mechanical_checks_passed"
+  }
+]
