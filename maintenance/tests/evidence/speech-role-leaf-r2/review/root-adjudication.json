@@ -1,0 +1,96 @@
+{
+  "decision": "R2_SELECTED_LIMITED_GAIN",
+  "r2_preferences": 5,
+  "baseline_preferences": 3,
+  "root_position": "Accept the general distinction and revised exposition method for limited first-draft gains. No claim of universal error-free drafting or rewrite superiority; local mistakes retained. R1 not selected.",
+  "cases": [
+    {
+      "provider": "minimax",
+      "case": "window-staff",
+      "preferred_anonymous": "B",
+      "A_status": "实质修改",
+      "B_status": "实质修改",
+      "note": "B结构较清楚，但两稿均有材料外经历/数量；B新增上月、二十多条与中心支持。",
+      "preferred_arm": "r2",
+      "A_arm": "baseline",
+      "B_arm": "r2"
+    },
+    {
+      "provider": "minimax",
+      "case": "youth-reflection",
+      "preferred_anonymous": "A",
+      "A_status": "轻改",
+      "B_status": "实质修改",
+      "note": "A用一般岗位分析展开，职责枚举及占位需收窄；B补了具体会议材料故事。",
+      "preferred_arm": "r2",
+      "A_arm": "r2",
+      "B_arm": "baseline"
+    },
+    {
+      "provider": "minimax",
+      "case": "leader-deployment",
+      "preferred_anonymous": "B",
+      "A_status": "实质修改",
+      "B_status": "轻改",
+      "note": "B保留三任务与样本边界；仍须删未经支持的窗口差异、旧版被退回及下次例会听进展。A另增签字、责任归因和月底检查。",
+      "preferred_arm": "r2",
+      "A_arm": "baseline",
+      "B_arm": "r2"
+    },
+    {
+      "provider": "minimax",
+      "case": "role-rewrite",
+      "preferred_anonymous": "B",
+      "A_status": "轻改",
+      "B_status": "轻改",
+      "note": "B较克制；A混淆服务对象与同事，增加业务科室总是耐心等经历。两稿均完成身份转换。",
+      "preferred_arm": "baseline",
+      "A_arm": "r2",
+      "B_arm": "baseline"
+    },
+    {
+      "provider": "qwen",
+      "case": "window-staff",
+      "preferred_anonymous": "A",
+      "A_status": "轻改",
+      "B_status": "实质修改",
+      "note": "A围绕原材料讲认识及打算；答复不会走样略绝对。B新增排队急躁、折返及已发现规律。",
+      "preferred_arm": "r2",
+      "A_arm": "r2",
+      "B_arm": "baseline"
+    },
+    {
+      "provider": "qwen",
+      "case": "youth-reflection",
+      "preferred_anonymous": "B",
+      "A_status": "实质修改",
+      "B_status": "轻改",
+      "note": "B以岗位一般要求解释知道与做到，打算明确；入职第一天锚点及个别措辞需改。A新增已实施读书方法与复盘成效。",
+      "preferred_arm": "r2",
+      "A_arm": "baseline",
+      "B_arm": "r2"
+    },
+    {
+      "provider": "qwen",
+      "case": "leader-deployment",
+      "preferred_anonymous": "B",
+      "A_status": "轻改",
+      "B_status": "轻改",
+      "note": "B的我今天明确更合待召开会议。A经会议研究和多耽误一天无据；B仍有具体补交过程及逐项过问承诺。",
+      "preferred_arm": "baseline",
+      "A_arm": "r2",
+      "B_arm": "baseline"
+    },
+    {
+      "provider": "qwen",
+      "case": "role-rewrite",
+      "preferred_anonymous": "A",
+      "A_status": "轻改",
+      "B_status": "轻改",
+      "note": "A较克制；B增加当前解释办法、记录字段和已知用途。两篇都删去未经决定部署，保留未成正式资料状态。",
+      "preferred_arm": "baseline",
+      "A_arm": "baseline",
+      "B_arm": "r2"
+    }
+  ]
+}

@@ -6,7 +6,7 @@
 
 | 需求 | 产品入口 | 真实写稿/同稿证据 | Hook/宿主证据 | 状态与缺口 |
 | --- | --- | --- | --- | --- |
-| `WR-029` 个人发言与领导讲话 | 入口与 speech 叶原型 | R1四题、两模型、两臂进行中 | 无Hook，不作宿主/多版证明 | IN_PROGRESS；[预登记](../tests/evidence/speech-role-leaf-r1/preregister.md) |
+| `WR-029` 个人发言与领导讲话 | 入口、speech叶及五套镜像，R2候选已实现 | 两轮24次；R2/main八对偏好5:3，首稿改善、改稿未占优 | 无Hook，不作宿主/多版证明 | IN_PROGRESS / NOT_MERGED；[结果](../tests/evidence/speech-role-leaf-r2/result.md) |
 | `WR-030` 经验交流 | 尚未实现 | 尚未测试 | 不适用 | TODO；已登记，后续真实写稿为准 |
 | `WR-031` 汇报取舍 | 尚未实现专项增量 | 尚未测试 | 不适用 | TODO；已登记，后续真实写稿为准 |
 | `DOC-001` 包内说明与能力路由 | canonical README、SKILL、Hook README及五套普通镜像 | [20次真实调用](../tests/evidence/skill-package-readme/result.md)：最终能力问答读总说明，Hook问答读专页，真实申请不误走FAQ；保留早期漏读及稿件质量问题 | 显式Skill入口后的独立CLI读页；107项相关检查、817项全量、五处quick_validate、88文件清洁包；不代表Hook启用或宿主在线验证 | `DONE / MERGED_LOCAL / NOT_RELEASED`（[合并登记](../tests/evidence/skill-package-readme/integration.md)）；写稿质量仍归 `WR-023b / IN_PROGRESS` |

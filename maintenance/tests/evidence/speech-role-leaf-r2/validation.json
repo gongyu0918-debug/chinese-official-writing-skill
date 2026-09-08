@@ -1,0 +1,218 @@
+{
+  "real_calls": 24,
+  "technical_valid": 24,
+  "unique_sessions": 24,
+  "final_source_hashes_verified": [
+    {
+      "round": "r1",
+      "case": "window-staff",
+      "provider": "qwen",
+      "arm": "baseline",
+      "final_sha256": "5771cc34cb0c74ad3f03133b3a0e41df98df479a93194b0d0af4002198158a0f"
+    },
+    {
+      "round": "r1",
+      "case": "window-staff",
+      "provider": "qwen",
+      "arm": "candidate",
+      "final_sha256": "f7078da205caccd1513ff32a82817097bc38c62c404e9dea44f14fdd3cf33378"
+    },
+    {
+      "round": "r1",
+      "case": "window-staff",
+      "provider": "minimax",
+      "arm": "baseline",
+      "final_sha256": "ed47ca9c830c50c7f54e6ce69f779076e0dc3b90b7d719756c6c1cfb24c32c28"
+    },
+    {
+      "round": "r1",
+      "case": "window-staff",
+      "provider": "minimax",
+      "arm": "candidate",
+      "final_sha256": "3234c26beef985db8c3b145e1472a0e6274f38d13d74ff8a6d7641195f4a48df"
+    },
+    {
+      "round": "r1",
+      "case": "youth-reflection",
+      "provider": "qwen",
+      "arm": "baseline",
+      "final_sha256": "a2f8996bfb9fe3833aedc946634b9678225db9caa8a9266a592f62041a821211"
+    },
+    {
+      "round": "r1",
+      "case": "youth-reflection",
+      "provider": "qwen",
+      "arm": "candidate",
+      "final_sha256": "17e76cdb6ec5f2b471b8bc1a0bce129bb77988759da24588b66be959ae804a5d"
+    },
+    {
+      "round": "r1",
+      "case": "youth-reflection",
+      "provider": "minimax",
+      "arm": "baseline",
+      "final_sha256": "f2b601cd970c43b548d2fcf88851ef30e463228dcfb9f30b0b6a4b48cf3da801"
+    },
+    {
+      "round": "r1",
+      "case": "youth-reflection",
+      "provider": "minimax",
+      "arm": "candidate",
+      "final_sha256": "0b4b72abba5b3b7518887d14cbc0536e2a54cc0a90ad0bcce99b89d1b3734c07"
+    },
+    {
+      "round": "r1",
+      "case": "leader-deployment",
+      "provider": "qwen",
+      "arm": "baseline",
+      "final_sha256": "c938aaee01307bafe0cd8527c0674800e901f61095ca7650626b1d4926ee0847"
+    },
+    {
+      "round": "r1",
+      "case": "leader-deployment",
+      "provider": "qwen",
+      "arm": "candidate",
+      "final_sha256": "6df0895233c195bb689343ea60b4441d5d0b2d336f41418dcd19b02ce21bea6e"
+    },
+    {
+      "round": "r1",
+      "case": "leader-deployment",
+      "provider": "minimax",
+      "arm": "baseline",
+      "final_sha256": "0ceb0bd6c14bd040714067d611634307854a523f24330b4ea523266efa1b61fc"
+    },
+    {
+      "round": "r1",
+      "case": "leader-deployment",
+      "provider": "minimax",
+      "arm": "candidate",
+      "final_sha256": "b6fd9e985a1de561097f8dea9f61fa572cd61f8098b2ad7a75e35689732571f5"
+    },
+    {
+      "round": "r1",
+      "case": "role-rewrite",
+      "provider": "qwen",
+      "arm": "baseline",
+      "final_sha256": "f9dee92b41654f76a368d026972e5875991eeb213761b31517b2f817b886a9db"
+    },
+    {
+      "round": "r1",
+      "case": "role-rewrite",
+      "provider": "qwen",
+      "arm": "candidate",
+      "final_sha256": "1ce70f711ff55574a08616c92956ba27e752d3cc47b200bd45928c1d12e9ba3f"
+    },
+    {
+      "round": "r1",
+      "case": "role-rewrite",
+      "provider": "minimax",
+      "arm": "baseline",
+      "final_sha256": "a5532a07aaf0724eb63fd41f2ec1b1bf38265dafdc022b759785aa4735e6faa0"
+    },
+    {
+      "round": "r1",
+      "case": "role-rewrite",
+      "provider": "minimax",
+      "arm": "candidate",
+      "final_sha256": "5b0d01fa1f05d4168b6d5a7b54864218c629104a05e2a5d16f53fd12a5d1ad1c"
+    },
+    {
+      "round": "r2",
+      "case": "window-staff",
+      "provider": "qwen",
+      "arm": "candidate",
+      "final_sha256": "abb1c21a41cd281779d91f5f68b756fb0f70340ff644b49ca372fc702e1dedd9"
+    },
+    {
+      "round": "r2",
+      "case": "window-staff",
+      "provider": "minimax",
+      "arm": "candidate",
+      "final_sha256": "b0541ff5f9c340bd916b6f9d2bc0ff8d2c6f6864014f2b8329971c324f90e775"
+    },
+    {
+      "round": "r2",
+      "case": "youth-reflection",
+      "provider": "qwen",
+      "arm": "candidate",
+      "final_sha256": "5625208f97a0eec7ce3e4800af475f78a680427602c84b85c767bd889986cd5d"
+    },
+    {
+      "round": "r2",
+      "case": "youth-reflection",
+      "provider": "minimax",
+      "arm": "candidate",
+      "final_sha256": "8933987281bf384a5b2cd6039c444a38d6c6e05e1415572c07ecf9138985fe1a"
+    },
+    {
+      "round": "r2",
+      "case": "leader-deployment",
+      "provider": "qwen",
+      "arm": "candidate",
+      "final_sha256": "89633e4ee7c81fef56610e16196a0aa343ef00c7e42e7291f7b91812ba994830"
+    },
+    {
+      "round": "r2",
+      "case": "leader-deployment",
+      "provider": "minimax",
+      "arm": "candidate",
+      "final_sha256": "6803e888018deb2149c527806d914dab35bca32c94623a42cbcf8fd59daa6aeb"
+    },
+    {
+      "round": "r2",
+      "case": "role-rewrite",
+      "provider": "qwen",
+      "arm": "candidate",
+      "final_sha256": "202a79ff39c23eb3897b068d469c248abb65557e46fa352ba62cecec042da067"
+    },
+    {
+      "round": "r2",
+      "case": "role-rewrite",
+      "provider": "minimax",
+      "arm": "candidate",
+      "final_sha256": "0b816b819e8ec3e87dc8b3eb8386f26d426688addb1e8ce0193a44294bb53102"
+    }
+  ],
+  "matching_skill_body_expansions": 18,
+  "failed_reference_reads_retained": 4,
+  "candidate_final_matches_frozen": true,
+  "canonical_skill_delta_bytes": 349,
+  "new_leaf_bytes": 3254,
+  "mirrors": [
+    "packages/agent-skills/skills/chinese-official-writing/references/genre-playbook-speech.md",
+    "packages/hermes/skills/chinese-official-writing/references/genre-playbook-speech.md",
+    "packages/openclaw/skills/chinese_official_writing/references/genre-playbook-speech.md",
+    "packages/qwen-code/skills/chinese-official-writing/references/genre-playbook-speech.md",
+    "packages/qwenwork/skills/chinese-official-writing/references/genre-playbook-speech.md"
+  ],
+  "tests": [
+    {
+      "command": "py -3.13 -B -X utf8 -m unittest maintenance.tests.test_skill_boundary maintenance.tests.test_skillhub_package_builder",
+      "initial": "83/84; old AGENTS wording assertion independently failed on main",
+      "final": "84/84 PASS after the test follows current development rules link"
+    },
+    {
+      "command": "quick_validate.py <canonical,agent-skills,hermes,qwen-code,qwenwork>",
+      "result": "5/5 PASS"
+    },
+    {
+      "command": "quick_validate.py packages/openclaw/skills/chinese_official_writing",
+      "result": "FAIL: category is platform metadata; unchanged, covered by package boundary tests instead"
+    },
+    {
+      "command": "git diff --check",
+      "result": "PASS"
+    },
+    {
+      "command": "relative Markdown link check",
+      "initial": "validation.json not yet written when result.md linked it; verification order corrected",
+      "final": "PASS after evidence file creation"
+    }
+  ],
+  "not_run": [
+    "full suite: no merge/release or Hook changes",
+    "Hook lifecycle",
+    "5-7 revision conversation"
+  ],
+  "test_scope": "Canonical remains identical to frozen R2; only an inherited documentation assertion was repaired.",
+  "local_links_verified": 234
+}

@@ -1,0 +1,146 @@
+{
+  "arm": "candidate",
+  "provider": "minimax",
+  "model": "minimax-cn/MiniMax-M3",
+  "case": "youth-reflection",
+  "session": "712b36a6-c909-4dd8-81d5-f467df25af01",
+  "technical_valid": true,
+  "return_code": 0,
+  "failure": null,
+  "seconds": 64.17,
+  "client_tools": "Read,Skill",
+  "explicit_entry": true,
+  "frozen_unchanged": true,
+  "final_chars": 1519,
+  "init_models": [
+    "minimax-cn/MiniMax-M3"
+  ],
+  "assistant_models": [
+    "minimax-cn/MiniMax-M3"
+  ],
+  "usage_models": [
+    "minimax-cn/MiniMax-M3"
+  ],
+  "result_count": 1,
+  "result_subtypes": [
+    "success"
+  ],
+  "result_errors": [
+    false
+  ],
+  "final_path": "runs/youth-reflection/minimax/candidate/final.txt",
+  "final_sha256": "8933987281bf384a5b2cd6039c444a38d6c6e05e1415572c07ecf9138985fe1a",
+  "source_final_sha256": "8933987281bf384a5b2cd6039c444a38d6c6e05e1415572c07ecf9138985fe1a",
+  "source_final_logical_sha256": "d2c1d63cd92bedd5ca6e4f3ac6ff78b4069cf11def43493f3e8a83a5e17c9776",
+  "final_redaction": {
+    "replacement_count": 0,
+    "replacement": "<isolated-work>",
+    "scope": "Only this lane approved runtime/work prefix; slash variants accepted.",
+    "source_unchanged": true,
+    "archive_is_original_bytes": true
+  },
+  "hook_enabled": false,
+  "timeout_seconds": 1200,
+  "automatic_retries": 0,
+  "effort": "max",
+  "invalid_json_line_count": 0,
+  "reads": [
+    "SKILL.md",
+    "references/information-selection.md",
+    "references/genre-playbook-speech.md"
+  ],
+  "routing": {
+    "reference_paths": [
+      "references/genre-playbook-speech.md",
+      "references/information-selection.md"
+    ],
+    "references_distinct_pages": 2,
+    "references_distinct_file_bytes": 8151,
+    "skill_direct_read_file_bytes": 29853
+  },
+  "tool_evidence": [
+    {
+      "sequence": 1,
+      "id": "call_01a07ff404477793a43547c7",
+      "name": "Read",
+      "result": {
+        "observed": true,
+        "is_error_field": null,
+        "content_bytes": 30622,
+        "content_sha256": "1fc1b830d2634cc0f27543e92ce907cf1d7e11efd6148bab2bf5b5cb382265df",
+        "skill_launch_acknowledgement": null
+      },
+      "scope": "package",
+      "package_path": "SKILL.md",
+      "frozen_file_sha256": "d69a9d9c8ee903415d2ccc276fe462eb32695f1c7dcab68962933b20a4d1e7eb",
+      "read_success_observed": true
+    },
+    {
+      "sequence": 2,
+      "id": "call_01a07ff410517f00aab7ff73",
+      "name": "Read",
+      "result": {
+        "observed": true,
+        "is_error_field": null,
+        "content_bytes": 5029,
+        "content_sha256": "69a66166a0c9eba32cafe95347b005234a2e741805ef6e5eba6f9f58f9b38c5c",
+        "skill_launch_acknowledgement": null
+      },
+      "scope": "package",
+      "package_path": "references/information-selection.md",
+      "frozen_file_sha256": "bf1aff9c90a6ba901fb2514ed98b3796a67616a4f934bfeac45fa4e3c0c01787",
+      "read_success_observed": true
+    },
+    {
+      "sequence": 3,
+      "id": "call_01a07ff417c07af1894d4b8d",
+      "name": "Read",
+      "result": {
+        "observed": true,
+        "is_error_field": null,
+        "content_bytes": 3351,
+        "content_sha256": "a5f6f4853552823911ebe86caa6a0666e754470900327c92077c3b3288bb4807",
+        "skill_launch_acknowledgement": null
+      },
+      "scope": "package",
+      "package_path": "references/genre-playbook-speech.md",
+      "frozen_file_sha256": "6f8d002e42130ee4c23c99ce9248844816237df96468b01b548fb19b0d9e494d",
+      "read_success_observed": true
+    }
+  ],
+  "documents": [],
+  "helper_sha256": "452d3f5ac8df257fbd220d7585ce0aef3dd0475a76a51181de77e0f729f0a6ab",
+  "prompt_path": "prompts/youth-reflection.txt",
+  "omissions": [
+    "raw stream",
+    "runtime",
+    "provider state",
+    "original argv",
+    "absolute paths",
+    "shell arguments and stdout"
+  ],
+  "isolation_observed": {
+    "mcp_servers": [],
+    "hook_events_observed": 0,
+    "runtime_memory_files": 0,
+    "skill_catalog": [
+      "deep-research",
+      "official-writing-eval:chinese-official-writing",
+      "design-sync",
+      "update-config",
+      "verify",
+      "debug",
+      "code-review",
+      "simplify",
+      "batch",
+      "fewer-permission-prompts",
+      "loop",
+      "claude-api",
+      "run",
+      "run-skill-generator"
+    ],
+    "cli_version": "2.1.195",
+    "stream_sha256": "f304ea6b2a50b9f3c2a90b2f8f7dfeafb79602a63e64bf27d03879452f80623d",
+    "scope": "Read stayed within frozen package; any absent baseline leaf remained a failed read."
+  }
+}

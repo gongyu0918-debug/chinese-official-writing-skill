@@ -1,0 +1,22 @@
+[
+  {
+    "case": "window-staff",
+    "A": "baseline",
+    "B": "r2"
+  },
+  {
+    "case": "youth-reflection",
+    "A": "r2",
+    "B": "baseline"
+  },
+  {
+    "case": "leader-deployment",
+    "A": "baseline",
+    "B": "r2"
+  },
+  {
+    "case": "role-rewrite",
+    "A": "r2",
+    "B": "baseline"
+  }
+]

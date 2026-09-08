@@ -1,0 +1,128 @@
+{
+  "arm": "candidate",
+  "provider": "minimax",
+  "model": "minimax-cn/MiniMax-M3",
+  "case": "leader-deployment",
+  "session": "be5f02b1-0566-4597-aaf4-2a8e98a1edd0",
+  "technical_valid": true,
+  "return_code": 0,
+  "failure": null,
+  "seconds": 65.67,
+  "client_tools": "Read,Skill",
+  "explicit_entry": true,
+  "frozen_unchanged": true,
+  "final_chars": 1344,
+  "init_models": [
+    "minimax-cn/MiniMax-M3"
+  ],
+  "assistant_models": [
+    "minimax-cn/MiniMax-M3"
+  ],
+  "usage_models": [
+    "minimax-cn/MiniMax-M3"
+  ],
+  "result_count": 1,
+  "result_subtypes": [
+    "success"
+  ],
+  "result_errors": [
+    false
+  ],
+  "final_path": "runs/leader-deployment/minimax/candidate/final.txt",
+  "final_sha256": "6803e888018deb2149c527806d914dab35bca32c94623a42cbcf8fd59daa6aeb",
+  "source_final_sha256": "6803e888018deb2149c527806d914dab35bca32c94623a42cbcf8fd59daa6aeb",
+  "source_final_logical_sha256": "ab3fbf44b05932ec45b543ebff34130be810ba75559615995987823bc26f103f",
+  "final_redaction": {
+    "replacement_count": 0,
+    "replacement": "<isolated-work>",
+    "scope": "Only this lane approved runtime/work prefix; slash variants accepted.",
+    "source_unchanged": true,
+    "archive_is_original_bytes": true
+  },
+  "hook_enabled": false,
+  "timeout_seconds": 1200,
+  "automatic_retries": 0,
+  "effort": "max",
+  "invalid_json_line_count": 0,
+  "reads": [
+    "SKILL.md",
+    "references/genre-playbook-speech.md"
+  ],
+  "routing": {
+    "reference_paths": [
+      "references/genre-playbook-speech.md"
+    ],
+    "references_distinct_pages": 1,
+    "references_distinct_file_bytes": 3229,
+    "skill_direct_read_file_bytes": 29853
+  },
+  "tool_evidence": [
+    {
+      "sequence": 1,
+      "id": "call_01a07ff504347953a2a25a8f",
+      "name": "Read",
+      "result": {
+        "observed": true,
+        "is_error_field": null,
+        "content_bytes": 30622,
+        "content_sha256": "1fc1b830d2634cc0f27543e92ce907cf1d7e11efd6148bab2bf5b5cb382265df",
+        "skill_launch_acknowledgement": null
+      },
+      "scope": "package",
+      "package_path": "SKILL.md",
+      "frozen_file_sha256": "d69a9d9c8ee903415d2ccc276fe462eb32695f1c7dcab68962933b20a4d1e7eb",
+      "read_success_observed": true
+    },
+    {
+      "sequence": 2,
+      "id": "call_01a07ff50e16701083568213",
+      "name": "Read",
+      "result": {
+        "observed": true,
+        "is_error_field": null,
+        "content_bytes": 3351,
+        "content_sha256": "a5f6f4853552823911ebe86caa6a0666e754470900327c92077c3b3288bb4807",
+        "skill_launch_acknowledgement": null
+      },
+      "scope": "package",
+      "package_path": "references/genre-playbook-speech.md",
+      "frozen_file_sha256": "6f8d002e42130ee4c23c99ce9248844816237df96468b01b548fb19b0d9e494d",
+      "read_success_observed": true
+    }
+  ],
+  "documents": [],
+  "helper_sha256": "452d3f5ac8df257fbd220d7585ce0aef3dd0475a76a51181de77e0f729f0a6ab",
+  "prompt_path": "prompts/leader-deployment.txt",
+  "omissions": [
+    "raw stream",
+    "runtime",
+    "provider state",
+    "original argv",
+    "absolute paths",
+    "shell arguments and stdout"
+  ],
+  "isolation_observed": {
+    "mcp_servers": [],
+    "hook_events_observed": 0,
+    "runtime_memory_files": 0,
+    "skill_catalog": [
+      "deep-research",
+      "official-writing-eval:chinese-official-writing",
+      "design-sync",
+      "update-config",
+      "verify",
+      "debug",
+      "code-review",
+      "simplify",
+      "batch",
+      "fewer-permission-prompts",
+      "loop",
+      "claude-api",
+      "run",
+      "run-skill-generator"
+    ],
+    "cli_version": "2.1.195",
+    "stream_sha256": "ff6b1b0aa9573b6cae0e372c85b9f5e92a697883a497cec44776524109cf320d",
+    "scope": "Read stayed within frozen package; any absent baseline leaf remained a failed read."
+  }
+}

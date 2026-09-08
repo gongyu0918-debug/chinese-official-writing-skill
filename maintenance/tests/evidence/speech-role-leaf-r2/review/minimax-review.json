@@ -1,0 +1,35 @@
+{
+  "reviewer": "independent_subagent_minimax",
+  "input_packet_sha256": "0dd84b464c3a4525046d332d9aab837d5dc59a7a0d512e876eb1968d649d6914",
+  "method": "Only anonymous paired drafts and natural prompts read; no mapping, rule files or other review read. Conclusions transcribed as a compact record; not raw reviewer message bytes.",
+  "cases": [
+    {
+      "case": "window-staff",
+      "preferred_anonymous": "B",
+      "A_status": "实质修改",
+      "B_status": "实质修改",
+      "note": "B结构较清楚，但两稿均有材料外经历/数量；B新增上月、二十多条与中心支持。"
+    },
+    {
+      "case": "youth-reflection",
+      "preferred_anonymous": "A",
+      "A_status": "轻改",
+      "B_status": "实质修改",
+      "note": "A用一般岗位分析展开，职责枚举及占位需收窄；B补了具体会议材料故事。"
+    },
+    {
+      "case": "leader-deployment",
+      "preferred_anonymous": "B",
+      "A_status": "实质修改",
+      "B_status": "轻改",
+      "note": "B保留三任务与样本边界；仍须删未经支持的窗口差异、旧版被退回及下次例会听进展。A另增签字、责任归因和月底检查。"
+    },
+    {
+      "case": "role-rewrite",
+      "preferred_anonymous": "B",
+      "A_status": "轻改",
+      "B_status": "轻改",
+      "note": "B较克制；A混淆服务对象与同事，增加业务科室总是耐心等经历。两稿均完成身份转换。"
+    }
+  ]
+}

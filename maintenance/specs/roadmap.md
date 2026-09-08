@@ -4,7 +4,7 @@
 
 ## 本轮分支候选
 
-- `WR-029 / IN_PROGRESS`：个人发言与领导讲话叶优先验证。当前 main 产品为对照，新增按身份与发言目的组织内容的最小叶及入口路由；强弱模型真实写稿后决定保留。[本轮预登记](../tests/evidence/speech-role-leaf-r1/preregister.md)
+- `WR-029 / IN_PROGRESS / R2_SELECTED / IMPLEMENTED_BRANCH / NOT_MERGED`：两模型两轮24次真实调用，R2与main八组成对偏好5:3，收益主要在首稿，两组身份改稿均偏向main。保留有限改进并同步五套镜像，84项相关检查及五份通用Skill校验通过；事实扩写、改稿优越性、多版与Hook仍未闭环。[结果与失败记录](../tests/evidence/speech-role-leaf-r2/result.md)
 - `WR-030 / TODO`：经验交流材料可借鉴做法，已登记，未实现、未测试。
 - `WR-031 / TODO`：面向领导汇报的材料取舍，已登记，未实现、未测试。后两项同样真实写稿为准，不随本轮叶准入。
 

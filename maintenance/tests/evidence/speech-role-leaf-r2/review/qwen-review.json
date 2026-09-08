@@ -1,0 +1,35 @@
+{
+  "reviewer": "independent_subagent_qwen",
+  "input_packet_sha256": "7c8ec9e42de4b068371ee9dad85b8e6192ccf0138678593e2a12b36820d78a10",
+  "method": "Only anonymous paired drafts and natural prompts read; no mapping, rule files or other review read. Conclusions transcribed as a compact record; not raw reviewer message bytes.",
+  "cases": [
+    {
+      "case": "window-staff",
+      "preferred_anonymous": "A",
+      "A_status": "轻改",
+      "B_status": "实质修改",
+      "note": "A围绕原材料讲认识及打算；答复不会走样略绝对。B新增排队急躁、折返及已发现规律。"
+    },
+    {
+      "case": "youth-reflection",
+      "preferred_anonymous": "B",
+      "A_status": "实质修改",
+      "B_status": "轻改",
+      "note": "B以岗位一般要求解释知道与做到，打算明确；入职第一天锚点及个别措辞需改。A新增已实施读书方法与复盘成效。"
+    },
+    {
+      "case": "leader-deployment",
+      "preferred_anonymous": "B",
+      "A_status": "轻改",
+      "B_status": "轻改",
+      "note": "B的我今天明确更合待召开会议。A经会议研究和多耽误一天无据；B仍有具体补交过程及逐项过问承诺。"
+    },
+    {
+      "case": "role-rewrite",
+      "preferred_anonymous": "A",
+      "A_status": "轻改",
+      "B_status": "轻改",
+      "note": "A较克制；B增加当前解释办法、记录字段和已知用途。两篇都删去未经决定部署，保留未成正式资料状态。"
+    }
+  ]
+}

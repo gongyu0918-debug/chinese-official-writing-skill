@@ -1428,13 +1428,19 @@ class SkillBoundaryTests(unittest.TestCase):
             "禁止直接誊抄代码、脚本、正则、模板库、大段 prompt、固定话术或模板正文",
             maintenance_history,
         )
-        self.assertIn("唯一活动开发纪律", agents)
-        self.assertIn("[历史归档](maintenance/docs/archive/AGENTS-legacy-20260819.md)仅供追溯", agents)
-        for maintenance_gate in [
-            "全量门原则上只在合并或发布前跑一次",
-            "仓库及仓内包使用根 [LICENSE](LICENSE)（MIT）",
-        ]:
-            self.assertIn(maintenance_gate, agents)
+        active_link = re.search(r"\[开发细则\]\(([^)]+)\)", agents)
+        self.assertIsNotNone(active_link)
+        development_path = ROOT / active_link.group(1)
+        self.assertTrue(development_path.is_file())
+        development = development_path.read_text(encoding="utf-8")
+        self.assertIn("历史归档不作为新要求", agents)
+        self.assertIn("全量门原则上只在合并或发布前跑一次", development)
+        license_link = re.search(r"仓库及仓内包使用根 \[LICENSE\]\(([^)]+)\)（MIT）", development)
+        self.assertIsNotNone(license_link)
+        self.assertEqual(
+            (development_path.parent / license_link.group(1)).resolve(),
+            (ROOT / "LICENSE").resolve(),
+        )
         for runtime_prompt in [skill, workflow, checklist, genre_checklist, genre_playbooks]:
             self.assertNotIn("社区技能", runtime_prompt)
             self.assertNotIn("prompt/markdown", runtime_prompt)
