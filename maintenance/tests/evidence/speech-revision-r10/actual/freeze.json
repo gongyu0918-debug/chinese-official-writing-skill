@@ -1,0 +1,30 @@
+{
+  "baseline_commit": "05c4465fe6aa6187f31f0879120cc616a6f31e63",
+  "candidate_base_commit": "05c4465fe6aa6187f31f0879120cc616a6f31e63",
+  "overlay_paths": [
+    "references/information-selection.md"
+  ],
+  "models": {
+    "qwen": "alibaba-token-plan/qwen3.8-max",
+    "sol": "gpt-5.6-sol"
+  },
+  "cases": [
+    "window-staff",
+    "leader-deployment"
+  ],
+  "new_calls": 8,
+  "harness_commit": "7bde6c3e4bbd87a304d01d74be178673fe048f67",
+  "harness_source_hashes": {
+    "maintenance/tests/evidence/application-route-rewrite-r20/run_real.py": "bfbb39574c7a62df29da7d45ce26ad3623f79951ae5f497c0ba3410ee96fdb1b",
+    "maintenance/tests/evidence/application-rule-efficacy-r23/archive_actual.py": "7801f38b077ec2c6753666fcd7872e1dfa3dc6deb4fd64507422631e119bf873"
+  },
+  "prompt_hashes": {
+    "window-staff": "5cbadef0835514126798293fec083a1c7e3dc59c30c74a49803a64c452d07643",
+    "leader-deployment": "123e15ce73e6f13adc4c7b992353c882bc15e67fc348a31817447bf789942dad"
+  },
+  "preregister_sha256": "9ce01a669f94df65d229c3dc59ea1f1def04296b279fd20cd7850dccb40a6ad2",
+  "hook_enabled": false,
+  "automatic_retries": 0,
+  "timeout_seconds": 1200,
+  "effort": "max"
+}
