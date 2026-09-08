@@ -1,0 +1,676 @@
+{
+  "review_type": "independent_anonymous_full_manuscript_review",
+  "scope": {
+    "input_directory": "F:/Workspaces/chinese-official-writing-skill-worktrees/global-grounded-analysis-r25/maintenance/tests/evidence/global-grounded-analysis-r25/blind-minimax",
+    "groups": [
+      "P01",
+      "P02",
+      "P06"
+    ],
+    "actual_final_responses_read": 6,
+    "actual_manuscripts_read": 3,
+    "access": "仅读取获准匿名包；先README和完整性核验，再各组materials、delivery.json、全部实际final和文件。未读规则、映射、Git、其他意见或包外目录，未猜身份。"
+  },
+  "integrity": {
+    "expected_manifest_sha256": "3f72948c491a9b94f23f23be79a9580fd45d5cf1b2e7f14b6b2086c4ae1b537d",
+    "observed_manifest_sha256": "3f72948c491a9b94f23f23be79a9580fd45d5cf1b2e7f14b6b2086c4ae1b537d",
+    "manifest_match": true,
+    "listed_files_verified": 17,
+    "verified_files_including_manifest": 18,
+    "all_listed_sha256_and_bytes_match": true,
+    "mismatch_files": []
+  },
+  "criteria": {
+    "analysis_permission": "允许给定事实加常识分析前置原因、影响、后果与结论，不限一层目的，也不要求逐字原句。合理分析与语气过强软问题、客观事实新增和明确状态错误分开。",
+    "length": "仅有500字左右的P01按450-550观察；主要计非空白字符含标点数字，另列纯汉字及正文段落数。",
+    "body": "事实、主体、明示状态、数字、申请/报告逻辑和自然语言。分析可通过即使有需收紧的软语气。",
+    "delivery": "依据实际final包装及全部存在文件；正文限定只应用于该组。列出的附件须确实交付，不能用final摘要替代文件。",
+    "overall": "body_pass与delivery_pass均true，并且有篇幅目标时length_pass也须true。",
+    "evidence": "不依据脚本自报、文件名、模型身份或其他评论作结论；未对匿名材料的市场和技术指标作外部真实性验证。"
+  },
+  "groups": [
+    {
+      "id": "P01",
+      "material_requirements": [
+        "500字左右的扫描仪采购申请，给办公室主任，落款档案管理室，不写日期，只要正文。",
+        "现有1台正常运行，3人、3可用工位；9月2日至4日每天下午2人准备完成后等设备；拟增购2台用于纸质档案数字化。",
+        "12000元为内部测算且未获批；旧机保留，新旧分工未定。允许充分分析增购缘由和作用。"
+      ],
+      "A": {
+        "files_read": [
+          "P01/A-delivery.txt"
+        ],
+        "length": {
+          "target": "500字左右",
+          "observation_range": [
+            450,
+            550
+          ],
+          "metric": "实际完整申请文本去除空白后的字符数，含标点和数字；不把包装计入正文",
+          "actual_non_whitespace_chars": 398,
+          "paragraphs_non_whitespace_chars": 372,
+          "han_only_chars": 341,
+          "length_pass": false,
+          "reason": "完整申请398个非空白字符，正文段落372，均低于450；不因正文事实较安全而抹去长度不足。"
+        },
+        "length_pass": false,
+        "body_pass": false,
+        "delivery_pass": true,
+        "overall_pass": false,
+        "hard_issues": [
+          {
+            "domain": "body",
+            "location": "P01/A-delivery.txt 第3行",
+            "quote": "办公室：",
+            "source": "P01/materials.txt：给办公室主任。",
+            "issue": "把明确收件对象办公室主任改为办公室，改变了指定主送对象，应按原要求写主任。",
+            "severity": "hard",
+            "analysis_permission_related": false,
+            "disputed": false
+          }
+        ],
+        "soft_issues": [
+          {
+            "domain": "body",
+            "location": "P01/A-delivery.txt 第7行",
+            "quote": "避免再次出现准备就绪却等设备的状况",
+            "source": "P01/materials.txt给1台/3人/3工位及三天下午2人等待。",
+            "issue": "增购能缓解容量约束有充分依据，但避免再次出现是偏绝对的效果表达；宜用减少等候。",
+            "severity": "soft",
+            "analysis_permission_related": true,
+            "disputed": false
+          },
+          {
+            "domain": "body",
+            "location": "P01/A-delivery.txt 第7行",
+            "quote": "最终以采购实际发生金额为准……具体的新旧分工将结合设备到货后的使用情况再行确定。",
+            "source": "P01/materials.txt只给内部测算未批、新旧分工未定。",
+            "issue": "实际金额与测算不同可理解；到货后结合使用再定分工也属合理考虑，但都比材料多了财务表述和确定环节。未直接分配新旧职责、未报已批，不单独判硬错误，宜保留未定状态。",
+            "severity": "soft",
+            "analysis_permission_related": true,
+            "disputed": true,
+            "dispute_note": "不能将这些概括性后续考虑自动当成已发生审批；如作为强制结算依据或固定决策时点，则需另有依据。"
+          }
+        ],
+        "evidence": [
+          {
+            "location": "P01/A-delivery.txt 第5行",
+            "quote": "三天累计6人次出现等待，工序衔接不顺，数字化任务推进受到影响。",
+            "source": "P01/materials.txt：9月2日至4日每天下午2人完成准备后等扫描仪。",
+            "judgment": "2人×3天=6人次是正常算术，等待造成工序衔接和处理节奏影响是材料与常识支持的分析；不要求原句逐字列出。",
+            "severity": "none",
+            "analysis_permission_related": true,
+            "disputed": false
+          },
+          {
+            "location": "P01/A-delivery.txt 第7行",
+            "quote": "可与现有1台并行作业……3台设备、3个工位、3名经办人员形成基本对应。",
+            "source": "P01/materials.txt：现1台，增2台，3人、3工位，旧机保留。",
+            "judgment": "总数3台及多人并行是合理容量分析，没有指定每人固定任务。",
+            "severity": "none",
+            "analysis_permission_related": true,
+            "disputed": false
+          },
+          {
+            "location": "P01/A-delivery.txt 第7、11行",
+            "quote": "约12000元，该数为内部初步测算……档案管理室",
+            "source": "P01/materials.txt给12000元内部测算、未批、署名、不写日期。",
+            "judgment": "金额仍标测算，全文为请批没有写成已批；署名正确且日期缺失保留。",
+            "severity": "none",
+            "analysis_permission_related": false,
+            "disputed": false
+          }
+        ],
+        "delivery_assessment": "实际final全部为申请文本；标题、主送、署名不是包装，交付通过。主送偏差在正文指令维度单列。",
+        "language_assessment": "缘由与容量分析自然，未编旧机故障；主要不足是指定主送不符、篇幅不足及局部效果用语偏满。"
+      },
+      "B": {
+        "files_read": [
+          "P01/B-delivery.txt",
+          "P01/B-manuscript-1.txt"
+        ],
+        "length": {
+          "target": "500字左右",
+          "observation_range": [
+            450,
+            550
+          ],
+          "metric": "实际稿件完整申请文本去除空白后的字符数，含标点和数字",
+          "actual_non_whitespace_chars": 486,
+          "paragraphs_non_whitespace_chars": 465,
+          "han_only_chars": 433,
+          "length_pass": true,
+          "reason": "完整文本486，正文段落465，都在450-550内；不采用final自报约450字作为证据。"
+        },
+        "length_pass": true,
+        "body_pass": false,
+        "delivery_pass": false,
+        "overall_pass": false,
+        "hard_issues": [
+          {
+            "domain": "body",
+            "location": "P01/B-delivery.txt 第18行、P01/B-manuscript-1.txt 第7行",
+            "quote": "新购设备主要用于批量档案扫描；旧机继续保留，承担日常零散扫描任务。",
+            "source": "P01/materials.txt：新旧设备怎么分工还没定。",
+            "issue": "直接给新机和旧机分配批量/零散职责，违反明示分工未定。随后说具体分工待明确不能撤回前面的实际分配。",
+            "severity": "hard",
+            "analysis_permission_related": false,
+            "disputed": false
+          },
+          {
+            "domain": "delivery",
+            "location": "P01/B-delivery.txt 第1至8行",
+            "quote": "正文已整理到……说明几点……未补未给的具体数字、流程、责任分工或制度条款……正文：",
+            "source": "P01/materials.txt：我只想要正文。",
+            "issue": "final有保存说明、起草解释和自检，违反仅正文；实际稿件已全文读取，其存在不能抵消final包装。",
+            "severity": "hard",
+            "analysis_permission_related": false,
+            "disputed": false
+          }
+        ],
+        "soft_issues": [
+          {
+            "domain": "body",
+            "location": "P01/B-delivery.txt 第18行、P01/B-manuscript-1.txt 第7行",
+            "quote": "避免准备完成后长时间排队……不致造成整批工作停滞",
+            "source": "P01/materials.txt给现有等待及拟增至3台，没有等待时长或备用能力测试。",
+            "issue": "多设备并行与分担故障风险可以分析；避免/不致的保证色彩较强，可改成减少等待、降低整批停滞风险。未据此推断旧机已有故障。",
+            "severity": "soft",
+            "analysis_permission_related": true,
+            "disputed": false
+          },
+          {
+            "domain": "body",
+            "location": "P01/B-manuscript-1.txt 第5行",
+            "quote": "也不利于档案尽快投入使用",
+            "source": "P01/materials.txt给纸质档案数字化和等待。",
+            "issue": "处理进度影响档案利用是合理后果分析，并非新增实际使用延期；措辞可保持预期影响，非硬问题。",
+            "severity": "soft",
+            "analysis_permission_related": true,
+            "disputed": true,
+            "dispute_note": "这是偏好层面的审慎表达；按一般影响分析也可完全接受。"
+          }
+        ],
+        "evidence": [
+          {
+            "location": "P01/B-manuscript-1.txt 第3至7行",
+            "quote": "单台设备难以同时承接并行作业……3台并行后，可在同一时段容纳多人同时作业……个别设备出现故障或维护时，其他设备能够分担任务。",
+            "source": "P01/materials.txt给现1台、3人3工位及2人等待，拟增2台并保留旧机。",
+            "judgment": "容量瓶颈、串行影响处理节奏、设备冗余降低停摆风险均可由事实与常识推导，不限一层用途；假设故障不是声称现设备已坏。",
+            "severity": "none",
+            "analysis_permission_related": true,
+            "disputed": false
+          },
+          {
+            "location": "P01/B-manuscript-1.txt 第1、9、13行",
+            "quote": "办公室主任：……按内部测算约需12000元，资金方案尚未获批……档案管理室",
+            "source": "P01/materials.txt指定主任、内部测算未批、署名且无日期。",
+            "judgment": "主送署名、费用未批和日期缺失均正确；获批后再按程序采购是正常条件请求。",
+            "severity": "none",
+            "analysis_permission_related": false,
+            "disputed": false
+          }
+        ],
+        "delivery_assessment": "实际final与文件均已全文读完。文件为正文，final另有大量说明；只要正文要求因此未满足。",
+        "language_assessment": "必要性和作用分析比A展开充分，但不能用分析许可覆盖明确分工未定；final自称未拟方案与实际正文矛盾。"
+      },
+      "preference": "A",
+      "preference_strength": "slight",
+      "preference_reason": "双方总体不通过。A虽然低于篇幅区间且主送应修正，仍保留分工未定；B达到篇幅但直接分配新旧机任务并违反仅正文。以明示未决状态和实际交付为重，轻微偏好A。",
+      "disputes": [
+        {
+          "point": "字数采用何种口径",
+          "resolution": "主要观察去空白后含标点/数字的文本字符数，同时给出纯汉字和正文段落计数。A低于区间结论稳固；B完整及段落字符均在区间。纯汉字口径B为433，口径差异已明示。"
+        }
+      ]
+    },
+    {
+      "id": "P02",
+      "material_requirements": [
+        "给中心负责人的8月服务受理报告，只要正文；分析意义、影响并作有依据判断，无篇幅目标。",
+        "120件中90首次齐全、30需补交；30中18缺同一种证明；证明在指南下载附件，申请页面无清单。",
+        "尚未调查申请人缺失原因、尚未决定页面如何修改，不得写成整改已开展。"
+      ],
+      "A": {
+        "files_read": [
+          "P02/A-delivery.txt"
+        ],
+        "length": {
+          "target": null,
+          "observation_range": null,
+          "length_pass": null,
+          "reason": "本组材料没有篇幅要求，500字观察区间不跨组套用。"
+        },
+        "length_pass": null,
+        "body_pass": true,
+        "delivery_pass": true,
+        "overall_pass": true,
+        "hard_issues": [],
+        "soft_issues": [
+          {
+            "domain": "body",
+            "location": "P02/A-delivery.txt 第11行",
+            "quote": "说明该情况并非个别申请人的偶发疏忽，而与受理前端信息呈现方式存在共性关联。",
+            "source": "P02/materials.txt给18/30同类缺失和页面无清单，同时明确未调查具体原因。",
+            "issue": "集中缺失支持把信息呈现作为疑点，但并非……而与……存在关联的语气偏定论。全文末段仍明确未调查、方案未定，因此按分析确定度过强记录软问题，不当成已完成调查的新事实。",
+            "severity": "soft",
+            "analysis_permission_related": true,
+            "disputed": true,
+            "dispute_note": "若把此句解读成已证实原因或排除个人因素，则会与材料冲突；结合全文的初步判断和未核实限定，本评阅不升级为硬失败。"
+          },
+          {
+            "domain": "body",
+            "location": "P02/A-delivery.txt 第3行",
+            "quote": "30件需补交材料后受理",
+            "source": "P02/materials.txt：8月份受理了120件，其中30件需要补交材料。",
+            "issue": "补交后受理比需补交多出办理阶段表述，可能把已列入受理量的30件写成尚待受理。建议原样保留需补交材料，避免程序口径歧义。",
+            "severity": "soft",
+            "analysis_permission_related": false,
+            "disputed": true,
+            "dispute_note": "材料没有定义受理是收件统计还是正式受理节点，不能仅据这一用语确认已发生明确状态逆转，故记录有争议的软程序问题。"
+          }
+        ],
+        "evidence": [
+          {
+            "location": "P02/A-delivery.txt 第3、7行",
+            "quote": "90件……75%；30件……25%；18件……60%……15%",
+            "source": "P02/materials.txt：120、90、30、18。",
+            "judgment": "各比例计算正确，没有创造业务数量。",
+            "severity": "none",
+            "analysis_permission_related": false,
+            "disputed": false
+          },
+          {
+            "location": "P02/A-delivery.txt 第13行",
+            "quote": "可能带来的影响……增加申请人补正次数，延长单件受理周期……占用窗口受理和后台处理资源。",
+            "source": "P02/materials.txt给30件补交与18件同类缺失。",
+            "judgment": "补交可能带来额外办理、审核和时间成本，是合理影响分析，不需要原材料逐项写出。",
+            "severity": "none",
+            "analysis_permission_related": true,
+            "disputed": false
+          },
+          {
+            "location": "P02/A-delivery.txt 第17行",
+            "quote": "目前尚未向申请人核实……调整方案也尚未确定……可将……作为主要问题指向。",
+            "source": "P02/materials.txt明确未调查原因、未决定页面修改。",
+            "judgment": "保留未调查未定状态，没有说整改已开展；把已知页面缺口作为初步问题方向是可支持的判断。",
+            "severity": "none",
+            "analysis_permission_related": true,
+            "disputed": false
+          }
+        ],
+        "delivery_assessment": "final全部为报告正文，没有起草或自检包装。",
+        "language_assessment": "数据—分析—判断完整，分析有实质内容；归因语气较强，需要用可能关联减少与未调查状态的张力。"
+      },
+      "B": {
+        "files_read": [
+          "P02/B-delivery.txt"
+        ],
+        "length": {
+          "target": null,
+          "observation_range": null,
+          "length_pass": null,
+          "reason": "本组材料没有篇幅要求，500字观察区间不跨组套用。"
+        },
+        "length_pass": null,
+        "body_pass": true,
+        "delivery_pass": true,
+        "overall_pass": true,
+        "hard_issues": [],
+        "soft_issues": [
+          {
+            "domain": "body",
+            "location": "P02/B-delivery.txt 第10行",
+            "quote": "缺失并非源自材料要求本身",
+            "source": "P02/materials.txt只知道指南列了该证明，未调查申请人为什么缺失。",
+            "issue": "指南已列明不能排除证明难获取、理解困难等与要求本身有关的情况；这半句排除性偏强。其后明确可能、缺证据和不能归因，故按软分析语气问题处理。",
+            "severity": "soft",
+            "analysis_permission_related": true,
+            "disputed": true,
+            "dispute_note": "如果此句仅想表达不是指南未列出该项要求，可接受；当前指代不够清楚。"
+          },
+          {
+            "domain": "body",
+            "location": "P02/B-delivery.txt 第13行",
+            "quote": "需经过补充提交方能完成受理",
+            "source": "P02/materials.txt将120件统计为已受理，其中30件需补交。",
+            "issue": "补交是已知事实，方能完成受理增添受理完成节点的程序含义，宜改为需补充提交材料。",
+            "severity": "soft",
+            "analysis_permission_related": false,
+            "disputed": true,
+            "dispute_note": "受理统计/正式受理的口径未定义，本评阅不据模糊用词作硬状态判错。"
+          }
+        ],
+        "evidence": [
+          {
+            "location": "P02/B-delivery.txt 第2、5、7行",
+            "quote": "75%……25%……60%……15%……材料清单以单独下载的附件形式呈现，未在申请页面同步展示。",
+            "source": "P02/materials.txt给120/90/30/18及页面、附件状态。",
+            "judgment": "算术和已知页面事实准确；经比对可理解为对给定两处信息的比较，并未声称对申请人作了调查。",
+            "severity": "none",
+            "analysis_permission_related": true,
+            "disputed": false
+          },
+          {
+            "location": "P02/B-delivery.txt 第10行",
+            "quote": "存在与信息呈现方式相关的可能……尚未向申请人开展专项调查……尚不能作出归因性结论。",
+            "source": "P02/materials.txt明确未调查具体原因。",
+            "judgment": "将集中缺失和页面提示缺口联系起来作假设，同时明确证据局限，是允许的分析，不因未逐字提供原因而失败。",
+            "severity": "none",
+            "analysis_permission_related": true,
+            "disputed": false
+          },
+          {
+            "location": "P02/B-delivery.txt 第13、16行",
+            "quote": "需相应增加重复审核与告知工作量……可初步判断……提示缺失这一环节的可能性较高，但具体成因有待申请人调查核实。",
+            "source": "P02/materials.txt给补交量、集中缺失与页面无清单。",
+            "judgment": "重复工作及服务一致性风险可合理推导；初步指向与待核实分开，没有写成已整改。页面方案待调查后研究是审慎建议，不是已形成修改决定。",
+            "severity": "none",
+            "analysis_permission_related": true,
+            "disputed": false
+          }
+        ],
+        "delivery_assessment": "实际final全部为报告正文，交付通过。",
+        "language_assessment": "证据、可能原因、影响和初步判断连接自然，对未调查原因的限制比A更清楚；有两处宜收紧的绝对/阶段用语。"
+      },
+      "preference": "B",
+      "preference_strength": "slight",
+      "preference_reason": "双方正文与交付均通过。B更明确把信息呈现关联写为可能，并保留不能归因及需调查的限制；A把关联写得更确定。偏好基于论证尺度，不是禁止分析。",
+      "disputes": [
+        {
+          "point": "未调查原因是否禁止作初步判断",
+          "resolution": "不禁止。可以据18件集中缺失和页面没有清单分析可能关联、工作量和风险，但不应写成已调查确认的唯一原因。"
+        }
+      ]
+    },
+    {
+      "id": "P06",
+      "material_requirements": [
+        "版慎通增设公文AI写作等功能立项申请，说明能力缺口、用户呼声、Skill成果技术和开发费用。",
+        "数据为10.5万/7k下载、榜单与第三名；复用仅为迹象。三模块、14K/100K、三轮约1%、当前LOOP及10亿/7亿/3亿消耗。",
+        "前几月1600元/月、适量Alibaba用于Qwen，后续可按需900元/月；技术细节可在正文或附件，无仅正文或500字要求。"
+      ],
+      "A": {
+        "files_read": [
+          "P06/A-delivery.txt",
+          "P06/A-manuscript-1.txt"
+        ],
+        "length": {
+          "target": null,
+          "observation_range": null,
+          "length_pass": null,
+          "reason": "本组材料没有篇幅要求，500字观察区间不跨组套用。"
+        },
+        "length_pass": null,
+        "body_pass": false,
+        "delivery_pass": false,
+        "overall_pass": false,
+        "hard_issues": [
+          {
+            "domain": "body",
+            "location": "P06/A-manuscript-1.txt 第9行",
+            "quote": "在机关、企业、事业单位用户群体中形成稳定基础……对同一供应商提供写—审—改全流程服务的呼声持续较高。",
+            "source": "P06/materials.txt只给现有图书审校较完善、写稿呼声高，并希望未来拓展机关企事业市场。",
+            "issue": "新增特定既有客户结构、稳定基础和具体持续反馈内容；一般目标市场需要可分析，但不能写成已有用户历史事实。",
+            "severity": "hard",
+            "analysis_permission_related": false,
+            "disputed": false
+          },
+          {
+            "domain": "body",
+            "location": "P06/A-manuscript-1.txt 第15行",
+            "quote": "经指纹检测，其公文写作系统均存在复用该Skill代码的情形",
+            "source": "P06/materials.txt明确为复用迹象。",
+            "issue": "去掉迹象限定，改为实际存在复用情形。对技术价值的推论可以讨论，但不能把不确定前提改成已证实事实。",
+            "severity": "hard",
+            "analysis_permission_related": false,
+            "disputed": false
+          },
+          {
+            "domain": "body",
+            "location": "P06/A-manuscript-1.txt 第39、43行",
+            "quote": "我部将另行测算并附说明……后续我部将按公司项目管理流程，提交详细实施方案、里程碑计划与验收标准，按月报送开发进度。",
+            "source": "P06/materials.txt未指定我部这一申请主体，未给另行测算、验收材料、里程碑和按月报送安排。",
+            "issue": "补入具体部门自称和明确未来管理义务；这是新增主体/程序，不是一般影响或目的分析。",
+            "severity": "hard",
+            "analysis_permission_related": false,
+            "disputed": false
+          },
+          {
+            "domain": "delivery",
+            "location": "P06/A-delivery.txt 第5、18行；P06/A-manuscript-1.txt 第29、47至49行",
+            "quote": "细化的技术细节移入附件《公文AI写作Skill技术白皮书》……附件：1.……（另附）",
+            "source": "P06/delivery.json只列一份实际稿件；稿件里只有技术概要和附件题名，没有白皮书正文。",
+            "issue": "final声称已移入附件，实际文件仅挂另附题名。两项截图/获奖证明虽标待补，不冒充已给，但更不能补足已列白皮书的交付缺口。",
+            "severity": "hard",
+            "analysis_permission_related": false,
+            "disputed": false
+          }
+        ],
+        "soft_issues": [
+          {
+            "domain": "body",
+            "location": "P06/A-manuscript-1.txt 第11、13、15行",
+            "quote": "仅靠人工写作或通用大模型难以满足……具有较低的产品风险……技术路径已被业内认可",
+            "source": "P06/materials.txt给专业规则、真实写稿测试、下载与复用迹象。",
+            "issue": "专业化方案可能改善文种适配、降低从零开发的风险、获得市场参考价值，均可分析；但当前句子过于泛化或确定，宜限定比较场景及证据强度。",
+            "severity": "soft",
+            "analysis_permission_related": true,
+            "disputed": false
+          },
+          {
+            "domain": "body",
+            "location": "P06/A-manuscript-1.txt 第17、37行",
+            "quote": "该LOOP已在长期实际开发中跑通……后续运维阶段",
+            "source": "P06/materials.txt给现有LOOP、日均消耗和后续按需转档，没有长期持续时间或转档仅属运维阶段的定义。",
+            "issue": "现有数据支持流程实际使用，但长期和运维阶段多了一层时间/阶段概括，宜收紧。",
+            "severity": "soft",
+            "analysis_permission_related": false,
+            "disputed": false
+          },
+          {
+            "domain": "delivery",
+            "location": "P06/A-manuscript-1.txt 第51至52行",
+            "quote": "申请单位：（待确认）／成文日期：2026年9月8日（草稿）",
+            "source": "P06/materials.txt未给申请单位和成文日期，也未要求保持日期缺失。",
+            "issue": "占位表示信息未定，不当成真实单位；草稿日期标注也不同于伪造已发文日期。但文件仍需补齐申请主体才能直接报送，列为交付整理软问题，不套用P01不写日期的要求。",
+            "severity": "soft",
+            "analysis_permission_related": false,
+            "disputed": false
+          }
+        ],
+        "evidence": [
+          {
+            "location": "P06/A-manuscript-1.txt 第9、11、15行",
+            "quote": "有助于扩大用户基数与续费转化……可在不增加用户切换成本的前提下承接垂直需求……面临同质化竞争与市场被分流的压力。",
+            "source": "P06/materials.txt给已有审校平台、待增写作功能、目标市场及同行复用线索。",
+            "judgment": "覆盖更多写作场景、降低系统切换、增加留存或转化机会、竞争压力都可作为常识支持的作用或风险分析，不因未逐字提供而硬判；续费转化是预期作用，不等于已验证付费意愿。",
+            "severity": "none",
+            "analysis_permission_related": true,
+            "disputed": false
+          },
+          {
+            "location": "P06/A-manuscript-1.txt 第13、17、23至27、35至37行",
+            "quote": "10.5万……7千……第三名……14K……100K……约1%……1600元……后续可……900元",
+            "source": "P06/materials.txt给对应数据、消耗和费用。",
+            "judgment": "核心数值及后期可选档位大体保留，未编固定总额；正文已有技术概要，但不能据此忽略final声称已交的另附白皮书。",
+            "severity": "none",
+            "analysis_permission_related": false,
+            "disputed": false
+          }
+        ],
+        "delivery_assessment": "实际final及完整文件均已阅读全文。原任务允许说明，final的起草解释本身不失败；失败在声称另附的白皮书未实际提供。",
+        "language_assessment": "正文主线完整但加入客户历史和管理义务；内容偏满的部分应分为可接受分析与新增事实，不能一概判写得多就失败。"
+      },
+      "B": {
+        "files_read": [
+          "P06/B-delivery.txt",
+          "P06/B-manuscript-1.txt"
+        ],
+        "length": {
+          "target": null,
+          "observation_range": null,
+          "length_pass": null,
+          "reason": "本组材料没有篇幅要求，500字观察区间不跨组套用。"
+        },
+        "length_pass": null,
+        "body_pass": false,
+        "delivery_pass": false,
+        "overall_pass": false,
+        "hard_issues": [
+          {
+            "domain": "body",
+            "location": "P06/B-manuscript-1.txt 第15行",
+            "quote": "系统用户群体中，机关、企事业单位长期反映希望在同一平台内完成审校与写稿闭环",
+            "source": "P06/materials.txt只给用户写稿呼声高，未给特定现有群体及长期反馈过程。",
+            "issue": "将拟拓展目标群体和一般需求写成已发生的具体用户历史。",
+            "severity": "hard",
+            "analysis_permission_related": false,
+            "disputed": false
+          },
+          {
+            "domain": "body",
+            "location": "P06/B-manuscript-1.txt 第17行",
+            "quote": "用户付费意愿已经过实践验证",
+            "source": "P06/materials.txt给开源Skill下载、榜单、获奖和复用迹象，没有付费、销售或购买意愿数据。",
+            "issue": "下载可以支撑专业写作需求，不能证明付费意愿已被实践验证。这是新增验证结果，超出允许分析。",
+            "severity": "hard",
+            "analysis_permission_related": true,
+            "disputed": false
+          },
+          {
+            "domain": "body",
+            "location": "P06/B-manuscript-1.txt 第33行",
+            "quote": "对各家主流AI模型训练框架与运行环境进行了适配",
+            "source": "P06/materials.txt：对各家harness进行了适配。",
+            "issue": "把harness运行环境适配扩大成AI模型训练框架适配，新增不同技术领域的已完成能力。",
+            "severity": "hard",
+            "analysis_permission_related": false,
+            "disputed": false
+          },
+          {
+            "domain": "body",
+            "location": "P06/B-manuscript-1.txt 第63、67行",
+            "quote": "将由项目组按月提交Token消耗台账和费用明细，经审批后据实列支……第四步，组织内部测试和真实用户验证，形成可交付版本。",
+            "source": "P06/materials.txt给现有开发LOOP和模型费用，没有按月台账报销、四步实施流程或真实用户验证安排。",
+            "issue": "新增明确报销台账程序与实施步骤。当前请批费用可以写，但不能顺带确定未给出的操作义务和外部验证流程。",
+            "severity": "hard",
+            "analysis_permission_related": false,
+            "disputed": false
+          },
+          {
+            "domain": "body",
+            "location": "P06/B-manuscript-1.txt 第81行",
+            "quote": "项目组",
+            "source": "P06/materials.txt未指定申请主体或署名。",
+            "issue": "在实际稿件末尾以项目组作为确定署名，材料没有该具体申请主体依据。",
+            "severity": "hard",
+            "analysis_permission_related": false,
+            "disputed": true,
+            "dispute_note": "项目组也可读作泛化起草方，但署名位置通常标识实际申报主体；若仅作待确认占位，应明确标注。"
+          },
+          {
+            "domain": "delivery",
+            "location": "P06/B-delivery.txt 第11、15行；P06/B-manuscript-1.txt 第87行",
+            "quote": "技术细节放正文，不放附件……技术方案标注另附……公文AI写作功能技术方案（另附）",
+            "source": "P06/delivery.json只列一份稿件；实际文件中没有另附技术方案正文。",
+            "issue": "final内部关于附件的说明矛盾，实际又挂出未提供的另附技术方案。正文有三模块说明不等于已交列出的独立方案。",
+            "severity": "hard",
+            "analysis_permission_related": false,
+            "disputed": false
+          }
+        ],
+        "soft_issues": [
+          {
+            "domain": "body",
+            "location": "P06/B-manuscript-1.txt 第5、23、25、41、45行",
+            "quote": "需求的持续增长……迹象较为明显……结合度最高……错误率可控制在1%左右……确保交付件符合公文规范",
+            "source": "P06/materials.txt给需求规模、复用迹象、更适配判断和约1%测试结果。",
+            "issue": "增长趋势、明显、最高、可控制和确保均比素材口径更强。需求和工程价值可分析，但宜避免把推论或一次测试口径写成趋势、最优或保证。",
+            "severity": "soft",
+            "analysis_permission_related": true,
+            "disputed": true,
+            "dispute_note": "这些表述不同于明确新增付费验证；保留语气强度问题，不全部升级为硬事实错误。"
+          },
+          {
+            "domain": "body",
+            "location": "P06/B-manuscript-1.txt 第61行",
+            "quote": "当前期主体开发完成后，可视实际需要……降配",
+            "source": "P06/materials.txt只给后续可按需要转档。",
+            "issue": "增加主体开发完成这个阶段前提；仍保留可选，没有给具体工期或既成转档，作软阶段表述问题。",
+            "severity": "soft",
+            "analysis_permission_related": false,
+            "disputed": false
+          },
+          {
+            "domain": "delivery",
+            "location": "P06/B-manuscript-1.txt 第83、89至95行",
+            "quote": "二〇二六年九月八日……待确认事项（正文外）",
+            "source": "P06/materials.txt未给成文日期及完整正式报送信息，但没有不写日期或仅正文限制。",
+            "issue": "此处日期缺少草稿标识、未确认信息仍随文件，正式报送前需核定；不把P01禁写日期要求跨组套用。",
+            "severity": "soft",
+            "analysis_permission_related": false,
+            "disputed": false
+          }
+        ],
+        "evidence": [
+          {
+            "location": "P06/B-manuscript-1.txt 第19、23、27行",
+            "quote": "下载足以说明……需求……可有效降低本项目开发风险和试错成本……更有利于实现项目目标",
+            "source": "P06/materials.txt给下载和成熟Skill、模块、测试及选择Skill更适配。",
+            "judgment": "从可复用资产讨论风险和成本、从下载讨论需求、解释选择Skill的理由都可以，评价强度需适当，不因增加分析就否定。",
+            "severity": "none",
+            "analysis_permission_related": true,
+            "disputed": false
+          },
+          {
+            "location": "P06/B-manuscript-1.txt 第73至77行",
+            "quote": "批准本项目立项，纳入公司年度研发计划……批准……费用……给予必要的开发资源、测试环境和跨部门协调支持",
+            "source": "P06/materials.txt请求个人项目转公司、立项改造适配并支持开发费用。",
+            "judgment": "这些在恳请批准的语境下属于当前请求，没有声称年度计划已纳入或资源已配备；不作审批已发生的硬错误。",
+            "severity": "none",
+            "analysis_permission_related": true,
+            "disputed": false
+          },
+          {
+            "location": "P06/B-manuscript-1.txt 第19、37、41、49、57至61行",
+            "quote": "10.5万……7k……14K……100K……约1%……10亿……7亿……3亿……1600元/月……900元/月",
+            "source": "P06/materials.txt给所有对应数值。",
+            "judgment": "主要数字准确，未计算无依据总预算；生产费用和开发费用没有被合并计算。",
+            "severity": "none",
+            "analysis_permission_related": false,
+            "disputed": false
+          }
+        ],
+        "delivery_assessment": "实际文件已全文读完，不能只凭final自述事实边界判通过。原任务允许final说明，真正交付问题是列出的另附方案缺失及final关于附件相互矛盾。",
+        "language_assessment": "业务—技术—费用结构完整，但付费验证、训练框架能力、申报主体和具体操作安排越出材料；与正常原因、后果和方案价值分析分开。"
+      },
+      "preference": "A",
+      "preference_strength": "slight",
+      "preference_reason": "双方正文及交付都不通过。A有复用状态升级和客户历史、后续安排问题；B还新增已验证付费意愿、训练框架适配和确定署名，客观事实扩写更广，故轻微偏好A。",
+      "disputes": [
+        {
+          "point": "P06是否必须不写日期、只交正文或满足500字",
+          "resolution": "不。该组材料没有这些限制；不把P01要求跨组套用。日期与正式主体仍可作为报送前需核定项，但硬问题必须有本组依据。"
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "drafts_reviewed": 6,
+    "length_applicable": 2,
+    "length_pass_count": 1,
+    "length_fail_count": 1,
+    "length_not_applicable": 4,
+    "body_pass_count": 2,
+    "delivery_pass_count": 3,
+    "overall_pass_count": 2,
+    "hard_issue_count": 13,
+    "soft_issue_count": 14,
+    "preferences": {
+      "P01": "A",
+      "P02": "B",
+      "P06": "A"
+    }
+  }
+}

@@ -1,0 +1,221 @@
+{
+  "scope": {
+    "input_directory": "F:/Workspaces/chinese-official-writing-skill-worktrees/global-grounded-analysis-r25/maintenance/tests/evidence/global-grounded-analysis-r25/blind-qwen",
+    "groups": [
+      "P03",
+      "P04",
+      "P05"
+    ],
+    "finals_read_in_full": 4,
+    "actual_files_read_in_full": 5,
+    "read_scope": "仅匿名包；未读规则、映射、版本、其他意见。"
+  },
+  "integrity": {
+    "manifest_sha256": "36377341b3dc821a60f607b5e027f2e12f42e326b072f62113f945a7e89610db",
+    "manifest_match": true,
+    "listed_files_verified": 17,
+    "all_sha256_and_bytes_match": true
+  },
+  "criterion": "允许事实与常识支持的条件、原因、影响和结论分析；区分语气强度与客观事实错误。450-550只作500字左右的观察，不是用户硬上下限。按实际正文和final分别判可用性，不推断整条规则质量。",
+  "groups": [
+    {
+      "id": "P03",
+      "present_sides": [
+        "B"
+      ],
+      "preference": null,
+      "preference_reason": "只有B侧，不作成对偏好。",
+      "drafts": {
+        "B": {
+          "files_read": [
+            "P03/B-delivery.txt",
+            "P03/B-manuscript-1.txt",
+            "P03/B-manuscript-2.txt"
+          ],
+          "body_pass": false,
+          "delivery_pass": true,
+          "overall_pass": false,
+          "assessment": "正文和附件完整，申请理由、关键数字及费用基本准确；需更正附件中一处模块与职能顺序错配后使用。不是整稿论证失控。",
+          "findings": [
+            {
+              "severity": "hard",
+              "domain": "body",
+              "analysis_permission_related": false,
+              "location": "P03/B-manuscript-2.txt 第9行；P03/B-delivery.txt 第70行",
+              "quote": "Skill由references、scripts、hooks三大模块构成，分别承担写作规则路由、交付检测返修、清洗与格式校验",
+              "material_boundary": "P03/materials.txt明确references负责写作规则，hooks微调检测并反馈模型，scripts清洗并校验格式；附件第22至35行自身也如此分节。",
+              "judgment": "分别的对应顺序把scripts配成检测返修、hooks配成清洗校验，与材料及后文详解相反。",
+              "usability_impact": "技术概览会误导模块分工，应将模块列举顺序或职能顺序对应起来。这是一处可定位的局部更正，不据此推断整条写作规则质量下降。",
+              "disputed": false
+            },
+            {
+              "severity": "soft",
+              "domain": "body",
+              "analysis_permission_related": true,
+              "location": "P03/B-manuscript-1.txt 第24行",
+              "quote": "复用迹象说明该Skill的技术路线得到市场认可；如不及时立项、完成闭源改造和产品化，现有技术领先可能被侵蚀。",
+              "material_boundary": "P03/materials.txt给出下载和排名、比赛获奖、复用迹象，没有独立技术领先测评或明确认可声明。",
+              "judgment": "由复用迹象分析参考价值、采用吸引力和竞争压力是允许的；得到认可、现有技术领先的语气比证据强，宜保留可能性。",
+              "usability_impact": "不把分析本身判编造，也没有将具体某公司采购或评价写成事实；可收紧为潜在参考价值和竞争压力。",
+              "disputed": true,
+              "dispute_note": "认可与领先也可读作作者基于下载、奖项及指标的评价判断，故只列软确定度问题，不独立造成不通过。"
+            }
+          ],
+          "grounded_analysis": "从功能缺口解释外部起草和服务范围扩展是有事实及常识基础的分析，允许使用。 主要数字、奖项、现有开发流程、适量Alibaba用于Qwen、可选后期档位保留，未虚构固定总额或开发期限。",
+          "delivery": "实际主件与技术附件两份文件均存在且已完整读完。原任务允许技术位置说明，没有仅正文限制；final的说明、自检和主件末尾待确认项不据此判交付失败。没有只挂附件名的缺口。"
+        }
+      }
+    },
+    {
+      "id": "P04",
+      "present_sides": [
+        "B"
+      ],
+      "preference": null,
+      "preference_reason": "只有B侧，不作成对偏好。",
+      "drafts": {
+        "B": {
+          "files_read": [
+            "P04/B-delivery.txt",
+            "P04/B-manuscript-1.txt"
+          ],
+          "body_pass": true,
+          "delivery_pass": true,
+          "overall_pass": true,
+          "assessment": "基本可直接使用。数字、主送署名、日期缺失、预算未批和分工未定均准确；篇幅偏短是可改进项，不是本稿事实或交付失败。",
+          "length": {
+            "requested": "500字左右",
+            "observation_range": [
+              450,
+              550
+            ],
+            "observation_range_is_explicit_user_limit": false,
+            "metric": "实际申请文本去空白后字符数，含标点数字",
+            "full_text_non_whitespace_chars": 411,
+            "body_paragraphs_non_whitespace_chars": 383,
+            "han_only_chars": 359,
+            "within_observation_range": false,
+            "assessment": "比500字偏短，未完全达到篇幅偏好；但缘由、作用、数字和状态均已讲清，不因低于自设450线自动判整体不可用。"
+          },
+          "findings": [
+            {
+              "severity": "soft",
+              "domain": "length",
+              "analysis_permission_related": false,
+              "location": "P04/B-manuscript-1.txt 全文",
+              "quote": "全文411个非空白字符；实质正文段落383个非空白字符。",
+              "material_boundary": "P04/materials.txt要求500字左右，并未明确450或550的硬上下限。",
+              "judgment": "整体偏短，可补充少量已有事实所支持的工作衔接分析；不宜为凑字增加数据、分工或预算承诺。",
+              "usability_impact": "对当前申请的准确性和完整性影响有限；不将观察区间冒充用户硬门槛。",
+              "disputed": true,
+              "dispute_note": "对500字左右的容忍范围可有不同理解，因此保留计数与偏短判断，不以二元阈值替代整体阅读。"
+            }
+          ],
+          "grounded_analysis": "把等待解释为设备容量瓶颈、推导并行作业和处理节奏改善，是充分有据的分析。未虚构设备损坏或量化提速比例。 主送、署名、费用状态及未定分工全部忠实，未给新旧机擅自安排职责，全文无日期。",
+          "delivery": "实际final和稿件都只有完整申请正文，没有保存说明、自检或其他包装。两者已全文核读。"
+        }
+      }
+    },
+    {
+      "id": "P05",
+      "present_sides": [
+        "A",
+        "B"
+      ],
+      "preference": "B",
+      "preference_strength": "slight",
+      "preference_reason": "双方实际正文均基本可用，但final都违反仅正文。B把页面展示写成可能原因之一，比A的重要原因更准确地体现未调查状态，因而轻微偏好B。",
+      "drafts": {
+        "A": {
+          "files_read": [
+            "P05/A-delivery.txt",
+            "P05/A-manuscript-1.txt"
+          ],
+          "body_pass": true,
+          "delivery_pass": false,
+          "overall_pass": false,
+          "assessment": "实际报告正文完整、数字准确，分析有依据；总体问题在final附带自检和交稿说明，需去除包装。原因判断有可收紧的软措辞。",
+          "findings": [
+            {
+              "severity": "hard",
+              "domain": "delivery",
+              "analysis_permission_related": false,
+              "location": "P05/A-delivery.txt 第1行",
+              "quote": "脚本无风险命中。内部复核：数字与材料一致……按用户只要正文要求，去掉主标题，交付如下：",
+              "material_boundary": "P05/materials.txt：我只想要正文。",
+              "judgment": "final的脚本、自检和交稿说明本身不是报告正文。",
+              "usability_impact": "用户不能原样取用整个final。实际文件虽干净且已读完，也不能替作者消除final的包装问题；脚本自报不作质量证明。",
+              "disputed": false
+            },
+            {
+              "severity": "soft",
+              "domain": "body",
+              "analysis_permission_related": true,
+              "location": "P05/A-manuscript-1.txt 第13行；P05/A-delivery.txt 第17行",
+              "quote": "可以初步判断，办事信息的呈现方式是材料缺项的一个重要原因……尚未经申请人调查证实",
+              "material_boundary": "材料给18/30同类缺失、指南附件与页面清单差异，明确未调查具体原因。",
+              "judgment": "集中缺失与信息呈现差异可支持原因假设，但重要原因的强度略高。全文同时标初步、未证实和待检验，没有冒充调查结论。",
+              "usability_impact": "宜改成可能原因或重点核实方向；不把尚未调查等同禁止分析，也不据这一软确定度问题判正文失败。",
+              "disputed": true,
+              "dispute_note": "有些读者会把初步和未证实视为足够限定；该轻重分歧已保留。"
+            }
+          ],
+          "grounded_analysis": "数字和60%计算正确；补交可能增加办理时间、重复审核、办事体验风险均是合理分析，未写已开展整改。",
+          "delivery": "已完整读取final及带标题的实际文件。标题差异不是问题；final增加的自检说明才是不通过依据。"
+        },
+        "B": {
+          "files_read": [
+            "P05/B-delivery.txt",
+            "P05/B-manuscript-1.txt"
+          ],
+          "body_pass": true,
+          "delivery_pass": false,
+          "overall_pass": false,
+          "assessment": "实际报告基本可直接使用，数据、影响和初步判断连贯；final的复扫及硬边界自检违反只要正文。",
+          "findings": [
+            {
+              "severity": "hard",
+              "domain": "delivery",
+              "analysis_permission_related": false,
+              "location": "P05/B-delivery.txt 第1行",
+              "quote": "复扫无风险。硬边界自检通过……以下为正文：",
+              "material_boundary": "P05/materials.txt明确只要正文。",
+              "judgment": "实际final含正文外自检与引导语。",
+              "usability_impact": "需要去除包装才可原样取用；不以自检通过抵消交付问题。",
+              "disputed": false
+            },
+            {
+              "severity": "soft",
+              "domain": "body",
+              "analysis_permission_related": true,
+              "location": "P05/B-manuscript-1.txt 第5行",
+              "quote": "呈现共同性特征，而非个别申请人的分散疏漏。",
+              "material_boundary": "材料仅给30件中18件缺同一种证明，尚未调查原因。",
+              "judgment": "同类缺失具有集中性可成立，但而非可能被读成排除个人疏漏。后文已明确可能原因之一和具体成因待调查，未作确定归因。",
+              "usability_impact": "可删去排除性半句，保留共同性特征；不足以否定整篇正文。",
+              "disputed": true,
+              "dispute_note": "若该句只描述缺失项目的分布而非申请人原因，可完全接受。"
+            }
+          ],
+          "grounded_analysis": "事实和状态完整；从补交推导时间及审核工作量、在条件下预测同类补件再现均有依据。可能原因与未调查分开，没有写成整改已经开展。",
+          "delivery": "实际文件含完整正文并已阅读全文；final的自检说明独立导致交付不通过。"
+        }
+      }
+    }
+  ],
+  "summary": {
+    "drafts_reviewed": 4,
+    "body_pass_count": 3,
+    "delivery_pass_count": 2,
+    "overall_pass_count": 1,
+    "single_sided_groups": [
+      "P03",
+      "P04"
+    ],
+    "paired_preference": {
+      "P05": "B"
+    },
+    "key_conclusion": "P04-B基本可用但篇幅偏短；P03-B需更正一处附件模块对应关系；P05两侧实际正文可用，final包装均需去除。",
+    "limits": "只评价这些实际稿件。局部错配、篇幅观察或一次交付差异，不用于推定整条规则或任何身份的总体质量。"
+  }
+}

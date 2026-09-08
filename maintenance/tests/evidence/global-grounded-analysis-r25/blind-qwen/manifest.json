@@ -1,0 +1,87 @@
+[
+  {
+    "path": ".gitattributes",
+    "bytes": 87,
+    "sha256": "50045cc37d25e07498c8b21ec39700fb7650728cc3eb52cb1cc70307c6522229"
+  },
+  {
+    "path": "P03/B-delivery.txt",
+    "bytes": 7617,
+    "sha256": "3500cbea091b40fb64aa254f0c9dc42675487aa3899c26033c0dabda1bf5ed18"
+  },
+  {
+    "path": "P03/B-manuscript-1.txt",
+    "bytes": 4177,
+    "sha256": "4efa2210d479a7c9f6ac982d4d5f06cd1248d475467317c9e574b88d8d12ea5e"
+  },
+  {
+    "path": "P03/B-manuscript-2.txt",
+    "bytes": 2173,
+    "sha256": "da8f7c02c38b220e3d1897aeb39e4933a111c42565cad5f34acf30ba6329fa93"
+  },
+  {
+    "path": "P03/delivery.json",
+    "bytes": 211,
+    "sha256": "31ac021a01d50d0a6f5c4824e1a774e08346aae2182335ae24717ad94510d699"
+  },
+  {
+    "path": "P03/materials.txt",
+    "bytes": 3257,
+    "sha256": "010a7e68e4bd91fb72c52b34e02a0044f80eb958276213bfedfe34a87f303881"
+  },
+  {
+    "path": "P04/B-delivery.txt",
+    "bytes": 1257,
+    "sha256": "4ad2ec7f867f931a8f46c9bbf796d30e69b679d2c8b99679a0ee32e65411ee5f"
+  },
+  {
+    "path": "P04/B-manuscript-1.txt",
+    "bytes": 1244,
+    "sha256": "0fed89653425ea55de752c390166cc2a661629c61dc28a3c39cf024705a60658"
+  },
+  {
+    "path": "P04/delivery.json",
+    "bytes": 183,
+    "sha256": "cc3eeb54d9bbdd5bc16f5a3deccdcff729104b099e5e765c808d9e06f59e3627"
+  },
+  {
+    "path": "P04/materials.txt",
+    "bytes": 585,
+    "sha256": "8c172e815c42869501700c0cdd878717e4c0e1e0c93c9f9ab9b3e51fd823b4a9"
+  },
+  {
+    "path": "P05/A-delivery.txt",
+    "bytes": 1775,
+    "sha256": "121683404652c0412dd0f86fd5ab9d9521c7fd4130f4b07718b927d51e0f3342"
+  },
+  {
+    "path": "P05/A-manuscript-1.txt",
+    "bytes": 1405,
+    "sha256": "c21f310ec5e303dea54582b8f0090ed3a5075624cfdc56c5a704b97e6e3e18f0"
+  },
+  {
+    "path": "P05/B-delivery.txt",
+    "bytes": 1777,
+    "sha256": "108850f65856be7d3e9f6d9b26808e6d8d57efeed3ad4a76058aa536d4e5ebc7"
+  },
+  {
+    "path": "P05/B-manuscript-1.txt",
+    "bytes": 1535,
+    "sha256": "0cf5547ff75557099934cc9547d5e171f47b5fe912e4cb05cb0429553f4116d2"
+  },
+  {
+    "path": "P05/delivery.json",
+    "bytes": 363,
+    "sha256": "90144c5c569f917c3de0318a73ae14311c05736419c13b949448895d85ac470f"
+  },
+  {
+    "path": "P05/materials.txt",
+    "bytes": 635,
+    "sha256": "c2d5c6fcf8fa25a7ec101c7f9e0b0f428d7b7414bdd7ca904802390fadb0298d"
+  },
+  {
+    "path": "README.md",
+    "bytes": 1079,
+    "sha256": "3828f4e2986a1d81ba37c347fa161cf4055774090d7ff7d201ed95e42c776d6b"
+  }
+]

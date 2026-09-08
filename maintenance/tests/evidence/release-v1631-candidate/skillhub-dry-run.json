@@ -1,0 +1,21 @@
+{
+  "command": [
+    "py",
+    "-3.13",
+    "-B",
+    "-X",
+    "utf8",
+    "C:/Users/admin/.skillhub/skills_store_cli.py",
+    "--skip-self-upgrade",
+    "publish",
+    "output/release-v1631-candidate/skillhub",
+    "--version",
+    "1.6.31",
+    "--dry-run",
+    "--json"
+  ],
+  "return_code": 0,
+  "seconds": 0.254,
+  "stdout": "{\"dryRun\": true, \"slug\": \"chinese-official-writing\", \"version\": \"1.6.31\"}\n",
+  "stderr": ""
+}

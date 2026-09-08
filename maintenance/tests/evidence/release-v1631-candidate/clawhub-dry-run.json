@@ -1,0 +1,26 @@
+{
+  "command": [
+    "C:/Program Files/nodejs/node.exe",
+    "C:/Users/admin/AppData/Roaming/npm/node_modules/clawhub/bin/clawdhub.js",
+    "publish",
+    "packages/openclaw/skills/chinese_official_writing",
+    "--slug",
+    "chinese-official-writing",
+    "--name",
+    "中文公文写作",
+    "--owner",
+    "gongyu0918-debug",
+    "--version",
+    "1.6.31",
+    "--tags",
+    "latest",
+    "--topics",
+    "chinese-writing,official-writing,office-productivity,content-creation",
+    "--dry-run",
+    "--json"
+  ],
+  "return_code": 0,
+  "seconds": 8.771,
+  "stdout": "{\n  \"ok\": true,\n  \"status\": \"would-publish\",\n  \"slug\": \"chinese-official-writing\",\n  \"displayName\": \"中文公文写作\",\n  \"folder\": \"F:\\\\Workspaces\\\\chinese-official-writing-skill\\\\output\\\\release-worktrees\\\\release-v1.6.31-candidate\\\\packages\\\\openclaw\\\\skills\\\\chinese_official_writing\",\n  \"version\": \"1.6.31\",\n  \"latestVersion\": \"1.6.30\",\n  \"fileCount\": 38,\n  \"fingerprint\": \"0227f4e113c1112f634b64366047b709a8fd4b61a268210667a04812212e20c9\"\n}\n",
+  "stderr": ""
+}

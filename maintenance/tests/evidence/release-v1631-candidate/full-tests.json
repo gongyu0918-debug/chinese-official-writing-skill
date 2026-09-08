@@ -1,0 +1,20 @@
+{
+  "command": [
+    "py",
+    "-3.13",
+    "-B",
+    "-X",
+    "utf8",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "maintenance/tests",
+    "-p",
+    "test_*.py"
+  ],
+  "return_code": 1,
+  "seconds": 146.697,
+  "stdout": "",
+  "stderr": "....................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................F.................F..........................................................................................................\n======================================================================\nFAIL: test_openclaw_github_package_is_current_mit_and_hook_free (test_skill_boundary.SkillBoundaryTests.test_openclaw_github_package_is_current_mit_and_hook_free)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"F:\\Workspaces\\chinese-official-writing-skill\\output\\release-worktrees\\release-v1.6.31-candidate\\maintenance\\tests\\test_skill_boundary.py\", line 119, in test_openclaw_github_package_is_current_mit_and_hook_free\n    self.assertEqual((package_root / \"LICENSE\").read_bytes(), (ROOT / \"LICENSE\").read_bytes())\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: b'MIT License\\n\\nCopyright 2026 chinese-official-writin[1053 chars]E.\\n' != b'MIT License\\r\\n\\r\\nCopyright 2026 chinese-official-wr[1093 chars]\\r\\n'\n\n======================================================================\nFAIL: test_repository_and_current_packages_use_mit (test_skill_boundary.SkillBoundaryTests.test_repository_and_current_packages_use_mit)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"F:\\Workspaces\\chinese-official-writing-skill\\output\\release-worktrees\\release-v1.6.31-candidate\\maintenance\\tests\\test_skill_boundary.py\", line 1142, in test_repository_and_current_packages_use_mit\n    self.assertEqual((package_root / \"LICENSE\").read_bytes(), (ROOT / \"LICENSE\").read_bytes())\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: b'MIT License\\n\\nCopyright 2026 chinese-official-writin[1053 chars]E.\\n' != b'MIT License\\r\\n\\r\\nCopyright 2026 chinese-official-wr[1093 chars]\\r\\n'\n\n----------------------------------------------------------------------\nRan 817 tests in 145.424s\n\nFAILED (failures=2)\n"
+}

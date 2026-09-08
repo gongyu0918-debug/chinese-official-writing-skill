@@ -1,0 +1,63 @@
+{
+  "arm": "candidate",
+  "provider": "qwen",
+  "model": "alibaba-token-plan/qwen3.8-max",
+  "case": "equipment-request",
+  "session": "75e688d9-6a51-4575-ad57-7e7e14ea0a4b",
+  "technical_valid": false,
+  "return_code": null,
+  "failure": "TimeoutExpired",
+  "seconds": 1200.11,
+  "frozen_unchanged": true,
+  "final_chars": 0,
+  "init_models": [
+    "alibaba-token-plan/qwen3.8-max"
+  ],
+  "assistant_models": [
+    "alibaba-token-plan/qwen3.8-max"
+  ],
+  "usage_models": [],
+  "result_count": 0,
+  "result_subtypes": [],
+  "result_errors": [],
+  "source_receipt_sha256": "309eaf3c27a4d8014aaa588bea667fb63e72a0e24681f10ef704a8d7b9ffe109",
+  "final_path": "runs/equipment-request/qwen/candidate/final.txt",
+  "final_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "source_final_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "final_redaction": {
+    "replacement_count": 0,
+    "archive_is_original_bytes": true,
+    "scope": "Only this lane approved runtime/work prefix; source bytes unchanged."
+  },
+  "documents": [
+    {
+      "work_relative_path": "draft-scanner-application.md",
+      "archive_path": "runs/equipment-request/qwen/candidate/working-file-1.md",
+      "sha256": "41a9798e2aa21de36eb50010f110ab7416c64b22dae5505e5d72fd77317ad38e",
+      "bytes": 1194,
+      "delivery_state": "interrupted_working_file_not_final_delivery"
+    }
+  ],
+  "hook_enabled": false,
+  "paired_quality_eligible": false,
+  "omissions": [
+    "outside-work memory files",
+    "raw stream",
+    "runtime configuration",
+    "original argv",
+    "tool arguments"
+  ],
+  "observation": "All remaining files inside this lane work are retained; no claim that interrupted files were delivered.",
+  "runner_technical_valid": false,
+  "scope_audit": {
+    "pass": true,
+    "source_receipt_sha256": "309eaf3c27a4d8014aaa588bea667fb63e72a0e24681f10ef704a8d7b9ffe109",
+    "review": "Root reviewed all 24 tool calls. Selected Skill, its references, own draft reads/writes/edits, Python character counts and bundled prose_lint on own draft only. No outside read/write. Runner timed out without final; working draft is diagnostic only.",
+    "tool_calls": 24,
+    "violations": [],
+    "observations": [
+      "TimeoutExpired at 1200.11 seconds; empty final",
+      "Observed tool counts {'Write': 5, 'Edit': 5, 'Bash': 5}; lint returned No prose risks found at 451, 466, then 407 non-whitespace chars. Continued edits are model actions; no Hook and no lint rejection observed."
+    ]
+  }
+}

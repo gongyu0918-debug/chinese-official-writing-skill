@@ -1,0 +1,13 @@
+{
+  "skillhub": {
+    "files": 88,
+    "manifest_sha256": "c2899a0dfeacdc033a71ea65e77ed4f08c3a3ba8e4e54d60d131930d3259089e",
+    "definition": "SHA256 of manifest UTF-8 bytes including final LF",
+    "output": "output/release-v1631-candidate/skillhub-final"
+  },
+  "clawhub": {
+    "files": 38,
+    "manifest_sha256": "ca4ecfa3ebdb131a069fb04dc9552cc72fc15083c4bdce2892c72aec33d21139",
+    "definition": "SHA256 of manifest UTF-8 bytes including final LF"
+  }
+}

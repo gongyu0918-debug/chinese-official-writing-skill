@@ -1,0 +1,40 @@
+{
+  "status": "FROZEN_CANDIDATE_NOT_RELEASED",
+  "target_version": "1.6.31",
+  "branch": "codex/release-v1.6.31-candidate",
+  "base_tag": "v1.6.30",
+  "base_commit": "d2f97ba05e592712ec4b73decceefb3fd29d7c5e",
+  "selected_product_source": "a440f97e8787a1143835c2c04342a3d28e00068f",
+  "selected_atoms": [
+    "R25 grounded analysis"
+  ],
+  "canonical_delta_bytes": 1354,
+  "excluded_atoms": [
+    "R26",
+    "R9",
+    "R10",
+    "HK-002b"
+  ],
+  "full_tests": 817,
+  "minimal_tests": 107,
+  "quick_validate": 5,
+  "new_model_calls": 0,
+  "packages": {
+    "skillhub": {
+      "files": 88,
+      "manifest_sha256": "c2899a0dfeacdc033a71ea65e77ed4f08c3a3ba8e4e54d60d131930d3259089e",
+      "definition": "SHA256 of manifest UTF-8 bytes including final LF",
+      "output": "output/release-v1631-candidate/skillhub-final"
+    },
+    "clawhub": {
+      "files": 38,
+      "manifest_sha256": "ca4ecfa3ebdb131a069fb04dc9552cc72fc15083c4bdce2892c72aec33d21139",
+      "definition": "SHA256 of manifest UTF-8 bytes including final LF"
+    }
+  },
+  "published": false,
+  "formal_platform_submissions": 0,
+  "automatic_release_scheduled": false,
+  "user_instruction": "1.6.31暂时不发布，早上再发布",
+  "planned_release": "2026-09-09 morning; no automatic job created"
+}

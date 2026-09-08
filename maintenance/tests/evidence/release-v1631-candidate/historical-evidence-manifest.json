@@ -1,0 +1,605 @@
+{
+  "source_commit": "f69534f05a2ae8c2da4f39d35a35497a90d0efff",
+  "files": [
+    {
+      "path": "maintenance/tests/evidence/global-grounded-analysis-r25/.gitattributes",
+      "sha256": "6c0cd27f3b7b3e5e5c4bf0c264f5be35a7ba2fcbd6be7e0bd0d33206cff6f13c",
+      "bytes": 101
+    },
+    {
+      "path": "maintenance/tests/evidence/global-grounded-analysis-r25/actual-minimax/.gitattributes",
+      "sha256": "e97602ab9cac70102245345c5ab0fc9830df8b17f1072b188265a662a3a547ae",
+      "bytes": 20
+    },
+    {
+      "path": "maintenance/tests/evidence/global-grounded-analysis-r25/actual-minimax/archive-manifest.json",
+      "sha256": "fe58f3de5c37f41d8caebb105bd8ce6ca8b10eecc5370db793ddb60043948038",
+      "bytes": 4630
+    },
+    {
+      "path": "maintenance/tests/evidence/global-grounded-analysis-r25/actual-minimax/blind-mapping.json",
+      "sha256": "62819863e6574f422e930a4464c4469dec15ae4f3ac0f6275e8caa1c2ed60af0",
+      "bytes": 3525
+    },
+    {
+      "path": "maintenance/tests/evidence/global-grounded-analysis-r25/actual-minimax/freeze.json",
+      "sha256": "d6c4b37559c9fbccf8cb9ae8e7f456bbedb82edf7e1609c02197ce5b008d6ad2",
+      "bytes": 1353
+    },
+    {
+      "path": "maintenance/tests/evidence/global-grounded-analysis-r25/actual-minimax/manifests/baseline.json",
+      "sha256": "73a3a265874400cc985ca5d8d0bc36b13684b28fed7ec68d2c2caaac7aaab065",
+      "bytes": 6463
+    },
+    {
+      "path": "maintenance/tests/evidence/global-grounded-analysis-r25/actual-minimax/manifests/candidate.json",
+      "sha256": "b9e0909316990aa7ebc43a3bf02aa11b565b7cc9f9972d794a98755cc72c9e84",
+      "bytes": 6463
+    },
+    {
+      "path": "maintenance/tests/evidence/global-grounded-analysis-r25/actual-minimax/prompts/equipment-request.txt",
+      "sha256": "8c172e815c42869501700c0cdd878717e4c0e1e0c93c9f9ab9b3e51fd823b4a9",
+      "bytes": 585
+    },
+    {
+      "path": "maintenance/tests/evidence/global-grounded-analysis-r25/actual-minimax/prompts/project-application.txt",
+      "sha256": "010a7e68e4bd91fb72c52b34e02a0044f80eb958276213bfedfe34a87f303881",
+      "bytes": 3257
+    },
+    {
+      "path": "maintenance/tests/evidence/global-grounded-analysis-r25/actual-minimax/prompts/service-report.txt",
+      "sha256": "c2d5c6fcf8fa25a7ec101c7f9e0b0f428d7b7414bdd7ca904802390fadb0298d",
+      "bytes": 635
+    },
+    {
+      "path": "maintenance/tests/evidence/global-grounded-analysis-r25/actual-minimax/runs/equipment-request/minimax/baseline/final.txt",
+      "sha256": "05d73a1e0391b72bc050d7b9a60bff498d33507734dae3ca1244cbbfe71dccd7",
+      "bytes": 1172
+    },
+    {
+      "path": "maintenance/tests/evidence/global-grounded-analysis-r25/actual-minimax/runs/equipment-request/minimax/baseline/receipt.json",
+      "sha256": "cadf09e0b84119aa880cb7ed28d9bb0220fd9fb9a2568610e56807340e9f20a3",
+      "bytes": 6181
+    },
+    {
+      "path": "maintenance/tests/evidence/global-grounded-analysis-r25/actual-minimax/runs/equipment-request/minimax/candidate/document-1.txt",
+      "sha256": "42cd8116728639a50a1dd42cf47a654e7c18fe847dbb34ed20430ff9d4337151",
+      "bytes": 1437
+    },
+    {
+      "path": "maintenance/tests/evidence/global-grounded-analysis-r25/actual-minimax/runs/equipment-request/minimax/candidate/final.txt",
+      "sha256": "efaafbea0b1b00a512de9a4e9c1d0b1974809ceaf82134d3529529a1959b2070",
+      "bytes": 2235
+    },
+    {
+      "path": "maintenance/tests/evidence/global-grounded-analysis-r25/actual-minimax/runs/equipment-request/minimax/candidate/receipt.json",
+      "sha256": "325149569a2af3d458d59959f8cd6b53eca3cfff47a06237dc56996d7b405c74",
+      "bytes": 6639
+    },
+    {
+      "path": "maintenance/tests/evidence/global-grounded-analysis-r25/actual-minimax/runs/project-application/minimax/baseline/document-1.txt",
+      "sha256": "2a7718b0f32eca7f534500b3d6298103f6d742663f4d3be900b5b9b4faca8af5",
+      "bytes": 6681
+    },
+    {
+      "path": "maintenance/tests/evidence/global-grounded-analysis-r25/actual-minimax/runs/project-application/minimax/baseline/final.txt",
+      "sha256": "361f157eadef6fe1f6b98300b700468a11d17af85bf70873316abc6c2f8ffa1b",
+      "bytes": 1954
+    },
+    {
+      "path": "maintenance/tests/evidence/global-grounded-analysis-r25/actual-minimax/runs/project-application/minimax/baseline/receipt.json",
+      "sha256": "61711e75f4181330a4622285b08302441149825f1df8e1586a1efe13eaee1a41",
+      "bytes": 11552
+    },
+    {
+      "path": "maintenance/tests/evidence/global-grounded-analysis-r25/actual-minimax/runs/project-application/minimax/candidate/document-1.txt",
+      "sha256": "6991c1ce75e0f9f462948e9aeb5dfd1f5073cb71c57c191712a32e22d9cc90af",
+      "bytes": 5940
+    },
+    {
+      "path": "maintenance/tests/evidence/global-grounded-analysis-r25/actual-minimax/runs/project-application/minimax/candidate/final.txt",
+      "sha256": "862c8b546fc405d79dc10d2fc79af3eaa7ce666485f8074e82a7d09bce143aa0",
+      "bytes": 2793
+    },
+    {
+      "path": "maintenance/tests/evidence/global-grounded-analysis-r25/actual-minimax/runs/project-application/minimax/candidate/receipt.json",
+      "sha256": "5ac7c427bac33884264cd365946fe052c4f0aab513d5a50261b29462de238160",
+      "bytes": 6601
+    },
+    {
+      "path": "maintenance/tests/evidence/global-grounded-analysis-r25/actual-minimax/runs/service-report/minimax/baseline/final.txt",
+      "sha256": "4aaf18b8f0ce7c0a92847c0c5eed9bd38d164335f11d84a02d1431cbf7d1e05b",
+      "bytes": 1917
+    },
+    {
+      "path": "maintenance/tests/evidence/global-grounded-analysis-r25/actual-minimax/runs/service-report/minimax/baseline/receipt.json",
+      "sha256": "3b4bffb6c47220d5c6124d777b7ca3cbef8c6bcd4fd311cc5c59f3b4cc36fb45",
+      "bytes": 4863
+    },
+    {
+      "path": "maintenance/tests/evidence/global-grounded-analysis-r25/actual-minimax/runs/service-report/minimax/candidate/final.txt",
+      "sha256": "bb238e9a0669995f92781e1ceff7502c4e452bdf225fc3bad777cffb6603ddd9",
+      "bytes": 1850
+    },
+    {
+      "path": "maintenance/tests/evidence/global-grounded-analysis-r25/actual-minimax/runs/service-report/minimax/candidate/receipt.json",
+      "sha256": "1c80632db35ac6947793b235e1f5539cb1f5602eebc7066c18e48edc1a11f002",
+      "bytes": 4866
+    },
+    {
+      "path": "maintenance/tests/evidence/global-grounded-analysis-r25/actual-minimax/snapshots/baseline/SKILL.md",
+      "sha256": "64a414e5ee69eb6161658529e9807460c3c612eeb458bd81925cc2ad6b494e96",
+      "bytes": 27911
+    },
+    {
+      "path": "maintenance/tests/evidence/global-grounded-analysis-r25/actual-minimax/snapshots/baseline/references/information-selection.md",
+      "sha256": "188c9def1553cb01423f5214ebaee6f122c3157aac39b60f54077d78df97d595",
+      "bytes": 3987
+    },
+    {
+      "path": "maintenance/tests/evidence/global-grounded-analysis-r25/actual-minimax/snapshots/candidate/SKILL.md",
+      "sha256": "190ca5591de28e179547ab53a9f13cfe5642a651185498e8f3cc7b34f8039f36",
+      "bytes": 28330
+    },
+    {
+      "path": "maintenance/tests/evidence/global-grounded-analysis-r25/actual-minimax/snapshots/candidate/references/information-selection.md",
+      "sha256": "bf1aff9c90a6ba901fb2514ed98b3796a67616a4f934bfeac45fa4e3c0c01787",
+      "bytes": 4922
+    },
+    {
+      "path": "maintenance/tests/evidence/global-grounded-analysis-r25/actual-minimax/summary.json",
+      "sha256": "2da3245a98a6b41e4a86aa0f9ec7ecdfb9454682f693183f7521507a31dc7e44",
+      "bytes": 6215
+    },
+    {
+      "path": "maintenance/tests/evidence/global-grounded-analysis-r25/actual-qwen/.gitattributes",
+      "sha256": "e97602ab9cac70102245345c5ab0fc9830df8b17f1072b188265a662a3a547ae",
+      "bytes": 20
+    },
+    {
+      "path": "maintenance/tests/evidence/global-grounded-analysis-r25/actual-qwen/archive-manifest.json",
+      "sha256": "9daab9b667265e5f45842b39a7c0048ab4b0a8cf4ea5f17dc2104475f77ce7ba",
+      "bytes": 5291
+    },
+    {
+      "path": "maintenance/tests/evidence/global-grounded-analysis-r25/actual-qwen/blind-mapping.json",
+      "sha256": "fa11da3e480dffa60d7a42e9f31fbc5d991c14fe595815a26ca02f1daa106048",
+      "bytes": 3519
+    },
+    {
+      "path": "maintenance/tests/evidence/global-grounded-analysis-r25/actual-qwen/freeze.json",
+      "sha256": "d6c4b37559c9fbccf8cb9ae8e7f456bbedb82edf7e1609c02197ce5b008d6ad2",
+      "bytes": 1353
+    },
+    {
+      "path": "maintenance/tests/evidence/global-grounded-analysis-r25/actual-qwen/manifests/baseline.json",
+      "sha256": "73a3a265874400cc985ca5d8d0bc36b13684b28fed7ec68d2c2caaac7aaab065",
+      "bytes": 6463
+    },
+    {
+      "path": "maintenance/tests/evidence/global-grounded-analysis-r25/actual-qwen/manifests/candidate.json",
+      "sha256": "b9e0909316990aa7ebc43a3bf02aa11b565b7cc9f9972d794a98755cc72c9e84",
+      "bytes": 6463
+    },
+    {
+      "path": "maintenance/tests/evidence/global-grounded-analysis-r25/actual-qwen/prompts/equipment-request.txt",
+      "sha256": "8c172e815c42869501700c0cdd878717e4c0e1e0c93c9f9ab9b3e51fd823b4a9",
+      "bytes": 585
+    },
+    {
+      "path": "maintenance/tests/evidence/global-grounded-analysis-r25/actual-qwen/prompts/project-application.txt",
+      "sha256": "010a7e68e4bd91fb72c52b34e02a0044f80eb958276213bfedfe34a87f303881",
+      "bytes": 3257
+    },
+    {
+      "path": "maintenance/tests/evidence/global-grounded-analysis-r25/actual-qwen/prompts/service-report.txt",
+      "sha256": "c2d5c6fcf8fa25a7ec101c7f9e0b0f428d7b7414bdd7ca904802390fadb0298d",
+      "bytes": 635
+    },
+    {
+      "path": "maintenance/tests/evidence/global-grounded-analysis-r25/actual-qwen/runs/equipment-request/qwen/baseline/document-1.txt",
+      "sha256": "0fed89653425ea55de752c390166cc2a661629c61dc28a3c39cf024705a60658",
+      "bytes": 1244
+    },
+    {
+      "path": "maintenance/tests/evidence/global-grounded-analysis-r25/actual-qwen/runs/equipment-request/qwen/baseline/final.txt",
+      "sha256": "4ad2ec7f867f931a8f46c9bbf796d30e69b679d2c8b99679a0ee32e65411ee5f",
+      "bytes": 1257
+    },
+    {
+      "path": "maintenance/tests/evidence/global-grounded-analysis-r25/actual-qwen/runs/equipment-request/qwen/baseline/receipt.json",
+      "sha256": "b4a54337ed175aed7f314380b0c2a297c1d209ff46f1e688b7ecb9f5dacc4a13",
+      "bytes": 10962
+    },
+    {
+      "path": "maintenance/tests/evidence/global-grounded-analysis-r25/actual-qwen/runs/equipment-request/qwen/candidate/final.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "maintenance/tests/evidence/global-grounded-analysis-r25/actual-qwen/runs/equipment-request/qwen/candidate/receipt.json",
+      "sha256": "cfc12bb1f88d43fafee7acdad4ad6ec77e406ad181f33be3b480ad8a675e7fbc",
+      "bytes": 2533
+    },
+    {
+      "path": "maintenance/tests/evidence/global-grounded-analysis-r25/actual-qwen/runs/equipment-request/qwen/candidate/working-file-1.md",
+      "sha256": "41a9798e2aa21de36eb50010f110ab7416c64b22dae5505e5d72fd77317ad38e",
+      "bytes": 1194
+    },
+    {
+      "path": "maintenance/tests/evidence/global-grounded-analysis-r25/actual-qwen/runs/project-application/qwen/baseline/final.txt",
+      "sha256": "f770b3095e6c47fcf54e453d1129e881da45e5d098800138465be420d005ec48",
+      "bytes": 170
+    },
+    {
+      "path": "maintenance/tests/evidence/global-grounded-analysis-r25/actual-qwen/runs/project-application/qwen/baseline/receipt.json",
+      "sha256": "5820223b197b8c7ee0f75f057c232cfcf2dbe9a9627a8f3ad2d65d3677125cb2",
+      "bytes": 3332
+    },
+    {
+      "path": "maintenance/tests/evidence/global-grounded-analysis-r25/actual-qwen/runs/project-application/qwen/baseline/working-file-1.md",
+      "sha256": "97816109a25f300db3a4e2ffe6016f621761c53a615f31b5a1371665d43496d0",
+      "bytes": 4470
+    },
+    {
+      "path": "maintenance/tests/evidence/global-grounded-analysis-r25/actual-qwen/runs/project-application/qwen/candidate/document-1.txt",
+      "sha256": "4efa2210d479a7c9f6ac982d4d5f06cd1248d475467317c9e574b88d8d12ea5e",
+      "bytes": 4177
+    },
+    {
+      "path": "maintenance/tests/evidence/global-grounded-analysis-r25/actual-qwen/runs/project-application/qwen/candidate/document-2.txt",
+      "sha256": "da8f7c02c38b220e3d1897aeb39e4933a111c42565cad5f34acf30ba6329fa93",
+      "bytes": 2173
+    },
+    {
+      "path": "maintenance/tests/evidence/global-grounded-analysis-r25/actual-qwen/runs/project-application/qwen/candidate/final.txt",
+      "sha256": "3500cbea091b40fb64aa254f0c9dc42675487aa3899c26033c0dabda1bf5ed18",
+      "bytes": 7617
+    },
+    {
+      "path": "maintenance/tests/evidence/global-grounded-analysis-r25/actual-qwen/runs/project-application/qwen/candidate/receipt.json",
+      "sha256": "42e3741bfd0703cfa1cfaf14620693af321d56589c3f2c0b99d2b7cac9385785",
+      "bytes": 14442
+    },
+    {
+      "path": "maintenance/tests/evidence/global-grounded-analysis-r25/actual-qwen/runs/service-report/qwen/baseline/document-1.txt",
+      "sha256": "0cf5547ff75557099934cc9547d5e171f47b5fe912e4cb05cb0429553f4116d2",
+      "bytes": 1535
+    },
+    {
+      "path": "maintenance/tests/evidence/global-grounded-analysis-r25/actual-qwen/runs/service-report/qwen/baseline/final.txt",
+      "sha256": "108850f65856be7d3e9f6d9b26808e6d8d57efeed3ad4a76058aa536d4e5ebc7",
+      "bytes": 1777
+    },
+    {
+      "path": "maintenance/tests/evidence/global-grounded-analysis-r25/actual-qwen/runs/service-report/qwen/baseline/receipt.json",
+      "sha256": "bd6a465331e94a9c39646c0057ca51f4556fb595bbf7e1afa2efbbbd5a60926a",
+      "bytes": 10453
+    },
+    {
+      "path": "maintenance/tests/evidence/global-grounded-analysis-r25/actual-qwen/runs/service-report/qwen/candidate/document-1.txt",
+      "sha256": "c21f310ec5e303dea54582b8f0090ed3a5075624cfdc56c5a704b97e6e3e18f0",
+      "bytes": 1405
+    },
+    {
+      "path": "maintenance/tests/evidence/global-grounded-analysis-r25/actual-qwen/runs/service-report/qwen/candidate/final.txt",
+      "sha256": "121683404652c0412dd0f86fd5ab9d9521c7fd4130f4b07718b927d51e0f3342",
+      "bytes": 1775
+    },
+    {
+      "path": "maintenance/tests/evidence/global-grounded-analysis-r25/actual-qwen/runs/service-report/qwen/candidate/receipt.json",
+      "sha256": "7b3dda833d174ffb1d0a159857339f3d1af10109bc8fd998ca4b33e9bd01a6d0",
+      "bytes": 7868
+    },
+    {
+      "path": "maintenance/tests/evidence/global-grounded-analysis-r25/actual-qwen/snapshots/baseline/SKILL.md",
+      "sha256": "64a414e5ee69eb6161658529e9807460c3c612eeb458bd81925cc2ad6b494e96",
+      "bytes": 27911
+    },
+    {
+      "path": "maintenance/tests/evidence/global-grounded-analysis-r25/actual-qwen/snapshots/baseline/references/information-selection.md",
+      "sha256": "188c9def1553cb01423f5214ebaee6f122c3157aac39b60f54077d78df97d595",
+      "bytes": 3987
+    },
+    {
+      "path": "maintenance/tests/evidence/global-grounded-analysis-r25/actual-qwen/snapshots/candidate/SKILL.md",
+      "sha256": "190ca5591de28e179547ab53a9f13cfe5642a651185498e8f3cc7b34f8039f36",
+      "bytes": 28330
+    },
+    {
+      "path": "maintenance/tests/evidence/global-grounded-analysis-r25/actual-qwen/snapshots/candidate/references/information-selection.md",
+      "sha256": "bf1aff9c90a6ba901fb2514ed98b3796a67616a4f934bfeac45fa4e3c0c01787",
+      "bytes": 4922
+    },
+    {
+      "path": "maintenance/tests/evidence/global-grounded-analysis-r25/actual-qwen/summary.json",
+      "sha256": "54c50cb63aa3ccd48fc7e39cf84aab7f61439980eed7ea817343877917c072f3",
+      "bytes": 5112
+    },
+    {
+      "path": "maintenance/tests/evidence/global-grounded-analysis-r25/archive_actual.py",
+      "sha256": "38c3067fa1fb0f539b7062a979e68ed6b40c16e1ad8473e1461e6b726a532a62",
+      "bytes": 9464
+    },
+    {
+      "path": "maintenance/tests/evidence/global-grounded-analysis-r25/blind-minimax/.gitattributes",
+      "sha256": "50045cc37d25e07498c8b21ec39700fb7650728cc3eb52cb1cc70307c6522229",
+      "bytes": 87
+    },
+    {
+      "path": "maintenance/tests/evidence/global-grounded-analysis-r25/blind-minimax/P01/A-delivery.txt",
+      "sha256": "05d73a1e0391b72bc050d7b9a60bff498d33507734dae3ca1244cbbfe71dccd7",
+      "bytes": 1172
+    },
+    {
+      "path": "maintenance/tests/evidence/global-grounded-analysis-r25/blind-minimax/P01/B-delivery.txt",
+      "sha256": "efaafbea0b1b00a512de9a4e9c1d0b1974809ceaf82134d3529529a1959b2070",
+      "bytes": 2235
+    },
+    {
+      "path": "maintenance/tests/evidence/global-grounded-analysis-r25/blind-minimax/P01/B-manuscript-1.txt",
+      "sha256": "42cd8116728639a50a1dd42cf47a654e7c18fe847dbb34ed20430ff9d4337151",
+      "bytes": 1437
+    },
+    {
+      "path": "maintenance/tests/evidence/global-grounded-analysis-r25/blind-minimax/P01/delivery.json",
+      "sha256": "dc0d9a8177ca91787f565270f091502d94cc231844a9834610c89f0db0b1ede9",
+      "bytes": 317
+    },
+    {
+      "path": "maintenance/tests/evidence/global-grounded-analysis-r25/blind-minimax/P01/materials.txt",
+      "sha256": "8c172e815c42869501700c0cdd878717e4c0e1e0c93c9f9ab9b3e51fd823b4a9",
+      "bytes": 585
+    },
+    {
+      "path": "maintenance/tests/evidence/global-grounded-analysis-r25/blind-minimax/P02/A-delivery.txt",
+      "sha256": "bb238e9a0669995f92781e1ceff7502c4e452bdf225fc3bad777cffb6603ddd9",
+      "bytes": 1850
+    },
+    {
+      "path": "maintenance/tests/evidence/global-grounded-analysis-r25/blind-minimax/P02/B-delivery.txt",
+      "sha256": "4aaf18b8f0ce7c0a92847c0c5eed9bd38d164335f11d84a02d1431cbf7d1e05b",
+      "bytes": 1917
+    },
+    {
+      "path": "maintenance/tests/evidence/global-grounded-analysis-r25/blind-minimax/P02/delivery.json",
+      "sha256": "efc61faa45674fa91ff1cb72181ed4de27e03caae94e92b2272e21672cb6435f",
+      "bytes": 271
+    },
+    {
+      "path": "maintenance/tests/evidence/global-grounded-analysis-r25/blind-minimax/P02/materials.txt",
+      "sha256": "c2d5c6fcf8fa25a7ec101c7f9e0b0f428d7b7414bdd7ca904802390fadb0298d",
+      "bytes": 635
+    },
+    {
+      "path": "maintenance/tests/evidence/global-grounded-analysis-r25/blind-minimax/P06/A-delivery.txt",
+      "sha256": "862c8b546fc405d79dc10d2fc79af3eaa7ce666485f8074e82a7d09bce143aa0",
+      "bytes": 2793
+    },
+    {
+      "path": "maintenance/tests/evidence/global-grounded-analysis-r25/blind-minimax/P06/A-manuscript-1.txt",
+      "sha256": "6991c1ce75e0f9f462948e9aeb5dfd1f5073cb71c57c191712a32e22d9cc90af",
+      "bytes": 5940
+    },
+    {
+      "path": "maintenance/tests/evidence/global-grounded-analysis-r25/blind-minimax/P06/B-delivery.txt",
+      "sha256": "361f157eadef6fe1f6b98300b700468a11d17af85bf70873316abc6c2f8ffa1b",
+      "bytes": 1954
+    },
+    {
+      "path": "maintenance/tests/evidence/global-grounded-analysis-r25/blind-minimax/P06/B-manuscript-1.txt",
+      "sha256": "2a7718b0f32eca7f534500b3d6298103f6d742663f4d3be900b5b9b4faca8af5",
+      "bytes": 6681
+    },
+    {
+      "path": "maintenance/tests/evidence/global-grounded-analysis-r25/blind-minimax/P06/delivery.json",
+      "sha256": "90144c5c569f917c3de0318a73ae14311c05736419c13b949448895d85ac470f",
+      "bytes": 363
+    },
+    {
+      "path": "maintenance/tests/evidence/global-grounded-analysis-r25/blind-minimax/P06/materials.txt",
+      "sha256": "010a7e68e4bd91fb72c52b34e02a0044f80eb958276213bfedfe34a87f303881",
+      "bytes": 3257
+    },
+    {
+      "path": "maintenance/tests/evidence/global-grounded-analysis-r25/blind-minimax/README.md",
+      "sha256": "3828f4e2986a1d81ba37c347fa161cf4055774090d7ff7d201ed95e42c776d6b",
+      "bytes": 1079
+    },
+    {
+      "path": "maintenance/tests/evidence/global-grounded-analysis-r25/blind-minimax/manifest.json",
+      "sha256": "3f72948c491a9b94f23f23be79a9580fd45d5cf1b2e7f14b6b2086c4ae1b537d",
+      "bytes": 2420
+    },
+    {
+      "path": "maintenance/tests/evidence/global-grounded-analysis-r25/blind-qwen/.gitattributes",
+      "sha256": "50045cc37d25e07498c8b21ec39700fb7650728cc3eb52cb1cc70307c6522229",
+      "bytes": 87
+    },
+    {
+      "path": "maintenance/tests/evidence/global-grounded-analysis-r25/blind-qwen/P03/B-delivery.txt",
+      "sha256": "3500cbea091b40fb64aa254f0c9dc42675487aa3899c26033c0dabda1bf5ed18",
+      "bytes": 7617
+    },
+    {
+      "path": "maintenance/tests/evidence/global-grounded-analysis-r25/blind-qwen/P03/B-manuscript-1.txt",
+      "sha256": "4efa2210d479a7c9f6ac982d4d5f06cd1248d475467317c9e574b88d8d12ea5e",
+      "bytes": 4177
+    },
+    {
+      "path": "maintenance/tests/evidence/global-grounded-analysis-r25/blind-qwen/P03/B-manuscript-2.txt",
+      "sha256": "da8f7c02c38b220e3d1897aeb39e4933a111c42565cad5f34acf30ba6329fa93",
+      "bytes": 2173
+    },
+    {
+      "path": "maintenance/tests/evidence/global-grounded-analysis-r25/blind-qwen/P03/delivery.json",
+      "sha256": "31ac021a01d50d0a6f5c4824e1a774e08346aae2182335ae24717ad94510d699",
+      "bytes": 211
+    },
+    {
+      "path": "maintenance/tests/evidence/global-grounded-analysis-r25/blind-qwen/P03/materials.txt",
+      "sha256": "010a7e68e4bd91fb72c52b34e02a0044f80eb958276213bfedfe34a87f303881",
+      "bytes": 3257
+    },
+    {
+      "path": "maintenance/tests/evidence/global-grounded-analysis-r25/blind-qwen/P04/B-delivery.txt",
+      "sha256": "4ad2ec7f867f931a8f46c9bbf796d30e69b679d2c8b99679a0ee32e65411ee5f",
+      "bytes": 1257
+    },
+    {
+      "path": "maintenance/tests/evidence/global-grounded-analysis-r25/blind-qwen/P04/B-manuscript-1.txt",
+      "sha256": "0fed89653425ea55de752c390166cc2a661629c61dc28a3c39cf024705a60658",
+      "bytes": 1244
+    },
+    {
+      "path": "maintenance/tests/evidence/global-grounded-analysis-r25/blind-qwen/P04/delivery.json",
+      "sha256": "cc3eeb54d9bbdd5bc16f5a3deccdcff729104b099e5e765c808d9e06f59e3627",
+      "bytes": 183
+    },
+    {
+      "path": "maintenance/tests/evidence/global-grounded-analysis-r25/blind-qwen/P04/materials.txt",
+      "sha256": "8c172e815c42869501700c0cdd878717e4c0e1e0c93c9f9ab9b3e51fd823b4a9",
+      "bytes": 585
+    },
+    {
+      "path": "maintenance/tests/evidence/global-grounded-analysis-r25/blind-qwen/P05/A-delivery.txt",
+      "sha256": "121683404652c0412dd0f86fd5ab9d9521c7fd4130f4b07718b927d51e0f3342",
+      "bytes": 1775
+    },
+    {
+      "path": "maintenance/tests/evidence/global-grounded-analysis-r25/blind-qwen/P05/A-manuscript-1.txt",
+      "sha256": "c21f310ec5e303dea54582b8f0090ed3a5075624cfdc56c5a704b97e6e3e18f0",
+      "bytes": 1405
+    },
+    {
+      "path": "maintenance/tests/evidence/global-grounded-analysis-r25/blind-qwen/P05/B-delivery.txt",
+      "sha256": "108850f65856be7d3e9f6d9b26808e6d8d57efeed3ad4a76058aa536d4e5ebc7",
+      "bytes": 1777
+    },
+    {
+      "path": "maintenance/tests/evidence/global-grounded-analysis-r25/blind-qwen/P05/B-manuscript-1.txt",
+      "sha256": "0cf5547ff75557099934cc9547d5e171f47b5fe912e4cb05cb0429553f4116d2",
+      "bytes": 1535
+    },
+    {
+      "path": "maintenance/tests/evidence/global-grounded-analysis-r25/blind-qwen/P05/delivery.json",
+      "sha256": "90144c5c569f917c3de0318a73ae14311c05736419c13b949448895d85ac470f",
+      "bytes": 363
+    },
+    {
+      "path": "maintenance/tests/evidence/global-grounded-analysis-r25/blind-qwen/P05/materials.txt",
+      "sha256": "c2d5c6fcf8fa25a7ec101c7f9e0b0f428d7b7414bdd7ca904802390fadb0298d",
+      "bytes": 635
+    },
+    {
+      "path": "maintenance/tests/evidence/global-grounded-analysis-r25/blind-qwen/README.md",
+      "sha256": "3828f4e2986a1d81ba37c347fa161cf4055774090d7ff7d201ed95e42c776d6b",
+      "bytes": 1079
+    },
+    {
+      "path": "maintenance/tests/evidence/global-grounded-analysis-r25/blind-qwen/manifest.json",
+      "sha256": "36377341b3dc821a60f607b5e027f2e12f42e326b072f62113f945a7e89610db",
+      "bytes": 2428
+    },
+    {
+      "path": "maintenance/tests/evidence/global-grounded-analysis-r25/cold-review.md",
+      "sha256": "96c2bf3f375f9ff47faa583f18ebea01de76138efcd478e451e7db61ca1e61b4",
+      "bytes": 979
+    },
+    {
+      "path": "maintenance/tests/evidence/global-grounded-analysis-r25/frozen-scope.json",
+      "sha256": "2fb9aa2c0cab79b6638be13b530a4059eead306939aad36ba63d8219394c505f",
+      "bytes": 696
+    },
+    {
+      "path": "maintenance/tests/evidence/global-grounded-analysis-r25/integration.md",
+      "sha256": "f5ca264555ad593b39de550e51729fa42730a51dc40140e0b9988577fd5a834a",
+      "bytes": 3266
+    },
+    {
+      "path": "maintenance/tests/evidence/global-grounded-analysis-r25/merge-check.json",
+      "sha256": "7a11b1f01f89625df49bdba05c249080140af3eff6dc9e94296cfeb47eebeea5",
+      "bytes": 1023
+    },
+    {
+      "path": "maintenance/tests/evidence/global-grounded-analysis-r25/preregister.md",
+      "sha256": "8f823dc9e02c2e9a10ab527616f3e20f27294e4ab0ebf75e593d911a1bd34187",
+      "bytes": 2964
+    },
+    {
+      "path": "maintenance/tests/evidence/global-grounded-analysis-r25/prompts/.gitattributes",
+      "sha256": "e97602ab9cac70102245345c5ab0fc9830df8b17f1072b188265a662a3a547ae",
+      "bytes": 20
+    },
+    {
+      "path": "maintenance/tests/evidence/global-grounded-analysis-r25/prompts/equipment-request.txt",
+      "sha256": "8c172e815c42869501700c0cdd878717e4c0e1e0c93c9f9ab9b3e51fd823b4a9",
+      "bytes": 585
+    },
+    {
+      "path": "maintenance/tests/evidence/global-grounded-analysis-r25/prompts/project-application.txt",
+      "sha256": "010a7e68e4bd91fb72c52b34e02a0044f80eb958276213bfedfe34a87f303881",
+      "bytes": 3257
+    },
+    {
+      "path": "maintenance/tests/evidence/global-grounded-analysis-r25/prompts/service-report.txt",
+      "sha256": "c2d5c6fcf8fa25a7ec101c7f9e0b0f428d7b7414bdd7ca904802390fadb0298d",
+      "bytes": 635
+    },
+    {
+      "path": "maintenance/tests/evidence/global-grounded-analysis-r25/prototype.diff",
+      "sha256": "45768178fe68453f59aab45b75bcbdd37533b81cd35cb870f729738f9f0f7168",
+      "bytes": 5125
+    },
+    {
+      "path": "maintenance/tests/evidence/global-grounded-analysis-r25/result.md",
+      "sha256": "2180e8b8da25d0e4e2c7a77b9e37249e0560ebd7ce2e9c6875dda989bdd47fc6",
+      "bytes": 5115
+    },
+    {
+      "path": "maintenance/tests/evidence/global-grounded-analysis-r25/review/engineering-review.md",
+      "sha256": "9c921d84ab5d4f81436a07364260f9fa67d42c9eefdb224f98e1a4786721e0d2",
+      "bytes": 4867
+    },
+    {
+      "path": "maintenance/tests/evidence/global-grounded-analysis-r25/review/first-profile-review.json",
+      "sha256": "a15a71aab86fac40b8c1d6acd7c0ae1b1927b8ada576d8dc2a0c090bf1915552",
+      "bytes": 39308
+    },
+    {
+      "path": "maintenance/tests/evidence/global-grounded-analysis-r25/review/first-profile-review.md",
+      "sha256": "1986eff4fb49870cc059ea7ddbf7629151e957536a9947ff5aa05e1544be37d0",
+      "bytes": 4927
+    },
+    {
+      "path": "maintenance/tests/evidence/global-grounded-analysis-r25/review/implementation-decision.md",
+      "sha256": "9ca27f6a88bdfea12c9113b8f38111176e64df12044e4b6330114d584ba3cb27",
+      "bytes": 2916
+    },
+    {
+      "path": "maintenance/tests/evidence/global-grounded-analysis-r25/review/root-adjudication.md",
+      "sha256": "34df34a2c330274034f8201828a86b4b9613b4d7c6bf5426b676bf4d427a57ff",
+      "bytes": 4627
+    },
+    {
+      "path": "maintenance/tests/evidence/global-grounded-analysis-r25/review/second-profile-review.json",
+      "sha256": "40e70fc9c1b51f6c8a1b437ab088ac10aaefa684040b3ca327644f192ba99d80",
+      "bytes": 12707
+    },
+    {
+      "path": "maintenance/tests/evidence/global-grounded-analysis-r25/review/second-profile-review.md",
+      "sha256": "921f3a882fbcd5b0a9150660ec7ab4438dc411b8fad9189fd65cb2b2109cdeb7",
+      "bytes": 2360
+    },
+    {
+      "path": "maintenance/tests/evidence/global-grounded-analysis-r25/run_real.py",
+      "sha256": "024bc76fe893f3a1732bca97f190079e033cd6b840e7ff53f6f5352191c33a3a",
+      "bytes": 4510
+    },
+    {
+      "path": "maintenance/tests/evidence/global-grounded-analysis-r25/validation.json",
+      "sha256": "76177c022664820e2948a433c8c8a864d1ef68c41c263a76a063ad8015faaeac",
+      "bytes": 3818
+    }
+  ]
+}

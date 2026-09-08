@@ -1,0 +1,190 @@
+{
+  "baseline_commit": "176da7422b4ec2ffea82145c35498b09eddfea69",
+  "attempts": 6,
+  "technical_valid": 6,
+  "runs": [
+    {
+      "case": "project-application",
+      "provider": "minimax",
+      "arm": "baseline",
+      "technical_valid": true,
+      "receipt": "runs/project-application/minimax/baseline/receipt.json",
+      "artifacts": 1,
+      "written_documents": 1,
+      "missing_work_files": 0,
+      "skill_read": false,
+      "skill_launch_success_observed": true,
+      "routing": {
+        "reference_paths": [
+          "references/ai-compute-docs.md",
+          "references/anti-ai-patterns.md",
+          "references/argument-chains.md",
+          "references/genre-checklist-request.md",
+          "references/genre-playbook-request.md",
+          "references/handling-elements.md",
+          "references/information-selection.md",
+          "references/official-style.md"
+        ],
+        "references_distinct_pages": 8,
+        "references_distinct_file_bytes": 52817,
+        "skill_direct_read_file_bytes": 0
+      },
+      "tool_error_count": 1,
+      "failed_read_count": 0,
+      "unresolved_failed_read_count": 0,
+      "final_path_redactions": 0,
+      "argument_chains_read": true,
+      "ai_compute_read": true,
+      "scope_pass": true
+    },
+    {
+      "case": "project-application",
+      "provider": "minimax",
+      "arm": "candidate",
+      "technical_valid": true,
+      "receipt": "runs/project-application/minimax/candidate/receipt.json",
+      "artifacts": 1,
+      "written_documents": 1,
+      "missing_work_files": 0,
+      "skill_read": true,
+      "skill_launch_success_observed": false,
+      "routing": {
+        "reference_paths": [
+          "references/genre-playbook-request.md",
+          "references/handling-elements.md",
+          "references/information-selection.md"
+        ],
+        "references_distinct_pages": 3,
+        "references_distinct_file_bytes": 16516,
+        "skill_direct_read_file_bytes": 28330
+      },
+      "tool_error_count": 0,
+      "failed_read_count": 0,
+      "unresolved_failed_read_count": 0,
+      "final_path_redactions": 0,
+      "argument_chains_read": false,
+      "ai_compute_read": false,
+      "scope_pass": true
+    },
+    {
+      "case": "equipment-request",
+      "provider": "minimax",
+      "arm": "baseline",
+      "technical_valid": true,
+      "receipt": "runs/equipment-request/minimax/baseline/receipt.json",
+      "artifacts": 0,
+      "written_documents": 0,
+      "missing_work_files": 0,
+      "skill_read": true,
+      "skill_launch_success_observed": false,
+      "routing": {
+        "reference_paths": [
+          "references/genre-playbook-request.md",
+          "references/handling-elements.md",
+          "references/information-selection.md",
+          "references/official-style.md",
+          "references/short-draft-naturalness.md"
+        ],
+        "references_distinct_pages": 5,
+        "references_distinct_file_bytes": 22988,
+        "skill_direct_read_file_bytes": 27911
+      },
+      "tool_error_count": 0,
+      "failed_read_count": 0,
+      "unresolved_failed_read_count": 0,
+      "final_path_redactions": 0,
+      "argument_chains_read": false,
+      "ai_compute_read": false,
+      "scope_pass": true
+    },
+    {
+      "case": "equipment-request",
+      "provider": "minimax",
+      "arm": "candidate",
+      "technical_valid": true,
+      "receipt": "runs/equipment-request/minimax/candidate/receipt.json",
+      "artifacts": 1,
+      "written_documents": 1,
+      "missing_work_files": 0,
+      "skill_read": true,
+      "skill_launch_success_observed": false,
+      "routing": {
+        "reference_paths": [
+          "references/genre-playbook-request.md",
+          "references/information-selection.md",
+          "references/official-style.md",
+          "references/short-draft-naturalness.md"
+        ],
+        "references_distinct_pages": 4,
+        "references_distinct_file_bytes": 15865,
+        "skill_direct_read_file_bytes": 28330
+      },
+      "tool_error_count": 0,
+      "failed_read_count": 0,
+      "unresolved_failed_read_count": 0,
+      "final_path_redactions": 0,
+      "argument_chains_read": false,
+      "ai_compute_read": false,
+      "scope_pass": true
+    },
+    {
+      "case": "service-report",
+      "provider": "minimax",
+      "arm": "baseline",
+      "technical_valid": true,
+      "receipt": "runs/service-report/minimax/baseline/receipt.json",
+      "artifacts": 0,
+      "written_documents": 0,
+      "missing_work_files": 0,
+      "skill_read": true,
+      "skill_launch_success_observed": false,
+      "routing": {
+        "reference_paths": [
+          "references/genre-checklist-report.md",
+          "references/information-selection.md",
+          "references/task-route-cards.md"
+        ],
+        "references_distinct_pages": 3,
+        "references_distinct_file_bytes": 10600,
+        "skill_direct_read_file_bytes": 27911
+      },
+      "tool_error_count": 0,
+      "failed_read_count": 0,
+      "unresolved_failed_read_count": 0,
+      "final_path_redactions": 0,
+      "argument_chains_read": false,
+      "ai_compute_read": false,
+      "scope_pass": true
+    },
+    {
+      "case": "service-report",
+      "provider": "minimax",
+      "arm": "candidate",
+      "technical_valid": true,
+      "receipt": "runs/service-report/minimax/candidate/receipt.json",
+      "artifacts": 0,
+      "written_documents": 0,
+      "missing_work_files": 0,
+      "skill_read": true,
+      "skill_launch_success_observed": false,
+      "routing": {
+        "reference_paths": [
+          "references/formulaic-language.md",
+          "references/genre-checklist-report.md",
+          "references/information-selection.md"
+        ],
+        "references_distinct_pages": 3,
+        "references_distinct_file_bytes": 15501,
+        "skill_direct_read_file_bytes": 28330
+      },
+      "tool_error_count": 0,
+      "failed_read_count": 0,
+      "unresolved_failed_read_count": 0,
+      "final_path_redactions": 0,
+      "argument_chains_read": false,
+      "ai_compute_read": false,
+      "scope_pass": true
+    }
+  ],
+  "quality": "Not judged by extractor; invalid scope samples remain in actual but excluded from paired blind delivery"
+}
