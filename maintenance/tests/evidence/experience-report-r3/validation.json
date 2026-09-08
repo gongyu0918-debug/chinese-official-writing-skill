@@ -1,0 +1,22 @@
+{
+  "calls": 16,
+  "technical_valid": 16,
+  "unique_sessions": 16,
+  "read_errors": 21,
+  "rounds": {
+    "r1": 8,
+    "r2": 4,
+    "r3": 4
+  },
+  "final_product_changed": false,
+  "candidate_rows_admitted": 0,
+  "baseline_reference_bytes_lf_restored": true,
+  "total_new_calls_including_speech_r10": 24,
+  "no_hook_or_multirevision_claim": true,
+  "documentation_checks": {
+    "markdown_documents": 24,
+    "relative_links": 257,
+    "missing_links": 0,
+    "json_and_runner_syntax": "PASS"
+  }
+}

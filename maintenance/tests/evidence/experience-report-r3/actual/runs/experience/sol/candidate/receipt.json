@@ -1,0 +1,223 @@
+{
+  "arm": "candidate",
+  "provider": "sol",
+  "model": "gpt-5.6-sol",
+  "case": "experience",
+  "session": "bd6be068-d18f-4e8a-aeb0-d3e5225395f0",
+  "technical_valid": true,
+  "return_code": 0,
+  "failure": null,
+  "seconds": 114.4,
+  "client_tools": "Read,Skill",
+  "explicit_entry": true,
+  "frozen_unchanged": true,
+  "final_chars": 681,
+  "init_models": [
+    "gpt-5.6-sol"
+  ],
+  "assistant_models": [
+    "gpt-5.6-sol"
+  ],
+  "usage_models": [
+    "gpt-5.6-sol"
+  ],
+  "result_count": 1,
+  "result_subtypes": [
+    "success"
+  ],
+  "result_errors": [
+    false
+  ],
+  "final_path": "runs/experience/sol/candidate/final.txt",
+  "final_sha256": "326d630195d6befdc5d89f0ae6c95e0904fb7b3ca3aaf1187312d17a1749fba1",
+  "source_final_sha256": "326d630195d6befdc5d89f0ae6c95e0904fb7b3ca3aaf1187312d17a1749fba1",
+  "source_final_logical_sha256": "fdb1fba9c9b603a8bb24947ecfccec43dff640dfa25804ce7bf74b19d3d0d83b",
+  "final_redaction": {
+    "replacement_count": 0,
+    "replacement": "<isolated-work>",
+    "scope": "Only this lane approved runtime/work prefix; slash variants accepted.",
+    "source_unchanged": true,
+    "archive_is_original_bytes": true
+  },
+  "hook_enabled": false,
+  "timeout_seconds": 1200,
+  "automatic_retries": 0,
+  "effort": "max",
+  "invalid_json_line_count": 0,
+  "reads": [
+    "references/information-selection.md",
+    "references/short-draft-naturalness.md",
+    "references/formulaic-language.md"
+  ],
+  "routing": {
+    "reference_paths": [
+      "references/formulaic-language.md",
+      "references/information-selection.md",
+      "references/short-draft-naturalness.md"
+    ],
+    "references_distinct_pages": 3,
+    "references_distinct_file_bytes": 14474,
+    "skill_direct_read_file_bytes": 0
+  },
+  "tool_evidence": [
+    {
+      "sequence": 1,
+      "id": "call_FYKICJkbk53FzMHcANCNKpWR",
+      "name": "Skill",
+      "result": {
+        "observed": true,
+        "is_error_field": null,
+        "content_bytes": 65,
+        "content_sha256": "2208255ee679ba4f9d37caea5978009b3ee3459ba286dd41d1e923554c8abad8",
+        "skill_launch_acknowledgement": "official-writing-eval:chinese-official-writing"
+      },
+      "skill_name": "official-writing-eval:chinese-official-writing",
+      "launch_success_observed": true,
+      "response_visibility": "launch_acknowledgement_only_no_skill_body"
+    },
+    {
+      "sequence": 2,
+      "id": "call_gE0dmeGNKxkGfsvdXc8bllk4",
+      "name": "Read",
+      "result": {
+        "observed": true,
+        "is_error_field": true,
+        "content_bytes": 133,
+        "content_sha256": "9e0a429343d148bfada6df3331fc6de63ee17f96c659b835225bbfbc0728e4f9",
+        "skill_launch_acknowledgement": null
+      },
+      "scope": "failed_read",
+      "requested_scope": "package",
+      "requested_relative_path": "references/information-selection.md",
+      "read_success_observed": false,
+      "file_path_sha256": "b89c4810b926e7aa55f4e40fb6504b57cd25e4ae79fab6d504bbf81181390648"
+    },
+    {
+      "sequence": 3,
+      "id": "call_hHpKCRM876jGJf3VIJOpCcF2",
+      "name": "Read",
+      "result": {
+        "observed": true,
+        "is_error_field": true,
+        "content_bytes": 133,
+        "content_sha256": "9e0a429343d148bfada6df3331fc6de63ee17f96c659b835225bbfbc0728e4f9",
+        "skill_launch_acknowledgement": null
+      },
+      "scope": "failed_read",
+      "requested_scope": "package",
+      "requested_relative_path": "references/short-draft-naturalness.md",
+      "read_success_observed": false,
+      "file_path_sha256": "d70e4496c247d07795573af34adb4cebb89e656f9f79e8ceda47571b001348c5"
+    },
+    {
+      "sequence": 4,
+      "id": "call_TVdCPFkIfGcnMhIk2PFHpzmj",
+      "name": "Read",
+      "result": {
+        "observed": true,
+        "is_error_field": true,
+        "content_bytes": 133,
+        "content_sha256": "9e0a429343d148bfada6df3331fc6de63ee17f96c659b835225bbfbc0728e4f9",
+        "skill_launch_acknowledgement": null
+      },
+      "scope": "failed_read",
+      "requested_scope": "package",
+      "requested_relative_path": "references/formulaic-language.md",
+      "read_success_observed": false,
+      "file_path_sha256": "40d94ca087b7da03ba45643ad8c81eefc5c92a593e8999aa899f8f8e50fc66c4"
+    },
+    {
+      "sequence": 5,
+      "id": "call_Y3PQDj23KXK6w8PJXsRjo2Bq",
+      "name": "Read",
+      "result": {
+        "observed": true,
+        "is_error_field": null,
+        "content_bytes": 5029,
+        "content_sha256": "69a66166a0c9eba32cafe95347b005234a2e741805ef6e5eba6f9f58f9b38c5c",
+        "skill_launch_acknowledgement": null
+      },
+      "scope": "package",
+      "package_path": "references/information-selection.md",
+      "frozen_file_sha256": "bf1aff9c90a6ba901fb2514ed98b3796a67616a4f934bfeac45fa4e3c0c01787",
+      "read_success_observed": true,
+      "offset": 1,
+      "limit": 2000
+    },
+    {
+      "sequence": 6,
+      "id": "call_k66Gv8Upk168M08EnztD5df6",
+      "name": "Read",
+      "result": {
+        "observed": true,
+        "is_error_field": null,
+        "content_bytes": 1376,
+        "content_sha256": "0ac8545d17cc66ddf36a92f31051622734c3159b4445b469de529ab0451e1624",
+        "skill_launch_acknowledgement": null
+      },
+      "scope": "package",
+      "package_path": "references/short-draft-naturalness.md",
+      "frozen_file_sha256": "100b89b6216d872f35b568164f13b4bcc448346b1dd39d9b100fa9bf6f30f7ba",
+      "read_success_observed": true,
+      "offset": 1,
+      "limit": 2000
+    },
+    {
+      "sequence": 7,
+      "id": "call_tIeFzX8k3OqbGl4UBqvSfSNP",
+      "name": "Read",
+      "result": {
+        "observed": true,
+        "is_error_field": null,
+        "content_bytes": 8695,
+        "content_sha256": "09f5480bbcef2eeb72c9720e0bafd7a3fe197fade3577df9801e533bcc2b6985",
+        "skill_launch_acknowledgement": null
+      },
+      "scope": "package",
+      "package_path": "references/formulaic-language.md",
+      "frozen_file_sha256": "5f5001a3acdba16177c3d4733dd038acf51e8d1f2b683fcd60bfaec3e7b2dfce",
+      "read_success_observed": true,
+      "offset": 1,
+      "limit": 2000
+    }
+  ],
+  "documents": [],
+  "helper_sha256": "452d3f5ac8df257fbd220d7585ce0aef3dd0475a76a51181de77e0f729f0a6ab",
+  "prompt_path": "prompts/experience.txt",
+  "omissions": [
+    "raw stream",
+    "runtime",
+    "provider state",
+    "original argv",
+    "absolute paths",
+    "shell arguments and stdout"
+  ],
+  "isolation_observed": {
+    "cwd_matches_isolated_work": true,
+    "mcp_servers": [],
+    "hook_events": 0,
+    "runtime_memory_files": 0,
+    "model": "gpt-5.6-sol",
+    "skill_catalog": [
+      "deep-research",
+      "official-writing-eval:chinese-official-writing",
+      "design-sync",
+      "update-config",
+      "verify",
+      "debug",
+      "code-review",
+      "simplify",
+      "batch",
+      "fewer-permission-prompts",
+      "loop",
+      "claude-api",
+      "run",
+      "run-skill-generator"
+    ],
+    "cli_version": "2.1.195",
+    "native_full_entry_expansions": 0,
+    "stream_sha256": "02611c69715527a5deedfd680ab8232d6979bef2dee19e45317d25121d28dc53",
+    "raw_final_bytes_verified": true,
+    "frozen_files_verified": 42
+  }
+}

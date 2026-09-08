@@ -1,0 +1,206 @@
+{
+  "arm": "candidate",
+  "provider": "sol",
+  "model": "gpt-5.6-sol",
+  "case": "leader-report",
+  "session": "37a9893a-ef28-433b-ba52-92a0e9ab8d02",
+  "technical_valid": true,
+  "return_code": 0,
+  "failure": null,
+  "seconds": 126.07,
+  "client_tools": "Read,Skill",
+  "explicit_entry": true,
+  "frozen_unchanged": true,
+  "final_chars": 589,
+  "init_models": [
+    "gpt-5.6-sol"
+  ],
+  "assistant_models": [
+    "gpt-5.6-sol"
+  ],
+  "usage_models": [
+    "gpt-5.6-sol"
+  ],
+  "result_count": 1,
+  "result_subtypes": [
+    "success"
+  ],
+  "result_errors": [
+    false
+  ],
+  "final_path": "runs/leader-report/sol/candidate/final.txt",
+  "final_sha256": "e84d99b1c5e732b9121edc3adcc1642163f8e1ea6a91752f6a6d9e5ad3ac9b81",
+  "source_final_sha256": "e84d99b1c5e732b9121edc3adcc1642163f8e1ea6a91752f6a6d9e5ad3ac9b81",
+  "source_final_logical_sha256": "68a17b7d10cacbf5f5b7d5f7cc748df98f0aaaaa42566b8cb1f3baa6ec2bc185",
+  "final_redaction": {
+    "replacement_count": 0,
+    "replacement": "<isolated-work>",
+    "scope": "Only this lane approved runtime/work prefix; slash variants accepted.",
+    "source_unchanged": true,
+    "archive_is_original_bytes": true
+  },
+  "hook_enabled": false,
+  "timeout_seconds": 1200,
+  "automatic_retries": 0,
+  "effort": "max",
+  "invalid_json_line_count": 0,
+  "reads": [
+    "references/information-selection.md",
+    "references/short-draft-naturalness.md",
+    "references/task-route-cards.md"
+  ],
+  "routing": {
+    "reference_paths": [
+      "references/information-selection.md",
+      "references/short-draft-naturalness.md",
+      "references/task-route-cards.md"
+    ],
+    "references_distinct_pages": 3,
+    "references_distinct_file_bytes": 10014,
+    "skill_direct_read_file_bytes": 0
+  },
+  "tool_evidence": [
+    {
+      "sequence": 1,
+      "id": "call_514OzUTlk02WwqNK3BjeTAvR",
+      "name": "Skill",
+      "result": {
+        "observed": true,
+        "is_error_field": null,
+        "content_bytes": 65,
+        "content_sha256": "2208255ee679ba4f9d37caea5978009b3ee3459ba286dd41d1e923554c8abad8",
+        "skill_launch_acknowledgement": "official-writing-eval:chinese-official-writing"
+      },
+      "skill_name": "official-writing-eval:chinese-official-writing",
+      "launch_success_observed": true,
+      "response_visibility": "launch_acknowledgement_only_no_skill_body"
+    },
+    {
+      "sequence": 2,
+      "id": "call_elpce998IAnGc9LVBKeVXwXP",
+      "name": "Read",
+      "result": {
+        "observed": true,
+        "is_error_field": true,
+        "content_bytes": 133,
+        "content_sha256": "9e0a429343d148bfada6df3331fc6de63ee17f96c659b835225bbfbc0728e4f9",
+        "skill_launch_acknowledgement": null
+      },
+      "scope": "failed_read",
+      "requested_scope": "package",
+      "requested_relative_path": "references/information-selection.md",
+      "read_success_observed": false,
+      "file_path_sha256": "b89c4810b926e7aa55f4e40fb6504b57cd25e4ae79fab6d504bbf81181390648"
+    },
+    {
+      "sequence": 3,
+      "id": "call_6pmccSZ7E7ieTp7a7HGLHZ3F",
+      "name": "Read",
+      "result": {
+        "observed": true,
+        "is_error_field": true,
+        "content_bytes": 133,
+        "content_sha256": "9e0a429343d148bfada6df3331fc6de63ee17f96c659b835225bbfbc0728e4f9",
+        "skill_launch_acknowledgement": null
+      },
+      "scope": "failed_read",
+      "requested_scope": "package",
+      "requested_relative_path": "references/short-draft-naturalness.md",
+      "read_success_observed": false,
+      "file_path_sha256": "d70e4496c247d07795573af34adb4cebb89e656f9f79e8ceda47571b001348c5"
+    },
+    {
+      "sequence": 4,
+      "id": "call_n7qJsGNSMtjkm9fnVDCFBQSB",
+      "name": "Read",
+      "result": {
+        "observed": true,
+        "is_error_field": null,
+        "content_bytes": 5029,
+        "content_sha256": "69a66166a0c9eba32cafe95347b005234a2e741805ef6e5eba6f9f58f9b38c5c",
+        "skill_launch_acknowledgement": null
+      },
+      "scope": "package",
+      "package_path": "references/information-selection.md",
+      "frozen_file_sha256": "bf1aff9c90a6ba901fb2514ed98b3796a67616a4f934bfeac45fa4e3c0c01787",
+      "read_success_observed": true,
+      "offset": 1,
+      "limit": 2000
+    },
+    {
+      "sequence": 5,
+      "id": "call_jbRQwQOsFDYYSmMZhXNKnTQG",
+      "name": "Read",
+      "result": {
+        "observed": true,
+        "is_error_field": null,
+        "content_bytes": 1376,
+        "content_sha256": "0ac8545d17cc66ddf36a92f31051622734c3159b4445b469de529ab0451e1624",
+        "skill_launch_acknowledgement": null
+      },
+      "scope": "package",
+      "package_path": "references/short-draft-naturalness.md",
+      "frozen_file_sha256": "100b89b6216d872f35b568164f13b4bcc448346b1dd39d9b100fa9bf6f30f7ba",
+      "read_success_observed": true,
+      "offset": 1,
+      "limit": 2000
+    },
+    {
+      "sequence": 6,
+      "id": "call_y0i2U4Jltvi7QfEybS8duaKH",
+      "name": "Read",
+      "result": {
+        "observed": true,
+        "is_error_field": null,
+        "content_bytes": 3945,
+        "content_sha256": "70cc3f273cd5b0885ec15efc21915683b884d9e8b74f78bda14f1f211a8a24ef",
+        "skill_launch_acknowledgement": null
+      },
+      "scope": "package",
+      "package_path": "references/task-route-cards.md",
+      "frozen_file_sha256": "5486d59cfaafd25f6b49623d2f7b4e0559183edb325fda6809c32cc65a273a0d",
+      "read_success_observed": true,
+      "offset": 1,
+      "limit": 2000
+    }
+  ],
+  "documents": [],
+  "helper_sha256": "452d3f5ac8df257fbd220d7585ce0aef3dd0475a76a51181de77e0f729f0a6ab",
+  "prompt_path": "prompts/leader-report.txt",
+  "omissions": [
+    "raw stream",
+    "runtime",
+    "provider state",
+    "original argv",
+    "absolute paths",
+    "shell arguments and stdout"
+  ],
+  "isolation_observed": {
+    "cwd_matches_isolated_work": true,
+    "mcp_servers": [],
+    "hook_events": 0,
+    "runtime_memory_files": 0,
+    "model": "gpt-5.6-sol",
+    "skill_catalog": [
+      "deep-research",
+      "official-writing-eval:chinese-official-writing",
+      "design-sync",
+      "update-config",
+      "verify",
+      "debug",
+      "code-review",
+      "simplify",
+      "batch",
+      "fewer-permission-prompts",
+      "loop",
+      "claude-api",
+      "run",
+      "run-skill-generator"
+    ],
+    "cli_version": "2.1.195",
+    "native_full_entry_expansions": 0,
+    "stream_sha256": "38c659606b8ef4a0e66e2a852754190d7e2c9d31841ef195057c4443fb752e24",
+    "raw_final_bytes_verified": true,
+    "frozen_files_verified": 42
+  }
+}

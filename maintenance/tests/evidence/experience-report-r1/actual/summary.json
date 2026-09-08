@@ -1,0 +1,235 @@
+{
+  "expected": 8,
+  "completed": 8,
+  "runs": [
+    {
+      "case": "experience",
+      "provider": "qwen",
+      "arm": "baseline",
+      "technical_valid": true,
+      "receipt": "runs/experience/qwen/baseline/receipt.json",
+      "artifacts": 0,
+      "written_documents": 0,
+      "missing_work_files": 0,
+      "skill_read": false,
+      "skill_launch_success_observed": true,
+      "routing": {
+        "reference_paths": [
+          "references/final-review-layers.md",
+          "references/formulaic-language.md",
+          "references/information-selection.md",
+          "references/proofreading-checklist.md",
+          "references/short-draft-naturalness.md"
+        ],
+        "references_distinct_pages": 5,
+        "references_distinct_file_bytes": 26802,
+        "skill_direct_read_file_bytes": 0
+      },
+      "tool_error_count": 0,
+      "failed_read_count": 0,
+      "unresolved_failed_read_count": 0,
+      "final_path_redactions": 0,
+      "argument_chains_read": false,
+      "ai_compute_read": false
+    },
+    {
+      "case": "experience",
+      "provider": "qwen",
+      "arm": "candidate",
+      "technical_valid": true,
+      "receipt": "runs/experience/qwen/candidate/receipt.json",
+      "artifacts": 0,
+      "written_documents": 0,
+      "missing_work_files": 0,
+      "skill_read": false,
+      "skill_launch_success_observed": true,
+      "routing": {
+        "reference_paths": [
+          "references/formulaic-language.md",
+          "references/genre-playbook-work-summary.md",
+          "references/information-selection.md",
+          "references/short-draft-naturalness.md"
+        ],
+        "references_distinct_pages": 4,
+        "references_distinct_file_bytes": 15784,
+        "skill_direct_read_file_bytes": 0
+      },
+      "tool_error_count": 0,
+      "failed_read_count": 0,
+      "unresolved_failed_read_count": 0,
+      "final_path_redactions": 0,
+      "argument_chains_read": false,
+      "ai_compute_read": false
+    },
+    {
+      "case": "experience",
+      "provider": "sol",
+      "arm": "baseline",
+      "technical_valid": true,
+      "receipt": "runs/experience/sol/baseline/receipt.json",
+      "artifacts": 0,
+      "written_documents": 0,
+      "missing_work_files": 0,
+      "skill_read": false,
+      "skill_launch_success_observed": true,
+      "routing": {
+        "reference_paths": [
+          "references/final-review-layers.md",
+          "references/formulaic-language.md",
+          "references/genre-playbook-work-summary.md",
+          "references/information-selection.md",
+          "references/official-style.md",
+          "references/proofreading-checklist.md"
+        ],
+        "references_distinct_pages": 6,
+        "references_distinct_file_bytes": 33345,
+        "skill_direct_read_file_bytes": 0
+      },
+      "tool_error_count": 1,
+      "failed_read_count": 1,
+      "unresolved_failed_read_count": 0,
+      "final_path_redactions": 0,
+      "argument_chains_read": false,
+      "ai_compute_read": false
+    },
+    {
+      "case": "experience",
+      "provider": "sol",
+      "arm": "candidate",
+      "technical_valid": true,
+      "receipt": "runs/experience/sol/candidate/receipt.json",
+      "artifacts": 0,
+      "written_documents": 0,
+      "missing_work_files": 0,
+      "skill_read": false,
+      "skill_launch_success_observed": true,
+      "routing": {
+        "reference_paths": [
+          "references/final-review-layers.md",
+          "references/formulaic-language.md",
+          "references/information-selection.md",
+          "references/official-style.md",
+          "references/proofreading-checklist.md"
+        ],
+        "references_distinct_pages": 5,
+        "references_distinct_file_bytes": 31541,
+        "skill_direct_read_file_bytes": 0
+      },
+      "tool_error_count": 5,
+      "failed_read_count": 5,
+      "unresolved_failed_read_count": 0,
+      "final_path_redactions": 0,
+      "argument_chains_read": false,
+      "ai_compute_read": false
+    },
+    {
+      "case": "leader-report",
+      "provider": "qwen",
+      "arm": "baseline",
+      "technical_valid": true,
+      "receipt": "runs/leader-report/qwen/baseline/receipt.json",
+      "artifacts": 0,
+      "written_documents": 0,
+      "missing_work_files": 0,
+      "skill_read": false,
+      "skill_launch_success_observed": true,
+      "routing": {
+        "reference_paths": [
+          "references/formulaic-language.md",
+          "references/information-selection.md"
+        ],
+        "references_distinct_pages": 2,
+        "references_distinct_file_bytes": 12646,
+        "skill_direct_read_file_bytes": 0
+      },
+      "tool_error_count": 0,
+      "failed_read_count": 0,
+      "unresolved_failed_read_count": 0,
+      "final_path_redactions": 0,
+      "argument_chains_read": false,
+      "ai_compute_read": false
+    },
+    {
+      "case": "leader-report",
+      "provider": "qwen",
+      "arm": "candidate",
+      "technical_valid": true,
+      "receipt": "runs/leader-report/qwen/candidate/receipt.json",
+      "artifacts": 0,
+      "written_documents": 0,
+      "missing_work_files": 0,
+      "skill_read": true,
+      "skill_launch_success_observed": true,
+      "routing": {
+        "reference_paths": [
+          "references/formulaic-language.md",
+          "references/information-selection.md"
+        ],
+        "references_distinct_pages": 2,
+        "references_distinct_file_bytes": 12646,
+        "skill_direct_read_file_bytes": 29537
+      },
+      "tool_error_count": 0,
+      "failed_read_count": 0,
+      "unresolved_failed_read_count": 0,
+      "final_path_redactions": 0,
+      "argument_chains_read": false,
+      "ai_compute_read": false
+    },
+    {
+      "case": "leader-report",
+      "provider": "sol",
+      "arm": "baseline",
+      "technical_valid": true,
+      "receipt": "runs/leader-report/sol/baseline/receipt.json",
+      "artifacts": 0,
+      "written_documents": 0,
+      "missing_work_files": 0,
+      "skill_read": false,
+      "skill_launch_success_observed": true,
+      "routing": {
+        "reference_paths": [
+          "references/formulaic-language.md",
+          "references/information-selection.md"
+        ],
+        "references_distinct_pages": 2,
+        "references_distinct_file_bytes": 12646,
+        "skill_direct_read_file_bytes": 0
+      },
+      "tool_error_count": 1,
+      "failed_read_count": 1,
+      "unresolved_failed_read_count": 0,
+      "final_path_redactions": 0,
+      "argument_chains_read": false,
+      "ai_compute_read": false
+    },
+    {
+      "case": "leader-report",
+      "provider": "sol",
+      "arm": "candidate",
+      "technical_valid": true,
+      "receipt": "runs/leader-report/sol/candidate/receipt.json",
+      "artifacts": 0,
+      "written_documents": 0,
+      "missing_work_files": 0,
+      "skill_read": false,
+      "skill_launch_success_observed": true,
+      "routing": {
+        "reference_paths": [
+          "references/formulaic-language.md",
+          "references/information-selection.md",
+          "references/task-route-cards.md"
+        ],
+        "references_distinct_pages": 3,
+        "references_distinct_file_bytes": 16404,
+        "skill_direct_read_file_bytes": 0
+      },
+      "tool_error_count": 2,
+      "failed_read_count": 2,
+      "unresolved_failed_read_count": 0,
+      "final_path_redactions": 0,
+      "argument_chains_read": false,
+      "ai_compute_read": false
+    }
+  ]
+}

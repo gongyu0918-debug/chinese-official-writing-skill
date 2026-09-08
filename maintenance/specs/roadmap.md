@@ -4,9 +4,9 @@
 
 ## 本轮分支候选
 
-- `WR-029 / PARTIAL / ENTRY_FIX_MERGED`：继续真实写稿，累计88次、87次技术有效；撤回未稳定的新speech叶/路由，仅保留main入口允许用户给定发言身份的一句修正。R9六稿身份和任务保持，不能冒称事实质量通过；新专页、改稿收益、多版及Hook仍未闭环。[结果与失败记录](../tests/evidence/speech-viewpoint-minimal-r9/result.md)
-- `WR-030 / TODO`：经验交流材料可借鉴做法，已登记，未实现、未测试。
-- `WR-031 / TODO`：面向领导汇报的材料取舍，已登记，未实现、未测试。后两项同样真实写稿为准，不随本轮叶准入。
+- `WR-029 / PARTIAL / ENTRY_FIX_MERGED / R10_VALIDATED_BRANCH`：R9入口一句仍在main；R10同稿修改8次技术有效，3对改善、1对接近，仅信息选择一段及五镜像已提交2b9a4cef。84相关、817/817及独立冷审通过；自动审批拒绝main快进，待当前用户确认，日常安装未应用R10。累计96调用/95技术有效，全稿、首稿、多版及Hook仍未闭环。[R10结果](../tests/evidence/speech-revision-r10/result.md)、[集成状态](../tests/evidence/speech-revision-r10/integration.md)
+- `WR-030 / IN_PROGRESS / R3_NOT_ADMITTED`：已完成三轮8次经验交流实稿；实际路径上的两版有局部方法提炼收益，仍会新增具体操作、次数和实施限制，候选未准入。下一步针对操作解释与事实混写修正组织方法，不再加同义功能表提醒。[取舍](../tests/evidence/experience-report-r3/result.md)
+- `WR-031 / IN_PROGRESS / R3_NOT_ADMITTED`：已完成三轮8次面向领导汇报实稿；信息顺序收益不稳定，未完成抽检被改为未开展等状态问题保留，候选未准入。后续同时核对当前状态前置、过程取舍和启动/完成/验收区别。[取舍](../tests/evidence/experience-report-r3/result.md)
 
 - `WR-023b / IN_PROGRESS / R26_SELECTED_ROUTE / MERGED_LOCAL / NOT_RELEASED`：[R26结果](../tests/evidence/application-current-main-r26/result.md)补回R23/R24取舍与当前main复验，选定精简混合路线。12次真实写稿完成，11次范围合格、1次路径差错保留；五组成对混合2/旧2/平1，加载有收益，未宣称整体正确率提高。镜像与817项回归通过；具体事实、多版改稿与Hook校正保持开放。
 
