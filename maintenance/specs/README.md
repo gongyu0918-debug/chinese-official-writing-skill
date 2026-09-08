@@ -1,5 +1,7 @@
 # 轻量需求规格
 
+2026-09-08：用户确认竞品研究的三个文种改进，登记 `WR-029` 个人发言与领导讲话（本轮优先）、`WR-030` 经验交流、`WR-031` 汇报取舍（后续TODO）。均以真实写稿决定实现准入；[当前预登记](../tests/evidence/speech-role-leaf-r1/preregister.md)。
+
 2026-09-08：[SkillHub 竞品研究](../tests/evidence/skillhub-competitor-review-20260908/result.md)完成 10 个公开源码包静态审查；按用户澄清，优先记录经验交流、普通工作人员发言和汇报取舍的专业指导差异；工程路线观察降为附录。申请类未发现更优替换依据。本轮无产品变更或真实写稿结论，不把研究建议记为已完成能力。
 
 2026-09-08：[R26接续立项申请取舍](../tests/evidence/application-current-main-r26/result.md)。补登记R23/R24并完成当前main下12次真实首稿，选定精简混合的有限组织和加载收益，工程检查通过，已合入本地main（[合并登记](../tests/evidence/application-current-main-r26/integration.md)）。事实、多版与Hook问题仍开放。

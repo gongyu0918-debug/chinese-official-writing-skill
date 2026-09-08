@@ -6,6 +6,9 @@
 
 | 需求 | 产品入口 | 真实写稿/同稿证据 | Hook/宿主证据 | 状态与缺口 |
 | --- | --- | --- | --- | --- |
+| `WR-029` 个人发言与领导讲话 | 入口与 speech 叶原型 | R1四题、两模型、两臂进行中 | 无Hook，不作宿主/多版证明 | IN_PROGRESS；[预登记](../tests/evidence/speech-role-leaf-r1/preregister.md) |
+| `WR-030` 经验交流 | 尚未实现 | 尚未测试 | 不适用 | TODO；已登记，后续真实写稿为准 |
+| `WR-031` 汇报取舍 | 尚未实现专项增量 | 尚未测试 | 不适用 | TODO；已登记，后续真实写稿为准 |
 | `DOC-001` 包内说明与能力路由 | canonical README、SKILL、Hook README及五套普通镜像 | [20次真实调用](../tests/evidence/skill-package-readme/result.md)：最终能力问答读总说明，Hook问答读专页，真实申请不误走FAQ；保留早期漏读及稿件质量问题 | 显式Skill入口后的独立CLI读页；107项相关检查、817项全量、五处quick_validate、88文件清洁包；不代表Hook启用或宿主在线验证 | `DONE / MERGED_LOCAL / NOT_RELEASED`（[合并登记](../tests/evidence/skill-package-readme/integration.md)）；写稿质量仍归 `WR-023b / IN_PROGRESS` |
 | `HK-002a` 同稿接续 | core、Claude薄适配、共享revision_context | 原型五版及正式八版报告/五版纪要；更正、删除、插段、压缩逐版核验 | Claude原生Stop与终态source hash；终态不保留用户原文，最终解析器复放与实际源hash一致 | v1.6.29已发布Claude有限接续；其他宿主及分支历史未验证，正文事实与长度另计 |
 | `CL-001-DEFAULT` 默认正文清理 | core串行预处理与原有cleanliness runtime | P6 755→589、M6 579→447；正文逐字不变；保留基线围栏失败和明确格式反控 | 清理、核验、回显后继续既有审查，两份集成链交付verified；此组合为真实CLI同稿Harness，未声称新原生组合覆盖 | v1.6.29已发布；仅明确正文要求和已覆盖包装入口，不是全稿事实校正 |

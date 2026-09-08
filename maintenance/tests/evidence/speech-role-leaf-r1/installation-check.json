@@ -1,0 +1,194 @@
+{
+  "installed_version": "0.4.11",
+  "main": "c7778f26",
+  "read_only": true,
+  "checked": 37,
+  "matches": 37,
+  "files": [
+    {
+      "path": "references/ai-compute-docs.md",
+      "present": true,
+      "matches_main_normalized": true
+    },
+    {
+      "path": "references/anti-ai-patterns.md",
+      "present": true,
+      "matches_main_normalized": true
+    },
+    {
+      "path": "references/argument-chains.md",
+      "present": true,
+      "matches_main_normalized": true
+    },
+    {
+      "path": "references/delivery-review-gate.md",
+      "present": true,
+      "matches_main_normalized": true
+    },
+    {
+      "path": "references/external-research.md",
+      "present": true,
+      "matches_main_normalized": true
+    },
+    {
+      "path": "references/final-review-layers.md",
+      "present": true,
+      "matches_main_normalized": true
+    },
+    {
+      "path": "references/formal-addressing.md",
+      "present": true,
+      "matches_main_normalized": true
+    },
+    {
+      "path": "references/format-gbt9704.md",
+      "present": true,
+      "matches_main_normalized": true
+    },
+    {
+      "path": "references/formulaic-language.md",
+      "present": true,
+      "matches_main_normalized": true
+    },
+    {
+      "path": "references/genre-checklist-feasibility-review.md",
+      "present": true,
+      "matches_main_normalized": true
+    },
+    {
+      "path": "references/genre-checklist-report.md",
+      "present": true,
+      "matches_main_normalized": true
+    },
+    {
+      "path": "references/genre-checklist-request.md",
+      "present": true,
+      "matches_main_normalized": true
+    },
+    {
+      "path": "references/genre-checklist.md",
+      "present": true,
+      "matches_main_normalized": true
+    },
+    {
+      "path": "references/genre-playbook-advisory-feedback.md",
+      "present": true,
+      "matches_main_normalized": true
+    },
+    {
+      "path": "references/genre-playbook-complaint-reflection.md",
+      "present": true,
+      "matches_main_normalized": true
+    },
+    {
+      "path": "references/genre-playbook-correspondence.md",
+      "present": true,
+      "matches_main_normalized": true
+    },
+    {
+      "path": "references/genre-playbook-institution-rules.md",
+      "present": true,
+      "matches_main_normalized": true
+    },
+    {
+      "path": "references/genre-playbook-minutes.md",
+      "present": true,
+      "matches_main_normalized": true
+    },
+    {
+      "path": "references/genre-playbook-news-commentary.md",
+      "present": true,
+      "matches_main_normalized": true
+    },
+    {
+      "path": "references/genre-playbook-news-message.md",
+      "present": true,
+      "matches_main_normalized": true
+    },
+    {
+      "path": "references/genre-playbook-plan-construction.md",
+      "present": true,
+      "matches_main_normalized": true
+    },
+    {
+      "path": "references/genre-playbook-project-application.md",
+      "present": true,
+      "matches_main_normalized": true
+    },
+    {
+      "path": "references/genre-playbook-remediation-plan.md",
+      "present": true,
+      "matches_main_normalized": true
+    },
+    {
+      "path": "references/genre-playbook-request.md",
+      "present": true,
+      "matches_main_normalized": true
+    },
+    {
+      "path": "references/genre-playbook-work-summary.md",
+      "present": true,
+      "matches_main_normalized": true
+    },
+    {
+      "path": "references/genre-playbooks.md",
+      "present": true,
+      "matches_main_normalized": true
+    },
+    {
+      "path": "references/genre-routing.md",
+      "present": true,
+      "matches_main_normalized": true
+    },
+    {
+      "path": "references/handling-elements.md",
+      "present": true,
+      "matches_main_normalized": true
+    },
+    {
+      "path": "references/information-selection.md",
+      "present": true,
+      "matches_main_normalized": true
+    },
+    {
+      "path": "references/official-style.md",
+      "present": true,
+      "matches_main_normalized": true
+    },
+    {
+      "path": "references/proofreading-checklist.md",
+      "present": true,
+      "matches_main_normalized": true
+    },
+    {
+      "path": "references/review-checklist.md",
+      "present": true,
+      "matches_main_normalized": true
+    },
+    {
+      "path": "references/review-direct-checklist.md",
+      "present": true,
+      "matches_main_normalized": true
+    },
+    {
+      "path": "references/short-draft-naturalness.md",
+      "present": true,
+      "matches_main_normalized": true
+    },
+    {
+      "path": "references/task-route-cards.md",
+      "present": true,
+      "matches_main_normalized": true
+    },
+    {
+      "path": "references/workflow.md",
+      "present": true,
+      "matches_main_normalized": true
+    },
+    {
+      "path": "SKILL.md",
+      "present": true,
+      "matches_main_normalized": true
+    }
+  ]
+}
