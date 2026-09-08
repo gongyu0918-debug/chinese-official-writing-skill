@@ -1,0 +1,13 @@
+{
+  "command": [
+    "git",
+    "ls-remote",
+    "origin",
+    "refs/heads/main",
+    "refs/tags/v1.6.30"
+  ],
+  "exit_code": 0,
+  "seconds": 1.078,
+  "stdout": "d2f97ba05e592712ec4b73decceefb3fd29d7c5e\trefs/heads/main\nd2f97ba05e592712ec4b73decceefb3fd29d7c5e\trefs/tags/v1.6.30\n",
+  "stderr": ""
+}

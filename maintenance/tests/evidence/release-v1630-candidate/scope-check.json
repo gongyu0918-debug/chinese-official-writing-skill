@@ -1,0 +1,25 @@
+{
+  "status": "PASS",
+  "historical_archive_entries": 66,
+  "selected_product_source": "bb3eae9d",
+  "readme_and_entry_match_source_except_version": true,
+  "reference_scripts_hook_core_diff_from_v1629": 0,
+  "quick_validate_pass": 5,
+  "initial_minimal": {
+    "tests": 107,
+    "failures": 5,
+    "cause": "Incomplete candidate version metadata and unindexed new spec; corrected metadata and added index, no writing rule change."
+  },
+  "final_minimal": {
+    "tests": 107,
+    "failures": 0,
+    "seconds": 1.012
+  },
+  "new_model_calls": 0,
+  "historical_quality_limitations": [
+    "20 historical calls are not 20 quality passes",
+    "Post-test README wording additions not newly model-tested",
+    "Capability answer may overpromise; writing artifacts retain documented errors",
+    "No fresh host-isolation or Hook lifecycle claim"
+  ]
+}

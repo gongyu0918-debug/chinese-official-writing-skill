@@ -1,0 +1,16 @@
+{
+  "command": [
+    "py",
+    "-3.13",
+    "-B",
+    "-X",
+    "utf8",
+    "-m",
+    "unittest",
+    "maintenance.tests.test_status_ledger_consistency",
+    "maintenance.tests.test_repository_reachability"
+  ],
+  "exit_code": 0,
+  "stdout": "",
+  "stderr": ".......................\n----------------------------------------------------------------------\nRan 23 tests in 0.598s\n\nOK\n"
+}

@@ -4,6 +4,7 @@
 
 
 - R25全局有据分析：12次强弱模型真实调用，按用户质量优先要求保留入口摘要和信息选择页边界，旧一层范围不再作全局上限；已合入本地main（产品 `a440f97e`），未推送发布，实际失败与范围偏差均保留。[结果](../../tests/evidence/global-grounded-analysis-r25/result.md) [合并记录](../../tests/evidence/global-grounded-analysis-r25/integration.md)
+- [1.6.30 README拆分发布](../../tests/evidence/release-1.6.30.md)：冻结内容不变，三平台接受回执，公开与审核状态分列。
 
 本目录保存不需要在每次 Codex run 中注入、但必须长期可追溯的项目维护记录。这里的材料是证据和历史背景，不是当前运行时指令；当前规则以仓库根 [`AGENTS.md`](../../../AGENTS.md) 为准。
 

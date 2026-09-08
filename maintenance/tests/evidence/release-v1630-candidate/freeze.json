@@ -1,0 +1,27 @@
+{
+  "status": "FROZEN_CANDIDATE_NOT_RELEASED",
+  "target_version": "1.6.30",
+  "planned_release_date": "2026-09-09",
+  "branch": "codex/release-v1.6.30-candidate",
+  "base_tag": "v1.6.29",
+  "base_commit": "52d60597c3850d9922b8959a619be80e21e9af83",
+  "comparison_main": "c7778f2627d025bc34f106cb8cb74bcf03fb011b",
+  "selected_product_source": "bb3eae9d",
+  "minimal_tests": 107,
+  "full_tests": 817,
+  "quick_validate": 5,
+  "fingerprint_definition": "SHA256 of each manifest UTF-8 file including final newline",
+  "packages": {
+    "skillhub": {
+      "files": 88,
+      "manifest_sha256": "d154691ca1ef3f79135b9f28462ca3b830877addef6d8684e8ba6f7ab8c730bc"
+    },
+    "clawhub": {
+      "files": 38,
+      "manifest_sha256": "4d60a06c355588fedc0162082bd515c83d548c5b3818b802714e134145b801ec"
+    }
+  },
+  "main_modified": false,
+  "published": false,
+  "automatic_release_scheduled": false
+}

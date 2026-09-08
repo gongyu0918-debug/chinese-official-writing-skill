@@ -1,0 +1,32 @@
+{
+  "formal_attempt": 1,
+  "command": [
+    "C:/Program Files/nodejs/node.exe",
+    "C:/Users/admin/AppData/Roaming/npm/node_modules/clawhub/bin/clawdhub.js",
+    "publish",
+    "packages/openclaw/skills/chinese_official_writing",
+    "--slug",
+    "chinese-official-writing",
+    "--name",
+    "中文公文写作",
+    "--owner",
+    "gongyu0918-debug",
+    "--version",
+    "1.6.30",
+    "--tags",
+    "latest",
+    "--topics",
+    "chinese-writing,official-writing,office-productivity,content-creation",
+    "--source-repo",
+    "https://github.com/gongyu0918-debug/chinese-official-writing-skill",
+    "--source-commit",
+    "d2f97ba05e592712ec4b73decceefb3fd29d7c5e",
+    "--source-ref",
+    "v1.6.30",
+    "--source-path",
+    "packages/openclaw/skills/chinese_official_writing",
+    "--changelog",
+    "新增包内README与自然语言功能示例，补全能力说明并区分一般咨询、真实写稿和Hook专项问题。仅发布从1.6.29拆分的冻结基线；references、脚本与Hook核心不变，不含后续全局分析和立项申请规则。ClawHub保持无Hook包。",
+    "--json"
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "command": [
+    "py",
+    "-3.13",
+    "-B",
+    "-X",
+    "utf8",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "maintenance/tests",
+    "-p",
+    "test_*.py"
+  ],
+  "return_code": 0,
+  "seconds": 142.95
+}

@@ -1,0 +1,14 @@
+{
+  "command": [
+    "git",
+    "push",
+    "--atomic",
+    "origin",
+    "HEAD:main",
+    "refs/tags/v1.6.30"
+  ],
+  "exit_code": 0,
+  "seconds": 3.294,
+  "stdout": "",
+  "stderr": "To https://github.com/gongyu0918-debug/chinese-official-writing-skill.git\n   08dea28b..d2f97ba0  HEAD -> main\n * [new tag]           v1.6.30 -> v1.6.30\n"
+}

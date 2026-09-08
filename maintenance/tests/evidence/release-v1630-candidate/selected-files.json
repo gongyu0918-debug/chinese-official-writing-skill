@@ -1,0 +1,107 @@
+[
+  {
+    "path": "chinese-official-writing/README.md",
+    "candidate_sha256": "bf8af51dcb5988ace3eba17528ed020f68d2aa0bd48fabb82f1e421d4d26ec4f",
+    "candidate_bytes": 4399
+  },
+  {
+    "path": "chinese-official-writing/SKILL.md",
+    "candidate_sha256": "64a414e5ee69eb6161658529e9807460c3c612eeb458bd81925cc2ad6b494e96",
+    "candidate_bytes": 27911
+  },
+  {
+    "path": "chinese-official-writing/hooks/README.md",
+    "candidate_sha256": "15d3197e902135d2e7d85d6e834eb6e67d103e57e73ca5542180434ebfa2f94e",
+    "candidate_bytes": 14126
+  },
+  {
+    "path": "chinese-official-writing/hooks/adapters/claude-code/manifest.json",
+    "candidate_sha256": "788b44b96beecd1ed5e2f4ccd17bb539df8af7a13b892b2141f682195e1eec01",
+    "candidate_bytes": 396
+  },
+  {
+    "path": "chinese-official-writing/hooks/adapters/codebuddy/manifest.json",
+    "candidate_sha256": "ee23408063b696b3595db09aced1059e9dc952cf1a6a984966d6eb99d17f86e9",
+    "candidate_bytes": 531
+  },
+  {
+    "path": "chinese-official-writing/hooks/adapters/codex/manifest.json",
+    "candidate_sha256": "27aed7a3707040a2a69164e16df3c655e6bbb72f824701bc9be956dd3891f55b",
+    "candidate_bytes": 1160
+  },
+  {
+    "path": "chinese-official-writing/hooks/adapters/deepseek-harness/package.json",
+    "candidate_sha256": "cc38022c4fe6e4eb02639509ef600162fa61cac61eddcdc5ddae048c0e1b26fe",
+    "candidate_bytes": 616
+  },
+  {
+    "path": "chinese-official-writing/hooks/adapters/kimi-code/manifest.json",
+    "candidate_sha256": "b161b6a07eee9cac6f55a7391e5b86821642785eb7afa082d1c33361724cde78",
+    "candidate_bytes": 1289
+  },
+  {
+    "path": "chinese-official-writing/hooks/adapters/qwen-code/manifest.json",
+    "candidate_sha256": "8a6006a39666922ceb2c536e334210ed037229def631abd19b20721c18fbbecf",
+    "candidate_bytes": 490
+  },
+  {
+    "path": "chinese-official-writing/hooks/adapters/zcode/manifest.json",
+    "candidate_sha256": "b403223629c462e2dda7747230a011437ef552b5a39311e9ee71e8278a0584d2",
+    "candidate_bytes": 390
+  },
+  {
+    "path": "packages/agent-skills/skills/chinese-official-writing/README.md",
+    "candidate_sha256": "bf8af51dcb5988ace3eba17528ed020f68d2aa0bd48fabb82f1e421d4d26ec4f",
+    "candidate_bytes": 4399
+  },
+  {
+    "path": "packages/agent-skills/skills/chinese-official-writing/SKILL.md",
+    "candidate_sha256": "c195724d88f3a28ddbc7bd996bb9e087563f0c7b74996f4c03f8af1d7897c653",
+    "candidate_bytes": 27751
+  },
+  {
+    "path": "packages/hermes/skills/chinese-official-writing/README.md",
+    "candidate_sha256": "bf8af51dcb5988ace3eba17528ed020f68d2aa0bd48fabb82f1e421d4d26ec4f",
+    "candidate_bytes": 4399
+  },
+  {
+    "path": "packages/hermes/skills/chinese-official-writing/SKILL.md",
+    "candidate_sha256": "c195724d88f3a28ddbc7bd996bb9e087563f0c7b74996f4c03f8af1d7897c653",
+    "candidate_bytes": 27751
+  },
+  {
+    "path": "packages/openclaw/README.md",
+    "candidate_sha256": "20ce5863404a0c84275612c8d36f3b4dc56d2bae5876c8055cb795b6177eadc4",
+    "candidate_bytes": 820
+  },
+  {
+    "path": "packages/openclaw/skills/chinese_official_writing/README.md",
+    "candidate_sha256": "bf8af51dcb5988ace3eba17528ed020f68d2aa0bd48fabb82f1e421d4d26ec4f",
+    "candidate_bytes": 4399
+  },
+  {
+    "path": "packages/openclaw/skills/chinese_official_writing/SKILL.md",
+    "candidate_sha256": "d1657935f407003b5757e45287362559611c0571cf784a70b3629ac91ace8373",
+    "candidate_bytes": 27802
+  },
+  {
+    "path": "packages/qwen-code/skills/chinese-official-writing/README.md",
+    "candidate_sha256": "bf8af51dcb5988ace3eba17528ed020f68d2aa0bd48fabb82f1e421d4d26ec4f",
+    "candidate_bytes": 4399
+  },
+  {
+    "path": "packages/qwen-code/skills/chinese-official-writing/SKILL.md",
+    "candidate_sha256": "c195724d88f3a28ddbc7bd996bb9e087563f0c7b74996f4c03f8af1d7897c653",
+    "candidate_bytes": 27751
+  },
+  {
+    "path": "packages/qwenwork/skills/chinese-official-writing/README.md",
+    "candidate_sha256": "bf8af51dcb5988ace3eba17528ed020f68d2aa0bd48fabb82f1e421d4d26ec4f",
+    "candidate_bytes": 4399
+  },
+  {
+    "path": "packages/qwenwork/skills/chinese-official-writing/SKILL.md",
+    "candidate_sha256": "c195724d88f3a28ddbc7bd996bb9e087563f0c7b74996f4c03f8af1d7897c653",
+    "candidate_bytes": 27751
+  }
+]
