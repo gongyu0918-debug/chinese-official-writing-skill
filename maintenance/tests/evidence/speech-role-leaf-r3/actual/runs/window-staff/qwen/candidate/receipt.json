@@ -1,0 +1,144 @@
+{
+  "arm": "candidate",
+  "provider": "qwen",
+  "model": "alibaba-token-plan/qwen3.8-max",
+  "case": "window-staff",
+  "session": "2b7c2483-8f7d-4ee1-b3c0-ceebc6053ac1",
+  "technical_valid": true,
+  "return_code": 0,
+  "failure": null,
+  "seconds": 88.34,
+  "client_tools": "Read,Skill",
+  "explicit_entry": true,
+  "frozen_unchanged": true,
+  "final_chars": 1168,
+  "init_models": [
+    "alibaba-token-plan/qwen3.8-max"
+  ],
+  "assistant_models": [
+    "alibaba-token-plan/qwen3.8-max"
+  ],
+  "usage_models": [
+    "alibaba-token-plan/qwen3.8-max"
+  ],
+  "result_count": 1,
+  "result_subtypes": [
+    "success"
+  ],
+  "result_errors": [
+    false
+  ],
+  "final_path": "runs/window-staff/qwen/candidate/final.txt",
+  "final_sha256": "1937cf74dbc10afcb6ea58ca9e29a30188f104b70e52af959f3a46834c338f22",
+  "source_final_sha256": "1937cf74dbc10afcb6ea58ca9e29a30188f104b70e52af959f3a46834c338f22",
+  "source_final_logical_sha256": "54ab08ee8c557356efbe2e683347edfa0468e9584a1e54faf84f05eb85d4b980",
+  "final_redaction": {
+    "replacement_count": 0,
+    "replacement": "<isolated-work>",
+    "scope": "Only this lane approved runtime/work prefix; slash variants accepted.",
+    "source_unchanged": true,
+    "archive_is_original_bytes": true
+  },
+  "hook_enabled": false,
+  "timeout_seconds": 1200,
+  "automatic_retries": 0,
+  "effort": "max",
+  "invalid_json_line_count": 0,
+  "reads": [
+    "references/information-selection.md",
+    "references/genre-playbook-speech.md"
+  ],
+  "routing": {
+    "reference_paths": [
+      "references/genre-playbook-speech.md",
+      "references/information-selection.md"
+    ],
+    "references_distinct_pages": 2,
+    "references_distinct_file_bytes": 8696,
+    "skill_direct_read_file_bytes": 0
+  },
+  "tool_evidence": [
+    {
+      "sequence": 1,
+      "id": "call_5b82aaa16f6d47e4a3cde18a",
+      "name": "Skill",
+      "result": {
+        "observed": true,
+        "is_error_field": null,
+        "content_bytes": 65,
+        "content_sha256": "2208255ee679ba4f9d37caea5978009b3ee3459ba286dd41d1e923554c8abad8",
+        "skill_launch_acknowledgement": "official-writing-eval:chinese-official-writing"
+      },
+      "skill_name": "official-writing-eval:chinese-official-writing",
+      "launch_success_observed": true,
+      "response_visibility": "launch_acknowledgement_only_no_skill_body"
+    },
+    {
+      "sequence": 2,
+      "id": "call_9e0b2e79a854439db0d68e6c",
+      "name": "Read",
+      "result": {
+        "observed": true,
+        "is_error_field": null,
+        "content_bytes": 5029,
+        "content_sha256": "69a66166a0c9eba32cafe95347b005234a2e741805ef6e5eba6f9f58f9b38c5c",
+        "skill_launch_acknowledgement": null
+      },
+      "scope": "package",
+      "package_path": "references/information-selection.md",
+      "frozen_file_sha256": "bf1aff9c90a6ba901fb2514ed98b3796a67616a4f934bfeac45fa4e3c0c01787",
+      "read_success_observed": true
+    },
+    {
+      "sequence": 3,
+      "id": "call_5944777dfc7a4b6ababe7ebf",
+      "name": "Read",
+      "result": {
+        "observed": true,
+        "is_error_field": null,
+        "content_bytes": 3906,
+        "content_sha256": "48fef337f16a436709f8460b9a47d14621f162aedf4f0d8fda1a6bcbec3556af",
+        "skill_launch_acknowledgement": null
+      },
+      "scope": "package",
+      "package_path": "references/genre-playbook-speech.md",
+      "frozen_file_sha256": "79ca8a230cbabff235c9051cf939867c766e7d7fb2cf291d65ea233c0e892472",
+      "read_success_observed": true
+    }
+  ],
+  "documents": [],
+  "helper_sha256": "452d3f5ac8df257fbd220d7585ce0aef3dd0475a76a51181de77e0f729f0a6ab",
+  "prompt_path": "prompts/window-staff.txt",
+  "omissions": [
+    "raw stream",
+    "runtime",
+    "provider state",
+    "original argv",
+    "absolute paths",
+    "shell arguments and stdout"
+  ],
+  "isolation_observed": {
+    "mcp_servers": [],
+    "hook_events_observed": 0,
+    "runtime_memory_files": 0,
+    "skill_catalog": [
+      "deep-research",
+      "official-writing-eval:chinese-official-writing",
+      "design-sync",
+      "update-config",
+      "verify",
+      "debug",
+      "code-review",
+      "simplify",
+      "batch",
+      "fewer-permission-prompts",
+      "loop",
+      "claude-api",
+      "run",
+      "run-skill-generator"
+    ],
+    "cli_version": "2.1.195",
+    "stream_sha256": "80b5c7d6a1b75e473eaa2d1d6e4b3c03b5efb6f7e23de2b54d2c613c65d89617",
+    "scope": "Read stayed within frozen package; any absent baseline leaf remained a failed read."
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "baseline_commit": "c7778f2627d025bc34f106cb8cb74bcf03fb011b",
+  "candidate_base_commit": "c7778f2627d025bc34f106cb8cb74bcf03fb011b",
+  "overlay_paths": [
+    "SKILL.md",
+    "references/genre-playbook-speech-drafting.md"
+  ],
+  "models": {
+    "qwen": "alibaba-token-plan/qwen3.8-max",
+    "minimax": "minimax-cn/MiniMax-M3"
+  },
+  "cases": [
+    "role-rewrite",
+    "leader-exchange-rewrite",
+    "window-staff"
+  ],
+  "new_calls": 6,
+  "harness_commit": "7bde6c3e4bbd87a304d01d74be178673fe048f67",
+  "harness_source_hashes": {
+    "maintenance/tests/evidence/application-route-rewrite-r20/run_real.py": "bfbb39574c7a62df29da7d45ce26ad3623f79951ae5f497c0ba3410ee96fdb1b",
+    "maintenance/tests/evidence/application-rule-efficacy-r23/archive_actual.py": "7801f38b077ec2c6753666fcd7872e1dfa3dc6deb4fd64507422631e119bf873"
+  },
+  "prompt_hashes": {
+    "role-rewrite": "108b993d39006c100bf382e1a0d6d68567df1998d41aa6b487c7847102913c9d",
+    "leader-exchange-rewrite": "6ce6245797fc03b1d02cccf1ba05fb9ad09d2a6413cda5b2babf88b682b48cc1",
+    "window-staff": "6bc96465feb542b947ca99a1c93559406f99554dd08e795f4f1a4aaf99327a5c"
+  },
+  "preregister_sha256": "308223072585bdc9cc17bd1196edfa334ef05def7bbc9290990faca839966de0",
+  "hook_enabled": false,
+  "automatic_retries": 0,
+  "timeout_seconds": 1200,
+  "effort": "max"
+}

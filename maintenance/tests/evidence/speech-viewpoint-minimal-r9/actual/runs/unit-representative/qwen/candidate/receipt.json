@@ -1,0 +1,182 @@
+{
+  "arm": "candidate",
+  "provider": "qwen",
+  "model": "alibaba-token-plan/qwen3.8-max",
+  "case": "unit-representative",
+  "session": "7f612ec7-7ec6-47cd-83e0-12db1b28a21b",
+  "technical_valid": true,
+  "return_code": 0,
+  "failure": null,
+  "seconds": 109.56,
+  "client_tools": "Read,Skill",
+  "explicit_entry": true,
+  "frozen_unchanged": true,
+  "final_chars": 367,
+  "init_models": [
+    "alibaba-token-plan/qwen3.8-max"
+  ],
+  "assistant_models": [
+    "alibaba-token-plan/qwen3.8-max"
+  ],
+  "usage_models": [
+    "alibaba-token-plan/qwen3.8-max"
+  ],
+  "result_count": 1,
+  "result_subtypes": [
+    "success"
+  ],
+  "result_errors": [
+    false
+  ],
+  "final_path": "runs/unit-representative/qwen/candidate/final.txt",
+  "final_sha256": "9e8aba19d2f502242b1100f899b011b653456fa576c2277033e13af3484a39e4",
+  "source_final_sha256": "9e8aba19d2f502242b1100f899b011b653456fa576c2277033e13af3484a39e4",
+  "source_final_logical_sha256": "d7259d5882c76b764c39b933971ccc44d447bad9af725cf555ba6925220e2f1d",
+  "final_redaction": {
+    "replacement_count": 0,
+    "replacement": "<isolated-work>",
+    "scope": "Only this lane approved runtime/work prefix; slash variants accepted.",
+    "source_unchanged": true,
+    "archive_is_original_bytes": true
+  },
+  "hook_enabled": false,
+  "timeout_seconds": 1200,
+  "automatic_retries": 0,
+  "effort": "max",
+  "invalid_json_line_count": 0,
+  "reads": [
+    "SKILL.md",
+    "references/information-selection.md",
+    "references/formulaic-language.md",
+    "references/short-draft-naturalness.md",
+    "references/genre-playbooks.md"
+  ],
+  "routing": {
+    "reference_paths": [
+      "references/formulaic-language.md",
+      "references/genre-playbooks.md",
+      "references/information-selection.md",
+      "references/short-draft-naturalness.md"
+    ],
+    "references_distinct_pages": 4,
+    "references_distinct_file_bytes": 19610,
+    "skill_direct_read_file_bytes": 29537
+  },
+  "tool_evidence": [
+    {
+      "sequence": 1,
+      "id": "call_1ffbf9569f9d49b694aeb232",
+      "name": "Read",
+      "result": {
+        "observed": true,
+        "is_error_field": null,
+        "content_bytes": 30294,
+        "content_sha256": "cdccc12f0ab080caa55aa1b551bcc35ee03daa114a71a67dae71bab094afac0d",
+        "skill_launch_acknowledgement": null
+      },
+      "scope": "package",
+      "package_path": "SKILL.md",
+      "frozen_file_sha256": "da8aad64cd43d660ca6ff6df3272760e38a61626e2b01594ba4fccd604d9964e",
+      "read_success_observed": true
+    },
+    {
+      "sequence": 2,
+      "id": "call_d0e11eab26d34c7c96a5487d",
+      "name": "Read",
+      "result": {
+        "observed": true,
+        "is_error_field": null,
+        "content_bytes": 5029,
+        "content_sha256": "69a66166a0c9eba32cafe95347b005234a2e741805ef6e5eba6f9f58f9b38c5c",
+        "skill_launch_acknowledgement": null
+      },
+      "scope": "package",
+      "package_path": "references/information-selection.md",
+      "frozen_file_sha256": "bf1aff9c90a6ba901fb2514ed98b3796a67616a4f934bfeac45fa4e3c0c01787",
+      "read_success_observed": true
+    },
+    {
+      "sequence": 3,
+      "id": "call_924d018ecdb14db4907cebe5",
+      "name": "Read",
+      "result": {
+        "observed": true,
+        "is_error_field": null,
+        "content_bytes": 8196,
+        "content_sha256": "5f8316d3ee96b681a970bd641dd06497d8398280b16eb509daceaeabede3539d",
+        "skill_launch_acknowledgement": null
+      },
+      "scope": "package",
+      "package_path": "references/formulaic-language.md",
+      "frozen_file_sha256": "a4940b83c337ec5e0a7f0389de49113df8ccf3ae012b5c3fc498f0982b73bb16",
+      "read_success_observed": true
+    },
+    {
+      "sequence": 4,
+      "id": "call_8b93f24c3bcf47b3a66a0133",
+      "name": "Read",
+      "result": {
+        "observed": true,
+        "is_error_field": null,
+        "content_bytes": 1376,
+        "content_sha256": "0ac8545d17cc66ddf36a92f31051622734c3159b4445b469de529ab0451e1624",
+        "skill_launch_acknowledgement": null
+      },
+      "scope": "package",
+      "package_path": "references/short-draft-naturalness.md",
+      "frozen_file_sha256": "100b89b6216d872f35b568164f13b4bcc448346b1dd39d9b100fa9bf6f30f7ba",
+      "read_success_observed": true
+    },
+    {
+      "sequence": 5,
+      "id": "call_43cf401b85344fa0a7540091",
+      "name": "Read",
+      "result": {
+        "observed": true,
+        "is_error_field": null,
+        "content_bytes": 5932,
+        "content_sha256": "5035a2a127cbba44f61f43fff3b53eedd0b91b0991b9f60a5e0bbcd6bf2607c3",
+        "skill_launch_acknowledgement": null
+      },
+      "scope": "package",
+      "package_path": "references/genre-playbooks.md",
+      "frozen_file_sha256": "d209e23f5496d34aa0fabf1449f7cd2ca44bdc318778f3a81a5839c414de343b",
+      "read_success_observed": true
+    }
+  ],
+  "documents": [],
+  "helper_sha256": "452d3f5ac8df257fbd220d7585ce0aef3dd0475a76a51181de77e0f729f0a6ab",
+  "prompt_path": "prompts/unit-representative.txt",
+  "omissions": [
+    "raw stream",
+    "runtime",
+    "provider state",
+    "original argv",
+    "absolute paths",
+    "shell arguments and stdout"
+  ],
+  "isolation_observed": {
+    "mcp_servers": [],
+    "hook_events_observed": 0,
+    "runtime_memory_files": 0,
+    "skill_catalog": [
+      "deep-research",
+      "official-writing-eval:chinese-official-writing",
+      "design-sync",
+      "update-config",
+      "verify",
+      "debug",
+      "code-review",
+      "simplify",
+      "batch",
+      "fewer-permission-prompts",
+      "loop",
+      "claude-api",
+      "run",
+      "run-skill-generator"
+    ],
+    "cli_version": "2.1.195",
+    "stream_sha256": "fb4d9e2ec517b4d649e2e98d56677f75f2d9ee73ca89e6e3a34deb4d417fbccb",
+    "scope": "Read stayed within frozen package; any absent baseline leaf remained a failed read."
+  }
+}

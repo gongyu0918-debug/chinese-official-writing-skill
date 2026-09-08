@@ -1,0 +1,182 @@
+{
+  "arm": "candidate",
+  "provider": "minimax",
+  "model": "minimax-cn/MiniMax-M3",
+  "case": "leader-deployment",
+  "session": "af9ac65e-b2aa-432e-896e-9f2676d98cde",
+  "technical_valid": true,
+  "return_code": 0,
+  "failure": null,
+  "seconds": 161.09,
+  "client_tools": "Read,Skill",
+  "explicit_entry": true,
+  "frozen_unchanged": true,
+  "final_chars": 1443,
+  "init_models": [
+    "minimax-cn/MiniMax-M3"
+  ],
+  "assistant_models": [
+    "minimax-cn/MiniMax-M3"
+  ],
+  "usage_models": [
+    "minimax-cn/MiniMax-M3"
+  ],
+  "result_count": 1,
+  "result_subtypes": [
+    "success"
+  ],
+  "result_errors": [
+    false
+  ],
+  "final_path": "runs/leader-deployment/minimax/candidate/final.txt",
+  "final_sha256": "e359a1a4a74da40c39e0ffb4fec9def4b1ca87e5acfebe952412c64d3bec3824",
+  "source_final_sha256": "e359a1a4a74da40c39e0ffb4fec9def4b1ca87e5acfebe952412c64d3bec3824",
+  "source_final_logical_sha256": "fd411dd8700768d9787fbdda01a7e1450a01393cc3c888ba6fdf35095b29c63d",
+  "final_redaction": {
+    "replacement_count": 0,
+    "replacement": "<isolated-work>",
+    "scope": "Only this lane approved runtime/work prefix; slash variants accepted.",
+    "source_unchanged": true,
+    "archive_is_original_bytes": true
+  },
+  "hook_enabled": false,
+  "timeout_seconds": 1200,
+  "automatic_retries": 0,
+  "effort": "max",
+  "invalid_json_line_count": 0,
+  "reads": [
+    "SKILL.md",
+    "references/information-selection.md",
+    "references/genre-playbook-speech.md",
+    "references/anti-ai-patterns.md",
+    "references/official-style.md"
+  ],
+  "routing": {
+    "reference_paths": [
+      "references/anti-ai-patterns.md",
+      "references/genre-playbook-speech.md",
+      "references/information-selection.md",
+      "references/official-style.md"
+    ],
+    "references_distinct_pages": 4,
+    "references_distinct_file_bytes": 27479,
+    "skill_direct_read_file_bytes": 29967
+  },
+  "tool_evidence": [
+    {
+      "sequence": 1,
+      "id": "call_6ac14e79d902416798336e",
+      "name": "Read",
+      "result": {
+        "observed": true,
+        "is_error_field": null,
+        "content_bytes": 30736,
+        "content_sha256": "3091bfbe18b9c01caa99407e1a98b38ecdc255f41146f0aab04e7283326e7a3b",
+        "skill_launch_acknowledgement": null
+      },
+      "scope": "package",
+      "package_path": "SKILL.md",
+      "frozen_file_sha256": "f73701baebf47f26b49a297b1485f435926a6c14812ee9f7315f1cd254e8892f",
+      "read_success_observed": true
+    },
+    {
+      "sequence": 2,
+      "id": "call_ec3b40f9e5de4e66b05e27",
+      "name": "Read",
+      "result": {
+        "observed": true,
+        "is_error_field": null,
+        "content_bytes": 5029,
+        "content_sha256": "69a66166a0c9eba32cafe95347b005234a2e741805ef6e5eba6f9f58f9b38c5c",
+        "skill_launch_acknowledgement": null
+      },
+      "scope": "package",
+      "package_path": "references/information-selection.md",
+      "frozen_file_sha256": "bf1aff9c90a6ba901fb2514ed98b3796a67616a4f934bfeac45fa4e3c0c01787",
+      "read_success_observed": true
+    },
+    {
+      "sequence": 3,
+      "id": "call_7bc4bfb64e804661a8b53f",
+      "name": "Read",
+      "result": {
+        "observed": true,
+        "is_error_field": null,
+        "content_bytes": 2610,
+        "content_sha256": "c3780bb974c4899942ea08bd7eb8a173f50a74e16723e7a69b4011be0f2efe5e",
+        "skill_launch_acknowledgement": null
+      },
+      "scope": "package",
+      "package_path": "references/genre-playbook-speech.md",
+      "frozen_file_sha256": "0bff2863cb8f253b1b95c516af5da4341b87725b1036d4a423d5dfa21f5db04d",
+      "read_success_observed": true
+    },
+    {
+      "sequence": 4,
+      "id": "call_070b44432086444c9d3445",
+      "name": "Read",
+      "result": {
+        "observed": true,
+        "is_error_field": null,
+        "content_bytes": 15041,
+        "content_sha256": "30b5e73d21be16753fbb5a4fde30e8accf79cd2b9746124413f5791ef20e0adf",
+        "skill_launch_acknowledgement": null
+      },
+      "scope": "package",
+      "package_path": "references/anti-ai-patterns.md",
+      "frozen_file_sha256": "c77202b6685b57bef8ae98499c05e1e21427fce90c56a18adba0472da07e4f2f",
+      "read_success_observed": true
+    },
+    {
+      "sequence": 5,
+      "id": "call_06aa0ff37fd042a7a77d6b",
+      "name": "Read",
+      "result": {
+        "observed": true,
+        "is_error_field": null,
+        "content_bytes": 6500,
+        "content_sha256": "fb2f2d445b02064075e4a188810fe916bab16b578d278c01ab0b14ab64e6794f",
+        "skill_launch_acknowledgement": null
+      },
+      "scope": "package",
+      "package_path": "references/official-style.md",
+      "frozen_file_sha256": "82b97cc58bca9fce3f81c79ece4a5804d17a1869a5bbd3f6de191612440d505a",
+      "read_success_observed": true
+    }
+  ],
+  "documents": [],
+  "helper_sha256": "452d3f5ac8df257fbd220d7585ce0aef3dd0475a76a51181de77e0f729f0a6ab",
+  "prompt_path": "prompts/leader-deployment.txt",
+  "omissions": [
+    "raw stream",
+    "runtime",
+    "provider state",
+    "original argv",
+    "absolute paths",
+    "shell arguments and stdout"
+  ],
+  "isolation_observed": {
+    "mcp_servers": [],
+    "hook_events_observed": 0,
+    "runtime_memory_files": 0,
+    "skill_catalog": [
+      "deep-research",
+      "official-writing-eval:chinese-official-writing",
+      "design-sync",
+      "update-config",
+      "verify",
+      "debug",
+      "code-review",
+      "simplify",
+      "batch",
+      "fewer-permission-prompts",
+      "loop",
+      "claude-api",
+      "run",
+      "run-skill-generator"
+    ],
+    "cli_version": "2.1.195",
+    "stream_sha256": "775d5c8e0a1585d28c3096fbd99e035a144d37909713ef6e7b4501858a1fb1a0",
+    "scope": "Read stayed within frozen package; any absent baseline leaf remained a failed read."
+  }
+}

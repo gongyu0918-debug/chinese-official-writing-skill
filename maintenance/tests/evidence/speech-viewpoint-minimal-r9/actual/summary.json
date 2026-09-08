@@ -1,0 +1,188 @@
+{
+  "round": "minimal-r9",
+  "expected": 6,
+  "attempts_completed": 6,
+  "technical_valid": 6,
+  "complete": true,
+  "runs": [
+    {
+      "case": "window-staff",
+      "provider": "qwen",
+      "arm": "candidate",
+      "technical_valid": true,
+      "receipt": "runs/window-staff/qwen/candidate/receipt.json",
+      "artifacts": 0,
+      "written_documents": 0,
+      "missing_work_files": 0,
+      "skill_read": false,
+      "skill_launch_success_observed": true,
+      "routing": {
+        "reference_paths": [
+          "references/anti-ai-patterns.md",
+          "references/final-review-layers.md",
+          "references/formulaic-language.md",
+          "references/genre-playbooks.md",
+          "references/information-selection.md",
+          "references/official-style.md",
+          "references/proofreading-checklist.md"
+        ],
+        "references_distinct_pages": 7,
+        "references_distinct_file_bytes": 51137,
+        "skill_direct_read_file_bytes": 0
+      },
+      "tool_error_count": 0,
+      "failed_read_count": 0,
+      "unresolved_failed_read_count": 0,
+      "final_path_redactions": 0,
+      "argument_chains_read": false,
+      "ai_compute_read": false
+    },
+    {
+      "case": "window-staff",
+      "provider": "minimax",
+      "arm": "candidate",
+      "technical_valid": true,
+      "receipt": "runs/window-staff/minimax/candidate/receipt.json",
+      "artifacts": 0,
+      "written_documents": 0,
+      "missing_work_files": 0,
+      "skill_read": false,
+      "skill_launch_success_observed": true,
+      "routing": {
+        "reference_paths": [
+          "references/formulaic-language.md",
+          "references/genre-playbooks.md",
+          "references/information-selection.md"
+        ],
+        "references_distinct_pages": 3,
+        "references_distinct_file_bytes": 18276,
+        "skill_direct_read_file_bytes": 0
+      },
+      "tool_error_count": 0,
+      "failed_read_count": 0,
+      "unresolved_failed_read_count": 0,
+      "final_path_redactions": 0,
+      "argument_chains_read": false,
+      "ai_compute_read": false
+    },
+    {
+      "case": "leader-deployment",
+      "provider": "qwen",
+      "arm": "candidate",
+      "technical_valid": true,
+      "receipt": "runs/leader-deployment/qwen/candidate/receipt.json",
+      "artifacts": 0,
+      "written_documents": 0,
+      "missing_work_files": 0,
+      "skill_read": false,
+      "skill_launch_success_observed": true,
+      "routing": {
+        "reference_paths": [
+          "references/anti-ai-patterns.md",
+          "references/final-review-layers.md",
+          "references/formulaic-language.md",
+          "references/genre-playbooks.md",
+          "references/information-selection.md",
+          "references/official-style.md",
+          "references/proofreading-checklist.md",
+          "references/short-draft-naturalness.md"
+        ],
+        "references_distinct_pages": 8,
+        "references_distinct_file_bytes": 52471,
+        "skill_direct_read_file_bytes": 0
+      },
+      "tool_error_count": 0,
+      "failed_read_count": 0,
+      "unresolved_failed_read_count": 0,
+      "final_path_redactions": 0,
+      "argument_chains_read": false,
+      "ai_compute_read": false
+    },
+    {
+      "case": "leader-deployment",
+      "provider": "minimax",
+      "arm": "candidate",
+      "technical_valid": true,
+      "receipt": "runs/leader-deployment/minimax/candidate/receipt.json",
+      "artifacts": 0,
+      "written_documents": 0,
+      "missing_work_files": 0,
+      "skill_read": false,
+      "skill_launch_success_observed": true,
+      "routing": {
+        "reference_paths": [
+          "references/genre-playbooks.md",
+          "references/information-selection.md",
+          "references/official-style.md"
+        ],
+        "references_distinct_pages": 3,
+        "references_distinct_file_bytes": 16625,
+        "skill_direct_read_file_bytes": 0
+      },
+      "tool_error_count": 0,
+      "failed_read_count": 0,
+      "unresolved_failed_read_count": 0,
+      "final_path_redactions": 0,
+      "argument_chains_read": false,
+      "ai_compute_read": false
+    },
+    {
+      "case": "unit-representative",
+      "provider": "qwen",
+      "arm": "candidate",
+      "technical_valid": true,
+      "receipt": "runs/unit-representative/qwen/candidate/receipt.json",
+      "artifacts": 0,
+      "written_documents": 0,
+      "missing_work_files": 0,
+      "skill_read": true,
+      "skill_launch_success_observed": false,
+      "routing": {
+        "reference_paths": [
+          "references/formulaic-language.md",
+          "references/genre-playbooks.md",
+          "references/information-selection.md",
+          "references/short-draft-naturalness.md"
+        ],
+        "references_distinct_pages": 4,
+        "references_distinct_file_bytes": 19610,
+        "skill_direct_read_file_bytes": 29537
+      },
+      "tool_error_count": 0,
+      "failed_read_count": 0,
+      "unresolved_failed_read_count": 0,
+      "final_path_redactions": 0,
+      "argument_chains_read": false,
+      "ai_compute_read": false
+    },
+    {
+      "case": "unit-representative",
+      "provider": "minimax",
+      "arm": "candidate",
+      "technical_valid": true,
+      "receipt": "runs/unit-representative/minimax/candidate/receipt.json",
+      "artifacts": 0,
+      "written_documents": 0,
+      "missing_work_files": 0,
+      "skill_read": true,
+      "skill_launch_success_observed": false,
+      "routing": {
+        "reference_paths": [
+          "references/genre-playbooks.md",
+          "references/information-selection.md",
+          "references/short-draft-naturalness.md"
+        ],
+        "references_distinct_pages": 3,
+        "references_distinct_file_bytes": 11886,
+        "skill_direct_read_file_bytes": 29537
+      },
+      "tool_error_count": 0,
+      "failed_read_count": 0,
+      "unresolved_failed_read_count": 0,
+      "final_path_redactions": 0,
+      "argument_chains_read": false,
+      "ai_compute_read": false
+    }
+  ],
+  "quality": "Read manuscripts; technical validity is not writing quality."
+}

@@ -1,0 +1,1 @@
+API Error: routed provider emitted undeclared client tool "Write"; only request-declared tools may be called

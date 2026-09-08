@@ -1,0 +1,235 @@
+{
+  "round": "boundary-r4",
+  "expected": 8,
+  "attempts_completed": 8,
+  "technical_valid": 7,
+  "complete": true,
+  "runs": [
+    {
+      "case": "unit-representative",
+      "provider": "qwen",
+      "arm": "baseline",
+      "technical_valid": true,
+      "receipt": "runs/unit-representative/qwen/baseline/receipt.json",
+      "artifacts": 0,
+      "written_documents": 0,
+      "missing_work_files": 0,
+      "skill_read": false,
+      "skill_launch_success_observed": true,
+      "routing": {
+        "reference_paths": [
+          "references/formulaic-language.md",
+          "references/genre-playbooks.md",
+          "references/information-selection.md",
+          "references/short-draft-naturalness.md"
+        ],
+        "references_distinct_pages": 4,
+        "references_distinct_file_bytes": 19610,
+        "skill_direct_read_file_bytes": 0
+      },
+      "tool_error_count": 1,
+      "failed_read_count": 1,
+      "unresolved_failed_read_count": 0,
+      "final_path_redactions": 0,
+      "argument_chains_read": false,
+      "ai_compute_read": false
+    },
+    {
+      "case": "unit-representative",
+      "provider": "qwen",
+      "arm": "candidate",
+      "technical_valid": true,
+      "receipt": "runs/unit-representative/qwen/candidate/receipt.json",
+      "artifacts": 0,
+      "written_documents": 0,
+      "missing_work_files": 0,
+      "skill_read": true,
+      "skill_launch_success_observed": true,
+      "routing": {
+        "reference_paths": [
+          "references/genre-playbook-speech.md",
+          "references/information-selection.md",
+          "references/short-draft-naturalness.md"
+        ],
+        "references_distinct_pages": 3,
+        "references_distinct_file_bytes": 10162,
+        "skill_direct_read_file_bytes": 29886
+      },
+      "tool_error_count": 0,
+      "failed_read_count": 0,
+      "unresolved_failed_read_count": 0,
+      "final_path_redactions": 0,
+      "argument_chains_read": false,
+      "ai_compute_read": false
+    },
+    {
+      "case": "unit-representative",
+      "provider": "minimax",
+      "arm": "baseline",
+      "technical_valid": true,
+      "receipt": "runs/unit-representative/minimax/baseline/receipt.json",
+      "artifacts": 0,
+      "written_documents": 0,
+      "missing_work_files": 0,
+      "skill_read": false,
+      "skill_launch_success_observed": true,
+      "routing": {
+        "reference_paths": [
+          "references/formulaic-language.md",
+          "references/information-selection.md",
+          "references/short-draft-naturalness.md"
+        ],
+        "references_distinct_pages": 3,
+        "references_distinct_file_bytes": 13980,
+        "skill_direct_read_file_bytes": 0
+      },
+      "tool_error_count": 0,
+      "failed_read_count": 0,
+      "unresolved_failed_read_count": 0,
+      "final_path_redactions": 0,
+      "argument_chains_read": false,
+      "ai_compute_read": false
+    },
+    {
+      "case": "unit-representative",
+      "provider": "minimax",
+      "arm": "candidate",
+      "technical_valid": true,
+      "receipt": "runs/unit-representative/minimax/candidate/receipt.json",
+      "artifacts": 0,
+      "written_documents": 0,
+      "missing_work_files": 0,
+      "skill_read": false,
+      "skill_launch_success_observed": true,
+      "routing": {
+        "reference_paths": [
+          "references/genre-playbook-speech.md",
+          "references/information-selection.md",
+          "references/short-draft-naturalness.md"
+        ],
+        "references_distinct_pages": 3,
+        "references_distinct_file_bytes": 10162,
+        "skill_direct_read_file_bytes": 0
+      },
+      "tool_error_count": 0,
+      "failed_read_count": 0,
+      "unresolved_failed_read_count": 0,
+      "final_path_redactions": 0,
+      "argument_chains_read": false,
+      "ai_compute_read": false
+    },
+    {
+      "case": "leader-exchange-rewrite",
+      "provider": "qwen",
+      "arm": "baseline",
+      "technical_valid": true,
+      "receipt": "runs/leader-exchange-rewrite/qwen/baseline/receipt.json",
+      "artifacts": 0,
+      "written_documents": 0,
+      "missing_work_files": 0,
+      "skill_read": true,
+      "skill_launch_success_observed": true,
+      "routing": {
+        "reference_paths": [
+          "references/anti-ai-patterns.md",
+          "references/formulaic-language.md",
+          "references/genre-playbooks.md",
+          "references/information-selection.md"
+        ],
+        "references_distinct_pages": 4,
+        "references_distinct_file_bytes": 32242,
+        "skill_direct_read_file_bytes": 29504
+      },
+      "tool_error_count": 1,
+      "failed_read_count": 1,
+      "unresolved_failed_read_count": 0,
+      "final_path_redactions": 0,
+      "argument_chains_read": false,
+      "ai_compute_read": false
+    },
+    {
+      "case": "leader-exchange-rewrite",
+      "provider": "qwen",
+      "arm": "candidate",
+      "technical_valid": true,
+      "receipt": "runs/leader-exchange-rewrite/qwen/candidate/receipt.json",
+      "artifacts": 0,
+      "written_documents": 0,
+      "missing_work_files": 0,
+      "skill_read": false,
+      "skill_launch_success_observed": true,
+      "routing": {
+        "reference_paths": [
+          "references/genre-playbook-speech.md",
+          "references/information-selection.md"
+        ],
+        "references_distinct_pages": 2,
+        "references_distinct_file_bytes": 8828,
+        "skill_direct_read_file_bytes": 0
+      },
+      "tool_error_count": 0,
+      "failed_read_count": 0,
+      "unresolved_failed_read_count": 0,
+      "final_path_redactions": 0,
+      "argument_chains_read": false,
+      "ai_compute_read": false
+    },
+    {
+      "case": "leader-exchange-rewrite",
+      "provider": "minimax",
+      "arm": "baseline",
+      "technical_valid": false,
+      "receipt": "runs/leader-exchange-rewrite/minimax/baseline/receipt.json",
+      "artifacts": 0,
+      "written_documents": 0,
+      "missing_work_files": 0,
+      "skill_read": true,
+      "skill_launch_success_observed": false,
+      "routing": {
+        "reference_paths": [
+          "references/formulaic-language.md",
+          "references/genre-playbooks.md",
+          "references/information-selection.md",
+          "references/short-draft-naturalness.md"
+        ],
+        "references_distinct_pages": 4,
+        "references_distinct_file_bytes": 19610,
+        "skill_direct_read_file_bytes": 29504
+      },
+      "tool_error_count": 1,
+      "failed_read_count": 1,
+      "unresolved_failed_read_count": 0,
+      "final_path_redactions": 0,
+      "argument_chains_read": false,
+      "ai_compute_read": false
+    },
+    {
+      "case": "leader-exchange-rewrite",
+      "provider": "minimax",
+      "arm": "candidate",
+      "technical_valid": true,
+      "receipt": "runs/leader-exchange-rewrite/minimax/candidate/receipt.json",
+      "artifacts": 0,
+      "written_documents": 0,
+      "missing_work_files": 0,
+      "skill_read": true,
+      "skill_launch_success_observed": false,
+      "routing": {
+        "reference_paths": [
+          "references/genre-playbook-speech.md",
+          "references/information-selection.md"
+        ],
+        "references_distinct_pages": 2,
+        "references_distinct_file_bytes": 8828,
+        "skill_direct_read_file_bytes": 29886
+      },
+      "tool_error_count": 0,
+      "failed_read_count": 0,
+      "unresolved_failed_read_count": 0,
+      "final_path_redactions": 0,
+      "argument_chains_read": false,
+      "ai_compute_read": false
+    }
+  ],
+  "quality": "Read manuscripts; technical validity is not writing quality."
+}

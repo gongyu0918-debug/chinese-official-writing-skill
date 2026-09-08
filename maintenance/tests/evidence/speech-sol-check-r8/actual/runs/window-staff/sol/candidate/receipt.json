@@ -1,0 +1,225 @@
+{
+  "arm": "candidate",
+  "provider": "sol",
+  "model": "gpt-5.6-sol",
+  "case": "window-staff",
+  "session": "ef27c9e7-131e-452a-9146-5f138dec4873",
+  "technical_valid": true,
+  "return_code": 0,
+  "failure": null,
+  "seconds": 222.4,
+  "client_tools": "Read,Skill",
+  "explicit_entry": true,
+  "frozen_unchanged": true,
+  "final_chars": 1235,
+  "init_models": [
+    "gpt-5.6-sol"
+  ],
+  "assistant_models": [
+    "gpt-5.6-sol"
+  ],
+  "usage_models": [
+    "gpt-5.6-sol"
+  ],
+  "result_count": 1,
+  "result_subtypes": [
+    "success"
+  ],
+  "result_errors": [
+    false
+  ],
+  "final_path": "runs/window-staff/sol/candidate/final.txt",
+  "final_sha256": "f9912d16f8cfb1a8c66ea1fa2ea5173ad2760d165be1436216b33b45d6183944",
+  "source_final_sha256": "f9912d16f8cfb1a8c66ea1fa2ea5173ad2760d165be1436216b33b45d6183944",
+  "source_final_logical_sha256": "0aee95e73be51ad4301c8cc61dfc74ecf567ed100ccd7a2238ae65a31fea1e28",
+  "final_redaction": {
+    "replacement_count": 0,
+    "replacement": "<isolated-work>",
+    "scope": "Only this lane approved runtime/work prefix; slash variants accepted.",
+    "source_unchanged": true,
+    "archive_is_original_bytes": true
+  },
+  "hook_enabled": false,
+  "timeout_seconds": 1200,
+  "automatic_retries": 0,
+  "effort": "max",
+  "invalid_json_line_count": 0,
+  "reads": [
+    "references/information-selection.md",
+    "references/genre-playbook-speech.md",
+    "references/final-review-layers.md",
+    "references/proofreading-checklist.md",
+    "references/official-style.md"
+  ],
+  "routing": {
+    "reference_paths": [
+      "references/final-review-layers.md",
+      "references/genre-playbook-speech.md",
+      "references/information-selection.md",
+      "references/official-style.md",
+      "references/proofreading-checklist.md"
+    ],
+    "references_distinct_pages": 5,
+    "references_distinct_file_bytes": 27440,
+    "skill_direct_read_file_bytes": 0
+  },
+  "tool_evidence": [
+    {
+      "sequence": 1,
+      "id": "call_L5qhUtnjjVo9r2m9AI7alglw",
+      "name": "Skill",
+      "result": {
+        "observed": true,
+        "is_error_field": null,
+        "content_bytes": 65,
+        "content_sha256": "2208255ee679ba4f9d37caea5978009b3ee3459ba286dd41d1e923554c8abad8",
+        "skill_launch_acknowledgement": "official-writing-eval:chinese-official-writing"
+      },
+      "skill_name": "official-writing-eval:chinese-official-writing",
+      "launch_success_observed": true,
+      "response_visibility": "launch_acknowledgement_only_no_skill_body"
+    },
+    {
+      "sequence": 2,
+      "id": "call_t3I9h2PbEg3UnFUNFUAMMeLh",
+      "name": "Read",
+      "result": {
+        "observed": true,
+        "is_error_field": true,
+        "content_bytes": 133,
+        "content_sha256": "9e0a429343d148bfada6df3331fc6de63ee17f96c659b835225bbfbc0728e4f9",
+        "skill_launch_acknowledgement": null
+      },
+      "scope": "failed_read",
+      "requested_scope": "package",
+      "requested_relative_path": "references/information-selection.md",
+      "read_success_observed": false,
+      "file_path_sha256": "dfbbbd5b2130cc44b37ac1c2b33de860424df901505d19eda7e0345263dce124"
+    },
+    {
+      "sequence": 3,
+      "id": "call_YUmVUwNNSVFV1EO8YIwnVNkD",
+      "name": "Read",
+      "result": {
+        "observed": true,
+        "is_error_field": null,
+        "content_bytes": 5028,
+        "content_sha256": "340297d7a78f928bc6d5e5a4c30f6b1e913c866a7f46025827b461b61e8cb1a4",
+        "skill_launch_acknowledgement": null
+      },
+      "scope": "package",
+      "package_path": "references/information-selection.md",
+      "frozen_file_sha256": "bf1aff9c90a6ba901fb2514ed98b3796a67616a4f934bfeac45fa4e3c0c01787",
+      "read_success_observed": true,
+      "offset": 0,
+      "limit": 2000
+    },
+    {
+      "sequence": 4,
+      "id": "call_NMzuSEIpVsiHRYsv3fNRkHNe",
+      "name": "Read",
+      "result": {
+        "observed": true,
+        "is_error_field": null,
+        "content_bytes": 3784,
+        "content_sha256": "86dc7b2cb8510444f27b97c8c15aa5f7169c7d4086867961c7bdd944e534278a",
+        "skill_launch_acknowledgement": null
+      },
+      "scope": "package",
+      "package_path": "references/genre-playbook-speech.md",
+      "frozen_file_sha256": "68d196d4fa3e7827a696a578002ecdb24402c97da0f089ddf3599c9b2ccfee61",
+      "read_success_observed": true,
+      "offset": 0,
+      "limit": 2000
+    },
+    {
+      "sequence": 5,
+      "id": "call_5QuBdicHYOJ4OQmN1CToXmcW",
+      "name": "Read",
+      "result": {
+        "observed": true,
+        "is_error_field": null,
+        "content_bytes": 9449,
+        "content_sha256": "4f7e9fe1562a6b047ea877e21db75b0c9b00e0869b44b5e9161bfffa110def67",
+        "skill_launch_acknowledgement": null
+      },
+      "scope": "package",
+      "package_path": "references/final-review-layers.md",
+      "frozen_file_sha256": "0204ee133951e5ca0839312e8c60524d2edc529161e9b2846a314e1e7232e546",
+      "read_success_observed": true,
+      "offset": 0,
+      "limit": 2000
+    },
+    {
+      "sequence": 6,
+      "id": "call_2JBj280cjiaWvAa394V03Ukz",
+      "name": "Read",
+      "result": {
+        "observed": true,
+        "is_error_field": null,
+        "content_bytes": 3979,
+        "content_sha256": "8d4e6e148245dfe9c4781cace9d2982f7ea206eb9eb94cdc2cf677813b5fa3f8",
+        "skill_launch_acknowledgement": null
+      },
+      "scope": "package",
+      "package_path": "references/proofreading-checklist.md",
+      "frozen_file_sha256": "aa56802a0e984aadb1deed4603181fc85b237b8c534ae0973e3c9d9413d859d2",
+      "read_success_observed": true,
+      "offset": 0,
+      "limit": 2000
+    },
+    {
+      "sequence": 7,
+      "id": "call_BwqtaWOQ50KJ9BO77Zmmnose",
+      "name": "Read",
+      "result": {
+        "observed": true,
+        "is_error_field": null,
+        "content_bytes": 6499,
+        "content_sha256": "5ed8c7d7d7d7360b0048c28869e5c4330414d6ec69c886da105405d23b6a246f",
+        "skill_launch_acknowledgement": null
+      },
+      "scope": "package",
+      "package_path": "references/official-style.md",
+      "frozen_file_sha256": "82b97cc58bca9fce3f81c79ece4a5804d17a1869a5bbd3f6de191612440d505a",
+      "read_success_observed": true,
+      "offset": 0,
+      "limit": 2000
+    }
+  ],
+  "documents": [],
+  "helper_sha256": "452d3f5ac8df257fbd220d7585ce0aef3dd0475a76a51181de77e0f729f0a6ab",
+  "prompt_path": "prompts/window-staff.txt",
+  "omissions": [
+    "raw stream",
+    "runtime",
+    "provider state",
+    "original argv",
+    "absolute paths",
+    "shell arguments and stdout"
+  ],
+  "isolation_observed": {
+    "mcp_servers": [],
+    "hook_events_observed": 0,
+    "runtime_memory_files": 0,
+    "skill_catalog": [
+      "deep-research",
+      "official-writing-eval:chinese-official-writing",
+      "design-sync",
+      "update-config",
+      "verify",
+      "debug",
+      "code-review",
+      "simplify",
+      "batch",
+      "fewer-permission-prompts",
+      "loop",
+      "claude-api",
+      "run",
+      "run-skill-generator"
+    ],
+    "cli_version": "2.1.195",
+    "stream_sha256": "444c17f6c2b01db2a6fe23659db2bf6c3007103d6d48a557060f96a1c530c251",
+    "scope": "Read stayed within frozen package; any absent baseline leaf remained a failed read."
+  }
+}

@@ -1,0 +1,128 @@
+{
+  "arm": "candidate",
+  "provider": "minimax",
+  "model": "minimax-cn/MiniMax-M3",
+  "case": "youth-reflection",
+  "session": "92733550-67c2-4eb6-b315-6a05c1998e54",
+  "technical_valid": true,
+  "return_code": 0,
+  "failure": null,
+  "seconds": 30.47,
+  "client_tools": "Read,Skill",
+  "explicit_entry": true,
+  "frozen_unchanged": true,
+  "final_chars": 881,
+  "init_models": [
+    "minimax-cn/MiniMax-M3"
+  ],
+  "assistant_models": [
+    "minimax-cn/MiniMax-M3"
+  ],
+  "usage_models": [
+    "minimax-cn/MiniMax-M3"
+  ],
+  "result_count": 1,
+  "result_subtypes": [
+    "success"
+  ],
+  "result_errors": [
+    false
+  ],
+  "final_path": "runs/youth-reflection/minimax/candidate/final.txt",
+  "final_sha256": "98eb706fffa3e42b92056725a9a40223c2b7ed800670709b2805547278cbf63a",
+  "source_final_sha256": "98eb706fffa3e42b92056725a9a40223c2b7ed800670709b2805547278cbf63a",
+  "source_final_logical_sha256": "8a0f6a0400b756e40864387197769590bcb03cde212efce4539bd985526446bb",
+  "final_redaction": {
+    "replacement_count": 0,
+    "replacement": "<isolated-work>",
+    "scope": "Only this lane approved runtime/work prefix; slash variants accepted.",
+    "source_unchanged": true,
+    "archive_is_original_bytes": true
+  },
+  "hook_enabled": false,
+  "timeout_seconds": 1200,
+  "automatic_retries": 0,
+  "effort": "max",
+  "invalid_json_line_count": 0,
+  "reads": [
+    "SKILL.md",
+    "references/genre-playbook-speech.md"
+  ],
+  "routing": {
+    "reference_paths": [
+      "references/genre-playbook-speech.md"
+    ],
+    "references_distinct_pages": 1,
+    "references_distinct_file_bytes": 3774,
+    "skill_direct_read_file_bytes": 29853
+  },
+  "tool_evidence": [
+    {
+      "sequence": 1,
+      "id": "call_01a0802439157bb284df6f10",
+      "name": "Read",
+      "result": {
+        "observed": true,
+        "is_error_field": null,
+        "content_bytes": 30622,
+        "content_sha256": "1fc1b830d2634cc0f27543e92ce907cf1d7e11efd6148bab2bf5b5cb382265df",
+        "skill_launch_acknowledgement": null
+      },
+      "scope": "package",
+      "package_path": "SKILL.md",
+      "frozen_file_sha256": "d69a9d9c8ee903415d2ccc276fe462eb32695f1c7dcab68962933b20a4d1e7eb",
+      "read_success_observed": true
+    },
+    {
+      "sequence": 2,
+      "id": "call_01a08024428774b0838a1ae4",
+      "name": "Read",
+      "result": {
+        "observed": true,
+        "is_error_field": null,
+        "content_bytes": 3906,
+        "content_sha256": "48fef337f16a436709f8460b9a47d14621f162aedf4f0d8fda1a6bcbec3556af",
+        "skill_launch_acknowledgement": null
+      },
+      "scope": "package",
+      "package_path": "references/genre-playbook-speech.md",
+      "frozen_file_sha256": "79ca8a230cbabff235c9051cf939867c766e7d7fb2cf291d65ea233c0e892472",
+      "read_success_observed": true
+    }
+  ],
+  "documents": [],
+  "helper_sha256": "452d3f5ac8df257fbd220d7585ce0aef3dd0475a76a51181de77e0f729f0a6ab",
+  "prompt_path": "prompts/youth-reflection.txt",
+  "omissions": [
+    "raw stream",
+    "runtime",
+    "provider state",
+    "original argv",
+    "absolute paths",
+    "shell arguments and stdout"
+  ],
+  "isolation_observed": {
+    "mcp_servers": [],
+    "hook_events_observed": 0,
+    "runtime_memory_files": 0,
+    "skill_catalog": [
+      "deep-research",
+      "official-writing-eval:chinese-official-writing",
+      "design-sync",
+      "update-config",
+      "verify",
+      "debug",
+      "code-review",
+      "simplify",
+      "batch",
+      "fewer-permission-prompts",
+      "loop",
+      "claude-api",
+      "run",
+      "run-skill-generator"
+    ],
+    "cli_version": "2.1.195",
+    "stream_sha256": "26ad47845028b335caa7b1a9b7b8d481ce7ee28d11ea24dc17226ef7102ad083",
+    "scope": "Read stayed within frozen package; any absent baseline leaf remained a failed read."
+  }
+}

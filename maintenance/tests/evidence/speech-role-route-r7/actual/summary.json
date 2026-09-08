@@ -1,0 +1,177 @@
+{
+  "round": "route-r7",
+  "expected": 6,
+  "attempts_completed": 6,
+  "technical_valid": 6,
+  "complete": true,
+  "runs": [
+    {
+      "case": "role-rewrite",
+      "provider": "qwen",
+      "arm": "candidate",
+      "technical_valid": true,
+      "receipt": "runs/role-rewrite/qwen/candidate/receipt.json",
+      "artifacts": 0,
+      "written_documents": 0,
+      "missing_work_files": 0,
+      "skill_read": false,
+      "skill_launch_success_observed": true,
+      "routing": {
+        "reference_paths": [
+          "references/anti-ai-patterns.md",
+          "references/genre-playbook-speech-drafting.md",
+          "references/genre-playbooks.md",
+          "references/information-selection.md",
+          "references/official-style.md"
+        ],
+        "references_distinct_pages": 5,
+        "references_distinct_file_bytes": 33242,
+        "skill_direct_read_file_bytes": 0
+      },
+      "tool_error_count": 0,
+      "failed_read_count": 0,
+      "unresolved_failed_read_count": 0,
+      "final_path_redactions": 0,
+      "argument_chains_read": false,
+      "ai_compute_read": false
+    },
+    {
+      "case": "role-rewrite",
+      "provider": "minimax",
+      "arm": "candidate",
+      "technical_valid": true,
+      "receipt": "runs/role-rewrite/minimax/candidate/receipt.json",
+      "artifacts": 0,
+      "written_documents": 0,
+      "missing_work_files": 0,
+      "skill_read": true,
+      "skill_launch_success_observed": false,
+      "routing": {
+        "reference_paths": [
+          "references/genre-playbook-speech-drafting.md",
+          "references/information-selection.md"
+        ],
+        "references_distinct_pages": 2,
+        "references_distinct_file_bytes": 7573,
+        "skill_direct_read_file_bytes": 30063
+      },
+      "tool_error_count": 0,
+      "failed_read_count": 0,
+      "unresolved_failed_read_count": 0,
+      "final_path_redactions": 0,
+      "argument_chains_read": false,
+      "ai_compute_read": false
+    },
+    {
+      "case": "leader-exchange-rewrite",
+      "provider": "qwen",
+      "arm": "candidate",
+      "technical_valid": true,
+      "receipt": "runs/leader-exchange-rewrite/qwen/candidate/receipt.json",
+      "artifacts": 0,
+      "written_documents": 0,
+      "missing_work_files": 0,
+      "skill_read": false,
+      "skill_launch_success_observed": true,
+      "routing": {
+        "reference_paths": [
+          "references/genre-playbook-speech-drafting.md",
+          "references/genre-playbooks.md",
+          "references/information-selection.md"
+        ],
+        "references_distinct_pages": 3,
+        "references_distinct_file_bytes": 13203,
+        "skill_direct_read_file_bytes": 0
+      },
+      "tool_error_count": 0,
+      "failed_read_count": 0,
+      "unresolved_failed_read_count": 0,
+      "final_path_redactions": 0,
+      "argument_chains_read": false,
+      "ai_compute_read": false
+    },
+    {
+      "case": "leader-exchange-rewrite",
+      "provider": "minimax",
+      "arm": "candidate",
+      "technical_valid": true,
+      "receipt": "runs/leader-exchange-rewrite/minimax/candidate/receipt.json",
+      "artifacts": 0,
+      "written_documents": 0,
+      "missing_work_files": 0,
+      "skill_read": true,
+      "skill_launch_success_observed": false,
+      "routing": {
+        "reference_paths": [
+          "references/genre-playbook-speech-drafting.md",
+          "references/information-selection.md"
+        ],
+        "references_distinct_pages": 2,
+        "references_distinct_file_bytes": 7573,
+        "skill_direct_read_file_bytes": 30063
+      },
+      "tool_error_count": 0,
+      "failed_read_count": 0,
+      "unresolved_failed_read_count": 0,
+      "final_path_redactions": 0,
+      "argument_chains_read": false,
+      "ai_compute_read": false
+    },
+    {
+      "case": "window-staff",
+      "provider": "qwen",
+      "arm": "candidate",
+      "technical_valid": true,
+      "receipt": "runs/window-staff/qwen/candidate/receipt.json",
+      "artifacts": 0,
+      "written_documents": 0,
+      "missing_work_files": 0,
+      "skill_read": true,
+      "skill_launch_success_observed": false,
+      "routing": {
+        "reference_paths": [
+          "references/genre-playbook-speech-drafting.md",
+          "references/information-selection.md"
+        ],
+        "references_distinct_pages": 2,
+        "references_distinct_file_bytes": 7573,
+        "skill_direct_read_file_bytes": 30063
+      },
+      "tool_error_count": 0,
+      "failed_read_count": 0,
+      "unresolved_failed_read_count": 0,
+      "final_path_redactions": 0,
+      "argument_chains_read": false,
+      "ai_compute_read": false
+    },
+    {
+      "case": "window-staff",
+      "provider": "minimax",
+      "arm": "candidate",
+      "technical_valid": true,
+      "receipt": "runs/window-staff/minimax/candidate/receipt.json",
+      "artifacts": 0,
+      "written_documents": 0,
+      "missing_work_files": 0,
+      "skill_read": true,
+      "skill_launch_success_observed": false,
+      "routing": {
+        "reference_paths": [
+          "references/genre-playbook-speech-drafting.md",
+          "references/information-selection.md",
+          "references/short-draft-naturalness.md"
+        ],
+        "references_distinct_pages": 3,
+        "references_distinct_file_bytes": 8907,
+        "skill_direct_read_file_bytes": 30063
+      },
+      "tool_error_count": 0,
+      "failed_read_count": 0,
+      "unresolved_failed_read_count": 0,
+      "final_path_redactions": 0,
+      "argument_chains_read": false,
+      "ai_compute_read": false
+    }
+  ],
+  "quality": "Read manuscripts; technical validity is not writing quality."
+}

@@ -8,7 +8,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[4]
 
 def main(round_name):
-    evidence = ROOT / 'maintenance/tests/evidence' / ('speech-role-leaf-' + round_name)
+    evidence = ROOT / 'maintenance/tests/evidence' / ({'boundary-r4':'speech-role-boundary-r4','route-r6':'speech-role-route-r6','route-r7':'speech-role-route-r7','final-r6':'speech-role-r6-final-smoke','sol-r8':'speech-sol-check-r8','minimal-r9':'speech-viewpoint-minimal-r9'}.get(round_name, 'speech-role-leaf-' + round_name))
     spec = importlib.util.spec_from_file_location('speech_run', evidence / 'run_real.py')
     run = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(run)
@@ -17,7 +17,7 @@ def main(round_name):
     extractor.DEST.mkdir(exist_ok=True)
     extractor.put('.gitattributes', b'* -text -whitespace\n')
     rows = []
-    arms = ('baseline', 'candidate') if round_name == 'r1' else ('candidate',)
+    arms = ('baseline', 'candidate') if round_name in ('r1','boundary-r4','sol-r8') else ('candidate',)
     for case in run.CASES:
         for provider in run.MODELS:
             for arm in arms:
@@ -57,4 +57,4 @@ def main(round_name):
     print(json.dumps({'round':round_name,'completed':len(rows),'expected':expected,'technical_valid':sum(x['technical_valid'] for x in rows)}))
 
 if __name__ == '__main__':
-    parser=argparse.ArgumentParser();parser.add_argument('round',choices=['r1','r2']);main(parser.parse_args().round)
+    parser=argparse.ArgumentParser();parser.add_argument('round',choices=['r1','r2','r3','r4','r5','r8','boundary-r4','route-r6','route-r7','final-r6','sol-r8','minimal-r9']);main(parser.parse_args().round)

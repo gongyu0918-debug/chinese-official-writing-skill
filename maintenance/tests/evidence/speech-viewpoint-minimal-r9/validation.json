@@ -1,0 +1,189 @@
+{
+  "baseline_commit": "c7778f2627d025bc34f106cb8cb74bcf03fb011b",
+  "rounds": [
+    {
+      "round": "speech-role-leaf-r1",
+      "calls": 16,
+      "technical_valid": 16
+    },
+    {
+      "round": "speech-role-leaf-r2",
+      "calls": 8,
+      "technical_valid": 8
+    },
+    {
+      "round": "speech-role-leaf-r3",
+      "calls": 8,
+      "technical_valid": 8
+    },
+    {
+      "round": "speech-role-leaf-r4",
+      "calls": 8,
+      "technical_valid": 8
+    },
+    {
+      "round": "speech-role-boundary-r4",
+      "calls": 8,
+      "technical_valid": 7
+    },
+    {
+      "round": "speech-role-leaf-r5",
+      "calls": 12,
+      "technical_valid": 12
+    },
+    {
+      "round": "speech-role-route-r6",
+      "calls": 4,
+      "technical_valid": 4
+    },
+    {
+      "round": "speech-role-route-r7",
+      "calls": 6,
+      "technical_valid": 6
+    },
+    {
+      "round": "speech-role-r6-final-smoke",
+      "calls": 4,
+      "technical_valid": 4
+    },
+    {
+      "round": "speech-role-leaf-r8",
+      "calls": 4,
+      "technical_valid": 4
+    },
+    {
+      "round": "speech-sol-check-r8",
+      "calls": 4,
+      "technical_valid": 4
+    },
+    {
+      "round": "speech-viewpoint-minimal-r9",
+      "calls": 6,
+      "technical_valid": 6
+    }
+  ],
+  "real_calls_total": 88,
+  "new_calls_this_turn": 64,
+  "technical_valid_total": 87,
+  "unique_sessions": 88,
+  "final_original_bytes_and_sha_verified": 88,
+  "matching_native_skill_body_expansions": 58,
+  "successful_read_file_hashes_verified": 299,
+  "failed_reads_retained": 13,
+  "r9_frozen_entry_matches_final": true,
+  "product_diff_files": [
+    "chinese-official-writing/SKILL.md",
+    "packages/agent-skills/skills/chinese-official-writing/SKILL.md",
+    "packages/hermes/skills/chinese-official-writing/SKILL.md",
+    "packages/openclaw/skills/chinese_official_writing/SKILL.md",
+    "packages/qwen-code/skills/chinese-official-writing/SKILL.md",
+    "packages/qwenwork/skills/chinese-official-writing/SKILL.md"
+  ],
+  "canonical_entry_delta_bytes": 33,
+  "new_reference_files": 0,
+  "quick_validate": [
+    {
+      "path": "chinese-official-writing",
+      "result": "Skill is valid!"
+    },
+    {
+      "path": "packages/agent-skills/skills/chinese-official-writing",
+      "result": "Skill is valid!"
+    },
+    {
+      "path": "packages/hermes/skills/chinese-official-writing",
+      "result": "Skill is valid!"
+    },
+    {
+      "path": "packages/qwen-code/skills/chinese-official-writing",
+      "result": "Skill is valid!"
+    },
+    {
+      "path": "packages/qwenwork/skills/chinese-official-writing",
+      "result": "Skill is valid!"
+    }
+  ],
+  "quality_scope": "R9 six manuscripts preserve personal, director, and unit representative roles. Full manuscript quality did not pass. No Hook or 5-7 revision test.",
+  "relative_links_checked": 279,
+  "markdown_documents_checked": 36,
+  "secret_pattern_scan": "No matching credential patterns or raw runtime files in changed files; not a proof of arbitrary secret absence.",
+  "mirror_references": [
+    {
+      "skill": "packages/agent-skills/skills/chinese-official-writing/SKILL.md",
+      "reference_files_matched": 35
+    },
+    {
+      "skill": "packages/qwen-code/skills/chinese-official-writing/SKILL.md",
+      "reference_files_matched": 35
+    },
+    {
+      "skill": "packages/qwenwork/skills/chinese-official-writing/SKILL.md",
+      "reference_files_matched": 35
+    },
+    {
+      "skill": "packages/hermes/skills/chinese-official-writing/SKILL.md",
+      "reference_files_matched": 35
+    },
+    {
+      "skill": "packages/openclaw/skills/chinese_official_writing/SKILL.md",
+      "reference_files_matched": 35
+    }
+  ],
+  "manual_mirror_audit_initial": "First ad hoc audit accidentally included the separate red-skillhub frozen package; corrected to the five sync_adapters TARGETS. No red-skillhub file modified.",
+  "tests": [
+    {
+      "command": "py -3.13 -B -X utf8 -m unittest discover -s maintenance/tests -p test_*.py",
+      "result": "817 run: 815 passed, 1 failed, 1 error; 125.061s.",
+      "failure": "Old AGENTS wording assertion; independently reproduced on unchanged main. Updated assertion to current entry and linked development requirements.",
+      "error": "Package builder read unstaged deleted experimental speech leaf from Git index. Staged the approved removals; no builder behavior change."
+    },
+    {
+      "command": "py -3.13 -B -X utf8 -m unittest maintenance.tests.test_agents_control_plane maintenance.tests.test_skill_boundary maintenance.tests.test_skillhub_package_builder",
+      "result": "After fixes: 86/86 PASS; 0.287s."
+    }
+  ],
+  "test_conclusion": "All observed failures resolved in focused rerun. Full 817 suite was run once, not rerun after maintenance assertion/index fixes.",
+  "not_run": [
+    "Hook lifecycle",
+    "5-7 revision conversation",
+    "publishing",
+    "second full-suite run"
+  ],
+  "v1.6.30_tag_commit": "d2f97ba05e592712ec4b73decceefb3fd29d7c5e",
+  "preexisting_main_product_diff_from_v1.6.30": [
+    "chinese-official-writing/SKILL.md",
+    "chinese-official-writing/hooks/adapters/claude-code/manifest.json",
+    "chinese-official-writing/hooks/adapters/codebuddy/manifest.json",
+    "chinese-official-writing/hooks/adapters/codex/manifest.json",
+    "chinese-official-writing/hooks/adapters/deepseek-harness/package.json",
+    "chinese-official-writing/hooks/adapters/kimi-code/manifest.json",
+    "chinese-official-writing/hooks/adapters/qwen-code/manifest.json",
+    "chinese-official-writing/hooks/adapters/zcode/manifest.json",
+    "chinese-official-writing/references/genre-playbook-project-application.md",
+    "chinese-official-writing/references/information-selection.md",
+    "packages/agent-skills/skills/chinese-official-writing/SKILL.md",
+    "packages/agent-skills/skills/chinese-official-writing/references/genre-playbook-project-application.md",
+    "packages/agent-skills/skills/chinese-official-writing/references/information-selection.md",
+    "packages/hermes/skills/chinese-official-writing/SKILL.md",
+    "packages/hermes/skills/chinese-official-writing/references/genre-playbook-project-application.md",
+    "packages/hermes/skills/chinese-official-writing/references/information-selection.md",
+    "packages/openclaw/README.md",
+    "packages/openclaw/skills/chinese_official_writing/SKILL.md",
+    "packages/openclaw/skills/chinese_official_writing/references/genre-playbook-project-application.md",
+    "packages/openclaw/skills/chinese_official_writing/references/information-selection.md",
+    "packages/qwen-code/skills/chinese-official-writing/SKILL.md",
+    "packages/qwen-code/skills/chinese-official-writing/references/genre-playbook-project-application.md",
+    "packages/qwen-code/skills/chinese-official-writing/references/information-selection.md",
+    "packages/qwenwork/skills/chinese-official-writing/SKILL.md",
+    "packages/qwenwork/skills/chinese-official-writing/references/genre-playbook-project-application.md",
+    "packages/qwenwork/skills/chinese-official-writing/references/information-selection.md"
+  ],
+  "candidate_descends_from_main_baseline": true,
+  "r9_frozen_entry_comparison": {
+    "mode": "Normalize working-tree CRLF to LF; full content equal. Raw working-tree and frozen hashes differ only by newline encoding.",
+    "working_tree_raw_sha256": "0e1ff2a0280849dcf7a359a4018f560eb22c60440b32585f8aff23d754f79222",
+    "working_tree_lf_sha256": "da8aad64cd43d660ca6ff6df3272760e38a61626e2b01594ba4fccd604d9964e",
+    "frozen_sha256": "da8aad64cd43d660ca6ff6df3272760e38a61626e2b01594ba4fccd604d9964e"
+  },
+  "final_independent_review": "One subagent reviewed product/main diff, both maintenance test changes and result/validation. No product or merge blocker. Clarified frozen-entry comparison is LF-normalized equality, not raw working-tree byte equality."
+}

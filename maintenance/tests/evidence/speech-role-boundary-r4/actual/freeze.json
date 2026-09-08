@@ -1,0 +1,31 @@
+{
+  "baseline_commit": "c7778f2627d025bc34f106cb8cb74bcf03fb011b",
+  "candidate_base_commit": "c7778f2627d025bc34f106cb8cb74bcf03fb011b",
+  "overlay_paths": [
+    "SKILL.md",
+    "references/genre-playbook-speech.md"
+  ],
+  "models": {
+    "qwen": "alibaba-token-plan/qwen3.8-max",
+    "minimax": "minimax-cn/MiniMax-M3"
+  },
+  "cases": [
+    "unit-representative",
+    "leader-exchange-rewrite"
+  ],
+  "new_calls": 8,
+  "harness_commit": "7bde6c3e4bbd87a304d01d74be178673fe048f67",
+  "harness_source_hashes": {
+    "maintenance/tests/evidence/application-route-rewrite-r20/run_real.py": "bfbb39574c7a62df29da7d45ce26ad3623f79951ae5f497c0ba3410ee96fdb1b",
+    "maintenance/tests/evidence/application-rule-efficacy-r23/archive_actual.py": "7801f38b077ec2c6753666fcd7872e1dfa3dc6deb4fd64507422631e119bf873"
+  },
+  "prompt_hashes": {
+    "unit-representative": "eaac7e57538ed663748b6d51ecabf0cbfb8e378b75d5322e8b9df433a27cc720",
+    "leader-exchange-rewrite": "6ce6245797fc03b1d02cccf1ba05fb9ad09d2a6413cda5b2babf88b682b48cc1"
+  },
+  "preregister_sha256": "d1e0167610201065dd8f58ec68f46fc1296a98e67fe9652046014a59f96408ab",
+  "hook_enabled": false,
+  "automatic_retries": 0,
+  "timeout_seconds": 1200,
+  "effort": "max"
+}
