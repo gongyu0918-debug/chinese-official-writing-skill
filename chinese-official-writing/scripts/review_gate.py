@@ -11,6 +11,7 @@ from __future__ import annotations
 import argparse
 import base64
 import hashlib
+import importlib.util
 import json
 import os
 import re
@@ -359,12 +360,35 @@ SEMANTIC_CHECKS = (
     "genre_structure_and_usability_preserved",
 )
 GUIDED_SEMANTIC_CHECK = "guided_marker_scope_safe"
+SOURCE_SEMANTIC_CHECK = "source_fact_corrections_verified"
+
+
+def _source_fact_review():
+    name = "cow_gate_source_fact_review"
+    if name not in sys.modules:
+        root = Path(__file__).resolve().parents[1]
+        paths = (root / "hooks/core/source_fact_review.py", root / "hooks/source_fact_review.py")
+        path = next((item for item in paths if item.is_file()), paths[0])
+        spec = importlib.util.spec_from_file_location(name, path)
+        if spec is None or spec.loader is None:
+            raise GateInputError("source fact review module unavailable")
+        module = importlib.util.module_from_spec(spec)
+        sys.modules[name] = module
+        try:
+            spec.loader.exec_module(module)
+        except Exception:
+            sys.modules.pop(name, None)
+            raise
+    return sys.modules[name]
 
 
 def _semantic_checks_for_state(state: dict[str, Any]) -> tuple[str, ...]:
+    checks = SEMANTIC_CHECKS
     if state.get("guided_marker_sha256") is not None:
-        return (*SEMANTIC_CHECKS, GUIDED_SEMANTIC_CHECK)
-    return SEMANTIC_CHECKS
+        checks = (*checks, GUIDED_SEMANTIC_CHECK)
+    if state.get("source_relation_packet_sha256") is not None:
+        checks = (*checks, SOURCE_SEMANTIC_CHECK)
+    return checks
 
 
 @dataclass(frozen=True)
@@ -765,6 +789,10 @@ def _merge_exact_span_findings(
         combined["request_exact"] = bool(
             existing.get("request_exact") or finding.get("request_exact")
         )
+        if "source_relation" in finding:
+            combined["source_relation"] = finding["source_relation"]
+        elif "source_relation" in existing:
+            combined["source_relation"] = existing["source_relation"]
         merged[existing_index] = combined
     return merged
 
@@ -933,6 +961,19 @@ def locate_candidates(
     serialized_findings = _serialized_candidate_findings(
         _automatic_candidate_findings(request, draft, source)
     )
+    for source_finding in _source_fact_review().locate_candidates(request, source, draft):
+        enclosing = next((item for item in serialized_findings
+                          if item["span_start"] <= source_finding["span_start"]
+                          and item["span_end"] >= source_finding["span_end"]), None)
+        if enclosing is None:
+            serialized_findings.append(source_finding)
+        else:
+            # One sentence must not receive overlapping ordinary/source repairs.
+            # Preserve its ordinary labels and review the source issue in the
+            # same bounded operation and the same final verification packet.
+            enclosing["labels"] = sorted(set(enclosing["labels"]) | set(source_finding["labels"]))
+            enclosing["source_relation"] = source_finding["source_relation"]
+            enclosing["assessment_status"] = "pending"
     if guided_marker_sidecar is not None:
         serialized_findings.extend(
             _guided_candidate_findings(
@@ -1299,6 +1340,11 @@ def _finding_action_contract(
 ) -> tuple[list[str], str | None]:
     guided_marker = finding.get("guided_marker") is True
     request_delete = finding.get("request_delete") is True
+    if finding.get("source_relation") is not None and not guided_marker and not request_delete:
+        allowed = [DECISION_KEEP, DECISION_REWRITE]
+        if not any(_hard_anchor_counters(finding["target"])):
+            allowed.insert(1, DECISION_DELETE)
+        return allowed, "source_relation_verdict_required"
     if request_delete:
         delete_allowed, block_reason = _delete_contract(finding, draft)
         if delete_allowed:
@@ -1543,6 +1589,32 @@ def _verified_repair_envelope(
             return _candidate_d0("finding_budget_exceeded", draft)
         if len(repairs) != len(findings):
             return _candidate_d0("decision_packet_incomplete", draft)
+    source_findings = {item["finding_id"] for item in findings if item.get("source_relation")}
+    if source_findings:
+        assessments = repair_packet.get("source_assessments")
+        if not isinstance(assessments, list) or len(assessments) != len(source_findings):
+            return _candidate_d0("source_assessments_missing", draft)
+        assessed = {}
+        for item in assessments:
+            if (
+                not isinstance(item, dict)
+                or set(item) != {"finding_id", "status", "reason"}
+                or item.get("finding_id") not in source_findings
+                or item["finding_id"] in assessed
+                or item.get("status") not in {"error", "not_error", "unknown"}
+                or not isinstance(item.get("reason"), str)
+                or not item["reason"].strip()
+            ):
+                return _candidate_d0("source_assessment_invalid", draft)
+            assessed[item["finding_id"]] = item["status"]
+        for repair in repairs:
+            if (
+                isinstance(repair, dict)
+                and repair.get("finding_id") in assessed
+                and repair.get("replacement") != repair.get("target")
+                and assessed[repair["finding_id"]] != "error"
+            ):
+                return _candidate_d0("source_unknown_or_supported_text_changed", draft)
     return repairs, repair_mode
 
 
@@ -1646,6 +1718,7 @@ def _candidate_repair_action(
             finding.get("source_exact") is True
             and not guided_marker
             and finding.get("request_delete") is not True
+            and finding.get("source_relation") is None
         ):
             return _candidate_d0("source_explicit_sentence_is_read_only", draft)
         effective_mode = (
@@ -1715,6 +1788,8 @@ def _candidate_replacement_reason(
     if replacement == "":
         if effective_mode != REPAIR_MODE_EXTRACT:
             return "sentence_rewrite_must_be_nonempty"
+        if finding.get("source_relation") is not None:
+            return "source_fact_delete_hard_anchor" if any(_hard_anchor_counters(target)) else None
         if not _safe_full_deletion(finding, target):
             return "full_deletion_not_proven_safe"
     elif effective_mode == REPAIR_MODE_EXTRACT:
@@ -1722,6 +1797,11 @@ def _candidate_replacement_reason(
             return "replacement_not_safe_prefix"
     elif OPEN_CONDITION_RE.search(replacement.strip()):
         return "sentence_rewrite_opens_condition"
+    if finding.get("source_relation") is not None:
+        # Only stage this local proposal. Source correction requires its own
+        # relation verdict before selection; D0 is not factual authority here.
+        # The unchanged numeric/quote counters and document invariants still run.
+        return None
     if _has_unlicensed_settled_status(replacement, source) or (
         effective_mode == REPAIR_MODE_REWRITE_SENTENCE
         and _turns_unresolved_into_settled(target, replacement, source)
@@ -2205,6 +2285,19 @@ def _fallback_d0_claim(txn: Path, state: dict[str, Any]) -> dict[str, Any]:
     }
 
 
+def _requires_source_verification(
+    state: dict[str, Any], verdict: dict[str, Any] | None
+) -> bool:
+    """A receipt-bound verdict retains source requirements after state loss."""
+    return (
+        state.get("source_relation_packet_sha256") is not None
+        or state.get("source_relation_ids") is not None
+        or isinstance(verdict, dict) and any(
+            key in verdict for key in ("source_relation_packet_sha256", "source_relations")
+        )
+    )
+
+
 def _valid_selection_claim(
     txn: Path, state: dict[str, Any], claim: dict[str, Any] | None
 ) -> dict[str, Any] | None:
@@ -2258,6 +2351,14 @@ def _valid_selection_claim(
     if recovering:
         verdict_state["d1_sha256"] = expected_hash
         verdict_state["semantic_pass_receipt_sha256"] = expected_receipt
+    if _requires_source_verification(verdict_state, verdict):
+        try:
+            verdict_state = _bound_verification_state(
+                txn, verdict_state, candidate=output_text,
+                recovering=recovering, accepted_verdict=verdict,
+            )
+        except (GateInputError, OSError, UnicodeError, ValueError, TypeError, KeyError):
+            return None
     passed, _ = _semantic_verdict_result(verdict_state, verdict)
     return claim if passed else None
 
@@ -2276,6 +2377,9 @@ def _read_selection_claim(txn: Path, state: dict[str, Any]) -> dict[str, Any] | 
             return valid
     recovery_state = _selection_state_from_backup(txn)
     if recovery_state is not None:
+        for key in ("source_relation_packet_sha256", "source_relation_ids"):
+            if state.get(key) is not None:
+                recovery_state[key] = state[key]
         for path in paths:
             valid = _valid_selection_claim(txn, recovery_state, read_json(path))
             if valid is not None:
@@ -2407,9 +2511,20 @@ def _reconcile_selection_claim(
     if claim.get("selected") == "D1" and candidate is not None:
         recovered = dict(state)
         recovered["d1_sha256"] = claim.get("output_sha256")
-        recovered["semantic_pass_receipt_sha256"] = claim.get(
-            "semantic_receipt_sha256"
-        )
+        recovered["semantic_pass_receipt_sha256"] = claim.get("semantic_receipt_sha256")
+        verdict = read_json(txn / VERDICT_FILE)
+        if _requires_source_verification(recovered, verdict):
+            binding_state = _selection_state_from_backup(txn)
+            if binding_state is None:
+                raise GateInputError("selected D1 recovery inputs are unavailable")
+            for key in ("d1_sha256", "semantic_pass_receipt_sha256",
+                        "source_relation_packet_sha256", "source_relation_ids"):
+                if recovered.get(key) is not None:
+                    binding_state[key] = recovered[key]
+            recovered.update(_bound_verification_state(
+                txn, binding_state, candidate=candidate, recovering=True,
+                accepted_verdict=verdict,
+            ))
         return _terminalize(
             txn, recovered, "D1", "selection_claim_recovered", candidate
         )
@@ -2902,7 +3017,7 @@ def _external_text_file(txn: Path, prefix: str, text: str) -> Iterator[Path]:
 def _build_verification_packet(
     txn: Path, state: dict[str, Any], repair_sha256: str
 ) -> dict[str, Any]:
-    return {
+    packet = {
         "schema_version": SEMANTIC_VERDICT_SCHEMA_VERSION,
         "run_id": state.get("run_id"),
         "request_sha256": state.get("request_sha256"),
@@ -2923,11 +3038,128 @@ def _build_verification_packet(
         },
         "required_checks": list(_semantic_checks_for_state(state)),
     }
+    request, source, draft = _load_snapshots(txn, state)
+    detection = read_json(txn / DETECTION_FILE) or {}
+    repair = read_json(txn / REPAIR_FILE) or {}
+    if any(item.get("source_relation") for item in detection.get("findings", [])):
+        relation = _source_fact_review().build_relation_packet(
+            request, source, draft, read_text(txn / D1_FILE),
+            detection["findings"], repair.get("repairs", []),
+        )
+        if relation.get("findings"):
+            packet["source_relations"] = relation
+            state["source_relation_packet_sha256"] = relation["packet_sha256"]
+            state["source_relation_ids"] = [item["finding_id"] for item in relation["findings"]]
+            packet["required_checks"] = list(_semantic_checks_for_state(state))
+    return packet
+
+
+def _bound_verification_state(
+    txn: Path,
+    state: dict[str, Any],
+    *,
+    candidate: str | None = None,
+    recovering: bool = False,
+    accepted_verdict: dict[str, Any] | None = None,
+) -> dict[str, Any]:
+    """Derive mandatory source checks from the bound proposal, never absent state keys.
+
+    Normal verification requires the frozen outer packet hash. Recovery instead
+    has a receipt-checked verdict and selected bytes; reconstructing the relation
+    packet binds those bytes to the original inputs and exact accepted repairs.
+    """
+    packet_text = read_text(txn / VERIFICATION_PACKET_FILE)
+    packet_hash = sha256_text(packet_text)
+    expected_hash = state.get("verification_packet_sha256")
+    if expected_hash is None:
+        if not recovering:
+            raise GateInputError("verification packet binding is missing")
+    elif expected_hash != packet_hash:
+        raise GateInputError("verification packet binding mismatch")
+    packet = json.loads(packet_text)
+    if not isinstance(packet, dict) or packet.get("schema_version") != SEMANTIC_VERDICT_SCHEMA_VERSION:
+        raise GateInputError("verification packet schema is invalid")
+    if packet.get("run_id") != state.get("run_id"):
+        raise GateInputError("verification packet run mismatch")
+
+    request, source, draft = _load_snapshots(txn, state)
+    if candidate is None:
+        candidate = read_text(txn / D1_FILE)
+    if not candidate.strip():
+        raise GateInputError("verification candidate is empty")
+    bound = dict(state)
+    for packet_key, state_key, text in (
+        ("request_sha256", "request_sha256", request),
+        ("source_sha256", "source_sha256", source),
+        ("draft_sha256", "d0_sha256", draft),
+        ("candidate_sha256", "d1_sha256", candidate),
+    ):
+        digest = sha256_text(text)
+        if packet.get(packet_key) != digest or bound.get(state_key) != digest:
+            raise GateInputError("verification packet input binding mismatch")
+    if packet.get("guided_marker_sha256") != bound.get("guided_marker_sha256"):
+        raise GateInputError("verification packet guided marker mismatch")
+
+    repair_text = read_text(txn / REPAIR_FILE)
+    if sha256_text(repair_text) != packet.get("repair_sha256"):
+        raise GateInputError("verification repair binding mismatch")
+    repair = json.loads(repair_text)
+    detection = read_json(txn / DETECTION_FILE)
+    findings = _verified_candidate_findings(
+        request, source, draft, str(bound.get("run_id")), detection,
+        _load_guided_marker_sidecar(txn, bound),
+    )
+    if isinstance(findings, CandidateResult):
+        raise GateInputError("verification detection binding mismatch")
+    envelope = _verified_repair_envelope(
+        request, source, draft, str(bound.get("run_id")), detection, findings, repair,
+    )
+    if isinstance(envelope, CandidateResult):
+        raise GateInputError("verification repair envelope is invalid")
+    relation = _source_fact_review().build_relation_packet(
+        request, source, draft, candidate, findings, repair["repairs"],
+    )
+    if relation["findings"]:
+        if packet.get("source_relations") != relation:
+            raise GateInputError("verification source relation binding mismatch")
+        identities = [item["finding_id"] for item in relation["findings"]]
+        if (any(not isinstance(item, str) or not item for item in identities)
+                or len(set(identities)) != len(identities)):
+            raise GateInputError("verification source identities are invalid")
+        for key, value in (
+            ("source_relation_packet_sha256", relation["packet_sha256"]),
+            ("source_relation_ids", identities),
+        ):
+            if bound.get(key) is not None and bound[key] != value:
+                raise GateInputError("verification source state binding mismatch")
+            bound[key] = value
+    else:
+        if ("source_relations" in packet
+                or bound.get("source_relation_packet_sha256") is not None
+                or bound.get("source_relation_ids") is not None):
+            raise GateInputError("unexpected source verification binding")
+    if packet.get("required_checks") != list(_semantic_checks_for_state(bound)):
+        raise GateInputError("verification required checks mismatch")
+    bound["verification_packet_sha256"] = packet_hash
+    if recovering:
+        passed, _ = _semantic_verdict_result(bound, accepted_verdict)
+        if not passed:
+            raise GateInputError("recovered verification receipt is invalid")
+    return bound
 
 
 def _semantic_verdict_result(
     state: dict[str, Any], verdict: dict[str, Any] | None
 ) -> tuple[bool, str]:
+    source_hash = state.get("source_relation_packet_sha256")
+    source_ids = state.get("source_relation_ids")
+    if source_hash is not None:
+        if (not isinstance(source_ids, list) or not source_ids
+                or any(not isinstance(item, str) or not item for item in source_ids)
+                or len(set(source_ids)) != len(source_ids)):
+            return False, "source_relation_binding_incomplete"
+    elif source_ids is not None:
+        return False, "source_relation_binding_incomplete"
     if not isinstance(verdict, dict):
         return False, "semantic_verdict_missing_or_invalid"
     expected_keys = {
@@ -2942,6 +3174,8 @@ def _semantic_verdict_result(
     }
     if state.get("guided_marker_sha256") is not None:
         expected_keys.add("guided_marker_sha256")
+    if state.get("source_relation_packet_sha256") is not None:
+        expected_keys.update({"source_relation_packet_sha256", "source_relations"})
     if set(verdict) != expected_keys:
         return False, "semantic_verdict_schema_mismatch"
     if verdict.get("schema_version") != SEMANTIC_VERDICT_SCHEMA_VERSION:
@@ -2959,6 +3193,32 @@ def _semantic_verdict_result(
         "guided_marker_sha256"
     ) != state.get("guided_marker_sha256"):
         return False, "semantic_verdict_guided_marker_hash_mismatch"
+    if state.get("source_relation_packet_sha256") is not None:
+        if verdict.get("source_relation_packet_sha256") != state["source_relation_packet_sha256"]:
+            return False, "source_relation_hash_mismatch"
+        items = verdict.get("source_relations")
+        ids = state.get("source_relation_ids", [])
+        if not isinstance(items, list) or len(items) != len(ids):
+            return False, "source_relation_verdict_missing"
+        seen = set()
+        for item in items:
+            if (
+                not isinstance(item, dict)
+                or set(item) != {"finding_id", "d0_issue_status", "d0_issue_resolved", "source_relation_supported", "other_facts_preserved", "reason"}
+                or item.get("finding_id") not in ids
+                or item["finding_id"] in seen
+                or not isinstance(item.get("reason"), str)
+                or not item["reason"].strip()
+            ):
+                return False, "source_relation_verdict_invalid"
+            seen.add(item["finding_id"])
+            if (
+                item.get("d0_issue_status") != "error"
+                or item.get("d0_issue_resolved") is not True
+                or item.get("source_relation_supported") is not True
+                or item.get("other_facts_preserved") is not True
+            ):
+                return False, "source_relation_unverified_or_unresolved"
     checks = verdict.get("checks")
     required_checks = _semantic_checks_for_state(state)
     if not isinstance(checks, dict) or set(checks) != set(required_checks):
@@ -3084,9 +3344,7 @@ def finalize_transaction(txn: Path, verdict_path: Path | None) -> dict[str, Any]
             candidate = read_text(txn / D1_FILE)
             if not candidate.strip() or sha256_text(candidate) != state.get("d1_sha256"):
                 return _terminalize(txn, state, "D0", "candidate_snapshot_corrupt")
-            verification_packet = read_text(txn / VERIFICATION_PACKET_FILE)
-            if sha256_text(verification_packet) != state.get("verification_packet_sha256"):
-                return _terminalize(txn, state, "D0", "verification_packet_corrupt")
+            state = _bound_verification_state(txn, state, candidate=candidate)
             verdict = read_json(verdict_path)
             if verdict is not None:
                 atomic_write_json(txn / VERDICT_FILE, verdict)
@@ -3100,6 +3358,95 @@ def finalize_transaction(txn: Path, verdict_path: Path | None) -> dict[str, Any]
             return _terminalize(txn, state, "D1", reason, candidate)
         except Exception:
             return _terminalize(txn, state, "D0", "semantic_verification_failed")
+
+
+def source_fact_report(txn: Path, observed_output: str | None = None) -> dict[str, Any]:
+    """Read shared HK-002b evidence before host redaction; never grade a whole draft.
+
+    observed_output must be the output actually observed by the caller, not a
+    planned candidate. Without it, final delivery and delivered resolution are
+    unknown, even when a candidate passed review and was selected.
+    """
+    state = _load_state(txn) or _selection_state_from_backup(txn)
+    if not state:
+        raise GateInputError("transaction state is missing")
+    request, source, draft = _load_snapshots(txn, state)
+    detection = read_json(txn / DETECTION_FILE) or {}
+    expected = locate_candidates(request, draft, source, _load_guided_marker_sidecar(txn, state))
+    expected["run_id"] = state["run_id"]
+    if detection != expected:
+        raise GateInputError("source report detection binding mismatch")
+    repair = read_json(txn / REPAIR_FILE) or {}
+    assessment_rows = repair.get("source_assessments")
+    assessments = {row["finding_id"]: row for row in
+                   (assessment_rows if isinstance(assessment_rows, list) else [])
+                   if isinstance(row, dict) and isinstance(row.get("finding_id"), str)
+                   and isinstance(row.get("status"), str)
+                   and row["status"] in {"error", "not_error", "unknown"}
+                   and isinstance(row.get("reason"), str)}
+    verdict = read_json(txn / VERDICT_FILE)
+    claim = _read_selection_claim(txn, state)
+    validated, verdict_reason = False, "semantic_verdict_missing_or_invalid"
+    if verdict is not None:
+        try:
+            candidate = None
+            if claim and claim.get("selected") == "D1":
+                state = dict(state)
+                state["d1_sha256"] = claim["output_sha256"]
+                state["semantic_pass_receipt_sha256"] = claim["semantic_receipt_sha256"]
+                candidate = _decode_snapshot(claim["output_b64"])
+            if (not claim or claim.get("selected") != "D1"
+                    or _requires_source_verification(state, verdict)):
+                state = _bound_verification_state(
+                    txn, state, candidate=candidate,
+                    recovering=state.get(SELECTION_RECOVERY_MARKER) is True,
+                    accepted_verdict=verdict,
+                )
+            validated, verdict_reason = _semantic_verdict_result(state, verdict)
+        except (GateInputError, OSError, UnicodeError, ValueError, TypeError, KeyError):
+            verdict_reason = "verification_binding_invalid"
+    selected = claim.get("selected") if claim else None
+    output_hash = claim.get("output_sha256") if claim else None
+    observed_hash = sha256_text(observed_output) if observed_output is not None else None
+    delivered = None if observed_output is None else bool(claim and observed_hash == output_hash)
+    decision_rows = (verdict or {}).get("source_relations")
+    decisions = {row["finding_id"]: row for row in
+                 (decision_rows if isinstance(decision_rows, list) else [])
+                 if isinstance(row, dict) and isinstance(row.get("finding_id"), str)}
+    items = []
+    for finding in detection.get("findings", []):
+        if not finding.get("source_relation"):
+            continue
+        identity = finding["finding_id"]
+        assessment = assessments.get(identity, {})
+        decision = decisions.get(identity, {})
+        candidate_resolves = decision.get("d0_issue_resolved") if validated else None
+        delivered_resolves = (candidate_resolves is True and selected == "D1") if delivered is True else None
+        items.append({
+            "finding_id": identity, "draft_quote": finding["target"],
+            "draft_span": [finding["span_start"], finding["span_end"]],
+            "source_relation": finding["source_relation"],
+            "assessment_status": assessment.get("status", "pending"),
+            "assessment_reason": assessment.get("reason"),
+            "verifier_issue_status": decision.get("d0_issue_status"),
+            "verifier_reason": decision.get("reason"),
+            "candidate_resolves_issue": candidate_resolves,
+            "delivered_issue_resolved": delivered_resolves,
+        })
+    return {
+        "schema_version": 1, "scope": ["state_mismatch", "unsupported_prerequisite"],
+        "request_sha256": sha256_text(request), "source_sha256": sha256_text(source),
+        "d0_sha256": sha256_text(draft), "d1_sha256": state.get("d1_sha256"),
+        "source_relation_packet_sha256": state.get("source_relation_packet_sha256"),
+        "findings": items,
+        "unknown_ids": [x["finding_id"] for x in items if x["assessment_status"] in {"unknown", "pending"}],
+        "unresolved_ids": [x["finding_id"] for x in items if x["assessment_status"] == "error" and x["delivered_issue_resolved"] is not True],
+        "candidate_verdict": "PASS" if validated else "NOT_RUN" if verdict is None else "FAIL_OR_INVALID",
+        "candidate_verdict_reason": verdict_reason,
+        "selected": selected, "selected_sha256": output_hash,
+        "observed_output_sha256": observed_hash, "delivery_verified": delivered,
+        "full_draft_fact_verified": False,
+    }
 
 
 def dispatch_transaction(
@@ -3398,6 +3745,17 @@ def _potential_semantic_pass(txn: Path) -> bool:
     if not isinstance(candidate_hash, str):
         return False
     recovery_state["d1_sha256"] = candidate_hash
+    known_state = _load_state(txn) or {}
+    for key in ("source_relation_packet_sha256", "source_relation_ids"):
+        if known_state.get(key) is not None:
+            recovery_state[key] = known_state[key]
+    if _requires_source_verification(recovery_state, verdict):
+        try:
+            recovery_state = _bound_verification_state(
+                txn, recovery_state, recovering=True, accepted_verdict=verdict,
+            )
+        except (GateInputError, OSError, UnicodeError, ValueError, TypeError, KeyError):
+            return False
     passed, _ = _semantic_verdict_result(recovery_state, verdict)
     return passed
 
