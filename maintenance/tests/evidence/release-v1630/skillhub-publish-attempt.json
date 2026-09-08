@@ -1,0 +1,18 @@
+{
+  "formal_attempt": 1,
+  "command": [
+    "C:/Users/admin/AppData/Local/Programs/Python/Python313/python.exe",
+    "-B",
+    "-X",
+    "utf8",
+    "C:/Users/admin/.skillhub/skills_store_cli.py",
+    "--skip-self-upgrade",
+    "publish",
+    "output/release-v1.6.30/skillhub",
+    "--version",
+    "1.6.30",
+    "--changelog",
+    "新增包内README与自然语言功能示例，补全能力说明并区分一般咨询、真实写稿和Hook专项问题。仅发布从1.6.29拆分的冻结基线；references、脚本与Hook核心不变，不含后续全局分析和立项申请规则。Hook仍需配置启用。",
+    "--json"
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "command": [
+    "C:/Program Files/GitHub CLI/gh.exe",
+    "release",
+    "create",
+    "v1.6.30",
+    "--repo",
+    "gongyu0918-debug/chinese-official-writing-skill",
+    "--verify-tag",
+    "--title",
+    "v1.6.30",
+    "--notes-file",
+    "maintenance/tests/evidence/release-v1630/release-notes.md"
+  ],
+  "exit_code": 0,
+  "seconds": 1.442,
+  "stdout": "https://github.com/gongyu0918-debug/chinese-official-writing-skill/releases/tag/v1.6.30\n",
+  "stderr": ""
+}

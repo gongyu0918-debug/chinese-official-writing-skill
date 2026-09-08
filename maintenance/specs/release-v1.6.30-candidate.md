@@ -9,3 +9,7 @@
 历史真实验证来自 `cf4836c3` 的 `maintenance/tests/evidence/skill-package-readme/`，最终FAQ补全见 `bb3eae9d` 的integration.md。共20次技术完成调用，不是20篇写稿质量通过；最终能力、Hook咨询和真实写稿分流有有限证据，保留早期漏读和稿件问题。FAQ随后两处文字补全及免费页面链接未重新跑模型。本轮不改变这些规则，迁移该证据并核对精确字节，重新执行候选minimal与包检查；不宣称新的宿主隔离或在线写稿通过。
 
 冻结提交与包指纹见[候选验收](../tests/evidence/release-v1630-candidate/README.md)。版本元数据为1.6.30候选；公开发布状态仍为1.6.29。发布需用户后续指令，不推送、不建tag、不上传。
+
+## 实际发布接续
+
+用户已明确授权三平台发布；GitHub公开、ClawHub与SkillHub各一次正式提交成功。冻结记录保持原样，实际tag、回执和传播状态见[1.6.30发布登记](../tests/evidence/release-1.6.30.md)。
