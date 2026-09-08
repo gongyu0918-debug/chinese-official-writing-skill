@@ -185,5 +185,11 @@
     "working_tree_lf_sha256": "da8aad64cd43d660ca6ff6df3272760e38a61626e2b01594ba4fccd604d9964e",
     "frozen_sha256": "da8aad64cd43d660ca6ff6df3272760e38a61626e2b01594ba4fccd604d9964e"
   },
-  "final_independent_review": "One subagent reviewed product/main diff, both maintenance test changes and result/validation. No product or merge blocker. Clarified frozen-entry comparison is LF-normalized equality, not raw working-tree byte equality."
+  "final_independent_review": "One subagent reviewed product/main diff, both maintenance test changes and result/validation. No product or merge blocker. Clarified frozen-entry comparison is LF-normalized equality, not raw working-tree byte equality.",
+  "integration": {
+    "product_commit": "fb808f4927aca935f22c33fb8d78e1e4bc8bdc26",
+    "local_main_merge": "fast-forward completed",
+    "local_installation_update": "BLOCKED_SOURCE_ANCESTRY; existing entry remains c7778f26",
+    "release_or_push": false
+  }
 }

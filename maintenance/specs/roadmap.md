@@ -4,7 +4,7 @@
 
 ## 本轮分支候选
 
-- `WR-029 / PARTIAL / ENTRY_FIX_SELECTED`：继续真实写稿，累计88次、87次技术有效；撤回未稳定的新speech叶/路由，仅保留main入口允许用户给定发言身份的一句修正。R9六稿身份和任务保持，不能冒称事实质量通过；新专页、改稿收益、多版及Hook仍未闭环。[结果与失败记录](../tests/evidence/speech-viewpoint-minimal-r9/result.md)
+- `WR-029 / PARTIAL / ENTRY_FIX_MERGED`：继续真实写稿，累计88次、87次技术有效；撤回未稳定的新speech叶/路由，仅保留main入口允许用户给定发言身份的一句修正。R9六稿身份和任务保持，不能冒称事实质量通过；新专页、改稿收益、多版及Hook仍未闭环。[结果与失败记录](../tests/evidence/speech-viewpoint-minimal-r9/result.md)
 - `WR-030 / TODO`：经验交流材料可借鉴做法，已登记，未实现、未测试。
 - `WR-031 / TODO`：面向领导汇报的材料取舍，已登记，未实现、未测试。后两项同样真实写稿为准，不随本轮叶准入。
 
