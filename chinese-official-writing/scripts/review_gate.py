@@ -1545,6 +1545,38 @@ def _verified_candidate_findings(
     return findings
 
 
+def _source_assessment_reason(
+    findings: list[Any], repairs: list[Any], repair_packet: dict[str, Any]
+) -> str | None:
+    source_findings = {item["finding_id"] for item in findings if item.get("source_relation")}
+    if source_findings:
+        assessments = repair_packet.get("source_assessments")
+        if not isinstance(assessments, list) or len(assessments) != len(source_findings):
+            return "source_assessments_missing"
+        assessed = {}
+        for item in assessments:
+            if (
+                not isinstance(item, dict)
+                or set(item) != {"finding_id", "status", "reason"}
+                or item.get("finding_id") not in source_findings
+                or item["finding_id"] in assessed
+                or item.get("status") not in {"error", "not_error", "unknown"}
+                or not isinstance(item.get("reason"), str)
+                or not item["reason"].strip()
+            ):
+                return "source_assessment_invalid"
+            assessed[item["finding_id"]] = item["status"]
+        for repair in repairs:
+            if (
+                isinstance(repair, dict)
+                and repair.get("finding_id") in assessed
+                and repair.get("replacement") != repair.get("target")
+                and assessed[repair["finding_id"]] != "error"
+            ):
+                return "source_unknown_or_supported_text_changed"
+    return None
+
+
 def _verified_repair_envelope(
     request: str,
     source: str,
@@ -1589,32 +1621,9 @@ def _verified_repair_envelope(
             return _candidate_d0("finding_budget_exceeded", draft)
         if len(repairs) != len(findings):
             return _candidate_d0("decision_packet_incomplete", draft)
-    source_findings = {item["finding_id"] for item in findings if item.get("source_relation")}
-    if source_findings:
-        assessments = repair_packet.get("source_assessments")
-        if not isinstance(assessments, list) or len(assessments) != len(source_findings):
-            return _candidate_d0("source_assessments_missing", draft)
-        assessed = {}
-        for item in assessments:
-            if (
-                not isinstance(item, dict)
-                or set(item) != {"finding_id", "status", "reason"}
-                or item.get("finding_id") not in source_findings
-                or item["finding_id"] in assessed
-                or item.get("status") not in {"error", "not_error", "unknown"}
-                or not isinstance(item.get("reason"), str)
-                or not item["reason"].strip()
-            ):
-                return _candidate_d0("source_assessment_invalid", draft)
-            assessed[item["finding_id"]] = item["status"]
-        for repair in repairs:
-            if (
-                isinstance(repair, dict)
-                and repair.get("finding_id") in assessed
-                and repair.get("replacement") != repair.get("target")
-                and assessed[repair["finding_id"]] != "error"
-            ):
-                return _candidate_d0("source_unknown_or_supported_text_changed", draft)
+    assessment_reason = _source_assessment_reason(findings, repairs, repair_packet)
+    if assessment_reason is not None:
+        return _candidate_d0(assessment_reason, draft)
     return repairs, repair_mode
 
 
@@ -1765,6 +1774,18 @@ def _candidate_repair_span(
     return span_start, span_start + len(target)
 
 
+def _empty_replacement_reason(
+    finding: dict[str, Any], target: str, effective_mode: str
+) -> str | None:
+    if effective_mode != REPAIR_MODE_EXTRACT:
+        return "sentence_rewrite_must_be_nonempty"
+    if finding.get("source_relation") is not None:
+        return "source_fact_delete_hard_anchor" if any(_hard_anchor_counters(target)) else None
+    if not _safe_full_deletion(finding, target):
+        return "full_deletion_not_proven_safe"
+    return None
+
+
 def _candidate_replacement_reason(
     finding: dict[str, Any],
     target: str,
@@ -1786,12 +1807,9 @@ def _candidate_replacement_reason(
     ):
         return "sentence_rewrite_must_be_nonempty"
     if replacement == "":
-        if effective_mode != REPAIR_MODE_EXTRACT:
-            return "sentence_rewrite_must_be_nonempty"
-        if finding.get("source_relation") is not None:
-            return "source_fact_delete_hard_anchor" if any(_hard_anchor_counters(target)) else None
-        if not _safe_full_deletion(finding, target):
-            return "full_deletion_not_proven_safe"
+        empty_reason = _empty_replacement_reason(finding, target, effective_mode)
+        if empty_reason is not None:
+            return empty_reason
     elif effective_mode == REPAIR_MODE_EXTRACT:
         if not _is_safe_prefix_replacement(finding, target, replacement):
             return "replacement_not_safe_prefix"
@@ -3054,6 +3072,30 @@ def _build_verification_packet(
     return packet
 
 
+def _bind_source_relation_state(
+    bound: dict[str, Any], packet: dict[str, Any], relation: dict[str, Any]
+) -> None:
+    if relation["findings"]:
+        if packet.get("source_relations") != relation:
+            raise GateInputError("verification source relation binding mismatch")
+        identities = [item["finding_id"] for item in relation["findings"]]
+        if (any(not isinstance(item, str) or not item for item in identities)
+                or len(set(identities)) != len(identities)):
+            raise GateInputError("verification source identities are invalid")
+        for key, value in (
+            ("source_relation_packet_sha256", relation["packet_sha256"]),
+            ("source_relation_ids", identities),
+        ):
+            if bound.get(key) is not None and bound[key] != value:
+                raise GateInputError("verification source state binding mismatch")
+            bound[key] = value
+    else:
+        if ("source_relations" in packet
+                or bound.get("source_relation_packet_sha256") is not None
+                or bound.get("source_relation_ids") is not None):
+            raise GateInputError("unexpected source verification binding")
+
+
 def _bound_verification_state(
     txn: Path,
     state: dict[str, Any],
@@ -3119,25 +3161,7 @@ def _bound_verification_state(
     relation = _source_fact_review().build_relation_packet(
         request, source, draft, candidate, findings, repair["repairs"],
     )
-    if relation["findings"]:
-        if packet.get("source_relations") != relation:
-            raise GateInputError("verification source relation binding mismatch")
-        identities = [item["finding_id"] for item in relation["findings"]]
-        if (any(not isinstance(item, str) or not item for item in identities)
-                or len(set(identities)) != len(identities)):
-            raise GateInputError("verification source identities are invalid")
-        for key, value in (
-            ("source_relation_packet_sha256", relation["packet_sha256"]),
-            ("source_relation_ids", identities),
-        ):
-            if bound.get(key) is not None and bound[key] != value:
-                raise GateInputError("verification source state binding mismatch")
-            bound[key] = value
-    else:
-        if ("source_relations" in packet
-                or bound.get("source_relation_packet_sha256") is not None
-                or bound.get("source_relation_ids") is not None):
-            raise GateInputError("unexpected source verification binding")
+    _bind_source_relation_state(bound, packet, relation)
     if packet.get("required_checks") != list(_semantic_checks_for_state(bound)):
         raise GateInputError("verification required checks mismatch")
     bound["verification_packet_sha256"] = packet_hash
@@ -3146,6 +3170,37 @@ def _bound_verification_state(
         if not passed:
             raise GateInputError("recovered verification receipt is invalid")
     return bound
+
+
+def _source_relation_verdict_reason(
+    state: dict[str, Any], verdict: dict[str, Any]
+) -> str | None:
+    if verdict.get("source_relation_packet_sha256") != state["source_relation_packet_sha256"]:
+        return "source_relation_hash_mismatch"
+    items = verdict.get("source_relations")
+    ids = state.get("source_relation_ids", [])
+    if not isinstance(items, list) or len(items) != len(ids):
+        return "source_relation_verdict_missing"
+    seen = set()
+    for item in items:
+        if (
+            not isinstance(item, dict)
+            or set(item) != {"finding_id", "d0_issue_status", "d0_issue_resolved", "source_relation_supported", "other_facts_preserved", "reason"}
+            or item.get("finding_id") not in ids
+            or item["finding_id"] in seen
+            or not isinstance(item.get("reason"), str)
+            or not item["reason"].strip()
+        ):
+            return "source_relation_verdict_invalid"
+        seen.add(item["finding_id"])
+        if (
+            item.get("d0_issue_status") != "error"
+            or item.get("d0_issue_resolved") is not True
+            or item.get("source_relation_supported") is not True
+            or item.get("other_facts_preserved") is not True
+        ):
+            return "source_relation_unverified_or_unresolved"
+    return None
 
 
 def _semantic_verdict_result(
@@ -3194,31 +3249,9 @@ def _semantic_verdict_result(
     ) != state.get("guided_marker_sha256"):
         return False, "semantic_verdict_guided_marker_hash_mismatch"
     if state.get("source_relation_packet_sha256") is not None:
-        if verdict.get("source_relation_packet_sha256") != state["source_relation_packet_sha256"]:
-            return False, "source_relation_hash_mismatch"
-        items = verdict.get("source_relations")
-        ids = state.get("source_relation_ids", [])
-        if not isinstance(items, list) or len(items) != len(ids):
-            return False, "source_relation_verdict_missing"
-        seen = set()
-        for item in items:
-            if (
-                not isinstance(item, dict)
-                or set(item) != {"finding_id", "d0_issue_status", "d0_issue_resolved", "source_relation_supported", "other_facts_preserved", "reason"}
-                or item.get("finding_id") not in ids
-                or item["finding_id"] in seen
-                or not isinstance(item.get("reason"), str)
-                or not item["reason"].strip()
-            ):
-                return False, "source_relation_verdict_invalid"
-            seen.add(item["finding_id"])
-            if (
-                item.get("d0_issue_status") != "error"
-                or item.get("d0_issue_resolved") is not True
-                or item.get("source_relation_supported") is not True
-                or item.get("other_facts_preserved") is not True
-            ):
-                return False, "source_relation_unverified_or_unresolved"
+        relation_reason = _source_relation_verdict_reason(state, verdict)
+        if relation_reason is not None:
+            return False, relation_reason
     checks = verdict.get("checks")
     required_checks = _semantic_checks_for_state(state)
     if not isinstance(checks, dict) or set(checks) != set(required_checks):
@@ -3360,6 +3393,37 @@ def finalize_transaction(txn: Path, verdict_path: Path | None) -> dict[str, Any]
             return _terminalize(txn, state, "D0", "semantic_verification_failed")
 
 
+def _source_fact_report_items(
+    detection: dict[str, Any], assessments: dict[str, Any], verdict: dict[str, Any] | None,
+    validated: bool, selected: str | None, delivered: bool | None,
+) -> list[dict[str, Any]]:
+    decision_rows = (verdict or {}).get("source_relations")
+    decisions = {row["finding_id"]: row for row in
+                 (decision_rows if isinstance(decision_rows, list) else [])
+                 if isinstance(row, dict) and isinstance(row.get("finding_id"), str)}
+    items = []
+    for finding in detection.get("findings", []):
+        if not finding.get("source_relation"):
+            continue
+        identity = finding["finding_id"]
+        assessment = assessments.get(identity, {})
+        decision = decisions.get(identity, {})
+        candidate_resolves = decision.get("d0_issue_resolved") if validated else None
+        delivered_resolves = (candidate_resolves is True and selected == "D1") if delivered is True else None
+        items.append({
+            "finding_id": identity, "draft_quote": finding["target"],
+            "draft_span": [finding["span_start"], finding["span_end"]],
+            "source_relation": finding["source_relation"],
+            "assessment_status": assessment.get("status", "pending"),
+            "assessment_reason": assessment.get("reason"),
+            "verifier_issue_status": decision.get("d0_issue_status"),
+            "verifier_reason": decision.get("reason"),
+            "candidate_resolves_issue": candidate_resolves,
+            "delivered_issue_resolved": delivered_resolves,
+        })
+    return items
+
+
 def source_fact_report(txn: Path, observed_output: str | None = None) -> dict[str, Any]:
     """Read shared HK-002b evidence before host redaction; never grade a whole draft.
 
@@ -3409,30 +3473,7 @@ def source_fact_report(txn: Path, observed_output: str | None = None) -> dict[st
     output_hash = claim.get("output_sha256") if claim else None
     observed_hash = sha256_text(observed_output) if observed_output is not None else None
     delivered = None if observed_output is None else bool(claim and observed_hash == output_hash)
-    decision_rows = (verdict or {}).get("source_relations")
-    decisions = {row["finding_id"]: row for row in
-                 (decision_rows if isinstance(decision_rows, list) else [])
-                 if isinstance(row, dict) and isinstance(row.get("finding_id"), str)}
-    items = []
-    for finding in detection.get("findings", []):
-        if not finding.get("source_relation"):
-            continue
-        identity = finding["finding_id"]
-        assessment = assessments.get(identity, {})
-        decision = decisions.get(identity, {})
-        candidate_resolves = decision.get("d0_issue_resolved") if validated else None
-        delivered_resolves = (candidate_resolves is True and selected == "D1") if delivered is True else None
-        items.append({
-            "finding_id": identity, "draft_quote": finding["target"],
-            "draft_span": [finding["span_start"], finding["span_end"]],
-            "source_relation": finding["source_relation"],
-            "assessment_status": assessment.get("status", "pending"),
-            "assessment_reason": assessment.get("reason"),
-            "verifier_issue_status": decision.get("d0_issue_status"),
-            "verifier_reason": decision.get("reason"),
-            "candidate_resolves_issue": candidate_resolves,
-            "delivered_issue_resolved": delivered_resolves,
-        })
+    items = _source_fact_report_items(detection, assessments, verdict, validated, selected, delivered)
     return {
         "schema_version": 1, "scope": ["state_mismatch", "unsupported_prerequisite"],
         "request_sha256": sha256_text(request), "source_sha256": sha256_text(source),
