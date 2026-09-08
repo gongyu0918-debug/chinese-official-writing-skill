@@ -1,15 +1,15 @@
 # 需求覆盖矩阵
 
-2026-09-07：[v1.6.29发布记录](../tests/evidence/release-1.6.29.md)为当前发行事实；Claude同稿接续与默认正文清理已发布，下文旧轮“未发布”仅指当时。宿主限制、批量与多版质量仍未闭环，市场公开传播与审核单列。
+2026-09-08：当前发行版本为选择性冻结的v1.6.30，范围及平台最后记录见[恢复记录](../tests/evidence/mit-maintenance-recovery-20260908/result.md)；此前[v1.6.29发布记录](../tests/evidence/release-1.6.29.md)保持。Claude同稿接续与默认正文清理已发布，下文旧轮“未发布”仅指当时。宿主限制、批量与多版质量仍未闭环，市场公开传播与审核单列。
 
 `已覆盖` 表示存在对应产品实现和直接证据；`部分` 表示只有规则、工程链或一部分真实执行；`未覆盖` 表示尚无可交付实现。
 
 | 需求 | 产品入口 | 真实写稿/同稿证据 | Hook/宿主证据 | 状态与缺口 |
 | --- | --- | --- | --- | --- |
-| `WR-029` 个人发言与领导讲话 | 仅入口发言身份一句修正及五镜像；新speech叶/路由撤回 | 累计88次/87技术有效；R9六稿身份保持，全稿质量未通过 | 无Hook，不作宿主/多版证明 | PARTIAL / ENTRY_FIX_MERGED；[结果](../tests/evidence/speech-viewpoint-minimal-r9/result.md) |
-| `WR-030` 经验交流 | 尚未实现 | 尚未测试 | 不适用 | TODO；已登记，后续真实写稿为准 |
-| `WR-031` 汇报取舍 | 尚未实现专项增量 | 尚未测试 | 不适用 | TODO；已登记，后续真实写稿为准 |
-| `DOC-001` 包内说明与能力路由 | canonical README、SKILL、Hook README及五套普通镜像 | [20次真实调用](../tests/evidence/skill-package-readme/result.md)：最终能力问答读总说明，Hook问答读专页，真实申请不误走FAQ；保留早期漏读及稿件质量问题 | 显式Skill入口后的独立CLI读页；107项相关检查、817项全量、五处quick_validate、88文件清洁包；不代表Hook启用或宿主在线验证 | `DONE / MERGED_LOCAL / NOT_RELEASED`（[合并登记](../tests/evidence/skill-package-readme/integration.md)）；写稿质量仍归 `WR-023b / IN_PROGRESS` |
+| `WR-029` 个人发言与领导讲话 | main保留入口身份一句；R10信息选择段及五镜像已提交分支，speech专页/路由仍撤回 | 累计96调用/95技术有效；R10四对3改善1接近，全稿质量未闭环 | 无新首稿、Hook或多版证据；84相关及817/817独立记工程通过 | PARTIAL / R10_VALIDATED_BRANCH；待当前明确main合并授权，[结果](../tests/evidence/speech-revision-r10/result.md)、[集成](../tests/evidence/speech-revision-r10/integration.md) |
+| `WR-030` 经验交流 | 三轮最小候选均未准入，保留原规则 | 8次真实调用；实际路径原型有方法提炼收益，新增事实仍未收住 | 无Hook、多版、试行反控；不借R10工程结果证明本项通过 | IN_PROGRESS / R3_NOT_ADMITTED；[结果](../tests/evidence/experience-report-r3/result.md) |
+| `WR-031` 汇报取舍 | 三轮最小候选均未准入，保留原规则 | 8次真实调用；当前状态与过程取舍收益不稳定，完成/启动状态错误保留 | 无Hook、多版、时序反控；不借R10工程结果证明本项通过 | IN_PROGRESS / R3_NOT_ADMITTED；[结果](../tests/evidence/experience-report-r3/result.md) |
+| `DOC-001` 包内说明与能力路由 | canonical README、SKILL、Hook README及五套普通镜像 | [20次真实调用](../tests/evidence/skill-package-readme/result.md)：最终能力问答读总说明，Hook问答读专页，真实申请不误走FAQ；保留早期漏读及稿件质量问题 | 显式Skill入口后的独立CLI读页；107项相关检查、817项全量、五处quick_validate、88文件清洁包；不代表Hook启用或宿主在线验证 | `DONE / MERGED_LOCAL / RELEASED_V1.6.30`（[合并登记](../tests/evidence/skill-package-readme/integration.md)）；写稿质量仍归 `WR-023b / IN_PROGRESS` |
 | `HK-002a` 同稿接续 | core、Claude薄适配、共享revision_context | 原型五版及正式八版报告/五版纪要；更正、删除、插段、压缩逐版核验 | Claude原生Stop与终态source hash；终态不保留用户原文，最终解析器复放与实际源hash一致 | v1.6.29已发布Claude有限接续；其他宿主及分支历史未验证，正文事实与长度另计 |
 | `CL-001-DEFAULT` 默认正文清理 | core串行预处理与原有cleanliness runtime | P6 755→589、M6 579→447；正文逐字不变；保留基线围栏失败和明确格式反控 | 清理、核验、回显后继续既有审查，两份集成链交付verified；此组合为真实CLI同稿Harness，未声称新原生组合覆盖 | v1.6.29已发布；仅明确正文要求和已覆盖包装入口，不是全稿事实校正 |
 | `HK-010` 自然上限 | 原型已撤回，保留基线 | 原回复两路回退；447字正文的400字变体压缩超时，未形成终稿 | 解析与10%容差分开；未交付，不以内部观察JSON冒充正文 | HOLD；[字数记录](../tests/evidence/hook-quality-build-r1/length-result.md)与[R2](../tests/evidence/hook-quality-build-r1/length-r2-result.md) |

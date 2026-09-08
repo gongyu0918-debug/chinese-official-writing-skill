@@ -1,0 +1,351 @@
+{
+  "arm": "candidate",
+  "provider": "sol",
+  "model": "gpt-5.6-sol",
+  "case": "leader-deployment",
+  "session": "b59d98ab-bf2b-40f7-adae-3765cf96d19d",
+  "technical_valid": true,
+  "return_code": 0,
+  "failure": null,
+  "seconds": 200.15,
+  "client_tools": "Read,Skill",
+  "explicit_entry": true,
+  "frozen_unchanged": true,
+  "final_chars": 1166,
+  "init_models": [
+    "gpt-5.6-sol"
+  ],
+  "assistant_models": [
+    "gpt-5.6-sol"
+  ],
+  "usage_models": [
+    "gpt-5.6-sol"
+  ],
+  "result_count": 1,
+  "result_subtypes": [
+    "success"
+  ],
+  "result_errors": [
+    false
+  ],
+  "final_path": "runs/leader-deployment/sol/candidate/final.txt",
+  "final_sha256": "1e59d79929eaa0b86229841cf3b50782b59402cde4274a82186fd9c773ab4dc6",
+  "source_final_sha256": "1e59d79929eaa0b86229841cf3b50782b59402cde4274a82186fd9c773ab4dc6",
+  "source_final_logical_sha256": "f378a778849f6d1b1110db44debec0471ca7635a1755a73d7f8700a4aa52ef1d",
+  "final_redaction": {
+    "replacement_count": 0,
+    "replacement": "<isolated-work>",
+    "scope": "Only this lane approved runtime/work prefix; slash variants accepted.",
+    "source_unchanged": true,
+    "archive_is_original_bytes": true
+  },
+  "hook_enabled": false,
+  "timeout_seconds": 1200,
+  "automatic_retries": 0,
+  "effort": "max",
+  "invalid_json_line_count": 0,
+  "reads": [
+    "references/information-selection.md",
+    "references/formulaic-language.md",
+    "references/official-style.md",
+    "references/anti-ai-patterns.md",
+    "references/final-review-layers.md",
+    "references/proofreading-checklist.md"
+  ],
+  "routing": {
+    "reference_paths": [
+      "references/anti-ai-patterns.md",
+      "references/final-review-layers.md",
+      "references/formulaic-language.md",
+      "references/information-selection.md",
+      "references/official-style.md",
+      "references/proofreading-checklist.md"
+    ],
+    "references_distinct_pages": 6,
+    "references_distinct_file_bytes": 46268,
+    "skill_direct_read_file_bytes": 0
+  },
+  "tool_evidence": [
+    {
+      "sequence": 1,
+      "id": "call_PpPA9eAOx2KOVcNmWnXd8fjE",
+      "name": "Skill",
+      "result": {
+        "observed": true,
+        "is_error_field": null,
+        "content_bytes": 65,
+        "content_sha256": "2208255ee679ba4f9d37caea5978009b3ee3459ba286dd41d1e923554c8abad8",
+        "skill_launch_acknowledgement": "official-writing-eval:chinese-official-writing"
+      },
+      "skill_name": "official-writing-eval:chinese-official-writing",
+      "launch_success_observed": true,
+      "response_visibility": "launch_acknowledgement_only_no_skill_body"
+    },
+    {
+      "sequence": 2,
+      "id": "call_WzrYfRCgWZ46qA4k5rzZnq09",
+      "name": "Read",
+      "result": {
+        "observed": true,
+        "is_error_field": true,
+        "content_bytes": 133,
+        "content_sha256": "9e0a429343d148bfada6df3331fc6de63ee17f96c659b835225bbfbc0728e4f9",
+        "skill_launch_acknowledgement": null
+      },
+      "scope": "failed_read",
+      "requested_scope": "package",
+      "requested_relative_path": "references/information-selection.md",
+      "read_success_observed": false,
+      "file_path_sha256": "53c0a1eb55d2a751c979e3b1d18151014c3ba8abfc89a9f6b0d6822ab07ab17f"
+    },
+    {
+      "sequence": 3,
+      "id": "call_RVh6266qx8cGaZqCemxbAya3",
+      "name": "Read",
+      "result": {
+        "observed": true,
+        "is_error_field": true,
+        "content_bytes": 133,
+        "content_sha256": "9e0a429343d148bfada6df3331fc6de63ee17f96c659b835225bbfbc0728e4f9",
+        "skill_launch_acknowledgement": null
+      },
+      "scope": "failed_read",
+      "requested_scope": "package",
+      "requested_relative_path": "references/formulaic-language.md",
+      "read_success_observed": false,
+      "file_path_sha256": "eece5dc2bc9e2712d2ca3b8864e53b024edf1fa396247130785ab3f84fb34300"
+    },
+    {
+      "sequence": 4,
+      "id": "call_eg5mXCDaAu8bHR8iaTu2S5bW",
+      "name": "Read",
+      "result": {
+        "observed": true,
+        "is_error_field": true,
+        "content_bytes": 133,
+        "content_sha256": "9e0a429343d148bfada6df3331fc6de63ee17f96c659b835225bbfbc0728e4f9",
+        "skill_launch_acknowledgement": null
+      },
+      "scope": "failed_read",
+      "requested_scope": "package",
+      "requested_relative_path": "references/genre-playbooks.md",
+      "read_success_observed": false,
+      "file_path_sha256": "d2935c0618b356030430b594775ee4d19932ac54f2ef2f1c982dde03ecc591d1"
+    },
+    {
+      "sequence": 5,
+      "id": "call_aNdLGAXKBUAkDNsjsantybn5",
+      "name": "Read",
+      "result": {
+        "observed": true,
+        "is_error_field": true,
+        "content_bytes": 133,
+        "content_sha256": "9e0a429343d148bfada6df3331fc6de63ee17f96c659b835225bbfbc0728e4f9",
+        "skill_launch_acknowledgement": null
+      },
+      "scope": "failed_read",
+      "requested_scope": "package",
+      "requested_relative_path": "references/official-style.md",
+      "read_success_observed": false,
+      "file_path_sha256": "11686894573ab197621041bec6f91a135626ec4dca5010d062326e2c74169c80"
+    },
+    {
+      "sequence": 6,
+      "id": "call_SCzrvdLWhOL6W0WF3SNjcVXj",
+      "name": "Read",
+      "result": {
+        "observed": true,
+        "is_error_field": true,
+        "content_bytes": 133,
+        "content_sha256": "9e0a429343d148bfada6df3331fc6de63ee17f96c659b835225bbfbc0728e4f9",
+        "skill_launch_acknowledgement": null
+      },
+      "scope": "failed_read",
+      "requested_scope": "package",
+      "requested_relative_path": "references/anti-ai-patterns.md",
+      "read_success_observed": false,
+      "file_path_sha256": "f8f72077db520f8acc864053f2e0ca7674929db30deaa56df5b0fde34ba284cd"
+    },
+    {
+      "sequence": 7,
+      "id": "call_svzoadLzI2j7E7MLvEXYDy10",
+      "name": "Read",
+      "result": {
+        "observed": true,
+        "is_error_field": true,
+        "content_bytes": 133,
+        "content_sha256": "9e0a429343d148bfada6df3331fc6de63ee17f96c659b835225bbfbc0728e4f9",
+        "skill_launch_acknowledgement": null
+      },
+      "scope": "failed_read",
+      "requested_scope": "package",
+      "requested_relative_path": "references/final-review-layers.md",
+      "read_success_observed": false,
+      "file_path_sha256": "7401e22fd52c69d271198b66ee409f207dfc9af8cbe22c678dce2b316c8b67f6"
+    },
+    {
+      "sequence": 8,
+      "id": "call_j3aXg37C8PvmiWrofgBOyGhB",
+      "name": "Read",
+      "result": {
+        "observed": true,
+        "is_error_field": true,
+        "content_bytes": 133,
+        "content_sha256": "9e0a429343d148bfada6df3331fc6de63ee17f96c659b835225bbfbc0728e4f9",
+        "skill_launch_acknowledgement": null
+      },
+      "scope": "failed_read",
+      "requested_scope": "package",
+      "requested_relative_path": "references/proofreading-checklist.md",
+      "read_success_observed": false,
+      "file_path_sha256": "431d4a632b57c3b654782712437b92b8770d234689f5429785929deca1bff19d"
+    },
+    {
+      "sequence": 9,
+      "id": "call_mhHDhf2LyqfBEQmKt1297xPW",
+      "name": "Read",
+      "result": {
+        "observed": true,
+        "is_error_field": null,
+        "content_bytes": 5799,
+        "content_sha256": "fb195138d7b1aa64b7d4114c7f42c3defbe7c50bc15698f4bd14140c4cb071cc",
+        "skill_launch_acknowledgement": null
+      },
+      "scope": "package",
+      "package_path": "references/information-selection.md",
+      "frozen_file_sha256": "e20c2b18cddab4cb0e4ba0ce4ddcd8b849314c4f30ee4d1c6f16216b9f630aff",
+      "read_success_observed": true,
+      "offset": 0,
+      "limit": 2000
+    },
+    {
+      "sequence": 10,
+      "id": "call_VNipPTP09qwEXuSa1QaXKoOX",
+      "name": "Read",
+      "result": {
+        "observed": true,
+        "is_error_field": null,
+        "content_bytes": 8195,
+        "content_sha256": "e12a203953972acb206fc6a9d820060558c65a5aeee74bc649a57c137e07e152",
+        "skill_launch_acknowledgement": null
+      },
+      "scope": "package",
+      "package_path": "references/formulaic-language.md",
+      "frozen_file_sha256": "a4940b83c337ec5e0a7f0389de49113df8ccf3ae012b5c3fc498f0982b73bb16",
+      "read_success_observed": true,
+      "offset": 0,
+      "limit": 2000
+    },
+    {
+      "sequence": 11,
+      "id": "call_CSOib7hKtJLolZj7cnuRqDcM",
+      "name": "Read",
+      "result": {
+        "observed": true,
+        "is_error_field": null,
+        "content_bytes": 6499,
+        "content_sha256": "5ed8c7d7d7d7360b0048c28869e5c4330414d6ec69c886da105405d23b6a246f",
+        "skill_launch_acknowledgement": null
+      },
+      "scope": "package",
+      "package_path": "references/official-style.md",
+      "frozen_file_sha256": "82b97cc58bca9fce3f81c79ece4a5804d17a1869a5bbd3f6de191612440d505a",
+      "read_success_observed": true,
+      "offset": 0,
+      "limit": 2000
+    },
+    {
+      "sequence": 12,
+      "id": "call_f3lfRaMvQfbUkS8JjxYtvhmJ",
+      "name": "Read",
+      "result": {
+        "observed": true,
+        "is_error_field": null,
+        "content_bytes": 15039,
+        "content_sha256": "86a2ef528dae7cccf6f710dfb121ed8cc637ce115940a57b234947588f6dafab",
+        "skill_launch_acknowledgement": null
+      },
+      "scope": "package",
+      "package_path": "references/anti-ai-patterns.md",
+      "frozen_file_sha256": "c77202b6685b57bef8ae98499c05e1e21427fce90c56a18adba0472da07e4f2f",
+      "read_success_observed": true,
+      "offset": 0,
+      "limit": 2000
+    },
+    {
+      "sequence": 13,
+      "id": "call_Dr1B7CeHtTtOznxGjY1RQbvm",
+      "name": "Read",
+      "result": {
+        "observed": true,
+        "is_error_field": null,
+        "content_bytes": 9449,
+        "content_sha256": "4f7e9fe1562a6b047ea877e21db75b0c9b00e0869b44b5e9161bfffa110def67",
+        "skill_launch_acknowledgement": null
+      },
+      "scope": "package",
+      "package_path": "references/final-review-layers.md",
+      "frozen_file_sha256": "0204ee133951e5ca0839312e8c60524d2edc529161e9b2846a314e1e7232e546",
+      "read_success_observed": true,
+      "offset": 0,
+      "limit": 2000
+    },
+    {
+      "sequence": 14,
+      "id": "call_FfMMrNRAw97hbvsaP12toOE5",
+      "name": "Read",
+      "result": {
+        "observed": true,
+        "is_error_field": null,
+        "content_bytes": 3979,
+        "content_sha256": "8d4e6e148245dfe9c4781cace9d2982f7ea206eb9eb94cdc2cf677813b5fa3f8",
+        "skill_launch_acknowledgement": null
+      },
+      "scope": "package",
+      "package_path": "references/proofreading-checklist.md",
+      "frozen_file_sha256": "aa56802a0e984aadb1deed4603181fc85b237b8c534ae0973e3c9d9413d859d2",
+      "read_success_observed": true,
+      "offset": 0,
+      "limit": 2000
+    }
+  ],
+  "documents": [],
+  "helper_sha256": "452d3f5ac8df257fbd220d7585ce0aef3dd0475a76a51181de77e0f729f0a6ab",
+  "prompt_path": "prompts/leader-deployment.txt",
+  "omissions": [
+    "raw stream",
+    "runtime",
+    "provider state",
+    "original argv",
+    "absolute paths",
+    "shell arguments and stdout"
+  ],
+  "isolation_observed": {
+    "cwd_matches_isolated_work": true,
+    "mcp_servers": [],
+    "hook_events": 0,
+    "runtime_memory_files": 0,
+    "model": "gpt-5.6-sol",
+    "skill_catalog": [
+      "deep-research",
+      "official-writing-eval:chinese-official-writing",
+      "design-sync",
+      "update-config",
+      "verify",
+      "debug",
+      "code-review",
+      "simplify",
+      "batch",
+      "fewer-permission-prompts",
+      "loop",
+      "claude-api",
+      "run",
+      "run-skill-generator"
+    ],
+    "cli_version": "2.1.195",
+    "native_full_entry_expansions": 0,
+    "stream_sha256": "9b7a2c92ee69f3b6fe90f06a0022796f1c6f5870b3f4456698ea7b56cc166414",
+    "raw_final_bytes_verified": true,
+    "frozen_files_verified": 42
+  }
+}

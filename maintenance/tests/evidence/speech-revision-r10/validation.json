@@ -1,0 +1,58 @@
+{
+  "baseline_commit": "05c4465fe6aa6187f31f0879120cc616a6f31e63",
+  "canonical_delta_lf_bytes": 761,
+  "frozen_candidate_matches_final_lf": true,
+  "product_files": 6,
+  "new_reference_files": 0,
+  "hook_changes": false,
+  "tests": [
+    {
+      "command": "py -3.13 -B -X utf8 -m unittest maintenance.tests.test_information_selection_classification maintenance.tests.test_skill_boundary",
+      "attempts": [
+        {
+          "ran": 84,
+          "failures": 4,
+          "errors": 6,
+          "reason": "Four byte-mirror mismatches after withdrawing experimental argument paragraph; six Windows sandbox temporary-directory ACL errors."
+        },
+        {
+          "ran": 84,
+          "failures": 0,
+          "errors": 6,
+          "reason": "Mirrors restored; workspace temporary directory still blocked by Windows sandbox ACL."
+        },
+        {
+          "ran": 84,
+          "passed": 84,
+          "seconds": 4.479,
+          "environment": "approved execution environment"
+        }
+      ]
+    },
+    {
+      "command": "py -3.13 -B -X utf8 -m unittest discover -s maintenance/tests -p test_*.py",
+      "ran": 817,
+      "passed": 817,
+      "seconds": 137.849,
+      "log_sha256": "029155d68371c5eee0424805bee1b7a29c782782d99795b31a44a1c9d22c8dc5"
+    }
+  ],
+  "quick_validate": {
+    "paths": 5,
+    "passed": 5
+  },
+  "real_calls": 8,
+  "technical_valid": 8,
+  "pair_review": {
+    "candidate_improved": 3,
+    "near_equal": 1
+  },
+  "not_run": [
+    "new speech first drafts",
+    "4-7 revision sequence",
+    "real host writing Hook",
+    "publishing"
+  ],
+  "resolved_read_errors": 15,
+  "independent_cold_review": "No blocking findings; separately verified frozen LF bytes, six product files, eight receipts and limited 3-improved/1-near conclusion."
+}

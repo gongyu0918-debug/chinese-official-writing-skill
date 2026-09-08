@@ -1,0 +1,169 @@
+{
+  "arm": "baseline",
+  "provider": "sol",
+  "model": "gpt-5.6-sol",
+  "case": "leader-report",
+  "session": "8eb3e015-3cc1-4721-94ed-9ba4d3c9d534",
+  "technical_valid": true,
+  "return_code": 0,
+  "failure": null,
+  "seconds": 144.52,
+  "client_tools": "Read,Skill",
+  "explicit_entry": true,
+  "frozen_unchanged": true,
+  "final_chars": 571,
+  "init_models": [
+    "gpt-5.6-sol"
+  ],
+  "assistant_models": [
+    "gpt-5.6-sol"
+  ],
+  "usage_models": [
+    "gpt-5.6-sol"
+  ],
+  "result_count": 1,
+  "result_subtypes": [
+    "success"
+  ],
+  "result_errors": [
+    false
+  ],
+  "final_path": "runs/leader-report/sol/baseline/final.txt",
+  "final_sha256": "e5901ac48c17d805ad3954d72b67c7630af811c00d93458314b775c114c3f695",
+  "source_final_sha256": "e5901ac48c17d805ad3954d72b67c7630af811c00d93458314b775c114c3f695",
+  "source_final_logical_sha256": "6800e18419b26a789b6a158144da2ee8a39d2ef522329112a602685346975b15",
+  "final_redaction": {
+    "replacement_count": 0,
+    "replacement": "<isolated-work>",
+    "scope": "Only this lane approved runtime/work prefix; slash variants accepted.",
+    "source_unchanged": true,
+    "archive_is_original_bytes": true
+  },
+  "hook_enabled": false,
+  "timeout_seconds": 1200,
+  "automatic_retries": 0,
+  "effort": "max",
+  "invalid_json_line_count": 0,
+  "reads": [
+    "references/information-selection.md",
+    "references/formulaic-language.md"
+  ],
+  "routing": {
+    "reference_paths": [
+      "references/formulaic-language.md",
+      "references/information-selection.md"
+    ],
+    "references_distinct_pages": 2,
+    "references_distinct_file_bytes": 12646,
+    "skill_direct_read_file_bytes": 0
+  },
+  "tool_evidence": [
+    {
+      "sequence": 1,
+      "id": "call_kxF1j6QvK5tJt4NVyf7wjYr2",
+      "name": "Skill",
+      "result": {
+        "observed": true,
+        "is_error_field": null,
+        "content_bytes": 65,
+        "content_sha256": "2208255ee679ba4f9d37caea5978009b3ee3459ba286dd41d1e923554c8abad8",
+        "skill_launch_acknowledgement": "official-writing-eval:chinese-official-writing"
+      },
+      "skill_name": "official-writing-eval:chinese-official-writing",
+      "launch_success_observed": true,
+      "response_visibility": "launch_acknowledgement_only_no_skill_body"
+    },
+    {
+      "sequence": 2,
+      "id": "call_opdIFUwahGKYWkKamhejdVAg",
+      "name": "Read",
+      "result": {
+        "observed": true,
+        "is_error_field": true,
+        "content_bytes": 133,
+        "content_sha256": "9e0a429343d148bfada6df3331fc6de63ee17f96c659b835225bbfbc0728e4f9",
+        "skill_launch_acknowledgement": null
+      },
+      "scope": "failed_read",
+      "requested_scope": "package",
+      "requested_relative_path": "references/information-selection.md",
+      "read_success_observed": false,
+      "file_path_sha256": "f94afcfc4d82a4534de26bb3b2431ecffda76d050855dd8d6d52f50634b83f98"
+    },
+    {
+      "sequence": 3,
+      "id": "call_VTVEXH0uhYcvj8uNYxoswhDz",
+      "name": "Read",
+      "result": {
+        "observed": true,
+        "is_error_field": null,
+        "content_bytes": 5028,
+        "content_sha256": "340297d7a78f928bc6d5e5a4c30f6b1e913c866a7f46025827b461b61e8cb1a4",
+        "skill_launch_acknowledgement": null
+      },
+      "scope": "package",
+      "package_path": "references/information-selection.md",
+      "frozen_file_sha256": "bf1aff9c90a6ba901fb2514ed98b3796a67616a4f934bfeac45fa4e3c0c01787",
+      "read_success_observed": true,
+      "offset": 0,
+      "limit": 2000
+    },
+    {
+      "sequence": 4,
+      "id": "call_nd2TTDWUH6A6TNNW0UllcTe3",
+      "name": "Read",
+      "result": {
+        "observed": true,
+        "is_error_field": null,
+        "content_bytes": 8195,
+        "content_sha256": "e12a203953972acb206fc6a9d820060558c65a5aeee74bc649a57c137e07e152",
+        "skill_launch_acknowledgement": null
+      },
+      "scope": "package",
+      "package_path": "references/formulaic-language.md",
+      "frozen_file_sha256": "a4940b83c337ec5e0a7f0389de49113df8ccf3ae012b5c3fc498f0982b73bb16",
+      "read_success_observed": true,
+      "offset": 0,
+      "limit": 2000
+    }
+  ],
+  "documents": [],
+  "helper_sha256": "452d3f5ac8df257fbd220d7585ce0aef3dd0475a76a51181de77e0f729f0a6ab",
+  "prompt_path": "prompts/leader-report.txt",
+  "omissions": [
+    "raw stream",
+    "runtime",
+    "provider state",
+    "original argv",
+    "absolute paths",
+    "shell arguments and stdout"
+  ],
+  "isolation_observed": {
+    "cwd_matches_isolated_work": true,
+    "mcp_servers": [],
+    "hook_events": 0,
+    "runtime_memory_files": 0,
+    "model": "gpt-5.6-sol",
+    "skill_catalog": [
+      "deep-research",
+      "official-writing-eval:chinese-official-writing",
+      "design-sync",
+      "update-config",
+      "verify",
+      "debug",
+      "code-review",
+      "simplify",
+      "batch",
+      "fewer-permission-prompts",
+      "loop",
+      "claude-api",
+      "run",
+      "run-skill-generator"
+    ],
+    "cli_version": "2.1.195",
+    "native_full_entry_expansions": 0,
+    "stream_sha256": "9c29cb9f2872c7c1732f948db84a3720e52a0c1f5a55b4ee759191627723c144",
+    "raw_final_bytes_verified": true,
+    "frozen_files_verified": 42
+  }
+}

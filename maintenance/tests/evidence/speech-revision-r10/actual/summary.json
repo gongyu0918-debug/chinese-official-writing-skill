@@ -1,0 +1,248 @@
+{
+  "expected": 8,
+  "completed": 8,
+  "runs": [
+    {
+      "case": "leader-deployment",
+      "provider": "qwen",
+      "arm": "baseline",
+      "technical_valid": true,
+      "receipt": "runs/leader-deployment/qwen/baseline/receipt.json",
+      "artifacts": 0,
+      "written_documents": 0,
+      "missing_work_files": 0,
+      "skill_read": false,
+      "skill_launch_success_observed": true,
+      "routing": {
+        "reference_paths": [
+          "references/anti-ai-patterns.md",
+          "references/formulaic-language.md",
+          "references/genre-playbooks.md",
+          "references/information-selection.md",
+          "references/official-style.md",
+          "references/proofreading-checklist.md"
+        ],
+        "references_distinct_pages": 6,
+        "references_distinct_file_bytes": 42108,
+        "skill_direct_read_file_bytes": 0
+      },
+      "tool_error_count": 0,
+      "failed_read_count": 0,
+      "unresolved_failed_read_count": 0,
+      "final_path_redactions": 0,
+      "argument_chains_read": false,
+      "ai_compute_read": false
+    },
+    {
+      "case": "leader-deployment",
+      "provider": "qwen",
+      "arm": "candidate",
+      "technical_valid": true,
+      "receipt": "runs/leader-deployment/qwen/candidate/receipt.json",
+      "artifacts": 0,
+      "written_documents": 0,
+      "missing_work_files": 0,
+      "skill_read": true,
+      "skill_launch_success_observed": true,
+      "routing": {
+        "reference_paths": [
+          "references/anti-ai-patterns.md",
+          "references/genre-playbooks.md",
+          "references/information-selection.md",
+          "references/official-style.md",
+          "references/proofreading-checklist.md"
+        ],
+        "references_distinct_pages": 5,
+        "references_distinct_file_bytes": 35145,
+        "skill_direct_read_file_bytes": 29537
+      },
+      "tool_error_count": 0,
+      "failed_read_count": 0,
+      "unresolved_failed_read_count": 0,
+      "final_path_redactions": 0,
+      "argument_chains_read": false,
+      "ai_compute_read": false
+    },
+    {
+      "case": "leader-deployment",
+      "provider": "sol",
+      "arm": "baseline",
+      "technical_valid": true,
+      "receipt": "runs/leader-deployment/sol/baseline/receipt.json",
+      "artifacts": 0,
+      "written_documents": 0,
+      "missing_work_files": 0,
+      "skill_read": false,
+      "skill_launch_success_observed": true,
+      "routing": {
+        "reference_paths": [
+          "references/formulaic-language.md",
+          "references/information-selection.md"
+        ],
+        "references_distinct_pages": 2,
+        "references_distinct_file_bytes": 12646,
+        "skill_direct_read_file_bytes": 0
+      },
+      "tool_error_count": 1,
+      "failed_read_count": 1,
+      "unresolved_failed_read_count": 0,
+      "final_path_redactions": 0,
+      "argument_chains_read": false,
+      "ai_compute_read": false
+    },
+    {
+      "case": "leader-deployment",
+      "provider": "sol",
+      "arm": "candidate",
+      "technical_valid": true,
+      "receipt": "runs/leader-deployment/sol/candidate/receipt.json",
+      "artifacts": 0,
+      "written_documents": 0,
+      "missing_work_files": 0,
+      "skill_read": false,
+      "skill_launch_success_observed": true,
+      "routing": {
+        "reference_paths": [
+          "references/anti-ai-patterns.md",
+          "references/final-review-layers.md",
+          "references/formulaic-language.md",
+          "references/information-selection.md",
+          "references/official-style.md",
+          "references/proofreading-checklist.md"
+        ],
+        "references_distinct_pages": 6,
+        "references_distinct_file_bytes": 46268,
+        "skill_direct_read_file_bytes": 0
+      },
+      "tool_error_count": 7,
+      "failed_read_count": 7,
+      "unresolved_failed_read_count": 0,
+      "final_path_redactions": 0,
+      "argument_chains_read": false,
+      "ai_compute_read": false
+    },
+    {
+      "case": "window-staff",
+      "provider": "qwen",
+      "arm": "baseline",
+      "technical_valid": true,
+      "receipt": "runs/window-staff/qwen/baseline/receipt.json",
+      "artifacts": 0,
+      "written_documents": 0,
+      "missing_work_files": 0,
+      "skill_read": false,
+      "skill_launch_success_observed": true,
+      "routing": {
+        "reference_paths": [
+          "references/anti-ai-patterns.md",
+          "references/formulaic-language.md",
+          "references/information-selection.md",
+          "references/official-style.md",
+          "references/short-draft-naturalness.md"
+        ],
+        "references_distinct_pages": 5,
+        "references_distinct_file_bytes": 34019,
+        "skill_direct_read_file_bytes": 0
+      },
+      "tool_error_count": 0,
+      "failed_read_count": 0,
+      "unresolved_failed_read_count": 0,
+      "final_path_redactions": 0,
+      "argument_chains_read": false,
+      "ai_compute_read": false
+    },
+    {
+      "case": "window-staff",
+      "provider": "qwen",
+      "arm": "candidate",
+      "technical_valid": true,
+      "receipt": "runs/window-staff/qwen/candidate/receipt.json",
+      "artifacts": 0,
+      "written_documents": 0,
+      "missing_work_files": 0,
+      "skill_read": false,
+      "skill_launch_success_observed": true,
+      "routing": {
+        "reference_paths": [
+          "references/anti-ai-patterns.md",
+          "references/formulaic-language.md",
+          "references/genre-playbooks.md",
+          "references/information-selection.md",
+          "references/official-style.md"
+        ],
+        "references_distinct_pages": 5,
+        "references_distinct_file_bytes": 39076,
+        "skill_direct_read_file_bytes": 0
+      },
+      "tool_error_count": 0,
+      "failed_read_count": 0,
+      "unresolved_failed_read_count": 0,
+      "final_path_redactions": 0,
+      "argument_chains_read": false,
+      "ai_compute_read": false
+    },
+    {
+      "case": "window-staff",
+      "provider": "sol",
+      "arm": "baseline",
+      "technical_valid": true,
+      "receipt": "runs/window-staff/sol/baseline/receipt.json",
+      "artifacts": 0,
+      "written_documents": 0,
+      "missing_work_files": 0,
+      "skill_read": false,
+      "skill_launch_success_observed": true,
+      "routing": {
+        "reference_paths": [
+          "references/anti-ai-patterns.md",
+          "references/final-review-layers.md",
+          "references/formulaic-language.md",
+          "references/information-selection.md",
+          "references/official-style.md",
+          "references/proofreading-checklist.md"
+        ],
+        "references_distinct_pages": 6,
+        "references_distinct_file_bytes": 45507,
+        "skill_direct_read_file_bytes": 0
+      },
+      "tool_error_count": 6,
+      "failed_read_count": 6,
+      "unresolved_failed_read_count": 0,
+      "final_path_redactions": 0,
+      "argument_chains_read": false,
+      "ai_compute_read": false
+    },
+    {
+      "case": "window-staff",
+      "provider": "sol",
+      "arm": "candidate",
+      "technical_valid": true,
+      "receipt": "runs/window-staff/sol/candidate/receipt.json",
+      "artifacts": 0,
+      "written_documents": 0,
+      "missing_work_files": 0,
+      "skill_read": false,
+      "skill_launch_success_observed": true,
+      "routing": {
+        "reference_paths": [
+          "references/anti-ai-patterns.md",
+          "references/final-review-layers.md",
+          "references/formulaic-language.md",
+          "references/information-selection.md",
+          "references/official-style.md",
+          "references/proofreading-checklist.md",
+          "references/short-draft-naturalness.md"
+        ],
+        "references_distinct_pages": 7,
+        "references_distinct_file_bytes": 47602,
+        "skill_direct_read_file_bytes": 0
+      },
+      "tool_error_count": 1,
+      "failed_read_count": 1,
+      "unresolved_failed_read_count": 0,
+      "final_path_redactions": 0,
+      "argument_chains_read": false,
+      "ai_compute_read": false
+    }
+  ]
+}

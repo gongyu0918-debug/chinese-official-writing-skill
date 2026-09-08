@@ -1,0 +1,189 @@
+{
+  "arm": "candidate",
+  "provider": "sol",
+  "model": "gpt-5.6-sol",
+  "case": "leader-report",
+  "session": "ee64caa0-b773-4fb2-8e6a-df6198ad13bc",
+  "technical_valid": true,
+  "return_code": 0,
+  "failure": null,
+  "seconds": 145.1,
+  "client_tools": "Read,Skill",
+  "explicit_entry": true,
+  "frozen_unchanged": true,
+  "final_chars": 650,
+  "init_models": [
+    "gpt-5.6-sol"
+  ],
+  "assistant_models": [
+    "gpt-5.6-sol"
+  ],
+  "usage_models": [
+    "gpt-5.6-sol"
+  ],
+  "result_count": 1,
+  "result_subtypes": [
+    "success"
+  ],
+  "result_errors": [
+    false
+  ],
+  "final_path": "runs/leader-report/sol/candidate/final.txt",
+  "final_sha256": "bbd2b4b78a58860e3fcd17a114f97e12ab8d43372885fcb26f20200000d639e6",
+  "source_final_sha256": "bbd2b4b78a58860e3fcd17a114f97e12ab8d43372885fcb26f20200000d639e6",
+  "source_final_logical_sha256": "30995b9e3e1522c7e86f5e23fb0da83a8507cc521dad69009004c964cd60b638",
+  "final_redaction": {
+    "replacement_count": 0,
+    "replacement": "<isolated-work>",
+    "scope": "Only this lane approved runtime/work prefix; slash variants accepted.",
+    "source_unchanged": true,
+    "archive_is_original_bytes": true
+  },
+  "hook_enabled": false,
+  "timeout_seconds": 1200,
+  "automatic_retries": 0,
+  "effort": "max",
+  "invalid_json_line_count": 0,
+  "reads": [
+    "references/information-selection.md",
+    "references/formulaic-language.md",
+    "references/task-route-cards.md"
+  ],
+  "routing": {
+    "reference_paths": [
+      "references/formulaic-language.md",
+      "references/information-selection.md",
+      "references/task-route-cards.md"
+    ],
+    "references_distinct_pages": 3,
+    "references_distinct_file_bytes": 16925,
+    "skill_direct_read_file_bytes": 0
+  },
+  "tool_evidence": [
+    {
+      "sequence": 1,
+      "id": "call_Mdqmpkfg7jjlZ828QLwnUCTo",
+      "name": "Skill",
+      "result": {
+        "observed": true,
+        "is_error_field": null,
+        "content_bytes": 65,
+        "content_sha256": "2208255ee679ba4f9d37caea5978009b3ee3459ba286dd41d1e923554c8abad8",
+        "skill_launch_acknowledgement": "official-writing-eval:chinese-official-writing"
+      },
+      "skill_name": "official-writing-eval:chinese-official-writing",
+      "launch_success_observed": true,
+      "response_visibility": "launch_acknowledgement_only_no_skill_body"
+    },
+    {
+      "sequence": 2,
+      "id": "call_hhtOWNtdxRnH25eam3NjO9nZ",
+      "name": "Read",
+      "result": {
+        "observed": true,
+        "is_error_field": true,
+        "content_bytes": 133,
+        "content_sha256": "9e0a429343d148bfada6df3331fc6de63ee17f96c659b835225bbfbc0728e4f9",
+        "skill_launch_acknowledgement": null
+      },
+      "scope": "failed_read",
+      "requested_scope": "package",
+      "requested_relative_path": "references/information-selection.md",
+      "read_success_observed": false,
+      "file_path_sha256": "9a21ba71cb69c87d7f524ff942fc28eeb3b8582abe172141eac48b6105302020"
+    },
+    {
+      "sequence": 3,
+      "id": "call_40E9VmSeLc3gQ1wl9ij5Y1B8",
+      "name": "Read",
+      "result": {
+        "observed": true,
+        "is_error_field": null,
+        "content_bytes": 5028,
+        "content_sha256": "340297d7a78f928bc6d5e5a4c30f6b1e913c866a7f46025827b461b61e8cb1a4",
+        "skill_launch_acknowledgement": null
+      },
+      "scope": "package",
+      "package_path": "references/information-selection.md",
+      "frozen_file_sha256": "bf1aff9c90a6ba901fb2514ed98b3796a67616a4f934bfeac45fa4e3c0c01787",
+      "read_success_observed": true,
+      "offset": 0,
+      "limit": 2000
+    },
+    {
+      "sequence": 4,
+      "id": "call_P73fQtHFNPqyFPYXyDobcwJ6",
+      "name": "Read",
+      "result": {
+        "observed": true,
+        "is_error_field": null,
+        "content_bytes": 8721,
+        "content_sha256": "5eec8354a052dccf2890fa7b96d0427c0378a887996a2b76f792c6dd26034212",
+        "skill_launch_acknowledgement": null
+      },
+      "scope": "package",
+      "package_path": "references/formulaic-language.md",
+      "frozen_file_sha256": "19f1871891d0a95fed8e5a85038f8739154876952b3a36a90a8348a13a685d11",
+      "read_success_observed": true,
+      "offset": 0,
+      "limit": 2000
+    },
+    {
+      "sequence": 5,
+      "id": "call_6Ge20shom0gBZZGnGAjTzrSY",
+      "name": "Read",
+      "result": {
+        "observed": true,
+        "is_error_field": null,
+        "content_bytes": 3944,
+        "content_sha256": "f2c5ee92e05f9fda63e80ec7f7c4f4358b39156b9530b1aafee96569a88bfc99",
+        "skill_launch_acknowledgement": null
+      },
+      "scope": "package",
+      "package_path": "references/task-route-cards.md",
+      "frozen_file_sha256": "5486d59cfaafd25f6b49623d2f7b4e0559183edb325fda6809c32cc65a273a0d",
+      "read_success_observed": true,
+      "offset": 0,
+      "limit": 2000
+    }
+  ],
+  "documents": [],
+  "helper_sha256": "452d3f5ac8df257fbd220d7585ce0aef3dd0475a76a51181de77e0f729f0a6ab",
+  "prompt_path": "prompts/leader-report.txt",
+  "omissions": [
+    "raw stream",
+    "runtime",
+    "provider state",
+    "original argv",
+    "absolute paths",
+    "shell arguments and stdout"
+  ],
+  "isolation_observed": {
+    "cwd_matches_isolated_work": true,
+    "mcp_servers": [],
+    "hook_events": 0,
+    "runtime_memory_files": 0,
+    "model": "gpt-5.6-sol",
+    "skill_catalog": [
+      "deep-research",
+      "official-writing-eval:chinese-official-writing",
+      "design-sync",
+      "update-config",
+      "verify",
+      "debug",
+      "code-review",
+      "simplify",
+      "batch",
+      "fewer-permission-prompts",
+      "loop",
+      "claude-api",
+      "run",
+      "run-skill-generator"
+    ],
+    "cli_version": "2.1.195",
+    "native_full_entry_expansions": 0,
+    "stream_sha256": "f79596f7cc1ccfb1fd8123fec0d42e4c336f3e404a2812898086b345eb4701a6",
+    "raw_final_bytes_verified": true,
+    "frozen_files_verified": 42
+  }
+}

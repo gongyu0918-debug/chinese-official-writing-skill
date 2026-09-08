@@ -1,12 +1,12 @@
 # 轻量需求规格
 
-2026-09-08：竞品研究的三个具体叶已登记：`WR-029` 个人发言与领导讲话优先，`WR-030` 经验交流、`WR-031` 汇报取舍继续TODO。WR-029累计88次真实调用（87次技术有效），新speech页和路由经继续验证撤回；仅选定入口一句发言身份修正，六稿保持三类身份和任务，事实可靠性、多版与Hook未完成。状态 `PARTIAL / ENTRY_FIX_MERGED`，已合本地main，本机同步因来源历史分叉待处理，[集成记录](../tests/evidence/speech-viewpoint-minimal-r9/integration.md)。[当前结果](../tests/evidence/speech-viewpoint-minimal-r9/result.md)。
+2026-09-08接续：WR-029 的 R10 完成8份同稿对照，3对实质改善、1对接近；仅讲话改稿信息选择段已提交 `2b9a4cef`，817/817及独立冷审通过，main快进因自动审批要求当前明确授权而待用户确认。[R10结果](../tests/evidence/speech-revision-r10/result.md)、[集成状态](../tests/evidence/speech-revision-r10/integration.md)。WR-030经验交流与WR-031汇报取舍已完成三轮16次真实调用，候选均未准入，不能再记为未测试；[最终取舍](../tests/evidence/experience-report-r3/result.md)。R9入口一句仍已合main，本机38/38匹配main05c4465f；全稿、多版和Hook质量未闭环。
 
 2026-09-08：[SkillHub 竞品研究](../tests/evidence/skillhub-competitor-review-20260908/result.md)完成 10 个公开源码包静态审查；按用户澄清，优先记录经验交流、普通工作人员发言和汇报取舍的专业指导差异；工程路线观察降为附录。申请类未发现更优替换依据。本轮无产品变更或真实写稿结论，不把研究建议记为已完成能力。
 
 2026-09-08：[R26接续立项申请取舍](../tests/evidence/application-current-main-r26/result.md)。补登记R23/R24并完成当前main下12次真实首稿，选定精简混合的有限组织和加载收益，工程检查通过，已合入本地main（[合并登记](../tests/evidence/application-current-main-r26/integration.md)）。事实、多版与Hook问题仍开放。
 
-2026-09-07：[v1.6.29发布记录](../tests/evidence/release-1.6.29.md)为当前发行事实；Claude同稿接续与默认正文清理已发布，下文旧轮“未发布”仅指当时。宿主限制、批量与多版质量仍未闭环，市场公开传播与审核单列。
+2026-09-08：当前发行版本为选择性冻结的v1.6.30，范围及平台最后记录见[恢复记录](../tests/evidence/mit-maintenance-recovery-20260908/result.md)；此前[v1.6.29发布记录](../tests/evidence/release-1.6.29.md)保持。Claude同稿接续与默认正文清理已发布，下文旧轮“未发布”仅指当时。宿主限制、批量与多版质量仍未闭环，市场公开传播与审核单列。
 
 本目录是产品需求、当前变更和验证覆盖的中间层。它借鉴 OpenSpec 的“需求为真、变更单独记录、证据可追踪”，但不安装 OpenSpec，不增加 slash command、审批流或归档工具。
 

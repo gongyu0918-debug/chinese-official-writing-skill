@@ -1,0 +1,249 @@
+{
+  "arm": "baseline",
+  "provider": "sol",
+  "model": "gpt-5.6-sol",
+  "case": "experience",
+  "session": "528e3f51-3748-4b7d-bddf-e7caf9e49d05",
+  "technical_valid": true,
+  "return_code": 0,
+  "failure": null,
+  "seconds": 119.47,
+  "client_tools": "Read,Skill",
+  "explicit_entry": true,
+  "frozen_unchanged": true,
+  "final_chars": 666,
+  "init_models": [
+    "gpt-5.6-sol"
+  ],
+  "assistant_models": [
+    "gpt-5.6-sol"
+  ],
+  "usage_models": [
+    "gpt-5.6-sol"
+  ],
+  "result_count": 1,
+  "result_subtypes": [
+    "success"
+  ],
+  "result_errors": [
+    false
+  ],
+  "final_path": "runs/experience/sol/baseline/final.txt",
+  "final_sha256": "06ffcfde26d8e8f26b2149b2051311ad3513195dadc3ce3488d4ec146976ebaa",
+  "source_final_sha256": "06ffcfde26d8e8f26b2149b2051311ad3513195dadc3ce3488d4ec146976ebaa",
+  "source_final_logical_sha256": "6157c29d2c763d26e57b22939900864554d0c0450ba811cf4a79cf97adcd78ba",
+  "final_redaction": {
+    "replacement_count": 0,
+    "replacement": "<isolated-work>",
+    "scope": "Only this lane approved runtime/work prefix; slash variants accepted.",
+    "source_unchanged": true,
+    "archive_is_original_bytes": true
+  },
+  "hook_enabled": false,
+  "timeout_seconds": 1200,
+  "automatic_retries": 0,
+  "effort": "max",
+  "invalid_json_line_count": 0,
+  "reads": [
+    "references/information-selection.md",
+    "references/formulaic-language.md",
+    "references/genre-playbook-work-summary.md",
+    "references/official-style.md",
+    "references/final-review-layers.md",
+    "references/proofreading-checklist.md"
+  ],
+  "routing": {
+    "reference_paths": [
+      "references/final-review-layers.md",
+      "references/formulaic-language.md",
+      "references/genre-playbook-work-summary.md",
+      "references/information-selection.md",
+      "references/official-style.md",
+      "references/proofreading-checklist.md"
+    ],
+    "references_distinct_pages": 6,
+    "references_distinct_file_bytes": 33345,
+    "skill_direct_read_file_bytes": 0
+  },
+  "tool_evidence": [
+    {
+      "sequence": 1,
+      "id": "call_xEOCgWQJu7czcwtyPb4BozrA",
+      "name": "Skill",
+      "result": {
+        "observed": true,
+        "is_error_field": null,
+        "content_bytes": 65,
+        "content_sha256": "2208255ee679ba4f9d37caea5978009b3ee3459ba286dd41d1e923554c8abad8",
+        "skill_launch_acknowledgement": "official-writing-eval:chinese-official-writing"
+      },
+      "skill_name": "official-writing-eval:chinese-official-writing",
+      "launch_success_observed": true,
+      "response_visibility": "launch_acknowledgement_only_no_skill_body"
+    },
+    {
+      "sequence": 2,
+      "id": "call_hJ6xXJkFlcPmiG1GmCyOMjCW",
+      "name": "Read",
+      "result": {
+        "observed": true,
+        "is_error_field": true,
+        "content_bytes": 133,
+        "content_sha256": "9e0a429343d148bfada6df3331fc6de63ee17f96c659b835225bbfbc0728e4f9",
+        "skill_launch_acknowledgement": null
+      },
+      "scope": "failed_read",
+      "requested_scope": "package",
+      "requested_relative_path": "references/information-selection.md",
+      "read_success_observed": false,
+      "file_path_sha256": "f94afcfc4d82a4534de26bb3b2431ecffda76d050855dd8d6d52f50634b83f98"
+    },
+    {
+      "sequence": 3,
+      "id": "call_RjuBxByNpG4vmJTzRvHQC8Tb",
+      "name": "Read",
+      "result": {
+        "observed": true,
+        "is_error_field": null,
+        "content_bytes": 5029,
+        "content_sha256": "69a66166a0c9eba32cafe95347b005234a2e741805ef6e5eba6f9f58f9b38c5c",
+        "skill_launch_acknowledgement": null
+      },
+      "scope": "package",
+      "package_path": "references/information-selection.md",
+      "frozen_file_sha256": "bf1aff9c90a6ba901fb2514ed98b3796a67616a4f934bfeac45fa4e3c0c01787",
+      "read_success_observed": true,
+      "offset": 1,
+      "limit": 2000
+    },
+    {
+      "sequence": 4,
+      "id": "call_oGmvyasitIjNJQ0YpqNHwi6D",
+      "name": "Read",
+      "result": {
+        "observed": true,
+        "is_error_field": null,
+        "content_bytes": 8196,
+        "content_sha256": "5f8316d3ee96b681a970bd641dd06497d8398280b16eb509daceaeabede3539d",
+        "skill_launch_acknowledgement": null
+      },
+      "scope": "package",
+      "package_path": "references/formulaic-language.md",
+      "frozen_file_sha256": "a4940b83c337ec5e0a7f0389de49113df8ccf3ae012b5c3fc498f0982b73bb16",
+      "read_success_observed": true,
+      "offset": 1,
+      "limit": 2000
+    },
+    {
+      "sequence": 5,
+      "id": "call_qD8K8Gr8lOM0Ppd2TEbdJf9K",
+      "name": "Read",
+      "result": {
+        "observed": true,
+        "is_error_field": null,
+        "content_bytes": 1861,
+        "content_sha256": "7641a5101ac5677bca2a9e792bfc902de1a16c2708905c4ca6f0fe28aa88ea82",
+        "skill_launch_acknowledgement": null
+      },
+      "scope": "package",
+      "package_path": "references/genre-playbook-work-summary.md",
+      "frozen_file_sha256": "ab34551c8df751bf4a7d882a5f5f1ee8d12291e735e3f45cf8ad1e1d4c68e026",
+      "read_success_observed": true,
+      "offset": 1,
+      "limit": 2000
+    },
+    {
+      "sequence": 6,
+      "id": "call_2jE3vMnQRKDvljeRxdagJtiM",
+      "name": "Read",
+      "result": {
+        "observed": true,
+        "is_error_field": null,
+        "content_bytes": 6500,
+        "content_sha256": "fb2f2d445b02064075e4a188810fe916bab16b578d278c01ab0b14ab64e6794f",
+        "skill_launch_acknowledgement": null
+      },
+      "scope": "package",
+      "package_path": "references/official-style.md",
+      "frozen_file_sha256": "82b97cc58bca9fce3f81c79ece4a5804d17a1869a5bbd3f6de191612440d505a",
+      "read_success_observed": true,
+      "offset": 1,
+      "limit": 2000
+    },
+    {
+      "sequence": 7,
+      "id": "call_7QAyR1COxJp8uRAafOSum6j2",
+      "name": "Read",
+      "result": {
+        "observed": true,
+        "is_error_field": null,
+        "content_bytes": 9450,
+        "content_sha256": "f0fb6965987cf35c05536dfda4f5bc1a9bddf74938da0da4f4b57b7350757ca6",
+        "skill_launch_acknowledgement": null
+      },
+      "scope": "package",
+      "package_path": "references/final-review-layers.md",
+      "frozen_file_sha256": "0204ee133951e5ca0839312e8c60524d2edc529161e9b2846a314e1e7232e546",
+      "read_success_observed": true,
+      "offset": 1,
+      "limit": 2000
+    },
+    {
+      "sequence": 8,
+      "id": "call_PZx70h1BVLfPQWWcttJY0cH1",
+      "name": "Read",
+      "result": {
+        "observed": true,
+        "is_error_field": null,
+        "content_bytes": 3980,
+        "content_sha256": "2609504659ce8f388adac655ae04ffa3111392456ba96f60ae080673612c3600",
+        "skill_launch_acknowledgement": null
+      },
+      "scope": "package",
+      "package_path": "references/proofreading-checklist.md",
+      "frozen_file_sha256": "aa56802a0e984aadb1deed4603181fc85b237b8c534ae0973e3c9d9413d859d2",
+      "read_success_observed": true,
+      "offset": 1,
+      "limit": 2000
+    }
+  ],
+  "documents": [],
+  "helper_sha256": "452d3f5ac8df257fbd220d7585ce0aef3dd0475a76a51181de77e0f729f0a6ab",
+  "prompt_path": "prompts/experience.txt",
+  "omissions": [
+    "raw stream",
+    "runtime",
+    "provider state",
+    "original argv",
+    "absolute paths",
+    "shell arguments and stdout"
+  ],
+  "isolation_observed": {
+    "cwd_matches_isolated_work": true,
+    "mcp_servers": [],
+    "hook_events": 0,
+    "runtime_memory_files": 0,
+    "model": "gpt-5.6-sol",
+    "skill_catalog": [
+      "deep-research",
+      "official-writing-eval:chinese-official-writing",
+      "design-sync",
+      "update-config",
+      "verify",
+      "debug",
+      "code-review",
+      "simplify",
+      "batch",
+      "fewer-permission-prompts",
+      "loop",
+      "claude-api",
+      "run",
+      "run-skill-generator"
+    ],
+    "cli_version": "2.1.195",
+    "native_full_entry_expansions": 0,
+    "stream_sha256": "dbc1bdde631a992cc5d68919a5a526d255a0960422548f2a930ba59ad9f2ebcf",
+    "raw_final_bytes_verified": true,
+    "frozen_files_verified": 42
+  }
+}

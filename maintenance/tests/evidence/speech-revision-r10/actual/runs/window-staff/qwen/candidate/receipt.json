@@ -1,0 +1,202 @@
+{
+  "arm": "candidate",
+  "provider": "qwen",
+  "model": "alibaba-token-plan/qwen3.8-max",
+  "case": "window-staff",
+  "session": "f683c81c-e5a8-4da5-a3f2-95824b89440e",
+  "technical_valid": true,
+  "return_code": 0,
+  "failure": null,
+  "seconds": 193.02,
+  "client_tools": "Read,Skill",
+  "explicit_entry": true,
+  "frozen_unchanged": true,
+  "final_chars": 978,
+  "init_models": [
+    "alibaba-token-plan/qwen3.8-max"
+  ],
+  "assistant_models": [
+    "alibaba-token-plan/qwen3.8-max"
+  ],
+  "usage_models": [
+    "alibaba-token-plan/qwen3.8-max"
+  ],
+  "result_count": 1,
+  "result_subtypes": [
+    "success"
+  ],
+  "result_errors": [
+    false
+  ],
+  "final_path": "runs/window-staff/qwen/candidate/final.txt",
+  "final_sha256": "1ceab2d3331d8648c626ef5d4e0a04a07d4048c5ca43d098acfee7e35946d0b7",
+  "source_final_sha256": "1ceab2d3331d8648c626ef5d4e0a04a07d4048c5ca43d098acfee7e35946d0b7",
+  "source_final_logical_sha256": "13675e2f27943a70a332aa150a1e8c4c5897de554f9b96585f24165f7a2812bb",
+  "final_redaction": {
+    "replacement_count": 0,
+    "replacement": "<isolated-work>",
+    "scope": "Only this lane approved runtime/work prefix; slash variants accepted.",
+    "source_unchanged": true,
+    "archive_is_original_bytes": true
+  },
+  "hook_enabled": false,
+  "timeout_seconds": 1200,
+  "automatic_retries": 0,
+  "effort": "max",
+  "invalid_json_line_count": 0,
+  "reads": [
+    "references/information-selection.md",
+    "references/formulaic-language.md",
+    "references/genre-playbooks.md",
+    "references/anti-ai-patterns.md",
+    "references/official-style.md"
+  ],
+  "routing": {
+    "reference_paths": [
+      "references/anti-ai-patterns.md",
+      "references/formulaic-language.md",
+      "references/genre-playbooks.md",
+      "references/information-selection.md",
+      "references/official-style.md"
+    ],
+    "references_distinct_pages": 5,
+    "references_distinct_file_bytes": 39076,
+    "skill_direct_read_file_bytes": 0
+  },
+  "tool_evidence": [
+    {
+      "sequence": 1,
+      "id": "call_e5aae647252748d99801f5ac",
+      "name": "Skill",
+      "result": {
+        "observed": true,
+        "is_error_field": null,
+        "content_bytes": 65,
+        "content_sha256": "2208255ee679ba4f9d37caea5978009b3ee3459ba286dd41d1e923554c8abad8",
+        "skill_launch_acknowledgement": "official-writing-eval:chinese-official-writing"
+      },
+      "skill_name": "official-writing-eval:chinese-official-writing",
+      "launch_success_observed": true,
+      "response_visibility": "launch_acknowledgement_only_no_skill_body"
+    },
+    {
+      "sequence": 2,
+      "id": "call_a135a9182bd845bfb163e18c",
+      "name": "Read",
+      "result": {
+        "observed": true,
+        "is_error_field": null,
+        "content_bytes": 5800,
+        "content_sha256": "34575e631ee2c73539f678ae9382ebad51384661677ba38e19e8f8b3c2d3d23b",
+        "skill_launch_acknowledgement": null
+      },
+      "scope": "package",
+      "package_path": "references/information-selection.md",
+      "frozen_file_sha256": "e20c2b18cddab4cb0e4ba0ce4ddcd8b849314c4f30ee4d1c6f16216b9f630aff",
+      "read_success_observed": true
+    },
+    {
+      "sequence": 3,
+      "id": "call_23d745e0957645139658f8cd",
+      "name": "Read",
+      "result": {
+        "observed": true,
+        "is_error_field": null,
+        "content_bytes": 8196,
+        "content_sha256": "5f8316d3ee96b681a970bd641dd06497d8398280b16eb509daceaeabede3539d",
+        "skill_launch_acknowledgement": null
+      },
+      "scope": "package",
+      "package_path": "references/formulaic-language.md",
+      "frozen_file_sha256": "a4940b83c337ec5e0a7f0389de49113df8ccf3ae012b5c3fc498f0982b73bb16",
+      "read_success_observed": true
+    },
+    {
+      "sequence": 4,
+      "id": "call_3d7fb6db35b140c3abfcffab",
+      "name": "Read",
+      "result": {
+        "observed": true,
+        "is_error_field": null,
+        "content_bytes": 5932,
+        "content_sha256": "5035a2a127cbba44f61f43fff3b53eedd0b91b0991b9f60a5e0bbcd6bf2607c3",
+        "skill_launch_acknowledgement": null
+      },
+      "scope": "package",
+      "package_path": "references/genre-playbooks.md",
+      "frozen_file_sha256": "d209e23f5496d34aa0fabf1449f7cd2ca44bdc318778f3a81a5839c414de343b",
+      "read_success_observed": true
+    },
+    {
+      "sequence": 5,
+      "id": "call_180f2abd59ff48d6a6f7d8ab",
+      "name": "Read",
+      "result": {
+        "observed": true,
+        "is_error_field": null,
+        "content_bytes": 15041,
+        "content_sha256": "30b5e73d21be16753fbb5a4fde30e8accf79cd2b9746124413f5791ef20e0adf",
+        "skill_launch_acknowledgement": null
+      },
+      "scope": "package",
+      "package_path": "references/anti-ai-patterns.md",
+      "frozen_file_sha256": "c77202b6685b57bef8ae98499c05e1e21427fce90c56a18adba0472da07e4f2f",
+      "read_success_observed": true
+    },
+    {
+      "sequence": 6,
+      "id": "call_6d5fa2d331b44179ba480e50",
+      "name": "Read",
+      "result": {
+        "observed": true,
+        "is_error_field": null,
+        "content_bytes": 6500,
+        "content_sha256": "fb2f2d445b02064075e4a188810fe916bab16b578d278c01ab0b14ab64e6794f",
+        "skill_launch_acknowledgement": null
+      },
+      "scope": "package",
+      "package_path": "references/official-style.md",
+      "frozen_file_sha256": "82b97cc58bca9fce3f81c79ece4a5804d17a1869a5bbd3f6de191612440d505a",
+      "read_success_observed": true
+    }
+  ],
+  "documents": [],
+  "helper_sha256": "452d3f5ac8df257fbd220d7585ce0aef3dd0475a76a51181de77e0f729f0a6ab",
+  "prompt_path": "prompts/window-staff.txt",
+  "omissions": [
+    "raw stream",
+    "runtime",
+    "provider state",
+    "original argv",
+    "absolute paths",
+    "shell arguments and stdout"
+  ],
+  "isolation_observed": {
+    "cwd_matches_isolated_work": true,
+    "mcp_servers": [],
+    "hook_events": 0,
+    "runtime_memory_files": 0,
+    "model": "alibaba-token-plan/qwen3.8-max",
+    "skill_catalog": [
+      "deep-research",
+      "official-writing-eval:chinese-official-writing",
+      "design-sync",
+      "update-config",
+      "verify",
+      "debug",
+      "code-review",
+      "simplify",
+      "batch",
+      "fewer-permission-prompts",
+      "loop",
+      "claude-api",
+      "run",
+      "run-skill-generator"
+    ],
+    "cli_version": "2.1.195",
+    "native_full_entry_expansions": 0,
+    "stream_sha256": "d6899e9e41f778c19c32eda32f5e750ff16a4d8f139211ea53aa39a51e9db81e",
+    "raw_final_bytes_verified": true,
+    "frozen_files_verified": 42
+  }
+}
