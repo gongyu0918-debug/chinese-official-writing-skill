@@ -1,0 +1,21 @@
+{
+  "command": [
+    "C:/Users/admin/AppData/Local/Programs/Python/Python313/python.exe",
+    "-B",
+    "-X",
+    "utf8",
+    "C:/Users/admin/.skillhub/skills_store_cli.py",
+    "--skip-self-upgrade",
+    "verify",
+    "chinese-official-writing",
+    "--namespace",
+    "user_f3d82da7",
+    "--version",
+    "1.6.30",
+    "--json"
+  ],
+  "exit_code": 1,
+  "seconds": 0.239,
+  "stdout": "",
+  "stderr": "Error: 未找到已安装的 skill 目录: F:\\Workspaces\\chinese-official-writing-skill-worktrees\\release-v1.6.30\\skills\\@user_f3d82da7\\chinese-official-writing, F:\\Workspaces\\chinese-official-writing-skill-worktrees\\release-v1.6.30\\skills\\chinese-official-writing\n  请先 skillhub install @user_f3d82da7/chinese-official-writing，或用 --zip 指定 zip 路径\n"
+}

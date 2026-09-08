@@ -1,0 +1,23 @@
+{
+  "command": [
+    "C:/Users/admin/AppData/Local/Programs/Python/Python313/python.exe",
+    "-B",
+    "-X",
+    "utf8",
+    "C:/Users/admin/.skillhub/skills_store_cli.py",
+    "--skip-self-upgrade",
+    "verify",
+    "chinese-official-writing",
+    "--namespace",
+    "user_f3d82da7",
+    "--version",
+    "1.6.30",
+    "--zip",
+    "output/release-v1.6.30/chinese-official-writing-1.6.30-skillhub.zip",
+    "--json"
+  ],
+  "exit_code": 2,
+  "seconds": 0.443,
+  "stdout": "",
+  "stderr": "Error: 找不到该版本: chinese-official-writing@1.6.30\n"
+}
