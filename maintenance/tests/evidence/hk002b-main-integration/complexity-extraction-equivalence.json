@@ -1,0 +1,65 @@
+{
+  "worktree": "F:/Workspaces/chinese-official-writing-skill/output/integration-worktrees/hk002b-main-20260909",
+  "branch": "codex/hk002b-main-integration-20260909",
+  "baseline_commit": "7464880e748d722e7a0e5b55d1822eb62a5b27bc",
+  "changed_product_file": "chinese-official-writing/scripts/review_gate.py",
+  "module_git_lf_sha256": "e2cf7c6b47e819c5e862b004f6820c9b3de6f22d3babd6212dd921fcbca0921a",
+  "module_disk_sha256": "1d95f4cffc3d60cbee9c8e54151d3aaae0fa9f26670c7d6c6b533602ee88b3d0",
+  "complexity_test": {
+    "command": "python -B -m unittest discover -s maintenance/tests -p test_complexity_contract.py -v",
+    "tests": 3,
+    "passed": 3,
+    "seconds": 0.122,
+    "exit_code": 0
+  },
+  "source_test": {
+    "command": "python -B -m unittest discover -s maintenance/tests -p 'test_source_fact*.py' -v",
+    "subagent_environment_attempt": "28 tests, 63 errors caused by TemporaryDirectory request.txt and cleanup PermissionError; no escalation or bypass attempted",
+    "root_environment_result": "Root independently reported 28 passed in 3.493 seconds",
+    "root_log": "maintenance/tests/evidence/hk002b-main-integration/source-tests-after-extraction.log"
+  },
+  "archived_replay": {
+    "driver_read": "maintenance/tests/evidence/hk002b-source-state-r1/replay_reports.py",
+    "transactions": "maintenance/tests/evidence/hk002b-source-state-r1/raw/core-r2/transactions",
+    "method": "Loaded the baseline script from git show 7464880e and the refactored script as separate modules. Reused replay_reports.py read helper, archive paths and complete-dictionary comparison. Both scripts reproduced all archived shared-report-before-echo.json and shared-report.json objects, using the archived echo final.txt as the observed output. Compared evaluate_candidate, _bound_verification_state, _semantic_verdict_result and _selected_text for every transaction; return values or exception class and message were equal.",
+    "reports_equal": 30,
+    "candidate_binding_verdict_selection_equivalent_transactions": 20,
+    "exit_code": 0,
+    "archive_files_modified": false,
+    "historical_driver_main_invoked": false,
+    "historical_driver_main_reason": "Its report-only prefix/suffix assertion is specific to the prior report change and its main overwrites the prior evidence. Neither the assertion nor the archived evidence was modified."
+  },
+  "structural_check": {
+    "only_five_original_function_bodies_changed": true,
+    "five_private_helpers_added": [
+      "_bind_source_relation_state",
+      "_empty_replacement_reason",
+      "_source_assessment_reason",
+      "_source_fact_report_items",
+      "_source_relation_verdict_reason"
+    ],
+    "existing_signatures_constants_imports_classes_and_other_functions_unchanged": true,
+    "exit_code": 0
+  },
+  "metrics": {
+    "before": {
+      "_verified_repair_envelope": {"lines": 71, "decisions": 26},
+      "_candidate_replacement_reason": {"lines": 58, "decisions": 27},
+      "_bound_verification_state": {"lines": 92, "decisions": 30},
+      "_semantic_verdict_result": {"lines": 82, "decisions": 30},
+      "source_fact_report": {"lines": 87, "decisions": 33}
+    },
+    "after": {
+      "_verified_repair_envelope": {"lines": 48, "decisions": 17},
+      "_candidate_replacement_reason": {"lines": 55, "decisions": 24},
+      "_bound_verification_state": {"lines": 74, "decisions": 18},
+      "_semantic_verdict_result": {"lines": 60, "decisions": 23},
+      "source_fact_report": {"lines": 64, "decisions": 24}
+    }
+  },
+  "git_diff_check": "passed",
+  "original_full_suite_failure_log_preserved": "maintenance/tests/evidence/hk002b-main-integration/full-tests.log",
+  "model_calls_added": 0,
+  "facade_or_public_api_added": false,
+  "remaining": "Final full suite is owned by root; no main merge, push or release performed by this subagent."
+}

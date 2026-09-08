@@ -1,0 +1,9 @@
+{
+  "case_id": "error",
+  "attempt": "01",
+  "requested_model": "ollama-cloud/glm-5.3-flash",
+  "requested_effort": "max",
+  "exit_code": 0,
+  "failure": null,
+  "elapsed_seconds": 44.409
+}

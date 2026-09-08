@@ -1,0 +1,33 @@
+{
+  "base": "4fd63ce344fec440bbbbc664a7ebd7934751e04e",
+  "archive_sha256": "e7730e204df7b0fae39ac1788a3b292e993435c145b1501e1e96381715bf6236",
+  "source_manifest_sha256": "45da1bbc672c6ab94df059157ae4f598eaff2f8216546f6c5e17100139821cd0",
+  "source_files": 92,
+  "preview_files": 64,
+  "companion_target": "F:\\Workspaces\\chinese-official-writing-skill\\output\\integration-worktrees\\hk002b-main-20260909\\output\\hk002b-native-stop-r1\\marketplace\\plugins\\chinese-official-writing",
+  "assembled": {
+    "host": "codex",
+    "output": "F:\\Workspaces\\chinese-official-writing-skill\\output\\integration-worktrees\\hk002b-main-20260909\\output\\hk002b-native-stop-r1\\marketplace\\plugins\\chinese-official-writing",
+    "files": 64,
+    "fingerprint": "b46ad67f3c9fdf0dbfc9f338a9e0e92676f99930ec148b9d30cd1cfc3f5ad745",
+    "capability": "delivery_review",
+    "installed": false,
+    "enabled": false,
+    "network_used": false
+  },
+  "companion_files": 64,
+  "companion_manifest_sha256": "33be0c8e846c0b0010ff46b285bb6d104622c117045a06f3a776b7ff4581176b",
+  "cli_version_expected": "0.151.0",
+  "cli_sha256": "cf68265897197ac5f3bff6a10c168eec159842b353129726da5e3ed6b91ef0f4",
+  "route": "ollama-cloud/glm-5.3-flash",
+  "requested_effort": "max",
+  "catalog_sha256": "9a7608431b3346d00bfcea412a9319c11ba16aea2bd51938b4dbcc8ca14db049",
+  "d0_sha256": {
+    "error": "f5d73b3a9416559c4e7dfbd01f0994bed29c096da5a4e430bd6b4f8dcff7f82f",
+    "control": "d0152a7d8d400a7a980dcf5d33e43cd08a135f44599a1767fbeba1b693c6ae47"
+  },
+  "frozen_d0_injection": true,
+  "natural_first_draft_generation": false,
+  "planned_cli_tasks": 2,
+  "upstream_response_model_observed": false
+}

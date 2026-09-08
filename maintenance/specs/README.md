@@ -55,7 +55,7 @@
 
 2026-09-06 继续构建四项 Hook 质量问题，登记为 `HK-002a` 同稿接续、`CL-001` 默认正文清理、`HK-010` 自然篇幅要求、`HK-002b` 原稿事实复核。工作基线为已发布 main `b77f6381`，独立分支 `codex/hook-quality-build-r1`；[本轮记录](../tests/evidence/hook-quality-build-r1/result.md)分别保留真实参与、正文质量、技术失败与未准入候选，不把全部需求标为完成。
 
-2026-09-09 `HK-002b`继续两个局部原子：明确进行态与无据时间前置条件。[共享接口](hook-source-facts-api.md)沿用现有单次事务，[真实结果](../tests/evidence/hk002b-source-state-r1/result.md)保留五路测试、8份实际纠错交付、2份格式失败回退及全部原始证据；候选未合并，全文事实与原生宿主验证仍开放。
+2026-09-09 `HK-002b`两个局部原子已[合入本地main](../tests/evidence/hk002b-main-integration/README.md)，产品893d4810，845项全量通过；原生Codex/GLM 5.3 Flash max完成一个状态错误与一个正常对照，均精确交付并脱敏。[共享接口](hook-source-facts-api.md)及[五路同稿结果](../tests/evidence/hk002b-source-state-r1/result.md)保留8份纠错交付、2份格式回退；全文事实和其他宿主质量仍开放，尚未发布。
 
 2026-09-05 的[逐项规格审计](../tests/evidence/reference-route-audit-r1/spec-audit.md)记录现有状态、证据入口和 AGENTS 规则保留映射；[审核发现](../tests/evidence/reference-route-audit-r1/audit-findings.md)登记已准入的命令路径修正与待修 Hook 问题，完整结论见[本轮结果](../tests/evidence/reference-route-audit-r1/result.md)。当前新增子项为 `MT-004c` 渐进路由、`MT-002a` 命令可执行、`WR-020c` 批量与多版质量、`AH-002b` 日期来源角色和 `HK-005b` 终态/回显；活动状态见 roadmap，不能用原型或旧测试记 DONE。
 

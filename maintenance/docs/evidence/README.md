@@ -1,5 +1,7 @@
 # 项目维护历史索引
 
+- [HK-002b本地集成](../../tests/evidence/hk002b-main-integration/README.md)：两类局部纠错已合main，845项回归与Codex原生状态错误/正常对照完成；1.6.31独立冻结、暂不发布。
+
 - [R26立项申请接续](../../tests/evidence/application-current-main-r26/result.md)：补回R23/R24登记，在共享R25的当前main完成12次首稿；有限组合已[合入本地main](../../tests/evidence/application-current-main-r26/integration.md)、工程通过，真实错误及路径偏差保留。
 
 

@@ -1,0 +1,38 @@
+{
+  "schema_version": 2,
+  "request_sha256": "b144eecc3133a420738f56ad40e08c9323c704b72878ff1f888ae74a64d5479b",
+  "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "draft_sha256": "f5d73b3a9416559c4e7dfbd01f0994bed29c096da5a4e430bd6b4f8dcff7f82f",
+  "revision_budget": 1,
+  "verify_budget": 1,
+  "findings": [
+    {
+      "finding_id": "P001",
+      "labels": [
+        "peripheral-pending-cluster",
+        "source-state-mismatch"
+      ],
+      "line": 3,
+      "target": "截至9月4日，业务科尚未开展18份附件核对，其中10份已经完成，剩余8份尚未完成。",
+      "source_exact": false,
+      "request_exact": false,
+      "span_start": 8,
+      "span_end": 49,
+      "source_relation": {
+        "kind": "state_mismatch",
+        "evidence": [
+          {
+            "origin": "request",
+            "quote": "截至9月4日，业务科正在核对18份附件，其中10份已经核对完成，剩余8份尚未完成。",
+            "span_start": 81,
+            "span_end": 122
+          }
+        ],
+        "relation": "核对状态或完成范围的词面差异是否对应同一主体、对象和阶段；不同分项、时间或最新更正可能使原稿成立。"
+      },
+      "assessment_status": "pending"
+    }
+  ],
+  "guided_marker_sha256": null,
+  "run_id": "d59540fa-7860-4be0-b725-f89202635747"
+}

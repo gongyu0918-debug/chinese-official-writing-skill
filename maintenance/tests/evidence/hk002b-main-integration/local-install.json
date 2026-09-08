@@ -1,0 +1,29 @@
+{
+  "status": "INSTALLED",
+  "version": "0.4.15",
+  "activation_state": "AWAITING_HOST_TRUST",
+  "base_source_commit": "893d481070c962c046612d1dcbfae260bfcdc8e8",
+  "verified_public_main": "893d481070c962c046612d1dcbfae260bfcdc8e8",
+  "source_signature": "9a8669a777fb38e718e550c3adc1a28a2bf953381d8bbe93e73e1c9d87dc56c4",
+  "runtime_source_commit": "ce84de1e9cb2714d28069609f8cfe43097b75811",
+  "pro_source_commit": "e774bfe62b1adecc19457393c6e278db3a98ed67",
+  "source_policy": "local-development",
+  "hooks": [
+    {
+      "key": "official-writing-pro@official-writing-pro-local:hooks/hooks.json:user_prompt_submit:0:0",
+      "enabled": true,
+      "trustStatus": "trusted",
+      "currentHash": "sha256:0ebccb4326fcbff5a996b6be02f26faba6ac4c26b716ffcedff5e4c4189650a2"
+    },
+    {
+      "key": "official-writing-pro@official-writing-pro-local:hooks/hooks.json:stop:0:0",
+      "enabled": true,
+      "trustStatus": "trusted",
+      "currentHash": "sha256:68c6b692ff3b565b85ebd708750281a7c368dc4965872ca334a8ce25417d4b4b"
+    }
+  ],
+  "installed_mit_entry_sha256": "da8aad64cd43d660ca6ff6df3272760e38a61626e2b01594ba4fccd604d9964e",
+  "installed_mit_entry_bytes_match_main": true,
+  "pro_online_writing_validation": "NOT_RUN",
+  "note": "Fresh local synchronization checked installed files. The legacy activation_state remains AWAITING_HOST_TRUST; current hook readback independently reports enabled/trusted. This is not a Pro native-writing validation."
+}

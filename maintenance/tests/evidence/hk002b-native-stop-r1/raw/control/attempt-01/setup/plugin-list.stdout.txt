@@ -1,0 +1,23 @@
+{
+  "installed": [
+    {
+      "pluginId": "chinese-official-writing@hk002b-native-stop-r1",
+      "name": "chinese-official-writing",
+      "marketplaceName": "hk002b-native-stop-r1",
+      "version": "1.6.30",
+      "installed": true,
+      "enabled": true,
+      "source": {
+        "source": "local",
+        "path": "F:\\Workspaces\\chinese-official-writing-skill\\output\\integration-worktrees\\hk002b-main-20260909\\output\\hk002b-native-stop-r1\\marketplace\\plugins\\chinese-official-writing"
+      },
+      "marketplaceSource": {
+        "sourceType": "local",
+        "source": "\\\\?\\F:\\Workspaces\\chinese-official-writing-skill\\output\\integration-worktrees\\hk002b-main-20260909\\output\\hk002b-native-stop-r1\\marketplace"
+      },
+      "installPolicy": "AVAILABLE",
+      "authPolicy": "ON_INSTALL"
+    }
+  ],
+  "available": []
+}

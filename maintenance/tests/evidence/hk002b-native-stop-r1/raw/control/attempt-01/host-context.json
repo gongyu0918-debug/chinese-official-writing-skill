@@ -1,0 +1,7 @@
+[
+  {
+    "turn_id": "01a0829a-282b-7df0-9397-c6131fb6238c",
+    "model": "ollama-cloud/glm-5.3-flash",
+    "effort": "max"
+  }
+]

@@ -1,0 +1,8 @@
+{
+  "pluginId": "chinese-official-writing@hk002b-native-stop-r1",
+  "name": "chinese-official-writing",
+  "marketplaceName": "hk002b-native-stop-r1",
+  "version": "1.6.30",
+  "installedPath": "F:\\Workspaces\\chinese-official-writing-skill\\output\\integration-worktrees\\hk002b-main-20260909\\output\\hk002b-native-stop-r1\\runs\\error\\attempt-01\\codex-home\\plugins\\cache\\hk002b-native-stop-r1\\chinese-official-writing\\1.6.30",
+  "authPolicy": "ON_INSTALL"
+}

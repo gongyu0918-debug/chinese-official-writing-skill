@@ -1,0 +1,10 @@
+{
+  "argv": [
+    "C:\\Users\\admin\\AppData\\Local\\npm-cache\\_npx\\0a5f33f9bb5dd5c8\\node_modules\\@openai\\codex-win32-x64\\vendor\\x86_64-pc-windows-msvc\\bin\\codex.exe",
+    "plugin",
+    "add",
+    "chinese-official-writing@hk002b-native-stop-r1",
+    "--json"
+  ],
+  "exit_code": 0
+}

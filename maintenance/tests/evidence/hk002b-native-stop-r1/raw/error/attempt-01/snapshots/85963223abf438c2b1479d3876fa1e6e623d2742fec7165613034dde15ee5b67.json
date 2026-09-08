@@ -1,0 +1,64 @@
+{
+  "schema_version": 1,
+  "run_id": "d59540fa-7860-4be0-b725-f89202635747",
+  "request_sha256": "b144eecc3133a420738f56ad40e08c9323c704b72878ff1f888ae74a64d5479b",
+  "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "draft_sha256": "f5d73b3a9416559c4e7dfbd01f0994bed29c096da5a4e430bd6b4f8dcff7f82f",
+  "candidate_sha256": "d0152a7d8d400a7a980dcf5d33e43cd08a135f44599a1767fbeba1b693c6ae47",
+  "repair_sha256": "e2343e89f91b9bd78e41fb31f9dca85293e41ea7550c1d5281ed9c7b2403411a",
+  "guided_marker_sha256": null,
+  "files": {
+    "request": "request.snapshot.txt",
+    "source": "source.snapshot.txt",
+    "draft": "d0.snapshot.txt",
+    "candidate": "d1.candidate.txt",
+    "repair": "repair.accepted.json",
+    "guided_markers": null
+  },
+  "required_checks": [
+    "no_new_fact_action_or_actor",
+    "decision_and_unresolved_state_preserved",
+    "necessary_content_preserved",
+    "p0_expression_removed_or_reduced",
+    "genre_structure_and_usability_preserved",
+    "source_fact_corrections_verified"
+  ],
+  "source_relations": {
+    "schema_version": 1,
+    "request_sha256": "b144eecc3133a420738f56ad40e08c9323c704b72878ff1f888ae74a64d5479b",
+    "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "d0_sha256": "f5d73b3a9416559c4e7dfbd01f0994bed29c096da5a4e430bd6b4f8dcff7f82f",
+    "d1_sha256": "d0152a7d8d400a7a980dcf5d33e43cd08a135f44599a1767fbeba1b693c6ae47",
+    "findings": [
+      {
+        "finding_id": "P001",
+        "target": "截至9月4日，业务科尚未开展18份附件核对，其中10份已经完成，剩余8份尚未完成。",
+        "replacement": "截至9月4日，业务科正在核对18份附件，其中10份已经完成，剩余8份尚未完成。",
+        "span_start": 8,
+        "span_end": 49,
+        "candidate_span_start": 8,
+        "candidate_span_end": 47,
+        "source_relation": {
+          "kind": "state_mismatch",
+          "evidence": [
+            {
+              "origin": "request",
+              "quote": "截至9月4日，业务科正在核对18份附件，其中10份已经核对完成，剩余8份尚未完成。",
+              "span_start": 81,
+              "span_end": 122
+            }
+          ],
+          "relation": "核对状态或完成范围的词面差异是否对应同一主体、对象和阶段；不同分项、时间或最新更正可能使原稿成立。"
+        },
+        "source_relation_supported": null,
+        "resolved": null
+      }
+    ],
+    "verification_requirements": {
+      "original_error": "逐项确认完整请求及材料支持原稿确有状态、完成范围或无据前置条件问题；候选、词面差异及证据哈希都不是错误证明。",
+      "correction": "逐项确认实际替换或删除解决了原问题；材料仅说日期未知时，既不能推出必须等待，也不能反推事项已经开展。",
+      "retained_facts": "逐项核对其他主体、对象、数字、时间、范围、条件及必要内容保持；删除须结合完整上下文确认必要事实仍在。以最新明确更正为准，合理分析和同项自然延续不当然是新增事实；来源冲突或证据不足记为未知。"
+    },
+    "packet_sha256": "481584166f9537eaee7f236beccc1d218a8028fcf3577badae0793b36e53f26a"
+  }
+}

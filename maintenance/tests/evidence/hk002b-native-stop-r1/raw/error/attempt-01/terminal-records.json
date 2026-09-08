@@ -1,0 +1,22 @@
+[
+  {
+    "path": "codex-home/plugins/data/chinese-official-writing-hk002b-native-stop-r1/shared-gate-core/candidate-ai-gate-hook/01a08298-09d9-7101-904d-43cd9c8e1c20/01a08298-0acb-78d2-ac3e-51852af2d8ea.json",
+    "record": {
+      "bootstrap_artifacts": true,
+      "bootstrapped_by_stop": true,
+      "bypass": null,
+      "data_retention_state": "raw_turn_data_redacted",
+      "delivery_verified": true,
+      "emit_seen": true,
+      "emitted_sha256": "d0152a7d8d400a7a980dcf5d33e43cd08a135f44599a1767fbeba1b693c6ae47",
+      "external_material_read": true,
+      "hook_phase": "complete",
+      "last_action": "emit",
+      "raw_artifact_delete_failures": 0,
+      "run_id": "d59540fa-7860-4be0-b725-f89202635747",
+      "schema_version": 1,
+      "skill_seen": true,
+      "stop_attempts": 3
+    }
+  }
+]

@@ -1,0 +1,69 @@
+......................................FFFFF......................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................
+======================================================================
+FAIL: test_new_architecture_does_not_add_god_functions (test_complexity_contract.ComplexityContractTests.test_new_architecture_does_not_add_god_functions) (path=WindowsPath('F:/Workspaces/chinese-official-writing-skill/output/integration-worktrees/hk002b-main-20260909/chinese-official-writing/scripts/review_gate.py'), function='_verified_repair_envelope')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "F:\Workspaces\chinese-official-writing-skill\output\integration-worktrees\hk002b-main-20260909\maintenance\tests\test_complexity_contract.py", line 57, in test_new_architecture_does_not_add_god_functions
+    self.assertLessEqual(decisions, 25)
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+AssertionError: 26 not less than or equal to 25
+
+======================================================================
+FAIL: test_new_architecture_does_not_add_god_functions (test_complexity_contract.ComplexityContractTests.test_new_architecture_does_not_add_god_functions) (path=WindowsPath('F:/Workspaces/chinese-official-writing-skill/output/integration-worktrees/hk002b-main-20260909/chinese-official-writing/scripts/review_gate.py'), function='_candidate_replacement_reason')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "F:\Workspaces\chinese-official-writing-skill\output\integration-worktrees\hk002b-main-20260909\maintenance\tests\test_complexity_contract.py", line 57, in test_new_architecture_does_not_add_god_functions
+    self.assertLessEqual(decisions, 25)
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+AssertionError: 27 not less than or equal to 25
+
+======================================================================
+FAIL: test_new_architecture_does_not_add_god_functions (test_complexity_contract.ComplexityContractTests.test_new_architecture_does_not_add_god_functions) (path=WindowsPath('F:/Workspaces/chinese-official-writing-skill/output/integration-worktrees/hk002b-main-20260909/chinese-official-writing/scripts/review_gate.py'), function='_bound_verification_state')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "F:\Workspaces\chinese-official-writing-skill\output\integration-worktrees\hk002b-main-20260909\maintenance\tests\test_complexity_contract.py", line 56, in test_new_architecture_does_not_add_god_functions
+    self.assertLessEqual(lines, 80)
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^
+AssertionError: 92 not less than or equal to 80
+
+======================================================================
+FAIL: test_new_architecture_does_not_add_god_functions (test_complexity_contract.ComplexityContractTests.test_new_architecture_does_not_add_god_functions) (path=WindowsPath('F:/Workspaces/chinese-official-writing-skill/output/integration-worktrees/hk002b-main-20260909/chinese-official-writing/scripts/review_gate.py'), function='_semantic_verdict_result')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "F:\Workspaces\chinese-official-writing-skill\output\integration-worktrees\hk002b-main-20260909\maintenance\tests\test_complexity_contract.py", line 56, in test_new_architecture_does_not_add_god_functions
+    self.assertLessEqual(lines, 80)
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^
+AssertionError: 82 not less than or equal to 80
+
+======================================================================
+FAIL: test_new_architecture_does_not_add_god_functions (test_complexity_contract.ComplexityContractTests.test_new_architecture_does_not_add_god_functions) (path=WindowsPath('F:/Workspaces/chinese-official-writing-skill/output/integration-worktrees/hk002b-main-20260909/chinese-official-writing/scripts/review_gate.py'), function='source_fact_report')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "F:\Workspaces\chinese-official-writing-skill\output\integration-worktrees\hk002b-main-20260909\maintenance\tests\test_complexity_contract.py", line 56, in test_new_architecture_does_not_add_god_functions
+    self.assertLessEqual(lines, 80)
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^
+AssertionError: 87 not less than or equal to 80
+
+----------------------------------------------------------------------
+Ran 845 tests in 153.752s
+
+FAILED (failures=5)
+政务服务登录页面异常情况报告
+
+7月8日，登录页面出现6次短时空白，13名用户反映无法登录，异常原因正在调查中。技术人员已记录发生时段、恢复情况和用户反馈，相关排查工作正在推进。政务服务登录页面异常情况报告
+
+7月8日，登录页面出现6次短时空白，13名用户反映无法登录，异常原因正在调查中。技术人员已记录发生时段、恢复情况和用户反馈，相关排查工作正在推进。政务服务登录页面异常情况报告
+
+7月8日，登录页面出现6次短时空白，13名用户反映无法登录，异常原因正在调查中。技术人员已记录发生时段、恢复情况和用户反馈，相关排查工作正在推进。附件核对情况
+
+业务科正在核对18份附件，其中10份已经完成，剩余8份尚未完成。反馈日期未定。核对结果有助于厘清附件归属。附件核对情况
+
+业务科正在核对18份附件，其中10份已经完成，剩余8份尚未完成。反馈日期未定。核对结果有助于厘清附件归属。附件核对情况
+
+业务科尚未开展18份附件核对，其中10份已经完成，剩余8份尚未完成。反馈日期未定。核对结果有助于厘清附件归属。附件核对情况
+
+业务科尚未开展18份附件核对，其中10份已经完成，剩余8份尚未完成。反馈日期未定。核对结果有助于厘清附件归属。附件核对情况
+
+业务科尚未开展18份附件核对，其中10份已经完成，剩余8份尚未完成。反馈日期未定。核对结果有助于厘清附件归属。附件核对情况
+
+业务科正在核对18份附件，其中10份已经完成，剩余8份尚未完成。反馈日期未定。核对结果有助于厘清附件归属。

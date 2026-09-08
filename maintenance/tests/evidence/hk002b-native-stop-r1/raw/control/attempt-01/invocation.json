@@ -1,0 +1,31 @@
+{
+  "argv": [
+    "C:\\Users\\admin\\AppData\\Local\\npm-cache\\_npx\\0a5f33f9bb5dd5c8\\node_modules\\@openai\\codex-win32-x64\\vendor\\x86_64-pc-windows-msvc\\bin\\codex.exe",
+    "exec",
+    "-m",
+    "ollama-cloud/glm-5.3-flash",
+    "-c",
+    "model_reasoning_effort=\"max\"",
+    "-c",
+    "openai_base_url=\"http://127.0.0.1:10100/v1\"",
+    "-c",
+    "model_catalog_json=\"F:/Workspaces/chinese-official-writing-skill/output/integration-worktrees/hk002b-main-20260909/output/hk002b-native-stop-r1/catalog.json\"",
+    "--dangerously-bypass-approvals-and-sandbox",
+    "--dangerously-bypass-hook-trust",
+    "--skip-git-repo-check",
+    "--json",
+    "--color",
+    "never",
+    "-o",
+    "F:\\Workspaces\\chinese-official-writing-skill\\output\\integration-worktrees\\hk002b-main-20260909\\output\\hk002b-native-stop-r1\\runs\\control\\attempt-01\\final.txt",
+    "-"
+  ],
+  "requested_model": "ollama-cloud/glm-5.3-flash",
+  "requested_effort": "max",
+  "prompt_sha256": "d9a98a001f5779b5ca247d5f8a0d04811245343c5a5672a97bdc1c7f75b814a2",
+  "runner_sha256": "b33e66a703abebaed12bb24a2b3a939b3bd67c76ec9f08d266ca3ca43e9cdfd9",
+  "hook_trust": "invocation_bypass_only",
+  "ephemeral": false,
+  "ignore_user_config": false,
+  "cwd": "F:\\Workspaces\\chinese-official-writing-skill\\output\\integration-worktrees\\hk002b-main-20260909\\output\\hk002b-native-stop-r1\\runs\\control\\attempt-01\\work"
+}

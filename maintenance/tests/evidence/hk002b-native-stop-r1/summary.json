@@ -1,0 +1,214 @@
+{
+  "schema_version": 1,
+  "verdict": "PASS_BOUNDED_NATIVE_LIFECYCLE_WITH_READING_NOISE",
+  "product_base": "4fd63ce344fec440bbbbc664a7ebd7934751e04e",
+  "cli_version": "0.151.0",
+  "requested_route": "ollama-cloud/glm-5.3-flash",
+  "requested_effort": "max",
+  "cli_tasks": 2,
+  "attempts": 2,
+  "companion_files": 64,
+  "cases": [
+    {
+      "case_id": "error",
+      "attempt": "01",
+      "exit_code": 0,
+      "elapsed_seconds": 44.409,
+      "failure": null,
+      "host_turn_context": [
+        {
+          "turn_id": "01a08298-0acb-78d2-ac3e-51852af2d8ea",
+          "model": "ollama-cloud/glm-5.3-flash",
+          "effort": "max"
+        }
+      ],
+      "frozen_d0_sha256": "f5d73b3a9416559c4e7dfbd01f0994bed29c096da5a4e430bd6b4f8dcff7f82f",
+      "frozen_d0_hash_definition": "UTF-8 of decoded draft text with LF newlines",
+      "frozen_d0_raw_file_sha256": "f1e2afc56c05b2bc7eb86f6cc21e8a0534df8df370e555874c8ccece8de7645f",
+      "frozen_d0_file_crlf_count": 2,
+      "final_sha256": "d0152a7d8d400a7a980dcf5d33e43cd08a135f44599a1767fbeba1b693c6ae47",
+      "frozen_d0_visible_message_indices_zero_based": [
+        0
+      ],
+      "gate_d0_matches_frozen": true,
+      "visible_assistant_message_count": 4,
+      "visible_non_body_messages_before_d0": 0,
+      "repair_json_count": 1,
+      "verdict_json_count": 1,
+      "native_hook_event_envelopes_in_cli_trace": 0,
+      "exact_native_stop_event_count": null,
+      "request_bound_snapshot_observed": true,
+      "observed_core_phases": [
+        "awaiting_repair",
+        "awaiting_verdict",
+        "awaiting_final_output",
+        "complete"
+      ],
+      "transaction_state_trace": [
+        "DETECTING",
+        "AWAITING_REPAIR",
+        "MECHANICAL_VERIFYING",
+        "AWAITING_VERDICT",
+        "SEMANTIC_VERIFYING",
+        "TERMINAL_D1"
+      ],
+      "selected": "D1",
+      "selection_reason": "semantic_verdict_passed",
+      "detect_count": 1,
+      "repair_count": 1,
+      "verify_count": 1,
+      "repair_agent_call_count_field": 0,
+      "verdict_agent_call_count_field": 0,
+      "terminal_delivery_verified": true,
+      "emitted_sha_matches_final": true,
+      "data_retention_state": "raw_turn_data_redacted",
+      "raw_artifact_delete_failures": 0,
+      "stop_attempts_field": 3,
+      "tool_command_count": 2,
+      "tool_command_summaries": [
+        {
+          "id": "item_2",
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -NoProfile -Command \"Get-Content -LiteralPath 'F:/Workspaces/chinese-official-writing-skill/output/integration-worktrees/hk002b-main-20260909/output/hk002b-native-stop-r1/runs/error/attempt-01/codex-home/plugins/cache/hk002b-native-stop-r1/chinese-official-writing/1.6.30/skills/chinese-official-writing/SKILL.md' -Raw\"",
+          "exit_code": 0,
+          "status": "completed",
+          "aggregated_output_bytes": 29682
+        },
+        {
+          "id": "item_3",
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -NoProfile -Command \"Get-Content -LiteralPath 'F:/Workspaces/chinese-official-writing-skill/output/integration-worktrees/hk002b-main-20260909/output/hk002b-native-stop-r1/runs/error/attempt-01/work/frozen-d0.txt' -Raw\"",
+          "exit_code": 0,
+          "status": "completed",
+          "aggregated_output_bytes": 196
+        }
+      ],
+      "cli_error_items": [
+        "`--dangerously-bypass-hook-trust` is enabled. Enabled hooks may run without review for this invocation.",
+        "`--dangerously-bypass-hook-trust` is enabled. Enabled hooks may run without review for this invocation."
+      ],
+      "websocket_426_log_observed": true,
+      "final_equals_frozen": false
+    },
+    {
+      "case_id": "control",
+      "attempt": "01",
+      "exit_code": 0,
+      "elapsed_seconds": 31.117,
+      "failure": null,
+      "host_turn_context": [
+        {
+          "turn_id": "01a0829a-282b-7df0-9397-c6131fb6238c",
+          "model": "ollama-cloud/glm-5.3-flash",
+          "effort": "max"
+        }
+      ],
+      "frozen_d0_sha256": "d0152a7d8d400a7a980dcf5d33e43cd08a135f44599a1767fbeba1b693c6ae47",
+      "frozen_d0_hash_definition": "UTF-8 of decoded draft text with LF newlines",
+      "frozen_d0_raw_file_sha256": "0effe45359d2861a179d53ec83b25d110716d9a75798adff3bc9b4d42f882acc",
+      "frozen_d0_file_crlf_count": 2,
+      "final_sha256": "d0152a7d8d400a7a980dcf5d33e43cd08a135f44599a1767fbeba1b693c6ae47",
+      "frozen_d0_visible_message_indices_zero_based": [
+        6,
+        7
+      ],
+      "gate_d0_matches_frozen": true,
+      "visible_assistant_message_count": 8,
+      "visible_non_body_messages_before_d0": 6,
+      "repair_json_count": 0,
+      "verdict_json_count": 0,
+      "native_hook_event_envelopes_in_cli_trace": 0,
+      "exact_native_stop_event_count": null,
+      "request_bound_snapshot_observed": true,
+      "observed_core_phases": [
+        "awaiting_final_output",
+        "complete"
+      ],
+      "transaction_state_trace": [
+        "DETECTING",
+        "TERMINAL_D0"
+      ],
+      "selected": "D0",
+      "selection_reason": "no_review_candidate",
+      "detect_count": 1,
+      "repair_count": 0,
+      "verify_count": 0,
+      "repair_agent_call_count_field": 0,
+      "verdict_agent_call_count_field": 0,
+      "terminal_delivery_verified": true,
+      "emitted_sha_matches_final": true,
+      "data_retention_state": "raw_turn_data_redacted",
+      "raw_artifact_delete_failures": 0,
+      "stop_attempts_field": 1,
+      "tool_command_count": 6,
+      "tool_command_summaries": [
+        {
+          "id": "item_3",
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -NoProfile -Command 'type \"F:/Workspaces/chinese-official-writing-skill/output/integration-worktrees/hk002b-main-20260909/output/hk002b-native-stop-r1/runs/control/attempt-01/codex-home/plugins/cache/hk002b-native-stop-r1/chinese-official-writing/1.6.30/skills/chinese-official-writing/SKILL.md\"'",
+          "exit_code": 0,
+          "status": "completed",
+          "aggregated_output_bytes": 29680
+        },
+        {
+          "id": "item_5",
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -NoProfile -Command \"Get-Content -LiteralPath 'F:/Workspaces/chinese-official-writing-skill/output/integration-worktrees/hk002b-main-20260909/output/hk002b-native-stop-r1/runs/control/attempt-01/codex-home/plugins/cache/hk002b-native-stop-r1/chinese-official-writing/1.6.30/skills/chinese-official-writing/SKILL.md' -Raw\"",
+          "exit_code": 0,
+          "status": "completed",
+          "aggregated_output_bytes": 29682
+        },
+        {
+          "id": "item_7",
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -NoProfile -Command \"Get-Item -LiteralPath 'F:/Workspaces/chinese-official-writing-skill/output/integration-worktrees/hk002b-main-20260909/output/hk002b-native-stop-r1/runs/control/attempt-01/codex-home/plugins/cache/hk002b-native-stop-r1/chinese-official-writing/1.6.30/skills/chinese-official-writing/SKILL.md' | Format-List FullName,Length,LastWriteTime\"",
+          "exit_code": 0,
+          "status": "completed",
+          "aggregated_output_bytes": 382
+        },
+        {
+          "id": "item_9",
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -NoProfile -Command \"Write-Output 'hello-test'\"",
+          "exit_code": 0,
+          "status": "completed",
+          "aggregated_output_bytes": 12
+        },
+        {
+          "id": "item_11",
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -NoProfile -Command \"cmd /c type \\\"F:\\\\Workspaces\\\\chinese-official-writing-skill\\\\output\\\\integration-worktrees\\\\hk002b-main-20260909\\\\output\\\\hk002b-native-stop-r1\\\\runs\\\\control\\\\attempt-01\\\\codex-home\\\\plugins\\\\cache\\\\hk002b-native-stop-r1\\\\chinese-official-writing\\\\1.6.30\\\\skills\\\\chinese-official-writing\\\\SKILL.md\\\"\"",
+          "exit_code": 0,
+          "status": "completed",
+          "aggregated_output_bytes": 29680
+        },
+        {
+          "id": "item_13",
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -NoProfile -Command \"cmd /c type \\\"F:\\\\Workspaces\\\\chinese-official-writing-skill\\\\output\\\\integration-worktrees\\\\hk002b-main-20260909\\\\output\\\\hk002b-native-stop-r1\\\\runs\\\\control\\\\attempt-01\\\\work\\\\frozen-d0.txt\\\"\"",
+          "exit_code": 0,
+          "status": "completed",
+          "aggregated_output_bytes": 188
+        }
+      ],
+      "cli_error_items": [
+        "`--dangerously-bypass-hook-trust` is enabled. Enabled hooks may run without review for this invocation.",
+        "`--dangerously-bypass-hook-trust` is enabled. Enabled hooks may run without review for this invocation."
+      ],
+      "websocket_426_log_observed": true,
+      "final_equals_frozen": true
+    }
+  ],
+  "upstream_model_identity_observed": false,
+  "upstream_request_count": null,
+  "native_cross_provider_verification": false,
+  "frozen_d0_injection": true,
+  "naturally_generated_erroneous_first_draft": false,
+  "full_draft_fact_verified": false,
+  "scope": "one explicit ongoing-state error and one correct frozen control",
+  "limits": [
+    "CLI trace has no separate native Hook event envelopes; request-bound snapshots, successful reads, core transitions and native continuation responses jointly establish this lifecycle.",
+    "Same-session same-route repair/verdict are not provider-independent verification.",
+    "Control includes six visible progress messages while obtaining file content; it is not a noise-free body-only trial.",
+    "Two CLI tasks and visible assistant-message counts are not upstream API-request or Stop-event counts.",
+    "Hook-trust warning items and observed WebSocket 426 logs are retained; neither is silently relabeled as a failed writing sample.",
+    "Full sessions, homes, configuration, catalog content, cache and login state are not archived."
+  ],
+  "credential_pattern_scan": {
+    "files": 84,
+    "hits": 0,
+    "limit": "bounded pattern scan, not a universal secret detector"
+  }
+}

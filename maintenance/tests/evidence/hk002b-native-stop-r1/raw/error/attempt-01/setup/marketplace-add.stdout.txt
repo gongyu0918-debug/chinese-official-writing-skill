@@ -1,0 +1,5 @@
+{
+  "marketplaceName": "hk002b-native-stop-r1",
+  "installedRoot": "F:\\Workspaces\\chinese-official-writing-skill\\output\\integration-worktrees\\hk002b-main-20260909\\output\\hk002b-native-stop-r1\\marketplace",
+  "alreadyAdded": false
+}

@@ -1,0 +1,17 @@
+{
+  "command": [
+    "C:\\Users\\admin\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+    "-B",
+    "-X",
+    "utf8",
+    "-m",
+    "unittest",
+    "maintenance.tests.test_status_ledger_consistency",
+    "maintenance.tests.test_repository_reachability"
+  ],
+  "return_code": 0,
+  "seconds": 1.071,
+  "stdout": "",
+  "stderr": ".......................\n----------------------------------------------------------------------\nRan 23 tests in 0.927s\n\nOK\n",
+  "markdown_links": "PASS"
+}

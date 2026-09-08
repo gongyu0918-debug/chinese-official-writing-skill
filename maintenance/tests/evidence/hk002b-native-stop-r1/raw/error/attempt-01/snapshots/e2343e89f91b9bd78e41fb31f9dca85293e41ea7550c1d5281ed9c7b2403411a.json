@@ -1,0 +1,24 @@
+{
+  "draft_sha256": "f5d73b3a9416559c4e7dfbd01f0994bed29c096da5a4e430bd6b4f8dcff7f82f",
+  "repair_mode": "decisions",
+  "repairs": [
+    {
+      "decision": "REWRITE",
+      "finding_id": "P001",
+      "replacement": "截至9月4日，业务科正在核对18份附件，其中10份已经完成，剩余8份尚未完成。",
+      "target": "截至9月4日，业务科尚未开展18份附件核对，其中10份已经完成，剩余8份尚未完成。"
+    }
+  ],
+  "request_sha256": "b144eecc3133a420738f56ad40e08c9323c704b72878ff1f888ae74a64d5479b",
+  "revision_count": 1,
+  "run_id": "d59540fa-7860-4be0-b725-f89202635747",
+  "schema_version": 2,
+  "source_assessments": [
+    {
+      "finding_id": "P001",
+      "reason": "材料明确载明截至9月4日业务科正在核对18份附件，且10份已经核对完成；原稿写为尚未开展，与同一主体、同一对象、同一时间的进行中状态矛盾，属状态谓语错误；其余分项数字与材料一致，按材料原词将状态谓语改为正在核对，未新增事实。",
+      "status": "error"
+    }
+  ],
+  "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

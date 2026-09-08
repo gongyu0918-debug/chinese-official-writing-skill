@@ -1,0 +1,18 @@
+[
+  {
+    "text": "附件核对情况\n\n截至9月4日，业务科尚未开展18份附件核对，其中10份已经完成，剩余8份尚未完成。反馈日期未定。核对结果有助于厘清附件归属。",
+    "sha256": "f5d73b3a9416559c4e7dfbd01f0994bed29c096da5a4e430bd6b4f8dcff7f82f"
+  },
+  {
+    "text": "{\"schema_version\": 2, \"run_id\": \"d59540fa-7860-4be0-b725-f89202635747\", \"request_sha256\": \"b144eecc3133a420738f56ad40e08c9323c704b72878ff1f888ae74a64d5479b\", \"source_sha256\": \"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\", \"draft_sha256\": \"f5d73b3a9416559c4e7dfbd01f0994bed29c096da5a4e430bd6b4f8dcff7f82f\", \"revision_count\": 1, \"repair_mode\": \"decisions\", \"repairs\": [{\"finding_id\": \"P001\", \"target\": \"截至9月4日，业务科尚未开展18份附件核对，其中10份已经完成，剩余8份尚未完成。\", \"decision\": \"REWRITE\", \"replacement\": \"截至9月4日，业务科正在核对18份附件，其中10份已经完成，剩余8份尚未完成。\"}], \"source_assessments\": [{\"finding_id\": \"P001\", \"status\": \"error\", \"reason\": \"材料明确载明截至9月4日业务科正在核对18份附件，且10份已经核对完成；原稿写为尚未开展，与同一主体、同一对象、同一时间的进行中状态矛盾，属状态谓语错误；其余分项数字与材料一致，按材料原词将状态谓语改为正在核对，未新增事实。\"}]}",
+    "sha256": "8ddfb8c44191315fba18698633f7cafb03faf6e04e5f5247bec66137b4113bae"
+  },
+  {
+    "text": "{\"schema_version\": 1, \"run_id\": \"d59540fa-7860-4be0-b725-f89202635747\", \"request_sha256\": \"b144eecc3133a420738f56ad40e08c9323c704b72878ff1f888ae74a64d5479b\", \"source_sha256\": \"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\", \"draft_sha256\": \"f5d73b3a9416559c4e7dfbd01f0994bed29c096da5a4e430bd6b4f8dcff7f82f\", \"candidate_sha256\": \"d0152a7d8d400a7a980dcf5d33e43cd08a135f44599a1767fbeba1b693c6ae47\", \"verdict\": \"PASS\", \"checks\": {\"no_new_fact_action_or_actor\": true, \"decision_and_unresolved_state_preserved\": true, \"necessary_content_preserved\": true, \"p0_expression_removed_or_reduced\": true, \"genre_structure_and_usability_preserved\": true, \"source_fact_corrections_verified\": true}, \"source_relation_packet_sha256\": \"481584166f9537eaee7f236beccc1d218a8028fcf3577badae0793b36e53f26a\", \"source_relations\": [{\"finding_id\": \"P001\", \"d0_issue_status\": \"error\", \"d0_issue_resolved\": true, \"source_relation_supported\": true, \"other_facts_preserved\": true, \"reason\": \"材料明确载明截至9月4日业务科正在核对18份附件且10份已经核对完成，D0写作尚未开展与同一主体、对象、时间的进行中状态直接矛盾，确属状态错误；D1将该句改为正在核对，与材料状态一致，原问题已解决。其余内容逐项核对保留：9月4日、18份、10份、8份等数字日期字面与出现次数不变，业务科主体不变，反馈日期未定的未决状态保持材料原判，核对结果有助于厘清附件归属的有据分析完整保留，标题与文种结构未动；未新增任何主体、动作或事实。\"}]}",
+    "sha256": "ef8973c844f364acbffd71dae6c7153eca7f46eb85777942df53fae5efa29490"
+  },
+  {
+    "text": "附件核对情况\n\n截至9月4日，业务科正在核对18份附件，其中10份已经完成，剩余8份尚未完成。反馈日期未定。核对结果有助于厘清附件归属。",
+    "sha256": "d0152a7d8d400a7a980dcf5d33e43cd08a135f44599a1767fbeba1b693c6ae47"
+  }
+]
