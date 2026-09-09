@@ -32,8 +32,8 @@ R3 的读取回执也如实保留：长篇题3/5、多主体有效题2/4、标�
 
 首轮候选 `a5d90f11` 已在 Alibaba Token Plan 2 和 OpenCode Go 两家低成本路线运行安全整改意见、正式下行指导意见各一题，共4份真实终稿；此前结果摘要只写了正向题，没有把这组已有控制证据带入终态。现从原始运行记录补回：4/4无技术失败、无硬失败，4/4均未读取 `genre-playbook-advisory-feedback.md`。
 
-- 安全整改2/2保留3处隐患、应急出口、2026年9月3日、整改照片和复核要求，未插入泛泛表扬，也未把限期要求弱化为`可酌情`或`如有条件`。终稿见[`Alibaba2`](control-r1/alibaba2-safety-rectification.txt)和[`OpenCode`](control-r1/opencode-safety-rectification.txt)。
-- 正式下行指导2/2使用`各区县要`等部署语气，保留台账、季度汇总、年度评估和12月底报送要求，未改成`建议贵单位`、`供参考`或`请予考虑`。终稿见[`Alibaba2`](control-r1/alibaba2-formal-guidance.txt)和[`OpenCode`](control-r1/opencode-formal-guidance.txt)。
+- 安全整改2/2保留3处隐患、应急出口、2026年9月3日、整改照片和复核要求，未插入泛泛表扬，也未把限期要求弱化为`可酌情`或`如有条件`。终稿见[`Alibaba2`](https://github.com/gongyu0918-debug/chinese-official-writing-skill/blob/0721297298b72be7a37b93c6598172791b58e421/maintenance/tests/evidence/advisory-feedback-tone-r1/control-r1/alibaba2-safety-rectification.txt)和[`OpenCode`](https://github.com/gongyu0918-debug/chinese-official-writing-skill/blob/0721297298b72be7a37b93c6598172791b58e421/maintenance/tests/evidence/advisory-feedback-tone-r1/control-r1/opencode-safety-rectification.txt)。
+- 正式下行指导2/2使用`各区县要`等部署语气，保留台账、季度汇总、年度评估和12月底报送要求，未改成`建议贵单位`、`供参考`或`请予考虑`。终稿见[`Alibaba2`](https://github.com/gongyu0918-debug/chinese-official-writing-skill/blob/0721297298b72be7a37b93c6598172791b58e421/maintenance/tests/evidence/advisory-feedback-tone-r1/control-r1/alibaba2-formal-guidance.txt)和[`OpenCode`](https://github.com/gongyu0918-debug/chinese-official-writing-skill/blob/0721297298b72be7a37b93c6598172791b58e421/maintenance/tests/evidence/advisory-feedback-tone-r1/control-r1/opencode-formal-guidance.txt)。
 - 从该首轮候选到选定语义 `10c00a10` 的产品差异只涉及共性归并、礼貌铺垫细化和标题版式；主入口对正式下行指导、监督检查、安全整改、审计纪检建议的排除句没有变化。因此这4份控制稿可作为选定路由的两家真实证据，但不扩大表述为五家控制验证。
 
 ## 后续最小尝试

@@ -39,7 +39,7 @@
 - 温州市教育局部门决算所附绩效复评表在同一事项中并列“已完成验收”和“未附采购验收单”，支持业务动作状态与当前附件状态分开承载。
 - 上海政务外网绩效评价报告把未中断、未发生安全事故绑定到具体期间、活动和维护范围，支持 `WR-020a2` 不把两次事件扩大成平台整体结论。
 
-来源只用于校准状态、因果和结论范围，不复制文字、模板或代码；详见 [`research.md`](research.md)。
+来源只用于校准状态、因果和结论范围，不复制文字、模板或代码；详见 [`research.md`](https://github.com/gongyu0918-debug/chinese-official-writing-skill/blob/0721297298b72be7a37b93c6598172791b58e421/maintenance/tests/evidence/post-v1616-writing-stability-r1/research.md)。
 
 ## 交付洁净度观察
 

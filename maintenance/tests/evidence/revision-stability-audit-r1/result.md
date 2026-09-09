@@ -1,6 +1,6 @@
 # 同稿七版质量稳定性 R1 结果
 
-四条独立真实会话均完成七轮，28份完整正文、每轮实际题面、session ID、hash和审查轨迹见 [frozen-evidence.json](frozen-evidence.json)。两条既有低价路线为 Alibaba Token Plan 2 DeepSeek V4 Flash、MiniMax M3；两臂分别固定 `5fbb2d26` 与 `22772262`，不是另写28次独立初稿。第2—7轮实际执行 `exec resume <同一ID>`，只发送该轮增量指令；没有重拼历史或代写稿件。
+四条独立真实会话均完成七轮，28份完整正文、每轮实际题面、session ID、hash和审查轨迹见 [frozen-evidence.json](https://github.com/gongyu0918-debug/chinese-official-writing-skill/blob/0721297298b72be7a37b93c6598172791b58e421/maintenance/tests/evidence/revision-stability-audit-r1/frozen-evidence.json)。两条既有低价路线为 Alibaba Token Plan 2 DeepSeek V4 Flash、MiniMax M3；两臂分别固定 `5fbb2d26` 与 `22772262`，不是另写28次独立初稿。第2—7轮实际执行 `exec resume <同一ID>`，只发送该轮增量指令；没有重拼历史或代写稿件。
 
 ## 结果与解释
 

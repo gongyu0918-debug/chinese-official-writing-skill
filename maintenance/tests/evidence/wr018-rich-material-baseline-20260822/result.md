@@ -62,4 +62,4 @@ OpenCode 原任务约 7 分 40 秒才完成。等待期间按预注册启动了�
 3. Ollama 的重复与旁白作为直接交付残余风险保留；它不支持新增密度规则。
 4. 官方稿件只能校准信息关系、论点位置和办理闭合，不能用来回填用户事实，也不能复制文字或模板。
 
-原始最终输出逐字归档于 [`raw-drafts.md`](raw-drafts.md)，其中补跑单独标明不进入计数。
+原始最终输出逐字归档于 [`raw-drafts.md`](https://github.com/gongyu0918-debug/chinese-official-writing-skill/blob/0721297298b72be7a37b93c6598172791b58e421/maintenance/tests/evidence/wr018-rich-material-baseline-20260822/raw-drafts.md)，其中补跑单独标明不进入计数。

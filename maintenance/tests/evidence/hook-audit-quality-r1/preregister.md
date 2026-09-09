@@ -12,4 +12,4 @@
 
 运行 `replay_real_d0.py --source-root <真实稿目录> --core-root <固定基线工作树> --output <新输出目录>` 只核验输入；加 `--run` 才执行已授权的真实调用。不自动重跑已存在的输出目录。
 
-运行后的记录见 [结果](result.md) 和 [持久化六稿证据](frozen-evidence.json)。它们补充实际结果，不改变上述选稿、模型回应真实性和宿主证明边界。
+运行后的记录见 [结果](result.md) 和 [持久化六稿证据](https://github.com/gongyu0918-debug/chinese-official-writing-skill/blob/0721297298b72be7a37b93c6598172791b58e421/maintenance/tests/evidence/hook-audit-quality-r1/frozen-evidence.json)。它们补充实际结果，不改变上述选稿、模型回应真实性和宿主证明边界。

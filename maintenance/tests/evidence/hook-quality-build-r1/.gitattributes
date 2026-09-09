@@ -1,5 +1,0 @@
-# Preserve frozen evidence bytes, including CRLF and model whitespace.
-* -text whitespace=cr-at-eol
-# Unified patch context lines are original evidence, not source whitespace.
-*.diff -whitespace
-*.patch -whitespace

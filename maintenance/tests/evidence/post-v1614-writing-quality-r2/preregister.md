@@ -18,18 +18,18 @@ candidate 只有同时满足 L1 目标改善和 L2 无候选独有硬回退时�
 
 ### R2 缩小
 
-首轮 candidate 虽把 L1 建议前置并修正 L2 的信息缺失状态，却把两篇都压短，L2又弱化受托说明和分节结构，不能整体接入。[R2原子](prototype-wr020a1-r2.md)只把 L1 已有有限建议搬到前部，明确不授权摘要化、删事实或缩短全文；L2 完全不受原子影响。复用首轮 baseline，不以首轮局部改善覆盖薄稿回退。
+首轮 candidate 虽把 L1 建议前置并修正 L2 的信息缺失状态，却把两篇都压短，L2又弱化受托说明和分节结构，不能整体接入。[R2原子](https://github.com/gongyu0918-debug/chinese-official-writing-skill/blob/0721297298b72be7a37b93c6598172791b58e421/maintenance/tests/evidence/post-v1614-writing-quality-r2/prototype-wr020a1-r2.md)只把 L1 已有有限建议搬到前部，明确不授权摘要化、删事实或缩短全文；L2 完全不受原子影响。复用首轮 baseline，不以首轮局部改善覆盖薄稿回退。
 
 R2 恢复 L1 事实密度后仍把未给新指标写成“未设定”，又把年度草案带入内部专题；L2新增“具体指标值以审议后的年度安排为准”。`WR-020a1` 的首次起草候选到此拒绝，不再用结构提示叠补状态；如以后继续，只能把已有稿中已经存在的建议段作精确搬移。
 
 ## WR-014-R4 证据可见性三态
 
-连续长稿已经跨 baseline/candidate 复现“材料未给新指标值”被写成未设定、尚未确定或未来决定。需求规格已有三态边界，但 canonical 产品叶没有对应规则，因此单独验证[证据可见性原子](prototype-wr014-r4.md)。固定 V1 未提供、V2 已完成但未附、V3 明确未开展三题；候选必须修复 V1，同时不把 V2 降级或把 V3 弱化。任何候选独有的结果、日期、责任、流程、指标或上线状态扩张均为硬失败。
+连续长稿已经跨 baseline/candidate 复现“材料未给新指标值”被写成未设定、尚未确定或未来决定。需求规格已有三态边界，但 canonical 产品叶没有对应规则，因此单独验证[证据可见性原子](https://github.com/gongyu0918-debug/chinese-official-writing-skill/blob/0721297298b72be7a37b93c6598172791b58e421/maintenance/tests/evidence/post-v1614-writing-quality-r2/prototype-wr014-r4.md)。固定 V1 未提供、V2 已完成但未附、V3 明确未开展三题；候选必须修复 V1，同时不把 V2 降级或把 V3 弱化。任何候选独有的结果、日期、责任、流程、指标或上线状态扩张均为硬失败。
 
 首组题面直接写出了各题应保持的状态，Terra baseline/candidate 均近乎逐字通过，只能作为正向控制，不能证明候选增益。R4B 删除这些答案式禁令，只给事实和材料可见性；换用同一 Alibaba DeepSeek V4 0731 max 的独立 A/B，继续按正文实际状态判断。
 
-Alibaba 两臂均在写稿前因 Desktop 路由返回 `unreadable_encrypted_agent_task`，没有稿件，记技术无效。随后 Luna 非引导三态 A/B 均完整保持三种状态，候选没有目标增益。R4C 回到真实复现缺口：只写一篇年度长报告，baseline/candidate 唯一差异为[证据可见性原子](prototype-wr014-r4.md)，不叠加 WR-020 结构原子；候选须删除“未给值＝未设定/待定/未来决定”，同时守住长稿结构、草案归属、审议主体和全部事实状态。
+Alibaba 两臂均在写稿前因 Desktop 路由返回 `unreadable_encrypted_agent_task`，没有稿件，记技术无效。随后 Luna 非引导三态 A/B 均完整保持三种状态，候选没有目标增益。R4C 回到真实复现缺口：只写一篇年度长报告，baseline/candidate 唯一差异为[证据可见性原子](https://github.com/gongyu0918-debug/chinese-official-writing-skill/blob/0721297298b72be7a37b93c6598172791b58e421/maintenance/tests/evidence/post-v1614-writing-quality-r2/prototype-wr014-r4.md)，不叠加 WR-020 结构原子；候选须删除“未给值＝未设定/待定/未来决定”，同时守住长稿结构、草案归属、审议主体和全部事实状态。
 
-R4C baseline 安全省略缺失值，candidate 却新增“草案未提出新的指标值”，宽泛三态原则拒绝接入。R4D 缩成[缺失指标精确映射](prototype-wr014-r4d.md)：默认省略材料视角，只写已明确的按月复核；不得对计划、草案、会议或审批生成新的指标状态。复用同一长报告题和 R4C baseline，先跑一个新 candidate；只有修复目标且无其他硬回退才扩大第二模型。
+R4C baseline 安全省略缺失值，candidate 却新增“草案未提出新的指标值”，宽泛三态原则拒绝接入。R4D 缩成[缺失指标精确映射](https://github.com/gongyu0918-debug/chinese-official-writing-skill/blob/0721297298b72be7a37b93c6598172791b58e421/maintenance/tests/evidence/post-v1614-writing-quality-r2/prototype-wr014-r4d.md)：默认省略材料视角，只写已明确的按月复核；不得对计划、草案、会议或审批生成新的指标状态。复用同一长报告题和 R4C baseline，先跑一个新 candidate；只有修复目标且无其他硬回退才扩大第二模型。
 
 R4D Terra candidate 修复目标且无硬回退；Luna baseline 复现“现阶段未提出＋会议审议”伪状态，Luna candidate 修复指标但新增“受中心委托”这一错误受托关系，初稿候选仍不能接入。R4E 改测同一D0的精确修正：E1只删材料外伪状态，E2明确未决则逐字保留。若当前 baseline 已能精确修复，则结论为无需新增产品规则；候选删错E2或改动其他文字即失败。

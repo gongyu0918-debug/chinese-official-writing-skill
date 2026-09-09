@@ -13,7 +13,7 @@
 - 用户给定结构、指定尾语、材料逻辑和文种功能优先于通用用语表。
 - 目标是避免千篇一律，不是把正式表达改成口号、白话填充或统一的“反套话模板”。
 
-官方与社区用法核验见 [`official-and-community-research.md`](official-and-community-research.md)。现行官方样本同时存在正式接引/尾语与自然开合两种合格写法；社区项目可借鉴“必备、常见、条件项”分层思路，不能复制其模板或固定话术。
+官方与社区用法核验见 [`official-and-community-research.md`](https://github.com/gongyu0918-debug/chinese-official-writing-skill/blob/0721297298b72be7a37b93c6598172791b58e421/maintenance/tests/evidence/v167-formulaic-mechanicality-real-first/official-and-community-research.md)。现行官方样本同时存在正式接引/尾语与自然开合两种合格写法；社区项目可借鉴“必备、常见、条件项”分层思路，不能复制其模板或固定话术。
 
 ## R1：完整稀疏化原型
 

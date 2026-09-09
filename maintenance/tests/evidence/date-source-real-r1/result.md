@@ -29,6 +29,6 @@ python -B maintenance/tests/evidence/date-source-real-r1/run.py --provider aliba
 python -B maintenance/tests/evidence/date-source-real-r1/run.py --provider minimax --output output/date-source-real-r1/r1 --core-root <BASELINE_TREE>
 ```
 
-本轮结论为 `NOT_REPRODUCED`。未展示日期旁路候选的真实收益，故没有应用 [旧原型](../hook-audit-quality-r1/prototype.md)，未进入正常完整日期候选反控，也未修改产品、adapter 或镜像。已知离线错年反例仍成立，本组结果不能证明问题消失，更不能推广为总体可靠率。
+本轮结论为 `NOT_REPRODUCED`。未展示日期旁路候选的真实收益，故没有应用 [旧原型](https://github.com/gongyu0918-debug/chinese-official-writing-skill/blob/0721297298b72be7a37b93c6598172791b58e421/maintenance/tests/evidence/hook-audit-quality-r1/prototype.md)，未进入正常完整日期候选反控，也未修改产品、adapter 或镜像。已知离线错年反例仍成立，本组结果不能证明问题消失，更不能推广为总体可靠率。
 
 验证：`run.py --help`、AST、题面与禁工具 argv 检查、本地直链、两稿及四次调用 hash/绑定核验、`git diff --check` 通过；canonical 和 packages 与固定基线一致。未运行全量测试。本实验的激活事件映射自 Harness 的上下文读取，不是原生宿主 Hook 安装或模型主动读取 Skill 的证明。

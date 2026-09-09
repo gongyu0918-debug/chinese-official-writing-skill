@@ -18,7 +18,7 @@
 
 北京市人民政府公开的典型建议把标题、建议时间和建议内容拆成页面字段，紧凑正文可以只交代实际情况和具体建议；上海市人民建议规定同时要求主题、问题、办法、理由依据和建议人信息等要素，但允许书信、邮件、电话、走访和网上信箱等不同载体；牡丹江市指南则给出适合独立成文建议件的标题、建议人信息和问题—依据—办法结构。三者共同支持“按交付载体分配形式要素”，不支持按固定字符数决定壳层。
 
-详见 [`official-corpus.md`](official-corpus.md)。
+详见 [`official-corpus.md`](https://github.com/gongyu0918-debug/chinese-official-writing-skill/blob/0721297298b72be7a37b93c6598172791b58e421/maintenance/tests/evidence/short-advice-routing-r1/official-corpus.md)。
 
 ## 真实写稿
 

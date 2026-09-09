@@ -6,4 +6,4 @@ M5 同一真实 R1 D0 和完整材料，新增 1 次 Alibaba2 真实调用；75.
 
 两处主体归属修正有原始材料依据，没有其他字符改动。原有无据系统整体阶段和包装问题仍在，属本次明确排除的实验范围；不能称全文已安全或已直接可用。
 
-真实输出、字符 diff、完整关系包、hash 和命令见 [review.json](review.json)。首轮/R2 保持原归档不变。累计 7 次模型调用，6 次技术有效，1 次原始 P6 基线超时保留；未补跑基线，未调用 verifier、未手写 PASS、未修改产品。
+真实输出、字符 diff、完整关系包、hash 和命令见 [review.json](https://github.com/gongyu0918-debug/chinese-official-writing-skill/blob/0721297298b72be7a37b93c6598172791b58e421/maintenance/tests/evidence/hook-quality-build-r1/factual/candidate-r3/review.json)。首轮/R2 保持原归档不变。累计 7 次模型调用，6 次技术有效，1 次原始 P6 基线超时保留；未补跑基线，未调用 verifier、未手写 PASS、未修改产品。

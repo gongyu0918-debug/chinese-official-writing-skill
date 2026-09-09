@@ -8,7 +8,7 @@
 - 纳入已准入的日期来源绑定、终态重放/晚到事件、默认回显失败、显式关闭与取消清理修复，DSH当前回合取消、OpenCode插件失败分类，以及新闻完整事实日期规则。当前main的产品逐字等于已验证的 `a2a817d1`；发行层只更新14处文件的版本坐标/对应测试断言。[独立范围与敏感扫描](release-v1628/scope-review.json)
 - 未合入Hook机会审计分支 `60133253`，未恢复已拒绝的reference/workflow候选，未操作付费Pro、示例或本机安装。
 - 最终全量 **806/806通过，145.071秒**；五套quick validate通过。初次默认Python指向Hermes环境，quick validate缺PyYAML，全量尝试被中止；改用既有Python313后通过，不把环境失败计为产品回退。没有新增写稿模型调用；复用[已合入修复的真实证据](remaining-hook-quality-merge-r1/result.md)和[四项修复](hook-four-fixes-merge-r1/result.md)，未重跑原生宿主。
-- SkillHub冻结包86文件、ClawHub无Hook包37文件，两平台dry-run通过，禁入路径检查通过。SkillHub ZIP的86个成员逐字匹配冻结目录，ZIP SHA-256 `0e3680fccf4b952e6dae741590d3d81cd46ca8a890dbf5a054c6d12116c07f20`，CLI content hash `9fc48c67ba5eb8caa855fe5a3b6e25a35ed5b3606df4afb856e198a8da062b72`。[逐文件manifest](release-v1628/package-manifest.json) [ZIP核对](release-v1628/zip-check.json)
+- SkillHub冻结包86文件、ClawHub无Hook包37文件，两平台dry-run通过，禁入路径检查通过。SkillHub ZIP的86个成员逐字匹配冻结目录，ZIP SHA-256 `0e3680fccf4b952e6dae741590d3d81cd46ca8a890dbf5a054c6d12116c07f20`，CLI content hash `9fc48c67ba5eb8caa855fe5a3b6e25a35ed5b3606df4afb856e198a8da062b72`。[逐文件manifest](https://github.com/gongyu0918-debug/chinese-official-writing-skill/blob/0721297298b72be7a37b93c6598172791b58e421/maintenance/tests/evidence/release-v1628/package-manifest.json) [ZIP核对](https://github.com/gongyu0918-debug/chinese-official-writing-skill/blob/0721297298b72be7a37b93c6598172791b58e421/maintenance/tests/evidence/release-v1628/zip-check.json)
 
 实际命令（python使用 `C:/Users/admin/AppData/Local/Programs/Python/Python313/python.exe`）：
 
@@ -20,7 +20,7 @@ git diff --check
 git push --atomic origin HEAD:main refs/tags/v1.6.28
 ```
 
-版本同步调用既有 `sync_adapters.main()`，事前核准五个删除重建目标均在独立发行树packages内，且没有未跟踪文件或符号链接。通用validator不用于OpenClaw扩展字段，由全量仓库契约覆盖。日志与实际平台参数见[回执目录](release-v1628/publication-evidence.json)。
+版本同步调用既有 `sync_adapters.main()`，事前核准五个删除重建目标均在独立发行树packages内，且没有未跟踪文件或符号链接。通用validator不用于OpenClaw扩展字段，由全量仓库契约覆盖。日志与实际平台参数见[回执目录](https://github.com/gongyu0918-debug/chinese-official-writing-skill/blob/0721297298b72be7a37b93c6598172791b58e421/maintenance/tests/evidence/release-v1628/publication-evidence.json)。
 
 ## 平台结果
 
@@ -32,4 +32,4 @@ git push --atomic origin HEAD:main refs/tags/v1.6.28
 
 DSH取消仅有SDK验证，OpenCode是插件侧停止/失败分类；CodeBuddy/Kimi独立硬停、已显示正文、持续I/O故障与没有后续清理事件的留存边界仍在。批量成稿和多版质量未闭环，806项工程通过不能换算成普遍无错率。下一轮Hook参与、正文清壳、自然上限与原稿事实核验仍是未发布的待验证方向。
 
-平台原始回执、精确提交参数、冻结包hash和失败记录见[证据索引](release-v1628/publication-evidence.json)。发布后文档/状态检查另记 `release-v1628/post-release-validation.json`；不回写旧实验或移动产品tag。
+平台原始回执、精确提交参数、冻结包hash和失败记录见[证据索引](https://github.com/gongyu0918-debug/chinese-official-writing-skill/blob/0721297298b72be7a37b93c6598172791b58e421/maintenance/tests/evidence/release-v1628/publication-evidence.json)。发布后文档/状态检查另记 `release-v1628/post-release-validation.json`；不回写旧实验或移动产品tag。

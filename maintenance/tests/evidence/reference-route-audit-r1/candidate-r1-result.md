@@ -1,12 +1,12 @@
 # 渐进路由 R1：不准入
 
-固定基线 `5fbb2d26`、候选 `22772262`，同题、同 CLI、五条既有低价服务路线真实写稿20份。19份隔离有效，MiniMax短稿候选读取用户目录同源旧版而无效；保留原文，不补样覆盖。完整题面、20份正文、逐稿hash、读取记录与独立盲审后主代理复核见 [writing-evidence.json](writing-evidence.json)。
+固定基线 `5fbb2d26`、候选 `22772262`，同题、同 CLI、五条既有低价服务路线真实写稿20份。19份隔离有效，MiniMax短稿候选读取用户目录同源旧版而无效；保留原文，不补样覆盖。完整题面、20份正文、逐稿hash、读取记录与独立盲审后主代理复核见 [writing-evidence.json](https://github.com/gongyu0918-debug/chinese-official-writing-skill/blob/0721297298b72be7a37b93c6598172791b58e421/maintenance/tests/evidence/reference-route-audit-r1/writing-evidence.json)。
 
 本候选没有满足预注册的硬回退门：Alibaba2长稿把“未说明如何用于教学改进”改成标题中的“未用于教学改进”；MiniMax长稿漏掉反馈日期并引入材料没有的意见系统。一次A/B不能证明这些错误由路由修改造成，但不能据此批准当前候选。运行时 SKILL.md 已恢复固定基线；历史原型提交与七版链导出候选不回写，未同步镜像。
 
 ## 实际读取
 
-SKILL.md 静态由27,147减为26,627 UTF-8/LF bytes（-520，1.92%）。旧统计代码未折叠Windows转义产生的重复分隔符，漏计部分reference；[recount_reads.py](recount_reads.py)依据原trace hash重算，旧原始记录保持不变。
+SKILL.md 静态由27,147减为26,627 UTF-8/LF bytes（-520，1.92%）。旧统计代码未折叠Windows转义产生的重复分隔符，漏计部分reference；[recount_reads.py](https://github.com/gongyu0918-debug/chinese-official-writing-skill/blob/0721297298b72be7a37b93c6598172791b58e421/maintenance/tests/evidence/reference-route-audit-r1/recount_reads.py)依据原trace hash重算，旧原始记录保持不变。
 
 | 路线 | 题目 | 基线读取bytes | 候选读取bytes | 差值 | 隔离 |
 | --- | --- | ---: | ---: | ---: | --- |

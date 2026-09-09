@@ -8,7 +8,7 @@
 
 为遵守无工具要求，Harness 将固定基线的 `SKILL.md` 和 `references/genre-playbook-news-message.md` 原文读入并提供为上下文，逐文件记录 hash。这是固定上下文的日期目标实验，不评估模型主动选读路由或完整 Skill 代理工作流。
 
-每份技术有效的真实 D0 原样进入同一基线默认 `delivery_review`。复用 [六稿重放脚本](../hook-audit-quality-r1/replay_real_d0.py) 的真实 core 子进程；Skill 激活事件映射自 Harness 的实际上下文文件读取，明确不是 Claude 模型工具读取或原生宿主 Hook 安装证明。每个 block，包括逐字回显，继续使用同路线、同样禁用全部工具的真实模型回复，最多四次；保存全部输入、回应、事件与 hash。
+每份技术有效的真实 D0 原样进入同一基线默认 `delivery_review`。复用 [六稿重放脚本](https://github.com/gongyu0918-debug/chinese-official-writing-skill/blob/0721297298b72be7a37b93c6598172791b58e421/maintenance/tests/evidence/hook-audit-quality-r1/replay_real_d0.py) 的真实 core 子进程；Skill 激活事件映射自 Harness 的实际上下文文件读取，明确不是 Claude 模型工具读取或原生宿主 Hook 安装证明。每个 block，包括逐字回显，继续使用同路线、同样禁用全部工具的真实模型回复，最多四次；保存全部输入、回应、事件与 hash。
 
 只有真实 D0 未写错年，而同 D0 默认 Hook 实际把示例年份写入活动，才进入候选验证。届时仅对同 D0 验证最小保守旁路，并增加一条正常中文完整事实日期反控；不接入 adapter、镜像或其他终态工程。若两份自然 D0 都无法复现，记 `NOT_REPRODUCED`，停止候选，旧日期补丁保持 `NOT_ADMITTED`；不把未复现当作不存在已知离线缺陷。
 

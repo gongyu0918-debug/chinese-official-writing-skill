@@ -9,6 +9,7 @@
 3. 目标风险可复现下降且无候选独有的事实、状态、文种、指令或直接可用性硬回退后，才补必要胶水、适配、镜像、组装、反控与回退；兜底须解决目标风险，不要求总体文采胜出。真实稿失败先修产品或停候选，不靠扩大量表、裁判和工程门替代质量改进。
 4. Hook 比较同一 D0 的开关结果与最终选择，独立成稿仅作副作用观察。协议和胶水未变可迁移旧在线证据，列明当前未重跑的宿主。
 5. 文档跑链接/结构检查与 `git diff --check`；产品或脚本在真实结果通过后跑相关 unit/smoke、quick validate 及必要编译/镜像检查。全量门原则上只在合并或发布前跑一次，核对上一发布 tag、ancestry、精确 diff、版本、清洁包、禁入文件与 fingerprint。
+6. 按本轮任务最小加载和构建：先读当前结论与索引，只在失败、分歧或缺口处取对应原稿；工具与子代理回传结论、必要片段和路径，不批量回传历史全文。真实材料按[分层归档](maintenance/docs/evidence/archiving.md)查询元数据后单份提取；新增运行流水、配置、重复盲包和生成副本放 `output/`，不重复提交。归档须保留校验值、恢复位置和测试依赖，不丢失失败证据。
 
 ## Git 与外部操作
 
@@ -20,7 +21,7 @@
 
 ## 产品边界
 
-- `chinese-official-writing/` 为 canonical，其 `hooks/core/` 是唯一门禁核心、`hooks/adapters/` 为静态适配；`packages/` 放公开兼容包，`maintenance/` 放维护和证据，`output/` 默认不提交。
+- `chinese-official-writing/` 为唯一 Skill 源，其 `hooks/core/` 是唯一门禁核心、`hooks/adapters/` 为静态适配；`packages/` 只放生成说明及历史副本恢复元数据，安装或发布副本按需生成到 `output/`，不得另行维护一套规则。`maintenance/` 放维护入口及必要测试，`output/` 默认不提交。
 - main 不含付费提纲 Hook、胶水、测试和详细规格；`codex/paid-outline-review` 保持“当前 main + 付费提纲增量”。公开语义、共享 Hook 和修复按[同步规则](maintenance/specs/public-paid-sync.md)进入付费分支，提纲不得反向进入 main，付费发布另行授权。
 - Skill 安装、companion 组装、插件安装、启用、信任和真实执行分别举证。仓库及仓内包使用根 [LICENSE](LICENSE)（MIT），第三方保留自身许可。
 

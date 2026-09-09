@@ -28,7 +28,7 @@ Request URL:
 - Content-Type: `image/svg+xml; charset=utf-8`.
 - SVG aria-label: `SkillHub downloads: 37341`.
 - Response-body SHA-256: `e2e516e2a85e8f8247fa502b0da9b8b0fc7b8365d31fb33906c1b1b63bb14c53`.
-- Exact successful response content snapshot: [`skillhub-download-badge-response-20260812.svg`](skillhub-download-badge-response-20260812.svg). The repository file adds its normal final newline; its file SHA-256 is `a515423cd538c0f8248bbe6ca9c1e6e35338b03777151419cfdf4911d737f7bb`.
+- Exact successful response content snapshot: [`skillhub-download-badge-response-20260812.svg`](https://github.com/gongyu0918-debug/chinese-official-writing-skill/blob/0721297298b72be7a37b93c6598172791b58e421/maintenance/tests/evidence/skillhub-download-badge-response-20260812.svg). The repository file adds its normal final newline; its file SHA-256 is `a515423cd538c0f8248bbe6ca9c1e6e35338b03777151419cfdf4911d737f7bb`.
 
 This initial response proved that the query could work once; it did not prove stable badge delivery. During final main-thread verification, the public API had advanced to `downloads=37346`, but the same Shields dynamic URL returned HTTP 200 with `aria-label="SkillHub downloads: inaccessible"`. The dynamic candidate was therefore rejected and is not present in final README.
 

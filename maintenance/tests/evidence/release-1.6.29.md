@@ -22,7 +22,7 @@ git diff --check
 git push --atomic origin HEAD:main refs/tags/v1.6.29
 ```
 
-同步兼容目录前逐一核准五个删除重建目标均在独立发行树 packages 内，无未跟踪文件或符号链接。逐文件范围、冻结包、实际提交参数及原始回执见[发布证据](release-v1629/publication-evidence.json)。
+同步兼容目录前逐一核准五个删除重建目标均在独立发行树 packages 内，无未跟踪文件或符号链接。逐文件范围、冻结包、实际提交参数及原始回执见[发布证据](https://github.com/gongyu0918-debug/chinese-official-writing-skill/blob/0721297298b72be7a37b93c6598172791b58e421/maintenance/tests/evidence/release-v1629/publication-evidence.json)。
 
 ## 平台结果
 
@@ -32,7 +32,7 @@ git push --atomic origin HEAD:main refs/tags/v1.6.29
 
 每个平台只提交一次，不因传播延迟重提，不把接受回执或旧版审核当作新版审核通过。
 
-传播复查的原始结果及逐文件比较见[最终公开核验](release-v1629/propagation-final.json)。本次只更新证据，产品tag和包字节不变。
+传播复查的原始结果及逐文件比较见[最终公开核验](https://github.com/gongyu0918-debug/chinese-official-writing-skill/blob/0721297298b72be7a37b93c6598172791b58e421/maintenance/tests/evidence/release-v1629/propagation-final.json)。本次只更新证据，产品tag和包字节不变。
 
 ## 保留边界
 

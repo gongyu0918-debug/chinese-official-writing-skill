@@ -1,1 +1,0 @@
-INVALID_HARNESS_RUN: the first observation tried to read an OS byte-range lock file and raised PermissionError before HostAbort. No product result is claimed. The paused worker was released or reached its bounded timeout. The run directory is retained unchanged apart from this note and release signal.

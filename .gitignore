@@ -29,3 +29,8 @@ maintenance/tests/evidence/**/trace.jsonl
 maintenance/tests/evidence/**/stream.jsonl
 maintenance/tests/evidence/**/*.log
 maintenance/tests/evidence/**/config.toml
+maintenance/tests/evidence/**/*.jsonl
+maintenance/tests/evidence/**/*.stderr
+maintenance/tests/evidence/**/*.stdout
+maintenance/tests/evidence/**/stderr.txt
+maintenance/tests/evidence/**/stdout.txt

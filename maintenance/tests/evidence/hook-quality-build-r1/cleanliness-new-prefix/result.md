@@ -21,7 +21,7 @@ python -B output/hook-quality-build-r1/cleanliness-new-prefix/run.py --prepare
 python -B output/hook-quality-build-r1/cleanliness-new-prefix/run.py
 ```
 
-两条命令 exit 0；runner exit 0 仅表示执行收口，不等于清理目标通过。完整 prompt、reply、receipt、流摘录、原生来源及冻结 runtime 见[清单](manifest.json)；私有 runtime/HOME 不归档，归档驱动保留原 output 工作坐标。
+两条命令 exit 0；runner exit 0 仅表示执行收口，不等于清理目标通过。完整 prompt、reply、receipt、流摘录、原生来源及冻结 runtime 见[清单](https://github.com/gongyu0918-debug/chinese-official-writing-skill/blob/0721297298b72be7a37b93c6598172791b58e421/maintenance/tests/evidence/hook-quality-build-r1/cleanliness-new-prefix/manifest.json)；私有 runtime/HOME 不归档，归档驱动保留原 output 工作坐标。
 
 - fixture：`33c0e981ec857e298d68fd8b89d41462849c41d859c1c851e09c3f4bdd8782fd`
 - 原 D0（stream result 的 UTF-8 文本）：`17ad73b7212d42078beae4a3ebf11e131eb4de9d6cd0ebcd3c6e4e510a0f20ea`

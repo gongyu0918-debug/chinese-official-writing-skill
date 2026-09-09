@@ -6,7 +6,7 @@
 
 ## 真实结果
 
-两条原有低价路线、max，2任务×2臂共8次独立Claude CLI会话，全部技术有效；使用仓库真实投诉写稿题，以及上轮MiniMax实际产出的通知做定向审稿。逐稿正文和实际prompt、argv、stream、usage、hash见[冻结证据](frozen-evidence.json)；[独立盲审](independent-review.md)与主代理逐稿核对后作以下裁决。
+两条原有低价路线、max，2任务×2臂共8次独立Claude CLI会话，全部技术有效；使用仓库真实投诉写稿题，以及上轮MiniMax实际产出的通知做定向审稿。逐稿正文和实际prompt、argv、stream、usage、hash见[冻结证据](https://github.com/gongyu0918-debug/chinese-official-writing-skill/blob/0721297298b72be7a37b93c6598172791b58e421/maintenance/tests/evidence/recent-leaf-cleanup-r1/frozen-evidence.json)；[独立盲审](independent-review.md)与主代理逐稿核对后作以下裁决。
 
 | 任务 | 基线/候选实际结果 | 决定 |
 | --- | --- | --- |

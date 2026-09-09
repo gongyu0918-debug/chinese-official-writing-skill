@@ -13,9 +13,9 @@
 
 ## 真实写稿与原生停止
 
-先执行两条既有便宜路线的独立无工具写稿，均为 `max`：Alibaba Token Plan 2 的 DeepSeek V4 Flash 与 MiniMax M3。两份正文均写对完整年份，分别完成一次真实逐字回显探针。完整 prompt、正文、模型绑定、空工具/插件/MCP清单和回执保存在 [raw/fresh](raw/fresh)。这两份完整日期稿只作反控，不算修复收益。
+先执行两条既有便宜路线的独立无工具写稿，均为 `max`：Alibaba Token Plan 2 的 DeepSeek V4 Flash 与 MiniMax M3。两份正文均写对完整年份，分别完成一次真实逐字回显探针。完整 prompt、正文、模型绑定、空工具/插件/MCP清单和回执保存在 [raw/fresh](https://github.com/gongyu0918-debug/chinese-official-writing-skill/tree/0721297298b72be7a37b93c6598172791b58e421/maintenance/tests/evidence/hook-four-fixes-r1/raw/fresh)。这两份完整日期稿只作反控，不算修复收益。
 
-最后对冻结核心在 **Claude Code 2.1.195** 上执行两次原生运行，使用 Alibaba2 `max`、隔离 profile、当前 companion，实际只读 Skill 和新闻叶。两次均记录原生 UserPromptSubmit、Read/PostToolUse、Stop、正文与终态原始回执；[逐项核验](verification.json)中的模型绑定、源码hash、读取范围、原文清理和选稿hash均通过。
+最后对冻结核心在 **Claude Code 2.1.195** 上执行两次原生运行，使用 Alibaba2 `max`、隔离 profile、当前 companion，实际只读 Skill 和新闻叶。两次均记录原生 UserPromptSubmit、Read/PostToolUse、Stop、正文与终态原始回执；[逐项核验](https://github.com/gongyu0918-debug/chinese-official-writing-skill/blob/0721297298b72be7a37b93c6598172791b58e421/maintenance/tests/evidence/hook-four-fixes-r1/verification.json)中的模型绑定、源码hash、读取范围、原文清理和选稿hash均通过。
 
 - 正常链为 `block → allow`，正文逐字保持。该份D0自然只写“9月5日”，缺少2026年，故**日期完整性不通过**；已补同稿基线对照，验证本轮日期防损。
 - 故障链在首次自然成稿后，明确注入四次不一致的 Stop 输入；响应为四次 `block` 后 `continue:false`，记录 `delivery_verified:false` 并脱敏，没有第五次自动续写。这四次不是模型自然回显错误。
@@ -26,7 +26,7 @@
 
 ## 验证与独立复核
 
-- 冻结提交运行16个直接相关测试模块，**208/208通过**，包括核心、日期、五项能力、宿主协议和组装契约。精确命令、解释器、时长与输出见 [focused-tests.json](raw/focused-tests.json)。未运行本轮仓库全量门，未作全量通过声明。
+- 冻结提交运行16个直接相关测试模块，**208/208通过**，包括核心、日期、五项能力、宿主协议和组装契约。精确命令、解释器、时长与输出见 [focused-tests.json](https://github.com/gongyu0918-debug/chinese-official-writing-skill/blob/0721297298b72be7a37b93c6598172791b58e421/maintenance/tests/evidence/hook-four-fixes-r1/raw/focused-tests.json)。未运行本轮仓库全量门，未作全量通过声明。
 - `python -B C:/Users/admin/.codex/skills/.system/skill-creator/scripts/quick_validate.py chinese-official-writing`：`Skill is valid!`。
 - `sync_adapters.py --help` 实际执行了同步（该旧脚本不解析参数）；五套兼容镜像未产生跟踪差异。当前变更仅在五个 canonical Hook 文件，Skill、references、示例、版本和付费包均无差异。
 - `git diff --check` 通过；本轮没有增加核心选稿次数、语义裁判或全量测试流水。
@@ -34,7 +34,7 @@
 
 ## 未完成与状态登记
 
-1. **CodeBuddy、Kimi、OpenCode、DeepSeek Harness 的硬停仍未适配**，不能宣称全宿主修好；其当前非 block→allow 行为、官方协议和后续最小原型见[适配边界](adapter-boundary.md)。Codex、ZCode、Qwen 本轮有协议反控，未重跑原生在线生命周期；Qwen既有正文重复问题未改变。
+1. **CodeBuddy、Kimi、OpenCode、DeepSeek Harness 的硬停仍未适配**，不能宣称全宿主修好；其当前非 block→allow 行为、官方协议和后续最小原型见[适配边界](https://github.com/gongyu0918-debug/chinese-official-writing-skill/blob/0721297298b72be7a37b93c6598172791b58e421/maintenance/tests/evidence/hook-four-fixes-r1/adapter-boundary.md)。Codex、ZCode、Qwen 本轮有协议反控，未重跑原生在线生命周期；Qwen既有正文重复问题未改变。
 2. 状态锁不可用时会明确停止自动重试，原记录保持待处理，不能声称该I/O失败路径已即时脱敏；实测释放锁后可恢复正常处理。启动中的 Stop 在 HostAbort 清理之后仍可能重建输入文件。独立故障注入在基线和候选原型都复现，属于继承窗口；本轮未扩大修复范围，登记在 `HK-008` 下继续处理。
 3. 漏年和材料外活动内容仍是本轮真实D0的质量缺陷，继续归入 `AH-002b`/`WR-020c`。本轮样本不支持98%或100%的成稿可靠率，也没有新增百稿或多版稳定性结论。
 

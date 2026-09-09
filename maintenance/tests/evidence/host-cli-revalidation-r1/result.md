@@ -99,7 +99,7 @@ QwenWork 继续为 `STATIC_SKILL_PACKAGE_PASSED / ONLINE_LIFECYCLE_UNVERIFIED`�
 - `expanded/l1-minimax/run/receipt.json`
 - `expanded/l1-opencodego/run/receipt.json`
 
-CodeBuddy 2.141.0 的全局 `CODEBUDDY_PLUGIN_DATA` 终态记录已脱敏摘录到可提交证据 [`codebuddy-2.141.0-s2-lifecycle.json`](codebuddy-2.141.0-s2-lifecycle.json)。记录显示 `stop_attempts=1`、`delivery_verified=true`、`data_retention_state=raw_turn_data_redacted`，独立从 stdout 提取的终稿 SHA-256 与 `87035a9e...` 完全一致。这只能证明真实 profile 生命周期，不能冒充隔离 data root；stdout 的 `apiKeySource=copilot.tencent.com` 也不能证明 OpenCodex provider 注入。
+CodeBuddy 2.141.0 的全局 `CODEBUDDY_PLUGIN_DATA` 终态记录已脱敏摘录到可提交证据 [`codebuddy-2.141.0-s2-lifecycle.json`](https://github.com/gongyu0918-debug/chinese-official-writing-skill/blob/0721297298b72be7a37b93c6598172791b58e421/maintenance/tests/evidence/host-cli-revalidation-r1/codebuddy-2.141.0-s2-lifecycle.json)。记录显示 `stop_attempts=1`、`delivery_verified=true`、`data_retention_state=raw_turn_data_redacted`，独立从 stdout 提取的终稿 SHA-256 与 `87035a9e...` 完全一致。这只能证明真实 profile 生命周期，不能冒充隔离 data root；stdout 的 `apiKeySource=copilot.tencent.com` 也不能证明 OpenCodex provider 注入。
 
 实际使用的命令族：
 

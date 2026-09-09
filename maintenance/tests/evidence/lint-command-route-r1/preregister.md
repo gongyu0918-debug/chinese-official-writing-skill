@@ -16,7 +16,7 @@
 
 ## 隔离及最薄运行器
 
-[run_eval.py](run_eval.py) 复用既有 `complaint-reflection-r1/desktop_writer.py` 的 Desktop CLI 发现和上游导出/指纹/统计工具，独立覆盖调用，不改旧冻结writer。CLI当前为0.153.1。每臂安装在独立临时普通项目的 `.agents/skills/chinese-official-writing/`，项目路径包含空格，项目cwd不等于Skill目录。导出的canonical按五套普通包边界排除 `hooks/`、`scripts/review_gate.py`、`references/delivery-review-gate.md`，不组装或启用Hook。
+[run_eval.py](https://github.com/gongyu0918-debug/chinese-official-writing-skill/blob/0721297298b72be7a37b93c6598172791b58e421/maintenance/tests/evidence/lint-command-route-r1/run_eval.py) 复用既有 `complaint-reflection-r1/desktop_writer.py` 的 Desktop CLI 发现和上游导出/指纹/统计工具，独立覆盖调用，不改旧冻结writer。CLI当前为0.153.1。每臂安装在独立临时普通项目的 `.agents/skills/chinese-official-writing/`，项目路径包含空格，项目cwd不等于Skill目录。导出的canonical按五套普通包边界排除 `hooks/`、`scripts/review_gate.py`、`references/delivery-review-gate.md`，不组装或启用Hook。
 
 `skills.config` 的启用与禁用路径均为 `SKILL.md` 文件，保留两处全局MIT安装及Pro安装不动；禁用两处全局同名 Skill，关闭plugins/apps/memories。路径依据[官方本地Skill启停示例](https://learn.chatgpt.com/docs/build-skills#enable-or-disable-local-codex-skills)。`workspace-write` 仅供本项目写临时校对稿，审批never；执行前后产品指纹必须一致。运行器冻结实际argv、cwd、提示词、模型、CLI版本、材料/Skill指纹与完整stdout/stderr。成功读取目标Skill须从真实成功命令解析到本运行的绝对文件，不用易命中全局的相对路径子串替代；另扫描全局路径及Hook污染。若解析不支持，保留trace转人工核验，不判已加载。
 

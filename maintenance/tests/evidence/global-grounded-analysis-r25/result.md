@@ -20,7 +20,7 @@
 
 Qwen复杂申请候选主件和附件完整，但附件概括句把scripts/hooks职责顺序对反，需作局部更正；报告两侧都有正文外自检说明。采购基线411字符偏短，按用户“500字左右”的实际要求记为基本可用，不把预设450观察线充当用户硬下限。
 
-全部实际 final、工作稿与脱敏执行记录见 [MiniMax](actual-minimax/summary.json)、[Qwen](actual-qwen/summary.json)。正式匿名包共六个逻辑组，其中四组成对有效，另外两组只评价存在的有效一侧；这不是多版稿或长期可靠率试验。全文评阅与主代理复核见 [复核](review/root-adjudication.md)。
+全部实际 final、工作稿与脱敏执行记录见 [MiniMax](actual-minimax/summary.json)、[Qwen](actual-qwen/summary.json)。正式匿名包共六个逻辑组，其中四组成对有效，另外两组只评价存在的有效一侧；这不是多版稿或长期可靠率试验。全文评阅与主代理复核见 [复核](https://github.com/gongyu0918-debug/chinese-official-writing-skill/blob/0721297298b72be7a37b93c6598172791b58e421/maintenance/tests/evidence/global-grounded-analysis-r25/review/root-adjudication.md)。
 
 ## 规则位置与付费版参考
 
@@ -32,6 +32,6 @@ canonical 净增1354字节：入口419、信息选择页935。没有新参考页
 
 已将规格 WR-013 从历史“一层原因、即时作用”范围更新为全局有据分析。旧原稿和旧评阅保留，不回写历史。按用户“不做过度工程化，一切以写作质量为准”的澄清，AGENTS 第3条不再用一次独立采样差异机械否决；删除测试里固定旧纪律措辞的两项断言，没有移除事实、状态、正文或包边界检查。
 
-相关94项测试通过；canonical和四套普通包quick_validate通过，OpenClaw由现有平台专项边界测试覆盖。通用quick_validate不支持OpenClaw已有的category字段，第一次套用失败后未为满足错误工具而删平台字段。实际执行和未覆盖范围见 [验证记录](validation.json)。本轮未运行全量门、Hook在线生命周期、连续四至七版或新增长稿批次。
+相关94项测试通过；canonical和四套普通包quick_validate通过，OpenClaw由现有平台专项边界测试覆盖。通用quick_validate不支持OpenClaw已有的category字段，第一次套用失败后未为满足错误工具而删平台字段。实际执行和未覆盖范围见 [验证记录](https://github.com/gongyu0918-debug/chinese-official-writing-skill/blob/0721297298b72be7a37b93c6598172791b58e421/maintenance/tests/evidence/global-grounded-analysis-r25/validation.json)。本轮未运行全量门、Hook在线生命周期、连续四至七版或新增长稿批次。
 
 最初按旧纪律暂缓，随后按用户澄清改用真实质量判断并保留冻结原型；操作和理由见 [判定记录](review/implementation-decision.md)。原型、真实稿及审核分开保留，不把工程检查写成质量证明。

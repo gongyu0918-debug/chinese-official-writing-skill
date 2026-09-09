@@ -32,7 +32,7 @@ Claude 只在 Stop 映射 `transcript_path`；recover 同时绑定 session、当
 
 ## 实际验证
 
-脚本：[core_review_probe.py](core_review_probe.py)。执行命令：
+脚本：[core_review_probe.py](https://github.com/gongyu0918-debug/chinese-official-writing-skill/blob/0721297298b72be7a37b93c6598172791b58e421/maintenance/tests/evidence/hook-quality-build-r1/core_review_probe.py)。执行命令：
 
 ```text
 python -B -X utf8 maintenance/tests/evidence/hook-quality-build-r1/core_review_probe.py

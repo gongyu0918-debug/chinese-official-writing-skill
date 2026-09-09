@@ -6,14 +6,14 @@
 
 ## 真实稿中的具体问题
 
-- [采购候选](actual-minimax/runs/equipment-request/minimax/candidate/document-1.txt)把未定分工写成新机批量扫描、旧机零散扫描。
-- [复杂申请候选](actual-minimax/runs/project-application/minimax/candidate/document-1.txt)把复用迹象写成复用情形，补入按月报进度、里程碑与验收等材料外办理义务。
-- [复杂申请基线](actual-minimax/runs/project-application/minimax/baseline/document-1.txt)也有从下载与获奖推成付费意愿已验证、补入固定管理程序等问题。这类风险在本批便宜模型的新旧稿中均见，不能归因为本次全局原则导致。
-- [Qwen候选附件](actual-qwen/runs/project-application/qwen/candidate/document-2.txt)概述句把scripts/hooks职责顺序写反，后文各节说明正确。目前属于单例的对应关系笔误，尚无跨模型共性证据。
+- [采购候选](https://github.com/gongyu0918-debug/chinese-official-writing-skill/blob/0721297298b72be7a37b93c6598172791b58e421/maintenance/tests/evidence/global-grounded-analysis-r25/actual-minimax/runs/equipment-request/minimax/candidate/document-1.txt)把未定分工写成新机批量扫描、旧机零散扫描。
+- [复杂申请候选](https://github.com/gongyu0918-debug/chinese-official-writing-skill/blob/0721297298b72be7a37b93c6598172791b58e421/maintenance/tests/evidence/global-grounded-analysis-r25/actual-minimax/runs/project-application/minimax/candidate/document-1.txt)把复用迹象写成复用情形，补入按月报进度、里程碑与验收等材料外办理义务。
+- [复杂申请基线](https://github.com/gongyu0918-debug/chinese-official-writing-skill/blob/0721297298b72be7a37b93c6598172791b58e421/maintenance/tests/evidence/global-grounded-analysis-r25/actual-minimax/runs/project-application/minimax/baseline/document-1.txt)也有从下载与获奖推成付费意愿已验证、补入固定管理程序等问题。这类风险在本批便宜模型的新旧稿中均见，不能归因为本次全局原则导致。
+- [Qwen候选附件](https://github.com/gongyu0918-debug/chinese-official-writing-skill/blob/0721297298b72be7a37b93c6598172791b58e421/maintenance/tests/evidence/global-grounded-analysis-r25/actual-qwen/runs/project-application/qwen/candidate/document-2.txt)概述句把scripts/hooks职责顺序写反，后文各节说明正确。目前属于单例的对应关系笔误，尚无跨模型共性证据。
 
 前三类可归纳为：扩展论证时跨入未明确的具体事实、安排或义务。有依据的必要性、影响和条件分析仍可保留；这些具体错误不要求把写作压回只复述材料。
 
-正常的文后补充建议属于产品交付设计。本轮仅[采购题](prompts/equipment-request.txt)和[报告题](prompts/service-report.txt)明确“我只想要正文”，所以其中的自检前言按未遵守该要求记录；原始复杂申请没有此限制，其正文外说明不据此判错。超时只单列为执行/交付情况，不据此推定正文质量下降，也不作为合并否决理由。
+正常的文后补充建议属于产品交付设计。本轮仅[采购题](https://github.com/gongyu0918-debug/chinese-official-writing-skill/blob/0721297298b72be7a37b93c6598172791b58e421/maintenance/tests/evidence/global-grounded-analysis-r25/prompts/equipment-request.txt)和[报告题](https://github.com/gongyu0918-debug/chinese-official-writing-skill/blob/0721297298b72be7a37b93c6598172791b58e421/maintenance/tests/evidence/global-grounded-analysis-r25/prompts/service-report.txt)明确“我只想要正文”，所以其中的自检前言按未遵守该要求记录；原始复杂申请没有此限制，其正文外说明不据此判错。超时只单列为执行/交付情况，不据此推定正文质量下降，也不作为合并否决理由。
 
 ## 合并检查
 

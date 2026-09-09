@@ -1,2 +1,0 @@
-# Preserve the literal frozen patch, including blank context lines.
-prototype.diff -text -whitespace

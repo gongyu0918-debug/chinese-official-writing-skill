@@ -8,7 +8,7 @@ R1 保持 [HOLD](length-result.md)。R2 只给自然压缩表达增加问句排�
 
 唯一 MiniMax M3 max 链尝试两次调用，0 retry：观察步骤在 15.187 秒返回有效 CLEAR；压缩步骤在 300.094 秒 `TimeoutExpired`。后者 `result_count=0`、reply 文件为空，没有可用候选，没有语义核验、选择或交付。两次 init 工具、MCP、Skills、plugins 清单均为空；超时调用没有 usage/result，完整绑定与成本无法确认。该结果属于技术中断，不据此判定正文质量变好或变差，已停止调用。
 
-原始 runner 异常后把上一次内部 CLEAR JSON 写入了旧命名 `final-visible.txt`。其中 304 字符是内部协议 JSON，**不是交付正文**；原文件保留，由[更正记录](length/r2/result-clarification.json)明确其不可用状态。不能把 runner 已完成写文件或 parse 通过说成质量收益。
+原始 runner 异常后把上一次内部 CLEAR JSON 写入了旧命名 `final-visible.txt`。其中 304 字符是内部协议 JSON，**不是交付正文**；原文件保留，由[更正记录](https://github.com/gongyu0918-debug/chinese-official-writing-skill/blob/0721297298b72be7a37b93c6598172791b58e421/maintenance/tests/evidence/hook-quality-build-r1/length/r2/result-clarification.json)明确其不可用状态。不能把 runner 已完成写文件或 parse 通过说成质量收益。
 
 实际命令：
 
@@ -17,4 +17,4 @@ python -B output/hook-quality-build-r1/length/r2/run_r2.py --prepare
 python -B output/hook-quality-build-r1/length/r2/run_r2.py
 ```
 
-prepare exit 0；真实 runner 非零退出，工具记录 exit 1。未重跑同题，未补永久产品 tests。fixture SHA-256 `d378079d6e9aabc84278e38c92fe9a0d29e3f34dc9effef0ad7488bd93151755`。完整 prompt、空 reply、receipt、stream、冻结产品及 diff 见[归档清单](length/manifest.json)；不包含私有 runtime/HOME。
+prepare exit 0；真实 runner 非零退出，工具记录 exit 1。未重跑同题，未补永久产品 tests。fixture SHA-256 `d378079d6e9aabc84278e38c92fe9a0d29e3f34dc9effef0ad7488bd93151755`。完整 prompt、空 reply、receipt、stream、冻结产品及 diff 见[归档清单](https://github.com/gongyu0918-debug/chinese-official-writing-skill/blob/0721297298b72be7a37b93c6598172791b58e421/maintenance/tests/evidence/hook-quality-build-r1/length/manifest.json)；不包含私有 runtime/HOME。

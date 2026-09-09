@@ -8,7 +8,7 @@
 | R2，部分修复后、最终修复前 | 锁超时已明确停止；失败终态拒写与调用方刷新通过；成功终态仍返回缺少正文的回显 block，整体 `pass:false` | [保留的失败结果](result-r2.json) |
 | R3，最终窄修复后 | 锁超时 2.016 秒后 `continue:false`，释放锁后恢复正常 block；失败终态保持明确停止；成功终态直接 allow。两种终态的记录 hash 不变、无 raw 键，调用方均刷新 | [最终结果](result-r3-after-fix.json) |
 
-[复验脚本](probe.py)仅用标准库，加载指定 core，使用真实操作系统文件锁和受控迟到写入次序。其它 capability handler 被旁路；未调用模型或 gate 子进程。复用既有短 D0，SHA-256 为 `353db1634bb8796131c8b92857aa9d49f4f1401c73dd736efa218a9c8dfee2e5`。结果不包含凭据或私有配置。
+[复验脚本](https://github.com/gongyu0918-debug/chinese-official-writing-skill/blob/0721297298b72be7a37b93c6598172791b58e421/maintenance/tests/evidence/hook-four-fixes-r1/independent-review/probe.py)仅用标准库，加载指定 core，使用真实操作系统文件锁和受控迟到写入次序。其它 capability handler 被旁路；未调用模型或 gate 子进程。复用既有短 D0，SHA-256 为 `353db1634bb8796131c8b92857aa9d49f4f1401c73dd736efa218a9c8dfee2e5`。结果不包含凭据或私有配置。
 
 实际 R3 命令如下，工作目录为本轮独立 worktree；进程退出 0，结果中的三项及整体 `pass` 均为 true。R2 使用相同脚本和参数结构，输出目录为 `independent-state-review-r2`；该诊断脚本退出 0 只代表完成记录，R2 的 `pass:false` 保持原样。
 

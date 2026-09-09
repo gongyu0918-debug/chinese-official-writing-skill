@@ -31,9 +31,9 @@ CLI 报告的 usage 合计：input 39,092，cache-read input 291，output 40,110
 
 ## 复核入口
 
-- [运行脚本](replay_real_d0.py)
-- [持久化六稿和九次调用记录](frozen-evidence.json)：只存一次完整 D0 正文（与终稿相同）、两道原始请求、来源及终稿 hash、九次模型绑定与 usage。它保留完整正文用于核查，省去重复终稿和庞大的 stream。
-- [未准入的日期原型说明](prototype.md) 与 [补丁](prototype.patch)。
+- [运行脚本](https://github.com/gongyu0918-debug/chinese-official-writing-skill/blob/0721297298b72be7a37b93c6598172791b58e421/maintenance/tests/evidence/hook-audit-quality-r1/replay_real_d0.py)
+- [持久化六稿和九次调用记录](https://github.com/gongyu0918-debug/chinese-official-writing-skill/blob/0721297298b72be7a37b93c6598172791b58e421/maintenance/tests/evidence/hook-audit-quality-r1/frozen-evidence.json)：只存一次完整 D0 正文（与终稿相同）、两道原始请求、来源及终稿 hash、九次模型绑定与 usage。它保留完整正文用于核查，省去重复终稿和庞大的 stream。
+- [未准入的日期原型说明](https://github.com/gongyu0918-debug/chinese-official-writing-skill/blob/0721297298b72be7a37b93c6598172791b58e421/maintenance/tests/evidence/hook-audit-quality-r1/prototype.md) 与 [补丁](https://github.com/gongyu0918-debug/chinese-official-writing-skill/blob/0721297298b72be7a37b93c6598172791b58e421/maintenance/tests/evidence/hook-audit-quality-r1/prototype.patch)。
 - 完整 raw 仅保留在未提交的 `output/hook-audit-quality-r1/r1/`。其中 `summary.json`、`fixture.json` 以及逐稿 `source.json`、`d0.txt`、`events.json`、`final-visible.txt` 和各次 prompt、stream、stderr、reply、receipt 的对应指纹保存在持久化记录中。
 
 原收据中的 `d0_sha256`、`final_visible_sha256`、模型回复 `final_sha256` 使用 UTF-8 正文和 LF 换行计算。Windows 输出文件写成 CRLF；持久化记录另加 `*_file_sha256` 保存原文件字节 hash。六稿既通过正文相等核验，导出的 D0 与可见终稿文件也逐字节相等。

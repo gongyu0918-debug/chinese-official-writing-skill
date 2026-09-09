@@ -14,7 +14,7 @@
 
 两家模型均使用相同题面、同一初始状态重新建立候选5版报告链；两家5版纪要链作为未改文种的相邻观察。保留完整原稿、原始trace、实际读取、用量、session ID及逐版错误轨迹。没有目标风险下降或出现候选独有事实/状态/文种/完整交付硬回退则拒绝，不补镜像。通过真实结果后才同步镜像和补相关工程验证。不同链版本相关，不换算总体稳定率。
 
-复用[现有CLI链驱动](../revision-stability-audit-r1/run_chain.py)的[薄封装](run.py)；唯一行为调整是将自然未激活/已完成空输出从技术无效中分出，不为写稿失败补样或重试。初始题面的自然措辞和不同文种分别观察，不把单个措辞当成模型在所有提示词上的证明。
+复用[现有CLI链驱动](https://github.com/gongyu0918-debug/chinese-official-writing-skill/blob/0721297298b72be7a37b93c6598172791b58e421/maintenance/tests/evidence/revision-stability-audit-r1/run_chain.py)的[薄封装](https://github.com/gongyu0918-debug/chinese-official-writing-skill/blob/0721297298b72be7a37b93c6598172791b58e421/maintenance/tests/evidence/natural-writing-stability-r1/run.py)；唯一行为调整是将自然未激活/已完成空输出从技术无效中分出，不为写稿失败补样或重试。初始题面的自然措辞和不同文种分别观察，不把单个措辞当成模型在所有提示词上的证明。
 
 研究采用[Agent Skills规范](https://agentskills.io/specification)的按需资源读取、[Anthropic Skill Creator](https://github.com/anthropics/skills/blob/main/skills/skill-creator/SKILL.md)的真实任务前向验证，以及[社区编辑遗漏问题](https://github.com/anthropics/claude-code/issues/27137)作为线索。它们不代替本仓库真实稿结果；不照搬更强触发或扩张说明文案。
 

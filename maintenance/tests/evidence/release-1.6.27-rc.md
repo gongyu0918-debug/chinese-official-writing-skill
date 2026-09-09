@@ -29,10 +29,10 @@ git diff --check
 ## 冻结包与平台预检
 
 - SkillHub.cn为86文件含Hook包，使用LICENSE.md、排除agents/openai.yaml及无扩展名LICENSE。ClawHub为37文件无Hook包；两者相对上一版均新增整改方案页。
-- 本地逐文件原始与LF规范化hash及明确算法见[包manifest](release-v1627/package-manifest.json)。SkillHub原始树fingerprint `51a4f7ae46b579930ae75e21fb67f40f488cbf04b751f204f08353213fcff29a`，LF树 `4953fc49a962bb4138147c8ef00daa26b77c054806417af06a87304c65ae73e8`；ClawHub原始树 `b0c7bf00c2e9b792c2d6cbf3cbd775ce25459d77ac7042e2bf9d9d3fce6aad61`，LF树 `aee0518fee8dee84e693540e561d6ed8f5aa4ea48d5e5a3bdfbda4f85e7297d8`。本地算法与平台fingerprint分别记录，不互相冒充。
+- 本地逐文件原始与LF规范化hash及明确算法见[包manifest](https://github.com/gongyu0918-debug/chinese-official-writing-skill/blob/0721297298b72be7a37b93c6598172791b58e421/maintenance/tests/evidence/release-v1627/package-manifest.json)。SkillHub原始树fingerprint `51a4f7ae46b579930ae75e21fb67f40f488cbf04b751f204f08353213fcff29a`，LF树 `4953fc49a962bb4138147c8ef00daa26b77c054806417af06a87304c65ae73e8`；ClawHub原始树 `b0c7bf00c2e9b792c2d6cbf3cbd775ce25459d77ac7042e2bf9d9d3fce6aad61`，LF树 `aee0518fee8dee84e693540e561d6ed8f5aa4ea48d5e5a3bdfbda4f85e7297d8`。本地算法与平台fingerprint分别记录，不互相冒充。
 - SkillHub ZIP SHA-256 `94cec25e2042a347cd017fcccc93091667696b192b5568a4da3ef462b3ac1c3f`，CLI content hash（排除_meta）`cea9f4c16594b277d2a9b019a5eaab1f243b3e45244b86dce97001e20a6e17ab`。86个ZIP成员逐项等于冻结目录字节。
 - SkillHub dry-run返回 `dryRun=true`、1.6.27；ClawHub返回 `would-publish`、37文件、展示名“中文公文写作”、1.6.27，平台dry-run fingerprint为 `6ed68c7cb787ecca3085349af0b2225bcf7e398b4af17b156358345cc16f30fe`。这只是预检，不是上传或审核证明。
-- [冻结调用参数](release-v1627/publish-commands.json)绑定产品SHA/tag，正式提交只移除dry-run。SkillHub坐标维持 `@user_f3d82da7/chinese-official-writing`；ClawHub owner维持gongyu0918-debug，四个topics保留，只移动latest，不提供已过时的categories覆盖。
+- [冻结调用参数](https://github.com/gongyu0918-debug/chinese-official-writing-skill/blob/0721297298b72be7a37b93c6598172791b58e421/maintenance/tests/evidence/release-v1627/publish-commands.json)绑定产品SHA/tag，正式提交只移除dry-run。SkillHub坐标维持 `@user_f3d82da7/chinese-official-writing`；ClawHub owner维持gongyu0918-debug，四个topics保留，只移动latest，不提供已过时的categories覆盖。
 
 ## 发布及剩余边界
 

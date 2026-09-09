@@ -1,0 +1,24 @@
+{
+  "source_commit": "0721297298b72be7a37b93c6598172791b58e421",
+  "source_files": 3365,
+  "source_bytes": 34004802,
+  "hot_files": 1138,
+  "hot_bytes": 4998954,
+  "cold_files": 2227,
+  "cold_bytes": 29005848,
+  "archive_name": "evidence.zip",
+  "archive_sha256": "5e72da0c785514ed8c8dcc3647b62937c9ac6ae4588adb71c6209ccd3bfdee8c",
+  "archive_bytes": 10280684,
+  "verified_zip_files": 3365,
+  "rewritten_links": 258,
+  "rewritten_documents": 58,
+  "restore_command": "py maintenance/tools/evidence_archive.py extract <original-path>",
+  "history_rewritten": false,
+  "limits": [
+    "Only source-commit evidence blobs are tiered; any untracked evidence is explicitly listed and must not be removed.",
+    "Only active maintenance test/tool/eval dependencies pin historical code; other historical runners and snapshots require cold restoration before replay.",
+    "Markdown parser covers inline links, reference definitions, and HTML href/src; malformed Markdown, runtime-generated paths, and backtick prose are not a complete executable dependency graph.",
+    "Case/fixture/task/prompt JSON referenced files are protected. Provenance-only JSON manifests do not pin raw outputs; original paths remain available through cold catalog/restoration.",
+    "Classification was static; the migration, ZIP verification and Git-blob restoration checks were subsequently executed. Historical model and host runs were not replayed."
+  ]
+}

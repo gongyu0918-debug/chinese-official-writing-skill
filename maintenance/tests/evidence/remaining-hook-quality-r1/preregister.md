@@ -14,7 +14,7 @@
 
 ## 七版真实会话
 
-原子通过后，在清洁的独立测试worktree中运行[现有七轮驱动的薄封装](run_chain.py)。两臂两路线，共4个独立session、28版正文；第2—7轮使用真实 `exec resume`，只发送原来的增量任务，不重拼历史。题面沿用[原七轮配置](../revision-stability-audit-r1/cases.json)，只更新两臂commit。原始初稿→更新统计→调序→删除→新增独立段→650字符压缩→只撤销调序。此阶段不启用Hook，不代表compaction或任意长度稳定性。
+原子通过后，在清洁的独立测试worktree中运行[现有七轮驱动的薄封装](https://github.com/gongyu0918-debug/chinese-official-writing-skill/blob/0721297298b72be7a37b93c6598172791b58e421/maintenance/tests/evidence/remaining-hook-quality-r1/run_chain.py)。两臂两路线，共4个独立session、28版正文；第2—7轮使用真实 `exec resume`，只发送原来的增量任务，不重拼历史。题面沿用[原七轮配置](../revision-stability-audit-r1/cases.json)，只更新两臂commit。原始初稿→更新统计→调序→删除→新增独立段→650字符压缩→只撤销调序。此阶段不启用Hook，不代表compaction或任意长度稳定性。
 
 实际命令计划：
 

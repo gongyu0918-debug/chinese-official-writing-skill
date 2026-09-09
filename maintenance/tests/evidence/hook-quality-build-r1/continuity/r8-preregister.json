@@ -1,7 +1,0 @@
-{
-  "purpose": "same persistent session, final helper recognizes ordinary 改得 / 这版; R3 round7 missed gate remains failure, not replaced",
-  "changed_packaged_file": "output\\hook-quality-build-r1\\continuity\\companion-production\\skills\\chinese-official-writing\\hooks\\shared\\revision_context.py",
-  "helper_sha256": "8ee9a3d542ea5ff1e3f43c31833d13f3550020dfbb29d0fb59025772c83db9f3",
-  "source_core": "unchanged frozen R3 production core",
-  "attempts": 1
-}

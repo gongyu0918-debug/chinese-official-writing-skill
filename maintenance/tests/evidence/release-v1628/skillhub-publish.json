@@ -1,5 +1,0 @@
-{
-  "exit_code": 0,
-  "stdout": "{\"contentAuditStatus\": \"pending\", \"fileCount\": 86, \"fingerprint\": \"4f95005ab6dca12799bbb4ae519acc923bb0d30d8a83cf47b7aff3928022e1d3\", \"iconAuditStatus\": null, \"iconAuditTaskStatus\": null, \"joinedContest\": false, \"ok\": true, \"profileSaved\": false, \"reviewStatus\": \"pending\", \"schoolSaved\": false, \"securityScanStatus\": \"pending\", \"skillId\": 70149, \"slug\": \"chinese-official-writing\", \"source\": \"clawhub\", \"tags\": {\"ai-compute\": \"1.6.28\", \"chinese\": \"1.6.28\", \"content-creation\": \"1.6.28\", \"gongwen\": \"1.6.28\", \"latest\": \"1.6.28\", \"office-efficiency\": \"1.6.28\", \"official-document\": \"1.6.28\", \"writing\": \"1.6.28\"}, \"version\": \"1.6.28\", \"versionId\": 291966}\n",
-  "stderr": ""
-}

@@ -14,13 +14,13 @@
 
 两臂均为 `TERMINAL_D0` / `selected=D0`，精确回显后 `delivery_verified=true`，终态原始数据清理标记成立，删除失败为 0。这里的 `D0` 是 core 预处理后的快照标签，不能据此认定输出等于宿主原稿；本例 baseline 的日期审计和最终 hash 已证实引入了 2020 年。
 
-来源与脱敏显示见 [native-source.json](native-source.json)，完整可见文本及结果见 [native-results.json](native-results.json)。公开请求显示只替换两处本地插件路径前缀，**不是实际执行输入**；原始请求 SHA 和 trace SHA 保留。精确复放脚本只接受对应原始 trace，并按 SHA 验证后使用未修改请求。
+来源与脱敏显示见 [native-source.json](https://github.com/gongyu0918-debug/chinese-official-writing-skill/blob/0721297298b72be7a37b93c6598172791b58e421/maintenance/tests/evidence/hook-four-fixes-r1/date-core/native-source.json)，完整可见文本及结果见 [native-results.json](native-results.json)。公开请求显示只替换两处本地插件路径前缀，**不是实际执行输入**；原始请求 SHA 和 trace SHA 保留。精确复放脚本只接受对应原始 trace，并按 SHA 验证后使用未修改请求。
 
 另一个 `native-frozen-wrong` 首次 D0 已写入“参加人员现场交流了读书心得”，材料没有提供此活动内容。本次仅登记这一原有事实越界，未把它算作日期候选的新回退或已修好的问题，也未对它追加配对运行。
 
 ## 原六例最终复放
 
-[inputs.json](inputs.json) 保留原四份真实 D0、原请求及两个明确标注的来源角色请求变体；与先前纯函数输入中的六条记录完全一致。[results.json](results.json) 保存脱敏观察和按 SHA 去重的完整可见文本。
+[inputs.json](https://github.com/gongyu0918-debug/chinese-official-writing-skill/blob/0721297298b72be7a37b93c6598172791b58e421/maintenance/tests/evidence/hook-four-fixes-r1/date-core/inputs.json) 保留原四份真实 D0、原请求及两个明确标注的来源角色请求变体；与先前纯函数输入中的六条记录完全一致。[results.json](results.json) 保存脱敏观察和按 SHA 去重的完整可见文本。
 
 - 三份旧真实漏年稿，两臂都只补回材料中的 2026 年；输出一致。
 - 一份旧真实完整日期稿，两臂都逐字保持。
@@ -39,7 +39,7 @@ python -B -X utf8 maintenance/tests/evidence/hook-four-fixes-r1/date-core/replay
 python -B -X utf8 maintenance/tests/evidence/hook-four-fixes-r1/date-core/replay_native_d0.py --repo-root . --native-events output/hook-four-fixes-r1/native-frozen-normal/native-events.jsonl --output output/hook-four-fixes-r1/date-core/run-native-natural
 ```
 
-原始 trace、事件和事务副本留在对应 `output/`，不提交含本机路径的原始记录。两个脚本 [replay_core.py](replay_core.py)、[replay_native_d0.py](replay_native_d0.py) 及本目录 JSON、链接、字节绑定的最小检查见 [validation.json](validation.json)。未重跑全量测试。
+原始 trace、事件和事务副本留在对应 `output/`，不提交含本机路径的原始记录。两个脚本 [replay_core.py](https://github.com/gongyu0918-debug/chinese-official-writing-skill/blob/0721297298b72be7a37b93c6598172791b58e421/maintenance/tests/evidence/hook-four-fixes-r1/date-core/replay_core.py)、[replay_native_d0.py](https://github.com/gongyu0918-debug/chinese-official-writing-skill/blob/0721297298b72be7a37b93c6598172791b58e421/maintenance/tests/evidence/hook-four-fixes-r1/date-core/replay_native_d0.py) 及本目录 JSON、链接、字节绑定的最小检查见 [validation.json](https://github.com/gongyu0918-debug/chinese-official-writing-skill/blob/0721297298b72be7a37b93c6598172791b58e421/maintenance/tests/evidence/hook-four-fixes-r1/date-core/validation.json)。未重跑全量测试。
 
 ## 限制
 

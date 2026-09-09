@@ -19,13 +19,13 @@
 - 原生CLI允许Read/Skill，有宿主内置Skill描述；不能声称所有内置Skill已禁用。核对实际工具使用，未将其他写作Skill作为本轮材料。隔离配置仅存在output测试目录，未修改用户安装/启用状态。
 - 最后收窄同稿指向、Read路径及取消竞态后，以真实会话前缀复放：13个请求中11个后续请求可恢复，10个已有原生source hash逐字一致；R3第七版原生漏入仍保留，第八版是单独实测。不是重写旧结果。
 
-原生稿件仍有明确问题：R4第五版整回复626字、正文含标题556字，均超过500字，前言的合限自证也不实。R3第五版Hook有13字符局部减冗且保留上线未批准状态；其他稿件的材料外程序、外围研究安排或前导说明不能由“门禁已运行”抵销。详见[独立质量报告](continuity/production-quality-review/report.json)与原始稿。
+原生稿件仍有明确问题：R4第五版整回复626字、正文含标题556字，均超过500字，前言的合限自证也不实。R3第五版Hook有13字符局部减冗且保留上线未批准状态；其他稿件的材料外程序、外围研究安排或前导说明不能由“门禁已运行”抵销。详见[独立质量报告](https://github.com/gongyu0918-debug/chinese-official-writing-skill/blob/0721297298b72be7a37b93c6598172791b58e421/maintenance/tests/evidence/hook-quality-build-r1/continuity/production-quality-review/report.json)与原始稿。
 
 ## 正文清理组合
 
 [原清理实证](cleanliness/README.md)包含18次独立调用、基线M6围栏失败、精确正文结果及3个明确格式反控。随后用两份真实洁净稿先跑既有默认门禁，新调用3次，正文均未变化；再接默认预处理，用原始完整D0复放前3条逐字一致的真实清理回应，后续默认门禁新调用3次，两个最终正文仍逐字一致并完成清理。
 
-此组合遵循先真实结果、后胶水。默认入口不会用清理终态替代原审查；预处理已启动后，模块不可用或回显重试耗尽会明确停止。核验包只接受整个回应为单JSON/单JSON围栏，仍拒绝旁白、多对象、错误hash和错误删除项。来源见[顺序原型](cleanliness-after-review/preregister.json)、[完整集成](cleanliness-integrated/preregister.json)。组合是实际模型驱动的core Harness，未冒称新增原生宿主组合覆盖。
+此组合遵循先真实结果、后胶水。默认入口不会用清理终态替代原审查；预处理已启动后，模块不可用或回显重试耗尽会明确停止。核验包只接受整个回应为单JSON/单JSON围栏，仍拒绝旁白、多对象、错误hash和错误删除项。来源见[顺序原型](https://github.com/gongyu0918-debug/chinese-official-writing-skill/blob/0721297298b72be7a37b93c6598172791b58e421/maintenance/tests/evidence/hook-quality-build-r1/cleanliness-after-review/preregister.json)、[完整集成](https://github.com/gongyu0918-debug/chinese-official-writing-skill/blob/0721297298b72be7a37b93c6598172791b58e421/maintenance/tests/evidence/hook-quality-build-r1/cleanliness-integrated/preregister.json)。组合是实际模型驱动的core Harness，未冒称新增原生宿主组合覆盖。
 
 ## 审查与验证
 
@@ -40,7 +40,7 @@ python -B -X utf8 maintenance/tests/evidence/hook-quality-build-r1/replay_contin
 python -B -X utf8 maintenance/tests/evidence/hook-quality-build-r1/cleanliness/replay_saved.py
 ```
 
-执行使用Python313的明确绝对路径，未借用环境中其他python。最终文件/链接/包体及quick validate结果见[验证记录](validation.json)。最终Claude companion组装60文件，fingerprint `a1cde757ac69f0d6dcb7e3551a59e9dbe293872e8d33eedc320a500f17491bcf`；canonical quick validate和`claude plugin validate --strict`均通过。组装校验不等于把最终文件在全部宿主重新在线运行；原生冻结包与最后收窄的差异、真实材料复放边界已在上文列明。
+执行使用Python313的明确绝对路径，未借用环境中其他python。最终文件/链接/包体及quick validate结果见[验证记录](https://github.com/gongyu0918-debug/chinese-official-writing-skill/blob/0721297298b72be7a37b93c6598172791b58e421/maintenance/tests/evidence/hook-quality-build-r1/validation.json)。最终Claude companion组装60文件，fingerprint `a1cde757ac69f0d6dcb7e3551a59e9dbe293872e8d33eedc320a500f17491bcf`；canonical quick validate和`claude plugin validate --strict`均通过。组装校验不等于把最终文件在全部宿主重新在线运行；原生冻结包与最后收窄的差异、真实材料复放边界已在上文列明。
 
 ## 未完成与下一原子
 

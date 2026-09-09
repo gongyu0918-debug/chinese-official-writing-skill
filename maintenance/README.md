@@ -16,7 +16,7 @@
 
 | 文件 | 用途 |
 | --- | --- |
-| `tools/sync_adapters.py` | 从 canonical 同步普通平台兼容包 |
+| `tools/sync_adapters.py` | 从唯一 canonical 按需生成平台安装包到忽略目录 |
 | `tools/build_skillhub_package.py` | 构建 SkillHub 清洁包 |
 | `tools/assemble_hook_companion.py` | 在临时目录或明确授权的目标目录按静态清单组装单一宿主 companion；不安装、不启用、不联网 |
 | `tools/build_v162_cold_audit_packet.py` | 构建 v1.6.0 到 v1.6.2 的只读冷审差异包 |
@@ -31,4 +31,4 @@
 | `tools/run_revision_instruction_eval.py` | 运行二次修改指令评测 |
 | `tools/build_agent_eval_packet.py` | 构建 Agent 评测包 |
 
-产品需求与当前缺口先看 `specs/README.md`；发布事实和历史证据从 `docs/evidence/README.md` 进入；真实写稿原始记录从对应 `tests/evidence/` 预注册或结果文件进入。
+产品需求与当前缺口先看 `specs/README.md`；发布事实和历史证据从 `docs/evidence/README.md` 进入。真实写稿原稿、回执及流水按[分层归档](docs/evidence/archiving.md)查元数据后提取，不把整个历史证据区作为默认上下文。

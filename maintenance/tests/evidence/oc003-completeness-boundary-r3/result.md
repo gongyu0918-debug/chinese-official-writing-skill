@@ -14,7 +14,7 @@
 
 ## 判定口径
 
-原自然题预登记把“枚举具体指标清单”整体列为失败条件，容易误伤合理审稿论证。根据用户在出稿后的明确校正，保留原预登记并另存 [`adjudication-addendum.md`](adjudication-addendum.md)：
+原自然题预登记把“枚举具体指标清单”整体列为失败条件，容易误伤合理审稿论证。根据用户在出稿后的明确校正，保留原预登记并另存 [`adjudication-addendum.md`](https://github.com/gongyu0918-debug/chinese-official-writing-skill/blob/0721297298b72be7a37b93c6598172791b58e421/maintenance/tests/evidence/oc003-completeness-boundary-r3/adjudication-addendum.md)：
 
 - 允许基于已给数据核算、比较、形成审慎结论，说明点名缺项的直接影响，并列出直接相关的指标、费用或依据类别；
 - 只有推断冒充既成事实，或新增材料外数值、具体主体、期限、承诺、固定程序、合同义务和无关审查域，才判硬回退；

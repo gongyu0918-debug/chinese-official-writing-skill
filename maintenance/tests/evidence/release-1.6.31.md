@@ -12,4 +12,4 @@
 
 失败与修复：新checkout及首次archive恢复受CRLF转换影响，初次包字节检查失败；以git cat-file原始blob恢复后重建final并通过逐字节检查。平台提交均在修复之后。SkillHub发布前两次CLI参数/ZIP错误保留，最终正确预查确认版本不存在。未把这些失败计作通过。
 
-逐项命令、接受回执、原字节检查和公开核验见[结构化结果](release-v1631/publication-evidence.json)及同目录JSON；[冻结候选](release-v1631-candidate/README.md)保留原时点状态。后续证据提交不移动产品tag。
+逐项命令、接受回执、原字节检查和公开核验见[结构化结果](https://github.com/gongyu0918-debug/chinese-official-writing-skill/blob/0721297298b72be7a37b93c6598172791b58e421/maintenance/tests/evidence/release-v1631/publication-evidence.json)及同目录JSON；[冻结候选](release-v1631-candidate/README.md)保留原时点状态。后续证据提交不移动产品tag。

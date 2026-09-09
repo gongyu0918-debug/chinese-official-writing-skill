@@ -1,7 +1,0 @@
-{
-  "scope": "Curated fixtures, completed session receipts, complete drafts, public CLI event traces, invocations, stderr and independent anonymous reviews; no runtime profiles or local session stores.",
-  "file_count": 184,
-  "bytes": 1104719,
-  "secret_pattern_findings": [],
-  "binary_attributes": "raw/.gitattributes preserves exact evidence bytes"
-}

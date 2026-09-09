@@ -4,7 +4,7 @@
 
 2026-09-07：[v1.6.29发布记录](../tests/evidence/release-1.6.29.md)为当前发行事实；Claude同稿接续与默认正文清理已发布，下文旧轮“未发布”仅指当时。宿主限制、批量与多版质量仍未闭环，市场公开传播与审核单列。
 
-本目录是产品需求、当前变更和验证覆盖的中间层。它借鉴 OpenSpec 的“需求为真、变更单独记录、证据可追踪”，但不安装 OpenSpec，不增加 slash command、审批流或归档工具。
+本目录是产品需求、当前变更和验证覆盖的中间层。它借鉴 OpenSpec 的“需求为真、变更单独记录、证据可追踪”，但不安装 OpenSpec，也不引入它的 slash command 或审批流程。
 
 ## 文件
 
@@ -14,9 +14,10 @@
 | [`roadmap.md`](roadmap.md) | 哪些已经完成、哪些候选已拒绝或终止、哪些等待新反例、下一步做什么 |
 | [`coverage.md`](coverage.md) | 每项需求由什么产品文件、真实稿件和 Hook 证据覆盖 |
 | [`public-paid-sync.md`](public-paid-sync.md) | 公开 `main` 与付费提纲候选如何同步、哪些差异可以保留 |
+| [`release-v1.6.31-candidate.md`](release-v1.6.31-candidate.md) | v1.6.31 选择性发布的历史范围与冻结记录 |
 | [`../docs/待办.md`](../docs/待办.md) | 当前迭代的执行细目、环境限制和未闭环反例 |
 
-历史发布、预注册、完整盲审和原始回执仍放在 `maintenance/tests/evidence/`；这里仅链接，不复制大段过程。公开产品说明仍放根 `README.md`；运行时写作规则仍只放 canonical Skill 与 references。
+历史发布、预注册和必要结果摘要保留在 `maintenance/tests/evidence/`；完整盲审、原稿和回执按[分层归档](../docs/evidence/archiving.md)查询及提取。这里仅链接，不复制大段过程。公开产品说明仍放根 `README.md`；运行时写作规则仍只放 canonical Skill 与 references。
 
 ## 更新规则
 

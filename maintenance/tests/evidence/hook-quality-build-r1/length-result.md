@@ -32,4 +32,4 @@ python -B -m unittest maintenance.tests.test_over_length_capability.OverLengthCa
 
 prepare 与两路 runner exit 0 仅表示执行结束；真实两链均未验证交付。反控脚本 exit 1，保留失败；旧 unit 为 3/3、0.010 秒。
 
-原始稿、prompt、完整 CLI stream、实际 argv、模型绑定、成本、状态、回显及 hash 已按原字节精选[归档](length/manifest.json)，不包含每次调用的私有 `runtime/`。原始工作坐标仍为 `output/hook-quality-build-r1/length/`，归档驱动保留当时坐标和命令。`fixture.json` SHA-256：`5b21d413fad1fde6588ce32445ab2308878f0f8ad9eadfe2e7cdc14074128133`；`prototype.patch`：`3ec4451d5e2b2173a711ddbfb7000a23764858ffc7b7a1cd624b6c16bba24660`。洁净 D1 与新的 400 字要求已作为[R2 明示变体](length-r2-result.md)另登记，结果为技术中断，不能冒充原 M6 请求已通过。
+原始稿、prompt、完整 CLI stream、实际 argv、模型绑定、成本、状态、回显及 hash 已按原字节精选[归档](https://github.com/gongyu0918-debug/chinese-official-writing-skill/blob/0721297298b72be7a37b93c6598172791b58e421/maintenance/tests/evidence/hook-quality-build-r1/length/manifest.json)，不包含每次调用的私有 `runtime/`。原始工作坐标仍为 `output/hook-quality-build-r1/length/`，归档驱动保留当时坐标和命令。`fixture.json` SHA-256：`5b21d413fad1fde6588ce32445ab2308878f0f8ad9eadfe2e7cdc14074128133`；`prototype.patch`：`3ec4451d5e2b2173a711ddbfb7000a23764858ffc7b7a1cd624b6c16bba24660`。洁净 D1 与新的 400 字要求已作为[R2 明示变体](length-r2-result.md)另登记，结果为技术中断，不能冒充原 M6 请求已通过。

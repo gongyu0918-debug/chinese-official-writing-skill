@@ -4,4 +4,4 @@
 
 完整原始流仍在各摘录记录的 `output/` 路径中；删除的仅为本目录中已逐字节 SHA-256 核准的重复副本。脚本与回执中的原始 output 路径继续指向完整原件；归档阅读使用同目录的 `stream-extract.json`。
 
-[压缩核验](stream-compaction.json)列出每份原件与摘录的路径、大小、哈希和结果记录数。[文件清单](manifest.json)覆盖当前归档文件。共 4 份流，原 775514 bytes，摘录 68406 bytes；本步骤无模型调用。
+[压缩核验](https://github.com/gongyu0918-debug/chinese-official-writing-skill/blob/0721297298b72be7a37b93c6598172791b58e421/maintenance/tests/evidence/hook-quality-build-r1/cleanliness-new-prefix/stream-compaction.json)列出每份原件与摘录的路径、大小、哈希和结果记录数。[文件清单](https://github.com/gongyu0918-debug/chinese-official-writing-skill/blob/0721297298b72be7a37b93c6598172791b58e421/maintenance/tests/evidence/hook-quality-build-r1/cleanliness-new-prefix/manifest.json)覆盖当前归档文件。共 4 份流，原 775514 bytes，摘录 68406 bytes；本步骤无模型调用。

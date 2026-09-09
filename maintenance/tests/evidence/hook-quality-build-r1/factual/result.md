@@ -10,4 +10,4 @@ M5 的有效同稿对照中，现有提示保留演示介绍/组织归属和系�
 
 最小接入可复用 candidate-r2 的来源复核段和原单次审稿，不增裁判流水；须与主代理的清理/锚修复一起复验实际选稿，不能简单忽略硬锚。未测试自然触发、原生 Hook、跨轮来源保持、持续五版链或其他宿主，不估通用可靠率。
 
-实际命令和 6 份调用记录见 [result.json](result.json)；原始首组结论见 [initial-review.json](initial-review.json)，收窄后逐稿引文见 [candidate-r2/review.json](candidate-r2/review.json)。各调用的 invocation、prompt、stream、stderr、reply、receipt、proposal、contract-selected 和 hashes 均保留；runtime 私有配置不作为归档输入。未运行产品全量测试。
+实际命令和 6 份调用记录见 [result.json](result.json)；原始首组结论见 [initial-review.json](initial-review.json)，收窄后逐稿引文见 [candidate-r2/review.json](https://github.com/gongyu0918-debug/chinese-official-writing-skill/blob/0721297298b72be7a37b93c6598172791b58e421/maintenance/tests/evidence/hook-quality-build-r1/factual/candidate-r2/review.json)。各调用的 invocation、prompt、stream、stderr、reply、receipt、proposal、contract-selected 和 hashes 均保留；runtime 私有配置不作为归档输入。未运行产品全量测试。
