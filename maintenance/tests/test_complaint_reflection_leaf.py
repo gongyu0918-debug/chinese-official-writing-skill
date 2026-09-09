@@ -4,6 +4,7 @@ from pathlib import Path
 import unittest
 
 from maintenance.tests.hook_companion_support import HookCompanionTestMixin
+from maintenance.tests.test_skill_boundary import read_routing_surfaces
 
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -37,7 +38,7 @@ class ComplaintReflectionLeafTests(HookCompanionTestMixin, unittest.TestCase):
         )
 
     def test_direct_route_is_separate_from_advisory_and_received_records(self) -> None:
-        skill = (CANONICAL / "SKILL.md").read_text(encoding="utf-8")
+        skill = read_routing_surfaces(CANONICAL / "SKILL.md")
         leaf = (CANONICAL / LEAF).read_text(encoding="utf-8")
         formulaic_row = next(
             line for line in skill.splitlines() if line.startswith("| `references/formulaic-language.md`")
@@ -75,7 +76,7 @@ class ComplaintReflectionLeafTests(HookCompanionTestMixin, unittest.TestCase):
         for mirror in self.mirror_roots:
             with self.subTest(mirror=mirror):
                 self.assertEqual((mirror / LEAF).read_bytes(), canonical_leaf)
-                self.assertIn(route, (mirror / "SKILL.md").read_text(encoding="utf-8"))
+                self.assertIn(route, read_routing_surfaces(mirror / "SKILL.md"))
 
     def test_candidate_status_and_evidence_are_registered(self) -> None:
         requirements = (ROOT / "maintenance/specs/requirements.md").read_text(encoding="utf-8")

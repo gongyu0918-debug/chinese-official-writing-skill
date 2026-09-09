@@ -4,6 +4,7 @@ from pathlib import Path
 import unittest
 
 from maintenance.tests.hook_companion_support import HookCompanionTestMixin
+from maintenance.tests.test_skill_boundary import read_routing_surfaces
 
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -38,7 +39,7 @@ class AdvisoryFeedbackLeafTests(HookCompanionTestMixin, unittest.TestCase):
         )
 
     def test_direct_route_keeps_cooperative_feedback_separate_from_power_guidance(self) -> None:
-        skill = (CANONICAL / "SKILL.md").read_text(encoding="utf-8")
+        skill = read_routing_surfaces(CANONICAL / "SKILL.md")
 
         self.assertIn("直达 `references/genre-playbook-advisory-feedback.md`", skill)
         self.assertIn("具有下行指导、监督整改或审计监督权力关系的意见按对应文种处理", skill)

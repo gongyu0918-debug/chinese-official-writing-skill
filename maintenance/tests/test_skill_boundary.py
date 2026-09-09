@@ -45,6 +45,17 @@ def portable_tree_fingerprint(root: Path) -> str:
     return digest.hexdigest()
 
 
+def read_routing_surfaces(skill_path: Path) -> str:
+    """Follow the two explicit entry routes; never search arbitrary leaves for a rule."""
+    homepage = skill_path.read_text(encoding="utf-8")
+    routed = [homepage]
+    for relative in ("references/reference-index.md", "references/compatibility-scene-routing.md"):
+        if f"`{relative}`" not in homepage:
+            raise AssertionError(f"entry route missing: {skill_path}: {relative}")
+        routed.append((skill_path.parent / relative).read_text(encoding="utf-8"))
+    return "\n".join(routed)
+
+
 class SkillBoundaryTests(unittest.TestCase):
     def test_only_one_agent_handoff_entrypoint_remains(self) -> None:
         self.assertTrue((ROOT / "AGENTS.md").is_file())
@@ -142,7 +153,7 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assertIn('"qwenwork": OPTIONAL_GATE_FILES', sync_script)
 
     def test_ai_compute_detail_is_loaded_from_specialty_reference(self) -> None:
-        skill = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
+        skill = read_routing_surfaces(CANONICAL / "SKILL.md")
         specialty = (ROOT / "chinese-official-writing" / "references" / "ai-compute-docs.md").read_text(
             encoding="utf-8"
         )
@@ -266,7 +277,7 @@ class SkillBoundaryTests(unittest.TestCase):
             self.assertEqual(text.count(phrase), 1)
 
     def test_style_references_keep_precise_routes_without_common_error_catchall(self) -> None:
-        text = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
+        text = read_routing_surfaces(CANONICAL / "SKILL.md")
 
         self.assertNotIn("其他口语化、标题漂移、重复事项、格式噪点", text)
         self.assertNotIn("## 常见错误反例", text)
@@ -424,7 +435,7 @@ class SkillBoundaryTests(unittest.TestCase):
         )
 
     def test_reference_loading_table_keeps_progressive_disclosure(self) -> None:
-        text = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
+        text = read_routing_surfaces(CANONICAL / "SKILL.md")
         core = text.split("## 核心流程", 1)[1].split("## 硬边界", 1)[0]
 
         self.assertIn("按任务渐进读取资料，不要一次性加载全部文件", text)
@@ -441,6 +452,7 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assertIn("命中 `references/task-route-cards.md` 且卡片能够覆盖任务时", core)
         self.assertIn("由卡片完成，不再读取长 reference", core)
         self.assertIn("未命中、命中转读条件或卡片不能覆盖时", core)
+        self.assertIn("回到 `references/reference-index.md` 选择对应资料", core)
         self.assertIn("一次只加载实际命中的表项", core)
         for duplicated_leaf in [
             "references/genre-playbook-minutes.md",
@@ -453,6 +465,43 @@ class SkillBoundaryTests(unittest.TestCase):
             "references/ai-compute-docs.md",
         ]:
             self.assertNotIn(duplicated_leaf, core)
+
+    def test_lightened_routes_preserve_original_conditions(self) -> None:
+        # f171e82f original homepage: 36 table rows and five direct scene routes.
+        index = (CANONICAL / "references/reference-index.md").read_text(encoding="utf-8")
+        scenes = (CANONICAL / "references/compatibility-scene-routing.md").read_text(encoding="utf-8")
+        rows = [line for line in (index + "\n" + scenes).splitlines()
+                if line.startswith("| `") and not line.startswith("| `references/compatibility-scene-routing.md`")]
+        self.assertEqual(len(rows), 36)
+        self.assertEqual(len(set(rows)), 36)
+        self.assertEqual(hashlib.sha256("\n".join(sorted(rows)).encode()).hexdigest(), "a44bb36443ca814a3a8b96eff2360343b7c7e630f20fb064d16f1ed0fb27b784")
+        routes = [line for line in scenes.splitlines() if line.startswith("用户")]
+        self.assertEqual(len(routes), 5)
+        self.assertEqual(hashlib.sha256("\n".join(sorted(routes)).encode()).hexdigest(), "8a04cfe2d488755cb469ef5176cde7f3e5f10be6dcdfb864b7980d92840beeb4")
+
+    def test_lightened_indices_resolve_from_each_skill_root_and_keep_quality_bridges(self) -> None:
+        roots = [CANONICAL] + [ROOT / "packages" / name / "skills" / skill_name for name, skill_name in (
+            ("agent-skills", "chinese-official-writing"), ("qwen-code", "chinese-official-writing"),
+            ("qwenwork", "chinese-official-writing"), ("hermes", "chinese-official-writing"),
+            ("openclaw", "chinese_official_writing"))]
+        for root in roots:
+            with self.subTest(root=root):
+                homepage = (root / "SKILL.md").read_text(encoding="utf-8")
+                read_routing_surfaces(root / "SKILL.md")
+                self.assertIn("未命中任务卡、卡片不能覆盖或需选择其他资料时", homepage)
+                self.assertIn("首页明确直达的文种或审稿入口按原条件执行", homepage)
+                for name in ("reference-index.md", "compatibility-scene-routing.md"):
+                    text = (root / "references" / name).read_text(encoding="utf-8")
+                    for target in re.findall(r"^\| `([^`]+)`", text, re.M):
+                        self.assertTrue((root / target).is_file(), f"{root}: {target}")
+                    self.assertEqual(text, (CANONICAL / "references" / name).read_text(encoding="utf-8"))
+                scenes = (root / "references/compatibility-scene-routing.md").read_text(encoding="utf-8")
+                for quality in ("official-style", "argument-chains", "short-draft-naturalness", "anti-ai-patterns",
+                                "proofreading-checklist", "format-gbt9704", "review-checklist", "final-review-layers"):
+                    self.assertIn(f"`references/{quality}.md`", scenes)
+                    self.assertTrue((root / "references" / f"{quality}.md").is_file())
+                self.assertIn("不取消质量增强路由", scenes)
+                self.assertIn("只审不改、点名范围复核仍服从首页原有轻量审稿入口", scenes)
 
     def test_task_route_cards_keep_sparse_tasks_lightweight(self) -> None:
         skill = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
@@ -547,7 +596,7 @@ class SkillBoundaryTests(unittest.TestCase):
         )
 
     def test_workflow_sparse_line_relief_keeps_carriers_and_route_graph(self) -> None:
-        skill = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
+        skill = read_routing_surfaces(CANONICAL / "SKILL.md")
         workflow = (ROOT / "chinese-official-writing" / "references" / "workflow.md").read_text(
             encoding="utf-8"
         )
@@ -667,7 +716,7 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assertNotIn("社区模板不得替代文种功能", skill)
 
     def test_report_checklist_is_routed_as_an_atomic_leaf(self) -> None:
-        skill = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
+        skill = read_routing_surfaces(CANONICAL / "SKILL.md")
         playbooks = (ROOT / "chinese-official-writing" / "references" / "genre-playbooks.md").read_text(
             encoding="utf-8"
         )
@@ -698,7 +747,7 @@ class SkillBoundaryTests(unittest.TestCase):
             self.assertIn(phrase, report)
 
     def test_feasibility_review_checklist_is_an_atomic_leaf(self) -> None:
-        skill = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
+        skill = read_routing_surfaces(CANONICAL / "SKILL.md")
         common = (
             ROOT / "chinese-official-writing" / "references" / "genre-checklist.md"
         ).read_text(encoding="utf-8")
@@ -719,7 +768,7 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assertNotIn("效果主张之间的内部一致性", review)
 
     def test_minutes_playbook_is_routed_as_an_atomic_leaf(self) -> None:
-        skill = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
+        skill = read_routing_surfaces(CANONICAL / "SKILL.md")
         cards = (
             ROOT / "chinese-official-writing" / "references" / "task-route-cards.md"
         ).read_text(encoding="utf-8")
@@ -738,7 +787,7 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assertIn("不补写“会议认为”“会议强调”", minutes)
 
     def test_request_playbook_is_routed_as_an_atomic_leaf(self) -> None:
-        skill = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
+        skill = read_routing_surfaces(CANONICAL / "SKILL.md")
         common = (
             ROOT / "chinese-official-writing" / "references" / "genre-playbooks.md"
         ).read_text(encoding="utf-8")
@@ -766,7 +815,7 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assertIn("`argument-chains.md` 的请示和请批附件", request)
 
     def test_plan_construction_playbook_is_routed_as_an_atomic_leaf(self) -> None:
-        skill = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
+        skill = read_routing_surfaces(CANONICAL / "SKILL.md")
         common = (
             ROOT / "chinese-official-writing" / "references" / "genre-playbooks.md"
         ).read_text(encoding="utf-8")
@@ -799,7 +848,7 @@ class SkillBoundaryTests(unittest.TestCase):
             self.assertNotIn(forbidden, leaf)
 
     def test_remediation_plan_has_a_state_preserving_atomic_leaf(self) -> None:
-        skill = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
+        skill = read_routing_surfaces(CANONICAL / "SKILL.md")
         canonical_leaf = (
             ROOT
             / "chinese-official-writing"
@@ -831,7 +880,7 @@ class SkillBoundaryTests(unittest.TestCase):
                 self.assertEqual(canonical_leaf.read_bytes(), packaged_leaf.read_bytes())
 
     def test_request_review_checklist_is_routed_as_an_atomic_leaf(self) -> None:
-        skill = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
+        skill = read_routing_surfaces(CANONICAL / "SKILL.md")
         common = (
             ROOT / "chinese-official-writing" / "references" / "genre-checklist.md"
         ).read_text(encoding="utf-8")
@@ -880,7 +929,7 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assertIn("同时读取 `format-gbt9704.md`", leaf)
 
     def test_news_message_uses_one_frontmatter_cluster_and_six_body_aliases(self) -> None:
-        skill = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
+        skill = read_routing_surfaces(CANONICAL / "SKILL.md")
         leaf = (
             ROOT
             / "chinese-official-writing"
@@ -925,7 +974,7 @@ class SkillBoundaryTests(unittest.TestCase):
 
         for path in skill_paths:
             with self.subTest(path=path):
-                skill = path.read_text(encoding="utf-8")
+                skill = read_routing_surfaces(path)
                 frontmatter = skill.split("---", 2)[1]
                 self.assertIn("新闻稿件", frontmatter)
                 for alias in ["新闻评论", "时评", "评论员文章"]:
@@ -1265,7 +1314,7 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assertIn("Markdown `**加粗**`", format_ref)
 
     def test_v141_formal_delivery_review_and_tone_rules_are_documented(self) -> None:
-        skill = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
+        skill = read_routing_surfaces(CANONICAL / "SKILL.md")
         checklist = (ROOT / "chinese-official-writing" / "references" / "review-checklist.md").read_text(
             encoding="utf-8"
         )
@@ -1744,7 +1793,7 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assertIn("相邻段落反复以 `要坚持`、`要强化`、`持续推进`", anti_ai)
 
     def test_v150_genre_playbooks_keep_minimal_borrowing_boundaries(self) -> None:
-        skill = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
+        skill = read_routing_surfaces(CANONICAL / "SKILL.md")
         playbooks = (ROOT / "chinese-official-writing" / "references" / "genre-playbooks.md").read_text(
             encoding="utf-8"
         )
@@ -1870,7 +1919,7 @@ class SkillBoundaryTests(unittest.TestCase):
             self.assertIn(rule, work_summary)
 
     def test_ordinary_letter_leaf_is_self_contained_without_default_supplemental_reads(self) -> None:
-        skill = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
+        skill = read_routing_surfaces(CANONICAL / "SKILL.md")
         playbooks = (
             ROOT / "chinese-official-writing" / "references" / "genre-playbooks.md"
         ).read_text(encoding="utf-8")
@@ -2076,8 +2125,8 @@ class SkillBoundaryTests(unittest.TestCase):
 
     def test_openclaw_agent_rules_include_v140_routing_and_format_bridge(self) -> None:
         canonical = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
-        text = (ROOT / "packages" / "openclaw" / "skills" / "chinese_official_writing" / "SKILL.md").read_text(
-            encoding="utf-8"
+        text = read_routing_surfaces(
+            ROOT / "packages" / "openclaw" / "skills" / "chinese_official_writing" / "SKILL.md"
         )
 
         self.assertIn("任务模式", text)
@@ -2106,7 +2155,7 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assertFalse(packaged_path.exists())
 
     def test_openclaw_skill_card_uses_absolute_links_and_key_genres(self) -> None:
-        skill = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
+        skill = read_routing_surfaces(CANONICAL / "SKILL.md")
         source = (
             ROOT / "maintenance" / "docs" / "platform-snapshots" / "clawhub-v1.6.0" / "skill-card.md"
         ).read_text(encoding="utf-8")

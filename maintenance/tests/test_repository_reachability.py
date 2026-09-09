@@ -5,6 +5,8 @@ import re
 import unittest
 from urllib.parse import unquote
 
+from maintenance.tests.test_skill_boundary import read_routing_surfaces
+
 
 ROOT = Path(__file__).resolve().parents[2]
 SKILL_ROOT = ROOT / "chinese-official-writing"
@@ -15,7 +17,7 @@ MARKDOWN_LINK_RE = re.compile(
 
 class RepositoryReachabilityTests(unittest.TestCase):
     def test_every_canonical_reference_and_script_has_an_entrypoint(self) -> None:
-        skill = (SKILL_ROOT / "SKILL.md").read_text(encoding="utf-8")
+        skill = read_routing_surfaces(SKILL_ROOT / "SKILL.md")
         hook_guide = (SKILL_ROOT / "hooks/README.md").read_text(encoding="utf-8")
         entrypoints = skill + "\n" + hook_guide
 

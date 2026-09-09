@@ -2289,6 +2289,25 @@ FILE_TERM_ALTERNATIVES_BY_CASE: dict[str, list[dict[str, list[str]]]] = {
 }
 
 
+# Reference-index lightening moves route conditions as one complete group.
+# Require the homepage link, every original route term, and every original leaf term.
+for _case in CASES:
+    if _case.id in {"P111", "P112"}:
+        _legacy = _case.checks["file_terms"]
+        _group = {
+            relative: list(terms) for relative, terms in _legacy.items()
+            if relative != "chinese-official-writing/SKILL.md"
+        }
+        _group["chinese-official-writing/SKILL.md"] = [
+            "`references/reference-index.md`",
+            "回到 `references/reference-index.md` 选择对应资料",
+        ]
+        _group["chinese-official-writing/references/reference-index.md"] = list(
+            _legacy["chinese-official-writing/SKILL.md"]
+        )
+        FILE_TERM_ALTERNATIVES_BY_CASE.setdefault(_case.id, []).append(_group)
+
+
 def read_text(root: Path, relative: str) -> str:
     path = root / relative
     if not path.exists():
