@@ -22,6 +22,7 @@
 | `tools/build_v162_cold_audit_packet.py` | 构建 v1.6.0 到 v1.6.2 的只读冷审差异包 |
 | `tools/preflight_claude_hooks.py` | 校验 Claude Code companion 结构与版本 |
 | `tools/check_ab_provenance.py` | 检查 A/B 证据来源绑定 |
+| `tools/evidence_archive.py` | 只查冷归档元数据；按精确路径提取单份材料到忽略目录并校验 SHA-256，不批量加载原稿 |
 | `tools/deterministic_capture.py` | 保存确定性评测捕获结果 |
 | `tools/run_ablation.py` | 运行基础消融 |
 | `tools/run_agent_ablation.py` | 运行 Agent 写作消融 |

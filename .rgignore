@@ -1,0 +1,2 @@
+# Large cold metadata is queried by evidence_archive.py, not broad text searches.
+maintenance/docs/evidence/archive-index.jsonl

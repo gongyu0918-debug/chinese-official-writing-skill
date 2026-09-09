@@ -18,3 +18,14 @@ Thumbs.db
 output/
 tmp/
 release/
+
+# New experiment runs belong in output/, not the evidence source tree.
+maintenance/tests/evidence/**/raw/
+maintenance/tests/evidence/**/actual/
+maintenance/tests/evidence/**/runs/
+maintenance/tests/evidence/**/codex-home/
+maintenance/tests/evidence/**/profile/
+maintenance/tests/evidence/**/trace.jsonl
+maintenance/tests/evidence/**/stream.jsonl
+maintenance/tests/evidence/**/*.log
+maintenance/tests/evidence/**/config.toml
