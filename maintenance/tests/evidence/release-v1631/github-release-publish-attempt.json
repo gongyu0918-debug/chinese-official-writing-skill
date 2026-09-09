@@ -1,0 +1,16 @@
+{
+  "formal_attempt": 1,
+  "command": [
+    "C:/Program Files/GitHub CLI/gh.exe",
+    "release",
+    "create",
+    "v1.6.31",
+    "--repo",
+    "gongyu0918-debug/chinese-official-writing-skill",
+    "--verify-tag",
+    "--title",
+    "v1.6.31",
+    "--notes-file",
+    "maintenance/tests/evidence/release-v1631/release-notes.md"
+  ]
+}

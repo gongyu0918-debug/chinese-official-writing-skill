@@ -1,0 +1,16 @@
+{
+  "command": [
+    "C:/Program Files/nodejs/node.exe",
+    "C:/Users/admin/AppData/Roaming/npm/node_modules/clawhub/bin/clawdhub.js",
+    "inspect",
+    "gongyu0918-debug/chinese-official-writing",
+    "--version",
+    "1.6.31",
+    "--files",
+    "--json"
+  ],
+  "exit_code": 1,
+  "seconds": 7.624,
+  "stdout": "",
+  "stderr": "Version not found (reset in 26s)\nError: Version not found (reset in 26s)\n"
+}

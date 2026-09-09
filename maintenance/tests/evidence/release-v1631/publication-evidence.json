@@ -1,0 +1,30 @@
+{
+  "version": "1.6.31",
+  "product_commit": "076b6675ceca6d33b2a2579b076871538c2b0656",
+  "branch": "codex/release-v1.6.31",
+  "github": {
+    "public": true,
+    "url": "https://github.com/gongyu0918-debug/chinese-official-writing-skill/releases/tag/v1.6.31"
+  },
+  "skillhub": {
+    "accepted": true,
+    "versionId": 301059,
+    "files": 88,
+    "reviewStatus": "pending",
+    "public_exact_version": "not_found_pending"
+  },
+  "clawhub": {
+    "accepted": true,
+    "versionId": "k97dcmb7rh6r5rt4v5kzexsch18e3gxa",
+    "files": 38,
+    "public_exact_version": "not_found_pending",
+    "audit": "not_observed"
+  },
+  "formal_submissions_each": 1,
+  "local_main_untouched": true,
+  "tests": {
+    "current_minimal": 107,
+    "frozen_full_reused": 817,
+    "new_model_calls": 0
+  }
+}
