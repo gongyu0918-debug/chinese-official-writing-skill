@@ -1,0 +1,18 @@
+{
+  "command": [
+    "py",
+    "-3.13",
+    "-B",
+    "-X",
+    "utf8",
+    "maintenance/tools/build_skillhub_package.py",
+    "--output",
+    "output/release-v1.6.31/skillhub-final",
+    "--version",
+    "1.6.31"
+  ],
+  "exit_code": 0,
+  "seconds": 0.539,
+  "stdout": "{\"excluded\": [\"LICENSE\", \"agents/openai.yaml\"], \"files\": 88, \"license\": \"LICENSE.md\", \"output\": \"F:\\\\Workspaces\\\\chinese-official-writing-skill\\\\output\\\\release-worktrees\\\\release-v1.6.31\\\\output\\\\release-v1.6.31\\\\skillhub-final\", \"slug\": \"chinese-official-writing\", \"version\": \"1.6.31\"}\n",
+  "stderr": ""
+}

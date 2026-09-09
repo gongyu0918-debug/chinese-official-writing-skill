@@ -1,6 +1,6 @@
 # 中文公文写作 Skill
 
-[![Version](https://img.shields.io/badge/version-1.6.30-blue)](https://github.com/gongyu0918-debug/chinese-official-writing-skill/releases/tag/v1.6.30)
+[![Version](https://img.shields.io/badge/version-1.6.31-blue)](https://github.com/gongyu0918-debug/chinese-official-writing-skill/releases/tag/v1.6.31)
 [![ClawHub](https://img.shields.io/badge/ClawHub-chinese--official--writing-2f80ed)](https://clawhub.ai/gongyu0918-debug/skills/chinese-official-writing)
 [![SkillHub](https://img.shields.io/badge/SkillHub-chinese--official--writing-e8590c)](https://skillhub.cn/skills/chinese-official-writing)
 [![SkillHub downloads: 50k+](https://img.shields.io/badge/SkillHub%20downloads-50k%2B-2f855a)](https://skillhub.cn/skills/chinese-official-writing)
@@ -66,7 +66,7 @@
 
 ## 快速安装
 
-当前 GitHub 发布版本：`chinese-official-writing@1.6.30`。
+当前 GitHub 发布版本：`chinese-official-writing@1.6.31`。
 
 平台入口：[ClawHub](https://clawhub.ai/gongyu0918-debug/skills/chinese-official-writing) · [skillhub.cn](https://skillhub.cn/skills/chinese-official-writing)。通用 Agent Skills 安装器可直接使用：
 
@@ -117,7 +117,7 @@ QwenWork 可使用 [`packages/qwenwork/`](packages/qwenwork/) 中的无 Hook 静
 
 技能规则、references 和 scripts 在本仓库持续迭代，各平台技能目录由 canonical 包同步生成。规范与社区项目用于校验文种、流程形态和风险维度；具体规则经过复现、取舍和 A/B 后进入主线，Git 历史记录每次修改和验证。
 
-本次发布见 [`release-1.6.30.md`](maintenance/tests/evidence/release-1.6.30.md)。此前最近 5 份证据：[`release-1.6.27.md`](maintenance/tests/evidence/release-1.6.27.md) · [`release-1.6.27-rc.md`](maintenance/tests/evidence/release-1.6.27-rc.md) · [`remediation-plan-r1/candidate-r2-result.md`](maintenance/tests/evidence/remediation-plan-r1/candidate-r2-result.md) · [`recent-leaf-cleanup-r1/result.md`](maintenance/tests/evidence/recent-leaf-cleanup-r1/result.md) · [`reference-route-audit-r1/result.md`](maintenance/tests/evidence/reference-route-audit-r1/result.md)。完整记录见 [`maintenance/docs/evidence/README.md`](maintenance/docs/evidence/README.md)。
+本次发布见 [`release-1.6.31.md`](maintenance/tests/evidence/release-1.6.31.md)。此前最近 5 份证据：[`release-1.6.27.md`](maintenance/tests/evidence/release-1.6.27.md) · [`release-1.6.27-rc.md`](maintenance/tests/evidence/release-1.6.27-rc.md) · [`remediation-plan-r1/candidate-r2-result.md`](maintenance/tests/evidence/remediation-plan-r1/candidate-r2-result.md) · [`recent-leaf-cleanup-r1/result.md`](maintenance/tests/evidence/recent-leaf-cleanup-r1/result.md) · [`reference-route-audit-r1/result.md`](maintenance/tests/evidence/reference-route-audit-r1/result.md)。完整记录见 [`maintenance/docs/evidence/README.md`](maintenance/docs/evidence/README.md)。
 
 ## 目录结构
 

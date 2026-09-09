@@ -72,7 +72,7 @@ class StatusLedgerConsistencyTests(unittest.TestCase):
         candidate_evidence = read("maintenance/tests/evidence/release-1.6.22-rc.md")
         evidence_index = read("maintenance/docs/evidence/README.md")
 
-        self.assertIn("chinese-official-writing@1.6.30", public_readme)
+        self.assertIn("chinese-official-writing@1.6.31", public_readme)
         self.assertIn("`v1.6.22` 小版本已发布", section(roadmap, "DONE"))
         self.assertNotIn("v1.6.22", section(roadmap, "IN_PROGRESS"))
         self.assertIn("SkillHub `versionId=277452`", todo)
@@ -148,7 +148,7 @@ class StatusLedgerConsistencyTests(unittest.TestCase):
         candidate_evidence = read("maintenance/tests/evidence/release-1.6.24-rc.md")
         release_evidence = read("maintenance/tests/evidence/release-1.6.24.md")
 
-        self.assertIn("chinese-official-writing@1.6.30", public_readme)
+        self.assertIn("chinese-official-writing@1.6.31", public_readme)
         self.assertIn("固定字符数充当跨文种通用分界", requirements)
         self.assertIn("v1.6.24 发布", coverage_row)
         self.assertIn("`v1.6.24` 小版本已发布", section(roadmap, "DONE"))
@@ -173,7 +173,7 @@ class StatusLedgerConsistencyTests(unittest.TestCase):
         candidate_evidence = read("maintenance/tests/evidence/release-1.6.25-rc.md")
         release_evidence = read("maintenance/tests/evidence/release-1.6.25.md")
 
-        self.assertIn("chinese-official-writing@1.6.30", public_readme)
+        self.assertIn("chinese-official-writing@1.6.31", public_readme)
         self.assertIn("v1.6.25 已从", todo)
         self.assertIn("PUBLISHED / SEE release-1.6.25.md", candidate_evidence)
         self.assertIn("cf8e181591ea01ba81138352c12b5b93a8acf098", candidate_evidence)
