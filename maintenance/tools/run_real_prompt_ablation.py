@@ -10,6 +10,9 @@ support the prompt without relying on ad hoc reviewer judgment.
 from __future__ import annotations
 
 import argparse
+import atexit
+from functools import lru_cache
+from tempfile import TemporaryDirectory
 from dataclasses import dataclass, field
 import importlib.util
 import inspect
@@ -2289,8 +2292,30 @@ FILE_TERM_ALTERNATIVES_BY_CASE: dict[str, list[dict[str, list[str]]]] = {
 }
 
 
+@lru_cache(maxsize=None)
+def generated_package_root(root: Path) -> Path | None:
+    """Use that revision's builder for missing derived paths; keep old snapshots intact."""
+    script = root / "maintenance/tools/sync_adapters.py"
+    if not script.is_file():
+        return None
+    spec = importlib.util.spec_from_file_location("cow_ablation_package_builder", script)
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    if not hasattr(module, "build_packages"):
+        return None
+    temporary = TemporaryDirectory(prefix="cow-ablation-packages-")
+    atexit.register(temporary.cleanup)
+    output = Path(temporary.name) / "packages"
+    module.build_packages(output)
+    return output
+
+
 def read_text(root: Path, relative: str) -> str:
     path = root / relative
+    if not path.exists() and relative.startswith("packages/"):
+        generated = generated_package_root(root)
+        if generated is not None:
+            path = generated / relative.removeprefix("packages/")
     if not path.exists():
         return ""
     return path.read_text(encoding="utf-8")

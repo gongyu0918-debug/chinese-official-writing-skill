@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
-"""Sync the canonical skill into adapter layouts for other agent tools."""
+"""Build disposable compatibility packages from the single canonical Skill."""
 
 from __future__ import annotations
 
+import argparse
 import json
 import shutil
 import re
@@ -15,7 +16,7 @@ VERSION = "1.6.31"
 REPOSITORY_LICENSE = "MIT"
 ROOT_LICENSE = ROOT / "LICENSE"
 CANONICAL_LICENSE = CANONICAL / "LICENSE"
-PACKAGES = ROOT / "packages"
+PACKAGES = ROOT / "output" / "compatibility-packages"
 OPENCLAW_PACKAGE = PACKAGES / "openclaw"
 HOOKS = CANONICAL / "hooks"
 HOOK_ADAPTERS = HOOKS / "adapters"
@@ -63,10 +64,6 @@ TARGET_EXCLUDES = {
     "hermes": OPTIONAL_GATE_FILES,
     "openclaw": OPTIONAL_GATE_FILES + ("agents/openai.yaml",),
 }
-
-
-def sync_canonical_license() -> None:
-    shutil.copyfile(ROOT_LICENSE, CANONICAL_LICENSE)
 
 
 def patch_openclaw_frontmatter(target: Path) -> None:
@@ -121,7 +118,7 @@ def copy_skill(
     target: Path, mode: str, *, extra_excludes: tuple[str, ...] = ()
 ) -> None:
     if target.exists():
-        shutil.rmtree(target)
+        raise FileExistsError(f"output already exists; choose a new output root: {target}")
     shutil.copytree(CANONICAL, target, ignore=_copy_ignore)
     for relative_path in TARGET_EXCLUDES.get(mode, ()) + extra_excludes:
         _remove_packaged_path(target / relative_path)
@@ -175,18 +172,46 @@ def validate_hook_sources() -> None:
             )
 
 
-def main() -> int:
+def build_packages(output_root: Path = PACKAGES, modes: tuple[str, ...] | None = None) -> dict[str, Path]:
+    """Generate installable copies, without writing to canonical or tracked packages."""
+    output_root = Path(output_root).resolve()
+    for protected in (CANONICAL.resolve(), (ROOT / "packages").resolve()):
+        if output_root == protected or protected in output_root.parents or output_root in protected.parents:
+            raise ValueError(f"output overlaps a source directory: {output_root}")
+    selected = tuple(TARGETS) if modes is None else modes
+    if not selected or any(mode not in TARGETS for mode in selected):
+        raise ValueError(f"unknown or empty package selection: {selected}")
+    if len(set(selected)) != len(selected):
+        raise ValueError("duplicate package selection")
     if not (CANONICAL / "SKILL.md").exists():
-        raise SystemExit(f"missing canonical skill: {CANONICAL}")
+        raise FileNotFoundError(f"missing canonical skill: {CANONICAL}")
     if set(TARGET_LICENSES) != set(TARGETS):
-        raise SystemExit("every adapter target must declare an explicit package license")
+        raise RuntimeError("every adapter target must declare an explicit package license")
     if any(license_id != REPOSITORY_LICENSE for license_id in TARGET_LICENSES.values()):
-        raise SystemExit("every GitHub package target must use the repository MIT license")
-    sync_canonical_license()
+        raise RuntimeError("every GitHub package target must use the repository MIT license")
+    targets = {mode: output_root / TARGETS[mode].relative_to(PACKAGES) for mode in selected}
+    for target in targets.values():
+        if output_root not in target.resolve().parents:
+            raise ValueError(f"output escapes build directory: {target}")
+        if target.exists():
+            raise FileExistsError(f"output already exists; choose a new output root: {target}")
     validate_hook_sources()
-    for mode, target in TARGETS.items():
+    for mode, target in targets.items():
         copy_skill(target, mode)
-        print(f"synced {target.relative_to(ROOT)}")
+        guide = ROOT / "packages" / target.parents[1].name / "README.md"
+        if guide.is_file():
+            shutil.copyfile(guide, target.parents[1] / "README.md")
+    return targets
+
+
+def main() -> int:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--output-root", type=Path, default=PACKAGES, help="Fresh build directory (default: output/compatibility-packages)")
+    parser.add_argument("--host", choices=tuple(TARGETS), action="append", help="Build only the selected plain Skill package; repeat for multiple hosts")
+    args = parser.parse_args()
+    targets = build_packages(args.output_root, tuple(args.host) if args.host else None)
+    for mode, target in targets.items():
+        print(f"{mode}: {target}")
     return 0
 
 

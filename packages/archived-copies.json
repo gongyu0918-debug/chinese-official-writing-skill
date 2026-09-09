@@ -1,0 +1,11 @@
+{
+  "source_commit": "0721297298b72be7a37b93c6598172791b58e421",
+  "archive_directory": "F:\\Workspaces\\chinese-official-writing-skill-archives\\packages\\07212972-20260909T164724",
+  "archive": "packages-git-blobs.zip",
+  "archive_sha256": "0240d84ec5643e81f3f4f4f91b50045071b2e83e286eff4ddbba52b6acf8d34f",
+  "manifest_sha256": "394c36eead37ab2e6990af6ae860fcbc19df9b912dce7ead773aafba275be1cf",
+  "files": 216,
+  "bytes": 1579544,
+  "verified_zip_roundtrip": true,
+  "removed_scope": "packages/{agent-skills,qwen-code,qwenwork,hermes,openclaw,red-skillhub}/skills/; outer README files retained"
+}

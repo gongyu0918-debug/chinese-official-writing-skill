@@ -6,7 +6,11 @@ import sys
 import unittest
 
 
+from maintenance.tests.package_fixtures import generated_packages
+
+
 ROOT = Path(__file__).resolve().parents[2]
+PACKAGE_ROOT = generated_packages()
 
 
 def load_provider():
@@ -28,9 +32,9 @@ class ReportGenericBlockReliefTests(unittest.TestCase):
         relative = Path("references/genre-playbooks.md")
         roots = [
             ROOT / "chinese-official-writing",
-            ROOT / "packages/agent-skills/skills/chinese-official-writing",
-            ROOT / "packages/qwen-code/skills/chinese-official-writing",
-            ROOT / "packages/hermes/skills/chinese-official-writing",
+            PACKAGE_ROOT / "agent-skills/skills/chinese-official-writing",
+            PACKAGE_ROOT / "qwen-code/skills/chinese-official-writing",
+            PACKAGE_ROOT / "hermes/skills/chinese-official-writing",
         ]
         canonical = (roots[0] / relative).read_bytes()
         for root in roots:
@@ -47,9 +51,9 @@ class ReportGenericBlockReliefTests(unittest.TestCase):
         relative = Path("references/genre-checklist-report.md")
         roots = [
             ROOT / "chinese-official-writing",
-            ROOT / "packages/agent-skills/skills/chinese-official-writing",
-            ROOT / "packages/qwen-code/skills/chinese-official-writing",
-            ROOT / "packages/hermes/skills/chinese-official-writing",
+            PACKAGE_ROOT / "agent-skills/skills/chinese-official-writing",
+            PACKAGE_ROOT / "qwen-code/skills/chinese-official-writing",
+            PACKAGE_ROOT / "hermes/skills/chinese-official-writing",
         ]
         canonical = (roots[0] / relative).read_bytes()
         for root in roots:

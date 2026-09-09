@@ -671,9 +671,6 @@ def _ai_requires_ordinary_playbook(genres: list[str], tasks: list[str]) -> bool:
 
 
 def _skill_root(repo_root: Path) -> Path:
-    installed = repo_root / "packages" / "agent-skills" / "skills" / "chinese-official-writing"
-    if installed.exists():
-        return installed
     return repo_root / "chinese-official-writing"
 
 
@@ -1060,7 +1057,7 @@ def _skill_prompt(cases: list[dict[str, Any]], config: dict[str, Any]) -> str:
     return textwrap.dedent(
         f"""
         你是中文公文 Skill 写作代理。仓库已安装 Skill：
-        `packages/agent-skills/skills/chinese-official-writing/SKILL.md`。
+        `chinese-official-writing/SKILL.md`。
 
         只使用下列 Skill 入口和本批任务已选中的 references；不要加载整包上下文，不要复制参考资料原文，
         也不要自行扩展到未选中的 reference 路线。{delivery_instruction}

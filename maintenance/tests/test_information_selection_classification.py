@@ -6,13 +6,17 @@ import unittest
 from maintenance.tests.hook_companion_support import HookCompanionTestMixin
 
 
+from maintenance.tests.package_fixtures import generated_packages
+
+
 ROOT = Path(__file__).resolve().parents[2]
+PACKAGE_ROOT = generated_packages()
 CANONICAL = ROOT / "chinese-official-writing"
 PERSISTENT_MIRROR_ROOTS = (
-    ROOT / "packages" / "agent-skills" / "skills" / "chinese-official-writing",
-    ROOT / "packages" / "qwen-code" / "skills" / "chinese-official-writing",
-    ROOT / "packages" / "hermes" / "skills" / "chinese-official-writing",
-    ROOT / "packages" / "openclaw" / "skills" / "chinese_official_writing",
+    PACKAGE_ROOT / "agent-skills" / "skills" / "chinese-official-writing",
+    PACKAGE_ROOT / "qwen-code" / "skills" / "chinese-official-writing",
+    PACKAGE_ROOT / "hermes" / "skills" / "chinese-official-writing",
+    PACKAGE_ROOT / "openclaw" / "skills" / "chinese_official_writing",
 )
 RELATIVE = Path("references/information-selection.md")
 CLASSIFICATION_RULE = (

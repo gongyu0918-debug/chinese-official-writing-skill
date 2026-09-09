@@ -4,14 +4,18 @@ import unittest
 from pathlib import Path
 
 
+from maintenance.tests.package_fixtures import generated_packages
+
+
 ROOT = Path(__file__).resolve().parents[2]
+PACKAGE_ROOT = generated_packages()
 CANONICAL = ROOT / "chinese-official-writing"
 MIRRORS = (
-    ROOT / "packages/agent-skills/skills/chinese-official-writing",
-    ROOT / "packages/hermes/skills/chinese-official-writing",
-    ROOT / "packages/openclaw/skills/chinese_official_writing",
-    ROOT / "packages/qwen-code/skills/chinese-official-writing",
-    ROOT / "packages/qwenwork/skills/chinese-official-writing",
+    PACKAGE_ROOT / "agent-skills/skills/chinese-official-writing",
+    PACKAGE_ROOT / "hermes/skills/chinese-official-writing",
+    PACKAGE_ROOT / "openclaw/skills/chinese_official_writing",
+    PACKAGE_ROOT / "qwen-code/skills/chinese-official-writing",
+    PACKAGE_ROOT / "qwenwork/skills/chinese-official-writing",
 )
 REFERENCES = (
     "references/ai-compute-docs.md",

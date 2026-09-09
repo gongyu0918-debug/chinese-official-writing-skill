@@ -9,7 +9,11 @@ import unittest
 import yaml
 
 
+from maintenance.tests.package_fixtures import generated_packages
+
+
 ROOT = Path(__file__).resolve().parents[2]
+PACKAGE_ROOT = generated_packages()
 CANONICAL = ROOT / "chinese-official-writing"
 HOOK_ADAPTERS = CANONICAL / "hooks" / "adapters"
 OPTIONAL_GATE_FILES = {
@@ -81,10 +85,10 @@ class SkillBoundaryTests(unittest.TestCase):
     def test_skill_frontmatter_keeps_only_discovery_fields_and_tags(self) -> None:
         paths = [
             CANONICAL / "SKILL.md",
-            ROOT / "packages" / "agent-skills" / "skills" / "chinese-official-writing" / "SKILL.md",
-            ROOT / "packages" / "qwen-code" / "skills" / "chinese-official-writing" / "SKILL.md",
-            ROOT / "packages" / "qwenwork" / "skills" / "chinese-official-writing" / "SKILL.md",
-            ROOT / "packages" / "hermes" / "skills" / "chinese-official-writing" / "SKILL.md",
+            PACKAGE_ROOT / "agent-skills" / "skills" / "chinese-official-writing" / "SKILL.md",
+            PACKAGE_ROOT / "qwen-code" / "skills" / "chinese-official-writing" / "SKILL.md",
+            PACKAGE_ROOT / "qwenwork" / "skills" / "chinese-official-writing" / "SKILL.md",
+            PACKAGE_ROOT / "hermes" / "skills" / "chinese-official-writing" / "SKILL.md",
         ]
         expected_tags = "chinese, official-document, writing, gongwen, ai-compute"
 
@@ -102,7 +106,7 @@ class SkillBoundaryTests(unittest.TestCase):
             self.assertEqual(read_frontmatter(path)["name"], "chinese-official-writing")
 
     def test_openclaw_github_package_is_current_mit_and_hook_free(self) -> None:
-        package_root = ROOT / "packages" / "openclaw" / "skills" / "chinese_official_writing"
+        package_root = PACKAGE_ROOT / "openclaw" / "skills" / "chinese_official_writing"
         skill = package_root / "SKILL.md"
         frontmatter = read_frontmatter(skill)
 
@@ -126,7 +130,7 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assertIn('"openclaw": OPTIONAL_GATE_FILES + ("agents/openai.yaml",)', sync_script)
 
     def test_qwenwork_package_has_official_layout_and_bounded_claims(self) -> None:
-        package_root = ROOT / "packages" / "qwenwork"
+        package_root = PACKAGE_ROOT / "qwenwork"
         skill_root = package_root / "skills" / "chinese-official-writing"
         readme = (package_root / "README.md").read_text(encoding="utf-8")
         sync_script = (ROOT / "maintenance" / "tools" / "sync_adapters.py").read_text(
@@ -174,11 +178,11 @@ class SkillBoundaryTests(unittest.TestCase):
 
     def test_adapter_skill_copies_keep_boundaries(self) -> None:
         paths = [
-            ROOT / "packages" / "agent-skills" / "skills" / "chinese-official-writing" / "SKILL.md",
-            ROOT / "packages" / "qwen-code" / "skills" / "chinese-official-writing" / "SKILL.md",
-            ROOT / "packages" / "qwenwork" / "skills" / "chinese-official-writing" / "SKILL.md",
-            ROOT / "packages" / "hermes" / "skills" / "chinese-official-writing" / "SKILL.md",
-            ROOT / "packages" / "openclaw" / "skills" / "chinese_official_writing" / "SKILL.md",
+            PACKAGE_ROOT / "agent-skills" / "skills" / "chinese-official-writing" / "SKILL.md",
+            PACKAGE_ROOT / "qwen-code" / "skills" / "chinese-official-writing" / "SKILL.md",
+            PACKAGE_ROOT / "qwenwork" / "skills" / "chinese-official-writing" / "SKILL.md",
+            PACKAGE_ROOT / "hermes" / "skills" / "chinese-official-writing" / "SKILL.md",
+            PACKAGE_ROOT / "openclaw" / "skills" / "chinese_official_writing" / "SKILL.md",
         ]
 
         for path in paths:
@@ -203,10 +207,10 @@ class SkillBoundaryTests(unittest.TestCase):
         canonical = ROOT / "chinese-official-writing" / "SKILL.md"
         paths = [
             canonical,
-            ROOT / "packages" / "agent-skills" / "skills" / "chinese-official-writing" / "SKILL.md",
-            ROOT / "packages" / "qwen-code" / "skills" / "chinese-official-writing" / "SKILL.md",
-            ROOT / "packages" / "qwenwork" / "skills" / "chinese-official-writing" / "SKILL.md",
-            ROOT / "packages" / "hermes" / "skills" / "chinese-official-writing" / "SKILL.md",
+            PACKAGE_ROOT / "agent-skills" / "skills" / "chinese-official-writing" / "SKILL.md",
+            PACKAGE_ROOT / "qwen-code" / "skills" / "chinese-official-writing" / "SKILL.md",
+            PACKAGE_ROOT / "qwenwork" / "skills" / "chinese-official-writing" / "SKILL.md",
+            PACKAGE_ROOT / "hermes" / "skills" / "chinese-official-writing" / "SKILL.md",
         ]
         canonical_body = canonical.read_text(encoding="utf-8").split("---", 2)[2].strip()
         hook_route = (
@@ -221,7 +225,7 @@ class SkillBoundaryTests(unittest.TestCase):
                 self.assertEqual(text.count(expected), 1)
                 self.assertNotIn(legacy, text)
                 body = text.split("---", 2)[2].strip()
-                if "packages" in path.parts:
+                if PACKAGE_ROOT in path.parents:
                     self.assertEqual(canonical_body.replace(hook_route, ""), body)
                 else:
                     self.assertEqual(canonical_body, body)
@@ -331,10 +335,10 @@ class SkillBoundaryTests(unittest.TestCase):
     def test_packaged_resource_mirrors_match_canonical_bytes(self) -> None:
         canonical = ROOT / "chinese-official-writing"
         targets = [
-            (ROOT / "packages" / "agent-skills" / "skills" / "chinese-official-writing", OPTIONAL_GATE_FILES),
-            (ROOT / "packages" / "qwen-code" / "skills" / "chinese-official-writing", OPTIONAL_GATE_FILES),
-            (ROOT / "packages" / "qwenwork" / "skills" / "chinese-official-writing", OPTIONAL_GATE_FILES),
-            (ROOT / "packages" / "hermes" / "skills" / "chinese-official-writing", OPTIONAL_GATE_FILES),
+            (PACKAGE_ROOT / "agent-skills" / "skills" / "chinese-official-writing", OPTIONAL_GATE_FILES),
+            (PACKAGE_ROOT / "qwen-code" / "skills" / "chinese-official-writing", OPTIONAL_GATE_FILES),
+            (PACKAGE_ROOT / "qwenwork" / "skills" / "chinese-official-writing", OPTIONAL_GATE_FILES),
+            (PACKAGE_ROOT / "hermes" / "skills" / "chinese-official-writing", OPTIONAL_GATE_FILES),
         ]
         for target, excludes in targets:
             for folder in ["agents", "hooks", "references", "scripts"]:
@@ -371,11 +375,11 @@ class SkillBoundaryTests(unittest.TestCase):
             self.assertTrue((CANONICAL / relative).is_file(), relative)
 
         excluded_surfaces = [
-            ROOT / "packages" / "agent-skills" / "skills" / "chinese-official-writing",
-            ROOT / "packages" / "qwen-code" / "skills" / "chinese-official-writing",
-            ROOT / "packages" / "qwenwork" / "skills" / "chinese-official-writing",
-            ROOT / "packages" / "hermes" / "skills" / "chinese-official-writing",
-            ROOT / "packages" / "openclaw" / "skills" / "chinese_official_writing",
+            PACKAGE_ROOT / "agent-skills" / "skills" / "chinese-official-writing",
+            PACKAGE_ROOT / "qwen-code" / "skills" / "chinese-official-writing",
+            PACKAGE_ROOT / "qwenwork" / "skills" / "chinese-official-writing",
+            PACKAGE_ROOT / "hermes" / "skills" / "chinese-official-writing",
+            PACKAGE_ROOT / "openclaw" / "skills" / "chinese_official_writing",
         ]
         for packaged in excluded_surfaces:
             with self.subTest(packaged=packaged):
@@ -820,11 +824,11 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assertIn("用户要求只交正文时，不附写作说明", leaf)
 
         packaged_leaves = [
-            ROOT / "packages" / "agent-skills" / "skills" / "chinese-official-writing" / "references" / canonical_leaf.name,
-            ROOT / "packages" / "qwen-code" / "skills" / "chinese-official-writing" / "references" / canonical_leaf.name,
-            ROOT / "packages" / "qwenwork" / "skills" / "chinese-official-writing" / "references" / canonical_leaf.name,
-            ROOT / "packages" / "hermes" / "skills" / "chinese-official-writing" / "references" / canonical_leaf.name,
-            ROOT / "packages" / "openclaw" / "skills" / "chinese_official_writing" / "references" / canonical_leaf.name,
+            PACKAGE_ROOT / "agent-skills" / "skills" / "chinese-official-writing" / "references" / canonical_leaf.name,
+            PACKAGE_ROOT / "qwen-code" / "skills" / "chinese-official-writing" / "references" / canonical_leaf.name,
+            PACKAGE_ROOT / "qwenwork" / "skills" / "chinese-official-writing" / "references" / canonical_leaf.name,
+            PACKAGE_ROOT / "hermes" / "skills" / "chinese-official-writing" / "references" / canonical_leaf.name,
+            PACKAGE_ROOT / "openclaw" / "skills" / "chinese_official_writing" / "references" / canonical_leaf.name,
         ]
         for packaged_leaf in packaged_leaves:
             with self.subTest(packaged_leaf=packaged_leaf):
@@ -910,11 +914,11 @@ class SkillBoundaryTests(unittest.TestCase):
     def test_news_commentary_uses_clustered_frontmatter_and_precise_body_route(self) -> None:
         skill_paths = [
             ROOT / "chinese-official-writing" / "SKILL.md",
-            ROOT / "packages" / "agent-skills" / "skills" / "chinese-official-writing" / "SKILL.md",
-            ROOT / "packages" / "qwen-code" / "skills" / "chinese-official-writing" / "SKILL.md",
-            ROOT / "packages" / "qwenwork" / "skills" / "chinese-official-writing" / "SKILL.md",
-            ROOT / "packages" / "hermes" / "skills" / "chinese-official-writing" / "SKILL.md",
-            ROOT / "packages" / "openclaw" / "skills" / "chinese_official_writing" / "SKILL.md",
+            PACKAGE_ROOT / "agent-skills" / "skills" / "chinese-official-writing" / "SKILL.md",
+            PACKAGE_ROOT / "qwen-code" / "skills" / "chinese-official-writing" / "SKILL.md",
+            PACKAGE_ROOT / "qwenwork" / "skills" / "chinese-official-writing" / "SKILL.md",
+            PACKAGE_ROOT / "hermes" / "skills" / "chinese-official-writing" / "SKILL.md",
+            PACKAGE_ROOT / "openclaw" / "skills" / "chinese_official_writing" / "SKILL.md",
         ]
         reference = "references/genre-playbook-news-commentary.md"
 
@@ -1023,8 +1027,8 @@ class SkillBoundaryTests(unittest.TestCase):
 
         self.assertIn("chinese-official-writing@1.6.0", marketplace)
         self.assertIn("MIT-0", skill_card)
-        self.assertFalse((ROOT / "packages" / "openclaw" / "marketplace-readme.md").exists())
-        self.assertFalse((ROOT / "packages" / "openclaw" / "skill-card.md").exists())
+        self.assertFalse((PACKAGE_ROOT / "openclaw" / "marketplace-readme.md").exists())
+        self.assertFalse((PACKAGE_ROOT / "openclaw" / "skill-card.md").exists())
 
     def test_openclaw_bundle_readme_is_current_and_contains_no_publish_command(self) -> None:
         readme = (ROOT / "packages" / "openclaw" / "README.md").read_text(encoding="utf-8")
@@ -1085,7 +1089,7 @@ class SkillBoundaryTests(unittest.TestCase):
         readme = (ROOT / "README.md").read_text(encoding="utf-8")
         openclaw_readme = (ROOT / "packages" / "openclaw" / "README.md").read_text(encoding="utf-8")
         openclaw_skill = read_frontmatter(
-            ROOT / "packages" / "openclaw" / "skills" / "chinese_official_writing" / "SKILL.md"
+            PACKAGE_ROOT / "openclaw" / "skills" / "chinese_official_writing" / "SKILL.md"
         )
 
         sync_version = re.search(r'VERSION = "([^"]+)"', sync_script)
@@ -1136,24 +1140,23 @@ class SkillBoundaryTests(unittest.TestCase):
             "packages/hermes/skills/chinese-official-writing/SKILL.md",
         ]
         for relative_path in mit_package_skill_paths:
-            frontmatter = read_frontmatter(ROOT / relative_path)
+            skill_path = PACKAGE_ROOT / relative_path.removeprefix("packages/") if relative_path.startswith("packages/") else ROOT / relative_path
+            frontmatter = read_frontmatter(skill_path)
             self.assertNotIn("license", frontmatter, relative_path)
-            package_root = (ROOT / relative_path).parent
+            package_root = skill_path.parent
             self.assertEqual((package_root / "LICENSE").read_bytes(), (ROOT / "LICENSE").read_bytes())
 
         openclaw_frontmatter = read_frontmatter(
-            ROOT / "packages" / "openclaw" / "skills" / "chinese_official_writing" / "SKILL.md"
+            PACKAGE_ROOT / "openclaw" / "skills" / "chinese_official_writing" / "SKILL.md"
         )
         self.assertEqual("MIT", openclaw_frontmatter["license"])
         self.assertEqual(
-            (ROOT / "packages" / "openclaw" / "skills" / "chinese_official_writing" / "LICENSE").read_bytes(),
+            (PACKAGE_ROOT / "openclaw" / "skills" / "chinese_official_writing" / "LICENSE").read_bytes(),
             (ROOT / "LICENSE").read_bytes(),
         )
 
-        redskill_frontmatter = read_frontmatter(
-            ROOT / "packages" / "red-skillhub" / "skills" / "chinese-official-writing" / "SKILL.md"
-        )
-        self.assertEqual("MIT", redskill_frontmatter["license"])
+        # Historical Red SkillHub copies are archived, never rebuilt as current products.
+        self.assertNotIn("red-skillhub", {path.name for path in PACKAGE_ROOT.iterdir()})
 
         full_package_manifests = [
             "chinese-official-writing/hooks/adapters/codex/manifest.json",
@@ -1323,7 +1326,7 @@ class SkillBoundaryTests(unittest.TestCase):
         checklist = (ROOT / "chinese-official-writing" / "references" / "review-checklist.md").read_text(
             encoding="utf-8"
         )
-        openclaw_skill = (ROOT / "packages" / "openclaw" / "skills" / "chinese_official_writing" / "SKILL.md").read_text(
+        openclaw_skill = (PACKAGE_ROOT / "openclaw" / "skills" / "chinese_official_writing" / "SKILL.md").read_text(
             encoding="utf-8"
         )
 
@@ -1828,11 +1831,11 @@ class SkillBoundaryTests(unittest.TestCase):
         ]
         roots = [
             ROOT / "chinese-official-writing",
-            ROOT / "packages" / "agent-skills" / "skills" / "chinese-official-writing",
-            ROOT / "packages" / "qwen-code" / "skills" / "chinese-official-writing",
-            ROOT / "packages" / "qwenwork" / "skills" / "chinese-official-writing",
-            ROOT / "packages" / "hermes" / "skills" / "chinese-official-writing",
-            ROOT / "packages" / "openclaw" / "skills" / "chinese_official_writing",
+            PACKAGE_ROOT / "agent-skills" / "skills" / "chinese-official-writing",
+            PACKAGE_ROOT / "qwen-code" / "skills" / "chinese-official-writing",
+            PACKAGE_ROOT / "qwenwork" / "skills" / "chinese-official-writing",
+            PACKAGE_ROOT / "hermes" / "skills" / "chinese-official-writing",
+            PACKAGE_ROOT / "openclaw" / "skills" / "chinese_official_writing",
         ]
 
         for root in roots:
@@ -2039,7 +2042,7 @@ class SkillBoundaryTests(unittest.TestCase):
 
     def test_ai_dedupe_prompt_fix_guidance_is_documented(self) -> None:
         skill = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
-        openclaw_skill = (ROOT / "packages" / "openclaw" / "skills" / "chinese_official_writing" / "SKILL.md").read_text(
+        openclaw_skill = (PACKAGE_ROOT / "openclaw" / "skills" / "chinese_official_writing" / "SKILL.md").read_text(
             encoding="utf-8"
         )
         information_selection = (
@@ -2067,7 +2070,7 @@ class SkillBoundaryTests(unittest.TestCase):
 
     def test_openclaw_agent_rules_include_v140_routing_and_format_bridge(self) -> None:
         canonical = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
-        text = (ROOT / "packages" / "openclaw" / "skills" / "chinese_official_writing" / "SKILL.md").read_text(
+        text = (PACKAGE_ROOT / "openclaw" / "skills" / "chinese_official_writing" / "SKILL.md").read_text(
             encoding="utf-8"
         )
 
@@ -2079,7 +2082,7 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assertIn("稿内一致性风险", text)
         self.assertIn("references/format-gbt9704.md", text)
         format_ref = (
-            ROOT / "packages" / "openclaw" / "skills" / "chinese_official_writing" / "references" / "format-gbt9704.md"
+            PACKAGE_ROOT / "openclaw" / "skills" / "chinese_official_writing" / "references" / "format-gbt9704.md"
         ).read_text(encoding="utf-8")
         self.assertIn("不得把 Markdown `**加粗**`", format_ref)
         self.assertIn("交付范围以用户要求为准", text)
@@ -2091,7 +2094,7 @@ class SkillBoundaryTests(unittest.TestCase):
         source = (
             ROOT / "maintenance" / "docs" / "platform-snapshots" / "clawhub-v1.6.0" / "skill-card.md"
         ).read_text(encoding="utf-8")
-        packaged_path = ROOT / "packages" / "openclaw" / "skills" / "chinese_official_writing" / "skill-card.md"
+        packaged_path = PACKAGE_ROOT / "openclaw" / "skills" / "chinese_official_writing" / "skill-card.md"
 
         self.assertIn("Known Risks and Mitigations", source)
         self.assertFalse(packaged_path.exists())
@@ -2169,7 +2172,6 @@ class SkillBoundaryTests(unittest.TestCase):
             self.assertIn(term, text)
         for term in [
             "## 文稿检查脚本",
-            "sync_adapters.py",
             "发布前检查",
             "复跑命令",
             "| 平台 | 目录 |",

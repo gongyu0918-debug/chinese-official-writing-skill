@@ -9,7 +9,11 @@ import unittest
 from maintenance.tests.hook_companion_support import ASSEMBLER
 
 
+from maintenance.tests.package_fixtures import generated_packages
+
+
 ROOT = Path(__file__).resolve().parents[2]
+PACKAGE_ROOT = generated_packages()
 SKILL_ROOT = ROOT / "chinese-official-writing"
 HOOK_ROOT = SKILL_ROOT / "hooks"
 
@@ -348,11 +352,11 @@ class HookLayerContractTests(unittest.TestCase):
 
     def test_plain_skill_packages_remain_hook_free_and_keep_lint(self) -> None:
         for packaged_skill in (
-            ROOT / "packages/agent-skills/skills/chinese-official-writing",
-            ROOT / "packages/qwen-code/skills/chinese-official-writing",
-            ROOT / "packages/qwenwork/skills/chinese-official-writing",
-            ROOT / "packages/hermes/skills/chinese-official-writing",
-            ROOT / "packages/openclaw/skills/chinese_official_writing",
+            PACKAGE_ROOT / "agent-skills/skills/chinese-official-writing",
+            PACKAGE_ROOT / "qwen-code/skills/chinese-official-writing",
+            PACKAGE_ROOT / "qwenwork/skills/chinese-official-writing",
+            PACKAGE_ROOT / "hermes/skills/chinese-official-writing",
+            PACKAGE_ROOT / "openclaw/skills/chinese_official_writing",
         ):
             with self.subTest(packaged_skill=packaged_skill):
                 self.assertFalse((packaged_skill / "hooks").exists())

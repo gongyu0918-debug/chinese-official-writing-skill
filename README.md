@@ -74,7 +74,7 @@
 npx skills add https://github.com/gongyu0918-debug/chinese-official-writing-skill --skill chinese-official-writing
 ```
 
-QwenWork 可使用 [`packages/qwenwork/`](packages/qwenwork/) 中的无 Hook 静态 Skill 包；个人安装目录与组织 ZIP 结构见该目录说明。
+兼容包按需生成，不在仓库重复保存 Skill。运行 `python maintenance/tools/sync_adapters.py`，输出位于 `output/compatibility-packages/`；可用 `--host qwenwork` 等参数只生成所需宿主。QwenWork 的个人安装目录与组织 ZIP 结构见[安装说明](packages/qwenwork/README.md)。
 
 ## 模型消融与真实写稿
 
@@ -115,7 +115,7 @@ QwenWork 可使用 [`packages/qwenwork/`](packages/qwenwork/) 中的无 Hook 静
 
 ### 原创与证据链
 
-技能规则、references 和 scripts 在本仓库持续迭代，各平台技能目录由 canonical 包同步生成。规范与社区项目用于校验文种、流程形态和风险维度；具体规则经过复现、取舍和 A/B 后进入主线，Git 历史记录每次修改和验证。
+技能规则、references 和 scripts 在本仓库持续迭代，各平台安装目录在构建时由 canonical 包生成，不提交重复副本。规范与社区项目用于校验文种、流程形态和风险维度；具体规则经过复现、取舍和 A/B 后进入主线，Git 历史记录每次修改和验证。
 
 本次发布见 [`release-1.6.31.md`](maintenance/tests/evidence/release-1.6.31.md)。此前最近 5 份证据：[`release-1.6.27.md`](maintenance/tests/evidence/release-1.6.27.md) · [`release-1.6.27-rc.md`](maintenance/tests/evidence/release-1.6.27-rc.md) · [`remediation-plan-r1/candidate-r2-result.md`](maintenance/tests/evidence/remediation-plan-r1/candidate-r2-result.md) · [`recent-leaf-cleanup-r1/result.md`](maintenance/tests/evidence/recent-leaf-cleanup-r1/result.md) · [`reference-route-audit-r1/result.md`](maintenance/tests/evidence/reference-route-audit-r1/result.md)。完整记录见 [`maintenance/docs/evidence/README.md`](maintenance/docs/evidence/README.md)。
 
@@ -134,13 +134,13 @@ QwenWork 可使用 [`packages/qwenwork/`](packages/qwenwork/) 中的无 Hook 静
 | `chinese-official-writing/hooks/adapters/opencode/` | OpenCode 项目级交互插件、同名 Skill 来源保护、无头旁路与使用指引 |
 | `chinese-official-writing/hooks/adapters/hermes-agent/` | Hermes Agent 新建、不可恢复单题的有界复核插件与宿主限制 |
 | `chinese-official-writing/hooks/adapters/deepseek-harness/` | DeepSeek Harness headless Profile Bundle、OpenCodex 配置与生命周期边界 |
-| `packages/agent-skills/` | 通用 Agent Skills、MiniMax Skills、GLM Skills（Z.ai/智谱）、ZCode、AutoClaw、Kimi Code CLI、TRAE、Baidu Comate AI IDE 等兼容包 |
-| `packages/qwen-code/` | Qwen Code 兼容包 |
-| `packages/qwenwork/` | QwenWork（Qwen 办公）静态 Skill 兼容包，不声明 Hook 生命周期 |
-| `packages/hermes/` | Hermes 兼容包 |
-| `packages/openclaw/` | OpenClaw 兼容包，不含 Hook 和交付门禁 |
-| `packages/red-skillhub/` | Red SkillHub 专用包 |
-| `packages/` | 各平台普通兼容包总目录；见 [兼容包索引](packages/README.md) |
+| `packages/agent-skills/` | 通用 Agent Skills、MiniMax Skills、GLM Skills（Z.ai/智谱）、ZCode、AutoClaw、Kimi Code CLI、TRAE、Baidu Comate AI IDE 等兼容包的构建说明 |
+| `packages/qwen-code/` | Qwen Code 构建说明 |
+| `packages/qwenwork/` | QwenWork（Qwen 办公）构建与安装说明，不声明 Hook 生命周期 |
+| `packages/hermes/` | Hermes 构建说明 |
+| `packages/openclaw/` | OpenClaw 构建说明，生成包不含 Hook 和交付门禁 |
+| `packages/red-skillhub/` | Red SkillHub 历史包归档说明 |
+| `packages/` | 各平台安装说明；普通包生成到 output，见 [兼容包索引](packages/README.md) |
 | `maintenance/` | 测试、评测、构建工具、原始证据和维护记录；见 [维护区索引](maintenance/README.md) |
 
 ## 开源许可

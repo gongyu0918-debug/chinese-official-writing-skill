@@ -145,7 +145,7 @@ def read_file(path: Path, max_chars: int = 12000) -> str:
 
 
 def load_skill_context(cwd: Path, genres: list[str]) -> str:
-    skill_dir = cwd / "packages" / "agent-skills" / "skills" / "chinese-official-writing"
+    skill_dir = cwd / "chinese-official-writing"
     parts = [
         ("SKILL.md", read_file(skill_dir / "SKILL.md", 9000)),
         ("references/genre-checklist.md", read_file(skill_dir / "references" / "genre-checklist.md", 9000)),
@@ -162,7 +162,7 @@ def skill_prompt(tasks: list[tuple[str, str, str]], cwd: Path) -> str:
     return textwrap.dedent(
         f"""
         You are Writer A. The repository has the Skill installed at
-        `packages/agent-skills/skills/chinese-official-writing/`.
+        `chinese-official-writing/`.
 
         Use the installed Skill instructions and references below. Follow them as
         drafting rules, not as text to copy. Do not output explanations of the Skill.
