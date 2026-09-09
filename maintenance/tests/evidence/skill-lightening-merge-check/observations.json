@@ -1,0 +1,533 @@
+{
+  "writer_attempts": 27,
+  "logical_pairs": 13,
+  "valid_finals": 26,
+  "same_effort_pairs": 12,
+  "invalid_attempts": [
+    {
+      "provider_index": 4,
+      "model": "ollama-cloud/glm-5.3-flash",
+      "case": "complaint",
+      "arm": "candidate",
+      "effort": "max",
+      "seconds": 49.75,
+      "exit_code": 1,
+      "technical_error": null,
+      "valid_final": false,
+      "path": "F:\\Workspaces\\chinese-official-writing-skill\\output\\route-worktrees\\skill-lightening-merge-check\\output\\skill-lightening-merge-check\\runs\\4\\complaint\\candidate\\max",
+      "prompt_sha256": "3fb54b7b48864b5fa4a543537d38ff1e99944214a52ea877e78b0d48e44cb111"
+    }
+  ],
+  "pairs": [
+    {
+      "provider": 0,
+      "case": "news_edit",
+      "same_effort": true,
+      "returned_character_delta": -11993
+    },
+    {
+      "provider": 0,
+      "case": "request",
+      "same_effort": true,
+      "returned_character_delta": 1887
+    },
+    {
+      "provider": 0,
+      "case": "editor_note",
+      "same_effort": true,
+      "returned_character_delta": -5276
+    },
+    {
+      "provider": 1,
+      "case": "commentary",
+      "same_effort": true,
+      "returned_character_delta": 1577
+    },
+    {
+      "provider": 1,
+      "case": "formulaic",
+      "same_effort": true,
+      "returned_character_delta": 426
+    },
+    {
+      "provider": 2,
+      "case": "advisory",
+      "same_effort": true,
+      "returned_character_delta": 1518
+    },
+    {
+      "provider": 2,
+      "case": "project_application",
+      "same_effort": true,
+      "returned_character_delta": -3330
+    },
+    {
+      "provider": 3,
+      "case": "remediation",
+      "same_effort": true,
+      "returned_character_delta": -3330
+    },
+    {
+      "provider": 3,
+      "case": "correspondence",
+      "same_effort": true,
+      "returned_character_delta": 6737
+    },
+    {
+      "provider": 3,
+      "case": "ordinary_report",
+      "same_effort": true,
+      "returned_character_delta": 426
+    },
+    {
+      "provider": 4,
+      "case": "complaint",
+      "same_effort": false,
+      "returned_character_delta": -1729
+    },
+    {
+      "provider": 4,
+      "case": "feasibility_review",
+      "same_effort": true,
+      "returned_character_delta": -3330
+    },
+    {
+      "provider": 4,
+      "case": "complaint_review",
+      "same_effort": true,
+      "returned_character_delta": -3330
+    }
+  ],
+  "rows": [
+    {
+      "provider": 0,
+      "case": "news_edit",
+      "arm": "baseline",
+      "effort": "max",
+      "returned_files_named_in_commands": [
+        "SKILL.md",
+        "anti-ai-patterns.md",
+        "compatibility-scene-routing.md",
+        "final-review-layers.md",
+        "formulaic-language.md",
+        "genre-playbook-news-message.md",
+        "information-selection.md",
+        "official-style.md",
+        "proofreading-checklist.md",
+        "task-route-cards.md"
+      ],
+      "returned_characters_including_repeats": 36320,
+      "failed_or_empty_commands": [],
+      "final_sha256": "5ac2126cd3d683cfce88a7c61aa55b6621b117d8bad35c4cd2f4d57e42076d86"
+    },
+    {
+      "provider": 0,
+      "case": "news_edit",
+      "arm": "candidate",
+      "effort": "max",
+      "returned_files_named_in_commands": [
+        "SKILL.md",
+        "anti-ai-patterns.md",
+        "compatibility-scene-routing.md",
+        "genre-playbook-news-message.md",
+        "information-selection.md",
+        "proofreading-checklist.md",
+        "reference-index.md"
+      ],
+      "returned_characters_including_repeats": 24327,
+      "failed_or_empty_commands": [],
+      "final_sha256": "95ed2f725ed0558117d490db44950db839146373617d46a8cd6f72b1c452d6cc"
+    },
+    {
+      "provider": 0,
+      "case": "request",
+      "arm": "baseline",
+      "effort": "max",
+      "returned_files_named_in_commands": [
+        "SKILL.md",
+        "genre-playbook-request.md",
+        "information-selection.md",
+        "short-draft-naturalness.md"
+      ],
+      "returned_characters_including_repeats": 15358,
+      "failed_or_empty_commands": [],
+      "final_sha256": "9aa2b08cdba7a8ae7ddeec3d25d192d20df23a8ec10c724f5bc630dc9f8b8567"
+    },
+    {
+      "provider": 0,
+      "case": "request",
+      "arm": "candidate",
+      "effort": "max",
+      "returned_files_named_in_commands": [
+        "SKILL.md",
+        "genre-playbook-request.md",
+        "information-selection.md",
+        "reference-index.md",
+        "short-draft-naturalness.md",
+        "task-route-cards.md"
+      ],
+      "returned_characters_including_repeats": 17245,
+      "failed_or_empty_commands": [],
+      "final_sha256": "395476524dd3c34def23ecf42c9ae2701071373541c18af826fc30b112142948"
+    },
+    {
+      "provider": 0,
+      "case": "editor_note",
+      "arm": "baseline",
+      "effort": "max",
+      "returned_files_named_in_commands": [
+        "SKILL.md",
+        "compatibility-scene-routing.md",
+        "formulaic-language.md",
+        "information-selection.md",
+        "short-draft-naturalness.md"
+      ],
+      "returned_characters_including_repeats": 19110,
+      "failed_or_empty_commands": [],
+      "final_sha256": "2c12435ed165ed7827ae9b2927496deb83513dfc1ae33084a681871423101464"
+    },
+    {
+      "provider": 0,
+      "case": "editor_note",
+      "arm": "candidate",
+      "effort": "max",
+      "returned_files_named_in_commands": [
+        "SKILL.md",
+        "compatibility-scene-routing.md",
+        "formulaic-language.md",
+        "short-draft-naturalness.md"
+      ],
+      "returned_characters_including_repeats": 13834,
+      "failed_or_empty_commands": [],
+      "final_sha256": "5cb64ad61a97b0652c1fe6dce2aec23121661acfc2f69d2b8cf898abbdfc1247"
+    },
+    {
+      "provider": 1,
+      "case": "commentary",
+      "arm": "baseline",
+      "effort": "max",
+      "returned_files_named_in_commands": [
+        "SKILL.md",
+        "anti-ai-patterns.md",
+        "argument-chains.md",
+        "compatibility-scene-routing.md",
+        "genre-playbook-news-commentary.md",
+        "information-selection.md",
+        "official-style.md",
+        "proofreading-checklist.md",
+        "short-draft-naturalness.md"
+      ],
+      "returned_characters_including_repeats": 27224,
+      "failed_or_empty_commands": [],
+      "final_sha256": "3527c35abe33bd64abd2684b12eeaac294fc1e7096eb97d4df1aed655219d0ce"
+    },
+    {
+      "provider": 1,
+      "case": "commentary",
+      "arm": "candidate",
+      "effort": "max",
+      "returned_files_named_in_commands": [
+        "SKILL.md",
+        "anti-ai-patterns.md",
+        "argument-chains.md",
+        "compatibility-scene-routing.md",
+        "final-review-layers.md",
+        "genre-playbook-news-commentary.md",
+        "information-selection.md",
+        "official-style.md",
+        "proofreading-checklist.md",
+        "short-draft-naturalness.md",
+        "task-route-cards.md"
+      ],
+      "returned_characters_including_repeats": 28801,
+      "failed_or_empty_commands": [],
+      "final_sha256": "3f7985de59d4e2072fca32c10e021fe9d04c0fdc29ad08af8b3406684dbe6c77"
+    },
+    {
+      "provider": 1,
+      "case": "formulaic",
+      "arm": "baseline",
+      "effort": "max",
+      "returned_files_named_in_commands": [
+        "SKILL.md",
+        "formulaic-language.md",
+        "information-selection.md",
+        "short-draft-naturalness.md"
+      ],
+      "returned_characters_including_repeats": 17022,
+      "failed_or_empty_commands": [],
+      "final_sha256": "f92ede24b928d1683ed578d4308471df3ac5e16e6255de665343159924adfaa4"
+    },
+    {
+      "provider": 1,
+      "case": "formulaic",
+      "arm": "candidate",
+      "effort": "max",
+      "returned_files_named_in_commands": [
+        "SKILL.md",
+        "formulaic-language.md",
+        "information-selection.md",
+        "reference-index.md",
+        "short-draft-naturalness.md"
+      ],
+      "returned_characters_including_repeats": 17448,
+      "failed_or_empty_commands": [],
+      "final_sha256": "5d3ef129eb5dece1a84cbb437dbcc71ee0c48baa5390f3435549b6acec53d9cc"
+    },
+    {
+      "provider": 2,
+      "case": "advisory",
+      "arm": "baseline",
+      "effort": "max",
+      "returned_files_named_in_commands": [
+        "SKILL.md",
+        "compatibility-scene-routing.md",
+        "genre-playbook-advisory-feedback.md",
+        "information-selection.md"
+      ],
+      "returned_characters_including_repeats": 17514,
+      "failed_or_empty_commands": [],
+      "final_sha256": "3180c448c54371183b97968f97a6efcf07a45dc37aea5b237f552eb2ad5f030b"
+    },
+    {
+      "provider": 2,
+      "case": "advisory",
+      "arm": "candidate",
+      "effort": "max",
+      "returned_files_named_in_commands": [
+        "SKILL.md",
+        "compatibility-scene-routing.md",
+        "final-review-layers.md",
+        "genre-playbook-advisory-feedback.md",
+        "information-selection.md",
+        "proofreading-checklist.md"
+      ],
+      "returned_characters_including_repeats": 19032,
+      "failed_or_empty_commands": [],
+      "final_sha256": "add34479f3a4db171563d2f5b70861aa25db709ebc5ad0586232f1b737362f95"
+    },
+    {
+      "provider": 2,
+      "case": "project_application",
+      "arm": "baseline",
+      "effort": "max",
+      "returned_files_named_in_commands": [
+        "SKILL.md",
+        "genre-playbook-project-application.md",
+        "information-selection.md",
+        "short-draft-naturalness.md"
+      ],
+      "returned_characters_including_repeats": 15508,
+      "failed_or_empty_commands": [],
+      "final_sha256": "1ad8cd7a7210beef3b4720f4f1a349f853b603627433c2866eaf13bdb03ba345"
+    },
+    {
+      "provider": 2,
+      "case": "project_application",
+      "arm": "candidate",
+      "effort": "max",
+      "returned_files_named_in_commands": [
+        "SKILL.md",
+        "genre-playbook-project-application.md",
+        "information-selection.md",
+        "short-draft-naturalness.md"
+      ],
+      "returned_characters_including_repeats": 12178,
+      "failed_or_empty_commands": [],
+      "final_sha256": "1b07f76d13d13e3a727fc2d018f268c6f74a3b6ee2f806f50e1e642a201cdc58"
+    },
+    {
+      "provider": 3,
+      "case": "remediation",
+      "arm": "baseline",
+      "effort": "max",
+      "returned_files_named_in_commands": [
+        "SKILL.md",
+        "compatibility-scene-routing.md",
+        "genre-playbook-remediation-plan.md",
+        "information-selection.md",
+        "short-draft-naturalness.md"
+      ],
+      "returned_characters_including_repeats": 17060,
+      "failed_or_empty_commands": [],
+      "final_sha256": "b255cea18c2e0abb874611615a8ecade3de62a100f7918092eb617b23502c3ae"
+    },
+    {
+      "provider": 3,
+      "case": "remediation",
+      "arm": "candidate",
+      "effort": "max",
+      "returned_files_named_in_commands": [
+        "SKILL.md",
+        "compatibility-scene-routing.md",
+        "genre-playbook-remediation-plan.md",
+        "information-selection.md",
+        "short-draft-naturalness.md"
+      ],
+      "returned_characters_including_repeats": 13730,
+      "failed_or_empty_commands": [],
+      "final_sha256": "ac52bd0706c07b421e94958d7e0e2a907b6f2ea85cbb330be3dcb33e63efcedd"
+    },
+    {
+      "provider": 3,
+      "case": "correspondence",
+      "arm": "baseline",
+      "effort": "max",
+      "returned_files_named_in_commands": [
+        "SKILL.md",
+        "genre-playbooks.md",
+        "information-selection.md"
+      ],
+      "returned_characters_including_repeats": 15829,
+      "failed_or_empty_commands": [],
+      "final_sha256": "073ceac2ae5d4461bda5c6807bc62ae334ae6ae6f52a7afb353023e28e014028"
+    },
+    {
+      "provider": 3,
+      "case": "correspondence",
+      "arm": "candidate",
+      "effort": "max",
+      "returned_files_named_in_commands": [
+        "SKILL.md",
+        "final-review-layers.md",
+        "genre-playbooks.md",
+        "information-selection.md",
+        "proofreading-checklist.md",
+        "reference-index.md",
+        "task-route-cards.md"
+      ],
+      "returned_characters_including_repeats": 22566,
+      "failed_or_empty_commands": [],
+      "final_sha256": "fc3fdb287f1c3d94f542f154ec6c7ebde7800c980eba52b31c4947281864e643"
+    },
+    {
+      "provider": 3,
+      "case": "ordinary_report",
+      "arm": "baseline",
+      "effort": "max",
+      "returned_files_named_in_commands": [
+        "SKILL.md",
+        "information-selection.md",
+        "short-draft-naturalness.md",
+        "task-route-cards.md"
+      ],
+      "returned_characters_including_repeats": 15436,
+      "failed_or_empty_commands": [],
+      "final_sha256": "b459ea2c9da1901a1d55341c7e2e39521b55828bd801c257c281d965429043b7"
+    },
+    {
+      "provider": 3,
+      "case": "ordinary_report",
+      "arm": "candidate",
+      "effort": "max",
+      "returned_files_named_in_commands": [
+        "SKILL.md",
+        "information-selection.md",
+        "reference-index.md",
+        "short-draft-naturalness.md",
+        "task-route-cards.md"
+      ],
+      "returned_characters_including_repeats": 15862,
+      "failed_or_empty_commands": [],
+      "final_sha256": "dbc3596094d18e241dbe9070080ba80770db42895cb5f9364e2eb7f706e52612"
+    },
+    {
+      "provider": 4,
+      "case": "complaint",
+      "arm": "baseline",
+      "effort": "max",
+      "returned_files_named_in_commands": [
+        "SKILL.md",
+        "anti-ai-patterns.md",
+        "compatibility-scene-routing.md",
+        "information-selection.md",
+        "proofreading-checklist.md"
+      ],
+      "returned_characters_including_repeats": 22408,
+      "failed_or_empty_commands": [
+        {
+          "files_named": [
+            "genre-playbook-complaint-reflection.md"
+          ],
+          "exit_code": 0,
+          "empty_output": true
+        }
+      ],
+      "final_sha256": "8d29fadf59b8db0a2cf06f421147ad27f801f76f5f55368b3bb5f6b00deb3c1d"
+    },
+    {
+      "provider": 4,
+      "case": "complaint",
+      "arm": "candidate",
+      "effort": "high",
+      "returned_files_named_in_commands": [
+        "SKILL.md",
+        "anti-ai-patterns.md",
+        "compatibility-scene-routing.md",
+        "genre-playbook-complaint-reflection.md",
+        "information-selection.md",
+        "proofreading-checklist.md"
+      ],
+      "returned_characters_including_repeats": 20679,
+      "failed_or_empty_commands": [],
+      "final_sha256": "3c1db28ff4b241e3cf0c150366f139975bf53b63ce08c0d812a4261a7a7a3dcc"
+    },
+    {
+      "provider": 4,
+      "case": "feasibility_review",
+      "arm": "baseline",
+      "effort": "max",
+      "returned_files_named_in_commands": [
+        "SKILL.md",
+        "genre-checklist-feasibility-review.md"
+      ],
+      "returned_characters_including_repeats": 12223,
+      "failed_or_empty_commands": [],
+      "final_sha256": "1a6a6f09979873f9138184f0aaaed268e2bfe93202cb1b605f88d621a508e65d"
+    },
+    {
+      "provider": 4,
+      "case": "feasibility_review",
+      "arm": "candidate",
+      "effort": "max",
+      "returned_files_named_in_commands": [
+        "SKILL.md",
+        "genre-checklist-feasibility-review.md"
+      ],
+      "returned_characters_including_repeats": 8893,
+      "failed_or_empty_commands": [],
+      "final_sha256": "8b0ec6c2c9b2b87051ea0f3356df70552470f236901b7f5eb646f60c696802da"
+    },
+    {
+      "provider": 4,
+      "case": "complaint_review",
+      "arm": "baseline",
+      "effort": "max",
+      "returned_files_named_in_commands": [
+        "SKILL.md",
+        "compatibility-scene-routing.md",
+        "genre-playbook-complaint-reflection.md",
+        "review-direct-checklist.md"
+      ],
+      "returned_characters_including_repeats": 16261,
+      "failed_or_empty_commands": [],
+      "final_sha256": "843b4bf79d7e1c25d9064b1d5e97b9a38714fe9442d043ba05cf5bd235feeec4"
+    },
+    {
+      "provider": 4,
+      "case": "complaint_review",
+      "arm": "candidate",
+      "effort": "max",
+      "returned_files_named_in_commands": [
+        "SKILL.md",
+        "compatibility-scene-routing.md",
+        "genre-playbook-complaint-reflection.md",
+        "review-direct-checklist.md"
+      ],
+      "returned_characters_including_repeats": 12931,
+      "failed_or_empty_commands": [],
+      "final_sha256": "f511eedf8bbcf782794a1bc1a58d5610f5d4b6b85b95d9e303f533094b6e750d"
+    }
+  ],
+  "limits": "One route per interaction task supplements previous independent-atom multi-route evidence. Character counts describe observable Markdown tool returns including repeats, not billing or full context. Mixed-effort results do not establish max/max differences."
+}

@@ -1,0 +1,20 @@
+{
+  "main": {
+    "exit": 0,
+    "output": "f171e82fbe2849af4ec50f3605845ae315d456d8"
+  },
+  "main_nearest_tag": {
+    "exit": 0,
+    "output": "v1.6.30"
+  },
+  "candidate_base": {
+    "exit": 0,
+    "output": "f171e82fbe2849af4ec50f3605845ae315d456d8"
+  },
+  "candidate_changes": {
+    "exit": 0,
+    "output": "chinese-official-writing/SKILL.md\nchinese-official-writing/references/compatibility-scene-routing.md\nchinese-official-writing/references/reference-index.md"
+  },
+  "main_readme_version_lines": [],
+  "9149182b_readme_version_lines": []
+}

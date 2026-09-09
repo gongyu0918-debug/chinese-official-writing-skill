@@ -1,0 +1,67 @@
+{
+  "decision": "READY for local-main merge; assessment only, not merged/pushed/published",
+  "product_commit": "9149182bae37d6031b26ae061ce5d85bbfb3938f",
+  "engineering_commit": "4f8d826fbe34e5e427789ad94301d82c70ff7b07",
+  "main_baseline": "f171e82fbe2849af4ec50f3605845ae315d456d8",
+  "primary_calls": {
+    "logical_pairs": 13,
+    "attempts": 27,
+    "finals": 26,
+    "same_effort_pairs": 12
+  },
+  "technical_failure": "GLM complaint candidate max: 502 duplicate tool result, no final; high fallback succeeds, mixed-effort pair excluded from max causal comparison.",
+  "targeted_repeat": {
+    "case": "advisory",
+    "provider": 2,
+    "additional_calls": 2,
+    "initial_candidate": "real unsupported daily-operation expansion and omitted explicit undecided state",
+    "repeated_candidate": "both targeted defects absent",
+    "baseline_initial_and_repeat": "targeted boundaries retained",
+    "judges": "root and independent read-only audit of all four texts",
+    "limit": "Not stable in one repeat; does not prove zero probability effect. Initial failure retained."
+  },
+  "common_quality_risks": [
+    "execution narration",
+    "over-strong commentary inference",
+    "both procurement drafts infer current printer count",
+    "speech demonstration timing becomes more specific",
+    "occasional overly strict review or body code fence"
+  ],
+  "engineering": {
+    "full_suite": "847 tests; initial 30 failures+1 error in 6 old-layout methods",
+    "baseline_six_methods": "6/6 pass",
+    "affected_suites_after_migration": "115/115 pass",
+    "legacy_static_cases": "111/111 pass; not model calls",
+    "quick_validate": "canonical+4 ordinary packages pass; OpenClaw category mismatch identical on baseline",
+    "archive": "F:\\Workspaces\\chinese-official-writing-skill-archives\\experiments\\skill-lightening-20260909\\merge-engineering-evidence.zip",
+    "sha256": "5e787df61f175ea118ddee2617c9964797c206785dea397bbdb0989dcf6067dc"
+  },
+  "repeat_receipts": [
+    {
+      "provider": 2,
+      "model": "alibaba-token-plan-2/qwen3.8-flash",
+      "case": "advisory",
+      "arm": "candidate",
+      "effort": "max",
+      "original": "F:\\Workspaces\\chinese-official-writing-skill\\output\\route-worktrees\\skill-lightening-merge-check\\output\\skill-lightening-merge-check\\runs\\2\\advisory\\candidate\\max",
+      "prompt_sha256": "a46ebf7caa2947eac84a05cf6e74e26f1b42e877e7cf21de53a40caf518cc785",
+      "original_prompt_sha256": "a46ebf7caa2947eac84a05cf6e74e26f1b42e877e7cf21de53a40caf518cc785",
+      "exit_code": 0,
+      "error": null,
+      "seconds": 222.84
+    },
+    {
+      "provider": 2,
+      "model": "alibaba-token-plan-2/qwen3.8-flash",
+      "case": "advisory",
+      "arm": "baseline",
+      "effort": "max",
+      "original": "F:\\Workspaces\\chinese-official-writing-skill\\output\\route-worktrees\\skill-lightening-merge-check\\output\\skill-lightening-merge-check\\runs\\2\\advisory\\baseline\\max",
+      "prompt_sha256": "5f3c81a15bc6f4399fd2430e449158af54bf571f87b095281fc2ef488109242a",
+      "original_prompt_sha256": "5f3c81a15bc6f4399fd2430e449158af54bf571f87b095281fc2ef488109242a",
+      "exit_code": 0,
+      "error": null,
+      "seconds": 91.61
+    }
+  ]
+}
