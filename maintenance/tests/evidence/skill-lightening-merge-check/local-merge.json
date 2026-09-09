@@ -1,0 +1,17 @@
+{
+  "main_merge_commit": "fea00c4370afab49e847dfc68e0587c5a1af9656",
+  "sync_status": "UNCHANGED",
+  "version": "0.4.15",
+  "activation_state": "AWAITING_HOST_TRUST",
+  "trusted_enabled_hooks": 2,
+  "mit_entry_sha256": "9ecefde8a061878e30dcd9db6492d631f18203351eb14059014580b28359328a",
+  "mit_references_verified": 38,
+  "paid_projection_commit": "2ecbdcb9ac50fc85cf23eb35fc5cb725935280e2",
+  "runtime_source_commit": "98b27b310f33e7ae3b0436abcf512c64bc3d6964",
+  "note": "Install and Hook enabled/trusted state verified; no new native writing/Hook execution claimed.",
+  "merge_method": "fast-forward to tested candidate",
+  "product_commit": "9149182bae37d6031b26ae061ce5d85bbfb3938f",
+  "projection_conflict": "Only paid format table intersected moved index; preserved paid format suffix and one paid table row. Removing those retained additions reproduces MIT main exactly.",
+  "activation_limit": "Host reports two enabled/trusted hooks. Local activation record remains AWAITING_HOST_TRUST until a subsequent in-scope native event; no synthetic event or new writing-model run used to force ENABLED.",
+  "validation": "main product equals tested freeze; installed ENTRY plus all 38 references equal main git bytes; source sync verification returned UNCHANGED on second successful pass; previous 115 affected tests retained."
+}
