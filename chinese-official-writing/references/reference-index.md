@@ -29,10 +29,10 @@
 | `references/genre-playbook-request.md` | 按文种选读 | 其他请示、申请需要常规或完整骨架时直接读取。 |
 | `references/genre-checklist-request.md` | 按文种选读 | 用户只审或专门细查请示、申请的文种功能和办理要素时读取；已由增项专页起草或整体改写的稿件不重复读本页，其他申请同时要求审后改写时与起草叶叠加。 |
 | `references/genre-checklist-feasibility-review.md` | 按文种选读 | 只审或细查可研、可行性研究报告的数据性质、估算依据和文种功能时读取；起草、改写或审后改写仍使用既有 playbook 和论证链。 |
-| `references/genre-playbook-correspondence.md` | 按文种选读 | 普通函起草，以及只改错字、标点、格式或明确局部措辞时读取。 |
+| `references/genre-playbook-correspondence.md` | 按文种选读 | 文种明确的普通函、常规复函和征求意见函起草，以及只改错字、标点、格式或明确局部措辞时读取。 |
 | `references/genre-playbook-work-summary.md` | 按文种选读 | 工作总结、工作要点、周报或月报需要常规或完整骨架时直接读取。 |
 | `references/genre-playbook-plan-construction.md` | 按文种选读 | 方案、实施方案或建设方案需要常规或完整骨架时直接读取。 |
-| `references/genre-playbooks.md` | 按文种选读 | 通知、复函、征求意见函、讲话稿、调研/研究/可研、采购公告、审查材料等需要快速进入对应场景骨架时读取；用户提供既有普通函并要求重组事务动作、状态、条件、范围或结构时读取函规则。 |
+| `references/genre-playbooks.md` | 按文种选读 | 通知、讲话稿、调研/研究/可研、采购公告、审查材料等需要快速进入对应场景骨架时读取；用户提供既有普通函、复函或征求意见函并要求重组事务动作、状态、条件、范围或结构时读取函规则。 |
 | `references/genre-playbook-institution-rules.md` | 按文种选读 | 起草、改写或复核制度、规定、办法、管理办法、实施细则、操作规程，以及需要区分印发通知与制度附件时读取。 |
 | `references/genre-checklist-report.md` | 按文种选读 | 报告、情况报告或情况说明需要常规或完整骨架、专项写法或细查文种功能和结构时直接读取；命中轻量卡且卡片能够覆盖任务时不重复读取。 |
 | `references/genre-checklist.md` | 按文种选读 | 通知、命令、公报、决议、议案、函、批复、公告、通告、公示、通报、纪要、讲话稿、述职等其他文种细查时。 |
