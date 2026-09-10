@@ -1,0 +1,35 @@
+{
+  "baseline_tag": "v1.6.32",
+  "baseline_commit": "236784efe2a7a0bf9acd3a49f1d3ad0cff1586a8",
+  "candidate_resolution": "HEAD resolved before preparation; freeze.json records exact resolved commit and every product hash",
+  "source_atom": "b997a0ffff1f1aa3e26f5be53766e9f073efea49",
+  "original_trial_candidate": "8c44630ed5b1cfef92cbd44a8648627bffb9ce19",
+  "product_scope": [
+    "chinese-official-writing/references/anti-ai-patterns.md"
+  ],
+  "baseline_leaf_sha256": "c77202b6685b57bef8ae98499c05e1e21427fce90c56a18adba0472da07e4f2f",
+  "candidate_leaf_sha256": "0901d58db86d4498538868c2f04cbd387befdc319e778a09fc091b57ed3712e2",
+  "lf_chars_before": 5409,
+  "lf_chars_after": 5340,
+  "lf_char_delta": -69,
+  "source_cases_path": "F:\\Workspaces\\chinese-official-writing-skill\\maintenance\\tests\\evidence\\progressive-route-validation-20260910\\word-guidance.json",
+  "source_cases_sha256": "16a0bd1af10af9bfbf4fb1099ae097904ac1eca071c74ffae2e469ffa6d97983",
+  "tasks_and_assignments_equal_to_original": true,
+  "source_driver_path": "F:\\Workspaces\\chinese-official-writing-skill\\output\\route-worktrees\\leaf-refactor-validation-20260911\\maintenance\\tests\\evidence\\leaf-refactor-20260911\\run_atom.py",
+  "source_driver_sha256": "88a2a2e3fabbf3d4f4a007705bc2e636a2d42fcd4705243dd3e47011157e160e",
+  "driver_adjustments": [
+    "result output directory",
+    "resolve both Git revisions once before freezing"
+  ],
+  "version_and_packages": "Version unchanged for writing freeze. Keep v1.6.32 on-demand package generation structure; do not restore main packages. Engineering/version/package work follows separately.",
+  "side_effects_excluded": [
+    "main merge",
+    "push",
+    "tag",
+    "release",
+    "marketplace submission",
+    "Pro Hook enablement"
+  ],
+  "test_budget": "5 original cases, same 5 channels, max pairs. At most one paired high fallback per technical-invalid max pair. Keep all receipts, traces, finals and invalid executions. Do not retry for prose quality.",
+  "release_note_scope": "正式词语按语义审校，保留有具体含义的术语和必要强调，减少机械替换。"
+}
