@@ -1,0 +1,32 @@
+{
+  "commands": [
+    {
+      "path": "chinese-official-writing",
+      "exit": 0,
+      "output": "Skill is valid!\n"
+    },
+    {
+      "path": "packages\\agent-skills\\skills\\chinese-official-writing",
+      "exit": 0,
+      "output": "Skill is valid!\n"
+    },
+    {
+      "path": "packages\\qwen-code\\skills\\chinese-official-writing",
+      "exit": 0,
+      "output": "Skill is valid!\n"
+    },
+    {
+      "path": "packages\\qwenwork\\skills\\chinese-official-writing",
+      "exit": 0,
+      "output": "Skill is valid!\n"
+    },
+    {
+      "path": "packages\\hermes\\skills\\chinese-official-writing",
+      "exit": 0,
+      "output": "Skill is valid!\n"
+    }
+  ],
+  "changed_references_byte_equal": true,
+  "entry_matches_existing_packaging_rules": true,
+  "initial_overstrict_check": "Raw canonical/home mirror equality rejected existing omission of unavailable Hook route; corrected to unchanged sync_adapters projection. No product change made to satisfy it."
+}

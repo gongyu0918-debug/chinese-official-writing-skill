@@ -1,0 +1,18 @@
+[
+  {
+    "atom": "combined",
+    "archive": "F:\\Workspaces\\chinese-official-writing-skill-archives\\experiments\\skill-lightening-20260910\\detail-combined\\combined.zip",
+    "sha256": "d83083b00e057658a09f51f4dbdb7763db9a3ac2033051282873717a9abe8b62",
+    "files": 311,
+    "verified_members": 311,
+    "frozen_inputs_unchanged": true
+  },
+  {
+    "atom": "mode-dedup",
+    "archive": "F:\\Workspaces\\chinese-official-writing-skill-archives\\experiments\\skill-lightening-20260910\\detail-combined\\mode-dedup.zip",
+    "sha256": "f483164ba6dcfb02e79099abe7e1e984619d58879783726c44ad16172eed40bf",
+    "files": 259,
+    "verified_members": 259,
+    "frozen_inputs_unchanged": true
+  }
+]

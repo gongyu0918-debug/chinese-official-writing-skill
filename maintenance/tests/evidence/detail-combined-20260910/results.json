@@ -1,0 +1,1302 @@
+{
+  "combined": {
+    "attempts": 24,
+    "valid": 20,
+    "pairs": [
+      {
+        "provider": "0",
+        "case": "script_report",
+        "both_valid": true,
+        "both_max": true,
+        "document_output_delta": -14950
+      },
+      {
+        "provider": "0",
+        "case": "field_structure",
+        "both_valid": true,
+        "both_max": true,
+        "document_output_delta": 7990
+      },
+      {
+        "provider": "1",
+        "case": "short_letter",
+        "both_valid": true,
+        "both_max": true,
+        "document_output_delta": -499
+      },
+      {
+        "provider": "1",
+        "case": "review_only",
+        "both_valid": true,
+        "both_max": true,
+        "document_output_delta": 3128
+      },
+      {
+        "provider": "2",
+        "case": "long_report",
+        "both_valid": false,
+        "both_max": false
+      },
+      {
+        "provider": "2",
+        "case": "project_application",
+        "both_valid": true,
+        "both_max": true,
+        "document_output_delta": -94
+      },
+      {
+        "provider": "3",
+        "case": "structure_compress",
+        "both_valid": true,
+        "both_max": true,
+        "document_output_delta": 3783
+      },
+      {
+        "provider": "3",
+        "case": "script_feasibility",
+        "both_valid": true,
+        "both_max": true,
+        "document_output_delta": 937
+      },
+      {
+        "provider": "3",
+        "case": "long_report",
+        "both_valid": true,
+        "both_max": true,
+        "document_output_delta": 6761
+      },
+      {
+        "provider": "4",
+        "case": "word_text",
+        "both_valid": true,
+        "both_max": true,
+        "document_output_delta": -623
+      },
+      {
+        "provider": "4",
+        "case": "news_control",
+        "both_valid": true,
+        "both_max": true,
+        "document_output_delta": 4598
+      }
+    ],
+    "receipts": [
+      {
+        "provider": 0,
+        "model": "minimax-cn/MiniMax-M3",
+        "case": "field_structure",
+        "arm": "baseline",
+        "effort": "max",
+        "exit_code": 0,
+        "error": null,
+        "valid_final": true,
+        "seconds": 19.75,
+        "prompt_sha256": "625bdda2d9006566da9ae2a16a755c9a0a560a7203a09248340ee91ff74c801b",
+        "path": "runs/0/field_structure/baseline/max",
+        "repeat": false,
+        "chars": 39,
+        "final_sha256": "90b841760ffda708797a7816184bced7ec3e6cf85a56830bcf40cef6370bb475",
+        "native_usage": {
+          "input_tokens": 59887,
+          "cached_input_tokens": 45081,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 1842,
+          "reasoning_output_tokens": 1485
+        },
+        "document_command_output_chars": 8329,
+        "all_command_output_chars": 8329,
+        "command_count": 1,
+        "document_read_names": [
+          "SKILL.md"
+        ]
+      },
+      {
+        "provider": 0,
+        "model": "minimax-cn/MiniMax-M3",
+        "case": "field_structure",
+        "arm": "candidate",
+        "effort": "max",
+        "exit_code": 0,
+        "error": null,
+        "valid_final": true,
+        "seconds": 75.75,
+        "prompt_sha256": "4912efa63d6d0713d180bb795135d27352839cd6b4ca9fe1a016e451c4505f14",
+        "path": "runs/0/field_structure/candidate/max",
+        "repeat": false,
+        "chars": 45,
+        "final_sha256": "1a34cc2b42eefd098e5f6e11541fcf51ce67274cc492ea745a030df85fa4ac87",
+        "native_usage": {
+          "input_tokens": 157738,
+          "cached_input_tokens": 144768,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 2810,
+          "reasoning_output_tokens": 1788
+        },
+        "document_command_output_chars": 16319,
+        "all_command_output_chars": 19826,
+        "command_count": 5,
+        "document_read_names": [
+          "SKILL.md",
+          "field-editing.md",
+          "structure-editing.md"
+        ]
+      },
+      {
+        "provider": 0,
+        "model": "minimax-cn/MiniMax-M3",
+        "case": "script_report",
+        "arm": "baseline",
+        "effort": "max",
+        "exit_code": 0,
+        "error": null,
+        "valid_final": true,
+        "seconds": 201.0,
+        "prompt_sha256": "37f26c8dc982d7360995b2a89c0ef748ef3cbf6bdb4fe2aa5dee467ee3786499",
+        "path": "runs/0/script_report/baseline/max",
+        "repeat": false,
+        "chars": 1163,
+        "final_sha256": "b327270ce76a9016e5ba79cfc924de4588d316ec0265a5e028532a2b16cadf12",
+        "native_usage": {
+          "input_tokens": 1685120,
+          "cached_input_tokens": 1629184,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 8017,
+          "reasoning_output_tokens": 0
+        },
+        "document_command_output_chars": 23186,
+        "all_command_output_chars": 77263,
+        "command_count": 34,
+        "document_read_names": [
+          "SKILL.md"
+        ]
+      },
+      {
+        "provider": 0,
+        "model": "minimax-cn/MiniMax-M3",
+        "case": "script_report",
+        "arm": "candidate",
+        "effort": "max",
+        "exit_code": 0,
+        "error": null,
+        "valid_final": true,
+        "seconds": 42.02,
+        "prompt_sha256": "a511d2183a0fda827bbc01d28ed682b9f28aa5b4cd7eabd0b0c0d73c5a3a61a9",
+        "path": "runs/0/script_report/candidate/max",
+        "repeat": false,
+        "chars": 59,
+        "final_sha256": "ad327b25c3a1f6b9278c3c1b8d774721ccb6e19d028f2b9d9d841888f382bcf0",
+        "native_usage": {
+          "input_tokens": 126654,
+          "cached_input_tokens": 103055,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 3352,
+          "reasoning_output_tokens": 2390
+        },
+        "document_command_output_chars": 8236,
+        "all_command_output_chars": 23300,
+        "command_count": 6,
+        "document_read_names": [
+          "SKILL.md",
+          "prose-lint-usage.md"
+        ]
+      },
+      {
+        "provider": 1,
+        "model": "alibaba-token-plan/qwen3.8-flash",
+        "case": "review_only",
+        "arm": "baseline",
+        "effort": "max",
+        "exit_code": 0,
+        "error": null,
+        "valid_final": true,
+        "seconds": 66.28,
+        "prompt_sha256": "fc3fa1cb5944bc114df3dc02473f04d18b76725f8521e2989a732935bb9b38be",
+        "path": "runs/1/review_only/baseline/max",
+        "repeat": false,
+        "chars": 712,
+        "final_sha256": "08f584aa303799ef832600d50d043beeb245a28594d2b94d03325a270fb0c8cb",
+        "native_usage": {
+          "input_tokens": 50508,
+          "cached_input_tokens": 39936,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 2951,
+          "reasoning_output_tokens": 2049
+        },
+        "document_command_output_chars": 10060,
+        "all_command_output_chars": 10060,
+        "command_count": 3,
+        "document_read_names": [
+          "SKILL.md",
+          "genre-checklist-request.md",
+          "review-direct-checklist.md"
+        ]
+      },
+      {
+        "provider": 1,
+        "model": "alibaba-token-plan/qwen3.8-flash",
+        "case": "review_only",
+        "arm": "candidate",
+        "effort": "max",
+        "exit_code": 0,
+        "error": null,
+        "valid_final": true,
+        "seconds": 74.27,
+        "prompt_sha256": "2f9f9180cd26caad86228f8da3c2f5cd4af27e439a64f2204400b3529ed7c989",
+        "path": "runs/1/review_only/candidate/max",
+        "repeat": false,
+        "chars": 619,
+        "final_sha256": "42ff3706cec9fbc33ad14f59bf16d320538f3263f9f9781751ad18f75d4623a8",
+        "native_usage": {
+          "input_tokens": 93055,
+          "cached_input_tokens": 73728,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 3453,
+          "reasoning_output_tokens": 2529
+        },
+        "document_command_output_chars": 13188,
+        "all_command_output_chars": 31834,
+        "command_count": 5,
+        "document_read_names": [
+          "SKILL.md",
+          "genre-checklist-request.md",
+          "reference-index.md",
+          "review-direct-checklist.md"
+        ]
+      },
+      {
+        "provider": 1,
+        "model": "alibaba-token-plan/qwen3.8-flash",
+        "case": "short_letter",
+        "arm": "baseline",
+        "effort": "max",
+        "exit_code": 0,
+        "error": null,
+        "valid_final": true,
+        "seconds": 63.64,
+        "prompt_sha256": "fdb9d08a264dc0eb83277af05470b5a08e9508543055d567e0ffbca36ba007d1",
+        "path": "runs/1/short_letter/baseline/max",
+        "repeat": false,
+        "chars": 173,
+        "final_sha256": "6f29725a3398c0e732b1cd20a5f5dbac85077f4aea848a145c0fb4a631a5aee9",
+        "native_usage": {
+          "input_tokens": 133717,
+          "cached_input_tokens": 111744,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 2759,
+          "reasoning_output_tokens": 1878
+        },
+        "document_command_output_chars": 16471,
+        "all_command_output_chars": 34268,
+        "command_count": 7,
+        "document_read_names": [
+          "SKILL.md",
+          "genre-playbook-correspondence.md",
+          "information-selection.md",
+          "reference-index.md",
+          "short-draft-naturalness.md",
+          "task-route-cards.md"
+        ]
+      },
+      {
+        "provider": 1,
+        "model": "alibaba-token-plan/qwen3.8-flash",
+        "case": "short_letter",
+        "arm": "candidate",
+        "effort": "max",
+        "exit_code": 0,
+        "error": null,
+        "valid_final": true,
+        "seconds": 86.05,
+        "prompt_sha256": "92ddf97e3112b90df19ad1169c8c3a380996b9d677baa32a4c58e4f792ca88f6",
+        "path": "runs/1/short_letter/candidate/max",
+        "repeat": false,
+        "chars": 173,
+        "final_sha256": "628514a026cb4e89393755142ebf79ad388f622e75bdf34bb318abad630f86fc",
+        "native_usage": {
+          "input_tokens": 150440,
+          "cached_input_tokens": 133888,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 3818,
+          "reasoning_output_tokens": 2621
+        },
+        "document_command_output_chars": 15972,
+        "all_command_output_chars": 15972,
+        "command_count": 7,
+        "document_read_names": [
+          "SKILL.md",
+          "compression-details.md",
+          "genre-playbook-correspondence.md",
+          "information-selection.md",
+          "reference-index.md",
+          "short-draft-naturalness.md",
+          "task-route-cards.md"
+        ]
+      },
+      {
+        "provider": 2,
+        "model": "alibaba-token-plan-2/qwen3.8-flash",
+        "case": "long_report",
+        "arm": "baseline",
+        "effort": "high",
+        "exit_code": null,
+        "error": "timeout300",
+        "valid_final": false,
+        "seconds": 300.22,
+        "prompt_sha256": "dcbe98ee65ce72b97aae3214eb218052195d64962d8abe3ff9b5a2feed5ae546",
+        "path": "runs/2/long_report/baseline/high",
+        "repeat": false,
+        "chars": 0,
+        "final_sha256": null,
+        "native_usage": null,
+        "document_command_output_chars": 22132,
+        "all_command_output_chars": 43905,
+        "command_count": 8,
+        "document_read_names": [
+          "SKILL.md",
+          "genre-checklist-report.md",
+          "information-selection.md",
+          "reference-index.md",
+          "task-route-cards.md",
+          "workflow.md"
+        ]
+      },
+      {
+        "provider": 2,
+        "model": "alibaba-token-plan-2/qwen3.8-flash",
+        "case": "long_report",
+        "arm": "baseline",
+        "effort": "max",
+        "exit_code": null,
+        "error": "timeout300",
+        "valid_final": false,
+        "seconds": 300.22,
+        "prompt_sha256": "dcbe98ee65ce72b97aae3214eb218052195d64962d8abe3ff9b5a2feed5ae546",
+        "path": "runs/2/long_report/baseline/max",
+        "repeat": false,
+        "chars": 0,
+        "final_sha256": null,
+        "native_usage": null,
+        "document_command_output_chars": 16502,
+        "all_command_output_chars": 38278,
+        "command_count": 6,
+        "document_read_names": [
+          "SKILL.md",
+          "genre-checklist-report.md",
+          "information-selection.md",
+          "reference-index.md",
+          "task-route-cards.md"
+        ]
+      },
+      {
+        "provider": 2,
+        "model": "alibaba-token-plan-2/qwen3.8-flash",
+        "case": "long_report",
+        "arm": "candidate",
+        "effort": "high",
+        "exit_code": null,
+        "error": "timeout300",
+        "valid_final": false,
+        "seconds": 300.2,
+        "prompt_sha256": "6109c8cf4a0808322a710a9ca947235f6578fdad07834b5c18c4bd214a7d7c86",
+        "path": "runs/2/long_report/candidate/high",
+        "repeat": false,
+        "chars": 0,
+        "final_sha256": null,
+        "native_usage": null,
+        "document_command_output_chars": 21382,
+        "all_command_output_chars": 44338,
+        "command_count": 11,
+        "document_read_names": [
+          "SKILL.md",
+          "compression-details.md",
+          "final-review-layers.md",
+          "genre-checklist-report.md",
+          "information-selection.md",
+          "proofreading-checklist.md",
+          "prose-lint-usage.md",
+          "reference-index.md",
+          "task-route-cards.md"
+        ]
+      },
+      {
+        "provider": 2,
+        "model": "alibaba-token-plan-2/qwen3.8-flash",
+        "case": "long_report",
+        "arm": "candidate",
+        "effort": "max",
+        "exit_code": null,
+        "error": "timeout300",
+        "valid_final": false,
+        "seconds": 300.2,
+        "prompt_sha256": "6109c8cf4a0808322a710a9ca947235f6578fdad07834b5c18c4bd214a7d7c86",
+        "path": "runs/2/long_report/candidate/max",
+        "repeat": false,
+        "chars": 0,
+        "final_sha256": null,
+        "native_usage": null,
+        "document_command_output_chars": 16532,
+        "all_command_output_chars": 39179,
+        "command_count": 8,
+        "document_read_names": [
+          "SKILL.md",
+          "compression-details.md",
+          "genre-checklist-report.md",
+          "information-selection.md",
+          "prose-lint-usage.md",
+          "reference-index.md",
+          "task-route-cards.md"
+        ]
+      },
+      {
+        "provider": 2,
+        "model": "alibaba-token-plan-2/qwen3.8-flash",
+        "case": "project_application",
+        "arm": "baseline",
+        "effort": "max",
+        "exit_code": 0,
+        "error": null,
+        "valid_final": true,
+        "seconds": 183.56,
+        "prompt_sha256": "0bb8f0505c445f451ed1287440d329662d1af0520afbcba5f53a7efb30087853",
+        "path": "runs/2/project_application/baseline/max",
+        "repeat": false,
+        "chars": 109,
+        "final_sha256": "1730a09e1542a77c37c826ae5967e474833a02d5ac398fdcd01e268ff1e883dd",
+        "native_usage": {
+          "input_tokens": 197563,
+          "cached_input_tokens": 173056,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 9787,
+          "reasoning_output_tokens": 8588
+        },
+        "document_command_output_chars": 16935,
+        "all_command_output_chars": 37086,
+        "command_count": 8,
+        "document_read_names": [
+          "SKILL.md",
+          "genre-playbook-project-application.md",
+          "information-selection.md",
+          "reference-index.md",
+          "task-route-cards.md"
+        ]
+      },
+      {
+        "provider": 2,
+        "model": "alibaba-token-plan-2/qwen3.8-flash",
+        "case": "project_application",
+        "arm": "candidate",
+        "effort": "max",
+        "exit_code": 0,
+        "error": null,
+        "valid_final": true,
+        "seconds": 244.77,
+        "prompt_sha256": "cf7a86b64f1539e9fcdeae2c09a65b17d587d63afc74ec2f402df03e284bac22",
+        "path": "runs/2/project_application/candidate/max",
+        "repeat": false,
+        "chars": 169,
+        "final_sha256": "0cff4d580598bc65ad17e42760b70893f37fff403d2a55fa0d35876ffab4bbce",
+        "native_usage": {
+          "input_tokens": 144120,
+          "cached_input_tokens": 127616,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 12624,
+          "reasoning_output_tokens": 11629
+        },
+        "document_command_output_chars": 16841,
+        "all_command_output_chars": 16841,
+        "command_count": 6,
+        "document_read_names": [
+          "SKILL.md",
+          "genre-playbook-project-application.md",
+          "information-selection.md",
+          "prose-lint-usage.md",
+          "reference-index.md",
+          "task-route-cards.md"
+        ]
+      },
+      {
+        "provider": 3,
+        "model": "opencode-go/deepseek-v4-flash",
+        "case": "long_report",
+        "arm": "baseline",
+        "effort": "max",
+        "exit_code": 0,
+        "error": null,
+        "valid_final": true,
+        "seconds": 161.45,
+        "prompt_sha256": "dcbe98ee65ce72b97aae3214eb218052195d64962d8abe3ff9b5a2feed5ae546",
+        "path": "runs/3/long_report/baseline/max",
+        "repeat": false,
+        "chars": 743,
+        "final_sha256": "cb865baeca78f6c69e46ef5792e12e5639a50265c7d5586dea261d9d7ad242c9",
+        "native_usage": {
+          "input_tokens": 407694,
+          "cached_input_tokens": 382976,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 33330,
+          "reasoning_output_tokens": 26942
+        },
+        "document_command_output_chars": 19947,
+        "all_command_output_chars": 19947,
+        "command_count": 6,
+        "document_read_names": [
+          "SKILL.md",
+          "final-review-layers.md",
+          "genre-checklist-report.md",
+          "information-selection.md",
+          "reference-index.md",
+          "task-route-cards.md"
+        ]
+      },
+      {
+        "provider": 3,
+        "model": "opencode-go/deepseek-v4-flash",
+        "case": "long_report",
+        "arm": "candidate",
+        "effort": "max",
+        "exit_code": 0,
+        "error": null,
+        "valid_final": true,
+        "seconds": 297.52,
+        "prompt_sha256": "6109c8cf4a0808322a710a9ca947235f6578fdad07834b5c18c4bd214a7d7c86",
+        "path": "runs/3/long_report/candidate/max",
+        "repeat": false,
+        "chars": 716,
+        "final_sha256": "6081aa31f40a2c11d929ff31d1030ac95e338710c48391c720ddabea8e0b62a3",
+        "native_usage": {
+          "input_tokens": 615352,
+          "cached_input_tokens": 580736,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 48813,
+          "reasoning_output_tokens": 43493
+        },
+        "document_command_output_chars": 26708,
+        "all_command_output_chars": 46474,
+        "command_count": 16,
+        "document_read_names": [
+          "SKILL.md",
+          "compression-details.md",
+          "final-review-layers.md",
+          "genre-checklist-report.md",
+          "information-selection.md",
+          "proofreading-checklist.md",
+          "prose-lint-usage.md",
+          "reference-index.md",
+          "short-draft-naturalness.md",
+          "task-route-cards.md",
+          "workflow.md"
+        ]
+      },
+      {
+        "provider": 3,
+        "model": "opencode-go/deepseek-v4-flash",
+        "case": "script_feasibility",
+        "arm": "baseline",
+        "effort": "max",
+        "exit_code": 0,
+        "error": null,
+        "valid_final": true,
+        "seconds": 91.81,
+        "prompt_sha256": "ed06a5d2efa1bbca3989d09b30d2be664109a9db482ca51948d28ae7a1228dc9",
+        "path": "runs/3/script_feasibility/baseline/max",
+        "repeat": false,
+        "chars": 1524,
+        "final_sha256": "4bc76f47e1af4e171533691fe56a38e889f6876e6dda2afdd13f1a9ffafc0196",
+        "native_usage": {
+          "input_tokens": 159663,
+          "cached_input_tokens": 141568,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 12551,
+          "reasoning_output_tokens": 9689
+        },
+        "document_command_output_chars": 9173,
+        "all_command_output_chars": 15380,
+        "command_count": 14,
+        "document_read_names": [
+          "SKILL.md",
+          "genre-checklist-feasibility-review.md"
+        ]
+      },
+      {
+        "provider": 3,
+        "model": "opencode-go/deepseek-v4-flash",
+        "case": "script_feasibility",
+        "arm": "candidate",
+        "effort": "max",
+        "exit_code": 0,
+        "error": null,
+        "valid_final": true,
+        "seconds": 88.38,
+        "prompt_sha256": "b0e16544bcfc0a9461fd2ec0910c308de0ae87dfdab062046d3fe07a830fdc1f",
+        "path": "runs/3/script_feasibility/candidate/max",
+        "repeat": false,
+        "chars": 815,
+        "final_sha256": "20d7b2c1248db71f177bae91823bf5dad115c5cbe393e0f8b4c33d8c82a516b7",
+        "native_usage": {
+          "input_tokens": 255278,
+          "cached_input_tokens": 231552,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 9938,
+          "reasoning_output_tokens": 7586
+        },
+        "document_command_output_chars": 10110,
+        "all_command_output_chars": 30771,
+        "command_count": 14,
+        "document_read_names": [
+          "SKILL.md",
+          "genre-checklist-feasibility-review.md",
+          "prose-lint-usage.md",
+          "review-direct-checklist.md"
+        ]
+      },
+      {
+        "provider": 3,
+        "model": "opencode-go/deepseek-v4-flash",
+        "case": "structure_compress",
+        "arm": "baseline",
+        "effort": "max",
+        "exit_code": 0,
+        "error": null,
+        "valid_final": true,
+        "seconds": 33.17,
+        "prompt_sha256": "ee145c237e02de86a4c4088239b9bf7f224374f4f455c98cb6cb9e11085dd859",
+        "path": "runs/3/structure_compress/baseline/max",
+        "repeat": false,
+        "chars": 65,
+        "final_sha256": "40e68151fa21598b083b10f66788d5b8c5cffc710dea196f4c5ef1ad625059e4",
+        "native_usage": {
+          "input_tokens": 64259,
+          "cached_input_tokens": 46848,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 4326,
+          "reasoning_output_tokens": 3876
+        },
+        "document_command_output_chars": 12110,
+        "all_command_output_chars": 12110,
+        "command_count": 4,
+        "document_read_names": [
+          "SKILL.md",
+          "information-selection.md",
+          "short-draft-naturalness.md",
+          "task-route-cards.md"
+        ]
+      },
+      {
+        "provider": 3,
+        "model": "opencode-go/deepseek-v4-flash",
+        "case": "structure_compress",
+        "arm": "candidate",
+        "effort": "max",
+        "exit_code": 0,
+        "error": null,
+        "valid_final": true,
+        "seconds": 39.53,
+        "prompt_sha256": "c94c8e67835a13e0a2b8764e31be21d0d03e49b314eedcab93f1b043d075bf9b",
+        "path": "runs/3/structure_compress/candidate/max",
+        "repeat": false,
+        "chars": 65,
+        "final_sha256": "40e68151fa21598b083b10f66788d5b8c5cffc710dea196f4c5ef1ad625059e4",
+        "native_usage": {
+          "input_tokens": 81036,
+          "cached_input_tokens": 61696,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 5314,
+          "reasoning_output_tokens": 4640
+        },
+        "document_command_output_chars": 15893,
+        "all_command_output_chars": 15893,
+        "command_count": 6,
+        "document_read_names": [
+          "SKILL.md",
+          "information-selection.md",
+          "reference-index.md",
+          "short-draft-naturalness.md",
+          "structure-editing.md",
+          "task-route-cards.md"
+        ]
+      },
+      {
+        "provider": 4,
+        "model": "ollama-cloud/glm-5.3-flash",
+        "case": "news_control",
+        "arm": "baseline",
+        "effort": "max",
+        "exit_code": 0,
+        "error": null,
+        "valid_final": true,
+        "seconds": 67.81,
+        "prompt_sha256": "a106aa27a8e40b7a04d233a0d97d4b3ccefe9fb5fb32f5013deae3fcd445d44d",
+        "path": "runs/4/news_control/baseline/max",
+        "repeat": false,
+        "chars": 76,
+        "final_sha256": "0ad822b3dbd4b84e3b2fa9836bb96424a14e69ece0357034cc244647f0b931bc",
+        "native_usage": {
+          "input_tokens": 57364,
+          "cached_input_tokens": 0,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 1327,
+          "reasoning_output_tokens": 0
+        },
+        "document_command_output_chars": 14229,
+        "all_command_output_chars": 14229,
+        "command_count": 5,
+        "document_read_names": [
+          "SKILL.md",
+          "compatibility-scene-routing.md",
+          "genre-playbook-news-message.md",
+          "information-selection.md",
+          "short-draft-naturalness.md"
+        ]
+      },
+      {
+        "provider": 4,
+        "model": "ollama-cloud/glm-5.3-flash",
+        "case": "news_control",
+        "arm": "candidate",
+        "effort": "max",
+        "exit_code": 0,
+        "error": null,
+        "valid_final": true,
+        "seconds": 68.25,
+        "prompt_sha256": "a0940c733efaadfb27ffe3d7f46f6c69e250c16dcd0d85ea0a27748a20cede14",
+        "path": "runs/4/news_control/candidate/max",
+        "repeat": false,
+        "chars": 69,
+        "final_sha256": "a30bd3c2fd9157de64c49e19aca8d4e277356f5135747c096588e6d535b9f59f",
+        "native_usage": {
+          "input_tokens": 90373,
+          "cached_input_tokens": 0,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 3343,
+          "reasoning_output_tokens": 0
+        },
+        "document_command_output_chars": 18827,
+        "all_command_output_chars": 18827,
+        "command_count": 7,
+        "document_read_names": [
+          "SKILL.md",
+          "compatibility-scene-routing.md",
+          "genre-playbook-news-message.md",
+          "information-selection.md",
+          "reference-index.md",
+          "short-draft-naturalness.md",
+          "task-route-cards.md"
+        ]
+      },
+      {
+        "provider": 4,
+        "model": "ollama-cloud/glm-5.3-flash",
+        "case": "word_text",
+        "arm": "baseline",
+        "effort": "max",
+        "exit_code": 0,
+        "error": null,
+        "valid_final": true,
+        "seconds": 79.5,
+        "prompt_sha256": "8577e315b848de26296f97522078b1f70b150435fafa6a0343da4b3fb34bbabb",
+        "path": "runs/4/word_text/baseline/max",
+        "repeat": false,
+        "chars": 186,
+        "final_sha256": "fb74585c67867eb0c16fdc2603301a2ca4cf3259986dbba58d61d3466692875b",
+        "native_usage": {
+          "input_tokens": 62374,
+          "cached_input_tokens": 0,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 6184,
+          "reasoning_output_tokens": 0
+        },
+        "document_command_output_chars": 11561,
+        "all_command_output_chars": 11561,
+        "command_count": 2,
+        "document_read_names": [
+          "SKILL.md",
+          "format-gbt9704.md"
+        ]
+      },
+      {
+        "provider": 4,
+        "model": "ollama-cloud/glm-5.3-flash",
+        "case": "word_text",
+        "arm": "candidate",
+        "effort": "max",
+        "exit_code": 0,
+        "error": null,
+        "valid_final": true,
+        "seconds": 103.09,
+        "prompt_sha256": "c7d0752ddae772819822ba1ea819effadf7131146d4d1164bda82b65856c80ae",
+        "path": "runs/4/word_text/candidate/max",
+        "repeat": false,
+        "chars": 174,
+        "final_sha256": "3ad2e4f4e3931a2a82896c6962eaf3e2b4a675d60bd61eb6e48a04b189a14049",
+        "native_usage": {
+          "input_tokens": 42992,
+          "cached_input_tokens": 0,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 7930,
+          "reasoning_output_tokens": 0
+        },
+        "document_command_output_chars": 10938,
+        "all_command_output_chars": 10938,
+        "command_count": 2,
+        "document_read_names": [
+          "SKILL.md",
+          "format-gbt9704.md"
+        ]
+      }
+    ]
+  },
+  "mode-dedup": {
+    "attempts": 13,
+    "valid": 12,
+    "pairs": [
+      {
+        "provider": "0",
+        "case": "review_only",
+        "both_valid": true,
+        "both_max": false
+      },
+      {
+        "provider": "1",
+        "case": "explicit_rewrite",
+        "both_valid": true,
+        "both_max": true,
+        "document_output_delta": 6287
+      },
+      {
+        "provider": "2",
+        "case": "project_application",
+        "both_valid": true,
+        "both_max": true,
+        "document_output_delta": 502
+      },
+      {
+        "provider": "3",
+        "case": "local_edit",
+        "both_valid": true,
+        "both_max": true,
+        "document_output_delta": -3784
+      },
+      {
+        "provider": "4",
+        "case": "word_text",
+        "both_valid": true,
+        "both_max": true,
+        "document_output_delta": 3738
+      }
+    ],
+    "receipts": [
+      {
+        "provider": 0,
+        "model": "minimax-cn/MiniMax-M3",
+        "case": "review_only",
+        "arm": "baseline",
+        "effort": "high",
+        "exit_code": 0,
+        "error": null,
+        "valid_final": true,
+        "seconds": 62.45,
+        "prompt_sha256": "47a48a2b9a0a599ec62bc0ddc6539f1f0a066eed8c15c514974d8313d061e83e",
+        "path": "runs/0/review_only/baseline/high",
+        "repeat": false,
+        "chars": 469,
+        "final_sha256": "ee92b9b1f47ea499f3bd6ca4f356fc0ef0dd9afb479cb67250f2d9e8bd552f51",
+        "native_usage": {
+          "input_tokens": 83194,
+          "cached_input_tokens": 62258,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 5654,
+          "reasoning_output_tokens": 4800
+        },
+        "document_command_output_chars": 8735,
+        "all_command_output_chars": 27356,
+        "command_count": 4,
+        "document_read_names": [
+          "SKILL.md",
+          "review-direct-checklist.md"
+        ]
+      },
+      {
+        "provider": 0,
+        "model": "minimax-cn/MiniMax-M3",
+        "case": "review_only",
+        "arm": "baseline",
+        "effort": "max",
+        "exit_code": 0,
+        "error": null,
+        "valid_final": false,
+        "seconds": 20.03,
+        "prompt_sha256": "47a48a2b9a0a599ec62bc0ddc6539f1f0a066eed8c15c514974d8313d061e83e",
+        "path": "runs/0/review_only/baseline/max",
+        "repeat": false,
+        "chars": 0,
+        "final_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "native_usage": {
+          "input_tokens": 49300,
+          "cached_input_tokens": 39296,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 475,
+          "reasoning_output_tokens": 0
+        },
+        "document_command_output_chars": 0,
+        "all_command_output_chars": 0,
+        "command_count": 0,
+        "document_read_names": []
+      },
+      {
+        "provider": 0,
+        "model": "minimax-cn/MiniMax-M3",
+        "case": "review_only",
+        "arm": "candidate",
+        "effort": "max",
+        "exit_code": 0,
+        "error": null,
+        "valid_final": true,
+        "seconds": 60.66,
+        "prompt_sha256": "446dde84f114cc23ee8f492f9abb5a4f650fdf04f8e72dc62eac0725968b5467",
+        "path": "runs/0/review_only/candidate/max",
+        "repeat": false,
+        "chars": 474,
+        "final_sha256": "f28ed85e9b8033b0f148bf978a2fbec262cb245e54fe3757b445bdd44aaf04a6",
+        "native_usage": {
+          "input_tokens": 99391,
+          "cached_input_tokens": 71424,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 2922,
+          "reasoning_output_tokens": 2110
+        },
+        "document_command_output_chars": 10116,
+        "all_command_output_chars": 14336,
+        "command_count": 5,
+        "document_read_names": [
+          "SKILL.md",
+          "genre-playbook-request.md",
+          "review-direct-checklist.md"
+        ]
+      },
+      {
+        "provider": 1,
+        "model": "alibaba-token-plan/qwen3.8-flash",
+        "case": "explicit_rewrite",
+        "arm": "baseline",
+        "effort": "max",
+        "exit_code": 0,
+        "error": null,
+        "valid_final": true,
+        "seconds": 61.95,
+        "prompt_sha256": "62de3f1d89b165423d36df62de2d086ee6b4fb95beaba4204017d8863f6c7653",
+        "path": "runs/1/explicit_rewrite/baseline/max",
+        "repeat": false,
+        "chars": 261,
+        "final_sha256": "d9d8be94d6e7734fd3eb74dabb28fe9a9b891bf1e6c912e055bec059d68f88ca",
+        "native_usage": {
+          "input_tokens": 79540,
+          "cached_input_tokens": 64768,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 2998,
+          "reasoning_output_tokens": 2302
+        },
+        "document_command_output_chars": 14702,
+        "all_command_output_chars": 18209,
+        "command_count": 5,
+        "document_read_names": [
+          "SKILL.md",
+          "genre-playbook-request.md",
+          "information-selection.md",
+          "reference-index.md"
+        ]
+      },
+      {
+        "provider": 1,
+        "model": "alibaba-token-plan/qwen3.8-flash",
+        "case": "explicit_rewrite",
+        "arm": "baseline",
+        "effort": "max",
+        "exit_code": 0,
+        "error": null,
+        "valid_final": true,
+        "seconds": 96.91,
+        "prompt_sha256": "62de3f1d89b165423d36df62de2d086ee6b4fb95beaba4204017d8863f6c7653",
+        "path": "runs/1/explicit_rewrite/baseline/max/repeat1",
+        "repeat": true,
+        "chars": 204,
+        "final_sha256": "eab3bb483bf3ca111ead835edbf2805a6f3603cd9d5e95627fa192b8a05ac132",
+        "native_usage": {
+          "input_tokens": 82251,
+          "cached_input_tokens": 65536,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 4684,
+          "reasoning_output_tokens": 3686
+        },
+        "document_command_output_chars": 18213,
+        "all_command_output_chars": 18213,
+        "command_count": 7,
+        "document_read_names": [
+          "SKILL.md",
+          "genre-checklist-request.md",
+          "genre-playbook-request.md",
+          "information-selection.md",
+          "official-style.md",
+          "reference-index.md",
+          "short-draft-naturalness.md"
+        ]
+      },
+      {
+        "provider": 1,
+        "model": "alibaba-token-plan/qwen3.8-flash",
+        "case": "explicit_rewrite",
+        "arm": "candidate",
+        "effort": "max",
+        "exit_code": 0,
+        "error": null,
+        "valid_final": true,
+        "seconds": 115.3,
+        "prompt_sha256": "fa17ee8f742aa76b585481f3138565219160f7adfa11c5a98737bf710567ca71",
+        "path": "runs/1/explicit_rewrite/candidate/max",
+        "repeat": false,
+        "chars": 255,
+        "final_sha256": "4dab121d43c44061833e30735ee6adb6f7cb04b7b8b4b48e6e16634c1672578d",
+        "native_usage": {
+          "input_tokens": 110512,
+          "cached_input_tokens": 92928,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 4315,
+          "reasoning_output_tokens": 3369
+        },
+        "document_command_output_chars": 20989,
+        "all_command_output_chars": 21135,
+        "command_count": 8,
+        "document_read_names": [
+          "SKILL.md",
+          "final-review-layers.md",
+          "genre-playbook-request.md",
+          "information-selection.md",
+          "proofreading-checklist.md",
+          "reference-index.md",
+          "task-route-cards.md"
+        ]
+      },
+      {
+        "provider": 1,
+        "model": "alibaba-token-plan/qwen3.8-flash",
+        "case": "explicit_rewrite",
+        "arm": "candidate",
+        "effort": "max",
+        "exit_code": 0,
+        "error": null,
+        "valid_final": true,
+        "seconds": 116.7,
+        "prompt_sha256": "fa17ee8f742aa76b585481f3138565219160f7adfa11c5a98737bf710567ca71",
+        "path": "runs/1/explicit_rewrite/candidate/max/repeat1",
+        "repeat": true,
+        "chars": 83,
+        "final_sha256": "14d9db085f395610f64f5c978e25ce90bd87e412129f7306eedefe5fa0ad84fa",
+        "native_usage": {
+          "input_tokens": 263282,
+          "cached_input_tokens": 241408,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 5745,
+          "reasoning_output_tokens": 3645
+        },
+        "document_command_output_chars": 17417,
+        "all_command_output_chars": 23173,
+        "command_count": 12,
+        "document_read_names": [
+          "SKILL.md",
+          "genre-checklist-request.md",
+          "genre-playbook-request.md",
+          "information-selection.md",
+          "reference-index.md",
+          "short-draft-naturalness.md",
+          "task-route-cards.md"
+        ]
+      },
+      {
+        "provider": 2,
+        "model": "alibaba-token-plan-2/qwen3.8-flash",
+        "case": "project_application",
+        "arm": "baseline",
+        "effort": "max",
+        "exit_code": 0,
+        "error": null,
+        "valid_final": true,
+        "seconds": 116.97,
+        "prompt_sha256": "ad397884e4a918ee2524a289330add1461efddb967f5a6490f3b5117b9105dd5",
+        "path": "runs/2/project_application/baseline/max",
+        "repeat": false,
+        "chars": 235,
+        "final_sha256": "11b7a806ddd544520f6d4969dea5d96477b89dd81daa650bc45e8034199b40c1",
+        "native_usage": {
+          "input_tokens": 159287,
+          "cached_input_tokens": 134272,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 5525,
+          "reasoning_output_tokens": 4577
+        },
+        "document_command_output_chars": 16312,
+        "all_command_output_chars": 39051,
+        "command_count": 6,
+        "document_read_names": [
+          "SKILL.md",
+          "genre-playbook-project-application.md",
+          "information-selection.md",
+          "reference-index.md",
+          "task-route-cards.md"
+        ]
+      },
+      {
+        "provider": 2,
+        "model": "alibaba-token-plan-2/qwen3.8-flash",
+        "case": "project_application",
+        "arm": "candidate",
+        "effort": "max",
+        "exit_code": 0,
+        "error": null,
+        "valid_final": true,
+        "seconds": 259.3,
+        "prompt_sha256": "d44d9bc09b5107ab0adb09ef44bd0bc7cae279be6ad2119efe9045f7bb654861",
+        "path": "runs/2/project_application/candidate/max",
+        "repeat": false,
+        "chars": 257,
+        "final_sha256": "1983b47f9c8fad80d99824cfcebc726781ffdb138b58cb59dda384002a928539",
+        "native_usage": {
+          "input_tokens": 261910,
+          "cached_input_tokens": 237824,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 12642,
+          "reasoning_output_tokens": 10507
+        },
+        "document_command_output_chars": 16814,
+        "all_command_output_chars": 21807,
+        "command_count": 10,
+        "document_read_names": [
+          "SKILL.md",
+          "genre-playbook-project-application.md",
+          "information-selection.md",
+          "prose-lint-usage.md",
+          "reference-index.md",
+          "task-route-cards.md"
+        ]
+      },
+      {
+        "provider": 3,
+        "model": "opencode-go/deepseek-v4-flash",
+        "case": "local_edit",
+        "arm": "baseline",
+        "effort": "max",
+        "exit_code": 0,
+        "error": null,
+        "valid_final": true,
+        "seconds": 17.81,
+        "prompt_sha256": "2c06c9f837d0238d81a77ff9634cd23951cbefc37276ec0dc4e13be7fffe5f7e",
+        "path": "runs/3/local_edit/baseline/max",
+        "repeat": false,
+        "chars": 26,
+        "final_sha256": "933d02e637f017602ba5e395cef7cc1121a2e547e31ff51253373a0b21a1ef96",
+        "native_usage": {
+          "input_tokens": 58216,
+          "cached_input_tokens": 40832,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 1127,
+          "reasoning_output_tokens": 673
+        },
+        "document_command_output_chars": 12833,
+        "all_command_output_chars": 12833,
+        "command_count": 3,
+        "document_read_names": [
+          "SKILL.md",
+          "reference-index.md",
+          "task-route-cards.md"
+        ]
+      },
+      {
+        "provider": 3,
+        "model": "opencode-go/deepseek-v4-flash",
+        "case": "local_edit",
+        "arm": "candidate",
+        "effort": "max",
+        "exit_code": 0,
+        "error": null,
+        "valid_final": true,
+        "seconds": 18.92,
+        "prompt_sha256": "7809d4aa00c08cbfb5202db57b692fd20aa90eb46b70f7117ea05a1b4bdd56b2",
+        "path": "runs/3/local_edit/candidate/max",
+        "repeat": false,
+        "chars": 26,
+        "final_sha256": "933d02e637f017602ba5e395cef7cc1121a2e547e31ff51253373a0b21a1ef96",
+        "native_usage": {
+          "input_tokens": 54726,
+          "cached_input_tokens": 39424,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 1161,
+          "reasoning_output_tokens": 723
+        },
+        "document_command_output_chars": 9049,
+        "all_command_output_chars": 9120,
+        "command_count": 3,
+        "document_read_names": [
+          "SKILL.md",
+          "task-route-cards.md"
+        ]
+      },
+      {
+        "provider": 4,
+        "model": "ollama-cloud/glm-5.3-flash",
+        "case": "word_text",
+        "arm": "baseline",
+        "effort": "max",
+        "exit_code": 0,
+        "error": null,
+        "valid_final": true,
+        "seconds": 107.67,
+        "prompt_sha256": "0f34b28498cd6f86b3dafe59713eca6adf208101925571079f50b1084d3d784c",
+        "path": "runs/4/word_text/baseline/max",
+        "repeat": false,
+        "chars": 190,
+        "final_sha256": "3f73a893a83a86fa9ce8d84981432ceae1ef872856c5b6b0e17271426ab0a85f",
+        "native_usage": {
+          "input_tokens": 59389,
+          "cached_input_tokens": 0,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 7509,
+          "reasoning_output_tokens": 0
+        },
+        "document_command_output_chars": 7612,
+        "all_command_output_chars": 18785,
+        "command_count": 5,
+        "document_read_names": [
+          "SKILL.md"
+        ]
+      },
+      {
+        "provider": 4,
+        "model": "ollama-cloud/glm-5.3-flash",
+        "case": "word_text",
+        "arm": "candidate",
+        "effort": "max",
+        "exit_code": 0,
+        "error": null,
+        "valid_final": true,
+        "seconds": 73.14,
+        "prompt_sha256": "ec6263578403f2791ba2cd3423e9e987ac8cf87eebf4a44013771322fc6d1592",
+        "path": "runs/4/word_text/candidate/max",
+        "repeat": false,
+        "chars": 71,
+        "final_sha256": "bb93d0167f17176da3b0acf43e56c55277914fa8f1f1b8d77eadda2e46b43f5d",
+        "native_usage": {
+          "input_tokens": 50197,
+          "cached_input_tokens": 0,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 3735,
+          "reasoning_output_tokens": 0
+        },
+        "document_command_output_chars": 11350,
+        "all_command_output_chars": 11350,
+        "command_count": 3,
+        "document_read_names": [
+          "SKILL.md",
+          "format-gbt9704.md"
+        ]
+      }
+    ]
+  }
+}
