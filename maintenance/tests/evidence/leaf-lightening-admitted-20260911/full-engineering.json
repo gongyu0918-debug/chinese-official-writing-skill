@@ -1,0 +1,38 @@
+{
+  "baseline_main": "9db0379f0267557fbf33f36d4c7940466ae71030",
+  "product_candidate": "975be504a9297ebaf70a3780458391145b24835a",
+  "executed_head": "5c5c37f0fbfc41e4220d45416f0d105dbef5dc5c",
+  "canonical_tree_git_sha1": "65ace275b5906daddf4c0d3dea161a47ba90a71b",
+  "worktree": "F:\\Workspaces\\chinese-official-writing-skill\\output\\route-worktrees\\leaf-lightening-admitted-20260911",
+  "command": [
+    "C:\\Users\\admin\\AppData\\Local\\hermes\\hermes-agent\\venv\\Scripts\\python.exe",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "maintenance/tests",
+    "-p",
+    "test_*.py"
+  ],
+  "started_utc": "2026-09-10T20:37:57.776808+00:00",
+  "exit_code": 0,
+  "wall_seconds": 168.018,
+  "unittest_summaries": [
+    {
+      "tests": 850,
+      "seconds": 166.762
+    }
+  ],
+  "tests_run": 850,
+  "unittest_seconds": 166.762,
+  "log": "F:\\Workspaces\\chinese-official-writing-skill\\output\\route-worktrees\\leaf-lightening-admitted-20260911\\output\\leaf-lightening-admitted-20260911\\full-suite.txt",
+  "log_bytes": 2766,
+  "log_sha256": "7e6d05667bb5c5dabe57e9b032b9f16bebb79eac7f6b94f691201162c00c9564",
+  "full_suite_run_number_for_this_small_candidate": 1,
+  "repeated": false,
+  "large_candidate_861_result_reused": false,
+  "quick_validation_record": "F:\\Workspaces\\chinese-official-writing-skill\\output\\route-worktrees\\leaf-lightening-admitted-20260911\\maintenance\\tests\\evidence\\leaf-lightening-admitted-20260911\\quick-validation.json",
+  "quick_validation_passed": 5,
+  "quick_validation_total": 5,
+  "limits": "Engineering validation only; no model or Word run was performed here and this is not a merge or publication receipt."
+}

@@ -1,0 +1,57 @@
+[
+  {
+    "root": "F:\\Workspaces\\chinese-official-writing-skill\\output\\route-worktrees\\leaf-lightening-admitted-20260911\\chinese-official-writing",
+    "command": [
+      "C:\\Users\\admin\\AppData\\Local\\hermes\\hermes-agent\\venv\\Scripts\\python.exe",
+      "C:\\Users\\admin\\.codex\\skills\\.system\\skill-creator\\scripts\\quick_validate.py",
+      "F:\\Workspaces\\chinese-official-writing-skill\\output\\route-worktrees\\leaf-lightening-admitted-20260911\\chinese-official-writing"
+    ],
+    "exit_code": 0,
+    "stdout": "Skill is valid!\r\n",
+    "stderr": ""
+  },
+  {
+    "root": "F:\\Workspaces\\chinese-official-writing-skill\\output\\route-worktrees\\leaf-lightening-admitted-20260911\\packages\\agent-skills\\skills\\chinese-official-writing",
+    "command": [
+      "C:\\Users\\admin\\AppData\\Local\\hermes\\hermes-agent\\venv\\Scripts\\python.exe",
+      "C:\\Users\\admin\\.codex\\skills\\.system\\skill-creator\\scripts\\quick_validate.py",
+      "F:\\Workspaces\\chinese-official-writing-skill\\output\\route-worktrees\\leaf-lightening-admitted-20260911\\packages\\agent-skills\\skills\\chinese-official-writing"
+    ],
+    "exit_code": 0,
+    "stdout": "Skill is valid!\r\n",
+    "stderr": ""
+  },
+  {
+    "root": "F:\\Workspaces\\chinese-official-writing-skill\\output\\route-worktrees\\leaf-lightening-admitted-20260911\\packages\\qwen-code\\skills\\chinese-official-writing",
+    "command": [
+      "C:\\Users\\admin\\AppData\\Local\\hermes\\hermes-agent\\venv\\Scripts\\python.exe",
+      "C:\\Users\\admin\\.codex\\skills\\.system\\skill-creator\\scripts\\quick_validate.py",
+      "F:\\Workspaces\\chinese-official-writing-skill\\output\\route-worktrees\\leaf-lightening-admitted-20260911\\packages\\qwen-code\\skills\\chinese-official-writing"
+    ],
+    "exit_code": 0,
+    "stdout": "Skill is valid!\r\n",
+    "stderr": ""
+  },
+  {
+    "root": "F:\\Workspaces\\chinese-official-writing-skill\\output\\route-worktrees\\leaf-lightening-admitted-20260911\\packages\\qwenwork\\skills\\chinese-official-writing",
+    "command": [
+      "C:\\Users\\admin\\AppData\\Local\\hermes\\hermes-agent\\venv\\Scripts\\python.exe",
+      "C:\\Users\\admin\\.codex\\skills\\.system\\skill-creator\\scripts\\quick_validate.py",
+      "F:\\Workspaces\\chinese-official-writing-skill\\output\\route-worktrees\\leaf-lightening-admitted-20260911\\packages\\qwenwork\\skills\\chinese-official-writing"
+    ],
+    "exit_code": 0,
+    "stdout": "Skill is valid!\r\n",
+    "stderr": ""
+  },
+  {
+    "root": "F:\\Workspaces\\chinese-official-writing-skill\\output\\route-worktrees\\leaf-lightening-admitted-20260911\\packages\\hermes\\skills\\chinese-official-writing",
+    "command": [
+      "C:\\Users\\admin\\AppData\\Local\\hermes\\hermes-agent\\venv\\Scripts\\python.exe",
+      "C:\\Users\\admin\\.codex\\skills\\.system\\skill-creator\\scripts\\quick_validate.py",
+      "F:\\Workspaces\\chinese-official-writing-skill\\output\\route-worktrees\\leaf-lightening-admitted-20260911\\packages\\hermes\\skills\\chinese-official-writing"
+    ],
+    "exit_code": 0,
+    "stdout": "Skill is valid!\r\n",
+    "stderr": ""
+  }
+]
