@@ -41,3 +41,9 @@ canonical仅改总审、结构、索引三页，并同步五个兼容包的对�
 小组合相关边界、可达及真实提示消融102/102通过。最终全量只跑一次，实际Hermes环境Python执行 `-m unittest discover -s maintenance/tests -p 'test_*.py'`，850/850通过，exit 0，墙钟168.018秒。canonical与四个普通兼容包的 `quick_validate.py` 5/5通过；OpenClaw特殊包由工程门覆盖。没有复用实验大组合的861结果。详见[全量记录](../tests/evidence/leaf-lightening-admitted-20260911/full-engineering.json)和[quick记录](../tests/evidence/leaf-lightening-admitted-20260911/quick-validation.json)。
 
 工程通过只说明相应检查通过，不覆盖实际稿件的质量负点。准入结论仅适用于这两项；算力、文种混合叶和纪要指针仍需新的可归因原型及写稿证据，不能按文件已拆分推定改善。本轮没有推送、tag变更或平台发布；本地main推进后按项目既有授权同步Pro安装，安装、信任和真实Hook执行分别记录。
+
+## 本地完成记录
+
+本地main已通过 `37fb5346bde9356177fca1070454cf2bfbae2c65` 合并上述小分支，合并产品树与测试冻结值一致。Pro同步返回 `INSTALLED`，版本0.4.15，本地构建内容指纹 `59918082e2068c9756e47d607e5250afcc3d05832dcfcbdc0ac6b85e30d15928`。实际载荷、宿主插件、Codex缓存三处的普通入口及44个reference，共135份文件逐字节匹配该main。
+
+两条Hook配置显示enabled/trusted，安装器总状态仍为 `AWAITING_HOST_TRUST`；本轮未进行真实宿主Hook执行或敏感通道在线验证，不宣称已经激活运行。同步采用Pro已提交来源，未装入未提交改动。详见[本地合并与安装记录](../tests/evidence/leaf-lightening-admitted-20260911/local-merge-install.json)。本节及回执为合并后的纯维护记录，不改变产品内容指纹，按本机同步规范无需再次打包。
