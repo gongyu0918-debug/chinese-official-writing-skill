@@ -1,0 +1,39 @@
+{
+  "exit_code": 1,
+  "seconds": 130.16,
+  "command": "python -m unittest discover -s maintenance/tests -p test_*.py",
+  "setup_note": "Initial shell redirection did not start tests because output directory was absent; directory created before this sole executed full run.",
+  "full_run_result": {
+    "run": 849,
+    "passed": 847,
+    "failed": 2
+  },
+  "failures": {
+    "test_current_skill_passes_real_prompt_cases": [
+      "P038 old fixed margin/output warning strings",
+      "P111 old correspondence selector strings"
+    ],
+    "test_every_canonical_reference_and_script_has_an_entrypoint": "New glossary is reached through AI/anti-AI leaf; old gate demanded direct occurrence in root entry surfaces."
+  },
+  "targeted_followup": {
+    "command": "python -m unittest maintenance.tests.test_real_prompt_ablation maintenance.tests.test_repository_reachability maintenance.tests.test_skill_boundary",
+    "run": 102,
+    "passed": 102,
+    "failed": 0,
+    "seconds": 1.456,
+    "intermediate_failure": "New P038 alternative initially omitted from expected alternative-case registry; registry then updated and same affected modules passed."
+  },
+  "baseline_compatibility": {
+    "cases": 111,
+    "failed": 0
+  },
+  "product_rule_changes_due_to_tests": false,
+  "rerun_policy": "Full suite once; affected modules after concrete stale-assumption fixes. Remaining748 original tests unchanged and already passed.",
+  "engineering_commit": "cd90854a9ab91a86ec9f75267779edb9de7852ea",
+  "canonical_tree": "58bdd7e523794437b4f0b61ae3b9f0c1a98e254f",
+  "frozen_candidate_tree": "58bdd7e523794437b4f0b61ae3b9f0c1a98e254f",
+  "full_log": {
+    "path": "F:/Workspaces/chinese-official-writing-skill/output/route-worktrees/progressive-route-integration-20260910/output/final-unittest.log",
+    "sha256": "34e9896089e1077c01860a04b6ca2bb03c014706984aabd7f2fbbfc0e3b1d79e"
+  }
+}

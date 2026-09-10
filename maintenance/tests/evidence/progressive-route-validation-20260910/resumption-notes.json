@@ -8,5 +8,13 @@
     "correspondence-refined provider2",
     "combined providers0-4"
   ],
-  "grading": "Same-model same-effort primary pairs; preserve initial failures; matched high only on technical-invalid max; causal negatives require actual changed-rule exposure and appropriate repeats."
+  "grading": "Same-model same-effort primary pairs; preserve initial failures; matched high only on technical-invalid max; causal negatives require actual changed-rule exposure and appropriate repeats.",
+  "pre_resumption_engineering": {
+    "snapshot_revision": "9be506014d96ed43a940c46c2c0915a15244d116",
+    "temp_boundary_tests": "83/83 after only stale assertion and reviewed two-selector fingerprint updates",
+    "generic_validation": "canonical plus four normal packages 5/5",
+    "patch_source": "C:\\Users\\admin\\AppData\\Local\\Temp\\official-route-engineering-20260910\\output\\engineering-test-adaptation.patch",
+    "repository_patch_check": "git apply --check succeeded on unchanged integration tree on resumption",
+    "scope_limit": "No engineering patch applied or full final suite run before combined real-writing admission."
+  }
 }

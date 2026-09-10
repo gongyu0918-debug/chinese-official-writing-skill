@@ -72,5 +72,124 @@
     "candidate_negative": "Candidate elaborates resource/performance/service subdimensions as unconfirmed or unsupported by current information. This may over-expand the requested source-only technical portion but is not a new numeric requirement or commitment. Baseline uses more concise overall insufficient-condition reasoning.",
     "routing": "Both read full AI leaf; candidate reads information-selection before AI, baseline after. Neither reads technical-terms,Q1 anti-AI or Q2 workflow/review-checklist.",
     "attribution": "Only local glossary block differs in exposed AI page; all technical body rules remain byte-identical. Both have unrequested process preface. Preserve scope/style negative and one exact max A/B repeat; do not infer a hard rule-caused regression solely from added technical vocabulary."
+  },
+  {
+    "batch": "combined",
+    "provider": 1,
+    "case": "complex_reply",
+    "effort": "high",
+    "technical": "baseline max timeout300; candidate max valid retained as supplemental, only high/high selected pair.",
+    "facts": "Both paired bodies correctly distinguish 2page project directory,4page field table with only first2 attached,last2 unfinished/no completion time,September9 separately sent history,and undecided joint checking. No contact/completion promise. Candidate max supplemental also preserves these states; 未确定 is acceptable for undecided joint checking.",
+    "routing": "Candidate max and high both follow correspondence short leaf to genre-playbooks; baseline high reads genre-playbooks directly. Quality information/final-review are retained.",
+    "delivery": "Both high responses add unrequested process explanation; both native traces report scratch-file deletion policy rejection. Candidate explanation is longer and retained as output-mode negative, not proof C2 causes it. No runtime or deletion-policy change made to seek cleaner outputs.",
+    "attribution": "C2 supports clarified fallback on Qwen1; not a universal guarantee. Local sidebar weaknesses remain outside the changed selection rules; candidate-only hard business regression not observed."
+  },
+  {
+    "batch": "combined-depth",
+    "provider": 0,
+    "case": "technical_control",
+    "effort": "max",
+    "repeat": true,
+    "facts": "Both original-byte repeats expand far beyond supplied facts. Baseline now lists resource,model,lease,renewal,return,payment and extra-cost uncertainties; candidate lists resource/service/acceptance/billing uncertainties. This category is not candidate-exclusive.",
+    "specific_negatives": "Baseline monthly quote becomes 按月计费 and lease unset expands to renewal/return/payment unsettled. Candidate monthly quote also becomes billing terms; 验收方式未定 is unsupplied, and SLA/acceptance unset is over-inferred to settlement/liability/compensation unestablished. Candidate also says SLA 尚未与供应方达成一致, potentially implying a negotiation context not supplied. These stronger statements are distinguished from harmless source-information gaps.",
+    "routing": "Both read AI,information-selection,genre-playbooks and feasibility review; neither reads new technical-terms. Technical body rules remain identical.",
+    "attribution": "Repeat confirms a material common baseline weakness in sparse technical drafting; it does not erase candidate negatives. First baseline concise versus repeated baseline extensive establishes model variance. No stable candidate-exclusive error class or changed-rule requirement is shown; do not claim this refactor fixes source expansion."
+  },
+  {
+    "batch": "length-exposure",
+    "provider": 4,
+    "case": "near_limit_notice",
+    "effort": "max",
+    "facts": "Both preserve all business facts and exact inner quote, deliver body only, and fit260 cap. They actually read both modified target pages before writing.",
+    "routing": "Explicitly exposed workflow and review-checklist in both arms; no other leaf required. This is an exposure experiment, not natural-route availability proof.",
+    "attribution": "Q2 direct full-notice writing behavior is noninferior in this pair. Baseline also disregards old fixed margin without a quality failure; no keyword or 5%-10% mechanical failure applied.",
+    "length": {
+      "baseline": 257,
+      "candidate": 255
+    }
+  },
+  {
+    "batch": "correspondence-refined",
+    "provider": 2,
+    "case": "complex_reply",
+    "effort": null,
+    "technical": "baseline max timeout300,candidate max valid293.98s,baseline high valid243.01s,candidate high timeout300. No same-effort complete pair; do not pair candidate max with baseline high.",
+    "candidate_max_facts": "Original negative-origin channel now reads short correspondence leaf then full genre-playbooks; correct page/attachment/separate-send states and undecided joint check; old contact/completion promise not reproduced. Unrequested explanatory footer persists.",
+    "baseline_high_facts": "Available baseline high body also correct; explanatory preface/footer and temporary-file narration remain. Supplemental observation only, not matched comparison.",
+    "attribution": "Four other C2 same-effort pairs plus candidate max supplemental support a narrowly clarified selector. Original candidate-only promise is not stably reproduced, but exact-source-channel matched-pair uncertainty remains technical; not a quality failure and not erased."
+  },
+  {
+    "batch": "length-exposure",
+    "provider": 4,
+    "case": "incompatible_quote_notice",
+    "effort": "high",
+    "technical": "baseline max exit1; candidate max valid supplemental; high/high paired.",
+    "impossibility": {
+      "immutable_inner_quote_chars": 111,
+      "whole_notice_cap": 100
+    },
+    "counts": {
+      "baseline_high": 246,
+      "candidate_high": 231,
+      "candidate_max": 233
+    },
+    "facts": "Both paired outputs keep exact quote,complete title/addressee/attachment/signature/date,business quantities/roles/channel/deadline/contact,and unsettled signature method. Both are over100; neither claims compliant or adds forbidden process explanation.",
+    "candidate_wording": "乙组补签3份，方式待定 is task/role wording in a notice, not a completed-action claim; there is no 已 or new completion outcome. It is terser than baseline but not a hard state upgrade by fixed-keyword gate.",
+    "routing": "Both actually read workflow and review-checklist; baseline additionally information-selection.",
+    "attribution": "Q2 preserves full fact-safe writing under incompatible constraints. Neither overall length compliance nor universal improvement is claimed. Together with feasible257/255 case this closes direct target-leaf behavior coverage without demanding an impossible all-pass."
+  },
+  {
+    "batch": "combined",
+    "provider": 2,
+    "case": "scoped_review",
+    "effort": "max",
+    "facts": "Both actual anti-AI readers identify empty closed-loop/ecology phrase,unsupported high-quality-development result,and redundant division-of-work summary. Neither rewrites full source; both preserve concrete statistics and ledger facts.",
+    "scope": "Candidate keeps three requested substantive issues; baseline additionally flags first-person 我们, a weak/unnecessary expansion of this limited review. Candidate correctly resolves 上述分工 to the immediately preceding clause; earlier GLM bad-antecedent rationale not reproduced.",
+    "candidate_negative": "Candidate adds routing/process preface beyond the requested review-item form; baseline also adds a short intro, but candidate more technical. Preserve minor delivery clutter.",
+    "attribution": "Supports Q1 semantic rather than keyword/frequency judgment under combined candidate; no candidate-only hard content regression."
+  },
+  {
+    "batch": "combined-depth",
+    "provider": 1,
+    "case": "long_report",
+    "effort": "high",
+    "technical": "baseline max timeout300,candidate max valid748char supplemental; matched high/high selected.",
+    "counts": {
+      "baseline": {
+        "whole_response": 809,
+        "body": 736
+      },
+      "candidate": {
+        "whole_response": 733,
+        "body": 733
+      }
+    },
+    "facts": "Both preserve all key quantities,record categories,unfinished work,known owners,issue storage location,September6 dispatch/5feedback/3missing/pending recheck,unissued correction demands,September12 submission,and undecided follow-up. Candidate puts electronic/paper owners in the existing-arrangements section; this satisfies clear responsibility without repeating them in each paragraph.",
+    "delivery": "Baseline adds count/process preface violating requested body-only; candidate high and max are clean body-only. Neither body misassigns record custodians as earlier MiniMax baseline did.",
+    "routing": "Both follow existing compression-details and report/card routes,not changed workflow or review-checklist.",
+    "attribution": "Successful long-form end-to-end control across second provider. Do not credit Q2 for sidebar difference because modified rules were not exposed; factual completeness supports candidate combination without a fixed-sentence retention gate."
+  },
+  {
+    "batch": "combined-depth",
+    "provider": 2,
+    "case": "opinion_rewrite",
+    "effort": "high",
+    "technical": "baseline max valid,candidate max timeout300; high/high paired.",
+    "facts": "Both preserve draft status,3pages with only1-2verified/enclosed,page3pending/excluded,existing email,unset feedback deadline,undecided adoption,unset formal issuance.",
+    "candidate_negative": "Candidate adds 我中心编制了,asserting compiler/compilation provenance absent from records. Treat as a possible substantive source-only violation rather than dismissing it as synonym. Also repeats the1-2page scope and adds process preface. Baseline high avoids provenance assertion and preface; baseline max has preface.",
+    "routing": "Both read full genre-playbooks and correspondence leaf; candidate follows new short-to-full fallback. No Q1/Q2/glossary target read.",
+    "next": "One exact original-byte high/high repeat to test whether unsupported compiler provenance is candidate-exclusive and stable; retain first result and do not mutate product or rubric to erase it.",
+    "rule_inspection": "No compiler/compilation instruction found in the actually loaded correspondence playbooks,genre checklist,handling-elements or formal-addressing pages. C2 changes selection conditions only; letter body rules remain identical. This weakens a direct text-rule mechanism but does not erase the observed candidate negative."
+  },
+  {
+    "batch": "combined-depth",
+    "provider": 2,
+    "case": "opinion_rewrite",
+    "effort": "high",
+    "repeat": true,
+    "technical": "baseline exact repeat timeout300,candidate exact repeat valid273.89s. Not a complete matched repeat; candidate observation supplemental only.",
+    "candidate_facts": "No compiler/compilation claim; correct draft,page1-2provided/page3pending,known channel,unset deadline,undecided adoption and issuance; body-only with no new commitment.",
+    "routing": "Again short correspondence leaf to full genre-playbooks; now also reads more quality pages. Same frozen product and exact original prompt bytes; no rule change between first/repeat.",
+    "attribution": "Initial provenance error retained. It did not stably recur in the exact candidate repeat; absence of same-effort baseline repeat prevents a causal claim of pure randomness. Across other C2/combined matched pairs there is no confirmed stable candidate-only hard regression. Admit narrow selector clarification without claiming universal fallback or factual perfection."
   }
 ]

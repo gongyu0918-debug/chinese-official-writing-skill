@@ -1,0 +1,12 @@
+{
+  "archive": "F:\\Workspaces\\chinese-official-writing-skill-archives\\experiments\\skill-lightening-20260910\\progressive-route-validation\\engineering-and-environment.zip",
+  "sha256": "ac24ce5c8b893e3faa7318e3d8f88a9e0c7a3026aa9f36f1c23245cadc9c75e6",
+  "verified_members": 5,
+  "members": {
+    "full-unittest.log": "34e9896089e1077c01860a04b6ca2bb03c014706984aabd7f2fbbfc0e3b1d79e",
+    "full-unittest-receipt.json": "e5f7e302048f7c16c66b0a61920aa73bcdab1a82a4712821845e49bcad34ba8b",
+    "blocked-combination-attempt.json": "b582cc83bfb3f73e8987db1a2e893974f865e44fd030d7bb5bcfa970bb9ba227",
+    "blocked-trace.jsonl": "9185762f80b1ed13f1a610a06d35b4d12a45bdd1c8d6eba94dc516506f209c6d",
+    "blocked-stderr.txt": "786ca8ba975e8fd21fb5c3805c32e7058748cbeb1626cd90719bf3b7b6fd0808"
+  }
+}

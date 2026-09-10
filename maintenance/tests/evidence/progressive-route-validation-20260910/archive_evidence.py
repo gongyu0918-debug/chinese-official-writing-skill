@@ -1,5 +1,5 @@
 """Archive bounded evidence, excluding model homes, credentials, caches and temp dirs."""
-import hashlib,json,zipfile
+import hashlib,json,zipfile,shutil,sys
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[4]
 OUT=ROOT/'output/progressive-route-validation-20260910'
@@ -7,6 +7,10 @@ E=Path(__file__).resolve().parent
 DEST=Path('F:/Workspaces/chinese-official-writing-skill-archives/experiments/skill-lightening-20260910/progressive-route-validation')
 def sha(b):return hashlib.sha256(b).hexdigest()
 records=[]
+reuse={}
+if len(sys.argv)>1:
+ prior=json.loads(Path(sys.argv[1]).read_text(encoding='utf-8'))
+ reuse={r['atom']:r for r in prior}
 for atom in ['terminology','correspondence','correspondence-refined','word-guidance','length-alignment','combined','combined-depth','length-exposure']:
  source=OUT/atom
  if not (source/'freeze.json').is_file():continue
@@ -22,6 +26,15 @@ for atom in ['terminology','correspondence','correspondence-refined','word-guida
  entries={p.relative_to(OUT).as_posix():p for p in paths if p.is_file()}
  manifest={n:sha(p.read_bytes()) for n,p in sorted(entries.items())}
  DEST.mkdir(parents=True,exist_ok=True);dest=DEST/(atom+'.zip');assert not dest.exists(),dest
+ previous=reuse.get(atom)
+ if previous:
+  old=Path(previous['archive'])
+  assert sha(old.read_bytes())==previous['sha256'],old
+  with zipfile.ZipFile(old) as z:old_manifest=json.loads(z.read('MANIFEST.json'))
+  if old_manifest==manifest and previous['verified_members']==len(manifest):
+   shutil.copyfile(old,dest);assert sha(dest.read_bytes())==previous['sha256']
+   records.append(dict(previous,archive=str(dest),reused_verified_archive=True))
+   continue
  with zipfile.ZipFile(dest,'w',zipfile.ZIP_DEFLATED) as z:
   for n,p in entries.items():z.write(p,n)
   z.writestr('MANIFEST.json',json.dumps(manifest,ensure_ascii=False,indent=2))
