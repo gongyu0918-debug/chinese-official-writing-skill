@@ -6,4 +6,4 @@
 
 验证：公开基线6组写稿对照、12份有效稿（1组基线因超时回退high）；已有原子与组合证据继续适用。共性推断过强、背景补足和旁白未宣称修复。唯一全量827项，3处旧版本期望更新后账本套件16/16通过；原始失败保留。
 
-详见[工程报告](../../docs/release-v1632-engineering.md)、[发布说明](release-v1632/release-notes.md)、[范围](release-v1632/scope.json)、[写稿摘要](release-v1632/writing-summary.json)及[证据归档](release-v1632/archive.json)。平台状态以正式回执及公开查询为准。
+详见[工程报告](../../docs/release-v1632-engineering.md)、[发布说明](release-v1632/release-notes.md)、[范围](release-v1632/scope.json)、[写稿摘要](release-v1632/writing-summary.json)及[证据归档](release-v1632/archive.json)。GitHub Release 已发布；SkillHub、ClawHub 均已取得成功提交回执，按项目规范视为发布完成，不再做提交后的只读核验。正式回执摘要见 [发布记录](release-v1632/publication-evidence.json)。

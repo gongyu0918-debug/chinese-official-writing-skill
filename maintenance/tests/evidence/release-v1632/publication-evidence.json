@@ -1,0 +1,42 @@
+{
+  "version": "1.6.32",
+  "release_commit": "236784efe2a7a0bf9acd3a49f1d3ad0cff1586a8",
+  "github": {
+    "body": "精简写作入口，按任务加载参考资料，减少无关规则干扰。\r\n\r\n优化新闻、评论、合作建议、整改方案和情况反映的文种路由，保留事实状态边界，以及语言、论证、去 AI 味和校对衔接。同步更新兼容安装包。\r\n",
+    "isDraft": false,
+    "isPrerelease": false,
+    "publishedAt": "2026-09-10T06:23:55Z",
+    "tagName": "v1.6.32",
+    "url": "https://github.com/gongyu0918-debug/chinese-official-writing-skill/releases/tag/v1.6.32"
+  },
+  "skillhub": {
+    "ok": true,
+    "version": "1.6.32",
+    "versionId": 303327,
+    "fileCount": 90,
+    "fingerprint": "7af71017a1b7c6b4875b6c398bfa8aedc846066c020187689d22fe771f72367a",
+    "contentAuditStatus": "pending",
+    "reviewStatus": "pending",
+    "securityScanStatus": "pending"
+  },
+  "clawhub": {
+    "ok": true,
+    "status": "published",
+    "version": "1.6.32",
+    "versionId": "k978k8h178agx2qyz43b0czyex8e58n8",
+    "fileCount": 40,
+    "fingerprint": "d6f034e483b34b08136e190e402cc5d72e3441f33b9f309c239bbbf65a64f712"
+  },
+  "formal_submissions": {
+    "github_release": 1,
+    "skillhub": 1,
+    "clawhub": 1
+  },
+  "completion": "GitHub published. SkillHub and ClawHub successful submission receipts complete both platform tasks under explicit project policy. No further read-only verification requested or performed after policy update.",
+  "historical_public_observation": "GitHub published; SkillHub latest still1.6.31; ClawHub exact version initially pending propagation. Recheck read-only; never resubmit for index lag.",
+  "platform_tasks_completed": {
+    "github": true,
+    "skillhub": true,
+    "clawhub": true
+  }
+}
