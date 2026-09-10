@@ -1,0 +1,19 @@
+{
+  "stage": "pre-admission minimal engineering check",
+  "command": [
+    "C:\\Users\\admin\\AppData\\Local\\hermes\\hermes-agent\\venv\\Scripts\\python.exe",
+    "-m",
+    "unittest",
+    "maintenance.tests.test_skill_boundary",
+    "maintenance.tests.test_status_ledger_consistency",
+    "maintenance.tests.test_repository_reachability",
+    "maintenance.tests.test_real_prompt_ablation"
+  ],
+  "exit_code": 0,
+  "wall_seconds": 2.236,
+  "tests_run": 116,
+  "log": "F:\\Workspaces\\chinese-official-writing-skill\\output\\release-worktrees\\release-v1.6.33\\output\\release-v1633-engineering\\related-pre-admission.txt",
+  "log_sha256": "4fe0952f34a018bfa3208dcb9463a2f4dd576cc1af4de818dda918ad3d6caf67",
+  "full_suite_run": false,
+  "writing_admission_not_implied": true
+}

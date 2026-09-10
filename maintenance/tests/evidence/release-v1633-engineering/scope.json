@@ -1,0 +1,45 @@
+{
+  "base_tag": "v1.6.32",
+  "base_tag_commit": "236784efe2a7a0bf9acd3a49f1d3ad0cff1586a8",
+  "writing_freeze": "dded78a783aaac897a024ca77a331de6eefe9809",
+  "release_version": "1.6.33",
+  "stage": "metadata and minimal engineering prepared; real-writing admission pending",
+  "canonical_changed_files": [
+    "chinese-official-writing/hooks/adapters/claude-code/manifest.json",
+    "chinese-official-writing/hooks/adapters/codebuddy/manifest.json",
+    "chinese-official-writing/hooks/adapters/codex/manifest.json",
+    "chinese-official-writing/hooks/adapters/deepseek-harness/package.json",
+    "chinese-official-writing/hooks/adapters/kimi-code/manifest.json",
+    "chinese-official-writing/hooks/adapters/qwen-code/manifest.json",
+    "chinese-official-writing/hooks/adapters/zcode/manifest.json",
+    "chinese-official-writing/references/anti-ai-patterns.md"
+  ],
+  "writing_rule_changes": [
+    "chinese-official-writing/references/anti-ai-patterns.md"
+  ],
+  "version_only_adapter_files": [
+    "chinese-official-writing/hooks/adapters/claude-code/manifest.json",
+    "chinese-official-writing/hooks/adapters/codebuddy/manifest.json",
+    "chinese-official-writing/hooks/adapters/codex/manifest.json",
+    "chinese-official-writing/hooks/adapters/deepseek-harness/package.json",
+    "chinese-official-writing/hooks/adapters/kimi-code/manifest.json",
+    "chinese-official-writing/hooks/adapters/qwen-code/manifest.json",
+    "chinese-official-writing/hooks/adapters/zcode/manifest.json"
+  ],
+  "adapter_nonversion_json_unchanged": true,
+  "other_canonical_file_bytes_unchanged_relative_to_base": true,
+  "canonical_file_set_unchanged": true,
+  "homepage_lf_chars": 7930,
+  "homepage_unchanged": true,
+  "anti_ai_lf_chars_before": 5409,
+  "anti_ai_lf_chars_after": 5340,
+  "anti_ai_lf_char_delta": -69,
+  "anti_ai_sha256": "0901d58db86d4498538868c2f04cbd387befdc319e778a09fc091b57ed3712e2",
+  "writing_freeze_preserved": true,
+  "packages_remain_on_demand_generated": true,
+  "no_unpublished_main_hook_route_request_increment": true,
+  "full_suite_not_yet_run": true,
+  "final_packages_not_yet_generated": true,
+  "external_publication_performed": false,
+  "pro_installation_changed": false
+}
