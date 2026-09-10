@@ -7,7 +7,7 @@ E=Path(__file__).resolve().parent
 DEST=Path('F:/Workspaces/chinese-official-writing-skill-archives/experiments/skill-lightening-20260910/progressive-route-validation')
 def sha(b):return hashlib.sha256(b).hexdigest()
 records=[]
-for atom in ['terminology','correspondence','word-guidance','length-alignment','combined']:
+for atom in ['terminology','correspondence','correspondence-refined','word-guidance','length-alignment','combined']:
  source=OUT/atom
  if not (source/'freeze.json').is_file():continue
  freeze=json.loads((source/'freeze.json').read_text(encoding='utf-8'))
