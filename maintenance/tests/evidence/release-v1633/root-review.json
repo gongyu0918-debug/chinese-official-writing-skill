@@ -1,0 +1,33 @@
+{
+  "reviewed_at_utc": "2026-09-10T21:36:43.651808+00:00",
+  "base": "236784efe2a7a0bf9acd3a49f1d3ad0cff1586a8",
+  "reviewed_head": "ca48f87a89858ecdcbde3628a003927871e994c4",
+  "product_tree": "bc9f538eab44cf8d83d3e6af33018c52bd24d658",
+  "canonical_files_before_and_after": 90,
+  "canonical_changed_files": [
+    "chinese-official-writing/hooks/adapters/claude-code/manifest.json",
+    "chinese-official-writing/hooks/adapters/codebuddy/manifest.json",
+    "chinese-official-writing/hooks/adapters/codex/manifest.json",
+    "chinese-official-writing/hooks/adapters/deepseek-harness/package.json",
+    "chinese-official-writing/hooks/adapters/kimi-code/manifest.json",
+    "chinese-official-writing/hooks/adapters/qwen-code/manifest.json",
+    "chinese-official-writing/hooks/adapters/zcode/manifest.json",
+    "chinese-official-writing/references/anti-ai-patterns.md"
+  ],
+  "adapter_json_other_fields_equal": true,
+  "only_writing_change": "chinese-official-writing/references/anti-ai-patterns.md",
+  "anti_ai_lf_chars_removed": 69,
+  "homepage_same_bytes": true,
+  "homepage_lf_chars": 7930,
+  "writing_candidate_leaf_sha256": "0901d58db86d4498538868c2f04cbd387befdc319e778a09fc091b57ed3712e2",
+  "older_independent_Q1_candidate_byte_equal": true,
+  "root_draft_review": "All ten selected same-effort finals read and SHA verified. Q1 admitted with preserved scoped-review preface/self-reference wording noise; ordinary tail is bypass-only. 502 max failure remains technical, not counted as valid final.",
+  "hook_verification_is_separate": {
+    "repo": "F:/Workspaces/owp-hook-verification-20260911",
+    "commit": "3e88b508d54a1cb1044f9b4dc15648a0abe8aea0",
+    "actual_native_model_calls": 1,
+    "activation": "ENABLED/Stop",
+    "cleanup": "blocked by automatic approval; local isolated raw files retained"
+  },
+  "publication_authorized_or_performed_in_this_record": false
+}
