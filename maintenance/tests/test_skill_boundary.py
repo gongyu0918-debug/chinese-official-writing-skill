@@ -56,6 +56,17 @@ def read_routing_surfaces(skill_path: Path) -> str:
     return "\n".join(routed)
 
 
+def read_field_boundary(skill_root: Path) -> str:
+    """Resolve the field rule only through its declared entry or legacy location."""
+    home = (skill_root / "SKILL.md").read_text(encoding="utf-8")
+    if "`references/field-editing.md`" not in home:
+        return home
+    for term in ("保留字段名、顺序和单元边界", "只改指定值", "新增字段无给定值时留空"):
+        if term not in home:
+            raise AssertionError(f"entry field boundary missing: {term}")
+    return (skill_root / "references/field-editing.md").read_text(encoding="utf-8")
+
+
 class SkillBoundaryTests(unittest.TestCase):
     def test_only_one_agent_handoff_entrypoint_remains(self) -> None:
         self.assertTrue((ROOT / "AGENTS.md").is_file())
@@ -575,7 +586,10 @@ class SkillBoundaryTests(unittest.TestCase):
         )
 
         self.assertIn("不因文种名称已知而自动预读下列全部长 reference", skill)
-        self.assertIn("先确定起草、改稿、复核（默认只审不改）、排版交付模式", skill)
+        modes = skill.split("## 任务模式路由", 1)[1].split("## 核心流程", 1)[0]
+        self.assertIn("执行前先判定起草、改稿、复核、排版交付四类模式", modes)
+        self.assertIn("用户只要求检查、审查、格式核验或语气检查且未要求代改时", modes)
+        self.assertIn("不重写全文；用户要求代改时才输出改后正文", modes)
         self.assertIn("未命中时不扩大轻量卡的适用范围", skill)
         self.assertIn("以本页结束 reference 路由", cards)
         self.assertIn("不因文种名称已知而继续预读", cards)
@@ -676,14 +690,20 @@ class SkillBoundaryTests(unittest.TestCase):
         workflow = (ROOT / "chinese-official-writing" / "references" / "workflow.md").read_text(encoding="utf-8")
         checklist = (ROOT / "chinese-official-writing" / "references" / "review-checklist.md").read_text(encoding="utf-8")
 
+        structure = workflow
+        if "`structure-editing.md`" in workflow:
+            self.assertIn("增删、调序、粒度及主体变更按 `structure-editing.md`", workflow)
+            self.assertIn("具体结构操作读取 `references/structure-editing.md`", skill)
+            structure = (CANONICAL / "references/structure-editing.md").read_text(encoding="utf-8")
         for text in [skill, workflow, checklist]:
             self.assertIn("多轮", text)
+        for text in [skill, structure, checklist]:
             self.assertIn("增加自然段", text)
             self.assertIn("反馈渠道", text)
             self.assertIn("发送人", text)
             self.assertIn("接收方", text)
         self.assertIn("关键名词和结构标签一般保留原词", skill)
-        for text in [workflow, checklist]:
+        for text in [structure, checklist]:
             self.assertIn("原因分析", text)
         self.assertIn("改稿前小标题清单", checklist)
         self.assertIn("改稿后小标题清单", checklist)
@@ -1444,10 +1464,14 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assertIn("不用泛称、占位或未给流程补齐骨架", route_cards)
         self.assertIn("实质缺口只在输出模式允许时短列", checklist)
         self.assertIn("直接影响当前文种成立、请批事项或执行落地", information_selection)
-        self.assertIn("新增字段没有用户提供值时只写字段名并留空", workflow)
-        self.assertIn("即使用分号写在一行", workflow)
-        self.assertIn("不合并成连续句", workflow)
-        self.assertIn("不推断发票、票据、邮箱、截止日期", workflow)
+        field_details = workflow
+        if "`field-editing.md`" in workflow:
+            self.assertIn("`references/field-editing.md`", skill)
+            field_details = read_field_boundary(CANONICAL)
+        self.assertIn("新增字段没有用户提供值时只写字段名并留空", field_details)
+        self.assertIn("即使用分号写在一行", field_details)
+        self.assertIn("不合并成连续句", field_details)
+        self.assertIn("不推断发票、票据、邮箱、截止日期", field_details)
         self.assertIn("字段值未知", checklist)
         self.assertIn("分号串写的“字段名：字段值”序列", checklist)
         self.assertIn("字数自检", skill)
@@ -1456,13 +1480,17 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assertIn("去空行后的正文计数", workflow)
         self.assertIn("5%-10% 余量", workflow)
         self.assertIn("避免静默超字数", checklist)
-        self.assertIn("长篇限字稿件", skill)
+        compression = skill
+        if "`references/compression-details.md`" in skill:
+            self.assertIn("长文压缩和长篇限字时读取", skill)
+            compression = (CANONICAL / "references/compression-details.md").read_text(encoding="utf-8")
+        self.assertIn("长篇限字稿件", compression)
         self.assertIn("篇幅预算", workflow)
         self.assertIn("背景现状", workflow)
         self.assertIn("问题原因", workflow)
         self.assertIn("措施安排", workflow)
         self.assertIn("结尾落点", workflow)
-        self.assertIn("避免头重脚轻", skill)
+        self.assertIn("避免头重脚轻", compression)
         self.assertIn("草草收尾", checklist)
         self.assertIn("不要写成“已确认可作为 Word 稿基础”", format_ref)
         self.assertIn("评价强度", official_style)
@@ -1866,7 +1894,7 @@ class SkillBoundaryTests(unittest.TestCase):
         ]:
             self.assertIn(term, routed_playbooks)
         self.assertIn("用户已有提纲、模板、标题顺序时优先保留", skill)
-        self.assertIn("保留字段名、字段顺序和单元边界", skill)
+        self.assertIn("保留字段名、字段顺序和单元边界", read_field_boundary(CANONICAL))
         self.assertIn("详细结构见下文；本节只保留触发和边界", ai_compute)
         self.assertIn("会议判断、受众称呼、角色分工、合同义务或服务单位责任", skill)
         self.assertIn("详细测算和参数转读 `ai-compute-docs.md`", handling)
@@ -1897,7 +1925,7 @@ class SkillBoundaryTests(unittest.TestCase):
             with self.subTest(root=root):
                 skill = (root / "SKILL.md").read_text(encoding="utf-8")
                 self.assertIn("用户已有提纲、模板、标题顺序时优先保留", skill)
-                self.assertIn("保留字段名、字段顺序和单元边界", skill)
+                self.assertIn("保留字段名、字段顺序和单元边界", read_field_boundary(root))
                 for relative in leaf_paths:
                     self.assertNotIn(duplicate, (root / relative).read_text(encoding="utf-8"))
 

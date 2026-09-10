@@ -1,0 +1,36 @@
+{
+  "baseline": "8ab33566a42cfbfe9c2f1a8f2e9824d6d068581c",
+  "final_product_source": "0221dc82",
+  "homepage_lf_chars": {
+    "baseline": 8233,
+    "candidate": 7583,
+    "saved": 650
+  },
+  "canonical_diff": [
+    "chinese-official-writing/SKILL.md",
+    "chinese-official-writing/references/compression-details.md",
+    "chinese-official-writing/references/field-editing.md",
+    "chinese-official-writing/references/prose-lint-usage.md",
+    "chinese-official-writing/references/structure-editing.md",
+    "chinese-official-writing/references/workflow.md"
+  ],
+  "word_original_rules_preserved": true,
+  "full_suite": {
+    "tests": 849,
+    "failures": 1,
+    "failure": "legacy workflow location assertion",
+    "log": "output/detail-combined-20260910/full-tests.log"
+  },
+  "followup_boundary_suite": {
+    "tests": 83,
+    "passed": 83,
+    "fix_commit": "ea2e5368",
+    "baseline_compatibility_passed": true,
+    "negative_controls": 4
+  },
+  "maintenance_preflight": {
+    "focused_tests": 15,
+    "baseline_static_cases": 111,
+    "commit": "f39cfa63"
+  }
+}

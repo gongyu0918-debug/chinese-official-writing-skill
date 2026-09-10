@@ -1,0 +1,42 @@
+[
+  {
+    "atom": "script-details",
+    "archive": "F:\\Workspaces\\chinese-official-writing-skill-archives\\experiments\\skill-lightening-20260910\\detail-atoms\\script-details.zip",
+    "sha256": "539b94b39ff2511893370c2e682a73d02282e2359e1e24ed3c8f0dcd45cb988b",
+    "files": 244,
+    "verified_members": 244,
+    "frozen_inputs_unchanged": true
+  },
+  {
+    "atom": "word-details",
+    "archive": "F:\\Workspaces\\chinese-official-writing-skill-archives\\experiments\\skill-lightening-20260910\\detail-atoms\\word-details.zip",
+    "sha256": "09491fa6ed625a5e81e5157e6297549cfb3f76a06620d688915734145ae41276",
+    "files": 294,
+    "verified_members": 294,
+    "frozen_inputs_unchanged": true
+  },
+  {
+    "atom": "field-details",
+    "archive": "F:\\Workspaces\\chinese-official-writing-skill-archives\\experiments\\skill-lightening-20260910\\detail-atoms\\field-details.zip",
+    "sha256": "7653d162af725d644724d1ea8176aea01719c0243245d7ac183c8c0296f1a613",
+    "files": 237,
+    "verified_members": 237,
+    "frozen_inputs_unchanged": true
+  },
+  {
+    "atom": "structure-details",
+    "archive": "F:\\Workspaces\\chinese-official-writing-skill-archives\\experiments\\skill-lightening-20260910\\detail-atoms\\structure-details.zip",
+    "sha256": "cc6bc50554368c16527f18d5db375815519bbb15a4c4265a562cdc143643748e",
+    "files": 237,
+    "verified_members": 237,
+    "frozen_inputs_unchanged": true
+  },
+  {
+    "atom": "compression-details",
+    "archive": "F:\\Workspaces\\chinese-official-writing-skill-archives\\experiments\\skill-lightening-20260910\\detail-atoms\\compression-details.zip",
+    "sha256": "88f49a6ac75feab3c66de8502e712a1b6f779f916cbfa9677053dce00082582a",
+    "files": 241,
+    "verified_members": 241,
+    "frozen_inputs_unchanged": true
+  }
+]

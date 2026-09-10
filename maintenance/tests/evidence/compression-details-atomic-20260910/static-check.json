@@ -1,0 +1,53 @@
+{
+  "baseline": "8ab33566a42cfbfe9c2f1a8f2e9824d6d068581c",
+  "product_files": [
+    "chinese-official-writing/SKILL.md",
+    "chinese-official-writing/references/compression-details.md"
+  ],
+  "only_planned_product_changes": true,
+  "home_exact_planned_replacement": true,
+  "moved_details_verbatim_except_document_heading_and_noted_terminal_punctuation": true,
+  "workflow_remaining_text_unchanged": true,
+  "new_leaf_reachable_from_home": true,
+  "quality_advice_unchanged": true,
+  "fact_state_rules_outside_named_detail_paragraphs_unchanged": true,
+  "cases": 4,
+  "control_cases": 1,
+  "model_tests_run": false,
+  "candidate_admitted": false,
+  "commands": [
+    {
+      "command": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "exit_code": 0,
+      "output": "warning: in the working copy of 'chinese-official-writing/SKILL.md', LF will be replaced by CRLF the next time Git touches it"
+    },
+    {
+      "command": [
+        "C:/Users/admin/AppData/Local/Programs/Python/Python313/python.exe",
+        "C:/Users/admin/.codex/skills/.system/skill-creator/scripts/quick_validate.py",
+        "chinese-official-writing"
+      ],
+      "exit_code": 0,
+      "output": "Skill is valid!"
+    },
+    {
+      "command": [
+        "C:/Users/admin/AppData/Local/Programs/Python/Python313/python.exe",
+        "-m",
+        "unittest",
+        "maintenance.tests.test_skill_boundary.SkillBoundaryTests.test_reference_links_form_an_acyclic_graph"
+      ],
+      "exit_code": 0,
+      "output": ".\n----------------------------------------------------------------------\nRan 1 test in 0.046s\n\nOK"
+    }
+  ],
+  "home_lf_net_reduction": 61,
+  "files_sha256": {
+    "chinese-official-writing/SKILL.md": "61ba7bc435fab15ca7c2e8a27c98f274a826573cf2d1a1d2794afca0d8cebd0a",
+    "chinese-official-writing/references/compression-details.md": "21ba0dd4faa1f556201b329349ea895be62760e9c932fdcbad2b4088cd4ab9bd"
+  }
+}

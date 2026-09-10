@@ -1,0 +1,23 @@
+{
+  "baseline": "8ab33566a42cfbfe9c2f1a8f2e9824d6d068581c",
+  "slug": "compression-details-atomic-20260910",
+  "home_lf_characters_before": 8233,
+  "home_lf_characters_after": 8172,
+  "home_net_reduction": 61,
+  "new_leaf": "compression-details.md",
+  "new_leaf_characters": 122,
+  "verbatim_source_workflow_lines": [],
+  "home_replacements": [
+    [
+      "- 压缩、润色修改或去口语化：输出改后正文；输出模式允许说明时，只用极简说明列出保留、合并或删除的关键事项，不附事实边界自证。压缩长文先锁定主体、对象、数字、期限、责任、附件、联系人和反馈渠道；不得为变短或降 AI 味删除请示、函、通知、报告等文种所需的主送、落款、成文日期、请批事项或联系人等已给基本要素。用户给出字数或篇幅上限时，输出前做字数自检，尽量压到限制内；如硬要素太多导致难以兼顾，正文仍应完整成稿，并按用户允许的输出范围说明超限或取舍风险。",
+      "- 压缩、润色修改或去口语化：输出改后正文；输出模式允许说明时，只用极简说明列出保留、合并或删除的关键事项，不附事实边界自证。长文压缩和长篇限字时读取 `references/compression-details.md`。不得为变短或降 AI 味删除请示、函、通知、报告等文种所需的主送、落款、成文日期、请批事项或联系人等已给基本要素。用户给出字数或篇幅上限时，输出前做字数自检，尽量压到限制内；如硬要素太多导致难以兼顾，正文仍应完整成稿，并按用户允许的输出范围说明超限或取舍风险。"
+    ],
+    [
+      "- 长篇限字稿件：先做篇幅预算，保证开头、主体、措施和结尾都有落点；压缩铺垫、重复和套话，不把压缩压力集中到后半篇，避免头重脚轻、措施空泛或草草收尾。\n",
+      ""
+    ]
+  ],
+  "workflow_replacements": [],
+  "scope": "candidate preparation only; no writing model, merge, publish, generated package or installation change",
+  "migration_punctuation_note": "The extracted element-lock clause now ends with a full stop instead of the original joining semicolon; wording is unchanged."
+}
