@@ -690,14 +690,20 @@ class SkillBoundaryTests(unittest.TestCase):
         workflow = (ROOT / "chinese-official-writing" / "references" / "workflow.md").read_text(encoding="utf-8")
         checklist = (ROOT / "chinese-official-writing" / "references" / "review-checklist.md").read_text(encoding="utf-8")
 
+        structure = workflow
+        if "`structure-editing.md`" in workflow:
+            self.assertIn("增删、调序、粒度及主体变更按 `structure-editing.md`", workflow)
+            self.assertIn("具体结构操作读取 `references/structure-editing.md`", skill)
+            structure = (CANONICAL / "references/structure-editing.md").read_text(encoding="utf-8")
         for text in [skill, workflow, checklist]:
             self.assertIn("多轮", text)
+        for text in [skill, structure, checklist]:
             self.assertIn("增加自然段", text)
             self.assertIn("反馈渠道", text)
             self.assertIn("发送人", text)
             self.assertIn("接收方", text)
         self.assertIn("关键名词和结构标签一般保留原词", skill)
-        for text in [workflow, checklist]:
+        for text in [structure, checklist]:
             self.assertIn("原因分析", text)
         self.assertIn("改稿前小标题清单", checklist)
         self.assertIn("改稿后小标题清单", checklist)
