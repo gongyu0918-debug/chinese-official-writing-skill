@@ -1,0 +1,45 @@
+{
+  "version": "1.6.33",
+  "release_commit": "6971bd9ea76e83a7d4644911b56047e209e26856",
+  "canonical_tree": "bc9f538eab44cf8d83d3e6af33018c52bd24d658",
+  "github": {
+    "published": true,
+    "url": "https://github.com/gongyu0918-debug/chinese-official-writing-skill/releases/tag/v1.6.33",
+    "canonical_asset_attached": true,
+    "push_success": true
+  },
+  "skillhub": {
+    "ok": true,
+    "version": "1.6.33",
+    "versionId": 304564,
+    "fileCount": 90,
+    "fingerprint": "df02871ce6286f6928035df697c120f61ea639317ea10e573d0fd5a383cc80fe",
+    "contentAuditStatus": "pending",
+    "reviewStatus": "pending",
+    "securityScanStatus": "pending"
+  },
+  "clawhub": {
+    "ok": true,
+    "status": "published",
+    "version": "1.6.33",
+    "versionId": "k971mck21mskv7htppfd99sey98e42rk",
+    "fileCount": 40,
+    "fingerprint": "5e9bbdd05a627645f01ea872266f20fc0736811f9b1b807fa1714e4c08b2041a",
+    "latestVersion": "1.6.32"
+  },
+  "formal_submissions": {
+    "github_release": 1,
+    "skillhub": 1,
+    "clawhub": 1
+  },
+  "platform_tasks_completed": {
+    "github": true,
+    "skillhub": true,
+    "clawhub": true
+  },
+  "completion": "All three targets completed. Successful SkillHub/ClawHub submission receipts are sufficient; no post-submit read-only checks or audit polling performed.",
+  "clawhub_latest_field": "The publish response itself reports old latestVersion; kept without follow-up query or repeat submission.",
+  "authorization": "Established user request to update GitHub, SkillHub and ClawHub; current user specifies 1.6.33 and requires only part of the main versus 1.6.32 diff.",
+  "recorded_utc": "2026-09-10T21:49:02.608392+00:00",
+  "local_main_preserved": "dafc35f9aad594ac6cebf76bd4caf2e1b80a1ba8; full unreleased inventory and installed Pro continue to follow this local main, not the smaller public release."
+}

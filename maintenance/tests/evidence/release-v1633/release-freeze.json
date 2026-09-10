@@ -1,0 +1,14 @@
+{
+  "version": "1.6.33",
+  "release_commit": "6971bd9ea76e83a7d4644911b56047e209e26856",
+  "canonical_tree": "bc9f538eab44cf8d83d3e6af33018c52bd24d658",
+  "base_tag": "v1.6.32",
+  "base_commit": "236784efe2a7a0bf9acd3a49f1d3ad0cff1586a8",
+  "remote_main_before": "305c3807d20f982e75ad08df71ad21612dfc5d9e",
+  "package_manifest_sha256": "0aff5c81fe0d7f6a740d5687dc6bd61c2418108a592df06f7b1467f46fee5bcb",
+  "release_notes_sha256": "b3252f34e687595801e131821bb1f97e3966d2fe6c87630558cd3a826a22a837",
+  "frozen_utc": "2026-09-10T21:46:43.821213+00:00",
+  "scope": "Q1 formal-word semantic review and release metadata only",
+  "authorization": "Established user request to update GitHub, SkillHub and ClawHub; current user specifies 1.6.33 and requires only part of the main versus 1.6.32 diff.",
+  "marketplace_completion": "One successful submission receipt per platform; no post-submit read-only checks or audit waiting."
+}

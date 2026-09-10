@@ -26,4 +26,8 @@ Pro证据独立提交在 `codex/pro-hook-verification-20260911@3e88b508`，路�
 
 ## 发布状态
 
-已完成准备，三平台正式操作及成功回执单独记录。沿用用户此前已授权的GitHub、SkillHub、ClawHub更新流程及本次指定的1.6.33小范围；不将其他main存量附带发布。两个市场各提交一次，成功回执即完成，不再提交后只读核验或等待审核。
+已按用户此前授权的GitHub、SkillHub、ClawHub更新流程及本次指定的1.6.33小范围完成三平台提交。公开tag固定在 `6971bd9ea76e83a7d4644911b56047e209e26856`，其产品树与上述验证值相同；远端main保留v1.6.32的维护回执，没有带入本地完整main的其他存量。
+
+[GitHub Release](https://github.com/gongyu0918-debug/chinese-official-writing-skill/releases/tag/v1.6.33)已发布并附canonical ZIP。SkillHub首次提交成功，versionId为304564、90文件，审核/安全扫描仍pending；ClawHub首次提交成功，versionId为 `k971mck21mskv7htppfd99sey98e42rk`、40文件。其提交回执中的latestVersion仍显示旧版，该原始字段保留，不据此重复提交或查询传播。
+
+两个市场按项目规范均已完成本次发布任务，没有提交后的只读核验或审核等待。详见[正式回执摘要](release-v1633/publication-evidence.json)、[冻结](release-v1633/release-freeze.json)及[回执和制品归档](release-v1633/publication-archive.json)。本地完整main仍为 `dafc35f9`，本机Pro继续对应该完整开发状态，未被小范围发行物覆盖。后续本页与回执提交只补维护证据，公开tag及产品内容不变。

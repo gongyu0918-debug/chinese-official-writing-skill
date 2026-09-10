@@ -1,0 +1,81 @@
+{
+  "directory": "F:\\Workspaces\\chinese-official-writing-skill-archives\\releases\\v1.6.33",
+  "files": [
+    {
+      "name": "clawhub-attempt.json",
+      "sha256": "729b806e26576683b745ed4f7e3894c2c6e778a2b09eec2083b2479886c57ce5",
+      "bytes": 1233
+    },
+    {
+      "name": "clawhub-receipt.json",
+      "sha256": "7f457a523e658ce83846aede77e450f2ec1e5f34cd5ef04b932648e8e369dd47",
+      "bytes": 1829
+    },
+    {
+      "name": "freeze.json",
+      "sha256": "44b66ebeb3ce8c4723ad2e379b8f486ee2950cf4f8e550e0a74e6c0e7ce13e2d",
+      "bytes": 937
+    },
+    {
+      "name": "github-push-attempt.json",
+      "sha256": "8b76c511d632e9c52738412de81e3436e3417f265b2ef91c522d1b08cf340eaa",
+      "bytes": 225
+    },
+    {
+      "name": "github-push-receipt.json",
+      "sha256": "39c76d4dc30d8ca1f83d531768bac48952bf50cce87e69a5343a1421787c4c62",
+      "bytes": 366
+    },
+    {
+      "name": "github-release-attempt.json",
+      "sha256": "5ef7873362ec6c5e8f873221b919de9efe33f65e1fe41bf901bd104a1b4b4234",
+      "bytes": 693
+    },
+    {
+      "name": "github-release-receipt.json",
+      "sha256": "962e9cf98ed43db08e98d8c2b2a2d84dc37de7c13cfed68e6a9ce5aea55907bf",
+      "bytes": 768
+    },
+    {
+      "name": "skillhub-attempt.json",
+      "sha256": "13c3ef0fcd7e46d27f118910349e6dd7b29d5f7d90bf3de82acebb4e03154f47",
+      "bytes": 717
+    },
+    {
+      "name": "skillhub-receipt.json",
+      "sha256": "12b9d207167b67db47ef609492982a29fa4bfeb8446330d4e32998ff8a0ab42a",
+      "bytes": 1482
+    },
+    {
+      "name": "publication-evidence.json",
+      "sha256": "f902cc42b5f8fb3abe5b5e0c4eb620ea0e8f3926b74faa879ba770fbabc87fcc",
+      "bytes": 1891
+    },
+    {
+      "name": "release-notes.md",
+      "sha256": "b3252f34e687595801e131821bb1f97e3966d2fe6c87630558cd3a826a22a837",
+      "bytes": 181
+    },
+    {
+      "name": "package-manifests.json",
+      "sha256": "0aff5c81fe0d7f6a740d5687dc6bd61c2418108a592df06f7b1467f46fee5bcb",
+      "bytes": 33240
+    },
+    {
+      "name": "chinese-official-writing-v1.6.33-github.zip",
+      "sha256": "dfc1d7aba97b1285b170365abdcb5ab1e766b1206be33dd81b6274562e46a28f",
+      "bytes": 303782
+    },
+    {
+      "name": "chinese-official-writing-v1.6.33-skillhub.zip",
+      "sha256": "89ba6b63597b44130fc4cd9bfa0bbb7a59e680df8666b6b7e6801078c750a7aa",
+      "bytes": 305125
+    },
+    {
+      "name": "chinese-official-writing-v1.6.33-clawhub.zip",
+      "sha256": "b2a05854d7874574f18ecc53c69eba75d010c4eb08302156372cddb0f6cb3423",
+      "bytes": 131813
+    }
+  ],
+  "verified_source_bytes": true
+}
