@@ -139,6 +139,39 @@ class RealPromptAblationTests(unittest.TestCase):
                                     self.assertFalse(real_prompt_eval.evaluate_case(case, root, None)["passed"])
                                 path.write_text(original, encoding="utf-8")
 
+    def test_detail_migration_requires_reachable_and_complete_evidence(self) -> None:
+        for case in real_prompt_eval.CASES:
+            if case.id not in real_prompt_eval.DETAIL_RELOCATION_CASES:
+                continue
+            legacy = case.checks["file_terms"]
+            group = real_prompt_eval.FILE_TERM_ALTERNATIVES_BY_CASE[case.id][-1]
+            for evidence in (legacy, group):
+                with self.subTest(case=case.id, layout="legacy" if evidence is legacy else "detail"):
+                    with tempfile.TemporaryDirectory() as directory:
+                        root = Path(directory)
+                        for relative, terms in evidence.items():
+                            path = root / relative
+                            path.parent.mkdir(parents=True, exist_ok=True)
+                            path.write_text("\n".join(terms), encoding="utf-8")
+                        self.assertTrue(real_prompt_eval.evaluate_case(case, root, None)["passed"])
+                        if evidence is legacy:
+                            continue
+                        for relative in group:
+                            path = root / relative
+                            original = path.read_bytes()
+                            path.unlink()
+                            with self.subTest(missing_file=relative):
+                                self.assertFalse(real_prompt_eval.evaluate_case(case, root, None)["passed"])
+                            path.write_bytes(original)
+                        for relative, terms in group.items():
+                            for term in terms:
+                                path = root / relative
+                                original = path.read_text(encoding="utf-8")
+                                path.write_text(original.replace(term, ""), encoding="utf-8")
+                                with self.subTest(missing=f"{relative}: {term}"):
+                                    self.assertFalse(real_prompt_eval.evaluate_case(case, root, None)["passed"])
+                                path.write_text(original, encoding="utf-8")
+
     def test_information_selection_migration_keeps_complete_equivalent_evidence_groups(self) -> None:
         expected_cases = {
             "P022",
@@ -168,7 +201,8 @@ class RealPromptAblationTests(unittest.TestCase):
             "P103",
         }
 
-        self.assertEqual(set(real_prompt_eval.FILE_TERM_ALTERNATIVES_BY_CASE), expected_cases)
+        self.assertEqual(set(real_prompt_eval.FILE_TERM_ALTERNATIVES_BY_CASE),
+                         expected_cases | real_prompt_eval.DETAIL_RELOCATION_CASES)
         for case_id, alternatives in real_prompt_eval.FILE_TERM_ALTERNATIVES_BY_CASE.items():
             self.assertTrue(alternatives, case_id)
             for alternative in alternatives:

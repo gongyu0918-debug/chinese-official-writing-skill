@@ -2308,6 +2308,43 @@ for _case in CASES:
         FILE_TERM_ALTERNATIVES_BY_CASE.setdefault(_case.id, []).append(_group)
 
 
+# Detail lightening keeps legacy layouts valid and adds whole, explicitly routed
+# evidence groups. Unrelated original checks remain mandatory in each group.
+DETAIL_RELOCATION_CASES = {"P035", "P037", "P042", "P079", "P081", "P092"}
+for _case in CASES:
+    if _case.id not in DETAIL_RELOCATION_CASES:
+        continue
+    _source = (FILE_TERM_ALTERNATIVES_BY_CASE["P092"][0]
+               if _case.id == "P092" else _case.checks["file_terms"])
+    _group = {relative: list(terms) for relative, terms in _source.items()}
+    _home = "chinese-official-writing/SKILL.md"
+    _workflow = "chinese-official-writing/references/workflow.md"
+    if _case.id in {"P035", "P042"}:
+        _leaf = "chinese-official-writing/references/compression-details.md"
+        _group[_leaf] = _group[_home]
+        _group[_home] = ["长文压缩和长篇限字时读取 `references/compression-details.md`"]
+    else:
+        _leaf = "chinese-official-writing/references/field-editing.md"
+        _moved = {
+            "P037": ["新增字段没有用户提供值时只写字段名并留空", "字段顺序", "不推断"],
+            "P079": ["保留字段名、字段顺序和单元边界"],
+            "P081": ["分号只是字段分隔符", "不要保留行尾分号或造成 `。；`"],
+            "P092": [],
+        }[_case.id]
+        if _case.id in {"P037", "P079", "P081"}:
+            _group[_home] = (["用户已有提纲、模板、标题顺序时优先保留"]
+                             if _case.id == "P079" else [])
+        _group[_home].extend([
+            "保留字段名、顺序和单元边界，只改指定值，新增字段无给定值时留空",
+            "字段拆行、增删和格式处理读取 `references/field-editing.md`",
+        ])
+        if _case.id in {"P037", "P092"}:
+            _moved.extend(_group[_workflow])
+            _group[_workflow] = ["字段式底稿的拆行、指定值修改和增删按 `field-editing.md`"]
+        _group[_leaf] = _moved
+    FILE_TERM_ALTERNATIVES_BY_CASE.setdefault(_case.id, []).append(_group)
+
+
 def read_text(root: Path, relative: str) -> str:
     path = root / relative
     if not path.exists():
