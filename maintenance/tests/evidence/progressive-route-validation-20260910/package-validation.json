@@ -1,0 +1,32 @@
+{
+  "source": "unchanged TEMP snapshot before permissions resumed",
+  "canonical_and_all_five_mirrors_rechecked_identical_after_sync": true,
+  "generic_checks": [
+    {
+      "path": "chinese-official-writing",
+      "exit_code": 0,
+      "output": "Skill is valid!\n"
+    },
+    {
+      "path": "packages\\agent-skills\\skills\\chinese-official-writing",
+      "exit_code": 0,
+      "output": "Skill is valid!\n"
+    },
+    {
+      "path": "packages\\qwen-code\\skills\\chinese-official-writing",
+      "exit_code": 0,
+      "output": "Skill is valid!\n"
+    },
+    {
+      "path": "packages\\qwenwork\\skills\\chinese-official-writing",
+      "exit_code": 0,
+      "output": "Skill is valid!\n"
+    },
+    {
+      "path": "packages\\hermes\\skills\\chinese-official-writing",
+      "exit_code": 0,
+      "output": "Skill is valid!\n"
+    }
+  ],
+  "OpenClaw": "existing classification/frontmatter and exact package boundary covered by skill_boundary tests; no schema fields removed to satisfy generic validator"
+}

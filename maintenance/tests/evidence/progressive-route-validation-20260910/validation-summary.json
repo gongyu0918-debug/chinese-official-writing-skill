@@ -1,0 +1,41 @@
+{
+  "baseline": "e8103f536ff503f4d178080f4847a82bdd22aad2",
+  "candidate": "9be506014d96ed43a940c46c2c0915a15244d116",
+  "canonical_tree": "58bdd7e523794437b4f0b61ae3b9f0c1a98e254f",
+  "attempts": 100,
+  "technical_valid_finals": 86,
+  "primary_matched_pairs": 36,
+  "max_pairs": 30,
+  "high_pairs": 6,
+  "repeat_attempts": 8,
+  "complete_exact_repeat_pairs": 2,
+  "partial_repeat_pairs": 2,
+  "environment_aborted_excluded": 1,
+  "quality_claim": "No confirmed stable candidate-only hard regression attributable to the four changes; not an all-draft pass or statistical noninferiority proof.",
+  "admitted_atoms": [
+    "T",
+    "C2",
+    "Q1",
+    "Q2"
+  ],
+  "coverage_limits": [
+    "C2 provider2 has valid max candidate and high baseline, no same-effort complete pair",
+    "Original Q2 incompatible task provider2 all max/high attempts time out; separately covered in explicit leaf-exposure GLM high/high",
+    "Opinion exact repeat baseline times out; candidate repeat is supplemental only"
+  ],
+  "sizes": {
+    "home_lf_chars": 7583,
+    "home_delta": 0,
+    "references_before": 42,
+    "references_after": 43,
+    "refs_lf_chars_before": 83841,
+    "refs_lf_chars_after": 83856,
+    "refs_delta": 15
+  },
+  "archives": {
+    "writing_archives": 8,
+    "writing_verified_members": 2075,
+    "reused_identical_verified_archives": 4,
+    "engineering_environment_verified_members": 5
+  }
+}

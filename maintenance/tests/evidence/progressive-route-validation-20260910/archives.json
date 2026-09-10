@@ -1,0 +1,70 @@
+[
+  {
+    "atom": "terminology",
+    "archive": "F:\\Workspaces\\chinese-official-writing-skill-archives\\experiments\\skill-lightening-20260910\\progressive-route-validation\\terminology.zip",
+    "sha256": "6e1aa71da25068cf1318df4a72511039d14a9e42a910765dc0479821e2e37fa4",
+    "files": 245,
+    "verified_members": 245,
+    "frozen_inputs_unchanged": true,
+    "reused_verified_archive": true
+  },
+  {
+    "atom": "correspondence",
+    "archive": "F:\\Workspaces\\chinese-official-writing-skill-archives\\experiments\\skill-lightening-20260910\\progressive-route-validation\\correspondence.zip",
+    "sha256": "e11389a4b03161cd761da33d3b1a6f1dce22e9d9092ec175b021dcad3ad19ae5",
+    "files": 284,
+    "verified_members": 284,
+    "frozen_inputs_unchanged": true,
+    "reused_verified_archive": true
+  },
+  {
+    "atom": "correspondence-refined",
+    "archive": "F:\\Workspaces\\chinese-official-writing-skill-archives\\experiments\\skill-lightening-20260910\\progressive-route-validation\\correspondence-refined.zip",
+    "sha256": "079db1987bbb8ceda816973ba169350077b61442ab62ffbffadcb3bc2f6fc3b4",
+    "files": 259,
+    "verified_members": 259,
+    "frozen_inputs_unchanged": true
+  },
+  {
+    "atom": "word-guidance",
+    "archive": "F:\\Workspaces\\chinese-official-writing-skill-archives\\experiments\\skill-lightening-20260910\\progressive-route-validation\\word-guidance.zip",
+    "sha256": "6735b3fd324000ec9b58a13869e5667b02aac3fb028d9dc4aa956d7b03a5b08a",
+    "files": 248,
+    "verified_members": 248,
+    "frozen_inputs_unchanged": true,
+    "reused_verified_archive": true
+  },
+  {
+    "atom": "length-alignment",
+    "archive": "F:\\Workspaces\\chinese-official-writing-skill-archives\\experiments\\skill-lightening-20260910\\progressive-route-validation\\length-alignment.zip",
+    "sha256": "4ca62cde09fcf941601f85abaf82e82d0e6fd1034b61ec2975b576411434861e",
+    "files": 264,
+    "verified_members": 264,
+    "frozen_inputs_unchanged": true,
+    "reused_verified_archive": true
+  },
+  {
+    "atom": "combined",
+    "archive": "F:\\Workspaces\\chinese-official-writing-skill-archives\\experiments\\skill-lightening-20260910\\progressive-route-validation\\combined.zip",
+    "sha256": "628e3d64081a785c2b872c6bfdac7e19db7084846c4cf47c550453677fef0005",
+    "files": 261,
+    "verified_members": 261,
+    "frozen_inputs_unchanged": true
+  },
+  {
+    "atom": "combined-depth",
+    "archive": "F:\\Workspaces\\chinese-official-writing-skill-archives\\experiments\\skill-lightening-20260910\\progressive-route-validation\\combined-depth.zip",
+    "sha256": "d3df73d9d94dfa6a28f7e84fc10e89a7fa38383d5696a35cfa7677bfb0384fb8",
+    "files": 291,
+    "verified_members": 291,
+    "frozen_inputs_unchanged": true
+  },
+  {
+    "atom": "length-exposure",
+    "archive": "F:\\Workspaces\\chinese-official-writing-skill-archives\\experiments\\skill-lightening-20260910\\progressive-route-validation\\length-exposure.zip",
+    "sha256": "785ab74ed4bb005ab5ab9f621f05fbe8ca0f5e12f3c9841576151153ece1bb25",
+    "files": 223,
+    "verified_members": 223,
+    "frozen_inputs_unchanged": true
+  }
+]

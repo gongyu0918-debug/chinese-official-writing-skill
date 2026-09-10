@@ -1,0 +1,44 @@
+{
+  "atom": "terminology",
+  "baseline": "e8103f53",
+  "candidate": "1afcb14d4929b1226b6ab928e6f0b8789619c8ab",
+  "assignments": {
+    "0": [
+      "term_polish"
+    ],
+    "1": [
+      "terms_review"
+    ],
+    "2": [
+      "technical_control"
+    ],
+    "3": [
+      "glossary_style"
+    ],
+    "4": [
+      "ordinary_control"
+    ]
+  },
+  "cases": {
+    "term_polish": {
+      "task": "请按反AI表达规则做轻量改写，仅统一下面稿件面向非技术读者的英文术语首次写法，不审技术方案，不增减业务事实。GPU、API、SLA按本Skill常用译名首次展开；内部代号ZQA-17含义未提供，Token不是调用次数，不自行解释。只输出改后正文。底稿：拟使用GPU运行ZQA-17，经API接入服务。SLA尚未签订。预计消耗200万Token，测算口径待复核。"
+    },
+    "terms_review": {
+      "task": "仅按反AI表达规则审查下文的必要英文术语和中文译名，按位置、问题、建议输出，不改全文，不评价技术条件、预算、采购或验收完整性。原文：拟租用GPU服务，GPU在此写为“通用处理器”；API写为“应用编程接口”；SLA写为“服务级别协议”；PUE仅保留缩写，没有给出数值。内部代号K7含义未提供。面向非技术读者，未指定另一本译名标准。"
+    },
+    "technical_control": {
+      "task": "请把以下事实改写为算力租赁可研的技术条件与费用边界部分，直接输出该部分正文，不做词典解释，不编造阈值或安排。拟租用GPU服务用于材料检索，供应方报价每月8000元，租期尚未确定。拟用模型尚未完成适配测试，SLA条款和验收主体均未确定。只能以已给材料为事实；可以指出这些条件尚不支持确定完整费用或技术结论，不补厂商比较、责任部门或测试期限。"
+    },
+    "glossary_style": {
+      "task": "请按反AI表达规则改写下面两句，面向非技术读者按本Skill既有常见译名展开GPU和PUE首次出现；删除“end-to-end赋能”的空泛包装，不补效果或技术解释。产品名Qwen3.8和含义不明代号P7原样保持。只输出正文。原文：拟使用GPU试运行Qwen3.8，PUE数据待复核，P7含义未说明。end-to-end赋能相关工作。"
+    },
+    "ordinary_control": {
+      "task": "只把下文“12份”改为“15份”，其他文字和标点保留，不检查技术方案或增加说明。只输出正文：青禾中心收到12份资料，均待复核。反馈日期尚未决定。"
+    }
+  },
+  "expected_diff": [
+    "references/ai-compute-docs.md",
+    "references/anti-ai-patterns.md",
+    "references/technical-terms.md"
+  ]
+}

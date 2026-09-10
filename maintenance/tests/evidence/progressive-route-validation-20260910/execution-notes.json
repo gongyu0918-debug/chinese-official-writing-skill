@@ -1,0 +1,28 @@
+{
+  "whole_followon_launches": [
+    {
+      "outcome": "automatic_approval_timeout_before_process_start",
+      "models_started": 0
+    },
+    {
+      "outcome": "automatic_approval_timeout_before_process_start",
+      "models_started": 0
+    }
+  ],
+  "recovery": "Prepare snapshots without model calls, then launch one explicit provider lane per approval; all five accepted. Same configs and repeat limits.",
+  "provider_sessions": {
+    "0": 6210,
+    "1": 10966,
+    "2": 38204,
+    "3": 32435,
+    "4": 12766
+  },
+  "initial_install_check": {
+    "build": "e6456b24114e9f7bb54d",
+    "main": "e8103f53",
+    "ordinary_files": 43,
+    "installed_version_and_codex_projection_match_git_bytes": true,
+    "writes": false
+  },
+  "metric_limit": "LF-normalized command-output heuristic, not quality grade or causal total-token savings. Same-effort pairs selected explicitly; repeat outputs never replace first trials."
+}

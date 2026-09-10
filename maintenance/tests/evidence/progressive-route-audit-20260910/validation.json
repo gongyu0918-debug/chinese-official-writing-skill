@@ -1,0 +1,26 @@
+{
+  "baseline": "e8103f536ff503f4d178080f4847a82bdd22aad2",
+  "product_tree": "505266e1e547f03855e0ca8cd3c095bc6e40f123",
+  "candidate_checks": {
+    "terminology": {
+      "commit": "1afcb14d",
+      "quick_validate_exit": 0,
+      "acyclic_reference_test": {
+        "exit": 0,
+        "tests": 1
+      },
+      "diff_check_exit": 0
+    },
+    "correspondence": {
+      "commit": "30902fbd",
+      "quick_validate_exit": 0,
+      "acyclic_reference_test": {
+        "exit": 0,
+        "tests": 1
+      },
+      "diff_check_exit": 0
+    }
+  },
+  "full_suite_run": false,
+  "reason": "Audit and separate unmerged canonical prototypes; package adapters not synchronized. Minimum checks do not certify full merge readiness."
+}
