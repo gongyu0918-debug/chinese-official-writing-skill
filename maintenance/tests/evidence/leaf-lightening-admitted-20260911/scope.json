@@ -1,0 +1,240 @@
+{
+  "status": "candidate; final real-writing combination verification pending; not an admission or merge record",
+  "baseline_main": "9db0379f0267557fbf33f36d4c7940466ae71030",
+  "frozen_candidate": "975be504a9297ebaf70a3780458391145b24835a",
+  "branch": "codex/leaf-lightening-admitted-20260911",
+  "worktree": "F:\\Workspaces\\chinese-official-writing-skill\\output\\route-worktrees\\leaf-lightening-admitted-20260911",
+  "canonical_tree_git_sha1": "65ace275b5906daddf4c0d3dea161a47ba90a71b",
+  "product_origins": {
+    "R1": {
+      "source": "60bce6c61b8e5bfbd41be8e3095e9d0460b0eb71",
+      "cherry_pick": "661c8fbf"
+    },
+    "L": {
+      "source": "5103a985abd9e5d7dc222392990fe440db08668f",
+      "cherry_pick": "14522764"
+    }
+  },
+  "frozen_candidate_scope": {
+    "comparison": "9db0379f0267557fbf33f36d4c7940466ae71030..975be504a9297ebaf70a3780458391145b24835a",
+    "total_changed_files": 20,
+    "canonical_changed_file_count": 3,
+    "canonical_changed_files": [
+      "chinese-official-writing/references/final-review-layers.md",
+      "chinese-official-writing/references/reference-index.md",
+      "chinese-official-writing/references/structure-editing.md"
+    ],
+    "mirrors": {
+      "agent-skills": {
+        "resolved_target": "F:\\Workspaces\\chinese-official-writing-skill\\output\\route-worktrees\\leaf-lightening-admitted-20260911\\packages\\agent-skills\\skills\\chinese-official-writing",
+        "inside_this_worktree_packages": true,
+        "changed_files": [
+          "packages/agent-skills/skills/chinese-official-writing/references/final-review-layers.md",
+          "packages/agent-skills/skills/chinese-official-writing/references/reference-index.md",
+          "packages/agent-skills/skills/chinese-official-writing/references/structure-editing.md"
+        ],
+        "changed_file_count": 3
+      },
+      "qwen-code": {
+        "resolved_target": "F:\\Workspaces\\chinese-official-writing-skill\\output\\route-worktrees\\leaf-lightening-admitted-20260911\\packages\\qwen-code\\skills\\chinese-official-writing",
+        "inside_this_worktree_packages": true,
+        "changed_files": [
+          "packages/qwen-code/skills/chinese-official-writing/references/final-review-layers.md",
+          "packages/qwen-code/skills/chinese-official-writing/references/reference-index.md",
+          "packages/qwen-code/skills/chinese-official-writing/references/structure-editing.md"
+        ],
+        "changed_file_count": 3
+      },
+      "qwenwork": {
+        "resolved_target": "F:\\Workspaces\\chinese-official-writing-skill\\output\\route-worktrees\\leaf-lightening-admitted-20260911\\packages\\qwenwork\\skills\\chinese-official-writing",
+        "inside_this_worktree_packages": true,
+        "changed_files": [
+          "packages/qwenwork/skills/chinese-official-writing/references/final-review-layers.md",
+          "packages/qwenwork/skills/chinese-official-writing/references/reference-index.md",
+          "packages/qwenwork/skills/chinese-official-writing/references/structure-editing.md"
+        ],
+        "changed_file_count": 3
+      },
+      "hermes": {
+        "resolved_target": "F:\\Workspaces\\chinese-official-writing-skill\\output\\route-worktrees\\leaf-lightening-admitted-20260911\\packages\\hermes\\skills\\chinese-official-writing",
+        "inside_this_worktree_packages": true,
+        "changed_files": [
+          "packages/hermes/skills/chinese-official-writing/references/final-review-layers.md",
+          "packages/hermes/skills/chinese-official-writing/references/reference-index.md",
+          "packages/hermes/skills/chinese-official-writing/references/structure-editing.md"
+        ],
+        "changed_file_count": 3
+      },
+      "openclaw": {
+        "resolved_target": "F:\\Workspaces\\chinese-official-writing-skill\\output\\route-worktrees\\leaf-lightening-admitted-20260911\\packages\\openclaw\\skills\\chinese_official_writing",
+        "inside_this_worktree_packages": true,
+        "changed_files": [
+          "packages/openclaw/skills/chinese_official_writing/references/final-review-layers.md",
+          "packages/openclaw/skills/chinese_official_writing/references/reference-index.md",
+          "packages/openclaw/skills/chinese_official_writing/references/structure-editing.md"
+        ],
+        "changed_file_count": 3
+      }
+    },
+    "other_changed_files": [
+      "maintenance/docs/review-details-split-prototype-20260911.md",
+      "maintenance/tests/test_skill_boundary.py"
+    ],
+    "all_changed_files": [
+      "chinese-official-writing/references/final-review-layers.md",
+      "chinese-official-writing/references/reference-index.md",
+      "chinese-official-writing/references/structure-editing.md",
+      "maintenance/docs/review-details-split-prototype-20260911.md",
+      "maintenance/tests/test_skill_boundary.py",
+      "packages/agent-skills/skills/chinese-official-writing/references/final-review-layers.md",
+      "packages/agent-skills/skills/chinese-official-writing/references/reference-index.md",
+      "packages/agent-skills/skills/chinese-official-writing/references/structure-editing.md",
+      "packages/hermes/skills/chinese-official-writing/references/final-review-layers.md",
+      "packages/hermes/skills/chinese-official-writing/references/reference-index.md",
+      "packages/hermes/skills/chinese-official-writing/references/structure-editing.md",
+      "packages/openclaw/skills/chinese_official_writing/references/final-review-layers.md",
+      "packages/openclaw/skills/chinese_official_writing/references/reference-index.md",
+      "packages/openclaw/skills/chinese_official_writing/references/structure-editing.md",
+      "packages/qwen-code/skills/chinese-official-writing/references/final-review-layers.md",
+      "packages/qwen-code/skills/chinese-official-writing/references/reference-index.md",
+      "packages/qwen-code/skills/chinese-official-writing/references/structure-editing.md",
+      "packages/qwenwork/skills/chinese-official-writing/references/final-review-layers.md",
+      "packages/qwenwork/skills/chinese-official-writing/references/reference-index.md",
+      "packages/qwenwork/skills/chinese-official-writing/references/structure-editing.md"
+    ],
+    "exclusions": "No A/G/M product, split-layout provider, or new-layout gate compatibility changes."
+  },
+  "counts": {
+    "homepage_lf_chars": 7516,
+    "homepage_git_bytes_equal_to_baseline": true,
+    "homepage_git_sha256": "63ef62ba751591afed4927e5dfc0f8171954214a74ee08b79fc2eb8e3602b4d4",
+    "reference_files": 44,
+    "reference_lf_chars_before": 83999,
+    "reference_lf_chars_after": 83803,
+    "reference_lf_char_delta": -196
+  },
+  "index_review": {
+    "rows": 36,
+    "workflow_rows_changed": 1,
+    "other_rows_unchanged": 35,
+    "scene_routes_unchanged": 5,
+    "new_rows_sha256": "6f02535515165cdeb7a8867c74907a9c40e925dea7be4cbcf9e2fb0c642da021",
+    "test_change": "Only the row fingerprint literal in test_skill_boundary.py changed."
+  },
+  "minimum_tests": {
+    "command": [
+      "C:/Users/admin/AppData/Local/Programs/Python/Python313/python.exe",
+      "-m",
+      "unittest",
+      "maintenance.tests.test_skill_boundary",
+      "maintenance.tests.test_repository_reachability",
+      "maintenance.tests.test_real_prompt_ablation"
+    ],
+    "observed_exit_code": 0,
+    "tests_run": 102,
+    "test_seconds": 2.467,
+    "observed_summary": "Ran 102 tests in 2.467s; OK",
+    "source": "Previously observed tool execution in this worktree; not rerun while creating this record."
+  },
+  "diff_check": "passed before freezing candidate",
+  "word_evidence_reuse": {
+    "new_small_candidate_word_rerun": false,
+    "read_only_trace_audit": [
+      {
+        "source_atom": "local-workflow",
+        "source_arm": "baseline",
+        "effort": "max",
+        "trace": "F:\\Workspaces\\chinese-official-writing-skill\\output\\route-worktrees\\leaf-refactor-validation-20260911\\output\\leaf-refactor-20260911\\local-workflow\\runs\\4\\word_time\\baseline\\max\\trace.jsonl",
+        "trace_sha256": "c30c7b598e986f7defa52be523a008b766062f1e8495353d9a0ed771a58713c5",
+        "observed_rule_full_reads": {
+          "SKILL.md": {
+            "successful_full_content_reads": 1,
+            "frozen_input_sha256": "63ef62ba751591afed4927e5dfc0f8171954214a74ee08b79fc2eb8e3602b4d4",
+            "matches_git_revision": "9db0379f0267557fbf33f36d4c7940466ae71030",
+            "matches_git_bytes": true
+          }
+        }
+      },
+      {
+        "source_atom": "local-workflow",
+        "source_arm": "candidate",
+        "effort": "max",
+        "trace": "F:\\Workspaces\\chinese-official-writing-skill\\output\\route-worktrees\\leaf-refactor-validation-20260911\\output\\leaf-refactor-20260911\\local-workflow\\runs\\4\\word_time\\candidate\\max\\trace.jsonl",
+        "trace_sha256": "b93d722325122cfaff1eae3f584bc802268a88aa5f4939a06bbef88c91c5d18f",
+        "observed_rule_full_reads": {
+          "SKILL.md": {
+            "successful_full_content_reads": 1,
+            "frozen_input_sha256": "63ef62ba751591afed4927e5dfc0f8171954214a74ee08b79fc2eb8e3602b4d4",
+            "matches_git_revision": "975be504a9297ebaf70a3780458391145b24835a",
+            "matches_git_bytes": true
+          }
+        }
+      },
+      {
+        "source_atom": "combined",
+        "source_arm": "baseline",
+        "effort": "max",
+        "trace": "F:\\Workspaces\\chinese-official-writing-skill\\output\\route-worktrees\\leaf-refactor-validation-20260911\\output\\leaf-refactor-20260911\\combined\\runs\\4\\word_time\\baseline\\max\\trace.jsonl",
+        "trace_sha256": "edbaf3f8ca5000c4688798ca604d1b5521a4435b9aa7aa66fb8e576ac22b16bc",
+        "observed_rule_full_reads": {
+          "SKILL.md": {
+            "successful_full_content_reads": 1,
+            "frozen_input_sha256": "63ef62ba751591afed4927e5dfc0f8171954214a74ee08b79fc2eb8e3602b4d4",
+            "matches_git_revision": "9db0379f0267557fbf33f36d4c7940466ae71030",
+            "matches_git_bytes": true
+          }
+        }
+      },
+      {
+        "source_atom": "combined",
+        "source_arm": "candidate",
+        "effort": "max",
+        "trace": "F:\\Workspaces\\chinese-official-writing-skill\\output\\route-worktrees\\leaf-refactor-validation-20260911\\output\\leaf-refactor-20260911\\combined\\runs\\4\\word_time\\candidate\\max\\trace.jsonl",
+        "trace_sha256": "fa9800443c9265b1413024efa27d783c956b9edac2365a88a3c807662533e40d",
+        "observed_rule_full_reads": {
+          "SKILL.md": {
+            "successful_full_content_reads": 4,
+            "frozen_input_sha256": "63ef62ba751591afed4927e5dfc0f8171954214a74ee08b79fc2eb8e3602b4d4",
+            "matches_git_revision": "975be504a9297ebaf70a3780458391145b24835a",
+            "matches_git_bytes": true
+          },
+          "references/reference-index.md": {
+            "successful_full_content_reads": 1,
+            "frozen_input_sha256": "c80901d483c882e702aa8adb66062e8e5f3bf9d1185bd8c3fd7bc450334c6bb0",
+            "matches_git_revision": "975be504a9297ebaf70a3780458391145b24835a",
+            "matches_git_bytes": true
+          },
+          "references/task-route-cards.md": {
+            "successful_full_content_reads": 1,
+            "frozen_input_sha256": "5486d59cfaafd25f6b49623d2f7b4e0559183edb325fda6809c32cc65a273a0d",
+            "matches_git_revision": "975be504a9297ebaf70a3780458391145b24835a",
+            "matches_git_bytes": true
+          },
+          "references/information-selection.md": {
+            "successful_full_content_reads": 1,
+            "frozen_input_sha256": "e20c2b18cddab4cb0e4ba0ce4ddcd8b849314c4f30ee4d1c6f16216b9f630aff",
+            "matches_git_revision": "975be504a9297ebaf70a3780458391145b24835a",
+            "matches_git_bytes": true
+          }
+        }
+      }
+    ],
+    "correction": "The independent L Word arms and combined baseline read only SKILL. Combined candidate also successfully read reference-index, task-route-cards and information-selection via Python read_text; the earlier claim that every Word arm read only SKILL is incorrect.",
+    "boundary": "All actually observed rule-file bytes in the prior Word controls match the corresponding baseline/small-candidate Git bytes. Independent L controls did not load any R1/L changed reference. Combined candidate loaded the same L index now present in the small candidate, but not R1 structure/final-review pages. Prior DOCX results may be reused within this observed rule-input boundary; they do not establish a new Word run or universal routing behavior."
+  },
+  "evidence_addition": {
+    "path": "maintenance/tests/evidence/leaf-lightening-admitted-20260911/scope.json",
+    "files_added_after_frozen_candidate": 1,
+    "expected_total_changed_files_after_evidence_commit": 21,
+    "frozen_product_and_20_file_scope_unchanged": true
+  },
+  "not_performed_by_this_record": [
+    "model execution",
+    "test rerun",
+    "full repository suite",
+    "Word rerun",
+    "main merge",
+    "push",
+    "publication"
+  ]
+}
