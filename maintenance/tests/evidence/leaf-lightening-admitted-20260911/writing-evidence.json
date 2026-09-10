@@ -1,0 +1,1815 @@
+{
+  "decision": "ADMIT R1 and L only under observed noninferiority; not a universal quality guarantee",
+  "baseline_main": "9db0379f0267557fbf33f36d4c7940466ae71030",
+  "candidate_product": "975be504a9297ebaf70a3780458391145b24835a",
+  "canonical_tree": "65ace275b5906daddf4c0d3dea161a47ba90a71b",
+  "experimental_evidence_commit": "4fc93b553ca284cfa23bf9c247872e09b89d4dae",
+  "experimental_branch": "codex/leaf-refactor-validation-20260911",
+  "experimental_report": "F:\\Workspaces\\chinese-official-writing-skill\\output\\route-worktrees\\leaf-refactor-validation-20260911\\maintenance\\docs\\leaf-refactor-validation-20260911.md",
+  "eligible_pairs": 13,
+  "eligible_model_calls": 26,
+  "all_effort": "max/max",
+  "advisory_preferences": {
+    "baseline": 1,
+    "tie": 11,
+    "candidate": 1
+  },
+  "review_limit": "X/Y mapping withheld and draft hashes checked, but draft paths and leaf names can reveal version cues. Preferences are not quality pass counts.",
+  "groups": {
+    "review-structure": {
+      "baseline": "9db0379f0267557fbf33f36d4c7940466ae71030",
+      "candidate": "60bce6c61b8e5bfbd41be8e3095e9d0460b0eb71",
+      "cases": {
+        "structure_add_delete": {
+          "task": "以下是最新版通知，只按本轮要求改写完整正文，不解释过程。保留两个小标题名称和顺序；删除每周反馈安排及其在其他段落的重复表述；在第二节末新增一个独立自然段，原样包含‘反馈渠道’和‘联系人’，内容为反馈渠道是已有工作邮箱，联系人为李敏。不得新增小标题，日期保持缺失。底稿：关于核对设备台账的通知\n各科室：\n一、核对范围\n请核对本室在用设备的名称、数量和存放位置，不涉及新增采购。\n二、提交安排\n各科室于9月18日前将核对表发至已有工作邮箱。\n各科室每周提交一次进展。为掌握推进情况，各科室还应按周反馈办理进度。\n办公室"
+        },
+        "reorder_sender": {
+          "task": "以上一版完整正文为唯一底稿，改成乙中心致甲中心的函；将‘二、核对范围’移到‘一、反馈事项’之前并调整序号、衔接和称谓；不增加时间、责任或承诺，日期继续缺失，只输出完整正文。底稿：关于商请核对目录的函\n乙中心：\n一、反馈事项\n我中心拟将附件目录送贵中心核对，请就目录中的名称差异提出意见，回复时间尚未确定。\n二、核对范围\n本次仅核对附件所列8项名称，不涉及目录增删。\n专此函达。\n甲中心"
+        },
+        "quote_cleanup": {
+          "task": "成稿前按本Skill的总审层级复核，复核过程不输出。清理以下稿件，使其可直接使用；只输出完整正文。标题保留一次，固定引语‘现有材料尚不足以作出责任认定。’必须原样保留；不要新增解释。素材已确认：2026年9月8日收到3件反映，办公室已转交核查组，核查组正在核查，尚未作出责任认定。底稿：关于有关反映核查情况的说明\n关于有关反映核查情况的说明\n本稿为内部校验版，下面按照事实边界重新整理。\n2026年9月8日收到3件反映，办公室已转交核查组。核查组正在核查，现有材料尚不足以作出责任认定。\n以上仅根据用户给出的事实撰写，未增加推理。"
+        },
+        "ongoing_state": {
+          "task": "成稿前按本Skill的总审层级复核，复核过程不输出。根据以下已确认事实形成一份简短的情况报告，只输出正文。办公室已收到12条问题记录，正在分类汇总；其中5条已完成原始凭证核对，另7条仍在核对；负责人为陈琳，责任认定尚未作出。保留处理状态和限定，不补完成时间或处置结论，不用无关的保护性解释扩写。"
+        },
+        "general_duty": {
+          "task": "成稿前按本Skill的总审层级复核，复核过程不输出。根据以下仅有材料改写完整情况说明，只输出正文，不补造过程：办公室一般职责包括汇总问题记录；本次反馈是否已交办公室、是否开始汇总均无资料；已确认的事实只有服务窗口于2026年9月8日收到2条意见，意见内容待核对。可交代材料未提供的状态，但不要把一般职责写成已经开展的工作，不添加责任认定、追责或下一步安排。"
+        }
+      },
+      "models": [
+        "minimax-cn/MiniMax-M3",
+        "alibaba-token-plan/qwen3.8-flash",
+        "alibaba-token-plan-2/qwen3.8-flash",
+        "opencode-go/deepseek-v4-flash",
+        "ollama-cloud/glm-5.3-flash"
+      ],
+      "pairs": [
+        {
+          "provider": "0",
+          "case": "structure_add_delete",
+          "both_valid_same_effort": true,
+          "selected_effort": "max",
+          "document_output_delta": 10733
+        },
+        {
+          "provider": "1",
+          "case": "reorder_sender",
+          "both_valid_same_effort": true,
+          "selected_effort": "max",
+          "document_output_delta": 2365
+        },
+        {
+          "provider": "2",
+          "case": "quote_cleanup",
+          "both_valid_same_effort": true,
+          "selected_effort": "max",
+          "document_output_delta": 3510
+        },
+        {
+          "provider": "3",
+          "case": "ongoing_state",
+          "both_valid_same_effort": true,
+          "selected_effort": "max",
+          "document_output_delta": 2188
+        },
+        {
+          "provider": "4",
+          "case": "general_duty",
+          "both_valid_same_effort": true,
+          "selected_effort": "max",
+          "document_output_delta": -6370
+        }
+      ],
+      "receipts": [
+        {
+          "atom": "review-structure",
+          "provider": 0,
+          "model": "minimax-cn/MiniMax-M3",
+          "case": "structure_add_delete",
+          "arm": "baseline",
+          "effort": "max",
+          "exit_code": 0,
+          "error": null,
+          "valid_final": true,
+          "seconds": 23.7,
+          "prompt_sha256": "c78697b701b50aa87a966393f877ad7af0270c29fdfbc149bb1cb7468bf893a3",
+          "path": "runs/0/structure_add_delete/baseline/max",
+          "repeat": false,
+          "normalized_prompt_sha256": "ae4a88e095c74fded486c06820ae4371204ed5ffcc8c350f5d35a716701b67df",
+          "final_sha256": "9e2d22b9ebdfa1d179807cbd2cf41d8aabbb97709f8353f319d88cb3776d8e4f",
+          "final_non_whitespace_chars": 101,
+          "native_usage": {
+            "input_tokens": 152739,
+            "cached_input_tokens": 131588,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 2405,
+            "reasoning_output_tokens": 1529
+          },
+          "document_command_output_lf_chars": 17620,
+          "all_command_output_lf_chars": 33202,
+          "command_count": 7,
+          "document_read_names": [
+            "SKILL.md",
+            "information-selection.md",
+            "structure-editing.md"
+          ],
+          "target_full_text_returned": [
+            "SKILL.md",
+            "references/structure-editing.md"
+          ],
+          "full_reference_texts_returned": [
+            "information-selection.md",
+            "structure-editing.md"
+          ],
+          "unique_fully_returned_reference_lf_chars": 2586
+        },
+        {
+          "atom": "review-structure",
+          "provider": 0,
+          "model": "minimax-cn/MiniMax-M3",
+          "case": "structure_add_delete",
+          "arm": "candidate",
+          "effort": "max",
+          "exit_code": 0,
+          "error": null,
+          "valid_final": true,
+          "seconds": 89.28,
+          "prompt_sha256": "c2fed5e57e95eb87233bf72845f8e247b9f226feb106f72b461f110bcc154f6e",
+          "path": "runs/0/structure_add_delete/candidate/max",
+          "repeat": false,
+          "normalized_prompt_sha256": "ae4a88e095c74fded486c06820ae4371204ed5ffcc8c350f5d35a716701b67df",
+          "final_sha256": "ea6c86400dd97e36f1e991bf1564e5edc01965fb32db231fec824d40029104dc",
+          "final_non_whitespace_chars": 113,
+          "native_usage": {
+            "input_tokens": 256017,
+            "cached_input_tokens": 231552,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 5326,
+            "reasoning_output_tokens": 0
+          },
+          "document_command_output_lf_chars": 28353,
+          "all_command_output_lf_chars": 34098,
+          "command_count": 12,
+          "document_read_names": [
+            "SKILL.md",
+            "genre-playbooks.md",
+            "handling-elements.md",
+            "information-selection.md",
+            "reference-index.md",
+            "structure-editing.md",
+            "task-route-cards.md"
+          ],
+          "target_full_text_returned": [
+            "SKILL.md",
+            "references/structure-editing.md"
+          ],
+          "full_reference_texts_returned": [
+            "genre-playbooks.md",
+            "handling-elements.md",
+            "information-selection.md",
+            "reference-index.md",
+            "structure-editing.md",
+            "task-route-cards.md"
+          ],
+          "unique_fully_returned_reference_lf_chars": 13315
+        },
+        {
+          "atom": "review-structure",
+          "provider": 1,
+          "model": "alibaba-token-plan/qwen3.8-flash",
+          "case": "reorder_sender",
+          "arm": "baseline",
+          "effort": "max",
+          "exit_code": 0,
+          "error": null,
+          "valid_final": true,
+          "seconds": 74.59,
+          "prompt_sha256": "f37a5bdd2680420b5d5d735ffa44bda8d5b64d19d359f2adb36155e4bb73681a",
+          "path": "runs/1/reorder_sender/baseline/max",
+          "repeat": false,
+          "normalized_prompt_sha256": "a2aac91738b562241f7bc4c824e7302ad39a259ab0062af9043f86e7abf16213",
+          "final_sha256": "3d9cde5184b8513d1059435027c2b2044cccd861e8cef5f0fe7e62bafa107fe9",
+          "final_non_whitespace_chars": 314,
+          "native_usage": {
+            "input_tokens": 103359,
+            "cached_input_tokens": 79872,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 4235,
+            "reasoning_output_tokens": 3527
+          },
+          "document_command_output_lf_chars": 17243,
+          "all_command_output_lf_chars": 41804,
+          "command_count": 8,
+          "document_read_names": [
+            "SKILL.md",
+            "formal-addressing.md",
+            "genre-playbook-correspondence.md",
+            "information-selection.md",
+            "reference-index.md",
+            "structure-editing.md",
+            "task-route-cards.md"
+          ],
+          "target_full_text_returned": [
+            "SKILL.md",
+            "references/structure-editing.md"
+          ],
+          "full_reference_texts_returned": [
+            "formal-addressing.md",
+            "genre-playbook-correspondence.md",
+            "information-selection.md",
+            "reference-index.md",
+            "structure-editing.md",
+            "task-route-cards.md"
+          ],
+          "unique_fully_returned_reference_lf_chars": 9714
+        },
+        {
+          "atom": "review-structure",
+          "provider": 1,
+          "model": "alibaba-token-plan/qwen3.8-flash",
+          "case": "reorder_sender",
+          "arm": "candidate",
+          "effort": "max",
+          "exit_code": 0,
+          "error": null,
+          "valid_final": true,
+          "seconds": 179.01,
+          "prompt_sha256": "5fffcbbe52bbf0db38f7bc9b7df92ddc91288451634d75d7f9ab6ec36ffe34d6",
+          "path": "runs/1/reorder_sender/candidate/max",
+          "repeat": false,
+          "normalized_prompt_sha256": "a2aac91738b562241f7bc4c824e7302ad39a259ab0062af9043f86e7abf16213",
+          "final_sha256": "a060edc63c9693bca213e318f8763ca30875dd45dda8564af27f9f6447cebf3a",
+          "final_non_whitespace_chars": 237,
+          "native_usage": {
+            "input_tokens": 173539,
+            "cached_input_tokens": 153472,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 9636,
+            "reasoning_output_tokens": 8294
+          },
+          "document_command_output_lf_chars": 19608,
+          "all_command_output_lf_chars": 23321,
+          "command_count": 9,
+          "document_read_names": [
+            "SKILL.md",
+            "formal-addressing.md",
+            "genre-playbook-correspondence.md",
+            "genre-playbooks.md",
+            "information-selection.md",
+            "reference-index.md",
+            "structure-editing.md",
+            "task-route-cards.md"
+          ],
+          "target_full_text_returned": [
+            "SKILL.md",
+            "references/structure-editing.md"
+          ],
+          "full_reference_texts_returned": [
+            "formal-addressing.md",
+            "genre-playbook-correspondence.md",
+            "genre-playbooks.md",
+            "information-selection.md",
+            "reference-index.md",
+            "structure-editing.md",
+            "task-route-cards.md"
+          ],
+          "unique_fully_returned_reference_lf_chars": 12077
+        },
+        {
+          "atom": "review-structure",
+          "provider": 2,
+          "model": "alibaba-token-plan-2/qwen3.8-flash",
+          "case": "quote_cleanup",
+          "arm": "baseline",
+          "effort": "max",
+          "exit_code": 0,
+          "error": null,
+          "valid_final": true,
+          "seconds": 115.55,
+          "prompt_sha256": "237e1fdb64f70263d1b6d0fc5865d6186b32dd90af7c574d3a46d8f097c9d98e",
+          "path": "runs/2/quote_cleanup/baseline/max",
+          "repeat": false,
+          "normalized_prompt_sha256": "6dbc7e6f9e89a665a1eac9982874c4298d562089503e35f5f18a67b4927a334e",
+          "final_sha256": "8023aeb325e6f4f0794d7d46a938017f0edd6ded16717d27e02a6add74f4d2ff",
+          "final_non_whitespace_chars": 62,
+          "native_usage": {
+            "input_tokens": 228855,
+            "cached_input_tokens": 202496,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 7201,
+            "reasoning_output_tokens": 5535
+          },
+          "document_command_output_lf_chars": 18386,
+          "all_command_output_lf_chars": 43704,
+          "command_count": 12,
+          "document_read_names": [
+            "SKILL.md",
+            "compatibility-scene-routing.md",
+            "final-review-layers.md",
+            "information-selection.md",
+            "proofreading-checklist.md",
+            "prose-lint-usage.md",
+            "task-route-cards.md"
+          ],
+          "target_full_text_returned": [
+            "SKILL.md",
+            "references/final-review-layers.md"
+          ],
+          "full_reference_texts_returned": [
+            "compatibility-scene-routing.md",
+            "final-review-layers.md",
+            "information-selection.md",
+            "proofreading-checklist.md",
+            "prose-lint-usage.md",
+            "task-route-cards.md"
+          ],
+          "unique_fully_returned_reference_lf_chars": 10857
+        },
+        {
+          "atom": "review-structure",
+          "provider": 2,
+          "model": "alibaba-token-plan-2/qwen3.8-flash",
+          "case": "quote_cleanup",
+          "arm": "candidate",
+          "effort": "max",
+          "exit_code": 0,
+          "error": null,
+          "valid_final": true,
+          "seconds": 115.52,
+          "prompt_sha256": "8a05112a9a12a1747d2eccf29c11cb444e1bf3a21945ef3fe8354bdb1c46fb15",
+          "path": "runs/2/quote_cleanup/candidate/max",
+          "repeat": false,
+          "normalized_prompt_sha256": "6dbc7e6f9e89a665a1eac9982874c4298d562089503e35f5f18a67b4927a334e",
+          "final_sha256": "8023aeb325e6f4f0794d7d46a938017f0edd6ded16717d27e02a6add74f4d2ff",
+          "final_non_whitespace_chars": 62,
+          "native_usage": {
+            "input_tokens": 208070,
+            "cached_input_tokens": 185216,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 5820,
+            "reasoning_output_tokens": 4219
+          },
+          "document_command_output_lf_chars": 21896,
+          "all_command_output_lf_chars": 28885,
+          "command_count": 12,
+          "document_read_names": [
+            "SKILL.md",
+            "compatibility-scene-routing.md",
+            "final-review-layers.md",
+            "information-selection.md",
+            "proofreading-checklist.md",
+            "prose-lint-usage.md",
+            "reference-index.md",
+            "task-route-cards.md"
+          ],
+          "target_full_text_returned": [
+            "SKILL.md",
+            "references/final-review-layers.md"
+          ],
+          "full_reference_texts_returned": [
+            "compatibility-scene-routing.md",
+            "final-review-layers.md",
+            "information-selection.md",
+            "proofreading-checklist.md",
+            "prose-lint-usage.md",
+            "reference-index.md",
+            "task-route-cards.md"
+          ],
+          "unique_fully_returned_reference_lf_chars": 14365
+        },
+        {
+          "atom": "review-structure",
+          "provider": 3,
+          "model": "opencode-go/deepseek-v4-flash",
+          "case": "ongoing_state",
+          "arm": "baseline",
+          "effort": "max",
+          "exit_code": 0,
+          "error": null,
+          "valid_final": true,
+          "seconds": 123.35,
+          "prompt_sha256": "9cd204e087f875d2b840d9f36e60cc16ad1654fee2cb7b29f5e758950f93d3d7",
+          "path": "runs/3/ongoing_state/baseline/max",
+          "repeat": false,
+          "normalized_prompt_sha256": "aeda1dfdd45760a15e9ceb8af1502db7c396ef4f30ad096e5063480aa1b898c3",
+          "final_sha256": "0b13fea23fe020734693d745f4c60ca6cea69013235c4d6682253b678a45c5ec",
+          "final_non_whitespace_chars": 59,
+          "native_usage": {
+            "input_tokens": 297645,
+            "cached_input_tokens": 273408,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 7858,
+            "reasoning_output_tokens": 0
+          },
+          "document_command_output_lf_chars": 18087,
+          "all_command_output_lf_chars": 19435,
+          "command_count": 9,
+          "document_read_names": [
+            "SKILL.md",
+            "final-review-layers.md",
+            "genre-checklist-report.md",
+            "information-selection.md",
+            "proofreading-checklist.md",
+            "prose-lint-usage.md",
+            "short-draft-naturalness.md",
+            "task-route-cards.md"
+          ],
+          "target_full_text_returned": [
+            "SKILL.md",
+            "references/final-review-layers.md"
+          ],
+          "full_reference_texts_returned": [
+            "final-review-layers.md",
+            "genre-checklist-report.md",
+            "information-selection.md",
+            "proofreading-checklist.md",
+            "prose-lint-usage.md",
+            "short-draft-naturalness.md",
+            "task-route-cards.md"
+          ],
+          "unique_fully_returned_reference_lf_chars": 10336
+        },
+        {
+          "atom": "review-structure",
+          "provider": 3,
+          "model": "opencode-go/deepseek-v4-flash",
+          "case": "ongoing_state",
+          "arm": "candidate",
+          "effort": "max",
+          "exit_code": 0,
+          "error": null,
+          "valid_final": true,
+          "seconds": 139.42,
+          "prompt_sha256": "2849a255b2cde2d95da6dc64ebe3070c3dc606adb027e6b13015793e271877e9",
+          "path": "runs/3/ongoing_state/candidate/max",
+          "repeat": false,
+          "normalized_prompt_sha256": "aeda1dfdd45760a15e9ceb8af1502db7c396ef4f30ad096e5063480aa1b898c3",
+          "final_sha256": "6a467a3d8344ae840ae584148b09f41b53f32cb02705a106cc5bf89b9390dd68",
+          "final_non_whitespace_chars": 72,
+          "native_usage": {
+            "input_tokens": 342463,
+            "cached_input_tokens": 287104,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 8864,
+            "reasoning_output_tokens": 1130
+          },
+          "document_command_output_lf_chars": 20275,
+          "all_command_output_lf_chars": 40695,
+          "command_count": 10,
+          "document_read_names": [
+            "SKILL.md",
+            "final-review-layers.md",
+            "information-selection.md",
+            "proofreading-checklist.md",
+            "prose-lint-usage.md",
+            "reference-index.md",
+            "short-draft-naturalness.md",
+            "task-route-cards.md"
+          ],
+          "target_full_text_returned": [
+            "SKILL.md",
+            "references/final-review-layers.md"
+          ],
+          "full_reference_texts_returned": [
+            "final-review-layers.md",
+            "information-selection.md",
+            "proofreading-checklist.md",
+            "prose-lint-usage.md",
+            "reference-index.md",
+            "short-draft-naturalness.md",
+            "task-route-cards.md"
+          ],
+          "unique_fully_returned_reference_lf_chars": 12744
+        },
+        {
+          "atom": "review-structure",
+          "provider": 4,
+          "model": "ollama-cloud/glm-5.3-flash",
+          "case": "general_duty",
+          "arm": "baseline",
+          "effort": "max",
+          "exit_code": 0,
+          "error": null,
+          "valid_final": true,
+          "seconds": 59.74,
+          "prompt_sha256": "0bcfceca381f81c6719f37c133f496323dcee14857763d853a164c25b5b518f0",
+          "path": "runs/4/general_duty/baseline/max",
+          "repeat": false,
+          "normalized_prompt_sha256": "ef47afd40009af6e110bf09c659a848b7e62692b76fa22789e1e16974cb274a4",
+          "final_sha256": "ea8987d0d9771485c93527bb7799e0e0577146a9db39ed8c5eaafb062ec6aae0",
+          "final_non_whitespace_chars": 84,
+          "native_usage": {
+            "input_tokens": 74099,
+            "cached_input_tokens": 0,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 2361,
+            "reasoning_output_tokens": 0
+          },
+          "document_command_output_lf_chars": 25650,
+          "all_command_output_lf_chars": 26061,
+          "command_count": 8,
+          "document_read_names": [
+            "SKILL.md",
+            "final-review-layers.md",
+            "information-selection.md",
+            "reference-index.md",
+            "task-route-cards.md"
+          ],
+          "target_full_text_returned": [
+            "SKILL.md",
+            "references/final-review-layers.md"
+          ],
+          "full_reference_texts_returned": [
+            "final-review-layers.md",
+            "information-selection.md",
+            "reference-index.md",
+            "task-route-cards.md"
+          ],
+          "unique_fully_returned_reference_lf_chars": 10613
+        },
+        {
+          "atom": "review-structure",
+          "provider": 4,
+          "model": "ollama-cloud/glm-5.3-flash",
+          "case": "general_duty",
+          "arm": "candidate",
+          "effort": "max",
+          "exit_code": 0,
+          "error": null,
+          "valid_final": true,
+          "seconds": 53.95,
+          "prompt_sha256": "e4830cbe092a724edcb2769c781d610ecf4f8c9bce0298bc738f9d4926607c67",
+          "path": "runs/4/general_duty/candidate/max",
+          "repeat": false,
+          "normalized_prompt_sha256": "ef47afd40009af6e110bf09c659a848b7e62692b76fa22789e1e16974cb274a4",
+          "final_sha256": "4518563dc4dcc6629075a9c1cee527f1b04cb2e2b3d7e8d6c411cfb8f0648c97",
+          "final_non_whitespace_chars": 107,
+          "native_usage": {
+            "input_tokens": 87888,
+            "cached_input_tokens": 0,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 3034,
+            "reasoning_output_tokens": 0
+          },
+          "document_command_output_lf_chars": 19280,
+          "all_command_output_lf_chars": 19280,
+          "command_count": 6,
+          "document_read_names": [
+            "SKILL.md",
+            "final-review-layers.md",
+            "information-selection.md",
+            "proofreading-checklist.md",
+            "reference-index.md",
+            "task-route-cards.md"
+          ],
+          "target_full_text_returned": [
+            "SKILL.md",
+            "references/final-review-layers.md"
+          ],
+          "full_reference_texts_returned": [
+            "final-review-layers.md",
+            "information-selection.md",
+            "proofreading-checklist.md",
+            "reference-index.md",
+            "task-route-cards.md"
+          ],
+          "unique_fully_returned_reference_lf_chars": 11753
+        }
+      ],
+      "freeze_sha256": "d1a1e64a3f2a0853b05e29b31d129ca7d75d1b72ee317ad0dcd1ea05f2187ae8"
+    },
+    "structure-exposure": {
+      "baseline": "9db0379f0267557fbf33f36d4c7940466ae71030",
+      "candidate": "60bce6c61b8e5bfbd41be8e3095e9d0460b0eb71",
+      "cases": {
+        "structure_add_delete": {
+          "task": "本轮成稿前请读取本Skill的 references/final-review-layers.md，按其结构修改复核指针检查改稿，必要时读取其明确指向的结构细则；不输出复核过程。以下是最新版通知，只按本轮要求改写完整正文，不解释过程。保留两个小标题名称和顺序；删除每周反馈安排及其在其他段落的重复表述；在第二节末新增一个独立自然段，原样包含‘反馈渠道’和‘联系人’，内容为反馈渠道是已有工作邮箱，联系人为李敏。不得新增小标题，日期保持缺失。底稿：关于核对设备台账的通知\n各科室：\n一、核对范围\n请核对本室在用设备的名称、数量和存放位置，不涉及新增采购。\n二、提交安排\n各科室于9月18日前将核对表发至已有工作邮箱。\n各科室每周提交一次进展。为掌握推进情况，各科室还应按周反馈办理进度。\n办公室",
+          "exposure": "User explicitly names the same old entry on both arms; validates conditional leaf transfer, not natural routing frequency."
+        }
+      },
+      "models": [
+        "minimax-cn/MiniMax-M3",
+        "alibaba-token-plan/qwen3.8-flash",
+        "alibaba-token-plan-2/qwen3.8-flash",
+        "opencode-go/deepseek-v4-flash",
+        "ollama-cloud/glm-5.3-flash"
+      ],
+      "pairs": [
+        {
+          "provider": "3",
+          "case": "structure_add_delete",
+          "both_valid_same_effort": true,
+          "selected_effort": "max",
+          "document_output_delta": -220
+        }
+      ],
+      "receipts": [
+        {
+          "atom": "structure-exposure",
+          "provider": 3,
+          "model": "opencode-go/deepseek-v4-flash",
+          "case": "structure_add_delete",
+          "arm": "baseline",
+          "effort": "max",
+          "exit_code": 0,
+          "error": null,
+          "valid_final": true,
+          "seconds": 53.14,
+          "prompt_sha256": "f84d79d29f0f84fc43ff32a6d2d44325221142fa29de58d95f0d5ff5327ec5aa",
+          "path": "runs/3/structure_add_delete/baseline/max",
+          "repeat": false,
+          "normalized_prompt_sha256": "eaf401bf196fe6aa3e01350060ea37344ce8eaae844dd443f40655c489619dc6",
+          "final_sha256": "9e2d22b9ebdfa1d179807cbd2cf41d8aabbb97709f8353f319d88cb3776d8e4f",
+          "final_non_whitespace_chars": 101,
+          "native_usage": {
+            "input_tokens": 59822,
+            "cached_input_tokens": 42624,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 9267,
+            "reasoning_output_tokens": 8630
+          },
+          "document_command_output_lf_chars": 11609,
+          "all_command_output_lf_chars": 11609,
+          "command_count": 3,
+          "document_read_names": [
+            "SKILL.md",
+            "final-review-layers.md",
+            "structure-editing.md"
+          ],
+          "target_full_text_returned": [
+            "SKILL.md",
+            "references/final-review-layers.md",
+            "references/structure-editing.md"
+          ],
+          "full_reference_texts_returned": [
+            "final-review-layers.md",
+            "structure-editing.md"
+          ],
+          "unique_fully_returned_reference_lf_chars": 4088
+        },
+        {
+          "atom": "structure-exposure",
+          "provider": 3,
+          "model": "opencode-go/deepseek-v4-flash",
+          "case": "structure_add_delete",
+          "arm": "candidate",
+          "effort": "max",
+          "exit_code": 0,
+          "error": null,
+          "valid_final": true,
+          "seconds": 56.55,
+          "prompt_sha256": "b7c98a8c1c65de56616003e5cfcb883378e6a1ca3f3cbc13ae3bc6e8ff0eea61",
+          "path": "runs/3/structure_add_delete/candidate/max",
+          "repeat": false,
+          "normalized_prompt_sha256": "eaf401bf196fe6aa3e01350060ea37344ce8eaae844dd443f40655c489619dc6",
+          "final_sha256": "9e2d22b9ebdfa1d179807cbd2cf41d8aabbb97709f8353f319d88cb3776d8e4f",
+          "final_non_whitespace_chars": 101,
+          "native_usage": {
+            "input_tokens": 60510,
+            "cached_input_tokens": 42752,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 2686,
+            "reasoning_output_tokens": 0
+          },
+          "document_command_output_lf_chars": 11389,
+          "all_command_output_lf_chars": 11389,
+          "command_count": 3,
+          "document_read_names": [
+            "SKILL.md",
+            "final-review-layers.md",
+            "structure-editing.md"
+          ],
+          "target_full_text_returned": [
+            "SKILL.md",
+            "references/final-review-layers.md",
+            "references/structure-editing.md"
+          ],
+          "full_reference_texts_returned": [
+            "final-review-layers.md",
+            "structure-editing.md"
+          ],
+          "unique_fully_returned_reference_lf_chars": 3868
+        }
+      ],
+      "freeze_sha256": "74e860548a7cbb29d01387675c0807dedbaee4f3a89d9889e84d42abe85d45ad"
+    },
+    "local-workflow": {
+      "baseline": "9db0379f0267557fbf33f36d4c7940466ae71030",
+      "candidate": "5103a985abd9e5d7dc222392990fe440db08668f",
+      "cases": {
+        "notice_time": {
+          "task": "这是上一轮通知定稿。本轮只把会议开始时间由“9月15日9时”改成“9月15日10时”，其余文字、标题、主送、落款和日期保持不变，不新增小标题。只输出完整改后稿。\n关于召开资料核对会的通知\n各科室：\n请于9月15日9时到三楼会议室参加资料核对会，并携带本部门登记表。联系人：李明，电话：12345678。\n办公室\n2026年9月10日"
+        },
+        "letter_phrase": {
+          "task": "请只将下函结尾的“请予支持”改成“请予协助”，其余文字、标题、主送和落款原样保留，只输出完整改后正文。\n关于协助核对资料的函\n青禾中心：\n现将已核对的2份资料随函发送，请核对其中的单位名称。第3份资料尚待复核，本次未附。\n请予支持。\n云川中心"
+        },
+        "minutes_actor": {
+          "task": "以以下完整正文为唯一底稿，本轮只把第二句承担核对工作的“办公室”改为“信息科”，其余文字和段落不动。只输出完整改后正文。\n资料整理专题会议纪要\n9月10日召开资料整理专题会。\n办公室负责核对8份清单，完成期限未定。\n新增采购建议留待下次会议讨论。"
+        },
+        "complex_merge": {
+          "task": "请将最新版报告与补充记录合并重写，旧稿仅用于参考结构；保留最新版标题、主送、落款，不新增小标题，只输出完整改后稿。\n旧稿：已核对32份登记表，拟于9月18日完成全部核对。\n最新版：\n资料核对情况报告\n中心领导：\n截至9月10日，共收到40份登记表，已核对36份，另4份正在核对，完成期限尚未确定。已核对的36份中发现2处单位名称不一致，目前仍在核实。\n特此报告。\n办公室\n补充记录：36份已核对登记表的电子稿由信息科保存，纸质稿由办公室保存。未增加人员分工或报送安排。"
+        },
+        "word_time": {
+          "docx": true,
+          "docx_input": "F:\\Workspaces\\chinese-official-writing-skill\\output\\route-worktrees\\leaf-refactor-validation-20260911\\output\\leaf-refactor-20260911\\fixtures\\通知原稿-v2.docx",
+          "docx_input_sha256": "28918b5af0e379780941ce550f46638c75f4197b314c048d707d0bc60ac261b6",
+          "task": "请编辑给定的普通正式Word通知，输入文件为 {docx_input}。只将正文“9月15日9时”改为“9月15日10时”，保留A4页面、标题、主送、落款、日期、全部段落及样式，不增加业务内容。另存到 {output_dir}/通知修改稿.docx，并附完整改后正文及新文件路径。允许使用已提供的本机Python运行库 C:/Users/admin/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/python.exe（已安装python-docx），无需读取其他Skill。不要改原文件。"
+        }
+      },
+      "models": [
+        "minimax-cn/MiniMax-M3",
+        "alibaba-token-plan/qwen3.8-flash",
+        "alibaba-token-plan-2/qwen3.8-flash",
+        "opencode-go/deepseek-v4-flash",
+        "ollama-cloud/glm-5.3-flash"
+      ],
+      "pairs": [
+        {
+          "provider": "0",
+          "case": "notice_time",
+          "both_valid_same_effort": true,
+          "selected_effort": "max",
+          "document_output_delta": 0
+        },
+        {
+          "provider": "1",
+          "case": "letter_phrase",
+          "both_valid_same_effort": true,
+          "selected_effort": "max",
+          "document_output_delta": 24
+        },
+        {
+          "provider": "2",
+          "case": "minutes_actor",
+          "both_valid_same_effort": true,
+          "selected_effort": "max",
+          "document_output_delta": -3124
+        },
+        {
+          "provider": "3",
+          "case": "complex_merge",
+          "both_valid_same_effort": true,
+          "selected_effort": "max",
+          "document_output_delta": 681
+        },
+        {
+          "provider": "4",
+          "case": "word_time",
+          "both_valid_same_effort": true,
+          "selected_effort": "max",
+          "document_output_delta": 0
+        }
+      ],
+      "receipts": [
+        {
+          "atom": "local-workflow",
+          "provider": 0,
+          "model": "minimax-cn/MiniMax-M3",
+          "case": "notice_time",
+          "arm": "baseline",
+          "effort": "max",
+          "exit_code": 0,
+          "error": null,
+          "valid_final": true,
+          "seconds": 17.68,
+          "prompt_sha256": "a1f4f707db6b2e0ca46e5c62595c3c031519317c29f45d47b41464339a0ebccb",
+          "path": "runs/0/notice_time/baseline/max",
+          "repeat": false,
+          "normalized_prompt_sha256": "9df3ed7e165a36ff37d9008742baf3622d1cae0df08fb79513595a86510b0df2",
+          "final_sha256": "3dcdc13b81537d7877e12dd387c03837452c64e8ae964f6a57a8aec7dacd61e1",
+          "final_non_whitespace_chars": 82,
+          "native_usage": {
+            "input_tokens": 33648,
+            "cached_input_tokens": 19200,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 916,
+            "reasoning_output_tokens": 0
+          },
+          "document_command_output_lf_chars": 7516,
+          "all_command_output_lf_chars": 7516,
+          "command_count": 1,
+          "document_read_names": [
+            "SKILL.md"
+          ],
+          "target_full_text_returned": [
+            "SKILL.md"
+          ],
+          "full_reference_texts_returned": [],
+          "unique_fully_returned_reference_lf_chars": 0
+        },
+        {
+          "atom": "local-workflow",
+          "provider": 0,
+          "model": "minimax-cn/MiniMax-M3",
+          "case": "notice_time",
+          "arm": "candidate",
+          "effort": "max",
+          "exit_code": 0,
+          "error": null,
+          "valid_final": true,
+          "seconds": 29.98,
+          "prompt_sha256": "33db233ea16880c145d6acaae06546eec4860b37295c26e07e171f59dbcf8da1",
+          "path": "runs/0/notice_time/candidate/max",
+          "repeat": false,
+          "normalized_prompt_sha256": "9df3ed7e165a36ff37d9008742baf3622d1cae0df08fb79513595a86510b0df2",
+          "final_sha256": "52ff06896e4d7a55909212459add571ee21107b7643e0f58978e5ec9dcdb9ec5",
+          "final_non_whitespace_chars": 82,
+          "native_usage": {
+            "input_tokens": 85601,
+            "cached_input_tokens": 69760,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 2128,
+            "reasoning_output_tokens": 0
+          },
+          "document_command_output_lf_chars": 7516,
+          "all_command_output_lf_chars": 7516,
+          "command_count": 1,
+          "document_read_names": [
+            "SKILL.md"
+          ],
+          "target_full_text_returned": [
+            "SKILL.md"
+          ],
+          "full_reference_texts_returned": [],
+          "unique_fully_returned_reference_lf_chars": 0
+        },
+        {
+          "atom": "local-workflow",
+          "provider": 1,
+          "model": "alibaba-token-plan/qwen3.8-flash",
+          "case": "letter_phrase",
+          "arm": "baseline",
+          "effort": "max",
+          "exit_code": 0,
+          "error": null,
+          "valid_final": true,
+          "seconds": 26.8,
+          "prompt_sha256": "2834a4ed5a7b0207de9106476d8d3bf935c8aa8cf3875257ff253948a44b0f76",
+          "path": "runs/1/letter_phrase/baseline/max",
+          "repeat": false,
+          "normalized_prompt_sha256": "1ad749220eb7f40ce0327c3eddbadcf44a70b069b7463f20b150e55d6ca161d9",
+          "final_sha256": "9a4da34c50124a189e172d887722f656db73f30b95e5fcf073cd8aba2ae0a1ce",
+          "final_non_whitespace_chars": 65,
+          "native_usage": {
+            "input_tokens": 92819,
+            "cached_input_tokens": 73472,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 1277,
+            "reasoning_output_tokens": 759
+          },
+          "document_command_output_lf_chars": 11935,
+          "all_command_output_lf_chars": 32039,
+          "command_count": 4,
+          "document_read_names": [
+            "SKILL.md",
+            "genre-playbook-correspondence.md",
+            "reference-index.md"
+          ],
+          "target_full_text_returned": [
+            "SKILL.md",
+            "references/reference-index.md"
+          ],
+          "full_reference_texts_returned": [
+            "genre-playbook-correspondence.md",
+            "reference-index.md"
+          ],
+          "unique_fully_returned_reference_lf_chars": 4414
+        },
+        {
+          "atom": "local-workflow",
+          "provider": 1,
+          "model": "alibaba-token-plan/qwen3.8-flash",
+          "case": "letter_phrase",
+          "arm": "candidate",
+          "effort": "max",
+          "exit_code": 0,
+          "error": null,
+          "valid_final": true,
+          "seconds": 56.37,
+          "prompt_sha256": "89d34b3948485490877c0a8ee8b3036ad5b0829dcd3fdd0fce80b225bdc8217d",
+          "path": "runs/1/letter_phrase/candidate/max",
+          "repeat": false,
+          "normalized_prompt_sha256": "1ad749220eb7f40ce0327c3eddbadcf44a70b069b7463f20b150e55d6ca161d9",
+          "final_sha256": "9a4da34c50124a189e172d887722f656db73f30b95e5fcf073cd8aba2ae0a1ce",
+          "final_non_whitespace_chars": 65,
+          "native_usage": {
+            "input_tokens": 106509,
+            "cached_input_tokens": 85888,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 1747,
+            "reasoning_output_tokens": 1105
+          },
+          "document_command_output_lf_chars": 11959,
+          "all_command_output_lf_chars": 36400,
+          "command_count": 4,
+          "document_read_names": [
+            "SKILL.md",
+            "genre-playbook-correspondence.md",
+            "reference-index.md"
+          ],
+          "target_full_text_returned": [
+            "SKILL.md",
+            "references/reference-index.md"
+          ],
+          "full_reference_texts_returned": [
+            "genre-playbook-correspondence.md",
+            "reference-index.md"
+          ],
+          "unique_fully_returned_reference_lf_chars": 4438
+        },
+        {
+          "atom": "local-workflow",
+          "provider": 2,
+          "model": "alibaba-token-plan-2/qwen3.8-flash",
+          "case": "minutes_actor",
+          "arm": "baseline",
+          "effort": "max",
+          "exit_code": 0,
+          "error": null,
+          "valid_final": true,
+          "seconds": 45.21,
+          "prompt_sha256": "d46c16046174a022e1350af9a1269f4032465268e4958d9ae1ee8c175c1d46b8",
+          "path": "runs/2/minutes_actor/baseline/max",
+          "repeat": false,
+          "normalized_prompt_sha256": "43f68eb7926dd1ac82cf6a76eb8b6a694a020ae9c1e98bb6a59c9185c3cd5e08",
+          "final_sha256": "66f284a892a4f96336b8b1d98abe01a62088cba94785c713974d0193aabd9974",
+          "final_non_whitespace_chars": 59,
+          "native_usage": {
+            "input_tokens": 128292,
+            "cached_input_tokens": 107264,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 2091,
+            "reasoning_output_tokens": 1330
+          },
+          "document_command_output_lf_chars": 14694,
+          "all_command_output_lf_chars": 34798,
+          "command_count": 5,
+          "document_read_names": [
+            "SKILL.md",
+            "information-selection.md",
+            "reference-index.md",
+            "task-route-cards.md"
+          ],
+          "target_full_text_returned": [
+            "SKILL.md",
+            "references/reference-index.md"
+          ],
+          "full_reference_texts_returned": [
+            "information-selection.md",
+            "reference-index.md",
+            "task-route-cards.md"
+          ],
+          "unique_fully_returned_reference_lf_chars": 7171
+        },
+        {
+          "atom": "local-workflow",
+          "provider": 2,
+          "model": "alibaba-token-plan-2/qwen3.8-flash",
+          "case": "minutes_actor",
+          "arm": "candidate",
+          "effort": "max",
+          "exit_code": 0,
+          "error": null,
+          "valid_final": true,
+          "seconds": 46.86,
+          "prompt_sha256": "dea2f827f0ac6f4d4048b764b95c02601ac40b108f52cc08941c974f4d6a5ccd",
+          "path": "runs/2/minutes_actor/candidate/max",
+          "repeat": false,
+          "normalized_prompt_sha256": "43f68eb7926dd1ac82cf6a76eb8b6a694a020ae9c1e98bb6a59c9185c3cd5e08",
+          "final_sha256": "66f284a892a4f96336b8b1d98abe01a62088cba94785c713974d0193aabd9974",
+          "final_non_whitespace_chars": 59,
+          "native_usage": {
+            "input_tokens": 124204,
+            "cached_input_tokens": 105344,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 2496,
+            "reasoning_output_tokens": 1747
+          },
+          "document_command_output_lf_chars": 11570,
+          "all_command_output_lf_chars": 31772,
+          "command_count": 5,
+          "document_read_names": [
+            "SKILL.md",
+            "information-selection.md",
+            "structure-editing.md",
+            "task-route-cards.md"
+          ],
+          "target_full_text_returned": [
+            "SKILL.md"
+          ],
+          "full_reference_texts_returned": [
+            "information-selection.md",
+            "structure-editing.md",
+            "task-route-cards.md"
+          ],
+          "unique_fully_returned_reference_lf_chars": 4047
+        },
+        {
+          "atom": "local-workflow",
+          "provider": 3,
+          "model": "opencode-go/deepseek-v4-flash",
+          "case": "complex_merge",
+          "arm": "baseline",
+          "effort": "max",
+          "exit_code": 0,
+          "error": null,
+          "valid_final": true,
+          "seconds": 107.44,
+          "prompt_sha256": "f7729aa93c0bd699dd698488f448dea8edcbfeb9e29b81024b2e4a28cd1c5ae9",
+          "path": "runs/3/complex_merge/baseline/max",
+          "repeat": false,
+          "normalized_prompt_sha256": "2320a2f0313d2923f20c52983f764dd1ff8468111f9de50ef43d7755c2c82600",
+          "final_sha256": "edada8883a845e9e5e2770d717d38824e41c836a95c6230755617547d8c6ce7b",
+          "final_non_whitespace_chars": 120,
+          "native_usage": {
+            "input_tokens": 423844,
+            "cached_input_tokens": 346240,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 11840,
+            "reasoning_output_tokens": 9748
+          },
+          "document_command_output_lf_chars": 25997,
+          "all_command_output_lf_chars": 46276,
+          "command_count": 13,
+          "document_read_names": [
+            "SKILL.md",
+            "final-review-layers.md",
+            "genre-checklist-report.md",
+            "information-selection.md",
+            "proofreading-checklist.md",
+            "prose-lint-usage.md",
+            "reference-index.md",
+            "task-route-cards.md",
+            "workflow.md"
+          ],
+          "target_full_text_returned": [
+            "SKILL.md",
+            "references/reference-index.md"
+          ],
+          "full_reference_texts_returned": [
+            "final-review-layers.md",
+            "genre-checklist-report.md",
+            "information-selection.md",
+            "proofreading-checklist.md",
+            "prose-lint-usage.md",
+            "reference-index.md",
+            "task-route-cards.md",
+            "workflow.md"
+          ],
+          "unique_fully_returned_reference_lf_chars": 18473
+        },
+        {
+          "atom": "local-workflow",
+          "provider": 3,
+          "model": "opencode-go/deepseek-v4-flash",
+          "case": "complex_merge",
+          "arm": "candidate",
+          "effort": "max",
+          "exit_code": 0,
+          "error": null,
+          "valid_final": true,
+          "seconds": 99.25,
+          "prompt_sha256": "b0f76b28f729178a620157e12e265464393050be0c67f02dc15fa84f57792163",
+          "path": "runs/3/complex_merge/candidate/max",
+          "repeat": false,
+          "normalized_prompt_sha256": "2320a2f0313d2923f20c52983f764dd1ff8468111f9de50ef43d7755c2c82600",
+          "final_sha256": "ce50217e8712890868f50fbcffd9ffbb80c21893c556452a29cd248ef26be500",
+          "final_non_whitespace_chars": 117,
+          "native_usage": {
+            "input_tokens": 308029,
+            "cached_input_tokens": 230272,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 13085,
+            "reasoning_output_tokens": 10600
+          },
+          "document_command_output_lf_chars": 26678,
+          "all_command_output_lf_chars": 46922,
+          "command_count": 16,
+          "document_read_names": [
+            "SKILL.md",
+            "final-review-layers.md",
+            "genre-checklist-report.md",
+            "information-selection.md",
+            "proofreading-checklist.md",
+            "prose-lint-usage.md",
+            "reference-index.md",
+            "structure-editing.md",
+            "task-route-cards.md",
+            "workflow.md"
+          ],
+          "target_full_text_returned": [
+            "SKILL.md",
+            "references/reference-index.md"
+          ],
+          "full_reference_texts_returned": [
+            "final-review-layers.md",
+            "genre-checklist-report.md",
+            "information-selection.md",
+            "proofreading-checklist.md",
+            "prose-lint-usage.md",
+            "reference-index.md",
+            "structure-editing.md",
+            "task-route-cards.md",
+            "workflow.md"
+          ],
+          "unique_fully_returned_reference_lf_chars": 19143
+        },
+        {
+          "atom": "local-workflow",
+          "provider": 4,
+          "model": "ollama-cloud/glm-5.3-flash",
+          "case": "word_time",
+          "arm": "baseline",
+          "effort": "max",
+          "exit_code": 0,
+          "error": null,
+          "valid_final": true,
+          "seconds": 59.92,
+          "prompt_sha256": "341cce554fd8925557961b42e92c034b944ed06b3e02850b53c2642f9b5d88a2",
+          "path": "runs/4/word_time/baseline/max",
+          "repeat": false,
+          "normalized_prompt_sha256": "8ac7e9b5239b0cf420174cd459d7ff501eb464d279e2f14a088a3b162dac7c6c",
+          "final_sha256": "0ae015c86ee1642c929458532ab55e91426d580a8b82acb87a78f7060dc80c8b",
+          "final_non_whitespace_chars": 424,
+          "native_usage": {
+            "input_tokens": 114590,
+            "cached_input_tokens": 0,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 2773,
+            "reasoning_output_tokens": 0
+          },
+          "document_command_output_lf_chars": 7517,
+          "all_command_output_lf_chars": 7883,
+          "command_count": 6,
+          "document_read_names": [
+            "SKILL.md"
+          ],
+          "target_full_text_returned": [
+            "SKILL.md"
+          ],
+          "full_reference_texts_returned": [],
+          "unique_fully_returned_reference_lf_chars": 0
+        },
+        {
+          "atom": "local-workflow",
+          "provider": 4,
+          "model": "ollama-cloud/glm-5.3-flash",
+          "case": "word_time",
+          "arm": "candidate",
+          "effort": "max",
+          "exit_code": 0,
+          "error": null,
+          "valid_final": true,
+          "seconds": 120.03,
+          "prompt_sha256": "39e5e4a11bcc672ec1e776b35c06cee3175b585e588b0a42800dab63966336c7",
+          "path": "runs/4/word_time/candidate/max",
+          "repeat": false,
+          "normalized_prompt_sha256": "8ac7e9b5239b0cf420174cd459d7ff501eb464d279e2f14a088a3b162dac7c6c",
+          "final_sha256": "3ad870248a3713b5754622aead0f515b472f0a641a192765a06739005d53f46c",
+          "final_non_whitespace_chars": 338,
+          "native_usage": {
+            "input_tokens": 197513,
+            "cached_input_tokens": 0,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 6225,
+            "reasoning_output_tokens": 0
+          },
+          "document_command_output_lf_chars": 7517,
+          "all_command_output_lf_chars": 9592,
+          "command_count": 7,
+          "document_read_names": [
+            "SKILL.md"
+          ],
+          "target_full_text_returned": [
+            "SKILL.md"
+          ],
+          "full_reference_texts_returned": [],
+          "unique_fully_returned_reference_lf_chars": 0
+        }
+      ],
+      "freeze_sha256": "0063427cfcf89eb69d8d120937476b7461872df4b4d10aaa234875da51238bf3"
+    },
+    "small-combination": {
+      "baseline": "9db0379f0267557fbf33f36d4c7940466ae71030",
+      "candidate": "975be504a9297ebaf70a3780458391145b24835a",
+      "cases": {
+        "structure_add_delete": {
+          "task": "本轮成稿前请读取本Skill的 references/final-review-layers.md，按其结构修改复核指针检查改稿，必要时读取其明确指向的结构细则；不输出复核过程。以下是最新版通知，只按本轮要求改写完整正文，不解释过程。保留两个小标题名称和顺序；删除每周反馈安排及其在其他段落的重复表述；在第二节末新增一个独立自然段，原样包含‘反馈渠道’和‘联系人’，内容为反馈渠道是已有工作邮箱，联系人为李敏。不得新增小标题，日期保持缺失。底稿：关于核对设备台账的通知\n各科室：\n一、核对范围\n请核对本室在用设备的名称、数量和存放位置，不涉及新增采购。\n二、提交安排\n各科室于9月18日前将核对表发至已有工作邮箱。\n各科室每周提交一次进展。为掌握推进情况，各科室还应按周反馈办理进度。\n办公室",
+          "exposure": "User explicitly names the same old entry on both arms; validates conditional leaf transfer, not natural routing frequency."
+        },
+        "complex_merge": {
+          "task": "请将最新版报告与补充记录合并重写，旧稿仅用于参考结构；保留最新版标题、主送、落款，不新增小标题，只输出完整改后稿。\n旧稿：已核对32份登记表，拟于9月18日完成全部核对。\n最新版：\n资料核对情况报告\n中心领导：\n截至9月10日，共收到40份登记表，已核对36份，另4份正在核对，完成期限尚未确定。已核对的36份中发现2处单位名称不一致，目前仍在核实。\n特此报告。\n办公室\n补充记录：36份已核对登记表的电子稿由信息科保存，纸质稿由办公室保存。未增加人员分工或报送安排。"
+        }
+      },
+      "models": [
+        "minimax-cn/MiniMax-M3",
+        "alibaba-token-plan/qwen3.8-flash",
+        "alibaba-token-plan-2/qwen3.8-flash",
+        "opencode-go/deepseek-v4-flash",
+        "ollama-cloud/glm-5.3-flash"
+      ],
+      "pairs": [
+        {
+          "provider": "0",
+          "case": "structure_add_delete",
+          "both_valid_same_effort": true,
+          "selected_effort": "max",
+          "document_output_delta": 11536
+        },
+        {
+          "provider": "3",
+          "case": "complex_merge",
+          "both_valid_same_effort": true,
+          "selected_effort": "max",
+          "document_output_delta": -9708
+        }
+      ],
+      "receipts": [
+        {
+          "atom": "small-combination",
+          "provider": 0,
+          "model": "minimax-cn/MiniMax-M3",
+          "case": "structure_add_delete",
+          "arm": "baseline",
+          "effort": "max",
+          "exit_code": 0,
+          "error": null,
+          "valid_final": true,
+          "seconds": 11.52,
+          "timeout_seconds": 300,
+          "prompt_sha256": "ca9b484404d3da214819bd59b6eae0fd8f29e90e1953f22da09f8230fece804f",
+          "path": "runs/0/structure_add_delete/baseline/max",
+          "repeat": false,
+          "normalized_prompt_sha256": "eaf401bf196fe6aa3e01350060ea37344ce8eaae844dd443f40655c489619dc6",
+          "final_sha256": "b736bce3e3f94ccb26f80e1c9a7f53d2459cef09ecc778dd7950b340d0652463",
+          "final_non_whitespace_chars": 101,
+          "native_usage": {
+            "input_tokens": 40412,
+            "cached_input_tokens": 27892,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 1347,
+            "reasoning_output_tokens": 1053
+          },
+          "document_command_output_lf_chars": 10959,
+          "all_command_output_lf_chars": 10959,
+          "command_count": 2,
+          "document_read_names": [
+            "SKILL.md",
+            "final-review-layers.md"
+          ],
+          "target_full_text_returned": [
+            "SKILL.md",
+            "references/final-review-layers.md"
+          ],
+          "full_reference_texts_returned": [
+            "final-review-layers.md"
+          ],
+          "unique_fully_returned_reference_lf_chars": 3442
+        },
+        {
+          "atom": "small-combination",
+          "provider": 0,
+          "model": "minimax-cn/MiniMax-M3",
+          "case": "structure_add_delete",
+          "arm": "candidate",
+          "effort": "max",
+          "exit_code": 0,
+          "error": null,
+          "valid_final": true,
+          "seconds": 57.78,
+          "timeout_seconds": 300,
+          "prompt_sha256": "fa400bae8fc9689824b47e771b70f930ef2c49f0ba42aadf098696450cc503f4",
+          "path": "runs/0/structure_add_delete/candidate/max",
+          "repeat": false,
+          "normalized_prompt_sha256": "eaf401bf196fe6aa3e01350060ea37344ce8eaae844dd443f40655c489619dc6",
+          "final_sha256": "9e2d22b9ebdfa1d179807cbd2cf41d8aabbb97709f8353f319d88cb3776d8e4f",
+          "final_non_whitespace_chars": 101,
+          "native_usage": {
+            "input_tokens": 232104,
+            "cached_input_tokens": 199296,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 3225,
+            "reasoning_output_tokens": 0
+          },
+          "document_command_output_lf_chars": 22495,
+          "all_command_output_lf_chars": 22495,
+          "command_count": 4,
+          "document_read_names": [
+            "SKILL.md",
+            "final-review-layers.md",
+            "structure-editing.md"
+          ],
+          "target_full_text_returned": [
+            "SKILL.md",
+            "references/final-review-layers.md",
+            "references/structure-editing.md"
+          ],
+          "full_reference_texts_returned": [
+            "final-review-layers.md",
+            "structure-editing.md"
+          ],
+          "unique_fully_returned_reference_lf_chars": 3868
+        },
+        {
+          "atom": "small-combination",
+          "provider": 3,
+          "model": "opencode-go/deepseek-v4-flash",
+          "case": "complex_merge",
+          "arm": "baseline",
+          "effort": "max",
+          "exit_code": 0,
+          "error": null,
+          "valid_final": true,
+          "seconds": 122.77,
+          "timeout_seconds": 300,
+          "prompt_sha256": "0b19dab1f3ef69d8f211cc19cfe628dc6abc075f81dcc0491bc392e4880c1261",
+          "path": "runs/3/complex_merge/baseline/max",
+          "repeat": false,
+          "normalized_prompt_sha256": "2320a2f0313d2923f20c52983f764dd1ff8468111f9de50ef43d7755c2c82600",
+          "final_sha256": "3d846e135f21bc7068785915d66237b28b96348b3f88f683427c49f039d307f7",
+          "final_non_whitespace_chars": 245,
+          "native_usage": {
+            "input_tokens": 67617,
+            "cached_input_tokens": 43264,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 4244,
+            "reasoning_output_tokens": 0
+          },
+          "document_command_output_lf_chars": 20630,
+          "all_command_output_lf_chars": 20630,
+          "command_count": 6,
+          "document_read_names": [
+            "SKILL.md",
+            "genre-checklist-report.md",
+            "information-selection.md",
+            "reference-index.md",
+            "task-route-cards.md",
+            "workflow.md"
+          ],
+          "target_full_text_returned": [
+            "SKILL.md",
+            "references/reference-index.md"
+          ],
+          "full_reference_texts_returned": [
+            "genre-checklist-report.md",
+            "information-selection.md",
+            "reference-index.md",
+            "task-route-cards.md",
+            "workflow.md"
+          ],
+          "unique_fully_returned_reference_lf_chars": 13103
+        },
+        {
+          "atom": "small-combination",
+          "provider": 3,
+          "model": "opencode-go/deepseek-v4-flash",
+          "case": "complex_merge",
+          "arm": "candidate",
+          "effort": "max",
+          "exit_code": 0,
+          "error": null,
+          "valid_final": true,
+          "seconds": 67.12,
+          "timeout_seconds": 300,
+          "prompt_sha256": "3215bb9dd2a5240ca46e71fc814456bfa17c91e92239896f5d9f708cfc737d11",
+          "path": "runs/3/complex_merge/candidate/max",
+          "repeat": false,
+          "normalized_prompt_sha256": "2320a2f0313d2923f20c52983f764dd1ff8468111f9de50ef43d7755c2c82600",
+          "final_sha256": "9f4b0c24c92930f0f67b08a73d5f526252af91b4bf9f0de12d4350713b040fa6",
+          "final_non_whitespace_chars": 120,
+          "native_usage": {
+            "input_tokens": 41793,
+            "cached_input_tokens": 24832,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 2203,
+            "reasoning_output_tokens": 0
+          },
+          "document_command_output_lf_chars": 10922,
+          "all_command_output_lf_chars": 10922,
+          "command_count": 3,
+          "document_read_names": [
+            "SKILL.md",
+            "information-selection.md",
+            "task-route-cards.md"
+          ],
+          "target_full_text_returned": [
+            "SKILL.md"
+          ],
+          "full_reference_texts_returned": [
+            "information-selection.md",
+            "task-route-cards.md"
+          ],
+          "unique_fully_returned_reference_lf_chars": 3401
+        }
+      ],
+      "freeze_sha256": "1fe1557d51779c6b23949b0bfd8ccc239d87643708581bd7d9c61bd45d171590"
+    }
+  },
+  "reviews": [
+    {
+      "atom": "review-structure",
+      "case": "structure_add_delete",
+      "repeat": false,
+      "effort": "max",
+      "preferred": "baseline",
+      "blind_packet": "review-structure",
+      "blind_id": "structure_add_delete",
+      "material_difference": "两稿正文均保留两个小标题名称与顺序，删除每周反馈的两处表述，在第二节末新增含反馈渠道和联系人的独立自然段，保留缺失日期与办公室落款。Y直接输出正文，X需要删除引导语；段间空行差异不作为质量差异。",
+      "confidence": "high",
+      "candidate_issues": [
+        {
+          "type": "交付问题",
+          "quote": "按本轮要求改写后的正文：",
+          "reason": "任务要求只改写完整正文、不解释过程，成稿仍有正文外引导语。"
+        }
+      ],
+      "baseline_issues": []
+    },
+    {
+      "atom": "review-structure",
+      "case": "ongoing_state",
+      "repeat": false,
+      "effort": "max",
+      "preferred": "tie",
+      "blind_packet": "review-structure",
+      "blind_id": "ongoing_state",
+      "material_difference": "两稿都完整保留收到12条、正在分类汇总、5条已完成原始凭证核对、7条仍在核对、陈琳负责及责任认定未作出，未补完成时间或处置结论，也未输出复核过程。是否加情况报告标题不影响本题正文事实和可用性。",
+      "confidence": "high",
+      "baseline_issues": [],
+      "candidate_issues": []
+    },
+    {
+      "atom": "review-structure",
+      "case": "general_duty",
+      "repeat": false,
+      "effort": "max",
+      "preferred": "tie",
+      "blind_packet": "review-structure",
+      "blind_id": "general_duty",
+      "material_difference": "两稿都准确交付9月8日服务窗口收到2条意见、意见内容待核对，并把办公室一般职责与本次交办及汇总是否发生区分开来。材料未提供与不作认定等限定均回应题目允许的状态说明，未虚构责任认定、追责或后续安排。自然表达不同，实质质量相当。",
+      "confidence": "high",
+      "baseline_issues": [],
+      "candidate_issues": []
+    },
+    {
+      "atom": "local-workflow",
+      "case": "notice_time",
+      "repeat": false,
+      "effort": "max",
+      "preferred": "tie",
+      "blind_packet": "supplement-1",
+      "blind_id": "supplement-1-05",
+      "material_difference": "两稿都只将正文目标时间由9时改为10时，保留全部其他文字、标题、主送、联系人电话、落款及日期，完整输出改后稿且没有新增小标题或过程说明。空行差异未改变文字或段落内容，不机械判为实质修改。",
+      "confidence": "high",
+      "candidate_issues": [],
+      "baseline_issues": []
+    },
+    {
+      "atom": "local-workflow",
+      "case": "word_time",
+      "repeat": false,
+      "effort": "max",
+      "preferred": "tie",
+      "blind_packet": "supplement-1",
+      "blind_id": "supplement-1-06",
+      "material_difference": "可见回复均附完整通知正文和新DOCX路径，正文目标时间为9月15日10时，呈现的标题、主送、事项、落款与日期一致。题目本身还要求文件路径，故完成及复核说明不按只输出正文任务处理。本匿名包没有原Word内容或实际文件字节，无法据自述核验A4、段落样式、原文件未修改或路径文件有效性；这些均留待独立文件验证，不能据此判任一稿Word质量更优。",
+      "confidence": "medium",
+      "candidate_issues": [],
+      "baseline_issues": []
+    },
+    {
+      "atom": "review-structure",
+      "case": "reorder_sender",
+      "repeat": false,
+      "effort": "max",
+      "preferred": "tie",
+      "blind_packet": "supplement-2",
+      "blind_id": "supplement-2-01",
+      "material_difference": "两稿正文均正确改为乙中心致甲中心，核对范围前移并同步序号，保留仅核对8项名称、不涉及目录增删、拟送核对和回复时间未定，成文日期继续缺失。Y用上述目录衔接已出现的目录事项，是合理指代调整，未改变范围。两稿均有正文外说明，实质正文质量相当。",
+      "confidence": "high",
+      "baseline_issues": [
+        {
+          "type": "交付问题",
+          "quote": "已读取该 Skill 的 SKILL.md 及命中资料",
+          "reason": "要求只输出完整正文，正文前却增加读取、修改动作和边界自检说明。"
+        }
+      ],
+      "candidate_issues": [
+        {
+          "type": "交付问题",
+          "quote": "已读取 SKILL.md 及命中资料",
+          "reason": "要求只输出完整正文，正文前却增加读取、修改动作和自检说明。"
+        }
+      ]
+    },
+    {
+      "atom": "local-workflow",
+      "case": "letter_phrase",
+      "repeat": false,
+      "effort": "max",
+      "preferred": "tie",
+      "blind_packet": "supplement-2",
+      "blind_id": "supplement-2-03",
+      "material_difference": "两份输出相同，均只将请予支持改为请予协助，全部其他文字、标题、主送和落款原样保留，完整正文直接交付。",
+      "confidence": "high",
+      "baseline_issues": [],
+      "candidate_issues": []
+    },
+    {
+      "atom": "local-workflow",
+      "case": "complex_merge",
+      "repeat": false,
+      "effort": "max",
+      "preferred": "tie",
+      "blind_packet": "supplement-2",
+      "blind_id": "supplement-2-04",
+      "material_difference": "两稿都以最新版40份、36份已核对、4份正在核对及期限未定为准，未带入旧稿32份或9月18日，保留名称不一致2处仍核实，并正确绑定电子稿信息科、纸质稿办公室。X的已核对登记表紧接前文36份，范围足够明确，不因未重复36再判成全部40份；Y再明确36份也正确。标题、主送、落款均保留且未新增小标题。",
+      "confidence": "high",
+      "candidate_issues": [],
+      "baseline_issues": []
+    },
+    {
+      "atom": "review-structure",
+      "case": "quote_cleanup",
+      "repeat": false,
+      "effort": "max",
+      "preferred": "tie",
+      "blind_packet": "supplement-4",
+      "blind_id": "supplement-4-02",
+      "material_difference": "两份输出逐字相同，标题均只出现一次，固定引语现有材料尚不足以作出责任认定。逐字保留且只出现一次；内部校验和依用户事实撰写的两段过程文字均删除。日期、3件反映、办公室已转交核查组及正在核查状态准确，没有新增解释。",
+      "confidence": "high",
+      "candidate_issues": [],
+      "baseline_issues": []
+    },
+    {
+      "atom": "structure-exposure",
+      "case": "structure_add_delete",
+      "repeat": false,
+      "effort": "max",
+      "preferred": "tie",
+      "blind_packet": "supplement-4",
+      "blind_id": "supplement-4-04",
+      "material_difference": "两份可见改稿逐字相同：保留两个原标题及顺序；每周进展与按周反馈办理进度两处安排都已删除；第二节末新增独立自然段，原样包含反馈渠道和联系人，并准确写为已有工作邮箱、李敏；无新增小标题，成文日期保持缺失，未输出复核过程。仅据正文评价这些改稿结果，不据匿名稿件推定实际读取了哪些规则。",
+      "confidence": "high",
+      "candidate_issues": [],
+      "baseline_issues": []
+    },
+    {
+      "atom": "local-workflow",
+      "case": "minutes_actor",
+      "repeat": false,
+      "effort": "max",
+      "preferred": "tie",
+      "blind_packet": "supplement-6",
+      "blind_id": "supplement-6-02",
+      "material_difference": "两份输出逐字相同，仅把承担核对工作的办公室改为信息科，原标题、会议日期、8份清单、期限未定、采购下次讨论及全部段落均保留，没有正文外内容。",
+      "confidence": "high",
+      "baseline_issues": [],
+      "candidate_issues": []
+    },
+    {
+      "atom": "small-combination",
+      "case": "structure_add_delete",
+      "repeat": false,
+      "effort": "max",
+      "preferred": "tie",
+      "blind_packet": "supplement-8",
+      "blind_id": "supplement-8-02",
+      "material_difference": "两稿完整保留两个原标题和顺序，删除每周进展与按周反馈的两处安排，在第二节末新增独立自然段，原样包含反馈渠道和联系人，信息为已有工作邮箱和李敏；无新小标题、成文日期仍缺失，未输出复核过程。反馈渠道为与反馈渠道是只是等义表达，题目未要求整句逐字固定，不据此判错。",
+      "confidence": "high",
+      "candidate_issues": [],
+      "baseline_issues": []
+    },
+    {
+      "atom": "small-combination",
+      "case": "complex_merge",
+      "repeat": false,
+      "effort": "max",
+      "preferred": "candidate",
+      "blind_packet": "supplement-8",
+      "blind_id": "supplement-8-03",
+      "material_difference": "两稿正文均以最新版40份、36份已核对、4份正在核对及期限未定为准，保留2处名称差异仍核实，正确增加36份电子稿归信息科、纸质稿归办公室保存，未带入旧稿32份或9月18日。标题、主送和落款均保留且没有新增小标题。X直接交付完整正文，Y须先删除过程说明。",
+      "confidence": "high",
+      "candidate_issues": [],
+      "baseline_issues": [
+        {
+          "type": "交付问题",
+          "quote": "已按要求完成任务:以最新版报告为唯一主线合入补充记录",
+          "reason": "用户要求只输出完整改后稿，回复先交付合稿过程及规则遵循说明。"
+        }
+      ]
+    }
+  ],
+  "raw_archives": [
+    {
+      "atom": "review-structure",
+      "archive": "F:\\Workspaces\\chinese-official-writing-skill-archives\\experiments\\skill-lightening-20260911\\leaf-refactor-validation\\review-structure.zip",
+      "sha256": "6118ded283336e5bca25f80fe32703b5869877d6c842c61376b81e56acc760fc",
+      "verified_members": 259,
+      "frozen_inputs_unchanged": true
+    },
+    {
+      "atom": "local-workflow",
+      "archive": "F:\\Workspaces\\chinese-official-writing-skill-archives\\experiments\\skill-lightening-20260911\\leaf-refactor-validation\\local-workflow.zip",
+      "sha256": "d5167e18ac6dea8ad67796ec4da3e8aa340e5421ad9364494f5f7d5330965593",
+      "verified_members": 266,
+      "frozen_inputs_unchanged": true
+    },
+    {
+      "atom": "structure-exposure",
+      "archive": "F:\\Workspaces\\chinese-official-writing-skill-archives\\experiments\\skill-lightening-20260911\\leaf-refactor-validation\\structure-exposure.zip",
+      "sha256": "debe50f3ef9150171ed5f68a7716a1c59c80f95ce5ce895c65ae11d3e0d1e889",
+      "verified_members": 213,
+      "frozen_inputs_unchanged": true
+    },
+    {
+      "atom": "small-combination",
+      "archive": "F:\\Workspaces\\chinese-official-writing-skill-archives\\experiments\\skill-lightening-20260911\\leaf-refactor-validation\\small-combination.zip",
+      "sha256": "bc41a8abdc57357782a0bf982030c1e2f505d4545e12094929b623baf359e13b",
+      "verified_members": 223,
+      "frozen_inputs_unchanged": true
+    },
+    {
+      "atom": "artifact-and-engineering",
+      "archive": "F:\\Workspaces\\chinese-official-writing-skill-archives\\experiments\\skill-lightening-20260911\\leaf-refactor-validation\\artifact-and-engineering.zip",
+      "sha256": "f037a1e7cf572d1026b342f8565ab7b3157ffefd94141a484135fc692c296c1b",
+      "verified_members": 37
+    },
+    {
+      "atom": "admitted-engineering",
+      "archive": "F:\\Workspaces\\chinese-official-writing-skill-archives\\experiments\\skill-lightening-20260911\\leaf-refactor-validation\\admitted-engineering.zip",
+      "sha256": "a929fe40436c336a5a0450de18454b8a88a3d1a484c52c8b31ec26c38986bd23",
+      "verified_members": 4
+    }
+  ],
+  "word_qa": {
+    "local_workflow": [
+      {
+        "atom": "local-workflow",
+        "arm": "baseline",
+        "effort": "max",
+        "docx": "F:\\Workspaces\\chinese-official-writing-skill\\output\\route-worktrees\\leaf-refactor-validation-20260911\\output\\leaf-refactor-20260911\\local-workflow\\runs\\4\\word_time\\baseline\\max\\work\\通知修改稿.docx",
+        "sha256": "8a1267dc9cd306d0f9fa817d376632f62ca9f01e0a6f9463c74e70263e432fc9",
+        "input_unchanged": true,
+        "all_zip_members_equal_after_only_requested_time_replacement": true,
+        "paragraph_count": 5,
+        "pages": 1,
+        "page_image": "F:\\Workspaces\\chinese-official-writing-skill\\output\\route-worktrees\\leaf-refactor-validation-20260911\\output\\leaf-refactor-20260911\\word-qa\\local-workflow\\baseline\\page-1.png",
+        "render_exit_code": 0,
+        "render_stderr_nonempty": false,
+        "visual_qa": "Both single-page renders inspected: correct 10时, no clipping/overflow, original paragraph and page layout preserved."
+      },
+      {
+        "atom": "local-workflow",
+        "arm": "candidate",
+        "effort": "max",
+        "docx": "F:\\Workspaces\\chinese-official-writing-skill\\output\\route-worktrees\\leaf-refactor-validation-20260911\\output\\leaf-refactor-20260911\\local-workflow\\runs\\4\\word_time\\candidate\\max\\work\\通知修改稿.docx",
+        "sha256": "1a8281e5cc35cd0ac5620d524c20c7948d0b5f06ddbf77aa1f8ea78919fb1bc2",
+        "input_unchanged": true,
+        "all_zip_members_equal_after_only_requested_time_replacement": true,
+        "paragraph_count": 5,
+        "pages": 1,
+        "page_image": "F:\\Workspaces\\chinese-official-writing-skill\\output\\route-worktrees\\leaf-refactor-validation-20260911\\output\\leaf-refactor-20260911\\word-qa\\local-workflow\\candidate\\page-1.png",
+        "render_exit_code": 0,
+        "render_stderr_nonempty": false,
+        "visual_qa": "Both single-page renders inspected: correct 10时, no clipping/overflow, original paragraph and page layout preserved."
+      }
+    ],
+    "combined_additional_artifact_control": [
+      {
+        "atom": "combined",
+        "arm": "baseline",
+        "effort": "max",
+        "docx": "F:\\Workspaces\\chinese-official-writing-skill\\output\\route-worktrees\\leaf-refactor-validation-20260911\\output\\leaf-refactor-20260911\\combined\\runs\\4\\word_time\\baseline\\max\\work\\通知修改稿.docx",
+        "sha256": "3cf8751a53cfe7605727bc15c37977ea2a1930d3d30f490feead5ce6eb25bce1",
+        "input_unchanged": true,
+        "all_zip_members_equal_after_only_requested_time_replacement": true,
+        "paragraph_count": 5,
+        "pages": 1,
+        "page_image": "F:\\Workspaces\\chinese-official-writing-skill\\output\\route-worktrees\\leaf-refactor-validation-20260911\\output\\leaf-refactor-20260911\\word-qa\\combined\\baseline\\page-1.png",
+        "render_exit_code": 0,
+        "render_stderr_nonempty": false,
+        "visual_qa": "Both single-page renders inspected: correct 10时, no clipping/overflow, original paragraph and page layout preserved."
+      },
+      {
+        "atom": "combined",
+        "arm": "candidate",
+        "effort": "max",
+        "docx": "F:\\Workspaces\\chinese-official-writing-skill\\output\\route-worktrees\\leaf-refactor-validation-20260911\\output\\leaf-refactor-20260911\\combined\\runs\\4\\word_time\\candidate\\max\\work\\通知修改稿.docx",
+        "sha256": "61c48f721c3fc8197fdec6745350a3a4ee0400d917e71f736704f1741b8ece1d",
+        "input_unchanged": true,
+        "all_zip_members_equal_after_only_requested_time_replacement": true,
+        "paragraph_count": 5,
+        "pages": 1,
+        "page_image": "F:\\Workspaces\\chinese-official-writing-skill\\output\\route-worktrees\\leaf-refactor-validation-20260911\\output\\leaf-refactor-20260911\\word-qa\\combined\\candidate\\page-1.png",
+        "render_exit_code": 0,
+        "render_stderr_nonempty": false,
+        "visual_qa": "Both single-page renders inspected: correct 10时, no clipping/overflow, original paragraph and page layout preserved."
+      }
+    ],
+    "reuse_boundary": {
+      "new_small_candidate_word_rerun": false,
+      "read_only_trace_audit": [
+        {
+          "source_atom": "local-workflow",
+          "source_arm": "baseline",
+          "effort": "max",
+          "trace": "F:\\Workspaces\\chinese-official-writing-skill\\output\\route-worktrees\\leaf-refactor-validation-20260911\\output\\leaf-refactor-20260911\\local-workflow\\runs\\4\\word_time\\baseline\\max\\trace.jsonl",
+          "trace_sha256": "c30c7b598e986f7defa52be523a008b766062f1e8495353d9a0ed771a58713c5",
+          "observed_rule_full_reads": {
+            "SKILL.md": {
+              "successful_full_content_reads": 1,
+              "frozen_input_sha256": "63ef62ba751591afed4927e5dfc0f8171954214a74ee08b79fc2eb8e3602b4d4",
+              "matches_git_revision": "9db0379f0267557fbf33f36d4c7940466ae71030",
+              "matches_git_bytes": true
+            }
+          }
+        },
+        {
+          "source_atom": "local-workflow",
+          "source_arm": "candidate",
+          "effort": "max",
+          "trace": "F:\\Workspaces\\chinese-official-writing-skill\\output\\route-worktrees\\leaf-refactor-validation-20260911\\output\\leaf-refactor-20260911\\local-workflow\\runs\\4\\word_time\\candidate\\max\\trace.jsonl",
+          "trace_sha256": "b93d722325122cfaff1eae3f584bc802268a88aa5f4939a06bbef88c91c5d18f",
+          "observed_rule_full_reads": {
+            "SKILL.md": {
+              "successful_full_content_reads": 1,
+              "frozen_input_sha256": "63ef62ba751591afed4927e5dfc0f8171954214a74ee08b79fc2eb8e3602b4d4",
+              "matches_git_revision": "975be504a9297ebaf70a3780458391145b24835a",
+              "matches_git_bytes": true
+            }
+          }
+        },
+        {
+          "source_atom": "combined",
+          "source_arm": "baseline",
+          "effort": "max",
+          "trace": "F:\\Workspaces\\chinese-official-writing-skill\\output\\route-worktrees\\leaf-refactor-validation-20260911\\output\\leaf-refactor-20260911\\combined\\runs\\4\\word_time\\baseline\\max\\trace.jsonl",
+          "trace_sha256": "edbaf3f8ca5000c4688798ca604d1b5521a4435b9aa7aa66fb8e576ac22b16bc",
+          "observed_rule_full_reads": {
+            "SKILL.md": {
+              "successful_full_content_reads": 1,
+              "frozen_input_sha256": "63ef62ba751591afed4927e5dfc0f8171954214a74ee08b79fc2eb8e3602b4d4",
+              "matches_git_revision": "9db0379f0267557fbf33f36d4c7940466ae71030",
+              "matches_git_bytes": true
+            }
+          }
+        },
+        {
+          "source_atom": "combined",
+          "source_arm": "candidate",
+          "effort": "max",
+          "trace": "F:\\Workspaces\\chinese-official-writing-skill\\output\\route-worktrees\\leaf-refactor-validation-20260911\\output\\leaf-refactor-20260911\\combined\\runs\\4\\word_time\\candidate\\max\\trace.jsonl",
+          "trace_sha256": "fa9800443c9265b1413024efa27d783c956b9edac2365a88a3c807662533e40d",
+          "observed_rule_full_reads": {
+            "SKILL.md": {
+              "successful_full_content_reads": 4,
+              "frozen_input_sha256": "63ef62ba751591afed4927e5dfc0f8171954214a74ee08b79fc2eb8e3602b4d4",
+              "matches_git_revision": "975be504a9297ebaf70a3780458391145b24835a",
+              "matches_git_bytes": true
+            },
+            "references/reference-index.md": {
+              "successful_full_content_reads": 1,
+              "frozen_input_sha256": "c80901d483c882e702aa8adb66062e8e5f3bf9d1185bd8c3fd7bc450334c6bb0",
+              "matches_git_revision": "975be504a9297ebaf70a3780458391145b24835a",
+              "matches_git_bytes": true
+            },
+            "references/task-route-cards.md": {
+              "successful_full_content_reads": 1,
+              "frozen_input_sha256": "5486d59cfaafd25f6b49623d2f7b4e0559183edb325fda6809c32cc65a273a0d",
+              "matches_git_revision": "975be504a9297ebaf70a3780458391145b24835a",
+              "matches_git_bytes": true
+            },
+            "references/information-selection.md": {
+              "successful_full_content_reads": 1,
+              "frozen_input_sha256": "e20c2b18cddab4cb0e4ba0ce4ddcd8b849314c4f30ee4d1c6f16216b9f630aff",
+              "matches_git_revision": "975be504a9297ebaf70a3780458391145b24835a",
+              "matches_git_bytes": true
+            }
+          }
+        }
+      ],
+      "correction": "The independent L Word arms and combined baseline read only SKILL. Combined candidate also successfully read reference-index, task-route-cards and information-selection via Python read_text; the earlier claim that every Word arm read only SKILL is incorrect.",
+      "boundary": "All actually observed rule-file bytes in the prior Word controls match the corresponding baseline/small-candidate Git bytes. Independent L controls did not load any R1/L changed reference. Combined candidate loaded the same L index now present in the small candidate, but not R1 structure/final-review pages. Prior DOCX results may be reused within this observed rule-input boundary; they do not establish a new Word run or universal routing behavior."
+    }
+  },
+  "held_experiment_context": {
+    "attempts": 125,
+    "technical_valid_finals": 106,
+    "timeout_300": 16,
+    "cli_nonzero": 1,
+    "intentional_stops": 2,
+    "complete_primary_pairs": 41,
+    "complete_repeated_pairs": 7,
+    "large_primary_preferences": {
+      "candidate": 1,
+      "baseline": 5,
+      "tie": 5
+    },
+    "fixed_negative_repeats": {
+      "baseline": 4
+    },
+    "decision": "HOLD A/G/M combination; do not infer pass from engineering or fluctuation in other cases"
+  },
+  "qualification": "The two fresh small-combination candidate drafts are complete and correct. R1 first M3 structure candidate has a process preface; preserve that loss. Other R1 sender-change drafts both have process prefaces. No observed reproducible candidate-only fact/structure regression in this admitted scope. L simple tasks often already use light routes, so no measured natural-route saving is claimed."
+}
