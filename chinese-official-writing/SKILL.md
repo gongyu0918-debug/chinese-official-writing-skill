@@ -49,7 +49,7 @@ metadata:
 
 起草、整体改写或整理在现有项目、系统或平台上增加功能、服务或实施内容的立项、增项申请时，读取信息选择页后直达 `references/genre-playbook-project-application.md`，由该页完成内容组织、语言整理和成稿复核，不进入下文通用完整流程。只审不改或只改指定字段、局部文字时，仍按前文相应任务模式处理。普通采购、请假、新建项目和可研仍走各自文种路线；增项材料中出现技术、模型、费用等内容，不因此叠加通用论证、办理要素、语言或算力专项页。用户另行要求Word版式或外部核验时再读相应专项页。
 
-先确定起草、改稿、复核（默认只审不改）、排版交付模式。首页明确直达的文种或审稿入口按原条件执行；其余资料选择及轻量文种页的优先条件见 `references/reference-index.md`。起草、改稿、压缩或合稿已读取 `references/information-selection.md` 后，材料稀疏、短稿、低上下文局部修改或用户明确限定事实时，判断是否命中 `references/task-route-cards.md`；命中 `references/task-route-cards.md` 且卡片能够覆盖任务时，由卡片完成，不再读取长 reference，完成正文后仍执行本文件硬边界和必要的交付复核；未命中时不扩大轻量卡的适用范围。未命中、命中转读条件或卡片不能覆盖时，回到 `references/reference-index.md` 选择对应资料，再按命中条件进入以下完整流程。不因文种名称已知而自动预读下列全部长 reference；一次只加载实际命中的表项，叠加关系以索引中的加载条件为准。
+首页明确直达的文种或审稿入口按原条件执行；其余资料选择及轻量文种页的优先条件见 `references/reference-index.md`。起草、改稿、压缩或合稿已读取 `references/information-selection.md` 后，材料稀疏、短稿、低上下文局部修改或用户明确限定事实时，判断是否命中 `references/task-route-cards.md`；命中 `references/task-route-cards.md` 且卡片能够覆盖任务时，由卡片完成，不再读取长 reference，完成正文后仍执行本文件硬边界和必要的交付复核；未命中时不扩大轻量卡的适用范围。未命中、命中转读条件或卡片不能覆盖时，回到 `references/reference-index.md` 选择对应资料，再按命中条件进入以下完整流程。不因文种名称已知而自动预读下列全部长 reference；一次只加载实际命中的表项，叠加关系以索引中的加载条件为准。
 
 1. 先判断文稿类别、文种和行文关系，再抽取办理要素，再选择论证链条，最后进入语言和格式复核。
 2. 文种判断以官方规范和 `references/genre-routing.md` 为准。
