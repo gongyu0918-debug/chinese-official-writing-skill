@@ -1898,11 +1898,11 @@ CASES: list[PromptCase] = [
 ]
 
 
-# Some release baselines and the current candidate carry the same behavior in
-# different prompt locations.  Each mapping below is a complete, equivalent
-# evidence group: the legacy ``file_terms`` group or one whole alternative must
-# be present.  This keeps the fixed baseline valid without forcing duplicated
-# runtime wording back into the current skill.
+# Historical layouts and validated rule updates may use different evidence.
+# Each mapping is a complete group: legacy ``file_terms`` or one whole accepted
+# alternative must be present. This preserves baseline compatibility without
+# forcing old locations or superseded stricter wording into the current skill.
+# Alternatives do not assert that every underlying instruction is identical.
 FILE_TERM_ALTERNATIVES_BY_CASE: dict[str, list[dict[str, list[str]]]] = {
     "P022": [
         {
