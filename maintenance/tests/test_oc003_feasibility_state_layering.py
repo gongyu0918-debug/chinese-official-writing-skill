@@ -1,6 +1,8 @@
 from __future__ import annotations
 
 import unittest
+
+from maintenance.tests.test_skill_boundary import read_routing_surfaces
 from pathlib import Path
 
 
@@ -41,7 +43,7 @@ class FeasibilityStateLayeringTests(unittest.TestCase):
         self.assertIn("只以条件态提出研究建议，不写成既定流程", workflow)
 
     def test_named_completeness_review_stops_before_option_library(self) -> None:
-        skill = (CANONICAL / "SKILL.md").read_text(encoding="utf-8")
+        skill = read_routing_surfaces(CANONICAL / "SKILL.md")
         ai_compute = (CANONICAL / REFERENCES[0]).read_text(encoding="utf-8")
         review = (CANONICAL / REFERENCES[2]).read_text(encoding="utf-8")
 
