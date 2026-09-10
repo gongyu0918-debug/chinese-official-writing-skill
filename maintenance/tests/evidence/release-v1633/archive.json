@@ -1,0 +1,12 @@
+{
+  "archive": "F:\\Workspaces\\chinese-official-writing-skill-archives\\experiments\\skill-lightening-20260911\\v1633-q1-writing-evidence.zip",
+  "sha256": "163b7f30f571f979029e40ab5e5c88967de0813212d2bb5ebb4283a9f0ea5cab",
+  "members_verified": 255,
+  "archive_member_count_including_manifest": 256,
+  "attempts": 12,
+  "valid_finals": 11,
+  "complete_same_effort_pairs": 5,
+  "baseline_commit": "236784efe2a7a0bf9acd3a49f1d3ad0cff1586a8",
+  "writing_candidate_commit": "dded78a783aaac897a024ca77a331de6eefe9809",
+  "scope": "Both complete frozen product trees; all twelve prompts, receipts, traces and stderr; eleven valid finals; registered tasks and writing review. Includes the GLM max transport failure. No account profiles, codex-home, temporary work/cache folders, or engineering/package results."
+}

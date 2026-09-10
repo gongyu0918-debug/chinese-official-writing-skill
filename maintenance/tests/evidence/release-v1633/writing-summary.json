@@ -1,0 +1,1616 @@
+{
+  "baseline_commit": "236784efe2a7a0bf9acd3a49f1d3ad0cff1586a8",
+  "writing_candidate_commit": "dded78a783aaac897a024ca77a331de6eefe9809",
+  "attempts": 12,
+  "technical_valid_finals": 11,
+  "complete_same_effort_pairs": 5,
+  "pairs": [
+    {
+      "provider": 0,
+      "case": "necessary_statistics",
+      "same_effort_complete": true,
+      "selected_effort": "max",
+      "arms": {
+        "baseline": {
+          "model": "minimax-cn/MiniMax-M3",
+          "prompt_path": "F:\\Workspaces\\chinese-official-writing-skill\\output\\release-worktrees\\release-v1.6.33\\output\\release-v1633\\word-guidance\\runs\\0\\necessary_statistics\\baseline\\max\\prompt.txt",
+          "final_path": "F:\\Workspaces\\chinese-official-writing-skill\\output\\release-worktrees\\release-v1.6.33\\output\\release-v1633\\word-guidance\\runs\\0\\necessary_statistics\\baseline\\max\\final.txt",
+          "final_sha256": "687f7025e338ff952e97d730da8b7415510a4d8990367d5c6093a8ccec40edf5",
+          "trace_path": "F:\\Workspaces\\chinese-official-writing-skill\\output\\release-worktrees\\release-v1.6.33\\output\\release-v1633\\word-guidance\\runs\\0\\necessary_statistics\\baseline\\max\\trace.jsonl",
+          "target_full_return_count": 1,
+          "full_references_returned": [
+            "anti-ai-patterns.md",
+            "information-selection.md",
+            "official-style.md",
+            "short-draft-naturalness.md"
+          ],
+          "unique_full_reference_lf_chars": 9788,
+          "all_command_output_lf_chars": 49436
+        },
+        "candidate": {
+          "model": "minimax-cn/MiniMax-M3",
+          "prompt_path": "F:\\Workspaces\\chinese-official-writing-skill\\output\\release-worktrees\\release-v1.6.33\\output\\release-v1633\\word-guidance\\runs\\0\\necessary_statistics\\candidate\\max\\prompt.txt",
+          "final_path": "F:\\Workspaces\\chinese-official-writing-skill\\output\\release-worktrees\\release-v1.6.33\\output\\release-v1633\\word-guidance\\runs\\0\\necessary_statistics\\candidate\\max\\final.txt",
+          "final_sha256": "e9464c6c240a270e908272add4dc36d7cccc5a4084da652299d5b78acac1b7c3",
+          "trace_path": "F:\\Workspaces\\chinese-official-writing-skill\\output\\release-worktrees\\release-v1.6.33\\output\\release-v1633\\word-guidance\\runs\\0\\necessary_statistics\\candidate\\max\\trace.jsonl",
+          "target_full_return_count": 1,
+          "full_references_returned": [
+            "anti-ai-patterns.md",
+            "information-selection.md",
+            "official-style.md",
+            "reference-index.md",
+            "task-route-cards.md"
+          ],
+          "unique_full_reference_lf_chars": 14291,
+          "all_command_output_lf_chars": 22226
+        }
+      }
+    },
+    {
+      "provider": 1,
+      "case": "empty_language",
+      "same_effort_complete": true,
+      "selected_effort": "max",
+      "arms": {
+        "baseline": {
+          "model": "alibaba-token-plan/qwen3.8-flash",
+          "prompt_path": "F:\\Workspaces\\chinese-official-writing-skill\\output\\release-worktrees\\release-v1.6.33\\output\\release-v1633\\word-guidance\\runs\\1\\empty_language\\baseline\\max\\prompt.txt",
+          "final_path": "F:\\Workspaces\\chinese-official-writing-skill\\output\\release-worktrees\\release-v1.6.33\\output\\release-v1633\\word-guidance\\runs\\1\\empty_language\\baseline\\max\\final.txt",
+          "final_sha256": "548ade5cfe87b5d767d1d64e1bc554ecdaf19420010a5d078ec251dbe9539274",
+          "trace_path": "F:\\Workspaces\\chinese-official-writing-skill\\output\\release-worktrees\\release-v1.6.33\\output\\release-v1633\\word-guidance\\runs\\1\\empty_language\\baseline\\max\\trace.jsonl",
+          "target_full_return_count": 1,
+          "full_references_returned": [
+            "anti-ai-patterns.md",
+            "information-selection.md",
+            "official-style.md",
+            "reference-index.md",
+            "short-draft-naturalness.md",
+            "task-route-cards.md"
+          ],
+          "unique_full_reference_lf_chars": 14825,
+          "all_command_output_lf_chars": 22768
+        },
+        "candidate": {
+          "model": "alibaba-token-plan/qwen3.8-flash",
+          "prompt_path": "F:\\Workspaces\\chinese-official-writing-skill\\output\\release-worktrees\\release-v1.6.33\\output\\release-v1633\\word-guidance\\runs\\1\\empty_language\\candidate\\max\\prompt.txt",
+          "final_path": "F:\\Workspaces\\chinese-official-writing-skill\\output\\release-worktrees\\release-v1.6.33\\output\\release-v1633\\word-guidance\\runs\\1\\empty_language\\candidate\\max\\final.txt",
+          "final_sha256": "f113bae44caa8b03d9d4af2163dfd94cdd6066410613e5a965b27cbe2799d7fe",
+          "trace_path": "F:\\Workspaces\\chinese-official-writing-skill\\output\\release-worktrees\\release-v1.6.33\\output\\release-v1633\\word-guidance\\runs\\1\\empty_language\\candidate\\max\\trace.jsonl",
+          "target_full_return_count": 1,
+          "full_references_returned": [
+            "anti-ai-patterns.md",
+            "information-selection.md",
+            "official-style.md",
+            "reference-index.md",
+            "short-draft-naturalness.md",
+            "task-route-cards.md"
+          ],
+          "unique_full_reference_lf_chars": 14756,
+          "all_command_output_lf_chars": 42976
+        }
+      }
+    },
+    {
+      "provider": 2,
+      "case": "concrete_closed_loop",
+      "same_effort_complete": true,
+      "selected_effort": "max",
+      "arms": {
+        "baseline": {
+          "model": "alibaba-token-plan-2/qwen3.8-flash",
+          "prompt_path": "F:\\Workspaces\\chinese-official-writing-skill\\output\\release-worktrees\\release-v1.6.33\\output\\release-v1633\\word-guidance\\runs\\2\\concrete_closed_loop\\baseline\\max\\prompt.txt",
+          "final_path": "F:\\Workspaces\\chinese-official-writing-skill\\output\\release-worktrees\\release-v1.6.33\\output\\release-v1633\\word-guidance\\runs\\2\\concrete_closed_loop\\baseline\\max\\final.txt",
+          "final_sha256": "6e9f78074b9f0dfa732a2d93c93299b83e0a2d9cbbe894083a629edbe4e80fc9",
+          "trace_path": "F:\\Workspaces\\chinese-official-writing-skill\\output\\release-worktrees\\release-v1.6.33\\output\\release-v1633\\word-guidance\\runs\\2\\concrete_closed_loop\\baseline\\max\\trace.jsonl",
+          "target_full_return_count": 1,
+          "full_references_returned": [
+            "anti-ai-patterns.md",
+            "information-selection.md",
+            "official-style.md",
+            "reference-index.md",
+            "short-draft-naturalness.md",
+            "task-route-cards.md"
+          ],
+          "unique_full_reference_lf_chars": 14825,
+          "all_command_output_lf_chars": 26226
+        },
+        "candidate": {
+          "model": "alibaba-token-plan-2/qwen3.8-flash",
+          "prompt_path": "F:\\Workspaces\\chinese-official-writing-skill\\output\\release-worktrees\\release-v1.6.33\\output\\release-v1633\\word-guidance\\runs\\2\\concrete_closed_loop\\candidate\\max\\prompt.txt",
+          "final_path": "F:\\Workspaces\\chinese-official-writing-skill\\output\\release-worktrees\\release-v1.6.33\\output\\release-v1633\\word-guidance\\runs\\2\\concrete_closed_loop\\candidate\\max\\final.txt",
+          "final_sha256": "e7ebd2ac24c9b7b8734cff435c5d0692210781c6d997547bdda82ccb4e418950",
+          "trace_path": "F:\\Workspaces\\chinese-official-writing-skill\\output\\release-worktrees\\release-v1.6.33\\output\\release-v1633\\word-guidance\\runs\\2\\concrete_closed_loop\\candidate\\max\\trace.jsonl",
+          "target_full_return_count": 1,
+          "full_references_returned": [
+            "anti-ai-patterns.md",
+            "information-selection.md",
+            "official-style.md",
+            "reference-index.md",
+            "short-draft-naturalness.md",
+            "task-route-cards.md"
+          ],
+          "unique_full_reference_lf_chars": 14756,
+          "all_command_output_lf_chars": 47015
+        }
+      }
+    },
+    {
+      "provider": 3,
+      "case": "ordinary_statement",
+      "same_effort_complete": true,
+      "selected_effort": "max",
+      "arms": {
+        "baseline": {
+          "model": "opencode-go/deepseek-v4-flash",
+          "prompt_path": "F:\\Workspaces\\chinese-official-writing-skill\\output\\release-worktrees\\release-v1.6.33\\output\\release-v1633\\word-guidance\\runs\\3\\ordinary_statement\\baseline\\max\\prompt.txt",
+          "final_path": "F:\\Workspaces\\chinese-official-writing-skill\\output\\release-worktrees\\release-v1.6.33\\output\\release-v1633\\word-guidance\\runs\\3\\ordinary_statement\\baseline\\max\\final.txt",
+          "final_sha256": "d2dada77d701a51a4ea7515c839679cca2b28832611fb500942adc7d4eeecfed",
+          "trace_path": "F:\\Workspaces\\chinese-official-writing-skill\\output\\release-worktrees\\release-v1.6.33\\output\\release-v1633\\word-guidance\\runs\\3\\ordinary_statement\\baseline\\max\\trace.jsonl",
+          "target_full_return_count": 0,
+          "full_references_returned": [
+            "information-selection.md",
+            "short-draft-naturalness.md",
+            "task-route-cards.md"
+          ],
+          "unique_full_reference_lf_chars": 3611,
+          "all_command_output_lf_chars": 11548
+        },
+        "candidate": {
+          "model": "opencode-go/deepseek-v4-flash",
+          "prompt_path": "F:\\Workspaces\\chinese-official-writing-skill\\output\\release-worktrees\\release-v1.6.33\\output\\release-v1633\\word-guidance\\runs\\3\\ordinary_statement\\candidate\\max\\prompt.txt",
+          "final_path": "F:\\Workspaces\\chinese-official-writing-skill\\output\\release-worktrees\\release-v1.6.33\\output\\release-v1633\\word-guidance\\runs\\3\\ordinary_statement\\candidate\\max\\final.txt",
+          "final_sha256": "c5d183689aafb91b40963660c0102bb1fc8ae8a3272e64347c8323ecc8cafdd2",
+          "trace_path": "F:\\Workspaces\\chinese-official-writing-skill\\output\\release-worktrees\\release-v1.6.33\\output\\release-v1633\\word-guidance\\runs\\3\\ordinary_statement\\candidate\\max\\trace.jsonl",
+          "target_full_return_count": 0,
+          "full_references_returned": [
+            "information-selection.md",
+            "reference-index.md",
+            "short-draft-naturalness.md",
+            "task-route-cards.md"
+          ],
+          "unique_full_reference_lf_chars": 7187,
+          "all_command_output_lf_chars": 15126
+        }
+      }
+    },
+    {
+      "provider": 4,
+      "case": "scoped_review",
+      "same_effort_complete": true,
+      "selected_effort": "high",
+      "arms": {
+        "baseline": {
+          "model": "ollama-cloud/glm-5.3-flash",
+          "prompt_path": "F:\\Workspaces\\chinese-official-writing-skill\\output\\release-worktrees\\release-v1.6.33\\output\\release-v1633\\word-guidance\\runs\\4\\scoped_review\\baseline\\high\\prompt.txt",
+          "final_path": "F:\\Workspaces\\chinese-official-writing-skill\\output\\release-worktrees\\release-v1.6.33\\output\\release-v1633\\word-guidance\\runs\\4\\scoped_review\\baseline\\high\\final.txt",
+          "final_sha256": "c7835f628a970b28bfed724e50beb96edef7c4a0eb0f8c3182475152b923e639",
+          "trace_path": "F:\\Workspaces\\chinese-official-writing-skill\\output\\release-worktrees\\release-v1.6.33\\output\\release-v1633\\word-guidance\\runs\\4\\scoped_review\\baseline\\high\\trace.jsonl",
+          "target_full_return_count": 1,
+          "full_references_returned": [
+            "anti-ai-patterns.md",
+            "review-direct-checklist.md"
+          ],
+          "unique_full_reference_lf_chars": 6414,
+          "all_command_output_lf_chars": 30678
+        },
+        "candidate": {
+          "model": "ollama-cloud/glm-5.3-flash",
+          "prompt_path": "F:\\Workspaces\\chinese-official-writing-skill\\output\\release-worktrees\\release-v1.6.33\\output\\release-v1633\\word-guidance\\runs\\4\\scoped_review\\candidate\\high\\prompt.txt",
+          "final_path": "F:\\Workspaces\\chinese-official-writing-skill\\output\\release-worktrees\\release-v1.6.33\\output\\release-v1633\\word-guidance\\runs\\4\\scoped_review\\candidate\\high\\final.txt",
+          "final_sha256": "dab4b00f7e61a35b0326ee3d301c24248e0a6eb0a938aaba04d5ed5428633730",
+          "trace_path": "F:\\Workspaces\\chinese-official-writing-skill\\output\\release-worktrees\\release-v1.6.33\\output\\release-v1633\\word-guidance\\runs\\4\\scoped_review\\candidate\\high\\trace.jsonl",
+          "target_full_return_count": 1,
+          "full_references_returned": [
+            "anti-ai-patterns.md",
+            "review-direct-checklist.md"
+          ],
+          "unique_full_reference_lf_chars": 6345,
+          "all_command_output_lf_chars": 14280
+        }
+      }
+    }
+  ],
+  "receipts": [
+    {
+      "atom": "word-guidance",
+      "provider": 0,
+      "model": "minimax-cn/MiniMax-M3",
+      "case": "necessary_statistics",
+      "arm": "baseline",
+      "effort": "max",
+      "exit_code": 0,
+      "error": null,
+      "valid_final": true,
+      "seconds": 166.35,
+      "timeout_seconds": 300,
+      "prompt_sha256": "b8e8065411db2fcacd8791d60f452fd07593cc4b27b11116d422a40be88be1d7",
+      "normalized_prompt_sha256": "6431dc6c54a70835562480836a906ece6de6c73fe082bc8cb07ffd06f286cb15",
+      "prompt_path": "F:\\Workspaces\\chinese-official-writing-skill\\output\\release-worktrees\\release-v1.6.33\\output\\release-v1633\\word-guidance\\runs\\0\\necessary_statistics\\baseline\\max\\prompt.txt",
+      "trace_path": "F:\\Workspaces\\chinese-official-writing-skill\\output\\release-worktrees\\release-v1.6.33\\output\\release-v1633\\word-guidance\\runs\\0\\necessary_statistics\\baseline\\max\\trace.jsonl",
+      "final_path": "F:\\Workspaces\\chinese-official-writing-skill\\output\\release-worktrees\\release-v1.6.33\\output\\release-v1633\\word-guidance\\runs\\0\\necessary_statistics\\baseline\\max\\final.txt",
+      "final_sha256": "687f7025e338ff952e97d730da8b7415510a4d8990367d5c6093a8ccec40edf5",
+      "commands": [
+        {
+          "index": 1,
+          "reference_names": [
+            "SKILL.md"
+          ],
+          "output_lf_chars": 7930,
+          "exit_code": 0,
+          "full_references_returned": []
+        },
+        {
+          "index": 2,
+          "reference_names": [
+            "SKILL.md"
+          ],
+          "output_lf_chars": 7930,
+          "exit_code": 0,
+          "full_references_returned": []
+        },
+        {
+          "index": 3,
+          "reference_names": [
+            "SKILL.md"
+          ],
+          "output_lf_chars": 7930,
+          "exit_code": 0,
+          "full_references_returned": []
+        },
+        {
+          "index": 4,
+          "reference_names": [
+            "SKILL.md"
+          ],
+          "output_lf_chars": 5,
+          "exit_code": 0,
+          "full_references_returned": []
+        },
+        {
+          "index": 5,
+          "reference_names": [],
+          "output_lf_chars": 681,
+          "exit_code": 0,
+          "full_references_returned": []
+        },
+        {
+          "index": 6,
+          "reference_names": [],
+          "output_lf_chars": 681,
+          "exit_code": 0,
+          "full_references_returned": []
+        },
+        {
+          "index": 7,
+          "reference_names": [],
+          "output_lf_chars": 260,
+          "exit_code": 1,
+          "full_references_returned": []
+        },
+        {
+          "index": 8,
+          "reference_names": [],
+          "output_lf_chars": 713,
+          "exit_code": 0,
+          "full_references_returned": []
+        },
+        {
+          "index": 9,
+          "reference_names": [],
+          "output_lf_chars": 59,
+          "exit_code": 0,
+          "full_references_returned": []
+        },
+        {
+          "index": 10,
+          "reference_names": [
+            "SKILL.md"
+          ],
+          "output_lf_chars": 7,
+          "exit_code": 0,
+          "full_references_returned": []
+        },
+        {
+          "index": 11,
+          "reference_names": [
+            "SKILL.md"
+          ],
+          "output_lf_chars": 10,
+          "exit_code": 0,
+          "full_references_returned": []
+        },
+        {
+          "index": 12,
+          "reference_names": [
+            "SKILL.md"
+          ],
+          "output_lf_chars": 5,
+          "exit_code": 0,
+          "full_references_returned": []
+        },
+        {
+          "index": 13,
+          "reference_names": [],
+          "output_lf_chars": 12,
+          "exit_code": 0,
+          "full_references_returned": []
+        },
+        {
+          "index": 14,
+          "reference_names": [
+            "SKILL.md"
+          ],
+          "output_lf_chars": 0,
+          "exit_code": 0,
+          "full_references_returned": []
+        },
+        {
+          "index": 15,
+          "reference_names": [],
+          "output_lf_chars": 23,
+          "exit_code": 0,
+          "full_references_returned": []
+        },
+        {
+          "index": 16,
+          "reference_names": [],
+          "output_lf_chars": 3021,
+          "exit_code": 0,
+          "full_references_returned": []
+        },
+        {
+          "index": 17,
+          "reference_names": [],
+          "output_lf_chars": 5,
+          "exit_code": 0,
+          "full_references_returned": []
+        },
+        {
+          "index": 18,
+          "reference_names": [],
+          "output_lf_chars": 21,
+          "exit_code": 0,
+          "full_references_returned": []
+        },
+        {
+          "index": 19,
+          "reference_names": [],
+          "output_lf_chars": 132,
+          "exit_code": 0,
+          "full_references_returned": []
+        },
+        {
+          "index": 20,
+          "reference_names": [],
+          "output_lf_chars": 0,
+          "exit_code": 0,
+          "full_references_returned": []
+        },
+        {
+          "index": 21,
+          "reference_names": [],
+          "output_lf_chars": 133,
+          "exit_code": 0,
+          "full_references_returned": []
+        },
+        {
+          "index": 22,
+          "reference_names": [],
+          "output_lf_chars": 133,
+          "exit_code": 0,
+          "full_references_returned": []
+        },
+        {
+          "index": 23,
+          "reference_names": [],
+          "output_lf_chars": 6,
+          "exit_code": 0,
+          "full_references_returned": []
+        },
+        {
+          "index": 24,
+          "reference_names": [],
+          "output_lf_chars": 3,
+          "exit_code": 0,
+          "full_references_returned": []
+        },
+        {
+          "index": 25,
+          "reference_names": [],
+          "output_lf_chars": 5,
+          "exit_code": 0,
+          "full_references_returned": []
+        },
+        {
+          "index": 26,
+          "reference_names": [],
+          "output_lf_chars": 462,
+          "exit_code": 0,
+          "full_references_returned": []
+        },
+        {
+          "index": 27,
+          "reference_names": [],
+          "output_lf_chars": 260,
+          "exit_code": 1,
+          "full_references_returned": []
+        },
+        {
+          "index": 28,
+          "reference_names": [],
+          "output_lf_chars": 6,
+          "exit_code": 0,
+          "full_references_returned": []
+        },
+        {
+          "index": 29,
+          "reference_names": [],
+          "output_lf_chars": 7,
+          "exit_code": 0,
+          "full_references_returned": []
+        },
+        {
+          "index": 30,
+          "reference_names": [],
+          "output_lf_chars": 322,
+          "exit_code": 0,
+          "full_references_returned": []
+        },
+        {
+          "index": 31,
+          "reference_names": [],
+          "output_lf_chars": 5,
+          "exit_code": 0,
+          "full_references_returned": []
+        },
+        {
+          "index": 32,
+          "reference_names": [
+            "SKILL.md"
+          ],
+          "output_lf_chars": 7931,
+          "exit_code": 0,
+          "full_references_returned": []
+        },
+        {
+          "index": 33,
+          "reference_names": [],
+          "output_lf_chars": 942,
+          "exit_code": 0,
+          "full_references_returned": []
+        },
+        {
+          "index": 34,
+          "reference_names": [
+            "anti-ai-patterns.md"
+          ],
+          "output_lf_chars": 5410,
+          "exit_code": 0,
+          "full_references_returned": [
+            "anti-ai-patterns.md"
+          ]
+        },
+        {
+          "index": 35,
+          "reference_names": [
+            "official-style.md"
+          ],
+          "output_lf_chars": 2232,
+          "exit_code": 0,
+          "full_references_returned": [
+            "official-style.md"
+          ]
+        },
+        {
+          "index": 36,
+          "reference_names": [
+            "short-draft-naturalness.md"
+          ],
+          "output_lf_chars": 467,
+          "exit_code": 0,
+          "full_references_returned": [
+            "short-draft-naturalness.md"
+          ]
+        },
+        {
+          "index": 37,
+          "reference_names": [
+            "information-selection.md"
+          ],
+          "output_lf_chars": 1687,
+          "exit_code": 0,
+          "full_references_returned": [
+            "information-selection.md"
+          ]
+        }
+      ],
+      "error_event_classes": [],
+      "full_references_returned": [
+        "anti-ai-patterns.md",
+        "information-selection.md",
+        "official-style.md",
+        "short-draft-naturalness.md"
+      ],
+      "target_full_return_count": 1,
+      "unique_full_reference_lf_chars": 9788,
+      "all_command_output_lf_chars": 49436
+    },
+    {
+      "atom": "word-guidance",
+      "provider": 0,
+      "model": "minimax-cn/MiniMax-M3",
+      "case": "necessary_statistics",
+      "arm": "candidate",
+      "effort": "max",
+      "exit_code": 0,
+      "error": null,
+      "valid_final": true,
+      "seconds": 74.84,
+      "timeout_seconds": 300,
+      "prompt_sha256": "77fa24e20b486c191e3ebfc280ecd174c47fd6860f541ad7b28611fdbed3d7bf",
+      "normalized_prompt_sha256": "6431dc6c54a70835562480836a906ece6de6c73fe082bc8cb07ffd06f286cb15",
+      "prompt_path": "F:\\Workspaces\\chinese-official-writing-skill\\output\\release-worktrees\\release-v1.6.33\\output\\release-v1633\\word-guidance\\runs\\0\\necessary_statistics\\candidate\\max\\prompt.txt",
+      "trace_path": "F:\\Workspaces\\chinese-official-writing-skill\\output\\release-worktrees\\release-v1.6.33\\output\\release-v1633\\word-guidance\\runs\\0\\necessary_statistics\\candidate\\max\\trace.jsonl",
+      "final_path": "F:\\Workspaces\\chinese-official-writing-skill\\output\\release-worktrees\\release-v1.6.33\\output\\release-v1633\\word-guidance\\runs\\0\\necessary_statistics\\candidate\\max\\final.txt",
+      "final_sha256": "e9464c6c240a270e908272add4dc36d7cccc5a4084da652299d5b78acac1b7c3",
+      "commands": [
+        {
+          "index": 1,
+          "reference_names": [
+            "SKILL.md"
+          ],
+          "output_lf_chars": 7930,
+          "exit_code": 0,
+          "full_references_returned": []
+        },
+        {
+          "index": 2,
+          "reference_names": [
+            "reference-index.md"
+          ],
+          "output_lf_chars": 3577,
+          "exit_code": 0,
+          "full_references_returned": [
+            "reference-index.md"
+          ]
+        },
+        {
+          "index": 3,
+          "reference_names": [
+            "information-selection.md"
+          ],
+          "output_lf_chars": 1686,
+          "exit_code": 0,
+          "full_references_returned": [
+            "information-selection.md"
+          ]
+        },
+        {
+          "index": 4,
+          "reference_names": [
+            "official-style.md"
+          ],
+          "output_lf_chars": 2231,
+          "exit_code": 0,
+          "full_references_returned": [
+            "official-style.md"
+          ]
+        },
+        {
+          "index": 5,
+          "reference_names": [
+            "anti-ai-patterns.md"
+          ],
+          "output_lf_chars": 5340,
+          "exit_code": 0,
+          "full_references_returned": [
+            "anti-ai-patterns.md"
+          ]
+        },
+        {
+          "index": 6,
+          "reference_names": [
+            "task-route-cards.md"
+          ],
+          "output_lf_chars": 1462,
+          "exit_code": 0,
+          "full_references_returned": [
+            "task-route-cards.md"
+          ]
+        }
+      ],
+      "error_event_classes": [],
+      "full_references_returned": [
+        "anti-ai-patterns.md",
+        "information-selection.md",
+        "official-style.md",
+        "reference-index.md",
+        "task-route-cards.md"
+      ],
+      "target_full_return_count": 1,
+      "unique_full_reference_lf_chars": 14291,
+      "all_command_output_lf_chars": 22226
+    },
+    {
+      "atom": "word-guidance",
+      "provider": 1,
+      "model": "alibaba-token-plan/qwen3.8-flash",
+      "case": "empty_language",
+      "arm": "baseline",
+      "effort": "max",
+      "exit_code": 0,
+      "error": null,
+      "valid_final": true,
+      "seconds": 55.63,
+      "timeout_seconds": 300,
+      "prompt_sha256": "d13c3667c281a397f814fa7868e81fcef1ab84a0b1424a78ac3d1604b981772a",
+      "normalized_prompt_sha256": "2034d30632b0e6d6f636bcc2f186c1035274cd8f447c081f519efc97ae46c4aa",
+      "prompt_path": "F:\\Workspaces\\chinese-official-writing-skill\\output\\release-worktrees\\release-v1.6.33\\output\\release-v1633\\word-guidance\\runs\\1\\empty_language\\baseline\\max\\prompt.txt",
+      "trace_path": "F:\\Workspaces\\chinese-official-writing-skill\\output\\release-worktrees\\release-v1.6.33\\output\\release-v1633\\word-guidance\\runs\\1\\empty_language\\baseline\\max\\trace.jsonl",
+      "final_path": "F:\\Workspaces\\chinese-official-writing-skill\\output\\release-worktrees\\release-v1.6.33\\output\\release-v1633\\word-guidance\\runs\\1\\empty_language\\baseline\\max\\final.txt",
+      "final_sha256": "548ade5cfe87b5d767d1d64e1bc554ecdaf19420010a5d078ec251dbe9539274",
+      "commands": [
+        {
+          "index": 1,
+          "reference_names": [
+            "SKILL.md"
+          ],
+          "output_lf_chars": 7931,
+          "exit_code": 0,
+          "full_references_returned": []
+        },
+        {
+          "index": 2,
+          "reference_names": [
+            "reference-index.md"
+          ],
+          "output_lf_chars": 3578,
+          "exit_code": 0,
+          "full_references_returned": [
+            "reference-index.md"
+          ]
+        },
+        {
+          "index": 3,
+          "reference_names": [
+            "information-selection.md"
+          ],
+          "output_lf_chars": 1687,
+          "exit_code": 0,
+          "full_references_returned": [
+            "information-selection.md"
+          ]
+        },
+        {
+          "index": 4,
+          "reference_names": [
+            "short-draft-naturalness.md"
+          ],
+          "output_lf_chars": 467,
+          "exit_code": 0,
+          "full_references_returned": [
+            "short-draft-naturalness.md"
+          ]
+        },
+        {
+          "index": 5,
+          "reference_names": [
+            "anti-ai-patterns.md"
+          ],
+          "output_lf_chars": 5410,
+          "exit_code": 0,
+          "full_references_returned": [
+            "anti-ai-patterns.md"
+          ]
+        },
+        {
+          "index": 6,
+          "reference_names": [
+            "official-style.md"
+          ],
+          "output_lf_chars": 2232,
+          "exit_code": 0,
+          "full_references_returned": [
+            "official-style.md"
+          ]
+        },
+        {
+          "index": 7,
+          "reference_names": [
+            "task-route-cards.md"
+          ],
+          "output_lf_chars": 1463,
+          "exit_code": 0,
+          "full_references_returned": [
+            "task-route-cards.md"
+          ]
+        }
+      ],
+      "error_event_classes": [],
+      "full_references_returned": [
+        "anti-ai-patterns.md",
+        "information-selection.md",
+        "official-style.md",
+        "reference-index.md",
+        "short-draft-naturalness.md",
+        "task-route-cards.md"
+      ],
+      "target_full_return_count": 1,
+      "unique_full_reference_lf_chars": 14825,
+      "all_command_output_lf_chars": 22768
+    },
+    {
+      "atom": "word-guidance",
+      "provider": 1,
+      "model": "alibaba-token-plan/qwen3.8-flash",
+      "case": "empty_language",
+      "arm": "candidate",
+      "effort": "max",
+      "exit_code": 0,
+      "error": null,
+      "valid_final": true,
+      "seconds": 81.92,
+      "timeout_seconds": 300,
+      "prompt_sha256": "f50a9a7ca38e77d7217c7fcad78e5db77089956931938dc4e11040ebaedc96aa",
+      "normalized_prompt_sha256": "2034d30632b0e6d6f636bcc2f186c1035274cd8f447c081f519efc97ae46c4aa",
+      "prompt_path": "F:\\Workspaces\\chinese-official-writing-skill\\output\\release-worktrees\\release-v1.6.33\\output\\release-v1633\\word-guidance\\runs\\1\\empty_language\\candidate\\max\\prompt.txt",
+      "trace_path": "F:\\Workspaces\\chinese-official-writing-skill\\output\\release-worktrees\\release-v1.6.33\\output\\release-v1633\\word-guidance\\runs\\1\\empty_language\\candidate\\max\\trace.jsonl",
+      "final_path": "F:\\Workspaces\\chinese-official-writing-skill\\output\\release-worktrees\\release-v1.6.33\\output\\release-v1633\\word-guidance\\runs\\1\\empty_language\\candidate\\max\\final.txt",
+      "final_sha256": "f113bae44caa8b03d9d4af2163dfd94cdd6066410613e5a965b27cbe2799d7fe",
+      "commands": [
+        {
+          "index": 1,
+          "reference_names": [
+            "SKILL.md"
+          ],
+          "output_lf_chars": 7931,
+          "exit_code": 0,
+          "full_references_returned": []
+        },
+        {
+          "index": 2,
+          "reference_names": [],
+          "output_lf_chars": 19898,
+          "exit_code": 0,
+          "full_references_returned": []
+        },
+        {
+          "index": 3,
+          "reference_names": [
+            "reference-index.md"
+          ],
+          "output_lf_chars": 3578,
+          "exit_code": 0,
+          "full_references_returned": [
+            "reference-index.md"
+          ]
+        },
+        {
+          "index": 4,
+          "reference_names": [
+            "information-selection.md"
+          ],
+          "output_lf_chars": 1687,
+          "exit_code": 0,
+          "full_references_returned": [
+            "information-selection.md"
+          ]
+        },
+        {
+          "index": 5,
+          "reference_names": [
+            "task-route-cards.md"
+          ],
+          "output_lf_chars": 1463,
+          "exit_code": 0,
+          "full_references_returned": [
+            "task-route-cards.md"
+          ]
+        },
+        {
+          "index": 6,
+          "reference_names": [
+            "short-draft-naturalness.md"
+          ],
+          "output_lf_chars": 467,
+          "exit_code": 0,
+          "full_references_returned": [
+            "short-draft-naturalness.md"
+          ]
+        },
+        {
+          "index": 7,
+          "reference_names": [
+            "anti-ai-patterns.md"
+          ],
+          "output_lf_chars": 5341,
+          "exit_code": 0,
+          "full_references_returned": [
+            "anti-ai-patterns.md"
+          ]
+        },
+        {
+          "index": 8,
+          "reference_names": [
+            "official-style.md"
+          ],
+          "output_lf_chars": 2232,
+          "exit_code": 0,
+          "full_references_returned": [
+            "official-style.md"
+          ]
+        },
+        {
+          "index": 9,
+          "reference_names": [
+            "tmp_draft.md"
+          ],
+          "output_lf_chars": 0,
+          "exit_code": 0,
+          "full_references_returned": []
+        },
+        {
+          "index": 10,
+          "reference_names": [
+            "tmp_draft.md"
+          ],
+          "output_lf_chars": 357,
+          "exit_code": 1,
+          "full_references_returned": []
+        },
+        {
+          "index": 11,
+          "reference_names": [
+            "tmp_draft.md"
+          ],
+          "output_lf_chars": 0,
+          "exit_code": 0,
+          "full_references_returned": []
+        },
+        {
+          "index": 12,
+          "reference_names": [
+            "tmp_draft.md"
+          ],
+          "output_lf_chars": 22,
+          "exit_code": 0,
+          "full_references_returned": []
+        },
+        {
+          "index": 13,
+          "reference_names": [
+            "tmp_draft.md"
+          ],
+          "output_lf_chars": 0,
+          "exit_code": 0,
+          "full_references_returned": []
+        }
+      ],
+      "error_event_classes": [],
+      "full_references_returned": [
+        "anti-ai-patterns.md",
+        "information-selection.md",
+        "official-style.md",
+        "reference-index.md",
+        "short-draft-naturalness.md",
+        "task-route-cards.md"
+      ],
+      "target_full_return_count": 1,
+      "unique_full_reference_lf_chars": 14756,
+      "all_command_output_lf_chars": 42976
+    },
+    {
+      "atom": "word-guidance",
+      "provider": 2,
+      "model": "alibaba-token-plan-2/qwen3.8-flash",
+      "case": "concrete_closed_loop",
+      "arm": "baseline",
+      "effort": "max",
+      "exit_code": 0,
+      "error": null,
+      "valid_final": true,
+      "seconds": 75.83,
+      "timeout_seconds": 300,
+      "prompt_sha256": "103a33a8fca71d221f4fe1ee3683a57ac9156bb0d43ecb5fbd3a4718c177eafe",
+      "normalized_prompt_sha256": "3150914c25284b0936ea87cc4ec8ec7008c87f30e03b7b6b4c2fbf0d031944b9",
+      "prompt_path": "F:\\Workspaces\\chinese-official-writing-skill\\output\\release-worktrees\\release-v1.6.33\\output\\release-v1633\\word-guidance\\runs\\2\\concrete_closed_loop\\baseline\\max\\prompt.txt",
+      "trace_path": "F:\\Workspaces\\chinese-official-writing-skill\\output\\release-worktrees\\release-v1.6.33\\output\\release-v1633\\word-guidance\\runs\\2\\concrete_closed_loop\\baseline\\max\\trace.jsonl",
+      "final_path": "F:\\Workspaces\\chinese-official-writing-skill\\output\\release-worktrees\\release-v1.6.33\\output\\release-v1633\\word-guidance\\runs\\2\\concrete_closed_loop\\baseline\\max\\final.txt",
+      "final_sha256": "6e9f78074b9f0dfa732a2d93c93299b83e0a2d9cbbe894083a629edbe4e80fc9",
+      "commands": [
+        {
+          "index": 1,
+          "reference_names": [],
+          "output_lf_chars": 187,
+          "exit_code": 1,
+          "full_references_returned": []
+        },
+        {
+          "index": 2,
+          "reference_names": [
+            "SKILL.md"
+          ],
+          "output_lf_chars": 7931,
+          "exit_code": 0,
+          "full_references_returned": []
+        },
+        {
+          "index": 3,
+          "reference_names": [],
+          "output_lf_chars": 3271,
+          "exit_code": 0,
+          "full_references_returned": []
+        },
+        {
+          "index": 4,
+          "reference_names": [
+            "reference-index.md"
+          ],
+          "output_lf_chars": 3578,
+          "exit_code": 0,
+          "full_references_returned": [
+            "reference-index.md"
+          ]
+        },
+        {
+          "index": 5,
+          "reference_names": [
+            "information-selection.md"
+          ],
+          "output_lf_chars": 1687,
+          "exit_code": 0,
+          "full_references_returned": [
+            "information-selection.md"
+          ]
+        },
+        {
+          "index": 6,
+          "reference_names": [
+            "task-route-cards.md"
+          ],
+          "output_lf_chars": 1463,
+          "exit_code": 0,
+          "full_references_returned": [
+            "task-route-cards.md"
+          ]
+        },
+        {
+          "index": 7,
+          "reference_names": [
+            "official-style.md"
+          ],
+          "output_lf_chars": 2232,
+          "exit_code": 0,
+          "full_references_returned": [
+            "official-style.md"
+          ]
+        },
+        {
+          "index": 8,
+          "reference_names": [
+            "anti-ai-patterns.md"
+          ],
+          "output_lf_chars": 5410,
+          "exit_code": 0,
+          "full_references_returned": [
+            "anti-ai-patterns.md"
+          ]
+        },
+        {
+          "index": 9,
+          "reference_names": [
+            "short-draft-naturalness.md"
+          ],
+          "output_lf_chars": 467,
+          "exit_code": 0,
+          "full_references_returned": [
+            "short-draft-naturalness.md"
+          ]
+        }
+      ],
+      "error_event_classes": [],
+      "full_references_returned": [
+        "anti-ai-patterns.md",
+        "information-selection.md",
+        "official-style.md",
+        "reference-index.md",
+        "short-draft-naturalness.md",
+        "task-route-cards.md"
+      ],
+      "target_full_return_count": 1,
+      "unique_full_reference_lf_chars": 14825,
+      "all_command_output_lf_chars": 26226
+    },
+    {
+      "atom": "word-guidance",
+      "provider": 2,
+      "model": "alibaba-token-plan-2/qwen3.8-flash",
+      "case": "concrete_closed_loop",
+      "arm": "candidate",
+      "effort": "max",
+      "exit_code": 0,
+      "error": null,
+      "valid_final": true,
+      "seconds": 91.51,
+      "timeout_seconds": 300,
+      "prompt_sha256": "b00d5a487d38212eaf08a6e597761b2b08c8ad0ceb46fef9ef80ef3087872c07",
+      "normalized_prompt_sha256": "3150914c25284b0936ea87cc4ec8ec7008c87f30e03b7b6b4c2fbf0d031944b9",
+      "prompt_path": "F:\\Workspaces\\chinese-official-writing-skill\\output\\release-worktrees\\release-v1.6.33\\output\\release-v1633\\word-guidance\\runs\\2\\concrete_closed_loop\\candidate\\max\\prompt.txt",
+      "trace_path": "F:\\Workspaces\\chinese-official-writing-skill\\output\\release-worktrees\\release-v1.6.33\\output\\release-v1633\\word-guidance\\runs\\2\\concrete_closed_loop\\candidate\\max\\trace.jsonl",
+      "final_path": "F:\\Workspaces\\chinese-official-writing-skill\\output\\release-worktrees\\release-v1.6.33\\output\\release-v1633\\word-guidance\\runs\\2\\concrete_closed_loop\\candidate\\max\\final.txt",
+      "final_sha256": "e7ebd2ac24c9b7b8734cff435c5d0692210781c6d997547bdda82ccb4e418950",
+      "commands": [
+        {
+          "index": 1,
+          "reference_names": [
+            "SKILL.md"
+          ],
+          "output_lf_chars": 7931,
+          "exit_code": 0,
+          "full_references_returned": []
+        },
+        {
+          "index": 2,
+          "reference_names": [
+            "SKILL.md"
+          ],
+          "output_lf_chars": 7932,
+          "exit_code": 0,
+          "full_references_returned": []
+        },
+        {
+          "index": 3,
+          "reference_names": [],
+          "output_lf_chars": 16231,
+          "exit_code": 0,
+          "full_references_returned": []
+        },
+        {
+          "index": 4,
+          "reference_names": [
+            "reference-index.md"
+          ],
+          "output_lf_chars": 3578,
+          "exit_code": 0,
+          "full_references_returned": [
+            "reference-index.md"
+          ]
+        },
+        {
+          "index": 5,
+          "reference_names": [
+            "information-selection.md"
+          ],
+          "output_lf_chars": 1687,
+          "exit_code": 0,
+          "full_references_returned": [
+            "information-selection.md"
+          ]
+        },
+        {
+          "index": 6,
+          "reference_names": [
+            "task-route-cards.md"
+          ],
+          "output_lf_chars": 1463,
+          "exit_code": 0,
+          "full_references_returned": [
+            "task-route-cards.md"
+          ]
+        },
+        {
+          "index": 7,
+          "reference_names": [
+            "short-draft-naturalness.md"
+          ],
+          "output_lf_chars": 467,
+          "exit_code": 0,
+          "full_references_returned": [
+            "short-draft-naturalness.md"
+          ]
+        },
+        {
+          "index": 8,
+          "reference_names": [
+            "anti-ai-patterns.md"
+          ],
+          "output_lf_chars": 5341,
+          "exit_code": 0,
+          "full_references_returned": [
+            "anti-ai-patterns.md"
+          ]
+        },
+        {
+          "index": 9,
+          "reference_names": [
+            "official-style.md"
+          ],
+          "output_lf_chars": 2232,
+          "exit_code": 0,
+          "full_references_returned": [
+            "official-style.md"
+          ]
+        },
+        {
+          "index": 10,
+          "reference_names": [],
+          "output_lf_chars": 131,
+          "exit_code": 0,
+          "full_references_returned": []
+        },
+        {
+          "index": 11,
+          "reference_names": [],
+          "output_lf_chars": 22,
+          "exit_code": 0,
+          "full_references_returned": []
+        },
+        {
+          "index": 12,
+          "reference_names": [],
+          "output_lf_chars": 0,
+          "exit_code": 0,
+          "full_references_returned": []
+        }
+      ],
+      "error_event_classes": [],
+      "full_references_returned": [
+        "anti-ai-patterns.md",
+        "information-selection.md",
+        "official-style.md",
+        "reference-index.md",
+        "short-draft-naturalness.md",
+        "task-route-cards.md"
+      ],
+      "target_full_return_count": 1,
+      "unique_full_reference_lf_chars": 14756,
+      "all_command_output_lf_chars": 47015
+    },
+    {
+      "atom": "word-guidance",
+      "provider": 3,
+      "model": "opencode-go/deepseek-v4-flash",
+      "case": "ordinary_statement",
+      "arm": "baseline",
+      "effort": "max",
+      "exit_code": 0,
+      "error": null,
+      "valid_final": true,
+      "seconds": 37.72,
+      "timeout_seconds": 300,
+      "prompt_sha256": "1c2452881c01c7e657c27f1a6d5b53e62d39bac3def7a1257f3bfa5e292f44ab",
+      "normalized_prompt_sha256": "6deacb89781b2b193f4043acb7c59a169e0013f67197d601db9fce66920c3c17",
+      "prompt_path": "F:\\Workspaces\\chinese-official-writing-skill\\output\\release-worktrees\\release-v1.6.33\\output\\release-v1633\\word-guidance\\runs\\3\\ordinary_statement\\baseline\\max\\prompt.txt",
+      "trace_path": "F:\\Workspaces\\chinese-official-writing-skill\\output\\release-worktrees\\release-v1.6.33\\output\\release-v1633\\word-guidance\\runs\\3\\ordinary_statement\\baseline\\max\\trace.jsonl",
+      "final_path": "F:\\Workspaces\\chinese-official-writing-skill\\output\\release-worktrees\\release-v1.6.33\\output\\release-v1633\\word-guidance\\runs\\3\\ordinary_statement\\baseline\\max\\final.txt",
+      "final_sha256": "d2dada77d701a51a4ea7515c839679cca2b28832611fb500942adc7d4eeecfed",
+      "commands": [
+        {
+          "index": 1,
+          "reference_names": [
+            "SKILL.md"
+          ],
+          "output_lf_chars": 7931,
+          "exit_code": 0,
+          "full_references_returned": []
+        },
+        {
+          "index": 2,
+          "reference_names": [
+            "information-selection.md"
+          ],
+          "output_lf_chars": 1687,
+          "exit_code": 0,
+          "full_references_returned": [
+            "information-selection.md"
+          ]
+        },
+        {
+          "index": 3,
+          "reference_names": [
+            "short-draft-naturalness.md"
+          ],
+          "output_lf_chars": 467,
+          "exit_code": 0,
+          "full_references_returned": [
+            "short-draft-naturalness.md"
+          ]
+        },
+        {
+          "index": 4,
+          "reference_names": [
+            "task-route-cards.md"
+          ],
+          "output_lf_chars": 1463,
+          "exit_code": 0,
+          "full_references_returned": [
+            "task-route-cards.md"
+          ]
+        }
+      ],
+      "error_event_classes": [],
+      "full_references_returned": [
+        "information-selection.md",
+        "short-draft-naturalness.md",
+        "task-route-cards.md"
+      ],
+      "target_full_return_count": 0,
+      "unique_full_reference_lf_chars": 3611,
+      "all_command_output_lf_chars": 11548
+    },
+    {
+      "atom": "word-guidance",
+      "provider": 3,
+      "model": "opencode-go/deepseek-v4-flash",
+      "case": "ordinary_statement",
+      "arm": "candidate",
+      "effort": "max",
+      "exit_code": 0,
+      "error": null,
+      "valid_final": true,
+      "seconds": 89.03,
+      "timeout_seconds": 300,
+      "prompt_sha256": "7ea4ff0ca02e220073ff461562545bffb35586aaec20e19e8bace6236b46049e",
+      "normalized_prompt_sha256": "6deacb89781b2b193f4043acb7c59a169e0013f67197d601db9fce66920c3c17",
+      "prompt_path": "F:\\Workspaces\\chinese-official-writing-skill\\output\\release-worktrees\\release-v1.6.33\\output\\release-v1633\\word-guidance\\runs\\3\\ordinary_statement\\candidate\\max\\prompt.txt",
+      "trace_path": "F:\\Workspaces\\chinese-official-writing-skill\\output\\release-worktrees\\release-v1.6.33\\output\\release-v1633\\word-guidance\\runs\\3\\ordinary_statement\\candidate\\max\\trace.jsonl",
+      "final_path": "F:\\Workspaces\\chinese-official-writing-skill\\output\\release-worktrees\\release-v1.6.33\\output\\release-v1633\\word-guidance\\runs\\3\\ordinary_statement\\candidate\\max\\final.txt",
+      "final_sha256": "c5d183689aafb91b40963660c0102bb1fc8ae8a3272e64347c8323ecc8cafdd2",
+      "commands": [
+        {
+          "index": 1,
+          "reference_names": [
+            "SKILL.md"
+          ],
+          "output_lf_chars": 7931,
+          "exit_code": 0,
+          "full_references_returned": []
+        },
+        {
+          "index": 2,
+          "reference_names": [
+            "reference-index.md"
+          ],
+          "output_lf_chars": 3578,
+          "exit_code": 0,
+          "full_references_returned": [
+            "reference-index.md"
+          ]
+        },
+        {
+          "index": 3,
+          "reference_names": [
+            "information-selection.md"
+          ],
+          "output_lf_chars": 1687,
+          "exit_code": 0,
+          "full_references_returned": [
+            "information-selection.md"
+          ]
+        },
+        {
+          "index": 4,
+          "reference_names": [
+            "task-route-cards.md"
+          ],
+          "output_lf_chars": 1463,
+          "exit_code": 0,
+          "full_references_returned": [
+            "task-route-cards.md"
+          ]
+        },
+        {
+          "index": 5,
+          "reference_names": [
+            "short-draft-naturalness.md"
+          ],
+          "output_lf_chars": 467,
+          "exit_code": 0,
+          "full_references_returned": [
+            "short-draft-naturalness.md"
+          ]
+        }
+      ],
+      "error_event_classes": [],
+      "full_references_returned": [
+        "information-selection.md",
+        "reference-index.md",
+        "short-draft-naturalness.md",
+        "task-route-cards.md"
+      ],
+      "target_full_return_count": 0,
+      "unique_full_reference_lf_chars": 7187,
+      "all_command_output_lf_chars": 15126
+    },
+    {
+      "atom": "word-guidance",
+      "provider": 4,
+      "model": "ollama-cloud/glm-5.3-flash",
+      "case": "scoped_review",
+      "arm": "baseline",
+      "effort": "high",
+      "exit_code": 0,
+      "error": null,
+      "valid_final": true,
+      "seconds": 102.66,
+      "timeout_seconds": 300,
+      "prompt_sha256": "0d1432e118f6d6612080c9b061fae28d1bf1a06e178a921070c678cc7f9afa4f",
+      "normalized_prompt_sha256": "b144c931c0a709ec0e35af034686318f5a4e36f91a9d01defa0a8196295dfc47",
+      "prompt_path": "F:\\Workspaces\\chinese-official-writing-skill\\output\\release-worktrees\\release-v1.6.33\\output\\release-v1633\\word-guidance\\runs\\4\\scoped_review\\baseline\\high\\prompt.txt",
+      "trace_path": "F:\\Workspaces\\chinese-official-writing-skill\\output\\release-worktrees\\release-v1.6.33\\output\\release-v1633\\word-guidance\\runs\\4\\scoped_review\\baseline\\high\\trace.jsonl",
+      "final_path": "F:\\Workspaces\\chinese-official-writing-skill\\output\\release-worktrees\\release-v1.6.33\\output\\release-v1633\\word-guidance\\runs\\4\\scoped_review\\baseline\\high\\final.txt",
+      "final_sha256": "c7835f628a970b28bfed724e50beb96edef7c4a0eb0f8c3182475152b923e639",
+      "commands": [
+        {
+          "index": 1,
+          "reference_names": [
+            "SKILL.md"
+          ],
+          "output_lf_chars": 7930,
+          "exit_code": 0,
+          "full_references_returned": []
+        },
+        {
+          "index": 2,
+          "reference_names": [
+            "SKILL.md"
+          ],
+          "output_lf_chars": 8125,
+          "exit_code": 0,
+          "full_references_returned": []
+        },
+        {
+          "index": 3,
+          "reference_names": [
+            "SKILL.md"
+          ],
+          "output_lf_chars": 5,
+          "exit_code": 0,
+          "full_references_returned": []
+        },
+        {
+          "index": 4,
+          "reference_names": [],
+          "output_lf_chars": 67,
+          "exit_code": 1,
+          "full_references_returned": []
+        },
+        {
+          "index": 5,
+          "reference_names": [],
+          "output_lf_chars": 67,
+          "exit_code": 1,
+          "full_references_returned": []
+        },
+        {
+          "index": 6,
+          "reference_names": [],
+          "output_lf_chars": 135,
+          "exit_code": 0,
+          "full_references_returned": []
+        },
+        {
+          "index": 7,
+          "reference_names": [
+            "SKILL.md"
+          ],
+          "output_lf_chars": 7931,
+          "exit_code": 0,
+          "full_references_returned": []
+        },
+        {
+          "index": 8,
+          "reference_names": [
+            "review-direct-checklist.md"
+          ],
+          "output_lf_chars": 1008,
+          "exit_code": 0,
+          "full_references_returned": [
+            "review-direct-checklist.md"
+          ]
+        },
+        {
+          "index": 9,
+          "reference_names": [
+            "anti-ai-patterns.md"
+          ],
+          "output_lf_chars": 5410,
+          "exit_code": 0,
+          "full_references_returned": [
+            "anti-ai-patterns.md"
+          ]
+        }
+      ],
+      "error_event_classes": [],
+      "full_references_returned": [
+        "anti-ai-patterns.md",
+        "review-direct-checklist.md"
+      ],
+      "target_full_return_count": 1,
+      "unique_full_reference_lf_chars": 6414,
+      "all_command_output_lf_chars": 30678
+    },
+    {
+      "atom": "word-guidance",
+      "provider": 4,
+      "model": "ollama-cloud/glm-5.3-flash",
+      "case": "scoped_review",
+      "arm": "baseline",
+      "effort": "max",
+      "exit_code": 0,
+      "error": null,
+      "valid_final": true,
+      "seconds": 155.77,
+      "timeout_seconds": 300,
+      "prompt_sha256": "0d1432e118f6d6612080c9b061fae28d1bf1a06e178a921070c678cc7f9afa4f",
+      "normalized_prompt_sha256": "b144c931c0a709ec0e35af034686318f5a4e36f91a9d01defa0a8196295dfc47",
+      "prompt_path": "F:\\Workspaces\\chinese-official-writing-skill\\output\\release-worktrees\\release-v1.6.33\\output\\release-v1633\\word-guidance\\runs\\4\\scoped_review\\baseline\\max\\prompt.txt",
+      "trace_path": "F:\\Workspaces\\chinese-official-writing-skill\\output\\release-worktrees\\release-v1.6.33\\output\\release-v1633\\word-guidance\\runs\\4\\scoped_review\\baseline\\max\\trace.jsonl",
+      "final_path": "F:\\Workspaces\\chinese-official-writing-skill\\output\\release-worktrees\\release-v1.6.33\\output\\release-v1633\\word-guidance\\runs\\4\\scoped_review\\baseline\\max\\final.txt",
+      "final_sha256": "832c6359eda151ef1bc8b722dd5c67541cff9223b98c735deeecb559e51e2cdd",
+      "commands": [
+        {
+          "index": 1,
+          "reference_names": [
+            "SKILL.md"
+          ],
+          "output_lf_chars": 7931,
+          "exit_code": 0,
+          "full_references_returned": []
+        },
+        {
+          "index": 2,
+          "reference_names": [
+            "review-direct-checklist.md"
+          ],
+          "output_lf_chars": 1008,
+          "exit_code": 0,
+          "full_references_returned": [
+            "review-direct-checklist.md"
+          ]
+        },
+        {
+          "index": 3,
+          "reference_names": [
+            "anti-ai-patterns.md"
+          ],
+          "output_lf_chars": 5410,
+          "exit_code": 0,
+          "full_references_returned": [
+            "anti-ai-patterns.md"
+          ]
+        }
+      ],
+      "error_event_classes": [],
+      "full_references_returned": [
+        "anti-ai-patterns.md",
+        "review-direct-checklist.md"
+      ],
+      "target_full_return_count": 1,
+      "unique_full_reference_lf_chars": 6414,
+      "all_command_output_lf_chars": 14349
+    },
+    {
+      "atom": "word-guidance",
+      "provider": 4,
+      "model": "ollama-cloud/glm-5.3-flash",
+      "case": "scoped_review",
+      "arm": "candidate",
+      "effort": "high",
+      "exit_code": 0,
+      "error": null,
+      "valid_final": true,
+      "seconds": 50.36,
+      "timeout_seconds": 300,
+      "prompt_sha256": "b15f697108813d54ccb1e6be6997c2ab996e3296faee945f322aca250245704d",
+      "normalized_prompt_sha256": "b144c931c0a709ec0e35af034686318f5a4e36f91a9d01defa0a8196295dfc47",
+      "prompt_path": "F:\\Workspaces\\chinese-official-writing-skill\\output\\release-worktrees\\release-v1.6.33\\output\\release-v1633\\word-guidance\\runs\\4\\scoped_review\\candidate\\high\\prompt.txt",
+      "trace_path": "F:\\Workspaces\\chinese-official-writing-skill\\output\\release-worktrees\\release-v1.6.33\\output\\release-v1633\\word-guidance\\runs\\4\\scoped_review\\candidate\\high\\trace.jsonl",
+      "final_path": "F:\\Workspaces\\chinese-official-writing-skill\\output\\release-worktrees\\release-v1.6.33\\output\\release-v1633\\word-guidance\\runs\\4\\scoped_review\\candidate\\high\\final.txt",
+      "final_sha256": "dab4b00f7e61a35b0326ee3d301c24248e0a6eb0a938aaba04d5ed5428633730",
+      "commands": [
+        {
+          "index": 1,
+          "reference_names": [
+            "SKILL.md"
+          ],
+          "output_lf_chars": 7931,
+          "exit_code": 0,
+          "full_references_returned": []
+        },
+        {
+          "index": 2,
+          "reference_names": [
+            "review-direct-checklist.md"
+          ],
+          "output_lf_chars": 1008,
+          "exit_code": 0,
+          "full_references_returned": [
+            "review-direct-checklist.md"
+          ]
+        },
+        {
+          "index": 3,
+          "reference_names": [
+            "anti-ai-patterns.md"
+          ],
+          "output_lf_chars": 5341,
+          "exit_code": 0,
+          "full_references_returned": [
+            "anti-ai-patterns.md"
+          ]
+        }
+      ],
+      "error_event_classes": [],
+      "full_references_returned": [
+        "anti-ai-patterns.md",
+        "review-direct-checklist.md"
+      ],
+      "target_full_return_count": 1,
+      "unique_full_reference_lf_chars": 6345,
+      "all_command_output_lf_chars": 14280
+    },
+    {
+      "atom": "word-guidance",
+      "provider": 4,
+      "model": "ollama-cloud/glm-5.3-flash",
+      "case": "scoped_review",
+      "arm": "candidate",
+      "effort": "max",
+      "exit_code": 1,
+      "error": null,
+      "valid_final": false,
+      "seconds": 56.13,
+      "timeout_seconds": 300,
+      "prompt_sha256": "b15f697108813d54ccb1e6be6997c2ab996e3296faee945f322aca250245704d",
+      "normalized_prompt_sha256": "b144c931c0a709ec0e35af034686318f5a4e36f91a9d01defa0a8196295dfc47",
+      "prompt_path": "F:\\Workspaces\\chinese-official-writing-skill\\output\\release-worktrees\\release-v1.6.33\\output\\release-v1633\\word-guidance\\runs\\4\\scoped_review\\candidate\\max\\prompt.txt",
+      "trace_path": "F:\\Workspaces\\chinese-official-writing-skill\\output\\release-worktrees\\release-v1.6.33\\output\\release-v1633\\word-guidance\\runs\\4\\scoped_review\\candidate\\max\\trace.jsonl",
+      "final_path": null,
+      "final_sha256": null,
+      "commands": [],
+      "error_event_classes": [
+        {
+          "event": "error",
+          "duplicate_tool_result": true,
+          "http_502": true
+        },
+        {
+          "event": "error",
+          "duplicate_tool_result": true,
+          "http_502": true
+        },
+        {
+          "event": "error",
+          "duplicate_tool_result": true,
+          "http_502": true
+        },
+        {
+          "event": "error",
+          "duplicate_tool_result": true,
+          "http_502": true
+        },
+        {
+          "event": "error",
+          "duplicate_tool_result": true,
+          "http_502": true
+        },
+        {
+          "event": "error",
+          "duplicate_tool_result": true,
+          "http_502": true
+        },
+        {
+          "event": "turn.failed",
+          "duplicate_tool_result": true,
+          "http_502": true
+        }
+      ],
+      "full_references_returned": [],
+      "target_full_return_count": 0,
+      "unique_full_reference_lf_chars": 0,
+      "all_command_output_lf_chars": 0
+    }
+  ],
+  "limits": "Exact full-reference matches are exposure evidence, not quality. Unique reference characters omit excerpts and repeats; all command output includes diagnostics and non-document operations. Neither is a token measure."
+}

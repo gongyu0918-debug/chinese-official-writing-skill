@@ -1,0 +1,153 @@
+{
+  "status": "Q1 writing validation complete and admitted for subsequent release engineering; not a publication receipt.",
+  "baseline_tag": "v1.6.32",
+  "baseline_commit": "236784efe2a7a0bf9acd3a49f1d3ad0cff1586a8",
+  "writing_candidate_commit": "dded78a783aaac897a024ca77a331de6eefe9809",
+  "writing_candidate_tree": "1331873457aa7798d2e5d92e40b5f511ff22d0c9",
+  "product_diff_files": [
+    "chinese-official-writing/references/anti-ai-patterns.md"
+  ],
+  "scope": "Only the frequent formal words paragraph; no other route, Hook, technical-term pointer, detail relocation or functionality added.",
+  "release_packaging": "Inherit the v1.6.32 on-demand generated-package repository layout. Do not restore main package copies. Version metadata and packaging handled after the writing freeze.",
+  "migration_proof": {
+    "baseline_anti_ai_equals_old_Q1_baseline": true,
+    "candidate_anti_ai_equals_old_Q1_candidate": true,
+    "baseline_sha256": "c77202b6685b57bef8ae98499c05e1e21427fce90c56a18adba0472da07e4f2f",
+    "candidate_sha256": "0901d58db86d4498538868c2f04cbd387befdc319e778a09fc091b57ed3712e2",
+    "old_trial_baseline": "e8103f536ff503f4d178080f4847a82bdd22aad2",
+    "old_trial_candidate": "8c44630ed5b1cfef92cbd44a8648627bffb9ce19",
+    "limits": "Old 5 max pairs provide target-leaf behavioral evidence, including three pairs reading the target on both arms; old homepage/index/information-selection differ from v1.6.32, so the current slice runs the same five prompts on its exact frozen inputs."
+  },
+  "retained_main_atoms": [
+    {
+      "atom": "Existing-project extension application",
+      "source_commits": [
+        "362dc826"
+      ],
+      "dependencies": "Entry route plus genre-playbook-project-application leaf; not just a single glossary or language paragraph.",
+      "reason_retained": "Independent document-family capability beyond the selected language review."
+    },
+    {
+      "atom": "Speech identity and supplied-material revision",
+      "source_commits": [
+        "fb808f49",
+        "2b9a4cef"
+      ],
+      "dependencies": "Port the final entry identity clause and information-selection speech paragraph together as warranted; do not revive the discarded speech leaf.",
+      "reason_retained": "Separate speaker/factual-source behavior."
+    },
+    {
+      "atom": "Bounded source-state Hook review",
+      "source_commits": [
+        "4fd63ce3",
+        "893d4810"
+      ],
+      "dependencies": "gate_stop_hook, source_fact_review and review_gate cooperate; later helper extraction must be reconciled with its tests/lifecycle.",
+      "reason_retained": "Runtime capability with separate validation, unrelated to this ordinary word-review update."
+    },
+    {
+      "atom": "Prose-lint invocation details",
+      "source_commits": [
+        "8ca06ebb"
+      ],
+      "dependencies": "Entry invocation plus prose-lint-usage; retain the release baseline document-family semantics when transplanting.",
+      "reason_retained": "Additional routing change."
+    },
+    {
+      "atom": "Field edit details",
+      "source_commits": [
+        "b68660a1"
+      ],
+      "dependencies": "Entry/workflow links plus field-editing leaf.",
+      "reason_retained": "Independent editing route."
+    },
+    {
+      "atom": "Structure edit details",
+      "source_commits": [
+        "afb62500"
+      ],
+      "dependencies": "Entry/workflow links plus structure-editing leaf.",
+      "reason_retained": "Independent editing route and prerequisite for later R1 relocation."
+    },
+    {
+      "atom": "Compression details",
+      "source_commits": [
+        "2d47c341"
+      ],
+      "dependencies": "Entry links plus compression-details leaf.",
+      "reason_retained": "Independent length/organization route."
+    },
+    {
+      "atom": "Repeated entry explanations",
+      "source_commits": [
+        "1e1f9eec",
+        "28ee4ed6"
+      ],
+      "dependencies": "Apply only matching entry-text hunks, not the full current main SKILL.",
+      "reason_retained": "Separate entry lightening not needed for Q1."
+    },
+    {
+      "atom": "Common technical terminology",
+      "source_commits": [
+        "5e043eeb"
+      ],
+      "dependencies": "technical-terms plus both AI and anti-AI pointers; do not copy the current main anti-AI leaf wholesale.",
+      "reason_retained": "This release keeps the original ai-compute-docs glossary pointer."
+    },
+    {
+      "atom": "Correspondence family routing",
+      "source_commits": [
+        "50bb5901"
+      ],
+      "dependencies": "Short correspondence leaf and both index selectors.",
+      "reason_retained": "Separate document-family selection behavior."
+    },
+    {
+      "atom": "Length/output-contract alignment",
+      "source_commits": [
+        "9be50601"
+      ],
+      "dependencies": "workflow and review-checklist; complete-body and hard-fact safeguards remain.",
+      "reason_retained": "A small possible later update, but independent of Q1."
+    },
+    {
+      "atom": "Optional compute examples",
+      "source_commits": [
+        "ae483f40"
+      ],
+      "dependencies": "AI guide and examples leaf; preserve any baseline glossary when porting.",
+      "reason_retained": "Separate compute-resource loading behavior."
+    },
+    {
+      "atom": "Final-review structure relocation R1",
+      "source_commits": [
+        "60bce6c6"
+      ],
+      "dependencies": "Requires the structure-editing leaf that is absent in v1.6.32; cannot port only the new final-review pointer.",
+      "reason_retained": "Would pull in earlier structure-detail work."
+    },
+    {
+      "atom": "Local-edit workflow selector L",
+      "source_commits": [
+        "5103a985"
+      ],
+      "dependencies": "Single reference-index selector with its own route conditions and evidence.",
+      "reason_retained": "Independent routing change; natural simple-edit load benefit was not demonstrated universally."
+    }
+  ],
+  "not_product_backlog": "The seven adapter manifest version differences main 1.6.30 versus release 1.6.32 are version-lineage differences, not seven features to transplant. A/G/M experimental task/family/minutes splits are absent from current main and also remain outside this release.",
+  "release_note_scope": "正式词语按语义审校，保留有具体含义的术语和必要强调，减少机械替换。",
+  "no_new_hook_claim": "The parallel current-main Pro-host verification is not evidence of a new Hook capability in this ordinary release.",
+  "current_writing_result": {
+    "attempts": 12,
+    "technical_valid_finals": 11,
+    "same_effort_pairs": 5,
+    "max_pairs": 4,
+    "high_pairs": 1,
+    "target_full_read_pairs": 4,
+    "bypass_control_pairs": 1,
+    "technical_failure": "GLM candidate max: HTTP 502 Provider unreachable / ollama-native duplicate tool result; both high arms completed under the preregistered single fallback.",
+    "material_findings": "No candidate-only business fact, undecided-state, genre-function or complete-body regression observed in these selected pairs. Preserve scoped-review self-reference wording and process preface as local noise, ordinary-statement formal tail as a bypass difference, and all baseline output extras.",
+    "scope_limit": "Bounded engineering admission, not statistical noninferiority or universal quality improvement."
+  }
+}
