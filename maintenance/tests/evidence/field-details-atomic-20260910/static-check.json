@@ -1,0 +1,66 @@
+{
+  "baseline": "8ab33566a42cfbfe9c2f1a8f2e9824d6d068581c",
+  "product_files": [
+    "chinese-official-writing/SKILL.md",
+    "chinese-official-writing/references/field-editing.md",
+    "chinese-official-writing/references/workflow.md"
+  ],
+  "only_planned_product_changes": true,
+  "home_exact_planned_replacement": true,
+  "moved_details_verbatim_except_document_heading_and_noted_terminal_punctuation": true,
+  "workflow_remaining_text_unchanged": true,
+  "new_leaf_reachable_from_home": true,
+  "quality_advice_unchanged": true,
+  "fact_state_rules_outside_named_detail_paragraphs_unchanged": true,
+  "cases": 4,
+  "control_cases": 1,
+  "model_tests_run": false,
+  "candidate_admitted": false,
+  "commands": [
+    {
+      "command": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "exit_code": 0,
+      "output": "warning: in the working copy of 'chinese-official-writing/SKILL.md', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'chinese-official-writing/references/workflow.md', LF will be replaced by CRLF the next time Git touches it"
+    },
+    {
+      "command": [
+        "C:/Users/admin/AppData/Local/Programs/Python/Python313/python.exe",
+        "C:/Users/admin/.codex/skills/.system/skill-creator/scripts/quick_validate.py",
+        "chinese-official-writing"
+      ],
+      "exit_code": 0,
+      "output": "Skill is valid!"
+    },
+    {
+      "command": [
+        "C:/Users/admin/AppData/Local/Programs/Python/Python313/python.exe",
+        "-m",
+        "unittest",
+        "maintenance.tests.test_skill_boundary.SkillBoundaryTests.test_reference_links_form_an_acyclic_graph"
+      ],
+      "exit_code": 0,
+      "output": ".\n----------------------------------------------------------------------\nRan 1 test in 0.109s\n\nOK"
+    }
+  ],
+  "home_lf_net_reduction": 120,
+  "files_sha256": {
+    "chinese-official-writing/SKILL.md": "32599f9e5f51cd3381a40067119048597da8f51f26b2f522bebedd79c1d8ab8f",
+    "chinese-official-writing/references/field-editing.md": "1155507fe9a0ba70da22372a14926f78baaf82cf3e273c0e3a0341b80040e33c",
+    "chinese-official-writing/references/workflow.md": "931be9b1569dd5cefe16fc1eabd402abfd042c36bacd8a7f72cd1476afd4dd2b"
+  },
+  "earlier_environment_failures": [
+    {
+      "runtime": "default Python",
+      "error": "ModuleNotFoundError: No module named yaml"
+    },
+    {
+      "runtime": "bundled dependency Python",
+      "error": "ModuleNotFoundError: No module named yaml"
+    }
+  ],
+  "environment_resolution": "Installed Python313 user site-packages contains PyYAML; no dependency installation or product workaround."
+}
