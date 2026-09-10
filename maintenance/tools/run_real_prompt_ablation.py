@@ -2308,6 +2308,43 @@ for _case in CASES:
         FILE_TERM_ALTERNATIVES_BY_CASE.setdefault(_case.id, []).append(_group)
 
 
+# Validated Q2/C2 updates keep historical evidence groups intact. Each new group
+# requires the entire current route and retained behavior, not isolated keywords.
+for _case in CASES:
+    if _case.id == "P038":
+        _group = {relative: list(terms) for relative, terms in _case.checks["file_terms"].items()}
+        _group["chinese-official-writing/SKILL.md"].append("`references/reference-index.md`")
+        _group["chinese-official-writing/references/reference-index.md"] = [
+            "`references/workflow.md`", "`references/review-checklist.md`",
+        ]
+        for _relative, _old in (
+            ("chinese-official-writing/references/workflow.md", "5%-10% 余量"),
+            ("chinese-official-writing/references/review-checklist.md", "避免静默超字数或贴线上限"),
+        ):
+            _group[_relative].remove(_old)
+            _group[_relative].append("按用户允许的输出范围说明超限或取舍风险")
+        _group["chinese-official-writing/references/workflow.md"].extend([
+            "尽量压到上限内", "仍先交付完整正文",
+        ])
+        _group["chinese-official-writing/references/review-checklist.md"].extend([
+            "尽量压到限制内", "先交付完整可用正文",
+        ])
+        FILE_TERM_ALTERNATIVES_BY_CASE.setdefault(_case.id, []).append(_group)
+    elif _case.id == "P111":
+        _group = {relative: list(terms) for relative, terms in FILE_TERM_ALTERNATIVES_BY_CASE[_case.id][-1].items()}
+        _group["chinese-official-writing/references/reference-index.md"] = [
+            "`references/genre-playbook-correspondence.md`",
+            "`references/genre-playbooks.md`",
+            "文种明确的普通函、常规复函和征求意见函起草，以及只改错字、标点、格式或明确局部措辞时",
+            "用户提供既有普通函、复函或征求意见函并要求重组事务动作、状态、条件、范围或结构时",
+        ]
+        _group["chinese-official-writing/references/genre-playbook-correspondence.md"] = [
+            "既有普通函、复函或征求意见函需要重组事务动作、状态、条件、范围或结构时",
+            "仍按 `SKILL.md` 读取完整文种 playbook",
+        ]
+        FILE_TERM_ALTERNATIVES_BY_CASE[_case.id].append(_group)
+
+
 # Detail lightening keeps legacy layouts valid and adds whole, explicitly routed
 # evidence groups. Unrelated original checks remain mandatory in each group.
 DETAIL_RELOCATION_CASES = {"P035", "P037", "P042", "P079", "P081", "P092"}

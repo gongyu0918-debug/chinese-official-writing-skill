@@ -113,9 +113,9 @@ class RealPromptAblationTests(unittest.TestCase):
 
         self.assertEqual(failures, {})
 
-    def test_index_migration_requires_reachable_and_complete_evidence(self) -> None:
+    def test_validated_alternatives_require_reachable_and_complete_evidence(self) -> None:
         for case in real_prompt_eval.CASES:
-            if case.id not in {"P111", "P112"}:
+            if case.id not in {"P038", "P111", "P112"}:
                 continue
             legacy = case.checks["file_terms"]
             group = real_prompt_eval.FILE_TERM_ALTERNATIVES_BY_CASE[case.id][-1]
@@ -174,6 +174,7 @@ class RealPromptAblationTests(unittest.TestCase):
 
     def test_information_selection_migration_keeps_complete_equivalent_evidence_groups(self) -> None:
         expected_cases = {
+            "P038",
             "P022",
             "P111",
             "P112",

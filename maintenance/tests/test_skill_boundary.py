@@ -18,6 +18,7 @@ OPTIONAL_GATE_FILES = {
     "scripts/review_gate.py",
 }
 SKILLHUB_CLEAN_PACKAGE_EXCLUDES = {"agents/openai.yaml", "LICENSE"}
+REFERENCE_LINK_RE = re.compile(r"`(?:references/)?([^`/]+\.md)`")
 CURRENT_VERSION = "1.6.30"
 PUBLISHED_VERSION = "1.6.30"
 
@@ -185,14 +186,18 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assertIn("详细结构见下文；本节只保留触发和边界", specialty)
         self.assertIn("SLA", specialty)
         self.assertIn("验收", specialty)
+        terms = (CANONICAL / "references/technical-terms.md").read_text(encoding="utf-8")
+        anti_ai = (CANONICAL / "references/anti-ai-patterns.md").read_text(encoding="utf-8")
+        self.assertIn("`technical-terms.md`", specialty)
+        self.assertIn("转读 `technical-terms.md`", anti_ai)
         for term in [
             "图形处理器（Graphics Processing Unit，GPU）",
             "应用编程接口（Application Programming Interface，API）",
             "服务级别协议（Service Level Agreement，SLA）",
             "数据中心电能利用效率（Power Usage Effectiveness，PUE）",
         ]:
-            self.assertIn(term, specialty)
-        self.assertIn("含义不明的缩写不自行展开", specialty)
+            self.assertIn(term, terms)
+        self.assertIn("含义不明的缩写不自行展开", terms)
 
     def test_adapter_skill_copies_keep_boundaries(self) -> None:
         paths = [
@@ -477,15 +482,15 @@ class SkillBoundaryTests(unittest.TestCase):
         ]:
             self.assertNotIn(duplicated_leaf, core)
 
-    def test_lightened_routes_preserve_original_conditions(self) -> None:
-        # f171e82f original homepage: 36 table rows and five direct scene routes.
+    def test_lightened_routes_preserve_reviewed_conditions(self) -> None:
+        # f171e82f preserved 36 table rows and five scene routes; C2 updates only the two correspondence selectors.
         index = (CANONICAL / "references/reference-index.md").read_text(encoding="utf-8")
         scenes = (CANONICAL / "references/compatibility-scene-routing.md").read_text(encoding="utf-8")
         rows = [line for line in (index + "\n" + scenes).splitlines()
                 if line.startswith("| `") and not line.startswith("| `references/compatibility-scene-routing.md`")]
         self.assertEqual(len(rows), 36)
         self.assertEqual(len(set(rows)), 36)
-        self.assertEqual(hashlib.sha256("\n".join(sorted(rows)).encode()).hexdigest(), "a44bb36443ca814a3a8b96eff2360343b7c7e630f20fb064d16f1ed0fb27b784")
+        self.assertEqual(hashlib.sha256("\n".join(sorted(rows)).encode()).hexdigest(), "b7c0cddd53e65be70bc0fbe5c3663344662f3937f980d7a3ced6b6c1bf8b06c0")
         routes = [line for line in scenes.splitlines() if line.startswith("用户")]
         self.assertEqual(len(routes), 5)
         self.assertEqual(hashlib.sha256("\n".join(sorted(routes)).encode()).hexdigest(), "8a04cfe2d488755cb469ef5176cde7f3e5f10be6dcdfb864b7980d92840beeb4")
@@ -646,7 +651,7 @@ class SkillBoundaryTests(unittest.TestCase):
     def test_reference_links_form_an_acyclic_graph(self) -> None:
         refs = ROOT / "chinese-official-writing" / "references"
         graph: dict[str, set[str]] = {}
-        link_re = re.compile(r"`(?:references/)?([^`/]+\.md)`")
+        link_re = REFERENCE_LINK_RE
         for source in refs.glob("*.md"):
             targets = {
                 match.group(1)
@@ -1478,8 +1483,11 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assertIn("尽量压到限制内", skill)
         self.assertNotIn("并留出 5%-10% 余量", skill)
         self.assertIn("去空行后的正文计数", workflow)
-        self.assertIn("5%-10% 余量", workflow)
-        self.assertIn("避免静默超字数", checklist)
+        self.assertIn("尽量压到上限内", workflow)
+        self.assertIn("尽量压到限制内", checklist)
+        for text in (workflow, checklist):
+            self.assertIn("按用户允许的输出范围说明超限或取舍风险", text)
+            self.assertNotIn("5%-10% 余量", text)
         compression = skill
         if "`references/compression-details.md`" in skill:
             self.assertIn("长文压缩和长篇限字时读取", skill)
@@ -1995,14 +2003,18 @@ class SkillBoundaryTests(unittest.TestCase):
         ]:
             self.assertNotIn(supplemental_reference, correspondence_section)
         self.assertIn(
-            "普通函起草，以及只改错字、标点、格式或明确局部措辞时读取",
+            "文种明确的普通函、常规复函和征求意见函起草，以及只改错字、标点、格式或明确局部措辞时读取",
             skill,
         )
         self.assertIn(
-            "用户提供既有普通函并要求重组事务动作、状态、条件、范围或结构时读取函规则",
+            "用户提供既有普通函、复函或征求意见函并要求重组事务动作、状态、条件、范围或结构时读取函规则",
             skill,
         )
-        self.assertIn("通知、复函、征求意见函、讲话稿", skill)
+        self.assertIn("通知、讲话稿、调研/研究/可研、采购公告、审查材料", skill)
+        self.assertIn(
+            "既有普通函、复函或征求意见函需要重组事务动作、状态、条件、范围或结构时",
+            correspondence,
+        )
 
     def test_weak_model_suggestion_boundaries_stay_soft(self) -> None:
         skill = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")

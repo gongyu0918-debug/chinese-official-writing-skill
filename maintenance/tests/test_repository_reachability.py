@@ -2,10 +2,11 @@ from __future__ import annotations
 
 from pathlib import Path
 import re
+import tempfile
 import unittest
 from urllib.parse import unquote
 
-from maintenance.tests.test_skill_boundary import read_routing_surfaces
+from maintenance.tests.test_skill_boundary import REFERENCE_LINK_RE, read_routing_surfaces
 
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -15,17 +16,58 @@ MARKDOWN_LINK_RE = re.compile(
 )
 
 
+def reachable_references(skill_root: Path, entrypoints: str) -> set[str]:
+    """Follow only explicit references from the declared entry surfaces."""
+    pending = {match.group(1) for match in REFERENCE_LINK_RE.finditer(entrypoints)}
+    visited: set[str] = set()
+    while pending:
+        name = pending.pop()
+        path = skill_root / "references" / name
+        if name in visited or not path.is_file():
+            continue
+        visited.add(name)
+        pending.update(
+            match.group(1)
+            for match in REFERENCE_LINK_RE.finditer(path.read_text(encoding="utf-8"))
+            if match.group(1) not in visited
+        )
+    return visited
+
+
 class RepositoryReachabilityTests(unittest.TestCase):
     def test_every_canonical_reference_and_script_has_an_entrypoint(self) -> None:
         skill = read_routing_surfaces(SKILL_ROOT / "SKILL.md")
         hook_guide = (SKILL_ROOT / "hooks/README.md").read_text(encoding="utf-8")
         entrypoints = skill + "\n" + hook_guide
 
-        for folder in ("references", "scripts"):
-            for path in (SKILL_ROOT / folder).iterdir():
-                if path.is_file():
-                    with self.subTest(path=path):
-                        self.assertIn(path.name, entrypoints)
+        reachable = reachable_references(SKILL_ROOT, entrypoints)
+        for path in (SKILL_ROOT / "references").iterdir():
+            if path.is_file():
+                with self.subTest(path=path):
+                    self.assertIn(path.name, reachable)
+        script_entrypoints = entrypoints + "\n" + "\n".join(
+            (SKILL_ROOT / "references" / name).read_text(encoding="utf-8")
+            for name in sorted(reachable)
+        )
+        for path in (SKILL_ROOT / "scripts").iterdir():
+            if path.is_file():
+                with self.subTest(path=path):
+                    self.assertIn(path.name, script_entrypoints)
+
+    def test_progressive_reachability_does_not_admit_unlinked_islands(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            refs = root / "references"
+            refs.mkdir()
+            (refs / "route.md").write_text("Read `leaf.md`.", encoding="utf-8")
+            (refs / "leaf.md").write_text("Leaf body.", encoding="utf-8")
+            (refs / "island.md").write_text("Read `hidden.md`.", encoding="utf-8")
+            (refs / "hidden.md").write_text("Hidden body.", encoding="utf-8")
+            entry = "Read `references/route.md`."
+            self.assertEqual(reachable_references(root, entry), {"route.md", "leaf.md"})
+            (refs / "route.md").write_text("No outgoing reference.", encoding="utf-8")
+            self.assertEqual(reachable_references(root, entry), {"route.md"})
+            self.assertEqual(reachable_references(root, "No entry."), set())
 
     def test_every_hook_markdown_and_adapter_is_linked(self) -> None:
         hook_root = SKILL_ROOT / "hooks"
