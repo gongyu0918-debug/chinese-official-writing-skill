@@ -1,0 +1,29 @@
+{
+  "release_version": "1.6.33",
+  "base_tag": "v1.6.32",
+  "writing_freeze": "dded78a783aaac897a024ca77a331de6eefe9809",
+  "executed_head": "5d84c5d3e52dac0b006d6c6aa5a06d32e080d2b0",
+  "canonical_tree_git_sha1": "bc9f538eab44cf8d83d3e6af33018c52bd24d658",
+  "command": [
+    "C:\\Users\\admin\\AppData\\Local\\hermes\\hermes-agent\\venv\\Scripts\\python.exe",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "maintenance/tests",
+    "-p",
+    "test_*.py"
+  ],
+  "started_utc": "2026-09-10T21:31:31.413419+00:00",
+  "exit_code": 0,
+  "wall_seconds": 140.995,
+  "tests_run": 827,
+  "unittest_seconds": 139.924,
+  "log": "F:\\Workspaces\\chinese-official-writing-skill\\output\\release-worktrees\\release-v1.6.33\\output\\release-v1633-engineering\\final-full-suite.txt",
+  "log_sha256": "66e37708d78c7df3128ec07828253e9423f5b589e524d1109583d5bf79053c26",
+  "log_bytes": 934,
+  "full_run_number": 1,
+  "repeated": false,
+  "external_publication_performed": false,
+  "archived_log": "maintenance/tests/evidence/release-v1633-engineering/archive/final-full-suite.txt"
+}

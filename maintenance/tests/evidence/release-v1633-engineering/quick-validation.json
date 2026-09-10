@@ -1,0 +1,57 @@
+[
+  {
+    "root": "F:\\Workspaces\\chinese-official-writing-skill\\output\\release-worktrees\\release-v1.6.33\\chinese-official-writing",
+    "command": [
+      "C:\\Users\\admin\\AppData\\Local\\hermes\\hermes-agent\\venv\\Scripts\\python.exe",
+      "C:\\Users\\admin\\.codex\\skills\\.system\\skill-creator\\scripts\\quick_validate.py",
+      "F:\\Workspaces\\chinese-official-writing-skill\\output\\release-worktrees\\release-v1.6.33\\chinese-official-writing"
+    ],
+    "exit_code": 0,
+    "stdout": "Skill is valid!\r\n",
+    "stderr": ""
+  },
+  {
+    "root": "F:\\Workspaces\\chinese-official-writing-skill\\output\\release-worktrees\\release-v1.6.33\\output\\release-v1633-artifacts\\compatibility-packages\\agent-skills\\skills\\chinese-official-writing",
+    "command": [
+      "C:\\Users\\admin\\AppData\\Local\\hermes\\hermes-agent\\venv\\Scripts\\python.exe",
+      "C:\\Users\\admin\\.codex\\skills\\.system\\skill-creator\\scripts\\quick_validate.py",
+      "F:\\Workspaces\\chinese-official-writing-skill\\output\\release-worktrees\\release-v1.6.33\\output\\release-v1633-artifacts\\compatibility-packages\\agent-skills\\skills\\chinese-official-writing"
+    ],
+    "exit_code": 0,
+    "stdout": "Skill is valid!\r\n",
+    "stderr": ""
+  },
+  {
+    "root": "F:\\Workspaces\\chinese-official-writing-skill\\output\\release-worktrees\\release-v1.6.33\\output\\release-v1633-artifacts\\compatibility-packages\\qwen-code\\skills\\chinese-official-writing",
+    "command": [
+      "C:\\Users\\admin\\AppData\\Local\\hermes\\hermes-agent\\venv\\Scripts\\python.exe",
+      "C:\\Users\\admin\\.codex\\skills\\.system\\skill-creator\\scripts\\quick_validate.py",
+      "F:\\Workspaces\\chinese-official-writing-skill\\output\\release-worktrees\\release-v1.6.33\\output\\release-v1633-artifacts\\compatibility-packages\\qwen-code\\skills\\chinese-official-writing"
+    ],
+    "exit_code": 0,
+    "stdout": "Skill is valid!\r\n",
+    "stderr": ""
+  },
+  {
+    "root": "F:\\Workspaces\\chinese-official-writing-skill\\output\\release-worktrees\\release-v1.6.33\\output\\release-v1633-artifacts\\compatibility-packages\\qwenwork\\skills\\chinese-official-writing",
+    "command": [
+      "C:\\Users\\admin\\AppData\\Local\\hermes\\hermes-agent\\venv\\Scripts\\python.exe",
+      "C:\\Users\\admin\\.codex\\skills\\.system\\skill-creator\\scripts\\quick_validate.py",
+      "F:\\Workspaces\\chinese-official-writing-skill\\output\\release-worktrees\\release-v1.6.33\\output\\release-v1633-artifacts\\compatibility-packages\\qwenwork\\skills\\chinese-official-writing"
+    ],
+    "exit_code": 0,
+    "stdout": "Skill is valid!\r\n",
+    "stderr": ""
+  },
+  {
+    "root": "F:\\Workspaces\\chinese-official-writing-skill\\output\\release-worktrees\\release-v1.6.33\\output\\release-v1633-artifacts\\compatibility-packages\\hermes\\skills\\chinese-official-writing",
+    "command": [
+      "C:\\Users\\admin\\AppData\\Local\\hermes\\hermes-agent\\venv\\Scripts\\python.exe",
+      "C:\\Users\\admin\\.codex\\skills\\.system\\skill-creator\\scripts\\quick_validate.py",
+      "F:\\Workspaces\\chinese-official-writing-skill\\output\\release-worktrees\\release-v1.6.33\\output\\release-v1633-artifacts\\compatibility-packages\\hermes\\skills\\chinese-official-writing"
+    ],
+    "exit_code": 0,
+    "stdout": "Skill is valid!\r\n",
+    "stderr": ""
+  }
+]

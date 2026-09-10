@@ -1,0 +1,28 @@
+{
+  "command": [
+    "C:/Users/admin/AppData/Local/hermes/hermes-agent/venv/Scripts/python.exe",
+    "maintenance/tests/evidence/release-v1633-engineering/build_release_artifacts.py"
+  ],
+  "exit_code": 1,
+  "completed_before_failure": [
+    "canonical Git blob directory and ZIP",
+    "five compatibility directories",
+    "SkillHub directory",
+    "5 quick_validate passes"
+  ],
+  "failure": "Exact old SkillHub manifest comparison found references/reference-index.md as an unexpected changed file.",
+  "old_reference_index_sha256": "751b6cbdc38dac27b837450ecf86c38ebf72c469875b26e4f8d2276764154978",
+  "first_reference_index_sha256": "f3a85eb29f7eb356ae987c643e5ab95bb1d9f715b9008d27b79d6915eaf1f5a5",
+  "diagnosis": "The unchanged Git blob and old platform page use LF; current Windows checkout adds 39 CRLF endings. Normalized bytes are strictly equal.",
+  "original_output_preserved": "F:\\Workspaces\\chinese-official-writing-skill\\output\\release-worktrees\\release-v1.6.33\\output\\release-v1633-artifacts",
+  "resolution": "Copied completed builds to a fresh final directory, restored only the unchanged reference-index.md from original Git bytes in generated copies, and finalized ZIPs under the unchanged exact difference allowlist.",
+  "finalization_command": [
+    "C:/Users/admin/AppData/Local/hermes/hermes-agent/venv/Scripts/python.exe",
+    "maintenance/tests/evidence/release-v1633-engineering/build_release_artifacts.py",
+    "--finalize-existing"
+  ],
+  "finalization_exit_code": 0,
+  "full_suite_repeated": false,
+  "quick_checks_repeated": false,
+  "product_or_builders_modified_for_resolution": false
+}

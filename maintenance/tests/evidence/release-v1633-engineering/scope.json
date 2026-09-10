@@ -3,7 +3,7 @@
   "base_tag_commit": "236784efe2a7a0bf9acd3a49f1d3ad0cff1586a8",
   "writing_freeze": "dded78a783aaac897a024ca77a331de6eefe9809",
   "release_version": "1.6.33",
-  "stage": "metadata and minimal engineering prepared; real-writing admission pending",
+  "stage": "real-writing admitted; final engineering and local artifacts prepared",
   "canonical_changed_files": [
     "chinese-official-writing/hooks/adapters/claude-code/manifest.json",
     "chinese-official-writing/hooks/adapters/codebuddy/manifest.json",
@@ -38,8 +38,19 @@
   "writing_freeze_preserved": true,
   "packages_remain_on_demand_generated": true,
   "no_unpublished_main_hook_route_request_increment": true,
-  "full_suite_not_yet_run": true,
-  "final_packages_not_yet_generated": true,
+  "full_suite_not_yet_run": false,
+  "final_packages_not_yet_generated": false,
   "external_publication_performed": false,
-  "pro_installation_changed": false
+  "pro_installation_changed": false,
+  "source_product_commit": "5d84c5d3e52dac0b006d6c6aa5a06d32e080d2b0",
+  "canonical_tree_git_sha1": "bc9f538eab44cf8d83d3e6af33018c52bd24d658",
+  "full_suite_tests_passed": 827,
+  "full_suite_runs": 1,
+  "quick_validation_passed": 5,
+  "platform_file_counts": {
+    "github": 90,
+    "skillhub": 90,
+    "clawhub": 40
+  },
+  "reference_index_final_platform_bytes_equal_v1632": true
 }
