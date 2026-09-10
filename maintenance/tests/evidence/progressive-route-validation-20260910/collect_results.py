@@ -3,7 +3,7 @@ import hashlib,json,re
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[4];E=Path(__file__).resolve().parent
 OUT=ROOT/'output/progressive-route-validation-20260910'
-ATOMS=['terminology','correspondence','correspondence-refined','word-guidance','length-alignment','combined']
+ATOMS=['terminology','correspondence','correspondence-refined','word-guidance','length-alignment','combined','combined-depth','length-exposure']
 result={}
 for atom in ATOMS:
  p=OUT/atom

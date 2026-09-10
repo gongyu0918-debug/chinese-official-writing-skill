@@ -1,0 +1,76 @@
+[
+  {
+    "batch": "combined",
+    "provider": 3,
+    "case": "glossary_style",
+    "effort": "max",
+    "facts": "Both preserve 拟/待复核/unknown P7 and correct GPU/PUE supplied glossary expansions; no invented technical effects.",
+    "candidate_negative": "Candidate retains generic lead-in 相关工作方面; baseline removes unsupported packaging more cleanly. This is a minor style negative, not a factual upgrade. Similar earlier style negatives have reversed direction across exact tasks.",
+    "routing": "Both read information-selection, late on candidate. Candidate reads technical-terms then still reads full AI page. Candidate agent reason explicitly attributes AI selection to GPU/PUE snippet despite unchanged index exception.",
+    "attribution": "Do not credit universal load reduction or claim glossary split cures discretionary overreading. No candidate-only hard regression demonstrated."
+  },
+  {
+    "batch": "combined",
+    "provider": 0,
+    "case": "long_report",
+    "effort": "max",
+    "length": {
+      "baseline": 748,
+      "candidate": 749,
+      "requirement": "650-750 including all non-whitespace characters"
+    },
+    "facts": "Both preserve main quantities, ongoing work, feedback versus modification, undecided follow-up and September12 reporting. Baseline incorrectly assigns electronic/paper issue records respectively to archives/business unit; source puts both issue records in archives existing directory and only electronic checking details in business unit. Candidate omits storage-location detail instead of misassigning it. Both compress the shared update-details responsibility into potentially narrower grammar.",
+    "routing": "Both read compression-details, information-selection and report checklist; neither reads changed workflow/review-checklist.",
+    "attribution": "End-to-end noninferiority control. Baseline factual error cannot be credited as a direct Q2 gain; candidate omission of storage detail retained for assessment against task key-responsibility instruction. No unsupported candidate business actor introduced."
+  },
+  {
+    "batch": "combined",
+    "provider": 4,
+    "case": "near_limit_notice",
+    "effort": "max",
+    "facts": "Both preserve all business facts and exact inner quote; both retain complete notice.",
+    "candidate_negative": "Both append process/count preface contrary to body-only; candidate preface longer. Separate actual body count from whole response; native count claims not trusted.",
+    "routing": "Both read unchanged short-card/final-review/proofreading paths; neither reads modified workflow/review-checklist.",
+    "attribution": "Cannot attribute output-sidebars to Q2. The explicit old 5%-10% rule is not exposed; record shared delivery failure without requiring further mandatory QA reads.",
+    "length": {
+      "baseline": {
+        "whole_response": 334,
+        "body": 253
+      },
+      "candidate": {
+        "whole_response": 372,
+        "body": 255
+      }
+    }
+  },
+  {
+    "batch": "combined-depth",
+    "provider": 3,
+    "case": "public_statement",
+    "effort": "max",
+    "facts": "Both accurately report 24 total,15 checked,9 unfinished,3 attachment names pending recheck; preserve absent issuance date and absence of total-completion conclusion/date; neither invents motives, responsibility or remedies.",
+    "style": "Both clean body-only. Candidate uses 我中心 with supplied 乙中心 signature; no unsupported subject change. 特此说明 is a conventional optional closing, not a quality failure.",
+    "routing": "Both reach formulaic-language, final-review-layers and proofreading; baseline additionally reads report and anti-AI leaves while candidate uses existing short route.",
+    "attribution": "No candidate-only factual/delivery regression. Both main and candidate already contain the same declaration-related route: cannot claim this batch newly fixes those routes."
+  },
+  {
+    "batch": "combined-depth",
+    "provider": 4,
+    "case": "limited_commitment",
+    "effort": "max",
+    "facts": "Both retain 12 paper registers, duration restricted to this checking exercise, existing borrowing-registration workflow, and return-time register-number check. No electronic-data/permanent-storage/absolute-guarantee/liability undertaking; no invented return or issuance date.",
+    "style": "Candidate 本承诺仅涉及上述事项 is a direct delimitation of the requested commitment, not an added legal disclaimer or procedure; neither draft states a specific return date.",
+    "routing": "Both read information-selection, short-draft-naturalness, formulaic-language, final-review-layers and proofreading via current entry/index.",
+    "attribution": "Existing compatible commitment route remains usable; no new dedicated leaf or extra gate needed."
+  },
+  {
+    "batch": "combined-depth",
+    "provider": 0,
+    "case": "technical_control",
+    "effort": "max",
+    "facts": "Both preserve planned GPU retrieval purpose,8000/month,unset lease duration,incomplete model adaptation,unset SLA and acceptance subject; neither invents thresholds, comparative vendors,responsibility unit or testing deadline.",
+    "candidate_negative": "Candidate elaborates resource/performance/service subdimensions as unconfirmed or unsupported by current information. This may over-expand the requested source-only technical portion but is not a new numeric requirement or commitment. Baseline uses more concise overall insufficient-condition reasoning.",
+    "routing": "Both read full AI leaf; candidate reads information-selection before AI, baseline after. Neither reads technical-terms,Q1 anti-AI or Q2 workflow/review-checklist.",
+    "attribution": "Only local glossary block differs in exposed AI page; all technical body rules remain byte-identical. Both have unrequested process preface. Preserve scope/style negative and one exact max A/B repeat; do not infer a hard rule-caused regression solely from added technical vocabulary."
+  }
+]
