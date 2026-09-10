@@ -504,7 +504,9 @@ class SkillBoundaryTests(unittest.TestCase):
             with self.subTest(root=root):
                 homepage = (root / "SKILL.md").read_text(encoding="utf-8")
                 read_routing_surfaces(root / "SKILL.md")
-                self.assertIn("未命中任务卡、卡片不能覆盖或需选择其他资料时", homepage)
+                # Protect the actual fallback and quality bridge, not its duplicate footer wording.
+                self.assertIn("未命中、命中转读条件或卡片不能覆盖时，回到 `references/reference-index.md` 选择对应资料", homepage)
+                self.assertIn("文种直达仍保留原条件下的段落与论证、语言、去 AI 味、校对及格式衔接。", homepage)
                 self.assertIn("首页明确直达的文种或审稿入口按原条件执行", homepage)
                 for name in ("reference-index.md", "compatibility-scene-routing.md"):
                     text = (root / "references" / name).read_text(encoding="utf-8")

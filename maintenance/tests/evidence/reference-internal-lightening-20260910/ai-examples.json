@@ -1,7 +1,7 @@
 {
   "atom": "ai-examples",
   "baseline": "36653d768f8e9bf14bb615a642846e0db10b9f04",
-  "candidate": "HEAD",
+  "candidate": "ae483f40339b48af8e5ee2e90a6ee782ca013d6e",
   "expected_diff": [
     "references/ai-compute-docs.md",
     "references/ai-compute-examples.md"

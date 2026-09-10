@@ -1,5 +1,7 @@
 # 项目维护历史索引
 
+- [首页与 references 内部减载验证](../reference-internal-lightening-validation-20260910.md)：算力示例与首页页尾两项独立原子、20组max主要A/B及定向复测；保留算力扩写、旁白、编制主体负点和技术无效记录，另列未验证的首页空间。
+
 - [渐进路由与旧叶规则验证](../progressive-route-validation-20260910.md)：100次模型执行、36组同档位A/B、最终组合10组及目标叶2组；四个有限原子准入，实际负点、复测缺口和旧门禁修正保留。
 
 - [HK-002b本地集成](../../tests/evidence/hk002b-main-integration/README.md)：两类局部纠错已合main，845项回归与Codex原生状态错误/正常对照完成；1.6.31独立冻结、暂不发布。

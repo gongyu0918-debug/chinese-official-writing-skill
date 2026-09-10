@@ -1,0 +1,26 @@
+[
+  {
+    "atom": "ai-examples",
+    "archive": "F:\\Workspaces\\chinese-official-writing-skill-archives\\experiments\\skill-lightening-20260910\\reference-internal-lightening\\ai-examples.zip",
+    "sha256": "15dc055bf1e1bba10ab0beb4c6a30c2f0259657e985967a9738df75f3726977a",
+    "files": 248,
+    "verified_members": 248,
+    "frozen_inputs_unchanged": true
+  },
+  {
+    "atom": "home-route-dedup",
+    "archive": "F:\\Workspaces\\chinese-official-writing-skill-archives\\experiments\\skill-lightening-20260910\\reference-internal-lightening\\home-route-dedup.zip",
+    "sha256": "b16709ccba50d4247f1b1e0d8784548a0553485e5550a1531f0ae00eef521fdc",
+    "files": 269,
+    "verified_members": 269,
+    "frozen_inputs_unchanged": true
+  },
+  {
+    "atom": "combined",
+    "archive": "F:\\Workspaces\\chinese-official-writing-skill-archives\\experiments\\skill-lightening-20260910\\reference-internal-lightening\\combined.zip",
+    "sha256": "3147b98280624f42ebba6cacc6dd1e133e1661f7ebb1904f41d6afa495e7c4fc",
+    "files": 330,
+    "verified_members": 330,
+    "frozen_inputs_unchanged": true
+  }
+]

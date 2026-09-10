@@ -1,0 +1,46 @@
+"""Archive bounded evidence, excluding model homes, credentials, caches and temp dirs."""
+import hashlib,json,zipfile,shutil,sys
+from pathlib import Path
+ROOT=Path(__file__).resolve().parents[4]
+OUT=ROOT/'output/reference-internal-lightening-20260910'
+E=Path(__file__).resolve().parent
+DEST=Path('F:/Workspaces/chinese-official-writing-skill-archives/experiments/skill-lightening-20260910/reference-internal-lightening')
+def sha(b):return hashlib.sha256(b).hexdigest()
+records=[]
+reuse={}
+if len(sys.argv)>1:
+ prior=json.loads(Path(sys.argv[1]).read_text(encoding='utf-8'))
+ reuse={r['atom']:r for r in prior}
+for atom in ['ai-examples','home-route-dedup','combined']:
+ source=OUT/atom
+ if not (source/'freeze.json').is_file():continue
+ freeze=json.loads((source/'freeze.json').read_text(encoding='utf-8'))
+ for arm,files in freeze['hashes'].items():
+  for relative,expected in files.items():assert sha((source/'frozen input'/arm/relative).read_bytes())==expected,(atom,arm,relative)
+ for case,task in freeze['config']['cases'].items():
+  if 'fixture' in task:assert (source/'fixtures'/(case+' 草稿.md')).read_text(encoding='utf-8')==task['fixture'],case
+ paths=[source/'freeze.json']+list(source.glob('*receipts.json'))
+ paths+=list((source/'frozen input').rglob('*'))
+ paths+=list((source/'fixtures').rglob('*')) if (source/'fixtures').exists() else []
+ paths+=[p for p in (source/'runs').rglob('*') if p.is_file() and (p.name in {'prompt.txt','final.txt','receipt.json','trace.jsonl','stderr.txt'} and not {'codex-home','temp','profile'} & set(p.relative_to(source).parts) or 'work' in p.relative_to(source).parts and p.suffix in {'.docx','.py','.txt','.md'} and '__pycache__' not in p.parts)]
+ entries={p.relative_to(OUT).as_posix():p for p in paths if p.is_file()}
+ manifest={n:sha(p.read_bytes()) for n,p in sorted(entries.items())}
+ DEST.mkdir(parents=True,exist_ok=True);dest=DEST/(atom+'.zip');assert not dest.exists(),dest
+ previous=reuse.get(atom)
+ if previous:
+  old=Path(previous['archive'])
+  assert sha(old.read_bytes())==previous['sha256'],old
+  with zipfile.ZipFile(old) as z:old_manifest=json.loads(z.read('MANIFEST.json'))
+  if old_manifest==manifest and previous['verified_members']==len(manifest):
+   shutil.copyfile(old,dest);assert sha(dest.read_bytes())==previous['sha256']
+   records.append(dict(previous,archive=str(dest),reused_verified_archive=True))
+   continue
+ with zipfile.ZipFile(dest,'w',zipfile.ZIP_DEFLATED) as z:
+  for n,p in entries.items():z.write(p,n)
+  z.writestr('MANIFEST.json',json.dumps(manifest,ensure_ascii=False,indent=2))
+ with zipfile.ZipFile(dest) as z:
+  for n,h in manifest.items():assert sha(z.read(n))==h,n
+ records.append({'atom':atom,'archive':str(dest),'sha256':sha(dest.read_bytes()),'files':len(entries),'verified_members':len(manifest),'frozen_inputs_unchanged':True})
+(E/'archives.json').write_text(json.dumps(records,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+print(json.dumps(records,ensure_ascii=False,indent=2))
+

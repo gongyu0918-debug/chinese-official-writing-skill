@@ -1,0 +1,45 @@
+{
+  "baseline": "36653d768f8e9bf14bb615a642846e0db10b9f04",
+  "writing_candidate": "28ee4ed6220adcfd5ef22e7e194c5415b18fd502",
+  "attempts": 50,
+  "successful_nonempty_cli_outputs": 48,
+  "technical_timeouts": 2,
+  "primary_max_pairs": 20,
+  "exact_max_repeat_pairs_complete": 1,
+  "exact_max_repeat_pairs_incomplete": 2,
+  "high_supplement_pairs_complete": 2,
+  "body_missing_successful_outputs": 1,
+  "model_claimed_read_failure_despite_nonempty_tool_output": 1,
+  "body_delivery_failures_not_erased": true,
+  "decision": "admit_two_bounded_atoms_under_user_nondegradation_standard",
+  "decision_limits": [
+    "Not all drafts pass; no statistical noninferiority claim.",
+    "M3 technical expansion, quote-to-billing state drift and process narration remain.",
+    "Qwen compiler-actor addition preserved; high candidate and home-only candidate did not repeat it.",
+    "GLM narration appeared on both high arms; two max incomplete repeats remain in evidence.",
+    "Context saving is conditional; no global latency or token-reduction claim."
+  ],
+  "quantities_lf_chars": {
+    "home_before": 7583,
+    "home_after": 7516,
+    "ai_before": 3734,
+    "ai_after": 3193,
+    "new_optional_examples": 684,
+    "refs_before": 83856,
+    "refs_after": 83999,
+    "entry_plus_references_delta": 76
+  },
+  "routing_observations": {
+    "routine_ai_candidates": 6,
+    "routine_candidates_without_examples_read": 3,
+    "routine_candidates_with_examples_read": 3,
+    "explicit_example_requests_candidates_read_examples": 2,
+    "sparse_api_candidates_never_read_ai": 2
+  },
+  "full_test_methods": 850,
+  "initial_passed_methods": 849,
+  "initial_failed_methods": 1,
+  "initial_failed_subtests": 6,
+  "affected_retest_passed": 102,
+  "full_suite_rerun": false
+}
