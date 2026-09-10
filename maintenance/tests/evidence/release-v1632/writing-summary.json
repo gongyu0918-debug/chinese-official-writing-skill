@@ -1,0 +1,185 @@
+{
+  "pairs": 6,
+  "attempts": 13,
+  "valid_finals": 12,
+  "same_effort_pairs": 5,
+  "fallback": "Alibaba channel2 advisory baseline max timeout300, high valid; not max/max causal pair",
+  "rows": [
+    {
+      "provider": 0,
+      "case": "news_edit",
+      "arm": "baseline",
+      "effort": "max",
+      "returned_file_names": [
+        "SKILL.md",
+        "anti-ai-patterns.md",
+        "genre-playbook-news-message.md",
+        "information-selection.md",
+        "official-style.md",
+        "proofreading-checklist.md",
+        "short-draft-naturalness.md"
+      ],
+      "final_sha256": "3d859ae99506ca1cee89ea85dcc69bfc2f78987a471fc72c9b5644aa4828dd96"
+    },
+    {
+      "provider": 0,
+      "case": "news_edit",
+      "arm": "candidate",
+      "effort": "max",
+      "returned_file_names": [
+        "SKILL.md",
+        "anti-ai-patterns.md",
+        "compatibility-scene-routing.md",
+        "genre-playbook-news-message.md",
+        "information-selection.md",
+        "official-style.md",
+        "proofreading-checklist.md",
+        "reference-index.md"
+      ],
+      "final_sha256": "717b109d9d2cb91e9f6ca82b554f3f4a2db0b5f656949d73273a344f427fc1d5"
+    },
+    {
+      "provider": 0,
+      "case": "request",
+      "arm": "candidate",
+      "effort": "max",
+      "returned_file_names": [
+        "SKILL.md",
+        "information-selection.md",
+        "short-draft-naturalness.md"
+      ],
+      "final_sha256": "4ba94f7a7edf9bdc368c775011ff17eee03fa23508aea84d5488db4d7f5d9449"
+    },
+    {
+      "provider": 0,
+      "case": "request",
+      "arm": "baseline",
+      "effort": "max",
+      "returned_file_names": [
+        "SKILL.md",
+        "genre-playbook-request.md",
+        "information-selection.md",
+        "short-draft-naturalness.md"
+      ],
+      "final_sha256": "9d0da904691254c1ff781da7cadcb860f158c060134b57526a9d339173894a78"
+    },
+    {
+      "provider": 1,
+      "case": "commentary",
+      "arm": "candidate",
+      "effort": "max",
+      "returned_file_names": [
+        "SKILL.md",
+        "anti-ai-patterns.md",
+        "argument-chains.md",
+        "compatibility-scene-routing.md",
+        "genre-playbook-news-commentary.md",
+        "information-selection.md",
+        "official-style.md",
+        "proofreading-checklist.md",
+        "short-draft-naturalness.md"
+      ],
+      "final_sha256": "2c08bb258bc49690df225e2b215c496ca3c6e35b4598f81ed8ed9aa2f54e1e43"
+    },
+    {
+      "provider": 1,
+      "case": "commentary",
+      "arm": "baseline",
+      "effort": "max",
+      "returned_file_names": [
+        "SKILL.md",
+        "anti-ai-patterns.md",
+        "genre-playbook-news-commentary.md",
+        "information-selection.md",
+        "proofreading-checklist.md",
+        "short-draft-naturalness.md"
+      ],
+      "final_sha256": "811e8b9f57f0cd9314c7d8ceb030ecede14490a37d09a1a3974cdae09621902e"
+    },
+    {
+      "provider": 2,
+      "case": "advisory",
+      "arm": "baseline",
+      "effort": "high",
+      "returned_file_names": [
+        "SKILL.md",
+        "anti-ai-patterns.md",
+        "genre-playbook-advisory-feedback.md",
+        "information-selection.md",
+        "proofreading-checklist.md"
+      ],
+      "final_sha256": "ecf6f67a5430bbfeee2e52a45a59a0eac4f93ff948957a078f46bfae93398f48"
+    },
+    {
+      "provider": 2,
+      "case": "advisory",
+      "arm": "candidate",
+      "effort": "max",
+      "returned_file_names": [
+        "SKILL.md",
+        "compatibility-scene-routing.md",
+        "genre-playbook-advisory-feedback.md",
+        "information-selection.md",
+        "short-draft-naturalness.md"
+      ],
+      "final_sha256": "cd30f192e9697e7615c5d593d427e588634fbb4868b22a11b3e4e973fd4203c6"
+    },
+    {
+      "provider": 3,
+      "case": "remediation",
+      "arm": "candidate",
+      "effort": "max",
+      "returned_file_names": [
+        "SKILL.md",
+        "compatibility-scene-routing.md",
+        "genre-playbook-remediation-plan.md",
+        "information-selection.md",
+        "proofreading-checklist.md",
+        "short-draft-naturalness.md"
+      ],
+      "final_sha256": "5e8209af5e0e0914d8028a9d02feedf979634c86b50032d870b5e5f2cbe547cd"
+    },
+    {
+      "provider": 3,
+      "case": "remediation",
+      "arm": "baseline",
+      "effort": "max",
+      "returned_file_names": [
+        "SKILL.md",
+        "genre-playbook-remediation-plan.md",
+        "information-selection.md",
+        "short-draft-naturalness.md"
+      ],
+      "final_sha256": "b84df67b58e19d72464fad917a6d96a6e3ae8dab056b99828b0507b012a9689c"
+    },
+    {
+      "provider": 4,
+      "case": "complaint",
+      "arm": "baseline",
+      "effort": "max",
+      "returned_file_names": [
+        "SKILL.md",
+        "genre-playbook-complaint-reflection.md"
+      ],
+      "final_sha256": "fef5dc98bb113adb94a6fa201d2601ee561e342cbd107045a2d97f3d732fccc6"
+    },
+    {
+      "provider": 4,
+      "case": "complaint",
+      "arm": "candidate",
+      "effort": "max",
+      "returned_file_names": [
+        "SKILL.md",
+        "anti-ai-patterns.md",
+        "compatibility-scene-routing.md",
+        "genre-playbook-complaint-reflection.md",
+        "information-selection.md",
+        "proofreading-checklist.md",
+        "reference-index.md"
+      ],
+      "final_sha256": "c6ebf587b41167975cc3032948c3abc929406d2add61d99e3a00168d255d71aa"
+    }
+  ],
+  "root_review": "All pairs manually reviewed. News, request, complaint preserve supplied amounts/dates/states. Commentary both arms make overly strong inference; remediation both infer operational shortcomings while allowing general future measures. Advisory baseline high adds daily work; candidate max adds organization of personnel. Both preserve undecided technical plan/person/time; the mixed-effort pair cannot establish causation. Execution narration and such background expansion are existing shared risks, not claimed fixed. No confirmed new route/leaf loss or stable candidate-only quality regression in the public-baseline transfer check.",
+  "limits": "Five cheap channels, two Alibaba routes one model family; six transfer pairs supplement prior independent atom and combined evidence, not full coverage or zero-error guarantee."
+}
