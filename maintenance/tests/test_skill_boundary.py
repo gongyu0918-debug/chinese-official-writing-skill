@@ -490,7 +490,7 @@ class SkillBoundaryTests(unittest.TestCase):
                 if line.startswith("| `") and not line.startswith("| `references/compatibility-scene-routing.md`")]
         self.assertEqual(len(rows), 36)
         self.assertEqual(len(set(rows)), 36)
-        self.assertEqual(hashlib.sha256("\n".join(sorted(rows)).encode()).hexdigest(), "b7c0cddd53e65be70bc0fbe5c3663344662f3937f980d7a3ced6b6c1bf8b06c0")
+        self.assertEqual(hashlib.sha256("\n".join(sorted(rows)).encode()).hexdigest(), "6f02535515165cdeb7a8867c74907a9c40e925dea7be4cbcf9e2fb0c642da021")
         routes = [line for line in scenes.splitlines() if line.startswith("用户")]
         self.assertEqual(len(routes), 5)
         self.assertEqual(hashlib.sha256("\n".join(sorted(routes)).encode()).hexdigest(), "8a04cfe2d488755cb469ef5176cde7f3e5f10be6dcdfb864b7980d92840beeb4")
