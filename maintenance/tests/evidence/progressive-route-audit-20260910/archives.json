@@ -1,0 +1,26 @@
+[
+  {
+    "atom": "terminology",
+    "archive": "F:\\Workspaces\\chinese-official-writing-skill-archives\\experiments\\skill-lightening-20260910\\progressive-route-audit\\terminology.zip",
+    "sha256": "c16f12a729518d1780a233646f1adb568ee525c0bfa7761ddb7b73f3dc965d9c",
+    "files": 250,
+    "verified_members": 250,
+    "frozen_inputs_unchanged": true
+  },
+  {
+    "atom": "correspondence",
+    "archive": "F:\\Workspaces\\chinese-official-writing-skill-archives\\experiments\\skill-lightening-20260910\\progressive-route-audit\\correspondence.zip",
+    "sha256": "bdc3080b5b94a1514c863883ab04772dc7a209ba60ae6fd414ca45ef435e7935",
+    "files": 264,
+    "verified_members": 264,
+    "frozen_inputs_unchanged": true
+  },
+  {
+    "atom": "diagnostics",
+    "archive": "F:\\Workspaces\\chinese-official-writing-skill-archives\\experiments\\skill-lightening-20260910\\progressive-route-audit\\diagnostics.zip",
+    "sha256": "2cb9a04169f3f190abae4ce6dbd19e95ab74208fb28069287a47b6805d8b8b2d",
+    "files": 224,
+    "verified_members": 224,
+    "frozen_inputs_unchanged": true
+  }
+]

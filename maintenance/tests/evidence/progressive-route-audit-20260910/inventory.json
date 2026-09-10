@@ -1,0 +1,1809 @@
+{
+  "baseline": "e8103f536ff503f4d178080f4847a82bdd22aad2",
+  "home_lf_chars": 7583,
+  "reference_files": 42,
+  "reference_lf_chars": 83841,
+  "scope_note": "All 42 current references statically audited by four reviewers in bounded groups. Text mentions include conditional and negative instructions; no claim of runtime load from graph alone. Author model generation is not inferred from Git date or authorship.",
+  "files": [
+    {
+      "file": "references/ai-compute-docs.md",
+      "lf_chars": 4021,
+      "lines": 166,
+      "git_sha256": "b33be9b50d8b1e6a41483cbba972e112996a7dfd1f613e7b86adc1df8a7ae94b",
+      "headings": [
+        "# AI 算力与技术服务材料",
+        "## AI 算力与技术服务",
+        "## 写作定位",
+        "## 常见英文术语",
+        "## 常见结构",
+        "### 算力服务可研报告",
+        "### 算力资源采购或租赁方案",
+        "### GPU/服务器租赁技术需求",
+        "## 需求表述",
+        "## 成本与路径比较",
+        "## 技术需求",
+        "## SLA 与运维",
+        "## 安全与合规",
+        "## 复核要点"
+      ],
+      "reference_mentions": [
+        {
+          "line": 5,
+          "mention": "genre-checklist-feasibility-review.md",
+          "resolved": "references\\genre-checklist-feasibility-review.md",
+          "exists": true,
+          "note": "text occurrence, not proof of mandatory runtime read"
+        }
+      ]
+    },
+    {
+      "file": "references/anti-ai-patterns.md",
+      "lf_chars": 5409,
+      "lines": 196,
+      "git_sha256": "c77202b6685b57bef8ae98499c05e1e21427fce90c56a18adba0472da07e4f2f",
+      "headings": [
+        "# 反 AI 表达检查",
+        "## 范围分工",
+        "## 高频表达的语义复核",
+        "## 非正文表达和教学口吻",
+        "## 结构化草稿腔",
+        "## 公文表达结构风险",
+        "## 句群节奏和模板化痕迹",
+        "## 思考泄露和起草过程",
+        "## 口语化和弱判断",
+        "## 空泛套话",
+        "## 高频正式词",
+        "## 必要英文、专名和缩写",
+        "## AI 算力空泛技术表述",
+        "## 格式噪点"
+      ],
+      "reference_mentions": [
+        {
+          "line": 84,
+          "mention": "information-selection.md",
+          "resolved": "references\\information-selection.md",
+          "exists": true,
+          "note": "text occurrence, not proof of mandatory runtime read"
+        },
+        {
+          "line": 178,
+          "mention": "ai-compute-docs.md",
+          "resolved": "references\\ai-compute-docs.md",
+          "exists": true,
+          "note": "text occurrence, not proof of mandatory runtime read"
+        },
+        {
+          "line": 182,
+          "mention": "ai-compute-docs.md",
+          "resolved": "references\\ai-compute-docs.md",
+          "exists": true,
+          "note": "text occurrence, not proof of mandatory runtime read"
+        },
+        {
+          "line": 184,
+          "mention": "information-selection.md",
+          "resolved": "references\\information-selection.md",
+          "exists": true,
+          "note": "text occurrence, not proof of mandatory runtime read"
+        }
+      ]
+    },
+    {
+      "file": "references/argument-chains.md",
+      "lf_chars": 1737,
+      "lines": 99,
+      "git_sha256": "dbe855c11eba2c35726aa383101a7c3a7d13c93226a6c98e2f7bc221d29209bf",
+      "headings": [
+        "# 论证链条",
+        "## 通用链条",
+        "## 请示和请批附件",
+        "## 报告和总结",
+        "## 通知和协调",
+        "## 方案和建设材料",
+        "## 可研、调研和审查",
+        "## AI 算力和技术服务",
+        "## 讲话稿、致辞和述职材料"
+      ],
+      "reference_mentions": [
+        {
+          "line": 87,
+          "mention": "ai-compute-docs.md",
+          "resolved": "references\\ai-compute-docs.md",
+          "exists": true,
+          "note": "text occurrence, not proof of mandatory runtime read"
+        }
+      ]
+    },
+    {
+      "file": "references/compatibility-scene-routing.md",
+      "lf_chars": 2087,
+      "lines": 34,
+      "git_sha256": "166fe77834de249ace66da413a28842d818b8669c4d0eb706db1f9a587c2b67d",
+      "headings": [
+        "# 非公文兼容场景路由",
+        "## 专页加载条件",
+        "## 衔接写作与质量检查"
+      ],
+      "reference_mentions": [
+        {
+          "line": 3,
+          "mention": "SKILL.md",
+          "resolved": "SKILL.md",
+          "exists": true,
+          "note": "text occurrence, not proof of mandatory runtime read"
+        },
+        {
+          "line": 5,
+          "mention": "references/genre-playbook-news-message.md",
+          "resolved": "references\\genre-playbook-news-message.md",
+          "exists": true,
+          "note": "text occurrence, not proof of mandatory runtime read"
+        },
+        {
+          "line": 7,
+          "mention": "references/genre-playbook-news-commentary.md",
+          "resolved": "references\\genre-playbook-news-commentary.md",
+          "exists": true,
+          "note": "text occurrence, not proof of mandatory runtime read"
+        },
+        {
+          "line": 9,
+          "mention": "references/genre-playbook-advisory-feedback.md",
+          "resolved": "references\\genre-playbook-advisory-feedback.md",
+          "exists": true,
+          "note": "text occurrence, not proof of mandatory runtime read"
+        },
+        {
+          "line": 11,
+          "mention": "references/genre-playbook-remediation-plan.md",
+          "resolved": "references\\genre-playbook-remediation-plan.md",
+          "exists": true,
+          "note": "text occurrence, not proof of mandatory runtime read"
+        },
+        {
+          "line": 13,
+          "mention": "references/genre-playbook-complaint-reflection.md",
+          "resolved": "references\\genre-playbook-complaint-reflection.md",
+          "exists": true,
+          "note": "text occurrence, not proof of mandatory runtime read"
+        },
+        {
+          "line": 19,
+          "mention": "references/genre-playbook-advisory-feedback.md",
+          "resolved": "references\\genre-playbook-advisory-feedback.md",
+          "exists": true,
+          "note": "text occurrence, not proof of mandatory runtime read"
+        },
+        {
+          "line": 20,
+          "mention": "references/genre-playbook-complaint-reflection.md",
+          "resolved": "references\\genre-playbook-complaint-reflection.md",
+          "exists": true,
+          "note": "text occurrence, not proof of mandatory runtime read"
+        },
+        {
+          "line": 21,
+          "mention": "references/genre-playbook-remediation-plan.md",
+          "resolved": "references\\genre-playbook-remediation-plan.md",
+          "exists": true,
+          "note": "text occurrence, not proof of mandatory runtime read"
+        },
+        {
+          "line": 22,
+          "mention": "references/genre-playbook-news-message.md",
+          "resolved": "references\\genre-playbook-news-message.md",
+          "exists": true,
+          "note": "text occurrence, not proof of mandatory runtime read"
+        },
+        {
+          "line": 22,
+          "mention": "formulaic-language.md",
+          "resolved": "references\\formulaic-language.md",
+          "exists": true,
+          "note": "text occurrence, not proof of mandatory runtime read"
+        },
+        {
+          "line": 23,
+          "mention": "references/genre-playbook-news-commentary.md",
+          "resolved": "references\\genre-playbook-news-commentary.md",
+          "exists": true,
+          "note": "text occurrence, not proof of mandatory runtime read"
+        },
+        {
+          "line": 25,
+          "mention": "SKILL.md",
+          "resolved": "SKILL.md",
+          "exists": true,
+          "note": "text occurrence, not proof of mandatory runtime read"
+        },
+        {
+          "line": 29,
+          "mention": "SKILL.md",
+          "resolved": "SKILL.md",
+          "exists": true,
+          "note": "text occurrence, not proof of mandatory runtime read"
+        },
+        {
+          "line": 31,
+          "mention": "references/official-style.md",
+          "resolved": "references\\official-style.md",
+          "exists": true,
+          "note": "text occurrence, not proof of mandatory runtime read"
+        },
+        {
+          "line": 31,
+          "mention": "references/argument-chains.md",
+          "resolved": "references\\argument-chains.md",
+          "exists": true,
+          "note": "text occurrence, not proof of mandatory runtime read"
+        },
+        {
+          "line": 31,
+          "mention": "references/short-draft-naturalness.md",
+          "resolved": "references\\short-draft-naturalness.md",
+          "exists": true,
+          "note": "text occurrence, not proof of mandatory runtime read"
+        },
+        {
+          "line": 32,
+          "mention": "references/anti-ai-patterns.md",
+          "resolved": "references\\anti-ai-patterns.md",
+          "exists": true,
+          "note": "text occurrence, not proof of mandatory runtime read"
+        },
+        {
+          "line": 33,
+          "mention": "references/proofreading-checklist.md",
+          "resolved": "references\\proofreading-checklist.md",
+          "exists": true,
+          "note": "text occurrence, not proof of mandatory runtime read"
+        },
+        {
+          "line": 33,
+          "mention": "references/format-gbt9704.md",
+          "resolved": "references\\format-gbt9704.md",
+          "exists": true,
+          "note": "text occurrence, not proof of mandatory runtime read"
+        },
+        {
+          "line": 34,
+          "mention": "references/review-checklist.md",
+          "resolved": "references\\review-checklist.md",
+          "exists": true,
+          "note": "text occurrence, not proof of mandatory runtime read"
+        },
+        {
+          "line": 34,
+          "mention": "references/final-review-layers.md",
+          "resolved": "references\\final-review-layers.md",
+          "exists": true,
+          "note": "text occurrence, not proof of mandatory runtime read"
+        }
+      ]
+    },
+    {
+      "file": "references/compression-details.md",
+      "lf_chars": 122,
+      "lines": 5,
+      "git_sha256": "21ba0dd4faa1f556201b329349ea895be62760e9c932fdcbad2b4088cd4ab9bd",
+      "headings": [
+        "# 长文压缩操作"
+      ],
+      "reference_mentions": []
+    },
+    {
+      "file": "references/delivery-review-gate.md",
+      "lf_chars": 7138,
+      "lines": 144,
+      "git_sha256": "1c5fb0bbb687282ce0e0023efdfc07940ea0d5f75b7c53de591747a8c78a17e2",
+      "headings": [
+        "# 保护性外扩一次性门禁",
+        "## 先保住成稿",
+        "## 有限状态",
+        "## 检测与语义确认",
+        "## 一次局部补丁",
+        "## 一次机械预检、语义确认与交付"
+      ],
+      "reference_mentions": [
+        {
+          "line": 3,
+          "mention": "SKILL.md",
+          "resolved": "SKILL.md",
+          "exists": true,
+          "note": "text occurrence, not proof of mandatory runtime read"
+        },
+        {
+          "line": 56,
+          "mention": "information-selection.md",
+          "resolved": "references\\information-selection.md",
+          "exists": true,
+          "note": "text occurrence, not proof of mandatory runtime read"
+        }
+      ]
+    },
+    {
+      "file": "references/external-research.md",
+      "lf_chars": 744,
+      "lines": 13,
+      "git_sha256": "e3c719b4b848a94f47cda2faaa85acee7cfdb035a289b4f9d40b6b9806f6af35",
+      "headings": [
+        "# 联网搜索与公开来源核验"
+      ],
+      "reference_mentions": []
+    },
+    {
+      "file": "references/field-editing.md",
+      "lf_chars": 250,
+      "lines": 3,
+      "git_sha256": "1155507fe9a0ba70da22372a14926f78baaf82cf3e273c0e3a0341b80040e33c",
+      "headings": [
+        "# 字段编辑"
+      ],
+      "reference_mentions": []
+    },
+    {
+      "file": "references/final-review-layers.md",
+      "lf_chars": 3443,
+      "lines": 84,
+      "git_sha256": "0204ee133951e5ca0839312e8c60524d2edc529161e9b2846a314e1e7232e546",
+      "headings": [
+        "# 总审层级",
+        "## 三层复核原则",
+        "## 标题和层级",
+        "## 行文关系和文种",
+        "## 多轮结构修改",
+        "## 重复事项",
+        "## 语言和低 AI 味",
+        "## 格式和版式",
+        "## 工具提示"
+      ],
+      "reference_mentions": [
+        {
+          "line": 3,
+          "mention": "anti-ai-patterns.md",
+          "resolved": "references\\anti-ai-patterns.md",
+          "exists": true,
+          "note": "text occurrence, not proof of mandatory runtime read"
+        },
+        {
+          "line": 3,
+          "mention": "review-checklist.md",
+          "resolved": "references\\review-checklist.md",
+          "exists": true,
+          "note": "text occurrence, not proof of mandatory runtime read"
+        },
+        {
+          "line": 56,
+          "mention": "anti-ai-patterns.md",
+          "resolved": "references\\anti-ai-patterns.md",
+          "exists": true,
+          "note": "text occurrence, not proof of mandatory runtime read"
+        },
+        {
+          "line": 69,
+          "mention": "format-gbt9704.md",
+          "resolved": "references\\format-gbt9704.md",
+          "exists": true,
+          "note": "text occurrence, not proof of mandatory runtime read"
+        },
+        {
+          "line": 74,
+          "mention": "SKILL.md",
+          "resolved": "SKILL.md",
+          "exists": true,
+          "note": "text occurrence, not proof of mandatory runtime read"
+        }
+      ]
+    },
+    {
+      "file": "references/formal-addressing.md",
+      "lf_chars": 1254,
+      "lines": 58,
+      "git_sha256": "4fe40b280d3f09faac845bc23526aa2a62633da7fb6f22e57d61f572d3291a96",
+      "headings": [
+        "# 敬谦称谓和机关用语",
+        "## 基本原则",
+        "## 上行文",
+        "## 下行文",
+        "## 平行文",
+        "## 人员称谓",
+        "## 常见结尾"
+      ],
+      "reference_mentions": []
+    },
+    {
+      "file": "references/format-gbt9704.md",
+      "lf_chars": 3324,
+      "lines": 107,
+      "git_sha256": "01ca736728ba08df703d8cdc63dcbedcb474dd18059a7fcbdde0ce3cfe1d7fd6",
+      "headings": [
+        "# GB/T 9704-2012 常用格式参考",
+        "## 使用边界",
+        "## Word/排版交付衔接",
+        "### 正式交付前要素核对卡",
+        "## 页面和基础版式",
+        "## 字体和层级",
+        "## 标题和主送",
+        "## 版头和发文字号",
+        "## 正文、附件和落款",
+        "## 版记和抄送",
+        "## 编号层级",
+        "## 上行文、下行文和平行文差异",
+        "## DOCX 操作"
+      ],
+      "reference_mentions": []
+    },
+    {
+      "file": "references/formulaic-language.md",
+      "lf_chars": 3048,
+      "lines": 95,
+      "git_sha256": "a4940b83c337ec5e0a7f0389de49113df8ccf3ae012b5c3fc498f0982b73bb16",
+      "headings": [
+        "# 公文行文用语",
+        "## 基本原则",
+        "## 事务文体功能接引",
+        "## 当前常用",
+        "### 开端和依据",
+        "### 引叙来文",
+        "### 承启和综合",
+        "### 按文种结尾",
+        "## 条件使用",
+        "## 历史文体兼容",
+        "## 复核"
+      ],
+      "reference_mentions": [
+        {
+          "line": 3,
+          "mention": "format-gbt9704.md",
+          "resolved": "references\\format-gbt9704.md",
+          "exists": true,
+          "note": "text occurrence, not proof of mandatory runtime read"
+        },
+        {
+          "line": 5,
+          "mention": "information-selection.md",
+          "resolved": "references\\information-selection.md",
+          "exists": true,
+          "note": "text occurrence, not proof of mandatory runtime read"
+        },
+        {
+          "line": 5,
+          "mention": "workflow.md",
+          "resolved": "references\\workflow.md",
+          "exists": true,
+          "note": "text occurrence, not proof of mandatory runtime read"
+        },
+        {
+          "line": 5,
+          "mention": "genre-routing.md",
+          "resolved": "references\\genre-routing.md",
+          "exists": true,
+          "note": "text occurrence, not proof of mandatory runtime read"
+        },
+        {
+          "line": 5,
+          "mention": "genre-playbooks.md",
+          "resolved": "references\\genre-playbooks.md",
+          "exists": true,
+          "note": "text occurrence, not proof of mandatory runtime read"
+        }
+      ]
+    },
+    {
+      "file": "references/genre-checklist-feasibility-review.md",
+      "lf_chars": 658,
+      "lines": 10,
+      "git_sha256": "8ccfa9923dd38ff5390c6234c85dcdcd8b8753863ff00b0a460c5bc171bdd1b7",
+      "headings": [
+        "# 可行性研究报告细查",
+        "## 可行性研究报告"
+      ],
+      "reference_mentions": []
+    },
+    {
+      "file": "references/genre-checklist-report.md",
+      "lf_chars": 1101,
+      "lines": 24,
+      "git_sha256": "e6b42379ed812e8ef8217e6358fc9fae586a571d2a6c0783829f25fda30e713e",
+      "headings": [
+        "# 报告/情况说明 Playbook 与检查项",
+        "## 使用方式",
+        "## 报告/情况说明",
+        "## 报告"
+      ],
+      "reference_mentions": [
+        {
+          "line": 7,
+          "mention": "SKILL.md",
+          "resolved": "SKILL.md",
+          "exists": true,
+          "note": "text occurrence, not proof of mandatory runtime read"
+        },
+        {
+          "line": 9,
+          "mention": "information-selection.md",
+          "resolved": "references\\information-selection.md",
+          "exists": true,
+          "note": "text occurrence, not proof of mandatory runtime read"
+        },
+        {
+          "line": 17,
+          "mention": "argument-chains.md",
+          "resolved": "references\\argument-chains.md",
+          "exists": true,
+          "note": "text occurrence, not proof of mandatory runtime read"
+        },
+        {
+          "line": 17,
+          "mention": "review-direct-checklist.md",
+          "resolved": "references\\review-direct-checklist.md",
+          "exists": true,
+          "note": "text occurrence, not proof of mandatory runtime read"
+        },
+        {
+          "line": 17,
+          "mention": "review-checklist.md",
+          "resolved": "references\\review-checklist.md",
+          "exists": true,
+          "note": "text occurrence, not proof of mandatory runtime read"
+        }
+      ]
+    },
+    {
+      "file": "references/genre-checklist-request.md",
+      "lf_chars": 808,
+      "lines": 23,
+      "git_sha256": "b011444af07dab83a5f61099e3589abd8bf49c9f8addf3c180f7db393f1ef44f",
+      "headings": [
+        "# 请示/申请细查",
+        "## 请示",
+        "## 申请"
+      ],
+      "reference_mentions": [
+        {
+          "line": 3,
+          "mention": "genre-playbook-request.md",
+          "resolved": "references\\genre-playbook-request.md",
+          "exists": true,
+          "note": "text occurrence, not proof of mandatory runtime read"
+        }
+      ]
+    },
+    {
+      "file": "references/genre-checklist.md",
+      "lf_chars": 2738,
+      "lines": 171,
+      "git_sha256": "745f2d7b35beb8562acf8d4e6d2198e48fe419eb6439af35ca5dad860b4df29c",
+      "headings": [
+        "# 文种清单",
+        "## 分类提示",
+        "## 通知",
+        "## 决议",
+        "## 决定",
+        "## 命令（令）",
+        "## 公报",
+        "## 议案",
+        "## 说明",
+        "## 方案",
+        "## 函",
+        "## 征求意见函",
+        "## 复函",
+        "## 批复",
+        "## 公示",
+        "## 公告",
+        "## 采购公告",
+        "## 通告",
+        "## 通报",
+        "## 会议纪要",
+        "## 工作总结和工作思路",
+        "## 工作要点",
+        "## 意见",
+        "## 调研报告",
+        "## 实施方案",
+        "## 建设方案",
+        "## 审查材料",
+        "## 讲话稿和致辞",
+        "## 述职报告"
+      ],
+      "reference_mentions": [
+        {
+          "line": 7,
+          "mention": "genre-routing.md",
+          "resolved": "references\\genre-routing.md",
+          "exists": true,
+          "note": "text occurrence, not proof of mandatory runtime read"
+        }
+      ]
+    },
+    {
+      "file": "references/genre-playbook-advisory-feedback.md",
+      "lf_chars": 1919,
+      "lines": 40,
+      "git_sha256": "c6256e8e4be04c16ce5d3a050a45b85734a1acdadcb4972e65ad9e3c5e045c7f",
+      "headings": [
+        "# 意见建议与建议反馈 Playbook",
+        "## 先定对象和关系",
+        "## 克制而不失真的语气",
+        "## 先提炼共性，再放事实",
+        "## 结构与版式",
+        "## 交付前复核"
+      ],
+      "reference_mentions": []
+    },
+    {
+      "file": "references/genre-playbook-complaint-reflection.md",
+      "lf_chars": 1600,
+      "lines": 38,
+      "git_sha256": "7bf4c0615858c3422fdc712624d32398a5ac16332d6197bb192bf44c2c6e2bab",
+      "headings": [
+        "# 投诉与情况反映 Playbook",
+        "## 先定意图和载体",
+        "## 以亲历事实为主线",
+        "## 专业、克制而清楚",
+        "## 结构和交付",
+        "## 交付前复核"
+      ],
+      "reference_mentions": []
+    },
+    {
+      "file": "references/genre-playbook-correspondence.md",
+      "lf_chars": 602,
+      "lines": 16,
+      "git_sha256": "142b4ad3aaeb6088cfa5e3ba711c58b8c82101ec9c852300df7f3a134e3ddeda",
+      "headings": [
+        "# 函、复函与征求意见函 Playbook",
+        "## 使用方式",
+        "## 函/复函/征求意见函"
+      ],
+      "reference_mentions": [
+        {
+          "line": 3,
+          "mention": "SKILL.md",
+          "resolved": "SKILL.md",
+          "exists": true,
+          "note": "text occurrence, not proof of mandatory runtime read"
+        },
+        {
+          "line": 7,
+          "mention": "SKILL.md",
+          "resolved": "SKILL.md",
+          "exists": true,
+          "note": "text occurrence, not proof of mandatory runtime read"
+        },
+        {
+          "line": 7,
+          "mention": "information-selection.md",
+          "resolved": "references\\information-selection.md",
+          "exists": true,
+          "note": "text occurrence, not proof of mandatory runtime read"
+        }
+      ]
+    },
+    {
+      "file": "references/genre-playbook-institution-rules.md",
+      "lf_chars": 1396,
+      "lines": 43,
+      "git_sha256": "f10d04e86c50deefea05198fddb2a422cf0799a6433d8a726b012c2d58e17928",
+      "headings": [
+        "# 制度类文稿 Playbook",
+        "## 文稿形态",
+        "## 名称与功能",
+        "## 起草要点",
+        "## 事实与权限边界",
+        "## Word 与正式版式",
+        "## 交付前检查"
+      ],
+      "reference_mentions": [
+        {
+          "line": 35,
+          "mention": "format-gbt9704.md",
+          "resolved": "references\\format-gbt9704.md",
+          "exists": true,
+          "note": "text occurrence, not proof of mandatory runtime read"
+        },
+        {
+          "line": 39,
+          "mention": "anti-ai-patterns.md",
+          "resolved": "references\\anti-ai-patterns.md",
+          "exists": true,
+          "note": "text occurrence, not proof of mandatory runtime read"
+        }
+      ]
+    },
+    {
+      "file": "references/genre-playbook-minutes.md",
+      "lf_chars": 792,
+      "lines": 16,
+      "git_sha256": "ce1b195a3aa043268e4452355a001366f4008727be5692336c8859208f181bb5",
+      "headings": [
+        "# 会议纪要 Playbook",
+        "## 使用方式",
+        "## 会议纪要"
+      ],
+      "reference_mentions": [
+        {
+          "line": 3,
+          "mention": "SKILL.md",
+          "resolved": "SKILL.md",
+          "exists": true,
+          "note": "text occurrence, not proof of mandatory runtime read"
+        },
+        {
+          "line": 7,
+          "mention": "SKILL.md",
+          "resolved": "SKILL.md",
+          "exists": true,
+          "note": "text occurrence, not proof of mandatory runtime read"
+        },
+        {
+          "line": 7,
+          "mention": "information-selection.md",
+          "resolved": "references\\information-selection.md",
+          "exists": true,
+          "note": "text occurrence, not proof of mandatory runtime read"
+        },
+        {
+          "line": 16,
+          "mention": "genre-checklist.md",
+          "resolved": "references\\genre-checklist.md",
+          "exists": true,
+          "note": "text occurrence, not proof of mandatory runtime read"
+        },
+        {
+          "line": 16,
+          "mention": "review-checklist.md",
+          "resolved": "references\\review-checklist.md",
+          "exists": true,
+          "note": "text occurrence, not proof of mandatory runtime read"
+        }
+      ]
+    },
+    {
+      "file": "references/genre-playbook-news-commentary.md",
+      "lf_chars": 378,
+      "lines": 9,
+      "git_sha256": "4bc3a2670ce10e4d6946ebe8d5b66edc9ac3f12a399b305d585d46bad2267347",
+      "headings": [
+        "# 新闻评论"
+      ],
+      "reference_mentions": []
+    },
+    {
+      "file": "references/genre-playbook-news-message.md",
+      "lf_chars": 1492,
+      "lines": 15,
+      "git_sha256": "a3c503d493b3fc7b65524d2dfa43849a4f2d33dbf67fd09a346af12c1238f601",
+      "headings": [
+        "# 新闻消息"
+      ],
+      "reference_mentions": []
+    },
+    {
+      "file": "references/genre-playbook-plan-construction.md",
+      "lf_chars": 399,
+      "lines": 15,
+      "git_sha256": "f0719d7884e13afc967fbc6d3383ade3f9f06f36cac7e46cdea91fba85d3e24a",
+      "headings": [
+        "# 方案与建设方案 Playbook",
+        "## 使用方式",
+        "## 方案/实施方案/建设方案"
+      ],
+      "reference_mentions": [
+        {
+          "line": 7,
+          "mention": "SKILL.md",
+          "resolved": "SKILL.md",
+          "exists": true,
+          "note": "text occurrence, not proof of mandatory runtime read"
+        },
+        {
+          "line": 9,
+          "mention": "information-selection.md",
+          "resolved": "references\\information-selection.md",
+          "exists": true,
+          "note": "text occurrence, not proof of mandatory runtime read"
+        }
+      ]
+    },
+    {
+      "file": "references/genre-playbook-project-application.md",
+      "lf_chars": 1534,
+      "lines": 35,
+      "git_sha256": "bcc4b8429aa23f065c7f22b7928476c21c1967cca0454911c3b565f5000b6caa",
+      "headings": [
+        "# 既有项目的增项申请",
+        "## 先说清为何增加这一项",
+        "## 围绕申请组织材料",
+        "## 费用按材料的单位和阶段写",
+        "## 写成自然、平实的申请",
+        "## 交稿前再读一遍"
+      ],
+      "reference_mentions": [
+        {
+          "line": 35,
+          "mention": "information-selection.md",
+          "resolved": "references\\information-selection.md",
+          "exists": true,
+          "note": "text occurrence, not proof of mandatory runtime read"
+        }
+      ]
+    },
+    {
+      "file": "references/genre-playbook-remediation-plan.md",
+      "lf_chars": 998,
+      "lines": 20,
+      "git_sha256": "70ba20fb0f119067de45c972e9481a2f2fc009ae547912b871d08e7f7a133ec7",
+      "headings": [
+        "# 整改方案 Playbook",
+        "## 组织正文",
+        "## 交付检查"
+      ],
+      "reference_mentions": []
+    },
+    {
+      "file": "references/genre-playbook-request.md",
+      "lf_chars": 1388,
+      "lines": 20,
+      "git_sha256": "458a3353b9254256cf6302cae738a5372964328cb3bbf9cf78bab97550b62b88",
+      "headings": [
+        "# 请示/申请 Playbook",
+        "## 使用方式",
+        "## 请示/申请"
+      ],
+      "reference_mentions": [
+        {
+          "line": 7,
+          "mention": "SKILL.md",
+          "resolved": "SKILL.md",
+          "exists": true,
+          "note": "text occurrence, not proof of mandatory runtime read"
+        },
+        {
+          "line": 7,
+          "mention": "workflow.md",
+          "resolved": "references\\workflow.md",
+          "exists": true,
+          "note": "text occurrence, not proof of mandatory runtime read"
+        },
+        {
+          "line": 7,
+          "mention": "genre-routing.md",
+          "resolved": "references\\genre-routing.md",
+          "exists": true,
+          "note": "text occurrence, not proof of mandatory runtime read"
+        },
+        {
+          "line": 7,
+          "mention": "genre-playbooks.md",
+          "resolved": "references\\genre-playbooks.md",
+          "exists": true,
+          "note": "text occurrence, not proof of mandatory runtime read"
+        },
+        {
+          "line": 9,
+          "mention": "information-selection.md",
+          "resolved": "references\\information-selection.md",
+          "exists": true,
+          "note": "text occurrence, not proof of mandatory runtime read"
+        },
+        {
+          "line": 15,
+          "mention": "information-selection.md",
+          "resolved": "references\\information-selection.md",
+          "exists": true,
+          "note": "text occurrence, not proof of mandatory runtime read"
+        },
+        {
+          "line": 17,
+          "mention": "workflow.md",
+          "resolved": "references\\workflow.md",
+          "exists": true,
+          "note": "text occurrence, not proof of mandatory runtime read"
+        },
+        {
+          "line": 17,
+          "mention": "handling-elements.md",
+          "resolved": "references\\handling-elements.md",
+          "exists": true,
+          "note": "text occurrence, not proof of mandatory runtime read"
+        },
+        {
+          "line": 17,
+          "mention": "argument-chains.md",
+          "resolved": "references\\argument-chains.md",
+          "exists": true,
+          "note": "text occurrence, not proof of mandatory runtime read"
+        },
+        {
+          "line": 19,
+          "mention": "information-selection.md",
+          "resolved": "references\\information-selection.md",
+          "exists": true,
+          "note": "text occurrence, not proof of mandatory runtime read"
+        },
+        {
+          "line": 20,
+          "mention": "argument-chains.md",
+          "resolved": "references\\argument-chains.md",
+          "exists": true,
+          "note": "text occurrence, not proof of mandatory runtime read"
+        },
+        {
+          "line": 20,
+          "mention": "formal-addressing.md",
+          "resolved": "references\\formal-addressing.md",
+          "exists": true,
+          "note": "text occurrence, not proof of mandatory runtime read"
+        }
+      ]
+    },
+    {
+      "file": "references/genre-playbook-work-summary.md",
+      "lf_chars": 646,
+      "lines": 12,
+      "git_sha256": "ab34551c8df751bf4a7d882a5f5f1ee8d12291e735e3f45cf8ad1e1d4c68e026",
+      "headings": [
+        "# 工作总结/工作要点/周报 Playbook",
+        "## 工作总结/工作要点/周报"
+      ],
+      "reference_mentions": [
+        {
+          "line": 12,
+          "mention": "argument-chains.md",
+          "resolved": "references\\argument-chains.md",
+          "exists": true,
+          "note": "text occurrence, not proof of mandatory runtime read"
+        }
+      ]
+    },
+    {
+      "file": "references/genre-playbooks.md",
+      "lf_chars": 2322,
+      "lines": 61,
+      "git_sha256": "d209e23f5496d34aa0fabf1449f7cd2ca44bdc318778f3a81a5839c414de343b",
+      "headings": [
+        "# 文种与专项 Playbook",
+        "## 目录",
+        "## 使用方式",
+        "## 函/复函/征求意见函",
+        "## 通知/通告/公告/公示/通报",
+        "## 意见/决定/决议/议案/公报/命令",
+        "## 讲话稿/致辞/述职",
+        "## 调研报告/研究报告/可研报告",
+        "## 采购公告/审查材料"
+      ],
+      "reference_mentions": [
+        {
+          "line": 3,
+          "mention": "SKILL.md",
+          "resolved": "SKILL.md",
+          "exists": true,
+          "note": "text occurrence, not proof of mandatory runtime read"
+        },
+        {
+          "line": 17,
+          "mention": "SKILL.md",
+          "resolved": "SKILL.md",
+          "exists": true,
+          "note": "text occurrence, not proof of mandatory runtime read"
+        },
+        {
+          "line": 17,
+          "mention": "information-selection.md",
+          "resolved": "references\\information-selection.md",
+          "exists": true,
+          "note": "text occurrence, not proof of mandatory runtime read"
+        },
+        {
+          "line": 24,
+          "mention": "formal-addressing.md",
+          "resolved": "references\\formal-addressing.md",
+          "exists": true,
+          "note": "text occurrence, not proof of mandatory runtime read"
+        },
+        {
+          "line": 24,
+          "mention": "genre-checklist.md",
+          "resolved": "references\\genre-checklist.md",
+          "exists": true,
+          "note": "text occurrence, not proof of mandatory runtime read"
+        },
+        {
+          "line": 30,
+          "mention": "workflow.md",
+          "resolved": "references\\workflow.md",
+          "exists": true,
+          "note": "text occurrence, not proof of mandatory runtime read"
+        },
+        {
+          "line": 31,
+          "mention": "genre-routing.md",
+          "resolved": "references\\genre-routing.md",
+          "exists": true,
+          "note": "text occurrence, not proof of mandatory runtime read"
+        },
+        {
+          "line": 31,
+          "mention": "handling-elements.md",
+          "resolved": "references\\handling-elements.md",
+          "exists": true,
+          "note": "text occurrence, not proof of mandatory runtime read"
+        },
+        {
+          "line": 38,
+          "mention": "genre-checklist.md",
+          "resolved": "references\\genre-checklist.md",
+          "exists": true,
+          "note": "text occurrence, not proof of mandatory runtime read"
+        },
+        {
+          "line": 45,
+          "mention": "official-style.md",
+          "resolved": "references\\official-style.md",
+          "exists": true,
+          "note": "text occurrence, not proof of mandatory runtime read"
+        },
+        {
+          "line": 45,
+          "mention": "anti-ai-patterns.md",
+          "resolved": "references\\anti-ai-patterns.md",
+          "exists": true,
+          "note": "text occurrence, not proof of mandatory runtime read"
+        },
+        {
+          "line": 52,
+          "mention": "information-selection.md",
+          "resolved": "references\\information-selection.md",
+          "exists": true,
+          "note": "text occurrence, not proof of mandatory runtime read"
+        },
+        {
+          "line": 53,
+          "mention": "argument-chains.md",
+          "resolved": "references\\argument-chains.md",
+          "exists": true,
+          "note": "text occurrence, not proof of mandatory runtime read"
+        },
+        {
+          "line": 53,
+          "mention": "ai-compute-docs.md",
+          "resolved": "references\\ai-compute-docs.md",
+          "exists": true,
+          "note": "text occurrence, not proof of mandatory runtime read"
+        },
+        {
+          "line": 59,
+          "mention": "information-selection.md",
+          "resolved": "references\\information-selection.md",
+          "exists": true,
+          "note": "text occurrence, not proof of mandatory runtime read"
+        },
+        {
+          "line": 61,
+          "mention": "handling-elements.md",
+          "resolved": "references\\handling-elements.md",
+          "exists": true,
+          "note": "text occurrence, not proof of mandatory runtime read"
+        },
+        {
+          "line": 61,
+          "mention": "genre-checklist.md",
+          "resolved": "references\\genre-checklist.md",
+          "exists": true,
+          "note": "text occurrence, not proof of mandatory runtime read"
+        }
+      ]
+    },
+    {
+      "file": "references/genre-routing.md",
+      "lf_chars": 3103,
+      "lines": 122,
+      "git_sha256": "f31c8433417923d4064e75358cec53f41d30b135c7fd40699758077feddf19b2",
+      "headings": [
+        "# 文种路由",
+        "## 判断顺序",
+        "## 文稿类别",
+        "### 法定公文",
+        "### 常用事务文书",
+        "### 工作材料和技术材料",
+        "### 新闻类文本",
+        "## 行文关系",
+        "### 上行文",
+        "### 下行文",
+        "### 平行文",
+        "## 文种边界",
+        "## 路由提示",
+        "## 混合文种修正"
+      ],
+      "reference_mentions": [
+        {
+          "line": 73,
+          "mention": "information-selection.md",
+          "resolved": "references\\information-selection.md",
+          "exists": true,
+          "note": "text occurrence, not proof of mandatory runtime read"
+        }
+      ]
+    },
+    {
+      "file": "references/handling-elements.md",
+      "lf_chars": 3136,
+      "lines": 71,
+      "git_sha256": "e652dac11d5fec9458cc6bb63d41e884e206b359dfe6776731016b7c7a8e7fa4",
+      "headings": [
+        "# 办理要素",
+        "## 通用要素",
+        "## 文种要素表",
+        "## AI 算力和技术服务要素",
+        "## 缺项核对"
+      ],
+      "reference_mentions": [
+        {
+          "line": 21,
+          "mention": "information-selection.md",
+          "resolved": "references\\information-selection.md",
+          "exists": true,
+          "note": "text occurrence, not proof of mandatory runtime read"
+        },
+        {
+          "line": 61,
+          "mention": "ai-compute-docs.md",
+          "resolved": "references\\ai-compute-docs.md",
+          "exists": true,
+          "note": "text occurrence, not proof of mandatory runtime read"
+        }
+      ]
+    },
+    {
+      "file": "references/information-selection.md",
+      "lf_chars": 1941,
+      "lines": 24,
+      "git_sha256": "e20c2b18cddab4cb0e4ba0ce4ddcd8b849314c4f30ee4d1c6f16216b9f630aff",
+      "headings": [
+        "# 信息选择",
+        "## 事实与分析",
+        "## 材料选择与状态"
+      ],
+      "reference_mentions": []
+    },
+    {
+      "file": "references/official-style.md",
+      "lf_chars": 2231,
+      "lines": 86,
+      "git_sha256": "82b97cc58bca9fce3f81c79ece4a5804d17a1869a5bbd3f6de191612440d505a",
+      "headings": [
+        "# 公文语言风格",
+        "## 主体视角",
+        "## 段落形态",
+        "## 常用表达",
+        "## 用词偏好",
+        "## 行文语气",
+        "## 轻量语气替换建议",
+        "## 应避免的写法"
+      ],
+      "reference_mentions": []
+    },
+    {
+      "file": "references/proofreading-checklist.md",
+      "lf_chars": 1403,
+      "lines": 38,
+      "git_sha256": "aa56802a0e984aadb1deed4603181fc85b237b8c534ae0973e3c9d9413d859d2",
+      "headings": [
+        "# AI 写稿轻量校对",
+        "## 使用边界",
+        "## 语言和格式自检",
+        "## 引用保真",
+        "## 稿内一致性"
+      ],
+      "reference_mentions": [
+        {
+          "line": 28,
+          "mention": "SKILL.md",
+          "resolved": "SKILL.md",
+          "exists": true,
+          "note": "text occurrence, not proof of mandatory runtime read"
+        },
+        {
+          "line": 33,
+          "mention": "information-selection.md",
+          "resolved": "references\\information-selection.md",
+          "exists": true,
+          "note": "text occurrence, not proof of mandatory runtime read"
+        },
+        {
+          "line": 37,
+          "mention": "information-selection.md",
+          "resolved": "references\\information-selection.md",
+          "exists": true,
+          "note": "text occurrence, not proof of mandatory runtime read"
+        }
+      ]
+    },
+    {
+      "file": "references/prose-lint-usage.md",
+      "lf_chars": 527,
+      "lines": 5,
+      "git_sha256": "86ee58fbdf9b8b13d9f945bb8d99d83986f25f5720a4ecdb4340e3aec2cef900",
+      "headings": [
+        "# 草稿检查脚本使用"
+      ],
+      "reference_mentions": [
+        {
+          "line": 5,
+          "mention": "SKILL.md",
+          "resolved": "SKILL.md",
+          "exists": true,
+          "note": "text occurrence, not proof of mandatory runtime read"
+        },
+        {
+          "line": 5,
+          "mention": "references/handling-elements.md",
+          "resolved": "references\\handling-elements.md",
+          "exists": true,
+          "note": "text occurrence, not proof of mandatory runtime read"
+        },
+        {
+          "line": 5,
+          "mention": "references/genre-checklist-report.md",
+          "resolved": "references\\genre-checklist-report.md",
+          "exists": true,
+          "note": "text occurrence, not proof of mandatory runtime read"
+        },
+        {
+          "line": 5,
+          "mention": "references/genre-checklist-request.md",
+          "resolved": "references\\genre-checklist-request.md",
+          "exists": true,
+          "note": "text occurrence, not proof of mandatory runtime read"
+        },
+        {
+          "line": 5,
+          "mention": "references/genre-checklist-feasibility-review.md",
+          "resolved": "references\\genre-checklist-feasibility-review.md",
+          "exists": true,
+          "note": "text occurrence, not proof of mandatory runtime read"
+        },
+        {
+          "line": 5,
+          "mention": "references/genre-checklist.md",
+          "resolved": "references\\genre-checklist.md",
+          "exists": true,
+          "note": "text occurrence, not proof of mandatory runtime read"
+        }
+      ]
+    },
+    {
+      "file": "references/reference-index.md",
+      "lf_chars": 3755,
+      "lines": 40,
+      "git_sha256": "e46782846cedebcf31ad1e53161adbcc6c567cc71f6a19d3cda300b43dbe1942",
+      "headings": [
+        "# 参考资料索引"
+      ],
+      "reference_mentions": [
+        {
+          "line": 3,
+          "mention": "SKILL.md",
+          "resolved": "SKILL.md",
+          "exists": true,
+          "note": "text occurrence, not proof of mandatory runtime read"
+        },
+        {
+          "line": 9,
+          "mention": "README.md",
+          "resolved": "README.md",
+          "exists": true,
+          "note": "text occurrence, not proof of mandatory runtime read"
+        },
+        {
+          "line": 10,
+          "mention": "references/information-selection.md",
+          "resolved": "references\\information-selection.md",
+          "exists": true,
+          "note": "text occurrence, not proof of mandatory runtime read"
+        },
+        {
+          "line": 11,
+          "mention": "references/formulaic-language.md",
+          "resolved": "references\\formulaic-language.md",
+          "exists": true,
+          "note": "text occurrence, not proof of mandatory runtime read"
+        },
+        {
+          "line": 12,
+          "mention": "references/compatibility-scene-routing.md",
+          "resolved": "references\\compatibility-scene-routing.md",
+          "exists": true,
+          "note": "text occurrence, not proof of mandatory runtime read"
+        },
+        {
+          "line": 13,
+          "mention": "references/task-route-cards.md",
+          "resolved": "references\\task-route-cards.md",
+          "exists": true,
+          "note": "text occurrence, not proof of mandatory runtime read"
+        },
+        {
+          "line": 13,
+          "mention": "formulaic-language.md",
+          "resolved": "references\\formulaic-language.md",
+          "exists": true,
+          "note": "text occurrence, not proof of mandatory runtime read"
+        },
+        {
+          "line": 13,
+          "mention": "workflow.md",
+          "resolved": "references\\workflow.md",
+          "exists": true,
+          "note": "text occurrence, not proof of mandatory runtime read"
+        },
+        {
+          "line": 13,
+          "mention": "genre-playbooks.md",
+          "resolved": "references\\genre-playbooks.md",
+          "exists": true,
+          "note": "text occurrence, not proof of mandatory runtime read"
+        },
+        {
+          "line": 14,
+          "mention": "references/short-draft-naturalness.md",
+          "resolved": "references\\short-draft-naturalness.md",
+          "exists": true,
+          "note": "text occurrence, not proof of mandatory runtime read"
+        },
+        {
+          "line": 15,
+          "mention": "references/workflow.md",
+          "resolved": "references\\workflow.md",
+          "exists": true,
+          "note": "text occurrence, not proof of mandatory runtime read"
+        },
+        {
+          "line": 16,
+          "mention": "references/external-research.md",
+          "resolved": "references\\external-research.md",
+          "exists": true,
+          "note": "text occurrence, not proof of mandatory runtime read"
+        },
+        {
+          "line": 17,
+          "mention": "references/genre-routing.md",
+          "resolved": "references\\genre-routing.md",
+          "exists": true,
+          "note": "text occurrence, not proof of mandatory runtime read"
+        },
+        {
+          "line": 18,
+          "mention": "references/handling-elements.md",
+          "resolved": "references\\handling-elements.md",
+          "exists": true,
+          "note": "text occurrence, not proof of mandatory runtime read"
+        },
+        {
+          "line": 19,
+          "mention": "references/argument-chains.md",
+          "resolved": "references\\argument-chains.md",
+          "exists": true,
+          "note": "text occurrence, not proof of mandatory runtime read"
+        },
+        {
+          "line": 20,
+          "mention": "references/official-style.md",
+          "resolved": "references\\official-style.md",
+          "exists": true,
+          "note": "text occurrence, not proof of mandatory runtime read"
+        },
+        {
+          "line": 21,
+          "mention": "references/formal-addressing.md",
+          "resolved": "references\\formal-addressing.md",
+          "exists": true,
+          "note": "text occurrence, not proof of mandatory runtime read"
+        },
+        {
+          "line": 22,
+          "mention": "references/anti-ai-patterns.md",
+          "resolved": "references\\anti-ai-patterns.md",
+          "exists": true,
+          "note": "text occurrence, not proof of mandatory runtime read"
+        },
+        {
+          "line": 23,
+          "mention": "references/final-review-layers.md",
+          "resolved": "references\\final-review-layers.md",
+          "exists": true,
+          "note": "text occurrence, not proof of mandatory runtime read"
+        },
+        {
+          "line": 24,
+          "mention": "references/proofreading-checklist.md",
+          "resolved": "references\\proofreading-checklist.md",
+          "exists": true,
+          "note": "text occurrence, not proof of mandatory runtime read"
+        },
+        {
+          "line": 25,
+          "mention": "references/review-direct-checklist.md",
+          "resolved": "references\\review-direct-checklist.md",
+          "exists": true,
+          "note": "text occurrence, not proof of mandatory runtime read"
+        },
+        {
+          "line": 26,
+          "mention": "references/review-checklist.md",
+          "resolved": "references\\review-checklist.md",
+          "exists": true,
+          "note": "text occurrence, not proof of mandatory runtime read"
+        },
+        {
+          "line": 27,
+          "mention": "references/genre-playbook-minutes.md",
+          "resolved": "references\\genre-playbook-minutes.md",
+          "exists": true,
+          "note": "text occurrence, not proof of mandatory runtime read"
+        },
+        {
+          "line": 28,
+          "mention": "references/genre-playbook-project-application.md",
+          "resolved": "references\\genre-playbook-project-application.md",
+          "exists": true,
+          "note": "text occurrence, not proof of mandatory runtime read"
+        },
+        {
+          "line": 29,
+          "mention": "references/genre-playbook-request.md",
+          "resolved": "references\\genre-playbook-request.md",
+          "exists": true,
+          "note": "text occurrence, not proof of mandatory runtime read"
+        },
+        {
+          "line": 30,
+          "mention": "references/genre-checklist-request.md",
+          "resolved": "references\\genre-checklist-request.md",
+          "exists": true,
+          "note": "text occurrence, not proof of mandatory runtime read"
+        },
+        {
+          "line": 31,
+          "mention": "references/genre-checklist-feasibility-review.md",
+          "resolved": "references\\genre-checklist-feasibility-review.md",
+          "exists": true,
+          "note": "text occurrence, not proof of mandatory runtime read"
+        },
+        {
+          "line": 32,
+          "mention": "references/genre-playbook-correspondence.md",
+          "resolved": "references\\genre-playbook-correspondence.md",
+          "exists": true,
+          "note": "text occurrence, not proof of mandatory runtime read"
+        },
+        {
+          "line": 33,
+          "mention": "references/genre-playbook-work-summary.md",
+          "resolved": "references\\genre-playbook-work-summary.md",
+          "exists": true,
+          "note": "text occurrence, not proof of mandatory runtime read"
+        },
+        {
+          "line": 34,
+          "mention": "references/genre-playbook-plan-construction.md",
+          "resolved": "references\\genre-playbook-plan-construction.md",
+          "exists": true,
+          "note": "text occurrence, not proof of mandatory runtime read"
+        },
+        {
+          "line": 35,
+          "mention": "references/genre-playbooks.md",
+          "resolved": "references\\genre-playbooks.md",
+          "exists": true,
+          "note": "text occurrence, not proof of mandatory runtime read"
+        },
+        {
+          "line": 36,
+          "mention": "references/genre-playbook-institution-rules.md",
+          "resolved": "references\\genre-playbook-institution-rules.md",
+          "exists": true,
+          "note": "text occurrence, not proof of mandatory runtime read"
+        },
+        {
+          "line": 37,
+          "mention": "references/genre-checklist-report.md",
+          "resolved": "references\\genre-checklist-report.md",
+          "exists": true,
+          "note": "text occurrence, not proof of mandatory runtime read"
+        },
+        {
+          "line": 38,
+          "mention": "references/genre-checklist.md",
+          "resolved": "references\\genre-checklist.md",
+          "exists": true,
+          "note": "text occurrence, not proof of mandatory runtime read"
+        },
+        {
+          "line": 39,
+          "mention": "references/format-gbt9704.md",
+          "resolved": "references\\format-gbt9704.md",
+          "exists": true,
+          "note": "text occurrence, not proof of mandatory runtime read"
+        },
+        {
+          "line": 40,
+          "mention": "references/ai-compute-docs.md",
+          "resolved": "references\\ai-compute-docs.md",
+          "exists": true,
+          "note": "text occurrence, not proof of mandatory runtime read"
+        },
+        {
+          "line": 40,
+          "mention": "references/genre-checklist-feasibility-review.md",
+          "resolved": "references\\genre-checklist-feasibility-review.md",
+          "exists": true,
+          "note": "text occurrence, not proof of mandatory runtime read"
+        }
+      ]
+    },
+    {
+      "file": "references/review-checklist.md",
+      "lf_chars": 5959,
+      "lines": 117,
+      "git_sha256": "680e021d858f85c65ec963af95d5eee6f0396f0d4bae0073f0ff73e7ea422c5c",
+      "headings": [
+        "# 复核清单",
+        "## 定稿前高风险先查",
+        "## 段落复核",
+        "## 小节复核",
+        "## 全文复核",
+        "## 独立复核"
+      ],
+      "reference_mentions": [
+        {
+          "line": 3,
+          "mention": "genre-routing.md",
+          "resolved": "references\\genre-routing.md",
+          "exists": true,
+          "note": "text occurrence, not proof of mandatory runtime read"
+        },
+        {
+          "line": 3,
+          "mention": "argument-chains.md",
+          "resolved": "references\\argument-chains.md",
+          "exists": true,
+          "note": "text occurrence, not proof of mandatory runtime read"
+        },
+        {
+          "line": 3,
+          "mention": "format-gbt9704.md",
+          "resolved": "references\\format-gbt9704.md",
+          "exists": true,
+          "note": "text occurrence, not proof of mandatory runtime read"
+        },
+        {
+          "line": 10,
+          "mention": "information-selection.md",
+          "resolved": "references\\information-selection.md",
+          "exists": true,
+          "note": "text occurrence, not proof of mandatory runtime read"
+        },
+        {
+          "line": 32,
+          "mention": "information-selection.md",
+          "resolved": "references\\information-selection.md",
+          "exists": true,
+          "note": "text occurrence, not proof of mandatory runtime read"
+        },
+        {
+          "line": 54,
+          "mention": "genre-checklist.md",
+          "resolved": "references\\genre-checklist.md",
+          "exists": true,
+          "note": "text occurrence, not proof of mandatory runtime read"
+        },
+        {
+          "line": 55,
+          "mention": "handling-elements.md",
+          "resolved": "references\\handling-elements.md",
+          "exists": true,
+          "note": "text occurrence, not proof of mandatory runtime read"
+        },
+        {
+          "line": 72,
+          "mention": "information-selection.md",
+          "resolved": "references\\information-selection.md",
+          "exists": true,
+          "note": "text occurrence, not proof of mandatory runtime read"
+        }
+      ]
+    },
+    {
+      "file": "references/review-direct-checklist.md",
+      "lf_chars": 1007,
+      "lines": 23,
+      "git_sha256": "ae0b2fa2a9bbb778be215f9728d6ba836ace16166ca15235af90ca9ef2bceadf",
+      "headings": [
+        "# 定向审稿清单",
+        "## 输出",
+        "## 核对",
+        "## 收束"
+      ],
+      "reference_mentions": []
+    },
+    {
+      "file": "references/short-draft-naturalness.md",
+      "lf_chars": 466,
+      "lines": 9,
+      "git_sha256": "100b89b6216d872f35b568164f13b4bcc448346b1dd39d9b100fa9bf6f30f7ba",
+      "headings": [
+        "# 短稿自然收束"
+      ],
+      "reference_mentions": []
+    },
+    {
+      "file": "references/structure-editing.md",
+      "lf_chars": 647,
+      "lines": 9,
+      "git_sha256": "328dee1975e3f6c96f4a3042c8d533c1d31fe888e14661c3a5ac4c3dd7024e40",
+      "headings": [
+        "# 结构修改"
+      ],
+      "reference_mentions": []
+    },
+    {
+      "file": "references/task-route-cards.md",
+      "lf_chars": 1462,
+      "lines": 38,
+      "git_sha256": "5486d59cfaafd25f6b49623d2f7b4e0559183edb325fda6809c32cc65a273a0d",
+      "headings": [
+        "# 任务路由卡",
+        "## 使用口径",
+        "## 材料稀疏的情况说明、通报、报告",
+        "## 未决事项会议纪要",
+        "## 短通知和限字通知",
+        "## 二次局部修改"
+      ],
+      "reference_mentions": [
+        {
+          "line": 3,
+          "mention": "formulaic-language.md",
+          "resolved": "references\\formulaic-language.md",
+          "exists": true,
+          "note": "text occurrence, not proof of mandatory runtime read"
+        },
+        {
+          "line": 3,
+          "mention": "SKILL.md",
+          "resolved": "SKILL.md",
+          "exists": true,
+          "note": "text occurrence, not proof of mandatory runtime read"
+        },
+        {
+          "line": 3,
+          "mention": "workflow.md",
+          "resolved": "references\\workflow.md",
+          "exists": true,
+          "note": "text occurrence, not proof of mandatory runtime read"
+        },
+        {
+          "line": 3,
+          "mention": "genre-playbooks.md",
+          "resolved": "references\\genre-playbooks.md",
+          "exists": true,
+          "note": "text occurrence, not proof of mandatory runtime read"
+        },
+        {
+          "line": 9,
+          "mention": "information-selection.md",
+          "resolved": "references\\information-selection.md",
+          "exists": true,
+          "note": "text occurrence, not proof of mandatory runtime read"
+        },
+        {
+          "line": 22,
+          "mention": "references/genre-playbook-minutes.md",
+          "resolved": "references\\genre-playbook-minutes.md",
+          "exists": true,
+          "note": "text occurrence, not proof of mandatory runtime read"
+        }
+      ]
+    },
+    {
+      "file": "references/workflow.md",
+      "lf_chars": 4856,
+      "lines": 141,
+      "git_sha256": "44766c07249543153f35759eb0a4efdafef6cbf3939c52e38ed5a525ba4cbdb1",
+      "headings": [
+        "# 写作流程",
+        "## 1. 明确任务口径",
+        "### 任务模式路由",
+        "## 2. 选择文种和行文方向",
+        "## 3. 搭文稿蓝图",
+        "## 4. 制作段落地图",
+        "## 5. 多轮修改和结构指令",
+        "### 素材映射与事实边界",
+        "### 网页稿和套嵌文件边界",
+        "## 6. 分段起草",
+        "## 7. 小节复核",
+        "## 8. 合并总审",
+        "## 9. 急件处理"
+      ],
+      "reference_mentions": [
+        {
+          "line": 17,
+          "mention": "genre-routing.md",
+          "resolved": "references\\genre-routing.md",
+          "exists": true,
+          "note": "text occurrence, not proof of mandatory runtime read"
+        },
+        {
+          "line": 17,
+          "mention": "handling-elements.md",
+          "resolved": "references\\handling-elements.md",
+          "exists": true,
+          "note": "text occurrence, not proof of mandatory runtime read"
+        },
+        {
+          "line": 28,
+          "mention": "information-selection.md",
+          "resolved": "references\\information-selection.md",
+          "exists": true,
+          "note": "text occurrence, not proof of mandatory runtime read"
+        },
+        {
+          "line": 46,
+          "mention": "argument-chains.md",
+          "resolved": "references\\argument-chains.md",
+          "exists": true,
+          "note": "text occurrence, not proof of mandatory runtime read"
+        },
+        {
+          "line": 78,
+          "mention": "structure-editing.md",
+          "resolved": "references\\structure-editing.md",
+          "exists": true,
+          "note": "text occurrence, not proof of mandatory runtime read"
+        },
+        {
+          "line": 82,
+          "mention": "field-editing.md",
+          "resolved": "references\\field-editing.md",
+          "exists": true,
+          "note": "text occurrence, not proof of mandatory runtime read"
+        },
+        {
+          "line": 87,
+          "mention": "information-selection.md",
+          "resolved": "references\\information-selection.md",
+          "exists": true,
+          "note": "text occurrence, not proof of mandatory runtime read"
+        },
+        {
+          "line": 97,
+          "mention": "information-selection.md",
+          "resolved": "references\\information-selection.md",
+          "exists": true,
+          "note": "text occurrence, not proof of mandatory runtime read"
+        },
+        {
+          "line": 129,
+          "mention": "final-review-layers.md",
+          "resolved": "references\\final-review-layers.md",
+          "exists": true,
+          "note": "text occurrence, not proof of mandatory runtime read"
+        },
+        {
+          "line": 136,
+          "mention": "information-selection.md",
+          "resolved": "references\\information-selection.md",
+          "exists": true,
+          "note": "text occurrence, not proof of mandatory runtime read"
+        },
+        {
+          "line": 141,
+          "mention": "information-selection.md",
+          "resolved": "references\\information-selection.md",
+          "exists": true,
+          "note": "text occurrence, not proof of mandatory runtime read"
+        }
+      ]
+    }
+  ]
+}
