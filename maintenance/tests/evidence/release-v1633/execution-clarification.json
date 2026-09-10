@@ -1,0 +1,24 @@
+{
+  "kind": "Post-archive wording clarification; not a model/test rerun or a runtime-version correction",
+  "original_writing_invocation": [
+    "C:/Users/admin/AppData/Local/Programs/Python/Python313/python.exe",
+    "maintenance/tests/evidence/release-v1633/run_writing.py",
+    "maintenance/tests/evidence/release-v1633/cases.json"
+  ],
+  "read_only_followup": {
+    "explicit_entry_sys_executable": "C:/Users/admin/AppData/Local/Programs/Python/Python313/python.exe",
+    "explicit_entry_version": "3.13.13",
+    "explicit_entry_link_type": null,
+    "default_python_sys_executable": "C:/Users/admin/AppData/Local/hermes/hermes-agent/venv/Scripts/python.exe",
+    "default_python_version": "3.11.16",
+    "interpretation": "The writing driver explicitly invoked Python313. Bare python resolves to a separate Hermes environment. No shim forwarding was observed, and the default interpreter result does not override the explicit invocation evidence."
+  },
+  "document_changes": [
+    "Replace ambiguous bare-python examples with the actual absolute PowerShell invocation.",
+    "Specify that no full suite or packaging was performed by the writing agent stage; later engineering is reported independently."
+  ],
+  "original_archive": "F:/Workspaces/chinese-official-writing-skill-archives/experiments/skill-lightening-20260911/v1633-q1-writing-evidence.zip",
+  "original_archive_sha256_unchanged": "163b7f30f571f979029e40ab5e5c88967de0813212d2bb5ebb4283a9f0ea5cab",
+  "archive_policy": "Original archive and archived report retained without overwrite. This clarification is a separate committed document.",
+  "not_performed": ["model execution", "test rerun", "archive overwrite", "product modification"]
+}

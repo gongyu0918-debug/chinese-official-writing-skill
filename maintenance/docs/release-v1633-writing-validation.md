@@ -18,12 +18,12 @@ Q1来源提交为 `b997a0ffff1f1aa3e26f5be53766e9f073efea49`，旧独立候选�
 
 调用命令：
 
-```text
-python maintenance/tests/evidence/release-v1633/run_writing.py maintenance/tests/evidence/release-v1633/cases.json
-python maintenance/tests/evidence/release-v1633/collect_writing.py
+```powershell
+& 'C:/Users/admin/AppData/Local/Programs/Python/Python313/python.exe' maintenance/tests/evidence/release-v1633/run_writing.py maintenance/tests/evidence/release-v1633/cases.json
+& 'C:/Users/admin/AppData/Local/Programs/Python/Python313/python.exe' maintenance/tests/evidence/release-v1633/collect_writing.py
 ```
 
-实际解释器为本机Python 3.13。模型由已验证的本机原生CLI适配器调用；每臂独立上下文与冻结Skill目录，不启用Hook或插件。主工作树后续版本修改不进入已冻结的模型输入。
+写稿驱动实际通过上述绝对路径调用Python；随后只读核对该入口，`sys.executable`返回自身路径，版本为3.13.13。当前shell的裸`python`解析为Hermes环境的Python 3.11.16，两者应按各自实际调用区分。这是测试驱动解释器信息，模型内部工具仍以对应trace为准。模型由已验证的本机原生CLI适配器调用；每臂独立上下文与冻结Skill目录，不启用Hook或插件。主工作树后续版本修改不进入已冻结的模型输入。
 
 ## 逐对实稿
 
@@ -45,7 +45,7 @@ GLM候选还自报“按路由读取了……未执行脚本……”，不属�
 
 确认的静态收益只有目标叶减少69个LF字符，首页和路由不变。各次命令还包含目录枚举、重复读取和附加页，因此不能把全部输出差额称为Q1节省。空泛评价和具体闭环两题，候选全部命令输出反而更长；这与事实保持、目标叶是否读取及文字质量分开报告。
 
-本轮没有新Hook能力，没有以并行的当前main Pro宿主检查替代此普通版本验证；没有运行全量工程或重新打包。工程代理在真实写稿结论之后接手版本、包生成及一次全量检查。
+本次没有新Hook能力，没有以并行的当前main Pro宿主检查替代此普通版本验证。本报告对应的写稿代理阶段未运行全量工程或重新打包；工程代理在真实写稿结论之后接手版本、包生成及一次全量检查，结果由工程阶段单独记录。
 
 ## 证据与保留项
 
@@ -53,6 +53,7 @@ GLM候选还自报“按路由读取了……未执行脚本……”，不属�
 - [五题配置](../tests/evidence/release-v1633/cases.json)保留原始任务文字；运行后的各臂 `prompt.txt` 路径及SHA见[写稿摘要](../tests/evidence/release-v1633/writing-summary.json)。
 - 所有首稿、技术失败、high补测及读取轨迹均保留在 `output/release-v1633/word-guidance/runs/`；有效最终稿、prompt和trace的逐份路径及哈希见写稿摘要。过程中的临时稿不代替最终交付。
 - 冻结产品、全部12次调用的prompt、receipt、trace、stderr及11份有效终稿统一封存；外部ZIP位置、SHA-256和逐成员校验结果见[归档记录](../tests/evidence/release-v1633/archive.json)。账号profile、codex-home和临时运行缓存不纳入归档；真实失败仍在原始trace和stderr中。
+- 封存后仅澄清本报告命令块的实际Python绝对路径，以及“未运行全量”仅指写稿阶段；原ZIP及其SHA保持不变，原归档报告仍可追溯。澄清记录见[执行路径说明](../tests/evidence/release-v1633/execution-clarification.json)。没有重跑写稿或工程测试。
 - [写稿范围](../tests/evidence/release-v1633/writing-scope.json)逐组列出main尚未迁入的增项申请、讲话修稿、源事实Hook、脚本/字段/结构/压缩细则、术语、函件、篇幅、算力示例及R1/L等存量和依赖。它们均有自己的目的与验证边界，不因本次发布附带迁入。
 
 建议用户可见更新说明：正式词语按语义审校，保留有具体含义的术语和必要强调，减少机械替换。无需声称全面写作质量提升或全程耗时下降。
