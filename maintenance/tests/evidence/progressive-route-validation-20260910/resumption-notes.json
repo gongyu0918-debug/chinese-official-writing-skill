@@ -1,0 +1,12 @@
+{
+  "baseline": "e8103f536ff503f4d178080f4847a82bdd22aad2",
+  "candidate": "9be506014d96ed43a940c46c2c0915a15244d116",
+  "permission": "User resumed with unrestricted filesystem and network on 2026-09-10.",
+  "runtime": "Original five-provider native CLI runner and original execution envelope restored; no product change.",
+  "scratch_attempt": "TEMP workspace-write attempt aborted after SKILL.md reads were policy-blocked; no final, excluded from writing quality comparison.",
+  "pending_runs": [
+    "correspondence-refined provider2",
+    "combined providers0-4"
+  ],
+  "grading": "Same-model same-effort primary pairs; preserve initial failures; matched high only on technical-invalid max; causal negatives require actual changed-rule exposure and appropriate repeats."
+}
