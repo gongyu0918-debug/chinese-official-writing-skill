@@ -26,7 +26,7 @@ python .\maintenance\tools\sync_adapters.py
 SkillHub.cn 从 canonical 构建，发布者显式指定版本和新的输出目录：
 
 ```powershell
-python .\maintenance\tools\build_skillhub_package.py --version 1.6.31 --output output/skillhub-release
+python .\maintenance\tools\build_skillhub_package.py --version 1.6.32 --output output/skillhub-release
 ```
 
 ClawHub 的包输入是 `output/compatibility-packages/openclaw/skills/chinese_official_writing/`。打包不代表发布；实际平台写入仍须当次授权。历史证据中的旧 `packages/.../skills/` 命令只描述当时冻结树，不用于当前发布。

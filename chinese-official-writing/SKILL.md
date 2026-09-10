@@ -15,15 +15,7 @@ metadata:
 
 当用户明确要求中文通知等正式文本时，按文种和行文关系处理；制度、规定、办法、管理办法、实施细则和操作规程直达 `references/genre-playbook-institution-rules.md`。
 
-用户明确要求新闻稿、新闻消息、快讯、活动报道、活动新闻稿或新闻通稿时，直达 `references/genre-playbook-news-message.md`；不因材料中偶然出现“新闻”或“媒体”而改变原定文种。
-
-用户明确将体裁指定为新闻评论、时评或评论员文章时，直达 `references/genre-playbook-news-commentary.md`；普通公文内容中出现这些词语，不改变原定文种。
-
-用户要求形成面向政策制定、审核、平台建设运营或材料起草方的合作性意见建议稿、建议反馈或优化建议时，直达 `references/genre-playbook-advisory-feedback.md`；具有下行指导、监督整改或审计监督权力关系的意见按对应文种处理。
-
-用户明确要求根据检查、审计、督察、评估反馈或问题清单制定本单位整改方案、专项整改方案或整改工作方案时，直达 `references/genre-playbook-remediation-plan.md`。只报告已有整改进展、反映问题、提出投诉，或起草没有整改背景的普通实施方案时不读该页；不因正文偶然出现“整改”改变原定文种。
-
-用户要求以本人或本单位亲历方身份，向有权处理的部门、平台、服务主体或管理单位提交投诉、问题反映或情况反映时，直达 `references/genre-playbook-complaint-reflection.md`。
+用户起草、改写或复核新闻稿与编者按、新闻评论（时评）、合作性意见建议、整改方案、投诉或情况反映等非公文兼容场景时，先读 `references/compatibility-scene-routing.md`，再按该页选读对应专页；其他文稿沿用下文路由。
 
 不要为以下任务启用本技能：英文写作、文学创作、营销软文、社交媒体文案、代码说明。
 
@@ -33,7 +25,7 @@ metadata:
 
 ## 使用顺序
 
-先按用户指定的输出模式执行下文“硬边界”，再按“质量建议”优化；资料依“参考资料”表按任务读取。
+先按用户指定的输出模式执行下文“硬边界”，再按“质量建议”优化；资料依 `references/reference-index.md` 的加载条件按任务读取。
 
 ## 任务模式路由与交付模式
 
@@ -56,7 +48,7 @@ metadata:
 
 ## 核心流程
 
-先确定起草、改稿、复核（默认只审不改）、排版交付模式，再按下文“参考资料”表选择 reference。起草、改稿、压缩或合稿已读取 `references/information-selection.md` 后，材料稀疏、短稿、低上下文局部修改或用户明确限定事实时，判断是否命中 `references/task-route-cards.md`；命中 `references/task-route-cards.md` 且卡片能够覆盖任务时，由卡片完成，不再读取长 reference，完成正文后仍执行本文件硬边界和必要的交付复核；未命中时不扩大轻量卡的适用范围。未命中、命中转读条件或卡片不能覆盖时，进入以下完整流程，并按表中任务模式、文种和专项条件读取对应资料。不因文种名称已知而自动预读下列全部长 reference；一次只加载实际命中的表项，叠加关系以表中加载条件为准。
+先确定起草、改稿、复核（默认只审不改）、排版交付模式。首页明确直达的文种或审稿入口按原条件执行；其余资料选择及轻量文种页的优先条件见 `references/reference-index.md`。起草、改稿、压缩或合稿已读取 `references/information-selection.md` 后，材料稀疏、短稿、低上下文局部修改或用户明确限定事实时，判断是否命中 `references/task-route-cards.md`；命中 `references/task-route-cards.md` 且卡片能够覆盖任务时，由卡片完成，不再读取长 reference，完成正文后仍执行本文件硬边界和必要的交付复核；未命中时不扩大轻量卡的适用范围。未命中、命中转读条件或卡片不能覆盖时，回到 `references/reference-index.md` 选择对应资料，再按命中条件进入以下完整流程。不因文种名称已知而自动预读下列全部长 reference；一次只加载实际命中的表项，叠加关系以索引中的加载条件为准。
 
 1. 先判断文稿类别、文种和行文关系，再抽取办理要素，再选择论证链条，最后进入语言和格式复核。
 2. 文种判断以官方规范和 `references/genre-routing.md` 为准。
@@ -93,45 +85,7 @@ metadata:
 
 ## 参考资料
 
-按任务渐进读取资料，不要一次性加载全部文件：
-
-| 文件 | 阶段 | 加载条件 |
-| --- | --- | --- |
-| `README.md` | 能力与使用咨询 | 询问本 Skill 能做什么、适用范围或一般使用方法时先读；按其中的能力答复和功能示例回答。具体写稿继续走文种规则，Hook 专项问题走专用入口。 |
-| `references/information-selection.md` | 起草前/改稿前 | 起草、改稿、压缩或合稿时先读一次，用于按输出模式、材料状态、事项关联性和办理必要性决定信息进入正文、保持状态、省略或短列缺口。 |
-| `references/formulaic-language.md` | 起草中/定稿前 | 起草或复核计划、汇报、调查报告、讲话稿、演讲词、答复、责任书、公开信、倡议书、建议信、新闻发布稿、总结、情况综合、编者按、新闻、短评、讲解稿、宣传手册或宣传材料，且需要核对文种功能、开端、承启、综合或结尾用语时。文种明确、材料单一且该页功能表足以覆盖时，由该页直接结束文种路由；复杂任务再补对应长 reference。 |
-| `references/genre-playbook-advisory-feedback.md` | 按文种选读 | 起草、改写或精简面向政策制定、审核、平台建设运营或材料起草方的合作性意见建议、建议反馈或优化建议时直接读取。 |
-| `references/genre-playbook-complaint-reflection.md` | 按文种选读 | 以本人或本单位亲历方身份起草、改写或精简面向有权处理对象的投诉、问题反映或情况反映时直接读取；尤其用于用户要求只说明自身遇到的问题、不提出解决建议的任务。 |
-| `references/task-route-cards.md` | 起草前/改稿前 | 未被 `formulaic-language.md` 直接叶覆盖，且材料稀疏、短稿、低上下文局部修改，或用户明确要求不新增事实、只按已给材料写时，先判断是否完整命中材料稀疏的情况说明/通报/报告、未决事项会议纪要、短通知/限字通知、二次局部修改四类卡片之一；卡片不能覆盖或任务转为复杂时，再读 `workflow.md`、`genre-playbooks.md` 等长 reference。 |
-| `references/short-draft-naturalness.md` | 起草中/定稿前 | 已由“使用顺序”对只有上限或无硬下限的简短正文前置直达；用于避免短稿复用长报告骨架、同义复述和正文外包装，不负责补足明确下限。 |
-| `references/workflow.md` | 起草前 | 长文、复杂改稿、多材料合稿、任务模式路由、急件处理，或用户要求不要新增小标题、保留主送/落款/标题等结构锁定项时。 |
-| `references/external-research.md` | 按需核验 | 仅在用户明确要求搜索、核验公开来源，或任务包含最新、当前、今日、现行政策、近期数据等时效事实时读取。 |
-| `references/genre-routing.md` | 起草前 | 文种、行文方向或请示/报告/通知/函等边界不明确时。 |
-| `references/handling-elements.md` | 起草前 | 需要核对主体、对象、事项、依据、时限、附件、反馈渠道和请批事项时。 |
-| `references/argument-chains.md` | 起草前 | 需要组织请示、报告、通知、方案、可研、技术材料等论证链条时。 |
-| `references/official-style.md` | 起草中 | 需要统一公文语气、压缩解释腔、去口语化、轻量语气替换或降 AI 味时。 |
-| `references/formal-addressing.md` | 起草中 | 需要处理行文关系、敬语、谦辞、单位称谓或人员称谓时。 |
-| `references/anti-ai-patterns.md` | 复核时 | 检查模板腔、旁白句、二元包装句、思考泄露和项目卡片式摘要时。 |
-| `references/final-review-layers.md` | 定稿前 | 全文交付前按硬边界、质量建议、场景参考分层总审时。 |
-| `references/proofreading-checklist.md` | 定稿前 | 成稿前做 AI 写稿轻量校对，或改写含用户引用、成语、数据、金额、日期、比例、数量的材料时。 |
-| `references/review-direct-checklist.md` | 复核时 | 用户已点名核对范围且只审不改时；与命中的文种叶配合，覆盖后不再加载综合审稿页。 |
-| `references/review-checklist.md` | 定稿前 | 需要段落、小节、全文三级执行清单，或同时核验格式、语气、AI 味等多个层面时。 |
-| `references/genre-playbook-minutes.md` | 按文种选读 | 会议纪要需要常规或完整骨架，或材料已经形成决定、议定事项、责任分工或期限时读取。 |
-| `references/genre-playbook-request.md` | 按文种选读 | 请示、申请需要常规或完整骨架时直接读取。 |
-| `references/genre-checklist-request.md` | 按文种选读 | 只审或细查请示、申请的文种功能和办理要素时读取；同时要求审后改写时与起草叶叠加。 |
-| `references/genre-checklist-feasibility-review.md` | 按文种选读 | 只审或细查可研、可行性研究报告的数据性质、估算依据和文种功能时读取；起草、改写或审后改写仍使用既有 playbook 和论证链。 |
-| `references/genre-playbook-correspondence.md` | 按文种选读 | 普通函起草，以及只改错字、标点、格式或明确局部措辞时读取。 |
-| `references/genre-playbook-work-summary.md` | 按文种选读 | 工作总结、工作要点、周报或月报需要常规或完整骨架时直接读取。 |
-| `references/genre-playbook-remediation-plan.md` | 按文种选读 | 用户明确要求根据检查、审计、督察、评估反馈或问题清单制定本单位整改方案、专项整改方案或整改工作方案时直接读取；该页能够覆盖时不再叠加普通方案叶或材料稀疏任务卡。 |
-| `references/genre-playbook-plan-construction.md` | 按文种选读 | 方案、实施方案或建设方案需要常规或完整骨架时直接读取。 |
-| `references/genre-playbooks.md` | 按文种选读 | 通知、复函、征求意见函、讲话稿、调研/研究/可研、采购公告、审查材料等需要快速进入对应场景骨架时读取；用户提供既有普通函并要求重组事务动作、状态、条件、范围或结构时读取函规则。 |
-| `references/genre-playbook-institution-rules.md` | 按文种选读 | 起草、改写或复核制度、规定、办法、管理办法、实施细则、操作规程，以及需要区分印发通知与制度附件时读取。 |
-| `references/genre-playbook-news-message.md` | 按文种选读 | 用户明确要求编者按、新闻稿、新闻消息、快讯、活动报道、活动新闻稿或新闻通稿时直接读取；材料单一的编者按已由 `formulaic-language.md` 完整覆盖时不重复加载。 |
-| `references/genre-playbook-news-commentary.md` | 按文种选读 | 用户明确将体裁指定为新闻评论、时评或评论员文章时直接读取。 |
-| `references/genre-checklist-report.md` | 按文种选读 | 报告、情况报告或情况说明需要常规或完整骨架、专项写法或细查文种功能和结构时直接读取；命中轻量卡且卡片能够覆盖任务时不重复读取。 |
-| `references/genre-checklist.md` | 按文种选读 | 通知、命令、公报、决议、议案、函、批复、公告、通告、公示、通报、纪要、讲话稿、述职等其他文种细查时。 |
-| `references/format-gbt9704.md` | 按格式选读 | 用户要求 GB/T 9704-2012、Word、docx、红头文件、发文字号、版头版记、附件、印章或版式时。 |
-| `references/ai-compute-docs.md` | 专项选读 | AI 算力、GPU/服务器租赁、模型服务、智算中心、成本比较、SLA、安全或验收等专项起草、改写和完整技术审查时读取；只审既有可研摘要且用户已点名完整性核对项时，本轮停在 `references/genre-checklist-feasibility-review.md`，不因出现上述术语或点名技术指标等缺项转读本页。只有用户另行明确要求起草或改写技术结构、解释某一具体技术主张，或做完整技术审查时再读。普通文种仍按本表相应叶叠加。 |
+本页及索引中的完整文件路径均以 `SKILL.md` 所在目录为根。首页明确直达的文种、审稿入口或已完整命中的任务卡能够覆盖任务时，按原入口执行；未命中任务卡、卡片不能覆盖或需选择其他资料时，读取 `references/reference-index.md`，再只读实际命中的资料。索引只负责选路，不替代专页，不要求逐一读取所有资料。文种直达仍保留原条件下的段落与论证、语言、去 AI 味、校对及格式衔接。
 
 ## 脚本
 
