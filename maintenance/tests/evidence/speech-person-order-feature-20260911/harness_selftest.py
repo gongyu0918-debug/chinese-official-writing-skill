@@ -22,7 +22,7 @@ class ReceiptBoundaryTests(unittest.TestCase):
         for name in ("prompt.txt", "stderr.txt"):
             (self.run / name).write_text("", encoding="utf-8")
 
-    def collect(self, *, model=None, outside=False, result=True, version="0.22.0"):
+    def collect(self, *, model=None, outside=False, result=True, version="0.22.0", body="尊敬的陈主任："):
         route = H.WRITERS[0]
         path = self.run / "outside.md" if outside else self.page
         events = [
@@ -35,7 +35,7 @@ class ReceiptBoundaryTests(unittest.TestCase):
                  "content": "具体称呼先于泛称。"}]}},
         ]
         if result:
-            events.append({"type": "result", "subtype": "success", "is_error": False, "result": "尊敬的陈主任："})
+            events.append({"type": "result", "subtype": "success", "is_error": False, "result": body})
         (self.run / "stdout.jsonl").write_text("\n".join(json.dumps(e, ensure_ascii=False) for e in events), encoding="utf-8")
         return H.collect(self.run, self.snapshot, route, 0, False, None, 0.01,
                          H.settings(route, 240, 12000, "max"), {"installed_package_version": "0.22.0"})
@@ -63,6 +63,18 @@ class ReceiptBoundaryTests(unittest.TestCase):
 
     def test_missing_native_result_does_not_pass(self):
         self.assertEqual(self.collect(result=False)["status"], "INVALID")
+
+    def test_real_prior_api_placeholder_invalidates_writer_and_keeps_native_success(self):
+        # Verbatim prior final: speech-salutation-20260911/output/
+        # speech-salutation-20260911/cold/glm-first-1/final.md, line 1.
+        placeholder = "[API Error: Model stream ended after a tool result without visible progress.]"
+        receipt = self.collect(body=placeholder)
+        self.assertEqual(receipt["status"], "INVALID")
+        self.assertFalse(receipt["technical_valid"])
+        self.assertTrue(receipt["api_error_placeholder"])
+        self.assertEqual(receipt["native_result_subtype"], "success")
+        self.assertEqual(receipt["result_event"]["result"], placeholder)
+        self.assertEqual((self.run / "final.md").read_text(encoding="utf-8"), placeholder)
 
 
 if __name__ == "__main__":

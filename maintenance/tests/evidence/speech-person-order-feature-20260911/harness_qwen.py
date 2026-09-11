@@ -14,6 +14,7 @@ import hashlib
 import json
 import os
 from pathlib import Path
+import re
 import shutil
 import signal
 import subprocess
@@ -214,6 +215,10 @@ def collect(run: Path, snapshot: Path, model: str, code, timed_out: bool, cleanu
     if not isinstance(body, str):
         body = json.dumps(body, ensure_ascii=False)
     (run / "final.md").write_text(body, encoding="utf-8")
+    # A host can emit result/subtype=success while its final body is an API
+    # failure placeholder. Keep that native event and raw body intact; they do
+    # not establish a completed writer/probe just because the string is nonempty.
+    api_error_placeholder = bool(re.match(r"\s*(?:\[\s*)?API\s*Error\s*:", body, re.I))
     reads = [r for r in trace if r["call"].get("name") == "read_file"]
     result_ok = bool(result) and result.get("subtype") == "success" and not result.get("is_error", False)
     model_ok = bool(init) and init.get("model") == model
@@ -222,13 +227,16 @@ def collect(run: Path, snapshot: Path, model: str, code, timed_out: bool, cleanu
     read_boundary = all(r.get("within_snapshot", False) for r in reads)
     tool_boundary = all(c.get("name") in {"read_file", "glob", "grep_search"} for c in calls)
     status = ("UNAVAILABLE" if not model_ok or not version_ok else "TERMINATED" if timed_out or code != 0
-              else "COMPLETE" if result_ok and body.strip() and read_boundary and tool_boundary else "INVALID")
+              else "COMPLETE" if result_ok and body.strip() and not api_error_placeholder
+              and read_boundary and tool_boundary else "INVALID")
     receipt = {"model_requested": model, "actual_client_model": init.get("model") if init else None,
                "init": init, "client_metadata": client_metadata, "client_version_matches": version_ok,
                "configured_effort": config["modelProviders"]["openai"][0]["generationConfig"]["samplingParams"]["reasoning_effort"],
                "effort_evidence": "generationConfig.samplingParams.reasoning_effort; init does not echo effort",
                "model_identity_scope": "Native Qwen Code init identifies configured client route, not upstream wire identity",
                "status": status, "technical_valid": status == "COMPLETE", "exit_code": code,
+               "api_error_placeholder": api_error_placeholder,
+               "native_result_subtype": result.get("subtype") if result else None,
                "timed_out": timed_out, "cleanup": cleanup, "elapsed_seconds": round(elapsed, 3),
                "non_json_line_numbers": malformed, "fresh_session": True, "automatic_retries": 0,
                "hook_enabled": False, "read_paths_within_snapshot": read_boundary,
