@@ -1,0 +1,29 @@
+{
+  "scope": "one identical notice per route using frozen main only, not feature A/B or broad quality ranking",
+  "observations": [
+    {
+      "route": "gpt-5.6-luna",
+      "configured_effort": "max",
+      "status": "COMPLETE",
+      "elapsed_seconds": 43.817,
+      "required_anchors_preserved": true,
+      "nonwhitespace_chars": 114,
+      "within_220_chars": true,
+      "root_review": "Complete usable notice; no process wrapper or unsupported arrangement found. Genre closing phrase not treated as new fact.",
+      "final_sha256": "e2b8c13026ff06ad1ae8ec5a63a054a6fdba8bdbe9398e045be9a9c80d7e7a11",
+      "receipt_sha256": "8bfeb28ef6d967ad64e040444d05256d736f309856d5d803c2dec493b783a46f"
+    },
+    {
+      "route": "ollama-cloud/deepseek-v4.1-flash",
+      "configured_effort": "max",
+      "status": "COMPLETE",
+      "elapsed_seconds": 51.581,
+      "required_anchors_preserved": true,
+      "nonwhitespace_chars": 113,
+      "within_220_chars": true,
+      "root_review": "Complete usable notice; no process wrapper or unsupported arrangement found. Genre closing phrase not treated as new fact.",
+      "final_sha256": "0d27dddd6f5c3bafdd454be29ffd9dd572a59825a9f92af8c1a23943375920b9",
+      "receipt_sha256": "0ed723a591bddfb4dad68446971dcbf5ce14cff18ea3d57dd252a6a697b92bdb"
+    }
+  ]
+}
