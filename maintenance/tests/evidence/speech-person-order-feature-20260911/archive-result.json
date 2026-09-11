@@ -1,0 +1,23 @@
+{
+  "scope": "Speech person-order feature evidence archive; maintenance result only",
+  "archive_directory": "F:/Workspaces/chinese-official-writing-skill-archives/experiments/speech-person-order-feature-20260911-final",
+  "archive_zip": "F:/Workspaces/chinese-official-writing-skill-archives/experiments/speech-person-order-feature-20260911-final.zip",
+  "archive_manifest_sha256": "f1afc1dfb337a7de3bb941def331725e02baa2c481875545bcfb77a95afbce60",
+  "archive_receipt_sha256": "15a79ca9ecf46c605017523ad71e31020e046f5801d331a767cc139015ae5a11",
+  "archive_zip_sha256": "db1832e55c8a6a13500db9ffd8e8cc2e8898f1abd5df98989e6e08a92e83ea5f",
+  "allowlisted_files": 490,
+  "zip_members": 491,
+  "bound_completed_calls": {"feature_writers": 16, "feature_cold_reviews": 4, "separate_availability_probes": 2},
+  "writer_technical_readback": true,
+  "destination_file_hash_readback": true,
+  "zip_member_hash_readback": true,
+  "immutable_manifest_in_zip_verified": true,
+  "excluded_directory_hits": 0,
+  "excluded_content": ["home", "cache", "__pycache__", "auth", "workspace", "node_modules"],
+  "deprecated_attempt": {
+    "directory": "F:/Workspaces/chinese-official-writing-skill-archives/experiments/speech-person-order-feature-20260911",
+    "reason": "Initial archive attempt included four Python __pycache__ files; preserved as a failed attempt and excluded from final references.",
+    "final_archive_replaced": true
+  },
+  "post_archive_mutation": "archive-manifest.json and ZIP were not modified after readback; this result file is outside the ZIP."
+}
