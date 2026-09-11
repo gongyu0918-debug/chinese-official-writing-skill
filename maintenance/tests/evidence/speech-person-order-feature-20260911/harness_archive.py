@@ -206,22 +206,30 @@ def archive(args):
     zip_path = destination.with_suffix(".zip")
     if zip_path.exists():
         raise SystemExit("Archive ZIP already exists; refusing overwrite")
+    zip_members = file_paths + ["archive-manifest.json"]
     with zipfile.ZipFile(zip_path, "x", compression=zipfile.ZIP_DEFLATED) as archive:
         for relative in file_paths:
             archive.write(destination / relative, relative)
+        archive.write(manifest_path, "archive-manifest.json")
     with zipfile.ZipFile(zip_path, "r") as archive:
         names = sorted(archive.namelist())
-        if names != file_paths:
+        if names != sorted(zip_members):
             raise AssertionError("ZIP member set differs from allowlisted destination files")
         for item in copied:
             data = archive.read(item["destination"])
             if len(data) != item["bytes"] or hashlib.sha256(data).hexdigest() != item["sha256"]:
                 raise AssertionError(f"ZIP readback hash mismatch: {item['destination']}")
-    manifest.update(zip_path=str(zip_path), zip_sha256=digest(zip_path), zip_file_count=len(names),
-                    destination_readback_verified=True, zip_readback_verified=True)
-    manifest_path.write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+        if archive.read("archive-manifest.json") != manifest_path.read_bytes():
+            raise AssertionError("ZIP archive-manifest.json differs from external manifest")
+    receipt = {"created_utc": datetime.now(timezone.utc).isoformat(), "zip_path": str(zip_path),
+               "zip_sha256": digest(zip_path), "zip_file_count": len(names),
+               "destination_readback_verified": True, "zip_readback_verified": True,
+               "manifest_sha256": digest(manifest_path), "manifest_path": str(manifest_path)}
+    receipt_path = destination / "archive-receipt.json"
+    receipt_path.write_text(json.dumps(receipt, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     print(json.dumps({"destination": str(destination), "copied_files": len(copied), "manifest": str(manifest_path),
-                      "zip": str(zip_path), "zip_file_count": len(names), "readback_verified": True}), flush=True)
+                      "zip": str(zip_path), "zip_file_count": len(names), "readback_verified": True,
+                      "receipt": str(receipt_path)}), flush=True)
 
 
 def main():
