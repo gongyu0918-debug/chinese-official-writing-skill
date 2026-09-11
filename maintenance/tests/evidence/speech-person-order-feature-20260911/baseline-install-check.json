@@ -1,0 +1,240 @@
+{
+  "main_commit": "dafc35f9aad594ac6cebf76bd4caf2e1b80a1ba8",
+  "source_signature": "59918082e2068c9756e47d607e5250afcc3d05832dcfcbdc0ac6b85e30d15928",
+  "activation_state": "ENABLED",
+  "installed_mit_root": "C:\\Users\\admin\\AppData\\Local\\OfficialWritingPaid\\local-main-follow\\builds\\59918082e2068c9756e4\\installed\\versions\\0.4.15-official-writing-paid-overlay-0-4-15\\skill\\mit",
+  "files": [
+    {
+      "path": "ENTRY.md",
+      "canonical": "SKILL.md",
+      "sha256": "63ef62ba751591afed4927e5dfc0f8171954214a74ee08b79fc2eb8e3602b4d4"
+    },
+    {
+      "path": "README.md",
+      "canonical": "README.md",
+      "sha256": "bf8af51dcb5988ace3eba17528ed020f68d2aa0bd48fabb82f1e421d4d26ec4f"
+    },
+    {
+      "path": "references/ai-compute-docs.md",
+      "canonical": "references/ai-compute-docs.md",
+      "sha256": "5a0219ce7abb8702b4aa4ece39cfdb225feb6b52df08b555a5e2ecffc689b3a1"
+    },
+    {
+      "path": "references/ai-compute-examples.md",
+      "canonical": "references/ai-compute-examples.md",
+      "sha256": "f0503f82e26220e368797a56a04f924e9738daf774c5163b88689de71cfd9b96"
+    },
+    {
+      "path": "references/anti-ai-patterns.md",
+      "canonical": "references/anti-ai-patterns.md",
+      "sha256": "8e2c76ae9e2acdef17c9102c882b32751a22897908550fcc55ed0646f52bbee8"
+    },
+    {
+      "path": "references/argument-chains.md",
+      "canonical": "references/argument-chains.md",
+      "sha256": "dbe855c11eba2c35726aa383101a7c3a7d13c93226a6c98e2f7bc221d29209bf"
+    },
+    {
+      "path": "references/compatibility-scene-routing.md",
+      "canonical": "references/compatibility-scene-routing.md",
+      "sha256": "166fe77834de249ace66da413a28842d818b8669c4d0eb706db1f9a587c2b67d"
+    },
+    {
+      "path": "references/compression-details.md",
+      "canonical": "references/compression-details.md",
+      "sha256": "21ba0dd4faa1f556201b329349ea895be62760e9c932fdcbad2b4088cd4ab9bd"
+    },
+    {
+      "path": "references/delivery-review-gate.md",
+      "canonical": "references/delivery-review-gate.md",
+      "sha256": "1c5fb0bbb687282ce0e0023efdfc07940ea0d5f75b7c53de591747a8c78a17e2"
+    },
+    {
+      "path": "references/external-research.md",
+      "canonical": "references/external-research.md",
+      "sha256": "e3c719b4b848a94f47cda2faaa85acee7cfdb035a289b4f9d40b6b9806f6af35"
+    },
+    {
+      "path": "references/field-editing.md",
+      "canonical": "references/field-editing.md",
+      "sha256": "1155507fe9a0ba70da22372a14926f78baaf82cf3e273c0e3a0341b80040e33c"
+    },
+    {
+      "path": "references/final-review-layers.md",
+      "canonical": "references/final-review-layers.md",
+      "sha256": "de166db769d7e078121a5b2d81a1b9fec4c2112e380b14c446eea6a5d8ed305a"
+    },
+    {
+      "path": "references/formal-addressing.md",
+      "canonical": "references/formal-addressing.md",
+      "sha256": "4fe40b280d3f09faac845bc23526aa2a62633da7fb6f22e57d61f572d3291a96"
+    },
+    {
+      "path": "references/format-gbt9704.md",
+      "canonical": "references/format-gbt9704.md",
+      "sha256": "01ca736728ba08df703d8cdc63dcbedcb474dd18059a7fcbdde0ce3cfe1d7fd6"
+    },
+    {
+      "path": "references/formulaic-language.md",
+      "canonical": "references/formulaic-language.md",
+      "sha256": "a4940b83c337ec5e0a7f0389de49113df8ccf3ae012b5c3fc498f0982b73bb16"
+    },
+    {
+      "path": "references/genre-checklist-feasibility-review.md",
+      "canonical": "references/genre-checklist-feasibility-review.md",
+      "sha256": "8ccfa9923dd38ff5390c6234c85dcdcd8b8753863ff00b0a460c5bc171bdd1b7"
+    },
+    {
+      "path": "references/genre-checklist-report.md",
+      "canonical": "references/genre-checklist-report.md",
+      "sha256": "e6b42379ed812e8ef8217e6358fc9fae586a571d2a6c0783829f25fda30e713e"
+    },
+    {
+      "path": "references/genre-checklist-request.md",
+      "canonical": "references/genre-checklist-request.md",
+      "sha256": "b011444af07dab83a5f61099e3589abd8bf49c9f8addf3c180f7db393f1ef44f"
+    },
+    {
+      "path": "references/genre-checklist.md",
+      "canonical": "references/genre-checklist.md",
+      "sha256": "745f2d7b35beb8562acf8d4e6d2198e48fe419eb6439af35ca5dad860b4df29c"
+    },
+    {
+      "path": "references/genre-playbook-advisory-feedback.md",
+      "canonical": "references/genre-playbook-advisory-feedback.md",
+      "sha256": "c6256e8e4be04c16ce5d3a050a45b85734a1acdadcb4972e65ad9e3c5e045c7f"
+    },
+    {
+      "path": "references/genre-playbook-complaint-reflection.md",
+      "canonical": "references/genre-playbook-complaint-reflection.md",
+      "sha256": "7bf4c0615858c3422fdc712624d32398a5ac16332d6197bb192bf44c2c6e2bab"
+    },
+    {
+      "path": "references/genre-playbook-correspondence.md",
+      "canonical": "references/genre-playbook-correspondence.md",
+      "sha256": "03dc8110d804fee6d1241a5adbc63d0e13bbb178b483412196dfe419b64446d5"
+    },
+    {
+      "path": "references/genre-playbook-institution-rules.md",
+      "canonical": "references/genre-playbook-institution-rules.md",
+      "sha256": "f10d04e86c50deefea05198fddb2a422cf0799a6433d8a726b012c2d58e17928"
+    },
+    {
+      "path": "references/genre-playbook-minutes.md",
+      "canonical": "references/genre-playbook-minutes.md",
+      "sha256": "ce1b195a3aa043268e4452355a001366f4008727be5692336c8859208f181bb5"
+    },
+    {
+      "path": "references/genre-playbook-news-commentary.md",
+      "canonical": "references/genre-playbook-news-commentary.md",
+      "sha256": "4bc3a2670ce10e4d6946ebe8d5b66edc9ac3f12a399b305d585d46bad2267347"
+    },
+    {
+      "path": "references/genre-playbook-news-message.md",
+      "canonical": "references/genre-playbook-news-message.md",
+      "sha256": "a3c503d493b3fc7b65524d2dfa43849a4f2d33dbf67fd09a346af12c1238f601"
+    },
+    {
+      "path": "references/genre-playbook-plan-construction.md",
+      "canonical": "references/genre-playbook-plan-construction.md",
+      "sha256": "f0719d7884e13afc967fbc6d3383ade3f9f06f36cac7e46cdea91fba85d3e24a"
+    },
+    {
+      "path": "references/genre-playbook-project-application.md",
+      "canonical": "references/genre-playbook-project-application.md",
+      "sha256": "bcc4b8429aa23f065c7f22b7928476c21c1967cca0454911c3b565f5000b6caa"
+    },
+    {
+      "path": "references/genre-playbook-remediation-plan.md",
+      "canonical": "references/genre-playbook-remediation-plan.md",
+      "sha256": "70ba20fb0f119067de45c972e9481a2f2fc009ae547912b871d08e7f7a133ec7"
+    },
+    {
+      "path": "references/genre-playbook-request.md",
+      "canonical": "references/genre-playbook-request.md",
+      "sha256": "458a3353b9254256cf6302cae738a5372964328cb3bbf9cf78bab97550b62b88"
+    },
+    {
+      "path": "references/genre-playbook-work-summary.md",
+      "canonical": "references/genre-playbook-work-summary.md",
+      "sha256": "ab34551c8df751bf4a7d882a5f5f1ee8d12291e735e3f45cf8ad1e1d4c68e026"
+    },
+    {
+      "path": "references/genre-playbooks.md",
+      "canonical": "references/genre-playbooks.md",
+      "sha256": "d209e23f5496d34aa0fabf1449f7cd2ca44bdc318778f3a81a5839c414de343b"
+    },
+    {
+      "path": "references/genre-routing.md",
+      "canonical": "references/genre-routing.md",
+      "sha256": "f31c8433417923d4064e75358cec53f41d30b135c7fd40699758077feddf19b2"
+    },
+    {
+      "path": "references/handling-elements.md",
+      "canonical": "references/handling-elements.md",
+      "sha256": "e652dac11d5fec9458cc6bb63d41e884e206b359dfe6776731016b7c7a8e7fa4"
+    },
+    {
+      "path": "references/information-selection.md",
+      "canonical": "references/information-selection.md",
+      "sha256": "e20c2b18cddab4cb0e4ba0ce4ddcd8b849314c4f30ee4d1c6f16216b9f630aff"
+    },
+    {
+      "path": "references/official-style.md",
+      "canonical": "references/official-style.md",
+      "sha256": "82b97cc58bca9fce3f81c79ece4a5804d17a1869a5bbd3f6de191612440d505a"
+    },
+    {
+      "path": "references/proofreading-checklist.md",
+      "canonical": "references/proofreading-checklist.md",
+      "sha256": "aa56802a0e984aadb1deed4603181fc85b237b8c534ae0973e3c9d9413d859d2"
+    },
+    {
+      "path": "references/prose-lint-usage.md",
+      "canonical": "references/prose-lint-usage.md",
+      "sha256": "86ee58fbdf9b8b13d9f945bb8d99d83986f25f5720a4ecdb4340e3aec2cef900"
+    },
+    {
+      "path": "references/reference-index.md",
+      "canonical": "references/reference-index.md",
+      "sha256": "c80901d483c882e702aa8adb66062e8e5f3bf9d1185bd8c3fd7bc450334c6bb0"
+    },
+    {
+      "path": "references/review-checklist.md",
+      "canonical": "references/review-checklist.md",
+      "sha256": "e2f4345b1f37baf990add8c8f1cd9879cb362d3594b1126459492945754182ac"
+    },
+    {
+      "path": "references/review-direct-checklist.md",
+      "canonical": "references/review-direct-checklist.md",
+      "sha256": "ae0b2fa2a9bbb778be215f9728d6ba836ace16166ca15235af90ca9ef2bceadf"
+    },
+    {
+      "path": "references/short-draft-naturalness.md",
+      "canonical": "references/short-draft-naturalness.md",
+      "sha256": "100b89b6216d872f35b568164f13b4bcc448346b1dd39d9b100fa9bf6f30f7ba"
+    },
+    {
+      "path": "references/structure-editing.md",
+      "canonical": "references/structure-editing.md",
+      "sha256": "3efacd465e7c7a643c25f52a158368f20de29eb6d8de5628676ac8e0ce675259"
+    },
+    {
+      "path": "references/task-route-cards.md",
+      "canonical": "references/task-route-cards.md",
+      "sha256": "5486d59cfaafd25f6b49623d2f7b4e0559183edb325fda6809c32cc65a273a0d"
+    },
+    {
+      "path": "references/technical-terms.md",
+      "canonical": "references/technical-terms.md",
+      "sha256": "681cd74bb3fc3ed6d2c210a64b174a6bf0275491eedd7e535b9330ea264cab5b"
+    },
+    {
+      "path": "references/workflow.md",
+      "canonical": "references/workflow.md",
+      "sha256": "a09bde8fa3ae518923ea5b6cbcc2beafd8047d206fc1dcd07d8e06d4cb6d2c67"
+    }
+  ],
+  "count": 46,
+  "all_raw_bytes_equal": true
+}

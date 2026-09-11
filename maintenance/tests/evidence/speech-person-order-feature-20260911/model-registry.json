@@ -1,0 +1,18 @@
+{
+  "host": "local Qwen-compatible model registry, not native Codex inventory",
+  "routine": {
+    "alibaba-token-plan/qwen3.8-flash": true,
+    "alibaba-token-plan-2/qwen3.8-flash": true,
+    "command-code-auth/deepseek-deepseek-v4.1-flash": false,
+    "minimax-cn/minimax-m3": false,
+    "ollama-cloud/deepseek-v4.1-flash": true,
+    "gpt-5.6-luna": true
+  },
+  "advanced": {
+    "alibaba-token-plan/qwen3.8-max": true,
+    "alibaba-token-plan-2/qwen3.8-max": true,
+    "ollama-cloud/glm-5.3": true,
+    "xai/grok-4.6": true
+  },
+  "note": "Exact registry membership is not real-writing proof; no aliases substituted."
+}

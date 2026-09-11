@@ -1,0 +1,17 @@
+{
+  "purpose": "Answer the user's added question about real-writing usability of the new routine models, separate from feature A/B admission.",
+  "routes": ["ollama-cloud/deepseek-v4.1-flash", "gpt-5.6-luna"],
+  "effort": "max",
+  "source_arm": "baseline",
+  "attempts_per_route": 1,
+  "automatic_retries": 0,
+  "timeout_seconds": 600,
+  "request_timeout_seconds": 240,
+  "max_output_tokens": 12000,
+  "prompt_file": "availability-task.txt",
+  "not_selected": {
+    "command-code-auth/deepseek-deepseek-v4.1-flash": "Exact name not present in current local registry; command-code is not silently substituted.",
+    "minimax-cn/minimax-m3": "Exact name not present in current local registry; case variant is not silently substituted."
+  },
+  "limits": "One main-baseline draft per route establishes only a bounded usability observation, not broad writing quality or candidate noninferiority. Native Qwen init records the configured client route, not upstream wire identity."
+}
