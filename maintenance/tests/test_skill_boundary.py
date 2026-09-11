@@ -483,14 +483,14 @@ class SkillBoundaryTests(unittest.TestCase):
             self.assertNotIn(duplicated_leaf, core)
 
     def test_lightened_routes_preserve_reviewed_conditions(self) -> None:
-        # f171e82f preserved 36 table rows and five scene routes; C2 updates only the two correspondence selectors.
+        # f171e82f preserved 36 table rows; the person-order leaf adds one routed row while keeping five scene routes.
         index = (CANONICAL / "references/reference-index.md").read_text(encoding="utf-8")
         scenes = (CANONICAL / "references/compatibility-scene-routing.md").read_text(encoding="utf-8")
         rows = [line for line in (index + "\n" + scenes).splitlines()
                 if line.startswith("| `") and not line.startswith("| `references/compatibility-scene-routing.md`")]
-        self.assertEqual(len(rows), 36)
-        self.assertEqual(len(set(rows)), 36)
-        self.assertEqual(hashlib.sha256("\n".join(sorted(rows)).encode()).hexdigest(), "6f02535515165cdeb7a8867c74907a9c40e925dea7be4cbcf9e2fb0c642da021")
+        self.assertEqual(len(rows), 37)
+        self.assertEqual(len(set(rows)), 37)
+        self.assertEqual(hashlib.sha256("\n".join(sorted(rows)).encode()).hexdigest(), "8b61978940a13e42fef8e6a507b462f836b9e028665128ec6d5bf87145811d62")
         routes = [line for line in scenes.splitlines() if line.startswith("用户")]
         self.assertEqual(len(routes), 5)
         self.assertEqual(hashlib.sha256("\n".join(sorted(routes)).encode()).hexdigest(), "8a04cfe2d488755cb469ef5176cde7f3e5f10be6dcdfb864b7980d92840beeb4")
