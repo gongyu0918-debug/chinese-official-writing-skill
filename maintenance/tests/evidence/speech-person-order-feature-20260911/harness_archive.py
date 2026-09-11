@@ -33,7 +33,7 @@ KEEP_FILES = {
     "availability-task.txt",
     "baseline-install-check.json", "engineering-result.md", "root-adjudication.md", "scope-clarification.md",
 }
-EXCLUDE_DIRS = {"home", ".qwen", "cache", "auth", "workspace", ".git", "node_modules"}
+EXCLUDE_DIRS = {"home", ".qwen", "cache", "__pycache__", ".pytest_cache", "auth", "workspace", ".git", "node_modules"}
 KEEP_DIRS = {"prompts", "cold-packets", "cold-mappings", "anonymous", "mappings", "frozen", "availability"}
 
 
