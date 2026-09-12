@@ -258,6 +258,24 @@ class ProseLintStructureTests(unittest.TestCase):
         self.assertTrue(any(item.label == "delivery-explanation" and item.severity == "high" for item in by_line[2]))
         self.assertTrue(any(item.label == "english-thought-fragment" and item.severity == "high" for item in by_line[3]))
 
+    def test_delivery_mode_catches_skill_reading_prefaces(self) -> None:
+        texts = [
+            "已按要求读取 Skill入口与文种路由，并对照决定骨架，正文如下：",
+            "已按 Skill 起草并复核完成，以下为正文：",
+            "已读取 Skill 主文件与命中资料，成稿如下：",
+            "本轮按任务要求复核完成，稿件如下：",
+        ]
+
+        for text in texts:
+            with self.subTest(text=text):
+                findings = prose_lint.scan("<test>", text, delivery_mode="draft-body")
+                self.assertTrue(
+                    any(
+                        item.label == "delivery-explanation" and item.severity == "high"
+                        for item in findings
+                    )
+                )
+
     def test_draft_body_flags_common_delivery_metadata_without_a_raw_word_ban(self) -> None:
         leaked = [
             "本稿为脱敏版，仅供内部核对。",
