@@ -1,0 +1,23 @@
+{
+  "note": "Exact unified patches are archived losslessly. Their mandatory single-space blank context lines are data, so only archive pointers are stored in Git; no patch content was stripped to satisfy whitespace checks.",
+  "patches": [
+    {
+      "name": "changes.diff",
+      "archive_record": "archive-e.json",
+      "member": "output/common-layer-experiment-r10/changes.diff",
+      "sha256": "f43fe4f4192ef43a1f002ee9d61017121deba457233872ff06a240757ee9a8d5"
+    },
+    {
+      "name": "r12-changes.diff",
+      "archive_record": "archive-f.json",
+      "member": "output/common-layer-unified-r12/changes.diff",
+      "sha256": "ff8b9190ba12873e94cf5d09ec583b1f079df0c1277b76920d1cc21ba4b71c6c"
+    },
+    {
+      "name": "r13-changes.diff",
+      "archive_record": "archive-f.json",
+      "member": "output/common-layer-index-r13/changes.diff",
+      "sha256": "b30774167c0e49835393fa9b57afc982ad4454b25e4f18d4edb70c15ff7e3203"
+    }
+  ]
+}

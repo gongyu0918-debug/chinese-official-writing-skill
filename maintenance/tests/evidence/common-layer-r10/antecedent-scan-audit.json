@@ -1,0 +1,493 @@
+{
+  "method": "Read-only reconciliation of existing R8 traces; no script execution. File-change events prove intervening edits but contain no patch content. Lack of stdin transport evidence is not proof of the exact bytes read. No saved old input hashes are invented.",
+  "source_sha256": "dff28a475f4d8866ab2e4dda1e7c07d59ee57324d0cb1b4950e41cda360c9ce0",
+  "records": [
+    {
+      "model": "alibaba-token-plan/qwen3.8-flash",
+      "case": "guards_plain_titles",
+      "arm": "candidate",
+      "classification": "single_scan",
+      "trace": "output/combined-native-r8-text/m0-guards_plain_titles-candidate.trace.jsonl",
+      "trace_sha256": "7c668a2e6eb1487fd1165b1984472c12019b502e9d11204eb80ba4276537abfe",
+      "scans": [
+        {
+          "command_index": 8,
+          "trace_line": 20,
+          "item_id": "item_8",
+          "exit_code": 0,
+          "stdout": "No prose risks found.\r\n",
+          "file_change_events_since_previous_scan": []
+        }
+      ]
+    },
+    {
+      "model": "alibaba-token-plan/qwen3.8-flash",
+      "case": "guards_business_marks",
+      "arm": "candidate",
+      "classification": "same_path_added_flags",
+      "trace": "output/combined-native-r8-text/m0-guards_business_marks-candidate.trace.jsonl",
+      "trace_sha256": "334e63cca7a7a6fdb5c2b8dc3a31fba841796ef44b05dd2bcaf4477b88d8ad92",
+      "scans": [
+        {
+          "command_index": 13,
+          "trace_line": 30,
+          "item_id": "item_13",
+          "exit_code": 0,
+          "stdout": "No prose risks found.\r\n",
+          "file_change_events_since_previous_scan": []
+        },
+        {
+          "command_index": 14,
+          "trace_line": 32,
+          "item_id": "item_14",
+          "exit_code": 0,
+          "stdout": "No prose risks found.\r\n",
+          "file_change_events_since_previous_scan": []
+        }
+      ]
+    },
+    {
+      "model": "alibaba-token-plan/qwen3.8-flash",
+      "case": "scope_analysis_dedupe",
+      "arm": "candidate",
+      "classification": "single_scan",
+      "trace": "output/combined-native-r8-text/m0-scope_analysis_dedupe-candidate.trace.jsonl",
+      "trace_sha256": "8521a5c633a522bd8771ed331061965e762e41b859a5b99991a49ba1989dd287",
+      "scans": [
+        {
+          "command_index": 10,
+          "trace_line": 26,
+          "item_id": "item_11",
+          "exit_code": 0,
+          "stdout": "No prose risks found.\r\n",
+          "file_change_events_since_previous_scan": [
+            {
+              "trace_line": 24,
+              "item_id": "item_10",
+              "changes": [
+                {
+                  "path": "C:\\Users\\admin\\AppData\\Local\\Temp\\cow-native-combined-native-r8-text-vza4s1cu\\m0-scope_analysis_dedupe-candidate\\workspace\\_draft_scan.txt",
+                  "kind": "add"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "model": "alibaba-token-plan/qwen3.8-flash",
+      "case": "guards_grammar_quote",
+      "arm": "baseline",
+      "classification": "single_scan",
+      "trace": "output/combined-native-r8-text/m0-guards_grammar_quote-baseline.trace.jsonl",
+      "trace_sha256": "9e19b7a2bf1510b342e5e147b96a68ee1778ddeade321f339ba0773d4527491c",
+      "scans": [
+        {
+          "command_index": 7,
+          "trace_line": 19,
+          "item_id": "item_8",
+          "exit_code": 0,
+          "stdout": "[]\r\n",
+          "file_change_events_since_previous_scan": []
+        }
+      ]
+    },
+    {
+      "model": "alibaba-token-plan/qwen3.8-flash",
+      "case": "guards_grammar_quote",
+      "arm": "candidate",
+      "classification": "original_and_revised",
+      "trace": "output/combined-native-r8-text/m0-guards_grammar_quote-candidate.trace.jsonl",
+      "trace_sha256": "6ef53bb4c6a391b900956c0669a07c2f1ee1f299f585e3dd33b18572170076cf",
+      "scans": [
+        {
+          "command_index": 6,
+          "trace_line": 18,
+          "item_id": "item_7",
+          "exit_code": 0,
+          "stdout": "No prose risks found.\r\n",
+          "file_change_events_since_previous_scan": [
+            {
+              "trace_line": 16,
+              "item_id": "item_6",
+              "changes": [
+                {
+                  "path": "C:\\Users\\admin\\AppData\\Local\\Temp\\cow-native-combined-native-r8-text-vza4s1cu\\m0-guards_grammar_quote-candidate\\workspace\\_review_fixed.txt",
+                  "kind": "add"
+                },
+                {
+                  "path": "C:\\Users\\admin\\AppData\\Local\\Temp\\cow-native-combined-native-r8-text-vza4s1cu\\m0-guards_grammar_quote-candidate\\workspace\\_review_orig.txt",
+                  "kind": "add"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "command_index": 7,
+          "trace_line": 20,
+          "item_id": "item_8",
+          "exit_code": 0,
+          "stdout": "No prose risks found.\r\n",
+          "file_change_events_since_previous_scan": []
+        }
+      ]
+    },
+    {
+      "model": "alibaba-token-plan/qwen3.8-flash",
+      "case": "scope_state_unspecified",
+      "arm": "candidate",
+      "classification": "same_path_added_flags",
+      "trace": "output/combined-native-r8-text/m0-scope_state_unspecified-candidate.trace.jsonl",
+      "trace_sha256": "24a6b6c78db7de1752ae7930ddee34740706d24fa7e033c09afca1afa450b0c8",
+      "scans": [
+        {
+          "command_index": 13,
+          "trace_line": 30,
+          "item_id": "item_13",
+          "exit_code": 0,
+          "stdout": "No prose risks found.\r\n",
+          "file_change_events_since_previous_scan": []
+        },
+        {
+          "command_index": 15,
+          "trace_line": 34,
+          "item_id": "item_15",
+          "exit_code": 0,
+          "stdout": "No prose risks found.\r\n",
+          "file_change_events_since_previous_scan": []
+        }
+      ]
+    },
+    {
+      "model": "alibaba-token-plan/qwen3.8-flash",
+      "case": "draft_date_missing",
+      "arm": "candidate",
+      "classification": "single_scan",
+      "trace": "output/combined-native-r8-text/m0-draft_date_missing-candidate.trace.jsonl",
+      "trace_sha256": "26d9285365c10bbf3ca1dcad5dc8ff541407e2d3ff02d05be1f4482032bdef76",
+      "scans": [
+        {
+          "command_index": 15,
+          "trace_line": 39,
+          "item_id": "item_20",
+          "exit_code": 0,
+          "stdout": "No prose risks found.\r\n",
+          "file_change_events_since_previous_scan": []
+        }
+      ]
+    },
+    {
+      "model": "command-code/deepseek-deepseek-v4.1-flash",
+      "case": "guards_plain_titles",
+      "arm": "candidate",
+      "classification": "single_scan",
+      "trace": "output/combined-native-r8-text/m2-guards_plain_titles-candidate.trace.jsonl",
+      "trace_sha256": "586e9083fdab96d53eabda8c93e2c1b5d841ee2aae876e9bb08a77f0537a2f64",
+      "scans": [
+        {
+          "command_index": 15,
+          "trace_line": 40,
+          "item_id": "item_20",
+          "exit_code": 0,
+          "stdout": "No prose risks found.\r\n",
+          "file_change_events_since_previous_scan": [
+            {
+              "trace_line": 36,
+              "item_id": "item_18",
+              "changes": [
+                {
+                  "path": "C:\\Users\\admin\\AppData\\Local\\Temp\\cow-native-combined-native-r8-text-vza4s1cu\\m2-guards_plain_titles-candidate\\workspace\\.tmp-lint-draft.txt",
+                  "kind": "add"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "model": "command-code/deepseek-deepseek-v4.1-flash",
+      "case": "guards_business_marks",
+      "arm": "baseline",
+      "classification": "single_scan",
+      "trace": "output/combined-native-r8-text/m2-guards_business_marks-baseline.trace.jsonl",
+      "trace_sha256": "a862f46335c1df4ca5afc5441ec2f50234d266cbdbaabb59778890cfe7e00d0d",
+      "scans": [
+        {
+          "command_index": 14,
+          "trace_line": 33,
+          "item_id": "item_15",
+          "exit_code": 0,
+          "stdout": "No prose risks found.\r\n",
+          "file_change_events_since_previous_scan": []
+        }
+      ]
+    },
+    {
+      "model": "command-code/deepseek-deepseek-v4.1-flash",
+      "case": "guards_business_marks",
+      "arm": "candidate",
+      "classification": "single_scan",
+      "trace": "output/combined-native-r8-text/m2-guards_business_marks-candidate.trace.jsonl",
+      "trace_sha256": "89eb763a95fb024797e5ab789fe663d87097294945bc0d2db8dcf0125bbd3c49",
+      "scans": [
+        {
+          "command_index": 19,
+          "trace_line": 44,
+          "item_id": "item_20",
+          "exit_code": 0,
+          "stdout": "No prose risks found.\r\n",
+          "file_change_events_since_previous_scan": [
+            {
+              "trace_line": 42,
+              "item_id": "item_19",
+              "changes": [
+                {
+                  "path": "C:\\Users\\admin\\AppData\\Local\\Temp\\cow-native-combined-native-r8-text-vza4s1cu\\m2-guards_business_marks-candidate\\workspace\\.tmp-lint\\draft.md",
+                  "kind": "add"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "model": "command-code/deepseek-deepseek-v4.1-flash",
+      "case": "scope_analysis_dedupe",
+      "arm": "candidate",
+      "classification": "revision_between_scans",
+      "trace": "output/combined-native-r8-text/m2-scope_analysis_dedupe-candidate.trace.jsonl",
+      "trace_sha256": "c5a8495fcb2d9fb3707d37dd0cbd2fa8fd2abbffc4707e8c01da65f1765a0a2f",
+      "scans": [
+        {
+          "command_index": 13,
+          "trace_line": 32,
+          "item_id": "item_14",
+          "exit_code": 0,
+          "stdout": "No prose risks found.\r\n",
+          "file_change_events_since_previous_scan": [
+            {
+              "trace_line": 30,
+              "item_id": "item_13",
+              "changes": [
+                {
+                  "path": "C:\\Users\\admin\\AppData\\Local\\Temp\\cow-native-combined-native-r8-text-vza4s1cu\\m2-scope_analysis_dedupe-candidate\\workspace\\.lint-tmp\\draft.md",
+                  "kind": "add"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "command_index": 15,
+          "trace_line": 38,
+          "item_id": "item_17",
+          "exit_code": 0,
+          "stdout": "No prose risks found.\r\n",
+          "file_change_events_since_previous_scan": [
+            {
+              "trace_line": 36,
+              "item_id": "item_16",
+              "changes": [
+                {
+                  "path": "C:\\Users\\admin\\AppData\\Local\\Temp\\cow-native-combined-native-r8-text-vza4s1cu\\m2-scope_analysis_dedupe-candidate\\workspace\\.lint-tmp\\draft.md",
+                  "kind": "update"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "model": "command-code/deepseek-deepseek-v4.1-flash",
+      "case": "guards_grammar_quote",
+      "arm": "candidate",
+      "classification": "stdin_input_unproven_then_original_and_revised",
+      "trace": "output/combined-native-r8-text/m2-guards_grammar_quote-candidate.trace.jsonl",
+      "trace_sha256": "17e6e47fe14e457dffca6cf210f481809618b19088a8405c9a35c2984374c963",
+      "scans": [
+        {
+          "command_index": 8,
+          "trace_line": 23,
+          "item_id": "item_11",
+          "exit_code": 0,
+          "stdout": "No prose risks found.\r\n",
+          "file_change_events_since_previous_scan": []
+        },
+        {
+          "command_index": 9,
+          "trace_line": 25,
+          "item_id": "item_12",
+          "exit_code": 0,
+          "stdout": "No prose risks found.\r\n",
+          "file_change_events_since_previous_scan": []
+        },
+        {
+          "command_index": 10,
+          "trace_line": 27,
+          "item_id": "item_13",
+          "exit_code": 0,
+          "stdout": "No prose risks found.\r\n",
+          "file_change_events_since_previous_scan": []
+        },
+        {
+          "command_index": 11,
+          "trace_line": 32,
+          "item_id": "item_16",
+          "exit_code": 0,
+          "stdout": "No prose risks found.\r\n",
+          "file_change_events_since_previous_scan": [
+            {
+              "trace_line": 30,
+              "item_id": "item_15",
+              "changes": [
+                {
+                  "path": "C:\\Users\\admin\\AppData\\Local\\Temp\\cow-native-combined-native-r8-text-vza4s1cu\\m2-guards_grammar_quote-candidate\\workspace\\lint_fixed.txt",
+                  "kind": "add"
+                },
+                {
+                  "path": "C:\\Users\\admin\\AppData\\Local\\Temp\\cow-native-combined-native-r8-text-vza4s1cu\\m2-guards_grammar_quote-candidate\\workspace\\lint_orig.txt",
+                  "kind": "add"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "command_index": 12,
+          "trace_line": 34,
+          "item_id": "item_17",
+          "exit_code": 0,
+          "stdout": "No prose risks found.\r\n",
+          "file_change_events_since_previous_scan": []
+        }
+      ]
+    },
+    {
+      "model": "command-code/deepseek-deepseek-v4.1-flash",
+      "case": "scope_state_unspecified",
+      "arm": "candidate",
+      "classification": "single_scan",
+      "trace": "output/combined-native-r8-text/m2-scope_state_unspecified-candidate.trace.jsonl",
+      "trace_sha256": "def42877aa4dbfbe4748840c42de13b2b92a54015fe7c09080b28621ad2f0438",
+      "scans": [
+        {
+          "command_index": 16,
+          "trace_line": 38,
+          "item_id": "item_17",
+          "exit_code": 0,
+          "stdout": "No prose risks found.\r\n",
+          "file_change_events_since_previous_scan": [
+            {
+              "trace_line": 34,
+              "item_id": "item_15",
+              "changes": [
+                {
+                  "path": "C:\\Users\\admin\\AppData\\Local\\Temp\\cow-native-combined-native-r8-text-vza4s1cu\\m2-scope_state_unspecified-candidate\\workspace\\.tmp-check\\draft.md",
+                  "kind": "add"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "model": "command-code/deepseek-deepseek-v4.1-flash",
+      "case": "draft_date_missing",
+      "arm": "baseline",
+      "classification": "same_path_changed_delivery_mode",
+      "trace": "output/combined-native-r8-text/m2-draft_date_missing-baseline.trace.jsonl",
+      "trace_sha256": "c37f33e6170f1bfc3fd9956dec8b813333c68188a82829d681faecc1867a2ed3",
+      "scans": [
+        {
+          "command_index": 15,
+          "trace_line": 42,
+          "item_id": "item_22",
+          "exit_code": 0,
+          "stdout": "No prose risks found.\r\n",
+          "file_change_events_since_previous_scan": [
+            {
+              "trace_line": 40,
+              "item_id": "item_21",
+              "changes": [
+                {
+                  "path": "C:\\Users\\admin\\AppData\\Local\\Temp\\cow-native-combined-native-r8-text-vza4s1cu\\m2-draft_date_missing-baseline\\workspace\\打印机购置申请.txt",
+                  "kind": "add"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "command_index": 16,
+          "trace_line": 44,
+          "item_id": "item_23",
+          "exit_code": 0,
+          "stdout": "C:\\Users\\admin\\AppData\\Local\\Temp\\cow-native-combined-native-r8-text-vza4s1cu\\m2-draft_date_missing-baseline\\workspace\\打印机购置申请.txt:9: high: unexpected-external-note: 待确认事项（正文外）：成文日期按要求暂缺，定稿时补签；主送机关未提供，请按学校审批流程补填。\r\n  只交付正文的模式不应附待确认、风险、自证或其他正文外说明。\r\n",
+          "file_change_events_since_previous_scan": []
+        }
+      ]
+    },
+    {
+      "model": "command-code/deepseek-deepseek-v4.1-flash",
+      "case": "draft_date_missing",
+      "arm": "candidate",
+      "classification": "revision_between_scans",
+      "trace": "output/combined-native-r8-text/m2-draft_date_missing-candidate.trace.jsonl",
+      "trace_sha256": "0a34fa08aed4d657e3bb0877e38bf26d04ae0ef3b3fc2e5f15ce500d3b57b86b",
+      "scans": [
+        {
+          "command_index": 18,
+          "trace_line": 43,
+          "item_id": "item_20",
+          "exit_code": 0,
+          "stdout": "No prose risks found.\r\n",
+          "file_change_events_since_previous_scan": [
+            {
+              "trace_line": 41,
+              "item_id": "item_19",
+              "changes": [
+                {
+                  "path": "C:\\Users\\admin\\AppData\\Local\\Temp\\cow-native-combined-native-r8-text-vza4s1cu\\m2-draft_date_missing-candidate\\workspace\\draft-printer-application.txt",
+                  "kind": "add"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "command_index": 19,
+          "trace_line": 47,
+          "item_id": "item_22",
+          "exit_code": 0,
+          "stdout": "No prose risks found.\r\n",
+          "file_change_events_since_previous_scan": [
+            {
+              "trace_line": 45,
+              "item_id": "item_21",
+              "changes": [
+                {
+                  "path": "C:\\Users\\admin\\AppData\\Local\\Temp\\cow-native-combined-native-r8-text-vza4s1cu\\m2-draft_date_missing-candidate\\workspace\\draft-printer-application.txt",
+                  "kind": "update"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "counts": {
+    "single_scan": 8,
+    "same_path_added_flags": 2,
+    "original_and_revised": 1,
+    "revision_between_scans": 2,
+    "stdin_input_unproven_then_original_and_revised": 1,
+    "same_path_changed_delivery_mode": 1
+  }
+}

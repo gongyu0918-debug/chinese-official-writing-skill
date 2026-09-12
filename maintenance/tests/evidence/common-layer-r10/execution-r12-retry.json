@@ -1,0 +1,159 @@
+{
+  "method": "Full returned page text matching, including numbered rg output; per-task deduplication. Legacy script_calls fields count shell commands containing each script, not individual processes: one compound command may scan multiple files. Counts do not prove nonempty input, semantic review, or writing quality. Failed calls remain visible; totals are not a paired quality result or monetary cost.",
+  "binding_fingerprints": {
+    "baseline": "186e26013ff6f40cb137e48d42d9bce5822801771d7a647ae021712930ff8347",
+    "candidate": "64fbd0b6bfba7b70dc9f0ad9cbc2aaaa20f591d9d0eab2fcc3978b14bbe292af"
+  },
+  "records": [
+    {
+      "stem": "m2-explanation-baseline",
+      "case": "explanation",
+      "model": "command-code/deepseek-deepseek-v4.1-flash",
+      "arm": "baseline",
+      "invalid": [],
+      "seconds": 49.81,
+      "commands": 12,
+      "unique_pages": [
+        "SKILL.md",
+        "references/anti-ai-patterns.md",
+        "references/genre-playbook-explanation.md",
+        "references/prose-lint-usage.md",
+        "references/short-draft-naturalness.md",
+        "references/writing-rules.md"
+      ],
+      "page_returns": {
+        "SKILL.md": 1,
+        "references/genre-playbook-explanation.md": 1,
+        "references/writing-rules.md": 1,
+        "references/short-draft-naturalness.md": 1,
+        "references/anti-ai-patterns.md": 1,
+        "references/prose-lint-usage.md": 1
+      },
+      "read_chars_unique": 6479,
+      "script_calls": [
+        {
+          "script": "draft_length.py",
+          "command_index": 10,
+          "item_id": "item_12",
+          "exit_code": 0,
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"python \\\"C:\\\\Users\\\\admin\\\\AppData\\\\Local\\\\Temp\\\\cow-native-common-layer-native-r12-retry-i7u93qge\\\\m2-explanation-baseline\\\\workspace\\\\.agents\\\\skills\\\\chinese-official-writing\\\\scripts\\\\draft_length.py\\\" --min-chars 80 \\\"C:\\\\Users\\\\admin\\\\AppData\\\\Local\\\\Temp\\\\cow-native-common-layer-native-r12-retry-i7u93qge\\\\m2-explanation-baseline\\\\tmp\\\\cow-draft-check\\\\draft.txt\\\"\"",
+          "stdout": "C:\\Users\\admin\\AppData\\Local\\Temp\\cow-native-common-layer-native-r12-retry-i7u93qge\\m2-explanation-baseline\\tmp\\cow-draft-check\\draft.txt: 137 (nonspace; draft-before-postscript); 在范围内\r\n"
+        },
+        {
+          "script": "prose_lint.py",
+          "command_index": 11,
+          "item_id": "item_13",
+          "exit_code": 0,
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"python \\\"C:\\\\Users\\\\admin\\\\AppData\\\\Local\\\\Temp\\\\cow-native-common-layer-native-r12-retry-i7u93qge\\\\m2-explanation-baseline\\\\workspace\\\\.agents\\\\skills\\\\chinese-official-writing\\\\scripts\\\\prose_lint.py\\\" --delivery-mode draft-body --structure --format \\\"C:\\\\Users\\\\admin\\\\AppData\\\\Local\\\\Temp\\\\cow-native-common-layer-native-r12-retry-i7u93qge\\\\m2-explanation-baseline\\\\tmp\\\\cow-draft-check\\\\draft.txt\\\"\"",
+          "stdout": "No prose risks found.\r\n"
+        }
+      ],
+      "input_tokens": 131835,
+      "cached_input_tokens": 123776,
+      "uncached_input_tokens": 8059,
+      "output_tokens": 4310,
+      "trace_sha256": "c280b94ddefa38744bc186d55bb3d2663cfc6e0281cec79782681a97908b766d",
+      "final_sha256": "d2b9f00ac1c0e10a7a1608fd6f2c740149cad9b01749d73160782b7f2e3129fb"
+    },
+    {
+      "stem": "m2-explanation-candidate",
+      "case": "explanation",
+      "model": "command-code/deepseek-deepseek-v4.1-flash",
+      "arm": "candidate",
+      "invalid": [],
+      "seconds": 43.84,
+      "commands": 10,
+      "unique_pages": [
+        "SKILL.md",
+        "references/anti-ai-patterns.md",
+        "references/genre-playbook-explanation.md",
+        "references/official-style.md",
+        "references/prose-lint-usage.md",
+        "references/reference-index.md",
+        "references/writing-rules.md"
+      ],
+      "page_returns": {
+        "SKILL.md": 1,
+        "references/reference-index.md": 1,
+        "references/genre-playbook-explanation.md": 1,
+        "references/writing-rules.md": 1,
+        "references/anti-ai-patterns.md": 1,
+        "references/prose-lint-usage.md": 1,
+        "references/official-style.md": 1
+      },
+      "read_chars_unique": 10312,
+      "script_calls": [
+        {
+          "script": "prose_lint.py",
+          "command_index": 8,
+          "item_id": "item_10",
+          "exit_code": 0,
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'python \"C:/Users/admin/AppData/Local/Temp/cow-native-common-layer-native-r12-retry-i7u93qge/m2-explanation-candidate/workspace/.agents/skills/chinese-official-writing/scripts/prose_lint.py\" --delivery-mode draft-body --structure --format \"C:/Users/admin/AppData/Local/Temp/cow-native-common-layer-native-r12-retry-i7u93qge/m2-explanation-candidate/workspace/统一查询接口访问延迟情况说明-草稿.md\"'",
+          "stdout": "No prose risks found.\r\n"
+        },
+        {
+          "script": "draft_length.py",
+          "command_index": 9,
+          "item_id": "item_11",
+          "exit_code": 0,
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'python \"C:/Users/admin/AppData/Local/Temp/cow-native-common-layer-native-r12-retry-i7u93qge/m2-explanation-candidate/workspace/.agents/skills/chinese-official-writing/scripts/draft_length.py\" --min-chars 80 \"C:/Users/admin/AppData/Local/Temp/cow-native-common-layer-native-r12-retry-i7u93qge/m2-explanation-candidate/workspace/统一查询接口访问延迟情况说明-草稿.md\"'",
+          "stdout": "C:\\Users\\admin\\AppData\\Local\\Temp\\cow-native-common-layer-native-r12-retry-i7u93qge\\m2-explanation-candidate\\workspace\\统一查询接口访问延迟情况说明-草稿.md: 123 (nonspace; draft-before-postscript); 在范围内\r\n"
+        }
+      ],
+      "input_tokens": 119424,
+      "cached_input_tokens": 105984,
+      "uncached_input_tokens": 13440,
+      "output_tokens": 4290,
+      "trace_sha256": "fbb9dba66f81d30e5d67befaf6c76cbfeec9e264e27e0e7fd95e5e44af4db302",
+      "final_sha256": "7cf1d92aafbdcf027ea5ebf92a75a7b3a7e9c95376c101e21638b6cd4d95fc8f"
+    }
+  ],
+  "summary": {
+    "baseline": {
+      "commands": 12,
+      "read_chars_unique": 6479,
+      "input_tokens": 131835,
+      "cached_input_tokens": 123776,
+      "uncached_input_tokens": 8059,
+      "output_tokens": 4310,
+      "seconds": 49.81,
+      "calls": 1,
+      "technical_valid": 1,
+      "prose_lint.py": 1,
+      "draft_length.py": 1,
+      "anti_ai_page_returned": 1,
+      "tasks_with_prose_command": 1
+    },
+    "candidate": {
+      "commands": 10,
+      "read_chars_unique": 10312,
+      "input_tokens": 119424,
+      "cached_input_tokens": 105984,
+      "uncached_input_tokens": 13440,
+      "output_tokens": 4290,
+      "seconds": 43.84,
+      "calls": 1,
+      "technical_valid": 1,
+      "prose_lint.py": 1,
+      "draft_length.py": 1,
+      "anti_ai_page_returned": 1,
+      "tasks_with_prose_command": 1
+    }
+  },
+  "matched_anti_prose_pairs": {
+    "pairs": 1,
+    "scope": "Cost diagnostic for pairs with anti-AI page returned and a prose-script command on both arms. Not a quality-selected subset, proof of effective checking, or proof of equal length checks.",
+    "baseline": {
+      "read_chars_unique": 6479,
+      "uncached_input_tokens": 8059,
+      "commands": 12,
+      "seconds": 49.81
+    },
+    "candidate": {
+      "read_chars_unique": 10312,
+      "uncached_input_tokens": 13440,
+      "commands": 10,
+      "seconds": 43.84
+    }
+  }
+}

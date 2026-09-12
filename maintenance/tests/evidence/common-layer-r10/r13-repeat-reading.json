@@ -1,0 +1,16 @@
+[
+  {
+    "arm": "baseline",
+    "body": "本周，工作人员认真核对了三份登记表，梳理出两份问题清单，形成了完整记录。大家工作细致，坚持防微杜渐，及时发现细小差错。负责人在会上说：“工作贵在持之以恒。”",
+    "body_chars": 78,
+    "added_equipment_in_body": false,
+    "note": "Root follow-up reading; both fix the document quantifier to 份. Keep original first pair, do not use this repeat to prove causality."
+  },
+  {
+    "arm": "candidate",
+    "body": "本周，工作人员认真核对了三份登记表，整理出两份问题清单，形成了完整的记录。大家做得很仔细，坚持防微杜渐，及时发现细小差错。负责人在会上说：“工作贵在持之以恒。”",
+    "body_chars": 80,
+    "added_equipment_in_body": false,
+    "note": "Root follow-up reading; both fix the document quantifier to 份. Keep original first pair, do not use this repeat to prove causality."
+  }
+]
