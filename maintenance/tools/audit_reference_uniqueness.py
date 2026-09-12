@@ -1,0 +1,94 @@
+"""Check that product rules have one canonical home.
+
+This is a deliberately conservative audit: it catches repeated substantive
+sentences and body-only delivery instructions outside the delivery page. Route
+tables and code examples are excluded because they are indexes or data, not
+duplicate writing rules.
+"""
+
+from __future__ import annotations
+
+import re
+from collections import defaultdict
+from pathlib import Path
+
+
+ROOT = Path(__file__).resolve().parents[2]
+PRODUCT = ROOT / "chinese-official-writing"
+DELIVERY_PAGE = PRODUCT / "references" / "delivery-body-only.md"
+
+BODY_ONLY_MARKERS = (
+    "只要稿件",
+    "只要正文",
+    "只输出正文",
+    "不需说明",
+    "不需要解释",
+    "直接给我成稿",
+    "用户只想要正文",
+)
+
+
+def _prose_lines(path: Path):
+    fenced = False
+    for number, raw in enumerate(path.read_text(encoding="utf-8").splitlines(), 1):
+        line = raw.strip()
+        if line.startswith("```"):
+            fenced = not fenced
+            continue
+        if fenced or not line or line.startswith(("#", "|", ">")):
+            continue
+        # Strip list markers, links and inline spacing for exact-line matching.
+        normalized = re.sub(r"^[-*+]\s+", "", line)
+        normalized = " ".join(normalized.split())
+        if len(normalized) < 28:
+            continue
+        yield number, normalized
+
+
+def _skill_delivery_lines(path: Path) -> set[int]:
+    """Return prose line numbers inside SKILL.md's delivery section."""
+    lines = path.read_text(encoding="utf-8").splitlines()
+    start = next((i for i, value in enumerate(lines, 1) if value.strip() == "## 正文形态和交付"), 0)
+    end = next((i for i, value in enumerate(lines[start:], start + 1) if value.startswith("## ")), len(lines) + 1)
+    return set(range(start, end))
+
+
+def audit() -> list[str]:
+    errors: list[str] = []
+    markdown = [PRODUCT / "SKILL.md", *sorted((PRODUCT / "references").glob("*.md"))]
+
+    # A body-only rule belongs to the delivery page. SKILL.md may point to it
+    # once from the delivery section; all other pages must remain content/rule
+    # pages rather than deciding the final message shape.
+    for path in markdown:
+        if path == DELIVERY_PAGE:
+            continue
+        rel = path.relative_to(PRODUCT).as_posix()
+        allowed_lines = _skill_delivery_lines(path) if path.name == "SKILL.md" else set()
+        for number, line in _prose_lines(path):
+            if any(marker in line for marker in BODY_ONLY_MARKERS):
+                if path.name == "SKILL.md" and number in allowed_lines:
+                    # The homepage is allowed to name the delivery-page
+                    # trigger; the canonical behavior remains in that page.
+                    continue
+                errors.append(f"{rel}:{number}: body-only delivery rule outside delivery page")
+
+    # Exact substantive prose repeated across pages should have one owner.
+    occurrences: defaultdict[str, list[tuple[str, int]]] = defaultdict(list)
+    for path in markdown:
+        rel = path.relative_to(PRODUCT).as_posix()
+        for number, line in _prose_lines(path):
+            occurrences[line].append((rel, number))
+    for line, places in occurrences.items():
+        if len(places) > 1:
+            joined = "; ".join(f"{rel}:{number}" for rel, number in places)
+            errors.append(f"duplicate substantive rule: {joined}: {line}")
+    return errors
+
+
+if __name__ == "__main__":
+    problems = audit()
+    if problems:
+        print("\n".join(problems))
+        raise SystemExit(1)
+    print("reference uniqueness clean: no duplicate substantive rules or misplaced body-only delivery rules")

@@ -40,6 +40,7 @@
 ## 测试状态
 
 - 新增重写契约、产品面、路由和 Hook 边界聚焦测试：当前选定的 7 个模块共 67 项通过。
+- 规则归属审计：`maintenance/tools/audit_reference_uniqueness.py` 已检查首页及 60 个 reference，重复实质规则为 0；“只要稿件/只要正文/不需说明”等直交付行为仅保留在 `delivery-body-only.md`，首页只保留一次转读指针，文种页不再决定交付形态。
 - 独立冷审与首页/路由洁净实写记录见 `maintenance/docs/reference-cleanup-cold-review-20260912.md`。
 - Skill frontmatter/脚手架校验：通过。
 - Hook 目录相对 main：无差异。
