@@ -146,9 +146,89 @@ class PromptfooProviderTests(unittest.TestCase):
         ordered = provider._reference_paths_for_genres(
             ["讲话稿"], ["写讲话稿，开场按职务排序。"]
         )
+        host_base = provider._reference_paths_for_genres(["主持词"])
+        host_ordered = provider._reference_paths_for_genres(
+            ["主持词"], ["写主持词，开场按职务排序。"]
+        )
+        duty_ordered = provider._reference_paths_for_genres(
+            ["述职报告"], ["写述职报告，开场按职务排序。"]
+        )
         self.assertNotIn("references/speech-person-order.md", base)
         self.assertIn("references/speech-person-order.md", ordered)
         self.assertIn("references/genre-playbook-speech-address.md", ordered)
+        self.assertNotIn("references/speech-person-order.md", host_base)
+        self.assertIn("references/speech-person-order.md", host_ordered)
+        self.assertIn("references/genre-playbook-meeting-host.md", host_ordered)
+        self.assertNotIn("references/speech-person-order.md", duty_ordered)
+
+    def test_host_and_duty_genres_keep_one_primary_across_modes(self) -> None:
+        expected = {
+            "会议主持词": "references/genre-playbook-meeting-host.md",
+            "主持词": "references/genre-playbook-meeting-host.md",
+            "主持串词": "references/genre-playbook-meeting-host.md",
+            "书面述职": "references/genre-playbook-duty-report.md",
+            "述职报告": "references/genre-playbook-duty-report.md",
+            "履职情况报告": "references/genre-playbook-duty-report.md",
+            "现场述职发言": "references/genre-playbook-duty-report.md",
+        }
+        for genre, leaf in expected.items():
+            for mode, task in {
+                "draft": f"请按材料起草这份{genre}。",
+                "review": f"帮我审核这份{genre}。",
+                "rewrite": f"帮我审核这份{genre}，并重写全文。",
+            }.items():
+                with self.subTest(genre=genre, mode=mode):
+                    refs = provider._reference_paths_for_genres([genre], [task])
+                    primary = [
+                        path
+                        for path in refs
+                        if path.startswith("references/genre-playbook-")
+                    ]
+                    self.assertEqual(primary, [leaf])
+
+    def test_summary_priorities_and_periodic_reports_keep_one_primary_across_modes(self) -> None:
+        expected = {
+            "工作要点": "references/genre-playbook-work-priorities.md",
+            "工作总结": "references/genre-playbook-work-summary.md",
+            "周报": "references/genre-playbook-report.md",
+            "月报": "references/genre-playbook-report.md",
+        }
+        for genre, leaf in expected.items():
+            for mode, task in {
+                "draft": f"请按材料起草这份{genre}。",
+                "review": f"帮我审核这份{genre}。",
+                "rewrite": f"帮我审核这份{genre}，并重写全文。",
+            }.items():
+                with self.subTest(genre=genre, mode=mode):
+                    refs = provider._reference_paths_for_genres([genre], [task])
+                    primary = [
+                        path
+                        for path in refs
+                        if path.startswith("references/genre-playbook-")
+                    ]
+                    self.assertEqual(primary, [leaf])
+
+    def test_periodic_report_field_editing_is_conditional(self) -> None:
+        plain = provider._reference_paths_for_genres(
+            ["周报"], ["请按材料起草本周周报。"]
+        )
+        weekly_fields = provider._reference_paths_for_genres(
+            ["周报"], ["请起草字段式周报，保留字段名、字段顺序和字段换行。"]
+        )
+        monthly_fields = provider._reference_paths_for_genres(
+            ["月报"], ["请审核这份月报，按字段处理并保留字段名。"]
+        )
+        summary_fields = provider._reference_paths_for_genres(
+            ["工作总结"], ["请按字段整理工作总结。"]
+        )
+        self.assertNotIn("references/field-editing.md", plain)
+        self.assertIn("references/field-editing.md", weekly_fields)
+        self.assertIn("references/field-editing.md", monthly_fields)
+        self.assertNotIn("references/field-editing.md", summary_fields)
+        for refs in (plain, weekly_fields, monthly_fields):
+            self.assertIn("references/genre-playbook-report.md", refs)
+            self.assertNotIn("references/genre-playbook-work-summary.md", refs)
+            self.assertNotIn("references/genre-playbook-work-priorities.md", refs)
 
     def test_complex_work_uses_composable_common_pages_without_retired_workflow(self) -> None:
         complex_refs = provider._reference_paths_for_genres(

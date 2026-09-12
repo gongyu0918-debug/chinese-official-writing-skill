@@ -8,7 +8,9 @@
 
 - 既有项目新增功能、服务或实施内容的增项申请：`genre-playbook-project-application.md`。
 - 请示、普通采购或经费等申请：`genre-playbook-request.md`；文种专项复核用 `genre-checklist-request.md`。
-- 报告、情况报告：`genre-playbook-report.md`；文种复核用 `genre-checklist-report.md`。工作总结、工作要点：`genre-playbook-work-summary.md`。
+- 报告、情况报告、周报、月报：`genre-playbook-report.md`；文种复核用 `genre-checklist-report.md`。
+- 工作总结：`genre-playbook-work-summary.md`。
+- 工作要点：`genre-playbook-work-priorities.md`。
 - 通知：`genre-playbook-notice.md`；公告、公示、通告：`genre-playbook-publication.md`；情况、表扬或批评通报：`genre-playbook-bulletin.md`。
 - 决定：`genre-playbook-decision.md`；决议：`genre-playbook-resolution.md`；议案：`genre-playbook-motion.md`。
 - 公报：`genre-playbook-communique.md`；命令、令：`genre-playbook-order.md`；部署安排：`genre-playbook-deployment.md`。
@@ -16,6 +18,8 @@
 - 函、复函、征求意见函：`genre-playbook-correspondence.md`。
 - 会议纪要：`genre-playbook-minutes.md`。
 - 讲话稿、致辞、演讲：`genre-playbook-speech-address.md`；开场人物顺序另加 `speech-person-order.md`。
+- 会议主持词、主持串词：`genre-playbook-meeting-host.md`；开场人物顺序另加 `speech-person-order.md`。
+- 书面述职、述职报告、履职情况报告、现场述职发言：`genre-playbook-duty-report.md`。单位工作报告或工作总结仍走各自主叶。
 - 方案、实施方案、建设方案：`genre-playbook-plan-construction.md`。
 - 制度、规定、办法、细则、操作规程：`genre-playbook-institution-rules.md`。
 - 调研、研究：`genre-playbook-research.md`；可研：`genre-playbook-feasibility.md`；只审可研用 `genre-checklist-feasibility-review.md`。

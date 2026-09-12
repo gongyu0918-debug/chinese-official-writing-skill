@@ -58,6 +58,9 @@ class ReferenceRewriteContractTests(unittest.TestCase):
             "genre-playbook-opinion.md",
             "genre-playbook-explanation.md",
             "genre-playbook-report.md",
+            "genre-playbook-meeting-host.md",
+            "genre-playbook-duty-report.md",
+            "genre-playbook-work-priorities.md",
             "transaction-remediation-report.md",
             "transaction-feedback-report.md",
             "delivery.md",
@@ -433,12 +436,14 @@ class ReferenceRewriteContractTests(unittest.TestCase):
     def test_speech_page_keeps_sparse_theme_material_at_original_strength(self) -> None:
         text = (REFS / "genre-playbook-speech-address.md").read_text(encoding="utf-8")
         self.assertIn("材料只给主题、工作考虑、下一步方向和未定状态", text)
-        self.assertIn("主题词本身不等于已有基础或已经决定的安排", text)
+        self.assertIn("主题词不单独证明已有基础、具体问题、实施路径或已定安排", text)
 
     def test_sparse_plan_can_omit_unprovided_structure_sections(self) -> None:
         text = (REFS / "genre-playbook-plan-construction.md").read_text(encoding="utf-8")
-        self.assertIn("未提供保障、风险、组织、进度或预算细节时可以省略相应章节", text)
-        self.assertIn("可直接按这五类要素收束", text)
+        self.assertIn("围绕已有目标、范围、步骤和期限成稿", text)
+        self.assertIn("相邻内容可合成自然段", text)
+        self.assertIn("未提供的信息按 `information-selection.md` 处理", text)
+        self.assertNotIn("人员、设备、扫描方式、质量控制、周报、签字、经费、风险处置和量化验收沿用待确认状态", text)
 
 
 if __name__ == "__main__":

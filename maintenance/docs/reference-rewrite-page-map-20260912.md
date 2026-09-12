@@ -36,8 +36,8 @@
 | 30 | `genre-playbook-remediation-plan.md` | genre/transaction | 整改方案主叶 | retain | 整改问题、措施、责任和状态保持原强度。 |
 | 31 | `genre-playbook-request.md` | genre | 请示/申请主叶 | retain | 请批、依据、事项和结语的完整骨架。 |
 | 32 | `genre-playbook-research-feasibility.md` | router | 旧调研/可研混合页 | delete | 调研/研究与可研的决策功能已拆为 `genre-playbook-research.md`、`genre-playbook-feasibility.md`。 |
-| 33 | `genre-playbook-speech-address.md` | genre | 讲话/致辞主叶 | retain | 讲话、致辞和演讲的对象、主题、层次和收束。 |
-| 34 | `genre-playbook-work-summary.md` | genre | 工作总结/要点主叶 | retain | 总结、要点的事实归纳和安排状态。 |
+| 33 | `genre-playbook-speech-address.md` | genre | 讲话/致辞/演讲主叶 | rewrite | 保留场合、身份、听众、主题、事实与收束；完整主持会序和职责述职分别迁入新主叶。 |
+| 34 | `genre-playbook-work-summary.md` | genre | 工作总结主叶；工作要点独立；周期汇报归报告 | rewrite | 回顾、经验和有据展望留在总结；未来任务归 work-priorities；周报/月报复用报告并按需字段处理。旧语义和来源见 summary-priorities-separation-r1。 |
 | 35 | `genre-playbooks.md` | router | 旧文种混合总页 | delete | 原功能由独立文种页及必要场景附加页承接；通知/公开发布、调研/可研、决定/决议/议案/公报/命令等分别落页，genre-routing.md 与 genre-checklist.md 仅处理选路或未覆盖功能。 |
 | 36 | `genre-routing.md` | router | 主文种与行文关系路由 | rewrite | 只判定文种、对象关系和冲突，输出首叶。 |
 | 37 | `handling-elements.md` | workflow | 办理要素能力页 | rewrite | 按主体对象、事项依据、动作状态、条件期限、支撑反馈和文内字段核对；删除多文种要素表，必要项由当前主文种判断，缺项按信息选择与定向研究规则处理。 |
@@ -49,7 +49,7 @@
 | 43 | `review-checklist.md` | review | 统一审稿检查页 | rewrite | 自然语言审核默认检查全文，含事实、文种、结构、语言与抗 AI 味、格式；吸收原直接审核页的合理推断、防过严、风险分层、主体与仅审边界，交付形态统一归 delivery.md。 |
 | 44 | `review-direct-checklist.md` | review | 合并入 review-checklist.md | delete | 全文审核与范围限定共用统一审稿页；重要证据判断、合理推断、次级材料可选、仅审不改语义已蒸馏保留，取消重复首叶和跳过全面检查的支路。 |
 | 45 | `short-draft-naturalness.md` | workflow | 短稿自然度页 | retain | 保留章节、小标题转自然段及一两句话承载事项的短格式能力；轻量卡只决定何时读取，不复制这些正文动作。 |
-| 46 | `speech-person-order.md` | overlay | 讲话人物顺序附加页 | retain | 仅讲话开场出现人物排序需求时叠加。 |
+| 46 | `speech-person-order.md` | overlay | 讲话与主持人物顺序附加页 | retain | 仅讲话、致辞、演讲或主持开场出现具体人物排序需求时叠加。 |
 | 47 | `structure-editing.md` | workflow | 结构编辑页 | retain | 处理增删、移动、标题和段落关系。 |
 | 48 | `task-route-cards.md` | router | 轻量任务选择卡 | rewrite | 材料较少/短稿与局部修改作为两个独立成立的条件；保留唯一主文种，分别转短稿、结构或字段页，完成后衔接首页编号检查。 |
 | 49 | `technical-terms.md` | transaction/overlay | 技术术语附加页 | retain | 算力或技术稿件明确需要术语核对时才加载。 |
@@ -77,6 +77,9 @@
 | `genre-playbook-opinion.md` | 意见独立主文种 |
 | `genre-playbook-explanation.md` | 说明独立主文种 |
 | `genre-playbook-report.md` | 报告、情况报告和情况说明独立主文种 |
+| `genre-playbook-meeting-host.md` | 会议主持词、主持串词按既定会序组织环节、程序状态和转场 |
+| `genre-playbook-duty-report.md` | 个人或班子书面与现场述职，围绕职责、履职事实、实绩归属、问题和改进方向 |
+| `genre-playbook-work-priorities.md` | 年度、阶段或专项工作要点，组织未来任务、责任与节点，保留拟议状态 |
 | `transaction-remediation-report.md` | 整改进展/整改情况报告事务附加页 |
 | `transaction-feedback-report.md` | 反馈情况报告事务附加页 |
 | `delivery.md` | 成稿/审稿意见交付，默认独立文后提示、未解决事项及明确省略提示的偏好 |

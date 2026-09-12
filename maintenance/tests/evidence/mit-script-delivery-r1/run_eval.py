@@ -16,6 +16,31 @@ import time
 ROOT = Path(__file__).resolve().parents[4]
 MODELS = ["alibaba-token-plan/qwen3.8-flash", "alibaba-token-plan-2/qwen3.8-flash", "command-code/deepseek-deepseek-v4.1-flash", "minimax-cn/MiniMax-M3", "ollama-cloud/glm-5.3-flash"]
 CASES = {
+    "material_based_analysis": "只按这些材料写一份办公椅采购申请，给单位负责人审批：综合办公室有24个固定工位，24把现有办公椅中6把已损坏且无法修复；对应6个工位临时借用会议室座椅，会议室使用时需要归还。拟购办公椅6把，每把420元，供应商和采购日期尚未确定。请把采购缘由和必要性讲清楚，再写明数量金额和请求。",
+    "existing_field_form": "帮我把这份采购申请文字改得正式些。当前底稿：申请部门：综合办公室；采购品目：办公椅；数量：4把；参考单价：420元；申请理由：旧的4把办公椅坏了，想买4把替换用；供应商：尚未确定；采购日期：尚未确定。",
+    "usage_value_report": "只按以下试用记录写一份工具使用体验报告，约250至400字。信息中心试用了一个资料查询工具：10个测试问题中7个返回内容与原始资料一致，另外3个有遗漏；7个准确结果可以帮助工作人员定位原文出处，但仍要对照原始资料复核。工具可作为资料查找辅助，尚未用于正式业务；建议继续小范围试用、观察遗漏类型，是否扩大使用尚未决定。把使用价值、问题和后续建议写清楚。",
+    "feasibility_conditional_advice": "只按这些材料完善一段可研分析：资料中心拟试点电子目录查询，现有电脑可用，预计有8人使用；需求是按目录编号查找已确认档案。自建还是租用服务尚未决定，预算和建设周期仍待论证。请结合现有需求说明可以比较和验证哪些方面，形成供决策参考的分析，保持设想状态。",
+    "news_supported_analysis": "根据材料写一篇简短活动新闻：9月10日，市企业服务中心组织企业交流会，8家企业代表参加；代表介绍各自产品，交流合作需求。中心负责人表示，交流的目的在于让企业了解彼此需求。可以结合这些动作概括一次交流的直接作用，其他按材料写。",
+    "feasibility_procurement_content": "帮资料中心整理一份简短可研报告，供决定是否实施电子目录检索试点。需求是让工作人员查询已确认档案目录；现有电脑可使用，拟购买扫描仪1台，参考价6000元，正式报价和预算来源待核。试点范围及验收指标尚待论证，当前没有可行性通过结论。采购部分是报告中的条件分析，保留可研用途。",
+    "procurement_plan": "帮综合办公室写设备采购方案，报单位负责人审批。拟购买投影仪2台，每台3500元，幕布2套，每套600元，用于补充会议室设备；先核对两类设备数量和金额，再按批准范围办理采购，供应商和采购时间尚未确定。预算科目暂未提供。把采购内容、金额和已给步骤写清楚。",
+    "procurement_review_opinion": "根据这份评审记录写一份设备采购方案审查意见：方案拟购投影仪2台，每台3500元，幕布2套，每套600元；记录指出总额应为8200元，原方案误写8000元；两类设备用途均为补充会议室设备；供应商和采购时间尚未确定，预算科目材料尚未提供。评审结论为补正金额、补充预算材料后复核，未作通过结论。只按记录形成审查意见。",
+    "design_review_opinion": "根据记录整理一份初步设计审查意见。审查对象是资料中心一层空间改造初步设计，审查记录指出平面图与设备清单中的档案柜数量不一致，需核对一致后提交复核；本轮没有提出新增房间或调整面积，也未作通过结论。这是设计审查记录整理，材料没有涉及设备采购。",
+    "work_priorities": "帮综合办公室把明年打算写成工作要点：拟完善会议室预约登记，拟优化物资台账核对；计划每季度梳理一次预约冲突和登记差错。具体人员分工、预算和起始时间尚未决定。先把重点任务和思路写清楚。",
+    "work_summary": "帮综合办公室写上半年工作总结。完成45场会议室预约协调、30批物资登记，办公室共同完成6次会议保障，会上桌椅布置由林舟负责；发现有3次预约时间冲突，均经沟通调整。下半年拟完善预约登记，是否采用线上表单尚未决定。写清工作、问题和改进思路，简短完整即可。",
+    "weekly_report": "帮我把本周情况整理成周报，保留四个字段各占一行。已完成：接口A测试30次；推进中：核对其中2次超时的日志；问题：超时原因尚未查明；下周：张工建议追加测试，是否采用尚未决定。只整理这些内容。",
+    "public_notice": "帮海岚市公共服务中心起草关于报送服务点名单的通知，将公开发布在中心网站。请各业务科于9月25日前把所负责服务点的名称和地址报综合办公室汇总，联系人周老师，联系方式暂未提供。标题保留通知，写清报送安排即可。",
+    "research_comparison": "帮我写一份报领导参考的服务窗口调研报告。调研组走访了甲乙两个服务点，甲点使用现有窗口、无需新增投资，乙点提出增设窗口的设想，投资金额尚待测算；受访人员各5人，甲点3人建议增加周末服务，乙点2人建议延长下午开放时间。请比较两点观察结果并概括可供进一步研究的方向，这次稿件用途是汇报调研发现。",
+    "sparse_plan": "帮资料室起草档案目录整理实施方案。目标是完成2025年度已确认档案目录整理和资料录入；分为目录核对、资料录入、复核三步，试点至9月30日，验收指标尚待确定。负责人和预算材料暂未提供。按现有材料写成简短但完整的方案。",
+    "platform_review": "帮我审核并改好这段活动报道。有效材料：9月10日，市企业服务中心组织企业交流会，8家企业代表参加，代表介绍各自产品并交流合作需求。现稿：9月10日，市企业服务中心组织企业交流会，8家企业代表参加，代表介绍各自产品并交流合作需求。这次活动为企业交流搭建了强大平台，满足未来发展需要。请给自然简洁的改好稿件。",
+    "official_marks": "帮我校改这份内部工作提示，清除起草旁白，给改好全文。材料要求保留文件首页的‘内部资料 注意保密’和‘第二版（2026年9月修订）’。现稿：内部资料 注意保密。第二版（2026年9月修订）。会议室使用提示。本文由AI整理，以下为最终版本。会议室使用完毕后，请关闭设备并恢复桌椅，设备故障反馈综合办公室。仅供参考，以实际审核结果为准。我只要改后稿件。",
+    "quote_proofread": "请校改下面的纯文本讲话材料，改好后给我全文，不用Markdown。有效材料明确全年组织3场培训；负责人原话由我提供，但出处和日期还没核验。现稿第一行主标题是‘凝心聚力推进服务改进。’，下一行是小标题‘一、工作要求。’，下面接正文：会上，负责人原话是：‘要久久为功，把群众的事办实。’ 1.各部门要快速的回应诉求，全年组织3台培训。",
+    "notice_receiver": "根据材料起草简短通知：请各业务科于9月20日前把培训报名表发送到市培训中心邮箱pxzx@example.org，接收联系人王老师。发文单位和成文日期还没有给，先把稿子写好。",
+    "compute_units": "改写一段算力费用说明：试用期共调用模型1200次，输入和输出合计800万Token；按Token计费，单价及总额尚待核实。请把需求与费用口径写清，保持数字和待核状态，不新增GPU、并发或SLA数据。",
+    "minutes_local": "帮我改这份会议纪要：把末句‘会议要求张工下周完成追加测试’改为‘张工建议追加测试，会议尚未决定是否采用’，其余保持。现稿：接口测试讨论纪要。9月10日，信息中心讨论接口测试情况。接口A已测试30次，其中2次返回超时，原因仍在核对。会议要求保留测试记录。会议要求张工下周完成追加测试。请给改好后的纪要。",
+    "hosting_agenda": "帮信息中心主任周宁写一份简短的会议主持词，会上直接使用。会议为9月18日接口联调交流会，参会人员是信息中心全体同事。议程依次为：赵明介绍联调进展；刘青说明日志核对中发现的问题；参会同事交流意见；主持人宣布会议结束。按这些议程串联完整。",
+    "duty_short": "帮林舟写一份提交部门考核的上半年述职报告，简短完整即可。林舟是综合办公室工作人员，职责为会议室预约协调和物资登记；上半年协调45场会议室预约，完成30批物资登记。办公室共同完成6次会议保障，林舟负责其中的桌椅布置，其他事项由同事承担。材料没有提供问题不足和下一步计划。",
+    "duty_oral": "把这些内容写成林舟在部门考核会上直接读的一段述职发言：担任综合办公室工作人员，负责会议室预约协调与物资登记；上半年协调45场会议室预约、完成30批物资登记；参与办公室6次会议保障，负责桌椅布置。整体会议保障由办公室共同完成。简短自然即可。",
+    "speech_control": "周宁是接口联调交流会主持人，请帮他写会议结束前的一段总结讲话。听众是信息中心同事，主题是加强联调中的沟通。材料：赵明和刘青分别交流了进展与日志核对问题，大家提出了意见；周宁希望今后沟通时把已核实情况和待核问题区分清楚。围绕这一主题讲清楚，不需要主持串词。",
     "chair_reason": "帮综合办公室写一份完整的办公椅采购申请，报单位负责人审批。材料：办公室现有4把办公椅较为破旧，拟购置4把办公椅用于更新，每把420元；供应商和采购日期尚未确定，预算科目材料暂未提供。",
     "request_reason_missing": "帮综合办公室写一份资料核对延期申请，报单位负责人审批。资料核对原定9月20日完成，现拟申请延至9月27日；延期原因还没有提供。",
     "request_reason_revision": "帮综合办公室审核并改好这份延期申请，报单位负责人审批。有效材料：资料核对原定9月20日完成，现拟申请延至9月27日；延期原因尚未提供。现稿：关于资料核对工作延期的申请。单位负责人：资料核对工作原定9月20日完成，因＿＿＿＿＿＿＿＿，申请将完成时间延至9月27日。妥否，请批示。综合办公室。请给改好稿件。",
@@ -44,7 +69,9 @@ def fingerprint(path: Path) -> str:
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--output', required=True)
-    parser.add_argument('--baseline-ref', default='main', help='Git baseline; a non-main ref is named baseline in artifacts.')
+    baseline = parser.add_mutually_exclusive_group()
+    baseline.add_argument('--baseline-ref', default='main', help='Git baseline; a non-main ref is named baseline in artifacts.')
+    baseline.add_argument('--baseline-dir', help='Explicit frozen Skill baseline; no Git commit is claimed for its contents.')
     parser.add_argument('--candidate-dir', help='Explicit frozen Skill directory for an attributable subset comparison.')
     parser.add_argument('--models', nargs='+', type=int, default=[0, 1])
     parser.add_argument('--cases', nargs='+', choices=list(CASES), default=list(CASES))
@@ -69,19 +96,23 @@ def main():
     cli = max(candidates, key=lambda p: tuple(int(x) for x in re.search(r'(\d+)\.(\d+)\.(\d+)', subprocess.check_output([str(p),'--version'],text=True)).groups()))
     catalog = Path.home()/'.codex/opencodex-catalog.json'
     snapshots = {}
-    commit = subprocess.check_output(['git','rev-parse',args.baseline_ref], cwd=ROOT, text=True).strip()
-    baseline_arm = 'main' if args.baseline_ref == 'main' else 'baseline'
+    commit = None if args.baseline_dir else subprocess.check_output(['git','rev-parse',args.baseline_ref], cwd=ROOT, text=True).strip()
+    baseline_arm = 'main' if not args.baseline_dir and args.baseline_ref == 'main' else 'baseline'
     base = out/'snapshots/main'; base.mkdir(parents=True)
-    for name in subprocess.check_output(['git','ls-tree','-r','--name-only',commit,'chinese-official-writing'], cwd=ROOT, text=True).splitlines():
-        target = base/Path(name).relative_to('chinese-official-writing'); target.parent.mkdir(parents=True,exist_ok=True)
-        target.write_bytes(subprocess.check_output(['git','show',f'{commit}:{name}'],cwd=ROOT))
+    if args.baseline_dir:
+        shutil.copytree(Path(args.baseline_dir).resolve(),base,dirs_exist_ok=True,ignore=shutil.ignore_patterns('__pycache__','*.pyc'))
+    else:
+        for name in subprocess.check_output(['git','ls-tree','-r','--name-only',commit,'chinese-official-writing'], cwd=ROOT, text=True).splitlines():
+            target = base/Path(name).relative_to('chinese-official-writing'); target.parent.mkdir(parents=True,exist_ok=True)
+            target.write_bytes(subprocess.check_output(['git','show',f'{commit}:{name}'],cwd=ROOT))
     candidate = out/'snapshots/candidate'
     candidate_source = Path(args.candidate_dir).resolve() if args.candidate_dir else ROOT/'chinese-official-writing'
     shutil.copytree(candidate_source,candidate,ignore=shutil.ignore_patterns('__pycache__','*.pyc','hooks'))
     snapshots = {baseline_arm:base,'candidate':candidate}
     binding = {'main_commit':commit,'candidate_head':subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip(), 'fingerprints':{arm:fingerprint(path) for arm,path in snapshots.items()},'models':[MODELS[i] for i in args.models], 'cases':{k:CASES[k] for k in args.cases}, 'cli':str(cli),'cli_version':subprocess.check_output([str(cli),'--version'],text=True).strip(),'effort':args.effort,'runtime':str(runtime),'permissions':'inherited-host-config','timeout':args.timeout}
     binding['agent_documents'] = 'inherited' if args.inherit_agent_docs else 'project_doc_max_bytes=0'
-    binding['baseline_ref'] = args.baseline_ref
+    binding['baseline_ref'] = 'snapshot' if args.baseline_dir else args.baseline_ref
+    binding['baseline_source'] = str(Path(args.baseline_dir).resolve()) if args.baseline_dir else None
     binding['candidate_source'] = str(candidate_source)
     binding['baseline_commit'] = commit
     binding['main_commit'] = subprocess.check_output(['git','rev-parse','main'],cwd=ROOT,text=True).strip()
