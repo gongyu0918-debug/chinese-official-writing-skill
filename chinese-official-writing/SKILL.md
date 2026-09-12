@@ -41,6 +41,8 @@ metadata:
 
 事务名称不完整或用户未使用规范文种名称时，按办理对象选择事务首叶：会议通知按通知叶，采购申请按申请/请示叶，采购申请中的清单、预算和技术字段再按需叠加采购或字段页。只有合作性意见建议、投诉反映等不承担正式公文行文关系的任务，才进入兼容场景路由；兼容页不替代已有的通知、申请、请示等事务首叶。
 
+整改进展/整改情况报告和反馈情况报告仍以报告为主文种，分别叠加 `transaction-remediation-report.md` 或 `transaction-feedback-report.md`；整改方案和合作性意见建议继续走各自事务主叶，不把报告骨架混入事务页。
+
 1. 抽取交付对象、文种、行文关系、材料状态、用户明确动作和输出形态。
 2. 用 `references/genre-routing.md` 解决文种冲突；用 `references/reference-index.md` 选择唯一首叶。
 3. 用 `references/information-selection.md` 区分材料事实、事实支持的一层分析、建议/待核状态和实质缺项。
@@ -74,6 +76,6 @@ metadata:
 
 ## 终稿复核
 
-联网默认关闭；只有用户明确要求搜索/核验，或任务含“最新、当前、今日、现行政策、近期数据”等时效事实时才读 `references/external-research.md`。搜索结果只作来源参考，正文外记录来源、日期和检索口径，冲突或无法核验列为待确认。全文交付前按 `references/final-review-layers.md` 先核硬边界，再看质量建议；需要语言模式检查时读 `references/anti-ai-patterns.md`，轻量校对读 `references/proofreading-checklist.md`。这些页只处理各自职责，不重新启动总路由。脚本输出是风险提示，需结合正文和命中文种判断；高风险时由调用方决定重试或人工修改。
+遇到尚不熟悉的新文种、新材料类型、特殊事务场景，或需要核查通用写法、必备要素、正式格式和常用语时，读取 `references/external-research.md` 并进行定向联网核查；用户明确要求搜索或任务含“最新、当前、今日、现行政策、近期数据”等时效事实时同样启用。检索只补写作规则和来源背景，不把网络材料直接当成用户事实；记录来源、日期和检索口径，冲突或无法核验列为待确认。常规已知文种不因关键词自动扩展搜索。全文交付前按 `references/final-review-layers.md` 先核硬边界，再看质量建议；需要语言模式检查时读 `references/anti-ai-patterns.md`，轻量校对读 `references/proofreading-checklist.md`。这些页只处理各自职责，不重新启动总路由。脚本输出是风险提示，需结合正文和命中文种判断；高风险时由调用方决定重试或人工修改。
 
 Hook 仅在用户明确要求交付门禁时启用。Hook、宿主适配和运行时能力保持现有实现，不因普通写稿自动加载。
