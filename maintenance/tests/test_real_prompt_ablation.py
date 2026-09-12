@@ -179,6 +179,7 @@ class RealPromptAblationTests(unittest.TestCase):
             "P111",
             "P112",
             "P076",
+            "P077",
             "P019",
             "P024",
             "P036",

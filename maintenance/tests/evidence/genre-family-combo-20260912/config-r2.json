@@ -1,0 +1,18 @@
+{
+  "atom": "genre-family-targeted-r2",
+  "baseline": "8b8aa1c6b8c65414b0444615c39cfa537619957a",
+  "candidate": "aa735a71",
+  "expected_diff": [
+    "references/genre-playbook-deliberation-deployment.md",
+    "references/genre-playbook-notice-publication.md",
+    "references/genre-playbook-procurement-review.md",
+    "references/genre-playbook-research-feasibility.md",
+    "references/genre-playbook-speech-address.md",
+    "references/genre-playbooks.md"
+  ],
+  "cases": {
+    "speech": {"task": "请根据材料起草一篇简短工作讲话，只输出正文。材料：在资料整理培训会上，中心负责人介绍本季度已完成18场培训、覆盖240人，反馈正在汇总，尚未形成结论。讲话需保留这些数字和状态，不补嘉宾称呼、具体成效或后续承诺。"},
+    "correspondence": {"task": "请将以下函压缩为正式正文，只输出改后全文：关于资料核对的函\n乙中心：\n我中心收到贵中心5张表，发现2张表同一指标的统计范围提示不一致，分歧已记录，是否调整尚未决定。请于2026年9月15日前反馈核对意见至review@example.com。\n甲中心\n2026年9月9日"}
+  },
+  "assignments": {"0": [], "1": [], "2": [], "3": ["speech", "correspondence"], "4": []}
+}

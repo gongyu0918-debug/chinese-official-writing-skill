@@ -41,7 +41,11 @@ class ReportGenericBlockReliefTests(unittest.TestCase):
                 self.assertNotIn("## 报告/情况说明", text)
                 self.assertNotIn("- 报告/情况说明", text)
                 self.assertIn("## 函/复函/征求意见函", text)
-                self.assertIn("## 通知/通告/公告/公示/通报", text)
+                self.assertIn("genre-playbook-notice-publication.md", text)
+                notice = (root / "references/genre-playbook-notice-publication.md").read_text(
+                    encoding="utf-8"
+                )
+                self.assertIn("# 通知/通告/公告/公示/通报", notice)
 
     def test_direct_report_leaf_keeps_the_complete_report_contract(self) -> None:
         relative = Path("references/genre-checklist-report.md")

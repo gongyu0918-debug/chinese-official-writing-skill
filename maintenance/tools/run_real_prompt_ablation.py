@@ -2381,6 +2381,65 @@ for _case in CASES:
         _group[_leaf] = _moved
     FILE_TERM_ALTERNATIVES_BY_CASE.setdefault(_case.id, []).append(_group)
 
+# Genre-family relocation keeps the historical hub checks valid while allowing
+# each moved family to satisfy the same complete behavior contract in its leaf.
+FILE_TERM_ALTERNATIVES_BY_CASE.setdefault("P076", []).append({
+    "chinese-official-writing/references/genre-playbook-research-feasibility.md": [
+        "# 调研报告/研究报告/可研报告",
+        "事实、数据、样本",
+        "不把公文报告写成投研报告",
+    ],
+})
+FILE_TERM_ALTERNATIVES_BY_CASE.setdefault("P077", []).append({
+    "chinese-official-writing/references/genre-playbook-procurement-review.md": [
+        "# 采购公告/审查材料",
+        "普通采购公告不默认进入 AI 算力语境",
+        "采购主体、项目名称、预算",
+    ],
+})
+FILE_TERM_ALTERNATIVES_BY_CASE.setdefault("P079", []).append({
+    "chinese-official-writing/SKILL.md": [
+        "用户已有提纲、模板、标题顺序时优先保留",
+        "保留字段名、顺序和单元边界",
+    ],
+    "chinese-official-writing/references/genre-playbook-procurement-review.md": [
+        "依据、发现、风险、整改要求和结论",
+    ],
+})
+FILE_TERM_ALTERNATIVES_BY_CASE.setdefault("P088", []).append({
+    "chinese-official-writing/references/genre-playbook-minutes.md": [
+        "决策会重“审议、原则同意、决定、要求”",
+        "同一句中的主体、动作、期限应保持绑定",
+        "不把有期限的事项拆成多个待明确字段",
+        "不把一个期限扩展到原文未绑定的其他任务",
+        "不补写问题类型、产生环节、处理建议、保障效果等未给交付物",
+    ],
+    "chinese-official-writing/references/genre-playbook-research-feasibility.md": [
+        "项目类型、建设性质、建设内容、投资估算、资金来源",
+        "不使用地方模板或空表补实",
+    ],
+    "chinese-official-writing/references/genre-playbook-procurement-review.md": [
+        "品名、规格、数量、预算或单价、供应商/报价依据",
+        "未给事项按 `information-selection.md` 处理",
+        "采购需求不等于现有能力不足、效率提升、业务范围不变或影响结论",
+        "用户只给预算时写“预算为”，不包装成“经测算”",
+    ],
+    "chinese-official-writing/references/information-selection.md": ["视为实质缺口"],
+})
+FILE_TERM_ALTERNATIVES_BY_CASE.setdefault("P091", []).append({
+    "chinese-official-writing/SKILL.md": [
+        "材料稀疏型通报或情况说明按已给事实之间的关系简短成稿",
+        "不推断讨论、沟通、归集、说明、形成意见等会议内容",
+        "事实映射式二次修改",
+    ],
+    "chinese-official-writing/references/genre-playbook-notice-publication.md": [
+        "协调会只写“已组织2次协调会”",
+        "不展开会议内容、处理边界、问题清单、对接要求、闭环机制或督办安排",
+        "不新增“已开展处置”“下一步安排”“整改方向”“治理闭环”“督导流程”等章节或小标题",
+    ],
+    "chinese-official-writing/references/information-selection.md": ["文后提示使用少量短项"],
+})
+
 
 def read_text(root: Path, relative: str) -> str:
     path = root / relative
