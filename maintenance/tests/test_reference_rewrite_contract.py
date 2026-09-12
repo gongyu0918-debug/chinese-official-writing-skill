@@ -129,6 +129,11 @@ class ReferenceRewriteContractTests(unittest.TestCase):
             self.assertIn(term, text)
         self.assertIn("不替代算力附加页", text)
 
+    def test_final_review_reference_retains_three_layers_and_stop(self) -> None:
+        text = (REFS / "final-review-layers.md").read_text(encoding="utf-8")
+        for term in ["第一层：硬边界", "第二层：稿内质量", "第三层：场景交付", "多轮修改", "重复", "脚本只提示风险", "复核完成即停止"]:
+            self.assertIn(term, text)
+
 
 if __name__ == "__main__":
     unittest.main()
