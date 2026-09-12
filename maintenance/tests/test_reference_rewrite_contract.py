@@ -34,7 +34,7 @@ class ReferenceRewriteContractTests(unittest.TestCase):
             "Hook 仅在用户明确要求交付门禁时启用",
         ]:
             self.assertIn(term, skill)
-        self.assertIn("最终输出从标题或正文首句开始", skill)
+        self.assertIn("最终消息直接承载标题或正文首句", skill)
         self.assertIn("不出现已读页、参考路径、路由说明", skill)
         self.assertIn("采用正文交付模式", skill)
 
