@@ -1,0 +1,583 @@
+[
+  {
+    "run": "application-reason-user-corrected-atom",
+    "model": "command-code/deepseek-deepseek-v4.1-flash",
+    "case": "chair_reason",
+    "arm": "baseline",
+    "invalid": [],
+    "explicit_leaf_reads": [],
+    "note": "Only directly named references/ paths in read commands; directory glob or programmatic reads require original trace inspection. Empty is not proof of no reads.",
+    "script_invocations": [
+      {
+        "call": 13,
+        "script": "prose_lint.py",
+        "exit_code": 0
+      },
+      {
+        "call": 14,
+        "script": "prose_lint.py",
+        "exit_code": 0
+      }
+    ]
+  },
+  {
+    "run": "application-reason-user-corrected-atom",
+    "model": "command-code/deepseek-deepseek-v4.1-flash",
+    "case": "chair_reason",
+    "arm": "candidate",
+    "invalid": [],
+    "explicit_leaf_reads": [],
+    "note": "Only directly named references/ paths in read commands; directory glob or programmatic reads require original trace inspection. Empty is not proof of no reads.",
+    "script_invocations": [
+      {
+        "call": 19,
+        "script": "prose_lint.py",
+        "exit_code": 0
+      }
+    ]
+  },
+  {
+    "run": "application-reason-user-corrected-atom",
+    "model": "command-code/deepseek-deepseek-v4.1-flash",
+    "case": "request_full",
+    "arm": "baseline",
+    "invalid": [],
+    "explicit_leaf_reads": [
+      "reference-index.md",
+      "genre-playbook-request.md",
+      "genre-checklist-request.md",
+      "information-selection.md",
+      "short-draft-naturalness.md",
+      "compression-details.md",
+      "handling-elements.md",
+      "final-review-layers.md",
+      "anti-ai-patterns.md",
+      "prose-lint-usage.md",
+      "delivery.md",
+      "formal-addressing.md"
+    ],
+    "note": "Only directly named references/ paths in read commands; directory glob or programmatic reads require original trace inspection. Empty is not proof of no reads.",
+    "script_invocations": [
+      {
+        "call": 14,
+        "script": "draft_length.py",
+        "exit_code": 0
+      },
+      {
+        "call": 15,
+        "script": "prose_lint.py",
+        "exit_code": 0
+      },
+      {
+        "call": 16,
+        "script": "draft_length.py",
+        "exit_code": 0
+      },
+      {
+        "call": 16,
+        "script": "prose_lint.py",
+        "exit_code": 0
+      }
+    ]
+  },
+  {
+    "run": "application-reason-user-corrected-atom",
+    "model": "command-code/deepseek-deepseek-v4.1-flash",
+    "case": "request_full",
+    "arm": "candidate",
+    "invalid": [],
+    "explicit_leaf_reads": [
+      "reference-index.md",
+      "genre-routing.md",
+      "genre-playbook-request.md",
+      "genre-checklist-request.md",
+      "information-selection.md",
+      "short-draft-naturalness.md",
+      "compression-details.md",
+      "anti-ai-patterns.md",
+      "final-review-layers.md",
+      "prose-lint-usage.md",
+      "delivery.md",
+      "handling-elements.md",
+      "formal-addressing.md"
+    ],
+    "note": "Only directly named references/ paths in read commands; directory glob or programmatic reads require original trace inspection. Empty is not proof of no reads.",
+    "script_invocations": [
+      {
+        "call": 16,
+        "script": "draft_length.py",
+        "exit_code": 0
+      },
+      {
+        "call": 18,
+        "script": "prose_lint.py",
+        "exit_code": 0
+      },
+      {
+        "call": 20,
+        "script": "draft_length.py",
+        "exit_code": 0
+      },
+      {
+        "call": 21,
+        "script": "prose_lint.py",
+        "exit_code": 0
+      }
+    ]
+  },
+  {
+    "run": "application-reason-user-corrected-minimax",
+    "model": "minimax-cn/MiniMax-M3",
+    "case": "chair_reason",
+    "arm": "candidate",
+    "invalid": [],
+    "explicit_leaf_reads": [
+      "reference-index.md",
+      "genre-playbook-request.md",
+      "handling-elements.md",
+      "information-selection.md",
+      "formulaic-language.md",
+      "final-review-layers.md",
+      "anti-ai-patterns.md",
+      "formal-addressing.md",
+      "short-draft-naturalness.md"
+    ],
+    "note": "Only directly named references/ paths in read commands; directory glob or programmatic reads require original trace inspection. Empty is not proof of no reads.",
+    "script_invocations": []
+  },
+  {
+    "run": "application-reason-user-corrected-minimax",
+    "model": "minimax-cn/MiniMax-M3",
+    "case": "chair_reason",
+    "arm": "main",
+    "invalid": [],
+    "explicit_leaf_reads": [],
+    "note": "Only directly named references/ paths in read commands; directory glob or programmatic reads require original trace inspection. Empty is not proof of no reads.",
+    "script_invocations": []
+  },
+  {
+    "run": "application-reason-user-corrected-minimax",
+    "model": "minimax-cn/MiniMax-M3",
+    "case": "request_reason_missing",
+    "arm": "candidate",
+    "invalid": [],
+    "explicit_leaf_reads": [],
+    "note": "Only directly named references/ paths in read commands; directory glob or programmatic reads require original trace inspection. Empty is not proof of no reads.",
+    "script_invocations": []
+  },
+  {
+    "run": "application-reason-user-corrected-minimax",
+    "model": "minimax-cn/MiniMax-M3",
+    "case": "request_reason_missing",
+    "arm": "main",
+    "invalid": [],
+    "explicit_leaf_reads": [
+      "information-selection.md",
+      "genre-playbook-request.md",
+      "formal-addressing.md",
+      "handling-elements.md",
+      "task-route-cards.md"
+    ],
+    "note": "Only directly named references/ paths in read commands; directory glob or programmatic reads require original trace inspection. Empty is not proof of no reads.",
+    "script_invocations": []
+  },
+  {
+    "run": "application-reason-user-corrected-qwen",
+    "model": "alibaba-token-plan/qwen3.8-flash",
+    "case": "chair_reason",
+    "arm": "candidate",
+    "invalid": [],
+    "explicit_leaf_reads": [],
+    "note": "Only directly named references/ paths in read commands; directory glob or programmatic reads require original trace inspection. Empty is not proof of no reads.",
+    "script_invocations": [
+      {
+        "call": 18,
+        "script": "prose_lint.py",
+        "exit_code": 0
+      }
+    ]
+  },
+  {
+    "run": "application-reason-user-corrected-qwen",
+    "model": "alibaba-token-plan/qwen3.8-flash",
+    "case": "chair_reason",
+    "arm": "main",
+    "invalid": [],
+    "explicit_leaf_reads": [
+      "information-selection.md",
+      "reference-index.md",
+      "genre-playbook-request.md"
+    ],
+    "note": "Only directly named references/ paths in read commands; directory glob or programmatic reads require original trace inspection. Empty is not proof of no reads.",
+    "script_invocations": []
+  },
+  {
+    "run": "application-reason-user-corrected-qwen",
+    "model": "alibaba-token-plan/qwen3.8-flash",
+    "case": "request_reason_missing",
+    "arm": "candidate",
+    "invalid": [],
+    "explicit_leaf_reads": [
+      "reference-index.md",
+      "genre-playbook-request.md",
+      "information-selection.md",
+      "handling-elements.md",
+      "delivery.md",
+      "formulaic-language.md",
+      "prose-lint-usage.md",
+      "anti-ai-patterns.md"
+    ],
+    "note": "Only directly named references/ paths in read commands; directory glob or programmatic reads require original trace inspection. Empty is not proof of no reads.",
+    "script_invocations": [
+      {
+        "call": 12,
+        "script": "prose_lint.py",
+        "exit_code": 0
+      },
+      {
+        "call": 15,
+        "script": "prose_lint.py",
+        "exit_code": 0
+      }
+    ]
+  },
+  {
+    "run": "application-reason-user-corrected-qwen",
+    "model": "alibaba-token-plan/qwen3.8-flash",
+    "case": "request_reason_missing",
+    "arm": "main",
+    "invalid": [],
+    "explicit_leaf_reads": [
+      "reference-index.md",
+      "information-selection.md",
+      "genre-playbook-request.md"
+    ],
+    "note": "Only directly named references/ paths in read commands; directory glob or programmatic reads require original trace inspection. Empty is not proof of no reads.",
+    "script_invocations": []
+  },
+  {
+    "run": "application-reason-user-corrected-qwen",
+    "model": "alibaba-token-plan-2/qwen3.8-flash",
+    "case": "chair_reason",
+    "arm": "candidate",
+    "invalid": [],
+    "explicit_leaf_reads": [
+      "reference-index.md",
+      "genre-playbook-request.md",
+      "information-selection.md",
+      "handling-elements.md",
+      "task-route-cards.md",
+      "short-draft-naturalness.md",
+      "delivery.md",
+      "anti-ai-patterns.md",
+      "prose-lint-usage.md",
+      "final-review-layers.md",
+      "proofreading-checklist.md"
+    ],
+    "note": "Only directly named references/ paths in read commands; directory glob or programmatic reads require original trace inspection. Empty is not proof of no reads.",
+    "script_invocations": [
+      {
+        "call": 14,
+        "script": "prose_lint.py",
+        "exit_code": 0
+      },
+      {
+        "call": 15,
+        "script": "draft_length.py",
+        "exit_code": 0
+      },
+      {
+        "call": 15,
+        "script": "prose_lint.py",
+        "exit_code": 0
+      }
+    ]
+  },
+  {
+    "run": "application-reason-user-corrected-qwen",
+    "model": "alibaba-token-plan-2/qwen3.8-flash",
+    "case": "chair_reason",
+    "arm": "main",
+    "invalid": [],
+    "explicit_leaf_reads": [
+      "reference-index.md",
+      "information-selection.md",
+      "genre-playbook-request.md",
+      "proofreading-checklist.md",
+      "official-style.md"
+    ],
+    "note": "Only directly named references/ paths in read commands; directory glob or programmatic reads require original trace inspection. Empty is not proof of no reads.",
+    "script_invocations": []
+  },
+  {
+    "run": "application-reason-user-corrected-qwen",
+    "model": "alibaba-token-plan-2/qwen3.8-flash",
+    "case": "request_reason_missing",
+    "arm": "candidate",
+    "invalid": [],
+    "explicit_leaf_reads": [
+      "reference-index.md",
+      "information-selection.md",
+      "genre-playbook-request.md",
+      "short-draft-naturalness.md",
+      "delivery.md",
+      "handling-elements.md",
+      "anti-ai-patterns.md",
+      "final-review-layers.md",
+      "prose-lint-usage.md"
+    ],
+    "note": "Only directly named references/ paths in read commands; directory glob or programmatic reads require original trace inspection. Empty is not proof of no reads.",
+    "script_invocations": [
+      {
+        "call": 11,
+        "script": "prose_lint.py",
+        "exit_code": 0
+      },
+      {
+        "call": 12,
+        "script": "prose_lint.py",
+        "exit_code": 0
+      }
+    ]
+  },
+  {
+    "run": "application-reason-user-corrected-qwen",
+    "model": "alibaba-token-plan-2/qwen3.8-flash",
+    "case": "request_reason_missing",
+    "arm": "main",
+    "invalid": [],
+    "explicit_leaf_reads": [],
+    "note": "Only directly named references/ paths in read commands; directory glob or programmatic reads require original trace inspection. Empty is not proof of no reads.",
+    "script_invocations": []
+  },
+  {
+    "run": "application-reason-user-corrected-r1",
+    "model": "command-code/deepseek-deepseek-v4.1-flash",
+    "case": "chair_reason",
+    "arm": "candidate",
+    "invalid": [],
+    "explicit_leaf_reads": [
+      "reference-index.md",
+      "genre-playbook-request.md",
+      "genre-checklist-request.md",
+      "information-selection.md",
+      "formal-addressing.md",
+      "formulaic-language.md",
+      "anti-ai-patterns.md",
+      "final-review-layers.md",
+      "delivery.md",
+      "prose-lint-usage.md",
+      "task-route-cards.md",
+      "short-draft-naturalness.md",
+      "handling-elements.md"
+    ],
+    "note": "Only directly named references/ paths in read commands; directory glob or programmatic reads require original trace inspection. Empty is not proof of no reads.",
+    "script_invocations": [
+      {
+        "call": 15,
+        "script": "prose_lint.py",
+        "exit_code": 0
+      },
+      {
+        "call": 16,
+        "script": "prose_lint.py",
+        "exit_code": 0
+      }
+    ]
+  },
+  {
+    "run": "application-reason-user-corrected-r1",
+    "model": "command-code/deepseek-deepseek-v4.1-flash",
+    "case": "chair_reason",
+    "arm": "main",
+    "invalid": [],
+    "explicit_leaf_reads": [],
+    "note": "Only directly named references/ paths in read commands; directory glob or programmatic reads require original trace inspection. Empty is not proof of no reads.",
+    "script_invocations": []
+  },
+  {
+    "run": "application-reason-user-corrected-r1",
+    "model": "command-code/deepseek-deepseek-v4.1-flash",
+    "case": "request_full",
+    "arm": "candidate",
+    "invalid": [],
+    "explicit_leaf_reads": [
+      "reference-index.md",
+      "genre-checklist-request.md",
+      "genre-playbook-request.md",
+      "information-selection.md",
+      "short-draft-naturalness.md",
+      "handling-elements.md",
+      "anti-ai-patterns.md",
+      "final-review-layers.md",
+      "prose-lint-usage.md",
+      "delivery.md",
+      "proofreading-checklist.md",
+      "compression-details.md",
+      "formulaic-language.md"
+    ],
+    "note": "Only directly named references/ paths in read commands; directory glob or programmatic reads require original trace inspection. Empty is not proof of no reads.",
+    "script_invocations": [
+      {
+        "call": 16,
+        "script": "draft_length.py",
+        "exit_code": 0
+      },
+      {
+        "call": 17,
+        "script": "draft_length.py",
+        "exit_code": 0
+      },
+      {
+        "call": 18,
+        "script": "draft_length.py",
+        "exit_code": 0
+      },
+      {
+        "call": 19,
+        "script": "draft_length.py",
+        "exit_code": 0
+      },
+      {
+        "call": 21,
+        "script": "prose_lint.py",
+        "exit_code": 0
+      },
+      {
+        "call": 22,
+        "script": "draft_length.py",
+        "exit_code": 0
+      },
+      {
+        "call": 23,
+        "script": "prose_lint.py",
+        "exit_code": 0
+      }
+    ]
+  },
+  {
+    "run": "application-reason-user-corrected-r1",
+    "model": "command-code/deepseek-deepseek-v4.1-flash",
+    "case": "request_full",
+    "arm": "main",
+    "invalid": [],
+    "explicit_leaf_reads": [],
+    "note": "Only directly named references/ paths in read commands; directory glob or programmatic reads require original trace inspection. Empty is not proof of no reads.",
+    "script_invocations": []
+  },
+  {
+    "run": "application-reason-user-corrected-r1",
+    "model": "ollama-cloud/glm-5.3-flash",
+    "case": "chair_reason",
+    "arm": "candidate",
+    "invalid": [],
+    "explicit_leaf_reads": [
+      "reference-index.md",
+      "information-selection.md",
+      "handling-elements.md",
+      "genre-playbook-request.md",
+      "final-review-layers.md",
+      "prose-lint-usage.md",
+      "anti-ai-patterns.md",
+      "delivery.md",
+      "proofreading-checklist.md"
+    ],
+    "note": "Only directly named references/ paths in read commands; directory glob or programmatic reads require original trace inspection. Empty is not proof of no reads.",
+    "script_invocations": [
+      {
+        "call": 10,
+        "script": "prose_lint.py",
+        "exit_code": 0
+      }
+    ]
+  },
+  {
+    "run": "application-reason-user-corrected-r1",
+    "model": "ollama-cloud/glm-5.3-flash",
+    "case": "chair_reason",
+    "arm": "main",
+    "invalid": [],
+    "explicit_leaf_reads": [
+      "information-selection.md",
+      "reference-index.md",
+      "genre-routing.md",
+      "handling-elements.md",
+      "genre-playbook-request.md",
+      "argument-chains.md",
+      "final-review-layers.md",
+      "proofreading-checklist.md",
+      "prose-lint-usage.md"
+    ],
+    "note": "Only directly named references/ paths in read commands; directory glob or programmatic reads require original trace inspection. Empty is not proof of no reads.",
+    "script_invocations": [
+      {
+        "call": 10,
+        "script": "prose_lint.py",
+        "exit_code": 0
+      }
+    ]
+  },
+  {
+    "run": "application-reason-user-corrected-r1",
+    "model": "ollama-cloud/glm-5.3-flash",
+    "case": "request_full",
+    "arm": "candidate",
+    "invalid": [],
+    "explicit_leaf_reads": [
+      "reference-index.md",
+      "short-draft-naturalness.md",
+      "handling-elements.md",
+      "information-selection.md",
+      "genre-playbook-request.md",
+      "compression-details.md",
+      "anti-ai-patterns.md",
+      "final-review-layers.md",
+      "prose-lint-usage.md",
+      "proofreading-checklist.md",
+      "genre-checklist-request.md",
+      "delivery.md"
+    ],
+    "note": "Only directly named references/ paths in read commands; directory glob or programmatic reads require original trace inspection. Empty is not proof of no reads.",
+    "script_invocations": [
+      {
+        "call": 16,
+        "script": "prose_lint.py",
+        "exit_code": 0
+      },
+      {
+        "call": 17,
+        "script": "draft_length.py",
+        "exit_code": 0
+      }
+    ]
+  },
+  {
+    "run": "application-reason-user-corrected-r1",
+    "model": "ollama-cloud/glm-5.3-flash",
+    "case": "request_full",
+    "arm": "main",
+    "invalid": [],
+    "explicit_leaf_reads": [
+      "reference-index.md",
+      "information-selection.md",
+      "genre-playbook-request.md",
+      "formal-addressing.md",
+      "argument-chains.md",
+      "final-review-layers.md",
+      "proofreading-checklist.md"
+    ],
+    "note": "Only directly named references/ paths in read commands; directory glob or programmatic reads require original trace inspection. Empty is not proof of no reads.",
+    "script_invocations": [
+      {
+        "call": 12,
+        "script": "prose_lint.py",
+        "exit_code": 0
+      },
+      {
+        "call": 15,
+        "script": "prose_lint.py",
+        "exit_code": 0
+      }
+    ]
+  }
+]

@@ -1,0 +1,162 @@
+[
+  {
+    "pair": "P01",
+    "label": "A",
+    "run": "application-reason-user-corrected-qwen",
+    "model": 0,
+    "case": "chair_reason",
+    "arm": "candidate",
+    "original": "output\\application-reason-user-corrected-qwen\\m0-chair_reason-candidate.final.txt",
+    "sha256": "6708b8dc11661bc2289023b28e0aaca48618056b4ea46e8523baf7098145f66e"
+  },
+  {
+    "pair": "P01",
+    "label": "B",
+    "run": "application-reason-user-corrected-qwen",
+    "model": 0,
+    "case": "chair_reason",
+    "arm": "main",
+    "original": "output\\application-reason-user-corrected-qwen\\m0-chair_reason-main.final.txt",
+    "sha256": "857cc11099df69f6dfddaa6b35891f6a95e424bc9d2c0faa8db17629312ba43b"
+  },
+  {
+    "pair": "P02",
+    "label": "A",
+    "run": "application-reason-user-corrected-qwen",
+    "model": 0,
+    "case": "request_reason_missing",
+    "arm": "candidate",
+    "original": "output\\application-reason-user-corrected-qwen\\m0-request_reason_missing-candidate.final.txt",
+    "sha256": "6869ba8dce935be549444d23f195f0fa7d39df1192d72e48fdaa1f2c8c60d66e"
+  },
+  {
+    "pair": "P02",
+    "label": "B",
+    "run": "application-reason-user-corrected-qwen",
+    "model": 0,
+    "case": "request_reason_missing",
+    "arm": "main",
+    "original": "output\\application-reason-user-corrected-qwen\\m0-request_reason_missing-main.final.txt",
+    "sha256": "6ef2379303697203e99dc9d579e28355991942b55f8aa4f398d08ab7c2a2c8da"
+  },
+  {
+    "pair": "P03",
+    "label": "A",
+    "run": "application-reason-user-corrected-minimax",
+    "model": 3,
+    "case": "chair_reason",
+    "arm": "candidate",
+    "original": "output\\application-reason-user-corrected-minimax\\m3-chair_reason-candidate.final.txt",
+    "sha256": "b580d231e2c185042c81a09c7ac96695b5c4495e54bec46b8f9f69f7a104e790"
+  },
+  {
+    "pair": "P03",
+    "label": "B",
+    "run": "application-reason-user-corrected-minimax",
+    "model": 3,
+    "case": "chair_reason",
+    "arm": "main",
+    "original": "output\\application-reason-user-corrected-minimax\\m3-chair_reason-main.final.txt",
+    "sha256": "e7ca931228546b7d01b351be3f9dded5124527ec8b82edbda7835166881a9a36"
+  },
+  {
+    "pair": "P04",
+    "label": "A",
+    "run": "application-reason-user-corrected-minimax",
+    "model": 3,
+    "case": "request_reason_missing",
+    "arm": "main",
+    "original": "output\\application-reason-user-corrected-minimax\\m3-request_reason_missing-main.final.txt",
+    "sha256": "79225f89a459ce8a256cad40d2ea28dc31660910f6fff3009901b8046bcef7cb"
+  },
+  {
+    "pair": "P04",
+    "label": "B",
+    "run": "application-reason-user-corrected-minimax",
+    "model": 3,
+    "case": "request_reason_missing",
+    "arm": "candidate",
+    "original": "output\\application-reason-user-corrected-minimax\\m3-request_reason_missing-candidate.final.txt",
+    "sha256": "712c30fe20e8584f3422e5c17ab30fdffe7a5f252d5718d20e18cbe5e613d5d2"
+  },
+  {
+    "pair": "P05",
+    "label": "A",
+    "run": "application-reason-user-corrected-r1",
+    "model": 2,
+    "case": "chair_reason",
+    "arm": "main",
+    "original": "output\\application-reason-user-corrected-r1\\m2-chair_reason-main.final.txt",
+    "sha256": "4d278b4badb8f973a3fe6a78662a318d57e0ce1608cfc4c1656e5f8b97e4c85d"
+  },
+  {
+    "pair": "P05",
+    "label": "B",
+    "run": "application-reason-user-corrected-r1",
+    "model": 2,
+    "case": "chair_reason",
+    "arm": "candidate",
+    "original": "output\\application-reason-user-corrected-r1\\m2-chair_reason-candidate.final.txt",
+    "sha256": "af928b54c5ecea5fca9249015353bcfc84961a8bad38aa3271f78064dc7bc954"
+  },
+  {
+    "pair": "P06",
+    "label": "A",
+    "run": "application-reason-user-corrected-r1",
+    "model": 2,
+    "case": "request_full",
+    "arm": "main",
+    "original": "output\\application-reason-user-corrected-r1\\m2-request_full-main.final.txt",
+    "sha256": "75960bba698144b3d9ad772a24d268b1ab1b2fd22df0ca605238718e946a18bf"
+  },
+  {
+    "pair": "P06",
+    "label": "B",
+    "run": "application-reason-user-corrected-r1",
+    "model": 2,
+    "case": "request_full",
+    "arm": "candidate",
+    "original": "output\\application-reason-user-corrected-r1\\m2-request_full-candidate.final.txt",
+    "sha256": "1851293129c3c0fb13433e9067a62a9d7e7ea6affffb6b8e4bd99829566f6404"
+  },
+  {
+    "pair": "P07",
+    "label": "A",
+    "run": "application-reason-user-corrected-r1",
+    "model": 4,
+    "case": "chair_reason",
+    "arm": "main",
+    "original": "output\\application-reason-user-corrected-r1\\m4-chair_reason-main.final.txt",
+    "sha256": "f3e3a017b871b35ed15f0060126528467d5a3370f943ea0d89876fb1d9afa4f0"
+  },
+  {
+    "pair": "P07",
+    "label": "B",
+    "run": "application-reason-user-corrected-r1",
+    "model": 4,
+    "case": "chair_reason",
+    "arm": "candidate",
+    "original": "output\\application-reason-user-corrected-r1\\m4-chair_reason-candidate.final.txt",
+    "sha256": "5c156ec58e24f660fb38f7d11c73ea96e512ddabcffdc90d54d3b0755328fd4e"
+  },
+  {
+    "pair": "P08",
+    "label": "A",
+    "run": "application-reason-user-corrected-atom",
+    "model": 2,
+    "case": "chair_reason",
+    "arm": "candidate",
+    "original": "output\\application-reason-user-corrected-atom\\m2-chair_reason-candidate.final.txt",
+    "sha256": "369769e643f7a1b769ceb1850c1d3bd75a15cff2d9a68208b1c1ebf026bdd8c4"
+  },
+  {
+    "pair": "P08",
+    "label": "B",
+    "run": "application-reason-user-corrected-atom",
+    "model": 2,
+    "case": "chair_reason",
+    "arm": "baseline",
+    "original": "output\\application-reason-user-corrected-atom\\m2-chair_reason-baseline.final.txt",
+    "sha256": "9ab86a5b295bd773023257d10241e57840415eb83d15e89ad4e74ccca05144ce"
+  }
+]

@@ -16,6 +16,9 @@ import time
 ROOT = Path(__file__).resolve().parents[4]
 MODELS = ["alibaba-token-plan/qwen3.8-flash", "alibaba-token-plan-2/qwen3.8-flash", "command-code/deepseek-deepseek-v4.1-flash", "minimax-cn/MiniMax-M3", "ollama-cloud/glm-5.3-flash"]
 CASES = {
+    "chair_reason": "帮综合办公室写一份完整的办公椅采购申请，报单位负责人审批。材料：办公室现有4把办公椅较为破旧，拟购置4把办公椅用于更新，每把420元；供应商和采购日期尚未确定，预算科目材料暂未提供。",
+    "request_reason_missing": "帮综合办公室写一份资料核对延期申请，报单位负责人审批。资料核对原定9月20日完成，现拟申请延至9月27日；延期原因还没有提供。",
+    "request_full": "帮综合办公室写一份完整采购申请，报单位负责人审批，正文250至400个非空白字符。材料：本单位设有24个固定工位，现有办公椅24把，其中6把已损坏且无法修复，只有18把能够正常使用；受损座椅对应的6个工位目前临时借用会议室座椅，会议室使用时需要归还。现拟购置办公椅6把，用于替换损坏的6把，参考单价420元，合计请计算。本次不新增工位。报批时供应商和采购日期都还没有确定。预算科目暂未提供。请把购置理由、具体申请事项和金额写清楚。",
     "procurement_announcement": "以下为虚拟写作材料。请拟采购公告：海岚市档案服务中心拟采购扫描仪3台，最高限价合计1.8万元；采用公开询价，报名截止2026年9月25日17时，材料交市档案服务中心综合科，联系人李工，电话020-81234567。公告只发布这些已明确事项，不增加资质、评审标准或履约要求。",
     "explanation": "请帮信息中心写一份给业务部门的情况说明：9月10日10时至10时08分，统一查询接口出现访问延迟，随后恢复；原因正在核查。此稿用于解释这一次访问延迟，向使用部门说明情况。不要新增影响范围、处置过程和预防安排，简短成稿。",
     "complex_application": "帮综合办公室写一份设备采购申请，给单位负责人审批。现有会议室设备已不能满足三间会议室同时使用的需要，拟购投影仪2台，每台3500元；幕布2套，每套600元，合计请计算；两类设备用途都是补充会议室设备，明细表作为附件，供应商和采购时间还未确定。预算科目材料未提供。请给申请正文和对应明细，适当分段，金额核对清楚。",
@@ -40,6 +43,7 @@ def fingerprint(path: Path) -> str:
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--output', required=True)
+    parser.add_argument('--baseline-ref', default='main', help='Git baseline; a non-main ref is named baseline in artifacts.')
     parser.add_argument('--models', nargs='+', type=int, default=[0, 1])
     parser.add_argument('--cases', nargs='+', choices=list(CASES), default=list(CASES))
     parser.add_argument('--timeout', type=int, default=240)
@@ -63,16 +67,20 @@ def main():
     cli = max(candidates, key=lambda p: tuple(int(x) for x in re.search(r'(\d+)\.(\d+)\.(\d+)', subprocess.check_output([str(p),'--version'],text=True)).groups()))
     catalog = Path.home()/'.codex/opencodex-catalog.json'
     snapshots = {}
-    commit = subprocess.check_output(['git','rev-parse','main'], cwd=ROOT, text=True).strip()
+    commit = subprocess.check_output(['git','rev-parse',args.baseline_ref], cwd=ROOT, text=True).strip()
+    baseline_arm = 'main' if args.baseline_ref == 'main' else 'baseline'
     base = out/'snapshots/main'; base.mkdir(parents=True)
     for name in subprocess.check_output(['git','ls-tree','-r','--name-only',commit,'chinese-official-writing'], cwd=ROOT, text=True).splitlines():
         target = base/Path(name).relative_to('chinese-official-writing'); target.parent.mkdir(parents=True,exist_ok=True)
         target.write_bytes(subprocess.check_output(['git','show',f'{commit}:{name}'],cwd=ROOT))
     candidate = out/'snapshots/candidate'
     shutil.copytree(ROOT/'chinese-official-writing',candidate,ignore=shutil.ignore_patterns('__pycache__','*.pyc','hooks'))
-    snapshots = {'main':base,'candidate':candidate}
+    snapshots = {baseline_arm:base,'candidate':candidate}
     binding = {'main_commit':commit,'candidate_head':subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip(), 'fingerprints':{arm:fingerprint(path) for arm,path in snapshots.items()},'models':[MODELS[i] for i in args.models], 'cases':{k:CASES[k] for k in args.cases}, 'cli':str(cli),'cli_version':subprocess.check_output([str(cli),'--version'],text=True).strip(),'effort':args.effort,'runtime':str(runtime),'permissions':'inherited-host-config','timeout':args.timeout}
     binding['agent_documents'] = 'inherited' if args.inherit_agent_docs else 'project_doc_max_bytes=0'
+    binding['baseline_ref'] = args.baseline_ref
+    binding['baseline_commit'] = commit
+    binding['main_commit'] = subprocess.check_output(['git','rev-parse','main'],cwd=ROOT,text=True).strip()
     binding['profile'] = 'temporary-no-user-documents-or-credentials' if args.isolated_profile else 'host-profile'
     binding['runner_sha256'] = hashlib.sha256(Path(__file__).read_bytes()).hexdigest()
     binding['prompt_prefix'] = '使用本目录 .agents/skills/chinese-official-writing/SKILL.md。\n\n'
@@ -80,7 +88,7 @@ def main():
 
     def run_pair(index: int, case_id: str):
         results=[]
-        for arm in (['main','candidate'] if index%2==0 else ['candidate','main']):
+        for arm in ([baseline_arm,'candidate'] if index%2==0 else ['candidate',baseline_arm]):
             work=runtime/f'm{index}-{case_id}-{arm}'; skill=work/'.agents/skills/chinese-official-writing'
             shutil.copytree(snapshots[arm],skill)
             prefix=out/f'm{index}-{case_id}-{arm}'

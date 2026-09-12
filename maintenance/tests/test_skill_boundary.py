@@ -598,7 +598,7 @@ class SkillBoundaryTests(unittest.TestCase):
         """Requests retain a reason-to-request relation, flexible length and leave constraints."""
         leaf = self.assert_route("请示", "genre-playbook-request.md")
         for rule in ["请示一文一事", "申请写清原因、依据或必要性", "缘由到请求的关系仍要完整",
-                     "主动写出事实和常识直接支持的一般必要性、目的或用途",
+                     "常识支持的一般必要性也可写入",
                      "完全缺少用途和依据时", "单项采购请示或申请可用一至两个自然段",
                      "根据有关休假规定", "不用“因个人事务”“因身体原因”等泛称代填",
                      "主送采用用户给出的接收对象", "正式成稿清理无用途的占位",
