@@ -1247,6 +1247,11 @@ def _reference_paths_for_genres(genres: list[str], tasks: list[str] | None = Non
             paths.extend(GENRE_REFERENCES["external_research"])
         return list(dict.fromkeys(paths))
 
+    # Every drafting/rewrite/compression route needs the shared fact and state
+    # contract.  Genre pages define form; this page keeps sparse materials
+    # from turning common-sense structure into invented facts.
+    paths.extend(GENRE_REFERENCES["sparse"][:1])
+
     if any(genre in NEWS_COMMENTARY_GENRES for genre in genres):
         paths.extend(GENRE_REFERENCES["news_commentary"])
         return list(dict.fromkeys(paths))

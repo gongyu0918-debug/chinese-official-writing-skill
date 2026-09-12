@@ -76,14 +76,14 @@ class PromptfooProviderTests(unittest.TestCase):
         }.items():
             with self.subTest(genre=genre):
                 refs = provider._reference_paths_for_genres([genre], [f"起草{genre}"])
-                self.assertEqual(refs, ["SKILL.md", leaf])
+                self.assertEqual(refs, ["SKILL.md", "references/information-selection.md", leaf])
                 self.assertNotIn("references/genre-checklist.md", refs)
 
     def test_unknown_genre_uses_router_and_minimal_checklist(self) -> None:
         refs = provider._reference_paths_for_genres(["未知材料"])
         self.assertEqual(
             refs,
-            ["SKILL.md", "references/genre-routing.md", "references/genre-checklist.md"],
+            ["SKILL.md", "references/information-selection.md", "references/genre-routing.md", "references/genre-checklist.md"],
         )
 
     def test_deleted_mixed_directory_is_never_selected(self) -> None:
@@ -108,7 +108,7 @@ class PromptfooProviderTests(unittest.TestCase):
         self.assertNotIn("references/genre-playbooks.md", refs)
 
         exact = provider._reference_paths_for_genres(["算力服务可研报告"])
-        self.assertEqual(exact, ["SKILL.md", "references/ai-compute-docs.md"])
+        self.assertEqual(exact, ["SKILL.md", "references/information-selection.md", "references/ai-compute-docs.md"])
 
     def test_non_ai_cloud_task_does_not_load_compute_overlay(self) -> None:
         refs = provider._reference_paths_for_genres(
@@ -156,7 +156,7 @@ class PromptfooProviderTests(unittest.TestCase):
         minutes = provider._reference_paths_for_genres(
             ["会议纪要"], ["材料只有建议，未形成决定，请写简短会议纪要。"]
         )
-        self.assertEqual(minutes, ["SKILL.md", "references/genre-playbook-minutes.md"])
+        self.assertEqual(minutes, ["SKILL.md", "references/information-selection.md", "references/genre-playbook-minutes.md"])
 
     def test_short_route_is_a_mode_overlay_on_the_primary_genre(self) -> None:
         short_application = provider._reference_paths_for_genres(
@@ -217,7 +217,7 @@ class PromptfooProviderTests(unittest.TestCase):
         procurement_application = provider._reference_paths_for_genres(
             ["申请"], ["起草采购申请，列明品名、数量和预算"]
         )
-        self.assertEqual(meeting_notice, ["SKILL.md", "references/genre-playbook-notice.md"])
+        self.assertEqual(meeting_notice, ["SKILL.md", "references/information-selection.md", "references/genre-playbook-notice.md"])
         self.assertIn("references/genre-playbook-request.md", procurement_application)
         self.assertNotIn("references/compatibility-scene-routing.md", procurement_application)
 
@@ -228,9 +228,9 @@ class PromptfooProviderTests(unittest.TestCase):
         feedback = provider._reference_paths_for_genres(
             ["反馈报告"], ["起草反馈情况报告，只输出正文。"]
         )
-        self.assertEqual(remediation[1], "references/genre-playbook-report.md")
+        self.assertEqual(remediation[2], "references/genre-playbook-report.md")
         self.assertIn("references/transaction-remediation-report.md", remediation)
-        self.assertEqual(feedback[1], "references/genre-playbook-report.md")
+        self.assertEqual(feedback[2], "references/genre-playbook-report.md")
         self.assertIn("references/transaction-feedback-report.md", feedback)
         self.assertNotIn("references/genre-playbook-remediation-plan.md", remediation)
 

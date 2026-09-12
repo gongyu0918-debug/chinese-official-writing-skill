@@ -162,7 +162,7 @@ class ReferenceRewriteContractTests(unittest.TestCase):
         spec.loader.exec_module(module)
         for genre, task in [("报告", "写 AI 算力报告，比较云端和租赁成本"), ("采购方案", "写 GPU 采购预算和服务范围"), ("技术需求", "写 AI GPU 技术需求、SLA、接口和验收")]:
             self.assertIn("references/ai-compute-docs.md", module._reference_paths_for_genres([genre], [task]))
-        self.assertEqual(module._reference_paths_for_genres(["会议纪要"], ["只记录建议和待评估事项"]), ["SKILL.md", "references/genre-playbook-minutes.md"])
+        self.assertEqual(module._reference_paths_for_genres(["会议纪要"], ["只记录建议和待评估事项"]), ["SKILL.md", "references/information-selection.md", "references/genre-playbook-minutes.md"])
 
     def test_compute_overlay_requires_scene_signal(self) -> None:
         provider_path = ROOT / "maintenance" / "evals" / "official-writing" / "providers" / "agent_writer.py"
@@ -224,6 +224,11 @@ class ReferenceRewriteContractTests(unittest.TestCase):
         for term in ["视角", "段落", "证据", "上行文", "下行文", "平行文"]:
             self.assertIn(term, style + addressing)
         self.assertIn("不编造机关名称", addressing)
+
+    def test_speech_page_keeps_sparse_theme_material_at_original_strength(self) -> None:
+        text = (REFS / "genre-playbook-speech-address.md").read_text(encoding="utf-8")
+        self.assertIn("材料只给主题、工作考虑、下一步方向和未定状态", text)
+        self.assertIn("主题词本身不等于已有基础或已经决定的安排", text)
 
 
 if __name__ == "__main__":
