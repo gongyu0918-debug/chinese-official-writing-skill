@@ -8,6 +8,7 @@ import sys
 import tempfile
 import unittest
 from unittest import mock
+import zipfile
 
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -1151,6 +1152,55 @@ class ProseLintCliTests(unittest.TestCase):
         self.assertIn("ERROR: 文件损坏或不是有效 DOCX", result.stderr)
         self.assertNotIn("Traceback", result.stderr + result.stdout)
         self.assertEqual(result.stdout.strip(), "[]")
+
+    def test_docx_lint_reads_headers_and_footers_beyond_first_three(self) -> None:
+        script = ROOT / "chinese-official-writing" / "scripts" / "prose_lint.py"
+        namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main"
+        with tempfile.TemporaryDirectory() as temp_dir:
+            draft = Path(temp_dir) / "multiple-sections.docx"
+            with zipfile.ZipFile(draft, "w") as archive:
+                for name, root, text in (
+                    ("document", "document", "正文内容。"),
+                    ("header4", "hdr", "作为AI"),
+                    ("footer12", "ftr", "我的思路是"),
+                ):
+                    archive.writestr(
+                        f"word/{name}.xml",
+                        f'<w:{root} xmlns:w="{namespace}"><w:p><w:r><w:t>'
+                        f"{text}</w:t></w:r></w:p></w:{root}>",
+                    )
+            result = subprocess.run(
+                [sys.executable, str(script), str(draft), "--json"],
+                capture_output=True,
+                text=True,
+                encoding="utf-8",
+            )
+
+        self.assertEqual(result.returncode, 0, result.stderr)
+        findings = json.loads(result.stdout)
+        self.assertEqual(
+            {item["match"] for item in findings if item["label"] == "thought-leak"},
+            {"作为AI", "我的思路"},
+        )
+        self.assertEqual(result.stderr, "")
+
+    def test_docx_without_main_document_reports_error_in_default_lint(self) -> None:
+        script = ROOT / "chinese-official-writing" / "scripts" / "prose_lint.py"
+        with tempfile.TemporaryDirectory() as temp_dir:
+            draft = Path(temp_dir) / "missing-main.docx"
+            with zipfile.ZipFile(draft, "w") as archive:
+                archive.writestr("word/header1.xml", "<hdr/>")
+            result = subprocess.run(
+                [sys.executable, str(script), str(draft), "--json"],
+                capture_output=True,
+                text=True,
+                encoding="utf-8",
+            )
+
+        self.assertEqual(result.returncode, 2)
+        self.assertIn("ERROR: DOCX 缺少主文档内容", result.stderr)
+        self.assertNotIn("Traceback", result.stderr + result.stdout)
+        self.assertEqual(json.loads(result.stdout), [])
 
     def test_strict_can_ignore_low_severity_findings(self) -> None:
         script = ROOT / "chinese-official-writing" / "scripts" / "prose_lint.py"
