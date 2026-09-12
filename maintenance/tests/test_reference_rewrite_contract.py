@@ -47,6 +47,7 @@ class ReferenceRewriteContractTests(unittest.TestCase):
         self.assertNotIn("ai-compute-technical-requirements.md", dispatch)
         self.assertIn("同一稿件同时出现可研、采购和技术需求时", dispatch)
         self.assertIn("实际数据、估算数据、建议值和待核字段分开", dispatch)
+        self.assertIn("只有用户明确要求统一英文术语", dispatch)
 
     def test_reference_graph_is_acyclic_and_local(self) -> None:
         link_re = re.compile(r"`(?:references/)?([^`/]+\.md)`")
