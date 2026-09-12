@@ -22,10 +22,10 @@ metadata:
 四种主要模式：
 
 - **起草或整体改写**：先读取 `references/information-selection.md`，选文种首叶；需要办理要素或论证时再叠加对应共性页。
-- **材料稀疏、短稿或局部任务**：在信息选择后先读 `references/task-route-cards.md`；卡片覆盖时短路，未覆盖时回到索引选长叶。
+- **材料稀疏、短稿或局部任务**：在信息选择后先读 `references/task-route-cards.md` 和按需的 `references/short-draft-naturalness.md`；短路只缩短流程和篇幅动作，仍保留唯一主文种页，不把申请、会议通知等事务稿件改成无文种的通用短稿。
 - **局部修改、重排或字段处理**：结构动作读 `references/structure-editing.md`，字段动作读 `references/field-editing.md`；以最新版底稿为唯一主线。
 - **压缩或限字**：先按文种成稿，再按需读 `references/compression-details.md`；篇幅不能授权删除文种硬要素或补造内容。
-- **只审不改或综合复核**：点名范围读 `references/review-direct-checklist.md` 和对应文种审查叶；用户要求段落、小节、全文多层复核或多风险面时才加 `references/review-checklist.md`。
+- **只审不改或综合复核**：先读对应主文种/事务叶确认成立条件，再叠加 `references/review-direct-checklist.md` 或 `references/review-checklist.md`；复核动作不替换主叶，也不加载无关文种。
 
 需要 Word、docx、GB/T 9704、红头或正式版式时叠加 `references/format-gbt9704.md`。主文种已确定，且稿件出现算力、GPU/服务器、模型推理/训练、智算中心、Token、并发或模型服务等场景信号时，才在主文种叶上叠加 `references/ai-compute-docs.md`；单独出现“安全”“SLA”或“验收”不触发。它是场景附加规则，不替换文种，也不单独承担文种路由。需要扫描 `.txt`、`.md` 或 `.docx` 时先读 `references/prose-lint-usage.md`，再调用现有脚本。脚本只提示风险，不改写正文，也不替代文种判断。
 
@@ -33,7 +33,7 @@ metadata:
 
 ## 任务模式路由与写作主线
 
-起草、改稿、复核、排版交付四类任务先分模式，再选主文种；方案、实施方案或建设方案需要常规或完整骨架时直接读取 `references/genre-playbook-plan-construction.md`。
+起草、改稿、复核、排版交付四类任务先分模式，再选主文种；通知、公开发布、调研、可研、采购公告、采购审查、决定性文种和部署安排分别读取各自主叶，不把相邻文种的骨架并入当前任务。方案、实施方案或建设方案需要常规或完整骨架时直接读取 `references/genre-playbook-plan-construction.md`。
 
 1. 抽取交付对象、文种、行文关系、材料状态、用户明确动作和输出形态。
 2. 用 `references/genre-routing.md` 解决文种冲突；用 `references/reference-index.md` 选择唯一首叶。

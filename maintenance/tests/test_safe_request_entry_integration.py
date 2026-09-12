@@ -107,7 +107,7 @@ class SafeRequestEntryIntegrationTests(HookCompanionTestMixin, unittest.TestCase
             ["通知"],
             ["起草采购验收通知，附报价单和技术附件。"],
         )
-        self.assertIn("references/genre-playbook-notice-publication.md", refs)
+        self.assertIn("references/genre-playbook-notice.md", refs)
         self.assertTrue(COMPLEX_REFS.isdisjoint(refs))
         self.assertNotIn(REQUEST_LEAF, refs)
 

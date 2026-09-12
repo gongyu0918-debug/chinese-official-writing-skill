@@ -35,7 +35,20 @@ class ReferenceRewriteContractTests(unittest.TestCase):
         )
         self.assertEqual(len(rows), 50)
         self.assertEqual(sorted(name for name, _ in rows), baseline)
-        self.assertTrue(set(actual).issubset(set(baseline)))
+        generated = {
+            "genre-playbook-notice.md",
+            "genre-playbook-publication.md",
+            "genre-playbook-research.md",
+            "genre-playbook-feasibility.md",
+            "genre-playbook-procurement-announcement.md",
+            "genre-playbook-deliberation.md",
+            "genre-playbook-deployment.md",
+            "genre-playbook-reply.md",
+            "genre-playbook-opinion.md",
+            "genre-playbook-explanation.md",
+        }
+        self.assertEqual(set(actual) - set(baseline), generated)
+        self.assertTrue(set(actual) - generated <= set(baseline))
         self.assertEqual(len({name for name, _ in rows}), 50)
 
     def test_entry_uses_mode_and_genre_axes(self) -> None:
@@ -91,6 +104,21 @@ class ReferenceRewriteContractTests(unittest.TestCase):
         for node in graph:
             visit(node)
 
+    def test_machine_readable_manifest_closes_current_leaf_set(self) -> None:
+        validator_path = ROOT / "maintenance" / "tools" / "validate_reference_manifest.py"
+        spec = importlib.util.spec_from_file_location("reference_manifest_validator", validator_path)
+        assert spec is not None and spec.loader is not None
+        module = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(module)
+        self.assertEqual(module.validate(), [])
+
+        manifest = __import__("json").loads(
+            (REFS / "route-manifest.json").read_text(encoding="utf-8")
+        )
+        self.assertEqual(len(manifest["pages"]), len(list(REFS.glob("*.md"))))
+        for route in manifest["routes"]:
+            self.assertEqual(len(route["primary"]), 1)
+
     def test_hook_tree_is_unchanged_from_main(self) -> None:
         result = subprocess.run(
             ["git", "diff", "--quiet", "main", "--", "chinese-official-writing/hooks"],
@@ -134,6 +162,11 @@ class ReferenceRewriteContractTests(unittest.TestCase):
         self.assertNotIn("20类事务文体", text)
         self.assertLess(len(text), 4000)
 
+    def test_short_draft_retains_natural_paragraph_compression(self) -> None:
+        text = (REFS / "short-draft-naturalness.md").read_text(encoding="utf-8")
+        for term in ["章节、小标题和分项", "自然段", "一两句话", "不保留无信息增量"]:
+            self.assertIn(term, text)
+
     def test_anti_ai_reference_retains_semantic_risk_families(self) -> None:
         text = (REFS / "anti-ai-patterns.md").read_text(encoding="utf-8")
         for term in ["连续否定", "采购正在推进", "资金充分性", "非正文", "结构化草稿腔", "句群节奏", "思考泄露", "算力", "格式"]:
@@ -142,9 +175,9 @@ class ReferenceRewriteContractTests(unittest.TestCase):
 
     def test_argument_reference_retains_genre_chain_semantics(self) -> None:
         text = (REFS / "argument-chains.md").read_text(encoding="utf-8")
-        for term in ["请示、申请", "报告、总结", "通知、函、复函", "方案、实施方案", "可研、调研", "AI 算力", "讲话、致辞"]:
+        for term in ["请示、申请", "报告、总结", "通知、函、复函", "方案、实施方案", "可研、调研", "讲话、致辞"]:
             self.assertIn(term, text)
-        self.assertIn("不替代算力附加页", text)
+        self.assertIn("技术或算力稿件", text)
 
     def test_final_review_reference_retains_three_layers_and_stop(self) -> None:
         text = (REFS / "final-review-layers.md").read_text(encoding="utf-8")
@@ -161,7 +194,7 @@ class ReferenceRewriteContractTests(unittest.TestCase):
         handling = (REFS / "handling-elements.md").read_text(encoding="utf-8")
         for term in ["材料事实", "直接分析", "状态信息", "实质缺项", "时间锚", "合理推断"]:
             self.assertIn(term, information)
-        for term in ["通用要素", "文种重点", "算力和技术服务", "不编造真实单位", "停止本页"]:
+        for term in ["通用要素", "文种重点", "技术、算力、采购和 Word", "不编造真实单位", "停止本页"]:
             self.assertIn(term, handling)
 
     def test_style_and_addressing_pages_keep_relation_and_strength_boundaries(self) -> None:

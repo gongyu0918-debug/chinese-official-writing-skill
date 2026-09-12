@@ -40,7 +40,7 @@ class ReportGenericBlockReliefTests(unittest.TestCase):
             ["报告"], ["根据给定材料起草一份完整情况报告，只输出正文。"]
         )
         unknown = PROVIDER._reference_paths_for_genres(
-            ["说明"], ["根据给定材料起草一份说明，只输出正文。"]
+            ["备忘"], ["根据给定材料起草一份备忘，只输出正文。"]
         )
         notice = PROVIDER._reference_paths_for_genres(
             ["通知"], ["起草一份会议通知，只输出正文。"]
@@ -52,7 +52,7 @@ class ReportGenericBlockReliefTests(unittest.TestCase):
             unknown[1:3],
             ["references/genre-routing.md", "references/genre-checklist.md"],
         )
-        self.assertIn("references/genre-playbook-notice-publication.md", notice)
+        self.assertIn("references/genre-playbook-notice.md", notice)
         self.assertNotIn("references/genre-checklist-report.md", notice)
 
     def test_report_leaf_keeps_fact_and_status_boundaries(self) -> None:

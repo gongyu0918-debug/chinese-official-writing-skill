@@ -1,6 +1,6 @@
 # 参考资料索引
 
-本页只做两件事：为任务选出首个专页，规定允许叠加的共性页和停止点。不要把索引当成写作规则，也不要一次加载整套 references。
+本页只做两件事：为任务选出首个专页，规定允许叠加的共性页和停止点。机器可读的叶子职责、允许读取集合和排除集合见同目录 `route-manifest.json`；不要把索引当成写作规则，也不要一次加载整套 references。
 
 ## 选路顺序
 
@@ -15,7 +15,7 @@
 | --- | --- | --- | --- |
 | 起草、整体改写、合稿 | 命中文种页 | `information-selection.md`；必要时 `handling-elements.md`、`argument-chains.md` | 文种页骨架和用户要求已覆盖 |
 | 二次修改、压缩、重排 | `structure-editing.md` 或 `field-editing.md` | `information-selection.md`；长文压缩再加 `compression-details.md` | 点名动作已完成并复核 |
-| 只审不改 | `review-direct-checklist.md` 或点名文种审查页 | 用户点名的质量页；不自动叠加总审页 | 已输出位置、风险和建议 |
+| 只审不改 | 对应主文种/事务叶 + `review-direct-checklist.md` | 用户点名的质量页；不自动叠加总审页 | 已输出位置、风险和建议 |
 | 全文综合复核 | `review-checklist.md` | `anti-ai-patterns.md`、`proofreading-checklist.md` | 三级清单完成 |
 | Word、docx、GB/T 9704、红头 | `format-gbt9704.md` | 对应文种页；需要脚本时加 `prose-lint-usage.md` | 版式和正文均已交付 |
 
@@ -25,22 +25,23 @@
 
 - 请示、申请、增项申请：`genre-playbook-request.md`、`genre-playbook-project-application.md`；只审请示或申请用 `genre-checklist-request.md`。
 - 报告、情况说明、工作总结、工作要点：`genre-checklist-report.md`、`genre-playbook-work-summary.md`。
-- 通知、公告、公示、通告、通报：`genre-playbook-notice-publication.md`。
-- 决定、决议、议案、公报、命令、部署：`genre-playbook-deliberation-deployment.md`。
+- 通知：`genre-playbook-notice.md`；公告、公示、通告、公开通报：`genre-playbook-publication.md`。
+- 决定、决议、议案、公报、命令：`genre-playbook-deliberation.md`；部署安排：`genre-playbook-deployment.md`。
+- 批复：`genre-playbook-reply.md`；意见：`genre-playbook-opinion.md`；说明：`genre-playbook-explanation.md`。
 - 函、复函、征求意见函：`genre-playbook-correspondence.md`。
 - 会议纪要：`genre-playbook-minutes.md`。
 - 讲话稿、致辞、演讲：`genre-playbook-speech-address.md`；开场人物顺序另加 `speech-person-order.md`。
 - 方案、实施方案、建设方案：`genre-playbook-plan-construction.md`。
 - 制度、规定、办法、细则、操作规程：`genre-playbook-institution-rules.md`。
-- 调研、研究、可研：`genre-playbook-research-feasibility.md`；只审可研用 `genre-checklist-feasibility-review.md`。
-- 采购审查、采购公告、评审材料：`genre-playbook-procurement-review.md` 或 `genre-playbook-notice-publication.md`。
+- 调研、研究：`genre-playbook-research.md`；可研：`genre-playbook-feasibility.md`；只审可研用 `genre-checklist-feasibility-review.md`。
+- 采购审查、评审材料：`genre-playbook-procurement-review.md`；采购公告：`genre-playbook-procurement-announcement.md`。
 - 新闻消息、活动报道、编者按：`genre-playbook-news-message.md`。
 - 新闻评论、时评：`genre-playbook-news-commentary.md`。
-- 意见建议、投诉反映、整改方案、部署安排：先读 `compatibility-scene-routing.md`，再进入对应专页。
+- 意见建议、投诉反映、整改方案：先读 `compatibility-scene-routing.md`，再进入对应专页；法定“意见”直接进入意见主叶。
 
 ### 仍需总路由判定的文种
 
-命令、公报、决议、议案、决定、批复、通报等未命中专页时，读 `genre-routing.md` 判定功能，再用 `genre-checklist.md` 做最小核对。清单页只保留功能核对，不承载完整骨架。
+通报等未命中专页时，读 `genre-routing.md` 判定功能，再用 `genre-checklist.md` 做最小核对。批复、意见、说明、决定、决议、议案、公报、命令和部署已有独立主叶；清单页只保留功能核对，不承载完整骨架。
 
 ## 共性能力页
 
@@ -59,7 +60,7 @@
 
 ## 专项资料
 
-- 旧混合目录已删除；新任务按本页主叶表选唯一主叶，未覆盖文种回到 `genre-routing.md` 和 `genre-checklist.md` 做最小反查。
+- 旧混合目录和旧多文种主叶已删除；新任务按本页主叶表选唯一主叶，未覆盖文种回到 `genre-routing.md` 和 `genre-checklist.md` 做最小反查。
 - 事务性固定用语和开端/承启/结尾核对：`formulaic-language.md`，仅在需要文种用语时叠加。
 - 外部最新事实、公开政策或用户明确要求搜索：`external-research.md`。
 - 短稿、只有上限、短正文自然度：`short-draft-naturalness.md`。

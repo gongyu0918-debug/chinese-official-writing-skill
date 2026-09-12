@@ -24,18 +24,18 @@
 | 18 | `genre-playbook-advisory-feedback.md` | genre/transaction | 意见建议主叶 | retain | 已有稳定意见建议语义，接入兼容场景分流。 |
 | 19 | `genre-playbook-complaint-reflection.md` | genre/transaction | 投诉/情况反映主叶 | retain | 保留问题、对象、请求和事实状态边界。 |
 | 20 | `genre-playbook-correspondence.md` | genre | 函/复函主叶 | retain | 负责函件目的、对象、事项和收束。 |
-| 21 | `genre-playbook-deliberation-deployment.md` | genre/transaction | 部署安排主叶 | retain | 作为事务型稿件专页，不混入通知或报告骨架。 |
+| 21 | `genre-playbook-deliberation-deployment.md` | router | 旧决定/部署混合页 | delete | 决定性文种与部署安排已拆为 `genre-playbook-deliberation.md`、`genre-playbook-deployment.md`。 |
 | 22 | `genre-playbook-institution-rules.md` | genre | 制度规章主叶 | retain | 制度、规定、办法、细则和规程的规范结构。 |
 | 23 | `genre-playbook-minutes.md` | genre | 会议纪要主叶 | retain | 保留会议事实和议定事项状态，不补讨论过程。 |
 | 24 | `genre-playbook-news-commentary.md` | genre | 新闻评论主叶 | retain | 新闻评论独立成文种，不通过兼容页稀释。 |
 | 25 | `genre-playbook-news-message.md` | genre | 新闻消息主叶 | retain | 新闻消息、活动报道和编者按的事实结构。 |
-| 26 | `genre-playbook-notice-publication.md` | genre | 通知/公告/公示主叶 | retain | 负责发布对象、事项、时间和执行要求。 |
+| 26 | `genre-playbook-notice-publication.md` | router | 旧通知/公开发布混合页 | delete | 通知与公开发布已拆为 `genre-playbook-notice.md`、`genre-playbook-publication.md`，旧页继续存在会把两个主文种重新混读。 |
 | 27 | `genre-playbook-plan-construction.md` | genre | 方案主叶 | retain | 方案目标、任务、步骤、保障和状态边界。 |
 | 28 | `genre-playbook-procurement-review.md` | genre/transaction | 采购审查主叶 | retain | 采购审查和评审材料，不承载算力三套骨架。 |
 | 29 | `genre-playbook-project-application.md` | genre | 项目申请主叶 | retain | 项目申请的依据、目标、内容和请批事项。 |
 | 30 | `genre-playbook-remediation-plan.md` | genre/transaction | 整改方案主叶 | retain | 整改问题、措施、责任和状态保持原强度。 |
 | 31 | `genre-playbook-request.md` | genre | 请示/申请主叶 | retain | 请批、依据、事项和结语的完整骨架。 |
-| 32 | `genre-playbook-research-feasibility.md` | genre | 调研/研究/可研主叶 | retain | 研究对象、方法、分析和结论状态。 |
+| 32 | `genre-playbook-research-feasibility.md` | router | 旧调研/可研混合页 | delete | 调研/研究与可研的决策功能已拆为 `genre-playbook-research.md`、`genre-playbook-feasibility.md`。 |
 | 33 | `genre-playbook-speech-address.md` | genre | 讲话/致辞主叶 | retain | 讲话、致辞和演讲的对象、主题、层次和收束。 |
 | 34 | `genre-playbook-work-summary.md` | genre | 工作总结/要点主叶 | retain | 总结、要点的事实归纳和安排状态。 |
 | 35 | `genre-playbooks.md` | router | 旧入口兼容目录 | delete | 仅剩跳转和重复目录功能；已由专页、`genre-routing.md` 与 `genre-checklist.md` 替代，删除以避免旧混合入口继续被误读。 |
@@ -54,6 +54,23 @@
 | 48 | `task-route-cards.md` | router | 轻量任务路由卡 | rewrite | 只判定是否可走短路，不带入会议、通知或报告细则。 |
 | 49 | `technical-terms.md` | transaction/overlay | 技术术语附加页 | retain | 算力或技术稿件明确需要术语核对时才加载。 |
 | 50 | `workflow.md` | workflow | 写作流程总契约 | rewrite | 规定模式动作、阶段顺序和停止点，不写具体文种骨架。 |
+
+## 新构造页（不占用基线 50 行）
+
+这些页面承接被删除的混合主叶功能；它们由路由 manifest 和 `reference-index.md` 直接选取，不再回读旧混合页：
+
+| 新页 | 用途 |
+|---|---|
+| `genre-playbook-notice.md` | 通知独立主文种 |
+| `genre-playbook-publication.md` | 公告、公示、通告、公开通报 |
+| `genre-playbook-research.md` | 调研/研究独立主文种 |
+| `genre-playbook-feasibility.md` | 可行性研究独立主文种 |
+| `genre-playbook-procurement-announcement.md` | 采购公告独立主文种 |
+| `genre-playbook-deliberation.md` | 决定、决议、议案、公报、命令 |
+| `genre-playbook-deployment.md` | 部署安排事务页 |
+| `genre-playbook-reply.md` | 批复独立主文种 |
+| `genre-playbook-opinion.md` | 意见独立主文种 |
+| `genre-playbook-explanation.md` | 说明独立主文种 |
 
 ## 台账使用规则
 
