@@ -21,8 +21,6 @@ metadata:
 
 其他文种按 `references/reference-index.md` 确定唯一首叶；文种或行文关系冲突时再读取 `references/genre-routing.md`。
 
-需要扫描 `.txt`、`.md` 或 `.docx` 草稿时，唯一脚本路由是 `references/prose-lint-usage.md`；用户明确选择交付门禁或 Hook 检查时，先读 `hooks/README.md`，再按需要读取 `references/delivery-review-gate.md`。文种叶不代替这两条工具路由。
-
 用户明确只交稿件或不附说明时，主文种成稿和内部复核完成后读取 `references/delivery-body-only.md`；这一步只决定最终交付形态，不改变正文内容。
 
 任务模式按用户要完成的动作分为：
@@ -76,3 +74,5 @@ metadata:
 ### 脚本与 Hook 检查
 
 需要扫描草稿时读取 `references/prose-lint-usage.md`，需要交付门禁或 Hook 检查时读取 `hooks/README.md`，并按门禁任务再读取 `references/delivery-review-gate.md`。脚本输出风险清单后，必须逐项对照正文、主文种和用户修改范围，确定修改、保留或正文外提示；扫描未完成时标明未完成并转人工复核。扫描任务以风险清单已读取并逐项处理为完成条件；正文取舍仍按事实和文种规则执行。
+
+Hook 是可选择的写作检查增强：用户明确要求质量门禁、长度保护、交付洁净或其他 Hook 检查时，再读取对应 Hook 入口并启用；普通写稿沿主文种和交付动作完成，Hook 只在用户选择时加入。

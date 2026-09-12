@@ -34,9 +34,9 @@ class ProductSurfaceAuditTests(unittest.TestCase):
 
     def test_tool_routes_name_their_single_entry_pages(self) -> None:
         text = (ROOT / "chinese-official-writing/SKILL.md").read_text(encoding="utf-8")
-        self.assertIn("唯一脚本路由是 `references/prose-lint-usage.md`", text)
-        self.assertIn("先读 `hooks/README.md`", text)
-        self.assertIn("references/delivery-review-gate.md", text)
+        self.assertEqual(text.count("references/prose-lint-usage.md"), 1)
+        self.assertEqual(text.count("hooks/README.md"), 1)
+        self.assertEqual(text.count("references/delivery-review-gate.md"), 1)
         self.assertIn("### 脚本与 Hook 检查", text)
 
 
