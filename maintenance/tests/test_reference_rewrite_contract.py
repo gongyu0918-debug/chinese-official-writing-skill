@@ -17,7 +17,7 @@ class ReferenceRewriteContractTests(unittest.TestCase):
         architecture = (ROOT / "maintenance" / "docs" / "reference-rewrite-architecture-20260912.md").read_text(encoding="utf-8")
         for text, terms in [
             (spec, ["整体对照重写", "不重写：", "Hook 目录冻结", "真实写稿验收", "候选独有硬回退"]),
-            (architecture, ["两条轴", "四层页", "唯一首叶", "脚本负责可观测检查"]),
+            (architecture, ["五类规则页", "单叶隔离协议", "路由清单", "脚本"]),
         ]:
             for term in terms:
                 self.assertIn(term, text)
