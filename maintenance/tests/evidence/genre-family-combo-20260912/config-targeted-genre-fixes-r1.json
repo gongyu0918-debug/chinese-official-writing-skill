@@ -1,0 +1,91 @@
+{
+  "atom": "targeted-genre-fixes-20260912-r1",
+  "baseline": "main",
+  "candidate": "76a436bcad657762a526d039103542dec0e3525b",
+  "expected_diff": [
+    "SKILL.md",
+    "references/ai-compute-docs.md",
+    "references/anti-ai-patterns.md",
+    "references/argument-chains.md",
+    "references/compatibility-scene-routing.md",
+    "references/delivery-body-only.md",
+    "references/delivery-review-gate.md",
+    "references/final-review-layers.md",
+    "references/formal-addressing.md",
+    "references/formulaic-language.md",
+    "references/genre-checklist-report.md",
+    "references/genre-checklist.md",
+    "references/genre-playbook-correspondence.md",
+    "references/genre-playbook-deliberation-deployment.md",
+    "references/genre-playbook-deliberation.md",
+    "references/genre-playbook-deployment.md",
+    "references/genre-playbook-explanation.md",
+    "references/genre-playbook-feasibility.md",
+    "references/genre-playbook-minutes.md",
+    "references/genre-playbook-news-commentary.md",
+    "references/genre-playbook-news-message.md",
+    "references/genre-playbook-notice-publication.md",
+    "references/genre-playbook-notice.md",
+    "references/genre-playbook-opinion.md",
+    "references/genre-playbook-plan-construction.md",
+    "references/genre-playbook-procurement-announcement.md",
+    "references/genre-playbook-procurement-review.md",
+    "references/genre-playbook-publication.md",
+    "references/genre-playbook-reply.md",
+    "references/genre-playbook-report.md",
+    "references/genre-playbook-request.md",
+    "references/genre-playbook-research-feasibility.md",
+    "references/genre-playbook-research.md",
+    "references/genre-playbook-speech-address.md",
+    "references/genre-playbook-work-summary.md",
+    "references/genre-playbooks.md",
+    "references/genre-routing.md",
+    "references/handling-elements.md",
+    "references/information-selection.md",
+    "references/official-style.md",
+    "references/proofreading-checklist.md",
+    "references/prose-lint-usage.md",
+    "references/reference-index.md",
+    "references/review-checklist.md",
+    "references/route-manifest.json",
+    "references/short-draft-naturalness.md",
+    "references/task-route-cards.md",
+    "references/transaction-feedback-report.md",
+    "references/transaction-remediation-report.md",
+    "references/workflow.md"
+  ],
+  "cases": {
+    "plan": {
+      "task": "请写一份实施方案。材料：拟于2026年11月在本单位开展档案数字化试点，范围为业务科和资料室，先整理现有目录，再录入已确认资料，试点期限两个月，验收指标尚未确定。"
+    },
+    "procurement": {
+      "task": "请写一份采购审查意见。材料：拟采购资料柜15个，预算3000元，供应商和型号未确定，验收标准尚未形成。"
+    },
+    "speech": {
+      "task": "请写一段领导讲话开场。材料：出席人员有张主任、李副主任、业务科负责人和资料室负责人，讲话主题是资料整理培训。按已给职务顺序安排称呼，不补其他人员。"
+    },
+    "opinion": {
+      "task": "请写一份意见。材料：针对资料共享平台试运行中的字段口径差异，建议由业务科和资料室共同核对，形成统一口径后再扩大接入范围，具体期限尚未确定。"
+    },
+    "remediation": {
+      "task": "请写一份整改进展报告。材料：检查发现2项字段口径差异，业务科已完成1项核对，另1项正在核实，复核时间尚未确定。"
+    }
+  },
+  "assignments": {
+    "0": [
+      "plan"
+    ],
+    "1": [
+      "procurement"
+    ],
+    "2": [
+      "speech"
+    ],
+    "3": [
+      "opinion"
+    ],
+    "4": [
+      "remediation"
+    ]
+  }
+}
