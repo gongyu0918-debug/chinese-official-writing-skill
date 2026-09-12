@@ -12,23 +12,8 @@
 
 用户要求以本人或本单位亲历方身份，向有权处理的部门、平台、服务主体或管理单位提交投诉、问题反映或情况反映时，直达 `references/genre-playbook-complaint-reflection.md`。
 
-## 专页加载条件
-
-| 文件 | 阶段 | 加载条件 |
-| --- | --- | --- |
-| `references/genre-playbook-advisory-feedback.md` | 按文种选读 | 起草、改写或精简面向政策制定、审核、平台建设运营或材料起草方的合作性意见建议、建议反馈或优化建议时直接读取。 |
-| `references/genre-playbook-complaint-reflection.md` | 按文种选读 | 以本人或本单位亲历方身份起草、改写或精简面向有权处理对象的投诉、问题反映或情况反映时直接读取；尤其用于用户要求只说明自身遇到的问题、不提出解决建议的任务。 |
-| `references/genre-playbook-remediation-plan.md` | 按文种选读 | 用户明确要求根据检查、审计、督察、评估反馈或问题清单制定本单位整改方案、专项整改方案或整改工作方案时直接读取；该页能够覆盖时不再叠加普通方案叶或材料较少任务卡。 |
-| `references/genre-playbook-news-message.md` | 按文种选读 | 用户明确要求编者按、新闻稿、新闻消息、快讯、活动报道、活动新闻稿或新闻通稿时直接读取；材料单一的编者按已由 `formulaic-language.md` 完整覆盖时不重复加载。 |
-| `references/genre-playbook-news-commentary.md` | 按文种选读 | 用户明确将体裁指定为新闻评论、时评或评论员文章时直接读取。 |
-
-未命中上述场景时，返回 `SKILL.md` 的原文种路由；不因材料中偶然出现新闻、评论、建议、整改或投诉等词语而转入本页专页。
+未命中上述场景时，按首页文种索引选择对应页。
 
 ## 衔接写作与质量检查
 
-选定文种专页后，继续按 `SKILL.md` 的任务模式和加载条件完成适用的写作与复核；本页的“选读一个对应专页”只限制文种页选择，不取消质量增强路由。
-
-- 需要调整段落组织、句子表达或论证衔接时，按需读取 `references/official-style.md`、`references/argument-chains.md`；简短正文按任务条件读取 `references/short-draft-naturalness.md`。
-- 用户要求去 AI 味或检查模板腔、旁白、空泛评价时，读取 `references/anti-ai-patterns.md`。
-- 定稿前的引用、成语、数字、日期、单位及文字校对按 `references/proofreading-checklist.md`；正式格式、Word 或红头交付按原条件读取 `references/format-gbt9704.md`，不把新闻和一般事务材料自动套成红头公文。
-- 用户要求段落、小节、全文多层复核时，读取 `references/review-checklist.md`；分层总审按 `references/final-review-layers.md`。只审不改、点名范围复核沿用轻量审稿入口，按用户范围选择质量页。
+选定主文种后按首页的任务规则写稿；完成稿件后执行编号检查步骤。
