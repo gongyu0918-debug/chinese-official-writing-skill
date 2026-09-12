@@ -41,7 +41,7 @@
 - 意见建议、投诉反映、整改方案：先读 `compatibility-scene-routing.md`，再进入对应专页；法定“意见”直接进入意见主叶。
 - 整改进展/整改情况报告：报告主叶 + `transaction-remediation-report.md`；反馈情况报告：报告主叶 + `transaction-feedback-report.md`。两者不改用整改方案或合作性意见建议骨架。
 
-### 仍需总路由判定的文种
+### 需先确定主文种的场景
 
 通报等未命中专页时，读 `genre-routing.md` 判定功能，再用 `genre-checklist.md` 做最小核对。批复、意见、说明、决定、决议、议案、公报、命令和部署已有独立主叶；清单页只保留功能核对，不承载完整骨架。
 
