@@ -139,6 +139,14 @@ class ReferenceRewriteContractTests(unittest.TestCase):
         for term in ["定稿前高风险", "段落复核", "小节复核", "全文复核", "长文压缩", "联网只在", "AI 算力材料", "独立复核"]:
             self.assertIn(term, text)
 
+    def test_information_and_handling_pages_keep_fact_and_element_boundaries(self) -> None:
+        information = (REFS / "information-selection.md").read_text(encoding="utf-8")
+        handling = (REFS / "handling-elements.md").read_text(encoding="utf-8")
+        for term in ["材料事实", "直接分析", "状态信息", "实质缺项", "时间锚", "合理推断"]:
+            self.assertIn(term, information)
+        for term in ["通用要素", "文种重点", "算力和技术服务", "不编造真实单位", "停止本页"]:
+            self.assertIn(term, handling)
+
 
 if __name__ == "__main__":
     unittest.main()
