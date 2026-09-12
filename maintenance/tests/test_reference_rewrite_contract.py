@@ -134,6 +134,11 @@ class ReferenceRewriteContractTests(unittest.TestCase):
         for term in ["第一层：硬边界", "第二层：稿内质量", "第三层：场景交付", "多轮修改", "重复", "脚本只提示风险", "复核完成即停止"]:
             self.assertIn(term, text)
 
+    def test_review_checklist_retains_scope_specific_checks(self) -> None:
+        text = (REFS / "review-checklist.md").read_text(encoding="utf-8")
+        for term in ["定稿前高风险", "段落复核", "小节复核", "全文复核", "长文压缩", "联网只在", "AI 算力材料", "独立复核"]:
+            self.assertIn(term, text)
+
 
 if __name__ == "__main__":
     unittest.main()
