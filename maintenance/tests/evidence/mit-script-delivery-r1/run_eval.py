@@ -94,6 +94,9 @@ CASES = {
     'scope_analysis_dedupe': '请改写下面的建议段，合并重复内容，把原因和可能影响讲清楚，可以结合常识展开分析。底稿：目前群众只能到现场交件，材料有误需要再次往返。建议先做线上预审，现场核验保留。线上预审有利于提前发现材料问题，减少补正往返。提前发现材料问题，可以减少群众反复到现场补材料。以上仅为建议。',
     'scope_state_unspecified': '本周收到12条设备报修登记，设备管理员负责维修联系，目前尚无处理结果。请据此写一段简短情况报告。',
     'grammar_correct_control': '请校对下面这段工作记录，给我校对后的全文：本月完成三项服务事项，形成两份报告，三台设备已检修。工作人员认真地核对了登记信息，材料整理得较为齐全。会议记录保留原话：“细节决定成败。”',
+    'draft_date_missing': '学校旧打印机经常卡纸，教务处拟申请购置一台新打印机，预算1800元，报学校审批。请写完整申请稿，落款写教务处，成文日期尚待确定，先保持缺失。',
+    'classified_internal_report': '请整理成一段供本部门内部流转的情况说明，并保留原有标识。标识：秘密。材料：工作组已完成两批资料目录整理，另有一批目录正在核对，调整方案尚未报批。',
+    'ordinary_internal_report': '请整理成一段供本部门内部流转的情况说明。材料：工作组已完成两批资料目录整理，另有一批目录正在核对，调整方案尚未报批。',
 }
 
 
@@ -155,13 +158,17 @@ def main():
     binding['profile'] = 'temporary-no-user-documents-or-credentials' if args.isolated_profile else 'host-profile'
     binding['runner_sha256'] = hashlib.sha256(Path(__file__).read_bytes()).hexdigest()
     binding['prompt_prefix'] = '使用本目录 .agents/skills/chinese-official-writing/SKILL.md。\n\n'
+    binding['runtime_layout'] = 'each call has a separate parent, workspace and temporary directory'
     (out/'binding.json').write_text(json.dumps(binding,ensure_ascii=False,indent=2),encoding='utf-8')
 
     def run_pair(index: int, case_id: str):
         results=[]
         for arm in ([baseline_arm,'candidate'] if index%2==0 else ['candidate',baseline_arm]):
-            work=runtime/f'm{index}-{case_id}-{arm}'; skill=work/'.agents/skills/chinese-official-writing'
+            run_root=runtime/f'm{index}-{case_id}-{arm}'
+            work=run_root/'workspace'; skill=work/'.agents/skills/chinese-official-writing'
             shutil.copytree(snapshots[arm],skill)
+            scratch=run_root/'tmp'; scratch.mkdir()
+            call_environment={**eval_environment, 'TEMP':str(scratch), 'TMP':str(scratch), 'TMPDIR':str(scratch)}
             prefix=out/f'm{index}-{case_id}-{arm}'
             final=Path(str(prefix)+'.final.txt')
             prompt='使用本目录 .agents/skills/chinese-official-writing/SKILL.md。\n\n'+CASES[case_id]
@@ -173,7 +180,7 @@ def main():
             started=time.monotonic(); error=None
             print(f'START {index} {case_id} {arm}',flush=True)
             try:
-                done=subprocess.run(command,input=prompt,text=True,encoding='utf-8',errors='replace',capture_output=True,timeout=args.timeout,env=eval_environment)
+                done=subprocess.run(command,input=prompt,text=True,encoding='utf-8',errors='replace',capture_output=True,timeout=args.timeout,env=call_environment,cwd=work)
                 code=done.returncode;stdout=done.stdout;stderr=done.stderr
             except subprocess.TimeoutExpired as exc:
                 code=None; error='timeout'
