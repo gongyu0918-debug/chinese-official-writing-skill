@@ -34,6 +34,8 @@ class ReferenceRewriteContractTests(unittest.TestCase):
             "Hook 仅在用户明确要求交付门禁时启用",
         ]:
             self.assertIn(term, skill)
+        self.assertIn("最终输出从标题或正文首句开始", skill)
+        self.assertIn("不出现已读页、参考路径、路由说明", skill)
 
     def test_compute_rules_are_one_scenario_overlay(self) -> None:
         dispatch = (REFS / "ai-compute-docs.md").read_text(encoding="utf-8")
