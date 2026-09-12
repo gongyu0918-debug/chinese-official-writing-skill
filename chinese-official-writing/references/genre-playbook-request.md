@@ -4,7 +4,7 @@
 
 ## 使用方式
 
-- 从 `SKILL.md` 直接进入本文件，不要求先完整读取 `workflow.md`、`genre-routing.md` 或通用 `genre-playbooks.md`。
+- 从 `SKILL.md` 直接进入本文件，不要求先完整读取 `workflow.md`、文种判定页 或通用 文种叶目录。
 - 用户已有模板、称呼、字段顺序和落款方式优先；本文件只确定文种骨架和风险点。
 - 信息进入正文、保持状态、省略或短列缺口，统一按 `information-selection.md` 处理。
 

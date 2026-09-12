@@ -1,5 +1,19 @@
 # 草稿检查脚本使用
 
-仅在准备调用 `scripts/prose_lint.py` 检查草稿时读取。
+仅在确定需要 `scripts/prose_lint.py` 扫描草稿时读取本页。
 
-检查 `.txt`、`.md` 或 `.docx` 草稿时可使用 `scripts/prose_lint.py`。执行时，以本次已读 `SKILL.md` 所在目录解析脚本路径，使用带引号的脚本与草稿绝对路径。需要检查重复事项和格式噪点时加 `--structure --format`。脚本只提示语言、格式和重复风险，不检查文种要素完整性；已按增项专页起草或整体改写的稿件由该页完成成稿复核；其他文种和办理要素仍按 `references/handling-elements.md` 与命中的文种检查叶复核，报告使用 `references/genre-checklist-report.md`，请示和申请使用 `references/genre-checklist-request.md`，可研只审使用 `references/genre-checklist-feasibility-review.md`，其他文种使用 `references/genre-checklist.md`。脚本不自动改写；不得把脚本结果作为不加判断的硬性清洗命令。
+## 调用
+
+以本次已读 `SKILL.md` 所在目录定位脚本，使用草稿绝对路径并保留引号：
+
+```text
+python "<Skill绝对目录>/scripts/prose_lint.py" --delivery-mode draft-body "<草稿绝对路径>"
+```
+
+需要重复事项和格式噪点时追加 `--structure --format`。输入可为 `.txt`、`.md` 或 `.docx`。
+
+## 解释
+
+脚本提示语言、旁白、格式、结构和重复风险，不判断文种要素完整性，不自动改写。文种功能、办理要素、事实和状态仍按首叶、`handling-elements.md`、`final-review-layers.md` 和对应审查页判断。返回码表示扫描完成或技术失败，不等于正文质量结论；高风险结果由调用方决定人工修改或重试。
+
+用户明确要求交付门禁时才读取 `delivery-review-gate.md` 并调用 `review_gate.py`；普通写稿不启用门禁。

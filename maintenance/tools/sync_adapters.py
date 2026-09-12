@@ -30,8 +30,8 @@ HOOK_TIMEOUT_FIELDS = {
 }
 HOOK_TIMEOUT_MILLISECONDS_HOSTS = {"zcode", "qwen-code"}
 HOOK_ROUTE_PARAGRAPH = (
-    "\n\n用户明确要求处理交付门禁 Hook 时，读取 `hooks/README.md`。"
-    "普通起草、改稿、压缩和复核不加载该页，也不自动启用 Hook。"
+    "\n\nHook 仅在用户明确要求交付门禁时启用。"
+    "Hook、宿主适配和运行时能力保持现有实现，不因普通写稿自动加载。"
 )
 
 TARGETS = {
