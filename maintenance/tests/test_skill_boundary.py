@@ -4,6 +4,9 @@ from pathlib import Path
 import hashlib
 import json
 import re
+import shlex
+import subprocess
+import sys
 import unittest
 
 import yaml
@@ -57,47 +60,68 @@ def read_routing_surfaces(skill_path: Path) -> str:
 
 
 def read_field_boundary(skill_root: Path) -> str:
-    """Resolve the field rule only through its declared entry or legacy location."""
+    """Resolve field editing through the current explicit homepage route."""
     home = (skill_root / "SKILL.md").read_text(encoding="utf-8")
     if "`references/field-editing.md`" not in home:
-        return home
-    for term in ("保留字段名、顺序和单元边界", "只改指定值", "新增字段无给定值时留空"):
-        if term not in home:
-            raise AssertionError(f"entry field boundary missing: {term}")
-    return (skill_root / "references/field-editing.md").read_text(encoding="utf-8")
+        raise AssertionError(f"field editing route missing: {skill_root}")
+    return read_reference("field-editing.md", skill_root)
+
+
+def skill_roots() -> list[Path]:
+    return [CANONICAL] + [
+        ROOT / "packages" / package / "skills" / name
+        for package, name in (
+            ("agent-skills", "chinese-official-writing"),
+            ("qwen-code", "chinese-official-writing"),
+            ("qwenwork", "chinese-official-writing"),
+            ("hermes", "chinese-official-writing"),
+            ("openclaw", "chinese_official_writing"),
+        )
+    ]
+
+
+def read_reference(name: str, root: Path = CANONICAL) -> str:
+    """Read the named owner, never aggregate leaves to satisfy a contract."""
+    return (root / "references" / name).read_text(encoding="utf-8")
 
 
 class SkillBoundaryTests(unittest.TestCase):
+    def assert_rules(self, name: str, *rules: str, root: Path = CANONICAL) -> None:
+        text = read_reference(name, root)
+        for rule in rules:
+            with self.subTest(owner=name, rule=rule, root=root):
+                self.assertIn(rule, text)
+
+    def assert_route(self, purpose: str, leaf: str, root: Path = CANONICAL) -> str:
+        """Bind a function to an explicit index row and a real independent page."""
+        home = (root / "SKILL.md").read_text(encoding="utf-8")
+        self.assertIn("`references/reference-index.md`", home)
+        rows = [line for line in read_reference("reference-index.md", root).splitlines()
+                if purpose in line and f"`{leaf}`" in line]
+        self.assertEqual(len(rows), 1, f"{purpose} must select {leaf} in one index row")
+        self.assertTrue((root / "references" / leaf).is_file())
+        return read_reference(leaf, root)
+
     def test_only_one_agent_handoff_entrypoint_remains(self) -> None:
         self.assertTrue((ROOT / "AGENTS.md").is_file())
         self.assertFalse((ROOT / "agent.md").exists())
 
     def test_canonical_skill_declares_positive_trigger_boundary(self) -> None:
-        text = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
-        readme = (ROOT / "README.md").read_text(encoding="utf-8")
-
-        description = re.search(r"^description: (.+)$", text, re.M)
-        self.assertIsNotNone(description)
-        self.assertLessEqual(len(description.group(1)), 280)
+        """Discovery stays concise; execution and fact boundaries live in the body."""
+        text = (CANONICAL / "SKILL.md").read_text(encoding="utf-8")
+        description = read_frontmatter(CANONICAL / "SKILL.md")["description"]
+        self.assertLessEqual(len(description), 280)
         for keyword in ["申请", "请示", "报告", "通知", "通告", "意见", "决定", "函", "公告", "审查材料", "正式文本"]:
-            self.assertIn(keyword, description.group(1))
+            self.assertIn(keyword, description)
         for excluded in ["营销", "社媒", "论文", "个人求职"]:
-            self.assertNotIn(excluded, description.group(1))
-        self.assertIn("当用户明确要求中文通知", text)
-        self.assertIn("## 触发条件与边界", text)
-        self.assertNotIn("批量语料生成", text)
-        self.assertNotIn("规避人工审核", text)
-        self.assertIn("批量语料生成", readme)
-        self.assertIn("规避人工审核", readme)
-        self.assertNotIn("本技能只提供写作和复核辅助", text)
-        self.assertNotIn("## 三层使用原则", text)
-        self.assertNotIn("用户写明“材料只有”", text)
-        self.assertIn("## 使用顺序", text)
-        self.assertIn("先按用户指定的输出模式执行下文“硬边界”", text)
-        for heading in ["## 硬边界", "## 质量建议", "## 参考资料"]:
+            self.assertNotIn(excluded, description)
+        for heading in ["## 适用范围", "## 入口契约", "## 事实、状态与修改边界", "## 正文形态", "## 成稿后的检查顺序"]:
             self.assertIn(heading, text)
-        self.assertNotIn("模型训练", text)
-        self.assertIn("没有用户提供依据时，不编造真实单位", text)
+        self.assertIn("采用用户或材料提供的信息", text)
+        readme = (ROOT / "README.md").read_text(encoding="utf-8")
+        for boundary in ["批量语料生成", "规避人工审核"]:
+            self.assertNotIn(boundary, text)
+            self.assertIn(boundary, readme)
         self.assertIn("法律、财务、采购、审计、政策适用、保密审查和正式签发结论由相应责任主体确认", readme)
 
     def test_skill_frontmatter_keeps_only_discovery_fields_and_tags(self) -> None:
@@ -164,158 +188,101 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assertIn('"qwenwork": OPTIONAL_GATE_FILES', sync_script)
 
     def test_ai_compute_detail_is_loaded_from_specialty_reference(self) -> None:
-        skill = read_routing_surfaces(CANONICAL / "SKILL.md")
-        specialty = (ROOT / "chinese-official-writing" / "references" / "ai-compute-docs.md").read_text(
-            encoding="utf-8"
-        )
-
-        self.assertNotIn("起草算力、采购、租赁或服务器租赁材料时", skill)
-        self.assertIn("references/ai-compute-docs.md", skill)
-        self.assertIn("AI 算力、GPU/服务器租赁、模型服务、智算中心、成本比较、SLA、安全或验收等专项起草、改写和完整技术审查时读取", skill)
-        self.assertIn("不因出现上述术语或点名技术指标等缺项转读本页", skill)
-        self.assertIn("普通文种仍按本表相应叶叠加", skill)
-        playbooks = (ROOT / "chinese-official-writing" / "references" / "genre-playbooks.md").read_text(
-            encoding="utf-8"
-        )
-        self.assertIn("Token、并发、存储、带宽", specialty)
-        self.assertIn("## AI 算力与技术服务", specialty)
-        self.assertEqual(specialty.count("## AI 算力与技术服务"), 1)
-        self.assertIn("模型训练、推理、微调和多租户隔离需求", specialty)
-        self.assertNotIn("## AI 算力与技术服务", playbooks)
-        self.assertIn("详细结构见下文；本节只保留触发和边界", specialty)
-        self.assertIn("SLA", specialty)
-        self.assertIn("验收", specialty)
-        terms = (CANONICAL / "references/technical-terms.md").read_text(encoding="utf-8")
-        anti_ai = (CANONICAL / "references/anti-ai-patterns.md").read_text(encoding="utf-8")
-        self.assertIn("`technical-terms.md`", specialty)
-        self.assertIn("转读 `technical-terms.md`", anti_ai)
-        for term in [
-            "图形处理器（Graphics Processing Unit，GPU）",
-            "应用编程接口（Application Programming Interface，API）",
-            "服务级别协议（Service Level Agreement，SLA）",
-            "数据中心电能利用效率（Power Usage Effectiveness，PUE）",
-        ]:
-            self.assertIn(term, terms)
-        self.assertIn("含义不明的缩写不自行展开", terms)
+        """Compute overlays require a primary genre and explicit compute signals."""
+        home = (CANONICAL / "SKILL.md").read_text(encoding="utf-8")
+        self.assertIn("在主文种叶上叠加 `references/ai-compute-docs.md`", home)
+        self.assertIn("“安全”“SLA”或“验收”单独出现时沿用主文种规则", home)
+        self.assert_rules("reference-index.md", "先选报告、方案、采购或技术材料等主文种", "不单独替代主文种")
+        self.assert_rules("ai-compute-docs.md", "Token", "并发", "存储", "带宽", "SLA", "验收")
+        self.assert_rules("technical-terms.md", "图形处理器（Graphics Processing Unit，GPU）",
+                          "应用编程接口（Application Programming Interface，API）",
+                          "服务级别协议（Service Level Agreement，SLA）",
+                          "数据中心电能利用效率（Power Usage Effectiveness，PUE）",
+                          "含义不明的缩写不自行展开")
+        self.assert_rules("anti-ai-patterns.md", "含义不明的内部缩写不自行展开", "专项需求、指标、SLA、安全和验收读 `ai-compute-docs.md`")
+        self.assertFalse((CANONICAL / "references/genre-playbooks.md").exists())
 
     def test_adapter_skill_copies_keep_boundaries(self) -> None:
-        paths = [
-            ROOT / "packages" / "agent-skills" / "skills" / "chinese-official-writing" / "SKILL.md",
-            ROOT / "packages" / "qwen-code" / "skills" / "chinese-official-writing" / "SKILL.md",
-            ROOT / "packages" / "qwenwork" / "skills" / "chinese-official-writing" / "SKILL.md",
-            ROOT / "packages" / "hermes" / "skills" / "chinese-official-writing" / "SKILL.md",
-            ROOT / "packages" / "openclaw" / "skills" / "chinese_official_writing" / "SKILL.md",
-        ]
-
-        for path in paths:
-            with self.subTest(path=path):
-                text = path.read_text(encoding="utf-8")
-                self.assertNotIn("批量语料生成", text)
-                self.assertNotIn("规避人工审核", text)
-                self.assertNotIn("本技能只提供写作和复核辅助", text)
-                self.assertNotIn("## 三层使用原则", text)
-                self.assertNotIn("用户写明“材料只有”", text)
-                self.assertIn("## 使用顺序", text)
-                self.assertIn("没有用户提供依据时，不编造真实单位", text)
+        """Every adapter keeps the same entry, fact and out-of-scope boundaries."""
+        for root in skill_roots()[1:]:
+            with self.subTest(root=root):
+                text = (root / "SKILL.md").read_text(encoding="utf-8")
+                for boundary in ["批量语料生成", "规避人工审核", "本技能只提供写作和复核辅助", "## 三层使用原则"]:
+                    self.assertNotIn(boundary, text)
+                self.assertIn("## 入口契约", text)
+                self.assertIn("真实单位、政策、金额、日期、电话、邮箱、文号、签发人、印章和审批结论采用用户或材料提供的信息", text)
 
     def test_delivery_scope_rule_is_naturalized_across_current_skill_copies(self) -> None:
-        expected = (
-            "正式正文清除 AI 身份、提示词、隐藏推理、起草过程、脚本结果、制作说明、免责话术、"
-            "连续追问或“正文如下”等旁白。"
-        )
-        legacy = "正式正文只保留文种功能和用户要求需要的内容"
-        canonical = ROOT / "chinese-official-writing" / "SKILL.md"
-        paths = [
-            canonical,
-            ROOT / "packages" / "agent-skills" / "skills" / "chinese-official-writing" / "SKILL.md",
-            ROOT / "packages" / "qwen-code" / "skills" / "chinese-official-writing" / "SKILL.md",
-            ROOT / "packages" / "qwenwork" / "skills" / "chinese-official-writing" / "SKILL.md",
-            ROOT / "packages" / "hermes" / "skills" / "chinese-official-writing" / "SKILL.md",
-        ]
-        canonical_body = canonical.read_text(encoding="utf-8").split("---", 2)[2].strip()
-        for path in paths:
-            with self.subTest(path=path):
-                text = path.read_text(encoding="utf-8")
-                self.assertIn(expected, text)
+        """Clean body and separate delivery notes survive in every package."""
+        expected = "正式正文清除 AI 身份、提示词、隐藏推理、起草过程、脚本结果、制作说明、免责话术、连续追问或“正文如下”等旁白。"
+        canonical_body = (CANONICAL / "SKILL.md").read_text(encoding="utf-8").split("---", 2)[2].strip()
+        for root in skill_roots():
+            with self.subTest(root=root):
+                text = (root / "SKILL.md").read_text(encoding="utf-8")
                 self.assertEqual(text.count(expected), 1)
-                self.assertNotIn(legacy, text)
-                final_review = (path.parent / "references/final-review-layers.md").read_text(
-                    encoding="utf-8"
-                )
-                review = (path.parent / "references/review-checklist.md").read_text(encoding="utf-8")
-                delivery = (path.parent / "references/delivery.md").read_text(encoding="utf-8")
-                self.assertIn("材料本身的领导要求、声明、版本或保密标识按事实保留", final_review)
-                self.assertIn("重复标题", review)
-                self.assertIn("审核任务交付问题位置、风险和修改建议", delivery)
-                self.assertIn("用户明确只要稿件、只要正文或要求省略说明时，省略文后提示", delivery)
-                body = text.split("---", 2)[2].strip()
-                self.assertEqual(canonical_body, body)
+                self.assertEqual(canonical_body, text.split("---", 2)[2].strip())
+                self.assert_rules("anti-ai-patterns.md", "如属材料中的真实工作背景则保留其事实", root=root)
+                self.assert_rules("final-review-layers.md", "保留有不同作用的正文、表格和附件内容", root=root)
+                self.assert_rules("delivery.md", "用户明确只要稿件、只要正文或要求省略说明时，省略文后提示",
+                                  "文件交付时，成稿写入文件，文后提示留在交付消息中", root=root)
+        # The legacy contract also preserved factual declarations and version/confidentiality marks.
+        self.assert_rules("final-review-layers.md", "声明", "版本", "保密标识")
 
     def test_entry_excludes_only_non_obvious_out_of_scope_tasks(self) -> None:
-        text = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
-
-        self.assertIn("英文写作、文学创作、营销软文、社交媒体文案、代码说明", text)
+        """Out-of-scope examples stay concise and limited to adjacent writing tasks."""
+        text = (CANONICAL / "SKILL.md").read_text(encoding="utf-8")
+        self.assertIn("英文、文学、营销软文、社交媒体文案、个人求职信和代码说明走其他路径", text)
         self.assertNotIn("闲聊回复", text)
         self.assertNotIn("通用翻译", text)
 
     def test_drafting_rules_are_split_for_prompt_following(self) -> None:
-        text = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
-        lines = text.splitlines()
-        drafting_lines = [
-            line
-            for line in lines
-            if line.startswith("- 起草或改写：") or line.startswith("  - ")
-        ]
-
-        self.assertTrue(any(line.startswith("- 起草或改写：") for line in drafting_lines))
-        self.assertLess(max(len(line) for line in drafting_lines), 360)
-        self.assertGreaterEqual(sum(1 for line in drafting_lines if line.startswith("  - ")), 4)
+        """Users' requirements precede genre selection; task actions are separated."""
+        text = (CANONICAL / "SKILL.md").read_text(encoding="utf-8")
+        headings = ["### 第一步：理解用户需求", "### 第二步：选择文种", "### 第三步：按任务加读"]
+        self.assertEqual(sorted(text.index(h) for h in headings), [text.index(h) for h in headings])
+        for field in ["任务与交付件", "稿件用途", "材料与修改范围", "篇幅与形式"]:
+            self.assertIn(f"- **{field}**", text)
+        section = text.split(headings[-1], 1)[1].split("## 路由主线", 1)[0]
+        for mode in ["起草", "改写", "材料较少或短稿", "局部修改、重排或字段处理", "压缩或限字", "审核、复核、审校或把关", "格式交付"]:
+            rows = [line for line in section.splitlines() if line.startswith(f"- **{mode}**")]
+            self.assertEqual(len(rows), 1)
+            self.assertLess(len(rows[0]), 360)
 
     def test_long_form_headings_warn_against_markdown_bold(self) -> None:
-        text = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
-        checklist = (ROOT / "chinese-official-writing" / "references" / "review-checklist.md").read_text(encoding="utf-8")
-
-        self.assertNotIn("Markdown 格式残留", text)
-        self.assertIn("不用 Markdown `**` 加粗、`###`、代码块或 `---` 横线包装", text)
-        self.assertIn("Markdown 加粗、代码块、`###` 标题", checklist)
+        """Plain titles and final-body packaging remain distinct from explicit Markdown."""
+        home = (CANONICAL / "SKILL.md").read_text(encoding="utf-8")
+        self.assertIn("标题和小标题用普通文本；用户明确要求 Markdown 时使用对应格式", home)
+        self.assert_rules("short-draft-naturalness.md", "Markdown 加粗、代码围栏或横线包装")
+        self.assert_rules("format-gbt9704.md", "不得把 Markdown `**加粗**`、代码块或 `###` 标题标记原样带入正式 Word")
+        self.assert_rules("proofreading-checklist.md", "Markdown 残留是否符合交付形态")
 
     def test_plain_text_title_boundary_contract_is_explicit(self) -> None:
-        text = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
-
-        for phrase in [
-            "纯文本主标题行末不加句号",
-            "标题后空一行",
-            "`一、申请事项`等层级标题不加句号",
-            "编号内容本身是完整正文句时仍用正常句末标点",
-        ]:
-            self.assertEqual(text.count(phrase), 1)
+        """Unresolved: plain-text title punctuation and blank-line boundaries must survive."""
+        delivery = read_reference("delivery.md")
+        # Word-only heading rules do not prove the old plain-text output contract.
+        for phrase in ["纯文本主标题行末不加句号", "标题后空一行", "`一、申请事项`等层级标题不加句号",
+                       "编号内容本身是完整正文句时仍用正常句末标点"]:
+            with self.subTest(contract=phrase):
+                self.assertIn(phrase, delivery, "Unmapped plain-text title behavior")
 
     def test_style_references_keep_precise_routes_without_common_error_catchall(self) -> None:
-        text = read_routing_surfaces(CANONICAL / "SKILL.md")
-
-        self.assertNotIn("其他口语化、标题漂移、重复事项、格式噪点", text)
-        self.assertNotIn("## 常见错误反例", text)
-        self.assertIn("中文反例和修法见 `references/anti-ai-patterns.md`", text)
-        self.assertIn("轻量语气替换见 `references/official-style.md`", text)
-        self.assertIn("| `references/official-style.md` | 起草中 |", text)
-        self.assertIn("| `references/anti-ai-patterns.md` | 复核时 |", text)
-
+        """Language and anti-AI risks have named conditional routes, not a catch-all."""
+        self.assert_rules("reference-index.md", "| `official-style.md` | 需要正式、平实或去口语化 |",
+                          "| `anti-ai-patterns.md` | 复核旁白、教学腔、包装句、模板腔 |")
+        home = (CANONICAL / "SKILL.md").read_text(encoding="utf-8")
+        self.assertIn("所有成稿、改后稿和审核任务均读取 `references/anti-ai-patterns.md`", home)
+        self.assertNotIn("其他口语化、标题漂移、重复事项、格式噪点", home)
+        self.assertNotIn("## 常见错误反例", home)
 
     def test_second_revision_fact_mapping_has_one_complete_entry_rule(self) -> None:
-        text = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
-
-        self.assertEqual(text.count("事实映射式二次修改"), 1)
-        for phrase in [
-            "用户已给事实",
-            "直接概括",
-            "未支持推断",
-            "只处理本轮修改",
-            "不作为默认成稿前阶段",
-            "不暂停交付",
-            "不循环追问",
-            "不输出映射表",
-        ]:
-            self.assertIn(phrase, text)
+        """Fact mapping is internal and correction-triggered; revisions remain nonblocking."""
+        home = (CANONICAL / "SKILL.md").read_text(encoding="utf-8")
+        trigger = "用户指出新增事实或要求按材料重改时"
+        self.assertEqual(home.count(trigger), 1)
+        self.assertIn("删除未支持推断，保留事实和必要衔接，不输出映射表", home)
+        self.assert_rules("information-selection.md", "已给事实、直接分析、未支持推断",
+                          "未支持推断直接删除", "不输出映射表", "上一轮未补齐的缺口不阻断后续修改",
+                          "用户要求先确认时，才在正文前提出必要问题")
 
     def test_packaged_resource_mirrors_match_canonical_bytes(self) -> None:
         canonical = ROOT / "chinese-official-writing"
@@ -384,204 +351,130 @@ class SkillBoundaryTests(unittest.TestCase):
 
 
     def test_reference_loading_table_keeps_progressive_disclosure(self) -> None:
-        text = read_routing_surfaces(CANONICAL / "SKILL.md")
-        core = text.split("## 核心流程", 1)[1].split("## 硬边界", 1)[0]
-
-        self.assertIn("按任务渐进读取资料，不要一次性加载全部文件", text)
-        self.assertIn("| 文件 | 阶段 | 加载条件 |", text)
-        self.assertIn("`references/task-route-cards.md` | 起草前/改稿前", text)
-        self.assertIn("低上下文局部修改", text)
-        self.assertIn("`references/genre-playbook-minutes.md` | 按文种选读", text)
-        self.assertIn("`references/genre-playbook-plan-construction.md` | 按文种选读", text)
-        self.assertIn("`references/genre-checklist-feasibility-review.md` | 按文种选读", text)
-        self.assertIn("`references/genre-playbooks.md` | 按文种选读", text)
-        self.assertIn("`references/ai-compute-docs.md` | 专项选读", text)
-        self.assertIn("AI 算力、GPU/服务器租赁、模型服务、智算中心、成本比较、SLA、安全或验收等专项起草、改写和完整技术审查时读取", text)
-        self.assertIn("本轮停在 `references/genre-checklist-feasibility-review.md`", text)
-        self.assertIn("命中 `references/task-route-cards.md` 且卡片能够覆盖任务时", core)
-        self.assertIn("由卡片完成，不再读取长 reference", core)
-        self.assertIn("未命中、命中转读条件或卡片不能覆盖时", core)
-        self.assertIn("回到 `references/reference-index.md` 选择对应资料", core)
-        self.assertIn("一次只加载实际命中的表项", core)
-        for duplicated_leaf in [
-            "references/genre-playbook-minutes.md",
-            "references/genre-checklist-report.md",
-            "references/genre-playbook-request.md",
-            "references/genre-checklist-request.md",
-            "references/genre-playbook-correspondence.md",
-            "references/genre-playbook-plan-construction.md",
-            "references/genre-playbooks.md",
-            "references/ai-compute-docs.md",
-        ]:
-            self.assertNotIn(duplicated_leaf, core)
+        """The new index selects one genre, conditional capabilities and a review bridge."""
+        home = (CANONICAL / "SKILL.md").read_text(encoding="utf-8")
+        self.assertIn("确定唯一首叶", home)
+        for purpose, leaf in [("会议纪要", "genre-playbook-minutes.md"),
+                              ("方案、实施方案、建设方案", "genre-playbook-plan-construction.md"),
+                              ("只审可研", "genre-checklist-feasibility-review.md")]:
+            self.assert_route(purpose, leaf)
+        self.assert_rules("reference-index.md", "需要共性能力时按触发条件加读", "首叶覆盖文种功能后，直接进入成稿或审查",
+                          "共性页按任务信号叠加", "一个任务同时出现多个文种时")
+        self.assert_rules("task-route-cards.md", "保留对应主文种页", "进入首页的编号检查步骤")
+        self.assertNotIn("genre-playbooks.md", read_reference("reference-index.md"))
 
     def test_lightened_routes_preserve_reviewed_conditions(self) -> None:
-        # f171e82f preserved 36 table rows; the person-order leaf adds one routed row while keeping five scene routes.
-        index = (CANONICAL / "references/reference-index.md").read_text(encoding="utf-8")
-        scenes = (CANONICAL / "references/compatibility-scene-routing.md").read_text(encoding="utf-8")
-        rows = [line for line in (index + "\n" + scenes).splitlines()
-                if line.startswith("| `") and not line.startswith("| `references/compatibility-scene-routing.md`")]
-        self.assertEqual(len(rows), 37)
-        self.assertEqual(len(set(rows)), 37)
-        self.assertEqual(hashlib.sha256("\n".join(sorted(rows)).encode()).hexdigest(), "8b61978940a13e42fef8e6a507b462f836b9e028665128ec6d5bf87145811d62")
-        routes = [line for line in scenes.splitlines() if line.startswith("用户")]
-        self.assertEqual(len(routes), 5)
-        self.assertEqual(hashlib.sha256("\n".join(sorted(routes)).encode()).hexdigest(), "8a04cfe2d488755cb469ef5176cde7f3e5f10be6dcdfb864b7980d92840beeb4")
+        """Replace obsolete row hashes with explicit primary-function and scene mappings."""
+        for purpose, leaf in [("请示", "genre-playbook-request.md"), ("报告、情况报告", "genre-playbook-report.md"),
+                              ("通知", "genre-playbook-notice.md"), ("公告、公示、通告", "genre-playbook-publication.md"),
+                              ("会议纪要", "genre-playbook-minutes.md"), ("开场人物顺序", "speech-person-order.md"),
+                              ("采购审查", "genre-playbook-procurement-review.md"),
+                              ("采购公告", "genre-playbook-procurement-announcement.md")]:
+            with self.subTest(purpose=purpose):
+                self.assert_route(purpose, leaf)
+        scenes = read_reference("compatibility-scene-routing.md")
+        rows = [line for line in scenes.splitlines() if line.startswith("用户")]
+        expected = {"genre-playbook-news-message.md", "genre-playbook-news-commentary.md",
+                    "genre-playbook-advisory-feedback.md", "genre-playbook-remediation-plan.md",
+                    "genre-playbook-complaint-reflection.md"}
+        self.assertEqual(len(rows), 5)
+        self.assertEqual({target for row in rows for target in REFERENCE_LINK_RE.findall(row)}, expected)
+        self.assertIn("不预读全部专页", scenes)
+        self.assertIn("具有下行指导、监督整改或审计监督权力关系的意见按对应文种处理", scenes)
 
     def test_lightened_indices_resolve_from_each_skill_root_and_keep_quality_bridges(self) -> None:
-        roots = [CANONICAL] + [ROOT / "packages" / name / "skills" / skill_name for name, skill_name in (
-            ("agent-skills", "chinese-official-writing"), ("qwen-code", "chinese-official-writing"),
-            ("qwenwork", "chinese-official-writing"), ("hermes", "chinese-official-writing"),
-            ("openclaw", "chinese_official_writing"))]
-        for root in roots:
+        """Each installed root resolves its own routes and reaches ordered quality checks."""
+        for root in skill_roots():
             with self.subTest(root=root):
-                homepage = (root / "SKILL.md").read_text(encoding="utf-8")
+                home = (root / "SKILL.md").read_text(encoding="utf-8")
                 read_routing_surfaces(root / "SKILL.md")
-                # Protect the actual fallback and quality bridge, not its duplicate footer wording.
-                self.assertIn("未命中、命中转读条件或卡片不能覆盖时，回到 `references/reference-index.md` 选择对应资料", homepage)
-                self.assertIn("文种直达仍保留原条件下的段落与论证、语言、去 AI 味、校对及格式衔接。", homepage)
-                self.assertIn("首页明确直达的文种或审稿入口按原条件执行", homepage)
+                self.assertIn("文种或行文关系冲突时再读取 `references/genre-routing.md`", home)
                 for name in ("reference-index.md", "compatibility-scene-routing.md"):
-                    text = (root / "references" / name).read_text(encoding="utf-8")
-                    for target in re.findall(r"^\| `([^`]+)`", text, re.M):
-                        self.assertTrue((root / target).is_file(), f"{root}: {target}")
-                    self.assertEqual(text, (CANONICAL / "references" / name).read_text(encoding="utf-8"))
-                scenes = (root / "references/compatibility-scene-routing.md").read_text(encoding="utf-8")
-                for quality in ("official-style", "argument-chains", "short-draft-naturalness", "anti-ai-patterns",
-                                "proofreading-checklist", "format-gbt9704", "review-checklist", "final-review-layers"):
-                    self.assertIn(f"`references/{quality}.md`", scenes)
-                    self.assertTrue((root / "references" / f"{quality}.md").is_file())
-                self.assertIn("不取消质量增强路由", scenes)
-                self.assertIn("只审不改、点名范围复核仍服从首页原有轻量审稿入口", scenes)
+                    text = read_reference(name, root)
+                    for target in REFERENCE_LINK_RE.findall(text):
+                        self.assertTrue(((root if target == "SKILL.md" else root / "references") / target).is_file(), target)
+                    self.assertEqual(text, read_reference(name))
+                self.assert_rules("compatibility-scene-routing.md", "完成稿件后执行编号检查步骤", root=root)
+                for leaf in ("argument-chains.md", "short-draft-naturalness.md", "anti-ai-patterns.md",
+                             "proofreading-checklist.md", "format-gbt9704.md", "review-checklist.md", "final-review-layers.md"):
+                    self.assertIn(f"`references/{leaf}`", home)
+                    self.assertTrue((root / "references" / leaf).is_file())
+                self.assert_route("需要正式、平实或去口语化", "official-style.md", root)
 
     def test_task_route_cards_keep_sparse_tasks_lightweight(self) -> None:
-        skill = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
-        cards = (ROOT / "chinese-official-writing" / "references" / "task-route-cards.md").read_text(
-            encoding="utf-8"
-        )
-        information_selection = (
-            ROOT / "chinese-official-writing" / "references" / "information-selection.md"
-        ).read_text(encoding="utf-8")
-        self.assertIn("references/task-route-cards.md", skill)
-        self.assertIn("材料稀疏", skill)
-        self.assertIn("不新增事实", skill)
-        for term in [
-            "必须转读长 reference 的情况",
-            "用户要求完整文种骨架",
-            "800 字以上长文",
-            "会议已形成决定、议定事项、结论或一致意见、责任分工或期限",
-            "用户要求完整正式会议纪要",
-            "任务属于可研、采购、AI 算力等专项论证",
-            "先写可用正文",
-            "不补工作组、问题清单、统一共识、治理流程、整改路径",
-            "保持未决口径",
-            "不写“会议强调”“会议认为”“会议决定”",
-            "按已给内容和语气成稿",
-            "不补“认真落实、严肃处理、记录留痕、无论有无异常",
-            "Markdown 加粗、标题井号、横线等属于格式噪点",
-            "用户没补齐上一轮信息时，仍执行本轮明确修改请求",
-        ]:
-            self.assertIn(term, cards)
-        self.assertIn("信息进入正文、保持状态、省略或短列缺口，统一按 `information-selection.md` 处理", cards)
-        self.assertIn("上一轮未补齐的缺口不阻断后续修改", information_selection)
-        self.assertLess(len(cards.splitlines()), 80)
+        """Sparse drafts and local edits independently shorten work without dropping genres."""
+        self.assert_rules("task-route-cards.md", "用户要简短稿件，或材料较少、事项单一", "保留对应主文种页",
+                          "用户只改标题、字段、标点、一个事实或指定段落", "这两类条件分别成立即可",
+                          "明确字数下限、多材料合稿或专项论证按实际完整性需求组织", "进入首页的编号检查步骤")
+        self.assertLess(len(read_reference("task-route-cards.md").splitlines()), 80)
+        self.assert_rules("information-selection.md", "先完成用户要求的正文", "上一轮未补齐的缺口不阻断后续修改")
+        self.assert_rules("genre-playbook-minutes.md", "建议、待议和未形成决定的内容保持相应状态",
+                          "不补写“会议认为”“会议强调”")
+        self.assert_rules("genre-playbook-notice.md", "不为了形成通知格式补整改、会议、责任或期限",
+                          "不能为了显得完整新增办理承诺")
 
     def test_missing_metric_visibility_does_not_become_plan_state(self) -> None:
-        information_selection = (
-            ROOT / "chinese-official-writing" / "references" / "information-selection.md"
-        ).read_text(encoding="utf-8")
-
-        self.assertIn("复核或改稿时，`本次材料未提供某项数值` 不得被现稿写成", information_selection)
-        self.assertIn("未设置、尚未确定、待明确或待会议决定", information_selection)
-        self.assertIn("只保留已明确动作，不转述材料视角", information_selection)
+        """Missing source data must not become a business decision or plan state."""
+        self.assert_rules("information-selection.md",
+                          "`本次材料未提供某项数值` 不改写成“未设置”“待会议决定”或其他计划状态",
+                          "与主旨无关且不影响文种功能或办理落地的外围事项，直接省略")
 
     def test_sparse_length_rule_keeps_fact_boundary_without_short_first_priority(self) -> None:
-        relative_paths = [
-            "chinese-official-writing/SKILL.md",
-            "chinese-official-writing/references/workflow.md",
-            "chinese-official-writing/references/genre-playbooks.md",
-            "chinese-official-writing/references/task-route-cards.md",
-        ]
-        texts = [(ROOT / path).read_text(encoding="utf-8") for path in relative_paths]
-        information_selection = (
-            ROOT / "chinese-official-writing" / "references" / "information-selection.md"
-        ).read_text(encoding="utf-8")
-        for text in texts:
-            self.assertNotIn("宁可短写", text)
-        self.assertNotIn("篇幅要求不改变事实边界", texts[0])
-        self.assertNotIn("基础底稿、基础清单、台账化、过程可追踪、统一督导流程", texts[0])
-        self.assertIn("篇幅目标在上述信息范围内完成", information_selection)
-        self.assertIn("不增加材料外的主体、流程、产物、范围、责任或联系方式", information_selection)
-        self.assertIn("也不以同义概念补回", information_selection)
-        self.assertNotIn("基础底稿、基础清单、台账化、过程可追踪、统一督导流程", texts[1])
-        self.assertIn("按已给内容和语气成稿", texts[3])
+        """Length preserves facts and justified analysis; unsupported filling stays forbidden."""
+        self.assert_rules("information-selection.md", "篇幅目标服务于事实完整、状态准确和正文可用",
+                          "材料不足以下限时，保留已给事实和直接分析",
+                          "篇幅不足以重复状态、同义改写或拆句复述填充")
+        self.assert_rules("compression-details.md", "低于下限时，回看材料中尚未写入的相关要素",
+                          "保留真实可用稿件，将实测差额和所需材料列入文后提示",
+                          "调整后复测当前稿件")
+        self.assert_rules("short-draft-naturalness.md", "篇幅上限是边界，不是必须填满的目标")
+        # Exercise the ordinary counter and its body/postscript boundary, not Hook state.
+        self.assert_rules("compression-details.md", "scripts/draft_length.py", "--min-chars 800 --max-chars 1000",
+                          "用户明确只计汉字时用 `--count-mode cjk`", "将文件路径换成 `-`")
+        for mode, expected in [("nonspace", 8), ("cjk", 2)]:
+            with self.subTest(count_mode=mode):
+                run = subprocess.run(
+                    [sys.executable, "-B", str(CANONICAL / "scripts/draft_length.py"),
+                     "--count-mode", mode, "--min-chars", str(expected),
+                     "--max-chars", str(expected), "--json", "-"],
+                    input="正文ABC12。\n\n文后提示\n不计入123", encoding="utf-8",
+                    capture_output=True, timeout=30,
+                )
+                self.assertEqual(run.returncode, 0, run.stderr)
+                result = json.loads(run.stdout)
+                self.assertEqual(len(result), 1)
+                self.assertEqual(result[0]["count"], expected)
+                self.assertEqual(result[0]["status"], "within")
+                self.assertEqual(result[0]["scope"], "draft-before-postscript")
 
     def test_light_route_is_terminal_until_an_explicit_escalation_condition(self) -> None:
-        skill = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
-        cards = (ROOT / "chinese-official-writing" / "references" / "task-route-cards.md").read_text(
-            encoding="utf-8"
-        )
-        playbooks = (ROOT / "chinese-official-writing" / "references" / "genre-playbooks.md").read_text(
-            encoding="utf-8"
-        )
-        self.assertIn("不因文种名称已知而自动预读下列全部长 reference", skill)
-        modes = skill.split("## 任务模式路由", 1)[1].split("## 核心流程", 1)[0]
-        self.assertIn("执行前先判定起草、改稿、复核、排版交付四类模式", modes)
-        self.assertIn("用户只要求检查、审查、格式核验或语气检查且未要求代改时", modes)
-        self.assertIn("不重写全文；用户要求代改时才输出改后正文", modes)
-        self.assertIn("未命中时不扩大轻量卡的适用范围", skill)
-        self.assertIn("以本页结束 reference 路由", cards)
-        self.assertIn("不因文种名称已知而继续预读", cards)
-        self.assertIn("未命中时不扩大本页适用范围", cards)
-        self.assertIn("任一事项已经形成", cards)
-        self.assertIn("按当前任务选读对应页", playbooks)
-        self.assertIn("genre-playbook-notice-publication.md", playbooks)
-        self.assertIn("只有任务另有复杂改稿、多材料合稿或文种/行文关系不明等条件时才补读长 reference", playbooks)
-        self.assertIn("节末“补充读取”不是固定清单", playbooks)
+        """Spec replaces terminal cards with one retained genre and bounded final checks."""
+        self.assert_rules("task-route-cards.md", "保留对应主文种页", "修改范围限于点名位置及必要衔接",
+                          "明确字数下限、多材料合稿或专项论证按实际完整性需求组织",
+                          "完成草稿或本轮修改，进入首页的编号检查步骤")
+        self.assert_rules("reference-index.md", "首叶覆盖文种功能后，直接进入成稿或审查",
+                          "共性页按任务信号叠加")
+        self.assert_rules("review-checklist.md", "“审核、指出问题、给修改建议”交付问题位置、依据和建议改法",
+                          "交付修改后的全文")
+        self.assertNotIn("以本页结束 reference 路由", read_reference("task-route-cards.md"))
 
     def test_sparse_notice_does_not_treat_delivery_channel_as_issuer(self) -> None:
-        cards = (
-            ROOT / "chinese-official-writing" / "references" / "task-route-cards.md"
-        ).read_text(encoding="utf-8")
-
-        self.assertIn(
-            "不从邮箱、接收方或当前日期反推补写；渠道或接收单位中出现的名称不等于发文主体",
-            cards,
-        )
+        """Unresolved: contact channels or recipients cannot establish the issuing subject."""
+        self.assert_route("通知", "genre-playbook-notice.md")
+        self.assert_rules("genre-playbook-notice.md", "通知对象由材料或用户给出时保留原称谓")
+        self.assertRegex(read_reference("genre-playbook-notice.md"),
+                         r"(邮箱|渠道|接收单位).{0,100}(不等于|不反推|不能据此).{0,60}(发文主体|发文单位)",
+                         "The old channel-versus-issuer boundary has no demonstrated owner")
 
     def test_workflow_sparse_line_relief_keeps_carriers_and_route_graph(self) -> None:
-        skill = read_routing_surfaces(CANONICAL / "SKILL.md")
-        workflow = (ROOT / "chinese-official-writing" / "references" / "workflow.md").read_text(
-            encoding="utf-8"
-        )
-        cards = (ROOT / "chinese-official-writing" / "references" / "task-route-cards.md").read_text(
-            encoding="utf-8"
-        )
-        report = (
-            ROOT / "chinese-official-writing" / "references" / "genre-checklist-report.md"
-        ).read_text(encoding="utf-8")
-
-        self.assertNotIn(
-            "材料稀疏型通报或情况说明只按已给事实之间的关系成稿；缺少某一环节时不补固定章节。",
-            workflow,
-        )
-        self.assertIn(
-            "材料稀疏型通报或情况说明按已给事实之间的关系简短成稿；缺少某一环节时，不补齐固定章节。",
-            skill,
-        )
-        self.assertIn("以本页结束 reference 路由", cards)
-        self.assertIn("不用泛称、占位或未给流程补齐骨架", cards)
-        self.assertIn("材料未给某一环节时，不为补齐骨架硬写", report)
-
-        core = skill.split("## 核心流程", 1)[1].split("## 硬边界", 1)[0]
-        self.assertIn("命中 `references/task-route-cards.md` 且卡片能够覆盖任务时", core)
-        self.assertIn("由卡片完成，不再读取长 reference", core)
-        self.assertIn("`references/workflow.md` | 起草前 | 长文、复杂改稿、多材料合稿", skill)
-        self.assertIn(
-            "`references/genre-checklist-report.md` | 按文种选读 | 报告、情况报告或情况说明需要常规或完整骨架",
-            skill,
-        )
-        self.assertIn("报告、情况报告或情况说明的常规或完整骨架、专项写法和文种细查", report)
+        """Sparse reports keep factual carriers while the removed workflow has explicit owners."""
+        self.assertFalse((CANONICAL / "references/workflow.md").exists())
+        self.assert_route("报告、情况报告", "genre-playbook-report.md")
+        self.assert_rules("genre-playbook-report.md", "材料未给某一环节时，直接在已给事实处收束",
+                          "不为填满骨架增加责任、流程、成效、期限或结论",
+                          "字段式、表单式和清单式材料保留字段名、顺序、数字和换行")
+        self.assert_rules("task-route-cards.md", "保留对应主文种页", "进入首页的编号检查步骤")
+        self.assert_rules("short-draft-naturalness.md", "短稿不保留无信息增量的")
 
     def test_reference_links_form_an_acyclic_graph(self) -> None:
         refs = ROOT / "chinese-official-writing" / "references"
@@ -620,343 +513,187 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assertNotIn("`anti-ai-patterns.md`", review)
 
     def test_trigger_description_covers_reported_genres(self) -> None:
-        text = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
-
-        for keyword in ["复函", "公示", "通告", "意见", "决定", "决议", "议案", "公报", "命令", "工作要点", "审查材料"]:
-            self.assertIn(keyword, text)
+        """Compact discovery delegates less common names to the explicit genre index."""
+        home = (CANONICAL / "SKILL.md").read_text(encoding="utf-8")
+        self.assertIn("`references/reference-index.md`", home)
+        index = read_reference("reference-index.md")
+        for keyword in ["复函", "公示", "通告", "意见", "决定", "决议", "议案", "公报", "命令", "工作要点", "评审材料"]:
+            self.assertIn(keyword, index)
 
     def test_multi_round_revision_rules_keep_structure_and_genre_format(self) -> None:
-        skill = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
-        workflow = (ROOT / "chinese-official-writing" / "references" / "workflow.md").read_text(encoding="utf-8")
-        checklist = (ROOT / "chinese-official-writing" / "references" / "review-checklist.md").read_text(encoding="utf-8")
-
-        structure = workflow
-        if "`structure-editing.md`" in workflow:
-            self.assertIn("增删、调序、粒度及主体变更按 `structure-editing.md`", workflow)
-            self.assertIn("具体结构操作读取 `references/structure-editing.md`", skill)
-            structure = (CANONICAL / "references/structure-editing.md").read_text(encoding="utf-8")
-        for text in [skill, workflow, checklist]:
-            self.assertIn("多轮", text)
-        for text in [skill, structure, checklist]:
-            self.assertIn("增加自然段", text)
-            self.assertIn("反馈渠道", text)
-            self.assertIn("发送人", text)
-            self.assertIn("接收方", text)
-        self.assertIn("关键名词和结构标签一般保留原词", skill)
-        for text in [structure, checklist]:
-            self.assertIn("原因分析", text)
-        self.assertIn("改稿前小标题清单", checklist)
-        self.assertIn("改稿后小标题清单", checklist)
-        self.assertIn("小标题数量", checklist)
+        """The structure owner preserves latest-draft actions, granularity and labels."""
+        home = (CANONICAL / "SKILL.md").read_text(encoding="utf-8")
+        self.assertIn("以最新版底稿为唯一主线", home)
+        self.assertIn("`references/structure-editing.md`", home)
+        self.assert_rules("structure-editing.md", "不回退到旧稿", "反馈渠道", "原因分析",
+                          "增加独立段落", "小标题数量、名称和顺序", "只补一句或短句",
+                          "新增一节/新增小标题", "同步改小标题序号和前后衔接",
+                          "改变发送人、发文单位、主送、收文或接收方时")
+        self.assert_rules("final-review-layers.md", "多轮修改对照最新版底稿及本轮要求",
+                          "增删、调序、主送和主体变更已落实")
 
     def test_legal_genres_have_checklist_and_handling_elements(self) -> None:
-        checklist = (ROOT / "chinese-official-writing" / "references" / "genre-checklist.md").read_text(encoding="utf-8")
-        elements = (ROOT / "chinese-official-writing" / "references" / "handling-elements.md").read_text(encoding="utf-8")
-
-        self.assertIn("## 通告", checklist)
-        for genre in ["决议", "公告", "通告", "意见"]:
-            self.assertIn(f"| {genre} |", elements)
+        """Legal genre functions are independent leaves and handling stays a common checklist."""
+        for purpose, leaf, function in [("公告、公示、通告", "genre-playbook-publication.md", "应知、应遵或应办理"),
+                                        ("决议", "genre-playbook-resolution.md", "通过"),
+                                        ("意见", "genre-playbook-opinion.md", "指导")]:
+            text = self.assert_route(purpose, leaf)
+            self.assertIn(function, text)
+        self.assert_rules("handling-elements.md", "按当前主文种判断哪些要素为必要项", "主体与对象",
+                          "事项与依据", "条件与期限", "支撑与反馈")
+        self.assert_rules("genre-checklist.md", "命中这些名称时不使用本页替代主叶")
 
     def test_reported_genre_coverage_gaps_have_minimum_support(self) -> None:
-        routing = (ROOT / "chinese-official-writing" / "references" / "genre-routing.md").read_text(encoding="utf-8")
-        checklist = (ROOT / "chinese-official-writing" / "references" / "genre-checklist.md").read_text(encoding="utf-8")
-        elements = (ROOT / "chinese-official-writing" / "references" / "handling-elements.md").read_text(encoding="utf-8")
-
-        for keyword in ["工作要点：", "工作总结：", "审查材料：", "讲话稿/致辞/述职报告"]:
-            self.assertIn(keyword, routing)
-        for heading in ["## 征求意见函", "## 采购公告"]:
-            self.assertIn(heading, checklist)
-        for genre in ["公示", "征求意见函", "采购公告"]:
-            self.assertIn(f"| {genre} |", elements)
+        """Previously reported genres still route to pages with their own useful functions."""
+        for purpose, leaf in [("工作总结、工作要点", "genre-playbook-work-summary.md"),
+                              ("采购审查", "genre-playbook-procurement-review.md"),
+                              ("讲话稿、致辞", "genre-playbook-speech-address.md"),
+                              ("征求意见函", "genre-playbook-correspondence.md"),
+                              ("采购公告", "genre-playbook-procurement-announcement.md"),
+                              ("公告、公示、通告", "genre-playbook-publication.md")]:
+            self.assert_route(purpose, leaf)
+        self.assert_rules("genre-playbook-correspondence.md", "征求意见函必须给反馈路径")
+        self.assert_rules("genre-playbook-publication.md", "期限、异议或反馈渠道及联系人")
+        self.assert_rules("genre-playbook-procurement-announcement.md", "响应期限、提交方式、联系人")
 
     def test_genre_authority_uses_the_defined_routing_source(self) -> None:
-        skill = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
-
-        self.assertIn("文种判断以官方规范和 `references/genre-routing.md` 为准", skill)
-        self.assertNotIn("社区模板不得替代文种功能", skill)
+        """Uncertain genre relations route to the decision tree and official writing sources."""
+        home = (CANONICAL / "SKILL.md").read_text(encoding="utf-8")
+        self.assertIn("文种或行文关系冲突时再读取 `references/genre-routing.md`", home)
+        self.assert_rules("genre-routing.md", "再看行文关系", "用功能落位", "确定文种后，转入对应专页")
+        self.assert_rules("external-research.md", "优先查看官方规范和公开正式文本",
+                          "用户业务事实仍以用户材料为准")
 
     def test_report_checklist_is_routed_as_an_atomic_leaf(self) -> None:
-        skill = read_routing_surfaces(CANONICAL / "SKILL.md")
-        playbooks = (ROOT / "chinese-official-writing" / "references" / "genre-playbooks.md").read_text(
-            encoding="utf-8"
-        )
-        common = (ROOT / "chinese-official-writing" / "references" / "genre-checklist.md").read_text(
-            encoding="utf-8"
-        )
-        report = (ROOT / "chinese-official-writing" / "references" / "genre-checklist-report.md").read_text(
-            encoding="utf-8"
-        )
-
-        self.assertIn("references/genre-checklist-report.md", skill)
-        self.assertIn("需要常规或完整骨架、专项写法或细查文种功能和结构时直接读取", skill)
-        self.assertNotIn("`genre-checklist-report.md`", playbooks)
-        self.assertNotIn("## 报告/情况说明", playbooks)
-        self.assertNotIn("## 报告\n", common)
-        self.assertIn("## 使用方式", report)
-        self.assertIn("## 报告/情况说明", report)
-        self.assertIn("使用事实性汇报语言", report)
-        self.assertIn("专题报告先给结论", report)
-        self.assertNotIn("`genre-checklist-report.md`", report)
-
-        for phrase in [
-            "报告事项和范围",
-            "使用/体验/评估报告或成本考察",
-            "报告不写审批请求",
-            "材料只说接口、系统、页面异常时",
-        ]:
-            self.assertIn(phrase, report)
+        """Report drafting and review separate while title, cause, status and function survive."""
+        draft = self.assert_route("报告、情况报告", "genre-playbook-report.md")
+        self.assert_route("文种复核", "genre-checklist-report.md")
+        self.assert_rules("genre-checklist-report.md", "不承担起草骨架", "没有夹带审批请求",
+                          "保留用户指定名称", "接口、系统、页面、数字、日期、单位和进行中/待核/建议状态")
+        for rule in ["报告事项与范围", "使用事实性汇报语言", "结论先行或按时间顺序均可",
+                     "不改题为调研、方案或考核说明", "原因、责任、损失或整改结论以材料为准"]:
+            self.assertIn(rule, draft)
+        self.assertFalse((CANONICAL / "references/genre-playbooks.md").exists())
 
     def test_feasibility_review_checklist_is_an_atomic_leaf(self) -> None:
-        skill = read_routing_surfaces(CANONICAL / "SKILL.md")
-        common = (
-            ROOT / "chinese-official-writing" / "references" / "genre-checklist.md"
-        ).read_text(encoding="utf-8")
-        review = (
-            ROOT
-            / "chinese-official-writing"
-            / "references"
-            / "genre-checklist-feasibility-review.md"
-        ).read_text(encoding="utf-8")
-
-        self.assertIn("references/genre-checklist-feasibility-review.md", skill)
-        self.assertIn("只审或细查可研、可行性研究报告", skill)
-        self.assertNotIn("## 可行性研究报告\n", common)
-        self.assertIn("## 可行性研究报告\n", review)
-        self.assertIn("区分实际数据、测算数据和假设", review)
-        self.assertIn("起草、改写或审后改写仍按既有可研 playbook", review)
-        self.assertIn("主张本身及相互之间的内部一致性", review)
-        self.assertNotIn("效果主张之间的内部一致性", review)
+        """Targeted feasibility review remains scoped to claims and evidence already supplied."""
+        review = self.assert_route("只审可研", "genre-checklist-feasibility-review.md")
+        for rule in ["只审既有可研摘要时", "主张本身及相互之间的内部一致性", "区分实际数据、测算数据和假设",
+                     "起草、改写或审后改写仍按既有可研 playbook", "不扩展用户未点名的审查范围",
+                     "尚未形成决定", "不代填市场价格结论、数值阈值、责任分工、合同条款或办理程序"]:
+            self.assertIn(rule, review)
+        self.assertNotIn("## 可行性研究报告", read_reference("genre-checklist.md"))
 
     def test_minutes_playbook_is_routed_as_an_atomic_leaf(self) -> None:
-        skill = read_routing_surfaces(CANONICAL / "SKILL.md")
-        cards = (
-            ROOT / "chinese-official-writing" / "references" / "task-route-cards.md"
-        ).read_text(encoding="utf-8")
-        common = (
-            ROOT / "chinese-official-writing" / "references" / "genre-playbooks.md"
-        ).read_text(encoding="utf-8")
-        minutes = (
-            ROOT / "chinese-official-writing" / "references" / "genre-playbook-minutes.md"
-        ).read_text(encoding="utf-8")
-
-        self.assertIn("references/genre-playbook-minutes.md", skill)
-        self.assertIn("references/genre-playbook-minutes.md", cards)
-        self.assertNotIn("## 会议纪要\n", common)
-        self.assertIn("## 会议纪要\n", minutes)
-        self.assertIn("重点是议定事项、责任、期限和后续动作", minutes)
-        self.assertIn("不补写“会议认为”“会议强调”", minutes)
+        """Minutes retain decisions, attribution and unresolved states in one primary leaf."""
+        leaf = self.assert_route("会议纪要", "genre-playbook-minutes.md")
+        for rule in ["重点是议定事项、责任、期限和后续动作", "不补写“会议认为”“会议强调”",
+                     "建议、待议和未形成决定的内容保持相应状态", "不编造“会议决定”",
+                     "发言人的建议、判断和条件逐项对照记录，归属保持一致"]:
+            self.assertIn(rule, leaf)
+        self.assert_rules("task-route-cards.md", "保留对应主文种页")
+        self.assertFalse((CANONICAL / "references/genre-playbooks.md").exists())
 
     def test_request_playbook_is_routed_as_an_atomic_leaf(self) -> None:
-        skill = read_routing_surfaces(CANONICAL / "SKILL.md")
-        common = (
-            ROOT / "chinese-official-writing" / "references" / "genre-playbooks.md"
-        ).read_text(encoding="utf-8")
-        request = (
-            ROOT / "chinese-official-writing" / "references" / "genre-playbook-request.md"
-        ).read_text(encoding="utf-8")
-
-        self.assertIn("references/genre-playbook-request.md", skill)
-        self.assertIn("请示、申请需要常规或完整骨架时直接读取", skill)
-        self.assertNotIn("## 请示/申请\n", common)
-        self.assertNotIn("- 请示/申请\n", common)
-        self.assertIn("## 请示/申请\n", request)
-        self.assertIn("请示一文一事", request)
-        self.assertIn("主送机关、发文或申请单位、成文日期属于正式报送结构要素", request)
-        self.assertIn("请示通常按请示缘由、请示事项、请示要求组织", request)
-        self.assertIn("请示和申请的紧凑短稿均可在同一句中承载缘由与事项", request)
-        self.assertIn("申请必须有能够成立的原因、依据或必要性", request)
-        self.assertIn("已给事实与常识能够直接支持一般必要性、直接用途", request)
-        self.assertIn("在请示或申请事项前用一层低强度表述自然承载", request)
-        self.assertIn("输出允许正文外提示时，只短列需要补充的缘由、依据或用途", request)
-        self.assertIn("单项采购请示或申请用一至两个自然段", request)
-        self.assertIn("只交正文时不夹带说明，也不留空白横线或“事由待补”等占位", request)
-        self.assertIn("根据有关休假规定", request)
-        self.assertIn("不用“因个人事务”“因身体原因”等泛称代填", request)
-        self.assertIn("`argument-chains.md` 的请示和请批附件", request)
+        """Requests retain a reason-to-request relation, flexible length and leave constraints."""
+        leaf = self.assert_route("请示", "genre-playbook-request.md")
+        for rule in ["请示一文一事", "申请写清原因、依据或必要性", "缘由到请求的关系仍要完整",
+                     "主动写出事实和常识直接支持的一般必要性、目的或用途",
+                     "完全缺少用途和依据时", "单项采购请示或申请可用一至两个自然段",
+                     "根据有关休假规定", "不用“因个人事务”“因身体原因”等泛称代填",
+                     "主送采用用户给出的接收对象", "正式成稿清理无用途的占位",
+                     "`argument-chains.md`", "`handling-elements.md`"]:
+            self.assertIn(rule, leaf)
+        self.assertNotIn("单项采购请示或申请用一至两个自然段", leaf)
+        self.assertFalse((CANONICAL / "references/genre-playbooks.md").exists())
 
     def test_plan_construction_playbook_is_routed_as_an_atomic_leaf(self) -> None:
-        skill = read_routing_surfaces(CANONICAL / "SKILL.md")
-        common = (
-            ROOT / "chinese-official-writing" / "references" / "genre-playbooks.md"
-        ).read_text(encoding="utf-8")
-        leaf = (
-            ROOT
-            / "chinese-official-writing"
-            / "references"
-            / "genre-playbook-plan-construction.md"
-        ).read_text(encoding="utf-8")
-        research_skeleton = (
-            "对象和范围 -> 事实、数据、样本 -> 发现和问题 -> 原因或方案比较 -> "
-            "建议/可行性/建设内容 -> 条件和风险"
-        )
-        research_leaf = (
-            ROOT
-            / "chinese-official-writing"
-            / "references"
-            / "genre-playbook-research-feasibility.md"
-        ).read_text(encoding="utf-8")
-        plan_skeleton = (
-            "以目标、主要任务和实施路径为主线，责任、进度、保障、验收与风险控制"
-            "按材料和用户模板落位"
-        )
-
-        self.assertIn("references/genre-playbook-plan-construction.md", skill)
-        self.assertIn("方案、实施方案或建设方案需要常规或完整骨架时直接读取", skill)
-        self.assertNotIn("## 调研报告/研究报告/可研报告/建设方案\n", common)
-        self.assertNotIn("## 调研报告/研究报告/可研报告\n", common)
-        self.assertIn("## 方案/实施方案/建设方案\n", leaf)
-        self.assertIn(research_skeleton, research_leaf)
-        self.assertNotIn(research_skeleton, leaf)
-        self.assertIn(plan_skeleton, leaf)
-        self.assertNotIn("建设方案先核对目标、范围、任务、进度、责任和验收", common)
-        self.assertIn("建设方案先核对目标、范围、任务、进度、责任和验收", leaf)
-        for forbidden in ["计划段展开", "计划补写", "篇幅", "字数", "P0"]:
-            self.assertNotIn(forbidden, leaf)
+        """Plans keep their action skeleton distinct from research and feasibility decisions."""
+        self.assert_route("方案、实施方案、建设方案", "genre-playbook-plan-construction.md")
+        self.assert_route("调研、研究", "genre-playbook-research.md")
+        self.assert_route("可研", "genre-playbook-feasibility.md")
+        self.assert_rules("genre-playbook-plan-construction.md", "以目标、主要任务和实施路径为主线",
+                          "责任、进度、保障、验收与风险控制按材料和用户模板落位",
+                          "建设方案先核对目标、范围、任务、进度、责任和验收",
+                          "可以省略相应章节", "不把行业常见工作包写成已决定的任务")
+        self.assert_rules("genre-playbook-research.md", "对象与范围 → 方法、样本和资料来源",
+                          "不把有限样本写成普遍结论")
+        self.assert_rules("genre-playbook-feasibility.md", "可研提供项目决策依据和可行性论证",
+                          "不把建议写成已批项目")
+        self.assertFalse((CANONICAL / "references/genre-playbook-research-feasibility.md").exists())
 
     def test_remediation_plan_has_a_state_preserving_atomic_leaf(self) -> None:
-        skill = read_routing_surfaces(CANONICAL / "SKILL.md")
-        canonical_leaf = (
-            ROOT
-            / "chinese-official-writing"
-            / "references"
-            / "genre-playbook-remediation-plan.md"
-        )
-        leaf = canonical_leaf.read_text(encoding="utf-8")
-
-        self.assertIn("references/genre-playbook-remediation-plan.md", skill)
-        self.assertIn("用户明确要求根据检查、审计、督察、评估反馈或问题清单制定本单位整改方案", skill)
-        self.assertIn("不因正文偶然出现“整改”改变原定文种", skill)
-        self.assertIn("该页能够覆盖时不再叠加普通方案叶或材料稀疏任务卡", skill)
-        self.assertIn("后文拟定措施的将来时不能代替或吞掉该状态", leaf)
-        self.assertIn("每个问题应有可执行的整改措施", leaf)
-        self.assertIn("可以作一层归因或逆推", leaf)
-        self.assertIn("职责范围内的纠正、制度完善、执行复核和持续改进属于拟定的未来措施", leaf)
-        self.assertIn("不套用专班、月报、考核、销号等固定机制", leaf)
-        self.assertIn("用户要求只交正文时，不附写作说明", leaf)
-
-        packaged_leaves = [
-            ROOT / "packages" / "agent-skills" / "skills" / "chinese-official-writing" / "references" / canonical_leaf.name,
-            ROOT / "packages" / "qwen-code" / "skills" / "chinese-official-writing" / "references" / canonical_leaf.name,
-            ROOT / "packages" / "qwenwork" / "skills" / "chinese-official-writing" / "references" / canonical_leaf.name,
-            ROOT / "packages" / "hermes" / "skills" / "chinese-official-writing" / "references" / canonical_leaf.name,
-            ROOT / "packages" / "openclaw" / "skills" / "chinese_official_writing" / "references" / canonical_leaf.name,
-        ]
-        for packaged_leaf in packaged_leaves:
-            with self.subTest(packaged_leaf=packaged_leaf):
-                self.assertEqual(canonical_leaf.read_bytes(), packaged_leaf.read_bytes())
+        """Remediation retains state, bounded reasons and executable authorized future actions."""
+        scenes = read_reference("compatibility-scene-routing.md")
+        self.assertIn("用户明确要求根据检查、审计、督察、评估反馈或问题清单制定本单位整改方案", scenes)
+        self.assertIn("`references/genre-playbook-remediation-plan.md`", scenes)
+        self.assertIn("不因正文偶然出现“整改”改变原定文种", scenes)
+        self.assertIn("只报告已有整改进展", scenes)
+        self.assert_rules("genre-playbook-remediation-plan.md", "后文拟定措施的将来时不能代替或吞掉该状态",
+                          "每个问题应有可执行的整改措施", "可以作一层归因或逆推",
+                          "职责范围内的纠正、制度完善、执行复核和持续改进属于拟定的未来措施",
+                          "不套用专班、月报、考核、销号等固定机制", "用户要求只交正文时，不附写作说明")
+        path = CANONICAL / "references/genre-playbook-remediation-plan.md"
+        for root in skill_roots()[1:]:
+            with self.subTest(root=root):
+                self.assertEqual(path.read_bytes(), (root / "references" / path.name).read_bytes())
 
     def test_request_review_checklist_is_routed_as_an_atomic_leaf(self) -> None:
-        skill = read_routing_surfaces(CANONICAL / "SKILL.md")
-        common = (
-            ROOT / "chinese-official-writing" / "references" / "genre-checklist.md"
-        ).read_text(encoding="utf-8")
-        draft = (
-            ROOT / "chinese-official-writing" / "references" / "genre-playbook-request.md"
-        ).read_text(encoding="utf-8")
-        review = (
-            ROOT / "chinese-official-writing" / "references" / "genre-checklist-request.md"
-        ).read_text(encoding="utf-8")
-
-        self.assertIn("references/genre-checklist-request.md", skill)
-        review_route = next(
-            line for line in skill.splitlines()
-            if line.startswith("| `references/genre-checklist-request.md`")
-        )
-        self.assertIn("只审", review_route)
-        self.assertIn("细查", review_route)
-        self.assertNotIn("## 请示\n", common)
-        self.assertNotIn("## 申请\n", common)
-        self.assertIn("## 请示\n", review)
-        self.assertIn("## 申请\n", review)
-        self.assertIn("一文一事，开头或前部明确请批事项", review)
-        self.assertIn("两行标题", review)
-        self.assertIn("不要只因出现 `妥否，请批示` 就判定为请示", review)
-        self.assertNotIn("两行标题", draft)
-        self.assertNotIn("genre-checklist-request.md", draft)
+        """Requests have a targeted review owner which preserves real internal templates."""
+        review = self.assert_route("文种专项复核", "genre-checklist-request.md")
+        for rule in ["只在请示、申请需要细查文种功能、办理要素", "或用户要求审稿、复核时读取",
+                     "一文一事，开头或前部明确请批事项", "两行标题",
+                     "不要只因出现 `妥否，请批示` 就判定为请示",
+                     "不把缺失项补成正文事实", "结尾应放在落款和成文日期之前"]:
+            self.assertIn(rule, review)
+        self.assertNotIn("## 请示", read_reference("genre-checklist.md"))
+        self.assertNotIn("两行标题", read_reference("genre-playbook-request.md"))
 
     def test_institution_rules_have_a_dedicated_routed_leaf(self) -> None:
-        skill = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
-        leaf = (
-            ROOT
-            / "chinese-official-writing"
-            / "references"
-            / "genre-playbook-institution-rules.md"
-        ).read_text(encoding="utf-8")
-
-        for keyword in ["制度", "规定", "办法", "管理办法", "细则", "操作规程"]:
-            self.assertIn(keyword, skill.split("---", 2)[1])
-        self.assertNotIn("实施细则", skill.split("---", 2)[1])
-        self.assertIn("实施细则", skill.split("---", 2)[2])
-        self.assertIn("references/genre-playbook-institution-rules.md", skill)
-        self.assertIn("内容较短、事项单一时连续列条", leaf)
-        self.assertIn("通知壳只写发布对象、执行要求和附件关系", leaf)
-        self.assertIn("围绕实际操作顺序写清主体、触发条件、步骤、时限、结果和记录", leaf)
-        self.assertIn("仅在材料明确时写入", leaf)
-        self.assertIn("同时读取 `format-gbt9704.md`", leaf)
+        """Institutional variants keep rule structure, authority bounds and optional Word routing."""
+        home = (CANONICAL / "SKILL.md").read_text(encoding="utf-8")
+        self.assertIn("制度、规定、办法、细则和操作规程读取 `references/genre-playbook-institution-rules.md`", home)
+        self.assertIn("制度", read_frontmatter(CANONICAL / "SKILL.md")["description"])
+        leaf = self.assert_route("制度、规定、办法", "genre-playbook-institution-rules.md")
+        for rule in ["管理办法", "实施细则", "内容较短、事项单一时连续列条", "通知壳只写发布对象、执行要求和附件关系",
+                     "围绕实际操作顺序写清主体、触发条件、步骤、时限、结果和记录",
+                     "仅在材料明确时写入", "同时读取 `format-gbt9704.md`"]:
+            self.assertIn(rule, leaf)
 
     def test_news_message_uses_one_frontmatter_cluster_and_six_body_aliases(self) -> None:
-        skill = read_routing_surfaces(CANONICAL / "SKILL.md")
-        leaf = (
-            ROOT
-            / "chinese-official-writing"
-            / "references"
-            / "genre-playbook-news-message.md"
-        ).read_text(encoding="utf-8")
-
-        aliases = ["新闻稿", "新闻消息", "快讯", "活动报道", "活动新闻稿", "新闻通稿"]
-        frontmatter = skill.split("---", 2)[1]
-        self.assertIn("新闻稿件", frontmatter)
-        for alias in aliases:
-            self.assertIn(alias, skill)
-        self.assertNotIn("活动新闻稿", frontmatter)
-        self.assertNotIn("新闻通稿", frontmatter)
-        self.assertIn("references/genre-playbook-news-message.md", skill)
-        self.assertIn("不因材料中偶然出现", skill)
-        for rule in [
-            "标题和导语先交代最重要的已给事实",
-            "材料不足以安全达到下限时，优先交付事实完整的短消息",
-            "材料明示且有新闻价值的单个未决状态应保留",
-            "推断不得改变事实对象或范围",
-            "发布视角只调整叙述主语",
-            "文种内窄例外",
-            "只有活动名称本身已明示功能且无需补参与者动作或活动内容",
-            "合并成一至两个自然段",
-            "普通消息不自行补“这不代表、这不表示、这不构成”",
-        ]:
+        """News discovery stays compact while six aliases route and factual constraints survive."""
+        description = read_frontmatter(CANONICAL / "SKILL.md")["description"]
+        self.assertIn("新闻消息", description)
+        for alias in ["活动新闻稿", "新闻通稿"]:
+            self.assertNotIn(alias, description)
+        scenes = read_reference("compatibility-scene-routing.md")
+        row = next(line for line in scenes.splitlines() if "`references/genre-playbook-news-message.md`" in line)
+        for alias in ["新闻稿", "新闻消息", "快讯", "活动报道", "活动新闻稿", "新闻通稿"]:
+            self.assertIn(alias, row)
+        self.assertIn("不因材料中偶然出现", row)
+        leaf = self.assert_route("新闻消息、活动报道", "genre-playbook-news-message.md")
+        for rule in ["标题和导语先交代最重要的已给事实", "材料不足以安全达到下限时，优先交付事实完整的短消息",
+                     "材料明示且有新闻价值的单个未决状态应保留", "推断不得改变事实对象或范围",
+                     "发布视角只调整叙述主语", "活动名称本身已明示功能且不需要新增参与者动作或活动内容时",
+                     "合并成一至两个自然段", "普通消息不自行补“这不代表、这不表示、这不构成”"]:
             self.assertIn(rule, leaf)
-        self.assertNotIn("缺少某一项时直接省略", leaf)
-        self.assertNotIn("流程清单", leaf)
 
     def test_news_commentary_uses_clustered_frontmatter_and_precise_body_route(self) -> None:
-        skill_paths = [
-            ROOT / "chinese-official-writing" / "SKILL.md",
-            ROOT / "packages" / "agent-skills" / "skills" / "chinese-official-writing" / "SKILL.md",
-            ROOT / "packages" / "qwen-code" / "skills" / "chinese-official-writing" / "SKILL.md",
-            ROOT / "packages" / "qwenwork" / "skills" / "chinese-official-writing" / "SKILL.md",
-            ROOT / "packages" / "hermes" / "skills" / "chinese-official-writing" / "SKILL.md",
-            ROOT / "packages" / "openclaw" / "skills" / "chinese_official_writing" / "SKILL.md",
-        ]
-        reference = "references/genre-playbook-news-commentary.md"
-
-        for path in skill_paths:
-            with self.subTest(path=path):
-                skill = read_routing_surfaces(path)
-                frontmatter = skill.split("---", 2)[1]
-                self.assertIn("新闻稿件", frontmatter)
+        """Explicit commentary intent routes consistently; incidental words do not change genre."""
+        for root in skill_roots():
+            with self.subTest(root=root):
+                frontmatter = read_frontmatter(root / "SKILL.md")
+                self.assertIn("新闻评论", frontmatter["description"])
+                for alias in ["时评", "评论员文章"]:
+                    self.assertNotIn(alias, frontmatter["description"])
+                scenes = read_reference("compatibility-scene-routing.md", root)
+                row = next(line for line in scenes.splitlines()
+                           if "`references/genre-playbook-news-commentary.md`" in line)
                 for alias in ["新闻评论", "时评", "评论员文章"]:
-                    self.assertIn(alias, skill)
-                    self.assertNotIn(alias, frontmatter)
-                self.assertNotIn("评论类", frontmatter)
-                self.assertNotIn("各类评论", frontmatter)
-                self.assertIn(reference, skill)
-                self.assertIn(
-                    "普通公文内容中出现这些词语，不改变原定文种",
-                    skill,
-                )
-                self.assertIn(
-                    "除用户明确要求撰写新闻评论、时评或评论员文章外",
-                    skill,
-                )
+                    self.assertIn(alias, row)
+                self.assertIn("用户明确将体裁指定为", row)
+                self.assertIn("普通公文内容中出现这些词语，不改变原定文种", row)
+                self.assert_route("新闻评论、时评", "genre-playbook-news-commentary.md", root)
 
     def test_news_commentary_leaf_is_bounded_and_non_templated(self) -> None:
         leaf = (
@@ -974,7 +711,7 @@ class SkillBoundaryTests(unittest.TestCase):
             "材料事实与评论推演",
             "公共价值、利弊和成立条件",
             "具体政策、数据、具名责任、期限或承诺",
-            "自然结束",
+            "正文自然收束",
         ]:
             with self.subTest(phrase=phrase):
                 self.assertIn(phrase, leaf)
@@ -984,16 +721,14 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assertNotIn("其次", leaf)
 
     def test_news_genres_are_defined_in_authoritative_routing(self) -> None:
-        routing = (
-            ROOT / "chinese-official-writing" / "references" / "genre-routing.md"
-        ).read_text(encoding="utf-8")
-
-        self.assertIn("### 新闻类文本", routing)
-        self.assertIn("新闻消息：面向公开传播已发生事实", routing)
-        self.assertIn("会议活动报道保持消息功能", routing)
-        self.assertIn("新闻评论：围绕已给事实或公共议题提出观点并展开论证", routing)
-        self.assertIn("评论判断保持为观点", routing)
-        self.assertIn("机关决定、责任分工和执行安排以材料为准", routing)
+        """The routing tree distinguishes factual news, meeting records and commentary judgments."""
+        self.assert_rules("genre-routing.md",
+                          "| 报道已发生的事件 | `genre-playbook-news-message.md` |",
+                          "| 就新闻或公共议题发表评论 | `genre-playbook-news-commentary.md` |",
+                          "活动已经发生且面向公开传播时转新闻消息",
+                          "新闻评论可以提出判断，但判断和材料中的事实、决定、责任安排分开")
+        self.assert_rules("genre-playbook-news-message.md", "新闻消息写已发生事实")
+        self.assert_rules("genre-playbook-minutes.md", "不写成会议新闻")
 
     def test_format_reference_clarifies_document_number_brackets(self) -> None:
         text = (ROOT / "chinese-official-writing" / "references" / "format-gbt9704.md").read_text(encoding="utf-8")
@@ -1002,39 +737,19 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assertIn("不要用方括号 `[]` 或圆括号 `()` 替代", text)
 
     def test_final_drafts_must_not_keep_unfinished_placeholders(self) -> None:
-        skill = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
-        elements = (ROOT / "chinese-official-writing" / "references" / "handling-elements.md").read_text(encoding="utf-8")
-        final_review = (
-            ROOT / "chinese-official-writing" / "references" / "final-review-layers.md"
-        ).read_text(encoding="utf-8")
-        checklist = (ROOT / "chinese-official-writing" / "references" / "review-checklist.md").read_text(encoding="utf-8")
-
-        for text in [skill, elements, final_review, checklist]:
-            self.assertTrue("最终正文" in text or "交付正文" in text)
-            self.assertIn("未完成占位", text)
-
-        self.assertIn("最终正文不得残留未完成占位", skill)
-        self.assertIn("当前日期不得替代维护时间", skill)
-        self.assertIn("当前日期只可用于草稿落款", elements)
-        self.assertIn("当前日期是否未被误用为维护时间", checklist)
-        for example in [
-            "〔签发日期〕",
-            "〔会议时间〕",
-            "[具体项目名称]",
-            "XXXX万元",
-            "YYYY年MM月DD日",
-            "（签发日期）",
-            "（成文日期待确认）",
-        ]:
-            with self.subTest(example=example):
-                self.assertNotIn(example, skill)
-                self.assertIn(example, elements)
-                self.assertIn(example, final_review)
-        self.assertNotIn("交付前按上文硬边界清理占位", skill)
-        self.assertIn("明示成文日期缺失、待确认或需另行确认时，不使用当前日期补落款", skill)
-        self.assertIn("识别为正式报送结构缺口", skill)
-        self.assertIn("不使用当前日期补落款", skill)
-        self.assertIn("YYYY年MM月DD日", elements)
+        """Final text clears placeholders while requested templates and missing dates stay honest."""
+        home = (CANONICAL / "SKILL.md").read_text(encoding="utf-8")
+        self.assertIn("成稿缺少落款日期时省略日期", home)
+        self.assertIn("用户允许时可用当前日期，业务日期沿用材料原值", home)
+        self.assert_rules("final-review-layers.md", "正式成稿清理未完成占位",
+                          "用户要求模板或保留空字段时按其用途处理")
+        self.assert_rules("handling-elements.md", "正式稿清理无用途的占位", "模板稿或用户指定空字段按原要求保留")
+        self.assert_rules("format-gbt9704.md", "最终正文不要残留 `〔签发日期〕`、`〔会议时间〕` 等未完成占位",
+                          "当前日期不得替代会议时间、维护时间、实施期限等业务日期",
+                          "用户明示成文日期缺失、待确认或需另行确认时，不使用当前日期补落款")
+        for placeholder in ["〔签发日期〕", "〔会议时间〕", "[具体项目名称]", "XXXX万元",
+                            "YYYY年MM月DD日", "（签发日期）", "（成文日期待确认）"]:
+            self.assertNotIn(placeholder, home)
 
     def test_clawhub_v160_page_copy_is_kept_only_as_internal_history(self) -> None:
         snapshot = ROOT / "maintenance" / "docs" / "platform-snapshots" / "clawhub-v1.6.0"
@@ -1128,7 +843,7 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assertFalse((ROOT / "LICENSE-SCOPE.md").exists())
         self.assertFalse((ROOT / "licenses").exists())
         self.assertIn("## 开源许可", readme)
-        self.assertIn("本仓库采用 [MIT License](LICENSE)。", readme)
+        self.assertIn("普通 Skill、references、普通检查脚本与兼容包采用 [MIT License](LICENSE)。", readme)
         self.assertNotIn("MIT-0", readme)
         self.assertNotIn("LICENSE-SCOPE", readme)
         self.assertIn("[![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)", readme)
@@ -1186,941 +901,367 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assertIn('"--fail-on"', lint_script)
 
     def test_revision_workflow_forbids_new_unprovided_facts(self) -> None:
-        skill = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
-        workflow = (ROOT / "chinese-official-writing" / "references" / "workflow.md").read_text(encoding="utf-8")
-        checklist = (ROOT / "chinese-official-writing" / "references" / "review-checklist.md").read_text(
-            encoding="utf-8"
-        )
-        information_selection = (
-            ROOT / "chinese-official-writing" / "references" / "information-selection.md"
-        ).read_text(encoding="utf-8")
-
-        self.assertIn("不新增原文没有交代的活动、依据、数据、成效或责任安排", workflow)
-        self.assertIn("不附事实边界自证", workflow)
-        self.assertIn("只输出正文或改后稿时只交正文", information_selection)
-        self.assertIn("在只输出正文模式下附加提示", checklist)
-        self.assertIn("不附其他说明", skill)
-        for text in [skill, workflow, checklist]:
-            self.assertNotIn("未新增原文外事实", text)
+        """Latest-source corrections remove unsupported facts and respect body-only delivery."""
+        self.assert_rules("information-selection.md", "二次修改以用户最新版底稿和本轮明确补充材料为唯一事实源",
+                          "未支持推断直接删除，保留必要衔接，不输出映射表",
+                          "用户要求只改格式、逐字保留、不作分析或只按给定材料时，分析层降为零")
+        self.assert_rules("official-style.md", "正式化不补组织名称、牵头部门、责任分工、整改动作、督办安排、成果总结或后续进展")
+        self.assert_rules("delivery.md", "用户明确只要稿件、只要正文或要求省略说明时，省略文后提示",
+                          "路由记录、工具日志和自评留在内部")
+        for path in [CANONICAL / "SKILL.md", CANONICAL / "references/information-selection.md",
+                     CANONICAL / "references/review-checklist.md"]:
+            self.assertNotIn("未新增原文外事实", path.read_text(encoding="utf-8"))
 
     def test_staged_review_workflow_remains_intact(self) -> None:
-        skill = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
-        workflow = (ROOT / "chinese-official-writing" / "references" / "workflow.md").read_text(encoding="utf-8")
-        checklist = (ROOT / "chinese-official-writing" / "references" / "review-checklist.md").read_text(
-            encoding="utf-8"
-        )
-
-        self.assertIn("小段写完先审，小节写完再审，全文合并后做总审", skill)
-        self.assertIn("每个小节完成后先复核", workflow)
-        self.assertIn("全文合并后按 `final-review-layers.md` 做总审", workflow)
-        self.assertIn("用于段落、小节和全文交付前核对", checklist)
-        for rejected_rule in ["小节完成后不另行", "最多局部修订一次", "只执行一次"]:
-            self.assertNotIn(rejected_rule, skill + workflow + checklist)
+        """Review covers local scopes and assembled drafts; old mandatory micro-stages are superseded."""
+        home = (CANONICAL / "SKILL.md").read_text(encoding="utf-8")
+        self.assertIn("起草、整体改写和压缩后的稿件检查全文", home)
+        self.assertIn("局部修改检查改动及其关联段落", home)
+        steps = ["### 第一步：篇幅检查", "### 第二步：事实与文种复核",
+                 "### 第三步：抗 AI 味与语言检查", "### 第四步：脚本复核", "### 第五步：交付"]
+        positions = [home.index(step) for step in steps]
+        self.assertEqual(positions, sorted(positions))
+        self.assert_rules("review-checklist.md", "对改好稿件执行首页的检查步骤",
+                          "核对修改是否引入新的事实、范围、语言或篇幅问题")
+        self.assert_rules("prose-lint-usage.md", "再复扫变动文本", "最终发送采用已检查文本")
+        for rejected in ["最多局部修订一次", "只执行一次"]:
+            self.assertNotIn(rejected, home)
 
     def test_v140_mode_routing_material_mapping_and_format_bridge_are_documented(self) -> None:
-        skill = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
-        workflow = (ROOT / "chinese-official-writing" / "references" / "workflow.md").read_text(encoding="utf-8")
-        checklist = (ROOT / "chinese-official-writing" / "references" / "review-checklist.md").read_text(
-            encoding="utf-8"
-        )
-        anti_ai = (ROOT / "chinese-official-writing" / "references" / "anti-ai-patterns.md").read_text(
-            encoding="utf-8"
-        )
-        format_ref = (ROOT / "chinese-official-writing" / "references" / "format-gbt9704.md").read_text(
-            encoding="utf-8"
-        )
-        information_selection = (
-            ROOT / "chinese-official-writing" / "references" / "information-selection.md"
-        ).read_text(encoding="utf-8")
-
-        for text in [skill, workflow]:
-            self.assertIn("任务模式路由", text)
-            self.assertIn("起草", text)
-            self.assertIn("改稿", text)
-            self.assertIn("复核", text)
-            self.assertIn("排版交付", text)
-        self.assertIn("以用户最新版底稿和本轮明确补充材料为事实源", workflow)
-        self.assertIn("保持主体、对象、数字、状态、关系及其信息去向", workflow)
-        self.assertIn("信息进入正文、保持原状态、省略或短列实质缺口", workflow)
-        self.assertIn("材料已给且与当前主旨相关的事实进入正文", information_selection)
-        self.assertIn("视为实质缺口", information_selection)
-        self.assertIn("数据冲突不得默认就高", workflow)
-        self.assertIn("空章节不直接编实", workflow)
-        self.assertIn("原文已有事实", checklist)
-        self.assertIn("未默认就高或自选最优", checklist)
-        for term in ["夸大意义", "宣传腔", "模糊归因", "公式化未来展望", "同义词循环", "机械三段式", "过度抽象词互相解释"]:
-            self.assertIn(term, anti_ai)
-        self.assertIn("不新增硬清洗", anti_ai)
-        self.assertIn("Word/排版交付衔接", format_ref)
-        self.assertIn("DOCX/document 技能", format_ref)
-        self.assertIn("不得编造文号", format_ref)
-        self.assertIn("Markdown `**加粗**`", format_ref)
+        """Mode, material, semantic risk and Word bridges have separate owners."""
+        home = (CANONICAL / "SKILL.md").read_text(encoding="utf-8")
+        for mode in ["**起草**", "**改写**", "**压缩或限字**", "**审核、复核、审校或把关**", "**格式交付**"]:
+            self.assertIn(mode, home)
+        self.assert_rules("information-selection.md", "材料已给且与主旨相关的事实进入正文",
+                          "主体、对象、数字、日期、时间、因果、分类、归属和结论强度",
+                          "二次修改以用户最新版底稿和本轮明确补充材料为唯一事实源")
+        self.assert_rules("review-checklist.md", "证据有冲突或尚待核实时标注不确定性",
+                          "避免作确定性指责", "区分已确认错误、需要核实的风险和可选表达建议")
+        self.assert_rules("genre-playbook-report.md", "不为填满骨架增加责任、流程、成效、期限或结论")
+        self.assert_rules("anti-ai-patterns.md", "夸大意义", "宣传腔", "模糊归因", "公式化展望",
+                          "同义词循环", "机械三段式", "抽象词互释", "不按词表机械替换")
+        self.assert_rules("format-gbt9704.md", "Word/排版交付衔接", "DOCX/document 技能",
+                          "不得编造文号", "Markdown `**加粗**`")
 
     def test_v141_formal_delivery_review_and_tone_rules_are_documented(self) -> None:
-        skill = read_routing_surfaces(CANONICAL / "SKILL.md")
-        checklist = (ROOT / "chinese-official-writing" / "references" / "review-checklist.md").read_text(
-            encoding="utf-8"
-        )
-        official_style = (ROOT / "chinese-official-writing" / "references" / "official-style.md").read_text(
-            encoding="utf-8"
-        )
-        format_ref = (ROOT / "chinese-official-writing" / "references" / "format-gbt9704.md").read_text(
-            encoding="utf-8"
-        )
-        self.assertIn("references/format-gbt9704.md", skill)
-        for text in [format_ref, checklist]:
-            self.assertIn("正式交付前要素核对", text)
-        for text in [skill, format_ref, checklist]:
-            self.assertIn("签发", text)
-            self.assertIn("版记", text)
-        self.assertIn("缺项清单", format_ref)
-        self.assertIn("不得用 `[依据/背景]`", format_ref)
-        self.assertIn("优先保留来源模板", format_ref)
-        self.assertIn("不得把 Markdown `**加粗**`", format_ref)
-        self.assertNotIn("正式 Word 输出前是否已清除 Markdown", checklist)
-        self.assertIn("Markdown 加粗、代码块、`###` 标题", checklist)
-        self.assertIn("文号、密级、签发人、印章是否未被编造", checklist)
-        self.assertNotIn("Word 格式是否保留来源模板", checklist)
-        self.assertIn("未编造文号、签发人、印章或版记", checklist)
-        self.assertIn("用户可读格式复核项", checklist)
-        for term in ["标题", "文种", "主送/受文对象", "发文字号", "日期", "附件", "落款", "结尾语", "层级编号"]:
-            self.assertIn(term, checklist)
-        self.assertIn("位置、风险层级、修改建议", checklist)
-        self.assertIn("未默认重写全文", checklist)
-        self.assertIn("不做 0-100 分评分", checklist)
-        self.assertNotIn("0-100 分式伪精确评分", skill)
-        self.assertIn("用户只要求检查、审查、格式核验或语气检查且未要求代改时", skill)
-        self.assertIn("其他点名范围、只审不改任务先读 `references/review-direct-checklist.md`", skill)
-        self.assertIn("用户要求段落、小节、全文三级复核", skill)
-        self.assertIn("才读 `references/review-checklist.md`", skill)
-        self.assertIn("去 AI 味检查按 `references/anti-ai-patterns.md` 执行", skill)
-        self.assertNotIn("事实不清审稿中", skill)
-        self.assertIn("事实不清审稿中", checklist)
-        self.assertNotIn("用户要求检查、审一下、格式核验或语气检查时", skill)
-        self.assertIn("轻量语气替换建议", official_style)
-        for term in ["我觉得", "搞", "差不多", "马上", "然后"]:
-            self.assertIn(term, official_style)
-        self.assertIn("保留原文事实", official_style)
-        self.assertIn("不新增硬清洗", official_style)
-        self.assertIn("不新增硬清洗", skill)
-
-        skill_files = relative_files(ROOT / "chinese-official-writing")
+        """Unified review preserves scope, concrete advice and separate formal-format checks."""
+        home = (CANONICAL / "SKILL.md").read_text(encoding="utf-8")
+        self.assertIn("`references/review-checklist.md`", home)
+        self.assertNotIn("review-direct-checklist.md", home)
+        self.assert_rules("review-checklist.md", "默认检查整篇稿件", "事实与状态、文种与办理要素、结构、语言与抗 AI 味、格式和稿内一致性",
+                          "将问题定位到原句、段落、标题、字段或附件",
+                          "“审核、指出问题、给修改建议”交付问题位置、依据和建议改法")
+        self.assert_rules("delivery.md", "用户限定审核范围时，意见限于该范围",
+                          "列出原句或具体位置、问题表现及建议改法")
+        self.assert_rules("format-gbt9704.md", "正式交付前要素核对卡", "缺项清单", "不得用 `[依据/背景]`",
+                          "先保留用户模板",
+                          "不自动补造文号、签发人、印章、密级、版记或正式签发日期")
+        self.assert_rules("official-style.md", "我觉得", "搞", "差不多", "马上", "然后", "不以替换词改变原信息强度",
+                          "单个正式词、转折或模板句不自动判错")
         for forbidden in ["document_generator.py", "generate_official_doc.py", "install_fonts.py", "format_docx.py"]:
-            self.assertNotIn(forbidden, skill_files)
+            self.assertNotIn(forbidden, relative_files(CANONICAL))
+        # Concrete errors/risks replace pseudo-precise scores; no automatic full rewrite.
+        self.assertNotRegex(read_reference("review-checklist.md"), r"输出.{0,20}0[-—]100")
 
     def test_v141_search_boundary_stays_lightweight_and_opt_in(self) -> None:
-        skill = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
-        workflow = (ROOT / "chinese-official-writing" / "references" / "workflow.md").read_text(encoding="utf-8")
-        external_research = (
-            ROOT / "chinese-official-writing" / "references" / "external-research.md"
-        ).read_text(encoding="utf-8")
-        elements = (ROOT / "chinese-official-writing" / "references" / "handling-elements.md").read_text(
-            encoding="utf-8"
-        )
-        checklist = (ROOT / "chinese-official-writing" / "references" / "review-checklist.md").read_text(
-            encoding="utf-8"
-        )
-        openclaw_skill = (ROOT / "packages" / "openclaw" / "skills" / "chinese_official_writing" / "SKILL.md").read_text(
-            encoding="utf-8"
-        )
-
-        for text in [skill, external_research, checklist, openclaw_skill]:
-            self.assertIn("联网搜索", text)
-        self.assertIn("联网核验", elements)
-        self.assertIn("默认不外搜", skill)
-        self.assertNotIn("### 联网搜索使用边界", workflow)
-        self.assertNotIn("external-research.md", workflow)
-        for term in ["最新", "当前", "今日", "现行政策", "近期数据"]:
-            self.assertIn(term, external_research)
-        self.assertIn("搜索结果只作为来源参考", skill)
-        self.assertIn("来源、日期或检索口径", skill)
-        self.assertIn("发布日期、访问日期或检索口径", external_research)
-        self.assertIn("来源冲突、无法核验或工具不可用", external_research)
-        self.assertIn("默认不外搜补缺项", elements)
-        self.assertIn("未因单位名称自动搜索单位公开样文", checklist)
-        for text in [elements]:
-            self.assertIn("不因出现单位名称就搜索单位公开样文", text)
-        self.assertIn("默认不外搜", skill)
-        self.assertIn("只出现单位名称，不触发搜索单位公开样文", external_research)
-        skill_files = relative_files(ROOT / "chinese-official-writing")
+        """Spec replaces opt-in-only search with bounded research for unfamiliar writing needs."""
+        home = (CANONICAL / "SKILL.md").read_text(encoding="utf-8")
+        self.assertIn("`references/external-research.md`", home)
+        self.assertNotIn("默认不外搜", home)
+        self.assert_rules("external-research.md", "不熟悉的新文种、新材料类型或特殊事务场景",
+                          "用户明确要求搜索或核验公开来源", "最新数据、当前情况、现行政策、近期进展",
+                          "常规已知文种沿用已有路线", "单位名称本身不触发搜索单位样文或写作风格",
+                          "用户业务事实仍以用户材料为准",
+                          "来源名称、发布机关或发布主体、文号或链接、发布日期、访问日期或检索口径",
+                          "来源冲突、无法核验或工具不可用时，列入文后提示",
+                          "立即结束该项检索", "才围绕该缺口改一次查询", "一次后无论是否补齐，都停止该项检索")
+        self.assert_rules("handling-elements.md", "尚不熟悉通用写法或必备要素时读取 `external-research.md`")
         for forbidden in ["search_units.py", "unit_style_cache.json", "unit-style-registry.md"]:
-            self.assertNotIn(forbidden, skill_files)
+            self.assertNotIn(forbidden, relative_files(CANONICAL))
 
     def test_v144_common_real_writing_risks_and_adoption_gate_are_documented(self) -> None:
-        skill = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
-        workflow = (ROOT / "chinese-official-writing" / "references" / "workflow.md").read_text(encoding="utf-8")
-        checklist = (ROOT / "chinese-official-writing" / "references" / "review-checklist.md").read_text(
-            encoding="utf-8"
-        )
-        official_style = (ROOT / "chinese-official-writing" / "references" / "official-style.md").read_text(
-            encoding="utf-8"
-        )
-        genre_checklist = (ROOT / "chinese-official-writing" / "references" / "genre-checklist.md").read_text(
-            encoding="utf-8"
-        )
-        genre_playbooks = (ROOT / "chinese-official-writing" / "references" / "genre-playbooks.md").read_text(
-            encoding="utf-8"
-        )
-        anti_ai = (ROOT / "chinese-official-writing" / "references" / "anti-ai-patterns.md").read_text(
-            encoding="utf-8"
-        )
-        format_ref = (ROOT / "chinese-official-writing" / "references" / "format-gbt9704.md").read_text(
-            encoding="utf-8"
-        )
-        information_selection = (
-            ROOT / "chinese-official-writing" / "references" / "information-selection.md"
-        ).read_text(encoding="utf-8")
-        route_cards = (
-            ROOT / "chinese-official-writing" / "references" / "task-route-cards.md"
-        ).read_text(encoding="utf-8")
-        external_research = (
-            ROOT / "chinese-official-writing" / "references" / "external-research.md"
-        ).read_text(encoding="utf-8")
+        """Field, length, evidence, format and maintenance constraints stay on their owners."""
+        self.assert_rules("information-selection.md", "影响文种成立、请批事项、执行落地、主体关系或用户明示要求",
+                          "先完成用户要求的正文", "篇幅不足以重复状态、同义改写或拆句复述填充")
+        self.assert_rules("field-editing.md", "新增字段没有用户提供值时只写字段名并留空", "即使用分号写在一行",
+                          "不合并成连续句", "不推断发票、票据、邮箱、截止日期")
+        self.assert_rules("compression-details.md", "长稿先分配开头、主体、措施和结尾的篇幅",
+                          "默认按非空白字符统计", "长文各部分均衡压缩", "措施和结尾保留具体落点",
+                          "将实测差额和所需材料列入文后提示")
+        self.assert_rules("official-style.md", "评价强度配合对象、动作、依据、数据或制度载体")
+        self.assert_rules("anti-ai-patterns.md", "评价超证据")
+        self.assert_rules("external-research.md", "来源名称、发布机关或发布主体、文号或链接")
+        self.assert_rules("format-gbt9704.md", "不要写成“已确认可作为 Word 稿基础”", "正文内容已经定稿", "默认另存新版本")
         agents = (ROOT / "AGENTS.md").read_text(encoding="utf-8")
-        maintenance_history = (
-            ROOT / "maintenance" / "docs" / "evidence" / "AGENTS-history-through-v1.5.39.md"
-        ).read_text(encoding="utf-8")
-
-        self.assertIn("不使用泛称或占位符补齐未给要素", skill)
-        self.assertIn("段落骨架只组织可核对内容", workflow)
-        self.assertIn("材料少时先写可用正文", route_cards)
-        self.assertIn("不用泛称、占位或未给流程补齐骨架", route_cards)
-        self.assertIn("实质缺口只在输出模式允许时短列", checklist)
-        self.assertIn("直接影响当前文种成立、请批事项或执行落地", information_selection)
-        field_details = workflow
-        if "`field-editing.md`" in workflow:
-            self.assertIn("`references/field-editing.md`", skill)
-            field_details = read_field_boundary(CANONICAL)
-        self.assertIn("新增字段没有用户提供值时只写字段名并留空", field_details)
-        self.assertIn("即使用分号写在一行", field_details)
-        self.assertIn("不合并成连续句", field_details)
-        self.assertIn("不推断发票、票据、邮箱、截止日期", field_details)
-        self.assertIn("字段值未知", checklist)
-        self.assertIn("分号串写的“字段名：字段值”序列", checklist)
-        self.assertIn("字数自检", skill)
-        self.assertIn("尽量压到限制内", skill)
-        self.assertNotIn("并留出 5%-10% 余量", skill)
-        self.assertIn("去空行后的正文计数", workflow)
-        self.assertIn("尽量压到上限内", workflow)
-        self.assertIn("尽量压到限制内", checklist)
-        for text in (workflow, checklist):
-            self.assertIn("按用户允许的输出范围说明超限或取舍风险", text)
-            self.assertNotIn("5%-10% 余量", text)
-        compression = skill
-        if "`references/compression-details.md`" in skill:
-            self.assertIn("长文压缩和长篇限字时读取", skill)
-            compression = (CANONICAL / "references/compression-details.md").read_text(encoding="utf-8")
-        self.assertIn("长篇限字稿件", compression)
-        self.assertIn("篇幅预算", workflow)
-        self.assertIn("背景现状", workflow)
-        self.assertIn("问题原因", workflow)
-        self.assertIn("措施安排", workflow)
-        self.assertIn("结尾落点", workflow)
-        self.assertIn("避免头重脚轻", compression)
-        self.assertIn("草草收尾", checklist)
-        self.assertIn("不要写成“已确认可作为 Word 稿基础”", format_ref)
-        self.assertIn("评价强度", official_style)
-        self.assertIn("评价强度超过证据", anti_ai)
-        self.assertIn("证据强度", checklist)
-        self.assertIn("来源名称、发布机关或发布主体、文号或链接", external_research)
-        self.assertIn("搜索来源清单", checklist)
-        self.assertIn("正文内容已经定稿", format_ref)
-        self.assertIn("默认另存新版本", format_ref)
-        self.assertIn("prompt/markdown", maintenance_history)
-        self.assertIn(
-            "禁止直接誊抄代码、脚本、正则、模板库、大段 prompt、固定话术或模板正文",
-            maintenance_history,
-        )
-        active_link = re.search(r"\[开发细则\]\(([^)]+)\)", agents)
-        self.assertIsNotNone(active_link)
-        development_path = ROOT / active_link.group(1)
-        self.assertTrue(development_path.is_file())
-        development = development_path.read_text(encoding="utf-8")
+        match = re.search(r"\[开发细则\]\(([^)]+)\)", agents)
+        self.assertIsNotNone(match)
+        development = (ROOT / match.group(1)).read_text(encoding="utf-8")
         self.assertIn("历史归档不作为新要求", agents)
         self.assertIn("全量门原则上只在合并或发布前跑一次", development)
-        license_link = re.search(r"仓库及仓内包使用根 \[LICENSE\]\(([^)]+)\)（MIT）", development)
-        self.assertIsNotNone(license_link)
-        self.assertEqual(
-            (development_path.parent / license_link.group(1)).resolve(),
-            (ROOT / "LICENSE").resolve(),
-        )
-        for runtime_prompt in [skill, workflow, checklist, genre_checklist, genre_playbooks]:
-            self.assertNotIn("社区技能", runtime_prompt)
-            self.assertNotIn("prompt/markdown", runtime_prompt)
-        self.assertNotIn("不复制社区模板正文", genre_playbooks)
-        self.assertNotIn("联网和社区高频", checklist)
+        history = (ROOT / "maintenance/docs/evidence/AGENTS-history-through-v1.5.39.md").read_text(encoding="utf-8")
+        self.assertIn("禁止直接誊抄代码、脚本、正则、模板库、大段 prompt、固定话术或模板正文", history)
+        for owner in ["information-selection.md", "review-checklist.md", "genre-checklist.md"]:
+            text = read_reference(owner)
+            self.assertNotIn("prompt/markdown", text)
+            self.assertNotIn("社区技能", text)
 
     def test_candidate_ac_anchors_fact_relations_to_explicit_material(self) -> None:
-        skill = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
-        information_selection = (
-            ROOT / "chinese-official-writing" / "references" / "information-selection.md"
-        ).read_text(encoding="utf-8")
-
-        self.assertIn(
-            "保持主体、对象、数字、日期、状态和结论强度；"
-            "事实之间的时间、因果、分类和归属关系以材料明确关系为准",
-            information_selection,
-        )
-        self.assertIn(
-            "材料只给月份、月日或时间段时，不自行补`今年`、`本年`、具体年份或其他相对时间锚",
-            information_selection,
-        )
-        self.assertIn(
-            "总量与子项差额只用于合计校核，不据此补写“其余均正常、未发现其他问题、均无异常”等材料未给结论",
-            information_selection,
-        )
-        self.assertIn(
-            "每段只服务一个论点，通常按“结论前置、事实支撑、判断归纳、事项落点”展开",
-            skill,
-        )
+        """Relations, incomplete dates and remainder arithmetic keep their original meaning."""
+        self.assert_rules("information-selection.md",
+                          "主体、对象、数字、日期、时间、因果、分类、归属和结论强度",
+                          "材料只给月份、月日或时间段时，不补“今年”“本年”、具体年份或其他相对时间锚",
+                          "总量与子项差额只用于合计校核，不据此补写“其余均正常”“未发现其他问题”“均无异常”等材料未给结论")
+        self.assert_rules("argument-chains.md", "同一段围绕一个主要事项展开",
+                          "判断所依据的事实或条件、两者之间的关系",
+                          "推断与已经发生的事实分别表述")
 
     def test_fact_sufficiency_guidance_is_soft_and_non_blocking(self) -> None:
-        skill = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
-        workflow = (ROOT / "chinese-official-writing" / "references" / "workflow.md").read_text(encoding="utf-8")
-        checklist = (ROOT / "chinese-official-writing" / "references" / "review-checklist.md").read_text(
-            encoding="utf-8"
-        )
-        information_selection = (
-            ROOT / "chinese-official-writing" / "references" / "information-selection.md"
-        ).read_text(encoding="utf-8")
-
-        self.assertNotIn("暂停确认", skill)
-        self.assertNotIn("暂停确认", workflow)
-        self.assertIn("先服从用户指定的输出模式，再按材料状态、事项关联性和办理必要性选择信息", skill)
-        self.assertIn("起草、改稿、压缩或合稿时读取 `references/information-selection.md`", skill)
-        self.assertIn("普通起草和润色修改不在正文前暂停或连续追问", workflow)
-        self.assertIn("本文件不重复规定正文、文后提示和省略边界", workflow)
-        self.assertIn("材料只给问题清单", skill)
-        self.assertIn("正文列明已确认问题及其对象、数量和状态", skill)
-        self.assertIn("信息选择是否符合 `information-selection.md`", checklist)
-        for term in [
-            "材料已给且与当前主旨相关的事实进入正文",
-            "材料明确记载未定状态且与当前主旨相关时",
-            "材料虽有记载但与当前主旨无关",
-            "视为实质缺口",
-            "只输出正文或改后稿时只交正文",
-            "上一轮未补齐的缺口不阻断后续修改",
-            "用户要求先确认时，再在正文前提出必要问题",
-        ]:
-            self.assertIn(term, information_selection)
-        for legacy_duplicate in [
-            "补充以下信息后，文章会更完整",
-            "缺项说明放在正文外",
-            "待确认事项仍是软提示",
-            "未新增原文外事实",
-        ]:
-            self.assertNotIn(legacy_duplicate, skill + workflow + checklist)
-        self.assertIn("事实强判断", checklist)
-        self.assertIn("总体较好", checklist)
-        runtime_prompts = [
-            skill,
-            workflow,
-            (ROOT / "chinese-official-writing" / "references" / "official-style.md").read_text(
-                encoding="utf-8"
-            ),
-        ]
-        for runtime_prompt in runtime_prompts:
-            self.assertNotIn("未发现重大隐患", runtime_prompt)
-            self.assertNotIn("未影响核心业务", runtime_prompt)
-            self.assertNotIn("能够正常开展", runtime_prompt)
+        """Draft usable content now and carry only consequential gaps through permitted delivery."""
+        self.assert_rules("information-selection.md", "先完成用户要求的正文", "事实映射留在内部",
+                          "拟、建议、考虑、评估、试点、待核、未决定、进行中和下一步设想，保持原状态",
+                          "与主旨无关且不影响文种功能或办理落地的外围事项，直接省略",
+                          "上一轮未补齐的缺口不阻断后续修改",
+                          "用户要求先确认时，才在正文前提出必要问题")
+        self.assert_rules("review-checklist.md", "次级材料作为可选补充", "不要把设备年限、能力上限、合同条款、统计方法或长期机制一律列为必补项")
+        self.assert_rules("delivery.md", "用户明确只要稿件、只要正文或要求省略说明时，省略文后提示")
+        home = (CANONICAL / "SKILL.md").read_text(encoding="utf-8")
+        self.assertIn("材料较少时完成可用正文", home)
+        self.assertNotIn("暂停确认", home)
 
     def test_v147_minimal_borrowing_rules_stay_soft_and_prompt_based(self) -> None:
-        skill = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
-        workflow = (ROOT / "chinese-official-writing" / "references" / "workflow.md").read_text(encoding="utf-8")
-        checklist = (ROOT / "chinese-official-writing" / "references" / "review-checklist.md").read_text(
-            encoding="utf-8"
-        )
-        format_ref = (ROOT / "chinese-official-writing" / "references" / "format-gbt9704.md").read_text(
-            encoding="utf-8"
-        )
-        anti_ai = (ROOT / "chinese-official-writing" / "references" / "anti-ai-patterns.md").read_text(
-            encoding="utf-8"
-        )
-        official_style = (ROOT / "chinese-official-writing" / "references" / "official-style.md").read_text(
-            encoding="utf-8"
-        )
-        genre_checklist = (ROOT / "chinese-official-writing" / "references" / "genre-checklist.md").read_text(
-            encoding="utf-8"
-        )
-        report_checklist = (
-            ROOT / "chinese-official-writing" / "references" / "genre-checklist-report.md"
-        ).read_text(encoding="utf-8")
-        request_checklist = (
-            ROOT / "chinese-official-writing" / "references" / "genre-checklist-request.md"
-        ).read_text(encoding="utf-8")
-        genre_checklist_coverage = genre_checklist + "\n" + report_checklist + "\n" + request_checklist
-
-        self.assertNotIn("正式交付前要素核对卡", skill)
-        self.assertIn("references/format-gbt9704.md", skill)
-        self.assertNotIn("标题用 2 号小标宋", skill)
-        self.assertNotIn("页码用 4 号半角宋体并加一字线", skill)
-        self.assertIn("读取 `references/format-gbt9704.md` 锁定版式", skill)
-        self.assertIn("2 号小标宋体", format_ref)
-        self.assertIn("3 号仿宋体", format_ref)
-        self.assertIn("一般两端对齐", format_ref)
-        self.assertIn("正式交付前要素核对卡", format_ref)
-        self.assertIn("不因缺这些正式要素阻断成稿", format_ref)
-        self.assertIn("发文机关", format_ref)
-        self.assertIn("印章或签署信息", format_ref)
-        self.assertIn("4 号半角宋体阿拉伯数字", format_ref)
-        self.assertIn("回行保持词意完整", format_ref)
-        self.assertIn("不改写已定稿正文的用词、数字、标点和字符", format_ref)
-        self.assertIn("优先只列用户点名缺项", format_ref)
-        self.assertIn("其他正式要素按单位模板另行核对", format_ref)
-        self.assertNotIn("核对卡优先只列这些点名要素", skill)
-        self.assertIn("未变成正文占位", checklist)
-        self.assertIn("未扩展成长清单", checklist)
-
-        self.assertIn("修改模式只以用户最新版底稿", skill)
-        self.assertIn("不自动回流为正文事实", skill)
-        self.assertIn("旧稿、参考样文、过往材料和公开网页材料", workflow)
-        self.assertIn("不把旧金额、旧主送、旧落款、旧政策口号或旧结论带回最新版正文", workflow)
-        self.assertIn("修改模式是否以最新版底稿为主线", checklist)
-
-        self.assertIn("审稿时看成簇问题", anti_ai)
-        self.assertIn("单个正式词、单个句式或达到某个次数都不能直接判错", anti_ai)
-        self.assertIn("单独出现 `高度重视`", anti_ai)
-        self.assertIn("不足以判为 AI 味或套话", anti_ai)
-        self.assertIn("保留公文必要的正式语气", anti_ai)
-        self.assertIn("需说明资金使用必要性和预期效果", anti_ai)
-        self.assertIn("相关负责人关注该事项", anti_ai)
-        self.assertIn("不要无依据升级为 `领导高度关注`", anti_ai)
-        self.assertIn("去 AI 味或语气审稿应匹配文体", official_style)
-        self.assertIn("不为了显得像人写而加入第一人称", official_style)
-        self.assertIn("单个正式词或单个转折不作为硬清洗理由", official_style)
-        self.assertIn("正式化不得补材料外的具体事实、未决结论或新的处置、责任、流程和后续动作", skill)
-        self.assertIn("一般原因、目的、即时作用和低强度预期", skill)
-        self.assertIn("不作为已经取得的成效", skill)
-        self.assertIn("以用户最新版底稿和本轮明确补充材料为事实源", workflow)
-        self.assertIn("段落骨架只组织可核对内容", workflow)
-        self.assertIn("正式化新增事实", checklist)
-        self.assertIn("正式化改写只压实原文已有事实", official_style)
-        self.assertIn("口语来源不等于事实授权", official_style)
-        for term in ["老板关心", "钱花得值", "马上要搞", "领导高度关注", "投入产出清晰", "推进较为紧迫", "按程序推进"]:
-            self.assertIn(term, official_style)
-        self.assertIn("不得自动升级", official_style)
-        self.assertIn("审批态度留给用户确认", official_style)
-        self.assertIn("用户要求给出“位置”时，是否优先逐项引用原文短语或句子", checklist)
-        self.assertIn("未只给笼统段落评价", checklist)
-        self.assertIn("整体归纳可放在逐项意见之后", anti_ai)
-
-        self.assertIn("定稿前高风险先查", checklist)
-        self.assertIn("其余按文种/风险面", checklist)
-        self.assertIn("不把它改成新的阻断流程", checklist)
-        self.assertIn("不扩展成调查问卷或新确认流程", checklist)
-        self.assertIn("只审不改场景", checklist)
-
-        self.assertIn("## 函\n", genre_checklist)
-        self.assertNotIn("## 函数", genre_checklist)
-        self.assertIn("可参考顺序", genre_checklist)
-        self.assertIn("不写成正文标签", genre_checklist)
-        self.assertIn("不覆盖用户模板", genre_checklist)
-        for section in ["通知", "请示", "报告", "方案", "申请", "函"]:
-            self.assertIn(f"## {section}", genre_checklist_coverage)
-        for term in ["目的或背景", "请批事项", "结论或总体情况", "责任分工", "申请主体", "商请或告知事项"]:
-            self.assertIn(term, genre_checklist_coverage)
+        """Formatting, formalization and evidence review stay contextual and do not overwrite sources."""
+        self.assert_rules("format-gbt9704.md", "2 号小标宋体", "3 号仿宋体", "一般两端对齐",
+                          "4 号半角宋体阿拉伯数字", "回行保持词意完整", "不改写已定稿正文的用词、数字、标点和字符",
+                          "不因缺这些正式要素阻断成稿", "优先只列用户点名缺项", "其他正式要素按单位模板另行核对")
+        self.assert_rules("information-selection.md", "旧稿和参考样文不回流",
+                          "二次修改以用户最新版底稿和本轮明确补充材料为唯一事实源")
+        self.assert_rules("anti-ai-patterns.md", "通读全文后看成簇问题，不因一个词、一个句式或出现次数直接判错",
+                          "保留必要正式语气", "不为换词引入第一人称、口语化、情绪化或公众号式表达")
+        self.assert_rules("official-style.md", "“老板关心”“钱花得值”“马上要搞”只能保留材料已有的关注、费用判断和推进意向",
+                          "不升级为“领导高度关注”“投入产出清晰”“按程序推进”",
+                          "正式化不补组织名称、牵头部门、责任分工、整改动作、督办安排、成果总结或后续进展")
+        self.assert_rules("review-checklist.md", "事实和常识直接支持的原因、必要性、即时作用、条件性结论或合理建议可以成立",
+                          "次级材料作为可选补充", "将问题定位到原句、段落、标题、字段或附件")
+        for purpose, owner in [("通知", "genre-playbook-notice.md"), ("请示", "genre-playbook-request.md"),
+                               ("报告、情况报告", "genre-playbook-report.md"), ("方案、实施方案", "genre-playbook-plan-construction.md"),
+                               ("征求意见函", "genre-playbook-correspondence.md")]:
+            self.assert_route(purpose, owner)
 
     def test_v148_anti_ai_borrowing_stays_soft_and_official(self) -> None:
-        anti_ai = (ROOT / "chinese-official-writing" / "references" / "anti-ai-patterns.md").read_text(
-            encoding="utf-8"
-        )
-        official_style = (ROOT / "chinese-official-writing" / "references" / "official-style.md").read_text(
-            encoding="utf-8"
-        )
-
-        self.assertIn("句群节奏和模板化痕迹", anti_ai)
-        for term in [
-            "句首重复",
-            "连接词链",
-            "句长同质化",
-            "翻译式框架成簇",
-            "口号式结尾",
-            "清单堆叠替代论证",
-        ]:
-            self.assertIn(term, anti_ai)
-        self.assertIn("只作软性审稿项，不作为硬门禁", anti_ai)
-        self.assertIn("公文去 AI 味不是聊天化", anti_ai)
-        self.assertIn("不得为了显得“像人写”而加入第一人称、反问、口语插入", anti_ai)
-        self.assertIn("保留公文骨架和用户模板", anti_ai)
-        self.assertIn("主体不明时保留无主表达或只调整动词", anti_ai)
-        self.assertIn("不得新增责任主体、实施主体或归属关系", anti_ai)
-        self.assertIn("## 必要英文、专名和缩写", anti_ai)
-        self.assertIn("内部代号或含义不明的缩写只保留原样", anti_ai)
-        self.assertIn("不把 `Token` 改写成调用次数", anti_ai)
-        self.assertIn("未指定时仍按位置、风险层级和修改建议输出", anti_ai)
-        self.assertIn("用户要求改写时，只改确认有问题的句子及必要衔接", anti_ai)
-        self.assertIn("## 高频表达的语义复核", anti_ai)
-        self.assertEqual(
-            anti_ai.count("输出范围按“高频表达的语义复核”中的输出约定执行"),
-            2,
-        )
-        self.assertNotIn("输出范围按“总体复核方法”执行", anti_ai)
-        self.assertIn("不为了显得像人写而加入第一人称", official_style)
-        self.assertIn("正式化改写只压实原文已有事实", official_style)
+        """Rhythm advice is contextual and preserves genre, facts, subjects and technical names."""
+        self.assert_rules("anti-ai-patterns.md", "本页属于质量建议层", "不按词表机械替换",
+                          "去 AI 味不是聊天化", "相邻段落反复同一开头", "连续堆叠连接词",
+                          "句式长度高度同质", "每段都以口号收尾", "主体不明时不新增责任主体",
+                          "必要英文术语、产品名、型号和缩写按材料官方拼写保留",
+                          "用户要求只检测时输出位置、风险层级和建议",
+                          "用户要求改写时只改确认有问题的句子及必要衔接")
+        self.assert_rules("official-style.md", "不改变事实、状态、主体关系和文种功能")
+        # The old Token-unit safeguard is a semantic claim, not an acronym formatting preference.
+        self.assert_rules("technical-terms.md", "不把 `Token` 改写成调用次数")
 
     def test_v1601_j1_writing_endings_use_natural_terms(self) -> None:
-        refs = ROOT / "chinese-official-writing" / "references"
-        news_commentary = (refs / "genre-playbook-news-commentary.md").read_text(encoding="utf-8")
-        argument_chains = (refs / "argument-chains.md").read_text(encoding="utf-8")
-        genre_playbooks = (refs / "genre-playbooks.md").read_text(encoding="utf-8")
-        speech_leaf = (refs / "genre-playbook-speech-address.md").read_text(encoding="utf-8")
-        anti_ai = (refs / "anti-ai-patterns.md").read_text(encoding="utf-8")
-
-        self.assertIn("论点已经充分展开时自然结束", news_commentary)
-        self.assertIn("以“妥否，请批示”“请予审定”等作结", argument_chains)
-        self.assertIn("结尾落在责任或目标上", speech_leaf)
-        for phrase in ["每段结尾都停留在口号层面", "口号式结尾", "将口号式结尾改为具体办理动作"]:
-            with self.subTest(phrase=phrase):
-                self.assertIn(phrase, anti_ai)
-        for text in [news_commentary, argument_chains, genre_playbooks, speech_leaf, anti_ai]:
-            self.assertNotIn("收束", text)
+        """Endings serve genre function; the rewrite permits natural wording instead of a word ban."""
+        self.assert_rules("genre-playbook-news-commentary.md", "论点已经充分展开时，正文自然收束")
+        self.assert_rules("formulaic-language.md", "妥否，请批示", "请予审批", "只用于有明确请批事项的请示或申请",
+                          "一篇稿只保留一个有效收束", "内容已完整时可自然结束，不叠加多层尾语")
+        self.assert_rules("genre-playbook-speech-address.md", "结尾落在责任或目标上")
+        self.assert_rules("anti-ai-patterns.md", "把口号结尾落到已有办理动作")
+        self.assert_rules("short-draft-naturalness.md", "完成实际文种动作后即可结束", "否则不补口号、保证、充分性自证或同义收束")
 
     def test_v1511_anti_ai_frequency_review_is_prompt_driven_and_local(self) -> None:
-        anti_ai = (ROOT / "chinese-official-writing" / "references" / "anti-ai-patterns.md").read_text(
-            encoding="utf-8"
-        )
-        final_review = (
-            ROOT / "chinese-official-writing" / "references" / "final-review-layers.md"
-        ).read_text(encoding="utf-8")
-
-        for term in [
-            "本项由模型通读全文后判断，不按固定词表自动替换",
-            "`先……再……`",
-            "**连续否定**",
-            "虚假对比",
-            "机械重复",
-            "出现次数只用于发现线索",
-            "单个正式词、单个句式或达到某个次数都不能直接判错",
-            "事实、引用、术语、否定范围和论断强度",
-            "只改确认有问题的句子及必要衔接",
-            "未确认有问题的句子、真实比较和必要否定保持原样",
-            "严格服从其指定的字段、顺序和格式",
-            "未指定时仍按位置、风险层级和修改建议输出",
-        ]:
-            self.assertIn(term, anti_ai)
-        self.assertIn("真实方案比较、法律政策要求、职责边界、风险提示", anti_ai)
-        self.assertIn("不得把 `未`、`不`、`不得` 移到别的对象", anti_ai)
-        self.assertNotIn("**抽象两步流程**", anti_ai)
-        self.assertIn("只语义重写确认有问题的局部", final_review)
-        self.assertNotIn("自动批量替换", final_review)
+        """Frequency discovers semantic risks; local repair preserves fact units and negative scope."""
+        self.assert_rules("anti-ai-patterns.md", "通读全文后看成簇问题，不因一个词、一个句式或出现次数直接判错",
+                          "`先……再……`", "连续否定、虚假对比和机械重复",
+                          "保留真实方案比较、政策要求、职责边界、风险提示、直接引语和专业术语",
+                          "主体、对象、事实、引用、术语、否定范围和论断强度不变",
+                          "用户要求改写时只改确认有问题的句子及必要衔接")
+        self.assert_rules("delivery.md", "用户限定审核范围时，意见限于该范围")
+        self.assert_rules("field-editing.md", "保留字段名、字段顺序和单元边界")
+        self.assert_rules("final-review-layers.md", "局部修改检查点名位置及其关联段落")
 
     def test_continuous_negation_is_position_independent_without_word_ban(self) -> None:
-        anti_ai = (ROOT / "chinese-official-writing" / "references" / "anti-ai-patterns.md").read_text(
-            encoding="utf-8"
-        )
-
-        self.assertIn("**连续否定**", anti_ai)
-        self.assertIn("句中或相邻句出现两个以上否定分句", anti_ai)
-        self.assertIn("保留材料明确且与主题直接相关的必要否定", anti_ai)
-        self.assertIn("合并重复内容，省去主题外围的否定说明", anti_ai)
-        self.assertNotIn("连续否定式收口", anti_ai)
-        self.assertNotIn("不机械照抄这些尾句", anti_ai)
-        self.assertIn("不按固定词表自动替换", anti_ai)
-        self.assertIn("不得自动批量替换", anti_ai)
-        self.assertIn("不得把 `未`、`不`、`不得` 移到别的对象", anti_ai)
-        self.assertNotIn("馆务会未形成新增设备采购决定", anti_ai)
-        self.assertNotIn("先全面梳理、再研究处置", anti_ai)
+        """Negation is evaluated by function regardless of position, with no token substitution."""
+        self.assert_rules("anti-ai-patterns.md", "连续否定只保留与主题直接相关且承担办理作用的必要否定",
+                          "合并外围的重复说明", "不按词表机械替换", "否定范围和论断强度不变",
+                          "保留真实方案比较、政策要求、职责边界、风险提示")
+        text = read_reference("anti-ai-patterns.md")
+        for obsolete in ["连续否定式收口", "不机械照抄这些尾句", "馆务会未形成新增设备采购决定"]:
+            self.assertNotIn(obsolete, text)
 
     def test_sustained_progress_example_is_removed_only_from_redundant_cliche_list(self) -> None:
-        anti_ai = (ROOT / "chinese-official-writing" / "references" / "anti-ai-patterns.md").read_text(
-            encoding="utf-8"
-        )
-        section_start = anti_ai.index("## 空泛套话")
-        section_end = anti_ai.index("## 高频正式词")
-        empty_cliche_section = anti_ai[section_start:section_end]
-
-        self.assertNotIn("- `持续推进`", empty_cliche_section)
-        for retained_example in [
-            "不断提升",
-            "充分发挥",
-            "有力支撑",
-            "全面赋能",
-            "形成一批",
-            "重点任务包括",
-            "保障措施包括",
-            "总体看",
-        ]:
-            self.assertIn(f"- `{retained_example}`", empty_cliche_section)
-        self.assertIn("必须有具体对象、机制、目标或结果支撑", empty_cliche_section)
-        self.assertIn("应删去或换成具体工作、责任、时限和成果", empty_cliche_section)
-        self.assertEqual(anti_ai.count("持续推进"), 3)
-        self.assertIn("公式化未来展望", anti_ai)
-        self.assertIn("相邻段落反复以 `要坚持`、`要强化`、`持续推进`", anti_ai)
+        """Stock wording remains contextual; sustained progress is a clue, never a banned term."""
+        anti = read_reference("anti-ai-patterns.md")
+        semantic = anti.split("## 语义复核", 1)[1].split("## 非正文和教学口吻", 1)[0]
+        self.assertIn("`持续推进`", semantic)
+        self.assertIn("不因一个词、一个句式或出现次数直接判错", semantic)
+        cliches = anti.split("## 思考泄露、口语和套话", 1)[1].split("## 英文、算力和格式", 1)[0]
+        for word in ["不断提升", "充分发挥", "有力支撑", "全面赋能", "总体看"]:
+            self.assertIn(word, cliches)
+        self.assertNotIn("持续推进", cliches)
+        self.assertIn("必须有具体对象、机制、目标或结果支撑", cliches)
+        self.assertIn("公式化展望", anti)
+        self.assertIn("把口号结尾落到已有办理动作", anti)
 
     def test_v150_genre_playbooks_keep_minimal_borrowing_boundaries(self) -> None:
-        skill = read_routing_surfaces(CANONICAL / "SKILL.md")
-        playbooks = (ROOT / "chinese-official-writing" / "references" / "genre-playbooks.md").read_text(
-            encoding="utf-8"
-        )
-        minutes = (
-            ROOT / "chinese-official-writing" / "references" / "genre-playbook-minutes.md"
-        ).read_text(encoding="utf-8")
-        correspondence = (
-            ROOT / "chinese-official-writing" / "references" / "genre-playbook-correspondence.md"
-        ).read_text(encoding="utf-8")
-        work_summary = (
-            ROOT / "chinese-official-writing" / "references" / "genre-playbook-work-summary.md"
-        ).read_text(encoding="utf-8")
-        report = (
-            ROOT / "chinese-official-writing" / "references" / "genre-checklist-report.md"
-        ).read_text(encoding="utf-8")
-        plan_construction = (
-            ROOT
-            / "chinese-official-writing"
-            / "references"
-            / "genre-playbook-plan-construction.md"
-        ).read_text(encoding="utf-8")
-        family_leaves = "\n".join(
-            (ROOT / "chinese-official-writing" / "references" / name).read_text(encoding="utf-8")
-            for name in [
-                "genre-playbook-notice-publication.md",
-                "genre-playbook-deliberation-deployment.md",
-                "genre-playbook-speech-address.md",
-                "genre-playbook-research-feasibility.md",
-                "genre-playbook-procurement-review.md",
-            ]
-        )
-        routed_playbooks = (
-            playbooks
-            + "\n"
-            + minutes
-            + "\n"
-            + correspondence
-            + "\n"
-            + work_summary
-            + "\n"
-            + plan_construction
-            + "\n"
-            + family_leaves
-        )
-        ai_compute = (
-            ROOT / "chinese-official-writing" / "references" / "ai-compute-docs.md"
-        ).read_text(encoding="utf-8")
-        handling = (ROOT / "chinese-official-writing" / "references" / "handling-elements.md").read_text(
-            encoding="utf-8"
-        )
-        anti_ai = (ROOT / "chinese-official-writing" / "references" / "anti-ai-patterns.md").read_text(
-            encoding="utf-8"
-        )
-
-        self.assertIn("references/genre-playbooks.md", skill)
-        self.assertIn("references/genre-playbook-correspondence.md", skill)
-        self.assertIn("references/genre-playbook-work-summary.md", skill)
-        self.assertIn("references/genre-playbook-plan-construction.md", skill)
-        self.assertIn("## 按文种选读", playbooks)
-        for heading in [
-            "## 会议纪要",
-            "## 函/复函/征求意见函",
-            "## 工作总结/工作要点/周报",
-            "# 调研报告/研究报告/可研报告",
-            "## 方案/实施方案/建设方案",
-            "# 采购公告/审查材料",
-        ]:
-            self.assertIn(heading, routed_playbooks)
-        self.assertNotIn("## 报告/情况说明", playbooks)
-        self.assertIn("## 报告/情况说明", report)
-        self.assertIn("## AI 算力与技术服务", ai_compute)
-        for term in [
-            "只替换该字段内容，不把多字段合并成一句",
-            "拆成独立字段行后不要保留行尾分号或造成 `。；`",
-            "字段式周报保留字段和换行，不散文化、不合并字段",
-            "字段式审查材料只改用户指定字段",
-            "未给会议判断",
-            "不自行补受众称呼",
-            "不补服务单位责任",
-            "责任或期限未给时不使用“按审核执行”“后续推进”等泛口径补齐",
-            "普通采购公告不默认进入 AI 算力语境",
-        ]:
-            self.assertIn(term, routed_playbooks)
-        self.assertIn("用户已有提纲、模板、标题顺序时优先保留", skill)
+        """Genre-specific field, actor and procurement boundaries survive mixed-page retirement."""
+        owners = {
+            "会议纪要": "genre-playbook-minutes.md", "征求意见函": "genre-playbook-correspondence.md",
+            "工作总结、工作要点": "genre-playbook-work-summary.md", "方案、实施方案": "genre-playbook-plan-construction.md",
+            "调研、研究": "genre-playbook-research.md", "可研": "genre-playbook-feasibility.md",
+            "采购公告": "genre-playbook-procurement-announcement.md", "采购审查": "genre-playbook-procurement-review.md",
+            "讲话稿、致辞": "genre-playbook-speech-address.md",
+        }
+        for purpose, leaf in owners.items():
+            self.assert_route(purpose, leaf)
+        self.assertFalse((CANONICAL / "references/genre-playbooks.md").exists())
+        self.assert_rules("genre-playbook-plan-construction.md", "只替换该字段内容，不把多字段合并成一句",
+                          "拆成独立字段行后不要保留行尾分号或造成 `。；`")
+        self.assert_rules("genre-playbook-work-summary.md", "字段式周报保留字段和换行，不散文化、不合并字段",
+                          "不补服务单位责任")
+        self.assert_rules("genre-playbook-procurement-review.md", "字段式审查材料只改用户指定字段")
+        self.assert_rules("genre-playbook-minutes.md", "未给会议判断",
+                          "责任或期限未给时不使用“按审核执行”“后续推进”等泛口径补齐")
+        self.assert_rules("genre-playbook-speech-address.md", "不自行补受众称呼")
+        self.assert_rules("genre-playbook-procurement-announcement.md", "普通采购公告不自动进入算力语境")
         self.assertIn("保留字段名、字段顺序和单元边界", read_field_boundary(CANONICAL))
-        self.assertIn("详细结构见下文；本节只保留触发和边界", ai_compute)
-        self.assertIn("会议判断、受众称呼、角色分工、合同义务或服务单位责任", skill)
-        self.assertIn("详细测算和参数转读 `ai-compute-docs.md`", handling)
-        self.assertIn("专项结构和指标写法转读 `ai-compute-docs.md`", anti_ai)
+        self.assert_rules("ai-compute-docs.md", "主文种")
 
     def test_playbook_template_priority_uses_entry_semantics_without_leaf_duplication(self) -> None:
-        duplicate = (
-            "每节只用于确定材料骨架和风险点。用户已有模板和字段顺序优先，"
-            "不因 playbook 改掉真实模板、主送、落款、字段或附件关系。"
-        )
-        leaf_paths = [
-            "references/genre-playbooks.md",
-            "references/genre-checklist-report.md",
-            "references/genre-playbook-correspondence.md",
-            "references/genre-playbook-minutes.md",
-            "references/genre-playbook-plan-construction.md",
-        ]
-        roots = [
-            ROOT / "chinese-official-writing",
-            ROOT / "packages" / "agent-skills" / "skills" / "chinese-official-writing",
-            ROOT / "packages" / "qwen-code" / "skills" / "chinese-official-writing",
-            ROOT / "packages" / "qwenwork" / "skills" / "chinese-official-writing",
-            ROOT / "packages" / "hermes" / "skills" / "chinese-official-writing",
-            ROOT / "packages" / "openclaw" / "skills" / "chinese_official_writing",
-        ]
-
-        for root in roots:
+        """Template priority is carried by the entry, with no duplicated legacy boilerplate."""
+        duplicate = "每节只用于确定材料骨架和风险点。用户已有模板和字段顺序优先，不因 playbook 改掉真实模板、主送、落款、字段或附件关系。"
+        leaves = ["genre-checklist-report.md", "genre-playbook-correspondence.md", "genre-playbook-work-summary.md",
+                  "genre-playbook-minutes.md", "genre-playbook-plan-construction.md", "genre-playbook-request.md"]
+        for root in skill_roots():
             with self.subTest(root=root):
-                skill = (root / "SKILL.md").read_text(encoding="utf-8")
-                self.assertIn("用户已有提纲、模板、标题顺序时优先保留", skill)
-                self.assertIn("保留字段名、字段顺序和单元边界", read_field_boundary(root))
-                for relative in leaf_paths:
-                    self.assertNotIn(duplicate, (root / relative).read_text(encoding="utf-8"))
+                home = (root / "SKILL.md").read_text(encoding="utf-8")
+                self.assertIn("用户已有提纲、模板、标题顺序或字段表时优先保留", home)
+                self.assert_rules("final-review-layers.md", "用户固定标题、段落顺序和字段按要求保留", root=root)
+                for leaf in leaves:
+                    self.assertNotIn(duplicate, read_reference(leaf, root))
 
     def test_work_summary_elaboration_stays_in_target_section(self) -> None:
-        playbooks = (
-            ROOT / "chinese-official-writing" / "references" / "genre-playbooks.md"
-        ).read_text(encoding="utf-8")
-        work_summary = (
-            ROOT / "chinese-official-writing" / "references" / "genre-playbook-work-summary.md"
-        ).read_text(encoding="utf-8")
-        self.assertNotIn("## 工作总结/工作要点/周报", playbooks)
-        for rule in [
-            "材料已经给出下一步、未来安排或改进计划时",
-            "材料未给实际运行、测评或业务反馈时",
-            "总结段可将“下一年度拟完善、拟优化”自然归纳为“将在下一年度加以改进”",
-            "需要概括前文时可以使用“综上所述”等承接语",
-            "成效必须有事实支撑",
-        ]:
-            self.assertIn(rule, work_summary)
+        """Work summaries keep supported next steps without claiming unobserved effects."""
+        self.assert_route("工作总结、工作要点", "genre-playbook-work-summary.md")
+        self.assert_rules("genre-playbook-work-summary.md", "材料已经给出下一步、未来安排或改进计划时",
+                          "材料未给实际运行、测评或业务反馈时",
+                          "总结段可将“下一年度拟完善、拟优化”自然归纳为“将在下一年度加以改进”",
+                          "需要概括前文时可以使用“综上所述”等承接语", "成效必须有事实支撑")
+        self.assertFalse((CANONICAL / "references/genre-playbooks.md").exists())
 
     def test_ordinary_letter_leaf_is_self_contained_without_default_supplemental_reads(self) -> None:
-        skill = read_routing_surfaces(CANONICAL / "SKILL.md")
-        playbooks = (
-            ROOT / "chinese-official-writing" / "references" / "genre-playbooks.md"
-        ).read_text(encoding="utf-8")
-        correspondence = (
-            ROOT / "chinese-official-writing" / "references" / "genre-playbook-correspondence.md"
-        ).read_text(encoding="utf-8")
-
-        def section(text: str, heading: str, next_heading: str | None = None) -> str:
-            body = text.split(heading, 1)[1]
-            if next_heading is not None:
-                body = body.split(next_heading, 1)[0]
-            return body.strip()
-
-        self.assertEqual(
-            section(playbooks, "## 使用方式", "## 按文种选读"),
-            section(correspondence, "## 使用方式", "## 函/复函/征求意见函"),
-        )
-        playbook_section = section(
-            playbooks,
-            "## 函/复函/征求意见函",
-            "## 通知/通告/公告/公示/通报",
-        )
-        correspondence_section = section(correspondence, "## 函/复函/征求意见函")
-        for term in [
-            "平行商洽",
-            "函不写成命令",
-        ]:
-            self.assertIn(term, playbook_section)
-            self.assertIn(term, correspondence_section)
-        for term in [
-            "称谓服从用户模板和已给主体",
-            "不相隶属单位",
-            "商请",
-            "请予支持",
-            "材料已给或办理确有需要时",
-            "反馈期限",
-            "联系人和附件",
-            "专此函达",
-            "请予支持为盼",
-        ]:
-            self.assertIn(term, correspondence_section)
-        for supplemental_reference in [
-            "formal-addressing.md",
-            "genre-checklist.md",
-        ]:
-            self.assertNotIn(supplemental_reference, correspondence_section)
-        self.assertIn(
-            "文种明确的普通函、常规复函和征求意见函起草，以及只改错字、标点、格式或明确局部措辞时读取",
-            skill,
-        )
-        self.assertIn(
-            "用户提供既有普通函、复函或征求意见函并要求重组事务动作、状态、条件、范围或结构时读取函规则",
-            skill,
-        )
-        self.assertIn("通知、讲话稿、调研/研究/可研、采购公告、审查材料", skill)
-        self.assertIn(
-            "既有普通函、复函或征求意见函需要重组事务动作、状态、条件、范围或结构时",
-            correspondence,
-        )
+        """Ordinary correspondence preserves relational tone and optional handling fields."""
+        leaf = self.assert_route("征求意见函", "genre-playbook-correspondence.md")
+        for rule in ["平行商洽", "函不写成命令", "称谓服从用户模板和已给主体", "不相隶属单位",
+                     "商请", "请予支持", "材料已给或办理确有需要时", "反馈期限", "联系人和附件",
+                     "专此函达", "请予支持为盼", "需要重组事务动作、状态、条件、范围或结构时"]:
+            self.assertIn(rule, leaf)
+        for unrelated in ["formal-addressing.md", "genre-checklist.md", "genre-playbooks.md"]:
+            self.assertNotIn(unrelated, leaf)
+        self.assertIn("复杂改稿、多材料合稿或文种关系存疑时", leaf)
+        self.assertFalse((CANONICAL / "references/genre-playbooks.md").exists())
 
     def test_weak_model_suggestion_boundaries_stay_soft(self) -> None:
-        skill = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
-        workflow = (ROOT / "chinese-official-writing" / "references" / "workflow.md").read_text(
-            encoding="utf-8"
-        )
-        route_cards = (
-            ROOT / "chinese-official-writing" / "references" / "task-route-cards.md"
-        ).read_text(encoding="utf-8")
-        playbooks = (ROOT / "chinese-official-writing" / "references" / "genre-playbooks.md").read_text(
-            encoding="utf-8"
-        )
-        notice_leaf = (
-            ROOT
-            / "chinese-official-writing"
-            / "references"
-            / "genre-playbook-notice-publication.md"
-        ).read_text(encoding="utf-8")
-        report = (
-            ROOT / "chinese-official-writing" / "references" / "genre-checklist-report.md"
-        ).read_text(encoding="utf-8")
-        review = (ROOT / "chinese-official-writing" / "references" / "review-checklist.md").read_text(
-            encoding="utf-8"
-        )
-
-        for text in [skill, workflow]:
-            self.assertIn("考察、评估、建议、拟测试、考虑尝试或下一步设想", text)
-        self.assertIn("不改写成已定实施方案、执行命令", skill)
-        self.assertIn("不升级成已定实施方案、命令或已安排动作", workflow)
-        self.assertNotIn("成本考察、成本评估", playbooks)
-        self.assertIn("成本考察、成本评估", report)
-        self.assertIn("不自动改题为“调研报告”“考核说明”或“实施方案”", report)
-        self.assertIn("不写成已经确定的执行路线、责任命令或反馈时限", report)
-        self.assertIn("按 `workflow.md` 的事实映射式二次修改删掉未支持推断", notice_leaf)
-        self.assertIn("二次局部修改已命中轻量任务卡时，转对应卡片处理", workflow)
-        self.assertIn("优先直接改对应位置", route_cards)
-        self.assertIn("本卡不重新定义信息去向", route_cards)
-        self.assertIn("未用 Markdown `**` 加粗包装标签", review)
+        """Suggestions and evaluations stay tentative through local edits and report routing."""
+        home = (CANONICAL / "SKILL.md").read_text(encoding="utf-8")
+        self.assertIn("考察、评估、建议、拟测试、考虑尝试和下一步设想保持建议或待评估口径", home)
+        self.assert_rules("information-selection.md", "“可安排、可开展”等能力或选项保持可选口径",
+                          "未支持推断直接删除")
+        self.assert_rules("genre-playbook-report.md", "评估报告或成本考察保留用户指定名称和事实口径",
+                          "不改题为调研、方案或考核说明", "进行中、待核、建议和拟议状态保持原级别")
+        self.assert_rules("task-route-cards.md", "修改范围限于点名位置及必要衔接")
+        self.assert_rules("anti-ai-patterns.md", "`拟`、`建议`、`可` 不升级为既定结论")
+        self.assert_rules("short-draft-naturalness.md", "Markdown 加粗")
 
     def test_proofreading_layer_stays_ai_writing_quality_only(self) -> None:
-        skill = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
-        checklist = (ROOT / "chinese-official-writing" / "references" / "review-checklist.md").read_text(
-            encoding="utf-8"
-        )
-        proofreading = (
-            ROOT / "chinese-official-writing" / "references" / "proofreading-checklist.md"
-        ).read_text(encoding="utf-8")
-
-        self.assertIn("references/proofreading-checklist.md", skill)
-        for text in [skill, checklist, proofreading]:
-            self.assertIn("AI 写稿轻量校对", text)
-            self.assertIn("引用保真", text)
-            self.assertIn("稿内一致性", text)
-        self.assertIn("用于成稿前检查语言、引用保真和稿内一致性", proofreading)
-        self.assertIn("未核验的引用或数据保持原状态", proofreading)
-        self.assertIn("公开来源核验按 `SKILL.md` 的联网条件执行", proofreading)
-        for maintenance_statement in [
-            "不审核人类稿件事实真伪",
-            "不核验新闻真实性",
-            "不默认联网反查",
-            "不新增模型、API、默认联网",
-            "真实性核验不属于本技能的默认修正范围",
-            "不改变 `prose_lint.py` 为深度语法纠错器",
-        ]:
-            self.assertNotIn(maintenance_statement, proofreading)
-        for term in [
-            "领导讲话、古诗词、名言、政策原文",
-            "同语境原样保留",
-            "成语默认同语境保留",
-            "低语境符合",
-            "引用表述、出处和发布日期建议由用户按原始材料核实。",
-        ]:
-            self.assertTrue(term in proofreading or term in skill)
-        self.assertIn("不改写成 `请核实出处`", proofreading)
-        for term in ["错别字错词", "的地得", "量词", "病句", "数据一致性", "逻辑一致性"]:
-            self.assertIn(term, proofreading)
-        self.assertIn("脚本只提示语言、格式和重复风险", proofreading)
+        """Language, quotation fidelity and consistency remain scoped; missing detail stays visible."""
+        home = (CANONICAL / "SKILL.md").read_text(encoding="utf-8")
+        self.assertIn("稿件含引文、数字或专门术语，或用户要求校对时", home)
+        self.assertIn("`references/proofreading-checklist.md`", home)
+        self.assert_rules("proofreading-checklist.md", "语言、引用保真和稿内一致性", "数字、金额、日期、比例、单位、专名和引用是否与材料一致",
+                          "主体、对象、责任、时间、地点和状态在全文是否前后一致",
+                          "搭配错误", "不因校对页新增事实、章节或硬门")
+        self.assert_rules("review-checklist.md", "核对病句、搭配、指代及引用和专名")
+        self.assert_rules("final-review-layers.md", "用户已给但缺少核实依据的信息保留其待核状态")
+        self.assert_rules("prose-lint-usage.md", "合理用语或引用经核对后保留")
+        # These old protections are not implied by a generic "引用保真" label.
+        self.assert_rules("proofreading-checklist.md", "成语默认同语境保留",
+                          "引用表述、出处和发布日期建议由用户按原始材料核实。",
+                          "不改写成 `请核实出处`", "的地得", "量词")
 
     def test_formalization_keeps_only_explicit_literal_boundaries_verbatim(self) -> None:
-        skill = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
-        proofreading = (
-            ROOT / "chinese-official-writing" / "references" / "proofreading-checklist.md"
-        ).read_text(encoding="utf-8")
-        style = (ROOT / "chinese-official-writing" / "references" / "official-style.md").read_text(
-            encoding="utf-8"
-        )
-
-        self.assertNotIn("**引用误改和数据冲突**", skill)
-        self.assertNotIn("引用表述、出处和发布日期建议由用户按原始材料核实。", skill)
-        self.assertIn("普通叙述中的口语称谓和表达可以按正式文稿语体调整", proofreading)
-        self.assertIn("引号内、明确标注为原文/引语或要求逐字保留的内容按字面边界保留", proofreading)
-        self.assertIn("引用表述、出处和发布日期建议由用户按原始材料核实。", proofreading)
-        self.assertIn("同一金额、日期、数量、比例、单位、主体", proofreading)
-        self.assertIn("`我觉得`：材料只表达初步意见时", style)
-        self.assertIn("`差不多`：可改为", style)
+        """Ordinary speech can be formalized; explicit quotations keep a distinct literal boundary."""
+        self.assert_rules("official-style.md", "`我觉得`可按证据改为“初步考虑/初步判断”",
+                          "“差不多”可改为", "不以替换词改变原信息强度")
+        self.assert_rules("information-selection.md", "用户要求只改格式、逐字保留、不作分析或只按给定材料时，分析层降为零")
+        self.assert_rules("proofreading-checklist.md", "数字、金额、日期、比例、单位、专名和引用是否与材料一致")
+        # Explicit source quotation and ordinary narrated wording must not be conflated.
+        self.assert_rules("proofreading-checklist.md",
+                          "引号内、明确标注为原文/引语或要求逐字保留的内容按字面边界保留",
+                          "同语境原样保留")
 
     def test_v1510_sentence_fixes_keep_sparse_and_field_tasks_fact_bounded(self) -> None:
-        skill = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
-        style = (ROOT / "chinese-official-writing" / "references" / "official-style.md").read_text(
-            encoding="utf-8"
-        )
-        anti_ai = (ROOT / "chinese-official-writing" / "references" / "anti-ai-patterns.md").read_text(
-            encoding="utf-8"
-        )
-
-        self.assertIn("按已给事实之间的关系简短成稿", skill)
-        self.assertIn("缺少某一环节时，不补齐固定章节", skill)
-        self.assertNotIn("已完成事项 -> 发现问题 -> 已组织协调", skill)
-        self.assertIn("只有材料确有研究过程或事实依据时", style)
-        self.assertIn("字段式底稿默认保留字段名、顺序和单元边界", anti_ai)
-        self.assertIn("只有用户要求成篇正文且这些字段仅作为素材时", anti_ai)
-        self.assertIn("不保留字段标签或机械转述字段名", anti_ai)
+        """Sparse reports omit unsupported sections; fields change form only when they are source material."""
+        self.assert_rules("genre-playbook-report.md", "材料未给某一环节时，直接在已给事实处收束",
+                          "不为填满骨架增加责任、流程、成效、期限或结论")
+        self.assert_rules("formulaic-language.md", "依据、会议、研究动作必须真实存在")
+        self.assert_rules("field-editing.md", "保留字段名、字段顺序和单元边界")
+        self.assert_rules("anti-ai-patterns.md", "字段只是素材时才组织为自然段",
+                          "只有在用户要表格/字段时保留")
 
     def test_review_command_includes_interpreter_and_draft_path(self) -> None:
-        review = (
-            ROOT / "chinese-official-writing" / "references" / "final-review-layers.md"
-        ).read_text(encoding="utf-8")
-
-        self.assertIn(
-            'python "<Skill绝对目录>/scripts/prose_lint.py" --delivery-mode draft-body --format --structure "<草稿绝对路径>"',
-            review,
-        )
-        self.assertIn("本次已读 `SKILL.md` 所在目录和待检查文件的绝对路径", review)
-        skill = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
-        self.assertIn("检查终稿正文时按 `references/final-review-layers.md` 使用 `draft-body` 模式", skill)
+        """Run the documented standalone script invocation, including mode and stdin contract."""
+        home = (CANONICAL / "SKILL.md").read_text(encoding="utf-8")
+        self.assertIn("读取 `references/prose-lint-usage.md`", home)
+        self.assertIn("运行 `scripts/prose_lint.py`", home)
+        usage = read_reference("prose-lint-usage.md")
+        self.assertIn("本次已读 `SKILL.md` 所在目录定位脚本", usage)
+        self.assertIn("使用草稿绝对路径并保留引号", usage)
+        command = re.search(r'^python "[^\n]+"$', usage, re.M)
+        self.assertIsNotNone(command)
+        args = shlex.split(command.group(0))
+        self.assertEqual(args, ["python", "<Skill绝对目录>/scripts/prose_lint.py",
+                                "--delivery-mode", "draft-body", "<草稿绝对路径>"])
+        self.assertIn("成稿扫描追加 `--structure --format`", usage)
+        self.assertIn("标准输入将文件路径换成 `-`", usage)
+        self.assertIn("审核任务收到的原稿、修改后的稿件", usage)
+        self.assertIn("| 审稿意见本身 | `review-only` |", usage)
+        self.assertIn("| 稿件正文和独立的文后提示 | `gap-note-allowed` |", usage)
+        run = subprocess.run([sys.executable, "-B", str(CANONICAL / "scripts/prose_lint.py"),
+                              "--delivery-mode", "draft-body", "--structure", "--format", "--json", "-"],
+                             input="通知\n\n请业务科于9月18日前提交材料。", encoding="utf-8", capture_output=True, timeout=30)
+        self.assertEqual(run.returncode, 0, run.stderr)
+        self.assertIsInstance(json.loads(run.stdout), (dict, list))
+        self.assert_rules("prose-lint-usage.md", "修正已确认的问题", "再复扫变动文本",
+                          "最终发送采用已检查文本", "仍无法执行则如实说明本次检查范围")
 
     def test_ai_dedupe_prompt_fix_guidance_is_documented(self) -> None:
-        skill = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
-        openclaw_skill = (ROOT / "packages" / "openclaw" / "skills" / "chinese_official_writing" / "SKILL.md").read_text(
-            encoding="utf-8"
-        )
-        information_selection = (
-            ROOT / "chinese-official-writing" / "references" / "information-selection.md"
-        ).read_text(encoding="utf-8")
-        elements = (
-            ROOT / "chinese-official-writing" / "references" / "handling-elements.md"
-        ).read_text(encoding="utf-8")
-        for text in [skill, openclaw_skill]:
-            self.assertNotIn("用户点名禁止编造的字段写成正文中的“未提供”说明", text)
-            self.assertIn("识别为正式报送结构缺口", text)
-            self.assertIn("最终正文不得残留未完成占位", text)
-            self.assertNotIn("（成文日期待确认）", text)
-            self.assertIn("不使用当前日期补落款", text)
-        self.assertIn("（成文日期待确认）", elements)
-        self.assertIn("用户要求先确认时，再在正文前提出必要问题", information_selection)
-        self.assertIn("文后提示使用少量短项", information_selection)
-        self.assertIn("用户点名不得编造的字段按输出模式省略或短列", information_selection)
-        self.assertIn("不在正文中解释为“未提供”", information_selection)
-        self.assertIn("去 AI 味、变换句式、拆分长句或调整清单结构", skill)
-        self.assertIn("不得补写未给的解释、原因、影响范围、办理流程、责任人员、字段示例或整改动作", skill)
-        self.assertIn("用户只给问题清单、任务清单或明确要求不新增事实时", skill)
-        self.assertIn("不为显得自然或完整而补解释", skill)
-        self.assertIn("不得补写未给的解释、原因、影响范围、办理流程、责任人员、字段示例或整改动作", openclaw_skill)
+        """Dedupe never invents facts or missing fields; delivery notes stay outside the body."""
+        for root in [CANONICAL, skill_roots()[-1]]:
+            with self.subTest(root=root):
+                home = (root / "SKILL.md").read_text(encoding="utf-8")
+                self.assertIn("成稿缺少落款日期时省略日期", home)
+                self.assertNotIn("（成文日期待确认）", home)
+                self.assert_rules("information-selection.md", "用户点名限制的字段按输出模式省略或短列",
+                                  "用户要求先确认时，才在正文前提出必要问题",
+                                  "用户要求只改格式、逐字保留、不作分析或只按给定材料时，分析层降为零", root=root)
+                self.assert_rules("official-style.md", "正式化不补组织名称、牵头部门、责任分工、整改动作、督办安排、成果总结或后续进展", root=root)
+                self.assert_rules("delivery.md", "简短列出影响使用的事项", "正文编号、落款和附件在提示前结束", root=root)
+                self.assert_rules("final-review-layers.md", "正式成稿清理未完成占位", root=root)
 
     def test_openclaw_agent_rules_include_v140_routing_and_format_bridge(self) -> None:
-        canonical = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
-        text = read_routing_surfaces(
-            ROOT / "packages" / "openclaw" / "skills" / "chinese_official_writing" / "SKILL.md"
-        )
-
-        self.assertIn("任务模式", text)
-        self.assertIn("references/workflow.md", text)
-        self.assertIn("references/information-selection.md", text)
-        self.assertIn("按材料状态、事项关联性和办理必要性选择信息", text)
-        self.assertIn("材料只给问题清单时，正文列明已确认问题及其对象、数量和状态", text)
-        self.assertIn("稿内一致性风险", text)
-        self.assertIn("references/format-gbt9704.md", text)
-        format_ref = (
-            ROOT / "packages" / "openclaw" / "skills" / "chinese_official_writing" / "references" / "format-gbt9704.md"
-        ).read_text(encoding="utf-8")
-        self.assertIn("不得把 Markdown `**加粗**`", format_ref)
-        self.assertIn("交付范围以用户要求为准", text)
-        self.assertIn("允许文后提示时，只列其指定事项", text)
-        self.assertIn("材料没有的事实不补写，也不在正文说明材料缺失", text)
-        self.assertIn("按任务渐进读取资料", text)
+        """OpenClaw carries current mode, source, format and delivery routes without legacy workflow."""
+        root = skill_roots()[-1]
+        home = (root / "SKILL.md").read_text(encoding="utf-8")
+        canonical = (CANONICAL / "SKILL.md").read_text(encoding="utf-8")
+        self.assertEqual(home.split("---", 2)[2].strip(), canonical.split("---", 2)[2].strip())
+        for route in ["information-selection.md", "format-gbt9704.md", "review-checklist.md",
+                      "final-review-layers.md", "prose-lint-usage.md", "delivery.md"]:
+            self.assertIn(f"`references/{route}`", home)
+            self.assertEqual(read_reference(route, root), read_reference(route))
+        self.assertNotIn("workflow.md", home)
+        self.assert_rules("information-selection.md", "材料已给且与主旨相关的事实进入正文", root=root)
+        self.assert_rules("format-gbt9704.md", "不得把 Markdown `**加粗**`", root=root)
+        self.assert_rules("delivery.md", "用户明确只要稿件、只要正文或要求省略说明时，省略文后提示", root=root)
 
     def test_openclaw_skill_card_source_is_tracked_but_not_packaged_directly(self) -> None:
         source = (
@@ -2163,7 +1304,7 @@ class SkillBoundaryTests(unittest.TestCase):
             "新闻与评论写作",
             "maintenance/tests/evidence",
             "maintenance/docs/evidence/README.md",
-            "本仓库采用 [MIT License](LICENSE)。",
+            "普通 Skill、references、普通检查脚本与兼容包采用 [MIT License](LICENSE)。",
         ]:
             self.assertIn(term, text)
         recent_table = text.split("## 模型消融与真实写稿", 1)[1].split("### 制度正文示例", 1)[0]
@@ -2198,7 +1339,7 @@ class SkillBoundaryTests(unittest.TestCase):
             "中文 Markdown",
             "渐进式路由",
             "轻量审查层",
-            "材料暂缺时正文优先完成",
+            "材料暂缺时完成有依据的正文",
             "scripts/prose_lint.py",
         ]:
             self.assertIn(term, text)
