@@ -198,6 +198,15 @@ class PromptfooProviderTests(unittest.TestCase):
         self.assertIn(leaf, rewrite)
         self.assertNotIn("references/genre-playbook-notice.md", review)
 
+    def test_body_only_delivery_adds_anti_narration_overlay(self) -> None:
+        ordinary = provider._reference_paths_for_genres(["意见"], ["请起草一份意见。"])
+        body_only = provider._reference_paths_for_genres(
+            ["意见"], ["请起草一份意见，只输出完整正文。"]
+        )
+        self.assertNotIn("references/anti-ai-patterns.md", ordinary)
+        self.assertIn("references/genre-playbook-opinion.md", body_only)
+        self.assertIn("references/anti-ai-patterns.md", body_only)
+
     def test_external_research_is_explicit(self) -> None:
         ordinary = provider._reference_paths_for_genres(
             ["报告"], ["根据给定材料起草报告。"]

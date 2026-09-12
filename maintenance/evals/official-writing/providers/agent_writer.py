@@ -633,6 +633,13 @@ ORDINARY_LETTER_REVISION_NEGATIONS = (
     "无需完善",
 )
 ANTI_AI_TASK_MARKERS = ("AI 味", "AI味", "降 AI 味", "降AI味", "模板化", "空话套话")
+BODY_ONLY_TASK_MARKERS = (
+    "只输出正文",
+    "只输出完整正文",
+    "只输出改后全文",
+    "只交正文",
+    "直接交付正文",
+)
 COMPREHENSIVE_REVIEW_MARKERS = (
     "格式",
     "语气",
@@ -1291,6 +1298,13 @@ def _reference_paths_for_genres(genres: list[str], tasks: list[str] | None = Non
         paths.extend(GENRE_REFERENCES["format"])
     if _task_requires_external_research(tasks):
         paths.extend(GENRE_REFERENCES["external_research"])
+
+    # A body-only request is a delivery contract, not a new genre.  Load the
+    # compact anti-narration leaf only at this explicit boundary so ordinary
+    # drafting keeps the smaller context while direct delivery cannot leak
+    # route or process commentary into the document.
+    if any(_contains_marker(task, BODY_ONLY_TASK_MARKERS) for task in tasks):
+        paths.extend(GENRE_REFERENCES["anti_ai"])
 
     seen: set[str] = set()
     ordered: list[str] = []
