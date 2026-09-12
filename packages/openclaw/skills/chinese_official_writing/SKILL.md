@@ -76,6 +76,6 @@ metadata:
 
 全文交付前按 `references/final-review-layers.md` 核对事实、状态、主体、文种和交付边界，再看质量建议；需要语言模式检查时读 `references/anti-ai-patterns.md`，轻量校对读 `references/proofreading-checklist.md`。每页只处理自己的检查内容，复核结果回到当前稿件。
 
-### 脚本检查
+### 脚本与 Hook 检查
 
-脚本输出风险清单后，必须逐项对照正文、主文种和用户修改范围，确定修改、保留或正文外提示；扫描未完成时标明未完成并转人工复核。扫描任务以风险清单已读取并逐项处理为完成条件；正文取舍仍按事实和文种规则执行。
+需要扫描草稿时读取 `references/prose-lint-usage.md`，需要交付门禁或 Hook 检查时读取 `hooks/README.md`，并按门禁任务再读取 `references/delivery-review-gate.md`。脚本输出风险清单后，必须逐项对照正文、主文种和用户修改范围，确定修改、保留或正文外提示；扫描未完成时标明未完成并转人工复核。扫描任务以风险清单已读取并逐项处理为完成条件；正文取舍仍按事实和文种规则执行。

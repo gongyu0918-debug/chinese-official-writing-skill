@@ -37,6 +37,7 @@ class ProductSurfaceAuditTests(unittest.TestCase):
         self.assertIn("唯一脚本路由是 `references/prose-lint-usage.md`", text)
         self.assertIn("先读 `hooks/README.md`", text)
         self.assertIn("references/delivery-review-gate.md", text)
+        self.assertIn("### 脚本与 Hook 检查", text)
 
 
 if __name__ == "__main__":
