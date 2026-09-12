@@ -17,11 +17,9 @@ metadata:
 
 先按用户要求确定交付动作，再选文种首叶。用户模板、最新版底稿、标题顺序和明确状态优先于通用样文。路由确定后只加载实际命中的页，按页面给出的转交条件进入下一步；工作上下文由已选页面组成。
 
-新闻消息、新闻评论、合作性意见建议、投诉反映和整改方案等兼容场景读取 `references/compatibility-scene-routing.md`；正式文种“意见”读取 `references/genre-playbook-opinion.md`；制度、规定、办法、细则和操作规程读取 `references/genre-playbook-institution-rules.md`。用户明确询问 Hook 使用时读取 `hooks/README.md`。
+新闻消息、新闻评论、合作性意见建议、投诉反映和整改方案等兼容场景读取 `references/compatibility-scene-routing.md`；正式文种“意见”读取 `references/genre-playbook-opinion.md`；制度、规定、办法、细则和操作规程读取 `references/genre-playbook-institution-rules.md`。
 
 其他文种按 `references/reference-index.md` 确定唯一首叶；文种或行文关系冲突时再读取 `references/genre-routing.md`。
-
-需要扫描 `.txt`、`.md` 或 `.docx` 草稿时，唯一脚本路由是 `references/prose-lint-usage.md`；用户明确选择交付门禁或 Hook 检查时，先读 `hooks/README.md`，再按需要读取 `references/delivery-review-gate.md`。文种叶不代替这两条工具路由。
 
 用户明确只交稿件或不附说明时，主文种成稿和内部复核完成后读取 `references/delivery-body-only.md`；这一步只决定最终交付形态，不改变正文内容。
 
