@@ -238,10 +238,14 @@ class PromptfooProviderTests(unittest.TestCase):
         ordinary = provider._reference_paths_for_genres(
             ["报告"], ["根据给定材料起草报告。"]
         )
+        ordinary_state = provider._reference_paths_for_genres(
+            ["讲话稿"], ["围绕当前工作考虑起草讲话稿。"]
+        )
         current = provider._reference_paths_for_genres(
             ["报告"], ["核验现行政策和最新公开来源后起草报告。"]
         )
         self.assertNotIn("references/external-research.md", ordinary)
+        self.assertNotIn("references/external-research.md", ordinary_state)
         self.assertIn("references/external-research.md", current)
 
     def test_context_loader_is_flat_and_fails_closed(self) -> None:
@@ -258,6 +262,20 @@ class PromptfooProviderTests(unittest.TestCase):
         with mock.patch.object(provider, "MAX_SKILL_CONTEXT_CHARS", 10):
             with self.assertRaisesRegex(provider.ProviderError, "selected skill context exceeds 10 characters"):
                 provider._load_skill_context(ROOT, ["通用材料"])
+
+    def test_model_stderr_does_not_enter_draft_text(self) -> None:
+        completed = mock.Mock(returncode=0, stdout="### C001\n正文", stderr="cli warning")
+        with mock.patch.object(provider.subprocess, "run", return_value=completed):
+            output, code, _ = provider.call_model_prompt(
+                "prompt",
+                ROOT,
+                5,
+                config={"commandTemplate": "agent"},
+                retries=0,
+            )
+        self.assertEqual(code, 0)
+        self.assertEqual(output, "### C001\n正文")
+        self.assertNotIn("cli warning", output)
 
     def test_batching_keeps_reference_signatures_separate(self) -> None:
         cases = [

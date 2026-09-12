@@ -773,7 +773,8 @@ EXTERNAL_RESEARCH_TASK_MARKERS = (
     "搜索公开来源",
     "核验公开来源",
     "最新",
-    "当前",
+    "当前政策",
+    "当前规定",
     "今日",
     "现行政策",
     "近期数据",
@@ -1633,8 +1634,11 @@ def call_model_prompt(
             return_code = 124
         else:
             output = result.stdout
-            if result.stderr:
-                output = output.rstrip() + "\n\n[stderr]\n" + result.stderr
+            # Keep model stdout as the only draft channel.  CLI diagnostics
+            # belong to the harness log; appending them would turn warnings
+            # into apparent正文/旁白 and contaminate the writing comparison.
+            if not output.strip() and result.stderr:
+                output = result.stderr
             return_code = result.returncode
         if output.strip() or return_code != 0:
             break
