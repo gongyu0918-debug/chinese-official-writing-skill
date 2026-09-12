@@ -206,6 +206,11 @@ class PromptfooProviderTests(unittest.TestCase):
         self.assertNotIn("references/anti-ai-patterns.md", ordinary)
         self.assertIn("references/genre-playbook-opinion.md", body_only)
         self.assertIn("references/anti-ai-patterns.md", body_only)
+        self.assertIn("references/delivery-body-only.md", body_only)
+
+    def test_natural_delivery_phrasing_selects_delivery_page(self) -> None:
+        refs = provider._reference_paths_for_genres(["报告"], ["帮我写完整稿子，不需要解释。"])
+        self.assertIn("references/delivery-body-only.md", refs)
 
     def test_transaction_names_keep_a_primary_leaf(self) -> None:
         meeting_notice = provider._reference_paths_for_genres(["通知"], ["起草会议通知"])

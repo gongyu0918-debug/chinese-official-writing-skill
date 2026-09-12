@@ -2307,6 +2307,57 @@
       "legacy_coverage": [
         "genre-playbook-advisory-feedback.md"
       ]
+    },
+    {
+      "id": "delivery_body_only",
+      "path": "references/delivery-body-only.md",
+      "kind": "workflow",
+      "purpose": "成稿后的自然语言直交付和文后提示边界",
+      "triggers": [
+        "只要文章",
+        "只要稿件",
+        "只要正文",
+        "完整稿子",
+        "完整稿件",
+        "直接给我成稿",
+        "不需要解释",
+        "不需要提示"
+      ],
+      "allowed_reads": [
+        "SKILL.md",
+        "references/delivery-body-only.md"
+      ],
+      "forbidden_reads": [
+        "references/genre-checklist.md",
+        "references/genre-playbook-advisory-feedback.md",
+        "references/genre-playbook-complaint-reflection.md",
+        "references/genre-playbook-correspondence.md",
+        "references/genre-playbook-deliberation.md",
+        "references/genre-playbook-deployment.md",
+        "references/genre-playbook-feasibility.md",
+        "references/genre-playbook-institution-rules.md",
+        "references/genre-playbook-minutes.md",
+        "references/genre-playbook-news-commentary.md",
+        "references/genre-playbook-news-message.md",
+        "references/genre-playbook-notice.md",
+        "references/genre-playbook-plan-construction.md",
+        "references/genre-playbook-procurement-announcement.md",
+        "references/genre-playbook-procurement-review.md",
+        "references/genre-playbook-project-application.md",
+        "references/genre-playbook-publication.md",
+        "references/genre-playbook-remediation-plan.md",
+        "references/genre-playbook-request.md",
+        "references/genre-playbook-research.md",
+        "references/genre-playbook-speech-address.md",
+        "references/genre-playbook-work-summary.md",
+        "references/short-draft-naturalness.md",
+        "references/task-route-cards.md"
+      ],
+      "stop_when": "正文洁净交付完成后停止。",
+      "legacy_coverage": [
+        "SKILL.md",
+        "anti-ai-patterns.md"
+      ]
     }
   ],
   "routes": [

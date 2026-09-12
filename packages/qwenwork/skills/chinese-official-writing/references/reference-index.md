@@ -18,6 +18,7 @@
 | 只审不改 | 对应主文种/事务叶 + `review-direct-checklist.md` | 用户点名的质量页；不自动叠加总审页 | 已输出位置、风险和建议 |
 | 全文综合复核 | `review-checklist.md` | `anti-ai-patterns.md`、`proofreading-checklist.md` | 三级清单完成 |
 | Word、docx、GB/T 9704、红头 | `format-gbt9704.md` | 对应文种页；需要脚本时加 `prose-lint-usage.md` | 版式和正文均已交付 |
+| 用户自然语言表示只要稿件/不需说明 | 成稿后 `delivery-body-only.md` | 用户明确要求的文后提示 | 正文洁净交付完成 |
 
 ## 文种与场景首叶
 

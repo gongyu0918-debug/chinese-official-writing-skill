@@ -49,6 +49,7 @@ class ReferenceRewriteContractTests(unittest.TestCase):
             "genre-playbook-report.md",
             "transaction-remediation-report.md",
             "transaction-feedback-report.md",
+            "delivery-body-only.md",
         }
         self.assertEqual(set(actual) - set(baseline), generated)
         self.assertTrue(set(actual) - generated <= set(baseline))
@@ -63,12 +64,29 @@ class ReferenceRewriteContractTests(unittest.TestCase):
             "task-route-cards.md",
             "ai-compute-docs.md",
             "prose-lint-usage.md",
-            "Hook 仅在用户明确要求交付门禁时启用",
+            "Hook 是可选择的增强能力",
         ]:
             self.assertIn(term, skill)
-        self.assertIn("最终消息直接承载标题或正文首句", skill)
-        self.assertIn("交付模式本身不回显已读页、参考路径、路由说明", skill)
-        self.assertIn("采用正文交付模式", skill)
+        self.assertIn("只要文章", skill)
+        self.assertIn("delivery-body-only.md", skill)
+        self.assertIn("这不是入口文种路由", skill)
+
+    def test_product_pages_do_not_expose_build_or_maintenance_commands(self) -> None:
+        texts = [SKILL.read_text(encoding="utf-8")]
+        texts.extend(path.read_text(encoding="utf-8") for path in REFS.glob("*.md"))
+        joined = "\n".join(texts).lower()
+        for operational in [
+            "git commit",
+            "git push",
+            "pytest",
+            "python -m unittest",
+            "worktree",
+            "maintenance/",
+            "开发命令",
+            "构建命令",
+        ]:
+            self.assertNotIn(operational.lower(), joined, operational)
+        self.assertIn("Hook 是可选择的增强能力", SKILL.read_text(encoding="utf-8"))
 
     def test_compute_rules_are_one_scenario_overlay(self) -> None:
         dispatch = (REFS / "ai-compute-docs.md").read_text(encoding="utf-8")

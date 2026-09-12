@@ -74,6 +74,7 @@
 | `genre-playbook-report.md` | 报告、情况报告和情况说明独立主文种 |
 | `transaction-remediation-report.md` | 整改进展/整改情况报告事务附加页 |
 | `transaction-feedback-report.md` | 反馈情况报告事务附加页 |
+| `delivery-body-only.md` | 成稿后的自然语言直交付与文后提示页 |
 
 ## 台账使用规则
 

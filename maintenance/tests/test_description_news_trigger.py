@@ -51,7 +51,7 @@ class DescriptionNewsTriggerTests(HookCompanionTestMixin, unittest.TestCase):
         self.assertEqual(len(set(descriptions)), 1)
 
         description = descriptions[0]
-        self.assertTrue(description.startswith("用于中文公文、正式工作材料、新闻消息和新闻评论"))
+        self.assertTrue(description.startswith("用于中文公文、正式事务材料、新闻消息和新闻评论"))
         self.assertIn("起草、改写、压缩、复核", description)
         self.assertIn("AI 算力", description)
         self.assertNotIn("不用于", description)

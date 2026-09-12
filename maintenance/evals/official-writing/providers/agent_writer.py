@@ -46,6 +46,9 @@ GENRE_REFERENCES: dict[str, list[str]] = {
     "anti_ai": [
         "references/anti-ai-patterns.md",
     ],
+    "body_delivery": [
+        "references/delivery-body-only.md",
+    ],
     "style": [
         "references/official-style.md",
     ],
@@ -662,9 +665,33 @@ ANTI_AI_TASK_MARKERS = ("AI 味", "AI味", "降 AI 味", "降AI味", "模板化"
 BODY_ONLY_TASK_MARKERS = (
     "只输出正文",
     "只输出完整正文",
+    "给我正文",
+    "直接给正文",
+    "仅给正文",
+    "只看正文",
+    "直接交付正文",
     "只输出改后全文",
     "只交正文",
     "直接交付正文",
+)
+BODY_DELIVERY_MARKERS = (
+    "只输出正文",
+    "只输出完整正文",
+    "只要文章",
+    "只要稿件",
+    "只要正文",
+    "完整稿子",
+    "完整稿件",
+    "直接给我稿",
+    "直接给我成稿",
+    "帮我写完整稿子",
+    "不需要解释",
+    "不需要提示",
+    "不要解释",
+    "不要提示",
+    "不需要文后提示",
+    "只看稿件",
+    "只交稿件",
 )
 COMPREHENSIVE_REVIEW_MARKERS = (
     "格式",
@@ -1346,6 +1373,8 @@ def _reference_paths_for_genres(genres: list[str], tasks: list[str] | None = Non
     # route or process commentary into the document.
     if any(_contains_marker(task, BODY_ONLY_TASK_MARKERS) for task in tasks):
         paths.extend(GENRE_REFERENCES["anti_ai"])
+    if any(_contains_marker(task, BODY_DELIVERY_MARKERS) for task in tasks):
+        paths.extend(GENRE_REFERENCES["body_delivery"])
 
     seen: set[str] = set()
     ordered: list[str] = []

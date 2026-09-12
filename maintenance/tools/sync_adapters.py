@@ -30,8 +30,8 @@ HOOK_TIMEOUT_FIELDS = {
 }
 HOOK_TIMEOUT_MILLISECONDS_HOSTS = {"zcode", "qwen-code"}
 HOOK_ROUTE_PARAGRAPH = (
-    "\n\nHook 仅在用户明确要求交付门禁时启用。"
-    "Hook、宿主适配和运行时能力保持现有实现，不因普通写稿自动加载。"
+    "\n\nHook 是可选择的增强能力：用户要求质量门禁、长度保护、交付洁净或其他 Hook 检查时，可读取对应 Hook 入口并启用；普通写稿不会自动启动，但显式选择 Hook 不改变主文种和正文路由。"
+    "Hook、宿主适配和运行时能力保持现有实现。"
 )
 
 TARGETS = {

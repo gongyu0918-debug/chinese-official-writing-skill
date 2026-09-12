@@ -23,12 +23,12 @@ class HookLayerContractTests(unittest.TestCase):
         )
 
         self.assertNotIn("delivery-review-gate.md", skill)
-        self.assertIn("Hook 仅在用户明确要求交付门禁时启用", skill)
+        self.assertIn("Hook 是可选择的增强能力", skill)
         self.assertIn("普通写稿不加载 Hook", skill)
         self.assertIn("完整初稿形成后增加一次有界交付检查", guide)
         self.assertIn("优先交付原始完整稿", guide)
-        self.assertIn("普通 `SKILL.md` 不加载本页", gate_spec)
-        self.assertIn("Hook 默认禁用", gate_spec)
+        self.assertIn("未选择 Hook 时不加载本页", gate_spec)
+        self.assertIn("用户选择 Hook 增强能力", gate_spec)
 
     def test_product_manual_is_user_facing_and_discloses_consent_boundaries(self) -> None:
         guide = (HOOK_ROOT / "README.md").read_text(encoding="utf-8")
