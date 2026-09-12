@@ -191,15 +191,18 @@ class SkillBoundaryTests(unittest.TestCase):
         """Compute overlays require a primary genre and explicit compute signals."""
         home = (CANONICAL / "SKILL.md").read_text(encoding="utf-8")
         self.assertIn("在主文种叶上叠加 `references/ai-compute-docs.md`", home)
-        self.assertIn("“安全”“SLA”或“验收”单独出现时沿用主文种规则", home)
-        self.assert_rules("reference-index.md", "先选报告、方案、采购或技术材料等主文种", "不单独替代主文种")
+        self.assertIn("普通服务器、接口、安全、SLA 或验收内容单独出现时沿用主文种规则", home)
+        self.assertIn("主文种已确定且稿件明确涉及 AI 算力、模型推理/训练、智算中心或模型服务资源时", home)
+        self.assert_rules("reference-index.md", "按首页的场景条件叠加 `ai-compute-docs.md`", "算力页仍是附加规则")
+        self.assert_route("技术需求书、软件需求说明、接口需求和技术需求附件", "genre-playbook-technical-requirements.md")
         self.assert_rules("ai-compute-docs.md", "Token", "并发", "存储", "带宽", "SLA", "验收")
         self.assert_rules("technical-terms.md", "图形处理器（Graphics Processing Unit，GPU）",
                           "应用编程接口（Application Programming Interface，API）",
                           "服务级别协议（Service Level Agreement，SLA）",
                           "数据中心电能利用效率（Power Usage Effectiveness，PUE）",
                           "含义不明的缩写不自行展开")
-        self.assert_rules("anti-ai-patterns.md", "含义不明的内部缩写不自行展开", "专项需求、指标、SLA、安全和验收读 `ai-compute-docs.md`")
+        self.assert_rules("anti-ai-patterns.md", "含义不明的内部缩写不自行展开")
+        self.assert_rules("ai-compute-docs.md", "技术、SLA、安全与验收", "需要统一英文术语时读取 `technical-terms.md`")
         self.assertFalse((CANONICAL / "references/genre-playbooks.md").exists())
 
     def test_adapter_skill_copies_keep_boundaries(self) -> None:
@@ -367,8 +370,10 @@ class SkillBoundaryTests(unittest.TestCase):
         """Replace obsolete row hashes with explicit primary-function and scene mappings."""
         for purpose, leaf in [("请示", "genre-playbook-request.md"), ("报告、情况报告", "genre-playbook-report.md"),
                               ("通知", "genre-playbook-notice.md"), ("公告、公示、通告", "genre-playbook-publication.md"),
-                              ("会议纪要", "genre-playbook-minutes.md"), ("开场人物顺序", "speech-person-order.md"),
-                              ("采购审查", "genre-playbook-procurement-review.md"),
+                              ("会议纪要", "genre-playbook-minutes.md"), ("讲话稿、致辞", "speech-person-order.md"),
+                              ("会议主持词、主持串词", "speech-person-order.md"),
+                              ("独立审查意见、评审意见", "genre-playbook-review-opinion.md"),
+                              ("采购需求、规格报价、响应规则或履约条件需要专项核对", "genre-playbook-procurement-review.md"),
                               ("采购公告", "genre-playbook-procurement-announcement.md")]:
             with self.subTest(purpose=purpose):
                 self.assert_route(purpose, leaf)
@@ -377,8 +382,12 @@ class SkillBoundaryTests(unittest.TestCase):
         expected = {"genre-playbook-news-message.md", "genre-playbook-news-commentary.md",
                     "genre-playbook-advisory-feedback.md", "genre-playbook-remediation-plan.md",
                     "genre-playbook-complaint-reflection.md"}
-        self.assertEqual(len(rows), 5)
+        self.assertEqual(len(rows), 6)
         self.assertEqual({target for row in rows for target in REFERENCE_LINK_RE.findall(row)}, expected)
+        self.assertEqual(sum("genre-playbook-advisory-feedback.md" in row for row in rows), 2)
+        self.assertIn("用户以建议信向有权处理事项的对象提出合作性建议时", scenes)
+        self.assert_rules("reference-index.md", "在已选主文种上叠加 `genre-playbook-procurement-review.md`",
+                          "只做语言或格式审校时不因此加读")
         self.assertIn("不预读全部专页", scenes)
         self.assertIn("具有下行指导、监督整改或审计监督权力关系的意见按对应文种处理", scenes)
 
@@ -517,8 +526,10 @@ class SkillBoundaryTests(unittest.TestCase):
         home = (CANONICAL / "SKILL.md").read_text(encoding="utf-8")
         self.assertIn("`references/reference-index.md`", home)
         index = read_reference("reference-index.md")
-        for keyword in ["复函", "公示", "通告", "意见", "决定", "决议", "议案", "公报", "命令", "工作要点", "评审材料"]:
+        for keyword in ["复函", "公示", "通告", "意见", "决定", "决议", "议案", "公报", "命令", "工作要点", "评审意见"]:
             self.assertIn(keyword, index)
+        self.assert_rules("genre-playbook-review-opinion.md", "依据评审记录整理采购、初步设计或一般项目材料的审查结论",
+                          "保留被审稿件的主文种")
 
     def test_multi_round_revision_rules_keep_structure_and_genre_format(self) -> None:
         """The structure owner preserves latest-draft actions, granularity and labels."""
@@ -545,8 +556,10 @@ class SkillBoundaryTests(unittest.TestCase):
 
     def test_reported_genre_coverage_gaps_have_minimum_support(self) -> None:
         """Previously reported genres still route to pages with their own useful functions."""
-        for purpose, leaf in [("工作总结、工作要点", "genre-playbook-work-summary.md"),
-                              ("采购审查", "genre-playbook-procurement-review.md"),
+        for purpose, leaf in [("工作总结", "genre-playbook-work-summary.md"),
+                              ("工作要点", "genre-playbook-work-priorities.md"),
+                              ("独立审查意见、评审意见", "genre-playbook-review-opinion.md"),
+                              ("采购需求、规格报价、响应规则或履约条件需要专项核对", "genre-playbook-procurement-review.md"),
                               ("讲话稿、致辞", "genre-playbook-speech-address.md"),
                               ("征求意见函", "genre-playbook-correspondence.md"),
                               ("采购公告", "genre-playbook-procurement-announcement.md"),
@@ -568,8 +581,10 @@ class SkillBoundaryTests(unittest.TestCase):
         """Report drafting and review separate while title, cause, status and function survive."""
         draft = self.assert_route("报告、情况报告", "genre-playbook-report.md")
         self.assert_route("文种复核", "genre-checklist-report.md")
-        self.assert_rules("genre-checklist-report.md", "不承担起草骨架", "没有夹带审批请求",
+        self.assert_rules("genre-checklist-report.md", "文种核对", "没有夹带审批请求",
                           "保留用户指定名称", "接口、系统、页面、数字、日期、单位和进行中/待核/建议状态")
+        self.assertNotIn("成稿骨架", read_reference("genre-checklist-report.md"))
+        self.assertIn("成稿骨架", draft)
         for rule in ["报告事项与范围", "使用事实性汇报语言", "结论先行或按时间顺序均可",
                      "不改题为调研、方案或考核说明", "原因、责任、损失或整改结论以材料为准"]:
             self.assertIn(rule, draft)
@@ -599,7 +614,7 @@ class SkillBoundaryTests(unittest.TestCase):
         leaf = self.assert_route("请示", "genre-playbook-request.md")
         for rule in ["请示一文一事", "申请写清原因、依据或必要性", "缘由到请求的关系仍要完整",
                      "常识支持的一般必要性也可写入",
-                     "完全缺少用途和依据时", "单项采购请示或申请可用一至两个自然段",
+                     "原因完全无法推知时，正文保留已知事项和请求，文后提示询问具体缘由", "单项采购请示或申请可用一至两个自然段",
                      "根据有关休假规定", "不用“因个人事务”“因身体原因”等泛称代填",
                      "主送采用用户给出的接收对象", "正式成稿清理无用途的占位",
                      "`argument-chains.md`", "`handling-elements.md`"]:
@@ -615,11 +630,16 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assert_rules("genre-playbook-plan-construction.md", "以目标、主要任务和实施路径为主线",
                           "责任、进度、保障、验收与风险控制按材料和用户模板落位",
                           "建设方案先核对目标、范围、任务、进度、责任和验收",
-                          "可以省略相应章节", "不把行业常见工作包写成已决定的任务")
+                          "围绕已有目标、范围、步骤和期限成稿，相邻内容可合成自然段",
+                          "人员、设备、保障、预算和验收等要素按材料取舍",
+                          "明确给出的“拟”“待定”等业务状态照原级别保留",
+                          "行业通用做法可以用于分析建议，与已经确定的实施事项分开表达")
         self.assert_rules("genre-playbook-research.md", "对象与范围 → 方法、样本和资料来源",
                           "不把有限样本写成普遍结论")
-        self.assert_rules("genre-playbook-feasibility.md", "可研提供项目决策依据和可行性论证",
-                          "不把建议写成已批项目")
+        self.assert_rules("genre-playbook-feasibility.md", "可研材料为项目决策提供依据",
+                          "围绕需求、可选方案和实施条件论证可行性", "不把建议写成已批项目",
+                          "可以结合已有需求和常识提出比较、核实或验证建议",
+                          "建议与已经确定的安排分开")
         self.assertFalse((CANONICAL / "references/genre-playbook-research-feasibility.md").exists())
 
     def test_remediation_plan_has_a_state_preserving_atomic_leaf(self) -> None:
@@ -727,7 +747,8 @@ class SkillBoundaryTests(unittest.TestCase):
                           "| 就新闻或公共议题发表评论 | `genre-playbook-news-commentary.md` |",
                           "活动已经发生且面向公开传播时转新闻消息",
                           "新闻评论可以提出判断，但判断和材料中的事实、决定、责任安排分开")
-        self.assert_rules("genre-playbook-news-message.md", "新闻消息写已发生事实")
+        self.assert_rules("genre-playbook-news-message.md", "新闻消息以报道已发生事实为主",
+                          "以评论公共议题为主要用途的稿件读取 `genre-playbook-news-commentary.md`")
         self.assert_rules("genre-playbook-minutes.md", "不写成会议新闻")
 
     def test_format_reference_clarifies_document_number_brackets(self) -> None:
@@ -904,7 +925,7 @@ class SkillBoundaryTests(unittest.TestCase):
         """Latest-source corrections remove unsupported facts and respect body-only delivery."""
         self.assert_rules("information-selection.md", "二次修改以用户最新版底稿和本轮明确补充材料为唯一事实源",
                           "未支持推断直接删除，保留必要衔接，不输出映射表",
-                          "用户要求只改格式、逐字保留、不作分析或只按给定材料时，分析层降为零")
+                          "用户要求只改格式、逐字保留或不作分析时，执行相应限制", "仅限定材料来源时，仍可作材料与常识支持的分析")
         self.assert_rules("official-style.md", "正式化不补组织名称、牵头部门、责任分工、整改动作、督办安排、成果总结或后续进展")
         self.assert_rules("delivery.md", "用户明确只要稿件、只要正文或要求省略说明时，省略文后提示",
                           "路由记录、工具日志和自评留在内部")
@@ -953,9 +974,9 @@ class SkillBoundaryTests(unittest.TestCase):
                           "“审核、指出问题、给修改建议”交付问题位置、依据和建议改法")
         self.assert_rules("delivery.md", "用户限定审核范围时，意见限于该范围",
                           "列出原句或具体位置、问题表现及建议改法")
-        self.assert_rules("format-gbt9704.md", "正式交付前要素核对卡", "缺项清单", "不得用 `[依据/背景]`",
+        self.assert_rules("format-gbt9704.md", "按交付用途核对要素", "影响本次交付的缺项按 `delivery.md` 列在正文外", "不得用 `[依据/背景]`",
                           "先保留用户模板",
-                          "不自动补造文号、签发人、印章、密级、版记或正式签发日期")
+                          "不得编造文号、密级、紧急程度、签发人、印章、正式签发日期和版记信息")
         self.assert_rules("official-style.md", "我觉得", "搞", "差不多", "马上", "然后", "不以替换词改变原信息强度",
                           "单个正式词、转折或模板句不自动判错")
         for forbidden in ["document_generator.py", "generate_official_doc.py", "install_fonts.py", "format_docx.py"]:
@@ -1032,7 +1053,9 @@ class SkillBoundaryTests(unittest.TestCase):
         """Formatting, formalization and evidence review stay contextual and do not overwrite sources."""
         self.assert_rules("format-gbt9704.md", "2 号小标宋体", "3 号仿宋体", "一般两端对齐",
                           "4 号半角宋体阿拉伯数字", "回行保持词意完整", "不改写已定稿正文的用词、数字、标点和字符",
-                          "不因缺这些正式要素阻断成稿", "优先只列用户点名缺项", "其他正式要素按单位模板另行核对")
+                          "只起草正文时，先完成所需正文", "优先只列用户点名缺项", "其他正式要素按单位模板另行核对",
+                          "普通 Word/docx 稿按当前文种、用户模板和实际使用的字段核对内容与版式",
+                          "用户要求正式发文、红头、签发或相应正式要素时，再按适用要求核对发文要素")
         self.assert_rules("information-selection.md", "旧稿和参考样文不回流",
                           "二次修改以用户最新版底稿和本轮明确补充材料为唯一事实源")
         self.assert_rules("anti-ai-patterns.md", "通读全文后看成簇问题，不因一个词、一个句式或出现次数直接判错",
@@ -1064,7 +1087,8 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assert_rules("genre-playbook-news-commentary.md", "论点已经充分展开时，正文自然收束")
         self.assert_rules("formulaic-language.md", "妥否，请批示", "请予审批", "只用于有明确请批事项的请示或申请",
                           "一篇稿只保留一个有效收束", "内容已完整时可自然结束，不叠加多层尾语")
-        self.assert_rules("genre-playbook-speech-address.md", "结尾落在责任或目标上")
+        self.assert_rules("genre-playbook-speech-address.md", "重点任务、体会或期望 → 与场合相称的收束",
+                          "完整短稿仍表达清楚主题、已有内容和自然收束")
         self.assert_rules("anti-ai-patterns.md", "把口号结尾落到已有办理动作")
         self.assert_rules("short-draft-naturalness.md", "完成实际文种动作后即可结束", "否则不补口号、保证、充分性自证或同义收束")
 
@@ -1106,23 +1130,33 @@ class SkillBoundaryTests(unittest.TestCase):
         """Genre-specific field, actor and procurement boundaries survive mixed-page retirement."""
         owners = {
             "会议纪要": "genre-playbook-minutes.md", "征求意见函": "genre-playbook-correspondence.md",
-            "工作总结、工作要点": "genre-playbook-work-summary.md", "方案、实施方案": "genre-playbook-plan-construction.md",
+            "工作总结": "genre-playbook-work-summary.md", "工作要点": "genre-playbook-work-priorities.md",
+            "方案、实施方案": "genre-playbook-plan-construction.md",
             "调研、研究": "genre-playbook-research.md", "可研": "genre-playbook-feasibility.md",
-            "采购公告": "genre-playbook-procurement-announcement.md", "采购审查": "genre-playbook-procurement-review.md",
+            "采购公告": "genre-playbook-procurement-announcement.md", "独立审查意见、评审意见": "genre-playbook-review-opinion.md",
+            "采购需求、规格报价、响应规则或履约条件需要专项核对": "genre-playbook-procurement-review.md",
             "讲话稿、致辞": "genre-playbook-speech-address.md",
         }
         for purpose, leaf in owners.items():
             self.assert_route(purpose, leaf)
         self.assertFalse((CANONICAL / "references/genre-playbooks.md").exists())
-        self.assert_rules("genre-playbook-plan-construction.md", "只替换该字段内容，不把多字段合并成一句",
+        self.assert_rules("genre-playbook-plan-construction.md", "按 `field-editing.md` 保留已有字段形态及本轮修改范围")
+        self.assert_rules("field-editing.md", "改字段值只改指定字段", "不合并成连续句",
                           "拆成独立字段行后不要保留行尾分号或造成 `。；`")
-        self.assert_rules("genre-playbook-work-summary.md", "字段式周报保留字段和换行，不散文化、不合并字段",
-                          "不补服务单位责任")
-        self.assert_rules("genre-playbook-procurement-review.md", "字段式审查材料只改用户指定字段")
+        self.assert_route("周报、月报", "genre-playbook-report.md")
+        self.assert_rules("genre-playbook-report.md", "字段式周报读取 `field-editing.md`，保持字段、顺序和换行",
+                          "不因周期汇报新增服务单位责任或结果承诺")
+        self.assert_rules("genre-playbook-procurement-review.md", "字段式采购清单或审查表读取 `field-editing.md`",
+                          "保持字段边界、原值和本轮指定的修改范围")
+        self.assert_rules("genre-playbook-review-opinion.md", "字段式审查材料读取 `field-editing.md`",
+                          "只改点名字段时，其他字段名、顺序和原值保留")
         self.assert_rules("genre-playbook-minutes.md", "未给会议判断",
                           "责任或期限未给时不使用“按审核执行”“后续推进”等泛口径补齐")
-        self.assert_rules("genre-playbook-speech-address.md", "不自行补受众称呼")
-        self.assert_rules("genre-playbook-procurement-announcement.md", "普通采购公告不自动进入算力语境")
+        self.assert_rules("genre-playbook-speech-address.md", "称呼和受众沿用材料、用户要求或原稿",
+                          "不为增加篇幅补写成效、受众、职责或部署")
+        self.assert_rules("genre-playbook-procurement-announcement.md", "AI 算力场景按首页条件叠加 `ai-compute-docs.md`")
+        self.assertIn("普通服务器、接口、安全、SLA 或验收内容单独出现时沿用主文种规则",
+                      (CANONICAL / "SKILL.md").read_text(encoding="utf-8"))
         self.assertIn("保留字段名、字段顺序和单元边界", read_field_boundary(CANONICAL))
         self.assert_rules("ai-compute-docs.md", "主文种")
 
@@ -1141,11 +1175,16 @@ class SkillBoundaryTests(unittest.TestCase):
 
     def test_work_summary_elaboration_stays_in_target_section(self) -> None:
         """Work summaries keep supported next steps without claiming unobserved effects."""
-        self.assert_route("工作总结、工作要点", "genre-playbook-work-summary.md")
-        self.assert_rules("genre-playbook-work-summary.md", "材料已经给出下一步、未来安排或改进计划时",
-                          "材料未给实际运行、测评或业务反馈时",
-                          "总结段可将“下一年度拟完善、拟优化”自然归纳为“将在下一年度加以改进”",
-                          "需要概括前文时可以使用“综上所述”等承接语", "成效必须有事实支撑")
+        self.assert_route("工作总结", "genre-playbook-work-summary.md")
+        self.assert_route("工作要点", "genre-playbook-work-priorities.md")
+        self.assert_rules("genre-playbook-work-summary.md", "总结中的下一步安排承接本期工作",
+                          "实际运行、测评或业务反馈支持时，再作运行稳定、效率改善或支撑能力等成效判断",
+                          "材料支持的一般推进方向、自然延续或条件性预期可以分析",
+                          "展望可以用自然的将来时表达", "材料明确为拟议、尚未决定或待评估时保留该状态",
+                          "一般未来概括与保证效果分开", "“综上所述”等承接语按语境使用")
+        self.assert_rules("genre-playbook-work-priorities.md", "以明确未来一段时期的工作方向和重点任务为主",
+                          "责任、时间节点、协同机制和评价方式按材料或用户模板落位",
+                          "实际成效仍需事实支持")
         self.assertFalse((CANONICAL / "references/genre-playbooks.md").exists())
 
     def test_ordinary_letter_leaf_is_self_contained_without_default_supplemental_reads(self) -> None:
@@ -1163,7 +1202,8 @@ class SkillBoundaryTests(unittest.TestCase):
     def test_weak_model_suggestion_boundaries_stay_soft(self) -> None:
         """Suggestions and evaluations stay tentative through local edits and report routing."""
         home = (CANONICAL / "SKILL.md").read_text(encoding="utf-8")
-        self.assertIn("考察、评估、建议、拟测试、考虑尝试和下一步设想保持建议或待评估口径", home)
+        self.assertIn("材料中的进行中、拟、建议、待评估、未决定和待核对状态保持原级别", home)
+        self.assertIn("考察、评估、拟测试、考虑尝试及下一步设想也按原有确定程度贯穿全文", home)
         self.assert_rules("information-selection.md", "“可安排、可开展”等能力或选项保持可选口径",
                           "未支持推断直接删除")
         self.assert_rules("genre-playbook-report.md", "评估报告或成本考察保留用户指定名称和事实口径",
@@ -1183,30 +1223,39 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assert_rules("review-checklist.md", "核对病句、搭配、指代及引用和专名")
         self.assert_rules("final-review-layers.md", "用户已给但缺少核实依据的信息保留其待核状态")
         self.assert_rules("prose-lint-usage.md", "合理用语或引用经核对后保留")
-        # These old protections are not implied by a generic "引用保真" label.
+        # Literal source protection now lives in the material/anti-AI owners;
+        # actual unresolved source questions follow the authorized delivery-note policy.
+        self.assert_rules("information-selection.md", "引用和已明确关系，按原词和原强度进入正文")
+        self.assert_rules("anti-ai-patterns.md", "保留真实方案比较、政策要求、职责边界、风险提示、直接引语和专业术语",
+                          "主体、对象、事实、引用、术语、否定范围和论断强度不变")
+        self.assert_rules("delivery.md", "缺失、矛盾或仍待核实的信息，说明影响，并提出需要用户补充或确认的具体问题",
+                          "提示逐项对照本轮材料和当前稿件", "材料已有、已经解决或与本稿无关的项目从提示中移除")
+        # Idiom context and low-confidence grammar details have no proven replacement.
         self.assert_rules("proofreading-checklist.md", "成语默认同语境保留",
-                          "引用表述、出处和发布日期建议由用户按原始材料核实。",
-                          "不改写成 `请核实出处`", "的地得", "量词")
+                          "的地得", "量词")
 
     def test_formalization_keeps_only_explicit_literal_boundaries_verbatim(self) -> None:
         """Ordinary speech can be formalized; explicit quotations keep a distinct literal boundary."""
         self.assert_rules("official-style.md", "`我觉得`可按证据改为“初步考虑/初步判断”",
                           "“差不多”可改为", "不以替换词改变原信息强度")
-        self.assert_rules("information-selection.md", "用户要求只改格式、逐字保留、不作分析或只按给定材料时，分析层降为零")
+        self.assert_rules("information-selection.md", "用户要求只改格式、逐字保留或不作分析时，执行相应限制", "仅限定材料来源时，仍可作材料与常识支持的分析")
+        self.assertNotIn("或只按给定材料时，分析层降为零", read_reference("information-selection.md"))
         self.assert_rules("proofreading-checklist.md", "数字、金额、日期、比例、单位、专名和引用是否与材料一致")
         # Explicit source quotation and ordinary narrated wording must not be conflated.
-        self.assert_rules("proofreading-checklist.md",
-                          "引号内、明确标注为原文/引语或要求逐字保留的内容按字面边界保留",
-                          "同语境原样保留")
+        self.assert_rules("information-selection.md", "引用和已明确关系，按原词和原强度进入正文")
+        self.assert_rules("anti-ai-patterns.md", "直接引语", "主体、对象、事实、引用、术语、否定范围和论断强度不变")
+        # Keeping original words does not by itself establish same-context retention.
+        self.assert_rules("proofreading-checklist.md", "同语境原样保留")
 
     def test_v1510_sentence_fixes_keep_sparse_and_field_tasks_fact_bounded(self) -> None:
-        """Sparse reports omit unsupported sections; fields change form only when they are source material."""
+        """Sparse reports omit unsupported sections; existing field forms remain the default."""
         self.assert_rules("genre-playbook-report.md", "材料未给某一环节时，直接在已给事实处收束",
                           "不为填满骨架增加责任、流程、成效、期限或结论")
         self.assert_rules("formulaic-language.md", "依据、会议、研究动作必须真实存在")
         self.assert_rules("field-editing.md", "保留字段名、字段顺序和单元边界")
-        self.assert_rules("anti-ai-patterns.md", "字段只是素材时才组织为自然段",
-                          "只有在用户要表格/字段时保留")
+        self.assert_rules("anti-ai-patterns.md", "现有字段或表格底稿沿用原结构",
+                          "字段仅作为素材、或用户要求改成叙述时，组织为自然段", "字段调整按 `field-editing.md` 处理")
+        self.assertNotIn("只有在用户要表格/字段时保留", read_reference("anti-ai-patterns.md"))
 
     def test_review_command_includes_interpreter_and_draft_path(self) -> None:
         """Run the documented standalone script invocation, including mode and stdin contract."""
@@ -1243,7 +1292,7 @@ class SkillBoundaryTests(unittest.TestCase):
                 self.assertNotIn("（成文日期待确认）", home)
                 self.assert_rules("information-selection.md", "用户点名限制的字段按输出模式省略或短列",
                                   "用户要求先确认时，才在正文前提出必要问题",
-                                  "用户要求只改格式、逐字保留、不作分析或只按给定材料时，分析层降为零", root=root)
+                                  "用户要求只改格式、逐字保留或不作分析时，执行相应限制", "仅限定材料来源时，仍可作材料与常识支持的分析", root=root)
                 self.assert_rules("official-style.md", "正式化不补组织名称、牵头部门、责任分工、整改动作、督办安排、成果总结或后续进展", root=root)
                 self.assert_rules("delivery.md", "简短列出影响使用的事项", "正文编号、落款和附件在提示前结束", root=root)
                 self.assert_rules("final-review-layers.md", "正式成稿清理未完成占位", root=root)
