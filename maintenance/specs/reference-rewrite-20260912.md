@@ -16,7 +16,7 @@
 
 不重写：
 
-- `chinese-official-writing/hooks/` 及其宿主适配、Hook 配置、停止门和运行时能力。
+- `chinese-official-writing/hooks/` 及其宿主适配、Hook 配置、停止门和运行时能力；Hook 目录冻结，不在本轮重写。
 - Hook 只作为冻结的既有资产参与回归；普通写稿不因 Hook 存在而加载 Hook。
 
 允许复用：
