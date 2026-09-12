@@ -326,6 +326,9 @@ PLAN_CONSTRUCTION_GENRE_MARKER = "方案"
 REQUEST_REVIEW_GENRES = {
     "请示",
     "申请",
+    "采购申请",
+    "采购申购",
+    "采购请示",
 }
 
 ROUTED_PRIMARY_GENRES = (
@@ -521,6 +524,24 @@ REVIEW_TASK_MARKERS = (
     "语气检查",
     "复核这段",
     "复核这份",
+    "审核一下",
+    "审核这份",
+    "审核稿件",
+    "审校一下",
+    "审校这份",
+    "审校稿件",
+    "复核一下",
+    "复核稿件",
+    "检查一下",
+    "检查稿件",
+    "帮我审核",
+    "帮我复核",
+    "帮我审校",
+    "帮我看看这份",
+    "把关这份",
+    "把关稿件",
+    "看看有没有问题",
+    "审阅这份",
 )
 REVIEW_REWRITE_MARKERS = (
     "再按建议重写",
@@ -709,6 +730,9 @@ COMPREHENSIVE_REVIEW_MARKERS = (
     "全文审稿",
     "全文复核",
     "全文检查",
+    "全面审核",
+    "全面审校",
+    "全面把关",
 )
 DIRECT_REVIEW_SCOPE_MARKERS = (
     "事实",
@@ -990,7 +1014,21 @@ def _ai_task_requests_plan_construction(tasks: list[str]) -> bool:
 def _tasks_are_review_only(tasks: list[str]) -> bool:
     return bool(tasks) and all(
         _contains_marker(task, REVIEW_TASK_MARKERS)
-        and not _task_requests_rewrite(task)
+        and (
+            not _task_requests_rewrite(task)
+            or any(
+                marker in task
+                for marker in (
+                    "不要直接改全文",
+                    "不直接改全文",
+                    "不要改全文",
+                    "不改全文",
+                    "只给建议",
+                    "只指出问题",
+                    "指出问题和修改建议",
+                )
+            )
+        )
         for task in tasks
     )
 
@@ -1470,6 +1508,22 @@ def _skill_prompt(cases: list[dict[str, Any]], config: dict[str, Any]) -> str:
     if _tasks_are_review_only(tasks):
         delivery_instruction = (
             "按用户指定范围输出审稿结论；只审不改时不得重写全文，也不受初稿篇幅要求约束。"
+        )
+    elif any(_contains_marker(task, BODY_DELIVERY_MARKERS) for task in tasks):
+        note_requested = any(
+            marker in task
+            for task in tasks
+            for marker in ("文后提示", "缺项", "风险提示", "列出风险", "列出缺")
+        )
+        delivery_instruction = (
+            "这是用户要求直接取得稿件的交付阶段。第一字符直接进入标题或正文，禁止输出过程句、路由说明、"
+            "Skill/脚本说明、Markdown 包装或自我评价；只交付主文种成稿，且不得凭空扩展办理动作、责任、"
+            "成效或承诺。"
+            + (
+                "正文结束后另起‘文后提示’，只列用户要求的缺项或风险，不描述模型、路由或读取过程。"
+                if note_requested
+                else "用户未要求说明时，正文结束即停止，不追加缺项、风险、字数或自评。"
+            )
         )
     else:
         delivery_instruction = (

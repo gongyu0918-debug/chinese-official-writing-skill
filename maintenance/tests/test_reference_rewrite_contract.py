@@ -58,18 +58,16 @@ class ReferenceRewriteContractTests(unittest.TestCase):
     def test_entry_uses_mode_and_genre_axes(self) -> None:
         skill = SKILL.read_text(encoding="utf-8")
         for term in [
-            "交付模式",
+            "交付动作",
             "文种首叶",
             "information-selection.md",
             "task-route-cards.md",
             "ai-compute-docs.md",
             "prose-lint-usage.md",
-            "Hook 是可选择的增强能力",
+            "Hook 是可选择的写作检查增强",
         ]:
             self.assertIn(term, skill)
-        self.assertIn("只要文章", skill)
         self.assertIn("delivery-body-only.md", skill)
-        self.assertIn("这不是入口文种路由", skill)
 
     def test_product_pages_do_not_expose_build_or_maintenance_commands(self) -> None:
         texts = [SKILL.read_text(encoding="utf-8")]
@@ -86,7 +84,7 @@ class ReferenceRewriteContractTests(unittest.TestCase):
             "构建命令",
         ]:
             self.assertNotIn(operational.lower(), joined, operational)
-        self.assertIn("Hook 是可选择的增强能力", SKILL.read_text(encoding="utf-8"))
+        self.assertIn("Hook 是可选择的写作检查增强", SKILL.read_text(encoding="utf-8"))
 
     def test_compute_rules_are_one_scenario_overlay(self) -> None:
         dispatch = (REFS / "ai-compute-docs.md").read_text(encoding="utf-8")

@@ -23,8 +23,8 @@ class HookLayerContractTests(unittest.TestCase):
         )
 
         self.assertNotIn("delivery-review-gate.md", skill)
-        self.assertIn("Hook 是可选择的增强能力", skill)
-        self.assertIn("普通写稿不加载 Hook", skill)
+        self.assertIn("Hook 是可选择的写作检查增强", skill)
+        self.assertIn("Hook 只在用户选择时加入", skill)
         self.assertIn("完整初稿形成后增加一次有界交付检查", guide)
         self.assertIn("优先交付原始完整稿", guide)
         self.assertIn("未选择 Hook 时不加载本页", gate_spec)

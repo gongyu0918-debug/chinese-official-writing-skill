@@ -9,8 +9,8 @@ class CoreLintPointerRelocationTests(unittest.TestCase):
         skill = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
         self.assertIn("references/final-review-layers.md", skill)
         self.assertIn("references/prose-lint-usage.md", skill)
-        self.assertIn("脚本只提示风险，不改写正文", skill)
-        self.assertIn("Hook 是可选择的增强能力", skill)
+        self.assertIn("脚本输出风险清单，Agent 逐项对照", skill)
+        self.assertIn("Hook 是可选择的写作检查增强", skill)
         self.assertNotIn("必须运行", skill)
 
 

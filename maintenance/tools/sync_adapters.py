@@ -30,9 +30,9 @@ HOOK_TIMEOUT_FIELDS = {
 }
 HOOK_TIMEOUT_MILLISECONDS_HOSTS = {"zcode", "qwen-code"}
 HOOK_ROUTE_PARAGRAPH = (
-    "\n\nHook 是可选择的增强能力：用户要求质量门禁、长度保护、交付洁净或其他 Hook 检查时，可读取对应 Hook 入口并启用；普通写稿不会自动启动，但显式选择 Hook 不改变主文种和正文路由。"
-    "Hook、宿主适配和运行时能力保持现有实现。"
+    "\n\nHook 是可选择的写作检查增强：用户明确要求质量门禁、长度保护、交付洁净或其他 Hook 检查时，再读取对应 Hook 入口并启用；普通写稿沿主文种和交付动作完成，Hook 只在用户选择时加入。"
 )
+HOOK_README_POINTER = "用户明确询问 Hook 使用时读取 `hooks/README.md`。"
 
 TARGETS = {
     "agents": PACKAGES / "agent-skills" / "skills" / "chinese-official-writing",
@@ -96,7 +96,10 @@ def remove_unavailable_hook_route(target: Path) -> None:
     text = skill_path.read_text(encoding="utf-8")
     if text.count(HOOK_ROUTE_PARAGRAPH) != 1:
         raise RuntimeError(f"unexpected Hook route paragraph: {skill_path}")
-    skill_path.write_text(text.replace(HOOK_ROUTE_PARAGRAPH, ""), encoding="utf-8")
+    if text.count(HOOK_README_POINTER) != 1:
+        raise RuntimeError(f"unexpected Hook README pointer: {skill_path}")
+    text = text.replace(HOOK_ROUTE_PARAGRAPH, "")
+    skill_path.write_text(text.replace(HOOK_README_POINTER, ""), encoding="utf-8")
 
 
 def _copy_ignore(directory: str, names: list[str]) -> set[str]:
