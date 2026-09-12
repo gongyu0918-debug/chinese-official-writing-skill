@@ -52,7 +52,7 @@ def main(argv: list[str] | None = None) -> int:
     had_error = False
     for file_arg in args.files:
         try:
-            path, text = read_text(file_arg, args.encoding)
+            path, text = read_text(file_arg, args.encoding, docx_scope="main-document")
         except InputReadError as exc:
             print(f"ERROR: {exc}", file=sys.stderr)
             had_error = True

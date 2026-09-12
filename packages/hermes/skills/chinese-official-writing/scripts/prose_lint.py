@@ -361,22 +361,31 @@ SOURCE_EXCERPT_PREFIX_PATTERN = re.compile(
 )
 
 
-def read_docx(path: Path) -> str:
+def read_docx(path: Path, scope: str = "all") -> str:
+    """读取全部检查部件，或仅读取用于正文篇幅统计的主文档。"""
+
     pieces: list[str] = []
-    xml_names = (
-        "word/document.xml",
-        "word/header1.xml",
-        "word/header2.xml",
-        "word/header3.xml",
-        "word/footer1.xml",
-        "word/footer2.xml",
-        "word/footer3.xml",
-        "word/footnotes.xml",
-        "word/endnotes.xml",
-        "word/comments.xml",
-    )
+    if scope == "main-document":
+        xml_names = ("word/document.xml",)
+    elif scope == "all":
+        xml_names = (
+            "word/document.xml",
+            "word/header1.xml",
+            "word/header2.xml",
+            "word/header3.xml",
+            "word/footer1.xml",
+            "word/footer2.xml",
+            "word/footer3.xml",
+            "word/footnotes.xml",
+            "word/endnotes.xml",
+            "word/comments.xml",
+        )
+    else:
+        raise ValueError(f"unsupported DOCX scope: {scope}")
     try:
         with zipfile.ZipFile(path) as zf:
+            if scope == "main-document" and "word/document.xml" not in zf.namelist():
+                raise InputReadError(f"DOCX 缺少主文档内容: {path}")
             for name in xml_names:
                 if name not in zf.namelist():
                     continue
@@ -396,14 +405,21 @@ def read_docx(path: Path) -> str:
     return "".join(pieces)
 
 
-def read_text(path_arg: str, encoding: str | None) -> tuple[str, str]:
+def read_text(
+    path_arg: str,
+    encoding: str | None,
+    *,
+    docx_scope: str = "all",
+) -> tuple[str, str]:
+    """读取文本；docx_scope 仅影响 DOCX，默认保持全包检查行为。"""
+
     if path_arg == "-":
         return "<stdin>", sys.stdin.read()
 
     path = Path(path_arg)
     try:
         if path.suffix.lower() == ".docx":
-            return str(path), read_docx(path)
+            return str(path), read_docx(path, scope=docx_scope)
         raw = path.read_bytes()
     except InputReadError:
         raise

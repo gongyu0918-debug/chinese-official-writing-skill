@@ -10,6 +10,21 @@ import zipfile
 
 ROOT = Path(__file__).resolve().parents[2]
 SCRIPTS = ROOT / "chinese-official-writing/scripts"
+WORD_NS = "http://schemas.openxmlformats.org/wordprocessingml/2006/main"
+
+
+def xml_part(root: str, text: str) -> str:
+    content = f"<w:p><w:r><w:t>{text}</w:t></w:r></w:p>"
+    if root == "document":
+        content = f"<w:body>{content}</w:body>"
+    return f'<w:{root} xmlns:w="{WORD_NS}">{content}</w:{root}>'
+
+
+def write_docx(path: Path, document_xml: str, **extra_parts: str) -> None:
+    with zipfile.ZipFile(path, "w") as archive:
+        archive.writestr("word/document.xml", document_xml)
+        for name, content in extra_parts.items():
+            archive.writestr(f"word/{name.replace('_', '.')}.xml", content)
 
 
 class DraftLengthTests(unittest.TestCase):
@@ -91,6 +106,94 @@ class DraftLengthTests(unittest.TestCase):
             result = self.run_count("--json", str(txt), str(md), str(docx))
             self.assertEqual(result.returncode, 0, result.stderr)
             self.assertEqual([item["count"] for item in json.loads(result.stdout)], [8, 4, 4])
+
+    def test_docx_length_uses_only_main_document_while_lint_keeps_all_parts(self):
+        with tempfile.TemporaryDirectory() as directory:
+            base = Path(directory)
+            body = "正文六字计数"
+            txt = base / "same.txt"
+            md = base / "same.md"
+            docx = base / "same.docx"
+            txt.write_text(body, encoding="utf-8")
+            md.write_text(body, encoding="utf-8")
+            write_docx(
+                docx,
+                xml_part("document", body),
+                header1=xml_part("hdr", "页眉字"),
+                footer1=xml_part("ftr", "作为AI"),
+                footnotes=xml_part("footnotes", "脚注不计"),
+                endnotes=xml_part("endnotes", "尾注不计"),
+                comments=xml_part("comments", "批注不应计入正文长度中啊呀"),
+            )
+
+            for mode in ("nonspace", "cjk"):
+                with self.subTest(mode=mode):
+                    result = self.run_count(
+                        "--json", "--count-mode", mode, str(txt), str(md), str(docx)
+                    )
+                    self.assertEqual(result.returncode, 0, result.stderr)
+                    self.assertEqual([item["count"] for item in json.loads(result.stdout)], [6, 6, 6])
+
+            lint = subprocess.run(
+                [sys.executable, str(SCRIPTS / "prose_lint.py"), "--json", str(docx)],
+                text=True,
+                encoding="utf-8",
+                capture_output=True,
+            )
+            self.assertEqual(lint.returncode, 0, lint.stderr)
+            self.assertIn("thought-leak", {item["label"] for item in json.loads(lint.stdout)})
+
+    def test_docx_body_table_and_postscript_define_length_scope(self):
+        body_and_table = f'''<w:document xmlns:w="{WORD_NS}"><w:body>
+<w:p><w:r><w:t>正文六字计数</w:t></w:r></w:p>
+<w:tbl><w:tr>
+<w:tc><w:p><w:r><w:t>项目</w:t></w:r></w:p></w:tc>
+<w:tc><w:p><w:r><w:t>数量</w:t></w:r></w:p></w:tc>
+</w:tr><w:tr>
+<w:tc><w:p><w:r><w:t>办公椅</w:t></w:r></w:p></w:tc>
+<w:tc><w:p><w:r><w:t>4把</w:t></w:r></w:p></w:tc>
+</w:tr></w:tbl>'''
+        document_without_note = body_and_table + "</w:body></w:document>"
+        document_with_note = body_and_table + '''
+<w:p><w:r><w:t>文后提示</w:t></w:r></w:p>
+<w:p><w:r><w:t>这一段不计入</w:t></w:r></w:p>
+</w:body></w:document>'''
+        with tempfile.TemporaryDirectory() as directory:
+            for name, document in (
+                ("table.docx", document_without_note),
+                ("table-and-note.docx", document_with_note),
+            ):
+                docx = Path(directory) / name
+                write_docx(
+                    docx,
+                    document,
+                    header1=xml_part("hdr", "文后提示"),
+                    comments=xml_part("comments", "文后提示"),
+                )
+                for mode, expected in (("nonspace", 15), ("cjk", 14)):
+                    with self.subTest(name=name, mode=mode):
+                        result = self.run_count("--json", "--count-mode", mode, str(docx))
+                        self.assertEqual(result.returncode, 0, result.stderr)
+                        self.assertEqual(json.loads(result.stdout)[0]["count"], expected)
+
+    def test_bad_docx_inputs_are_technical_errors(self):
+        with tempfile.TemporaryDirectory() as directory:
+            base = Path(directory)
+            damaged = base / "damaged.docx"
+            damaged.write_bytes(b"not a zip archive")
+            missing_main = base / "missing-main.docx"
+            with zipfile.ZipFile(missing_main, "w") as archive:
+                archive.writestr("word/header1.xml", xml_part("hdr", "只有页眉"))
+
+            for path, message in (
+                (damaged, "文件损坏或不是有效 DOCX"),
+                (missing_main, "DOCX 缺少主文档内容"),
+            ):
+                with self.subTest(path=path.name):
+                    result = self.run_count("--json", str(path))
+                    self.assertEqual(result.returncode, 2)
+                    self.assertEqual(json.loads(result.stdout), [])
+                    self.assertIn(message, result.stderr)
 
     def test_invalid_bounds_and_missing_input_are_technical_errors(self):
         for args in (("--min-chars", "-1", "-"), ("--min-chars", "8", "--max-chars", "2", "-")):
