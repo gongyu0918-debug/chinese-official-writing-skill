@@ -207,6 +207,15 @@ class PromptfooProviderTests(unittest.TestCase):
         self.assertIn("references/genre-playbook-opinion.md", body_only)
         self.assertIn("references/anti-ai-patterns.md", body_only)
 
+    def test_transaction_names_keep_a_primary_leaf(self) -> None:
+        meeting_notice = provider._reference_paths_for_genres(["通知"], ["起草会议通知"])
+        procurement_application = provider._reference_paths_for_genres(
+            ["申请"], ["起草采购申请，列明品名、数量和预算"]
+        )
+        self.assertEqual(meeting_notice, ["SKILL.md", "references/genre-playbook-notice.md"])
+        self.assertIn("references/genre-playbook-request.md", procurement_application)
+        self.assertNotIn("references/compatibility-scene-routing.md", procurement_application)
+
     def test_external_research_is_explicit(self) -> None:
         ordinary = provider._reference_paths_for_genres(
             ["报告"], ["根据给定材料起草报告。"]
