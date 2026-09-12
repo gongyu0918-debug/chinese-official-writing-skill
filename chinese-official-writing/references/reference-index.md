@@ -65,7 +65,7 @@
 - 长文压缩和超限处置：`compression-details.md`。
 - 字段拆行、增删和表单边界：`field-editing.md`。
 - 结构增删、移动和标题重排：`structure-editing.md`。
-- AI 算力专项：先按专项类型读取 `ai-compute-docs.md` 的分流，再进入唯一专项叶。
+- AI 算力专项：可研/比较、采购/租赁、技术需求/SLA/验收分别直达各自专项叶；只有类型不明时读取 `ai-compute-docs.md` 分流。
 
 ## 停止规则
 

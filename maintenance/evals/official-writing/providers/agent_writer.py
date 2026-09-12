@@ -27,6 +27,7 @@ from typing import Any
 
 GENRE_REFERENCES: dict[str, list[str]] = {
     "sparse": [
+        "references/information-selection.md",
         "references/task-route-cards.md",
     ],
     "routing": [
@@ -80,6 +81,15 @@ GENRE_REFERENCES: dict[str, list[str]] = {
     ],
     "ai_compute": [
         "references/ai-compute-docs.md",
+    ],
+    "ai_compute_feasibility": [
+        "references/ai-compute-feasibility.md",
+    ],
+    "ai_compute_procurement": [
+        "references/ai-compute-procurement.md",
+    ],
+    "ai_compute_technical": [
+        "references/ai-compute-technical-requirements.md",
     ],
     "complex": [
         "references/workflow.md",
@@ -663,6 +673,8 @@ def _is_ai_compute(genre: str, tasks: list[str] | None = None) -> bool:
 
 
 def _ai_requires_ordinary_playbook(genres: list[str], tasks: list[str]) -> bool:
+    if genres and all(genre in AI_COMPUTE_EXACT_GENRES for genre in genres):
+        return False
     if any(genre in PLAYBOOK_GENRES and genre != "会议纪要" for genre in genres):
         return True
     if any(_contains_marker(genre, AI_ORDINARY_GENRE_MARKERS) for genre in genres):
@@ -843,10 +855,21 @@ def _task_uses_sparse_card(genres: list[str], tasks: list[str], ai_compute: bool
     if not any(genre in SPARSE_CARD_GENRES for genre in genres):
         return False
     if "会议纪要" in genres:
-        if _minutes_require_playbook(tasks):
-            return False
-        return all(_minutes_are_explicitly_unresolved(task) for task in tasks)
+        # Meeting status belongs to the minutes leaf; the light card is only
+        # a route gate and never carries unresolved/resolved meeting rules.
+        return False
     return all(_contains_marker(task, SPARSE_TASK_MARKERS) for task in tasks)
+
+
+def _ai_compute_specialty_reference(tasks: list[str], genres: list[str] | None = None) -> str:
+    text = "\n".join(tasks)
+    if genres and any(genre == "算力服务可研报告" for genre in genres):
+        return "ai_compute_feasibility"
+    if any(marker in text for marker in ("技术需求", "SLA", "验收", "GPU/服务器", "性能指标", "接口", "并发")):
+        return "ai_compute_technical"
+    if any(marker in text for marker in ("采购", "采购方案", "采购公告", "响应文件", "服务范围", "预算")):
+        return "ai_compute_procurement"
+    return "ai_compute_feasibility"
 
 
 def _reference_paths_for_genres(genres: list[str], tasks: list[str] | None = None) -> list[str]:
@@ -857,9 +880,14 @@ def _reference_paths_for_genres(genres: list[str], tasks: list[str] | None = Non
     request_playbook = any(genre in REQUEST_REVIEW_GENRES for genre in genres)
     ordinary_letter_playbook = any(genre in ORDINARY_LETTER_PLAYBOOK_GENRES for genre in genres)
     work_summary_playbook = any(genre in WORK_SUMMARY_PLAYBOOK_GENRES for genre in genres)
-    plan_construction_playbook = any(
-        _is_plan_construction_genre(genre) for genre in genres
-    ) or (ai_compute and _ai_task_requests_plan_construction(tasks))
+    plan_construction_playbook = (
+        any(_is_plan_construction_genre(genre) for genre in genres)
+        and not all(genre in AI_COMPUTE_EXACT_GENRES for genre in genres)
+    ) or (
+        ai_compute
+        and not all(genre in AI_COMPUTE_EXACT_GENRES for genre in genres)
+        and _ai_task_requests_plan_construction(tasks)
+    )
     ordinary_letter_full_playbook = (
         ordinary_letter_playbook and _ordinary_letter_requires_full_playbook(tasks)
     )
@@ -952,7 +980,10 @@ def _reference_paths_for_genres(genres: list[str], tasks: list[str] | None = Non
     if any(_contains_marker(task, STYLE_TASK_MARKERS) for task in tasks):
         paths.extend(GENRE_REFERENCES["style"])
     if ai_compute:
-        paths.extend(GENRE_REFERENCES["ai_compute"])
+        specialty = _ai_compute_specialty_reference(tasks, genres)
+        if not all(genre in AI_COMPUTE_EXACT_GENRES for genre in genres):
+            paths.extend(GENRE_REFERENCES["ai_compute"])
+        paths.extend(GENRE_REFERENCES[specialty])
     if any(marker in task for task in tasks for marker in FORMAT_TASK_MARKERS):
         paths.extend(GENRE_REFERENCES["format"])
     if _task_requires_external_research(tasks):
