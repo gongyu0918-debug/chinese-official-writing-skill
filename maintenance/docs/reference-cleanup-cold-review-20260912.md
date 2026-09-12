@@ -19,7 +19,7 @@
 
 - `python maintenance/tools/validate_reference_manifest.py`：`reference manifest valid: 60 pages`。
 - `python maintenance/tools/audit_product_surface.py`：产品面无工程命令、description 路由句和构建残留；入口范围不含兼容场景、Hook 或文种叶路径。
-- 聚焦单测：53 项通过，覆盖 description、产品面、promptfoo 路由、manifest、重构契约、Hook 边界和脚本指针。
+- 聚焦单测：当前选定的 7 个重构相关模块共 64 项通过，覆盖 description、产品面、promptfoo 路由、manifest、重构契约、Hook 边界、交付洁净和脚本指针。
 - 五套镜像已由 `maintenance/tools/sync_adapters.py` 同步；普通包移除 Hook 入口和 Hook gate，保留 prose lint。
 
 ## 真实写稿复测
@@ -35,3 +35,7 @@
 ## 下一步
 
 继续按 Spec 的场景矩阵补做方案、研究/可研、采购/算力附加、讲话、纪要、新闻、意见/说明/批复、整改/反馈和脚本/Hook 边界的五通道组合实写；在这些证据闭合前保持未合并、未推送、未发布。
+
+## 本轮入口与叶页修订
+
+在 `ab481a5c` 中，`适用范围`继续只说明能力覆盖、排除范围和 README 能力咨询入口；兼容场景、正式文种和 Hook 的读取指针集中在`入口契约`，具体选路集中在`路由主线`和参考资料索引。方案页、未覆盖文种反查页和参考资料索引删除了构建视角的措辞和重复句，五套适配镜像已同步。该修订通过 manifest、产品面审计和上述 64 项聚焦单测；不改变 Hook 实现。
