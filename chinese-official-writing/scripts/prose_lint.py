@@ -365,29 +365,25 @@ def read_docx(path: Path, scope: str = "all") -> str:
     """读取全部检查部件，或仅读取用于正文篇幅统计的主文档。"""
 
     pieces: list[str] = []
-    if scope == "main-document":
-        xml_names = ("word/document.xml",)
-    elif scope == "all":
-        xml_names = (
-            "word/document.xml",
-            "word/header1.xml",
-            "word/header2.xml",
-            "word/header3.xml",
-            "word/footer1.xml",
-            "word/footer2.xml",
-            "word/footer3.xml",
-            "word/footnotes.xml",
-            "word/endnotes.xml",
-            "word/comments.xml",
-        )
-    else:
+    if scope not in {"main-document", "all"}:
         raise ValueError(f"unsupported DOCX scope: {scope}")
     try:
         with zipfile.ZipFile(path) as zf:
-            if scope == "main-document" and "word/document.xml" not in zf.namelist():
+            part_names = set(zf.namelist())
+            if "word/document.xml" not in part_names:
                 raise InputReadError(f"DOCX 缺少主文档内容: {path}")
+            xml_names = ["word/document.xml"]
+            if scope == "all":
+                for kind in ("header", "footer"):
+                    xml_names.extend(sorted(
+                        name for name in part_names
+                        if re.fullmatch(rf"word/{kind}[^/]*\.xml", name)
+                    ))
+                xml_names.extend((
+                    "word/footnotes.xml", "word/endnotes.xml", "word/comments.xml",
+                ))
             for name in xml_names:
-                if name not in zf.namelist():
+                if name not in part_names:
                     continue
                 root = ElementTree.fromstring(zf.read(name))
                 for elem in root.iter():
