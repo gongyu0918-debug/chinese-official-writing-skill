@@ -59,6 +59,7 @@
 
 - `genre-checklist.md` 改为未覆盖文种的功能反查页，不再集中承载多个文种完整骨架。
 - 算力不作为文种。主文种先按报告、方案、采购或技术材料路由，再在算力相关稿件上叠加唯一的 `ai-compute-docs.md` 场景附加叶；术语和示例按需叠加。
+- 当前附加叶复核见 `maintenance/docs/reference-overlay-review-20260912.md`；讲话人物顺序是另一项局部附加能力，新闻消息和新闻评论仍是独立文种页。
 - `task-route-cards.md` 只判断能否走轻量路线，不承载会议、通知、报告或局部修改的专属规则。
 - `genre-routing.md` 只判文种、行文关系和冲突，不重复专页骨架。
 - `workflow.md`、`final-review-layers.md`、`review-checklist.md`、`anti-ai-patterns.md`、`proofreading-checklist.md`、`handling-elements.md`、`argument-chains.md`、`information-selection.md` 重新建立唯一职责和共享契约。

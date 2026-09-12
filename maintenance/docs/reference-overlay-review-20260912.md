@@ -1,0 +1,22 @@
+# 场景附加叶复核（2026-09-12）
+
+附加叶只在主文种和交付模式已经确定后加载。它补充一个稳定的应用场景或局部交付条件，不承担主文种骨架，也不因一个泛关键词命中。
+
+## 保留为附加叶
+
+| 页面 | 触发 | 主文种仍由谁负责 | 备注 |
+| --- | --- | --- | --- |
+| `ai-compute-docs.md` | 算力、GPU、模型推理/训练、智算中心、Token、并发或模型服务等组合信号 | 报告、方案、采购或技术材料页 | 唯一算力场景叶；安全、SLA、验收单独出现不触发 |
+| `speech-person-order.md` | 讲话、致辞、演讲等正文需要安排具体人物称谓/开场顺序 | `genre-playbook-speech-address.md` | 只处理开场称谓顺序，不改变讲话骨架；普通讲话不自动读取 |
+
+`technical-terms.md`、`ai-compute-examples.md`是算力叶的二级资料，不是独立路由；只有术语统一或需要示例时继续读取。
+
+## 保持为模式或能力页
+
+- `short-draft-naturalness.md`、`compression-details.md`：篇幅和压缩是交付模式，不是应用场景。
+- `format-gbt9704.md`、`prose-lint-usage.md`、`delivery-review-gate.md`：格式、脚本、Hook 是交付工具，不能改变主文种。
+- `anti-ai-patterns.md`、`proofreading-checklist.md`、`final-review-layers.md`、`review-checklist.md`：终稿质量能力，按复核信号叠加。
+- `external-research.md`、`formal-addressing.md`、`formulaic-language.md`、`handling-elements.md`、`argument-chains.md`：共性能力或资料条件；不要为字符数改造成场景页。
+- `compatibility-scene-routing.md`、`genre-routing.md`、`genre-playbooks.md`：路由页或兼容分流页，不能作为附加规则承载完整骨架。
+
+新闻消息和新闻评论保留为独立文种页；它们不是附加叶。任何新增附加叶都必须先证明触发信号稳定、无关伴读减少，并通过同题主文种 A/B，才能接入索引。

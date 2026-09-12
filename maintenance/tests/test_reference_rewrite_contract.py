@@ -93,6 +93,18 @@ class ReferenceRewriteContractTests(unittest.TestCase):
             self.assertIn("references/ai-compute-docs.md", module._reference_paths_for_genres([genre], [task]))
         self.assertEqual(module._reference_paths_for_genres(["会议纪要"], ["只记录建议和待评估事项"]), ["SKILL.md", "references/genre-playbook-minutes.md"])
 
+    def test_compute_overlay_requires_scene_signal(self) -> None:
+        provider_path = ROOT / "maintenance" / "evals" / "official-writing" / "providers" / "agent_writer.py"
+        spec = importlib.util.spec_from_file_location("rewrite_agent_writer_signal", provider_path)
+        assert spec is not None and spec.loader is not None
+        module = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(module)
+        ordinary = module._reference_paths_for_genres(["采购公告"], ["核对安全、SLA和验收条款"])
+        self.assertNotIn("references/ai-compute-docs.md", ordinary)
+        compute = module._reference_paths_for_genres(["报告"], ["起草GPU模型推理服务试用报告，写明并发和验收"])
+        self.assertIn("references/genre-checklist-report.md", compute)
+        self.assertIn("references/ai-compute-docs.md", compute)
+
 
 if __name__ == "__main__":
     unittest.main()
