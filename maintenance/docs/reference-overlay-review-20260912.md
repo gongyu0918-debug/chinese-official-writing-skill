@@ -11,6 +11,8 @@
 
 `technical-terms.md`、`ai-compute-examples.md`是算力叶的二级资料，不是独立路由；只有术语统一或需要示例时继续读取。
 
+当前旧规则中没有一套独立的“领导讲话”规则页。`genre-playbook-speech-address.md` 已承担讲话的场合、身份、听众、事实基础和任务要求；`formal-addressing.md` 与 `speech-person-order.md` 分别承担关系称谓和具体人物排序。因而普通讲话只读讲话主叶，只有用户明确要求领导身份口吻、领导开场称谓或领导讲话专项校审时，才在现有能力页上按需叠加；不为此新造一个空的领导讲话页。后续若出现一组稳定、已有实证且不能归入上述页面的领导讲话规则，再以同题 A/B 证明后增页。
+
 ## 保持为模式或能力页
 
 - `short-draft-naturalness.md`、`compression-details.md`：篇幅和压缩是交付模式，不是应用场景。

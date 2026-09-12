@@ -25,7 +25,7 @@ metadata:
 - **压缩或限字**：先按文种成稿，再按需读 `references/compression-details.md`；篇幅不能授权删除文种硬要素或补造内容。
 - **只审不改或综合复核**：点名范围读 `references/review-direct-checklist.md` 和对应文种审查叶；用户要求段落、小节、全文多层复核或多风险面时才加 `references/review-checklist.md`。
 
-需要 Word、docx、GB/T 9704、红头或正式版式时叠加 `references/format-gbt9704.md`。主文种已确定且稿件涉及 AI 算力、GPU/服务器、模型服务、SLA、安全或验收时，在主文种叶上叠加 `references/ai-compute-docs.md`；它是场景附加规则，不替换文种，也不单独承担文种路由。需要扫描 `.txt`、`.md` 或 `.docx` 时先读 `references/prose-lint-usage.md`，再调用现有脚本。脚本只提示风险，不改写正文，也不替代文种判断。
+需要 Word、docx、GB/T 9704、红头或正式版式时叠加 `references/format-gbt9704.md`。主文种已确定，且稿件出现算力、GPU/服务器、模型推理/训练、智算中心、Token、并发或模型服务等场景信号时，才在主文种叶上叠加 `references/ai-compute-docs.md`；单独出现“安全”“SLA”或“验收”不触发。它是场景附加规则，不替换文种，也不单独承担文种路由。需要扫描 `.txt`、`.md` 或 `.docx` 时先读 `references/prose-lint-usage.md`，再调用现有脚本。脚本只提示风险，不改写正文，也不替代文种判断。
 
 用户已有提纲、模板、标题顺序或字段表时优先保留。用户明确要求短正文或只有篇幅上限时，材料选择后按需读 `references/short-draft-naturalness.md`；长文压缩和超限处置读 `references/compression-details.md`。格式、版式、脚本和 Hook 是交付工具，不改变主文种。
 
