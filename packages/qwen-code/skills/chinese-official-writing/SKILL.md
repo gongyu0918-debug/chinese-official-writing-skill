@@ -19,7 +19,7 @@ metadata:
 
 新闻消息、新闻评论、合作性意见建议、投诉反映和整改方案等兼容场景读取 `references/compatibility-scene-routing.md`；正式文种“意见”读取 `references/genre-playbook-opinion.md`；制度、规定、办法、细则和操作规程读取 `references/genre-playbook-institution-rules.md`。
 
-用户明确只交稿件或不附说明时，主文种成稿和内部复核完成后读取 `references/delivery-body-only.md`；该页只处理最终交付形态。
+用户明确只交稿件或不附说明时，主文种成稿和内部复核完成后读取 `references/delivery-body-only.md`；这一步只决定最终交付形态，不改变正文内容。
 
 任务模式按用户要完成的动作分为：
 
