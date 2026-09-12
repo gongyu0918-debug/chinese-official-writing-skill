@@ -1,0 +1,106 @@
+{
+  "counts": {
+    "candidate": 3,
+    "baseline": 5,
+    "tie": 4
+  },
+  "scope": "12 matched text pairs; default behavior; no new tests and no causal attribution",
+  "records": [
+    {
+      "id": "C01",
+      "model": "alibaba-token-plan/qwen3.8-flash",
+      "case": "guards_plain_titles",
+      "anonymous_verdict": "B较好",
+      "winner": "baseline",
+      "confidence_scope": "差异明确，主要在最终交付"
+    },
+    {
+      "id": "C02",
+      "model": "alibaba-token-plan/qwen3.8-flash",
+      "case": "guards_business_marks",
+      "anonymous_verdict": "B较好",
+      "winner": "baseline",
+      "confidence_scope": "差距轻，正文两稿都可用"
+    },
+    {
+      "id": "C03",
+      "model": "alibaba-token-plan/qwen3.8-flash",
+      "case": "scope_analysis_dedupe",
+      "anonymous_verdict": "相当",
+      "winner": "tie",
+      "confidence_scope": "均能完成建议改写，各有表达可收紧处"
+    },
+    {
+      "id": "C04",
+      "model": "alibaba-token-plan/qwen3.8-flash",
+      "case": "guards_grammar_quote",
+      "anonymous_verdict": "相当",
+      "winner": "tie",
+      "confidence_scope": "正文B稍忠实，最终消息A少一些工具杂项"
+    },
+    {
+      "id": "C05",
+      "model": "alibaba-token-plan/qwen3.8-flash",
+      "case": "scope_state_unspecified",
+      "anonymous_verdict": "A较好",
+      "winner": "candidate",
+      "confidence_scope": "差异实质，B遗漏给定状态并增加行动进展"
+    },
+    {
+      "id": "C06",
+      "model": "alibaba-token-plan/qwen3.8-flash",
+      "case": "draft_date_missing",
+      "anonymous_verdict": "A较好",
+      "winner": "candidate",
+      "confidence_scope": "差距轻，两稿日期状态都正确"
+    },
+    {
+      "id": "C07",
+      "model": "command-code/deepseek-deepseek-v4.1-flash",
+      "case": "guards_plain_titles",
+      "anonymous_verdict": "A较好",
+      "winner": "baseline",
+      "confidence_scope": "差异明确，主要在最终消息"
+    },
+    {
+      "id": "C08",
+      "model": "command-code/deepseek-deepseek-v4.1-flash",
+      "case": "guards_business_marks",
+      "anonymous_verdict": "B较好",
+      "winner": "candidate",
+      "confidence_scope": "两稿各有需改处，B保留文档识别信息"
+    },
+    {
+      "id": "C09",
+      "model": "command-code/deepseek-deepseek-v4.1-flash",
+      "case": "scope_analysis_dedupe",
+      "anonymous_verdict": "相当",
+      "winner": "tie",
+      "confidence_scope": "A分析较完整但较冗长，B更紧凑但概括偏强"
+    },
+    {
+      "id": "C10",
+      "model": "command-code/deepseek-deepseek-v4.1-flash",
+      "case": "guards_grammar_quote",
+      "anonymous_verdict": "相当",
+      "winner": "tie",
+      "confidence_scope": "两稿均完成校对，润色程度不同"
+    },
+    {
+      "id": "C11",
+      "model": "command-code/deepseek-deepseek-v4.1-flash",
+      "case": "scope_state_unspecified",
+      "anonymous_verdict": "B较好",
+      "winner": "baseline",
+      "confidence_scope": "正文准确性持平，B更贴一段短报告"
+    },
+    {
+      "id": "C12",
+      "model": "command-code/deepseek-deepseek-v4.1-flash",
+      "case": "draft_date_missing",
+      "anonymous_verdict": "A较好",
+      "winner": "baseline",
+      "confidence_scope": "整体更聚焦；两稿都没有填入具体日期"
+    }
+  ]
+}

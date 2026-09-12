@@ -1,0 +1,923 @@
+{
+  "method": "Read-only audit of existing traces. Whole-page content matching includes rg numbered output after stripping line prefixes. Interpreter detection excludes source reads and --help. Running a scan is not proof of nonempty input or completed semantic checks. No new tests.",
+  "summary": {
+    "baseline": {
+      "commands": 97,
+      "read_events": 77,
+      "page_returns": 77,
+      "anti_ai_read": 3,
+      "read_chars_unique": 228238,
+      "script_source_reads": 1,
+      "input": 1489511,
+      "uncached_input": 238311,
+      "output": 61612,
+      "seconds": 672.1800000000001,
+      "lint_executed_tasks": 3,
+      "lint_commands": 4,
+      "length_executed_tasks": 0
+    },
+    "candidate": {
+      "commands": 190,
+      "read_events": 126,
+      "page_returns": 126,
+      "anti_ai_read": 12,
+      "read_chars_unique": 179963,
+      "script_source_reads": 1,
+      "input": 2248083,
+      "uncached_input": 234771,
+      "output": 64548,
+      "seconds": 893.56,
+      "lint_executed_tasks": 12,
+      "lint_commands": 21,
+      "length_executed_tasks": 4
+    }
+  },
+  "both_lint_subset": {
+    "baseline": {
+      "input": 758402,
+      "uncached_input": 89602,
+      "output": 31606,
+      "seconds": 273.95,
+      "commands": 43
+    },
+    "candidate": {
+      "input": 738311,
+      "uncached_input": 69255,
+      "output": 20870,
+      "seconds": 234.33999999999997,
+      "commands": 51
+    }
+  },
+  "both_lint_pairs": [
+    [
+      "alibaba-token-plan/qwen3.8-flash",
+      "guards_grammar_quote"
+    ],
+    [
+      "command-code/deepseek-deepseek-v4.1-flash",
+      "guards_business_marks"
+    ],
+    [
+      "command-code/deepseek-deepseek-v4.1-flash",
+      "draft_date_missing"
+    ]
+  ],
+  "records": [
+    {
+      "model": "alibaba-token-plan/qwen3.8-flash",
+      "case": "guards_plain_titles",
+      "arm": "baseline",
+      "commands": 6,
+      "read_events": 5,
+      "page_returns": 5,
+      "unique_pages": [
+        "SKILL.md",
+        "references/genre-playbook-request.md",
+        "references/information-selection.md",
+        "references/reference-index.md",
+        "references/task-route-cards.md"
+      ],
+      "read_chars_unique": 16227,
+      "anti_ai_read": false,
+      "review_pages": [],
+      "lint_calls": [],
+      "length_calls": [],
+      "script_source_reads": 0,
+      "input": 91000,
+      "uncached_input": 27384,
+      "output": 2283,
+      "seconds": 39.98
+    },
+    {
+      "model": "alibaba-token-plan/qwen3.8-flash",
+      "case": "guards_plain_titles",
+      "arm": "candidate",
+      "commands": 11,
+      "read_events": 6,
+      "page_returns": 6,
+      "unique_pages": [
+        "SKILL.md",
+        "references/anti-ai-patterns.md",
+        "references/delivery.md",
+        "references/genre-playbook-request.md",
+        "references/prose-lint-usage.md",
+        "references/reference-index.md"
+      ],
+      "read_chars_unique": 12409,
+      "anti_ai_read": true,
+      "review_pages": [],
+      "lint_calls": [
+        {
+          "index": 8,
+          "stdout": "No prose risks found.\r\n",
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"python 'C:\\\\Users\\\\admin\\\\AppData\\\\Local\\\\Temp\\\\cow-native-combined-native-r8-text-vza4s1cu\\\\m0-guards_plain_titles-candidate\\\\workspace\\\\.agents\\\\skills\\\\chinese-official-writing\\\\scripts\\\\prose_lint.py' --delivery-mode draft-body 'C:\\\\Users\\\\admin\\\\AppData\\\\Local\\\\Temp\\\\scan_apply_draft.txt'\""
+        }
+      ],
+      "length_calls": [],
+      "script_source_reads": 0,
+      "input": 130403,
+      "uncached_input": 18915,
+      "output": 3499,
+      "seconds": 59.42
+    },
+    {
+      "model": "alibaba-token-plan/qwen3.8-flash",
+      "case": "guards_business_marks",
+      "arm": "baseline",
+      "commands": 5,
+      "read_events": 4,
+      "page_returns": 4,
+      "unique_pages": [
+        "SKILL.md",
+        "references/information-selection.md",
+        "references/reference-index.md",
+        "references/task-route-cards.md"
+      ],
+      "read_chars_unique": 14839,
+      "anti_ai_read": false,
+      "review_pages": [],
+      "lint_calls": [],
+      "length_calls": [],
+      "script_source_reads": 0,
+      "input": 111187,
+      "uncached_input": 20947,
+      "output": 4297,
+      "seconds": 65.95
+    },
+    {
+      "model": "alibaba-token-plan/qwen3.8-flash",
+      "case": "guards_business_marks",
+      "arm": "candidate",
+      "commands": 16,
+      "read_events": 10,
+      "page_returns": 10,
+      "unique_pages": [
+        "SKILL.md",
+        "references/anti-ai-patterns.md",
+        "references/delivery.md",
+        "references/field-editing.md",
+        "references/genre-playbook-explanation.md",
+        "references/genre-playbook-institution-rules.md",
+        "references/information-selection.md",
+        "references/prose-lint-usage.md",
+        "references/short-draft-naturalness.md",
+        "references/structure-editing.md"
+      ],
+      "read_chars_unique": 12412,
+      "anti_ai_read": true,
+      "review_pages": [],
+      "lint_calls": [
+        {
+          "index": 13,
+          "stdout": "No prose risks found.\r\n",
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"python 'C:/Users/admin/AppData/Local/Temp/cow-native-combined-native-r8-text-vza4s1cu/m0-guards_business_marks-candidate/workspace/.agents/skills/chinese-official-writing/scripts/prose_lint.py' --delivery-mode draft-body 'C:/Users/admin/AppData/Local/Temp/cow-native-combined-native-r8-text-vza4s1cu/m0-guards_business_marks-candidate/workspace/_tmp_draft.txt'\""
+        },
+        {
+          "index": 14,
+          "stdout": "No prose risks found.\r\n",
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"python 'C:/Users/admin/AppData/Local/Temp/cow-native-combined-native-r8-text-vza4s1cu/m0-guards_business_marks-candidate/workspace/.agents/skills/chinese-official-writing/scripts/prose_lint.py' --delivery-mode draft-body --structure --format 'C:/Users/admin/AppData/Local/Temp/cow-native-combined-native-r8-text-vza4s1cu/m0-guards_business_marks-candidate/workspace/_tmp_draft.txt'\""
+        }
+      ],
+      "length_calls": [],
+      "script_source_reads": 0,
+      "input": 185435,
+      "uncached_input": 21595,
+      "output": 4903,
+      "seconds": 85.77
+    },
+    {
+      "model": "alibaba-token-plan/qwen3.8-flash",
+      "case": "scope_analysis_dedupe",
+      "arm": "baseline",
+      "commands": 5,
+      "read_events": 5,
+      "page_returns": 5,
+      "unique_pages": [
+        "SKILL.md",
+        "references/compatibility-scene-routing.md",
+        "references/genre-playbook-advisory-feedback.md",
+        "references/information-selection.md",
+        "references/task-route-cards.md"
+      ],
+      "read_chars_unique": 14925,
+      "anti_ai_read": false,
+      "review_pages": [],
+      "lint_calls": [],
+      "length_calls": [],
+      "script_source_reads": 0,
+      "input": 72755,
+      "uncached_input": 13491,
+      "output": 2195,
+      "seconds": 39.61
+    },
+    {
+      "model": "alibaba-token-plan/qwen3.8-flash",
+      "case": "scope_analysis_dedupe",
+      "arm": "candidate",
+      "commands": 11,
+      "read_events": 10,
+      "page_returns": 10,
+      "unique_pages": [
+        "SKILL.md",
+        "references/anti-ai-patterns.md",
+        "references/compatibility-scene-routing.md",
+        "references/delivery.md",
+        "references/final-review-layers.md",
+        "references/genre-playbook-advisory-feedback.md",
+        "references/information-selection.md",
+        "references/prose-lint-usage.md",
+        "references/short-draft-naturalness.md",
+        "references/task-route-cards.md"
+      ],
+      "read_chars_unique": 13570,
+      "anti_ai_read": true,
+      "review_pages": [
+        "references/final-review-layers.md"
+      ],
+      "lint_calls": [
+        {
+          "index": 10,
+          "stdout": "No prose risks found.\r\n",
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'python \"C:/Users/admin/AppData/Local/Temp/cow-native-combined-native-r8-text-vza4s1cu/m0-scope_analysis_dedupe-candidate/workspace/.agents/skills/chinese-official-writing/scripts/prose_lint.py\" --delivery-mode draft-body \"C:/Users/admin/AppData/Local/Temp/cow-native-combined-native-r8-text-vza4s1cu/m0-scope_analysis_dedupe-candidate/workspace/_draft_scan.txt\"'"
+        }
+      ],
+      "length_calls": [],
+      "script_source_reads": 0,
+      "input": 100411,
+      "uncached_input": 13883,
+      "output": 4554,
+      "seconds": 78.03
+    },
+    {
+      "model": "alibaba-token-plan/qwen3.8-flash",
+      "case": "guards_grammar_quote",
+      "arm": "baseline",
+      "commands": 11,
+      "read_events": 6,
+      "page_returns": 6,
+      "unique_pages": [
+        "SKILL.md",
+        "references/genre-playbook-work-summary.md",
+        "references/information-selection.md",
+        "references/proofreading-checklist.md",
+        "references/prose-lint-usage.md",
+        "references/task-route-cards.md"
+      ],
+      "read_chars_unique": 13495,
+      "anti_ai_read": false,
+      "review_pages": [],
+      "lint_calls": [
+        {
+          "index": 7,
+          "stdout": "[]\r\n",
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"python \\\"C:/Users/admin/AppData/Local/Temp/cow-native-combined-native-r8-text-vza4s1cu/m0-guards_grammar_quote-baseline/workspace/.agents/skills/chinese-official-writing/scripts/prose_lint.py\\\" --format --structure --delivery-mode draft-body --json \\\"C:\\\\Users\\\\admin\\\\AppData\\\\Local\\\\Temp\\\\cow-native-combined-native-r8-text-vza4s1cu\\\\m0-guards_grammar_quote-baseline\\\\tmp\\\\lint-f8dd32a1/draft.txt\\\"\""
+        }
+      ],
+      "length_calls": [],
+      "script_source_reads": 0,
+      "input": 212306,
+      "uncached_input": 21458,
+      "output": 4512,
+      "seconds": 74.22
+    },
+    {
+      "model": "alibaba-token-plan/qwen3.8-flash",
+      "case": "guards_grammar_quote",
+      "arm": "candidate",
+      "commands": 8,
+      "read_events": 5,
+      "page_returns": 5,
+      "unique_pages": [
+        "SKILL.md",
+        "references/anti-ai-patterns.md",
+        "references/delivery.md",
+        "references/proofreading-checklist.md",
+        "references/prose-lint-usage.md"
+      ],
+      "read_chars_unique": 7849,
+      "anti_ai_read": true,
+      "review_pages": [],
+      "lint_calls": [
+        {
+          "index": 6,
+          "stdout": "No prose risks found.\r\n",
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"python \\\"C:\\\\Users\\\\admin\\\\AppData\\\\Local\\\\Temp\\\\cow-native-combined-native-r8-text-vza4s1cu\\\\m0-guards_grammar_quote-candidate\\\\workspace\\\\.agents\\\\skills\\\\chinese-official-writing\\\\scripts\\\\prose_lint.py\\\" --delivery-mode draft-body \\\"C:\\\\Users\\\\admin\\\\AppData\\\\Local\\\\Temp\\\\cow-native-combined-native-r8-text-vza4s1cu\\\\m0-guards_grammar_quote-candidate\\\\workspace\\\\_review_fixed.txt\\\"\""
+        },
+        {
+          "index": 7,
+          "stdout": "No prose risks found.\r\n",
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"python \\\"C:\\\\Users\\\\admin\\\\AppData\\\\Local\\\\Temp\\\\cow-native-combined-native-r8-text-vza4s1cu\\\\m0-guards_grammar_quote-candidate\\\\workspace\\\\.agents\\\\skills\\\\chinese-official-writing\\\\scripts\\\\prose_lint.py\\\" --delivery-mode draft-body \\\"C:\\\\Users\\\\admin\\\\AppData\\\\Local\\\\Temp\\\\cow-native-combined-native-r8-text-vza4s1cu\\\\m0-guards_grammar_quote-candidate\\\\workspace\\\\_review_orig.txt\\\"\""
+        }
+      ],
+      "length_calls": [],
+      "script_source_reads": 0,
+      "input": 109549,
+      "uncached_input": 14701,
+      "output": 3599,
+      "seconds": 58.02
+    },
+    {
+      "model": "alibaba-token-plan/qwen3.8-flash",
+      "case": "scope_state_unspecified",
+      "arm": "baseline",
+      "commands": 5,
+      "read_events": 5,
+      "page_returns": 5,
+      "unique_pages": [
+        "SKILL.md",
+        "references/information-selection.md",
+        "references/reference-index.md",
+        "references/short-draft-naturalness.md",
+        "references/task-route-cards.md"
+      ],
+      "read_chars_unique": 15305,
+      "anti_ai_read": false,
+      "review_pages": [],
+      "lint_calls": [],
+      "length_calls": [],
+      "script_source_reads": 0,
+      "input": 89051,
+      "uncached_input": 13787,
+      "output": 3448,
+      "seconds": 63.83
+    },
+    {
+      "model": "alibaba-token-plan/qwen3.8-flash",
+      "case": "scope_state_unspecified",
+      "arm": "candidate",
+      "commands": 17,
+      "read_events": 10,
+      "page_returns": 10,
+      "unique_pages": [
+        "SKILL.md",
+        "references/anti-ai-patterns.md",
+        "references/delivery.md",
+        "references/final-review-layers.md",
+        "references/genre-playbook-report.md",
+        "references/handling-elements.md",
+        "references/information-selection.md",
+        "references/prose-lint-usage.md",
+        "references/reference-index.md",
+        "references/short-draft-naturalness.md"
+      ],
+      "read_chars_unique": 15551,
+      "anti_ai_read": true,
+      "review_pages": [
+        "references/final-review-layers.md"
+      ],
+      "lint_calls": [
+        {
+          "index": 13,
+          "stdout": "No prose risks found.\r\n",
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'python \"C:/Users/admin/AppData/Local/Temp/cow-native-combined-native-r8-text-vza4s1cu/m0-scope_state_unspecified-candidate/workspace/.agents/skills/chinese-official-writing/scripts/prose_lint.py\" --delivery-mode draft-body \"C:/Users/admin/AppData/Local/Temp/cow-native-combined-native-r8-text-vza4s1cu/m0-scope_state_unspecified-candidate/workspace/_draft_qingkuang.md\"'"
+        },
+        {
+          "index": 15,
+          "stdout": "No prose risks found.\r\n",
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'python \"C:/Users/admin/AppData/Local/Temp/cow-native-combined-native-r8-text-vza4s1cu/m0-scope_state_unspecified-candidate/workspace/.agents/skills/chinese-official-writing/scripts/prose_lint.py\" --delivery-mode draft-body --structure --format \"C:/Users/admin/AppData/Local/Temp/cow-native-combined-native-r8-text-vza4s1cu/m0-scope_state_unspecified-candidate/workspace/_draft_qingkuang.md\"'"
+        }
+      ],
+      "length_calls": [
+        14
+      ],
+      "script_source_reads": 0,
+      "input": 153770,
+      "uncached_input": 17578,
+      "output": 3762,
+      "seconds": 70.42
+    },
+    {
+      "model": "alibaba-token-plan/qwen3.8-flash",
+      "case": "draft_date_missing",
+      "arm": "baseline",
+      "commands": 4,
+      "read_events": 4,
+      "page_returns": 4,
+      "unique_pages": [
+        "SKILL.md",
+        "references/genre-playbook-request.md",
+        "references/information-selection.md",
+        "references/reference-index.md"
+      ],
+      "read_chars_unique": 14765,
+      "anti_ai_read": false,
+      "review_pages": [],
+      "lint_calls": [],
+      "length_calls": [],
+      "script_source_reads": 0,
+      "input": 64005,
+      "uncached_input": 13573,
+      "output": 1932,
+      "seconds": 42.08
+    },
+    {
+      "model": "alibaba-token-plan/qwen3.8-flash",
+      "case": "draft_date_missing",
+      "arm": "candidate",
+      "commands": 16,
+      "read_events": 13,
+      "page_returns": 13,
+      "unique_pages": [
+        "SKILL.md",
+        "references/anti-ai-patterns.md",
+        "references/delivery.md",
+        "references/final-review-layers.md",
+        "references/formulaic-language.md",
+        "references/genre-playbook-request.md",
+        "references/handling-elements.md",
+        "references/information-selection.md",
+        "references/proofreading-checklist.md",
+        "references/prose-lint-usage.md",
+        "references/reference-index.md",
+        "references/short-draft-naturalness.md",
+        "references/task-route-cards.md"
+      ],
+      "read_chars_unique": 17827,
+      "anti_ai_read": true,
+      "review_pages": [
+        "references/final-review-layers.md"
+      ],
+      "lint_calls": [
+        {
+          "index": 15,
+          "stdout": "No prose risks found.\r\n",
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'python \"C:/Users/admin/AppData/Local/Temp/cow-native-combined-native-r8-text-vza4s1cu/m0-draft_date_missing-candidate/workspace/.agents/skills/chinese-official-writing/scripts/prose_lint.py\" --delivery-mode draft-body --structure --format \"C:/Users/admin/AppData/Local/Temp/cow-native-combined-native-r8-text-vza4s1cu/m0-draft_date_missing-candidate/printer_request_draft.txt\"'"
+        }
+      ],
+      "length_calls": [],
+      "script_source_reads": 0,
+      "input": 142689,
+      "uncached_input": 22241,
+      "output": 6182,
+      "seconds": 125.45
+    },
+    {
+      "model": "command-code/deepseek-deepseek-v4.1-flash",
+      "case": "guards_plain_titles",
+      "arm": "baseline",
+      "commands": 5,
+      "read_events": 5,
+      "page_returns": 5,
+      "unique_pages": [
+        "SKILL.md",
+        "references/genre-playbook-request.md",
+        "references/handling-elements.md",
+        "references/information-selection.md",
+        "references/reference-index.md"
+      ],
+      "read_chars_unique": 17901,
+      "anti_ai_read": false,
+      "review_pages": [],
+      "lint_calls": [],
+      "length_calls": [],
+      "script_source_reads": 0,
+      "input": 59238,
+      "uncached_input": 12262,
+      "output": 4857,
+      "seconds": 36.36
+    },
+    {
+      "model": "command-code/deepseek-deepseek-v4.1-flash",
+      "case": "guards_plain_titles",
+      "arm": "candidate",
+      "commands": 16,
+      "read_events": 11,
+      "page_returns": 11,
+      "unique_pages": [
+        "SKILL.md",
+        "references/anti-ai-patterns.md",
+        "references/delivery.md",
+        "references/final-review-layers.md",
+        "references/genre-checklist-request.md",
+        "references/genre-playbook-request.md",
+        "references/genre-routing.md",
+        "references/information-selection.md",
+        "references/prose-lint-usage.md",
+        "references/reference-index.md",
+        "references/short-draft-naturalness.md"
+      ],
+      "read_chars_unique": 20065,
+      "anti_ai_read": true,
+      "review_pages": [
+        "references/final-review-layers.md"
+      ],
+      "lint_calls": [
+        {
+          "index": 15,
+          "stdout": "No prose risks found.\r\n",
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'python \"C:/Users/admin/AppData/Local/Temp/cow-native-combined-native-r8-text-vza4s1cu/m2-guards_plain_titles-candidate/workspace/.agents/skills/chinese-official-writing/scripts/prose_lint.py\" --delivery-mode draft-body --structure --format \"C:/Users/admin/AppData/Local/Temp/cow-native-combined-native-r8-text-vza4s1cu/m2-guards_plain_titles-candidate/workspace/.tmp-lint-draft.txt\"'"
+        }
+      ],
+      "length_calls": [],
+      "script_source_reads": 1,
+      "input": 193036,
+      "uncached_input": 28812,
+      "output": 6297,
+      "seconds": 61.23
+    },
+    {
+      "model": "command-code/deepseek-deepseek-v4.1-flash",
+      "case": "guards_business_marks",
+      "arm": "baseline",
+      "commands": 15,
+      "read_events": 10,
+      "page_returns": 10,
+      "unique_pages": [
+        "SKILL.md",
+        "references/anti-ai-patterns.md",
+        "references/final-review-layers.md",
+        "references/information-selection.md",
+        "references/official-style.md",
+        "references/prose-lint-usage.md",
+        "references/reference-index.md",
+        "references/short-draft-naturalness.md",
+        "references/structure-editing.md",
+        "references/task-route-cards.md"
+      ],
+      "read_chars_unique": 27273,
+      "anti_ai_read": true,
+      "review_pages": [
+        "references/final-review-layers.md"
+      ],
+      "lint_calls": [
+        {
+          "index": 14,
+          "stdout": "No prose risks found.\r\n",
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"python 'C:/Users/admin/AppData/Local/Temp/cow-native-combined-native-r8-text-vza4s1cu/m2-guards_business_marks-baseline/workspace/.agents/skills/chinese-official-writing/scripts/prose_lint.py' --delivery-mode draft-body --format --structure 'C:/Users/admin/AppData/Local/Temp/cow-native-combined-native-r8-text-vza4s1cu/m2-guards_business_marks-baseline/tmp/draft_v1.md'\""
+        }
+      ],
+      "length_calls": [],
+      "script_source_reads": 0,
+      "input": 234360,
+      "uncached_input": 26872,
+      "output": 13370,
+      "seconds": 96.0
+    },
+    {
+      "model": "command-code/deepseek-deepseek-v4.1-flash",
+      "case": "guards_business_marks",
+      "arm": "candidate",
+      "commands": 23,
+      "read_events": 13,
+      "page_returns": 13,
+      "unique_pages": [
+        "SKILL.md",
+        "references/anti-ai-patterns.md",
+        "references/compression-details.md",
+        "references/delivery.md",
+        "references/final-review-layers.md",
+        "references/formulaic-language.md",
+        "references/genre-playbook-explanation.md",
+        "references/information-selection.md",
+        "references/official-style.md",
+        "references/prose-lint-usage.md",
+        "references/reference-index.md",
+        "references/short-draft-naturalness.md",
+        "references/task-route-cards.md"
+      ],
+      "read_chars_unique": 17808,
+      "anti_ai_read": true,
+      "review_pages": [
+        "references/final-review-layers.md"
+      ],
+      "lint_calls": [
+        {
+          "index": 19,
+          "stdout": "No prose risks found.\r\n",
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'python \"C:/Users/admin/AppData/Local/Temp/cow-native-combined-native-r8-text-vza4s1cu/m2-guards_business_marks-candidate/workspace/.agents/skills/chinese-official-writing/scripts/prose_lint.py\" --delivery-mode draft-body --structure --format \"C:/Users/admin/AppData/Local/Temp/cow-native-combined-native-r8-text-vza4s1cu/m2-guards_business_marks-candidate/workspace/.tmp-lint/draft.md\"'"
+        }
+      ],
+      "length_calls": [
+        20
+      ],
+      "script_source_reads": 0,
+      "input": 440244,
+      "uncached_input": 34484,
+      "output": 12194,
+      "seconds": 116.52
+    },
+    {
+      "model": "command-code/deepseek-deepseek-v4.1-flash",
+      "case": "scope_analysis_dedupe",
+      "arm": "baseline",
+      "commands": 10,
+      "read_events": 10,
+      "page_returns": 10,
+      "unique_pages": [
+        "SKILL.md",
+        "references/anti-ai-patterns.md",
+        "references/compatibility-scene-routing.md",
+        "references/final-review-layers.md",
+        "references/genre-playbook-advisory-feedback.md",
+        "references/information-selection.md",
+        "references/official-style.md",
+        "references/reference-index.md",
+        "references/short-draft-naturalness.md",
+        "references/task-route-cards.md"
+      ],
+      "read_chars_unique": 30063,
+      "anti_ai_read": true,
+      "review_pages": [
+        "references/final-review-layers.md"
+      ],
+      "lint_calls": [],
+      "length_calls": [],
+      "script_source_reads": 0,
+      "input": 91481,
+      "uncached_input": 19929,
+      "output": 2733,
+      "seconds": 36.42
+    },
+    {
+      "model": "command-code/deepseek-deepseek-v4.1-flash",
+      "case": "scope_analysis_dedupe",
+      "arm": "candidate",
+      "commands": 18,
+      "read_events": 12,
+      "page_returns": 12,
+      "unique_pages": [
+        "SKILL.md",
+        "references/anti-ai-patterns.md",
+        "references/argument-chains.md",
+        "references/compatibility-scene-routing.md",
+        "references/compression-details.md",
+        "references/delivery.md",
+        "references/final-review-layers.md",
+        "references/genre-playbook-advisory-feedback.md",
+        "references/information-selection.md",
+        "references/prose-lint-usage.md",
+        "references/short-draft-naturalness.md",
+        "references/task-route-cards.md"
+      ],
+      "read_chars_unique": 14710,
+      "anti_ai_read": true,
+      "review_pages": [
+        "references/final-review-layers.md"
+      ],
+      "lint_calls": [
+        {
+          "index": 13,
+          "stdout": "No prose risks found.\r\n",
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'python \"C:/Users/admin/AppData/Local/Temp/cow-native-combined-native-r8-text-vza4s1cu/m2-scope_analysis_dedupe-candidate/workspace/.agents/skills/chinese-official-writing/scripts/prose_lint.py\" --delivery-mode draft-body --structure --format \"C:/Users/admin/AppData/Local/Temp/cow-native-combined-native-r8-text-vza4s1cu/m2-scope_analysis_dedupe-candidate/workspace/.lint-tmp/draft.md\"'"
+        },
+        {
+          "index": 15,
+          "stdout": "No prose risks found.\r\n",
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'python \"C:/Users/admin/AppData/Local/Temp/cow-native-combined-native-r8-text-vza4s1cu/m2-scope_analysis_dedupe-candidate/workspace/.agents/skills/chinese-official-writing/scripts/prose_lint.py\" --delivery-mode draft-body --structure --format \"C:/Users/admin/AppData/Local/Temp/cow-native-combined-native-r8-text-vza4s1cu/m2-scope_analysis_dedupe-candidate/workspace/.lint-tmp/draft.md\"'"
+        }
+      ],
+      "length_calls": [
+        14
+      ],
+      "script_source_reads": 0,
+      "input": 280411,
+      "uncached_input": 16603,
+      "output": 6662,
+      "seconds": 79.98
+    },
+    {
+      "model": "command-code/deepseek-deepseek-v4.1-flash",
+      "case": "guards_grammar_quote",
+      "arm": "baseline",
+      "commands": 7,
+      "read_events": 5,
+      "page_returns": 5,
+      "unique_pages": [
+        "SKILL.md",
+        "references/genre-playbook-work-summary.md",
+        "references/information-selection.md",
+        "references/proofreading-checklist.md",
+        "references/task-route-cards.md"
+      ],
+      "read_chars_unique": 12968,
+      "anti_ai_read": false,
+      "review_pages": [],
+      "lint_calls": [],
+      "length_calls": [],
+      "script_source_reads": 0,
+      "input": 77919,
+      "uncached_input": 15327,
+      "output": 3513,
+      "seconds": 35.89
+    },
+    {
+      "model": "command-code/deepseek-deepseek-v4.1-flash",
+      "case": "guards_grammar_quote",
+      "arm": "candidate",
+      "commands": 15,
+      "read_events": 7,
+      "page_returns": 7,
+      "unique_pages": [
+        "SKILL.md",
+        "references/anti-ai-patterns.md",
+        "references/delivery.md",
+        "references/final-review-layers.md",
+        "references/proofreading-checklist.md",
+        "references/prose-lint-usage.md",
+        "references/review-checklist.md"
+      ],
+      "read_chars_unique": 9661,
+      "anti_ai_read": true,
+      "review_pages": [
+        "references/final-review-layers.md",
+        "references/review-checklist.md"
+      ],
+      "lint_calls": [
+        {
+          "index": 8,
+          "stdout": "No prose risks found.\r\n",
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'python \"C:/Users/admin/AppData/Local/Temp/cow-native-combined-native-r8-text-vza4s1cu/m2-guards_grammar_quote-candidate/workspace/.agents/skills/chinese-official-writing/scripts/prose_lint.py\" --delivery-mode draft-body -'"
+        },
+        {
+          "index": 9,
+          "stdout": "No prose risks found.\r\n",
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'python \"C:/Users/admin/AppData/Local/Temp/cow-native-combined-native-r8-text-vza4s1cu/m2-guards_grammar_quote-candidate/workspace/.agents/skills/chinese-official-writing/scripts/prose_lint.py\" --delivery-mode draft-body --structure --format -'"
+        },
+        {
+          "index": 10,
+          "stdout": "No prose risks found.\r\n",
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'python \"C:/Users/admin/AppData/Local/Temp/cow-native-combined-native-r8-text-vza4s1cu/m2-guards_grammar_quote-candidate/workspace/.agents/skills/chinese-official-writing/scripts/prose_lint.py\" --delivery-mode draft-body --structure --format -'"
+        },
+        {
+          "index": 11,
+          "stdout": "No prose risks found.\r\n",
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'python \"C:/Users/admin/AppData/Local/Temp/cow-native-combined-native-r8-text-vza4s1cu/m2-guards_grammar_quote-candidate/workspace/.agents/skills/chinese-official-writing/scripts/prose_lint.py\" --delivery-mode draft-body --structure --format \"C:/Users/admin/AppData/Local/Temp/cow-native-combined-native-r8-text-vza4s1cu/m2-guards_grammar_quote-candidate/workspace/lint_orig.txt\"'"
+        },
+        {
+          "index": 12,
+          "stdout": "No prose risks found.\r\n",
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'python \"C:/Users/admin/AppData/Local/Temp/cow-native-combined-native-r8-text-vza4s1cu/m2-guards_grammar_quote-candidate/workspace/.agents/skills/chinese-official-writing/scripts/prose_lint.py\" --delivery-mode draft-body --structure --format \"C:/Users/admin/AppData/Local/Temp/cow-native-combined-native-r8-text-vza4s1cu/m2-guards_grammar_quote-candidate/workspace/lint_fixed.txt\"'"
+        }
+      ],
+      "length_calls": [],
+      "script_source_reads": 0,
+      "input": 120231,
+      "uncached_input": 10407,
+      "output": 4331,
+      "seconds": 48.5
+    },
+    {
+      "model": "command-code/deepseek-deepseek-v4.1-flash",
+      "case": "scope_state_unspecified",
+      "arm": "baseline",
+      "commands": 7,
+      "read_events": 5,
+      "page_returns": 5,
+      "unique_pages": [
+        "SKILL.md",
+        "references/genre-routing.md",
+        "references/information-selection.md",
+        "references/short-draft-naturalness.md",
+        "references/task-route-cards.md"
+      ],
+      "read_chars_unique": 14488,
+      "anti_ai_read": false,
+      "review_pages": [],
+      "lint_calls": [],
+      "length_calls": [],
+      "script_source_reads": 0,
+      "input": 74473,
+      "uncached_input": 12009,
+      "output": 4748,
+      "seconds": 38.11
+    },
+    {
+      "model": "command-code/deepseek-deepseek-v4.1-flash",
+      "case": "scope_state_unspecified",
+      "arm": "candidate",
+      "commands": 19,
+      "read_events": 13,
+      "page_returns": 13,
+      "unique_pages": [
+        "SKILL.md",
+        "references/anti-ai-patterns.md",
+        "references/compression-details.md",
+        "references/delivery.md",
+        "references/final-review-layers.md",
+        "references/genre-checklist-report.md",
+        "references/genre-playbook-report.md",
+        "references/information-selection.md",
+        "references/official-style.md",
+        "references/proofreading-checklist.md",
+        "references/prose-lint-usage.md",
+        "references/short-draft-naturalness.md",
+        "references/task-route-cards.md"
+      ],
+      "read_chars_unique": 14290,
+      "anti_ai_read": true,
+      "review_pages": [
+        "references/final-review-layers.md"
+      ],
+      "lint_calls": [
+        {
+          "index": 16,
+          "stdout": "No prose risks found.\r\n",
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'python \"C:/Users/admin/AppData/Local/Temp/cow-native-combined-native-r8-text-vza4s1cu/m2-scope_state_unspecified-candidate/workspace/.agents/skills/chinese-official-writing/scripts/prose_lint.py\" --delivery-mode gap-note-allowed --structure --format \"C:/Users/admin/AppData/Local/Temp/cow-native-combined-native-r8-text-vza4s1cu/m2-scope_state_unspecified-candidate/workspace/.tmp-check/draft.md\"'"
+        }
+      ],
+      "length_calls": [
+        17
+      ],
+      "script_source_reads": 0,
+      "input": 203386,
+      "uncached_input": 15482,
+      "output": 3488,
+      "seconds": 50.42
+    },
+    {
+      "model": "command-code/deepseek-deepseek-v4.1-flash",
+      "case": "draft_date_missing",
+      "arm": "baseline",
+      "commands": 17,
+      "read_events": 13,
+      "page_returns": 13,
+      "unique_pages": [
+        "SKILL.md",
+        "references/anti-ai-patterns.md",
+        "references/argument-chains.md",
+        "references/final-review-layers.md",
+        "references/formal-addressing.md",
+        "references/genre-playbook-request.md",
+        "references/genre-routing.md",
+        "references/handling-elements.md",
+        "references/information-selection.md",
+        "references/proofreading-checklist.md",
+        "references/prose-lint-usage.md",
+        "references/reference-index.md",
+        "references/task-route-cards.md"
+      ],
+      "read_chars_unique": 35989,
+      "anti_ai_read": true,
+      "review_pages": [
+        "references/final-review-layers.md"
+      ],
+      "lint_calls": [
+        {
+          "index": 15,
+          "stdout": "No prose risks found.\r\n",
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'python \"C:/Users/admin/AppData/Local/Temp/cow-native-combined-native-r8-text-vza4s1cu/m2-draft_date_missing-baseline/workspace/.agents/skills/chinese-official-writing/scripts/prose_lint.py\" --delivery-mode gap-note-allowed --format --structure \"C:/Users/admin/AppData/Local/Temp/cow-native-combined-native-r8-text-vza4s1cu/m2-draft_date_missing-baseline/workspace/打印机购置申请.txt\"'"
+        },
+        {
+          "index": 16,
+          "stdout": "C:\\Users\\admin\\AppData\\Local\\Temp\\cow-native-combined-native-r8-text-vza4s1cu\\m2-draft_date_missing-baseline\\workspace\\打印机购置申请.txt:9: high: unexpected-external-note: 待确认事项（正文外）：成文日期按要求暂缺，定稿时补签；主送机关未提供，请按学校审批流程补填。\r\n  只交付正",
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'python \"C:/Users/admin/AppData/Local/Temp/cow-native-combined-native-r8-text-vza4s1cu/m2-draft_date_missing-baseline/workspace/.agents/skills/chinese-official-writing/scripts/prose_lint.py\" --delivery-mode draft-body --format --structure \"C:/Users/admin/AppData/Local/Temp/cow-native-combined-native-r8-text-vza4s1cu/m2-draft_date_missing-baseline/workspace/打印机购置申请.txt\"'"
+        }
+      ],
+      "length_calls": [],
+      "script_source_reads": 1,
+      "input": 311736,
+      "uncached_input": 41272,
+      "output": 13724,
+      "seconds": 103.73
+    },
+    {
+      "model": "command-code/deepseek-deepseek-v4.1-flash",
+      "case": "draft_date_missing",
+      "arm": "candidate",
+      "commands": 20,
+      "read_events": 16,
+      "page_returns": 16,
+      "unique_pages": [
+        "SKILL.md",
+        "references/anti-ai-patterns.md",
+        "references/delivery.md",
+        "references/final-review-layers.md",
+        "references/formulaic-language.md",
+        "references/genre-checklist-request.md",
+        "references/genre-playbook-request.md",
+        "references/genre-routing.md",
+        "references/handling-elements.md",
+        "references/information-selection.md",
+        "references/official-style.md",
+        "references/proofreading-checklist.md",
+        "references/prose-lint-usage.md",
+        "references/reference-index.md",
+        "references/short-draft-naturalness.md",
+        "references/task-route-cards.md"
+      ],
+      "read_chars_unique": 23811,
+      "anti_ai_read": true,
+      "review_pages": [
+        "references/final-review-layers.md"
+      ],
+      "lint_calls": [
+        {
+          "index": 18,
+          "stdout": "No prose risks found.\r\n",
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'python \"C:/Users/admin/AppData/Local/Temp/cow-native-combined-native-r8-text-vza4s1cu/m2-draft_date_missing-candidate/workspace/.agents/skills/chinese-official-writing/scripts/prose_lint.py\" --delivery-mode draft-body \"C:/Users/admin/AppData/Local/Temp/cow-native-combined-native-r8-text-vza4s1cu/m2-draft_date_missing-candidate/workspace/draft-printer-application.txt\"'"
+        },
+        {
+          "index": 19,
+          "stdout": "No prose risks found.\r\n",
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'python \"C:/Users/admin/AppData/Local/Temp/cow-native-combined-native-r8-text-vza4s1cu/m2-draft_date_missing-candidate/workspace/.agents/skills/chinese-official-writing/scripts/prose_lint.py\" --delivery-mode draft-body \"C:/Users/admin/AppData/Local/Temp/cow-native-combined-native-r8-text-vza4s1cu/m2-draft_date_missing-candidate/workspace/draft-printer-application.txt\"'"
+        }
+      ],
+      "length_calls": [],
+      "script_source_reads": 0,
+      "input": 188518,
+      "uncached_input": 20070,
+      "output": 5077,
+      "seconds": 59.8
+    }
+  ]
+}
