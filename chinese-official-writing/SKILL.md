@@ -25,7 +25,7 @@ metadata:
 
 - **起草**：先读取 `references/information-selection.md`，选文种首叶；需要办理要素或论证时再叠加对应共性页。
 - **整体改写**：把最新版底稿作为当前基础，先确定保留的事实、结构和文种，再按改写范围读取结构或语言能力页。
-- **材料较少、短稿或局部任务**：在信息选择后按需读 `references/task-route-cards.md` 和 `references/short-draft-naturalness.md`；短路径压缩流程和篇幅动作，同时保留唯一主文种页。
+- **材料较少或短稿**：在信息选择后按需读 `references/task-route-cards.md` 和 `references/short-draft-naturalness.md`；短路径压缩流程和篇幅动作，同时保留唯一主文种页。
 - **局部修改、重排或字段处理**：结构动作读 `references/structure-editing.md`，字段动作读 `references/field-editing.md`；以最新版底稿为唯一主线。
 - **压缩或限字**：先按文种成稿，再按需读 `references/compression-details.md`；压缩始终保留文种硬要素、事实状态和用户点名字段。
 - **审核、复核、审校或把关**：用户说“帮我审核/复核/审校/检查/把关这份稿件”等，先读对应主文种/事务叶确认成立条件，再叠加 `references/review-direct-checklist.md` 或 `references/review-checklist.md`；用户同时要求改后稿时进入改写流程。
