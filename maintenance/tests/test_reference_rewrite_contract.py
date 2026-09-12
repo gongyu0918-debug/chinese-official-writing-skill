@@ -235,6 +235,7 @@ class ReferenceRewriteContractTests(unittest.TestCase):
     def test_sparse_plan_can_omit_unprovided_structure_sections(self) -> None:
         text = (REFS / "genre-playbook-plan-construction.md").read_text(encoding="utf-8")
         self.assertIn("未提供保障、风险、组织、进度或预算细节时可以省略相应章节", text)
+        self.assertIn("可直接按这五类要素收束", text)
 
 
 if __name__ == "__main__":
