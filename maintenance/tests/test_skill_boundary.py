@@ -19,8 +19,8 @@ OPTIONAL_GATE_FILES = {
 }
 SKILLHUB_CLEAN_PACKAGE_EXCLUDES = {"agents/openai.yaml", "LICENSE"}
 REFERENCE_LINK_RE = re.compile(r"`(?:references/)?([^`/]+\.md)`")
-CURRENT_VERSION = "1.6.30"
-PUBLISHED_VERSION = "1.6.30"
+CURRENT_VERSION = "1.6.35"
+PUBLISHED_VERSION = "1.6.35"
 
 
 def relative_files(root: Path) -> list[str]:
