@@ -96,6 +96,8 @@ class ReferenceRewriteContractTests(unittest.TestCase):
         self.assertIn("同一稿件同时出现可研、采购和技术需求时", dispatch)
         self.assertIn("实际数据、估算数据、建议值和待核字段分开", dispatch)
         self.assertIn("只有用户明确要求统一英文术语", dispatch)
+        self.assertIn("按交付动作完成事实、文种和终稿复核", dispatch)
+        self.assertNotIn("停止，不继续加载其他算力结构页或总审页", dispatch)
 
     def test_reference_graph_is_acyclic_and_local(self) -> None:
         link_re = re.compile(r"`(?:references/)?([^`/]+\.md)`")
