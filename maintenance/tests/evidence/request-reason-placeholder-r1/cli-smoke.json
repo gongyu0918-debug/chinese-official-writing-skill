@@ -1,0 +1,26 @@
+[
+  {
+    "input": "因＿＿＿，申请延期。",
+    "exit": 1,
+    "stdout": "[\n  {\n    \"path\": \"<stdin>\",\n    \"line\": 1,\n    \"severity\": \"medium\",\n    \"label\": \"unfinished-reason-placeholder\",\n    \"match\": \"因＿＿＿\",\n    \"excerpt\": \"因＿＿＿，申请延期。 | 原因句仍留有填写空位。依据材料补写缘由，或把原因缺口移到文后提示；用户要求填写模板时保留空位。\"\n  }\n]\n",
+    "stderr": ""
+  },
+  {
+    "input": "〔延期原因〕，申请延期。",
+    "exit": 1,
+    "stdout": "[\n  {\n    \"path\": \"<stdin>\",\n    \"line\": 1,\n    \"severity\": \"medium\",\n    \"label\": \"unfinished-reason-placeholder\",\n    \"match\": \"〔延期原因〕\",\n    \"excerpt\": \"〔延期原因〕，申请延期。 | 原因句仍留有填写空位。依据材料补写缘由，或把原因缺口移到文后提示；用户要求填写模板时保留空位。\"\n  }\n]\n",
+    "stderr": ""
+  },
+  {
+    "input": "延期原因：＿＿＿",
+    "exit": 0,
+    "stdout": "[]\n",
+    "stderr": ""
+  },
+  {
+    "input": "已写明申请事项。\n\n文后提示\n因＿＿＿，请补充此处缘由。",
+    "exit": 0,
+    "stdout": "[]\n",
+    "stderr": ""
+  }
+]

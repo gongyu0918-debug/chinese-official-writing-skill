@@ -225,6 +225,16 @@ NEGATIVE_BOUNDARY_TAIL_CHARS = 70
 DRAFT_BODY_PATTERNS: list[PatternSpec] = [
     (
         "medium",
+        "unfinished-reason-placeholder",
+        r"(?:^|(?<=[。！？；;，,\"“‘]))[ \t]*(?:现)?"
+        r"(?:(?:因|由于|鉴于)[ \t]*[＿_]{3,}|"
+        r"(?:因|由于|鉴于)?[ \t]*(?:〔(?:延期|申请|具体)?(?:原因|事由|理由|缘由)〕|"
+        r"[（(](?:延期|申请|具体)?(?:原因|事由|理由|缘由)待补[）)]))"
+        r"(?=[ \t]*[，,；;])",
+        "原因句仍留有填写空位。交付完整申请时，依据材料补齐缘由；原因仍缺时清理空位，并在文后提示中询问。",
+    ),
+    (
+        "medium",
         "protective-negative-inference",
         r"(?:尚|仍|还|目前)?(?:不能|无法|不足以|不宜)(?:仅凭|单凭|据此|直接据此|由此)?"
         rf"[^。！？\n]{{0,{PROTECTIVE_INFERENCE_BRIDGE_CHARS}}}"
@@ -488,6 +498,32 @@ def quoted_spans_by_line(lines: list[str]) -> list[list[tuple[int, int]]]:
 
 def inside_spans(spans: list[tuple[int, int]], start: int, end: int) -> bool:
     return any(left <= start and end <= right for left, right in spans)
+
+
+def explicitly_attributed_quote(source: ScanSource, line_index: int, start: int, end: int) -> bool:
+    """Only protect the quote opened directly by a source attribution."""
+    span = next((span for span in source.quoted_spans[line_index]
+                 if span[0] <= start and end <= span[1]), None)
+    if span is None:
+        return False
+    left, _right = span
+    origin = line_index
+    # A continued quote has a span beginning at zero; trace that same span
+    # back to its opener rather than inheriting every quote in the paragraph.
+    while origin >= 0:
+        line = source.lines[origin]
+        if left < len(line) and line[left] in {'“', '‘', '"'}:
+            prefix = line[:left]
+            attribution = SOURCE_EXCERPT_PREFIX_PATTERN.match(prefix)
+            return bool(attribution and not prefix[attribution.end():].strip())
+        if left != 0 or origin == 0 or line_index - origin >= QUOTE_LOOKAHEAD_LINES:
+            return False
+        origin -= 1
+        prior = source.quoted_spans[origin]
+        if not prior or prior[-1][1] != len(source.lines[origin]):
+            return False
+        left = prior[-1][0]
+    return False
 
 
 def spans_overlap(first: tuple[int, int], second: tuple[int, int]) -> bool:
@@ -1072,6 +1108,10 @@ def plain_line_findings(
                 continue
             if delivery_mode == "review-only" and inside_spans(
                 source.quoted_spans[line_index], match.start(), match.end()
+            ):
+                continue
+            if label == "unfinished-reason-placeholder" and explicitly_attributed_quote(
+                source, line_index, match.start(), match.end()
             ):
                 continue
             if label == "western-bullet" and is_attachment_number_item(

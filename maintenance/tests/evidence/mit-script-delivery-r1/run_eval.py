@@ -18,6 +18,7 @@ MODELS = ["alibaba-token-plan/qwen3.8-flash", "alibaba-token-plan-2/qwen3.8-flas
 CASES = {
     "chair_reason": "帮综合办公室写一份完整的办公椅采购申请，报单位负责人审批。材料：办公室现有4把办公椅较为破旧，拟购置4把办公椅用于更新，每把420元；供应商和采购日期尚未确定，预算科目材料暂未提供。",
     "request_reason_missing": "帮综合办公室写一份资料核对延期申请，报单位负责人审批。资料核对原定9月20日完成，现拟申请延至9月27日；延期原因还没有提供。",
+    "request_reason_revision": "帮综合办公室审核并改好这份延期申请，报单位负责人审批。有效材料：资料核对原定9月20日完成，现拟申请延至9月27日；延期原因尚未提供。现稿：关于资料核对工作延期的申请。单位负责人：资料核对工作原定9月20日完成，因＿＿＿＿＿＿＿＿，申请将完成时间延至9月27日。妥否，请批示。综合办公室。请给改好稿件。",
     "request_full": "帮综合办公室写一份完整采购申请，报单位负责人审批，正文250至400个非空白字符。材料：本单位设有24个固定工位，现有办公椅24把，其中6把已损坏且无法修复，只有18把能够正常使用；受损座椅对应的6个工位目前临时借用会议室座椅，会议室使用时需要归还。现拟购置办公椅6把，用于替换损坏的6把，参考单价420元，合计请计算。本次不新增工位。报批时供应商和采购日期都还没有确定。预算科目暂未提供。请把购置理由、具体申请事项和金额写清楚。",
     "procurement_announcement": "以下为虚拟写作材料。请拟采购公告：海岚市档案服务中心拟采购扫描仪3台，最高限价合计1.8万元；采用公开询价，报名截止2026年9月25日17时，材料交市档案服务中心综合科，联系人李工，电话020-81234567。公告只发布这些已明确事项，不增加资质、评审标准或履约要求。",
     "explanation": "请帮信息中心写一份给业务部门的情况说明：9月10日10时至10时08分，统一查询接口出现访问延迟，随后恢复；原因正在核查。此稿用于解释这一次访问延迟，向使用部门说明情况。不要新增影响范围、处置过程和预防安排，简短成稿。",
@@ -44,6 +45,7 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--output', required=True)
     parser.add_argument('--baseline-ref', default='main', help='Git baseline; a non-main ref is named baseline in artifacts.')
+    parser.add_argument('--candidate-dir', help='Explicit frozen Skill directory for an attributable subset comparison.')
     parser.add_argument('--models', nargs='+', type=int, default=[0, 1])
     parser.add_argument('--cases', nargs='+', choices=list(CASES), default=list(CASES))
     parser.add_argument('--timeout', type=int, default=240)
@@ -74,11 +76,13 @@ def main():
         target = base/Path(name).relative_to('chinese-official-writing'); target.parent.mkdir(parents=True,exist_ok=True)
         target.write_bytes(subprocess.check_output(['git','show',f'{commit}:{name}'],cwd=ROOT))
     candidate = out/'snapshots/candidate'
-    shutil.copytree(ROOT/'chinese-official-writing',candidate,ignore=shutil.ignore_patterns('__pycache__','*.pyc','hooks'))
+    candidate_source = Path(args.candidate_dir).resolve() if args.candidate_dir else ROOT/'chinese-official-writing'
+    shutil.copytree(candidate_source,candidate,ignore=shutil.ignore_patterns('__pycache__','*.pyc','hooks'))
     snapshots = {baseline_arm:base,'candidate':candidate}
     binding = {'main_commit':commit,'candidate_head':subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip(), 'fingerprints':{arm:fingerprint(path) for arm,path in snapshots.items()},'models':[MODELS[i] for i in args.models], 'cases':{k:CASES[k] for k in args.cases}, 'cli':str(cli),'cli_version':subprocess.check_output([str(cli),'--version'],text=True).strip(),'effort':args.effort,'runtime':str(runtime),'permissions':'inherited-host-config','timeout':args.timeout}
     binding['agent_documents'] = 'inherited' if args.inherit_agent_docs else 'project_doc_max_bytes=0'
     binding['baseline_ref'] = args.baseline_ref
+    binding['candidate_source'] = str(candidate_source)
     binding['baseline_commit'] = commit
     binding['main_commit'] = subprocess.check_output(['git','rev-parse','main'],cwd=ROOT,text=True).strip()
     binding['profile'] = 'temporary-no-user-documents-or-credentials' if args.isolated_profile else 'host-profile'

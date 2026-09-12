@@ -38,6 +38,55 @@ revision_eval = load_module(
 
 
 class ProseLintStructureTests(unittest.TestCase):
+    def test_unfinished_reason_sentence_is_detected_in_both_body_modes(self):
+        texts = (
+            "因＿＿＿＿＿＿＿＿，申请延期至9月27日。",
+            "原定9月20日完成，现因____，申请延期至9月27日。",
+            "由于＿＿＿，现申请延期。",
+            "〔延期原因〕，现申请延期至9月27日。",
+            "原定9月20日完成。鉴于〔申请理由〕，现申请延期。",
+            "申请理由写为“因＿＿＿，现申请延期。”",
+            "原定9月20日完成，因（延期原因待补），现申请延期至9月27日。",
+            "材料原文：“原定9月20日完成。”改稿写为“因＿＿＿，现申请延期。”",
+            "材料原文：“原定9月20日完成。”\n改稿写为“因＿＿＿，现申请延期。”",
+            "材料原文：“原定9月20日完成。”\n  \n改稿写为“因＿＿＿，现申请延期。”",
+        )
+        for text in texts:
+            for mode in ("draft-body", "gap-note-allowed"):
+                with self.subTest(text=text, mode=mode):
+                    findings = prose_lint.scan("<test>", text, delivery_mode=mode)
+                    hits = [f for f in findings if f.label == "unfinished-reason-placeholder"]
+                    self.assertEqual(len(hits), 1)
+                    self.assertEqual(hits[0].severity, "medium")
+
+    def test_reason_probe_preserves_fields_separators_and_real_reasons(self):
+        texts = (
+            "材料原文：“因＿＿＿，现申请延期。”",
+            "延期原因：＿＿＿＿＿＿＿＿", "延期原因：因＿＿＿，申请延期。",
+            "| 延期原因 | ＿＿＿＿ |", "| 原因句 | 因＿＿＿，申请延期。 |",
+            "＿＿＿＿＿＿＿＿\n申请延期。", "---\n申请延期。",
+            "因资料尚未收到，申请延期至9月27日。",
+            "因现有办公椅较为破旧，为满足日常办公需要，现申请购置4把。",
+        )
+        for text in texts:
+            with self.subTest(text=text):
+                findings = prose_lint.scan("<test>", text, include_format=True, delivery_mode="draft-body")
+                self.assertNotIn("unfinished-reason-placeholder", {f.label for f in findings})
+
+    def test_reason_probe_preserves_attributed_quotes_and_postscript(self):
+        texts = (
+            "材料原文：“原定9月20日完成，因＿＿＿，现申请延期。”",
+            "原句如下：“资料核对工作原定9月20日完成。\n因＿＿＿，现申请延期。”",
+            "现申请将资料核对延至9月27日。\n\n文后提示\n因＿＿＿，这处原因空位需补充。",
+        )
+        for text in texts:
+            with self.subTest(text=text):
+                findings = prose_lint.scan("<test>", text, delivery_mode="gap-note-allowed")
+                self.assertNotIn("unfinished-reason-placeholder", {f.label for f in findings})
+        for mode in ("generic", "review-only"):
+            findings = prose_lint.scan("<test>", "因＿＿＿，现申请延期。", delivery_mode=mode)
+            self.assertNotIn("unfinished-reason-placeholder", {f.label for f in findings})
+
     def test_postscript_heading_separates_body_and_notes(self) -> None:
         body = "情况说明\n\n7月8日页面出现6次短时空白，13名用户反映无法登录，异常原因正在调查中。"
         note = "文后提示\n现有材料未说明提交对象。"
