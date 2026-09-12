@@ -13,14 +13,14 @@ class ReportReviewExactDedupTests(unittest.TestCase):
             ROOT
             / "chinese-official-writing"
             / "references"
-            / "genre-checklist-report.md"
+            / "genre-playbook-report.md"
         ).read_text(encoding="utf-8")
 
-        self.assertIn("报告不写审批请求", report)
+        self.assertIn("报告不写请批语或审批请求", report)
         self.assertIn("使用事实性汇报语言", report)
-        self.assertIn("工作报告写进展、做法、问题和下一步安排", report)
-        self.assertIn("专题报告先给结论，再写事实、分析和建议", report)
-        self.assertNotIn("不在报告中请求上级批准", report)
+        self.assertIn("报告事项与范围", report)
+        self.assertIn("进行中、待核、建议和拟议状态保持原级别", report)
+        self.assertNotIn("复核只输出位置", report)
 
 
 if __name__ == "__main__":

@@ -24,7 +24,7 @@
 ### 已验证的专页
 
 - 请示、申请、增项申请：`genre-playbook-request.md`、`genre-playbook-project-application.md`；只审请示或申请用 `genre-checklist-request.md`。
-- 报告、情况说明、工作总结、工作要点：`genre-checklist-report.md`、`genre-playbook-work-summary.md`。
+- 报告、情况报告、情况说明：`genre-playbook-report.md`；文种复核用 `genre-checklist-report.md`。工作总结、工作要点：`genre-playbook-work-summary.md`。
 - 通知：`genre-playbook-notice.md`；公告、公示、通告、公开通报：`genre-playbook-publication.md`。
 - 决定、决议、议案、公报、命令：`genre-playbook-deliberation.md`；部署安排：`genre-playbook-deployment.md`。
 - 批复：`genre-playbook-reply.md`；意见：`genre-playbook-opinion.md`；说明：`genre-playbook-explanation.md`。
@@ -38,6 +38,7 @@
 - 新闻消息、活动报道、编者按：`genre-playbook-news-message.md`。
 - 新闻评论、时评：`genre-playbook-news-commentary.md`。
 - 意见建议、投诉反映、整改方案：先读 `compatibility-scene-routing.md`，再进入对应专页；法定“意见”直接进入意见主叶。
+- 整改进展/整改情况报告：报告主叶 + `transaction-remediation-report.md`；反馈情况报告：报告主叶 + `transaction-feedback-report.md`。两者不改用整改方案或合作性意见建议骨架。
 
 ### 仍需总路由判定的文种
 
@@ -62,7 +63,7 @@
 
 - 旧混合目录和旧多文种主叶已删除；新任务按本页主叶表选唯一主叶，未覆盖文种回到 `genre-routing.md` 和 `genre-checklist.md` 做最小反查。
 - 事务性固定用语和开端/承启/结尾核对：`formulaic-language.md`，仅在需要文种用语时叠加。
-- 外部最新事实、公开政策或用户明确要求搜索：`external-research.md`。
+- 不熟悉的新文种、新材料类型、特殊事务场景，或需要核查通用做法、必备要素、正式格式、常用语及外部最新事实时：`external-research.md`；常规已知文种不自动扩展搜索。
 - 短稿、只有上限、短正文自然度：`short-draft-naturalness.md`。
 - 长文压缩和超限处置：`compression-details.md`。
 - 字段拆行、增删和表单边界：`field-editing.md`。

@@ -60,7 +60,7 @@ GENRE_REFERENCES: dict[str, list[str]] = {
         "references/genre-playbook-minutes.md",
     ],
     "report_playbook": [
-        "references/genre-checklist-report.md",
+        "references/genre-playbook-report.md",
     ],
     "correspondence_playbook": [
         "references/genre-playbook-correspondence.md",
@@ -124,6 +124,12 @@ GENRE_REFERENCES: dict[str, list[str]] = {
     ],
     "explanation_playbook": [
         "references/genre-playbook-explanation.md",
+    ],
+    "remediation_report_overlay": [
+        "references/transaction-remediation-report.md",
+    ],
+    "feedback_report_overlay": [
+        "references/transaction-feedback-report.md",
     ],
     "request_review": [
         "references/genre-checklist-request.md",
@@ -227,6 +233,13 @@ REPORT_PLAYBOOK_GENRES = {
     "报告",
     "情况报告",
     "情况说明",
+    "整改报告",
+    "整改进展报告",
+    "整改情况报告",
+    "整改工作报告",
+    "反馈报告",
+    "反馈情况报告",
+    "意见反馈报告",
 }
 
 ORDINARY_LETTER_PLAYBOOK_GENRES = {
@@ -291,6 +304,19 @@ PROJECT_APPLICATION_GENRES = {"项目申请", "增项申请", "项目增项申�
 REPLY_GENRES = {"批复"}
 OPINION_GENRES = {"意见"}
 EXPLANATION_GENRES = {"说明"}
+REMEDIATION_REPORT_MARKERS = (
+    "整改报告",
+    "整改进展报告",
+    "整改情况报告",
+    "整改工作报告",
+    "专项整改进展",
+)
+FEEDBACK_REPORT_MARKERS = (
+    "反馈报告",
+    "反馈情况报告",
+    "意见反馈报告",
+    "办理反馈报告",
+)
 
 PLAN_CONSTRUCTION_GENRE_MARKER = "方案"
 
@@ -1071,6 +1097,19 @@ def _primary_reference_paths(genres: list[str], tasks: list[str]) -> list[str]:
     return list(dict.fromkeys(paths or GENRE_REFERENCES["unknown_genre"]))
 
 
+def _report_transaction_overlay_paths(genres: list[str], tasks: list[str]) -> list[str]:
+    """Add at most one report transaction overlay when the scene is explicit."""
+    if not any(genre in REPORT_PLAYBOOK_GENRES for genre in genres):
+        return []
+    joined = "\n".join(tasks + genres)
+    paths: list[str] = []
+    if any(marker in joined for marker in REMEDIATION_REPORT_MARKERS):
+        paths.extend(GENRE_REFERENCES["remediation_report_overlay"])
+    if any(marker in joined for marker in FEEDBACK_REPORT_MARKERS):
+        paths.extend(GENRE_REFERENCES["feedback_report_overlay"])
+    return list(dict.fromkeys(paths))
+
+
 def _reference_paths_for_genres(genres: list[str], tasks: list[str] | None = None) -> list[str]:
     tasks = tasks or []
     paths = ["SKILL.md"]
@@ -1113,6 +1152,7 @@ def _reference_paths_for_genres(genres: list[str], tasks: list[str] | None = Non
         # the draft fulfils its own function; review leaves add the action and
         # scope, but do not replace the primary leaf.
         paths.extend(_primary_reference_paths(genres, tasks))
+        paths.extend(_report_transaction_overlay_paths(genres, tasks))
         comprehensive_review = _tasks_require_comprehensive_review(tasks)
         feasibility_review = any(genre in FEASIBILITY_REVIEW_GENRES for genre in genres)
         direct_review = _tasks_name_direct_review_scope(tasks)
@@ -1160,6 +1200,7 @@ def _reference_paths_for_genres(genres: list[str], tasks: list[str] | None = Non
         paths.extend(GENRE_REFERENCES["minutes_playbook"])
     if report_playbook:
         paths.extend(GENRE_REFERENCES["report_playbook"])
+        paths.extend(_report_transaction_overlay_paths(genres, tasks))
     if request_playbook:
         paths.extend(GENRE_REFERENCES["request_playbook"])
     if ordinary_letter_playbook and not ordinary_letter_full_playbook:

@@ -46,6 +46,9 @@ class ReferenceRewriteContractTests(unittest.TestCase):
             "genre-playbook-reply.md",
             "genre-playbook-opinion.md",
             "genre-playbook-explanation.md",
+            "genre-playbook-report.md",
+            "transaction-remediation-report.md",
+            "transaction-feedback-report.md",
         }
         self.assertEqual(set(actual) - set(baseline), generated)
         self.assertTrue(set(actual) - generated <= set(baseline))
@@ -152,7 +155,7 @@ class ReferenceRewriteContractTests(unittest.TestCase):
         ordinary = module._reference_paths_for_genres(["采购公告"], ["核对安全、SLA和验收条款"])
         self.assertNotIn("references/ai-compute-docs.md", ordinary)
         compute = module._reference_paths_for_genres(["报告"], ["起草GPU模型推理服务试用报告，写明并发和验收"])
-        self.assertIn("references/genre-checklist-report.md", compute)
+        self.assertIn("references/genre-playbook-report.md", compute)
         self.assertIn("references/ai-compute-docs.md", compute)
 
     def test_formulaic_reference_is_a_capability_page(self) -> None:

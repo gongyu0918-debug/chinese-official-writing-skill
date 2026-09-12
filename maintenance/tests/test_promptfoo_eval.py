@@ -28,7 +28,7 @@ provider = load_module(
 class PromptfooProviderTests(unittest.TestCase):
     def test_primary_genres_select_one_dedicated_leaf(self) -> None:
         expected = {
-            "报告": "references/genre-checklist-report.md",
+            "报告": "references/genre-playbook-report.md",
             "请示": "references/genre-playbook-request.md",
             "通知": "references/genre-playbook-notice.md",
             "函": "references/genre-playbook-correspondence.md",
@@ -103,7 +103,7 @@ class PromptfooProviderTests(unittest.TestCase):
         refs = provider._reference_paths_for_genres(
             ["报告"], ["请起草一份 AI 模型服务报告，只输出正文。"]
         )
-        self.assertIn("references/genre-checklist-report.md", refs)
+        self.assertIn("references/genre-playbook-report.md", refs)
         self.assertIn("references/ai-compute-docs.md", refs)
         self.assertNotIn("references/genre-playbooks.md", refs)
 
@@ -150,7 +150,7 @@ class PromptfooProviderTests(unittest.TestCase):
                 "references/information-selection.md",
                 "references/task-route-cards.md",
                 "references/short-draft-naturalness.md",
-                "references/genre-checklist-report.md",
+                "references/genre-playbook-report.md",
             ],
         )
         minutes = provider._reference_paths_for_genres(
@@ -215,6 +215,19 @@ class PromptfooProviderTests(unittest.TestCase):
         self.assertEqual(meeting_notice, ["SKILL.md", "references/genre-playbook-notice.md"])
         self.assertIn("references/genre-playbook-request.md", procurement_application)
         self.assertNotIn("references/compatibility-scene-routing.md", procurement_application)
+
+    def test_report_transaction_overlays_keep_report_as_primary(self) -> None:
+        remediation = provider._reference_paths_for_genres(
+            ["报告"], ["起草整改进展报告，只输出正文。"]
+        )
+        feedback = provider._reference_paths_for_genres(
+            ["反馈报告"], ["起草反馈情况报告，只输出正文。"]
+        )
+        self.assertEqual(remediation[1], "references/genre-playbook-report.md")
+        self.assertIn("references/transaction-remediation-report.md", remediation)
+        self.assertEqual(feedback[1], "references/genre-playbook-report.md")
+        self.assertIn("references/transaction-feedback-report.md", feedback)
+        self.assertNotIn("references/genre-playbook-remediation-plan.md", remediation)
 
     def test_external_research_is_explicit(self) -> None:
         ordinary = provider._reference_paths_for_genres(

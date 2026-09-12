@@ -1,6 +1,6 @@
 # Reference 重写覆盖台账（2026-09-12）
 
-本台账只记录文件级覆盖，不把“文件已改”当作“功能已证明等价”。基线是 `main@1ce71123`，候选架构基线为 `ab9bdd1d`。main 有 50 个 reference，候选保留 49 个并删除 1 个已被替代的混合目录；当前候选字节数和语义覆盖仍需以逐页映射及组合实写闭合，不能由字符变化直接推定等价。完整逐页归属见 `maintenance/docs/reference-rewrite-page-map-20260912.md`。
+本台账只记录文件级覆盖，不把“文件已改”当作“功能已证明等价”。基线是 `main@1ce71123`，候选当前提交以分支 HEAD 为准。main 有 50 个 reference；候选删除 3 个历史混合页并新增 11 个独立主叶，当前共有 57 个 reference。字符变化不能直接证明语义等价，必须以逐页映射、组合路由和真实写稿闭合。完整逐页归属见 `maintenance/docs/reference-rewrite-page-map-20260912.md`。
 
 ## 已重写但仍需语义/实写验收
 
@@ -11,6 +11,7 @@
 | `genre-routing.md` | 同名页 | 文种、行文关系、混合材料判定 | 静态通过；跨文种待实写 |
 | `task-route-cards.md` | 同名页 | 稀疏材料、短通知、局部修改短路 | 静态通过；旧边界测试待迁移 |
 | `genre-checklist.md` | 同名页 | 未覆盖文种功能反查 | 结构已收束；覆盖缺口待盘点 |
+| `genre-playbook-report.md` | 新增独立主叶 | 报告、情况报告和情况说明骨架 | 与报告复核页分离；组合实写待验 |
 | `genre-playbooks.md` | 已删除 | 旧混合目录跳转 | 功能由专页、`genre-routing.md` 和 `genre-checklist.md` 替代，需验证无旧路由残留 |
 | `workflow.md` | 同名页 | 起草、改稿、压缩、复核、交付、停止 | 已重写；真实组合待验 |
 | `information-selection.md` | 同名页 | 事实、分析、状态、缺项、二次修改 | 已重写；事实保真待验 |
@@ -28,7 +29,7 @@
 
 ## 轻改或保留语义的新文种页
 
-以下页面本轮没有整体重写，只做了边界性修改或保留已有实证语义：`genre-playbook-deliberation-deployment.md`、`genre-playbook-minutes.md`、`genre-playbook-notice-publication.md`、`genre-playbook-procurement-review.md`、`genre-playbook-request.md`。它们仍需与新入口逐一做组合写稿，不得因文件未大改就视为自动通过。
+以下页面保留既有稳定语义或只做边界性修改：`genre-playbook-minutes.md`、`genre-playbook-procurement-review.md`、`genre-playbook-request.md`。它们仍需与新入口逐一做组合写稿，不得因文件未大改就视为自动通过。历史混合页 `genre-playbook-deliberation-deployment.md`、`genre-playbook-notice-publication.md`、`genre-playbook-research-feasibility.md` 已删除并由独立主叶替代。
 
 ## 当前保留、尚未纳入本批语义重写的页面
 

@@ -71,6 +71,9 @@
 | `genre-playbook-reply.md` | 批复独立主文种 |
 | `genre-playbook-opinion.md` | 意见独立主文种 |
 | `genre-playbook-explanation.md` | 说明独立主文种 |
+| `genre-playbook-report.md` | 报告、情况报告和情况说明独立主文种 |
+| `transaction-remediation-report.md` | 整改进展/整改情况报告事务附加页 |
+| `transaction-feedback-report.md` | 反馈情况报告事务附加页 |
 
 ## 台账使用规则
 

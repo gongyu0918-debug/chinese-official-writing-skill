@@ -46,7 +46,7 @@ class ReportGenericBlockReliefTests(unittest.TestCase):
             ["通知"], ["起草一份会议通知，只输出正文。"]
         )
 
-        self.assertIn("references/genre-checklist-report.md", report)
+        self.assertIn("references/genre-playbook-report.md", report)
         self.assertNotIn("references/genre-playbooks.md", report)
         self.assertEqual(
             unknown[1:3],
@@ -56,10 +56,10 @@ class ReportGenericBlockReliefTests(unittest.TestCase):
         self.assertNotIn("references/genre-checklist-report.md", notice)
 
     def test_report_leaf_keeps_fact_and_status_boundaries(self) -> None:
-        text = (ROOT / "chinese-official-writing/references/genre-checklist-report.md").read_text(
+        text = (ROOT / "chinese-official-writing/references/genre-playbook-report.md").read_text(
             encoding="utf-8"
         )
-        for phrase in ["报告事项和范围", "报告不写审批请求", "材料只给“建议尝试"]:
+        for phrase in ["报告事项与范围", "报告不写请批语或审批请求", "使用报告、体验报告"]:
             self.assertIn(phrase, text)
 
 

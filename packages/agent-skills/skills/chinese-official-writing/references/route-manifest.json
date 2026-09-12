@@ -418,7 +418,9 @@
       "path": "references/genre-checklist-feasibility-review.md",
       "kind": "review",
       "purpose": "负责 genre-checklist-feasibility-review 的唯一职责",
-      "triggers": [],
+      "triggers": [
+        "可研报告"
+      ],
       "allowed_reads": [
         "SKILL.md",
         "references/genre-checklist-feasibility-review.md",
@@ -456,8 +458,20 @@
       "id": "genre_checklist_report",
       "path": "references/genre-checklist-report.md",
       "kind": "review",
-      "purpose": "负责 genre-checklist-report 的唯一职责",
-      "triggers": [],
+      "purpose": "报告、情况报告和情况说明的文种复核",
+      "triggers": [
+        "反馈情况报告",
+        "反馈报告",
+        "工作报告",
+        "情况报告",
+        "情况说明",
+        "意见反馈报告",
+        "报告",
+        "整改工作报告",
+        "整改情况报告",
+        "整改报告",
+        "整改进展报告"
+      ],
       "allowed_reads": [
         "SKILL.md",
         "references/genre-checklist-report.md",
@@ -496,7 +510,10 @@
       "path": "references/genre-checklist-request.md",
       "kind": "review",
       "purpose": "负责 genre-checklist-request 的唯一职责",
-      "triggers": [],
+      "triggers": [
+        "申请",
+        "请示"
+      ],
       "allowed_reads": [
         "SKILL.md",
         "references/genre-checklist-request.md",
@@ -552,9 +569,10 @@
       "kind": "genre",
       "purpose": "负责 genre-playbook-advisory-feedback 的唯一职责",
       "triggers": [
-        "意见建议",
+        "优化建议",
+        "合作性意见建议",
         "建议反馈",
-        "优化建议"
+        "意见建议"
       ],
       "allowed_reads": [
         "SKILL.md",
@@ -593,9 +611,9 @@
       "kind": "genre",
       "purpose": "负责 genre-playbook-complaint-reflection 的唯一职责",
       "triggers": [
+        "情况反映",
         "投诉",
-        "问题反映",
-        "情况反映"
+        "问题反映"
       ],
       "allowed_reads": [
         "SKILL.md",
@@ -675,11 +693,11 @@
       "kind": "genre",
       "purpose": "负责 genre-playbook-deliberation 的唯一职责",
       "triggers": [
+        "公报",
         "决定",
         "决议",
-        "议案",
-        "公报",
-        "命令"
+        "命令",
+        "议案"
       ],
       "allowed_reads": [
         "SKILL.md",
@@ -799,10 +817,10 @@
       "purpose": "负责 genre-playbook-institution-rules 的唯一职责",
       "triggers": [
         "制度",
-        "规定",
         "办法",
+        "操作规程",
         "细则",
-        "操作规程"
+        "规定"
       ],
       "allowed_reads": [
         "SKILL.md",
@@ -921,10 +939,11 @@
       "kind": "genre",
       "purpose": "负责 genre-playbook-news-message 的唯一职责",
       "triggers": [
+        "快讯",
         "新闻消息",
-        "活动报道",
         "新闻稿",
-        "快讯"
+        "新闻通稿",
+        "活动报道"
       ],
       "allowed_reads": [
         "SKILL.md",
@@ -1002,9 +1021,9 @@
       "kind": "genre",
       "purpose": "负责 genre-playbook-plan-construction 的唯一职责",
       "triggers": [
-        "方案",
         "实施方案",
-        "建设方案"
+        "建设方案",
+        "方案"
       ],
       "allowed_reads": [
         "SKILL.md",
@@ -1082,8 +1101,8 @@
       "kind": "genre",
       "purpose": "负责 genre-playbook-procurement-review 的唯一职责",
       "triggers": [
-        "采购审查",
         "评审材料",
+        "采购审查",
         "采购方案"
       ],
       "allowed_reads": [
@@ -1123,8 +1142,9 @@
       "kind": "genre",
       "purpose": "负责 genre-playbook-project-application 的唯一职责",
       "triggers": [
-        "项目申请",
-        "增项申请"
+        "增项申请",
+        "项目增项申请",
+        "项目申请"
       ],
       "allowed_reads": [
         "SKILL.md",
@@ -1164,9 +1184,9 @@
       "purpose": "负责 genre-playbook-publication 的唯一职责",
       "triggers": [
         "公告",
+        "公开通报",
         "公示",
-        "通告",
-        "公开通报"
+        "通告"
       ],
       "allowed_reads": [
         "SKILL.md",
@@ -1205,8 +1225,9 @@
       "kind": "genre",
       "purpose": "负责 genre-playbook-remediation-plan 的唯一职责",
       "triggers": [
-        "整改方案",
-        "专项整改方案"
+        "专项整改方案",
+        "整改工作方案",
+        "整改方案"
       ],
       "allowed_reads": [
         "SKILL.md",
@@ -1245,8 +1266,8 @@
       "kind": "genre",
       "purpose": "负责 genre-playbook-request 的唯一职责",
       "triggers": [
-        "请示",
-        "申请"
+        "申请",
+        "请示"
       ],
       "allowed_reads": [
         "SKILL.md",
@@ -1285,8 +1306,8 @@
       "kind": "genre",
       "purpose": "负责 genre-playbook-research 的唯一职责",
       "triggers": [
-        "调研报告",
-        "研究报告"
+        "研究报告",
+        "调研报告"
       ],
       "allowed_reads": [
         "SKILL.md",
@@ -1325,9 +1346,9 @@
       "kind": "genre",
       "purpose": "负责 genre-playbook-speech-address 的唯一职责",
       "triggers": [
-        "讲话稿",
+        "演讲",
         "致辞",
-        "演讲"
+        "讲话稿"
       ],
       "allowed_reads": [
         "SKILL.md",
@@ -1366,9 +1387,10 @@
       "kind": "genre",
       "purpose": "负责 genre-playbook-work-summary 的唯一职责",
       "triggers": [
+        "周报",
         "工作总结",
         "工作要点",
-        "周报"
+        "月报"
       ],
       "allowed_reads": [
         "SKILL.md",
@@ -1461,7 +1483,82 @@
       "path": "references/information-selection.md",
       "kind": "workflow",
       "purpose": "负责 information-selection 的唯一职责",
-      "triggers": [],
+      "triggers": [
+        "专项整改方案",
+        "优化建议",
+        "会议纪要",
+        "公告",
+        "公报",
+        "公示",
+        "决定",
+        "决议",
+        "函",
+        "制度",
+        "办法",
+        "反馈情况报告",
+        "反馈报告",
+        "可研报告",
+        "合作性意见建议",
+        "周报",
+        "命令",
+        "增项申请",
+        "复函",
+        "实施方案",
+        "工作总结",
+        "工作报告",
+        "工作要点",
+        "建议反馈",
+        "建设方案",
+        "征求意见函",
+        "快讯",
+        "情况反映",
+        "情况报告",
+        "情况说明",
+        "意见",
+        "意见反馈报告",
+        "意见建议",
+        "批复",
+        "投诉",
+        "报告",
+        "操作规程",
+        "整改工作报告",
+        "整改工作方案",
+        "整改情况报告",
+        "整改报告",
+        "整改方案",
+        "整改进展报告",
+        "新闻消息",
+        "新闻稿",
+        "新闻评论",
+        "新闻通稿",
+        "方案",
+        "时评",
+        "月报",
+        "活动报道",
+        "演讲",
+        "申请",
+        "研究报告",
+        "细则",
+        "致辞",
+        "规定",
+        "议案",
+        "讲话稿",
+        "评审材料",
+        "评论员文章",
+        "说明",
+        "请示",
+        "调研报告",
+        "通告",
+        "通知",
+        "部署",
+        "部署安排",
+        "采购公告",
+        "采购审查",
+        "采购方案",
+        "问题反映",
+        "项目增项申请",
+        "项目申请"
+      ],
       "allowed_reads": [
         "SKILL.md",
         "references/information-selection.md"
@@ -1537,7 +1634,68 @@
       "path": "references/proofreading-checklist.md",
       "kind": "review",
       "purpose": "负责 proofreading-checklist 的唯一职责",
-      "triggers": [],
+      "triggers": [
+        "专项整改方案",
+        "优化建议",
+        "会议纪要",
+        "公告",
+        "公报",
+        "公示",
+        "决定",
+        "决议",
+        "函",
+        "制度",
+        "办法",
+        "合作性意见建议",
+        "周报",
+        "命令",
+        "增项申请",
+        "复函",
+        "实施方案",
+        "工作总结",
+        "工作要点",
+        "建议反馈",
+        "建设方案",
+        "征求意见函",
+        "快讯",
+        "情况反映",
+        "意见",
+        "意见建议",
+        "批复",
+        "投诉",
+        "操作规程",
+        "整改工作方案",
+        "整改方案",
+        "新闻消息",
+        "新闻稿",
+        "新闻评论",
+        "新闻通稿",
+        "方案",
+        "时评",
+        "月报",
+        "活动报道",
+        "演讲",
+        "研究报告",
+        "细则",
+        "致辞",
+        "规定",
+        "议案",
+        "讲话稿",
+        "评审材料",
+        "评论员文章",
+        "说明",
+        "调研报告",
+        "通告",
+        "通知",
+        "部署",
+        "部署安排",
+        "采购公告",
+        "采购审查",
+        "采购方案",
+        "问题反映",
+        "项目增项申请",
+        "项目申请"
+      ],
       "allowed_reads": [
         "SKILL.md",
         "references/proofreading-checklist.md"
@@ -2008,9 +2166,168 @@
       "legacy_coverage": [
         "genre-checklist.md"
       ]
+    },
+    {
+      "id": "genre_playbook_report",
+      "path": "references/genre-playbook-report.md",
+      "kind": "genre",
+      "purpose": "报告与情况报告正文骨架和状态边界",
+      "triggers": [
+        "反馈情况报告",
+        "反馈报告",
+        "工作报告",
+        "情况报告",
+        "情况说明",
+        "意见反馈报告",
+        "报告",
+        "整改工作报告",
+        "整改情况报告",
+        "整改报告",
+        "整改进展报告"
+      ],
+      "allowed_reads": [
+        "SKILL.md",
+        "references/genre-playbook-report.md",
+        "references/information-selection.md"
+      ],
+      "forbidden_reads": [
+        "references/genre-checklist-report.md",
+        "references/genre-playbook-advisory-feedback.md",
+        "references/genre-playbook-complaint-reflection.md",
+        "references/genre-playbook-correspondence.md",
+        "references/genre-playbook-deliberation.md",
+        "references/genre-playbook-deployment.md",
+        "references/genre-playbook-feasibility.md",
+        "references/genre-playbook-institution-rules.md",
+        "references/genre-playbook-minutes.md",
+        "references/genre-playbook-news-commentary.md",
+        "references/genre-playbook-news-message.md",
+        "references/genre-playbook-notice.md",
+        "references/genre-playbook-plan-construction.md",
+        "references/genre-playbook-procurement-announcement.md",
+        "references/genre-playbook-procurement-review.md",
+        "references/genre-playbook-project-application.md",
+        "references/genre-playbook-publication.md",
+        "references/genre-playbook-remediation-plan.md",
+        "references/genre-playbook-request.md",
+        "references/genre-playbook-research.md",
+        "references/genre-playbook-speech-address.md",
+        "references/genre-playbook-work-summary.md"
+      ],
+      "stop_when": "完成本页职责后停止读取本页。",
+      "legacy_coverage": [
+        "genre-checklist-report.md"
+      ]
+    },
+    {
+      "id": "transaction_remediation_report",
+      "path": "references/transaction-remediation-report.md",
+      "kind": "overlay",
+      "purpose": "整改报告事务附加页",
+      "triggers": [
+        "整改工作报告",
+        "整改情况报告",
+        "整改报告",
+        "整改进展报告"
+      ],
+      "allowed_reads": [
+        "SKILL.md",
+        "references/transaction-remediation-report.md",
+        "references/information-selection.md",
+        "references/genre-playbook-report.md"
+      ],
+      "forbidden_reads": [
+        "references/genre-playbook-advisory-feedback.md",
+        "references/genre-playbook-complaint-reflection.md",
+        "references/genre-playbook-correspondence.md",
+        "references/genre-playbook-deliberation.md",
+        "references/genre-playbook-deployment.md",
+        "references/genre-playbook-feasibility.md",
+        "references/genre-playbook-institution-rules.md",
+        "references/genre-playbook-minutes.md",
+        "references/genre-playbook-news-commentary.md",
+        "references/genre-playbook-news-message.md",
+        "references/genre-playbook-notice.md",
+        "references/genre-playbook-plan-construction.md",
+        "references/genre-playbook-procurement-announcement.md",
+        "references/genre-playbook-procurement-review.md",
+        "references/genre-playbook-project-application.md",
+        "references/genre-playbook-publication.md",
+        "references/genre-playbook-remediation-plan.md",
+        "references/genre-playbook-request.md",
+        "references/genre-playbook-research.md",
+        "references/genre-playbook-speech-address.md",
+        "references/genre-playbook-work-summary.md"
+      ],
+      "stop_when": "完成事务附加页职责后回到报告主叶并停止。",
+      "legacy_coverage": [
+        "genre-playbook-remediation-plan.md"
+      ]
+    },
+    {
+      "id": "transaction_feedback_report",
+      "path": "references/transaction-feedback-report.md",
+      "kind": "overlay",
+      "purpose": "反馈报告事务附加页",
+      "triggers": [
+        "反馈情况报告",
+        "反馈报告",
+        "意见反馈报告"
+      ],
+      "allowed_reads": [
+        "SKILL.md",
+        "references/transaction-feedback-report.md",
+        "references/information-selection.md",
+        "references/genre-playbook-report.md"
+      ],
+      "forbidden_reads": [
+        "references/genre-playbook-advisory-feedback.md",
+        "references/genre-playbook-complaint-reflection.md",
+        "references/genre-playbook-correspondence.md",
+        "references/genre-playbook-deliberation.md",
+        "references/genre-playbook-deployment.md",
+        "references/genre-playbook-feasibility.md",
+        "references/genre-playbook-institution-rules.md",
+        "references/genre-playbook-minutes.md",
+        "references/genre-playbook-news-commentary.md",
+        "references/genre-playbook-news-message.md",
+        "references/genre-playbook-notice.md",
+        "references/genre-playbook-plan-construction.md",
+        "references/genre-playbook-procurement-announcement.md",
+        "references/genre-playbook-procurement-review.md",
+        "references/genre-playbook-project-application.md",
+        "references/genre-playbook-publication.md",
+        "references/genre-playbook-remediation-plan.md",
+        "references/genre-playbook-request.md",
+        "references/genre-playbook-research.md",
+        "references/genre-playbook-speech-address.md",
+        "references/genre-playbook-work-summary.md"
+      ],
+      "stop_when": "完成事务附加页职责后回到报告主叶并停止。",
+      "legacy_coverage": [
+        "genre-playbook-advisory-feedback.md"
+      ]
     }
   ],
   "routes": [
+    {
+      "id": "report",
+      "triggers": [
+        "报告",
+        "情况报告",
+        "工作报告",
+        "情况说明"
+      ],
+      "primary": [
+        "references/genre-playbook-report.md"
+      ],
+      "overlays": [
+        "references/information-selection.md"
+      ],
+      "review": [
+        "references/genre-checklist-report.md"
+      ]
+    },
     {
       "id": "notice",
       "triggers": [
@@ -2201,6 +2518,250 @@
       ],
       "review": [
         "references/proofreading-checklist.md"
+      ]
+    },
+    {
+      "id": "request",
+      "triggers": [
+        "请示",
+        "申请"
+      ],
+      "primary": [
+        "references/genre-playbook-request.md"
+      ],
+      "overlays": [
+        "references/information-selection.md"
+      ],
+      "review": [
+        "references/genre-checklist-request.md"
+      ]
+    },
+    {
+      "id": "correspondence",
+      "triggers": [
+        "函",
+        "复函",
+        "征求意见函"
+      ],
+      "primary": [
+        "references/genre-playbook-correspondence.md"
+      ],
+      "overlays": [
+        "references/information-selection.md"
+      ],
+      "review": [
+        "references/proofreading-checklist.md"
+      ]
+    },
+    {
+      "id": "minutes",
+      "triggers": [
+        "会议纪要"
+      ],
+      "primary": [
+        "references/genre-playbook-minutes.md"
+      ],
+      "overlays": [
+        "references/information-selection.md"
+      ],
+      "review": [
+        "references/proofreading-checklist.md"
+      ]
+    },
+    {
+      "id": "work_summary",
+      "triggers": [
+        "工作总结",
+        "工作要点",
+        "周报",
+        "月报"
+      ],
+      "primary": [
+        "references/genre-playbook-work-summary.md"
+      ],
+      "overlays": [
+        "references/information-selection.md"
+      ],
+      "review": [
+        "references/proofreading-checklist.md"
+      ]
+    },
+    {
+      "id": "plan",
+      "triggers": [
+        "方案",
+        "实施方案",
+        "建设方案"
+      ],
+      "primary": [
+        "references/genre-playbook-plan-construction.md"
+      ],
+      "overlays": [
+        "references/information-selection.md"
+      ],
+      "review": [
+        "references/proofreading-checklist.md"
+      ]
+    },
+    {
+      "id": "institution",
+      "triggers": [
+        "制度",
+        "规定",
+        "办法",
+        "细则",
+        "操作规程"
+      ],
+      "primary": [
+        "references/genre-playbook-institution-rules.md"
+      ],
+      "overlays": [
+        "references/information-selection.md"
+      ],
+      "review": [
+        "references/proofreading-checklist.md"
+      ]
+    },
+    {
+      "id": "news_message",
+      "triggers": [
+        "新闻稿",
+        "新闻消息",
+        "快讯",
+        "活动报道",
+        "新闻通稿"
+      ],
+      "primary": [
+        "references/genre-playbook-news-message.md"
+      ],
+      "overlays": [
+        "references/information-selection.md"
+      ],
+      "review": [
+        "references/proofreading-checklist.md"
+      ]
+    },
+    {
+      "id": "news_commentary",
+      "triggers": [
+        "新闻评论",
+        "时评",
+        "评论员文章"
+      ],
+      "primary": [
+        "references/genre-playbook-news-commentary.md"
+      ],
+      "overlays": [
+        "references/information-selection.md"
+      ],
+      "review": [
+        "references/proofreading-checklist.md"
+      ]
+    },
+    {
+      "id": "advisory",
+      "triggers": [
+        "意见建议",
+        "建议反馈",
+        "优化建议",
+        "合作性意见建议"
+      ],
+      "primary": [
+        "references/genre-playbook-advisory-feedback.md"
+      ],
+      "overlays": [
+        "references/information-selection.md"
+      ],
+      "review": [
+        "references/proofreading-checklist.md"
+      ]
+    },
+    {
+      "id": "complaint",
+      "triggers": [
+        "投诉",
+        "问题反映",
+        "情况反映"
+      ],
+      "primary": [
+        "references/genre-playbook-complaint-reflection.md"
+      ],
+      "overlays": [
+        "references/information-selection.md"
+      ],
+      "review": [
+        "references/proofreading-checklist.md"
+      ]
+    },
+    {
+      "id": "remediation",
+      "triggers": [
+        "整改方案",
+        "专项整改方案",
+        "整改工作方案"
+      ],
+      "primary": [
+        "references/genre-playbook-remediation-plan.md"
+      ],
+      "overlays": [
+        "references/information-selection.md"
+      ],
+      "review": [
+        "references/proofreading-checklist.md"
+      ]
+    },
+    {
+      "id": "project_application",
+      "triggers": [
+        "项目申请",
+        "增项申请",
+        "项目增项申请"
+      ],
+      "primary": [
+        "references/genre-playbook-project-application.md"
+      ],
+      "overlays": [
+        "references/information-selection.md"
+      ],
+      "review": [
+        "references/proofreading-checklist.md"
+      ]
+    },
+    {
+      "id": "remediation_report",
+      "triggers": [
+        "整改报告",
+        "整改进展报告",
+        "整改情况报告",
+        "整改工作报告"
+      ],
+      "primary": [
+        "references/genre-playbook-report.md"
+      ],
+      "overlays": [
+        "references/information-selection.md",
+        "references/transaction-remediation-report.md"
+      ],
+      "review": [
+        "references/genre-checklist-report.md"
+      ]
+    },
+    {
+      "id": "feedback_report",
+      "triggers": [
+        "反馈报告",
+        "反馈情况报告",
+        "意见反馈报告"
+      ],
+      "primary": [
+        "references/genre-playbook-report.md"
+      ],
+      "overlays": [
+        "references/information-selection.md",
+        "references/transaction-feedback-report.md"
+      ],
+      "review": [
+        "references/genre-checklist-report.md"
       ]
     }
   ]
