@@ -96,7 +96,8 @@ def remove_unavailable_hook_route(target: Path) -> None:
     text = skill_path.read_text(encoding="utf-8")
     if text.count(HOOK_ROUTE_PARAGRAPH) != 1:
         raise RuntimeError(f"unexpected Hook route paragraph: {skill_path}")
-    if text.count(HOOK_README_POINTER) != 1:
+    hook_pointer_count = text.count(HOOK_README_POINTER)
+    if hook_pointer_count not in {0, 1}:
         raise RuntimeError(f"unexpected Hook README pointer: {skill_path}")
     text = text.replace(HOOK_ROUTE_PARAGRAPH, "")
     skill_path.write_text(text.replace(HOOK_README_POINTER, ""), encoding="utf-8")
