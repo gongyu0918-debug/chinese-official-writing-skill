@@ -11,7 +11,10 @@
       "allowed_reads": [
         "SKILL.md",
         "references/ai-compute-docs.md",
-        "references/technical-terms.md"
+        "references/technical-terms.md",
+        "references/ai-compute-examples.md",
+        "references/genre-checklist-feasibility-review.md",
+        "references/genre-routing.md"
       ],
       "forbidden_reads": [
         "references/genre-playbook-advisory-feedback.md",
@@ -87,7 +90,8 @@
       "triggers": [],
       "allowed_reads": [
         "SKILL.md",
-        "references/anti-ai-patterns.md"
+        "references/anti-ai-patterns.md",
+        "references/ai-compute-docs.md"
       ],
       "forbidden_reads": [
         "references/genre-playbook-advisory-feedback.md",
@@ -126,7 +130,8 @@
       "allowed_reads": [
         "SKILL.md",
         "references/argument-chains.md",
-        "references/information-selection.md"
+        "references/information-selection.md",
+        "references/speech-person-order.md"
       ],
       "forbidden_reads": [
         "references/genre-playbook-advisory-feedback.md",
@@ -164,7 +169,21 @@
       "triggers": [],
       "allowed_reads": [
         "SKILL.md",
-        "references/compatibility-scene-routing.md"
+        "references/compatibility-scene-routing.md",
+        "references/anti-ai-patterns.md",
+        "references/argument-chains.md",
+        "references/final-review-layers.md",
+        "references/format-gbt9704.md",
+        "references/formulaic-language.md",
+        "references/genre-playbook-advisory-feedback.md",
+        "references/genre-playbook-complaint-reflection.md",
+        "references/genre-playbook-news-commentary.md",
+        "references/genre-playbook-news-message.md",
+        "references/genre-playbook-remediation-plan.md",
+        "references/official-style.md",
+        "references/proofreading-checklist.md",
+        "references/review-checklist.md",
+        "references/short-draft-naturalness.md"
       ],
       "forbidden_reads": [],
       "stop_when": "完成本页职责后停止读取本页。",
@@ -219,7 +238,8 @@
       "triggers": [],
       "allowed_reads": [
         "SKILL.md",
-        "references/delivery-review-gate.md"
+        "references/delivery-review-gate.md",
+        "references/information-selection.md"
       ],
       "forbidden_reads": [],
       "stop_when": "完成本页职责后停止读取本页。",
@@ -291,7 +311,10 @@
       "allowed_reads": [
         "SKILL.md",
         "references/final-review-layers.md",
-        "references/proofreading-checklist.md"
+        "references/proofreading-checklist.md",
+        "references/anti-ai-patterns.md",
+        "references/delivery-review-gate.md",
+        "references/structure-editing.md"
       ],
       "forbidden_reads": [
         "references/genre-playbook-advisory-feedback.md",
@@ -329,7 +352,8 @@
       "triggers": [],
       "allowed_reads": [
         "SKILL.md",
-        "references/formal-addressing.md"
+        "references/formal-addressing.md",
+        "references/speech-person-order.md"
       ],
       "forbidden_reads": [
         "references/genre-playbook-advisory-feedback.md",
@@ -383,7 +407,8 @@
       "triggers": [],
       "allowed_reads": [
         "SKILL.md",
-        "references/formulaic-language.md"
+        "references/formulaic-language.md",
+        "references/speech-person-order.md"
       ],
       "forbidden_reads": [
         "references/genre-playbook-advisory-feedback.md",
@@ -475,7 +500,8 @@
       "allowed_reads": [
         "SKILL.md",
         "references/genre-checklist-report.md",
-        "references/proofreading-checklist.md"
+        "references/proofreading-checklist.md",
+        "references/genre-playbook-report.md"
       ],
       "forbidden_reads": [
         "references/genre-playbook-advisory-feedback.md",
@@ -517,7 +543,8 @@
       "allowed_reads": [
         "SKILL.md",
         "references/genre-checklist-request.md",
-        "references/proofreading-checklist.md"
+        "references/proofreading-checklist.md",
+        "references/genre-playbook-request.md"
       ],
       "forbidden_reads": [
         "references/genre-playbook-advisory-feedback.md",
@@ -537,7 +564,6 @@
         "references/genre-playbook-project-application.md",
         "references/genre-playbook-publication.md",
         "references/genre-playbook-remediation-plan.md",
-        "references/genre-playbook-request.md",
         "references/genre-playbook-research.md",
         "references/genre-playbook-speech-address.md",
         "references/genre-playbook-work-summary.md"
@@ -555,7 +581,8 @@
       "triggers": [],
       "allowed_reads": [
         "SKILL.md",
-        "references/genre-checklist.md"
+        "references/genre-checklist.md",
+        "references/information-selection.md"
       ],
       "forbidden_reads": [],
       "stop_when": "完成本页职责后停止读取本页。",
@@ -658,7 +685,8 @@
       ],
       "allowed_reads": [
         "SKILL.md",
-        "references/genre-playbook-correspondence.md"
+        "references/genre-playbook-correspondence.md",
+        "references/information-selection.md"
       ],
       "forbidden_reads": [
         "references/genre-playbook-advisory-feedback.md",
@@ -781,7 +809,8 @@
       ],
       "allowed_reads": [
         "SKILL.md",
-        "references/genre-playbook-feasibility.md"
+        "references/genre-playbook-feasibility.md",
+        "references/ai-compute-docs.md"
       ],
       "forbidden_reads": [
         "references/genre-playbook-advisory-feedback.md",
@@ -824,7 +853,9 @@
       ],
       "allowed_reads": [
         "SKILL.md",
-        "references/genre-playbook-institution-rules.md"
+        "references/genre-playbook-institution-rules.md",
+        "references/anti-ai-patterns.md",
+        "references/format-gbt9704.md"
       ],
       "forbidden_reads": [
         "references/genre-playbook-advisory-feedback.md",
@@ -863,7 +894,9 @@
       ],
       "allowed_reads": [
         "SKILL.md",
-        "references/genre-playbook-minutes.md"
+        "references/genre-playbook-minutes.md",
+        "references/information-selection.md",
+        "references/review-checklist.md"
       ],
       "forbidden_reads": [
         "references/genre-playbook-advisory-feedback.md",
@@ -1027,7 +1060,8 @@
       ],
       "allowed_reads": [
         "SKILL.md",
-        "references/genre-playbook-plan-construction.md"
+        "references/genre-playbook-plan-construction.md",
+        "references/information-selection.md"
       ],
       "forbidden_reads": [
         "references/genre-playbook-advisory-feedback.md",
@@ -1066,7 +1100,8 @@
       ],
       "allowed_reads": [
         "SKILL.md",
-        "references/genre-playbook-procurement-announcement.md"
+        "references/genre-playbook-procurement-announcement.md",
+        "references/ai-compute-docs.md"
       ],
       "forbidden_reads": [
         "references/genre-playbook-advisory-feedback.md",
@@ -1107,7 +1142,10 @@
       ],
       "allowed_reads": [
         "SKILL.md",
-        "references/genre-playbook-procurement-review.md"
+        "references/genre-playbook-procurement-review.md",
+        "references/genre-playbook-procurement-announcement.md",
+        "references/handling-elements.md",
+        "references/information-selection.md"
       ],
       "forbidden_reads": [
         "references/genre-playbook-advisory-feedback.md",
@@ -1122,7 +1160,6 @@
         "references/genre-playbook-news-message.md",
         "references/genre-playbook-notice.md",
         "references/genre-playbook-plan-construction.md",
-        "references/genre-playbook-procurement-announcement.md",
         "references/genre-playbook-project-application.md",
         "references/genre-playbook-publication.md",
         "references/genre-playbook-remediation-plan.md",
@@ -1148,7 +1185,8 @@
       ],
       "allowed_reads": [
         "SKILL.md",
-        "references/genre-playbook-project-application.md"
+        "references/genre-playbook-project-application.md",
+        "references/information-selection.md"
       ],
       "forbidden_reads": [
         "references/genre-playbook-advisory-feedback.md",
@@ -1271,7 +1309,12 @@
       ],
       "allowed_reads": [
         "SKILL.md",
-        "references/genre-playbook-request.md"
+        "references/genre-playbook-request.md",
+        "references/argument-chains.md",
+        "references/formal-addressing.md",
+        "references/handling-elements.md",
+        "references/information-selection.md",
+        "references/workflow.md"
       ],
       "forbidden_reads": [
         "references/genre-playbook-advisory-feedback.md",
@@ -1352,7 +1395,10 @@
       ],
       "allowed_reads": [
         "SKILL.md",
-        "references/genre-playbook-speech-address.md"
+        "references/genre-playbook-speech-address.md",
+        "references/anti-ai-patterns.md",
+        "references/official-style.md",
+        "references/speech-person-order.md"
       ],
       "forbidden_reads": [
         "references/genre-playbook-advisory-feedback.md",
@@ -1394,7 +1440,8 @@
       ],
       "allowed_reads": [
         "SKILL.md",
-        "references/genre-playbook-work-summary.md"
+        "references/genre-playbook-work-summary.md",
+        "references/argument-chains.md"
       ],
       "forbidden_reads": [
         "references/genre-playbook-advisory-feedback.md",
@@ -1736,7 +1783,10 @@
       "triggers": [],
       "allowed_reads": [
         "SKILL.md",
-        "references/prose-lint-usage.md"
+        "references/prose-lint-usage.md",
+        "references/delivery-review-gate.md",
+        "references/final-review-layers.md",
+        "references/handling-elements.md"
       ],
       "forbidden_reads": [],
       "stop_when": "完成本页职责后停止读取本页。",
@@ -2017,7 +2067,9 @@
       "triggers": [],
       "allowed_reads": [
         "SKILL.md",
-        "references/workflow.md"
+        "references/workflow.md",
+        "references/compression-details.md",
+        "references/prose-lint-usage.md"
       ],
       "forbidden_reads": [
         "references/genre-playbook-advisory-feedback.md",
