@@ -1,0 +1,158 @@
+[
+  {
+    "id": "G01",
+    "case": "formal_reply",
+    "model": "alibaba-token-plan/qwen3.8-flash",
+    "A": {
+      "file": "output\\remaining-genres-native-r6-qwen\\m0-formal_reply-candidate.final.txt",
+      "sha256": "ab5fce0d1074fe083988518f9a5f969b80c65244cfee02adbc20443313deda49"
+    },
+    "B": {
+      "file": "output\\remaining-genres-native-r6-qwen\\m0-formal_reply-baseline.final.txt",
+      "sha256": "c10c23432252be8b19c852e08cece54034a42d85fc752c52c1d0f4f8c49b06cc"
+    }
+  },
+  {
+    "id": "G02",
+    "case": "formal_opinion",
+    "model": "alibaba-token-plan/qwen3.8-flash",
+    "A": {
+      "file": "output\\remaining-genres-native-r6-qwen\\m0-formal_opinion-candidate.final.txt",
+      "sha256": "aa187bed7295e28156c3885ab5c5aaa8ca9114b8b0ce9e6f9120de1f29351d78"
+    },
+    "B": {
+      "file": "output\\remaining-genres-native-r6-qwen\\m0-formal_opinion-baseline.final.txt",
+      "sha256": "e49c6c88c14078305babfcf3cfa37a156487376d94c36adfebc8207976c36346"
+    }
+  },
+  {
+    "id": "G03",
+    "case": "publication",
+    "model": "alibaba-token-plan/qwen3.8-flash",
+    "A": {
+      "file": "output\\remaining-genres-native-r6-qwen\\m0-publication-candidate.final.txt",
+      "sha256": "25a620e12bcddb87a9601840dcec9f7b4eaf761f6172a321592b42f02a421c3d"
+    },
+    "B": {
+      "file": "output\\remaining-genres-native-r6-qwen\\m0-publication-baseline.final.txt",
+      "sha256": "e7b24c24254d0051c10b97b2e46073c2274c1f3fc18e54f086a281496240ff5e"
+    }
+  },
+  {
+    "id": "G04",
+    "case": "bulletin",
+    "model": "alibaba-token-plan/qwen3.8-flash",
+    "A": {
+      "file": "output\\remaining-genres-native-r6-qwen\\m0-bulletin-baseline.final.txt",
+      "sha256": "ccb356b1e2e2187fae7e7a626539a4048ec7781ef023bca15831b0ef5118520d"
+    },
+    "B": {
+      "file": "output\\remaining-genres-native-r6-qwen\\m0-bulletin-candidate.final.txt",
+      "sha256": "550fd4ef4b83a81a8fb5624e97b803b8b1053063740559937bd3961c036eaf0b"
+    }
+  },
+  {
+    "id": "G05",
+    "case": "project_addition",
+    "model": "alibaba-token-plan-2/qwen3.8-flash",
+    "A": {
+      "file": "output\\remaining-genres-native-r6-qwen2\\m1-project_addition-candidate.final.txt",
+      "sha256": "e652176becd023c6eea840450bf38f1535e23e02ca49013eccdf7cedefbbf95d"
+    },
+    "B": {
+      "file": "output\\remaining-genres-native-r6-qwen2\\m1-project_addition-baseline.final.txt",
+      "sha256": "8ddb3cae873bd067e59887720cd50adb905ac093940d4ea8f564ce92d90ab7b0"
+    }
+  },
+  {
+    "id": "G06",
+    "case": "remediation_plan",
+    "model": "alibaba-token-plan-2/qwen3.8-flash",
+    "A": {
+      "file": "output\\remaining-genres-native-r6-qwen2\\m1-remediation_plan-candidate.final.txt",
+      "sha256": "b89405608dee0065bc2609fcf6110a3ed2bf0882d7fb2ce92e9b7d4ff0ce4de8"
+    },
+    "B": {
+      "file": "output\\remaining-genres-native-r6-qwen2\\m1-remediation_plan-baseline.final.txt",
+      "sha256": "bdc78f8a89a55dd29667928f05cc8d3c2f8ed7490977517e6441dfa87dbaba38"
+    }
+  },
+  {
+    "id": "G07",
+    "case": "remediation_report",
+    "model": "alibaba-token-plan-2/qwen3.8-flash",
+    "A": {
+      "file": "output\\remaining-genres-native-r6-qwen2\\m1-remediation_report-baseline.final.txt",
+      "sha256": "f2d8c172270a4ce215bf0837a776b1381d4205247a298eb96132f04e9e43898b"
+    },
+    "B": {
+      "file": "output\\remaining-genres-native-r6-qwen2\\m1-remediation_report-candidate.final.txt",
+      "sha256": "cb0e36e45de90e18d281e488afb282efd69d6a08e0cd55d69fe5c007dec4ae79"
+    }
+  },
+  {
+    "id": "G08",
+    "case": "feedback_report",
+    "model": "alibaba-token-plan-2/qwen3.8-flash",
+    "A": {
+      "file": "output\\remaining-genres-native-r6-qwen2\\m1-feedback_report-candidate.final.txt",
+      "sha256": "b619b11fbf96a9bd2024bcd660a3bc8e69b19455c37f3863b51bed1b20fdc6b5"
+    },
+    "B": {
+      "file": "output\\remaining-genres-native-r6-qwen2\\m1-feedback_report-baseline.final.txt",
+      "sha256": "c6cd6de32a61bbf19158c7b90b0f7f5e28be3193e435def0027e48e2c3b30ab8"
+    }
+  },
+  {
+    "id": "G09",
+    "case": "complaint",
+    "model": "minimax-cn/MiniMax-M3",
+    "A": {
+      "file": "output\\remaining-genres-native-r6-minimax\\m3-complaint-baseline.final.txt",
+      "sha256": "8b16e1901e9c687dabe93741f96d21a341f6707e014bdb86376b37709c67c146"
+    },
+    "B": {
+      "file": "output\\remaining-genres-native-r6-minimax\\m3-complaint-candidate.final.txt",
+      "sha256": "4bfa4b3b3e497cdabd4232a9607a426e2c41758d9e9219ba5b41f089de749a91"
+    }
+  },
+  {
+    "id": "G10",
+    "case": "parallel_reply",
+    "model": "minimax-cn/MiniMax-M3",
+    "A": {
+      "file": "output\\remaining-genres-native-r6-minimax\\m3-parallel_reply-baseline.final.txt",
+      "sha256": "e311b6f75a3ba8b73f66a9a65f73432f3ffc302d90ae954bd389514820e624c8"
+    },
+    "B": {
+      "file": "output\\remaining-genres-native-r6-minimax\\m3-parallel_reply-candidate.final.txt",
+      "sha256": "853c0132ea796223fac244d50d8c5e5e28ee8bc5656298fcd6a48048f9efc03e"
+    }
+  },
+  {
+    "id": "G11",
+    "case": "deployment",
+    "model": "minimax-cn/MiniMax-M3",
+    "A": {
+      "file": "output\\remaining-genres-native-r6-minimax\\m3-deployment-baseline.final.txt",
+      "sha256": "caff661832b6f17fd50d0efa99b44d4b47fa28e700749d0f8f8cebfa5591b23a"
+    },
+    "B": {
+      "file": "output\\remaining-genres-native-r6-minimax\\m3-deployment-candidate.final.txt",
+      "sha256": "9b77d634514ed0668e11b780b406fce1e2dc3c32401d3b28f806e95a5651a8e4"
+    }
+  },
+  {
+    "id": "G12",
+    "case": "news_commentary",
+    "model": "minimax-cn/MiniMax-M3",
+    "A": {
+      "file": "output\\remaining-genres-native-r6-minimax\\m3-news_commentary-baseline.final.txt",
+      "sha256": "e1b93f2fb0594df889c36e3b0e4a2c02485b51af5d87f41bb63b0d35d241f38d"
+    },
+    "B": {
+      "file": "output\\remaining-genres-native-r6-minimax\\m3-news_commentary-candidate.final.txt",
+      "sha256": "9eb214535aa39d547ad085a3ec0d40d1652c032a4640617acf07097ff4d8ddf3"
+    }
+  }
+]

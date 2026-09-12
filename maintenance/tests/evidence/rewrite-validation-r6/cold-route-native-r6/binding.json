@@ -1,0 +1,33 @@
+{
+  "main_commit": "1ce7112303172478faa2392667a2de1098eb912c",
+  "candidate_head": "d06d51f8c766739a3f0e49dc5205e1672aad53e4",
+  "fingerprints": {
+    "baseline": "465eabfa1b0078fb9030ec00e407699411002d8c9ef7082fac621de6f2488c62",
+    "candidate": "ed9df6e592a3b1d702d53728ad62647923dfa1c07a022b4c5b4ac2bc90443f99"
+  },
+  "models": [
+    "command-code/deepseek-deepseek-v4.1-flash",
+    "ollama-cloud/glm-5.3-flash"
+  ],
+  "cases": {
+    "ordinary_server_announcement": "请根据以下材料起草一份采购公告。采购人是海川资料服务中心，项目名称是文件共享服务器租赁，租赁 1 台服务器，供中心内部存储、共享日常文档，服务期 12 个月，预算上限 24000 元。供应商应于 2026 年 9 月 25 日 17 时前，将报价和服务说明发送至采购材料中给定的邮箱 procurement@example.org，联系人为王老师。正文简洁，保留以上采购要素。",
+    "public_rule_suggestion": "请以晨星信息服务有限公司的名义，给平台运营方写一封建议信。我们手头只有平台公开的申报说明：页面的“附件要求”栏目写应上传 PDF 文件，“常见问题”栏目却写应上传 Word 文件。请建议统一两处格式口径，并说明这样便于申报方准备材料。写得礼貌、具体，正文简短。",
+    "ordinary_word_summary": "请把下面已经定稿的内部工作总结整理成普通 Word 文档，保留文字、标题和落款，排版清楚即可。\n\n资料室阶段工作总结\n\n本阶段，资料室整理纸质档案 120 盒，完成目录录入 860 条。另有 15 盒档案的分类信息正在核对。\n\n资料室",
+    "server_technical_requirements": "请将下列材料整理成一份简短完整的《档案检索服务器租赁技术需求》，作为采购附件：租赁2台通用服务器，服务期12个月，用于现有档案检索系统；在本单位机房安装，与现有存储连接；需统一查看运行状态，故障设备由服务方替换；CPU、内存和连接接口规格尚待确认；验收核对设备数量、安装情况、存储连接和运行状态查看功能，提交设备清单及安装记录。写得自然、清楚，保持未定事项的状态。",
+    "compute_units": "改写一段算力费用说明：试用期共调用模型1200次，输入和输出合计800万Token；按Token计费，单价及总额尚待核实。请把需求与费用口径写清，保持数字和待核状态，不新增GPU、并发或SLA数据。"
+  },
+  "cli": "C:\\Users\\admin\\AppData\\Local\\OpenAI\\Codex\\bin\\7ac07f4ce733f89a\\codex.exe",
+  "cli_version": "codex-cli 0.153.4",
+  "effort": "max",
+  "runtime": "C:\\Users\\admin\\AppData\\Local\\Temp\\cow-native-cold-route-native-r6-wqqhsq7d",
+  "permissions": "inherited-host-config",
+  "timeout": 240,
+  "agent_documents": "project_doc_max_bytes=0",
+  "baseline_ref": "snapshot",
+  "baseline_source": "F:\\Workspaces\\chinese-official-writing-skill\\output\\route-worktrees\\reference-rewrite-20260912\\output\\combined-candidate-r5\\skill",
+  "candidate_source": "F:\\Workspaces\\chinese-official-writing-skill\\output\\route-worktrees\\reference-rewrite-20260912\\output\\cold-route-fixes-r6\\skill",
+  "baseline_commit": null,
+  "profile": "temporary-no-user-documents-or-credentials",
+  "runner_sha256": "f7408f16e5830d1fe19278309b2f064adb18d3bae48c8f9c15d7a48b68df753f",
+  "prompt_prefix": "使用本目录 .agents/skills/chinese-official-writing/SKILL.md。\n\n"
+}

@@ -1,0 +1,46 @@
+[
+  {
+    "model_index": 2,
+    "arm": "baseline",
+    "file": "output\\cold-route-native-r6\\artifacts\\m2\\baseline\\资料室阶段工作总结.docx",
+    "sha256": "40941783aaef08c64b8bbdd62a8f7bf0827cdc8c9cd01aaf8bcd47fb10a8950c",
+    "paragraphs": [
+      "资料室阶段工作总结",
+      "本阶段，资料室整理纸质档案120盒，完成目录录入860条。另有15盒档案的分类信息正在核对。",
+      "资料室"
+    ]
+  },
+  {
+    "model_index": 2,
+    "arm": "candidate",
+    "file": "output\\cold-route-native-r6\\artifacts\\m2\\candidate\\资料室阶段工作总结.docx",
+    "sha256": "51101bd195a6a2fac9c5f2bb273e12390ffb1a8299debebb05dd44ce9be3f940",
+    "paragraphs": [
+      "资料室阶段工作总结",
+      "本阶段，资料室整理纸质档案120盒，完成目录录入860条。另有15盒档案的分类信息正在核对。",
+      "资料室"
+    ]
+  },
+  {
+    "model_index": 4,
+    "arm": "baseline",
+    "file": "output\\cold-route-native-r6\\artifacts\\m4\\baseline\\资料室阶段工作总结.docx",
+    "sha256": "c1b198da6b8b821384f3d52ac31d5b3bb368de519e091f0327252df6386926a0",
+    "paragraphs": [
+      "资料室阶段工作总结",
+      "本阶段，资料室整理纸质档案 120 盒，完成目录录入 860 条。另有 15 盒档案的分类信息正在核对。",
+      "资料室"
+    ]
+  },
+  {
+    "model_index": 4,
+    "arm": "candidate",
+    "file": "output\\cold-route-native-r6\\artifacts\\m4\\candidate\\资料室阶段工作总结.docx",
+    "sha256": "ae3ce18e806168cfa5cc9167f3ddef7dda50b98566ee4cb02ae2709b2246a82d",
+    "paragraphs": [
+      "资料室阶段工作总结",
+      "本阶段，资料室整理纸质档案 120 盒，完成目录录入 860 条。另有 15 盒档案的分类信息正在核对。",
+      "资料室"
+    ]
+  }
+]

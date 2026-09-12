@@ -1,0 +1,31 @@
+{
+  "main_commit": "1ce7112303172478faa2392667a2de1098eb912c",
+  "candidate_head": "d06d51f8c766739a3f0e49dc5205e1672aad53e4",
+  "fingerprints": {
+    "baseline": "4ac78943f1d5f7660c879360fdee0163f43d8e87dd951838f7a7cddaab81004f",
+    "candidate": "ef948139a9cc89274c2c3b93f305149ee7cf55188dd428c71f9073b47b5b299e"
+  },
+  "models": [
+    "alibaba-token-plan/qwen3.8-flash"
+  ],
+  "cases": {
+    "formal_reply": "请以青川县教育局名义给县实验学校起草批复。县实验学校报来《关于调整图书室开放时间的请示》，文号实校〔2026〕12号，拟将开放时间调整为工作日12:00至13:30及16:30至18:00。教育局已同意按上述时间试行，试行期限为2026年10月至12月；试行后请学校报告使用情况。请写成简短完整的批复，落款日期没有提供。",
+    "formal_opinion": "请以青川县教育局名义向各中小学拟一份《关于改进图书室服务的意见》。已明确的指导要求是：结合学生课余时间安排开放；保留借阅登记；学校根据藏书和借阅情况研究图书更新；发现损坏书籍及时整理登记。目的是方便学生使用现有阅读资源。各校具体开放时段由本校结合情况确定，未安排全县统一购书，也没有考核排名。语气体现上级指导，条理清楚即可。",
+    "publication": "请为青川县文化馆写一份展厅暂停开放公告：文化馆二楼展厅将在2026年10月12日至14日更换照明，期间暂停开放；一楼阅览区和三楼活动室照常开放。咨询电话010-55501236。请把公众需要知道的事项写清楚，语气得体。",
+    "bulletin": "请以青川街道办事处名义给各社区起草一份近期窗口服务情况通报。9月上旬抽查了4个社区的咨询记录，其中2个社区的办事材料清单已更新，另2个社区仍在核对内容；清单完成更新是此次检查发现的进展，未作排名或评优。街道要求各社区保留清单更新记录，具体完成日期未统一确定。简短成稿，准确区分进展和要求。"
+  },
+  "cli": "C:\\Users\\admin\\AppData\\Local\\OpenAI\\Codex\\bin\\7ac07f4ce733f89a\\codex.exe",
+  "cli_version": "codex-cli 0.153.4",
+  "effort": "medium",
+  "runtime": "C:\\Users\\admin\\AppData\\Local\\Temp\\cow-native-remaining-genres-native-r6-qwen-hhmgo_41",
+  "permissions": "inherited-host-config",
+  "timeout": 240,
+  "agent_documents": "project_doc_max_bytes=0",
+  "baseline_ref": "1ce7112303172478faa2392667a2de1098eb912c",
+  "baseline_source": null,
+  "candidate_source": "F:\\Workspaces\\chinese-official-writing-skill\\output\\route-worktrees\\reference-rewrite-20260912\\output\\combined-candidate-r6\\skill",
+  "baseline_commit": "1ce7112303172478faa2392667a2de1098eb912c",
+  "profile": "temporary-no-user-documents-or-credentials",
+  "runner_sha256": "f7408f16e5830d1fe19278309b2f064adb18d3bae48c8f9c15d7a48b68df753f",
+  "prompt_prefix": "使用本目录 .agents/skills/chinese-official-writing/SKILL.md。\n\n"
+}

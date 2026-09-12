@@ -1,0 +1,748 @@
+{
+  "scope": "Successful native read commands only. Named pages may be partial reads; full-content matches confirm text returned. Absence of a full match is not proof of no read. Character bounds are not tokens. Scripts and writing quality are not graded.",
+  "records": [
+    {
+      "result": "m1-feedback_report-baseline.result.json",
+      "model": "alibaba-token-plan-2/qwen3.8-flash",
+      "case": "feedback_report",
+      "arm": "baseline",
+      "invalid": [],
+      "named_pages": [
+        "SKILL.md",
+        "references/information-selection.md",
+        "references/reference-index.md",
+        "references/task-route-cards.md"
+      ],
+      "full_content_observed": [
+        "SKILL.md",
+        "references/information-selection.md",
+        "references/reference-index.md",
+        "references/task-route-cards.md"
+      ],
+      "repeated_full_reads": {},
+      "named_file_characters_upper_bound": 14839,
+      "events": [
+        {
+          "command_id": "item_0",
+          "named_pages": [
+            "SKILL.md"
+          ],
+          "full_content_observed": [
+            "SKILL.md"
+          ]
+        },
+        {
+          "command_id": "item_2",
+          "named_pages": [
+            "references/reference-index.md"
+          ],
+          "full_content_observed": [
+            "references/reference-index.md"
+          ]
+        },
+        {
+          "command_id": "item_3",
+          "named_pages": [
+            "references/information-selection.md"
+          ],
+          "full_content_observed": [
+            "references/information-selection.md"
+          ]
+        },
+        {
+          "command_id": "item_4",
+          "named_pages": [
+            "references/task-route-cards.md"
+          ],
+          "full_content_observed": [
+            "references/task-route-cards.md"
+          ]
+        }
+      ]
+    },
+    {
+      "result": "m1-feedback_report-candidate.result.json",
+      "model": "alibaba-token-plan-2/qwen3.8-flash",
+      "case": "feedback_report",
+      "arm": "candidate",
+      "invalid": [],
+      "named_pages": [
+        "SKILL.md",
+        "references/anti-ai-patterns.md",
+        "references/delivery.md",
+        "references/final-review-layers.md",
+        "references/genre-playbook-report.md",
+        "references/information-selection.md",
+        "references/prose-lint-usage.md",
+        "references/reference-index.md",
+        "references/short-draft-naturalness.md",
+        "references/task-route-cards.md",
+        "references/transaction-feedback-report.md"
+      ],
+      "full_content_observed": [
+        "SKILL.md",
+        "references/anti-ai-patterns.md",
+        "references/delivery.md",
+        "references/final-review-layers.md",
+        "references/genre-playbook-report.md",
+        "references/information-selection.md",
+        "references/prose-lint-usage.md",
+        "references/reference-index.md",
+        "references/short-draft-naturalness.md",
+        "references/task-route-cards.md",
+        "references/transaction-feedback-report.md"
+      ],
+      "repeated_full_reads": {},
+      "named_file_characters_upper_bound": 15513,
+      "events": [
+        {
+          "command_id": "item_2",
+          "named_pages": [
+            "SKILL.md"
+          ],
+          "full_content_observed": [
+            "SKILL.md"
+          ]
+        },
+        {
+          "command_id": "item_3",
+          "named_pages": [
+            "references/reference-index.md"
+          ],
+          "full_content_observed": [
+            "references/reference-index.md"
+          ]
+        },
+        {
+          "command_id": "item_4",
+          "named_pages": [
+            "references/transaction-feedback-report.md"
+          ],
+          "full_content_observed": [
+            "references/transaction-feedback-report.md"
+          ]
+        },
+        {
+          "command_id": "item_5",
+          "named_pages": [
+            "references/genre-playbook-report.md"
+          ],
+          "full_content_observed": [
+            "references/genre-playbook-report.md"
+          ]
+        },
+        {
+          "command_id": "item_6",
+          "named_pages": [
+            "references/information-selection.md"
+          ],
+          "full_content_observed": [
+            "references/information-selection.md"
+          ]
+        },
+        {
+          "command_id": "item_7",
+          "named_pages": [
+            "references/short-draft-naturalness.md"
+          ],
+          "full_content_observed": [
+            "references/short-draft-naturalness.md"
+          ]
+        },
+        {
+          "command_id": "item_8",
+          "named_pages": [
+            "references/task-route-cards.md"
+          ],
+          "full_content_observed": [
+            "references/task-route-cards.md"
+          ]
+        },
+        {
+          "command_id": "item_9",
+          "named_pages": [
+            "references/delivery.md"
+          ],
+          "full_content_observed": [
+            "references/delivery.md"
+          ]
+        },
+        {
+          "command_id": "item_10",
+          "named_pages": [
+            "references/anti-ai-patterns.md"
+          ],
+          "full_content_observed": [
+            "references/anti-ai-patterns.md"
+          ]
+        },
+        {
+          "command_id": "item_11",
+          "named_pages": [
+            "references/final-review-layers.md"
+          ],
+          "full_content_observed": [
+            "references/final-review-layers.md"
+          ]
+        },
+        {
+          "command_id": "item_12",
+          "named_pages": [
+            "references/prose-lint-usage.md"
+          ],
+          "full_content_observed": [
+            "references/prose-lint-usage.md"
+          ]
+        }
+      ]
+    },
+    {
+      "result": "m1-project_addition-baseline.result.json",
+      "model": "alibaba-token-plan-2/qwen3.8-flash",
+      "case": "project_addition",
+      "arm": "baseline",
+      "invalid": [],
+      "named_pages": [
+        "SKILL.md",
+        "references/genre-playbook-project-application.md"
+      ],
+      "full_content_observed": [
+        "SKILL.md",
+        "references/genre-playbook-project-application.md"
+      ],
+      "repeated_full_reads": {},
+      "named_file_characters_upper_bound": 9050,
+      "events": [
+        {
+          "command_id": "item_1",
+          "named_pages": [
+            "SKILL.md"
+          ],
+          "full_content_observed": [
+            "SKILL.md"
+          ]
+        },
+        {
+          "command_id": "item_2",
+          "named_pages": [
+            "references/genre-playbook-project-application.md"
+          ],
+          "full_content_observed": [
+            "references/genre-playbook-project-application.md"
+          ]
+        }
+      ]
+    },
+    {
+      "result": "m1-project_addition-candidate.result.json",
+      "model": "alibaba-token-plan-2/qwen3.8-flash",
+      "case": "project_addition",
+      "arm": "candidate",
+      "invalid": [],
+      "named_pages": [
+        "SKILL.md",
+        "references/anti-ai-patterns.md",
+        "references/delivery.md",
+        "references/genre-playbook-project-application.md",
+        "references/handling-elements.md",
+        "references/information-selection.md",
+        "references/prose-lint-usage.md",
+        "references/reference-index.md"
+      ],
+      "full_content_observed": [
+        "SKILL.md",
+        "references/anti-ai-patterns.md",
+        "references/delivery.md",
+        "references/genre-playbook-project-application.md",
+        "references/handling-elements.md",
+        "references/information-selection.md",
+        "references/prose-lint-usage.md",
+        "references/reference-index.md"
+      ],
+      "repeated_full_reads": {},
+      "named_file_characters_upper_bound": 14769,
+      "events": [
+        {
+          "command_id": "item_0",
+          "named_pages": [
+            "SKILL.md"
+          ],
+          "full_content_observed": [
+            "SKILL.md"
+          ]
+        },
+        {
+          "command_id": "item_1",
+          "named_pages": [
+            "references/reference-index.md"
+          ],
+          "full_content_observed": [
+            "references/reference-index.md"
+          ]
+        },
+        {
+          "command_id": "item_2",
+          "named_pages": [
+            "references/genre-playbook-project-application.md"
+          ],
+          "full_content_observed": [
+            "references/genre-playbook-project-application.md"
+          ]
+        },
+        {
+          "command_id": "item_3",
+          "named_pages": [
+            "references/information-selection.md"
+          ],
+          "full_content_observed": [
+            "references/information-selection.md"
+          ]
+        },
+        {
+          "command_id": "item_4",
+          "named_pages": [
+            "references/handling-elements.md"
+          ],
+          "full_content_observed": [
+            "references/handling-elements.md"
+          ]
+        },
+        {
+          "command_id": "item_5",
+          "named_pages": [
+            "references/anti-ai-patterns.md"
+          ],
+          "full_content_observed": [
+            "references/anti-ai-patterns.md"
+          ]
+        },
+        {
+          "command_id": "item_6",
+          "named_pages": [
+            "references/delivery.md"
+          ],
+          "full_content_observed": [
+            "references/delivery.md"
+          ]
+        },
+        {
+          "command_id": "item_7",
+          "named_pages": [
+            "references/prose-lint-usage.md"
+          ],
+          "full_content_observed": [
+            "references/prose-lint-usage.md"
+          ]
+        }
+      ]
+    },
+    {
+      "result": "m1-remediation_plan-baseline.result.json",
+      "model": "alibaba-token-plan-2/qwen3.8-flash",
+      "case": "remediation_plan",
+      "arm": "baseline",
+      "invalid": [],
+      "named_pages": [
+        "SKILL.md",
+        "references/compatibility-scene-routing.md",
+        "references/genre-playbook-remediation-plan.md",
+        "references/information-selection.md",
+        "references/short-draft-naturalness.md"
+      ],
+      "full_content_observed": [
+        "SKILL.md",
+        "references/compatibility-scene-routing.md",
+        "references/genre-playbook-remediation-plan.md",
+        "references/information-selection.md",
+        "references/short-draft-naturalness.md"
+      ],
+      "repeated_full_reads": {},
+      "named_file_characters_upper_bound": 13008,
+      "events": [
+        {
+          "command_id": "item_0",
+          "named_pages": [
+            "SKILL.md"
+          ],
+          "full_content_observed": [
+            "SKILL.md"
+          ]
+        },
+        {
+          "command_id": "item_1",
+          "named_pages": [
+            "references/compatibility-scene-routing.md"
+          ],
+          "full_content_observed": [
+            "references/compatibility-scene-routing.md"
+          ]
+        },
+        {
+          "command_id": "item_2",
+          "named_pages": [
+            "references/genre-playbook-remediation-plan.md"
+          ],
+          "full_content_observed": [
+            "references/genre-playbook-remediation-plan.md"
+          ]
+        },
+        {
+          "command_id": "item_3",
+          "named_pages": [
+            "references/information-selection.md"
+          ],
+          "full_content_observed": [
+            "references/information-selection.md"
+          ]
+        },
+        {
+          "command_id": "item_4",
+          "named_pages": [
+            "references/short-draft-naturalness.md"
+          ],
+          "full_content_observed": [
+            "references/short-draft-naturalness.md"
+          ]
+        }
+      ]
+    },
+    {
+      "result": "m1-remediation_plan-candidate.result.json",
+      "model": "alibaba-token-plan-2/qwen3.8-flash",
+      "case": "remediation_plan",
+      "arm": "candidate",
+      "invalid": [],
+      "named_pages": [
+        "SKILL.md",
+        "references/anti-ai-patterns.md",
+        "references/compatibility-scene-routing.md",
+        "references/delivery.md",
+        "references/final-review-layers.md",
+        "references/genre-playbook-remediation-plan.md",
+        "references/handling-elements.md",
+        "references/information-selection.md",
+        "references/prose-lint-usage.md",
+        "references/short-draft-naturalness.md",
+        "references/task-route-cards.md"
+      ],
+      "full_content_observed": [
+        "SKILL.md",
+        "references/anti-ai-patterns.md",
+        "references/compatibility-scene-routing.md",
+        "references/delivery.md",
+        "references/final-review-layers.md",
+        "references/genre-playbook-remediation-plan.md",
+        "references/handling-elements.md",
+        "references/information-selection.md",
+        "references/prose-lint-usage.md",
+        "references/short-draft-naturalness.md",
+        "references/task-route-cards.md"
+      ],
+      "repeated_full_reads": {},
+      "named_file_characters_upper_bound": 13101,
+      "events": [
+        {
+          "command_id": "item_0",
+          "named_pages": [
+            "SKILL.md"
+          ],
+          "full_content_observed": [
+            "SKILL.md"
+          ]
+        },
+        {
+          "command_id": "item_1",
+          "named_pages": [
+            "SKILL.md"
+          ],
+          "full_content_observed": []
+        },
+        {
+          "command_id": "item_3",
+          "named_pages": [
+            "references/compatibility-scene-routing.md"
+          ],
+          "full_content_observed": [
+            "references/compatibility-scene-routing.md"
+          ]
+        },
+        {
+          "command_id": "item_4",
+          "named_pages": [
+            "references/genre-playbook-remediation-plan.md"
+          ],
+          "full_content_observed": [
+            "references/genre-playbook-remediation-plan.md"
+          ]
+        },
+        {
+          "command_id": "item_5",
+          "named_pages": [
+            "references/information-selection.md"
+          ],
+          "full_content_observed": [
+            "references/information-selection.md"
+          ]
+        },
+        {
+          "command_id": "item_6",
+          "named_pages": [
+            "references/task-route-cards.md"
+          ],
+          "full_content_observed": [
+            "references/task-route-cards.md"
+          ]
+        },
+        {
+          "command_id": "item_7",
+          "named_pages": [
+            "references/short-draft-naturalness.md"
+          ],
+          "full_content_observed": [
+            "references/short-draft-naturalness.md"
+          ]
+        },
+        {
+          "command_id": "item_8",
+          "named_pages": [
+            "references/handling-elements.md"
+          ],
+          "full_content_observed": [
+            "references/handling-elements.md"
+          ]
+        },
+        {
+          "command_id": "item_9",
+          "named_pages": [
+            "references/delivery.md"
+          ],
+          "full_content_observed": [
+            "references/delivery.md"
+          ]
+        },
+        {
+          "command_id": "item_10",
+          "named_pages": [
+            "references/anti-ai-patterns.md"
+          ],
+          "full_content_observed": [
+            "references/anti-ai-patterns.md"
+          ]
+        },
+        {
+          "command_id": "item_11",
+          "named_pages": [
+            "references/final-review-layers.md"
+          ],
+          "full_content_observed": [
+            "references/final-review-layers.md"
+          ]
+        },
+        {
+          "command_id": "item_12",
+          "named_pages": [
+            "references/prose-lint-usage.md"
+          ],
+          "full_content_observed": [
+            "references/prose-lint-usage.md"
+          ]
+        }
+      ]
+    },
+    {
+      "result": "m1-remediation_report-baseline.result.json",
+      "model": "alibaba-token-plan-2/qwen3.8-flash",
+      "case": "remediation_report",
+      "arm": "baseline",
+      "invalid": [],
+      "named_pages": [
+        "SKILL.md",
+        "references/compatibility-scene-routing.md",
+        "references/genre-checklist-report.md",
+        "references/information-selection.md",
+        "references/short-draft-naturalness.md",
+        "references/task-route-cards.md"
+      ],
+      "full_content_observed": [
+        "SKILL.md",
+        "references/compatibility-scene-routing.md",
+        "references/genre-checklist-report.md",
+        "references/information-selection.md",
+        "references/short-draft-naturalness.md",
+        "references/task-route-cards.md"
+      ],
+      "repeated_full_reads": {},
+      "named_file_characters_upper_bound": 14573,
+      "events": [
+        {
+          "command_id": "item_0",
+          "named_pages": [
+            "SKILL.md"
+          ],
+          "full_content_observed": [
+            "SKILL.md"
+          ]
+        },
+        {
+          "command_id": "item_2",
+          "named_pages": [
+            "references/compatibility-scene-routing.md"
+          ],
+          "full_content_observed": [
+            "references/compatibility-scene-routing.md"
+          ]
+        },
+        {
+          "command_id": "item_3",
+          "named_pages": [
+            "references/information-selection.md"
+          ],
+          "full_content_observed": [
+            "references/information-selection.md"
+          ]
+        },
+        {
+          "command_id": "item_4",
+          "named_pages": [
+            "references/genre-checklist-report.md"
+          ],
+          "full_content_observed": [
+            "references/genre-checklist-report.md"
+          ]
+        },
+        {
+          "command_id": "item_5",
+          "named_pages": [
+            "references/task-route-cards.md"
+          ],
+          "full_content_observed": [
+            "references/task-route-cards.md"
+          ]
+        },
+        {
+          "command_id": "item_7",
+          "named_pages": [
+            "references/short-draft-naturalness.md"
+          ],
+          "full_content_observed": [
+            "references/short-draft-naturalness.md"
+          ]
+        }
+      ]
+    },
+    {
+      "result": "m1-remediation_report-candidate.result.json",
+      "model": "alibaba-token-plan-2/qwen3.8-flash",
+      "case": "remediation_report",
+      "arm": "candidate",
+      "invalid": [],
+      "named_pages": [
+        "SKILL.md",
+        "references/anti-ai-patterns.md",
+        "references/delivery.md",
+        "references/genre-checklist-report.md",
+        "references/genre-playbook-report.md",
+        "references/information-selection.md",
+        "references/prose-lint-usage.md",
+        "references/reference-index.md",
+        "references/transaction-remediation-report.md"
+      ],
+      "full_content_observed": [
+        "SKILL.md",
+        "references/anti-ai-patterns.md",
+        "references/delivery.md",
+        "references/genre-checklist-report.md",
+        "references/genre-playbook-report.md",
+        "references/information-selection.md",
+        "references/prose-lint-usage.md",
+        "references/reference-index.md",
+        "references/transaction-remediation-report.md"
+      ],
+      "repeated_full_reads": {},
+      "named_file_characters_upper_bound": 14365,
+      "events": [
+        {
+          "command_id": "item_0",
+          "named_pages": [
+            "SKILL.md"
+          ],
+          "full_content_observed": [
+            "SKILL.md"
+          ]
+        },
+        {
+          "command_id": "item_3",
+          "named_pages": [
+            "references/reference-index.md"
+          ],
+          "full_content_observed": [
+            "references/reference-index.md"
+          ]
+        },
+        {
+          "command_id": "item_4",
+          "named_pages": [
+            "references/transaction-remediation-report.md"
+          ],
+          "full_content_observed": [
+            "references/transaction-remediation-report.md"
+          ]
+        },
+        {
+          "command_id": "item_5",
+          "named_pages": [
+            "references/genre-playbook-report.md"
+          ],
+          "full_content_observed": [
+            "references/genre-playbook-report.md"
+          ]
+        },
+        {
+          "command_id": "item_6",
+          "named_pages": [
+            "references/information-selection.md"
+          ],
+          "full_content_observed": [
+            "references/information-selection.md"
+          ]
+        },
+        {
+          "command_id": "item_7",
+          "named_pages": [
+            "references/anti-ai-patterns.md"
+          ],
+          "full_content_observed": [
+            "references/anti-ai-patterns.md"
+          ]
+        },
+        {
+          "command_id": "item_8",
+          "named_pages": [
+            "references/delivery.md"
+          ],
+          "full_content_observed": [
+            "references/delivery.md"
+          ]
+        },
+        {
+          "command_id": "item_9",
+          "named_pages": [
+            "references/prose-lint-usage.md"
+          ],
+          "full_content_observed": [
+            "references/prose-lint-usage.md"
+          ]
+        },
+        {
+          "command_id": "item_10",
+          "named_pages": [
+            "references/genre-checklist-report.md"
+          ],
+          "full_content_observed": [
+            "references/genre-checklist-report.md"
+          ]
+        }
+      ]
+    }
+  ]
+}

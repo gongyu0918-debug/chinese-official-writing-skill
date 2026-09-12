@@ -1,0 +1,31 @@
+{
+  "main_commit": "1ce7112303172478faa2392667a2de1098eb912c",
+  "candidate_head": "d06d51f8c766739a3f0e49dc5205e1672aad53e4",
+  "fingerprints": {
+    "baseline": "4ac78943f1d5f7660c879360fdee0163f43d8e87dd951838f7a7cddaab81004f",
+    "candidate": "ef948139a9cc89274c2c3b93f305149ee7cf55188dd428c71f9073b47b5b299e"
+  },
+  "models": [
+    "minimax-cn/MiniMax-M3"
+  ],
+  "cases": {
+    "server_technical_requirements": "请将下列材料整理成一份简短完整的《档案检索服务器租赁技术需求》，作为采购附件：租赁2台通用服务器，服务期12个月，用于现有档案检索系统；在本单位机房安装，与现有存储连接；需统一查看运行状态，故障设备由服务方替换；CPU、内存和连接接口规格尚待确认；验收核对设备数量、安装情况、存储连接和运行状态查看功能，提交设备清单及安装记录。写得自然、清楚，保持未定事项的状态。",
+    "open_letter": "请以榆园社区居委会名义给居民写一封公开信。社区活动室将在2026年10月12日至16日维修照明，这段时间活动室暂停开放，室外健身区正常使用。施工由景明维修公司负责，社区负责登记居民反映的情况。希望居民在维修期间从活动室东侧通道绕行，不进入施工区域；有关问题可到社区一楼服务台反映。信里把事项、理由和配合要求讲明白，不用太长。",
+    "narration": "我们准备带新员工参观公司的产品展示区，请把这些介绍写成一段自然的讲解稿。路线依次是老产品展示台、工艺样品墙、试用区。老产品展示台陈列2008年至2015年的三代产品；工艺样品墙展示同一部件的四种加工样品，旁边有对应工序说明；试用区有两台现款设备，供参观人员查看操作界面。这次由培训专员带领参观，听众大多没有生产经验。不安排提问和现场演示，讲解顺序和转场清楚即可。",
+    "interface_technical_requirements": "请据以下材料起草《申报系统与进度查询页面接口需求说明》，供开发方确认：申报系统向查询页面提供申请编号、办理状态和更新时间，查询页面只读展示这些信息，不回写业务数据；沿用现有账号权限；双方接口协议和字段格式尚未确定；项目尚处于需求确认阶段。希望交付接口说明和联调记录，验收时核对字段对应、权限控制及显示内容与申报系统的一致性。篇幅不必长，给出可直接讨论的完整需求说明。"
+  },
+  "cli": "C:\\Users\\admin\\AppData\\Local\\OpenAI\\Codex\\bin\\7ac07f4ce733f89a\\codex.exe",
+  "cli_version": "codex-cli 0.153.4",
+  "effort": "medium",
+  "runtime": "C:\\Users\\admin\\AppData\\Local\\Temp\\cow-native-legacy-regression-repeat-r6-minimax-4coij2vj",
+  "permissions": "inherited-host-config",
+  "timeout": 240,
+  "agent_documents": "project_doc_max_bytes=0",
+  "baseline_ref": "1ce7112303172478faa2392667a2de1098eb912c",
+  "baseline_source": null,
+  "candidate_source": "F:\\Workspaces\\chinese-official-writing-skill\\output\\route-worktrees\\reference-rewrite-20260912\\output\\combined-candidate-r6\\skill",
+  "baseline_commit": "1ce7112303172478faa2392667a2de1098eb912c",
+  "profile": "temporary-no-user-documents-or-credentials",
+  "runner_sha256": "f7408f16e5830d1fe19278309b2f064adb18d3bae48c8f9c15d7a48b68df753f",
+  "prompt_prefix": "使用本目录 .agents/skills/chinese-official-writing/SKILL.md。\n\n"
+}
