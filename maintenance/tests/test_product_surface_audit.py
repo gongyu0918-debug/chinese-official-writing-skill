@@ -24,7 +24,7 @@ class ProductSurfaceAuditTests(unittest.TestCase):
         module = importlib.util.module_from_spec(spec)
         spec.loader.exec_module(module)
         text = (ROOT / "chinese-official-writing/SKILL.md").read_text(encoding="utf-8")
-        self.assertEqual(text.count("交付动作 → 主文种首叶"), 1)
+        self.assertEqual(text.count("用户需求 → 选择文种 → 写稿或改稿 → 按步骤检查 → 交付"), 1)
         self.assertNotIn("## 任务模式路由与写作主线", text)
         scope = text.split("## 入口契约", 1)[0]
         self.assertIn("README.md", scope)
@@ -35,9 +35,12 @@ class ProductSurfaceAuditTests(unittest.TestCase):
     def test_tool_routes_name_their_single_entry_pages(self) -> None:
         text = (ROOT / "chinese-official-writing/SKILL.md").read_text(encoding="utf-8")
         self.assertEqual(text.count("references/prose-lint-usage.md"), 1)
-        self.assertEqual(text.count("hooks/README.md"), 1)
-        self.assertEqual(text.count("references/delivery-review-gate.md"), 1)
-        self.assertIn("### 脚本与 Hook 检查", text)
+        self.assertNotIn("hooks/", text)
+        self.assertNotIn("references/delivery-review-gate.md", text)
+        usage = (ROOT / "chinese-official-writing/references/prose-lint-usage.md").read_text(
+            encoding="utf-8"
+        )
+        self.assertIn("scripts/prose_lint.py", usage)
 
 
 if __name__ == "__main__":

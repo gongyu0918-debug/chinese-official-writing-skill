@@ -1,0 +1,200 @@
+{
+  "run": "r2",
+  "binding": {
+    "main_commit": "1ce7112303172478faa2392667a2de1098eb912c",
+    "candidate_head": "3b6f273b6ee4ea583e7c0ade8311ad1f262d7159",
+    "fingerprints": {
+      "main": "4ac78943f1d5f7660c879360fdee0163f43d8e87dd951838f7a7cddaab81004f",
+      "candidate": "4854e1cf8ba507fdc2ffb8111f6ac3d80c6e900f478e7b475ff0c1011130ac2a"
+    },
+    "models": [
+      "alibaba-token-plan/qwen3.8-flash",
+      "alibaba-token-plan-2/qwen3.8-flash"
+    ],
+    "cases": {
+      "minutes": "帮我把材料写成会议纪要，稿件控制在180至260个非空白字符。9月10日，信息中心组织接口测试讨论。接口A累计测试30次，其中2次返回超时；原因仍在核对。张工建议下周追加测试，会议尚未决定是否采用，也没有明确责任人和完成日期。王工认为应先核对超时日志，未形成结论。会议要求保留当前测试记录供核对。此前审稿曾提示‘会议地点缺失’和‘测试次数缺失’，本次补充了测试次数，地点仍未提供。记录已发生的事实和明确状态，帮我写完整稿子。"
+    },
+    "cli": "C:\\Users\\admin\\AppData\\Local\\OpenAI\\Codex\\bin\\7ac07f4ce733f89a\\codex.exe",
+    "cli_version": "codex-cli 0.153.4",
+    "runtime": "C:\\Users\\admin\\AppData\\Local\\Temp\\cow-mit-native-lm8fdolz",
+    "timeout": 240
+  },
+  "complete": true,
+  "records": [
+    {
+      "model": "alibaba-token-plan/qwen3.8-flash",
+      "effort": "max",
+      "case": "minutes",
+      "arm": "candidate",
+      "returncode": 0,
+      "seconds": 126.78,
+      "invalid": [
+        "missing_skill_read_trace"
+      ],
+      "draft_sha256": "3b8a8d3958a403c24ab3fa0733c33981ecca5709ebe08cfdc5a2797d20bfbbb3",
+      "usage": [
+        {
+          "input_tokens": 186959,
+          "cached_input_tokens": 173440,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 6289,
+          "reasoning_output_tokens": 4098
+        }
+      ],
+      "source_result": "output/mit-script-delivery-r2/m0-minutes-candidate.result.json",
+      "commands": [],
+      "trace.jsonl_sha256": "708ba9fcc0e19a183844b96143859c1f5a026630324b21688c224ee9b49c0bf9",
+      "stderr.txt_sha256": "f4ed2957a1965de031e43cb928185671bd9f7b6a0d0909182a5549c8c3804b22",
+      "archived_final": "drafts/r2-m0-minutes-candidate.final.txt",
+      "file_sha256": "3b8a8d3958a403c24ab3fa0733c33981ecca5709ebe08cfdc5a2797d20bfbbb3"
+    },
+    {
+      "model": "alibaba-token-plan/qwen3.8-flash",
+      "effort": "max",
+      "case": "minutes",
+      "arm": "main",
+      "returncode": 0,
+      "seconds": 165.52,
+      "invalid": [
+        "missing_skill_read_trace"
+      ],
+      "draft_sha256": "796287c5fbcea1e69646786c035ee632d4bb3c2b5810e6a77a418bd0ef43c4ad",
+      "usage": [
+        {
+          "input_tokens": 207246,
+          "cached_input_tokens": 194048,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 9342,
+          "reasoning_output_tokens": 7080
+        }
+      ],
+      "source_result": "output/mit-script-delivery-r2/m0-minutes-main.result.json",
+      "commands": [],
+      "trace.jsonl_sha256": "8035700eeacc14e5344fe20438b38ce06afca78b519edffbd1d6b28a67be1cb1",
+      "stderr.txt_sha256": "2925c3acefdb9336ca893830b366ab59b2d7256f0673847b422518fc4f0849df",
+      "archived_final": "drafts/r2-m0-minutes-main.final.txt",
+      "file_sha256": "796287c5fbcea1e69646786c035ee632d4bb3c2b5810e6a77a418bd0ef43c4ad"
+    },
+    {
+      "model": "alibaba-token-plan-2/qwen3.8-flash",
+      "effort": "max",
+      "case": "minutes",
+      "arm": "candidate",
+      "returncode": 0,
+      "seconds": 202.01,
+      "invalid": [
+        "missing_skill_read_trace"
+      ],
+      "draft_sha256": "5ba46fc1a8c570e89b2c4cddfa502ba9cbc82ba3f5106374a14949a70a0e4138",
+      "usage": [
+        {
+          "input_tokens": 291677,
+          "cached_input_tokens": 267264,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 11380,
+          "reasoning_output_tokens": 7535
+        }
+      ],
+      "source_result": "output/mit-script-delivery-r2/m1-minutes-candidate.result.json",
+      "commands": [],
+      "trace.jsonl_sha256": "7fa5d0cccc115c23929d1b7329c07eb3b26df20e4819ea2ee522609144cacb8c",
+      "stderr.txt_sha256": "ca00fef1e9d7e3837c5dceca7075a3c9830a5a63f44dd8872a7fc169bb69ad12",
+      "archived_final": "drafts/r2-m1-minutes-candidate.final.txt",
+      "file_sha256": "5ba46fc1a8c570e89b2c4cddfa502ba9cbc82ba3f5106374a14949a70a0e4138"
+    },
+    {
+      "model": "alibaba-token-plan-2/qwen3.8-flash",
+      "effort": "max",
+      "case": "minutes",
+      "arm": "main",
+      "returncode": 0,
+      "seconds": 99.75,
+      "invalid": [
+        "missing_skill_read_trace"
+      ],
+      "draft_sha256": "9ef8202828aff7f398b70981cbdfbc40450920c9147945f5893906a6862efd76",
+      "usage": [
+        {
+          "input_tokens": 127389,
+          "cached_input_tokens": 116480,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 4913,
+          "reasoning_output_tokens": 3255
+        }
+      ],
+      "source_result": "output/mit-script-delivery-r2/m1-minutes-main.result.json",
+      "commands": [],
+      "trace.jsonl_sha256": "e383b460c1fc4d1dd032d539871b6f869b3ef90970f0be203e4165ed54bb56b1",
+      "stderr.txt_sha256": "ccb25b7544d7c9c1dc707434695a4b0bb0355066734e616a9a3b700e4c75f5b5",
+      "archived_final": "drafts/r2-m1-minutes-main.final.txt",
+      "file_sha256": "9ef8202828aff7f398b70981cbdfbc40450920c9147945f5893906a6862efd76"
+    }
+  ],
+  "candidate_file_hashes": {
+    "agents/openai.yaml": "ab0c24bd956f77c79484f2a1db1afb0e862a54ff93ea2d850e7287f03ad8a310",
+    "LICENSE": "ead35e40076582d7053fb0908588adb878ff5108601a76647b9f5626b3a0d5f8",
+    "README.md": "80c7e09e8f7e49c3efffa2672b221df3caed8074621e0754c90ac2daaf1c3fd3",
+    "references/ai-compute-docs.md": "07c3b4377ae7db711307d1b01217011a002b2441f680c25c3a0f1000318242ac",
+    "references/ai-compute-examples.md": "052d501f02d9047c292f46c569b5426256fffcb419594b240dda9a5a6bda5740",
+    "references/anti-ai-patterns.md": "b075d7394091fc5b54f07d70bfbf68dce0048f0b74aa59cff8578ad3f4bf48eb",
+    "references/argument-chains.md": "a3700bb8b9b8ee516abc5576d4d80dcb9bb491eecc23df3fef9d1597a98c1ed0",
+    "references/compatibility-scene-routing.md": "c74fc9990f3f8115c9e7727cf74c410fe107c03e06bc416b1058e88835d285bf",
+    "references/compression-details.md": "234198f2074f0713058a83ad2752d84d65cd132f1ad7bfe0530ffa98fd1ad145",
+    "references/delivery.md": "664144b8f4ecb6da9376fb5947d701ba5f11fa25f4ffd36b76bf2e7b7b5bfe83",
+    "references/external-research.md": "e5d4ad6abbb0084e7af4912864205fbe9b6371380618af1e5987dc80817aca6f",
+    "references/field-editing.md": "197c928642529043ffecee2cec56771c8bd53c99fcb67e8c0c9e1f38d6d7df44",
+    "references/final-review-layers.md": "b3b95a913af68e846dc17b014cf9352300aac15db1ad551fd78dad4d6ba9b0f9",
+    "references/formal-addressing.md": "040d9b81f90c5e8c0d54be430b29afae5620b1977ee895cfd1afe7408b82b5eb",
+    "references/format-gbt9704.md": "419f4c421f253fec27115582ed09742e44c6985ac27ad69172ad05b51e81e231",
+    "references/formulaic-language.md": "5226619cc4244f22cbe8cd71b6836cbf2d8622d0dbecdf48b1ade6132958798b",
+    "references/genre-checklist-feasibility-review.md": "825ec7fe532c88b3ebbf3a70777c3875c85ce4932a2595d377502516f394888c",
+    "references/genre-checklist-report.md": "17d285f72d7724b2fc8ac1a81302fcc5d192f002e9eabd3f584c0021158ff3b4",
+    "references/genre-checklist-request.md": "1fc28e0be14e9b90999c5d7f42a4bf4bb3d28b116c15738a2b09ac4623d0ecb5",
+    "references/genre-checklist.md": "fd9bffb271627985ebfeb7de6898bbd86fc882526ef24974bbe5844beb1ccc61",
+    "references/genre-playbook-advisory-feedback.md": "376d919865e748e3a9d55368f7224042e37572338bb50743d7e1c2a21e4a2ca9",
+    "references/genre-playbook-complaint-reflection.md": "1a881dd09bbe470f0fcaa715eb756944e5c87d7023a17fd355a46c90fc053671",
+    "references/genre-playbook-correspondence.md": "f95c0c8a828ffc3cfda58a0c11a698227c4c9f6a03009cc644271eea5f0858ef",
+    "references/genre-playbook-deliberation.md": "7f166e3c0f7d43cf1ec07fce96df9900b721c7616a6b49197a70fb2c3cea987c",
+    "references/genre-playbook-deployment.md": "b1a78c5240771de9c512600b4eaab984b490f23407897e5617334b0cd745d795",
+    "references/genre-playbook-explanation.md": "4eb42c1b40b6791dbb27a252a48fb9b577ad373b0927ce5159ff1857d4e603af",
+    "references/genre-playbook-feasibility.md": "d1cfe9c38717467a32e31b2b61ecdfb04c6e5b9b43e38e128e0079e77c341174",
+    "references/genre-playbook-institution-rules.md": "ed3b45dae82bc3a7177448dbb572e056c6595d0bb781c88cedda374f46a46efd",
+    "references/genre-playbook-minutes.md": "3c2f19bfb9794b89a20f1d3dbf502dc17cea1075bf560f5c33a0fbb29c0ce0d4",
+    "references/genre-playbook-news-commentary.md": "a854318e264a27de043b8a4890f8fac3400df5f9cd2812702513906a71108d77",
+    "references/genre-playbook-news-message.md": "d067c336f7457fd54c39911ecb36e0b08d14186e67475ba895d192fd91d1f8b4",
+    "references/genre-playbook-notice.md": "a5cf1830942f1b27667c62ba95e4f0fba4842f9db87eab393efb948482ad64b4",
+    "references/genre-playbook-opinion.md": "cc43428e166bf08da0415d76cc3e20d243b7ebb649531d048bc7d07f121d7cd8",
+    "references/genre-playbook-plan-construction.md": "b577ceb21f4d6997fc0081d647dca4d00ebf8eaa820747965469bca4fd041677",
+    "references/genre-playbook-procurement-announcement.md": "738562905f83138fd87321ebe11d5185c56be9b7071d3a49e30c92d44c733de9",
+    "references/genre-playbook-procurement-review.md": "4d69aefe6f817a3472168a8bdb24ad051f7ee07e4dc79948f3981d88ea9294a3",
+    "references/genre-playbook-project-application.md": "44488c0a912a1c84bc7a0e15aad32dd64e305b6b7852d977f4ee839f75715980",
+    "references/genre-playbook-publication.md": "37243a84c93dab48c5bc0503c76406f1e251708d7ad1a5c4f04ba7cfb8059478",
+    "references/genre-playbook-remediation-plan.md": "a520411418893e901462f99edf6d04497ae79ae27f34fa671ca6a609cc97090b",
+    "references/genre-playbook-reply.md": "f8f3241e9905a4c1629a7f62bf5648b9449f9556c7c438335729e9bd868ef922",
+    "references/genre-playbook-report.md": "55a71d9cb8f2214e6216b49eb85a316074f13bcf4f29af3632eb4524c7375176",
+    "references/genre-playbook-request.md": "07471f8090d93f85efc05f9e00b92b1e2f7620fb4adcc5a940ebd034105b47f8",
+    "references/genre-playbook-research.md": "b60932979d3310f9f50f93420b421ad97643b42eba767aa6d8f4c10439e5c4c8",
+    "references/genre-playbook-speech-address.md": "b9a2b8f1169e5a7229dcf20879a422201b6b33066e36df3b782daeee5ce90168",
+    "references/genre-playbook-work-summary.md": "1fcb8f7802af02b7aa1ad0d6490dfe3456191a3097d5f54974d947245110a448",
+    "references/genre-routing.md": "d87239ecac98f0df78434c5825eddb880b42459bf90cc75b2073b241d663455c",
+    "references/handling-elements.md": "b25c7d32e9600048bb0ac686cd96d9b3d5d8730ac3d102d12344f74a41bb62d6",
+    "references/information-selection.md": "6a0a4506952efe63ed57905bb6912c6b1eed648f08380d5775087d29404c7e45",
+    "references/official-style.md": "63bc7e166f59b9244d172936db14235a36ee51da5dd9cd7e2615da98b71b8ba7",
+    "references/proofreading-checklist.md": "3393ba39f93bcea22ccd5fd3256987b47ed7d83fe1dbd9be41f8682a98f676d9",
+    "references/prose-lint-usage.md": "b16b4e7fd1e1df6753ad55cc45fa4ebd58e93171b46504f6ca67fa746f13eee4",
+    "references/reference-index.md": "93dc8e8f31cee41806e6efe88de60b4c70ac5895be7fb9dbfc5d2b8e369bd147",
+    "references/review-checklist.md": "af206b6ef8898dac684a0015479cf5fadf58a8cc0d9dadc26b32bd779b1e7257",
+    "references/review-direct-checklist.md": "4d83392468e20f2c8503e2a76322857c55f272deccf310f1b91498c3a65e497e",
+    "references/short-draft-naturalness.md": "f86f8ff9799702b135bfd34a9be32d146a918cb14d08c11036f32db38c67c8f4",
+    "references/speech-person-order.md": "7dd764ef5ed0d9e38ef70edcc9955b1cfb36ea7d40221211e46e57b955460993",
+    "references/structure-editing.md": "2e31049d802fe8cf867fe11785d02dd37f7355abff5d3671cd142ac386782e6f",
+    "references/task-route-cards.md": "474de1c2441aefa48ed3d375a2f67c59d2f807231972cfd64f7dcf56504f5cfe",
+    "references/technical-terms.md": "4b1a10f56718027f82b4ff34ceb48f2a744e7d3e860a7a3d660ddf6aa33273c8",
+    "references/transaction-feedback-report.md": "272c23779c9b8b9ec3a62f851484533e28574bb2eaeba414ec3e0fdd0dba5f8e",
+    "references/transaction-remediation-report.md": "f290ebe57e41569b3fb2d125571d54782d0525e5d49540eed96bb3f4fb08f0fa",
+    "references/workflow.md": "28c462b6cbe1425efbaf64c7dfbc39e1b804942475570d0e2c52fe3bb6d854ac",
+    "scripts/draft_length.py": "5b126b391dd65db4c395e0d5883c84403094c3447191bbf7803579226e6384ca",
+    "scripts/prose_lint.py": "7cfb858dddc5e4eb4ddab40253fa78594581f4e1adb0a2b8e29ad129604c512d",
+    "SKILL.md": "8b3d4bf41ead03033fbf2c61002c75b4d436a7c45f4d27efb13288cee08a8a0f"
+  }
+}

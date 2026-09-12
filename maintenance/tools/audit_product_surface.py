@@ -39,10 +39,7 @@ ROUTING_DESCRIPTION_PHRASES = (
     "按交付模式和文种场景渐进读取规则",
     "按交付模式读取规则",
 )
-ALLOWED_TOOL_COMMANDS = {
-    "references/prose-lint-usage.md",
-    "references/delivery-review-gate.md",
-}
+REMOVED_HOOK_ROUTES = ("hooks/", "scripts/review_gate.py", "references/delivery-review-gate.md")
 
 
 def audit() -> list[str]:
@@ -52,6 +49,9 @@ def audit() -> list[str]:
         text = path.read_text(encoding="utf-8")
         rel = path.relative_to(PRODUCT).as_posix()
         lower = text.lower()
+        for route in REMOVED_HOOK_ROUTES:
+            if route in lower:
+                errors.append(f"{rel}: removed Hook route remains: {route!r}")
         for phrase in PROHIBITED:
             if phrase.lower() in lower:
                 errors.append(f"{rel}: leaked engineering phrase {phrase!r}")
@@ -69,7 +69,7 @@ def audit() -> list[str]:
                         errors.append(f"SKILL.md: description contains routing phrase {phrase!r}")
             if "## 任务模式路由与写作主线" in text:
                 errors.append("SKILL.md: duplicate detailed routing section remains on homepage")
-            if text.count("交付动作 → 主文种首叶") != 1:
+            if text.count("用户需求 → 选择文种 → 写稿或改稿 → 按步骤检查 → 交付") != 1:
                 errors.append("SKILL.md: homepage route spine is missing or duplicated")
             if "所有任务先按交付动作分模式" in text:
                 errors.append("SKILL.md: duplicated route instruction remains outside route spine")
@@ -88,4 +88,4 @@ if __name__ == "__main__":
     if problems:
         print("\n".join(problems))
         raise SystemExit(1)
-    print("product surface clean: no engineering commands or routing prose in description")
+    print("product surface marker audit passed; semantic instruction review remains separate")

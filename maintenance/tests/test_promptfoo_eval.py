@@ -7,6 +7,12 @@ import unittest
 from unittest import mock
 
 ROOT = Path(__file__).resolve().parents[2]
+FINAL_REVIEW_PATHS = [
+    "references/final-review-layers.md",
+    "references/anti-ai-patterns.md",
+    "references/prose-lint-usage.md",
+    "references/delivery.md",
+]
 
 
 def load_module(name: str, path: Path):
@@ -38,7 +44,7 @@ class PromptfooProviderTests(unittest.TestCase):
             "讲话稿": "references/genre-playbook-speech-address.md",
             "制度": "references/genre-playbook-institution-rules.md",
             "采购审查": "references/genre-playbook-procurement-review.md",
-            "决定": "references/genre-playbook-deliberation.md",
+            "决定": "references/genre-playbook-decision.md",
             "批复": "references/genre-playbook-reply.md",
             "意见": "references/genre-playbook-opinion.md",
             "说明": "references/genre-playbook-explanation.md",
@@ -68,6 +74,22 @@ class PromptfooProviderTests(unittest.TestCase):
                 self.assertIn(leaf, refs)
                 self.assertNotIn("references/genre-playbooks.md", refs)
 
+    def test_decision_family_drafting_and_natural_review_read_one_genre_leaf(self) -> None:
+        expected = {
+            "决定": "references/genre-playbook-decision.md",
+            "决议": "references/genre-playbook-resolution.md",
+            "议案": "references/genre-playbook-motion.md",
+            "公报": "references/genre-playbook-communique.md",
+            "命令": "references/genre-playbook-order.md",
+        }
+        for genre, leaf in expected.items():
+            with self.subTest(genre=genre, mode="draft"):
+                refs = provider._reference_paths_for_genres([genre], [f"请按材料起草这份{genre}。"])
+                self.assertEqual(refs, ["SKILL.md", "references/information-selection.md", leaf] + FINAL_REVIEW_PATHS)
+            with self.subTest(genre=genre, mode="review"):
+                refs = provider._reference_paths_for_genres([genre], [f"帮我审核这份{genre}。"])
+                self.assertEqual(refs, ["SKILL.md", leaf, "references/review-checklist.md"] + FINAL_REVIEW_PATHS)
+
     def test_reply_opinion_explanation_are_independent_from_generic_checklist(self) -> None:
         for genre, leaf in {
             "批复": "references/genre-playbook-reply.md",
@@ -76,14 +98,14 @@ class PromptfooProviderTests(unittest.TestCase):
         }.items():
             with self.subTest(genre=genre):
                 refs = provider._reference_paths_for_genres([genre], [f"起草{genre}"])
-                self.assertEqual(refs, ["SKILL.md", "references/information-selection.md", leaf])
+                self.assertEqual(refs, ["SKILL.md", "references/information-selection.md", leaf] + FINAL_REVIEW_PATHS)
                 self.assertNotIn("references/genre-checklist.md", refs)
 
     def test_unknown_genre_uses_router_and_minimal_checklist(self) -> None:
         refs = provider._reference_paths_for_genres(["未知材料"])
         self.assertEqual(
             refs,
-            ["SKILL.md", "references/information-selection.md", "references/genre-routing.md", "references/genre-checklist.md"],
+            ["SKILL.md", "references/information-selection.md", "references/genre-routing.md", "references/genre-checklist.md"] + FINAL_REVIEW_PATHS,
         )
 
     def test_deleted_mixed_directory_is_never_selected(self) -> None:
@@ -108,7 +130,10 @@ class PromptfooProviderTests(unittest.TestCase):
         self.assertNotIn("references/genre-playbooks.md", refs)
 
         exact = provider._reference_paths_for_genres(["算力服务可研报告"])
-        self.assertEqual(exact, ["SKILL.md", "references/information-selection.md", "references/ai-compute-docs.md"])
+        self.assertEqual(
+            exact,
+            ["SKILL.md", "references/information-selection.md", "references/genre-playbook-feasibility.md", "references/ai-compute-docs.md"] + FINAL_REVIEW_PATHS,
+        )
 
     def test_non_ai_cloud_task_does_not_load_compute_overlay(self) -> None:
         refs = provider._reference_paths_for_genres(
@@ -125,13 +150,23 @@ class PromptfooProviderTests(unittest.TestCase):
         self.assertIn("references/speech-person-order.md", ordered)
         self.assertIn("references/genre-playbook-speech-address.md", ordered)
 
-    def test_workflow_overlays_are_signal_gated(self) -> None:
+    def test_complex_work_uses_composable_common_pages_without_retired_workflow(self) -> None:
         complex_refs = provider._reference_paths_for_genres(
             ["报告"], ["请把多材料合稿整理成一份800字完整报告。"]
         )
-        self.assertIn("references/workflow.md", complex_refs)
-        self.assertIn("references/handling-elements.md", complex_refs)
-        self.assertIn("references/argument-chains.md", complex_refs)
+        self.assertEqual(
+            complex_refs,
+            [
+                "SKILL.md",
+                "references/information-selection.md",
+                "references/genre-playbook-report.md",
+                "references/handling-elements.md",
+                "references/argument-chains.md",
+                "references/compression-details.md",
+                *FINAL_REVIEW_PATHS,
+            ],
+        )
+        self.assertNotIn("references/workflow.md", complex_refs)
 
         format_refs = provider._reference_paths_for_genres(
             ["通知"], ["按 GB/T 9704 排成 Word 正式文件。"]
@@ -151,12 +186,13 @@ class PromptfooProviderTests(unittest.TestCase):
                 "references/task-route-cards.md",
                 "references/short-draft-naturalness.md",
                 "references/genre-playbook-report.md",
+                *FINAL_REVIEW_PATHS,
             ],
         )
         minutes = provider._reference_paths_for_genres(
             ["会议纪要"], ["材料只有建议，未形成决定，请写简短会议纪要。"]
         )
-        self.assertEqual(minutes, ["SKILL.md", "references/information-selection.md", "references/genre-playbook-minutes.md"])
+        self.assertEqual(minutes, ["SKILL.md", "references/information-selection.md", "references/genre-playbook-minutes.md"] + FINAL_REVIEW_PATHS)
 
     def test_short_route_is_a_mode_overlay_on_the_primary_genre(self) -> None:
         short_application = provider._reference_paths_for_genres(
@@ -170,6 +206,7 @@ class PromptfooProviderTests(unittest.TestCase):
                 "references/task-route-cards.md",
                 "references/short-draft-naturalness.md",
                 "references/genre-playbook-request.md",
+                *FINAL_REVIEW_PATHS,
             ],
         )
         long_application = provider._reference_paths_for_genres(
@@ -178,13 +215,26 @@ class PromptfooProviderTests(unittest.TestCase):
         self.assertNotIn("references/task-route-cards.md", long_application)
         self.assertIn("references/genre-playbook-request.md", long_application)
 
-    def test_review_route_does_not_force_drafting_layers(self) -> None:
+    def test_natural_review_requests_keep_one_primary_and_full_review(self) -> None:
+        cases = [
+            ("通知", "帮我审核一下这份通知。", "references/genre-playbook-notice.md"),
+            ("会议纪要", "帮我复核这份会议纪要。", "references/genre-playbook-minutes.md"),
+            ("报告", "请审校这份报告的事实和状态。", "references/genre-playbook-report.md"),
+            ("采购审查", "帮我把关这份采购审查稿件。", "references/genre-playbook-procurement-review.md"),
+        ]
+        for genre, task, leaf in cases:
+            with self.subTest(genre=genre, task=task):
+                refs = provider._reference_paths_for_genres([genre], [task])
+                self.assertEqual(refs, ["SKILL.md", leaf, "references/review-checklist.md"] + FINAL_REVIEW_PATHS)
+
+    def test_explicit_review_scope_keeps_common_review_stages(self) -> None:
         refs = provider._reference_paths_for_genres(
             ["通知"], ["只审不改，检查这份通知的格式和语气。"]
         )
-        self.assertIn("references/review-checklist.md", refs)
-        self.assertIn("references/genre-playbook-notice.md", refs)
-        self.assertNotIn("references/workflow.md", refs)
+        self.assertEqual(
+            refs,
+            ["SKILL.md", "references/genre-playbook-notice.md", "references/review-checklist.md"] + FINAL_REVIEW_PATHS,
+        )
 
     def test_review_and_rewrite_keep_the_same_primary_scene(self) -> None:
         review = provider._reference_paths_for_genres(
@@ -198,26 +248,47 @@ class PromptfooProviderTests(unittest.TestCase):
         self.assertIn(leaf, rewrite)
         self.assertNotIn("references/genre-playbook-notice.md", review)
 
-    def test_body_only_delivery_adds_anti_narration_overlay(self) -> None:
-        ordinary = provider._reference_paths_for_genres(["意见"], ["请起草一份意见。"])
-        body_only = provider._reference_paths_for_genres(
-            ["意见"], ["请起草一份意见，只输出完整正文。"]
-        )
-        self.assertNotIn("references/anti-ai-patterns.md", ordinary)
-        self.assertIn("references/genre-playbook-opinion.md", body_only)
-        self.assertIn("references/anti-ai-patterns.md", body_only)
-        self.assertIn("references/delivery-body-only.md", body_only)
+    def test_all_deliveries_keep_mandatory_review_and_delivery_stages(self) -> None:
+        for task in ["请起草一份意见。", "请起草一份意见，只输出完整正文。"]:
+            with self.subTest(task=task):
+                self.assertEqual(
+                    provider._reference_paths_for_genres(["意见"], [task]),
+                    ["SKILL.md", "references/information-selection.md", "references/genre-playbook-opinion.md"] + FINAL_REVIEW_PATHS,
+                )
 
-    def test_natural_delivery_phrasing_selects_delivery_page(self) -> None:
-        refs = provider._reference_paths_for_genres(["报告"], ["帮我写完整稿子，不需要解释。"])
-        self.assertIn("references/delivery-body-only.md", refs)
+    def test_natural_delivery_phrasing_uses_the_same_final_delivery_page(self) -> None:
+        for task in ["帮我写完整稿子。", "帮我写完整稿子，不需要解释。"]:
+            with self.subTest(task=task):
+                refs = provider._reference_paths_for_genres(["报告"], [task])
+                self.assertEqual(refs[-4:], FINAL_REVIEW_PATHS)
+                self.assertNotIn("references/delivery-body-only.md", refs)
+
+    def test_skill_prompt_does_not_inject_length_or_suppress_notes(self) -> None:
+        cases = [{"vars": {"case_id": "C001", "genre": "报告", "task": "帮我写完整稿子。"}}]
+        with mock.patch.object(provider, "_load_skill_context_from_paths", return_value="test skill context"):
+            prompt = provider._skill_prompt(cases, {"repoRoot": str(ROOT)})
+        self.assertIn("帮我写完整稿子。", prompt)
+        self.assertNotRegex(prompt, r"160\s*[-—～至]\s*260")
+        for suppression in ["省略文后提示", "不附文后提示", "只输出正文"]:
+            self.assertNotIn(suppression, prompt)
+
+    def test_length_check_precedes_common_final_stages(self) -> None:
+        for genre, task in [
+            ("报告", "起草800字报告"),
+            ("新闻消息", "起草300字新闻消息"),
+            ("通知", "审核这份通知的格式并核对字数"),
+        ]:
+            with self.subTest(genre=genre, task=task):
+                refs = provider._reference_paths_for_genres([genre], [task])
+                self.assertEqual(refs[-5:], ["references/compression-details.md"] + FINAL_REVIEW_PATHS)
+                self.assertEqual(len(refs), len(set(refs)))
 
     def test_transaction_names_keep_a_primary_leaf(self) -> None:
         meeting_notice = provider._reference_paths_for_genres(["通知"], ["起草会议通知"])
         procurement_application = provider._reference_paths_for_genres(
             ["申请"], ["起草采购申请，列明品名、数量和预算"]
         )
-        self.assertEqual(meeting_notice, ["SKILL.md", "references/information-selection.md", "references/genre-playbook-notice.md"])
+        self.assertEqual(meeting_notice, ["SKILL.md", "references/information-selection.md", "references/genre-playbook-notice.md"] + FINAL_REVIEW_PATHS)
         self.assertIn("references/genre-playbook-request.md", procurement_application)
         self.assertNotIn("references/compatibility-scene-routing.md", procurement_application)
 

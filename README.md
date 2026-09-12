@@ -19,7 +19,7 @@
 - **办理要素与论证链**：按请示、报告、通知协调、方案建设、可研审查和技术材料选择相应的办理要素与论证路径。
 - **制度类专项路由**：按制度、规定、办法、实施细则和操作规程选择连续条文、章条结构、职责程序及印发附件关系。
 - **新闻与评论写作**：覆盖新闻稿、新闻消息、快讯、活动报道、新闻通稿、新闻评论、时评和评论员文章，区分事实报道与观点表达。
-- **渐进式路由**：短任务使用轻量卡，完整公文进入对应文种叶子，技术类材料按需加载专项规则。
+- **渐进式路由**：短任务采用相应文种的轻量流程，完整公文读取对应文种页，技术类材料按需叠加专项规则。
 - **创作、改稿与复核**：分别处理从零起草、基于底稿修改、只审不改、压缩和 Word 正文衔接。
 - **轻量审查**：分层核对事实、视角、标题、格式、重复事项和模板化表达，并提供可选的确定性风险线索。
 - **技术材料专项写作**：覆盖 AI 算力、GPU/服务器租赁、成本比较、SLA、并发、安全、运维和验收。
@@ -40,29 +40,29 @@
 
 普通写作提示往往只告诉模型“写一份报告”或“改得正式一点”，文种、主体视角、事实状态、用户模板和交付方式容易在长稿或多轮修改中互相挤占。这个 Skill 把写作拆成一条可检查的链路：
 
-任务模式 → 文种与行文关系 → 办理要素 → 轻量卡或文种叶子 → 正文 → 分段、小节和全文复核。
+任务模式 → 主文种与必要共性规则 → 正文形态 → 终稿复核 → 稿件与文后提示。
 
 - 确定任务模式：区分从零起草、基于底稿修改、只审不改和 Word/排版衔接，避免审稿任务被改成重写。
 - 确定文种功能：按上行、下行和平行关系选择语气、结构和办理要素，请示与报告、函与复函各走自己的规则。
 - 锁定事实状态：金额、日期、主体、责任、期限、附件和联系人按已确认、未决、缺失分别处理，用户模板和字段顺序优先保留。
-- 材料暂缺时正文优先完成，影响执行的必要缺口放在文后简短提示；后续轮次继续执行新的修改要求。
+- 材料暂缺时完成有依据的正文，缺项、风险和仍未解决的问题统一放在独立的文后提示；后续轮次继续执行新的修改要求。
 - 成稿后进入轻量审查层，依次核对事实、文种、标题、格式、重复事项和模板化表达，局部修正已经确认的问题。
 
 ## 实现与技术栈
 
-这是一个 Markdown-first 的 Agent Skill。核心规则和 references 全部使用中文 Markdown 编写，不懂代码也能直接阅读、审查和修改。通用 YAML frontmatter 只保留名称、触发描述和标签；版本与许可由发布包和宿主 manifest 承担。Python 只承担可选的确定性检查；各平台适配包从同一 canonical 技能目录同步，正文规则保持一致。
+这是一个 Markdown-first 的 Agent Skill。核心规则和 references 全部使用中文 Markdown 编写，不懂代码也能直接阅读、审查和修改。通用 YAML frontmatter 只保留名称、触发描述和标签；版本与许可由发布包和宿主 manifest 承担。Python 承担篇幅统计和文稿复核的确定性检查；各平台适配包从同一 canonical 技能目录同步，正文规则保持一致。
 
 | 组成 | 作用 |
 | --- | --- |
 | `SKILL.md` | 判断何时启用、选择任务模式，并给出事实、输出和复核主流程 |
-| `references/task-route-cards.md` | 为稀疏说明、未决纪要、短通知和二次局部修改提供轻量路径 |
+| `references/task-route-cards.md` | 按材料和任务范围选择轻量流程，保留相应主文种 |
 | 文种与专项 references | 按需补充文种骨架、办理要素、论证链、GB/T 9704 格式和 AI 算力材料规则 |
 | 分层复核 references | 从段落、小节到全文检查事实、视角、结构、格式和自然表达 |
-| `scripts/prose_lint.py` | 提供可选的格式、重复和成品残留线索，作为轻量审查层的确定性补充 |
-| 可选交付 Hook | 一份门禁核心配合 Codex、Claude Code、WorkBuddy/CodeBuddy、ZCode、Qwen Code、Kimi Code CLI、OpenCode、Hermes Agent 与 DeepSeek Harness 静态适配层；由用户明确启用，未通过时优先保留完整初稿；各宿主只承诺其已验证生命周期 |
+| `scripts/draft_length.py` | 在终稿复核的篇幅阶段统计正文长度，辅助按范围调整；独立于 Agent 生命周期 |
+| `scripts/prose_lint.py` | 在事实、文种和语言复核后检查格式、重复和成品残留，作为文稿复核的脚本兜底 |
 | `agents/openai.yaml` | 提供界面展示和默认调用信息 |
 
-渐进式路由让短任务只读取轻量卡，完整公文再进入相应文种叶子，技术类材料只加载命中的专项规则。这样既保留必要边界，也减少无关规则对真实写稿的干扰。
+渐进式路由让任务读取一个主文种页和必要的共性规则；短任务压缩流程，技术类材料叠加命中的专项规则。这样既保留必要边界，也减少无关规则对真实写稿的干扰。
 
 ## 快速安装
 
@@ -123,17 +123,7 @@ QwenWork 可使用 [`packages/qwenwork/`](packages/qwenwork/) 中的无 Hook 静
 
 | 路径 | 用途 |
 | --- | --- |
-| `chinese-official-writing/` | 通用 canonical Agent Skill；不启用 Hook 也可独立完成写稿与复核 |
-| `chinese-official-writing/hooks/` | 可选交付复核说明、唯一能力核心和宿主静态适配层；见 [Hook 使用说明](chinese-official-writing/hooks/README.md) |
-| `chinese-official-writing/hooks/adapters/codex/` | Codex Hook 静态兼容文件与使用指引 |
-| `chinese-official-writing/hooks/adapters/codebuddy/` | WorkBuddy/CodeBuddy Hook 静态兼容文件与使用指引 |
-| `chinese-official-writing/hooks/adapters/claude-code/` | Claude Code Hook 静态兼容文件与使用指引 |
-| `chinese-official-writing/hooks/adapters/zcode/` | ZCode Hook 静态兼容文件与使用指引 |
-| `chinese-official-writing/hooks/adapters/qwen-code/` | Qwen Code native extension Hook 静态兼容文件与使用指引 |
-| `chinese-official-writing/hooks/adapters/kimi-code/` | Kimi Code CLI native plugin Hook 静态兼容文件、单 Stop 边界与使用指引 |
-| `chinese-official-writing/hooks/adapters/opencode/` | OpenCode 项目级交互插件、同名 Skill 来源保护、无头旁路与使用指引 |
-| `chinese-official-writing/hooks/adapters/hermes-agent/` | Hermes Agent 新建、不可恢复单题的有界复核插件与宿主限制 |
-| `chinese-official-writing/hooks/adapters/deepseek-harness/` | DeepSeek Harness headless Profile Bundle、OpenCodex 配置与生命周期边界 |
+| `chinese-official-writing/` | 通用 canonical Agent Skill，含写作规则、references 和普通检查脚本 |
 | `packages/agent-skills/` | 通用 Agent Skills、MiniMax Skills、GLM Skills（Z.ai/智谱）、ZCode、AutoClaw、Kimi Code CLI、TRAE、Baidu Comate AI IDE 等兼容包 |
 | `packages/qwen-code/` | Qwen Code 兼容包 |
 | `packages/qwenwork/` | QwenWork（Qwen 办公）静态 Skill 兼容包，不声明 Hook 生命周期 |
@@ -145,7 +135,7 @@ QwenWork 可使用 [`packages/qwenwork/`](packages/qwenwork/) 中的无 Hook 静
 
 ## 开源许可
 
-本仓库采用 [MIT License](LICENSE)。
+普通 Skill、references、普通检查脚本与兼容包采用 [MIT License](LICENSE)。Hook 已从本轮 MIT 候选移出，保存于独立分支供 Pro 后续接续。v1.6.34 及此前已发布的 MIT 副本保留原许可；后续 Hook 更新归 Pro 专属，采用版权所有协议。构建与接续信息见 [Hook 去向便条](maintenance/docs/pro-hooks-next.md)。
 
 ## 规范与参考
 

@@ -1,0 +1,23 @@
+Minutes drafted, checked at 191 non-whitespace characters (within 180–260), prose lint clean. Saved as [draft-minutes.txt](F:/Workspaces/chinese-official-writing-skill/output/route-worktrees/reference-rewrite-20260912/output/mit-script-delivery-r4/runtime/m2-minutes-main/draft-minutes.txt).
+
+接口测试讨论会议纪要
+
+一、会议基本情况
+
+9月10日，信息中心组织接口测试讨论，张工、王工参加。
+
+二、接口测试情况
+
+接口A累计测试30次，其中2次返回超时，超时原因仍在核对。
+
+三、讨论情况
+
+张工建议下周追加测试，会议尚未决定是否采用该建议，也没有明确责任人和完成日期。王工认为应先核对超时日志，会议未形成结论。
+
+四、会议要求
+
+保留接口A当前测试记录，供后续核对。
+
+待确认事项（正文外）：会议地点未提供。
+
+处理说明：稿件按未形成决定的纪要口径组织，只保留已发生事实和明确状态——张工的追加测试建议保持"建议"强度、明确"会议尚未决定是否采用"，王工的意见记为"认为"、未写成会议结论，也未补责任人或完成日期。会议地点属于材料实质缺口，放在正文外的"待确认事项"一行，未在正文中出现缺口说明或占位符。

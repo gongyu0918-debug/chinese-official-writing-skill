@@ -5,15 +5,15 @@
 ## 工作方式
 
 - 修改代码/规则、设计验证、合并或发布前，按[开发细则](maintenance/docs/development-workflow.md)核对基线、授权、工作树和验证范围。代码/文档均提交；功能、大改、研究、基线和发布用独立 worktree。复杂任务交子代理，主代理复核。
-- 写作/Hook 先做最小原型并验证真实稿件/生命周期，以准确、自然、完整、可直接使用决定保留；失败先修产品，成功再补工程，不用更多量表或门禁替代质量。
+- 写作规则与普通脚本先做最小原型并验证真实稿件，以准确、自然、完整、可直接使用决定保留；失败先修产品，成功再补工程，不用更多量表或门禁替代质量。Pro Hook 另在对应分支验证真实生命周期。
 - Markdown 按需选读，已读未变不重复整篇加载；长日志/历史先检索，回传结论与路径。无新改动、失败或未决问题不重复验证；全量门原则上合并/发布前只跑一次。
 
 ## 边界
 
 - 当次未明确授权，不合 main、推送、移动 tag、创建 Release、上传/删除平台版本；外部写入不超授权。禁止破坏性 reset、force push、无边界清理；删除须核准路径、工作树干净、成果可恢复。禁止提交密钥、登录态、私有地址和未脱敏数据。
 - 未经用户对具体范围明确授权，禁止大范围重构、修改核心路由或主要工作流。局部修改、优化、融合或 compact 不构成上述授权；该限制同样适用于实验原型、测试包和独立 worktree，不得通过删除、停用或绕开既有专叶、脚本、Hook、README 及其他功能规避。已有明确授权的范围内按要求继续执行，无需重复确认。
-- canonical 的 `hooks/core/` 为唯一核心，`hooks/adapters/` 为静态适配；`packages/` 放公开包，`maintenance/` 放维护证据，`output/` 默认不提交。
-- main 不含付费提纲 Hook、胶水、测试和详细规格；付费分支保持 main 加付费增量，按[同步规则](maintenance/specs/public-paid-sync.md)接收公开变更，提纲不得反流；付费发布另行授权。
+- `chinese-official-writing/` 为普通 Skill 的 canonical，保留 `SKILL.md`、`references/` 和普通 `scripts/`；`packages/` 放公开兼容包，`maintenance/` 放维护证据，`output/` 默认不提交。
+- 本轮将全部 Hook、交付门禁与宿主适配从 MIT 产品及活动构建链移出，保留在独立分支供 Pro 后续接续，见[Hook 去向便条](maintenance/docs/pro-hooks-next.md)。普通写稿、references 和脚本按[同步规则](maintenance/specs/public-paid-sync.md)进入 Pro；Pro 专属能力不反流，接续、发布另行授权。
 
 ## 本机真实使用
 

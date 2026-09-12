@@ -1,0 +1,14 @@
+{
+  "main": {
+    "commit": "1ce7112303172478faa2392667a2de1098eb912c",
+    "skill_chars": 7516,
+    "reference_pages": 50,
+    "reference_chars": 84899
+  },
+  "candidate": {
+    "skill_chars": 3899,
+    "reference_pages": 62,
+    "reference_chars": 51157
+  },
+  "scope": "Unicode characters; excludes scripts, Hook runtime, maintenance manifest and mirrors"
+}

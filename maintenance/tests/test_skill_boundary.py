@@ -11,7 +11,6 @@ import yaml
 
 ROOT = Path(__file__).resolve().parents[2]
 CANONICAL = ROOT / "chinese-official-writing"
-HOOK_ADAPTERS = CANONICAL / "hooks" / "adapters"
 OPTIONAL_GATE_FILES = {
     "hooks",
     "references/delivery-review-gate.md",
@@ -160,7 +159,7 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assertIn("~/.qwenworkcn/skills/chinese-official-writing/", readme)
         self.assertIn("压缩包顶层只放一个 `chinese-official-writing/` 目录", readme)
         self.assertIn("QwenWork 与 Qwen Code 是两个宿主", readme)
-        self.assertIn("不声明写后交付门禁 Hook 可用", readme)
+        self.assertFalse((skill_root / "hooks").exists())
         self.assertIn('"qwenwork": PACKAGES / "qwenwork"', sync_script)
         self.assertIn('"qwenwork": OPTIONAL_GATE_FILES', sync_script)
 
@@ -221,10 +220,8 @@ class SkillBoundaryTests(unittest.TestCase):
 
     def test_delivery_scope_rule_is_naturalized_across_current_skill_copies(self) -> None:
         expected = (
-            "正式正文仅包含文种功能和用户要求需要的内容；制作版本、内部受众、操作方式、校验门禁、审核状态，"
-            "以及与稿件事实无关的重复解释、括号式小字结论、制作说明、免责话术、写作边界和处理方法自述均省去，"
-            "同一标题仅保留一次。正文外审稿意见单独处理；用户明确要求显示的声明、版本或保密标识，"
-            "以及材料本身记载的业务事实，按用户要求和事实边界保留。"
+            "正式正文清除 AI 身份、提示词、隐藏推理、起草过程、脚本结果、制作说明、免责话术、"
+            "连续追问或“正文如下”等旁白。"
         )
         legacy = "正式正文只保留文种功能和用户要求需要的内容"
         canonical = ROOT / "chinese-official-writing" / "SKILL.md"
@@ -236,22 +233,23 @@ class SkillBoundaryTests(unittest.TestCase):
             ROOT / "packages" / "hermes" / "skills" / "chinese-official-writing" / "SKILL.md",
         ]
         canonical_body = canonical.read_text(encoding="utf-8").split("---", 2)[2].strip()
-        hook_route = (
-            "\n\n用户明确要求处理交付门禁 Hook 时，读取 `hooks/README.md`。"
-            "普通起草、改稿、压缩和复核不加载该页，也不自动启用 Hook。"
-        )
-
         for path in paths:
             with self.subTest(path=path):
                 text = path.read_text(encoding="utf-8")
                 self.assertIn(expected, text)
                 self.assertEqual(text.count(expected), 1)
                 self.assertNotIn(legacy, text)
+                final_review = (path.parent / "references/final-review-layers.md").read_text(
+                    encoding="utf-8"
+                )
+                review = (path.parent / "references/review-checklist.md").read_text(encoding="utf-8")
+                delivery = (path.parent / "references/delivery.md").read_text(encoding="utf-8")
+                self.assertIn("材料本身的领导要求、声明、版本或保密标识按事实保留", final_review)
+                self.assertIn("重复标题", review)
+                self.assertIn("审核任务交付问题位置、风险和修改建议", delivery)
+                self.assertIn("用户明确只要稿件、只要正文或要求省略说明时，省略文后提示", delivery)
                 body = text.split("---", 2)[2].strip()
-                if "packages" in path.parts:
-                    self.assertEqual(canonical_body.replace(hook_route, ""), body)
-                else:
-                    self.assertEqual(canonical_body, body)
+                self.assertEqual(canonical_body, body)
 
     def test_entry_excludes_only_non_obvious_out_of_scope_tasks(self) -> None:
         text = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
@@ -302,42 +300,6 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assertIn("| `references/official-style.md` | 起草中 |", text)
         self.assertIn("| `references/anti-ai-patterns.md` | 复核时 |", text)
 
-    def test_static_hook_adapters_do_not_duplicate_full_skill(self) -> None:
-        for host in (
-            "codex",
-            "codebuddy",
-            "claude-code",
-            "zcode",
-            "qwen-code",
-            "kimi-code",
-            "opencode",
-            "hermes-agent",
-        ):
-            with self.subTest(host=host):
-                adapter = HOOK_ADAPTERS / host
-                self.assertTrue((adapter / "README.md").is_file())
-                self.assertEqual(
-                    host not in {"opencode", "hermes-agent"},
-                    (adapter / "manifest.json").is_file(),
-                )
-                self.assertEqual(
-                    host == "hermes-agent", (adapter / "plugin.yaml").is_file()
-                )
-                self.assertEqual(
-                    host not in {"kimi-code", "opencode", "hermes-agent"},
-                    (adapter / "hooks.json").is_file(),
-                )
-                self.assertEqual(
-                    host in {"claude-code", "qwen-code", "kimi-code"},
-                    (adapter / "gate_stop_hook.py").is_file(),
-                )
-                self.assertEqual(
-                    host == "opencode", (adapter / "opencode_gate_plugin.js").is_file()
-                )
-                self.assertEqual(
-                    host == "hermes-agent", (adapter / "__init__.py").is_file()
-                )
-                self.assertFalse((adapter / "skills").exists())
 
     def test_second_revision_fact_mapping_has_one_complete_entry_rule(self) -> None:
         text = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
@@ -364,7 +326,7 @@ class SkillBoundaryTests(unittest.TestCase):
             (ROOT / "packages" / "hermes" / "skills" / "chinese-official-writing", OPTIONAL_GATE_FILES),
         ]
         for target, excludes in targets:
-            for folder in ["agents", "hooks", "references", "scripts"]:
+            for folder in ["agents", "references", "scripts"]:
                 canonical_folder = canonical / folder
                 target_folder = target / folder
                 with self.subTest(target=target, folder=folder):
@@ -385,30 +347,21 @@ class SkillBoundaryTests(unittest.TestCase):
                             f"{target}/{folder}/{relative}",
                         )
 
-    def test_only_canonical_keeps_gate_sources(self) -> None:
-        gate_files = {
-            "hooks/README.md",
-            "hooks/host-capabilities.json",
-            "hooks/core/gate_stop_hook.py",
-            "hooks/adapters/host_gate_adapter.py",
-            "references/delivery-review-gate.md",
-            "scripts/review_gate.py",
-        }
-        for relative in gate_files:
-            self.assertTrue((CANONICAL / relative).is_file(), relative)
-
-        excluded_surfaces = [
+    def test_canonical_and_plain_packages_exclude_gate_sources_and_keep_scripts(self) -> None:
+        surfaces = [
+            CANONICAL,
             ROOT / "packages" / "agent-skills" / "skills" / "chinese-official-writing",
             ROOT / "packages" / "qwen-code" / "skills" / "chinese-official-writing",
             ROOT / "packages" / "qwenwork" / "skills" / "chinese-official-writing",
             ROOT / "packages" / "hermes" / "skills" / "chinese-official-writing",
             ROOT / "packages" / "openclaw" / "skills" / "chinese_official_writing",
         ]
-        for packaged in excluded_surfaces:
-            with self.subTest(packaged=packaged):
+        for surface in surfaces:
+            with self.subTest(surface=surface):
                 for relative in OPTIONAL_GATE_FILES:
-                    self.assertFalse((packaged / relative).exists(), relative)
-                self.assertTrue((packaged / "scripts" / "prose_lint.py").is_file())
+                    self.assertFalse((surface / relative).exists(), relative)
+                for script in ("draft_length.py", "prose_lint.py"):
+                    self.assertTrue((surface / "scripts" / script).is_file(), script)
 
     def test_skillhub_clean_package_allowlist_has_expected_file_count(self) -> None:
         canonical = ROOT / "chinese-official-writing"
@@ -421,34 +374,14 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assertGreater(len(package_allowlist), 44)
         self.assertNotIn("agents/openai.yaml", package_allowlist)
         self.assertNotIn("LICENSE", package_allowlist)
-        for relative in ("hooks/README.md", "hooks/host-capabilities.json", "hooks/core/gate_stop_hook.py"):
-            self.assertIn(relative, package_allowlist)
-        self.assertTrue(any(relative.startswith("hooks/adapters/") for relative in package_allowlist))
-
-    def test_codex_plugin_version_and_hook_path_track_canonical_skill(self) -> None:
-        sync_script = (ROOT / "maintenance" / "tools" / "sync_adapters.py").read_text(encoding="utf-8")
-        sync_version = re.search(r'^VERSION = "([^"]+)"$', sync_script, re.M)
-        self.assertIsNotNone(sync_version)
-        manifest = json.loads((HOOK_ADAPTERS / "codex" / "manifest.json").read_text(encoding="utf-8"))
-        self.assertEqual(manifest["version"], sync_version.group(1))
-
-        config = json.loads((HOOK_ADAPTERS / "codex" / "hooks.json").read_text(encoding="utf-8"))
-        commands = [
-            handler[key]
-            for groups in config["hooks"].values()
-            for group in groups
-            for handler in group["hooks"]
-            for key in ("command", "commandWindows")
-        ]
-        self.assertTrue(commands)
-        self.assertTrue(
-            all(
-                "host_gate_adapter.py" in command
-                and "skills/chinese-official-writing" not in command
-                and "'skills','chinese-official-writing'" not in command
-                for command in commands
+        for relative in OPTIONAL_GATE_FILES:
+            self.assertFalse(
+                any(path == relative or path.startswith(f"{relative}/") for path in package_allowlist),
+                relative,
             )
-        )
+        for script in ("draft_length.py", "prose_lint.py"):
+            self.assertIn(f"scripts/{script}", package_allowlist)
+
 
     def test_reference_loading_table_keeps_progressive_disclosure(self) -> None:
         text = read_routing_surfaces(CANONICAL / "SKILL.md")
@@ -1151,7 +1084,6 @@ class SkillBoundaryTests(unittest.TestCase):
         for path in [
             "packages/qwen-code/",
             "packages/qwenwork/",
-            "chinese-official-writing/hooks/adapters/",
             "packages/agent-skills/",
         ]:
             self.assertIn(path, readme)
@@ -1163,34 +1095,24 @@ class SkillBoundaryTests(unittest.TestCase):
         frontmatter = read_frontmatter(ROOT / "chinese-official-writing" / "SKILL.md")
         self.assertEqual(set(frontmatter), {"name", "description", "metadata"})
 
-    def test_claude_plugin_manifest_version_matches_skill_and_sync_script(self) -> None:
-        manifest = json.loads((HOOK_ADAPTERS / "claude-code" / "manifest.json").read_text(encoding="utf-8"))
-        zcode_manifest = json.loads((HOOK_ADAPTERS / "zcode" / "manifest.json").read_text(encoding="utf-8"))
-        qwen_manifest = json.loads((HOOK_ADAPTERS / "qwen-code" / "manifest.json").read_text(encoding="utf-8"))
-        kimi_manifest = json.loads((HOOK_ADAPTERS / "kimi-code" / "manifest.json").read_text(encoding="utf-8"))
+    def test_public_package_versions_match_skill_and_sync_script(self) -> None:
         sync_script = (ROOT / "maintenance" / "tools" / "sync_adapters.py").read_text(encoding="utf-8")
         readme = (ROOT / "README.md").read_text(encoding="utf-8")
         openclaw_readme = (ROOT / "packages" / "openclaw" / "README.md").read_text(encoding="utf-8")
         openclaw_skill = read_frontmatter(
             ROOT / "packages" / "openclaw" / "skills" / "chinese_official_writing" / "SKILL.md"
         )
-
         sync_version = re.search(r'VERSION = "([^"]+)"', sync_script)
         readme_version = re.search(r"chinese-official-writing@(\d+\.\d+\.\d+)", readme)
         openclaw_version = re.search(r"当前 GitHub 版本为 `(\d+\.\d+\.\d+)`", openclaw_readme)
-
         self.assertIsNotNone(sync_version)
         self.assertIsNotNone(readme_version)
         self.assertIsNotNone(openclaw_version)
-        self.assertEqual(manifest["version"], sync_version.group(1))
-        self.assertEqual(CURRENT_VERSION, manifest["version"])
+        self.assertEqual(CURRENT_VERSION, sync_version.group(1))
+        self.assertEqual(CURRENT_VERSION, openclaw_skill["metadata"]["version"])
         self.assertEqual(PUBLISHED_VERSION, openclaw_version.group(1))
-        self.assertEqual(manifest["version"], openclaw_skill["metadata"]["version"])
-        self.assertEqual(manifest["version"], zcode_manifest["version"])
-        self.assertEqual(manifest["version"], qwen_manifest["version"])
-        self.assertEqual(manifest["version"], kimi_manifest["version"])
-        self.assertNotIn("ROOT_README", sync_script)
         self.assertEqual(PUBLISHED_VERSION, readme_version.group(1))
+        self.assertNotIn("ROOT_README", sync_script)
         self.assertIn("OPENCLAW_PACKAGE", sync_script)
 
     def test_repository_and_current_packages_use_mit(self) -> None:
@@ -1241,18 +1163,6 @@ class SkillBoundaryTests(unittest.TestCase):
             ROOT / "packages" / "red-skillhub" / "skills" / "chinese-official-writing" / "SKILL.md"
         )
         self.assertEqual("MIT", redskill_frontmatter["license"])
-
-        full_package_manifests = [
-            "chinese-official-writing/hooks/adapters/codex/manifest.json",
-            "chinese-official-writing/hooks/adapters/codebuddy/manifest.json",
-            "chinese-official-writing/hooks/adapters/claude-code/manifest.json",
-            "chinese-official-writing/hooks/adapters/zcode/manifest.json",
-            "chinese-official-writing/hooks/adapters/qwen-code/manifest.json",
-            "chinese-official-writing/hooks/adapters/kimi-code/manifest.json",
-        ]
-        for relative_path in full_package_manifests:
-            manifest = json.loads((ROOT / relative_path).read_text(encoding="utf-8"))
-            self.assertEqual(manifest["license"], "MIT", relative_path)
 
         self.assertIn('REPOSITORY_LICENSE = "MIT"', sync_script)
         self.assertIn("TARGET_LICENSES = {", sync_script)

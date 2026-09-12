@@ -3,9 +3,6 @@ from __future__ import annotations
 from pathlib import Path
 import unittest
 
-from maintenance.tests.hook_companion_support import HookCompanionTestMixin
-
-
 ROOT = Path(__file__).resolve().parents[2]
 CANONICAL = ROOT / "chinese-official-writing"
 PERSISTENT_MIRROR_ROOTS = (
@@ -21,23 +18,9 @@ CLASSIFICATION_RULE = (
 FORMULAIC = Path("references/formulaic-language.md")
 
 
-class InformationSelectionClassificationTests(HookCompanionTestMixin, unittest.TestCase):
+class InformationSelectionClassificationTests(unittest.TestCase):
     def setUp(self) -> None:
-        self.setUpHookCompanions()
-        self.mirror_roots = (
-            *(
-                self.companion_roots[host] / "skills/chinese-official-writing"
-                for host in (
-                    "codex",
-                    "codebuddy",
-                    "claude-code",
-                    "zcode",
-                    "qwen-code",
-                    "kimi-code",
-                )
-            ),
-            *PERSISTENT_MIRROR_ROOTS,
-        )
+        self.mirror_roots = PERSISTENT_MIRROR_ROOTS
 
     def test_unclassified_remainder_is_reconciled_without_static_classification(self) -> None:
         text = (CANONICAL / RELATIVE).read_text(encoding="utf-8")

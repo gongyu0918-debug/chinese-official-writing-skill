@@ -2,7 +2,7 @@
 
 本接口沿用普通 MIT 的单次 `detect → prepare → finalize → emit`，只增加状态/完成范围与无据时间前置条件的待审位置、局部修订和独立关系核验。尚未合入 main、安装或发布。事实正确性以真实结果为准；API 可执行或 JSON 合法不是语义通过。
 
-实现：[定位与关系包](../../chinese-official-writing/hooks/core/source_fact_review.py)、[事务及共享结果](../../chinese-official-writing/scripts/review_gate.py)、[宿主修订与核验指令](../../chinese-official-writing/hooks/core/gate_stop_hook.py)。
+本页为历史 Hook 接口记录，代码随独立分支保存，位置和许可见 [Pro Hook 接续便条](../docs/pro-hooks-next.md)。定位模块为 `hooks/core/source_fact_review.py`，事务模块为 `scripts/review_gate.py`，宿主指令为 `hooks/core/gate_stop_hook.py`。
 
 ## 输入与调用
 

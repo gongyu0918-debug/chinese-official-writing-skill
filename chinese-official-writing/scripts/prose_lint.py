@@ -221,7 +221,7 @@ MIN_NEGATIVE_BOUNDARY_TAIL_CHARS = 2
 NEGATIVE_BOUNDARY_TAIL_CHARS = 70
 
 # 终稿正文中的保护性句尾只给语义复核线索，不按单个否定词判错。
-# 这些模式不进入 generic/review-only/gap-note-allowed，避免把材料原句或复核意见当成成稿问题。
+# 两种成稿模式都检查正文；generic/review-only 不加载，允许的文后提示另按提示区规则扫描。
 DRAFT_BODY_PATTERNS: list[PatternSpec] = [
     (
         "medium",
@@ -239,7 +239,7 @@ DRAFT_BODY_PATTERNS: list[PatternSpec] = [
         rf"(?:尚未|仍未|暂未|还未|尚不|未(?!对|就|经|按|在))[^。！？\n]{{0,{UNRESOLVED_SUBJECT_CHARS}}}"
         rf"(?:形成|作出)[^。！？\n]{{0,{UNRESOLVED_RESULT_CHARS}}}(?:结论|定论|决定|意见|安排)"
         r"(?=[。！？]|$)",
-        "核对未决状态是否与正文主旨直接相关；本单位正在办理的事项可改为进行态，外围未决说明可删除。",
+        "对照材料核对该未决状态是否属于本次事项；材料明确未决定、未形成结论或仍待核对时保留原状态，仅清理与事项无关的重复自我限定。",
     ),
     (
         "medium",
@@ -274,6 +274,7 @@ EXPLANATORY_TAIL_MIN_MATCHES = 3
 MIN_EXPLANATORY_TAIL_PARAGRAPH_CHARS = 45
 EXPLANATORY_TAIL_MAX_PURPOSE_CHARS = 52
 EXPLANATORY_TAIL_MAX_QUALIFIER_CHARS = 8
+MIN_UNRESOLVED_STATE_CHAIN_ITEMS = 3
 PLAIN_SECTION_HEADING_MAX_CHARS = 32
 TITLE_SCAN_LINES = 12
 MIN_TITLE_CHARS = 4
@@ -341,6 +342,12 @@ EXPLANATORY_TAIL_PATTERN = re.compile(
 PLAIN_SECTION_HEADING_PATTERN = re.compile(
     rf"^(?:[一二三四五六七八九十]+、|第[一二三四五六七八九十0-9]+[章节]|"
     rf"[（(][一二三四五六七八九十0-9]+[）)])[^。！？；：:]{{0,{PLAIN_SECTION_HEADING_MAX_CHARS}}}$"
+)
+UNRESOLVED_PREDICATE_PATTERN = re.compile(
+    r"(?:尚未|仍未|暂未|还未|未能|尚无|仍无|暂无)\s*(?=[\u4e00-\u9fff])"
+)
+SOURCE_EXCERPT_PREFIX_PATTERN = re.compile(
+    r"^\s*[^：:\n]*(?:原文|原句|引文|引用)(?:如下)?\s*[：:]"
 )
 
 
@@ -508,26 +515,44 @@ def is_attachment_number_item(lines: list[str], line_index: int, line: str) -> b
     return any("附件" in item for item in window)
 
 
-def body_lines(lines: list[str]) -> list[str]:
-    """返回明确正文外待确认区之前的正文行。"""
+def external_note_heading(line: str) -> re.Match[str] | None:
+    """只识别标准提示标题或明确标注正文外的旧标题，保留普通业务章节。"""
     heading_prefix = (
         r"^\s*(?:#{1,6}\s*)?"
-        r"(?:(?:[一二三四五六七八九十百0-9]+[、.．]\s*)|"
+        r"(?P<number>(?:[一二三四五六七八九十百0-9]+[、.．)]\s*)|"
         r"(?:[（(][一二三四五六七八九十百0-9]+[）)]\s*)|"
         r"(?:第[一二三四五六七八九十百0-9]+(?:章|节)\s*))?"
         r"(?:[（(【\[]\s*)?"
     )
+    heading_end = r"(?=\s*(?:[：:]|[）)】\]]?\s*$))"
     explicit_note_start = re.compile(
         heading_prefix
-        + r"(?:待确认事项|影响正式报送的待确认事项|待用户确认事项|补充以下信息后(?:，文章会更完整)?|正文外待确认|正文外提示|风险提醒|核验提示|需补充信息|待补充事项|需确认事项)"
-        r"(?=\s*(?:[：:]|[（(【\[]|[）)】\]]|$))"
+        + r"(?:文后提示|影响正式报送的待确认事项|待用户确认事项|补充以下信息后(?:，文章会更完整)?|正文外待确认|正文外提示)"
+        + heading_end
     )
-    standalone_supplement_heading = re.compile(
-        heading_prefix + r"补充信息(?:\s*[）)】\]])?\s*[：:]?\s*$"
+    marked_legacy_note_start = re.compile(
+        heading_prefix
+        + r"(?:文后提示|待确认事项|风险提醒|核验提示|补充信息|需补充信息|待补充事项|需确认事项)"
+        r"\s*[（(【\[]\s*(?:正文外(?:\s*[，,、]\s*供用户确认)?|供用户确认)\s*[）)】\]]"
+        + heading_end
     )
+    wrapped_standard_note_start = re.compile(
+        heading_prefix
+        + r"(?P<emphasis>\*{1,3}|_{1,3})文后提示(?P=emphasis)"
+        r"(?:\s*[）)】\]])?\s*[：:]?\s*$"
+    )
+    return (
+        explicit_note_start.search(line)
+        or marked_legacy_note_start.search(line)
+        or wrapped_standard_note_start.search(line)
+    )
+
+
+def body_lines(lines: list[str]) -> list[str]:
+    """返回明确文后提示区之前的正文行；通用章节标题不构成截断依据。"""
     result: list[str] = []
     for line in lines:
-        if explicit_note_start.search(line) or standalone_supplement_heading.search(line):
+        if external_note_heading(line):
             break
         result.append(line)
     return result
@@ -861,7 +886,7 @@ def compile_patterns(patterns: Iterable[PatternSpec]) -> list[CompiledPattern]:
 def prepare_pattern_sets(include_format: bool, delivery_mode: str) -> CompiledPatternSets:
     """按通用扫描、交付区扫描和代码围栏扫描准备规则。"""
 
-    stage_patterns = DRAFT_BODY_PATTERNS if delivery_mode == "draft-body" else []
+    stage_patterns = DRAFT_BODY_PATTERNS if delivery_mode in {"draft-body", "gap-note-allowed"} else []
     primary_patterns = PATTERNS + (FORMAT_PATTERNS if include_format else [])
     if delivery_mode in {"draft-body", "gap-note-allowed"}:
         primary_patterns += DELIVERY_PATTERNS
@@ -944,7 +969,8 @@ def external_note_boundary_findings(
     note_line = note_index + 1
     heading = source.lines[note_index].strip()
     findings: list[Finding] = []
-    if PLAIN_SECTION_HEADING_PATTERN.fullmatch(heading):
+    note_heading = external_note_heading(heading)
+    if note_heading is not None and note_heading.group("number"):
         findings.append(
             Finding(
                 path=path_label,
@@ -981,6 +1007,33 @@ def external_note_boundary_findings(
                 excerpt="正文外提示使用独立标题和空行分区，不用 Markdown 横线包装。",
             )
         )
+    return findings
+
+
+def postscript_heading_format_findings(path_label: str, source: ScanSource) -> list[Finding]:
+    """提示区独立分离后仍提示标准标题的 Markdown 包装。"""
+    note_index = len(source.body_only_lines)
+    if note_index >= len(source.lines):
+        return []
+    heading = source.lines[note_index]
+    findings: list[Finding] = []
+    emphasis = re.search(r"(?P<mark>\*{1,3}|_{1,3})文后提示(?P=mark)", heading)
+    markdown_heading = re.match(r"^\s*#{1,6}\s*", heading)
+    for match, label in (
+        (emphasis, "markdown-bold" if emphasis and len(emphasis.group("mark")) > 1 else "markdown-emphasis"),
+        (markdown_heading, "markdown-heading"),
+    ):
+        if match:
+            findings.append(
+                Finding(
+                    path=path_label,
+                    line=note_index + 1,
+                    severity="low",
+                    label=label,
+                    match=match.group(0),
+                    excerpt="文后提示标题使用普通文本，去掉 Markdown 加粗、斜体或标题标记。",
+                )
+            )
     return findings
 
 
@@ -1205,6 +1258,55 @@ def repeat_term_findings(path_label: str, text: str) -> list[Finding]:
     return findings
 
 
+def unresolved_state_chain_findings(path_label: str, source: ScanSource) -> list[Finding]:
+    """同句未决谓语聚类只给复核线索，不判断独立状态是否冗余。"""
+    lines: list[str] = []
+    for line_index, line in enumerate(source.body_only_lines):
+        characters = list(line)
+        for start, end in source.quoted_spans[line_index]:
+            characters[start:end] = " " * (end - start)
+        masked = "".join(characters)
+        attribution = SOURCE_EXCERPT_PREFIX_PATTERN.match(masked)
+        if source.quoted_spans[line_index] and attribution:
+            masked = " " * attribution.end() + masked[attribution.end() :]
+        if not masked.lstrip().startswith("```"):
+            masked = re.sub(r"`[^`]*`", lambda match: " " * len(match.group(0)), masked)
+        lines.append("" if masked.lstrip().startswith(">") else masked)
+
+    findings: list[Finding] = []
+    for line_no, paragraph, _section in paragraph_blocks(lines):
+        quoted = any(
+            source.quoted_spans[index]
+            for index in range(line_no - 1, line_no + paragraph.count("\n"))
+        )
+        if SOURCE_EXCERPT_PREFIX_PATTERN.match(paragraph) and not quoted:
+            continue
+        for sentence in re.finditer(r"[^。！？!?]+(?:[。！？!?]|$)", paragraph):
+            clauses = re.split(r"[，,；;、]", sentence.group(0))
+            pending = [
+                clause.strip()
+                for clause in clauses
+                if not re.search(r"[:：|\t]", clause) and UNRESOLVED_PREDICATE_PATTERN.search(clause)
+            ]
+            if len(pending) < MIN_UNRESOLVED_STATE_CHAIN_ITEMS:
+                continue
+            content_start = sentence.start() + len(sentence.group(0)) - len(sentence.group(0).lstrip())
+            findings.append(
+                Finding(
+                    path=path_label,
+                    line=line_no + paragraph[:content_start].count("\n"),
+                    severity="low",
+                    label="unresolved-state-chain",
+                    match="，".join(re.sub(r"\s+", " ", clause) for clause in pending),
+                    excerpt=(
+                        f"同一句中有 {len(pending)} 项未决谓语；核对是否只是上游未定带出的重复下游状态。"
+                        "各项有独立事实或办理作用时可保留，不据此判错或自动删除。"
+                    ),
+                )
+            )
+    return findings
+
+
 def aggregate_findings(
     path_label: str,
     source: ScanSource,
@@ -1217,11 +1319,15 @@ def aggregate_findings(
     findings: list[Finding] = []
     if include_format:
         findings.extend(frequent_list_marker_findings(path_label, source.lines_to_scan))
+        if delivery_mode in {"draft-body", "gap-note-allowed"}:
+            findings.extend(postscript_heading_format_findings(path_label, source))
     if include_structure:
         findings.extend(duplicate_findings(path_label, source.lines_to_scan))
         findings.extend(
             structured_smell_findings(path_label, source.text_to_scan, source.lines_to_scan)
         )
+        if delivery_mode in {"draft-body", "gap-note-allowed"}:
+            findings.extend(unresolved_state_chain_findings(path_label, source))
     if delivery_mode in {"draft-body", "gap-note-allowed"}:
         findings.extend(duplicate_title_findings(path_label, source.lines_to_scan))
     findings.extend(repeat_term_findings(path_label, source.text_to_scan))

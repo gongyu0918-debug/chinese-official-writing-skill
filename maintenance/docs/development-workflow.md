@@ -5,7 +5,7 @@
 ## 开发与验证
 
 1. 新构想、核心能力与 Skill/Agent/工具链改动先查 GitHub、官方文档和社区，优先复用，保持职责清楚、实现简单。大 diff、长文件、review、第三方对比优先交 subagent，主代理复核结论。
-2. 写作或 Hook 修稿能力先做最小 reference、prompt、路由或同稿修订原型，立即跑真实写稿或生命周期。
+2. 普通写作能力先做最小 reference、prompt、路由或脚本原型，立即跑真实写稿。Pro Hook 在对应分支验证同稿修订和宿主生命周期。
 3. 以真实稿件是否准确、自然、完整、可直接使用决定候选是否保留；评估个别错误的影响与复现情况，不用一次独立采样差异机械否决。写稿有效后再补必要适配、镜像、检查与回退；失败先修产品，不扩大裁判、量表和工程门代替质量改进。
 4. Hook 比较同一 D0 的开关结果与最终选择，独立成稿仅作副作用观察。协议和胶水未变可迁移旧在线证据，列明当前未重跑的宿主。
 5. 文档跑链接/结构检查与 `git diff --check`；产品或脚本在真实结果通过后跑相关 unit/smoke、quick validate 及必要编译/镜像检查。全量门原则上只在合并或发布前跑一次，核对上一发布 tag、ancestry、精确 diff、版本、清洁包、禁入文件与 fingerprint。
@@ -21,9 +21,9 @@
 
 ## 产品边界
 
-- `chinese-official-writing/` 为 canonical，其 `hooks/core/` 是唯一门禁核心、`hooks/adapters/` 为静态适配；`packages/` 放公开兼容包，`maintenance/` 放维护和证据，`output/` 默认不提交。
-- main 不含付费提纲 Hook、胶水、测试和详细规格；`codex/paid-outline-review` 保持“当前 main + 付费提纲增量”。公开语义、共享 Hook 和修复按[同步规则](../specs/public-paid-sync.md)进入付费分支，提纲不得反向进入 main，付费发布另行授权。
-- Skill 安装、companion 组装、插件安装、启用、信任和真实执行分别举证。仓库及仓内包使用根 [LICENSE](../../LICENSE)（MIT），第三方保留自身许可。
+- `chinese-official-writing/` 为普通写作规则和脚本的 canonical；`packages/` 放公开兼容包，`maintenance/` 放维护和证据，`output/` 默认不提交。普通产品保留独立的篇幅检查与文稿复核脚本。
+- 本轮 MIT 候选移除全部 Hook、交付门禁、宿主适配及对应活动构建链；完整资产保存在[独立分支](pro-hooks-next.md)。公开规则和普通脚本按[同步规则](../specs/public-paid-sync.md)接入 Pro，接续时保全 Pro Hook 文件。Pro 专属能力和测试不反向进入公开包，激活与发布另行授权。
+- Skill 安装与脚本真实执行分别举证；Pro 的 companion 组装、插件安装、启用、信任和生命周期执行分别举证。普通 Skill 及兼容包继续使用根 [LICENSE](../../LICENSE)（MIT）。截至 v1.6.34 已发布的 Hook 副本保留原许可，后续 Hook 更新转为 Pro 专属、版权所有；第三方代码保留自身许可。
 
 ## 交付
 

@@ -1,0 +1,370 @@
+{
+  "run": "r11",
+  "binding": {
+    "main_commit": "1ce7112303172478faa2392667a2de1098eb912c",
+    "candidate_head": "3b6f273b6ee4ea583e7c0ade8311ad1f262d7159",
+    "fingerprints": {
+      "main": "4ac78943f1d5f7660c879360fdee0163f43d8e87dd951838f7a7cddaab81004f",
+      "candidate": "deaf27b80f4bae066da2a36baea26c5504ec853a3bf30c1dcf97e563261a10ce"
+    },
+    "models": [
+      "alibaba-token-plan-2/qwen3.8-flash",
+      "minimax-cn/MiniMax-M3"
+    ],
+    "cases": {
+      "review_rewrite": "帮我审核这份采购申请并优化好，成稿控制在120至220个非空白字符。有效材料：申请部门为综合办公室，报单位负责人审批；4把现有办公椅已损坏，申请购置4把替换，每把420元，供应商和采购日期尚未确定；预算科目缺失，上轮已经提出但还没有回复。当前底稿：关于购置办公椅的申请。单位负责人：本申请将从购买原因、购买数量和购买金额三个方面展开。办公室拟购买4把办公椅替换4把已损坏的旧椅，每把420元，合计1800元。已确定供应商，下周采购。我室将以此次采购为契机，构建协同高效的办公保障新格局。综合办公室。"
+    },
+    "cli": "C:\\Users\\admin\\AppData\\Local\\OpenAI\\Codex\\bin\\7ac07f4ce733f89a\\codex.exe",
+    "cli_version": "codex-cli 0.153.4",
+    "effort": "high",
+    "runtime": "C:\\Users\\admin\\AppData\\Local\\Temp\\cow-native-mit-script-delivery-r11-8cobqyjp",
+    "permissions": "inherited-host-config",
+    "timeout": 600,
+    "agent_documents": "project_doc_max_bytes=0",
+    "runner_sha256": "efa27c508cda41f33717728f72ca3749f4f9c8cf0fc0080dac33883ce3765b3a",
+    "prompt_prefix": "使用本目录 .agents/skills/chinese-official-writing/SKILL.md。\n\n"
+  },
+  "complete": true,
+  "records": [
+    {
+      "model": "alibaba-token-plan-2/qwen3.8-flash",
+      "effort": "high",
+      "case": "review_rewrite",
+      "arm": "candidate",
+      "returncode": null,
+      "seconds": 600.2,
+      "invalid": [
+        "timeout",
+        "missing_final"
+      ],
+      "draft_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "usage": [],
+      "source_result": "output/mit-script-delivery-r11/m1-review_rewrite-candidate.result.json",
+      "commands": [
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'Get-ChildItem -Recurse -File .agents/skills/chinese-official-writing | Select-Object -ExpandProperty FullName'",
+          "exit_code": 0
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'Get-Content -Raw -Encoding UTF8 .agents/skills/chinese-official-writing/SKILL.md'",
+          "exit_code": 0
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'Get-Content -Raw -Encoding UTF8 \".agents/skills/chinese-official-writing/references/reference-index.md\"'",
+          "exit_code": 0
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'Get-Content -Raw -Encoding UTF8 \".agents/skills/chinese-official-writing/references/genre-playbook-request.md\"'",
+          "exit_code": 0
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'Get-Content -Raw -Encoding UTF8 \".agents/skills/chinese-official-writing/references/review-checklist.md\"'",
+          "exit_code": 0
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'Get-Content -Raw -Encoding UTF8 \".agents/skills/chinese-official-writing/references/short-draft-naturalness.md\"'",
+          "exit_code": 0
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'Get-Content -Raw -Encoding UTF8 \".agents/skills/chinese-official-writing/references/anti-ai-patterns.md\"'",
+          "exit_code": 0
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'Get-Content -Raw -Encoding UTF8 \".agents/skills/chinese-official-writing/references/information-selection.md\"'",
+          "exit_code": 0
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'Get-Content -Raw -Encoding UTF8 \".agents/skills/chinese-official-writing/references/compression-details.md\"'",
+          "exit_code": 0
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'Get-Content -Raw -Encoding UTF8 \".agents/skills/chinese-official-writing/references/delivery.md\"'",
+          "exit_code": 0
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'Get-Content -Raw -Encoding UTF8 \".agents/skills/chinese-official-writing/references/prose-lint-usage.md\"'",
+          "exit_code": 0
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'git status --short; git log --oneline -3; git branch --show-current'",
+          "exit_code": 1
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command '$d = @'\"'\n关于购置办公椅的申请\"'`\n`\n单位负责人：`\n`\n我室现有4把办公椅已损坏，影响正常使用，需购置新椅替换。现申请购置办公椅4把，每把420元，合计1680元（壹仟陆佰捌拾元整）。目前供应商和采购日期尚未确定，预算科目亦待明确，请一并核定。`\n`\n妥否，请批示。`\n`\n综合办公室`\n\n'\"'@\n\"'$full = $d + @'\"'\n\"'`\n`\n文后提示`\n`\n1. 原稿“合计1800元”与单价数量不符，4×420=1680元，已按透明核算改为1680元，请确认单价和数量哪个有误。`\n2. 预算科目缺失问题上轮已提出，仍未收到回复；正文暂以“待明确”呈现，请补充具体科目后再定稿。`\n3. 成文日期材料未提供，落款处需按实际报送日期补齐。`\n\n'\"'@\nSet-Content -Path \\\"\"'$env:TEMP/chair_draft.txt\" -Value $full -Encoding UTF8\nWrite-Output \"written\"'",
+          "exit_code": 0
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'python \".agents/skills/chinese-official-writing/scripts/draft_length.py\" --min-chars 120 --max-chars 220 \"$env:TEMP/chair_draft.txt\" --json'",
+          "exit_code": 0
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'python \".agents/skills/chinese-official-writing/scripts/prose_lint.py\" --delivery-mode gap-note-allowed \"$env:TEMP/chair_draft.txt\"'",
+          "exit_code": 0
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command '$c = Get-Content -Raw \"$env:TEMP/chair_draft.txt\"; Write-Output (\"len=\" + ($c -replace '\"'\\\\s','').Length); Write-Output \"'$c'",
+          "exit_code": 0
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"python -c \\\"import os,io\\\\np=os.path.join(os.environ['TEMP'],'chair_final.txt')\\\\nio.open(p,'w',encoding='utf-8').write(\\\\\\\"关于购置办公椅的申请\\\\\\\\n\\\\\\\\n单位负责人：\\\\\\\\n\\\\\\\\n我室现有4把办公椅均已损坏，无法继续正常使用。为保障日常办公需要，现申请购置办公椅4把予以替换，单价420元，合计1680元（大写：壹仟陆佰捌拾元整）。目前供应商和采购日期尚未确定，预算科目待明确。\\\\\\\\n\\\\\\\\n妥否，请批示。\\\\\\\\n\\\\\\\\n综合办公室\\\\\\\\n\\\\\\\\n文后提示\\\\\\\\n\\\\\\\\n1. 原稿“合计1800元”与单价、数量不符，按4×420元核算为1680元，正文已改，请确认是否有其他单价或附加费用。\\\\\\\\n2. 原稿“已确定供应商，下周采购”与材料不符，材料为供应商和采购日期均未确定，正文改为保留该状态。\\\\\\\\n3. 预算科目缺失，上轮提出后仍未回复，正文暂以“待明确”表述，请补充后定稿。\\\\\\\\n4. 材料未给成文日期，落款日期请按实际报送日补齐。\\\\\\\")\\\\nt=open(p,encoding='utf-8').read()\\\\nprint('total_nonspace_before_postscript', len(''.join(t.split('文后提示')[0].split())))\\\\nprint('body_only_nonspace', len(''.join(t.split(chr(10))[4:6][0].split())))\\\\nprint('path', p)\\\"\"",
+          "exit_code": 1
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'Get-Content -Raw -Encoding UTF8 \".agents/skills/chinese-official-writing/references/delivery.md\"'",
+          "exit_code": 0
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'Get-Content -Raw -Encoding UTF8 \".agents/skills/chinese-official-writing/references/field-editing.md\"'",
+          "exit_code": 0
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'Get-Content -Raw -Encoding UTF8 \".agents/skills/chinese-official-writing/references/official-style.md\"'",
+          "exit_code": 0
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'Get-Content -Raw -Encoding UTF8 \".agents/skills/chinese-official-writing/references/handling-elements.md\"'",
+          "exit_code": 0
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'Get-Content -Raw -Encoding UTF8 \".agents/skills/chinese-official-writing/references/final-review-layers.md\"'",
+          "exit_code": 0
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'Get-Content -Raw -Encoding UTF8 \".agents/skills/chinese-official-writing/references/proofreading-checklist.md\"'",
+          "exit_code": 0
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'Get-Content -Raw -Encoding UTF8 \".agents/skills/chinese-official-writing/references/task-route-cards.md\"'",
+          "exit_code": 0
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'Get-Content -Raw -Encoding UTF8 \".agents/skills/chinese-official-writing/references/workflow.md\"'",
+          "exit_code": 0
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'Get-Content -Raw -Encoding UTF8 \".agents/skills/chinese-official-writing/references/genre-playbook-procurement-review.md\"'",
+          "exit_code": 0
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'python \".agents/skills/chinese-official-writing/scripts/draft_length.py\" --min-chars 120 --max-chars 220 \"_draft_tmp.txt\" --json'",
+          "exit_code": 0
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'python \".agents/skills/chinese-official-writing/scripts/prose_lint.py\" --delivery-mode gap-note-allowed --structure --format \"_draft_tmp.txt\"'",
+          "exit_code": 0
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'python \".agents/skills/chinese-official-writing/scripts/draft_length.py\" --min-chars 120 --max-chars 220 \"_chair_application_final.txt\" --json'",
+          "exit_code": 0
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'python \".agents/skills/chinese-official-writing/scripts/prose_lint.py\" --delivery-mode gap-note-allowed --structure --format \"_chair_application_final.txt\"'",
+          "exit_code": 0
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'python \".agents/skills/chinese-official-writing/scripts/draft_length.py\" --min-chars 120 --max-chars 220 \"_draft_tmp.txt\" --json'",
+          "exit_code": 0
+        }
+      ],
+      "trace.jsonl_sha256": "4bf9f75d306adbdc46a77c3d0d5e96e9334c1b2a9419379f7fb8fcb2de33db1b",
+      "stderr.txt_sha256": "e1a6e3bc561e165885da7e738624f3deceb2a35e6379262e67d72a2e4516caf6"
+    },
+    {
+      "model": "alibaba-token-plan-2/qwen3.8-flash",
+      "effort": "high",
+      "case": "review_rewrite",
+      "arm": "main",
+      "returncode": 0,
+      "seconds": 539.97,
+      "invalid": [],
+      "draft_sha256": "aabe0640090bc312eef39b449cddf7ad8dc25857545f5d72745f873f1eb1f5c0",
+      "usage": [
+        {
+          "input_tokens": 464587,
+          "cached_input_tokens": 434560,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 31766,
+          "reasoning_output_tokens": 28279
+        }
+      ],
+      "source_result": "output/mit-script-delivery-r11/m1-review_rewrite-main.result.json",
+      "commands": [
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"Get-Content -Raw 'C:/Users/admin/AppData/Local/Temp/cow-native-mit-script-delivery-r11-8cobqyjp/m1-review_rewrite-main/.agents/skills/chinese-official-writing/SKILL.md'\"",
+          "exit_code": 0
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"Get-Content -Raw 'C:/Users/admin/AppData/Local/Temp/cow-native-mit-script-delivery-r11-8cobqyjp/m1-review_rewrite-main/.agents/skills/chinese-official-writing/references/reference-index.md'\"",
+          "exit_code": 0
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"Get-Content -Raw 'C:/Users/admin/AppData/Local/Temp/cow-native-mit-script-delivery-r11-8cobqyjp/m1-review_rewrite-main/.agents/skills/chinese-official-writing/references/information-selection.md'\"",
+          "exit_code": 0
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"Get-Content -Raw 'C:/Users/admin/AppData/Local/Temp/cow-native-mit-script-delivery-r11-8cobqyjp/m1-review_rewrite-main/.agents/skills/chinese-official-writing/references/genre-checklist-request.md'\"",
+          "exit_code": 0
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"Get-Content -Raw 'C:/Users/admin/AppData/Local/Temp/cow-native-mit-script-delivery-r11-8cobqyjp/m1-review_rewrite-main/.agents/skills/chinese-official-writing/references/genre-playbook-request.md'\"",
+          "exit_code": 0
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"Get-Content -Raw 'C:/Users/admin/AppData/Local/Temp/cow-native-mit-script-delivery-r11-8cobqyjp/m1-review_rewrite-main/.agents/skills/chinese-official-writing/references/short-draft-naturalness.md'\"",
+          "exit_code": 0
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"Get-Content -Raw 'C:/Users/admin/AppData/Local/Temp/cow-native-mit-script-delivery-r11-8cobqyjp/m1-review_rewrite-main/.agents/skills/chinese-official-writing/references/anti-ai-patterns.md'\"",
+          "exit_code": 0
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"Get-Content -Raw 'C:/Users/admin/AppData/Local/Temp/cow-native-mit-script-delivery-r11-8cobqyjp/m1-review_rewrite-main/.agents/skills/chinese-official-writing/references/prose-lint-usage.md'\"",
+          "exit_code": 0
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'Get-ChildItem -Recurse -File | Select-Object -ExpandProperty FullName | Select-Object -First 60'",
+          "exit_code": 0
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command '$d = New-TemporaryFile; $t = \"C:/Users/admin/AppData/Local/Temp/cow-prose-lint-$([guid]::NewGuid().ToString('\"'N').Substring(0,8)).txt\\\"; Set-Content -LiteralPath \"'$t -Encoding UTF8 -Value @'\"'\n关于购置办公椅的申请\n\n单位负责人：\n\n综合办公室现有的4把办公椅已经损坏，无法继续正常使用，影响工作人员日常办公。为保障办公需要，现申请购置4把办公椅予以替换，每把420元，共需经费1680元。目前供应商和采购日期尚未确定。妥否，请批示。\n\n综合办公室\n'@; Write-Output \"'$t'",
+          "exit_code": 0
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'python \"C:/Users/admin/AppData/Local/Temp/cow-native-mit-script-delivery-r11-8cobqyjp/m1-review_rewrite-main/.agents/skills/chinese-official-writing/scripts/prose_lint.py\" \"C:/Users/admin/AppData/Local/Temp/cow-prose-lint-3610db22.txt\" --structure --format'",
+          "exit_code": 0
+        }
+      ],
+      "trace.jsonl_sha256": "b3f28ca69401c0355aad81bd8b4a34d511068507f768c994afce8f7c2d22bf09",
+      "stderr.txt_sha256": "bb42740b1152378eb79b5fffde8f9bf9c911f487bcd4053a3ef51f1184300ff0",
+      "archived_final": "drafts/r11-m1-review_rewrite-main.final.txt",
+      "file_sha256": "aabe0640090bc312eef39b449cddf7ad8dc25857545f5d72745f873f1eb1f5c0"
+    },
+    {
+      "model": "minimax-cn/MiniMax-M3",
+      "effort": "high",
+      "case": "review_rewrite",
+      "arm": "candidate",
+      "returncode": 0,
+      "seconds": 9.7,
+      "invalid": [
+        "missing_final",
+        "missing_skill_read_trace"
+      ],
+      "draft_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "usage": [
+        {
+          "input_tokens": 24417,
+          "cached_input_tokens": 12288,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 412,
+          "reasoning_output_tokens": 0
+        }
+      ],
+      "source_result": "output/mit-script-delivery-r11/m3-review_rewrite-candidate.result.json",
+      "commands": [],
+      "trace.jsonl_sha256": "cf681e91e533d932445783877d1895cdc1e122c7c5038214d83ed9d79f095722",
+      "stderr.txt_sha256": "a275311f4c3eff96d9b07dd418b6b6e246558a42cd01b5ea6cda1dc93ce7ca74"
+    },
+    {
+      "model": "minimax-cn/MiniMax-M3",
+      "effort": "high",
+      "case": "review_rewrite",
+      "arm": "main",
+      "returncode": 0,
+      "seconds": 41.69,
+      "invalid": [],
+      "draft_sha256": "c86459f8ecfff9aaae9ce298b07bf82e66bd128bcf3e0b7bdec07d270719f8b3",
+      "usage": [
+        {
+          "input_tokens": 40850,
+          "cached_input_tokens": 26624,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 4738,
+          "reasoning_output_tokens": 4291
+        }
+      ],
+      "source_result": "output/mit-script-delivery-r11/m3-review_rewrite-main.result.json",
+      "commands": [
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"type \\\"C:\\\\Users\\\\admin\\\\AppData\\\\Local\\\\Temp\\\\cow-native-mit-script-delivery-r11-8cobqyjp\\\\m3-review_rewrite-main\\\\.agents\\\\skills\\\\chinese-official-writing\\\\SKILL.md\\\"\"",
+          "exit_code": 0
+        }
+      ],
+      "trace.jsonl_sha256": "28350555d35ea81222af402f0f69e651c6eb021d7733351e723c11e914aa2f67",
+      "stderr.txt_sha256": "4b2eefaff2328430c723cff2223db23fafe76d977093036ff30ad3306ca7ce9c",
+      "archived_final": "drafts/r11-m3-review_rewrite-main.final.txt",
+      "file_sha256": "c86459f8ecfff9aaae9ce298b07bf82e66bd128bcf3e0b7bdec07d270719f8b3"
+    }
+  ],
+  "candidate_file_hashes": {
+    "agents/openai.yaml": "ab0c24bd956f77c79484f2a1db1afb0e862a54ff93ea2d850e7287f03ad8a310",
+    "LICENSE": "ead35e40076582d7053fb0908588adb878ff5108601a76647b9f5626b3a0d5f8",
+    "README.md": "80c7e09e8f7e49c3efffa2672b221df3caed8074621e0754c90ac2daaf1c3fd3",
+    "references/ai-compute-docs.md": "800ca01f66a544efa507180b194411129f6465a86baa740be9c72b8d052415b5",
+    "references/ai-compute-examples.md": "f0503f82e26220e368797a56a04f924e9738daf774c5163b88689de71cfd9b96",
+    "references/anti-ai-patterns.md": "b075d7394091fc5b54f07d70bfbf68dce0048f0b74aa59cff8578ad3f4bf48eb",
+    "references/argument-chains.md": "baeb595a3bca0a2cf7722c488c966e1f7c21f9f2b9479f7ca280e1149524cbdd",
+    "references/compatibility-scene-routing.md": "e074f8edabf1d6284d9f4ded6d7b363728160f0621a22e1a8ebe2ea96fb34409",
+    "references/compression-details.md": "e46ae4b3c68f962eae9aa7dc5520d2fcd6e6f1725fa89b281fa8e15fa72e9d1d",
+    "references/delivery.md": "9fa074c2cd47646e533ff9c674f9d462df036d8a4373156fb20c3dcbb4466c2a",
+    "references/external-research.md": "6f0a253a337900ebbd15da0d98920e0326cd2807300cd9c331c3f684572a4166",
+    "references/field-editing.md": "1155507fe9a0ba70da22372a14926f78baaf82cf3e273c0e3a0341b80040e33c",
+    "references/final-review-layers.md": "f5358ca34ae8ffc0598b2e2fc7a881a5eb8ef8180f0505d81e9cfa85fdeede66",
+    "references/formal-addressing.md": "040d9b81f90c5e8c0d54be430b29afae5620b1977ee895cfd1afe7408b82b5eb",
+    "references/format-gbt9704.md": "419f4c421f253fec27115582ed09742e44c6985ac27ad69172ad05b51e81e231",
+    "references/formulaic-language.md": "5226619cc4244f22cbe8cd71b6836cbf2d8622d0dbecdf48b1ade6132958798b",
+    "references/genre-checklist-feasibility-review.md": "8ccfa9923dd38ff5390c6234c85dcdcd8b8753863ff00b0a460c5bc171bdd1b7",
+    "references/genre-checklist-report.md": "17d285f72d7724b2fc8ac1a81302fcc5d192f002e9eabd3f584c0021158ff3b4",
+    "references/genre-checklist-request.md": "b011444af07dab83a5f61099e3589abd8bf49c9f8addf3c180f7db393f1ef44f",
+    "references/genre-checklist.md": "59215f9f9c7dff4511b8a55b53a1c089e41a5bf89c748b3bc845147fcc300374",
+    "references/genre-playbook-advisory-feedback.md": "c6256e8e4be04c16ce5d3a050a45b85734a1acdadcb4972e65ad9e3c5e045c7f",
+    "references/genre-playbook-bulletin.md": "21e40f3e505ac78059aadcfa8f62413752d39fd3c9ed4ed635f6ca441c8fdb1c",
+    "references/genre-playbook-communique.md": "004fe5b9c41c7f5d723b09efe34429a0e1bd6afd68a2641a717b8eebb38f692e",
+    "references/genre-playbook-complaint-reflection.md": "94600235b6252f6c18c7005f3e9c93e2f4e244e3d5c78b3e01f9249e14a49dd0",
+    "references/genre-playbook-correspondence.md": "fbb7a0d01e443c5f57858017cde1a3e70fcef4a6da317cd97fda1e44b130e932",
+    "references/genre-playbook-decision.md": "19dc2ba6a1a6a4896f7a6bc6b854e447d9d5431c80279c292d0d68e5713d0812",
+    "references/genre-playbook-deployment.md": "b1a78c5240771de9c512600b4eaab984b490f23407897e5617334b0cd745d795",
+    "references/genre-playbook-explanation.md": "30b3626eca2d8f64710abd7e8c02ef036ba74621517d06f57ce081ec05dacd8a",
+    "references/genre-playbook-feasibility.md": "a4d5fad1eabec752e7c9abec226e49e5cfc502bc8504b4d5cd2417ac0c3e97d4",
+    "references/genre-playbook-institution-rules.md": "f10d04e86c50deefea05198fddb2a422cf0799a6433d8a726b012c2d58e17928",
+    "references/genre-playbook-minutes.md": "df1ef5aadf08d4467de6ddf6f609ff22c135930f0d26298b51132f7fd0d02617",
+    "references/genre-playbook-motion.md": "3a38d441724ded480e632b0cf3803511efbc9c306b3a91f28313cc600e4aa86a",
+    "references/genre-playbook-news-commentary.md": "2488f97cab1c1f1ef34faf68fef9c49f1db5fd863037018d4897a1c663ed4fc5",
+    "references/genre-playbook-news-message.md": "d2b2e9762c52762f5fca8f7b32004fc9e26354ae3adf01d8b433f29905e4284b",
+    "references/genre-playbook-notice.md": "45ba01983b03494367cd32bb5386c84ec6a5870676a49d2545c24ee027097f86",
+    "references/genre-playbook-opinion.md": "64068c409b4dd6853499cb014231b3ed2a4db239d3457c5d02fb76c43dfabf76",
+    "references/genre-playbook-order.md": "1da139a918fbf29b5b17650a57651ab7ea0a1d0abb2212e38a87cc3bc00e4abf",
+    "references/genre-playbook-plan-construction.md": "9f796dc5962553269409e2612a1346c84165be073d47b69cb3dcaba430dc4462",
+    "references/genre-playbook-procurement-announcement.md": "738562905f83138fd87321ebe11d5185c56be9b7071d3a49e30c92d44c733de9",
+    "references/genre-playbook-procurement-review.md": "3ce16ef256fc0be77d4c852a3b6b7c971aa8deb04f67e7c06e67ad977aa06ce5",
+    "references/genre-playbook-project-application.md": "e9722bd7f97610a14bcbd9c194ac57c6febaf98efc44573543ea60a5ce4d1712",
+    "references/genre-playbook-publication.md": "8b9cae217810154b4ad561a8d1625350094c837a3c5d593cbbb24a3717738c1e",
+    "references/genre-playbook-remediation-plan.md": "70ba20fb0f119067de45c972e9481a2f2fc009ae547912b871d08e7f7a133ec7",
+    "references/genre-playbook-reply.md": "4b085e1b859163883c6991627000faa88ead865f2889d047f8f34b8dac8b0516",
+    "references/genre-playbook-report.md": "55a71d9cb8f2214e6216b49eb85a316074f13bcf4f29af3632eb4524c7375176",
+    "references/genre-playbook-request.md": "9bc040d274e95e9b6591b8c18683213610f64d4f9006442def2c45f42c1b2fdf",
+    "references/genre-playbook-research.md": "b60932979d3310f9f50f93420b421ad97643b42eba767aa6d8f4c10439e5c4c8",
+    "references/genre-playbook-resolution.md": "0d3470917a01789a10e07bc1d88451818f44edc1bc769436f5c25e7ad1e45e02",
+    "references/genre-playbook-speech-address.md": "eba8268280f014dbdb878b5e122ce4f199666e15deee304f9c79c797273cb584",
+    "references/genre-playbook-work-summary.md": "508fcbc8f28b3267cb7b83020b99858438f7299de81b6f3817c49de0f1abf003",
+    "references/genre-routing.md": "39d15437b393548df8f80976a35f9fbcde2e4185ad8aa92b79ee9a633cf8cdc7",
+    "references/handling-elements.md": "740e5c22666dfcf2cce8da1b0af38015b0b592a9b57dd32c91f9dc4d136f706a",
+    "references/information-selection.md": "6a0a4506952efe63ed57905bb6912c6b1eed648f08380d5775087d29404c7e45",
+    "references/official-style.md": "63bc7e166f59b9244d172936db14235a36ee51da5dd9cd7e2615da98b71b8ba7",
+    "references/proofreading-checklist.md": "6c770157c76fc37a1e53e437bc678a97a057969f2d0dea74b228ad5d49578a33",
+    "references/prose-lint-usage.md": "785c8699703d9329a193686a6dffe5d8d2c49594bd4ec80fbfc49e0c5a20599d",
+    "references/reference-index.md": "28dddf5e1cf53907fc7b7b2b1504c8f8fcf59245e6aa9b05cc713a2fc15849de",
+    "references/review-checklist.md": "bd396eae63b8eec015c56cd5924476f6e0a4aa53349721f00cc870a15a528396",
+    "references/short-draft-naturalness.md": "01dfdcd1e93857facf1385bf9f8c1d17d8c670faddcd5e195e7a13323dc17478",
+    "references/speech-person-order.md": "37b7e5643ce5d71d149fbcea3a5be4396ad0b703e687ae2a745bbb9641a996c3",
+    "references/structure-editing.md": "3efacd465e7c7a643c25f52a158368f20de29eb6d8de5628676ac8e0ce675259",
+    "references/task-route-cards.md": "12073f1a31b758863fc70bad00481ae00ebdcfae597dc21542ce4c983dc3fbd5",
+    "references/technical-terms.md": "681cd74bb3fc3ed6d2c210a64b174a6bf0275491eedd7e535b9330ea264cab5b",
+    "references/transaction-feedback-report.md": "272c23779c9b8b9ec3a62f851484533e28574bb2eaeba414ec3e0fdd0dba5f8e",
+    "references/transaction-remediation-report.md": "f290ebe57e41569b3fb2d125571d54782d0525e5d49540eed96bb3f4fb08f0fa",
+    "references/workflow.md": "7f790ea2f633e325035f0bc99e0ad41527855e1f0406271febd626c9c52398e4",
+    "scripts/draft_length.py": "5b126b391dd65db4c395e0d5883c84403094c3447191bbf7803579226e6384ca",
+    "scripts/prose_lint.py": "58d31397327f75bff1c1addbdba870768a489e39c2802ef12d5b5df770bac294",
+    "SKILL.md": "9fe72ea7dcfed71d15c5cddcad08558093f6e90d516a6dc828c7d815b1c60ba9"
+  }
+}

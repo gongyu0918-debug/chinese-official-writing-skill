@@ -11,4 +11,4 @@
 | `openclaw/` | OpenClaw 兼容面，不含交付 Hook |
 | `red-skillhub/` | Red SkillHub 专用发布面 |
 
-这些目录不保存 Hook companion。可选 Hook 的说明和静态宿主适配文件位于 `chinese-official-writing/hooks/`。
+这些目录保留普通 Skill、references 和脚本。Hook 已移至独立分支，后续归 Pro 专属；保存位置和许可界限见 [Hook 去向便条](../maintenance/docs/pro-hooks-next.md)。

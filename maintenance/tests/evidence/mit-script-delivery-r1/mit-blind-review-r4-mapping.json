@@ -1,0 +1,92 @@
+[
+  {
+    "id": "Q01",
+    "run": "r12",
+    "model": "command-code/deepseek-deepseek-v4.1-flash",
+    "case": "minutes",
+    "mapping": {
+      "A": "main",
+      "B": "candidate"
+    }
+  },
+  {
+    "id": "Q02",
+    "run": "r12",
+    "model": "command-code/deepseek-deepseek-v4.1-flash",
+    "case": "review",
+    "mapping": {
+      "A": "candidate",
+      "B": "main"
+    }
+  },
+  {
+    "id": "Q03",
+    "run": "r13",
+    "model": "ollama-cloud/glm-5.3-flash",
+    "case": "review_rewrite",
+    "mapping": {
+      "A": "main",
+      "B": "candidate"
+    }
+  },
+  {
+    "id": "Q04",
+    "run": "r14",
+    "model": "minimax-cn/MiniMax-M3",
+    "case": "review_rewrite",
+    "mapping": {
+      "A": "candidate",
+      "B": "main"
+    }
+  },
+  {
+    "id": "Q05",
+    "run": "r15",
+    "model": "command-code/deepseek-deepseek-v4.1-flash",
+    "case": "complex_application",
+    "mapping": {
+      "A": "main",
+      "B": "candidate"
+    }
+  },
+  {
+    "id": "Q06",
+    "run": "r15",
+    "model": "command-code/deepseek-deepseek-v4.1-flash",
+    "case": "explanation",
+    "mapping": {
+      "A": "candidate",
+      "B": "main"
+    }
+  },
+  {
+    "id": "Q07",
+    "run": "r15",
+    "model": "command-code/deepseek-deepseek-v4.1-flash",
+    "case": "institution",
+    "mapping": {
+      "A": "main",
+      "B": "candidate"
+    }
+  },
+  {
+    "id": "Q08",
+    "run": "r15",
+    "model": "command-code/deepseek-deepseek-v4.1-flash",
+    "case": "procurement_announcement",
+    "mapping": {
+      "A": "candidate",
+      "B": "main"
+    }
+  },
+  {
+    "id": "Q09",
+    "run": "r16",
+    "model": "alibaba-token-plan-2/qwen3.8-flash",
+    "case": "review_rewrite",
+    "mapping": {
+      "A": "main",
+      "B": "candidate"
+    }
+  }
+]

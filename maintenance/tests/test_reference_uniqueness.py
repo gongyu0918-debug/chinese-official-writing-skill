@@ -18,11 +18,11 @@ class ReferenceUniquenessTests(unittest.TestCase):
         self.assertEqual(module.audit(), [])
 
     def test_body_only_page_owns_delivery_behavior(self) -> None:
-        delivery = (ROOT / "chinese-official-writing/references/delivery-body-only.md").read_text(
+        delivery = (ROOT / "chinese-official-writing/references/delivery.md").read_text(
             encoding="utf-8"
         )
         self.assertIn("只要稿件", delivery)
-        self.assertIn("省略通常交付中的文后提示", delivery)
+        self.assertIn("省略文后提示", delivery)
 
 
 if __name__ == "__main__":

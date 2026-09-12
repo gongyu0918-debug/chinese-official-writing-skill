@@ -1,0 +1,18 @@
+[
+  {
+    "script": "draft_length.py",
+    "input_chars": 88221,
+    "seconds": 0.25,
+    "returncode": 0,
+    "json_items": 1,
+    "stderr": ""
+  },
+  {
+    "script": "prose_lint.py",
+    "input_chars": 88221,
+    "seconds": 0.375,
+    "returncode": 0,
+    "json_items": 0,
+    "stderr": ""
+  }
+]

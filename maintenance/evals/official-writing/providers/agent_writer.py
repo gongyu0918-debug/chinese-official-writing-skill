@@ -38,7 +38,7 @@ GENRE_REFERENCES: dict[str, list[str]] = {
         "references/review-checklist.md",
     ],
     "review_direct": [
-        "references/review-direct-checklist.md",
+        "references/review-checklist.md",
     ],
     "genre_review": [
         "references/genre-checklist.md",
@@ -47,7 +47,7 @@ GENRE_REFERENCES: dict[str, list[str]] = {
         "references/anti-ai-patterns.md",
     ],
     "body_delivery": [
-        "references/delivery-body-only.md",
+        "references/delivery.md",
     ],
     "style": [
         "references/official-style.md",
@@ -101,9 +101,11 @@ GENRE_REFERENCES: dict[str, list[str]] = {
     "procurement_announcement_playbook": [
         "references/genre-playbook-procurement-announcement.md",
     ],
-    "deliberation_playbook": [
-        "references/genre-playbook-deliberation.md",
-    ],
+    "decision_playbook": ["references/genre-playbook-decision.md"],
+    "resolution_playbook": ["references/genre-playbook-resolution.md"],
+    "motion_playbook": ["references/genre-playbook-motion.md"],
+    "communique_playbook": ["references/genre-playbook-communique.md"],
+    "order_playbook": ["references/genre-playbook-order.md"],
     "deployment_playbook": [
         "references/genre-playbook-deployment.md",
     ],
@@ -148,8 +150,8 @@ GENRE_REFERENCES: dict[str, list[str]] = {
         "references/ai-compute-docs.md",
     ],
     "complex": [
-        "references/workflow.md",
         "references/handling-elements.md",
+        "references/argument-chains.md",
     ],
     "external_research": [
         "references/external-research.md",
@@ -701,11 +703,6 @@ BODY_DELIVERY_MARKERS = (
     "只要文章",
     "只要稿件",
     "只要正文",
-    "完整稿子",
-    "完整稿件",
-    "直接给我稿",
-    "直接给我成稿",
-    "帮我写完整稿子",
     "不需要解释",
     "不需要提示",
     "不要解释",
@@ -1105,6 +1102,24 @@ def _task_uses_sparse_card(genres: list[str], tasks: list[str], ai_compute: bool
     return all(_contains_marker(task, SPARSE_TASK_MARKERS) for task in tasks)
 
 
+def _deliberation_primary_paths(genres: list[str]) -> list[str]:
+    names = {"决定": "decision", "决议": "resolution", "议案": "motion", "公报": "communique", "命令": "order", "命令（令）": "order", "令": "order"}
+    return list(dict.fromkeys(path for genre in genres if genre in names for path in GENRE_REFERENCES[names[genre] + "_playbook"]))
+
+
+def _compute_primary_paths(genres: list[str], tasks: list[str]) -> list[str]:
+    named = " ".join(genres)
+    if "可研" in named or "可行性" in named:
+        return GENRE_REFERENCES["feasibility_playbook"]
+    if "报告" in named:
+        return GENRE_REFERENCES["report_playbook"]
+    if "采购" in named or "租赁" in named:
+        return GENRE_REFERENCES["procurement_playbook"]
+    if "方案" in named or "技术需求" in named:
+        return GENRE_REFERENCES["plan_construction_playbook"]
+    return GENRE_REFERENCES["unknown_genre"]
+
+
 def _primary_reference_paths(genres: list[str], tasks: list[str]) -> list[str]:
     """Return the smallest primary-genre set for drafting or review."""
     if any(genre in NEWS_COMMENTARY_GENRES for genre in genres):
@@ -1112,7 +1127,9 @@ def _primary_reference_paths(genres: list[str], tasks: list[str]) -> list[str]:
     if any(genre in NEWS_MESSAGE_GENRES for genre in genres):
         return GENRE_REFERENCES["news_message"]
     if genres and all(genre in AI_COMPUTE_EXACT_GENRES for genre in genres):
-        return GENRE_REFERENCES["ai_compute"]
+        return _compute_primary_paths(genres, tasks)
+    if any("通报" in genre for genre in genres):
+        return ["references/genre-playbook-bulletin.md"]
     paths: list[str] = []
     if "会议纪要" in genres:
         paths.extend(GENRE_REFERENCES["minutes_playbook"])
@@ -1143,7 +1160,7 @@ def _primary_reference_paths(genres: list[str], tasks: list[str]) -> list[str]:
     if any(genre in PROCUREMENT_PLAYBOOK_GENRES for genre in genres):
         paths.extend(GENRE_REFERENCES["procurement_playbook"])
     if any(genre in DELIBERATION_PLAYBOOK_GENRES for genre in genres):
-        paths.extend(GENRE_REFERENCES["deliberation_playbook"])
+        paths.extend(_deliberation_primary_paths(genres))
     if any(genre in DEPLOYMENT_PLAYBOOK_GENRES for genre in genres):
         paths.extend(GENRE_REFERENCES["deployment_playbook"])
     if any(genre in ADVISORY_GENRES for genre in genres):
@@ -1174,6 +1191,16 @@ def _report_transaction_overlay_paths(genres: list[str], tasks: list[str]) -> li
     if any(marker in joined for marker in FEEDBACK_REPORT_MARKERS):
         paths.extend(GENRE_REFERENCES["feedback_report_overlay"])
     return list(dict.fromkeys(paths))
+
+
+def _finish_reference_paths(paths: list[str], tasks: list[str]) -> list[str]:
+    # This deterministic fixture mirrors the final stages; native route tests
+    # use the Skill itself and observe actual file reads instead.
+    final = []
+    if any(re.search(r"(?:\d+[^。\n]{0,12}字|限字|篇幅|字数)", task) for task in tasks):
+        final.append("references/compression-details.md")
+    final.extend(["references/final-review-layers.md", "references/anti-ai-patterns.md", "references/prose-lint-usage.md", "references/delivery.md"])
+    return list(dict.fromkeys([path for path in paths if path not in final] + final))
 
 
 def _reference_paths_for_genres(genres: list[str], tasks: list[str] | None = None) -> list[str]:
@@ -1214,55 +1241,31 @@ def _reference_paths_for_genres(genres: list[str], tasks: list[str] | None = Non
     )
 
     if _tasks_are_review_only(tasks):
-        # Review still needs the primary genre/scene contract to judge whether
-        # the draft fulfils its own function; review leaves add the action and
-        # scope, but do not replace the primary leaf.
         paths.extend(_primary_reference_paths(genres, tasks))
         paths.extend(_report_transaction_overlay_paths(genres, tasks))
-        comprehensive_review = _tasks_require_comprehensive_review(tasks)
-        feasibility_review = any(genre in FEASIBILITY_REVIEW_GENRES for genre in genres)
-        direct_review = _tasks_name_direct_review_scope(tasks)
+        if ai_compute:
+            paths.extend(GENRE_REFERENCES["ai_compute"])
+        paths.extend(GENRE_REFERENCES["review"])
+        return _finish_reference_paths(paths, tasks)
 
-        if feasibility_review and not comprehensive_review:
-            paths.extend(GENRE_REFERENCES["feasibility_review"])
-        elif comprehensive_review or not direct_review:
-            paths.extend(GENRE_REFERENCES["review"])
-        else:
-            paths.extend(GENRE_REFERENCES["review_direct"])
-            if any(genre in NEWS_COMMENTARY_GENRES for genre in genres):
-                paths.extend(GENRE_REFERENCES["news_commentary"])
-            elif any(genre in NEWS_MESSAGE_GENRES for genre in genres):
-                paths.extend(GENRE_REFERENCES["news_message"])
-            elif any(genre in REQUEST_REVIEW_GENRES for genre in genres):
-                paths.extend(GENRE_REFERENCES["request_review"])
-            elif report_playbook:
-                paths.extend(GENRE_REFERENCES["report_playbook"])
-            else:
-                paths.extend(GENRE_REFERENCES["genre_review"])
-        if any(_contains_marker(task, ANTI_AI_TASK_MARKERS) for task in tasks):
-            paths.extend(GENRE_REFERENCES["anti_ai"])
-        if any(marker in task for task in tasks for marker in FORMAT_TASK_MARKERS):
-            paths.extend(GENRE_REFERENCES["format"])
-        if _task_requires_external_research(tasks):
-            paths.extend(GENRE_REFERENCES["external_research"])
-        return list(dict.fromkeys(paths))
-
-    # Every drafting/rewrite/compression route needs the shared fact and state
-    # contract.  Genre pages define form; this page keeps sparse materials
-    # from turning common-sense structure into invented facts.
     paths.extend(GENRE_REFERENCES["sparse"][:1])
 
     if any(genre in NEWS_COMMENTARY_GENRES for genre in genres):
         paths.extend(GENRE_REFERENCES["news_commentary"])
-        return list(dict.fromkeys(paths))
+        return _finish_reference_paths(paths, tasks)
 
     if any(genre in NEWS_MESSAGE_GENRES for genre in genres):
         paths.extend(GENRE_REFERENCES["news_message"])
-        return list(dict.fromkeys(paths))
+        return _finish_reference_paths(paths, tasks)
 
     if genres and all(genre in AI_COMPUTE_EXACT_GENRES for genre in genres):
+        paths.extend(_compute_primary_paths(genres, tasks))
         paths.extend(GENRE_REFERENCES["ai_compute"])
-        return list(dict.fromkeys(paths))
+        return _finish_reference_paths(paths, tasks)
+
+    if any("通报" in genre for genre in genres):
+        paths.append("references/genre-playbook-bulletin.md")
+        return _finish_reference_paths(paths, tasks)
 
     sparse_route = _task_uses_sparse_card(genres, tasks, ai_compute)
     if sparse_route:
@@ -1297,7 +1300,7 @@ def _reference_paths_for_genres(genres: list[str], tasks: list[str] | None = Non
     if procurement_playbook:
         paths.extend(GENRE_REFERENCES["procurement_playbook"])
     if deliberation_playbook:
-        paths.extend(GENRE_REFERENCES["deliberation_playbook"])
+        paths.extend(_deliberation_primary_paths(genres))
     if deployment_playbook:
         paths.extend(GENRE_REFERENCES["deployment_playbook"])
     if advisory_playbook:
@@ -1411,22 +1414,13 @@ def _reference_paths_for_genres(genres: list[str], tasks: list[str] | None = Non
     if _task_requires_external_research(tasks):
         paths.extend(GENRE_REFERENCES["external_research"])
 
-    # A body-only request is a delivery contract, not a new genre.  Load the
-    # compact anti-narration leaf only at this explicit boundary so ordinary
-    # drafting keeps the smaller context while direct delivery cannot leak
-    # route or process commentary into the document.
-    if any(_contains_marker(task, BODY_ONLY_TASK_MARKERS) for task in tasks):
-        paths.extend(GENRE_REFERENCES["anti_ai"])
-    if any(_contains_marker(task, BODY_DELIVERY_MARKERS) for task in tasks):
-        paths.extend(GENRE_REFERENCES["body_delivery"])
-
     seen: set[str] = set()
     ordered: list[str] = []
     for path in paths:
         if path not in seen:
             seen.add(path)
             ordered.append(path)
-    return ordered
+    return _finish_reference_paths(ordered, tasks)
 
 
 def _load_skill_context_from_paths(repo_root: Path, reference_paths: list[str]) -> str:
@@ -1511,30 +1505,7 @@ def _skill_prompt(cases: list[dict[str, Any]], config: dict[str, Any]) -> str:
     tasks = [_case_task(case) for case in cases if _case_task(case)]
     reference_paths = _skill_batch_reference_paths(cases)
     skill_context = _load_skill_context_from_paths(repo_root, reference_paths)
-    if _tasks_are_review_only(tasks):
-        delivery_instruction = (
-            "按用户指定范围输出审稿结论；只审不改时不得重写全文，也不受初稿篇幅要求约束。"
-        )
-    elif any(_contains_marker(task, BODY_DELIVERY_MARKERS) for task in tasks):
-        note_requested = any(
-            marker in task
-            for task in tasks
-            for marker in ("文后提示", "缺项", "风险提示", "列出风险", "列出缺")
-        )
-        delivery_instruction = (
-            "这是用户要求直接取得稿件的交付阶段。第一字符直接进入标题或正文，禁止输出过程句、路由说明、"
-            "Skill/脚本说明、Markdown 包装或自我评价；只交付主文种成稿，且不得凭空扩展办理动作、责任、"
-            "成效或承诺。"
-            + (
-                "正文结束后另起‘文后提示’，只列用户要求的缺项或风险，不描述模型、路由或读取过程。"
-                if note_requested
-                else "用户未要求说明时，正文结束即停止，不追加缺项、风险、字数或自评。"
-            )
-        )
-    else:
-        delivery_instruction = (
-            "按用户指定的文种、输出模式和篇幅要求交付；任务未指定篇幅时，正文控制在 160-260 个汉字。正文完成后另起简短‘文后提示’，只列直接影响使用的缺项或风险，不描述路由、模型或处理过程。"
-        )
+    delivery_instruction = "按用户指定的任务、范围和所读 Skill 交付。"
     return textwrap.dedent(
         f"""
         你是中文公文 Skill 写作代理。仓库已安装 Skill：

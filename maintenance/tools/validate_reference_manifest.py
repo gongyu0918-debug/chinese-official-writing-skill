@@ -9,7 +9,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[2]
 SKILL = ROOT / "chinese-official-writing"
 REFS = SKILL / "references"
-MANIFEST = REFS / "route-manifest.json"
+MANIFEST = ROOT / "maintenance/specs/reference-route-manifest.json"
 
 
 def validate() -> list[str]:

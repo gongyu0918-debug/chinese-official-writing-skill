@@ -4,9 +4,6 @@ from pathlib import Path
 import re
 import unittest
 
-from maintenance.tests.hook_companion_support import HookCompanionTestMixin
-
-
 ROOT = Path(__file__).resolve().parents[2]
 PERSISTENT_SKILL_PATHS = [
     ROOT / "chinese-official-writing" / "SKILL.md",
@@ -27,24 +24,9 @@ def read_description(path: Path) -> str:
     return match.group(1)
 
 
-class DescriptionNewsTriggerTests(HookCompanionTestMixin, unittest.TestCase):
+class DescriptionNewsTriggerTests(unittest.TestCase):
     def setUp(self) -> None:
-        self.setUpHookCompanions()
-        self.active_skill_paths = [
-            PERSISTENT_SKILL_PATHS[0],
-            *[
-                self.companion_roots[host] / "skills/chinese-official-writing/SKILL.md"
-                for host in (
-                    "codex",
-                    "codebuddy",
-                    "claude-code",
-                    "zcode",
-                    "qwen-code",
-                    "kimi-code",
-                )
-            ],
-            *PERSISTENT_SKILL_PATHS[1:],
-        ]
+        self.active_skill_paths = PERSISTENT_SKILL_PATHS
 
     def test_active_description_leads_with_capability_and_defers_audience(self) -> None:
         descriptions = [read_description(path) for path in self.active_skill_paths]

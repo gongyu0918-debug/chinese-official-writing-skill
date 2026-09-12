@@ -37,8 +37,7 @@ def reachable_references(skill_root: Path, entrypoints: str) -> set[str]:
 class RepositoryReachabilityTests(unittest.TestCase):
     def test_every_canonical_reference_and_script_has_an_entrypoint(self) -> None:
         skill = read_routing_surfaces(SKILL_ROOT / "SKILL.md")
-        hook_guide = (SKILL_ROOT / "hooks/README.md").read_text(encoding="utf-8")
-        entrypoints = skill + "\n" + hook_guide
+        entrypoints = skill
 
         reachable = reachable_references(SKILL_ROOT, entrypoints)
         for path in (SKILL_ROOT / "references").iterdir():
@@ -69,31 +68,6 @@ class RepositoryReachabilityTests(unittest.TestCase):
             self.assertEqual(reachable_references(root, entry), {"route.md"})
             self.assertEqual(reachable_references(root, "No entry."), set())
 
-    def test_every_hook_markdown_and_adapter_is_linked(self) -> None:
-        hook_root = SKILL_ROOT / "hooks"
-        guide = (hook_root / "README.md").read_text(encoding="utf-8")
-        capabilities = (hook_root / "host-capabilities.json").read_text(encoding="utf-8")
-        assembler = (
-            ROOT / "maintenance/tools/assemble_hook_companion.py"
-        ).read_text(encoding="utf-8")
-        combined = guide + "\n" + capabilities + "\n" + assembler
-
-        for path in hook_root.rglob("*"):
-            if not path.is_file() or "__pycache__" in path.parts or path.suffix == ".pyc":
-                continue
-            relative = path.relative_to(hook_root).as_posix()
-            if relative == "README.md":
-                continue
-            with self.subTest(path=relative):
-                if path.name == "README.md":
-                    self.assertIn(relative, guide)
-                elif relative == "core/gate_stop_hook.py":
-                    self.assertIn(relative, guide)
-                else:
-                    self.assertTrue(
-                        path.name in combined or relative in combined,
-                        f"unreachable Hook asset: {relative}",
-                    )
 
     def test_package_and_maintenance_children_are_indexed(self) -> None:
         packages_index = (ROOT / "packages/README.md").read_text(encoding="utf-8")
@@ -113,7 +87,7 @@ class RepositoryReachabilityTests(unittest.TestCase):
         readme = (ROOT / "README.md").read_text(encoding="utf-8")
         self.assertIn("[兼容包索引](packages/README.md)", readme)
         self.assertIn("[维护区索引](maintenance/README.md)", readme)
-        self.assertIn("[Hook 使用说明](chinese-official-writing/hooks/README.md)", readme)
+        self.assertNotIn("chinese-official-writing/hooks/", readme)
 
     def test_spec_documents_are_indexed(self) -> None:
         spec_root = ROOT / "maintenance/specs"

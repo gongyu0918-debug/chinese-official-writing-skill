@@ -1,32 +1,17 @@
 # 参考资料索引
 
-本页只做两件事：为任务选出首个专页，规定允许叠加的共性页和停止点。叶子职责和读取范围按下表执行；写作正文使用命中的专页和明确叠加页。
-
-## 选路顺序
-
-1. 先确定任务动作：起草、整体改写、局部修改、压缩、复核或格式交付；正文完成后的消息形态由交付页处理。
-2. 再确定文种或场景：优先使用用户标题、模板、最新版底稿和明确场景；文种冲突时进入 `genre-routing.md`。
-3. 只读取首个文种页，再按下表叠加必要的共性页。
-4. 完成首稿或审查范围后进入交付。脚本和 Hook 作为用户选择的检查工具，文种路由由首叶保持。
-
-## 交付模式页
-
-| 任务信号 | 首叶 | 可叠加 | 完成条件 |
-| --- | --- | --- | --- |
-| 起草、整体改写、合稿 | 命中文种页 | `information-selection.md`；必要时 `handling-elements.md`、`argument-chains.md` | 文种页骨架和用户要求已覆盖 |
-| 二次修改、压缩、重排 | `structure-editing.md` 或 `field-editing.md` | `information-selection.md`；长文压缩再加 `compression-details.md` | 点名动作已完成并复核 |
-| 审核、复核、审校、检查或把关稿件 | 对应主文种/事务叶 + `review-direct-checklist.md` | 用户明确要求全面/综合/格式与语气等多层检查时再加 `review-checklist.md` | 已输出位置、风险和建议 |
-| 全文综合复核 | `review-checklist.md` | `anti-ai-patterns.md`、`proofreading-checklist.md` | 三级清单完成 |
-| Word、docx、GB/T 9704、红头 | `format-gbt9704.md` | 对应文种页；需要脚本时加 `prose-lint-usage.md` | 版式和正文均已交付 |
+根据用户已经明确的稿件用途，在下表选读对应主文种；需要共性能力时按触发条件加读。
 
 ## 文种与场景首叶
 
-### 已验证的专页
+### 文种专页
 
-- 请示、申请、增项申请：`genre-playbook-request.md`、`genre-playbook-project-application.md`；只审请示或申请用 `genre-checklist-request.md`。
-- 报告、情况报告、情况说明：`genre-playbook-report.md`；文种复核用 `genre-checklist-report.md`。工作总结、工作要点：`genre-playbook-work-summary.md`。
-- 通知：`genre-playbook-notice.md`；公告、公示、通告、公开通报：`genre-playbook-publication.md`。
-- 决定、决议、议案、公报、命令：`genre-playbook-deliberation.md`；部署安排：`genre-playbook-deployment.md`。
+- 既有项目新增功能、服务或实施内容的增项申请：`genre-playbook-project-application.md`。
+- 请示、普通采购或经费等申请：`genre-playbook-request.md`；文种专项复核用 `genre-checklist-request.md`。
+- 报告、情况报告：`genre-playbook-report.md`；文种复核用 `genre-checklist-report.md`。工作总结、工作要点：`genre-playbook-work-summary.md`。
+- 通知：`genre-playbook-notice.md`；公告、公示、通告：`genre-playbook-publication.md`；情况、表扬或批评通报：`genre-playbook-bulletin.md`。
+- 决定：`genre-playbook-decision.md`；决议：`genre-playbook-resolution.md`；议案：`genre-playbook-motion.md`。
+- 公报：`genre-playbook-communique.md`；命令、令：`genre-playbook-order.md`；部署安排：`genre-playbook-deployment.md`。
 - 批复：`genre-playbook-reply.md`；意见：`genre-playbook-opinion.md`；说明：`genre-playbook-explanation.md`。
 - 函、复函、征求意见函：`genre-playbook-correspondence.md`。
 - 会议纪要：`genre-playbook-minutes.md`。
@@ -42,7 +27,7 @@
 
 ### 需先确定主文种的场景
 
-通报等未命中专页时，读 `genre-routing.md` 判定功能，再用 `genre-checklist.md` 做最小核对。批复、意见、说明、决定、决议、议案、公报、命令和部署已有独立主叶；清单页只保留功能核对，不承载完整骨架。
+其他未命中专页的事务文本，读 `genre-routing.md` 判定功能；命中专页后按该页写稿，仍未覆盖时用 `genre-checklist.md` 做最小核对。
 
 ## 共性能力页
 
@@ -55,13 +40,11 @@
 | `formal-addressing.md` | 需要行文关系、敬语或称谓 | 锁定称谓和关系 |
 | `anti-ai-patterns.md` | 复核旁白、教学腔、包装句、模板腔 | 只删改稿件中的过程话和包装话 |
 | `proofreading-checklist.md` | 定稿前轻量校对 | 查引用、数字、日期、术语和稿内一致性 |
-| `final-review-layers.md` | 全文交付前综合总审 | 先硬边界，再质量建议，再场景参考 |
-| `prose-lint-usage.md` | 用户要求或明确需要脚本扫描 | 给出脚本路径、参数和结果解释 |
-| `delivery-review-gate.md` | 用户明确要求交付门禁 Hook | 只处理门禁，不进入普通写稿路径 |
+| `final-review-layers.md` | 首页第二步事实与文种复核 | 核对事实、状态、文种、结构和文内完整性 |
+| `prose-lint-usage.md` | 首页第四步脚本复核 | 给出脚本路径、参数和结果解释 |
 
 ## 专项资料
 
-- 旧混合目录和旧多文种主叶已删除；新任务按本页主叶表选唯一主叶，未覆盖文种回到 `genre-routing.md` 和 `genre-checklist.md` 做最小反查。
 - 事务性固定用语和开端/承启/结尾核对：`formulaic-language.md`，仅在需要文种用语时叠加。
 - 不熟悉的新文种、新材料类型、特殊事务场景，或需要核查通用做法、必备要素、正式格式、常用语及外部最新事实时：`external-research.md`；常规已知文种不自动扩展搜索。
 - 短稿、只有上限、短正文自然度：`short-draft-naturalness.md`。

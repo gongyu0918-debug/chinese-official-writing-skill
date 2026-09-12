@@ -1,52 +1,40 @@
-# Reference 重写覆盖台账（2026-09-12）
+# Reference 重写覆盖台账（2026-09-13）
 
-本台账只记录文件级覆盖，不把“文件已改”当作“功能已证明等价”。基线是 `main@1ce71123`，候选当前提交以分支 HEAD 为准。main 有 50 个 reference；候选删除 4 个历史混合/兼容目录页并新增 14 个独立主叶、事务页和交付页，当前共有 60 个 reference。字符变化不能直接证明语义等价，必须以逐页映射、组合路由和真实写稿闭合。完整逐页归属见 `maintenance/docs/reference-rewrite-page-map-20260912.md`。
+基线固定为 `main@1ce7112303172478faa2392667a2de1098eb912c`，工作分支为 `codex/reference-rewrite-20260912`。本台账区分规则已归位、静态检查、原生写稿和质量验收；文件已改或字符减少均不代表功能等价。
 
-## 已重写但仍需语义/实写验收
+## 当前构造
 
-| 基线页面 | 候选归位 | 主要语义范围 | 当前状态 |
-| --- | --- | --- | --- |
-| `SKILL.md` | `SKILL.md` | 触发、模式、事实状态、正文交付、Hook 边界 | 新契约已写；自然语言直交付与复核已完成双通道实写，五通道场景矩阵仍需补齐 |
-| `reference-index.md` | 同名页 | 模式→主文种→共性页→停止点 | 静态通过；组合路由待矩阵 |
-| `genre-routing.md` | 同名页 | 文种、行文关系、混合材料判定 | 静态通过；跨文种待实写 |
-| `task-route-cards.md` | 同名页 | 材料较少、短通知、局部修改短路径 | 静态通过；旧边界测试待迁移 |
-| `genre-checklist.md` | 同名页 | 未覆盖文种功能反查 | 结构已收束；覆盖缺口待盘点 |
-| `genre-playbook-report.md` | 新增独立主叶 | 报告、情况报告和情况说明骨架 | 与报告复核页分离；组合实写待验 |
-| `genre-playbooks.md` | 已删除 | 旧混合目录跳转 | 功能由专页、`genre-routing.md` 和 `genre-checklist.md` 替代，需验证无旧路由残留 |
-| `workflow.md` | 同名页 | 起草、改稿、压缩、复核、交付、停止 | 已重写；真实组合待验 |
-| `information-selection.md` | 同名页 | 事实、分析、状态、缺项、二次修改 | 已重写；事实保真待验 |
-| `handling-elements.md` | 同名页 | 主体、对象、依据、期限、责任、附件等 | 已重写；字段/采购组合待验 |
-| `argument-chains.md` | 同名页 | 事实→判断→事项论证 | 已重写；可研/方案组合待验 |
-| `official-style.md` | 同名页 | 正式、平实、去口语表达 | 已重写；自然度待验 |
-| `formal-addressing.md` | 同名页 | 称谓、关系、敬谦语 | 已重写；讲话/函件待验 |
-| `formulaic-language.md` | 同名页 | 开端、来文、承启、固定收束、历史模板 | 已收束；文种功能衔接待验 |
-| `anti-ai-patterns.md` | 同名页 | 旁白、教学腔、包装、状态升级 | 已压缩；旧表达覆盖待审 |
-| `proofreading-checklist.md` | 同名页 | 引用、数字、日期、术语、稿内一致性 | 已压缩；校对组合待验 |
-| `final-review-layers.md` | 同名页 | 硬边界、稿内质量、场景交付 | 已重写；门禁边界待验 |
-| `review-checklist.md` | 同名页 | 段落、小节、全文综合复核 | 已压缩；旧审校范围待验 |
-| `ai-compute-docs.md` | 同名页 | 算力需求、成本、技术、SLA、安全、验收 | 单一附加页已回填；组合 A/B 曾因共有旁白不通过，需重跑 |
-| `prose-lint-usage.md` | 同名页 | 脚本路径、参数、结果解释 | 已重写；真实调用待验 |
+- 主文种、事务场景、共性写作、复核与交付分工继续沿用整体重构架构。50 个基线 reference 的迁移、保留或删除关系见[逐页映射](reference-rewrite-page-map-20260912.md)。当前 62 个 reference，主文种/专用事务新页 19 个（含交付页），与基线相比删除或迁移 7 页。
+- 决定、决议、议案、公报、命令各有独立主叶；通报独立于公告/公示/通告。公告家族和制度家族内部相同功能的变体保留在一页，避免机械碎分。
+- 共性页移除多文种骨架；算力仅作条件附加。申请不再跳入重新选择主叶的旧工作流。`workflow.md` 的选择、修改和压缩动作由现有入口及专页接替，旧文件删除。
+- 审稿统一用 `review-checklist.md`，默认全文并含抗 AI 味；审核给建议与审核后改稿在同一路线判定。脚本扫描原稿使用正文模式，审稿意见本身才使用 `review-only`。
+- 默认交付独立“文后提示”，包含缺项、风险、修改建议及仍未解决的旧问题。材料已有或已经解决的事项从提示移除；明确省略说明时才省略提示。
+- MIT 产品保留 `draft_length.py` 与 `prose_lint.py`。字数在前，事实/文种、抗 AI 味及文稿脚本复核在后；脚本引起修改后核对受影响事实与文种，再复扫。Hook、交付门禁及宿主适配保存在 [Pro 接续分支](pro-hooks-next.md)，已从普通产品及活动构建链移出。
 
-## 轻改或保留语义的新文种页
+## 可量化减载
 
-以下页面保留既有稳定语义或只做边界性修改：`genre-playbook-minutes.md`、`genre-playbook-procurement-review.md`、`genre-playbook-request.md`。它们仍需与新入口逐一做组合写稿，不得因文件未大改就视为自动通过。历史混合页 `genre-playbook-deliberation-deployment.md`、`genre-playbook-notice-publication.md`、`genre-playbook-research-feasibility.md` 已删除并由独立主叶替代。
+Unicode 字符数，含 Markdown，排除脚本、Hook 运行代码、维护 manifest 与镜像：
 
-## 当前保留、尚未纳入本批语义重写的页面
+| 范围 | main | 当前候选 | 变化 |
+| --- | ---: | ---: | ---: |
+| SKILL.md | 7,516 | 3,899 | -48.1% |
+| reference Markdown 合计 | 84,899 | 51,157 | -39.7% |
+| reference 页数 | 50 | 62 | +12 |
 
-`ai-compute-examples.md`、`compatibility-scene-routing.md`、`compression-details.md`、`delivery-review-gate.md`、`external-research.md`、`field-editing.md`、`format-gbt9704.md`、`genre-checklist-feasibility-review.md`、`genre-checklist-report.md`、`genre-checklist-request.md`、`genre-playbook-advisory-feedback.md`、`genre-playbook-complaint-reflection.md`、`genre-playbook-correspondence.md`、`genre-playbook-institution-rules.md`、`genre-playbook-news-commentary.md`、`genre-playbook-news-message.md`、`genre-playbook-plan-construction.md`、`genre-playbook-project-application.md`、`genre-playbook-remediation-plan.md`、`genre-playbook-speech-address.md`、`genre-playbook-work-summary.md`、`review-direct-checklist.md`、`short-draft-naturalness.md`、`speech-person-order.md`、`structure-editing.md`、`technical-terms.md`。
+减少的字符不是旧功能逐条等价证明。细分页的收益须继续用实际读取集合、无关伴读和真实稿件确认。
 
-其中 `delivery-review-gate.md` 与 Hook 门禁绑定，Hook 目录冻结；新闻、新闻评论及已有实证单文种页优先保留，但仍要检查新路由是否漏读或多读。保留不等于免审，后续按主文种、模式和附加页组合验证。
+## 已验证与限制
 
-## 测试状态
+- 相关 9 个测试模块：171 项通过，覆盖当前路由图、每页真实指针与 manifest 的一致性、两脚本、镜像、打包和产品表面标记。代码脚本长稿检查：约 8.8 万字符输入分别在 0.25 秒、0.38 秒返回，未出现异常退出。
+- 两轮独立贵模型冷审发现并推动修复了实际回跳、材料缺项与业务状态混用、检查步骤被绕过、脚本模式选择以及页内多骨架问题。报告与处置见[本批证据](../tests/evidence/mit-script-delivery-r1/result.md)。
+- 原生 Codex CLI 已跑过当前五个精确通道；部分 max/high 运行超时或没有返回稿件，分别保留失败。后续隔离 profile 中已完成 15 对有效成对输出。有效输出表示有终稿且读取了指定 Skill，不表示质量通过。
+- 真稿仍出现候选特有或两臂共同的问题：正文混入材料缺失说明、无据的形成动作、主送遗漏或改称、文后提示误报已有信息、过程旁白以及重复状态。部分经局部修订复测改善，尚未证明全面稳定。
+- 完整旧测试发现 386 项中 116 失败、25 错误，日志摘要留在证据目录。主要可见问题为旧文件路径、旧标题和旧文本契约，仍须逐项区分被替代的旧预期与未覆盖语义；不能用 171 项聚焦测试冒充全套通过。
+- 精确原句审计只能排查相同长句及选定交付标记，不能证明没有语义重复。文件图无环也不能证明模型每次都按顺序读取，实际执行轨迹单独核对。
 
-- 新增重写契约、产品面、路由和 Hook 边界聚焦测试：当前选定的 7 个模块共 67 项通过。
-- 规则归属审计：`maintenance/tools/audit_reference_uniqueness.py` 已检查首页及 60 个 reference，重复实质规则为 0；“只要稿件/只要正文/不需说明”等直交付行为仅保留在 `delivery-body-only.md`，首页只保留一次转读指针，文种页不再决定交付形态。
-- 独立冷审与首页/路由洁净实写记录见 `maintenance/docs/reference-cleanup-cold-review-20260912.md`。
-- Skill frontmatter/脚手架校验：通过。
-- Hook 目录相对 main：无差异。
-- 算力报告同题技术 A/B：R3 在 `alibaba-token-plan-2/qwen3.8-flash` 完成，两臂 receipt 有效，候选读取 6 页、基线读取 8 页；摘要已留档，尚不足以代表五通道组合验收。
-- 旧 `test_skill_boundary` 与 `test_real_prompt_ablation`：94 项中 78 项失败、3 项错误，主要绑定重写前标题、旧路由文本和旧确定性输出；尚未迁移完成。
+## 尚未闭合
 
-因此，本台账当前结论是“部分重写、部分验证”，不是“全量功能等价”或“可合并”。
-
-最近一组产品与路由修订为 `ab481a5c`、`0fb259b9`、`4c383f64`、`327085ed`、`7eae30e5`、`5687d499`、`f4abaef9`、`8b2435b3`、`fdb0774b`、`77d4f3b1`：适用范围只保留覆盖说明、排除范围和 README 能力查询；其他场景指针保留在入口契约与路由主线，事实选择页接入起草路由，算力收束、外部核查触发和稀疏方案章节均已修正；直交付行为已集中到交付页，入口索引不再把它列为任务模式，并新增重复规则与错位规则审计。manifest、产品面审计、唯一性审计和 67 项聚焦单测均通过；五条便宜通道已有真实写稿证据（qwen1 五题，command-code 一题，qwen2/MiniMax/Ollama 各一题），但五通道全场景组合实写仍未闭合，合并门槛保持不变。
+1. 讲话页仍覆盖述职和主持开场，完整主持词与书面述职的归属需要按实际用途进一步整理并实写；当前不宣称所有文种均已单叶隔离。
+2. 所有旧叶的逐条语义映射和跨场景组合验收尚未完成；普通短稿、复杂稿、局部改稿、Word 和新增单叶的质量衔接仍需覆盖。
+3. 已发现的候选交付瑕疵需要重复样本及归因。脚本正常返回并不证明最终消息没有在扫描后新增旁白；两脚本没有生命周期门禁能力。
+4. 旧测试契约迁移未完成。当前分支只作为可审查的重构候选提交，未达到合并标准，不合 main、不推送、不发布。

@@ -6,9 +6,6 @@ from pathlib import Path
 import sys
 import unittest
 
-from maintenance.tests.hook_companion_support import HookCompanionTestMixin
-
-
 ROOT = Path(__file__).resolve().parents[2]
 CANONICAL = ROOT / "chinese-official-writing"
 PERSISTENT_MIRROR_ROOTS = (
@@ -44,23 +41,9 @@ def _load_provider():
 provider = _load_provider()
 
 
-class SafeRequestEntryIntegrationTests(HookCompanionTestMixin, unittest.TestCase):
+class SafeRequestEntryIntegrationTests(unittest.TestCase):
     def setUp(self) -> None:
-        self.setUpHookCompanions()
-        self.mirror_roots = (
-            *(
-                self.companion_roots[host] / "skills/chinese-official-writing"
-                for host in (
-                    "codex",
-                    "codebuddy",
-                    "claude-code",
-                    "zcode",
-                    "qwen-code",
-                    "kimi-code",
-                )
-            ),
-            *PERSISTENT_MIRROR_ROOTS,
-        )
+        self.mirror_roots = PERSISTENT_MIRROR_ROOTS
 
     def test_request_drafts_load_only_the_dedicated_leaf_by_default(self) -> None:
         for genre in ("请示", "申请"):

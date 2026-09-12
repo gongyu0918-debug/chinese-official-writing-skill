@@ -1,9 +1,10 @@
-"""Check that product rules have one canonical home.
+"""Detect exact repeated prose and selected misplaced delivery instructions.
 
 This is a deliberately conservative audit: it catches repeated substantive
 sentences and body-only delivery instructions outside the delivery page. Route
 tables and code examples are excluded because they are indexes or data, not
 duplicate writing rules.
+Semantic duplication, conflicts and conditional routing require separate review.
 """
 
 from __future__ import annotations
@@ -15,7 +16,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
 PRODUCT = ROOT / "chinese-official-writing"
-DELIVERY_PAGE = PRODUCT / "references" / "delivery-body-only.md"
+DELIVERY_PAGE = PRODUCT / "references" / "delivery.md"
 
 BODY_ONLY_MARKERS = (
     "只要稿件",
@@ -99,4 +100,4 @@ if __name__ == "__main__":
     if problems:
         print("\n".join(problems))
         raise SystemExit(1)
-    print("reference uniqueness clean: no duplicate substantive rules or misplaced body-only delivery rules")
+    print("exact-line audit passed: no repeated substantive lines or selected misplaced body-only rules; semantic review remains separate")
