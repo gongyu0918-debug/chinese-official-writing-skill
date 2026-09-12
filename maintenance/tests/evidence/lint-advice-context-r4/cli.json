@@ -1,0 +1,110 @@
+{
+  "changed_files": [
+    "scripts\\prose_lint.py"
+  ],
+  "cases": [
+    {
+      "input": "这次活动为企业交流搭建了强大平台。",
+      "baseline": {
+        "exit": 0,
+        "findings": [
+          {
+            "path": "<stdin>",
+            "line": 1,
+            "severity": "medium",
+            "label": "ai-compute-vague",
+            "match": "强大平台",
+            "excerpt": "这次活动为企业交流搭建了强大平台。 | 补充调度、监控、隔离、计量、运维等具体平台能力。"
+          }
+        ]
+      },
+      "candidate": {
+        "exit": 0,
+        "findings": [
+          {
+            "path": "<stdin>",
+            "line": 1,
+            "severity": "medium",
+            "label": "vague-claim",
+            "match": "强大平台",
+            "excerpt": "这次活动为企业交流搭建了强大平台。 | 结合稿件语境，用材料已有的具体活动、服务或能力说明平台作用，删去无依据的强度评价。"
+          }
+        ]
+      }
+    },
+    {
+      "input": "本次维修成本更低，能够满足未来发展需要。",
+      "baseline": {
+        "exit": 0,
+        "findings": [
+          {
+            "path": "<stdin>",
+            "line": 1,
+            "severity": "medium",
+            "label": "ai-compute-vague",
+            "match": "成本更低",
+            "excerpt": "本次维修成本更低，能够满足未来发展需要。 | 补充比较周期、需求假设和成本项目。"
+          },
+          {
+            "path": "<stdin>",
+            "line": 1,
+            "severity": "medium",
+            "label": "ai-compute-vague",
+            "match": "满足未来发展需要",
+            "excerpt": "本次维修成本更低，能够满足未来发展需要。 | 补充用户、Token、并发、模型升级或智能体工作流依据。"
+          }
+        ]
+      },
+      "candidate": {
+        "exit": 0,
+        "findings": [
+          {
+            "path": "<stdin>",
+            "line": 1,
+            "severity": "medium",
+            "label": "vague-claim",
+            "match": "成本更低",
+            "excerpt": "本次维修成本更低，能够满足未来发展需要。 | 核对材料中的比较对象、周期和成本口径；依据不足时收回比较结论，实际缺项列入文后提示。"
+          },
+          {
+            "path": "<stdin>",
+            "line": 1,
+            "severity": "medium",
+            "label": "vague-claim",
+            "match": "满足未来发展需要",
+            "excerpt": "本次维修成本更低，能够满足未来发展需要。 | 对照材料中的需求及其依据，写清已有内容支持的作用或预期；缺少依据时删去泛化判断。"
+          }
+        ]
+      }
+    },
+    {
+      "input": "拟建设先进算力服务。",
+      "baseline": {
+        "exit": 0,
+        "findings": [
+          {
+            "path": "<stdin>",
+            "line": 1,
+            "severity": "medium",
+            "label": "ai-compute-vague",
+            "match": "先进算力",
+            "excerpt": "拟建设先进算力服务。 | 算力文件中应补充GPU/服务器/Token/并发/SLA等可验收指标。"
+          }
+        ]
+      },
+      "candidate": {
+        "exit": 0,
+        "findings": [
+          {
+            "path": "<stdin>",
+            "line": 1,
+            "severity": "medium",
+            "label": "ai-compute-vague",
+            "match": "先进算力",
+            "excerpt": "拟建设先进算力服务。 | 核对算力评价依据；用材料已有的能力或指标说明，依据缺失时收回空泛评价。"
+          }
+        ]
+      }
+    }
+  ]
+}

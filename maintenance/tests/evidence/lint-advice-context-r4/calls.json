@@ -1,0 +1,38 @@
+[
+  {
+    "model": "alibaba-token-plan/qwen3.8-flash",
+    "effort": "medium",
+    "case": "platform_review",
+    "arm": "baseline",
+    "seconds": 80.31,
+    "invalid": [],
+    "draft_sha256": "ba44b3e6a84f4fbd279d4b51d740a0fb6da480689e723fdbe54792e316f419a5"
+  },
+  {
+    "model": "alibaba-token-plan/qwen3.8-flash",
+    "effort": "medium",
+    "case": "platform_review",
+    "arm": "candidate",
+    "seconds": 67.38,
+    "invalid": [],
+    "draft_sha256": "8ba30bd9fe33bcb05c2b8a9edb39e97b9e266ddd0e40c96e1a2678aa10b4c698"
+  },
+  {
+    "model": "command-code/deepseek-deepseek-v4.1-flash",
+    "effort": "provider-default",
+    "case": "platform_review",
+    "arm": "baseline",
+    "seconds": 65.52,
+    "invalid": [],
+    "draft_sha256": "1da6d121c3e0d51bf9f66495eb7965af921659b6eee164159414550a3849ff63"
+  },
+  {
+    "model": "command-code/deepseek-deepseek-v4.1-flash",
+    "effort": "provider-default",
+    "case": "platform_review",
+    "arm": "candidate",
+    "seconds": 41.34,
+    "invalid": [],
+    "draft_sha256": "86639007134cd741c988dbab8dffc3caccd3d83cdce4b13f1d327d3953691741"
+  }
+]

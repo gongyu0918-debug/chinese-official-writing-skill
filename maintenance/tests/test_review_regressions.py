@@ -38,6 +38,25 @@ revision_eval = load_module(
 
 
 class ProseLintStructureTests(unittest.TestCase):
+    def test_generic_vague_claims_do_not_inject_compute_guidance(self):
+        for text in (
+            "这次活动为企业交流搭建了强大平台。",
+            "本次维修成本更低，能够满足未来发展需要。",
+        ):
+            with self.subTest(text=text):
+                findings = prose_lint.scan("<test>", text, delivery_mode="draft-body")
+                self.assertTrue(findings)
+                self.assertTrue(all(f.label == "vague-claim" for f in findings))
+                advice = " ".join(f.excerpt for f in findings)
+                for unrelated in ("GPU", "Token", "SLA", "调度", "监控", "并发"):
+                    self.assertNotIn(unrelated, advice)
+                self.assertIn("材料", advice)
+
+    def test_compute_evaluation_still_reports_material_based_guidance(self):
+        findings = prose_lint.scan("<test>", "拟建设先进算力服务。", delivery_mode="draft-body")
+        self.assertEqual([f.label for f in findings], ["ai-compute-vague"])
+        self.assertIn("材料已有", findings[0].excerpt)
+
     def test_unfinished_reason_sentence_is_detected_in_both_body_modes(self):
         texts = (
             "因＿＿＿＿＿＿＿＿，申请延期至9月27日。",
