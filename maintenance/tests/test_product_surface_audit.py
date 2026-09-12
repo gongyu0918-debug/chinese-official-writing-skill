@@ -27,6 +27,8 @@ class ProductSurfaceAuditTests(unittest.TestCase):
         self.assertEqual(text.count("交付动作 → 主文种首叶"), 1)
         self.assertNotIn("## 任务模式路由与写作主线", text)
         scope = text.split("## 入口契约", 1)[0]
+        self.assertIn("README.md", scope)
+        self.assertNotIn("references/", scope)
         self.assertNotIn("compatibility-scene-routing.md", scope)
         self.assertNotIn("hooks/README.md", scope)
 
