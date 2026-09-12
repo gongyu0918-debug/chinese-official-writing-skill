@@ -147,6 +147,13 @@ class ReferenceRewriteContractTests(unittest.TestCase):
         for term in ["通用要素", "文种重点", "算力和技术服务", "不编造真实单位", "停止本页"]:
             self.assertIn(term, handling)
 
+    def test_style_and_addressing_pages_keep_relation_and_strength_boundaries(self) -> None:
+        style = (REFS / "official-style.md").read_text(encoding="utf-8")
+        addressing = (REFS / "formal-addressing.md").read_text(encoding="utf-8")
+        for term in ["主体视角", "段落", "证据", "上行文", "下行文", "平行文"]:
+            self.assertIn(term, style + addressing)
+        self.assertIn("不编造机关名称", addressing)
+
 
 if __name__ == "__main__":
     unittest.main()
