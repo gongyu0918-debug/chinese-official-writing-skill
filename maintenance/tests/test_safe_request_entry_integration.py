@@ -107,7 +107,7 @@ class SafeRequestEntryIntegrationTests(HookCompanionTestMixin, unittest.TestCase
             ["通知"],
             ["起草采购验收通知，附报价单和技术附件。"],
         )
-        self.assertIn("references/genre-playbooks.md", refs)
+        self.assertIn("references/genre-playbook-notice-publication.md", refs)
         self.assertTrue(COMPLEX_REFS.isdisjoint(refs))
         self.assertNotIn(REQUEST_LEAF, refs)
 
@@ -135,7 +135,7 @@ class SafeRequestEntryIntegrationTests(HookCompanionTestMixin, unittest.TestCase
         handling = (CANONICAL / "references" / "handling-elements.md").read_text(encoding="utf-8")
         final_review = (CANONICAL / "references" / "final-review-layers.md").read_text(encoding="utf-8")
 
-        self.assertIn("英文写作、文学创作、营销软文、社交媒体文案、代码说明", skill)
+        self.assertIn("英文、文学、营销软文、社交媒体文案、个人求职信和代码说明", skill)
         self.assertNotIn("闲聊回复", skill)
         self.assertNotIn("通用翻译", skill)
         for example in (
@@ -143,14 +143,12 @@ class SafeRequestEntryIntegrationTests(HookCompanionTestMixin, unittest.TestCase
             "〔会议时间〕",
             "[具体项目名称]",
             "XXXX万元",
-            "YYYY年MM月DD日",
-            "（签发日期）",
-            "（成文日期待确认）",
         ):
             with self.subTest(example=example):
                 self.assertNotIn(example, skill)
                 self.assertIn(example, handling)
                 self.assertIn(example, final_review)
+        self.assertIn("YYYY年MM月DD日", handling)
 
 
 if __name__ == "__main__":

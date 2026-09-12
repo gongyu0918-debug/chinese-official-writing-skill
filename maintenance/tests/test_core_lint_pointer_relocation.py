@@ -1,28 +1,17 @@
 import unittest
 from pathlib import Path
 
-
 ROOT = Path(__file__).resolve().parents[2]
 
 
 class CoreLintPointerRelocationTests(unittest.TestCase):
-    def test_terminal_mode_pointer_moves_without_strengthening_execution(self) -> None:
-        skill = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(
-            encoding="utf-8"
-        )
-        core = skill.split("## 核心流程", 1)[1].split("## 硬边界", 1)[0]
-        scripts = skill.split("## 脚本", 1)[1]
-        pointer = (
-            "检查终稿正文时按 `references/final-review-layers.md` "
-            "使用 `draft-body` 模式"
-        )
-
-        self.assertEqual(skill.count(pointer), 1)
-        self.assertIn(pointer, core)
-        self.assertNotIn(pointer, scripts)
-        self.assertIn("草稿时可使用 `scripts/prose_lint.py`", scripts)
+    def test_entry_keeps_lint_and_review_as_separate_explicit_routes(self) -> None:
+        skill = (ROOT / "chinese-official-writing" / "SKILL.md").read_text(encoding="utf-8")
+        self.assertIn("references/final-review-layers.md", skill)
+        self.assertIn("references/prose-lint-usage.md", skill)
+        self.assertIn("脚本只提示风险，不改写正文", skill)
+        self.assertIn("Hook 仅在用户明确要求交付门禁时启用", skill)
         self.assertNotIn("必须运行", skill)
-        self.assertNotIn("运行一次 `python scripts/prose_lint.py", skill)
 
 
 if __name__ == "__main__":

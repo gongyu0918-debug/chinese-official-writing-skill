@@ -46,7 +46,7 @@ def make_receipt(side: str) -> dict:
                 "generation_attempt": 1,
                 "route_files_used": [
                     f"{root}/chinese-official-writing/SKILL.md",
-                    f"{root}/chinese-official-writing/references/genre-playbooks.md",
+                    f"{root}/chinese-official-writing/references/genre-routing.md",
                 ],
             }
         ],

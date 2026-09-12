@@ -5176,7 +5176,7 @@ print(json.dumps(response, ensure_ascii=False))
         ):
             self.assertNotIn(model_side_gate_instruction, skill)
             self.assertNotIn(model_side_gate_instruction, information)
-        self.assertIn("先服从用户指定的输出模式", skill)
+        self.assertIn("先按用户要求确定交付模式", skill)
         self.assertIn("不影响文种功能或办理落地的外围事项，直接省略", information)
         self.assertIn("正文已经承载的状态不在同句、相邻句或文后换词重复", information)
         self.assertIn("`--draft` 传入复看前 D0", gate)
