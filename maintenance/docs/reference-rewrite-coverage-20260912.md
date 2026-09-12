@@ -1,6 +1,6 @@
 # Reference 重写覆盖台账（2026-09-12）
 
-本台账只记录文件级覆盖，不把“文件已改”当作“功能已证明等价”。基线是 `main@1ce71123`，候选架构基线为 `ab9bdd1d`。main 和候选均有 50 个 reference；当前候选字节数和语义覆盖仍需以逐页映射及组合实写闭合，不能由字符变化直接推定等价。完整逐页归属见 `maintenance/docs/reference-rewrite-page-map-20260912.md`。
+本台账只记录文件级覆盖，不把“文件已改”当作“功能已证明等价”。基线是 `main@1ce71123`，候选架构基线为 `ab9bdd1d`。main 有 50 个 reference，候选保留 49 个并删除 1 个已被替代的混合目录；当前候选字节数和语义覆盖仍需以逐页映射及组合实写闭合，不能由字符变化直接推定等价。完整逐页归属见 `maintenance/docs/reference-rewrite-page-map-20260912.md`。
 
 ## 已重写但仍需语义/实写验收
 
@@ -11,7 +11,7 @@
 | `genre-routing.md` | 同名页 | 文种、行文关系、混合材料判定 | 静态通过；跨文种待实写 |
 | `task-route-cards.md` | 同名页 | 稀疏材料、短通知、局部修改短路 | 静态通过；旧边界测试待迁移 |
 | `genre-checklist.md` | 同名页 | 未覆盖文种功能反查 | 结构已收束；覆盖缺口待盘点 |
-| `genre-playbooks.md` | 同名页 | 兼容旧入口的目录分流 | 结构已收束；不承载完整骨架 |
+| `genre-playbooks.md` | 已删除 | 旧混合目录跳转 | 功能由专页、`genre-routing.md` 和 `genre-checklist.md` 替代，需验证无旧路由残留 |
 | `workflow.md` | 同名页 | 起草、改稿、压缩、复核、交付、停止 | 已重写；真实组合待验 |
 | `information-selection.md` | 同名页 | 事实、分析、状态、缺项、二次修改 | 已重写；事实保真待验 |
 | `handling-elements.md` | 同名页 | 主体、对象、依据、期限、责任、附件等 | 已重写；字段/采购组合待验 |

@@ -26,6 +26,7 @@
 - 请示、申请、增项申请：`genre-playbook-request.md`、`genre-playbook-project-application.md`；只审请示或申请用 `genre-checklist-request.md`。
 - 报告、情况说明、工作总结、工作要点：`genre-checklist-report.md`、`genre-playbook-work-summary.md`。
 - 通知、公告、公示、通告、通报：`genre-playbook-notice-publication.md`。
+- 决定、决议、议案、公报、命令、部署：`genre-playbook-deliberation-deployment.md`。
 - 函、复函、征求意见函：`genre-playbook-correspondence.md`。
 - 会议纪要：`genre-playbook-minutes.md`。
 - 讲话稿、致辞、演讲：`genre-playbook-speech-address.md`；开场人物顺序另加 `speech-person-order.md`。
@@ -58,7 +59,7 @@
 
 ## 专项资料
 
-- 旧入口兼容目录：`genre-playbooks.md`；新任务优先按本页主叶表选路。
+- 旧混合目录已删除；新任务按本页主叶表选唯一主叶，未覆盖文种回到 `genre-routing.md` 和 `genre-checklist.md` 做最小反查。
 - 事务性固定用语和开端/承启/结尾核对：`formulaic-language.md`，仅在需要文种用语时叠加。
 - 外部最新事实、公开政策或用户明确要求搜索：`external-research.md`。
 - 短稿、只有上限、短正文自然度：`short-draft-naturalness.md`。

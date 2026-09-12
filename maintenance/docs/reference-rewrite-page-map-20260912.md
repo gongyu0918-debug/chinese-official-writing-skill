@@ -38,7 +38,7 @@
 | 32 | `genre-playbook-research-feasibility.md` | genre | 调研/研究/可研主叶 | retain | 研究对象、方法、分析和结论状态。 |
 | 33 | `genre-playbook-speech-address.md` | genre | 讲话/致辞主叶 | retain | 讲话、致辞和演讲的对象、主题、层次和收束。 |
 | 34 | `genre-playbook-work-summary.md` | genre | 工作总结/要点主叶 | retain | 总结、要点的事实归纳和安排状态。 |
-| 35 | `genre-playbooks.md` | router | 旧入口兼容目录 | rewrite | 只做旧名称到新主叶的短分流，不承载多文种规则。 |
+| 35 | `genre-playbooks.md` | router | 旧入口兼容目录 | delete | 仅剩跳转和重复目录功能；已由专页、`genre-routing.md` 与 `genre-checklist.md` 替代，删除以避免旧混合入口继续被误读。 |
 | 36 | `genre-routing.md` | router | 主文种与行文关系路由 | rewrite | 只判定文种、对象关系和冲突，输出首叶。 |
 | 37 | `handling-elements.md` | workflow | 办理要素能力页 | rewrite | 统一主体、对象、依据、时限、责任、附件和请批字段。 |
 | 38 | `information-selection.md` | workflow | 事实选择与状态页 | rewrite | 区分事实、直接分析、待定状态和实质缺项。 |
@@ -57,7 +57,7 @@
 
 ## 台账使用规则
 
-- `rewrite` 和 `retain` 都必须有路由命中证据；`retain` 不是免审。
+- `rewrite`、`retain` 和 `delete` 都必须有证据；`retain` 不是免审，`delete` 必须说明替代页和功能闭合。
 - 每个新页只能有一个主归属；同一条可执行语义不得在多个页重复成为硬规则。
 - 后续填充时，为每行补充旧页语义摘录、候选页段落位置、允许读取集合、排除集合和真实写稿证据编号。
 - 只有 50 行全部闭合，且组合 A/B 排除候选独有硬回退后，才可进入合并判断。

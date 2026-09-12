@@ -24,10 +24,18 @@ class ReferenceRewriteContractTests(unittest.TestCase):
 
     def test_all_reference_pages_have_explicit_architecture_mapping(self) -> None:
         mapping = (ROOT / "maintenance" / "docs" / "reference-rewrite-page-map-20260912.md").read_text(encoding="utf-8")
-        rows = re.findall(r"^\|\s*\d+\s*\|\s*`([^`]+\.md)`\s*\|.*\|\s*(rewrite|retain)\s*\|", mapping, re.MULTILINE)
+        rows = re.findall(r"^\|\s*\d+\s*\|\s*`([^`]+\.md)`\s*\|.*\|\s*(rewrite|retain|delete)\s*\|", mapping, re.MULTILINE)
         actual = sorted(path.name for path in REFS.glob("*.md"))
+        baseline = sorted(
+            Path(line).name
+            for line in subprocess.check_output(
+                ["git", "ls-tree", "-r", "--name-only", "main", "chinese-official-writing/references"],
+                text=True,
+            ).splitlines()
+        )
         self.assertEqual(len(rows), 50)
-        self.assertEqual(sorted(name for name, _ in rows), actual)
+        self.assertEqual(sorted(name for name, _ in rows), baseline)
+        self.assertTrue(set(actual).issubset(set(baseline)))
         self.assertEqual(len({name for name, _ in rows}), 50)
 
     def test_entry_uses_mode_and_genre_axes(self) -> None:
