@@ -117,6 +117,12 @@ class ReferenceRewriteContractTests(unittest.TestCase):
         self.assertNotIn("20类事务文体", text)
         self.assertLess(len(text), 4000)
 
+    def test_anti_ai_reference_retains_semantic_risk_families(self) -> None:
+        text = (REFS / "anti-ai-patterns.md").read_text(encoding="utf-8")
+        for term in ["连续否定", "采购正在推进", "资金充分性", "非正文", "结构化草稿腔", "句群节奏", "思考泄露", "算力", "格式"]:
+            self.assertIn(term, text)
+        self.assertIn("质量建议层", text)
+
 
 if __name__ == "__main__":
     unittest.main()
