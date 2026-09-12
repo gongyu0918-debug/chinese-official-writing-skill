@@ -8,7 +8,7 @@
 
 - 既有项目新增功能、服务或实施内容的增项申请：`genre-playbook-project-application.md`。
 - 请示、普通采购或经费等申请：`genre-playbook-request.md`；文种专项复核用 `genre-checklist-request.md`。
-- 报告、情况报告、周报、月报：`genre-playbook-report.md`；文种复核用 `genre-checklist-report.md`。
+- 报告、情况报告、情况综合、周报、月报：`genre-playbook-report.md`；文种复核用 `genre-checklist-report.md`。
 - 工作总结：`genre-playbook-work-summary.md`。
 - 工作要点：`genre-playbook-work-priorities.md`。
 - 通知：`genre-playbook-notice.md`；公告、公示、通告：`genre-playbook-publication.md`；情况、表扬或批评通报：`genre-playbook-bulletin.md`。
@@ -21,12 +21,18 @@
 - 会议主持词、主持串词：`genre-playbook-meeting-host.md`；开场人物顺序另加 `speech-person-order.md`。
 - 书面述职、述职报告、履职情况报告、现场述职发言：`genre-playbook-duty-report.md`。单位工作报告或工作总结仍走各自主叶。
 - 方案、实施方案、建设方案：`genre-playbook-plan-construction.md`。
+- 技术需求书、软件需求说明、接口需求和技术需求附件：`genre-playbook-technical-requirements.md`；按所需能力和条件组织，技术主题不改变方案或可研的主文种。
 - 制度、规定、办法、细则、操作规程：`genre-playbook-institution-rules.md`。
+- 责任书：`genre-playbook-responsibility-letter.md`。
+- 倡议书：`genre-playbook-initiative.md`；公开信：`genre-playbook-open-letter.md`。
+- 讲解稿：`genre-playbook-narration.md`。
+- 正式事项说明用途的宣传手册、宣传材料：`genre-playbook-information-materials.md`。
 - 调研、研究：`genre-playbook-research.md`；可研：`genre-playbook-feasibility.md`；只审可研用 `genre-checklist-feasibility-review.md`。
-- 采购审查、评审材料：`genre-playbook-procurement-review.md`；采购公告：`genre-playbook-procurement-announcement.md`。
+- 独立审查意见、评审意见（包括采购、初步设计或项目材料）：`genre-playbook-review-opinion.md`；只审核既有稿件时保留原主文种，按首页审稿模式处理。
+- 采购公告：`genre-playbook-procurement-announcement.md`。采购方案仍走方案主叶，独立采购清单按 `field-editing.md` 保留字段形态。
 - 新闻消息、活动报道、编者按：`genre-playbook-news-message.md`。
 - 新闻评论、时评：`genre-playbook-news-commentary.md`。
-- 意见建议、投诉反映、整改方案：先读 `compatibility-scene-routing.md`，再进入对应专页；法定“意见”直接进入意见主叶。
+- 意见建议、建议信、投诉反映、整改方案：先读 `compatibility-scene-routing.md`，再进入对应专页；建议信按面向有权方提出合作性建议的用途进入意见建议页，法定“意见”直接进入意见主叶。
 - 整改进展/整改情况报告：报告主叶 + `transaction-remediation-report.md`；反馈情况报告：报告主叶 + `transaction-feedback-report.md`。两者不改用整改方案或合作性意见建议骨架。
 
 ### 需先确定主文种的场景
@@ -55,7 +61,8 @@
 - 长文压缩和超限处置：`compression-details.md`。
 - 字段拆行、增删和表单边界：`field-editing.md`。
 - 结构增删、移动和标题重排：`structure-editing.md`。
-- AI 算力场景：先选报告、方案、采购或技术材料等主文种，再在出现算力、GPU/服务器、模型推理/训练、智算中心、Token、并发或模型服务等信号时叠加 `ai-compute-docs.md`；单独出现安全、SLA 或验收不触发。该页是附加规则，不单独替代主文种。
+- 采购需求、规格报价、响应规则或履约条件需要专项核对时：在已选主文种上叠加 `genre-playbook-procurement-review.md`；只做语言或格式审校时不因此加读。
+- AI 算力场景：按首页的场景条件叠加 `ai-compute-docs.md`。独立技术需求进入 `genre-playbook-technical-requirements.md`，算力页仍是附加规则。
 
 ## 停止规则
 
