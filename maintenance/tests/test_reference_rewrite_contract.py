@@ -232,6 +232,10 @@ class ReferenceRewriteContractTests(unittest.TestCase):
         self.assertIn("材料只给主题、工作考虑、下一步方向和未定状态", text)
         self.assertIn("主题词本身不等于已有基础或已经决定的安排", text)
 
+    def test_sparse_plan_can_omit_unprovided_structure_sections(self) -> None:
+        text = (REFS / "genre-playbook-plan-construction.md").read_text(encoding="utf-8")
+        self.assertIn("未提供保障、风险、组织、进度或预算细节时可以省略相应章节", text)
+
 
 if __name__ == "__main__":
     unittest.main()
