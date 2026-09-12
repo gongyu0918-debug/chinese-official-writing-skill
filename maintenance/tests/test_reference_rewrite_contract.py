@@ -22,6 +22,14 @@ class ReferenceRewriteContractTests(unittest.TestCase):
             for term in terms:
                 self.assertIn(term, text)
 
+    def test_all_reference_pages_have_explicit_architecture_mapping(self) -> None:
+        mapping = (ROOT / "maintenance" / "docs" / "reference-rewrite-page-map-20260912.md").read_text(encoding="utf-8")
+        rows = re.findall(r"^\|\s*\d+\s*\|\s*`([^`]+\.md)`\s*\|.*\|\s*(rewrite|retain)\s*\|", mapping, re.MULTILINE)
+        actual = sorted(path.name for path in REFS.glob("*.md"))
+        self.assertEqual(len(rows), 50)
+        self.assertEqual(sorted(name for name, _ in rows), actual)
+        self.assertEqual(len({name for name, _ in rows}), 50)
+
     def test_entry_uses_mode_and_genre_axes(self) -> None:
         skill = SKILL.read_text(encoding="utf-8")
         for term in [
