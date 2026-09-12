@@ -123,6 +123,12 @@ class ReferenceRewriteContractTests(unittest.TestCase):
             self.assertIn(term, text)
         self.assertIn("质量建议层", text)
 
+    def test_argument_reference_retains_genre_chain_semantics(self) -> None:
+        text = (REFS / "argument-chains.md").read_text(encoding="utf-8")
+        for term in ["请示、申请", "报告、总结", "通知、函、复函", "方案、实施方案", "可研、调研", "AI 算力", "讲话、致辞"]:
+            self.assertIn(term, text)
+        self.assertIn("不替代算力附加页", text)
+
 
 if __name__ == "__main__":
     unittest.main()
