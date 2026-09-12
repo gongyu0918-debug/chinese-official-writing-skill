@@ -1,0 +1,30 @@
+{
+  "main_commit": "1ce7112303172478faa2392667a2de1098eb912c",
+  "candidate_head": "1e00a2691539083c80a2d38eb184f0e447a05913",
+  "fingerprints": {
+    "baseline": "0fb947b33543d6df591f5de3994f3a11c0d52b235ffe7f60fab99e5c84c9b528",
+    "candidate": "ea2555be2272ce4cdf27ba27bae0566e952b48500a53fff1974793a08a9a0a0f"
+  },
+  "models": [
+    "alibaba-token-plan/qwen3.8-flash",
+    "command-code/deepseek-deepseek-v4.1-flash"
+  ],
+  "cases": {
+    "chair_reason": "帮综合办公室写一份完整的办公椅采购申请，报单位负责人审批。材料：办公室现有4把办公椅较为破旧，拟购置4把办公椅用于更新，每把420元；供应商和采购日期尚未确定，预算科目材料暂未提供。",
+    "platform_review": "帮我审核并改好这段活动报道。有效材料：9月10日，市企业服务中心组织企业交流会，8家企业代表参加，代表介绍各自产品并交流合作需求。现稿：9月10日，市企业服务中心组织企业交流会，8家企业代表参加，代表介绍各自产品并交流合作需求。这次活动为企业交流搭建了强大平台，满足未来发展需要。请给自然简洁的改好稿件。"
+  },
+  "cli": "C:\\Users\\admin\\AppData\\Local\\OpenAI\\Codex\\bin\\7ac07f4ce733f89a\\codex.exe",
+  "cli_version": "codex-cli 0.153.4",
+  "effort": "medium",
+  "runtime": "C:\\Users\\admin\\AppData\\Local\\Temp\\cow-native-delivery-assembled-native-r2-m5xi3vp0",
+  "permissions": "inherited-host-config",
+  "timeout": 240,
+  "agent_documents": "project_doc_max_bytes=0",
+  "baseline_ref": "snapshot",
+  "baseline_source": "F:\\Workspaces\\chinese-official-writing-skill\\output\\route-worktrees\\reference-rewrite-20260912\\output\\delivery-order-only-r1\\skill",
+  "candidate_source": "F:\\Workspaces\\chinese-official-writing-skill\\output\\route-worktrees\\reference-rewrite-20260912\\output\\delivery-assembled-only-r2\\skill",
+  "baseline_commit": null,
+  "profile": "temporary-no-user-documents-or-credentials",
+  "runner_sha256": "f713d3b8f227400ded03982fc8b69251ff23af748f38be0967471345d43da588",
+  "prompt_prefix": "使用本目录 .agents/skills/chinese-official-writing/SKILL.md。\n\n"
+}

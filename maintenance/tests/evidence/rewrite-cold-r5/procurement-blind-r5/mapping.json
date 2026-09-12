@@ -1,0 +1,106 @@
+[
+  {
+    "id": "P01",
+    "model": "command-code/deepseek-deepseek-v4.1-flash",
+    "case": "procurement_plan",
+    "A": {
+      "file": "output/procurement-review-native-r1/m2-procurement_plan-baseline.final.txt",
+      "sha256": "5a3df6240538c52b0c04ff10a7abf36d03a349b7a6eb0dc4422bb7dcf955ec6c"
+    },
+    "B": {
+      "file": "output/procurement-review-native-r1/m2-procurement_plan-candidate.final.txt",
+      "sha256": "dac7b9c29025f447aa8043ebe72cec60042938680c8cc8efe54a9f1ce196081e"
+    }
+  },
+  {
+    "id": "P02",
+    "model": "command-code/deepseek-deepseek-v4.1-flash",
+    "case": "procurement_review_opinion",
+    "A": {
+      "file": "output/procurement-review-native-r1/m2-procurement_review_opinion-candidate.final.txt",
+      "sha256": "1908028f246e35caae754f8595de94c692f2dfc19d41960f5a46468dfbdda6e1"
+    },
+    "B": {
+      "file": "output/procurement-review-native-r1/m2-procurement_review_opinion-baseline.final.txt",
+      "sha256": "a42c21dd21eb6873a1a36bcf48523f7f5bc6ec282b228cd87df81638b4ae3d58"
+    }
+  },
+  {
+    "id": "P03",
+    "model": "command-code/deepseek-deepseek-v4.1-flash",
+    "case": "design_review_opinion",
+    "A": {
+      "file": "output/procurement-review-native-r1/m2-design_review_opinion-candidate.final.txt",
+      "sha256": "8f03429f853450e5734a73db080cb77046505e493a72d9f800056566456e16ca"
+    },
+    "B": {
+      "file": "output/procurement-review-native-r1/m2-design_review_opinion-baseline.final.txt",
+      "sha256": "5d2a1e4c16dca74ef99691fc8dbe781efd4f515c43198129b3f2361fedeab4f0"
+    }
+  },
+  {
+    "id": "P04",
+    "model": "command-code/deepseek-deepseek-v4.1-flash",
+    "case": "feasibility_procurement_content",
+    "A": {
+      "file": "output/procurement-review-native-r1/m2-feasibility_procurement_content-baseline.final.txt",
+      "sha256": "76848e63b2bf13578ee3e71dcfde00c7e09baed3ddd46f5aa535bb787282dc71"
+    },
+    "B": {
+      "file": "output/procurement-review-native-r1/m2-feasibility_procurement_content-candidate.final.txt",
+      "sha256": "5ffa615206012bd0720fc74c88de246474bd2bbaa60a434e3a576acb1d4fc6a5"
+    }
+  },
+  {
+    "id": "P05",
+    "model": "ollama-cloud/glm-5.3-flash",
+    "case": "procurement_plan",
+    "A": {
+      "file": "output/procurement-review-native-r1/m4-procurement_plan-baseline.final.txt",
+      "sha256": "49302949087655a31521c402ff139b15dfd19f68def5807d5fd1ac69f7b8f721"
+    },
+    "B": {
+      "file": "output/procurement-review-native-r1/m4-procurement_plan-candidate.final.txt",
+      "sha256": "d4cb8611e092358fab2c04e6f392dec2d80d7bf05133bad55d7ec45f9547ff62"
+    }
+  },
+  {
+    "id": "P06",
+    "model": "ollama-cloud/glm-5.3-flash",
+    "case": "procurement_review_opinion",
+    "A": {
+      "file": "output/procurement-review-native-r1/m4-procurement_review_opinion-baseline.final.txt",
+      "sha256": "1caeff53ec2b70ad8cb6afd6068a479cc96b9537bd19e606619da05526a9ae58"
+    },
+    "B": {
+      "file": "output/procurement-review-native-r1/m4-procurement_review_opinion-candidate.final.txt",
+      "sha256": "f1373d722ac80b8b5255f93e8fea65ebc760eb7abc54cbfd3839184d8efc72c7"
+    }
+  },
+  {
+    "id": "P07",
+    "model": "ollama-cloud/glm-5.3-flash",
+    "case": "design_review_opinion",
+    "A": {
+      "file": "output/procurement-review-native-r1/m4-design_review_opinion-candidate.final.txt",
+      "sha256": "06c8212f09e21ff067236f3c1e3958269731ec8e4b71b98ee8a60fe5ea8f67e4"
+    },
+    "B": {
+      "file": "output/procurement-review-native-r1/m4-design_review_opinion-baseline.final.txt",
+      "sha256": "f04fe2142377c9da0b685bb883af5c0d31223e6d46997e7c4b2bc082bf6811e9"
+    }
+  },
+  {
+    "id": "P08",
+    "model": "ollama-cloud/glm-5.3-flash",
+    "case": "feasibility_procurement_content",
+    "A": {
+      "file": "output/procurement-review-native-r1/m4-feasibility_procurement_content-baseline.final.txt",
+      "sha256": "bf53734d1eae246799784796b233dd6ae60786011186be44557e9bc155c990a3"
+    },
+    "B": {
+      "file": "output/procurement-review-native-r1/m4-feasibility_procurement_content-candidate.final.txt",
+      "sha256": "99670dd33b55d0d4fae30a3f4d61fbb67656439e91c94ee78beb4c3d41bdb697"
+    }
+  }
+]

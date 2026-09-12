@@ -1,0 +1,12 @@
+{
+  "baseline_commit": "1ce7112303172478faa2392667a2de1098eb912c",
+  "baseline_skill_characters": 7516,
+  "candidate_skill_characters": 3886,
+  "baseline_reference_pages": 50,
+  "candidate_reference_pages": 72,
+  "baseline_reference_characters": 84899,
+  "candidate_reference_characters": 59778,
+  "convention": "Unicode characters with normalized newlines, not model tokens; whole reference tree, not single-task loading.",
+  "entry_change_percent": -48.3,
+  "references_change_percent": -29.59
+}

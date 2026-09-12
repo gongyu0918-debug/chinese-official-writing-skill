@@ -13,6 +13,15 @@ FINAL_REVIEW_PATHS = [
     "references/prose-lint-usage.md",
     "references/delivery.md",
 ]
+PROCUREMENT_OVERLAY = "references/genre-playbook-procurement-review.md"
+
+
+def primary_leaves(reference_paths: list[str]) -> list[str]:
+    """Inspect deterministic fixture paths; this does not observe model reads."""
+    return [
+        path for path in reference_paths
+        if path.startswith("references/genre-playbook-") and path != PROCUREMENT_OVERLAY
+    ]
 
 
 def load_module(name: str, path: Path):
@@ -43,7 +52,7 @@ class PromptfooProviderTests(unittest.TestCase):
             "调研报告": "references/genre-playbook-research.md",
             "讲话稿": "references/genre-playbook-speech-address.md",
             "制度": "references/genre-playbook-institution-rules.md",
-            "采购审查": "references/genre-playbook-procurement-review.md",
+            "采购审查": "references/genre-playbook-review-opinion.md",
             "决定": "references/genre-playbook-decision.md",
             "批复": "references/genre-playbook-reply.md",
             "意见": "references/genre-playbook-opinion.md",
@@ -54,7 +63,7 @@ class PromptfooProviderTests(unittest.TestCase):
         for genre, leaf in expected.items():
             with self.subTest(genre=genre):
                 refs = provider._reference_paths_for_genres([genre])
-                self.assertIn(leaf, refs)
+                self.assertEqual(primary_leaves(refs), [leaf])
                 self.assertNotIn("references/genre-playbooks.md", refs)
 
     def test_distinct_primary_genres_do_not_share_mixed_skeleton_pages(self) -> None:
@@ -140,6 +149,79 @@ class PromptfooProviderTests(unittest.TestCase):
             ["说明"], ["普通政务网站部署在云端，需要说明 SLA 和并发，不涉及 AI、模型或 GPU。"]
         )
         self.assertNotIn("references/ai-compute-docs.md", refs)
+
+    def test_reorganized_genres_keep_their_primary_across_draft_review_and_rewrite(self) -> None:
+        expected = {
+            "审查意见": "review-opinion",
+            "评审材料": "review-opinion",
+            "责任书": "responsibility-letter",
+            "倡议书": "initiative",
+            "公开信": "open-letter",
+            "讲解稿": "narration",
+            "宣传手册": "information-materials",
+            "宣传材料": "information-materials",
+            "情况综合": "report",
+            "建议信": "advisory-feedback",
+        }
+        for genre, suffix in expected.items():
+            for task in [f"按材料起草{genre}。", f"帮我审核这份{genre}。", f"请按原事实和状态改写这份{genre}。"]:
+                with self.subTest(genre=genre, task=task):
+                    refs = provider._reference_paths_for_genres([genre], [task])
+                    self.assertEqual(primary_leaves(refs), [f"references/genre-playbook-{suffix}.md"])
+                    self.assertEqual(refs[-4:], FINAL_REVIEW_PATHS)
+                    self.assertNotIn(PROCUREMENT_OVERLAY, refs)
+                    self.assertNotIn("references/genre-checklist.md", refs)
+                    self.assertNotIn("references/ai-compute-docs.md", refs)
+                    if "审核" in task:
+                        self.assertIn("references/review-checklist.md", refs)
+                    else:
+                        self.assertIn("references/information-selection.md", refs)
+
+    def test_procurement_subject_keeps_deliverable_primary_and_conditional_overlay(self) -> None:
+        cases = [
+            ("采购方案", "起草采购方案，说明预算和采购安排。", "plan-construction", False, False),
+            ("采购审查", "审核采购方案，只给问题和修改建议。", "plan-construction", True, False),
+            ("采购方案", "审核采购方案，并核对规格报价和履约条件。", "plan-construction", True, True),
+            ("采购方案", "根据采购评审记录起草审查意见，保留未形成结论的状态。", "review-opinion", False, True),
+            ("审查意见", "依据初步设计评审记录起草审查意见。", "review-opinion", False, False),
+            ("采购审查", "根据原材料改写采购审查正文。", "review-opinion", False, True),
+        ]
+        for genre, task, suffix, review, procurement in cases:
+            with self.subTest(genre=genre, task=task):
+                refs = provider._reference_paths_for_genres([genre], [task])
+                self.assertEqual(primary_leaves(refs), [f"references/genre-playbook-{suffix}.md"])
+                self.assertEqual("references/review-checklist.md" in refs, review)
+                self.assertEqual(PROCUREMENT_OVERLAY in refs, procurement)
+                self.assertEqual(refs[-4:], FINAL_REVIEW_PATHS)
+
+    def test_technical_requirements_use_a_shared_primary_and_scene_only_compute_overlay(self) -> None:
+        cases = [
+            ("技术需求", "起草普通服务器技术需求，写明接口、安全、SLA和验收。", False),
+            ("服务器技术需求", "帮我审核这份普通服务器技术需求，不涉及 AI、模型或 GPU。", False),
+            ("软件需求说明", "按材料改写软件需求说明，保留待定接口和验收条件。", False),
+            ("接口需求", "起草接口需求，说明输入输出及权限。", False),
+            ("技术需求", "起草 AI 模型推理服务技术需求，写明资源及验收要求。", True),
+            ("GPU/服务器租赁技术需求", "帮我审核这份模型推理服务技术需求。", True),
+        ]
+        for genre, task, compute in cases:
+            with self.subTest(genre=genre, task=task):
+                refs = provider._reference_paths_for_genres([genre], [task])
+                self.assertEqual(primary_leaves(refs), ["references/genre-playbook-technical-requirements.md"])
+                self.assertEqual("references/ai-compute-docs.md" in refs, compute)
+                self.assertNotIn(PROCUREMENT_OVERLAY, refs)
+                self.assertNotIn("references/genre-checklist.md", refs)
+                self.assertEqual(refs[-4:], FINAL_REVIEW_PATHS)
+        plan = provider._reference_paths_for_genres(["建设方案"], ["起草建设方案，其中包含技术需求和接口内容。"])
+        self.assertEqual(primary_leaves(plan), ["references/genre-playbook-plan-construction.md"])
+
+    def test_situation_explanation_title_follows_the_stated_use(self) -> None:
+        for task, suffix in [
+            ("起草情况说明，解释具体事实并回应疑问。", "explanation"),
+            ("起草情况说明，汇报当前工作进展和问题处置。", "report"),
+        ]:
+            with self.subTest(task=task):
+                refs = provider._reference_paths_for_genres(["情况说明"], [task])
+                self.assertEqual(primary_leaves(refs), [f"references/genre-playbook-{suffix}.md"])
 
     def test_speech_person_order_is_a_conditional_overlay(self) -> None:
         base = provider._reference_paths_for_genres(["讲话稿"])
@@ -300,12 +382,13 @@ class PromptfooProviderTests(unittest.TestCase):
             ("通知", "帮我审核一下这份通知。", "references/genre-playbook-notice.md"),
             ("会议纪要", "帮我复核这份会议纪要。", "references/genre-playbook-minutes.md"),
             ("报告", "请审校这份报告的事实和状态。", "references/genre-playbook-report.md"),
-            ("采购审查", "帮我把关这份采购审查稿件。", "references/genre-playbook-procurement-review.md"),
+            ("采购审查", "帮我把关这份采购审查稿件。", "references/genre-playbook-review-opinion.md"),
         ]
         for genre, task, leaf in cases:
             with self.subTest(genre=genre, task=task):
                 refs = provider._reference_paths_for_genres([genre], [task])
-                self.assertEqual(refs, ["SKILL.md", leaf, "references/review-checklist.md"] + FINAL_REVIEW_PATHS)
+                overlay = [PROCUREMENT_OVERLAY] if genre == "采购审查" else []
+                self.assertEqual(refs, ["SKILL.md", leaf] + overlay + ["references/review-checklist.md"] + FINAL_REVIEW_PATHS)
 
     def test_explicit_review_scope_keeps_common_review_stages(self) -> None:
         refs = provider._reference_paths_for_genres(
@@ -323,9 +406,11 @@ class PromptfooProviderTests(unittest.TestCase):
         rewrite = provider._reference_paths_for_genres(
             ["采购审查"], ["根据材料改写采购审查正文。"]
         )
-        leaf = "references/genre-playbook-procurement-review.md"
-        self.assertIn(leaf, review)
-        self.assertIn(leaf, rewrite)
+        leaf = "references/genre-playbook-review-opinion.md"
+        self.assertEqual(primary_leaves(review), [leaf])
+        self.assertEqual(primary_leaves(rewrite), [leaf])
+        self.assertIn(PROCUREMENT_OVERLAY, review)
+        self.assertIn(PROCUREMENT_OVERLAY, rewrite)
         self.assertNotIn("references/genre-playbook-notice.md", review)
 
     def test_all_deliveries_keep_mandatory_review_and_delivery_stages(self) -> None:

@@ -1,0 +1,1476 @@
+{
+  "calls": 122,
+  "technical_valid": 117,
+  "technical_invalid": 5,
+  "records": [
+    {
+      "run": "delivery-order-native-r1",
+      "model": "alibaba-token-plan/qwen3.8-flash",
+      "case": "chair_reason",
+      "arm": "baseline",
+      "effort": "medium",
+      "seconds": 117.22,
+      "returncode": 0,
+      "invalid": [],
+      "draft_sha256": "26c34f4c7b2cbe268d1dc64011ce2635168859d6696841d45fd62c889f7eef35"
+    },
+    {
+      "run": "delivery-order-native-r1",
+      "model": "alibaba-token-plan/qwen3.8-flash",
+      "case": "chair_reason",
+      "arm": "candidate",
+      "effort": "medium",
+      "seconds": 67.25,
+      "returncode": 0,
+      "invalid": [],
+      "draft_sha256": "f05067373ed8a390a7370049d0575f54f9630578883f558d22bd5060d2ec1289"
+    },
+    {
+      "run": "delivery-order-native-r1",
+      "model": "alibaba-token-plan/qwen3.8-flash",
+      "case": "official_marks",
+      "arm": "baseline",
+      "effort": "medium",
+      "seconds": 56.41,
+      "returncode": 0,
+      "invalid": [],
+      "draft_sha256": "0f8085d1198844fa49b532e93f9ee2f99686ec53bf23f1ef86cfc2dbeb6e342f"
+    },
+    {
+      "run": "delivery-order-native-r1",
+      "model": "alibaba-token-plan/qwen3.8-flash",
+      "case": "official_marks",
+      "arm": "candidate",
+      "effort": "medium",
+      "seconds": 65.08,
+      "returncode": 0,
+      "invalid": [],
+      "draft_sha256": "041a47f0f59694b1100384cc181af2728b2a1387f9c2dac58d008dbf77216f0d"
+    },
+    {
+      "run": "delivery-order-native-r1",
+      "model": "alibaba-token-plan/qwen3.8-flash",
+      "case": "platform_review",
+      "arm": "baseline",
+      "effort": "medium",
+      "seconds": 125.56,
+      "returncode": 0,
+      "invalid": [],
+      "draft_sha256": "e23ea5bcfa0c3ff5e6c0221962de916e3747909b8241d4597d44aa32c4181e91"
+    },
+    {
+      "run": "delivery-order-native-r1",
+      "model": "alibaba-token-plan/qwen3.8-flash",
+      "case": "platform_review",
+      "arm": "candidate",
+      "effort": "medium",
+      "seconds": 93.53,
+      "returncode": 0,
+      "invalid": [],
+      "draft_sha256": "e1d61ebeb028f23ac503ef0028a76cf85b226f76b28d9220ee0e7228d6ea3bfa"
+    },
+    {
+      "run": "delivery-order-native-r1",
+      "model": "alibaba-token-plan/qwen3.8-flash",
+      "case": "review",
+      "arm": "baseline",
+      "effort": "medium",
+      "seconds": 74.0,
+      "returncode": 0,
+      "invalid": [],
+      "draft_sha256": "8340d9ce428a69660b05dcffea0769d23552c19db21c7b40bb25fbe57d3d9305"
+    },
+    {
+      "run": "delivery-order-native-r1",
+      "model": "alibaba-token-plan/qwen3.8-flash",
+      "case": "review",
+      "arm": "candidate",
+      "effort": "medium",
+      "seconds": 85.44,
+      "returncode": 0,
+      "invalid": [],
+      "draft_sha256": "8245fe826b153ac3f2fa060d45c762b1bcdcffa6b44d43a820b2e597d0da7fdb"
+    },
+    {
+      "run": "delivery-order-native-r1",
+      "model": "command-code/deepseek-deepseek-v4.1-flash",
+      "case": "chair_reason",
+      "arm": "baseline",
+      "effort": "provider-default",
+      "seconds": 69.59,
+      "returncode": 0,
+      "invalid": [],
+      "draft_sha256": "3d3582de2518859ec584dc80137885316dac92421ca8b104a12127e96cbc4ce9"
+    },
+    {
+      "run": "delivery-order-native-r1",
+      "model": "command-code/deepseek-deepseek-v4.1-flash",
+      "case": "chair_reason",
+      "arm": "candidate",
+      "effort": "provider-default",
+      "seconds": 47.12,
+      "returncode": 0,
+      "invalid": [],
+      "draft_sha256": "756b6366e49c231250b3ad470f5245a9f70fc04900f0b1ee06b37f7a0ef55898"
+    },
+    {
+      "run": "delivery-order-native-r1",
+      "model": "command-code/deepseek-deepseek-v4.1-flash",
+      "case": "official_marks",
+      "arm": "baseline",
+      "effort": "provider-default",
+      "seconds": 25.52,
+      "returncode": 0,
+      "invalid": [],
+      "draft_sha256": "adac20499190c319d574397801db99bfcabb9856c85d5e6a5b9b79a776bb170b"
+    },
+    {
+      "run": "delivery-order-native-r1",
+      "model": "command-code/deepseek-deepseek-v4.1-flash",
+      "case": "official_marks",
+      "arm": "candidate",
+      "effort": "provider-default",
+      "seconds": 26.45,
+      "returncode": 0,
+      "invalid": [],
+      "draft_sha256": "f7be82dd50f2e6f233211487f67f4e668b89e636d7094d32136e1b27754f1cd7"
+    },
+    {
+      "run": "delivery-order-native-r1",
+      "model": "command-code/deepseek-deepseek-v4.1-flash",
+      "case": "platform_review",
+      "arm": "baseline",
+      "effort": "provider-default",
+      "seconds": 41.8,
+      "returncode": 0,
+      "invalid": [],
+      "draft_sha256": "66b4ddbc19ebf77631a7d3742cb40715b2649fa9b8fccf32f2c735edeea15298"
+    },
+    {
+      "run": "delivery-order-native-r1",
+      "model": "command-code/deepseek-deepseek-v4.1-flash",
+      "case": "platform_review",
+      "arm": "candidate",
+      "effort": "provider-default",
+      "seconds": 47.56,
+      "returncode": 0,
+      "invalid": [],
+      "draft_sha256": "068f6a37eb76c3af1a968d6a2ca62a58f8bb35d813496e49f069b2a806e6582c"
+    },
+    {
+      "run": "delivery-order-native-r1",
+      "model": "command-code/deepseek-deepseek-v4.1-flash",
+      "case": "review",
+      "arm": "baseline",
+      "effort": "provider-default",
+      "seconds": 50.78,
+      "returncode": 0,
+      "invalid": [],
+      "draft_sha256": "cf21376a204e6fb6040df5dbbbab165eb4732f89a162b0de8bb19da9b93b753f"
+    },
+    {
+      "run": "delivery-order-native-r1",
+      "model": "command-code/deepseek-deepseek-v4.1-flash",
+      "case": "review",
+      "arm": "candidate",
+      "effort": "provider-default",
+      "seconds": 47.45,
+      "returncode": 0,
+      "invalid": [],
+      "draft_sha256": "832ccd96320e50ea5744b9a3c08bca8a811eb188448a49eb866882a961df526e"
+    },
+    {
+      "run": "delivery-assembled-native-r2",
+      "model": "alibaba-token-plan/qwen3.8-flash",
+      "case": "chair_reason",
+      "arm": "baseline",
+      "effort": "medium",
+      "seconds": 66.58,
+      "returncode": 0,
+      "invalid": [],
+      "draft_sha256": "b1480cf7bf485f0a22ea22585464e1de686ae02fbe7c58e18ae55f8d99fc99b1"
+    },
+    {
+      "run": "delivery-assembled-native-r2",
+      "model": "alibaba-token-plan/qwen3.8-flash",
+      "case": "chair_reason",
+      "arm": "candidate",
+      "effort": "medium",
+      "seconds": 156.25,
+      "returncode": 0,
+      "invalid": [],
+      "draft_sha256": "be977cf0b6f2478820b036c5c10b68dd6eec7fd7e8266d7893ce7e8c9ced5063"
+    },
+    {
+      "run": "delivery-assembled-native-r2",
+      "model": "alibaba-token-plan/qwen3.8-flash",
+      "case": "platform_review",
+      "arm": "baseline",
+      "effort": "medium",
+      "seconds": 118.12,
+      "returncode": 0,
+      "invalid": [],
+      "draft_sha256": "cc1d65e94585febd39c68b3741ec9f76818b4abe4b88786023f473110609e1cc"
+    },
+    {
+      "run": "delivery-assembled-native-r2",
+      "model": "alibaba-token-plan/qwen3.8-flash",
+      "case": "platform_review",
+      "arm": "candidate",
+      "effort": "medium",
+      "seconds": 108.83,
+      "returncode": 0,
+      "invalid": [],
+      "draft_sha256": "3c087a0bf80b3437b95950cbc758fed8a82b4d7cb56a896a129a8a01bc00ec14"
+    },
+    {
+      "run": "delivery-assembled-native-r2",
+      "model": "command-code/deepseek-deepseek-v4.1-flash",
+      "case": "chair_reason",
+      "arm": "baseline",
+      "effort": "provider-default",
+      "seconds": 74.81,
+      "returncode": 0,
+      "invalid": [],
+      "draft_sha256": "d3bd84be04bd2c8c215c0505cb7a393f7217b8b3f2b8528de42228c11e4aff8b"
+    },
+    {
+      "run": "delivery-assembled-native-r2",
+      "model": "command-code/deepseek-deepseek-v4.1-flash",
+      "case": "chair_reason",
+      "arm": "candidate",
+      "effort": "provider-default",
+      "seconds": 40.8,
+      "returncode": 0,
+      "invalid": [],
+      "draft_sha256": "f518a4327120f54860deb2106398a15cae8d05ccfa74a26ee5a84badbd369b0f"
+    },
+    {
+      "run": "delivery-assembled-native-r2",
+      "model": "command-code/deepseek-deepseek-v4.1-flash",
+      "case": "platform_review",
+      "arm": "baseline",
+      "effort": "provider-default",
+      "seconds": 45.28,
+      "returncode": 0,
+      "invalid": [],
+      "draft_sha256": "754e07f09bd0e2b04caa6b12c3a5b9fb60c6a0c7a708555a13e24ecaabc83595"
+    },
+    {
+      "run": "delivery-assembled-native-r2",
+      "model": "command-code/deepseek-deepseek-v4.1-flash",
+      "case": "platform_review",
+      "arm": "candidate",
+      "effort": "provider-default",
+      "seconds": 42.0,
+      "returncode": 0,
+      "invalid": [],
+      "draft_sha256": "6498c9fd3d793328c8220c608385027521bad5267684348aec204cb9be04023a"
+    },
+    {
+      "run": "combined-candidate-native-r4",
+      "model": "alibaba-token-plan-2/qwen3.8-flash",
+      "case": "minutes_local",
+      "arm": "candidate",
+      "effort": "medium",
+      "seconds": 78.05,
+      "returncode": 0,
+      "invalid": [],
+      "draft_sha256": "358f72bf1e18a96e8f2ddc81d32d345c164859a08c93aa73679400731ba75eb8"
+    },
+    {
+      "run": "combined-candidate-native-r4",
+      "model": "alibaba-token-plan-2/qwen3.8-flash",
+      "case": "minutes_local",
+      "arm": "main",
+      "effort": "medium",
+      "seconds": 18.16,
+      "returncode": 0,
+      "invalid": [],
+      "draft_sha256": "659d9ddd07a76da018d3cfaaf9bc87e12b46f241651f58d6b4393445db2d3b31"
+    },
+    {
+      "run": "combined-candidate-native-r4",
+      "model": "alibaba-token-plan-2/qwen3.8-flash",
+      "case": "notice_receiver",
+      "arm": "candidate",
+      "effort": "medium",
+      "seconds": 124.38,
+      "returncode": 0,
+      "invalid": [],
+      "draft_sha256": "d4b0415ef306badb95a4fe05efbdb12cb314ab68a2f7c7508052d7fabbb2b640"
+    },
+    {
+      "run": "combined-candidate-native-r4",
+      "model": "alibaba-token-plan-2/qwen3.8-flash",
+      "case": "notice_receiver",
+      "arm": "main",
+      "effort": "medium",
+      "seconds": 46.98,
+      "returncode": 0,
+      "invalid": [],
+      "draft_sha256": "7f7c6920bdb889c949658bbba3ab4babcd1e4057253179587cfbfedf9f406f13"
+    },
+    {
+      "run": "combined-candidate-native-r4",
+      "model": "alibaba-token-plan-2/qwen3.8-flash",
+      "case": "request_reason_revision",
+      "arm": "candidate",
+      "effort": "medium",
+      "seconds": 140.77,
+      "returncode": 0,
+      "invalid": [],
+      "draft_sha256": "7c858afe0011c880f2ee113aedc0e7a776c035da2d673c4ef16b9d3cd6d0aecc"
+    },
+    {
+      "run": "combined-candidate-native-r4",
+      "model": "alibaba-token-plan-2/qwen3.8-flash",
+      "case": "request_reason_revision",
+      "arm": "main",
+      "effort": "medium",
+      "seconds": 95.39,
+      "returncode": 0,
+      "invalid": [],
+      "draft_sha256": "52d02ee2b2393ba0bcfebcff8eb0b2de23aa04a57b60650e79a6b5df57d84fa6"
+    },
+    {
+      "run": "combined-candidate-native-r4",
+      "model": "alibaba-token-plan-2/qwen3.8-flash",
+      "case": "work_summary",
+      "arm": "candidate",
+      "effort": "medium",
+      "seconds": 107.91,
+      "returncode": 0,
+      "invalid": [],
+      "draft_sha256": "f53d7daa3eec8251a0110a52df98e029d96ba2a560ce96b541c6fbe4d934e951"
+    },
+    {
+      "run": "combined-candidate-native-r4",
+      "model": "alibaba-token-plan-2/qwen3.8-flash",
+      "case": "work_summary",
+      "arm": "main",
+      "effort": "medium",
+      "seconds": 44.72,
+      "returncode": 0,
+      "invalid": [],
+      "draft_sha256": "bf7ab20d853378b0a4b334033388fac41f423aaf7158f0e6da8549c5f838fc99"
+    },
+    {
+      "run": "combined-candidate-native-r4",
+      "model": "minimax-cn/MiniMax-M3",
+      "case": "minutes_local",
+      "arm": "candidate",
+      "effort": "medium",
+      "seconds": 47.95,
+      "returncode": 0,
+      "invalid": [],
+      "draft_sha256": "b1f55a984353e7590a63c83b2c8044bf21a32bf635b74c4dcf1703c29e8a3ba2"
+    },
+    {
+      "run": "combined-candidate-native-r4",
+      "model": "minimax-cn/MiniMax-M3",
+      "case": "minutes_local",
+      "arm": "main",
+      "effort": "medium",
+      "seconds": 28.61,
+      "returncode": 0,
+      "invalid": [],
+      "draft_sha256": "e5c354785bdb1b27d69e14b202adf566db786dde17dce98411afeb3e594aa897"
+    },
+    {
+      "run": "combined-candidate-native-r4",
+      "model": "minimax-cn/MiniMax-M3",
+      "case": "notice_receiver",
+      "arm": "candidate",
+      "effort": "medium",
+      "seconds": 68.52,
+      "returncode": 0,
+      "invalid": [],
+      "draft_sha256": "b17d05dcc36e6932ad532521f5b60b09d22d6b0f61e4e30f78190e3e23a60d21"
+    },
+    {
+      "run": "combined-candidate-native-r4",
+      "model": "minimax-cn/MiniMax-M3",
+      "case": "notice_receiver",
+      "arm": "main",
+      "effort": "medium",
+      "seconds": 40.81,
+      "returncode": 0,
+      "invalid": [],
+      "draft_sha256": "9b0f11a795e34e877699c23ed87347ec31cc59bf32561a30cf18d5966507f1f0"
+    },
+    {
+      "run": "combined-candidate-native-r4",
+      "model": "minimax-cn/MiniMax-M3",
+      "case": "request_reason_revision",
+      "arm": "candidate",
+      "effort": "medium",
+      "seconds": 110.47,
+      "returncode": 0,
+      "invalid": [],
+      "draft_sha256": "b7e5399f852e821793660fb1314b91787083685c6c41d411cb913d92c6db87e7"
+    },
+    {
+      "run": "combined-candidate-native-r4",
+      "model": "minimax-cn/MiniMax-M3",
+      "case": "request_reason_revision",
+      "arm": "main",
+      "effort": "medium",
+      "seconds": 48.89,
+      "returncode": 0,
+      "invalid": [],
+      "draft_sha256": "ebf1c95541a8f4365519650901e1ab8fd153fcfe8b9827b987dccb65f6154d11"
+    },
+    {
+      "run": "combined-candidate-native-r4",
+      "model": "minimax-cn/MiniMax-M3",
+      "case": "work_summary",
+      "arm": "candidate",
+      "effort": "medium",
+      "seconds": 50.09,
+      "returncode": 0,
+      "invalid": [],
+      "draft_sha256": "bc6bc404332cb08164aa6119e90904fc785991a09e40e3fa2aba3db65908c9dd"
+    },
+    {
+      "run": "combined-candidate-native-r4",
+      "model": "minimax-cn/MiniMax-M3",
+      "case": "work_summary",
+      "arm": "main",
+      "effort": "medium",
+      "seconds": 67.26,
+      "returncode": 0,
+      "invalid": [],
+      "draft_sha256": "65e97672809515afeffffc044199c1dead30cbbc8416447399d0a160db06b473"
+    },
+    {
+      "run": "duty-role-native-r2",
+      "model": "alibaba-token-plan-2/qwen3.8-flash",
+      "case": "duty_oral",
+      "arm": "baseline",
+      "effort": "medium",
+      "seconds": 93.55,
+      "returncode": 0,
+      "invalid": [],
+      "draft_sha256": "5fc1b15d368676a1742be6f1e13a051eca1d5662cd4cc1f6b4abd6ba43a26a60"
+    },
+    {
+      "run": "duty-role-native-r2",
+      "model": "alibaba-token-plan-2/qwen3.8-flash",
+      "case": "duty_oral",
+      "arm": "candidate",
+      "effort": "medium",
+      "seconds": 120.12,
+      "returncode": 0,
+      "invalid": [],
+      "draft_sha256": "c1fc6af8c5e74a6b59e59fb60db4425f40c1af39ad6872715b91864868702847"
+    },
+    {
+      "run": "duty-role-native-r2",
+      "model": "command-code/deepseek-deepseek-v4.1-flash",
+      "case": "duty_oral",
+      "arm": "baseline",
+      "effort": "provider-default",
+      "seconds": 240.05,
+      "returncode": null,
+      "invalid": [
+        "timeout",
+        "missing_final"
+      ],
+      "draft_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "run": "duty-role-native-r2",
+      "model": "command-code/deepseek-deepseek-v4.1-flash",
+      "case": "duty_oral",
+      "arm": "candidate",
+      "effort": "provider-default",
+      "seconds": 34.02,
+      "returncode": 0,
+      "invalid": [],
+      "draft_sha256": "56653a57571f4be8ae94760f6509fb8d3cd262b451105b1a285c2559957ebfe9"
+    },
+    {
+      "run": "duty-role-native-r2",
+      "model": "minimax-cn/MiniMax-M3",
+      "case": "duty_oral",
+      "arm": "baseline",
+      "effort": "medium",
+      "seconds": 71.09,
+      "returncode": 0,
+      "invalid": [],
+      "draft_sha256": "5ee7c4af6f95f3b53bcd77443dc40e23314fb5780eb04902dd07e6e37d6164e2"
+    },
+    {
+      "run": "duty-role-native-r2",
+      "model": "minimax-cn/MiniMax-M3",
+      "case": "duty_oral",
+      "arm": "candidate",
+      "effort": "medium",
+      "seconds": 37.92,
+      "returncode": 0,
+      "invalid": [],
+      "draft_sha256": "ea6e6c8ed689d67b1f2af2617d5f5a7821efba6cc391adc2609524b9d95b1131"
+    },
+    {
+      "run": "duty-role-native-r3",
+      "model": "minimax-cn/MiniMax-M3",
+      "case": "duty_oral",
+      "arm": "baseline",
+      "effort": "medium",
+      "seconds": 34.3,
+      "returncode": 0,
+      "invalid": [],
+      "draft_sha256": "8db4511a04597b25511e4890a9fa6c90c87411441af5668b40aa7fb5ceca4b8f"
+    },
+    {
+      "run": "duty-role-native-r3",
+      "model": "minimax-cn/MiniMax-M3",
+      "case": "duty_oral",
+      "arm": "candidate",
+      "effort": "medium",
+      "seconds": 29.55,
+      "returncode": 0,
+      "invalid": [],
+      "draft_sha256": "4609fc3af8d3508c11ee4ea6e7c73f2f67d77617740d22d59977a9e9ab4e7a2b"
+    },
+    {
+      "run": "duty-role-native-r3",
+      "model": "minimax-cn/MiniMax-M3",
+      "case": "duty_short",
+      "arm": "baseline",
+      "effort": "medium",
+      "seconds": 41.44,
+      "returncode": 0,
+      "invalid": [],
+      "draft_sha256": "2f240144ed5b39aace9a939e01b076604d9218f07ce65d1c550764aae44b0693"
+    },
+    {
+      "run": "duty-role-native-r3",
+      "model": "minimax-cn/MiniMax-M3",
+      "case": "duty_short",
+      "arm": "candidate",
+      "effort": "medium",
+      "seconds": 97.73,
+      "returncode": 0,
+      "invalid": [],
+      "draft_sha256": "bf9de88c95595fbc11e33eeeddb3c47d8403753979c5afa34e33e5eddb074c34"
+    },
+    {
+      "run": "procurement-review-native-r1",
+      "model": "command-code/deepseek-deepseek-v4.1-flash",
+      "case": "design_review_opinion",
+      "arm": "baseline",
+      "effort": "provider-default",
+      "seconds": 61.36,
+      "returncode": 0,
+      "invalid": [],
+      "draft_sha256": "5d2a1e4c16dca74ef99691fc8dbe781efd4f515c43198129b3f2361fedeab4f0"
+    },
+    {
+      "run": "procurement-review-native-r1",
+      "model": "command-code/deepseek-deepseek-v4.1-flash",
+      "case": "design_review_opinion",
+      "arm": "candidate",
+      "effort": "provider-default",
+      "seconds": 67.34,
+      "returncode": 0,
+      "invalid": [],
+      "draft_sha256": "8f03429f853450e5734a73db080cb77046505e493a72d9f800056566456e16ca"
+    },
+    {
+      "run": "procurement-review-native-r1",
+      "model": "command-code/deepseek-deepseek-v4.1-flash",
+      "case": "feasibility_procurement_content",
+      "arm": "baseline",
+      "effort": "provider-default",
+      "seconds": 55.31,
+      "returncode": 0,
+      "invalid": [],
+      "draft_sha256": "76848e63b2bf13578ee3e71dcfde00c7e09baed3ddd46f5aa535bb787282dc71"
+    },
+    {
+      "run": "procurement-review-native-r1",
+      "model": "command-code/deepseek-deepseek-v4.1-flash",
+      "case": "feasibility_procurement_content",
+      "arm": "candidate",
+      "effort": "provider-default",
+      "seconds": 77.03,
+      "returncode": 0,
+      "invalid": [],
+      "draft_sha256": "5ffa615206012bd0720fc74c88de246474bd2bbaa60a434e3a576acb1d4fc6a5"
+    },
+    {
+      "run": "procurement-review-native-r1",
+      "model": "command-code/deepseek-deepseek-v4.1-flash",
+      "case": "procurement_plan",
+      "arm": "baseline",
+      "effort": "provider-default",
+      "seconds": 74.94,
+      "returncode": 0,
+      "invalid": [],
+      "draft_sha256": "5a3df6240538c52b0c04ff10a7abf36d03a349b7a6eb0dc4422bb7dcf955ec6c"
+    },
+    {
+      "run": "procurement-review-native-r1",
+      "model": "command-code/deepseek-deepseek-v4.1-flash",
+      "case": "procurement_plan",
+      "arm": "candidate",
+      "effort": "provider-default",
+      "seconds": 69.34,
+      "returncode": 0,
+      "invalid": [],
+      "draft_sha256": "dac7b9c29025f447aa8043ebe72cec60042938680c8cc8efe54a9f1ce196081e"
+    },
+    {
+      "run": "procurement-review-native-r1",
+      "model": "command-code/deepseek-deepseek-v4.1-flash",
+      "case": "procurement_review_opinion",
+      "arm": "baseline",
+      "effort": "provider-default",
+      "seconds": 45.5,
+      "returncode": 0,
+      "invalid": [],
+      "draft_sha256": "a42c21dd21eb6873a1a36bcf48523f7f5bc6ec282b228cd87df81638b4ae3d58"
+    },
+    {
+      "run": "procurement-review-native-r1",
+      "model": "command-code/deepseek-deepseek-v4.1-flash",
+      "case": "procurement_review_opinion",
+      "arm": "candidate",
+      "effort": "provider-default",
+      "seconds": 55.97,
+      "returncode": 0,
+      "invalid": [],
+      "draft_sha256": "1908028f246e35caae754f8595de94c692f2dfc19d41960f5a46468dfbdda6e1"
+    },
+    {
+      "run": "procurement-review-native-r1",
+      "model": "ollama-cloud/glm-5.3-flash",
+      "case": "design_review_opinion",
+      "arm": "baseline",
+      "effort": "max",
+      "seconds": 66.52,
+      "returncode": 0,
+      "invalid": [],
+      "draft_sha256": "f04fe2142377c9da0b685bb883af5c0d31223e6d46997e7c4b2bc082bf6811e9"
+    },
+    {
+      "run": "procurement-review-native-r1",
+      "model": "ollama-cloud/glm-5.3-flash",
+      "case": "design_review_opinion",
+      "arm": "candidate",
+      "effort": "max",
+      "seconds": 84.12,
+      "returncode": 0,
+      "invalid": [],
+      "draft_sha256": "06c8212f09e21ff067236f3c1e3958269731ec8e4b71b98ee8a60fe5ea8f67e4"
+    },
+    {
+      "run": "procurement-review-native-r1",
+      "model": "ollama-cloud/glm-5.3-flash",
+      "case": "feasibility_procurement_content",
+      "arm": "baseline",
+      "effort": "max",
+      "seconds": 129.11,
+      "returncode": 0,
+      "invalid": [],
+      "draft_sha256": "bf53734d1eae246799784796b233dd6ae60786011186be44557e9bc155c990a3"
+    },
+    {
+      "run": "procurement-review-native-r1",
+      "model": "ollama-cloud/glm-5.3-flash",
+      "case": "feasibility_procurement_content",
+      "arm": "candidate",
+      "effort": "max",
+      "seconds": 86.72,
+      "returncode": 0,
+      "invalid": [],
+      "draft_sha256": "99670dd33b55d0d4fae30a3f4d61fbb67656439e91c94ee78beb4c3d41bdb697"
+    },
+    {
+      "run": "procurement-review-native-r1",
+      "model": "ollama-cloud/glm-5.3-flash",
+      "case": "procurement_plan",
+      "arm": "baseline",
+      "effort": "max",
+      "seconds": 87.7,
+      "returncode": 0,
+      "invalid": [],
+      "draft_sha256": "49302949087655a31521c402ff139b15dfd19f68def5807d5fd1ac69f7b8f721"
+    },
+    {
+      "run": "procurement-review-native-r1",
+      "model": "ollama-cloud/glm-5.3-flash",
+      "case": "procurement_plan",
+      "arm": "candidate",
+      "effort": "max",
+      "seconds": 115.66,
+      "returncode": 0,
+      "invalid": [],
+      "draft_sha256": "d4cb8611e092358fab2c04e6f392dec2d80d7bf05133bad55d7ec45f9547ff62"
+    },
+    {
+      "run": "procurement-review-native-r1",
+      "model": "ollama-cloud/glm-5.3-flash",
+      "case": "procurement_review_opinion",
+      "arm": "baseline",
+      "effort": "max",
+      "seconds": 72.3,
+      "returncode": 0,
+      "invalid": [],
+      "draft_sha256": "1caeff53ec2b70ad8cb6afd6068a479cc96b9537bd19e606619da05526a9ae58"
+    },
+    {
+      "run": "procurement-review-native-r1",
+      "model": "ollama-cloud/glm-5.3-flash",
+      "case": "procurement_review_opinion",
+      "arm": "candidate",
+      "effort": "max",
+      "seconds": 92.17,
+      "returncode": 0,
+      "invalid": [],
+      "draft_sha256": "f1373d722ac80b8b5255f93e8fea65ebc760eb7abc54cbfd3839184d8efc72c7"
+    },
+    {
+      "run": "semantic-parity-native-r5",
+      "model": "command-code/deepseek-deepseek-v4.1-flash",
+      "case": "existing_field_form",
+      "arm": "baseline",
+      "effort": "provider-default",
+      "seconds": 51.56,
+      "returncode": 0,
+      "invalid": [],
+      "draft_sha256": "22132552f4ba611319855bc386751e5b0b790d47cb4c569e3a1b43b179e3fcca"
+    },
+    {
+      "run": "semantic-parity-native-r5",
+      "model": "command-code/deepseek-deepseek-v4.1-flash",
+      "case": "existing_field_form",
+      "arm": "candidate",
+      "effort": "provider-default",
+      "seconds": 44.49,
+      "returncode": 0,
+      "invalid": [],
+      "draft_sha256": "210799336eccc0bffd4d89b235b6c24fc2e4c552bc6d0abd0bdc605a7513de07"
+    },
+    {
+      "run": "semantic-parity-native-r5",
+      "model": "command-code/deepseek-deepseek-v4.1-flash",
+      "case": "feasibility_conditional_advice",
+      "arm": "baseline",
+      "effort": "provider-default",
+      "seconds": 71.05,
+      "returncode": 0,
+      "invalid": [],
+      "draft_sha256": "2e83975fc574c41f331779f860ad1788eb0e73cbb4a5e6442d25d75b2ae24c76"
+    },
+    {
+      "run": "semantic-parity-native-r5",
+      "model": "command-code/deepseek-deepseek-v4.1-flash",
+      "case": "feasibility_conditional_advice",
+      "arm": "candidate",
+      "effort": "provider-default",
+      "seconds": 77.61,
+      "returncode": 0,
+      "invalid": [],
+      "draft_sha256": "1c7b90e1cbb36355a8c2497ec7dc99bd85dc06e65ed100023b9415dee8e912ad"
+    },
+    {
+      "run": "semantic-parity-native-r5",
+      "model": "command-code/deepseek-deepseek-v4.1-flash",
+      "case": "material_based_analysis",
+      "arm": "baseline",
+      "effort": "provider-default",
+      "seconds": 70.12,
+      "returncode": 0,
+      "invalid": [],
+      "draft_sha256": "a738f7ea22a9392b074fe61ae0df9b52222cc637a4f4229a4ffcb29e6a0d11bc"
+    },
+    {
+      "run": "semantic-parity-native-r5",
+      "model": "command-code/deepseek-deepseek-v4.1-flash",
+      "case": "material_based_analysis",
+      "arm": "candidate",
+      "effort": "provider-default",
+      "seconds": 45.69,
+      "returncode": 0,
+      "invalid": [],
+      "draft_sha256": "1d061ed331656f16297b1228b499e26831bf005c4dfee84f6ef4960164b6d90a"
+    },
+    {
+      "run": "semantic-parity-native-r5",
+      "model": "command-code/deepseek-deepseek-v4.1-flash",
+      "case": "news_supported_analysis",
+      "arm": "baseline",
+      "effort": "provider-default",
+      "seconds": 58.94,
+      "returncode": 0,
+      "invalid": [],
+      "draft_sha256": "e2acd0d9c02eb55da989ea93f7773b341835296fddf5c89c1c65486a9433e085"
+    },
+    {
+      "run": "semantic-parity-native-r5",
+      "model": "command-code/deepseek-deepseek-v4.1-flash",
+      "case": "news_supported_analysis",
+      "arm": "candidate",
+      "effort": "provider-default",
+      "seconds": 40.11,
+      "returncode": 0,
+      "invalid": [],
+      "draft_sha256": "8ac3a0cda79b62a08dd0e960da8425ee5208cf30eaa78566f72a58e13cdcc9d6"
+    },
+    {
+      "run": "semantic-parity-native-r5",
+      "model": "command-code/deepseek-deepseek-v4.1-flash",
+      "case": "usage_value_report",
+      "arm": "baseline",
+      "effort": "provider-default",
+      "seconds": 73.89,
+      "returncode": 0,
+      "invalid": [],
+      "draft_sha256": "9a222dd8cf2ab66c7fdeb47e8ce84efcc16dfa6f203a6b4651c0c463a45edd1d"
+    },
+    {
+      "run": "semantic-parity-native-r5",
+      "model": "command-code/deepseek-deepseek-v4.1-flash",
+      "case": "usage_value_report",
+      "arm": "candidate",
+      "effort": "provider-default",
+      "seconds": 115.55,
+      "returncode": 0,
+      "invalid": [],
+      "draft_sha256": "214c577dc60b241384ff1d98fc97a0330dd6406b11dd005dca5327fa2ba8df0e"
+    },
+    {
+      "run": "semantic-parity-native-r5",
+      "model": "ollama-cloud/glm-5.3-flash",
+      "case": "existing_field_form",
+      "arm": "baseline",
+      "effort": "max",
+      "seconds": 64.97,
+      "returncode": 0,
+      "invalid": [],
+      "draft_sha256": "16718d9262ac032d7d31bbeb4fdcd99f78a6ac25ca916236f4b24e9b45e99aae"
+    },
+    {
+      "run": "semantic-parity-native-r5",
+      "model": "ollama-cloud/glm-5.3-flash",
+      "case": "existing_field_form",
+      "arm": "candidate",
+      "effort": "max",
+      "seconds": 59.53,
+      "returncode": 0,
+      "invalid": [],
+      "draft_sha256": "241aea8acd4f44f530832aedb1748c334861cd57e92c57df81831989533e1440"
+    },
+    {
+      "run": "semantic-parity-native-r5",
+      "model": "ollama-cloud/glm-5.3-flash",
+      "case": "feasibility_conditional_advice",
+      "arm": "baseline",
+      "effort": "max",
+      "seconds": 65.94,
+      "returncode": 0,
+      "invalid": [],
+      "draft_sha256": "cfb220ae6399a631635388c600f7190eeda545eb4b850d5bb8f7ad7d4aa75c14"
+    },
+    {
+      "run": "semantic-parity-native-r5",
+      "model": "ollama-cloud/glm-5.3-flash",
+      "case": "feasibility_conditional_advice",
+      "arm": "candidate",
+      "effort": "max",
+      "seconds": 64.38,
+      "returncode": 0,
+      "invalid": [],
+      "draft_sha256": "c45553c96c6bfe134c2df1af9589a5792230815ffcdef63c232481c371381968"
+    },
+    {
+      "run": "semantic-parity-native-r5",
+      "model": "ollama-cloud/glm-5.3-flash",
+      "case": "material_based_analysis",
+      "arm": "baseline",
+      "effort": "max",
+      "seconds": 56.05,
+      "returncode": 0,
+      "invalid": [],
+      "draft_sha256": "ff169a8663721ddc32fa382f52e7f1ff0a0e7a042a03b1ce1f1e53f7ab14f9cc"
+    },
+    {
+      "run": "semantic-parity-native-r5",
+      "model": "ollama-cloud/glm-5.3-flash",
+      "case": "material_based_analysis",
+      "arm": "candidate",
+      "effort": "max",
+      "seconds": 59.88,
+      "returncode": 0,
+      "invalid": [],
+      "draft_sha256": "24029dd9101d8c70f4dd577124dd9bd0ebdc16561175801df68298ed3ec23251"
+    },
+    {
+      "run": "semantic-parity-native-r5",
+      "model": "ollama-cloud/glm-5.3-flash",
+      "case": "news_supported_analysis",
+      "arm": "baseline",
+      "effort": "max",
+      "seconds": 45.36,
+      "returncode": 0,
+      "invalid": [],
+      "draft_sha256": "c451b40fa01556f876c24434fa374b0da3cb28d83b8414bdb70681aa32852970"
+    },
+    {
+      "run": "semantic-parity-native-r5",
+      "model": "ollama-cloud/glm-5.3-flash",
+      "case": "news_supported_analysis",
+      "arm": "candidate",
+      "effort": "max",
+      "seconds": 50.14,
+      "returncode": 0,
+      "invalid": [],
+      "draft_sha256": "2c9f3a2ed478610b6c7f6b30fd310dfca562dd48c9588d327556bd0b881916b7"
+    },
+    {
+      "run": "semantic-parity-native-r5",
+      "model": "ollama-cloud/glm-5.3-flash",
+      "case": "usage_value_report",
+      "arm": "baseline",
+      "effort": "max",
+      "seconds": 138.31,
+      "returncode": 0,
+      "invalid": [],
+      "draft_sha256": "53433f170b28eea663bc121739116770d2f0f6cf6064ca95ddbb3e7c271e6919"
+    },
+    {
+      "run": "semantic-parity-native-r5",
+      "model": "ollama-cloud/glm-5.3-flash",
+      "case": "usage_value_report",
+      "arm": "candidate",
+      "effort": "max",
+      "seconds": 56.22,
+      "returncode": 0,
+      "invalid": [],
+      "draft_sha256": "c604879e57cf78e295afd5bf0554f84affc261a40ceb584a8424e1636143ec61"
+    },
+    {
+      "run": "legacy-functions-native-r5-qwen",
+      "model": "alibaba-token-plan/qwen3.8-flash",
+      "case": "information_materials",
+      "arm": "baseline",
+      "effort": "medium",
+      "seconds": 50.36,
+      "returncode": 0,
+      "invalid": [],
+      "draft_sha256": "71a2b2194c231b016ddd271450219b881e97c46b460f127544500f1303733a62"
+    },
+    {
+      "run": "legacy-functions-native-r5-qwen",
+      "model": "alibaba-token-plan/qwen3.8-flash",
+      "case": "information_materials",
+      "arm": "candidate",
+      "effort": "medium",
+      "seconds": 93.66,
+      "returncode": 0,
+      "invalid": [],
+      "draft_sha256": "4230b11e688020af5461a96b10f908cdeae17fa219b1345247c31b236327c630"
+    },
+    {
+      "run": "legacy-functions-native-r5-qwen",
+      "model": "alibaba-token-plan/qwen3.8-flash",
+      "case": "initiative",
+      "arm": "baseline",
+      "effort": "medium",
+      "seconds": 76.33,
+      "returncode": 0,
+      "invalid": [],
+      "draft_sha256": "b1d913c0698a54138e9e4ffbae79bf378365112702486067b1c3ae559a54179a"
+    },
+    {
+      "run": "legacy-functions-native-r5-qwen",
+      "model": "alibaba-token-plan/qwen3.8-flash",
+      "case": "initiative",
+      "arm": "candidate",
+      "effort": "medium",
+      "seconds": 74.08,
+      "returncode": 0,
+      "invalid": [],
+      "draft_sha256": "df418d84890b39de20728a050095b8bf882dc419f25b5749c80602e3904e800e"
+    },
+    {
+      "run": "legacy-functions-native-r5-qwen",
+      "model": "alibaba-token-plan/qwen3.8-flash",
+      "case": "interface_technical_requirements",
+      "arm": "baseline",
+      "effort": "medium",
+      "seconds": 169.08,
+      "returncode": 0,
+      "invalid": [],
+      "draft_sha256": "16524b3c165b5b9fd100b51d78f2301f7c547b69ebb44903774a446f33260812"
+    },
+    {
+      "run": "legacy-functions-native-r5-qwen",
+      "model": "alibaba-token-plan/qwen3.8-flash",
+      "case": "interface_technical_requirements",
+      "arm": "candidate",
+      "effort": "medium",
+      "seconds": 240.17,
+      "returncode": null,
+      "invalid": [
+        "timeout",
+        "missing_final"
+      ],
+      "draft_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "run": "legacy-functions-native-r5-qwen",
+      "model": "alibaba-token-plan/qwen3.8-flash",
+      "case": "narration",
+      "arm": "baseline",
+      "effort": "medium",
+      "seconds": 87.41,
+      "returncode": 0,
+      "invalid": [],
+      "draft_sha256": "a9b4fbd6c6e387f9a8b4cbf93836060c4920c6a3a89bc6d0372a3c6bce64c5b2"
+    },
+    {
+      "run": "legacy-functions-native-r5-qwen",
+      "model": "alibaba-token-plan/qwen3.8-flash",
+      "case": "narration",
+      "arm": "candidate",
+      "effort": "medium",
+      "seconds": 126.09,
+      "returncode": 0,
+      "invalid": [],
+      "draft_sha256": "10fdf33d1a6ff96d15581962174a2800a4c75aa384386707fc9e6d6ad718eb2f"
+    },
+    {
+      "run": "legacy-functions-native-r5-qwen",
+      "model": "alibaba-token-plan/qwen3.8-flash",
+      "case": "open_letter",
+      "arm": "baseline",
+      "effort": "medium",
+      "seconds": 41.66,
+      "returncode": 0,
+      "invalid": [],
+      "draft_sha256": "942f1c74e9cb07d314c63b4e1c1564056ac7d875fada159d94063e539b291e2c"
+    },
+    {
+      "run": "legacy-functions-native-r5-qwen",
+      "model": "alibaba-token-plan/qwen3.8-flash",
+      "case": "open_letter",
+      "arm": "candidate",
+      "effort": "medium",
+      "seconds": 51.78,
+      "returncode": 0,
+      "invalid": [],
+      "draft_sha256": "1630f7459420ab563a59c658038892ccfa01869133036cd167d35bf1b12a8a27"
+    },
+    {
+      "run": "legacy-functions-native-r5-qwen",
+      "model": "alibaba-token-plan/qwen3.8-flash",
+      "case": "responsibility_letter",
+      "arm": "baseline",
+      "effort": "medium",
+      "seconds": 77.5,
+      "returncode": 0,
+      "invalid": [],
+      "draft_sha256": "75beac9d145df1ed00bbf20b5b6ff96d948dac199ca08660a0db1fa9fc0bc3c6"
+    },
+    {
+      "run": "legacy-functions-native-r5-qwen",
+      "model": "alibaba-token-plan/qwen3.8-flash",
+      "case": "responsibility_letter",
+      "arm": "candidate",
+      "effort": "medium",
+      "seconds": 106.69,
+      "returncode": 0,
+      "invalid": [],
+      "draft_sha256": "a599b1d11b23e724d896ccfdeaea28abe45b75833f758c486f985dfef4b73dae"
+    },
+    {
+      "run": "legacy-functions-native-r5-qwen",
+      "model": "alibaba-token-plan/qwen3.8-flash",
+      "case": "server_technical_requirements",
+      "arm": "baseline",
+      "effort": "medium",
+      "seconds": 116.8,
+      "returncode": 0,
+      "invalid": [],
+      "draft_sha256": "365cd2bb1829ec7834e19f4b07bb46823b3ae0202b6fea2f5f78dd6c14c3378a"
+    },
+    {
+      "run": "legacy-functions-native-r5-qwen",
+      "model": "alibaba-token-plan/qwen3.8-flash",
+      "case": "server_technical_requirements",
+      "arm": "candidate",
+      "effort": "medium",
+      "seconds": 108.42,
+      "returncode": 0,
+      "invalid": [],
+      "draft_sha256": "734cb705e8ee023b8a822649eb1716c764b5692acad3e51110811476ad1d88c9"
+    },
+    {
+      "run": "legacy-functions-native-r5-qwen",
+      "model": "alibaba-token-plan/qwen3.8-flash",
+      "case": "synthesis_advisory",
+      "arm": "baseline",
+      "effort": "medium",
+      "seconds": 208.58,
+      "returncode": 0,
+      "invalid": [],
+      "draft_sha256": "48a86df25edf122a931032d63eb457ca657100ff936ca8be6d132516cce0cde1"
+    },
+    {
+      "run": "legacy-functions-native-r5-qwen",
+      "model": "alibaba-token-plan/qwen3.8-flash",
+      "case": "synthesis_advisory",
+      "arm": "candidate",
+      "effort": "medium",
+      "seconds": 240.17,
+      "returncode": null,
+      "invalid": [
+        "timeout",
+        "missing_final"
+      ],
+      "draft_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "run": "legacy-functions-native-r5-minimax",
+      "model": "minimax-cn/MiniMax-M3",
+      "case": "information_materials",
+      "arm": "baseline",
+      "effort": "medium",
+      "seconds": 47.81,
+      "returncode": 0,
+      "invalid": [],
+      "draft_sha256": "b6b548f559f3ea59e3435e71bdc291ca59ae209c10b7637b1e46ab7e661bc6f4"
+    },
+    {
+      "run": "legacy-functions-native-r5-minimax",
+      "model": "minimax-cn/MiniMax-M3",
+      "case": "information_materials",
+      "arm": "candidate",
+      "effort": "medium",
+      "seconds": 89.8,
+      "returncode": 0,
+      "invalid": [],
+      "draft_sha256": "bcc31256ce10f9482171345aef1b18cffd589377f8957cd7acafad01683897a7"
+    },
+    {
+      "run": "legacy-functions-native-r5-minimax",
+      "model": "minimax-cn/MiniMax-M3",
+      "case": "initiative",
+      "arm": "baseline",
+      "effort": "medium",
+      "seconds": 19.97,
+      "returncode": 0,
+      "invalid": [],
+      "draft_sha256": "a0c2e721912008f3eaaef730a33dd2577021c5eabbd5ac0a4bf53bc966cff176"
+    },
+    {
+      "run": "legacy-functions-native-r5-minimax",
+      "model": "minimax-cn/MiniMax-M3",
+      "case": "initiative",
+      "arm": "candidate",
+      "effort": "medium",
+      "seconds": 43.91,
+      "returncode": 0,
+      "invalid": [],
+      "draft_sha256": "7ed301cc6eb1b94bd7cf16adb54eb71bc57eb7b7c725085b8ab05f0367742842"
+    },
+    {
+      "run": "legacy-functions-native-r5-minimax",
+      "model": "minimax-cn/MiniMax-M3",
+      "case": "interface_technical_requirements",
+      "arm": "baseline",
+      "effort": "medium",
+      "seconds": 50.64,
+      "returncode": 0,
+      "invalid": [],
+      "draft_sha256": "8fa17a3eeeb9a4a72ad7d540ab74ce83221b46e328f3a01b19809014ea13d397"
+    },
+    {
+      "run": "legacy-functions-native-r5-minimax",
+      "model": "minimax-cn/MiniMax-M3",
+      "case": "interface_technical_requirements",
+      "arm": "candidate",
+      "effort": "medium",
+      "seconds": 240.17,
+      "returncode": null,
+      "invalid": [
+        "timeout",
+        "missing_final"
+      ],
+      "draft_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "run": "legacy-functions-native-r5-minimax",
+      "model": "minimax-cn/MiniMax-M3",
+      "case": "narration",
+      "arm": "baseline",
+      "effort": "medium",
+      "seconds": 82.3,
+      "returncode": 0,
+      "invalid": [],
+      "draft_sha256": "16e0cc03b764cf9311bfff2e209f544168a570873a0bc7676474c93e448197c4"
+    },
+    {
+      "run": "legacy-functions-native-r5-minimax",
+      "model": "minimax-cn/MiniMax-M3",
+      "case": "narration",
+      "arm": "candidate",
+      "effort": "medium",
+      "seconds": 44.28,
+      "returncode": 0,
+      "invalid": [],
+      "draft_sha256": "765e233aef9b647d0dff744add2088cac7fd51f6b5b648251e013c1a53d91460"
+    },
+    {
+      "run": "legacy-functions-native-r5-minimax",
+      "model": "minimax-cn/MiniMax-M3",
+      "case": "open_letter",
+      "arm": "baseline",
+      "effort": "medium",
+      "seconds": 45.58,
+      "returncode": 0,
+      "invalid": [],
+      "draft_sha256": "0f359106f0e80237bcb8344963632294fbcdcb6967104af244c407651c9324db"
+    },
+    {
+      "run": "legacy-functions-native-r5-minimax",
+      "model": "minimax-cn/MiniMax-M3",
+      "case": "open_letter",
+      "arm": "candidate",
+      "effort": "medium",
+      "seconds": 97.28,
+      "returncode": 0,
+      "invalid": [],
+      "draft_sha256": "2c2769cb47ebfc06c1cbf7a24aafc07f29a912d9b196172063b4224dd4da438e"
+    },
+    {
+      "run": "legacy-functions-native-r5-minimax",
+      "model": "minimax-cn/MiniMax-M3",
+      "case": "responsibility_letter",
+      "arm": "baseline",
+      "effort": "medium",
+      "seconds": 7.25,
+      "returncode": 0,
+      "invalid": [
+        "missing_final",
+        "missing_skill_read_trace"
+      ],
+      "draft_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "run": "legacy-functions-native-r5-minimax",
+      "model": "minimax-cn/MiniMax-M3",
+      "case": "responsibility_letter",
+      "arm": "candidate",
+      "effort": "medium",
+      "seconds": 147.75,
+      "returncode": 0,
+      "invalid": [],
+      "draft_sha256": "46c5177c183d1c9110f1348c5ec8279a9189b6481bc5683e8af1fa87acd33eda"
+    },
+    {
+      "run": "legacy-functions-native-r5-minimax",
+      "model": "minimax-cn/MiniMax-M3",
+      "case": "server_technical_requirements",
+      "arm": "baseline",
+      "effort": "medium",
+      "seconds": 93.61,
+      "returncode": 0,
+      "invalid": [],
+      "draft_sha256": "91d6ecca39ea82fbe01a77cc2378c19d5182c5aca43e91c3824d8bbd507d427d"
+    },
+    {
+      "run": "legacy-functions-native-r5-minimax",
+      "model": "minimax-cn/MiniMax-M3",
+      "case": "server_technical_requirements",
+      "arm": "candidate",
+      "effort": "medium",
+      "seconds": 53.38,
+      "returncode": 0,
+      "invalid": [],
+      "draft_sha256": "387057ac198279a43c4058f762d7bce8426d16b69c7bbf82c5a758b0aab82860"
+    },
+    {
+      "run": "legacy-functions-native-r5-minimax",
+      "model": "minimax-cn/MiniMax-M3",
+      "case": "synthesis_advisory",
+      "arm": "baseline",
+      "effort": "medium",
+      "seconds": 196.08,
+      "returncode": 0,
+      "invalid": [],
+      "draft_sha256": "3a320a689238bcc26d3e15f5b2988b0ec1b5cb19cbd38914bf08f12f243dd16b"
+    },
+    {
+      "run": "legacy-functions-native-r5-minimax",
+      "model": "minimax-cn/MiniMax-M3",
+      "case": "synthesis_advisory",
+      "arm": "candidate",
+      "effort": "medium",
+      "seconds": 77.31,
+      "returncode": 0,
+      "invalid": [],
+      "draft_sha256": "b4472e0967f77dd59280bab2caa51300f1025acd94da14676d1d5ef456c475bd"
+    },
+    {
+      "run": "feasibility-scope-native-r6",
+      "model": "command-code/deepseek-deepseek-v4.1-flash",
+      "case": "feasibility_conditional_advice",
+      "arm": "baseline",
+      "effort": "provider-default",
+      "seconds": 64.22,
+      "returncode": 0,
+      "invalid": [],
+      "draft_sha256": "f3dc2f49ee80bca65f46f9197fc5e65824233f84e788e784ff300971c857e548"
+    },
+    {
+      "run": "feasibility-scope-native-r6",
+      "model": "command-code/deepseek-deepseek-v4.1-flash",
+      "case": "feasibility_conditional_advice",
+      "arm": "candidate",
+      "effort": "provider-default",
+      "seconds": 56.48,
+      "returncode": 0,
+      "invalid": [],
+      "draft_sha256": "7bf69ebcca66642f0e431e653bd886107e3bcf8e132a9fc2569601f023aad8e2"
+    },
+    {
+      "run": "feasibility-scope-native-r6",
+      "model": "ollama-cloud/glm-5.3-flash",
+      "case": "feasibility_conditional_advice",
+      "arm": "baseline",
+      "effort": "max",
+      "seconds": 112.38,
+      "returncode": 0,
+      "invalid": [],
+      "draft_sha256": "a95c023eb25b29e833c2251cce90bc0027be7d00260a3d0c40b788ba0ec55a52"
+    },
+    {
+      "run": "feasibility-scope-native-r6",
+      "model": "ollama-cloud/glm-5.3-flash",
+      "case": "feasibility_conditional_advice",
+      "arm": "candidate",
+      "effort": "max",
+      "seconds": 77.89,
+      "returncode": 0,
+      "invalid": [],
+      "draft_sha256": "7ee73920dd940040dcc8aaa63cc043d85116189c7dc52e683583a38e75423076"
+    }
+  ],
+  "runs": [
+    {
+      "run": "delivery-order-native-r1",
+      "baseline_ref": "ca52e80f",
+      "baseline_commit": "ca52e80f7209fd19e177b58b4b65367078e9a66d",
+      "candidate_source": "F:\\Workspaces\\chinese-official-writing-skill\\output\\route-worktrees\\reference-rewrite-20260912\\output\\delivery-order-only-r1\\skill",
+      "fingerprints": {
+        "baseline": "ce76f66c5ae712dd644b9b05ef1558e40925d57b3a826b98a3c9add045784049",
+        "candidate": "0fb947b33543d6df591f5de3994f3a11c0d52b235ffe7f60fab99e5c84c9b528"
+      },
+      "calls": 16
+    },
+    {
+      "run": "delivery-assembled-native-r2",
+      "baseline_ref": "snapshot",
+      "baseline_commit": null,
+      "candidate_source": "F:\\Workspaces\\chinese-official-writing-skill\\output\\route-worktrees\\reference-rewrite-20260912\\output\\delivery-assembled-only-r2\\skill",
+      "fingerprints": {
+        "baseline": "0fb947b33543d6df591f5de3994f3a11c0d52b235ffe7f60fab99e5c84c9b528",
+        "candidate": "ea2555be2272ce4cdf27ba27bae0566e952b48500a53fff1974793a08a9a0a0f"
+      },
+      "calls": 8
+    },
+    {
+      "run": "combined-candidate-native-r4",
+      "baseline_ref": "main",
+      "baseline_commit": "1ce7112303172478faa2392667a2de1098eb912c",
+      "candidate_source": "F:\\Workspaces\\chinese-official-writing-skill\\output\\route-worktrees\\reference-rewrite-20260912\\output\\combined-candidate-r4\\skill",
+      "fingerprints": {
+        "main": "4ac78943f1d5f7660c879360fdee0163f43d8e87dd951838f7a7cddaab81004f",
+        "candidate": "823ba90ea79375684a6a825419bbeb267ba791e1b3b7d5116db257930f3e1938"
+      },
+      "calls": 16
+    },
+    {
+      "run": "duty-role-native-r2",
+      "baseline_ref": "snapshot",
+      "baseline_commit": null,
+      "candidate_source": "F:\\Workspaces\\chinese-official-writing-skill\\output\\route-worktrees\\reference-rewrite-20260912\\output\\duty-role-evidence-only-r1\\skill",
+      "fingerprints": {
+        "baseline": "13b870182c8600419fdaa4b06851c0c025bc090bb8a3c8e5ab4f5fddba3e2e13",
+        "candidate": "11965addae867021a71eebb65e7bed86e7aba4560041c64a17708d59f09999e6"
+      },
+      "calls": 6
+    },
+    {
+      "run": "duty-role-native-r3",
+      "baseline_ref": "snapshot",
+      "baseline_commit": null,
+      "candidate_source": "F:\\Workspaces\\chinese-official-writing-skill\\output\\route-worktrees\\reference-rewrite-20260912\\output\\duty-role-evidence-only-r1\\skill",
+      "fingerprints": {
+        "baseline": "13b870182c8600419fdaa4b06851c0c025bc090bb8a3c8e5ab4f5fddba3e2e13",
+        "candidate": "11965addae867021a71eebb65e7bed86e7aba4560041c64a17708d59f09999e6"
+      },
+      "calls": 4
+    },
+    {
+      "run": "procurement-review-native-r1",
+      "baseline_ref": "snapshot",
+      "baseline_commit": null,
+      "candidate_source": "F:\\Workspaces\\chinese-official-writing-skill\\output\\route-worktrees\\reference-rewrite-20260912\\output\\procurement-review-only-r1\\skill",
+      "fingerprints": {
+        "baseline": "823ba90ea79375684a6a825419bbeb267ba791e1b3b7d5116db257930f3e1938",
+        "candidate": "c42220a6e094aed519a7b573c7848d2ad2917432ec01e5718f50828c2536ba19"
+      },
+      "calls": 16
+    },
+    {
+      "run": "semantic-parity-native-r5",
+      "baseline_ref": "snapshot",
+      "baseline_commit": null,
+      "candidate_source": "F:\\Workspaces\\chinese-official-writing-skill\\output\\route-worktrees\\reference-rewrite-20260912\\output\\semantic-parity-candidate-r5\\skill",
+      "fingerprints": {
+        "baseline": "5e37a1688aa70c46ca33a6b12723870fccb3c7e77b060a22b9cd95272f90809f",
+        "candidate": "17a85c1e08162a6d509121930547fe3a7accdb8e48121a1a37165ed7995a28a4"
+      },
+      "calls": 20
+    },
+    {
+      "run": "legacy-functions-native-r5-qwen",
+      "baseline_ref": "1ce7112303172478faa2392667a2de1098eb912c",
+      "baseline_commit": "1ce7112303172478faa2392667a2de1098eb912c",
+      "candidate_source": "F:\\Workspaces\\chinese-official-writing-skill\\output\\route-worktrees\\reference-rewrite-20260912\\output\\combined-candidate-r5\\skill",
+      "fingerprints": {
+        "baseline": "4ac78943f1d5f7660c879360fdee0163f43d8e87dd951838f7a7cddaab81004f",
+        "candidate": "465eabfa1b0078fb9030ec00e407699411002d8c9ef7082fac621de6f2488c62"
+      },
+      "calls": 16
+    },
+    {
+      "run": "legacy-functions-native-r5-minimax",
+      "baseline_ref": "1ce7112303172478faa2392667a2de1098eb912c",
+      "baseline_commit": "1ce7112303172478faa2392667a2de1098eb912c",
+      "candidate_source": "F:\\Workspaces\\chinese-official-writing-skill\\output\\route-worktrees\\reference-rewrite-20260912\\output\\combined-candidate-r5\\skill",
+      "fingerprints": {
+        "baseline": "4ac78943f1d5f7660c879360fdee0163f43d8e87dd951838f7a7cddaab81004f",
+        "candidate": "465eabfa1b0078fb9030ec00e407699411002d8c9ef7082fac621de6f2488c62"
+      },
+      "calls": 16
+    },
+    {
+      "run": "feasibility-scope-native-r6",
+      "baseline_ref": "snapshot",
+      "baseline_commit": null,
+      "candidate_source": "F:\\Workspaces\\chinese-official-writing-skill\\output\\route-worktrees\\reference-rewrite-20260912\\output\\feasibility-scope-only-r6\\skill",
+      "fingerprints": {
+        "baseline": "465eabfa1b0078fb9030ec00e407699411002d8c9ef7082fac621de6f2488c62",
+        "candidate": "2ff8bdb9e2e90e9cde28ba0ad421f7dbd462bcde07fc01024b32d767ce6e3703"
+      },
+      "calls": 4
+    }
+  ]
+}

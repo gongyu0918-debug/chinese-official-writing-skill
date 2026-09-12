@@ -28,7 +28,7 @@
 | 主要目的 | 读取文件 |
 | --- | --- |
 | 请求上级指示、批准或资源 | `genre-playbook-request.md` |
-| 汇报工作、反映进展、答复上级询问，或按周/月汇报进度 | `genre-playbook-report.md` |
+| 汇报工作、反映进展、综合多方情况、答复上级询问，或按周/月汇报进度 | `genre-playbook-report.md` |
 | 回顾年度、阶段或专项工作，分析得失、总结经验 | `genre-playbook-work-summary.md` |
 | 制定年度、阶段或专项工作要点，明确未来重点任务 | `genre-playbook-work-priorities.md` |
 | 解释具体事实或回应疑问 | `genre-playbook-explanation.md` |
@@ -40,11 +40,17 @@
 | 发布其他公告、公示、通告 | `genre-playbook-publication.md` |
 | 报道已发生的事件 | `genre-playbook-news-message.md` |
 | 正式提出指导性意见 | `genre-playbook-opinion.md` |
-| 向有权方提交合作性建议 | `genre-playbook-advisory-feedback.md` |
+| 向有权方提交合作性建议，包括建议信 | `genre-playbook-advisory-feedback.md` |
+| 围绕共同事项明确各方责任，形成责任书 | `genre-playbook-responsibility-letter.md` |
+| 面向明确对象发出可参与的行动倡议 | `genre-playbook-initiative.md` |
+| 以公开信向特定受众说明事项并沟通配合要求 | `genre-playbook-open-letter.md` |
+| 面向受众按路线或对象关系作现场讲解 | `genre-playbook-narration.md` |
+| 用宣传手册或宣传材料说明正式事项、要求、方法及渠道 | `genre-playbook-information-materials.md` |
 | 就新闻或公共议题发表评论 | `genre-playbook-news-commentary.md` |
 | 制定行动或建设方案 | `genre-playbook-plan-construction.md` |
+| 明确硬件、软件、接口或服务所需能力、条件及验收要求 | `genre-playbook-technical-requirements.md` |
 | 论证项目可行性 | `genre-playbook-feasibility.md` |
-| 审查采购方案或材料 | `genre-playbook-procurement-review.md` |
+| 形成独立审查意见、评审意见，或依据评审记录整理结论 | `genre-playbook-review-opinion.md` |
 | 权限范围内作出决定 | `genre-playbook-decision.md` |
 | 会议讨论通过的重大决策 | `genre-playbook-resolution.md` |
 | 向人大或其常委会提请审议 | `genre-playbook-motion.md` |
@@ -64,9 +70,13 @@
 - 纪要记录会议形成的事项；未形成决定的讨论内容保持建议、待评估或下次再议状态。
 - 公告面向较广范围公开宣布，公示强调期限和异议渠道，通告强调一定范围内应知或应遵事项。
 - 函保持平行商洽语气；批复是上级对下级请示的正式答复。
-- 方案写行动路径；可研写决策依据和比较；采购公告、征集公告和采购事项告知优先转 `genre-playbook-procurement-announcement.md`；审查材料写发现、风险和整改程序。
+- 方案写行动路径；可研写决策依据和比较；技术需求写需要交付的能力、接口、运行条件和验收要求，进入 `genre-playbook-technical-requirements.md`。方案或可研中的技术内容继续服从原主文种，独立技术需求或附件按自身功能成文。采购公告、征集公告和采购事项告知优先转 `genre-playbook-procurement-announcement.md`。
+- “审核采购方案”是对方案执行审稿，保留方案主叶并读 `review-checklist.md`；“依据评审记录起草审查意见”以审查意见为主文种。采购清单按字段形态处理，需要采购专项核对时再叠加 `genre-playbook-procurement-review.md`，采购主题不替代交付功能。
 - 新闻评论可以提出判断，但判断和材料中的事实、决定、责任安排分开。
 - 主持词组织会序；主持人另作的主题讲话、点评或总结发言按实际功能处理。会议纪要记录会后形成的事项。
+- 讲解稿以介绍对象和说明顺序为主；讲话表达观点，主持词引导会议环节，按实际用途分别选页。
+- 倡议书提出自愿参与的行动，公开信面向特定受众沟通事项，责任书明确共同事项与各方责任，分别使用对应主叶。宣传手册与宣传材料按说明传播用途共用一页。
+- 情况综合按报告页归并多来源事实、共性和差异；建议信向有权方提出合作性建议，沿用意见建议页并保留书信形态。
 - 述职围绕报告主体及职责；现场述职发言与书面述职共享履职内容，单位工作报告或工作总结按各自主文种处理。
 
 ## 混合材料的处理

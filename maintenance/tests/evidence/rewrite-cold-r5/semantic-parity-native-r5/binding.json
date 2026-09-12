@@ -1,0 +1,33 @@
+{
+  "main_commit": "1ce7112303172478faa2392667a2de1098eb912c",
+  "candidate_head": "1e00a2691539083c80a2d38eb184f0e447a05913",
+  "fingerprints": {
+    "baseline": "5e37a1688aa70c46ca33a6b12723870fccb3c7e77b060a22b9cd95272f90809f",
+    "candidate": "17a85c1e08162a6d509121930547fe3a7accdb8e48121a1a37165ed7995a28a4"
+  },
+  "models": [
+    "command-code/deepseek-deepseek-v4.1-flash",
+    "ollama-cloud/glm-5.3-flash"
+  ],
+  "cases": {
+    "material_based_analysis": "只按这些材料写一份办公椅采购申请，给单位负责人审批：综合办公室有24个固定工位，24把现有办公椅中6把已损坏且无法修复；对应6个工位临时借用会议室座椅，会议室使用时需要归还。拟购办公椅6把，每把420元，供应商和采购日期尚未确定。请把采购缘由和必要性讲清楚，再写明数量金额和请求。",
+    "existing_field_form": "帮我把这份采购申请文字改得正式些。当前底稿：申请部门：综合办公室；采购品目：办公椅；数量：4把；参考单价：420元；申请理由：旧的4把办公椅坏了，想买4把替换用；供应商：尚未确定；采购日期：尚未确定。",
+    "usage_value_report": "只按以下试用记录写一份工具使用体验报告，约250至400字。信息中心试用了一个资料查询工具：10个测试问题中7个返回内容与原始资料一致，另外3个有遗漏；7个准确结果可以帮助工作人员定位原文出处，但仍要对照原始资料复核。工具可作为资料查找辅助，尚未用于正式业务；建议继续小范围试用、观察遗漏类型，是否扩大使用尚未决定。把使用价值、问题和后续建议写清楚。",
+    "feasibility_conditional_advice": "只按这些材料完善一段可研分析：资料中心拟试点电子目录查询，现有电脑可用，预计有8人使用；需求是按目录编号查找已确认档案。自建还是租用服务尚未决定，预算和建设周期仍待论证。请结合现有需求说明可以比较和验证哪些方面，形成供决策参考的分析，保持设想状态。",
+    "news_supported_analysis": "根据材料写一篇简短活动新闻：9月10日，市企业服务中心组织企业交流会，8家企业代表参加；代表介绍各自产品，交流合作需求。中心负责人表示，交流的目的在于让企业了解彼此需求。可以结合这些动作概括一次交流的直接作用，其他按材料写。"
+  },
+  "cli": "C:\\Users\\admin\\AppData\\Local\\OpenAI\\Codex\\bin\\7ac07f4ce733f89a\\codex.exe",
+  "cli_version": "codex-cli 0.153.4",
+  "effort": "max",
+  "runtime": "C:\\Users\\admin\\AppData\\Local\\Temp\\cow-native-semantic-parity-native-r5-ycgo_582",
+  "permissions": "inherited-host-config",
+  "timeout": 240,
+  "agent_documents": "project_doc_max_bytes=0",
+  "baseline_ref": "snapshot",
+  "baseline_source": "F:\\Workspaces\\chinese-official-writing-skill\\output\\route-worktrees\\reference-rewrite-20260912\\output\\semantic-parity-before-r5\\skill",
+  "candidate_source": "F:\\Workspaces\\chinese-official-writing-skill\\output\\route-worktrees\\reference-rewrite-20260912\\output\\semantic-parity-candidate-r5\\skill",
+  "baseline_commit": null,
+  "profile": "temporary-no-user-documents-or-credentials",
+  "runner_sha256": "3f8dcae190bc3a7cedf179e725fb9628f72a797d4bad9038b3520ae07088e3f7",
+  "prompt_prefix": "使用本目录 .agents/skills/chinese-official-writing/SKILL.md。\n\n"
+}

@@ -1,0 +1,252 @@
+{
+  "scope": "Successful native read commands only. Named pages may be partial reads; full-content matches confirm text returned. Absence of a full match is not proof of no read. Character bounds are not tokens. Scripts and writing quality are not graded.",
+  "records": [
+    {
+      "result": "m3-duty_oral-baseline.result.json",
+      "model": "minimax-cn/MiniMax-M3",
+      "case": "duty_oral",
+      "arm": "baseline",
+      "invalid": [],
+      "named_pages": [
+        "SKILL.md",
+        "references/anti-ai-patterns.md",
+        "references/genre-playbook-duty-report.md",
+        "references/short-draft-naturalness.md"
+      ],
+      "full_content_observed": [
+        "SKILL.md",
+        "references/anti-ai-patterns.md",
+        "references/genre-playbook-duty-report.md",
+        "references/short-draft-naturalness.md"
+      ],
+      "repeated_full_reads": {},
+      "named_file_characters_upper_bound": 7528,
+      "events": [
+        {
+          "command_id": "item_1",
+          "named_pages": [
+            "SKILL.md"
+          ],
+          "full_content_observed": [
+            "SKILL.md"
+          ]
+        },
+        {
+          "command_id": "item_4",
+          "named_pages": [
+            "references/genre-playbook-duty-report.md"
+          ],
+          "full_content_observed": [
+            "references/genre-playbook-duty-report.md"
+          ]
+        },
+        {
+          "command_id": "item_5",
+          "named_pages": [
+            "references/short-draft-naturalness.md"
+          ],
+          "full_content_observed": [
+            "references/short-draft-naturalness.md"
+          ]
+        },
+        {
+          "command_id": "item_6",
+          "named_pages": [
+            "references/anti-ai-patterns.md"
+          ],
+          "full_content_observed": [
+            "references/anti-ai-patterns.md"
+          ]
+        }
+      ]
+    },
+    {
+      "result": "m3-duty_oral-candidate.result.json",
+      "model": "minimax-cn/MiniMax-M3",
+      "case": "duty_oral",
+      "arm": "candidate",
+      "invalid": [],
+      "named_pages": [
+        "SKILL.md",
+        "references/genre-playbook-duty-report.md",
+        "references/reference-index.md",
+        "references/short-draft-naturalness.md"
+      ],
+      "full_content_observed": [
+        "SKILL.md",
+        "references/genre-playbook-duty-report.md",
+        "references/reference-index.md",
+        "references/short-draft-naturalness.md"
+      ],
+      "repeated_full_reads": {},
+      "named_file_characters_upper_bound": 8191,
+      "events": [
+        {
+          "command_id": "item_0",
+          "named_pages": [
+            "SKILL.md"
+          ],
+          "full_content_observed": [
+            "SKILL.md"
+          ]
+        },
+        {
+          "command_id": "item_1",
+          "named_pages": [
+            "references/reference-index.md"
+          ],
+          "full_content_observed": [
+            "references/reference-index.md"
+          ]
+        },
+        {
+          "command_id": "item_2",
+          "named_pages": [
+            "references/genre-playbook-duty-report.md"
+          ],
+          "full_content_observed": [
+            "references/genre-playbook-duty-report.md"
+          ]
+        },
+        {
+          "command_id": "item_3",
+          "named_pages": [
+            "references/short-draft-naturalness.md"
+          ],
+          "full_content_observed": [
+            "references/short-draft-naturalness.md"
+          ]
+        }
+      ]
+    },
+    {
+      "result": "m3-duty_short-baseline.result.json",
+      "model": "minimax-cn/MiniMax-M3",
+      "case": "duty_short",
+      "arm": "baseline",
+      "invalid": [],
+      "named_pages": [
+        "SKILL.md",
+        "references/genre-playbook-duty-report.md",
+        "references/short-draft-naturalness.md"
+      ],
+      "full_content_observed": [
+        "SKILL.md",
+        "references/genre-playbook-duty-report.md",
+        "references/short-draft-naturalness.md"
+      ],
+      "repeated_full_reads": {},
+      "named_file_characters_upper_bound": 5153,
+      "events": [
+        {
+          "command_id": "item_1",
+          "named_pages": [
+            "SKILL.md"
+          ],
+          "full_content_observed": [
+            "SKILL.md"
+          ]
+        },
+        {
+          "command_id": "item_6",
+          "named_pages": [
+            "references/genre-playbook-duty-report.md"
+          ],
+          "full_content_observed": [
+            "references/genre-playbook-duty-report.md"
+          ]
+        },
+        {
+          "command_id": "item_7",
+          "named_pages": [
+            "references/short-draft-naturalness.md"
+          ],
+          "full_content_observed": [
+            "references/short-draft-naturalness.md"
+          ]
+        }
+      ]
+    },
+    {
+      "result": "m3-duty_short-candidate.result.json",
+      "model": "minimax-cn/MiniMax-M3",
+      "case": "duty_short",
+      "arm": "candidate",
+      "invalid": [],
+      "named_pages": [
+        "SKILL.md",
+        "references/anti-ai-patterns.md",
+        "references/genre-playbook-duty-report.md",
+        "references/information-selection.md",
+        "references/official-style.md",
+        "references/short-draft-naturalness.md"
+      ],
+      "full_content_observed": [
+        "SKILL.md",
+        "references/anti-ai-patterns.md",
+        "references/genre-playbook-duty-report.md",
+        "references/information-selection.md",
+        "references/official-style.md",
+        "references/short-draft-naturalness.md"
+      ],
+      "repeated_full_reads": {},
+      "named_file_characters_upper_bound": 10378,
+      "events": [
+        {
+          "command_id": "item_0",
+          "named_pages": [
+            "SKILL.md"
+          ],
+          "full_content_observed": [
+            "SKILL.md"
+          ]
+        },
+        {
+          "command_id": "item_2",
+          "named_pages": [
+            "references/genre-playbook-duty-report.md"
+          ],
+          "full_content_observed": [
+            "references/genre-playbook-duty-report.md"
+          ]
+        },
+        {
+          "command_id": "item_3",
+          "named_pages": [
+            "references/short-draft-naturalness.md"
+          ],
+          "full_content_observed": [
+            "references/short-draft-naturalness.md"
+          ]
+        },
+        {
+          "command_id": "item_4",
+          "named_pages": [
+            "references/information-selection.md"
+          ],
+          "full_content_observed": [
+            "references/information-selection.md"
+          ]
+        },
+        {
+          "command_id": "item_5",
+          "named_pages": [
+            "references/anti-ai-patterns.md"
+          ],
+          "full_content_observed": [
+            "references/anti-ai-patterns.md"
+          ]
+        },
+        {
+          "command_id": "item_6",
+          "named_pages": [
+            "references/official-style.md"
+          ],
+          "full_content_observed": [
+            "references/official-style.md"
+          ]
+        }
+      ]
+    }
+  ]
+}

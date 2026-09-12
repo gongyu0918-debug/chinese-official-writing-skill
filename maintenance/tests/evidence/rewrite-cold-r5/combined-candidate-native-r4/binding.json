@@ -1,0 +1,31 @@
+{
+  "main_commit": "1ce7112303172478faa2392667a2de1098eb912c",
+  "candidate_head": "ca52e80f7209fd19e177b58b4b65367078e9a66d",
+  "fingerprints": {
+    "main": "4ac78943f1d5f7660c879360fdee0163f43d8e87dd951838f7a7cddaab81004f",
+    "candidate": "823ba90ea79375684a6a825419bbeb267ba791e1b3b7d5116db257930f3e1938"
+  },
+  "models": [
+    "alibaba-token-plan-2/qwen3.8-flash",
+    "minimax-cn/MiniMax-M3"
+  ],
+  "cases": {
+    "minutes_local": "帮我改这份会议纪要：把末句‘会议要求张工下周完成追加测试’改为‘张工建议追加测试，会议尚未决定是否采用’，其余保持。现稿：接口测试讨论纪要。9月10日，信息中心讨论接口测试情况。接口A已测试30次，其中2次返回超时，原因仍在核对。会议要求保留测试记录。会议要求张工下周完成追加测试。请给改好后的纪要。",
+    "notice_receiver": "根据材料起草简短通知：请各业务科于9月20日前把培训报名表发送到市培训中心邮箱pxzx@example.org，接收联系人王老师。发文单位和成文日期还没有给，先把稿子写好。",
+    "request_reason_revision": "帮综合办公室审核并改好这份延期申请，报单位负责人审批。有效材料：资料核对原定9月20日完成，现拟申请延至9月27日；延期原因尚未提供。现稿：关于资料核对工作延期的申请。单位负责人：资料核对工作原定9月20日完成，因＿＿＿＿＿＿＿＿，申请将完成时间延至9月27日。妥否，请批示。综合办公室。请给改好稿件。",
+    "work_summary": "帮综合办公室写上半年工作总结。完成45场会议室预约协调、30批物资登记，办公室共同完成6次会议保障，会上桌椅布置由林舟负责；发现有3次预约时间冲突，均经沟通调整。下半年拟完善预约登记，是否采用线上表单尚未决定。写清工作、问题和改进思路，简短完整即可。"
+  },
+  "cli": "C:\\Users\\admin\\AppData\\Local\\OpenAI\\Codex\\bin\\7ac07f4ce733f89a\\codex.exe",
+  "cli_version": "codex-cli 0.153.4",
+  "effort": "medium",
+  "runtime": "C:\\Users\\admin\\AppData\\Local\\Temp\\cow-native-combined-candidate-native-r4-u52_4ry1",
+  "permissions": "inherited-host-config",
+  "timeout": 240,
+  "agent_documents": "project_doc_max_bytes=0",
+  "baseline_ref": "main",
+  "candidate_source": "F:\\Workspaces\\chinese-official-writing-skill\\output\\route-worktrees\\reference-rewrite-20260912\\output\\combined-candidate-r4\\skill",
+  "baseline_commit": "1ce7112303172478faa2392667a2de1098eb912c",
+  "profile": "temporary-no-user-documents-or-credentials",
+  "runner_sha256": "80a05af2dc028ffe1f925def8b16ee31a0476a69236fe7f6c562d5e107d33ce6",
+  "prompt_prefix": "使用本目录 .agents/skills/chinese-official-writing/SKILL.md。\n\n"
+}

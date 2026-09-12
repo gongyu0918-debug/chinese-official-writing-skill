@@ -1,0 +1,1057 @@
+{
+  "scope": "Successful native read commands only. Named pages may be partial reads; full-content matches confirm text returned. Absence of a full match is not proof of no read. Character bounds are not tokens. Scripts and writing quality are not graded.",
+  "records": [
+    {
+      "result": "m0-chair_reason-baseline.result.json",
+      "model": "alibaba-token-plan/qwen3.8-flash",
+      "case": "chair_reason",
+      "arm": "baseline",
+      "invalid": [],
+      "named_pages": [
+        "SKILL.md",
+        "references/anti-ai-patterns.md",
+        "references/delivery.md",
+        "references/final-review-layers.md",
+        "references/formulaic-language.md",
+        "references/genre-playbook-request.md",
+        "references/handling-elements.md",
+        "references/information-selection.md",
+        "references/prose-lint-usage.md",
+        "references/reference-index.md"
+      ],
+      "full_content_observed": [
+        "SKILL.md",
+        "references/anti-ai-patterns.md",
+        "references/delivery.md",
+        "references/final-review-layers.md",
+        "references/formulaic-language.md",
+        "references/genre-playbook-request.md",
+        "references/handling-elements.md",
+        "references/information-selection.md",
+        "references/prose-lint-usage.md",
+        "references/reference-index.md"
+      ],
+      "repeated_full_reads": {},
+      "named_file_characters_upper_bound": 15845,
+      "events": [
+        {
+          "command_id": "item_0",
+          "named_pages": [
+            "SKILL.md"
+          ],
+          "full_content_observed": [
+            "SKILL.md"
+          ]
+        },
+        {
+          "command_id": "item_1",
+          "named_pages": [
+            "references/reference-index.md"
+          ],
+          "full_content_observed": [
+            "references/reference-index.md"
+          ]
+        },
+        {
+          "command_id": "item_2",
+          "named_pages": [
+            "references/genre-playbook-request.md"
+          ],
+          "full_content_observed": [
+            "references/genre-playbook-request.md"
+          ]
+        },
+        {
+          "command_id": "item_3",
+          "named_pages": [
+            "references/information-selection.md"
+          ],
+          "full_content_observed": [
+            "references/information-selection.md"
+          ]
+        },
+        {
+          "command_id": "item_4",
+          "named_pages": [
+            "references/delivery.md"
+          ],
+          "full_content_observed": [
+            "references/delivery.md"
+          ]
+        },
+        {
+          "command_id": "item_5",
+          "named_pages": [
+            "references/anti-ai-patterns.md"
+          ],
+          "full_content_observed": [
+            "references/anti-ai-patterns.md"
+          ]
+        },
+        {
+          "command_id": "item_6",
+          "named_pages": [
+            "references/handling-elements.md"
+          ],
+          "full_content_observed": [
+            "references/handling-elements.md"
+          ]
+        },
+        {
+          "command_id": "item_7",
+          "named_pages": [
+            "references/final-review-layers.md"
+          ],
+          "full_content_observed": [
+            "references/final-review-layers.md"
+          ]
+        },
+        {
+          "command_id": "item_8",
+          "named_pages": [
+            "references/prose-lint-usage.md"
+          ],
+          "full_content_observed": [
+            "references/prose-lint-usage.md"
+          ]
+        },
+        {
+          "command_id": "item_9",
+          "named_pages": [
+            "references/formulaic-language.md"
+          ],
+          "full_content_observed": [
+            "references/formulaic-language.md"
+          ]
+        }
+      ]
+    },
+    {
+      "result": "m0-chair_reason-candidate.result.json",
+      "model": "alibaba-token-plan/qwen3.8-flash",
+      "case": "chair_reason",
+      "arm": "candidate",
+      "invalid": [],
+      "named_pages": [
+        "SKILL.md",
+        "references/anti-ai-patterns.md",
+        "references/delivery.md",
+        "references/genre-playbook-request.md",
+        "references/handling-elements.md",
+        "references/information-selection.md",
+        "references/prose-lint-usage.md",
+        "references/reference-index.md",
+        "references/short-draft-naturalness.md"
+      ],
+      "full_content_observed": [
+        "SKILL.md",
+        "references/anti-ai-patterns.md",
+        "references/delivery.md",
+        "references/genre-playbook-request.md",
+        "references/handling-elements.md",
+        "references/information-selection.md",
+        "references/prose-lint-usage.md",
+        "references/reference-index.md",
+        "references/short-draft-naturalness.md"
+      ],
+      "repeated_full_reads": {},
+      "named_file_characters_upper_bound": 14638,
+      "events": [
+        {
+          "command_id": "item_1",
+          "named_pages": [
+            "SKILL.md"
+          ],
+          "full_content_observed": [
+            "SKILL.md"
+          ]
+        },
+        {
+          "command_id": "item_3",
+          "named_pages": [
+            "references/reference-index.md"
+          ],
+          "full_content_observed": [
+            "references/reference-index.md"
+          ]
+        },
+        {
+          "command_id": "item_4",
+          "named_pages": [
+            "references/genre-playbook-request.md"
+          ],
+          "full_content_observed": [
+            "references/genre-playbook-request.md"
+          ]
+        },
+        {
+          "command_id": "item_5",
+          "named_pages": [
+            "references/information-selection.md"
+          ],
+          "full_content_observed": [
+            "references/information-selection.md"
+          ]
+        },
+        {
+          "command_id": "item_6",
+          "named_pages": [
+            "references/short-draft-naturalness.md"
+          ],
+          "full_content_observed": [
+            "references/short-draft-naturalness.md"
+          ]
+        },
+        {
+          "command_id": "item_7",
+          "named_pages": [
+            "references/handling-elements.md"
+          ],
+          "full_content_observed": [
+            "references/handling-elements.md"
+          ]
+        },
+        {
+          "command_id": "item_8",
+          "named_pages": [
+            "references/delivery.md"
+          ],
+          "full_content_observed": [
+            "references/delivery.md"
+          ]
+        },
+        {
+          "command_id": "item_9",
+          "named_pages": [
+            "references/anti-ai-patterns.md"
+          ],
+          "full_content_observed": [
+            "references/anti-ai-patterns.md"
+          ]
+        },
+        {
+          "command_id": "item_10",
+          "named_pages": [
+            "references/prose-lint-usage.md"
+          ],
+          "full_content_observed": [
+            "references/prose-lint-usage.md"
+          ]
+        }
+      ]
+    },
+    {
+      "result": "m0-platform_review-baseline.result.json",
+      "model": "alibaba-token-plan/qwen3.8-flash",
+      "case": "platform_review",
+      "arm": "baseline",
+      "invalid": [],
+      "named_pages": [
+        "SKILL.md",
+        "references/anti-ai-patterns.md",
+        "references/compatibility-scene-routing.md",
+        "references/delivery.md",
+        "references/final-review-layers.md",
+        "references/genre-playbook-news-message.md",
+        "references/information-selection.md",
+        "references/prose-lint-usage.md",
+        "references/reference-index.md",
+        "references/review-checklist.md",
+        "references/short-draft-naturalness.md",
+        "references/task-route-cards.md"
+      ],
+      "full_content_observed": [
+        "SKILL.md",
+        "references/anti-ai-patterns.md",
+        "references/compatibility-scene-routing.md",
+        "references/delivery.md",
+        "references/final-review-layers.md",
+        "references/genre-playbook-news-message.md",
+        "references/information-selection.md",
+        "references/prose-lint-usage.md",
+        "references/reference-index.md",
+        "references/review-checklist.md",
+        "references/short-draft-naturalness.md",
+        "references/task-route-cards.md"
+      ],
+      "repeated_full_reads": {},
+      "named_file_characters_upper_bound": 17027,
+      "events": [
+        {
+          "command_id": "item_1",
+          "named_pages": [
+            "SKILL.md"
+          ],
+          "full_content_observed": [
+            "SKILL.md"
+          ]
+        },
+        {
+          "command_id": "item_2",
+          "named_pages": [
+            "references/reference-index.md"
+          ],
+          "full_content_observed": [
+            "references/reference-index.md"
+          ]
+        },
+        {
+          "command_id": "item_3",
+          "named_pages": [
+            "references/compatibility-scene-routing.md"
+          ],
+          "full_content_observed": [
+            "references/compatibility-scene-routing.md"
+          ]
+        },
+        {
+          "command_id": "item_4",
+          "named_pages": [
+            "references/information-selection.md"
+          ],
+          "full_content_observed": [
+            "references/information-selection.md"
+          ]
+        },
+        {
+          "command_id": "item_5",
+          "named_pages": [
+            "references/task-route-cards.md"
+          ],
+          "full_content_observed": [
+            "references/task-route-cards.md"
+          ]
+        },
+        {
+          "command_id": "item_6",
+          "named_pages": [
+            "references/short-draft-naturalness.md"
+          ],
+          "full_content_observed": [
+            "references/short-draft-naturalness.md"
+          ]
+        },
+        {
+          "command_id": "item_7",
+          "named_pages": [
+            "references/review-checklist.md"
+          ],
+          "full_content_observed": [
+            "references/review-checklist.md"
+          ]
+        },
+        {
+          "command_id": "item_8",
+          "named_pages": [
+            "references/anti-ai-patterns.md"
+          ],
+          "full_content_observed": [
+            "references/anti-ai-patterns.md"
+          ]
+        },
+        {
+          "command_id": "item_9",
+          "named_pages": [
+            "references/final-review-layers.md"
+          ],
+          "full_content_observed": [
+            "references/final-review-layers.md"
+          ]
+        },
+        {
+          "command_id": "item_10",
+          "named_pages": [
+            "references/prose-lint-usage.md"
+          ],
+          "full_content_observed": [
+            "references/prose-lint-usage.md"
+          ]
+        },
+        {
+          "command_id": "item_11",
+          "named_pages": [
+            "references/delivery.md"
+          ],
+          "full_content_observed": [
+            "references/delivery.md"
+          ]
+        },
+        {
+          "command_id": "item_12",
+          "named_pages": [
+            "references/genre-playbook-news-message.md"
+          ],
+          "full_content_observed": [
+            "references/genre-playbook-news-message.md"
+          ]
+        }
+      ]
+    },
+    {
+      "result": "m0-platform_review-candidate.result.json",
+      "model": "alibaba-token-plan/qwen3.8-flash",
+      "case": "platform_review",
+      "arm": "candidate",
+      "invalid": [],
+      "named_pages": [
+        "SKILL.md",
+        "references/anti-ai-patterns.md",
+        "references/compatibility-scene-routing.md",
+        "references/delivery.md",
+        "references/genre-playbook-news-message.md",
+        "references/information-selection.md",
+        "references/prose-lint-usage.md",
+        "references/review-checklist.md",
+        "references/short-draft-naturalness.md",
+        "references/task-route-cards.md"
+      ],
+      "full_content_observed": [
+        "SKILL.md",
+        "references/anti-ai-patterns.md",
+        "references/compatibility-scene-routing.md",
+        "references/delivery.md",
+        "references/genre-playbook-news-message.md",
+        "references/information-selection.md",
+        "references/prose-lint-usage.md",
+        "references/review-checklist.md",
+        "references/short-draft-naturalness.md",
+        "references/task-route-cards.md"
+      ],
+      "repeated_full_reads": {},
+      "named_file_characters_upper_bound": 13668,
+      "events": [
+        {
+          "command_id": "item_1",
+          "named_pages": [
+            "SKILL.md"
+          ],
+          "full_content_observed": [
+            "SKILL.md"
+          ]
+        },
+        {
+          "command_id": "item_3",
+          "named_pages": [
+            "references/compatibility-scene-routing.md"
+          ],
+          "full_content_observed": [
+            "references/compatibility-scene-routing.md"
+          ]
+        },
+        {
+          "command_id": "item_4",
+          "named_pages": [
+            "references/genre-playbook-news-message.md"
+          ],
+          "full_content_observed": [
+            "references/genre-playbook-news-message.md"
+          ]
+        },
+        {
+          "command_id": "item_5",
+          "named_pages": [
+            "references/information-selection.md"
+          ],
+          "full_content_observed": [
+            "references/information-selection.md"
+          ]
+        },
+        {
+          "command_id": "item_6",
+          "named_pages": [
+            "references/review-checklist.md"
+          ],
+          "full_content_observed": [
+            "references/review-checklist.md"
+          ]
+        },
+        {
+          "command_id": "item_7",
+          "named_pages": [
+            "references/anti-ai-patterns.md"
+          ],
+          "full_content_observed": [
+            "references/anti-ai-patterns.md"
+          ]
+        },
+        {
+          "command_id": "item_8",
+          "named_pages": [
+            "references/short-draft-naturalness.md"
+          ],
+          "full_content_observed": [
+            "references/short-draft-naturalness.md"
+          ]
+        },
+        {
+          "command_id": "item_9",
+          "named_pages": [
+            "references/task-route-cards.md"
+          ],
+          "full_content_observed": [
+            "references/task-route-cards.md"
+          ]
+        },
+        {
+          "command_id": "item_10",
+          "named_pages": [
+            "references/delivery.md"
+          ],
+          "full_content_observed": [
+            "references/delivery.md"
+          ]
+        },
+        {
+          "command_id": "item_11",
+          "named_pages": [
+            "references/prose-lint-usage.md"
+          ],
+          "full_content_observed": [
+            "references/prose-lint-usage.md"
+          ]
+        }
+      ]
+    },
+    {
+      "result": "m2-chair_reason-baseline.result.json",
+      "model": "command-code/deepseek-deepseek-v4.1-flash",
+      "case": "chair_reason",
+      "arm": "baseline",
+      "invalid": [],
+      "named_pages": [
+        "SKILL.md",
+        "references/anti-ai-patterns.md",
+        "references/delivery.md",
+        "references/final-review-layers.md",
+        "references/formal-addressing.md",
+        "references/formulaic-language.md",
+        "references/genre-checklist-request.md",
+        "references/genre-playbook-request.md",
+        "references/genre-routing.md",
+        "references/handling-elements.md",
+        "references/information-selection.md",
+        "references/official-style.md",
+        "references/prose-lint-usage.md",
+        "references/reference-index.md",
+        "references/short-draft-naturalness.md",
+        "references/task-route-cards.md"
+      ],
+      "full_content_observed": [
+        "SKILL.md",
+        "references/anti-ai-patterns.md",
+        "references/delivery.md",
+        "references/final-review-layers.md",
+        "references/formal-addressing.md",
+        "references/formulaic-language.md",
+        "references/genre-checklist-request.md",
+        "references/genre-playbook-request.md",
+        "references/genre-routing.md",
+        "references/handling-elements.md",
+        "references/information-selection.md",
+        "references/official-style.md",
+        "references/prose-lint-usage.md",
+        "references/reference-index.md",
+        "references/short-draft-naturalness.md",
+        "references/task-route-cards.md"
+      ],
+      "repeated_full_reads": {},
+      "named_file_characters_upper_bound": 22216,
+      "events": [
+        {
+          "command_id": "item_0",
+          "named_pages": [
+            "SKILL.md"
+          ],
+          "full_content_observed": [
+            "SKILL.md"
+          ]
+        },
+        {
+          "command_id": "item_2",
+          "named_pages": [
+            "references/reference-index.md"
+          ],
+          "full_content_observed": [
+            "references/reference-index.md"
+          ]
+        },
+        {
+          "command_id": "item_3",
+          "named_pages": [
+            "references/genre-playbook-request.md"
+          ],
+          "full_content_observed": [
+            "references/genre-playbook-request.md"
+          ]
+        },
+        {
+          "command_id": "item_4",
+          "named_pages": [
+            "references/genre-checklist-request.md"
+          ],
+          "full_content_observed": [
+            "references/genre-checklist-request.md"
+          ]
+        },
+        {
+          "command_id": "item_5",
+          "named_pages": [
+            "references/handling-elements.md"
+          ],
+          "full_content_observed": [
+            "references/handling-elements.md"
+          ]
+        },
+        {
+          "command_id": "item_6",
+          "named_pages": [
+            "references/genre-routing.md"
+          ],
+          "full_content_observed": [
+            "references/genre-routing.md"
+          ]
+        },
+        {
+          "command_id": "item_7",
+          "named_pages": [
+            "references/information-selection.md"
+          ],
+          "full_content_observed": [
+            "references/information-selection.md"
+          ]
+        },
+        {
+          "command_id": "item_8",
+          "named_pages": [
+            "references/anti-ai-patterns.md"
+          ],
+          "full_content_observed": [
+            "references/anti-ai-patterns.md"
+          ]
+        },
+        {
+          "command_id": "item_9",
+          "named_pages": [
+            "references/official-style.md"
+          ],
+          "full_content_observed": [
+            "references/official-style.md"
+          ]
+        },
+        {
+          "command_id": "item_10",
+          "named_pages": [
+            "references/formal-addressing.md"
+          ],
+          "full_content_observed": [
+            "references/formal-addressing.md"
+          ]
+        },
+        {
+          "command_id": "item_11",
+          "named_pages": [
+            "references/final-review-layers.md"
+          ],
+          "full_content_observed": [
+            "references/final-review-layers.md"
+          ]
+        },
+        {
+          "command_id": "item_12",
+          "named_pages": [
+            "references/prose-lint-usage.md"
+          ],
+          "full_content_observed": [
+            "references/prose-lint-usage.md"
+          ]
+        },
+        {
+          "command_id": "item_13",
+          "named_pages": [
+            "references/delivery.md"
+          ],
+          "full_content_observed": [
+            "references/delivery.md"
+          ]
+        },
+        {
+          "command_id": "item_14",
+          "named_pages": [
+            "references/short-draft-naturalness.md"
+          ],
+          "full_content_observed": [
+            "references/short-draft-naturalness.md"
+          ]
+        },
+        {
+          "command_id": "item_15",
+          "named_pages": [
+            "references/task-route-cards.md"
+          ],
+          "full_content_observed": [
+            "references/task-route-cards.md"
+          ]
+        },
+        {
+          "command_id": "item_16",
+          "named_pages": [
+            "references/formulaic-language.md"
+          ],
+          "full_content_observed": [
+            "references/formulaic-language.md"
+          ]
+        }
+      ]
+    },
+    {
+      "result": "m2-chair_reason-candidate.result.json",
+      "model": "command-code/deepseek-deepseek-v4.1-flash",
+      "case": "chair_reason",
+      "arm": "candidate",
+      "invalid": [],
+      "named_pages": [
+        "SKILL.md",
+        "references/anti-ai-patterns.md",
+        "references/compression-details.md",
+        "references/delivery.md",
+        "references/final-review-layers.md",
+        "references/formal-addressing.md",
+        "references/genre-checklist-request.md",
+        "references/genre-playbook-request.md",
+        "references/handling-elements.md",
+        "references/information-selection.md",
+        "references/official-style.md",
+        "references/proofreading-checklist.md",
+        "references/prose-lint-usage.md",
+        "references/reference-index.md",
+        "references/short-draft-naturalness.md",
+        "references/task-route-cards.md"
+      ],
+      "full_content_observed": [
+        "SKILL.md",
+        "references/anti-ai-patterns.md",
+        "references/compression-details.md",
+        "references/delivery.md",
+        "references/final-review-layers.md",
+        "references/formal-addressing.md",
+        "references/genre-checklist-request.md",
+        "references/genre-playbook-request.md",
+        "references/handling-elements.md",
+        "references/information-selection.md",
+        "references/official-style.md",
+        "references/proofreading-checklist.md",
+        "references/prose-lint-usage.md",
+        "references/reference-index.md",
+        "references/short-draft-naturalness.md",
+        "references/task-route-cards.md"
+      ],
+      "repeated_full_reads": {},
+      "named_file_characters_upper_bound": 19497,
+      "events": [
+        {
+          "command_id": "item_1",
+          "named_pages": [
+            "SKILL.md"
+          ],
+          "full_content_observed": [
+            "SKILL.md"
+          ]
+        },
+        {
+          "command_id": "item_3",
+          "named_pages": [
+            "references/genre-checklist-request.md",
+            "references/genre-playbook-request.md",
+            "references/handling-elements.md",
+            "references/information-selection.md",
+            "references/reference-index.md",
+            "references/short-draft-naturalness.md",
+            "references/task-route-cards.md"
+          ],
+          "full_content_observed": [
+            "references/genre-checklist-request.md",
+            "references/genre-playbook-request.md",
+            "references/handling-elements.md",
+            "references/information-selection.md",
+            "references/reference-index.md",
+            "references/short-draft-naturalness.md",
+            "references/task-route-cards.md"
+          ]
+        },
+        {
+          "command_id": "item_4",
+          "named_pages": [
+            "references/anti-ai-patterns.md",
+            "references/compression-details.md",
+            "references/delivery.md",
+            "references/final-review-layers.md",
+            "references/formal-addressing.md",
+            "references/official-style.md",
+            "references/proofreading-checklist.md",
+            "references/prose-lint-usage.md"
+          ],
+          "full_content_observed": [
+            "references/anti-ai-patterns.md",
+            "references/compression-details.md",
+            "references/delivery.md",
+            "references/final-review-layers.md",
+            "references/formal-addressing.md",
+            "references/official-style.md",
+            "references/proofreading-checklist.md",
+            "references/prose-lint-usage.md"
+          ]
+        }
+      ]
+    },
+    {
+      "result": "m2-platform_review-baseline.result.json",
+      "model": "command-code/deepseek-deepseek-v4.1-flash",
+      "case": "platform_review",
+      "arm": "baseline",
+      "invalid": [],
+      "named_pages": [
+        "SKILL.md",
+        "references/anti-ai-patterns.md",
+        "references/delivery.md",
+        "references/final-review-layers.md",
+        "references/genre-playbook-news-message.md",
+        "references/information-selection.md",
+        "references/prose-lint-usage.md",
+        "references/review-checklist.md",
+        "references/short-draft-naturalness.md",
+        "references/task-route-cards.md"
+      ],
+      "full_content_observed": [
+        "SKILL.md",
+        "references/anti-ai-patterns.md",
+        "references/delivery.md",
+        "references/final-review-layers.md",
+        "references/genre-playbook-news-message.md",
+        "references/information-selection.md",
+        "references/prose-lint-usage.md",
+        "references/review-checklist.md",
+        "references/short-draft-naturalness.md",
+        "references/task-route-cards.md"
+      ],
+      "repeated_full_reads": {},
+      "named_file_characters_upper_bound": 13357,
+      "events": [
+        {
+          "command_id": "item_0",
+          "named_pages": [
+            "SKILL.md"
+          ],
+          "full_content_observed": [
+            "SKILL.md"
+          ]
+        },
+        {
+          "command_id": "item_2",
+          "named_pages": [
+            "references/genre-playbook-news-message.md"
+          ],
+          "full_content_observed": [
+            "references/genre-playbook-news-message.md"
+          ]
+        },
+        {
+          "command_id": "item_3",
+          "named_pages": [
+            "references/information-selection.md"
+          ],
+          "full_content_observed": [
+            "references/information-selection.md"
+          ]
+        },
+        {
+          "command_id": "item_4",
+          "named_pages": [
+            "references/short-draft-naturalness.md"
+          ],
+          "full_content_observed": [
+            "references/short-draft-naturalness.md"
+          ]
+        },
+        {
+          "command_id": "item_5",
+          "named_pages": [
+            "references/task-route-cards.md"
+          ],
+          "full_content_observed": [
+            "references/task-route-cards.md"
+          ]
+        },
+        {
+          "command_id": "item_6",
+          "named_pages": [
+            "references/prose-lint-usage.md"
+          ],
+          "full_content_observed": [
+            "references/prose-lint-usage.md"
+          ]
+        },
+        {
+          "command_id": "item_7",
+          "named_pages": [
+            "references/anti-ai-patterns.md"
+          ],
+          "full_content_observed": [
+            "references/anti-ai-patterns.md"
+          ]
+        },
+        {
+          "command_id": "item_8",
+          "named_pages": [
+            "references/review-checklist.md"
+          ],
+          "full_content_observed": [
+            "references/review-checklist.md"
+          ]
+        },
+        {
+          "command_id": "item_9",
+          "named_pages": [
+            "references/delivery.md"
+          ],
+          "full_content_observed": [
+            "references/delivery.md"
+          ]
+        },
+        {
+          "command_id": "item_10",
+          "named_pages": [
+            "references/final-review-layers.md"
+          ],
+          "full_content_observed": [
+            "references/final-review-layers.md"
+          ]
+        }
+      ]
+    },
+    {
+      "result": "m2-platform_review-candidate.result.json",
+      "model": "command-code/deepseek-deepseek-v4.1-flash",
+      "case": "platform_review",
+      "arm": "candidate",
+      "invalid": [],
+      "named_pages": [
+        "SKILL.md",
+        "references/anti-ai-patterns.md",
+        "references/compatibility-scene-routing.md",
+        "references/delivery.md",
+        "references/final-review-layers.md",
+        "references/genre-playbook-news-message.md",
+        "references/information-selection.md",
+        "references/prose-lint-usage.md",
+        "references/review-checklist.md",
+        "references/short-draft-naturalness.md"
+      ],
+      "full_content_observed": [
+        "SKILL.md",
+        "references/anti-ai-patterns.md",
+        "references/compatibility-scene-routing.md",
+        "references/delivery.md",
+        "references/final-review-layers.md",
+        "references/genre-playbook-news-message.md",
+        "references/information-selection.md",
+        "references/prose-lint-usage.md",
+        "references/review-checklist.md",
+        "references/short-draft-naturalness.md"
+      ],
+      "repeated_full_reads": {},
+      "named_file_characters_upper_bound": 13884,
+      "events": [
+        {
+          "command_id": "item_1",
+          "named_pages": [
+            "SKILL.md"
+          ],
+          "full_content_observed": [
+            "SKILL.md"
+          ]
+        },
+        {
+          "command_id": "item_3",
+          "named_pages": [
+            "references/compatibility-scene-routing.md"
+          ],
+          "full_content_observed": [
+            "references/compatibility-scene-routing.md"
+          ]
+        },
+        {
+          "command_id": "item_4",
+          "named_pages": [
+            "references/information-selection.md"
+          ],
+          "full_content_observed": [
+            "references/information-selection.md"
+          ]
+        },
+        {
+          "command_id": "item_5",
+          "named_pages": [
+            "references/review-checklist.md"
+          ],
+          "full_content_observed": [
+            "references/review-checklist.md"
+          ]
+        },
+        {
+          "command_id": "item_6",
+          "named_pages": [
+            "references/anti-ai-patterns.md"
+          ],
+          "full_content_observed": [
+            "references/anti-ai-patterns.md"
+          ]
+        },
+        {
+          "command_id": "item_7",
+          "named_pages": [
+            "references/short-draft-naturalness.md"
+          ],
+          "full_content_observed": [
+            "references/short-draft-naturalness.md"
+          ]
+        },
+        {
+          "command_id": "item_9",
+          "named_pages": [
+            "references/genre-playbook-news-message.md"
+          ],
+          "full_content_observed": [
+            "references/genre-playbook-news-message.md"
+          ]
+        },
+        {
+          "command_id": "item_10",
+          "named_pages": [
+            "references/prose-lint-usage.md"
+          ],
+          "full_content_observed": [
+            "references/prose-lint-usage.md"
+          ]
+        },
+        {
+          "command_id": "item_11",
+          "named_pages": [
+            "references/delivery.md"
+          ],
+          "full_content_observed": [
+            "references/delivery.md"
+          ]
+        },
+        {
+          "command_id": "item_12",
+          "named_pages": [
+            "references/final-review-layers.md"
+          ],
+          "full_content_observed": [
+            "references/final-review-layers.md"
+          ]
+        }
+      ]
+    }
+  ]
+}

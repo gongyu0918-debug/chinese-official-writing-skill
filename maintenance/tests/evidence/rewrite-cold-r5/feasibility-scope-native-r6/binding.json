@@ -1,0 +1,29 @@
+{
+  "main_commit": "1ce7112303172478faa2392667a2de1098eb912c",
+  "candidate_head": "8adaa1e64104225d3455b657ffb7214406859f88",
+  "fingerprints": {
+    "baseline": "465eabfa1b0078fb9030ec00e407699411002d8c9ef7082fac621de6f2488c62",
+    "candidate": "2ff8bdb9e2e90e9cde28ba0ad421f7dbd462bcde07fc01024b32d767ce6e3703"
+  },
+  "models": [
+    "command-code/deepseek-deepseek-v4.1-flash",
+    "ollama-cloud/glm-5.3-flash"
+  ],
+  "cases": {
+    "feasibility_conditional_advice": "只按这些材料完善一段可研分析：资料中心拟试点电子目录查询，现有电脑可用，预计有8人使用；需求是按目录编号查找已确认档案。自建还是租用服务尚未决定，预算和建设周期仍待论证。请结合现有需求说明可以比较和验证哪些方面，形成供决策参考的分析，保持设想状态。"
+  },
+  "cli": "C:\\Users\\admin\\AppData\\Local\\OpenAI\\Codex\\bin\\7ac07f4ce733f89a\\codex.exe",
+  "cli_version": "codex-cli 0.153.4",
+  "effort": "max",
+  "runtime": "C:\\Users\\admin\\AppData\\Local\\Temp\\cow-native-feasibility-scope-native-r6-o0278t0w",
+  "permissions": "inherited-host-config",
+  "timeout": 240,
+  "agent_documents": "project_doc_max_bytes=0",
+  "baseline_ref": "snapshot",
+  "baseline_source": "F:\\Workspaces\\chinese-official-writing-skill\\output\\route-worktrees\\reference-rewrite-20260912\\output\\combined-candidate-r5\\skill",
+  "candidate_source": "F:\\Workspaces\\chinese-official-writing-skill\\output\\route-worktrees\\reference-rewrite-20260912\\output\\feasibility-scope-only-r6\\skill",
+  "baseline_commit": null,
+  "profile": "temporary-no-user-documents-or-credentials",
+  "runner_sha256": "dac681da2a3382f68e9f79bf6677d4ac2783a642c9af29cc7ee9e2ab8150a79b",
+  "prompt_prefix": "使用本目录 .agents/skills/chinese-official-writing/SKILL.md。\n\n"
+}

@@ -61,6 +61,13 @@ class ReferenceRewriteContractTests(unittest.TestCase):
             "genre-playbook-meeting-host.md",
             "genre-playbook-duty-report.md",
             "genre-playbook-work-priorities.md",
+            "genre-playbook-review-opinion.md",
+            "genre-playbook-technical-requirements.md",
+            "genre-playbook-responsibility-letter.md",
+            "genre-playbook-initiative.md",
+            "genre-playbook-open-letter.md",
+            "genre-playbook-narration.md",
+            "genre-playbook-information-materials.md",
             "transaction-remediation-report.md",
             "transaction-feedback-report.md",
             "delivery.md",
@@ -209,6 +216,7 @@ class ReferenceRewriteContractTests(unittest.TestCase):
             (ROOT / "maintenance/specs/reference-route-manifest.json").read_text(encoding="utf-8")
         )
         self.assertEqual(len(manifest["pages"]), len(list(REFS.glob("*.md"))))
+        primary_pages = {page["path"] for page in manifest["pages"] if page["kind"] == "genre"}
         link_re = re.compile(r"`(?:references/)?([^`/]+\.md)`")
         for page in manifest["pages"]:
             text = (SKILL.parent / page["path"]).read_text(encoding="utf-8")
@@ -221,8 +229,57 @@ class ReferenceRewriteContractTests(unittest.TestCase):
                 {"SKILL.md", page["path"]} | direct_reads,
                 page["path"],
             )
+            self.assertEqual(
+                set(page["forbidden_reads"]),
+                primary_pages - set(page["allowed_reads"]),
+                page["path"],
+            )
         for route in manifest["routes"]:
             self.assertEqual(len(route["primary"]), 1)
+            self.assertIn(route["primary"][0], primary_pages, route["id"])
+            self.assertEqual(route["review"], FINAL_REVIEW_PATHS, route["id"])
+
+    def test_reorganized_leaf_manifest_keeps_procurement_as_overlay(self) -> None:
+        # Deterministic metadata closure is separate from native model routing evidence.
+        manifest = __import__("json").loads(
+            (ROOT / "maintenance/specs/reference-route-manifest.json").read_text(encoding="utf-8")
+        )
+        pages = {page["path"]: page for page in manifest["pages"]}
+        routes = {route["id"]: route for route in manifest["routes"]}
+        procurement = "references/genre-playbook-procurement-review.md"
+        self.assertEqual(pages[procurement]["kind"], "overlay")
+        for suffix in ["review-opinion", "technical-requirements", "responsibility-letter", "initiative", "open-letter", "narration", "information-materials"]:
+            path = f"references/genre-playbook-{suffix}.md"
+            self.assertEqual(pages[path]["kind"], "genre")
+            self.assertEqual(routes[suffix.replace("-", "_")]["primary"], [path])
+        self.assertIn("情况综合", routes["report"]["triggers"])
+        self.assertIn("建议信", routes["advisory"]["triggers"])
+        self.assertIn("采购方案", routes["plan"]["triggers"])
+        self.assertEqual(routes["procurement_review"]["primary"], ["references/genre-playbook-review-opinion.md"])
+        self.assertIn(procurement, routes["procurement_review"]["overlays"])
+        for route in routes.values():
+            self.assertNotIn(procurement, route["primary"])
+
+    def test_new_primary_pages_preserve_subject_state_and_delivery_boundaries(self) -> None:
+        expected = {
+            "review-opinion": ["审查主体", "审查范围", "专家个人意见", "共同意见", "正式结论", "保留意见", "待核", "review-checklist.md"],
+            "technical-requirements": ["功能", "接口", "运行条件", "交付", "验收", "已确认要求", "拟议选项", "待定参数", "现有问题"],
+            "responsibility-letter": ["共同事项", "责任主体", "拟议状态", "签署", "日期", "奖惩", "追责"],
+            "initiative": ["发起者", "倡议对象", "自愿参与", "处罚", "考核", "已取得成效", "日期"],
+            "open-letter": ["发信主体", "受众", "发信方、执行方", "具体承诺", "仍在考虑", "日期"],
+            "narration": ["讲解者身份", "受众", "路线", "顺序", "数字", "人物故事", "现场事实"],
+            "information-materials": ["受众", "要求", "方法", "渠道", "适用范围", "处罚", "额外责任", "原状态"],
+        }
+        for suffix, concepts in expected.items():
+            with self.subTest(page=suffix):
+                text = (REFS / f"genre-playbook-{suffix}.md").read_text(encoding="utf-8")
+                for concept in concepts:
+                    self.assertIn(concept, text)
+                self.assertIn("SKILL.md", text)
+                self.assertIn("成稿后的检查顺序", text)
+        procurement = (REFS / "genre-playbook-procurement-review.md").read_text(encoding="utf-8")
+        for boundary in ["主文种已经确定", "预算与测算有别", "缺项", "未定状态", "建议与已定要求分开", "field-editing.md"]:
+            self.assertIn(boundary, procurement)
 
     def test_retired_workflow_is_replaced_by_composable_common_pages(self) -> None:
         self.assertFalse((REFS / "workflow.md").exists())

@@ -107,9 +107,16 @@ GENRE_REFERENCES: dict[str, list[str]] = {
     "feasibility_playbook": [
         "references/genre-playbook-feasibility.md",
     ],
-    "procurement_playbook": [
+    "procurement_overlay": [
         "references/genre-playbook-procurement-review.md",
     ],
+    "review_opinion_playbook": ["references/genre-playbook-review-opinion.md"],
+    "technical_requirements_playbook": ["references/genre-playbook-technical-requirements.md"],
+    "responsibility_letter_playbook": ["references/genre-playbook-responsibility-letter.md"],
+    "initiative_playbook": ["references/genre-playbook-initiative.md"],
+    "open_letter_playbook": ["references/genre-playbook-open-letter.md"],
+    "narration_playbook": ["references/genre-playbook-narration.md"],
+    "information_materials_playbook": ["references/genre-playbook-information-materials.md"],
     "procurement_announcement_playbook": [
         "references/genre-playbook-procurement-announcement.md",
     ],
@@ -274,6 +281,7 @@ REPORT_PLAYBOOK_GENRES = PERIODIC_REPORT_GENRES | {
     "报告",
     "情况报告",
     "情况说明",
+    "情况综合",
     "整改报告",
     "整改进展报告",
     "整改情况报告",
@@ -330,10 +338,25 @@ SPEECH_PERSON_ORDER_MARKERS = (
 RESEARCH_PLAYBOOK_GENRES = {"调研报告", "研究报告"}
 FEASIBILITY_PLAYBOOK_GENRES = {"可研报告"}
 
-PROCUREMENT_PLAYBOOK_GENRES = {
-    "采购审查",
-    "评审材料",
-    "采购方案",
+PURPOSE_PLAYBOOK_GENRES = {
+    "采购审查": "review_opinion_playbook",
+    "采购审查意见": "review_opinion_playbook",
+    "审查意见": "review_opinion_playbook",
+    "评审意见": "review_opinion_playbook",
+    "审查材料": "review_opinion_playbook",
+    "评审材料": "review_opinion_playbook",
+    "技术需求": "technical_requirements_playbook",
+    "技术需求书": "technical_requirements_playbook",
+    "软件需求说明": "technical_requirements_playbook",
+    "接口需求": "technical_requirements_playbook",
+    "技术需求附件": "technical_requirements_playbook",
+    "责任书": "responsibility_letter_playbook",
+    "倡议书": "initiative_playbook",
+    "公开信": "open_letter_playbook",
+    "讲解稿": "narration_playbook",
+    "解说词": "narration_playbook",
+    "宣传手册": "information_materials_playbook",
+    "宣传材料": "information_materials_playbook",
 }
 
 DELIBERATION_PLAYBOOK_GENRES = {
@@ -345,7 +368,7 @@ DELIBERATION_PLAYBOOK_GENRES = {
     "命令（令）",
 }
 DEPLOYMENT_PLAYBOOK_GENRES = {"部署", "部署安排"}
-ADVISORY_GENRES = {"意见建议", "建议反馈", "优化建议", "合作性意见建议"}
+ADVISORY_GENRES = {"意见建议", "建议反馈", "优化建议", "合作性意见建议", "建议信"}
 COMPLAINT_GENRES = {"投诉", "问题反映", "情况反映"}
 REMEDIATION_GENRES = {"整改方案", "专项整改方案", "整改工作方案"}
 PROJECT_APPLICATION_GENRES = {"项目申请", "增项申请", "项目增项申请"}
@@ -387,7 +410,7 @@ ROUTED_PRIMARY_GENRES = (
     | MEETING_HOST_PLAYBOOK_GENRES
     | DUTY_REPORT_PLAYBOOK_GENRES
     | RESEARCH_PLAYBOOK_GENRES
-    | PROCUREMENT_PLAYBOOK_GENRES
+    | PURPOSE_PLAYBOOK_GENRES.keys()
 )
 
 REQUEST_PROCUREMENT_MARKERS = (
@@ -1057,7 +1080,10 @@ def _ai_task_requests_plan_construction(tasks: list[str]) -> bool:
 
 def _tasks_are_review_only(tasks: list[str]) -> bool:
     return bool(tasks) and all(
-        _contains_marker(task, REVIEW_TASK_MARKERS)
+        (
+            _contains_marker(task, REVIEW_TASK_MARKERS)
+            or re.search(r"(?:审核|审校|复核|审阅|把关)(?:一下|这份|一份)?[^。；;\n]{0,12}(?:方案|技术需求|需求书|审查意见|评审意见)", task)
+        )
         and (
             not _task_requests_rewrite(task)
             or any(
@@ -1128,7 +1154,7 @@ def _task_uses_sparse_card(genres: list[str], tasks: list[str], ai_compute: bool
             or genre in DUTY_REPORT_PLAYBOOK_GENRES
             or genre in RESEARCH_PLAYBOOK_GENRES
             or genre in FEASIBILITY_PLAYBOOK_GENRES
-            or genre in PROCUREMENT_PLAYBOOK_GENRES
+            or genre in PURPOSE_PLAYBOOK_GENRES
             or genre in DELIBERATION_PLAYBOOK_GENRES
             or genre in DEPLOYMENT_PLAYBOOK_GENRES
             or genre in ADVISORY_GENRES
@@ -1155,15 +1181,51 @@ def _deliberation_primary_paths(genres: list[str]) -> list[str]:
     return list(dict.fromkeys(path for genre in genres if genre in names for path in GENRE_REFERENCES[names[genre] + "_playbook"]))
 
 
+def _genres_for_delivery_purpose(genres: list[str], tasks: list[str]) -> list[str]:
+    """Normalize ambiguous fixture labels by the requested deliverable."""
+    joined = "\n".join(tasks)
+    result = []
+    for genre in genres:
+        if genre in {"采购审查", "审查材料", "评审材料", "采购材料", "采购方案"}:
+            if re.search(r"(?:起草|撰写|形成|整理|编制)[^。；;\n]{0,24}(?:审查意见|评审意见)", joined):
+                genre = "采购审查意见" if "采购" in genre or "采购" in joined else "审查意见"
+            elif re.search(r"(?:审核|审校|复核|审阅|把关|修改|改写)[^。；;\n]{0,12}采购方案", joined):
+                genre = "采购方案"
+        if genre not in AI_COMPUTE_EXACT_GENRES and "技术需求" in genre:
+            genre = "技术需求"
+        if genre == "情况说明" and re.search(r"解释[^。；;\n]{0,12}(?:事实|原因)|回应[^。；;\n]{0,12}疑问", joined):
+            genre = "说明"
+        result.append(genre)
+    return list(dict.fromkeys(result))
+
+
+def _purpose_primary_paths(genres: list[str]) -> list[str]:
+    return list(dict.fromkeys(
+        path for genre in genres if genre in PURPOSE_PLAYBOOK_GENRES
+        for path in GENRE_REFERENCES[PURPOSE_PLAYBOOK_GENRES[genre]]
+    ))
+
+
+def _procurement_overlay_paths(genres: list[str], tasks: list[str]) -> list[str]:
+    joined = "\n".join(genres + tasks)
+    if any(genre in {"采购审查", "采购审查意见"} for genre in genres):
+        return GENRE_REFERENCES["procurement_overlay"]
+    if "采购" in joined and re.search(r"核对[^。；;\n]{0,20}(?:规格|报价|响应规则|履约条件|采购需求)", joined):
+        return GENRE_REFERENCES["procurement_overlay"]
+    return []
+
+
 def _compute_primary_paths(genres: list[str], tasks: list[str]) -> list[str]:
     named = " ".join(genres)
+    if "技术需求" in named:
+        return GENRE_REFERENCES["technical_requirements_playbook"]
     if "可研" in named or "可行性" in named:
         return GENRE_REFERENCES["feasibility_playbook"]
     if "报告" in named:
         return GENRE_REFERENCES["report_playbook"]
     if "采购" in named or "租赁" in named:
-        return GENRE_REFERENCES["procurement_playbook"]
-    if "方案" in named or "技术需求" in named:
+        return GENRE_REFERENCES["plan_construction_playbook"]
+    if "方案" in named:
         return GENRE_REFERENCES["plan_construction_playbook"]
     return GENRE_REFERENCES["unknown_genre"]
 
@@ -1211,8 +1273,8 @@ def _primary_reference_paths(genres: list[str], tasks: list[str]) -> list[str]:
         paths.extend(GENRE_REFERENCES["research_playbook"])
     if any(genre in FEASIBILITY_PLAYBOOK_GENRES for genre in genres):
         paths.extend(GENRE_REFERENCES["feasibility_playbook"])
-    if any(genre in PROCUREMENT_PLAYBOOK_GENRES for genre in genres):
-        paths.extend(GENRE_REFERENCES["procurement_playbook"])
+    if any(genre in PURPOSE_PLAYBOOK_GENRES for genre in genres):
+        paths.extend(_purpose_primary_paths(genres))
     if any(genre in DELIBERATION_PLAYBOOK_GENRES for genre in genres):
         paths.extend(_deliberation_primary_paths(genres))
     if any(genre in DEPLOYMENT_PLAYBOOK_GENRES for genre in genres):
@@ -1267,8 +1329,9 @@ def _finish_reference_paths(paths: list[str], tasks: list[str]) -> list[str]:
 
 def _reference_paths_for_genres(genres: list[str], tasks: list[str] | None = None) -> list[str]:
     tasks = tasks or []
-    paths = ["SKILL.md"]
     ai_compute = any(_is_ai_compute(genre, tasks) for genre in genres)
+    genres = _genres_for_delivery_purpose(genres, tasks)
+    paths = ["SKILL.md"]
     report_playbook = any(genre in REPORT_PLAYBOOK_GENRES for genre in genres)
     request_playbook = any(genre in REQUEST_REVIEW_GENRES for genre in genres)
     ordinary_letter_playbook = any(genre in ORDINARY_LETTER_PLAYBOOK_GENRES for genre in genres)
@@ -1294,7 +1357,7 @@ def _reference_paths_for_genres(genres: list[str], tasks: list[str] | None = Non
     )
     research_playbook = any(genre in RESEARCH_PLAYBOOK_GENRES for genre in genres)
     feasibility_playbook = any(genre in FEASIBILITY_PLAYBOOK_GENRES for genre in genres)
-    procurement_playbook = any(genre in PROCUREMENT_PLAYBOOK_GENRES for genre in genres)
+    purpose_playbook = any(genre in PURPOSE_PLAYBOOK_GENRES for genre in genres)
     deliberation_playbook = any(genre in DELIBERATION_PLAYBOOK_GENRES for genre in genres)
     deployment_playbook = any(genre in DEPLOYMENT_PLAYBOOK_GENRES for genre in genres)
     advisory_playbook = any(genre in ADVISORY_GENRES for genre in genres)
@@ -1313,6 +1376,7 @@ def _reference_paths_for_genres(genres: list[str], tasks: list[str] | None = Non
 
     if _tasks_are_review_only(tasks):
         paths.extend(_primary_reference_paths(genres, tasks))
+        paths.extend(_procurement_overlay_paths(genres, tasks))
         paths.extend(_report_transaction_overlay_paths(genres, tasks))
         paths.extend(_periodic_report_field_paths(genres, tasks))
         if ai_compute:
@@ -1332,6 +1396,7 @@ def _reference_paths_for_genres(genres: list[str], tasks: list[str] | None = Non
 
     if genres and all(genre in AI_COMPUTE_EXACT_GENRES for genre in genres):
         paths.extend(_compute_primary_paths(genres, tasks))
+        paths.extend(_procurement_overlay_paths(genres, tasks))
         paths.extend(GENRE_REFERENCES["ai_compute"])
         return _finish_reference_paths(paths, tasks)
 
@@ -1376,8 +1441,8 @@ def _reference_paths_for_genres(genres: list[str], tasks: list[str] | None = Non
         paths.extend(GENRE_REFERENCES["research_playbook"])
     if feasibility_playbook:
         paths.extend(GENRE_REFERENCES["feasibility_playbook"])
-    if procurement_playbook:
-        paths.extend(GENRE_REFERENCES["procurement_playbook"])
+    if purpose_playbook:
+        paths.extend(_purpose_primary_paths(genres))
     if deliberation_playbook:
         paths.extend(_deliberation_primary_paths(genres))
     if deployment_playbook:
@@ -1413,7 +1478,7 @@ def _reference_paths_for_genres(genres: list[str], tasks: list[str] | None = Non
             duty_report_playbook,
             research_playbook,
             feasibility_playbook,
-            procurement_playbook,
+            purpose_playbook,
             deliberation_playbook,
             deployment_playbook,
             advisory_playbook,
@@ -1443,7 +1508,7 @@ def _reference_paths_for_genres(genres: list[str], tasks: list[str] | None = Non
         and genre not in DUTY_REPORT_PLAYBOOK_GENRES
         and genre not in RESEARCH_PLAYBOOK_GENRES
         and genre not in FEASIBILITY_PLAYBOOK_GENRES
-        and genre not in PROCUREMENT_PLAYBOOK_GENRES
+        and genre not in PURPOSE_PLAYBOOK_GENRES
         and genre not in DELIBERATION_PLAYBOOK_GENRES
         and genre not in DEPLOYMENT_PLAYBOOK_GENRES
         and genre not in ADVISORY_GENRES
@@ -1471,7 +1536,7 @@ def _reference_paths_for_genres(genres: list[str], tasks: list[str] | None = Non
         and not meeting_host_playbook
         and not duty_report_playbook
         and not research_playbook
-        and not procurement_playbook
+        and not purpose_playbook
         and not deliberation_playbook
     ) or ordinary_letter_full_playbook:
         paths.extend(GENRE_REFERENCES["unknown_genre"])
@@ -1497,6 +1562,7 @@ def _reference_paths_for_genres(genres: list[str], tasks: list[str] | None = Non
         paths.extend(GENRE_REFERENCES["speech_person_order"])
     if ai_compute:
         paths.extend(GENRE_REFERENCES["ai_compute"])
+    paths.extend(_procurement_overlay_paths(genres, tasks))
     if any(marker in task for task in tasks for marker in FORMAT_TASK_MARKERS):
         paths.extend(GENRE_REFERENCES["format"])
     if _task_requires_external_research(tasks):
