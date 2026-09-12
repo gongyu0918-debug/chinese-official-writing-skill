@@ -57,6 +57,14 @@ def audit() -> list[str]:
     errors: list[str] = []
     markdown = [PRODUCT / "SKILL.md", *sorted((PRODUCT / "references").glob("*.md"))]
 
+    homepage = (PRODUCT / "SKILL.md").read_text(encoding="utf-8")
+    entry = homepage.split("## 入口契约", 1)[1].split("## 路由主线", 1)[0]
+    if any(marker in entry for marker in BODY_ONLY_MARKERS):
+        errors.append("SKILL.md: body-only delivery marker leaked into entry contract")
+    index = (PRODUCT / "references" / "reference-index.md").read_text(encoding="utf-8")
+    if "正文直交付" in index:
+        errors.append("reference-index.md: body-only delivery was left in entrance task selection")
+
     # A body-only rule belongs to the delivery page. SKILL.md may point to it
     # once from the delivery section; all other pages must remain content/rule
     # pages rather than deciding the final message shape.
