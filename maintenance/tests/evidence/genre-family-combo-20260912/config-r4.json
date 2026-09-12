@@ -1,0 +1,19 @@
+{
+  "atom": "genre-family-preface-r4",
+  "baseline": "8b8aa1c6b8c65414b0444615c39cfa537619957a",
+  "candidate": "2a49b440",
+  "expected_diff": [
+    "references/genre-playbook-deliberation-deployment.md",
+    "references/genre-playbook-notice-publication.md",
+    "references/genre-playbook-procurement-review.md",
+    "references/genre-playbook-research-feasibility.md",
+    "references/genre-playbook-speech-address.md",
+    "references/genre-playbooks.md"
+  ],
+  "cases": {
+    "deliberation": {"task": "请起草一份内部工作决定，只输出正文。材料：经中心主任办公会研究，决定自2026年10月起将资料核对由业务科和资料室分别负责；具体交接方式尚未确定。只保留已给权限、事项和未决状态，不补适用范围、考核办法或生效程序。"},
+    "public_notice": {"task": "请起草一份公示，只输出完整正文。材料：拟公示2026年度资料整理培训优秀学员名单，共6人；公示期5个工作日，异议邮箱为review@example.com。名单正文不补姓名，保持待发布状态，不新增评选依据或处理流程。"},
+    "feasibility": {"task": "请起草一份简短可行性分析，只输出正文。材料：拟评估资料核对系统升级，现有系统每月处理约1000条记录，升级预算尚未确定；可比较继续使用与升级两种路径，但尚未作出选择。不得补技术指标、供应商、投资收益或实施期限。"}
+  },
+  "assignments": {"0": ["deliberation"], "1": ["public_notice"], "2": ["feasibility"], "3": [], "4": []}
+}
