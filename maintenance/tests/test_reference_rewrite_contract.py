@@ -215,6 +215,8 @@ class ReferenceRewriteContractTests(unittest.TestCase):
         handling = (REFS / "handling-elements.md").read_text(encoding="utf-8")
         for term in ["材料事实", "直接分析", "状态信息", "实质缺项", "时间锚", "合理推断"]:
             self.assertIn(term, information)
+        self.assertIn("只有主题、目标、方向或任务名称时", information)
+        self.assertIn("主题词可以承接一般方向", information)
         for term in ["通用要素", "文种重点", "技术、算力、采购和 Word", "不编造真实单位", "停止本页"]:
             self.assertIn(term, handling)
 
