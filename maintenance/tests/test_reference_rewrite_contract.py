@@ -40,11 +40,13 @@ class ReferenceRewriteContractTests(unittest.TestCase):
 
     def test_compute_rules_are_one_scenario_overlay(self) -> None:
         dispatch = (REFS / "ai-compute-docs.md").read_text(encoding="utf-8")
-        for term in ["不是文种页", "叠加", "主文种", "业务场景", "SLA", "验收"]:
+        for term in ["不是文种页", "叠加", "主文种", "业务场景", "Token", "成本", "SLA", "安全", "验收"]:
             self.assertIn(term, dispatch)
         self.assertNotIn("ai-compute-feasibility.md", dispatch)
         self.assertNotIn("ai-compute-procurement.md", dispatch)
         self.assertNotIn("ai-compute-technical-requirements.md", dispatch)
+        self.assertIn("同一稿件同时出现可研、采购和技术需求时", dispatch)
+        self.assertIn("实际数据、估算数据、建议值和待核字段分开", dispatch)
 
     def test_reference_graph_is_acyclic_and_local(self) -> None:
         link_re = re.compile(r"`(?:references/)?([^`/]+\.md)`")
