@@ -105,6 +105,13 @@ class ReferenceRewriteContractTests(unittest.TestCase):
         self.assertIn("references/genre-checklist-report.md", compute)
         self.assertIn("references/ai-compute-docs.md", compute)
 
+    def test_formulaic_reference_is_a_capability_page(self) -> None:
+        text = (REFS / "formulaic-language.md").read_text(encoding="utf-8")
+        self.assertIn("本页不替代文种路由", text)
+        self.assertIn("历史模板", text)
+        self.assertNotIn("20类事务文体", text)
+        self.assertLess(len(text), 4000)
+
 
 if __name__ == "__main__":
     unittest.main()
