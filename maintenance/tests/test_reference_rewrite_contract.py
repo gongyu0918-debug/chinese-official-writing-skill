@@ -35,7 +35,7 @@ class ReferenceRewriteContractTests(unittest.TestCase):
         ]:
             self.assertIn(term, skill)
         self.assertIn("最终消息直接承载标题或正文首句", skill)
-        self.assertIn("不出现已读页、参考路径、路由说明", skill)
+        self.assertIn("交付模式本身不回显已读页、参考路径、路由说明", skill)
         self.assertIn("采用正文交付模式", skill)
 
     def test_compute_rules_are_one_scenario_overlay(self) -> None:
