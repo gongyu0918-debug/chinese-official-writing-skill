@@ -21,6 +21,8 @@ metadata:
 
 其他文种按 `references/reference-index.md` 确定唯一首叶；文种或行文关系冲突时再读取 `references/genre-routing.md`。
 
+需要扫描 `.txt`、`.md` 或 `.docx` 草稿时，唯一脚本路由是 `references/prose-lint-usage.md`；用户明确选择交付门禁或 Hook 检查时，先读 `hooks/README.md`，再按需要读取 `references/delivery-review-gate.md`。文种叶不代替这两条工具路由。
+
 用户明确只交稿件或不附说明时，主文种成稿和内部复核完成后读取 `references/delivery-body-only.md`；这一步只决定最终交付形态，不改变正文内容。
 
 任务模式按用户要完成的动作分为：
@@ -73,4 +75,4 @@ metadata:
 
 ### 脚本检查
 
-脚本输出风险清单，Agent 逐项对照正文、主文种和用户修改范围，确定修改、保留或正文外提示；技术失败标记为扫描未完成，转人工复核。返回码表示扫描状态，不代表正文质量。
+脚本输出风险清单后，必须逐项对照正文、主文种和用户修改范围，确定修改、保留或正文外提示；扫描未完成时标明未完成并转人工复核。扫描任务以风险清单已读取并逐项处理为完成条件；正文取舍仍按事实和文种规则执行。
