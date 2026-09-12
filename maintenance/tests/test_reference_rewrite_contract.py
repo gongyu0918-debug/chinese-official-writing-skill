@@ -3,6 +3,7 @@ from __future__ import annotations
 import re
 import subprocess
 import unittest
+import importlib.util
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -34,14 +35,13 @@ class ReferenceRewriteContractTests(unittest.TestCase):
         ]:
             self.assertIn(term, skill)
 
-    def test_compute_dispatch_has_three_atomic_leaves(self) -> None:
+    def test_compute_rules_are_one_scenario_overlay(self) -> None:
         dispatch = (REFS / "ai-compute-docs.md").read_text(encoding="utf-8")
-        for name in ["ai-compute-feasibility.md", "ai-compute-procurement.md", "ai-compute-technical-requirements.md"]:
-            self.assertIn(name, dispatch)
-            self.assertTrue((REFS / name).is_file())
-        self.assertNotIn("### 算力服务可研报告", dispatch)
-        self.assertNotIn("### 算力资源采购或租赁方案", dispatch)
-        self.assertNotIn("### GPU/服务器租赁技术需求", dispatch)
+        for term in ["不是文种页", "叠加", "主文种", "业务场景", "SLA", "验收"]:
+            self.assertIn(term, dispatch)
+        self.assertNotIn("ai-compute-feasibility.md", dispatch)
+        self.assertNotIn("ai-compute-procurement.md", dispatch)
+        self.assertNotIn("ai-compute-technical-requirements.md", dispatch)
 
     def test_reference_graph_is_acyclic_and_local(self) -> None:
         link_re = re.compile(r"`(?:references/)?([^`/]+\.md)`")
@@ -77,10 +77,21 @@ class ReferenceRewriteContractTests(unittest.TestCase):
         )
         self.assertEqual(result.returncode, 0)
 
-    def test_mirror_contains_new_compute_leaves(self) -> None:
+    def test_mirror_contains_rewritten_overlay(self) -> None:
         mirror = ROOT / "packages" / "agent-skills" / "skills" / "chinese-official-writing" / "references"
-        for name in ["reference-index.md", "task-route-cards.md", "ai-compute-feasibility.md", "ai-compute-procurement.md", "ai-compute-technical-requirements.md"]:
+        for name in ["reference-index.md", "task-route-cards.md", "ai-compute-docs.md"]:
             self.assertEqual((REFS / name).read_bytes(), (mirror / name).read_bytes(), name)
+
+    def test_eval_router_uses_compute_overlay_and_minutes_leaf(self) -> None:
+        provider_path = ROOT / "maintenance" / "evals" / "official-writing" / "providers" / "agent_writer.py"
+        spec = importlib.util.spec_from_file_location("rewrite_agent_writer", provider_path)
+        self.assertIsNotNone(spec)
+        module = importlib.util.module_from_spec(spec)
+        assert spec.loader is not None
+        spec.loader.exec_module(module)
+        for genre, task in [("报告", "写 AI 算力报告，比较云端和租赁成本"), ("采购方案", "写 GPU 采购预算和服务范围"), ("技术需求", "写 AI GPU 技术需求、SLA、接口和验收")]:
+            self.assertIn("references/ai-compute-docs.md", module._reference_paths_for_genres([genre], [task]))
+        self.assertEqual(module._reference_paths_for_genres(["会议纪要"], ["只记录建议和待评估事项"]), ["SKILL.md", "references/genre-playbook-minutes.md"])
 
 
 if __name__ == "__main__":
