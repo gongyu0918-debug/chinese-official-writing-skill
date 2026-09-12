@@ -4,7 +4,7 @@ from pathlib import Path
 ROOT=Path(__file__).resolve().parents[4]
 E=Path(__file__).resolve().parent
 config=json.loads(Path(sys.argv[1]).read_text(encoding='utf-8'))
-ATOM=config['atom'];OUT=ROOT/'output/genre-family-combo-20260912-r5b'/ATOM
+ATOM=config['atom'];OUT=ROOT/'output/genre-family-combo-20260912-r5c'/ATOM
 legacy=Path('F:/Workspaces/chinese-official-writing-skill/output/route-worktrees/skill-lightening-merge-check')
 path='maintenance/tests/evidence/output-contract-matrix-r1/run_matrix.py'
 source=subprocess.check_output(['git','show','c8058bdc:'+path],cwd=ROOT)
@@ -69,4 +69,5 @@ if __name__=='__main__':
  prepare()
  with concurrent.futures.ThreadPoolExecutor(max_workers=5) as pool:results=list(pool.map(lane,range(5)))
  save(OUT/'receipts.json',[r for group in results for r in group])
+
 
