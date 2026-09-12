@@ -6,10 +6,10 @@
 
 | 基线页面 | 候选归位 | 主要语义范围 | 当前状态 |
 | --- | --- | --- | --- |
-| `SKILL.md` | `SKILL.md` | 触发、模式、事实状态、正文交付、Hook 边界 | 新契约已写；正文洁净 A/B 仍需复测 |
+| `SKILL.md` | `SKILL.md` | 触发、模式、事实状态、正文交付、Hook 边界 | 新契约已写；自然语言直交付与复核已完成双通道实写，五通道场景矩阵仍需补齐 |
 | `reference-index.md` | 同名页 | 模式→主文种→共性页→停止点 | 静态通过；组合路由待矩阵 |
 | `genre-routing.md` | 同名页 | 文种、行文关系、混合材料判定 | 静态通过；跨文种待实写 |
-| `task-route-cards.md` | 同名页 | 稀疏材料、短通知、局部修改短路 | 静态通过；旧边界测试待迁移 |
+| `task-route-cards.md` | 同名页 | 材料较少、短通知、局部修改短路径 | 静态通过；旧边界测试待迁移 |
 | `genre-checklist.md` | 同名页 | 未覆盖文种功能反查 | 结构已收束；覆盖缺口待盘点 |
 | `genre-playbook-report.md` | 新增独立主叶 | 报告、情况报告和情况说明骨架 | 与报告复核页分离；组合实写待验 |
 | `genre-playbooks.md` | 已删除 | 旧混合目录跳转 | 功能由专页、`genre-routing.md` 和 `genre-checklist.md` 替代，需验证无旧路由残留 |
@@ -33,13 +33,14 @@
 
 ## 当前保留、尚未纳入本批语义重写的页面
 
-`ai-compute-examples.md`、`compatibility-scene-routing.md`、`compression-details.md`、`delivery-review-gate.md`、`external-research.md`、`field-editing.md`、`format-gbt9704.md`、`genre-checklist-feasibility-review.md`、`genre-checklist-report.md`、`genre-checklist-request.md`、`genre-playbook-advisory-feedback.md`、`genre-playbook-complaint-reflection.md`、`genre-playbook-correspondence.md`、`genre-playbook-institution-rules.md`、`genre-playbook-news-commentary.md`、`genre-playbook-news-message.md`、`genre-playbook-plan-construction.md`、`genre-playbook-project-application.md`、`genre-playbook-remediation-plan.md`、`genre-playbook-research-feasibility.md`、`genre-playbook-speech-address.md`、`genre-playbook-work-summary.md`、`review-direct-checklist.md`、`short-draft-naturalness.md`、`speech-person-order.md`、`structure-editing.md`、`technical-terms.md`。
+`ai-compute-examples.md`、`compatibility-scene-routing.md`、`compression-details.md`、`delivery-review-gate.md`、`external-research.md`、`field-editing.md`、`format-gbt9704.md`、`genre-checklist-feasibility-review.md`、`genre-checklist-report.md`、`genre-checklist-request.md`、`genre-playbook-advisory-feedback.md`、`genre-playbook-complaint-reflection.md`、`genre-playbook-correspondence.md`、`genre-playbook-institution-rules.md`、`genre-playbook-news-commentary.md`、`genre-playbook-news-message.md`、`genre-playbook-plan-construction.md`、`genre-playbook-project-application.md`、`genre-playbook-remediation-plan.md`、`genre-playbook-speech-address.md`、`genre-playbook-work-summary.md`、`review-direct-checklist.md`、`short-draft-naturalness.md`、`speech-person-order.md`、`structure-editing.md`、`technical-terms.md`。
 
 其中 `delivery-review-gate.md` 与 Hook 门禁绑定，Hook 目录冻结；新闻、新闻评论及已有实证单文种页优先保留，但仍要检查新路由是否漏读或多读。保留不等于免审，后续按主文种、模式和附加页组合验证。
 
 ## 测试状态
 
-- 新增重写契约与 reachability 测试：24 项通过。
+- 新增重写契约、产品面、路由和 Hook 边界聚焦测试：53 项通过。
+- 独立冷审与首页/路由洁净实写记录见 `maintenance/docs/reference-cleanup-cold-review-20260912.md`。
 - Skill frontmatter/脚手架校验：通过。
 - Hook 目录相对 main：无差异。
 - 算力报告同题技术 A/B：R3 在 `alibaba-token-plan-2/qwen3.8-flash` 完成，两臂 receipt 有效，候选读取 6 页、基线读取 8 页；摘要已留档，尚不足以代表五通道组合验收。
