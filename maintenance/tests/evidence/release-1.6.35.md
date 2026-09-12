@@ -27,4 +27,7 @@ v1.6.35 是 2026年9月13日的纯维护版本。相较 v1.6.34，写作规则�
 
 ## 发布回执
 
-GitHub、SkillHub 与 ClawHub 的正式回执在实际提交后补记。
+- GitHub：一次 `git push --atomic` 成功，将 `main` 从 `52dfe7aa86ee8c3ced184b0fbf6cddddb4630914` 快进至 tag 解引用提交 `c0abfeeb3d2a21cfd6ec722de7d8ae534ad68f61`，并创建 annotated tag object `0ecfb334e342ee7ac211cac3f0a6f11c772c29a9`；GitHub Release 已公开：<https://github.com/gongyu0918-debug/chinese-official-writing-skill/releases/tag/v1.6.35>。
+- SkillHub：向既有 `skillId=70149` 正式提交一次，返回 `ok=true`、`versionId=308557`、98 个文件、fingerprint `6eba65acdda394a97cb9d797b8b989e960a1d3c3c11ab2b74b28572c6c5037e1`、`tags.latest=1.6.35`；`reviewStatus`、`securityScanStatus`、`contentAuditStatus` 均为 `pending`。成功回执后未做传播轮询或重复提交。
+- ClawHub：向 `chinese-official-writing` 正式提交一次，返回 `ok=true`、`status=published`、`versionId=k97agmzzb012patmb1a4k933gd8e96fb`、47 个文件、fingerprint `f470da3efa343b734df664566d9efa3e375bb03dad487df9a4bf41601b4b1813`。回执中的 `latestVersion=1.6.34` 只记录提交当时的平台返回值；按项目规范以成功发布回执为完成依据，未做传播轮询或重复提交。
+- 本次未创建心跳、定时任务或次日版本安排；明日版本由新的工令另行决定。
