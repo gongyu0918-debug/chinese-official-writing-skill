@@ -21,8 +21,6 @@ metadata:
 
 其他文种按 `references/reference-index.md` 确定唯一首叶；文种或行文关系冲突时再读取 `references/genre-routing.md`。
 
-用户明确只交稿件或不附说明时，主文种成稿和内部复核完成后读取 `references/delivery-body-only.md`；这一步只决定最终交付形态，不改变正文内容。
-
 任务模式按用户要完成的动作分为：
 
 - **起草**：先读取 `references/information-selection.md`，选文种首叶；需要办理要素或论证时再叠加对应共性页。
@@ -33,7 +31,7 @@ metadata:
 - **审核、复核、审校或把关**：用户说“帮我审核/复核/审校/检查/把关这份稿件”等，先读对应主文种/事务叶确认成立条件，再叠加 `references/review-direct-checklist.md` 或 `references/review-checklist.md`；用户同时要求改后稿时进入改写流程。
 - **格式交付**：内容和办理要素核对完成后，再按用户要求读取 Word、GB/T 9704 或格式工具页。
 
-需要 Word、docx、GB/T 9704、红头或正式版式时叠加 `references/format-gbt9704.md`。主文种已确定且稿件出现算力、GPU/服务器、模型推理/训练、智算中心、Token、并发或模型服务等场景信号时，在主文种叶上叠加 `references/ai-compute-docs.md`；“安全”“SLA”或“验收”单独出现时沿用主文种规则。它是场景附加规则，主文种继续承担文种路由。需要扫描 `.txt`、`.md` 或 `.docx` 时先读 `references/prose-lint-usage.md`，再调用现有脚本。脚本输出风险清单，Agent 读取清单后结合正文和文种决定修改、保留或提示；脚本本身保持检查职责。
+需要 Word、docx、GB/T 9704、红头或正式版式时叠加 `references/format-gbt9704.md`。主文种已确定且稿件出现算力、GPU/服务器、模型推理/训练、智算中心、Token、并发或模型服务等场景信号时，在主文种叶上叠加 `references/ai-compute-docs.md`；“安全”“SLA”或“验收”单独出现时沿用主文种规则。它是场景附加规则，主文种继续承担文种路由。
 
 用户已有提纲、模板、标题顺序或字段表时优先保留。用户明确要求短正文或只有篇幅上限时，材料选择后按需读 `references/short-draft-naturalness.md`；长文压缩和超限处置读 `references/compression-details.md`。格式、版式、脚本和 Hook 是交付工具，不改变主文种。
 
@@ -57,7 +55,7 @@ metadata:
 
 正式正文不出现 AI 身份、提示词、隐藏推理、起草过程、脚本结果、Hook 状态、制作说明、免责话术、连续追问或“正文如下”等旁白。标题和小标题用普通文本；不用 Markdown 加粗、三级井号、代码块或横线包装，除非用户明确要求 Markdown。Word 小标题是否独立成段按模板和实际统领关系判断。网页复制稿先剥离来源、栏目路径、责任编辑、字号和打印元信息；“关于印发”的通知壳、被印发文件正文和附件关系分开处理。
 
-未要求说明时，交付消息直接进入标题或正文；路由、读取页面、处理过程和自评留在内部。用户明确要求缺项或风险提示时，正文完成后另起文后提示。
+通常交付先给标题和正文，再另起简短文后提示，列出直接影响使用的缺项或风险；路由、读取页面、处理过程和自评留在内部。用户明确只要稿件、只要正文或不需说明时，读取 `references/delivery-body-only.md`，省略文后提示；这一步只决定最终交付形态，不改变正文内容。
 
 用户选择审核、复核、审校或把关时交位置、风险层级和建议；用户明确要说明时，说明限于实际处理范围和已发现问题。日期、主体、落款、文号、印章或签发人沿用用户状态，正式事实以用户或材料为准。
 
@@ -69,7 +67,7 @@ metadata:
 
 ### 文稿复核
 
-全文交付前按 `references/final-review-layers.md` 核对事实、状态、主体、文种和交付边界，再看质量建议；需要语言模式检查时读 `references/anti-ai-patterns.md`，轻量校对读 `references/proofreading-checklist.md`。每页只处理自己的检查内容，复核结果回到当前稿件。
+全文交付前按 `references/final-review-layers.md` 核对事实、状态、主体、文种和交付边界；终稿必须读取 `references/anti-ai-patterns.md` 完成抗 AI 味检查，轻量校对再读 `references/proofreading-checklist.md`。每页只处理自己的检查内容，复核结果回到当前稿件。
 
 ### 脚本与 Hook 检查
 
