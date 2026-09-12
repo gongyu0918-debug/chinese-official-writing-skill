@@ -1533,7 +1533,7 @@ def _skill_prompt(cases: list[dict[str, Any]], config: dict[str, Any]) -> str:
         )
     else:
         delivery_instruction = (
-            "按用户指定的文种、输出模式和篇幅要求交付；任务未指定篇幅时，正文控制在 160-260 个汉字。"
+            "按用户指定的文种、输出模式和篇幅要求交付；任务未指定篇幅时，正文控制在 160-260 个汉字。正文完成后另起简短‘文后提示’，只列直接影响使用的缺项或风险，不描述路由、模型或处理过程。"
         )
     return textwrap.dedent(
         f"""
