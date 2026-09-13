@@ -1,0 +1,250 @@
+{
+  "cold_calls": [
+    {
+      "directory": "glm-cold-r1",
+      "model_requested": "ollama-cloud/glm-5.3",
+      "effort_requested": "max",
+      "returncode": 0,
+      "seconds": 791.92,
+      "final_sha256": "9d0e318499545fedc46bf39b7ecb66f34f9cf80fa6283db3d3cfea1d1f37e4db",
+      "commands": 141,
+      "complete_file_content_returned": [
+        "current/references/ai-compute-docs.md",
+        "current/references/ai-compute-examples.md",
+        "current/references/anti-ai-patterns.md",
+        "current/references/argument-chains.md",
+        "current/references/compatibility-scene-routing.md",
+        "current/references/compression-details.md",
+        "current/references/external-research.md",
+        "current/references/field-editing.md",
+        "current/references/formal-addressing.md",
+        "current/references/format-gbt9704.md",
+        "current/references/formulaic-language.md",
+        "current/references/genre-checklist-feasibility-review.md",
+        "current/references/genre-checklist-report.md",
+        "current/references/genre-checklist-request.md",
+        "current/references/genre-checklist.md",
+        "current/references/genre-playbook-advisory-feedback.md",
+        "current/references/genre-playbook-bulletin.md",
+        "current/references/genre-playbook-communique.md",
+        "current/references/genre-playbook-complaint-reflection.md",
+        "current/references/genre-playbook-correspondence.md",
+        "current/references/genre-playbook-decision.md",
+        "current/references/genre-playbook-deployment.md",
+        "current/references/genre-playbook-duty-report.md",
+        "current/references/genre-playbook-editorial-note.md",
+        "current/references/genre-playbook-explanation.md",
+        "current/references/genre-playbook-feasibility.md",
+        "current/references/genre-playbook-information-materials.md",
+        "current/references/genre-playbook-initiative.md",
+        "current/references/genre-playbook-institution-rules.md",
+        "current/references/genre-playbook-meeting-host.md",
+        "current/references/genre-playbook-minutes.md",
+        "current/references/genre-playbook-motion.md",
+        "current/references/genre-playbook-narration.md",
+        "current/references/genre-playbook-news-commentary.md",
+        "current/references/genre-playbook-news-message.md",
+        "current/references/genre-playbook-notice.md",
+        "current/references/genre-playbook-open-letter.md",
+        "current/references/genre-playbook-opinion.md",
+        "current/references/genre-playbook-order.md",
+        "current/references/genre-playbook-plan-construction.md",
+        "current/references/genre-playbook-procurement-announcement.md",
+        "current/references/genre-playbook-procurement-review.md",
+        "current/references/genre-playbook-project-application.md",
+        "current/references/genre-playbook-publication.md",
+        "current/references/genre-playbook-remediation-plan.md",
+        "current/references/genre-playbook-reply.md",
+        "current/references/genre-playbook-report.md",
+        "current/references/genre-playbook-request.md",
+        "current/references/genre-playbook-research.md",
+        "current/references/genre-playbook-resolution.md",
+        "current/references/genre-playbook-responsibility-letter.md",
+        "current/references/genre-playbook-review-opinion.md",
+        "current/references/genre-playbook-speech-address.md",
+        "current/references/genre-playbook-technical-requirements.md",
+        "current/references/genre-playbook-work-priorities.md",
+        "current/references/genre-playbook-work-summary.md",
+        "current/references/genre-routing.md",
+        "current/references/proofreading-checklist.md",
+        "current/references/prose-lint-usage.md",
+        "current/references/reference-index.md",
+        "current/references/review-checklist.md",
+        "current/references/speech-person-order.md",
+        "current/references/structure-editing.md",
+        "current/references/technical-terms.md",
+        "current/references/transaction-feedback-report.md",
+        "current/references/transaction-remediation-report.md",
+        "current/references/writing-rules.md"
+      ],
+      "not_proven_as_contiguous_full_return": [],
+      "usage": [
+        {
+          "input_tokens": 5040940,
+          "cached_input_tokens": 0,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 49386,
+          "reasoning_output_tokens": 0
+        }
+      ]
+    },
+    {
+      "directory": "grok-cold-r1",
+      "model_requested": "xai/grok-4.6",
+      "effort_requested": "max",
+      "returncode": 0,
+      "seconds": 382.01,
+      "final_sha256": "e7b0d25a480ed712aafba79aff6a5e68daf20dc90bc65dc38f2e5dfeb9ee1458",
+      "commands": 4,
+      "complete_file_content_returned": [
+        "P01.md",
+        "P02.md",
+        "P03.md",
+        "P04.md",
+        "P05.md",
+        "P06.md",
+        "P07.md",
+        "P08.md",
+        "P09.md"
+      ],
+      "not_proven_as_contiguous_full_return": [],
+      "usage": [
+        {
+          "input_tokens": 97849,
+          "cached_input_tokens": 65024,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 19515,
+          "reasoning_output_tokens": 14237
+        }
+      ]
+    },
+    {
+      "directory": "grok-markdown-r2",
+      "model_requested": "xai/grok-4.6",
+      "effort_requested": "max",
+      "returncode": 0,
+      "seconds": 359.89,
+      "final_sha256": "dc909cd56f10ef77180156b5b9bad679745b20470fe809885bb6fc9196824ce6",
+      "commands": 2,
+      "complete_file_content_returned": [
+        "M01.md",
+        "M02.md",
+        "M03.md",
+        "M04.md"
+      ],
+      "not_proven_as_contiguous_full_return": [],
+      "usage": [
+        {
+          "input_tokens": 82996,
+          "cached_input_tokens": 37888,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 20205,
+          "reasoning_output_tokens": 15517
+        }
+      ]
+    },
+    {
+      "directory": "kimi-cold-r1",
+      "model_requested": "ollama-cloud/kimi-k3",
+      "effort_requested": "max",
+      "returncode": 0,
+      "seconds": 353.42,
+      "final_sha256": "2c50b41de29f2dab73bafdd7c1a65ce654b941d2f611188ef976a129c3a7be31",
+      "commands": 15,
+      "complete_file_content_returned": [
+        "P01.md",
+        "P02.md",
+        "P03.md",
+        "P04.md",
+        "P05.md",
+        "P06.md",
+        "P07.md",
+        "P08.md",
+        "P09.md"
+      ],
+      "not_proven_as_contiguous_full_return": [],
+      "usage": [
+        {
+          "input_tokens": 149870,
+          "cached_input_tokens": 0,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 25377,
+          "reasoning_output_tokens": 0
+        }
+      ]
+    },
+    {
+      "directory": "kimi-markdown-r2",
+      "model_requested": "ollama-cloud/kimi-k3",
+      "effort_requested": "max",
+      "returncode": 0,
+      "seconds": 138.92,
+      "final_sha256": "14fab7a31be6cf0bc4f7aeaedb7b04b6c003e691d14b40968b7486148f3af22b",
+      "commands": 6,
+      "complete_file_content_returned": [
+        "M01.md",
+        "M02.md",
+        "M03.md",
+        "M04.md"
+      ],
+      "not_proven_as_contiguous_full_return": [],
+      "usage": [
+        {
+          "input_tokens": 48493,
+          "cached_input_tokens": 0,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 10006,
+          "reasoning_output_tokens": 0
+        }
+      ]
+    },
+    {
+      "directory": "qwen-cold-r1",
+      "model_requested": "alibaba-token-plan-2/qwen3.8-max",
+      "effort_requested": "max",
+      "returncode": 0,
+      "seconds": 813.89,
+      "final_sha256": "245f2146c010d2fd99d752fc0c5a5e63bcfd2ccbd05aa0104e8eaddfab6437c4",
+      "commands": 16,
+      "complete_file_content_returned": [
+        "P01.md",
+        "P02.md",
+        "P03.md",
+        "P04.md",
+        "P05.md",
+        "P06.md",
+        "P07.md",
+        "P08.md",
+        "P09.md"
+      ],
+      "not_proven_as_contiguous_full_return": [],
+      "usage": [
+        {
+          "input_tokens": 135253,
+          "cached_input_tokens": 86528,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 35801,
+          "reasoning_output_tokens": 26449
+        }
+      ]
+    }
+  ],
+  "new_native_calls": 8,
+  "new_native_valid": 8,
+  "new_final_hashes": "8/8 match",
+  "path_audit": "PASS",
+  "manifest": "67 pages PASS",
+  "product_changes": "NONE",
+  "sol": {
+    "model": "gpt-5.6-sol",
+    "effort": "max",
+    "mechanism": "independent collaboration subagent",
+    "reported_coverage": {
+      "references": 67,
+      "scripts": 2
+    },
+    "separate_coverage_file": false,
+    "note": "Full-read completion reported; final findings returned after parent stopped further expansion. Parent saved the final response; raw per-page CLI evidence belongs to GLM, not this subagent."
+  },
+  "cold_input_hashes_unchanged": "6/6 external CLI packets verified after return"
+}
