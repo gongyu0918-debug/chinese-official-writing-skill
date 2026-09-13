@@ -361,10 +361,43 @@ SOURCE_EXCERPT_PREFIX_PATTERN = re.compile(
 )
 
 
-def read_docx(path: Path, scope: str = "all") -> str:
+def docx_zero_font_finding(
+    path: Path, run: ElementTree.Element, part: str, run_number: int, line: int,
+) -> Finding | None:
+    """只检查有文字运行的直接字号，不展开样式继承或历史格式。"""
+
+    namespace = run.tag.rsplit("}", 1)[0] + "}"
+    if namespace not in {
+        "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}",
+        "{http://purl.oclc.org/ooxml/wordprocessingml/main}",
+    }:
+        return None
+    text = "".join(item.text or "" for item in run.findall(f"{namespace}t"))
+    properties = run.find(f"{namespace}rPr")
+    if not text.strip() or properties is None:
+        return None
+    hidden = properties.find(f"{namespace}vanish")
+    if hidden is not None and hidden.get(f"{namespace}val", "true").lower() not in {"0", "false", "off"}:
+        return None
+    if not any(
+        re.fullmatch(r"0+", size.get(f"{namespace}val", "").strip())
+        for size in properties.findall(f"{namespace}sz")
+    ):
+        return None
+    return Finding(
+        path=str(path), line=line, severity="high", label="docx-zero-font-size",
+        match=f"{part} 第 {run_number} 个文本运行：w:sz=0",
+        excerpt=f"{' '.join(text.split())[:80]}｜显式字号为 0（半磅单位），相应字符可能不可见；按模板核对字号并渲染复核。",
+    )
+
+
+def read_docx(
+    path: Path, scope: str = "all", *, format_findings: list[Finding] | None = None,
+) -> str:
     """读取全部检查部件，或仅读取用于正文篇幅统计的主文档。"""
 
     pieces: list[str] = []
+    line_number = 1
     if scope not in {"main-document", "all"}:
         raise ValueError(f"unsupported DOCX scope: {scope}")
     try:
@@ -386,12 +419,21 @@ def read_docx(path: Path, scope: str = "all") -> str:
                 if name not in part_names:
                     continue
                 root = ElementTree.fromstring(zf.read(name))
+                run_number = 0
                 for elem in root.iter():
                     tag = elem.tag.rsplit("}", 1)[-1]
+                    if tag == "r":
+                        run_number += 1
+                        if format_findings is not None:
+                            finding = docx_zero_font_finding(path, elem, name, run_number, line_number)
+                            if finding is not None:
+                                format_findings.append(finding)
                     if tag == "t" and elem.text:
                         pieces.append(elem.text)
+                        line_number += elem.text.count("\n")
                     elif tag in {"p", "br"}:
                         pieces.append("\n")
+                        line_number += 1
                     elif tag == "tab":
                         pieces.append("\t")
     except zipfile.BadZipFile as exc:
@@ -406,6 +448,7 @@ def read_text(
     encoding: str | None,
     *,
     docx_scope: str = "all",
+    docx_format_findings: list[Finding] | None = None,
 ) -> tuple[str, str]:
     """读取文本；docx_scope 仅影响 DOCX，默认保持全包检查行为。"""
 
@@ -415,7 +458,7 @@ def read_text(
     path = Path(path_arg)
     try:
         if path.suffix.lower() == ".docx":
-            return str(path), read_docx(path, scope=docx_scope)
+            return str(path), read_docx(path, scope=docx_scope, format_findings=docx_format_findings)
         raw = path.read_bytes()
     except InputReadError:
         raise
@@ -1472,7 +1515,7 @@ def build_argument_parser() -> argparse.ArgumentParser:
     parser.add_argument("files", nargs="+", help="Text/Markdown/DOCX files to scan, or '-' for stdin.")
     parser.add_argument("--encoding", help="Encoding for plain-text files.")
     parser.add_argument("--json", action="store_true", help="Emit JSON findings.")
-    parser.add_argument("--format", action="store_true", help="Also scan punctuation, number, list-marker, and emoji format risks.")
+    parser.add_argument("--format", action="store_true", help="Also scan punctuation, number, list-marker, emoji, and explicit DOCX zero-font-size risks.")
     parser.add_argument("--structure", action="store_true", help="Also scan adjacent paragraphs for repeated matters.")
     parser.add_argument(
         "--delivery-mode",
@@ -1502,8 +1545,12 @@ def scan_input_files(
     all_findings: list[Finding] = []
     had_read_error = False
     for file_arg in file_args:
+        docx_format_findings: list[Finding] = []
         try:
-            path_label, text = read_text(file_arg, encoding)
+            path_label, text = read_text(
+                file_arg, encoding,
+                docx_format_findings=docx_format_findings if include_format else None,
+            )
         except InputReadError as exc:
             print(f"ERROR: {exc}", file=sys.stderr)
             had_read_error = True
@@ -1517,6 +1564,7 @@ def scan_input_files(
                 delivery_mode=delivery_mode,
             )
         )
+        all_findings.extend(docx_format_findings)
     return all_findings, had_read_error
 
 

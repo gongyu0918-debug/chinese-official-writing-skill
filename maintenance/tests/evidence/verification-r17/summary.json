@@ -1,0 +1,451 @@
+{
+  "calls": 46,
+  "technical_valid": 45,
+  "runs": [
+    {
+      "run": "final-genres-native-r17-low-frequency",
+      "calls": 10,
+      "technical_valid": 10,
+      "invalid": [],
+      "totals": {
+        "baseline": {
+          "commands": 53,
+          "read_chars_unique": 105357,
+          "input_tokens": 681453,
+          "cached_input_tokens": 586112,
+          "uncached_input_tokens": 95341,
+          "output_tokens": 17572,
+          "seconds": 206.47,
+          "calls": 5,
+          "technical_valid": 5,
+          "prose_lint.py": 2,
+          "draft_length.py": 0,
+          "anti_ai_page_returned": 1,
+          "tasks_with_prose_command": 2
+        },
+        "candidate": {
+          "commands": 53,
+          "read_chars_unique": 43879,
+          "input_tokens": 650835,
+          "cached_input_tokens": 589184,
+          "uncached_input_tokens": 61651,
+          "output_tokens": 15061,
+          "seconds": 204.64,
+          "calls": 5,
+          "technical_valid": 5,
+          "prose_lint.py": 5,
+          "draft_length.py": 5,
+          "anti_ai_page_returned": 5,
+          "tasks_with_prose_command": 5
+        }
+      }
+    },
+    {
+      "run": "final-word-native-r17",
+      "calls": 12,
+      "technical_valid": 11,
+      "invalid": [
+        {
+          "model": "ollama-cloud/glm-5.3-flash",
+          "case": "scope_word_complete_signoff",
+          "arm": "candidate",
+          "invalid": [
+            "timeout",
+            "missing_final"
+          ]
+        }
+      ],
+      "totals": {
+        "baseline": {
+          "commands": 105,
+          "read_chars_unique": 123962,
+          "input_tokens": 2542890,
+          "cached_input_tokens": 1773312,
+          "uncached_input_tokens": 769578,
+          "output_tokens": 69458,
+          "seconds": 794.01,
+          "calls": 6,
+          "technical_valid": 6,
+          "prose_lint.py": 3,
+          "draft_length.py": 0,
+          "anti_ai_page_returned": 1,
+          "tasks_with_prose_command": 2
+        },
+        "candidate": {
+          "commands": 130,
+          "read_chars_unique": 67281,
+          "input_tokens": 1917291,
+          "cached_input_tokens": 1293184,
+          "uncached_input_tokens": 624107,
+          "output_tokens": 52116,
+          "seconds": 986.72,
+          "calls": 6,
+          "technical_valid": 5,
+          "prose_lint.py": 8,
+          "draft_length.py": 5,
+          "anti_ai_page_returned": 4,
+          "tasks_with_prose_command": 4
+        }
+      }
+    },
+    {
+      "run": "editorial-object-native-r17-qwen",
+      "calls": 4,
+      "technical_valid": 4,
+      "invalid": [],
+      "totals": {
+        "baseline": {
+          "commands": 29,
+          "read_chars_unique": 15771,
+          "input_tokens": 257987,
+          "cached_input_tokens": 221056,
+          "uncached_input_tokens": 36931,
+          "output_tokens": 6370,
+          "seconds": 149.68,
+          "calls": 2,
+          "technical_valid": 2,
+          "prose_lint.py": 5,
+          "draft_length.py": 5,
+          "anti_ai_page_returned": 2,
+          "tasks_with_prose_command": 2
+        },
+        "candidate": {
+          "commands": 22,
+          "read_chars_unique": 15843,
+          "input_tokens": 342989,
+          "cached_input_tokens": 310528,
+          "uncached_input_tokens": 32461,
+          "output_tokens": 10281,
+          "seconds": 223.04000000000002,
+          "calls": 2,
+          "technical_valid": 2,
+          "prose_lint.py": 3,
+          "draft_length.py": 4,
+          "anti_ai_page_returned": 2,
+          "tasks_with_prose_command": 2
+        }
+      }
+    },
+    {
+      "run": "editorial-object-native-r17-minimax",
+      "calls": 4,
+      "technical_valid": 4,
+      "invalid": [],
+      "totals": {
+        "baseline": {
+          "commands": 13,
+          "read_chars_unique": 17946,
+          "input_tokens": 162652,
+          "cached_input_tokens": 134456,
+          "uncached_input_tokens": 28196,
+          "output_tokens": 8541,
+          "seconds": 114.95,
+          "calls": 2,
+          "technical_valid": 2,
+          "prose_lint.py": 0,
+          "draft_length.py": 0,
+          "anti_ai_page_returned": 2,
+          "tasks_with_prose_command": 0
+        },
+        "candidate": {
+          "commands": 33,
+          "read_chars_unique": 16509,
+          "input_tokens": 447585,
+          "cached_input_tokens": 413178,
+          "uncached_input_tokens": 34407,
+          "output_tokens": 7251,
+          "seconds": 140.42000000000002,
+          "calls": 2,
+          "technical_valid": 2,
+          "prose_lint.py": 0,
+          "draft_length.py": 0,
+          "anti_ai_page_returned": 2,
+          "tasks_with_prose_command": 0
+        }
+      }
+    },
+    {
+      "run": "motion-purpose-native-r17",
+      "calls": 8,
+      "technical_valid": 8,
+      "invalid": [],
+      "totals": {
+        "baseline": {
+          "commands": 50,
+          "read_chars_unique": 42726,
+          "input_tokens": 654481,
+          "cached_input_tokens": 593664,
+          "uncached_input_tokens": 60817,
+          "output_tokens": 15168,
+          "seconds": 254.06,
+          "calls": 4,
+          "technical_valid": 4,
+          "prose_lint.py": 4,
+          "draft_length.py": 4,
+          "anti_ai_page_returned": 4,
+          "tasks_with_prose_command": 4
+        },
+        "candidate": {
+          "commands": 49,
+          "read_chars_unique": 35202,
+          "input_tokens": 658148,
+          "cached_input_tokens": 600832,
+          "uncached_input_tokens": 57316,
+          "output_tokens": 12710,
+          "seconds": 248.67000000000002,
+          "calls": 4,
+          "technical_valid": 4,
+          "prose_lint.py": 4,
+          "draft_length.py": 4,
+          "anti_ai_page_returned": 4,
+          "tasks_with_prose_command": 4
+        }
+      }
+    },
+    {
+      "run": "final-modes-native-r17",
+      "calls": 8,
+      "technical_valid": 8,
+      "invalid": [],
+      "totals": {
+        "baseline": {
+          "commands": 31,
+          "read_chars_unique": 71758,
+          "input_tokens": 496332,
+          "cached_input_tokens": 411776,
+          "uncached_input_tokens": 84556,
+          "output_tokens": 27548,
+          "seconds": 610.48,
+          "calls": 4,
+          "technical_valid": 4,
+          "prose_lint.py": 0,
+          "draft_length.py": 0,
+          "anti_ai_page_returned": 1,
+          "tasks_with_prose_command": 0
+        },
+        "candidate": {
+          "commands": 62,
+          "read_chars_unique": 46032,
+          "input_tokens": 636999,
+          "cached_input_tokens": 554752,
+          "uncached_input_tokens": 82247,
+          "output_tokens": 27895,
+          "seconds": 657.8000000000001,
+          "calls": 4,
+          "technical_valid": 4,
+          "prose_lint.py": 9,
+          "draft_length.py": 9,
+          "anti_ai_page_returned": 4,
+          "tasks_with_prose_command": 4
+        }
+      }
+    }
+  ],
+  "blind_reviews": [
+    {
+      "name": "final-genres-r17",
+      "pairs": 5,
+      "counts": {
+        "body": {
+          "tie": 4,
+          "baseline": 1
+        },
+        "delivery": {
+          "tie": 2,
+          "candidate": 2,
+          "baseline": 1
+        }
+      },
+      "decoded": [
+        {
+          "id": "P01",
+          "run": "final-genres-native-r17-low-frequency",
+          "model": "command-code/deepseek-deepseek-v4.1-flash",
+          "case": "communique",
+          "body": "tie",
+          "delivery": "tie"
+        },
+        {
+          "id": "P02",
+          "run": "final-genres-native-r17-low-frequency",
+          "model": "command-code/deepseek-deepseek-v4.1-flash",
+          "case": "decision",
+          "body": "tie",
+          "delivery": "candidate"
+        },
+        {
+          "id": "P03",
+          "run": "final-genres-native-r17-low-frequency",
+          "model": "command-code/deepseek-deepseek-v4.1-flash",
+          "case": "motion",
+          "body": "baseline",
+          "delivery": "baseline"
+        },
+        {
+          "id": "P04",
+          "run": "final-genres-native-r17-low-frequency",
+          "model": "command-code/deepseek-deepseek-v4.1-flash",
+          "case": "order",
+          "body": "tie",
+          "delivery": "tie"
+        },
+        {
+          "id": "P05",
+          "run": "final-genres-native-r17-low-frequency",
+          "model": "command-code/deepseek-deepseek-v4.1-flash",
+          "case": "resolution",
+          "body": "tie",
+          "delivery": "candidate"
+        }
+      ]
+    },
+    {
+      "name": "editorial-object-r17",
+      "pairs": 4,
+      "counts": {
+        "body": {
+          "candidate": 3,
+          "baseline": 1
+        },
+        "delivery": {
+          "candidate": 3,
+          "baseline": 1
+        }
+      },
+      "decoded": [
+        {
+          "id": "P01",
+          "run": "editorial-object-native-r17-qwen",
+          "model": "alibaba-token-plan/qwen3.8-flash",
+          "case": "editorial_and_news",
+          "body": "candidate",
+          "delivery": "candidate"
+        },
+        {
+          "id": "P02",
+          "run": "editorial-object-native-r17-qwen",
+          "model": "alibaba-token-plan/qwen3.8-flash",
+          "case": "editorial_note_only",
+          "body": "baseline",
+          "delivery": "baseline"
+        },
+        {
+          "id": "P03",
+          "run": "editorial-object-native-r17-minimax",
+          "model": "minimax-cn/MiniMax-M3",
+          "case": "editorial_and_news",
+          "body": "candidate",
+          "delivery": "candidate"
+        },
+        {
+          "id": "P04",
+          "run": "editorial-object-native-r17-minimax",
+          "model": "minimax-cn/MiniMax-M3",
+          "case": "editorial_note_only",
+          "body": "candidate",
+          "delivery": "candidate"
+        }
+      ]
+    },
+    {
+      "name": "motion-purpose-r17",
+      "pairs": 4,
+      "counts": {
+        "body": {
+          "baseline": 1,
+          "tie": 2,
+          "candidate": 1
+        },
+        "delivery": {
+          "baseline": 1,
+          "tie": 2,
+          "candidate": 1
+        }
+      },
+      "decoded": [
+        {
+          "id": "P01",
+          "run": "motion-purpose-native-r17",
+          "model": "alibaba-token-plan/qwen3.8-flash",
+          "case": "motion",
+          "body": "baseline",
+          "delivery": "baseline"
+        },
+        {
+          "id": "P02",
+          "run": "motion-purpose-native-r17",
+          "model": "alibaba-token-plan/qwen3.8-flash",
+          "case": "motion_with_supplied_details",
+          "body": "tie",
+          "delivery": "tie"
+        },
+        {
+          "id": "P03",
+          "run": "motion-purpose-native-r17",
+          "model": "command-code/deepseek-deepseek-v4.1-flash",
+          "case": "motion",
+          "body": "candidate",
+          "delivery": "candidate"
+        },
+        {
+          "id": "P04",
+          "run": "motion-purpose-native-r17",
+          "model": "command-code/deepseek-deepseek-v4.1-flash",
+          "case": "motion_with_supplied_details",
+          "body": "tie",
+          "delivery": "tie"
+        }
+      ]
+    },
+    {
+      "name": "final-modes-r17",
+      "pairs": 4,
+      "counts": {
+        "body": {
+          "tie": 1,
+          "baseline": 1,
+          "candidate": 2
+        },
+        "delivery": {
+          "baseline": 3,
+          "candidate": 1
+        }
+      },
+      "decoded": [
+        {
+          "id": "P01",
+          "run": "final-modes-native-r17",
+          "model": "alibaba-token-plan-2/qwen3.8-flash",
+          "case": "existing_field_form",
+          "body": "tie",
+          "delivery": "baseline"
+        },
+        {
+          "id": "P02",
+          "run": "final-modes-native-r17",
+          "model": "alibaba-token-plan-2/qwen3.8-flash",
+          "case": "review",
+          "body": "baseline",
+          "delivery": "baseline"
+        },
+        {
+          "id": "P03",
+          "run": "final-modes-native-r17",
+          "model": "alibaba-token-plan-2/qwen3.8-flash",
+          "case": "review_rewrite",
+          "body": "candidate",
+          "delivery": "candidate"
+        },
+        {
+          "id": "P04",
+          "run": "final-modes-native-r17",
+          "model": "alibaba-token-plan-2/qwen3.8-flash",
+          "case": "scope_analysis_dedupe",
+          "body": "candidate",
+          "delivery": "baseline"
+        }
+      ]
+    }
+  ],
+  "note": "Separate frozen comparisons, not a pooled success rate. Word originals and rendered pages are assessed independently."
+}
