@@ -1,0 +1,48 @@
+{
+  "archive": "F:\\Workspaces\\chinese-official-writing-skill-archives\\experiments\\reference-rewrite-20260913-common-layer\\word-recovery-r8-r15.zip",
+  "sha256": "c3b38a18976b8bccc264c55223f88e97d1661ec6e75a00a8166bffc1f9c6d62e",
+  "bytes": 2206088,
+  "entries": 91,
+  "file_entries": 62,
+  "crc": "PASS",
+  "archive_mode": "exclusive-create; no overwrite",
+  "source_directory": "F:\\Workspaces\\chinese-official-writing-skill\\output\\route-worktrees\\reference-rewrite-20260912\\output\\rewrite-word-recovery-r15",
+  "source_unchanged": true,
+  "archive_file_hash_match_count": 62,
+  "report_sha256": "13cbd42e4359c873098bf622fa93b98b07858a366dc0009b11422fdc2f4449a3",
+  "report_copy": "report.md",
+  "report_copy_identical": true,
+  "source_run": "combined-native-r8-word",
+  "source_baseline_commit": "1ce7112303172478faa2392667a2de1098eb912c",
+  "source_candidate_head": "85ee17b2c06874a81ada872ef8812bebe93f3627",
+  "source_snapshot_fingerprints": {
+    "baseline": "4ac78943f1d5f7660c879360fdee0163f43d8e87dd951838f7a7cddaab81004f",
+    "candidate": "dfe6889f3335f601b539e3f584656ca8fe080fc2493a6d5ad4e1421ab4b2cb9d"
+  },
+  "calls": 12,
+  "recovered_docx": 12,
+  "contains_request_document": 11,
+  "placeholder_debug_docx": 1,
+  "original_technical_valid": 6,
+  "original_timeout_missing_final": 6,
+  "format_only_verbatim": 4,
+  "current_recovery_rendered_docx": 12,
+  "current_recovery_rendered_pages": 12,
+  "file_types": {
+    ".json": 5,
+    ".txt": 12,
+    ".docx": 12,
+    ".pdf": 15,
+    ".png": 15,
+    ".log": 1,
+    ".ps1": 1,
+    ".md": 1
+  },
+  "sensitive_file_check": {
+    "status": "PASS",
+    "auth_credential_config_secret_filename_hits": 0,
+    "secret_like_text_value_hits": 0,
+    "symlink_or_reparse_entries": 0
+  },
+  "limits": "R8 historical recovery only. Six original calls remain timeout/missing_final; one recovered DOCX contains only XX. Recovery and rendering do not establish final-candidate acceptance or repair original final links. No new model call, no rerender, no DOCX edit, no source deletion."
+}
