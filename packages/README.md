@@ -9,6 +9,6 @@
 | `qwenwork/` | QwenWork（Qwen 办公）静态 Skill 兼容面，不声明 Hook 生命周期 |
 | `hermes/` | Hermes 兼容面 |
 | `openclaw/` | OpenClaw 兼容面，不含交付 Hook |
-| `red-skillhub/` | Red SkillHub 专用发布面 |
+| `red-skillhub/` | 历史平台快照，非当前版本发布来源；发布前须按 canonical 重新生成并核对 |
 
 这些目录保留普通 Skill、references 和脚本。Hook 已移至独立分支，后续归 Pro 专属；保存位置和许可界限见 [Hook 去向便条](../maintenance/docs/pro-hooks-next.md)。

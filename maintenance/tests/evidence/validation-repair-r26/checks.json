@@ -1,0 +1,29 @@
+{
+  "python": "3.11.16",
+  "source_head": "0aa385873e260128c9a3cf3a9ad12d4eb0fb5e4d",
+  "product_files": 73,
+  "product_fingerprint": "03b11fbbfca3409b3b7ae6853f4e9174448746378fee0b3d04cf9fb46ff97d2d",
+  "product_change": "NONE",
+  "r20_frozen_files": 73,
+  "r20_frozen_differences": [],
+  "initial_discover": {
+    "tests": 411,
+    "failures": 109,
+    "errors": 7
+  },
+  "focused_technical_tests": {
+    "tests": 56,
+    "result": "PASS",
+    "scope": "Five named modules, not the full discovery suite or writing quality"
+  },
+  "path_parser_markdown_followup": {
+    "tests": 4,
+    "result": "PASS"
+  },
+  "manifest": {
+    "pages": 67,
+    "result": "PASS"
+  },
+  "native_writing_calls": 0,
+  "acceptance": "Rule prose is assessed by independent review and real writing, not Python keyword or whole-sentence assertions."
+}

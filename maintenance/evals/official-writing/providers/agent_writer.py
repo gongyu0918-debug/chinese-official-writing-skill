@@ -1256,6 +1256,9 @@ def _finish_reference_paths(paths: list[str], tasks: list[str]) -> list[str]:
         "references/prose-lint-usage.md",
     ]
     selected = [path for path in paths if path not in common]
+    # Explicit field actions apply across genres, as required by SKILL.md.
+    if any(_contains_marker(task, PERIODIC_REPORT_FIELD_MARKERS) for task in tasks):
+        selected.extend(GENRE_REFERENCES["field_editing"])
     # Ordinary limits, including 80 characters, are handled in writing-rules.
     if any(marker in task for task in tasks for marker in ("压缩", "超限", "篇幅分配", "计数口径")):
         selected.append("references/compression-details.md")

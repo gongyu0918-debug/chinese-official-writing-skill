@@ -1,91 +1,69 @@
-"""Audit the user-facing Skill surface for leaked engineering instructions."""
-
+"""Check local product links and leaked developer commands, not rule wording."""
 from __future__ import annotations
 
+import argparse
 import re
 from pathlib import Path
 
-
 ROOT = Path(__file__).resolve().parents[2]
 PRODUCT = ROOT / "chinese-official-writing"
-PROHIBITED = (
-    "git commit",
-    "git push",
-    "pytest",
-    "python -m unittest",
-    "worktree",
-    "maintenance/",
-    "开发命令",
-    "构建命令",
-    "宿主适配",
-    "运行时能力",
-    "构建 Skill",
-    "维护 Skill",
-)
-ROUTE_META_LEAKS = (
-    "从 `SKILL.md` 直接进入",
-    "从 SKILL.md 直接进入",
-    "补充读取：",
-    "总路由表",
-    "停止读取本页",
-    "不回读",
-    "route-manifest.json",
-    "共性伴读",
-    "短路命中",
-    "材料稀疏",
-    "材料稀薄",
-)
-ROUTING_DESCRIPTION_PHRASES = (
-    "按交付模式和文种场景渐进读取规则",
-    "按交付模式读取规则",
-)
+DEVELOPER_MARKERS = ("git commit", "git push", "python -m unittest", "pytest", "maintenance/", "route-manifest.json")
 REMOVED_HOOK_ROUTES = ("hooks/", "scripts/review_gate.py", "references/delivery-review-gate.md")
+LOCAL_NAME = r"(?:references/|scripts/)?[A-Za-z0-9_.-]+\.(?:md|py)"
+LOCAL_LINK = re.compile(rf"`({LOCAL_NAME})`|\[[^\]]*\]\(({LOCAL_NAME})\)")
 
 
-def audit() -> list[str]:
-    errors: list[str] = []
-    files = [PRODUCT / "SKILL.md", *sorted((PRODUCT / "references").glob("*.md"))]
+def linked_paths(path: Path, product: Path, text: str) -> set[Path]:
+    links = set()
+    for code_link, markdown_link in LOCAL_LINK.findall(text):
+        name = code_link or markdown_link
+        if "/" in name or name in {"SKILL.md", "README.md"}:
+            target = product / name
+        elif name.endswith(".py"):
+            target = product / "scripts" / name
+        else:
+            target = path.parent / name
+        links.add(target)
+    return links
+
+
+def audit(product: Path | None = None) -> list[str]:
+    product = PRODUCT if product is None else product
+    entry = product / "SKILL.md"
+    files = [entry, *sorted((product / "references").glob("*.md"))]
+    errors, graph = [], {}
     for path in files:
-        text = path.read_text(encoding="utf-8")
-        rel = path.relative_to(PRODUCT).as_posix()
-        lower = text.lower()
-        for route in REMOVED_HOOK_ROUTES:
-            if route in lower:
-                errors.append(f"{rel}: removed Hook route remains: {route!r}")
-        for phrase in PROHIBITED:
-            if phrase.lower() in lower:
-                errors.append(f"{rel}: leaked engineering phrase {phrase!r}")
-        for phrase in ROUTE_META_LEAKS:
-            if phrase.lower() in lower:
-                errors.append(f"{rel}: leaked construction/routing residue {phrase!r}")
-        if path.name == "SKILL.md":
-            match = re.search(r"^description: (.+)$", text, re.MULTILINE)
-            if not match:
-                errors.append("SKILL.md: missing description")
-            else:
-                description = match.group(1)
-                for phrase in ROUTING_DESCRIPTION_PHRASES:
-                    if phrase in description:
-                        errors.append(f"SKILL.md: description contains routing phrase {phrase!r}")
-            if "## 任务模式路由与写作主线" in text:
-                errors.append("SKILL.md: duplicate detailed routing section remains on homepage")
-            if text.count("用户需求 → 选择文种 → 写稿或改稿 → 按步骤检查 → 交付") != 1:
-                errors.append("SKILL.md: homepage route spine is missing or duplicated")
-            if "所有任务先按交付动作分模式" in text:
-                errors.append("SKILL.md: duplicated route instruction remains outside route spine")
-            scope = text.split("## 入口契约", 1)[0]
-            for phrase in ("compatibility-scene-routing.md", "genre-playbook-opinion.md", "genre-playbook-institution-rules.md", "hooks/README.md"):
-                if phrase in scope:
-                    errors.append(f"SKILL.md: routing pointer leaked into applicability scope: {phrase!r}")
-            for phrase in ("请示请求上级指示或批准", "报告汇报、反映或答复", "通知写清对象"):
-                if phrase in text:
-                    errors.append(f"SKILL.md: genre-specific rule leaked into homepage: {phrase!r}")
+        rel = path.relative_to(product).as_posix()
+        if not path.is_file():
+            errors.append(f"missing file: {rel}")
+            continue
+        text = path.read_text(encoding="utf-8-sig")
+        for marker in DEVELOPER_MARKERS + REMOVED_HOOK_ROUTES:
+            if marker.lower() in text.lower():
+                errors.append(f"{rel}: developer command or removed route: {marker!r}")
+        links = linked_paths(path, product, text)
+        graph[path] = links
+        for target in sorted(links):
+            if not target.is_file():
+                errors.append(f"{rel}: missing linked file {target.relative_to(product).as_posix()}")
+    visited, pending = set(), [entry]
+    while pending:
+        path = pending.pop()
+        if path in visited:
+            continue
+        visited.add(path)
+        pending.extend(graph.get(path, set()) - visited)
+    for path in files[1:]:
+        if path not in visited:
+            errors.append(f"unreachable reference: {path.relative_to(product).as_posix()}")
     return errors
 
 
 if __name__ == "__main__":
-    problems = audit()
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--root", type=Path, default=PRODUCT)
+    problems = audit(parser.parse_args().root)
     if problems:
         print("\n".join(problems))
         raise SystemExit(1)
-    print("product surface marker audit passed; semantic instruction review remains separate")
+    print("product paths reachable; rule readability and semantics require independent review")

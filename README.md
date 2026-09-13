@@ -129,13 +129,13 @@ QwenWork 可使用 [`packages/qwenwork/`](packages/qwenwork/) 中的无 Hook 静
 | `packages/qwenwork/` | QwenWork（Qwen 办公）静态 Skill 兼容包，不声明 Hook 生命周期 |
 | `packages/hermes/` | Hermes 兼容包 |
 | `packages/openclaw/` | OpenClaw 兼容包，不含 Hook 和交付门禁 |
-| `packages/red-skillhub/` | Red SkillHub 专用包 |
+| `packages/red-skillhub/` | 历史平台快照，非当前版本发布来源；发布前须按 canonical 重新生成并核对 |
 | `packages/` | 各平台普通兼容包总目录；见 [兼容包索引](packages/README.md) |
 | `maintenance/` | 测试、评测、构建工具、原始证据和维护记录；见 [维护区索引](maintenance/README.md) |
 
 ## 开源许可
 
-普通 Skill、references、普通检查脚本与兼容包采用 [MIT License](LICENSE)。Hook 已从本轮 MIT 候选移出，保存于独立分支供 Pro 后续接续。v1.6.34 及此前已发布的 MIT 副本保留原许可；后续 Hook 更新归 Pro 专属，采用版权所有协议。构建与接续信息见 [Hook 去向便条](maintenance/docs/pro-hooks-next.md)。
+普通 Skill、references、普通检查脚本与兼容包采用 [MIT License](LICENSE)。1.x 稳定线及其既有 Hook 继续维持 MIT 授权。2.0 测试线移出 Hook，保存于独立分支供 Pro 后续接续；另建 Pro 专属内容按其许可发布，复用的 MIT 及第三方代码保留原版权和许可声明。构建与接续信息见 [Hook 去向便条](maintenance/docs/pro-hooks-next.md)。
 
 ## 规范与参考
 

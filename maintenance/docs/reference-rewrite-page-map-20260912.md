@@ -1,7 +1,7 @@
 # Reference 逐页架构归属表（2026-09-13，2.0 开发候选）
 
-固定基线为 `main@1ce7112303172478faa2392667a2de1098eb912c`；本表活动状态为在R20基础上采用R23议案修复及用户独立复核范围纠正的开发候选，完整指纹为 `9fade115eae2892cf4ac2af3d9587f784d2b476c200ef32ab9eca128d50ec18a`，见[R23采用记录](../../output/motion-content-r23-adopted/adoption.json)。50 个旧页全部列名：37 个同名路径仍在、13 个退役或迁出；另新增 30 页，共 67 页，其中 40 个具名主叶、43 条路线（40 个主叶加 3 条事务叠加路线）。这是 2.0 开发候选的工程映射，不是 1.x 对照验收或发布结论。
-当前有限收口见[R23状态](../tests/evidence/completion-audit-r23/status.md)；历史阶段结果与未完成项见[共性层进度](rewrite-common-layer-progress-20260913.md)及[R19整体完成度审计](../tests/evidence/completion-audit-r19/report.md)（[JSON](../tests/evidence/completion-audit-r19/report.json)）。下表保留50行旧页归属、30个新增页及原链接；来源性审计备注须结合后续证据判读，逐页归属不代表逐条语义、真实稿件或整体1.x等价已经闭合。
+固定基线为 `main@1ce7112303172478faa2392667a2de1098eb912c`；当前为R25开发包，完整指纹 `03b11fbbfca3409b3b7ae6853f4e9174448746378fee0b3d04cf9fb46ff97d2d`，见[R25采用记录](../../output/narration-grounding-r25-adopted/adoption.json)。50 个旧页全部列名：37 个同名路径仍在、13 个退役或迁出；另新增 30 页，共 67 页，其中 40 个具名主叶、43 条路线（40 个主叶加 3 条事务叠加路线）。这是 2.0 开发候选的工程映射，不是发布证明。
+当前实稿记录见[R25结果](../tests/evidence/narration-grounding-r25/results.md)，工程检查的范围与最新用户口径见[R26最小修复](../tests/evidence/validation-repair-r26/results.md)。R20、R23等历史指纹只与各自冻结目录比较，不能拿来要求当前包逐文件相同；R20冻结目录73文件本轮核对无漂移。下表历史备注与原始结果保留，具体状态以后续记录为准。
 
 “同名承接”表示职责仍落同名文件，不表示内容未改；“拆分承接”表示职责分到多个现存页；“退役/迁出”说明替代或保存位置。旧表的 rewrite/retain 是阶段性文件处理标签，本次按当前职责更新，均不等于逐条语义或真实写稿通过。表内产品链接指向已应用的 canonical。各行映射以旧 Git 对象、冻结候选及下列审计共同定位，允许读取与排除集合见[路由 manifest](../specs/reference-route-manifest.json)；它们是静态契约，实际读页另见原生证据。
 
