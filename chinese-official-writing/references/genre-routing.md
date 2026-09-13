@@ -1,6 +1,6 @@
 # 文种路由
 
-本页只解决“这份材料应该按什么功能写”。确定文种后，转入对应专页；本页不复制各专页骨架。
+按稿件功能确定文种，再采用对应文种规则。
 
 ## 判定树
 
@@ -31,11 +31,13 @@
 | 汇报工作、反映进展、综合多方情况、答复上级询问，或按周/月汇报进度 | `genre-playbook-report.md` |
 | 回顾年度、阶段或专项工作，分析得失、总结经验 | `genre-playbook-work-summary.md` |
 | 制定年度、阶段或专项工作要点，明确未来重点任务 | `genre-playbook-work-priorities.md` |
-| 解释具体事实或回应疑问 | `genre-playbook-explanation.md` |
+| 解释具体事实、既有流程或回应疑问 | `genre-playbook-explanation.md` |
+| 以制度、办法、细则或操作规程等文稿承载执行规则 | `genre-playbook-institution-rules.md` |
 | 告知安排、要求对象办理事项 | `genre-playbook-notice.md` |
 | 通报情况、表扬或批评 | `genre-playbook-bulletin.md` |
 | 记录会议讨论与议定事项 | `genre-playbook-minutes.md` |
-| 回复来函或平行商洽 | `genre-playbook-correspondence.md` |
+| 不相隶属单位之间回复来函或商洽 | `genre-playbook-correspondence.md` |
+| 上级机关答复下级机关请示 | `genre-playbook-reply.md` |
 | 公开采购、征集供应商响应或发布采购事项告知 | `genre-playbook-procurement-announcement.md` |
 | 发布其他公告、公示、通告 | `genre-playbook-publication.md` |
 | 报道已发生的事件 | `genre-playbook-news-message.md` |

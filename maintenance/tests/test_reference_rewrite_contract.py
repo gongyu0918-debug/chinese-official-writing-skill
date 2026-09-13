@@ -9,12 +9,16 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[2]
 SKILL = ROOT / "chinese-official-writing" / "SKILL.md"
 REFS = ROOT / "chinese-official-writing" / "references"
+REFERENCE_BASELINE = "1ce7112303172478faa2392667a2de1098eb912c"
 FINAL_REVIEW_PATHS = [
-    "references/final-review-layers.md",
+    "references/writing-rules.md",
     "references/anti-ai-patterns.md",
     "references/prose-lint-usage.md",
-    "references/delivery.md",
 ]
+RETIRED_COMMON_PAGES = {
+    "information-selection.md", "final-review-layers.md", "delivery.md",
+    "short-draft-naturalness.md", "task-route-cards.md",
+}
 
 
 class ReferenceRewriteContractTests(unittest.TestCase):
@@ -29,95 +33,61 @@ class ReferenceRewriteContractTests(unittest.TestCase):
                 self.assertIn(term, text)
 
     def test_all_reference_pages_have_explicit_architecture_mapping(self) -> None:
-        mapping = (ROOT / "maintenance" / "docs" / "reference-rewrite-page-map-20260912.md").read_text(encoding="utf-8")
-        rows = re.findall(r"^\|\s*\d+\s*\|\s*`([^`]+\.md)`\s*\|.*\|\s*(rewrite|retain|delete)\s*\|", mapping, re.MULTILINE)
-        actual = sorted(path.name for path in REFS.glob("*.md"))
-        baseline = sorted(
+        mapping = (ROOT / "maintenance/docs/reference-rewrite-page-map-20260912.md").read_text(encoding="utf-8")
+        rows = re.findall(r"^\|\s*\d+\s*\|\s*`([^`]+\.md)`\s*\|", mapping, re.MULTILINE)
+        baseline = {
             Path(line).name
             for line in subprocess.check_output(
-                ["git", "ls-tree", "-r", "--name-only", "main", "chinese-official-writing/references"],
-                text=True,
+                ["git", "ls-tree", "-r", "--name-only", REFERENCE_BASELINE, "chinese-official-writing/references"],
+                cwd=ROOT, text=True,
             ).splitlines()
-        )
-        self.assertEqual(len(rows), 50)
-        self.assertEqual(sorted(name for name, _ in rows), baseline)
-        generated = {
-            "genre-playbook-notice.md",
-            "genre-playbook-publication.md",
-            "genre-playbook-bulletin.md",
-            "genre-playbook-research.md",
-            "genre-playbook-feasibility.md",
-            "genre-playbook-procurement-announcement.md",
-            "genre-playbook-decision.md",
-            "genre-playbook-resolution.md",
-            "genre-playbook-motion.md",
-            "genre-playbook-communique.md",
-            "genre-playbook-order.md",
-            "genre-playbook-deployment.md",
-            "genre-playbook-reply.md",
-            "genre-playbook-opinion.md",
-            "genre-playbook-explanation.md",
-            "genre-playbook-report.md",
-            "genre-playbook-meeting-host.md",
-            "genre-playbook-duty-report.md",
-            "genre-playbook-work-priorities.md",
-            "genre-playbook-review-opinion.md",
-            "genre-playbook-technical-requirements.md",
-            "genre-playbook-responsibility-letter.md",
-            "genre-playbook-initiative.md",
-            "genre-playbook-open-letter.md",
-            "genre-playbook-narration.md",
-            "genre-playbook-information-materials.md",
-            "transaction-remediation-report.md",
-            "transaction-feedback-report.md",
-            "delivery.md",
         }
-        self.assertEqual(set(actual) - set(baseline), generated)
-        self.assertTrue(set(actual) - generated <= set(baseline))
-        self.assertEqual(len({name for name, _ in rows}), 50)
+        actual = {path.name for path in REFS.glob("*.md")}
+        self.assertEqual(set(rows), baseline)
+        self.assertEqual(len(rows), len(baseline))
+        active_links = set(re.findall(r"\]\(\.\./\.\./chinese-official-writing/references/([^/)]+\.md)\)", mapping))
+        self.assertEqual(active_links, actual)
+        new_section = mapping.split("## 新构造页", 1)[1].split("\n## ", 1)[0]
+        generated = set(re.findall(r"\]\(\.\./\.\./chinese-official-writing/references/([^/)]+\.md)\)", new_section))
+        self.assertEqual(actual - baseline, generated)
+        self.assertIn("writing-rules.md", generated)
+        self.assertFalse(RETIRED_COMMON_PAGES & active_links)
 
     def test_entry_uses_task_and_genre_axes_with_reachable_routes(self) -> None:
         skill = SKILL.read_text(encoding="utf-8")
-        for task in ["起草", "整体改写", "局部修改", "压缩", "审核", "格式交付"]:
+        for task in ["起草", "改写", "局部修改", "压缩", "审核", "格式交付"]:
             self.assertIn(task, skill)
-        self.assertRegex(
-            skill,
-            r"起草、改写、压缩和合稿读取 `references/information-selection\.md`",
-        )
-        for relative in [
-            "references/reference-index.md",
-            "references/genre-routing.md",
-            "references/information-selection.md",
-            "references/task-route-cards.md",
-            "references/ai-compute-docs.md",
-            *FINAL_REVIEW_PATHS,
-        ]:
+        for relative in ["references/reference-index.md", "references/genre-routing.md", "references/writing-rules.md", "references/ai-compute-docs.md"]:
             self.assertIn(relative, skill)
             self.assertTrue((SKILL.parent / relative).is_file(), relative)
+        common = (REFS / "writing-rules.md").read_text(encoding="utf-8")
+        for relative in FINAL_REVIEW_PATHS[1:]:
+            self.assertIn(Path(relative).name, common)
+            self.assertTrue((SKILL.parent / relative).is_file(), relative)
+        self.assertLess(skill.index("references/reference-index.md"), skill.index("references/writing-rules.md"))
 
-    def test_final_checks_are_numbered_and_delivery_is_last(self) -> None:
-        skill = SKILL.read_text(encoding="utf-8")
-        final_section = skill[skill.index("## 正文形态"):]
-        steps = re.findall(
-            r"^### 第([一二三四五])步：([^\n]+)\n(.*?)(?=^### |\Z)",
-            final_section,
-            re.MULTILINE | re.DOTALL,
-        )
-        self.assertEqual([number for number, _, _ in steps], list("一二三四五"))
-        for (_, _, content), references in zip(steps, [
-            ["references/compression-details.md", "scripts/draft_length.py"],
-            ["references/final-review-layers.md"],
-            ["references/anti-ai-patterns.md", "references/proofreading-checklist.md"],
-            ["references/prose-lint-usage.md", "scripts/prose_lint.py"],
-            ["references/delivery.md"],
-        ]):
-            for relative in references:
-                self.assertIn(relative, content)
-                self.assertTrue((SKILL.parent / relative).is_file(), relative)
-        before_steps = final_section[:final_section.index("### 第一步")]
-        self.assertNotIn("references/delivery.md", before_steps)
-        for scope in ["全文", "局部修改", "关联段落", "审核范围"]:
-            self.assertIn(scope, before_steps)
+    def test_common_flow_keeps_checks_and_delivery_last(self) -> None:
+        common = (REFS / "writing-rules.md").read_text(encoding="utf-8")
+        sections = re.findall(r"^## ([^\n]+)\n(.*?)(?=^## |\Z)", common, re.MULTILINE | re.DOTALL)
+        self.assertIn("交付", sections[-1][0])
+        length_section = next(body for title, body in sections if "篇幅" in title)
+        review_section = next(body for title, body in sections if "复核" in title)
+        for relative in ["scripts/draft_length.py", "references/compression-details.md"]:
+            self.assertIn(Path(relative).name, length_section)
+            self.assertTrue((SKILL.parent / relative).is_file(), relative)
+        self.assertRegex(length_section, r"普通完整短稿.*至少\s*80\s*字")
+        self.assertIn("不能报为达标", length_section)
+        for name in ["anti-ai-patterns.md", "proofreading-checklist.md", "prose-lint-usage.md"]:
+            self.assertIn(name, review_section)
+        self.assertLess(review_section.index("anti-ai-patterns.md"), review_section.index("prose-lint-usage.md"))
+        for scope in ["全文", "局部", "关联", "本轮"]:
+            self.assertIn(scope, review_section)
+        delivery = sections[-1][1]
+        for concept in ["完整稿件", "审核", "文后提示", "默认", "正文编号", "落款", "附件", "文件交付", "消息", "省略"]:
+            self.assertIn(concept, delivery)
+        self.assertRegex(delivery, r"正文编号、落款和附件.*提示前结束")
+        self.assertRegex(delivery, r"文件交付.*提示留在消息中")
+        self.assertRegex(length_section, r"文后提示.*单列")
 
     def test_product_pages_do_not_expose_build_or_maintenance_commands(self) -> None:
         texts = [SKILL.read_text(encoding="utf-8")]
@@ -275,44 +245,24 @@ class ReferenceRewriteContractTests(unittest.TestCase):
                 text = (REFS / f"genre-playbook-{suffix}.md").read_text(encoding="utf-8")
                 for concept in concepts:
                     self.assertIn(concept, text)
-                self.assertIn("SKILL.md", text)
-                self.assertIn("成稿后的检查顺序", text)
+                self.assertRegex(text, r"共性写作页.*复核.*交付")
         procurement = (REFS / "genre-playbook-procurement-review.md").read_text(encoding="utf-8")
         for boundary in ["主文种已经确定", "预算与测算有别", "缺项", "未定状态", "建议与已定要求分开", "field-editing.md"]:
             self.assertIn(boundary, procurement)
 
-    def test_retired_workflow_is_replaced_by_composable_common_pages(self) -> None:
-        self.assertFalse((REFS / "workflow.md").exists())
+    def test_retired_workflow_is_replaced_by_shared_common_rules(self) -> None:
         product = SKILL.read_text(encoding="utf-8") + "\n".join(
             page.read_text(encoding="utf-8") for page in REFS.glob("*.md")
         )
-        self.assertNotIn("workflow.md", product)
-
-        skill = SKILL.read_text(encoding="utf-8")
-        for replacement in [
-            "references/information-selection.md",
-            "references/handling-elements.md",
-            "references/argument-chains.md",
-            "references/structure-editing.md",
-            "references/compression-details.md",
-        ]:
-            self.assertIn(replacement, skill)
-
-        mapping = (ROOT / "maintenance/docs/reference-rewrite-page-map-20260912.md").read_text(
-            encoding="utf-8"
-        )
-        workflow_row = next(
-            line for line in mapping.splitlines() if "| 50 | `workflow.md` |" in line
-        )
-        self.assertIn("| delete |", workflow_row)
-        for owner in [
-            "SKILL.md",
-            "information-selection.md",
-            "structure-editing.md",
-            "compression-details.md",
-            "handling-elements.md",
-            "argument-chains.md",
-        ]:
+        for name in RETIRED_COMMON_PAGES | {"workflow.md"}:
+            self.assertFalse((REFS / name).exists(), name)
+            self.assertNotIn(name, product)
+        skill_and_index = SKILL.read_text(encoding="utf-8") + (REFS / "reference-index.md").read_text(encoding="utf-8")
+        for name in ["writing-rules.md", "handling-elements.md", "argument-chains.md", "structure-editing.md", "compression-details.md"]:
+            self.assertIn(name, skill_and_index)
+        mapping = (ROOT / "maintenance/docs/reference-rewrite-page-map-20260912.md").read_text(encoding="utf-8")
+        workflow_row = next(line for line in mapping.splitlines() if "`workflow.md`" in line and line.startswith("|"))
+        for owner in ["SKILL.md", "writing-rules.md", "structure-editing.md", "field-editing.md", "compression-details.md"]:
             self.assertIn(owner, workflow_row)
 
     def test_mit_product_keeps_ordinary_scripts_and_moves_hooks_to_pro(self) -> None:
@@ -323,12 +273,12 @@ class ReferenceRewriteContractTests(unittest.TestCase):
         note = ROOT / "maintenance/docs/pro-hooks-next.md"
         self.assertTrue(note.is_file())
         text = note.read_text(encoding="utf-8")
-        for asset in ["codex/pro-hooks-preserved-20260912", "v1.6.34", "MIT", "All rights reserved"]:
+        for asset in ["codex/pro-hooks-preserved-20260912", "v1.6.34", "MIT"]:
             self.assertIn(asset, text)
 
     def test_mirror_contains_rewritten_overlay(self) -> None:
         mirror = ROOT / "packages" / "agent-skills" / "skills" / "chinese-official-writing" / "references"
-        for name in ["reference-index.md", "task-route-cards.md", "ai-compute-docs.md"]:
+        for name in ["reference-index.md", "writing-rules.md", "ai-compute-docs.md"]:
             self.assertEqual((REFS / name).read_bytes(), (mirror / name).read_bytes(), name)
 
     def test_eval_router_uses_compute_overlay_and_minutes_leaf(self) -> None:
@@ -340,7 +290,7 @@ class ReferenceRewriteContractTests(unittest.TestCase):
         spec.loader.exec_module(module)
         for genre, task in [("报告", "写 AI 算力报告，比较云端和租赁成本"), ("采购方案", "写 GPU 采购预算和服务范围"), ("技术需求", "写 AI GPU 技术需求、SLA、接口和验收")]:
             self.assertIn("references/ai-compute-docs.md", module._reference_paths_for_genres([genre], [task]))
-        self.assertEqual(module._reference_paths_for_genres(["会议纪要"], ["只记录建议和待评估事项"]), ["SKILL.md", "references/information-selection.md", "references/genre-playbook-minutes.md"] + FINAL_REVIEW_PATHS)
+        self.assertEqual(module._reference_paths_for_genres(["会议纪要"], ["只记录建议和待评估事项"]), ["SKILL.md", "references/genre-playbook-minutes.md"] + FINAL_REVIEW_PATHS)
 
     def test_compute_overlay_requires_scene_signal(self) -> None:
         provider_path = ROOT / "maintenance" / "evals" / "official-writing" / "providers" / "agent_writer.py"
@@ -356,37 +306,44 @@ class ReferenceRewriteContractTests(unittest.TestCase):
 
     def test_formulaic_reference_is_a_capability_page(self) -> None:
         text = (REFS / "formulaic-language.md").read_text(encoding="utf-8")
-        self.assertIn("本页不替代文种路由", text)
+        self.assertIn("按已选文种", text)
+        self.assertIn("不用某个固定词反推文种", text)
         self.assertIn("历史模板", text)
         self.assertNotIn("20类事务文体", text)
-        self.assertLess(len(text), 4000)
 
-    def test_short_draft_retains_natural_paragraph_compression(self) -> None:
-        text = (REFS / "short-draft-naturalness.md").read_text(encoding="utf-8")
-        for term in ["章节、小标题和分项", "自然段", "一两句话", "不保留无信息增量"]:
-            self.assertIn(term, text)
+    def test_common_rules_retain_natural_paragraph_compression(self) -> None:
+        text = (REFS / "writing-rules.md").read_text(encoding="utf-8")
+        for concept in ["章节功能", "自然段", "一两句话", "标题", "编号", "模板优先", "篇幅上限无需填满"]:
+            self.assertIn(concept, text)
+        anti_ai = (REFS / "anti-ai-patterns.md").read_text(encoding="utf-8")
+        self.assertIn("没有新增信息或不同作用", anti_ai)
 
-    def test_light_task_routes_have_independent_short_and_local_conditions(self) -> None:
-        text = (REFS / "task-route-cards.md").read_text(encoding="utf-8")
-        choices = re.findall(r"^- (.+)$", text, re.MULTILINE)
-        self.assertEqual(len(choices), 2)
-        self.assertRegex(choices[0], r"简短.*或.*材料较少")
-        self.assertIn("主文种", choices[0])
-        self.assertIn("short-draft-naturalness.md", choices[0])
-        self.assertIn("只改", choices[1])
-        self.assertIn("structure-editing.md", choices[1])
-        self.assertIn("field-editing.md", choices[1])
-        self.assertIn("分别成立", text)
-        self.assertIn("检查步骤", text)
-        self.assertIn("本轮范围", text)
-        self.assertNotIn("一两句话", text)
-        self.assertNotIn("章节、小标题和分项", text)
+    def test_local_tasks_keep_scope_without_a_separate_short_route(self) -> None:
+        skill = SKILL.read_text(encoding="utf-8")
+        common = (REFS / "writing-rules.md").read_text(encoding="utf-8")
+        for reference in ["references/structure-editing.md", "references/field-editing.md"]:
+            self.assertIn(reference, skill)
+        for concept in ["修改范围", "逐字保留", "局部替换", "字段处理", "局部任务检查改动及关联内容"]:
+            self.assertIn(concept, common)
+        spec = importlib.util.spec_from_file_location("rewrite_common_writer", ROOT / "maintenance/evals/official-writing/providers/agent_writer.py")
+        assert spec is not None and spec.loader is not None
+        module = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(module)
+        short = module._reference_paths_for_genres(["请示"], ["写一份 80 字采购请示"])
+        ordinary = module._reference_paths_for_genres(["请示"], ["写一份采购请示"])
+        self.assertEqual(short, ordinary)
+        for relative in FINAL_REVIEW_PATHS:
+            self.assertEqual(short.count(relative), 1)
+        for references in module.GENRE_REFERENCES.values():
+            self.assertFalse({Path(relative).name for relative in references} & RETIRED_COMMON_PAGES)
+        self.assertEqual([ref for ref in short if "genre-playbook-" in ref], ["references/genre-playbook-request.md"])
 
     def test_anti_ai_reference_retains_semantic_risk_families(self) -> None:
         text = (REFS / "anti-ai-patterns.md").read_text(encoding="utf-8")
-        for term in ["连续否定", "采购正在推进", "资金充分性", "非正文", "结构化草稿腔", "句群节奏", "思考泄露", "算力", "格式"]:
-            self.assertIn(term, text)
-        self.assertIn("质量建议层", text)
+        for concept in ["必要否定", "供应商未定", "充分性自证", "起草过程", "隐藏推理", "句群", "专业术语", "否定范围", "论断强度", "标点", "版本标识"]:
+            self.assertIn(concept, text)
+        self.assertRegex(text, r"不按词表.*机械替换")
+        self.assertIn("没有新增信息或不同作用", text)
 
     def test_argument_reference_handles_evidence_and_paragraph_relations(self) -> None:
         text = (REFS / "argument-chains.md").read_text(encoding="utf-8")
@@ -415,22 +372,15 @@ class ReferenceRewriteContractTests(unittest.TestCase):
         request = (REFS / "genre-playbook-request.md").read_text(encoding="utf-8")
         self.assertNotRegex(request, r"argument-chains\.md`?\s*的请示部分")
 
-    def test_final_review_preserves_fact_genre_template_and_modification_scope(self) -> None:
-        text = (REFS / "final-review-layers.md").read_text(encoding="utf-8")
-        items = re.findall(r"^## 第([一二三])项：([^\n]+)$", text, re.MULTILINE)
-        self.assertEqual([number for number, _ in items], list("一二三"))
-        for (_, title), concepts in zip(items, [("事实", "状态"), ("文种", "结构"), ("模板", "完整性")]):
-            for concept in concepts:
-                self.assertIn(concept, title)
-        for term in ["最新版底稿", "局部修改", "关联段落", "重复", "修改范围", "待核", "附件", "批注", "修订痕迹"]:
-            self.assertIn(term, text)
-        self.assertNotRegex(text, r"`(?:references/)?genre-playbook-[^`]+\.md`")
-        for premature_delivery in ["直接输出完整正文", "复核完成即停止", "delivery.md"]:
-            self.assertNotIn(premature_delivery, text)
-        index = (REFS / "reference-index.md").read_text(encoding="utf-8")
-        self.assertIn("首页第二步事实与文种复核", index)
-        self.assertIn("核对事实、状态、文种、结构和文内完整性", index)
-        self.assertNotIn("全文交付前综合总审", index)
+    def test_common_review_preserves_fact_genre_template_and_modification_scope(self) -> None:
+        common = (REFS / "writing-rules.md").read_text(encoding="utf-8")
+        review = common.split("## 第三步：复核", 1)[1].split("## 第四步：交付", 1)[0]
+        for concept in ["事实", "状态", "主文种", "必要要素", "局部", "关联内容", "附件", "批注", "修订痕迹", "交付前修正"]:
+            self.assertIn(concept, review)
+        self.assertIn("最新版底稿", common)
+        self.assertIn("待核", common)
+        self.assertNotRegex(common, r"`(?:references/)?genre-playbook-[^`]+\.md`")
+        self.assertNotIn("复核完成即停止", review)
 
     def test_review_checklist_covers_full_review_without_excessive_gates(self) -> None:
         text = (REFS / "review-checklist.md").read_text(encoding="utf-8")
@@ -446,8 +396,8 @@ class ReferenceRewriteContractTests(unittest.TestCase):
         for revised_draft in ["审核后修改、复核后修改、优化稿件", "交付修改后的全文"]:
             self.assertIn(revised_draft, text)
         self.assertIn("有充分依据的问题直接改入正文", text)
-        delivery = (REFS / "delivery.md").read_text(encoding="utf-8")
-        for delivery_element in ["完整稿件或审稿意见", "原句或具体位置", "问题表现", "建议改法", "替代表达", "用户限定审核范围"]:
+        delivery = (REFS / "writing-rules.md").read_text(encoding="utf-8")
+        for delivery_element in ["完整稿件", "审核", "具体位置", "问题", "建议改法", "替代表达", "本轮范围"]:
             self.assertIn(delivery_element, delivery)
         self.assertNotRegex(text, r"`(?:references/)?genre-playbook-[^`]+\.md`")
         product = SKILL.read_text(encoding="utf-8") + "\n".join(
@@ -457,30 +407,32 @@ class ReferenceRewriteContractTests(unittest.TestCase):
 
     def test_prose_lint_modes_follow_text_type_and_recheck_script_edits(self) -> None:
         text = (REFS / "prose-lint-usage.md").read_text(encoding="utf-8")
-        for text_type, mode in [
-            ("审核任务收到的原稿、修改后的稿件", "draft-body"),
-            ("稿件正文和独立的文后提示", "gap-note-allowed"),
-            ("审稿意见本身", "review-only"),
-        ]:
-            self.assertRegex(text, rf"{text_type}.*`{mode}`")
-        for check in ["事实", "状态", "主体", "否定范围", "文种要素", "复扫变动文本"]:
-            self.assertIn(check, text)
+        for text_type, mode in [("稿件正文", "draft-body"), ("正文连同独立文后提示", "gap-note-allowed"), ("审稿意见本身", "review-only")]:
+            self.assertRegex(text, rf"{text_type}[^。]*`{mode}`")
+        for command in ["scripts/prose_lint.py", "--structure", "--format"]:
+            self.assertIn(command, text)
+        for concept in ["原文件保留", "另存新稿", "复扫", "已检查文本", "未完成"]:
+            self.assertIn(concept, text)
+        common = (REFS / "writing-rules.md").read_text(encoding="utf-8")
+        for concept in ["关联内容", "影响篇幅时另测字数", "已确认且属于本轮范围"]:
+            self.assertIn(concept, common)
 
-    def test_information_and_handling_pages_keep_fact_and_element_boundaries(self) -> None:
-        information = (REFS / "information-selection.md").read_text(encoding="utf-8")
+    def test_common_and_handling_pages_keep_fact_and_element_boundaries(self) -> None:
+        common = (REFS / "writing-rules.md").read_text(encoding="utf-8")
         handling = (REFS / "handling-elements.md").read_text(encoding="utf-8")
-        for term in ["材料事实", "直接分析", "状态信息", "实质缺项", "时间锚", "合理推断"]:
-            self.assertIn(term, information)
-        self.assertIn("只有主题、目标、方向或任务名称时", information)
-        self.assertIn("主题词可以承接一般方向", information)
+        for concept in ["材料与常识", "不确定性", "实质缺项", "拟", "建议", "待核", "未决定", "范围", "判断强度"]:
+            self.assertIn(concept, common)
+        self.assertRegex(common, r"只有主题或方向.*功能.*拟议")
+        self.assertRegex(common, r"当天日期.*草稿日期")
+        self.assertRegex(common, r"要求留空、待确认.*按要求保留")
+        self.assertRegex(common, r"业务时间沿用材料")
         for term in ["主体", "对象", "事项", "依据", "状态", "期限", "金额", "附件", "联系人", "反馈", "落款", "日期", "未提供", "尚未确定", "矛盾"]:
             self.assertIn(term, handling)
         self.assertIn("当前主文种", handling)
         self.assertIn("用户模板", handling)
         links = re.findall(r"`(?:references/)?([^`/]+\.md)`", handling)
-        self.assertEqual(links, ["external-research.md", "information-selection.md"])
+        self.assertEqual(links, ["external-research.md", "writing-rules.md"])
         self.assertNotRegex(handling, r"\|\s*文种(?:/材料)?\s*\|")
-        self.assertNotIn("默认不外搜", handling)
         self.assertIn("具体业务信息仍取自材料", handling)
 
     def test_style_and_addressing_pages_keep_relation_and_strength_boundaries(self) -> None:
@@ -499,7 +451,7 @@ class ReferenceRewriteContractTests(unittest.TestCase):
         text = (REFS / "genre-playbook-plan-construction.md").read_text(encoding="utf-8")
         self.assertIn("围绕已有目标、范围、步骤和期限成稿", text)
         self.assertIn("相邻内容可合成自然段", text)
-        self.assertIn("未提供的信息按 `information-selection.md` 处理", text)
+        self.assertIn("未提供的信息按 `writing-rules.md` 处理", text)
         self.assertNotIn("人员、设备、扫描方式、质量控制、周报、签字、经费、风险处置和量化验收沿用待确认状态", text)
 
 

@@ -26,11 +26,6 @@ from typing import Any
 
 
 GENRE_REFERENCES: dict[str, list[str]] = {
-    "sparse": [
-        "references/information-selection.md",
-        "references/task-route-cards.md",
-        "references/short-draft-naturalness.md",
-    ],
     "routing": [
         "references/genre-routing.md",
     ],
@@ -47,7 +42,7 @@ GENRE_REFERENCES: dict[str, list[str]] = {
         "references/anti-ai-patterns.md",
     ],
     "body_delivery": [
-        "references/delivery.md",
+        "references/writing-rules.md",
     ],
     "style": [
         "references/official-style.md",
@@ -159,7 +154,6 @@ GENRE_REFERENCES: dict[str, list[str]] = {
         "references/genre-checklist-request.md",
     ],
     "request_playbook": [
-        "references/information-selection.md",
         "references/genre-playbook-request.md",
     ],
     "feasibility_review": [
@@ -501,32 +495,6 @@ AI_NEGATION_MARKERS = (
     "不用于 AI",
 )
 
-SPARSE_CARD_GENRES = {
-    "通知",
-    "报告",
-    "情况说明",
-    "说明",
-    "通报",
-    "会议纪要",
-    "请示",
-    "申请",
-    "函",
-}
-SPARSE_TASK_MARKERS = (
-    "材料只有",
-    "只按已给",
-    "不新增事实",
-    "不要新增事实",
-    "只给",
-    "只保留",
-    "简短",
-    "短稿",
-    "未决",
-    "未形成",
-    "局部修改",
-    "只改",
-    "补一句",
-)
 MINUTES_FULL_REQUEST_MARKERS = (
     "完整会议纪要",
     "完整的会议纪要",
@@ -1138,44 +1106,6 @@ def _minutes_are_explicitly_unresolved(task: str) -> bool:
     )
 
 
-def _task_uses_sparse_card(genres: list[str], tasks: list[str], ai_compute: bool) -> bool:
-    if ai_compute or _task_requires_complex_route(tasks):
-        return False
-    if not tasks:
-        return any(genre in SPARSE_CARD_GENRES for genre in genres) and not any(
-            genre in PLAYBOOK_GENRES
-            or genre in REPORT_PLAYBOOK_GENRES
-            or genre in WORK_SUMMARY_PLAYBOOK_GENRES
-            or genre in NOTICE_PLAYBOOK_GENRES
-            or genre in PUBLICATION_PLAYBOOK_GENRES
-            or genre in PROCUREMENT_ANNOUNCEMENT_GENRES
-            or genre in SPEECH_PLAYBOOK_GENRES
-            or genre in MEETING_HOST_PLAYBOOK_GENRES
-            or genre in DUTY_REPORT_PLAYBOOK_GENRES
-            or genre in RESEARCH_PLAYBOOK_GENRES
-            or genre in FEASIBILITY_PLAYBOOK_GENRES
-            or genre in PURPOSE_PLAYBOOK_GENRES
-            or genre in DELIBERATION_PLAYBOOK_GENRES
-            or genre in DEPLOYMENT_PLAYBOOK_GENRES
-            or genre in ADVISORY_GENRES
-            or genre in COMPLAINT_GENRES
-            or genre in REMEDIATION_GENRES
-            or genre in PROJECT_APPLICATION_GENRES
-            or genre in REPLY_GENRES
-            or genre in OPINION_GENRES
-            or genre in EXPLANATION_GENRES
-            or any(marker in genre for marker in INSTITUTION_PLAYBOOK_MARKERS)
-            for genre in genres
-        )
-    if not any(genre in SPARSE_CARD_GENRES for genre in genres):
-        return False
-    if "会议纪要" in genres:
-        # Meeting status belongs to the minutes leaf; the light card is only
-        # a route gate and never carries unresolved/resolved meeting rules.
-        return False
-    return all(_contains_marker(task, SPARSE_TASK_MARKERS) for task in tasks)
-
-
 def _deliberation_primary_paths(genres: list[str]) -> list[str]:
     names = {"决定": "decision", "决议": "resolution", "议案": "motion", "公报": "communique", "命令": "order", "命令（令）": "order", "令": "order"}
     return list(dict.fromkeys(path for genre in genres if genre in names for path in GENRE_REFERENCES[names[genre] + "_playbook"]))
@@ -1318,13 +1248,18 @@ def _periodic_report_field_paths(genres: list[str], tasks: list[str]) -> list[st
 
 
 def _finish_reference_paths(paths: list[str], tasks: list[str]) -> list[str]:
-    # This deterministic fixture mirrors the final stages; native route tests
-    # use the Skill itself and observe actual file reads instead.
-    final = []
-    if any(re.search(r"(?:\d+[^。\n]{0,12}字|限字|篇幅|字数)", task) for task in tasks):
-        final.append("references/compression-details.md")
-    final.extend(["references/final-review-layers.md", "references/anti-ai-patterns.md", "references/prose-lint-usage.md", "references/delivery.md"])
-    return list(dict.fromkeys([path for path in paths if path not in final] + final))
+    # This deterministic fixture mirrors the shared flow; native route tests
+    # observe the model's own file reads instead of this preselected context.
+    common = [
+        "references/writing-rules.md",
+        "references/anti-ai-patterns.md",
+        "references/prose-lint-usage.md",
+    ]
+    selected = [path for path in paths if path not in common]
+    # Ordinary limits, including 80 characters, are handled in writing-rules.
+    if any(marker in task for task in tasks for marker in ("压缩", "超限", "篇幅分配", "计数口径")):
+        selected.append("references/compression-details.md")
+    return list(dict.fromkeys(selected + common))
 
 
 def _reference_paths_for_genres(genres: list[str], tasks: list[str] | None = None) -> list[str]:
@@ -1384,8 +1319,6 @@ def _reference_paths_for_genres(genres: list[str], tasks: list[str] | None = Non
         paths.extend(GENRE_REFERENCES["review"])
         return _finish_reference_paths(paths, tasks)
 
-    paths.extend(GENRE_REFERENCES["sparse"][:1])
-
     if any(genre in NEWS_COMMENTARY_GENRES for genre in genres):
         paths.extend(GENRE_REFERENCES["news_commentary"])
         return _finish_reference_paths(paths, tasks)
@@ -1404,9 +1337,6 @@ def _reference_paths_for_genres(genres: list[str], tasks: list[str] | None = Non
         paths.append("references/genre-playbook-bulletin.md")
         return _finish_reference_paths(paths, tasks)
 
-    sparse_route = _task_uses_sparse_card(genres, tasks, ai_compute)
-    if sparse_route:
-        paths.extend(GENRE_REFERENCES["sparse"])
     if "会议纪要" in genres:
         paths.extend(GENRE_REFERENCES["minutes_playbook"])
     if report_playbook:
@@ -1874,7 +1804,7 @@ def _cache_key(mode: str, cases: list[dict[str, Any]], config: dict[str, Any]) -
         "routes": routes,
         "refs": refs,
         "ref_hashes": ref_hashes,
-        "provider_version": 8,
+        "provider_version": 9,
         "stub": _use_stub(config),
         "command_configured": bool(_agent_command_template(config)),
         "command_template_hash": hashlib.sha256(

@@ -17,12 +17,15 @@ class ReferenceUniquenessTests(unittest.TestCase):
         spec.loader.exec_module(module)
         self.assertEqual(module.audit(), [])
 
-    def test_body_only_page_owns_delivery_behavior(self) -> None:
-        delivery = (ROOT / "chinese-official-writing/references/delivery.md").read_text(
+    def test_final_delivery_step_owns_delivery_behavior(self) -> None:
+        common = (ROOT / "chinese-official-writing/references/writing-rules.md").read_text(
             encoding="utf-8"
         )
+        before, delivery = common.split("## 第四步：交付", 1)
         self.assertIn("只要稿件", delivery)
-        self.assertIn("省略文后提示", delivery)
+        self.assertIn("省略提示", delivery)
+        self.assertIn("文后提示", delivery)
+        self.assertNotIn("只要稿件", before)
 
 
 if __name__ == "__main__":

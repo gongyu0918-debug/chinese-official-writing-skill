@@ -16,7 +16,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
 PRODUCT = ROOT / "chinese-official-writing"
-DELIVERY_PAGE = PRODUCT / "references" / "delivery.md"
+DELIVERY_PAGE = PRODUCT / "references" / "writing-rules.md"
 
 BODY_ONLY_MARKERS = (
     "只要稿件",
@@ -46,10 +46,12 @@ def _prose_lines(path: Path):
         yield number, normalized
 
 
-def _skill_delivery_lines(path: Path) -> set[int]:
-    """Return prose line numbers inside SKILL.md's delivery section."""
+def _delivery_lines(path: Path) -> set[int]:
+    """Allow delivery preferences only inside the common workflow's final step."""
     lines = path.read_text(encoding="utf-8").splitlines()
-    start = next((i for i, value in enumerate(lines, 1) if value.strip() == "## 正文形态和交付"), 0)
+    start = next((i for i, value in enumerate(lines, 1) if value.strip() == "## 第四步：交付"), None)
+    if start is None:
+        return set()
     end = next((i for i, value in enumerate(lines[start:], start + 1) if value.startswith("## ")), len(lines) + 1)
     return set(range(start, end))
 
@@ -66,19 +68,14 @@ def audit() -> list[str]:
     if "正文直交付" in index:
         errors.append("reference-index.md: body-only delivery was left in entrance task selection")
 
-    # A body-only rule belongs to the delivery page. SKILL.md may point to it
-    # once from the delivery section; all other pages must remain content/rule
-    # pages rather than deciding the final message shape.
+    # The common page also contains intake and review. Exempt only its delivery
+    # section so relocating a preference into intake still fails the audit.
     for path in markdown:
-        if path == DELIVERY_PAGE:
-            continue
         rel = path.relative_to(PRODUCT).as_posix()
-        allowed_lines = _skill_delivery_lines(path) if path.name == "SKILL.md" else set()
+        allowed_lines = _delivery_lines(path) if path == DELIVERY_PAGE else set()
         for number, line in _prose_lines(path):
             if any(marker in line for marker in BODY_ONLY_MARKERS):
-                if path.name == "SKILL.md" and number in allowed_lines:
-                    # The homepage is allowed to name the delivery-page
-                    # trigger; the canonical behavior remains in that page.
+                if number in allowed_lines:
                     continue
                 errors.append(f"{rel}:{number}: body-only delivery rule outside delivery page")
 

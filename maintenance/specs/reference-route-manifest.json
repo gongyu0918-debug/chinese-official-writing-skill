@@ -124,8 +124,7 @@
       "triggers": [],
       "allowed_reads": [
         "SKILL.md",
-        "references/anti-ai-patterns.md",
-        "references/field-editing.md"
+        "references/anti-ai-patterns.md"
       ],
       "forbidden_reads": [
         "references/genre-playbook-advisory-feedback.md",
@@ -454,62 +453,6 @@
       ]
     },
     {
-      "id": "final_review_layers",
-      "path": "references/final-review-layers.md",
-      "kind": "review",
-      "purpose": "负责 final-review-layers 的唯一职责",
-      "triggers": [],
-      "allowed_reads": [
-        "SKILL.md",
-        "references/final-review-layers.md"
-      ],
-      "forbidden_reads": [
-        "references/genre-playbook-advisory-feedback.md",
-        "references/genre-playbook-bulletin.md",
-        "references/genre-playbook-communique.md",
-        "references/genre-playbook-complaint-reflection.md",
-        "references/genre-playbook-correspondence.md",
-        "references/genre-playbook-decision.md",
-        "references/genre-playbook-deployment.md",
-        "references/genre-playbook-duty-report.md",
-        "references/genre-playbook-explanation.md",
-        "references/genre-playbook-feasibility.md",
-        "references/genre-playbook-information-materials.md",
-        "references/genre-playbook-initiative.md",
-        "references/genre-playbook-institution-rules.md",
-        "references/genre-playbook-meeting-host.md",
-        "references/genre-playbook-minutes.md",
-        "references/genre-playbook-motion.md",
-        "references/genre-playbook-narration.md",
-        "references/genre-playbook-news-commentary.md",
-        "references/genre-playbook-news-message.md",
-        "references/genre-playbook-notice.md",
-        "references/genre-playbook-open-letter.md",
-        "references/genre-playbook-opinion.md",
-        "references/genre-playbook-order.md",
-        "references/genre-playbook-plan-construction.md",
-        "references/genre-playbook-procurement-announcement.md",
-        "references/genre-playbook-project-application.md",
-        "references/genre-playbook-publication.md",
-        "references/genre-playbook-remediation-plan.md",
-        "references/genre-playbook-reply.md",
-        "references/genre-playbook-report.md",
-        "references/genre-playbook-request.md",
-        "references/genre-playbook-research.md",
-        "references/genre-playbook-resolution.md",
-        "references/genre-playbook-responsibility-letter.md",
-        "references/genre-playbook-review-opinion.md",
-        "references/genre-playbook-speech-address.md",
-        "references/genre-playbook-technical-requirements.md",
-        "references/genre-playbook-work-priorities.md",
-        "references/genre-playbook-work-summary.md"
-      ],
-      "stop_when": "完成本页职责后停止读取本页。",
-      "legacy_coverage": [
-        "final-review-layers.md"
-      ]
-    },
-    {
       "id": "formal_addressing",
       "path": "references/formal-addressing.md",
       "kind": "language",
@@ -574,8 +517,8 @@
       "triggers": [],
       "allowed_reads": [
         "SKILL.md",
-        "references/delivery.md",
-        "references/format-gbt9704.md"
+        "references/format-gbt9704.md",
+        "references/writing-rules.md"
       ],
       "forbidden_reads": [
         "references/genre-playbook-advisory-feedback.md",
@@ -874,7 +817,7 @@
       "allowed_reads": [
         "SKILL.md",
         "references/genre-checklist.md",
-        "references/information-selection.md"
+        "references/writing-rules.md"
       ],
       "forbidden_reads": [
         "references/genre-playbook-advisory-feedback.md",
@@ -980,6 +923,121 @@
       "stop_when": "完成本页职责后停止读取本页。",
       "legacy_coverage": [
         "genre-playbook-advisory-feedback.md"
+      ]
+    },
+    {
+      "id": "genre_playbook_bulletin",
+      "path": "references/genre-playbook-bulletin.md",
+      "kind": "genre",
+      "purpose": "情况、表扬和批评通报的正文功能",
+      "triggers": [
+        "通报"
+      ],
+      "allowed_reads": [
+        "SKILL.md",
+        "references/genre-playbook-bulletin.md"
+      ],
+      "forbidden_reads": [
+        "references/genre-playbook-advisory-feedback.md",
+        "references/genre-playbook-communique.md",
+        "references/genre-playbook-complaint-reflection.md",
+        "references/genre-playbook-correspondence.md",
+        "references/genre-playbook-decision.md",
+        "references/genre-playbook-deployment.md",
+        "references/genre-playbook-duty-report.md",
+        "references/genre-playbook-explanation.md",
+        "references/genre-playbook-feasibility.md",
+        "references/genre-playbook-information-materials.md",
+        "references/genre-playbook-initiative.md",
+        "references/genre-playbook-institution-rules.md",
+        "references/genre-playbook-meeting-host.md",
+        "references/genre-playbook-minutes.md",
+        "references/genre-playbook-motion.md",
+        "references/genre-playbook-narration.md",
+        "references/genre-playbook-news-commentary.md",
+        "references/genre-playbook-news-message.md",
+        "references/genre-playbook-notice.md",
+        "references/genre-playbook-open-letter.md",
+        "references/genre-playbook-opinion.md",
+        "references/genre-playbook-order.md",
+        "references/genre-playbook-plan-construction.md",
+        "references/genre-playbook-procurement-announcement.md",
+        "references/genre-playbook-project-application.md",
+        "references/genre-playbook-publication.md",
+        "references/genre-playbook-remediation-plan.md",
+        "references/genre-playbook-reply.md",
+        "references/genre-playbook-report.md",
+        "references/genre-playbook-request.md",
+        "references/genre-playbook-research.md",
+        "references/genre-playbook-resolution.md",
+        "references/genre-playbook-responsibility-letter.md",
+        "references/genre-playbook-review-opinion.md",
+        "references/genre-playbook-speech-address.md",
+        "references/genre-playbook-technical-requirements.md",
+        "references/genre-playbook-work-priorities.md",
+        "references/genre-playbook-work-summary.md"
+      ],
+      "stop_when": "完成通报事实、评价和已定要求核对",
+      "legacy_coverage": [
+        "genre-playbooks.md"
+      ]
+    },
+    {
+      "id": "genre_playbook_communique",
+      "path": "references/genre-playbook-communique.md",
+      "kind": "genre",
+      "purpose": "公报正文功能",
+      "triggers": [
+        "公报"
+      ],
+      "allowed_reads": [
+        "SKILL.md",
+        "references/genre-playbook-communique.md",
+        "references/writing-rules.md"
+      ],
+      "forbidden_reads": [
+        "references/genre-playbook-advisory-feedback.md",
+        "references/genre-playbook-bulletin.md",
+        "references/genre-playbook-complaint-reflection.md",
+        "references/genre-playbook-correspondence.md",
+        "references/genre-playbook-decision.md",
+        "references/genre-playbook-deployment.md",
+        "references/genre-playbook-duty-report.md",
+        "references/genre-playbook-explanation.md",
+        "references/genre-playbook-feasibility.md",
+        "references/genre-playbook-information-materials.md",
+        "references/genre-playbook-initiative.md",
+        "references/genre-playbook-institution-rules.md",
+        "references/genre-playbook-meeting-host.md",
+        "references/genre-playbook-minutes.md",
+        "references/genre-playbook-motion.md",
+        "references/genre-playbook-narration.md",
+        "references/genre-playbook-news-commentary.md",
+        "references/genre-playbook-news-message.md",
+        "references/genre-playbook-notice.md",
+        "references/genre-playbook-open-letter.md",
+        "references/genre-playbook-opinion.md",
+        "references/genre-playbook-order.md",
+        "references/genre-playbook-plan-construction.md",
+        "references/genre-playbook-procurement-announcement.md",
+        "references/genre-playbook-project-application.md",
+        "references/genre-playbook-publication.md",
+        "references/genre-playbook-remediation-plan.md",
+        "references/genre-playbook-reply.md",
+        "references/genre-playbook-report.md",
+        "references/genre-playbook-request.md",
+        "references/genre-playbook-research.md",
+        "references/genre-playbook-resolution.md",
+        "references/genre-playbook-responsibility-letter.md",
+        "references/genre-playbook-review-opinion.md",
+        "references/genre-playbook-speech-address.md",
+        "references/genre-playbook-technical-requirements.md",
+        "references/genre-playbook-work-priorities.md",
+        "references/genre-playbook-work-summary.md"
+      ],
+      "stop_when": "完成本页事项核对",
+      "legacy_coverage": [
+        "genre-playbooks.md"
       ]
     },
     {
@@ -1101,6 +1159,64 @@
       ]
     },
     {
+      "id": "genre_playbook_decision",
+      "path": "references/genre-playbook-decision.md",
+      "kind": "genre",
+      "purpose": "决定正文功能",
+      "triggers": [
+        "决定"
+      ],
+      "allowed_reads": [
+        "SKILL.md",
+        "references/genre-playbook-decision.md",
+        "references/writing-rules.md"
+      ],
+      "forbidden_reads": [
+        "references/genre-playbook-advisory-feedback.md",
+        "references/genre-playbook-bulletin.md",
+        "references/genre-playbook-communique.md",
+        "references/genre-playbook-complaint-reflection.md",
+        "references/genre-playbook-correspondence.md",
+        "references/genre-playbook-deployment.md",
+        "references/genre-playbook-duty-report.md",
+        "references/genre-playbook-explanation.md",
+        "references/genre-playbook-feasibility.md",
+        "references/genre-playbook-information-materials.md",
+        "references/genre-playbook-initiative.md",
+        "references/genre-playbook-institution-rules.md",
+        "references/genre-playbook-meeting-host.md",
+        "references/genre-playbook-minutes.md",
+        "references/genre-playbook-motion.md",
+        "references/genre-playbook-narration.md",
+        "references/genre-playbook-news-commentary.md",
+        "references/genre-playbook-news-message.md",
+        "references/genre-playbook-notice.md",
+        "references/genre-playbook-open-letter.md",
+        "references/genre-playbook-opinion.md",
+        "references/genre-playbook-order.md",
+        "references/genre-playbook-plan-construction.md",
+        "references/genre-playbook-procurement-announcement.md",
+        "references/genre-playbook-project-application.md",
+        "references/genre-playbook-publication.md",
+        "references/genre-playbook-remediation-plan.md",
+        "references/genre-playbook-reply.md",
+        "references/genre-playbook-report.md",
+        "references/genre-playbook-request.md",
+        "references/genre-playbook-research.md",
+        "references/genre-playbook-resolution.md",
+        "references/genre-playbook-responsibility-letter.md",
+        "references/genre-playbook-review-opinion.md",
+        "references/genre-playbook-speech-address.md",
+        "references/genre-playbook-technical-requirements.md",
+        "references/genre-playbook-work-priorities.md",
+        "references/genre-playbook-work-summary.md"
+      ],
+      "stop_when": "完成本页事项核对",
+      "legacy_coverage": [
+        "genre-playbooks.md"
+      ]
+    },
+    {
       "id": "genre_playbook_deployment",
       "path": "references/genre-playbook-deployment.md",
       "kind": "genre",
@@ -1156,6 +1272,125 @@
       "stop_when": "完成本页职责后停止读取本页。",
       "legacy_coverage": [
         "genre-playbook-deliberation-deployment.md"
+      ]
+    },
+    {
+      "id": "genre_playbook_duty_report",
+      "path": "references/genre-playbook-duty-report.md",
+      "kind": "genre",
+      "purpose": "个人或班子书面与现场述职的职责履行内容",
+      "triggers": [
+        "述职报告",
+        "书面述职",
+        "履职情况报告",
+        "现场述职发言"
+      ],
+      "allowed_reads": [
+        "SKILL.md",
+        "references/genre-playbook-duty-report.md"
+      ],
+      "forbidden_reads": [
+        "references/genre-playbook-advisory-feedback.md",
+        "references/genre-playbook-bulletin.md",
+        "references/genre-playbook-communique.md",
+        "references/genre-playbook-complaint-reflection.md",
+        "references/genre-playbook-correspondence.md",
+        "references/genre-playbook-decision.md",
+        "references/genre-playbook-deployment.md",
+        "references/genre-playbook-explanation.md",
+        "references/genre-playbook-feasibility.md",
+        "references/genre-playbook-information-materials.md",
+        "references/genre-playbook-initiative.md",
+        "references/genre-playbook-institution-rules.md",
+        "references/genre-playbook-meeting-host.md",
+        "references/genre-playbook-minutes.md",
+        "references/genre-playbook-motion.md",
+        "references/genre-playbook-narration.md",
+        "references/genre-playbook-news-commentary.md",
+        "references/genre-playbook-news-message.md",
+        "references/genre-playbook-notice.md",
+        "references/genre-playbook-open-letter.md",
+        "references/genre-playbook-opinion.md",
+        "references/genre-playbook-order.md",
+        "references/genre-playbook-plan-construction.md",
+        "references/genre-playbook-procurement-announcement.md",
+        "references/genre-playbook-project-application.md",
+        "references/genre-playbook-publication.md",
+        "references/genre-playbook-remediation-plan.md",
+        "references/genre-playbook-reply.md",
+        "references/genre-playbook-report.md",
+        "references/genre-playbook-request.md",
+        "references/genre-playbook-research.md",
+        "references/genre-playbook-resolution.md",
+        "references/genre-playbook-responsibility-letter.md",
+        "references/genre-playbook-review-opinion.md",
+        "references/genre-playbook-speech-address.md",
+        "references/genre-playbook-technical-requirements.md",
+        "references/genre-playbook-work-priorities.md",
+        "references/genre-playbook-work-summary.md"
+      ],
+      "stop_when": "完成述职主体、职责对应、实绩归属和改进方向专项核对",
+      "legacy_coverage": [
+        "genre-playbook-speech-address.md",
+        "genre-checklist.md",
+        "argument-chains.md"
+      ]
+    },
+    {
+      "id": "genre_playbook_explanation",
+      "path": "references/genre-playbook-explanation.md",
+      "kind": "genre",
+      "purpose": "负责独立法定文种的唯一职责",
+      "triggers": [
+        "说明"
+      ],
+      "allowed_reads": [
+        "SKILL.md",
+        "references/genre-playbook-explanation.md"
+      ],
+      "forbidden_reads": [
+        "references/genre-playbook-advisory-feedback.md",
+        "references/genre-playbook-bulletin.md",
+        "references/genre-playbook-communique.md",
+        "references/genre-playbook-complaint-reflection.md",
+        "references/genre-playbook-correspondence.md",
+        "references/genre-playbook-decision.md",
+        "references/genre-playbook-deployment.md",
+        "references/genre-playbook-duty-report.md",
+        "references/genre-playbook-feasibility.md",
+        "references/genre-playbook-information-materials.md",
+        "references/genre-playbook-initiative.md",
+        "references/genre-playbook-institution-rules.md",
+        "references/genre-playbook-meeting-host.md",
+        "references/genre-playbook-minutes.md",
+        "references/genre-playbook-motion.md",
+        "references/genre-playbook-narration.md",
+        "references/genre-playbook-news-commentary.md",
+        "references/genre-playbook-news-message.md",
+        "references/genre-playbook-notice.md",
+        "references/genre-playbook-open-letter.md",
+        "references/genre-playbook-opinion.md",
+        "references/genre-playbook-order.md",
+        "references/genre-playbook-plan-construction.md",
+        "references/genre-playbook-procurement-announcement.md",
+        "references/genre-playbook-project-application.md",
+        "references/genre-playbook-publication.md",
+        "references/genre-playbook-remediation-plan.md",
+        "references/genre-playbook-reply.md",
+        "references/genre-playbook-report.md",
+        "references/genre-playbook-request.md",
+        "references/genre-playbook-research.md",
+        "references/genre-playbook-resolution.md",
+        "references/genre-playbook-responsibility-letter.md",
+        "references/genre-playbook-review-opinion.md",
+        "references/genre-playbook-speech-address.md",
+        "references/genre-playbook-technical-requirements.md",
+        "references/genre-playbook-work-priorities.md",
+        "references/genre-playbook-work-summary.md"
+      ],
+      "stop_when": "完成本页职责后停止读取本页。",
+      "legacy_coverage": [
+        "genre-checklist.md"
       ]
     },
     {
@@ -1217,6 +1452,117 @@
       "legacy_coverage": [
         "genre-playbook-research-feasibility.md"
       ]
+    },
+    {
+      "id": "genre_playbook_information_materials",
+      "path": "references/genre-playbook-information-materials.md",
+      "kind": "genre",
+      "purpose": "负责宣传手册与宣传材料的文种组织和专项边界",
+      "triggers": [
+        "宣传手册",
+        "宣传材料"
+      ],
+      "allowed_reads": [
+        "SKILL.md",
+        "references/genre-playbook-information-materials.md"
+      ],
+      "forbidden_reads": [
+        "references/genre-playbook-advisory-feedback.md",
+        "references/genre-playbook-bulletin.md",
+        "references/genre-playbook-communique.md",
+        "references/genre-playbook-complaint-reflection.md",
+        "references/genre-playbook-correspondence.md",
+        "references/genre-playbook-decision.md",
+        "references/genre-playbook-deployment.md",
+        "references/genre-playbook-duty-report.md",
+        "references/genre-playbook-explanation.md",
+        "references/genre-playbook-feasibility.md",
+        "references/genre-playbook-initiative.md",
+        "references/genre-playbook-institution-rules.md",
+        "references/genre-playbook-meeting-host.md",
+        "references/genre-playbook-minutes.md",
+        "references/genre-playbook-motion.md",
+        "references/genre-playbook-narration.md",
+        "references/genre-playbook-news-commentary.md",
+        "references/genre-playbook-news-message.md",
+        "references/genre-playbook-notice.md",
+        "references/genre-playbook-open-letter.md",
+        "references/genre-playbook-opinion.md",
+        "references/genre-playbook-order.md",
+        "references/genre-playbook-plan-construction.md",
+        "references/genre-playbook-procurement-announcement.md",
+        "references/genre-playbook-project-application.md",
+        "references/genre-playbook-publication.md",
+        "references/genre-playbook-remediation-plan.md",
+        "references/genre-playbook-reply.md",
+        "references/genre-playbook-report.md",
+        "references/genre-playbook-request.md",
+        "references/genre-playbook-research.md",
+        "references/genre-playbook-resolution.md",
+        "references/genre-playbook-responsibility-letter.md",
+        "references/genre-playbook-review-opinion.md",
+        "references/genre-playbook-speech-address.md",
+        "references/genre-playbook-technical-requirements.md",
+        "references/genre-playbook-work-priorities.md",
+        "references/genre-playbook-work-summary.md"
+      ],
+      "stop_when": "完成本页文种专项核对后接回 SKILL.md 的成稿检查。",
+      "legacy_coverage": []
+    },
+    {
+      "id": "genre_playbook_initiative",
+      "path": "references/genre-playbook-initiative.md",
+      "kind": "genre",
+      "purpose": "负责倡议书的文种组织和专项边界",
+      "triggers": [
+        "倡议书"
+      ],
+      "allowed_reads": [
+        "SKILL.md",
+        "references/genre-playbook-initiative.md"
+      ],
+      "forbidden_reads": [
+        "references/genre-playbook-advisory-feedback.md",
+        "references/genre-playbook-bulletin.md",
+        "references/genre-playbook-communique.md",
+        "references/genre-playbook-complaint-reflection.md",
+        "references/genre-playbook-correspondence.md",
+        "references/genre-playbook-decision.md",
+        "references/genre-playbook-deployment.md",
+        "references/genre-playbook-duty-report.md",
+        "references/genre-playbook-explanation.md",
+        "references/genre-playbook-feasibility.md",
+        "references/genre-playbook-information-materials.md",
+        "references/genre-playbook-institution-rules.md",
+        "references/genre-playbook-meeting-host.md",
+        "references/genre-playbook-minutes.md",
+        "references/genre-playbook-motion.md",
+        "references/genre-playbook-narration.md",
+        "references/genre-playbook-news-commentary.md",
+        "references/genre-playbook-news-message.md",
+        "references/genre-playbook-notice.md",
+        "references/genre-playbook-open-letter.md",
+        "references/genre-playbook-opinion.md",
+        "references/genre-playbook-order.md",
+        "references/genre-playbook-plan-construction.md",
+        "references/genre-playbook-procurement-announcement.md",
+        "references/genre-playbook-project-application.md",
+        "references/genre-playbook-publication.md",
+        "references/genre-playbook-remediation-plan.md",
+        "references/genre-playbook-reply.md",
+        "references/genre-playbook-report.md",
+        "references/genre-playbook-request.md",
+        "references/genre-playbook-research.md",
+        "references/genre-playbook-resolution.md",
+        "references/genre-playbook-responsibility-letter.md",
+        "references/genre-playbook-review-opinion.md",
+        "references/genre-playbook-speech-address.md",
+        "references/genre-playbook-technical-requirements.md",
+        "references/genre-playbook-work-priorities.md",
+        "references/genre-playbook-work-summary.md"
+      ],
+      "stop_when": "完成本页文种专项核对后接回 SKILL.md 的成稿检查。",
+      "legacy_coverage": []
     },
     {
       "id": "genre_playbook_institution_rules",
@@ -1281,6 +1627,67 @@
       ]
     },
     {
+      "id": "genre_playbook_meeting_host",
+      "path": "references/genre-playbook-meeting-host.md",
+      "kind": "genre",
+      "purpose": "会议主持词和主持串词的会序组织",
+      "triggers": [
+        "会议主持词",
+        "主持词",
+        "主持串词"
+      ],
+      "allowed_reads": [
+        "SKILL.md",
+        "references/genre-playbook-meeting-host.md",
+        "references/speech-person-order.md"
+      ],
+      "forbidden_reads": [
+        "references/genre-playbook-advisory-feedback.md",
+        "references/genre-playbook-bulletin.md",
+        "references/genre-playbook-communique.md",
+        "references/genre-playbook-complaint-reflection.md",
+        "references/genre-playbook-correspondence.md",
+        "references/genre-playbook-decision.md",
+        "references/genre-playbook-deployment.md",
+        "references/genre-playbook-duty-report.md",
+        "references/genre-playbook-explanation.md",
+        "references/genre-playbook-feasibility.md",
+        "references/genre-playbook-information-materials.md",
+        "references/genre-playbook-initiative.md",
+        "references/genre-playbook-institution-rules.md",
+        "references/genre-playbook-minutes.md",
+        "references/genre-playbook-motion.md",
+        "references/genre-playbook-narration.md",
+        "references/genre-playbook-news-commentary.md",
+        "references/genre-playbook-news-message.md",
+        "references/genre-playbook-notice.md",
+        "references/genre-playbook-open-letter.md",
+        "references/genre-playbook-opinion.md",
+        "references/genre-playbook-order.md",
+        "references/genre-playbook-plan-construction.md",
+        "references/genre-playbook-procurement-announcement.md",
+        "references/genre-playbook-project-application.md",
+        "references/genre-playbook-publication.md",
+        "references/genre-playbook-remediation-plan.md",
+        "references/genre-playbook-reply.md",
+        "references/genre-playbook-report.md",
+        "references/genre-playbook-request.md",
+        "references/genre-playbook-research.md",
+        "references/genre-playbook-resolution.md",
+        "references/genre-playbook-responsibility-letter.md",
+        "references/genre-playbook-review-opinion.md",
+        "references/genre-playbook-speech-address.md",
+        "references/genre-playbook-technical-requirements.md",
+        "references/genre-playbook-work-priorities.md",
+        "references/genre-playbook-work-summary.md"
+      ],
+      "stop_when": "完成议程、角色、状态和转场专项核对",
+      "legacy_coverage": [
+        "genre-playbook-speech-address.md",
+        "speech-person-order.md"
+      ]
+    },
+    {
       "id": "genre_playbook_minutes",
       "path": "references/genre-playbook-minutes.md",
       "kind": "genre",
@@ -1336,6 +1743,120 @@
       "legacy_coverage": [
         "genre-playbook-minutes.md"
       ]
+    },
+    {
+      "id": "genre_playbook_motion",
+      "path": "references/genre-playbook-motion.md",
+      "kind": "genre",
+      "purpose": "议案正文功能",
+      "triggers": [
+        "议案"
+      ],
+      "allowed_reads": [
+        "SKILL.md",
+        "references/genre-playbook-motion.md",
+        "references/writing-rules.md"
+      ],
+      "forbidden_reads": [
+        "references/genre-playbook-advisory-feedback.md",
+        "references/genre-playbook-bulletin.md",
+        "references/genre-playbook-communique.md",
+        "references/genre-playbook-complaint-reflection.md",
+        "references/genre-playbook-correspondence.md",
+        "references/genre-playbook-decision.md",
+        "references/genre-playbook-deployment.md",
+        "references/genre-playbook-duty-report.md",
+        "references/genre-playbook-explanation.md",
+        "references/genre-playbook-feasibility.md",
+        "references/genre-playbook-information-materials.md",
+        "references/genre-playbook-initiative.md",
+        "references/genre-playbook-institution-rules.md",
+        "references/genre-playbook-meeting-host.md",
+        "references/genre-playbook-minutes.md",
+        "references/genre-playbook-narration.md",
+        "references/genre-playbook-news-commentary.md",
+        "references/genre-playbook-news-message.md",
+        "references/genre-playbook-notice.md",
+        "references/genre-playbook-open-letter.md",
+        "references/genre-playbook-opinion.md",
+        "references/genre-playbook-order.md",
+        "references/genre-playbook-plan-construction.md",
+        "references/genre-playbook-procurement-announcement.md",
+        "references/genre-playbook-project-application.md",
+        "references/genre-playbook-publication.md",
+        "references/genre-playbook-remediation-plan.md",
+        "references/genre-playbook-reply.md",
+        "references/genre-playbook-report.md",
+        "references/genre-playbook-request.md",
+        "references/genre-playbook-research.md",
+        "references/genre-playbook-resolution.md",
+        "references/genre-playbook-responsibility-letter.md",
+        "references/genre-playbook-review-opinion.md",
+        "references/genre-playbook-speech-address.md",
+        "references/genre-playbook-technical-requirements.md",
+        "references/genre-playbook-work-priorities.md",
+        "references/genre-playbook-work-summary.md"
+      ],
+      "stop_when": "完成本页事项核对",
+      "legacy_coverage": [
+        "genre-playbooks.md"
+      ]
+    },
+    {
+      "id": "genre_playbook_narration",
+      "path": "references/genre-playbook-narration.md",
+      "kind": "genre",
+      "purpose": "负责讲解稿的文种组织和专项边界",
+      "triggers": [
+        "讲解稿",
+        "解说词"
+      ],
+      "allowed_reads": [
+        "SKILL.md",
+        "references/genre-playbook-narration.md"
+      ],
+      "forbidden_reads": [
+        "references/genre-playbook-advisory-feedback.md",
+        "references/genre-playbook-bulletin.md",
+        "references/genre-playbook-communique.md",
+        "references/genre-playbook-complaint-reflection.md",
+        "references/genre-playbook-correspondence.md",
+        "references/genre-playbook-decision.md",
+        "references/genre-playbook-deployment.md",
+        "references/genre-playbook-duty-report.md",
+        "references/genre-playbook-explanation.md",
+        "references/genre-playbook-feasibility.md",
+        "references/genre-playbook-information-materials.md",
+        "references/genre-playbook-initiative.md",
+        "references/genre-playbook-institution-rules.md",
+        "references/genre-playbook-meeting-host.md",
+        "references/genre-playbook-minutes.md",
+        "references/genre-playbook-motion.md",
+        "references/genre-playbook-news-commentary.md",
+        "references/genre-playbook-news-message.md",
+        "references/genre-playbook-notice.md",
+        "references/genre-playbook-open-letter.md",
+        "references/genre-playbook-opinion.md",
+        "references/genre-playbook-order.md",
+        "references/genre-playbook-plan-construction.md",
+        "references/genre-playbook-procurement-announcement.md",
+        "references/genre-playbook-project-application.md",
+        "references/genre-playbook-publication.md",
+        "references/genre-playbook-remediation-plan.md",
+        "references/genre-playbook-reply.md",
+        "references/genre-playbook-report.md",
+        "references/genre-playbook-request.md",
+        "references/genre-playbook-research.md",
+        "references/genre-playbook-resolution.md",
+        "references/genre-playbook-responsibility-letter.md",
+        "references/genre-playbook-review-opinion.md",
+        "references/genre-playbook-speech-address.md",
+        "references/genre-playbook-technical-requirements.md",
+        "references/genre-playbook-work-priorities.md",
+        "references/genre-playbook-work-summary.md"
+      ],
+      "stop_when": "完成本页文种专项核对后接回 SKILL.md 的成稿检查。",
+      "legacy_coverage": []
     },
     {
       "id": "genre_playbook_news_commentary",
@@ -1515,6 +2036,177 @@
       ]
     },
     {
+      "id": "genre_playbook_open_letter",
+      "path": "references/genre-playbook-open-letter.md",
+      "kind": "genre",
+      "purpose": "负责公开信的文种组织和专项边界",
+      "triggers": [
+        "公开信"
+      ],
+      "allowed_reads": [
+        "SKILL.md",
+        "references/genre-playbook-open-letter.md"
+      ],
+      "forbidden_reads": [
+        "references/genre-playbook-advisory-feedback.md",
+        "references/genre-playbook-bulletin.md",
+        "references/genre-playbook-communique.md",
+        "references/genre-playbook-complaint-reflection.md",
+        "references/genre-playbook-correspondence.md",
+        "references/genre-playbook-decision.md",
+        "references/genre-playbook-deployment.md",
+        "references/genre-playbook-duty-report.md",
+        "references/genre-playbook-explanation.md",
+        "references/genre-playbook-feasibility.md",
+        "references/genre-playbook-information-materials.md",
+        "references/genre-playbook-initiative.md",
+        "references/genre-playbook-institution-rules.md",
+        "references/genre-playbook-meeting-host.md",
+        "references/genre-playbook-minutes.md",
+        "references/genre-playbook-motion.md",
+        "references/genre-playbook-narration.md",
+        "references/genre-playbook-news-commentary.md",
+        "references/genre-playbook-news-message.md",
+        "references/genre-playbook-notice.md",
+        "references/genre-playbook-opinion.md",
+        "references/genre-playbook-order.md",
+        "references/genre-playbook-plan-construction.md",
+        "references/genre-playbook-procurement-announcement.md",
+        "references/genre-playbook-project-application.md",
+        "references/genre-playbook-publication.md",
+        "references/genre-playbook-remediation-plan.md",
+        "references/genre-playbook-reply.md",
+        "references/genre-playbook-report.md",
+        "references/genre-playbook-request.md",
+        "references/genre-playbook-research.md",
+        "references/genre-playbook-resolution.md",
+        "references/genre-playbook-responsibility-letter.md",
+        "references/genre-playbook-review-opinion.md",
+        "references/genre-playbook-speech-address.md",
+        "references/genre-playbook-technical-requirements.md",
+        "references/genre-playbook-work-priorities.md",
+        "references/genre-playbook-work-summary.md"
+      ],
+      "stop_when": "完成本页文种专项核对后接回 SKILL.md 的成稿检查。",
+      "legacy_coverage": []
+    },
+    {
+      "id": "genre_playbook_opinion",
+      "path": "references/genre-playbook-opinion.md",
+      "kind": "genre",
+      "purpose": "负责独立法定文种的唯一职责",
+      "triggers": [
+        "意见"
+      ],
+      "allowed_reads": [
+        "SKILL.md",
+        "references/genre-playbook-opinion.md",
+        "references/writing-rules.md"
+      ],
+      "forbidden_reads": [
+        "references/genre-playbook-advisory-feedback.md",
+        "references/genre-playbook-bulletin.md",
+        "references/genre-playbook-communique.md",
+        "references/genre-playbook-complaint-reflection.md",
+        "references/genre-playbook-correspondence.md",
+        "references/genre-playbook-decision.md",
+        "references/genre-playbook-deployment.md",
+        "references/genre-playbook-duty-report.md",
+        "references/genre-playbook-explanation.md",
+        "references/genre-playbook-feasibility.md",
+        "references/genre-playbook-information-materials.md",
+        "references/genre-playbook-initiative.md",
+        "references/genre-playbook-institution-rules.md",
+        "references/genre-playbook-meeting-host.md",
+        "references/genre-playbook-minutes.md",
+        "references/genre-playbook-motion.md",
+        "references/genre-playbook-narration.md",
+        "references/genre-playbook-news-commentary.md",
+        "references/genre-playbook-news-message.md",
+        "references/genre-playbook-notice.md",
+        "references/genre-playbook-open-letter.md",
+        "references/genre-playbook-order.md",
+        "references/genre-playbook-plan-construction.md",
+        "references/genre-playbook-procurement-announcement.md",
+        "references/genre-playbook-project-application.md",
+        "references/genre-playbook-publication.md",
+        "references/genre-playbook-remediation-plan.md",
+        "references/genre-playbook-reply.md",
+        "references/genre-playbook-report.md",
+        "references/genre-playbook-request.md",
+        "references/genre-playbook-research.md",
+        "references/genre-playbook-resolution.md",
+        "references/genre-playbook-responsibility-letter.md",
+        "references/genre-playbook-review-opinion.md",
+        "references/genre-playbook-speech-address.md",
+        "references/genre-playbook-technical-requirements.md",
+        "references/genre-playbook-work-priorities.md",
+        "references/genre-playbook-work-summary.md"
+      ],
+      "stop_when": "完成本页职责后停止读取本页。",
+      "legacy_coverage": [
+        "genre-checklist.md"
+      ]
+    },
+    {
+      "id": "genre_playbook_order",
+      "path": "references/genre-playbook-order.md",
+      "kind": "genre",
+      "purpose": "命令正文功能",
+      "triggers": [
+        "命令"
+      ],
+      "allowed_reads": [
+        "SKILL.md",
+        "references/genre-playbook-order.md",
+        "references/writing-rules.md"
+      ],
+      "forbidden_reads": [
+        "references/genre-playbook-advisory-feedback.md",
+        "references/genre-playbook-bulletin.md",
+        "references/genre-playbook-communique.md",
+        "references/genre-playbook-complaint-reflection.md",
+        "references/genre-playbook-correspondence.md",
+        "references/genre-playbook-decision.md",
+        "references/genre-playbook-deployment.md",
+        "references/genre-playbook-duty-report.md",
+        "references/genre-playbook-explanation.md",
+        "references/genre-playbook-feasibility.md",
+        "references/genre-playbook-information-materials.md",
+        "references/genre-playbook-initiative.md",
+        "references/genre-playbook-institution-rules.md",
+        "references/genre-playbook-meeting-host.md",
+        "references/genre-playbook-minutes.md",
+        "references/genre-playbook-motion.md",
+        "references/genre-playbook-narration.md",
+        "references/genre-playbook-news-commentary.md",
+        "references/genre-playbook-news-message.md",
+        "references/genre-playbook-notice.md",
+        "references/genre-playbook-open-letter.md",
+        "references/genre-playbook-opinion.md",
+        "references/genre-playbook-plan-construction.md",
+        "references/genre-playbook-procurement-announcement.md",
+        "references/genre-playbook-project-application.md",
+        "references/genre-playbook-publication.md",
+        "references/genre-playbook-remediation-plan.md",
+        "references/genre-playbook-reply.md",
+        "references/genre-playbook-report.md",
+        "references/genre-playbook-request.md",
+        "references/genre-playbook-research.md",
+        "references/genre-playbook-resolution.md",
+        "references/genre-playbook-responsibility-letter.md",
+        "references/genre-playbook-review-opinion.md",
+        "references/genre-playbook-speech-address.md",
+        "references/genre-playbook-technical-requirements.md",
+        "references/genre-playbook-work-priorities.md",
+        "references/genre-playbook-work-summary.md"
+      ],
+      "stop_when": "完成本页事项核对",
+      "legacy_coverage": [
+        "genre-playbooks.md"
+      ]
+    },
+    {
       "id": "genre_playbook_plan_construction",
       "path": "references/genre-playbook-plan-construction.md",
       "kind": "genre",
@@ -1528,7 +2220,7 @@
         "SKILL.md",
         "references/field-editing.md",
         "references/genre-playbook-plan-construction.md",
-        "references/information-selection.md"
+        "references/writing-rules.md"
       ],
       "forbidden_reads": [
         "references/genre-playbook-advisory-feedback.md",
@@ -1645,7 +2337,7 @@
         "SKILL.md",
         "references/field-editing.md",
         "references/genre-playbook-procurement-review.md",
-        "references/information-selection.md"
+        "references/writing-rules.md"
       ],
       "forbidden_reads": [
         "references/genre-playbook-advisory-feedback.md",
@@ -1706,7 +2398,7 @@
       "allowed_reads": [
         "SKILL.md",
         "references/genre-playbook-project-application.md",
-        "references/information-selection.md"
+        "references/writing-rules.md"
       ],
       "forbidden_reads": [
         "references/genre-playbook-advisory-feedback.md",
@@ -1766,6 +2458,7 @@
       ],
       "allowed_reads": [
         "SKILL.md",
+        "references/genre-playbook-procurement-announcement.md",
         "references/genre-playbook-publication.md"
       ],
       "forbidden_reads": [
@@ -1793,7 +2486,6 @@
         "references/genre-playbook-opinion.md",
         "references/genre-playbook-order.md",
         "references/genre-playbook-plan-construction.md",
-        "references/genre-playbook-procurement-announcement.md",
         "references/genre-playbook-project-application.md",
         "references/genre-playbook-remediation-plan.md",
         "references/genre-playbook-reply.md",
@@ -1873,6 +2565,133 @@
       ]
     },
     {
+      "id": "genre_playbook_reply",
+      "path": "references/genre-playbook-reply.md",
+      "kind": "genre",
+      "purpose": "负责独立法定文种的唯一职责",
+      "triggers": [
+        "批复"
+      ],
+      "allowed_reads": [
+        "SKILL.md",
+        "references/genre-playbook-reply.md"
+      ],
+      "forbidden_reads": [
+        "references/genre-playbook-advisory-feedback.md",
+        "references/genre-playbook-bulletin.md",
+        "references/genre-playbook-communique.md",
+        "references/genre-playbook-complaint-reflection.md",
+        "references/genre-playbook-correspondence.md",
+        "references/genre-playbook-decision.md",
+        "references/genre-playbook-deployment.md",
+        "references/genre-playbook-duty-report.md",
+        "references/genre-playbook-explanation.md",
+        "references/genre-playbook-feasibility.md",
+        "references/genre-playbook-information-materials.md",
+        "references/genre-playbook-initiative.md",
+        "references/genre-playbook-institution-rules.md",
+        "references/genre-playbook-meeting-host.md",
+        "references/genre-playbook-minutes.md",
+        "references/genre-playbook-motion.md",
+        "references/genre-playbook-narration.md",
+        "references/genre-playbook-news-commentary.md",
+        "references/genre-playbook-news-message.md",
+        "references/genre-playbook-notice.md",
+        "references/genre-playbook-open-letter.md",
+        "references/genre-playbook-opinion.md",
+        "references/genre-playbook-order.md",
+        "references/genre-playbook-plan-construction.md",
+        "references/genre-playbook-procurement-announcement.md",
+        "references/genre-playbook-project-application.md",
+        "references/genre-playbook-publication.md",
+        "references/genre-playbook-remediation-plan.md",
+        "references/genre-playbook-report.md",
+        "references/genre-playbook-request.md",
+        "references/genre-playbook-research.md",
+        "references/genre-playbook-resolution.md",
+        "references/genre-playbook-responsibility-letter.md",
+        "references/genre-playbook-review-opinion.md",
+        "references/genre-playbook-speech-address.md",
+        "references/genre-playbook-technical-requirements.md",
+        "references/genre-playbook-work-priorities.md",
+        "references/genre-playbook-work-summary.md"
+      ],
+      "stop_when": "完成本页职责后停止读取本页。",
+      "legacy_coverage": [
+        "genre-checklist.md"
+      ]
+    },
+    {
+      "id": "genre_playbook_report",
+      "path": "references/genre-playbook-report.md",
+      "kind": "genre",
+      "purpose": "报告与情况报告正文骨架和状态边界",
+      "triggers": [
+        "反馈情况报告",
+        "反馈报告",
+        "工作报告",
+        "情况报告",
+        "情况说明",
+        "意见反馈报告",
+        "报告",
+        "整改工作报告",
+        "整改情况报告",
+        "整改报告",
+        "整改进展报告"
+      ],
+      "allowed_reads": [
+        "SKILL.md",
+        "references/field-editing.md",
+        "references/genre-playbook-report.md",
+        "references/transaction-feedback-report.md",
+        "references/transaction-remediation-report.md"
+      ],
+      "forbidden_reads": [
+        "references/genre-playbook-advisory-feedback.md",
+        "references/genre-playbook-bulletin.md",
+        "references/genre-playbook-communique.md",
+        "references/genre-playbook-complaint-reflection.md",
+        "references/genre-playbook-correspondence.md",
+        "references/genre-playbook-decision.md",
+        "references/genre-playbook-deployment.md",
+        "references/genre-playbook-duty-report.md",
+        "references/genre-playbook-explanation.md",
+        "references/genre-playbook-feasibility.md",
+        "references/genre-playbook-information-materials.md",
+        "references/genre-playbook-initiative.md",
+        "references/genre-playbook-institution-rules.md",
+        "references/genre-playbook-meeting-host.md",
+        "references/genre-playbook-minutes.md",
+        "references/genre-playbook-motion.md",
+        "references/genre-playbook-narration.md",
+        "references/genre-playbook-news-commentary.md",
+        "references/genre-playbook-news-message.md",
+        "references/genre-playbook-notice.md",
+        "references/genre-playbook-open-letter.md",
+        "references/genre-playbook-opinion.md",
+        "references/genre-playbook-order.md",
+        "references/genre-playbook-plan-construction.md",
+        "references/genre-playbook-procurement-announcement.md",
+        "references/genre-playbook-project-application.md",
+        "references/genre-playbook-publication.md",
+        "references/genre-playbook-remediation-plan.md",
+        "references/genre-playbook-reply.md",
+        "references/genre-playbook-request.md",
+        "references/genre-playbook-research.md",
+        "references/genre-playbook-resolution.md",
+        "references/genre-playbook-responsibility-letter.md",
+        "references/genre-playbook-review-opinion.md",
+        "references/genre-playbook-speech-address.md",
+        "references/genre-playbook-technical-requirements.md",
+        "references/genre-playbook-work-priorities.md",
+        "references/genre-playbook-work-summary.md"
+      ],
+      "stop_when": "完成本页职责后停止读取本页。",
+      "legacy_coverage": [
+        "genre-checklist-report.md"
+      ]
+    },
+    {
       "id": "genre_playbook_request",
       "path": "references/genre-playbook-request.md",
       "kind": "genre",
@@ -1887,7 +2706,7 @@
         "references/formal-addressing.md",
         "references/genre-playbook-request.md",
         "references/handling-elements.md",
-        "references/information-selection.md"
+        "references/writing-rules.md"
       ],
       "forbidden_reads": [
         "references/genre-playbook-advisory-feedback.md",
@@ -1993,6 +2812,181 @@
       ]
     },
     {
+      "id": "genre_playbook_resolution",
+      "path": "references/genre-playbook-resolution.md",
+      "kind": "genre",
+      "purpose": "决议正文功能",
+      "triggers": [
+        "决议"
+      ],
+      "allowed_reads": [
+        "SKILL.md",
+        "references/genre-playbook-resolution.md",
+        "references/writing-rules.md"
+      ],
+      "forbidden_reads": [
+        "references/genre-playbook-advisory-feedback.md",
+        "references/genre-playbook-bulletin.md",
+        "references/genre-playbook-communique.md",
+        "references/genre-playbook-complaint-reflection.md",
+        "references/genre-playbook-correspondence.md",
+        "references/genre-playbook-decision.md",
+        "references/genre-playbook-deployment.md",
+        "references/genre-playbook-duty-report.md",
+        "references/genre-playbook-explanation.md",
+        "references/genre-playbook-feasibility.md",
+        "references/genre-playbook-information-materials.md",
+        "references/genre-playbook-initiative.md",
+        "references/genre-playbook-institution-rules.md",
+        "references/genre-playbook-meeting-host.md",
+        "references/genre-playbook-minutes.md",
+        "references/genre-playbook-motion.md",
+        "references/genre-playbook-narration.md",
+        "references/genre-playbook-news-commentary.md",
+        "references/genre-playbook-news-message.md",
+        "references/genre-playbook-notice.md",
+        "references/genre-playbook-open-letter.md",
+        "references/genre-playbook-opinion.md",
+        "references/genre-playbook-order.md",
+        "references/genre-playbook-plan-construction.md",
+        "references/genre-playbook-procurement-announcement.md",
+        "references/genre-playbook-project-application.md",
+        "references/genre-playbook-publication.md",
+        "references/genre-playbook-remediation-plan.md",
+        "references/genre-playbook-reply.md",
+        "references/genre-playbook-report.md",
+        "references/genre-playbook-request.md",
+        "references/genre-playbook-research.md",
+        "references/genre-playbook-responsibility-letter.md",
+        "references/genre-playbook-review-opinion.md",
+        "references/genre-playbook-speech-address.md",
+        "references/genre-playbook-technical-requirements.md",
+        "references/genre-playbook-work-priorities.md",
+        "references/genre-playbook-work-summary.md"
+      ],
+      "stop_when": "完成本页事项核对",
+      "legacy_coverage": [
+        "genre-playbooks.md"
+      ]
+    },
+    {
+      "id": "genre_playbook_responsibility_letter",
+      "path": "references/genre-playbook-responsibility-letter.md",
+      "kind": "genre",
+      "purpose": "负责责任书的文种组织和专项边界",
+      "triggers": [
+        "责任书"
+      ],
+      "allowed_reads": [
+        "SKILL.md",
+        "references/genre-playbook-responsibility-letter.md"
+      ],
+      "forbidden_reads": [
+        "references/genre-playbook-advisory-feedback.md",
+        "references/genre-playbook-bulletin.md",
+        "references/genre-playbook-communique.md",
+        "references/genre-playbook-complaint-reflection.md",
+        "references/genre-playbook-correspondence.md",
+        "references/genre-playbook-decision.md",
+        "references/genre-playbook-deployment.md",
+        "references/genre-playbook-duty-report.md",
+        "references/genre-playbook-explanation.md",
+        "references/genre-playbook-feasibility.md",
+        "references/genre-playbook-information-materials.md",
+        "references/genre-playbook-initiative.md",
+        "references/genre-playbook-institution-rules.md",
+        "references/genre-playbook-meeting-host.md",
+        "references/genre-playbook-minutes.md",
+        "references/genre-playbook-motion.md",
+        "references/genre-playbook-narration.md",
+        "references/genre-playbook-news-commentary.md",
+        "references/genre-playbook-news-message.md",
+        "references/genre-playbook-notice.md",
+        "references/genre-playbook-open-letter.md",
+        "references/genre-playbook-opinion.md",
+        "references/genre-playbook-order.md",
+        "references/genre-playbook-plan-construction.md",
+        "references/genre-playbook-procurement-announcement.md",
+        "references/genre-playbook-project-application.md",
+        "references/genre-playbook-publication.md",
+        "references/genre-playbook-remediation-plan.md",
+        "references/genre-playbook-reply.md",
+        "references/genre-playbook-report.md",
+        "references/genre-playbook-request.md",
+        "references/genre-playbook-research.md",
+        "references/genre-playbook-resolution.md",
+        "references/genre-playbook-review-opinion.md",
+        "references/genre-playbook-speech-address.md",
+        "references/genre-playbook-technical-requirements.md",
+        "references/genre-playbook-work-priorities.md",
+        "references/genre-playbook-work-summary.md"
+      ],
+      "stop_when": "完成本页文种专项核对后接回 SKILL.md 的成稿检查。",
+      "legacy_coverage": []
+    },
+    {
+      "id": "genre_playbook_review_opinion",
+      "path": "references/genre-playbook-review-opinion.md",
+      "kind": "genre",
+      "purpose": "负责审查意见的文种组织和专项边界",
+      "triggers": [
+        "审查意见",
+        "评审意见",
+        "审查材料",
+        "评审材料"
+      ],
+      "allowed_reads": [
+        "SKILL.md",
+        "references/field-editing.md",
+        "references/genre-playbook-procurement-review.md",
+        "references/genre-playbook-review-opinion.md",
+        "references/handling-elements.md",
+        "references/review-checklist.md"
+      ],
+      "forbidden_reads": [
+        "references/genre-playbook-advisory-feedback.md",
+        "references/genre-playbook-bulletin.md",
+        "references/genre-playbook-communique.md",
+        "references/genre-playbook-complaint-reflection.md",
+        "references/genre-playbook-correspondence.md",
+        "references/genre-playbook-decision.md",
+        "references/genre-playbook-deployment.md",
+        "references/genre-playbook-duty-report.md",
+        "references/genre-playbook-explanation.md",
+        "references/genre-playbook-feasibility.md",
+        "references/genre-playbook-information-materials.md",
+        "references/genre-playbook-initiative.md",
+        "references/genre-playbook-institution-rules.md",
+        "references/genre-playbook-meeting-host.md",
+        "references/genre-playbook-minutes.md",
+        "references/genre-playbook-motion.md",
+        "references/genre-playbook-narration.md",
+        "references/genre-playbook-news-commentary.md",
+        "references/genre-playbook-news-message.md",
+        "references/genre-playbook-notice.md",
+        "references/genre-playbook-open-letter.md",
+        "references/genre-playbook-opinion.md",
+        "references/genre-playbook-order.md",
+        "references/genre-playbook-plan-construction.md",
+        "references/genre-playbook-procurement-announcement.md",
+        "references/genre-playbook-project-application.md",
+        "references/genre-playbook-publication.md",
+        "references/genre-playbook-remediation-plan.md",
+        "references/genre-playbook-reply.md",
+        "references/genre-playbook-report.md",
+        "references/genre-playbook-request.md",
+        "references/genre-playbook-research.md",
+        "references/genre-playbook-resolution.md",
+        "references/genre-playbook-responsibility-letter.md",
+        "references/genre-playbook-speech-address.md",
+        "references/genre-playbook-technical-requirements.md",
+        "references/genre-playbook-work-priorities.md",
+        "references/genre-playbook-work-summary.md"
+      ],
+      "stop_when": "完成本页文种专项核对后接回 SKILL.md 的成稿检查。",
+      "legacy_coverage": []
+    },
+    {
       "id": "genre_playbook_speech_address",
       "path": "references/genre-playbook-speech-address.md",
       "kind": "genre",
@@ -2054,19 +3048,82 @@
       ]
     },
     {
-      "id": "genre_playbook_meeting_host",
-      "path": "references/genre-playbook-meeting-host.md",
+      "id": "genre_playbook_technical_requirements",
+      "path": "references/genre-playbook-technical-requirements.md",
       "kind": "genre",
-      "purpose": "会议主持词和主持串词的会序组织",
+      "purpose": "负责技术需求的文种组织和专项边界",
       "triggers": [
-        "会议主持词",
-        "主持词",
-        "主持串词"
+        "技术需求",
+        "技术需求书",
+        "软件需求说明",
+        "接口需求",
+        "技术需求附件"
       ],
       "allowed_reads": [
         "SKILL.md",
+        "references/ai-compute-docs.md",
+        "references/field-editing.md",
+        "references/genre-playbook-feasibility.md",
+        "references/genre-playbook-plan-construction.md",
+        "references/genre-playbook-procurement-review.md",
+        "references/genre-playbook-technical-requirements.md",
+        "references/writing-rules.md"
+      ],
+      "forbidden_reads": [
+        "references/genre-playbook-advisory-feedback.md",
+        "references/genre-playbook-bulletin.md",
+        "references/genre-playbook-communique.md",
+        "references/genre-playbook-complaint-reflection.md",
+        "references/genre-playbook-correspondence.md",
+        "references/genre-playbook-decision.md",
+        "references/genre-playbook-deployment.md",
+        "references/genre-playbook-duty-report.md",
+        "references/genre-playbook-explanation.md",
+        "references/genre-playbook-information-materials.md",
+        "references/genre-playbook-initiative.md",
+        "references/genre-playbook-institution-rules.md",
         "references/genre-playbook-meeting-host.md",
-        "references/speech-person-order.md"
+        "references/genre-playbook-minutes.md",
+        "references/genre-playbook-motion.md",
+        "references/genre-playbook-narration.md",
+        "references/genre-playbook-news-commentary.md",
+        "references/genre-playbook-news-message.md",
+        "references/genre-playbook-notice.md",
+        "references/genre-playbook-open-letter.md",
+        "references/genre-playbook-opinion.md",
+        "references/genre-playbook-order.md",
+        "references/genre-playbook-procurement-announcement.md",
+        "references/genre-playbook-project-application.md",
+        "references/genre-playbook-publication.md",
+        "references/genre-playbook-remediation-plan.md",
+        "references/genre-playbook-reply.md",
+        "references/genre-playbook-report.md",
+        "references/genre-playbook-request.md",
+        "references/genre-playbook-research.md",
+        "references/genre-playbook-resolution.md",
+        "references/genre-playbook-responsibility-letter.md",
+        "references/genre-playbook-review-opinion.md",
+        "references/genre-playbook-speech-address.md",
+        "references/genre-playbook-work-priorities.md",
+        "references/genre-playbook-work-summary.md"
+      ],
+      "stop_when": "完成本页文种专项核对后接回 SKILL.md 的成稿检查。",
+      "legacy_coverage": []
+    },
+    {
+      "id": "genre_playbook_work_priorities",
+      "path": "references/genre-playbook-work-priorities.md",
+      "kind": "genre",
+      "purpose": "前瞻性工作要点，按领域组织任务及落实要求",
+      "triggers": [
+        "年度工作要点",
+        "阶段工作要点",
+        "专项工作要点"
+      ],
+      "allowed_reads": [
+        "SKILL.md",
+        "references/argument-chains.md",
+        "references/genre-playbook-work-priorities.md"
       ],
       "forbidden_reads": [
         "references/genre-playbook-advisory-feedback.md",
@@ -2082,66 +3139,6 @@
         "references/genre-playbook-information-materials.md",
         "references/genre-playbook-initiative.md",
         "references/genre-playbook-institution-rules.md",
-        "references/genre-playbook-minutes.md",
-        "references/genre-playbook-motion.md",
-        "references/genre-playbook-narration.md",
-        "references/genre-playbook-news-commentary.md",
-        "references/genre-playbook-news-message.md",
-        "references/genre-playbook-notice.md",
-        "references/genre-playbook-open-letter.md",
-        "references/genre-playbook-opinion.md",
-        "references/genre-playbook-order.md",
-        "references/genre-playbook-plan-construction.md",
-        "references/genre-playbook-procurement-announcement.md",
-        "references/genre-playbook-project-application.md",
-        "references/genre-playbook-publication.md",
-        "references/genre-playbook-remediation-plan.md",
-        "references/genre-playbook-reply.md",
-        "references/genre-playbook-report.md",
-        "references/genre-playbook-request.md",
-        "references/genre-playbook-research.md",
-        "references/genre-playbook-resolution.md",
-        "references/genre-playbook-responsibility-letter.md",
-        "references/genre-playbook-review-opinion.md",
-        "references/genre-playbook-speech-address.md",
-        "references/genre-playbook-technical-requirements.md",
-        "references/genre-playbook-work-priorities.md",
-        "references/genre-playbook-work-summary.md"
-      ],
-      "stop_when": "完成议程、角色、状态和转场专项核对",
-      "legacy_coverage": [
-        "genre-playbook-speech-address.md",
-        "speech-person-order.md"
-      ]
-    },
-    {
-      "id": "genre_playbook_duty_report",
-      "path": "references/genre-playbook-duty-report.md",
-      "kind": "genre",
-      "purpose": "个人或班子书面与现场述职的职责履行内容",
-      "triggers": [
-        "述职报告",
-        "书面述职",
-        "履职情况报告",
-        "现场述职发言"
-      ],
-      "allowed_reads": [
-        "SKILL.md",
-        "references/genre-playbook-duty-report.md"
-      ],
-      "forbidden_reads": [
-        "references/genre-playbook-advisory-feedback.md",
-        "references/genre-playbook-bulletin.md",
-        "references/genre-playbook-communique.md",
-        "references/genre-playbook-complaint-reflection.md",
-        "references/genre-playbook-correspondence.md",
-        "references/genre-playbook-decision.md",
-        "references/genre-playbook-deployment.md",
-        "references/genre-playbook-explanation.md",
-        "references/genre-playbook-feasibility.md",
-        "references/genre-playbook-information-materials.md",
-        "references/genre-playbook-initiative.md",
-        "references/genre-playbook-institution-rules.md",
         "references/genre-playbook-meeting-host.md",
         "references/genre-playbook-minutes.md",
         "references/genre-playbook-motion.md",
@@ -2166,14 +3163,11 @@
         "references/genre-playbook-review-opinion.md",
         "references/genre-playbook-speech-address.md",
         "references/genre-playbook-technical-requirements.md",
-        "references/genre-playbook-work-priorities.md",
         "references/genre-playbook-work-summary.md"
       ],
-      "stop_when": "完成述职主体、职责对应、实绩归属和改进方向专项核对",
+      "stop_when": "工作要点成稿后按首页检查步骤核对",
       "legacy_coverage": [
-        "genre-playbook-speech-address.md",
-        "genre-checklist.md",
-        "argument-chains.md"
+        "genre-playbook-work-summary.md"
       ]
     },
     {
@@ -2255,6 +3249,7 @@
         "references/genre-playbook-feasibility.md",
         "references/genre-playbook-information-materials.md",
         "references/genre-playbook-initiative.md",
+        "references/genre-playbook-institution-rules.md",
         "references/genre-playbook-meeting-host.md",
         "references/genre-playbook-minutes.md",
         "references/genre-playbook-motion.md",
@@ -2269,6 +3264,7 @@
         "references/genre-playbook-procurement-announcement.md",
         "references/genre-playbook-procurement-review.md",
         "references/genre-playbook-publication.md",
+        "references/genre-playbook-reply.md",
         "references/genre-playbook-report.md",
         "references/genre-playbook-request.md",
         "references/genre-playbook-resolution.md",
@@ -2284,10 +3280,8 @@
       "forbidden_reads": [
         "references/genre-playbook-complaint-reflection.md",
         "references/genre-playbook-deployment.md",
-        "references/genre-playbook-institution-rules.md",
         "references/genre-playbook-project-application.md",
         "references/genre-playbook-remediation-plan.md",
-        "references/genre-playbook-reply.md",
         "references/genre-playbook-research.md"
       ],
       "stop_when": "完成本页职责后停止读取本页。",
@@ -2305,7 +3299,7 @@
         "SKILL.md",
         "references/external-research.md",
         "references/handling-elements.md",
-        "references/information-selection.md"
+        "references/writing-rules.md"
       ],
       "forbidden_reads": [
         "references/genre-playbook-advisory-feedback.md",
@@ -2351,137 +3345,6 @@
       "stop_when": "完成本页职责后停止读取本页。",
       "legacy_coverage": [
         "handling-elements.md"
-      ]
-    },
-    {
-      "id": "information_selection",
-      "path": "references/information-selection.md",
-      "kind": "workflow",
-      "purpose": "负责 information-selection 的唯一职责",
-      "triggers": [
-        "专项整改方案",
-        "优化建议",
-        "会议纪要",
-        "公告",
-        "公报",
-        "公示",
-        "决定",
-        "决议",
-        "函",
-        "制度",
-        "办法",
-        "反馈情况报告",
-        "反馈报告",
-        "可研报告",
-        "合作性意见建议",
-        "周报",
-        "命令",
-        "增项申请",
-        "复函",
-        "实施方案",
-        "工作总结",
-        "工作报告",
-        "工作要点",
-        "建议反馈",
-        "建设方案",
-        "征求意见函",
-        "快讯",
-        "情况反映",
-        "情况报告",
-        "情况说明",
-        "意见",
-        "意见反馈报告",
-        "意见建议",
-        "批复",
-        "投诉",
-        "报告",
-        "操作规程",
-        "整改工作报告",
-        "整改工作方案",
-        "整改情况报告",
-        "整改报告",
-        "整改方案",
-        "整改进展报告",
-        "新闻消息",
-        "新闻稿",
-        "新闻评论",
-        "新闻通稿",
-        "方案",
-        "时评",
-        "月报",
-        "活动报道",
-        "演讲",
-        "申请",
-        "研究报告",
-        "细则",
-        "致辞",
-        "规定",
-        "议案",
-        "讲话稿",
-        "评审材料",
-        "评论员文章",
-        "说明",
-        "请示",
-        "调研报告",
-        "通告",
-        "通知",
-        "部署",
-        "部署安排",
-        "采购公告",
-        "采购审查",
-        "采购方案",
-        "问题反映",
-        "项目增项申请",
-        "项目申请"
-      ],
-      "allowed_reads": [
-        "SKILL.md",
-        "references/information-selection.md"
-      ],
-      "forbidden_reads": [
-        "references/genre-playbook-advisory-feedback.md",
-        "references/genre-playbook-bulletin.md",
-        "references/genre-playbook-communique.md",
-        "references/genre-playbook-complaint-reflection.md",
-        "references/genre-playbook-correspondence.md",
-        "references/genre-playbook-decision.md",
-        "references/genre-playbook-deployment.md",
-        "references/genre-playbook-duty-report.md",
-        "references/genre-playbook-explanation.md",
-        "references/genre-playbook-feasibility.md",
-        "references/genre-playbook-information-materials.md",
-        "references/genre-playbook-initiative.md",
-        "references/genre-playbook-institution-rules.md",
-        "references/genre-playbook-meeting-host.md",
-        "references/genre-playbook-minutes.md",
-        "references/genre-playbook-motion.md",
-        "references/genre-playbook-narration.md",
-        "references/genre-playbook-news-commentary.md",
-        "references/genre-playbook-news-message.md",
-        "references/genre-playbook-notice.md",
-        "references/genre-playbook-open-letter.md",
-        "references/genre-playbook-opinion.md",
-        "references/genre-playbook-order.md",
-        "references/genre-playbook-plan-construction.md",
-        "references/genre-playbook-procurement-announcement.md",
-        "references/genre-playbook-project-application.md",
-        "references/genre-playbook-publication.md",
-        "references/genre-playbook-remediation-plan.md",
-        "references/genre-playbook-reply.md",
-        "references/genre-playbook-report.md",
-        "references/genre-playbook-request.md",
-        "references/genre-playbook-research.md",
-        "references/genre-playbook-resolution.md",
-        "references/genre-playbook-responsibility-letter.md",
-        "references/genre-playbook-review-opinion.md",
-        "references/genre-playbook-speech-address.md",
-        "references/genre-playbook-technical-requirements.md",
-        "references/genre-playbook-work-priorities.md",
-        "references/genre-playbook-work-summary.md"
-      ],
-      "stop_when": "完成本页职责后停止读取本页。",
-      "legacy_coverage": [
-        "information-selection.md"
       ]
     },
     {
@@ -2722,13 +3585,11 @@
       "allowed_reads": [
         "SKILL.md",
         "references/ai-compute-docs.md",
-        "references/anti-ai-patterns.md",
         "references/argument-chains.md",
         "references/compatibility-scene-routing.md",
         "references/compression-details.md",
         "references/external-research.md",
         "references/field-editing.md",
-        "references/final-review-layers.md",
         "references/formal-addressing.md",
         "references/formulaic-language.md",
         "references/genre-checklist-feasibility-review.md",
@@ -2774,12 +3635,8 @@
         "references/genre-playbook-work-summary.md",
         "references/genre-routing.md",
         "references/handling-elements.md",
-        "references/information-selection.md",
         "references/official-style.md",
-        "references/proofreading-checklist.md",
-        "references/prose-lint-usage.md",
         "references/reference-index.md",
-        "references/short-draft-naturalness.md",
         "references/speech-person-order.md",
         "references/structure-editing.md",
         "references/transaction-feedback-report.md",
@@ -2803,7 +3660,8 @@
       "triggers": [],
       "allowed_reads": [
         "SKILL.md",
-        "references/review-checklist.md"
+        "references/review-checklist.md",
+        "references/writing-rules.md"
       ],
       "forbidden_reads": [
         "references/genre-playbook-advisory-feedback.md",
@@ -2849,62 +3707,6 @@
       "stop_when": "完成本页职责后停止读取本页。",
       "legacy_coverage": [
         "review-checklist.md"
-      ]
-    },
-    {
-      "id": "short_draft_naturalness",
-      "path": "references/short-draft-naturalness.md",
-      "kind": "workflow",
-      "purpose": "负责 short-draft-naturalness 的唯一职责",
-      "triggers": [],
-      "allowed_reads": [
-        "SKILL.md",
-        "references/short-draft-naturalness.md"
-      ],
-      "forbidden_reads": [
-        "references/genre-playbook-advisory-feedback.md",
-        "references/genre-playbook-bulletin.md",
-        "references/genre-playbook-communique.md",
-        "references/genre-playbook-complaint-reflection.md",
-        "references/genre-playbook-correspondence.md",
-        "references/genre-playbook-decision.md",
-        "references/genre-playbook-deployment.md",
-        "references/genre-playbook-duty-report.md",
-        "references/genre-playbook-explanation.md",
-        "references/genre-playbook-feasibility.md",
-        "references/genre-playbook-information-materials.md",
-        "references/genre-playbook-initiative.md",
-        "references/genre-playbook-institution-rules.md",
-        "references/genre-playbook-meeting-host.md",
-        "references/genre-playbook-minutes.md",
-        "references/genre-playbook-motion.md",
-        "references/genre-playbook-narration.md",
-        "references/genre-playbook-news-commentary.md",
-        "references/genre-playbook-news-message.md",
-        "references/genre-playbook-notice.md",
-        "references/genre-playbook-open-letter.md",
-        "references/genre-playbook-opinion.md",
-        "references/genre-playbook-order.md",
-        "references/genre-playbook-plan-construction.md",
-        "references/genre-playbook-procurement-announcement.md",
-        "references/genre-playbook-project-application.md",
-        "references/genre-playbook-publication.md",
-        "references/genre-playbook-remediation-plan.md",
-        "references/genre-playbook-reply.md",
-        "references/genre-playbook-report.md",
-        "references/genre-playbook-request.md",
-        "references/genre-playbook-research.md",
-        "references/genre-playbook-resolution.md",
-        "references/genre-playbook-responsibility-letter.md",
-        "references/genre-playbook-review-opinion.md",
-        "references/genre-playbook-speech-address.md",
-        "references/genre-playbook-technical-requirements.md",
-        "references/genre-playbook-work-priorities.md",
-        "references/genre-playbook-work-summary.md"
-      ],
-      "stop_when": "完成本页职责后停止读取本页。",
-      "legacy_coverage": [
-        "short-draft-naturalness.md"
       ]
     },
     {
@@ -3020,65 +3822,6 @@
       ]
     },
     {
-      "id": "task_route_cards",
-      "path": "references/task-route-cards.md",
-      "kind": "router",
-      "purpose": "负责 task-route-cards 的唯一职责",
-      "triggers": [],
-      "allowed_reads": [
-        "SKILL.md",
-        "references/field-editing.md",
-        "references/short-draft-naturalness.md",
-        "references/structure-editing.md",
-        "references/task-route-cards.md"
-      ],
-      "forbidden_reads": [
-        "references/genre-playbook-advisory-feedback.md",
-        "references/genre-playbook-bulletin.md",
-        "references/genre-playbook-communique.md",
-        "references/genre-playbook-complaint-reflection.md",
-        "references/genre-playbook-correspondence.md",
-        "references/genre-playbook-decision.md",
-        "references/genre-playbook-deployment.md",
-        "references/genre-playbook-duty-report.md",
-        "references/genre-playbook-explanation.md",
-        "references/genre-playbook-feasibility.md",
-        "references/genre-playbook-information-materials.md",
-        "references/genre-playbook-initiative.md",
-        "references/genre-playbook-institution-rules.md",
-        "references/genre-playbook-meeting-host.md",
-        "references/genre-playbook-minutes.md",
-        "references/genre-playbook-motion.md",
-        "references/genre-playbook-narration.md",
-        "references/genre-playbook-news-commentary.md",
-        "references/genre-playbook-news-message.md",
-        "references/genre-playbook-notice.md",
-        "references/genre-playbook-open-letter.md",
-        "references/genre-playbook-opinion.md",
-        "references/genre-playbook-order.md",
-        "references/genre-playbook-plan-construction.md",
-        "references/genre-playbook-procurement-announcement.md",
-        "references/genre-playbook-project-application.md",
-        "references/genre-playbook-publication.md",
-        "references/genre-playbook-remediation-plan.md",
-        "references/genre-playbook-reply.md",
-        "references/genre-playbook-report.md",
-        "references/genre-playbook-request.md",
-        "references/genre-playbook-research.md",
-        "references/genre-playbook-resolution.md",
-        "references/genre-playbook-responsibility-letter.md",
-        "references/genre-playbook-review-opinion.md",
-        "references/genre-playbook-speech-address.md",
-        "references/genre-playbook-technical-requirements.md",
-        "references/genre-playbook-work-priorities.md",
-        "references/genre-playbook-work-summary.md"
-      ],
-      "stop_when": "完成本页职责后停止读取本页。",
-      "legacy_coverage": [
-        "task-route-cards.md"
-      ]
-    },
-    {
       "id": "technical_terms",
       "path": "references/technical-terms.md",
       "kind": "overlay",
@@ -3135,202 +3878,18 @@
       ]
     },
     {
-      "id": "genre_playbook_reply",
-      "path": "references/genre-playbook-reply.md",
-      "kind": "genre",
-      "purpose": "负责独立法定文种的唯一职责",
-      "triggers": [
-        "批复"
-      ],
-      "allowed_reads": [
-        "SKILL.md",
-        "references/genre-playbook-reply.md"
-      ],
-      "forbidden_reads": [
-        "references/genre-playbook-advisory-feedback.md",
-        "references/genre-playbook-bulletin.md",
-        "references/genre-playbook-communique.md",
-        "references/genre-playbook-complaint-reflection.md",
-        "references/genre-playbook-correspondence.md",
-        "references/genre-playbook-decision.md",
-        "references/genre-playbook-deployment.md",
-        "references/genre-playbook-duty-report.md",
-        "references/genre-playbook-explanation.md",
-        "references/genre-playbook-feasibility.md",
-        "references/genre-playbook-information-materials.md",
-        "references/genre-playbook-initiative.md",
-        "references/genre-playbook-institution-rules.md",
-        "references/genre-playbook-meeting-host.md",
-        "references/genre-playbook-minutes.md",
-        "references/genre-playbook-motion.md",
-        "references/genre-playbook-narration.md",
-        "references/genre-playbook-news-commentary.md",
-        "references/genre-playbook-news-message.md",
-        "references/genre-playbook-notice.md",
-        "references/genre-playbook-open-letter.md",
-        "references/genre-playbook-opinion.md",
-        "references/genre-playbook-order.md",
-        "references/genre-playbook-plan-construction.md",
-        "references/genre-playbook-procurement-announcement.md",
-        "references/genre-playbook-project-application.md",
-        "references/genre-playbook-publication.md",
-        "references/genre-playbook-remediation-plan.md",
-        "references/genre-playbook-report.md",
-        "references/genre-playbook-request.md",
-        "references/genre-playbook-research.md",
-        "references/genre-playbook-resolution.md",
-        "references/genre-playbook-responsibility-letter.md",
-        "references/genre-playbook-review-opinion.md",
-        "references/genre-playbook-speech-address.md",
-        "references/genre-playbook-technical-requirements.md",
-        "references/genre-playbook-work-priorities.md",
-        "references/genre-playbook-work-summary.md"
-      ],
-      "stop_when": "完成本页职责后停止读取本页。",
-      "legacy_coverage": [
-        "genre-checklist.md"
-      ]
-    },
-    {
-      "id": "genre_playbook_opinion",
-      "path": "references/genre-playbook-opinion.md",
-      "kind": "genre",
-      "purpose": "负责独立法定文种的唯一职责",
-      "triggers": [
-        "意见"
-      ],
-      "allowed_reads": [
-        "SKILL.md",
-        "references/delivery.md",
-        "references/genre-playbook-opinion.md",
-        "references/information-selection.md"
-      ],
-      "forbidden_reads": [
-        "references/genre-playbook-advisory-feedback.md",
-        "references/genre-playbook-bulletin.md",
-        "references/genre-playbook-communique.md",
-        "references/genre-playbook-complaint-reflection.md",
-        "references/genre-playbook-correspondence.md",
-        "references/genre-playbook-decision.md",
-        "references/genre-playbook-deployment.md",
-        "references/genre-playbook-duty-report.md",
-        "references/genre-playbook-explanation.md",
-        "references/genre-playbook-feasibility.md",
-        "references/genre-playbook-information-materials.md",
-        "references/genre-playbook-initiative.md",
-        "references/genre-playbook-institution-rules.md",
-        "references/genre-playbook-meeting-host.md",
-        "references/genre-playbook-minutes.md",
-        "references/genre-playbook-motion.md",
-        "references/genre-playbook-narration.md",
-        "references/genre-playbook-news-commentary.md",
-        "references/genre-playbook-news-message.md",
-        "references/genre-playbook-notice.md",
-        "references/genre-playbook-open-letter.md",
-        "references/genre-playbook-order.md",
-        "references/genre-playbook-plan-construction.md",
-        "references/genre-playbook-procurement-announcement.md",
-        "references/genre-playbook-project-application.md",
-        "references/genre-playbook-publication.md",
-        "references/genre-playbook-remediation-plan.md",
-        "references/genre-playbook-reply.md",
-        "references/genre-playbook-report.md",
-        "references/genre-playbook-request.md",
-        "references/genre-playbook-research.md",
-        "references/genre-playbook-resolution.md",
-        "references/genre-playbook-responsibility-letter.md",
-        "references/genre-playbook-review-opinion.md",
-        "references/genre-playbook-speech-address.md",
-        "references/genre-playbook-technical-requirements.md",
-        "references/genre-playbook-work-priorities.md",
-        "references/genre-playbook-work-summary.md"
-      ],
-      "stop_when": "完成本页职责后停止读取本页。",
-      "legacy_coverage": [
-        "genre-checklist.md"
-      ]
-    },
-    {
-      "id": "genre_playbook_explanation",
-      "path": "references/genre-playbook-explanation.md",
-      "kind": "genre",
-      "purpose": "负责独立法定文种的唯一职责",
-      "triggers": [
-        "说明"
-      ],
-      "allowed_reads": [
-        "SKILL.md",
-        "references/genre-playbook-explanation.md"
-      ],
-      "forbidden_reads": [
-        "references/genre-playbook-advisory-feedback.md",
-        "references/genre-playbook-bulletin.md",
-        "references/genre-playbook-communique.md",
-        "references/genre-playbook-complaint-reflection.md",
-        "references/genre-playbook-correspondence.md",
-        "references/genre-playbook-decision.md",
-        "references/genre-playbook-deployment.md",
-        "references/genre-playbook-duty-report.md",
-        "references/genre-playbook-feasibility.md",
-        "references/genre-playbook-information-materials.md",
-        "references/genre-playbook-initiative.md",
-        "references/genre-playbook-institution-rules.md",
-        "references/genre-playbook-meeting-host.md",
-        "references/genre-playbook-minutes.md",
-        "references/genre-playbook-motion.md",
-        "references/genre-playbook-narration.md",
-        "references/genre-playbook-news-commentary.md",
-        "references/genre-playbook-news-message.md",
-        "references/genre-playbook-notice.md",
-        "references/genre-playbook-open-letter.md",
-        "references/genre-playbook-opinion.md",
-        "references/genre-playbook-order.md",
-        "references/genre-playbook-plan-construction.md",
-        "references/genre-playbook-procurement-announcement.md",
-        "references/genre-playbook-project-application.md",
-        "references/genre-playbook-publication.md",
-        "references/genre-playbook-remediation-plan.md",
-        "references/genre-playbook-reply.md",
-        "references/genre-playbook-report.md",
-        "references/genre-playbook-request.md",
-        "references/genre-playbook-research.md",
-        "references/genre-playbook-resolution.md",
-        "references/genre-playbook-responsibility-letter.md",
-        "references/genre-playbook-review-opinion.md",
-        "references/genre-playbook-speech-address.md",
-        "references/genre-playbook-technical-requirements.md",
-        "references/genre-playbook-work-priorities.md",
-        "references/genre-playbook-work-summary.md"
-      ],
-      "stop_when": "完成本页职责后停止读取本页。",
-      "legacy_coverage": [
-        "genre-checklist.md"
-      ]
-    },
-    {
-      "id": "genre_playbook_report",
-      "path": "references/genre-playbook-report.md",
-      "kind": "genre",
-      "purpose": "报告与情况报告正文骨架和状态边界",
+      "id": "transaction_feedback_report",
+      "path": "references/transaction-feedback-report.md",
+      "kind": "overlay",
+      "purpose": "反馈报告事务附加页",
       "triggers": [
         "反馈情况报告",
         "反馈报告",
-        "工作报告",
-        "情况报告",
-        "情况说明",
-        "意见反馈报告",
-        "报告",
-        "整改工作报告",
-        "整改情况报告",
-        "整改报告",
-        "整改进展报告"
+        "意见反馈报告"
       ],
       "allowed_reads": [
         "SKILL.md",
-        "references/field-editing.md",
-        "references/genre-playbook-report.md",
-        "references/transaction-feedback-report.md",
-        "references/transaction-remediation-report.md"
+        "references/transaction-feedback-report.md"
       ],
       "forbidden_reads": [
         "references/genre-playbook-advisory-feedback.md",
@@ -3362,6 +3921,7 @@
         "references/genre-playbook-publication.md",
         "references/genre-playbook-remediation-plan.md",
         "references/genre-playbook-reply.md",
+        "references/genre-playbook-report.md",
         "references/genre-playbook-request.md",
         "references/genre-playbook-research.md",
         "references/genre-playbook-resolution.md",
@@ -3372,9 +3932,9 @@
         "references/genre-playbook-work-priorities.md",
         "references/genre-playbook-work-summary.md"
       ],
-      "stop_when": "完成本页职责后停止读取本页。",
+      "stop_when": "完成事务附加页职责后回到报告主叶并停止。",
       "legacy_coverage": [
-        "genre-checklist-report.md"
+        "genre-playbook-advisory-feedback.md"
       ]
     },
     {
@@ -3439,83 +3999,18 @@
       ]
     },
     {
-      "id": "transaction_feedback_report",
-      "path": "references/transaction-feedback-report.md",
-      "kind": "overlay",
-      "purpose": "反馈报告事务附加页",
-      "triggers": [
-        "反馈情况报告",
-        "反馈报告",
-        "意见反馈报告"
-      ],
-      "allowed_reads": [
-        "SKILL.md",
-        "references/transaction-feedback-report.md"
-      ],
-      "forbidden_reads": [
-        "references/genre-playbook-advisory-feedback.md",
-        "references/genre-playbook-bulletin.md",
-        "references/genre-playbook-communique.md",
-        "references/genre-playbook-complaint-reflection.md",
-        "references/genre-playbook-correspondence.md",
-        "references/genre-playbook-decision.md",
-        "references/genre-playbook-deployment.md",
-        "references/genre-playbook-duty-report.md",
-        "references/genre-playbook-explanation.md",
-        "references/genre-playbook-feasibility.md",
-        "references/genre-playbook-information-materials.md",
-        "references/genre-playbook-initiative.md",
-        "references/genre-playbook-institution-rules.md",
-        "references/genre-playbook-meeting-host.md",
-        "references/genre-playbook-minutes.md",
-        "references/genre-playbook-motion.md",
-        "references/genre-playbook-narration.md",
-        "references/genre-playbook-news-commentary.md",
-        "references/genre-playbook-news-message.md",
-        "references/genre-playbook-notice.md",
-        "references/genre-playbook-open-letter.md",
-        "references/genre-playbook-opinion.md",
-        "references/genre-playbook-order.md",
-        "references/genre-playbook-plan-construction.md",
-        "references/genre-playbook-procurement-announcement.md",
-        "references/genre-playbook-project-application.md",
-        "references/genre-playbook-publication.md",
-        "references/genre-playbook-remediation-plan.md",
-        "references/genre-playbook-reply.md",
-        "references/genre-playbook-report.md",
-        "references/genre-playbook-request.md",
-        "references/genre-playbook-research.md",
-        "references/genre-playbook-resolution.md",
-        "references/genre-playbook-responsibility-letter.md",
-        "references/genre-playbook-review-opinion.md",
-        "references/genre-playbook-speech-address.md",
-        "references/genre-playbook-technical-requirements.md",
-        "references/genre-playbook-work-priorities.md",
-        "references/genre-playbook-work-summary.md"
-      ],
-      "stop_when": "完成事务附加页职责后回到报告主叶并停止。",
-      "legacy_coverage": [
-        "genre-playbook-advisory-feedback.md"
-      ]
-    },
-    {
-      "id": "delivery",
-      "path": "references/delivery.md",
+      "id": "writing_rules",
+      "path": "references/writing-rules.md",
       "kind": "workflow",
-      "purpose": "成稿后的自然语言直交付和文后提示边界",
-      "triggers": [
-        "只要文章",
-        "只要稿件",
-        "只要正文",
-        "完整稿子",
-        "完整稿件",
-        "直接给我成稿",
-        "不需要解释",
-        "不需要提示"
-      ],
+      "purpose": "取材、成稿、篇幅、复核与交付的共同规则",
+      "triggers": [],
       "allowed_reads": [
         "SKILL.md",
-        "references/delivery.md"
+        "references/anti-ai-patterns.md",
+        "references/compression-details.md",
+        "references/proofreading-checklist.md",
+        "references/prose-lint-usage.md",
+        "references/writing-rules.md"
       ],
       "forbidden_reads": [
         "references/genre-playbook-advisory-feedback.md",
@@ -3558,815 +4053,14 @@
         "references/genre-playbook-work-priorities.md",
         "references/genre-playbook-work-summary.md"
       ],
-      "stop_when": "正文洁净交付完成后停止。",
+      "stop_when": "完成当前稿件的复核与交付。",
       "legacy_coverage": [
-        "SKILL.md",
-        "anti-ai-patterns.md"
+        "delivery.md",
+        "final-review-layers.md",
+        "information-selection.md",
+        "short-draft-naturalness.md",
+        "task-route-cards.md"
       ]
-    },
-    {
-      "id": "genre_playbook_bulletin",
-      "path": "references/genre-playbook-bulletin.md",
-      "kind": "genre",
-      "purpose": "情况、表扬和批评通报的正文功能",
-      "triggers": [
-        "通报"
-      ],
-      "allowed_reads": [
-        "SKILL.md",
-        "references/genre-playbook-bulletin.md"
-      ],
-      "forbidden_reads": [
-        "references/genre-playbook-advisory-feedback.md",
-        "references/genre-playbook-communique.md",
-        "references/genre-playbook-complaint-reflection.md",
-        "references/genre-playbook-correspondence.md",
-        "references/genre-playbook-decision.md",
-        "references/genre-playbook-deployment.md",
-        "references/genre-playbook-duty-report.md",
-        "references/genre-playbook-explanation.md",
-        "references/genre-playbook-feasibility.md",
-        "references/genre-playbook-information-materials.md",
-        "references/genre-playbook-initiative.md",
-        "references/genre-playbook-institution-rules.md",
-        "references/genre-playbook-meeting-host.md",
-        "references/genre-playbook-minutes.md",
-        "references/genre-playbook-motion.md",
-        "references/genre-playbook-narration.md",
-        "references/genre-playbook-news-commentary.md",
-        "references/genre-playbook-news-message.md",
-        "references/genre-playbook-notice.md",
-        "references/genre-playbook-open-letter.md",
-        "references/genre-playbook-opinion.md",
-        "references/genre-playbook-order.md",
-        "references/genre-playbook-plan-construction.md",
-        "references/genre-playbook-procurement-announcement.md",
-        "references/genre-playbook-project-application.md",
-        "references/genre-playbook-publication.md",
-        "references/genre-playbook-remediation-plan.md",
-        "references/genre-playbook-reply.md",
-        "references/genre-playbook-report.md",
-        "references/genre-playbook-request.md",
-        "references/genre-playbook-research.md",
-        "references/genre-playbook-resolution.md",
-        "references/genre-playbook-responsibility-letter.md",
-        "references/genre-playbook-review-opinion.md",
-        "references/genre-playbook-speech-address.md",
-        "references/genre-playbook-technical-requirements.md",
-        "references/genre-playbook-work-priorities.md",
-        "references/genre-playbook-work-summary.md"
-      ],
-      "stop_when": "完成通报事实、评价和已定要求核对",
-      "legacy_coverage": [
-        "genre-playbooks.md"
-      ]
-    },
-    {
-      "id": "genre_playbook_decision",
-      "path": "references/genre-playbook-decision.md",
-      "kind": "genre",
-      "purpose": "决定正文功能",
-      "triggers": [
-        "决定"
-      ],
-      "allowed_reads": [
-        "SKILL.md",
-        "references/genre-playbook-decision.md"
-      ],
-      "forbidden_reads": [
-        "references/genre-playbook-advisory-feedback.md",
-        "references/genre-playbook-bulletin.md",
-        "references/genre-playbook-communique.md",
-        "references/genre-playbook-complaint-reflection.md",
-        "references/genre-playbook-correspondence.md",
-        "references/genre-playbook-deployment.md",
-        "references/genre-playbook-duty-report.md",
-        "references/genre-playbook-explanation.md",
-        "references/genre-playbook-feasibility.md",
-        "references/genre-playbook-information-materials.md",
-        "references/genre-playbook-initiative.md",
-        "references/genre-playbook-institution-rules.md",
-        "references/genre-playbook-meeting-host.md",
-        "references/genre-playbook-minutes.md",
-        "references/genre-playbook-motion.md",
-        "references/genre-playbook-narration.md",
-        "references/genre-playbook-news-commentary.md",
-        "references/genre-playbook-news-message.md",
-        "references/genre-playbook-notice.md",
-        "references/genre-playbook-open-letter.md",
-        "references/genre-playbook-opinion.md",
-        "references/genre-playbook-order.md",
-        "references/genre-playbook-plan-construction.md",
-        "references/genre-playbook-procurement-announcement.md",
-        "references/genre-playbook-project-application.md",
-        "references/genre-playbook-publication.md",
-        "references/genre-playbook-remediation-plan.md",
-        "references/genre-playbook-reply.md",
-        "references/genre-playbook-report.md",
-        "references/genre-playbook-request.md",
-        "references/genre-playbook-research.md",
-        "references/genre-playbook-resolution.md",
-        "references/genre-playbook-responsibility-letter.md",
-        "references/genre-playbook-review-opinion.md",
-        "references/genre-playbook-speech-address.md",
-        "references/genre-playbook-technical-requirements.md",
-        "references/genre-playbook-work-priorities.md",
-        "references/genre-playbook-work-summary.md"
-      ],
-      "stop_when": "完成本页事项核对",
-      "legacy_coverage": [
-        "genre-playbooks.md"
-      ]
-    },
-    {
-      "id": "genre_playbook_resolution",
-      "path": "references/genre-playbook-resolution.md",
-      "kind": "genre",
-      "purpose": "决议正文功能",
-      "triggers": [
-        "决议"
-      ],
-      "allowed_reads": [
-        "SKILL.md",
-        "references/genre-playbook-resolution.md"
-      ],
-      "forbidden_reads": [
-        "references/genre-playbook-advisory-feedback.md",
-        "references/genre-playbook-bulletin.md",
-        "references/genre-playbook-communique.md",
-        "references/genre-playbook-complaint-reflection.md",
-        "references/genre-playbook-correspondence.md",
-        "references/genre-playbook-decision.md",
-        "references/genre-playbook-deployment.md",
-        "references/genre-playbook-duty-report.md",
-        "references/genre-playbook-explanation.md",
-        "references/genre-playbook-feasibility.md",
-        "references/genre-playbook-information-materials.md",
-        "references/genre-playbook-initiative.md",
-        "references/genre-playbook-institution-rules.md",
-        "references/genre-playbook-meeting-host.md",
-        "references/genre-playbook-minutes.md",
-        "references/genre-playbook-motion.md",
-        "references/genre-playbook-narration.md",
-        "references/genre-playbook-news-commentary.md",
-        "references/genre-playbook-news-message.md",
-        "references/genre-playbook-notice.md",
-        "references/genre-playbook-open-letter.md",
-        "references/genre-playbook-opinion.md",
-        "references/genre-playbook-order.md",
-        "references/genre-playbook-plan-construction.md",
-        "references/genre-playbook-procurement-announcement.md",
-        "references/genre-playbook-project-application.md",
-        "references/genre-playbook-publication.md",
-        "references/genre-playbook-remediation-plan.md",
-        "references/genre-playbook-reply.md",
-        "references/genre-playbook-report.md",
-        "references/genre-playbook-request.md",
-        "references/genre-playbook-research.md",
-        "references/genre-playbook-responsibility-letter.md",
-        "references/genre-playbook-review-opinion.md",
-        "references/genre-playbook-speech-address.md",
-        "references/genre-playbook-technical-requirements.md",
-        "references/genre-playbook-work-priorities.md",
-        "references/genre-playbook-work-summary.md"
-      ],
-      "stop_when": "完成本页事项核对",
-      "legacy_coverage": [
-        "genre-playbooks.md"
-      ]
-    },
-    {
-      "id": "genre_playbook_motion",
-      "path": "references/genre-playbook-motion.md",
-      "kind": "genre",
-      "purpose": "议案正文功能",
-      "triggers": [
-        "议案"
-      ],
-      "allowed_reads": [
-        "SKILL.md",
-        "references/genre-playbook-motion.md"
-      ],
-      "forbidden_reads": [
-        "references/genre-playbook-advisory-feedback.md",
-        "references/genre-playbook-bulletin.md",
-        "references/genre-playbook-communique.md",
-        "references/genre-playbook-complaint-reflection.md",
-        "references/genre-playbook-correspondence.md",
-        "references/genre-playbook-decision.md",
-        "references/genre-playbook-deployment.md",
-        "references/genre-playbook-duty-report.md",
-        "references/genre-playbook-explanation.md",
-        "references/genre-playbook-feasibility.md",
-        "references/genre-playbook-information-materials.md",
-        "references/genre-playbook-initiative.md",
-        "references/genre-playbook-institution-rules.md",
-        "references/genre-playbook-meeting-host.md",
-        "references/genre-playbook-minutes.md",
-        "references/genre-playbook-narration.md",
-        "references/genre-playbook-news-commentary.md",
-        "references/genre-playbook-news-message.md",
-        "references/genre-playbook-notice.md",
-        "references/genre-playbook-open-letter.md",
-        "references/genre-playbook-opinion.md",
-        "references/genre-playbook-order.md",
-        "references/genre-playbook-plan-construction.md",
-        "references/genre-playbook-procurement-announcement.md",
-        "references/genre-playbook-project-application.md",
-        "references/genre-playbook-publication.md",
-        "references/genre-playbook-remediation-plan.md",
-        "references/genre-playbook-reply.md",
-        "references/genre-playbook-report.md",
-        "references/genre-playbook-request.md",
-        "references/genre-playbook-research.md",
-        "references/genre-playbook-resolution.md",
-        "references/genre-playbook-responsibility-letter.md",
-        "references/genre-playbook-review-opinion.md",
-        "references/genre-playbook-speech-address.md",
-        "references/genre-playbook-technical-requirements.md",
-        "references/genre-playbook-work-priorities.md",
-        "references/genre-playbook-work-summary.md"
-      ],
-      "stop_when": "完成本页事项核对",
-      "legacy_coverage": [
-        "genre-playbooks.md"
-      ]
-    },
-    {
-      "id": "genre_playbook_communique",
-      "path": "references/genre-playbook-communique.md",
-      "kind": "genre",
-      "purpose": "公报正文功能",
-      "triggers": [
-        "公报"
-      ],
-      "allowed_reads": [
-        "SKILL.md",
-        "references/genre-playbook-communique.md"
-      ],
-      "forbidden_reads": [
-        "references/genre-playbook-advisory-feedback.md",
-        "references/genre-playbook-bulletin.md",
-        "references/genre-playbook-complaint-reflection.md",
-        "references/genre-playbook-correspondence.md",
-        "references/genre-playbook-decision.md",
-        "references/genre-playbook-deployment.md",
-        "references/genre-playbook-duty-report.md",
-        "references/genre-playbook-explanation.md",
-        "references/genre-playbook-feasibility.md",
-        "references/genre-playbook-information-materials.md",
-        "references/genre-playbook-initiative.md",
-        "references/genre-playbook-institution-rules.md",
-        "references/genre-playbook-meeting-host.md",
-        "references/genre-playbook-minutes.md",
-        "references/genre-playbook-motion.md",
-        "references/genre-playbook-narration.md",
-        "references/genre-playbook-news-commentary.md",
-        "references/genre-playbook-news-message.md",
-        "references/genre-playbook-notice.md",
-        "references/genre-playbook-open-letter.md",
-        "references/genre-playbook-opinion.md",
-        "references/genre-playbook-order.md",
-        "references/genre-playbook-plan-construction.md",
-        "references/genre-playbook-procurement-announcement.md",
-        "references/genre-playbook-project-application.md",
-        "references/genre-playbook-publication.md",
-        "references/genre-playbook-remediation-plan.md",
-        "references/genre-playbook-reply.md",
-        "references/genre-playbook-report.md",
-        "references/genre-playbook-request.md",
-        "references/genre-playbook-research.md",
-        "references/genre-playbook-resolution.md",
-        "references/genre-playbook-responsibility-letter.md",
-        "references/genre-playbook-review-opinion.md",
-        "references/genre-playbook-speech-address.md",
-        "references/genre-playbook-technical-requirements.md",
-        "references/genre-playbook-work-priorities.md",
-        "references/genre-playbook-work-summary.md"
-      ],
-      "stop_when": "完成本页事项核对",
-      "legacy_coverage": [
-        "genre-playbooks.md"
-      ]
-    },
-    {
-      "id": "genre_playbook_order",
-      "path": "references/genre-playbook-order.md",
-      "kind": "genre",
-      "purpose": "命令正文功能",
-      "triggers": [
-        "命令"
-      ],
-      "allowed_reads": [
-        "SKILL.md",
-        "references/genre-playbook-order.md"
-      ],
-      "forbidden_reads": [
-        "references/genre-playbook-advisory-feedback.md",
-        "references/genre-playbook-bulletin.md",
-        "references/genre-playbook-communique.md",
-        "references/genre-playbook-complaint-reflection.md",
-        "references/genre-playbook-correspondence.md",
-        "references/genre-playbook-decision.md",
-        "references/genre-playbook-deployment.md",
-        "references/genre-playbook-duty-report.md",
-        "references/genre-playbook-explanation.md",
-        "references/genre-playbook-feasibility.md",
-        "references/genre-playbook-information-materials.md",
-        "references/genre-playbook-initiative.md",
-        "references/genre-playbook-institution-rules.md",
-        "references/genre-playbook-meeting-host.md",
-        "references/genre-playbook-minutes.md",
-        "references/genre-playbook-motion.md",
-        "references/genre-playbook-narration.md",
-        "references/genre-playbook-news-commentary.md",
-        "references/genre-playbook-news-message.md",
-        "references/genre-playbook-notice.md",
-        "references/genre-playbook-open-letter.md",
-        "references/genre-playbook-opinion.md",
-        "references/genre-playbook-plan-construction.md",
-        "references/genre-playbook-procurement-announcement.md",
-        "references/genre-playbook-project-application.md",
-        "references/genre-playbook-publication.md",
-        "references/genre-playbook-remediation-plan.md",
-        "references/genre-playbook-reply.md",
-        "references/genre-playbook-report.md",
-        "references/genre-playbook-request.md",
-        "references/genre-playbook-research.md",
-        "references/genre-playbook-resolution.md",
-        "references/genre-playbook-responsibility-letter.md",
-        "references/genre-playbook-review-opinion.md",
-        "references/genre-playbook-speech-address.md",
-        "references/genre-playbook-technical-requirements.md",
-        "references/genre-playbook-work-priorities.md",
-        "references/genre-playbook-work-summary.md"
-      ],
-      "stop_when": "完成本页事项核对",
-      "legacy_coverage": [
-        "genre-playbooks.md"
-      ]
-    },
-    {
-      "id": "genre_playbook_work_priorities",
-      "path": "references/genre-playbook-work-priorities.md",
-      "kind": "genre",
-      "purpose": "前瞻性工作要点，按领域组织任务及落实要求",
-      "triggers": [
-        "年度工作要点",
-        "阶段工作要点",
-        "专项工作要点"
-      ],
-      "allowed_reads": [
-        "SKILL.md",
-        "references/argument-chains.md",
-        "references/genre-playbook-work-priorities.md"
-      ],
-      "forbidden_reads": [
-        "references/genre-playbook-advisory-feedback.md",
-        "references/genre-playbook-bulletin.md",
-        "references/genre-playbook-communique.md",
-        "references/genre-playbook-complaint-reflection.md",
-        "references/genre-playbook-correspondence.md",
-        "references/genre-playbook-decision.md",
-        "references/genre-playbook-deployment.md",
-        "references/genre-playbook-duty-report.md",
-        "references/genre-playbook-explanation.md",
-        "references/genre-playbook-feasibility.md",
-        "references/genre-playbook-information-materials.md",
-        "references/genre-playbook-initiative.md",
-        "references/genre-playbook-institution-rules.md",
-        "references/genre-playbook-meeting-host.md",
-        "references/genre-playbook-minutes.md",
-        "references/genre-playbook-motion.md",
-        "references/genre-playbook-narration.md",
-        "references/genre-playbook-news-commentary.md",
-        "references/genre-playbook-news-message.md",
-        "references/genre-playbook-notice.md",
-        "references/genre-playbook-open-letter.md",
-        "references/genre-playbook-opinion.md",
-        "references/genre-playbook-order.md",
-        "references/genre-playbook-plan-construction.md",
-        "references/genre-playbook-procurement-announcement.md",
-        "references/genre-playbook-project-application.md",
-        "references/genre-playbook-publication.md",
-        "references/genre-playbook-remediation-plan.md",
-        "references/genre-playbook-reply.md",
-        "references/genre-playbook-report.md",
-        "references/genre-playbook-request.md",
-        "references/genre-playbook-research.md",
-        "references/genre-playbook-resolution.md",
-        "references/genre-playbook-responsibility-letter.md",
-        "references/genre-playbook-review-opinion.md",
-        "references/genre-playbook-speech-address.md",
-        "references/genre-playbook-technical-requirements.md",
-        "references/genre-playbook-work-summary.md"
-      ],
-      "stop_when": "工作要点成稿后按首页检查步骤核对",
-      "legacy_coverage": [
-        "genre-playbook-work-summary.md"
-      ]
-    },
-    {
-      "id": "genre_playbook_review_opinion",
-      "path": "references/genre-playbook-review-opinion.md",
-      "kind": "genre",
-      "purpose": "负责审查意见的文种组织和专项边界",
-      "triggers": [
-        "审查意见",
-        "评审意见",
-        "审查材料",
-        "评审材料"
-      ],
-      "allowed_reads": [
-        "SKILL.md",
-        "references/field-editing.md",
-        "references/genre-playbook-procurement-review.md",
-        "references/genre-playbook-review-opinion.md",
-        "references/handling-elements.md",
-        "references/review-checklist.md"
-      ],
-      "forbidden_reads": [
-        "references/genre-playbook-advisory-feedback.md",
-        "references/genre-playbook-bulletin.md",
-        "references/genre-playbook-communique.md",
-        "references/genre-playbook-complaint-reflection.md",
-        "references/genre-playbook-correspondence.md",
-        "references/genre-playbook-decision.md",
-        "references/genre-playbook-deployment.md",
-        "references/genre-playbook-duty-report.md",
-        "references/genre-playbook-explanation.md",
-        "references/genre-playbook-feasibility.md",
-        "references/genre-playbook-information-materials.md",
-        "references/genre-playbook-initiative.md",
-        "references/genre-playbook-institution-rules.md",
-        "references/genre-playbook-meeting-host.md",
-        "references/genre-playbook-minutes.md",
-        "references/genre-playbook-motion.md",
-        "references/genre-playbook-narration.md",
-        "references/genre-playbook-news-commentary.md",
-        "references/genre-playbook-news-message.md",
-        "references/genre-playbook-notice.md",
-        "references/genre-playbook-open-letter.md",
-        "references/genre-playbook-opinion.md",
-        "references/genre-playbook-order.md",
-        "references/genre-playbook-plan-construction.md",
-        "references/genre-playbook-procurement-announcement.md",
-        "references/genre-playbook-project-application.md",
-        "references/genre-playbook-publication.md",
-        "references/genre-playbook-remediation-plan.md",
-        "references/genre-playbook-reply.md",
-        "references/genre-playbook-report.md",
-        "references/genre-playbook-request.md",
-        "references/genre-playbook-research.md",
-        "references/genre-playbook-resolution.md",
-        "references/genre-playbook-responsibility-letter.md",
-        "references/genre-playbook-speech-address.md",
-        "references/genre-playbook-technical-requirements.md",
-        "references/genre-playbook-work-priorities.md",
-        "references/genre-playbook-work-summary.md"
-      ],
-      "stop_when": "完成本页文种专项核对后接回 SKILL.md 的成稿检查。",
-      "legacy_coverage": []
-    },
-    {
-      "id": "genre_playbook_technical_requirements",
-      "path": "references/genre-playbook-technical-requirements.md",
-      "kind": "genre",
-      "purpose": "负责技术需求的文种组织和专项边界",
-      "triggers": [
-        "技术需求",
-        "技术需求书",
-        "软件需求说明",
-        "接口需求",
-        "技术需求附件"
-      ],
-      "allowed_reads": [
-        "SKILL.md",
-        "references/ai-compute-docs.md",
-        "references/field-editing.md",
-        "references/genre-playbook-feasibility.md",
-        "references/genre-playbook-plan-construction.md",
-        "references/genre-playbook-procurement-review.md",
-        "references/genre-playbook-technical-requirements.md",
-        "references/information-selection.md"
-      ],
-      "forbidden_reads": [
-        "references/genre-playbook-advisory-feedback.md",
-        "references/genre-playbook-bulletin.md",
-        "references/genre-playbook-communique.md",
-        "references/genre-playbook-complaint-reflection.md",
-        "references/genre-playbook-correspondence.md",
-        "references/genre-playbook-decision.md",
-        "references/genre-playbook-deployment.md",
-        "references/genre-playbook-duty-report.md",
-        "references/genre-playbook-explanation.md",
-        "references/genre-playbook-information-materials.md",
-        "references/genre-playbook-initiative.md",
-        "references/genre-playbook-institution-rules.md",
-        "references/genre-playbook-meeting-host.md",
-        "references/genre-playbook-minutes.md",
-        "references/genre-playbook-motion.md",
-        "references/genre-playbook-narration.md",
-        "references/genre-playbook-news-commentary.md",
-        "references/genre-playbook-news-message.md",
-        "references/genre-playbook-notice.md",
-        "references/genre-playbook-open-letter.md",
-        "references/genre-playbook-opinion.md",
-        "references/genre-playbook-order.md",
-        "references/genre-playbook-procurement-announcement.md",
-        "references/genre-playbook-project-application.md",
-        "references/genre-playbook-publication.md",
-        "references/genre-playbook-remediation-plan.md",
-        "references/genre-playbook-reply.md",
-        "references/genre-playbook-report.md",
-        "references/genre-playbook-request.md",
-        "references/genre-playbook-research.md",
-        "references/genre-playbook-resolution.md",
-        "references/genre-playbook-responsibility-letter.md",
-        "references/genre-playbook-review-opinion.md",
-        "references/genre-playbook-speech-address.md",
-        "references/genre-playbook-work-priorities.md",
-        "references/genre-playbook-work-summary.md"
-      ],
-      "stop_when": "完成本页文种专项核对后接回 SKILL.md 的成稿检查。",
-      "legacy_coverage": []
-    },
-    {
-      "id": "genre_playbook_responsibility_letter",
-      "path": "references/genre-playbook-responsibility-letter.md",
-      "kind": "genre",
-      "purpose": "负责责任书的文种组织和专项边界",
-      "triggers": [
-        "责任书"
-      ],
-      "allowed_reads": [
-        "SKILL.md",
-        "references/genre-playbook-responsibility-letter.md"
-      ],
-      "forbidden_reads": [
-        "references/genre-playbook-advisory-feedback.md",
-        "references/genre-playbook-bulletin.md",
-        "references/genre-playbook-communique.md",
-        "references/genre-playbook-complaint-reflection.md",
-        "references/genre-playbook-correspondence.md",
-        "references/genre-playbook-decision.md",
-        "references/genre-playbook-deployment.md",
-        "references/genre-playbook-duty-report.md",
-        "references/genre-playbook-explanation.md",
-        "references/genre-playbook-feasibility.md",
-        "references/genre-playbook-information-materials.md",
-        "references/genre-playbook-initiative.md",
-        "references/genre-playbook-institution-rules.md",
-        "references/genre-playbook-meeting-host.md",
-        "references/genre-playbook-minutes.md",
-        "references/genre-playbook-motion.md",
-        "references/genre-playbook-narration.md",
-        "references/genre-playbook-news-commentary.md",
-        "references/genre-playbook-news-message.md",
-        "references/genre-playbook-notice.md",
-        "references/genre-playbook-open-letter.md",
-        "references/genre-playbook-opinion.md",
-        "references/genre-playbook-order.md",
-        "references/genre-playbook-plan-construction.md",
-        "references/genre-playbook-procurement-announcement.md",
-        "references/genre-playbook-project-application.md",
-        "references/genre-playbook-publication.md",
-        "references/genre-playbook-remediation-plan.md",
-        "references/genre-playbook-reply.md",
-        "references/genre-playbook-report.md",
-        "references/genre-playbook-request.md",
-        "references/genre-playbook-research.md",
-        "references/genre-playbook-resolution.md",
-        "references/genre-playbook-review-opinion.md",
-        "references/genre-playbook-speech-address.md",
-        "references/genre-playbook-technical-requirements.md",
-        "references/genre-playbook-work-priorities.md",
-        "references/genre-playbook-work-summary.md"
-      ],
-      "stop_when": "完成本页文种专项核对后接回 SKILL.md 的成稿检查。",
-      "legacy_coverage": []
-    },
-    {
-      "id": "genre_playbook_initiative",
-      "path": "references/genre-playbook-initiative.md",
-      "kind": "genre",
-      "purpose": "负责倡议书的文种组织和专项边界",
-      "triggers": [
-        "倡议书"
-      ],
-      "allowed_reads": [
-        "SKILL.md",
-        "references/genre-playbook-initiative.md"
-      ],
-      "forbidden_reads": [
-        "references/genre-playbook-advisory-feedback.md",
-        "references/genre-playbook-bulletin.md",
-        "references/genre-playbook-communique.md",
-        "references/genre-playbook-complaint-reflection.md",
-        "references/genre-playbook-correspondence.md",
-        "references/genre-playbook-decision.md",
-        "references/genre-playbook-deployment.md",
-        "references/genre-playbook-duty-report.md",
-        "references/genre-playbook-explanation.md",
-        "references/genre-playbook-feasibility.md",
-        "references/genre-playbook-information-materials.md",
-        "references/genre-playbook-institution-rules.md",
-        "references/genre-playbook-meeting-host.md",
-        "references/genre-playbook-minutes.md",
-        "references/genre-playbook-motion.md",
-        "references/genre-playbook-narration.md",
-        "references/genre-playbook-news-commentary.md",
-        "references/genre-playbook-news-message.md",
-        "references/genre-playbook-notice.md",
-        "references/genre-playbook-open-letter.md",
-        "references/genre-playbook-opinion.md",
-        "references/genre-playbook-order.md",
-        "references/genre-playbook-plan-construction.md",
-        "references/genre-playbook-procurement-announcement.md",
-        "references/genre-playbook-project-application.md",
-        "references/genre-playbook-publication.md",
-        "references/genre-playbook-remediation-plan.md",
-        "references/genre-playbook-reply.md",
-        "references/genre-playbook-report.md",
-        "references/genre-playbook-request.md",
-        "references/genre-playbook-research.md",
-        "references/genre-playbook-resolution.md",
-        "references/genre-playbook-responsibility-letter.md",
-        "references/genre-playbook-review-opinion.md",
-        "references/genre-playbook-speech-address.md",
-        "references/genre-playbook-technical-requirements.md",
-        "references/genre-playbook-work-priorities.md",
-        "references/genre-playbook-work-summary.md"
-      ],
-      "stop_when": "完成本页文种专项核对后接回 SKILL.md 的成稿检查。",
-      "legacy_coverage": []
-    },
-    {
-      "id": "genre_playbook_open_letter",
-      "path": "references/genre-playbook-open-letter.md",
-      "kind": "genre",
-      "purpose": "负责公开信的文种组织和专项边界",
-      "triggers": [
-        "公开信"
-      ],
-      "allowed_reads": [
-        "SKILL.md",
-        "references/genre-playbook-open-letter.md"
-      ],
-      "forbidden_reads": [
-        "references/genre-playbook-advisory-feedback.md",
-        "references/genre-playbook-bulletin.md",
-        "references/genre-playbook-communique.md",
-        "references/genre-playbook-complaint-reflection.md",
-        "references/genre-playbook-correspondence.md",
-        "references/genre-playbook-decision.md",
-        "references/genre-playbook-deployment.md",
-        "references/genre-playbook-duty-report.md",
-        "references/genre-playbook-explanation.md",
-        "references/genre-playbook-feasibility.md",
-        "references/genre-playbook-information-materials.md",
-        "references/genre-playbook-initiative.md",
-        "references/genre-playbook-institution-rules.md",
-        "references/genre-playbook-meeting-host.md",
-        "references/genre-playbook-minutes.md",
-        "references/genre-playbook-motion.md",
-        "references/genre-playbook-narration.md",
-        "references/genre-playbook-news-commentary.md",
-        "references/genre-playbook-news-message.md",
-        "references/genre-playbook-notice.md",
-        "references/genre-playbook-opinion.md",
-        "references/genre-playbook-order.md",
-        "references/genre-playbook-plan-construction.md",
-        "references/genre-playbook-procurement-announcement.md",
-        "references/genre-playbook-project-application.md",
-        "references/genre-playbook-publication.md",
-        "references/genre-playbook-remediation-plan.md",
-        "references/genre-playbook-reply.md",
-        "references/genre-playbook-report.md",
-        "references/genre-playbook-request.md",
-        "references/genre-playbook-research.md",
-        "references/genre-playbook-resolution.md",
-        "references/genre-playbook-responsibility-letter.md",
-        "references/genre-playbook-review-opinion.md",
-        "references/genre-playbook-speech-address.md",
-        "references/genre-playbook-technical-requirements.md",
-        "references/genre-playbook-work-priorities.md",
-        "references/genre-playbook-work-summary.md"
-      ],
-      "stop_when": "完成本页文种专项核对后接回 SKILL.md 的成稿检查。",
-      "legacy_coverage": []
-    },
-    {
-      "id": "genre_playbook_narration",
-      "path": "references/genre-playbook-narration.md",
-      "kind": "genre",
-      "purpose": "负责讲解稿的文种组织和专项边界",
-      "triggers": [
-        "讲解稿",
-        "解说词"
-      ],
-      "allowed_reads": [
-        "SKILL.md",
-        "references/genre-playbook-narration.md"
-      ],
-      "forbidden_reads": [
-        "references/genre-playbook-advisory-feedback.md",
-        "references/genre-playbook-bulletin.md",
-        "references/genre-playbook-communique.md",
-        "references/genre-playbook-complaint-reflection.md",
-        "references/genre-playbook-correspondence.md",
-        "references/genre-playbook-decision.md",
-        "references/genre-playbook-deployment.md",
-        "references/genre-playbook-duty-report.md",
-        "references/genre-playbook-explanation.md",
-        "references/genre-playbook-feasibility.md",
-        "references/genre-playbook-information-materials.md",
-        "references/genre-playbook-initiative.md",
-        "references/genre-playbook-institution-rules.md",
-        "references/genre-playbook-meeting-host.md",
-        "references/genre-playbook-minutes.md",
-        "references/genre-playbook-motion.md",
-        "references/genre-playbook-news-commentary.md",
-        "references/genre-playbook-news-message.md",
-        "references/genre-playbook-notice.md",
-        "references/genre-playbook-open-letter.md",
-        "references/genre-playbook-opinion.md",
-        "references/genre-playbook-order.md",
-        "references/genre-playbook-plan-construction.md",
-        "references/genre-playbook-procurement-announcement.md",
-        "references/genre-playbook-project-application.md",
-        "references/genre-playbook-publication.md",
-        "references/genre-playbook-remediation-plan.md",
-        "references/genre-playbook-reply.md",
-        "references/genre-playbook-report.md",
-        "references/genre-playbook-request.md",
-        "references/genre-playbook-research.md",
-        "references/genre-playbook-resolution.md",
-        "references/genre-playbook-responsibility-letter.md",
-        "references/genre-playbook-review-opinion.md",
-        "references/genre-playbook-speech-address.md",
-        "references/genre-playbook-technical-requirements.md",
-        "references/genre-playbook-work-priorities.md",
-        "references/genre-playbook-work-summary.md"
-      ],
-      "stop_when": "完成本页文种专项核对后接回 SKILL.md 的成稿检查。",
-      "legacy_coverage": []
-    },
-    {
-      "id": "genre_playbook_information_materials",
-      "path": "references/genre-playbook-information-materials.md",
-      "kind": "genre",
-      "purpose": "负责宣传手册与宣传材料的文种组织和专项边界",
-      "triggers": [
-        "宣传手册",
-        "宣传材料"
-      ],
-      "allowed_reads": [
-        "SKILL.md",
-        "references/genre-playbook-information-materials.md"
-      ],
-      "forbidden_reads": [
-        "references/genre-playbook-advisory-feedback.md",
-        "references/genre-playbook-bulletin.md",
-        "references/genre-playbook-communique.md",
-        "references/genre-playbook-complaint-reflection.md",
-        "references/genre-playbook-correspondence.md",
-        "references/genre-playbook-decision.md",
-        "references/genre-playbook-deployment.md",
-        "references/genre-playbook-duty-report.md",
-        "references/genre-playbook-explanation.md",
-        "references/genre-playbook-feasibility.md",
-        "references/genre-playbook-initiative.md",
-        "references/genre-playbook-institution-rules.md",
-        "references/genre-playbook-meeting-host.md",
-        "references/genre-playbook-minutes.md",
-        "references/genre-playbook-motion.md",
-        "references/genre-playbook-narration.md",
-        "references/genre-playbook-news-commentary.md",
-        "references/genre-playbook-news-message.md",
-        "references/genre-playbook-notice.md",
-        "references/genre-playbook-open-letter.md",
-        "references/genre-playbook-opinion.md",
-        "references/genre-playbook-order.md",
-        "references/genre-playbook-plan-construction.md",
-        "references/genre-playbook-procurement-announcement.md",
-        "references/genre-playbook-project-application.md",
-        "references/genre-playbook-publication.md",
-        "references/genre-playbook-remediation-plan.md",
-        "references/genre-playbook-reply.md",
-        "references/genre-playbook-report.md",
-        "references/genre-playbook-request.md",
-        "references/genre-playbook-research.md",
-        "references/genre-playbook-resolution.md",
-        "references/genre-playbook-responsibility-letter.md",
-        "references/genre-playbook-review-opinion.md",
-        "references/genre-playbook-speech-address.md",
-        "references/genre-playbook-technical-requirements.md",
-        "references/genre-playbook-work-priorities.md",
-        "references/genre-playbook-work-summary.md"
-      ],
-      "stop_when": "完成本页文种专项核对后接回 SKILL.md 的成稿检查。",
-      "legacy_coverage": []
     }
   ],
   "routes": [
@@ -4385,14 +4079,11 @@
       "primary": [
         "references/genre-playbook-report.md"
       ],
-      "overlays": [
-        "references/information-selection.md"
-      ],
+      "overlays": [],
       "review": [
-        "references/final-review-layers.md",
+        "references/writing-rules.md",
         "references/anti-ai-patterns.md",
-        "references/prose-lint-usage.md",
-        "references/delivery.md"
+        "references/prose-lint-usage.md"
       ]
     },
     {
@@ -4403,14 +4094,11 @@
       "primary": [
         "references/genre-playbook-notice.md"
       ],
-      "overlays": [
-        "references/information-selection.md"
-      ],
+      "overlays": [],
       "review": [
-        "references/final-review-layers.md",
+        "references/writing-rules.md",
         "references/anti-ai-patterns.md",
-        "references/prose-lint-usage.md",
-        "references/delivery.md"
+        "references/prose-lint-usage.md"
       ]
     },
     {
@@ -4423,14 +4111,11 @@
       "primary": [
         "references/genre-playbook-publication.md"
       ],
-      "overlays": [
-        "references/information-selection.md"
-      ],
+      "overlays": [],
       "review": [
-        "references/final-review-layers.md",
+        "references/writing-rules.md",
         "references/anti-ai-patterns.md",
-        "references/prose-lint-usage.md",
-        "references/delivery.md"
+        "references/prose-lint-usage.md"
       ]
     },
     {
@@ -4442,14 +4127,11 @@
       "primary": [
         "references/genre-playbook-research.md"
       ],
-      "overlays": [
-        "references/information-selection.md"
-      ],
+      "overlays": [],
       "review": [
-        "references/final-review-layers.md",
+        "references/writing-rules.md",
         "references/anti-ai-patterns.md",
-        "references/prose-lint-usage.md",
-        "references/delivery.md"
+        "references/prose-lint-usage.md"
       ]
     },
     {
@@ -4460,14 +4142,11 @@
       "primary": [
         "references/genre-playbook-feasibility.md"
       ],
-      "overlays": [
-        "references/information-selection.md"
-      ],
+      "overlays": [],
       "review": [
-        "references/final-review-layers.md",
+        "references/writing-rules.md",
         "references/anti-ai-patterns.md",
-        "references/prose-lint-usage.md",
-        "references/delivery.md"
+        "references/prose-lint-usage.md"
       ]
     },
     {
@@ -4478,14 +4157,11 @@
       "primary": [
         "references/genre-playbook-procurement-announcement.md"
       ],
-      "overlays": [
-        "references/information-selection.md"
-      ],
+      "overlays": [],
       "review": [
-        "references/final-review-layers.md",
+        "references/writing-rules.md",
         "references/anti-ai-patterns.md",
-        "references/prose-lint-usage.md",
-        "references/delivery.md"
+        "references/prose-lint-usage.md"
       ]
     },
     {
@@ -4498,14 +4174,12 @@
         "references/genre-playbook-review-opinion.md"
       ],
       "overlays": [
-        "references/information-selection.md",
         "references/genre-playbook-procurement-review.md"
       ],
       "review": [
-        "references/final-review-layers.md",
+        "references/writing-rules.md",
         "references/anti-ai-patterns.md",
-        "references/prose-lint-usage.md",
-        "references/delivery.md"
+        "references/prose-lint-usage.md"
       ]
     },
     {
@@ -4517,14 +4191,11 @@
       "primary": [
         "references/genre-playbook-deployment.md"
       ],
-      "overlays": [
-        "references/information-selection.md"
-      ],
+      "overlays": [],
       "review": [
-        "references/final-review-layers.md",
+        "references/writing-rules.md",
         "references/anti-ai-patterns.md",
-        "references/prose-lint-usage.md",
-        "references/delivery.md"
+        "references/prose-lint-usage.md"
       ]
     },
     {
@@ -4537,14 +4208,11 @@
       "primary": [
         "references/genre-playbook-speech-address.md"
       ],
-      "overlays": [
-        "references/information-selection.md"
-      ],
+      "overlays": [],
       "review": [
-        "references/final-review-layers.md",
+        "references/writing-rules.md",
         "references/anti-ai-patterns.md",
-        "references/prose-lint-usage.md",
-        "references/delivery.md"
+        "references/prose-lint-usage.md"
       ]
     },
     {
@@ -4557,14 +4225,11 @@
       "primary": [
         "references/genre-playbook-meeting-host.md"
       ],
-      "overlays": [
-        "references/information-selection.md"
-      ],
+      "overlays": [],
       "review": [
-        "references/final-review-layers.md",
+        "references/writing-rules.md",
         "references/anti-ai-patterns.md",
-        "references/prose-lint-usage.md",
-        "references/delivery.md"
+        "references/prose-lint-usage.md"
       ]
     },
     {
@@ -4578,14 +4243,11 @@
       "primary": [
         "references/genre-playbook-duty-report.md"
       ],
-      "overlays": [
-        "references/information-selection.md"
-      ],
+      "overlays": [],
       "review": [
-        "references/final-review-layers.md",
+        "references/writing-rules.md",
         "references/anti-ai-patterns.md",
-        "references/prose-lint-usage.md",
-        "references/delivery.md"
+        "references/prose-lint-usage.md"
       ]
     },
     {
@@ -4596,14 +4258,11 @@
       "primary": [
         "references/genre-playbook-reply.md"
       ],
-      "overlays": [
-        "references/information-selection.md"
-      ],
+      "overlays": [],
       "review": [
-        "references/final-review-layers.md",
+        "references/writing-rules.md",
         "references/anti-ai-patterns.md",
-        "references/prose-lint-usage.md",
-        "references/delivery.md"
+        "references/prose-lint-usage.md"
       ]
     },
     {
@@ -4614,14 +4273,11 @@
       "primary": [
         "references/genre-playbook-opinion.md"
       ],
-      "overlays": [
-        "references/information-selection.md"
-      ],
+      "overlays": [],
       "review": [
-        "references/final-review-layers.md",
+        "references/writing-rules.md",
         "references/anti-ai-patterns.md",
-        "references/prose-lint-usage.md",
-        "references/delivery.md"
+        "references/prose-lint-usage.md"
       ]
     },
     {
@@ -4633,14 +4289,11 @@
       "primary": [
         "references/genre-playbook-explanation.md"
       ],
-      "overlays": [
-        "references/information-selection.md"
-      ],
+      "overlays": [],
       "review": [
-        "references/final-review-layers.md",
+        "references/writing-rules.md",
         "references/anti-ai-patterns.md",
-        "references/prose-lint-usage.md",
-        "references/delivery.md"
+        "references/prose-lint-usage.md"
       ]
     },
     {
@@ -4652,14 +4305,11 @@
       "primary": [
         "references/genre-playbook-request.md"
       ],
-      "overlays": [
-        "references/information-selection.md"
-      ],
+      "overlays": [],
       "review": [
-        "references/final-review-layers.md",
+        "references/writing-rules.md",
         "references/anti-ai-patterns.md",
-        "references/prose-lint-usage.md",
-        "references/delivery.md"
+        "references/prose-lint-usage.md"
       ]
     },
     {
@@ -4672,14 +4322,11 @@
       "primary": [
         "references/genre-playbook-correspondence.md"
       ],
-      "overlays": [
-        "references/information-selection.md"
-      ],
+      "overlays": [],
       "review": [
-        "references/final-review-layers.md",
+        "references/writing-rules.md",
         "references/anti-ai-patterns.md",
-        "references/prose-lint-usage.md",
-        "references/delivery.md"
+        "references/prose-lint-usage.md"
       ]
     },
     {
@@ -4690,14 +4337,11 @@
       "primary": [
         "references/genre-playbook-minutes.md"
       ],
-      "overlays": [
-        "references/information-selection.md"
-      ],
+      "overlays": [],
       "review": [
-        "references/final-review-layers.md",
+        "references/writing-rules.md",
         "references/anti-ai-patterns.md",
-        "references/prose-lint-usage.md",
-        "references/delivery.md"
+        "references/prose-lint-usage.md"
       ]
     },
     {
@@ -4711,14 +4355,11 @@
       "primary": [
         "references/genre-playbook-work-summary.md"
       ],
-      "overlays": [
-        "references/information-selection.md"
-      ],
+      "overlays": [],
       "review": [
-        "references/final-review-layers.md",
+        "references/writing-rules.md",
         "references/anti-ai-patterns.md",
-        "references/prose-lint-usage.md",
-        "references/delivery.md"
+        "references/prose-lint-usage.md"
       ]
     },
     {
@@ -4732,14 +4373,11 @@
       "primary": [
         "references/genre-playbook-plan-construction.md"
       ],
-      "overlays": [
-        "references/information-selection.md"
-      ],
+      "overlays": [],
       "review": [
-        "references/final-review-layers.md",
+        "references/writing-rules.md",
         "references/anti-ai-patterns.md",
-        "references/prose-lint-usage.md",
-        "references/delivery.md"
+        "references/prose-lint-usage.md"
       ]
     },
     {
@@ -4754,14 +4392,11 @@
       "primary": [
         "references/genre-playbook-institution-rules.md"
       ],
-      "overlays": [
-        "references/information-selection.md"
-      ],
+      "overlays": [],
       "review": [
-        "references/final-review-layers.md",
+        "references/writing-rules.md",
         "references/anti-ai-patterns.md",
-        "references/prose-lint-usage.md",
-        "references/delivery.md"
+        "references/prose-lint-usage.md"
       ]
     },
     {
@@ -4776,14 +4411,11 @@
       "primary": [
         "references/genre-playbook-news-message.md"
       ],
-      "overlays": [
-        "references/information-selection.md"
-      ],
+      "overlays": [],
       "review": [
-        "references/final-review-layers.md",
+        "references/writing-rules.md",
         "references/anti-ai-patterns.md",
-        "references/prose-lint-usage.md",
-        "references/delivery.md"
+        "references/prose-lint-usage.md"
       ]
     },
     {
@@ -4796,14 +4428,11 @@
       "primary": [
         "references/genre-playbook-news-commentary.md"
       ],
-      "overlays": [
-        "references/information-selection.md"
-      ],
+      "overlays": [],
       "review": [
-        "references/final-review-layers.md",
+        "references/writing-rules.md",
         "references/anti-ai-patterns.md",
-        "references/prose-lint-usage.md",
-        "references/delivery.md"
+        "references/prose-lint-usage.md"
       ]
     },
     {
@@ -4818,14 +4447,11 @@
       "primary": [
         "references/genre-playbook-advisory-feedback.md"
       ],
-      "overlays": [
-        "references/information-selection.md"
-      ],
+      "overlays": [],
       "review": [
-        "references/final-review-layers.md",
+        "references/writing-rules.md",
         "references/anti-ai-patterns.md",
-        "references/prose-lint-usage.md",
-        "references/delivery.md"
+        "references/prose-lint-usage.md"
       ]
     },
     {
@@ -4838,14 +4464,11 @@
       "primary": [
         "references/genre-playbook-complaint-reflection.md"
       ],
-      "overlays": [
-        "references/information-selection.md"
-      ],
+      "overlays": [],
       "review": [
-        "references/final-review-layers.md",
+        "references/writing-rules.md",
         "references/anti-ai-patterns.md",
-        "references/prose-lint-usage.md",
-        "references/delivery.md"
+        "references/prose-lint-usage.md"
       ]
     },
     {
@@ -4858,14 +4481,11 @@
       "primary": [
         "references/genre-playbook-remediation-plan.md"
       ],
-      "overlays": [
-        "references/information-selection.md"
-      ],
+      "overlays": [],
       "review": [
-        "references/final-review-layers.md",
+        "references/writing-rules.md",
         "references/anti-ai-patterns.md",
-        "references/prose-lint-usage.md",
-        "references/delivery.md"
+        "references/prose-lint-usage.md"
       ]
     },
     {
@@ -4878,14 +4498,11 @@
       "primary": [
         "references/genre-playbook-project-application.md"
       ],
-      "overlays": [
-        "references/information-selection.md"
-      ],
+      "overlays": [],
       "review": [
-        "references/final-review-layers.md",
+        "references/writing-rules.md",
         "references/anti-ai-patterns.md",
-        "references/prose-lint-usage.md",
-        "references/delivery.md"
+        "references/prose-lint-usage.md"
       ]
     },
     {
@@ -4900,14 +4517,12 @@
         "references/genre-playbook-report.md"
       ],
       "overlays": [
-        "references/information-selection.md",
         "references/transaction-remediation-report.md"
       ],
       "review": [
-        "references/final-review-layers.md",
+        "references/writing-rules.md",
         "references/anti-ai-patterns.md",
-        "references/prose-lint-usage.md",
-        "references/delivery.md"
+        "references/prose-lint-usage.md"
       ]
     },
     {
@@ -4921,14 +4536,12 @@
         "references/genre-playbook-report.md"
       ],
       "overlays": [
-        "references/information-selection.md",
         "references/transaction-feedback-report.md"
       ],
       "review": [
-        "references/final-review-layers.md",
+        "references/writing-rules.md",
         "references/anti-ai-patterns.md",
-        "references/prose-lint-usage.md",
-        "references/delivery.md"
+        "references/prose-lint-usage.md"
       ]
     },
     {
@@ -4939,14 +4552,11 @@
       "primary": [
         "references/genre-playbook-decision.md"
       ],
-      "overlays": [
-        "references/information-selection.md"
-      ],
+      "overlays": [],
       "review": [
-        "references/final-review-layers.md",
+        "references/writing-rules.md",
         "references/anti-ai-patterns.md",
-        "references/prose-lint-usage.md",
-        "references/delivery.md"
+        "references/prose-lint-usage.md"
       ]
     },
     {
@@ -4957,14 +4567,11 @@
       "primary": [
         "references/genre-playbook-resolution.md"
       ],
-      "overlays": [
-        "references/information-selection.md"
-      ],
+      "overlays": [],
       "review": [
-        "references/final-review-layers.md",
+        "references/writing-rules.md",
         "references/anti-ai-patterns.md",
-        "references/prose-lint-usage.md",
-        "references/delivery.md"
+        "references/prose-lint-usage.md"
       ]
     },
     {
@@ -4975,14 +4582,11 @@
       "primary": [
         "references/genre-playbook-motion.md"
       ],
-      "overlays": [
-        "references/information-selection.md"
-      ],
+      "overlays": [],
       "review": [
-        "references/final-review-layers.md",
+        "references/writing-rules.md",
         "references/anti-ai-patterns.md",
-        "references/prose-lint-usage.md",
-        "references/delivery.md"
+        "references/prose-lint-usage.md"
       ]
     },
     {
@@ -4993,14 +4597,11 @@
       "primary": [
         "references/genre-playbook-communique.md"
       ],
-      "overlays": [
-        "references/information-selection.md"
-      ],
+      "overlays": [],
       "review": [
-        "references/final-review-layers.md",
+        "references/writing-rules.md",
         "references/anti-ai-patterns.md",
-        "references/prose-lint-usage.md",
-        "references/delivery.md"
+        "references/prose-lint-usage.md"
       ]
     },
     {
@@ -5011,14 +4612,11 @@
       "primary": [
         "references/genre-playbook-order.md"
       ],
-      "overlays": [
-        "references/information-selection.md"
-      ],
+      "overlays": [],
       "review": [
-        "references/final-review-layers.md",
+        "references/writing-rules.md",
         "references/anti-ai-patterns.md",
-        "references/prose-lint-usage.md",
-        "references/delivery.md"
+        "references/prose-lint-usage.md"
       ]
     },
     {
@@ -5032,14 +4630,11 @@
       "primary": [
         "references/genre-playbook-work-priorities.md"
       ],
-      "overlays": [
-        "references/information-selection.md"
-      ],
+      "overlays": [],
       "review": [
-        "references/final-review-layers.md",
+        "references/writing-rules.md",
         "references/anti-ai-patterns.md",
-        "references/prose-lint-usage.md",
-        "references/delivery.md"
+        "references/prose-lint-usage.md"
       ]
     },
     {
@@ -5053,14 +4648,11 @@
       "primary": [
         "references/genre-playbook-review-opinion.md"
       ],
-      "overlays": [
-        "references/information-selection.md"
-      ],
+      "overlays": [],
       "review": [
-        "references/final-review-layers.md",
+        "references/writing-rules.md",
         "references/anti-ai-patterns.md",
-        "references/prose-lint-usage.md",
-        "references/delivery.md"
+        "references/prose-lint-usage.md"
       ]
     },
     {
@@ -5075,14 +4667,11 @@
       "primary": [
         "references/genre-playbook-technical-requirements.md"
       ],
-      "overlays": [
-        "references/information-selection.md"
-      ],
+      "overlays": [],
       "review": [
-        "references/final-review-layers.md",
+        "references/writing-rules.md",
         "references/anti-ai-patterns.md",
-        "references/prose-lint-usage.md",
-        "references/delivery.md"
+        "references/prose-lint-usage.md"
       ]
     },
     {
@@ -5093,14 +4682,11 @@
       "primary": [
         "references/genre-playbook-responsibility-letter.md"
       ],
-      "overlays": [
-        "references/information-selection.md"
-      ],
+      "overlays": [],
       "review": [
-        "references/final-review-layers.md",
+        "references/writing-rules.md",
         "references/anti-ai-patterns.md",
-        "references/prose-lint-usage.md",
-        "references/delivery.md"
+        "references/prose-lint-usage.md"
       ]
     },
     {
@@ -5111,14 +4697,11 @@
       "primary": [
         "references/genre-playbook-initiative.md"
       ],
-      "overlays": [
-        "references/information-selection.md"
-      ],
+      "overlays": [],
       "review": [
-        "references/final-review-layers.md",
+        "references/writing-rules.md",
         "references/anti-ai-patterns.md",
-        "references/prose-lint-usage.md",
-        "references/delivery.md"
+        "references/prose-lint-usage.md"
       ]
     },
     {
@@ -5129,14 +4712,11 @@
       "primary": [
         "references/genre-playbook-open-letter.md"
       ],
-      "overlays": [
-        "references/information-selection.md"
-      ],
+      "overlays": [],
       "review": [
-        "references/final-review-layers.md",
+        "references/writing-rules.md",
         "references/anti-ai-patterns.md",
-        "references/prose-lint-usage.md",
-        "references/delivery.md"
+        "references/prose-lint-usage.md"
       ]
     },
     {
@@ -5148,14 +4728,11 @@
       "primary": [
         "references/genre-playbook-narration.md"
       ],
-      "overlays": [
-        "references/information-selection.md"
-      ],
+      "overlays": [],
       "review": [
-        "references/final-review-layers.md",
+        "references/writing-rules.md",
         "references/anti-ai-patterns.md",
-        "references/prose-lint-usage.md",
-        "references/delivery.md"
+        "references/prose-lint-usage.md"
       ]
     },
     {
@@ -5167,14 +4744,11 @@
       "primary": [
         "references/genre-playbook-information-materials.md"
       ],
-      "overlays": [
-        "references/information-selection.md"
-      ],
+      "overlays": [],
       "review": [
-        "references/final-review-layers.md",
+        "references/writing-rules.md",
         "references/anti-ai-patterns.md",
-        "references/prose-lint-usage.md",
-        "references/delivery.md"
+        "references/prose-lint-usage.md"
       ]
     }
   ]

@@ -38,7 +38,7 @@ class MitScriptBoundaryTests(unittest.TestCase):
 
     def test_drafting_instructions_keep_fact_selection_without_gate_commands(self) -> None:
         skill = (SKILL_ROOT / "SKILL.md").read_text(encoding="utf-8")
-        information = (SKILL_ROOT / "references/information-selection.md").read_text(
+        information = (SKILL_ROOT / "references/writing-rules.md").read_text(
             encoding="utf-8"
         )
         for instruction in (
@@ -57,20 +57,24 @@ class MitScriptBoundaryTests(unittest.TestCase):
         for action in ("用户需求", "起草", "改写", "审核", "格式处理"):
             self.assertIn(action, entry)
         self.assertLess(entry.index("用户需求"), entry.index("references/reference-index.md"))
-        self.assertIn("不影响文种功能或办理落地的外围事项，直接省略", information)
-        self.assertIn("正文已经承载的状态不在同句、相邻句或文后换词重复", information)
+        self.assertIn("实质缺项", information)
+        self.assertIn("已解决、已给定或与本稿无关的内容移除", information)
 
     def test_length_check_precedes_review_and_lint_scan(self) -> None:
         skill = (SKILL_ROOT / "SKILL.md").read_text(encoding="utf-8")
+        self.assertIn("references/writing-rules.md", skill)
+        common = (SKILL_ROOT / "references/writing-rules.md").read_text(encoding="utf-8")
         routes = (
             "scripts/draft_length.py",
-            "references/final-review-layers.md",
-            "scripts/prose_lint.py",
-            "references/delivery.md",
+            "## 第三步：复核",
+            "prose-lint-usage.md",
+            "## 第四步：交付",
         )
         for route in routes:
-            self.assertIn(route, skill)
-        positions = [skill.index(route) for route in routes]
+            self.assertIn(route, common)
+        usage = (SKILL_ROOT / "references/prose-lint-usage.md").read_text(encoding="utf-8")
+        self.assertIn("scripts/prose_lint.py", usage)
+        positions = [common.index(route) for route in routes]
         self.assertEqual(positions, sorted(positions))
 
     def test_plain_script_clis_run_without_hooks(self) -> None:

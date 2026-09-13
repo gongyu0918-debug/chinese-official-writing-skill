@@ -1,21 +1,21 @@
-# Reference 逐页架构归属表（2026-09-13，R6）
+# Reference 逐页架构归属表（2026-09-13，2.0 开发候选）
 
-固定基线为 `main@1ce7112303172478faa2392667a2de1098eb912c`；本表以 R6 canonical 为当前产品边界（产品检查点 `82ade47a`，本次读取 HEAD `4bd62020`），不包含未采纳的 R7 原型。50 个旧页全部列名：43 个同名路径仍在、7 个退役或迁出；另新增 29 页，共 72 页，其中 39 个主叶、41 条路线。
+固定基线为 `main@1ce7112303172478faa2392667a2de1098eb912c`；当前归属以已落入 canonical 的 R13 共性归并及 R14 整合修正为准。50 个旧页全部列名：39 个同名路径仍在、11 个退役或迁出；另新增 29 页，共 68 页，其中 39 个主叶、41 条路线。这是 2.0 开发候选的工程映射，不是 1.x 对照验收或发布结论。
 
 “同名承接”表示职责仍落同名文件，不表示内容未改；“拆分承接”表示职责分到多个现存页；“退役/迁出”说明替代或保存位置。旧表的 rewrite/retain 是阶段性文件处理标签，本次按当前职责更新，均不等于逐条语义或真实写稿通过。各行映射以旧 Git 对象、当前页及下列审计共同定位，实际读取集合和排除集合见[路由 manifest](../specs/reference-route-manifest.json)，它们是静态契约。
 
-| # | 基线 reference | 新架构分区 | R6 页/归属 | 处置 | 归属与保留理由 |
+| # | 基线 reference | 新架构分区 | 当前页/归属 | 处置 | 归属与保留理由 |
 |---:|---|---|---|---|---|
 | 1 | `ai-compute-docs.md` | transaction/overlay | [ai-compute-docs.md](../../chinese-official-writing/references/ai-compute-docs.md)、[genre-playbook-feasibility.md](../../chinese-official-writing/references/genre-playbook-feasibility.md)、[genre-playbook-plan-construction.md](../../chinese-official-writing/references/genre-playbook-plan-construction.md)、[genre-playbook-technical-requirements.md](../../chinese-official-writing/references/genre-playbook-technical-requirements.md) | 拆分承接 | 算力需求、资源/Token、成本、SLA、安全与验收留在同名附加页；旧可研/方案骨架归各自主叶，独立技术需求归新技术需求主叶。普通服务器或接口不因关键词单独触发算力。 |
 | 2 | `ai-compute-examples.md` | transaction/overlay | [ai-compute-examples.md](../../chinese-official-writing/references/ai-compute-examples.md) | 同名承接 | 仅用户明确要求示例时读取，避免普通算力稿件伴读。 |
-| 3 | `anti-ai-patterns.md` | language/review | [anti-ai-patterns.md](../../chinese-official-writing/references/anti-ai-patterns.md) | 同名承接 | 保留旁白、过程泄露、否定范围、证据强度及语言节奏；既有字段默认保留已恢复。Token 与调用次数不可互换的旧专项语义仍未闭合。 |
+| 3 | `anti-ai-patterns.md` | language/review | [anti-ai-patterns.md](../../chinese-official-writing/references/anti-ai-patterns.md) | 同名承接 | 必经语言检查保留旁白、过程泄露、必要否定、判断强度、有效排比、业务声明和原意；原生质量及 1.x 专项等价须按对应证据判断。 |
 | 4 | `argument-chains.md` | workflow | [argument-chains.md](../../chinese-official-writing/references/argument-chains.md) | 同名承接 | 保留判断与依据、合理分析、必要性与措施区分、实测/测算/估算/假设口径；移除跨文种骨架表，文种功能顺序由各自主叶承载。 |
 | 5 | `compatibility-scene-routing.md` | transaction/router | [compatibility-scene-routing.md](../../chinese-official-writing/references/compatibility-scene-routing.md) | 同名承接 | 为新闻、意见建议、投诉反映、整改等已有场景选专页。 |
 | 6 | `compression-details.md` | workflow/tool | [compression-details.md](../../chinese-official-writing/references/compression-details.md) | 同名承接 | 用独立 scripts/draft_length.py 扫描正文篇幅，再按材料调整；保留压缩取舍与超限/不足处理，后续文稿复核由 prose_lint.py 兜底。 |
 | 7 | `delivery-review-gate.md` | pro/archive | [Pro 保存分支与许可边界](pro-hooks-next.md) | 退役/迁出 | MIT 候选移除本页及 Hook 门禁；原资产保存在 codex/pro-hooks-preserved-20260912@3b6f273b，许可与验证边界见 pro-hooks-next.md；不是删除普通脚本能力。 |
 | 8 | `external-research.md` | workflow/tool | [external-research.md](../../chinese-official-writing/references/external-research.md) | 同名承接 | 用户要求搜索、时效事实、尚不熟悉的文种/材料类型或通用写法核查时定向研究；具体业务事实仍以用户材料为准。 |
 | 9 | `field-editing.md` | workflow | [field-editing.md](../../chinese-official-writing/references/field-editing.md) | 同名承接 | 处理字段拆行、增删和表单边界，不带入完整文种规则。 |
-| 10 | `final-review-layers.md` | review | [final-review-layers.md](../../chinese-official-writing/references/final-review-layers.md) | 同名承接 | 事实、状态、文种、结构及文内完整性由同名页承担；敏感信息按接收对象与发布范围复核已补回，旧涉密人工复核专项尚不能据此认定等价。 |
+| 10 | `final-review-layers.md` | workflow/review | [writing-rules.md](../../chinese-official-writing/references/writing-rules.md)、[anti-ai-patterns.md](../../chinese-official-writing/references/anti-ai-patterns.md) | 退役/迁出 | 事实、状态、主文种要素、关联内容及条件性敏感信息核对归 writing-rules；无用重复的语义检查归 anti-ai，独立旧复核页撤下。 |
 | 11 | `formal-addressing.md` | language | [formal-addressing.md](../../chinese-official-writing/references/formal-addressing.md) | 同名承接 | 统一上下行、平行关系、人物称谓和收束语。 |
 | 12 | `format-gbt9704.md` | workflow/tool | [format-gbt9704.md](../../chinese-official-writing/references/format-gbt9704.md) | 同名承接 | 仅格式交付模式加载，不混入正文事实规则。 |
 | 13 | `formulaic-language.md` | language | [formulaic-language.md](../../chinese-official-writing/references/formulaic-language.md)、[genre-playbook-responsibility-letter.md](../../chinese-official-writing/references/genre-playbook-responsibility-letter.md)、[genre-playbook-initiative.md](../../chinese-official-writing/references/genre-playbook-initiative.md)、[genre-playbook-open-letter.md](../../chinese-official-writing/references/genre-playbook-open-letter.md)、[genre-playbook-narration.md](../../chinese-official-writing/references/genre-playbook-narration.md)、[genre-playbook-information-materials.md](../../chinese-official-writing/references/genre-playbook-information-materials.md)、[genre-playbook-report.md](../../chinese-official-writing/references/genre-playbook-report.md)、[genre-playbook-advisory-feedback.md](../../chinese-official-writing/references/genre-playbook-advisory-feedback.md) | 拆分承接 | 用语功能留在同名页；旧事务表的责任书、倡议书、公开信、讲解、宣传类分入独立主叶，情况综合归报告、建议信归合作性建议。旧直接叶不再跳过统一检查；其余旧事务入口见下表。 |
@@ -43,25 +43,25 @@
 | 35 | `genre-playbooks.md` | router | [reference-index.md](../../chinese-official-writing/references/reference-index.md)、[genre-routing.md](../../chinese-official-writing/references/genre-routing.md)、[genre-checklist.md](../../chinese-official-writing/references/genre-checklist.md)、[genre-playbook-correspondence.md](../../chinese-official-writing/references/genre-playbook-correspondence.md) | 退役/迁出 | 旧混合总页的文种功能分入各自主叶；索引/路由只选路，checklist 只反查未知功能，旧函节骨架归函页。下列 29 个新增页及旧页同名主叶共同承接，不以索引存在证明全部语义闭合。 |
 | 36 | `genre-routing.md` | router | [genre-routing.md](../../chinese-official-writing/references/genre-routing.md) | 同名承接 | 只判定文种、对象关系和冲突，输出首叶。 |
 | 37 | `handling-elements.md` | workflow | [handling-elements.md](../../chinese-official-writing/references/handling-elements.md) | 同名承接 | 按主体对象、事项依据、动作状态、条件期限、支撑反馈和文内字段核对；删除多文种要素表，必要项由当前主文种判断，缺项按信息选择与定向研究规则处理。 |
-| 38 | `information-selection.md` | workflow | [information-selection.md](../../chinese-official-writing/references/information-selection.md) | 同名承接 | 事实、分析、状态与实质缺项分别处理；取消固定分析层数和仅限材料就禁止分析的条件，有据推导按证据强度展开；未支持的具体事实和已定安排仍不得补入。 |
+| 38 | `information-selection.md` | workflow | [writing-rules.md](../../chinese-official-writing/references/writing-rules.md) | 退役/迁出 | 本轮材料、合理分析、业务状态、草稿日期及实质缺项归共性写作页；材料与常识支持的分析保留，未支持的具体事实与已定安排不得补入。 |
 | 39 | `official-style.md` | language | [official-style.md](../../chinese-official-writing/references/official-style.md) | 同名承接 | 处理语体、句式、证据强度和去口语，不增加事实。 |
-| 40 | `proofreading-checklist.md` | review | [proofreading-checklist.md](../../chinese-official-writing/references/proofreading-checklist.md) | 同名承接 | 引用、数字、日期、专名及稿内一致性留在同名页，引用原词保护由信息选择/抗 AI 页共同承接。成语同语境、的地得、量词及原文同语境保护仍有未决断言，不能沿用早期总体等价结论。 |
+| 40 | `proofreading-checklist.md` | review | [proofreading-checklist.md](../../chinese-official-writing/references/proofreading-checklist.md) | 同名承接 | 按实际校对任务核对引用、数字、日期、术语和稿内一致性；成语、原文、的地得及量词已有明确规则，历史专项结果不因文件更新自动变更。 |
 | 41 | `prose-lint-usage.md` | tool | [prose-lint-usage.md](../../chinese-official-writing/references/prose-lint-usage.md) | 同名承接 | 规定路径、参数、结果回流和失败解释，不替代文种判断。 |
 | 42 | `reference-index.md` | router | [reference-index.md](../../chinese-official-writing/references/reference-index.md) | 同名承接 | 按稿件用途选唯一主叶，列明必要附加页；移除与首页重复的交付模式表，机器路由 manifest 留在维护区。 |
-| 43 | `review-checklist.md` | review | [review-checklist.md](../../chinese-official-writing/references/review-checklist.md) | 同名承接 | 自然语言审核默认检查全文，含事实、文种、结构、语言与抗 AI 味、格式；吸收原直接审核页的合理推断、防过严、风险分层、主体与仅审边界，交付形态统一归 delivery.md。 |
-| 44 | `review-direct-checklist.md` | review | [review-checklist.md](../../chinese-official-writing/references/review-checklist.md)、[delivery.md](../../chinese-official-writing/references/delivery.md) | 退役/迁出 | 全文审核与范围限定共用统一审稿页；重要证据判断、合理推断、次级材料可选、仅审不改语义已蒸馏保留，取消重复首叶和跳过全面检查的支路。 |
-| 45 | `short-draft-naturalness.md` | workflow | [short-draft-naturalness.md](../../chinese-official-writing/references/short-draft-naturalness.md) | 同名承接 | 保留章节、小标题转自然段及一两句话承载事项的短格式能力；轻量卡只决定何时读取，不复制这些正文动作。 |
+| 43 | `review-checklist.md` | review | [review-checklist.md](../../chinese-official-writing/references/review-checklist.md)、[writing-rules.md](../../chinese-official-writing/references/writing-rules.md) | 同名承接 | 默认全文审核及范围限定、合理推断、风险分层、仅审和审后改留在审稿页；共同复核和完整交付、文后提示归 writing-rules。 |
+| 44 | `review-direct-checklist.md` | review | [review-checklist.md](../../chinese-official-writing/references/review-checklist.md)、[writing-rules.md](../../chinese-official-writing/references/writing-rules.md) | 退役/迁出 | 全文审核与范围限定共用审稿页；证据判断、合理推断、次级材料可选、仅审不改语义保留，完整改后稿与独立提示归共性写作页。 |
+| 45 | `short-draft-naturalness.md` | workflow/language | [writing-rules.md](../../chinese-official-writing/references/writing-rules.md)、[anti-ai-patterns.md](../../chinese-official-writing/references/anti-ai-patterns.md) | 退役/迁出 | 自然段承接章节、有效标题编号、上限无需填满和文种动作收束归共性写作页；重复和旁白归必经语言检查，不再设置短稿伴读入口。 |
 | 46 | `speech-person-order.md` | overlay | [speech-person-order.md](../../chinese-official-writing/references/speech-person-order.md) | 同名承接 | 讲话、致辞、演讲及主持词涉及具体人物排序时加读；保留用户次序、主客关系和跨单位不猜级别，完成后返回原稿全文。 |
 | 47 | `structure-editing.md` | workflow | [structure-editing.md](../../chinese-official-writing/references/structure-editing.md) | 同名承接 | 处理增删、移动、标题和段落关系。 |
-| 48 | `task-route-cards.md` | router | [task-route-cards.md](../../chinese-official-writing/references/task-route-cards.md) | 同名承接 | 材料较少/短稿与局部修改作为两个独立成立的条件；保留唯一主文种，分别转短稿、结构或字段页，完成后衔接首页编号检查。 |
+| 48 | `task-route-cards.md` | router/workflow | [SKILL.md](../../chinese-official-writing/SKILL.md)、[writing-rules.md](../../chinese-official-writing/references/writing-rules.md)、[structure-editing.md](../../chinese-official-writing/references/structure-editing.md)、[field-editing.md](../../chinese-official-writing/references/field-editing.md) | 退役/迁出 | 首页按实际用途选文种，局部结构和字段动作沿用既有入口；所有稿件使用共同写作、复核与交付规则，旧轻量卡撤下。 |
 | 49 | `technical-terms.md` | transaction/overlay | [technical-terms.md](../../chinese-official-writing/references/technical-terms.md) | 同名承接 | 算力或技术稿件明确需要术语核对时才加载。 |
-| 50 | `workflow.md` | workflow | [SKILL.md](../../chinese-official-writing/SKILL.md)、[information-selection.md](../../chinese-official-writing/references/information-selection.md)、[structure-editing.md](../../chinese-official-writing/references/structure-editing.md)、[field-editing.md](../../chinese-official-writing/references/field-editing.md)、[compression-details.md](../../chinese-official-writing/references/compression-details.md)、[handling-elements.md](../../chinese-official-writing/references/handling-elements.md)、[argument-chains.md](../../chinese-official-writing/references/argument-chains.md)、[final-review-layers.md](../../chinese-official-writing/references/final-review-layers.md)、[format-gbt9704.md](../../chinese-official-writing/references/format-gbt9704.md)、[delivery.md](../../chinese-official-writing/references/delivery.md) | 退役/迁出 | 任务、来源、模式、网页嵌套和检查顺序归首页；事实、结构、字段、篇幅、办理和论证归责任页；Word 归格式页，交付归 delivery。旧流程副本退役合理，但涉密人工复核等细分语义须另核，不能以总路由承接宣布全部闭合。 |
+| 50 | `workflow.md` | workflow | [SKILL.md](../../chinese-official-writing/SKILL.md)、[writing-rules.md](../../chinese-official-writing/references/writing-rules.md)、[structure-editing.md](../../chinese-official-writing/references/structure-editing.md)、[field-editing.md](../../chinese-official-writing/references/field-editing.md)、[compression-details.md](../../chinese-official-writing/references/compression-details.md)、[handling-elements.md](../../chinese-official-writing/references/handling-elements.md)、[argument-chains.md](../../chinese-official-writing/references/argument-chains.md)、[format-gbt9704.md](../../chinese-official-writing/references/format-gbt9704.md) | 退役/迁出 | 首页负责任务和文种选择；取材、成稿、复核与交付归 writing-rules，复杂结构、字段、篇幅、办理、论证和格式按实际能力分工，旧流程副本撤下。 |
 
 ## 新构造页（29 页，不占基线 50 行）
 
-26 个新增主叶、2 个报告事务附加页、1 个交付页；结合保留路径中的 13 个主叶，共 39 个主叶。采购专项同名页属于附加页，不能因文件名含 playbook 计入主叶。
+26 个新增主叶、2 个报告事务附加页、1 个共性写作页；结合保留路径中的 13 个主叶，共 39 个主叶。采购专项同名页属于附加页，不能因文件名含 playbook 计入主叶。
 
-| 新页 | R6 用途 | 旧来源/补建依据 |
+| 新页 | 当前用途 | 旧来源/补建依据 |
 |---|---|---|
 | [genre-playbook-notice.md](../../chinese-official-writing/references/genre-playbook-notice.md) | 通知独立主文种 | 旧 notice-publication 通知部分 |
 | [genre-playbook-publication.md](../../chinese-official-writing/references/genre-playbook-publication.md) | 公告、公示、通告的公开发布功能 | 旧 notice-publication 公开发布部分 |
@@ -84,7 +84,7 @@
 | [genre-playbook-work-priorities.md](../../chinese-official-writing/references/genre-playbook-work-priorities.md) | 年度、阶段或专项工作要点，组织未来任务、责任与节点，保留拟议状态 | 旧 work-summary 工作要点功能 |
 | [transaction-remediation-report.md](../../chinese-official-writing/references/transaction-remediation-report.md) | 整改进展/整改情况报告事务附加页 | 旧报告中的整改情况；明确与整改方案分工 |
 | [transaction-feedback-report.md](../../chinese-official-writing/references/transaction-feedback-report.md) | 反馈情况报告事务附加页 | 旧报告中的意见办理/反馈情况；明确与合作性建议分工 |
-| [delivery.md](../../chinese-official-writing/references/delivery.md) | 成稿/审稿意见交付，默认独立文后提示、未解决事项及明确省略提示的偏好 | 旧首页、workflow 与审稿交付要求；默认文后提示为本轮授权替代 |
+| [writing-rules.md](../../chinese-official-writing/references/writing-rules.md) | 所有文种共用的取材、成稿、篇幅、复核与交付规则 | 归并 information-selection、final-review-layers、delivery、short-draft-naturalness、task-route-cards 的有效语义 |
 | [genre-playbook-responsibility-letter.md](../../chinese-official-writing/references/genre-playbook-responsibility-letter.md) | 责任书：共同事项、各方责任与已有条件 | 旧 formulaic-language 责任书项 |
 | [genre-playbook-initiative.md](../../chinese-official-writing/references/genre-playbook-initiative.md) | 倡议书：缘由、具体行动及自愿参与语气 | 旧 formulaic-language 倡议书项 |
 | [genre-playbook-open-letter.md](../../chinese-official-writing/references/genre-playbook-open-letter.md) | 公开信：发信主体、明确受众、沟通事项与配合要求 | 旧 formulaic-language 公开信项 |
@@ -95,9 +95,9 @@
 
 ## 旧事务用语表的剩余入口
 
-第 13 行列出了 R5 审计发现的缺口及其 R6 落点；旧表其余类型仍须按用途进入主叶，不能再把用语页当免检查直接叶。
+第 13 行列出了 R5 审计发现的缺口及其现有落点；旧表其余类型仍须按用途进入主叶，不能再把用语页当免检查直接叶。
 
-| 旧 formulaic-language 类型 | R6 归属 |
+| 旧 formulaic-language 类型 | 当前归属 |
 |---|---|
 | 计划 | 工作要点或部署；需要完整实施路径时为方案，以交付用途判定 |
 | 汇报、情况综合 | 报告；情况综合保留来源、分类、共性差异与当前状态 |
@@ -112,16 +112,18 @@
 
 ## 历史证据与未闭合状态
 
+以下证据保留各自快照的判断；R14 的规则采纳只更新当前工程归属，不追改 R5/R6 的历史结果。
+
 - [旧共性语义审计 R5](../tests/evidence/rewrite-cold-r5/legacy-common-parity-r5.md)覆盖 23 页；[旧文种语义审计 R5](../tests/evidence/rewrite-cold-r5/legacy-genre-parity-r5.md)覆盖 26 页。剩余 technical-terms 在共性报告中另记与旧页逐行相同。两份审计针对当时快照，原有 G1–G4/U1 不是当前未修清单，也不是当前通过证书。
 - [R5 修复及证据汇总](../tests/evidence/rewrite-cold-r5/result.md)记录有据分析、字段默认形态、使用报告正反组织、消息内分析、可研建议、事务入口与技术需求的补建。当前页存在相应落点；敏感信息范围复核已补回，但不能据此宣布旧涉密人工复核专项等价。
 - [R6 旧边界迁移](../tests/evidence/legacy-boundary-migration-r6/result.md)更新了早期“总体等价”的精度：81 个方法保留，75 通过、6 个方法仍有 12 个失败子断言。未闭合项是声明/业务版本明示保留（2）、纯文本标题与编号句标点（4）、渠道不推发文主体（1）、Token 不改调用次数（1）、成语同语境/的地得/量词（3）、引用原文同语境保护（1）。不能用泛称模板、单位或校对规则代替专项承接。
 - [R6 真实写稿](../tests/evidence/rewrite-validation-r6/result.md)保留三组各自对照：冷审修复 2 较好/1 较弱/7 相当；剩余文种 7/3/2；已知反例可比项 1/6/1，另 1 项仅候选可评。没有逐页全部质量通过结论，不能把正反样本合并成普遍改善。
 - 技术需求、公开信、讲解的事实/程序扩写，完整消息旁白、局部范围、偶发不交正文和额外主叶读取仍有反例。新增页不自动获得旧页历史成绩；主持/述职已有专页也不表示两类组合全部验收。
-- R7 的共性和三个文种原型不计入本表当前归属或已解决项。只有采纳并冻结后，才按绑定的新证据更新状态。各页允许/排除集合的实际执行需看 native 轨迹；全量合并门尚未运行，候选 HOLD。
+- R7 原型及 R5/R6 未闭合项保留为历史记录；当前 canonical 已采用 R13 共性归并及 R14 整合修正。静态映射只表示工程归属，实际读取仍以 native 轨迹为准，1.x 对照与发布验收另行记录。
 
 ## 台账使用规则
 
 - 删除须能追溯替代页、授权迁出或明确废弃理由；同名保留也须核对具体语义。
 - 每条可执行语义按实际职责定位；简短接引不等于重复骨架。旧页到现存页的文件覆盖与逐条功能验收分别记录。
 - 真实稿件保留快照、请求、通道、最终消息、读取与无效原因；静态断言、原生运行技术有效和交付质量三个状态分开。
-- 合并判断需闭合真实功能缺口并核对候选独有硬回退，不能仅凭 50 行列齐、72 页存在或聚焦测试通过进入合并。
+- 本表和聚焦测试用于确认 2.0 开发候选的文件归属、链接及语义承接，不能替代真实写稿、候选独有回退核对或 1.x 发布验收。
