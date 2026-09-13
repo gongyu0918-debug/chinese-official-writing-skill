@@ -19,8 +19,8 @@ OPTIONAL_GATE_FILES = {
 }
 SKILLHUB_CLEAN_PACKAGE_EXCLUDES = {"agents/openai.yaml", "LICENSE"}
 REFERENCE_LINK_RE = re.compile(r"`(?:references/)?([^`/]+\.md)`")
-CURRENT_VERSION = "1.6.35"
-PUBLISHED_VERSION = "1.6.35"
+CURRENT_VERSION = "1.6.36"
+PUBLISHED_VERSION = "1.6.36"
 
 
 def relative_files(root: Path) -> list[str]:
@@ -1116,7 +1116,7 @@ class SkillBoundaryTests(unittest.TestCase):
     def test_openclaw_bundle_readme_is_current_and_contains_no_publish_command(self) -> None:
         readme = (ROOT / "packages" / "openclaw" / "README.md").read_text(encoding="utf-8")
 
-        self.assertIn(f"当前 GitHub 版本为 `{PUBLISHED_VERSION}`", readme)
+        self.assertIn(f"当前 GitHub 候选版本为 `{PUBLISHED_VERSION}`", readme)
         self.assertIn("MIT", readme)
         self.assertIn(r"python .\maintenance\tools\sync_adapters.py", readme)
         self.assertIn("packages/openclaw/", readme)
@@ -1177,7 +1177,7 @@ class SkillBoundaryTests(unittest.TestCase):
 
         sync_version = re.search(r'VERSION = "([^"]+)"', sync_script)
         readme_version = re.search(r"chinese-official-writing@(\d+\.\d+\.\d+)", readme)
-        openclaw_version = re.search(r"当前 GitHub 版本为 `(\d+\.\d+\.\d+)`", openclaw_readme)
+        openclaw_version = re.search(r"当前 GitHub 候选版本为 `(\d+\.\d+\.\d+)`", openclaw_readme)
 
         self.assertIsNotNone(sync_version)
         self.assertIsNotNone(readme_version)
@@ -2241,7 +2241,7 @@ class SkillBoundaryTests(unittest.TestCase):
             "下表只保留最近 5 次版本验证",
             "1.6.26 短意见、投诉反映与语义减载",
             "1.6.25 意见建议、建议反馈与标题版式",
-            "1.6.24 短稿语义路由与 Hook 说明顺序",
+            "1.6.36 文种路由、称谓顺序与成稿清理",
             "1.6.28 Hook修复与新闻事实日期",
             "1.6.27 整改方案、命令路径与投诉页精简",
             "明川市政务服务中心服务事项信息变更管理办法（试行）",
