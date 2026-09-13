@@ -21,7 +21,10 @@
 
 ## 候选包
 
-候选包将在测试通过后从本提交重新生成并记录文件数、SHA-256 与许可证一致性。
+- 候选产品提交：`2a629d361bbfab8c1d884bdf802544a7c2c0790a`。GitHub 候选以该提交树为准，不创建 tag 或 Release。
+- SkillHub clean package：104 文件，版本 `1.6.36`，生成的 `LICENSE.md` 与根 MIT 许可证同哈希；ZIP SHA-256 为 `f510a244dcf6923aca6d01f6e7506e6c7b513e0b10e55ef28ef2944799fbd7ac`。本地 CLI dry-run 返回 `dryRun=true`。
+- OpenClaw/ClawHub 无 Hook 包：53 文件，包内 `LICENSE` 与根 MIT 许可证同哈希；ZIP SHA-256 为 `05b09c4a6c7991fdb6f39852f0f2c3f3d207a6b8fd4e75e81fbb305a1e5b77c2`。ClawHub dry-run 返回 `status=would-publish`、`latestVersion=1.6.35`、fingerprint `b50501d2fe66e8d209298f71038b8c8b26ce0807f1162cc4e781b711428db699`。
+- 本地制品目录：`output/release-v1.6.36-candidate-2a629d36/`。两个平台 dry-run 均复用 `release-v1636/release-notes.md` 的同一份正向自然语言说明。
 
 ## 外部状态
 
