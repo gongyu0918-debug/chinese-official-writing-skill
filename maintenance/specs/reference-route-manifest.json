@@ -1930,7 +1930,8 @@
       ],
       "allowed_reads": [
         "SKILL.md",
-        "references/genre-playbook-narration.md"
+        "references/genre-playbook-narration.md",
+        "references/writing-rules.md"
       ],
       "forbidden_reads": [
         "references/genre-playbook-advisory-feedback.md",

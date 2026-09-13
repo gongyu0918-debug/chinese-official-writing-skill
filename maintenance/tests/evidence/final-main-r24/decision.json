@@ -1,0 +1,11 @@
+{
+  "status": "hold-narration-regression-signal",
+  "candidate_fingerprint": "345271e65f29f3f055026102f8ef29fbb26bee2bca6fcce57ca524f6a448909d",
+  "baseline_commit": "1ce7112303172478faa2392667a2de1098eb912c",
+  "reason": "The properly decoded MiniMax narration recovery again favors the original baseline for substantial fabricated product history and processing details. A single rule cause is not proved, but the repeated relative disadvantage prevents accepting R24 unchanged.",
+  "native_calls": 30,
+  "comparable_calls": 28,
+  "environment_damaged_calls": 2,
+  "outside_body_process_notes": "User now accepts clearly separated narration and quality-check statements; they are not a regression by themselves. Original blind findings remain unchanged.",
+  "next": "One narration-page repair, fixed original prompt, two models and four calls; all other R24 pages remain frozen."
+}

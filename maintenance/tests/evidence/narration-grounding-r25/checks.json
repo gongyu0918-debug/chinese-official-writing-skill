@@ -1,0 +1,32 @@
+{
+  "status": "PASS",
+  "canonical_fingerprint": "03b11fbbfca3409b3b7ae6853f4e9174448746378fee0b3d04cf9fb46ff97d2d",
+  "canonical_files_match_frozen_candidate": 73,
+  "changed_pages_synced_to_five_mirrors": [
+    "genre-playbook-narration.md",
+    "genre-playbook-request.md",
+    "reference-index.md"
+  ],
+  "unit_command": "Python313 -m unittest maintenance.tests.test_reference_rewrite_contract maintenance.tests.test_skill_boundary maintenance.tests.test_request_review_sequence_dedup",
+  "unit_tests": 115,
+  "unit_result": "PASS",
+  "initial_unit_failure": {
+    "count": 1,
+    "test": "test_machine_readable_manifest_closes_current_leaf_set",
+    "resolution": "Added the explicit narration-to-writing-rules link to maintenance manifest; product unchanged after native tests."
+  },
+  "quick_validate": {
+    "target": "chinese-official-writing",
+    "result": "Skill is valid!"
+  },
+  "maintenance_python_compile": "PASS: seven final build/collate/adopt/archive/runner files",
+  "test_assertion_migration": "Request proposed actions and review trigger, conditional request element list, narration observation-guidance wording and explicit common-page link. No production rules restored to satisfy stale wording.",
+  "rule_comparison_calls": 32,
+  "excluded_encoding_calls": 2,
+  "doc_links": {
+    "checked": 14,
+    "missing": [],
+    "result": "PASS"
+  },
+  "git_diff_check": "PASS"
+}

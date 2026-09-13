@@ -1,0 +1,206 @@
+{
+  "candidate_fingerprint": "03b11fbbfca3409b3b7ae6853f4e9174448746378fee0b3d04cf9fb46ff97d2d",
+  "baseline_commit": "1ce7112303172478faa2392667a2de1098eb912c",
+  "calls": [
+    {
+      "model": "alibaba-token-plan/qwen3.8-flash",
+      "effort": "medium",
+      "case": "narration",
+      "arm": "baseline",
+      "returncode": 0,
+      "seconds": 83.31,
+      "invalid": [],
+      "draft_sha256": "9516a5249495247f822d27fb31904bede463c2259d6b849b3b37a8b59aca49b5",
+      "usage": [
+        {
+          "input_tokens": 125558,
+          "cached_input_tokens": 93312,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 4240,
+          "reasoning_output_tokens": 3105
+        }
+      ],
+      "run": "narration-grounding-native-r25-m0"
+    },
+    {
+      "model": "alibaba-token-plan/qwen3.8-flash",
+      "effort": "medium",
+      "case": "narration",
+      "arm": "candidate",
+      "returncode": 0,
+      "seconds": 238.89,
+      "invalid": [],
+      "draft_sha256": "91b89e578a213684a6a3c1146e610fd64a452d62cb3edd2ba98118f966d8dd45",
+      "usage": [
+        {
+          "input_tokens": 233387,
+          "cached_input_tokens": 211712,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 9062,
+          "reasoning_output_tokens": 2660
+        }
+      ],
+      "run": "narration-grounding-native-r25-m0"
+    },
+    {
+      "model": "minimax-cn/MiniMax-M3",
+      "effort": "max",
+      "case": "narration",
+      "arm": "baseline",
+      "returncode": 0,
+      "seconds": 62.55,
+      "invalid": [],
+      "draft_sha256": "b4a7da022747af738d7d10ff54d271f14a2661704187f637f1beca31cad146e8",
+      "usage": [
+        {
+          "input_tokens": 192008,
+          "cached_input_tokens": 176236,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 7601,
+          "reasoning_output_tokens": 5744
+        }
+      ],
+      "run": "narration-grounding-native-r25-m3"
+    },
+    {
+      "model": "minimax-cn/MiniMax-M3",
+      "effort": "max",
+      "case": "narration",
+      "arm": "candidate",
+      "returncode": 0,
+      "seconds": 391.89,
+      "invalid": [],
+      "draft_sha256": "36880c9ed621901b963a0d6760df219f7f3cb79bdeed7907838fddcdaece2c4b",
+      "usage": [
+        {
+          "input_tokens": 414376,
+          "cached_input_tokens": 383488,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 8355,
+          "reasoning_output_tokens": 0
+        }
+      ],
+      "run": "narration-grounding-native-r25-m3"
+    }
+  ],
+  "pairs": [
+    {
+      "model": "alibaba-token-plan/qwen3.8-flash",
+      "case": "narration",
+      "findings": [
+        "两稿均以培训专员口吻完成老产品展示台、工艺样品墙、试用区的顺序串联，保留2008年至2015年的三代产品、四种加工样品及工序说明、两台现款设备供查看界面、不安排提问和现场演示，任务与完整正文交付均成立。",
+        "A写‘现在已经不是厂里的主推机型’，把‘老产品’进一步断定为当前商业推广状态，材料没有提供，宜删去该句；‘现在还在用的那一款’也不必预设两台现款设备同属一个款型。‘时间跨度七年多’可直接保留原年代区间，避免不必要的精确化。这些是集中、可局部修复的偏差，不是密集产品技术历史虚构。",
+        "B写‘从二十多年前的产品思路到眼前这两台机器’，与2026年草稿语境及最早2008年的材料不符，最早约18年前，应改为‘从老产品到现款设备’。这是明确的年代错误，需改，但不因此将整稿归为严重产品历史编造。",
+        "B的‘四种样品之间的具体差别，说明上没有逐一写出来’断定现场说明缺少什么，材料并未提供牌面内容，应删去该判断，仅保留对照样品与对应说明的指引。‘同一种东西做四遍’解释过粗，可直接说‘同一部件的四种加工样品’，避免预设制作次数。A的‘按编号’同样依赖未提供的牌面编号，可改为逐一对照。这些问题的修复范围有限。",
+        "B引导观察外形大小、界面及对照说明，A引导观看样品和功能分区，均属于合理观察安排；通俗解释工序与形成基本认识也允许。B的‘没写到的我不替大家猜’是现场讲解中的来源边界提醒，口语上可再简化，但不等同于工具过程泄露；‘不启动设备’按本次拟议参观安排理解，不推断为设备已经断电，也不单独判严重错误。",
+        "A更直截，B的观察指引更充分；双方都存在需局部修改的事实或表达问题，未形成稳健的实质质量差距，正文判平。两稿正文外的技能、Hook、质检及文后说明与正文明确隔离，依新口径不扣分、不单独计回退，也不据自报推定执行；完整交付同样判平。"
+      ],
+      "body": "tie",
+      "delivery": "tie"
+    },
+    {
+      "model": "minimax-cn/MiniMax-M3",
+      "case": "narration",
+      "findings": [
+        "两稿均交付完整讲解稿，并按老产品展示台、工艺样品墙、试用区顺序串联，保留不安排提问和演示。A简短、清楚，主要引导观看实物和对应说明，没有确定具体产品性能或四个具体工序，正文和完整交付均明显偏向A。",
+        "B写第一代是‘公司进入这一产品线的起点’，第二代‘整体结构和外观上都有了明显改进，使用稳定性也更好’，第三代是‘成熟形态’，并称‘核心的设计理念保持延续’。这些实际产品历史、性能比较与技术沿革均未由材料提供，属于实质事实扩写，足以影响现场讲解准确性。",
+        "B把四件样品逐项指定为毛坯、粗加工、半精加工和精加工，并描述‘毛坯件表面粗糙、尺寸偏大’及精加工后‘尺寸精度和表面光洁度已经达到交付要求’。它还称说明卡列有具体设备、刀具和工艺参数。通用行业知识可以用于解释工序，但不能据此确认本次四件样品的阶段、表面状态或交付质量；这里是严重的具体工艺事实编造。",
+        "B将材料的‘两台现款设备’改写为‘两款现款设备’，把设备数量升级为型号种类数量，事实性质发生变化，需恢复‘两台’。‘将在后续的专项培训中详细讲解’也将未给的后续安排写成确定承诺，属于次要但应删除或条件化的问题。",
+        "A的‘按时间先后摆在一起’依赖实际展陈顺序，可在现场调整。‘了解同一零件在不同加工阶段会呈现什么形态’与工序说明和样品对照相衔接，未指定四件样品必为四个确定连续阶段，按通用理解目的处理；为更贴材料，可简化为了解不同加工样品的形态。这些轻微措辞问题不与B密集的具体历史、性能和工序断言等量齐观。",
+        "观看外形、体积、界面布局，跟随队伍以及不触碰展品等观察或安全安排均允许，不作为严重事实问题。B正文外关于使用通用阶段的说明、修改邀请，以及其他隔离旁白依最新口径不扣分；但正文外说明不能把正文已写成确定现场事实的四个阶段变成有据内容。",
+        "双方完整正文均已交付，不以段数、标题、篇幅偏好或隔离说明决定胜负。A仅需少量现场用语核对，B需要实质修改产品历史和工艺段落，且修正台数与款数的变化，因此完整交付同样选A；相对偏好与各稿实际修订风险分别明确。"
+      ],
+      "body": "candidate",
+      "delivery": "candidate"
+    }
+  ],
+  "execution": [
+    {
+      "run": "narration-grounding-native-r25-m0",
+      "summary": {
+        "baseline": {
+          "commands": 6,
+          "read_chars_unique": 21850,
+          "input_tokens": 125558,
+          "cached_input_tokens": 93312,
+          "uncached_input_tokens": 32246,
+          "output_tokens": 4240,
+          "seconds": 83.31,
+          "calls": 1,
+          "technical_valid": 1,
+          "prose_lint.py": 0,
+          "draft_length.py": 0,
+          "anti_ai_page_returned": 1,
+          "tasks_with_prose_command": 0
+        },
+        "candidate": {
+          "commands": 30,
+          "read_chars_unique": 9398,
+          "input_tokens": 233387,
+          "cached_input_tokens": 211712,
+          "uncached_input_tokens": 21675,
+          "output_tokens": 9062,
+          "seconds": 238.89,
+          "calls": 1,
+          "technical_valid": 1,
+          "prose_lint.py": 6,
+          "draft_length.py": 6,
+          "anti_ai_page_returned": 1,
+          "tasks_with_prose_command": 1
+        }
+      }
+    },
+    {
+      "run": "narration-grounding-native-r25-m3",
+      "summary": {
+        "baseline": {
+          "commands": 16,
+          "read_chars_unique": 7516,
+          "input_tokens": 192008,
+          "cached_input_tokens": 176236,
+          "uncached_input_tokens": 15772,
+          "output_tokens": 7601,
+          "seconds": 62.55,
+          "calls": 1,
+          "technical_valid": 1,
+          "prose_lint.py": 0,
+          "draft_length.py": 0,
+          "anti_ai_page_returned": 0,
+          "tasks_with_prose_command": 0
+        },
+        "candidate": {
+          "commands": 16,
+          "read_chars_unique": 9398,
+          "input_tokens": 414376,
+          "cached_input_tokens": 383488,
+          "uncached_input_tokens": 30888,
+          "output_tokens": 8355,
+          "seconds": 391.89,
+          "calls": 1,
+          "technical_valid": 1,
+          "prose_lint.py": 2,
+          "draft_length.py": 2,
+          "anti_ai_page_returned": 1,
+          "tasks_with_prose_command": 1
+        }
+      }
+    }
+  ],
+  "snapshots_and_required_reads": "PASS",
+  "counts": {
+    "body": {
+      "tie": 1,
+      "candidate": 1
+    },
+    "delivery": {
+      "tie": 1,
+      "candidate": 1
+    }
+  },
+  "rule_size": {
+    "baseline_chars": 92415,
+    "candidate_chars": 52393,
+    "reduction_percent": 43.31
+  },
+  "scope": "Two paired narration cases directly tested; unchanged pages inherit R24 and prior evidence. Clearly separated outside-body notes are accepted per the latest user instruction. No statistical noninferiority or universal speed/cost claim."
+}

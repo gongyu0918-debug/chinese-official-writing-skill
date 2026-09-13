@@ -330,7 +330,7 @@ class ReferenceRewriteContractTests(unittest.TestCase):
             "responsibility-letter": ["共同事项", "责任主体", "拟议状态", "签署", "日期", "奖惩", "追责"],
             "initiative": ["发起者", "倡议对象", "自愿参与", "处罚", "考核", "已取得成效", "日期"],
             "open-letter": ["发信主体", "受众", "发信方、执行方", "具体承诺", "仍在考虑", "日期"],
-            "narration": ["讲解者身份", "受众", "路线", "顺序", "数字", "人物故事", "现场事实"],
+            "narration": ["讲解者身份", "受众", "路线", "顺序", "数量", "年代区间", "实际展品事实", "观察指引", "通用概念解释"],
             "information-materials": ["受众", "要求", "方法", "渠道", "适用范围", "处罚", "额外责任", "原状态"],
         }
         for suffix, concepts in expected.items():
@@ -338,7 +338,7 @@ class ReferenceRewriteContractTests(unittest.TestCase):
                 text = (REFS / f"genre-playbook-{suffix}.md").read_text(encoding="utf-8")
                 for concept in concepts:
                     self.assertIn(concept, text)
-                self.assertRegex(text, r"共性写作页.*复核.*交付")
+                self.assertRegex(text, r"(?:共性写作页|`writing-rules\.md`).*复核.*交付")
         procurement = (REFS / "genre-playbook-procurement-review.md").read_text(encoding="utf-8")
         for boundary in ["主文种已经确定", "预算与测算有别", "缺项", "未定状态", "建议与已定要求分开", "field-editing.md"]:
             self.assertIn(boundary, procurement)

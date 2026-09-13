@@ -149,6 +149,8 @@ def main():
     parser.add_argument('--isolated-profile', action='store_true', help='Use a temporary Codex profile with the same execution policy and the local provider proxy.')
     parser.add_argument('--review-host', action='store_true', help='Expose the same bounded native subagent host to both arms; child defaults use the selected writer model.')
     parser.add_argument('--retain-session-metadata', action='store_true', help='Retain isolated native session records for child-model and context provenance.')
+    parser.add_argument('--ordinary-only', action='store_true', help='Compare ordinary Skill writing in both arms without optional Hook enhancement.')
+    parser.add_argument('--utf8-read', action='store_true', help='Give both arms the same file-encoding instruction after a witnessed Windows decoding failure.')
     args = parser.parse_args()
     needs_input = 'review_existing_docx' in args.cases
     if needs_input != bool(args.input_file):
@@ -206,6 +208,12 @@ def main():
     binding['runner_sha256'] = hashlib.sha256(runner_source).hexdigest()
     (out / 'runner-source.py').write_bytes(runner_source)
     binding['prompt_prefix'] = '使用本目录 .agents/skills/chinese-official-writing/SKILL.md。\n\n'
+    if args.ordinary_only:
+        binding['prompt_prefix'] += '使用普通写作能力，不启用 Hook。\n\n'
+    binding['ordinary_only'] = args.ordinary_only
+    if args.utf8_read:
+        binding['prompt_prefix'] += '本目录文本文件为 UTF-8 编码，读取时显式指定 UTF-8 解码。\n\n'
+    binding['utf8_read'] = args.utf8_read
     binding['runtime_layout'] = 'each call has a separate parent, workspace and temporary directory'
     if 'delivery_cleanup_existing' in args.cases:
         binding['text_fixture'] = {'source': str(CLEANUP_FIXTURE), 'sha256': hashlib.sha256(CLEANUP_FIXTURE.read_bytes()).hexdigest(), 'transformation': 'none'}
@@ -230,7 +238,7 @@ def main():
             call_environment={**eval_environment, 'TEMP':str(scratch), 'TMP':str(scratch), 'TMPDIR':str(scratch)}
             prefix=out/f'm{index}-{case_id}-{arm}'
             final=Path(str(prefix)+'.final.txt')
-            prompt='使用本目录 .agents/skills/chinese-official-writing/SKILL.md。\n\n'+CASES[case_id]
+            prompt=binding['prompt_prefix']+CASES[case_id]
             command=[str(cli),'exec','--ephemeral','--skip-git-repo-check','-C',str(work),'-m',MODELS[index],'-c','approval_policy="never"','-c','features.plugins=false','-c','features.apps=false','-c','features.memories=false','-c','openai_base_url="http://127.0.0.1:10100/v1"','-c',f'model_catalog_json="{catalog.as_posix()}"','--json','--output-last-message',str(final),'-']
             if index != 2:
                 command[-1:-1]=['-c',f'model_reasoning_effort="{args.effort}"']

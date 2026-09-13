@@ -1,8 +1,10 @@
 # Reference 重写覆盖台账（2026-09-13，R6历史快照）
 
+当前状态已在[R25最终验收](../tests/evidence/narration-grounding-r25/results.md)签结：67参考页、40主叶、两脚本，指纹03b11fbbfca3409b3b7ae6853f4e9174448746378fee0b3d04cf9fb46ff97d2d。下方R6及R20指针说明均作为历史记录保留，不代表仍有相同待办。
+
 > 历史适用范围：本页保留R6阶段的构造、统计、原始判断和未闭合项。下文“当前”“本次”“尚未闭合”等措辞均指该历史快照，不表示当前canonical状态，不据此判定R16—R18之后的功能缺失或验收结果。
 >
-> 当前canonical在R19审稿页基础上采用R20入口与交付修正，完整指纹`a8f2f4694450e790bcc7129447f0ccac32cf5ef2bf227e7852604d714dfcddb5`；索引与文种页不变，12次原生中反例及执行缺口另保留。当前页集、结果与待办见[逐页架构归属](reference-rewrite-page-map-20260912.md)、[共性层进度](rewrite-common-layer-progress-20260913.md)和[R19整体完成度审计](../tests/evidence/completion-audit-r19/report.md)（[JSON](../tests/evidence/completion-audit-r19/report.json)）。逐页文件归属不代表逐条语义或实稿已闭合；R19审稿页已采用，Word输入修复也有独立证据，二者快照不同，详见当前进度；下方R6历史统计不追改。
+> R20阶段canonical在R19审稿页基础上采用R20入口与交付修正，完整指纹`a8f2f4694450e790bcc7129447f0ccac32cf5ef2bf227e7852604d714dfcddb5`；索引与文种页不变，12次原生中反例及执行缺口另保留。当时页集、结果与待办见[逐页架构归属](reference-rewrite-page-map-20260912.md)、[共性层进度](rewrite-common-layer-progress-20260913.md)和[R19整体完成度审计](../tests/evidence/completion-audit-r19/report.md)（[JSON](../tests/evidence/completion-audit-r19/report.json)）。逐页文件归属不代表逐条语义或实稿已闭合；R19审稿页、Word输入修复与后续验收快照分别记录，下方R6历史统计不追改。
 
 后续判读修订见 [R7 联网与日期校准](../tests/evidence/rewrite-calibration-r7/result.md)：下文相对胜负为原始审阅记录，不等于已确认的规则回退；新原型和新增批次尚未计入 R6 产品收益。
 

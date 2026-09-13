@@ -7,7 +7,7 @@
 ### 文种专页
 
 - 既有项目新增功能、服务或实施内容的增项申请：`genre-playbook-project-application.md`。
-- 请示、普通采购或经费等申请：`genre-playbook-request.md`；请批事项或必要要素拿不准时用 `genre-checklist-request.md`。
+- 请示、普通采购或经费等申请：`genre-playbook-request.md`；审核、复核、审后改稿，或细查请批事项和办理要素时，读取 `genre-checklist-request.md`。
 - 报告、情况报告、情况综合、周报、月报：`genre-playbook-report.md`；报告功能或状态表达拿不准时用 `genre-checklist-report.md`。
 - 工作总结：`genre-playbook-work-summary.md`。
 - 工作要点：`genre-playbook-work-priorities.md`。

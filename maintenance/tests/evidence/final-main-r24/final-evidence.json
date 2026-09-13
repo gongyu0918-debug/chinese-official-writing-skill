@@ -1,0 +1,1003 @@
+{
+  "candidate_fingerprint": "345271e65f29f3f055026102f8ef29fbb26bee2bca6fcce57ca524f6a448909d",
+  "baseline_commit": "1ce7112303172478faa2392667a2de1098eb912c",
+  "scope": "Fixed final batch and diagnostic repeats remain separate. A preference is not itself proof of a rule-caused regression. Tokens are not monetary prices.",
+  "batches": {
+    "initial": {
+      "calls": [
+        {
+          "model": "alibaba-token-plan/qwen3.8-flash",
+          "effort": "medium",
+          "case": "feasibility_conditional_advice",
+          "arm": "baseline",
+          "returncode": 0,
+          "seconds": 167.28,
+          "invalid": [],
+          "draft_sha256": "f7ca18d64a753774d45488210d9a0588df3f988476d36ea93e2f2feaa78596c7",
+          "usage": [
+            {
+              "input_tokens": 179703,
+              "cached_input_tokens": 150400,
+              "cache_write_input_tokens": 0,
+              "output_tokens": 8167,
+              "reasoning_output_tokens": 6430
+            }
+          ],
+          "run": "final-main-native-r24-m0"
+        },
+        {
+          "model": "alibaba-token-plan/qwen3.8-flash",
+          "effort": "medium",
+          "case": "feasibility_conditional_advice",
+          "arm": "candidate",
+          "returncode": 0,
+          "seconds": 63.97,
+          "invalid": [],
+          "draft_sha256": "4b39210727d30640ea40cc35c47238c34154f1c5e113b90db85cd93036e3b51c",
+          "usage": [
+            {
+              "input_tokens": 107604,
+              "cached_input_tokens": 92416,
+              "cache_write_input_tokens": 0,
+              "output_tokens": 2736,
+              "reasoning_output_tokens": 769
+            }
+          ],
+          "run": "final-main-native-r24-m0"
+        },
+        {
+          "model": "alibaba-token-plan/qwen3.8-flash",
+          "effort": "medium",
+          "case": "review_rewrite",
+          "arm": "baseline",
+          "returncode": 0,
+          "seconds": 148.62,
+          "invalid": [],
+          "draft_sha256": "4d1d44922e094991179c163c7b6858ba4c0966b1239dd40f18d7f88324b8f8a2",
+          "usage": [
+            {
+              "input_tokens": 161572,
+              "cached_input_tokens": 137216,
+              "cache_write_input_tokens": 0,
+              "output_tokens": 7665,
+              "reasoning_output_tokens": 6006
+            }
+          ],
+          "run": "final-main-native-r24-m0"
+        },
+        {
+          "model": "alibaba-token-plan/qwen3.8-flash",
+          "effort": "medium",
+          "case": "review_rewrite",
+          "arm": "candidate",
+          "returncode": 0,
+          "seconds": 125.42,
+          "invalid": [],
+          "draft_sha256": "46b18007f2c949cbdfbdc3d5e1f66f10be0006209afd381baedc7d013fa860e2",
+          "usage": [
+            {
+              "input_tokens": 190420,
+              "cached_input_tokens": 172544,
+              "cache_write_input_tokens": 0,
+              "output_tokens": 6089,
+              "reasoning_output_tokens": 3578
+            }
+          ],
+          "run": "final-main-native-r24-m0"
+        },
+        {
+          "model": "alibaba-token-plan-2/qwen3.8-flash",
+          "effort": "max",
+          "case": "formal_opinion",
+          "arm": "baseline",
+          "returncode": 0,
+          "seconds": 111.12,
+          "invalid": [],
+          "draft_sha256": "ad4901b56c17915ad4254b8994fa4da4bc6c32236f8b5b4b73edeebfed96011c",
+          "usage": [
+            {
+              "input_tokens": 135959,
+              "cached_input_tokens": 118272,
+              "cache_write_input_tokens": 0,
+              "output_tokens": 4694,
+              "reasoning_output_tokens": 3329
+            }
+          ],
+          "run": "final-main-native-r24-m1"
+        },
+        {
+          "model": "alibaba-token-plan-2/qwen3.8-flash",
+          "effort": "max",
+          "case": "formal_opinion",
+          "arm": "candidate",
+          "returncode": 0,
+          "seconds": 146.56,
+          "invalid": [],
+          "draft_sha256": "3dd3a1745937c4dd301800410febc50b32a4dc26d7e741aa03f72dd40c1ef2a0",
+          "usage": [
+            {
+              "input_tokens": 152857,
+              "cached_input_tokens": 133248,
+              "cache_write_input_tokens": 0,
+              "output_tokens": 4920,
+              "reasoning_output_tokens": 2782
+            }
+          ],
+          "run": "final-main-native-r24-m1"
+        },
+        {
+          "model": "alibaba-token-plan-2/qwen3.8-flash",
+          "effort": "max",
+          "case": "hosting_agenda",
+          "arm": "baseline",
+          "returncode": 0,
+          "seconds": 100.0,
+          "invalid": [],
+          "draft_sha256": "24e5aed92bc3ad7eaca092da7a7a36c710945d42d6f8689f64c73488e9e7a122",
+          "usage": [
+            {
+              "input_tokens": 95842,
+              "cached_input_tokens": 79488,
+              "cache_write_input_tokens": 0,
+              "output_tokens": 3171,
+              "reasoning_output_tokens": 2456
+            }
+          ],
+          "run": "final-main-native-r24-m1"
+        },
+        {
+          "model": "alibaba-token-plan-2/qwen3.8-flash",
+          "effort": "max",
+          "case": "hosting_agenda",
+          "arm": "candidate",
+          "returncode": 0,
+          "seconds": 111.34,
+          "invalid": [],
+          "draft_sha256": "202800528a63b6790937e24a6592336526abdec58d4d3a85bebd3e64c9b141cd",
+          "usage": [
+            {
+              "input_tokens": 171254,
+              "cached_input_tokens": 148480,
+              "cache_write_input_tokens": 0,
+              "output_tokens": 4695,
+              "reasoning_output_tokens": 2675
+            }
+          ],
+          "run": "final-main-native-r24-m1"
+        },
+        {
+          "model": "command-code/deepseek-deepseek-v4.1-flash",
+          "effort": "provider-default",
+          "case": "motion",
+          "arm": "baseline",
+          "returncode": 0,
+          "seconds": 29.69,
+          "invalid": [],
+          "draft_sha256": "2506a3fe6bff5ee588faae4905c5a1afb6e40acf83e1b92604335ba34543ee9e",
+          "usage": [
+            {
+              "input_tokens": 70512,
+              "cached_input_tokens": 52608,
+              "cache_write_input_tokens": 0,
+              "output_tokens": 2402,
+              "reasoning_output_tokens": 0
+            }
+          ],
+          "run": "final-main-native-r24-m2"
+        },
+        {
+          "model": "command-code/deepseek-deepseek-v4.1-flash",
+          "effort": "provider-default",
+          "case": "motion",
+          "arm": "candidate",
+          "returncode": 0,
+          "seconds": 51.67,
+          "invalid": [],
+          "draft_sha256": "0a929891a0d62d89e0e796d3d2646d56a255cac10e6293633db2763ccdd86d46",
+          "usage": [
+            {
+              "input_tokens": 144927,
+              "cached_input_tokens": 132736,
+              "cache_write_input_tokens": 0,
+              "output_tokens": 4376,
+              "reasoning_output_tokens": 0
+            }
+          ],
+          "run": "final-main-native-r24-m2"
+        },
+        {
+          "model": "command-code/deepseek-deepseek-v4.1-flash",
+          "effort": "provider-default",
+          "case": "server_technical_requirements",
+          "arm": "baseline",
+          "returncode": 0,
+          "seconds": 58.41,
+          "invalid": [],
+          "draft_sha256": "ace4fefcfcb72c5dd10ded949b1270a3b9583b6c06757e6b8b0add725ed3815d",
+          "usage": [
+            {
+              "input_tokens": 171638,
+              "cached_input_tokens": 149760,
+              "cache_write_input_tokens": 0,
+              "output_tokens": 5716,
+              "reasoning_output_tokens": 0
+            }
+          ],
+          "run": "final-main-native-r24-m2"
+        },
+        {
+          "model": "command-code/deepseek-deepseek-v4.1-flash",
+          "effort": "provider-default",
+          "case": "server_technical_requirements",
+          "arm": "candidate",
+          "returncode": 0,
+          "seconds": 44.16,
+          "invalid": [],
+          "draft_sha256": "594f5997ff9eaaf87fc13195403bfac390d214abbc062eda20fc07f7700ea622",
+          "usage": [
+            {
+              "input_tokens": 130181,
+              "cached_input_tokens": 117376,
+              "cache_write_input_tokens": 0,
+              "output_tokens": 3645,
+              "reasoning_output_tokens": 0
+            }
+          ],
+          "run": "final-main-native-r24-m2"
+        },
+        {
+          "model": "minimax-cn/MiniMax-M3",
+          "effort": "max",
+          "case": "narration",
+          "arm": "baseline",
+          "returncode": 0,
+          "seconds": 124.53,
+          "invalid": [],
+          "draft_sha256": "c4078c570053db8c361cabf8334f9aa2755e325e446bbc2c9021d17adc2dc2d3",
+          "usage": [
+            {
+              "input_tokens": 149600,
+              "cached_input_tokens": 131200,
+              "cache_write_input_tokens": 0,
+              "output_tokens": 9884,
+              "reasoning_output_tokens": 8540
+            }
+          ],
+          "run": "final-main-native-r24-m3"
+        },
+        {
+          "model": "minimax-cn/MiniMax-M3",
+          "effort": "max",
+          "case": "narration",
+          "arm": "candidate",
+          "returncode": 0,
+          "seconds": 33.72,
+          "invalid": [],
+          "draft_sha256": "922c1f81e3e14964a3caf1f4695db1e14ef7fa661d6b3600f9f377678e5bea0c",
+          "usage": [
+            {
+              "input_tokens": 66852,
+              "cached_input_tokens": 53358,
+              "cache_write_input_tokens": 0,
+              "output_tokens": 4837,
+              "reasoning_output_tokens": 3754
+            }
+          ],
+          "run": "final-main-native-r24-m3"
+        },
+        {
+          "model": "minimax-cn/MiniMax-M3",
+          "effort": "max",
+          "case": "open_letter",
+          "arm": "baseline",
+          "returncode": 0,
+          "seconds": 56.7,
+          "invalid": [],
+          "draft_sha256": "e7d6347fcb37af5f55d6f7f3c5576fcd593eee46dbd61d5cc5e6a338c717c65a",
+          "usage": [
+            {
+              "input_tokens": 112233,
+              "cached_input_tokens": 97641,
+              "cache_write_input_tokens": 0,
+              "output_tokens": 4390,
+              "reasoning_output_tokens": 3440
+            }
+          ],
+          "run": "final-main-native-r24-m3"
+        },
+        {
+          "model": "minimax-cn/MiniMax-M3",
+          "effort": "max",
+          "case": "open_letter",
+          "arm": "candidate",
+          "returncode": 0,
+          "seconds": 93.23,
+          "invalid": [],
+          "draft_sha256": "974ee6617e62347379f1274ea7873d8f5ae696bc2626c77fe8660f1ce3df2e43",
+          "usage": [
+            {
+              "input_tokens": 273558,
+              "cached_input_tokens": 245389,
+              "cache_write_input_tokens": 0,
+              "output_tokens": 7939,
+              "reasoning_output_tokens": 4547
+            }
+          ],
+          "run": "final-main-native-r24-m3"
+        },
+        {
+          "model": "ollama-cloud/glm-5.3-flash",
+          "effort": "max",
+          "case": "editorial_and_news",
+          "arm": "baseline",
+          "returncode": 0,
+          "seconds": 97.55,
+          "invalid": [],
+          "draft_sha256": "5edb08d5c662084654520712153e31dfc8811a1a9d9dd8e3d995f488e076e0dd",
+          "usage": [
+            {
+              "input_tokens": 93203,
+              "cached_input_tokens": 0,
+              "cache_write_input_tokens": 0,
+              "output_tokens": 8617,
+              "reasoning_output_tokens": 0
+            }
+          ],
+          "run": "final-main-native-r24-m4"
+        },
+        {
+          "model": "ollama-cloud/glm-5.3-flash",
+          "effort": "max",
+          "case": "editorial_and_news",
+          "arm": "candidate",
+          "returncode": 0,
+          "seconds": 66.34,
+          "invalid": [],
+          "draft_sha256": "442a434c99597aba02d1d589c041378f866101d0b4b314906bd5a95c6c26b168",
+          "usage": [
+            {
+              "input_tokens": 165025,
+              "cached_input_tokens": 0,
+              "cache_write_input_tokens": 0,
+              "output_tokens": 6158,
+              "reasoning_output_tokens": 0
+            }
+          ],
+          "run": "final-main-native-r24-m4"
+        },
+        {
+          "model": "ollama-cloud/glm-5.3-flash",
+          "effort": "max",
+          "case": "minutes_local",
+          "arm": "baseline",
+          "returncode": 0,
+          "seconds": 21.81,
+          "invalid": [],
+          "draft_sha256": "7165c0511e0ad265dd0e90704a9d6593a4cca7368f61d0b5fcc8e02aef21f4d3",
+          "usage": [
+            {
+              "input_tokens": 34607,
+              "cached_input_tokens": 0,
+              "cache_write_input_tokens": 0,
+              "output_tokens": 1540,
+              "reasoning_output_tokens": 0
+            }
+          ],
+          "run": "final-main-native-r24-m4"
+        },
+        {
+          "model": "ollama-cloud/glm-5.3-flash",
+          "effort": "max",
+          "case": "minutes_local",
+          "arm": "candidate",
+          "returncode": 0,
+          "seconds": 41.67,
+          "invalid": [],
+          "draft_sha256": "bf43cd890669fd19423bbede3e68ef61e58e3edb13603028aa3ad5ee4398e4cb",
+          "usage": [
+            {
+              "input_tokens": 43325,
+              "cached_input_tokens": 0,
+              "cache_write_input_tokens": 0,
+              "output_tokens": 1421,
+              "reasoning_output_tokens": 0
+            }
+          ],
+          "run": "final-main-native-r24-m4"
+        }
+      ],
+      "pairs": [
+        {
+          "model": "alibaba-token-plan/qwen3.8-flash",
+          "case": "feasibility_conditional_advice",
+          "packet": "output/blind-r16/final-main-r24-m0",
+          "id": "P01",
+          "findings": [
+            "两稿均保留‘拟试点’、预计8人、现有电脑可用、按目录编号查找已确认档案、自建或租用未定、预算和周期待论证，并给出可比较和可验证的具体方面，正文任务完成持平。",
+            "A的权限、数据核对、询价和小范围验证，以及B的成本构成、设备承载、目录管理和规模适配，均作为比较或建议事项提出，属于本题授权的论证，不把这些正常拟议设计硬判为材料外事实。两稿核实现有电脑适配或承载情况，也未否认电脑现有可用状态。",
+            "用户要求‘一段可研分析’，两稿均扩展成较长的多段稿，可共同压缩；依据本轮尺度，不仅因段数和组织形式认定未完成。B前后的路线、自报处理说明与A文后待核提醒均未替代实际分析，不据其自报推定检查已执行；完整交付无足以拉开质量的实质差异。"
+          ],
+          "body": "tie",
+          "delivery": "tie"
+        },
+        {
+          "model": "alibaba-token-plan/qwen3.8-flash",
+          "case": "review_rewrite",
+          "packet": "output/blind-r16/final-main-r24-m0",
+          "id": "P02",
+          "findings": [
+            "A仍写‘办公椅每把420元，4把合计1800元’，未纠正底稿的算术错误；4×420应为1680元。用户明确要求审核并优化，金额核算是关键审批事实，这属于严重任务遗漏。B改为‘每把420元，合计1680元’，正确完成该项。",
+            "按各自标题、主送、正文和落款计算，A为134个、B为138个非空白字符，均在120至220范围内，不因长度判失败。两稿均把供应商、采购日期恢复为未定，删除写作旁白和口号，并交付完整申请。",
+            "A在正文外保留‘预算科目仍缺，上轮提出后未获回复’，并建议补齐后报送，未将该事项彻底漏掉；但‘该信息不影响本申请成立’缺少依据，也与后续补齐建议有些脱节，属次要问题。B在正文保留预算未定，文后继续指出上轮未回复，更便于审批方识别。",
+            "B的当天草稿日期和‘拟经批准后按有关规定办理’属于允许的草稿处理和相称拟议安排，不判为事实或阶段错误；条件性的文后列支建议不视为已获批准。B同时给出有效审核意见，完整交付优于A。"
+          ],
+          "body": "candidate",
+          "delivery": "candidate"
+        },
+        {
+          "model": "alibaba-token-plan-2/qwen3.8-flash",
+          "case": "formal_opinion",
+          "packet": "output/blind-r16/final-main-r24-m1",
+          "id": "P01",
+          "findings": [
+            "两稿均以教育局向各中小学的指导口吻落实开放安排、借阅登记、研究更新、损坏书籍整理登记四项要求，目的清楚，未设全县统一开放时段、统一购书或考核排名。A将后两项限制明说，B未安排相应事项，均符合边界，不要求B逐字声明每个排除项。",
+            "B的‘并向学生公布’、登记借还续借、提出更新优先方向以及修补和记录处理等，是围绕既定要求展开的日常拟议措施，未改变指导文件阶段；不把合理细化自动判为未给事实。B的‘遗失的，要及时下架整理’搭配略欠妥，遗失图书宜只作登记核查，但属局部措辞问题，未改变核心要求。",
+            "两稿均交付完整正文。A未补日期、B使用当天草稿日期均可接受；B的文件链接与正式印发前补项提醒可以保留，其‘扫描未提示风险’仅作自报，不认定工具确已执行。正文和完整交付无实质质量差异，判平。"
+          ],
+          "body": "tie",
+          "delivery": "tie"
+        },
+        {
+          "model": "alibaba-token-plan-2/qwen3.8-flash",
+          "case": "hosting_agenda",
+          "packet": "output/blind-r16/final-main-r24-m1",
+          "id": "P02",
+          "findings": [
+            "两稿均按赵明介绍进展、刘青说明日志核对问题、同事交流意见、主持人结束会议的顺序串联，会议日期和人员范围正确。A将发言交流概括为三项内容后另行结束，B列四项议程，均未漏掉结束动作；计数表述差异不构成议程遗漏。",
+            "A的‘刘青同志把问题逐条作了说明’和B的‘刚才赵明通报了联调进展’‘刚才大家交流了意见’均为依议程预写的自然过渡，不自动算已发生会议结果；两稿均未明确声称具体问题已经解决或已经形成某项结论。",
+            "B的‘会后，请相关同事把会上明确的事项带回落实，纳入下一轮联调验证，有新情况随时反馈给我’比单纯串联议程多了后续安排，可为更贴合简短要求而删减。此处没有具体宣布新的决定、负责人或完成期限，按常规拟议收尾处理为轻微范围扩展，不作实质阶段错误；A更简洁，B明确标注主持人，整体持平。",
+            "两稿均可直接提供会上使用的完整主持词。B正文外的时间地点补充示例不是实际会务事实，文件链接可保留，均不认定缺交；完整交付判平。"
+          ],
+          "body": "tie",
+          "delivery": "tie"
+        },
+        {
+          "model": "command-code/deepseek-deepseek-v4.1-flash",
+          "case": "motion",
+          "packet": "output/blind-r16/final-main-r24-m2",
+          "id": "P01",
+          "findings": [
+            "A写道‘规定设施位置、开放时间、服务内容等服务信息的公示要求’，把材料仅概括为‘服务信息公示要求’的既有草案具体化为确定条款内容。草案已通过常务会议，此处不是建议新增的制度设计；这些具体公示项没有材料依据，属于中等程度的事实边界问题。B保持两项主要内容的原有概括，正文更稳妥。",
+            "两稿均完成提请审议的议案行为，保留主送机关、常务会议讨论通过状态、附件名称和指定落款日期，无实质遗漏。A关于维护、便利查询的目的说明本身合理，不作为失败依据。",
+            "A的‘文后提示’说明未附草案全文；用户仅要求拟议案并给定附件名称，未要求另拟条例全文，因此不认定附件缺交。该提示属于可删的交付旁文，非独立硬伤；B完整交付更直接。"
+          ],
+          "body": "baseline",
+          "delivery": "baseline"
+        },
+        {
+          "model": "command-code/deepseek-deepseek-v4.1-flash",
+          "case": "server_technical_requirements",
+          "packet": "output/blind-r16/final-main-r24-m2",
+          "id": "P02",
+          "findings": [
+            "A写道‘本单位现有档案检索系统在自建机房运行’，材料只明确本次服务器‘在本单位机房安装’，没有说明现有系统当前部署地点，也没有说明机房系自建。该句新增既定现状及机房属性，存在中等程度的事实边界问题，虽不使后文数量和功能要求失效，仍宜删除。B未作这项推定。",
+            "两稿都保留2台、12个月、现有档案检索系统用途、机房安装、存储连接、统一查看、服务方替换故障设备、三类规格待确认，以及四项验收核对和两项提交材料。A关于连接配置、安装条件协商和整改后核对的内容属于相称的拟议实施安排，不直接判为事实捏造；B以更少文字完成‘简短完整’的任务。",
+            "B正文前‘已按中文公文与技术服务材料规则处理’及正文后说明属于过程旁白，可删后直接作为附件使用；不据此推断实际执行了任何检查。A文后关于未定规格的提醒和文件链接具有交付用途，保留，不因路径被遮蔽判失败。两稿均实际交付了完整正文，完整交付仍小幅偏向B，主要依据正文的事实保真与简短要求，而非旁白构成硬失败。"
+          ],
+          "body": "baseline",
+          "delivery": "baseline"
+        },
+        {
+          "model": "minimax-cn/MiniMax-M3",
+          "case": "narration",
+          "packet": "output/blind-r16/final-main-r24-m3",
+          "id": "P01",
+          "findings": [
+            "两稿均保留三站顺序、2008年至2015年三代产品、四种加工样品及工序说明、两台现款设备等核心材料，但都新增了影响现场准确性的实物和历史描述，均需实质修订后使用；偏向A只是相对判断。",
+            "B的‘公司最早面向市场推出的成品’‘体积比第一代缩小了将近三分之一’‘开始配备显示屏’，以及左设备三个界面区域、右设备专业模式入口，均无材料依据。这些是可核实的产品历史、数量关系和界面配置，不是方便新员工理解的普通解释，属于严重事实编造。A没有同等密度的具体参数和界面设定，因此相对较好。",
+            "A的‘按时间先后依次排列’‘在产品定位、用户人群和使用场景上的逐步调整’仍把未给展陈布局和产品发展结论写成事实。两稿又都将‘同一部件的四种加工样品’认定为同一部件从初始到成品的连续阶段；材料未给这种关系。B进一步指定毛坯、粗加工、精加工、成品及从下往上排列，偏差更重。",
+            "A的‘参观结束后再统一收集’‘我们稍后会统一安排解答’另设问答安排，不符合‘不安排提问’的明确边界，属于中等程度的任务偏差，须删除。普通分组、查看引导不单独作硬伤。",
+            "两稿均交付完整讲解稿，但正文均不能仅靠格式整理直接使用。A前言自称不补造、B前言自称仅讲清路线，均不能抵消正文的具体事实问题；不据自报推定任何工具使用。完整交付相对偏向A，并非认定A通过事实核验。"
+          ],
+          "body": "baseline",
+          "delivery": "baseline"
+        },
+        {
+          "model": "minimax-cn/MiniMax-M3",
+          "case": "open_letter",
+          "packet": "output/blind-r16/final-main-r24-m3",
+          "id": "P02",
+          "findings": [
+            "两稿均正确交代2026年10月12日至16日、活动室暂停、室外健身区正常、景明维修公司施工、东侧绕行、不进施工区及一楼服务台反馈，核心事项和配合要求完整，语气适合居民公开信。",
+            "A写‘现有照明线路和灯具老化，部分照明设施存在故障……存在一定安全隐患’，B写‘照明线路已使用多年，部分灯具老化、亮度不足，存在安全隐患’，均将未给的设备现状和故障原因写成既定事实。用户虽要求讲明理由，仍可写维修的直接目的，不能据此推定年限、老化、故障或隐患；两稿同有中等程度的局部事实问题。",
+            "两稿共同增加汇总后向施工方反馈，B增加‘督促施工方按时保质完成，尽早恢复正常开放’，可视为与维修相称的拟议沟通和协调，不是声称已完成维修，也没有另定保证性开放日期；不据此判为已发生结果或扩大为新的严重问题。",
+            "B的‘文风无风险’及要点对照不构成检查确已执行的证据，其中重复的未给维修原因仍应一并删除。A和B的当天草稿日期、提示和文件链接均不作硬伤。两稿的核心质量和局部原因偏差相近，正文与完整交付均判平；持平不等于无需修订。"
+          ],
+          "body": "tie",
+          "delivery": "tie"
+        },
+        {
+          "model": "ollama-cloud/glm-5.3-flash",
+          "case": "editorial_and_news",
+          "packet": "output/blind-r16/final-main-r24-m4",
+          "id": "P01",
+          "findings": [
+            "两稿均将编者按和消息分开，编辑部编发意图与活动报道角色清楚，完整保留2026年9月10日下午、中心名称、综合岗、两份清单、有效版本查询演示、各窗口工作人员参加、字段问题及部分仍待综合岗核对的状态。正文任务完成持平。",
+            "A的‘帮助大家熟悉新版清单的内容和版本查询方法’与B的‘帮助窗口工作人员了解清单更新内容，熟悉有效版本的查询方式’均为介绍和演示的直接活动作用，程度相称，不认定为虚构推广成效或问题已经解决。B提示使用有效版本也与材料和编发目的相符。",
+            "完整交付小幅偏向A：B另附‘核查用的临时文件夹……清理命令被本机策略拦截……可直接手动删除’，是与刊发稿无关的本地操作旁文，还向读者交付额外清理事项，宜移出稿件交付。此项是交付整洁度问题，不是正文硬伤；两稿前言关于扫描、校对和Hook均仅作自报，不推定实际执行。"
+          ],
+          "body": "tie",
+          "delivery": "baseline"
+        },
+        {
+          "model": "ollama-cloud/glm-5.3-flash",
+          "case": "minutes_local",
+          "packet": "output/blind-r16/final-main-r24-m4",
+          "id": "P02",
+          "findings": [
+            "两稿改后的纪要正文相同，均准确替换为‘张工建议追加测试，会议尚未决定是否采用’，保留9月10日、信息中心、30次、2次超时、原因仍在核对和保留测试记录要求，完成指定局部修改，无事实或阶段偏差。",
+            "两稿均将标题单独成行并去掉标题后的句号。A文后说明这一格式处理，B没有单列说明；属轻微格式差异，不将其扩大为违反‘其余保持’的实质遗漏。",
+            "本题是指定末句替换并重交已有短纪要，按实际范围评估，不套用新写完整稿80字下限。两稿都实际交付改好后的完整纪要，解释多少未造成实质差异，正文和完整交付均判平。"
+          ],
+          "body": "tie",
+          "delivery": "tie"
+        }
+      ],
+      "counts": {
+        "body": {
+          "tie": 6,
+          "candidate": 1,
+          "baseline": 3
+        },
+        "delivery": {
+          "tie": 5,
+          "candidate": 1,
+          "baseline": 4
+        }
+      },
+      "execution": {
+        "baseline": {
+          "commands": 77,
+          "read_chars_unique": 172018,
+          "input_tokens": 1204869,
+          "cached_input_tokens": 916585,
+          "uncached_input_tokens": 288284,
+          "output_tokens": 56246,
+          "seconds": 915.71,
+          "prose_lint.py": 0,
+          "draft_length.py": 0,
+          "anti_ai_page_returned": 1,
+          "tasks_with_prose_command": 0
+        },
+        "candidate": {
+          "commands": 120,
+          "read_chars_unique": 100096,
+          "input_tokens": 1446003,
+          "cached_input_tokens": 1095547,
+          "uncached_input_tokens": 350456,
+          "output_tokens": 46816,
+          "seconds": 778.08,
+          "prose_lint.py": 12,
+          "draft_length.py": 12,
+          "anti_ai_page_returned": 9,
+          "tasks_with_prose_command": 8
+        }
+      },
+      "snapshot_bindings": "PASS",
+      "rule_comparability": "comparable within each pair"
+    },
+    "repeat": {
+      "calls": [
+        {
+          "model": "alibaba-token-plan/qwen3.8-flash",
+          "effort": "medium",
+          "case": "narration",
+          "arm": "baseline",
+          "returncode": 0,
+          "seconds": 82.06,
+          "invalid": [],
+          "draft_sha256": "baff2ad9f855751ffde3b3bfd9983343038f3e7dfb193fda979a40735acbc405",
+          "usage": [
+            {
+              "input_tokens": 97381,
+              "cached_input_tokens": 72064,
+              "cache_write_input_tokens": 0,
+              "output_tokens": 3565,
+              "reasoning_output_tokens": 2552
+            }
+          ],
+          "run": "final-main-repeat-r24-m0"
+        },
+        {
+          "model": "alibaba-token-plan/qwen3.8-flash",
+          "effort": "medium",
+          "case": "narration",
+          "arm": "candidate",
+          "returncode": 0,
+          "seconds": 163.69,
+          "invalid": [],
+          "draft_sha256": "1586f2f90745a556cbbfc9b058fa5898d8feeed5ff118164d73a3dd7304a91dc",
+          "usage": [
+            {
+              "input_tokens": 275113,
+              "cached_input_tokens": 252672,
+              "cache_write_input_tokens": 0,
+              "output_tokens": 7922,
+              "reasoning_output_tokens": 2833
+            }
+          ],
+          "run": "final-main-repeat-r24-m0"
+        },
+        {
+          "model": "command-code/deepseek-deepseek-v4.1-flash",
+          "effort": "provider-default",
+          "case": "motion",
+          "arm": "baseline",
+          "returncode": 0,
+          "seconds": 38.47,
+          "invalid": [],
+          "draft_sha256": "f85f439b0908174e0608bb6c7c9eaffd128719f450c758be7798829f9d2fce86",
+          "usage": [
+            {
+              "input_tokens": 134990,
+              "cached_input_tokens": 113408,
+              "cache_write_input_tokens": 0,
+              "output_tokens": 2434,
+              "reasoning_output_tokens": 0
+            }
+          ],
+          "run": "final-main-repeat-r24-m2"
+        },
+        {
+          "model": "command-code/deepseek-deepseek-v4.1-flash",
+          "effort": "provider-default",
+          "case": "motion",
+          "arm": "candidate",
+          "returncode": 0,
+          "seconds": 47.08,
+          "invalid": [],
+          "draft_sha256": "419b7d52ad7c8b4d14462c4e0bb3dcf0942b6f9f704315dd3350c1f6028c8c1a",
+          "usage": [
+            {
+              "input_tokens": 161755,
+              "cached_input_tokens": 149760,
+              "cache_write_input_tokens": 0,
+              "output_tokens": 3586,
+              "reasoning_output_tokens": 0
+            }
+          ],
+          "run": "final-main-repeat-r24-m2"
+        },
+        {
+          "model": "command-code/deepseek-deepseek-v4.1-flash",
+          "effort": "provider-default",
+          "case": "server_technical_requirements",
+          "arm": "baseline",
+          "returncode": 0,
+          "seconds": 45.78,
+          "invalid": [],
+          "draft_sha256": "27365e4eaf2dd96ebb7e3ef324cf90f6ec027bc1a3d81a9808668cf879a20026",
+          "usage": [
+            {
+              "input_tokens": 162986,
+              "cached_input_tokens": 143616,
+              "cache_write_input_tokens": 0,
+              "output_tokens": 3753,
+              "reasoning_output_tokens": 0
+            }
+          ],
+          "run": "final-main-repeat-r24-m2"
+        },
+        {
+          "model": "command-code/deepseek-deepseek-v4.1-flash",
+          "effort": "provider-default",
+          "case": "server_technical_requirements",
+          "arm": "candidate",
+          "returncode": 0,
+          "seconds": 36.81,
+          "invalid": [],
+          "draft_sha256": "5b2ea50376fb9e1ba514b3a3231ba1179235c7c5640ef0a65aad566ca097ac45",
+          "usage": [
+            {
+              "input_tokens": 115220,
+              "cached_input_tokens": 101248,
+              "cache_write_input_tokens": 0,
+              "output_tokens": 2579,
+              "reasoning_output_tokens": 0
+            }
+          ],
+          "run": "final-main-repeat-r24-m2"
+        }
+      ],
+      "pairs": [
+        {
+          "model": "alibaba-token-plan/qwen3.8-flash",
+          "case": "narration",
+          "packet": "output/blind-r16/final-main-repeat-r24-m0",
+          "id": "P01",
+          "findings": [
+            "两稿均由培训专员带队，按老产品展示台、工艺样品墙、试用区完整串联，保留2008年至2015年的三代产品、同一部件四种加工样品及对应工序说明、两台现款设备供查看界面，并未安排提问或现场演示，任务完成度相当。",
+            "A对工艺、工序和操作界面的通俗解释，以及观察实物有助于日后理解生产内容的目的说明，都与无生产经验听众及展项相衔接；B建议先读工序说明再对照样品、走近观察界面，也属于有据的讲解和观察安排。两稿没有给定具体产品型号、性能数值或四个确定加工阶段，不把正常概述自动归为事实编造。",
+            "B的‘同一条产品线隔几年更新一代’把未给的更新节奏说得略确定，末段‘正好是按时间顺序往前走的’也不够准确：工艺样品墙展示加工过程，并未给出其年代位置。宜将前句改为仅比较三代产品，把末句改为从老产品、加工样品到现款设备的参观路线。这是局部、较轻的概括偏差，未达到严重使用风险或整体任务失败程度。",
+            "A的‘紧挨着展台’和两稿的方向、摆放语言依赖现场空间，可在实际带队时顺手调整；按本题自然转场要求，不单独将这些常规路线表述扩成严重事实问题。两稿均可经少量措辞核对使用，不存在需要重构正文的明显差距。",
+            "两稿均交付完整讲解稿。A文件链接和文后解释、B技能与Hook旁白可按用途保留或删减；‘未启用Hook’及自报材料边界不作为真实工具执行的证据。正文与完整交付没有足以稳健选出赢家的实质差异，均判平。"
+          ],
+          "body": "tie",
+          "delivery": "tie"
+        },
+        {
+          "model": "command-code/deepseek-deepseek-v4.1-flash",
+          "case": "motion",
+          "packet": "output/blind-r16/final-main-repeat-r24-m2",
+          "id": "P01",
+          "findings": [
+            "两稿均完整实现市人民政府向市人大常委会提请审议的议案行为，保留条例草案名称、常务会议讨论通过状态、维护责任和服务信息公示两项主要内容、附件名称及指定落款2026年9月12日，未改变既定事实或阶段。",
+            "两稿的‘组织起草’是与政府提请草案相衔接的自然过程概述，没有另造起草部门、时间、审查程序或通过结果；B的‘便于设施维护责任落实和公众查询相关信息’是有据的直接目的说明，均不因材料未逐字给定而判错。",
+            "主送机关使用全称或简称、附件名是否加书名号及分段差异不影响可用性。B的文后提示说明附件全文未提供并提出条件性的实际署名核对，属于可保留的交付提醒；用户未要求起草附件全文，故无附件缺交。两稿正文及完整交付均无实质质量差异，判平。"
+          ],
+          "body": "tie",
+          "delivery": "tie"
+        },
+        {
+          "model": "command-code/deepseek-deepseek-v4.1-flash",
+          "case": "server_technical_requirements",
+          "packet": "output/blind-r16/final-main-repeat-r24-m2",
+          "id": "P02",
+          "findings": [
+            "两稿均完整保留2台通用服务器、12个月、现有档案检索系统用途、机房安装、现有存储连接、统一查看运行状态、服务方替换故障设备、CPU/内存/接口规格待确认，以及四项验收核对和设备清单、安装记录两项材料，未实质漏项。",
+            "A把提供设备、安装和连通存储写入服务方交付范围，是租赁技术需求中的相称拟议职责安排，未另造已实施事实。B的‘服务器运行状态可统一查看’处在‘安装与运行要求’中，可正常理解为要求具备该功能，不认定其把需求误写为已经实现。",
+            "两稿均简短清楚、实际交付完整采购附件，段落数和少量重复不构成实质差异。B末尾‘临时校对文件已删除，工作目录未留改动’属于可删除的技术过程旁文，不能据此推定真实执行或工作区状态；这一短句未妨碍提取正文，不单独拉开完整交付评价，判平。"
+          ],
+          "body": "tie",
+          "delivery": "tie"
+        }
+      ],
+      "counts": {
+        "body": {
+          "tie": 3
+        },
+        "delivery": {
+          "tie": 3
+        }
+      },
+      "execution": {
+        "baseline": {
+          "commands": 27,
+          "read_chars_unique": 71909,
+          "input_tokens": 395357,
+          "cached_input_tokens": 329088,
+          "uncached_input_tokens": 66269,
+          "output_tokens": 9752,
+          "seconds": 166.31,
+          "prose_lint.py": 1,
+          "draft_length.py": 0,
+          "anti_ai_page_returned": 1,
+          "tasks_with_prose_command": 1
+        },
+        "candidate": {
+          "commands": 42,
+          "read_chars_unique": 31058,
+          "input_tokens": 552088,
+          "cached_input_tokens": 503680,
+          "uncached_input_tokens": 48408,
+          "output_tokens": 14087,
+          "seconds": 247.58,
+          "prose_lint.py": 7,
+          "draft_length.py": 6,
+          "anti_ai_page_returned": 3,
+          "tasks_with_prose_command": 3
+        }
+      },
+      "snapshot_bindings": "PASS",
+      "rule_comparability": "comparable within each pair"
+    },
+    "environment-damaged": {
+      "calls": [
+        {
+          "model": "minimax-cn/MiniMax-M3",
+          "effort": "max",
+          "case": "narration",
+          "arm": "baseline",
+          "returncode": 0,
+          "seconds": 39.81,
+          "invalid": [],
+          "draft_sha256": "cfd220e87f36455f9048cd7cd1efca3ea9fb519c1aa2c93c09663a7524c5b6a9",
+          "usage": [
+            {
+              "input_tokens": 34474,
+              "cached_input_tokens": 9088,
+              "cache_write_input_tokens": 0,
+              "output_tokens": 2257,
+              "reasoning_output_tokens": 0
+            }
+          ],
+          "run": "final-main-repeat-r24-m3"
+        },
+        {
+          "model": "minimax-cn/MiniMax-M3",
+          "effort": "max",
+          "case": "narration",
+          "arm": "candidate",
+          "returncode": 0,
+          "seconds": 114.25,
+          "invalid": [],
+          "draft_sha256": "efb80cd44458ed3ef1bbc7bf2bedc567bb57d353b5456ecc58dfcc4a764dfa00",
+          "usage": [
+            {
+              "input_tokens": 486634,
+              "cached_input_tokens": 467584,
+              "cache_write_input_tokens": 0,
+              "output_tokens": 8333,
+              "reasoning_output_tokens": 0
+            }
+          ],
+          "run": "final-main-repeat-r24-m3"
+        }
+      ],
+      "pairs": [
+        {
+          "model": "minimax-cn/MiniMax-M3",
+          "case": "narration",
+          "packet": "output/blind-r16/final-main-repeat-r24-m3",
+          "id": "P01",
+          "findings": [
+            "两稿均按老产品展示台、工艺样品墙、试用区串联，保留三代产品、四种样品、两台现款设备及无现场演示等基本信息，并实际交付完整讲解稿。相对比较判平，但两稿各自均存在严重使用风险，需实质修订，不能据此认定任一稿可以直接口播。",
+            "A写‘2008年的初代产品……机身以铸件结构为主……最早实现批量交付’‘2012年前后的第二代产品……整机重量和能耗都有了明显下降’‘2015年的第三代产品，已经采用模块化设计’，均超出仅给2008年至2015年三代产品的材料。具体代际年份、结构、性能变化及量产历史是可核实的事实，不能作为自然讲解的自由补充，严重性高。",
+            "B同样写‘2012年前后的第二代产品’，并增加‘第一款进入市场的成型机器’‘能耗和稳定性都有了明显改进’‘当时市场反馈比较好’，试用区又称‘在售的主力机型’‘左边……标准版本，右边……高配版本’。这些产品历史、性能、市场反馈和版本关系均无材料依据，严重性高，与A的具体技术事实扩写总体相当。",
+            "两稿均把‘同一部件的四种加工样品’确定为毛坯、粗加工半成品、精加工成型件、表面处理最终件的连续阶段；材料只给四种样品及对应工序说明，未给其工序关系和顺序。两稿还均声称设备‘通电待机’，并给定展陈方位。这些不是直接活动作用或拟议安排，共同造成真实展品与讲解不一致的风险。",
+            "转场、引导观察、通俗解释及初步认识的目的均可保留，不因未逐字给定而判错。B‘由培训部负责本次参观的组织’另增实际组织部门，A‘通过内部平台联系我或对应业务组’另增实际联络渠道，也应核实或删除；B参观后交流只是附带表达，不单独扩大为主要失败依据。",
+            "A文后要求替换名称和按现场调整方位有提醒作用，但将虚构代际年份称为‘通用表述’，且未警示主体技术、历史和工序信息缺乏依据，不能消除严重风险。B前言‘可直接用作……口播底稿’也不能替代事实核验。两稿完整交付都需要实质修订，差异不足以稳健选出赢家，判平；本包共同问题只能说明双方质量风险，不能单凭匿名比较归为某方新增退化。"
+          ],
+          "body": "tie",
+          "delivery": "tie"
+        }
+      ],
+      "counts": {
+        "body": {
+          "tie": 1
+        },
+        "delivery": {
+          "tie": 1
+        }
+      },
+      "execution": {
+        "baseline": {
+          "commands": 1,
+          "read_chars_unique": 0,
+          "input_tokens": 34474,
+          "cached_input_tokens": 9088,
+          "uncached_input_tokens": 25386,
+          "output_tokens": 2257,
+          "seconds": 39.81,
+          "prose_lint.py": 0,
+          "draft_length.py": 0,
+          "anti_ai_page_returned": 0,
+          "tasks_with_prose_command": 0
+        },
+        "candidate": {
+          "commands": 17,
+          "read_chars_unique": 5794,
+          "input_tokens": 486634,
+          "cached_input_tokens": 467584,
+          "uncached_input_tokens": 19050,
+          "output_tokens": 8333,
+          "seconds": 114.25,
+          "prose_lint.py": 2,
+          "draft_length.py": 2,
+          "anti_ai_page_returned": 1,
+          "tasks_with_prose_command": 1
+        }
+      },
+      "snapshot_bindings": "PASS",
+      "rule_comparability": "EXCLUDED: baseline SKILL returned mojibake after Windows PowerShell default decoding; raw blind tie retained only."
+    },
+    "encoding-recovery": {
+      "calls": [
+        {
+          "model": "minimax-cn/MiniMax-M3",
+          "effort": "max",
+          "case": "narration",
+          "arm": "baseline",
+          "returncode": 0,
+          "seconds": 90.52,
+          "invalid": [],
+          "draft_sha256": "6b9d5f41f100ec69001a74aaa67a1544f88759642009febfe760d96a177f71a7",
+          "usage": [
+            {
+              "input_tokens": 174796,
+              "cached_input_tokens": 157450,
+              "cache_write_input_tokens": 0,
+              "output_tokens": 6533,
+              "reasoning_output_tokens": 4868
+            }
+          ],
+          "run": "final-main-utf8-r24-m3"
+        },
+        {
+          "model": "minimax-cn/MiniMax-M3",
+          "effort": "max",
+          "case": "narration",
+          "arm": "candidate",
+          "returncode": 0,
+          "seconds": 64.02,
+          "invalid": [],
+          "draft_sha256": "843428eb6ce66d09d7d882ba19004848d487857e045450d4b379b3da5e50e211",
+          "usage": [
+            {
+              "input_tokens": 298247,
+              "cached_input_tokens": 282940,
+              "cache_write_input_tokens": 0,
+              "output_tokens": 4939,
+              "reasoning_output_tokens": 2945
+            }
+          ],
+          "run": "final-main-utf8-r24-m3"
+        }
+      ],
+      "pairs": [
+        {
+          "model": "minimax-cn/MiniMax-M3",
+          "case": "narration",
+          "packet": "output/blind-r16/final-main-utf8-r24-m3",
+          "id": "P01",
+          "findings": [
+            "两稿均实际交付完整讲解稿，保留三站路线、2008年至2015年的三代产品、四种加工样品和说明、两台现款设备以及不安排提问和现场演示的基本边界。B进一步明确培训专员带队，整体转场自然，正文与完整交付均明显偏向B。",
+            "A写‘中间是2011年前后推出的第二代产品’，并断言第一代关键部件布置‘一直沿用至今’、第二代针对实际暴露的不足改进拆装结构和维护方式、第三代与现款差异主要在控制和外观。这些具体年份、技术延续、实际问题与改进历史均没有材料依据，属于严重事实编造，不是普通产品演变概述。",
+            "A把四种样品明确指定为‘毛坯件’‘第一道粗加工件’‘第二道精加工件’‘最终的成品表面处理件’，并称自上而下排列、说明卡含‘设备、刀具和关键参数’。材料没有给四种样品之间的连续阶段关系及说明卡具体字段；这些断言可能直接导致错讲工艺，严重性高。",
+            "A还声称设备‘已经通电并进入待机界面’，把样品墙部件结构与设备界面功能区建立具体对应，并宣布‘会有更系统的培训和上手安排’。这些新增状态、对应关系和后续安排都需依据；尤其界面功能与样品结构的对应并非材料可直接推出。A须对多段正文作实质删改后才能使用。",
+            "B的‘每台机器旁边都有一块铭牌，标注了对应的型号和年份’也是材料未给的确定展陈设施事实，需核实或删除；其从左到右按时间观看的方向安排需按现场调整。这是集中、容易修复的局部偏差，不能称B完全无材料外事实，但与A密集的具体产品历史和工艺阶段编造不在同等严重程度。",
+            "B关于不同工序与样品对照、建立基本印象的解释有材料支持；‘只看不操作’‘不要按设备上的按钮’和围绕设备观察是相称的现场观看安排，不把这些安全观察用语等同于严重事实编造。设备显示界面与本次供查看界面的用途直接相衔接，不扩成关键技术状态错误。",
+            "两稿前言关于技能、路线和未设环节的自报不作为工具执行证据，也不影响本题已经交付正文的事实。B只需核实或删除铭牌等局部展陈陈述，A则需重写多处事实内容；相对质量差异明确，完整交付同样选B。此结论仅针对本恢复包，不覆盖或改写任何此前原审。"
+          ],
+          "body": "baseline",
+          "delivery": "baseline"
+        }
+      ],
+      "counts": {
+        "body": {
+          "baseline": 1
+        },
+        "delivery": {
+          "baseline": 1
+        }
+      },
+      "execution": {
+        "baseline": {
+          "commands": 12,
+          "read_chars_unique": 9457,
+          "input_tokens": 174796,
+          "cached_input_tokens": 157450,
+          "uncached_input_tokens": 17346,
+          "output_tokens": 6533,
+          "seconds": 90.52,
+          "prose_lint.py": 0,
+          "draft_length.py": 0,
+          "anti_ai_page_returned": 0,
+          "tasks_with_prose_command": 0
+        },
+        "candidate": {
+          "commands": 21,
+          "read_chars_unique": 8852,
+          "input_tokens": 298247,
+          "cached_input_tokens": 282940,
+          "uncached_input_tokens": 15307,
+          "output_tokens": 4939,
+          "seconds": 64.02,
+          "prose_lint.py": 0,
+          "draft_length.py": 0,
+          "anti_ai_page_returned": 1,
+          "tasks_with_prose_command": 0
+        }
+      },
+      "snapshot_bindings": "PASS",
+      "rule_comparability": "comparable within each pair"
+    }
+  },
+  "rule_size": {
+    "baseline_chars": 92415,
+    "candidate_chars": 52282,
+    "reduction_percent": 43.43,
+    "files": 68,
+    "scope": "SKILL.md + references; normalized LF; excludes README, scripts and removed Hooks."
+  }
+}

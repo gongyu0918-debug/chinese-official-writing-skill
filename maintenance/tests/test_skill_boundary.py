@@ -680,7 +680,8 @@ class SkillBoundaryTests(unittest.TestCase):
                      "落款采用已给的发文或申请主体", "正式成稿清理无用途的占位", "`argument-chains.md`",
                      "未给的主送和申请单位按 `writing-rules.md` 核对缺项",
                      "材料只给工作交接时，不据此补“工作不受影响”、通讯承诺或代办责任",
-                     "“批准后另行确定”“按规定办理”也属于后续安排，材料未给时不补入"]:
+                     "与申请事项相称的后续建议可按拟议安排表述",
+                     "具体程序、期限和承诺依材料或明确授权使用"]:
             self.assertIn(rule, leaf)
         self.assertNotIn("单项采购请示或申请用一至两个自然段", leaf)
         self.assertFalse((CANONICAL / "references/genre-playbooks.md").exists())
@@ -723,7 +724,7 @@ class SkillBoundaryTests(unittest.TestCase):
 
     def test_request_review_checklist_is_routed_as_an_atomic_leaf(self) -> None:
         """Requests have a targeted review owner which preserves real internal templates."""
-        review = self.assert_route("请批事项或必要要素拿不准时", "genre-checklist-request.md")
+        review = self.assert_route("审核、复核、审后改稿，或细查请批事项和办理要素时", "genre-checklist-request.md")
         for rule in ["只在请示、申请需要细查文种功能、办理要素", "或用户要求审稿、复核时读取",
                      "一文一事，开头或前部明确请批事项", "两行标题",
                      "不要只因出现 `妥否，请批示` 就判定为请示",
