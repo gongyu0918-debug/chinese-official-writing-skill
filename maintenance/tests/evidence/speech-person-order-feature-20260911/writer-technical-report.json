@@ -1,0 +1,1498 @@
+{
+  "generated_utc": "2026-09-11T14:44:49.869271+00:00",
+  "scope": "feature writer technical audit only",
+  "out": "F:\\Workspaces\\chinese-official-writing-skill\\output\\route-worktrees\\speech-person-order-feature-20260911\\output\\speech-person-order-feature-20260911",
+  "baseline_commit": "dafc35f9aad594ac6cebf76bd4caf2e1b80a1ba8",
+  "candidate_commit": "72a1d4009716da73a07fd9f764e8e431c83e8f66",
+  "freeze_sha256": "87155be08bc056b1e46c8f58bdb4b2d2b2a5cea13fbb2f523e7871a57ea9fa7c",
+  "writer": {
+    "expected_calls": 16,
+    "observed_calls": 16,
+    "technical_failures": [],
+    "all_technical_boundaries_pass": true,
+    "exact_edit_pairs": {
+      "respectful_local": {
+        "arms": {
+          "baseline": {
+            "path": "runs/alibaba-token-plan/respectful_local/baseline/attempt-1/final.md",
+            "sha256": "89a8022e707cb70c2f81cf60aac0873efe96aebf217170a5d5092424639f9b07",
+            "bytes": 169
+          },
+          "candidate": {
+            "path": "runs/alibaba-token-plan/respectful_local/candidate/attempt-1/final.md",
+            "sha256": "89a8022e707cb70c2f81cf60aac0873efe96aebf217170a5d5092424639f9b07",
+            "bytes": 169
+          }
+        },
+        "byte_identical": true
+      },
+      "formal_letter_control": {
+        "arms": {
+          "baseline": {
+            "path": "runs/alibaba-token-plan-2/formal_letter_control/baseline/attempt-1/final.md",
+            "sha256": "f378ebaca1d0317d6abb65c994c83af437bc0466bff2527c50d17c3473a1cc10",
+            "bytes": 196
+          },
+          "candidate": {
+            "path": "runs/alibaba-token-plan-2/formal_letter_control/candidate/attempt-1/final.md",
+            "sha256": "f378ebaca1d0317d6abb65c994c83af437bc0466bff2527c50d17c3473a1cc10",
+            "bytes": 196
+          }
+        },
+        "byte_identical": true
+      }
+    },
+    "new_leaf_trigger_by_call": [
+      {
+        "case": "existing_role_revision",
+        "arm": "baseline",
+        "route": "alibaba-token-plan/qwen3.8-flash",
+        "read_count": 0,
+        "reads": []
+      },
+      {
+        "case": "existing_role_revision",
+        "arm": "candidate",
+        "route": "alibaba-token-plan/qwen3.8-flash",
+        "read_count": 0,
+        "reads": []
+      },
+      {
+        "case": "known_leadership",
+        "arm": "baseline",
+        "route": "alibaba-token-plan/qwen3.8-flash",
+        "read_count": 0,
+        "reads": []
+      },
+      {
+        "case": "known_leadership",
+        "arm": "candidate",
+        "route": "alibaba-token-plan/qwen3.8-flash",
+        "read_count": 1,
+        "reads": [
+          {
+            "relative_path": "references/speech-person-order.md",
+            "offset": null,
+            "limit": null,
+            "success": true,
+            "result_sha256": [
+              "e8c22e30ce0d85f60c1748b4d1d87e2f522ff38923bb04146e73c62efcd2fcb9"
+            ]
+          }
+        ]
+      },
+      {
+        "case": "respectful_local",
+        "arm": "baseline",
+        "route": "alibaba-token-plan/qwen3.8-flash",
+        "read_count": 0,
+        "reads": []
+      },
+      {
+        "case": "respectful_local",
+        "arm": "candidate",
+        "route": "alibaba-token-plan/qwen3.8-flash",
+        "read_count": 0,
+        "reads": []
+      },
+      {
+        "case": "unknown_rank",
+        "arm": "baseline",
+        "route": "alibaba-token-plan/qwen3.8-flash",
+        "read_count": 0,
+        "reads": []
+      },
+      {
+        "case": "unknown_rank",
+        "arm": "candidate",
+        "route": "alibaba-token-plan/qwen3.8-flash",
+        "read_count": 1,
+        "reads": [
+          {
+            "relative_path": "references/speech-person-order.md",
+            "offset": null,
+            "limit": null,
+            "success": true,
+            "result_sha256": [
+              "7dbb376d0c1de4549cae769283080f57dc896ca55e63a21d6b6105f2600c178d"
+            ]
+          }
+        ]
+      },
+      {
+        "case": "confirmed_guest",
+        "arm": "baseline",
+        "route": "alibaba-token-plan-2/qwen3.8-flash",
+        "read_count": 0,
+        "reads": []
+      },
+      {
+        "case": "confirmed_guest",
+        "arm": "candidate",
+        "route": "alibaba-token-plan-2/qwen3.8-flash",
+        "read_count": 1,
+        "reads": [
+          {
+            "relative_path": "references/speech-person-order.md",
+            "offset": null,
+            "limit": null,
+            "success": true,
+            "result_sha256": [
+              "2f4f97e9dc5e060f0bcd995621f0c0d356a127eeefb2985c9cf9e497e042fffd"
+            ]
+          }
+        ]
+      },
+      {
+        "case": "formal_letter_control",
+        "arm": "baseline",
+        "route": "alibaba-token-plan-2/qwen3.8-flash",
+        "read_count": 0,
+        "reads": []
+      },
+      {
+        "case": "formal_letter_control",
+        "arm": "candidate",
+        "route": "alibaba-token-plan-2/qwen3.8-flash",
+        "read_count": 0,
+        "reads": []
+      },
+      {
+        "case": "host_contexts",
+        "arm": "baseline",
+        "route": "alibaba-token-plan-2/qwen3.8-flash",
+        "read_count": 0,
+        "reads": []
+      },
+      {
+        "case": "host_contexts",
+        "arm": "candidate",
+        "route": "alibaba-token-plan-2/qwen3.8-flash",
+        "read_count": 1,
+        "reads": [
+          {
+            "relative_path": "references/speech-person-order.md",
+            "offset": null,
+            "limit": null,
+            "success": true,
+            "result_sha256": [
+              "51fbb07b8c0c470796c6ea51a1b3bbc80171005abf90dee2c49bfce92b8d319c"
+            ]
+          }
+        ]
+      },
+      {
+        "case": "new_names",
+        "arm": "baseline",
+        "route": "alibaba-token-plan-2/qwen3.8-flash",
+        "read_count": 0,
+        "reads": []
+      },
+      {
+        "case": "new_names",
+        "arm": "candidate",
+        "route": "alibaba-token-plan-2/qwen3.8-flash",
+        "read_count": 1,
+        "reads": [
+          {
+            "relative_path": "references/speech-person-order.md",
+            "offset": null,
+            "limit": null,
+            "success": true,
+            "result_sha256": [
+              "c49c13e4b78aebe7747839e26a2c73fcdbe434bb11d9f26c79eb6b0c06b340d0"
+            ]
+          }
+        ]
+      }
+    ],
+    "records": [
+      {
+        "path": "runs/alibaba-token-plan/existing_role_revision/baseline/attempt-1/receipt.json",
+        "case": "existing_role_revision",
+        "arm": "baseline",
+        "route": "alibaba-token-plan/qwen3.8-flash",
+        "status": "COMPLETE",
+        "technical_valid": true,
+        "api_error_placeholder": false,
+        "init_version": "0.22.0",
+        "configured_effort": "max",
+        "read_calls": 13,
+        "successful_read_calls": 13,
+        "tool_calls_count": 15,
+        "read_boundary_violations": [],
+        "actual_read_pages": [
+          {
+            "relative_path": "SKILL.md",
+            "offset": null,
+            "limit": null,
+            "success": true,
+            "result_sha256": [
+              "dce48c6c0face1286dae0fdbf3b6429eb2f071825cf03b156bf10f296f76e84e"
+            ]
+          },
+          {
+            "relative_path": "references/reference-index.md",
+            "offset": null,
+            "limit": null,
+            "success": true,
+            "result_sha256": [
+              "361c45388dad11d93346df2698e6f5f364009ada7a35f47818e55c8a43cbbe28"
+            ]
+          },
+          {
+            "relative_path": "references/information-selection.md",
+            "offset": null,
+            "limit": null,
+            "success": true,
+            "result_sha256": [
+              "ffbe72c90c977db5425a756922b94e6575cd3c6138410d322c1fd885b5fb48e7"
+            ]
+          },
+          {
+            "relative_path": "references/genre-playbooks.md",
+            "offset": null,
+            "limit": null,
+            "success": true,
+            "result_sha256": [
+              "9bac2d601c331c31328620f15c5afaf86afbe873a0d2e2a373750e9e379b4a73"
+            ]
+          },
+          {
+            "relative_path": "references/official-style.md",
+            "offset": null,
+            "limit": null,
+            "success": true,
+            "result_sha256": [
+              "7a50b24012cad28b64887014dcaadf1e060a153df414ba6206b4bab5f55d7ac3"
+            ]
+          },
+          {
+            "relative_path": "references/anti-ai-patterns.md",
+            "offset": null,
+            "limit": null,
+            "success": true,
+            "result_sha256": [
+              "d976c1e02f31f89245217c52780443a55763161cca5c78710d18feff4dafd3ac"
+            ]
+          },
+          {
+            "relative_path": "references/formulaic-language.md",
+            "offset": null,
+            "limit": null,
+            "success": true,
+            "result_sha256": [
+              "04f4649729b47d7b530e349b4ad5d228f31f98e463de9ce5fd1bca221920598a"
+            ]
+          },
+          {
+            "relative_path": "references/final-review-layers.md",
+            "offset": null,
+            "limit": null,
+            "success": true,
+            "result_sha256": [
+              "21fed76ab7e7114a41edde25f70859126682a5265a107f1998ddc4f4d3aca849"
+            ]
+          },
+          {
+            "relative_path": "references/proofreading-checklist.md",
+            "offset": null,
+            "limit": null,
+            "success": true,
+            "result_sha256": [
+              "49404b7b099fde7463b03fee930a20c47e2d38f85e1dea0e00c47bccfd5faa73"
+            ]
+          },
+          {
+            "relative_path": "references/formal-addressing.md",
+            "offset": null,
+            "limit": null,
+            "success": true,
+            "result_sha256": [
+              "1012c5f388bbe87d9dcfe4c6d74ee555b08abe3144eefbad04f727b9fc0ed71e"
+            ]
+          },
+          {
+            "relative_path": "references/structure-editing.md",
+            "offset": null,
+            "limit": null,
+            "success": true,
+            "result_sha256": [
+              "5d5828c52ed65c043b07043ec5b44bc4808cf3d771f9073323a9eb6ce4462bc1"
+            ]
+          },
+          {
+            "relative_path": "references/genre-checklist.md",
+            "offset": 155,
+            "limit": 30,
+            "success": true,
+            "result_sha256": [
+              "b0dade3ac6a3d3041e0bf4ad44b07e83dc022e37c39493283e480fa80019804d"
+            ]
+          },
+          {
+            "relative_path": "references/argument-chains.md",
+            "offset": 84,
+            "limit": 25,
+            "success": true,
+            "result_sha256": [
+              "38ce32825d4e7949655ffb38f1ee43153a7f8a004b980682e4c6f002134e5e66"
+            ]
+          }
+        ],
+        "new_leaf_reads": [],
+        "final_sha256": "95efc463d0d8b247c67798513a68965683792f76baf609bd37b6d09fd2882501",
+        "receipt_sha256": "a1ad72ec204c018f63691224b2e164e7acc9ecc66974d08be76c07d866126141",
+        "snapshot_unchanged": true
+      },
+      {
+        "path": "runs/alibaba-token-plan/existing_role_revision/candidate/attempt-1/receipt.json",
+        "case": "existing_role_revision",
+        "arm": "candidate",
+        "route": "alibaba-token-plan/qwen3.8-flash",
+        "status": "COMPLETE",
+        "technical_valid": true,
+        "api_error_placeholder": false,
+        "init_version": "0.22.0",
+        "configured_effort": "max",
+        "read_calls": 10,
+        "successful_read_calls": 10,
+        "tool_calls_count": 11,
+        "read_boundary_violations": [],
+        "actual_read_pages": [
+          {
+            "relative_path": "SKILL.md",
+            "offset": null,
+            "limit": null,
+            "success": true,
+            "result_sha256": [
+              "d2ca06752b15ca1568af9fd48e8de5ebeedc4e1d52e73d4cc7f878b9c9cb2260"
+            ]
+          },
+          {
+            "relative_path": "references/reference-index.md",
+            "offset": null,
+            "limit": null,
+            "success": true,
+            "result_sha256": [
+              "2ba4064481421d6b25bbde639758b0afe908fd6edfbab75420d2ebdd7b9f79c3"
+            ]
+          },
+          {
+            "relative_path": "references/information-selection.md",
+            "offset": null,
+            "limit": null,
+            "success": true,
+            "result_sha256": [
+              "499b323439aa5a36ab3f6b788f423075b1170093b9085fb670e734b5d983e876"
+            ]
+          },
+          {
+            "relative_path": "references/task-route-cards.md",
+            "offset": null,
+            "limit": null,
+            "success": true,
+            "result_sha256": [
+              "4654c83c46cc5e6b20b106a8527af3815272a6802bec0d822f9a14cb2e20b6dc"
+            ]
+          },
+          {
+            "relative_path": "references/genre-playbooks.md",
+            "offset": null,
+            "limit": null,
+            "success": true,
+            "result_sha256": [
+              "348a93f67657e322fe83b5d6773ceea323de83920f1a186df8046475924101db"
+            ]
+          },
+          {
+            "relative_path": "references/short-draft-naturalness.md",
+            "offset": null,
+            "limit": null,
+            "success": true,
+            "result_sha256": [
+              "a68cf795825fc84f8bbe05502d4ae974b786abe250064c5ae6f351448a36e9b4"
+            ]
+          },
+          {
+            "relative_path": "references/official-style.md",
+            "offset": null,
+            "limit": null,
+            "success": true,
+            "result_sha256": [
+              "122e20a4101f982f07d37258070d2f831d6f2fb36b82c69dd00ed5aab7beff0f"
+            ]
+          },
+          {
+            "relative_path": "references/anti-ai-patterns.md",
+            "offset": null,
+            "limit": null,
+            "success": true,
+            "result_sha256": [
+              "dcfbafe026f94768e160c620179767627dfefb425abfc1ba8602981863d2be92"
+            ]
+          },
+          {
+            "relative_path": "references/final-review-layers.md",
+            "offset": null,
+            "limit": null,
+            "success": true,
+            "result_sha256": [
+              "729815f49d29502ebfbd1d70548c844f6dec5d98508a71ec896e407686a1d205"
+            ]
+          },
+          {
+            "relative_path": "references/proofreading-checklist.md",
+            "offset": null,
+            "limit": null,
+            "success": true,
+            "result_sha256": [
+              "1b5ef0bc4c7406be77e240a0ca7de5deb0cf1e81d912ae1449eb612bb91b0b5f"
+            ]
+          }
+        ],
+        "new_leaf_reads": [],
+        "final_sha256": "ea5dcae0551eb03644222f40be4e1a33e989671b1ae5fa5404f26aa6e0588b5c",
+        "receipt_sha256": "e31e108c35d3dbacfd667d6ca5d2fac5114dd1510d0575cb1fd24d67dae5cd06",
+        "snapshot_unchanged": true
+      },
+      {
+        "path": "runs/alibaba-token-plan/known_leadership/baseline/attempt-1/receipt.json",
+        "case": "known_leadership",
+        "arm": "baseline",
+        "route": "alibaba-token-plan/qwen3.8-flash",
+        "status": "COMPLETE",
+        "technical_valid": true,
+        "api_error_placeholder": false,
+        "init_version": "0.22.0",
+        "configured_effort": "max",
+        "read_calls": 6,
+        "successful_read_calls": 6,
+        "tool_calls_count": 9,
+        "read_boundary_violations": [],
+        "actual_read_pages": [
+          {
+            "relative_path": "SKILL.md",
+            "offset": null,
+            "limit": null,
+            "success": true,
+            "result_sha256": [
+              "0d64cf52d2024c4f1be76b3f39abf6e30d0277dcff09737f7163f5c9ed8449dc"
+            ]
+          },
+          {
+            "relative_path": "references/reference-index.md",
+            "offset": null,
+            "limit": null,
+            "success": true,
+            "result_sha256": [
+              "afc510996dc6a339cd849e04bd9a791aedfe13a19887cc6275aa20cdd07d14c5"
+            ]
+          },
+          {
+            "relative_path": "references/formal-addressing.md",
+            "offset": null,
+            "limit": null,
+            "success": true,
+            "result_sha256": [
+              "aee89386cb1049991d9ab55d76f32b576bc66999ab03d8e7a1c978635aca455b"
+            ]
+          },
+          {
+            "relative_path": "references/information-selection.md",
+            "offset": null,
+            "limit": null,
+            "success": true,
+            "result_sha256": [
+              "cc199cd319fe2c79565e951a1972284b841118c8f3b9036b5aaabfab7490c85d"
+            ]
+          },
+          {
+            "relative_path": "references/short-draft-naturalness.md",
+            "offset": null,
+            "limit": null,
+            "success": true,
+            "result_sha256": [
+              "c5b30fdf4d702d1b2bbb3d8cbc73dd84ae4410d760596f09b1958263cae7d9eb"
+            ]
+          },
+          {
+            "relative_path": "references/genre-playbooks.md",
+            "offset": null,
+            "limit": null,
+            "success": true,
+            "result_sha256": [
+              "38522a264165e692ea6088cbf1d7aa8bf2396575dd1ac7eee7f2b6457aa572e4"
+            ]
+          }
+        ],
+        "new_leaf_reads": [],
+        "final_sha256": "31c728947e72a4c1263019104fbed8cf98ba46f7d495010a7a87f82dee3c99ad",
+        "receipt_sha256": "e083641478abb6d07307ebdaf3f6ed3e9c957ae5663d54cdecf093ccf0b3d899",
+        "snapshot_unchanged": true
+      },
+      {
+        "path": "runs/alibaba-token-plan/known_leadership/candidate/attempt-1/receipt.json",
+        "case": "known_leadership",
+        "arm": "candidate",
+        "route": "alibaba-token-plan/qwen3.8-flash",
+        "status": "COMPLETE",
+        "technical_valid": true,
+        "api_error_placeholder": false,
+        "init_version": "0.22.0",
+        "configured_effort": "max",
+        "read_calls": 6,
+        "successful_read_calls": 6,
+        "tool_calls_count": 7,
+        "read_boundary_violations": [],
+        "actual_read_pages": [
+          {
+            "relative_path": "SKILL.md",
+            "offset": null,
+            "limit": null,
+            "success": true,
+            "result_sha256": [
+              "20b57af3767e4908651fa3390d1b1e7ab3186dc175a40de4b9889bc1a42c2b78"
+            ]
+          },
+          {
+            "relative_path": "references/reference-index.md",
+            "offset": null,
+            "limit": null,
+            "success": true,
+            "result_sha256": [
+              "cf25ba8235f533fcfe57520e5981eaa4780d9b84d04bce46a690268e054a1df9"
+            ]
+          },
+          {
+            "relative_path": "references/information-selection.md",
+            "offset": null,
+            "limit": null,
+            "success": true,
+            "result_sha256": [
+              "5ae7c2be73f6d54cd1fbf12c0ca20a2a6267233174fe2adda15c02917f497964"
+            ]
+          },
+          {
+            "relative_path": "references/speech-person-order.md",
+            "offset": null,
+            "limit": null,
+            "success": true,
+            "result_sha256": [
+              "e8c22e30ce0d85f60c1748b4d1d87e2f522ff38923bb04146e73c62efcd2fcb9"
+            ]
+          },
+          {
+            "relative_path": "references/short-draft-naturalness.md",
+            "offset": null,
+            "limit": null,
+            "success": true,
+            "result_sha256": [
+              "632baab2ccc748fd2e615eed20c3434d5a94b90e23230e78ffd7a0498a21daaf"
+            ]
+          },
+          {
+            "relative_path": "references/formulaic-language.md",
+            "offset": null,
+            "limit": null,
+            "success": true,
+            "result_sha256": [
+              "d7e0016b77d57ec8034dc67ebc281864bff7e9c0154bedefd81657787319d8a4"
+            ]
+          }
+        ],
+        "new_leaf_reads": [
+          {
+            "relative_path": "references/speech-person-order.md",
+            "offset": null,
+            "limit": null,
+            "success": true,
+            "result_sha256": [
+              "e8c22e30ce0d85f60c1748b4d1d87e2f522ff38923bb04146e73c62efcd2fcb9"
+            ]
+          }
+        ],
+        "final_sha256": "3a4dea57b0f96ab1056f652b1c702194cc5d13420c5aa573eba0f5a3046240be",
+        "receipt_sha256": "41a4dff8e80462169a344f027c15da3dd83bd5b33607eac5255a7d0bd138a10b",
+        "snapshot_unchanged": true
+      },
+      {
+        "path": "runs/alibaba-token-plan/respectful_local/baseline/attempt-1/receipt.json",
+        "case": "respectful_local",
+        "arm": "baseline",
+        "route": "alibaba-token-plan/qwen3.8-flash",
+        "status": "COMPLETE",
+        "technical_valid": true,
+        "api_error_placeholder": false,
+        "init_version": "0.22.0",
+        "configured_effort": "max",
+        "read_calls": 2,
+        "successful_read_calls": 2,
+        "tool_calls_count": 2,
+        "read_boundary_violations": [],
+        "actual_read_pages": [
+          {
+            "relative_path": "SKILL.md",
+            "offset": null,
+            "limit": null,
+            "success": true,
+            "result_sha256": [
+              "90e920d8d4650d581ba22b86c7875ccc5f3f6d589213de15303d3e4ab72bf072"
+            ]
+          },
+          {
+            "relative_path": "references/task-route-cards.md",
+            "offset": null,
+            "limit": null,
+            "success": true,
+            "result_sha256": [
+              "2372ff5a630347755ecc18b8e1bf3b056790aced767005ae1964879a1eb60ea2"
+            ]
+          }
+        ],
+        "new_leaf_reads": [],
+        "final_sha256": "89a8022e707cb70c2f81cf60aac0873efe96aebf217170a5d5092424639f9b07",
+        "receipt_sha256": "de838f13ccceb445ccfe333ef25ca808f46ba0821c149e52ba8b1671a8cc44f0",
+        "snapshot_unchanged": true
+      },
+      {
+        "path": "runs/alibaba-token-plan/respectful_local/candidate/attempt-1/receipt.json",
+        "case": "respectful_local",
+        "arm": "candidate",
+        "route": "alibaba-token-plan/qwen3.8-flash",
+        "status": "COMPLETE",
+        "technical_valid": true,
+        "api_error_placeholder": false,
+        "init_version": "0.22.0",
+        "configured_effort": "max",
+        "read_calls": 2,
+        "successful_read_calls": 2,
+        "tool_calls_count": 2,
+        "read_boundary_violations": [],
+        "actual_read_pages": [
+          {
+            "relative_path": "SKILL.md",
+            "offset": null,
+            "limit": null,
+            "success": true,
+            "result_sha256": [
+              "a45baf081720b4c6b66418ce6c670be0bafdd08ae118ffb47c516c6471a793cc"
+            ]
+          },
+          {
+            "relative_path": "references/task-route-cards.md",
+            "offset": null,
+            "limit": null,
+            "success": true,
+            "result_sha256": [
+              "9a36665f3e7a2cec0ede6988705d3c12233fccd949bc1adbe28c339d1a60010c"
+            ]
+          }
+        ],
+        "new_leaf_reads": [],
+        "final_sha256": "89a8022e707cb70c2f81cf60aac0873efe96aebf217170a5d5092424639f9b07",
+        "receipt_sha256": "0b8d0454c9657fc3bc0927f0e3a5731718b8e4747dee52c9034c41991e5dbdd0",
+        "snapshot_unchanged": true
+      },
+      {
+        "path": "runs/alibaba-token-plan/unknown_rank/baseline/attempt-1/receipt.json",
+        "case": "unknown_rank",
+        "arm": "baseline",
+        "route": "alibaba-token-plan/qwen3.8-flash",
+        "status": "COMPLETE",
+        "technical_valid": true,
+        "api_error_placeholder": false,
+        "init_version": "0.22.0",
+        "configured_effort": "max",
+        "read_calls": 8,
+        "successful_read_calls": 8,
+        "tool_calls_count": 11,
+        "read_boundary_violations": [],
+        "actual_read_pages": [
+          {
+            "relative_path": "SKILL.md",
+            "offset": null,
+            "limit": null,
+            "success": true,
+            "result_sha256": [
+              "4b5969ca46dca95176d311038752a93ac46ce34beaf37b543aeeaf5c1ed3ad1f"
+            ]
+          },
+          {
+            "relative_path": "references/reference-index.md",
+            "offset": null,
+            "limit": null,
+            "success": true,
+            "result_sha256": [
+              "d93949ad5af34c45d9d7f288decdea1b6ec5c456899c455aa655b4ba2d3add61"
+            ]
+          },
+          {
+            "relative_path": "references/information-selection.md",
+            "offset": null,
+            "limit": null,
+            "success": true,
+            "result_sha256": [
+              "265b0bdcfb36fbda744ae7b8bb9227426727d99f1809cadbcb74303a4a4ad1e1"
+            ]
+          },
+          {
+            "relative_path": "references/formal-addressing.md",
+            "offset": null,
+            "limit": null,
+            "success": true,
+            "result_sha256": [
+              "080d976739caaf61c651048122def62b7d525918101d659411eb61f2b7d29379"
+            ]
+          },
+          {
+            "relative_path": "references/formulaic-language.md",
+            "offset": null,
+            "limit": null,
+            "success": true,
+            "result_sha256": [
+              "61668f450e6240df56d65a9d4407c0fed77c09ee0bea9e488e29fb743ff9b603"
+            ]
+          },
+          {
+            "relative_path": "references/short-draft-naturalness.md",
+            "offset": null,
+            "limit": null,
+            "success": true,
+            "result_sha256": [
+              "1ab03738bd32f685b0035f2261b228a124db2ba176ec47938e884f4d11947e17"
+            ]
+          },
+          {
+            "relative_path": "references/genre-checklist.md",
+            "offset": 150,
+            "limit": 60,
+            "success": true,
+            "result_sha256": [
+              "5870939de7638ba60c215a627cf97d15d383c7d66783c63447b0bd17fa7c70a4"
+            ]
+          },
+          {
+            "relative_path": "references/genre-playbooks.md",
+            "offset": 35,
+            "limit": 20,
+            "success": true,
+            "result_sha256": [
+              "f73dc276ad7810eec7ea8fb7b4c7c0a526cd9a69d7d4125a21913b9448c7a84f"
+            ]
+          }
+        ],
+        "new_leaf_reads": [],
+        "final_sha256": "86be481b7844a3cee34b5d5311dfcc471d969c3117a12a629c1cc597af7f42e5",
+        "receipt_sha256": "5dccbd1c93f8d52d1ba8b88773724e8aad1d9bf27163e21a71b3c7464df9adb4",
+        "snapshot_unchanged": true
+      },
+      {
+        "path": "runs/alibaba-token-plan/unknown_rank/candidate/attempt-1/receipt.json",
+        "case": "unknown_rank",
+        "arm": "candidate",
+        "route": "alibaba-token-plan/qwen3.8-flash",
+        "status": "COMPLETE",
+        "technical_valid": true,
+        "api_error_placeholder": false,
+        "init_version": "0.22.0",
+        "configured_effort": "max",
+        "read_calls": 7,
+        "successful_read_calls": 7,
+        "tool_calls_count": 8,
+        "read_boundary_violations": [],
+        "actual_read_pages": [
+          {
+            "relative_path": "SKILL.md",
+            "offset": null,
+            "limit": null,
+            "success": true,
+            "result_sha256": [
+              "d5f52812daf8b31e4e83ca1e060f1df5a3ad015e2da15d93232fddab101d704f"
+            ]
+          },
+          {
+            "relative_path": "references/reference-index.md",
+            "offset": null,
+            "limit": null,
+            "success": true,
+            "result_sha256": [
+              "0083f7d2a223377dc1567c49e80a61d437b01ca8eb97c6d41cda7950316ef752"
+            ]
+          },
+          {
+            "relative_path": "references/speech-person-order.md",
+            "offset": null,
+            "limit": null,
+            "success": true,
+            "result_sha256": [
+              "7dbb376d0c1de4549cae769283080f57dc896ca55e63a21d6b6105f2600c178d"
+            ]
+          },
+          {
+            "relative_path": "references/information-selection.md",
+            "offset": null,
+            "limit": null,
+            "success": true,
+            "result_sha256": [
+              "c34b6eb6534032cc52caf5db465181db8f96bac7f78cc77d479a7953bc545e1f"
+            ]
+          },
+          {
+            "relative_path": "references/short-draft-naturalness.md",
+            "offset": null,
+            "limit": null,
+            "success": true,
+            "result_sha256": [
+              "4bf88aa0ef22a0a862bdf90abaf00399c83872f208ffba9a1e26be868706d255"
+            ]
+          },
+          {
+            "relative_path": "references/formal-addressing.md",
+            "offset": null,
+            "limit": null,
+            "success": true,
+            "result_sha256": [
+              "1b6f0216976886f80deed6234e284429036c06f02e394808e6f0936d99a66190"
+            ]
+          },
+          {
+            "relative_path": "references/formulaic-language.md",
+            "offset": null,
+            "limit": null,
+            "success": true,
+            "result_sha256": [
+              "e600dcc0bed2a08c191337a0523855100a052a6bca238147497c98b2318fe63e"
+            ]
+          }
+        ],
+        "new_leaf_reads": [
+          {
+            "relative_path": "references/speech-person-order.md",
+            "offset": null,
+            "limit": null,
+            "success": true,
+            "result_sha256": [
+              "7dbb376d0c1de4549cae769283080f57dc896ca55e63a21d6b6105f2600c178d"
+            ]
+          }
+        ],
+        "final_sha256": "2af7a90d48a2327a4c0a1141d41d7e62080a7ae0766a9cdc38dba7e81570e7a8",
+        "receipt_sha256": "d8cd4639ddb76a3f4593d2e074ce2fbd23d47efcee86c5df4b2a035b5cd7ed79",
+        "snapshot_unchanged": true
+      },
+      {
+        "path": "runs/alibaba-token-plan-2/confirmed_guest/baseline/attempt-1/receipt.json",
+        "case": "confirmed_guest",
+        "arm": "baseline",
+        "route": "alibaba-token-plan-2/qwen3.8-flash",
+        "status": "COMPLETE",
+        "technical_valid": true,
+        "api_error_placeholder": false,
+        "init_version": "0.22.0",
+        "configured_effort": "max",
+        "read_calls": 7,
+        "successful_read_calls": 7,
+        "tool_calls_count": 11,
+        "read_boundary_violations": [],
+        "actual_read_pages": [
+          {
+            "relative_path": "SKILL.md",
+            "offset": null,
+            "limit": null,
+            "success": true,
+            "result_sha256": [
+              "cedcaecf7976bf4eced9bd105e7e0d0bed88b2ada034d1d042e3d346614806f9"
+            ]
+          },
+          {
+            "relative_path": "references/reference-index.md",
+            "offset": null,
+            "limit": null,
+            "success": true,
+            "result_sha256": [
+              "9eb05f886568b3827f5ad3ec870597d0d6e6126fe56fe4c5ab81fa8761536822"
+            ]
+          },
+          {
+            "relative_path": "references/formal-addressing.md",
+            "offset": null,
+            "limit": null,
+            "success": true,
+            "result_sha256": [
+              "80763c9693fe1975392bb460a192f8c261d9dbc2fbbc676ad0e06ac2deacaf79"
+            ]
+          },
+          {
+            "relative_path": "references/information-selection.md",
+            "offset": null,
+            "limit": null,
+            "success": true,
+            "result_sha256": [
+              "fabe4473a22f45a496813826e9ad96ce2db023bebd0cd35eda293558941d7675"
+            ]
+          },
+          {
+            "relative_path": "references/short-draft-naturalness.md",
+            "offset": null,
+            "limit": null,
+            "success": true,
+            "result_sha256": [
+              "b53068365a5559c4327a8eb9b5a81f8b82b3fc978292c885a727140dc6d9f3c6"
+            ]
+          },
+          {
+            "relative_path": "references/genre-playbooks.md",
+            "offset": 38,
+            "limit": 10,
+            "success": true,
+            "result_sha256": [
+              "62e9d134bfd4e6afe40bd8575f25bdc9fc0d5a1ba33b20ef3ca726b621bd63f8"
+            ]
+          },
+          {
+            "relative_path": "references/formulaic-language.md",
+            "offset": 0,
+            "limit": 45,
+            "success": true,
+            "result_sha256": [
+              "b0262febccbeb3cdaf7adb243177e3014ab0359c54583c882d03072ced059ba7"
+            ]
+          }
+        ],
+        "new_leaf_reads": [],
+        "final_sha256": "7be190ea18a606be3a91184dc61a1c1b08cbebfb129b09380f9518be853771dc",
+        "receipt_sha256": "3ee293b9f4ac9a8d7b30cdc7e5c72bd16bade65d6abe8d6fafbdaab0462f344e",
+        "snapshot_unchanged": true
+      },
+      {
+        "path": "runs/alibaba-token-plan-2/confirmed_guest/candidate/attempt-1/receipt.json",
+        "case": "confirmed_guest",
+        "arm": "candidate",
+        "route": "alibaba-token-plan-2/qwen3.8-flash",
+        "status": "COMPLETE",
+        "technical_valid": true,
+        "api_error_placeholder": false,
+        "init_version": "0.22.0",
+        "configured_effort": "max",
+        "read_calls": 7,
+        "successful_read_calls": 7,
+        "tool_calls_count": 8,
+        "read_boundary_violations": [],
+        "actual_read_pages": [
+          {
+            "relative_path": "SKILL.md",
+            "offset": null,
+            "limit": null,
+            "success": true,
+            "result_sha256": [
+              "7330342e23b4780b1fde9402099bc93d635d801174ee75ff2394e90e9ba2c84c"
+            ]
+          },
+          {
+            "relative_path": "references/information-selection.md",
+            "offset": null,
+            "limit": null,
+            "success": true,
+            "result_sha256": [
+              "5abbbaa6ad68f113381d683f55fdfc745f9bf8ef1723446745ef26511c2316bc"
+            ]
+          },
+          {
+            "relative_path": "references/speech-person-order.md",
+            "offset": null,
+            "limit": null,
+            "success": true,
+            "result_sha256": [
+              "2f4f97e9dc5e060f0bcd995621f0c0d356a127eeefb2985c9cf9e497e042fffd"
+            ]
+          },
+          {
+            "relative_path": "references/reference-index.md",
+            "offset": null,
+            "limit": null,
+            "success": true,
+            "result_sha256": [
+              "5fb7193a7b0d508f50d4f683a4758d5fd8fc1feb3eb8339edd4b72c31342a64f"
+            ]
+          },
+          {
+            "relative_path": "references/formulaic-language.md",
+            "offset": null,
+            "limit": null,
+            "success": true,
+            "result_sha256": [
+              "415021321874e30e2752681279721ae67faef824ffe4af1393e15f6730c4f8f2"
+            ]
+          },
+          {
+            "relative_path": "references/short-draft-naturalness.md",
+            "offset": null,
+            "limit": null,
+            "success": true,
+            "result_sha256": [
+              "5b1d805a87147ffabbef3c34b32a4b236896e5b35b6ea4adb0e770c6fe7cd8a7"
+            ]
+          },
+          {
+            "relative_path": "references/formal-addressing.md",
+            "offset": null,
+            "limit": null,
+            "success": true,
+            "result_sha256": [
+              "a09e0aa0f94b4c0eb62b8e39bfc433e17f0f0599365143cf1567d37272493c4e"
+            ]
+          }
+        ],
+        "new_leaf_reads": [
+          {
+            "relative_path": "references/speech-person-order.md",
+            "offset": null,
+            "limit": null,
+            "success": true,
+            "result_sha256": [
+              "2f4f97e9dc5e060f0bcd995621f0c0d356a127eeefb2985c9cf9e497e042fffd"
+            ]
+          }
+        ],
+        "final_sha256": "54b16bef37e9880f46eda2c3e95e714e80e0768f08ff812c04060547da2a7357",
+        "receipt_sha256": "ab8740dc86cff00379b1159a4f30c734a35552818dd42b53d0b58b010916a85d",
+        "snapshot_unchanged": true
+      },
+      {
+        "path": "runs/alibaba-token-plan-2/formal_letter_control/baseline/attempt-1/receipt.json",
+        "case": "formal_letter_control",
+        "arm": "baseline",
+        "route": "alibaba-token-plan-2/qwen3.8-flash",
+        "status": "COMPLETE",
+        "technical_valid": true,
+        "api_error_placeholder": false,
+        "init_version": "0.22.0",
+        "configured_effort": "max",
+        "read_calls": 1,
+        "successful_read_calls": 1,
+        "tool_calls_count": 1,
+        "read_boundary_violations": [],
+        "actual_read_pages": [
+          {
+            "relative_path": "SKILL.md",
+            "offset": null,
+            "limit": null,
+            "success": true,
+            "result_sha256": [
+              "98cfbe0a9af974ba0172b7ab68cf00a9d1130d01c622e0d4f3ad0c82b63ada1a"
+            ]
+          }
+        ],
+        "new_leaf_reads": [],
+        "final_sha256": "f378ebaca1d0317d6abb65c994c83af437bc0466bff2527c50d17c3473a1cc10",
+        "receipt_sha256": "98d088d434417cb2ac970cb2466d03fe497d8e168e8fba740a13640cc3fec56e",
+        "snapshot_unchanged": true
+      },
+      {
+        "path": "runs/alibaba-token-plan-2/formal_letter_control/candidate/attempt-1/receipt.json",
+        "case": "formal_letter_control",
+        "arm": "candidate",
+        "route": "alibaba-token-plan-2/qwen3.8-flash",
+        "status": "COMPLETE",
+        "technical_valid": true,
+        "api_error_placeholder": false,
+        "init_version": "0.22.0",
+        "configured_effort": "max",
+        "read_calls": 2,
+        "successful_read_calls": 2,
+        "tool_calls_count": 2,
+        "read_boundary_violations": [],
+        "actual_read_pages": [
+          {
+            "relative_path": "SKILL.md",
+            "offset": null,
+            "limit": null,
+            "success": true,
+            "result_sha256": [
+              "ebacf15fbe435d3461fb5f74f87ff4efb0869f483a0f0e63911164eac30f6200"
+            ]
+          },
+          {
+            "relative_path": "references/task-route-cards.md",
+            "offset": null,
+            "limit": null,
+            "success": true,
+            "result_sha256": [
+              "920d798cb86e1ca40d3ac6a4fff84466d50be5b28a973936d8293adf86f3a6cc"
+            ]
+          }
+        ],
+        "new_leaf_reads": [],
+        "final_sha256": "f378ebaca1d0317d6abb65c994c83af437bc0466bff2527c50d17c3473a1cc10",
+        "receipt_sha256": "6ec050af993913aecf3a277c90d1d7d74f9af990b7a0b508df39713f92edd4e8",
+        "snapshot_unchanged": true
+      },
+      {
+        "path": "runs/alibaba-token-plan-2/host_contexts/baseline/attempt-1/receipt.json",
+        "case": "host_contexts",
+        "arm": "baseline",
+        "route": "alibaba-token-plan-2/qwen3.8-flash",
+        "status": "COMPLETE",
+        "technical_valid": true,
+        "api_error_placeholder": false,
+        "init_version": "0.22.0",
+        "configured_effort": "max",
+        "read_calls": 6,
+        "successful_read_calls": 6,
+        "tool_calls_count": 7,
+        "read_boundary_violations": [],
+        "actual_read_pages": [
+          {
+            "relative_path": "SKILL.md",
+            "offset": null,
+            "limit": null,
+            "success": true,
+            "result_sha256": [
+              "52ad9d22ef78789ccf58792798fccfea010be72065bacec8233da5db3ec22899"
+            ]
+          },
+          {
+            "relative_path": "references/reference-index.md",
+            "offset": null,
+            "limit": null,
+            "success": true,
+            "result_sha256": [
+              "9047c2b76c53e4ec146e330479097230ae208f58ba1b2ac5530da530ff77fcae"
+            ]
+          },
+          {
+            "relative_path": "references/information-selection.md",
+            "offset": null,
+            "limit": null,
+            "success": true,
+            "result_sha256": [
+              "03bb216f912f0a2415dd96c29ccd807b7f43f150f73f73b4e18b6e8eb1bb3a6c"
+            ]
+          },
+          {
+            "relative_path": "references/short-draft-naturalness.md",
+            "offset": null,
+            "limit": null,
+            "success": true,
+            "result_sha256": [
+              "9f0b2245bf07bb43bebb3c5ca3142a02e072bd48914b522d639f155725b4bea0"
+            ]
+          },
+          {
+            "relative_path": "references/formulaic-language.md",
+            "offset": null,
+            "limit": null,
+            "success": true,
+            "result_sha256": [
+              "ce8979d0351215cc98bca660f4dfe7d43d54717f597fd1dc643835e8a54c2c58"
+            ]
+          },
+          {
+            "relative_path": "references/formal-addressing.md",
+            "offset": null,
+            "limit": null,
+            "success": true,
+            "result_sha256": [
+              "d2533173e618808e5283c73c364c504f56721fe82ec36eec182e59bed13ba326"
+            ]
+          }
+        ],
+        "new_leaf_reads": [],
+        "final_sha256": "8746a4e474f053eaf8d04d98cedf2bbcf33c5c881703640461648a8b175d836a",
+        "receipt_sha256": "036f3f19e5bc1085da5672e53d214216a50374ee81058ccae08997b3c8d86b50",
+        "snapshot_unchanged": true
+      },
+      {
+        "path": "runs/alibaba-token-plan-2/host_contexts/candidate/attempt-1/receipt.json",
+        "case": "host_contexts",
+        "arm": "candidate",
+        "route": "alibaba-token-plan-2/qwen3.8-flash",
+        "status": "COMPLETE",
+        "technical_valid": true,
+        "api_error_placeholder": false,
+        "init_version": "0.22.0",
+        "configured_effort": "max",
+        "read_calls": 6,
+        "successful_read_calls": 6,
+        "tool_calls_count": 8,
+        "read_boundary_violations": [],
+        "actual_read_pages": [
+          {
+            "relative_path": "SKILL.md",
+            "offset": null,
+            "limit": null,
+            "success": true,
+            "result_sha256": [
+              "fae05a41c7f9bfa35fcb8ec545509a228c862500d023977dec74aa709bdb381e"
+            ]
+          },
+          {
+            "relative_path": "references/reference-index.md",
+            "offset": null,
+            "limit": null,
+            "success": true,
+            "result_sha256": [
+              "d659d6606ce94f9a2464b4a302fa89ec91e94b2b3a81ac0283a625c2d0f80532"
+            ]
+          },
+          {
+            "relative_path": "references/speech-person-order.md",
+            "offset": null,
+            "limit": null,
+            "success": true,
+            "result_sha256": [
+              "51fbb07b8c0c470796c6ea51a1b3bbc80171005abf90dee2c49bfce92b8d319c"
+            ]
+          },
+          {
+            "relative_path": "references/information-selection.md",
+            "offset": null,
+            "limit": null,
+            "success": true,
+            "result_sha256": [
+              "8aa10cc78a2805b1371f22a6543b468904a2d5df40cc1571a859ca6b806ee1ea"
+            ]
+          },
+          {
+            "relative_path": "references/short-draft-naturalness.md",
+            "offset": null,
+            "limit": null,
+            "success": true,
+            "result_sha256": [
+              "742074186be8be234f37db1d84256f6438d3a5a583f096dbbcf7af8da5a2e71a"
+            ]
+          },
+          {
+            "relative_path": "references/formulaic-language.md",
+            "offset": null,
+            "limit": null,
+            "success": true,
+            "result_sha256": [
+              "ac6e5f229714fe3af2ac8f74ed7d981f35e2492f99977b8bf09d96c968eee76f"
+            ]
+          }
+        ],
+        "new_leaf_reads": [
+          {
+            "relative_path": "references/speech-person-order.md",
+            "offset": null,
+            "limit": null,
+            "success": true,
+            "result_sha256": [
+              "51fbb07b8c0c470796c6ea51a1b3bbc80171005abf90dee2c49bfce92b8d319c"
+            ]
+          }
+        ],
+        "final_sha256": "0b4b0b057deb917ef9bf4ea8d8d6d29445288c909d8cc11a3839044cbf281585",
+        "receipt_sha256": "21edcbaf474a1f1fb80a32fea50c92d3ea0d0e7f347dfc99b1ccda5b62d8603d",
+        "snapshot_unchanged": true
+      },
+      {
+        "path": "runs/alibaba-token-plan-2/new_names/baseline/attempt-1/receipt.json",
+        "case": "new_names",
+        "arm": "baseline",
+        "route": "alibaba-token-plan-2/qwen3.8-flash",
+        "status": "COMPLETE",
+        "technical_valid": true,
+        "api_error_placeholder": false,
+        "init_version": "0.22.0",
+        "configured_effort": "max",
+        "read_calls": 8,
+        "successful_read_calls": 8,
+        "tool_calls_count": 10,
+        "read_boundary_violations": [],
+        "actual_read_pages": [
+          {
+            "relative_path": "SKILL.md",
+            "offset": null,
+            "limit": null,
+            "success": true,
+            "result_sha256": [
+              "351faaca9a0504f9b04d5cac9186ca2cf5d275488412a8163584b51a766f8a24"
+            ]
+          },
+          {
+            "relative_path": "references/reference-index.md",
+            "offset": null,
+            "limit": null,
+            "success": true,
+            "result_sha256": [
+              "ea886b58cc33464f3ab13377a1482d8763343c06e697607099ad10568d6478ec"
+            ]
+          },
+          {
+            "relative_path": "references/information-selection.md",
+            "offset": null,
+            "limit": null,
+            "success": true,
+            "result_sha256": [
+              "77bc5139137b617757434d02c8c6bb7d7bbb491a5e1bac4e669605acd4cc9ce1"
+            ]
+          },
+          {
+            "relative_path": "references/short-draft-naturalness.md",
+            "offset": null,
+            "limit": null,
+            "success": true,
+            "result_sha256": [
+              "761be942b1329e1d3f54b16f31161618aa9edf191f89eb690131bf8f9a1578f3"
+            ]
+          },
+          {
+            "relative_path": "references/formal-addressing.md",
+            "offset": null,
+            "limit": null,
+            "success": true,
+            "result_sha256": [
+              "d1ffa25131eac5d1198a476d1960544241a0b14587143ffafe0bdf6a5522cc7d"
+            ]
+          },
+          {
+            "relative_path": "references/genre-playbooks.md",
+            "offset": 30,
+            "limit": 40,
+            "success": true,
+            "result_sha256": [
+              "982c638475326d71a437541d7ba50cf35d7060d43f169310a7486f0c7554a593"
+            ]
+          },
+          {
+            "relative_path": "references/formulaic-language.md",
+            "offset": null,
+            "limit": null,
+            "success": true,
+            "result_sha256": [
+              "12b24a2b50386a46ba2e983a56e587e6277dd3f72c351d850980c51b9693f47a"
+            ]
+          },
+          {
+            "relative_path": "references/genre-checklist.md",
+            "offset": 150,
+            "limit": 40,
+            "success": true,
+            "result_sha256": [
+              "7506bc5d3d1c26bbfb2f813888c059d5554e6507ef22ec0ada4d0de35ec7d60e"
+            ]
+          }
+        ],
+        "new_leaf_reads": [],
+        "final_sha256": "fa91993c6059b9d614ef80197a6538f0ebbee45b0d1b9690b3f66ed0ee7ec991",
+        "receipt_sha256": "cd246c9ddbe117aa47e317c5d6f34547f49c584be33227381d60ed9ddd26b07a",
+        "snapshot_unchanged": true
+      },
+      {
+        "path": "runs/alibaba-token-plan-2/new_names/candidate/attempt-1/receipt.json",
+        "case": "new_names",
+        "arm": "candidate",
+        "route": "alibaba-token-plan-2/qwen3.8-flash",
+        "status": "COMPLETE",
+        "technical_valid": true,
+        "api_error_placeholder": false,
+        "init_version": "0.22.0",
+        "configured_effort": "max",
+        "read_calls": 9,
+        "successful_read_calls": 9,
+        "tool_calls_count": 10,
+        "read_boundary_violations": [],
+        "actual_read_pages": [
+          {
+            "relative_path": "SKILL.md",
+            "offset": null,
+            "limit": null,
+            "success": true,
+            "result_sha256": [
+              "96fd81c6fd89595ceea54ae7e213cb88ada294342735028001624b04db7c61ad"
+            ]
+          },
+          {
+            "relative_path": "references/reference-index.md",
+            "offset": null,
+            "limit": null,
+            "success": true,
+            "result_sha256": [
+              "c3e6c2e3b4332be5447e49730aab313fc1cc38797c292b3ddfb7b72e2c158e51"
+            ]
+          },
+          {
+            "relative_path": "references/speech-person-order.md",
+            "offset": null,
+            "limit": null,
+            "success": true,
+            "result_sha256": [
+              "c49c13e4b78aebe7747839e26a2c73fcdbe434bb11d9f26c79eb6b0c06b340d0"
+            ]
+          },
+          {
+            "relative_path": "references/information-selection.md",
+            "offset": null,
+            "limit": null,
+            "success": true,
+            "result_sha256": [
+              "974371aef64d03f49d8be837e618443d72549fad2d8d9a9947a7e026c30c9a86"
+            ]
+          },
+          {
+            "relative_path": "references/formulaic-language.md",
+            "offset": null,
+            "limit": null,
+            "success": true,
+            "result_sha256": [
+              "0692f6d7dd97bd9a4d7fb4ca25ed07e697b90b9fc0b7260a114b10419741baa3"
+            ]
+          },
+          {
+            "relative_path": "references/short-draft-naturalness.md",
+            "offset": null,
+            "limit": null,
+            "success": true,
+            "result_sha256": [
+              "328f10f483dbfa4c5adbbd1e38c7e4d6bc96ff74229c05843dfa33c6eb8eaf82"
+            ]
+          },
+          {
+            "relative_path": "references/task-route-cards.md",
+            "offset": null,
+            "limit": null,
+            "success": true,
+            "result_sha256": [
+              "986051c29294926f8b42cde39d3633c8105f3a24fd5fda7178e6081ec6747f0c"
+            ]
+          },
+          {
+            "relative_path": "references/formal-addressing.md",
+            "offset": null,
+            "limit": null,
+            "success": true,
+            "result_sha256": [
+              "17c941d10dfdc553dc410acacce0dc8f1c6b71473a27e054e61062b8e7869a38"
+            ]
+          },
+          {
+            "relative_path": "references/proofreading-checklist.md",
+            "offset": null,
+            "limit": null,
+            "success": true,
+            "result_sha256": [
+              "cdca06591ba0e2b4c17f5ab480221715598bdbe8d3e0ac53aede60551cf230b9"
+            ]
+          }
+        ],
+        "new_leaf_reads": [
+          {
+            "relative_path": "references/speech-person-order.md",
+            "offset": null,
+            "limit": null,
+            "success": true,
+            "result_sha256": [
+              "c49c13e4b78aebe7747839e26a2c73fcdbe434bb11d9f26c79eb6b0c06b340d0"
+            ]
+          }
+        ],
+        "final_sha256": "38a9efbac4db47f47e928bf3f563faf09b1028e3f994cfd5ee2090daad04be96",
+        "receipt_sha256": "2adc65de15b9ad9f07ae3ff32b7fb7d81d8f58d18e0a1d1b63fae42b8c7b4468",
+        "snapshot_unchanged": true
+      }
+    ]
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "atom": "delivery-preface-baseline-repeat",
+  "baseline": "16529cb61d4c71242fa668ae7122bcf3819dbd92",
+  "candidate": "16529cb61d4c71242fa668ae7122bcf3819dbd92",
+  "expected_diff": [],
+  "cases": {
+    "delivery_preface": {"task": "请起草一份简短通知，只输出正文。材料：资料整理培训定于2026年10月12日举行，地点为三楼会议室，参会对象为业务科和资料室。成稿前必须使用当前Skill内的scripts/prose_lint.py，以--delivery-mode draft-body --strict --fail-on high检查终稿；如命中读取、复核、制作或交付过程旁白，删除该说明后复扫。最终只输出可直接使用的通知正文，不输出检查过程、脚本结果或其他说明，不新增联系人、时限、责任和效果。"}
+  },
+  "assignments": {"0": ["delivery_preface"], "1": [], "2": [], "3": [], "4": []}
+}

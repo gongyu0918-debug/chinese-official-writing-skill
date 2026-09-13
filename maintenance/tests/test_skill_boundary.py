@@ -483,14 +483,14 @@ class SkillBoundaryTests(unittest.TestCase):
             self.assertNotIn(duplicated_leaf, core)
 
     def test_lightened_routes_preserve_reviewed_conditions(self) -> None:
-        # f171e82f preserved 36 table rows and five scene routes; C2 updates only the two correspondence selectors.
+        # f171e82f preserved 36 table rows; the person-order leaf adds one routed row while keeping five scene routes.
         index = (CANONICAL / "references/reference-index.md").read_text(encoding="utf-8")
         scenes = (CANONICAL / "references/compatibility-scene-routing.md").read_text(encoding="utf-8")
         rows = [line for line in (index + "\n" + scenes).splitlines()
                 if line.startswith("| `") and not line.startswith("| `references/compatibility-scene-routing.md`")]
-        self.assertEqual(len(rows), 36)
-        self.assertEqual(len(set(rows)), 36)
-        self.assertEqual(hashlib.sha256("\n".join(sorted(rows)).encode()).hexdigest(), "6f02535515165cdeb7a8867c74907a9c40e925dea7be4cbcf9e2fb0c642da021")
+        self.assertEqual(len(rows), 37)
+        self.assertEqual(len(set(rows)), 37)
+        self.assertEqual(hashlib.sha256("\n".join(sorted(rows)).encode()).hexdigest(), "8b61978940a13e42fef8e6a507b462f836b9e028665128ec6d5bf87145811d62")
         routes = [line for line in scenes.splitlines() if line.startswith("用户")]
         self.assertEqual(len(routes), 5)
         self.assertEqual(hashlib.sha256("\n".join(sorted(routes)).encode()).hexdigest(), "8a04cfe2d488755cb469ef5176cde7f3e5f10be6dcdfb864b7980d92840beeb4")
@@ -591,7 +591,6 @@ class SkillBoundaryTests(unittest.TestCase):
         playbooks = (ROOT / "chinese-official-writing" / "references" / "genre-playbooks.md").read_text(
             encoding="utf-8"
         )
-
         self.assertIn("不因文种名称已知而自动预读下列全部长 reference", skill)
         modes = skill.split("## 任务模式路由", 1)[1].split("## 核心流程", 1)[0]
         self.assertIn("执行前先判定起草、改稿、复核、排版交付四类模式", modes)
@@ -602,7 +601,8 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assertIn("不因文种名称已知而继续预读", cards)
         self.assertIn("未命中时不扩大本页适用范围", cards)
         self.assertIn("任一事项已经形成", cards)
-        self.assertIn("每个文种小节都是可从 `SKILL.md` 直接进入的叶子路由", playbooks)
+        self.assertIn("按当前任务选读对应页", playbooks)
+        self.assertIn("genre-playbook-notice-publication.md", playbooks)
         self.assertIn("只有任务另有复杂改稿、多材料合稿或文种/行文关系不明等条件时才补读长 reference", playbooks)
         self.assertIn("节末“补充读取”不是固定清单", playbooks)
 
@@ -856,6 +856,12 @@ class SkillBoundaryTests(unittest.TestCase):
             "对象和范围 -> 事实、数据、样本 -> 发现和问题 -> 原因或方案比较 -> "
             "建议/可行性/建设内容 -> 条件和风险"
         )
+        research_leaf = (
+            ROOT
+            / "chinese-official-writing"
+            / "references"
+            / "genre-playbook-research-feasibility.md"
+        ).read_text(encoding="utf-8")
         plan_skeleton = (
             "以目标、主要任务和实施路径为主线，责任、进度、保障、验收与风险控制"
             "按材料和用户模板落位"
@@ -864,9 +870,9 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assertIn("references/genre-playbook-plan-construction.md", skill)
         self.assertIn("方案、实施方案或建设方案需要常规或完整骨架时直接读取", skill)
         self.assertNotIn("## 调研报告/研究报告/可研报告/建设方案\n", common)
-        self.assertIn("## 调研报告/研究报告/可研报告\n", common)
+        self.assertNotIn("## 调研报告/研究报告/可研报告\n", common)
         self.assertIn("## 方案/实施方案/建设方案\n", leaf)
-        self.assertIn(research_skeleton, common)
+        self.assertIn(research_skeleton, research_leaf)
         self.assertNotIn(research_skeleton, leaf)
         self.assertIn(plan_skeleton, leaf)
         self.assertNotIn("建设方案先核对目标、范围、任务、进度、责任和验收", common)
@@ -1747,15 +1753,16 @@ class SkillBoundaryTests(unittest.TestCase):
         news_commentary = (refs / "genre-playbook-news-commentary.md").read_text(encoding="utf-8")
         argument_chains = (refs / "argument-chains.md").read_text(encoding="utf-8")
         genre_playbooks = (refs / "genre-playbooks.md").read_text(encoding="utf-8")
+        speech_leaf = (refs / "genre-playbook-speech-address.md").read_text(encoding="utf-8")
         anti_ai = (refs / "anti-ai-patterns.md").read_text(encoding="utf-8")
 
         self.assertIn("论点已经充分展开时自然结束", news_commentary)
         self.assertIn("以“妥否，请批示”“请予审定”等作结", argument_chains)
-        self.assertIn("结尾落在责任或目标上", genre_playbooks)
+        self.assertIn("结尾落在责任或目标上", speech_leaf)
         for phrase in ["每段结尾都停留在口号层面", "口号式结尾", "将口号式结尾改为具体办理动作"]:
             with self.subTest(phrase=phrase):
                 self.assertIn(phrase, anti_ai)
-        for text in [news_commentary, argument_chains, genre_playbooks, anti_ai]:
+        for text in [news_commentary, argument_chains, genre_playbooks, speech_leaf, anti_ai]:
             self.assertNotIn("收束", text)
 
     def test_v1511_anti_ai_frequency_review_is_prompt_driven_and_local(self) -> None:
@@ -1853,6 +1860,16 @@ class SkillBoundaryTests(unittest.TestCase):
             / "references"
             / "genre-playbook-plan-construction.md"
         ).read_text(encoding="utf-8")
+        family_leaves = "\n".join(
+            (ROOT / "chinese-official-writing" / "references" / name).read_text(encoding="utf-8")
+            for name in [
+                "genre-playbook-notice-publication.md",
+                "genre-playbook-deliberation-deployment.md",
+                "genre-playbook-speech-address.md",
+                "genre-playbook-research-feasibility.md",
+                "genre-playbook-procurement-review.md",
+            ]
+        )
         routed_playbooks = (
             playbooks
             + "\n"
@@ -1863,6 +1880,8 @@ class SkillBoundaryTests(unittest.TestCase):
             + work_summary
             + "\n"
             + plan_construction
+            + "\n"
+            + family_leaves
         )
         ai_compute = (
             ROOT / "chinese-official-writing" / "references" / "ai-compute-docs.md"
@@ -1878,14 +1897,14 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assertIn("references/genre-playbook-correspondence.md", skill)
         self.assertIn("references/genre-playbook-work-summary.md", skill)
         self.assertIn("references/genre-playbook-plan-construction.md", skill)
-        self.assertIn("## 目录", playbooks)
+        self.assertIn("## 按文种选读", playbooks)
         for heading in [
             "## 会议纪要",
             "## 函/复函/征求意见函",
             "## 工作总结/工作要点/周报",
-            "## 调研报告/研究报告/可研报告",
+            "# 调研报告/研究报告/可研报告",
             "## 方案/实施方案/建设方案",
-            "## 采购公告/审查材料",
+            "# 采购公告/审查材料",
         ]:
             self.assertIn(heading, routed_playbooks)
         self.assertNotIn("## 报告/情况说明", playbooks)
@@ -1972,7 +1991,7 @@ class SkillBoundaryTests(unittest.TestCase):
             return body.strip()
 
         self.assertEqual(
-            section(playbooks, "## 使用方式", "## 函/复函/征求意见函"),
+            section(playbooks, "## 使用方式", "## 按文种选读"),
             section(correspondence, "## 使用方式", "## 函/复函/征求意见函"),
         )
         playbook_section = section(
@@ -2029,6 +2048,12 @@ class SkillBoundaryTests(unittest.TestCase):
         playbooks = (ROOT / "chinese-official-writing" / "references" / "genre-playbooks.md").read_text(
             encoding="utf-8"
         )
+        notice_leaf = (
+            ROOT
+            / "chinese-official-writing"
+            / "references"
+            / "genre-playbook-notice-publication.md"
+        ).read_text(encoding="utf-8")
         report = (
             ROOT / "chinese-official-writing" / "references" / "genre-checklist-report.md"
         ).read_text(encoding="utf-8")
@@ -2044,7 +2069,7 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assertIn("成本考察、成本评估", report)
         self.assertIn("不自动改题为“调研报告”“考核说明”或“实施方案”", report)
         self.assertIn("不写成已经确定的执行路线、责任命令或反馈时限", report)
-        self.assertIn("按 `workflow.md` 的事实映射式二次修改删掉未支持推断", playbooks)
+        self.assertIn("按 `workflow.md` 的事实映射式二次修改删掉未支持推断", notice_leaf)
         self.assertIn("二次局部修改已命中轻量任务卡时，转对应卡片处理", workflow)
         self.assertIn("优先直接改对应位置", route_cards)
         self.assertIn("本卡不重新定义信息去向", route_cards)

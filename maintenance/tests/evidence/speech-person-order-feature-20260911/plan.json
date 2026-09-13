@@ -1,0 +1,99 @@
+{
+  "baseline_commit": "dafc35f9aad594ac6cebf76bd4caf2e1b80a1ba8",
+  "candidate_commit": "72a1d4009716da73a07fd9f764e8e431c83e8f66",
+  "expected_diff": [
+    "references/formal-addressing.md",
+    "references/formulaic-language.md",
+    "references/genre-playbooks.md",
+    "references/reference-index.md",
+    "references/speech-person-order.md"
+  ],
+  "writers": [
+    "alibaba-token-plan/qwen3.8-flash",
+    "alibaba-token-plan-2/qwen3.8-flash"
+  ],
+  "reviewer": "alibaba-token-plan-2/qwen3.8-max",
+  "effort": "max",
+  "cold_effort": "max",
+  "timeout_seconds": 600,
+  "request_timeout_seconds": 240,
+  "max_output_tokens": 12000,
+  "client_version_expected": "0.22.0",
+  "cases": [
+    {
+      "id": "known_leadership",
+      "route": "alibaba-token-plan/qwen3.8-flash",
+      "prompt_file": "prompts/known_leadership.txt",
+      "source": "F:\\Workspaces\\chinese-official-writing-skill\\output\\route-worktrees\\speech-salutation-20260911\\maintenance\\tests\\evidence\\speech-salutation-20260911\\prompts\\known_leadership.txt",
+      "task_sha256": "57cfae64cb04cfe87f84232e2e088b93b61401877a447aa3573243c1bfe99465"
+    },
+    {
+      "id": "new_names",
+      "route": "alibaba-token-plan-2/qwen3.8-flash",
+      "prompt_file": "prompts/new_names.txt",
+      "source": "new synthetic transfer fixture",
+      "task_sha256": "18764bc7a69d664f7186d685e879643676c58b4af763ab655b74b95c7b726f4d"
+    },
+    {
+      "id": "unknown_rank",
+      "route": "alibaba-token-plan/qwen3.8-flash",
+      "prompt_file": "prompts/unknown_rank.txt",
+      "source": "F:\\Workspaces\\chinese-official-writing-skill\\output\\route-worktrees\\speech-salutation-20260911\\maintenance\\tests\\evidence\\speech-salutation-20260911\\prompts\\unknown_rank.txt",
+      "task_sha256": "d10823adf8d141af811441f1d4c7316324c49171ed8a32fa769aaaf94af1a7f8"
+    },
+    {
+      "id": "confirmed_guest",
+      "route": "alibaba-token-plan-2/qwen3.8-flash",
+      "prompt_file": "prompts/confirmed_guest.txt",
+      "source": "F:\\Workspaces\\chinese-official-writing-skill\\output\\route-worktrees\\speech-salutation-20260911\\maintenance\\tests\\evidence\\speech-salutation-20260911\\prompts\\confirmed_guest.txt",
+      "task_sha256": "91feeac1cf6c948e0708a3737bc5369087595460002d5e9e1b5986104575fe8a"
+    },
+    {
+      "id": "respectful_local",
+      "route": "alibaba-token-plan/qwen3.8-flash",
+      "prompt_file": "prompts/respectful_local.txt",
+      "source": "F:\\Workspaces\\chinese-official-writing-skill\\output\\route-worktrees\\speech-salutation-20260911\\maintenance\\tests\\evidence\\speech-salutation-20260911\\prompts\\respectful_local.txt",
+      "task_sha256": "eb5e3103bbdb691e4f0888f38f2f947eefd42d782463bbc2f29224e25280eebd"
+    },
+    {
+      "id": "host_contexts",
+      "route": "alibaba-token-plan-2/qwen3.8-flash",
+      "prompt_file": "prompts/host_contexts.txt",
+      "source": "F:\\Workspaces\\chinese-official-writing-skill\\output\\route-worktrees\\speech-salutation-20260911\\maintenance\\tests\\evidence\\speech-salutation-20260911\\prompts\\host_contexts.txt",
+      "task_sha256": "240ea6fe2c4d3f09a57898aa01665929b98aba6bcaaaea3b75fa426e4bb9c097"
+    },
+    {
+      "id": "existing_role_revision",
+      "route": "alibaba-token-plan/qwen3.8-flash",
+      "prompt_file": "prompts/existing_role_revision.txt",
+      "source": "F:\\Workspaces\\chinese-official-writing-skill\\output\\route-worktrees\\speech-salutation-20260911\\maintenance\\tests\\evidence\\speech-salutation-20260911\\prompts\\existing_role_revision.txt",
+      "task_sha256": "123e15ce73e6f13adc4c7b992353c882bc15e67fc348a31817447bf789942dad"
+    },
+    {
+      "id": "formal_letter_control",
+      "route": "alibaba-token-plan-2/qwen3.8-flash",
+      "prompt_file": "prompts/formal_letter_control.txt",
+      "source": "F:\\Workspaces\\chinese-official-writing-skill\\output\\route-worktrees\\speech-salutation-20260911\\maintenance\\tests\\evidence\\speech-salutation-20260911\\prompts\\formal_letter_control.txt",
+      "task_sha256": "c57d20d76c033ea857f313c1a4d13c272d624d82ce70326b7a10b03ff62a6b2a"
+    }
+  ],
+  "cold_cases": [
+    "known_leadership",
+    "new_names",
+    "host_contexts",
+    "existing_role_revision"
+  ],
+  "policy": {
+    "path": "F:\\Workspaces\\owp-mit-loop-validation-20260911\\openspec\\changes\\update-test-model-usage-20260911\\specs\\test-model-governance\\spec.md",
+    "sha256": "7a1fb0213e47257ab116dabc0b81e0fc5c6ec7c24a879d06a365363490233386"
+  },
+  "budget": {
+    "initial_writer_calls": 16,
+    "initial_cold_calls": 4,
+    "cold_pairs_per_call": 1,
+    "automatic_retries": 0,
+    "maximum_diagnostic_extra_writer_calls": 2,
+    "maximum_diagnostic_extra_cold_calls": 1
+  },
+  "criterion": "New feature: verified specific-person ordering and preservation of existing writing quality. Size reduction and greeting grouping are not admission requirements for this atom."
+}

@@ -1,0 +1,344 @@
+{
+  "main_commit": "53088553fab608e6fc4916286b0700f5a2263f10",
+  "status": "INSTALLED",
+  "activation_state": "AWAITING_HOST_TRUST",
+  "source_signature": "46f6aea99845bcff8fe22a0391f77070286d0ab8ce4770e0326df34080251e53",
+  "verified_public_main": "53088553fab608e6fc4916286b0700f5a2263f10",
+  "base_source_commit": "53088553fab608e6fc4916286b0700f5a2263f10",
+  "build_receipt": "F:\\Workspaces\\owp-local-pro-source-binding-fix-20260908\\output\\local-pro-builds\\46f6aea99845bcff8fe2\\release-receipt.json",
+  "surfaces": [
+    {
+      "surface": "registered_plugin",
+      "root": "C:\\Users\\admin\\AppData\\Local\\OfficialWritingPaid\\local-main-follow\\builds\\46f6aea99845bcff8fe2\\installed\\host\\codex\\0.4.15-official-writing-paid-overlay-0-4-15\\plugins\\official-writing-pro\\skills\\chinese-official-writing-pro\\mit",
+      "files_compared": 47,
+      "missing": [],
+      "mismatches": [],
+      "extra_files": [],
+      "all_raw_bytes_equal": true
+    },
+    {
+      "surface": "codex_cache",
+      "root": "C:\\Users\\admin\\.codex\\plugins\\cache\\official-writing-pro-local\\official-writing-pro\\0.4.15\\skills\\chinese-official-writing-pro\\mit",
+      "files_compared": 47,
+      "missing": [],
+      "mismatches": [],
+      "extra_files": [],
+      "all_raw_bytes_equal": true
+    },
+    {
+      "surface": "installed_version",
+      "root": "C:\\Users\\admin\\AppData\\Local\\OfficialWritingPaid\\local-main-follow\\builds\\46f6aea99845bcff8fe2\\installed\\versions\\0.4.15-official-writing-paid-overlay-0-4-15\\skill\\mit",
+      "files_compared": 47,
+      "missing": [],
+      "mismatches": [],
+      "extra_files": [],
+      "all_raw_bytes_equal": true
+    }
+  ],
+  "comparison_source": "Exact git blob bytes at main HEAD, not the CRLF Windows checkout",
+  "checkout_crlf_only_differences": [
+    "ENTRY.md",
+    "README.md",
+    "references/ai-compute-docs.md",
+    "references/ai-compute-examples.md",
+    "references/anti-ai-patterns.md",
+    "references/argument-chains.md",
+    "references/compatibility-scene-routing.md",
+    "references/compression-details.md",
+    "references/delivery-review-gate.md",
+    "references/external-research.md",
+    "references/field-editing.md",
+    "references/final-review-layers.md",
+    "references/formal-addressing.md",
+    "references/format-gbt9704.md",
+    "references/formulaic-language.md",
+    "references/genre-checklist-feasibility-review.md",
+    "references/genre-checklist-report.md",
+    "references/genre-checklist-request.md",
+    "references/genre-checklist.md",
+    "references/genre-playbook-advisory-feedback.md",
+    "references/genre-playbook-complaint-reflection.md",
+    "references/genre-playbook-correspondence.md",
+    "references/genre-playbook-institution-rules.md",
+    "references/genre-playbook-minutes.md",
+    "references/genre-playbook-news-commentary.md",
+    "references/genre-playbook-news-message.md",
+    "references/genre-playbook-plan-construction.md",
+    "references/genre-playbook-project-application.md",
+    "references/genre-playbook-remediation-plan.md",
+    "references/genre-playbook-request.md",
+    "references/genre-playbook-work-summary.md",
+    "references/genre-playbooks.md",
+    "references/genre-routing.md",
+    "references/handling-elements.md",
+    "references/information-selection.md",
+    "references/official-style.md",
+    "references/proofreading-checklist.md",
+    "references/prose-lint-usage.md",
+    "references/reference-index.md",
+    "references/review-checklist.md",
+    "references/review-direct-checklist.md",
+    "references/short-draft-naturalness.md",
+    "references/speech-person-order.md",
+    "references/structure-editing.md",
+    "references/task-route-cards.md",
+    "references/technical-terms.md",
+    "references/workflow.md"
+  ],
+  "files": [
+    {
+      "path": "ENTRY.md",
+      "canonical": "SKILL.md",
+      "sha256": "63ef62ba751591afed4927e5dfc0f8171954214a74ee08b79fc2eb8e3602b4d4"
+    },
+    {
+      "path": "README.md",
+      "canonical": "README.md",
+      "sha256": "bf8af51dcb5988ace3eba17528ed020f68d2aa0bd48fabb82f1e421d4d26ec4f"
+    },
+    {
+      "path": "references/ai-compute-docs.md",
+      "canonical": "references/ai-compute-docs.md",
+      "sha256": "5a0219ce7abb8702b4aa4ece39cfdb225feb6b52df08b555a5e2ecffc689b3a1"
+    },
+    {
+      "path": "references/ai-compute-examples.md",
+      "canonical": "references/ai-compute-examples.md",
+      "sha256": "f0503f82e26220e368797a56a04f924e9738daf774c5163b88689de71cfd9b96"
+    },
+    {
+      "path": "references/anti-ai-patterns.md",
+      "canonical": "references/anti-ai-patterns.md",
+      "sha256": "8e2c76ae9e2acdef17c9102c882b32751a22897908550fcc55ed0646f52bbee8"
+    },
+    {
+      "path": "references/argument-chains.md",
+      "canonical": "references/argument-chains.md",
+      "sha256": "dbe855c11eba2c35726aa383101a7c3a7d13c93226a6c98e2f7bc221d29209bf"
+    },
+    {
+      "path": "references/compatibility-scene-routing.md",
+      "canonical": "references/compatibility-scene-routing.md",
+      "sha256": "166fe77834de249ace66da413a28842d818b8669c4d0eb706db1f9a587c2b67d"
+    },
+    {
+      "path": "references/compression-details.md",
+      "canonical": "references/compression-details.md",
+      "sha256": "21ba0dd4faa1f556201b329349ea895be62760e9c932fdcbad2b4088cd4ab9bd"
+    },
+    {
+      "path": "references/delivery-review-gate.md",
+      "canonical": "references/delivery-review-gate.md",
+      "sha256": "1c5fb0bbb687282ce0e0023efdfc07940ea0d5f75b7c53de591747a8c78a17e2"
+    },
+    {
+      "path": "references/external-research.md",
+      "canonical": "references/external-research.md",
+      "sha256": "e3c719b4b848a94f47cda2faaa85acee7cfdb035a289b4f9d40b6b9806f6af35"
+    },
+    {
+      "path": "references/field-editing.md",
+      "canonical": "references/field-editing.md",
+      "sha256": "1155507fe9a0ba70da22372a14926f78baaf82cf3e273c0e3a0341b80040e33c"
+    },
+    {
+      "path": "references/final-review-layers.md",
+      "canonical": "references/final-review-layers.md",
+      "sha256": "de166db769d7e078121a5b2d81a1b9fec4c2112e380b14c446eea6a5d8ed305a"
+    },
+    {
+      "path": "references/formal-addressing.md",
+      "canonical": "references/formal-addressing.md",
+      "sha256": "67fb8d7749309d25dc81040bca9bafd3faa3932a41ef35712502660f2f339da1"
+    },
+    {
+      "path": "references/format-gbt9704.md",
+      "canonical": "references/format-gbt9704.md",
+      "sha256": "01ca736728ba08df703d8cdc63dcbedcb474dd18059a7fcbdde0ce3cfe1d7fd6"
+    },
+    {
+      "path": "references/formulaic-language.md",
+      "canonical": "references/formulaic-language.md",
+      "sha256": "b3c767cbe14465ad116a5ff3bf4f3efcb181c6a826dfc77be4cf152b4f2d0255"
+    },
+    {
+      "path": "references/genre-checklist-feasibility-review.md",
+      "canonical": "references/genre-checklist-feasibility-review.md",
+      "sha256": "8ccfa9923dd38ff5390c6234c85dcdcd8b8753863ff00b0a460c5bc171bdd1b7"
+    },
+    {
+      "path": "references/genre-checklist-report.md",
+      "canonical": "references/genre-checklist-report.md",
+      "sha256": "e6b42379ed812e8ef8217e6358fc9fae586a571d2a6c0783829f25fda30e713e"
+    },
+    {
+      "path": "references/genre-checklist-request.md",
+      "canonical": "references/genre-checklist-request.md",
+      "sha256": "b011444af07dab83a5f61099e3589abd8bf49c9f8addf3c180f7db393f1ef44f"
+    },
+    {
+      "path": "references/genre-checklist.md",
+      "canonical": "references/genre-checklist.md",
+      "sha256": "745f2d7b35beb8562acf8d4e6d2198e48fe419eb6439af35ca5dad860b4df29c"
+    },
+    {
+      "path": "references/genre-playbook-advisory-feedback.md",
+      "canonical": "references/genre-playbook-advisory-feedback.md",
+      "sha256": "c6256e8e4be04c16ce5d3a050a45b85734a1acdadcb4972e65ad9e3c5e045c7f"
+    },
+    {
+      "path": "references/genre-playbook-complaint-reflection.md",
+      "canonical": "references/genre-playbook-complaint-reflection.md",
+      "sha256": "7bf4c0615858c3422fdc712624d32398a5ac16332d6197bb192bf44c2c6e2bab"
+    },
+    {
+      "path": "references/genre-playbook-correspondence.md",
+      "canonical": "references/genre-playbook-correspondence.md",
+      "sha256": "03dc8110d804fee6d1241a5adbc63d0e13bbb178b483412196dfe419b64446d5"
+    },
+    {
+      "path": "references/genre-playbook-institution-rules.md",
+      "canonical": "references/genre-playbook-institution-rules.md",
+      "sha256": "f10d04e86c50deefea05198fddb2a422cf0799a6433d8a726b012c2d58e17928"
+    },
+    {
+      "path": "references/genre-playbook-minutes.md",
+      "canonical": "references/genre-playbook-minutes.md",
+      "sha256": "ce1b195a3aa043268e4452355a001366f4008727be5692336c8859208f181bb5"
+    },
+    {
+      "path": "references/genre-playbook-news-commentary.md",
+      "canonical": "references/genre-playbook-news-commentary.md",
+      "sha256": "4bc3a2670ce10e4d6946ebe8d5b66edc9ac3f12a399b305d585d46bad2267347"
+    },
+    {
+      "path": "references/genre-playbook-news-message.md",
+      "canonical": "references/genre-playbook-news-message.md",
+      "sha256": "a3c503d493b3fc7b65524d2dfa43849a4f2d33dbf67fd09a346af12c1238f601"
+    },
+    {
+      "path": "references/genre-playbook-plan-construction.md",
+      "canonical": "references/genre-playbook-plan-construction.md",
+      "sha256": "f0719d7884e13afc967fbc6d3383ade3f9f06f36cac7e46cdea91fba85d3e24a"
+    },
+    {
+      "path": "references/genre-playbook-project-application.md",
+      "canonical": "references/genre-playbook-project-application.md",
+      "sha256": "bcc4b8429aa23f065c7f22b7928476c21c1967cca0454911c3b565f5000b6caa"
+    },
+    {
+      "path": "references/genre-playbook-remediation-plan.md",
+      "canonical": "references/genre-playbook-remediation-plan.md",
+      "sha256": "70ba20fb0f119067de45c972e9481a2f2fc009ae547912b871d08e7f7a133ec7"
+    },
+    {
+      "path": "references/genre-playbook-request.md",
+      "canonical": "references/genre-playbook-request.md",
+      "sha256": "458a3353b9254256cf6302cae738a5372964328cb3bbf9cf78bab97550b62b88"
+    },
+    {
+      "path": "references/genre-playbook-work-summary.md",
+      "canonical": "references/genre-playbook-work-summary.md",
+      "sha256": "ab34551c8df751bf4a7d882a5f5f1ee8d12291e735e3f45cf8ad1e1d4c68e026"
+    },
+    {
+      "path": "references/genre-playbooks.md",
+      "canonical": "references/genre-playbooks.md",
+      "sha256": "f84cc759b5627e2526b58f0a4c83095322618065644d9fa34788d3561bceb84c"
+    },
+    {
+      "path": "references/genre-routing.md",
+      "canonical": "references/genre-routing.md",
+      "sha256": "f31c8433417923d4064e75358cec53f41d30b135c7fd40699758077feddf19b2"
+    },
+    {
+      "path": "references/handling-elements.md",
+      "canonical": "references/handling-elements.md",
+      "sha256": "e652dac11d5fec9458cc6bb63d41e884e206b359dfe6776731016b7c7a8e7fa4"
+    },
+    {
+      "path": "references/information-selection.md",
+      "canonical": "references/information-selection.md",
+      "sha256": "e20c2b18cddab4cb0e4ba0ce4ddcd8b849314c4f30ee4d1c6f16216b9f630aff"
+    },
+    {
+      "path": "references/official-style.md",
+      "canonical": "references/official-style.md",
+      "sha256": "82b97cc58bca9fce3f81c79ece4a5804d17a1869a5bbd3f6de191612440d505a"
+    },
+    {
+      "path": "references/proofreading-checklist.md",
+      "canonical": "references/proofreading-checklist.md",
+      "sha256": "aa56802a0e984aadb1deed4603181fc85b237b8c534ae0973e3c9d9413d859d2"
+    },
+    {
+      "path": "references/prose-lint-usage.md",
+      "canonical": "references/prose-lint-usage.md",
+      "sha256": "86ee58fbdf9b8b13d9f945bb8d99d83986f25f5720a4ecdb4340e3aec2cef900"
+    },
+    {
+      "path": "references/reference-index.md",
+      "canonical": "references/reference-index.md",
+      "sha256": "5b3ab6f2c9ad235dc228c1bc31d8dbd01e5a92b6379e4b07a90b71198a20d527"
+    },
+    {
+      "path": "references/review-checklist.md",
+      "canonical": "references/review-checklist.md",
+      "sha256": "e2f4345b1f37baf990add8c8f1cd9879cb362d3594b1126459492945754182ac"
+    },
+    {
+      "path": "references/review-direct-checklist.md",
+      "canonical": "references/review-direct-checklist.md",
+      "sha256": "ae0b2fa2a9bbb778be215f9728d6ba836ace16166ca15235af90ca9ef2bceadf"
+    },
+    {
+      "path": "references/short-draft-naturalness.md",
+      "canonical": "references/short-draft-naturalness.md",
+      "sha256": "100b89b6216d872f35b568164f13b4bcc448346b1dd39d9b100fa9bf6f30f7ba"
+    },
+    {
+      "path": "references/speech-person-order.md",
+      "canonical": "references/speech-person-order.md",
+      "sha256": "37b7e5643ce5d71d149fbcea3a5be4396ad0b703e687ae2a745bbb9641a996c3"
+    },
+    {
+      "path": "references/structure-editing.md",
+      "canonical": "references/structure-editing.md",
+      "sha256": "3efacd465e7c7a643c25f52a158368f20de29eb6d8de5628676ac8e0ce675259"
+    },
+    {
+      "path": "references/task-route-cards.md",
+      "canonical": "references/task-route-cards.md",
+      "sha256": "5486d59cfaafd25f6b49623d2f7b4e0559183edb325fda6809c32cc65a273a0d"
+    },
+    {
+      "path": "references/technical-terms.md",
+      "canonical": "references/technical-terms.md",
+      "sha256": "681cd74bb3fc3ed6d2c210a64b174a6bf0275491eedd7e535b9330ea264cab5b"
+    },
+    {
+      "path": "references/workflow.md",
+      "canonical": "references/workflow.md",
+      "sha256": "a09bde8fa3ae518923ea5b6cbcc2beafd8047d206fc1dcd07d8e06d4cb6d2c67"
+    }
+  ],
+  "all_surfaces_raw_bytes_equal": true,
+  "host_hooks": [
+    {
+      "key": "official-writing-pro@official-writing-pro-local:hooks/hooks.json:user_prompt_submit:0:0",
+      "enabled": true,
+      "trustStatus": "trusted",
+      "currentHash": "sha256:901d460b579f73fc4b42ec8369c71ac3e159bda0cb5ef9903bd18cafb282c301"
+    },
+    {
+      "key": "official-writing-pro@official-writing-pro-local:hooks/hooks.json:stop:0:0",
+      "enabled": true,
+      "trustStatus": "trusted",
+      "currentHash": "sha256:2924ce5645512c5f101e121ba61ee01b30439aa06dc74c9dbc1582e4c8a8ac23"
+    }
+  ],
+  "activation_note": "Both host hooks are trusted and enabled in the sync receipt; the separate activation lifecycle remains AWAITING_HOST_TRUST with no first event. No real hook execution is claimed.",
+  "initial_working_tree_check_sha256": "6deb4ac69154629a696061a67da12792f077b8f866369d8f9c75618ab9825926",
+  "initial_check_correction": "Initial comparison against the Windows checkout failed on CRLF. All 47 files match committed Git blob bytes exactly on all three installed surfaces; no installed content was changed to satisfy the check.",
+  "real_hook_executed_this_feature_round": false
+}
