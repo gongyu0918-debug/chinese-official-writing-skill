@@ -439,9 +439,9 @@ class SkillBoundaryTests(unittest.TestCase):
             common = read_reference("writing-rules.md")
             compression = read_reference("compression-details.md")
             self.assertIn("references/writing-rules.md", home)
-            self.assertRegex(common, r"具体经历[^。]*须有相应依据")
-            self.assertRegex(common, r"篇幅上限[^。]*无需填满")
-            self.assertRegex(common, r"仍无法达到下限[^。]*实际差额[^。]*不能报为达标")
+            self.assertRegex(common, r"具体经历[^。]*须有依据")
+            self.assertRegex(common, r"上限[^。]*无需填满")
+            self.assertRegex(common, r"仍不足[^。]*实际差额[^。]*不报达标")
             self.assertIn("compression-details.md", common)
             self.assertIn("scripts/draft_length.py", compression)
             for option in ("--min-chars", "--max-chars", "--count-mode cjk", "--json", "`-`"):

@@ -1,0 +1,32 @@
+"""Compress one common page while preserving four stages and script order."""
+from pathlib import Path
+import hashlib
+import json
+import re
+import shutil
+import subprocess
+
+ROOT = Path(__file__).resolve().parents[4]
+SOURCE = ROOT / 'chinese-official-writing'
+HERE = Path(__file__).resolve().parent
+DEST = ROOT / 'output/common-compression-r18'
+assert not DEST.exists()
+assert not subprocess.check_output(['git','status','--porcelain','--','chinese-official-writing'],cwd=ROOT,text=True).strip()
+for arm in ['baseline','candidate']:
+    shutil.copytree(SOURCE,DEST/arm,ignore=shutil.ignore_patterns('__pycache__','*.pyc'))
+relative = 'references/writing-rules.md'
+(DEST/'candidate'/relative).write_bytes((HERE/'candidate-writing.md').read_bytes())
+def files(root):
+    return {p.relative_to(root).as_posix():hashlib.sha256(p.read_bytes()).hexdigest() for p in sorted(root.rglob('*')) if p.is_file() and '__pycache__' not in p.parts and p.suffix!='.pyc'}
+before,after=files(DEST/'baseline'),files(DEST/'candidate')
+assert set(before)==set(after)
+assert {k for k in before if before[k]!=after[k]}=={relative}
+assert files(SOURCE)==before
+sizes={}
+for arm in ['baseline','candidate']:
+    text=(DEST/arm/relative).read_text(encoding='utf-8-sig')
+    sizes[arm]={'chars':len(text),'nonspace':len(re.sub(r'\s','',text))}
+    assert text.index('第二步') < text.index('draft_length.py') < text.index('第三步') < text.index('anti-ai-patterns.md') < text.index('prose-lint-usage.md') < text.index('第四步')
+record={'source_head':subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip(),'changed':[relative],'sizes':sizes,'files':{'baseline':before,'candidate':after},'fingerprints':{a:hashlib.sha256(json.dumps(v,sort_keys=True).encode()).hexdigest() for a,v in [('baseline',before),('candidate',after)]}}
+(DEST/'build.json').write_text(json.dumps(record,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+print(json.dumps({k:record[k] for k in ['changed','sizes','fingerprints']},ensure_ascii=False))

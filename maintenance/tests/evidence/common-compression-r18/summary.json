@@ -1,0 +1,866 @@
+{
+  "source_head": "8f9d08898cd1f52b6f16f32691739af5a7e4067d",
+  "product_fingerprints": {
+    "baseline": "6dd2520d9782a4d1f85f8ee20c33b8aca3b49bd0414120bb3612a2157752e84d",
+    "candidate": "1640b9a5ed2b974390cbcb2d3b5523faeb1b5e57b4553d62d8044a78cac182d7"
+  },
+  "sizes": {
+    "baseline": {
+      "chars": 1750,
+      "nonspace": 1685
+    },
+    "candidate": {
+      "chars": 1565,
+      "nonspace": 1506
+    }
+  },
+  "calls": 24,
+  "technical_valid": 24,
+  "runs": [
+    {
+      "run": "common-compression-native-r18-qwen",
+      "models": [
+        "alibaba-token-plan/qwen3.8-flash"
+      ],
+      "effort": "medium",
+      "calls": 12,
+      "technical_valid": 12,
+      "totals": {
+        "baseline": {
+          "commands": 68,
+          "read_chars_unique": 61236,
+          "input_tokens": 707511,
+          "cached_input_tokens": 612352,
+          "uncached_input_tokens": 95159,
+          "output_tokens": 19440,
+          "seconds": 596.9499999999999,
+          "calls": 6,
+          "technical_valid": 6,
+          "prose_lint.py": 8,
+          "draft_length.py": 7,
+          "anti_ai_page_returned": 6,
+          "tasks_with_prose_command": 5
+        },
+        "candidate": {
+          "commands": 83,
+          "read_chars_unique": 61697,
+          "input_tokens": 942886,
+          "cached_input_tokens": 845056,
+          "uncached_input_tokens": 97830,
+          "output_tokens": 24078,
+          "seconds": 706.3900000000001,
+          "calls": 6,
+          "technical_valid": 6,
+          "prose_lint.py": 13,
+          "draft_length.py": 12,
+          "anti_ai_page_returned": 6,
+          "tasks_with_prose_command": 6
+        }
+      },
+      "observations": [
+        {
+          "stem": "m0-compute_units-baseline",
+          "case": "compute_units",
+          "arm": "baseline",
+          "invalid": [],
+          "read_chars_unique": 10190,
+          "seconds": 75.81,
+          "uncached_input_tokens": 13383,
+          "unique_pages": [
+            "SKILL.md",
+            "references/ai-compute-docs.md",
+            "references/anti-ai-patterns.md",
+            "references/genre-playbook-explanation.md",
+            "references/prose-lint-usage.md",
+            "references/reference-index.md",
+            "references/writing-rules.md"
+          ],
+          "repeated_full_pages": {},
+          "script_commands": {
+            "draft_length.py": 1,
+            "prose_lint.py": 1
+          }
+        },
+        {
+          "stem": "m0-compute_units-candidate",
+          "case": "compute_units",
+          "arm": "candidate",
+          "invalid": [],
+          "read_chars_unique": 10689,
+          "seconds": 120.38,
+          "uncached_input_tokens": 16963,
+          "unique_pages": [
+            "SKILL.md",
+            "references/ai-compute-docs.md",
+            "references/ai-compute-examples.md",
+            "references/anti-ai-patterns.md",
+            "references/genre-playbook-explanation.md",
+            "references/prose-lint-usage.md",
+            "references/reference-index.md",
+            "references/writing-rules.md"
+          ],
+          "repeated_full_pages": {},
+          "script_commands": {
+            "prose_lint.py": 2,
+            "draft_length.py": 2
+          }
+        },
+        {
+          "stem": "m0-existing_field_form-baseline",
+          "case": "existing_field_form",
+          "arm": "baseline",
+          "invalid": [],
+          "read_chars_unique": 9413,
+          "seconds": 57.7,
+          "uncached_input_tokens": 8981,
+          "unique_pages": [
+            "SKILL.md",
+            "references/anti-ai-patterns.md",
+            "references/field-editing.md",
+            "references/genre-playbook-request.md",
+            "references/reference-index.md",
+            "references/writing-rules.md"
+          ],
+          "repeated_full_pages": {},
+          "script_commands": {}
+        },
+        {
+          "stem": "m0-existing_field_form-candidate",
+          "case": "existing_field_form",
+          "arm": "candidate",
+          "invalid": [],
+          "read_chars_unique": 9663,
+          "seconds": 119.98,
+          "uncached_input_tokens": 16628,
+          "unique_pages": [
+            "SKILL.md",
+            "references/anti-ai-patterns.md",
+            "references/field-editing.md",
+            "references/genre-playbook-request.md",
+            "references/prose-lint-usage.md",
+            "references/reference-index.md",
+            "references/writing-rules.md"
+          ],
+          "repeated_full_pages": {},
+          "script_commands": {
+            "prose_lint.py": 2,
+            "draft_length.py": 2
+          }
+        },
+        {
+          "stem": "m0-notice_receiver-baseline",
+          "case": "notice_receiver",
+          "arm": "baseline",
+          "invalid": [],
+          "read_chars_unique": 8811,
+          "seconds": 123.16,
+          "uncached_input_tokens": 16773,
+          "unique_pages": [
+            "SKILL.md",
+            "references/anti-ai-patterns.md",
+            "references/genre-playbook-notice.md",
+            "references/prose-lint-usage.md",
+            "references/reference-index.md",
+            "references/writing-rules.md"
+          ],
+          "repeated_full_pages": {},
+          "script_commands": {
+            "prose_lint.py": 2,
+            "draft_length.py": 2
+          }
+        },
+        {
+          "stem": "m0-notice_receiver-candidate",
+          "case": "notice_receiver",
+          "arm": "candidate",
+          "invalid": [],
+          "read_chars_unique": 8626,
+          "seconds": 112.14,
+          "uncached_input_tokens": 17435,
+          "unique_pages": [
+            "SKILL.md",
+            "references/anti-ai-patterns.md",
+            "references/genre-playbook-notice.md",
+            "references/prose-lint-usage.md",
+            "references/reference-index.md",
+            "references/writing-rules.md"
+          ],
+          "repeated_full_pages": {},
+          "script_commands": {
+            "draft_length.py": 3,
+            "prose_lint.py": 3
+          }
+        },
+        {
+          "stem": "m0-review-baseline",
+          "case": "review",
+          "arm": "baseline",
+          "invalid": [],
+          "read_chars_unique": 10831,
+          "seconds": 143.33,
+          "uncached_input_tokens": 18694,
+          "unique_pages": [
+            "SKILL.md",
+            "references/anti-ai-patterns.md",
+            "references/genre-checklist-report.md",
+            "references/genre-playbook-report.md",
+            "references/prose-lint-usage.md",
+            "references/reference-index.md",
+            "references/review-checklist.md",
+            "references/writing-rules.md"
+          ],
+          "repeated_full_pages": {},
+          "script_commands": {
+            "prose_lint.py": 2,
+            "draft_length.py": 1
+          }
+        },
+        {
+          "stem": "m0-review-candidate",
+          "case": "review",
+          "arm": "candidate",
+          "invalid": [],
+          "read_chars_unique": 10646,
+          "seconds": 108.0,
+          "uncached_input_tokens": 13691,
+          "unique_pages": [
+            "SKILL.md",
+            "references/anti-ai-patterns.md",
+            "references/genre-checklist-report.md",
+            "references/genre-playbook-report.md",
+            "references/prose-lint-usage.md",
+            "references/reference-index.md",
+            "references/review-checklist.md",
+            "references/writing-rules.md"
+          ],
+          "repeated_full_pages": {},
+          "script_commands": {
+            "prose_lint.py": 2,
+            "draft_length.py": 1
+          }
+        },
+        {
+          "stem": "m0-review_rewrite-baseline",
+          "case": "review_rewrite",
+          "arm": "baseline",
+          "invalid": [],
+          "read_chars_unique": 10765,
+          "seconds": 88.28,
+          "uncached_input_tokens": 20070,
+          "unique_pages": [
+            "SKILL.md",
+            "references/anti-ai-patterns.md",
+            "references/genre-playbook-request.md",
+            "references/prose-lint-usage.md",
+            "references/reference-index.md",
+            "references/review-checklist.md",
+            "references/writing-rules.md"
+          ],
+          "repeated_full_pages": {},
+          "script_commands": {
+            "draft_length.py": 1,
+            "prose_lint.py": 1
+          }
+        },
+        {
+          "stem": "m0-review_rewrite-candidate",
+          "case": "review_rewrite",
+          "arm": "candidate",
+          "invalid": [],
+          "read_chars_unique": 10580,
+          "seconds": 117.94,
+          "uncached_input_tokens": 15371,
+          "unique_pages": [
+            "SKILL.md",
+            "references/anti-ai-patterns.md",
+            "references/genre-playbook-request.md",
+            "references/prose-lint-usage.md",
+            "references/reference-index.md",
+            "references/review-checklist.md",
+            "references/writing-rules.md"
+          ],
+          "repeated_full_pages": {},
+          "script_commands": {
+            "draft_length.py": 2,
+            "prose_lint.py": 2
+          }
+        },
+        {
+          "stem": "m0-scope_analysis_dedupe-baseline",
+          "case": "scope_analysis_dedupe",
+          "arm": "baseline",
+          "invalid": [],
+          "read_chars_unique": 11226,
+          "seconds": 108.67,
+          "uncached_input_tokens": 17258,
+          "unique_pages": [
+            "SKILL.md",
+            "references/anti-ai-patterns.md",
+            "references/compatibility-scene-routing.md",
+            "references/genre-playbook-advisory-feedback.md",
+            "references/prose-lint-usage.md",
+            "references/reference-index.md",
+            "references/writing-rules.md"
+          ],
+          "repeated_full_pages": {},
+          "script_commands": {
+            "prose_lint.py": 2,
+            "draft_length.py": 2
+          }
+        },
+        {
+          "stem": "m0-scope_analysis_dedupe-candidate",
+          "case": "scope_analysis_dedupe",
+          "arm": "candidate",
+          "invalid": [],
+          "read_chars_unique": 11493,
+          "seconds": 127.95,
+          "uncached_input_tokens": 17742,
+          "unique_pages": [
+            "SKILL.md",
+            "references/anti-ai-patterns.md",
+            "references/argument-chains.md",
+            "references/compatibility-scene-routing.md",
+            "references/genre-playbook-advisory-feedback.md",
+            "references/prose-lint-usage.md",
+            "references/reference-index.md",
+            "references/writing-rules.md"
+          ],
+          "repeated_full_pages": {},
+          "script_commands": {
+            "draft_length.py": 2,
+            "prose_lint.py": 2
+          }
+        }
+      ],
+      "matched_anti_prose_pairs": {
+        "pairs": 5,
+        "scope": "Cost diagnostic for pairs with anti-AI page returned and a prose-script command on both arms. Not a quality-selected subset, proof of effective checking, or proof of equal length checks.",
+        "baseline": {
+          "read_chars_unique": 51823,
+          "uncached_input_tokens": 86178,
+          "commands": 62,
+          "seconds": 539.25
+        },
+        "candidate": {
+          "read_chars_unique": 52034,
+          "uncached_input_tokens": 81202,
+          "commands": 71,
+          "seconds": 586.41
+        }
+      },
+      "blind_packet_sha256": "9d9ba7682a1eb68179c8f1612f547695e4f76f245d36fa0ba013ad4c889afdd6",
+      "blind_review_sha256": "b5296d26ba27c4ad6adf0644b4b03a73abc2569ef05427b853977853fa3d51a6",
+      "blind_counts": {
+        "body": {
+          "candidate": 1,
+          "tie": 3,
+          "baseline": 2
+        },
+        "delivery": {
+          "candidate": 1,
+          "tie": 3,
+          "baseline": 2
+        }
+      },
+      "decoded": [
+        {
+          "id": "P01",
+          "model": "alibaba-token-plan/qwen3.8-flash",
+          "case": "compute_units",
+          "body": "candidate",
+          "delivery": "candidate"
+        },
+        {
+          "id": "P02",
+          "model": "alibaba-token-plan/qwen3.8-flash",
+          "case": "existing_field_form",
+          "body": "tie",
+          "delivery": "tie"
+        },
+        {
+          "id": "P03",
+          "model": "alibaba-token-plan/qwen3.8-flash",
+          "case": "notice_receiver",
+          "body": "tie",
+          "delivery": "tie"
+        },
+        {
+          "id": "P04",
+          "model": "alibaba-token-plan/qwen3.8-flash",
+          "case": "review",
+          "body": "baseline",
+          "delivery": "baseline"
+        },
+        {
+          "id": "P05",
+          "model": "alibaba-token-plan/qwen3.8-flash",
+          "case": "review_rewrite",
+          "body": "baseline",
+          "delivery": "baseline"
+        },
+        {
+          "id": "P06",
+          "model": "alibaba-token-plan/qwen3.8-flash",
+          "case": "scope_analysis_dedupe",
+          "body": "tie",
+          "delivery": "tie"
+        }
+      ]
+    },
+    {
+      "run": "common-compression-native-r18-deepseek",
+      "models": [
+        "command-code/deepseek-deepseek-v4.1-flash"
+      ],
+      "effort": "max",
+      "calls": 12,
+      "technical_valid": 12,
+      "totals": {
+        "baseline": {
+          "commands": 91,
+          "read_chars_unique": 70433,
+          "input_tokens": 1242646,
+          "cached_input_tokens": 1148544,
+          "uncached_input_tokens": 94102,
+          "output_tokens": 38756,
+          "seconds": 414.9200000000001,
+          "calls": 6,
+          "technical_valid": 6,
+          "prose_lint.py": 10,
+          "draft_length.py": 7,
+          "anti_ai_page_returned": 6,
+          "tasks_with_prose_command": 6
+        },
+        "candidate": {
+          "commands": 83,
+          "read_chars_unique": 67602,
+          "input_tokens": 967069,
+          "cached_input_tokens": 877184,
+          "uncached_input_tokens": 89885,
+          "output_tokens": 23816,
+          "seconds": 310.59000000000003,
+          "calls": 6,
+          "technical_valid": 6,
+          "prose_lint.py": 9,
+          "draft_length.py": 7,
+          "anti_ai_page_returned": 6,
+          "tasks_with_prose_command": 6
+        }
+      },
+      "observations": [
+        {
+          "stem": "m2-compute_units-baseline",
+          "case": "compute_units",
+          "arm": "baseline",
+          "invalid": [],
+          "read_chars_unique": 11351,
+          "seconds": 68.23,
+          "uncached_input_tokens": 16303,
+          "unique_pages": [
+            "SKILL.md",
+            "references/ai-compute-docs.md",
+            "references/ai-compute-examples.md",
+            "references/anti-ai-patterns.md",
+            "references/genre-playbook-explanation.md",
+            "references/genre-routing.md",
+            "references/prose-lint-usage.md",
+            "references/reference-index.md",
+            "references/writing-rules.md"
+          ],
+          "repeated_full_pages": {},
+          "script_commands": {
+            "prose_lint.py": 2,
+            "draft_length.py": 1
+          }
+        },
+        {
+          "stem": "m2-compute_units-candidate",
+          "case": "compute_units",
+          "arm": "candidate",
+          "invalid": [],
+          "read_chars_unique": 10482,
+          "seconds": 43.84,
+          "uncached_input_tokens": 11032,
+          "unique_pages": [
+            "SKILL.md",
+            "references/ai-compute-docs.md",
+            "references/anti-ai-patterns.md",
+            "references/genre-playbook-explanation.md",
+            "references/genre-routing.md",
+            "references/prose-lint-usage.md",
+            "references/reference-index.md",
+            "references/writing-rules.md"
+          ],
+          "repeated_full_pages": {},
+          "script_commands": {
+            "draft_length.py": 1,
+            "prose_lint.py": 1
+          }
+        },
+        {
+          "stem": "m2-existing_field_form-baseline",
+          "case": "existing_field_form",
+          "arm": "baseline",
+          "invalid": [],
+          "read_chars_unique": 10325,
+          "seconds": 79.75,
+          "uncached_input_tokens": 13858,
+          "unique_pages": [
+            "SKILL.md",
+            "references/anti-ai-patterns.md",
+            "references/field-editing.md",
+            "references/genre-playbook-request.md",
+            "references/genre-routing.md",
+            "references/prose-lint-usage.md",
+            "references/reference-index.md",
+            "references/writing-rules.md"
+          ],
+          "repeated_full_pages": {},
+          "script_commands": {
+            "prose_lint.py": 2,
+            "draft_length.py": 2
+          }
+        },
+        {
+          "stem": "m2-existing_field_form-candidate",
+          "case": "existing_field_form",
+          "arm": "candidate",
+          "invalid": [],
+          "read_chars_unique": 9663,
+          "seconds": 51.47,
+          "uncached_input_tokens": 25366,
+          "unique_pages": [
+            "SKILL.md",
+            "references/anti-ai-patterns.md",
+            "references/field-editing.md",
+            "references/genre-playbook-request.md",
+            "references/prose-lint-usage.md",
+            "references/reference-index.md",
+            "references/writing-rules.md"
+          ],
+          "repeated_full_pages": {},
+          "script_commands": {
+            "prose_lint.py": 3,
+            "draft_length.py": 2
+          }
+        },
+        {
+          "stem": "m2-notice_receiver-baseline",
+          "case": "notice_receiver",
+          "arm": "baseline",
+          "invalid": [],
+          "read_chars_unique": 11514,
+          "seconds": 52.24,
+          "uncached_input_tokens": 13331,
+          "unique_pages": [
+            "SKILL.md",
+            "references/anti-ai-patterns.md",
+            "references/formulaic-language.md",
+            "references/genre-playbook-notice.md",
+            "references/genre-routing.md",
+            "references/prose-lint-usage.md",
+            "references/reference-index.md",
+            "references/review-checklist.md",
+            "references/writing-rules.md"
+          ],
+          "repeated_full_pages": {},
+          "script_commands": {
+            "draft_length.py": 1,
+            "prose_lint.py": 1
+          }
+        },
+        {
+          "stem": "m2-notice_receiver-candidate",
+          "case": "notice_receiver",
+          "arm": "candidate",
+          "invalid": [],
+          "read_chars_unique": 10162,
+          "seconds": 52.3,
+          "uncached_input_tokens": 14243,
+          "unique_pages": [
+            "SKILL.md",
+            "references/anti-ai-patterns.md",
+            "references/formulaic-language.md",
+            "references/genre-playbook-notice.md",
+            "references/genre-routing.md",
+            "references/prose-lint-usage.md",
+            "references/reference-index.md",
+            "references/writing-rules.md"
+          ],
+          "repeated_full_pages": {},
+          "script_commands": {
+            "draft_length.py": 1,
+            "prose_lint.py": 1
+          }
+        },
+        {
+          "stem": "m2-review-baseline",
+          "case": "review",
+          "arm": "baseline",
+          "invalid": [],
+          "read_chars_unique": 11715,
+          "seconds": 69.45,
+          "uncached_input_tokens": 16670,
+          "unique_pages": [
+            "SKILL.md",
+            "references/anti-ai-patterns.md",
+            "references/genre-checklist-report.md",
+            "references/genre-playbook-report.md",
+            "references/genre-routing.md",
+            "references/proofreading-checklist.md",
+            "references/prose-lint-usage.md",
+            "references/reference-index.md",
+            "references/review-checklist.md",
+            "references/writing-rules.md"
+          ],
+          "repeated_full_pages": {},
+          "script_commands": {
+            "prose_lint.py": 2
+          }
+        },
+        {
+          "stem": "m2-review-candidate",
+          "case": "review",
+          "arm": "candidate",
+          "invalid": [],
+          "read_chars_unique": 11530,
+          "seconds": 50.92,
+          "uncached_input_tokens": 13789,
+          "unique_pages": [
+            "SKILL.md",
+            "references/anti-ai-patterns.md",
+            "references/genre-checklist-report.md",
+            "references/genre-playbook-report.md",
+            "references/genre-routing.md",
+            "references/proofreading-checklist.md",
+            "references/prose-lint-usage.md",
+            "references/reference-index.md",
+            "references/review-checklist.md",
+            "references/writing-rules.md"
+          ],
+          "repeated_full_pages": {},
+          "script_commands": {
+            "prose_lint.py": 1
+          }
+        },
+        {
+          "stem": "m2-review_rewrite-baseline",
+          "case": "review_rewrite",
+          "arm": "baseline",
+          "invalid": [],
+          "read_chars_unique": 13850,
+          "seconds": 99.78,
+          "uncached_input_tokens": 19221,
+          "unique_pages": [
+            "SKILL.md",
+            "references/anti-ai-patterns.md",
+            "references/compression-details.md",
+            "references/formal-addressing.md",
+            "references/genre-checklist-request.md",
+            "references/genre-playbook-request.md",
+            "references/genre-routing.md",
+            "references/prose-lint-usage.md",
+            "references/reference-index.md",
+            "references/review-checklist.md",
+            "references/writing-rules.md"
+          ],
+          "repeated_full_pages": {},
+          "script_commands": {
+            "draft_length.py": 2,
+            "prose_lint.py": 2
+          }
+        },
+        {
+          "stem": "m2-review_rewrite-candidate",
+          "case": "review_rewrite",
+          "arm": "candidate",
+          "invalid": [],
+          "read_chars_unique": 14724,
+          "seconds": 70.33,
+          "uncached_input_tokens": 14906,
+          "unique_pages": [
+            "SKILL.md",
+            "references/anti-ai-patterns.md",
+            "references/compression-details.md",
+            "references/formal-addressing.md",
+            "references/formulaic-language.md",
+            "references/genre-checklist-request.md",
+            "references/genre-playbook-request.md",
+            "references/genre-routing.md",
+            "references/prose-lint-usage.md",
+            "references/reference-index.md",
+            "references/review-checklist.md",
+            "references/writing-rules.md"
+          ],
+          "repeated_full_pages": {},
+          "script_commands": {
+            "draft_length.py": 2,
+            "prose_lint.py": 2
+          }
+        },
+        {
+          "stem": "m2-scope_analysis_dedupe-baseline",
+          "case": "scope_analysis_dedupe",
+          "arm": "baseline",
+          "invalid": [],
+          "read_chars_unique": 11678,
+          "seconds": 45.47,
+          "uncached_input_tokens": 14719,
+          "unique_pages": [
+            "SKILL.md",
+            "references/anti-ai-patterns.md",
+            "references/argument-chains.md",
+            "references/compatibility-scene-routing.md",
+            "references/genre-playbook-advisory-feedback.md",
+            "references/prose-lint-usage.md",
+            "references/reference-index.md",
+            "references/writing-rules.md"
+          ],
+          "repeated_full_pages": {},
+          "script_commands": {
+            "draft_length.py": 1,
+            "prose_lint.py": 1
+          }
+        },
+        {
+          "stem": "m2-scope_analysis_dedupe-candidate",
+          "case": "scope_analysis_dedupe",
+          "arm": "candidate",
+          "invalid": [],
+          "read_chars_unique": 11041,
+          "seconds": 41.73,
+          "uncached_input_tokens": 10549,
+          "unique_pages": [
+            "SKILL.md",
+            "references/anti-ai-patterns.md",
+            "references/compatibility-scene-routing.md",
+            "references/genre-playbook-advisory-feedback.md",
+            "references/prose-lint-usage.md",
+            "references/reference-index.md",
+            "references/writing-rules.md"
+          ],
+          "repeated_full_pages": {},
+          "script_commands": {
+            "draft_length.py": 1,
+            "prose_lint.py": 1
+          }
+        }
+      ],
+      "matched_anti_prose_pairs": {
+        "pairs": 6,
+        "scope": "Cost diagnostic for pairs with anti-AI page returned and a prose-script command on both arms. Not a quality-selected subset, proof of effective checking, or proof of equal length checks.",
+        "baseline": {
+          "read_chars_unique": 70433,
+          "uncached_input_tokens": 94102,
+          "commands": 91,
+          "seconds": 414.9200000000001
+        },
+        "candidate": {
+          "read_chars_unique": 67602,
+          "uncached_input_tokens": 89885,
+          "commands": 83,
+          "seconds": 310.59000000000003
+        }
+      },
+      "blind_packet_sha256": "8c708c4695341c072178f97a18e6a1012c3b66a52930c16a9b6bf821ddbabaa5",
+      "blind_review_sha256": "b0dac6e436ac2dc80c469e60dec85efd5ab34e237194caef9e45de8ff3d7f62b",
+      "blind_counts": {
+        "body": {
+          "candidate": 2,
+          "tie": 4
+        },
+        "delivery": {
+          "candidate": 2,
+          "tie": 4
+        }
+      },
+      "decoded": [
+        {
+          "id": "P01",
+          "model": "command-code/deepseek-deepseek-v4.1-flash",
+          "case": "compute_units",
+          "body": "candidate",
+          "delivery": "candidate"
+        },
+        {
+          "id": "P02",
+          "model": "command-code/deepseek-deepseek-v4.1-flash",
+          "case": "existing_field_form",
+          "body": "tie",
+          "delivery": "tie"
+        },
+        {
+          "id": "P03",
+          "model": "command-code/deepseek-deepseek-v4.1-flash",
+          "case": "notice_receiver",
+          "body": "tie",
+          "delivery": "tie"
+        },
+        {
+          "id": "P04",
+          "model": "command-code/deepseek-deepseek-v4.1-flash",
+          "case": "review",
+          "body": "candidate",
+          "delivery": "candidate"
+        },
+        {
+          "id": "P05",
+          "model": "command-code/deepseek-deepseek-v4.1-flash",
+          "case": "review_rewrite",
+          "body": "tie",
+          "delivery": "tie"
+        },
+        {
+          "id": "P06",
+          "model": "command-code/deepseek-deepseek-v4.1-flash",
+          "case": "scope_analysis_dedupe",
+          "body": "tie",
+          "delivery": "tie"
+        }
+      ]
+    }
+  ],
+  "attribution_repeat": {
+    "calls": 2,
+    "technical_valid": 2,
+    "case": "review",
+    "model": "alibaba-token-plan/qwen3.8-flash",
+    "inspection": {
+      "baseline": {
+        "commands": 13,
+        "read_chars_unique": 10831,
+        "input_tokens": 135684,
+        "cached_input_tokens": 122112,
+        "uncached_input_tokens": 13572,
+        "output_tokens": 3173,
+        "seconds": 109.12,
+        "calls": 1,
+        "technical_valid": 1,
+        "prose_lint.py": 2,
+        "draft_length.py": 1,
+        "anti_ai_page_returned": 1,
+        "tasks_with_prose_command": 1
+      },
+      "candidate": {
+        "commands": 17,
+        "read_chars_unique": 10646,
+        "input_tokens": 178107,
+        "cached_input_tokens": 159872,
+        "uncached_input_tokens": 18235,
+        "output_tokens": 5164,
+        "seconds": 167.2,
+        "calls": 1,
+        "technical_valid": 1,
+        "prose_lint.py": 3,
+        "draft_length.py": 2,
+        "anti_ai_page_returned": 1,
+        "tasks_with_prose_command": 1
+      }
+    },
+    "body": "candidate",
+    "delivery": "candidate"
+  },
+  "total_calls_with_repeat": 26,
+  "scope": "Current 2.0 versus one common-page compression. Not a new global comparison against 1.x. Original blind judgments precede any parent calibration. Script command counts do not prove correct input or sequence; read characters and uncached tokens are not money saved."
+}

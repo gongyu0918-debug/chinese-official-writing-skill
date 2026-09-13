@@ -77,7 +77,7 @@ class ReferenceRewriteContractTests(unittest.TestCase):
             self.assertIn(Path(relative).name, length_section)
             self.assertTrue((SKILL.parent / relative).is_file(), relative)
         self.assertRegex(length_section, r"普通完整短稿.*至少\s*80\s*字")
-        self.assertIn("不能报为达标", length_section)
+        self.assertRegex(length_section, r"仍不足.*实际差额.*所需材料.*不报达标")
         for name in ["anti-ai-patterns.md", "proofreading-checklist.md", "prose-lint-usage.md"]:
             self.assertIn(name, review_section)
         self.assertLess(review_section.index("anti-ai-patterns.md"), review_section.index("prose-lint-usage.md"))
@@ -367,8 +367,9 @@ class ReferenceRewriteContractTests(unittest.TestCase):
 
     def test_common_rules_retain_natural_paragraph_compression(self) -> None:
         text = (REFS / "writing-rules.md").read_text(encoding="utf-8")
-        for concept in ["章节功能", "自然段", "一两句话", "标题", "编号", "模板优先", "篇幅上限无需填满"]:
+        for concept in ["章节功能", "自然段", "一两句话", "标题", "编号", "上限无需填满"]:
             self.assertIn(concept, text)
+        self.assertRegex(text, r"保留用户的[^。]*模板")
         anti_ai = (REFS / "anti-ai-patterns.md").read_text(encoding="utf-8")
         self.assertIn("没有新增信息或不同作用", anti_ai)
 
@@ -379,7 +380,7 @@ class ReferenceRewriteContractTests(unittest.TestCase):
             self.assertIn(reference, skill)
         for concept in ["修改范围", "逐字保留", "局部替换", "字段处理"]:
             self.assertIn(concept, common)
-        self.assertRegex(common, r"局部(?:任务检查|查)改动及关联内容")
+        self.assertRegex(common, r"局部查改动[及与]关联内容")
         spec = importlib.util.spec_from_file_location("rewrite_common_writer", ROOT / "maintenance/evals/official-writing/providers/agent_writer.py")
         assert spec is not None and spec.loader is not None
         module = importlib.util.module_from_spec(spec)
@@ -430,7 +431,7 @@ class ReferenceRewriteContractTests(unittest.TestCase):
     def test_common_review_preserves_fact_genre_template_and_modification_scope(self) -> None:
         common = (REFS / "writing-rules.md").read_text(encoding="utf-8")
         review = common.split("## 第三步：复核", 1)[1].split("## 第四步：交付", 1)[0]
-        for concept in ["事实", "状态", "主文种", "必要要素", "局部", "关联内容", "附件", "批注", "修订痕迹", "交付前修正"]:
+        for concept in ["事实", "状态", "主文种", "要素", "局部", "关联内容", "附件", "批注", "修订", "交付前修正"]:
             self.assertIn(concept, review)
         self.assertIn("最新版底稿", common)
         self.assertIn("待核", common)
@@ -452,7 +453,7 @@ class ReferenceRewriteContractTests(unittest.TestCase):
             self.assertIn(revised_draft, text)
         self.assertIn("有充分依据的问题直接改入正文", text)
         delivery = (REFS / "writing-rules.md").read_text(encoding="utf-8")
-        for delivery_element in ["完整稿件", "审核", "具体位置", "问题", "建议改法", "替代表达", "本轮范围"]:
+        for delivery_element in ["完整稿件", "审核", "位置", "问题", "建议改法", "替代表达", "范围内"]:
             self.assertIn(delivery_element, delivery)
         self.assertNotRegex(text, r"`(?:references/)?genre-playbook-[^`]+\.md`")
         product = SKILL.read_text(encoding="utf-8") + "\n".join(
@@ -473,25 +474,27 @@ class ReferenceRewriteContractTests(unittest.TestCase):
         for concept in ["原文件保留", "另存新稿", "复扫", "已检查文本", "未完成"]:
             self.assertIn(concept, text)
         common = (REFS / "writing-rules.md").read_text(encoding="utf-8")
-        for concept in ["关联内容", "影响篇幅时另测字数", "已确认且属于本轮范围"]:
+        for concept in ["关联内容", "影响篇幅时另测字数", "范围内已确认的问题"]:
             self.assertIn(concept, common)
 
     def test_common_owner_keeps_fact_and_handling_element_boundaries(self) -> None:
         common = (REFS / "writing-rules.md").read_text(encoding="utf-8")
         self.assertFalse((REFS / "handling-elements.md").exists())
-        for concept in ["材料与常识", "不确定性", "实质缺项", "拟", "建议", "待核", "未决定", "范围", "判断强度"]:
+        for concept in ["材料与常识", "不确定性", "实质缺项", "拟", "建议", "待核", "未决定", "范围", "强度"]:
             self.assertIn(concept, common)
         self.assertRegex(common, r"只有主题或方向.*功能.*拟议")
         self.assertRegex(common, r"当天日期.*草稿日期")
-        self.assertRegex(common, r"要求留空、待确认.*按要求保留")
-        self.assertRegex(common, r"业务时间沿用材料")
-        for term in ["主体", "对象", "事项", "依据", "状态", "期限", "金额", "附件", "落款", "日期", "未提供", "矛盾", "主文种", "用户模板"]:
+        self.assertRegex(common, r"指定留空、待确认.*按要求保留")
+        self.assertRegex(common, r"业务日期沿用材料")
+        for term in ["主体", "对象", "事项", "依据", "状态", "期限", "金额", "附件", "落款", "日期", "信息未给", "矛盾", "主文种", "用户模板"]:
             self.assertIn(term, common)
-        self.assertIn("未提供信息与业务尚未决定分别处理", common)
-        self.assertIn("字段、表格和指定空位按用户用途保留", common)
-        self.assertRegex(common, r"主体、对象、数字、金额、业务日期、引语、来源及事实状态.*照实保留")
-        self.assertRegex(common, r"正文、表格和附件.*名称、数值、顺序和状态.*一致")
-        self.assertIn("分清实测、测算与估算", common)
+        self.assertIn("分清信息未给与业务未定", common)
+        self.assertRegex(common, r"保留用户的[^。]*字段、表格及指定空位")
+        self.assertRegex(common, r"主体、对象、数字、金额、业务日期、引语、来源[及和]事实状态.*照实保留")
+        correspondence = next(line for line in common.splitlines() if "正文、表格、附件" in line)
+        for term in ["核对", "主体", "名称", "数值", "顺序", "期限", "结论", "状态", "指向"]:
+            self.assertIn(term, correspondence)
+        self.assertIn("分清实测、测算和估算", common)
         # Optional contact/feedback details belong to the chosen genre, rather
         # than requiring another common table or restoring the retired page.
         letter = (REFS / "genre-playbook-correspondence.md").read_text(encoding="utf-8")
