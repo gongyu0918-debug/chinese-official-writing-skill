@@ -17,7 +17,7 @@
 - 决定：`genre-playbook-decision.md`；决议：`genre-playbook-resolution.md`；议案：`genre-playbook-motion.md`。
 - 公报：`genre-playbook-communique.md`；命令、令：`genre-playbook-order.md`；部署安排：`genre-playbook-deployment.md`。
 - 上级对下级请示的批复：`genre-playbook-reply.md`。
-- 不相隶属单位之间的函、复函、征求意见函：`genre-playbook-correspondence.md`。
+- 不相隶属单位之间商洽、询答、请求批准或答复审批事项的函、复函、征求意见函：`genre-playbook-correspondence.md`。
 - 意见：`genre-playbook-opinion.md`；解释事实、既有流程或回应疑问的说明：`genre-playbook-explanation.md`。
 - 会议纪要：`genre-playbook-minutes.md`。
 - 讲话稿、致辞、演讲：`genre-playbook-speech-address.md`；开场人物顺序另加 `speech-person-order.md`。
@@ -32,22 +32,21 @@
 - 正式事项说明用途的宣传手册、宣传材料：`genre-playbook-information-materials.md`。
 - 调研、研究：`genre-playbook-research.md`；可研：`genre-playbook-feasibility.md`；只审可研用 `genre-checklist-feasibility-review.md`。
 - 独立审查意见、评审意见（包括采购、初步设计或项目材料）：`genre-playbook-review-opinion.md`；只审核既有稿件时保留原主文种，按首页审稿模式处理。
-- 新闻消息、活动报道、编者按：`genre-playbook-news-message.md`。
+- 新闻消息、活动报道：`genre-playbook-news-message.md`。
+- 编者按、编发按语：`genre-playbook-editorial-note.md`。
 - 新闻评论、时评：`genre-playbook-news-commentary.md`。
 - 意见建议、建议信、投诉反映、整改方案：先读 `compatibility-scene-routing.md`，再进入对应专页；建议信按面向有权方提出合作性建议的用途进入意见建议页，法定“意见”直接进入意见主叶。
 - 整改进展/整改情况报告：报告主叶 + `transaction-remediation-report.md`；反馈情况报告：报告主叶 + `transaction-feedback-report.md`。两者不改用整改方案或合作性意见建议骨架。
 
-### 需先确定主文种的场景
+### 目录未命中时
 
-其他未命中专页的事务文本，读 `genre-routing.md` 判定功能；命中专页后按该页写稿，仍未覆盖时用 `genre-checklist.md` 做最小核对。
+事务名称未列出时，按实际用途匹配上述专页。用途已明确且没有适用专页时，读取 `genre-checklist.md`。
 
 ## 共性能力页
 
 | 能力 | 读取条件 | 作用 |
 | --- | --- | --- |
-| `handling-elements.md` | 需要核对多主体责任、分项金额或正文与附件的对应关系 | 核对办理要素，不补空项 |
 | `argument-chains.md` | 需要展开方案比较、跨段论证或执行链条 | 只组织已有依据支持的论证 |
-| `official-style.md` | 需要统一语体或处理明显口语化 | 只做语言建议，不扩充事实 |
 | `formal-addressing.md` | 行文关系、敬语或称谓拿不准 | 锁定称谓和关系 |
 
 ## 专项资料

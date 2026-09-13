@@ -173,30 +173,26 @@ class ProtectiveNegativeTailLintTests(unittest.TestCase):
     def test_review_and_lint_routes_preserve_evidence_bounded_semantic_choices(self) -> None:
         skill = (ROOT / "chinese-official-writing/SKILL.md").read_text(encoding="utf-8")
         review = (
-            ROOT / "chinese-official-writing" / "references" / "final-review-layers.md"
+            ROOT / "chinese-official-writing" / "references" / "writing-rules.md"
         ).read_text(encoding="utf-8")
         usage = (ROOT / "chinese-official-writing/references/prose-lint-usage.md").read_text(encoding="utf-8")
 
-        self.assertIn("`references/final-review-layers.md`", skill)
-        self.assertIn("`references/prose-lint-usage.md`", skill)
-        # 文种复核保留事实契约；逐项脚本处置现在由专门的使用页承担。
+        self.assertIn("`references/writing-rules.md`", skill)
+        self.assertIn("`prose-lint-usage.md`", review)
+        # 核对迁移后的事实、范围与风险处理职责，不要求恢复旧复核页。
         for phrase in (
-            "主体、对象、数字、金额、日期、引语和来源范围",
-            "结论的对象和强度与依据一致",
-            "修正无据新增、误删和状态升级",
-            "保留其待核状态",
-            "已确认的问题在本轮修改范围内修正",
+            "主体、对象、数字、金额、业务日期、引语、来源及事实状态照实保留",
+            "主体、范围和判断强度与依据相称",
+            "拟、建议、可选、进行中、待核和未决定按原程度表达",
+            "已确认且属于本轮范围的问题交付前修正",
+            "实质修改后核对关联内容并复扫，影响篇幅时另测字数",
         ):
             with self.subTest(phrase=phrase):
                 self.assertIn(phrase, review)
         for phrase in (
-            "对照风险位置、材料、主文种和修改范围",
-            "修正已确认的问题",
-            "合理用语或引用经核对后保留",
-            "事实、状态、主体、否定范围和文种要素",
-            "再复扫变动文本",
-            "改动影响篇幅时复测字数",
-            "同一提示经核对需要保留时，完成判断即可",
+            "对照风险位置、材料和修改范围修正问题",
+            "合理用语及引用经核对可保留",
+            "正文实质修改后复扫，最终采用已检查文本",
         ):
             with self.subTest(phrase=phrase):
                 self.assertIn(phrase, usage)

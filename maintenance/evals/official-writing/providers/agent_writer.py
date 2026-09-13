@@ -45,7 +45,7 @@ GENRE_REFERENCES: dict[str, list[str]] = {
         "references/writing-rules.md",
     ],
     "style": [
-        "references/official-style.md",
+        "references/anti-ai-patterns.md",
     ],
     "argument": [
         "references/argument-chains.md",
@@ -163,7 +163,7 @@ GENRE_REFERENCES: dict[str, list[str]] = {
         "references/ai-compute-docs.md",
     ],
     "complex": [
-        "references/handling-elements.md",
+        "references/writing-rules.md",
         "references/argument-chains.md",
     ],
     "external_research": [

@@ -212,7 +212,6 @@ DELIVERY_PATTERNS: list[PatternSpec] = [
 ]
 
 # 保护性句尾的局部窗口只用于限制单句匹配范围，不承担全文流程判断。
-PROTECTIVE_INFERENCE_BRIDGE_CHARS = 70
 PROTECTIVE_DECISION_OBJECT_CHARS = 24
 PROTECTIVE_BASIS_OBJECT_CHARS = 20
 UNRESOLVED_SUBJECT_CHARS = 24
@@ -236,8 +235,9 @@ DRAFT_BODY_PATTERNS: list[PatternSpec] = [
     (
         "medium",
         "protective-negative-inference",
-        r"(?:尚|仍|还|目前)?(?:不能|无法|不足以|不宜)(?:仅凭|单凭|据此|直接据此|由此)?"
-        rf"[^。！？\n]{{0,{PROTECTIVE_INFERENCE_BRIDGE_CHARS}}}"
+        r"(?:尚|仍|还|目前)?(?:不能|无法|不足以|不宜)"
+        r"(?:(?:直接)?(?:据此|由此))?"
+        r"(?:(?:直接|充分|准确)地?)?"
         rf"(?:推定|判断|认定|说明|证明|得出|确定|比较|"
         rf"形成[^。！？\n]{{0,{PROTECTIVE_DECISION_OBJECT_CHARS}}}(?:结论|决定|意见|安排)|"
         rf"作为[^。！？\n]{{0,{PROTECTIVE_BASIS_OBJECT_CHARS}}}依据)",
@@ -444,8 +444,8 @@ def excerpt(line: str, start: int, end: int) -> str:
     return re.sub(r"\s+", " ", value)
 
 
-def inside_inline_code(line: str, start: int, end: int) -> bool:
-    """匹配内容完全位于 Markdown 行内代码范围时返回 True。"""
+def inline_code_spans(line: str) -> list[tuple[int, int]]:
+    """返回 Markdown 行内代码范围，供普通豁免和交付残留检查共用。"""
     spans: list[tuple[int, int]] = []
     idx = 0
     while True:
@@ -457,7 +457,12 @@ def inside_inline_code(line: str, start: int, end: int) -> bool:
             break
         spans.append((left, right + 1))
         idx = right + 1
-    return any(left <= start and end <= right for left, right in spans)
+    return spans
+
+
+def inside_inline_code(line: str, start: int, end: int) -> bool:
+    """匹配内容完全位于 Markdown 行内代码范围时返回 True。"""
+    return any(left <= start and end <= right for left, right in inline_code_spans(line))
 
 
 def quoted_spans_by_line(lines: list[str]) -> list[list[tuple[int, int]]]:
@@ -1190,6 +1195,9 @@ def primary_line_findings(
     """完成正文逐行扫描；不承担正文外复核和全文统计。"""
 
     findings: list[Finding] = []
+    inline_patterns = pattern_sets.delivery_absolute + [
+        pattern for pattern in pattern_sets.primary if pattern[1] in DELIVERY_BODY_ONLY_LABELS
+    ]
     in_fence = False
     for line_index, line in enumerate(source.lines_to_scan):
         line_no = line_index + 1
@@ -1231,6 +1239,12 @@ def primary_line_findings(
                 delivery_mode,
             )
         )
+        if delivery_mode in {"draft-body", "gap-note-allowed"} and line_index < len(source.body_only_lines):
+            # 行内代码保留普通技术内容豁免；已知身份、推理和制作残留仍给出复核线索。
+            for left, right in inline_code_spans(line):
+                findings.extend(
+                    fence_findings(path_label, line_no, line[left + 1 : right - 1], inline_patterns)
+                )
     return findings
 
 

@@ -1,8 +1,8 @@
 # Reference 逐页架构归属表（2026-09-13，2.0 开发候选）
 
-固定基线为 `main@1ce7112303172478faa2392667a2de1098eb912c`；当前归属以已落入 canonical 的 R13 共性归并及 R14 整合修正为准。50 个旧页全部列名：39 个同名路径仍在、11 个退役或迁出；另新增 29 页，共 68 页，其中 39 个主叶、41 条路线。这是 2.0 开发候选的工程映射，不是 1.x 对照验收或发布结论。
+固定基线为 `main@1ce7112303172478faa2392667a2de1098eb912c`；本表按本轮已应用的 R16 开发候选维护归属，冻结记录为 `output/reference-integration-r16-adopted/adoption.json`。50 个旧页全部列名：37 个同名路径仍在、13 个退役或迁出；另新增 30 页，共 67 页，其中 40 个具名主叶、43 条路线（40 个主叶加 3 条事务叠加路线）。这是 2.0 开发候选的工程映射，不是 1.x 对照验收或发布结论。
 
-“同名承接”表示职责仍落同名文件，不表示内容未改；“拆分承接”表示职责分到多个现存页；“退役/迁出”说明替代或保存位置。旧表的 rewrite/retain 是阶段性文件处理标签，本次按当前职责更新，均不等于逐条语义或真实写稿通过。各行映射以旧 Git 对象、当前页及下列审计共同定位，实际读取集合和排除集合见[路由 manifest](../specs/reference-route-manifest.json)，它们是静态契约。
+“同名承接”表示职责仍落同名文件，不表示内容未改；“拆分承接”表示职责分到多个现存页；“退役/迁出”说明替代或保存位置。旧表的 rewrite/retain 是阶段性文件处理标签，本次按当前职责更新，均不等于逐条语义或真实写稿通过。表内产品链接指向已应用的 canonical。各行映射以旧 Git 对象、冻结候选及下列审计共同定位，允许读取与排除集合见[路由 manifest](../specs/reference-route-manifest.json)；它们是静态契约，实际读页另见原生证据。
 
 | # | 基线 reference | 新架构分区 | 当前页/归属 | 处置 | 归属与保留理由 |
 |---:|---|---|---|---|---|
@@ -18,19 +18,19 @@
 | 10 | `final-review-layers.md` | workflow/review | [writing-rules.md](../../chinese-official-writing/references/writing-rules.md)、[anti-ai-patterns.md](../../chinese-official-writing/references/anti-ai-patterns.md) | 退役/迁出 | 事实、状态、主文种要素、关联内容及条件性敏感信息核对归 writing-rules；无用重复的语义检查归 anti-ai，独立旧复核页撤下。 |
 | 11 | `formal-addressing.md` | language | [formal-addressing.md](../../chinese-official-writing/references/formal-addressing.md) | 同名承接 | 统一上下行、平行关系、人物称谓和收束语。 |
 | 12 | `format-gbt9704.md` | workflow/tool | [format-gbt9704.md](../../chinese-official-writing/references/format-gbt9704.md) | 同名承接 | 仅格式交付模式加载，不混入正文事实规则。 |
-| 13 | `formulaic-language.md` | language | [formulaic-language.md](../../chinese-official-writing/references/formulaic-language.md)、[genre-playbook-responsibility-letter.md](../../chinese-official-writing/references/genre-playbook-responsibility-letter.md)、[genre-playbook-initiative.md](../../chinese-official-writing/references/genre-playbook-initiative.md)、[genre-playbook-open-letter.md](../../chinese-official-writing/references/genre-playbook-open-letter.md)、[genre-playbook-narration.md](../../chinese-official-writing/references/genre-playbook-narration.md)、[genre-playbook-information-materials.md](../../chinese-official-writing/references/genre-playbook-information-materials.md)、[genre-playbook-report.md](../../chinese-official-writing/references/genre-playbook-report.md)、[genre-playbook-advisory-feedback.md](../../chinese-official-writing/references/genre-playbook-advisory-feedback.md) | 拆分承接 | 用语功能留在同名页；旧事务表的责任书、倡议书、公开信、讲解、宣传类分入独立主叶，情况综合归报告、建议信归合作性建议。旧直接叶不再跳过统一检查；其余旧事务入口见下表。 |
+| 13 | `formulaic-language.md` | language | [formulaic-language.md](../../chinese-official-writing/references/formulaic-language.md)、[genre-playbook-responsibility-letter.md](../../chinese-official-writing/references/genre-playbook-responsibility-letter.md)、[genre-playbook-initiative.md](../../chinese-official-writing/references/genre-playbook-initiative.md)、[genre-playbook-open-letter.md](../../chinese-official-writing/references/genre-playbook-open-letter.md)、[genre-playbook-narration.md](../../chinese-official-writing/references/genre-playbook-narration.md)、[genre-playbook-information-materials.md](../../chinese-official-writing/references/genre-playbook-information-materials.md)、[genre-playbook-report.md](../../chinese-official-writing/references/genre-playbook-report.md)、[genre-playbook-advisory-feedback.md](../../chinese-official-writing/references/genre-playbook-advisory-feedback.md)、[genre-playbook-editorial-note.md](../../chinese-official-writing/references/genre-playbook-editorial-note.md) | 拆分承接 | 用语功能留在同名页；旧事务表的责任书、倡议书、公开信、讲解、宣传类分入独立主叶，情况综合归报告、建议信归合作性建议。旧直接叶不再跳过统一检查；其余旧事务入口见下表。 |
 | 14 | `genre-checklist-feasibility-review.md` | review/genre | [genre-checklist-feasibility-review.md](../../chinese-official-writing/references/genre-checklist-feasibility-review.md) | 同名承接 | 用户点名可研摘要核对时直达，避免无关总审。 |
 | 15 | `genre-checklist-report.md` | review + genre | [genre-checklist-report.md](../../chinese-official-writing/references/genre-checklist-report.md)、[genre-playbook-report.md](../../chinese-official-writing/references/genre-playbook-report.md)、[genre-playbook-explanation.md](../../chinese-official-writing/references/genre-playbook-explanation.md) | 拆分承接 | 复核留在同名页，起草归报告；使用/体验/评估报告兼顾已有价值、问题、影响与后续建议的组织提示已恢复。说明性材料按用途归说明，不能把情况说明一律改成报告。 |
 | 16 | `genre-checklist-request.md` | genre/review | [genre-checklist-request.md](../../chinese-official-writing/references/genre-checklist-request.md) | 同名承接 | 请示、申请的请批和办理要素核对。 |
-| 17 | `genre-checklist.md` | router/review | [genre-checklist.md](../../chinese-official-writing/references/genre-checklist.md) | 同名承接 | 只做功能反查，不再集中承载多个文种骨架。 |
+| 17 | `genre-checklist.md` | router/review | [genre-checklist.md](../../chinese-official-writing/references/genre-checklist.md) | 同名承接 | 用途明确而无适用专页时，按模板、材料及已确认的通用写法成稿，不再反向重选主叶；陌生写法仍按首页核查规则处理。 |
 | 18 | `genre-playbook-advisory-feedback.md` | genre/transaction | [genre-playbook-advisory-feedback.md](../../chinese-official-writing/references/genre-playbook-advisory-feedback.md) | 同名承接 | 合作性意见建议和建议信共用同名主叶；保留亲历事实、代表证据、权责与建议状态。法定意见另有主叶，不因建议信外形强加函页或具体调研经历。 |
 | 19 | `genre-playbook-complaint-reflection.md` | genre/transaction | [genre-playbook-complaint-reflection.md](../../chinese-official-writing/references/genre-playbook-complaint-reflection.md) | 同名承接 | 保留问题、对象、请求和事实状态边界。 |
-| 20 | `genre-playbook-correspondence.md` | genre | [genre-playbook-correspondence.md](../../chinese-official-writing/references/genre-playbook-correspondence.md) | 同名承接 | 负责函件目的、对象、事项和收束。 |
+| 20 | `genre-playbook-correspondence.md` | genre | [genre-playbook-correspondence.md](../../chinese-official-writing/references/genre-playbook-correspondence.md) | 同名承接 | 按不相隶属关系、收发权限和用途处理商洽、询答、请求批准及审批答复；与上级答复下级请示的批复区分，不因请批措辞机械跳页。 |
 | 21 | `genre-playbook-deliberation-deployment.md` | router | [genre-playbook-opinion.md](../../chinese-official-writing/references/genre-playbook-opinion.md)、[genre-playbook-decision.md](../../chinese-official-writing/references/genre-playbook-decision.md)、[genre-playbook-resolution.md](../../chinese-official-writing/references/genre-playbook-resolution.md)、[genre-playbook-motion.md](../../chinese-official-writing/references/genre-playbook-motion.md)、[genre-playbook-communique.md](../../chinese-official-writing/references/genre-playbook-communique.md)、[genre-playbook-order.md](../../chinese-official-writing/references/genre-playbook-order.md)、[genre-playbook-deployment.md](../../chinese-official-writing/references/genre-playbook-deployment.md) | 退役/迁出 | 旧混合骨架按意见、决定权限、会议议决、法定提请、公开发布、依法发令及部署功能分入七页；旧混合页退役。中间页 genre-playbook-deliberation.md 亦退役，不属于固定基线 50 页。 |
 | 22 | `genre-playbook-institution-rules.md` | genre | [genre-playbook-institution-rules.md](../../chinese-official-writing/references/genre-playbook-institution-rules.md) | 同名承接 | 制度、规定、办法、细则和规程的规范结构。 |
 | 23 | `genre-playbook-minutes.md` | genre | [genre-playbook-minutes.md](../../chinese-official-writing/references/genre-playbook-minutes.md) | 同名承接 | 保留会议事实和议定事项状态，不补讨论过程。 |
 | 24 | `genre-playbook-news-commentary.md` | genre | [genre-playbook-news-commentary.md](../../chinese-official-writing/references/genre-playbook-news-commentary.md) | 同名承接 | 新闻评论独立成文种，不通过兼容页稀释。 |
-| 25 | `genre-playbook-news-message.md` | genre | [genre-playbook-news-message.md](../../chinese-official-writing/references/genre-playbook-news-message.md) | 同名承接 | 新闻消息、活动报道和编者按的事实结构；有来源观点及有据即时作用留在消息内，仅以评论为主要用途时转评论叶。 |
+| 25 | `genre-playbook-news-message.md` | genre | [genre-playbook-news-message.md](../../chinese-official-writing/references/genre-playbook-news-message.md)、[genre-playbook-editorial-note.md](../../chinese-official-writing/references/genre-playbook-editorial-note.md) | 拆分承接 | 新闻消息和活动报道的事实结构留在同名页；编者按的编发身份、编发目的和阅读方向迁至独立编者按主叶；有来源观点及有据即时作用留在消息内。 |
 | 26 | `genre-playbook-notice-publication.md` | router | [genre-playbook-notice.md](../../chinese-official-writing/references/genre-playbook-notice.md)、[genre-playbook-publication.md](../../chinese-official-writing/references/genre-playbook-publication.md)、[genre-playbook-bulletin.md](../../chinese-official-writing/references/genre-playbook-bulletin.md) | 退役/迁出 | 通知、公开发布、通报分别承接旧功能；通报不再与公告共叶。通知页渠道/邮箱/接收单位不反推发文主体的旧专项边界仍未闭合。 |
 | 27 | `genre-playbook-plan-construction.md` | genre | [genre-playbook-plan-construction.md](../../chinese-official-writing/references/genre-playbook-plan-construction.md) | 同名承接 | 方案目标、任务、步骤、保障和状态边界。 |
 | 28 | `genre-playbook-procurement-review.md` | transaction/overlay + genre | [genre-playbook-procurement-review.md](../../chinese-official-writing/references/genre-playbook-procurement-review.md)、[genre-playbook-procurement-announcement.md](../../chinese-official-writing/references/genre-playbook-procurement-announcement.md)、[genre-playbook-review-opinion.md](../../chinese-official-writing/references/genre-playbook-review-opinion.md) | 拆分承接 | 同名页改作采购专项附加：需求、规格报价、响应规则和履约条件按需核对；采购公告与独立审查意见分入两个主叶。一般项目审查不必预读采购，只审既有稿件保留原文种。 |
@@ -40,11 +40,11 @@
 | 32 | `genre-playbook-research-feasibility.md` | router | [genre-playbook-research.md](../../chinese-official-writing/references/genre-playbook-research.md)、[genre-playbook-feasibility.md](../../chinese-official-writing/references/genre-playbook-feasibility.md) | 退役/迁出 | 调研保留样本来源、发现、分析及建议；可研保留比较论证、投资口径、条件结论与有据核实/验证建议。旧稀疏材料一概禁止下一步的收紧已改，但单段可研实写仍有范围反例。 |
 | 33 | `genre-playbook-speech-address.md` | genre | [genre-playbook-speech-address.md](../../chinese-official-writing/references/genre-playbook-speech-address.md)、[genre-playbook-meeting-host.md](../../chinese-official-writing/references/genre-playbook-meeting-host.md)、[genre-playbook-duty-report.md](../../chinese-official-writing/references/genre-playbook-duty-report.md) | 拆分承接 | 讲话/致辞/演讲留在同名页；完整主持会序、转场与程序状态归主持词；书面及现场职责述职归述职页。人物排序按需附加，不再记为待拆页。 |
 | 34 | `genre-playbook-work-summary.md` | genre | [genre-playbook-work-summary.md](../../chinese-official-writing/references/genre-playbook-work-summary.md)、[genre-playbook-work-priorities.md](../../chinese-official-writing/references/genre-playbook-work-priorities.md)、[genre-playbook-report.md](../../chinese-official-writing/references/genre-playbook-report.md) | 拆分承接 | 回顾、问题、经验和有据下一步留在总结；未来工作任务归工作要点；周报/月报归报告，字段处理按需附加。历史拆分来源见 [summary-priorities-separation-r1](../tests/evidence/rewrite-cold-r4/summary-priorities-separation-r1.md)，R5 另有旧文种逐页审计；不将拆页视为实写通过。 |
-| 35 | `genre-playbooks.md` | router | [reference-index.md](../../chinese-official-writing/references/reference-index.md)、[genre-routing.md](../../chinese-official-writing/references/genre-routing.md)、[genre-checklist.md](../../chinese-official-writing/references/genre-checklist.md)、[genre-playbook-correspondence.md](../../chinese-official-writing/references/genre-playbook-correspondence.md) | 退役/迁出 | 旧混合总页的文种功能分入各自主叶；索引/路由只选路，checklist 只反查未知功能，旧函节骨架归函页。下列 29 个新增页及旧页同名主叶共同承接，不以索引存在证明全部语义闭合。 |
+| 35 | `genre-playbooks.md` | router | [reference-index.md](../../chinese-official-writing/references/reference-index.md)、[genre-routing.md](../../chinese-official-writing/references/genre-routing.md)、[genre-checklist.md](../../chinese-official-writing/references/genre-checklist.md)、[genre-playbook-correspondence.md](../../chinese-official-writing/references/genre-playbook-correspondence.md) | 退役/迁出 | 旧混合总页的文种功能分入各自主叶；索引/路由只选路，checklist 只反查未知功能，旧函节骨架归函页。下列 30 个新增页及旧页同名主叶共同承接，不以索引存在证明全部语义闭合。 |
 | 36 | `genre-routing.md` | router | [genre-routing.md](../../chinese-official-writing/references/genre-routing.md) | 同名承接 | 只判定文种、对象关系和冲突，输出首叶。 |
-| 37 | `handling-elements.md` | workflow | [handling-elements.md](../../chinese-official-writing/references/handling-elements.md) | 同名承接 | 按主体对象、事项依据、动作状态、条件期限、支撑反馈和文内字段核对；删除多文种要素表，必要项由当前主文种判断，缺项按信息选择与定向研究规则处理。 |
+| 37 | `handling-elements.md` | workflow | [writing-rules.md](../../chinese-official-writing/references/writing-rules.md) | 退役/迁出 | 主体、对象、金额、日期、状态、用户字段和实质缺项归共性写作页；必要办理要素结合当前主文种判断，正文、表格、附件的对应关系在共同复核中核对，不保留额外伴读页。 |
 | 38 | `information-selection.md` | workflow | [writing-rules.md](../../chinese-official-writing/references/writing-rules.md) | 退役/迁出 | 本轮材料、合理分析、业务状态、草稿日期及实质缺项归共性写作页；材料与常识支持的分析保留，未支持的具体事实与已定安排不得补入。 |
-| 39 | `official-style.md` | language | [official-style.md](../../chinese-official-writing/references/official-style.md) | 同名承接 | 处理语体、句式、证据强度和去口语，不增加事实。 |
+| 39 | `official-style.md` | language | [anti-ai-patterns.md](../../chinese-official-writing/references/anti-ai-patterns.md) | 退役/迁出 | 正式语体、叙述身份、句段关系、证据和论断强度、语义保真及中英文/标点处理归必经语言检查；行文关系和称谓继续由既有 formal-addressing 能力页处理。 |
 | 40 | `proofreading-checklist.md` | review | [proofreading-checklist.md](../../chinese-official-writing/references/proofreading-checklist.md) | 同名承接 | 按实际校对任务核对引用、数字、日期、术语和稿内一致性；成语、原文、的地得及量词已有明确规则，历史专项结果不因文件更新自动变更。 |
 | 41 | `prose-lint-usage.md` | tool | [prose-lint-usage.md](../../chinese-official-writing/references/prose-lint-usage.md) | 同名承接 | 规定路径、参数、结果回流和失败解释，不替代文种判断。 |
 | 42 | `reference-index.md` | router | [reference-index.md](../../chinese-official-writing/references/reference-index.md) | 同名承接 | 按稿件用途选唯一主叶，列明必要附加页；移除与首页重复的交付模式表，机器路由 manifest 留在维护区。 |
@@ -55,11 +55,11 @@
 | 47 | `structure-editing.md` | workflow | [structure-editing.md](../../chinese-official-writing/references/structure-editing.md) | 同名承接 | 处理增删、移动、标题和段落关系。 |
 | 48 | `task-route-cards.md` | router/workflow | [SKILL.md](../../chinese-official-writing/SKILL.md)、[writing-rules.md](../../chinese-official-writing/references/writing-rules.md)、[structure-editing.md](../../chinese-official-writing/references/structure-editing.md)、[field-editing.md](../../chinese-official-writing/references/field-editing.md) | 退役/迁出 | 首页按实际用途选文种，局部结构和字段动作沿用既有入口；所有稿件使用共同写作、复核与交付规则，旧轻量卡撤下。 |
 | 49 | `technical-terms.md` | transaction/overlay | [technical-terms.md](../../chinese-official-writing/references/technical-terms.md) | 同名承接 | 算力或技术稿件明确需要术语核对时才加载。 |
-| 50 | `workflow.md` | workflow | [SKILL.md](../../chinese-official-writing/SKILL.md)、[writing-rules.md](../../chinese-official-writing/references/writing-rules.md)、[structure-editing.md](../../chinese-official-writing/references/structure-editing.md)、[field-editing.md](../../chinese-official-writing/references/field-editing.md)、[compression-details.md](../../chinese-official-writing/references/compression-details.md)、[handling-elements.md](../../chinese-official-writing/references/handling-elements.md)、[argument-chains.md](../../chinese-official-writing/references/argument-chains.md)、[format-gbt9704.md](../../chinese-official-writing/references/format-gbt9704.md) | 退役/迁出 | 首页负责任务和文种选择；取材、成稿、复核与交付归 writing-rules，复杂结构、字段、篇幅、办理、论证和格式按实际能力分工，旧流程副本撤下。 |
+| 50 | `workflow.md` | workflow | [SKILL.md](../../chinese-official-writing/SKILL.md)、[writing-rules.md](../../chinese-official-writing/references/writing-rules.md)、[structure-editing.md](../../chinese-official-writing/references/structure-editing.md)、[field-editing.md](../../chinese-official-writing/references/field-editing.md)、[compression-details.md](../../chinese-official-writing/references/compression-details.md)、[argument-chains.md](../../chinese-official-writing/references/argument-chains.md)、[format-gbt9704.md](../../chinese-official-writing/references/format-gbt9704.md) | 退役/迁出 | 首页负责任务和文种选择；取材、成稿、复核与交付归 writing-rules，复杂结构、字段、篇幅、办理、论证和格式按实际能力分工，旧流程副本撤下。 |
 
-## 新构造页（29 页，不占基线 50 行）
+## 新构造页（30 页，不占基线 50 行）
 
-26 个新增主叶、2 个报告事务附加页、1 个共性写作页；结合保留路径中的 13 个主叶，共 39 个主叶。采购专项同名页属于附加页，不能因文件名含 playbook 计入主叶。
+27 个新增主叶、2 个报告事务附加页、1 个共性写作页；结合保留路径中的 13 个主叶，共 40 个主叶。采购专项同名页属于附加页，不能因文件名含 playbook 计入主叶。
 
 | 新页 | 当前用途 | 旧来源/补建依据 |
 |---|---|---|
@@ -68,7 +68,7 @@
 | [genre-playbook-bulletin.md](../../chinese-official-writing/references/genre-playbook-bulletin.md) | 通报情况、表扬先进和批评问题的独立主文种 | 旧 notice-publication 通报部分 |
 | [genre-playbook-research.md](../../chinese-official-writing/references/genre-playbook-research.md) | 调研/研究独立主文种 | 旧 research-feasibility 调研部分 |
 | [genre-playbook-feasibility.md](../../chinese-official-writing/references/genre-playbook-feasibility.md) | 可行性研究独立主文种 | 旧 research-feasibility 及 ai-compute-docs 可研部分 |
-| [genre-playbook-procurement-announcement.md](../../chinese-official-writing/references/genre-playbook-procurement-announcement.md) | 采购公告独立主文种 | 旧 procurement-review 采购公告部分 |
+| [genre-playbook-procurement-announcement.md](../../chinese-official-writing/references/genre-playbook-procurement-announcement.md) | 采购公告独立主文种，征集、结果及终止等按发布目的取要素 | 旧 procurement-review 采购公告部分 |
 | [genre-playbook-decision.md](../../chinese-official-writing/references/genre-playbook-decision.md) | 有权机关作出重要事项决定，明确对象、范围和执行要求 | 旧 deliberation-deployment 与 genre-checklist 对应功能 |
 | [genre-playbook-resolution.md](../../chinese-official-writing/references/genre-playbook-resolution.md) | 会议讨论并通过的重大事项，保持集体议决与通过状态 | 旧 deliberation-deployment 与 genre-checklist 对应功能 |
 | [genre-playbook-motion.md](../../chinese-official-writing/references/genre-playbook-motion.md) | 人民政府向同级人大或其常委会提请审议，保留提请关系 | 旧 deliberation-deployment 与 genre-checklist 对应功能 |
@@ -84,7 +84,7 @@
 | [genre-playbook-work-priorities.md](../../chinese-official-writing/references/genre-playbook-work-priorities.md) | 年度、阶段或专项工作要点，组织未来任务、责任与节点，保留拟议状态 | 旧 work-summary 工作要点功能 |
 | [transaction-remediation-report.md](../../chinese-official-writing/references/transaction-remediation-report.md) | 整改进展/整改情况报告事务附加页 | 旧报告中的整改情况；明确与整改方案分工 |
 | [transaction-feedback-report.md](../../chinese-official-writing/references/transaction-feedback-report.md) | 反馈情况报告事务附加页 | 旧报告中的意见办理/反馈情况；明确与合作性建议分工 |
-| [writing-rules.md](../../chinese-official-writing/references/writing-rules.md) | 所有文种共用的取材、成稿、篇幅、复核与交付规则 | 归并 information-selection、final-review-layers、delivery、short-draft-naturalness、task-route-cards 的有效语义 |
+| [writing-rules.md](../../chinese-official-writing/references/writing-rules.md) | 所有文种共用的取材、成稿、篇幅、复核与交付规则 | 归并 information-selection、handling-elements、final-review-layers、delivery、short-draft-naturalness、task-route-cards 的有效语义 |
 | [genre-playbook-responsibility-letter.md](../../chinese-official-writing/references/genre-playbook-responsibility-letter.md) | 责任书：共同事项、各方责任与已有条件 | 旧 formulaic-language 责任书项 |
 | [genre-playbook-initiative.md](../../chinese-official-writing/references/genre-playbook-initiative.md) | 倡议书：缘由、具体行动及自愿参与语气 | 旧 formulaic-language 倡议书项 |
 | [genre-playbook-open-letter.md](../../chinese-official-writing/references/genre-playbook-open-letter.md) | 公开信：发信主体、明确受众、沟通事项与配合要求 | 旧 formulaic-language 公开信项 |
@@ -92,6 +92,7 @@
 | [genre-playbook-information-materials.md](../../chinese-official-writing/references/genre-playbook-information-materials.md) | 正式宣传手册与宣传材料：查阅分项、要求方法、渠道与适用范围 | 旧 formulaic-language 宣传手册/宣传材料项 |
 | [genre-playbook-review-opinion.md](../../chinese-official-writing/references/genre-playbook-review-opinion.md) | 独立审查/评审意见；一般项目、初步设计及采购审查按同一功能处理 | 旧 procurement-review 审查材料部分 |
 | [genre-playbook-technical-requirements.md](../../chinese-official-writing/references/genre-playbook-technical-requirements.md) | 独立技术需求书、软件/接口需求或附件；算力与采购专项按条件叠加 | 旧 ai-compute-docs 独立技术需求及通用技术需求路由补建 |
+| [genre-playbook-editorial-note.md](../../chinese-official-writing/references/genre-playbook-editorial-note.md) | 编者按与编发按语：编辑身份、编发目的、阅读方向及按语/原稿关系 | 旧 news-message 编者按要求与 formulaic-language 编者按入口 |
 
 ## 旧事务用语表的剩余入口
 
@@ -105,21 +106,30 @@
 | 讲话稿、演讲词 | 讲话/致辞/演讲 |
 | 答复 | 平行往来用函/复函；上级答复请示用批复；纯解释材料用说明 |
 | 建议信、情况反映 | 合作性意见建议、投诉/情况反映；法定意见另行判定 |
-| 新闻发布稿、新闻、编者按 | 新闻消息，编者按保留身份标识；公开告知材料按公告用途判定 |
+| 新闻发布稿、新闻 | 新闻消息；公开告知材料按公告用途判定 |
+| 编者按 | 独立编者按主叶，以编辑或编发者身份说明目的和阅读方向，不套事件消息骨架 |
 | 总结、短评 | 工作总结、新闻评论 |
 
 以上是功能选路映射，不是给任一标题硬定文种，也不证明这些组合已经全部实写。
 
 ## 历史证据与未闭合状态
 
-以下证据保留各自快照的判断；R14 的规则采纳只更新当前工程归属，不追改 R5/R6 的历史结果。
+以下证据保留各自快照的判断；本次维护适配只预备 R16 工程归属，不追改 R5/R6 或其他历史结果。
 
 - [旧共性语义审计 R5](../tests/evidence/rewrite-cold-r5/legacy-common-parity-r5.md)覆盖 23 页；[旧文种语义审计 R5](../tests/evidence/rewrite-cold-r5/legacy-genre-parity-r5.md)覆盖 26 页。剩余 technical-terms 在共性报告中另记与旧页逐行相同。两份审计针对当时快照，原有 G1–G4/U1 不是当前未修清单，也不是当前通过证书。
 - [R5 修复及证据汇总](../tests/evidence/rewrite-cold-r5/result.md)记录有据分析、字段默认形态、使用报告正反组织、消息内分析、可研建议、事务入口与技术需求的补建。当前页存在相应落点；敏感信息范围复核已补回，但不能据此宣布旧涉密人工复核专项等价。
 - [R6 旧边界迁移](../tests/evidence/legacy-boundary-migration-r6/result.md)更新了早期“总体等价”的精度：81 个方法保留，75 通过、6 个方法仍有 12 个失败子断言。未闭合项是声明/业务版本明示保留（2）、纯文本标题与编号句标点（4）、渠道不推发文主体（1）、Token 不改调用次数（1）、成语同语境/的地得/量词（3）、引用原文同语境保护（1）。不能用泛称模板、单位或校对规则代替专项承接。
 - [R6 真实写稿](../tests/evidence/rewrite-validation-r6/result.md)保留三组各自对照：冷审修复 2 较好/1 较弱/7 相当；剩余文种 7/3/2；已知反例可比项 1/6/1，另 1 项仅候选可评。没有逐页全部质量通过结论，不能把正反样本合并成普遍改善。
 - 技术需求、公开信、讲解的事实/程序扩写，完整消息旁白、局部范围、偶发不交正文和额外主叶读取仍有反例。新增页不自动获得旧页历史成绩；主持/述职已有专页也不表示两类组合全部验收。
-- R7 原型及 R5/R6 未闭合项保留为历史记录；当前 canonical 已采用 R13 共性归并及 R14 整合修正。静态映射只表示工程归属，实际读取仍以 native 轨迹为准，1.x 对照与发布验收另行记录。
+- R7 原型及 R5/R6 未闭合项保留为历史记录；当前 canonical 的 R13/R14 状态与本表预备的 R16 冻结候选分别记录；最终应用由主任务在真实结果核对后处理。静态映射只表示工程归属，实际读取仍以 native 轨迹为准，1.x 对照与发布验收另行记录。
+
+## R16 待纳入证据
+
+- [完整候选构建记录](../../output/reference-integration-r16/build.json)及[组合预登记](../tests/evidence/integration-r16/preregister.md)绑定共性归并、目录、采购公告目的、函用途和编者按五项冻结组件。页集为67页；本表不把构建成功写成真实写稿通过。
+- [目录原型预登记](../tests/evidence/genre-router-r16/preregister.md)、[采购/函用途原型](../tests/evidence/genre-purpose-r16/preregister.md)及[编者按原型](../tests/evidence/editorial-note-r16/preregister.md)说明各自范围。索引清理后 manifest 按实际命名链接重建 allowed_reads/forbidden_reads；补回旧清单遗漏的通报路线，并新增编者按路线，不以固定路线总数代替路径核对。
+- [完整候选冷审](../../output/full-skill-cold-r16/report.md)记录压缩单侧上限、评论修改范围和行内代码残留扫描三个问题；这是冷审发现，不是最终验收。[两规则局部修正构建](../../output/reference-integration-r16-rule-refinement/build.json)只修 compression-details/news-commentary，同名脚本后续修正另行绑定，不回写原冻结包。
+- 共性撤页及来源/身份边界的[原型预登记](../tests/evidence/common-layer-r16-attribution/preregister.md)和原有反例继续保留；适配 agent_writer 只移除活动退役路径，不能用该预选上下文证明 native 选路。
+- 组合实写结果、最终 canonical 应用、Word、旧1.x金线和整体合并验收仍待主任务闭合。
 
 ## 台账使用规则
 

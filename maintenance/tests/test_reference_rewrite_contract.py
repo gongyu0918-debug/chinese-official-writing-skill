@@ -18,6 +18,7 @@ FINAL_REVIEW_PATHS = [
 RETIRED_COMMON_PAGES = {
     "information-selection.md", "final-review-layers.md", "delivery.md",
     "short-draft-naturalness.md", "task-route-cards.md",
+    "handling-elements.md", "official-style.md",
 }
 
 
@@ -88,6 +89,10 @@ class ReferenceRewriteContractTests(unittest.TestCase):
         self.assertRegex(delivery, r"正文编号、落款和附件.*提示前结束")
         self.assertRegex(delivery, r"文件交付.*提示留在消息中")
         self.assertRegex(length_section, r"文后提示.*单列")
+        compression = (REFS / "compression-details.md").read_text(encoding="utf-8")
+        self.assertRegex(compression, r"上下限.*用户要求.*共性写作页.*适用范围")
+        self.assertRegex(compression, r"用户只给上限.*保留适用的默认下限")
+        self.assertNotIn("只有一侧限制时只传对应参数", compression)
 
     def test_product_pages_do_not_expose_build_or_maintenance_commands(self) -> None:
         texts = [SKILL.read_text(encoding="utf-8")]
@@ -208,6 +213,24 @@ class ReferenceRewriteContractTests(unittest.TestCase):
             self.assertEqual(len(route["primary"]), 1)
             self.assertIn(route["primary"][0], primary_pages, route["id"])
             self.assertEqual(route["review"], FINAL_REVIEW_PATHS, route["id"])
+        # Check real leaf coverage, including the previously omitted bulletin,
+        # rather than accepting a target number of routes.
+        self.assertEqual({route["primary"][0] for route in manifest["routes"]}, primary_pages)
+        self.assertEqual(len({route["id"] for route in manifest["routes"]}), len(manifest["routes"]))
+
+        pages = {page["path"]: page for page in manifest["pages"]}
+        for legacy, owner in [
+            ("handling-elements.md", "writing-rules.md"),
+            ("official-style.md", "anti-ai-patterns.md"),
+            ("review-direct-checklist.md", "review-checklist.md"),
+            ("workflow.md", "writing-rules.md"),
+        ]:
+            self.assertIn(legacy, pages[f"references/{owner}"]["legacy_coverage"])
+        mapping = (ROOT / "maintenance/docs/reference-rewrite-page-map-20260912.md").read_text(encoding="utf-8")
+        baseline_pages = set(re.findall(r"^\|\s*\d+\s*\|\s*`([^`]+\.md)`", mapping, re.MULTILINE))
+        active_coverage = {legacy for page in pages.values() for legacy in page["legacy_coverage"]}
+        # The Pro-only gate is archived, not assigned to an active MIT owner.
+        self.assertLessEqual(baseline_pages - {"delivery-review-gate.md"}, active_coverage)
 
     def test_reorganized_leaf_manifest_keeps_procurement_as_overlay(self) -> None:
         # Deterministic metadata closure is separate from native model routing evidence.
@@ -218,7 +241,7 @@ class ReferenceRewriteContractTests(unittest.TestCase):
         routes = {route["id"]: route for route in manifest["routes"]}
         procurement = "references/genre-playbook-procurement-review.md"
         self.assertEqual(pages[procurement]["kind"], "overlay")
-        for suffix in ["review-opinion", "technical-requirements", "responsibility-letter", "initiative", "open-letter", "narration", "information-materials"]:
+        for suffix in ["review-opinion", "technical-requirements", "responsibility-letter", "initiative", "open-letter", "narration", "information-materials", "editorial-note", "bulletin"]:
             path = f"references/genre-playbook-{suffix}.md"
             self.assertEqual(pages[path]["kind"], "genre")
             self.assertEqual(routes[suffix.replace("-", "_")]["primary"], [path])
@@ -229,6 +252,37 @@ class ReferenceRewriteContractTests(unittest.TestCase):
         self.assertIn(procurement, routes["procurement_review"]["overlays"])
         for route in routes.values():
             self.assertNotIn(procurement, route["primary"])
+
+    def test_index_conflict_and_uncovered_pages_have_distinct_roles(self) -> None:
+        index = (REFS / "reference-index.md").read_text(encoding="utf-8")
+        conflict = (REFS / "genre-routing.md").read_text(encoding="utf-8")
+        uncovered = (REFS / "genre-checklist.md").read_text(encoding="utf-8")
+        for leaf in ["genre-playbook-bulletin.md", "genre-playbook-editorial-note.md", "genre-playbook-project-application.md"]:
+            self.assertIn(leaf, index)
+        for concept in ["标题", "模板", "用途", "行文关系", "请求批准", "权限", "上级答复下级请示"]:
+            self.assertIn(concept, conflict)
+        for concept in ["用户模板", "材料", "通用写法", "主体", "接收对象", "用途", "字段"]:
+            self.assertIn(concept, uncovered)
+        for page in [conflict, uncovered]:
+            self.assertNotRegex(page, r"`(?:references/)?genre-playbook-[^`]+\.md`")
+
+    def test_editorial_note_keeps_editor_voice_and_requested_delivery(self) -> None:
+        text = (REFS / "genre-playbook-editorial-note.md").read_text(encoding="utf-8")
+        for concept in ["编辑或编发者身份", "为何编发", "阅读重点", "保留其归属", "具体栏目沿革", "本轮只要按语", "同时需要被编发正文", "按要求照录"]:
+            self.assertIn(concept, text)
+        self.assertIn("任选一种清楚标示即可", text)
+        self.assertIn("通常无需另套消息标题、导语和事件报道结构", text)
+        news = (REFS / "genre-playbook-news-message.md").read_text(encoding="utf-8")
+        self.assertNotIn("编者按", news)
+
+    def test_procurement_purpose_and_correspondence_authority_are_preserved(self) -> None:
+        procurement = (REFS / "genre-playbook-procurement-announcement.md").read_text(encoding="utf-8")
+        for concept in ["发布目的", "征集响应", "结果告知", "终止事项", "预算或上限", "估算价", "成交金额不互换", "只提示影响当前发布目的的缺项"]:
+            self.assertIn(concept, procurement)
+        self.assertIn("不把响应条件、递交期限等征集要素强加给结果或终止公告", procurement)
+        letter = (REFS / "genre-playbook-correspondence.md").read_text(encoding="utf-8")
+        for concept in ["不相隶属", "请求批准", "审批答复", "有权范围", "缺少授权或结论依据", "不代作批准", "尚待批准", "上级答复下级请示用批复"]:
+            self.assertIn(concept, letter)
 
     def test_new_primary_pages_preserve_subject_state_and_delivery_boundaries(self) -> None:
         expected = {
@@ -258,7 +312,7 @@ class ReferenceRewriteContractTests(unittest.TestCase):
             self.assertFalse((REFS / name).exists(), name)
             self.assertNotIn(name, product)
         skill_and_index = SKILL.read_text(encoding="utf-8") + (REFS / "reference-index.md").read_text(encoding="utf-8")
-        for name in ["writing-rules.md", "handling-elements.md", "argument-chains.md", "structure-editing.md", "compression-details.md"]:
+        for name in ["writing-rules.md", "argument-chains.md", "structure-editing.md", "compression-details.md"]:
             self.assertIn(name, skill_and_index)
         mapping = (ROOT / "maintenance/docs/reference-rewrite-page-map-20260912.md").read_text(encoding="utf-8")
         workflow_row = next(line for line in mapping.splitlines() if "`workflow.md`" in line and line.startswith("|"))
@@ -323,8 +377,9 @@ class ReferenceRewriteContractTests(unittest.TestCase):
         common = (REFS / "writing-rules.md").read_text(encoding="utf-8")
         for reference in ["references/structure-editing.md", "references/field-editing.md"]:
             self.assertIn(reference, skill)
-        for concept in ["修改范围", "逐字保留", "局部替换", "字段处理", "局部任务检查改动及关联内容"]:
+        for concept in ["修改范围", "逐字保留", "局部替换", "字段处理"]:
             self.assertIn(concept, common)
+        self.assertRegex(common, r"局部(?:任务检查|查)改动及关联内容")
         spec = importlib.util.spec_from_file_location("rewrite_common_writer", ROOT / "maintenance/evals/official-writing/providers/agent_writer.py")
         assert spec is not None and spec.loader is not None
         module = importlib.util.module_from_spec(spec)
@@ -404,6 +459,10 @@ class ReferenceRewriteContractTests(unittest.TestCase):
             page.read_text(encoding="utf-8") for page in REFS.glob("*.md")
         )
         self.assertNotIn("review-direct-checklist.md", product)
+        commentary = (REFS / "genre-playbook-news-commentary.md").read_text(encoding="utf-8")
+        self.assertIn("事实段保持来源口径，按本轮范围修正语言与篇幅", commentary)
+        self.assertIn("保留有实际作用的否定与比较", commentary)
+        self.assertNotIn("事实段只核对，不重写", commentary)
 
     def test_prose_lint_modes_follow_text_type_and_recheck_script_edits(self) -> None:
         text = (REFS / "prose-lint-usage.md").read_text(encoding="utf-8")
@@ -417,29 +476,38 @@ class ReferenceRewriteContractTests(unittest.TestCase):
         for concept in ["关联内容", "影响篇幅时另测字数", "已确认且属于本轮范围"]:
             self.assertIn(concept, common)
 
-    def test_common_and_handling_pages_keep_fact_and_element_boundaries(self) -> None:
+    def test_common_owner_keeps_fact_and_handling_element_boundaries(self) -> None:
         common = (REFS / "writing-rules.md").read_text(encoding="utf-8")
-        handling = (REFS / "handling-elements.md").read_text(encoding="utf-8")
+        self.assertFalse((REFS / "handling-elements.md").exists())
         for concept in ["材料与常识", "不确定性", "实质缺项", "拟", "建议", "待核", "未决定", "范围", "判断强度"]:
             self.assertIn(concept, common)
         self.assertRegex(common, r"只有主题或方向.*功能.*拟议")
         self.assertRegex(common, r"当天日期.*草稿日期")
         self.assertRegex(common, r"要求留空、待确认.*按要求保留")
         self.assertRegex(common, r"业务时间沿用材料")
-        for term in ["主体", "对象", "事项", "依据", "状态", "期限", "金额", "附件", "联系人", "反馈", "落款", "日期", "未提供", "尚未确定", "矛盾"]:
-            self.assertIn(term, handling)
-        self.assertIn("当前主文种", handling)
-        self.assertIn("用户模板", handling)
-        links = re.findall(r"`(?:references/)?([^`/]+\.md)`", handling)
-        self.assertEqual(links, ["external-research.md", "writing-rules.md"])
-        self.assertNotRegex(handling, r"\|\s*文种(?:/材料)?\s*\|")
-        self.assertIn("具体业务信息仍取自材料", handling)
+        for term in ["主体", "对象", "事项", "依据", "状态", "期限", "金额", "附件", "落款", "日期", "未提供", "矛盾", "主文种", "用户模板"]:
+            self.assertIn(term, common)
+        self.assertIn("未提供信息与业务尚未决定分别处理", common)
+        self.assertIn("字段、表格和指定空位按用户用途保留", common)
+        self.assertRegex(common, r"主体、对象、数字、金额、业务日期、引语、来源及事实状态.*照实保留")
+        self.assertRegex(common, r"正文、表格和附件.*名称、数值、顺序和状态.*一致")
+        self.assertIn("分清实测、测算与估算", common)
+        # Optional contact/feedback details belong to the chosen genre, rather
+        # than requiring another common table or restoring the retired page.
+        letter = (REFS / "genre-playbook-correspondence.md").read_text(encoding="utf-8")
+        for term in ["期限", "方式", "联系人", "附件", "材料未给且不影响办理时"]:
+            self.assertIn(term, letter)
+        self.assertIn("references/external-research.md", SKILL.read_text(encoding="utf-8"))
+        self.assertNotRegex(common, r"\|\s*文种(?:/材料)?\s*\|")
 
     def test_style_and_addressing_pages_keep_relation_and_strength_boundaries(self) -> None:
-        style = (REFS / "official-style.md").read_text(encoding="utf-8")
+        style = (REFS / "anti-ai-patterns.md").read_text(encoding="utf-8")
+        self.assertFalse((REFS / "official-style.md").exists())
         addressing = (REFS / "formal-addressing.md").read_text(encoding="utf-8")
-        for term in ["视角", "段落", "证据", "上行文", "下行文", "平行文"]:
+        for term in ["段落", "证据", "上行文", "下行文", "平行文"]:
             self.assertIn(term, style + addressing)
+        for term in ["叙述身份", "同义正式语体", "否定范围", "先后", "论断强度"]:
+            self.assertIn(term, style)
         self.assertIn("不编造机关名称", addressing)
 
     def test_speech_page_keeps_sparse_theme_material_at_original_strength(self) -> None:

@@ -30,9 +30,7 @@ metadata:
 
 需要处理正文内容时，以用户模板、最新版底稿、明确标题和用途选路。用户限定仅排版、保留文字时，直接按格式任务处理。
 
-新闻消息、新闻评论、合作性意见建议、投诉反映和整改方案等兼容场景读取 `references/compatibility-scene-routing.md`；正式文种“意见”读取 `references/genre-playbook-opinion.md`；作为执行规则交付的制度、规定、办法、细则和操作规程读取 `references/genre-playbook-institution-rules.md`。
-
-其他文种按 `references/reference-index.md` 确定每份稿件的主文种；文种或行文关系冲突时再读取 `references/genre-routing.md`。
+按 `references/reference-index.md` 为每份稿件选定一个主叶；标题、模板、正文用途或行文关系有冲突时，先读 `references/genre-routing.md` 判定，再选主叶。
 
 ### 第三步：按任务加读
 
