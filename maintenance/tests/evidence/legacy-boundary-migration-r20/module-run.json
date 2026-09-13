@@ -1,0 +1,14 @@
+{
+  "command": [
+    "C:/Users/admin/AppData/Local/Programs/Python/Python313/python.exe",
+    "-B",
+    "-m",
+    "unittest",
+    "-v",
+    "maintenance.tests.test_skill_boundary"
+  ],
+  "returncode": 0,
+  "seconds": 1.009,
+  "module_sha256": "ff1cb058268fbac51c4895c98a39e0f848cb324449199327ba8234e35e4145e0",
+  "log_sha256": "ff63bf2b489d123b4f2c5dc73f25ab13a77d471168077f364d4f188be82b8c87"
+}

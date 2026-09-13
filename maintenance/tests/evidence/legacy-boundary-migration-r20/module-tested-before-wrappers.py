@@ -262,23 +262,6 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assert_rules("format-gbt9704.md", "不得把 Markdown `**加粗**`、代码块或 `###` 标题标记原样带入正式 Word",
                           "段首题、编号正文句或用户模板明确接排时仍按正文标点处理")
         self.assert_rules("proofreading-checklist.md", "Markdown 残留是否符合交付形态")
-        # The retired short-draft page also protected whole-body wrappers.
-        # Exercise the surviving detector instead of losing that responsibility.
-        for draft, expected in [
-            ("```text\n关于提交材料的通知\n请提交材料。\n```", {"markdown-code-fence"}),
-            ("关于提交材料的通知\n\n请提交材料。\n---\n补充说明。", {"markdown-horizontal-rule"}),
-            ("关于提交材料的通知\n\n请提交材料。", set()),
-        ]:
-            with self.subTest(wrappers=expected):
-                run = subprocess.run(
-                    [sys.executable, "-B", str(CANONICAL / "scripts/prose_lint.py"),
-                     "--delivery-mode", "draft-body", "--format", "--json", "-"],
-                    input=draft, encoding="utf-8", capture_output=True, timeout=30,
-                )
-                self.assertEqual(run.returncode, 0, run.stderr)
-                wrappers = {item["label"] for item in json.loads(run.stdout)
-                            if item["label"] in {"markdown-code-fence", "markdown-horizontal-rule"}}
-                self.assertEqual(wrappers, expected)
 
     def test_plain_text_title_boundary_contract_is_explicit(self) -> None:
         home = (CANONICAL / "SKILL.md").read_text(encoding="utf-8")
