@@ -1,0 +1,74 @@
+{
+  "status": "adopt-development",
+  "native_tested_fingerprint": "e800328ccf113e27004812a5e82134ea24cae3040a6f9eb33443ee6a2c31a2cf",
+  "counts": {
+    "body": {
+      "candidate": 2,
+      "baseline": 0,
+      "tie": 4
+    },
+    "delivery": {
+      "candidate": 2,
+      "baseline": 1,
+      "tie": 3
+    }
+  },
+  "pairs": [
+    {
+      "id": "P01",
+      "model": "command-code/deepseek-deepseek-v4.1-flash",
+      "case": "motion",
+      "packet": "output/blind-r16/motion-content-r23-deepseek",
+      "body": "tie",
+      "delivery": "tie"
+    },
+    {
+      "id": "P02",
+      "model": "command-code/deepseek-deepseek-v4.1-flash",
+      "case": "motion_separate_amendments",
+      "packet": "output/blind-r16/motion-content-r23-deepseek",
+      "body": "tie",
+      "delivery": "tie"
+    },
+    {
+      "id": "P03",
+      "model": "command-code/deepseek-deepseek-v4.1-flash",
+      "case": "motion_with_supplied_details",
+      "packet": "output/blind-r16/motion-content-r23-deepseek",
+      "body": "tie",
+      "delivery": "baseline"
+    },
+    {
+      "id": "P01",
+      "model": "alibaba-token-plan/qwen3.8-flash",
+      "case": "motion",
+      "packet": "output/blind-r16/motion-content-r23-qwen",
+      "body": "candidate",
+      "delivery": "candidate"
+    },
+    {
+      "id": "P02",
+      "model": "alibaba-token-plan/qwen3.8-flash",
+      "case": "motion_separate_amendments",
+      "packet": "output/blind-r16/motion-content-r23-qwen",
+      "body": "candidate",
+      "delivery": "candidate"
+    },
+    {
+      "id": "P03",
+      "model": "alibaba-token-plan/qwen3.8-flash",
+      "case": "motion_with_supplied_details",
+      "packet": "output/blind-r16/motion-content-r23-qwen",
+      "body": "tie",
+      "delivery": "tie"
+    }
+  ],
+  "native_calls": 12,
+  "technical_valid": 12,
+  "acceptance": "No observed body disadvantage in these six pairs, preserved authorized design and supplied details; ties are acceptable under user criterion. Do not infer universal improvement or count a single narration difference as rule failure.",
+  "limits": [
+    "Qwen candidate mixed-scope text uses ambiguous conditional 重新; keep as a local observation, not known completed-state fabrication.",
+    "Process narration and inaccurate postscript notes still occur.",
+    "Review-checklist final scope correction is explicitly requested and separate from the motion-page native comparison."
+  ]
+}

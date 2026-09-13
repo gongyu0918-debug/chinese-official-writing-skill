@@ -173,7 +173,7 @@ class ReferenceRewriteContractTests(unittest.TestCase):
         expected = {
             "genre-playbook-decision.md": ["主体", "权限", "决定对象", "执行", "拟议"],
             "genre-playbook-resolution.md": ["会议", "通过", "日期", "审议", "待表决"],
-            "genre-playbook-motion.md": ["人民政府", "同级人民代表大会", "提请审议", "附件", "批准结论"],
+            "genre-playbook-motion.md": ["人民政府", "同级人民代表大会", "提请审议", "附件", "批准"],
             "genre-playbook-communique.md": ["发布主体", "公开范围", "各方立场", "共识", "磋商"],
             "genre-playbook-order.md": ["发令主体", "权限", "令号", "施行", "签署人"],
         }

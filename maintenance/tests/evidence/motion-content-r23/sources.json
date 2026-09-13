@@ -1,0 +1,20 @@
+{
+  "checked_in_turn": "2026-09-13",
+  "sources": [
+    {
+      "title": "云南省人民代表大会常务委员会立法技术规范",
+      "url": "https://www.ynrd.gov.cn/html/2025/tongzhigonggao_0617/4033777.html",
+      "status": "opened-and-target-section-found",
+      "section": "第二部分 一、提请审议法规的有关文件，（一）法规议案、（二）法规草案的说明",
+      "supports": "提请议案的案由、主送、落款等与草案说明、文本有不同职责；案由说明简要理由，说明承载主要内容和必要性。",
+      "limits": "云南地方规范，不套用为所有地区统一签署格式；例示会议或调研程序不授权补入其他任务。"
+    },
+    {
+      "title": "重庆市人民政府关于提请审议2025年市级预算调整方案（草案）的议案",
+      "url": "https://www.cqrd.gov.cn/web/article/1514938413470294016/web/content_1514938413470294016.html",
+      "status": "current-open-internal-error",
+      "prior_evidence": "output/motion-purpose-r20/proposal.md",
+      "limits": "仅沿用前轮已核实例，本轮不声称重新读取成功；已获取的云南规范足够支持本次文书职责区分，不追加广泛检索。"
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "unit_command": "C:/Users/admin/AppData/Local/Programs/Python/Python313/python.exe -m unittest maintenance.tests.test_reference_rewrite_contract",
+  "unit_passed": 33,
+  "quick_validate": "PASS",
+  "local_links_checked": 185,
+  "missing_links": [],
+  "mirrors_identical_for_changed_files": 5,
+  "diff_check": "PASS",
+  "native_calls": 12,
+  "motion_leaf_full_return": 12,
+  "whole_suite_rerun": false,
+  "note": "Relevant unit suite run once after product adoption. Later edits affect maintenance reports and source bookkeeping only."
+}

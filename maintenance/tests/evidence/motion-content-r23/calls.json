@@ -1,0 +1,254 @@
+[
+  {
+    "model": "alibaba-token-plan/qwen3.8-flash",
+    "effort": "medium",
+    "case": "motion",
+    "arm": "baseline",
+    "returncode": 0,
+    "seconds": 108.84,
+    "invalid": [],
+    "draft_sha256": "3acaacc74dee2f98fc2cfa577b63884f3f709689770f4f8a6403e0c2d8566620",
+    "usage": [
+      {
+        "input_tokens": 151980,
+        "cached_input_tokens": 131200,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 4693,
+        "reasoning_output_tokens": 2189
+      }
+    ],
+    "run": "motion-content-native-r23-qwen",
+    "motion_page_returned": true
+  },
+  {
+    "model": "alibaba-token-plan/qwen3.8-flash",
+    "effort": "medium",
+    "case": "motion",
+    "arm": "candidate",
+    "returncode": 0,
+    "seconds": 75.5,
+    "invalid": [],
+    "draft_sha256": "a7d3f7136396956f2b3739b079aa567b6edd495b34cb759f17eeed21657e380f",
+    "usage": [
+      {
+        "input_tokens": 175098,
+        "cached_input_tokens": 156928,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 3161,
+        "reasoning_output_tokens": 825
+      }
+    ],
+    "run": "motion-content-native-r23-qwen",
+    "motion_page_returned": true
+  },
+  {
+    "model": "alibaba-token-plan/qwen3.8-flash",
+    "effort": "medium",
+    "case": "motion_with_supplied_details",
+    "arm": "baseline",
+    "returncode": 0,
+    "seconds": 85.55,
+    "invalid": [],
+    "draft_sha256": "dc7cc8e5ccc20d88fca5a1bc67a5363094bee1fc5371867f818db31163b335e8",
+    "usage": [
+      {
+        "input_tokens": 194694,
+        "cached_input_tokens": 175104,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 3518,
+        "reasoning_output_tokens": 920
+      }
+    ],
+    "run": "motion-content-native-r23-qwen",
+    "motion_page_returned": true
+  },
+  {
+    "model": "alibaba-token-plan/qwen3.8-flash",
+    "effort": "medium",
+    "case": "motion_with_supplied_details",
+    "arm": "candidate",
+    "returncode": 0,
+    "seconds": 61.86,
+    "invalid": [],
+    "draft_sha256": "414b726c8174dcda2c303d11251bbd2e9f1efc5d1b0e91874534a0a48427d485",
+    "usage": [
+      {
+        "input_tokens": 89401,
+        "cached_input_tokens": 76800,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 2747,
+        "reasoning_output_tokens": 1292
+      }
+    ],
+    "run": "motion-content-native-r23-qwen",
+    "motion_page_returned": true
+  },
+  {
+    "model": "alibaba-token-plan/qwen3.8-flash",
+    "effort": "medium",
+    "case": "motion_separate_amendments",
+    "arm": "baseline",
+    "returncode": 0,
+    "seconds": 156.26,
+    "invalid": [],
+    "draft_sha256": "8d279e75ada9e5f5d4bc8d3e041fd36c80f18b4df0ff64c3ef6a95805b050329",
+    "usage": [
+      {
+        "input_tokens": 211555,
+        "cached_input_tokens": 188160,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 5949,
+        "reasoning_output_tokens": 1652
+      }
+    ],
+    "run": "motion-content-native-r23-qwen",
+    "motion_page_returned": true
+  },
+  {
+    "model": "alibaba-token-plan/qwen3.8-flash",
+    "effort": "medium",
+    "case": "motion_separate_amendments",
+    "arm": "candidate",
+    "returncode": 0,
+    "seconds": 153.25,
+    "invalid": [],
+    "draft_sha256": "77194d26bc8df9c1b2ee3596398b51feb14e03c2c5aa63a25cc4927cf8850924",
+    "usage": [
+      {
+        "input_tokens": 196397,
+        "cached_input_tokens": 176640,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 7385,
+        "reasoning_output_tokens": 3367
+      }
+    ],
+    "run": "motion-content-native-r23-qwen",
+    "motion_page_returned": true
+  },
+  {
+    "model": "command-code/deepseek-deepseek-v4.1-flash",
+    "effort": "provider-default",
+    "case": "motion",
+    "arm": "baseline",
+    "returncode": 0,
+    "seconds": 51.64,
+    "invalid": [],
+    "draft_sha256": "31b241d5c8d74cb78471131bcc18353ced78209cf56a10e2cb90ee698edbd2ac",
+    "usage": [
+      {
+        "input_tokens": 198125,
+        "cached_input_tokens": 183424,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 3555,
+        "reasoning_output_tokens": 0
+      }
+    ],
+    "run": "motion-content-native-r23-deepseek",
+    "motion_page_returned": true
+  },
+  {
+    "model": "command-code/deepseek-deepseek-v4.1-flash",
+    "effort": "provider-default",
+    "case": "motion",
+    "arm": "candidate",
+    "returncode": 0,
+    "seconds": 37.67,
+    "invalid": [],
+    "draft_sha256": "2471d87beeaf9763ec3ae4bf6e7069f957f42aee41c6ba5afed8f55176d7f646",
+    "usage": [
+      {
+        "input_tokens": 107169,
+        "cached_input_tokens": 95616,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 2659,
+        "reasoning_output_tokens": 0
+      }
+    ],
+    "run": "motion-content-native-r23-deepseek",
+    "motion_page_returned": true
+  },
+  {
+    "model": "command-code/deepseek-deepseek-v4.1-flash",
+    "effort": "provider-default",
+    "case": "motion_with_supplied_details",
+    "arm": "baseline",
+    "returncode": 0,
+    "seconds": 42.91,
+    "invalid": [],
+    "draft_sha256": "7255b48063856d38cdf384ef7ed6cfda6e99d0bfa9ebfba1cb3a8489254e3a75",
+    "usage": [
+      {
+        "input_tokens": 112275,
+        "cached_input_tokens": 99456,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 3250,
+        "reasoning_output_tokens": 0
+      }
+    ],
+    "run": "motion-content-native-r23-deepseek",
+    "motion_page_returned": true
+  },
+  {
+    "model": "command-code/deepseek-deepseek-v4.1-flash",
+    "effort": "provider-default",
+    "case": "motion_with_supplied_details",
+    "arm": "candidate",
+    "returncode": 0,
+    "seconds": 42.72,
+    "invalid": [],
+    "draft_sha256": "f4663d26d9060c4a0706b633326ba08f6cf0c4f8707275beb8e82a843f10a3c4",
+    "usage": [
+      {
+        "input_tokens": 174659,
+        "cached_input_tokens": 161024,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 3246,
+        "reasoning_output_tokens": 0
+      }
+    ],
+    "run": "motion-content-native-r23-deepseek",
+    "motion_page_returned": true
+  },
+  {
+    "model": "command-code/deepseek-deepseek-v4.1-flash",
+    "effort": "provider-default",
+    "case": "motion_separate_amendments",
+    "arm": "baseline",
+    "returncode": 0,
+    "seconds": 87.3,
+    "invalid": [],
+    "draft_sha256": "edac2c1a2c5dc6387d055c3a448a7373736bf3d9a10836f1fe796d19bca7fa1d",
+    "usage": [
+      {
+        "input_tokens": 207304,
+        "cached_input_tokens": 189824,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 9901,
+        "reasoning_output_tokens": 0
+      }
+    ],
+    "run": "motion-content-native-r23-deepseek",
+    "motion_page_returned": true
+  },
+  {
+    "model": "command-code/deepseek-deepseek-v4.1-flash",
+    "effort": "provider-default",
+    "case": "motion_separate_amendments",
+    "arm": "candidate",
+    "returncode": 0,
+    "seconds": 58.12,
+    "invalid": [],
+    "draft_sha256": "c28bf19e9fc971b428ef0a11447504b61989b8efc12b345a74d1d6ae5cc0e52c",
+    "usage": [
+      {
+        "input_tokens": 148177,
+        "cached_input_tokens": 133760,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 6482,
+        "reasoning_output_tokens": 0
+      }
+    ],
+    "run": "motion-content-native-r23-deepseek",
+    "motion_page_returned": true
+  }
+]
