@@ -1,0 +1,94 @@
+{
+  "completed_at_utc": "2026-09-13T08:55:21.358226+00:00",
+  "all_four_pages_actually_inspected": true,
+  "pages": [
+    {
+      "id": "deepseek--m2-review_existing_docx-baseline",
+      "document_id": "docx-001",
+      "page": 1,
+      "png": "F:\\Workspaces\\chinese-official-writing-skill\\output\\route-worktrees\\reference-rewrite-20260912\\output\\docx-input-qa-r19\\renders\\deepseek--m2-review_existing_docx-baseline\\docx-001\\page-001.png",
+      "png_sha256": "203228b2c0374581b854d5fd02e8bf5e5b984caac91f48d58e54bec92549e218",
+      "docx_sha256": "6ff48bc8580be0cb7dfa3128571230df41a1c7d895add047f51a3465575b76d5",
+      "inspection": "view_image actual full-page visual inspection",
+      "readability": "PASS",
+      "visible_content": "标题、主送、正文三段、署名和日期完整可读，无裁切、重叠或空白正文。署名与日期右缘对齐。",
+      "layout_observation": "未见影响可读性的缺陷；仅记录本机实际版式，不作严格 GB/T 合规认证。",
+      "signoff_xml": [
+        {
+          "text": "教务处",
+          "pPr": "<ns0:pPr xmlns:ns0=\"http://schemas.openxmlformats.org/wordprocessingml/2006/main\"><ns0:spacing ns0:before=\"0\" ns0:after=\"0\" ns0:lineRule=\"exact\" ns0:line=\"580\" /><ns0:ind ns0:right=\"640\" ns0:rightChars=\"200\" /><ns0:jc ns0:val=\"right\" /></ns0:pPr>"
+        },
+        {
+          "text": "2026年9月13日",
+          "pPr": "<ns0:pPr xmlns:ns0=\"http://schemas.openxmlformats.org/wordprocessingml/2006/main\"><ns0:spacing ns0:before=\"0\" ns0:after=\"0\" ns0:lineRule=\"exact\" ns0:line=\"580\" /><ns0:ind ns0:right=\"640\" ns0:rightChars=\"200\" /><ns0:jc ns0:val=\"right\" /></ns0:pPr>"
+        }
+      ]
+    },
+    {
+      "id": "deepseek--m2-review_existing_docx-candidate",
+      "document_id": "docx-001",
+      "page": 1,
+      "png": "F:\\Workspaces\\chinese-official-writing-skill\\output\\route-worktrees\\reference-rewrite-20260912\\output\\docx-input-qa-r19\\renders\\deepseek--m2-review_existing_docx-candidate\\docx-001\\page-001.png",
+      "png_sha256": "84f2841233680534b928ab3444a210f5f2c35f99719eeb070e62920584a55faf",
+      "docx_sha256": "86bf5ca6c46415da9d47d01676d39de954dceb6d51b258d12fdd729ed5bfaefc",
+      "inspection": "view_image actual full-page visual inspection",
+      "readability": "PASS",
+      "visible_content": "标题、主送、正文三段、署名和日期完整可读，无裁切、重叠或空白正文。署名与日期右缘对齐，比基线整体靠左。",
+      "layout_observation": "未见影响可读性的缺陷；不凭缩进差异判定严格 GB/T 失败。",
+      "signoff_xml": [
+        {
+          "text": "教务处",
+          "pPr": "<ns0:pPr xmlns:ns0=\"http://schemas.openxmlformats.org/wordprocessingml/2006/main\"><ns0:spacing ns0:lineRule=\"exact\" ns0:line=\"580\" ns0:before=\"0\" ns0:after=\"0\" /><ns0:snapToGrid ns0:val=\"0\" /><ns0:adjustRightInd ns0:val=\"0\" /><ns0:ind ns0:left=\"0\" ns0:right=\"1280\" /><ns0:jc ns0:val=\"right\" /></ns0:pPr>"
+        },
+        {
+          "text": "2026年9月13日",
+          "pPr": "<ns0:pPr xmlns:ns0=\"http://schemas.openxmlformats.org/wordprocessingml/2006/main\"><ns0:spacing ns0:lineRule=\"exact\" ns0:line=\"580\" ns0:before=\"0\" ns0:after=\"0\" /><ns0:snapToGrid ns0:val=\"0\" /><ns0:adjustRightInd ns0:val=\"0\" /><ns0:ind ns0:left=\"0\" ns0:right=\"1280\" /><ns0:jc ns0:val=\"right\" /></ns0:pPr>"
+        }
+      ]
+    },
+    {
+      "id": "glm--m4-review_existing_docx-baseline",
+      "document_id": "docx-001",
+      "page": 1,
+      "png": "F:\\Workspaces\\chinese-official-writing-skill\\output\\route-worktrees\\reference-rewrite-20260912\\output\\docx-input-qa-r19\\renders\\glm--m4-review_existing_docx-baseline\\docx-001\\page-001.png",
+      "png_sha256": "b3c181d8ffd4f38d30599896239de8a7e5e5e057e67d83f7aedf99d2f932ed59",
+      "docx_sha256": "b31d8c1881342a911636382384c5d4c3177ec2fee4bab83b8272185bc6200cb5",
+      "inspection": "view_image actual full-page visual inspection",
+      "readability": "PASS",
+      "visible_content": "标题、主送、正文三段、署名和日期完整可读，无裁切、重叠或空白正文。署名位于日期上方，两行仍集中在页面右部。",
+      "layout_observation": "未见影响可读性的缺陷；保留原稿署名/日期缩进。",
+      "signoff_xml": [
+        {
+          "text": "教务处",
+          "pPr": "<ns0:pPr xmlns:ns0=\"http://schemas.openxmlformats.org/wordprocessingml/2006/main\"><ns0:spacing ns0:lineRule=\"exact\" ns0:line=\"580\" ns0:before=\"0\" ns0:after=\"0\" /><ns0:ind ns0:right=\"1840\" /><ns0:jc ns0:val=\"right\" /></ns0:pPr>"
+        },
+        {
+          "text": "2026年9月13日",
+          "pPr": "<ns0:pPr xmlns:ns0=\"http://schemas.openxmlformats.org/wordprocessingml/2006/main\"><ns0:spacing ns0:lineRule=\"exact\" ns0:line=\"580\" ns0:before=\"0\" ns0:after=\"0\" /><ns0:ind ns0:right=\"1280\" /><ns0:jc ns0:val=\"right\" /></ns0:pPr>"
+        }
+      ]
+    },
+    {
+      "id": "glm--m4-review_existing_docx-candidate",
+      "document_id": "docx-001",
+      "page": 1,
+      "png": "F:\\Workspaces\\chinese-official-writing-skill\\output\\route-worktrees\\reference-rewrite-20260912\\output\\docx-input-qa-r19\\renders\\glm--m4-review_existing_docx-candidate\\docx-001\\page-001.png",
+      "png_sha256": "25493103639aa92dda73182f9ab7f5d95cfc8cfd599750455ed3bccd99a88faf",
+      "docx_sha256": "fda54a81280f3a5d53e3f80a69b4496714ce05c44cc6cb73b54bb9c7fb79d901",
+      "inspection": "view_image actual full-page visual inspection",
+      "readability": "PASS",
+      "visible_content": "标题、主送、正文三段、署名和日期完整可读，无裁切、重叠或空白正文。署名明显偏到日期左上侧，两行横向分散。",
+      "layout_observation": "独立版式及自述不一致观察：署名 right=3200，日期 right=640，相差 2560 twip，即 128pt/8 个 16pt 字；final 称右端差 2 字且对位正确，本机 Word 12.0 页图未支持该说法。仍然可读，不升级为 Word 不可用或 GB/T 硬失败。",
+      "signoff_xml": [
+        {
+          "text": "教务处",
+          "pPr": "<ns0:pPr xmlns:ns0=\"http://schemas.openxmlformats.org/wordprocessingml/2006/main\"><ns0:spacing ns0:lineRule=\"exact\" ns0:line=\"560\" ns0:before=\"0\" ns0:after=\"0\" /><ns0:ind ns0:right=\"3200\" /><ns0:jc ns0:val=\"right\" /></ns0:pPr>"
+        },
+        {
+          "text": "2026年9月13日",
+          "pPr": "<ns0:pPr xmlns:ns0=\"http://schemas.openxmlformats.org/wordprocessingml/2006/main\"><ns0:spacing ns0:lineRule=\"exact\" ns0:line=\"560\" ns0:before=\"0\" ns0:after=\"0\" /><ns0:ind ns0:right=\"640\" /><ns0:jc ns0:val=\"right\" /></ns0:pPr>"
+        }
+      ]
+    }
+  ]
+}

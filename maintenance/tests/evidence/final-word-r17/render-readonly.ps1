@@ -1,12 +1,33 @@
-param([string]$IndexPath)
+param([string]$IndexPath, [string]$CollectionRoot)
 
 $ErrorActionPreference = 'Stop'
-$qaExpectedRoot = [IO.Path]::GetFullPath((Join-Path $PSScriptRoot '../../../../output/final-word-qa-r17'))
+$qaWorktreeOutput = [IO.Path]::GetFullPath((Join-Path $PSScriptRoot '../../../../output')).TrimEnd('\', '/')
+$qaExpectedRoot = if ($CollectionRoot) {
+    [IO.Path]::GetFullPath($CollectionRoot).TrimEnd('\', '/')
+} else {
+    Join-Path $qaWorktreeOutput 'final-word-qa-r17'
+}
+
+function Assert-QaContainedPath([string]$Path, [string]$Root) {
+    $qaAbsolute = [IO.Path]::GetFullPath($Path)
+    $qaPrefix = $Root.TrimEnd('\', '/') + [IO.Path]::DirectorySeparatorChar
+    if (-not $qaAbsolute.StartsWith($qaPrefix, [StringComparison]::OrdinalIgnoreCase)) {
+        throw 'QA path is outside its permitted root.'
+    }
+    $qaItem = Get-Item -LiteralPath $qaAbsolute
+    while ($qaItem.FullName -ne $Root) {
+        if (($qaItem.Attributes -band [IO.FileAttributes]::ReparsePoint) -ne 0) {
+            throw 'QA collection paths must not traverse reparse points.'
+        }
+        $qaItem = Get-Item -LiteralPath (Split-Path -Parent $qaItem.FullName)
+    }
+}
+
+Assert-QaContainedPath $qaExpectedRoot $qaWorktreeOutput
+if (-not (Get-Item -LiteralPath $qaExpectedRoot).PSIsContainer) { throw 'CollectionRoot must be a directory.' }
 if (-not $IndexPath) { $IndexPath = Join-Path $qaExpectedRoot 'collection-index.json' }
 $qaIndexPath = [IO.Path]::GetFullPath($IndexPath)
-if ((Split-Path -Parent $qaIndexPath) -ne $qaExpectedRoot) {
-    throw 'Only the R17 QA collection index may be rendered by this script.'
-}
+Assert-QaContainedPath $qaIndexPath $qaExpectedRoot
 $qaIndex = Get-Content -Raw -LiteralPath $qaIndexPath | ConvertFrom-Json
 if ($qaIndex.stage -ne 'collected-after-parent-completion') { throw 'No completed-batch collection is bound.' }
 $qaResults = [System.Collections.Generic.List[object]]::new()
@@ -18,6 +39,7 @@ foreach ($qaCall in $qaIndex.calls) {
         if (-not $qaInput.StartsWith($qaRootPrefix, [StringComparison]::OrdinalIgnoreCase)) {
             throw 'DOCX path is outside this QA collection.'
         }
+        Assert-QaContainedPath $qaInput $qaExpectedRoot
         $qaDirectory = [IO.Path]::GetFullPath((Join-Path $qaExpectedRoot ('renders/' + $qaCall.id + '/' + $qaArtifact.document_id)))
         if (-not $qaDirectory.StartsWith($qaRootPrefix, [StringComparison]::OrdinalIgnoreCase)) {
             throw 'Render output is outside this QA collection.'

@@ -16,6 +16,7 @@ import time
 ROOT = Path(__file__).resolve().parents[4]
 MODELS = ["alibaba-token-plan/qwen3.8-flash", "alibaba-token-plan-2/qwen3.8-flash", "command-code/deepseek-deepseek-v4.1-flash", "minimax-cn/MiniMax-M3", "ollama-cloud/glm-5.3-flash"]
 CASES = {
+    'review_existing_docx': '帮我审核并修好本目录的received-application.docx，处理申请内容和Word版式中发现的问题，保持原有事实和数字，另存为可用的Word文件并给出文件链接，保留原文件。',
     'motion_with_supplied_details': '以下均为虚拟写作练习材料。请以海岚市人民政府名义向海岚市人大常委会拟一份提请审议《海岚市公共服务设施管理条例（草案）》的议案。草案已经2026年9月10日市政府常务会议讨论通过，拟明确管理单位承担日常维护、使用单位及时报告损坏，并由管理单位在设施入口公示服务内容、开放时间和咨询方式。请在议案中简要说明这三方面已给定的主要内容及便于维护和查询的目的。附件为该草案；落款2026年9月12日。',
     'complete_under_100': '请写一份完整的会议通知，控制在100字以内。资料中心定于2026年9月18日下午3点，在二楼会议室召开目录核对会，综合岗和各档案室负责人参加。请带本室待核对目录，会上集中确认编号和保管期限，不能参会的请在会前联系综合岗说明。通知由资料中心发出，写得简洁自然。',
     'explicit_under_40': '请把这条内部提醒写得简洁自然，最多40个字：今天下午3点在二楼会议室核对目录，请综合岗同事带上待核对清单。',
@@ -132,14 +133,30 @@ def main():
     baseline.add_argument('--baseline-dir', help='Explicit frozen Skill baseline; no Git commit is claimed for its contents.')
     parser.add_argument('--candidate-dir', help='Explicit frozen Skill directory for an attributable subset comparison.')
     parser.add_argument('--models', nargs='+', type=int, default=[0, 1])
-    parser.add_argument('--cases', nargs='+', choices=list(CASES), default=list(CASES))
+    parser.add_argument('--cases', nargs='+', choices=list(CASES), default=[c for c in CASES if c != 'review_existing_docx'])
+    parser.add_argument('--input-file', help='Existing DOCX for the explicit review_existing_docx case; copied unchanged into each isolated workspace.')
     parser.add_argument('--timeout', type=int, default=240)
     parser.add_argument('--effort', choices=['max','xhigh','high','medium'], default='max')
     parser.add_argument('--inherit-agent-docs', action='store_true', help='Retain host AGENTS.md context for an explicit harness comparison.')
     parser.add_argument('--isolated-profile', action='store_true', help='Use a temporary Codex profile with the same execution policy and the local provider proxy.')
     args = parser.parse_args()
+    needs_input = 'review_existing_docx' in args.cases
+    if needs_input != bool(args.input_file):
+        parser.error('review_existing_docx requires --input-file; other cases do not use input files')
+    input_bytes = None
+    input_path = None
+    input_sha256 = None
+    if needs_input:
+        input_path = Path(args.input_file).resolve()
+        if not input_path.is_file() or input_path.suffix.lower() != '.docx':
+            parser.error('--input-file must name an existing .docx file')
+        input_bytes = input_path.read_bytes()
+        input_sha256 = hashlib.sha256(input_bytes).hexdigest()
     out = Path(args.output).resolve()
     out.mkdir(parents=True, exist_ok=False)
+    if needs_input:
+        (out / 'inputs').mkdir()
+        (out / 'inputs/received-application.docx').write_bytes(input_bytes)
     runtime = Path(tempfile.mkdtemp(prefix='cow-native-'+out.name+'-'))
     eval_environment = os.environ.copy()
     if args.isolated_profile:
@@ -175,9 +192,13 @@ def main():
     binding['baseline_commit'] = commit
     binding['main_commit'] = subprocess.check_output(['git','rev-parse','main'],cwd=ROOT,text=True).strip()
     binding['profile'] = 'temporary-no-user-documents-or-credentials' if args.isolated_profile else 'host-profile'
-    binding['runner_sha256'] = hashlib.sha256(Path(__file__).read_bytes()).hexdigest()
+    runner_source = Path(__file__).read_bytes()
+    binding['runner_sha256'] = hashlib.sha256(runner_source).hexdigest()
+    (out / 'runner-source.py').write_bytes(runner_source)
     binding['prompt_prefix'] = '使用本目录 .agents/skills/chinese-official-writing/SKILL.md。\n\n'
     binding['runtime_layout'] = 'each call has a separate parent, workspace and temporary directory'
+    if needs_input:
+        binding['input_document'] = {'source': str(input_path), 'name': 'received-application.docx', 'sha256': input_sha256}
     (out/'binding.json').write_text(json.dumps(binding,ensure_ascii=False,indent=2),encoding='utf-8')
 
     def run_pair(index: int, case_id: str):
@@ -186,6 +207,9 @@ def main():
             run_root=runtime/f'm{index}-{case_id}-{arm}'
             work=run_root/'workspace'; skill=work/'.agents/skills/chinese-official-writing'
             shutil.copytree(snapshots[arm],skill)
+            staged_input = work / 'received-application.docx' if case_id == 'review_existing_docx' else None
+            if staged_input is not None:
+                staged_input.write_bytes(input_bytes)
             scratch=run_root/'tmp'; scratch.mkdir()
             call_environment={**eval_environment, 'TEMP':str(scratch), 'TMP':str(scratch), 'TMPDIR':str(scratch)}
             prefix=out/f'm{index}-{case_id}-{arm}'
@@ -230,6 +254,9 @@ def main():
             if '开发与验证' in stdout or '所有代码和文档改动提交' in stdout or '仅保留完整 Pro 安装' in stdout:
                 invalid.append('maintenance_instructions_contamination')
             result={'model':MODELS[index],'effort':args.effort if index!=2 else 'provider-default','case':case_id,'arm':arm,'returncode':code,'seconds':round(time.monotonic()-started,2),'invalid':invalid,'draft_sha256':hashlib.sha256(text.encode()).hexdigest(),'commands':calls,'usage':[x.get('usage') for x in events if x.get('type')=='turn.completed']}
+            if staged_input is not None:
+                after_hash = hashlib.sha256(staged_input.read_bytes()).hexdigest() if staged_input.is_file() else None
+                result['input_document'] = {'path': str(staged_input), 'before_sha256': input_sha256, 'after_sha256': after_hash, 'unchanged': after_hash == input_sha256}
             Path(str(prefix)+'.result.json').write_text(json.dumps(result,ensure_ascii=False,indent=2),encoding='utf-8')
             print(f'END {index} {case_id} {arm} invalid={invalid} seconds={result["seconds"]}',flush=True)
             results.append(result)

@@ -1,0 +1,620 @@
+{
+  "scope": "one real DOCX; two native models; baseline/candidate each once; independent read-only Word QA",
+  "source": {
+    "original": "F:\\Workspaces\\chinese-official-writing-skill\\output\\route-worktrees\\reference-rewrite-20260912\\output\\docx-input-native-r19\\received-application.docx",
+    "recovered": "F:\\Workspaces\\chinese-official-writing-skill\\output\\route-worktrees\\reference-rewrite-20260912\\output\\docx-input-qa-r19\\source\\received-application.docx",
+    "sha256_before": "0989cecd96b1e85a5bc7eccdb7b0e4ca16260ecb23ae61161a5fd5fe19a6e068",
+    "sha256_after": "0989cecd96b1e85a5bc7eccdb7b0e4ca16260ecb23ae61161a5fd5fe19a6e068",
+    "sha256": "0989cecd96b1e85a5bc7eccdb7b0e4ca16260ecb23ae61161a5fd5fe19a6e068",
+    "source_copy_hash_match": true,
+    "bytes": 37151
+  },
+  "calls": [
+    {
+      "id": "deepseek--m2-review_existing_docx-baseline",
+      "model": "command-code/deepseek-deepseek-v4.1-flash",
+      "arm": "baseline",
+      "technical_result": {
+        "returncode": 0,
+        "invalid": []
+      },
+      "delivery": "WORD_DELIVERED",
+      "input_unchanged": true,
+      "source_document": {
+        "path": "C:\\Users\\admin\\AppData\\Local\\Temp\\cow-native-docx-input-native-r19-deepseek-9jy76hdr\\m2-review_existing_docx-baseline\\workspace\\received-application.docx",
+        "expected_sha256": "0989cecd96b1e85a5bc7eccdb7b0e4ca16260ecb23ae61161a5fd5fe19a6e068",
+        "actual_sha256": "0989cecd96b1e85a5bc7eccdb7b0e4ca16260ecb23ae61161a5fd5fe19a6e068",
+        "status": "UNCHANGED"
+      },
+      "final_text_path": "F:\\Workspaces\\chinese-official-writing-skill\\output\\route-worktrees\\reference-rewrite-20260912\\output\\docx-input-qa-r19\\calls\\deepseek--m2-review_existing_docx-baseline\\native.final.txt",
+      "final_text_sha256": "eeceef6447976fb2be4e80bd155303c2a19fb966ec50bc7484378800cb0433e4",
+      "original_final_docx": "C:\\Users\\admin\\AppData\\Local\\Temp\\cow-native-docx-input-native-r19-deepseek-9jy76hdr\\m2-review_existing_docx-baseline\\workspace\\received-application-审查修改稿.docx",
+      "collected_final_docx": "F:\\Workspaces\\chinese-official-writing-skill\\output\\route-worktrees\\reference-rewrite-20260912\\output\\docx-input-qa-r19\\calls\\deepseek--m2-review_existing_docx-baseline\\workspace\\received-application-审查修改稿.docx",
+      "final_docx_sha256": "6ff48bc8580be0cb7dfa3128571230df41a1c7d895add047f51a3465575b76d5",
+      "final_links": [
+        {
+          "raw": "C:/Users/admin/AppData/Local/Temp/cow-native-docx-input-native-r19-deepseek-9jy76hdr/m2-review_existing_docx-baseline/workspace/received-application-审查修改稿.docx",
+          "resolved": true,
+          "kind": "absolute-path",
+          "target": "C:\\Users\\admin\\AppData\\Local\\Temp\\cow-native-docx-input-native-r19-deepseek-9jy76hdr\\m2-review_existing_docx-baseline\\workspace\\received-application-审查修改稿.docx",
+          "document_id": "docx-001",
+          "sha256": "6ff48bc8580be0cb7dfa3128571230df41a1c7d895add047f51a3465575b76d5"
+        },
+        {
+          "raw": "C:/Users/admin/AppData/Local/Temp/cow-native-docx-input-native-r19-deepseek-9jy76hdr/m2-review_existing_docx-baseline/workspace/received-application.docx",
+          "resolved": true,
+          "kind": "absolute-path",
+          "target": "C:\\Users\\admin\\AppData\\Local\\Temp\\cow-native-docx-input-native-r19-deepseek-9jy76hdr\\m2-review_existing_docx-baseline\\workspace\\received-application.docx",
+          "document_id": "docx-002",
+          "sha256": "0989cecd96b1e85a5bc7eccdb7b0e4ca16260ecb23ae61161a5fd5fe19a6e068"
+        }
+      ],
+      "source_zero_text_runs": 6,
+      "final_zero_text_runs": 0,
+      "all_raw_paragraphs_preserved": true,
+      "source_facts_preservation": "PASS (fidelity to supplied document, not external truth validation)",
+      "render_pages": 1,
+      "readability": "PASS",
+      "render_input_unchanged": true,
+      "renderer_cleanup_note": "RPC 服务器不可用。 (0x800706BA)",
+      "scan_call_count": 2,
+      "zero_font_diagnostic_count": 0,
+      "unlinked_docx_count": 0,
+      "non_docx_runtime_files": [],
+      "layout_observation": "未见影响可读性的缺陷；仅记录本机实际版式，不作严格 GB/T 合规认证。",
+      "message_observations": [
+        "中间消息含英文操作旁白；final 给文件链接、长篇处理说明和四项文后提示，没有污染 DOCX 正文。",
+        "final 把空白缩略图当作 Word 正文不可见证明，证据强度过高；本轮仅对最终另存稿重新渲染，不据缩略图作原件可读性结论。",
+        "主送对象、采购规格/资金来源、签发要素的提示均在文后，其中红头/印章提醒超出本题普通 Word 交付的必要范围。"
+      ]
+    },
+    {
+      "id": "deepseek--m2-review_existing_docx-candidate",
+      "model": "command-code/deepseek-deepseek-v4.1-flash",
+      "arm": "candidate",
+      "technical_result": {
+        "returncode": 0,
+        "invalid": []
+      },
+      "delivery": "WORD_DELIVERED",
+      "input_unchanged": true,
+      "source_document": {
+        "path": "C:\\Users\\admin\\AppData\\Local\\Temp\\cow-native-docx-input-native-r19-deepseek-9jy76hdr\\m2-review_existing_docx-candidate\\workspace\\received-application.docx",
+        "expected_sha256": "0989cecd96b1e85a5bc7eccdb7b0e4ca16260ecb23ae61161a5fd5fe19a6e068",
+        "actual_sha256": "0989cecd96b1e85a5bc7eccdb7b0e4ca16260ecb23ae61161a5fd5fe19a6e068",
+        "status": "UNCHANGED"
+      },
+      "final_text_path": "F:\\Workspaces\\chinese-official-writing-skill\\output\\route-worktrees\\reference-rewrite-20260912\\output\\docx-input-qa-r19\\calls\\deepseek--m2-review_existing_docx-candidate\\native.final.txt",
+      "final_text_sha256": "1e683b98ff048e6eff35ec090c4d9fbb13d6117ede4c6fc3433300f169a04d8b",
+      "original_final_docx": "C:\\Users\\admin\\AppData\\Local\\Temp\\cow-native-docx-input-native-r19-deepseek-9jy76hdr\\m2-review_existing_docx-candidate\\workspace\\received-application-修订版.docx",
+      "collected_final_docx": "F:\\Workspaces\\chinese-official-writing-skill\\output\\route-worktrees\\reference-rewrite-20260912\\output\\docx-input-qa-r19\\calls\\deepseek--m2-review_existing_docx-candidate\\workspace\\received-application-修订版.docx",
+      "final_docx_sha256": "86bf5ca6c46415da9d47d01676d39de954dceb6d51b258d12fdd729ed5bfaefc",
+      "final_links": [
+        {
+          "raw": "/C:/Users/admin/AppData/Local/Temp/cow-native-docx-input-native-r19-deepseek-9jy76hdr/m2-review_existing_docx-candidate/workspace/received-application-修订版.docx",
+          "resolved": true,
+          "kind": "absolute-path",
+          "target": "C:\\Users\\admin\\AppData\\Local\\Temp\\cow-native-docx-input-native-r19-deepseek-9jy76hdr\\m2-review_existing_docx-candidate\\workspace\\received-application-修订版.docx",
+          "document_id": "docx-001",
+          "sha256": "86bf5ca6c46415da9d47d01676d39de954dceb6d51b258d12fdd729ed5bfaefc"
+        },
+        {
+          "raw": "/C:/Users/admin/AppData/Local/Temp/cow-native-docx-input-native-r19-deepseek-9jy76hdr/m2-review_existing_docx-candidate/workspace/received-application.docx",
+          "resolved": true,
+          "kind": "absolute-path",
+          "target": "C:\\Users\\admin\\AppData\\Local\\Temp\\cow-native-docx-input-native-r19-deepseek-9jy76hdr\\m2-review_existing_docx-candidate\\workspace\\received-application.docx",
+          "document_id": "docx-002",
+          "sha256": "0989cecd96b1e85a5bc7eccdb7b0e4ca16260ecb23ae61161a5fd5fe19a6e068"
+        }
+      ],
+      "source_zero_text_runs": 6,
+      "final_zero_text_runs": 0,
+      "all_raw_paragraphs_preserved": true,
+      "source_facts_preservation": "PASS (fidelity to supplied document, not external truth validation)",
+      "render_pages": 1,
+      "readability": "PASS",
+      "render_input_unchanged": true,
+      "renderer_cleanup_note": null,
+      "scan_call_count": 0,
+      "zero_font_diagnostic_count": 0,
+      "unlinked_docx_count": 0,
+      "non_docx_runtime_files": [],
+      "layout_observation": "未见影响可读性的缺陷；不凭缩进差异判定严格 GB/T 失败。",
+      "message_observations": [
+        "final 将 sz=0 解释成约 1pt，混淆属性值；这不影响本轮修后实际 sz=32 的验证。",
+        "final 称移除落款上方空段落，实际 XML 仍有第 6 个空段；成稿可读，记录为自述不一致。",
+        "final 的四条缺项建议扩到经费来源、机型、采购方式/比价、联系人、故障记录、预算是否含耗材与报价单，末尾再主动提供模板补写/意见清单；未写入 DOCX，但并非本次修复必需。",
+        "未执行扫描器属于实际流程覆盖缺口；本组未证明该遗漏由零字号代码造成，不据此修改路由规则。"
+      ]
+    },
+    {
+      "id": "glm--m4-review_existing_docx-baseline",
+      "model": "ollama-cloud/glm-5.3-flash",
+      "arm": "baseline",
+      "technical_result": {
+        "returncode": 0,
+        "invalid": []
+      },
+      "delivery": "WORD_DELIVERED",
+      "input_unchanged": true,
+      "source_document": {
+        "path": "C:\\Users\\admin\\AppData\\Local\\Temp\\cow-native-docx-input-native-r19-glm-zs_ulynq\\m4-review_existing_docx-baseline\\workspace\\received-application.docx",
+        "expected_sha256": "0989cecd96b1e85a5bc7eccdb7b0e4ca16260ecb23ae61161a5fd5fe19a6e068",
+        "actual_sha256": "0989cecd96b1e85a5bc7eccdb7b0e4ca16260ecb23ae61161a5fd5fe19a6e068",
+        "status": "UNCHANGED"
+      },
+      "final_text_path": "F:\\Workspaces\\chinese-official-writing-skill\\output\\route-worktrees\\reference-rewrite-20260912\\output\\docx-input-qa-r19\\calls\\glm--m4-review_existing_docx-baseline\\native.final.txt",
+      "final_text_sha256": "cfe56b85784d3938826e508df89d87c4ae379caf4eea43097185c7edc34a8aa2",
+      "original_final_docx": "C:\\Users\\admin\\AppData\\Local\\Temp\\cow-native-docx-input-native-r19-glm-zs_ulynq\\m4-review_existing_docx-baseline\\workspace\\received-application-fixed.docx",
+      "collected_final_docx": "F:\\Workspaces\\chinese-official-writing-skill\\output\\route-worktrees\\reference-rewrite-20260912\\output\\docx-input-qa-r19\\calls\\glm--m4-review_existing_docx-baseline\\workspace\\received-application-fixed.docx",
+      "final_docx_sha256": "b31d8c1881342a911636382384c5d4c3177ec2fee4bab83b8272185bc6200cb5",
+      "final_links": [
+        {
+          "raw": "C:/Users/admin/AppData/Local/Temp/cow-native-docx-input-native-r19-glm-zs_ulynq/m4-review_existing_docx-baseline/workspace/received-application-fixed.docx",
+          "resolved": true,
+          "kind": "absolute-path",
+          "target": "C:\\Users\\admin\\AppData\\Local\\Temp\\cow-native-docx-input-native-r19-glm-zs_ulynq\\m4-review_existing_docx-baseline\\workspace\\received-application-fixed.docx",
+          "document_id": "docx-001",
+          "sha256": "b31d8c1881342a911636382384c5d4c3177ec2fee4bab83b8272185bc6200cb5"
+        },
+        {
+          "raw": "C:/Users/admin/AppData/Local/Temp/cow-native-docx-input-native-r19-glm-zs_ulynq/m4-review_existing_docx-baseline/workspace/received-application.docx",
+          "resolved": true,
+          "kind": "absolute-path",
+          "target": "C:\\Users\\admin\\AppData\\Local\\Temp\\cow-native-docx-input-native-r19-glm-zs_ulynq\\m4-review_existing_docx-baseline\\workspace\\received-application.docx",
+          "document_id": "docx-002",
+          "sha256": "0989cecd96b1e85a5bc7eccdb7b0e4ca16260ecb23ae61161a5fd5fe19a6e068"
+        }
+      ],
+      "source_zero_text_runs": 6,
+      "final_zero_text_runs": 0,
+      "all_raw_paragraphs_preserved": true,
+      "source_facts_preservation": "PASS (fidelity to supplied document, not external truth validation)",
+      "render_pages": 1,
+      "readability": "PASS",
+      "render_input_unchanged": true,
+      "renderer_cleanup_note": null,
+      "scan_call_count": 3,
+      "zero_font_diagnostic_count": 0,
+      "unlinked_docx_count": 0,
+      "non_docx_runtime_files": [
+        {
+          "original": "C:\\Users\\admin\\AppData\\Local\\Temp\\cow-native-docx-input-native-r19-glm-zs_ulynq\\m4-review_existing_docx-baseline\\workspace\\docx_extract\\[Content_Types].xml",
+          "recovered": "F:\\Workspaces\\chinese-official-writing-skill\\output\\route-worktrees\\reference-rewrite-20260912\\output\\docx-input-qa-r19\\calls\\glm--m4-review_existing_docx-baseline\\workspace\\docx_extract\\[Content_Types].xml",
+          "sha256_before": "66c84fb7a6aa3c4ead49f895e4a7044df1fb57de1ed76d09b2686e91f5bed5b4",
+          "sha256_after": "66c84fb7a6aa3c4ead49f895e4a7044df1fb57de1ed76d09b2686e91f5bed5b4",
+          "sha256": "66c84fb7a6aa3c4ead49f895e4a7044df1fb57de1ed76d09b2686e91f5bed5b4",
+          "source_copy_hash_match": true,
+          "bytes": 1738
+        },
+        {
+          "original": "C:\\Users\\admin\\AppData\\Local\\Temp\\cow-native-docx-input-native-r19-glm-zs_ulynq\\m4-review_existing_docx-baseline\\workspace\\docx_extract\\_rels\\.rels",
+          "recovered": "F:\\Workspaces\\chinese-official-writing-skill\\output\\route-worktrees\\reference-rewrite-20260912\\output\\docx-input-qa-r19\\calls\\glm--m4-review_existing_docx-baseline\\workspace\\docx_extract\\_rels\\.rels",
+          "sha256_before": "a9ae57efe9186f07d48303bcac5d54c7e359bf3f503939c03ad2954e5c59a5c4",
+          "sha256_after": "a9ae57efe9186f07d48303bcac5d54c7e359bf3f503939c03ad2954e5c59a5c4",
+          "sha256": "a9ae57efe9186f07d48303bcac5d54c7e359bf3f503939c03ad2954e5c59a5c4",
+          "source_copy_hash_match": true,
+          "bytes": 734
+        },
+        {
+          "original": "C:\\Users\\admin\\AppData\\Local\\Temp\\cow-native-docx-input-native-r19-glm-zs_ulynq\\m4-review_existing_docx-baseline\\workspace\\docx_extract\\customXml\\_rels\\item1.xml.rels",
+          "recovered": "F:\\Workspaces\\chinese-official-writing-skill\\output\\route-worktrees\\reference-rewrite-20260912\\output\\docx-input-qa-r19\\calls\\glm--m4-review_existing_docx-baseline\\workspace\\docx_extract\\customXml\\_rels\\item1.xml.rels",
+          "sha256_before": "1ca6c9a64edcebe24ee703a54403611b322d96da33371779e742d2d3f7ed7a6c",
+          "sha256_after": "1ca6c9a64edcebe24ee703a54403611b322d96da33371779e742d2d3f7ed7a6c",
+          "sha256": "1ca6c9a64edcebe24ee703a54403611b322d96da33371779e742d2d3f7ed7a6c",
+          "source_copy_hash_match": true,
+          "bytes": 295
+        },
+        {
+          "original": "C:\\Users\\admin\\AppData\\Local\\Temp\\cow-native-docx-input-native-r19-glm-zs_ulynq\\m4-review_existing_docx-baseline\\workspace\\docx_extract\\customXml\\item1.xml",
+          "recovered": "F:\\Workspaces\\chinese-official-writing-skill\\output\\route-worktrees\\reference-rewrite-20260912\\output\\docx-input-qa-r19\\calls\\glm--m4-review_existing_docx-baseline\\workspace\\docx_extract\\customXml\\item1.xml",
+          "sha256_before": "a86086ffc5d8e83ebd6c71a55d1d2efaa31b137977f5f3a752366e1023612144",
+          "sha256_after": "a86086ffc5d8e83ebd6c71a55d1d2efaa31b137977f5f3a752366e1023612144",
+          "sha256": "a86086ffc5d8e83ebd6c71a55d1d2efaa31b137977f5f3a752366e1023612144",
+          "source_copy_hash_match": true,
+          "bytes": 262
+        },
+        {
+          "original": "C:\\Users\\admin\\AppData\\Local\\Temp\\cow-native-docx-input-native-r19-glm-zs_ulynq\\m4-review_existing_docx-baseline\\workspace\\docx_extract\\customXml\\itemProps1.xml",
+          "recovered": "F:\\Workspaces\\chinese-official-writing-skill\\output\\route-worktrees\\reference-rewrite-20260912\\output\\docx-input-qa-r19\\calls\\glm--m4-review_existing_docx-baseline\\workspace\\docx_extract\\customXml\\itemProps1.xml",
+          "sha256_before": "c542307b13ec29a8b546217bb37936ab4822e044b265d2952985ec3d6afed24e",
+          "sha256_after": "c542307b13ec29a8b546217bb37936ab4822e044b265d2952985ec3d6afed24e",
+          "sha256": "c542307b13ec29a8b546217bb37936ab4822e044b265d2952985ec3d6afed24e",
+          "source_copy_hash_match": true,
+          "bytes": 354
+        },
+        {
+          "original": "C:\\Users\\admin\\AppData\\Local\\Temp\\cow-native-docx-input-native-r19-glm-zs_ulynq\\m4-review_existing_docx-baseline\\workspace\\docx_extract\\docProps\\app.xml",
+          "recovered": "F:\\Workspaces\\chinese-official-writing-skill\\output\\route-worktrees\\reference-rewrite-20260912\\output\\docx-input-qa-r19\\calls\\glm--m4-review_existing_docx-baseline\\workspace\\docx_extract\\docProps\\app.xml",
+          "sha256_before": "be664981c3141cddfc59362beb287ebf20d0773660e2dd6faac5968a5930a081",
+          "sha256_after": "be664981c3141cddfc59362beb287ebf20d0773660e2dd6faac5968a5930a081",
+          "sha256": "be664981c3141cddfc59362beb287ebf20d0773660e2dd6faac5968a5930a081",
+          "source_copy_hash_match": true,
+          "bytes": 1132
+        },
+        {
+          "original": "C:\\Users\\admin\\AppData\\Local\\Temp\\cow-native-docx-input-native-r19-glm-zs_ulynq\\m4-review_existing_docx-baseline\\workspace\\docx_extract\\docProps\\core.xml",
+          "recovered": "F:\\Workspaces\\chinese-official-writing-skill\\output\\route-worktrees\\reference-rewrite-20260912\\output\\docx-input-qa-r19\\calls\\glm--m4-review_existing_docx-baseline\\workspace\\docx_extract\\docProps\\core.xml",
+          "sha256_before": "d14be8284e406d14dc2a576b19f15e7f637b955f9e27a3d9ed871ec99606f7ba",
+          "sha256_after": "d14be8284e406d14dc2a576b19f15e7f637b955f9e27a3d9ed871ec99606f7ba",
+          "sha256": "d14be8284e406d14dc2a576b19f15e7f637b955f9e27a3d9ed871ec99606f7ba",
+          "source_copy_hash_match": true,
+          "bytes": 721
+        },
+        {
+          "original": "C:\\Users\\admin\\AppData\\Local\\Temp\\cow-native-docx-input-native-r19-glm-zs_ulynq\\m4-review_existing_docx-baseline\\workspace\\docx_extract\\docProps\\thumbnail.jpeg",
+          "recovered": "F:\\Workspaces\\chinese-official-writing-skill\\output\\route-worktrees\\reference-rewrite-20260912\\output\\docx-input-qa-r19\\calls\\glm--m4-review_existing_docx-baseline\\workspace\\docx_extract\\docProps\\thumbnail.jpeg",
+          "sha256_before": "96367138dc44ce09bf2c8f0f8e49348a1478d2c5c0af69bbc2bbc38b63cdcead",
+          "sha256_after": "96367138dc44ce09bf2c8f0f8e49348a1478d2c5c0af69bbc2bbc38b63cdcead",
+          "sha256": "96367138dc44ce09bf2c8f0f8e49348a1478d2c5c0af69bbc2bbc38b63cdcead",
+          "source_copy_hash_match": true,
+          "bytes": 8324
+        },
+        {
+          "original": "C:\\Users\\admin\\AppData\\Local\\Temp\\cow-native-docx-input-native-r19-glm-zs_ulynq\\m4-review_existing_docx-baseline\\workspace\\docx_extract\\word\\_rels\\document.xml.rels",
+          "recovered": "F:\\Workspaces\\chinese-official-writing-skill\\output\\route-worktrees\\reference-rewrite-20260912\\output\\docx-input-qa-r19\\calls\\glm--m4-review_existing_docx-baseline\\workspace\\docx_extract\\word\\_rels\\document.xml.rels",
+          "sha256_before": "1e7f0eb144a98e199249314f61ff32a8de2a27e56d8e9ee6b524e1c6b235d377",
+          "sha256_after": "1e7f0eb144a98e199249314f61ff32a8de2a27e56d8e9ee6b524e1c6b235d377",
+          "sha256": "1e7f0eb144a98e199249314f61ff32a8de2a27e56d8e9ee6b524e1c6b235d377",
+          "source_copy_hash_match": true,
+          "bytes": 1227
+        },
+        {
+          "original": "C:\\Users\\admin\\AppData\\Local\\Temp\\cow-native-docx-input-native-r19-glm-zs_ulynq\\m4-review_existing_docx-baseline\\workspace\\docx_extract\\word\\document.xml",
+          "recovered": "F:\\Workspaces\\chinese-official-writing-skill\\output\\route-worktrees\\reference-rewrite-20260912\\output\\docx-input-qa-r19\\calls\\glm--m4-review_existing_docx-baseline\\workspace\\docx_extract\\word\\document.xml",
+          "sha256_before": "30ec709750f8e4d52fc0c1d8c20883f75e4b6b6fa56cf4b595053f38e3df0b51",
+          "sha256_after": "30ec709750f8e4d52fc0c1d8c20883f75e4b6b6fa56cf4b595053f38e3df0b51",
+          "sha256": "30ec709750f8e4d52fc0c1d8c20883f75e4b6b6fa56cf4b595053f38e3df0b51",
+          "source_copy_hash_match": true,
+          "bytes": 4267
+        },
+        {
+          "original": "C:\\Users\\admin\\AppData\\Local\\Temp\\cow-native-docx-input-native-r19-glm-zs_ulynq\\m4-review_existing_docx-baseline\\workspace\\docx_extract\\word\\fontTable.xml",
+          "recovered": "F:\\Workspaces\\chinese-official-writing-skill\\output\\route-worktrees\\reference-rewrite-20260912\\output\\docx-input-qa-r19\\calls\\glm--m4-review_existing_docx-baseline\\workspace\\docx_extract\\word\\fontTable.xml",
+          "sha256_before": "79385fb7f60247507ecaffc292e9ebd52ea0657b8634f629ba6fccc54011d6bb",
+          "sha256_after": "79385fb7f60247507ecaffc292e9ebd52ea0657b8634f629ba6fccc54011d6bb",
+          "sha256": "79385fb7f60247507ecaffc292e9ebd52ea0657b8634f629ba6fccc54011d6bb",
+          "source_copy_hash_match": true,
+          "bytes": 2811
+        },
+        {
+          "original": "C:\\Users\\admin\\AppData\\Local\\Temp\\cow-native-docx-input-native-r19-glm-zs_ulynq\\m4-review_existing_docx-baseline\\workspace\\docx_extract\\word\\numbering.xml",
+          "recovered": "F:\\Workspaces\\chinese-official-writing-skill\\output\\route-worktrees\\reference-rewrite-20260912\\output\\docx-input-qa-r19\\calls\\glm--m4-review_existing_docx-baseline\\workspace\\docx_extract\\word\\numbering.xml",
+          "sha256_before": "70976f19cbcd896e51890859fe6ecb3467a5a7ad0c040160fedc5a1993cb09ce",
+          "sha256_after": "70976f19cbcd896e51890859fe6ecb3467a5a7ad0c040160fedc5a1993cb09ce",
+          "sha256": "70976f19cbcd896e51890859fe6ecb3467a5a7ad0c040160fedc5a1993cb09ce",
+          "source_copy_hash_match": true,
+          "bytes": 5513
+        },
+        {
+          "original": "C:\\Users\\admin\\AppData\\Local\\Temp\\cow-native-docx-input-native-r19-glm-zs_ulynq\\m4-review_existing_docx-baseline\\workspace\\docx_extract\\word\\settings.xml",
+          "recovered": "F:\\Workspaces\\chinese-official-writing-skill\\output\\route-worktrees\\reference-rewrite-20260912\\output\\docx-input-qa-r19\\calls\\glm--m4-review_existing_docx-baseline\\workspace\\docx_extract\\word\\settings.xml",
+          "sha256_before": "51a0d348fe85965c66e4748a03c3c0d055d78455514f03cb121c334af7d73689",
+          "sha256_after": "51a0d348fe85965c66e4748a03c3c0d055d78455514f03cb121c334af7d73689",
+          "sha256": "51a0d348fe85965c66e4748a03c3c0d055d78455514f03cb121c334af7d73689",
+          "source_copy_hash_match": true,
+          "bytes": 2535
+        },
+        {
+          "original": "C:\\Users\\admin\\AppData\\Local\\Temp\\cow-native-docx-input-native-r19-glm-zs_ulynq\\m4-review_existing_docx-baseline\\workspace\\docx_extract\\word\\styles.xml",
+          "recovered": "F:\\Workspaces\\chinese-official-writing-skill\\output\\route-worktrees\\reference-rewrite-20260912\\output\\docx-input-qa-r19\\calls\\glm--m4-review_existing_docx-baseline\\workspace\\docx_extract\\word\\styles.xml",
+          "sha256_before": "02d71a68ddb92c055e84526d6a9e45700be3872781ababf759241694bc30e384",
+          "sha256_after": "02d71a68ddb92c055e84526d6a9e45700be3872781ababf759241694bc30e384",
+          "sha256": "02d71a68ddb92c055e84526d6a9e45700be3872781ababf759241694bc30e384",
+          "source_copy_hash_match": true,
+          "bytes": 349458
+        },
+        {
+          "original": "C:\\Users\\admin\\AppData\\Local\\Temp\\cow-native-docx-input-native-r19-glm-zs_ulynq\\m4-review_existing_docx-baseline\\workspace\\docx_extract\\word\\stylesWithEffects.xml",
+          "recovered": "F:\\Workspaces\\chinese-official-writing-skill\\output\\route-worktrees\\reference-rewrite-20260912\\output\\docx-input-qa-r19\\calls\\glm--m4-review_existing_docx-baseline\\workspace\\docx_extract\\word\\stylesWithEffects.xml",
+          "sha256_before": "463ae0928cf0d84775dbf8cf18d6c3029f6707c81bf590f6d6dd8757a5e93f15",
+          "sha256_after": "463ae0928cf0d84775dbf8cf18d6c3029f6707c81bf590f6d6dd8757a5e93f15",
+          "sha256": "463ae0928cf0d84775dbf8cf18d6c3029f6707c81bf590f6d6dd8757a5e93f15",
+          "source_copy_hash_match": true,
+          "bytes": 438131
+        },
+        {
+          "original": "C:\\Users\\admin\\AppData\\Local\\Temp\\cow-native-docx-input-native-r19-glm-zs_ulynq\\m4-review_existing_docx-baseline\\workspace\\docx_extract\\word\\theme\\theme1.xml",
+          "recovered": "F:\\Workspaces\\chinese-official-writing-skill\\output\\route-worktrees\\reference-rewrite-20260912\\output\\docx-input-qa-r19\\calls\\glm--m4-review_existing_docx-baseline\\workspace\\docx_extract\\word\\theme\\theme1.xml",
+          "sha256_before": "e3a8ab7db9ca7afca56f5f2820a56e8b660016c647773555b060b0a02ac76941",
+          "sha256_after": "e3a8ab7db9ca7afca56f5f2820a56e8b660016c647773555b060b0a02ac76941",
+          "sha256": "e3a8ab7db9ca7afca56f5f2820a56e8b660016c647773555b060b0a02ac76941",
+          "source_copy_hash_match": true,
+          "bytes": 10939
+        },
+        {
+          "original": "C:\\Users\\admin\\AppData\\Local\\Temp\\cow-native-docx-input-native-r19-glm-zs_ulynq\\m4-review_existing_docx-baseline\\workspace\\docx_extract\\word\\webSettings.xml",
+          "recovered": "F:\\Workspaces\\chinese-official-writing-skill\\output\\route-worktrees\\reference-rewrite-20260912\\output\\docx-input-qa-r19\\calls\\glm--m4-review_existing_docx-baseline\\workspace\\docx_extract\\word\\webSettings.xml",
+          "sha256_before": "349d36de7434d09f86987ff671d8814964a0588c1e630c06e562cda7e75e9f95",
+          "sha256_after": "349d36de7434d09f86987ff671d8814964a0588c1e630c06e562cda7e75e9f95",
+          "sha256": "349d36de7434d09f86987ff671d8814964a0588c1e630c06e562cda7e75e9f95",
+          "source_copy_hash_match": true,
+          "bytes": 438
+        },
+        {
+          "original": "C:\\Users\\admin\\AppData\\Local\\Temp\\cow-native-docx-input-native-r19-glm-zs_ulynq\\m4-review_existing_docx-baseline\\workspace\\fixed-preview.pdf",
+          "recovered": "F:\\Workspaces\\chinese-official-writing-skill\\output\\route-worktrees\\reference-rewrite-20260912\\output\\docx-input-qa-r19\\calls\\glm--m4-review_existing_docx-baseline\\workspace\\fixed-preview.pdf",
+          "sha256_before": "88efd2da181b736596f2bea3a16a63e7f65aecb974a716f5237e10bc12eb876c",
+          "sha256_after": "88efd2da181b736596f2bea3a16a63e7f65aecb974a716f5237e10bc12eb876c",
+          "sha256": "88efd2da181b736596f2bea3a16a63e7f65aecb974a716f5237e10bc12eb876c",
+          "source_copy_hash_match": true,
+          "bytes": 27094
+        },
+        {
+          "original": "C:\\Users\\admin\\AppData\\Local\\Temp\\cow-native-docx-input-native-r19-glm-zs_ulynq\\m4-review_existing_docx-baseline\\workspace\\fixed-preview.png",
+          "recovered": "F:\\Workspaces\\chinese-official-writing-skill\\output\\route-worktrees\\reference-rewrite-20260912\\output\\docx-input-qa-r19\\calls\\glm--m4-review_existing_docx-baseline\\workspace\\fixed-preview.png",
+          "sha256_before": "c305d36b03b375d26c7ebb8f542ced9842f5ece0bcdc0a9e12fee7c17f42c069",
+          "sha256_after": "c305d36b03b375d26c7ebb8f542ced9842f5ece0bcdc0a9e12fee7c17f42c069",
+          "sha256": "c305d36b03b375d26c7ebb8f542ced9842f5ece0bcdc0a9e12fee7c17f42c069",
+          "source_copy_hash_match": true,
+          "bytes": 68911
+        }
+      ],
+      "layout_observation": "未见影响可读性的缺陷；保留原稿署名/日期缩进。",
+      "message_observations": [
+        "final 将 7 个零字号节点写成 7 处文字；XML 显示含文字零字号 6 处，另有 1 个空 run。",
+        "中间消息将缺少 szCs 说成复杂文种字体回退异常，没有在本题纯中文/拉丁文本上证实该风险。",
+        "final 同时给链接和改后全文；文后提示临时文件删除被拦截，含清理命令/安全策略旁白。原生 trace 与留存解包/预览文件支持清理未完成，未影响交付稿。"
+      ]
+    },
+    {
+      "id": "glm--m4-review_existing_docx-candidate",
+      "model": "ollama-cloud/glm-5.3-flash",
+      "arm": "candidate",
+      "technical_result": {
+        "returncode": 0,
+        "invalid": []
+      },
+      "delivery": "WORD_DELIVERED",
+      "input_unchanged": true,
+      "source_document": {
+        "path": "C:\\Users\\admin\\AppData\\Local\\Temp\\cow-native-docx-input-native-r19-glm-zs_ulynq\\m4-review_existing_docx-candidate\\workspace\\received-application.docx",
+        "expected_sha256": "0989cecd96b1e85a5bc7eccdb7b0e4ca16260ecb23ae61161a5fd5fe19a6e068",
+        "actual_sha256": "0989cecd96b1e85a5bc7eccdb7b0e4ca16260ecb23ae61161a5fd5fe19a6e068",
+        "status": "UNCHANGED"
+      },
+      "final_text_path": "F:\\Workspaces\\chinese-official-writing-skill\\output\\route-worktrees\\reference-rewrite-20260912\\output\\docx-input-qa-r19\\calls\\glm--m4-review_existing_docx-candidate\\native.final.txt",
+      "final_text_sha256": "df75606dd45dff3adbd9285488d50474f4e11d4036df13388dede4a14b9fba7f",
+      "original_final_docx": "C:\\Users\\admin\\AppData\\Local\\Temp\\cow-native-docx-input-native-r19-glm-zs_ulynq\\m4-review_existing_docx-candidate\\workspace\\received-application-fixed.docx",
+      "collected_final_docx": "F:\\Workspaces\\chinese-official-writing-skill\\output\\route-worktrees\\reference-rewrite-20260912\\output\\docx-input-qa-r19\\calls\\glm--m4-review_existing_docx-candidate\\workspace\\received-application-fixed.docx",
+      "final_docx_sha256": "fda54a81280f3a5d53e3f80a69b4496714ce05c44cc6cb73b54bb9c7fb79d901",
+      "final_links": [
+        {
+          "raw": "C:/Users/admin/AppData/Local/Temp/cow-native-docx-input-native-r19-glm-zs_ulynq/m4-review_existing_docx-candidate/workspace/received-application-fixed.docx",
+          "resolved": true,
+          "kind": "absolute-path",
+          "target": "C:\\Users\\admin\\AppData\\Local\\Temp\\cow-native-docx-input-native-r19-glm-zs_ulynq\\m4-review_existing_docx-candidate\\workspace\\received-application-fixed.docx",
+          "document_id": "docx-001",
+          "sha256": "fda54a81280f3a5d53e3f80a69b4496714ce05c44cc6cb73b54bb9c7fb79d901"
+        }
+      ],
+      "source_zero_text_runs": 6,
+      "final_zero_text_runs": 0,
+      "all_raw_paragraphs_preserved": true,
+      "source_facts_preservation": "PASS (fidelity to supplied document, not external truth validation)",
+      "render_pages": 1,
+      "readability": "PASS",
+      "render_input_unchanged": true,
+      "renderer_cleanup_note": null,
+      "scan_call_count": 2,
+      "zero_font_diagnostic_count": 6,
+      "unlinked_docx_count": 0,
+      "non_docx_runtime_files": [
+        {
+          "original": "C:\\Users\\admin\\AppData\\Local\\Temp\\cow-native-docx-input-native-r19-glm-zs_ulynq\\m4-review_existing_docx-candidate\\tmp\\docx_extract_received\\[Content_Types].xml",
+          "recovered": "F:\\Workspaces\\chinese-official-writing-skill\\output\\route-worktrees\\reference-rewrite-20260912\\output\\docx-input-qa-r19\\calls\\glm--m4-review_existing_docx-candidate\\tmp\\docx_extract_received\\[Content_Types].xml",
+          "sha256_before": "66c84fb7a6aa3c4ead49f895e4a7044df1fb57de1ed76d09b2686e91f5bed5b4",
+          "sha256_after": "66c84fb7a6aa3c4ead49f895e4a7044df1fb57de1ed76d09b2686e91f5bed5b4",
+          "sha256": "66c84fb7a6aa3c4ead49f895e4a7044df1fb57de1ed76d09b2686e91f5bed5b4",
+          "source_copy_hash_match": true,
+          "bytes": 1738
+        },
+        {
+          "original": "C:\\Users\\admin\\AppData\\Local\\Temp\\cow-native-docx-input-native-r19-glm-zs_ulynq\\m4-review_existing_docx-candidate\\tmp\\docx_extract_received\\_rels\\.rels",
+          "recovered": "F:\\Workspaces\\chinese-official-writing-skill\\output\\route-worktrees\\reference-rewrite-20260912\\output\\docx-input-qa-r19\\calls\\glm--m4-review_existing_docx-candidate\\tmp\\docx_extract_received\\_rels\\.rels",
+          "sha256_before": "a9ae57efe9186f07d48303bcac5d54c7e359bf3f503939c03ad2954e5c59a5c4",
+          "sha256_after": "a9ae57efe9186f07d48303bcac5d54c7e359bf3f503939c03ad2954e5c59a5c4",
+          "sha256": "a9ae57efe9186f07d48303bcac5d54c7e359bf3f503939c03ad2954e5c59a5c4",
+          "source_copy_hash_match": true,
+          "bytes": 734
+        },
+        {
+          "original": "C:\\Users\\admin\\AppData\\Local\\Temp\\cow-native-docx-input-native-r19-glm-zs_ulynq\\m4-review_existing_docx-candidate\\tmp\\docx_extract_received\\customXml\\_rels\\item1.xml.rels",
+          "recovered": "F:\\Workspaces\\chinese-official-writing-skill\\output\\route-worktrees\\reference-rewrite-20260912\\output\\docx-input-qa-r19\\calls\\glm--m4-review_existing_docx-candidate\\tmp\\docx_extract_received\\customXml\\_rels\\item1.xml.rels",
+          "sha256_before": "1ca6c9a64edcebe24ee703a54403611b322d96da33371779e742d2d3f7ed7a6c",
+          "sha256_after": "1ca6c9a64edcebe24ee703a54403611b322d96da33371779e742d2d3f7ed7a6c",
+          "sha256": "1ca6c9a64edcebe24ee703a54403611b322d96da33371779e742d2d3f7ed7a6c",
+          "source_copy_hash_match": true,
+          "bytes": 295
+        },
+        {
+          "original": "C:\\Users\\admin\\AppData\\Local\\Temp\\cow-native-docx-input-native-r19-glm-zs_ulynq\\m4-review_existing_docx-candidate\\tmp\\docx_extract_received\\customXml\\item1.xml",
+          "recovered": "F:\\Workspaces\\chinese-official-writing-skill\\output\\route-worktrees\\reference-rewrite-20260912\\output\\docx-input-qa-r19\\calls\\glm--m4-review_existing_docx-candidate\\tmp\\docx_extract_received\\customXml\\item1.xml",
+          "sha256_before": "a86086ffc5d8e83ebd6c71a55d1d2efaa31b137977f5f3a752366e1023612144",
+          "sha256_after": "a86086ffc5d8e83ebd6c71a55d1d2efaa31b137977f5f3a752366e1023612144",
+          "sha256": "a86086ffc5d8e83ebd6c71a55d1d2efaa31b137977f5f3a752366e1023612144",
+          "source_copy_hash_match": true,
+          "bytes": 262
+        },
+        {
+          "original": "C:\\Users\\admin\\AppData\\Local\\Temp\\cow-native-docx-input-native-r19-glm-zs_ulynq\\m4-review_existing_docx-candidate\\tmp\\docx_extract_received\\customXml\\itemProps1.xml",
+          "recovered": "F:\\Workspaces\\chinese-official-writing-skill\\output\\route-worktrees\\reference-rewrite-20260912\\output\\docx-input-qa-r19\\calls\\glm--m4-review_existing_docx-candidate\\tmp\\docx_extract_received\\customXml\\itemProps1.xml",
+          "sha256_before": "c542307b13ec29a8b546217bb37936ab4822e044b265d2952985ec3d6afed24e",
+          "sha256_after": "c542307b13ec29a8b546217bb37936ab4822e044b265d2952985ec3d6afed24e",
+          "sha256": "c542307b13ec29a8b546217bb37936ab4822e044b265d2952985ec3d6afed24e",
+          "source_copy_hash_match": true,
+          "bytes": 354
+        },
+        {
+          "original": "C:\\Users\\admin\\AppData\\Local\\Temp\\cow-native-docx-input-native-r19-glm-zs_ulynq\\m4-review_existing_docx-candidate\\tmp\\docx_extract_received\\docProps\\app.xml",
+          "recovered": "F:\\Workspaces\\chinese-official-writing-skill\\output\\route-worktrees\\reference-rewrite-20260912\\output\\docx-input-qa-r19\\calls\\glm--m4-review_existing_docx-candidate\\tmp\\docx_extract_received\\docProps\\app.xml",
+          "sha256_before": "be664981c3141cddfc59362beb287ebf20d0773660e2dd6faac5968a5930a081",
+          "sha256_after": "be664981c3141cddfc59362beb287ebf20d0773660e2dd6faac5968a5930a081",
+          "sha256": "be664981c3141cddfc59362beb287ebf20d0773660e2dd6faac5968a5930a081",
+          "source_copy_hash_match": true,
+          "bytes": 1132
+        },
+        {
+          "original": "C:\\Users\\admin\\AppData\\Local\\Temp\\cow-native-docx-input-native-r19-glm-zs_ulynq\\m4-review_existing_docx-candidate\\tmp\\docx_extract_received\\docProps\\core.xml",
+          "recovered": "F:\\Workspaces\\chinese-official-writing-skill\\output\\route-worktrees\\reference-rewrite-20260912\\output\\docx-input-qa-r19\\calls\\glm--m4-review_existing_docx-candidate\\tmp\\docx_extract_received\\docProps\\core.xml",
+          "sha256_before": "d14be8284e406d14dc2a576b19f15e7f637b955f9e27a3d9ed871ec99606f7ba",
+          "sha256_after": "d14be8284e406d14dc2a576b19f15e7f637b955f9e27a3d9ed871ec99606f7ba",
+          "sha256": "d14be8284e406d14dc2a576b19f15e7f637b955f9e27a3d9ed871ec99606f7ba",
+          "source_copy_hash_match": true,
+          "bytes": 721
+        },
+        {
+          "original": "C:\\Users\\admin\\AppData\\Local\\Temp\\cow-native-docx-input-native-r19-glm-zs_ulynq\\m4-review_existing_docx-candidate\\tmp\\docx_extract_received\\docProps\\thumbnail.jpeg",
+          "recovered": "F:\\Workspaces\\chinese-official-writing-skill\\output\\route-worktrees\\reference-rewrite-20260912\\output\\docx-input-qa-r19\\calls\\glm--m4-review_existing_docx-candidate\\tmp\\docx_extract_received\\docProps\\thumbnail.jpeg",
+          "sha256_before": "96367138dc44ce09bf2c8f0f8e49348a1478d2c5c0af69bbc2bbc38b63cdcead",
+          "sha256_after": "96367138dc44ce09bf2c8f0f8e49348a1478d2c5c0af69bbc2bbc38b63cdcead",
+          "sha256": "96367138dc44ce09bf2c8f0f8e49348a1478d2c5c0af69bbc2bbc38b63cdcead",
+          "source_copy_hash_match": true,
+          "bytes": 8324
+        },
+        {
+          "original": "C:\\Users\\admin\\AppData\\Local\\Temp\\cow-native-docx-input-native-r19-glm-zs_ulynq\\m4-review_existing_docx-candidate\\tmp\\docx_extract_received\\word\\_rels\\document.xml.rels",
+          "recovered": "F:\\Workspaces\\chinese-official-writing-skill\\output\\route-worktrees\\reference-rewrite-20260912\\output\\docx-input-qa-r19\\calls\\glm--m4-review_existing_docx-candidate\\tmp\\docx_extract_received\\word\\_rels\\document.xml.rels",
+          "sha256_before": "1e7f0eb144a98e199249314f61ff32a8de2a27e56d8e9ee6b524e1c6b235d377",
+          "sha256_after": "1e7f0eb144a98e199249314f61ff32a8de2a27e56d8e9ee6b524e1c6b235d377",
+          "sha256": "1e7f0eb144a98e199249314f61ff32a8de2a27e56d8e9ee6b524e1c6b235d377",
+          "source_copy_hash_match": true,
+          "bytes": 1227
+        },
+        {
+          "original": "C:\\Users\\admin\\AppData\\Local\\Temp\\cow-native-docx-input-native-r19-glm-zs_ulynq\\m4-review_existing_docx-candidate\\tmp\\docx_extract_received\\word\\document.xml",
+          "recovered": "F:\\Workspaces\\chinese-official-writing-skill\\output\\route-worktrees\\reference-rewrite-20260912\\output\\docx-input-qa-r19\\calls\\glm--m4-review_existing_docx-candidate\\tmp\\docx_extract_received\\word\\document.xml",
+          "sha256_before": "30ec709750f8e4d52fc0c1d8c20883f75e4b6b6fa56cf4b595053f38e3df0b51",
+          "sha256_after": "30ec709750f8e4d52fc0c1d8c20883f75e4b6b6fa56cf4b595053f38e3df0b51",
+          "sha256": "30ec709750f8e4d52fc0c1d8c20883f75e4b6b6fa56cf4b595053f38e3df0b51",
+          "source_copy_hash_match": true,
+          "bytes": 4267
+        },
+        {
+          "original": "C:\\Users\\admin\\AppData\\Local\\Temp\\cow-native-docx-input-native-r19-glm-zs_ulynq\\m4-review_existing_docx-candidate\\tmp\\docx_extract_received\\word\\fontTable.xml",
+          "recovered": "F:\\Workspaces\\chinese-official-writing-skill\\output\\route-worktrees\\reference-rewrite-20260912\\output\\docx-input-qa-r19\\calls\\glm--m4-review_existing_docx-candidate\\tmp\\docx_extract_received\\word\\fontTable.xml",
+          "sha256_before": "79385fb7f60247507ecaffc292e9ebd52ea0657b8634f629ba6fccc54011d6bb",
+          "sha256_after": "79385fb7f60247507ecaffc292e9ebd52ea0657b8634f629ba6fccc54011d6bb",
+          "sha256": "79385fb7f60247507ecaffc292e9ebd52ea0657b8634f629ba6fccc54011d6bb",
+          "source_copy_hash_match": true,
+          "bytes": 2811
+        },
+        {
+          "original": "C:\\Users\\admin\\AppData\\Local\\Temp\\cow-native-docx-input-native-r19-glm-zs_ulynq\\m4-review_existing_docx-candidate\\tmp\\docx_extract_received\\word\\numbering.xml",
+          "recovered": "F:\\Workspaces\\chinese-official-writing-skill\\output\\route-worktrees\\reference-rewrite-20260912\\output\\docx-input-qa-r19\\calls\\glm--m4-review_existing_docx-candidate\\tmp\\docx_extract_received\\word\\numbering.xml",
+          "sha256_before": "70976f19cbcd896e51890859fe6ecb3467a5a7ad0c040160fedc5a1993cb09ce",
+          "sha256_after": "70976f19cbcd896e51890859fe6ecb3467a5a7ad0c040160fedc5a1993cb09ce",
+          "sha256": "70976f19cbcd896e51890859fe6ecb3467a5a7ad0c040160fedc5a1993cb09ce",
+          "source_copy_hash_match": true,
+          "bytes": 5513
+        },
+        {
+          "original": "C:\\Users\\admin\\AppData\\Local\\Temp\\cow-native-docx-input-native-r19-glm-zs_ulynq\\m4-review_existing_docx-candidate\\tmp\\docx_extract_received\\word\\settings.xml",
+          "recovered": "F:\\Workspaces\\chinese-official-writing-skill\\output\\route-worktrees\\reference-rewrite-20260912\\output\\docx-input-qa-r19\\calls\\glm--m4-review_existing_docx-candidate\\tmp\\docx_extract_received\\word\\settings.xml",
+          "sha256_before": "51a0d348fe85965c66e4748a03c3c0d055d78455514f03cb121c334af7d73689",
+          "sha256_after": "51a0d348fe85965c66e4748a03c3c0d055d78455514f03cb121c334af7d73689",
+          "sha256": "51a0d348fe85965c66e4748a03c3c0d055d78455514f03cb121c334af7d73689",
+          "source_copy_hash_match": true,
+          "bytes": 2535
+        },
+        {
+          "original": "C:\\Users\\admin\\AppData\\Local\\Temp\\cow-native-docx-input-native-r19-glm-zs_ulynq\\m4-review_existing_docx-candidate\\tmp\\docx_extract_received\\word\\styles.xml",
+          "recovered": "F:\\Workspaces\\chinese-official-writing-skill\\output\\route-worktrees\\reference-rewrite-20260912\\output\\docx-input-qa-r19\\calls\\glm--m4-review_existing_docx-candidate\\tmp\\docx_extract_received\\word\\styles.xml",
+          "sha256_before": "02d71a68ddb92c055e84526d6a9e45700be3872781ababf759241694bc30e384",
+          "sha256_after": "02d71a68ddb92c055e84526d6a9e45700be3872781ababf759241694bc30e384",
+          "sha256": "02d71a68ddb92c055e84526d6a9e45700be3872781ababf759241694bc30e384",
+          "source_copy_hash_match": true,
+          "bytes": 349458
+        },
+        {
+          "original": "C:\\Users\\admin\\AppData\\Local\\Temp\\cow-native-docx-input-native-r19-glm-zs_ulynq\\m4-review_existing_docx-candidate\\tmp\\docx_extract_received\\word\\stylesWithEffects.xml",
+          "recovered": "F:\\Workspaces\\chinese-official-writing-skill\\output\\route-worktrees\\reference-rewrite-20260912\\output\\docx-input-qa-r19\\calls\\glm--m4-review_existing_docx-candidate\\tmp\\docx_extract_received\\word\\stylesWithEffects.xml",
+          "sha256_before": "463ae0928cf0d84775dbf8cf18d6c3029f6707c81bf590f6d6dd8757a5e93f15",
+          "sha256_after": "463ae0928cf0d84775dbf8cf18d6c3029f6707c81bf590f6d6dd8757a5e93f15",
+          "sha256": "463ae0928cf0d84775dbf8cf18d6c3029f6707c81bf590f6d6dd8757a5e93f15",
+          "source_copy_hash_match": true,
+          "bytes": 438131
+        },
+        {
+          "original": "C:\\Users\\admin\\AppData\\Local\\Temp\\cow-native-docx-input-native-r19-glm-zs_ulynq\\m4-review_existing_docx-candidate\\tmp\\docx_extract_received\\word\\theme\\theme1.xml",
+          "recovered": "F:\\Workspaces\\chinese-official-writing-skill\\output\\route-worktrees\\reference-rewrite-20260912\\output\\docx-input-qa-r19\\calls\\glm--m4-review_existing_docx-candidate\\tmp\\docx_extract_received\\word\\theme\\theme1.xml",
+          "sha256_before": "e3a8ab7db9ca7afca56f5f2820a56e8b660016c647773555b060b0a02ac76941",
+          "sha256_after": "e3a8ab7db9ca7afca56f5f2820a56e8b660016c647773555b060b0a02ac76941",
+          "sha256": "e3a8ab7db9ca7afca56f5f2820a56e8b660016c647773555b060b0a02ac76941",
+          "source_copy_hash_match": true,
+          "bytes": 10939
+        },
+        {
+          "original": "C:\\Users\\admin\\AppData\\Local\\Temp\\cow-native-docx-input-native-r19-glm-zs_ulynq\\m4-review_existing_docx-candidate\\tmp\\docx_extract_received\\word\\webSettings.xml",
+          "recovered": "F:\\Workspaces\\chinese-official-writing-skill\\output\\route-worktrees\\reference-rewrite-20260912\\output\\docx-input-qa-r19\\calls\\glm--m4-review_existing_docx-candidate\\tmp\\docx_extract_received\\word\\webSettings.xml",
+          "sha256_before": "349d36de7434d09f86987ff671d8814964a0588c1e630c06e562cda7e75e9f95",
+          "sha256_after": "349d36de7434d09f86987ff671d8814964a0588c1e630c06e562cda7e75e9f95",
+          "sha256": "349d36de7434d09f86987ff671d8814964a0588c1e630c06e562cda7e75e9f95",
+          "source_copy_hash_match": true,
+          "bytes": 438
+        },
+        {
+          "original": "C:\\Users\\admin\\AppData\\Local\\Temp\\cow-native-docx-input-native-r19-glm-zs_ulynq\\m4-review_existing_docx-candidate\\tmp\\fix_docx.py",
+          "recovered": "F:\\Workspaces\\chinese-official-writing-skill\\output\\route-worktrees\\reference-rewrite-20260912\\output\\docx-input-qa-r19\\calls\\glm--m4-review_existing_docx-candidate\\tmp\\fix_docx.py",
+          "sha256_before": "e9495f5a62c48a5ab6b73164c19a3245cdf0d05f134ebc5963c7aea325983ad9",
+          "sha256_after": "e9495f5a62c48a5ab6b73164c19a3245cdf0d05f134ebc5963c7aea325983ad9",
+          "sha256": "e9495f5a62c48a5ab6b73164c19a3245cdf0d05f134ebc5963c7aea325983ad9",
+          "source_copy_hash_match": true,
+          "bytes": 2301
+        },
+        {
+          "original": "C:\\Users\\admin\\AppData\\Local\\Temp\\cow-native-docx-input-native-r19-glm-zs_ulynq\\m4-review_existing_docx-candidate\\tmp\\received-application-fixed.pdf",
+          "recovered": "F:\\Workspaces\\chinese-official-writing-skill\\output\\route-worktrees\\reference-rewrite-20260912\\output\\docx-input-qa-r19\\calls\\glm--m4-review_existing_docx-candidate\\tmp\\received-application-fixed.pdf",
+          "sha256_before": "08bff692ce11bd72d166f5a9fa50b251051292ff91030d17780475c15107e986",
+          "sha256_after": "08bff692ce11bd72d166f5a9fa50b251051292ff91030d17780475c15107e986",
+          "sha256": "08bff692ce11bd72d166f5a9fa50b251051292ff91030d17780475c15107e986",
+          "source_copy_hash_match": true,
+          "bytes": 27090
+        },
+        {
+          "original": "C:\\Users\\admin\\AppData\\Local\\Temp\\cow-native-docx-input-native-r19-glm-zs_ulynq\\m4-review_existing_docx-candidate\\tmp\\received-application-fixed.png",
+          "recovered": "F:\\Workspaces\\chinese-official-writing-skill\\output\\route-worktrees\\reference-rewrite-20260912\\output\\docx-input-qa-r19\\calls\\glm--m4-review_existing_docx-candidate\\tmp\\received-application-fixed.png",
+          "sha256_before": "41c2c087e066c352831316cd9083a38859c6c405f18d38bbb0eb8aa05d9143cd",
+          "sha256_after": "41c2c087e066c352831316cd9083a38859c6c405f18d38bbb0eb8aa05d9143cd",
+          "sha256": "41c2c087e066c352831316cd9083a38859c6c405f18d38bbb0eb8aa05d9143cd",
+          "source_copy_hash_match": true,
+          "bytes": 73118
+        }
+      ],
+      "layout_observation": "独立版式及自述不一致观察：署名 right=3200，日期 right=640，相差 2560 twip，即 128pt/8 个 16pt 字；final 称右端差 2 字且对位正确，本机 Word 12.0 页图未支持该说法。仍然可读，不升级为 Word 不可用或 GB/T 硬失败。",
+      "message_observations": [
+        "中间先说纸张不是 A4，后续核对后改称原版式就是 A4；最终保留原页面尺寸。",
+        "final 对修复、复扫与可读性有依据，但署名对位正确的自述与本机页图/缩进值不符。",
+        "final 说明本机缺指定字体、PDF 使用替代字体；本次 QA 未审计安装字体，保留为模型自述，不将其升级为已经核验的字体环境结论。"
+      ]
+    }
+  ],
+  "conclusion": {
+    "word_final_deliveries": 4,
+    "missing_final_or_unbound_word": 0,
+    "zero_font_fixed": 4,
+    "source_preserved": 4,
+    "fact_preservation": 4,
+    "readability_pass": 4,
+    "candidate_native_detector_observed": "GLM 1/1; DeepSeek 0/1",
+    "baseline_independent_repairs": 2,
+    "unique_candidate_document_quality_gain": "NOT_ESTABLISHED",
+    "separate_layout_observation": "GLM candidate signoff/date offset and final self-description mismatch; readable, not GB/T hard FAIL",
+    "not_validated": [
+      "inheritance-only font size",
+      "complex-script font routing",
+      "installed fonts and cross-machine layout",
+      "strict red-head/GB-T compliance",
+      "broader writing-quality benefit"
+    ]
+  },
+  "bound_evidence": {
+    "artifact-inventory.json": "cbeb2f72cc678bbb5d71cbfc3df52f9276dbd7c5e1aebeed3e147fd22e26134b",
+    "collection-index.json": "154e18d2abea57c36ac003d704d045ec8e4396edd4b86365d0b76efdd32a4b57",
+    "word-render-results.json": "721433ef41908a2ff4ff09e42ae9053d943445ece9de5ed4011b58fa4d0f2569",
+    "page-index.json": "ef7e42c58cb5e86dc93e4f6a8f7c92eac20ffbdf8c15c71a0cd56da00205a02b",
+    "source-integrity-after-render.json": "5085c346c21f58c4df81848a38075cd6833638d96d2854aefe55dd1268005775",
+    "trace-audit.json": "5bbdf9d3a1fe2d0d5cf4c656e1902042a1a49e5b950f2e893a426243fb4b5899",
+    "visual-review.json": "0dfce66c7c4dc4ac29f2325c218e0ac809cf99fba8f56e2c9bb4b65510831203"
+  }
+}
