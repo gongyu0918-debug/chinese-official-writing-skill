@@ -49,14 +49,18 @@ def portable_tree_fingerprint(root: Path) -> str:
 
 
 def read_routing_surfaces(skill_path: Path) -> str:
-    """Follow the two explicit entry routes; never search arbitrary leaves for a rule."""
+    """Follow the explicit entry -> index -> compatibility route, without fallback search."""
     homepage = skill_path.read_text(encoding="utf-8")
-    routed = [homepage]
-    for relative in ("references/reference-index.md", "references/compatibility-scene-routing.md"):
-        if f"`{relative}`" not in homepage:
-            raise AssertionError(f"entry route missing: {skill_path}: {relative}")
-        routed.append((skill_path.parent / relative).read_text(encoding="utf-8"))
-    return "\n".join(routed)
+    index_relative = "references/reference-index.md"
+    if f"`{index_relative}`" not in homepage:
+        raise AssertionError(f"entry route missing: {skill_path}: {index_relative}")
+    index_path = skill_path.parent / index_relative
+    index = index_path.read_text(encoding="utf-8")
+    compatibility = "compatibility-scene-routing.md"
+    if compatibility not in REFERENCE_LINK_RE.findall(index):
+        raise AssertionError(f"index route missing: {index_path}: {compatibility}")
+    scene = (index_path.parent / compatibility).read_text(encoding="utf-8")
+    return "\n".join((homepage, index, scene))
 
 
 def read_field_boundary(skill_root: Path) -> str:
@@ -429,17 +433,20 @@ class SkillBoundaryTests(unittest.TestCase):
                           "与主旨无关且不影响文种功能或办理落地的外围事项，直接省略")
 
     def test_sparse_length_rule_keeps_fact_boundary_without_short_first_priority(self) -> None:
-        """Length preserves facts and justified analysis; unsupported filling stays forbidden."""
-        self.assert_rules("information-selection.md", "篇幅目标服务于事实完整、状态准确和正文可用",
-                          "材料不足以下限时，保留已给事实和直接分析",
-                          "篇幅不足以重复状态、同义改写或拆句复述填充")
-        self.assert_rules("compression-details.md", "低于下限时，回看材料中尚未写入的相关要素",
-                          "保留真实可用稿件，将实测差额和所需材料列入文后提示",
-                          "调整后复测当前稿件")
-        self.assert_rules("short-draft-naturalness.md", "篇幅上限是边界，不是必须填满的目标")
-        # Exercise the ordinary counter and its body/postscript boundary, not Hook state.
-        self.assert_rules("compression-details.md", "scripts/draft_length.py", "--min-chars 800 --max-chars 1000",
-                          "用户明确只计汉字时用 `--count-mode cjk`", "将文件路径换成 `-`")
+        """Keep bounded length guidance and execute both real counter modes independently."""
+        with self.subTest(contract="current length owner"):
+            home = (CANONICAL / "SKILL.md").read_text(encoding="utf-8")
+            common = read_reference("writing-rules.md")
+            compression = read_reference("compression-details.md")
+            self.assertIn("references/writing-rules.md", home)
+            self.assertRegex(common, r"具体经历[^。]*须有相应依据")
+            self.assertRegex(common, r"篇幅上限[^。]*无需填满")
+            self.assertRegex(common, r"仍无法达到下限[^。]*实际差额[^。]*不能报为达标")
+            self.assertIn("compression-details.md", common)
+            self.assertIn("scripts/draft_length.py", compression)
+            for option in ("--min-chars", "--max-chars", "--count-mode cjk", "--json", "`-`"):
+                self.assertIn(option, compression)
+        # A stale prose assertion must still fail, without hiding the executable contract.
         for mode, expected in [("nonspace", 8), ("cjk", 2)]:
             with self.subTest(count_mode=mode):
                 run = subprocess.run(
@@ -1258,30 +1265,44 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assertNotIn("只有在用户要表格/字段时保留", read_reference("anti-ai-patterns.md"))
 
     def test_review_command_includes_interpreter_and_draft_path(self) -> None:
-        """Run the documented standalone script invocation, including mode and stdin contract."""
-        home = (CANONICAL / "SKILL.md").read_text(encoding="utf-8")
-        self.assertIn("读取 `references/prose-lint-usage.md`", home)
-        self.assertIn("运行 `scripts/prose_lint.py`", home)
-        usage = read_reference("prose-lint-usage.md")
-        self.assertIn("本次已读 `SKILL.md` 所在目录定位脚本", usage)
-        self.assertIn("使用草稿绝对路径并保留引号", usage)
-        command = re.search(r'^python "[^\n]+"$', usage, re.M)
-        self.assertIsNotNone(command)
-        args = shlex.split(command.group(0))
-        self.assertEqual(args, ["python", "<Skill绝对目录>/scripts/prose_lint.py",
-                                "--delivery-mode", "draft-body", "<草稿绝对路径>"])
-        self.assertIn("成稿扫描追加 `--structure --format`", usage)
-        self.assertIn("标准输入将文件路径换成 `-`", usage)
-        self.assertIn("审核任务收到的原稿、修改后的稿件", usage)
-        self.assertIn("| 审稿意见本身 | `review-only` |", usage)
-        self.assertIn("| 稿件正文和独立的文后提示 | `gap-note-allowed` |", usage)
-        run = subprocess.run([sys.executable, "-B", str(CANONICAL / "scripts/prose_lint.py"),
-                              "--delivery-mode", "draft-body", "--structure", "--format", "--json", "-"],
-                             input="通知\n\n请业务科于9月18日前提交材料。", encoding="utf-8", capture_output=True, timeout=30)
-        self.assertEqual(run.returncode, 0, run.stderr)
-        self.assertIsInstance(json.loads(run.stdout), (dict, list))
-        self.assert_rules("prose-lint-usage.md", "修正已确认的问题", "再复扫变动文本",
-                          "最终发送采用已检查文本", "仍无法执行则如实说明本次检查范围")
+        """Validate the current command and exercise real stdin JSON delivery modes."""
+        with self.subTest(contract="current prose-lint usage"):
+            home = (CANONICAL / "SKILL.md").read_text(encoding="utf-8")
+            common = read_reference("writing-rules.md")
+            usage = read_reference("prose-lint-usage.md")
+            self.assertIn("references/writing-rules.md", home)
+            self.assertIn("prose-lint-usage.md", common)
+            command = re.search(r'^python "[^\n]+"$', usage, re.M)
+            self.assertIsNotNone(command)
+            args = shlex.split(command.group(0))
+            self.assertEqual(args[0], "python")
+            self.assertTrue(args[1].replace("\\", "/").endswith("/scripts/prose_lint.py"))
+            self.assertRegex(command.group(0), r'\s"[^"]+"$')
+            self.assertIn("绝对路径", usage)
+            self.assertCountEqual(args[2:-1], ["--delivery-mode", "draft-body", "--structure", "--format"])
+            for term in ("标准输入", "`-`", "复扫", "已检查文本", "未完成"):
+                self.assertIn(term, usage)
+            for mode in ("draft-body", "gap-note-allowed", "review-only"):
+                self.assertIn(f"`{mode}`", usage)
+        draft = "通知\n\n请业务科于9月18日前提交材料。\n\n文后提示\n请补充联系人。"
+        for mode, text, expect_note_risk in [
+            ("draft-body", draft, True),
+            ("gap-note-allowed", draft, False),
+            ("review-only", "第2段日期与材料不符，建议按原日期修改。", False),
+        ]:
+            with self.subTest(delivery_mode=mode):
+                run = subprocess.run(
+                    [sys.executable, "-B", str(CANONICAL / "scripts/prose_lint.py"),
+                     "--delivery-mode", mode, "--structure", "--format", "--json", "-"],
+                    input=text, encoding="utf-8", capture_output=True, timeout=30,
+                )
+                self.assertEqual(run.returncode, 0, run.stderr)
+                findings = json.loads(run.stdout)
+                self.assertIsInstance(findings, list)
+                self.assertEqual(
+                    any(item["label"] == "unexpected-external-note" for item in findings),
+                    expect_note_risk,
+                )
 
     def test_ai_dedupe_prompt_fix_guidance_is_documented(self) -> None:
         """Dedupe never invents facts or missing fields; delivery notes stay outside the body."""

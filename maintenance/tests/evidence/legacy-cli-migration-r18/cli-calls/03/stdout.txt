@@ -1,0 +1,10 @@
+[
+  {
+    "path": "<stdin>",
+    "line": 5,
+    "severity": "high",
+    "label": "unexpected-external-note",
+    "match": "文后提示",
+    "excerpt": "只交付正文的模式不应附待确认、风险、自证或其他正文外说明。"
+  }
+]

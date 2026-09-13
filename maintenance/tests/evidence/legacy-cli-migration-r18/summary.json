@@ -1,0 +1,49 @@
+{
+  "baseline_head": "8f9d08898cd1f52b6f16f32691739af5a7e4067d",
+  "module_sha256": "b5d10c7d910ac6397abced3081f66f42f130681ed154d36ebe197f47938c629d",
+  "changed_definitions": [
+    "read_routing_surfaces",
+    "test_sparse_length_rule_keeps_fact_boundary_without_short_first_priority",
+    "test_review_command_includes_interpreter_and_draft_path"
+  ],
+  "outside_allowed_bytes_identical": true,
+  "product_inputs_unchanged": true,
+  "focused": {
+    "methods": 4,
+    "passed_methods": 3,
+    "affected_methods": 1,
+    "failure_events": 6,
+    "error_events": 0,
+    "exit_code": 1,
+    "remaining_method": "test_lightened_indices_resolve_from_each_skill_root_and_keep_quality_bridges"
+  },
+  "helper_probes": {
+    "passed": 5,
+    "total": 5
+  },
+  "actual_cli_calls": {
+    "draft_length": 2,
+    "prose_lint": 3,
+    "all_returncode_zero": true
+  },
+  "module": {
+    "tests_run": 81,
+    "affected_methods": 50,
+    "methods_without_recorded_failure": 31,
+    "failure_events": 76,
+    "error_events": 34,
+    "returncode": 1,
+    "full_module_run_count_this_task": 1
+  },
+  "r17_comparison": {
+    "methods_no_longer_failing": [
+      "test_openclaw_skill_card_uses_absolute_links_and_key_genres",
+      "test_review_command_includes_interpreter_and_draft_path",
+      "test_sparse_length_rule_keeps_fact_boundary_without_short_first_priority"
+    ],
+    "newly_failing_methods": [],
+    "r17_log_unchanged": true
+  },
+  "commit_created": false,
+  "new_models_run": 0
+}
