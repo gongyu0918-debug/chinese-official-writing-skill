@@ -441,18 +441,22 @@ class ReferenceRewriteContractTests(unittest.TestCase):
     def test_review_checklist_covers_full_review_without_excessive_gates(self) -> None:
         text = (REFS / "review-checklist.md").read_text(encoding="utf-8")
         self.assertFalse((REFS / "review-direct-checklist.md").exists())
-        self.assertRegex(text, r"默认检查整篇稿件")
-        for term in ["事实", "状态", "文种", "结构", "抗 AI 味", "格式", "一致性", "最新版底稿", "关键事实", "可选表达建议"]:
+        self.assertIn("审核默认检查全文", text)
+        self.assertIn("`writing-rules.md`", text)
+        # The review leaf owns issue judgment; shared checks stay on the linked workflow.
+        for term in ["已确认错误", "待核实风险", "可选表达建议", "原句", "段落", "标题", "字段", "附件", "依据", "病句", "搭配"]:
             self.assertIn(term, text)
-        for preserved_judgment in ["事实和常识", "条件性结论", "合理建议", "可选补充", "已知主体关系", "不确定性"]:
+        for preserved_judgment in ["材料与常识", "条件性结论", "合理建议", "可选补充", "各自角色", "不确定性"]:
             self.assertIn(preserved_judgment, text)
-        self.assertRegex(text, r"用户要求审核意见.*问题与建议")
-        for review_only in ["审核、指出问题、给修改建议", "交付问题位置、依据和建议改法"]:
-            self.assertIn(review_only, text)
-        for revised_draft in ["审核后修改、复核后修改、优化稿件", "交付修改后的全文"]:
+        self.assertIn("可核算的数值用工具复算", text)
+        self.assertIn("仅要求审核时交付意见", text)
+        for revised_draft in ["审核后修改、复核后修改或优化稿件", "交付完整改后稿", "有充分依据的问题", "本轮范围内"]:
             self.assertIn(revised_draft, text)
-        self.assertIn("有充分依据的问题直接改入正文", text)
         delivery = (REFS / "writing-rules.md").read_text(encoding="utf-8")
+        for shared_check in ["事实", "状态", "主文种", "要素", "附件", "主体", "最新版底稿", "anti-ai-patterns.md", "prose-lint-usage.md"]:
+            self.assertIn(shared_check, delivery)
+        self.assertIn("Word按模板核样式", delivery)
+        self.assertIn("模板", delivery.split("## 第二步：成稿与篇幅", 1)[1])
         for delivery_element in ["完整稿件", "审核", "位置", "问题", "建议改法", "替代表达", "范围内"]:
             self.assertIn(delivery_element, delivery)
         self.assertNotRegex(text, r"`(?:references/)?genre-playbook-[^`]+\.md`")

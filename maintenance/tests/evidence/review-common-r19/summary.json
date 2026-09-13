@@ -1,0 +1,1276 @@
+{
+  "calls": 32,
+  "technical_valid": 32,
+  "groups": [
+    {
+      "group": "qwen",
+      "prototype": "review-common-r19",
+      "fingerprints": {
+        "baseline": "1640b9a5ed2b974390cbcb2d3b5523faeb1b5e57b4553d62d8044a78cac182d7",
+        "candidate": "5811e6086400280f687586912afea07fcab6751a03d1394fbd0c90c55251e58e"
+      },
+      "calls": 8,
+      "technical_valid": 8,
+      "actual_efforts": [
+        [
+          "alibaba-token-plan/qwen3.8-flash",
+          "medium"
+        ]
+      ],
+      "totals": {
+        "baseline": {
+          "commands": 56,
+          "read_chars_unique": 38028,
+          "input_tokens": 589024,
+          "cached_input_tokens": 517376,
+          "uncached_input_tokens": 71648,
+          "output_tokens": 20438,
+          "seconds": 590.6999999999999,
+          "calls": 4,
+          "technical_valid": 4,
+          "prose_lint.py": 8,
+          "draft_length.py": 6,
+          "anti_ai_page_returned": 4,
+          "tasks_with_prose_command": 4
+        },
+        "candidate": {
+          "commands": 57,
+          "read_chars_unique": 35272,
+          "input_tokens": 733746,
+          "cached_input_tokens": 663808,
+          "uncached_input_tokens": 69938,
+          "output_tokens": 28861,
+          "seconds": 801.3700000000001,
+          "calls": 4,
+          "technical_valid": 4,
+          "prose_lint.py": 9,
+          "draft_length.py": 7,
+          "anti_ai_page_returned": 4,
+          "tasks_with_prose_command": 4
+        }
+      },
+      "matched_anti_prose_pairs": {
+        "pairs": 4,
+        "scope": "Cost diagnostic for pairs with anti-AI page returned and a prose-script command on both arms. Not a quality-selected subset, proof of effective checking, or proof of equal length checks.",
+        "baseline": {
+          "read_chars_unique": 38028,
+          "uncached_input_tokens": 71648,
+          "commands": 56,
+          "seconds": 590.6999999999999
+        },
+        "candidate": {
+          "read_chars_unique": 35272,
+          "uncached_input_tokens": 69938,
+          "commands": 57,
+          "seconds": 801.3700000000001
+        }
+      },
+      "blind_counts": {
+        "body": {
+          "candidate": 1,
+          "baseline": 1,
+          "tie": 2
+        },
+        "delivery": {
+          "candidate": 1,
+          "tie": 2,
+          "baseline": 1
+        }
+      },
+      "decoded": [
+        {
+          "id": "P01",
+          "model": "alibaba-token-plan/qwen3.8-flash",
+          "case": "commentary_review_only",
+          "body": "candidate",
+          "delivery": "candidate"
+        },
+        {
+          "id": "P02",
+          "model": "alibaba-token-plan/qwen3.8-flash",
+          "case": "commentary_review_rewrite",
+          "body": "baseline",
+          "delivery": "tie"
+        },
+        {
+          "id": "P03",
+          "model": "alibaba-token-plan/qwen3.8-flash",
+          "case": "review",
+          "body": "tie",
+          "delivery": "tie"
+        },
+        {
+          "id": "P04",
+          "model": "alibaba-token-plan/qwen3.8-flash",
+          "case": "review_rewrite",
+          "body": "tie",
+          "delivery": "baseline"
+        }
+      ],
+      "observations": [
+        {
+          "stem": "m0-commentary_review_only-baseline",
+          "model": "alibaba-token-plan/qwen3.8-flash",
+          "case": "commentary_review_only",
+          "arm": "baseline",
+          "invalid": [],
+          "seconds": 127.28,
+          "read_chars_unique": 9720,
+          "uncached_input_tokens": 12883,
+          "unique_pages": [
+            "SKILL.md",
+            "references/anti-ai-patterns.md",
+            "references/genre-playbook-news-commentary.md",
+            "references/prose-lint-usage.md",
+            "references/reference-index.md",
+            "references/review-checklist.md",
+            "references/writing-rules.md"
+          ],
+          "repeated_pages": {},
+          "script_commands": {
+            "prose_lint.py": 1
+          }
+        },
+        {
+          "stem": "m0-commentary_review_only-candidate",
+          "model": "alibaba-token-plan/qwen3.8-flash",
+          "case": "commentary_review_only",
+          "arm": "candidate",
+          "invalid": [],
+          "seconds": 137.52,
+          "read_chars_unique": 9031,
+          "uncached_input_tokens": 16682,
+          "unique_pages": [
+            "SKILL.md",
+            "references/anti-ai-patterns.md",
+            "references/genre-playbook-news-commentary.md",
+            "references/prose-lint-usage.md",
+            "references/reference-index.md",
+            "references/review-checklist.md",
+            "references/writing-rules.md"
+          ],
+          "repeated_pages": {},
+          "script_commands": {
+            "prose_lint.py": 3
+          }
+        },
+        {
+          "stem": "m0-commentary_review_rewrite-baseline",
+          "model": "alibaba-token-plan/qwen3.8-flash",
+          "case": "commentary_review_rewrite",
+          "arm": "baseline",
+          "invalid": [],
+          "seconds": 152.67,
+          "read_chars_unique": 7082,
+          "uncached_input_tokens": 16677,
+          "unique_pages": [
+            "SKILL.md",
+            "references/anti-ai-patterns.md",
+            "references/genre-playbook-news-commentary.md",
+            "references/proofreading-checklist.md",
+            "references/prose-lint-usage.md",
+            "references/review-checklist.md",
+            "references/writing-rules.md"
+          ],
+          "repeated_pages": {},
+          "script_commands": {
+            "prose_lint.py": 2,
+            "draft_length.py": 2
+          }
+        },
+        {
+          "stem": "m0-commentary_review_rewrite-candidate",
+          "model": "alibaba-token-plan/qwen3.8-flash",
+          "case": "commentary_review_rewrite",
+          "arm": "candidate",
+          "invalid": [],
+          "seconds": 82.06,
+          "read_chars_unique": 6393,
+          "uncached_input_tokens": 16691,
+          "unique_pages": [
+            "SKILL.md",
+            "references/anti-ai-patterns.md",
+            "references/genre-playbook-news-commentary.md",
+            "references/proofreading-checklist.md",
+            "references/prose-lint-usage.md",
+            "references/review-checklist.md",
+            "references/writing-rules.md"
+          ],
+          "repeated_pages": {},
+          "script_commands": {
+            "prose_lint.py": 1,
+            "draft_length.py": 1
+          }
+        },
+        {
+          "stem": "m0-review-baseline",
+          "model": "alibaba-token-plan/qwen3.8-flash",
+          "case": "review",
+          "arm": "baseline",
+          "invalid": [],
+          "seconds": 108.84,
+          "read_chars_unique": 10646,
+          "uncached_input_tokens": 25996,
+          "unique_pages": [
+            "SKILL.md",
+            "references/anti-ai-patterns.md",
+            "references/genre-checklist-report.md",
+            "references/genre-playbook-report.md",
+            "references/prose-lint-usage.md",
+            "references/reference-index.md",
+            "references/review-checklist.md",
+            "references/writing-rules.md"
+          ],
+          "repeated_pages": {},
+          "script_commands": {
+            "prose_lint.py": 2,
+            "draft_length.py": 1
+          }
+        },
+        {
+          "stem": "m0-review-candidate",
+          "model": "alibaba-token-plan/qwen3.8-flash",
+          "case": "review",
+          "arm": "candidate",
+          "invalid": [],
+          "seconds": 261.23,
+          "read_chars_unique": 9957,
+          "uncached_input_tokens": 16550,
+          "unique_pages": [
+            "SKILL.md",
+            "references/anti-ai-patterns.md",
+            "references/genre-checklist-report.md",
+            "references/genre-playbook-report.md",
+            "references/prose-lint-usage.md",
+            "references/reference-index.md",
+            "references/review-checklist.md",
+            "references/writing-rules.md"
+          ],
+          "repeated_pages": {},
+          "script_commands": {
+            "prose_lint.py": 4,
+            "draft_length.py": 3
+          }
+        },
+        {
+          "stem": "m0-review_rewrite-baseline",
+          "model": "alibaba-token-plan/qwen3.8-flash",
+          "case": "review_rewrite",
+          "arm": "baseline",
+          "invalid": [],
+          "seconds": 201.91,
+          "read_chars_unique": 10580,
+          "uncached_input_tokens": 16092,
+          "unique_pages": [
+            "SKILL.md",
+            "references/anti-ai-patterns.md",
+            "references/genre-playbook-request.md",
+            "references/prose-lint-usage.md",
+            "references/reference-index.md",
+            "references/review-checklist.md",
+            "references/writing-rules.md"
+          ],
+          "repeated_pages": {},
+          "script_commands": {
+            "draft_length.py": 3,
+            "prose_lint.py": 3
+          }
+        },
+        {
+          "stem": "m0-review_rewrite-candidate",
+          "model": "alibaba-token-plan/qwen3.8-flash",
+          "case": "review_rewrite",
+          "arm": "candidate",
+          "invalid": [],
+          "seconds": 320.56,
+          "read_chars_unique": 9891,
+          "uncached_input_tokens": 20015,
+          "unique_pages": [
+            "SKILL.md",
+            "references/anti-ai-patterns.md",
+            "references/genre-playbook-request.md",
+            "references/prose-lint-usage.md",
+            "references/reference-index.md",
+            "references/review-checklist.md",
+            "references/writing-rules.md"
+          ],
+          "repeated_pages": {},
+          "script_commands": {
+            "draft_length.py": 3,
+            "prose_lint.py": 1
+          }
+        }
+      ],
+      "runner_raw_sha256": "53f7c18f4821dc89dd322b522d1a3261041299167ddfd7dde7f92f00dd62dc29",
+      "runner_source_provenance": {
+        "original_raw_sha256": "53f7c18f4821dc89dd322b522d1a3261041299167ddfd7dde7f92f00dd62dc29",
+        "retained_source": "runner-source-semantic.py",
+        "retained_sha256": "bf5412584b85c300d39d7e4465f2777dc9e676ff5414e85e6f6c1bc0c409f7e5",
+        "raw_hash_match": false,
+        "origin": "clean c6f65014 Git source",
+        "limitation": "No pre-run raw source copy was retained. Current source has mixed CRLF/LF; attempted byte reconstruction did not match the recorded raw hash. This is a semantic reconstruction, not the exact raw source. Original bindings and results remain unchanged."
+      }
+    },
+    {
+      "group": "deepseek",
+      "prototype": "review-common-r19",
+      "fingerprints": {
+        "baseline": "1640b9a5ed2b974390cbcb2d3b5523faeb1b5e57b4553d62d8044a78cac182d7",
+        "candidate": "5811e6086400280f687586912afea07fcab6751a03d1394fbd0c90c55251e58e"
+      },
+      "calls": 8,
+      "technical_valid": 8,
+      "actual_efforts": [
+        [
+          "command-code/deepseek-deepseek-v4.1-flash",
+          "provider-default"
+        ]
+      ],
+      "totals": {
+        "baseline": {
+          "commands": 64,
+          "read_chars_unique": 45112,
+          "input_tokens": 923987,
+          "cached_input_tokens": 855424,
+          "uncached_input_tokens": 68563,
+          "output_tokens": 34413,
+          "seconds": 336.09000000000003,
+          "calls": 4,
+          "technical_valid": 4,
+          "prose_lint.py": 7,
+          "draft_length.py": 3,
+          "anti_ai_page_returned": 4,
+          "tasks_with_prose_command": 4
+        },
+        "candidate": {
+          "commands": 59,
+          "read_chars_unique": 40452,
+          "input_tokens": 720384,
+          "cached_input_tokens": 665472,
+          "uncached_input_tokens": 54912,
+          "output_tokens": 28801,
+          "seconds": 288.96000000000004,
+          "calls": 4,
+          "technical_valid": 4,
+          "prose_lint.py": 6,
+          "draft_length.py": 4,
+          "anti_ai_page_returned": 4,
+          "tasks_with_prose_command": 4
+        }
+      },
+      "matched_anti_prose_pairs": {
+        "pairs": 4,
+        "scope": "Cost diagnostic for pairs with anti-AI page returned and a prose-script command on both arms. Not a quality-selected subset, proof of effective checking, or proof of equal length checks.",
+        "baseline": {
+          "read_chars_unique": 45112,
+          "uncached_input_tokens": 68563,
+          "commands": 64,
+          "seconds": 336.09000000000003
+        },
+        "candidate": {
+          "read_chars_unique": 40452,
+          "uncached_input_tokens": 54912,
+          "commands": 59,
+          "seconds": 288.96000000000004
+        }
+      },
+      "blind_counts": {
+        "body": {
+          "tie": 1,
+          "baseline": 2,
+          "candidate": 1
+        },
+        "delivery": {
+          "candidate": 2,
+          "baseline": 2
+        }
+      },
+      "decoded": [
+        {
+          "id": "P01",
+          "model": "command-code/deepseek-deepseek-v4.1-flash",
+          "case": "commentary_review_only",
+          "body": "tie",
+          "delivery": "candidate"
+        },
+        {
+          "id": "P02",
+          "model": "command-code/deepseek-deepseek-v4.1-flash",
+          "case": "commentary_review_rewrite",
+          "body": "baseline",
+          "delivery": "baseline"
+        },
+        {
+          "id": "P03",
+          "model": "command-code/deepseek-deepseek-v4.1-flash",
+          "case": "review",
+          "body": "candidate",
+          "delivery": "candidate"
+        },
+        {
+          "id": "P04",
+          "model": "command-code/deepseek-deepseek-v4.1-flash",
+          "case": "review_rewrite",
+          "body": "baseline",
+          "delivery": "baseline"
+        }
+      ],
+      "observations": [
+        {
+          "stem": "m2-commentary_review_only-baseline",
+          "model": "command-code/deepseek-deepseek-v4.1-flash",
+          "case": "commentary_review_only",
+          "arm": "baseline",
+          "invalid": [],
+          "seconds": 102.39,
+          "read_chars_unique": 9720,
+          "uncached_input_tokens": 16772,
+          "unique_pages": [
+            "SKILL.md",
+            "references/anti-ai-patterns.md",
+            "references/genre-playbook-news-commentary.md",
+            "references/prose-lint-usage.md",
+            "references/reference-index.md",
+            "references/review-checklist.md",
+            "references/writing-rules.md"
+          ],
+          "repeated_pages": {},
+          "script_commands": {
+            "prose_lint.py": 3
+          }
+        },
+        {
+          "stem": "m2-commentary_review_only-candidate",
+          "model": "command-code/deepseek-deepseek-v4.1-flash",
+          "case": "commentary_review_only",
+          "arm": "candidate",
+          "invalid": [],
+          "seconds": 76.28,
+          "read_chars_unique": 6438,
+          "uncached_input_tokens": 13053,
+          "unique_pages": [
+            "SKILL.md",
+            "references/anti-ai-patterns.md",
+            "references/argument-chains.md",
+            "references/genre-playbook-news-commentary.md",
+            "references/prose-lint-usage.md",
+            "references/review-checklist.md",
+            "references/writing-rules.md"
+          ],
+          "repeated_pages": {},
+          "script_commands": {
+            "prose_lint.py": 1
+          }
+        },
+        {
+          "stem": "m2-commentary_review_rewrite-baseline",
+          "model": "command-code/deepseek-deepseek-v4.1-flash",
+          "case": "commentary_review_rewrite",
+          "arm": "baseline",
+          "invalid": [],
+          "seconds": 49.92,
+          "read_chars_unique": 10604,
+          "uncached_input_tokens": 15572,
+          "unique_pages": [
+            "SKILL.md",
+            "references/anti-ai-patterns.md",
+            "references/genre-playbook-news-commentary.md",
+            "references/genre-routing.md",
+            "references/proofreading-checklist.md",
+            "references/prose-lint-usage.md",
+            "references/reference-index.md",
+            "references/review-checklist.md",
+            "references/writing-rules.md"
+          ],
+          "repeated_pages": {},
+          "script_commands": {
+            "draft_length.py": 1,
+            "prose_lint.py": 1
+          }
+        },
+        {
+          "stem": "m2-commentary_review_rewrite-candidate",
+          "model": "command-code/deepseek-deepseek-v4.1-flash",
+          "case": "commentary_review_rewrite",
+          "arm": "candidate",
+          "invalid": [],
+          "seconds": 68.58,
+          "read_chars_unique": 9915,
+          "uncached_input_tokens": 10146,
+          "unique_pages": [
+            "SKILL.md",
+            "references/anti-ai-patterns.md",
+            "references/genre-playbook-news-commentary.md",
+            "references/genre-routing.md",
+            "references/proofreading-checklist.md",
+            "references/prose-lint-usage.md",
+            "references/reference-index.md",
+            "references/review-checklist.md",
+            "references/writing-rules.md"
+          ],
+          "repeated_pages": {},
+          "script_commands": {
+            "prose_lint.py": 2,
+            "draft_length.py": 1
+          }
+        },
+        {
+          "stem": "m2-review-baseline",
+          "model": "command-code/deepseek-deepseek-v4.1-flash",
+          "case": "review",
+          "arm": "baseline",
+          "invalid": [],
+          "seconds": 56.19,
+          "read_chars_unique": 11123,
+          "uncached_input_tokens": 14079,
+          "unique_pages": [
+            "SKILL.md",
+            "references/anti-ai-patterns.md",
+            "references/genre-checklist-report.md",
+            "references/genre-playbook-report.md",
+            "references/genre-routing.md",
+            "references/prose-lint-usage.md",
+            "references/reference-index.md",
+            "references/review-checklist.md",
+            "references/writing-rules.md"
+          ],
+          "repeated_pages": {},
+          "script_commands": {
+            "prose_lint.py": 1
+          }
+        },
+        {
+          "stem": "m2-review-candidate",
+          "model": "command-code/deepseek-deepseek-v4.1-flash",
+          "case": "review",
+          "arm": "candidate",
+          "invalid": [],
+          "seconds": 48.22,
+          "read_chars_unique": 10434,
+          "uncached_input_tokens": 13905,
+          "unique_pages": [
+            "SKILL.md",
+            "references/anti-ai-patterns.md",
+            "references/genre-checklist-report.md",
+            "references/genre-playbook-report.md",
+            "references/genre-routing.md",
+            "references/prose-lint-usage.md",
+            "references/reference-index.md",
+            "references/review-checklist.md",
+            "references/writing-rules.md"
+          ],
+          "repeated_pages": {},
+          "script_commands": {
+            "prose_lint.py": 1
+          }
+        },
+        {
+          "stem": "m2-review_rewrite-baseline",
+          "model": "command-code/deepseek-deepseek-v4.1-flash",
+          "case": "review_rewrite",
+          "arm": "baseline",
+          "invalid": [],
+          "seconds": 127.59,
+          "read_chars_unique": 13665,
+          "uncached_input_tokens": 22140,
+          "unique_pages": [
+            "SKILL.md",
+            "references/anti-ai-patterns.md",
+            "references/compression-details.md",
+            "references/formal-addressing.md",
+            "references/genre-checklist-request.md",
+            "references/genre-playbook-request.md",
+            "references/genre-routing.md",
+            "references/prose-lint-usage.md",
+            "references/reference-index.md",
+            "references/review-checklist.md",
+            "references/writing-rules.md"
+          ],
+          "repeated_pages": {},
+          "script_commands": {
+            "draft_length.py": 2,
+            "prose_lint.py": 2
+          }
+        },
+        {
+          "stem": "m2-review_rewrite-candidate",
+          "model": "command-code/deepseek-deepseek-v4.1-flash",
+          "case": "review_rewrite",
+          "arm": "candidate",
+          "invalid": [],
+          "seconds": 95.88,
+          "read_chars_unique": 13665,
+          "uncached_input_tokens": 17808,
+          "unique_pages": [
+            "SKILL.md",
+            "references/anti-ai-patterns.md",
+            "references/compression-details.md",
+            "references/formal-addressing.md",
+            "references/genre-checklist-request.md",
+            "references/genre-playbook-request.md",
+            "references/genre-routing.md",
+            "references/prose-lint-usage.md",
+            "references/reference-index.md",
+            "references/review-checklist.md",
+            "references/structure-editing.md",
+            "references/writing-rules.md"
+          ],
+          "repeated_pages": {},
+          "script_commands": {
+            "draft_length.py": 3,
+            "prose_lint.py": 2
+          }
+        }
+      ],
+      "runner_raw_sha256": "53f7c18f4821dc89dd322b522d1a3261041299167ddfd7dde7f92f00dd62dc29",
+      "runner_source_provenance": {
+        "original_raw_sha256": "53f7c18f4821dc89dd322b522d1a3261041299167ddfd7dde7f92f00dd62dc29",
+        "retained_source": "runner-source-semantic.py",
+        "retained_sha256": "bf5412584b85c300d39d7e4465f2777dc9e676ff5414e85e6f6c1bc0c409f7e5",
+        "raw_hash_match": false,
+        "origin": "clean c6f65014 Git source",
+        "limitation": "No pre-run raw source copy was retained. Current source has mixed CRLF/LF; attempted byte reconstruction did not match the recorded raw hash. This is a semantic reconstruction, not the exact raw source. Original bindings and results remain unchanged."
+      }
+    },
+    {
+      "group": "repaired",
+      "prototype": "review-common-r19-repaired",
+      "fingerprints": {
+        "baseline": "1640b9a5ed2b974390cbcb2d3b5523faeb1b5e57b4553d62d8044a78cac182d7",
+        "candidate": "a21484aed7e81dce92d32d065b11573915213994d2915d2a69e90f092f088829"
+      },
+      "calls": 8,
+      "technical_valid": 8,
+      "actual_efforts": [
+        [
+          "alibaba-token-plan/qwen3.8-flash",
+          "medium"
+        ],
+        [
+          "command-code/deepseek-deepseek-v4.1-flash",
+          "provider-default"
+        ]
+      ],
+      "totals": {
+        "baseline": {
+          "commands": 57,
+          "read_chars_unique": 45336,
+          "input_tokens": 540114,
+          "cached_input_tokens": 482688,
+          "uncached_input_tokens": 57426,
+          "output_tokens": 31912,
+          "seconds": 622.98,
+          "calls": 4,
+          "technical_valid": 4,
+          "prose_lint.py": 8,
+          "draft_length.py": 5,
+          "anti_ai_page_returned": 4,
+          "tasks_with_prose_command": 4
+        },
+        "candidate": {
+          "commands": 54,
+          "read_chars_unique": 34873,
+          "input_tokens": 752856,
+          "cached_input_tokens": 687744,
+          "uncached_input_tokens": 65112,
+          "output_tokens": 23296,
+          "seconds": 433.13,
+          "calls": 4,
+          "technical_valid": 4,
+          "prose_lint.py": 9,
+          "draft_length.py": 5,
+          "anti_ai_page_returned": 4,
+          "tasks_with_prose_command": 4
+        }
+      },
+      "matched_anti_prose_pairs": {
+        "pairs": 4,
+        "scope": "Cost diagnostic for pairs with anti-AI page returned and a prose-script command on both arms. Not a quality-selected subset, proof of effective checking, or proof of equal length checks.",
+        "baseline": {
+          "read_chars_unique": 45336,
+          "uncached_input_tokens": 57426,
+          "commands": 57,
+          "seconds": 622.98
+        },
+        "candidate": {
+          "read_chars_unique": 34873,
+          "uncached_input_tokens": 65112,
+          "commands": 54,
+          "seconds": 433.13
+        }
+      },
+      "blind_counts": {
+        "body": {
+          "candidate": 3,
+          "baseline": 1
+        },
+        "delivery": {
+          "candidate": 3,
+          "baseline": 1
+        }
+      },
+      "decoded": [
+        {
+          "id": "P01",
+          "model": "alibaba-token-plan/qwen3.8-flash",
+          "case": "commentary_review_only",
+          "body": "candidate",
+          "delivery": "candidate"
+        },
+        {
+          "id": "P02",
+          "model": "alibaba-token-plan/qwen3.8-flash",
+          "case": "review_rewrite",
+          "body": "baseline",
+          "delivery": "baseline"
+        },
+        {
+          "id": "P03",
+          "model": "command-code/deepseek-deepseek-v4.1-flash",
+          "case": "commentary_review_only",
+          "body": "candidate",
+          "delivery": "candidate"
+        },
+        {
+          "id": "P04",
+          "model": "command-code/deepseek-deepseek-v4.1-flash",
+          "case": "review_rewrite",
+          "body": "candidate",
+          "delivery": "candidate"
+        }
+      ],
+      "observations": [
+        {
+          "stem": "m0-commentary_review_only-baseline",
+          "model": "alibaba-token-plan/qwen3.8-flash",
+          "case": "commentary_review_only",
+          "arm": "baseline",
+          "invalid": [],
+          "seconds": 187.81,
+          "read_chars_unique": 9720,
+          "uncached_input_tokens": 14097,
+          "unique_pages": [
+            "SKILL.md",
+            "references/anti-ai-patterns.md",
+            "references/genre-playbook-news-commentary.md",
+            "references/prose-lint-usage.md",
+            "references/reference-index.md",
+            "references/review-checklist.md",
+            "references/writing-rules.md"
+          ],
+          "repeated_pages": {},
+          "script_commands": {
+            "prose_lint.py": 1
+          }
+        },
+        {
+          "stem": "m0-commentary_review_only-candidate",
+          "model": "alibaba-token-plan/qwen3.8-flash",
+          "case": "commentary_review_only",
+          "arm": "candidate",
+          "invalid": [],
+          "seconds": 139.19,
+          "read_chars_unique": 5999,
+          "uncached_input_tokens": 18074,
+          "unique_pages": [
+            "SKILL.md",
+            "references/anti-ai-patterns.md",
+            "references/genre-playbook-news-commentary.md",
+            "references/prose-lint-usage.md",
+            "references/review-checklist.md",
+            "references/writing-rules.md"
+          ],
+          "repeated_pages": {},
+          "script_commands": {
+            "prose_lint.py": 2
+          }
+        },
+        {
+          "stem": "m0-review_rewrite-baseline",
+          "model": "alibaba-token-plan/qwen3.8-flash",
+          "case": "review_rewrite",
+          "arm": "baseline",
+          "invalid": [],
+          "seconds": 288.64,
+          "read_chars_unique": 12231,
+          "uncached_input_tokens": 16603,
+          "unique_pages": [
+            "SKILL.md",
+            "references/anti-ai-patterns.md",
+            "references/compression-details.md",
+            "references/genre-checklist-request.md",
+            "references/genre-playbook-request.md",
+            "references/prose-lint-usage.md",
+            "references/reference-index.md",
+            "references/review-checklist.md",
+            "references/writing-rules.md"
+          ],
+          "repeated_pages": {},
+          "script_commands": {
+            "draft_length.py": 3,
+            "prose_lint.py": 3
+          }
+        },
+        {
+          "stem": "m0-review_rewrite-candidate",
+          "model": "alibaba-token-plan/qwen3.8-flash",
+          "case": "review_rewrite",
+          "arm": "candidate",
+          "invalid": [],
+          "seconds": 164.94,
+          "read_chars_unique": 9904,
+          "uncached_input_tokens": 19267,
+          "unique_pages": [
+            "SKILL.md",
+            "references/anti-ai-patterns.md",
+            "references/genre-playbook-request.md",
+            "references/prose-lint-usage.md",
+            "references/reference-index.md",
+            "references/review-checklist.md",
+            "references/writing-rules.md"
+          ],
+          "repeated_pages": {},
+          "script_commands": {
+            "draft_length.py": 3,
+            "prose_lint.py": 3
+          }
+        },
+        {
+          "stem": "m2-commentary_review_only-baseline",
+          "model": "command-code/deepseek-deepseek-v4.1-flash",
+          "case": "commentary_review_only",
+          "arm": "baseline",
+          "invalid": [],
+          "seconds": 84.03,
+          "read_chars_unique": 9720,
+          "uncached_input_tokens": 12164,
+          "unique_pages": [
+            "SKILL.md",
+            "references/anti-ai-patterns.md",
+            "references/genre-playbook-news-commentary.md",
+            "references/prose-lint-usage.md",
+            "references/reference-index.md",
+            "references/review-checklist.md",
+            "references/writing-rules.md"
+          ],
+          "repeated_pages": {},
+          "script_commands": {
+            "prose_lint.py": 2
+          }
+        },
+        {
+          "stem": "m2-commentary_review_only-candidate",
+          "model": "command-code/deepseek-deepseek-v4.1-flash",
+          "case": "commentary_review_only",
+          "arm": "candidate",
+          "invalid": [],
+          "seconds": 69.97,
+          "read_chars_unique": 5999,
+          "uncached_input_tokens": 16476,
+          "unique_pages": [
+            "SKILL.md",
+            "references/anti-ai-patterns.md",
+            "references/genre-playbook-news-commentary.md",
+            "references/prose-lint-usage.md",
+            "references/review-checklist.md",
+            "references/writing-rules.md"
+          ],
+          "repeated_pages": {},
+          "script_commands": {
+            "prose_lint.py": 2
+          }
+        },
+        {
+          "stem": "m2-review_rewrite-baseline",
+          "model": "command-code/deepseek-deepseek-v4.1-flash",
+          "case": "review_rewrite",
+          "arm": "baseline",
+          "invalid": [],
+          "seconds": 62.5,
+          "read_chars_unique": 13665,
+          "uncached_input_tokens": 14562,
+          "unique_pages": [
+            "SKILL.md",
+            "references/anti-ai-patterns.md",
+            "references/compression-details.md",
+            "references/formal-addressing.md",
+            "references/genre-checklist-request.md",
+            "references/genre-playbook-request.md",
+            "references/genre-routing.md",
+            "references/prose-lint-usage.md",
+            "references/reference-index.md",
+            "references/review-checklist.md",
+            "references/writing-rules.md"
+          ],
+          "repeated_pages": {
+            "references/compression-details.md": 2
+          },
+          "script_commands": {
+            "draft_length.py": 2,
+            "prose_lint.py": 2
+          }
+        },
+        {
+          "stem": "m2-review_rewrite-candidate",
+          "model": "command-code/deepseek-deepseek-v4.1-flash",
+          "case": "review_rewrite",
+          "arm": "candidate",
+          "invalid": [],
+          "seconds": 59.03,
+          "read_chars_unique": 12971,
+          "uncached_input_tokens": 11295,
+          "unique_pages": [
+            "SKILL.md",
+            "references/anti-ai-patterns.md",
+            "references/compression-details.md",
+            "references/field-editing.md",
+            "references/genre-checklist-request.md",
+            "references/genre-playbook-request.md",
+            "references/genre-routing.md",
+            "references/prose-lint-usage.md",
+            "references/reference-index.md",
+            "references/review-checklist.md",
+            "references/structure-editing.md",
+            "references/writing-rules.md"
+          ],
+          "repeated_pages": {},
+          "script_commands": {
+            "draft_length.py": 2,
+            "prose_lint.py": 2
+          }
+        }
+      ],
+      "runner_raw_sha256": "946c71b3503ca8a3f428eac55fd7495c1c11d7b36a28738f46bab7a1ed4ea22b",
+      "runner_source_provenance": {
+        "original_raw_sha256": "946c71b3503ca8a3f428eac55fd7495c1c11d7b36a28738f46bab7a1ed4ea22b",
+        "retained_source": "runner-source-semantic.py",
+        "retained_sha256": "2aa1ea0921b7c157ae414b3e2a0e5bbf21821b26f034991037f249a400a632eb",
+        "raw_hash_match": false,
+        "origin": "parent edit history; input staging enabled, before final input-case prompt and source capture",
+        "limitation": "No pre-run raw source copy was retained. Current source has mixed CRLF/LF; attempted byte reconstruction did not match the recorded raw hash. This is a semantic reconstruction, not the exact raw source. Original bindings and results remain unchanged."
+      }
+    },
+    {
+      "group": "calculated",
+      "prototype": "review-common-r19-calculated",
+      "fingerprints": {
+        "baseline": "1640b9a5ed2b974390cbcb2d3b5523faeb1b5e57b4553d62d8044a78cac182d7",
+        "candidate": "264b045a4c3f7ac719d93767f42d1483699c3153c93b7a80623bf77f6351a8d5"
+      },
+      "calls": 8,
+      "technical_valid": 8,
+      "actual_efforts": [
+        [
+          "alibaba-token-plan/qwen3.8-flash",
+          "medium"
+        ],
+        [
+          "command-code/deepseek-deepseek-v4.1-flash",
+          "provider-default"
+        ]
+      ],
+      "totals": {
+        "baseline": {
+          "commands": 56,
+          "read_chars_unique": 41990,
+          "input_tokens": 717732,
+          "cached_input_tokens": 640512,
+          "uncached_input_tokens": 77220,
+          "output_tokens": 22541,
+          "seconds": 437.88000000000005,
+          "calls": 4,
+          "technical_valid": 4,
+          "prose_lint.py": 8,
+          "draft_length.py": 6,
+          "anti_ai_page_returned": 4,
+          "tasks_with_prose_command": 4
+        },
+        "candidate": {
+          "commands": 61,
+          "read_chars_unique": 42273,
+          "input_tokens": 690607,
+          "cached_input_tokens": 629120,
+          "uncached_input_tokens": 61487,
+          "output_tokens": 29129,
+          "seconds": 519.3,
+          "calls": 4,
+          "technical_valid": 4,
+          "prose_lint.py": 6,
+          "draft_length.py": 5,
+          "anti_ai_page_returned": 4,
+          "tasks_with_prose_command": 4
+        }
+      },
+      "matched_anti_prose_pairs": {
+        "pairs": 4,
+        "scope": "Cost diagnostic for pairs with anti-AI page returned and a prose-script command on both arms. Not a quality-selected subset, proof of effective checking, or proof of equal length checks.",
+        "baseline": {
+          "read_chars_unique": 41990,
+          "uncached_input_tokens": 77220,
+          "commands": 56,
+          "seconds": 437.88000000000005
+        },
+        "candidate": {
+          "read_chars_unique": 42273,
+          "uncached_input_tokens": 61487,
+          "commands": 61,
+          "seconds": 519.3
+        }
+      },
+      "blind_counts": {
+        "body": {
+          "tie": 3,
+          "candidate": 1
+        },
+        "delivery": {
+          "baseline": 2,
+          "candidate": 2
+        }
+      },
+      "decoded": [
+        {
+          "id": "P01",
+          "model": "alibaba-token-plan/qwen3.8-flash",
+          "case": "commentary_review_only",
+          "body": "tie",
+          "delivery": "baseline"
+        },
+        {
+          "id": "P02",
+          "model": "alibaba-token-plan/qwen3.8-flash",
+          "case": "review_rewrite",
+          "body": "tie",
+          "delivery": "baseline"
+        },
+        {
+          "id": "P03",
+          "model": "command-code/deepseek-deepseek-v4.1-flash",
+          "case": "commentary_review_only",
+          "body": "tie",
+          "delivery": "candidate"
+        },
+        {
+          "id": "P04",
+          "model": "command-code/deepseek-deepseek-v4.1-flash",
+          "case": "review_rewrite",
+          "body": "candidate",
+          "delivery": "candidate"
+        }
+      ],
+      "observations": [
+        {
+          "stem": "m0-commentary_review_only-baseline",
+          "model": "alibaba-token-plan/qwen3.8-flash",
+          "case": "commentary_review_only",
+          "arm": "baseline",
+          "invalid": [],
+          "seconds": 148.8,
+          "read_chars_unique": 7816,
+          "uncached_input_tokens": 21891,
+          "unique_pages": [
+            "SKILL.md",
+            "references/anti-ai-patterns.md",
+            "references/argument-chains.md",
+            "references/genre-playbook-news-commentary.md",
+            "references/prose-lint-usage.md",
+            "references/review-checklist.md",
+            "references/structure-editing.md",
+            "references/writing-rules.md"
+          ],
+          "repeated_pages": {},
+          "script_commands": {
+            "prose_lint.py": 1
+          }
+        },
+        {
+          "stem": "m0-commentary_review_only-candidate",
+          "model": "alibaba-token-plan/qwen3.8-flash",
+          "case": "commentary_review_only",
+          "arm": "candidate",
+          "invalid": [],
+          "seconds": 183.44,
+          "read_chars_unique": 6864,
+          "uncached_input_tokens": 14161,
+          "unique_pages": [
+            "SKILL.md",
+            "references/anti-ai-patterns.md",
+            "references/argument-chains.md",
+            "references/genre-playbook-news-commentary.md",
+            "references/proofreading-checklist.md",
+            "references/prose-lint-usage.md",
+            "references/review-checklist.md",
+            "references/writing-rules.md"
+          ],
+          "repeated_pages": {},
+          "script_commands": {
+            "prose_lint.py": 1,
+            "draft_length.py": 1
+          }
+        },
+        {
+          "stem": "m0-review_rewrite-baseline",
+          "model": "alibaba-token-plan/qwen3.8-flash",
+          "case": "review_rewrite",
+          "arm": "baseline",
+          "invalid": [],
+          "seconds": 159.02,
+          "read_chars_unique": 10580,
+          "uncached_input_tokens": 22368,
+          "unique_pages": [
+            "SKILL.md",
+            "references/anti-ai-patterns.md",
+            "references/genre-playbook-request.md",
+            "references/prose-lint-usage.md",
+            "references/reference-index.md",
+            "references/review-checklist.md",
+            "references/writing-rules.md"
+          ],
+          "repeated_pages": {},
+          "script_commands": {
+            "draft_length.py": 4,
+            "prose_lint.py": 3
+          }
+        },
+        {
+          "stem": "m0-review_rewrite-candidate",
+          "model": "alibaba-token-plan/qwen3.8-flash",
+          "case": "review_rewrite",
+          "arm": "candidate",
+          "invalid": [],
+          "seconds": 185.66,
+          "read_chars_unique": 9910,
+          "uncached_input_tokens": 16898,
+          "unique_pages": [
+            "SKILL.md",
+            "references/anti-ai-patterns.md",
+            "references/genre-playbook-request.md",
+            "references/prose-lint-usage.md",
+            "references/reference-index.md",
+            "references/review-checklist.md",
+            "references/writing-rules.md"
+          ],
+          "repeated_pages": {},
+          "script_commands": {
+            "draft_length.py": 3,
+            "prose_lint.py": 3
+          }
+        },
+        {
+          "stem": "m2-commentary_review_only-baseline",
+          "model": "command-code/deepseek-deepseek-v4.1-flash",
+          "case": "commentary_review_only",
+          "arm": "baseline",
+          "invalid": [],
+          "seconds": 78.7,
+          "read_chars_unique": 10886,
+          "uncached_input_tokens": 16667,
+          "unique_pages": [
+            "SKILL.md",
+            "references/anti-ai-patterns.md",
+            "references/genre-playbook-news-commentary.md",
+            "references/genre-routing.md",
+            "references/prose-lint-usage.md",
+            "references/reference-index.md",
+            "references/review-checklist.md",
+            "references/structure-editing.md",
+            "references/writing-rules.md"
+          ],
+          "repeated_pages": {},
+          "script_commands": {
+            "prose_lint.py": 2
+          }
+        },
+        {
+          "stem": "m2-commentary_review_only-candidate",
+          "model": "command-code/deepseek-deepseek-v4.1-flash",
+          "case": "commentary_review_only",
+          "arm": "candidate",
+          "invalid": [],
+          "seconds": 94.39,
+          "read_chars_unique": 11445,
+          "uncached_input_tokens": 16380,
+          "unique_pages": [
+            "SKILL.md",
+            "references/anti-ai-patterns.md",
+            "references/argument-chains.md",
+            "references/formulaic-language.md",
+            "references/genre-playbook-news-commentary.md",
+            "references/genre-routing.md",
+            "references/proofreading-checklist.md",
+            "references/prose-lint-usage.md",
+            "references/reference-index.md",
+            "references/review-checklist.md",
+            "references/writing-rules.md"
+          ],
+          "repeated_pages": {},
+          "script_commands": {
+            "prose_lint.py": 1
+          }
+        },
+        {
+          "stem": "m2-review_rewrite-baseline",
+          "model": "command-code/deepseek-deepseek-v4.1-flash",
+          "case": "review_rewrite",
+          "arm": "baseline",
+          "invalid": [],
+          "seconds": 51.36,
+          "read_chars_unique": 12708,
+          "uncached_input_tokens": 16294,
+          "unique_pages": [
+            "SKILL.md",
+            "references/anti-ai-patterns.md",
+            "references/compression-details.md",
+            "references/genre-checklist-request.md",
+            "references/genre-playbook-request.md",
+            "references/genre-routing.md",
+            "references/prose-lint-usage.md",
+            "references/reference-index.md",
+            "references/review-checklist.md",
+            "references/writing-rules.md"
+          ],
+          "repeated_pages": {},
+          "script_commands": {
+            "draft_length.py": 2,
+            "prose_lint.py": 2
+          }
+        },
+        {
+          "stem": "m2-review_rewrite-candidate",
+          "model": "command-code/deepseek-deepseek-v4.1-flash",
+          "case": "review_rewrite",
+          "arm": "candidate",
+          "invalid": [],
+          "seconds": 55.81,
+          "read_chars_unique": 14054,
+          "uncached_input_tokens": 14048,
+          "unique_pages": [
+            "SKILL.md",
+            "references/anti-ai-patterns.md",
+            "references/compression-details.md",
+            "references/formal-addressing.md",
+            "references/formulaic-language.md",
+            "references/genre-checklist-request.md",
+            "references/genre-playbook-request.md",
+            "references/genre-routing.md",
+            "references/prose-lint-usage.md",
+            "references/reference-index.md",
+            "references/review-checklist.md",
+            "references/writing-rules.md"
+          ],
+          "repeated_pages": {},
+          "script_commands": {
+            "draft_length.py": 1,
+            "prose_lint.py": 1
+          }
+        }
+      ],
+      "runner_raw_sha256": "20ebab6362e41dc2bb62aeb614dd0f482051fe92779d010fe6918ae0a3bd7d35",
+      "runner_source_provenance": {
+        "raw_hash_match": true,
+        "retained_source_sha256": "20ebab6362e41dc2bb62aeb614dd0f482051fe92779d010fe6918ae0a3bd7d35",
+        "origin": "raw runner source copied at launch"
+      }
+    }
+  ],
+  "scope": "Initial candidate had a confirmed grammar-check omission and is not eligible for adoption. Grammar-repaired and explicit-calculation variants are separate frozen 8-call comparisons. No pooled version success rate, no new full 1.x comparison. First three batches retained semantic runner reconstructions, with the original raw-source limitation explicitly labeled; calculated batch retained the matching raw source at launch. Skill snapshots and original artifacts are hash-verified."
+}

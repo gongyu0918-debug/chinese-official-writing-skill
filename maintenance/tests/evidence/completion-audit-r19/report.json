@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "head": "c6f65014d6486d3b362ba77c1e99619cf8cb5cdc",
+  "main": "1ce7112303172478faa2392667a2de1098eb912c",
+  "adopted_package_fingerprint": "1640b9a5ed2b974390cbcb2d3b5523faeb1b5e57b4553d62d8044a78cac182d7",
+  "overall": "完整开发候选已构建；整体交付未闭合，尚不具备整体不劣于1.x或合并就绪结论",
+  "merge_ready": false,
+  "inventory": {"references": 67, "named_leaves": 40, "routes": 43, "mapped_files_missing": 0, "confirmed_unbuilt_named_leaves": []},
+  "classification_notes": {
+    "未构建": "本次未确认缺失的具名主叶；证据未闭合不等于功能未构建",
+    "实现且当前有证据": "仅认可所列任务、绑定及后续差异范围，不代表整叶全部通过",
+    "仅历史/间接证据": "优先复用原题、原审与当前owner差异衔接，不默认重跑所有通道",
+    "已证实负面": "保留真实失败或错误；共有问题不自动归随机，也不自动证明规则缺失",
+    "判断过严/重复验收": "旧路径、整句、日期合同或范围误读需校准，仍有效的功能责任必须承接"
+  },
+  "leaf_groups": [
+    {"leaves":["request","project-application"],"status":"实现且当前有证据","scope":"R18申请改稿/字段；R16增项与固定标题用途","source":"output/final-modes-native-r17/binding.json; output/genre-router-native-r16/binding.json"},
+    {"leaves":["report","explanation"],"status":"实现且当前有证据","scope":"报告审核、费用说明；报告起草其他用途仍需历史承接","source":"maintenance/tests/evidence/common-compression-r18/results.md"},
+    {"leaves":["work-summary","work-priorities"],"status":"仅历史/间接证据","scope":"复用R4总结/要点/周期字段任务","source":"maintenance/tests/evidence/rewrite-cold-r4/runs.json"},
+    {"leaves":["notice"],"status":"实现且当前有证据","scope":"R18接收方不反推发文主体；R16限字通知，完整消息有旁白负面","source":"output/common-compression-native-r18-deepseek/m2-notice_receiver-candidate.final.txt"},
+    {"leaves":["correspondence"],"status":"实现且当前有证据","scope":"R16三种函用途；批复额外伴读未闭合","source":"output/r16-route-execution-audit.md"},
+    {"leaves":["publication","bulletin","reply","opinion"],"status":"仅历史/间接证据","scope":"复用publication/bulletin/formal_reply/formal_opinion","source":"output/remaining-genres-native-r6-qwen/binding.json"},
+    {"leaves":["decision","resolution","communique","order"],"status":"实现且当前有证据","scope":"R17对1.x四题正文相当","source":"output/blind-r16/final-genres-r17/review.md"},
+    {"leaves":["motion"],"status":"已证实负面","scope":"R17对1.x具体草案条款及现实问题扩写；用途原型未采用","source":"maintenance/tests/evidence/verification-r17/results.md"},
+    {"leaves":["speech-address"],"status":"实现且当前有证据","scope":"R16总结讲话与设备需求发言；具体经历/人物页误触保留","source":"output/genre-router-native-r16/binding.json; maintenance/tests/evidence/integration-r16/results.md"},
+    {"leaves":["minutes","meeting-host","duty-report"],"status":"仅历史/间接证据","scope":"复用R4分工/会序/述职与R7纪要局部任务","source":"output/rewrite-remaining-coverage-r15.md"},
+    {"leaves":["research","deployment"],"status":"实现且当前有证据","scope":"R16研究比较与部署用途、实际落页；仍有扩写及相邻加读","source":"output/genre-router-native-r16/binding.json; output/r16-route-execution-audit.md"},
+    {"leaves":["plan-construction","feasibility"],"status":"仅历史/间接证据","scope":"复用R5/R6短方案、投资比较和一段可研范围反例","source":"output/rewrite-remaining-coverage-r15.md"},
+    {"leaves":["procurement-announcement"],"status":"已证实负面","scope":"三发布目的已测；MiniMax两臂自设异议条件，非候选独有结论","source":"maintenance/tests/evidence/integration-r16/results.md"},
+    {"leaves":["technical-requirements","review-opinion"],"status":"仅历史/间接证据","scope":"复用服务器/接口需求及独立审查原题；区分合理细化与既定程序","source":"output/legacy-functions-native-r5-qwen/binding.json; output/rewrite-remaining-coverage-r15.md"},
+    {"leaves":["news-message","news-commentary","editorial-note"],"status":"实现且当前有证据","scope":"R16消息/评论审核改稿；R17按语对象原子，反例另留","source":"output/reference-cold-fixes-native-r16/binding.json; output/blind-r16/editorial-object-r17/review.md"},
+    {"leaves":["institution-rules","responsibility-letter","initiative","open-letter","narration","information-materials"],"status":"仅历史/间接证据","scope":"复用R5五类事务；制度及内部材料先核R8既有边界组审阅","source":"output/legacy-functions-native-r5-qwen/binding.json; output/rewrite-remaining-coverage-r15.md"},
+    {"leaves":["advisory-feedback"],"status":"实现且当前有证据","scope":"R17/R18建议段原因影响、去重与拟议状态","source":"output/final-modes-native-r17/binding.json; maintenance/tests/evidence/common-compression-r18/results.md"},
+    {"leaves":["complaint-reflection","remediation-plan"],"status":"仅历史/间接证据","scope":"复用R6亲历投诉与授权整改方案","source":"output/remaining-genres-native-r6-minimax/binding.json; output/remaining-genres-native-r6-qwen2/binding.json"}
+  ],
+  "leaf_status_counts": {"实现且当前有证据":17,"仅历史/间接证据":21,"已证实负面":2},
+  "other_findings": [
+    {"topic":"逐条旧语义映射","status":"仅历史/间接证据","detail":"50行文件归属不是逐动作等价；需将R5审计和仍有效旧责任接到当前owner。活动表尾仍有旧阶段文字。"},
+    {"topic":"静态架构与共性压缩","status":"实现且当前有证据","detail":"R16全量冷审加R17/R18增量；R18四编号步骤、两脚本、合理推断与默认隔离提示语义保留。"},
+    {"topic":"脚本实现","status":"实现且当前有证据","detail":"真实原件复放、两计数口径和三扫描模式已有证据；零字号检测已采用。"},
+    {"topic":"原生脚本执行","status":"已证实负面","detail":"漏扫、先prose后篇幅、字段80字偏重；命令存在不能证明版本/模式/顺序和反馈闭环。"},
+    {"topic":"Word","status":"已证实负面","detail":"12实物、4仅排版逐字一致、11页可读；1候选超时字号0不可读，1WSL链接未验证。新检测分支native交付未验证。"},
+    {"topic":"完整消息","status":"已证实负面","detail":"过程旁白、已处理事项重述和错误缺项仍存在；DeepSeek通知原blind tie对旁白权重不足。"},
+    {"topic":"无关伴读","status":"已证实负面","detail":"R16函牵批复、采购结果/终止邻页试探、讲话人物顺序；R18仍有未请求算力示例。"},
+    {"topic":"旧81方法模块","status":"判断过严/重复验收","detail":"53方法受影响后迁移三处，仍有50责任待收口；113是事件数。G01/G02已有R18实稿，G05/G07已有恢复证据，不重复验收。"},
+    {"topic":"减载","status":"实现且当前有证据","detail":"共性三页3101到2916；R18初测返回字数约少1.8%，耗时近似持平；不宣称普遍提速、省费或质量提高。"}
+  ],
+  "minimum_work": [
+    {"id":"M1","action":"当前映射和有效旧责任收口","targets":["maintenance/docs/reference-rewrite-page-map-20260912.md","output/legacy-boundary-current-r17/diagnosis.md"],"focus":"优先G03/G04/G06/G08；挂接已有G01/G02/G05/G07证据；不恢复撤页或旧整句"},
+    {"id":"M2","action":"处理有明确依据的正文负面，议案优先","targets":["output/final-genres-native-r17-low-frequency/binding.json:motion","output/motion-purpose-native-r17/binding.json"],"focus":"已有草案的提请用途；共有采购问题先追既有稿判归因，不抽样到胜出"},
+    {"id":"M3","action":"Word新检测分支的真实交付闭环及原生链接","targets":["output/final-word-native-r17/m4-scope_word_complete_signoff-candidate.result.json","output/final-word-native-r17/m4-scope_word_format_only-candidate.final.txt"],"focus":"一条原失败题验证检测/修复/可读文件/final绑定；已有4份逐字和11页控制不全重跑"},
+    {"id":"M4","action":"真实检查对象次序与完整消息单独收束","targets":["output/common-compression-native-r18-qwen","output/common-compression-native-r18-deepseek/m2-notice_receiver-candidate.final.txt","output/final-modes-native-r17/binding.json"],"focus":"先用既有命令取证；需要修正时只取通知和审后全文等代表，保持四步、默认文后提示和审核范围"},
+    {"id":"M5","action":"反复无关伴读模式与同条件收益核查","targets":["output/r16-route-execution-audit.md","maintenance/tests/evidence/common-compression-r18/results.md"],"focus":"复函、采购结果/终止、speech_control、未请求算力示例；不造全交叉矩阵"},
+    {"id":"M6","action":"最终证据桥接与一次必要工程收束","targets":["maintenance/specs/reference-rewrite-20260912.md","maintenance/docs/reference-rewrite-page-map-20260912.md","maintenance/tests/test_skill_boundary.py"],"focus":"21历史/间接叶先复用旧题及审阅；仅补真实缺项；相关测试和镜像按实际改动执行，内测票数不替代1.x对照"}
+  ],
+  "not_required": ["从零重建40主叶","全文种乘全模型乘全附加页交叉验收","为旧整句或撤页异常恢复旧架构","重跑R18已覆盖的通知主体和Token单位","重复全部12份Word控制或无变化的67页全量冷审","默认每种审核新写参考稿","把继续压缩审稿页当作整体完工前提","未授权的2.0合并、安装或发布"],
+  "audit_execution": {"models_run":false,"product_tests_run":false,"renders_run":false,"product_changed":false,"committed":false,"only_outputs":["output/completion-audit-r19/report.md","output/completion-audit-r19/report.json"],"limits":"依据限定汇总和绑定，必要时追一份通知final；未重算全包或全量重审历史原稿。当前证据状态不是主叶通过率。"}
+}
