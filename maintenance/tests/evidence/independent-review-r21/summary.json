@@ -1,0 +1,135 @@
+[
+  {
+    "run": "independent-review-native-r21-qwen",
+    "calls": 4,
+    "technical_valid": 4,
+    "arms": [
+      {
+        "arm": "baseline",
+        "calls": 2,
+        "spawn_calls": 0,
+        "seconds": 213.44
+      },
+      {
+        "arm": "candidate",
+        "calls": 2,
+        "spawn_calls": 0,
+        "seconds": 232.63
+      }
+    ]
+  },
+  {
+    "run": "independent-review-native-r21-deepseek",
+    "calls": 4,
+    "technical_valid": 4,
+    "arms": [
+      {
+        "arm": "baseline",
+        "calls": 2,
+        "spawn_calls": 0,
+        "seconds": 81.86
+      },
+      {
+        "arm": "candidate",
+        "calls": 2,
+        "spawn_calls": 1,
+        "seconds": 179.78
+      }
+    ]
+  },
+  {
+    "run": "independent-review-native-r21-complete-qwen",
+    "calls": 2,
+    "technical_valid": 2,
+    "arms": [
+      {
+        "arm": "baseline",
+        "calls": 1,
+        "spawn_calls": 0,
+        "seconds": 94.36
+      },
+      {
+        "arm": "candidate",
+        "calls": 1,
+        "spawn_calls": 0,
+        "seconds": 147.73
+      }
+    ]
+  },
+  {
+    "run": "independent-review-native-r21-complete-deepseek",
+    "calls": 2,
+    "technical_valid": 2,
+    "arms": [
+      {
+        "arm": "baseline",
+        "calls": 1,
+        "spawn_calls": 0,
+        "seconds": 61.41
+      },
+      {
+        "arm": "candidate",
+        "calls": 1,
+        "spawn_calls": 0,
+        "seconds": 87.8
+      }
+    ]
+  },
+  {
+    "run": "independent-review-native-r21-routed-deepseek",
+    "calls": 2,
+    "technical_valid": 2,
+    "arms": [
+      {
+        "arm": "baseline",
+        "calls": 1,
+        "spawn_calls": 0,
+        "seconds": 135.03
+      },
+      {
+        "arm": "candidate",
+        "calls": 1,
+        "spawn_calls": 0,
+        "seconds": 61.92
+      }
+    ]
+  },
+  {
+    "run": "independent-review-native-r21-routed-glm",
+    "calls": 2,
+    "technical_valid": 2,
+    "arms": [
+      {
+        "arm": "baseline",
+        "calls": 1,
+        "spawn_calls": 0,
+        "seconds": 59.38
+      },
+      {
+        "arm": "candidate",
+        "calls": 1,
+        "spawn_calls": 0,
+        "seconds": 72.42
+      }
+    ]
+  },
+  {
+    "run": "independent-review-native-r21-explicit-deepseek",
+    "calls": 2,
+    "technical_valid": 2,
+    "arms": [
+      {
+        "arm": "baseline",
+        "calls": 1,
+        "spawn_calls": 1,
+        "seconds": 303.2
+      },
+      {
+        "arm": "candidate",
+        "calls": 1,
+        "spawn_calls": 1,
+        "seconds": 130.17
+      }
+    ]
+  }
+]

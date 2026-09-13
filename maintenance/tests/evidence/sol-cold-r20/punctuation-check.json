@@ -1,0 +1,9 @@
+{
+  "script_sha256": "96d79b02e0a23d7ea9eb7427b2b5b21c09cb2e03cd0f7243fdc3ab0fb1a9f460",
+  "method": "Evaluate the existing literal regex on three strings; no script CLI or model execution.",
+  "results": {
+    "有关事项如下:": false,
+    "截至9月,已完成3项": true,
+    "截至9月,3项任务已完成": false
+  }
+}

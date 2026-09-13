@@ -1,0 +1,11 @@
+{
+  "archive": "F:\\Workspaces\\chinese-official-writing-skill-archives\\experiments\\reference-rewrite-20260913-common-layer\\native-writing-batch-m.zip",
+  "sha256": "4def5e708ff4062430bacd8819ba12ccdcbbf72db344bb26b4dfceef0e1f2b21",
+  "bytes": 4304520,
+  "entries": 1889,
+  "calls": 28,
+  "technical_valid": 28,
+  "crc": "PASS",
+  "entry_hashes": "PASS",
+  "note": "Keep the rejected review-page restoration and all unrun intermediate entry variants distinct. The user-corrected index edit was withdrawn. Twelve tested entry/delivery calls support development adoption with adverse state, narration and missing anti-AI examples retained; sixteen restoration calls do not support adoption. Full Sol cold review binds R19, with R20 changes evaluated separately. No main merge, installation or release."
+}

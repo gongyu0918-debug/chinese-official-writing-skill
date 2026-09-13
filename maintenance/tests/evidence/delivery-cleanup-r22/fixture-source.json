@@ -1,0 +1,6 @@
+{
+  "source": "output/delivery-narration-native-r20-deepseek/m2-notice_receiver-baseline.final.txt",
+  "sha256": "c4771189decdf1106da2be93409737a273f165587de7f78e74aa2d0087735470",
+  "fixture": "maintenance/tests/evidence/delivery-cleanup-r22/notice-original.txt",
+  "transformation": "none; native final message including original useful file link"
+}

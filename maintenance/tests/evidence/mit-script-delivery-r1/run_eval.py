@@ -16,6 +16,8 @@ import time
 ROOT = Path(__file__).resolve().parents[4]
 MODELS = ["alibaba-token-plan/qwen3.8-flash", "alibaba-token-plan-2/qwen3.8-flash", "command-code/deepseek-deepseek-v4.1-flash", "minimax-cn/MiniMax-M3", "ollama-cloud/glm-5.3-flash"]
 CASES = {
+    'delivery_independent_cleanup': '请按材料写一则短小完整的内部使用说明，请一个独立上下文的子代理轻量清理完整待交付消息中的旁白、工程或工具自述、内部思考及写稿过程说明，也可处理无用途格式包装、重复过程句及正文与文后提示混杂；保留业务内容、合理分析和有效修改建议。材料：资料室拟试用目录核对表，供各科室整理档案目录时使用；表中记录档案编号、名称、保管期限，发现编号重复或保管期限疑问交资料室核对。标题下原样保留“内部试用版，仅供各科室核对目录使用”。正式启用日期和负责人尚未确定，保持这一状态。',
+    'delivery_independent_review': '请按材料写一则短小完整的内部使用说明，并请一个独立上下文的子代理复核稿件和文后提示，按意见改好再交付。材料：资料室拟试用目录核对表，供各科室整理档案目录时使用；表中记录档案编号、名称、保管期限，发现编号重复或保管期限疑问交资料室核对。标题下原样保留“内部试用版，仅供各科室核对目录使用”。正式启用日期和负责人尚未确定，保持这一状态。',
     'delivery_business_declaration': '请按这些材料写一则短小完整的内部使用说明：资料室拟试用目录核对表，供各科室整理档案目录时使用；表中记录档案编号、名称、保管期限，发现编号重复或保管期限疑问交资料室核对。标题下原样保留“内部试用版，仅供各科室核对目录使用”。正式启用日期和负责人尚未确定，保持这一状态。',
     'review_existing_docx': '帮我审核并修好本目录的received-application.docx，处理申请内容和Word版式中发现的问题，保持原有事实和数字，另存为可用的Word文件并给出文件链接，保留原文件。',
     'motion_with_supplied_details': '以下均为虚拟写作练习材料。请以海岚市人民政府名义向海岚市人大常委会拟一份提请审议《海岚市公共服务设施管理条例（草案）》的议案。草案已经2026年9月10日市政府常务会议讨论通过，拟明确管理单位承担日常维护、使用单位及时报告损坏，并由管理单位在设施入口公示服务内容、开放时间和咨询方式。请在议案中简要说明这三方面已给定的主要内容及便于维护和查询的目的。附件为该草案；落款2026年9月12日。',
@@ -121,6 +123,10 @@ CASES = {
 }
 
 
+CLEANUP_FIXTURE = ROOT / 'maintenance/tests/evidence/delivery-cleanup-r22/notice-original.txt'
+CASES['delivery_cleanup_existing'] = ('请一个独立上下文的子代理清理下面这条已经写好的通知交付消息。只处理旁白、工程或工具自述、内部思考及写稿过程、无用途格式包装、重复过程句，以及正文和文后提示混杂。业务正文、原有日期、有效文后提示及文件链接保持原意，直接给我清理后的完整消息。\n\n' + CLEANUP_FIXTURE.read_text(encoding='utf-8'))
+
+
 def fingerprint(path: Path) -> str:
     rows = [f"{p.relative_to(path).as_posix()}:{hashlib.sha256(p.read_bytes()).hexdigest()}" for p in sorted(path.rglob('*')) if p.is_file() and '__pycache__' not in p.parts]
     return hashlib.sha256('\n'.join(rows).encode()).hexdigest()
@@ -140,6 +146,8 @@ def main():
     parser.add_argument('--effort', choices=['max','xhigh','high','medium'], default='max')
     parser.add_argument('--inherit-agent-docs', action='store_true', help='Retain host AGENTS.md context for an explicit harness comparison.')
     parser.add_argument('--isolated-profile', action='store_true', help='Use a temporary Codex profile with the same execution policy and the local provider proxy.')
+    parser.add_argument('--review-host', action='store_true', help='Expose the same bounded native subagent host to both arms; child defaults use the selected writer model.')
+    parser.add_argument('--retain-session-metadata', action='store_true', help='Retain isolated native session records for child-model and context provenance.')
     args = parser.parse_args()
     needs_input = 'review_existing_docx' in args.cases
     if needs_input != bool(args.input_file):
@@ -198,6 +206,12 @@ def main():
     (out / 'runner-source.py').write_bytes(runner_source)
     binding['prompt_prefix'] = '使用本目录 .agents/skills/chinese-official-writing/SKILL.md。\n\n'
     binding['runtime_layout'] = 'each call has a separate parent, workspace and temporary directory'
+    if 'delivery_cleanup_existing' in args.cases:
+        binding['text_fixture'] = {'source': str(CLEANUP_FIXTURE), 'sha256': hashlib.sha256(CLEANUP_FIXTURE.read_bytes()).hexdigest(), 'transformation': 'none'}
+    if args.retain_session_metadata and not args.isolated_profile:
+        raise ValueError('Session metadata retention requires an isolated profile.')
+    binding['session_metadata'] = 'retained in isolated profile' if args.retain_session_metadata else 'ephemeral'
+    binding['review_host'] = {'enabled': args.review_host, 'max_threads': 3 if args.review_host else None, 'max_depth': 1 if args.review_host else None, 'child_model': 'same selected writer model' if args.review_host else 'host defaults', 'child_usage': 'root JSON usage is not assumed to include child usage'}
     if needs_input:
         binding['input_document'] = {'source': str(input_path), 'name': 'received-application.docx', 'sha256': input_sha256}
     (out/'binding.json').write_text(json.dumps(binding,ensure_ascii=False,indent=2),encoding='utf-8')
@@ -221,6 +235,12 @@ def main():
                 command[-1:-1]=['-c',f'model_reasoning_effort="{args.effort}"']
             if not args.inherit_agent_docs:
                 command[-1:-1]=['-c','project_doc_max_bytes=0']
+            if args.review_host:
+                command[-1:-1]=['-c','features.multi_agent=true','-c','agents.max_threads=3','-c','agents.max_depth=1','-c',f'agents.default_subagent_model="{MODELS[index]}"']
+                if index != 2:
+                    command[-1:-1]=['-c',f'agents.default_subagent_reasoning_effort="{args.effort}"']
+            if args.retain_session_metadata:
+                command.remove('--ephemeral')
             started=time.monotonic(); error=None
             print(f'START {index} {case_id} {arm}',flush=True)
             try:
@@ -255,6 +275,8 @@ def main():
             if '开发与验证' in stdout or '所有代码和文档改动提交' in stdout or '仅保留完整 Pro 安装' in stdout:
                 invalid.append('maintenance_instructions_contamination')
             result={'model':MODELS[index],'effort':args.effort if index!=2 else 'provider-default','case':case_id,'arm':arm,'returncode':code,'seconds':round(time.monotonic()-started,2),'invalid':invalid,'draft_sha256':hashlib.sha256(text.encode()).hexdigest(),'commands':calls,'usage':[x.get('usage') for x in events if x.get('type')=='turn.completed']}
+            if args.review_host:
+                result['collaboration_items']=[x['item'] for x in events if isinstance(x.get('item'),dict) and 'collab' in x['item'].get('type','') and x.get('type')=='item.completed']
             if staged_input is not None:
                 after_hash = hashlib.sha256(staged_input.read_bytes()).hexdigest() if staged_input.is_file() else None
                 result['input_document'] = {'path': str(staged_input), 'before_sha256': input_sha256, 'after_sha256': after_hash, 'unchanged': after_hash == input_sha256}
