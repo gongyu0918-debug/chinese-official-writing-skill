@@ -16,6 +16,7 @@ import time
 ROOT = Path(__file__).resolve().parents[4]
 MODELS = ["alibaba-token-plan/qwen3.8-flash", "alibaba-token-plan-2/qwen3.8-flash", "command-code/deepseek-deepseek-v4.1-flash", "minimax-cn/MiniMax-M3", "ollama-cloud/glm-5.3-flash"]
 CASES = {
+    'delivery_business_declaration': '请按这些材料写一则短小完整的内部使用说明：资料室拟试用目录核对表，供各科室整理档案目录时使用；表中记录档案编号、名称、保管期限，发现编号重复或保管期限疑问交资料室核对。标题下原样保留“内部试用版，仅供各科室核对目录使用”。正式启用日期和负责人尚未确定，保持这一状态。',
     'review_existing_docx': '帮我审核并修好本目录的received-application.docx，处理申请内容和Word版式中发现的问题，保持原有事实和数字，另存为可用的Word文件并给出文件链接，保留原文件。',
     'motion_with_supplied_details': '以下均为虚拟写作练习材料。请以海岚市人民政府名义向海岚市人大常委会拟一份提请审议《海岚市公共服务设施管理条例（草案）》的议案。草案已经2026年9月10日市政府常务会议讨论通过，拟明确管理单位承担日常维护、使用单位及时报告损坏，并由管理单位在设施入口公示服务内容、开放时间和咨询方式。请在议案中简要说明这三方面已给定的主要内容及便于维护和查询的目的。附件为该草案；落款2026年9月12日。',
     'complete_under_100': '请写一份完整的会议通知，控制在100字以内。资料中心定于2026年9月18日下午3点，在二楼会议室召开目录核对会，综合岗和各档案室负责人参加。请带本室待核对目录，会上集中确认编号和保管期限，不能参会的请在会前联系综合岗说明。通知由资料中心发出，写得简洁自然。',

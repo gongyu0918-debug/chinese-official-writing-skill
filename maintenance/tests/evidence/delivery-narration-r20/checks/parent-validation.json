@@ -1,0 +1,8 @@
+{
+  "canonical_matches_tested_candidate": true,
+  "decision_hash_matches_adoption": true,
+  "unit_tests": "114/114; two modules once; delegated execution log inspected",
+  "quick_validate": "Skill is valid!",
+  "diff_check": "PASS",
+  "no_model_reruns_for_isolated_skipped_read": true
+}

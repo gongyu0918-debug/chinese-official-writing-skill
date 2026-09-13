@@ -65,12 +65,27 @@ class ReferenceRewriteContractTests(unittest.TestCase):
         for relative in FINAL_REVIEW_PATHS[1:]:
             self.assertIn(Path(relative).name, common)
             self.assertTrue((SKILL.parent / relative).is_file(), relative)
-        self.assertLess(skill.index("references/reference-index.md"), skill.index("references/writing-rules.md"))
+        selection = skill.split("### 第二步：选择文种", 1)[1].split("### 第三步：按任务加读", 1)[0]
+        self.assertIn("为每份稿件选定一个主叶", selection)
+        self.assertRegex(selection, r"先读 `references/genre-routing\.md` 判定，再选主叶")
+        workflow_heading = "## 写作与交付步骤"
+        self.assertLess(skill.index("references/reference-index.md"), skill.index(workflow_heading))
+        self.assertLess(skill.index("选定主文种后"), skill.index(workflow_heading))
+        workflow = skill.split(workflow_heading, 1)[1].split("\n## ", 1)[0]
+        self.assertIn("`references/writing-rules.md`", workflow)
+        for relative in ["scripts/draft_length.py", "scripts/prose_lint.py", "references/prose-lint-usage.md"]:
+            self.assertIn(f"`{relative}`", workflow)
+            self.assertTrue((SKILL.parent / relative).is_file(), relative)
 
     def test_common_flow_keeps_checks_and_delivery_last(self) -> None:
         common = (REFS / "writing-rules.md").read_text(encoding="utf-8")
         sections = re.findall(r"^## ([^\n]+)\n(.*?)(?=^## |\Z)", common, re.MULTILINE | re.DOTALL)
-        self.assertIn("交付", sections[-1][0])
+        self.assertEqual([title for title, _ in sections], [
+            "第一步：材料与分析", "第二步：成稿与篇幅", "第三步：复核", "第四步：交付",
+        ])
+        workflow = SKILL.read_text(encoding="utf-8").split("## 写作与交付步骤", 1)[1]
+        self.assertEqual(re.findall(r"^\d+\. ([^：\n]+)：", workflow, re.M),
+                         [title.split("：", 1)[1] for title, _ in sections])
         length_section = next(body for title, body in sections if "篇幅" in title)
         review_section = next(body for title, body in sections if "复核" in title)
         for relative in ["scripts/draft_length.py", "references/compression-details.md"]:
@@ -80,6 +95,7 @@ class ReferenceRewriteContractTests(unittest.TestCase):
         self.assertRegex(length_section, r"仍不足.*实际差额.*所需材料.*不报达标")
         for name in ["anti-ai-patterns.md", "proofreading-checklist.md", "prose-lint-usage.md"]:
             self.assertIn(name, review_section)
+        self.assertRegex(review_section, r"所有成稿、改后稿和审核任务读取 `anti-ai-patterns\.md` 检查语言")
         self.assertLess(review_section.index("anti-ai-patterns.md"), review_section.index("prose-lint-usage.md"))
         for scope in ["全文", "局部", "关联", "本轮"]:
             self.assertIn(scope, review_section)
@@ -93,6 +109,29 @@ class ReferenceRewriteContractTests(unittest.TestCase):
         self.assertRegex(compression, r"上下限.*用户要求.*共性写作页.*适用范围")
         self.assertRegex(compression, r"用户只给上限.*保留适用的默认下限")
         self.assertNotIn("只有一侧限制时只传对应参数", compression)
+
+    def test_delivery_examples_keep_review_business_statements_and_usage_notes(self) -> None:
+        skill = SKILL.read_text(encoding="utf-8")
+        common = (REFS / "writing-rules.md").read_text(encoding="utf-8")
+        delivery = common.split("## 第四步：交付", 1)[1]
+        examples = re.findall(r"^- “([^”]+)”", delivery, re.M)
+        self.assertEqual(len(examples), 2)
+        for pattern in [r"读取.*技能.*审核改写", r"非空白字符.*脚本校验.*文稿扫描"]:
+            self.assertTrue(any(re.search(pattern, example) for example in examples), pattern)
+        for example in examples:
+            self.assertNotIn(example, skill)
+        self.assertRegex(delivery, r"交付消息从[^。]*稿件[^。]*审核意见[^。]*文件链接[^。]*开始")
+        self.assertRegex(delivery, r"开头、文后提示或结束语[^。]*同样要删除")
+        self.assertRegex(delivery, r"旁白禁令.*适用于整条交付消息")
+        self.assertRegex(delivery, r"审核时说明[^。]*原句[^。]*问题[^。]*依据[^。]*怎样改[^。]*应交付的意见")
+        self.assertRegex(delivery, r"影响稿件使用的缺项、风险及未完成检查[^。]*文后提示")
+        for concept in ["上轮未解决事项", "已发现未处理错误", "未处理原因", "下一步",
+                        "文件交付时提示留在消息中", "明确只要稿件或省略说明时省略提示"]:
+            self.assertIn(concept, delivery)
+        anti_ai = (REFS / "anti-ai-patterns.md").read_text(encoding="utf-8")
+        for concept in ["材料中的真实领导要求和批示按其业务含义保留",
+                        "版本标识、流转对象、保密和适用范围声明", "按实际用途保留"]:
+            self.assertIn(concept, anti_ai)
 
     def test_product_pages_do_not_expose_build_or_maintenance_commands(self) -> None:
         texts = [SKILL.read_text(encoding="utf-8")]

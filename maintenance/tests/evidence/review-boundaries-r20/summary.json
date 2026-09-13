@@ -1,0 +1,166 @@
+{
+  "source_head": "95e29838e7f8cf4ef54c7433870eb5d8ab214458",
+  "candidate_fingerprint": "eb7bec8137d0564c9c1f709779c647c16c523a502ff35fec45642171258dd2f0",
+  "calls": 16,
+  "technical_valid": 16,
+  "decision": "not-adopted",
+  "blind_counts": {
+    "body": {
+      "baseline": 5,
+      "tie": 3
+    },
+    "delivery": {
+      "baseline": 6,
+      "tie": 2
+    }
+  },
+  "decoded": [
+    {
+      "id": "P01",
+      "model": "alibaba-token-plan/qwen3.8-flash",
+      "case": "commentary_review_only",
+      "body": "baseline",
+      "delivery": "baseline"
+    },
+    {
+      "id": "P02",
+      "model": "alibaba-token-plan/qwen3.8-flash",
+      "case": "commentary_review_rewrite",
+      "body": "baseline",
+      "delivery": "baseline"
+    },
+    {
+      "id": "P03",
+      "model": "alibaba-token-plan/qwen3.8-flash",
+      "case": "review",
+      "body": "baseline",
+      "delivery": "baseline"
+    },
+    {
+      "id": "P04",
+      "model": "alibaba-token-plan/qwen3.8-flash",
+      "case": "review_rewrite",
+      "body": "tie",
+      "delivery": "tie"
+    },
+    {
+      "id": "P05",
+      "model": "command-code/deepseek-deepseek-v4.1-flash",
+      "case": "commentary_review_only",
+      "body": "baseline",
+      "delivery": "baseline"
+    },
+    {
+      "id": "P06",
+      "model": "command-code/deepseek-deepseek-v4.1-flash",
+      "case": "commentary_review_rewrite",
+      "body": "baseline",
+      "delivery": "baseline"
+    },
+    {
+      "id": "P07",
+      "model": "command-code/deepseek-deepseek-v4.1-flash",
+      "case": "review",
+      "body": "tie",
+      "delivery": "tie"
+    },
+    {
+      "id": "P08",
+      "model": "command-code/deepseek-deepseek-v4.1-flash",
+      "case": "review_rewrite",
+      "body": "tie",
+      "delivery": "baseline"
+    }
+  ],
+  "runs": [
+    {
+      "run": "review-boundaries-native-r20-qwen",
+      "calls": 8,
+      "technical_valid": 8,
+      "models": [
+        "alibaba-token-plan/qwen3.8-flash"
+      ],
+      "efforts": [
+        "medium"
+      ],
+      "runner_sha256": "20ebab6362e41dc2bb62aeb614dd0f482051fe92779d010fe6918ae0a3bd7d35",
+      "totals": {
+        "baseline": {
+          "commands": 49,
+          "read_chars_unique": 34637,
+          "input_tokens": 442938,
+          "cached_input_tokens": 380672,
+          "uncached_input_tokens": 62266,
+          "output_tokens": 15903,
+          "seconds": 414.38,
+          "calls": 4,
+          "technical_valid": 4,
+          "prose_lint.py": 6,
+          "draft_length.py": 4,
+          "anti_ai_page_returned": 4,
+          "tasks_with_prose_command": 4
+        },
+        "candidate": {
+          "commands": 57,
+          "read_chars_unique": 36289,
+          "input_tokens": 632898,
+          "cached_input_tokens": 571264,
+          "uncached_input_tokens": 61634,
+          "output_tokens": 19784,
+          "seconds": 594.92,
+          "calls": 4,
+          "technical_valid": 4,
+          "prose_lint.py": 9,
+          "draft_length.py": 7,
+          "anti_ai_page_returned": 4,
+          "tasks_with_prose_command": 4
+        }
+      }
+    },
+    {
+      "run": "review-boundaries-native-r20-deepseek",
+      "calls": 8,
+      "technical_valid": 8,
+      "models": [
+        "command-code/deepseek-deepseek-v4.1-flash"
+      ],
+      "efforts": [
+        "provider-default"
+      ],
+      "runner_sha256": "20ebab6362e41dc2bb62aeb614dd0f482051fe92779d010fe6918ae0a3bd7d35",
+      "totals": {
+        "baseline": {
+          "commands": 66,
+          "read_chars_unique": 40373,
+          "input_tokens": 1020414,
+          "cached_input_tokens": 955520,
+          "uncached_input_tokens": 64894,
+          "output_tokens": 32118,
+          "seconds": 321.54,
+          "calls": 4,
+          "technical_valid": 4,
+          "prose_lint.py": 9,
+          "draft_length.py": 5,
+          "anti_ai_page_returned": 4,
+          "tasks_with_prose_command": 4
+        },
+        "candidate": {
+          "commands": 57,
+          "read_chars_unique": 39606,
+          "input_tokens": 717050,
+          "cached_input_tokens": 658816,
+          "uncached_input_tokens": 58234,
+          "output_tokens": 27839,
+          "seconds": 266.11,
+          "calls": 4,
+          "technical_valid": 4,
+          "prose_lint.py": 7,
+          "draft_length.py": 4,
+          "anti_ai_page_returned": 4,
+          "tasks_with_prose_command": 4
+        }
+      }
+    }
+  ],
+  "scope": "Restore concrete review explanations, not compression. Final full package differs only in review-checklist; canonical unchanged. No pooled older-version outcomes, no new full 1.x comparison."
+}

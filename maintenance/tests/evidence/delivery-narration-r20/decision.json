@@ -1,0 +1,33 @@
+{
+  "status": "adopt-development-only",
+  "candidate_fingerprint": "a8f2f4694450e790bcc7129447f0ccac32cf5ef2bf227e7852604d714dfcddb5",
+  "changed": [
+    "SKILL.md",
+    "references/writing-rules.md"
+  ],
+  "benefit": "Restore 1.x discovery coverage including transactional materials, visible four-step navigation and both script filenames, explicit grouped narration boundaries and two genuine examples in the shared reference. Keep the reference index unchanged.",
+  "native": {
+    "calls": 12,
+    "technical_valid": 12,
+    "pairs": 6,
+    "body": {
+      "candidate": 2,
+      "baseline": 1,
+      "tie": 3
+    },
+    "delivery": {
+      "candidate": 4,
+      "baseline": 1,
+      "tie": 1
+    },
+    "comparison": "R19 2.0 snapshot versus this R20 entry/delivery combination; not a new 1.x comparison."
+  },
+  "limits": [
+    "Qwen business declaration mixes intended trial with current trial wording and repeats content; both arms retain process self-report in this case. Keep this adverse sample, not proved a stable rule-caused regression.",
+    "DeepSeek business declaration omitted the anti-AI leaf after reading the shared mandatory instruction; one baseline review omitted both scripts. Coverage differs, so no tool-use or general cost benefit is claimed.",
+    "A stronger wording is not a guarantee against narration. Drafts, final messages and pre/post-Skill progress must be evaluated separately.",
+    "The failed 671-character review-page restoration is not adopted or combined."
+  ],
+  "rationale": "The requested capability and navigation corrections are present with no new static blocker, both reviewers retain legitimate business statements and review explanations, and actual delivery preference favors the combination in four pairs. Development adoption preserves known counterexamples; this is not overall non-inferiority or merge approval.",
+  "scope": "No main merge, local installation, push, release or Pro activation."
+}

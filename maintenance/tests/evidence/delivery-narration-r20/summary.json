@@ -1,0 +1,163 @@
+{
+  "fingerprints": {
+    "baseline": "264b045a4c3f7ac719d93767f42d1483699c3153c93b7a80623bf77f6351a8d5",
+    "candidate": "a8f2f4694450e790bcc7129447f0ccac32cf5ef2bf227e7852604d714dfcddb5"
+  },
+  "comparison": "R19 2.0 versus R20 2.0; not a new 1.x comparison",
+  "runs": {
+    "delivery-narration-native-r20-qwen": {
+      "calls": 6,
+      "technical_valid": 6,
+      "models": [
+        "alibaba-token-plan/qwen3.8-flash"
+      ],
+      "efforts": [
+        "medium"
+      ],
+      "runner_sha256": "e5c612d5c1f89b6d26fbae1a757fe771806cb9e411fa5857072e0d77e2f97d9d",
+      "full_maps_match": true,
+      "inspection_totals": {
+        "baseline": {
+          "commands": 38,
+          "read_chars_unique": 27152,
+          "input_tokens": 460168,
+          "cached_input_tokens": 414080,
+          "uncached_input_tokens": 46088,
+          "output_tokens": 12937,
+          "seconds": 375.31000000000006,
+          "calls": 3,
+          "technical_valid": 3,
+          "prose_lint.py": 6,
+          "draft_length.py": 3,
+          "anti_ai_page_returned": 3,
+          "tasks_with_prose_command": 3
+        },
+        "candidate": {
+          "commands": 42,
+          "read_chars_unique": 30596,
+          "input_tokens": 416734,
+          "cached_input_tokens": 365056,
+          "uncached_input_tokens": 51678,
+          "output_tokens": 10387,
+          "seconds": 329.26,
+          "calls": 3,
+          "technical_valid": 3,
+          "prose_lint.py": 5,
+          "draft_length.py": 4,
+          "anti_ai_page_returned": 3,
+          "tasks_with_prose_command": 3
+        }
+      }
+    },
+    "delivery-narration-native-r20-deepseek": {
+      "calls": 6,
+      "technical_valid": 6,
+      "models": [
+        "command-code/deepseek-deepseek-v4.1-flash"
+      ],
+      "efforts": [
+        "provider-default"
+      ],
+      "runner_sha256": "e5c612d5c1f89b6d26fbae1a757fe771806cb9e411fa5857072e0d77e2f97d9d",
+      "full_maps_match": true,
+      "inspection_totals": {
+        "baseline": {
+          "commands": 36,
+          "read_chars_unique": 26577,
+          "input_tokens": 342446,
+          "cached_input_tokens": 309888,
+          "uncached_input_tokens": 32558,
+          "output_tokens": 10802,
+          "seconds": 138.42000000000002,
+          "calls": 3,
+          "technical_valid": 3,
+          "prose_lint.py": 2,
+          "draft_length.py": 2,
+          "anti_ai_page_returned": 3,
+          "tasks_with_prose_command": 2
+        },
+        "candidate": {
+          "commands": 53,
+          "read_chars_unique": 31311,
+          "input_tokens": 811945,
+          "cached_input_tokens": 758400,
+          "uncached_input_tokens": 53545,
+          "output_tokens": 19574,
+          "seconds": 226.01999999999998,
+          "calls": 3,
+          "technical_valid": 3,
+          "prose_lint.py": 6,
+          "draft_length.py": 4,
+          "anti_ai_page_returned": 2,
+          "tasks_with_prose_command": 3
+        }
+      }
+    }
+  },
+  "pairs": [
+    {
+      "run": "delivery-narration-native-r20-qwen",
+      "case": "delivery_business_declaration",
+      "id": "P01",
+      "body": "baseline",
+      "delivery": "baseline"
+    },
+    {
+      "run": "delivery-narration-native-r20-qwen",
+      "case": "notice_receiver",
+      "id": "P02",
+      "body": "tie",
+      "delivery": "tie"
+    },
+    {
+      "run": "delivery-narration-native-r20-qwen",
+      "case": "review",
+      "id": "P03",
+      "body": "candidate",
+      "delivery": "candidate"
+    },
+    {
+      "run": "delivery-narration-native-r20-deepseek",
+      "case": "delivery_business_declaration",
+      "id": "P01",
+      "body": "candidate",
+      "delivery": "candidate"
+    },
+    {
+      "run": "delivery-narration-native-r20-deepseek",
+      "case": "notice_receiver",
+      "id": "P02",
+      "body": "tie",
+      "delivery": "candidate"
+    },
+    {
+      "run": "delivery-narration-native-r20-deepseek",
+      "case": "review",
+      "id": "P03",
+      "body": "tie",
+      "delivery": "candidate"
+    }
+  ],
+  "totals": {
+    "body": {
+      "baseline": 1,
+      "tie": 3,
+      "candidate": 2
+    },
+    "delivery": {
+      "baseline": 1,
+      "tie": 1,
+      "candidate": 4
+    }
+  },
+  "page_chars": {
+    "baseline": {
+      "SKILL.md": 2162,
+      "references/writing-rules.md": 1565
+    },
+    "candidate": {
+      "SKILL.md": 2535,
+      "references/writing-rules.md": 1828
+    }
+  }
+}

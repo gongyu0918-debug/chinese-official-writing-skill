@@ -106,6 +106,34 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assertTrue((root / "references" / leaf).is_file())
         return read_reference(leaf, root)
 
+    def assert_common_workflow_entry(self, root: Path = CANONICAL) -> None:
+        """Check the shared workflow after genre selection, wherever it is introduced."""
+        home = (root / "SKILL.md").read_text(encoding="utf-8")
+        heading = "## 写作与交付步骤"
+        self.assertIn(heading, home)
+        workflow = home.split(heading, 1)[1].split("\n## ", 1)[0]
+        self.assertIn("`references/writing-rules.md`", workflow)
+        self.assertTrue((root / "references/writing-rules.md").is_file())
+        self.assertLess(home.index("references/reference-index.md"), home.index(heading))
+        self.assertLess(home.index("选定主文种后"), home.index(heading))
+        self.assertRegex(home, r"先读 `references/genre-routing\.md` 判定，再选主叶")
+        steps = re.findall(r"^(\d+)\. ([^：\n]+)：([^\n]+)$", workflow, re.M)
+        self.assertEqual([(number, name) for number, name, _ in steps], [
+            ("1", "材料与分析"), ("2", "成稿与篇幅"), ("3", "复核"), ("4", "交付"),
+        ])
+        for step, relative in [(1, "scripts/draft_length.py"),
+                               (2, "scripts/prose_lint.py"),
+                               (2, "references/prose-lint-usage.md")]:
+            self.assertIn(f"`{relative}`", steps[step][2])
+            self.assertTrue((root / relative).is_file(), relative)
+        self.assertIn("抗 AI 味检查", steps[2][2])
+
+    def assert_work_process_stays_internal(self, root: Path = CANONICAL) -> str:
+        delivery = read_reference("writing-rules.md", root).split("## 第四步：交付", 1)[1]
+        self.assertRegex(delivery, r"自己怎样[^。]*读规则[^。]*调用工具[^。]*过程留在内部")
+        self.assertRegex(delivery, r"旁白禁令.*适用于整条交付消息")
+        return delivery
+
     def test_only_one_agent_handoff_entrypoint_remains(self) -> None:
         self.assertTrue((ROOT / "AGENTS.md").is_file())
         self.assertFalse((ROOT / "agent.md").exists())
@@ -114,13 +142,19 @@ class SkillBoundaryTests(unittest.TestCase):
         text = (CANONICAL / "SKILL.md").read_text(encoding="utf-8")
         description = read_frontmatter(CANONICAL / "SKILL.md")["description"]
         self.assertLessEqual(len(description), 280)
-        for keyword in ["申请", "请示", "报告", "通知", "通告", "意见", "决定", "函", "公告", "审查材料", "正式文本"]:
+        for keyword in ["申请", "请示", "报告", "通知", "通告", "意见", "决定", "函", "公告", "审查材料",
+                        "说明", "方案", "制度", "操作规程", "新闻消息", "新闻评论", "整改", "反馈"]:
             self.assertIn(keyword, description)
+        discovery_scope = description.split("。", 1)[0]
+        for text_kind in ["中文公文", "事务性材料", "新闻稿件"]:
+            self.assertIn(text_kind, discovery_scope)
+        for capability in ["起草", "改写", "压缩", "润色", "审校", "文种核对", "去口语化", "降 AI 味", "Word 格式处理"]:
+            self.assertIn(capability, discovery_scope)
         for excluded in ["营销", "社媒", "论文", "个人求职"]:
             self.assertNotIn(excluded, description)
         for heading in ["## 适用范围", "## 入口契约", "## 正文形态"]:
             self.assertIn(heading, text)
-        self.assertIn("读取 `references/writing-rules.md` 完成取材、成稿、复核及交付", text)
+        self.assert_common_workflow_entry()
         self.assert_rules("writing-rules.md", "主体、对象、数字、金额、业务日期、引语、来源和事实状态照实保留",
                           "具体经历、数值、期限、程序、责任、决定和成效须有依据")
         readme = (ROOT / "README.md").read_text(encoding="utf-8")
@@ -222,13 +256,19 @@ class SkillBoundaryTests(unittest.TestCase):
                                   "落款单位、联系人和联系电话采用已有信息", root=root)
 
     def test_delivery_scope_rule_is_naturalized_across_current_skill_copies(self) -> None:
-        expected = "正式正文清除 AI 身份、提示词、隐藏推理、起草过程、脚本结果、制作说明、免责话术、连续追问或“正文如下”等旁白。"
         canonical_body = (CANONICAL / "SKILL.md").read_text(encoding="utf-8").split("---", 2)[2].strip()
         for root in skill_roots():
             with self.subTest(root=root):
                 text = (root / "SKILL.md").read_text(encoding="utf-8")
-                self.assertEqual(text.count(expected), 1)
+                body_rules = text.split("## 正文形态", 1)[1].split("\n## ", 1)[0]
+                bans = [line for line in body_rules.splitlines() if line.startswith("- ")]
+                for family in [("AI 身份", "提示词"), ("思考过程", "隐藏推理"),
+                               ("起草步骤", "脚本结果", "制作说明"),
+                               ("起草免责话术", "连续追问", "正文如下")]:
+                    self.assertTrue(any(all(term in line for term in family) and "严禁出现" in line
+                                        for line in bans), family)
                 self.assertEqual(canonical_body, text.split("---", 2)[2].strip())
+                self.assert_work_process_stays_internal(root)
                 self.assert_rules("anti-ai-patterns.md", "材料中的真实领导要求和批示按其业务含义保留",
                                   "版本标识、流转对象、保密和适用范围声明", "按实际用途保留", root=root)
                 self.assert_rules("writing-rules.md", "保留用户的标题、顺序、模板、字段、表格及指定空位",
@@ -248,10 +288,11 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assertEqual(sorted(text.index(h) for h in headings), [text.index(h) for h in headings])
         for field in ["任务与交付件", "稿件用途", "材料与修改范围", "篇幅与形式"]:
             self.assertIn(f"- **{field}**", text)
-        section = text.split(headings[-1], 1)[1].split("## 路由主线", 1)[0]
+        section = text.split(headings[-1], 1)[1].split("\n## ", 1)[0]
         for mode in ["起草", "改写", "局部修改、重排或字段处理", "压缩或限字", "审核、复核、审校或把关", "格式交付"]:
             self.assertEqual(sum(line.startswith(f"- **{mode}**") for line in section.splitlines()), 1)
-        self.assertIn("选定主文种后，读取 `references/writing-rules.md`", section)
+        self.assertRegex(section, r"选定主文种后[^。\n]*本轮任务加读")
+        self.assert_common_workflow_entry()
         self.assertNotIn("task-route-cards.md", text)
         self.assertFalse((CANONICAL / "references/task-route-cards.md").exists())
 
@@ -305,8 +346,8 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assertIn("`references/structure-editing.md`", home)
         self.assert_rules("writing-rules.md", "以本轮有效材料、最新版底稿和用户模板为准，落实补充、更正及修改范围",
                           "引用旧稿、样文或模型先前补写内容时重新核对依据",
-                          "先完成可用正文", "上轮未解决事项和已发现未处理错误",
-                          "路由、工具过程与自评留在内部")
+                          "先完成可用正文", "上轮未解决事项和已发现未处理错误")
+        self.assert_work_process_stays_internal()
         self.assert_rules("structure-editing.md", "以上一轮已确认正文为底稿，不回退到旧稿",
                           "不把旧主送、旧落款、旧标题带回正文")
         self.assertNotIn("映射表", home)
@@ -387,7 +428,7 @@ class SkillBoundaryTests(unittest.TestCase):
         self.assert_rules("reference-index.md", "需要共性能力时按触发条件加读",
                           "需要展开方案比较、跨段论证或执行链条", "行文关系、敬语或称谓拿不准")
         self.assertIn("独立稿件及具有独立用途的附件分别选路", home)
-        self.assertIn("选定主文种后，读取 `references/writing-rules.md` 完成取材、成稿、复核及交付", home)
+        self.assert_common_workflow_entry()
         self.assertNotIn("genre-playbooks.md", read_reference("reference-index.md"))
 
     def test_lightened_routes_preserve_reviewed_conditions(self) -> None:
@@ -481,10 +522,10 @@ class SkillBoundaryTests(unittest.TestCase):
                 self.assertEqual(result[0]["status"], "within")
                 self.assertEqual(result[0]["scope"], "draft-before-postscript")
 
-    def test_light_route_is_terminal_until_an_explicit_escalation_condition(self) -> None:
+    def test_common_workflow_keeps_local_scope_and_rechecks(self) -> None:
         home = (CANONICAL / "SKILL.md").read_text(encoding="utf-8")
         self.assertIn("以用户模板、最新版底稿、明确标题和用途选路", home)
-        self.assertIn("选定主文种后，读取 `references/writing-rules.md`", home)
+        self.assert_common_workflow_entry()
         self.assert_rules("writing-rules.md", "整体查全文，局部查改动与关联内容",
                           "实质修改后核对关联内容并复扫，影响篇幅时另测字数")
         self.assert_rules("review-checklist.md", "仅要求审核时交付意见", "要求审核后修改、复核后修改或优化稿件时",
@@ -941,8 +982,8 @@ class SkillBoundaryTests(unittest.TestCase):
                           "引用旧稿、样文或模型先前补写内容时重新核对依据",
                           "具体经历、数值、期限、程序、责任、决定和成效须有依据",
                           "材料与常识支持的原因、目的、影响、合理下一步、自然延续和结论可展开",
-                          "仅排版、逐字保留或不作分析的限制照办", "明确只要稿件或省略说明时省略提示",
-                          "路由、工具过程与自评留在内部")
+                          "仅排版、逐字保留或不作分析的限制照办", "明确只要稿件或省略说明时省略提示")
+        self.assert_work_process_stays_internal()
         self.assert_rules("structure-editing.md", "不回退到旧稿", "不把旧主送、旧落款、旧标题带回正文")
         self.assert_rules("anti-ai-patterns.md", "语言调整保持原意、叙述身份、引用、主体、对象、条件、可能性、否定范围、先后和论断强度")
         for owner in ["writing-rules.md", "review-checklist.md"]:

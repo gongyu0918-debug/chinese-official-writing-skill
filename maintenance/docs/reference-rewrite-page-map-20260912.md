@@ -1,6 +1,6 @@
 # Reference 逐页架构归属表（2026-09-13，2.0 开发候选）
 
-固定基线为 `main@1ce7112303172478faa2392667a2de1098eb912c`；本表活动状态为基于c6f65014的R19开发候选，完整采用指纹为 `264b045a4c3f7ac719d93767f42d1483699c3153c93b7a80623bf77f6351a8d5`，见[R19采用记录](../../output/review-common-r19-adopted/adoption.json)。50 个旧页全部列名：37 个同名路径仍在、13 个退役或迁出；另新增 30 页，共 67 页，其中 40 个具名主叶、43 条路线（40 个主叶加 3 条事务叠加路线）。这是 2.0 开发候选的工程映射，不是 1.x 对照验收或发布结论。
+固定基线为 `main@1ce7112303172478faa2392667a2de1098eb912c`；本表活动状态为在R19基础上采用R20入口与交付修正的开发候选，完整指纹为 `a8f2f4694450e790bcc7129447f0ccac32cf5ef2bf227e7852604d714dfcddb5`，见[R20采用记录](../../output/delivery-narration-r20-adopted/adoption.json)。50 个旧页全部列名：37 个同名路径仍在、13 个退役或迁出；另新增 30 页，共 67 页，其中 40 个具名主叶、43 条路线（40 个主叶加 3 条事务叠加路线）。这是 2.0 开发候选的工程映射，不是 1.x 对照验收或发布结论。
 当前结果与未完成项见[共性层进度](rewrite-common-layer-progress-20260913.md)及[R19整体完成度审计](../tests/evidence/completion-audit-r19/report.md)（[JSON](../tests/evidence/completion-audit-r19/report.json)）。下表保留50行旧页归属、30个新增页及原链接；来源性审计备注须结合后续证据判读，逐页归属不代表逐条语义、真实稿件或整体1.x等价已经闭合。
 
 “同名承接”表示职责仍落同名文件，不表示内容未改；“拆分承接”表示职责分到多个现存页；“退役/迁出”说明替代或保存位置。旧表的 rewrite/retain 是阶段性文件处理标签，本次按当前职责更新，均不等于逐条语义或真实写稿通过。表内产品链接指向已应用的 canonical。各行映射以旧 Git 对象、冻结候选及下列审计共同定位，允许读取与排除集合见[路由 manifest](../specs/reference-route-manifest.json)；它们是静态契约，实际读页另见原生证据。
@@ -115,7 +115,7 @@
 
 ## 历史证据与未闭合状态
 
-以下证据保留各自快照的判断，不追改 R5/R6 或其他历史结果。历史“未闭合”按原快照理解；当前活动状态以本页摘要、R16—R18结果及整体完成度审计为准。
+以下证据保留各自快照的判断，不追改 R5/R6 或其他历史结果。历史“未闭合”按原快照理解；当前活动状态以本页摘要、R16—R20各自绑定的结果及整体完成度审计为准。
 
 - [旧共性语义审计 R5](../tests/evidence/rewrite-cold-r5/legacy-common-parity-r5.md)覆盖 23 页；[旧文种语义审计 R5](../tests/evidence/rewrite-cold-r5/legacy-genre-parity-r5.md)覆盖 26 页。剩余 technical-terms 在共性报告中另记与旧页逐行相同。两份审计针对当时快照，原有 G1–G4/U1 不是当前未修清单，也不是当前通过证书。
 - [R5 修复及证据汇总](../tests/evidence/rewrite-cold-r5/result.md)记录有据分析、字段默认形态、使用报告正反组织、消息内分析、可研建议、事务入口与技术需求的补建。当前页存在相应落点；敏感信息范围复核已补回，但不能据此宣布旧涉密人工复核专项等价。
@@ -124,7 +124,7 @@
 - 技术需求、公开信、讲解的事实/程序扩写，完整消息旁白、局部范围、偶发不交正文和额外主叶读取仍有反例。新增页不自动获得旧页历史成绩；主持/述职已有专页也不表示两类组合全部验收。
 - R7 原型及 R5/R6 未闭合项保留为历史记录；R16完整开发候选、R17已采用的按语与脚本修正、R18共性同义压缩分别保留原绑定与结果，当前canonical在R18基础上采用497字符审稿页，按R19采用记录定位。静态映射只表示工程归属，实际读取仍以native轨迹为准，1.x整体等价与发布验收未闭合。
 
-## R16—R18 已采用证据与当前未闭合项
+## R16—R20 已采用证据与当前未闭合项
 
 - [完整候选构建记录](../../output/reference-integration-r16/build.json)及[组合预登记](../tests/evidence/integration-r16/preregister.md)保留共性归并、目录、采购公告目的、函用途和编者按五项冻结组件的来源；[R16采用记录](../../output/reference-integration-r16-adopted/adoption.json)及[完整结果](../tests/evidence/integration-r16/results.md)记录已完成的组合与开发候选应用。页集为67页，不以构建或应用成功代替整体真实写稿通过。
 - [目录原型预登记](../tests/evidence/genre-router-r16/preregister.md)、[采购/函用途原型](../tests/evidence/genre-purpose-r16/preregister.md)及[编者按原型](../tests/evidence/editorial-note-r16/preregister.md)说明各自范围。索引清理后 manifest 按实际命名链接重建 allowed_reads/forbidden_reads；补回旧清单遗漏的通报路线，并新增编者按路线，不以固定路线总数代替路径核对。
@@ -133,6 +133,8 @@
 - [R17验证汇总](../tests/evidence/verification-r17/results.md)记录1.x金线低频文种、审核/改稿/字段等模式、Word实物及两项内部原子的分组结果；已采用按语对象澄清和零字号检测，议案用途原型未采用。Word仍有不可读实物与链接未验证记录，正文和完整消息分别判读。
 - [R18共性压缩结果](../tests/evidence/common-compression-r18/results.md)记录已采用的同义压缩、独立语义冷审、原生同题验证及相关维护检查。当前仍有旁白、误提示、伴读和实际执行问题，逐条旧责任与整体1.x等价未闭合，不能把局部通过累计成整体通过。
 - [R19审稿页精炼](../tests/evidence/review-common-r19/results.md)完成并采用497字符版，前两版失败保留；[Word输入实稿](../tests/evidence/docx-input-native-r19/report.md)完成4份可读修复，保留未调用扫描及署名偏位等限制。二者规则快照不同，不合称组合通过。剩余最小工作按[R19整体审计](../tests/evidence/completion-audit-r19/report.md)与[当前进度](rewrite-common-layer-progress-20260913.md)收口；2.0未合main、安装、推送或发布。
+
+- [R20入口与交付](../tests/evidence/delivery-narration-r20/results.md)采用两页，description事务范围、首页四步与两脚本路径、交付反旁白例子均已落实；索引和文种页未变。12次原生、6对完整交付为候选4/基线1/相当1，反例及漏读保留。另16次审核扩充未支持采用，不能混为已通过组合。50旧方法迁移见[R20旧责任](../tests/evidence/legacy-boundary-migration-r20/report.md)，原有工程缺口已收束，真实写作覆盖仍按对应题目判断。
 
 ## 台账使用规则
 

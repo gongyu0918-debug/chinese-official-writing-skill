@@ -1,0 +1,75 @@
+{
+  "review_type": "bounded_restored_review_rules_cold_review",
+  "source_head": "95e29838e7f8cf4ef54c7433870eb5d8ab214458",
+  "candidate_fingerprint": "eb7bec8137d0564c9c1f709779c647c16c523a502ff35fec45642171258dd2f0",
+  "verdict": "no_blocker",
+  "adoption_decision": false,
+  "quality_improvement_demonstrated": false,
+  "read_scope": [
+    "output/review-boundaries-r20/build.json",
+    "baseline/references/review-checklist.md",
+    "candidate/references/review-checklist.md",
+    "necessary baseline/candidate writing-rules and anti-ai passages",
+    "1ce7112303172478faa2392667a2de1098eb912c:chinese-official-writing/references/review-direct-checklist.md relevant supported-analysis and secondary-material paragraphs"
+  ],
+  "verification": {
+    "candidate_manifest_fingerprint_matches_requested": true,
+    "six_reviewed_file_hashes_match_manifest": true,
+    "whole_package_fingerprint_recomputed": false,
+    "only_two_paragraph_replacements": true,
+    "writing_rules_identical": true,
+    "anti_ai_identical": true,
+    "lf_normalized_sizes": {
+      "baseline_chars": 497,
+      "candidate_chars": 671,
+      "delta_chars": 174
+    },
+    "raw_crlf_sizes": {
+      "baseline_chars": 512,
+      "candidate_chars": 686
+    },
+    "size_is_quality_criterion": false
+  },
+  "checks": [
+    {
+      "id": "historical_basis",
+      "result": "pass",
+      "reason": "Main explicitly protected supported causes/necessity/immediate effects and made unnecessary equipment/history/statistics material secondary; unrelated contract clauses were also explicitly not a completeness demand."
+    },
+    {
+      "id": "supported_analysis_not_fabrication_license",
+      "result": "pass",
+      "quote": "观点、一般比较及规范性建议，在已有事实和常识支持的范围内可以直接表达；核对关系和强度，不要求每句话都有一条同内容的材料。",
+      "reason": "Permission remains evidence-bound; lack of one source sentence per analysis sentence is distinguished from lack of support."
+    },
+    {
+      "id": "unlisted_factual_types",
+      "result": "pass_with_common_rule_context",
+      "quote": "出现缺乏依据的已发生事件、既定决定、精确数值、具体程序、责任或承诺时，才指出证据问题。",
+      "reason": "Read with the explicit writing-rules reference and evidence-bounded paragraph, the list does not revoke checks on unsupported current states, sources or effects. No exemption for other factual claims is stated.",
+      "watch_only": "Do not treat the list as a whitelist for invented unlisted factual categories."
+    },
+    {
+      "id": "secondary_material_conditions",
+      "result": "pass",
+      "quote": "已有工作量、等待时长、成本压力或使用情况足以支持基本判断时，设备年限、能力上限、统计方法和合同条款等作为可选补充；区分影响本次判断的缺口与进一步研究可以补充的资料。",
+      "reason": "Sufficiency for the current judgment is the condition; surrounding text keeps material required for the current purpose or explicitly requested by the user within scope."
+    },
+    {
+      "id": "overlap_and_natural_prose",
+      "result": "pass",
+      "reason": "Overlap supplies concrete review guidance; facts and opinions may share a paragraph without changing evidence or claim strength."
+    },
+    {
+      "id": "workflow_tools_delivery",
+      "result": "unchanged",
+      "reason": "Arithmetic tool instruction, length/review order, runtime limitation, requested review output, complete revised draft and postscript remain unchanged; no extra reading route, loop or length branch introduced."
+    }
+  ],
+  "findings": [],
+  "models_or_results_read": false,
+  "models_run": false,
+  "tests_run": false,
+  "product_modified": false,
+  "committed": false
+}
