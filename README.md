@@ -1,10 +1,10 @@
-# 中文公文写作 2.0
+# 中文公文写作 Skill
 
-[![Version](https://img.shields.io/badge/version-2.0.0--beta.1-blue)](chinese-official-writing/)
+[![Version](https://img.shields.io/badge/version-2.0.0--beta.2-blue)](chinese-official-writing/)
 [![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 [![1.x archive](https://img.shields.io/badge/1.x-历史归档-gray)](https://github.com/gongyu0918-debug/chinese-official-writing-skill/tree/legacy/1.x)
 
-中文公文写作 2.0 面向中文公文、事务性材料、正式工作材料、新闻消息和新闻评论，支持起草、改写、压缩、润色、审核与 Word 正文整理。它根据用户需求选择相应文种和必要参考，写清事情、保持事实状态，并完成篇幅、语言和交付复核。
+中文公文写作面向中文公文、事务性材料、正式工作材料、新闻消息和新闻评论，支持起草、改写、压缩、润色、审核与 Word 正文整理。它根据用户需求选择相应文种和必要参考，写清事情、保持事实状态，并完成篇幅、语言和交付复核。
 
 随着模型能力增强，原 Skill 长期迭代积累的工程债逐渐显现：部分参考混合多种职责，共性规则重复，路由和复核层次越来越重；Hook 的发挥也受到宿主支持和执行稳定性的影响。因此，2.0 对照原 Skill 的功能重新组织了入口、references 和普通脚本，使静态规则更加完善、精炼、简洁，也更适应新模型理解需求、选择参考和调用工具的方式。
 
@@ -47,11 +47,11 @@ flowchart LR
 
 GitHub 默认分支维护 2.0；[legacy/1.x](https://github.com/gongyu0918-debug/chinese-official-writing-skill/tree/legacy/1.x) 保存 1.0 最后一版的完整源码和历史记录，对应已发布版本 **1.6.36**。旧版本及其中既有 Hook 的 MIT 授权继续有效。
 
-本版定位为 **2.0 测试版**。本轮配对写稿中，成功完整返回的规则页字符约减少 47.7%；静态规则文本约减少 43.1%，首页约减少 66.3%。这些结果说明加载内容减少，不等于所有文种写作质量全面领先，也不等于相同比例的费用或耗时下降。完整稿件、用量、冷审分歧和已知问题见 [R31 验证记录](maintenance/tests/evidence/v2-independent-readiness-r31/results.md)。
+本次升级为 **2.0 测试版**。规则文本约减少 43.1%，首页约减少 66.3%，写稿时需要读取的内容也更少。实际效果因稿件和模型而异：有些场景更稳定，有些与旧版相近；目前没有看到普遍提速。测试记录见 [R31 验证记录](maintenance/tests/evidence/v2-independent-readiness-r31/results.md)。
 
 ## 获取与使用
 
-本版独立标识为 **`chinese-official-writing-v2`**。GitHub 技能源目录为 [`chinese-official-writing/`](chinese-official-writing/)；手动安装时，将该目录复制到宿主的 Skill 目录并命名为 `chinese-official-writing-v2`。宿主发现技能后，用自然语言提供材料、用途和修改要求即可。
+Skill 名称及安装标识仍为 **`chinese-official-writing`**，2.0 是原 Skill 的版本升级。手动安装时，将 [`chinese-official-writing/`](chinese-official-writing/) 目录复制到宿主的 Skill 目录。宿主发现技能后，用自然语言提供材料、用途和修改要求即可。
 
 篇幅和文稿检查需要 Python 3；Word 文件生成需要宿主提供文档工具。具体使用见包内 [README](chinese-official-writing/README.md)。
 

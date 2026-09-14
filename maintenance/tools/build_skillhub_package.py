@@ -15,8 +15,8 @@ ROOT = Path(__file__).resolve().parents[2]
 CANONICAL = ROOT / "chinese-official-writing"
 ROOT_LICENSE = ROOT / "LICENSE"
 SKILLHUB_LICENSE_NAME = "LICENSE.md"
-DEFAULT_SLUG = "chinese-official-writing-v2"
-DEFAULT_DISPLAY_NAME = "中文公文写作 2.0"
+DEFAULT_SLUG = "chinese-official-writing"
+DEFAULT_DISPLAY_NAME = "中文公文写作"
 DEFAULT_SUMMARY = "用于中文公文、事务性材料、新闻稿件和新闻评论的起草、改写、压缩与复核，兼顾办公效率、内容创作、事实边界和正式表达。"
 DEFAULT_TAGS = (
     "office-efficiency",

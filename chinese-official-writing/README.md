@@ -1,4 +1,4 @@
-# 中文公文写作 2.0
+# 中文公文写作
 
 用于中文公文、事务性材料、正式工作材料、新闻消息和新闻评论的起草、改写、压缩、润色、审核及 Word 正文整理。
 
@@ -36,7 +36,7 @@ flowchart LR
 
 ## 版本与许可
 
-独立标识：`chinese-official-writing-v2`。当前为 2.0 测试版。1.x 最后发布版本 1.6.36 保存在 GitHub 的 [legacy/1.x](https://github.com/gongyu0918-debug/chinese-official-writing-skill/tree/legacy/1.x) 分支。
+Skill 标识：`chinese-official-writing`。2.0 是原 Skill 的版本升级，当前为测试版。1.x 最后发布版本 1.6.36 保存在 GitHub 的 [legacy/1.x](https://github.com/gongyu0918-debug/chinese-official-writing-skill/tree/legacy/1.x) 分支。
 
 本项目采用 [MIT License](LICENSE)，请保留版权及许可声明。
 
