@@ -31,6 +31,25 @@ class MarkdownOptInTests(unittest.TestCase):
         self.assertEqual(bad.returncode, 1, bad.stderr + bad.stdout)
         self.assertTrue(json.loads(bad.stdout))
 
+    def test_requested_markdown_keeps_decorative_marker_hints(self):
+        for marker in ('•', '●', '◆', '◇', '★', '✅', '☑'):
+            with self.subTest(marker=marker):
+                findings=lint.scan('x.md', f'{marker} 事项', True, False, 'draft-body', True)
+                self.assertIn('western-bullet', {x.label for x in findings})
+        for marker in ('-', '*', '+', '1.', '2)'):
+            with self.subTest(marker=marker):
+                findings=lint.scan('x.md', f'{marker} 事项', True, False, 'draft-body', True)
+                self.assertNotIn('western-bullet', {x.label for x in findings})
+
+    def test_review_only_allows_comment_format_but_not_thought_leak(self):
+        text='## 审核意见\n\n**位置**：第三句\n\n- 建议核对材料。'
+        findings=lint.scan('review.md', text, True, False, 'review-only')
+        self.assertFalse({'markdown-bold','markdown-heading','western-bullet'} & {x.label for x in findings})
+        findings=lint.scan('review.md', text+'\n我的思考过程如下：先分析', True, False, 'review-only')
+        self.assertIn('thought-leak', {x.label for x in findings})
+        findings=lint.scan('body.md', text, True, False, 'draft-body')
+        self.assertIn('markdown-bold', {x.label for x in findings})
+
 
 if __name__ == '__main__':
     unittest.main()

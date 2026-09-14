@@ -992,7 +992,12 @@ def prepare_pattern_sets(
         format_patterns = [
             item
             for item in format_patterns
-            if item[1] not in {"markdown-bold", "markdown-heading", "western-bullet"}
+            if item[1] not in {"markdown-bold", "markdown-heading"}
+        ]
+        format_patterns = [
+            (severity, label, r"^\s*[•●◆◇★✅☑]\s+", advice)
+            if label == "western-bullet" else (severity, label, pattern, advice)
+            for severity, label, pattern, advice in format_patterns
         ]
     primary_patterns = PATTERNS + format_patterns
     if delivery_mode in {"draft-body", "gap-note-allowed"}:
@@ -1345,12 +1350,11 @@ def delivery_section_findings(
     return findings
 
 
-def frequent_list_marker_findings(path_label: str, lines: list[str]) -> list[Finding]:
+def frequent_list_marker_findings(path_label: str, lines: list[str], allow_markdown: bool = False) -> list[Finding]:
     """按全文数量定位过密的西式项目符号。"""
 
-    western_list_count = sum(
-        1 for line in lines if re.match(r"^\s*(?:[-*•●◆◇★✅☑]|[0-9]+[.)])\s+", line)
-    )
+    pattern = r"^\s*[•●◆◇★✅☑]\s+" if allow_markdown else r"^\s*(?:[-*•●◆◇★✅☑]|[0-9]+[.)])\s+"
+    western_list_count = sum(1 for line in lines if re.match(pattern, line))
     if western_list_count < FREQUENT_LIST_MARKER_COUNT:
         return []
     return [
@@ -1445,9 +1449,9 @@ def aggregate_findings(
     """按固定顺序汇总格式、结构、标题和术语检查。"""
 
     findings: list[Finding] = []
-    if include_format and not allow_markdown:
-        findings.extend(frequent_list_marker_findings(path_label, source.lines_to_scan))
-        if delivery_mode in {"draft-body", "gap-note-allowed"}:
+    if include_format:
+        findings.extend(frequent_list_marker_findings(path_label, source.lines_to_scan, allow_markdown))
+        if not allow_markdown and delivery_mode in {"draft-body", "gap-note-allowed"}:
             findings.extend(postscript_heading_format_findings(path_label, source))
     if include_structure:
         findings.extend(duplicate_findings(path_label, source.lines_to_scan))
@@ -1488,6 +1492,9 @@ def scan(
 
     if delivery_mode not in DELIVERY_MODES:
         raise ValueError(f"unsupported delivery mode: {delivery_mode}")
+
+    # Review comments are a separate deliverable, not the manuscript body.
+    allow_markdown = allow_markdown or delivery_mode == "review-only"
 
     source = prepare_scan_source(text, delivery_mode)
     pattern_sets = prepare_pattern_sets(include_format, delivery_mode, allow_markdown)
