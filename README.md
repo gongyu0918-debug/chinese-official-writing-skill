@@ -66,7 +66,7 @@
 
 ## 快速安装
 
-当前候选版本：`chinese-official-writing@1.6.36`。
+当前 GitHub 发布版本：`chinese-official-writing@1.6.36`。
 
 平台入口：[ClawHub](https://clawhub.ai/gongyu0918-debug/skills/chinese-official-writing) · [skillhub.cn](https://skillhub.cn/skills/chinese-official-writing)。通用 Agent Skills 安装器可直接使用：
 
@@ -82,7 +82,7 @@ QwenWork 可使用 [`packages/qwenwork/`](packages/qwenwork/) 中的无 Hook 静
 
 | 调试方向 | 主要稿件与边界 | 当前证据 |
 | --- | --- | --- |
-| 1.6.36 文种路由、称谓顺序与成稿清理 | 通知与公开发布、决策部署、讲话致辞、调研可研、采购审查分别进入更聚焦的文种路径；多人出席的讲话开场按材料中的身份、职务和场合安排称谓顺序；轻量检查补充识别说明式开场 | 同步 1.0 主线已准入改进；候选包、全量回归和 MIT 许可一致性见候选记录 |
+| 1.6.36 文种路由、称谓顺序与成稿清理 | 通知与公开发布、决策部署、讲话致辞、调研可研、采购审查分别进入更聚焦的文种路径；多人出席的讲话开场按材料中的身份、职务和场合安排称谓顺序；轻量检查补充识别说明式开场 | 同步 1.0 主线已准入改进；全量回归、MIT 许可一致性和三平台回执见发布记录 |
 | 1.6.35 发布链维护 | 写作规则、脚本与 Hook 运行时代码保持 1.6.34 内容；统一版本元数据并补齐发布证据索引 | 未通过的讲话人物排序、文种分叶和旁白检测候选均未进入本版；发布前全量回归、五套普通 Skill 校验和双平台包预检另见发布记录 |
 | 1.6.28 Hook修复与新闻事实日期 | 修复日期来源判断、终态重放、晚到事件、错回显与取消清理；新闻保留材料中的完整事实日期 | 复用已准入同稿及生命周期证据；发布前806项全量、五套Skill校验、86/37文件包预检通过；宿主和多版质量边界保留 |
 | 1.6.27 整改方案、命令路径与投诉页精简 | 整改方案区分现状、后续措施、责任进度与验收要求；校对命令使用当前Skill目录和稿件的引号绝对路径；投诉页删去重复交付话术 | 整改专叶R2有8份隔离有效真稿；新叶两路8次真实调用，只保留通过的投诉删例；最终774项回归和五套Skill校验通过 |
@@ -117,7 +117,7 @@ QwenWork 可使用 [`packages/qwenwork/`](packages/qwenwork/) 中的无 Hook 静
 
 技能规则、references 和 scripts 在本仓库持续迭代，各平台技能目录由 canonical 包同步生成。规范与社区项目用于校验文种、流程形态和风险维度；具体规则经过复现、取舍和 A/B 后进入主线，Git 历史记录每次修改和验证。
 
-v1.6.36 候选验证见 [`release-1.6.36-rc.md`](maintenance/tests/evidence/release-1.6.36-rc.md)。上一正式版本见 [`release-1.6.35.md`](maintenance/tests/evidence/release-1.6.35.md)；相关能力证据继续保留在 [`release-1.6.27.md`](maintenance/tests/evidence/release-1.6.27.md)、[`release-1.6.27-rc.md`](maintenance/tests/evidence/release-1.6.27-rc.md)、[`remediation-plan-r1/candidate-r2-result.md`](maintenance/tests/evidence/remediation-plan-r1/candidate-r2-result.md)、[`recent-leaf-cleanup-r1/result.md`](maintenance/tests/evidence/recent-leaf-cleanup-r1/result.md) 和 [`reference-route-audit-r1/result.md`](maintenance/tests/evidence/reference-route-audit-r1/result.md)。完整记录见 [`maintenance/docs/evidence/README.md`](maintenance/docs/evidence/README.md)。
+本次发布见 [`release-1.6.36.md`](maintenance/tests/evidence/release-1.6.36.md)，候选验证见 [`release-1.6.36-rc.md`](maintenance/tests/evidence/release-1.6.36-rc.md)。此前版本见 [`release-1.6.35.md`](maintenance/tests/evidence/release-1.6.35.md)；相关能力证据继续保留在 [`release-1.6.27.md`](maintenance/tests/evidence/release-1.6.27.md)、[`release-1.6.27-rc.md`](maintenance/tests/evidence/release-1.6.27-rc.md)、[`remediation-plan-r1/candidate-r2-result.md`](maintenance/tests/evidence/remediation-plan-r1/candidate-r2-result.md)、[`recent-leaf-cleanup-r1/result.md`](maintenance/tests/evidence/recent-leaf-cleanup-r1/result.md) 和 [`reference-route-audit-r1/result.md`](maintenance/tests/evidence/reference-route-audit-r1/result.md)。完整记录见 [`maintenance/docs/evidence/README.md`](maintenance/docs/evidence/README.md)。
 
 ## 目录结构
 
