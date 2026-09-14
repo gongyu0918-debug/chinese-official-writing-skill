@@ -1,8 +1,12 @@
 # 中文公文写作 Skill
 
 [![Version](https://img.shields.io/badge/version-2.0.0--beta.2-blue)](https://github.com/gongyu0918-debug/chinese-official-writing-skill/releases/tag/v2.0.0-beta.2)
+[![ClawHub downloads: 7,655](https://img.shields.io/badge/ClawHub%20downloads-7%2C655-2f80ed)](https://clawhub.ai/gongyu0918-debug/skills/chinese-official-writing)
+[![SkillHub downloads: 13.3万](https://img.shields.io/badge/SkillHub%20downloads-13.3%E4%B8%87-2f855a)](https://skillhub.cn/skills/user_f3d82da7/chinese-official-writing)
 [![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 [![1.x archive](https://img.shields.io/badge/1.x-历史归档-gray)](https://github.com/gongyu0918-debug/chinese-official-writing-skill/tree/legacy/1.x)
+
+下载量更新于 2026-09-14。
 
 中文公文写作面向中文公文、事务性材料、正式工作材料、新闻消息和新闻评论，支持起草、改写、压缩、润色、审核与 Word 正文整理。它根据用户需求选择相应文种和必要参考，写清事情、保持事实状态，并完成篇幅、语言和交付复核。
 
@@ -44,7 +48,7 @@ flowchart LR
 
 GitHub 默认分支维护 2.0；[legacy/1.x](https://github.com/gongyu0918-debug/chinese-official-writing-skill/tree/legacy/1.x) 保存 1.0 最后一版的完整源码和历史记录，对应已发布版本 **1.6.36**。旧版本及其中既有 Hook 的 MIT 授权继续有效。
 
-本次升级为 **2.0 测试版**。规则文本约减少 43.1%，首页约减少 66.3%，写稿时需要读取的内容也更少。实际效果因稿件和模型而异：有些场景更稳定，有些与旧版相近；目前没有看到普遍提速。测试记录见 [R31 验证记录](maintenance/tests/evidence/v2-independent-readiness-r31/results.md)。
+本次升级为 **2.0 测试版**。规则文本约减少 43.1%，首页约减少 66.3%，写稿时需要读取的内容也更少。实际效果因稿件和模型而异：有些场景更稳定，有些与旧版相近；目前没有看到普遍提速。
 
 ## 获取与使用
 
