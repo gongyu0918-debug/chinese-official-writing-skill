@@ -1,0 +1,254 @@
+[
+  {
+    "id": "L01",
+    "case": "responsibility_letter",
+    "model": "alibaba-token-plan/qwen3.8-flash",
+    "A": {
+      "file": "output/legacy-functions-native-r5-qwen/m0-responsibility_letter-baseline.final.txt",
+      "invalid": [],
+      "sha256": "75beac9d145df1ed00bbf20b5b6ff96d948dac199ca08660a0db1fa9fc0bc3c6"
+    },
+    "B": {
+      "file": "output/legacy-functions-native-r5-qwen/m0-responsibility_letter-candidate.final.txt",
+      "invalid": [],
+      "sha256": "a599b1d11b23e724d896ccfdeaea28abe45b75833f758c486f985dfef4b73dae"
+    }
+  },
+  {
+    "id": "L02",
+    "case": "initiative",
+    "model": "alibaba-token-plan/qwen3.8-flash",
+    "A": {
+      "file": "output/legacy-functions-native-r5-qwen/m0-initiative-candidate.final.txt",
+      "invalid": [],
+      "sha256": "df418d84890b39de20728a050095b8bf882dc419f25b5749c80602e3904e800e"
+    },
+    "B": {
+      "file": "output/legacy-functions-native-r5-qwen/m0-initiative-baseline.final.txt",
+      "invalid": [],
+      "sha256": "b1d913c0698a54138e9e4ffbae79bf378365112702486067b1c3ae559a54179a"
+    }
+  },
+  {
+    "id": "L03",
+    "case": "open_letter",
+    "model": "alibaba-token-plan/qwen3.8-flash",
+    "A": {
+      "file": "output/legacy-functions-native-r5-qwen/m0-open_letter-candidate.final.txt",
+      "invalid": [],
+      "sha256": "1630f7459420ab563a59c658038892ccfa01869133036cd167d35bf1b12a8a27"
+    },
+    "B": {
+      "file": "output/legacy-functions-native-r5-qwen/m0-open_letter-baseline.final.txt",
+      "invalid": [],
+      "sha256": "942f1c74e9cb07d314c63b4e1c1564056ac7d875fada159d94063e539b291e2c"
+    }
+  },
+  {
+    "id": "L04",
+    "case": "narration",
+    "model": "alibaba-token-plan/qwen3.8-flash",
+    "A": {
+      "file": "output/legacy-functions-native-r5-qwen/m0-narration-baseline.final.txt",
+      "invalid": [],
+      "sha256": "a9b4fbd6c6e387f9a8b4cbf93836060c4920c6a3a89bc6d0372a3c6bce64c5b2"
+    },
+    "B": {
+      "file": "output/legacy-functions-native-r5-qwen/m0-narration-candidate.final.txt",
+      "invalid": [],
+      "sha256": "10fdf33d1a6ff96d15581962174a2800a4c75aa384386707fc9e6d6ad718eb2f"
+    }
+  },
+  {
+    "id": "L05",
+    "case": "information_materials",
+    "model": "alibaba-token-plan/qwen3.8-flash",
+    "A": {
+      "file": "output/legacy-functions-native-r5-qwen/m0-information_materials-candidate.final.txt",
+      "invalid": [],
+      "sha256": "4230b11e688020af5461a96b10f908cdeae17fa219b1345247c31b236327c630"
+    },
+    "B": {
+      "file": "output/legacy-functions-native-r5-qwen/m0-information_materials-baseline.final.txt",
+      "invalid": [],
+      "sha256": "71a2b2194c231b016ddd271450219b881e97c46b460f127544500f1303733a62"
+    }
+  },
+  {
+    "id": "L06",
+    "case": "synthesis_advisory",
+    "model": "alibaba-token-plan/qwen3.8-flash",
+    "A": {
+      "file": "output/legacy-functions-native-r5-qwen/m0-synthesis_advisory-baseline.final.txt",
+      "invalid": [],
+      "sha256": "48a86df25edf122a931032d63eb457ca657100ff936ca8be6d132516cce0cde1"
+    },
+    "B": {
+      "file": "output/legacy-functions-native-r5-qwen/m0-synthesis_advisory-candidate.final.txt",
+      "invalid": [
+        "timeout",
+        "missing_final"
+      ],
+      "sha256": null
+    }
+  },
+  {
+    "id": "L07",
+    "case": "server_technical_requirements",
+    "model": "alibaba-token-plan/qwen3.8-flash",
+    "A": {
+      "file": "output/legacy-functions-native-r5-qwen/m0-server_technical_requirements-candidate.final.txt",
+      "invalid": [],
+      "sha256": "734cb705e8ee023b8a822649eb1716c764b5692acad3e51110811476ad1d88c9"
+    },
+    "B": {
+      "file": "output/legacy-functions-native-r5-qwen/m0-server_technical_requirements-baseline.final.txt",
+      "invalid": [],
+      "sha256": "365cd2bb1829ec7834e19f4b07bb46823b3ae0202b6fea2f5f78dd6c14c3378a"
+    }
+  },
+  {
+    "id": "L08",
+    "case": "interface_technical_requirements",
+    "model": "alibaba-token-plan/qwen3.8-flash",
+    "A": {
+      "file": "output/legacy-functions-native-r5-qwen/m0-interface_technical_requirements-baseline.final.txt",
+      "invalid": [],
+      "sha256": "16524b3c165b5b9fd100b51d78f2301f7c547b69ebb44903774a446f33260812"
+    },
+    "B": {
+      "file": "output/legacy-functions-native-r5-qwen/m0-interface_technical_requirements-candidate.final.txt",
+      "invalid": [
+        "timeout",
+        "missing_final"
+      ],
+      "sha256": null
+    }
+  },
+  {
+    "id": "L09",
+    "case": "responsibility_letter",
+    "model": "minimax-cn/MiniMax-M3",
+    "A": {
+      "file": "output/legacy-functions-native-r5-minimax/m3-responsibility_letter-candidate.final.txt",
+      "invalid": [],
+      "sha256": "46c5177c183d1c9110f1348c5ec8279a9189b6481bc5683e8af1fa87acd33eda"
+    },
+    "B": {
+      "file": "output/legacy-functions-native-r5-minimax/m3-responsibility_letter-baseline.final.txt",
+      "invalid": [
+        "missing_final",
+        "missing_skill_read_trace"
+      ],
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  },
+  {
+    "id": "L10",
+    "case": "initiative",
+    "model": "minimax-cn/MiniMax-M3",
+    "A": {
+      "file": "output/legacy-functions-native-r5-minimax/m3-initiative-candidate.final.txt",
+      "invalid": [],
+      "sha256": "7ed301cc6eb1b94bd7cf16adb54eb71bc57eb7b7c725085b8ab05f0367742842"
+    },
+    "B": {
+      "file": "output/legacy-functions-native-r5-minimax/m3-initiative-baseline.final.txt",
+      "invalid": [],
+      "sha256": "a0c2e721912008f3eaaef730a33dd2577021c5eabbd5ac0a4bf53bc966cff176"
+    }
+  },
+  {
+    "id": "L11",
+    "case": "open_letter",
+    "model": "minimax-cn/MiniMax-M3",
+    "A": {
+      "file": "output/legacy-functions-native-r5-minimax/m3-open_letter-baseline.final.txt",
+      "invalid": [],
+      "sha256": "0f359106f0e80237bcb8344963632294fbcdcb6967104af244c407651c9324db"
+    },
+    "B": {
+      "file": "output/legacy-functions-native-r5-minimax/m3-open_letter-candidate.final.txt",
+      "invalid": [],
+      "sha256": "2c2769cb47ebfc06c1cbf7a24aafc07f29a912d9b196172063b4224dd4da438e"
+    }
+  },
+  {
+    "id": "L12",
+    "case": "narration",
+    "model": "minimax-cn/MiniMax-M3",
+    "A": {
+      "file": "output/legacy-functions-native-r5-minimax/m3-narration-candidate.final.txt",
+      "invalid": [],
+      "sha256": "765e233aef9b647d0dff744add2088cac7fd51f6b5b648251e013c1a53d91460"
+    },
+    "B": {
+      "file": "output/legacy-functions-native-r5-minimax/m3-narration-baseline.final.txt",
+      "invalid": [],
+      "sha256": "16e0cc03b764cf9311bfff2e209f544168a570873a0bc7676474c93e448197c4"
+    }
+  },
+  {
+    "id": "L13",
+    "case": "information_materials",
+    "model": "minimax-cn/MiniMax-M3",
+    "A": {
+      "file": "output/legacy-functions-native-r5-minimax/m3-information_materials-candidate.final.txt",
+      "invalid": [],
+      "sha256": "bcc31256ce10f9482171345aef1b18cffd589377f8957cd7acafad01683897a7"
+    },
+    "B": {
+      "file": "output/legacy-functions-native-r5-minimax/m3-information_materials-baseline.final.txt",
+      "invalid": [],
+      "sha256": "b6b548f559f3ea59e3435e71bdc291ca59ae209c10b7637b1e46ab7e661bc6f4"
+    }
+  },
+  {
+    "id": "L14",
+    "case": "synthesis_advisory",
+    "model": "minimax-cn/MiniMax-M3",
+    "A": {
+      "file": "output/legacy-functions-native-r5-minimax/m3-synthesis_advisory-candidate.final.txt",
+      "invalid": [],
+      "sha256": "b4472e0967f77dd59280bab2caa51300f1025acd94da14676d1d5ef456c475bd"
+    },
+    "B": {
+      "file": "output/legacy-functions-native-r5-minimax/m3-synthesis_advisory-baseline.final.txt",
+      "invalid": [],
+      "sha256": "3a320a689238bcc26d3e15f5b2988b0ec1b5cb19cbd38914bf08f12f243dd16b"
+    }
+  },
+  {
+    "id": "L15",
+    "case": "server_technical_requirements",
+    "model": "minimax-cn/MiniMax-M3",
+    "A": {
+      "file": "output/legacy-functions-native-r5-minimax/m3-server_technical_requirements-baseline.final.txt",
+      "invalid": [],
+      "sha256": "91d6ecca39ea82fbe01a77cc2378c19d5182c5aca43e91c3824d8bbd507d427d"
+    },
+    "B": {
+      "file": "output/legacy-functions-native-r5-minimax/m3-server_technical_requirements-candidate.final.txt",
+      "invalid": [],
+      "sha256": "387057ac198279a43c4058f762d7bce8426d16b69c7bbf82c5a758b0aab82860"
+    }
+  },
+  {
+    "id": "L16",
+    "case": "interface_technical_requirements",
+    "model": "minimax-cn/MiniMax-M3",
+    "A": {
+      "file": "output/legacy-functions-native-r5-minimax/m3-interface_technical_requirements-candidate.final.txt",
+      "invalid": [
+        "timeout",
+        "missing_final"
+      ],
+      "sha256": null
+    },
+    "B": {
+      "file": "output/legacy-functions-native-r5-minimax/m3-interface_technical_requirements-baseline.final.txt",
+      "invalid": [],
+      "sha256": "8fa17a3eeeb9a4a72ad7d540ab74ce83221b46e328f3a01b19809014ea13d397"
+    }
+  }
+]

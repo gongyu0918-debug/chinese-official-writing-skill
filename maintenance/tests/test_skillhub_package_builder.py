@@ -1,10 +1,10 @@
 from __future__ import annotations
 
 import importlib.util
-import json
 import tempfile
 import unittest
 from pathlib import Path
+from unittest import mock
 
 import yaml
 
@@ -19,6 +19,32 @@ RC_VERSION = "1.6.27"
 
 
 class SkillHubPackageBuilderTests(unittest.TestCase):
+    def test_tracked_file_filter_excludes_hooks_and_preserves_plain_scripts(self) -> None:
+        plain_files = [
+            "SKILL.md",
+            "scripts/draft_length.py",
+            "scripts/prose_lint.py",
+            "scripts/another_check.py",
+            "scripts/review_gate_notes.py",
+            "references/prose-lint-usage.md",
+        ]
+        removed_files = [
+            "hooks/core/gate_stop_hook.py",
+            "hooks/adapters/codex/manifest.json",
+            "references/delivery-review-gate.md",
+            "scripts/review_gate.py",
+            "agents/openai.yaml",
+            "LICENSE",
+        ]
+        tracked_output = "\n".join(
+            f"chinese-official-writing/{relative}"
+            for relative in plain_files + removed_files
+        )
+        with mock.patch.object(
+            BUILDER.subprocess, "run", return_value=mock.Mock(stdout=tracked_output)
+        ):
+            self.assertEqual(BUILDER.tracked_canonical_files(), sorted(plain_files))
+
     def test_builds_minimal_tracked_package_without_repository_metadata(self) -> None:
         with tempfile.TemporaryDirectory() as temporary:
             output = Path(temporary) / "publish-package"
@@ -35,79 +61,16 @@ class SkillHubPackageBuilderTests(unittest.TestCase):
             self.assertEqual((output / "LICENSE.md").read_bytes(), (ROOT / "LICENSE").read_bytes())
             self.assertTrue((output / "LICENSE.md").read_text(encoding="utf-8").startswith("MIT License\n"))
             self.assertFalse((output / "agents" / "openai.yaml").exists())
-            self.assertTrue((output / "hooks" / "README.md").is_file())
-            self.assertTrue((output / "hooks" / "host-capabilities.json").is_file())
-            self.assertTrue((output / "hooks" / "core" / "gate_stop_hook.py").is_file())
-            self.assertTrue(
-                (
-                    output
-                    / "hooks"
-                    / "capabilities"
-                    / "protective_expansion"
-                    / "runtime.py"
-                ).is_file()
-            )
-            self.assertTrue((output / "hooks" / "adapters" / "host_gate_adapter.py").is_file())
+            for relative in ("hooks", "scripts/review_gate.py", "references/delivery-review-gate.md"):
+                self.assertFalse((output / relative).exists(), relative)
+            for script in (ROOT / "chinese-official-writing" / "scripts").glob("*.py"):
+                if script.name != "review_gate.py":
+                    self.assertEqual((output / "scripts" / script.name).read_bytes(), script.read_bytes())
             self.assertFalse((output / ".codex-plugin").exists())
             self.assertFalse((output / ".codebuddy-plugin").exists())
             self.assertFalse((output / "skills").exists())
             self.assertFalse((output / "plugins").exists())
-            for host in (
-                "codex",
-                "codebuddy",
-                "claude-code",
-                "zcode",
-                "qwen-code",
-                "kimi-code",
-                "opencode",
-                "hermes-agent",
-                "deepseek-harness",
-            ):
-                adapter = output / "hooks" / "adapters" / host
-                self.assertTrue((adapter / "README.md").is_file())
-                self.assertEqual(
-                    host not in {"opencode", "hermes-agent", "deepseek-harness"},
-                    (adapter / "manifest.json").is_file(),
-                )
-                self.assertEqual(
-                    host == "hermes-agent", (adapter / "plugin.yaml").is_file()
-                )
-                self.assertEqual(
-                    host not in {"kimi-code", "opencode", "hermes-agent", "deepseek-harness"},
-                    (adapter / "hooks.json").is_file(),
-                )
-                self.assertEqual(
-                    host == "opencode", (adapter / "opencode_gate_plugin.js").is_file()
-                )
-                self.assertEqual(
-                    host == "hermes-agent", (adapter / "__init__.py").is_file()
-                )
-                self.assertEqual(
-                    host == "deepseek-harness", (adapter / "package.json").is_file()
-                )
-                self.assertFalse((adapter / "skills").exists())
-            self.assertFalse((output / "hooks" / "build_companion.py").exists())
             self.assertFalse((output / "maintenance").exists())
-            capabilities = json.loads(
-                (output / "hooks" / "host-capabilities.json").read_text(encoding="utf-8")
-            )
-            self.assertEqual("hooks/adapters/codex", capabilities["hosts"]["codex"]["adapter_source"])
-            self.assertEqual("hooks/adapters/codebuddy", capabilities["hosts"]["codebuddy"]["adapter_source"])
-            self.assertEqual("hooks/adapters/zcode", capabilities["hosts"]["zcode"]["adapter_source"])
-            self.assertEqual("hooks/adapters/qwen-code", capabilities["hosts"]["qwen_code"]["adapter_source"])
-            self.assertEqual("hooks/adapters/kimi-code", capabilities["hosts"]["kimi_code_cli"]["adapter_source"])
-            self.assertEqual("hooks/adapters/opencode", capabilities["hosts"]["opencode"]["adapter_source"])
-            self.assertEqual("hooks/adapters/hermes-agent", capabilities["hosts"]["hermes_agent"]["adapter_source"])
-            self.assertEqual("hooks/adapters/deepseek-harness", capabilities["hosts"]["deepseek_harness"]["adapter_source"])
-            self.assertEqual(
-                "lifecycle_verified_fresh_query_single_pass",
-                capabilities["hosts"]["hermes_agent"]["status"],
-            )
-            self.assertEqual(
-                "lifecycle_verified_headless",
-                capabilities["hosts"]["deepseek_harness"]["status"],
-            )
-            self.assertEqual("available_opt_in", capabilities["length_gate"]["status"])
             self.assertEqual(
                 (output / "_meta.json").read_text(encoding="utf-8"),
                 f'{{\n  "slug": "chinese-official-writing",\n  "version": "{RC_VERSION}"\n}}\n',

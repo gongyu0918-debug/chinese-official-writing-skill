@@ -1,0 +1,139 @@
+[
+  {
+    "id": "P01",
+    "case": "server_technical_requirements",
+    "model": "alibaba-token-plan/qwen3.8-flash",
+    "A": {
+      "file": "output\\legacy-regression-repeat-r6-qwen\\m0-server_technical_requirements-candidate.final.txt",
+      "invalid": [],
+      "sha256": "b5f31be1cbc0dc7ff35fae440163aca7e766f7a3e781033d11531d9c11e170f7"
+    },
+    "B": {
+      "file": "output\\legacy-regression-repeat-r6-qwen\\m0-server_technical_requirements-baseline.final.txt",
+      "invalid": [],
+      "sha256": "5fb35400bc7e9b04db1c143237a6688b9ec701f8fc22ef51a60c1b67416ed4b5"
+    }
+  },
+  {
+    "id": "P02",
+    "case": "open_letter",
+    "model": "alibaba-token-plan/qwen3.8-flash",
+    "A": {
+      "file": "output\\legacy-regression-repeat-r6-qwen\\m0-open_letter-baseline.final.txt",
+      "invalid": [],
+      "sha256": "447e29b4339694bd0d20967bccdabbb44d0492d3cfe0e6255767800e56dce015"
+    },
+    "B": {
+      "file": "output\\legacy-regression-repeat-r6-qwen\\m0-open_letter-candidate.final.txt",
+      "invalid": [],
+      "sha256": "bb73532161bf71cdeb144fdefe47a4f03899e0ad35d08f33c811a546107bd525"
+    }
+  },
+  {
+    "id": "P03",
+    "case": "narration",
+    "model": "alibaba-token-plan/qwen3.8-flash",
+    "A": {
+      "file": "output\\legacy-regression-repeat-r6-qwen\\m0-narration-candidate.final.txt",
+      "invalid": [],
+      "sha256": "295445234fb31d08e7381371dc983e69bf4dcedcb9c683e1088a38df41c8e334"
+    },
+    "B": {
+      "file": "output\\legacy-regression-repeat-r6-qwen\\m0-narration-baseline.final.txt",
+      "invalid": [],
+      "sha256": "20f0513691017cf05e782d768f084c06199ffbe00c6fb17597b718d79ec29f23"
+    }
+  },
+  {
+    "id": "P04",
+    "case": "interface_technical_requirements",
+    "model": "alibaba-token-plan/qwen3.8-flash",
+    "A": {
+      "file": "output\\legacy-regression-repeat-r6-qwen\\m0-interface_technical_requirements-baseline.final.txt",
+      "invalid": [],
+      "sha256": "d036c01baa3493feaef4adffad14532d8bd07cb41cd151c71f77a26d1e1ef7db"
+    },
+    "B": {
+      "file": "output\\legacy-regression-repeat-r6-qwen\\m0-interface_technical_requirements-candidate.final.txt",
+      "invalid": [],
+      "sha256": "a3c350731301cabd12760c8c532b63125f37ad02b77e84c628a0286684bdd8c2"
+    }
+  },
+  {
+    "id": "P05",
+    "case": "synthesis_advisory",
+    "model": "alibaba-token-plan/qwen3.8-flash",
+    "A": {
+      "file": "output\\legacy-regression-repeat-r6-qwen\\m0-synthesis_advisory-baseline.final.txt",
+      "invalid": [],
+      "sha256": "692ce37c848710d4ccfbc19a42d11e8bc88f8d5aa77041fa59038fa511ef3691"
+    },
+    "B": {
+      "file": "output\\legacy-regression-repeat-r6-qwen\\m0-synthesis_advisory-candidate.final.txt",
+      "invalid": [],
+      "sha256": "e28015130b5a8df32148c2185e44cd9f7c59bf8d2f0adf5b28ddd795a074122e"
+    }
+  },
+  {
+    "id": "P06",
+    "case": "server_technical_requirements",
+    "model": "minimax-cn/MiniMax-M3",
+    "A": {
+      "file": "output\\legacy-regression-repeat-r6-minimax\\m3-server_technical_requirements-candidate.final.txt",
+      "invalid": [],
+      "sha256": "9883e409b792586e2f9ba17c8e6017a8dffe5be91eba18fe7630f304ed330e6c"
+    },
+    "B": {
+      "file": "output\\legacy-regression-repeat-r6-minimax\\m3-server_technical_requirements-baseline.final.txt",
+      "invalid": [],
+      "sha256": "a19ec15379ff416eea838d29f8d9c63b2c86c3b04d80afa112bea3800a39bc44"
+    }
+  },
+  {
+    "id": "P07",
+    "case": "open_letter",
+    "model": "minimax-cn/MiniMax-M3",
+    "A": {
+      "file": "output\\legacy-regression-repeat-r6-minimax\\m3-open_letter-candidate.final.txt",
+      "invalid": [],
+      "sha256": "18eda5284a44023b1909413e176ee46918d5722d5af3f31fc9ddef1120ec523b"
+    },
+    "B": {
+      "file": "output\\legacy-regression-repeat-r6-minimax\\m3-open_letter-baseline.final.txt",
+      "invalid": [],
+      "sha256": "f8d36340eed325dcf3d90f5edc7301dfedeaf8e10315ea75aea0388dea1c7e08"
+    }
+  },
+  {
+    "id": "P08",
+    "case": "narration",
+    "model": "minimax-cn/MiniMax-M3",
+    "A": {
+      "file": "output\\legacy-regression-repeat-r6-minimax\\m3-narration-baseline.final.txt",
+      "invalid": [
+        "missing_skill_read_trace"
+      ],
+      "sha256": "5490b2fc833f644757562f036e929e504b1ee7d01c927b5bf56c1684428ac30e"
+    },
+    "B": {
+      "file": "output\\legacy-regression-repeat-r6-minimax\\m3-narration-candidate.final.txt",
+      "invalid": [],
+      "sha256": "e746dcdfe0919df5ceb8446c736a521e2926063dd6398331c87e925414ce059b"
+    }
+  },
+  {
+    "id": "P09",
+    "case": "interface_technical_requirements",
+    "model": "minimax-cn/MiniMax-M3",
+    "A": {
+      "file": "output\\legacy-regression-repeat-r6-minimax\\m3-interface_technical_requirements-baseline.final.txt",
+      "invalid": [],
+      "sha256": "2986ca0e41397b08d6b48a4f55d88046196238f793b697efb4d95a0bc1de904b"
+    },
+    "B": {
+      "file": "output\\legacy-regression-repeat-r6-minimax\\m3-interface_technical_requirements-candidate.final.txt",
+      "invalid": [],
+      "sha256": "4ffab5df5dab0274d2e898fdb57a935d3359bc31d9b8bd376421140780048577"
+    }
+  }
+]

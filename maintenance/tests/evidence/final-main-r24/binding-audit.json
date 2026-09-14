@@ -1,0 +1,11 @@
+{
+  "calls": 20,
+  "technical_valid": 20,
+  "original_main_files": 104,
+  "candidate_files": 73,
+  "candidate_fingerprint": "345271e65f29f3f055026102f8ef29fbb26bee2bca6fcce57ca524f6a448909d",
+  "five_run_snapshots_match": "PASS",
+  "ordinary_only_both_arms": true,
+  "request_checklist_returned": true,
+  "no_added_retry": true
+}

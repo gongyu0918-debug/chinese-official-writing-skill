@@ -1,0 +1,1244 @@
+[
+  {
+    "run": "cold-route-native-r6",
+    "model": "command-code/deepseek-deepseek-v4.1-flash",
+    "effort": "provider-default",
+    "case": "ordinary_server_announcement",
+    "arm": "baseline",
+    "returncode": 0,
+    "seconds": 42.3,
+    "invalid": [],
+    "draft_sha256": "07df07ac1461ef0c13667f5dcf20e058da132a06cf31c7e5b1a67bd47e3d1b30",
+    "usage": [
+      {
+        "input_tokens": 144615,
+        "cached_input_tokens": 132352,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 2590,
+        "reasoning_output_tokens": 0
+      }
+    ]
+  },
+  {
+    "run": "cold-route-native-r6",
+    "model": "command-code/deepseek-deepseek-v4.1-flash",
+    "effort": "provider-default",
+    "case": "ordinary_server_announcement",
+    "arm": "candidate",
+    "returncode": 0,
+    "seconds": 43.23,
+    "invalid": [],
+    "draft_sha256": "e171dcd392214af10ea890e46140e1ce93f1434904c698fcee077d85094f364b",
+    "usage": [
+      {
+        "input_tokens": 151420,
+        "cached_input_tokens": 134528,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 3724,
+        "reasoning_output_tokens": 0
+      }
+    ]
+  },
+  {
+    "run": "cold-route-native-r6",
+    "model": "command-code/deepseek-deepseek-v4.1-flash",
+    "effort": "provider-default",
+    "case": "public_rule_suggestion",
+    "arm": "baseline",
+    "returncode": 0,
+    "seconds": 49.16,
+    "invalid": [],
+    "draft_sha256": "c0f11df8ad6a6516156402083b5c3a1c97fc8434d37b93b6c4fcaa9a0210bdd1",
+    "usage": [
+      {
+        "input_tokens": 134009,
+        "cached_input_tokens": 115072,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 2945,
+        "reasoning_output_tokens": 0
+      }
+    ]
+  },
+  {
+    "run": "cold-route-native-r6",
+    "model": "command-code/deepseek-deepseek-v4.1-flash",
+    "effort": "provider-default",
+    "case": "public_rule_suggestion",
+    "arm": "candidate",
+    "returncode": 0,
+    "seconds": 61.36,
+    "invalid": [],
+    "draft_sha256": "ff0a3736395f88377deff4ea4c683b11e4ef71f1902ca8031ec56bfa84e08f35",
+    "usage": [
+      {
+        "input_tokens": 196505,
+        "cached_input_tokens": 178816,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 5071,
+        "reasoning_output_tokens": 0
+      }
+    ]
+  },
+  {
+    "run": "cold-route-native-r6",
+    "model": "command-code/deepseek-deepseek-v4.1-flash",
+    "effort": "provider-default",
+    "case": "ordinary_word_summary",
+    "arm": "baseline",
+    "returncode": 0,
+    "seconds": 85.61,
+    "invalid": [],
+    "draft_sha256": "6918e2146737c0af6d0a2e5361c12edadb2279104bf6720b1884c814a0c2b1af",
+    "usage": [
+      {
+        "input_tokens": 338596,
+        "cached_input_tokens": 318848,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 5609,
+        "reasoning_output_tokens": 0
+      }
+    ]
+  },
+  {
+    "run": "cold-route-native-r6",
+    "model": "command-code/deepseek-deepseek-v4.1-flash",
+    "effort": "provider-default",
+    "case": "ordinary_word_summary",
+    "arm": "candidate",
+    "returncode": 0,
+    "seconds": 60.02,
+    "invalid": [],
+    "draft_sha256": "beacd9ab18394dcda7b953f8ac9ee1ad260789cbd82f2ceb321c39886dfa2433",
+    "usage": [
+      {
+        "input_tokens": 246960,
+        "cached_input_tokens": 230656,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 6114,
+        "reasoning_output_tokens": 0
+      }
+    ]
+  },
+  {
+    "run": "cold-route-native-r6",
+    "model": "command-code/deepseek-deepseek-v4.1-flash",
+    "effort": "provider-default",
+    "case": "server_technical_requirements",
+    "arm": "baseline",
+    "returncode": 0,
+    "seconds": 47.91,
+    "invalid": [],
+    "draft_sha256": "d47932fcfb4c17c662e6a7ad875a1e4751a137f70f450a2deb975a23c0f698b3",
+    "usage": [
+      {
+        "input_tokens": 184169,
+        "cached_input_tokens": 167296,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 3332,
+        "reasoning_output_tokens": 0
+      }
+    ]
+  },
+  {
+    "run": "cold-route-native-r6",
+    "model": "command-code/deepseek-deepseek-v4.1-flash",
+    "effort": "provider-default",
+    "case": "server_technical_requirements",
+    "arm": "candidate",
+    "returncode": 0,
+    "seconds": 53.22,
+    "invalid": [],
+    "draft_sha256": "168a3a1b1b9e9ac5f23bd00a0107b6cb4103d00b69020fb8879ba3b760b71df4",
+    "usage": [
+      {
+        "input_tokens": 230080,
+        "cached_input_tokens": 212480,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 3096,
+        "reasoning_output_tokens": 0
+      }
+    ]
+  },
+  {
+    "run": "cold-route-native-r6",
+    "model": "command-code/deepseek-deepseek-v4.1-flash",
+    "effort": "provider-default",
+    "case": "compute_units",
+    "arm": "baseline",
+    "returncode": 0,
+    "seconds": 36.97,
+    "invalid": [],
+    "draft_sha256": "5368b5e5c0ada9ec2b06180faf6e9db5744eff7389af8c9d65583a4af4a07ef8",
+    "usage": [
+      {
+        "input_tokens": 103532,
+        "cached_input_tokens": 87168,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 2804,
+        "reasoning_output_tokens": 0
+      }
+    ]
+  },
+  {
+    "run": "cold-route-native-r6",
+    "model": "command-code/deepseek-deepseek-v4.1-flash",
+    "effort": "provider-default",
+    "case": "compute_units",
+    "arm": "candidate",
+    "returncode": 0,
+    "seconds": 51.09,
+    "invalid": [],
+    "draft_sha256": "e098bbf5e1225bf8e18190c6c93735fb330acec9d02d3ea3c33895ba4d5ec419",
+    "usage": [
+      {
+        "input_tokens": 175928,
+        "cached_input_tokens": 161792,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 4031,
+        "reasoning_output_tokens": 0
+      }
+    ]
+  },
+  {
+    "run": "cold-route-native-r6",
+    "model": "ollama-cloud/glm-5.3-flash",
+    "effort": "max",
+    "case": "ordinary_server_announcement",
+    "arm": "baseline",
+    "returncode": 0,
+    "seconds": 66.31,
+    "invalid": [],
+    "draft_sha256": "b794ae297603fcde429b78727f022c2534455b0448c16dabd81d34d43082b407",
+    "usage": [
+      {
+        "input_tokens": 107609,
+        "cached_input_tokens": 0,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 6465,
+        "reasoning_output_tokens": 0
+      }
+    ]
+  },
+  {
+    "run": "cold-route-native-r6",
+    "model": "ollama-cloud/glm-5.3-flash",
+    "effort": "max",
+    "case": "ordinary_server_announcement",
+    "arm": "candidate",
+    "returncode": 0,
+    "seconds": 66.81,
+    "invalid": [],
+    "draft_sha256": "0435081a84354d3be7a6b98506aca8fe94f9a496965c925741556b7176bd81b3",
+    "usage": [
+      {
+        "input_tokens": 112246,
+        "cached_input_tokens": 0,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 6245,
+        "reasoning_output_tokens": 0
+      }
+    ]
+  },
+  {
+    "run": "cold-route-native-r6",
+    "model": "ollama-cloud/glm-5.3-flash",
+    "effort": "max",
+    "case": "public_rule_suggestion",
+    "arm": "baseline",
+    "returncode": 0,
+    "seconds": 87.17,
+    "invalid": [],
+    "draft_sha256": "d3132ad655c3b9fc613aefd4b9b0b08c1a8c0102492de36b4dc036c8f7cd5cae",
+    "usage": [
+      {
+        "input_tokens": 181556,
+        "cached_input_tokens": 0,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 6288,
+        "reasoning_output_tokens": 0
+      }
+    ]
+  },
+  {
+    "run": "cold-route-native-r6",
+    "model": "ollama-cloud/glm-5.3-flash",
+    "effort": "max",
+    "case": "public_rule_suggestion",
+    "arm": "candidate",
+    "returncode": 0,
+    "seconds": 85.8,
+    "invalid": [],
+    "draft_sha256": "c1085152f8536a49d40f6a6eb405857065cea092fd0b68505a0b3edc62df4341",
+    "usage": [
+      {
+        "input_tokens": 265021,
+        "cached_input_tokens": 0,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 5804,
+        "reasoning_output_tokens": 0
+      }
+    ]
+  },
+  {
+    "run": "cold-route-native-r6",
+    "model": "ollama-cloud/glm-5.3-flash",
+    "effort": "max",
+    "case": "ordinary_word_summary",
+    "arm": "baseline",
+    "returncode": 0,
+    "seconds": 93.03,
+    "invalid": [],
+    "draft_sha256": "1808e6b62aaf46e35c1017f9e17cc3a94d8215ef46abe2947c2b256f2e44ddd1",
+    "usage": [
+      {
+        "input_tokens": 100224,
+        "cached_input_tokens": 0,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 9249,
+        "reasoning_output_tokens": 0
+      }
+    ]
+  },
+  {
+    "run": "cold-route-native-r6",
+    "model": "ollama-cloud/glm-5.3-flash",
+    "effort": "max",
+    "case": "ordinary_word_summary",
+    "arm": "candidate",
+    "returncode": 0,
+    "seconds": 93.3,
+    "invalid": [],
+    "draft_sha256": "88ff2ec7e92d7c5e6855c07df6a1694e7900f4c5ed0cea5b78227d0c3da74b3c",
+    "usage": [
+      {
+        "input_tokens": 120799,
+        "cached_input_tokens": 0,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 9165,
+        "reasoning_output_tokens": 0
+      }
+    ]
+  },
+  {
+    "run": "cold-route-native-r6",
+    "model": "ollama-cloud/glm-5.3-flash",
+    "effort": "max",
+    "case": "server_technical_requirements",
+    "arm": "baseline",
+    "returncode": 0,
+    "seconds": 88.05,
+    "invalid": [],
+    "draft_sha256": "42a558a56a18852eb8eff6964e09958f8dcb3738e822f26693c39f19236076b1",
+    "usage": [
+      {
+        "input_tokens": 193887,
+        "cached_input_tokens": 0,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 6603,
+        "reasoning_output_tokens": 0
+      }
+    ]
+  },
+  {
+    "run": "cold-route-native-r6",
+    "model": "ollama-cloud/glm-5.3-flash",
+    "effort": "max",
+    "case": "server_technical_requirements",
+    "arm": "candidate",
+    "returncode": 0,
+    "seconds": 73.61,
+    "invalid": [],
+    "draft_sha256": "d6bdb6ba760ddafbcee56a22b6f2e2fc6445f3a3a3f9768fd6bfb8f77e45cb3c",
+    "usage": [
+      {
+        "input_tokens": 107018,
+        "cached_input_tokens": 0,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 5233,
+        "reasoning_output_tokens": 0
+      }
+    ]
+  },
+  {
+    "run": "cold-route-native-r6",
+    "model": "ollama-cloud/glm-5.3-flash",
+    "effort": "max",
+    "case": "compute_units",
+    "arm": "baseline",
+    "returncode": 0,
+    "seconds": 70.81,
+    "invalid": [],
+    "draft_sha256": "e69e4fc6f2ca59223f2e6dbe05fec853c37f3b2519b5fa4319b90ab159c93f9a",
+    "usage": [
+      {
+        "input_tokens": 126902,
+        "cached_input_tokens": 0,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 5579,
+        "reasoning_output_tokens": 0
+      }
+    ]
+  },
+  {
+    "run": "cold-route-native-r6",
+    "model": "ollama-cloud/glm-5.3-flash",
+    "effort": "max",
+    "case": "compute_units",
+    "arm": "candidate",
+    "returncode": 0,
+    "seconds": 110.48,
+    "invalid": [],
+    "draft_sha256": "49b417281b2693c81cd8b5adbbc4beabd253b86f6d78b779fa7932de0d90e73d",
+    "usage": [
+      {
+        "input_tokens": 239500,
+        "cached_input_tokens": 0,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 9273,
+        "reasoning_output_tokens": 0
+      }
+    ]
+  },
+  {
+    "run": "remaining-genres-native-r6-qwen",
+    "model": "alibaba-token-plan/qwen3.8-flash",
+    "effort": "medium",
+    "case": "formal_reply",
+    "arm": "baseline",
+    "returncode": 0,
+    "seconds": 51.55,
+    "invalid": [],
+    "draft_sha256": "c10c23432252be8b19c852e08cece54034a42d85fc752c52c1d0f4f8c49b06cc",
+    "usage": [
+      {
+        "input_tokens": 117236,
+        "cached_input_tokens": 94848,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 3019,
+        "reasoning_output_tokens": 2063
+      }
+    ]
+  },
+  {
+    "run": "remaining-genres-native-r6-qwen",
+    "model": "alibaba-token-plan/qwen3.8-flash",
+    "effort": "medium",
+    "case": "formal_reply",
+    "arm": "candidate",
+    "returncode": 0,
+    "seconds": 53.16,
+    "invalid": [],
+    "draft_sha256": "ab5fce0d1074fe083988518f9a5f969b80c65244cfee02adbc20443313deda49",
+    "usage": [
+      {
+        "input_tokens": 81384,
+        "cached_input_tokens": 68480,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 2527,
+        "reasoning_output_tokens": 1400
+      }
+    ]
+  },
+  {
+    "run": "remaining-genres-native-r6-qwen",
+    "model": "alibaba-token-plan/qwen3.8-flash",
+    "effort": "medium",
+    "case": "formal_opinion",
+    "arm": "baseline",
+    "returncode": 0,
+    "seconds": 88.36,
+    "invalid": [],
+    "draft_sha256": "e49c6c88c14078305babfcf3cfa37a156487376d94c36adfebc8207976c36346",
+    "usage": [
+      {
+        "input_tokens": 229767,
+        "cached_input_tokens": 201344,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 4671,
+        "reasoning_output_tokens": 3235
+      }
+    ]
+  },
+  {
+    "run": "remaining-genres-native-r6-qwen",
+    "model": "alibaba-token-plan/qwen3.8-flash",
+    "effort": "medium",
+    "case": "formal_opinion",
+    "arm": "candidate",
+    "returncode": 0,
+    "seconds": 119.77,
+    "invalid": [],
+    "draft_sha256": "aa187bed7295e28156c3885ab5c5aaa8ca9114b8b0ce9e6f9120de1f29351d78",
+    "usage": [
+      {
+        "input_tokens": 159986,
+        "cached_input_tokens": 139264,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 6853,
+        "reasoning_output_tokens": 4883
+      }
+    ]
+  },
+  {
+    "run": "remaining-genres-native-r6-qwen",
+    "model": "alibaba-token-plan/qwen3.8-flash",
+    "effort": "medium",
+    "case": "publication",
+    "arm": "baseline",
+    "returncode": 0,
+    "seconds": 70.34,
+    "invalid": [],
+    "draft_sha256": "e7b24c24254d0051c10b97b2e46073c2274c1f3fc18e54f086a281496240ff5e",
+    "usage": [
+      {
+        "input_tokens": 301650,
+        "cached_input_tokens": 278784,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 3821,
+        "reasoning_output_tokens": 2047
+      }
+    ]
+  },
+  {
+    "run": "remaining-genres-native-r6-qwen",
+    "model": "alibaba-token-plan/qwen3.8-flash",
+    "effort": "medium",
+    "case": "publication",
+    "arm": "candidate",
+    "returncode": 0,
+    "seconds": 75.95,
+    "invalid": [],
+    "draft_sha256": "25a620e12bcddb87a9601840dcec9f7b4eaf761f6172a321592b42f02a421c3d",
+    "usage": [
+      {
+        "input_tokens": 154652,
+        "cached_input_tokens": 137216,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 3906,
+        "reasoning_output_tokens": 2057
+      }
+    ]
+  },
+  {
+    "run": "remaining-genres-native-r6-qwen",
+    "model": "alibaba-token-plan/qwen3.8-flash",
+    "effort": "medium",
+    "case": "bulletin",
+    "arm": "baseline",
+    "returncode": 0,
+    "seconds": 63.92,
+    "invalid": [],
+    "draft_sha256": "ccb356b1e2e2187fae7e7a626539a4048ec7781ef023bca15831b0ef5118520d",
+    "usage": [
+      {
+        "input_tokens": 96107,
+        "cached_input_tokens": 80512,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 2774,
+        "reasoning_output_tokens": 1969
+      }
+    ]
+  },
+  {
+    "run": "remaining-genres-native-r6-qwen",
+    "model": "alibaba-token-plan/qwen3.8-flash",
+    "effort": "medium",
+    "case": "bulletin",
+    "arm": "candidate",
+    "returncode": 0,
+    "seconds": 72.25,
+    "invalid": [],
+    "draft_sha256": "550fd4ef4b83a81a8fb5624e97b803b8b1053063740559937bd3961c036eaf0b",
+    "usage": [
+      {
+        "input_tokens": 144553,
+        "cached_input_tokens": 125568,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 3261,
+        "reasoning_output_tokens": 2166
+      }
+    ]
+  },
+  {
+    "run": "remaining-genres-native-r6-qwen2",
+    "model": "alibaba-token-plan-2/qwen3.8-flash",
+    "effort": "medium",
+    "case": "project_addition",
+    "arm": "candidate",
+    "returncode": 0,
+    "seconds": 57.61,
+    "invalid": [],
+    "draft_sha256": "e652176becd023c6eea840450bf38f1535e23e02ca49013eccdf7cedefbbf95d",
+    "usage": [
+      {
+        "input_tokens": 150889,
+        "cached_input_tokens": 135808,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 3096,
+        "reasoning_output_tokens": 912
+      }
+    ]
+  },
+  {
+    "run": "remaining-genres-native-r6-qwen2",
+    "model": "alibaba-token-plan-2/qwen3.8-flash",
+    "effort": "medium",
+    "case": "project_addition",
+    "arm": "baseline",
+    "returncode": 0,
+    "seconds": 35.17,
+    "invalid": [],
+    "draft_sha256": "8ddb3cae873bd067e59887720cd50adb905ac093940d4ea8f564ce92d90ab7b0",
+    "usage": [
+      {
+        "input_tokens": 61506,
+        "cached_input_tokens": 46592,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 1602,
+        "reasoning_output_tokens": 960
+      }
+    ]
+  },
+  {
+    "run": "remaining-genres-native-r6-qwen2",
+    "model": "alibaba-token-plan-2/qwen3.8-flash",
+    "effort": "medium",
+    "case": "remediation_plan",
+    "arm": "candidate",
+    "returncode": 0,
+    "seconds": 72.28,
+    "invalid": [],
+    "draft_sha256": "b89405608dee0065bc2609fcf6110a3ed2bf0882d7fb2ce92e9b7d4ff0ce4de8",
+    "usage": [
+      {
+        "input_tokens": 96962,
+        "cached_input_tokens": 82560,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 3218,
+        "reasoning_output_tokens": 1266
+      }
+    ]
+  },
+  {
+    "run": "remaining-genres-native-r6-qwen2",
+    "model": "alibaba-token-plan-2/qwen3.8-flash",
+    "effort": "medium",
+    "case": "remediation_plan",
+    "arm": "baseline",
+    "returncode": 0,
+    "seconds": 45.97,
+    "invalid": [],
+    "draft_sha256": "bdc78f8a89a55dd29667928f05cc8d3c2f8ed7490977517e6441dfa87dbaba38",
+    "usage": [
+      {
+        "input_tokens": 70161,
+        "cached_input_tokens": 57856,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 2458,
+        "reasoning_output_tokens": 1568
+      }
+    ]
+  },
+  {
+    "run": "remaining-genres-native-r6-qwen2",
+    "model": "alibaba-token-plan-2/qwen3.8-flash",
+    "effort": "medium",
+    "case": "remediation_report",
+    "arm": "candidate",
+    "returncode": 0,
+    "seconds": 74.98,
+    "invalid": [],
+    "draft_sha256": "cb0e36e45de90e18d281e488afb282efd69d6a08e0cd55d69fe5c007dec4ae79",
+    "usage": [
+      {
+        "input_tokens": 172903,
+        "cached_input_tokens": 152320,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 4529,
+        "reasoning_output_tokens": 2816
+      }
+    ]
+  },
+  {
+    "run": "remaining-genres-native-r6-qwen2",
+    "model": "alibaba-token-plan-2/qwen3.8-flash",
+    "effort": "medium",
+    "case": "remediation_report",
+    "arm": "baseline",
+    "returncode": 0,
+    "seconds": 40.39,
+    "invalid": [],
+    "draft_sha256": "f2d8c172270a4ce215bf0837a776b1381d4205247a298eb96132f04e9e43898b",
+    "usage": [
+      {
+        "input_tokens": 105265,
+        "cached_input_tokens": 89728,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 2107,
+        "reasoning_output_tokens": 1087
+      }
+    ]
+  },
+  {
+    "run": "remaining-genres-native-r6-qwen2",
+    "model": "alibaba-token-plan-2/qwen3.8-flash",
+    "effort": "medium",
+    "case": "feedback_report",
+    "arm": "candidate",
+    "returncode": 0,
+    "seconds": 107.02,
+    "invalid": [],
+    "draft_sha256": "b619b11fbf96a9bd2024bcd660a3bc8e69b19455c37f3863b51bed1b20fdc6b5",
+    "usage": [
+      {
+        "input_tokens": 246375,
+        "cached_input_tokens": 222848,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 6419,
+        "reasoning_output_tokens": 3824
+      }
+    ]
+  },
+  {
+    "run": "remaining-genres-native-r6-qwen2",
+    "model": "alibaba-token-plan-2/qwen3.8-flash",
+    "effort": "medium",
+    "case": "feedback_report",
+    "arm": "baseline",
+    "returncode": 0,
+    "seconds": 84.72,
+    "invalid": [],
+    "draft_sha256": "c6cd6de32a61bbf19158c7b90b0f7f5e28be3193e435def0027e48e2c3b30ab8",
+    "usage": [
+      {
+        "input_tokens": 111688,
+        "cached_input_tokens": 96000,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 2862,
+        "reasoning_output_tokens": 2125
+      }
+    ]
+  },
+  {
+    "run": "remaining-genres-native-r6-minimax",
+    "model": "minimax-cn/MiniMax-M3",
+    "effort": "medium",
+    "case": "complaint",
+    "arm": "candidate",
+    "returncode": 0,
+    "seconds": 69.03,
+    "invalid": [],
+    "draft_sha256": "4bfa4b3b3e497cdabd4232a9607a426e2c41758d9e9219ba5b41f089de749a91",
+    "usage": [
+      {
+        "input_tokens": 128235,
+        "cached_input_tokens": 111616,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 4207,
+        "reasoning_output_tokens": 0
+      }
+    ]
+  },
+  {
+    "run": "remaining-genres-native-r6-minimax",
+    "model": "minimax-cn/MiniMax-M3",
+    "effort": "medium",
+    "case": "complaint",
+    "arm": "baseline",
+    "returncode": 0,
+    "seconds": 47.98,
+    "invalid": [],
+    "draft_sha256": "8b16e1901e9c687dabe93741f96d21a341f6707e014bdb86376b37709c67c146",
+    "usage": [
+      {
+        "input_tokens": 74839,
+        "cached_input_tokens": 51674,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 8226,
+        "reasoning_output_tokens": 7008
+      }
+    ]
+  },
+  {
+    "run": "remaining-genres-native-r6-minimax",
+    "model": "minimax-cn/MiniMax-M3",
+    "effort": "medium",
+    "case": "parallel_reply",
+    "arm": "candidate",
+    "returncode": 0,
+    "seconds": 51.27,
+    "invalid": [],
+    "draft_sha256": "853c0132ea796223fac244d50d8c5e5e28ee8bc5656298fcd6a48048f9efc03e",
+    "usage": [
+      {
+        "input_tokens": 114558,
+        "cached_input_tokens": 93687,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 3939,
+        "reasoning_output_tokens": 2733
+      }
+    ]
+  },
+  {
+    "run": "remaining-genres-native-r6-minimax",
+    "model": "minimax-cn/MiniMax-M3",
+    "effort": "medium",
+    "case": "parallel_reply",
+    "arm": "baseline",
+    "returncode": 0,
+    "seconds": 53.38,
+    "invalid": [],
+    "draft_sha256": "e311b6f75a3ba8b73f66a9a65f73432f3ffc302d90ae954bd389514820e624c8",
+    "usage": [
+      {
+        "input_tokens": 174271,
+        "cached_input_tokens": 137119,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 9070,
+        "reasoning_output_tokens": 7668
+      }
+    ]
+  },
+  {
+    "run": "remaining-genres-native-r6-minimax",
+    "model": "minimax-cn/MiniMax-M3",
+    "effort": "medium",
+    "case": "deployment",
+    "arm": "candidate",
+    "returncode": 0,
+    "seconds": 137.16,
+    "invalid": [],
+    "draft_sha256": "9b77d634514ed0668e11b780b406fce1e2dc3c32401d3b28f806e95a5651a8e4",
+    "usage": [
+      {
+        "input_tokens": 426332,
+        "cached_input_tokens": 400256,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 8251,
+        "reasoning_output_tokens": 0
+      }
+    ]
+  },
+  {
+    "run": "remaining-genres-native-r6-minimax",
+    "model": "minimax-cn/MiniMax-M3",
+    "effort": "medium",
+    "case": "deployment",
+    "arm": "baseline",
+    "returncode": 0,
+    "seconds": 89.42,
+    "invalid": [],
+    "draft_sha256": "caff661832b6f17fd50d0efa99b44d4b47fa28e700749d0f8f8cebfa5591b23a",
+    "usage": [
+      {
+        "input_tokens": 220478,
+        "cached_input_tokens": 188757,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 9716,
+        "reasoning_output_tokens": 7994
+      }
+    ]
+  },
+  {
+    "run": "remaining-genres-native-r6-minimax",
+    "model": "minimax-cn/MiniMax-M3",
+    "effort": "medium",
+    "case": "news_commentary",
+    "arm": "candidate",
+    "returncode": 0,
+    "seconds": 67.12,
+    "invalid": [],
+    "draft_sha256": "9eb214535aa39d547ad085a3ec0d40d1652c032a4640617acf07097ff4d8ddf3",
+    "usage": [
+      {
+        "input_tokens": 271109,
+        "cached_input_tokens": 251790,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 5063,
+        "reasoning_output_tokens": 2410
+      }
+    ]
+  },
+  {
+    "run": "remaining-genres-native-r6-minimax",
+    "model": "minimax-cn/MiniMax-M3",
+    "effort": "medium",
+    "case": "news_commentary",
+    "arm": "baseline",
+    "returncode": 0,
+    "seconds": 209.2,
+    "invalid": [],
+    "draft_sha256": "e1b93f2fb0594df889c36e3b0e4a2c02485b51af5d87f41bb63b0d35d241f38d",
+    "usage": [
+      {
+        "input_tokens": 778453,
+        "cached_input_tokens": 729093,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 31232,
+        "reasoning_output_tokens": 25092
+      }
+    ]
+  },
+  {
+    "run": "legacy-regression-repeat-r6-qwen",
+    "model": "alibaba-token-plan/qwen3.8-flash",
+    "effort": "medium",
+    "case": "server_technical_requirements",
+    "arm": "baseline",
+    "returncode": 0,
+    "seconds": 93.44,
+    "invalid": [],
+    "draft_sha256": "5fb35400bc7e9b04db1c143237a6688b9ec701f8fc22ef51a60c1b67416ed4b5",
+    "usage": [
+      {
+        "input_tokens": 183557,
+        "cached_input_tokens": 163456,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 5844,
+        "reasoning_output_tokens": 3506
+      }
+    ]
+  },
+  {
+    "run": "legacy-regression-repeat-r6-qwen",
+    "model": "alibaba-token-plan/qwen3.8-flash",
+    "effort": "medium",
+    "case": "server_technical_requirements",
+    "arm": "candidate",
+    "returncode": 0,
+    "seconds": 91.17,
+    "invalid": [],
+    "draft_sha256": "b5f31be1cbc0dc7ff35fae440163aca7e766f7a3e781033d11531d9c11e170f7",
+    "usage": [
+      {
+        "input_tokens": 173409,
+        "cached_input_tokens": 150144,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 4635,
+        "reasoning_output_tokens": 2579
+      }
+    ]
+  },
+  {
+    "run": "legacy-regression-repeat-r6-qwen",
+    "model": "alibaba-token-plan/qwen3.8-flash",
+    "effort": "medium",
+    "case": "open_letter",
+    "arm": "baseline",
+    "returncode": 0,
+    "seconds": 38.7,
+    "invalid": [],
+    "draft_sha256": "447e29b4339694bd0d20967bccdabbb44d0492d3cfe0e6255767800e56dce015",
+    "usage": [
+      {
+        "input_tokens": 59305,
+        "cached_input_tokens": 44928,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 1817,
+        "reasoning_output_tokens": 1179
+      }
+    ]
+  },
+  {
+    "run": "legacy-regression-repeat-r6-qwen",
+    "model": "alibaba-token-plan/qwen3.8-flash",
+    "effort": "medium",
+    "case": "open_letter",
+    "arm": "candidate",
+    "returncode": 0,
+    "seconds": 114.3,
+    "invalid": [],
+    "draft_sha256": "bb73532161bf71cdeb144fdefe47a4f03899e0ad35d08f33c811a546107bd525",
+    "usage": [
+      {
+        "input_tokens": 232281,
+        "cached_input_tokens": 211328,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 7135,
+        "reasoning_output_tokens": 4121
+      }
+    ]
+  },
+  {
+    "run": "legacy-regression-repeat-r6-qwen",
+    "model": "alibaba-token-plan/qwen3.8-flash",
+    "effort": "medium",
+    "case": "narration",
+    "arm": "baseline",
+    "returncode": 0,
+    "seconds": 97.91,
+    "invalid": [],
+    "draft_sha256": "20f0513691017cf05e782d768f084c06199ffbe00c6fb17597b718d79ec29f23",
+    "usage": [
+      {
+        "input_tokens": 159685,
+        "cached_input_tokens": 134144,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 3820,
+        "reasoning_output_tokens": 2698
+      }
+    ]
+  },
+  {
+    "run": "legacy-regression-repeat-r6-qwen",
+    "model": "alibaba-token-plan/qwen3.8-flash",
+    "effort": "medium",
+    "case": "narration",
+    "arm": "candidate",
+    "returncode": 0,
+    "seconds": 135.78,
+    "invalid": [],
+    "draft_sha256": "295445234fb31d08e7381371dc983e69bf4dcedcb9c683e1088a38df41c8e334",
+    "usage": [
+      {
+        "input_tokens": 341385,
+        "cached_input_tokens": 314496,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 8143,
+        "reasoning_output_tokens": 3537
+      }
+    ]
+  },
+  {
+    "run": "legacy-regression-repeat-r6-qwen",
+    "model": "alibaba-token-plan/qwen3.8-flash",
+    "effort": "medium",
+    "case": "interface_technical_requirements",
+    "arm": "baseline",
+    "returncode": 0,
+    "seconds": 152.59,
+    "invalid": [],
+    "draft_sha256": "d036c01baa3493feaef4adffad14532d8bd07cb41cd151c71f77a26d1e1ef7db",
+    "usage": [
+      {
+        "input_tokens": 312482,
+        "cached_input_tokens": 280192,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 8811,
+        "reasoning_output_tokens": 5768
+      }
+    ]
+  },
+  {
+    "run": "legacy-regression-repeat-r6-qwen",
+    "model": "alibaba-token-plan/qwen3.8-flash",
+    "effort": "medium",
+    "case": "interface_technical_requirements",
+    "arm": "candidate",
+    "returncode": 0,
+    "seconds": 168.58,
+    "invalid": [],
+    "draft_sha256": "a3c350731301cabd12760c8c532b63125f37ad02b77e84c628a0286684bdd8c2",
+    "usage": [
+      {
+        "input_tokens": 362259,
+        "cached_input_tokens": 325888,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 7881,
+        "reasoning_output_tokens": 3265
+      }
+    ]
+  },
+  {
+    "run": "legacy-regression-repeat-r6-qwen",
+    "model": "alibaba-token-plan/qwen3.8-flash",
+    "effort": "medium",
+    "case": "synthesis_advisory",
+    "arm": "baseline",
+    "returncode": 0,
+    "seconds": 82.26,
+    "invalid": [],
+    "draft_sha256": "692ce37c848710d4ccfbc19a42d11e8bc88f8d5aa77041fa59038fa511ef3691",
+    "usage": [
+      {
+        "input_tokens": 83116,
+        "cached_input_tokens": 59008,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 5053,
+        "reasoning_output_tokens": 3993
+      }
+    ]
+  },
+  {
+    "run": "legacy-regression-repeat-r6-qwen",
+    "model": "alibaba-token-plan/qwen3.8-flash",
+    "effort": "medium",
+    "case": "synthesis_advisory",
+    "arm": "candidate",
+    "returncode": 0,
+    "seconds": 126.75,
+    "invalid": [],
+    "draft_sha256": "e28015130b5a8df32148c2185e44cd9f7c59bf8d2f0adf5b28ddd795a074122e",
+    "usage": [
+      {
+        "input_tokens": 305900,
+        "cached_input_tokens": 279808,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 5613,
+        "reasoning_output_tokens": 2048
+      }
+    ]
+  },
+  {
+    "run": "legacy-regression-repeat-r6-minimax",
+    "model": "minimax-cn/MiniMax-M3",
+    "effort": "medium",
+    "case": "server_technical_requirements",
+    "arm": "candidate",
+    "returncode": 0,
+    "seconds": 137.03,
+    "invalid": [],
+    "draft_sha256": "9883e409b792586e2f9ba17c8e6017a8dffe5be91eba18fe7630f304ed330e6c",
+    "usage": [
+      {
+        "input_tokens": 418358,
+        "cached_input_tokens": 390784,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 7912,
+        "reasoning_output_tokens": 0
+      }
+    ]
+  },
+  {
+    "run": "legacy-regression-repeat-r6-minimax",
+    "model": "minimax-cn/MiniMax-M3",
+    "effort": "medium",
+    "case": "server_technical_requirements",
+    "arm": "baseline",
+    "returncode": 0,
+    "seconds": 45.89,
+    "invalid": [],
+    "draft_sha256": "a19ec15379ff416eea838d29f8d9c63b2c86c3b04d80afa112bea3800a39bc44",
+    "usage": [
+      {
+        "input_tokens": 64845,
+        "cached_input_tokens": 47273,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 5616,
+        "reasoning_output_tokens": 4808
+      }
+    ]
+  },
+  {
+    "run": "legacy-regression-repeat-r6-minimax",
+    "model": "minimax-cn/MiniMax-M3",
+    "effort": "medium",
+    "case": "open_letter",
+    "arm": "candidate",
+    "returncode": 0,
+    "seconds": 61.83,
+    "invalid": [],
+    "draft_sha256": "18eda5284a44023b1909413e176ee46918d5722d5af3f31fc9ddef1120ec523b",
+    "usage": [
+      {
+        "input_tokens": 219721,
+        "cached_input_tokens": 204032,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 6324,
+        "reasoning_output_tokens": 4007
+      }
+    ]
+  },
+  {
+    "run": "legacy-regression-repeat-r6-minimax",
+    "model": "minimax-cn/MiniMax-M3",
+    "effort": "medium",
+    "case": "open_letter",
+    "arm": "baseline",
+    "returncode": 0,
+    "seconds": 35.3,
+    "invalid": [],
+    "draft_sha256": "f8d36340eed325dcf3d90f5edc7301dfedeaf8e10315ea75aea0388dea1c7e08",
+    "usage": [
+      {
+        "input_tokens": 86573,
+        "cached_input_tokens": 68181,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 6110,
+        "reasoning_output_tokens": 5439
+      }
+    ]
+  },
+  {
+    "run": "legacy-regression-repeat-r6-minimax",
+    "model": "minimax-cn/MiniMax-M3",
+    "effort": "medium",
+    "case": "narration",
+    "arm": "candidate",
+    "returncode": 0,
+    "seconds": 50.03,
+    "invalid": [],
+    "draft_sha256": "e746dcdfe0919df5ceb8446c736a521e2926063dd6398331c87e925414ce059b",
+    "usage": [
+      {
+        "input_tokens": 109672,
+        "cached_input_tokens": 93866,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 9461,
+        "reasoning_output_tokens": 7875
+      }
+    ]
+  },
+  {
+    "run": "legacy-regression-repeat-r6-minimax",
+    "model": "minimax-cn/MiniMax-M3",
+    "effort": "medium",
+    "case": "narration",
+    "arm": "baseline",
+    "returncode": 0,
+    "seconds": 7.58,
+    "invalid": [
+      "missing_skill_read_trace"
+    ],
+    "draft_sha256": "5490b2fc833f644757562f036e929e504b1ee7d01c927b5bf56c1684428ac30e",
+    "usage": [
+      {
+        "input_tokens": 27689,
+        "cached_input_tokens": 18432,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 389,
+        "reasoning_output_tokens": 0
+      }
+    ]
+  },
+  {
+    "run": "legacy-regression-repeat-r6-minimax",
+    "model": "minimax-cn/MiniMax-M3",
+    "effort": "medium",
+    "case": "interface_technical_requirements",
+    "arm": "candidate",
+    "returncode": 0,
+    "seconds": 163.03,
+    "invalid": [],
+    "draft_sha256": "4ffab5df5dab0274d2e898fdb57a935d3359bc31d9b8bd376421140780048577",
+    "usage": [
+      {
+        "input_tokens": 1424974,
+        "cached_input_tokens": 1361939,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 24510,
+        "reasoning_output_tokens": 13466
+      }
+    ]
+  },
+  {
+    "run": "legacy-regression-repeat-r6-minimax",
+    "model": "minimax-cn/MiniMax-M3",
+    "effort": "medium",
+    "case": "interface_technical_requirements",
+    "arm": "baseline",
+    "returncode": 0,
+    "seconds": 49.86,
+    "invalid": [],
+    "draft_sha256": "2986ca0e41397b08d6b48a4f55d88046196238f793b697efb4d95a0bc1de904b",
+    "usage": [
+      {
+        "input_tokens": 111595,
+        "cached_input_tokens": 97536,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 3475,
+        "reasoning_output_tokens": 0
+      }
+    ]
+  }
+]

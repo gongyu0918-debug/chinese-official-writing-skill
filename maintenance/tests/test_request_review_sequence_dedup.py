@@ -16,7 +16,8 @@ class RequestReviewSequenceDedupTests(unittest.TestCase):
 
         self.assertNotIn("可参考顺序：请批事项", text)
         self.assertIn("开头或前部明确请批事项", text)
-        self.assertIn("依据、现状、必要性、经费或资源需求、拟实施安排", text)
+        self.assertIn("在材料支持范围内说明请批事项所需的依据、现状或必要性", text)
+        self.assertIn("经费或资源需求、拟实施安排只在材料给出或请批事项本身需要时核对", text)
         self.assertIn("妥否，请批示", text)
         self.assertIn("## 申请", text)
 

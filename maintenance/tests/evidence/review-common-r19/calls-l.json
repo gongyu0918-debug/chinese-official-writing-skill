@@ -1,0 +1,746 @@
+[
+  {
+    "run": "review-common-native-r19-qwen",
+    "model": "alibaba-token-plan/qwen3.8-flash",
+    "effort": "medium",
+    "case": "review",
+    "arm": "baseline",
+    "returncode": 0,
+    "seconds": 108.84,
+    "invalid": [],
+    "draft_sha256": "edb19ecb4bc3285169f5cd87f53f01f766473c276778e3a15f25264e2d0d6e24",
+    "usage": [
+      {
+        "input_tokens": 188940,
+        "cached_input_tokens": 162944,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 4837,
+        "reasoning_output_tokens": 2514
+      }
+    ]
+  },
+  {
+    "run": "review-common-native-r19-qwen",
+    "model": "alibaba-token-plan/qwen3.8-flash",
+    "effort": "medium",
+    "case": "review",
+    "arm": "candidate",
+    "returncode": 0,
+    "seconds": 261.23,
+    "invalid": [],
+    "draft_sha256": "937316f31e966ad925d1a0c38673f51caed15f28549db0d17392700efb792064",
+    "usage": [
+      {
+        "input_tokens": 171430,
+        "cached_input_tokens": 154880,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 8907,
+        "reasoning_output_tokens": 5924
+      }
+    ]
+  },
+  {
+    "run": "review-common-native-r19-qwen",
+    "model": "alibaba-token-plan/qwen3.8-flash",
+    "effort": "medium",
+    "case": "review_rewrite",
+    "arm": "baseline",
+    "returncode": 0,
+    "seconds": 201.91,
+    "invalid": [],
+    "draft_sha256": "7ed6e6f9ccf6fc9cb920cd48dce8344c2f620e67e3168445b7f09978049be47e",
+    "usage": [
+      {
+        "input_tokens": 155484,
+        "cached_input_tokens": 139392,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 6414,
+        "reasoning_output_tokens": 4020
+      }
+    ]
+  },
+  {
+    "run": "review-common-native-r19-qwen",
+    "model": "alibaba-token-plan/qwen3.8-flash",
+    "effort": "medium",
+    "case": "review_rewrite",
+    "arm": "candidate",
+    "returncode": 0,
+    "seconds": 320.56,
+    "invalid": [],
+    "draft_sha256": "028902622b6ed2b24c2674ab4dfc09bd94c60cf8a4af2b8e0a978c474e625433",
+    "usage": [
+      {
+        "input_tokens": 268591,
+        "cached_input_tokens": 248576,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 10911,
+        "reasoning_output_tokens": 7101
+      }
+    ]
+  },
+  {
+    "run": "review-common-native-r19-qwen",
+    "model": "alibaba-token-plan/qwen3.8-flash",
+    "effort": "medium",
+    "case": "commentary_review_only",
+    "arm": "baseline",
+    "returncode": 0,
+    "seconds": 127.28,
+    "invalid": [],
+    "draft_sha256": "51d411126ab8335ab084204e73917cf7ddafbe24c5c86c1670454da6130fbdc3",
+    "usage": [
+      {
+        "input_tokens": 136403,
+        "cached_input_tokens": 123520,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 3934,
+        "reasoning_output_tokens": 1884
+      }
+    ]
+  },
+  {
+    "run": "review-common-native-r19-qwen",
+    "model": "alibaba-token-plan/qwen3.8-flash",
+    "effort": "medium",
+    "case": "commentary_review_only",
+    "arm": "candidate",
+    "returncode": 0,
+    "seconds": 137.52,
+    "invalid": [],
+    "draft_sha256": "29f6a053caf4b37fccd3dab57809fd0649940eafba83db650306283ece15a9a2",
+    "usage": [
+      {
+        "input_tokens": 147370,
+        "cached_input_tokens": 130688,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 5762,
+        "reasoning_output_tokens": 3118
+      }
+    ]
+  },
+  {
+    "run": "review-common-native-r19-qwen",
+    "model": "alibaba-token-plan/qwen3.8-flash",
+    "effort": "medium",
+    "case": "commentary_review_rewrite",
+    "arm": "baseline",
+    "returncode": 0,
+    "seconds": 152.67,
+    "invalid": [],
+    "draft_sha256": "f2824aab30bbe15d7c4242d13799c373a6a6388b36c7a1d73558c3aedd11bf3b",
+    "usage": [
+      {
+        "input_tokens": 108197,
+        "cached_input_tokens": 91520,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 5253,
+        "reasoning_output_tokens": 3437
+      }
+    ]
+  },
+  {
+    "run": "review-common-native-r19-qwen",
+    "model": "alibaba-token-plan/qwen3.8-flash",
+    "effort": "medium",
+    "case": "commentary_review_rewrite",
+    "arm": "candidate",
+    "returncode": 0,
+    "seconds": 82.06,
+    "invalid": [],
+    "draft_sha256": "949c96f9eb76516afd47ce374bdf39e348d2a47755b215467bba0bfe5f014aa7",
+    "usage": [
+      {
+        "input_tokens": 146355,
+        "cached_input_tokens": 129664,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 3281,
+        "reasoning_output_tokens": 1456
+      }
+    ]
+  },
+  {
+    "run": "review-common-native-r19-deepseek",
+    "model": "command-code/deepseek-deepseek-v4.1-flash",
+    "effort": "provider-default",
+    "case": "review",
+    "arm": "baseline",
+    "returncode": 0,
+    "seconds": 56.19,
+    "invalid": [],
+    "draft_sha256": "8f0e17a1951a6c7c219076bc2eb74145c5fc6e3ead93daa94e125100cf9ce49c",
+    "usage": [
+      {
+        "input_tokens": 155775,
+        "cached_input_tokens": 141696,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 4650,
+        "reasoning_output_tokens": 0
+      }
+    ]
+  },
+  {
+    "run": "review-common-native-r19-deepseek",
+    "model": "command-code/deepseek-deepseek-v4.1-flash",
+    "effort": "provider-default",
+    "case": "review",
+    "arm": "candidate",
+    "returncode": 0,
+    "seconds": 48.22,
+    "invalid": [],
+    "draft_sha256": "fe181152da0bd01269c6792eb16a4c2921adda8fbdd25afd4d0e0ef85f5c147b",
+    "usage": [
+      {
+        "input_tokens": 134737,
+        "cached_input_tokens": 120832,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 3807,
+        "reasoning_output_tokens": 0
+      }
+    ]
+  },
+  {
+    "run": "review-common-native-r19-deepseek",
+    "model": "command-code/deepseek-deepseek-v4.1-flash",
+    "effort": "provider-default",
+    "case": "review_rewrite",
+    "arm": "baseline",
+    "returncode": 0,
+    "seconds": 127.59,
+    "invalid": [],
+    "draft_sha256": "ba6a5e2e89fc910dc3f4f639b1f232ce081afc7e501c4fa00b29ebf2a9d0b383",
+    "usage": [
+      {
+        "input_tokens": 355068,
+        "cached_input_tokens": 332928,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 14976,
+        "reasoning_output_tokens": 0
+      }
+    ]
+  },
+  {
+    "run": "review-common-native-r19-deepseek",
+    "model": "command-code/deepseek-deepseek-v4.1-flash",
+    "effort": "provider-default",
+    "case": "review_rewrite",
+    "arm": "candidate",
+    "returncode": 0,
+    "seconds": 95.88,
+    "invalid": [],
+    "draft_sha256": "1ee0dcf7331bb196d847a28b9101def7b0f40f9f8c0bc72b5779937a1b565b2e",
+    "usage": [
+      {
+        "input_tokens": 241424,
+        "cached_input_tokens": 223616,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 10815,
+        "reasoning_output_tokens": 0
+      }
+    ]
+  },
+  {
+    "run": "review-common-native-r19-deepseek",
+    "model": "command-code/deepseek-deepseek-v4.1-flash",
+    "effort": "provider-default",
+    "case": "commentary_review_only",
+    "arm": "baseline",
+    "returncode": 0,
+    "seconds": 102.39,
+    "invalid": [],
+    "draft_sha256": "e10f7aa2b405b4eed19486901e813a779bee54982df41eafb224117d48e94ae2",
+    "usage": [
+      {
+        "input_tokens": 271236,
+        "cached_input_tokens": 254464,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 10839,
+        "reasoning_output_tokens": 0
+      }
+    ]
+  },
+  {
+    "run": "review-common-native-r19-deepseek",
+    "model": "command-code/deepseek-deepseek-v4.1-flash",
+    "effort": "provider-default",
+    "case": "commentary_review_only",
+    "arm": "candidate",
+    "returncode": 0,
+    "seconds": 76.28,
+    "invalid": [],
+    "draft_sha256": "edfee1d0f39617581a0697351a524a5d1620d740907487a6e08ad511bba2a181",
+    "usage": [
+      {
+        "input_tokens": 180349,
+        "cached_input_tokens": 167296,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 8118,
+        "reasoning_output_tokens": 0
+      }
+    ]
+  },
+  {
+    "run": "review-common-native-r19-deepseek",
+    "model": "command-code/deepseek-deepseek-v4.1-flash",
+    "effort": "provider-default",
+    "case": "commentary_review_rewrite",
+    "arm": "baseline",
+    "returncode": 0,
+    "seconds": 49.92,
+    "invalid": [],
+    "draft_sha256": "706db8f230e40186d91f1de27177baea85fb01cc9f2b5c6f92352c472d6f9ddf",
+    "usage": [
+      {
+        "input_tokens": 141908,
+        "cached_input_tokens": 126336,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 3948,
+        "reasoning_output_tokens": 0
+      }
+    ]
+  },
+  {
+    "run": "review-common-native-r19-deepseek",
+    "model": "command-code/deepseek-deepseek-v4.1-flash",
+    "effort": "provider-default",
+    "case": "commentary_review_rewrite",
+    "arm": "candidate",
+    "returncode": 0,
+    "seconds": 68.58,
+    "invalid": [],
+    "draft_sha256": "a581a64c22dbe85c89028e28b8d894b7c944c0454c5eb6983d1d7a493a68b573",
+    "usage": [
+      {
+        "input_tokens": 163874,
+        "cached_input_tokens": 153728,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 6061,
+        "reasoning_output_tokens": 0
+      }
+    ]
+  },
+  {
+    "run": "review-common-native-r19-repaired",
+    "model": "alibaba-token-plan/qwen3.8-flash",
+    "effort": "medium",
+    "case": "commentary_review_only",
+    "arm": "baseline",
+    "returncode": 0,
+    "seconds": 187.81,
+    "invalid": [],
+    "draft_sha256": "2cc542e69fab09e8295dad0082bf6ae8ba55978f609d492748a3b2632e2c41d9",
+    "usage": [
+      {
+        "input_tokens": 107153,
+        "cached_input_tokens": 93056,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 5908,
+        "reasoning_output_tokens": 3710
+      }
+    ]
+  },
+  {
+    "run": "review-common-native-r19-repaired",
+    "model": "alibaba-token-plan/qwen3.8-flash",
+    "effort": "medium",
+    "case": "commentary_review_only",
+    "arm": "candidate",
+    "returncode": 0,
+    "seconds": 139.19,
+    "invalid": [],
+    "draft_sha256": "61f2a71f492a34b24cb75597a8afe678e3d5487442b0da7daf1016eb42c46972",
+    "usage": [
+      {
+        "input_tokens": 177306,
+        "cached_input_tokens": 159232,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 5858,
+        "reasoning_output_tokens": 2292
+      }
+    ]
+  },
+  {
+    "run": "review-common-native-r19-repaired",
+    "model": "alibaba-token-plan/qwen3.8-flash",
+    "effort": "medium",
+    "case": "review_rewrite",
+    "arm": "baseline",
+    "returncode": 0,
+    "seconds": 288.64,
+    "invalid": [],
+    "draft_sha256": "6a2d9844d97e97a708feffc523b28c508a920c645be07d9f1979d62cc480f3f2",
+    "usage": [
+      {
+        "input_tokens": 150747,
+        "cached_input_tokens": 134144,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 9887,
+        "reasoning_output_tokens": 7529
+      }
+    ]
+  },
+  {
+    "run": "review-common-native-r19-repaired",
+    "model": "alibaba-token-plan/qwen3.8-flash",
+    "effort": "medium",
+    "case": "review_rewrite",
+    "arm": "candidate",
+    "returncode": 0,
+    "seconds": 164.94,
+    "invalid": [],
+    "draft_sha256": "f9a8b50ce40572dc9ac02b557971004274a7301303f0be9a1979ea8c248ae070",
+    "usage": [
+      {
+        "input_tokens": 201795,
+        "cached_input_tokens": 182528,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 5235,
+        "reasoning_output_tokens": 2723
+      }
+    ]
+  },
+  {
+    "run": "review-common-native-r19-repaired",
+    "model": "command-code/deepseek-deepseek-v4.1-flash",
+    "effort": "provider-default",
+    "case": "commentary_review_only",
+    "arm": "baseline",
+    "returncode": 0,
+    "seconds": 84.03,
+    "invalid": [],
+    "draft_sha256": "0227c851dad9d4cf92ef2dc454978243fc3071cc6bd38210c682208a5bdb001a",
+    "usage": [
+      {
+        "input_tokens": 126980,
+        "cached_input_tokens": 114816,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 10333,
+        "reasoning_output_tokens": 0
+      }
+    ]
+  },
+  {
+    "run": "review-common-native-r19-repaired",
+    "model": "command-code/deepseek-deepseek-v4.1-flash",
+    "effort": "provider-default",
+    "case": "commentary_review_only",
+    "arm": "candidate",
+    "returncode": 0,
+    "seconds": 69.97,
+    "invalid": [],
+    "draft_sha256": "dbbaf142b446e83793c216abe314f3caa001948268f7feeefa34fbed5a920adb",
+    "usage": [
+      {
+        "input_tokens": 268252,
+        "cached_input_tokens": 251776,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 6552,
+        "reasoning_output_tokens": 0
+      }
+    ]
+  },
+  {
+    "run": "review-common-native-r19-repaired",
+    "model": "command-code/deepseek-deepseek-v4.1-flash",
+    "effort": "provider-default",
+    "case": "review_rewrite",
+    "arm": "baseline",
+    "returncode": 0,
+    "seconds": 62.5,
+    "invalid": [],
+    "draft_sha256": "cc4ed719db56521f37f2f2dd4ef2170e51afc6e2f6badbdc65030a793582a368",
+    "usage": [
+      {
+        "input_tokens": 155234,
+        "cached_input_tokens": 140672,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 5784,
+        "reasoning_output_tokens": 0
+      }
+    ]
+  },
+  {
+    "run": "review-common-native-r19-repaired",
+    "model": "command-code/deepseek-deepseek-v4.1-flash",
+    "effort": "provider-default",
+    "case": "review_rewrite",
+    "arm": "candidate",
+    "returncode": 0,
+    "seconds": 59.03,
+    "invalid": [],
+    "draft_sha256": "6b00af5a1cee1e6b2468ef5ba1e2f150f7a6ad900d5eaca4a249841593e13c57",
+    "usage": [
+      {
+        "input_tokens": 105503,
+        "cached_input_tokens": 94208,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 5651,
+        "reasoning_output_tokens": 0
+      }
+    ]
+  },
+  {
+    "run": "review-common-native-r19-calculated",
+    "model": "alibaba-token-plan/qwen3.8-flash",
+    "effort": "medium",
+    "case": "review_rewrite",
+    "arm": "baseline",
+    "returncode": 0,
+    "seconds": 159.02,
+    "invalid": [],
+    "draft_sha256": "4816df077f00b9128fdb2d3ca3962a8264c91efa2ca77dd76c9708f167cde264",
+    "usage": [
+      {
+        "input_tokens": 156000,
+        "cached_input_tokens": 133632,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 4417,
+        "reasoning_output_tokens": 1894
+      }
+    ]
+  },
+  {
+    "run": "review-common-native-r19-calculated",
+    "model": "alibaba-token-plan/qwen3.8-flash",
+    "effort": "medium",
+    "case": "review_rewrite",
+    "arm": "candidate",
+    "returncode": 0,
+    "seconds": 185.66,
+    "invalid": [],
+    "draft_sha256": "04f2b8ec462349d547516dce7c75a0b3cdeb7f1bf08a14dc34185b2c6af47e3c",
+    "usage": [
+      {
+        "input_tokens": 188930,
+        "cached_input_tokens": 172032,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 6451,
+        "reasoning_output_tokens": 3766
+      }
+    ]
+  },
+  {
+    "run": "review-common-native-r19-calculated",
+    "model": "alibaba-token-plan/qwen3.8-flash",
+    "effort": "medium",
+    "case": "commentary_review_only",
+    "arm": "baseline",
+    "returncode": 0,
+    "seconds": 148.8,
+    "invalid": [],
+    "draft_sha256": "ece37e13cd1f45177191d9b7107efb6a2367a94afeaf6a1bea928f156c7330ee",
+    "usage": [
+      {
+        "input_tokens": 197123,
+        "cached_input_tokens": 175232,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 4701,
+        "reasoning_output_tokens": 1786
+      }
+    ]
+  },
+  {
+    "run": "review-common-native-r19-calculated",
+    "model": "alibaba-token-plan/qwen3.8-flash",
+    "effort": "medium",
+    "case": "commentary_review_only",
+    "arm": "candidate",
+    "returncode": 0,
+    "seconds": 183.44,
+    "invalid": [],
+    "draft_sha256": "a8a4fdc63d778fc016d118ed2c359b22633a46188d7de327ee5475ac607f5f04",
+    "usage": [
+      {
+        "input_tokens": 140753,
+        "cached_input_tokens": 126592,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 5818,
+        "reasoning_output_tokens": 2533
+      }
+    ]
+  },
+  {
+    "run": "review-common-native-r19-calculated",
+    "model": "command-code/deepseek-deepseek-v4.1-flash",
+    "effort": "provider-default",
+    "case": "review_rewrite",
+    "arm": "baseline",
+    "returncode": 0,
+    "seconds": 51.36,
+    "invalid": [],
+    "draft_sha256": "5e3ccfd7b7f3095660f3b4892c67deb24c2bad357ec5317264f08dad6d1fb1e9",
+    "usage": [
+      {
+        "input_tokens": 166438,
+        "cached_input_tokens": 150144,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 4642,
+        "reasoning_output_tokens": 0
+      }
+    ]
+  },
+  {
+    "run": "review-common-native-r19-calculated",
+    "model": "command-code/deepseek-deepseek-v4.1-flash",
+    "effort": "provider-default",
+    "case": "review_rewrite",
+    "arm": "candidate",
+    "returncode": 0,
+    "seconds": 55.81,
+    "invalid": [],
+    "draft_sha256": "9cc8dcd08698a4f692e41029c56d1c79fdcf1b6dd7fdff43041f87749b7bbc2b",
+    "usage": [
+      {
+        "input_tokens": 134624,
+        "cached_input_tokens": 120576,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 6706,
+        "reasoning_output_tokens": 0
+      }
+    ]
+  },
+  {
+    "run": "review-common-native-r19-calculated",
+    "model": "command-code/deepseek-deepseek-v4.1-flash",
+    "effort": "provider-default",
+    "case": "commentary_review_only",
+    "arm": "baseline",
+    "returncode": 0,
+    "seconds": 78.7,
+    "invalid": [],
+    "draft_sha256": "a845ff0d7c3efeacb1c420a932658b0b61bae4c19dc7e6131a81a87267131f06",
+    "usage": [
+      {
+        "input_tokens": 198171,
+        "cached_input_tokens": 181504,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 8781,
+        "reasoning_output_tokens": 0
+      }
+    ]
+  },
+  {
+    "run": "review-common-native-r19-calculated",
+    "model": "command-code/deepseek-deepseek-v4.1-flash",
+    "effort": "provider-default",
+    "case": "commentary_review_only",
+    "arm": "candidate",
+    "returncode": 0,
+    "seconds": 94.39,
+    "invalid": [],
+    "draft_sha256": "b003085f29b87f5e3199a3057f62746bd22be833f4db378e83ab2a457b1a8b49",
+    "usage": [
+      {
+        "input_tokens": 226300,
+        "cached_input_tokens": 209920,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 10154,
+        "reasoning_output_tokens": 0
+      }
+    ]
+  },
+  {
+    "run": "docx-input-native-r19-deepseek",
+    "model": "command-code/deepseek-deepseek-v4.1-flash",
+    "effort": "provider-default",
+    "case": "review_existing_docx",
+    "arm": "baseline",
+    "returncode": 0,
+    "seconds": 359.84,
+    "invalid": [],
+    "draft_sha256": "eeceef6447976fb2be4e80bd155303c2a19fb966ec50bc7484378800cb0433e4",
+    "usage": [
+      {
+        "input_tokens": 1367746,
+        "cached_input_tokens": 1318144,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 46771,
+        "reasoning_output_tokens": 0
+      }
+    ],
+    "input_document": {
+      "path": "C:\\Users\\admin\\AppData\\Local\\Temp\\cow-native-docx-input-native-r19-deepseek-9jy76hdr\\m2-review_existing_docx-baseline\\workspace\\received-application.docx",
+      "before_sha256": "0989cecd96b1e85a5bc7eccdb7b0e4ca16260ecb23ae61161a5fd5fe19a6e068",
+      "after_sha256": "0989cecd96b1e85a5bc7eccdb7b0e4ca16260ecb23ae61161a5fd5fe19a6e068",
+      "unchanged": true
+    }
+  },
+  {
+    "run": "docx-input-native-r19-deepseek",
+    "model": "command-code/deepseek-deepseek-v4.1-flash",
+    "effort": "provider-default",
+    "case": "review_existing_docx",
+    "arm": "candidate",
+    "returncode": 0,
+    "seconds": 214.02,
+    "invalid": [],
+    "draft_sha256": "1e683b98ff048e6eff35ec090c4d9fbb13d6117ede4c6fc3433300f169a04d8b",
+    "usage": [
+      {
+        "input_tokens": 732643,
+        "cached_input_tokens": 699520,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 24673,
+        "reasoning_output_tokens": 0
+      }
+    ],
+    "input_document": {
+      "path": "C:\\Users\\admin\\AppData\\Local\\Temp\\cow-native-docx-input-native-r19-deepseek-9jy76hdr\\m2-review_existing_docx-candidate\\workspace\\received-application.docx",
+      "before_sha256": "0989cecd96b1e85a5bc7eccdb7b0e4ca16260ecb23ae61161a5fd5fe19a6e068",
+      "after_sha256": "0989cecd96b1e85a5bc7eccdb7b0e4ca16260ecb23ae61161a5fd5fe19a6e068",
+      "unchanged": true
+    }
+  },
+  {
+    "run": "docx-input-native-r19-glm",
+    "model": "ollama-cloud/glm-5.3-flash",
+    "effort": "max",
+    "case": "review_existing_docx",
+    "arm": "baseline",
+    "returncode": 0,
+    "seconds": 189.48,
+    "invalid": [],
+    "draft_sha256": "cfe56b85784d3938826e508df89d87c4ae379caf4eea43097185c7edc34a8aa2",
+    "usage": [
+      {
+        "input_tokens": 763117,
+        "cached_input_tokens": 0,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 20928,
+        "reasoning_output_tokens": 0
+      }
+    ],
+    "input_document": {
+      "path": "C:\\Users\\admin\\AppData\\Local\\Temp\\cow-native-docx-input-native-r19-glm-zs_ulynq\\m4-review_existing_docx-baseline\\workspace\\received-application.docx",
+      "before_sha256": "0989cecd96b1e85a5bc7eccdb7b0e4ca16260ecb23ae61161a5fd5fe19a6e068",
+      "after_sha256": "0989cecd96b1e85a5bc7eccdb7b0e4ca16260ecb23ae61161a5fd5fe19a6e068",
+      "unchanged": true
+    }
+  },
+  {
+    "run": "docx-input-native-r19-glm",
+    "model": "ollama-cloud/glm-5.3-flash",
+    "effort": "max",
+    "case": "review_existing_docx",
+    "arm": "candidate",
+    "returncode": 0,
+    "seconds": 122.52,
+    "invalid": [],
+    "draft_sha256": "df75606dd45dff3adbd9285488d50474f4e11d4036df13388dede4a14b9fba7f",
+    "usage": [
+      {
+        "input_tokens": 308494,
+        "cached_input_tokens": 0,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 7178,
+        "reasoning_output_tokens": 0
+      }
+    ],
+    "input_document": {
+      "path": "C:\\Users\\admin\\AppData\\Local\\Temp\\cow-native-docx-input-native-r19-glm-zs_ulynq\\m4-review_existing_docx-candidate\\workspace\\received-application.docx",
+      "before_sha256": "0989cecd96b1e85a5bc7eccdb7b0e4ca16260ecb23ae61161a5fd5fe19a6e068",
+      "after_sha256": "0989cecd96b1e85a5bc7eccdb7b0e4ca16260ecb23ae61161a5fd5fe19a6e068",
+      "unchanged": true
+    }
+  }
+]

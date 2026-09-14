@@ -1,0 +1,13 @@
+{
+  "command": [
+    "C:/Users/admin/AppData/Local/Programs/Python/Python313/python.exe",
+    "-B",
+    "-m",
+    "unittest",
+    "-v",
+    "maintenance.tests.test_skill_boundary.SkillBoundaryTests.test_long_form_headings_warn_against_markdown_bold"
+  ],
+  "returncode": 0,
+  "module_sha256": "5b3f8bdd9775c4539269520d70ac3e0571059f9b02fe165a97c448f8dadd92f5",
+  "log_sha256": "2c61c1ff30f056e9185884d0c57df82fbc3d664b71224f88be3e957ac9c22f4d"
+}

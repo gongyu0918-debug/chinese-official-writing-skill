@@ -1,0 +1,729 @@
+{
+  "run": "r4",
+  "binding": {
+    "main_commit": "1ce7112303172478faa2392667a2de1098eb912c",
+    "candidate_head": "3b6f273b6ee4ea583e7c0ade8311ad1f262d7159",
+    "fingerprints": {
+      "main": "4ac78943f1d5f7660c879360fdee0163f43d8e87dd951838f7a7cddaab81004f",
+      "candidate": "67c526e913c9090b2736033639596330ea53ba12c38a44da99899c55171c44d5"
+    },
+    "models": [
+      "command-code/deepseek-deepseek-v4.1-flash",
+      "minimax-cn/MiniMax-M3"
+    ],
+    "cases": {
+      "minutes": "帮我把材料写成会议纪要，稿件控制在180至260个非空白字符。9月10日，信息中心组织接口测试讨论。接口A累计测试30次，其中2次返回超时；原因仍在核对。张工建议下周追加测试，会议尚未决定是否采用，也没有明确责任人和完成日期。王工认为应先核对超时日志，未形成结论。会议要求保留当前测试记录供核对。此前审稿曾提示‘会议地点缺失’和‘测试次数缺失’，本次补充了测试次数，地点仍未提供。记录已发生的事实和明确状态，帮我写完整稿子。"
+    },
+    "cli": "C:\\Users\\admin\\AppData\\Local\\OpenAI\\Codex\\bin\\7ac07f4ce733f89a\\codex.exe",
+    "cli_version": "codex-cli 0.153.4",
+    "runtime": "F:\\Workspaces\\chinese-official-writing-skill\\output\\route-worktrees\\reference-rewrite-20260912\\output\\mit-script-delivery-r4\\runtime",
+    "permissions": "inherited-host-config",
+    "timeout": 600
+  },
+  "complete": true,
+  "records": [
+    {
+      "model": "command-code/deepseek-deepseek-v4.1-flash",
+      "effort": "provider-default",
+      "case": "minutes",
+      "arm": "candidate",
+      "returncode": 0,
+      "seconds": 294.12,
+      "invalid": [],
+      "draft_sha256": "6cb4f6210d8c9f16f332bc03abc1f93f36a12965d21cc53db3704b37d1c18508",
+      "usage": [
+        {
+          "input_tokens": 1379381,
+          "cached_input_tokens": 1341056,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 32564,
+          "reasoning_output_tokens": 0
+        }
+      ],
+      "source_result": "output/mit-script-delivery-r4/m2-minutes-candidate.result.json",
+      "commands": [
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'type \"F:/Workspaces/chinese-official-writing-skill/output/route-worktrees/reference-rewrite-20260912/output/mit-script-delivery-r4/runtime/m2-minutes-candidate/.agents/skills/chinese-official-writing/SKILL.md\"'",
+          "exit_code": 0
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"cmd /c dir /b \\\"F:/Workspaces/chinese-official-writing-skill/output/route-worktrees/reference-rewrite-20260912/output/mit-script-delivery-r4/runtime/m2-minutes-candidate/.agents/skills/chinese-official-writing\\\" & echo --- & cmd /c dir /b \\\"F:/Workspaces/chinese-official-writing-skill/output/route-worktrees/reference-rewrite-20260912/output/mit-script-delivery-r4/runtime/m2-minutes-candidate/.agents/skills/chinese-official-writing\\\\references\\\" & echo --- & cmd /c dir /b \\\"F:/Workspaces/chinese-official-writing-skill/output/route-worktrees/reference-rewrite-20260912/output/mit-script-delivery-r4/runtime/m2-minutes-candidate/.agents/skills/chinese-official-writing\\\\scripts\\\"\"",
+          "exit_code": 1
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'Get-ChildItem -Recurse -File \"F:/Workspaces/chinese-official-writing-skill/output/route-worktrees/reference-rewrite-20260912/output/mit-script-delivery-r4/runtime/m2-minutes-candidate/.agents/skills/chinese-official-writing\" | Select-Object -ExpandProperty FullName'",
+          "exit_code": 0
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'Get-Content -Raw -Encoding UTF8 \"F:/Workspaces/chinese-official-writing-skill/output/route-worktrees/reference-rewrite-20260912/output/mit-script-delivery-r4/runtime/m2-minutes-candidate/.agents/skills/chinese-official-writing/references/information-selection.md\"'",
+          "exit_code": 0
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'Get-Content -Raw -Encoding UTF8 \"F:/Workspaces/chinese-official-writing-skill/output/route-worktrees/reference-rewrite-20260912/output/mit-script-delivery-r4/runtime/m2-minutes-candidate/.agents/skills/chinese-official-writing/references/genre-playbook-minutes.md\"'",
+          "exit_code": 0
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'Get-Content -Raw -Encoding UTF8 \"F:/Workspaces/chinese-official-writing-skill/output/route-worktrees/reference-rewrite-20260912/output/mit-script-delivery-r4/runtime/m2-minutes-candidate/.agents/skills/chinese-official-writing/references/task-route-cards.md\"'",
+          "exit_code": 0
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'Get-Content -Raw -Encoding UTF8 \"F:/Workspaces/chinese-official-writing-skill/output/route-worktrees/reference-rewrite-20260912/output/mit-script-delivery-r4/runtime/m2-minutes-candidate/.agents/skills/chinese-official-writing/references/short-draft-naturalness.md\"'",
+          "exit_code": 0
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'Get-Content -Raw -Encoding UTF8 \"F:/Workspaces/chinese-official-writing-skill/output/route-worktrees/reference-rewrite-20260912/output/mit-script-delivery-r4/runtime/m2-minutes-candidate/.agents/skills/chinese-official-writing/references/compression-details.md\"'",
+          "exit_code": 0
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'Get-Content -Raw -Encoding UTF8 \"F:/Workspaces/chinese-official-writing-skill/output/route-worktrees/reference-rewrite-20260912/output/mit-script-delivery-r4/runtime/m2-minutes-candidate/.agents/skills/chinese-official-writing/references/final-review-layers.md\"'",
+          "exit_code": 0
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'Get-Content -Raw -Encoding UTF8 \"F:/Workspaces/chinese-official-writing-skill/output/route-worktrees/reference-rewrite-20260912/output/mit-script-delivery-r4/runtime/m2-minutes-candidate/.agents/skills/chinese-official-writing/references/anti-ai-patterns.md\"'",
+          "exit_code": 0
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'Get-Content -Raw -Encoding UTF8 \"F:/Workspaces/chinese-official-writing-skill/output/route-worktrees/reference-rewrite-20260912/output/mit-script-delivery-r4/runtime/m2-minutes-candidate/.agents/skills/chinese-official-writing/references/delivery.md\"'",
+          "exit_code": 0
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'Get-Content -Raw -Encoding UTF8 \"F:/Workspaces/chinese-official-writing-skill/output/route-worktrees/reference-rewrite-20260912/output/mit-script-delivery-r4/runtime/m2-minutes-candidate/.agents/skills/chinese-official-writing/references/prose-lint-usage.md\"'",
+          "exit_code": 0
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'Get-Content -Raw -Encoding UTF8 \"F:/Workspaces/chinese-official-writing-skill/output/route-worktrees/reference-rewrite-20260912/output/mit-script-delivery-r4/runtime/m2-minutes-candidate/.agents/skills/chinese-official-writing/references/genre-checklist.md\"'",
+          "exit_code": 0
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'Get-Content -Raw -Encoding UTF8 \"F:/Workspaces/chinese-official-writing-skill/output/route-worktrees/reference-rewrite-20260912/output/mit-script-delivery-r4/runtime/m2-minutes-candidate/.agents/skills/chinese-official-writing/references/proofreading-checklist.md\"'",
+          "exit_code": 0
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'python --version; py --version'",
+          "exit_code": 0
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'python \"F:/Workspaces/chinese-official-writing-skill/output/route-worktrees/reference-rewrite-20260912/output/mit-script-delivery-r4/runtime/m2-minutes-candidate/.agents/skills/chinese-official-writing/scripts/draft_length.py\" --min-chars 180 --max-chars 260 --json \"draft-minutes.md\"'",
+          "exit_code": 0
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'python \"F:/Workspaces/chinese-official-writing-skill/output/route-worktrees/reference-rewrite-20260912/output/mit-script-delivery-r4/runtime/m2-minutes-candidate/.agents/skills/chinese-official-writing/scripts/prose_lint.py\" --delivery-mode draft-body --structure --format \"draft-minutes.md\"'",
+          "exit_code": 0
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'python \"F:/Workspaces/chinese-official-writing-skill/output/route-worktrees/reference-rewrite-20260912/output/mit-script-delivery-r4/runtime/m2-minutes-candidate/.agents/skills/chinese-official-writing/scripts/draft_length.py\" --min-chars 180 --max-chars 260 --json \"draft-minutes.md\"'",
+          "exit_code": 0
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'python \"F:/Workspaces/chinese-official-writing-skill/output/route-worktrees/reference-rewrite-20260912/output/mit-script-delivery-r4/runtime/m2-minutes-candidate/.agents/skills/chinese-official-writing/scripts/prose_lint.py\" --delivery-mode draft-body --structure --format \"draft-minutes.md\"'",
+          "exit_code": 0
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'python \"F:/Workspaces/chinese-official-writing-skill/output/route-worktrees/reference-rewrite-20260912/output/mit-script-delivery-r4/runtime/m2-minutes-candidate/.agents/skills/chinese-official-writing/scripts/draft_length.py\" --min-chars 180 --max-chars 260 \"draft-minutes.md\"'",
+          "exit_code": 0
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'python \"F:/Workspaces/chinese-official-writing-skill/output/route-worktrees/reference-rewrite-20260912/output/mit-script-delivery-r4/runtime/m2-minutes-candidate/.agents/skills/chinese-official-writing/scripts/prose_lint.py\" --delivery-mode draft-body --structure --format \"draft-minutes.md\"'",
+          "exit_code": 0
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'python \"F:/Workspaces/chinese-official-writing-skill/output/route-worktrees/reference-rewrite-20260912/output/mit-script-delivery-r4/runtime/m2-minutes-candidate/.agents/skills/chinese-official-writing/scripts/draft_length.py\" --min-chars 180 --max-chars 260 --json \"draft-minutes.md\"'",
+          "exit_code": 0
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'python \"F:/Workspaces/chinese-official-writing-skill/output/route-worktrees/reference-rewrite-20260912/output/mit-script-delivery-r4/runtime/m2-minutes-candidate/.agents/skills/chinese-official-writing/scripts/prose_lint.py\" --delivery-mode draft-body --structure --format \"draft-minutes.md\"'",
+          "exit_code": 0
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'python \"F:/Workspaces/chinese-official-writing-skill/output/route-worktrees/reference-rewrite-20260912/output/mit-script-delivery-r4/runtime/m2-minutes-candidate/.agents/skills/chinese-official-writing/scripts/draft_length.py\" --min-chars 180 --max-chars 260 --json \"draft-minutes.md\"'",
+          "exit_code": 0
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'python \"F:/Workspaces/chinese-official-writing-skill/output/route-worktrees/reference-rewrite-20260912/output/mit-script-delivery-r4/runtime/m2-minutes-candidate/.agents/skills/chinese-official-writing/scripts/prose_lint.py\" --delivery-mode draft-body --structure --format \"draft-minutes.md\"'",
+          "exit_code": 0
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command '$t = '\"'王工认为应先核对超时日志，该项意见未形成结论。'; \"'$t | python \"F:/Workspaces/chinese-official-writing-skill/output/route-worktrees/reference-rewrite-20260912/output/mit-script-delivery-r4/runtime/m2-minutes-candidate/.agents/skills/chinese-official-writing/scripts/prose_lint.py\" --delivery-mode draft-body -'",
+          "exit_code": 0
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command '$t = '\"'王工提出应先核对超时日志，会议未就该意见作出结论。'; \"'$t | python \"F:/Workspaces/chinese-official-writing-skill/output/route-worktrees/reference-rewrite-20260912/output/mit-script-delivery-r4/runtime/m2-minutes-candidate/.agents/skills/chinese-official-writing/scripts/prose_lint.py\" --delivery-mode draft-body -'",
+          "exit_code": 0
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command '$t = '\"'王工认为应先核对超时日志。'; \"'$t | python \"F:/Workspaces/chinese-official-writing-skill/output/route-worktrees/reference-rewrite-20260912/output/mit-script-delivery-r4/runtime/m2-minutes-candidate/.agents/skills/chinese-official-writing/scripts/prose_lint.py\" --delivery-mode draft-body -'",
+          "exit_code": 0
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'python \"F:/Workspaces/chinese-official-writing-skill/output/route-worktrees/reference-rewrite-20260912/output/mit-script-delivery-r4/runtime/m2-minutes-candidate/.agents/skills/chinese-official-writing/scripts/draft_length.py\" --min-chars 180 --max-chars 260 --json \"draft-minutes.md\"'",
+          "exit_code": 0
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'python \"F:/Workspaces/chinese-official-writing-skill/output/route-worktrees/reference-rewrite-20260912/output/mit-script-delivery-r4/runtime/m2-minutes-candidate/.agents/skills/chinese-official-writing/scripts/prose_lint.py\" --delivery-mode draft-body --structure --format \"draft-minutes.md\"'",
+          "exit_code": 0
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'python \"F:/Workspaces/chinese-official-writing-skill/output/route-worktrees/reference-rewrite-20260912/output/mit-script-delivery-r4/runtime/m2-minutes-candidate/.agents/skills/chinese-official-writing/scripts/draft_length.py\" --min-chars 180 --max-chars 260 --json \"draft-minutes.md\"'",
+          "exit_code": 0
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'python \"F:/Workspaces/chinese-official-writing-skill/output/route-worktrees/reference-rewrite-20260912/output/mit-script-delivery-r4/runtime/m2-minutes-candidate/.agents/skills/chinese-official-writing/scripts/prose_lint.py\" --delivery-mode draft-body --structure --format \"draft-minutes.md\"'",
+          "exit_code": 0
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'Get-Content -Raw -Encoding UTF8 \"draft-minutes.md\"'",
+          "exit_code": 0
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'python \"F:/Workspaces/chinese-official-writing-skill/output/route-worktrees/reference-rewrite-20260912/output/mit-script-delivery-r4/runtime/m2-minutes-candidate/.agents/skills/chinese-official-writing/scripts/draft_length.py\" --min-chars 180 --max-chars 260 --json \"draft-minutes.md\"'",
+          "exit_code": 0
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'python \"F:/Workspaces/chinese-official-writing-skill/output/route-worktrees/reference-rewrite-20260912/output/mit-script-delivery-r4/runtime/m2-minutes-candidate/.agents/skills/chinese-official-writing/scripts/prose_lint.py\" --delivery-mode draft-body --structure --format \"draft-minutes.md\"'",
+          "exit_code": 0
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command '$t = '\"'9月10日，信息中心组织接口测试讨论会，围绕接口A的测试情况和后续测试安排听取汇报并进行研究，张工、王工参加。'; \"'$t | python \"F:/Workspaces/chinese-official-writing-skill/output/route-worktrees/reference-rewrite-20260912/output/mit-script-delivery-r4/runtime/m2-minutes-candidate/.agents/skills/chinese-official-writing/scripts/draft_length.py\" -'",
+          "exit_code": 0
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command '$t = '\"'9月10日，信息中心组织接口测试讨论会，听取接口A的测试情况汇报，并对后续测试安排进行了研究，张工、王工参加。'; \"'$t | python \"F:/Workspaces/chinese-official-writing-skill/output/route-worktrees/reference-rewrite-20260912/output/mit-script-delivery-r4/runtime/m2-minutes-candidate/.agents/skills/chinese-official-writing/scripts/draft_length.py\" -'",
+          "exit_code": 0
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command '$t = @'\"'\n接口测试讨论会议纪要\n9月10日，信息中心组织接口测试讨论会，听取接口A的测试情况汇报，并对后续测试安排进行了研究。\n接口A累计测试30次，其中2次返回超时，超时原因仍在核对。\n张工在会上建议下周对接口A追加测试，会议尚未决定是否采用；该事项的责任人和完成日期均未明确。王工认为应先核对超时日志，会议未就该意见作出结论。\n会议要求保留当前测试记录，供后续核对使用。\n'@; \"'$t | python \"F:/Workspaces/chinese-official-writing-skill/output/route-worktrees/reference-rewrite-20260912/output/mit-script-delivery-r4/runtime/m2-minutes-candidate/.agents/skills/chinese-official-writing/scripts/draft_length.py\" -'",
+          "exit_code": 0
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command '$t = @'\"'\n接口测试讨论会议纪要\n9月10日，信息中心组织接口测试讨论会，听取接口A的测试情况汇报，并对后续测试安排进行了研究。\n接口A累计测试30次，其中2次返回超时，超时原因仍在核对。\n会上，张工建议下周对接口A追加测试，会议尚未决定是否采用；该事项的责任人和完成日期均未明确。\n王工认为应先核对超时日志，会议未就该意见作出结论。\n会议要求保留当前测试记录，供后续核对使用。\n'@; \"'$t | python \"F:/Workspaces/chinese-official-writing-skill/output/route-worktrees/reference-rewrite-20260912/output/mit-script-delivery-r4/runtime/m2-minutes-candidate/.agents/skills/chinese-official-writing/scripts/draft_length.py\" -'",
+          "exit_code": 0
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'python \"F:/Workspaces/chinese-official-writing-skill/output/route-worktrees/reference-rewrite-20260912/output/mit-script-delivery-r4/runtime/m2-minutes-candidate/.agents/skills/chinese-official-writing/scripts/draft_length.py\" --min-chars 180 --max-chars 260 --json \"draft-minutes.md\"'",
+          "exit_code": 0
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'python \"F:/Workspaces/chinese-official-writing-skill/output/route-worktrees/reference-rewrite-20260912/output/mit-script-delivery-r4/runtime/m2-minutes-candidate/.agents/skills/chinese-official-writing/scripts/prose_lint.py\" --delivery-mode draft-body --structure --format \"draft-minutes.md\"'",
+          "exit_code": 0
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'Get-Content -Raw -Encoding UTF8 \"draft-minutes.md\"'",
+          "exit_code": 0
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command '$t = @'\"'\n接口测试讨论会议纪要\n9月10日，信息中心组织接口测试讨论会，听取接口A的测试情况汇报，就后续测试安排进行了研究。\n接口A累计测试30次，其中2次返回超时，超时原因仍在核对。\n会上，张工建议下周对接口A追加测试，会议尚未决定是否采用；该事项的责任人和完成日期均未明确。王工认为应先核对超时日志，会议未就该意见作出结论。\n会议要求完整保留接口A的当前测试记录，供后续核对使用。\n'@; \"'$t | python \"F:/Workspaces/chinese-official-writing-skill/output/route-worktrees/reference-rewrite-20260912/output/mit-script-delivery-r4/runtime/m2-minutes-candidate/.agents/skills/chinese-official-writing/scripts/draft_length.py\" -'",
+          "exit_code": 0
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'python \"F:/Workspaces/chinese-official-writing-skill/output/route-worktrees/reference-rewrite-20260912/output/mit-script-delivery-r4/runtime/m2-minutes-candidate/.agents/skills/chinese-official-writing/scripts/draft_length.py\" --min-chars 180 --max-chars 260 \"draft-minutes.md\"'",
+          "exit_code": 0
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'python \"F:/Workspaces/chinese-official-writing-skill/output/route-worktrees/reference-rewrite-20260912/output/mit-script-delivery-r4/runtime/m2-minutes-candidate/.agents/skills/chinese-official-writing/scripts/prose_lint.py\" --delivery-mode draft-body --structure --format \"draft-minutes.md\"'",
+          "exit_code": 0
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'Get-Content -Raw -Encoding UTF8 \"draft-minutes.md\"'",
+          "exit_code": 0
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'git rev-parse --show-toplevel; git status --porcelain'",
+          "exit_code": 0
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'Get-ChildItem -Force | Select-Object Name'",
+          "exit_code": 0
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command '$t = @'\"'\n接口测试讨论会议纪要\n9月10日，信息中心就接口测试组织讨论，听取接口A的测试情况汇报，并对后续测试安排进行了研究。\n接口A累计测试30次，其中2次返回超时，超时原因仍在核对。\n会上，张工建议下周对接口A追加测试，会议尚未决定是否采用；该事项的责任人和完成日期均未明确。王工认为应先核对超时日志，会议未就该意见作出结论。\n会议要求保留接口A的当前测试记录，供后续核对使用。\n'@; \"'$t | python \"F:/Workspaces/chinese-official-writing-skill/output/route-worktrees/reference-rewrite-20260912/output/mit-script-delivery-r4/runtime/m2-minutes-candidate/.agents/skills/chinese-official-writing/scripts/draft_length.py\" -'",
+          "exit_code": 0
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command '$t = @'\"'\n接口测试讨论会议纪要\n9月10日，信息中心就接口测试组织讨论，听取接口A的测试情况汇报，并对后续测试安排进行了研究。\n接口A累计测试30次，其中2次返回超时，超时原因仍在核对。\n会上，张工建议下周对接口A追加测试，会议尚未决定是否采用；该事项的责任人和完成日期均未明确。王工认为应先核对超时日志，会议未就该意见作出结论。\n会议要求保留接口A的当前测试记录，供后续核对使用。\n'@; \"'$t | python \"F:/Workspaces/chinese-official-writing-skill/output/route-worktrees/reference-rewrite-20260912/output/mit-script-delivery-r4/runtime/m2-minutes-candidate/.agents/skills/chinese-official-writing/scripts/prose_lint.py\" --delivery-mode draft-body -'",
+          "exit_code": 0
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command '$t = @'\"'\n接口测试讨论会议纪要\n9月10日，信息中心组织接口测试讨论会，听取接口A的测试情况汇报，并对后续测试安排进行了研究。\n接口A累计测试30次，其中2次返回超时，超时原因仍在核对。\n会上，张工建议下周对接口A追加测试，会议尚未决定是否采用；该事项的责任人和完成日期均未明确。王工认为应先核对超时日志，会议未就该意见作出结论。\n会议要求保留接口A的当前测试记录，供后续核对使用。\n'@; \"'$t | python \"F:/Workspaces/chinese-official-writing-skill/output/route-worktrees/reference-rewrite-20260912/output/mit-script-delivery-r4/runtime/m2-minutes-candidate/.agents/skills/chinese-official-writing/scripts/draft_length.py\" -'",
+          "exit_code": 0
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command '$t = @'\"'\n接口测试讨论会议纪要\n9月10日，信息中心组织接口测试讨论会，听取接口A的测试情况汇报，并对后续测试安排进行了研究。\n接口A累计测试30次，其中2次返回超时，超时原因仍在核对。\n会上，张工建议下周对接口A追加测试，会议尚未决定是否采用；该事项的责任人和完成日期均未明确。王工认为应先核对超时日志，会议未就该意见作出结论。\n会议要求保留接口A的当前测试记录，供后续核对使用。\n'@; \"'$t | python \"F:/Workspaces/chinese-official-writing-skill/output/route-worktrees/reference-rewrite-20260912/output/mit-script-delivery-r4/runtime/m2-minutes-candidate/.agents/skills/chinese-official-writing/scripts/prose_lint.py\" --delivery-mode draft-body -'",
+          "exit_code": 0
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'python \"F:/Workspaces/chinese-official-writing-skill/output/route-worktrees/reference-rewrite-20260912/output/mit-script-delivery-r4/runtime/m2-minutes-candidate/.agents/skills/chinese-official-writing/scripts/draft_length.py\" --min-chars 180 --max-chars 260 --json \"draft-minutes.md\"'",
+          "exit_code": 0
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'python \"F:/Workspaces/chinese-official-writing-skill/output/route-worktrees/reference-rewrite-20260912/output/mit-script-delivery-r4/runtime/m2-minutes-candidate/.agents/skills/chinese-official-writing/scripts/prose_lint.py\" --delivery-mode draft-body --structure --format \"draft-minutes.md\"'",
+          "exit_code": 0
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'Get-Content -Raw -Encoding UTF8 \"draft-minutes.md\"'",
+          "exit_code": 0
+        }
+      ],
+      "trace.jsonl_sha256": "5f2236bb3bac80724098fa760f36c1482763b831343c229816c5e62026612d84",
+      "stderr.txt_sha256": "4f1ab45df62b9e19bc78f116b80fe44c1c4278e57fa4e4026341774de6e7718c",
+      "archived_final": "drafts/r4-m2-minutes-candidate.final.txt",
+      "file_sha256": "6cb4f6210d8c9f16f332bc03abc1f93f36a12965d21cc53db3704b37d1c18508"
+    },
+    {
+      "model": "command-code/deepseek-deepseek-v4.1-flash",
+      "effort": "provider-default",
+      "case": "minutes",
+      "arm": "main",
+      "returncode": 0,
+      "seconds": 88.88,
+      "invalid": [],
+      "draft_sha256": "9892155786b1657690c6fc461b07a75e2f45a1d92842012e710938136b7a347e",
+      "usage": [
+        {
+          "input_tokens": 261096,
+          "cached_input_tokens": 237312,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 12416,
+          "reasoning_output_tokens": 0
+        }
+      ],
+      "source_result": "output/mit-script-delivery-r4/m2-minutes-main.result.json",
+      "commands": [
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'Get-ChildItem -Recurse -File .agents/skills/chinese-official-writing | Select-Object -ExpandProperty FullName'",
+          "exit_code": 0
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"Get-Content -Raw -Encoding UTF8 \\\"F:\\\\Workspaces\\\\chinese-official-writing-skill\\\\output\\\\route-worktrees\\\\reference-rewrite-20260912\\\\output\\\\mit-script-delivery-r4\\\\runtime\\\\m2-minutes-main\\\\.agents\\\\skills\\\\chinese-official-writing\\\\SKILL.md\\\"\"",
+          "exit_code": 0
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"Get-Content -Raw -Encoding UTF8 \\\"F:\\\\Workspaces\\\\chinese-official-writing-skill\\\\output\\\\route-worktrees\\\\reference-rewrite-20260912\\\\output\\\\mit-script-delivery-r4\\\\runtime\\\\m2-minutes-main\\\\.agents\\\\skills\\\\chinese-official-writing\\\\references\\\\genre-playbook-minutes.md\\\"\"",
+          "exit_code": 0
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"Get-Content -Raw -Encoding UTF8 \\\"F:\\\\Workspaces\\\\chinese-official-writing-skill\\\\output\\\\route-worktrees\\\\reference-rewrite-20260912\\\\output\\\\mit-script-delivery-r4\\\\runtime\\\\m2-minutes-main\\\\.agents\\\\skills\\\\chinese-official-writing\\\\references\\\\short-draft-naturalness.md\\\"\"",
+          "exit_code": 0
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"Get-Content -Raw -Encoding UTF8 \\\"F:\\\\Workspaces\\\\chinese-official-writing-skill\\\\output\\\\route-worktrees\\\\reference-rewrite-20260912\\\\output\\\\mit-script-delivery-r4\\\\runtime\\\\m2-minutes-main\\\\.agents\\\\skills\\\\chinese-official-writing\\\\references\\\\information-selection.md\\\"\"",
+          "exit_code": 0
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"Get-Content -Raw -Encoding UTF8 \\\"F:\\\\Workspaces\\\\chinese-official-writing-skill\\\\output\\\\route-worktrees\\\\reference-rewrite-20260912\\\\output\\\\mit-script-delivery-r4\\\\runtime\\\\m2-minutes-main\\\\.agents\\\\skills\\\\chinese-official-writing\\\\references\\\\task-route-cards.md\\\"\"",
+          "exit_code": 0
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command '$t = Get-Content -Raw -Encoding UTF8 \"F:'\"\\\\Workspaces\\\\chinese-official-writing-skill\\\\output\\\\route-worktrees\\\\reference-rewrite-20260912\\\\output\\\\mit-script-delivery-r4\\\\runtime\\\\m2-minutes-main\\\\draft-minutes.txt\\\"; \"'$n = ($t -replace '\"'\\\\s','').Length; \\\"nonspace=\"'$n\"; $cjk = [regex]::Matches($t, '\"'[\\\\u4e00-\\\\u9fff]').Count; \\\"cjk=\"'$cjk\"; $all=$t.Length; \"all=$all\"'",
+          "exit_code": 0
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'python .agents/skills/chinese-official-writing/scripts/prose_lint.py draft-minutes.txt'",
+          "exit_code": 0
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command '$t = Get-Content -Raw -Encoding UTF8 draft-minutes.txt; \"nonspace=\" + ($t -replace '\"'\\\\s','').Length; python .agents/skills/chinese-official-writing/scripts/prose_lint.py draft-minutes.txt\"",
+          "exit_code": 0
+        }
+      ],
+      "trace.jsonl_sha256": "b7656f05e75de0f7fcacc73412c026bae612273f258d0a26debad73e8a1baeea",
+      "stderr.txt_sha256": "e06de52d09973db4d621a99c5674c0fd9228fedb2401c1371e31663d9a060f85",
+      "archived_final": "drafts/r4-m2-minutes-main.final.txt",
+      "file_sha256": "9892155786b1657690c6fc461b07a75e2f45a1d92842012e710938136b7a347e"
+    },
+    {
+      "model": "minimax-cn/MiniMax-M3",
+      "effort": "max",
+      "case": "minutes",
+      "arm": "candidate",
+      "returncode": 0,
+      "seconds": 208.61,
+      "invalid": [],
+      "draft_sha256": "3bdf29e548c1222a9949aa4a1ab79b7bbf65e5a1c35b01c2e5168d8dcffe3b7e",
+      "usage": [
+        {
+          "input_tokens": 502638,
+          "cached_input_tokens": 465306,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 15985,
+          "reasoning_output_tokens": 10003
+        }
+      ],
+      "source_result": "output/mit-script-delivery-r4/m3-minutes-candidate.result.json",
+      "commands": [
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"powershell -Command \\\"Get-Content -LiteralPath 'F:\\\\Workspaces\\\\chinese-official-writing-skill\\\\output\\\\route-worktrees\\\\reference-rewrite-20260912\\\\output\\\\mit-script-delivery-r4\\\\runtime\\\\m3-minutes-candidate\\\\.agents\\\\skills\\\\chinese-official-writing\\\\SKILL.md' -Encoding UTF8\\\"\"",
+          "exit_code": 0
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"powershell -Command \\\"Get-ChildItem -LiteralPath 'F:\\\\Workspaces\\\\chinese-official-writing-skill\\\\output\\\\route-worktrees\\\\reference-rewrite-20260912\\\\output\\\\mit-script-delivery-r4\\\\runtime\\\\m3-minutes-candidate\\\\.agents\\\\skills\\\\chinese-official-writing\\\\references' | Select-Object Name\\\"\"",
+          "exit_code": 0
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"powershell -Command \\\"Get-Content -LiteralPath 'F:\\\\Workspaces\\\\chinese-official-writing-skill\\\\output\\\\route-worktrees\\\\reference-rewrite-20260912\\\\output\\\\mit-script-delivery-r4\\\\runtime\\\\m3-minutes-candidate\\\\.agents\\\\skills\\\\chinese-official-writing\\\\references\\\\genre-playbook-minutes.md' -Encoding UTF8\\\"\"",
+          "exit_code": 0
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"powershell -Command \\\"Get-Content -LiteralPath 'F:\\\\Workspaces\\\\chinese-official-writing-skill\\\\output\\\\route-worktrees\\\\reference-rewrite-20260912\\\\output\\\\mit-script-delivery-r4\\\\runtime\\\\m3-minutes-candidate\\\\.agents\\\\skills\\\\chinese-official-writing\\\\references\\\\short-draft-naturalness.md' -Encoding UTF8\\\"\"",
+          "exit_code": 0
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"powershell -Command \\\"Get-Content -LiteralPath 'F:\\\\Workspaces\\\\chinese-official-writing-skill\\\\output\\\\route-worktrees\\\\reference-rewrite-20260912\\\\output\\\\mit-script-delivery-r4\\\\runtime\\\\m3-minutes-candidate\\\\.agents\\\\skills\\\\chinese-official-writing\\\\references\\\\compression-details.md' -Encoding UTF8\\\"\"",
+          "exit_code": 0
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"powershell -Command \\\"Get-Content -LiteralPath 'F:\\\\Workspaces\\\\chinese-official-writing-skill\\\\output\\\\route-worktrees\\\\reference-rewrite-20260912\\\\output\\\\mit-script-delivery-r4\\\\runtime\\\\m3-minutes-candidate\\\\.agents\\\\skills\\\\chinese-official-writing\\\\references\\\\information-selection.md' -Encoding UTF8\\\"\"",
+          "exit_code": 0
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"powershell -Command \\\"Get-ChildItem -LiteralPath 'F:\\\\Workspaces\\\\chinese-official-writing-skill\\\\output\\\\route-worktrees\\\\reference-rewrite-20260912\\\\output\\\\mit-script-delivery-r4\\\\runtime\\\\m3-minutes-candidate\\\\.agents\\\\skills\\\\chinese-official-writing\\\\scripts' | Select-Object Name\\\"\"",
+          "exit_code": 0
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"powershell -Command \\\"Get-Content -LiteralPath 'F:\\\\Workspaces\\\\chinese-official-writing-skill\\\\output\\\\route-worktrees\\\\reference-rewrite-20260912\\\\output\\\\mit-script-delivery-r4\\\\runtime\\\\m3-minutes-candidate\\\\.agents\\\\skills\\\\chinese-official-writing\\\\references\\\\delivery.md' -Encoding UTF8\\\"\"",
+          "exit_code": 0
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"powershell -Command \\\"Set-Content -LiteralPath 'F:\\\\Workspaces\\\\chinese-official-writing-skill\\\\output\\\\route-worktrees\\\\reference-rewrite-20260912\\\\output\\\\mit-script-delivery-r4\\\\runtime\\\\m3-minutes-candidate\\\\draft_v1.md' -Value @'\n接口测试讨论会议纪要\n\n时间：9月10日。组织：信息中心。议题：接口A测试情况。\n\n会议听取接口A累计测试30次、其中2次返回超时的汇报，超时原因仍在核对。张工建议下周追加一轮测试，以进一步观察超时现象；王工认为应先核对超时日志，待查清原因后再定。会议未决定是否追加测试，未明确责任人和完成日期。会议要求保留当前测试记录供核对。\n'@ -Encoding UTF8\\\"\"",
+          "exit_code": 0
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"python \\\"F:\\\\Workspaces\\\\chinese-official-writing-skill\\\\output\\\\route-worktrees\\\\reference-rewrite-20260912\\\\output\\\\mit-script-delivery-r4\\\\runtime\\\\m3-minutes-candidate\\\\.agents\\\\skills\\\\chinese-official-writing\\\\scripts\\\\draft_length.py\\\" --min-chars 180 --max-chars 260 \\\"F:\\\\Workspaces\\\\chinese-official-writing-skill\\\\output\\\\route-worktrees\\\\reference-rewrite-20260912\\\\output\\\\mit-script-delivery-r4\\\\runtime\\\\m3-minutes-candidate\\\\draft_v1.md\\\" --json\"",
+          "exit_code": 0
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"powershell -Command \\\"Set-Content -LiteralPath 'F:\\\\Workspaces\\\\chinese-official-writing-skill\\\\output\\\\route-worktrees\\\\reference-rewrite-20260912\\\\output\\\\mit-script-delivery-r4\\\\runtime\\\\m3-minutes-candidate\\\\draft_v2.md' -Value @'\n接口测试讨论会议纪要\n\n时间：9月10日。组织：信息中心。议题：接口A测试情况。\n\n会议听取接口A累计30次测试中2次返回超时的汇报，超时原因仍在核对。张工建议下周追加一轮测试，以进一步观察超时现象；王工认为应先核对超时日志，待查清原因后再定。会议未决定是否追加测试，未明确责任人和完成日期。会议要求保留当前测试记录，供后续核对。\n'@ -Encoding UTF8\\\"\"",
+          "exit_code": 0
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"python \\\"F:\\\\Workspaces\\\\chinese-official-writing-skill\\\\output\\\\route-worktrees\\\\reference-rewrite-20260912\\\\output\\\\mit-script-delivery-r4\\\\runtime\\\\m3-minutes-candidate\\\\.agents\\\\skills\\\\chinese-official-writing\\\\scripts\\\\draft_length.py\\\" --min-chars 180 --max-chars 260 \\\"F:\\\\Workspaces\\\\chinese-official-writing-skill\\\\output\\\\route-worktrees\\\\reference-rewrite-20260912\\\\output\\\\mit-script-delivery-r4\\\\runtime\\\\m3-minutes-candidate\\\\draft_v2.md\\\" --json\"",
+          "exit_code": 0
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"powershell -Command \\\"Set-Content -LiteralPath 'F:\\\\Workspaces\\\\chinese-official-writing-skill\\\\output\\\\route-worktrees\\\\reference-rewrite-20260912\\\\output\\\\mit-script-delivery-r4\\\\runtime\\\\m3-minutes-candidate\\\\draft_v3.md' -Value @'\n接口测试讨论会议纪要\n\n时间：9月10日。组织：信息中心。议题：接口A测试情况。\n\n会议听取接口A累计30次测试、其中2次返回超时的汇报，超时原因仍在核对。张工建议下周追加一轮测试，进一步观察超时现象；王工认为应先核对超时日志，待查清原因后再定。会议未决定是否追加测试，未明确责任人和完成日期。会议要求保留当前测试记录，供后续核对。\n'@ -Encoding UTF8\\\"\"",
+          "exit_code": 0
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"python \\\"F:\\\\Workspaces\\\\chinese-official-writing-skill\\\\output\\\\route-worktrees\\\\reference-rewrite-20260912\\\\output\\\\mit-script-delivery-r4\\\\runtime\\\\m3-minutes-candidate\\\\.agents\\\\skills\\\\chinese-official-writing\\\\scripts\\\\draft_length.py\\\" --min-chars 180 --max-chars 260 \\\"F:\\\\Workspaces\\\\chinese-official-writing-skill\\\\output\\\\route-worktrees\\\\reference-rewrite-20260912\\\\output\\\\mit-script-delivery-r4\\\\runtime\\\\m3-minutes-candidate\\\\draft_v3.md\\\" --json\"",
+          "exit_code": 0
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"powershell -Command \\\"Set-Content -LiteralPath 'F:\\\\Workspaces\\\\chinese-official-writing-skill\\\\output\\\\route-worktrees\\\\reference-rewrite-20260912\\\\output\\\\mit-script-delivery-r4\\\\runtime\\\\m3-minutes-candidate\\\\draft_v4.md' -Value @'\n接口测试讨论会议纪要\n\n时间：9月10日。组织：信息中心。地点：未提供。议题：接口A测试情况。\n\n会议听取接口A累计30次测试、其中2次返回超时的测试结果汇报。超时原因仍在核对。张工建议下周追加一轮测试，进一步观察超时现象；王工认为应先核对超时日志，待查清原因后再行决定。会议未决定是否追加测试，也未明确责任人和完成日期。会议要求保留当前测试记录，供后续核对。\n'@ -Encoding UTF8\\\"\"",
+          "exit_code": 0
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"python \\\"F:\\\\Workspaces\\\\chinese-official-writing-skill\\\\output\\\\route-worktrees\\\\reference-rewrite-20260912\\\\output\\\\mit-script-delivery-r4\\\\runtime\\\\m3-minutes-candidate\\\\.agents\\\\skills\\\\chinese-official-writing\\\\scripts\\\\draft_length.py\\\" --min-chars 180 --max-chars 260 \\\"F:\\\\Workspaces\\\\chinese-official-writing-skill\\\\output\\\\route-worktrees\\\\reference-rewrite-20260912\\\\output\\\\mit-script-delivery-r4\\\\runtime\\\\m3-minutes-candidate\\\\draft_v4.md\\\" --json\"",
+          "exit_code": 0
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"powershell -Command \\\"Set-Content -LiteralPath 'F:\\\\Workspaces\\\\chinese-official-writing-skill\\\\output\\\\route-worktrees\\\\reference-rewrite-20260912\\\\output\\\\mit-script-delivery-r4\\\\runtime\\\\m3-minutes-candidate\\\\draft_v5.md' -Value @'\n接口测试讨论会议纪要\n\n时间：9月10日。组织：信息中心。地点：未提供。议题：接口A测试情况。\n\n会议听取接口A累计30次测试、其中2次返回超时的测试结果汇报。超时原因仍在核对。张工建议下周追加一轮测试，进一步观察超时现象；王工认为应先核对超时日志，待查清原因后再行决定。会议未决定是否追加测试，也未明确责任人和完成日期。会议要求保留当前测试记录，供后续逐条核对，并归档备查。\n'@ -Encoding UTF8\\\"\"",
+          "exit_code": 0
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"python \\\"F:\\\\Workspaces\\\\chinese-official-writing-skill\\\\output\\\\route-worktrees\\\\reference-rewrite-20260912\\\\output\\\\mit-script-delivery-r4\\\\runtime\\\\m3-minutes-candidate\\\\.agents\\\\skills\\\\chinese-official-writing\\\\scripts\\\\draft_length.py\\\" --min-chars 180 --max-chars 260 \\\"F:\\\\Workspaces\\\\chinese-official-writing-skill\\\\output\\\\route-worktrees\\\\reference-rewrite-20260912\\\\output\\\\mit-script-delivery-r4\\\\runtime\\\\m3-minutes-candidate\\\\draft_v5.md\\\" --json\"",
+          "exit_code": 0
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"powershell -Command \\\"Set-Content -LiteralPath 'F:\\\\Workspaces\\\\chinese-official-writing-skill\\\\output\\\\route-worktrees\\\\reference-rewrite-20260912\\\\output\\\\mit-script-delivery-r4\\\\runtime\\\\m3-minutes-candidate\\\\draft_v6.md' -Value @'\n接口测试讨论会议纪要\n\n时间：9月10日。组织：信息中心。地点：未提供。议题：接口A测试情况。\n\n会议听取接口A累计30次测试、其中2次返回超时的测试结果汇报。超时原因仍在核对。张工建议下周追加一轮测试，进一步观察超时现象；王工认为应先核对超时日志，待查清原因后再行决定。会议未决定是否采纳该建议，也未明确责任人和完成日期。会议要求保留当前测试记录，供后续逐条核对。\n'@ -Encoding UTF8\\\"\"",
+          "exit_code": 0
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"python \\\"F:\\\\Workspaces\\\\chinese-official-writing-skill\\\\output\\\\route-worktrees\\\\reference-rewrite-20260912\\\\output\\\\mit-script-delivery-r4\\\\runtime\\\\m3-minutes-candidate\\\\.agents\\\\skills\\\\chinese-official-writing\\\\scripts\\\\draft_length.py\\\" --min-chars 180 --max-chars 260 \\\"F:\\\\Workspaces\\\\chinese-official-writing-skill\\\\output\\\\route-worktrees\\\\reference-rewrite-20260912\\\\output\\\\mit-script-delivery-r4\\\\runtime\\\\m3-minutes-candidate\\\\draft_v6.md\\\" --json\"",
+          "exit_code": 0
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"powershell -Command \\\"Set-Content -LiteralPath 'F:\\\\Workspaces\\\\chinese-official-writing-skill\\\\output\\\\route-worktrees\\\\reference-rewrite-20260912\\\\output\\\\mit-script-delivery-r4\\\\runtime\\\\m3-minutes-candidate\\\\draft_v7.md' -Value @'\n接口测试讨论会议纪要\n\n时间：9月10日。组织：信息中心。地点：未提供。议题：接口A测试情况。\n\n会议听取接口A累计30次测试、其中2次返回超时的测试结果汇报。超时原因仍在核对。张工建议下周追加一轮测试，以进一步观察超时现象；王工认为应先核对超时日志，待查清原因后再行决定。会议未决定是否采纳该建议，也未明确责任人和完成日期。会议要求保留当前测试记录，供后续逐条核对。\n'@ -Encoding UTF8\\\"\"",
+          "exit_code": 0
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"python \\\"F:\\\\Workspaces\\\\chinese-official-writing-skill\\\\output\\\\route-worktrees\\\\reference-rewrite-20260912\\\\output\\\\mit-script-delivery-r4\\\\runtime\\\\m3-minutes-candidate\\\\.agents\\\\skills\\\\chinese-official-writing\\\\scripts\\\\draft_length.py\\\" --min-chars 180 --max-chars 260 \\\"F:\\\\Workspaces\\\\chinese-official-writing-skill\\\\output\\\\route-worktrees\\\\reference-rewrite-20260912\\\\output\\\\mit-script-delivery-r4\\\\runtime\\\\m3-minutes-candidate\\\\draft_v7.md\\\" --json\"",
+          "exit_code": 0
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"powershell -Command \\\"Set-Content -LiteralPath 'F:\\\\Workspaces\\\\chinese-official-writing-skill\\\\output\\\\route-worktrees\\\\reference-rewrite-20260912\\\\output\\\\mit-script-delivery-r4\\\\runtime\\\\m3-minutes-candidate\\\\draft_v8.md' -Value @'\n接口测试讨论会议纪要\n\n时间：9月10日。组织：信息中心。地点：未提供。议题：接口A测试情况。\n\n会议听取接口A累计30次测试、其中2次返回超时的测试结果汇报。超时原因仍在核对。张工建议下周追加一轮测试，以进一步观察超时现象；王工认为应先核对超时日志，待查清原因后再行决定。会议未决定是否采纳该建议，也未明确追加测试的责任人和完成日期。会议要求保留当前测试记录，供后续逐条核对。\n'@ -Encoding UTF8\\\"\"",
+          "exit_code": 0
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"python \\\"F:\\\\Workspaces\\\\chinese-official-writing-skill\\\\output\\\\route-worktrees\\\\reference-rewrite-20260912\\\\output\\\\mit-script-delivery-r4\\\\runtime\\\\m3-minutes-candidate\\\\.agents\\\\skills\\\\chinese-official-writing\\\\scripts\\\\draft_length.py\\\" --min-chars 180 --max-chars 260 \\\"F:\\\\Workspaces\\\\chinese-official-writing-skill\\\\output\\\\route-worktrees\\\\reference-rewrite-20260912\\\\output\\\\mit-script-delivery-r4\\\\runtime\\\\m3-minutes-candidate\\\\draft_v8.md\\\" --json\"",
+          "exit_code": 0
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"python \\\"F:\\\\Workspaces\\\\chinese-official-writing-skill\\\\output\\\\route-worktrees\\\\reference-rewrite-20260912\\\\output\\\\mit-script-delivery-r4\\\\runtime\\\\m3-minutes-candidate\\\\.agents\\\\skills\\\\chinese-official-writing\\\\scripts\\\\prose_lint.py\\\" \\\"F:\\\\Workspaces\\\\chinese-official-writing-skill\\\\output\\\\route-worktrees\\\\reference-rewrite-20260912\\\\output\\\\mit-script-delivery-r4\\\\runtime\\\\m3-minutes-candidate\\\\draft_v8.md\\\"\"",
+          "exit_code": 0
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"python \\\"F:\\\\Workspaces\\\\chinese-official-writing-skill\\\\output\\\\route-worktrees\\\\reference-rewrite-20260912\\\\output\\\\mit-script-delivery-r4\\\\runtime\\\\m3-minutes-candidate\\\\.agents\\\\skills\\\\chinese-official-writing\\\\scripts\\\\draft_length.py\\\" --min-chars 180 --max-chars 260 \\\"F:\\\\Workspaces\\\\chinese-official-writing-skill\\\\output\\\\route-worktrees\\\\reference-rewrite-20260912\\\\output\\\\mit-script-delivery-r4\\\\runtime\\\\m3-minutes-candidate\\\\draft_v8.md\\\"\"",
+          "exit_code": 0
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"powershell -Command \\\"Get-Content -LiteralPath 'F:\\\\Workspaces\\\\chinese-official-writing-skill\\\\output\\\\route-worktrees\\\\reference-rewrite-20260912\\\\output\\\\mit-script-delivery-r4\\\\runtime\\\\m3-minutes-candidate\\\\.agents\\\\skills\\\\chinese-official-writing\\\\references\\\\anti-ai-patterns.md' -Encoding UTF8\\\"\"",
+          "exit_code": 0
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"powershell -Command \\\"Set-Content -LiteralPath 'F:\\\\Workspaces\\\\chinese-official-writing-skill\\\\output\\\\route-worktrees\\\\reference-rewrite-20260912\\\\output\\\\mit-script-delivery-r4\\\\runtime\\\\m3-minutes-candidate\\\\draft_final.md' -Value @'\n接口测试讨论会议纪要\n\n时间：9月10日。组织：信息中心。地点：未提供。议题：接口A测试情况。\n\n会议听取接口A累计30次测试、其中2次返回超时的测试结果汇报。超时原因仍在核对。张工建议下周追加一轮测试，以进一步观察超时现象；王工认为应先核对超时日志，待查清原因后再行决定。会议未决定是否采纳该建议，也未明确追加测试的责任人和完成日期。会议要求保留当前测试记录，供后续逐条核对。\n\n文后提示\n会议地点仍未提供，留待补全；测试次数已按本轮补充写入。超时原因、追加测试的安排仍处于待核对、未决定状态，如需进一步推进，建议补充明确的责任人和完成期限。\n'@ -Encoding UTF8\\\"\"",
+          "exit_code": 0
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"python \\\"F:\\\\Workspaces\\\\chinese-official-writing-skill\\\\output\\\\route-worktrees\\\\reference-rewrite-20260912\\\\output\\\\mit-script-delivery-r4\\\\runtime\\\\m3-minutes-candidate\\\\.agents\\\\skills\\\\chinese-official-writing\\\\scripts\\\\draft_length.py\\\" --min-chars 180 --max-chars 260 \\\"F:\\\\Workspaces\\\\chinese-official-writing-skill\\\\output\\\\route-worktrees\\\\reference-rewrite-20260912\\\\output\\\\mit-script-delivery-r4\\\\runtime\\\\m3-minutes-candidate\\\\draft_final.md\\\"\"",
+          "exit_code": 0
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"python \\\"F:\\\\Workspaces\\\\chinese-official-writing-skill\\\\output\\\\route-worktrees\\\\reference-rewrite-20260912\\\\output\\\\mit-script-delivery-r4\\\\runtime\\\\m3-minutes-candidate\\\\.agents\\\\skills\\\\chinese-official-writing\\\\scripts\\\\prose_lint.py\\\" \\\"F:\\\\Workspaces\\\\chinese-official-writing-skill\\\\output\\\\route-worktrees\\\\reference-rewrite-20260912\\\\output\\\\mit-script-delivery-r4\\\\runtime\\\\m3-minutes-candidate\\\\draft_final.md\\\"\"",
+          "exit_code": 0
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"powershell -Command \\\"Remove-Item -LiteralPath 'F:\\\\Workspaces\\\\chinese-official-writing-skill\\\\output\\\\route-worktrees\\\\reference-rewrite-20260912\\\\output\\\\mit-script-delivery-r4\\\\runtime\\\\m3-minutes-candidate\\\\draft_v1.md','F:\\\\Workspaces\\\\chinese-official-writing-skill\\\\output\\\\route-worktrees\\\\reference-rewrite-20260912\\\\output\\\\mit-script-delivery-r4\\\\runtime\\\\m3-minutes-candidate\\\\draft_v2.md','F:\\\\Workspaces\\\\chinese-official-writing-skill\\\\output\\\\route-worktrees\\\\reference-rewrite-20260912\\\\output\\\\mit-script-delivery-r4\\\\runtime\\\\m3-minutes-candidate\\\\draft_v3.md','F:\\\\Workspaces\\\\chinese-official-writing-skill\\\\output\\\\route-worktrees\\\\reference-rewrite-20260912\\\\output\\\\mit-script-delivery-r4\\\\runtime\\\\m3-minutes-candidate\\\\draft_v4.md','F:\\\\Workspaces\\\\chinese-official-writing-skill\\\\output\\\\route-worktrees\\\\reference-rewrite-20260912\\\\output\\\\mit-script-delivery-r4\\\\runtime\\\\m3-minutes-candidate\\\\draft_v5.md','F:\\\\Workspaces\\\\chinese-official-writing-skill\\\\output\\\\route-worktrees\\\\reference-rewrite-20260912\\\\output\\\\mit-script-delivery-r4\\\\runtime\\\\m3-minutes-candidate\\\\draft_v6.md','F:\\\\Workspaces\\\\chinese-official-writing-skill\\\\output\\\\route-worktrees\\\\reference-rewrite-20260912\\\\output\\\\mit-script-delivery-r4\\\\runtime\\\\m3-minutes-candidate\\\\draft_v7.md'\\\"\"",
+          "exit_code": 0
+        }
+      ],
+      "trace.jsonl_sha256": "b76be8417ae360b6def3c9a55c7a304cb89b7a26278b3a57d768a89774df97f8",
+      "stderr.txt_sha256": "a20616c0e8b308ba5f4bffca6dc98a317aba49aceb05fd2d5243e30fec10287d",
+      "archived_final": "drafts/r4-m3-minutes-candidate.final.txt",
+      "file_sha256": "3bdf29e548c1222a9949aa4a1ab79b7bbf65e5a1c35b01c2e5168d8dcffe3b7e"
+    },
+    {
+      "model": "minimax-cn/MiniMax-M3",
+      "effort": "max",
+      "case": "minutes",
+      "arm": "main",
+      "returncode": 0,
+      "seconds": 214.89,
+      "invalid": [],
+      "draft_sha256": "50981116427108c633eb1f1e7e02119a5b730655e3e107132fc7c321f3e87177",
+      "usage": [
+        {
+          "input_tokens": 1221099,
+          "cached_input_tokens": 1170176,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 6792,
+          "reasoning_output_tokens": 0
+        }
+      ],
+      "source_result": "output/mit-script-delivery-r4/m3-minutes-main.result.json",
+      "commands": [
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'ls \"F:/Workspaces/chinese-official-writing-skill/output/route-worktrees/reference-rewrite-20260912/output/mit-script-delivery-r4/runtime/m3-minutes-main/.agents/skills/chinese-official-writing\"'",
+          "exit_code": 0
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'ls -la \"F:/Workspaces/chinese-official-writing-skill/output/route-worktrees/reference-rewrite-20260912/output/mit-script-delivery-r4/runtime/m3-minutes-main/.agents/skills/chinese-official-writing\"'",
+          "exit_code": 1
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'pwd && ls -la'",
+          "exit_code": 1
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'echo hello'",
+          "exit_code": 0
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command Get-Location",
+          "exit_code": 0
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'Get-ChildItem -Force | Select-Object Name'",
+          "exit_code": 0
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"Set-Location 'F:\\\\Workspaces\\\\chinese-official-writing-skill\\\\output\\\\route-worktrees\\\\reference-rewrite-20260912\\\\output\\\\mit-script-delivery-r4\\\\runtime\\\\m3-minutes-main'; Get-Location; Get-ChildItem -Force | Select-Object -First 30 Name\"",
+          "exit_code": 0
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"cd /d \\\"F:\\\\Workspaces\\\\chinese-official-writing-skill\\\\output\\\\route-worktrees\\\\reference-rewrite-20260912\\\\output\\\\mit-script-delivery-r4\\\\runtime\\\\m3-minutes-main\\\" && dir /b /a\"",
+          "exit_code": 1
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"echo START && cd \\\"F:\\\\Workspaces\\\\chinese-official-writing-skill\\\\output\\\\route-worktrees\\\\reference-rewrite-20260912\\\\output\\\\mit-script-delivery-r4\\\\runtime\\\\m3-minutes-main\\\" && echo HERE && dir /b /a && echo END\"",
+          "exit_code": 1
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'echo TEST'",
+          "exit_code": 0
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'Write-Host \"hello world\"'",
+          "exit_code": 0
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'whoami; hostname; pwd'",
+          "exit_code": 0
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'echo hi'",
+          "exit_code": 0
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'Get-ChildItem -Force | Select-Object -ExpandProperty Name'",
+          "exit_code": 0
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'Get-ChildItem -Recurse -Force .agents | Select-Object FullName'",
+          "exit_code": 0
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'Get-ChildItem -Recurse -Force .agents | Select-Object FullName | Out-String -Width 4000'",
+          "exit_code": 0
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"Get-Content '.agents/skills/chinese-official-writing/SKILL.md' -Raw\"",
+          "exit_code": 0
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"Get-Content '.agents/skills/chinese-official-writing/references/genre-playbook-minutes.md' -Raw\"",
+          "exit_code": 0
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"Get-Content '.agents/skills/chinese-official-writing/references/information-selection.md' -Raw\"",
+          "exit_code": 0
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"Get-Content '.agents/skills/chinese-official-writing/references/short-draft-naturalness.md' -Raw\"",
+          "exit_code": 0
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"Get-Content '.agents/skills/chinese-official-writing/references/genre-checklist.md' -Raw\"",
+          "exit_code": 0
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"Get-Content '.agents/skills/chinese-official-writing/references/official-style.md' -Raw\"",
+          "exit_code": 0
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"Get-Content '.agents/skills/chinese-official-writing/references/anti-ai-patterns.md' -Raw\"",
+          "exit_code": 0
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"Get-Content '.agents/skills/chinese-official-writing/references/genre-routing.md' -Raw\"",
+          "exit_code": 0
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"Get-Content '.agents/skills/chinese-official-writing/references/handling-elements.md' -Raw\"",
+          "exit_code": 0
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"[System.IO.File]::WriteAllText('minutes_draft.md', \"'$input, [System.Text.UTF8Encoding]::new($false))'",
+          "exit_code": 0
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command '$content = @'\"'\n会议纪要\n\n9月10日，信息中心组织接口测试讨论。接口A累计测试30次，其中2次返回超时，原因仍在核对。张工建议下周追加测试，会议尚未决定是否采用，也未明确责任人和完成日期。王工认为应先核对超时日志，未形成结论。会议要求保留当前测试记录，供后续核对。\n'@\n[System.IO.File]::WriteAllText('minutes_draft.md', \"'$content, [System.Text.UTF8Encoding]::new($false))\nGet-Content minutes_draft.md | Measure-Object -Character | Select-Object -ExpandProperty Characters'",
+          "exit_code": 0
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'Get-Content minutes_draft.md | Out-String | Measure-Object -Character | Select-Object -ExpandProperty Characters'",
+          "exit_code": 0
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'Get-Content minutes_draft.md'",
+          "exit_code": 0
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command '$content = Get-Content minutes_draft.md -Raw\n$noWhitespace = $content -replace '\"'\\\\s', ''\n\"'$total = $noWhitespace.Length\nWrite-Host \"total_no_whitespace=$total\"\nWrite-Host \"content_length=$($content.Length)\"'",
+          "exit_code": 0
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command '$content = @'\"'\n会议纪要\n\n时间：9月10日。信息中心组织接口测试讨论会议。会上通报：接口A已累计测试30次，其中2次返回超时，原因仍在核对。张工建议下周安排追加测试；会议对此未作决定，也未明确责任人和完成日期。王工提出先核对超时日志，会上未形成结论。会议要求保留当前测试记录，供后续核对。\n'@\n[System.IO.File]::WriteAllText('minutes_draft2.md', \"'$content, [System.Text.UTF8Encoding]::new($false))\n$content2 = Get-Content minutes_draft2.md -Raw\n$noWhitespace = $content2 -replace '\"'\\\\s', ''\nWrite-Host \\\"non_whitespace=\"'$($noWhitespace.Length)\"\nWrite-Host \"total=$($content2.Length)\"'",
+          "exit_code": 0
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command '$content = @'\"'\n会议纪要\n\n时间：9月10日\n组织：信息中心\n议题：接口测试讨论\n\n一、测试情况。接口A累计测试30次，其中2次返回超时，原因仍在核对。\n\n二、意见与讨论。张工建议下周追加测试；王工提出先核对超时日志。会上未对追加测试形成结论，未明确责任人和完成日期；王工所提先核对日志的意见亦未形成结论。\n\n三、当前状态。会议要求保留现有测试记录，供后续核对。追加测试与超时原因两项尚无定论。\n'@\n[System.IO.File]::WriteAllText('minutes_draft3.md', \"'$content, [System.Text.UTF8Encoding]::new($false))\n$content2 = Get-Content minutes_draft3.md -Raw\n$noWhitespace = $content2 -replace '\"'\\\\s', ''\nWrite-Host \\\"non_whitespace=\"'$($noWhitespace.Length)\"\nWrite-Host \"total=$($content2.Length)\"'",
+          "exit_code": 0
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command '$content = @'\"'\n会议纪要\n\n时间：9月10日\n组织：信息中心\n议题：接口测试讨论\n\n一、测试情况。接口A累计测试30次，其中2次返回超时，原因仍在核对。\n\n二、意见与讨论。张工建议下周安排追加测试；王工提出应先核对超时日志。会上对追加测试未作决定，未明确责任人和完成日期；王工所提先核对日志的意见亦未形成结论。\n\n三、当前状态。会议要求保留现有测试记录，供后续核对。追加测试安排与超时原因两项目前均无定论。\n'@\n[System.IO.File]::WriteAllText('minutes_draft3.md', \"'$content, [System.Text.UTF8Encoding]::new($false))\n$content2 = Get-Content minutes_draft3.md -Raw\n$noWhitespace = $content2 -replace '\"'\\\\s', ''\nWrite-Host \\\"non_whitespace=\"'$($noWhitespace.Length)\"\nWrite-Host \"total=$($content2.Length)\"'",
+          "exit_code": 0
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'Get-Content minutes_draft3.md'",
+          "exit_code": 0
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'python .agents/skills/chinese-official-writing/scripts/prose_lint.py minutes_draft3.md 2>&1'",
+          "exit_code": 0
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command '$content = @'\"'\n会议纪要\n\n时间：9月10日\n组织：信息中心\n议题：接口测试讨论\n\n一、测试情况。接口A累计测试30次，其中2次返回超时，原因仍在核对。\n\n二、意见与讨论。张工建议下周追加测试；王工提出应先核对超时日志。会上对追加测试未作决定，未明确责任人和完成日期；王工所提先核对日志的意见亦未形成结论。\n\n三、当前状态。会议要求保留现有测试记录，供后续核对。追加测试安排与超时原因两项目前均无定论。\n'@\n[System.IO.File]::WriteAllText('minutes_draft_final.md', \"'$content, [System.Text.UTF8Encoding]::new($false))\n$content2 = Get-Content minutes_draft_final.md -Raw\n$noWhitespace = $content2 -replace '\"'\\\\s', ''\nWrite-Host \\\"non_whitespace=\"'$($noWhitespace.Length)\"\nWrite-Host \"total=$($content2.Length)\"'",
+          "exit_code": 0
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'python .agents/skills/chinese-official-writing/scripts/prose_lint.py minutes_draft_final.md 2>&1'",
+          "exit_code": 0
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'Get-Content minutes_draft_final.md'",
+          "exit_code": 0
+        }
+      ],
+      "trace.jsonl_sha256": "d52268f309c8a0929522ba342a7c4354d9f55c22acadd340516827e3f25d67f7",
+      "stderr.txt_sha256": "99fdd4610acc10a20388a0b2d187fbffb3e2cb8b24a1fdb4003e63939b0a4b20",
+      "archived_final": "drafts/r4-m3-minutes-main.final.txt",
+      "file_sha256": "50981116427108c633eb1f1e7e02119a5b730655e3e107132fc7c321f3e87177"
+    }
+  ],
+  "candidate_file_hashes": {
+    "agents/openai.yaml": "ab0c24bd956f77c79484f2a1db1afb0e862a54ff93ea2d850e7287f03ad8a310",
+    "LICENSE": "ead35e40076582d7053fb0908588adb878ff5108601a76647b9f5626b3a0d5f8",
+    "README.md": "80c7e09e8f7e49c3efffa2672b221df3caed8074621e0754c90ac2daaf1c3fd3",
+    "references/ai-compute-docs.md": "07c3b4377ae7db711307d1b01217011a002b2441f680c25c3a0f1000318242ac",
+    "references/ai-compute-examples.md": "f0503f82e26220e368797a56a04f924e9738daf774c5163b88689de71cfd9b96",
+    "references/anti-ai-patterns.md": "b075d7394091fc5b54f07d70bfbf68dce0048f0b74aa59cff8578ad3f4bf48eb",
+    "references/argument-chains.md": "baeb595a3bca0a2cf7722c488c966e1f7c21f9f2b9479f7ca280e1149524cbdd",
+    "references/compatibility-scene-routing.md": "22f8adef8b6065af3aa1966c6b7e630b00503301bf6e28d75dcab8c41b09f695",
+    "references/compression-details.md": "234198f2074f0713058a83ad2752d84d65cd132f1ad7bfe0530ffa98fd1ad145",
+    "references/delivery.md": "9fa074c2cd47646e533ff9c674f9d462df036d8a4373156fb20c3dcbb4466c2a",
+    "references/external-research.md": "6f0a253a337900ebbd15da0d98920e0326cd2807300cd9c331c3f684572a4166",
+    "references/field-editing.md": "1155507fe9a0ba70da22372a14926f78baaf82cf3e273c0e3a0341b80040e33c",
+    "references/final-review-layers.md": "f5358ca34ae8ffc0598b2e2fc7a881a5eb8ef8180f0505d81e9cfa85fdeede66",
+    "references/formal-addressing.md": "040d9b81f90c5e8c0d54be430b29afae5620b1977ee895cfd1afe7408b82b5eb",
+    "references/format-gbt9704.md": "419f4c421f253fec27115582ed09742e44c6985ac27ad69172ad05b51e81e231",
+    "references/formulaic-language.md": "5226619cc4244f22cbe8cd71b6836cbf2d8622d0dbecdf48b1ade6132958798b",
+    "references/genre-checklist-feasibility-review.md": "8ccfa9923dd38ff5390c6234c85dcdcd8b8753863ff00b0a460c5bc171bdd1b7",
+    "references/genre-checklist-report.md": "17d285f72d7724b2fc8ac1a81302fcc5d192f002e9eabd3f584c0021158ff3b4",
+    "references/genre-checklist-request.md": "b011444af07dab83a5f61099e3589abd8bf49c9f8addf3c180f7db393f1ef44f",
+    "references/genre-checklist.md": "59215f9f9c7dff4511b8a55b53a1c089e41a5bf89c748b3bc845147fcc300374",
+    "references/genre-playbook-advisory-feedback.md": "c6256e8e4be04c16ce5d3a050a45b85734a1acdadcb4972e65ad9e3c5e045c7f",
+    "references/genre-playbook-bulletin.md": "21e40f3e505ac78059aadcfa8f62413752d39fd3c9ed4ed635f6ca441c8fdb1c",
+    "references/genre-playbook-complaint-reflection.md": "94600235b6252f6c18c7005f3e9c93e2f4e244e3d5c78b3e01f9249e14a49dd0",
+    "references/genre-playbook-correspondence.md": "fbb7a0d01e443c5f57858017cde1a3e70fcef4a6da317cd97fda1e44b130e932",
+    "references/genre-playbook-deliberation.md": "0583d69f0138ce9c35461956326d5210fe9a080a978afab49c50c0c9eebcf1f7",
+    "references/genre-playbook-deployment.md": "b1a78c5240771de9c512600b4eaab984b490f23407897e5617334b0cd745d795",
+    "references/genre-playbook-explanation.md": "30b3626eca2d8f64710abd7e8c02ef036ba74621517d06f57ce081ec05dacd8a",
+    "references/genre-playbook-feasibility.md": "22cb33e27120fffbeb7c8feb9f3619d49827a9672d5505ff21348eb752b85c2a",
+    "references/genre-playbook-institution-rules.md": "f10d04e86c50deefea05198fddb2a422cf0799a6433d8a726b012c2d58e17928",
+    "references/genre-playbook-minutes.md": "1238171597a72ef9f847c0d34751fe201bd2654afd00ae645305680634a0b94b",
+    "references/genre-playbook-news-commentary.md": "a77c99521a0054b8fb4bec7eef123cec2f539195d6a7ba926d1b8e5c855d61d9",
+    "references/genre-playbook-news-message.md": "d2b2e9762c52762f5fca8f7b32004fc9e26354ae3adf01d8b433f29905e4284b",
+    "references/genre-playbook-notice.md": "cef274f8d62017b7d735d809b789f9a18c232c2f91488c92901bd22a41653ffd",
+    "references/genre-playbook-opinion.md": "64068c409b4dd6853499cb014231b3ed2a4db239d3457c5d02fb76c43dfabf76",
+    "references/genre-playbook-plan-construction.md": "9f796dc5962553269409e2612a1346c84165be073d47b69cb3dcaba430dc4462",
+    "references/genre-playbook-procurement-announcement.md": "738562905f83138fd87321ebe11d5185c56be9b7071d3a49e30c92d44c733de9",
+    "references/genre-playbook-procurement-review.md": "3e0f52289973e7785a7062f231f9cbe69f586535399cd704a03adb2e2092a738",
+    "references/genre-playbook-project-application.md": "e9722bd7f97610a14bcbd9c194ac57c6febaf98efc44573543ea60a5ce4d1712",
+    "references/genre-playbook-publication.md": "f256880f5474c5a665ccf65672b06285b04274264dcb0c593a6d0952d82ee424",
+    "references/genre-playbook-remediation-plan.md": "70ba20fb0f119067de45c972e9481a2f2fc009ae547912b871d08e7f7a133ec7",
+    "references/genre-playbook-reply.md": "4b085e1b859163883c6991627000faa88ead865f2889d047f8f34b8dac8b0516",
+    "references/genre-playbook-report.md": "55a71d9cb8f2214e6216b49eb85a316074f13bcf4f29af3632eb4524c7375176",
+    "references/genre-playbook-request.md": "9bc040d274e95e9b6591b8c18683213610f64d4f9006442def2c45f42c1b2fdf",
+    "references/genre-playbook-research.md": "b60932979d3310f9f50f93420b421ad97643b42eba767aa6d8f4c10439e5c4c8",
+    "references/genre-playbook-speech-address.md": "eba8268280f014dbdb878b5e122ce4f199666e15deee304f9c79c797273cb584",
+    "references/genre-playbook-work-summary.md": "508fcbc8f28b3267cb7b83020b99858438f7299de81b6f3817c49de0f1abf003",
+    "references/genre-routing.md": "4de212ab7ffdf49d5b42797191e96049f5c8b53cd6828ed37552f5c69ea7dd83",
+    "references/handling-elements.md": "740e5c22666dfcf2cce8da1b0af38015b0b592a9b57dd32c91f9dc4d136f706a",
+    "references/information-selection.md": "6a0a4506952efe63ed57905bb6912c6b1eed648f08380d5775087d29404c7e45",
+    "references/official-style.md": "63bc7e166f59b9244d172936db14235a36ee51da5dd9cd7e2615da98b71b8ba7",
+    "references/proofreading-checklist.md": "6c770157c76fc37a1e53e437bc678a97a057969f2d0dea74b228ad5d49578a33",
+    "references/prose-lint-usage.md": "b16b4e7fd1e1df6753ad55cc45fa4ebd58e93171b46504f6ca67fa746f13eee4",
+    "references/reference-index.md": "3cbbc07894bc8e536a36e2b2b16b137a6a4592b88fb521b1fc45b86ee06cc5e6",
+    "references/review-checklist.md": "bd396eae63b8eec015c56cd5924476f6e0a4aa53349721f00cc870a15a528396",
+    "references/short-draft-naturalness.md": "01dfdcd1e93857facf1385bf9f8c1d17d8c670faddcd5e195e7a13323dc17478",
+    "references/speech-person-order.md": "37b7e5643ce5d71d149fbcea3a5be4396ad0b703e687ae2a745bbb9641a996c3",
+    "references/structure-editing.md": "3efacd465e7c7a643c25f52a158368f20de29eb6d8de5628676ac8e0ce675259",
+    "references/task-route-cards.md": "12073f1a31b758863fc70bad00481ae00ebdcfae597dc21542ce4c983dc3fbd5",
+    "references/technical-terms.md": "681cd74bb3fc3ed6d2c210a64b174a6bf0275491eedd7e535b9330ea264cab5b",
+    "references/transaction-feedback-report.md": "272c23779c9b8b9ec3a62f851484533e28574bb2eaeba414ec3e0fdd0dba5f8e",
+    "references/transaction-remediation-report.md": "f290ebe57e41569b3fb2d125571d54782d0525e5d49540eed96bb3f4fb08f0fa",
+    "references/workflow.md": "7f790ea2f633e325035f0bc99e0ad41527855e1f0406271febd626c9c52398e4",
+    "scripts/draft_length.py": "5b126b391dd65db4c395e0d5883c84403094c3447191bbf7803579226e6384ca",
+    "scripts/prose_lint.py": "c73a363cf74231d07b07874f877a418221c8f6198a2f1abcadfb46ce64787df9",
+    "SKILL.md": "2c83efffde58735066a1afce99aec51eace908f7d527755bacc7d902b85affe0"
+  }
+}

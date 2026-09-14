@@ -1,0 +1,41 @@
+{
+  "main_commit": "d561bf6b54952e562be5910feda9182cff7d3646",
+  "candidate_head": "69914fb34f3be0e249aba2da2e84c20589191bd6",
+  "fingerprints": {
+    "baseline": "bde58c75f8f0f73430f02d50b4bf97e86396ee55e9614fca2ae87331599b440e",
+    "candidate": "33e4f4480b2d12452e6505c74da11e5f7dadde6bcf11d61d4c4d39f5b5d06ddc"
+  },
+  "models": [
+    "alibaba-token-plan/qwen3.8-flash",
+    "minimax-cn/MiniMax-M3"
+  ],
+  "cases": {
+    "markdown_application_review": "帮我审核并优化下面这份采购申请，给我一份可提交的完整稿子，正文控制在120至240字，落款日期用2026年9月12日。材料和原稿如下：综合办公室两台打印机已损坏，经维修仍无法正常打印，日常材料需要打印，拟购打印机2台，每台预算1800元，合计3600元。采购尚未批准，供应商尚未确定，预算科目已经向财务室询问但尚未收到回复。\n\n```text\n# 关于购置打印机的申请\n\n单位负责人：\n本申请将从设备现状、采购需求、有关事项三个方面进行说明。\n综合办公室的**两台打印机已损坏**，经维修仍无法正常打印，日常材料需要打印。\n---\n拟购置打印机**2台**，每台预算1800元，合计3600元。预算科目已向财务室询问但还没有回复。供应商尚未确定，采购尚未批准。\n请审批。\n综合办公室\n2026年9月12日\n```"
+  },
+  "cli": "C:\\Users\\admin\\AppData\\Local\\OpenAI\\Codex\\bin\\bffc5354119c8421\\codex.exe",
+  "cli_version": "codex-cli 0.154.0-alpha.6.2",
+  "effort": "max",
+  "runtime": "C:\\Users\\admin\\AppData\\Local\\Temp\\cow-native-parent-ibbfy1o8",
+  "permissions": "inherited-host-config",
+  "timeout": 600,
+  "agent_documents": "project_doc_max_bytes=0",
+  "baseline_ref": "snapshot",
+  "baseline_source": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\v2-independent-readiness-r31\\output\\v2-readiness-r31\\frozen\\parent",
+  "candidate_source": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\v2-independent-readiness-r31\\output\\v2-readiness-r31\\frozen\\candidate",
+  "candidate_skill_name": "chinese-official-writing",
+  "baseline_commit": null,
+  "profile": "temporary-no-user-documents-or-credentials",
+  "runner_sha256": "65dc98c960c7f147e967005117bca541406d815b7c7bbd78d40a2d3e927a0cf5",
+  "prompt_prefix": "使用本目录 .agents/skills/chinese-official-writing/SKILL.md。\n\n使用普通写作能力，不启用 Hook。\n\n本目录文本文件为 UTF-8 编码，读取时显式指定 UTF-8 解码。\n\n",
+  "ordinary_only": true,
+  "utf8_read": true,
+  "runtime_layout": "each call has a separate parent, workspace and temporary directory",
+  "session_metadata": "ephemeral",
+  "review_host": {
+    "enabled": false,
+    "max_threads": null,
+    "max_depth": null,
+    "child_model": "host defaults",
+    "child_usage": "root JSON usage is not assumed to include child usage"
+  }
+}

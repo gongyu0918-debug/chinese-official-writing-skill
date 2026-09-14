@@ -1,0 +1,1757 @@
+[
+  {
+    "name": "speech-host-duty-native-r1",
+    "binding": {
+      "main_commit": "1ce7112303172478faa2392667a2de1098eb912c",
+      "candidate_head": "ca52e80f7209fd19e177b58b4b65367078e9a66d",
+      "fingerprints": {
+        "baseline": "ce76f66c5ae712dd644b9b05ef1558e40925d57b3a826b98a3c9add045784049",
+        "candidate": "13b870182c8600419fdaa4b06851c0c025bc090bb8a3c8e5ab4f5fddba3e2e13"
+      },
+      "models": [
+        "command-code/deepseek-deepseek-v4.1-flash"
+      ],
+      "cases": {
+        "hosting_agenda": "帮信息中心主任周宁写一份简短的会议主持词，会上直接使用。会议为9月18日接口联调交流会，参会人员是信息中心全体同事。议程依次为：赵明介绍联调进展；刘青说明日志核对中发现的问题；参会同事交流意见；主持人宣布会议结束。按这些议程串联完整。",
+        "duty_short": "帮林舟写一份提交部门考核的上半年述职报告，简短完整即可。林舟是综合办公室工作人员，职责为会议室预约协调和物资登记；上半年协调45场会议室预约，完成30批物资登记。办公室共同完成6次会议保障，林舟负责其中的桌椅布置，其他事项由同事承担。材料没有提供问题不足和下一步计划。",
+        "duty_oral": "把这些内容写成林舟在部门考核会上直接读的一段述职发言：担任综合办公室工作人员，负责会议室预约协调与物资登记；上半年协调45场会议室预约、完成30批物资登记；参与办公室6次会议保障，负责桌椅布置。整体会议保障由办公室共同完成。简短自然即可。",
+        "speech_control": "周宁是接口联调交流会主持人，请帮他写会议结束前的一段总结讲话。听众是信息中心同事，主题是加强联调中的沟通。材料：赵明和刘青分别交流了进展与日志核对问题，大家提出了意见；周宁希望今后沟通时把已核实情况和待核问题区分清楚。围绕这一主题讲清楚，不需要主持串词。"
+      },
+      "cli": "C:\\Users\\admin\\AppData\\Local\\OpenAI\\Codex\\bin\\7ac07f4ce733f89a\\codex.exe",
+      "cli_version": "codex-cli 0.153.4",
+      "effort": "medium",
+      "runtime": "C:\\Users\\admin\\AppData\\Local\\Temp\\cow-native-speech-host-duty-native-r1-ape03d3t",
+      "permissions": "inherited-host-config",
+      "timeout": 240,
+      "agent_documents": "project_doc_max_bytes=0",
+      "baseline_ref": "ca52e80f",
+      "candidate_source": "F:\\Workspaces\\chinese-official-writing-skill\\output\\route-worktrees\\reference-rewrite-20260912\\chinese-official-writing",
+      "baseline_commit": "ca52e80f7209fd19e177b58b4b65367078e9a66d",
+      "profile": "temporary-no-user-documents-or-credentials",
+      "runner_sha256": "29ef8bf0b57f09e24e18cc39131f40204c75d26989a539146e663a11bc36d632",
+      "prompt_prefix": "使用本目录 .agents/skills/chinese-official-writing/SKILL.md。\n\n"
+    },
+    "calls": [
+      {
+        "model": "command-code/deepseek-deepseek-v4.1-flash",
+        "effort": "provider-default",
+        "case": "hosting_agenda",
+        "arm": "baseline",
+        "seconds": 56.33,
+        "invalid": [],
+        "draft_sha256": "9d636a50c56f83a0a449760cdcbd6f5f5e52853de5c990713e96622a24136e8e",
+        "explicit_successful_read_mentions": [
+          "SKILL.md",
+          "reference-index.md",
+          "genre-playbook-speech-address.md",
+          "information-selection.md",
+          "task-route-cards.md",
+          "short-draft-naturalness.md",
+          "anti-ai-patterns.md",
+          "speech-person-order.md",
+          "final-review-layers.md",
+          "prose-lint-usage.md",
+          "official-style.md",
+          "delivery.md"
+        ],
+        "failed_read_attempts": []
+      },
+      {
+        "model": "command-code/deepseek-deepseek-v4.1-flash",
+        "effort": "provider-default",
+        "case": "hosting_agenda",
+        "arm": "candidate",
+        "seconds": 75.31,
+        "invalid": [],
+        "draft_sha256": "bbdb1fb2f1de3101dc635f1e98f27eb48e6d3294cab0f74dc86fa9ca519f75eb",
+        "explicit_successful_read_mentions": [
+          "SKILL.md",
+          "reference-index.md",
+          "genre-playbook-meeting-host.md",
+          "genre-routing.md",
+          "short-draft-naturalness.md",
+          "task-route-cards.md",
+          "speech-person-order.md",
+          "anti-ai-patterns.md",
+          "final-review-layers.md",
+          "prose-lint-usage.md",
+          "delivery.md",
+          "formulaic-language.md",
+          "formal-addressing.md",
+          "official-style.md"
+        ],
+        "failed_read_attempts": []
+      },
+      {
+        "model": "command-code/deepseek-deepseek-v4.1-flash",
+        "effort": "provider-default",
+        "case": "duty_short",
+        "arm": "baseline",
+        "seconds": 64.31,
+        "invalid": [],
+        "draft_sha256": "95cb90aa8f01443fedbf3bb87b83e66bbee721132865add9c868c9bb53eb9f15",
+        "explicit_successful_read_mentions": [
+          "SKILL.md",
+          "reference-index.md",
+          "genre-playbook-work-summary.md",
+          "genre-playbook-report.md",
+          "genre-checklist-report.md",
+          "short-draft-naturalness.md",
+          "information-selection.md",
+          "anti-ai-patterns.md",
+          "final-review-layers.md",
+          "delivery.md",
+          "prose-lint-usage.md",
+          "task-route-cards.md",
+          "formulaic-language.md"
+        ],
+        "failed_read_attempts": []
+      },
+      {
+        "model": "command-code/deepseek-deepseek-v4.1-flash",
+        "effort": "provider-default",
+        "case": "duty_short",
+        "arm": "candidate",
+        "seconds": 42.52,
+        "invalid": [],
+        "draft_sha256": "9afd483a37e9b5f3971868cae29cc17e8f0ad900499f1d03c67f157518ece87f",
+        "explicit_successful_read_mentions": [
+          "SKILL.md",
+          "reference-index.md",
+          "genre-playbook-duty-report.md",
+          "information-selection.md",
+          "short-draft-naturalness.md",
+          "task-route-cards.md",
+          "anti-ai-patterns.md",
+          "final-review-layers.md",
+          "prose-lint-usage.md",
+          "delivery.md",
+          "formulaic-language.md",
+          "proofreading-checklist.md"
+        ],
+        "failed_read_attempts": []
+      },
+      {
+        "model": "command-code/deepseek-deepseek-v4.1-flash",
+        "effort": "provider-default",
+        "case": "duty_oral",
+        "arm": "baseline",
+        "seconds": 38.95,
+        "invalid": [],
+        "draft_sha256": "d014f926d099cbbd63df03cb4a920612aeee30ceb042c64fd8ba7b5ba4e330f9",
+        "explicit_successful_read_mentions": [
+          "SKILL.md",
+          "reference-index.md",
+          "short-draft-naturalness.md",
+          "genre-playbook-speech-address.md",
+          "anti-ai-patterns.md",
+          "prose-lint-usage.md"
+        ],
+        "failed_read_attempts": []
+      },
+      {
+        "model": "command-code/deepseek-deepseek-v4.1-flash",
+        "effort": "provider-default",
+        "case": "duty_oral",
+        "arm": "candidate",
+        "seconds": 44.97,
+        "invalid": [],
+        "draft_sha256": "9abd8d8beae3f0d817a406e166b76f1f5f57002ef872bf3acceb98991fd46671",
+        "explicit_successful_read_mentions": [
+          "SKILL.md",
+          "reference-index.md",
+          "genre-playbook-duty-report.md",
+          "genre-playbook-speech-address.md",
+          "short-draft-naturalness.md",
+          "task-route-cards.md",
+          "information-selection.md",
+          "anti-ai-patterns.md",
+          "final-review-layers.md",
+          "prose-lint-usage.md",
+          "delivery.md",
+          "official-style.md"
+        ],
+        "failed_read_attempts": []
+      },
+      {
+        "model": "command-code/deepseek-deepseek-v4.1-flash",
+        "effort": "provider-default",
+        "case": "speech_control",
+        "arm": "baseline",
+        "seconds": 64.98,
+        "invalid": [],
+        "draft_sha256": "6a8b95b9568ecfccaff334bf04899bdd49df94359c7af2ee865d2eceeb3ee9f7",
+        "explicit_successful_read_mentions": [
+          "SKILL.md",
+          "reference-index.md",
+          "genre-playbook-speech-address.md",
+          "speech-person-order.md",
+          "information-selection.md",
+          "short-draft-naturalness.md",
+          "anti-ai-patterns.md",
+          "final-review-layers.md",
+          "prose-lint-usage.md",
+          "delivery.md"
+        ],
+        "failed_read_attempts": []
+      },
+      {
+        "model": "command-code/deepseek-deepseek-v4.1-flash",
+        "effort": "provider-default",
+        "case": "speech_control",
+        "arm": "candidate",
+        "seconds": 62.0,
+        "invalid": [],
+        "draft_sha256": "c08ea02e187fa51230626078f7e2ef8eade70a3f4b859bdb14ba723a6580db33",
+        "explicit_successful_read_mentions": [
+          "SKILL.md",
+          "genre-playbook-meeting-host.md",
+          "speech-person-order.md",
+          "genre-playbook-speech-address.md",
+          "reference-index.md",
+          "information-selection.md",
+          "short-draft-naturalness.md",
+          "official-style.md",
+          "anti-ai-patterns.md",
+          "final-review-layers.md",
+          "delivery.md",
+          "prose-lint-usage.md"
+        ],
+        "failed_read_attempts": []
+      }
+    ]
+  },
+  {
+    "name": "speech-host-duty-native-r2",
+    "binding": {
+      "main_commit": "1ce7112303172478faa2392667a2de1098eb912c",
+      "candidate_head": "ca52e80f7209fd19e177b58b4b65367078e9a66d",
+      "fingerprints": {
+        "baseline": "ce76f66c5ae712dd644b9b05ef1558e40925d57b3a826b98a3c9add045784049",
+        "candidate": "13b870182c8600419fdaa4b06851c0c025bc090bb8a3c8e5ab4f5fddba3e2e13"
+      },
+      "models": [
+        "ollama-cloud/glm-5.3-flash"
+      ],
+      "cases": {
+        "hosting_agenda": "帮信息中心主任周宁写一份简短的会议主持词，会上直接使用。会议为9月18日接口联调交流会，参会人员是信息中心全体同事。议程依次为：赵明介绍联调进展；刘青说明日志核对中发现的问题；参会同事交流意见；主持人宣布会议结束。按这些议程串联完整。",
+        "duty_short": "帮林舟写一份提交部门考核的上半年述职报告，简短完整即可。林舟是综合办公室工作人员，职责为会议室预约协调和物资登记；上半年协调45场会议室预约，完成30批物资登记。办公室共同完成6次会议保障，林舟负责其中的桌椅布置，其他事项由同事承担。材料没有提供问题不足和下一步计划。"
+      },
+      "cli": "C:\\Users\\admin\\AppData\\Local\\OpenAI\\Codex\\bin\\7ac07f4ce733f89a\\codex.exe",
+      "cli_version": "codex-cli 0.153.4",
+      "effort": "max",
+      "runtime": "C:\\Users\\admin\\AppData\\Local\\Temp\\cow-native-speech-host-duty-native-r2-tjanaage",
+      "permissions": "inherited-host-config",
+      "timeout": 300,
+      "agent_documents": "project_doc_max_bytes=0",
+      "baseline_ref": "ca52e80f",
+      "candidate_source": "F:\\Workspaces\\chinese-official-writing-skill\\output\\route-worktrees\\reference-rewrite-20260912\\chinese-official-writing",
+      "baseline_commit": "ca52e80f7209fd19e177b58b4b65367078e9a66d",
+      "profile": "temporary-no-user-documents-or-credentials",
+      "runner_sha256": "29ef8bf0b57f09e24e18cc39131f40204c75d26989a539146e663a11bc36d632",
+      "prompt_prefix": "使用本目录 .agents/skills/chinese-official-writing/SKILL.md。\n\n"
+    },
+    "calls": [
+      {
+        "model": "ollama-cloud/glm-5.3-flash",
+        "effort": "max",
+        "case": "hosting_agenda",
+        "arm": "baseline",
+        "seconds": 74.03,
+        "invalid": [],
+        "draft_sha256": "79cfc9e3544f051e3af8b61b79ecd5bc2895af7bbe6fa18742e05aa815f5c236",
+        "explicit_successful_read_mentions": [
+          "SKILL.md",
+          "information-selection.md",
+          "reference-index.md",
+          "genre-playbook-speech-address.md",
+          "short-draft-naturalness.md",
+          "speech-person-order.md",
+          "prose-lint-usage.md",
+          "final-review-layers.md",
+          "delivery.md",
+          "anti-ai-patterns.md"
+        ],
+        "failed_read_attempts": []
+      },
+      {
+        "model": "ollama-cloud/glm-5.3-flash",
+        "effort": "max",
+        "case": "hosting_agenda",
+        "arm": "candidate",
+        "seconds": 70.8,
+        "invalid": [],
+        "draft_sha256": "8efce15071ba00e9830f5f2bbfa2854664795b5d88b60895e7bd29bede17f78f",
+        "explicit_successful_read_mentions": [
+          "SKILL.md",
+          "reference-index.md",
+          "information-selection.md",
+          "genre-playbook-meeting-host.md",
+          "short-draft-naturalness.md",
+          "speech-person-order.md",
+          "anti-ai-patterns.md",
+          "task-route-cards.md",
+          "final-review-layers.md",
+          "delivery.md",
+          "prose-lint-usage.md",
+          "compression-details.md"
+        ],
+        "failed_read_attempts": []
+      },
+      {
+        "model": "ollama-cloud/glm-5.3-flash",
+        "effort": "max",
+        "case": "duty_short",
+        "arm": "baseline",
+        "seconds": 82.28,
+        "invalid": [],
+        "draft_sha256": "3ac02657db8464401582dc8948a3d5e7605fc1eb941561d43ab4ea1f185384c3",
+        "explicit_successful_read_mentions": [
+          "SKILL.md",
+          "reference-index.md",
+          "information-selection.md",
+          "genre-routing.md",
+          "task-route-cards.md",
+          "genre-playbook-work-summary.md",
+          "short-draft-naturalness.md",
+          "genre-playbook-report.md",
+          "anti-ai-patterns.md",
+          "official-style.md",
+          "formal-addressing.md",
+          "prose-lint-usage.md",
+          "proofreading-checklist.md",
+          "final-review-layers.md",
+          "delivery.md",
+          "draft_length.py"
+        ],
+        "failed_read_attempts": []
+      },
+      {
+        "model": "ollama-cloud/glm-5.3-flash",
+        "effort": "max",
+        "case": "duty_short",
+        "arm": "candidate",
+        "seconds": 55.72,
+        "invalid": [],
+        "draft_sha256": "7c82202e7a0644560715a8f2ecd0fd531e23f3196ce9de2e55bf737ac9e834bc",
+        "explicit_successful_read_mentions": [
+          "SKILL.md",
+          "reference-index.md",
+          "short-draft-naturalness.md",
+          "information-selection.md",
+          "genre-playbook-duty-report.md",
+          "anti-ai-patterns.md",
+          "official-style.md",
+          "final-review-layers.md",
+          "prose-lint-usage.md",
+          "delivery.md"
+        ],
+        "failed_read_attempts": []
+      }
+    ]
+  },
+  {
+    "name": "speech-host-duty-main-r3",
+    "binding": {
+      "main_commit": "1ce7112303172478faa2392667a2de1098eb912c",
+      "candidate_head": "ca52e80f7209fd19e177b58b4b65367078e9a66d",
+      "fingerprints": {
+        "main": "4ac78943f1d5f7660c879360fdee0163f43d8e87dd951838f7a7cddaab81004f",
+        "candidate": "13b870182c8600419fdaa4b06851c0c025bc090bb8a3c8e5ab4f5fddba3e2e13"
+      },
+      "models": [
+        "alibaba-token-plan/qwen3.8-flash",
+        "alibaba-token-plan-2/qwen3.8-flash",
+        "minimax-cn/MiniMax-M3"
+      ],
+      "cases": {
+        "duty_oral": "把这些内容写成林舟在部门考核会上直接读的一段述职发言：担任综合办公室工作人员，负责会议室预约协调与物资登记；上半年协调45场会议室预约、完成30批物资登记；参与办公室6次会议保障，负责桌椅布置。整体会议保障由办公室共同完成。简短自然即可。",
+        "hosting_agenda": "帮信息中心主任周宁写一份简短的会议主持词，会上直接使用。会议为9月18日接口联调交流会，参会人员是信息中心全体同事。议程依次为：赵明介绍联调进展；刘青说明日志核对中发现的问题；参会同事交流意见；主持人宣布会议结束。按这些议程串联完整。"
+      },
+      "cli": "C:\\Users\\admin\\AppData\\Local\\OpenAI\\Codex\\bin\\7ac07f4ce733f89a\\codex.exe",
+      "cli_version": "codex-cli 0.153.4",
+      "effort": "medium",
+      "runtime": "C:\\Users\\admin\\AppData\\Local\\Temp\\cow-native-speech-host-duty-main-r3-8_2gneqi",
+      "permissions": "inherited-host-config",
+      "timeout": 240,
+      "agent_documents": "project_doc_max_bytes=0",
+      "baseline_ref": "main",
+      "candidate_source": "F:\\Workspaces\\chinese-official-writing-skill\\output\\route-worktrees\\reference-rewrite-20260912\\output\\speech-host-duty-native-r1\\snapshots\\candidate",
+      "baseline_commit": "1ce7112303172478faa2392667a2de1098eb912c",
+      "profile": "temporary-no-user-documents-or-credentials",
+      "runner_sha256": "43bdbeb131f3d0d86ee8302511b543783b0797b4dda8adc020ffc487fc0d7144",
+      "prompt_prefix": "使用本目录 .agents/skills/chinese-official-writing/SKILL.md。\n\n"
+    },
+    "calls": [
+      {
+        "model": "alibaba-token-plan/qwen3.8-flash",
+        "effort": "medium",
+        "case": "duty_oral",
+        "arm": "main",
+        "seconds": 51.91,
+        "invalid": [],
+        "draft_sha256": "6987ce9152537f436fd3226343851ddeac11ac74019c024d607c6adf04312cb2",
+        "explicit_successful_read_mentions": [
+          "SKILL.md",
+          "information-selection.md",
+          "short-draft-naturalness.md",
+          "task-route-cards.md",
+          "reference-index.md",
+          "formulaic-language.md"
+        ],
+        "failed_read_attempts": []
+      },
+      {
+        "model": "alibaba-token-plan/qwen3.8-flash",
+        "effort": "medium",
+        "case": "duty_oral",
+        "arm": "candidate",
+        "seconds": 85.72,
+        "invalid": [],
+        "draft_sha256": "5fef52e3ff7b30230903741cb02cf52c1bc4a3be63fc03ed3114ee49c9ee5093",
+        "explicit_successful_read_mentions": [
+          "SKILL.md",
+          "reference-index.md",
+          "genre-playbook-duty-report.md",
+          "short-draft-naturalness.md",
+          "information-selection.md",
+          "task-route-cards.md",
+          "anti-ai-patterns.md",
+          "delivery.md",
+          "prose-lint-usage.md"
+        ],
+        "failed_read_attempts": []
+      },
+      {
+        "model": "alibaba-token-plan/qwen3.8-flash",
+        "effort": "medium",
+        "case": "hosting_agenda",
+        "arm": "main",
+        "seconds": 65.14,
+        "invalid": [],
+        "draft_sha256": "c7163ec1b2213c1719db67ba5e27e4b578881d24965eebeb2ed370c3e6384b8d",
+        "explicit_successful_read_mentions": [
+          "SKILL.md",
+          "SKILL.md",
+          "information-selection.md",
+          "short-draft-naturalness.md",
+          "genre-playbook-speech-address.md",
+          "official-style.md"
+        ],
+        "failed_read_attempts": []
+      },
+      {
+        "model": "alibaba-token-plan/qwen3.8-flash",
+        "effort": "medium",
+        "case": "hosting_agenda",
+        "arm": "candidate",
+        "seconds": 143.88,
+        "invalid": [],
+        "draft_sha256": "4ded80343fb53a8bea2300159bfed463be98342959c1b7399ae42d7366757944",
+        "explicit_successful_read_mentions": [
+          "SKILL.md",
+          "reference-index.md",
+          "genre-playbook-meeting-host.md",
+          "speech-person-order.md",
+          "information-selection.md",
+          "task-route-cards.md",
+          "short-draft-naturalness.md",
+          "anti-ai-patterns.md",
+          "final-review-layers.md",
+          "prose-lint-usage.md",
+          "delivery.md",
+          "proofreading-checklist.md"
+        ],
+        "failed_read_attempts": []
+      },
+      {
+        "model": "alibaba-token-plan-2/qwen3.8-flash",
+        "effort": "medium",
+        "case": "duty_oral",
+        "arm": "candidate",
+        "seconds": 93.92,
+        "invalid": [],
+        "draft_sha256": "ad206a5471b8d114854d589be1896cf511cd227b552e5b150de9620e70b1fcb9",
+        "explicit_successful_read_mentions": [
+          "SKILL.md",
+          "reference-index.md",
+          "genre-playbook-duty-report.md",
+          "genre-playbook-speech-address.md",
+          "information-selection.md",
+          "task-route-cards.md",
+          "short-draft-naturalness.md",
+          "anti-ai-patterns.md",
+          "final-review-layers.md",
+          "delivery.md",
+          "proofreading-checklist.md",
+          "prose-lint-usage.md",
+          "speech-person-order.md"
+        ],
+        "failed_read_attempts": []
+      },
+      {
+        "model": "alibaba-token-plan-2/qwen3.8-flash",
+        "effort": "medium",
+        "case": "duty_oral",
+        "arm": "main",
+        "seconds": 60.81,
+        "invalid": [],
+        "draft_sha256": "a19e5c6b3ed540475865097f1182e10d59552c73dea49094152fe9de804e57e0",
+        "explicit_successful_read_mentions": [
+          "SKILL.md",
+          "information-selection.md",
+          "short-draft-naturalness.md"
+        ],
+        "failed_read_attempts": []
+      },
+      {
+        "model": "alibaba-token-plan-2/qwen3.8-flash",
+        "effort": "medium",
+        "case": "hosting_agenda",
+        "arm": "candidate",
+        "seconds": 129.16,
+        "invalid": [],
+        "draft_sha256": "8992c08076ac734a99c6ebfed7097d901a97fa43950b0cf453414b418dd392b8",
+        "explicit_successful_read_mentions": [
+          "SKILL.md",
+          "genre-playbook-meeting-host.md",
+          "reference-index.md",
+          "information-selection.md",
+          "short-draft-naturalness.md",
+          "speech-person-order.md",
+          "anti-ai-patterns.md",
+          "delivery.md",
+          "final-review-layers.md",
+          "prose-lint-usage.md"
+        ],
+        "failed_read_attempts": []
+      },
+      {
+        "model": "alibaba-token-plan-2/qwen3.8-flash",
+        "effort": "medium",
+        "case": "hosting_agenda",
+        "arm": "main",
+        "seconds": 74.52,
+        "invalid": [],
+        "draft_sha256": "4489862dfd0bea31221e71c0e2110839c72054d940666f99a8d8e1c2c1bf9649",
+        "explicit_successful_read_mentions": [
+          "SKILL.md",
+          "reference-index.md",
+          "information-selection.md",
+          "formulaic-language.md",
+          "short-draft-naturalness.md",
+          "genre-playbooks.md",
+          "genre-playbook-speech-address.md",
+          "speech-person-order.md",
+          "task-route-cards.md"
+        ],
+        "failed_read_attempts": []
+      },
+      {
+        "model": "minimax-cn/MiniMax-M3",
+        "effort": "medium",
+        "case": "duty_oral",
+        "arm": "candidate",
+        "seconds": 68.77,
+        "invalid": [],
+        "draft_sha256": "e569460cba638c0900876a71fb6bc5cc6be60f9e6275e42b92fb0c7259dc2445",
+        "explicit_successful_read_mentions": [
+          "SKILL.md",
+          "SKILL.md",
+          "SKILL.md",
+          "genre-playbook-duty-report.md",
+          "genre-playbook-speech-address.md",
+          "short-draft-naturalness.md",
+          "official-style.md",
+          "anti-ai-patterns.md",
+          "genre-playbook-work-summary.md"
+        ],
+        "failed_read_attempts": [
+          {
+            "files": [
+              "SKILL.md"
+            ],
+            "exit": 1
+          }
+        ]
+      },
+      {
+        "model": "minimax-cn/MiniMax-M3",
+        "effort": "medium",
+        "case": "duty_oral",
+        "arm": "main",
+        "seconds": 35.86,
+        "invalid": [],
+        "draft_sha256": "9ebf3c6c586a795f29b9cf1b9ffb20315589e982e8145bebc99e86ec2c5af21a",
+        "explicit_successful_read_mentions": [
+          "SKILL.md",
+          "genre-playbook-speech-address.md",
+          "short-draft-naturalness.md",
+          "speech-person-order.md",
+          "information-selection.md"
+        ],
+        "failed_read_attempts": []
+      },
+      {
+        "model": "minimax-cn/MiniMax-M3",
+        "effort": "medium",
+        "case": "hosting_agenda",
+        "arm": "candidate",
+        "seconds": 149.61,
+        "invalid": [],
+        "draft_sha256": "57c5712b7c177686de43faa998a760a7faecc9ecd4f8131432d6e25874d2a6f0",
+        "explicit_successful_read_mentions": [
+          "SKILL.md",
+          "reference-index.md",
+          "short-draft-naturalness.md",
+          "task-route-cards.md",
+          "README.md",
+          "genre-playbook-meeting-host.md",
+          "speech-person-order.md",
+          "formal-addressing.md",
+          "anti-ai-patterns.md",
+          "proofreading-checklist.md",
+          "prose-lint-usage.md",
+          "compression-details.md",
+          "draft_length.py",
+          "delivery.md"
+        ],
+        "failed_read_attempts": [
+          {
+            "files": [],
+            "exit": 1
+          },
+          {
+            "files": [],
+            "exit": 1
+          }
+        ]
+      },
+      {
+        "model": "minimax-cn/MiniMax-M3",
+        "effort": "medium",
+        "case": "hosting_agenda",
+        "arm": "main",
+        "seconds": 47.36,
+        "invalid": [],
+        "draft_sha256": "a3922e70721bf5c51ac32af147e29d464c8ab9c04b9038498754f8a65b427aea",
+        "explicit_successful_read_mentions": [
+          "SKILL.md",
+          "SKILL.md",
+          "information-selection.md",
+          "short-draft-naturalness.md",
+          "genre-playbook-speech-address.md",
+          "speech-person-order.md",
+          "formal-addressing.md"
+        ],
+        "failed_read_attempts": []
+      }
+    ]
+  },
+  {
+    "name": "legacy-semantic-native-r1",
+    "binding": {
+      "main_commit": "1ce7112303172478faa2392667a2de1098eb912c",
+      "candidate_head": "ca52e80f7209fd19e177b58b4b65367078e9a66d",
+      "fingerprints": {
+        "main": "4ac78943f1d5f7660c879360fdee0163f43d8e87dd951838f7a7cddaab81004f",
+        "candidate": "13b870182c8600419fdaa4b06851c0c025bc090bb8a3c8e5ab4f5fddba3e2e13"
+      },
+      "models": [
+        "command-code/deepseek-deepseek-v4.1-flash"
+      ],
+      "cases": {
+        "official_marks": "帮我校改这份内部工作提示，清除起草旁白，给改好全文。材料要求保留文件首页的‘内部资料 注意保密’和‘第二版（2026年9月修订）’。现稿：内部资料 注意保密。第二版（2026年9月修订）。会议室使用提示。本文由AI整理，以下为最终版本。会议室使用完毕后，请关闭设备并恢复桌椅，设备故障反馈综合办公室。仅供参考，以实际审核结果为准。我只要改后稿件。",
+        "quote_proofread": "请校改下面的纯文本讲话材料，改好后给我全文，不用Markdown。有效材料明确全年组织3场培训；负责人原话由我提供，但出处和日期还没核验。现稿第一行主标题是‘凝心聚力推进服务改进。’，下一行是小标题‘一、工作要求。’，下面接正文：会上，负责人原话是：‘要久久为功，把群众的事办实。’ 1.各部门要快速的回应诉求，全年组织3台培训。",
+        "notice_receiver": "根据材料起草简短通知：请各业务科于9月20日前把培训报名表发送到市培训中心邮箱pxzx@example.org，接收联系人王老师。发文单位和成文日期还没有给，先把稿子写好。",
+        "compute_units": "改写一段算力费用说明：试用期共调用模型1200次，输入和输出合计800万Token；按Token计费，单价及总额尚待核实。请把需求与费用口径写清，保持数字和待核状态，不新增GPU、并发或SLA数据。",
+        "minutes_local": "帮我改这份会议纪要：把末句‘会议要求张工下周完成追加测试’改为‘张工建议追加测试，会议尚未决定是否采用’，其余保持。现稿：接口测试讨论纪要。9月10日，信息中心讨论接口测试情况。接口A已测试30次，其中2次返回超时，原因仍在核对。会议要求保留测试记录。会议要求张工下周完成追加测试。请给改好后的纪要。"
+      },
+      "cli": "C:\\Users\\admin\\AppData\\Local\\OpenAI\\Codex\\bin\\7ac07f4ce733f89a\\codex.exe",
+      "cli_version": "codex-cli 0.153.4",
+      "effort": "medium",
+      "runtime": "C:\\Users\\admin\\AppData\\Local\\Temp\\cow-native-legacy-semantic-native-r1-w652cq_x",
+      "permissions": "inherited-host-config",
+      "timeout": 240,
+      "agent_documents": "project_doc_max_bytes=0",
+      "baseline_ref": "main",
+      "candidate_source": "F:\\Workspaces\\chinese-official-writing-skill\\output\\route-worktrees\\reference-rewrite-20260912\\output\\speech-host-duty-native-r1\\snapshots\\candidate",
+      "baseline_commit": "1ce7112303172478faa2392667a2de1098eb912c",
+      "profile": "temporary-no-user-documents-or-credentials",
+      "runner_sha256": "43bdbeb131f3d0d86ee8302511b543783b0797b4dda8adc020ffc487fc0d7144",
+      "prompt_prefix": "使用本目录 .agents/skills/chinese-official-writing/SKILL.md。\n\n"
+    },
+    "calls": [
+      {
+        "model": "command-code/deepseek-deepseek-v4.1-flash",
+        "effort": "provider-default",
+        "case": "official_marks",
+        "arm": "main",
+        "seconds": 14.89,
+        "invalid": [],
+        "draft_sha256": "a05a3b24ad3d57a07c97f7a1abe8267d77addcd00480035ca3b24b126c78c00a",
+        "explicit_successful_read_mentions": [
+          "SKILL.md",
+          "short-draft-naturalness.md",
+          "reference-index.md",
+          "task-route-cards.md",
+          "information-selection.md"
+        ],
+        "failed_read_attempts": []
+      },
+      {
+        "model": "command-code/deepseek-deepseek-v4.1-flash",
+        "effort": "provider-default",
+        "case": "official_marks",
+        "arm": "candidate",
+        "seconds": 38.34,
+        "invalid": [],
+        "draft_sha256": "adac20499190c319d574397801db99bfcabb9856c85d5e6a5b9b79a776bb170b",
+        "explicit_successful_read_mentions": [
+          "SKILL.md",
+          "short-draft-naturalness.md",
+          "reference-index.md",
+          "task-route-cards.md",
+          "anti-ai-patterns.md",
+          "delivery.md",
+          "prose-lint-usage.md",
+          "genre-playbook-notice.md"
+        ],
+        "failed_read_attempts": []
+      },
+      {
+        "model": "command-code/deepseek-deepseek-v4.1-flash",
+        "effort": "provider-default",
+        "case": "quote_proofread",
+        "arm": "main",
+        "seconds": 70.12,
+        "invalid": [],
+        "draft_sha256": "77a876871c64129902a21bf2d0dab0a19da5a02ec06666783e74c0cfb3d81e74",
+        "explicit_successful_read_mentions": [
+          "SKILL.md",
+          "task-route-cards.md",
+          "genre-routing.md",
+          "reference-index.md",
+          "proofreading-checklist.md",
+          "information-selection.md",
+          "official-style.md",
+          "formulaic-language.md",
+          "final-review-layers.md",
+          "anti-ai-patterns.md"
+        ],
+        "failed_read_attempts": []
+      },
+      {
+        "model": "command-code/deepseek-deepseek-v4.1-flash",
+        "effort": "provider-default",
+        "case": "quote_proofread",
+        "arm": "candidate",
+        "seconds": 70.97,
+        "invalid": [],
+        "draft_sha256": "d72043328044a32297f4ae9ee40cac690124b75c4b3e97c9768a91fbd5a39de7",
+        "explicit_successful_read_mentions": [
+          "SKILL.md",
+          "proofreading-checklist.md",
+          "anti-ai-patterns.md",
+          "final-review-layers.md",
+          "delivery.md",
+          "speech-person-order.md",
+          "short-draft-naturalness.md",
+          "information-selection.md",
+          "task-route-cards.md",
+          "genre-playbook-speech-address.md",
+          "review-checklist.md",
+          "prose-lint-usage.md",
+          "structure-editing.md"
+        ],
+        "failed_read_attempts": []
+      },
+      {
+        "model": "command-code/deepseek-deepseek-v4.1-flash",
+        "effort": "provider-default",
+        "case": "notice_receiver",
+        "arm": "main",
+        "seconds": 24.66,
+        "invalid": [],
+        "draft_sha256": "8710ca5751148a0460a5b92679482dae1fdd85b84164367482ddc979e1169034",
+        "explicit_successful_read_mentions": [
+          "SKILL.md",
+          "information-selection.md",
+          "short-draft-naturalness.md",
+          "task-route-cards.md",
+          "reference-index.md"
+        ],
+        "failed_read_attempts": []
+      },
+      {
+        "model": "command-code/deepseek-deepseek-v4.1-flash",
+        "effort": "provider-default",
+        "case": "notice_receiver",
+        "arm": "candidate",
+        "seconds": 74.09,
+        "invalid": [],
+        "draft_sha256": "9270e3a590376852a8f0f30a592b25464ab3d557524b4fa4e1fe1bda1aaacad2",
+        "explicit_successful_read_mentions": [
+          "SKILL.md",
+          "reference-index.md",
+          "genre-playbook-notice.md",
+          "short-draft-naturalness.md",
+          "information-selection.md",
+          "handling-elements.md",
+          "task-route-cards.md",
+          "anti-ai-patterns.md",
+          "final-review-layers.md",
+          "prose-lint-usage.md",
+          "delivery.md"
+        ],
+        "failed_read_attempts": []
+      },
+      {
+        "model": "command-code/deepseek-deepseek-v4.1-flash",
+        "effort": "provider-default",
+        "case": "compute_units",
+        "arm": "main",
+        "seconds": 26.41,
+        "invalid": [],
+        "draft_sha256": "eaca4f9f3f43f55aa51784fc31ed51d50e2c940933d9c8352e9f5924ed376960",
+        "explicit_successful_read_mentions": [
+          "SKILL.md",
+          "reference-index.md",
+          "task-route-cards.md",
+          "information-selection.md",
+          "ai-compute-docs.md",
+          "short-draft-naturalness.md"
+        ],
+        "failed_read_attempts": []
+      },
+      {
+        "model": "command-code/deepseek-deepseek-v4.1-flash",
+        "effort": "provider-default",
+        "case": "compute_units",
+        "arm": "candidate",
+        "seconds": 60.67,
+        "invalid": [],
+        "draft_sha256": "34df04776bcfb6495f80b2525438f6ed4430c73f6931376a6701cd6d1349233e",
+        "explicit_successful_read_mentions": [
+          "SKILL.md",
+          "ai-compute-docs.md",
+          "information-selection.md",
+          "ai-compute-examples.md",
+          "reference-index.md",
+          "task-route-cards.md",
+          "short-draft-naturalness.md",
+          "genre-playbook-explanation.md",
+          "anti-ai-patterns.md",
+          "proofreading-checklist.md",
+          "final-review-layers.md",
+          "delivery.md",
+          "prose-lint-usage.md"
+        ],
+        "failed_read_attempts": []
+      },
+      {
+        "model": "command-code/deepseek-deepseek-v4.1-flash",
+        "effort": "provider-default",
+        "case": "minutes_local",
+        "arm": "main",
+        "seconds": 58.45,
+        "invalid": [],
+        "draft_sha256": "c6878036096ab9a179ca539fb63bbad21904861ecaee589a568f54effbd654e2",
+        "explicit_successful_read_mentions": [
+          "SKILL.md",
+          "task-route-cards.md",
+          "genre-playbook-minutes.md",
+          "information-selection.md",
+          "short-draft-naturalness.md"
+        ],
+        "failed_read_attempts": []
+      },
+      {
+        "model": "command-code/deepseek-deepseek-v4.1-flash",
+        "effort": "provider-default",
+        "case": "minutes_local",
+        "arm": "candidate",
+        "seconds": 46.84,
+        "invalid": [],
+        "draft_sha256": "ae2365dedd4b054059dffabef5cd1385b76f4f8f2aac98418cd979103a749694",
+        "explicit_successful_read_mentions": [
+          "SKILL.md",
+          "genre-playbook-minutes.md",
+          "genre-routing.md",
+          "reference-index.md",
+          "information-selection.md",
+          "anti-ai-patterns.md",
+          "final-review-layers.md",
+          "delivery.md",
+          "prose-lint-usage.md",
+          "structure-editing.md",
+          "short-draft-naturalness.md"
+        ],
+        "failed_read_attempts": [
+          {
+            "files": [
+              "compatibility-scene-routing.md",
+              "task-route-cards.md"
+            ],
+            "exit": 1
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "cold-route-probes-before-r1",
+    "binding": {
+      "main_commit": "1ce7112303172478faa2392667a2de1098eb912c",
+      "candidate_head": "ca52e80f7209fd19e177b58b4b65367078e9a66d",
+      "fingerprints": {
+        "main": "4ac78943f1d5f7660c879360fdee0163f43d8e87dd951838f7a7cddaab81004f",
+        "candidate": "13b870182c8600419fdaa4b06851c0c025bc090bb8a3c8e5ab4f5fddba3e2e13"
+      },
+      "models": [
+        "command-code/deepseek-deepseek-v4.1-flash"
+      ],
+      "cases": {
+        "public_notice": "帮海岚市公共服务中心起草关于报送服务点名单的通知，将公开发布在中心网站。请各业务科于9月25日前把所负责服务点的名称和地址报综合办公室汇总，联系人周老师，联系方式暂未提供。标题保留通知，写清报送安排即可。",
+        "research_comparison": "帮我写一份报领导参考的服务窗口调研报告。调研组走访了甲乙两个服务点，甲点使用现有窗口、无需新增投资，乙点提出增设窗口的设想，投资金额尚待测算；受访人员各5人，甲点3人建议增加周末服务，乙点2人建议延长下午开放时间。请比较两点观察结果并概括可供进一步研究的方向，这次稿件用途是汇报调研发现。",
+        "sparse_plan": "帮资料室起草档案目录整理实施方案。目标是完成2025年度已确认档案目录整理和资料录入；分为目录核对、资料录入、复核三步，试点至9月30日，验收指标尚待确定。负责人和预算材料暂未提供。按现有材料写成简短但完整的方案。",
+        "platform_review": "帮我审核并改好这段活动报道。有效材料：9月10日，市企业服务中心组织企业交流会，8家企业代表参加，代表介绍各自产品并交流合作需求。现稿：9月10日，市企业服务中心组织企业交流会，8家企业代表参加，代表介绍各自产品并交流合作需求。这次活动为企业交流搭建了强大平台，满足未来发展需要。请给自然简洁的改好稿件。"
+      },
+      "cli": "C:\\Users\\admin\\AppData\\Local\\OpenAI\\Codex\\bin\\7ac07f4ce733f89a\\codex.exe",
+      "cli_version": "codex-cli 0.153.4",
+      "effort": "medium",
+      "runtime": "C:\\Users\\admin\\AppData\\Local\\Temp\\cow-native-cold-route-probes-before-r1-wr4jhua3",
+      "permissions": "inherited-host-config",
+      "timeout": 240,
+      "agent_documents": "project_doc_max_bytes=0",
+      "baseline_ref": "main",
+      "candidate_source": "F:\\Workspaces\\chinese-official-writing-skill\\output\\route-worktrees\\reference-rewrite-20260912\\output\\speech-host-duty-native-r1\\snapshots\\candidate",
+      "baseline_commit": "1ce7112303172478faa2392667a2de1098eb912c",
+      "profile": "temporary-no-user-documents-or-credentials",
+      "runner_sha256": "88f049f97c38acb16fe827ea2001236580e54923cc7f5c08843adf95d71d51c7",
+      "prompt_prefix": "使用本目录 .agents/skills/chinese-official-writing/SKILL.md。\n\n"
+    },
+    "calls": [
+      {
+        "model": "command-code/deepseek-deepseek-v4.1-flash",
+        "effort": "provider-default",
+        "case": "public_notice",
+        "arm": "main",
+        "seconds": 45.69,
+        "invalid": [],
+        "draft_sha256": "25bf2b30eb7d0a2ae56c3a9357ca9af41772ee7c2565f59bd49503f0d36a214e",
+        "explicit_successful_read_mentions": [
+          "SKILL.md",
+          "reference-index.md",
+          "genre-playbook-notice-publication.md",
+          "information-selection.md",
+          "handling-elements.md",
+          "formal-addressing.md",
+          "task-route-cards.md",
+          "short-draft-naturalness.md",
+          "genre-routing.md"
+        ],
+        "failed_read_attempts": []
+      },
+      {
+        "model": "command-code/deepseek-deepseek-v4.1-flash",
+        "effort": "provider-default",
+        "case": "public_notice",
+        "arm": "candidate",
+        "seconds": 36.83,
+        "invalid": [],
+        "draft_sha256": "5ef6e96cdacd43f60e6528a490a89b3e7abe47169e598c1a7e453c5bb6522c2c",
+        "explicit_successful_read_mentions": [
+          "SKILL.md",
+          "reference-index.md",
+          "information-selection.md",
+          "genre-playbook-notice.md",
+          "handling-elements.md",
+          "anti-ai-patterns.md",
+          "genre-playbook-publication.md",
+          "final-review-layers.md",
+          "delivery.md",
+          "prose-lint-usage.md"
+        ],
+        "failed_read_attempts": []
+      },
+      {
+        "model": "command-code/deepseek-deepseek-v4.1-flash",
+        "effort": "provider-default",
+        "case": "research_comparison",
+        "arm": "main",
+        "seconds": 83.89,
+        "invalid": [],
+        "draft_sha256": "1e58a46ee6a0b9cff868ed098e8328a4eee131e0f84379e3e970f2305262d3ad",
+        "explicit_successful_read_mentions": [
+          "SKILL.md",
+          "information-selection.md",
+          "reference-index.md",
+          "task-route-cards.md",
+          "formulaic-language.md",
+          "short-draft-naturalness.md",
+          "final-review-layers.md",
+          "proofreading-checklist.md",
+          "prose-lint-usage.md",
+          "anti-ai-patterns.md"
+        ],
+        "failed_read_attempts": []
+      },
+      {
+        "model": "command-code/deepseek-deepseek-v4.1-flash",
+        "effort": "provider-default",
+        "case": "research_comparison",
+        "arm": "candidate",
+        "seconds": 110.92,
+        "invalid": [],
+        "draft_sha256": "7042fb71ab734f1e3035994aaf3376b4a4392bdaa926dd77ee1b3e457d866f9c",
+        "explicit_successful_read_mentions": [
+          "SKILL.md",
+          "reference-index.md",
+          "genre-playbook-research.md",
+          "information-selection.md",
+          "short-draft-naturalness.md",
+          "task-route-cards.md",
+          "genre-playbook-report.md",
+          "anti-ai-patterns.md",
+          "final-review-layers.md",
+          "delivery.md",
+          "prose-lint-usage.md",
+          "handling-elements.md",
+          "formulaic-language.md",
+          "official-style.md"
+        ],
+        "failed_read_attempts": []
+      },
+      {
+        "model": "command-code/deepseek-deepseek-v4.1-flash",
+        "effort": "provider-default",
+        "case": "sparse_plan",
+        "arm": "main",
+        "seconds": 53.91,
+        "invalid": [],
+        "draft_sha256": "3d9eb65680626378c705e46e7a013ef44d4d6e5f7284f835d3f804fa813aee36",
+        "explicit_successful_read_mentions": [
+          "SKILL.md",
+          "reference-index.md",
+          "information-selection.md",
+          "short-draft-naturalness.md",
+          "genre-playbook-plan-construction.md",
+          "task-route-cards.md",
+          "formulaic-language.md",
+          "final-review-layers.md",
+          "proofreading-checklist.md",
+          "anti-ai-patterns.md"
+        ],
+        "failed_read_attempts": []
+      },
+      {
+        "model": "command-code/deepseek-deepseek-v4.1-flash",
+        "effort": "provider-default",
+        "case": "sparse_plan",
+        "arm": "candidate",
+        "seconds": 54.48,
+        "invalid": [],
+        "draft_sha256": "0d97efca5302e9a81226c0b7b3f7e3ccdaa022e34c665cc4d1676ac0803d8800",
+        "explicit_successful_read_mentions": [
+          "SKILL.md",
+          "reference-index.md",
+          "genre-playbook-plan-construction.md",
+          "information-selection.md",
+          "task-route-cards.md",
+          "short-draft-naturalness.md",
+          "handling-elements.md",
+          "final-review-layers.md",
+          "anti-ai-patterns.md",
+          "prose-lint-usage.md",
+          "delivery.md",
+          "compression-details.md"
+        ],
+        "failed_read_attempts": []
+      },
+      {
+        "model": "command-code/deepseek-deepseek-v4.1-flash",
+        "effort": "provider-default",
+        "case": "platform_review",
+        "arm": "main",
+        "seconds": 29.84,
+        "invalid": [],
+        "draft_sha256": "65c5b0f0fdca4de9ab4b86ddfa0a29f2adde1e80a901f636b9846ba3ec3178c0",
+        "explicit_successful_read_mentions": [
+          "SKILL.md",
+          "genre-playbook-news-message.md",
+          "short-draft-naturalness.md",
+          "information-selection.md",
+          "task-route-cards.md",
+          "compatibility-scene-routing.md",
+          "anti-ai-patterns.md",
+          "proofreading-checklist.md"
+        ],
+        "failed_read_attempts": []
+      },
+      {
+        "model": "command-code/deepseek-deepseek-v4.1-flash",
+        "effort": "provider-default",
+        "case": "platform_review",
+        "arm": "candidate",
+        "seconds": 60.03,
+        "invalid": [],
+        "draft_sha256": "3449503c2b2c9ac6cda51bc5febc6a21bac466ea9780d5472430f04bdcd7bfc3",
+        "explicit_successful_read_mentions": [
+          "SKILL.md",
+          "compatibility-scene-routing.md",
+          "genre-playbook-news-message.md",
+          "reference-index.md",
+          "information-selection.md",
+          "final-review-layers.md",
+          "delivery.md",
+          "review-checklist.md",
+          "prose-lint-usage.md",
+          "anti-ai-patterns.md",
+          "short-draft-naturalness.md",
+          "task-route-cards.md",
+          "official-style.md"
+        ],
+        "failed_read_attempts": []
+      }
+    ]
+  },
+  {
+    "name": "conditional-route-native-r1",
+    "binding": {
+      "main_commit": "1ce7112303172478faa2392667a2de1098eb912c",
+      "candidate_head": "ca52e80f7209fd19e177b58b4b65367078e9a66d",
+      "fingerprints": {
+        "baseline": "ce76f66c5ae712dd644b9b05ef1558e40925d57b3a826b98a3c9add045784049",
+        "candidate": "f886b62b90d90761c95c470f76fd84caff271cde8e28f377e68ecafbfeb00cfc"
+      },
+      "models": [
+        "alibaba-token-plan/qwen3.8-flash",
+        "command-code/deepseek-deepseek-v4.1-flash"
+      ],
+      "cases": {
+        "public_notice": "帮海岚市公共服务中心起草关于报送服务点名单的通知，将公开发布在中心网站。请各业务科于9月25日前把所负责服务点的名称和地址报综合办公室汇总，联系人周老师，联系方式暂未提供。标题保留通知，写清报送安排即可。",
+        "research_comparison": "帮我写一份报领导参考的服务窗口调研报告。调研组走访了甲乙两个服务点，甲点使用现有窗口、无需新增投资，乙点提出增设窗口的设想，投资金额尚待测算；受访人员各5人，甲点3人建议增加周末服务，乙点2人建议延长下午开放时间。请比较两点观察结果并概括可供进一步研究的方向，这次稿件用途是汇报调研发现。",
+        "sparse_plan": "帮资料室起草档案目录整理实施方案。目标是完成2025年度已确认档案目录整理和资料录入；分为目录核对、资料录入、复核三步，试点至9月30日，验收指标尚待确定。负责人和预算材料暂未提供。按现有材料写成简短但完整的方案。"
+      },
+      "cli": "C:\\Users\\admin\\AppData\\Local\\OpenAI\\Codex\\bin\\7ac07f4ce733f89a\\codex.exe",
+      "cli_version": "codex-cli 0.153.4",
+      "effort": "medium",
+      "runtime": "C:\\Users\\admin\\AppData\\Local\\Temp\\cow-native-conditional-route-native-r1-pjcl3wdo",
+      "permissions": "inherited-host-config",
+      "timeout": 240,
+      "agent_documents": "project_doc_max_bytes=0",
+      "baseline_ref": "ca52e80f",
+      "candidate_source": "F:\\Workspaces\\chinese-official-writing-skill\\output\\route-worktrees\\reference-rewrite-20260912\\output\\conditional-route-only-r1\\skill",
+      "baseline_commit": "ca52e80f7209fd19e177b58b4b65367078e9a66d",
+      "profile": "temporary-no-user-documents-or-credentials",
+      "runner_sha256": "88f049f97c38acb16fe827ea2001236580e54923cc7f5c08843adf95d71d51c7",
+      "prompt_prefix": "使用本目录 .agents/skills/chinese-official-writing/SKILL.md。\n\n"
+    },
+    "calls": [
+      {
+        "model": "alibaba-token-plan/qwen3.8-flash",
+        "effort": "medium",
+        "case": "public_notice",
+        "arm": "baseline",
+        "seconds": 204.91,
+        "invalid": [],
+        "draft_sha256": "a56a2c8f756f9b27684d5aed55c193bd75ad15a24eb6df57ec88fc470229cb94",
+        "explicit_successful_read_mentions": [
+          "SKILL.md",
+          "reference-index.md",
+          "genre-playbook-notice.md",
+          "genre-playbook-publication.md",
+          "information-selection.md",
+          "handling-elements.md",
+          "task-route-cards.md",
+          "short-draft-naturalness.md",
+          "formulaic-language.md",
+          "final-review-layers.md",
+          "anti-ai-patterns.md",
+          "delivery.md",
+          "genre-routing.md",
+          "prose-lint-usage.md",
+          "draft_length.py",
+          "prose_lint.py"
+        ],
+        "failed_read_attempts": []
+      },
+      {
+        "model": "alibaba-token-plan/qwen3.8-flash",
+        "effort": "medium",
+        "case": "public_notice",
+        "arm": "candidate",
+        "seconds": 95.67,
+        "invalid": [],
+        "draft_sha256": "a8117fb3b1cf3322f54830f7c2ea1cead191694f33eff6195223fd199a2cbfc1",
+        "explicit_successful_read_mentions": [
+          "SKILL.md",
+          "reference-index.md",
+          "genre-playbook-notice.md",
+          "information-selection.md",
+          "handling-elements.md",
+          "task-route-cards.md",
+          "short-draft-naturalness.md",
+          "delivery.md",
+          "anti-ai-patterns.md",
+          "final-review-layers.md",
+          "formulaic-language.md",
+          "proofreading-checklist.md",
+          "prose-lint-usage.md"
+        ],
+        "failed_read_attempts": []
+      },
+      {
+        "model": "alibaba-token-plan/qwen3.8-flash",
+        "effort": "medium",
+        "case": "research_comparison",
+        "arm": "baseline",
+        "seconds": 219.12,
+        "invalid": [],
+        "draft_sha256": "aaa57a7772c734a186505aa28bf40952ef7ff6eecf41480aa9f4a6c2156a5417",
+        "explicit_successful_read_mentions": [
+          "SKILL.md",
+          "reference-index.md",
+          "genre-playbook-research.md",
+          "information-selection.md",
+          "task-route-cards.md",
+          "short-draft-naturalness.md",
+          "argument-chains.md",
+          "genre-playbook-report.md",
+          "anti-ai-patterns.md",
+          "final-review-layers.md",
+          "delivery.md",
+          "prose-lint-usage.md",
+          "draft_length.py",
+          "draft_length.py"
+        ],
+        "failed_read_attempts": []
+      },
+      {
+        "model": "alibaba-token-plan/qwen3.8-flash",
+        "effort": "medium",
+        "case": "research_comparison",
+        "arm": "candidate",
+        "seconds": 103.36,
+        "invalid": [],
+        "draft_sha256": "3926d52c1a7851ae68dccdb7c8a707ed47d97bc8d805a032bd31d95611d72bf3",
+        "explicit_successful_read_mentions": [
+          "SKILL.md",
+          "reference-index.md",
+          "genre-playbook-research.md",
+          "information-selection.md",
+          "task-route-cards.md",
+          "short-draft-naturalness.md",
+          "handling-elements.md",
+          "argument-chains.md",
+          "anti-ai-patterns.md",
+          "final-review-layers.md",
+          "proofreading-checklist.md",
+          "prose-lint-usage.md",
+          "delivery.md"
+        ],
+        "failed_read_attempts": []
+      },
+      {
+        "model": "alibaba-token-plan/qwen3.8-flash",
+        "effort": "medium",
+        "case": "sparse_plan",
+        "arm": "baseline",
+        "seconds": 129.8,
+        "invalid": [],
+        "draft_sha256": "8371ece4eb94b5e53aae86026e908301c0bfb9f0f1c106f93919140a2e2ff5cd",
+        "explicit_successful_read_mentions": [
+          "SKILL.md",
+          "reference-index.md",
+          "genre-playbook-plan-construction.md",
+          "information-selection.md",
+          "handling-elements.md",
+          "task-route-cards.md",
+          "short-draft-naturalness.md",
+          "final-review-layers.md",
+          "anti-ai-patterns.md",
+          "prose-lint-usage.md",
+          "delivery.md"
+        ],
+        "failed_read_attempts": []
+      },
+      {
+        "model": "alibaba-token-plan/qwen3.8-flash",
+        "effort": "medium",
+        "case": "sparse_plan",
+        "arm": "candidate",
+        "seconds": 113.72,
+        "invalid": [],
+        "draft_sha256": "a9106ba6761ff7e6561de74414342205869613c71dc08775a3187dc341430267",
+        "explicit_successful_read_mentions": [
+          "SKILL.md",
+          "reference-index.md",
+          "genre-playbook-plan-construction.md",
+          "information-selection.md",
+          "task-route-cards.md",
+          "short-draft-naturalness.md",
+          "delivery.md",
+          "handling-elements.md",
+          "anti-ai-patterns.md",
+          "prose-lint-usage.md",
+          "final-review-layers.md"
+        ],
+        "failed_read_attempts": []
+      },
+      {
+        "model": "command-code/deepseek-deepseek-v4.1-flash",
+        "effort": "provider-default",
+        "case": "public_notice",
+        "arm": "baseline",
+        "seconds": 82.41,
+        "invalid": [],
+        "draft_sha256": "9d4d2554e96e8d17bb8f8ba2837633ce502896ea73e13095256d60bb641af207",
+        "explicit_successful_read_mentions": [
+          "SKILL.md",
+          "reference-index.md",
+          "genre-playbook-notice.md",
+          "information-selection.md",
+          "handling-elements.md",
+          "genre-playbook-publication.md",
+          "genre-routing.md",
+          "task-route-cards.md",
+          "short-draft-naturalness.md",
+          "formulaic-language.md",
+          "formal-addressing.md",
+          "anti-ai-patterns.md",
+          "final-review-layers.md",
+          "delivery.md",
+          "prose-lint-usage.md",
+          "proofreading-checklist.md"
+        ],
+        "failed_read_attempts": []
+      },
+      {
+        "model": "command-code/deepseek-deepseek-v4.1-flash",
+        "effort": "provider-default",
+        "case": "public_notice",
+        "arm": "candidate",
+        "seconds": 55.2,
+        "invalid": [],
+        "draft_sha256": "f292e18b508ebcec4178d90f80f67104211ad06211412d53957fca9b1a7e6e51",
+        "explicit_successful_read_mentions": [
+          "SKILL.md",
+          "genre-playbook-notice.md",
+          "reference-index.md",
+          "information-selection.md",
+          "anti-ai-patterns.md",
+          "final-review-layers.md",
+          "delivery.md",
+          "short-draft-naturalness.md",
+          "handling-elements.md",
+          "prose-lint-usage.md",
+          "formulaic-language.md"
+        ],
+        "failed_read_attempts": []
+      },
+      {
+        "model": "command-code/deepseek-deepseek-v4.1-flash",
+        "effort": "provider-default",
+        "case": "research_comparison",
+        "arm": "baseline",
+        "seconds": 40.52,
+        "invalid": [],
+        "draft_sha256": "93695c0f35e5093e282fb5b86bc78b2cd4a9929dbc6f1b52134b8e6bbdddc79f",
+        "explicit_successful_read_mentions": [
+          "SKILL.md",
+          "reference-index.md",
+          "reference-index.md",
+          "genre-playbook-research.md",
+          "genre-playbook-research.md",
+          "handling-elements.md",
+          "handling-elements.md",
+          "argument-chains.md",
+          "argument-chains.md",
+          "information-selection.md",
+          "information-selection.md",
+          "official-style.md",
+          "official-style.md",
+          "formulaic-language.md",
+          "formulaic-language.md",
+          "genre-checklist-report.md",
+          "genre-checklist-report.md",
+          "short-draft-naturalness.md",
+          "short-draft-naturalness.md",
+          "anti-ai-patterns.md",
+          "anti-ai-patterns.md",
+          "final-review-layers.md",
+          "final-review-layers.md",
+          "prose-lint-usage.md",
+          "prose-lint-usage.md",
+          "delivery.md",
+          "delivery.md",
+          "task-route-cards.md",
+          "task-route-cards.md",
+          "genre-checklist.md",
+          "genre-checklist.md",
+          "proofreading-checklist.md",
+          "proofreading-checklist.md"
+        ],
+        "failed_read_attempts": []
+      },
+      {
+        "model": "command-code/deepseek-deepseek-v4.1-flash",
+        "effort": "provider-default",
+        "case": "research_comparison",
+        "arm": "candidate",
+        "seconds": 64.45,
+        "invalid": [],
+        "draft_sha256": "3152cf606839c2ce5cc1f28a3ad74065f71daa7c243080c03df18565f1602acf",
+        "explicit_successful_read_mentions": [
+          "SKILL.md",
+          "genre-playbook-research.md",
+          "genre-playbook-report.md",
+          "genre-routing.md",
+          "information-selection.md",
+          "anti-ai-patterns.md",
+          "final-review-layers.md",
+          "delivery.md",
+          "prose-lint-usage.md",
+          "task-route-cards.md",
+          "short-draft-naturalness.md",
+          "official-style.md",
+          "formal-addressing.md",
+          "review-checklist.md",
+          "proofreading-checklist.md",
+          "argument-chains.md",
+          "compression-details.md"
+        ],
+        "failed_read_attempts": []
+      },
+      {
+        "model": "command-code/deepseek-deepseek-v4.1-flash",
+        "effort": "provider-default",
+        "case": "sparse_plan",
+        "arm": "baseline",
+        "seconds": 52.28,
+        "invalid": [],
+        "draft_sha256": "a97f01e07d620ac785f729719ab8948b93ea810022e29b9855afa3aa1c5f4b57",
+        "explicit_successful_read_mentions": [
+          "SKILL.md",
+          "reference-index.md",
+          "information-selection.md",
+          "task-route-cards.md",
+          "short-draft-naturalness.md",
+          "genre-playbook-plan-construction.md",
+          "handling-elements.md",
+          "anti-ai-patterns.md",
+          "final-review-layers.md",
+          "delivery.md",
+          "prose-lint-usage.md"
+        ],
+        "failed_read_attempts": []
+      },
+      {
+        "model": "command-code/deepseek-deepseek-v4.1-flash",
+        "effort": "provider-default",
+        "case": "sparse_plan",
+        "arm": "candidate",
+        "seconds": 57.3,
+        "invalid": [],
+        "draft_sha256": "72b362b890be9e23533f37bc6b37dd123902709ecf87b355f32b4494c5765fe3",
+        "explicit_successful_read_mentions": [
+          "SKILL.md",
+          "reference-index.md",
+          "genre-routing.md",
+          "genre-playbook-plan-construction.md",
+          "information-selection.md",
+          "short-draft-naturalness.md",
+          "task-route-cards.md",
+          "handling-elements.md",
+          "delivery.md",
+          "anti-ai-patterns.md",
+          "final-review-layers.md",
+          "prose-lint-usage.md"
+        ],
+        "failed_read_attempts": []
+      }
+    ]
+  },
+  {
+    "name": "summary-priorities-native-r1",
+    "binding": {
+      "main_commit": "1ce7112303172478faa2392667a2de1098eb912c",
+      "candidate_head": "ca52e80f7209fd19e177b58b4b65367078e9a66d",
+      "fingerprints": {
+        "main": "4ac78943f1d5f7660c879360fdee0163f43d8e87dd951838f7a7cddaab81004f",
+        "candidate": "7b0311e0048f29eff9b71d42ed9a4d2f6b9abd2c69f976f682159410305cda23"
+      },
+      "models": [
+        "command-code/deepseek-deepseek-v4.1-flash",
+        "ollama-cloud/glm-5.3-flash"
+      ],
+      "cases": {
+        "work_priorities": "帮综合办公室把明年打算写成工作要点：拟完善会议室预约登记，拟优化物资台账核对；计划每季度梳理一次预约冲突和登记差错。具体人员分工、预算和起始时间尚未决定。先把重点任务和思路写清楚。",
+        "work_summary": "帮综合办公室写上半年工作总结。完成45场会议室预约协调、30批物资登记，办公室共同完成6次会议保障，会上桌椅布置由林舟负责；发现有3次预约时间冲突，均经沟通调整。下半年拟完善预约登记，是否采用线上表单尚未决定。写清工作、问题和改进思路，简短完整即可。",
+        "weekly_report": "帮我把本周情况整理成周报，保留四个字段各占一行。已完成：接口A测试30次；推进中：核对其中2次超时的日志；问题：超时原因尚未查明；下周：张工建议追加测试，是否采用尚未决定。只整理这些内容。"
+      },
+      "cli": "C:\\Users\\admin\\AppData\\Local\\OpenAI\\Codex\\bin\\7ac07f4ce733f89a\\codex.exe",
+      "cli_version": "codex-cli 0.153.4",
+      "effort": "max",
+      "runtime": "C:\\Users\\admin\\AppData\\Local\\Temp\\cow-native-summary-priorities-native-r1-exz_6kb6",
+      "permissions": "inherited-host-config",
+      "timeout": 240,
+      "agent_documents": "project_doc_max_bytes=0",
+      "baseline_ref": "main",
+      "candidate_source": "F:\\Workspaces\\chinese-official-writing-skill\\output\\route-worktrees\\reference-rewrite-20260912\\output\\summary-priorities-only-r1\\skill",
+      "baseline_commit": "1ce7112303172478faa2392667a2de1098eb912c",
+      "profile": "temporary-no-user-documents-or-credentials",
+      "runner_sha256": "80a05af2dc028ffe1f925def8b16ee31a0476a69236fe7f6c562d5e107d33ce6",
+      "prompt_prefix": "使用本目录 .agents/skills/chinese-official-writing/SKILL.md。\n\n"
+    },
+    "calls": [
+      {
+        "model": "command-code/deepseek-deepseek-v4.1-flash",
+        "effort": "provider-default",
+        "case": "work_priorities",
+        "arm": "main",
+        "seconds": 240.03,
+        "invalid": [
+          "timeout",
+          "missing_final"
+        ],
+        "draft_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "explicit_successful_read_mentions": [
+          "SKILL.md",
+          "reference-index.md",
+          "information-selection.md",
+          "genre-playbook-work-summary.md",
+          "short-draft-naturalness.md",
+          "formulaic-language.md"
+        ],
+        "failed_read_attempts": []
+      },
+      {
+        "model": "command-code/deepseek-deepseek-v4.1-flash",
+        "effort": "provider-default",
+        "case": "work_priorities",
+        "arm": "candidate",
+        "seconds": 53.33,
+        "invalid": [],
+        "draft_sha256": "392328e95b5d477d0ac32d95ebe4ca9d2252ea1294272c808085e9d8342403ae",
+        "explicit_successful_read_mentions": [
+          "SKILL.md",
+          "reference-index.md",
+          "genre-playbook-work-priorities.md",
+          "information-selection.md",
+          "short-draft-naturalness.md",
+          "anti-ai-patterns.md",
+          "final-review-layers.md",
+          "delivery.md",
+          "prose-lint-usage.md"
+        ],
+        "failed_read_attempts": []
+      },
+      {
+        "model": "command-code/deepseek-deepseek-v4.1-flash",
+        "effort": "provider-default",
+        "case": "work_summary",
+        "arm": "main",
+        "seconds": 20.81,
+        "invalid": [],
+        "draft_sha256": "d0132ef2459da8dcc30f202ac7a9c4c3b1fa5bf816d7da45f235b9cfd2b46c95",
+        "explicit_successful_read_mentions": [
+          "SKILL.md",
+          "short-draft-naturalness.md",
+          "reference-index.md",
+          "information-selection.md",
+          "task-route-cards.md"
+        ],
+        "failed_read_attempts": []
+      },
+      {
+        "model": "command-code/deepseek-deepseek-v4.1-flash",
+        "effort": "provider-default",
+        "case": "work_summary",
+        "arm": "candidate",
+        "seconds": 45.42,
+        "invalid": [],
+        "draft_sha256": "373182ec781be006abdcea7bf982876c1ffe17c2159f1b29ad5facb1617181a1",
+        "explicit_successful_read_mentions": [
+          "SKILL.md",
+          "genre-playbook-work-summary.md",
+          "information-selection.md",
+          "short-draft-naturalness.md",
+          "anti-ai-patterns.md",
+          "delivery.md",
+          "prose-lint-usage.md",
+          "final-review-layers.md"
+        ],
+        "failed_read_attempts": []
+      },
+      {
+        "model": "command-code/deepseek-deepseek-v4.1-flash",
+        "effort": "provider-default",
+        "case": "weekly_report",
+        "arm": "main",
+        "seconds": 23.81,
+        "invalid": [],
+        "draft_sha256": "56448eb0f6cb82b9460db060a18a6bc357b66684773017bf1536edf3d5691b1e",
+        "explicit_successful_read_mentions": [
+          "SKILL.md",
+          "reference-index.md",
+          "information-selection.md",
+          "field-editing.md",
+          "task-route-cards.md",
+          "short-draft-naturalness.md",
+          "genre-playbook-work-summary.md"
+        ],
+        "failed_read_attempts": []
+      },
+      {
+        "model": "command-code/deepseek-deepseek-v4.1-flash",
+        "effort": "provider-default",
+        "case": "weekly_report",
+        "arm": "candidate",
+        "seconds": 28.56,
+        "invalid": [],
+        "draft_sha256": "b9e3246e2420dafab5b09d0a5715b641de576eeaf9d664f13316862bb9a367de",
+        "explicit_successful_read_mentions": [
+          "SKILL.md",
+          "reference-index.md",
+          "short-draft-naturalness.md",
+          "field-editing.md",
+          "delivery.md",
+          "prose-lint-usage.md",
+          "genre-playbook-report.md",
+          "anti-ai-patterns.md",
+          "genre-checklist-report.md",
+          "final-review-layers.md"
+        ],
+        "failed_read_attempts": []
+      },
+      {
+        "model": "ollama-cloud/glm-5.3-flash",
+        "effort": "max",
+        "case": "work_priorities",
+        "arm": "main",
+        "seconds": 64.53,
+        "invalid": [],
+        "draft_sha256": "9b818417cdb9a1e45262f744f3e3d67f96b1a9a1413c1a7e7cb77591c09f4b10",
+        "explicit_successful_read_mentions": [
+          "SKILL.md",
+          "information-selection.md",
+          "reference-index.md",
+          "handling-elements.md",
+          "genre-playbook-work-summary.md"
+        ],
+        "failed_read_attempts": []
+      },
+      {
+        "model": "ollama-cloud/glm-5.3-flash",
+        "effort": "max",
+        "case": "work_priorities",
+        "arm": "candidate",
+        "seconds": 120.03,
+        "invalid": [],
+        "draft_sha256": "d15466e3ed5019f81f41efd8827bb9a35242981a3c487eaff570fd22066e8476",
+        "explicit_successful_read_mentions": [
+          "SKILL.md",
+          "reference-index.md",
+          "information-selection.md",
+          "genre-playbook-work-priorities.md",
+          "handling-elements.md",
+          "short-draft-naturalness.md",
+          "final-review-layers.md",
+          "anti-ai-patterns.md",
+          "prose-lint-usage.md",
+          "delivery.md",
+          "draft-work-priorities-check.md",
+          "draft-work-priorities-check.md",
+          "draft-work-priorities-check.md"
+        ],
+        "failed_read_attempts": []
+      },
+      {
+        "model": "ollama-cloud/glm-5.3-flash",
+        "effort": "max",
+        "case": "work_summary",
+        "arm": "main",
+        "seconds": 62.02,
+        "invalid": [],
+        "draft_sha256": "cd4c37fb80a66b1f9bd02c8d6bd9ff12bbc3b3bf8382f155ee43040284b6fcc9",
+        "explicit_successful_read_mentions": [
+          "SKILL.md",
+          "reference-index.md",
+          "information-selection.md",
+          "short-draft-naturalness.md",
+          "task-route-cards.md",
+          "genre-playbook-work-summary.md",
+          "final-review-layers.md",
+          "proofreading-checklist.md"
+        ],
+        "failed_read_attempts": []
+      },
+      {
+        "model": "ollama-cloud/glm-5.3-flash",
+        "effort": "max",
+        "case": "work_summary",
+        "arm": "candidate",
+        "seconds": 80.75,
+        "invalid": [],
+        "draft_sha256": "339867bfa362e5d1f31790e817fa97ca6d21fb5818fc9fc005dd6428a10346b4",
+        "explicit_successful_read_mentions": [
+          "SKILL.md",
+          "reference-index.md",
+          "information-selection.md",
+          "genre-playbook-work-summary.md",
+          "task-route-cards.md",
+          "short-draft-naturalness.md",
+          "anti-ai-patterns.md",
+          "final-review-layers.md",
+          "delivery.md",
+          "prose-lint-usage.md",
+          "tmp.md",
+          "tmp.md",
+          "tmp.md"
+        ],
+        "failed_read_attempts": []
+      },
+      {
+        "model": "ollama-cloud/glm-5.3-flash",
+        "effort": "max",
+        "case": "weekly_report",
+        "arm": "main",
+        "seconds": 16.17,
+        "invalid": [],
+        "draft_sha256": "dcdfe72acd69f2c310f3fa131b9d52499d269152261bb584db2cf20af405b76f",
+        "explicit_successful_read_mentions": [
+          "SKILL.md",
+          "task-route-cards.md",
+          "information-selection.md"
+        ],
+        "failed_read_attempts": []
+      },
+      {
+        "model": "ollama-cloud/glm-5.3-flash",
+        "effort": "max",
+        "case": "weekly_report",
+        "arm": "candidate",
+        "seconds": 80.0,
+        "invalid": [],
+        "draft_sha256": "dcdfe72acd69f2c310f3fa131b9d52499d269152261bb584db2cf20af405b76f",
+        "explicit_successful_read_mentions": [
+          "SKILL.md",
+          "information-selection.md",
+          "field-editing.md",
+          "task-route-cards.md",
+          "short-draft-naturalness.md",
+          "reference-index.md",
+          "genre-playbook-report.md",
+          "genre-checklist-report.md",
+          "final-review-layers.md",
+          "anti-ai-patterns.md",
+          "prose-lint-usage.md",
+          "delivery.md"
+        ],
+        "failed_read_attempts": []
+      }
+    ]
+  }
+]

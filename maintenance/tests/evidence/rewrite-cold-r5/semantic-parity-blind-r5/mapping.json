@@ -1,0 +1,132 @@
+[
+  {
+    "id": "S01",
+    "model": "command-code/deepseek-deepseek-v4.1-flash",
+    "case": "material_based_analysis",
+    "A": {
+      "file": "output/semantic-parity-native-r5/m2-material_based_analysis-candidate.final.txt",
+      "sha256": "1d061ed331656f16297b1228b499e26831bf005c4dfee84f6ef4960164b6d90a"
+    },
+    "B": {
+      "file": "output/semantic-parity-native-r5/m2-material_based_analysis-baseline.final.txt",
+      "sha256": "a738f7ea22a9392b074fe61ae0df9b52222cc637a4f4229a4ffcb29e6a0d11bc"
+    }
+  },
+  {
+    "id": "S02",
+    "model": "command-code/deepseek-deepseek-v4.1-flash",
+    "case": "existing_field_form",
+    "A": {
+      "file": "output/semantic-parity-native-r5/m2-existing_field_form-baseline.final.txt",
+      "sha256": "22132552f4ba611319855bc386751e5b0b790d47cb4c569e3a1b43b179e3fcca"
+    },
+    "B": {
+      "file": "output/semantic-parity-native-r5/m2-existing_field_form-candidate.final.txt",
+      "sha256": "210799336eccc0bffd4d89b235b6c24fc2e4c552bc6d0abd0bdc605a7513de07"
+    }
+  },
+  {
+    "id": "S03",
+    "model": "command-code/deepseek-deepseek-v4.1-flash",
+    "case": "usage_value_report",
+    "A": {
+      "file": "output/semantic-parity-native-r5/m2-usage_value_report-candidate.final.txt",
+      "sha256": "214c577dc60b241384ff1d98fc97a0330dd6406b11dd005dca5327fa2ba8df0e"
+    },
+    "B": {
+      "file": "output/semantic-parity-native-r5/m2-usage_value_report-baseline.final.txt",
+      "sha256": "9a222dd8cf2ab66c7fdeb47e8ce84efcc16dfa6f203a6b4651c0c463a45edd1d"
+    }
+  },
+  {
+    "id": "S04",
+    "model": "command-code/deepseek-deepseek-v4.1-flash",
+    "case": "feasibility_conditional_advice",
+    "A": {
+      "file": "output/semantic-parity-native-r5/m2-feasibility_conditional_advice-baseline.final.txt",
+      "sha256": "2e83975fc574c41f331779f860ad1788eb0e73cbb4a5e6442d25d75b2ae24c76"
+    },
+    "B": {
+      "file": "output/semantic-parity-native-r5/m2-feasibility_conditional_advice-candidate.final.txt",
+      "sha256": "1c7b90e1cbb36355a8c2497ec7dc99bd85dc06e65ed100023b9415dee8e912ad"
+    }
+  },
+  {
+    "id": "S05",
+    "model": "command-code/deepseek-deepseek-v4.1-flash",
+    "case": "news_supported_analysis",
+    "A": {
+      "file": "output/semantic-parity-native-r5/m2-news_supported_analysis-baseline.final.txt",
+      "sha256": "e2acd0d9c02eb55da989ea93f7773b341835296fddf5c89c1c65486a9433e085"
+    },
+    "B": {
+      "file": "output/semantic-parity-native-r5/m2-news_supported_analysis-candidate.final.txt",
+      "sha256": "8ac3a0cda79b62a08dd0e960da8425ee5208cf30eaa78566f72a58e13cdcc9d6"
+    }
+  },
+  {
+    "id": "S06",
+    "model": "ollama-cloud/glm-5.3-flash",
+    "case": "material_based_analysis",
+    "A": {
+      "file": "output/semantic-parity-native-r5/m4-material_based_analysis-baseline.final.txt",
+      "sha256": "ff169a8663721ddc32fa382f52e7f1ff0a0e7a042a03b1ce1f1e53f7ab14f9cc"
+    },
+    "B": {
+      "file": "output/semantic-parity-native-r5/m4-material_based_analysis-candidate.final.txt",
+      "sha256": "24029dd9101d8c70f4dd577124dd9bd0ebdc16561175801df68298ed3ec23251"
+    }
+  },
+  {
+    "id": "S07",
+    "model": "ollama-cloud/glm-5.3-flash",
+    "case": "existing_field_form",
+    "A": {
+      "file": "output/semantic-parity-native-r5/m4-existing_field_form-baseline.final.txt",
+      "sha256": "16718d9262ac032d7d31bbeb4fdcd99f78a6ac25ca916236f4b24e9b45e99aae"
+    },
+    "B": {
+      "file": "output/semantic-parity-native-r5/m4-existing_field_form-candidate.final.txt",
+      "sha256": "241aea8acd4f44f530832aedb1748c334861cd57e92c57df81831989533e1440"
+    }
+  },
+  {
+    "id": "S08",
+    "model": "ollama-cloud/glm-5.3-flash",
+    "case": "usage_value_report",
+    "A": {
+      "file": "output/semantic-parity-native-r5/m4-usage_value_report-candidate.final.txt",
+      "sha256": "c604879e57cf78e295afd5bf0554f84affc261a40ceb584a8424e1636143ec61"
+    },
+    "B": {
+      "file": "output/semantic-parity-native-r5/m4-usage_value_report-baseline.final.txt",
+      "sha256": "53433f170b28eea663bc121739116770d2f0f6cf6064ca95ddbb3e7c271e6919"
+    }
+  },
+  {
+    "id": "S09",
+    "model": "ollama-cloud/glm-5.3-flash",
+    "case": "feasibility_conditional_advice",
+    "A": {
+      "file": "output/semantic-parity-native-r5/m4-feasibility_conditional_advice-baseline.final.txt",
+      "sha256": "cfb220ae6399a631635388c600f7190eeda545eb4b850d5bb8f7ad7d4aa75c14"
+    },
+    "B": {
+      "file": "output/semantic-parity-native-r5/m4-feasibility_conditional_advice-candidate.final.txt",
+      "sha256": "c45553c96c6bfe134c2df1af9589a5792230815ffcdef63c232481c371381968"
+    }
+  },
+  {
+    "id": "S10",
+    "model": "ollama-cloud/glm-5.3-flash",
+    "case": "news_supported_analysis",
+    "A": {
+      "file": "output/semantic-parity-native-r5/m4-news_supported_analysis-baseline.final.txt",
+      "sha256": "c451b40fa01556f876c24434fa374b0da3cb28d83b8414bdb70681aa32852970"
+    },
+    "B": {
+      "file": "output/semantic-parity-native-r5/m4-news_supported_analysis-candidate.final.txt",
+      "sha256": "2c9f3a2ed478610b6c7f6b30fd310dfca562dd48c9588d327556bd0b881916b7"
+    }
+  }
+]

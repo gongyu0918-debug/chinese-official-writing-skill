@@ -1,0 +1,6 @@
+test_long_form_headings_warn_against_markdown_bold (maintenance.tests.test_skill_boundary.SkillBoundaryTests.test_long_form_headings_warn_against_markdown_bold) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.400s
+
+OK

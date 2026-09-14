@@ -1,0 +1,90 @@
+[
+  {
+    "run": "application-reason-atom-r1",
+    "record": "runs/application-reason-atom-r1.json",
+    "candidate_fingerprint": "d7b23dd7ed80d9d0c6da4f2d8fb6bf6c09373efd04379b713150b6dcbf931685",
+    "calls": 2,
+    "technical_valid": 2,
+    "not_quality_pass_count": true
+  },
+  {
+    "run": "application-reason-atom-r2",
+    "record": "runs/application-reason-atom-r2.json",
+    "candidate_fingerprint": "9249b2ee7e75e0b0d805660b4d1b7d6a257c4b08a779ffad3b72f6ee0725f290",
+    "calls": 4,
+    "technical_valid": 4,
+    "not_quality_pass_count": true
+  },
+  {
+    "run": "application-reason-final-r1",
+    "record": "runs/application-reason-final-r1.json",
+    "candidate_fingerprint": "7bb2b855519a364efd8a57db3b34ac6aa81e7bc0351a69568e3fbcd43f350e23",
+    "calls": 4,
+    "technical_valid": 3,
+    "not_quality_pass_count": true
+  },
+  {
+    "run": "application-reason-final-r2",
+    "record": "runs/application-reason-final-r2.json",
+    "candidate_fingerprint": "7bb2b855519a364efd8a57db3b34ac6aa81e7bc0351a69568e3fbcd43f350e23",
+    "calls": 4,
+    "technical_valid": 4,
+    "not_quality_pass_count": true
+  },
+  {
+    "run": "application-reason-r1",
+    "record": "runs/application-reason-r1.json",
+    "candidate_fingerprint": "d7b23dd7ed80d9d0c6da4f2d8fb6bf6c09373efd04379b713150b6dcbf931685",
+    "calls": 8,
+    "technical_valid": 8,
+    "not_quality_pass_count": true
+  },
+  {
+    "run": "application-reason-user-corrected-atom",
+    "record": "runs/application-reason-user-corrected-atom.json",
+    "candidate_fingerprint": "523b4ec4fd911d9d455283bff4324105473a0585f34dab6241516a7ae2db39c1",
+    "calls": 4,
+    "technical_valid": 4,
+    "not_quality_pass_count": true
+  },
+  {
+    "run": "application-reason-user-corrected-minimax",
+    "record": "runs/application-reason-user-corrected-minimax.json",
+    "candidate_fingerprint": "523b4ec4fd911d9d455283bff4324105473a0585f34dab6241516a7ae2db39c1",
+    "calls": 4,
+    "technical_valid": 4,
+    "not_quality_pass_count": true
+  },
+  {
+    "run": "application-reason-user-corrected-qwen",
+    "record": "runs/application-reason-user-corrected-qwen.json",
+    "candidate_fingerprint": "523b4ec4fd911d9d455283bff4324105473a0585f34dab6241516a7ae2db39c1",
+    "calls": 8,
+    "technical_valid": 8,
+    "not_quality_pass_count": true
+  },
+  {
+    "run": "application-reason-user-corrected-r1",
+    "record": "runs/application-reason-user-corrected-r1.json",
+    "candidate_fingerprint": "523b4ec4fd911d9d455283bff4324105473a0585f34dab6241516a7ae2db39c1",
+    "calls": 8,
+    "technical_valid": 8,
+    "not_quality_pass_count": true
+  },
+  {
+    "run": "application-reason-gap-closure-r1",
+    "record": "runs/application-reason-gap-closure-r1.json",
+    "candidate_fingerprint": "5fd79a5d9f00e44eff6db5f1e410a1f855f8a32fb4d695f9ca6d6d5c2521bec3",
+    "calls": 8,
+    "technical_valid": 8,
+    "not_quality_pass_count": true
+  },
+  {
+    "run": "application-reason-concise-r1",
+    "record": "runs/application-reason-concise-r1.json",
+    "candidate_fingerprint": "0b2cc9146504d0f6a3e5cc17acce5493a62a3a5a4b4405a7145d137487dba0f5",
+    "calls": 8,
+    "technical_valid": 7,
+    "not_quality_pass_count": true
+  }
+]

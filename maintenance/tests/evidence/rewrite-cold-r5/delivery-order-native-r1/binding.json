@@ -1,0 +1,31 @@
+{
+  "main_commit": "1ce7112303172478faa2392667a2de1098eb912c",
+  "candidate_head": "ca52e80f7209fd19e177b58b4b65367078e9a66d",
+  "fingerprints": {
+    "baseline": "ce76f66c5ae712dd644b9b05ef1558e40925d57b3a826b98a3c9add045784049",
+    "candidate": "0fb947b33543d6df591f5de3994f3a11c0d52b235ffe7f60fab99e5c84c9b528"
+  },
+  "models": [
+    "alibaba-token-plan/qwen3.8-flash",
+    "command-code/deepseek-deepseek-v4.1-flash"
+  ],
+  "cases": {
+    "chair_reason": "帮综合办公室写一份完整的办公椅采购申请，报单位负责人审批。材料：办公室现有4把办公椅较为破旧，拟购置4把办公椅用于更新，每把420元；供应商和采购日期尚未确定，预算科目材料暂未提供。",
+    "platform_review": "帮我审核并改好这段活动报道。有效材料：9月10日，市企业服务中心组织企业交流会，8家企业代表参加，代表介绍各自产品并交流合作需求。现稿：9月10日，市企业服务中心组织企业交流会，8家企业代表参加，代表介绍各自产品并交流合作需求。这次活动为企业交流搭建了强大平台，满足未来发展需要。请给自然简洁的改好稿件。",
+    "review": "帮我审核这篇稿件，给出修改建议。材料事实是：信息中心完成接口A的30次测试，其中2次返回超时，原因仍在核对；张工建议追加测试，是否采用尚未决定。现有稿件：接口测试工作报告。本文将从测试情况、问题分析、后续安排三个方面展开说明。信息中心已完成30次测试，发现2次超时，目前已实现系统稳定运行。张工提出追加测试的建议，中心已决定下周组织全面测试。本报告只根据所给材料起草，不新增事实、不扩大结论、不作未经核实的推断。",
+    "official_marks": "帮我校改这份内部工作提示，清除起草旁白，给改好全文。材料要求保留文件首页的‘内部资料 注意保密’和‘第二版（2026年9月修订）’。现稿：内部资料 注意保密。第二版（2026年9月修订）。会议室使用提示。本文由AI整理，以下为最终版本。会议室使用完毕后，请关闭设备并恢复桌椅，设备故障反馈综合办公室。仅供参考，以实际审核结果为准。我只要改后稿件。"
+  },
+  "cli": "C:\\Users\\admin\\AppData\\Local\\OpenAI\\Codex\\bin\\7ac07f4ce733f89a\\codex.exe",
+  "cli_version": "codex-cli 0.153.4",
+  "effort": "medium",
+  "runtime": "C:\\Users\\admin\\AppData\\Local\\Temp\\cow-native-delivery-order-native-r1-vr5ipc_o",
+  "permissions": "inherited-host-config",
+  "timeout": 240,
+  "agent_documents": "project_doc_max_bytes=0",
+  "baseline_ref": "ca52e80f",
+  "candidate_source": "F:\\Workspaces\\chinese-official-writing-skill\\output\\route-worktrees\\reference-rewrite-20260912\\output\\delivery-order-only-r1\\skill",
+  "baseline_commit": "ca52e80f7209fd19e177b58b4b65367078e9a66d",
+  "profile": "temporary-no-user-documents-or-credentials",
+  "runner_sha256": "80a05af2dc028ffe1f925def8b16ee31a0476a69236fe7f6c562d5e107d33ce6",
+  "prompt_prefix": "使用本目录 .agents/skills/chinese-official-writing/SKILL.md。\n\n"
+}

@@ -26,18 +26,6 @@
 
 ## 逐版发布证据
 
-- [v1.6.36](../../tests/evidence/release-1.6.36.md)（[候选记录](../../tests/evidence/release-1.6.36-rc.md)）：同步 1.0 主线的文种路径、讲话称谓顺序和成稿清理改进；所有公开 Skill 包继续采用 MIT 许可证，三平台状态分开记录。
-
-- [v1.6.35](../../tests/evidence/release-1.6.35.md)：纯维护发布；写作规则和运行时代码保持 v1.6.34，统一版本元数据并补齐发布证据索引，未通过的写作候选不进入本版。
-
-- [v1.6.34](../../tests/evidence/release-1.6.34.md)：压缩、字段编辑和语言检查细则按任务集中；GitHub、SkillHub 与 ClawHub 均取得正式发布回执。
-
-- [v1.6.33](../../tests/evidence/release-1.6.33.md)：正式词语按语义审校，保留具体对象、专业含义和必要强调；三平台正式回执与冻结边界见记录。
-
-- [v1.6.32](../../tests/evidence/release-1.6.32.md)：精简写作入口并优化按需文种路由；真实写稿、工程门和三平台回执见记录。
-
-- [v1.6.31](../../tests/evidence/release-1.6.31.md)：发布有据分析规则；产品 tag、三平台回执和未纳入范围见记录。
-
 - [Hook质量构建R1](../../tests/evidence/hook-quality-build-r1/result.md)：独立分支的Claude连续改稿与默认正文清理；真实八版报告、五版纪要及同稿修订，817项回归。有限同稿接续与默认清理随v1.6.29发布；自然字数、原稿事实核验和新前言变体保留HOLD。
 
 - [v1.6.29](../../tests/evidence/release-1.6.29.md)：Claude有限同稿接续与默认正文清理；817项回归，三平台唯一提交及传播/审核边界。

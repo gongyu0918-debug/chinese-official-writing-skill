@@ -1,0 +1,68 @@
+[
+  {
+    "model": "ollama-cloud/glm-5.3-flash",
+    "case": "server_technical_requirements",
+    "arm": "baseline",
+    "seconds": 155.54,
+    "invalid": [],
+    "draft_sha256": "2e02abbf1913663f34a5abc6b24af57121ecf10a4657f4c3c2680541e18ea957",
+    "file": "m4-server_technical_requirements-baseline.result.json",
+    "usage": {
+      "input_tokens": 127218,
+      "cached_input_tokens": 0,
+      "output_tokens": 10174,
+      "uncached_input_tokens": 127218
+    },
+    "full_returned_pages": {
+      "SKILL.md": 7515,
+      "references/ai-compute-docs.md": 3192,
+      "references/final-review-layers.md": 3180,
+      "references/information-selection.md": 1940,
+      "references/proofreading-checklist.md": 1402,
+      "references/reference-index.md": 3919,
+      "references/short-draft-naturalness.md": 465,
+      "references/task-route-cards.md": 1461
+    },
+    "full_returned_chars": 23074,
+    "commands": 14,
+    "failed_commands": 0,
+    "script_calls": []
+  },
+  {
+    "model": "ollama-cloud/glm-5.3-flash",
+    "case": "server_technical_requirements",
+    "arm": "candidate",
+    "seconds": 100.65,
+    "invalid": [],
+    "draft_sha256": "4df1434196e5c8f81fff70c4aa3923f88a48bb024f2710917149e5657dc9a564",
+    "file": "m4-server_technical_requirements-candidate.result.json",
+    "usage": {
+      "input_tokens": 89033,
+      "cached_input_tokens": 0,
+      "output_tokens": 6744,
+      "uncached_input_tokens": 89033
+    },
+    "full_returned_pages": {
+      "SKILL.md": 2534,
+      "references/anti-ai-patterns.md": 898,
+      "references/genre-playbook-technical-requirements.md": 1115,
+      "references/genre-routing.md": 476,
+      "references/prose-lint-usage.md": 498,
+      "references/reference-index.md": 3057,
+      "references/writing-rules.md": 1947
+    },
+    "full_returned_chars": 10525,
+    "commands": 9,
+    "failed_commands": 0,
+    "script_calls": [
+      {
+        "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'python \"C:/Users/admin/AppData/Local/Temp/cow-native-glmflash-q4z637dn/m4-server_technical_requirements-candidate/workspace/.agents/skills/chinese-official-writing/scripts/draft_length.py\" --min-chars 80 \"C:/Users/admin/AppData/Local/Temp/cow-native-glmflash-q4z637dn/m4-server_technical_requirements-candidate/workspace/draft-archiveserver-req.txt\"'",
+        "exit_code": 0
+      },
+      {
+        "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'python \"C:/Users/admin/AppData/Local/Temp/cow-native-glmflash-q4z637dn/m4-server_technical_requirements-candidate/workspace/.agents/skills/chinese-official-writing/scripts/prose_lint.py\" --delivery-mode draft-body --structure --format \"C:/Users/admin/AppData/Local/Temp/cow-native-glmflash-q4z637dn/m4-server_technical_requirements-candidate/workspace/draft-archiveserver-req.txt\"'",
+        "exit_code": 0
+      }
+    ]
+  }
+]

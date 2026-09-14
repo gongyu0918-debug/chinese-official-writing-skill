@@ -18,9 +18,7 @@
 | [`roadmap.md`](roadmap.md) | 哪些已经完成、哪些候选已拒绝或终止、哪些等待新反例、下一步做什么 |
 | [`coverage.md`](coverage.md) | 每项需求由什么产品文件、真实稿件和 Hook 证据覆盖 |
 | [`public-paid-sync.md`](public-paid-sync.md) | 公开 `main` 与付费提纲候选如何同步、哪些差异可以保留 |
-| [`release-v1.6.36-candidate.md`](release-v1.6.36-candidate.md) | v1.6.36 主线同步候选、MIT 许可边界与发布门 |
-| [`release-v1.6.34-candidate.md`](release-v1.6.34-candidate.md) | v1.6.34 候选冻结范围与明确排除项 |
-| [`release-v1.6.35-candidate.md`](release-v1.6.35-candidate.md) | v1.6.35 纯维护候选、版本边界与发布门 |
+| [`reference-rewrite-20260912.md`](reference-rewrite-20260912.md) | 本轮 SKILL、references、脚本重写的范围、架构、验收和合并门槛 |
 | [`../docs/待办.md`](../docs/待办.md) | 当前迭代的执行细目、环境限制和未闭环反例 |
 
 历史发布、预注册、完整盲审和原始回执仍放在 `maintenance/tests/evidence/`；这里仅链接，不复制大段过程。公开产品总览放根 `README.md`，包内使用说明见 [Skill README](../../chinese-official-writing/README.md)；运行时写作规则仍只放 canonical Skill 与 references。

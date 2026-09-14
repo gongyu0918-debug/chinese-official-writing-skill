@@ -1,0 +1,500 @@
+{
+  "audit_type": "bounded_native_execution_audit",
+  "source_head": "c6f65014d6486d3b362ba77c1e99619cf8cb5cdc",
+  "input_directory": "output/review-common-native-r19-calculated",
+  "input_scope": [
+    "inspection.json",
+    "binding.json",
+    "8 corresponding trace.jsonl files",
+    "8 corresponding final.txt files"
+  ],
+  "excluded": [
+    "blind verdicts",
+    "other native runs",
+    "product snapshots and source files"
+  ],
+  "native_binding_fingerprints": {
+    "baseline": "2dae894c3860bfd1f6660272690789ba7a02eb09a096e177319dddd7c66cc056",
+    "candidate": "6e3cdd28e45d5bafd379b75a3db111bdf951bfbb62ccd53a2b2f17d8d87cb20e"
+  },
+  "binding_note": "Native run fingerprints are recorded separately from product package fingerprints; binding points to calculated baseline/candidate and c6f65014.",
+  "verified_trace_and_final_hashes": 16,
+  "arithmetic": {
+    "expected_expression": "4 chairs * 420 yuan/chair",
+    "expected_result_yuan": 1680,
+    "review_rewrite_runs": 4,
+    "final_amount_correct_runs": 4,
+    "actual_business_arithmetic_tool_execution_runs": 0,
+    "candidate_requirement_loaded_runs": 2,
+    "candidate_requirement_quote": "可核算的数值用工具复算，并说明口径。",
+    "execution_gap": "Both candidate rewrite traces returned the explicit requirement but executed no business arithmetic command. Character counting, prose lint and final numeric correctness are separate evidence.",
+    "auditor_recalculation_is_model_execution_evidence": false
+  },
+  "final_length_scope": "From title 关于购置办公椅的申请 through 2026年9月13日; non-whitespace characters, excluding wrappers, review notes and postscript.",
+  "records": [
+    {
+      "stem": "m0-commentary_review_only-baseline",
+      "trace": "../review-common-native-r19-calculated/m0-commentary_review_only-baseline.trace.jsonl",
+      "final": "../review-common-native-r19-calculated/m0-commentary_review_only-baseline.final.txt",
+      "unique_page_count": 8,
+      "unique_page_return_chars": 7816,
+      "commands": 12,
+      "actual_pages": [
+        "SKILL.md",
+        "references/writing-rules.md",
+        "references/review-checklist.md",
+        "references/anti-ai-patterns.md",
+        "references/prose-lint-usage.md",
+        "references/genre-playbook-news-commentary.md",
+        "references/argument-chains.md",
+        "references/structure-editing.md"
+      ],
+      "page_full_return_repetitions": [],
+      "case": "commentary_review_only",
+      "arm": "baseline",
+      "business_arithmetic_tool_executed": false,
+      "scripts": [
+        {
+          "id": "item_11",
+          "script": "prose_lint.py",
+          "input": "cow-review-draft.txt",
+          "scope": "original draft; nonempty risk excerpts returned"
+        }
+      ],
+      "extra_actions": [
+        {
+          "ids": [
+            "item_0",
+            "item_1"
+          ],
+          "description": "Two recursive directory listings; no repeated page-body return."
+        }
+      ],
+      "extra_page_assessment": "argument-chains and structure-editing relate to the supplied circular/repetitive argument."
+    },
+    {
+      "stem": "m0-commentary_review_only-candidate",
+      "trace": "../review-common-native-r19-calculated/m0-commentary_review_only-candidate.trace.jsonl",
+      "final": "../review-common-native-r19-calculated/m0-commentary_review_only-candidate.final.txt",
+      "unique_page_count": 8,
+      "unique_page_return_chars": 6864,
+      "commands": 11,
+      "actual_pages": [
+        "SKILL.md",
+        "references/writing-rules.md",
+        "references/review-checklist.md",
+        "references/anti-ai-patterns.md",
+        "references/prose-lint-usage.md",
+        "references/genre-playbook-news-commentary.md",
+        "references/argument-chains.md",
+        "references/proofreading-checklist.md"
+      ],
+      "page_full_return_repetitions": [],
+      "case": "commentary_review_only",
+      "arm": "candidate",
+      "business_arithmetic_tool_executed": false,
+      "scripts": [
+        {
+          "id": "item_10",
+          "script": "prose_lint.py",
+          "input": "_review_draft.txt",
+          "scope": "original draft; nonempty risk excerpts returned"
+        },
+        {
+          "id": "item_11",
+          "script": "draft_length.py",
+          "input": "_review_draft.txt",
+          "count": 211,
+          "min": 80
+        }
+      ],
+      "extra_actions": [
+        {
+          "id": "item_11",
+          "description": "Unrequested minimum-80 count on the reviewed source, after prose scan; scope misuse, not arithmetic recalculation."
+        }
+      ],
+      "extra_page_assessment": "argument-chains relates to argument review; proofreading has a concrete typo trigger 调正."
+    },
+    {
+      "stem": "m0-review_rewrite-baseline",
+      "trace": "../review-common-native-r19-calculated/m0-review_rewrite-baseline.trace.jsonl",
+      "final": "../review-common-native-r19-calculated/m0-review_rewrite-baseline.final.txt",
+      "unique_page_count": 7,
+      "unique_page_return_chars": 10580,
+      "commands": 15,
+      "actual_pages": [
+        "SKILL.md",
+        "references/writing-rules.md",
+        "references/review-checklist.md",
+        "references/anti-ai-patterns.md",
+        "references/prose-lint-usage.md",
+        "references/genre-playbook-request.md",
+        "references/reference-index.md"
+      ],
+      "page_full_return_repetitions": [],
+      "case": "review_rewrite",
+      "arm": "baseline",
+      "business_arithmetic_tool_executed": false,
+      "final_body_nonspace": 124,
+      "final_amount_yuan": 1680,
+      "final_length_within_120_220": true,
+      "script_sequence": [
+        {
+          "id": "item_9",
+          "script": "draft_length.py",
+          "input": "draft1.txt",
+          "count": 114
+        },
+        {
+          "id": "item_11",
+          "script": "draft_length.py",
+          "input": "draft2.txt",
+          "count": 133
+        },
+        {
+          "id": "item_12",
+          "script": "prose_lint.py",
+          "input": "draft2.txt"
+        },
+        {
+          "id": "item_14",
+          "script": "draft_length.py",
+          "input": "draft3.txt",
+          "count": 118
+        },
+        {
+          "id": "item_15",
+          "script": "prose_lint.py",
+          "input": "draft3.txt"
+        },
+        {
+          "id": "item_17",
+          "script": "draft_length.py",
+          "input": "draft4.txt",
+          "count": 124
+        },
+        {
+          "id": "item_18",
+          "script": "prose_lint.py",
+          "input": "draft4.txt"
+        }
+      ],
+      "latest_checked_input_nonempty": true,
+      "latest_check_order": "length_then_prose",
+      "final_input_identity": "Latest created draft4 checked by both scripts; final count matches 124. file_change stores paths/operations, not draft body; exact text identity unproven.",
+      "extra_page_assessment": "reference-index is discovery overhead; no unrelated genre leaf."
+    },
+    {
+      "stem": "m0-review_rewrite-candidate",
+      "trace": "../review-common-native-r19-calculated/m0-review_rewrite-candidate.trace.jsonl",
+      "final": "../review-common-native-r19-calculated/m0-review_rewrite-candidate.final.txt",
+      "unique_page_count": 7,
+      "unique_page_return_chars": 9910,
+      "commands": 20,
+      "actual_pages": [
+        "SKILL.md",
+        "references/writing-rules.md",
+        "references/review-checklist.md",
+        "references/anti-ai-patterns.md",
+        "references/prose-lint-usage.md",
+        "references/genre-playbook-request.md",
+        "references/reference-index.md"
+      ],
+      "page_full_return_repetitions": [],
+      "case": "review_rewrite",
+      "arm": "candidate",
+      "business_arithmetic_tool_executed": false,
+      "final_body_nonspace": 123,
+      "final_amount_yuan": 1680,
+      "final_length_within_120_220": true,
+      "script_sequence": [
+        {
+          "id": "item_9",
+          "script": "draft_length.py",
+          "input": "draft_v1.txt",
+          "count": 864,
+          "input_issue": "UTF8 byte array serialized as decimal text by Set-Content; not a genuine 864-character draft"
+        },
+        {
+          "id": "item_14",
+          "script": "draft_length.py",
+          "input": "draft_v1.txt repaired version",
+          "count": 131
+        },
+        {
+          "id": "item_15",
+          "script": "prose_lint.py",
+          "input": "131-character version",
+          "mode": "draft-body"
+        },
+        {
+          "id": "item_17",
+          "script": "prose_lint.py",
+          "input": "unchanged 131-character version",
+          "mode": "gap-note-allowed"
+        },
+        {
+          "id": "item_19",
+          "script": "draft_length.py",
+          "input": "draft_v1.txt final version",
+          "count": 123
+        },
+        {
+          "id": "item_20",
+          "script": "prose_lint.py",
+          "input": "draft_v1.txt final version",
+          "mode": "draft-body"
+        }
+      ],
+      "latest_checked_input_nonempty": true,
+      "latest_check_order": "length_then_prose",
+      "final_input_identity": "item_18 writes final body explicitly; normalized-newline text equals final title-through-date body.",
+      "extra_actions": [
+        {
+          "ids": [
+            "item_8",
+            "item_9",
+            "item_10",
+            "item_11",
+            "item_12",
+            "item_13"
+          ],
+          "description": "Encoding/serialization failure and repair."
+        },
+        {
+          "id": "item_17",
+          "description": "Same 131-character draft rescanned under another mode without an intervening content change."
+        }
+      ],
+      "extra_page_assessment": "Same page set as m0 baseline; 670 fewer returned characters from the shorter review page."
+    },
+    {
+      "stem": "m2-commentary_review_only-baseline",
+      "trace": "../review-common-native-r19-calculated/m2-commentary_review_only-baseline.trace.jsonl",
+      "final": "../review-common-native-r19-calculated/m2-commentary_review_only-baseline.final.txt",
+      "unique_page_count": 9,
+      "unique_page_return_chars": 10886,
+      "commands": 14,
+      "actual_pages": [
+        "SKILL.md",
+        "references/writing-rules.md",
+        "references/review-checklist.md",
+        "references/anti-ai-patterns.md",
+        "references/prose-lint-usage.md",
+        "references/genre-playbook-news-commentary.md",
+        "references/reference-index.md",
+        "references/genre-routing.md",
+        "references/structure-editing.md"
+      ],
+      "page_full_return_repetitions": [],
+      "case": "commentary_review_only",
+      "arm": "baseline",
+      "business_arithmetic_tool_executed": false,
+      "scripts": [
+        {
+          "id": "item_16",
+          "script": "prose_lint.py",
+          "input": "_draft_check.md",
+          "scope": "original draft; nonempty risk excerpts returned"
+        },
+        {
+          "id": "item_22",
+          "script": "prose_lint.py",
+          "input": "_review_check.md",
+          "scope": "review opinion; distinct input object"
+        }
+      ],
+      "extra_actions": [
+        {
+          "ids": [
+            "item_3",
+            "item_4"
+          ],
+          "description": "dir /s /b references failed in PowerShell, then directory listing retried successfully."
+        }
+      ],
+      "extra_page_assessment": "structure-editing relates to review; later genre-routing after an already known news-commentary leaf is avoidable discovery overhead."
+    },
+    {
+      "stem": "m2-commentary_review_only-candidate",
+      "trace": "../review-common-native-r19-calculated/m2-commentary_review_only-candidate.trace.jsonl",
+      "final": "../review-common-native-r19-calculated/m2-commentary_review_only-candidate.final.txt",
+      "unique_page_count": 11,
+      "unique_page_return_chars": 11445,
+      "commands": 14,
+      "actual_pages": [
+        "SKILL.md",
+        "references/writing-rules.md",
+        "references/review-checklist.md",
+        "references/anti-ai-patterns.md",
+        "references/prose-lint-usage.md",
+        "references/genre-playbook-news-commentary.md",
+        "references/argument-chains.md",
+        "references/genre-routing.md",
+        "references/reference-index.md",
+        "references/proofreading-checklist.md",
+        "references/formulaic-language.md"
+      ],
+      "page_full_return_repetitions": [],
+      "case": "commentary_review_only",
+      "arm": "candidate",
+      "business_arithmetic_tool_executed": false,
+      "scripts": [
+        {
+          "id": "item_12",
+          "script": "prose_lint.py",
+          "input": ".review-tmp-draft.txt",
+          "scope": "original draft; nonempty risk excerpts returned"
+        }
+      ],
+      "extra_actions": [],
+      "extra_page_assessment": "argument-chains and proofreading have task triggers. index/routing after choosing the leaf and formulaic-language without a distinct formula query are avoidable expansion; not an unrelated genre or demonstrated arithmetic-triggered expansion."
+    },
+    {
+      "stem": "m2-review_rewrite-baseline",
+      "trace": "../review-common-native-r19-calculated/m2-review_rewrite-baseline.trace.jsonl",
+      "final": "../review-common-native-r19-calculated/m2-review_rewrite-baseline.final.txt",
+      "unique_page_count": 10,
+      "unique_page_return_chars": 12708,
+      "commands": 15,
+      "actual_pages": [
+        "SKILL.md",
+        "references/writing-rules.md",
+        "references/review-checklist.md",
+        "references/anti-ai-patterns.md",
+        "references/prose-lint-usage.md",
+        "references/genre-playbook-request.md",
+        "references/genre-routing.md",
+        "references/reference-index.md",
+        "references/genre-checklist-request.md",
+        "references/compression-details.md"
+      ],
+      "page_full_return_repetitions": [],
+      "case": "review_rewrite",
+      "arm": "baseline",
+      "business_arithmetic_tool_executed": false,
+      "final_body_nonspace": 137,
+      "final_amount_yuan": 1680,
+      "final_length_within_120_220": true,
+      "script_sequence": [
+        {
+          "id": "item_12",
+          "script": "draft_length.py",
+          "input": "_draft_review.txt first version",
+          "count": 133
+        },
+        {
+          "id": "item_13",
+          "script": "prose_lint.py",
+          "input": "first version"
+        },
+        {
+          "id": "item_16",
+          "script": "draft_length.py",
+          "input": "_draft_review.txt recreated version",
+          "count": 137
+        },
+        {
+          "id": "item_17",
+          "script": "prose_lint.py",
+          "input": "recreated version"
+        }
+      ],
+      "latest_checked_input_nonempty": true,
+      "latest_check_order": "length_then_prose",
+      "final_input_identity": "Latest recreated file checked by both scripts and then deleted. final count matches 137; trace lacks patch body, so exact text identity unproven.",
+      "extra_page_assessment": "request checklist is on-topic. compression-details was read for a simple known 120-220 range with no complex counting/allocation need."
+    },
+    {
+      "stem": "m2-review_rewrite-candidate",
+      "trace": "../review-common-native-r19-calculated/m2-review_rewrite-candidate.trace.jsonl",
+      "final": "../review-common-native-r19-calculated/m2-review_rewrite-candidate.final.txt",
+      "unique_page_count": 12,
+      "unique_page_return_chars": 14054,
+      "commands": 16,
+      "actual_pages": [
+        "SKILL.md",
+        "references/writing-rules.md",
+        "references/review-checklist.md",
+        "references/anti-ai-patterns.md",
+        "references/prose-lint-usage.md",
+        "references/genre-playbook-request.md",
+        "references/genre-checklist-request.md",
+        "references/reference-index.md",
+        "references/genre-routing.md",
+        "references/formulaic-language.md",
+        "references/compression-details.md",
+        "references/formal-addressing.md"
+      ],
+      "page_full_return_repetitions": [],
+      "case": "review_rewrite",
+      "arm": "candidate",
+      "business_arithmetic_tool_executed": false,
+      "final_body_nonspace": 131,
+      "final_amount_yuan": 1680,
+      "final_length_within_120_220": true,
+      "script_sequence": [
+        {
+          "id": "item_14",
+          "script": "draft_length.py",
+          "input": ".draft-chair.txt",
+          "count": 131
+        },
+        {
+          "id": "item_15",
+          "script": "prose_lint.py",
+          "input": ".draft-chair.txt"
+        }
+      ],
+      "latest_checked_input_nonempty": true,
+      "latest_check_order": "length_then_prose",
+      "final_input_identity": "Created file checked by both scripts and then removed. final count matches 131; trace lacks patch body, so exact text identity unproven.",
+      "extra_page_assessment": "request checklist is on-topic. index/routing after the leaf, compression-details, formulaic-language and formal-addressing are avoidable expansion; no independent complex counting or address-relation requirement was identified."
+    }
+  ],
+  "common_reading": {
+    "core_pages_each_returned_once_in_all_8": [
+      "SKILL.md",
+      "references/writing-rules.md",
+      "references/review-checklist.md",
+      "references/anti-ai-patterns.md",
+      "references/prose-lint-usage.md"
+    ],
+    "primary_leaf_returned_in_all_8": true,
+    "same_page_full_return_repetition_count": 0,
+    "unrelated_genre_leaf_count": 0,
+    "reading_order_note": "anti-ai page returned before scripts in all runs; page-return timing cannot establish internal semantic-check timing.",
+    "aggregate_unique_return_chars": {
+      "baseline": 41990,
+      "candidate": 42273,
+      "delta": 283
+    },
+    "aggregate_commands": {
+      "baseline": 56,
+      "candidate": 61,
+      "delta": 5
+    },
+    "cost_or_quality_inference": false
+  },
+  "attribution": {
+    "directly_observed": [
+      "Explicit candidate business-recalculation requirement loaded but no arithmetic command executed in either rewrite run.",
+      "All four final rewrite bodies are within 120-220 and contain the correct total 1680.",
+      "Same m0 rewrite page set gives a 670-character decrease attributable to the shorter review page.",
+      "No business arithmetic tools were induced in the four commentary review-only runs."
+    ],
+    "not_isolated_by_design": [
+      "This native batch compares c6 baseline against the full calculated review-page candidate, not repaired versus calculated in the same run.",
+      "The extra source-draft 80-character check, extra pages, encoding repair and scan-mode switch cannot be attributed to the one new sentence.",
+      "No general actual-reading reduction follows from aggregate page returns or this small batch."
+    ],
+    "suggested_scope": "Continue one shared short workflow: recalculate derivable values in current task scope; count the deliverable subject to a length requirement; stop expanding references when material and routing are sufficient. No short/long entrances or new pages."
+  },
+  "blind_verdicts_read": false,
+  "preferences_evaluated": false,
+  "models_run": false,
+  "product_tests_run": false,
+  "product_modified": false,
+  "committed": false
+}

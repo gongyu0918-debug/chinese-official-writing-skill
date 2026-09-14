@@ -1,0 +1,62 @@
+{
+  "script_sha256": "8931a7a82a1563e5838a137f9496dc92dc7c48451b0fbf443d32afc27dc8e7c7",
+  "inputs": 64,
+  "new_reason_findings": [
+    {
+      "path": "maintenance\\tests\\evidence\\application-reason-r2\\drafts\\application-reason-gap-closure-r1-m0-request_reason_missing-candidate.final.txt",
+      "sha256": "f51f209e85a00e24adcef66952badf009e4cb83c9cd02f9a0116e77a32f515ef",
+      "findings": [
+        {
+          "path": "<stdin>",
+          "line": 7,
+          "severity": "medium",
+          "label": "unfinished-reason-placeholder",
+          "match": "因＿＿＿＿＿＿＿＿",
+          "excerpt": "照工作安排，综合办公室定于9月20日前完成资料核对工作。因＿＿＿＿＿＿＿＿，该项工作无法按期完成。现申请将资料核对工作延期至9月2 | 原因句仍留有填写空位。交付完整申请时，依据材料补齐缘由；原因仍缺时清理空位，并在文后提示中询问。"
+        }
+      ]
+    },
+    {
+      "path": "maintenance\\tests\\evidence\\application-reason-r2\\drafts\\application-reason-user-corrected-qwen-m0-request_reason_missing-candidate.txt",
+      "sha256": "6869ba8dce935be549444d23f195f0fa7d39df1192d72e48fdaa1f2c8c60d66e",
+      "findings": [
+        {
+          "path": "<stdin>",
+          "line": 9,
+          "severity": "medium",
+          "label": "unfinished-reason-placeholder",
+          "match": "因＿＿＿＿＿＿＿＿",
+          "excerpt": "资料核对工作原定9月20日完成，因＿＿＿＿＿＿＿＿，无法按原时限完成，拟将完成时限延长至9月27日。 | 原因句仍留有填写空位。交付完整申请时，依据材料补齐缘由；原因仍缺时清理空位，并在文后提示中询问。"
+        }
+      ]
+    },
+    {
+      "path": "maintenance\\tests\\evidence\\application-reason-r2\\drafts\\application-reason-user-corrected-qwen-m1-request_reason_missing-candidate.txt",
+      "sha256": "807ec0c32bf6094f3215c46b0cd1af488120265f34767ec67df82216738e78ba",
+      "findings": [
+        {
+          "path": "<stdin>",
+          "line": 7,
+          "severity": "medium",
+          "label": "unfinished-reason-placeholder",
+          "match": "〔延期原因〕",
+          "excerpt": "按照工作安排，资料核对工作原定9月20日完成。〔延期原因〕，为保证核对结果完整准确，综合办公室拟申请将完成时间延至 | 原因句仍留有填写空位。交付完整申请时，依据材料补齐缘由；原因仍缺时清理空位，并在文后提示中询问。"
+        }
+      ]
+    },
+    {
+      "path": "output\\request-placeholder-script-r1\\m2-request_reason_missing-candidate.final.txt",
+      "sha256": "7015a4d23e2b5c306d77be4c8f3e520e9895f4668e932a694fdb124f4ebbc8c3",
+      "findings": [
+        {
+          "path": "<stdin>",
+          "line": 13,
+          "severity": "medium",
+          "label": "unfinished-reason-placeholder",
+          "match": "因（延期原因待补）",
+          "excerpt": "资料核对工作原定于9月20日完成，因（延期原因待补），预计无法按期完成，现申请延期至9月27日完成。妥否，请 | 原因句仍留有填写空位。交付完整申请时，依据材料补齐缘由；原因仍缺时清理空位，并在文后提示中询问。"
+        }
+      ]
+    }
+  ]
+}

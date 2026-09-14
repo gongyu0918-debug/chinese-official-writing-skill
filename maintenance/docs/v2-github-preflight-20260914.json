@@ -1,0 +1,10 @@
+{
+  "ordinary_rules_and_scripts_unchanged_from": "1b62e673",
+  "unchanged_files": 69,
+  "reference_manifest_pages": 67,
+  "quick_validate": true,
+  "product_route_audit": true,
+  "readme_links_resolve": true,
+  "legacy_head": "d561bf6b54952e562be5910feda9182cff7d3646",
+  "preview_sha256": "79ef8987c46434cff5f8ff60fa3381e187a2293216eed7d437e4d0ef405df186"
+}

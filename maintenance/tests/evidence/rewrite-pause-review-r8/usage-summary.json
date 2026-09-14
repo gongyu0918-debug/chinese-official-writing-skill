@@ -1,0 +1,18 @@
+{
+  "all_records": 24,
+  "by_arm": {
+    "baseline": {
+      "input_tokens": 1489511,
+      "cached_input_tokens": 1251200,
+      "output_tokens": 61612,
+      "seconds": 672.1800000000001
+    },
+    "candidate": {
+      "input_tokens": 2248083,
+      "cached_input_tokens": 2013312,
+      "output_tokens": 64548,
+      "seconds": 893.56
+    }
+  },
+  "note": "Provider-reported native usage, no billing conversion; elapsed sums are not batch wall time. Two models and six fixed tasks each."
+}

@@ -1,0 +1,14 @@
+{
+  "candidate": "output/common-layer-index-r13/skill",
+  "files": 74,
+  "manifest": "PASS",
+  "references": "PASS",
+  "changed_paths": [
+    "SKILL.md",
+    "references/reference-index.md"
+  ],
+  "scripts_and_unchanged_rules": "byte-identical to R12",
+  "quick_validate": "PASS",
+  "skill_chars": 2356,
+  "note": "Initial path comparison asserted list order and failed on the same two expected paths; corrected to an unordered set. No product change was needed."
+}

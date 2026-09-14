@@ -1,0 +1,82 @@
+[
+  {
+    "id": "P01",
+    "run": "r7",
+    "case": "review_rewrite",
+    "model": "alibaba-token-plan/qwen3.8-flash",
+    "mapping": {
+      "A": "candidate",
+      "B": "main"
+    }
+  },
+  {
+    "id": "P02",
+    "run": "r7",
+    "case": "review_rewrite",
+    "model": "ollama-cloud/glm-5.3-flash",
+    "mapping": {
+      "A": "main",
+      "B": "candidate"
+    }
+  },
+  {
+    "id": "P03",
+    "run": "r8",
+    "case": "minutes",
+    "model": "command-code/deepseek-deepseek-v4.1-flash",
+    "mapping": {
+      "A": "candidate",
+      "B": "main"
+    }
+  },
+  {
+    "id": "P04",
+    "run": "r9",
+    "case": "communique",
+    "model": "command-code/deepseek-deepseek-v4.1-flash",
+    "mapping": {
+      "A": "main",
+      "B": "candidate"
+    }
+  },
+  {
+    "id": "P05",
+    "run": "r9",
+    "case": "decision",
+    "model": "command-code/deepseek-deepseek-v4.1-flash",
+    "mapping": {
+      "A": "candidate",
+      "B": "main"
+    }
+  },
+  {
+    "id": "P06",
+    "run": "r9",
+    "case": "motion",
+    "model": "command-code/deepseek-deepseek-v4.1-flash",
+    "mapping": {
+      "A": "main",
+      "B": "candidate"
+    }
+  },
+  {
+    "id": "P07",
+    "run": "r9",
+    "case": "order",
+    "model": "command-code/deepseek-deepseek-v4.1-flash",
+    "mapping": {
+      "A": "candidate",
+      "B": "main"
+    }
+  },
+  {
+    "id": "P08",
+    "run": "r9",
+    "case": "resolution",
+    "model": "command-code/deepseek-deepseek-v4.1-flash",
+    "mapping": {
+      "A": "main",
+      "B": "candidate"
+    }
+  }
+]

@@ -3,7 +3,6 @@ from __future__ import annotations
 from pathlib import Path
 import unittest
 
-from maintenance.tests.hook_companion_support import HookCompanionTestMixin
 from maintenance.tests.test_skill_boundary import read_routing_surfaces
 
 
@@ -19,30 +18,14 @@ PERSISTENT_MIRRORS = (
 )
 
 
-class ComplaintReflectionLeafTests(HookCompanionTestMixin, unittest.TestCase):
+class ComplaintReflectionLeafTests(unittest.TestCase):
     def setUp(self) -> None:
-        self.setUpHookCompanions()
-        self.mirror_roots = (
-            *(
-                self.companion_roots[host] / "skills/chinese-official-writing"
-                for host in (
-                    "codex",
-                    "codebuddy",
-                    "claude-code",
-                    "zcode",
-                    "qwen-code",
-                    "kimi-code",
-                )
-            ),
-            *PERSISTENT_MIRRORS,
-        )
+        self.mirror_roots = PERSISTENT_MIRRORS
 
     def test_direct_route_is_separate_from_advisory_and_received_records(self) -> None:
         skill = read_routing_surfaces(CANONICAL / "SKILL.md")
         leaf = (CANONICAL / LEAF).read_text(encoding="utf-8")
-        formulaic_row = next(
-            line for line in skill.splitlines() if line.startswith("| `references/formulaic-language.md`")
-        )
+        formulaic_row = next(line for line in skill.splitlines() if "`formulaic-language.md`" in line)
 
         self.assertIn("直达 `references/genre-playbook-complaint-reflection.md`", skill)
         self.assertIn("以本人或本单位亲历方身份", skill)
@@ -64,7 +47,7 @@ class ComplaintReflectionLeafTests(HookCompanionTestMixin, unittest.TestCase):
         text = (CANONICAL / LEAF).read_text(encoding="utf-8")
 
         self.assertIn("标题原样置于正文首行", text)
-        self.assertIn("不因`只输出正文`而省略", text)
+        self.assertNotIn("只输出正文", text)
         self.assertIn("不要顺势续写", text)
         self.assertIn("直接交付正文", text)
         self.assertIn("纯文本交付不使用 HTML 空格实体", text)

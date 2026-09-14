@@ -1,0 +1,6 @@
+{
+  "command": "C:\\Users\\admin\\AppData\\Local\\Programs\\Python\\Python313\\python.exe -X utf8 -B -m unittest maintenance.tests.test_skill_boundary maintenance.tests.test_reference_rewrite_contract -v",
+  "exit_code": 0,
+  "python": "3.13.13",
+  "full_module_runs": 1
+}

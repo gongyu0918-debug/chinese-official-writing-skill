@@ -1,0 +1,13 @@
+[
+  {
+    "path": "<stdin>",
+    "mode": "nonspace",
+    "scope": "draft-before-postscript",
+    "count": 8,
+    "minimum": 8,
+    "maximum": 8,
+    "status": "within",
+    "below_by": 0,
+    "above_by": 0
+  }
+]

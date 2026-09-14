@@ -1,0 +1,58 @@
+{
+  "status": "hold-prototype-no-default-adoption",
+  "candidate_fingerprint": "b454ee2824acb6604d1376fc4edb79c93426fc81e86b661025cc04776d986f55",
+  "baseline_fingerprint": "a8f2f4694450e790bcc7129447f0ccac32cf5ef2bf227e7852604d714dfcddb5",
+  "counts": {
+    "body": {
+      "baseline": 2,
+      "candidate": 0,
+      "tie": 2
+    },
+    "delivery": {
+      "baseline": 1,
+      "candidate": 2,
+      "tie": 1
+    }
+  },
+  "verdicts": [
+    {
+      "case": "delivery_cleanup_existing",
+      "model": "command-code/deepseek-deepseek-v4.1-flash",
+      "id": "P01",
+      "packet": "output/blind-r16/delivery-cleanup-r22-deepseek",
+      "body": "tie",
+      "delivery": "candidate"
+    },
+    {
+      "case": "delivery_independent_cleanup",
+      "model": "command-code/deepseek-deepseek-v4.1-flash",
+      "id": "P02",
+      "packet": "output/blind-r16/delivery-cleanup-r22-deepseek",
+      "body": "baseline",
+      "delivery": "candidate"
+    },
+    {
+      "case": "delivery_cleanup_existing",
+      "model": "alibaba-token-plan/qwen3.8-flash",
+      "id": "P01",
+      "packet": "output/blind-r16/delivery-cleanup-r22-qwen",
+      "body": "tie",
+      "delivery": "baseline"
+    },
+    {
+      "case": "delivery_independent_cleanup",
+      "model": "alibaba-token-plan/qwen3.8-flash",
+      "id": "P02",
+      "packet": "output/blind-r16/delivery-cleanup-r22-qwen",
+      "body": "baseline",
+      "delivery": "tie"
+    }
+  ],
+  "root_calls": 8,
+  "technical_valid": 8,
+  "spawn_calls": 7,
+  "candidate_spawn_calls": 3,
+  "independent_context_verified": 7,
+  "default_latency_guarantee": "not demonstrated",
+  "next_scope": "Preserve functional cleanup prototype and actual clean reviewer returns; no default broad factual review, no repeated reruns for zero failures, no product change in this batch."
+}

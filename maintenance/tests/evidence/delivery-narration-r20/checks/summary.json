@@ -1,0 +1,13 @@
+{
+  "tests_run": 114,
+  "failures": 0,
+  "errors": 0,
+  "module_runs": 1,
+  "targeted_reruns": 0,
+  "product_pages_checked": 12,
+  "product_pages_changed": 0,
+  "test_files_changed": 2,
+  "git_diff_check": "PASS",
+  "commit_created": false,
+  "claim_scope": "工程迁移通过，不是新增模型效果证据或对1.x基线过关结论"
+}

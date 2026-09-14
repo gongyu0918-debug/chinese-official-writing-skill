@@ -1,0 +1,162 @@
+{
+  "interpreter": "C:\\Users\\admin\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+  "methods": [
+    "test_sparse_length_rule_keeps_fact_boundary_without_short_first_priority",
+    "test_review_command_includes_interpreter_and_draft_path",
+    "test_openclaw_skill_card_uses_absolute_links_and_key_genres",
+    "test_lightened_indices_resolve_from_each_skill_root_and_keep_quality_bridges"
+  ],
+  "tests_run": 4,
+  "failure_events": 6,
+  "error_events": 0,
+  "failed_ids": [
+    "maintenance.tests.test_skill_boundary.SkillBoundaryTests.test_lightened_indices_resolve_from_each_skill_root_and_keep_quality_bridges (root=WindowsPath('F:/Workspaces/chinese-official-writing-skill/output/route-worktrees/reference-rewrite-20260912/chinese-official-writing'))",
+    "maintenance.tests.test_skill_boundary.SkillBoundaryTests.test_lightened_indices_resolve_from_each_skill_root_and_keep_quality_bridges (root=WindowsPath('F:/Workspaces/chinese-official-writing-skill/output/route-worktrees/reference-rewrite-20260912/packages/agent-skills/skills/chinese-official-writing'))",
+    "maintenance.tests.test_skill_boundary.SkillBoundaryTests.test_lightened_indices_resolve_from_each_skill_root_and_keep_quality_bridges (root=WindowsPath('F:/Workspaces/chinese-official-writing-skill/output/route-worktrees/reference-rewrite-20260912/packages/qwen-code/skills/chinese-official-writing'))",
+    "maintenance.tests.test_skill_boundary.SkillBoundaryTests.test_lightened_indices_resolve_from_each_skill_root_and_keep_quality_bridges (root=WindowsPath('F:/Workspaces/chinese-official-writing-skill/output/route-worktrees/reference-rewrite-20260912/packages/qwenwork/skills/chinese-official-writing'))",
+    "maintenance.tests.test_skill_boundary.SkillBoundaryTests.test_lightened_indices_resolve_from_each_skill_root_and_keep_quality_bridges (root=WindowsPath('F:/Workspaces/chinese-official-writing-skill/output/route-worktrees/reference-rewrite-20260912/packages/hermes/skills/chinese-official-writing'))",
+    "maintenance.tests.test_skill_boundary.SkillBoundaryTests.test_lightened_indices_resolve_from_each_skill_root_and_keep_quality_bridges (root=WindowsPath('F:/Workspaces/chinese-official-writing-skill/output/route-worktrees/reference-rewrite-20260912/packages/openclaw/skills/chinese_official_writing'))"
+  ],
+  "error_ids": [],
+  "helper_checks": [
+    {
+      "case": "two-hop",
+      "status": "PASS",
+      "observed": "exact three-surface concatenation"
+    },
+    {
+      "case": "missing-home-link",
+      "status": "PASS",
+      "observed": "AssertionError",
+      "message": "entry route missing: F:\\Workspaces\\chinese-official-writing-skill\\output\\route-worktrees\\reference-rewrite-20260912\\maintenance\\tests\\evidence\\legacy-cli-migration-r18\\helper-fixtures\\missing-home-link\\SKILL.md: references/reference-index.md"
+    },
+    {
+      "case": "missing-index-link",
+      "status": "PASS",
+      "observed": "AssertionError",
+      "message": "index route missing: F:\\Workspaces\\chinese-official-writing-skill\\output\\route-worktrees\\reference-rewrite-20260912\\maintenance\\tests\\evidence\\legacy-cli-migration-r18\\helper-fixtures\\missing-index-link\\references\\reference-index.md: compatibility-scene-routing.md"
+    },
+    {
+      "case": "missing-index-file",
+      "status": "PASS",
+      "observed": "FileNotFoundError",
+      "message": "[Errno 2] No such file or directory: 'F:\\\\Workspaces\\\\chinese-official-writing-skill\\\\output\\\\route-worktrees\\\\reference-rewrite-20260912\\\\maintenance\\\\tests\\\\evidence\\\\legacy-cli-migration-r18\\\\helper-fixtures\\\\missing-index-file\\\\references\\\\reference-index.md'"
+    },
+    {
+      "case": "missing-scene-file",
+      "status": "PASS",
+      "observed": "FileNotFoundError",
+      "message": "[Errno 2] No such file or directory: 'F:\\\\Workspaces\\\\chinese-official-writing-skill\\\\output\\\\route-worktrees\\\\reference-rewrite-20260912\\\\maintenance\\\\tests\\\\evidence\\\\legacy-cli-migration-r18\\\\helper-fixtures\\\\missing-scene-file\\\\references\\\\compatibility-scene-routing.md'"
+    }
+  ],
+  "actual_cli_calls": [
+    {
+      "command": [
+        "C:\\Users\\admin\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+        "-B",
+        "F:\\Workspaces\\chinese-official-writing-skill\\output\\route-worktrees\\reference-rewrite-20260912\\chinese-official-writing\\scripts\\draft_length.py",
+        "--count-mode",
+        "nonspace",
+        "--min-chars",
+        "8",
+        "--max-chars",
+        "8",
+        "--json",
+        "-"
+      ],
+      "stdin": "正文ABC12。\n\n文后提示\n不计入123",
+      "returncode": 0,
+      "stdout": "F:\\Workspaces\\chinese-official-writing-skill\\output\\route-worktrees\\reference-rewrite-20260912\\maintenance\\tests\\evidence\\legacy-cli-migration-r18\\cli-calls\\01\\stdout.txt",
+      "stdout_sha256": "62f7db9cf176fa40d9ca935a2be1b0a1a8e6d19c196ad3e96330742028ddec7a",
+      "stderr": "F:\\Workspaces\\chinese-official-writing-skill\\output\\route-worktrees\\reference-rewrite-20260912\\maintenance\\tests\\evidence\\legacy-cli-migration-r18\\cli-calls\\01\\stderr.txt",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": [
+        "C:\\Users\\admin\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+        "-B",
+        "F:\\Workspaces\\chinese-official-writing-skill\\output\\route-worktrees\\reference-rewrite-20260912\\chinese-official-writing\\scripts\\draft_length.py",
+        "--count-mode",
+        "cjk",
+        "--min-chars",
+        "2",
+        "--max-chars",
+        "2",
+        "--json",
+        "-"
+      ],
+      "stdin": "正文ABC12。\n\n文后提示\n不计入123",
+      "returncode": 0,
+      "stdout": "F:\\Workspaces\\chinese-official-writing-skill\\output\\route-worktrees\\reference-rewrite-20260912\\maintenance\\tests\\evidence\\legacy-cli-migration-r18\\cli-calls\\02\\stdout.txt",
+      "stdout_sha256": "38c2e92c0d1b0b631e35097e1a5a7ef4d4c983552dc5eaa5bd952b277efedc86",
+      "stderr": "F:\\Workspaces\\chinese-official-writing-skill\\output\\route-worktrees\\reference-rewrite-20260912\\maintenance\\tests\\evidence\\legacy-cli-migration-r18\\cli-calls\\02\\stderr.txt",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": [
+        "C:\\Users\\admin\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+        "-B",
+        "F:\\Workspaces\\chinese-official-writing-skill\\output\\route-worktrees\\reference-rewrite-20260912\\chinese-official-writing\\scripts\\prose_lint.py",
+        "--delivery-mode",
+        "draft-body",
+        "--structure",
+        "--format",
+        "--json",
+        "-"
+      ],
+      "stdin": "通知\n\n请业务科于9月18日前提交材料。\n\n文后提示\n请补充联系人。",
+      "returncode": 0,
+      "stdout": "F:\\Workspaces\\chinese-official-writing-skill\\output\\route-worktrees\\reference-rewrite-20260912\\maintenance\\tests\\evidence\\legacy-cli-migration-r18\\cli-calls\\03\\stdout.txt",
+      "stdout_sha256": "a4b19679b1794635a610a86d5069abc5df1dc65f1aee29be5da84447ac8e381a",
+      "stderr": "F:\\Workspaces\\chinese-official-writing-skill\\output\\route-worktrees\\reference-rewrite-20260912\\maintenance\\tests\\evidence\\legacy-cli-migration-r18\\cli-calls\\03\\stderr.txt",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": [
+        "C:\\Users\\admin\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+        "-B",
+        "F:\\Workspaces\\chinese-official-writing-skill\\output\\route-worktrees\\reference-rewrite-20260912\\chinese-official-writing\\scripts\\prose_lint.py",
+        "--delivery-mode",
+        "gap-note-allowed",
+        "--structure",
+        "--format",
+        "--json",
+        "-"
+      ],
+      "stdin": "通知\n\n请业务科于9月18日前提交材料。\n\n文后提示\n请补充联系人。",
+      "returncode": 0,
+      "stdout": "F:\\Workspaces\\chinese-official-writing-skill\\output\\route-worktrees\\reference-rewrite-20260912\\maintenance\\tests\\evidence\\legacy-cli-migration-r18\\cli-calls\\04\\stdout.txt",
+      "stdout_sha256": "a5338d955b09046ec0b16f3a9625b7955c763aae07dc722e474e6078745f932f",
+      "stderr": "F:\\Workspaces\\chinese-official-writing-skill\\output\\route-worktrees\\reference-rewrite-20260912\\maintenance\\tests\\evidence\\legacy-cli-migration-r18\\cli-calls\\04\\stderr.txt",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": [
+        "C:\\Users\\admin\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+        "-B",
+        "F:\\Workspaces\\chinese-official-writing-skill\\output\\route-worktrees\\reference-rewrite-20260912\\chinese-official-writing\\scripts\\prose_lint.py",
+        "--delivery-mode",
+        "review-only",
+        "--structure",
+        "--format",
+        "--json",
+        "-"
+      ],
+      "stdin": "第2段日期与材料不符，建议按原日期修改。",
+      "returncode": 0,
+      "stdout": "F:\\Workspaces\\chinese-official-writing-skill\\output\\route-worktrees\\reference-rewrite-20260912\\maintenance\\tests\\evidence\\legacy-cli-migration-r18\\cli-calls\\05\\stdout.txt",
+      "stdout_sha256": "a5338d955b09046ec0b16f3a9625b7955c763aae07dc722e474e6078745f932f",
+      "stderr": "F:\\Workspaces\\chinese-official-writing-skill\\output\\route-worktrees\\reference-rewrite-20260912\\maintenance\\tests\\evidence\\legacy-cli-migration-r18\\cli-calls\\05\\stderr.txt",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "module_sha256": "b5d10c7d910ac6397abced3081f66f42f130681ed154d36ebe197f47938c629d",
+  "product_sha256": {
+    "SKILL.md": "6773fa2faa1b2214bfa5ef777d29dbe51953828c637e5a488d10969343a93a5d",
+    "references/writing-rules.md": "c84ac302e806508fc4b6a70939af6d71f00042973a6aa76c803a48dcdaaa5d7c",
+    "references/compression-details.md": "5be01fb222381944553df93ef22360accba8c28d0b9d7116f1defa3f9b5ffec8",
+    "references/prose-lint-usage.md": "0e6a324572c0edc4bb277d25b781ec1dbd5eb0b9c81995764d978de567be4251",
+    "scripts/draft_length.py": "a1bb1f4a963387c8b8dd21179141d19d36fb03f9396c12ae5531e59cdc7c5307",
+    "scripts/prose_lint.py": "96d79b02e0a23d7ea9eb7427b2b5b21c09cb2e03cd0f7243fdc3ab0fb1a9f460"
+  }
+}

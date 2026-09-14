@@ -1,0 +1,23 @@
+{
+  "baseline": {
+    "pages": {
+      "information-selection.md": 1636,
+      "final-review-layers.md": 667,
+      "anti-ai-patterns.md": 2341,
+      "prose-lint-usage.md": 691,
+      "delivery.md": 609
+    },
+    "total": 5944,
+    "homepage": 3847
+  },
+  "candidate": {
+    "pages": {
+      "writing-rules.md": 1661,
+      "anti-ai-patterns.md": 905,
+      "prose-lint-usage.md": 435
+    },
+    "total": 3001,
+    "homepage": 2490
+  },
+  "reduction_percent": 49.51
+}

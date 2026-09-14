@@ -1,0 +1,40 @@
+{
+  "main_commit": "d561bf6b54952e562be5910feda9182cff7d3646",
+  "candidate_head": "69914fb34f3be0e249aba2da2e84c20589191bd6",
+  "fingerprints": {
+    "baseline": "4ac78943f1d5f7660c879360fdee0163f43d8e87dd951838f7a7cddaab81004f",
+    "candidate": "33e4f4480b2d12452e6505c74da11e5f7dadde6bcf11d61d4c4d39f5b5d06ddc"
+  },
+  "models": [
+    "ollama-cloud/glm-5.3-flash"
+  ],
+  "cases": {
+    "server_technical_requirements": "请将下列材料整理成一份简短完整的《档案检索服务器租赁技术需求》，作为采购附件：租赁2台通用服务器，服务期12个月，用于现有档案检索系统；在本单位机房安装，与现有存储连接；需统一查看运行状态，故障设备由服务方替换；CPU、内存和连接接口规格尚待确认；验收核对设备数量、安装情况、存储连接和运行状态查看功能，提交设备清单及安装记录。写得自然、清楚，保持未定事项的状态。"
+  },
+  "cli": "C:\\Users\\admin\\AppData\\Local\\OpenAI\\Codex\\bin\\bffc5354119c8421\\codex.exe",
+  "cli_version": "codex-cli 0.154.0-alpha.6.2",
+  "effort": "max",
+  "runtime": "C:\\Users\\admin\\AppData\\Local\\Temp\\cow-native-glmflash-q4z637dn",
+  "permissions": "inherited-host-config",
+  "timeout": 600,
+  "agent_documents": "project_doc_max_bytes=0",
+  "baseline_ref": "snapshot",
+  "baseline_source": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\v2-independent-readiness-r31\\output\\v2-readiness-r31\\frozen\\baseline",
+  "candidate_source": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\v2-independent-readiness-r31\\output\\v2-readiness-r31\\frozen\\candidate",
+  "candidate_skill_name": "chinese-official-writing",
+  "baseline_commit": null,
+  "profile": "temporary-no-user-documents-or-credentials",
+  "runner_sha256": "65dc98c960c7f147e967005117bca541406d815b7c7bbd78d40a2d3e927a0cf5",
+  "prompt_prefix": "使用本目录 .agents/skills/chinese-official-writing/SKILL.md。\n\n使用普通写作能力，不启用 Hook。\n\n本目录文本文件为 UTF-8 编码，读取时显式指定 UTF-8 解码。\n\n",
+  "ordinary_only": true,
+  "utf8_read": true,
+  "runtime_layout": "each call has a separate parent, workspace and temporary directory",
+  "session_metadata": "ephemeral",
+  "review_host": {
+    "enabled": false,
+    "max_threads": null,
+    "max_depth": null,
+    "child_model": "host defaults",
+    "child_usage": "root JSON usage is not assumed to include child usage"
+  }
+}

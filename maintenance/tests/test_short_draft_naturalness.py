@@ -13,11 +13,10 @@ class ShortDraftNaturalnessTests(unittest.TestCase):
     def test_skill_routes_short_drafts_without_numeric_magic(self) -> None:
         skill = SKILL.read_text(encoding="utf-8")
         self.assertIn("references/short-draft-naturalness.md", skill)
-        self.assertIn("用户明确要求简短正文", skill)
-        self.assertIn("用户只给篇幅上限", skill)
-        self.assertIn("文种、材料密度和交付形态", skill)
-        self.assertIn("明确说明不要求短稿", skill)
-        self.assertIn("明确字数下限或区间", skill)
+        self.assertIn("用户明确要求短正文", skill)
+        self.assertIn("只有篇幅上限", skill)
+        self.assertIn("材料选择后按需读", skill)
+        self.assertIn("用户明确要求短正文或只有篇幅上限时", skill)
         self.assertNotIn("正文不超过300字", skill)
         self.assertNotIn("200字左右", skill)
 

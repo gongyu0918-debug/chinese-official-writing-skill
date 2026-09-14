@@ -27,7 +27,13 @@ DEFAULT_TAGS = (
     "gongwen",
     "ai-compute",
 )
-PACKAGE_EXCLUDES = {"agents/openai.yaml", "LICENSE"}
+PACKAGE_EXCLUDES = {
+    "agents/openai.yaml",
+    "LICENSE",
+    "hooks",
+    "references/delivery-review-gate.md",
+    "scripts/review_gate.py",
+}
 FORBIDDEN_FRONTMATTER_KEYS = {
     "homepage",
     "license",
@@ -73,7 +79,10 @@ def tracked_canonical_files() -> list[str]:
         if not path.startswith(prefix):
             continue
         relative = path[len(prefix) :]
-        if not relative or relative in PACKAGE_EXCLUDES:
+        if not relative or any(
+            relative == excluded or relative.startswith(f"{excluded}/")
+            for excluded in PACKAGE_EXCLUDES
+        ):
             continue
         parts = Path(relative).parts
         if "__pycache__" in parts or relative.endswith(".pyc"):

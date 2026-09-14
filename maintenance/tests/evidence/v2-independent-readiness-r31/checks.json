@@ -1,0 +1,79 @@
+[
+  {
+    "command": [
+      "C:\\Users\\admin\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+      "-B",
+      "-m",
+      "unittest",
+      "maintenance.tests.test_draft_length",
+      "maintenance.tests.test_markdown_opt_in",
+      "maintenance.tests.test_scene_filler_lint",
+      "maintenance.tests.test_review_regressions.ProseLintStructureTests",
+      "maintenance.tests.test_review_regressions.UnresolvedStateChainTests",
+      "maintenance.tests.test_review_regressions.ProseLintCliTests",
+      "maintenance.tests.test_review_regressions.CleanProseCorpusTests",
+      "maintenance.tests.test_placeholder_blind_spot_fix",
+      "maintenance.tests.test_explanatory_tail_cluster"
+    ],
+    "exit_code": 0,
+    "stdout": "",
+    "stderr": "........................................................................................................................\n----------------------------------------------------------------------\nRan 120 tests in 9.239s\n\nOK\n"
+  },
+  {
+    "command": [
+      "C:\\Users\\admin\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+      "maintenance/tools/audit_product_surface.py",
+      "--root",
+      "chinese-official-writing"
+    ],
+    "exit_code": 0,
+    "stdout": "product paths reachable; rule readability and semantics require independent review\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "C:\\Users\\admin\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+      "maintenance/tools/validate_reference_manifest.py"
+    ],
+    "exit_code": 0,
+    "stdout": "reference manifest valid: 67 pages\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "C:\\Users\\admin\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+      "C:/Users/admin/.codex/skills/.system/skill-creator/scripts/quick_validate.py",
+      "output/v2-readiness-r31/preview-final/chinese-official-writing-v2"
+    ],
+    "exit_code": 0,
+    "stdout": "Skill is valid!\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "C:\\Users\\admin\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+      "maintenance/tools/audit_product_surface.py",
+      "--root",
+      "output/v2-readiness-r31/preview-final/chinese-official-writing-v2"
+    ],
+    "exit_code": 0,
+    "stdout": "product paths reachable; rule readability and semantics require independent review\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "git",
+      "diff",
+      "--check"
+    ],
+    "exit_code": 0,
+    "stdout": "",
+    "stderr": "warning: in the working copy of 'maintenance/tests/evidence/v2-independent-readiness-r31/run_followups.py', LF will be replaced by CRLF the next time Git touches it\n"
+  },
+  {
+    "package": "preview-final",
+    "files": 72,
+    "zip_hash": "17fbcb54eba56aba636b6f6034bfb0c743e17c304733c5cbc12d7f6c1c6c59a2",
+    "byte_hash_and_zip_match": true
+  }
+]

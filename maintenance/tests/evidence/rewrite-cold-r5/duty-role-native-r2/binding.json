@@ -1,0 +1,30 @@
+{
+  "main_commit": "1ce7112303172478faa2392667a2de1098eb912c",
+  "candidate_head": "ca52e80f7209fd19e177b58b4b65367078e9a66d",
+  "fingerprints": {
+    "baseline": "13b870182c8600419fdaa4b06851c0c025bc090bb8a3c8e5ab4f5fddba3e2e13",
+    "candidate": "11965addae867021a71eebb65e7bed86e7aba4560041c64a17708d59f09999e6"
+  },
+  "models": [
+    "alibaba-token-plan-2/qwen3.8-flash",
+    "command-code/deepseek-deepseek-v4.1-flash",
+    "minimax-cn/MiniMax-M3"
+  ],
+  "cases": {
+    "duty_oral": "把这些内容写成林舟在部门考核会上直接读的一段述职发言：担任综合办公室工作人员，负责会议室预约协调与物资登记；上半年协调45场会议室预约、完成30批物资登记；参与办公室6次会议保障，负责桌椅布置。整体会议保障由办公室共同完成。简短自然即可。"
+  },
+  "cli": "C:\\Users\\admin\\AppData\\Local\\OpenAI\\Codex\\bin\\7ac07f4ce733f89a\\codex.exe",
+  "cli_version": "codex-cli 0.153.4",
+  "effort": "medium",
+  "runtime": "C:\\Users\\admin\\AppData\\Local\\Temp\\cow-native-duty-role-native-r2-6w95myz7",
+  "permissions": "inherited-host-config",
+  "timeout": 240,
+  "agent_documents": "project_doc_max_bytes=0",
+  "baseline_ref": "snapshot",
+  "baseline_source": "F:\\Workspaces\\chinese-official-writing-skill\\output\\route-worktrees\\reference-rewrite-20260912\\output\\speech-host-duty-native-r1\\snapshots\\candidate",
+  "candidate_source": "F:\\Workspaces\\chinese-official-writing-skill\\output\\route-worktrees\\reference-rewrite-20260912\\output\\duty-role-evidence-only-r1\\skill",
+  "baseline_commit": null,
+  "profile": "temporary-no-user-documents-or-credentials",
+  "runner_sha256": "f713d3b8f227400ded03982fc8b69251ff23af748f38be0967471345d43da588",
+  "prompt_prefix": "使用本目录 .agents/skills/chinese-official-writing/SKILL.md。\n\n"
+}

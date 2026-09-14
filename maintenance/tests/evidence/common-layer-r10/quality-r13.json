@@ -1,0 +1,120 @@
+{
+  "summary": {
+    "body": {
+      "candidate": 1,
+      "tie": 2,
+      "baseline": 1
+    },
+    "delivery": {
+      "candidate": 1,
+      "baseline": 3
+    }
+  },
+  "note": "First four blinded pairs only. Separate repeated pair is root-reviewed and does not overwrite these verdicts. Length compliance and factual/language quality remain distinct.",
+  "records": [
+    {
+      "id": "I01",
+      "body_winner": "A",
+      "delivery_winner": "A",
+      "body_chars_A": 81,
+      "body_chars_B": 71,
+      "notes": "篇幅单独记录：A为81字，达到本组完整段落润色80字硬下限；B为71字，差9字，篇幅不符合，属轻微但需修补的合规缺口。事实和语言单独评价：双方均正确处理助词与量词，保留数量、结果、成语和直接引语；B删同义评价、省略了和的在此语境可接受，不据此判事实遗漏或语法硬回退，事实语言质量接近。A保留原文评价且满足预注册范围，故本次成稿可用性略胜，不能由此推出整体写作能力优劣。完整交付A略胜：B解释了无实际作用、原评价空泛等说法偏绝对，属轻微说明问题；A也有重复解释与可省的数量确认提示。",
+      "mapping": {
+        "id": "I01",
+        "run": "common-layer-native-r13-index",
+        "case": "guards_grammar_quote",
+        "model": "alibaba-token-plan/qwen3.8-flash",
+        "A": {
+          "arm": "candidate",
+          "file": "output/common-layer-native-r13-index/m0-guards_grammar_quote-candidate.final.txt",
+          "sha256": "665976a836baf1fd61feacaad92a73ce7564870e9ce4af5c776238fbfc159c67"
+        },
+        "B": {
+          "arm": "baseline",
+          "file": "output/common-layer-native-r13-index/m0-guards_grammar_quote-baseline.final.txt",
+          "sha256": "01ecb7c6af61240d652b9556017fb77b4593335ba038277d89b66c1235d9dd8d"
+        }
+      },
+      "body_preferred_arm": "candidate",
+      "delivery_preferred_arm": "candidate"
+    },
+    {
+      "id": "I02",
+      "body_winner": "相当",
+      "delivery_winner": "A",
+      "body_chars_A": 84,
+      "body_chars_B": 84,
+      "notes": "两版正文去除标题加粗后完全相同，末句逐字按要求替换，30次测试、2次超时、原因仍在核对、保留记录要求和未決状态均保留。该题按精确局部替换范围判断，不需扩写，84字仅客观记录。标题格式不判越界。双方文后关于责任期限随原指令删除、后续有决定再补的说明准确且有条件，不属于正文新增安排。完整交付A更紧凑；B额外复述规则、扫描和字数通过并提供存稿链接，主要是轻微流程冗余，链接本身不因匿名化扣分，也不从自述判断工具实际运行。",
+      "mapping": {
+        "id": "I02",
+        "run": "common-layer-native-r13-index",
+        "case": "minutes_local",
+        "model": "alibaba-token-plan/qwen3.8-flash",
+        "A": {
+          "arm": "baseline",
+          "file": "output/common-layer-native-r13-index/m0-minutes_local-baseline.final.txt",
+          "sha256": "960319f89ae62ce669f153b62b5bba99d243ac028b97482b7fc131183bd2eb2f"
+        },
+        "B": {
+          "arm": "candidate",
+          "file": "output/common-layer-native-r13-index/m0-minutes_local-candidate.final.txt",
+          "sha256": "fbccc9d54a7d3b035d79df42c9d26f83b3198201211354a1aa8d3c1e2657a9b3"
+        }
+      },
+      "body_preferred_arm": "tie",
+      "delivery_preferred_arm": "baseline"
+    },
+    {
+      "id": "I03",
+      "body_winner": "B",
+      "delivery_winner": "B",
+      "body_chars_A": 84,
+      "body_chars_B": 80,
+      "notes": "篇幅单独记录：A84字、B80字均达到下限，B并未因处于界值而不合格。事实和修改范围：A把有歧义的两台问题清单直接改成两台设备的问题清单，在材料未出现设备对象时选定并写入具体设备事实，改变计数对象，属中等事实边界及过度解释问题；文后请确认不能消除当前正文已采用该解释的事实。B按清单以份计修正，将设备歧义留作确认后再调整的条件建议，正文更可靠。A又称按单位原意且全文未作事实增补，与实际改写不符，完整交付问题随之加重。B也有轻微说明计数错误：称三处语法搭配和一处量词，但真正修改为两处助词表达加一处量词，并把保留项混计；这不影响正文正确性。",
+      "mapping": {
+        "id": "I03",
+        "run": "common-layer-native-r13-index",
+        "case": "guards_grammar_quote",
+        "model": "command-code/deepseek-deepseek-v4.1-flash",
+        "A": {
+          "arm": "candidate",
+          "file": "output/common-layer-native-r13-index/m2-guards_grammar_quote-candidate.final.txt",
+          "sha256": "17b01d19b73146c565b8d8387f89744763a062e5b801ef26498976f9e6a91367"
+        },
+        "B": {
+          "arm": "baseline",
+          "file": "output/common-layer-native-r13-index/m2-guards_grammar_quote-baseline.final.txt",
+          "sha256": "cb7ee0a53d6b195ba52666b6df6ad005c41f53d0b8d82afdb2bd483981cf176c"
+        }
+      },
+      "body_preferred_arm": "baseline",
+      "delivery_preferred_arm": "baseline"
+    },
+    {
+      "id": "I04",
+      "body_winner": "相当",
+      "delivery_winner": "A",
+      "body_chars_A": 84,
+      "body_chars_B": 84,
+      "notes": "两版正文完全相同，精确替换末句并保留其他事实和状态，均84字，无遗漏、越界或虚构决定。追加测试未形成责任和期限，与张工仍以建议人身份出现不矛盾。A建议正式使用前核对是否需补记，B说若实际另定期限再补，均为正文外有条件建议，不能判为当前稿件强加安排。完整交付A略胜：正文直接呈现，文后说明较集中；B补充创建又删除临时草稿的操作记录，属轻微流程冗余，不推断其真实性。",
+      "mapping": {
+        "id": "I04",
+        "run": "common-layer-native-r13-index",
+        "case": "minutes_local",
+        "model": "command-code/deepseek-deepseek-v4.1-flash",
+        "A": {
+          "arm": "baseline",
+          "file": "output/common-layer-native-r13-index/m2-minutes_local-baseline.final.txt",
+          "sha256": "b442a893872c01273086f2fef765c366542c2e8994ba09dbaa8bab42f2ad9d50"
+        },
+        "B": {
+          "arm": "candidate",
+          "file": "output/common-layer-native-r13-index/m2-minutes_local-candidate.final.txt",
+          "sha256": "f601c604eb9620bc3ca850c095a85078369eedc48a4d94081ce306caebd2657d"
+        }
+      },
+      "body_preferred_arm": "tie",
+      "delivery_preferred_arm": "baseline"
+    }
+  ]
+}

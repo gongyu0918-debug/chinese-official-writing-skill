@@ -1,0 +1,28 @@
+{
+  "main_commit": "1ce7112303172478faa2392667a2de1098eb912c",
+  "candidate_head": "ca52e80f7209fd19e177b58b4b65367078e9a66d",
+  "fingerprints": {
+    "baseline": "ce76f66c5ae712dd644b9b05ef1558e40925d57b3a826b98a3c9add045784049",
+    "candidate": "1640020ccc2df07ebf8fce8f60f8ede3ef6430af4006f545910c792e8c542168"
+  },
+  "models": [
+    "alibaba-token-plan/qwen3.8-flash",
+    "command-code/deepseek-deepseek-v4.1-flash"
+  ],
+  "cases": {
+    "platform_review": "帮我审核并改好这段活动报道。有效材料：9月10日，市企业服务中心组织企业交流会，8家企业代表参加，代表介绍各自产品并交流合作需求。现稿：9月10日，市企业服务中心组织企业交流会，8家企业代表参加，代表介绍各自产品并交流合作需求。这次活动为企业交流搭建了强大平台，满足未来发展需要。请给自然简洁的改好稿件。"
+  },
+  "cli": "C:\\Users\\admin\\AppData\\Local\\OpenAI\\Codex\\bin\\7ac07f4ce733f89a\\codex.exe",
+  "cli_version": "codex-cli 0.153.4",
+  "effort": "medium",
+  "runtime": "C:\\Users\\admin\\AppData\\Local\\Temp\\cow-native-lint-advice-native-r1-kjvpmxyf",
+  "permissions": "inherited-host-config",
+  "timeout": 240,
+  "agent_documents": "project_doc_max_bytes=0",
+  "baseline_ref": "ca52e80f",
+  "candidate_source": "F:\\Workspaces\\chinese-official-writing-skill\\output\\route-worktrees\\reference-rewrite-20260912\\output\\lint-advice-only-r1\\skill",
+  "baseline_commit": "ca52e80f7209fd19e177b58b4b65367078e9a66d",
+  "profile": "temporary-no-user-documents-or-credentials",
+  "runner_sha256": "88f049f97c38acb16fe827ea2001236580e54923cc7f5c08843adf95d71d51c7",
+  "prompt_prefix": "使用本目录 .agents/skills/chinese-official-writing/SKILL.md。\n\n"
+}

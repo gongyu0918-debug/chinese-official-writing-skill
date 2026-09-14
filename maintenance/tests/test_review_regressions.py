@@ -8,9 +8,15 @@ import sys
 import tempfile
 import unittest
 from unittest import mock
+import zipfile
 
 
 ROOT = Path(__file__).resolve().parents[2]
+NEGATIVE_TAIL_CASES = (
+    ("protective-negative-inference", "项目仍在评估中，尚不能据此推定预算已经落实。"),
+    ("unresolved-conclusion-tail", "核对意见尚未形成明确结论。"),
+    ("negative-boundary-tail", "已完成材料登记，但不代表已经通过审批。"),
+)
 
 
 def load_module(name: str, path: Path):
@@ -33,6 +39,197 @@ revision_eval = load_module(
 
 
 class ProseLintStructureTests(unittest.TestCase):
+    def test_generic_vague_claims_do_not_inject_compute_guidance(self):
+        for text in (
+            "这次活动为企业交流搭建了强大平台。",
+            "本次维修成本更低，能够满足未来发展需要。",
+        ):
+            with self.subTest(text=text):
+                findings = prose_lint.scan("<test>", text, delivery_mode="draft-body")
+                self.assertTrue(findings)
+                self.assertTrue(all(f.label == "vague-claim" for f in findings))
+                advice = " ".join(f.excerpt for f in findings)
+                for unrelated in ("GPU", "Token", "SLA", "调度", "监控", "并发"):
+                    self.assertNotIn(unrelated, advice)
+                self.assertIn("材料", advice)
+
+    def test_compute_evaluation_still_reports_material_based_guidance(self):
+        findings = prose_lint.scan("<test>", "拟建设先进算力服务。", delivery_mode="draft-body")
+        self.assertEqual([f.label for f in findings], ["ai-compute-vague"])
+        self.assertIn("材料已有", findings[0].excerpt)
+
+    def test_unfinished_reason_sentence_is_detected_in_both_body_modes(self):
+        texts = (
+            "因＿＿＿＿＿＿＿＿，申请延期至9月27日。",
+            "原定9月20日完成，现因____，申请延期至9月27日。",
+            "由于＿＿＿，现申请延期。",
+            "〔延期原因〕，现申请延期至9月27日。",
+            "原定9月20日完成。鉴于〔申请理由〕，现申请延期。",
+            "申请理由写为“因＿＿＿，现申请延期。”",
+            "原定9月20日完成，因（延期原因待补），现申请延期至9月27日。",
+            "材料原文：“原定9月20日完成。”改稿写为“因＿＿＿，现申请延期。”",
+            "材料原文：“原定9月20日完成。”\n改稿写为“因＿＿＿，现申请延期。”",
+            "材料原文：“原定9月20日完成。”\n  \n改稿写为“因＿＿＿，现申请延期。”",
+        )
+        for text in texts:
+            for mode in ("draft-body", "gap-note-allowed"):
+                with self.subTest(text=text, mode=mode):
+                    findings = prose_lint.scan("<test>", text, delivery_mode=mode)
+                    hits = [f for f in findings if f.label == "unfinished-reason-placeholder"]
+                    self.assertEqual(len(hits), 1)
+                    self.assertEqual(hits[0].severity, "medium")
+
+    def test_reason_probe_preserves_fields_separators_and_real_reasons(self):
+        texts = (
+            "材料原文：“因＿＿＿，现申请延期。”",
+            "延期原因：＿＿＿＿＿＿＿＿", "延期原因：因＿＿＿，申请延期。",
+            "| 延期原因 | ＿＿＿＿ |", "| 原因句 | 因＿＿＿，申请延期。 |",
+            "＿＿＿＿＿＿＿＿\n申请延期。", "---\n申请延期。",
+            "因资料尚未收到，申请延期至9月27日。",
+            "因现有办公椅较为破旧，为满足日常办公需要，现申请购置4把。",
+        )
+        for text in texts:
+            with self.subTest(text=text):
+                findings = prose_lint.scan("<test>", text, include_format=True, delivery_mode="draft-body")
+                self.assertNotIn("unfinished-reason-placeholder", {f.label for f in findings})
+
+    def test_reason_probe_preserves_attributed_quotes_and_postscript(self):
+        texts = (
+            "材料原文：“原定9月20日完成，因＿＿＿，现申请延期。”",
+            "原句如下：“资料核对工作原定9月20日完成。\n因＿＿＿，现申请延期。”",
+            "现申请将资料核对延至9月27日。\n\n文后提示\n因＿＿＿，这处原因空位需补充。",
+        )
+        for text in texts:
+            with self.subTest(text=text):
+                findings = prose_lint.scan("<test>", text, delivery_mode="gap-note-allowed")
+                self.assertNotIn("unfinished-reason-placeholder", {f.label for f in findings})
+        for mode in ("generic", "review-only"):
+            findings = prose_lint.scan("<test>", "因＿＿＿，现申请延期。", delivery_mode=mode)
+            self.assertNotIn("unfinished-reason-placeholder", {f.label for f in findings})
+
+    def test_postscript_heading_separates_body_and_notes(self) -> None:
+        body = "情况说明\n\n7月8日页面出现6次短时空白，13名用户反映无法登录，异常原因正在调查中。"
+        note = "文后提示\n现有材料未说明提交对象。"
+        clean = body + "\n\n" + note
+        source = prose_lint.prepare_scan_source(clean, "gap-note-allowed")
+        self.assertEqual(source.text_to_scan.rstrip(), body)
+        labels = {item.label for item in prose_lint.scan("<test>", clean, delivery_mode="gap-note-allowed")}
+        self.assertNotIn("external-note-boundary", labels)
+        self.assertNotIn("material-reading-narration", labels)
+        forbidden = {item.label for item in prose_lint.scan("<test>", clean, delivery_mode="draft-body")}
+        self.assertIn("unexpected-external-note", forbidden)
+
+    def test_postscript_cannot_continue_body_numbering_or_attach_to_last_paragraph(self) -> None:
+        for separator, heading in (
+            ("\n", "文后提示"), ("\n\n", "三、文后提示"), ("\n\n", "第三章 文后提示"),
+            ("\n\n", "2. 文后提示"), ("\n\n", "2) 文后提示"), ("\n\n", "（二）文后提示"),
+            ("\n\n", "## 二、文后提示"),
+            ("\n\n", "二、**文后提示**"), ("\n\n", "## （二）*文后提示*"),
+        ):
+            with self.subTest(separator=separator, heading=heading):
+                text = "异常原因正在调查中。" + separator + heading + "\n提交对象待确认。"
+                labels = {item.label for item in prose_lint.scan("<test>", text, delivery_mode="gap-note-allowed")}
+                self.assertIn("external-note-boundary", labels)
+
+    def test_postscript_words_in_business_content_do_not_hide_body(self) -> None:
+        for text in ("文后提示模块建设情况\n模块尚在测试。", "一、文后提示功能\n已完成2项核对。", "系统显示文后提示，原因仍待核对。"):
+            with self.subTest(text=text):
+                self.assertEqual(prose_lint.body_lines(text.splitlines()), text.splitlines())
+
+    def test_postscript_still_checks_identity_leak(self) -> None:
+        text = "异常原因正在调查中。\n\n文后提示\n本审稿意见由AI生成。"
+        findings = prose_lint.scan("<test>", text, delivery_mode="gap-note-allowed")
+        self.assertIn("thought-leak", {item.label for item in findings})
+
+    def test_wrapped_standard_postscript_is_separate_and_keeps_format_findings(self):
+        cases = (
+            ("**文后提示**", {"markdown-bold"}),
+            ("*文后提示*", {"markdown-emphasis"}),
+            ("__文后提示__", {"markdown-bold"}),
+            ("_文后提示_", {"markdown-emphasis"}),
+            ("## 文后提示", {"markdown-heading"}),
+            ("## **文后提示**", {"markdown-heading", "markdown-bold"}),
+        )
+        for heading, expected in cases:
+            text = f"已完成核对。\n\n{heading}\n[具体项目名称]待确认。\n本审稿意见由AI生成。"
+            with self.subTest(heading=heading):
+                source = prose_lint.prepare_scan_source(text, "gap-note-allowed")
+                self.assertEqual(source.text_to_scan.rstrip(), "已完成核对。")
+                findings = prose_lint.scan("<test>", text, include_format=True, delivery_mode="gap-note-allowed")
+                labels = {item.label for item in findings}
+                self.assertTrue(expected.issubset(labels))
+                self.assertNotIn("unfinished-placeholder", labels)
+                self.assertIn("thought-leak", labels)
+                for item in findings:
+                    if item.label in expected:
+                        self.assertEqual(item.line, 3)
+                        self.assertEqual(item.severity, "low")
+                without_format = prose_lint.scan("<test>", text, delivery_mode="gap-note-allowed")
+                self.assertTrue(expected.isdisjoint({item.label for item in without_format}))
+
+    def test_wrapped_business_titles_are_not_postscript_boundaries(self):
+        for heading in (
+            "**文后提示模块**", "*文后提示功能*", "## 文后提示模块",
+            "**风险提醒**", "*补充信息*", "## **补充信息**",
+        ):
+            text = f"模块建设情况\n\n{heading}\n预算仍为XXXX万元。"
+            with self.subTest(heading=heading):
+                self.assertEqual(prose_lint.body_lines(text.splitlines()), text.splitlines())
+                labels = {item.label for item in prose_lint.scan("<test>", text, delivery_mode="gap-note-allowed")}
+                self.assertIn("unfinished-placeholder", labels)
+                self.assertNotIn("external-note-boundary", labels)
+
+    def test_generic_note_headings_keep_every_business_line(self) -> None:
+        headings = (
+            "风险提醒", "二、风险提醒", "补充信息", "三、补充信息",
+            "待确认事项", "二、待确认事项", "第七章 待确认事项", "2. 待确认事项",
+            "（二）待确认事项", "核验提示", "需补充信息", "待补充事项", "需确认事项",
+        )
+        for heading in headings:
+            text = f"一、核对进展\n已完成核对。\n\n{heading}\n预算仍为XXXX万元。\n\n三、后续事项\n拟继续核对。"
+            with self.subTest(heading=heading):
+                self.assertEqual(prose_lint.body_lines(text.splitlines()), text.splitlines())
+                for mode in ("draft-body", "gap-note-allowed"):
+                    labels = {item.label for item in prose_lint.scan("<test>", text, delivery_mode=mode)}
+                    self.assertIn("unfinished-placeholder", labels)
+                    self.assertNotIn("unexpected-external-note", labels)
+                    self.assertNotIn("external-note-boundary", labels)
+
+    def test_explicit_legacy_note_titles_remain_compatible(self) -> None:
+        headings = (
+            "正文外提示", "正文外待确认", "影响正式报送的待确认事项", "待用户确认事项",
+            "待确认事项（正文外）", "待确认事项（正文外，供用户确认）", "（正文外提示）",
+            "风险提醒（正文外）", "补充信息（供用户确认）",
+        )
+        for heading in headings:
+            text = f"已完成核对。\n\n{heading}\n[具体项目名称]待确认。\n本审稿意见由AI生成。"
+            with self.subTest(heading=heading):
+                self.assertEqual("\n".join(prose_lint.body_lines(text.splitlines())).rstrip(), "已完成核对。")
+                labels = {item.label for item in prose_lint.scan("<test>", text, delivery_mode="gap-note-allowed")}
+                self.assertNotIn("unfinished-placeholder", labels)
+                self.assertIn("thought-leak", labels)
+
+    def test_negative_tail_checks_match_across_body_delivery_modes(self) -> None:
+        for label, text in NEGATIVE_TAIL_CASES:
+            with self.subTest(label=label):
+                draft = prose_lint.scan("<test>", text, delivery_mode="draft-body")
+                allowed = prose_lint.scan("<test>", text, delivery_mode="gap-note-allowed")
+                self.assertIn(label, {item.label for item in draft})
+                self.assertEqual(allowed, draft)
+                for mode in ("generic", "review-only"):
+                    self.assertNotIn(label, {item.label for item in prose_lint.scan("<test>", text, delivery_mode=mode)})
+
+    def test_postscript_negative_tails_are_exempt_but_identity_leaks_are_not(self) -> None:
+        notes = "\n".join(text for _, text in NEGATIVE_TAIL_CASES)
+        for wrapped in (notes, f"```text\n{notes}\n```"):
+            text = f"已完成材料登记。\n\n文后提示\n{wrapped}\n[具体项目名称]待确认。\n本审稿意见由AI生成。"
+            with self.subTest(notes=wrapped):
+                findings = prose_lint.scan("<test>", text, delivery_mode="gap-note-allowed")
+                labels = {item.label for item in findings}
+                self.assertTrue({label for label, _ in NEGATIVE_TAIL_CASES}.isdisjoint(labels))
+                self.assertNotIn("unfinished-placeholder", labels)
+                self.assertIn("thought-leak", labels)
+
     def test_delivery_mode_flags_narration_self_certification_and_english_thought(self) -> None:
         text = (
             "由于现有材料仅反映阶段性情况，暂无法形成完整判断。\n"
@@ -118,7 +315,7 @@ class ProseLintStructureTests(unittest.TestCase):
     def test_review_only_still_scans_unquoted_leaks_and_content_after_note_heading(self) -> None:
         text = (
             "We need to review the draft.\n"
-            "待确认事项：\n资金来源待确认。\n本审稿意见由AI生成。"
+            "文后提示\n资金来源待确认。\n本审稿意见由AI生成。"
         )
 
         labels = {item.label for item in prose_lint.scan("<test>", text, delivery_mode="review-only")}
@@ -129,9 +326,9 @@ class ProseLintStructureTests(unittest.TestCase):
     def test_gap_note_mode_scans_body_but_stops_before_external_note(self) -> None:
         body_leak = (
             "从已给材料看，项目尚处于准备阶段。\n\n"
-            "待确认事项：\n现有材料未说明资金来源。"
+            "文后提示\n现有材料未说明资金来源。"
         )
-        note_only = "项目拟于8月启动。\n\n待确认事项：\n现有材料未说明资金来源。"
+        note_only = "项目拟于8月启动。\n\n文后提示\n现有材料未说明资金来源。"
 
         body_labels = {
             item.label for item in prose_lint.scan("<test>", body_leak, delivery_mode="gap-note-allowed")
@@ -149,9 +346,9 @@ class ProseLintStructureTests(unittest.TestCase):
             "待确认事项（正文外）：\n1. 主送机关。"
         )
         blurred = [
-            "关于采购设备的请示\n\n妥否，请批示。\n待确认事项：\n1. 主送机关。",
-            "关于采购设备的请示\n\n妥否，请批示。\n\n四、待确认事项\n1. 主送机关。",
-            "关于采购设备的请示\n\n妥否，请批示。\n\n---\n\n待确认事项：\n1. 主送机关。",
+            "关于采购设备的请示\n\n妥否，请批示。\n文后提示\n1. 主送机关。",
+            "关于采购设备的请示\n\n妥否，请批示。\n\n四、文后提示\n1. 主送机关。",
+            "关于采购设备的请示\n\n妥否，请批示。\n\n---\n\n文后提示\n1. 主送机关。",
             "关于采购设备的请示\n\n妥否，请批示。\n\n---\n\n影响正式报送的待确认事项：\n1. 主送机关。",
         ]
 
@@ -169,7 +366,7 @@ class ProseLintStructureTests(unittest.TestCase):
 
     def test_gap_note_mode_still_flags_model_leaks_after_note_heading(self) -> None:
         text = (
-            "项目拟于8月启动。\n\n待确认事项：\n资金来源待确认。\n"
+            "项目拟于8月启动。\n\n文后提示\n资金来源待确认。\n"
             "我的思路是先补齐预算。\n本稿不新增原文外事实。"
         )
 
@@ -196,7 +393,7 @@ class ProseLintStructureTests(unittest.TestCase):
 
     def test_gap_note_mode_allows_quoted_or_inline_leak_examples(self) -> None:
         text = (
-            "项目拟于8月启动。\n\n待确认事项：\n"
+            "项目拟于8月启动。\n\n文后提示\n"
             "原句：“本稿不新增原文外事实。”\n"
             "命令示例：`We need to draft the report.`"
         )
@@ -216,14 +413,14 @@ class ProseLintStructureTests(unittest.TestCase):
 
     def test_draft_body_mode_rejects_external_note_region(self) -> None:
         texts = [
-            "项目拟于8月启动。\n\n待确认事项：\n资金来源待确认。",
-            "项目拟于8月启动。\n\n风险提醒：\n资金来源待确认。",
-            "项目拟于8月启动。\n\n核验提示：\n引用出处待核验。",
-            "项目拟于8月启动。\n\n## 待确认事项\n资金来源待确认。",
-            "项目拟于8月启动。\n\n七、待确认事项\n资金来源待确认。",
-            "项目拟于8月启动。\n\n第七章 待确认事项\n资金来源待确认。",
-            "项目拟于8月启动。\n\n2. 待确认事项\n资金来源待确认。",
-            "项目拟于8月启动。\n\n（二）待确认事项\n资金来源待确认。",
+            "项目拟于8月启动。\n\n文后提示\n资金来源待确认。",
+            "项目拟于8月启动。\n\n正文外提示：\n资金来源待确认。",
+            "项目拟于8月启动。\n\n待用户确认事项：\n引用出处待核验。",
+            "项目拟于8月启动。\n\n## 文后提示\n资金来源待确认。",
+            "项目拟于8月启动。\n\n七、文后提示\n资金来源待确认。",
+            "项目拟于8月启动。\n\n第七章 文后提示\n资金来源待确认。",
+            "项目拟于8月启动。\n\n2. 文后提示\n资金来源待确认。",
+            "项目拟于8月启动。\n\n（二）文后提示\n资金来源待确认。",
         ]
 
         for text in texts:
@@ -348,7 +545,7 @@ class ProseLintStructureTests(unittest.TestCase):
     def test_delivery_boilerplate_only_applies_to_delivered_body(self) -> None:
         text = (
             "系统运行情况说明\n\n系统运行正常。\n\n"
-            "待确认事项\n免责声明：本文仅供参考，不构成正式意见。"
+            "文后提示\n免责声明：本文仅供参考，不构成正式意见。"
         )
 
         generic = prose_lint.scan("<test>", text)
@@ -517,7 +714,7 @@ class ProseLintStructureTests(unittest.TestCase):
     def test_bracketed_confirmation_notes_are_not_treated_as_body_placeholders(self) -> None:
         text = (
             "正文已按已知材料完成。\n\n"
-            "（待确认事项）\n"
+            "（正文外提示）\n"
             "1. [具体项目名称]待确认。\n\n"
             "待补充事项：预算口径待确认。"
         )
@@ -715,7 +912,158 @@ class ProseLintStructureTests(unittest.TestCase):
         self.assertNotIn("appears", term_findings[0].excerpt)
 
 
+class UnresolvedStateChainTests(unittest.TestCase):
+    CHAIN = "供应商尚未确定，合同尚未签订，设备尚未到货，验收尚未实施，付款尚未发生。"
+
+    def chain_findings(self, text, *, mode="draft-body", structure=True):
+        return [
+            item for item in prose_lint.scan(
+                "<test>", text, include_format=True, include_structure=structure, delivery_mode=mode
+            ) if item.label == "unresolved-state-chain"
+        ]
+
+    def test_same_sentence_unresolved_states_are_only_low_hints(self):
+        cases = (
+            (self.CHAIN, 5),
+            ("审批尚未办结，资料仍未补齐，负责人还未签字。", 3),
+            ("该项目尚未立项，仍未明确负责人，暂未安排经费。", 3),
+            ("审批尚未办结，\n资料仍未补齐，\n负责人还未签字。", 3),
+            ("甲站传感器尚未送达，乙站检验记录仍未完成，丙站负责人暂未到岗。", 3),
+        )
+        for text, count in cases:
+            with self.subTest(text=text):
+                findings = self.chain_findings("进展记录。\n" + text)
+                self.assertEqual(len(findings), 1)
+                self.assertEqual(findings[0].severity, "low")
+                self.assertEqual(findings[0].line, 2)
+                self.assertIn(f"{count} 项未决谓语", findings[0].excerpt)
+                self.assertIn("有独立事实或办理作用时可保留", findings[0].excerpt)
+
+    def test_short_or_separate_states_are_not_accumulated(self):
+        for text in (
+            "供应商尚未确定。",
+            "供应商尚未确定，合同尚未签订。",
+            "审批尚未办结。资料仍未补齐。负责人还未签字。",
+            "审批尚未办结，\n\n资料仍未补齐，\n\n负责人还未签字。",
+            "合同尚未签订，付款已经安排。\n\n设备尚未到货，验收尚未实施。",
+        ):
+            with self.subTest(text=text):
+                self.assertEqual(self.chain_findings(text), [])
+
+    def test_fields_lists_and_code_are_exempt(self):
+        for text in (
+            "供应商：尚未确定，合同：尚未签订，设备：尚未到货。",
+            "供应商：尚未确定\n合同：尚未签订\n设备：尚未到货",
+            "| 供应商 | 尚未确定 | 合同 | 尚未签订 | 设备 | 尚未到货 |",
+            "供应商\t尚未确定\t合同\t尚未签订\t设备\t尚未到货",
+            "- 供应商尚未确定，\n- 合同尚未签订，\n- 设备尚未到货。",
+            "1. 供应商尚未确定，\n2. 合同尚未签订，\n3. 设备尚未到货。",
+            f"```text\n{self.CHAIN}\n```",
+            f"句式示例：`{self.CHAIN}`",
+        ):
+            with self.subTest(text=text):
+                self.assertEqual(self.chain_findings(text), [])
+
+    def test_source_quotes_are_exempt_without_hiding_unquoted_body(self):
+        for text in (
+            f"用户原文：“{self.CHAIN}”",
+            f'材料原句："{self.CHAIN}"',
+            "原句：“供应商尚未确定，\n合同尚未签订，设备尚未到货。”",
+            f"> {self.CHAIN}",
+            f"用户原文：\n{self.CHAIN}",
+            f"原句如下：{self.CHAIN}",
+            "材料写明“审批尚未办结，资料仍未补齐”，负责人还未签字。",
+        ):
+            with self.subTest(text=text):
+                self.assertEqual(self.chain_findings(text), [])
+        mixed = f"用户原文：“{self.CHAIN}”\n{self.CHAIN}"
+        findings = self.chain_findings(mixed)
+        self.assertEqual(len(findings), 1)
+        self.assertEqual(findings[0].line, 2)
+
+    def test_hint_respects_structure_mode_and_postscript_boundaries(self):
+        self.assertEqual(self.chain_findings(self.CHAIN, structure=False), [])
+        for mode in ("generic", "review-only"):
+            self.assertEqual(self.chain_findings(f"审稿意见：{self.CHAIN}", mode=mode), [])
+        expected = self.chain_findings(self.CHAIN)
+        self.assertEqual(self.chain_findings(self.CHAIN, mode="gap-note-allowed"), expected)
+        for mode in ("draft-body", "gap-note-allowed"):
+            with self.subTest(mode=mode):
+                note_only = f"已完成核对。\n\n文后提示\n{self.CHAIN}"
+                self.assertEqual(self.chain_findings(note_only, mode=mode), [])
+                with_note = self.CHAIN + "\n\n文后提示\n" + self.CHAIN
+                self.assertEqual(self.chain_findings(with_note, mode=mode), expected)
+
+    def test_cli_modes_agree_without_medium_strict_failure(self):
+        script = ROOT / "chinese-official-writing/scripts/prose_lint.py"
+        reports = []
+        for mode in ("draft-body", "gap-note-allowed"):
+            result = subprocess.run(
+                [sys.executable, str(script), "--structure", "--format", "--json", "--strict",
+                 "--fail-on", "medium", "--delivery-mode", mode, "-"],
+                input=self.CHAIN, text=True, encoding="utf-8", capture_output=True,
+            )
+            self.assertEqual(result.returncode, 0, result.stderr)
+            reports.append(json.loads(result.stdout))
+        self.assertEqual(reports[0], reports[1])
+        self.assertEqual(len(reports[0]), 1)
+        self.assertEqual(reports[0][0]["label"], "unresolved-state-chain")
+        self.assertEqual(reports[0][0]["severity"], "low")
+
+
 class ProseLintCliTests(unittest.TestCase):
+    def test_cli_markdown_postscript_keeps_partition_and_low_format_risks(self):
+        script = ROOT / "chinese-official-writing/scripts/prose_lint.py"
+        for heading, expected_label in (
+            ("**文后提示**", "markdown-bold"),
+            ("*文后提示*", "markdown-emphasis"),
+            ("## 文后提示", "markdown-heading"),
+        ):
+            with self.subTest(heading=heading):
+                result = subprocess.run(
+                    [sys.executable, str(script), "--json", "--format", "--delivery-mode", "gap-note-allowed",
+                     "--strict", "--fail-on", "medium", "-"],
+                    input=f"已完成核对。\n\n{heading}\n[具体项目名称]待确认。",
+                    text=True, encoding="utf-8", capture_output=True,
+                )
+                self.assertEqual(result.returncode, 0, result.stderr)
+                findings = json.loads(result.stdout)
+                self.assertIn(expected_label, {item["label"] for item in findings})
+                self.assertNotIn("unfinished-placeholder", {item["label"] for item in findings})
+
+    def test_normal_chapters_and_body_tails_are_scanned_in_both_delivery_modes(self) -> None:
+        script = ROOT / "chinese-official-writing/scripts/prose_lint.py"
+        tails = "\n".join(text for _, text in NEGATIVE_TAIL_CASES)
+        text = f"一、进展\n已完成核对。\n\n二、风险提醒\n预算仍为XXXX万元。\n{tails}\n\n三、补充信息\n联系地址待确认。"
+        reports = []
+        for mode in ("draft-body", "gap-note-allowed"):
+            result = subprocess.run(
+                [sys.executable, str(script), "--json", "--delivery-mode", mode, "-"],
+                input=text, text=True, encoding="utf-8", capture_output=True,
+            )
+            self.assertEqual(result.returncode, 0, result.stderr)
+            reports.append(json.loads(result.stdout))
+        self.assertEqual(reports[0], reports[1])
+        labels = {item["label"] for item in reports[1]}
+        self.assertIn("unfinished-placeholder", labels)
+        self.assertTrue({label for label, _ in NEGATIVE_TAIL_CASES}.issubset(labels))
+        self.assertNotIn("external-note-boundary", labels)
+        self.assertNotIn("unexpected-external-note", labels)
+
+    def test_cli_postscript_exempts_body_risks_and_retains_identity_checks(self) -> None:
+        script = ROOT / "chinese-official-writing/scripts/prose_lint.py"
+        notes = "\n".join(text for _, text in NEGATIVE_TAIL_CASES)
+        text = f"已完成核对。\n\n文后提示\n{notes}\n[具体项目名称]待确认。\n本审稿意见由AI生成。"
+        result = subprocess.run(
+            [sys.executable, str(script), "--json", "--delivery-mode", "gap-note-allowed", "-"],
+            input=text, text=True, encoding="utf-8", capture_output=True,
+        )
+        self.assertEqual(result.returncode, 0, result.stderr)
+        labels = {item["label"] for item in json.loads(result.stdout)}
+        self.assertTrue({label for label, _ in NEGATIVE_TAIL_CASES}.isdisjoint(labels))
+        self.assertNotIn("unfinished-placeholder", labels)
+        self.assertIn("thought-leak", labels)
+
     def test_delivery_mode_cli_is_opt_in_and_can_fail_on_high(self) -> None:
         script = ROOT / "chinese-official-writing" / "scripts" / "prose_lint.py"
         with tempfile.TemporaryDirectory() as temp_dir:
@@ -804,6 +1152,55 @@ class ProseLintCliTests(unittest.TestCase):
         self.assertIn("ERROR: 文件损坏或不是有效 DOCX", result.stderr)
         self.assertNotIn("Traceback", result.stderr + result.stdout)
         self.assertEqual(result.stdout.strip(), "[]")
+
+    def test_docx_lint_reads_headers_and_footers_beyond_first_three(self) -> None:
+        script = ROOT / "chinese-official-writing" / "scripts" / "prose_lint.py"
+        namespace = "http://schemas.openxmlformats.org/wordprocessingml/2006/main"
+        with tempfile.TemporaryDirectory() as temp_dir:
+            draft = Path(temp_dir) / "multiple-sections.docx"
+            with zipfile.ZipFile(draft, "w") as archive:
+                for name, root, text in (
+                    ("document", "document", "正文内容。"),
+                    ("header4", "hdr", "作为AI"),
+                    ("footer12", "ftr", "我的思路是"),
+                ):
+                    archive.writestr(
+                        f"word/{name}.xml",
+                        f'<w:{root} xmlns:w="{namespace}"><w:p><w:r><w:t>'
+                        f"{text}</w:t></w:r></w:p></w:{root}>",
+                    )
+            result = subprocess.run(
+                [sys.executable, str(script), str(draft), "--json"],
+                capture_output=True,
+                text=True,
+                encoding="utf-8",
+            )
+
+        self.assertEqual(result.returncode, 0, result.stderr)
+        findings = json.loads(result.stdout)
+        self.assertEqual(
+            {item["match"] for item in findings if item["label"] == "thought-leak"},
+            {"作为AI", "我的思路"},
+        )
+        self.assertEqual(result.stderr, "")
+
+    def test_docx_without_main_document_reports_error_in_default_lint(self) -> None:
+        script = ROOT / "chinese-official-writing" / "scripts" / "prose_lint.py"
+        with tempfile.TemporaryDirectory() as temp_dir:
+            draft = Path(temp_dir) / "missing-main.docx"
+            with zipfile.ZipFile(draft, "w") as archive:
+                archive.writestr("word/header1.xml", "<hdr/>")
+            result = subprocess.run(
+                [sys.executable, str(script), str(draft), "--json"],
+                capture_output=True,
+                text=True,
+                encoding="utf-8",
+            )
+
+        self.assertEqual(result.returncode, 2)
+        self.assertIn("ERROR: DOCX 缺少主文档内容", result.stderr)
+        self.assertNotIn("Traceback", result.stderr + result.stdout)
+        self.assertEqual(json.loads(result.stdout), [])
 
     def test_strict_can_ignore_low_severity_findings(self) -> None:
         script = ROOT / "chinese-official-writing" / "scripts" / "prose_lint.py"

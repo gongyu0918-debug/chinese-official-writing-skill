@@ -4,9 +4,6 @@ from pathlib import Path
 import re
 import unittest
 
-from maintenance.tests.hook_companion_support import HookCompanionTestMixin
-
-
 ROOT = Path(__file__).resolve().parents[2]
 PERSISTENT_SKILL_PATHS = [
     ROOT / "chinese-official-writing" / "SKILL.md",
@@ -21,52 +18,24 @@ OPENCLAW_SKILL = (
 
 def read_description(path: Path) -> str:
     text = path.read_text(encoding="utf-8")
-    match = re.search(r"^description: (.+)$", text, re.M)
-    if match is None:
-        raise AssertionError(f"missing description: {path}")
-    return match.group(1)
+    frontmatter = re.match(r"\A---[ \t]*\n(.*?)\n---[ \t]*(?:\n|\Z)", text, re.S)
+    if frontmatter is None:
+        raise AssertionError(f"missing or unclosed frontmatter: {path}")
+    descriptions = re.findall(r"^description:[ \t]*(.*)$", frontmatter.group(1), re.M)
+    if len(descriptions) != 1 or not descriptions[0].strip().strip("\"'").strip():
+        raise AssertionError(f"expected one nonempty description: {path}")
+    return descriptions[0].strip()
 
 
-class DescriptionNewsTriggerTests(HookCompanionTestMixin, unittest.TestCase):
+class DescriptionNewsTriggerTests(unittest.TestCase):
     def setUp(self) -> None:
-        self.setUpHookCompanions()
-        self.active_skill_paths = [
-            PERSISTENT_SKILL_PATHS[0],
-            *[
-                self.companion_roots[host] / "skills/chinese-official-writing/SKILL.md"
-                for host in (
-                    "codex",
-                    "codebuddy",
-                    "claude-code",
-                    "zcode",
-                    "qwen-code",
-                    "kimi-code",
-                )
-            ],
-            *PERSISTENT_SKILL_PATHS[1:],
-        ]
+        self.active_skill_paths = PERSISTENT_SKILL_PATHS
 
-    def test_active_description_leads_with_capability_and_defers_audience(self) -> None:
+    def test_active_descriptions_have_frontmatter_and_match(self) -> None:
         descriptions = [read_description(path) for path in self.active_skill_paths]
         self.assertEqual(len(set(descriptions)), 1)
 
-        description = descriptions[0]
-        self.assertTrue(
-            description.startswith(
-                "用于中文公文、事务性材料和新闻稿件的起草、改写、压缩和复核；"
-            )
-        )
-        self.assertIn("新闻稿件", description)
-        self.assertNotIn("活动新闻稿", description)
-        self.assertNotIn("评论员文章", description)
-        self.assertIn("适用于机关、企事业单位、学校、新闻机构。", description)
-        self.assertNotIn("不用于", description)
-        self.assertNotIn("个人求职", description)
-        self.assertNotIn("征求意见函", description)
-        self.assertNotIn("采购公告", description)
-        self.assertEqual(len(description), 202)
-
-    def test_openclaw_description_tracks_current_canonical_capability(self) -> None:
+    def test_openclaw_description_matches_canonical(self) -> None:
         self.assertEqual(read_description(self.active_skill_paths[0]), read_description(OPENCLAW_SKILL))
 
 

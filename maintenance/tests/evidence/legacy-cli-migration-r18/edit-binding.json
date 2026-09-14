@@ -1,0 +1,12 @@
+{
+  "baseline_head": "8f9d08898cd1f52b6f16f32691739af5a7e4067d",
+  "before_sha256": "f8095b65819f9d14383ce30670e49229e097fb3d60ebd6513d5a4eb2b207df9f",
+  "after_sha256": "b5d10c7d910ac6397abced3081f66f42f130681ed154d36ebe197f47938c629d",
+  "allowed_definitions": [
+    "read_routing_surfaces",
+    "test_sparse_length_rule_keeps_fact_boundary_without_short_first_priority",
+    "test_review_command_includes_interpreter_and_draft_path"
+  ],
+  "outside_allowed_bytes_identical": true,
+  "crlf_preserved": false
+}

@@ -69,3 +69,4 @@ if __name__=='__main__':
  prepare()
  with concurrent.futures.ThreadPoolExecutor(max_workers=5) as pool:results=list(pool.map(lane,range(5)))
  save(OUT/'receipts.json',[r for group in results for r in group])
+

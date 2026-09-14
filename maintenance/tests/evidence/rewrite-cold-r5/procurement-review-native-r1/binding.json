@@ -1,0 +1,32 @@
+{
+  "main_commit": "1ce7112303172478faa2392667a2de1098eb912c",
+  "candidate_head": "1e00a2691539083c80a2d38eb184f0e447a05913",
+  "fingerprints": {
+    "baseline": "823ba90ea79375684a6a825419bbeb267ba791e1b3b7d5116db257930f3e1938",
+    "candidate": "c42220a6e094aed519a7b573c7848d2ad2917432ec01e5718f50828c2536ba19"
+  },
+  "models": [
+    "command-code/deepseek-deepseek-v4.1-flash",
+    "ollama-cloud/glm-5.3-flash"
+  ],
+  "cases": {
+    "procurement_plan": "帮综合办公室写设备采购方案，报单位负责人审批。拟购买投影仪2台，每台3500元，幕布2套，每套600元，用于补充会议室设备；先核对两类设备数量和金额，再按批准范围办理采购，供应商和采购时间尚未确定。预算科目暂未提供。把采购内容、金额和已给步骤写清楚。",
+    "procurement_review_opinion": "根据这份评审记录写一份设备采购方案审查意见：方案拟购投影仪2台，每台3500元，幕布2套，每套600元；记录指出总额应为8200元，原方案误写8000元；两类设备用途均为补充会议室设备；供应商和采购时间尚未确定，预算科目材料尚未提供。评审结论为补正金额、补充预算材料后复核，未作通过结论。只按记录形成审查意见。",
+    "design_review_opinion": "根据记录整理一份初步设计审查意见。审查对象是资料中心一层空间改造初步设计，审查记录指出平面图与设备清单中的档案柜数量不一致，需核对一致后提交复核；本轮没有提出新增房间或调整面积，也未作通过结论。这是设计审查记录整理，材料没有涉及设备采购。",
+    "feasibility_procurement_content": "帮资料中心整理一份简短可研报告，供决定是否实施电子目录检索试点。需求是让工作人员查询已确认档案目录；现有电脑可使用，拟购买扫描仪1台，参考价6000元，正式报价和预算来源待核。试点范围及验收指标尚待论证，当前没有可行性通过结论。采购部分是报告中的条件分析，保留可研用途。"
+  },
+  "cli": "C:\\Users\\admin\\AppData\\Local\\OpenAI\\Codex\\bin\\7ac07f4ce733f89a\\codex.exe",
+  "cli_version": "codex-cli 0.153.4",
+  "effort": "max",
+  "runtime": "C:\\Users\\admin\\AppData\\Local\\Temp\\cow-native-procurement-review-native-r1-v0hql_3s",
+  "permissions": "inherited-host-config",
+  "timeout": 240,
+  "agent_documents": "project_doc_max_bytes=0",
+  "baseline_ref": "snapshot",
+  "baseline_source": "F:\\Workspaces\\chinese-official-writing-skill\\output\\route-worktrees\\reference-rewrite-20260912\\output\\combined-candidate-r4\\skill",
+  "candidate_source": "F:\\Workspaces\\chinese-official-writing-skill\\output\\route-worktrees\\reference-rewrite-20260912\\output\\procurement-review-only-r1\\skill",
+  "baseline_commit": null,
+  "profile": "temporary-no-user-documents-or-credentials",
+  "runner_sha256": "67f8a270dcc1f29b1f725ae11123a80a8a2e1db5829f7112ae5369c1d697dbdf",
+  "prompt_prefix": "使用本目录 .agents/skills/chinese-official-writing/SKILL.md。\n\n"
+}

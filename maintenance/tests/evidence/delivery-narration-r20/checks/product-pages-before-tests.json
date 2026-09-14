@@ -1,0 +1,50 @@
+[
+  {
+    "path": "chinese-official-writing\\SKILL.md",
+    "sha256": "b1cfcfbade53aebd59eb1d024d04a69c8ae9fb672353b415906ba72af208d9b7"
+  },
+  {
+    "path": "chinese-official-writing\\references\\writing-rules.md",
+    "sha256": "6265022ba67e9d9738ed55a3f1b013bfbe9ec1f8f4cc81195bf37ee0775b5c0f"
+  },
+  {
+    "path": "packages\\agent-skills\\skills\\chinese-official-writing\\SKILL.md",
+    "sha256": "b1cfcfbade53aebd59eb1d024d04a69c8ae9fb672353b415906ba72af208d9b7"
+  },
+  {
+    "path": "packages\\agent-skills\\skills\\chinese-official-writing\\references\\writing-rules.md",
+    "sha256": "6265022ba67e9d9738ed55a3f1b013bfbe9ec1f8f4cc81195bf37ee0775b5c0f"
+  },
+  {
+    "path": "packages\\qwen-code\\skills\\chinese-official-writing\\SKILL.md",
+    "sha256": "b1cfcfbade53aebd59eb1d024d04a69c8ae9fb672353b415906ba72af208d9b7"
+  },
+  {
+    "path": "packages\\qwen-code\\skills\\chinese-official-writing\\references\\writing-rules.md",
+    "sha256": "6265022ba67e9d9738ed55a3f1b013bfbe9ec1f8f4cc81195bf37ee0775b5c0f"
+  },
+  {
+    "path": "packages\\qwenwork\\skills\\chinese-official-writing\\SKILL.md",
+    "sha256": "b1cfcfbade53aebd59eb1d024d04a69c8ae9fb672353b415906ba72af208d9b7"
+  },
+  {
+    "path": "packages\\qwenwork\\skills\\chinese-official-writing\\references\\writing-rules.md",
+    "sha256": "6265022ba67e9d9738ed55a3f1b013bfbe9ec1f8f4cc81195bf37ee0775b5c0f"
+  },
+  {
+    "path": "packages\\hermes\\skills\\chinese-official-writing\\SKILL.md",
+    "sha256": "b1cfcfbade53aebd59eb1d024d04a69c8ae9fb672353b415906ba72af208d9b7"
+  },
+  {
+    "path": "packages\\hermes\\skills\\chinese-official-writing\\references\\writing-rules.md",
+    "sha256": "6265022ba67e9d9738ed55a3f1b013bfbe9ec1f8f4cc81195bf37ee0775b5c0f"
+  },
+  {
+    "path": "packages\\openclaw\\skills\\chinese_official_writing\\SKILL.md",
+    "sha256": "8f70c3544929d4be720f9df6c6541550a19caa68a6390822903c6d6fe5282182"
+  },
+  {
+    "path": "packages\\openclaw\\skills\\chinese_official_writing\\references\\writing-rules.md",
+    "sha256": "6265022ba67e9d9738ed55a3f1b013bfbe9ec1f8f4cc81195bf37ee0775b5c0f"
+  }
+]

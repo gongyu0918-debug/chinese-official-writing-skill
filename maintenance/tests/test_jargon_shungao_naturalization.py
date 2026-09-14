@@ -3,9 +3,6 @@ from __future__ import annotations
 from pathlib import Path
 import unittest
 
-from maintenance.tests.hook_companion_support import HookCompanionTestMixin
-
-
 ROOT = Path(__file__).resolve().parents[2]
 PERSISTENT_RUNTIME_ROOTS = [
     ROOT / "chinese-official-writing",
@@ -15,24 +12,9 @@ PERSISTENT_RUNTIME_ROOTS = [
 ]
 
 
-class ShungaoNaturalizationTests(HookCompanionTestMixin, unittest.TestCase):
+class ShungaoNaturalizationTests(unittest.TestCase):
     def setUp(self) -> None:
-        self.setUpHookCompanions()
-        self.runtime_roots = [
-            PERSISTENT_RUNTIME_ROOTS[0],
-            *[
-                self.companion_roots[host] / "skills/chinese-official-writing"
-                for host in (
-                    "codex",
-                    "codebuddy",
-                    "claude-code",
-                    "zcode",
-                    "qwen-code",
-                    "kimi-code",
-                )
-            ],
-            *PERSISTENT_RUNTIME_ROOTS[1:],
-        ]
+        self.runtime_roots = PERSISTENT_RUNTIME_ROOTS
 
     def test_runtime_instructions_use_plain_editing_terms(self) -> None:
         for root in self.runtime_roots:

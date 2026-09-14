@@ -1,0 +1,155 @@
+{
+  "method": "Full returned page text matching, including numbered rg output; per-task deduplication. Legacy script_calls fields count shell commands containing each script, not individual processes: one compound command may scan multiple files. Counts do not prove nonempty input, semantic review, or writing quality. Failed calls remain visible; totals are not a paired quality result or monetary cost.",
+  "binding_fingerprints": {
+    "baseline": "64fbd0b6bfba7b70dc9f0ad9cbc2aaaa20f591d9d0eab2fcc3978b14bbe292af",
+    "candidate": "155e6d4e0c23356907a6d42a1faa5ec8aba8bed13e839b87d04f4bfd9d0f9116"
+  },
+  "records": [
+    {
+      "stem": "m2-guards_grammar_quote-baseline",
+      "case": "guards_grammar_quote",
+      "model": "command-code/deepseek-deepseek-v4.1-flash",
+      "arm": "baseline",
+      "invalid": [],
+      "seconds": 54.3,
+      "commands": 9,
+      "unique_pages": [
+        "SKILL.md",
+        "references/genre-playbook-work-summary.md",
+        "references/proofreading-checklist.md",
+        "references/prose-lint-usage.md"
+      ],
+      "page_returns": {
+        "SKILL.md": 1,
+        "references/proofreading-checklist.md": 1,
+        "references/genre-playbook-work-summary.md": 1,
+        "references/prose-lint-usage.md": 1
+      },
+      "read_chars_unique": 3900,
+      "script_calls": [
+        {
+          "script": "prose_lint.py",
+          "command_index": 5,
+          "item_id": "item_6",
+          "exit_code": 0,
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"python \\\"C:\\\\Users\\\\admin\\\\AppData\\\\Local\\\\Temp\\\\cow-native-common-layer-native-r13-quantifier-repeat-ojxox6x1\\\\m2-guards_grammar_quote-baseline\\\\workspace\\\\.agents\\\\skills\\\\chinese-official-writing\\\\scripts\\\\prose_lint.py\\\" --delivery-mode draft-body --structure --format \\\"C:\\\\Users\\\\admin\\\\AppData\\\\Local\\\\Temp\\\\cow-native-common-layer-native-r13-quantifier-repeat-ojxox6x1\\\\m2-guards_grammar_quote-baseline\\\\workspace\\\\lint-check\\\\orig.txt\\\"\"",
+          "stdout": "No prose risks found.\r\n"
+        },
+        {
+          "script": "prose_lint.py",
+          "command_index": 6,
+          "item_id": "item_7",
+          "exit_code": 0,
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"python \\\"C:\\\\Users\\\\admin\\\\AppData\\\\Local\\\\Temp\\\\cow-native-common-layer-native-r13-quantifier-repeat-ojxox6x1\\\\m2-guards_grammar_quote-baseline\\\\workspace\\\\.agents\\\\skills\\\\chinese-official-writing\\\\scripts\\\\prose_lint.py\\\" --delivery-mode draft-body --structure --format \\\"C:\\\\Users\\\\admin\\\\AppData\\\\Local\\\\Temp\\\\cow-native-common-layer-native-r13-quantifier-repeat-ojxox6x1\\\\m2-guards_grammar_quote-baseline\\\\workspace\\\\lint-check\\\\fixed.txt\\\"\"",
+          "stdout": "No prose risks found.\r\n"
+        }
+      ],
+      "input_tokens": 182853,
+      "cached_input_tokens": 170240,
+      "uncached_input_tokens": 12613,
+      "output_tokens": 4764,
+      "trace_sha256": "d08ac79707ee7a84147193bb5bc3b08d99af7b402f7e7fdd10f5d75f9b1821a0",
+      "final_sha256": "e49f6b60be4f608c5692832d3c0023f9cc68ac4ea384b29de1e9a1d9c6768d6a"
+    },
+    {
+      "stem": "m2-guards_grammar_quote-candidate",
+      "case": "guards_grammar_quote",
+      "model": "command-code/deepseek-deepseek-v4.1-flash",
+      "arm": "candidate",
+      "invalid": [],
+      "seconds": 60.7,
+      "commands": 16,
+      "unique_pages": [
+        "SKILL.md",
+        "references/anti-ai-patterns.md",
+        "references/genre-playbook-work-summary.md",
+        "references/proofreading-checklist.md",
+        "references/prose-lint-usage.md",
+        "references/review-checklist.md",
+        "references/writing-rules.md"
+      ],
+      "page_returns": {
+        "SKILL.md": 1,
+        "references/writing-rules.md": 1,
+        "references/review-checklist.md": 1,
+        "references/anti-ai-patterns.md": 1,
+        "references/prose-lint-usage.md": 1,
+        "references/proofreading-checklist.md": 1,
+        "references/genre-playbook-work-summary.md": 1
+      },
+      "read_chars_unique": 7685,
+      "script_calls": [
+        {
+          "script": "prose_lint.py",
+          "command_index": 13,
+          "item_id": "item_19",
+          "exit_code": 0,
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'python \".agents/skills/chinese-official-writing/scripts/prose_lint.py\" --delivery-mode draft-body --structure --format \"C:/Users/admin/AppData/Local/Temp/cow-native-common-layer-native-r13-quantifier-repeat-ojxox6x1/m2-guards_grammar_quote-candidate/workspace/_lint_draft.md\"'",
+          "stdout": "No prose risks found.\r\n"
+        },
+        {
+          "script": "draft_length.py",
+          "command_index": 14,
+          "item_id": "item_20",
+          "exit_code": 0,
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'python \".agents/skills/chinese-official-writing/scripts/draft_length.py\" --min-chars 30 \"C:/Users/admin/AppData/Local/Temp/cow-native-common-layer-native-r13-quantifier-repeat-ojxox6x1/m2-guards_grammar_quote-candidate/workspace/_lint_draft.md\"'",
+          "stdout": "C:\\Users\\admin\\AppData\\Local\\Temp\\cow-native-common-layer-native-r13-quantifier-repeat-ojxox6x1\\m2-guards_grammar_quote-candidate\\workspace\\_lint_draft.md: 80 (nonspace; draft-before-postscript); 在范围内\r\n"
+        }
+      ],
+      "input_tokens": 162078,
+      "cached_input_tokens": 147200,
+      "uncached_input_tokens": 14878,
+      "output_tokens": 6355,
+      "trace_sha256": "bb778f703823981b8b6f747f320417379a085ced9e466ebc41392b6bfa19c07c",
+      "final_sha256": "29827da4b02d07d4aff24d2e589cc72227f54dc8afde0eead55f83ac5f3463bf"
+    }
+  ],
+  "summary": {
+    "baseline": {
+      "commands": 9,
+      "read_chars_unique": 3900,
+      "input_tokens": 182853,
+      "cached_input_tokens": 170240,
+      "uncached_input_tokens": 12613,
+      "output_tokens": 4764,
+      "seconds": 54.3,
+      "calls": 1,
+      "technical_valid": 1,
+      "prose_lint.py": 2,
+      "draft_length.py": 0,
+      "anti_ai_page_returned": 0,
+      "tasks_with_prose_command": 1
+    },
+    "candidate": {
+      "commands": 16,
+      "read_chars_unique": 7685,
+      "input_tokens": 162078,
+      "cached_input_tokens": 147200,
+      "uncached_input_tokens": 14878,
+      "output_tokens": 6355,
+      "seconds": 60.7,
+      "calls": 1,
+      "technical_valid": 1,
+      "prose_lint.py": 1,
+      "draft_length.py": 1,
+      "anti_ai_page_returned": 1,
+      "tasks_with_prose_command": 1
+    }
+  },
+  "matched_anti_prose_pairs": {
+    "pairs": 0,
+    "scope": "Cost diagnostic for pairs with anti-AI page returned and a prose-script command on both arms. Not a quality-selected subset, proof of effective checking, or proof of equal length checks.",
+    "baseline": {
+      "read_chars_unique": 0,
+      "uncached_input_tokens": 0,
+      "commands": 0,
+      "seconds": 0
+    },
+    "candidate": {
+      "read_chars_unique": 0,
+      "uncached_input_tokens": 0,
+      "commands": 0,
+      "seconds": 0
+    }
+  }
+}

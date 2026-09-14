@@ -82,13 +82,54 @@ class ProtectiveNegativeTailLintTests(unittest.TestCase):
             with self.subTest(text=text):
                 self.assertEqual(protective_findings(text), [])
 
-    def test_new_hints_are_draft_body_only(self) -> None:
-        text = "异常原因尚未形成正式结论。"
+    def test_hints_apply_to_body_in_both_delivery_modes(self) -> None:
+        samples = {
+            "异常原因尚未形成正式结论。": "unresolved-conclusion-tail",
+            "设备已经恢复，但尚不能据此认定问题已经彻底消除。": "protective-negative-inference",
+            "页面已恢复，这不代表异常已经根本解决。": "negative-boundary-tail",
+        }
+        for text, label in samples.items():
+            with self.subTest(label=label):
+                self.assertEqual(protective_findings(text, delivery_mode="generic"), [])
+                self.assertEqual(protective_findings(text, delivery_mode="review-only"), [])
+                body = protective_findings(text, delivery_mode="draft-body")
+                allowed = protective_findings(text, delivery_mode="gap-note-allowed")
+                self.assertEqual(allowed, body)
+                self.assertEqual([item.label for item in body], [label])
+                self.assertEqual(body[0].severity, "medium")
 
-        self.assertEqual(protective_findings(text, delivery_mode="generic"), [])
-        self.assertEqual(protective_findings(text, delivery_mode="review-only"), [])
-        self.assertEqual(protective_findings(text, delivery_mode="gap-note-allowed"), [])
-        self.assertEqual(len(protective_findings(text, delivery_mode="draft-body")), 1)
+    def test_explicit_postscript_is_exempt_but_business_headings_keep_body_hints(self) -> None:
+        tail = "异常原因尚未形成正式结论。"
+        for heading in ("文后提示", "正文外提示", "待确认事项（正文外）"):
+            with self.subTest(note=heading):
+                text = f"已完成核对。\n\n{heading}\n{tail}"
+                self.assertEqual(protective_findings(text, delivery_mode="gap-note-allowed"), [])
+                findings = protective_findings(text, delivery_mode="draft-body")
+                self.assertEqual([item.label for item in findings], ["unresolved-conclusion-tail"])
+                self.assertEqual(findings[0].severity, "medium")
+                labels = {item.label for item in prose_lint.scan("<test>", text, delivery_mode="draft-body")}
+                self.assertIn("unexpected-external-note", labels)
+        for heading in ("待确认事项", "风险提醒", "补充信息", "二、待确认事项", "二、风险提醒", "二、补充信息"):
+            with self.subTest(business=heading):
+                text = f"一、进展\n已完成核对。\n\n{heading}\n{tail}"
+                self.assertEqual(prose_lint.body_lines(text.splitlines()), text.splitlines())
+                body = protective_findings(text)
+                allowed = protective_findings(text, delivery_mode="gap-note-allowed")
+                self.assertEqual(allowed, body)
+                self.assertEqual([item.label for item in body], ["unresolved-conclusion-tail"])
+                self.assertEqual(body[0].line, 5)
+
+    def test_unresolved_hint_advice_preserves_material_supported_state(self) -> None:
+        for text in ("会议尚未形成决定。", "异常原因尚未形成正式结论。", "会议尚未形成具体安排。"):
+            with self.subTest(text=text):
+                findings = protective_findings(text)
+                self.assertEqual(len(findings), 1)
+                self.assertEqual(findings[0].label, "unresolved-conclusion-tail")
+                self.assertEqual(findings[0].severity, "medium")
+                self.assertIn("对照材料核对", findings[0].excerpt)
+                self.assertIn("保留原状态", findings[0].excerpt)
+                self.assertIn("仅清理与事项无关的重复自我限定", findings[0].excerpt)
+                self.assertNotIn("可改为进行态", findings[0].excerpt)
 
     def test_unresolved_conclusion_must_end_the_sentence(self) -> None:
         text = "会议尚未形成决定，下一步继续研究。"
@@ -113,50 +154,53 @@ class ProtectiveNegativeTailLintTests(unittest.TestCase):
             draft = Path(temp_dir) / "draft.txt"
             draft.write_text(original, encoding="utf-8")
             before = draft.read_bytes()
-            result = subprocess.run(
-                [
-                    sys.executable,
-                    str(script),
-                    str(draft),
-                    "--delivery-mode",
-                    "draft-body",
-                    "--strict",
-                    "--fail-on",
-                    "medium",
-                ],
-                capture_output=True,
-                text=True,
-                encoding="utf-8",
-            )
+            results = [
+                subprocess.run(
+                    [sys.executable, str(script), str(draft), "--delivery-mode", mode,
+                     "--strict", "--fail-on", "medium"],
+                    capture_output=True, text=True, encoding="utf-8",
+                )
+                for mode in ("draft-body", "gap-note-allowed")
+            ]
             after = draft.read_bytes()
 
-        self.assertEqual(result.returncode, 1)
-        self.assertIn("protective-negative-inference", result.stdout)
+        for result in results:
+            self.assertEqual(result.returncode, 1)
+            self.assertIn("protective-negative-inference", result.stdout)
+        self.assertEqual(results[0].stdout, results[1].stdout)
         self.assertEqual(before, after)
 
-    def test_final_review_routes_each_hint_to_one_bounded_semantic_choice(self) -> None:
+    def test_review_and_lint_routes_preserve_evidence_bounded_semantic_choices(self) -> None:
+        skill = (ROOT / "chinese-official-writing/SKILL.md").read_text(encoding="utf-8")
         review = (
-            ROOT / "chinese-official-writing" / "references" / "final-review-layers.md"
+            ROOT / "chinese-official-writing" / "references" / "writing-rules.md"
         ).read_text(encoding="utf-8")
+        usage = (ROOT / "chinese-official-writing/references/prose-lint-usage.md").read_text(encoding="utf-8")
 
-        for label in LABELS:
-            with self.subTest(label=label):
-                self.assertIn(f"`{label}`", review)
-        for phrase in [
-            "逐条结合位置、风险等级、命中片段和随附建议作一次内部判断",
-            "高、中风险选择保留、局部改写或删除",
-            "低风险只在有明确质量收益时处理",
-            "不因命中补造事实",
-            "每个命中须在内部完成一次语义选择后再交付",
-            "保留原义",
-            "应写为该主体正在调查、核查、汇总分析等",
-            "删除命中句或句尾",
-            "复核主体、数字、日期、责任和状态强度",
-            "处理后复扫一次",
-            "也不循环修改",
-        ]:
+        self.assertIn("`references/writing-rules.md`", skill)
+        self.assertIn("`prose-lint-usage.md`", review)
+        # 核对迁移后的事实、范围与风险处理职责，不要求恢复旧复核页。
+        for phrase in (
+            "主体、对象、数字、金额、业务日期、引语、来源及事实状态照实保留",
+            "主体、范围和判断强度与依据相称",
+            "拟、建议、可选、进行中、待核和未决定按原程度表达",
+            "已确认且属于本轮范围的问题交付前修正",
+            "实质修改后核对关联内容并复扫，影响篇幅时另测字数",
+        ):
             with self.subTest(phrase=phrase):
                 self.assertIn(phrase, review)
+        for phrase in (
+            "对照风险位置、材料和修改范围修正问题",
+            "合理用语及引用经核对可保留",
+            "正文实质修改后复扫，最终采用已检查文本",
+        ):
+            with self.subTest(phrase=phrase):
+                self.assertIn(phrase, usage)
+        advice_by_label = {label: advice for _, label, _, advice in prose_lint.DRAFT_BODY_PATTERNS}
+        self.assertTrue(LABELS.issubset(advice_by_label))
+        self.assertIn("核对这是否为材料明确要求的证据或结论边界", advice_by_label["protective-negative-inference"])
+        self.assertIn("保留原状态", advice_by_label["unresolved-conclusion-tail"])
+        self.assertIn("核对这是否为必要的法律或决定边界", advice_by_label["negative-boundary-tail"])
 
     def test_all_static_patterns_have_nonempty_advice(self) -> None:
         pattern_groups = [

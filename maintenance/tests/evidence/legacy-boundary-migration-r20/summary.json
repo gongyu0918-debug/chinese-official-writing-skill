@@ -1,0 +1,401 @@
+{
+  "baseline_head": "95e29838e7f8cf4ef54c7433870eb5d8ab214458",
+  "baseline_module_sha256": "5c36737545e84d0a04ddcca17d2107ec564484904050f0db01195d7851713233",
+  "final_module_sha256": "5b3f8bdd9775c4539269520d70ac3e0571059f9b02fe165a97c448f8dadd92f5",
+  "methods_preserved": 81,
+  "changed_methods": 50,
+  "unchanged_methods": 31,
+  "helpers_and_version_constants_preserved": true,
+  "r18_cli_methods_unchanged": true,
+  "product_and_mirror_diff_from_head": [],
+  "full_module": {
+    "command": [
+      "C:/Users/admin/AppData/Local/Programs/Python/Python313/python.exe",
+      "-B",
+      "-m",
+      "unittest",
+      "-v",
+      "maintenance.tests.test_skill_boundary"
+    ],
+    "returncode": 0,
+    "seconds": 1.009,
+    "module_sha256": "ff1cb058268fbac51c4895c98a39e0f848cb324449199327ba8234e35e4145e0",
+    "log_sha256": "ff63bf2b489d123b4f2c5dc73f25ab13a77d471168077f364d4f188be82b8c87",
+    "run_count": 1,
+    "methods": 81,
+    "passed": 81,
+    "failure_events": 0,
+    "error_events": 0,
+    "skipped": 0
+  },
+  "final_delta": {
+    "command": [
+      "C:/Users/admin/AppData/Local/Programs/Python/Python313/python.exe",
+      "-B",
+      "-m",
+      "unittest",
+      "-v",
+      "maintenance.tests.test_skill_boundary.SkillBoundaryTests.test_long_form_headings_warn_against_markdown_bold"
+    ],
+    "returncode": 0,
+    "module_sha256": "5b3f8bdd9775c4539269520d70ac3e0571059f9b02fe165a97c448f8dadd92f5",
+    "log_sha256": "2c61c1ff30f056e9185884d0c57df82fbc3d664b71224f88be3e957ac9c22f4d",
+    "changed_methods_after_full_run": [
+      "test_long_form_headings_warn_against_markdown_bold"
+    ],
+    "other_80_methods_identical_to_full_run": true,
+    "focused_passed": 1,
+    "new_cli_cases": 3
+  },
+  "final_supported_method_outcomes": {
+    "passed": 81,
+    "unresolved_failure_methods": 0,
+    "basis": "one 81-method run, then 1 changed method rechecked; not a second full-module run"
+  },
+  "actual_cli_cases": {
+    "preserved_length_modes": 2,
+    "preserved_prose_modes": 3,
+    "new_wrapper_cases": 3,
+    "total": 8
+  },
+  "pending_responsibilities": [
+    {
+      "id": "G04-examples",
+      "kind": "specific_formalization_examples_unverified",
+      "responsibility": "老板关心/钱花得值/马上要搞等口语正式化不得增强身份、评价、程序或承诺",
+      "current_support": "同义正式语体、叙述身份/条件/可能性/论断强度保真及具体责任程序成效需依据。",
+      "limit": "不要求恢复旧例句；仅迁移明确语义。本模块不执行这些写稿样例，结果仍待既有或后续实稿核对。"
+    },
+    {
+      "id": "G03/G04/G06/G08-native",
+      "kind": "document_contract_is_not_generation_test",
+      "responsibility": "标题/语法/多轮/专叶在真实生成中的执行",
+      "current_support": "具体条件、例外、角色、状态和修改粒度已在对应方法中逐项断言；3个包装与5个既有CLI检查真实执行。",
+      "limit": "其他文稿语义为文档契约测试，不是81个模型能力样本。没有未解静态失败不等于重构功能全部验收。"
+    }
+  ],
+  "new_models_run": 0,
+  "whole_repository_suites_run": 0,
+  "commit_created": false,
+  "historical_r17_log_sha256": "7833d5d508919da66dba978374db4dba25da58c6d8aba6892dea5c12cef624c8",
+  "evidence": {
+    "module-python313.log": "ff63bf2b489d123b4f2c5dc73f25ab13a77d471168077f364d4f188be82b8c87",
+    "heading-wrapper-focused.log": "2c61c1ff30f056e9185884d0c57df82fbc3d664b71224f88be3e957ac9c22f4d",
+    "module-run.json": "71ac2e5208ead8a8a68d8278ff62c94b207cfdbc134885f02690cf9c73acdec6",
+    "heading-wrapper-focused.json": "3ca4e1dc972dac9736bde13c5d11c4e1c8784dc7fbde523564a621544478b23c",
+    "migration-catalog.json": "7b7957dc84f9accbeea34c3dbf105afa7786802f7e73ded3ac14e6f0c906b2d7"
+  },
+  "existing_native_evidence": [
+    {
+      "id": "G01",
+      "case": "notice_receiver",
+      "status": "R18同题核心语义已有正证，2通道×2臂共4稿",
+      "covered": "各业务科报送到市培训中心邮箱、王老师接收；发文主体缺失。4稿均未以市培训中心为发文主体，接收对象/渠道/联系人仍保留。",
+      "limitations": "不据此认定日期、占位、报送动作扩展、旁白或额外提示合格，也不推广为所有主体歧义场景或当前导航原型已通过。"
+    },
+    {
+      "id": "G02",
+      "case": "compute_units",
+      "status": "R18同题核心语义已有正证，2通道×2臂共4稿",
+      "covered": "调用1200次与输入输出合计800万Token分别保留，按Token计费，单价及总额待核，未代填金额或改成调用次数计价。",
+      "limitations": "本题没有已知单价，不覆盖实际金额乘算、不同输入/输出单价、币种或计量倍数换算；各稿附加计费依据/服务周期及假设费用需独立评价。"
+    }
+  ],
+  "evidence_correction": {
+    "previous_G01_G02_unverified_status_superseded": true,
+    "new_model_or_test_runs": 0,
+    "linkage": "existing_native_evidence and existing_native_evidence_binding within this JSON"
+  },
+  "unadopted_navigation_static_impact": {
+    "status": "unadopted; read-only static impact assessment, not test execution",
+    "root": "F:\\Workspaces\\chinese-official-writing-skill\\output\\route-worktrees\\reference-rewrite-20260912\\output\\delivery-narration-r20-navigation",
+    "build_sha256": "4d3e605f7131aabb625c39c7574464ec78be74e1562b049a0510d5694a4f8182",
+    "changed_files": {
+      "references/writing-rules.md": {
+        "baseline_sha256": "a1834b1c98be7c922d0052dc75438e18c8db95bc96bead5d0ae661ba4e1a6fbf",
+        "candidate_sha256": "6265022ba67e9d9738ed55a3f1b013bfbe9ec1f8f4cc81195bf37ee0775b5c0f"
+      },
+      "SKILL.md": {
+        "baseline_sha256": "6773fa2faa1b2214bfa5ef777d29dbe51953828c637e5a488d10969343a93a5d",
+        "candidate_sha256": "90def8e990a93be1d79fda4156db0f744064b7be08e139d17aed05b93d4afe1b"
+      }
+    },
+    "affected_methods": [
+      {
+        "method": "test_canonical_skill_declares_positive_trigger_boundary",
+        "method_line": 113,
+        "missing_literals": [
+          {
+            "line": 123,
+            "owner": "SKILL.md",
+            "old_literal": "读取 `references/writing-rules.md` 完成取材、成稿、复核及交付"
+          }
+        ]
+      },
+      {
+        "method": "test_delivery_scope_rule_is_naturalized_across_current_skill_copies",
+        "method_line": 224,
+        "missing_literals": [
+          {
+            "line": 225,
+            "owner": "SKILL.md",
+            "old_literal": "正式正文清除 AI 身份、提示词、隐藏推理、起草过程、脚本结果、制作说明、免责话术、连续追问或“正文如下”等旁白。"
+          }
+        ]
+      },
+      {
+        "method": "test_drafting_rules_are_split_for_prompt_following",
+        "method_line": 245,
+        "missing_literals": [
+          {
+            "line": 254,
+            "owner": "SKILL.md",
+            "old_literal": "选定主文种后，读取 `references/writing-rules.md`"
+          }
+        ]
+      },
+      {
+        "method": "test_second_revision_fact_mapping_has_one_complete_entry_rule",
+        "method_line": 302,
+        "missing_literals": [
+          {
+            "line": 309,
+            "owner": "references/writing-rules.md",
+            "old_literal": "路由、工具过程与自评留在内部"
+          }
+        ]
+      },
+      {
+        "method": "test_reference_loading_table_keeps_progressive_disclosure",
+        "method_line": 380,
+        "missing_literals": [
+          {
+            "line": 390,
+            "owner": "SKILL.md",
+            "old_literal": "选定主文种后，读取 `references/writing-rules.md` 完成取材、成稿、复核及交付"
+          }
+        ]
+      },
+      {
+        "method": "test_light_route_is_terminal_until_an_explicit_escalation_condition",
+        "method_line": 484,
+        "missing_literals": [
+          {
+            "line": 487,
+            "owner": "SKILL.md",
+            "old_literal": "选定主文种后，读取 `references/writing-rules.md`"
+          }
+        ]
+      },
+      {
+        "method": "test_revision_workflow_forbids_new_unprovided_facts",
+        "method_line": 939,
+        "missing_literals": [
+          {
+            "line": 945,
+            "owner": "references/writing-rules.md",
+            "old_literal": "路由、工具过程与自评留在内部"
+          }
+        ]
+      }
+    ],
+    "notes": [
+      "All seven are literal/placement mismatches; current tests remain unchanged.",
+      "Removed ## 路由主线 no longer bounds one split; it does not raise by itself, but nearby literal fails.",
+      "Mirror equality additionally fails if only canonical prototype is applied without matching mirrors; this is synchronization, not semantic failure."
+    ]
+  },
+  "existing_native_evidence_binding": {
+    "correction": "G01/G02 already have R18 native evidence; no rerun required",
+    "bindings": [
+      {
+        "path": "F:\\Workspaces\\chinese-official-writing-skill\\output\\route-worktrees\\reference-rewrite-20260912\\output\\common-compression-native-r18-qwen\\binding.json",
+        "sha256": "a24ecf08420c972e0a3c529f2f0ce68ca7beae18b6c1515ab265cc764f460825",
+        "models": [
+          "alibaba-token-plan/qwen3.8-flash"
+        ],
+        "fingerprints": {
+          "baseline": "dccfae55fdb9e6b8f252a1aa6f5486f6ab9fdb5ad6078fc57efd28301f2fad15",
+          "candidate": "2dae894c3860bfd1f6660272690789ba7a02eb09a096e177319dddd7c66cc056"
+        },
+        "cases": {
+          "notice_receiver": "根据材料起草简短通知：请各业务科于9月20日前把培训报名表发送到市培训中心邮箱pxzx@example.org，接收联系人王老师。发文单位和成文日期还没有给，先把稿子写好。",
+          "compute_units": "改写一段算力费用说明：试用期共调用模型1200次，输入和输出合计800万Token；按Token计费，单价及总额尚待核实。请把需求与费用口径写清，保持数字和待核状态，不新增GPU、并发或SLA数据。"
+        }
+      },
+      {
+        "path": "F:\\Workspaces\\chinese-official-writing-skill\\output\\route-worktrees\\reference-rewrite-20260912\\output\\common-compression-native-r18-deepseek\\binding.json",
+        "sha256": "5006a7d873be09802ad4dcdeb6ad0ec1cc2dfa83f5d7eff7f8e464b4929f1c10",
+        "models": [
+          "command-code/deepseek-deepseek-v4.1-flash"
+        ],
+        "fingerprints": {
+          "baseline": "dccfae55fdb9e6b8f252a1aa6f5486f6ab9fdb5ad6078fc57efd28301f2fad15",
+          "candidate": "2dae894c3860bfd1f6660272690789ba7a02eb09a096e177319dddd7c66cc056"
+        },
+        "cases": {
+          "notice_receiver": "根据材料起草简短通知：请各业务科于9月20日前把培训报名表发送到市培训中心邮箱pxzx@example.org，接收联系人王老师。发文单位和成文日期还没有给，先把稿子写好。",
+          "compute_units": "改写一段算力费用说明：试用期共调用模型1200次，输入和输出合计800万Token；按Token计费，单价及总额尚待核实。请把需求与费用口径写清，保持数字和待核状态，不新增GPU、并发或SLA数据。"
+        }
+      }
+    ],
+    "native_finals_read": [
+      {
+        "case": "notice_receiver",
+        "arm": "baseline",
+        "batch": "common-compression-native-r18-qwen",
+        "native_id": "m0-notice_receiver-baseline",
+        "final_path": "F:\\Workspaces\\chinese-official-writing-skill\\output\\route-worktrees\\reference-rewrite-20260912\\output\\common-compression-native-r18-qwen\\m0-notice_receiver-baseline.final.txt",
+        "final_sha256": "b4205df7c82913017def7f90884bf0532dfc8e6ec585f9561108d056eb44c947",
+        "result_path": "F:\\Workspaces\\chinese-official-writing-skill\\output\\route-worktrees\\reference-rewrite-20260912\\output\\common-compression-native-r18-qwen\\m0-notice_receiver-baseline.result.json",
+        "result_sha256": "8fe04ab01e643de6a2bd0a3567f7bef4235f29948dd61b60a356e3d93c6e3058",
+        "returncode": 0,
+        "invalid": [],
+        "observed": {
+          "issuer_not_inferred_from_receiving_center": true,
+          "receiver_contact_and_channel_preserved": true,
+          "evidence_judgment": "All four full messages read: 市培训中心 occurs as receiving center/email, never issuing signature."
+        }
+      },
+      {
+        "case": "notice_receiver",
+        "arm": "candidate",
+        "batch": "common-compression-native-r18-qwen",
+        "native_id": "m0-notice_receiver-candidate",
+        "final_path": "F:\\Workspaces\\chinese-official-writing-skill\\output\\route-worktrees\\reference-rewrite-20260912\\output\\common-compression-native-r18-qwen\\m0-notice_receiver-candidate.final.txt",
+        "final_sha256": "6f32d3e4c40502903bc6a9937e9adafe496d334dd89e21f4da3051cc8a152698",
+        "result_path": "F:\\Workspaces\\chinese-official-writing-skill\\output\\route-worktrees\\reference-rewrite-20260912\\output\\common-compression-native-r18-qwen\\m0-notice_receiver-candidate.result.json",
+        "result_sha256": "ba1123528dcc701fbc7f22f8338cf9c4884e07ce4032535afe07c5dcd17f2594",
+        "returncode": 0,
+        "invalid": [],
+        "observed": {
+          "issuer_not_inferred_from_receiving_center": true,
+          "receiver_contact_and_channel_preserved": true,
+          "evidence_judgment": "All four full messages read: 市培训中心 occurs as receiving center/email, never issuing signature."
+        }
+      },
+      {
+        "case": "compute_units",
+        "arm": "baseline",
+        "batch": "common-compression-native-r18-qwen",
+        "native_id": "m0-compute_units-baseline",
+        "final_path": "F:\\Workspaces\\chinese-official-writing-skill\\output\\route-worktrees\\reference-rewrite-20260912\\output\\common-compression-native-r18-qwen\\m0-compute_units-baseline.final.txt",
+        "final_sha256": "9d92711a91560a2b0a414cf4df411da8466ea83673f7c6a12f80d204e4e29190",
+        "result_path": "F:\\Workspaces\\chinese-official-writing-skill\\output\\route-worktrees\\reference-rewrite-20260912\\output\\common-compression-native-r18-qwen\\m0-compute_units-baseline.result.json",
+        "result_sha256": "ead9f8f26e8ae99697f166cf79215dcc877cb0b8412d319966c30e03b76f7d61",
+        "returncode": 0,
+        "invalid": [],
+        "observed": {
+          "model_call_count_1200_preserved": true,
+          "input_output_token_total_8000000_preserved": true,
+          "token_billing_preserved": true,
+          "unit_price_and_total_pending_preserved": true,
+          "evidence_judgment": "All four full messages read: 1200次 and 800万Token remain different measures; no amount fabricated."
+        }
+      },
+      {
+        "case": "compute_units",
+        "arm": "candidate",
+        "batch": "common-compression-native-r18-qwen",
+        "native_id": "m0-compute_units-candidate",
+        "final_path": "F:\\Workspaces\\chinese-official-writing-skill\\output\\route-worktrees\\reference-rewrite-20260912\\output\\common-compression-native-r18-qwen\\m0-compute_units-candidate.final.txt",
+        "final_sha256": "fbf48e7ec468244c0c67898824ae959a998aa81bbb812bf992cffc0992be648d",
+        "result_path": "F:\\Workspaces\\chinese-official-writing-skill\\output\\route-worktrees\\reference-rewrite-20260912\\output\\common-compression-native-r18-qwen\\m0-compute_units-candidate.result.json",
+        "result_sha256": "d9b1c81c61baceb8c269691ba5c13dd95e644839582804a1651222f23e7250b5",
+        "returncode": 0,
+        "invalid": [],
+        "observed": {
+          "model_call_count_1200_preserved": true,
+          "input_output_token_total_8000000_preserved": true,
+          "token_billing_preserved": true,
+          "unit_price_and_total_pending_preserved": true,
+          "evidence_judgment": "All four full messages read: 1200次 and 800万Token remain different measures; no amount fabricated."
+        }
+      },
+      {
+        "case": "notice_receiver",
+        "arm": "baseline",
+        "batch": "common-compression-native-r18-deepseek",
+        "native_id": "m2-notice_receiver-baseline",
+        "final_path": "F:\\Workspaces\\chinese-official-writing-skill\\output\\route-worktrees\\reference-rewrite-20260912\\output\\common-compression-native-r18-deepseek\\m2-notice_receiver-baseline.final.txt",
+        "final_sha256": "34ff4a73d5e23ea441d72d57036f1b9624be4779d2c4ba8cf2d8f484afae3ecf",
+        "result_path": "F:\\Workspaces\\chinese-official-writing-skill\\output\\route-worktrees\\reference-rewrite-20260912\\output\\common-compression-native-r18-deepseek\\m2-notice_receiver-baseline.result.json",
+        "result_sha256": "c7dcba34091bc5347be2fd58aac7fd12f72cf162f84f6b17b189e76bc5d4caa9",
+        "returncode": 0,
+        "invalid": [],
+        "observed": {
+          "issuer_not_inferred_from_receiving_center": true,
+          "receiver_contact_and_channel_preserved": true,
+          "evidence_judgment": "All four full messages read: 市培训中心 occurs as receiving center/email, never issuing signature."
+        }
+      },
+      {
+        "case": "notice_receiver",
+        "arm": "candidate",
+        "batch": "common-compression-native-r18-deepseek",
+        "native_id": "m2-notice_receiver-candidate",
+        "final_path": "F:\\Workspaces\\chinese-official-writing-skill\\output\\route-worktrees\\reference-rewrite-20260912\\output\\common-compression-native-r18-deepseek\\m2-notice_receiver-candidate.final.txt",
+        "final_sha256": "9d6fb6fb640f84393f2a3001543230726e10c4435f88402bf553ca2b9a25b991",
+        "result_path": "F:\\Workspaces\\chinese-official-writing-skill\\output\\route-worktrees\\reference-rewrite-20260912\\output\\common-compression-native-r18-deepseek\\m2-notice_receiver-candidate.result.json",
+        "result_sha256": "733128a83b0861d4613564a907f3251580a96ac5a9c1480055eff40b0176d318",
+        "returncode": 0,
+        "invalid": [],
+        "observed": {
+          "issuer_not_inferred_from_receiving_center": true,
+          "receiver_contact_and_channel_preserved": true,
+          "evidence_judgment": "All four full messages read: 市培训中心 occurs as receiving center/email, never issuing signature."
+        }
+      },
+      {
+        "case": "compute_units",
+        "arm": "baseline",
+        "batch": "common-compression-native-r18-deepseek",
+        "native_id": "m2-compute_units-baseline",
+        "final_path": "F:\\Workspaces\\chinese-official-writing-skill\\output\\route-worktrees\\reference-rewrite-20260912\\output\\common-compression-native-r18-deepseek\\m2-compute_units-baseline.final.txt",
+        "final_sha256": "433e46ba76cdd2b80c1f3d3aa0fcd4a1a49c898e86ba152d329ab9dca77526be",
+        "result_path": "F:\\Workspaces\\chinese-official-writing-skill\\output\\route-worktrees\\reference-rewrite-20260912\\output\\common-compression-native-r18-deepseek\\m2-compute_units-baseline.result.json",
+        "result_sha256": "b1f9825e9c5ae354a91c6bcd34ffd15a1ce204f9cd16d1a5f747acd548d52338",
+        "returncode": 0,
+        "invalid": [],
+        "observed": {
+          "model_call_count_1200_preserved": true,
+          "input_output_token_total_8000000_preserved": true,
+          "token_billing_preserved": true,
+          "unit_price_and_total_pending_preserved": true,
+          "evidence_judgment": "All four full messages read: 1200次 and 800万Token remain different measures; no amount fabricated."
+        }
+      },
+      {
+        "case": "compute_units",
+        "arm": "candidate",
+        "batch": "common-compression-native-r18-deepseek",
+        "native_id": "m2-compute_units-candidate",
+        "final_path": "F:\\Workspaces\\chinese-official-writing-skill\\output\\route-worktrees\\reference-rewrite-20260912\\output\\common-compression-native-r18-deepseek\\m2-compute_units-candidate.final.txt",
+        "final_sha256": "08def5bc2d2dab4c1d1cd64125bc480e4d1aa73059ae78042af5a0130e75877a",
+        "result_path": "F:\\Workspaces\\chinese-official-writing-skill\\output\\route-worktrees\\reference-rewrite-20260912\\output\\common-compression-native-r18-deepseek\\m2-compute_units-candidate.result.json",
+        "result_sha256": "2de803e782dd46284018bbad9b095c65952605cfed1ef2850376217f5fd16f3d",
+        "returncode": 0,
+        "invalid": [],
+        "observed": {
+          "model_call_count_1200_preserved": true,
+          "input_output_token_total_8000000_preserved": true,
+          "token_billing_preserved": true,
+          "unit_price_and_total_pending_preserved": true,
+          "evidence_judgment": "All four full messages read: 1200次 and 800万Token remain different measures; no amount fabricated."
+        }
+      }
+    ],
+    "source_reports": [
+      {
+        "path": "F:\\Workspaces\\chinese-official-writing-skill\\output\\route-worktrees\\reference-rewrite-20260912\\maintenance\\tests\\evidence\\common-compression-r18\\results.md",
+        "sha256": "e0cfacbbc438e882dc7498cbe41f37c67751eaa463dda22dfbe8d1b0e4f4cf72"
+      },
+      {
+        "path": "F:\\Workspaces\\chinese-official-writing-skill\\output\\route-worktrees\\reference-rewrite-20260912\\maintenance\\tests\\evidence\\completion-audit-r19\\report.md",
+        "sha256": "a2608f11dac03e618e456cbc752da2a7250a974f0c97188635df3288a45036f5"
+      }
+    ],
+    "tests_run": 0,
+    "models_run": 0
+  }
+}

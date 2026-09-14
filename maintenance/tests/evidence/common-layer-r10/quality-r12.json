@@ -1,0 +1,460 @@
+{
+  "note": "Different baselines remain separate. Failed original explanation pair excluded from paired comparison, then both arms rerun. Raw failures remain archived. Preferences include mild differences, not hard-failure counts. Cost metrics do not establish effective or equivalent checks.",
+  "summary": {
+    "R10 to R12": {
+      "body": {
+        "tie": 7,
+        "candidate": 1
+      },
+      "delivery": {
+        "tie": 2,
+        "candidate": 5,
+        "baseline": 1
+      }
+    },
+    "R8+80 to R12": {
+      "body": {
+        "tie": 4,
+        "baseline": 1,
+        "candidate": 1
+      },
+      "delivery": {
+        "tie": 3,
+        "baseline": 1,
+        "candidate": 2
+      }
+    }
+  },
+  "paired_execution": {
+    "R10 to R12": {
+      "baseline": {
+        "read_chars_unique": 69491,
+        "uncached_input_tokens": 95796,
+        "input_tokens": 945972,
+        "output_tokens": 24590,
+        "commands": 97,
+        "seconds": 455.32,
+        "calls": 8,
+        "anti_ai_page_returned": 6,
+        "tasks_with_prose_command": 6
+      },
+      "candidate": {
+        "read_chars_unique": 72856,
+        "uncached_input_tokens": 98170,
+        "input_tokens": 1070586,
+        "output_tokens": 24582,
+        "commands": 80,
+        "seconds": 399.38,
+        "calls": 8,
+        "anti_ai_page_returned": 8,
+        "tasks_with_prose_command": 7
+      }
+    },
+    "R8+80 to R12": {
+      "baseline": {
+        "read_chars_unique": 69563,
+        "uncached_input_tokens": 271967,
+        "input_tokens": 1338375,
+        "output_tokens": 33412,
+        "commands": 119,
+        "seconds": 555.66,
+        "calls": 6,
+        "anti_ai_page_returned": 5,
+        "tasks_with_prose_command": 4
+      },
+      "candidate": {
+        "read_chars_unique": 59269,
+        "uncached_input_tokens": 317610,
+        "input_tokens": 1122346,
+        "output_tokens": 32863,
+        "commands": 78,
+        "seconds": 495.39,
+        "calls": 6,
+        "anti_ai_page_returned": 4,
+        "tasks_with_prose_command": 4
+      }
+    }
+  },
+  "records": [
+    {
+      "id": "U01",
+      "body_winner": "相当",
+      "delivery_winner": "相当",
+      "body_chars_A": 104,
+      "body_chars_B": 102,
+      "notes": "双方均完整保留发生时段、随后恢复、原因正在核查及已知对象，达到80字下限。核查结果确定后另行说明或向各部门通报，均是允许的一般后续表达，没有新增已发生处置、预防措施或受影响范围，不判中等回退。两版正文与文后提示隔离，草稿日期可接受。A文前复述已遵守的范围，B文后范围和未采用措辞的复述较多，均属轻微冗余；B称正文只写给定几项事实的概括略不完整，但不是正文事实错误。整体差异不足以确定胜负。",
+      "mapping": {
+        "id": "U01",
+        "run": "common-layer-native-r12-unified",
+        "case": "explanation",
+        "model": "alibaba-token-plan/qwen3.8-flash",
+        "A": {
+          "arm": "candidate",
+          "file": "output/common-layer-native-r12-unified/m0-explanation-candidate.final.txt",
+          "sha256": "765d3d43d4fc272e0f99a90e92c95897f33fbe2c5429bf83b9c478287c60c750"
+        },
+        "B": {
+          "arm": "baseline",
+          "file": "output/common-layer-native-r12-unified/m0-explanation-baseline.final.txt",
+          "sha256": "d18ed5275880814a35dc6ca5171299ca8cd2e07eafeda586c0ab24d4a1cf8051"
+        }
+      },
+      "comparison": "R10 to R12",
+      "body_preferred_arm": "tie",
+      "delivery_preferred_arm": "tie"
+    },
+    {
+      "id": "U02",
+      "body_winner": "相当",
+      "delivery_winner": "B",
+      "body_chars_A": 121,
+      "body_chars_B": 127,
+      "notes": "双方通知对象、培训时间地点、回执截止日、接收办公室、邮箱及联系人准确完整，均达80字。A规范档案整理的一般目的有材料支持，B通知安排的直接写法也可接受；根据回执办公室暂拟署名且文后披露，为可确认的草稿处理，不判已核实发文主体。正文相当。完整交付B略胜：直接给稿，正文自报127字与核算一致；A自报143字，实际121字，属轻微自报计数错误且不影响下限合格。双方扫描自述为流程冗余，不推断运行真假。B文后要求补齐文号超出简短通知必需条件，年份星期的附加说明也可省，均为轻微提示负担，不是正文新增事件事实。",
+      "mapping": {
+        "id": "U02",
+        "run": "common-layer-native-r12-unified",
+        "case": "guards_notice_receiver",
+        "model": "alibaba-token-plan/qwen3.8-flash",
+        "A": {
+          "arm": "baseline",
+          "file": "output/common-layer-native-r12-unified/m0-guards_notice_receiver-baseline.final.txt",
+          "sha256": "f3fc099a105f7e96da602b803b58949fc24598e38436475491d2db760b6070ee"
+        },
+        "B": {
+          "arm": "candidate",
+          "file": "output/common-layer-native-r12-unified/m0-guards_notice_receiver-candidate.final.txt",
+          "sha256": "6fb82dff82903b4bb6737a9bc7534d5df4868652ad0138331cad44138bcc5df1"
+        }
+      },
+      "comparison": "R10 to R12",
+      "body_preferred_arm": "tie",
+      "delivery_preferred_arm": "candidate"
+    },
+    {
+      "id": "U03",
+      "body_winner": "相当",
+      "delivery_winner": "A",
+      "body_chars_A": 84,
+      "body_chars_B": 84,
+      "notes": "两版正文去除标题加粗后相同，严格完成末句替换，测试30次、2次超时、原因核对、保留记录要求及会议未决状态均保留。局部修改不需为篇幅扩写，标题单独成行和加粗不是实质越界。完整交付A较好：B开头讲规则及Playbook，后续解释删除责任和期限并建议另设未决事项段，增加轻微交付负担；条件式建议未改入正文，不判正文虚构或遗漏。A也有已处理事项复述，但更紧凑。",
+      "mapping": {
+        "id": "U03",
+        "run": "common-layer-native-r12-unified",
+        "case": "minutes_local",
+        "model": "alibaba-token-plan/qwen3.8-flash",
+        "A": {
+          "arm": "candidate",
+          "file": "output/common-layer-native-r12-unified/m0-minutes_local-candidate.final.txt",
+          "sha256": "e3c54cd95b432c49e4b8c1e3eef1b1e0a9ad8ac4f7f8dc7eea6bccf4599173b8"
+        },
+        "B": {
+          "arm": "baseline",
+          "file": "output/common-layer-native-r12-unified/m0-minutes_local-baseline.final.txt",
+          "sha256": "73815dc161b9f8779019b5508a798466119d30b8693874515d9c4b05de99366a"
+        }
+      },
+      "comparison": "R10 to R12",
+      "body_preferred_arm": "tie",
+      "delivery_preferred_arm": "candidate"
+    },
+    {
+      "id": "U04",
+      "body_winner": "B",
+      "delivery_winner": "B",
+      "body_chars_A": 355,
+      "body_chars_B": 283,
+      "notes": "两版均在250至400字范围，10个问题、7个一致、3个遗漏、定位出处、仍须原文复核、未用于正式业务和继续小范围试用等要点完整。减少翻阅环节、提高查找效率及观察记录遗漏的建议均可合理引出；一般后续研究或报告不算决定扩大。B以不能直接替代人工核对限定使用边界，较A暂不具备直接支撑正式业务条件更精确，且有已知信息中心落款，正文略胜。A后者可能被读为较宽的业务适用条件判断，但直接也可理解为未经复核直接使用，故仅记轻微结论精度风险，不判确定事实硬回退。B遗漏类型尚未归纳清楚未由材料明示，轻微状态推定宜收窄；个别一词也宜与3/10比例相称。完整消息A多步骤、扫描及清理自述较多，并将已有信息中心误作未给落款名称，B总体略佳。",
+      "mapping": {
+        "id": "U04",
+        "run": "common-layer-native-r12-unified",
+        "case": "usage_value_report",
+        "model": "alibaba-token-plan/qwen3.8-flash",
+        "A": {
+          "arm": "baseline",
+          "file": "output/common-layer-native-r12-unified/m0-usage_value_report-baseline.final.txt",
+          "sha256": "7dd14fbe28c3715991eae2dc633b33a9209069dbfa67ff40475cb963518b4a83"
+        },
+        "B": {
+          "arm": "candidate",
+          "file": "output/common-layer-native-r12-unified/m0-usage_value_report-candidate.final.txt",
+          "sha256": "8882b9b159e88d4e811a7d95a90b2f1da805afab1eebe838fd2ffd6128f220d0"
+        }
+      },
+      "comparison": "R10 to R12",
+      "body_preferred_arm": "candidate",
+      "delivery_preferred_arm": "candidate"
+    },
+    {
+      "id": "U06",
+      "body_winner": "相当",
+      "delivery_winner": "A",
+      "body_chars_A": 111,
+      "body_chars_B": 107,
+      "notes": "两版培训通知均准确保留对象、日期时间、地点、回执期限、接收办公室、邮箱和联系人，达到80字，正文足以传达安排。发文主体未给，两版未擅填并在文后提醒，简短通知不因未设正式落款就判整体未交付。A对象略重复且特此通知少句号，B表达较紧凑，属轻微呈现差异，正文总体相当。完整交付A明显更简洁；B大段英文工具路由、脚本和临时文件清理说明与中文通知任务无直接帮助，属轻微但明显的流程冗余。B关于人员范围、回执表和格式的条件式可选补项均未进入正文，不判事实错误。",
+      "mapping": {
+        "id": "U06",
+        "run": "common-layer-native-r12-unified",
+        "case": "guards_notice_receiver",
+        "model": "command-code/deepseek-deepseek-v4.1-flash",
+        "A": {
+          "arm": "baseline",
+          "file": "output/common-layer-native-r12-unified/m2-guards_notice_receiver-baseline.final.txt",
+          "sha256": "bab368613e1937fe9286ea7c2cc95e9fad008da87d39ac158eec07703e66339a"
+        },
+        "B": {
+          "arm": "candidate",
+          "file": "output/common-layer-native-r12-unified/m2-guards_notice_receiver-candidate.final.txt",
+          "sha256": "4fcffef56c993db1025f27e1bf619b9d80706c955d899d7580617cb132872128"
+        }
+      },
+      "comparison": "R10 to R12",
+      "body_preferred_arm": "tie",
+      "delivery_preferred_arm": "baseline"
+    },
+    {
+      "id": "U07",
+      "body_winner": "相当",
+      "delivery_winner": "A",
+      "body_chars_A": 84,
+      "body_chars_B": 84,
+      "notes": "两版正文完全相同，按要求替换末句，保留其余事实和未决状态，未实际新增后续责任或期限。完整交付A略胜：B前言称责任人、期限均保持原样，容易误导用户以为下周期限仍在；实际已随末句删除，属轻微且可核验的范围说明不准确，不是正文修改失败。A文后关于研判人、人员信息和全名的建议偏多，但有条件且明确未增补，不算正文虚构；B的标题句号恢复选项也只是额外建议。A准确性方面的小幅优势抵消其文后较长的问题。",
+      "mapping": {
+        "id": "U07",
+        "run": "common-layer-native-r12-unified",
+        "case": "minutes_local",
+        "model": "command-code/deepseek-deepseek-v4.1-flash",
+        "A": {
+          "arm": "candidate",
+          "file": "output/common-layer-native-r12-unified/m2-minutes_local-candidate.final.txt",
+          "sha256": "738fd3cf79ee00b85f69745d300aa424290bc71c58b9d363a14aa141874ed159"
+        },
+        "B": {
+          "arm": "baseline",
+          "file": "output/common-layer-native-r12-unified/m2-minutes_local-baseline.final.txt",
+          "sha256": "0df1e126b282cfa06720ef103a0f4607ae74ff1f160a8b0708f1dce910c6c219"
+        }
+      },
+      "comparison": "R10 to R12",
+      "body_preferred_arm": "tie",
+      "delivery_preferred_arm": "candidate"
+    },
+    {
+      "id": "U08",
+      "body_winner": "相当",
+      "delivery_winner": "B",
+      "body_chars_A": 262,
+      "body_chars_B": 314,
+      "notes": "双方均满足250至400字，保留10/7/3测试记录、定位原文价值、复核要求、辅助定位和未正式使用、继续试用观察及扩大尚未决定。A较紧凑，B分段和落款更完整，均无误删必要内容。经原资料比对、以原资料为准、记录遗漏与后续研究属于记录支持的分析或一般建议，不判虚构；准确性有待观察也不因与完整性措辞不同而判硬错。完整交付B略好：A文前罗列多个规则文件与路由，文后重复实测和无风险自述，且自报261字而统一口径为262字，均是轻微流程或计数问题，不影响区间合格。B临时文件无法删除通知也增加交付负担，但具体限制披露不推断为虚假，不因匿名链接不可点击扣分。",
+      "mapping": {
+        "id": "U08",
+        "run": "common-layer-native-r12-unified",
+        "case": "usage_value_report",
+        "model": "command-code/deepseek-deepseek-v4.1-flash",
+        "A": {
+          "arm": "baseline",
+          "file": "output/common-layer-native-r12-unified/m2-usage_value_report-baseline.final.txt",
+          "sha256": "541f1e320a9c13991e3c9543481c1e79d37e592e5a4e40ac8f0b62b52236da35"
+        },
+        "B": {
+          "arm": "candidate",
+          "file": "output/common-layer-native-r12-unified/m2-usage_value_report-candidate.final.txt",
+          "sha256": "457a62165d4b6d1c920cb225db4ac381c69dcea1cce317748aa345cb71ea7fb8"
+        }
+      },
+      "comparison": "R10 to R12",
+      "body_preferred_arm": "tie",
+      "delivery_preferred_arm": "candidate"
+    },
+    {
+      "id": "C01",
+      "body_winner": "相当",
+      "delivery_winner": "相当",
+      "body_chars_A": 81,
+      "body_chars_B": 81,
+      "notes": "正文逐字相同，均完成三处语言修正且保留引语、成语和原事实。完整交付均有低严重度说明瑕疵：A 称三个临时扫描文件却列出四个文件名再加等；B 引述原句时漏掉原有的了，并把了写成新增改动。两者均不改变可用正文，综合相当。不据扫描或清理自述推断实际工具执行。",
+      "mapping": {
+        "id": "C01",
+        "run": "common-layer-native-r12-coverage",
+        "case": "guards_grammar_quote",
+        "model": "alibaba-token-plan-2/qwen3.8-flash",
+        "A": {
+          "arm": "candidate",
+          "file": "output/common-layer-native-r12-coverage/m1-guards_grammar_quote-candidate.final.txt",
+          "sha256": "9f8d25f0432ce50c4536459389df903238ccd1c5b284250a74204d079b1c8440"
+        },
+        "B": {
+          "arm": "baseline",
+          "file": "output/common-layer-native-r12-coverage/m1-guards_grammar_quote-baseline.final.txt",
+          "sha256": "ec468e30b8c7dfc1ffd4ca4d2fcbc4b1db3579b15ac28e76e18f43ea95e2cbb2"
+        }
+      },
+      "comparison": "R8+80 to R12",
+      "body_preferred_arm": "tie",
+      "delivery_preferred_arm": "tie"
+    },
+    {
+      "id": "C02",
+      "body_winner": "相当",
+      "delivery_winner": "相当",
+      "body_chars_A": 211,
+      "body_chars_B": 218,
+      "notes": "两稿均准确写明24个工位、24把现有椅、6把损坏无法修复、借用归还冲突、拟购6把及420元单价、2520元合计，并保留供应商和采购日期未定。日常办公受到影响及补齐座椅必要性有直接材料支持。文后经费、规格、称谓建议均为条件性可选提示，不是正文既定事实；当天草稿日期允许。未发现实质差距。",
+      "mapping": {
+        "id": "C02",
+        "run": "common-layer-native-r12-coverage",
+        "case": "material_based_analysis",
+        "model": "alibaba-token-plan-2/qwen3.8-flash",
+        "A": {
+          "arm": "baseline",
+          "file": "output/common-layer-native-r12-coverage/m1-material_based_analysis-baseline.final.txt",
+          "sha256": "9b67213635f9727bff4a5c4ee698b9b962fbe41e9c4dd61bb06c89b3b4c50a5a"
+        },
+        "B": {
+          "arm": "candidate",
+          "file": "output/common-layer-native-r12-coverage/m1-material_based_analysis-candidate.final.txt",
+          "sha256": "7570e1639c49a1c77eec2aeaf40f8de94dd9dc8434959d8275617d54fe54288a"
+        }
+      },
+      "comparison": "R8+80 to R12",
+      "body_preferred_arm": "tie",
+      "delivery_preferred_arm": "tie"
+    },
+    {
+      "id": "C03",
+      "body_winner": "B",
+      "delivery_winner": "B",
+      "body_chars_A": 86,
+      "body_chars_B": 82,
+      "notes": "两稿均有高严重度事实增写：A 的及时发现并纠正苗头性差错、B 的及时发现并纠正差错，均把原文仅发现升级为已纠正，校对润色授权不支持新增已发生处置。A 另把细小改成苗头性，改变差错性质，属中严重度语义偏移；将说改为强调及大范围改为半角中文标点为低严重度非必要变动。B 相对更接近原文，故两维胜出，但并非合格通过。两稿文后均把新增纠正动作解释成润色需要，该解释不能支持事实升级。",
+      "mapping": {
+        "id": "C03",
+        "run": "common-layer-native-r12-coverage",
+        "case": "guards_grammar_quote",
+        "model": "minimax-cn/MiniMax-M3",
+        "A": {
+          "arm": "candidate",
+          "file": "output/common-layer-native-r12-coverage/m3-guards_grammar_quote-candidate.final.txt",
+          "sha256": "b4c43c2974fab73c3db4fe3696c156f1cb40c28a49d3eb364deaf50e884c0e71"
+        },
+        "B": {
+          "arm": "baseline",
+          "file": "output/common-layer-native-r12-coverage/m3-guards_grammar_quote-baseline.final.txt",
+          "sha256": "3c0105d342a4b5867fd22d54e50fed004dc6896feb18d57324c8aae887254aa7"
+        }
+      },
+      "comparison": "R8+80 to R12",
+      "body_preferred_arm": "baseline",
+      "delivery_preferred_arm": "baseline"
+    },
+    {
+      "id": "C04",
+      "body_winner": "B",
+      "delivery_winner": "B",
+      "body_chars_A": 977,
+      "body_chars_B": 241,
+      "notes": "两稿均有高严重度正文虚构。A 新增椅面塌陷、气压杆失灵、底盘松动等具体故障，经维修评估、已影响整洁度、人体工学不匹配等过程或状态，并擅定日常办公经费及下一阶段采购计划；具体询价与到货登记发放清理安排也超出只按材料的边界。B 新增主要部件损坏的具体位置及借用期间已多次影响的历史事实，同样须删除或核实。B 错误范围明显较小且主体申请更清楚，故两维胜出，双方均须修正后使用。A 开头暴露相信落盘的过程独白，属中严重度交付杂质；匿名路径本身不扣分，不推断文件实际状态。B 的待批准后按规定办理属允许的一般后续表态。",
+      "mapping": {
+        "id": "C04",
+        "run": "common-layer-native-r12-coverage",
+        "case": "material_based_analysis",
+        "model": "minimax-cn/MiniMax-M3",
+        "A": {
+          "arm": "baseline",
+          "file": "output/common-layer-native-r12-coverage/m3-material_based_analysis-baseline.final.txt",
+          "sha256": "8a3a89964cefdf2fe5346c892108938700557b89cf59b735170286c0cd495fdb"
+        },
+        "B": {
+          "arm": "candidate",
+          "file": "output/common-layer-native-r12-coverage/m3-material_based_analysis-candidate.final.txt",
+          "sha256": "028441d4012a14cd42d0e0dc29b8260a645ac233d8fe68159cf8be9854c584d2"
+        }
+      },
+      "comparison": "R8+80 to R12",
+      "body_preferred_arm": "candidate",
+      "delivery_preferred_arm": "candidate",
+      "execution_limit": "Both manuscripts add unsupported specifics. Baseline additionally had nested Windows PowerShell decoding/command failures. Its much weaker output is not an attributable rule-quality win."
+    },
+    {
+      "id": "C05",
+      "body_winner": "相当",
+      "delivery_winner": "A",
+      "body_chars_A": 79,
+      "body_chars_B": 79,
+      "notes": "正文逐字相同，语法修正与工作细致的同义压缩均可接受。79个非空白字符不构成不足：这是对指定完整段落的校对润色，适用局部原文范围，不适用普通完整新稿80字下限。A 明确说明原句大家做得很仔细语法无误；B 将这项风格压缩列入修正三处语言问题，容易误导原句有语病，属低严重度说明不准确，因此完整交付A微优。量词原意的条件性提示不算增写事实。",
+      "mapping": {
+        "id": "C05",
+        "run": "common-layer-native-r12-coverage",
+        "case": "guards_grammar_quote",
+        "model": "ollama-cloud/glm-5.3-flash",
+        "A": {
+          "arm": "candidate",
+          "file": "output/common-layer-native-r12-coverage/m4-guards_grammar_quote-candidate.final.txt",
+          "sha256": "867bf8117650814fc1b9fe6c691feba76ea829ad79118df16c3c8f049628ca30"
+        },
+        "B": {
+          "arm": "baseline",
+          "file": "output/common-layer-native-r12-coverage/m4-guards_grammar_quote-baseline.final.txt",
+          "sha256": "8542bd4f54c38cb4cc69d1dc3e503663343cf1fe3863ddedacff7b2cbff3fcd2"
+        }
+      },
+      "comparison": "R8+80 to R12",
+      "body_preferred_arm": "tie",
+      "delivery_preferred_arm": "candidate",
+      "calibration": "Independent review-more appendix: with an explicit 80-character hard minimum both outputs are 79 and short by one. Minor length noncompliance; relative factual/language verdict unchanged. Preserve original JSON."
+    },
+    {
+      "id": "C06",
+      "body_winner": "相当",
+      "delivery_winner": "相当",
+      "body_chars_A": 207,
+      "body_chars_B": 195,
+      "notes": "两稿均完整覆盖采购事实、必要性、金额、未定状态和审批请求。A 的反复搬动可由临时借用及按需归还推得；B 的影响会议室正常安排是借用归还冲突的一般影响分析，没有新增次数、具体事件或影响规模，不作为硬性虚构。B 的经检查是材料未明示的程序性修饰，建议删去，列低严重度贴源性问题；其未增检查主体、时间或方法，不与C04的具体故障和多次影响等同。综合正文与完整交付相当。",
+      "mapping": {
+        "id": "C06",
+        "run": "common-layer-native-r12-coverage",
+        "case": "material_based_analysis",
+        "model": "ollama-cloud/glm-5.3-flash",
+        "A": {
+          "arm": "baseline",
+          "file": "output/common-layer-native-r12-coverage/m4-material_based_analysis-baseline.final.txt",
+          "sha256": "dcdff211f8c4e86e53f8ac9145c52512758939784fae43f9e67ea41ac623a94a"
+        },
+        "B": {
+          "arm": "candidate",
+          "file": "output/common-layer-native-r12-coverage/m4-material_based_analysis-candidate.final.txt",
+          "sha256": "3abb9cb1974f486765f5de4ff7e0e1796bef3def6deeb3c1a718c349cebdda96"
+        }
+      },
+      "comparison": "R8+80 to R12",
+      "body_preferred_arm": "tie",
+      "delivery_preferred_arm": "tie"
+    },
+    {
+      "id": "R01",
+      "body_winner": "相当",
+      "delivery_winner": "相当",
+      "body_chars_A": 123,
+      "body_chars_B": 137,
+      "notes": "两稿均准确保留9月10日10时至10时08分访问延迟、随后恢复及原因核查中，篇幅合格。A 的尚无明确结论及通用致歉不新增具体原因或影响范围；B 的用户访问响应变慢是访问延迟的释义，核查结果明确后再说明是一般沟通意向，不是被明确禁止的影响范围、处置过程或预防安排。日期允许，文后可选提示不计入正文；不据扫描自述或匿名文件链接推断实际执行或可达性。",
+      "mapping": {
+        "id": "R01",
+        "run": "common-layer-native-r12-retry",
+        "case": "explanation",
+        "model": "command-code/deepseek-deepseek-v4.1-flash",
+        "A": {
+          "arm": "candidate",
+          "file": "output/common-layer-native-r12-retry/m2-explanation-candidate.final.txt",
+          "sha256": "7cf1d92aafbdcf027ea5ebf92a75a7b3a7e9c95376c101e21638b6cd4d95fc8f"
+        },
+        "B": {
+          "arm": "baseline",
+          "file": "output/common-layer-native-r12-retry/m2-explanation-baseline.final.txt",
+          "sha256": "d2b9f00ac1c0e10a7a1608fd6f2c740149cad9b01749d73160782b7f2e3129fb"
+        }
+      },
+      "comparison": "R10 to R12",
+      "body_preferred_arm": "tie",
+      "delivery_preferred_arm": "tie"
+    }
+  ]
+}

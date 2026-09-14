@@ -1,0 +1,13 @@
+[
+  {
+    "path": "<stdin>",
+    "mode": "cjk",
+    "scope": "draft-before-postscript",
+    "count": 2,
+    "minimum": 2,
+    "maximum": 2,
+    "status": "within",
+    "below_by": 0,
+    "above_by": 0
+  }
+]

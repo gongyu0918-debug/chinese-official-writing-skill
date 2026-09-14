@@ -3,7 +3,6 @@ from __future__ import annotations
 from pathlib import Path
 import unittest
 
-from maintenance.tests.hook_companion_support import HookCompanionTestMixin
 from maintenance.tests.test_skill_boundary import read_routing_surfaces
 
 
@@ -20,23 +19,9 @@ PERSISTENT_MIRRORS = (
 )
 
 
-class AdvisoryFeedbackLeafTests(HookCompanionTestMixin, unittest.TestCase):
+class AdvisoryFeedbackLeafTests(unittest.TestCase):
     def setUp(self) -> None:
-        self.setUpHookCompanions()
-        self.mirror_roots = (
-            *(
-                self.companion_roots[host] / "skills/chinese-official-writing"
-                for host in (
-                    "codex",
-                    "codebuddy",
-                    "claude-code",
-                    "zcode",
-                    "qwen-code",
-                    "kimi-code",
-                )
-            ),
-            *PERSISTENT_MIRRORS,
-        )
+        self.mirror_roots = PERSISTENT_MIRRORS
 
     def test_direct_route_keeps_cooperative_feedback_separate_from_power_guidance(self) -> None:
         skill = read_routing_surfaces(CANONICAL / "SKILL.md")

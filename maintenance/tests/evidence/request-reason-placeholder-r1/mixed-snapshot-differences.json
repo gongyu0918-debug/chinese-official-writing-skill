@@ -1,0 +1,8 @@
+[
+  "references/genre-playbook-duty-report.md",
+  "references/genre-playbook-meeting-host.md",
+  "references/genre-playbook-speech-address.md",
+  "references/genre-routing.md",
+  "references/reference-index.md",
+  "scripts/prose_lint.py"
+]

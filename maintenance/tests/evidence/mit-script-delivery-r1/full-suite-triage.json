@@ -1,0 +1,573 @@
+{
+  "command": "python -B -m unittest discover -s maintenance/tests -p test_*.py",
+  "run": 386,
+  "failures": 116,
+  "errors": 25,
+  "log_sha256": "78d12e43c834c6c7a29764460d39cb4ef97d37dce77d4ac6f1533cad947e6ed1",
+  "items": [
+    {
+      "test": "ERROR: test_runtime_instructions_use_plain_editing_terms (test_jargon_shungao_naturalization.ShungaoNaturalizationTests.test_runtime_instructions_use_plain_editing_terms)",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: 'F:\\\\Workspaces\\\\chinese-official-writing-skill\\\\output\\\\route-worktrees\\\\reference-rewrite-20260912\\\\chinese-official-writing\\\\references\\\\workflow.md'"
+    },
+    {
+      "test": "ERROR: test_conditional_advice_is_separate_from_factual_state (test_oc003_feasibility_state_layering.FeasibilityStateLayeringTests.test_conditional_advice_is_separate_from_factual_state)",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: 'F:\\\\Workspaces\\\\chinese-official-writing-skill\\\\output\\\\route-worktrees\\\\reference-rewrite-20260912\\\\chinese-official-writing\\\\references\\\\workflow.md'"
+    },
+    {
+      "test": "ERROR: test_public_mirrors_match_the_canonical_references (test_oc003_feasibility_state_layering.FeasibilityStateLayeringTests.test_public_mirrors_match_the_canonical_references)",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: 'F:\\\\Workspaces\\\\chinese-official-writing-skill\\\\output\\\\route-worktrees\\\\reference-rewrite-20260912\\\\chinese-official-writing\\\\references\\\\workflow.md'"
+    },
+    {
+      "test": "ERROR: test_fact_sufficiency_guidance_is_soft_and_non_blocking (test_skill_boundary.SkillBoundaryTests.test_fact_sufficiency_guidance_is_soft_and_non_blocking)",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: 'F:\\\\Workspaces\\\\chinese-official-writing-skill\\\\output\\\\route-worktrees\\\\reference-rewrite-20260912\\\\chinese-official-writing\\\\references\\\\workflow.md'"
+    },
+    {
+      "test": "ERROR: test_light_route_is_terminal_until_an_explicit_escalation_condition (test_skill_boundary.SkillBoundaryTests.test_light_route_is_terminal_until_an_explicit_escalation_condition)",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: 'F:\\\\Workspaces\\\\chinese-official-writing-skill\\\\output\\\\route-worktrees\\\\reference-rewrite-20260912\\\\chinese-official-writing\\\\references\\\\genre-playbooks.md'"
+    },
+    {
+      "test": "ERROR: test_minutes_playbook_is_routed_as_an_atomic_leaf (test_skill_boundary.SkillBoundaryTests.test_minutes_playbook_is_routed_as_an_atomic_leaf)",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: 'F:\\\\Workspaces\\\\chinese-official-writing-skill\\\\output\\\\route-worktrees\\\\reference-rewrite-20260912\\\\chinese-official-writing\\\\references\\\\genre-playbooks.md'"
+    },
+    {
+      "test": "ERROR: test_multi_round_revision_rules_keep_structure_and_genre_format (test_skill_boundary.SkillBoundaryTests.test_multi_round_revision_rules_keep_structure_and_genre_format)",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: 'F:\\\\Workspaces\\\\chinese-official-writing-skill\\\\output\\\\route-worktrees\\\\reference-rewrite-20260912\\\\chinese-official-writing\\\\references\\\\workflow.md'"
+    },
+    {
+      "test": "ERROR: test_ordinary_letter_leaf_is_self_contained_without_default_supplemental_reads (test_skill_boundary.SkillBoundaryTests.test_ordinary_letter_leaf_is_self_contained_without_default_supplemental_reads)",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: 'F:\\\\Workspaces\\\\chinese-official-writing-skill\\\\output\\\\route-worktrees\\\\reference-rewrite-20260912\\\\chinese-official-writing\\\\references\\\\genre-playbooks.md'"
+    },
+    {
+      "test": "ERROR: test_plan_construction_playbook_is_routed_as_an_atomic_leaf (test_skill_boundary.SkillBoundaryTests.test_plan_construction_playbook_is_routed_as_an_atomic_leaf)",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: 'F:\\\\Workspaces\\\\chinese-official-writing-skill\\\\output\\\\route-worktrees\\\\reference-rewrite-20260912\\\\chinese-official-writing\\\\references\\\\genre-playbooks.md'"
+    },
+    {
+      "test": "ERROR: test_reference_loading_table_keeps_progressive_disclosure (test_skill_boundary.SkillBoundaryTests.test_reference_loading_table_keeps_progressive_disclosure)",
+      "message": "IndexError: list index out of range"
+    },
+    {
+      "test": "ERROR: test_report_checklist_is_routed_as_an_atomic_leaf (test_skill_boundary.SkillBoundaryTests.test_report_checklist_is_routed_as_an_atomic_leaf)",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: 'F:\\\\Workspaces\\\\chinese-official-writing-skill\\\\output\\\\route-worktrees\\\\reference-rewrite-20260912\\\\chinese-official-writing\\\\references\\\\genre-playbooks.md'"
+    },
+    {
+      "test": "ERROR: test_request_playbook_is_routed_as_an_atomic_leaf (test_skill_boundary.SkillBoundaryTests.test_request_playbook_is_routed_as_an_atomic_leaf)",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: 'F:\\\\Workspaces\\\\chinese-official-writing-skill\\\\output\\\\route-worktrees\\\\reference-rewrite-20260912\\\\chinese-official-writing\\\\references\\\\genre-playbooks.md'"
+    },
+    {
+      "test": "ERROR: test_revision_workflow_forbids_new_unprovided_facts (test_skill_boundary.SkillBoundaryTests.test_revision_workflow_forbids_new_unprovided_facts)",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: 'F:\\\\Workspaces\\\\chinese-official-writing-skill\\\\output\\\\route-worktrees\\\\reference-rewrite-20260912\\\\chinese-official-writing\\\\references\\\\workflow.md'"
+    },
+    {
+      "test": "ERROR: test_sparse_length_rule_keeps_fact_boundary_without_short_first_priority (test_skill_boundary.SkillBoundaryTests.test_sparse_length_rule_keeps_fact_boundary_without_short_first_priority)",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: 'F:\\\\Workspaces\\\\chinese-official-writing-skill\\\\output\\\\route-worktrees\\\\reference-rewrite-20260912\\\\chinese-official-writing\\\\references\\\\workflow.md'"
+    },
+    {
+      "test": "ERROR: test_staged_review_workflow_remains_intact (test_skill_boundary.SkillBoundaryTests.test_staged_review_workflow_remains_intact)",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: 'F:\\\\Workspaces\\\\chinese-official-writing-skill\\\\output\\\\route-worktrees\\\\reference-rewrite-20260912\\\\chinese-official-writing\\\\references\\\\workflow.md'"
+    },
+    {
+      "test": "ERROR: test_sustained_progress_example_is_removed_only_from_redundant_cliche_list (test_skill_boundary.SkillBoundaryTests.test_sustained_progress_example_is_removed_only_from_redundant_cliche_list)",
+      "message": "ValueError: substring not found"
+    },
+    {
+      "test": "ERROR: test_v140_mode_routing_material_mapping_and_format_bridge_are_documented (test_skill_boundary.SkillBoundaryTests.test_v140_mode_routing_material_mapping_and_format_bridge_are_documented)",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: 'F:\\\\Workspaces\\\\chinese-official-writing-skill\\\\output\\\\route-worktrees\\\\reference-rewrite-20260912\\\\chinese-official-writing\\\\references\\\\workflow.md'"
+    },
+    {
+      "test": "ERROR: test_v141_search_boundary_stays_lightweight_and_opt_in (test_skill_boundary.SkillBoundaryTests.test_v141_search_boundary_stays_lightweight_and_opt_in)",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: 'F:\\\\Workspaces\\\\chinese-official-writing-skill\\\\output\\\\route-worktrees\\\\reference-rewrite-20260912\\\\chinese-official-writing\\\\references\\\\workflow.md'"
+    },
+    {
+      "test": "ERROR: test_v144_common_real_writing_risks_and_adoption_gate_are_documented (test_skill_boundary.SkillBoundaryTests.test_v144_common_real_writing_risks_and_adoption_gate_are_documented)",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: 'F:\\\\Workspaces\\\\chinese-official-writing-skill\\\\output\\\\route-worktrees\\\\reference-rewrite-20260912\\\\chinese-official-writing\\\\references\\\\workflow.md'"
+    },
+    {
+      "test": "ERROR: test_v147_minimal_borrowing_rules_stay_soft_and_prompt_based (test_skill_boundary.SkillBoundaryTests.test_v147_minimal_borrowing_rules_stay_soft_and_prompt_based)",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: 'F:\\\\Workspaces\\\\chinese-official-writing-skill\\\\output\\\\route-worktrees\\\\reference-rewrite-20260912\\\\chinese-official-writing\\\\references\\\\workflow.md'"
+    },
+    {
+      "test": "ERROR: test_v150_genre_playbooks_keep_minimal_borrowing_boundaries (test_skill_boundary.SkillBoundaryTests.test_v150_genre_playbooks_keep_minimal_borrowing_boundaries)",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: 'F:\\\\Workspaces\\\\chinese-official-writing-skill\\\\output\\\\route-worktrees\\\\reference-rewrite-20260912\\\\chinese-official-writing\\\\references\\\\genre-playbooks.md'"
+    },
+    {
+      "test": "ERROR: test_v1601_j1_writing_endings_use_natural_terms (test_skill_boundary.SkillBoundaryTests.test_v1601_j1_writing_endings_use_natural_terms)",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: 'F:\\\\Workspaces\\\\chinese-official-writing-skill\\\\output\\\\route-worktrees\\\\reference-rewrite-20260912\\\\chinese-official-writing\\\\references\\\\genre-playbooks.md'"
+    },
+    {
+      "test": "ERROR: test_weak_model_suggestion_boundaries_stay_soft (test_skill_boundary.SkillBoundaryTests.test_weak_model_suggestion_boundaries_stay_soft)",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: 'F:\\\\Workspaces\\\\chinese-official-writing-skill\\\\output\\\\route-worktrees\\\\reference-rewrite-20260912\\\\chinese-official-writing\\\\references\\\\workflow.md'"
+    },
+    {
+      "test": "ERROR: test_work_summary_elaboration_stays_in_target_section (test_skill_boundary.SkillBoundaryTests.test_work_summary_elaboration_stays_in_target_section)",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: 'F:\\\\Workspaces\\\\chinese-official-writing-skill\\\\output\\\\route-worktrees\\\\reference-rewrite-20260912\\\\chinese-official-writing\\\\references\\\\genre-playbooks.md'"
+    },
+    {
+      "test": "ERROR: test_workflow_sparse_line_relief_keeps_carriers_and_route_graph (test_skill_boundary.SkillBoundaryTests.test_workflow_sparse_line_relief_keeps_carriers_and_route_graph)",
+      "message": "FileNotFoundError: [Errno 2] No such file or directory: 'F:\\\\Workspaces\\\\chinese-official-writing-skill\\\\output\\\\route-worktrees\\\\reference-rewrite-20260912\\\\chinese-official-writing\\\\references\\\\workflow.md'"
+    },
+    {
+      "test": "FAIL: test_root_agents_is_small_engineering_only_control_plane (test_agents_control_plane.AgentsControlPlaneTests.test_root_agents_is_small_engineering_only_control_plane)",
+      "message": "AssertionError: 'main 不含付费提纲 Hook、胶水、测试和详细规格' not found in '# 项目协作\\n\\n本文件是活动规则入口。产品规则只放 `chinese-official-writing/SKILL.md` 及 `references/`；按需查[规格](maintenance/specs/README.md)、[发布证据](maintenance/docs/evidence/README.md)，历史归档不作为新要求。\\n\\n## 工作方式\\n\\n- 修改代码/规则、设计验证、合并或发布前，按[开发细则](maintenance/docs/development-workflow.md)核对基线、授权、工作树和验证范围。代码/文档均提交；功能、大改、研究、基线和发布用独立 worktree。复杂任务交子代理，主代理复核。\\n- 写作规则与普通脚本先做最小原型并验证真实稿件，以准确、自然、完整、可直接使用决定保留；失败先修产品，成功再补工程，不用更多量表或门禁替代质量。Pro Hook 另在对应分支验证真实生命周期。\\n- Markdown 按需"
+    },
+    {
+      "test": "FAIL: test_leaf_locks_standalone_shape_and_direct_delivery (test_complaint_reflection_leaf.ComplaintReflectionLeafTests.test_leaf_locks_standalone_shape_and_direct_delivery)",
+      "message": "AssertionError: '直接交付正文' not found in '# 投诉与情况反映 Playbook\\n\\n本页用于个人或单位以亲历方身份，向有权处理的部门、平台、服务主体或管理单位提交投诉、问题反映或情况反映。\\n\\n## 先定意图和载体\\n\\n- 先确认写作主体是否为问题亲历方，再识别接收对象、提交渠道和用户要求的交付形态。标题或栏目名是`投诉`、`问题反映`还是`情况反映`，按用户给定名称保留，不用固定名称替换。\\n- 投诉请求不等于解决建议。材料已经给出`请核实`、`请处理`、`请反馈结果`等请求时，应准确保留；不得把简要请求扩成具体整改方案、内部办理程序、责任分工、期限或结果承诺。\\n- 用户明确要求只说明自身遇到的问题、不提出解决建议时，只写事实、经过、当前状态及材料直接支持的影响，不另加`建议完善、建议增加、应当建立`等改进主张。材料未给投诉请求时不自行补写；提交渠道明确要求填写请求且输出模式允许时，可在正文后简短提示用户补充。\\n\\n## 以亲历事实为主线\\n\\n- 围绕实际办理、使用或服务经历，按需要交代对象、时间、渠道、事项、页面或现场表现、既有沟通、"
+    },
+    {
+      "test": "FAIL: test_entry_keeps_lint_and_review_as_separate_explicit_routes (test_core_lint_pointer_relocation.CoreLintPointerRelocationTests.test_entry_keeps_lint_and_review_as_separate_explicit_routes)",
+      "message": "AssertionError: '脚本输出风险清单，Agent 逐项对照' not found in '---\\nname: chinese-official-writing\\ndescription: 用于中文公文、正式事务材料、新闻消息和新闻评论的起草、改写、压缩、复核与格式处理，涵盖申请、请示、报告、通知、通告、意见、决定、函、公告、方案、纪要、讲话、可研、审查材料、采购、制度和 AI 算力等正式文本。\\nmetadata:\\n  tags: chinese, official-document, writing, gongwen, ai-compute\\n---\\n\\n# 中文公文写作\\n\\n## 适用范围\\n\\n处理中文公文、正式工作材料、新闻消息、新闻评论，以及这些文本的起草、改写、压缩、润色、文种核对、事实边界复核和 Word 正文整理。英文、文学、营销软文、社交媒体文案、个人求职信和代码说明走其他路径。\\n\\n查询 Skill 能力时读取 `README.md`。\\n\\n## 入口契约\\n\\n### 第一步：理解用户需求\\n\\n从请求中识别以下信息：\\n\\n- **任务"
+    },
+    {
+      "test": "FAIL: test_explicit_classification_control_remains_material_bound_in_all_mirrors (test_information_selection_classification.InformationSelectionClassificationTests.test_explicit_classification_control_remains_material_bound_in_all_mirrors)",
+      "message": "AssertionError: '分类和归属关系以材料明确关系为准' not found in '# 信息选择契约\\n\\n起草、改稿、压缩和合稿时，从本轮有效材料中选择事实、分析、状态和实质缺项。事实映射留在内部。\\n\\n## 四类信息\\n\\n1. **材料事实**：主体、对象、时间、地点、数字、动作、结果、引用和已明确关系，按原词和原强度进入正文。\\n2. **直接分析**：由事实和常识直接支持的一层原因、目的、影响或即时作用，与事实分开表达，不写成已取得成效。存在多种解释时，不把其中一种写成唯一已查明原因。\\n3. **状态信息**：拟、建议、考虑、评估、试点、待核、未决定、进行中和下一步设想，保持原状态；“可安排、可开展”等能力或选项保持可选口径。\\n4. **实质缺项**：影响文种成立、请批事项、执行落地、主体关系或用户明示要求的缺失信息，只在输出模式允许时短列。\\n\\n## 选择动作\\n\\n- 先完成用户要求的正文，再处理缺项提示。材料已给且与主旨相关的事实进入正文，保持主体、对象、数字、日期、时间、因果、分类、归属和结论强度。\\n- 材料只给月份、月日或时间段时，不补“今年"
+    },
+    {
+      "test": "FAIL: test_transactional_formulaic_leaf_is_current_in_all_mirrors (test_information_selection_classification.InformationSelectionClassificationTests.test_transactional_formulaic_leaf_is_current_in_all_mirrors)",
+      "message": "AssertionError: '组成直接叶' not found in '# 公文行文用语\\n\\n本页只处理正文内部的开端、引叙、承启、期请、综合和结尾用语。先按主文种页确定功能，再在需要固定用语、语气衔接或历史模板兼容时读取本页；本页不替代文种路由、事实选择或版式页。\\n\\n## 选择原则\\n\\n- 先看文种、行文关系、办理目的和材料事实，再选词；不用某个固定词反推文种。\\n- 用语只组织已有事实。没有来文不写“收悉”，没有批准事实不写“经批准”，没有请批事项不补请批语。\\n- 材料只有月份、月日或时间段时保留原时间锚，不补“今年”、具体年份或材料外日期。\\n- 固定尾语按事项需要使用。一篇稿只保留一个有效收束；纪要、汇报提纲、调查报告等已自然结束时不强加尾语。\\n- 报告不写请批语，函不写成命令，通知、批复、请示和函的口吻保持各自功能。\\n- 讲话、致辞或主持稿需要安排多位具体人物及泛称的先后时，另读 `speech-person-order.md`；一般呼语不涉及排序时不读该页。\\n\\n## 常用功能\\n\\n| 功能 | 可用表达 | 适用边界 |\\n| --- | --- |"
+    },
+    {
+      "test": "FAIL: test_unclassified_remainder_is_reconciled_without_static_classification (test_information_selection_classification.InformationSelectionClassificationTests.test_unclassified_remainder_is_reconciled_without_static_classification)",
+      "message": "AssertionError: 0 != 1"
+    },
+    {
+      "test": "FAIL: test_runtime_instructions_use_plain_editing_terms (test_jargon_shungao_naturalization.ShungaoNaturalizationTests.test_runtime_instructions_use_plain_editing_terms) (root=WindowsPath('F:/Workspaces/chinese-official-writing-skill/output/route-worktrees/reference-rewrite-20260912/chinese-official-writing'))",
+      "message": "AssertionError: '润色修改' not found in '---\\nname: chinese-official-writing\\ndescription: 用于中文公文、正式事务材料、新闻消息和新闻评论的起草、改写、压缩、复核与格式处理，涵盖申请、请示、报告、通知、通告、意见、决定、函、公告、方案、纪要、讲话、可研、审查材料、采购、制度和 AI 算力等正式文本。\\nmetadata:\\n  tags: chinese, official-document, writing, gongwen, ai-compute\\n---\\n\\n# 中文公文写作\\n\\n## 适用范围\\n\\n处理中文公文、正式工作材料、新闻消息、新闻评论，以及这些文本的起草、改写、压缩、润色、文种核对、事实边界复核和 Word 正文整理。英文、文学、营销软文、社交媒体文案、个人求职信和代码说明走其他路径。\\n\\n查询 Skill 能力时读取 `README.md`。\\n\\n## 入口契约\\n\\n### 第一步：理解用户需求\\n\\n从请求中识别以下信息：\\n\\n- **任务与交付件**：起草、改写、压缩"
+    },
+    {
+      "test": "FAIL: test_runtime_instructions_use_plain_editing_terms (test_jargon_shungao_naturalization.ShungaoNaturalizationTests.test_runtime_instructions_use_plain_editing_terms) (root=WindowsPath('F:/Workspaces/chinese-official-writing-skill/output/route-worktrees/reference-rewrite-20260912/packages/agent-skills/skills/chinese-official-writing'))",
+      "message": "AssertionError: '润色修改' not found in '---\\nname: chinese-official-writing\\ndescription: 用于中文公文、正式事务材料、新闻消息和新闻评论的起草、改写、压缩、复核与格式处理，涵盖申请、请示、报告、通知、通告、意见、决定、函、公告、方案、纪要、讲话、可研、审查材料、采购、制度和 AI 算力等正式文本。\\nmetadata:\\n  tags: chinese, official-document, writing, gongwen, ai-compute\\n---\\n\\n# 中文公文写作\\n\\n## 适用范围\\n\\n处理中文公文、正式工作材料、新闻消息、新闻评论，以及这些文本的起草、改写、压缩、润色、文种核对、事实边界复核和 Word 正文整理。英文、文学、营销软文、社交媒体文案、个人求职信和代码说明走其他路径。\\n\\n查询 Skill 能力时读取 `README.md`。\\n\\n## 入口契约\\n\\n### 第一步：理解用户需求\\n\\n从请求中识别以下信息：\\n\\n- **任务与交付件**：起草、改写、压缩"
+    },
+    {
+      "test": "FAIL: test_runtime_instructions_use_plain_editing_terms (test_jargon_shungao_naturalization.ShungaoNaturalizationTests.test_runtime_instructions_use_plain_editing_terms) (root=WindowsPath('F:/Workspaces/chinese-official-writing-skill/output/route-worktrees/reference-rewrite-20260912/packages/qwen-code/skills/chinese-official-writing'))",
+      "message": "AssertionError: '润色修改' not found in '---\\nname: chinese-official-writing\\ndescription: 用于中文公文、正式事务材料、新闻消息和新闻评论的起草、改写、压缩、复核与格式处理，涵盖申请、请示、报告、通知、通告、意见、决定、函、公告、方案、纪要、讲话、可研、审查材料、采购、制度和 AI 算力等正式文本。\\nmetadata:\\n  tags: chinese, official-document, writing, gongwen, ai-compute\\n---\\n\\n# 中文公文写作\\n\\n## 适用范围\\n\\n处理中文公文、正式工作材料、新闻消息、新闻评论，以及这些文本的起草、改写、压缩、润色、文种核对、事实边界复核和 Word 正文整理。英文、文学、营销软文、社交媒体文案、个人求职信和代码说明走其他路径。\\n\\n查询 Skill 能力时读取 `README.md`。\\n\\n## 入口契约\\n\\n### 第一步：理解用户需求\\n\\n从请求中识别以下信息：\\n\\n- **任务与交付件**：起草、改写、压缩"
+    },
+    {
+      "test": "FAIL: test_runtime_instructions_use_plain_editing_terms (test_jargon_shungao_naturalization.ShungaoNaturalizationTests.test_runtime_instructions_use_plain_editing_terms) (root=WindowsPath('F:/Workspaces/chinese-official-writing-skill/output/route-worktrees/reference-rewrite-20260912/packages/hermes/skills/chinese-official-writing'))",
+      "message": "AssertionError: '润色修改' not found in '---\\nname: chinese-official-writing\\ndescription: 用于中文公文、正式事务材料、新闻消息和新闻评论的起草、改写、压缩、复核与格式处理，涵盖申请、请示、报告、通知、通告、意见、决定、函、公告、方案、纪要、讲话、可研、审查材料、采购、制度和 AI 算力等正式文本。\\nmetadata:\\n  tags: chinese, official-document, writing, gongwen, ai-compute\\n---\\n\\n# 中文公文写作\\n\\n## 适用范围\\n\\n处理中文公文、正式工作材料、新闻消息、新闻评论，以及这些文本的起草、改写、压缩、润色、文种核对、事实边界复核和 Word 正文整理。英文、文学、营销软文、社交媒体文案、个人求职信和代码说明走其他路径。\\n\\n查询 Skill 能力时读取 `README.md`。\\n\\n## 入口契约\\n\\n### 第一步：理解用户需求\\n\\n从请求中识别以下信息：\\n\\n- **任务与交付件**：起草、改写、压缩"
+    },
+    {
+      "test": "FAIL: test_named_completeness_review_stops_before_option_library (test_oc003_feasibility_state_layering.FeasibilityStateLayeringTests.test_named_completeness_review_stops_before_option_library)",
+      "message": "AssertionError: '本轮停在 `references/genre-checklist-feasibility-review.md`' not found in '---\\nname: chinese-official-writing\\ndescription: 用于中文公文、正式事务材料、新闻消息和新闻评论的起草、改写、压缩、复核与格式处理，涵盖申请、请示、报告、通知、通告、意见、决定、函、公告、方案、纪要、讲话、可研、审查材料、采购、制度和 AI 算力等正式文本。\\nmetadata:\\n  tags: chinese, official-document, writing, gongwen, ai-compute\\n---\\n\\n# 中文公文写作\\n\\n## 适用范围\\n\\n处理中文公文、正式工作材料、新闻消息、新闻评论，以及这些文本的起草、改写、压缩、润色、文种核对、事实边界复核和 Word 正文整理。英文、文学、营销软文、社交媒体文案、个人求职信和代码说明走其他路径。\\n\\n查询 Skill 能力时读取 `README.md`。\\n\\n## 入口契约\\n\\n###"
+    },
+    {
+      "test": "FAIL: test_final_review_routes_each_hint_to_one_bounded_semantic_choice (test_protective_negative_tail_lint.ProtectiveNegativeTailLintTests.test_final_review_routes_each_hint_to_one_bounded_semantic_choice) (label='unresolved-conclusion-tail')",
+      "message": "AssertionError: '`unresolved-conclusion-tail`' not found in '# 事实与文种复核\\n\\n对照用户材料、最新版底稿及当前主文种的要求，按以下三项检查本轮范围。\\n\\n## 第一项：事实与状态\\n\\n逐项核对主体、对象、数字、金额、日期、引语和来源范围，区分材料事实、合理分析、建议、待核与已定事项。结论的对象和强度与依据一致。修正无据新增、误删和状态升级；用户已给但缺少核实依据的信息保留其待核状态。\\n\\n## 第二项：文种与结构\\n\\n采用当前主文种页的功能和必要要素核对正文。用户固定标题、段落顺序和字段按要求保留；可调整的标题与本段内容一致。\\n\\n多轮修改对照最新版底稿及本轮要求，确认增删、调序、主送和主体变更已落实。局部修改检查点名位置及其关联段落；正文其他部分按用户限制保留。\\n\\n逐段检查同一事项是否重复。再次出现时应增加数据、理由、决定、责任、期限或其他实质信息；保留有不同作用的正文、表格和附件内容。\\n\\n## 第三项：模板与文内完整性\\n\\n核对标题、主送、正文、结尾、落款、日期和附件是否符合当前文种或用户模板；"
+    },
+    {
+      "test": "FAIL: test_final_review_routes_each_hint_to_one_bounded_semantic_choice (test_protective_negative_tail_lint.ProtectiveNegativeTailLintTests.test_final_review_routes_each_hint_to_one_bounded_semantic_choice) (label='negative-boundary-tail')",
+      "message": "AssertionError: '`negative-boundary-tail`' not found in '# 事实与文种复核\\n\\n对照用户材料、最新版底稿及当前主文种的要求，按以下三项检查本轮范围。\\n\\n## 第一项：事实与状态\\n\\n逐项核对主体、对象、数字、金额、日期、引语和来源范围，区分材料事实、合理分析、建议、待核与已定事项。结论的对象和强度与依据一致。修正无据新增、误删和状态升级；用户已给但缺少核实依据的信息保留其待核状态。\\n\\n## 第二项：文种与结构\\n\\n采用当前主文种页的功能和必要要素核对正文。用户固定标题、段落顺序和字段按要求保留；可调整的标题与本段内容一致。\\n\\n多轮修改对照最新版底稿及本轮要求，确认增删、调序、主送和主体变更已落实。局部修改检查点名位置及其关联段落；正文其他部分按用户限制保留。\\n\\n逐段检查同一事项是否重复。再次出现时应增加数据、理由、决定、责任、期限或其他实质信息；保留有不同作用的正文、表格和附件内容。\\n\\n## 第三项：模板与文内完整性\\n\\n核对标题、主送、正文、结尾、落款、日期和附件是否符合当前文种或用户模板；字段和值"
+    },
+    {
+      "test": "FAIL: test_final_review_routes_each_hint_to_one_bounded_semantic_choice (test_protective_negative_tail_lint.ProtectiveNegativeTailLintTests.test_final_review_routes_each_hint_to_one_bounded_semantic_choice) (label='protective-negative-inference')",
+      "message": "AssertionError: '`protective-negative-inference`' not found in '# 事实与文种复核\\n\\n对照用户材料、最新版底稿及当前主文种的要求，按以下三项检查本轮范围。\\n\\n## 第一项：事实与状态\\n\\n逐项核对主体、对象、数字、金额、日期、引语和来源范围，区分材料事实、合理分析、建议、待核与已定事项。结论的对象和强度与依据一致。修正无据新增、误删和状态升级；用户已给但缺少核实依据的信息保留其待核状态。\\n\\n## 第二项：文种与结构\\n\\n采用当前主文种页的功能和必要要素核对正文。用户固定标题、段落顺序和字段按要求保留；可调整的标题与本段内容一致。\\n\\n多轮修改对照最新版底稿及本轮要求，确认增删、调序、主送和主体变更已落实。局部修改检查点名位置及其关联段落；正文其他部分按用户限制保留。\\n\\n逐段检查同一事项是否重复。再次出现时应增加数据、理由、决定、责任、期限或其他实质信息；保留有不同作用的正文、表格和附件内容。\\n\\n## 第三项：模板与文内完整性\\n\\n核对标题、主送、正文、结尾、落款、日期和附件是否符合当前文种或用户"
+    },
+    {
+      "test": "FAIL: test_final_review_routes_each_hint_to_one_bounded_semantic_choice (test_protective_negative_tail_lint.ProtectiveNegativeTailLintTests.test_final_review_routes_each_hint_to_one_bounded_semantic_choice) (phrase='逐条结合位置、风险等级、命中片段和随附建议作一次内部判断')",
+      "message": "AssertionError: '逐条结合位置、风险等级、命中片段和随附建议作一次内部判断' not found in '# 事实与文种复核\\n\\n对照用户材料、最新版底稿及当前主文种的要求，按以下三项检查本轮范围。\\n\\n## 第一项：事实与状态\\n\\n逐项核对主体、对象、数字、金额、日期、引语和来源范围，区分材料事实、合理分析、建议、待核与已定事项。结论的对象和强度与依据一致。修正无据新增、误删和状态升级；用户已给但缺少核实依据的信息保留其待核状态。\\n\\n## 第二项：文种与结构\\n\\n采用当前主文种页的功能和必要要素核对正文。用户固定标题、段落顺序和字段按要求保留；可调整的标题与本段内容一致。\\n\\n多轮修改对照最新版底稿及本轮要求，确认增删、调序、主送和主体变更已落实。局部修改检查点名位置及其关联段落；正文其他部分按用户限制保留。\\n\\n逐段检查同一事项是否重复。再次出现时应增加数据、理由、决定、责任、期限或其他实质信息；保留有不同作用的正文、表格和附件内容。\\n\\n## 第三项：模板与文内完整性\\n\\n核对标题、主送、正文、结尾、落款、日期和附件是否符合当前文种或用户模板；"
+    },
+    {
+      "test": "FAIL: test_final_review_routes_each_hint_to_one_bounded_semantic_choice (test_protective_negative_tail_lint.ProtectiveNegativeTailLintTests.test_final_review_routes_each_hint_to_one_bounded_semantic_choice) (phrase='高、中风险选择保留、局部改写或删除')",
+      "message": "AssertionError: '高、中风险选择保留、局部改写或删除' not found in '# 事实与文种复核\\n\\n对照用户材料、最新版底稿及当前主文种的要求，按以下三项检查本轮范围。\\n\\n## 第一项：事实与状态\\n\\n逐项核对主体、对象、数字、金额、日期、引语和来源范围，区分材料事实、合理分析、建议、待核与已定事项。结论的对象和强度与依据一致。修正无据新增、误删和状态升级；用户已给但缺少核实依据的信息保留其待核状态。\\n\\n## 第二项：文种与结构\\n\\n采用当前主文种页的功能和必要要素核对正文。用户固定标题、段落顺序和字段按要求保留；可调整的标题与本段内容一致。\\n\\n多轮修改对照最新版底稿及本轮要求，确认增删、调序、主送和主体变更已落实。局部修改检查点名位置及其关联段落；正文其他部分按用户限制保留。\\n\\n逐段检查同一事项是否重复。再次出现时应增加数据、理由、决定、责任、期限或其他实质信息；保留有不同作用的正文、表格和附件内容。\\n\\n## 第三项：模板与文内完整性\\n\\n核对标题、主送、正文、结尾、落款、日期和附件是否符合当前文种或用户模板；字段和值的对应关系、附"
+    },
+    {
+      "test": "FAIL: test_final_review_routes_each_hint_to_one_bounded_semantic_choice (test_protective_negative_tail_lint.ProtectiveNegativeTailLintTests.test_final_review_routes_each_hint_to_one_bounded_semantic_choice) (phrase='低风险只在有明确质量收益时处理')",
+      "message": "AssertionError: '低风险只在有明确质量收益时处理' not found in '# 事实与文种复核\\n\\n对照用户材料、最新版底稿及当前主文种的要求，按以下三项检查本轮范围。\\n\\n## 第一项：事实与状态\\n\\n逐项核对主体、对象、数字、金额、日期、引语和来源范围，区分材料事实、合理分析、建议、待核与已定事项。结论的对象和强度与依据一致。修正无据新增、误删和状态升级；用户已给但缺少核实依据的信息保留其待核状态。\\n\\n## 第二项：文种与结构\\n\\n采用当前主文种页的功能和必要要素核对正文。用户固定标题、段落顺序和字段按要求保留；可调整的标题与本段内容一致。\\n\\n多轮修改对照最新版底稿及本轮要求，确认增删、调序、主送和主体变更已落实。局部修改检查点名位置及其关联段落；正文其他部分按用户限制保留。\\n\\n逐段检查同一事项是否重复。再次出现时应增加数据、理由、决定、责任、期限或其他实质信息；保留有不同作用的正文、表格和附件内容。\\n\\n## 第三项：模板与文内完整性\\n\\n核对标题、主送、正文、结尾、落款、日期和附件是否符合当前文种或用户模板；字段和值的对应关系、附件指"
+    },
+    {
+      "test": "FAIL: test_final_review_routes_each_hint_to_one_bounded_semantic_choice (test_protective_negative_tail_lint.ProtectiveNegativeTailLintTests.test_final_review_routes_each_hint_to_one_bounded_semantic_choice) (phrase='不因命中补造事实')",
+      "message": "AssertionError: '不因命中补造事实' not found in '# 事实与文种复核\\n\\n对照用户材料、最新版底稿及当前主文种的要求，按以下三项检查本轮范围。\\n\\n## 第一项：事实与状态\\n\\n逐项核对主体、对象、数字、金额、日期、引语和来源范围，区分材料事实、合理分析、建议、待核与已定事项。结论的对象和强度与依据一致。修正无据新增、误删和状态升级；用户已给但缺少核实依据的信息保留其待核状态。\\n\\n## 第二项：文种与结构\\n\\n采用当前主文种页的功能和必要要素核对正文。用户固定标题、段落顺序和字段按要求保留；可调整的标题与本段内容一致。\\n\\n多轮修改对照最新版底稿及本轮要求，确认增删、调序、主送和主体变更已落实。局部修改检查点名位置及其关联段落；正文其他部分按用户限制保留。\\n\\n逐段检查同一事项是否重复。再次出现时应增加数据、理由、决定、责任、期限或其他实质信息；保留有不同作用的正文、表格和附件内容。\\n\\n## 第三项：模板与文内完整性\\n\\n核对标题、主送、正文、结尾、落款、日期和附件是否符合当前文种或用户模板；字段和值的对应关系、附件指向、编号顺序保"
+    },
+    {
+      "test": "FAIL: test_final_review_routes_each_hint_to_one_bounded_semantic_choice (test_protective_negative_tail_lint.ProtectiveNegativeTailLintTests.test_final_review_routes_each_hint_to_one_bounded_semantic_choice) (phrase='每个命中须在内部完成一次语义选择后再交付')",
+      "message": "AssertionError: '每个命中须在内部完成一次语义选择后再交付' not found in '# 事实与文种复核\\n\\n对照用户材料、最新版底稿及当前主文种的要求，按以下三项检查本轮范围。\\n\\n## 第一项：事实与状态\\n\\n逐项核对主体、对象、数字、金额、日期、引语和来源范围，区分材料事实、合理分析、建议、待核与已定事项。结论的对象和强度与依据一致。修正无据新增、误删和状态升级；用户已给但缺少核实依据的信息保留其待核状态。\\n\\n## 第二项：文种与结构\\n\\n采用当前主文种页的功能和必要要素核对正文。用户固定标题、段落顺序和字段按要求保留；可调整的标题与本段内容一致。\\n\\n多轮修改对照最新版底稿及本轮要求，确认增删、调序、主送和主体变更已落实。局部修改检查点名位置及其关联段落；正文其他部分按用户限制保留。\\n\\n逐段检查同一事项是否重复。再次出现时应增加数据、理由、决定、责任、期限或其他实质信息；保留有不同作用的正文、表格和附件内容。\\n\\n## 第三项：模板与文内完整性\\n\\n核对标题、主送、正文、结尾、落款、日期和附件是否符合当前文种或用户模板；字段和值的对应关"
+    },
+    {
+      "test": "FAIL: test_final_review_routes_each_hint_to_one_bounded_semantic_choice (test_protective_negative_tail_lint.ProtectiveNegativeTailLintTests.test_final_review_routes_each_hint_to_one_bounded_semantic_choice) (phrase='保留原义')",
+      "message": "AssertionError: '保留原义' not found in '# 事实与文种复核\\n\\n对照用户材料、最新版底稿及当前主文种的要求，按以下三项检查本轮范围。\\n\\n## 第一项：事实与状态\\n\\n逐项核对主体、对象、数字、金额、日期、引语和来源范围，区分材料事实、合理分析、建议、待核与已定事项。结论的对象和强度与依据一致。修正无据新增、误删和状态升级；用户已给但缺少核实依据的信息保留其待核状态。\\n\\n## 第二项：文种与结构\\n\\n采用当前主文种页的功能和必要要素核对正文。用户固定标题、段落顺序和字段按要求保留；可调整的标题与本段内容一致。\\n\\n多轮修改对照最新版底稿及本轮要求，确认增删、调序、主送和主体变更已落实。局部修改检查点名位置及其关联段落；正文其他部分按用户限制保留。\\n\\n逐段检查同一事项是否重复。再次出现时应增加数据、理由、决定、责任、期限或其他实质信息；保留有不同作用的正文、表格和附件内容。\\n\\n## 第三项：模板与文内完整性\\n\\n核对标题、主送、正文、结尾、落款、日期和附件是否符合当前文种或用户模板；字段和值的对应关系、附件指向、编号顺序保持一致。"
+    },
+    {
+      "test": "FAIL: test_final_review_routes_each_hint_to_one_bounded_semantic_choice (test_protective_negative_tail_lint.ProtectiveNegativeTailLintTests.test_final_review_routes_each_hint_to_one_bounded_semantic_choice) (phrase='应写为该主体正在调查、核查、汇总分析等')",
+      "message": "AssertionError: '应写为该主体正在调查、核查、汇总分析等' not found in '# 事实与文种复核\\n\\n对照用户材料、最新版底稿及当前主文种的要求，按以下三项检查本轮范围。\\n\\n## 第一项：事实与状态\\n\\n逐项核对主体、对象、数字、金额、日期、引语和来源范围，区分材料事实、合理分析、建议、待核与已定事项。结论的对象和强度与依据一致。修正无据新增、误删和状态升级；用户已给但缺少核实依据的信息保留其待核状态。\\n\\n## 第二项：文种与结构\\n\\n采用当前主文种页的功能和必要要素核对正文。用户固定标题、段落顺序和字段按要求保留；可调整的标题与本段内容一致。\\n\\n多轮修改对照最新版底稿及本轮要求，确认增删、调序、主送和主体变更已落实。局部修改检查点名位置及其关联段落；正文其他部分按用户限制保留。\\n\\n逐段检查同一事项是否重复。再次出现时应增加数据、理由、决定、责任、期限或其他实质信息；保留有不同作用的正文、表格和附件内容。\\n\\n## 第三项：模板与文内完整性\\n\\n核对标题、主送、正文、结尾、落款、日期和附件是否符合当前文种或用户模板；字段和值的对应关系"
+    },
+    {
+      "test": "FAIL: test_final_review_routes_each_hint_to_one_bounded_semantic_choice (test_protective_negative_tail_lint.ProtectiveNegativeTailLintTests.test_final_review_routes_each_hint_to_one_bounded_semantic_choice) (phrase='删除命中句或句尾')",
+      "message": "AssertionError: '删除命中句或句尾' not found in '# 事实与文种复核\\n\\n对照用户材料、最新版底稿及当前主文种的要求，按以下三项检查本轮范围。\\n\\n## 第一项：事实与状态\\n\\n逐项核对主体、对象、数字、金额、日期、引语和来源范围，区分材料事实、合理分析、建议、待核与已定事项。结论的对象和强度与依据一致。修正无据新增、误删和状态升级；用户已给但缺少核实依据的信息保留其待核状态。\\n\\n## 第二项：文种与结构\\n\\n采用当前主文种页的功能和必要要素核对正文。用户固定标题、段落顺序和字段按要求保留；可调整的标题与本段内容一致。\\n\\n多轮修改对照最新版底稿及本轮要求，确认增删、调序、主送和主体变更已落实。局部修改检查点名位置及其关联段落；正文其他部分按用户限制保留。\\n\\n逐段检查同一事项是否重复。再次出现时应增加数据、理由、决定、责任、期限或其他实质信息；保留有不同作用的正文、表格和附件内容。\\n\\n## 第三项：模板与文内完整性\\n\\n核对标题、主送、正文、结尾、落款、日期和附件是否符合当前文种或用户模板；字段和值的对应关系、附件指向、编号顺序保"
+    },
+    {
+      "test": "FAIL: test_final_review_routes_each_hint_to_one_bounded_semantic_choice (test_protective_negative_tail_lint.ProtectiveNegativeTailLintTests.test_final_review_routes_each_hint_to_one_bounded_semantic_choice) (phrase='复核主体、数字、日期、责任和状态强度')",
+      "message": "AssertionError: '复核主体、数字、日期、责任和状态强度' not found in '# 事实与文种复核\\n\\n对照用户材料、最新版底稿及当前主文种的要求，按以下三项检查本轮范围。\\n\\n## 第一项：事实与状态\\n\\n逐项核对主体、对象、数字、金额、日期、引语和来源范围，区分材料事实、合理分析、建议、待核与已定事项。结论的对象和强度与依据一致。修正无据新增、误删和状态升级；用户已给但缺少核实依据的信息保留其待核状态。\\n\\n## 第二项：文种与结构\\n\\n采用当前主文种页的功能和必要要素核对正文。用户固定标题、段落顺序和字段按要求保留；可调整的标题与本段内容一致。\\n\\n多轮修改对照最新版底稿及本轮要求，确认增删、调序、主送和主体变更已落实。局部修改检查点名位置及其关联段落；正文其他部分按用户限制保留。\\n\\n逐段检查同一事项是否重复。再次出现时应增加数据、理由、决定、责任、期限或其他实质信息；保留有不同作用的正文、表格和附件内容。\\n\\n## 第三项：模板与文内完整性\\n\\n核对标题、主送、正文、结尾、落款、日期和附件是否符合当前文种或用户模板；字段和值的对应关系、"
+    },
+    {
+      "test": "FAIL: test_final_review_routes_each_hint_to_one_bounded_semantic_choice (test_protective_negative_tail_lint.ProtectiveNegativeTailLintTests.test_final_review_routes_each_hint_to_one_bounded_semantic_choice) (phrase='处理后复扫一次')",
+      "message": "AssertionError: '处理后复扫一次' not found in '# 事实与文种复核\\n\\n对照用户材料、最新版底稿及当前主文种的要求，按以下三项检查本轮范围。\\n\\n## 第一项：事实与状态\\n\\n逐项核对主体、对象、数字、金额、日期、引语和来源范围，区分材料事实、合理分析、建议、待核与已定事项。结论的对象和强度与依据一致。修正无据新增、误删和状态升级；用户已给但缺少核实依据的信息保留其待核状态。\\n\\n## 第二项：文种与结构\\n\\n采用当前主文种页的功能和必要要素核对正文。用户固定标题、段落顺序和字段按要求保留；可调整的标题与本段内容一致。\\n\\n多轮修改对照最新版底稿及本轮要求，确认增删、调序、主送和主体变更已落实。局部修改检查点名位置及其关联段落；正文其他部分按用户限制保留。\\n\\n逐段检查同一事项是否重复。再次出现时应增加数据、理由、决定、责任、期限或其他实质信息；保留有不同作用的正文、表格和附件内容。\\n\\n## 第三项：模板与文内完整性\\n\\n核对标题、主送、正文、结尾、落款、日期和附件是否符合当前文种或用户模板；字段和值的对应关系、附件指向、编号顺序保持"
+    },
+    {
+      "test": "FAIL: test_final_review_routes_each_hint_to_one_bounded_semantic_choice (test_protective_negative_tail_lint.ProtectiveNegativeTailLintTests.test_final_review_routes_each_hint_to_one_bounded_semantic_choice) (phrase='也不循环修改')",
+      "message": "AssertionError: '也不循环修改' not found in '# 事实与文种复核\\n\\n对照用户材料、最新版底稿及当前主文种的要求，按以下三项检查本轮范围。\\n\\n## 第一项：事实与状态\\n\\n逐项核对主体、对象、数字、金额、日期、引语和来源范围，区分材料事实、合理分析、建议、待核与已定事项。结论的对象和强度与依据一致。修正无据新增、误删和状态升级；用户已给但缺少核实依据的信息保留其待核状态。\\n\\n## 第二项：文种与结构\\n\\n采用当前主文种页的功能和必要要素核对正文。用户固定标题、段落顺序和字段按要求保留；可调整的标题与本段内容一致。\\n\\n多轮修改对照最新版底稿及本轮要求，确认增删、调序、主送和主体变更已落实。局部修改检查点名位置及其关联段落；正文其他部分按用户限制保留。\\n\\n逐段检查同一事项是否重复。再次出现时应增加数据、理由、决定、责任、期限或其他实质信息；保留有不同作用的正文、表格和附件内容。\\n\\n## 第三项：模板与文内完整性\\n\\n核对标题、主送、正文、结尾、落款、日期和附件是否符合当前文种或用户模板；字段和值的对应关系、附件指向、编号顺序保持一"
+    },
+    {
+      "test": "FAIL: test_new_hints_are_draft_body_only (test_protective_negative_tail_lint.ProtectiveNegativeTailLintTests.test_new_hints_are_draft_body_only)",
+      "message": "AssertionError: Lists differ: [Finding(path='<protective-tail>', line=1,[158 chars]定。')] != []"
+    },
+    {
+      "test": "FAIL: test_current_skill_passes_real_prompt_cases (test_real_prompt_ablation.RealPromptAblationTests.test_current_skill_passes_real_prompt_cases)",
+      "message": "AssertionError: {'P001': ['routing missing 反馈期限', 'routing[35756 chars]读取']} != {}"
+    },
+    {
+      "test": "FAIL: test_report_leaf_and_unknown_route_are_separate (test_report_generic_block_relief.ReportGenericBlockReliefTests.test_report_leaf_and_unknown_route_are_separate)",
+      "message": "AssertionError: Lists differ: ['references/information-selection.md', 'references/genre-routing.md'] != ['references/genre-routing.md', 'references/genre-checklist.md']"
+    },
+    {
+      "test": "FAIL: test_report_leaf_keeps_fact_and_status_boundaries (test_report_generic_block_relief.ReportGenericBlockReliefTests.test_report_leaf_keeps_fact_and_status_boundaries)",
+      "message": "AssertionError: '报告不写请批语或审批请求' not found in '# 报告与情况报告\\n\\n报告、情况报告和工作报告用于汇报事实、进展、问题、结果、处置或建议。正文围绕所汇报事项展开，结尾完成报告动作。\\n\\n## 成稿骨架\\n\\n报告用于汇报、反映或答复，结尾保持报告功能；需要批准或指示时另走请示/申请主叶。\\n\\n报告事项与范围 → 主要事实或进展 → 问题、原因或影响（材料有据时）→ 已有处置、建议或下一步（材料有据时）→ 与文种相称的收束。\\n\\n材料未给某一环节时，直接在已给事实处收束，不为填满骨架增加责任、流程、成效、期限或结论。使用报告、体验报告、服务使用情况、评估报告或成本考察保留用户指定名称和事实口径，不改题为调研、方案或考核说明。\\n\\n报告使用事实性汇报语言，结论先行或按时间顺序均可；原因、影响、建议和下一步与事实分开，进行中、待核、建议和拟议状态保持原级别。报告用于汇报或反映事实；确需请求批准时转请示/申请首叶。\\n\\n报告材料只给试运行时长、接入数量、核对中的差异和未定安排时，正文保留这些事实和状态；“运行平稳”“用户可访问”“已形成处"
+    },
+    {
+      "test": "FAIL: test_report_leaf_keeps_genre_boundary_without_approval_restatement (test_report_review_exact_dedup.ReportReviewExactDedupTests.test_report_leaf_keeps_genre_boundary_without_approval_restatement)",
+      "message": "AssertionError: '报告不写请批语或审批请求' not found in '# 报告与情况报告\\n\\n报告、情况报告和工作报告用于汇报事实、进展、问题、结果、处置或建议。正文围绕所汇报事项展开，结尾完成报告动作。\\n\\n## 成稿骨架\\n\\n报告用于汇报、反映或答复，结尾保持报告功能；需要批准或指示时另走请示/申请主叶。\\n\\n报告事项与范围 → 主要事实或进展 → 问题、原因或影响（材料有据时）→ 已有处置、建议或下一步（材料有据时）→ 与文种相称的收束。\\n\\n材料未给某一环节时，直接在已给事实处收束，不为填满骨架增加责任、流程、成效、期限或结论。使用报告、体验报告、服务使用情况、评估报告或成本考察保留用户指定名称和事实口径，不改题为调研、方案或考核说明。\\n\\n报告使用事实性汇报语言，结论先行或按时间顺序均可；原因、影响、建议和下一步与事实分开，进行中、待核、建议和拟议状态保持原级别。报告用于汇报或反映事实；确需请求批准时转请示/申请首叶。\\n\\n报告材料只给试运行时长、接入数量、核对中的差异和未定安排时，正文保留这些事实和状态；“运行平稳”“用户可访问”“已形成处"
+    },
+    {
+      "test": "FAIL: test_request_rules_keep_each_required_element_once (test_request_review_sequence_dedup.RequestReviewSequenceDedupTests.test_request_rules_keep_each_required_element_once)",
+      "message": "AssertionError: '依据、现状、必要性、经费或资源需求、拟实施安排' not found in '# 请示/申请细查\\n\\n本文件只在请示、申请需要细查文种功能、办理要素，或用户要求审稿、复核时读取。起草请示、申请仍按 `genre-playbook-request.md` 进入文种骨架。\\n\\n## 请示\\n\\n- 采购请示审稿时，供应商未定可以作为当前核心状态保留；由此顺带列出的合同未签、到货未发生、验收未实施、付款未发生等下游否定链直接建议删除。材料另有独立办理需要时除外。\\n- 资金已列入预算或已落实时，正文不再叠加“无需追加、不影响其他工作、完全满足需要”等外围充分性证明；审稿建议保留预算事实并删去保护性尾部。\\n- “持续推进、确保按期完成”没有材料给出的责任主体和期限时，不建议反向要求用户补齐套话依据；优先删除，或回到材料已有的当前进展。\\n\\n- 一文一事，开头或前部明确请批事项。\\n- 在材料支持范围内说明请批事项所需的依据、现状或必要性；经费或资源需求、拟实施安排只在材料给出或请批事项本身需要时核对。\\n- 结尾使用 `妥否，请批示`、`请予审定`、`"
+    },
+    {
+      "test": "FAIL: test_prompt_recall_stays_near_both_review_stages_while_disclaimer_repeats_once (test_review_prompt_nearfield.ReviewPromptNearfieldTests.test_prompt_recall_stays_near_both_review_stages_while_disclaimer_repeats_once)",
+      "message": "AssertionError: 0 != 2"
+    },
+    {
+      "test": "FAIL: test_complex_procurement_markers_upgrade_request_route (test_safe_request_entry_integration.SafeRequestEntryIntegrationTests.test_complex_procurement_markers_upgrade_request_route) (task='起草采购请示：采购多品类设备，规格不同。')",
+      "message": "AssertionError: False is not true"
+    },
+    {
+      "test": "FAIL: test_complex_procurement_markers_upgrade_request_route (test_safe_request_entry_integration.SafeRequestEntryIntegrationTests.test_complex_procurement_markers_upgrade_request_route) (task='起草采购申请：设备价格不同，须分项核算。')",
+      "message": "AssertionError: False is not true"
+    },
+    {
+      "test": "FAIL: test_complex_procurement_markers_upgrade_request_route (test_safe_request_entry_integration.SafeRequestEntryIntegrationTests.test_complex_procurement_markers_upgrade_request_route) (task='起草采购请示：附三家报价并写明验收标准。')",
+      "message": "AssertionError: False is not true"
+    },
+    {
+      "test": "FAIL: test_complex_procurement_markers_upgrade_request_route (test_safe_request_entry_integration.SafeRequestEntryIntegrationTests.test_complex_procurement_markers_upgrade_request_route) (task='起草采购申请：设备已询价，请写清报价情况。')",
+      "message": "AssertionError: False is not true"
+    },
+    {
+      "test": "FAIL: test_complex_procurement_markers_upgrade_request_route (test_safe_request_entry_integration.SafeRequestEntryIntegrationTests.test_complex_procurement_markers_upgrade_request_route) (task='起草购置申请：随文提交技术附件。')",
+      "message": "AssertionError: False is not true"
+    },
+    {
+      "test": "FAIL: test_complex_procurement_markers_upgrade_request_route (test_safe_request_entry_integration.SafeRequestEntryIntegrationTests.test_complex_procurement_markers_upgrade_request_route) (task='起草一份800字采购申请，购买一台打印机。')",
+      "message": "AssertionError: False is not true"
+    },
+    {
+      "test": "FAIL: test_entry_relief_and_placeholder_relocation_remain_covered (test_safe_request_entry_integration.SafeRequestEntryIntegrationTests.test_entry_relief_and_placeholder_relocation_remain_covered) (example='〔签发日期〕')",
+      "message": "AssertionError: '〔签发日期〕' not found in '# 办理要素\\n\\n起草前和复核时，根据当前主文种或用户模板抽取实际需要的办理要素。\\n\\n## 核对项目\\n\\n| 项目 | 核对内容 |\\n| --- | --- |\\n| 主体与对象 | 谁提出、报告、执行或接收，称谓与材料是否一致 |\\n| 事项与依据 | 要处理什么，材料给出了哪些事实、政策、会议或工作依据 |\\n| 动作与状态 | 请求、要求、答复或协调的内容，进行中、拟议、待核与已定状态 |\\n| 条件与期限 | 适用范围、资源金额、责任配合、时间节点及其确定程度 |\\n| 支撑与反馈 | 附件、数据来源、联系人和反馈渠道，实测、测算与估算性质 |\\n| 文内字段 | 标题、主送、落款和日期等已给字段及其位置 |\\n\\n按当前主文种判断哪些要素为必要项。正文、表格和附件中同一要素的名称、数值、顺序和状态保持一致。\\n\\n## 处理缺项\\n\\n从用户材料和最新版底稿查找缺项，区分未提供、尚未确定和存在矛盾。涉及专门业务字段时按已选场景参考核对。尚不熟悉通用写法或必备要素时读取 `external-"
+    },
+    {
+      "test": "FAIL: test_entry_relief_and_placeholder_relocation_remain_covered (test_safe_request_entry_integration.SafeRequestEntryIntegrationTests.test_entry_relief_and_placeholder_relocation_remain_covered) (example='〔会议时间〕')",
+      "message": "AssertionError: '〔会议时间〕' not found in '# 办理要素\\n\\n起草前和复核时，根据当前主文种或用户模板抽取实际需要的办理要素。\\n\\n## 核对项目\\n\\n| 项目 | 核对内容 |\\n| --- | --- |\\n| 主体与对象 | 谁提出、报告、执行或接收，称谓与材料是否一致 |\\n| 事项与依据 | 要处理什么，材料给出了哪些事实、政策、会议或工作依据 |\\n| 动作与状态 | 请求、要求、答复或协调的内容，进行中、拟议、待核与已定状态 |\\n| 条件与期限 | 适用范围、资源金额、责任配合、时间节点及其确定程度 |\\n| 支撑与反馈 | 附件、数据来源、联系人和反馈渠道，实测、测算与估算性质 |\\n| 文内字段 | 标题、主送、落款和日期等已给字段及其位置 |\\n\\n按当前主文种判断哪些要素为必要项。正文、表格和附件中同一要素的名称、数值、顺序和状态保持一致。\\n\\n## 处理缺项\\n\\n从用户材料和最新版底稿查找缺项，区分未提供、尚未确定和存在矛盾。涉及专门业务字段时按已选场景参考核对。尚不熟悉通用写法或必备要素时读取 `external-"
+    },
+    {
+      "test": "FAIL: test_entry_relief_and_placeholder_relocation_remain_covered (test_safe_request_entry_integration.SafeRequestEntryIntegrationTests.test_entry_relief_and_placeholder_relocation_remain_covered) (example='[具体项目名称]')",
+      "message": "AssertionError: '[具体项目名称]' not found in '# 办理要素\\n\\n起草前和复核时，根据当前主文种或用户模板抽取实际需要的办理要素。\\n\\n## 核对项目\\n\\n| 项目 | 核对内容 |\\n| --- | --- |\\n| 主体与对象 | 谁提出、报告、执行或接收，称谓与材料是否一致 |\\n| 事项与依据 | 要处理什么，材料给出了哪些事实、政策、会议或工作依据 |\\n| 动作与状态 | 请求、要求、答复或协调的内容，进行中、拟议、待核与已定状态 |\\n| 条件与期限 | 适用范围、资源金额、责任配合、时间节点及其确定程度 |\\n| 支撑与反馈 | 附件、数据来源、联系人和反馈渠道，实测、测算与估算性质 |\\n| 文内字段 | 标题、主送、落款和日期等已给字段及其位置 |\\n\\n按当前主文种判断哪些要素为必要项。正文、表格和附件中同一要素的名称、数值、顺序和状态保持一致。\\n\\n## 处理缺项\\n\\n从用户材料和最新版底稿查找缺项，区分未提供、尚未确定和存在矛盾。涉及专门业务字段时按已选场景参考核对。尚不熟悉通用写法或必备要素时读取 `externa"
+    },
+    {
+      "test": "FAIL: test_entry_relief_and_placeholder_relocation_remain_covered (test_safe_request_entry_integration.SafeRequestEntryIntegrationTests.test_entry_relief_and_placeholder_relocation_remain_covered) (example='XXXX万元')",
+      "message": "AssertionError: 'XXXX万元' not found in '# 办理要素\\n\\n起草前和复核时，根据当前主文种或用户模板抽取实际需要的办理要素。\\n\\n## 核对项目\\n\\n| 项目 | 核对内容 |\\n| --- | --- |\\n| 主体与对象 | 谁提出、报告、执行或接收，称谓与材料是否一致 |\\n| 事项与依据 | 要处理什么，材料给出了哪些事实、政策、会议或工作依据 |\\n| 动作与状态 | 请求、要求、答复或协调的内容，进行中、拟议、待核与已定状态 |\\n| 条件与期限 | 适用范围、资源金额、责任配合、时间节点及其确定程度 |\\n| 支撑与反馈 | 附件、数据来源、联系人和反馈渠道，实测、测算与估算性质 |\\n| 文内字段 | 标题、主送、落款和日期等已给字段及其位置 |\\n\\n按当前主文种判断哪些要素为必要项。正文、表格和附件中同一要素的名称、数值、顺序和状态保持一致。\\n\\n## 处理缺项\\n\\n从用户材料和最新版底稿查找缺项，区分未提供、尚未确定和存在矛盾。涉及专门业务字段时按已选场景参考核对。尚不熟悉通用写法或必备要素时读取 `external-"
+    },
+    {
+      "test": "FAIL: test_entry_relief_and_placeholder_relocation_remain_covered (test_safe_request_entry_integration.SafeRequestEntryIntegrationTests.test_entry_relief_and_placeholder_relocation_remain_covered)",
+      "message": "AssertionError: 'YYYY年MM月DD日' not found in '# 办理要素\\n\\n起草前和复核时，根据当前主文种或用户模板抽取实际需要的办理要素。\\n\\n## 核对项目\\n\\n| 项目 | 核对内容 |\\n| --- | --- |\\n| 主体与对象 | 谁提出、报告、执行或接收，称谓与材料是否一致 |\\n| 事项与依据 | 要处理什么，材料给出了哪些事实、政策、会议或工作依据 |\\n| 动作与状态 | 请求、要求、答复或协调的内容，进行中、拟议、待核与已定状态 |\\n| 条件与期限 | 适用范围、资源金额、责任配合、时间节点及其确定程度 |\\n| 支撑与反馈 | 附件、数据来源、联系人和反馈渠道，实测、测算与估算性质 |\\n| 文内字段 | 标题、主送、落款和日期等已给字段及其位置 |\\n\\n按当前主文种判断哪些要素为必要项。正文、表格和附件中同一要素的名称、数值、顺序和状态保持一致。\\n\\n## 处理缺项\\n\\n从用户材料和最新版底稿查找缺项，区分未提供、尚未确定和存在矛盾。涉及专门业务字段时按已选场景参考核对。尚不熟悉通用写法或必备要素时读取 `exte"
+    },
+    {
+      "test": "FAIL: test_request_drafts_load_only_the_dedicated_leaf_by_default (test_safe_request_entry_integration.SafeRequestEntryIntegrationTests.test_request_drafts_load_only_the_dedicated_leaf_by_default) (genre='请示')",
+      "message": "AssertionError: Lists differ: ['SKI[80 chars]t.md', 'references/final-review-layers.md', 'r[86 chars].md'] != ['SKI[80 chars]t.md']"
+    },
+    {
+      "test": "FAIL: test_request_drafts_load_only_the_dedicated_leaf_by_default (test_safe_request_entry_integration.SafeRequestEntryIntegrationTests.test_request_drafts_load_only_the_dedicated_leaf_by_default) (genre='申请')",
+      "message": "AssertionError: Lists differ: ['SKI[80 chars]t.md', 'references/final-review-layers.md', 'r[86 chars].md'] != ['SKI[80 chars]t.md']"
+    },
+    {
+      "test": "FAIL: test_request_leaf_compact_and_escalation_shape_is_identical_in_all_mirrors (test_safe_request_entry_integration.SafeRequestEntryIntegrationTests.test_request_leaf_compact_and_escalation_shape_is_identical_in_all_mirrors)",
+      "message": "AssertionError: '`workflow.md`、`handling-elements.md` 和 `argument-chains.md`' not found in '- 单项采购请示或申请用一至两个自然段连贯呈现原因或必要性、品名规格、数量和金额。现有资源数量、使用负荷、排队共用、已确认损坏等事实可归纳为缓解对应压力或满足直接使用需要；只有品名、数量和金额而无法判断为什么采购时，按上条提示缺口。不得补具体故障、损失、政策条款、采购程序或审批结论。多品类、分项核算、比价验收、技术附件或明确长篇任务仍以本页为主文种；需要核对主体、金额、期限、附件或反馈时加读 `handling-elements.md`，需要解释必要性或比较方案时加读 `argument-chains.md`；字段表格保持原结构。'"
+    },
+    {
+      "test": "FAIL: test_simple_and_negated_procurement_requests_stay_on_request_leaf (test_safe_request_entry_integration.SafeRequestEntryIntegrationTests.test_simple_and_negated_procurement_requests_stay_on_request_leaf) (task='起草采购申请：购买一台打印机，单价3000元，总价3000元。')",
+      "message": "AssertionError: Lists differ: ['SKI[80 chars]t.md', 'references/final-review-layers.md', 'r[86 chars].md'] != ['SKI[80 chars]t.md']"
+    },
+    {
+      "test": "FAIL: test_simple_and_negated_procurement_requests_stay_on_request_leaf (test_safe_request_entry_integration.SafeRequestEntryIntegrationTests.test_simple_and_negated_procurement_requests_stay_on_request_leaf) (task='起草采购请示：本次不是多品类采购，不需要分项核算，不含报价、验收或技术附件，只申请购置一台打印机。')",
+      "message": "AssertionError: Lists differ: ['SKI[80 chars]t.md', 'references/final-review-layers.md', 'r[86 chars].md'] != ['SKI[80 chars]t.md']"
+    },
+    {
+      "test": "FAIL: test_simple_and_negated_procurement_requests_stay_on_request_leaf (test_safe_request_entry_integration.SafeRequestEntryIntegrationTests.test_simple_and_negated_procurement_requests_stay_on_request_leaf) (task='起草纯软件订阅采购申请，材料未给询价和验收信息，按现有事实成稿。')",
+      "message": "AssertionError: Lists differ: ['SKI[80 chars]t.md', 'references/final-review-layers.md', 'r[86 chars].md'] != ['SKI[80 chars]t.md']"
+    },
+    {
+      "test": "FAIL: test_simple_and_negated_procurement_requests_stay_on_request_leaf (test_safe_request_entry_integration.SafeRequestEntryIntegrationTests.test_simple_and_negated_procurement_requests_stay_on_request_leaf) (task='按字段式材料起草采购申请：用途：办公；品名：打印机；数量：1台；单价：3000元；总价：3000元。')",
+      "message": "AssertionError: Lists differ: ['SKI[80 chars]t.md', 'references/final-review-layers.md', 'r[86 chars].md'] != ['SKI[80 chars]t.md']"
+    },
+    {
+      "test": "FAIL: test_reference_stays_naturalness_only (test_short_draft_naturalness.ShortDraftNaturalnessTests.test_reference_stays_naturalness_only)",
+      "message": "AssertionError: '材料少时允许短而真实' not found in '# 短稿自然收束\\n\\n用于用户明确要求简短正文，或结合文种、材料密度和交付形态判断为紧凑交付的只有上限任务。任务明确说明不要求短稿时不读本页。篇幅上限是边界，不是必须填满的目标；先保证事实完整、文种成立和表达自然。\\n\\n- 按材料的时间、事项或对象关系自然组织为1—3段；长稿中的章节、小标题和分项在文种成立、对象识别和查阅效果保持时合并为自然段。平行事项需要查阅时保留编号，短稿沿用自然段结构。\\n- 一个自然段通常承载一个主要事项，用一两句话完成事实、动作和状态的衔接；只有事项过多、对象不同或并列关系需要查阅时才拆成多个段落。短稿不保留无信息增量的“情况概述”“存在问题”“下一步安排”等章节标题。\\n- 每个段落或相邻句组只写一个主要事项；同一事实、动作、状态、原因、理由或目的只在最贴近的位置写一次。开头已经概括的内容不在结尾复述，分项已经写清的事项不再换词总结。\\n- 通知、请示、报告、回复或报道完成实际文种动作后即可结束。用户指定尾语时逐字保留；否则不补口号、保证、充分性自证或同义收束。\\n-"
+    },
+    {
+      "test": "FAIL: test_adapter_skill_copies_keep_boundaries (test_skill_boundary.SkillBoundaryTests.test_adapter_skill_copies_keep_boundaries) (path=WindowsPath('F:/Workspaces/chinese-official-writing-skill/output/route-worktrees/reference-rewrite-20260912/packages/agent-skills/skills/chinese-official-writing/SKILL.md'))",
+      "message": "AssertionError: '## 使用顺序' not found in '---\\nname: chinese-official-writing\\ndescription: 用于中文公文、正式事务材料、新闻消息和新闻评论的起草、改写、压缩、复核与格式处理，涵盖申请、请示、报告、通知、通告、意见、决定、函、公告、方案、纪要、讲话、可研、审查材料、采购、制度和 AI 算力等正式文本。\\nmetadata:\\n  tags: chinese, official-document, writing, gongwen, ai-compute\\n---\\n\\n# 中文公文写作\\n\\n## 适用范围\\n\\n处理中文公文、正式工作材料、新闻消息、新闻评论，以及这些文本的起草、改写、压缩、润色、文种核对、事实边界复核和 Word 正文整理。英文、文学、营销软文、社交媒体文案、个人求职信和代码说明走其他路径。\\n\\n查询 Skill 能力时读取 `README.md`。\\n\\n## 入口契约\\n\\n### 第一步：理解用户需求\\n\\n从请求中识别以下信息：\\n\\n- **任务与交付件**：起草、改写"
+    },
+    {
+      "test": "FAIL: test_adapter_skill_copies_keep_boundaries (test_skill_boundary.SkillBoundaryTests.test_adapter_skill_copies_keep_boundaries) (path=WindowsPath('F:/Workspaces/chinese-official-writing-skill/output/route-worktrees/reference-rewrite-20260912/packages/qwen-code/skills/chinese-official-writing/SKILL.md'))",
+      "message": "AssertionError: '## 使用顺序' not found in '---\\nname: chinese-official-writing\\ndescription: 用于中文公文、正式事务材料、新闻消息和新闻评论的起草、改写、压缩、复核与格式处理，涵盖申请、请示、报告、通知、通告、意见、决定、函、公告、方案、纪要、讲话、可研、审查材料、采购、制度和 AI 算力等正式文本。\\nmetadata:\\n  tags: chinese, official-document, writing, gongwen, ai-compute\\n---\\n\\n# 中文公文写作\\n\\n## 适用范围\\n\\n处理中文公文、正式工作材料、新闻消息、新闻评论，以及这些文本的起草、改写、压缩、润色、文种核对、事实边界复核和 Word 正文整理。英文、文学、营销软文、社交媒体文案、个人求职信和代码说明走其他路径。\\n\\n查询 Skill 能力时读取 `README.md`。\\n\\n## 入口契约\\n\\n### 第一步：理解用户需求\\n\\n从请求中识别以下信息：\\n\\n- **任务与交付件**：起草、改写"
+    },
+    {
+      "test": "FAIL: test_adapter_skill_copies_keep_boundaries (test_skill_boundary.SkillBoundaryTests.test_adapter_skill_copies_keep_boundaries) (path=WindowsPath('F:/Workspaces/chinese-official-writing-skill/output/route-worktrees/reference-rewrite-20260912/packages/qwenwork/skills/chinese-official-writing/SKILL.md'))",
+      "message": "AssertionError: '## 使用顺序' not found in '---\\nname: chinese-official-writing\\ndescription: 用于中文公文、正式事务材料、新闻消息和新闻评论的起草、改写、压缩、复核与格式处理，涵盖申请、请示、报告、通知、通告、意见、决定、函、公告、方案、纪要、讲话、可研、审查材料、采购、制度和 AI 算力等正式文本。\\nmetadata:\\n  tags: chinese, official-document, writing, gongwen, ai-compute\\n---\\n\\n# 中文公文写作\\n\\n## 适用范围\\n\\n处理中文公文、正式工作材料、新闻消息、新闻评论，以及这些文本的起草、改写、压缩、润色、文种核对、事实边界复核和 Word 正文整理。英文、文学、营销软文、社交媒体文案、个人求职信和代码说明走其他路径。\\n\\n查询 Skill 能力时读取 `README.md`。\\n\\n## 入口契约\\n\\n### 第一步：理解用户需求\\n\\n从请求中识别以下信息：\\n\\n- **任务与交付件**：起草、改写"
+    },
+    {
+      "test": "FAIL: test_adapter_skill_copies_keep_boundaries (test_skill_boundary.SkillBoundaryTests.test_adapter_skill_copies_keep_boundaries) (path=WindowsPath('F:/Workspaces/chinese-official-writing-skill/output/route-worktrees/reference-rewrite-20260912/packages/hermes/skills/chinese-official-writing/SKILL.md'))",
+      "message": "AssertionError: '## 使用顺序' not found in '---\\nname: chinese-official-writing\\ndescription: 用于中文公文、正式事务材料、新闻消息和新闻评论的起草、改写、压缩、复核与格式处理，涵盖申请、请示、报告、通知、通告、意见、决定、函、公告、方案、纪要、讲话、可研、审查材料、采购、制度和 AI 算力等正式文本。\\nmetadata:\\n  tags: chinese, official-document, writing, gongwen, ai-compute\\n---\\n\\n# 中文公文写作\\n\\n## 适用范围\\n\\n处理中文公文、正式工作材料、新闻消息、新闻评论，以及这些文本的起草、改写、压缩、润色、文种核对、事实边界复核和 Word 正文整理。英文、文学、营销软文、社交媒体文案、个人求职信和代码说明走其他路径。\\n\\n查询 Skill 能力时读取 `README.md`。\\n\\n## 入口契约\\n\\n### 第一步：理解用户需求\\n\\n从请求中识别以下信息：\\n\\n- **任务与交付件**：起草、改写"
+    },
+    {
+      "test": "FAIL: test_adapter_skill_copies_keep_boundaries (test_skill_boundary.SkillBoundaryTests.test_adapter_skill_copies_keep_boundaries) (path=WindowsPath('F:/Workspaces/chinese-official-writing-skill/output/route-worktrees/reference-rewrite-20260912/packages/openclaw/skills/chinese_official_writing/SKILL.md'))",
+      "message": "AssertionError: '## 使用顺序' not found in '---\\nname: chinese_official_writing\\ndescription: 用于中文公文、正式事务材料、新闻消息和新闻评论的起草、改写、压缩、复核与格式处理，涵盖申请、请示、报告、通知、通告、意见、决定、函、公告、方案、纪要、讲话、可研、审查材料、采购、制度和 AI 算力等正式文本。\\nlicense: MIT\\ncategory: writing\\nmetadata:\\n  version: \"1.6.30\"\\n  tags: chinese, official-document, writing, gongwen, ai-compute\\n---\\n\\n# 中文公文写作\\n\\n## 适用范围\\n\\n处理中文公文、正式工作材料、新闻消息、新闻评论，以及这些文本的起草、改写、压缩、润色、文种核对、事实边界复核和 Word 正文整理。英文、文学、营销软文、社交媒体文案、个人求职信和代码说明走其他路径。\\n\\n查询 Skill 能力时读取 `README.md`。\\n\\n## 入口契约\\"
+    },
+    {
+      "test": "FAIL: test_ai_compute_detail_is_loaded_from_specialty_reference (test_skill_boundary.SkillBoundaryTests.test_ai_compute_detail_is_loaded_from_specialty_reference)",
+      "message": "AssertionError: 'AI 算力、GPU/服务器租赁、模型服务、智算中心、成本比较、SLA、安全或验收等专项起草、改写和完整技术审查时读取' not found in '---\\nname: chinese-official-writing\\ndescription: 用于中文公文、正式事务材料、新闻消息和新闻评论的起草、改写、压缩、复核与格式处理，涵盖申请、请示、报告、通知、通告、意见、决定、函、公告、方案、纪要、讲话、可研、审查材料、采购、制度和 AI 算力等正式文本。\\nmetadata:\\n  tags: chinese, official-document, writing, gongwen, ai-compute\\n---\\n\\n# 中文公文写作\\n\\n## 适用范围\\n\\n处理中文公文、正式工作材料、新闻消息、新闻评论，以及这些文本的起草、改写、压缩、润色、文种核对、事实边界复核和 Word 正文整理。英文、文学、营销软文、社交媒体文案、个人求职信和代码说明走其他路径。\\n\\n查询 Skill 能力时读取 `README.md`。\\n\\n## 入口契约\\n\\n"
+    },
+    {
+      "test": "FAIL: test_ai_dedupe_prompt_fix_guidance_is_documented (test_skill_boundary.SkillBoundaryTests.test_ai_dedupe_prompt_fix_guidance_is_documented)",
+      "message": "AssertionError: '识别为正式报送结构缺口' not found in '---\\nname: chinese-official-writing\\ndescription: 用于中文公文、正式事务材料、新闻消息和新闻评论的起草、改写、压缩、复核与格式处理，涵盖申请、请示、报告、通知、通告、意见、决定、函、公告、方案、纪要、讲话、可研、审查材料、采购、制度和 AI 算力等正式文本。\\nmetadata:\\n  tags: chinese, official-document, writing, gongwen, ai-compute\\n---\\n\\n# 中文公文写作\\n\\n## 适用范围\\n\\n处理中文公文、正式工作材料、新闻消息、新闻评论，以及这些文本的起草、改写、压缩、润色、文种核对、事实边界复核和 Word 正文整理。英文、文学、营销软文、社交媒体文案、个人求职信和代码说明走其他路径。\\n\\n查询 Skill 能力时读取 `README.md`。\\n\\n## 入口契约\\n\\n### 第一步：理解用户需求\\n\\n从请求中识别以下信息：\\n\\n- **任务与交付件**：起"
+    },
+    {
+      "test": "FAIL: test_candidate_ac_anchors_fact_relations_to_explicit_material (test_skill_boundary.SkillBoundaryTests.test_candidate_ac_anchors_fact_relations_to_explicit_material)",
+      "message": "AssertionError: '保持主体、对象、数字、日期、状态和结论强度；事实之间的时间、因果、分类和归属关系以材料明确关系为准' not found in '# 信息选择契约\\n\\n起草、改稿、压缩和合稿时，从本轮有效材料中选择事实、分析、状态和实质缺项。事实映射留在内部。\\n\\n## 四类信息\\n\\n1. **材料事实**：主体、对象、时间、地点、数字、动作、结果、引用和已明确关系，按原词和原强度进入正文。\\n2. **直接分析**：由事实和常识直接支持的一层原因、目的、影响或即时作用，与事实分开表达，不写成已取得成效。存在多种解释时，不把其中一种写成唯一已查明原因。\\n3. **状态信息**：拟、建议、考虑、评估、试点、待核、未决定、进行中和下一步设想，保持原状态；“可安排、可开展”等能力或选项保持可选口径。\\n4. **实质缺项**：影响文种成立、请批事项、执行落地、主体关系或用户明示要求的缺失信息，只在输出模式允许时短列。\\n\\n## 选择动作\\n\\n- 先完成用户要求的正文，再处理缺项提示。材料已给且与主旨相关的事实进入正文，保持主体、对象、数字、日期、时间、因果、分类"
+    },
+    {
+      "test": "FAIL: test_canonical_skill_declares_positive_trigger_boundary (test_skill_boundary.SkillBoundaryTests.test_canonical_skill_declares_positive_trigger_boundary)",
+      "message": "AssertionError: '当用户明确要求中文通知' not found in '---\\nname: chinese-official-writing\\ndescription: 用于中文公文、正式事务材料、新闻消息和新闻评论的起草、改写、压缩、复核与格式处理，涵盖申请、请示、报告、通知、通告、意见、决定、函、公告、方案、纪要、讲话、可研、审查材料、采购、制度和 AI 算力等正式文本。\\nmetadata:\\n  tags: chinese, official-document, writing, gongwen, ai-compute\\n---\\n\\n# 中文公文写作\\n\\n## 适用范围\\n\\n处理中文公文、正式工作材料、新闻消息、新闻评论，以及这些文本的起草、改写、压缩、润色、文种核对、事实边界复核和 Word 正文整理。英文、文学、营销软文、社交媒体文案、个人求职信和代码说明走其他路径。\\n\\n查询 Skill 能力时读取 `README.md`。\\n\\n## 入口契约\\n\\n### 第一步：理解用户需求\\n\\n从请求中识别以下信息：\\n\\n- **任务与交付件**：起"
+    },
+    {
+      "test": "FAIL: test_continuous_negation_is_position_independent_without_word_ban (test_skill_boundary.SkillBoundaryTests.test_continuous_negation_is_position_independent_without_word_ban)",
+      "message": "AssertionError: '**连续否定**' not found in '# 语言风险与旁白控制\\n\\n本页用于正式文稿定稿前的语言复核，只处理模板腔、非正文表达、教学腔、口语化、空泛技术表述和格式噪点。文种、行文关系、事实、引用、字段和版式回到入口及对应 reference。本页属于质量建议层；模型身份、隐藏推理和起草过程是硬边界，其余模式按上下文提示，不按词表机械替换。\\n\\n## 语义复核\\n\\n通读全文后看成簇问题，不因一个词、一个句式或出现次数直接判错。重点观察 `不是……而是……`、`先……再……`、`不仅……还……`、`进一步`、`持续推进`、`切实加强` 等高频表达，以及连续否定、虚假对比和机械重复。\\n\\n- 连续否定只保留与主题直接相关且承担办理作用的必要否定，合并外围的重复说明。\\n- 材料只说明采购正在推进或供应商未定时，不继续罗列合同未签、设备未到、验收未实施、付款未发生等必然下游状态；保留材料已有的当前状态。\\n- 材料已给预算或资金落实事实时，保留事实；“无需追加预算”“不影响其他工作”“完全能够满足”等没有独立办理作用的资金充分性自证可删。\\n-"
+    },
+    {
+      "test": "FAIL: test_delivery_scope_rule_is_naturalized_across_current_skill_copies (test_skill_boundary.SkillBoundaryTests.test_delivery_scope_rule_is_naturalized_across_current_skill_copies) (path=WindowsPath('F:/Workspaces/chinese-official-writing-skill/output/route-worktrees/reference-rewrite-20260912/chinese-official-writing/SKILL.md'))",
+      "message": "AssertionError: '材料本身的领导要求、声明、版本或保密标识按事实保留' not found in '# 事实与文种复核\\n\\n对照用户材料、最新版底稿及当前主文种的要求，按以下三项检查本轮范围。\\n\\n## 第一项：事实与状态\\n\\n逐项核对主体、对象、数字、金额、日期、引语和来源范围，区分材料事实、合理分析、建议、待核与已定事项。结论的对象和强度与依据一致。修正无据新增、误删和状态升级；用户已给但缺少核实依据的信息保留其待核状态。\\n\\n## 第二项：文种与结构\\n\\n采用当前主文种页的功能和必要要素核对正文。用户固定标题、段落顺序和字段按要求保留；可调整的标题与本段内容一致。\\n\\n多轮修改对照最新版底稿及本轮要求，确认增删、调序、主送和主体变更已落实。局部修改检查点名位置及其关联段落；正文其他部分按用户限制保留。\\n\\n逐段检查同一事项是否重复。再次出现时应增加数据、理由、决定、责任、期限或其他实质信息；保留有不同作用的正文、表格和附件内容。\\n\\n## 第三项：模板与文内完整性\\n\\n核对标题、主送、正文、结尾、落款、日期和附件是否符合当前文种或用户模板；字段和"
+    },
+    {
+      "test": "FAIL: test_delivery_scope_rule_is_naturalized_across_current_skill_copies (test_skill_boundary.SkillBoundaryTests.test_delivery_scope_rule_is_naturalized_across_current_skill_copies) (path=WindowsPath('F:/Workspaces/chinese-official-writing-skill/output/route-worktrees/reference-rewrite-20260912/packages/agent-skills/skills/chinese-official-writing/SKILL.md'))",
+      "message": "AssertionError: '材料本身的领导要求、声明、版本或保密标识按事实保留' not found in '# 事实与文种复核\\n\\n对照用户材料、最新版底稿及当前主文种的要求，按以下三项检查本轮范围。\\n\\n## 第一项：事实与状态\\n\\n逐项核对主体、对象、数字、金额、日期、引语和来源范围，区分材料事实、合理分析、建议、待核与已定事项。结论的对象和强度与依据一致。修正无据新增、误删和状态升级；用户已给但缺少核实依据的信息保留其待核状态。\\n\\n## 第二项：文种与结构\\n\\n采用当前主文种页的功能和必要要素核对正文。用户固定标题、段落顺序和字段按要求保留；可调整的标题与本段内容一致。\\n\\n多轮修改对照最新版底稿及本轮要求，确认增删、调序、主送和主体变更已落实。局部修改检查点名位置及其关联段落；正文其他部分按用户限制保留。\\n\\n逐段检查同一事项是否重复。再次出现时应增加数据、理由、决定、责任、期限或其他实质信息；保留有不同作用的正文、表格和附件内容。\\n\\n## 第三项：模板与文内完整性\\n\\n核对标题、主送、正文、结尾、落款、日期和附件是否符合当前文种或用户模板；字段和"
+    },
+    {
+      "test": "FAIL: test_delivery_scope_rule_is_naturalized_across_current_skill_copies (test_skill_boundary.SkillBoundaryTests.test_delivery_scope_rule_is_naturalized_across_current_skill_copies) (path=WindowsPath('F:/Workspaces/chinese-official-writing-skill/output/route-worktrees/reference-rewrite-20260912/packages/qwen-code/skills/chinese-official-writing/SKILL.md'))",
+      "message": "AssertionError: '材料本身的领导要求、声明、版本或保密标识按事实保留' not found in '# 事实与文种复核\\n\\n对照用户材料、最新版底稿及当前主文种的要求，按以下三项检查本轮范围。\\n\\n## 第一项：事实与状态\\n\\n逐项核对主体、对象、数字、金额、日期、引语和来源范围，区分材料事实、合理分析、建议、待核与已定事项。结论的对象和强度与依据一致。修正无据新增、误删和状态升级；用户已给但缺少核实依据的信息保留其待核状态。\\n\\n## 第二项：文种与结构\\n\\n采用当前主文种页的功能和必要要素核对正文。用户固定标题、段落顺序和字段按要求保留；可调整的标题与本段内容一致。\\n\\n多轮修改对照最新版底稿及本轮要求，确认增删、调序、主送和主体变更已落实。局部修改检查点名位置及其关联段落；正文其他部分按用户限制保留。\\n\\n逐段检查同一事项是否重复。再次出现时应增加数据、理由、决定、责任、期限或其他实质信息；保留有不同作用的正文、表格和附件内容。\\n\\n## 第三项：模板与文内完整性\\n\\n核对标题、主送、正文、结尾、落款、日期和附件是否符合当前文种或用户模板；字段和"
+    },
+    {
+      "test": "FAIL: test_delivery_scope_rule_is_naturalized_across_current_skill_copies (test_skill_boundary.SkillBoundaryTests.test_delivery_scope_rule_is_naturalized_across_current_skill_copies) (path=WindowsPath('F:/Workspaces/chinese-official-writing-skill/output/route-worktrees/reference-rewrite-20260912/packages/qwenwork/skills/chinese-official-writing/SKILL.md'))",
+      "message": "AssertionError: '材料本身的领导要求、声明、版本或保密标识按事实保留' not found in '# 事实与文种复核\\n\\n对照用户材料、最新版底稿及当前主文种的要求，按以下三项检查本轮范围。\\n\\n## 第一项：事实与状态\\n\\n逐项核对主体、对象、数字、金额、日期、引语和来源范围，区分材料事实、合理分析、建议、待核与已定事项。结论的对象和强度与依据一致。修正无据新增、误删和状态升级；用户已给但缺少核实依据的信息保留其待核状态。\\n\\n## 第二项：文种与结构\\n\\n采用当前主文种页的功能和必要要素核对正文。用户固定标题、段落顺序和字段按要求保留；可调整的标题与本段内容一致。\\n\\n多轮修改对照最新版底稿及本轮要求，确认增删、调序、主送和主体变更已落实。局部修改检查点名位置及其关联段落；正文其他部分按用户限制保留。\\n\\n逐段检查同一事项是否重复。再次出现时应增加数据、理由、决定、责任、期限或其他实质信息；保留有不同作用的正文、表格和附件内容。\\n\\n## 第三项：模板与文内完整性\\n\\n核对标题、主送、正文、结尾、落款、日期和附件是否符合当前文种或用户模板；字段和"
+    },
+    {
+      "test": "FAIL: test_delivery_scope_rule_is_naturalized_across_current_skill_copies (test_skill_boundary.SkillBoundaryTests.test_delivery_scope_rule_is_naturalized_across_current_skill_copies) (path=WindowsPath('F:/Workspaces/chinese-official-writing-skill/output/route-worktrees/reference-rewrite-20260912/packages/hermes/skills/chinese-official-writing/SKILL.md'))",
+      "message": "AssertionError: '材料本身的领导要求、声明、版本或保密标识按事实保留' not found in '# 事实与文种复核\\n\\n对照用户材料、最新版底稿及当前主文种的要求，按以下三项检查本轮范围。\\n\\n## 第一项：事实与状态\\n\\n逐项核对主体、对象、数字、金额、日期、引语和来源范围，区分材料事实、合理分析、建议、待核与已定事项。结论的对象和强度与依据一致。修正无据新增、误删和状态升级；用户已给但缺少核实依据的信息保留其待核状态。\\n\\n## 第二项：文种与结构\\n\\n采用当前主文种页的功能和必要要素核对正文。用户固定标题、段落顺序和字段按要求保留；可调整的标题与本段内容一致。\\n\\n多轮修改对照最新版底稿及本轮要求，确认增删、调序、主送和主体变更已落实。局部修改检查点名位置及其关联段落；正文其他部分按用户限制保留。\\n\\n逐段检查同一事项是否重复。再次出现时应增加数据、理由、决定、责任、期限或其他实质信息；保留有不同作用的正文、表格和附件内容。\\n\\n## 第三项：模板与文内完整性\\n\\n核对标题、主送、正文、结尾、落款、日期和附件是否符合当前文种或用户模板；字段和"
+    },
+    {
+      "test": "FAIL: test_drafting_rules_are_split_for_prompt_following (test_skill_boundary.SkillBoundaryTests.test_drafting_rules_are_split_for_prompt_following)",
+      "message": "AssertionError: False is not true"
+    },
+    {
+      "test": "FAIL: test_entry_excludes_only_non_obvious_out_of_scope_tasks (test_skill_boundary.SkillBoundaryTests.test_entry_excludes_only_non_obvious_out_of_scope_tasks)",
+      "message": "AssertionError: '英文写作、文学创作、营销软文、社交媒体文案、代码说明' not found in '---\\nname: chinese-official-writing\\ndescription: 用于中文公文、正式事务材料、新闻消息和新闻评论的起草、改写、压缩、复核与格式处理，涵盖申请、请示、报告、通知、通告、意见、决定、函、公告、方案、纪要、讲话、可研、审查材料、采购、制度和 AI 算力等正式文本。\\nmetadata:\\n  tags: chinese, official-document, writing, gongwen, ai-compute\\n---\\n\\n# 中文公文写作\\n\\n## 适用范围\\n\\n处理中文公文、正式工作材料、新闻消息、新闻评论，以及这些文本的起草、改写、压缩、润色、文种核对、事实边界复核和 Word 正文整理。英文、文学、营销软文、社交媒体文案、个人求职信和代码说明走其他路径。\\n\\n查询 Skill 能力时读取 `README.md`。\\n\\n## 入口契约\\n\\n### 第一步：理解用户需求\\n\\n从请求中识别以下信息：\\n\\"
+    },
+    {
+      "test": "FAIL: test_feasibility_review_checklist_is_an_atomic_leaf (test_skill_boundary.SkillBoundaryTests.test_feasibility_review_checklist_is_an_atomic_leaf)",
+      "message": "AssertionError: 'references/genre-checklist-feasibility-review.md' not found in '---\\nname: chinese-official-writing\\ndescription: 用于中文公文、正式事务材料、新闻消息和新闻评论的起草、改写、压缩、复核与格式处理，涵盖申请、请示、报告、通知、通告、意见、决定、函、公告、方案、纪要、讲话、可研、审查材料、采购、制度和 AI 算力等正式文本。\\nmetadata:\\n  tags: chinese, official-document, writing, gongwen, ai-compute\\n---\\n\\n# 中文公文写作\\n\\n## 适用范围\\n\\n处理中文公文、正式工作材料、新闻消息、新闻评论，以及这些文本的起草、改写、压缩、润色、文种核对、事实边界复核和 Word 正文整理。英文、文学、营销软文、社交媒体文案、个人求职信和代码说明走其他路径。\\n\\n查询 Skill 能力时读取 `README.md`。\\n\\n## 入口契约\\n\\n### 第一步：理解"
+    },
+    {
+      "test": "FAIL: test_final_drafts_must_not_keep_unfinished_placeholders (test_skill_boundary.SkillBoundaryTests.test_final_drafts_must_not_keep_unfinished_placeholders)",
+      "message": "AssertionError: False is not true"
+    },
+    {
+      "test": "FAIL: test_formalization_keeps_only_explicit_literal_boundaries_verbatim (test_skill_boundary.SkillBoundaryTests.test_formalization_keeps_only_explicit_literal_boundaries_verbatim)",
+      "message": "AssertionError: '普通叙述中的口语称谓和表达可以按正式文稿语体调整' not found in '# 轻量校对清单\\n\\n定稿前快速检查语言、引用保真和稿内一致性，不替代文种审查。\\n\\n- 数字、金额、日期、比例、单位、专名和引用是否与材料一致。\\n- 主体、对象、责任、时间、地点和状态在全文是否前后一致。\\n- 标题、小标题、标点、空行、括号和 Markdown 残留是否符合交付形态。\\n- 是否有同义重复、半句残留、搭配错误、口语词或旁白。\\n- 发现问题时直接修改或报告位置；不因校对页新增事实、章节或硬门。\\n'"
+    },
+    {
+      "test": "FAIL: test_genre_authority_uses_the_defined_routing_source (test_skill_boundary.SkillBoundaryTests.test_genre_authority_uses_the_defined_routing_source)",
+      "message": "AssertionError: '文种判断以官方规范和 `references/genre-routing.md` 为准' not found in '---\\nname: chinese-official-writing\\ndescription: 用于中文公文、正式事务材料、新闻消息和新闻评论的起草、改写、压缩、复核与格式处理，涵盖申请、请示、报告、通知、通告、意见、决定、函、公告、方案、纪要、讲话、可研、审查材料、采购、制度和 AI 算力等正式文本。\\nmetadata:\\n  tags: chinese, official-document, writing, gongwen, ai-compute\\n---\\n\\n# 中文公文写作\\n\\n## 适用范围\\n\\n处理中文公文、正式工作材料、新闻消息、新闻评论，以及这些文本的起草、改写、压缩、润色、文种核对、事实边界复核和 Word 正文整理。英文、文学、营销软文、社交媒体文案、个人求职信和代码说明走其他路径。\\n\\n查询 Skill 能力时读取 `README.md`。\\n\\n## 入口契约\\n\\n### 第一步：理解用户需求\\"
+    },
+    {
+      "test": "FAIL: test_institution_rules_have_a_dedicated_routed_leaf (test_skill_boundary.SkillBoundaryTests.test_institution_rules_have_a_dedicated_routed_leaf)",
+      "message": "AssertionError: '规定' not found in '\\nname: chinese-official-writing\\ndescription: 用于中文公文、正式事务材料、新闻消息和新闻评论的起草、改写、压缩、复核与格式处理，涵盖申请、请示、报告、通知、通告、意见、决定、函、公告、方案、纪要、讲话、可研、审查材料、采购、制度和 AI 算力等正式文本。\\nmetadata:\\n  tags: chinese, official-document, writing, gongwen, ai-compute\\n'"
+    },
+    {
+      "test": "FAIL: test_legal_genres_have_checklist_and_handling_elements (test_skill_boundary.SkillBoundaryTests.test_legal_genres_have_checklist_and_handling_elements)",
+      "message": "AssertionError: '## 通告' not found in '# 未覆盖文种功能反查\\n\\n本页只处理尚未有独立主叶的少数文种或事务文本。已有主叶的任务直接进入对应页面。它只回答“正文必须完成什么功能”，不提供完整骨架，也不替代事实选择、办理要素或复核流程。\\n\\n## 通用核对\\n\\n- 文种名称、标题、正文功能和交付对象一致；附件与主文关系清楚。\\n- 行文关系与语气匹配：上行重请批或汇报，下行重办理要求，平行文保持商洽，公开文本交代对象和期限。\\n- 主体、对象、事项、依据、时间、责任、反馈和落款等已给要素保持原样；缺项回到 `information-selection.md`。\\n- 事实、直接分析、建议、待核和已决定状态分开；建议不写成决定，预测不写成成效。\\n\\n## 尚无独立主叶的功能\\n\\n| 文种/文本 | 只核对核心功能 |\\n| --- | --- |\\n| 其他未覆盖事务文本 | 先确认交付对象、行文关系、事实状态和办理目的，再选择最接近的已验证主叶；无法确定时保留冲突并请求用户指定。 |\\n\\n## 与已覆盖主叶的边界\\n\\n- 报告、情况说明、"
+    },
+    {
+      "test": "FAIL: test_lightened_indices_resolve_from_each_skill_root_and_keep_quality_bridges (test_skill_boundary.SkillBoundaryTests.test_lightened_indices_resolve_from_each_skill_root_and_keep_quality_bridges) (root=WindowsPath('F:/Workspaces/chinese-official-writing-skill/output/route-worktrees/reference-rewrite-20260912/chinese-official-writing'))",
+      "message": "AssertionError: '未命中、命中转读条件或卡片不能覆盖时，回到 `references/reference-index.md` 选择对应资料' not found in '---\\nname: chinese-official-writing\\ndescription: 用于中文公文、正式事务材料、新闻消息和新闻评论的起草、改写、压缩、复核与格式处理，涵盖申请、请示、报告、通知、通告、意见、决定、函、公告、方案、纪要、讲话、可研、审查材料、采购、制度和 AI 算力等正式文本。\\nmetadata:\\n  tags: chinese, official-document, writing, gongwen, ai-compute\\n---\\n\\n# 中文公文写作\\n\\n## 适用范围\\n\\n处理中文公文、正式工作材料、新闻消息、新闻评论，以及这些文本的起草、改写、压缩、润色、文种核对、事实边界复核和 Word 正文整理。英文、文学、营销软文、社交媒体文案、个人求职信和代码说明走其他路径。\\n\\n查询 Skill 能力时读取 `README.md`。\\n\\n## 入口契约\\n"
+    },
+    {
+      "test": "FAIL: test_lightened_indices_resolve_from_each_skill_root_and_keep_quality_bridges (test_skill_boundary.SkillBoundaryTests.test_lightened_indices_resolve_from_each_skill_root_and_keep_quality_bridges) (root=WindowsPath('F:/Workspaces/chinese-official-writing-skill/output/route-worktrees/reference-rewrite-20260912/packages/agent-skills/skills/chinese-official-writing'))",
+      "message": "AssertionError: '未命中、命中转读条件或卡片不能覆盖时，回到 `references/reference-index.md` 选择对应资料' not found in '---\\nname: chinese-official-writing\\ndescription: 用于中文公文、正式事务材料、新闻消息和新闻评论的起草、改写、压缩、复核与格式处理，涵盖申请、请示、报告、通知、通告、意见、决定、函、公告、方案、纪要、讲话、可研、审查材料、采购、制度和 AI 算力等正式文本。\\nmetadata:\\n  tags: chinese, official-document, writing, gongwen, ai-compute\\n---\\n\\n# 中文公文写作\\n\\n## 适用范围\\n\\n处理中文公文、正式工作材料、新闻消息、新闻评论，以及这些文本的起草、改写、压缩、润色、文种核对、事实边界复核和 Word 正文整理。英文、文学、营销软文、社交媒体文案、个人求职信和代码说明走其他路径。\\n\\n查询 Skill 能力时读取 `README.md`。\\n\\n## 入口契约\\n"
+    },
+    {
+      "test": "FAIL: test_lightened_indices_resolve_from_each_skill_root_and_keep_quality_bridges (test_skill_boundary.SkillBoundaryTests.test_lightened_indices_resolve_from_each_skill_root_and_keep_quality_bridges) (root=WindowsPath('F:/Workspaces/chinese-official-writing-skill/output/route-worktrees/reference-rewrite-20260912/packages/qwen-code/skills/chinese-official-writing'))",
+      "message": "AssertionError: '未命中、命中转读条件或卡片不能覆盖时，回到 `references/reference-index.md` 选择对应资料' not found in '---\\nname: chinese-official-writing\\ndescription: 用于中文公文、正式事务材料、新闻消息和新闻评论的起草、改写、压缩、复核与格式处理，涵盖申请、请示、报告、通知、通告、意见、决定、函、公告、方案、纪要、讲话、可研、审查材料、采购、制度和 AI 算力等正式文本。\\nmetadata:\\n  tags: chinese, official-document, writing, gongwen, ai-compute\\n---\\n\\n# 中文公文写作\\n\\n## 适用范围\\n\\n处理中文公文、正式工作材料、新闻消息、新闻评论，以及这些文本的起草、改写、压缩、润色、文种核对、事实边界复核和 Word 正文整理。英文、文学、营销软文、社交媒体文案、个人求职信和代码说明走其他路径。\\n\\n查询 Skill 能力时读取 `README.md`。\\n\\n## 入口契约\\n"
+    },
+    {
+      "test": "FAIL: test_lightened_indices_resolve_from_each_skill_root_and_keep_quality_bridges (test_skill_boundary.SkillBoundaryTests.test_lightened_indices_resolve_from_each_skill_root_and_keep_quality_bridges) (root=WindowsPath('F:/Workspaces/chinese-official-writing-skill/output/route-worktrees/reference-rewrite-20260912/packages/qwenwork/skills/chinese-official-writing'))",
+      "message": "AssertionError: '未命中、命中转读条件或卡片不能覆盖时，回到 `references/reference-index.md` 选择对应资料' not found in '---\\nname: chinese-official-writing\\ndescription: 用于中文公文、正式事务材料、新闻消息和新闻评论的起草、改写、压缩、复核与格式处理，涵盖申请、请示、报告、通知、通告、意见、决定、函、公告、方案、纪要、讲话、可研、审查材料、采购、制度和 AI 算力等正式文本。\\nmetadata:\\n  tags: chinese, official-document, writing, gongwen, ai-compute\\n---\\n\\n# 中文公文写作\\n\\n## 适用范围\\n\\n处理中文公文、正式工作材料、新闻消息、新闻评论，以及这些文本的起草、改写、压缩、润色、文种核对、事实边界复核和 Word 正文整理。英文、文学、营销软文、社交媒体文案、个人求职信和代码说明走其他路径。\\n\\n查询 Skill 能力时读取 `README.md`。\\n\\n## 入口契约\\n"
+    },
+    {
+      "test": "FAIL: test_lightened_indices_resolve_from_each_skill_root_and_keep_quality_bridges (test_skill_boundary.SkillBoundaryTests.test_lightened_indices_resolve_from_each_skill_root_and_keep_quality_bridges) (root=WindowsPath('F:/Workspaces/chinese-official-writing-skill/output/route-worktrees/reference-rewrite-20260912/packages/hermes/skills/chinese-official-writing'))",
+      "message": "AssertionError: '未命中、命中转读条件或卡片不能覆盖时，回到 `references/reference-index.md` 选择对应资料' not found in '---\\nname: chinese-official-writing\\ndescription: 用于中文公文、正式事务材料、新闻消息和新闻评论的起草、改写、压缩、复核与格式处理，涵盖申请、请示、报告、通知、通告、意见、决定、函、公告、方案、纪要、讲话、可研、审查材料、采购、制度和 AI 算力等正式文本。\\nmetadata:\\n  tags: chinese, official-document, writing, gongwen, ai-compute\\n---\\n\\n# 中文公文写作\\n\\n## 适用范围\\n\\n处理中文公文、正式工作材料、新闻消息、新闻评论，以及这些文本的起草、改写、压缩、润色、文种核对、事实边界复核和 Word 正文整理。英文、文学、营销软文、社交媒体文案、个人求职信和代码说明走其他路径。\\n\\n查询 Skill 能力时读取 `README.md`。\\n\\n## 入口契约\\n"
+    },
+    {
+      "test": "FAIL: test_lightened_indices_resolve_from_each_skill_root_and_keep_quality_bridges (test_skill_boundary.SkillBoundaryTests.test_lightened_indices_resolve_from_each_skill_root_and_keep_quality_bridges) (root=WindowsPath('F:/Workspaces/chinese-official-writing-skill/output/route-worktrees/reference-rewrite-20260912/packages/openclaw/skills/chinese_official_writing'))",
+      "message": "AssertionError: '未命中、命中转读条件或卡片不能覆盖时，回到 `references/reference-index.md` 选择对应资料' not found in '---\\nname: chinese_official_writing\\ndescription: 用于中文公文、正式事务材料、新闻消息和新闻评论的起草、改写、压缩、复核与格式处理，涵盖申请、请示、报告、通知、通告、意见、决定、函、公告、方案、纪要、讲话、可研、审查材料、采购、制度和 AI 算力等正式文本。\\nlicense: MIT\\ncategory: writing\\nmetadata:\\n  version: \"1.6.30\"\\n  tags: chinese, official-document, writing, gongwen, ai-compute\\n---\\n\\n# 中文公文写作\\n\\n## 适用范围\\n\\n处理中文公文、正式工作材料、新闻消息、新闻评论，以及这些文本的起草、改写、压缩、润色、文种核对、事实边界复核和 Word 正文整理。英文、文学、营销软文、社交媒体文案、个人求职信和"
+    },
+    {
+      "test": "FAIL: test_lightened_routes_preserve_reviewed_conditions (test_skill_boundary.SkillBoundaryTests.test_lightened_routes_preserve_reviewed_conditions)",
+      "message": "AssertionError: 9 != 37"
+    },
+    {
+      "test": "FAIL: test_long_form_headings_warn_against_markdown_bold (test_skill_boundary.SkillBoundaryTests.test_long_form_headings_warn_against_markdown_bold)",
+      "message": "AssertionError: '不用 Markdown `**` 加粗、`###`、代码块或 `---` 横线包装' not found in '---\\nname: chinese-official-writing\\ndescription: 用于中文公文、正式事务材料、新闻消息和新闻评论的起草、改写、压缩、复核与格式处理，涵盖申请、请示、报告、通知、通告、意见、决定、函、公告、方案、纪要、讲话、可研、审查材料、采购、制度和 AI 算力等正式文本。\\nmetadata:\\n  tags: chinese, official-document, writing, gongwen, ai-compute\\n---\\n\\n# 中文公文写作\\n\\n## 适用范围\\n\\n处理中文公文、正式工作材料、新闻消息、新闻评论，以及这些文本的起草、改写、压缩、润色、文种核对、事实边界复核和 Word 正文整理。英文、文学、营销软文、社交媒体文案、个人求职信和代码说明走其他路径。\\n\\n查询 Skill 能力时读取 `README.md`。\\n\\n## 入口契约\\n\\n### 第一步：理解用户需求\\n\\"
+    },
+    {
+      "test": "FAIL: test_missing_metric_visibility_does_not_become_plan_state (test_skill_boundary.SkillBoundaryTests.test_missing_metric_visibility_does_not_become_plan_state)",
+      "message": "AssertionError: '复核或改稿时，`本次材料未提供某项数值` 不得被现稿写成' not found in '# 信息选择契约\\n\\n起草、改稿、压缩和合稿时，从本轮有效材料中选择事实、分析、状态和实质缺项。事实映射留在内部。\\n\\n## 四类信息\\n\\n1. **材料事实**：主体、对象、时间、地点、数字、动作、结果、引用和已明确关系，按原词和原强度进入正文。\\n2. **直接分析**：由事实和常识直接支持的一层原因、目的、影响或即时作用，与事实分开表达，不写成已取得成效。存在多种解释时，不把其中一种写成唯一已查明原因。\\n3. **状态信息**：拟、建议、考虑、评估、试点、待核、未决定、进行中和下一步设想，保持原状态；“可安排、可开展”等能力或选项保持可选口径。\\n4. **实质缺项**：影响文种成立、请批事项、执行落地、主体关系或用户明示要求的缺失信息，只在输出模式允许时短列。\\n\\n## 选择动作\\n\\n- 先完成用户要求的正文，再处理缺项提示。材料已给且与主旨相关的事实进入正文，保持主体、对象、数字、日期、时间、因果、分类、归属和结论强度。\\n- 材料只给月份、月"
+    },
+    {
+      "test": "FAIL: test_news_commentary_leaf_is_bounded_and_non_templated (test_skill_boundary.SkillBoundaryTests.test_news_commentary_leaf_is_bounded_and_non_templated) (phrase='自然结束')",
+      "message": "AssertionError: '自然结束' not found in '# 新闻评论\\n\\n新闻评论区分材料事实、评论观点和推演判断；事实段保持来源口径，评论段明确判断依据和适用范围。\\n\\n- 首次引用材料事实时保留完整时间锚，后文再按语境简化指代。\\n- 用户给出“约 X 字”时，先按目标字数的约值，以 X 的 90%—110% 分配开头、各分论点和结尾的篇幅；按论点充分度调节，不靠结尾口号补字。\\n- 中心判断清楚，每段推进不同论点；前后可以递进或互补，不围绕同一意思换词。\\n- 本页的评论专项核对：使用直接判断、事实解释和自然衔接，将否定后转折改为直接判断，合并真正同义的段落；事实段只核对，不重写；评论推演逐句核对事实依据和适用范围，只修改判断强度超过材料支持的句子。\\n- 清楚区分材料事实与评论推演：事实保持原有主体、数字、时间和状态，推演保持为观点。\\n- 常识性、规范性分析可以明确作为评论观点，围绕公共价值、利弊和成立条件展开；具体政策、数据、具名责任、期限或承诺以材料为准。\\n- 论点已经充分展开时，正文自然收束。\\n\\n评论专项核对完成后，接回 `SKILL.md`"
+    },
+    {
+      "test": "FAIL: test_news_commentary_uses_clustered_frontmatter_and_precise_body_route (test_skill_boundary.SkillBoundaryTests.test_news_commentary_uses_clustered_frontmatter_and_precise_body_route) (path=WindowsPath('F:/Workspaces/chinese-official-writing-skill/output/route-worktrees/reference-rewrite-20260912/chinese-official-writing/SKILL.md'))",
+      "message": "AssertionError: '新闻稿件' not found in '\\nname: chinese-official-writing\\ndescription: 用于中文公文、正式事务材料、新闻消息和新闻评论的起草、改写、压缩、复核与格式处理，涵盖申请、请示、报告、通知、通告、意见、决定、函、公告、方案、纪要、讲话、可研、审查材料、采购、制度和 AI 算力等正式文本。\\nmetadata:\\n  tags: chinese, official-document, writing, gongwen, ai-compute\\n'"
+    },
+    {
+      "test": "FAIL: test_news_commentary_uses_clustered_frontmatter_and_precise_body_route (test_skill_boundary.SkillBoundaryTests.test_news_commentary_uses_clustered_frontmatter_and_precise_body_route) (path=WindowsPath('F:/Workspaces/chinese-official-writing-skill/output/route-worktrees/reference-rewrite-20260912/packages/agent-skills/skills/chinese-official-writing/SKILL.md'))",
+      "message": "AssertionError: '新闻稿件' not found in '\\nname: chinese-official-writing\\ndescription: 用于中文公文、正式事务材料、新闻消息和新闻评论的起草、改写、压缩、复核与格式处理，涵盖申请、请示、报告、通知、通告、意见、决定、函、公告、方案、纪要、讲话、可研、审查材料、采购、制度和 AI 算力等正式文本。\\nmetadata:\\n  tags: chinese, official-document, writing, gongwen, ai-compute\\n'"
+    },
+    {
+      "test": "FAIL: test_news_commentary_uses_clustered_frontmatter_and_precise_body_route (test_skill_boundary.SkillBoundaryTests.test_news_commentary_uses_clustered_frontmatter_and_precise_body_route) (path=WindowsPath('F:/Workspaces/chinese-official-writing-skill/output/route-worktrees/reference-rewrite-20260912/packages/qwen-code/skills/chinese-official-writing/SKILL.md'))",
+      "message": "AssertionError: '新闻稿件' not found in '\\nname: chinese-official-writing\\ndescription: 用于中文公文、正式事务材料、新闻消息和新闻评论的起草、改写、压缩、复核与格式处理，涵盖申请、请示、报告、通知、通告、意见、决定、函、公告、方案、纪要、讲话、可研、审查材料、采购、制度和 AI 算力等正式文本。\\nmetadata:\\n  tags: chinese, official-document, writing, gongwen, ai-compute\\n'"
+    },
+    {
+      "test": "FAIL: test_news_commentary_uses_clustered_frontmatter_and_precise_body_route (test_skill_boundary.SkillBoundaryTests.test_news_commentary_uses_clustered_frontmatter_and_precise_body_route) (path=WindowsPath('F:/Workspaces/chinese-official-writing-skill/output/route-worktrees/reference-rewrite-20260912/packages/qwenwork/skills/chinese-official-writing/SKILL.md'))",
+      "message": "AssertionError: '新闻稿件' not found in '\\nname: chinese-official-writing\\ndescription: 用于中文公文、正式事务材料、新闻消息和新闻评论的起草、改写、压缩、复核与格式处理，涵盖申请、请示、报告、通知、通告、意见、决定、函、公告、方案、纪要、讲话、可研、审查材料、采购、制度和 AI 算力等正式文本。\\nmetadata:\\n  tags: chinese, official-document, writing, gongwen, ai-compute\\n'"
+    },
+    {
+      "test": "FAIL: test_news_commentary_uses_clustered_frontmatter_and_precise_body_route (test_skill_boundary.SkillBoundaryTests.test_news_commentary_uses_clustered_frontmatter_and_precise_body_route) (path=WindowsPath('F:/Workspaces/chinese-official-writing-skill/output/route-worktrees/reference-rewrite-20260912/packages/hermes/skills/chinese-official-writing/SKILL.md'))",
+      "message": "AssertionError: '新闻稿件' not found in '\\nname: chinese-official-writing\\ndescription: 用于中文公文、正式事务材料、新闻消息和新闻评论的起草、改写、压缩、复核与格式处理，涵盖申请、请示、报告、通知、通告、意见、决定、函、公告、方案、纪要、讲话、可研、审查材料、采购、制度和 AI 算力等正式文本。\\nmetadata:\\n  tags: chinese, official-document, writing, gongwen, ai-compute\\n'"
+    },
+    {
+      "test": "FAIL: test_news_commentary_uses_clustered_frontmatter_and_precise_body_route (test_skill_boundary.SkillBoundaryTests.test_news_commentary_uses_clustered_frontmatter_and_precise_body_route) (path=WindowsPath('F:/Workspaces/chinese-official-writing-skill/output/route-worktrees/reference-rewrite-20260912/packages/openclaw/skills/chinese_official_writing/SKILL.md'))",
+      "message": "AssertionError: '新闻稿件' not found in '\\nname: chinese_official_writing\\ndescription: 用于中文公文、正式事务材料、新闻消息和新闻评论的起草、改写、压缩、复核与格式处理，涵盖申请、请示、报告、通知、通告、意见、决定、函、公告、方案、纪要、讲话、可研、审查材料、采购、制度和 AI 算力等正式文本。\\nlicense: MIT\\ncategory: writing\\nmetadata:\\n  version: \"1.6.30\"\\n  tags: chinese, official-document, writing, gongwen, ai-compute\\n'"
+    },
+    {
+      "test": "FAIL: test_news_genres_are_defined_in_authoritative_routing (test_skill_boundary.SkillBoundaryTests.test_news_genres_are_defined_in_authoritative_routing)",
+      "message": "AssertionError: '### 新闻类文本' not found in '# 文种路由\\n\\n本页只解决“这份材料应该按什么功能写”。确定文种后，转入对应专页；本页不复制各专页骨架。\\n\\n## 判定树\\n\\n用户只说“会议通知”“采购申请”等事务名称时，仍先建立可执行的事务首叶：会议通知归通知，采购申请归申请/请示。缺少规范标题不等于无主路由；只有合作性意见建议、投诉反映等不承担正式行文关系的材料，才转入兼容场景叶，并保留必要的事实、字段和交付检查。\\n\\n### 1. 先看用户交付对象\\n\\n- 用户给了模板、最新版底稿或明确标题：先保留其结构和对象，再检查正文功能是否匹配。\\n- 用户只说“写材料”：从办理对象、行文关系、是否需要审批和是否面向公开范围判断。\\n- 一份任务包含通知壳、附件方案或附件制度时，先分开处理，不把附件标题当成主文种。\\n\\n### 2. 再看行文关系\\n\\n- 上行：向上级汇报、反映情况、请求指示或批准。对应报告、请示、上报申请、可研附件等。\\n- 下行：向下级或一定范围部署、告知、批评表扬或作出决定。对应通知、决定、通报、批复等。\\n- 平行"
+    },
+    {
+      "test": "FAIL: test_news_message_uses_one_frontmatter_cluster_and_six_body_aliases (test_skill_boundary.SkillBoundaryTests.test_news_message_uses_one_frontmatter_cluster_and_six_body_aliases)",
+      "message": "AssertionError: '新闻稿件' not found in '\\nname: chinese-official-writing\\ndescription: 用于中文公文、正式事务材料、新闻消息和新闻评论的起草、改写、压缩、复核与格式处理，涵盖申请、请示、报告、通知、通告、意见、决定、函、公告、方案、纪要、讲话、可研、审查材料、采购、制度和 AI 算力等正式文本。\\nmetadata:\\n  tags: chinese, official-document, writing, gongwen, ai-compute\\n'"
+    },
+    {
+      "test": "FAIL: test_openclaw_agent_rules_include_v140_routing_and_format_bridge (test_skill_boundary.SkillBoundaryTests.test_openclaw_agent_rules_include_v140_routing_and_format_bridge)",
+      "message": "AssertionError: '任务模式' not found in '---\\nname: chinese_official_writing\\ndescription: 用于中文公文、正式事务材料、新闻消息和新闻评论的起草、改写、压缩、复核与格式处理，涵盖申请、请示、报告、通知、通告、意见、决定、函、公告、方案、纪要、讲话、可研、审查材料、采购、制度和 AI 算力等正式文本。\\nlicense: MIT\\ncategory: writing\\nmetadata:\\n  version: \"1.6.30\"\\n  tags: chinese, official-document, writing, gongwen, ai-compute\\n---\\n\\n# 中文公文写作\\n\\n## 适用范围\\n\\n处理中文公文、正式工作材料、新闻消息、新闻评论，以及这些文本的起草、改写、压缩、润色、文种核对、事实边界复核和 Word 正文整理。英文、文学、营销软文、社交媒体文案、个人求职信和代码说明走其他路径。\\n\\n查询 Skill 能力时读取 `README.md`。\\n\\n## 入口契约\\n\\n"
+    },
+    {
+      "test": "FAIL: test_plain_text_title_boundary_contract_is_explicit (test_skill_boundary.SkillBoundaryTests.test_plain_text_title_boundary_contract_is_explicit)",
+      "message": "AssertionError: 0 != 1"
+    },
+    {
+      "test": "FAIL: test_playbook_template_priority_uses_entry_semantics_without_leaf_duplication (test_skill_boundary.SkillBoundaryTests.test_playbook_template_priority_uses_entry_semantics_without_leaf_duplication) (root=WindowsPath('F:/Workspaces/chinese-official-writing-skill/output/route-worktrees/reference-rewrite-20260912/chinese-official-writing'))",
+      "message": "AssertionError: '用户已有提纲、模板、标题顺序时优先保留' not found in '---\\nname: chinese-official-writing\\ndescription: 用于中文公文、正式事务材料、新闻消息和新闻评论的起草、改写、压缩、复核与格式处理，涵盖申请、请示、报告、通知、通告、意见、决定、函、公告、方案、纪要、讲话、可研、审查材料、采购、制度和 AI 算力等正式文本。\\nmetadata:\\n  tags: chinese, official-document, writing, gongwen, ai-compute\\n---\\n\\n# 中文公文写作\\n\\n## 适用范围\\n\\n处理中文公文、正式工作材料、新闻消息、新闻评论，以及这些文本的起草、改写、压缩、润色、文种核对、事实边界复核和 Word 正文整理。英文、文学、营销软文、社交媒体文案、个人求职信和代码说明走其他路径。\\n\\n查询 Skill 能力时读取 `README.md`。\\n\\n## 入口契约\\n\\n### 第一步：理解用户需求\\n\\n从请求中识别以下信息：\\n\\n- **任务"
+    },
+    {
+      "test": "FAIL: test_playbook_template_priority_uses_entry_semantics_without_leaf_duplication (test_skill_boundary.SkillBoundaryTests.test_playbook_template_priority_uses_entry_semantics_without_leaf_duplication) (root=WindowsPath('F:/Workspaces/chinese-official-writing-skill/output/route-worktrees/reference-rewrite-20260912/packages/agent-skills/skills/chinese-official-writing'))",
+      "message": "AssertionError: '用户已有提纲、模板、标题顺序时优先保留' not found in '---\\nname: chinese-official-writing\\ndescription: 用于中文公文、正式事务材料、新闻消息和新闻评论的起草、改写、压缩、复核与格式处理，涵盖申请、请示、报告、通知、通告、意见、决定、函、公告、方案、纪要、讲话、可研、审查材料、采购、制度和 AI 算力等正式文本。\\nmetadata:\\n  tags: chinese, official-document, writing, gongwen, ai-compute\\n---\\n\\n# 中文公文写作\\n\\n## 适用范围\\n\\n处理中文公文、正式工作材料、新闻消息、新闻评论，以及这些文本的起草、改写、压缩、润色、文种核对、事实边界复核和 Word 正文整理。英文、文学、营销软文、社交媒体文案、个人求职信和代码说明走其他路径。\\n\\n查询 Skill 能力时读取 `README.md`。\\n\\n## 入口契约\\n\\n### 第一步：理解用户需求\\n\\n从请求中识别以下信息：\\n\\n- **任务"
+    },
+    {
+      "test": "FAIL: test_playbook_template_priority_uses_entry_semantics_without_leaf_duplication (test_skill_boundary.SkillBoundaryTests.test_playbook_template_priority_uses_entry_semantics_without_leaf_duplication) (root=WindowsPath('F:/Workspaces/chinese-official-writing-skill/output/route-worktrees/reference-rewrite-20260912/packages/qwen-code/skills/chinese-official-writing'))",
+      "message": "AssertionError: '用户已有提纲、模板、标题顺序时优先保留' not found in '---\\nname: chinese-official-writing\\ndescription: 用于中文公文、正式事务材料、新闻消息和新闻评论的起草、改写、压缩、复核与格式处理，涵盖申请、请示、报告、通知、通告、意见、决定、函、公告、方案、纪要、讲话、可研、审查材料、采购、制度和 AI 算力等正式文本。\\nmetadata:\\n  tags: chinese, official-document, writing, gongwen, ai-compute\\n---\\n\\n# 中文公文写作\\n\\n## 适用范围\\n\\n处理中文公文、正式工作材料、新闻消息、新闻评论，以及这些文本的起草、改写、压缩、润色、文种核对、事实边界复核和 Word 正文整理。英文、文学、营销软文、社交媒体文案、个人求职信和代码说明走其他路径。\\n\\n查询 Skill 能力时读取 `README.md`。\\n\\n## 入口契约\\n\\n### 第一步：理解用户需求\\n\\n从请求中识别以下信息：\\n\\n- **任务"
+    },
+    {
+      "test": "FAIL: test_playbook_template_priority_uses_entry_semantics_without_leaf_duplication (test_skill_boundary.SkillBoundaryTests.test_playbook_template_priority_uses_entry_semantics_without_leaf_duplication) (root=WindowsPath('F:/Workspaces/chinese-official-writing-skill/output/route-worktrees/reference-rewrite-20260912/packages/qwenwork/skills/chinese-official-writing'))",
+      "message": "AssertionError: '用户已有提纲、模板、标题顺序时优先保留' not found in '---\\nname: chinese-official-writing\\ndescription: 用于中文公文、正式事务材料、新闻消息和新闻评论的起草、改写、压缩、复核与格式处理，涵盖申请、请示、报告、通知、通告、意见、决定、函、公告、方案、纪要、讲话、可研、审查材料、采购、制度和 AI 算力等正式文本。\\nmetadata:\\n  tags: chinese, official-document, writing, gongwen, ai-compute\\n---\\n\\n# 中文公文写作\\n\\n## 适用范围\\n\\n处理中文公文、正式工作材料、新闻消息、新闻评论，以及这些文本的起草、改写、压缩、润色、文种核对、事实边界复核和 Word 正文整理。英文、文学、营销软文、社交媒体文案、个人求职信和代码说明走其他路径。\\n\\n查询 Skill 能力时读取 `README.md`。\\n\\n## 入口契约\\n\\n### 第一步：理解用户需求\\n\\n从请求中识别以下信息：\\n\\n- **任务"
+    },
+    {
+      "test": "FAIL: test_playbook_template_priority_uses_entry_semantics_without_leaf_duplication (test_skill_boundary.SkillBoundaryTests.test_playbook_template_priority_uses_entry_semantics_without_leaf_duplication) (root=WindowsPath('F:/Workspaces/chinese-official-writing-skill/output/route-worktrees/reference-rewrite-20260912/packages/hermes/skills/chinese-official-writing'))",
+      "message": "AssertionError: '用户已有提纲、模板、标题顺序时优先保留' not found in '---\\nname: chinese-official-writing\\ndescription: 用于中文公文、正式事务材料、新闻消息和新闻评论的起草、改写、压缩、复核与格式处理，涵盖申请、请示、报告、通知、通告、意见、决定、函、公告、方案、纪要、讲话、可研、审查材料、采购、制度和 AI 算力等正式文本。\\nmetadata:\\n  tags: chinese, official-document, writing, gongwen, ai-compute\\n---\\n\\n# 中文公文写作\\n\\n## 适用范围\\n\\n处理中文公文、正式工作材料、新闻消息、新闻评论，以及这些文本的起草、改写、压缩、润色、文种核对、事实边界复核和 Word 正文整理。英文、文学、营销软文、社交媒体文案、个人求职信和代码说明走其他路径。\\n\\n查询 Skill 能力时读取 `README.md`。\\n\\n## 入口契约\\n\\n### 第一步：理解用户需求\\n\\n从请求中识别以下信息：\\n\\n- **任务"
+    },
+    {
+      "test": "FAIL: test_playbook_template_priority_uses_entry_semantics_without_leaf_duplication (test_skill_boundary.SkillBoundaryTests.test_playbook_template_priority_uses_entry_semantics_without_leaf_duplication) (root=WindowsPath('F:/Workspaces/chinese-official-writing-skill/output/route-worktrees/reference-rewrite-20260912/packages/openclaw/skills/chinese_official_writing'))",
+      "message": "AssertionError: '用户已有提纲、模板、标题顺序时优先保留' not found in '---\\nname: chinese_official_writing\\ndescription: 用于中文公文、正式事务材料、新闻消息和新闻评论的起草、改写、压缩、复核与格式处理，涵盖申请、请示、报告、通知、通告、意见、决定、函、公告、方案、纪要、讲话、可研、审查材料、采购、制度和 AI 算力等正式文本。\\nlicense: MIT\\ncategory: writing\\nmetadata:\\n  version: \"1.6.30\"\\n  tags: chinese, official-document, writing, gongwen, ai-compute\\n---\\n\\n# 中文公文写作\\n\\n## 适用范围\\n\\n处理中文公文、正式工作材料、新闻消息、新闻评论，以及这些文本的起草、改写、压缩、润色、文种核对、事实边界复核和 Word 正文整理。英文、文学、营销软文、社交媒体文案、个人求职信和代码说明走其他路径。\\n\\n查询 Skill 能力时读取 `README.md`。"
+    },
+    {
+      "test": "FAIL: test_proofreading_layer_stays_ai_writing_quality_only (test_skill_boundary.SkillBoundaryTests.test_proofreading_layer_stays_ai_writing_quality_only)",
+      "message": "AssertionError: 'AI 写稿轻量校对' not found in '---\\nname: chinese-official-writing\\ndescription: 用于中文公文、正式事务材料、新闻消息和新闻评论的起草、改写、压缩、复核与格式处理，涵盖申请、请示、报告、通知、通告、意见、决定、函、公告、方案、纪要、讲话、可研、审查材料、采购、制度和 AI 算力等正式文本。\\nmetadata:\\n  tags: chinese, official-document, writing, gongwen, ai-compute\\n---\\n\\n# 中文公文写作\\n\\n## 适用范围\\n\\n处理中文公文、正式工作材料、新闻消息、新闻评论，以及这些文本的起草、改写、压缩、润色、文种核对、事实边界复核和 Word 正文整理。英文、文学、营销软文、社交媒体文案、个人求职信和代码说明走其他路径。\\n\\n查询 Skill 能力时读取 `README.md`。\\n\\n## 入口契约\\n\\n### 第一步：理解用户需求\\n\\n从请求中识别以下信息：\\n\\n- **任务与交付件**：起草、"
+    },
+    {
+      "test": "FAIL: test_readme_summarizes_current_engineering_and_real_writing_evidence (test_skill_boundary.SkillBoundaryTests.test_readme_summarizes_current_engineering_and_real_writing_evidence)",
+      "message": "AssertionError: '本仓库采用 [MIT License](LICENSE)。' not found in '# 中文公文写作 Skill\\n\\n[![Version](https://img.shields.io/badge/version-1.6.30-blue)](https://github.com/gongyu0918-debug/chinese-official-writing-skill/releases/tag/v1.6.30)\\n[![ClawHub](https://img.shields.io/badge/ClawHub-chinese--official--writing-2f80ed)](https://clawhub.ai/gongyu0918-debug/skills/chinese-official-writing)\\n[![SkillHub](https://img.shields.io/badge/SkillHub-chinese--official--writing-e8590c)](https://skillhub.cn/skill"
+    },
+    {
+      "test": "FAIL: test_remediation_plan_has_a_state_preserving_atomic_leaf (test_skill_boundary.SkillBoundaryTests.test_remediation_plan_has_a_state_preserving_atomic_leaf)",
+      "message": "AssertionError: '该页能够覆盖时不再叠加普通方案叶或材料稀疏任务卡' not found in '---\\nname: chinese-official-writing\\ndescription: 用于中文公文、正式事务材料、新闻消息和新闻评论的起草、改写、压缩、复核与格式处理，涵盖申请、请示、报告、通知、通告、意见、决定、函、公告、方案、纪要、讲话、可研、审查材料、采购、制度和 AI 算力等正式文本。\\nmetadata:\\n  tags: chinese, official-document, writing, gongwen, ai-compute\\n---\\n\\n# 中文公文写作\\n\\n## 适用范围\\n\\n处理中文公文、正式工作材料、新闻消息、新闻评论，以及这些文本的起草、改写、压缩、润色、文种核对、事实边界复核和 Word 正文整理。英文、文学、营销软文、社交媒体文案、个人求职信和代码说明走其他路径。\\n\\n查询 Skill 能力时读取 `README.md`。\\n\\n## 入口契约\\n\\n### 第一步：理解用户需求\\n\\n从请求中识别以下信息：\\n\\n-"
+    },
+    {
+      "test": "FAIL: test_reported_genre_coverage_gaps_have_minimum_support (test_skill_boundary.SkillBoundaryTests.test_reported_genre_coverage_gaps_have_minimum_support)",
+      "message": "AssertionError: '工作要点：' not found in '# 文种路由\\n\\n本页只解决“这份材料应该按什么功能写”。确定文种后，转入对应专页；本页不复制各专页骨架。\\n\\n## 判定树\\n\\n用户只说“会议通知”“采购申请”等事务名称时，仍先建立可执行的事务首叶：会议通知归通知，采购申请归申请/请示。缺少规范标题不等于无主路由；只有合作性意见建议、投诉反映等不承担正式行文关系的材料，才转入兼容场景叶，并保留必要的事实、字段和交付检查。\\n\\n### 1. 先看用户交付对象\\n\\n- 用户给了模板、最新版底稿或明确标题：先保留其结构和对象，再检查正文功能是否匹配。\\n- 用户只说“写材料”：从办理对象、行文关系、是否需要审批和是否面向公开范围判断。\\n- 一份任务包含通知壳、附件方案或附件制度时，先分开处理，不把附件标题当成主文种。\\n\\n### 2. 再看行文关系\\n\\n- 上行：向上级汇报、反映情况、请求指示或批准。对应报告、请示、上报申请、可研附件等。\\n- 下行：向下级或一定范围部署、告知、批评表扬或作出决定。对应通知、决定、通报、批复等。\\n- 平行：不相隶"
+    },
+    {
+      "test": "FAIL: test_repository_and_current_packages_use_mit (test_skill_boundary.SkillBoundaryTests.test_repository_and_current_packages_use_mit)",
+      "message": "AssertionError: '本仓库采用 [MIT License](LICENSE)。' not found in '# 中文公文写作 Skill\\n\\n[![Version](https://img.shields.io/badge/version-1.6.30-blue)](https://github.com/gongyu0918-debug/chinese-official-writing-skill/releases/tag/v1.6.30)\\n[![ClawHub](https://img.shields.io/badge/ClawHub-chinese--official--writing-2f80ed)](https://clawhub.ai/gongyu0918-debug/skills/chinese-official-writing)\\n[![SkillHub](https://img.shields.io/badge/SkillHub-chinese--official--writing-e8590c)](https://skillhub.cn/skill"
+    },
+    {
+      "test": "FAIL: test_request_review_checklist_is_routed_as_an_atomic_leaf (test_skill_boundary.SkillBoundaryTests.test_request_review_checklist_is_routed_as_an_atomic_leaf)",
+      "message": "AssertionError: 'references/genre-checklist-request.md' not found in '---\\nname: chinese-official-writing\\ndescription: 用于中文公文、正式事务材料、新闻消息和新闻评论的起草、改写、压缩、复核与格式处理，涵盖申请、请示、报告、通知、通告、意见、决定、函、公告、方案、纪要、讲话、可研、审查材料、采购、制度和 AI 算力等正式文本。\\nmetadata:\\n  tags: chinese, official-document, writing, gongwen, ai-compute\\n---\\n\\n# 中文公文写作\\n\\n## 适用范围\\n\\n处理中文公文、正式工作材料、新闻消息、新闻评论，以及这些文本的起草、改写、压缩、润色、文种核对、事实边界复核和 Word 正文整理。英文、文学、营销软文、社交媒体文案、个人求职信和代码说明走其他路径。\\n\\n查询 Skill 能力时读取 `README.md`。\\n\\n## 入口契约\\n\\n### 第一步：理解用户需求\\n\\n从请求"
+    },
+    {
+      "test": "FAIL: test_review_command_includes_interpreter_and_draft_path (test_skill_boundary.SkillBoundaryTests.test_review_command_includes_interpreter_and_draft_path)",
+      "message": "AssertionError: 'python \"<Skill绝对目录>/scripts/prose_lint.py\" --delivery-mode draft-body --format --structure \"<草稿绝对路径>\"' not found in '# 事实与文种复核\\n\\n对照用户材料、最新版底稿及当前主文种的要求，按以下三项检查本轮范围。\\n\\n## 第一项：事实与状态\\n\\n逐项核对主体、对象、数字、金额、日期、引语和来源范围，区分材料事实、合理分析、建议、待核与已定事项。结论的对象和强度与依据一致。修正无据新增、误删和状态升级；用户已给但缺少核实依据的信息保留其待核状态。\\n\\n## 第二项：文种与结构\\n\\n采用当前主文种页的功能和必要要素核对正文。用户固定标题、段落顺序和字段按要求保留；可调整的标题与本段内容一致。\\n\\n多轮修改对照最新版底稿及本轮要求，确认增删、调序、主送和主体变更已落实。局部修改检查点名位置及其关联段落；正文其他部分按用户限制保留。\\n\\n逐段检查同一事项是否重复。再次出现时应增加数据、理由、决定、责任、期限或其他实质信息；保留有不同"
+    },
+    {
+      "test": "FAIL: test_second_revision_fact_mapping_has_one_complete_entry_rule (test_skill_boundary.SkillBoundaryTests.test_second_revision_fact_mapping_has_one_complete_entry_rule)",
+      "message": "AssertionError: 0 != 1"
+    },
+    {
+      "test": "FAIL: test_sparse_notice_does_not_treat_delivery_channel_as_issuer (test_skill_boundary.SkillBoundaryTests.test_sparse_notice_does_not_treat_delivery_channel_as_issuer)",
+      "message": "AssertionError: '不从邮箱、接收方或当前日期反推补写；渠道或接收单位中出现的名称不等于发文主体' not found in '# 轻量任务选择\\n\\n以下两类任务可减少额外读页和结构展开：\\n\\n- 用户要简短稿件，或材料较少、事项单一：保留对应主文种页，按 `short-draft-naturalness.md` 组织短稿。\\n- 用户只改标题、字段、标点、一个事实或指定段落：修改范围限于点名位置及必要衔接；结构动作读 `structure-editing.md`，字段动作读 `field-editing.md`。\\n\\n这两类条件分别成立即可。明确字数下限、多材料合稿或专项论证按实际完整性需求组织；正式版式按用户要求处理。\\n\\n材料多少决定可展开的内容，稿件用途决定主文种。简短稿件同样保留主文种必要要素；已经读过的对应短稿或修改规则可直接应用。\\n\\n完成草稿或本轮修改，进入首页的编号检查步骤，按本轮范围核对。\\n'"
+    },
+    {
+      "test": "FAIL: test_style_references_keep_precise_routes_without_common_error_catchall (test_skill_boundary.SkillBoundaryTests.test_style_references_keep_precise_routes_without_common_error_catchall)",
+      "message": "AssertionError: '中文反例和修法见 `references/anti-ai-patterns.md`' not found in '---\\nname: chinese-official-writing\\ndescription: 用于中文公文、正式事务材料、新闻消息和新闻评论的起草、改写、压缩、复核与格式处理，涵盖申请、请示、报告、通知、通告、意见、决定、函、公告、方案、纪要、讲话、可研、审查材料、采购、制度和 AI 算力等正式文本。\\nmetadata:\\n  tags: chinese, official-document, writing, gongwen, ai-compute\\n---\\n\\n# 中文公文写作\\n\\n## 适用范围\\n\\n处理中文公文、正式工作材料、新闻消息、新闻评论，以及这些文本的起草、改写、压缩、润色、文种核对、事实边界复核和 Word 正文整理。英文、文学、营销软文、社交媒体文案、个人求职信和代码说明走其他路径。\\n\\n查询 Skill 能力时读取 `README.md`。\\n\\n## 入口契约\\n\\n### 第一步：理解用户需求\\n\\"
+    },
+    {
+      "test": "FAIL: test_task_route_cards_keep_sparse_tasks_lightweight (test_skill_boundary.SkillBoundaryTests.test_task_route_cards_keep_sparse_tasks_lightweight)",
+      "message": "AssertionError: '材料稀疏' not found in '---\\nname: chinese-official-writing\\ndescription: 用于中文公文、正式事务材料、新闻消息和新闻评论的起草、改写、压缩、复核与格式处理，涵盖申请、请示、报告、通知、通告、意见、决定、函、公告、方案、纪要、讲话、可研、审查材料、采购、制度和 AI 算力等正式文本。\\nmetadata:\\n  tags: chinese, official-document, writing, gongwen, ai-compute\\n---\\n\\n# 中文公文写作\\n\\n## 适用范围\\n\\n处理中文公文、正式工作材料、新闻消息、新闻评论，以及这些文本的起草、改写、压缩、润色、文种核对、事实边界复核和 Word 正文整理。英文、文学、营销软文、社交媒体文案、个人求职信和代码说明走其他路径。\\n\\n查询 Skill 能力时读取 `README.md`。\\n\\n## 入口契约\\n\\n### 第一步：理解用户需求\\n\\n从请求中识别以下信息：\\n\\n- **任务与交付件**：起草、改写、压缩"
+    },
+    {
+      "test": "FAIL: test_trigger_description_covers_reported_genres (test_skill_boundary.SkillBoundaryTests.test_trigger_description_covers_reported_genres)",
+      "message": "AssertionError: '复函' not found in '---\\nname: chinese-official-writing\\ndescription: 用于中文公文、正式事务材料、新闻消息和新闻评论的起草、改写、压缩、复核与格式处理，涵盖申请、请示、报告、通知、通告、意见、决定、函、公告、方案、纪要、讲话、可研、审查材料、采购、制度和 AI 算力等正式文本。\\nmetadata:\\n  tags: chinese, official-document, writing, gongwen, ai-compute\\n---\\n\\n# 中文公文写作\\n\\n## 适用范围\\n\\n处理中文公文、正式工作材料、新闻消息、新闻评论，以及这些文本的起草、改写、压缩、润色、文种核对、事实边界复核和 Word 正文整理。英文、文学、营销软文、社交媒体文案、个人求职信和代码说明走其他路径。\\n\\n查询 Skill 能力时读取 `README.md`。\\n\\n## 入口契约\\n\\n### 第一步：理解用户需求\\n\\n从请求中识别以下信息：\\n\\n- **任务与交付件**：起草、改写、压缩、审"
+    },
+    {
+      "test": "FAIL: test_v141_formal_delivery_review_and_tone_rules_are_documented (test_skill_boundary.SkillBoundaryTests.test_v141_formal_delivery_review_and_tone_rules_are_documented)",
+      "message": "AssertionError: '正式交付前要素核对' not found in '# 审稿检查\\n\\n用户要求审核、复核、审校、检查或把关稿件时，默认检查整篇稿件。采用首页的编号检查步骤，覆盖事实与状态、文种与办理要素、结构、语言与抗 AI 味、格式和稿内一致性。\\n\\n“审核、指出问题、给修改建议”交付问题位置、依据和建议改法；“审核后修改、复核后修改、优化稿件”等要求改好稿件的请求，按下方“审查并改稿”交付修改后的全文。用户同时要求两项时一并交付。\\n\\n## 确定问题\\n\\n以用户提供的最新版底稿和有效材料为依据，结合当前主文种判断。将问题定位到原句、段落、标题、字段或附件，区分已确认错误、需要核实的风险和可选表达建议。\\n\\n- **事实与状态问题**：核对材料与稿件是否冲突、关键事实是否遗漏，分析是否被写成既定事实。旧数字、原因、期限或结论回流时，指出具体位置和有效依据；透明算术可核算并说明口径。\\n- **文种与结构问题**：按当前主文种成立条件判断偏题、缺项和行文关系；层级、段落和表格的建议以内容作用为准。保留用户模板及已成立的结构，避免只为形式整齐增设章节。\\n- *"
+    },
+    {
+      "test": "FAIL: test_v148_anti_ai_borrowing_stays_soft_and_official (test_skill_boundary.SkillBoundaryTests.test_v148_anti_ai_borrowing_stays_soft_and_official)",
+      "message": "AssertionError: '句群节奏和模板化痕迹' not found in '# 语言风险与旁白控制\\n\\n本页用于正式文稿定稿前的语言复核，只处理模板腔、非正文表达、教学腔、口语化、空泛技术表述和格式噪点。文种、行文关系、事实、引用、字段和版式回到入口及对应 reference。本页属于质量建议层；模型身份、隐藏推理和起草过程是硬边界，其余模式按上下文提示，不按词表机械替换。\\n\\n## 语义复核\\n\\n通读全文后看成簇问题，不因一个词、一个句式或出现次数直接判错。重点观察 `不是……而是……`、`先……再……`、`不仅……还……`、`进一步`、`持续推进`、`切实加强` 等高频表达，以及连续否定、虚假对比和机械重复。\\n\\n- 连续否定只保留与主题直接相关且承担办理作用的必要否定，合并外围的重复说明。\\n- 材料只说明采购正在推进或供应商未定时，不继续罗列合同未签、设备未到、验收未实施、付款未发生等必然下游状态；保留材料已有的当前状态。\\n- 材料已给预算或资金落实事实时，保留事实；“无需追加预算”“不影响其他工作”“完全能够满足”等没有独立办理作用的资金充分性自证可删。\\"
+    },
+    {
+      "test": "FAIL: test_v1510_sentence_fixes_keep_sparse_and_field_tasks_fact_bounded (test_skill_boundary.SkillBoundaryTests.test_v1510_sentence_fixes_keep_sparse_and_field_tasks_fact_bounded)",
+      "message": "AssertionError: '按已给事实之间的关系简短成稿' not found in '---\\nname: chinese-official-writing\\ndescription: 用于中文公文、正式事务材料、新闻消息和新闻评论的起草、改写、压缩、复核与格式处理，涵盖申请、请示、报告、通知、通告、意见、决定、函、公告、方案、纪要、讲话、可研、审查材料、采购、制度和 AI 算力等正式文本。\\nmetadata:\\n  tags: chinese, official-document, writing, gongwen, ai-compute\\n---\\n\\n# 中文公文写作\\n\\n## 适用范围\\n\\n处理中文公文、正式工作材料、新闻消息、新闻评论，以及这些文本的起草、改写、压缩、润色、文种核对、事实边界复核和 Word 正文整理。英文、文学、营销软文、社交媒体文案、个人求职信和代码说明走其他路径。\\n\\n查询 Skill 能力时读取 `README.md`。\\n\\n## 入口契约\\n\\n### 第一步：理解用户需求\\n\\n从请求中识别以下信息：\\n\\n- **任务与交付件*"
+    },
+    {
+      "test": "FAIL: test_v1511_anti_ai_frequency_review_is_prompt_driven_and_local (test_skill_boundary.SkillBoundaryTests.test_v1511_anti_ai_frequency_review_is_prompt_driven_and_local)",
+      "message": "AssertionError: '本项由模型通读全文后判断，不按固定词表自动替换' not found in '# 语言风险与旁白控制\\n\\n本页用于正式文稿定稿前的语言复核，只处理模板腔、非正文表达、教学腔、口语化、空泛技术表述和格式噪点。文种、行文关系、事实、引用、字段和版式回到入口及对应 reference。本页属于质量建议层；模型身份、隐藏推理和起草过程是硬边界，其余模式按上下文提示，不按词表机械替换。\\n\\n## 语义复核\\n\\n通读全文后看成簇问题，不因一个词、一个句式或出现次数直接判错。重点观察 `不是……而是……`、`先……再……`、`不仅……还……`、`进一步`、`持续推进`、`切实加强` 等高频表达，以及连续否定、虚假对比和机械重复。\\n\\n- 连续否定只保留与主题直接相关且承担办理作用的必要否定，合并外围的重复说明。\\n- 材料只说明采购正在推进或供应商未定时，不继续罗列合同未签、设备未到、验收未实施、付款未发生等必然下游状态；保留材料已有的当前状态。\\n- 材料已给预算或资金落实事实时，保留事实；“无需追加预算”“不影响其他工作”“完全能够满足”等没有独立办理作"
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+test_entry_uses_task_and_genre_axes_with_reachable_routes (contracts.ReferenceRewriteContractTests.test_entry_uses_task_and_genre_axes_with_reachable_routes) ... ok
+test_common_flow_keeps_checks_and_delivery_last (contracts.ReferenceRewriteContractTests.test_common_flow_keeps_checks_and_delivery_last) ... ok
+test_product_pages_do_not_expose_build_or_maintenance_commands (contracts.ReferenceRewriteContractTests.test_product_pages_do_not_expose_build_or_maintenance_commands) ... ok
+test_reference_graph_is_acyclic_and_local (contracts.ReferenceRewriteContractTests.test_reference_graph_is_acyclic_and_local) ... ok
+test_anti_ai_reference_retains_semantic_risk_families (contracts.ReferenceRewriteContractTests.test_anti_ai_reference_retains_semantic_risk_families) ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.024s
+
+OK

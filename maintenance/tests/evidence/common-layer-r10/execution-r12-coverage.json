@@ -1,0 +1,749 @@
+{
+  "method": "Full returned page text matching, including numbered rg output; per-task deduplication. Legacy script_calls fields count shell commands containing each script, not individual processes: one compound command may scan multiple files. Counts do not prove nonempty input, semantic review, or writing quality. Failed calls remain visible; totals are not a paired quality result or monetary cost.",
+  "binding_fingerprints": {
+    "baseline": "2853754ef88d40186f54891f810a2c21fa47c20eb13e2cfcbcd09e5f36a9e15f",
+    "candidate": "64fbd0b6bfba7b70dc9f0ad9cbc2aaaa20f591d9d0eab2fcc3978b14bbe292af"
+  },
+  "records": [
+    {
+      "stem": "m1-guards_grammar_quote-baseline",
+      "case": "guards_grammar_quote",
+      "model": "alibaba-token-plan-2/qwen3.8-flash",
+      "arm": "baseline",
+      "invalid": [],
+      "seconds": 118.48,
+      "commands": 25,
+      "unique_pages": [
+        "SKILL.md",
+        "references/anti-ai-patterns.md",
+        "references/delivery.md",
+        "references/final-review-layers.md",
+        "references/genre-playbook-work-summary.md",
+        "references/proofreading-checklist.md",
+        "references/prose-lint-usage.md",
+        "references/review-checklist.md",
+        "references/short-draft-naturalness.md"
+      ],
+      "page_returns": {
+        "SKILL.md": 1,
+        "references/proofreading-checklist.md": 1,
+        "references/anti-ai-patterns.md": 1,
+        "references/review-checklist.md": 1,
+        "references/genre-playbook-work-summary.md": 1,
+        "references/short-draft-naturalness.md": 1,
+        "references/prose-lint-usage.md": 1,
+        "references/delivery.md": 1,
+        "references/final-review-layers.md": 1
+      },
+      "read_chars_unique": 10978,
+      "script_calls": [
+        {
+          "script": "prose_lint.py",
+          "command_index": 13,
+          "item_id": "item_15",
+          "exit_code": 0,
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'python \"C:/Users/admin/AppData/Local/Temp/cow-native-common-layer-native-r12-coverage-g3d02fwe/m1-guards_grammar_quote-baseline/workspace/.agents/skills/chinese-official-writing/scripts/prose_lint.py\" --delivery-mode draft-body \"C:/Users/admin/AppData/Local/Temp/cow_native_proof/orig.txt\"'",
+          "stdout": "No prose risks found.\r\n"
+        },
+        {
+          "script": "prose_lint.py",
+          "command_index": 14,
+          "item_id": "item_16",
+          "exit_code": 1,
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'python \"C:/Users/admin/AppData/Local/Temp/cow-native-common-layer-native-r12-coverage-g3d02fwe/m1-guards_grammar_quote-baseline/workspace/.agents/skills/chinese-official-writing/scripts/prose_lint.py\" --delivery-mode draft-body \"C:/Users/admin/AppData/Local/Temp/cow_native_proof/fixed.txt\"'",
+          "stdout": "ERROR: 文件不存在: C:\\Users\\admin\\AppData\\Local\\Temp\\cow_native_proof\\fixed.txt\r\n"
+        },
+        {
+          "script": "draft_length.py",
+          "command_index": 15,
+          "item_id": "item_17",
+          "exit_code": 1,
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'python \"C:/Users/admin/AppData/Local/Temp/cow-native-common-layer-native-r12-coverage-g3d02fwe/m1-guards_grammar_quote-baseline/workspace/.agents/skills/chinese-official-writing/scripts/draft_length.py\" \"C:/Users/admin/AppData/Local/Temp/cow_native_proof/fixed.txt\"'",
+          "stdout": "ERROR: 文件不存在: C:\\Users\\admin\\AppData\\Local\\Temp\\cow_native_proof\\fixed.txt\r\n"
+        },
+        {
+          "script": "prose_lint.py",
+          "command_index": 17,
+          "item_id": "item_19",
+          "exit_code": 0,
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command '$OutputEncoding=[Text.Encoding]::UTF8; [Console]::OutputEncoding=[Text.Encoding]::UTF8; python \"C:/Users/admin/AppData/Local/Temp/cow-native-common-layer-native-r12-coverage-g3d02fwe/m1-guards_grammar_quote-baseline/workspace/.agents/skills/chinese-official-writing/scripts/prose_lint.py\" --delivery-mode draft-body \"C:/Users/admin/AppData/Local/Temp/cow_native_proof/orig.txt\"'",
+          "stdout": "No prose risks found.\r\n"
+        },
+        {
+          "script": "prose_lint.py",
+          "command_index": 18,
+          "item_id": "item_20",
+          "exit_code": 0,
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command '$OutputEncoding=[Text.Encoding]::UTF8; [Console]::OutputEncoding=[Text.Encoding]::UTF8; python \"C:/Users/admin/AppData/Local/Temp/cow-native-common-layer-native-r12-coverage-g3d02fwe/m1-guards_grammar_quote-baseline/workspace/.agents/skills/chinese-official-writing/scripts/prose_lint.py\" --delivery-mode draft-body \"C:/Users/admin/AppData/Local/Temp/cow_native_proof/fixed.txt\"'",
+          "stdout": "No prose risks found.\r\n"
+        },
+        {
+          "script": "draft_length.py",
+          "command_index": 19,
+          "item_id": "item_21",
+          "exit_code": 0,
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command '[Console]::OutputEncoding=[Text.Encoding]::UTF8; python \"C:/Users/admin/AppData/Local/Temp/cow-native-common-layer-native-r12-coverage-g3d02fwe/m1-guards_grammar_quote-baseline/workspace/.agents/skills/chinese-official-writing/scripts/draft_length.py\" \"C:/Users/admin/AppData/Local/Temp/cow_native_proof/fixed.txt\"'",
+          "stdout": "C:\\Users\\admin\\AppData\\Local\\Temp\\cow_native_proof\\fixed.txt: 78 (nonspace; draft-before-postscript); 已统计\r\n"
+        },
+        {
+          "script": "prose_lint.py",
+          "command_index": 21,
+          "item_id": "item_23",
+          "exit_code": 0,
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command '[Console]::OutputEncoding=[Text.Encoding]::UTF8; python \"C:/Users/admin/AppData/Local/Temp/cow-native-common-layer-native-r12-coverage-g3d02fwe/m1-guards_grammar_quote-baseline/workspace/.agents/skills/chinese-official-writing/scripts/prose_lint.py\" --delivery-mode draft-body \"C:/Users/admin/AppData/Local/Temp/cow_native_proof/final.txt\"'",
+          "stdout": "No prose risks found.\r\n"
+        },
+        {
+          "script": "draft_length.py",
+          "command_index": 22,
+          "item_id": "item_24",
+          "exit_code": 0,
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command '[Console]::OutputEncoding=[Text.Encoding]::UTF8; python \"C:/Users/admin/AppData/Local/Temp/cow-native-common-layer-native-r12-coverage-g3d02fwe/m1-guards_grammar_quote-baseline/workspace/.agents/skills/chinese-official-writing/scripts/draft_length.py\" \"C:/Users/admin/AppData/Local/Temp/cow_native_proof/final.txt\" \"C:/Users/admin/AppData/Local/Temp/cow_native_proof/orig.txt\"'",
+          "stdout": "C:\\Users\\admin\\AppData\\Local\\Temp\\cow_native_proof\\final.txt: 81 (nonspace; draft-before-postscript); 已统计\r\nC:\\Users\\admin\\AppData\\Local\\Temp\\cow_native_proof\\orig.txt: 81 (nonspace; draft-before-postscript); 已统计\r\n"
+        },
+        {
+          "script": "prose_lint.py",
+          "command_index": 24,
+          "item_id": "item_26",
+          "exit_code": 0,
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command '[Console]::OutputEncoding=[Text.Encoding]::UTF8; python \"C:/Users/admin/AppData/Local/Temp/cow-native-common-layer-native-r12-coverage-g3d02fwe/m1-guards_grammar_quote-baseline/workspace/.agents/skills/chinese-official-writing/scripts/draft_length.py\" \"C:/Users/admin/AppData/Local/Temp/cow_native_proof/final2.txt\"; python \"C:/Users/admin/AppData/Local/Temp/cow-native-common-layer-native-r12-coverage-g3d02fwe/m1-guards_grammar_quote-baseline/workspace/.agents/skills/chinese-official-writing/scripts/prose_lint.py\" --delivery-mode draft-body \"C:/Users/admin/AppData/Local/Temp/cow_native_proof/final2.txt\"'",
+          "stdout": "C:\\Users\\admin\\AppData\\Local\\Temp\\cow_native_proof\\final2.txt: 81 (nonspace; draft-before-postscript); 已统计\r\nNo prose risks found.\r\n"
+        },
+        {
+          "script": "draft_length.py",
+          "command_index": 24,
+          "item_id": "item_26",
+          "exit_code": 0,
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command '[Console]::OutputEncoding=[Text.Encoding]::UTF8; python \"C:/Users/admin/AppData/Local/Temp/cow-native-common-layer-native-r12-coverage-g3d02fwe/m1-guards_grammar_quote-baseline/workspace/.agents/skills/chinese-official-writing/scripts/draft_length.py\" \"C:/Users/admin/AppData/Local/Temp/cow_native_proof/final2.txt\"; python \"C:/Users/admin/AppData/Local/Temp/cow-native-common-layer-native-r12-coverage-g3d02fwe/m1-guards_grammar_quote-baseline/workspace/.agents/skills/chinese-official-writing/scripts/prose_lint.py\" --delivery-mode draft-body \"C:/Users/admin/AppData/Local/Temp/cow_native_proof/final2.txt\"'",
+          "stdout": "C:\\Users\\admin\\AppData\\Local\\Temp\\cow_native_proof\\final2.txt: 81 (nonspace; draft-before-postscript); 已统计\r\nNo prose risks found.\r\n"
+        }
+      ],
+      "input_tokens": 181465,
+      "cached_input_tokens": 161536,
+      "uncached_input_tokens": 19929,
+      "output_tokens": 5775,
+      "trace_sha256": "13bc0b6ca45fa00cd79109c3bb1444534ef2eae7b5a3268e22f0cd2e8070b596",
+      "final_sha256": "ec468e30b8c7dfc1ffd4ca4d2fcbc4b1db3579b15ac28e76e18f43ea95e2cbb2"
+    },
+    {
+      "stem": "m1-guards_grammar_quote-candidate",
+      "case": "guards_grammar_quote",
+      "model": "alibaba-token-plan-2/qwen3.8-flash",
+      "arm": "candidate",
+      "invalid": [],
+      "seconds": 153.77,
+      "commands": 19,
+      "unique_pages": [
+        "SKILL.md",
+        "references/anti-ai-patterns.md",
+        "references/genre-playbook-work-summary.md",
+        "references/proofreading-checklist.md",
+        "references/prose-lint-usage.md",
+        "references/reference-index.md",
+        "references/review-checklist.md",
+        "references/writing-rules.md"
+      ],
+      "page_returns": {
+        "SKILL.md": 1,
+        "references/reference-index.md": 1,
+        "references/writing-rules.md": 1,
+        "references/genre-playbook-work-summary.md": 1,
+        "references/proofreading-checklist.md": 1,
+        "references/review-checklist.md": 1,
+        "references/anti-ai-patterns.md": 1,
+        "references/prose-lint-usage.md": 1
+      },
+      "read_chars_unique": 10945,
+      "script_calls": [
+        {
+          "script": "prose_lint.py",
+          "command_index": 10,
+          "item_id": "item_10",
+          "exit_code": 0,
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"python \\\"C:/Users/admin/AppData/Local/Temp/cow-native-common-layer-native-r12-coverage-g3d02fwe/m1-guards_grammar_quote-candidate/workspace/.agents/skills/chinese-official-writing/scripts/prose_lint.py\\\" --delivery-mode draft-body --structure --format 'C:/Users/admin/AppData/Local/Temp/cow-native-common-layer-native-r12-coverage-g3d02fwe/m1-guards_grammar_quote-candidate/workspace/lint_src.txt'\"",
+          "stdout": "No prose risks found.\r\n"
+        },
+        {
+          "script": "prose_lint.py",
+          "command_index": 11,
+          "item_id": "item_11",
+          "exit_code": 0,
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"python \\\"C:/Users/admin/AppData/Local/Temp/cow-native-common-layer-native-r12-coverage-g3d02fwe/m1-guards_grammar_quote-candidate/workspace/.agents/skills/chinese-official-writing/scripts/prose_lint.py\\\" --delivery-mode draft-body --structure --format 'C:/Users/admin/AppData/Local/Temp/cow-native-common-layer-native-r12-coverage-g3d02fwe/m1-guards_grammar_quote-candidate/workspace/lint_dst.txt'\"",
+          "stdout": "No prose risks found.\r\n"
+        },
+        {
+          "script": "draft_length.py",
+          "command_index": 12,
+          "item_id": "item_12",
+          "exit_code": 0,
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"python \\\"C:/Users/admin/AppData/Local/Temp/cow-native-common-layer-native-r12-coverage-g3d02fwe/m1-guards_grammar_quote-candidate/workspace/.agents/skills/chinese-official-writing/scripts/draft_length.py\\\" --min-chars 80 'C:/Users/admin/AppData/Local/Temp/cow-native-common-layer-native-r12-coverage-g3d02fwe/m1-guards_grammar_quote-candidate/workspace/lint_dst.txt'\"",
+          "stdout": "C:\\Users\\admin\\AppData\\Local\\Temp\\cow-native-common-layer-native-r12-coverage-g3d02fwe\\m1-guards_grammar_quote-candidate\\workspace\\lint_dst.txt: 81 (nonspace; draft-before-postscript); 在范围内\r\n"
+        },
+        {
+          "script": "prose_lint.py",
+          "command_index": 14,
+          "item_id": "item_14",
+          "exit_code": 0,
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"python \\\"C:/Users/admin/AppData/Local/Temp/cow-native-common-layer-native-r12-coverage-g3d02fwe/m1-guards_grammar_quote-candidate/workspace/.agents/skills/chinese-official-writing/scripts/prose_lint.py\\\" --delivery-mode draft-body --structure --format 'C:/Users/admin/AppData/Local/Temp/cow-native-common-layer-native-r12-coverage-g3d02fwe/m1-guards_grammar_quote-candidate/workspace/lint_final.txt'\"",
+          "stdout": "No prose risks found.\r\n"
+        },
+        {
+          "script": "draft_length.py",
+          "command_index": 15,
+          "item_id": "item_15",
+          "exit_code": 0,
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"python \\\"C:/Users/admin/AppData/Local/Temp/cow-native-common-layer-native-r12-coverage-g3d02fwe/m1-guards_grammar_quote-candidate/workspace/.agents/skills/chinese-official-writing/scripts/draft_length.py\\\" --min-chars 80 'C:/Users/admin/AppData/Local/Temp/cow-native-common-layer-native-r12-coverage-g3d02fwe/m1-guards_grammar_quote-candidate/workspace/lint_final.txt'\"",
+          "stdout": "C:\\Users\\admin\\AppData\\Local\\Temp\\cow-native-common-layer-native-r12-coverage-g3d02fwe\\m1-guards_grammar_quote-candidate\\workspace\\lint_final.txt: 80 (nonspace; draft-before-postscript); 在范围内\r\n"
+        },
+        {
+          "script": "prose_lint.py",
+          "command_index": 17,
+          "item_id": "item_17",
+          "exit_code": 0,
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"python \\\"C:/Users/admin/AppData/Local/Temp/cow-native-common-layer-native-r12-coverage-g3d02fwe/m1-guards_grammar_quote-candidate/workspace/.agents/skills/chinese-official-writing/scripts/prose_lint.py\\\" --delivery-mode draft-body --structure --format 'C:/Users/admin/AppData/Local/Temp/cow-native-common-layer-native-r12-coverage-g3d02fwe/m1-guards_grammar_quote-candidate/workspace/lint_v2.txt'\"",
+          "stdout": "No prose risks found.\r\n"
+        },
+        {
+          "script": "draft_length.py",
+          "command_index": 18,
+          "item_id": "item_18",
+          "exit_code": 0,
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"python \\\"C:/Users/admin/AppData/Local/Temp/cow-native-common-layer-native-r12-coverage-g3d02fwe/m1-guards_grammar_quote-candidate/workspace/.agents/skills/chinese-official-writing/scripts/draft_length.py\\\" 'C:/Users/admin/AppData/Local/Temp/cow-native-common-layer-native-r12-coverage-g3d02fwe/m1-guards_grammar_quote-candidate/workspace/lint_v2.txt'\"",
+          "stdout": "C:\\Users\\admin\\AppData\\Local\\Temp\\cow-native-common-layer-native-r12-coverage-g3d02fwe\\m1-guards_grammar_quote-candidate\\workspace\\lint_v2.txt: 81 (nonspace; draft-before-postscript); 已统计\r\n"
+        }
+      ],
+      "input_tokens": 256998,
+      "cached_input_tokens": 228736,
+      "uncached_input_tokens": 28262,
+      "output_tokens": 9109,
+      "trace_sha256": "952e43f0865c07dcceb7a2ae00664172f6233a3fd47b8a85742fb9d08475742b",
+      "final_sha256": "9f8d25f0432ce50c4536459389df903238ccd1c5b284250a74204d079b1c8440"
+    },
+    {
+      "stem": "m1-material_based_analysis-baseline",
+      "case": "material_based_analysis",
+      "model": "alibaba-token-plan-2/qwen3.8-flash",
+      "arm": "baseline",
+      "invalid": [],
+      "seconds": 147.19,
+      "commands": 26,
+      "unique_pages": [
+        "SKILL.md",
+        "references/anti-ai-patterns.md",
+        "references/argument-chains.md",
+        "references/delivery.md",
+        "references/final-review-layers.md",
+        "references/formulaic-language.md",
+        "references/genre-checklist-request.md",
+        "references/genre-playbook-request.md",
+        "references/handling-elements.md",
+        "references/information-selection.md",
+        "references/proofreading-checklist.md",
+        "references/prose-lint-usage.md",
+        "references/reference-index.md",
+        "references/short-draft-naturalness.md",
+        "references/task-route-cards.md"
+      ],
+      "page_returns": {
+        "SKILL.md": 1,
+        "references/reference-index.md": 1,
+        "references/genre-playbook-request.md": 1,
+        "references/information-selection.md": 1,
+        "references/argument-chains.md": 1,
+        "references/handling-elements.md": 1,
+        "references/short-draft-naturalness.md": 1,
+        "references/genre-checklist-request.md": 1,
+        "references/anti-ai-patterns.md": 1,
+        "references/final-review-layers.md": 1,
+        "references/prose-lint-usage.md": 1,
+        "references/delivery.md": 1,
+        "references/proofreading-checklist.md": 1,
+        "references/task-route-cards.md": 1,
+        "references/formulaic-language.md": 1
+      },
+      "read_chars_unique": 19276,
+      "script_calls": [
+        {
+          "script": "draft_length.py",
+          "command_index": 20,
+          "item_id": "item_20",
+          "exit_code": 0,
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"python 'C:\\\\Users\\\\admin\\\\AppData\\\\Local\\\\Temp\\\\cow-native-common-layer-native-r12-coverage-g3d02fwe\\\\m1-material_based_analysis-baseline\\\\workspace\\\\.agents\\\\skills\\\\chinese-official-writing\\\\scripts\\\\draft_length.py' --json 'C:\\\\Users\\\\admin\\\\AppData\\\\Local\\\\Temp\\\\cow-native-common-layer-native-r12-coverage-g3d02fwe\\\\m1-material_based_analysis-baseline\\\\workspace\\\\_draft_chair.txt'\"",
+          "stdout": "[\r\n  {\r\n    \"path\": \"C:\\\\Users\\\\admin\\\\AppData\\\\Local\\\\Temp\\\\cow-native-common-layer-native-r12-coverage-g3d02fwe\\\\m1-material_based_analysis-baseline\\\\workspace\\\\_draft_chair.txt\",\r\n    \"mode\": \"nonspace\",\r\n    \"scope\": \"draft-before-postscript\",\r\n    \"count\": 246,\r\n    \"minimum\": null,\r\n    \"maximum\": null,\r\n    \"status\": \"counted\",\r\n    \"below_by\": 0,\r\n    \"above_by\": 0\r\n  }\r\n]\r\n"
+        },
+        {
+          "script": "prose_lint.py",
+          "command_index": 21,
+          "item_id": "item_21",
+          "exit_code": 0,
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"python 'C:\\\\Users\\\\admin\\\\AppData\\\\Local\\\\Temp\\\\cow-native-common-layer-native-r12-coverage-g3d02fwe\\\\m1-material_based_analysis-baseline\\\\workspace\\\\.agents\\\\skills\\\\chinese-official-writing\\\\scripts\\\\prose_lint.py' --delivery-mode draft-body --structure --format 'C:\\\\Users\\\\admin\\\\AppData\\\\Local\\\\Temp\\\\cow-native-common-layer-native-r12-coverage-g3d02fwe\\\\m1-material_based_analysis-baseline\\\\workspace\\\\_draft_chair.txt'\"",
+          "stdout": "No prose risks found.\r\n"
+        },
+        {
+          "script": "draft_length.py",
+          "command_index": 23,
+          "item_id": "item_23",
+          "exit_code": 0,
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"python 'C:\\\\Users\\\\admin\\\\AppData\\\\Local\\\\Temp\\\\cow-native-common-layer-native-r12-coverage-g3d02fwe\\\\m1-material_based_analysis-baseline\\\\workspace\\\\.agents\\\\skills\\\\chinese-official-writing\\\\scripts\\\\draft_length.py' --json 'C:\\\\Users\\\\admin\\\\AppData\\\\Local\\\\Temp\\\\cow-native-common-layer-native-r12-coverage-g3d02fwe\\\\m1-material_based_analysis-baseline\\\\workspace\\\\_draft_chair.txt'\"",
+          "stdout": "[\r\n  {\r\n    \"path\": \"C:\\\\Users\\\\admin\\\\AppData\\\\Local\\\\Temp\\\\cow-native-common-layer-native-r12-coverage-g3d02fwe\\\\m1-material_based_analysis-baseline\\\\workspace\\\\_draft_chair.txt\",\r\n    \"mode\": \"nonspace\",\r\n    \"scope\": \"draft-before-postscript\",\r\n    \"count\": 211,\r\n    \"minimum\": null,\r\n    \"maximum\": null,\r\n    \"status\": \"counted\",\r\n    \"below_by\": 0,\r\n    \"above_by\": 0\r\n  }\r\n]\r\n"
+        },
+        {
+          "script": "prose_lint.py",
+          "command_index": 24,
+          "item_id": "item_24",
+          "exit_code": 0,
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"python 'C:\\\\Users\\\\admin\\\\AppData\\\\Local\\\\Temp\\\\cow-native-common-layer-native-r12-coverage-g3d02fwe\\\\m1-material_based_analysis-baseline\\\\workspace\\\\.agents\\\\skills\\\\chinese-official-writing\\\\scripts\\\\prose_lint.py' --delivery-mode draft-body --structure --format 'C:\\\\Users\\\\admin\\\\AppData\\\\Local\\\\Temp\\\\cow-native-common-layer-native-r12-coverage-g3d02fwe\\\\m1-material_based_analysis-baseline\\\\workspace\\\\_draft_chair.txt'\"",
+          "stdout": "No prose risks found.\r\n"
+        }
+      ],
+      "input_tokens": 298580,
+      "cached_input_tokens": 272640,
+      "uncached_input_tokens": 25940,
+      "output_tokens": 8838,
+      "trace_sha256": "6d7d804b5cf06157990fc7816329a3f6305522d2e1ed975598af366f1a148874",
+      "final_sha256": "9b67213635f9727bff4a5c4ee698b9b962fbe41e9c4dd61bb06c89b3b4c50a5a"
+    },
+    {
+      "stem": "m1-material_based_analysis-candidate",
+      "case": "material_based_analysis",
+      "model": "alibaba-token-plan-2/qwen3.8-flash",
+      "arm": "candidate",
+      "invalid": [],
+      "seconds": 135.09,
+      "commands": 19,
+      "unique_pages": [
+        "SKILL.md",
+        "references/anti-ai-patterns.md",
+        "references/argument-chains.md",
+        "references/formal-addressing.md",
+        "references/genre-checklist-request.md",
+        "references/genre-playbook-request.md",
+        "references/prose-lint-usage.md",
+        "references/reference-index.md",
+        "references/writing-rules.md"
+      ],
+      "page_returns": {
+        "SKILL.md": 1,
+        "references/reference-index.md": 1,
+        "references/writing-rules.md": 1,
+        "references/genre-playbook-request.md": 1,
+        "references/anti-ai-patterns.md": 1,
+        "references/prose-lint-usage.md": 1,
+        "references/genre-checklist-request.md": 1,
+        "references/argument-chains.md": 1,
+        "references/formal-addressing.md": 1
+      },
+      "read_chars_unique": 12386,
+      "script_calls": [
+        {
+          "script": "draft_length.py",
+          "command_index": 12,
+          "item_id": "item_13",
+          "exit_code": 0,
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'python \"C:/Users/admin/AppData/Local/Temp/cow-native-common-layer-native-r12-coverage-g3d02fwe/m1-material_based_analysis-candidate/workspace/.agents/skills/chinese-official-writing/scripts/draft_length.py\" --min-chars 80 \"C:/Users/admin/AppData/Local/Temp/cow-native-common-layer-native-r12-coverage-g3d02fwe/m1-material_based_analysis-candidate/workspace/.tmp-drafts/office-chair-request.txt\"'",
+          "stdout": "C:\\Users\\admin\\AppData\\Local\\Temp\\cow-native-common-layer-native-r12-coverage-g3d02fwe\\m1-material_based_analysis-candidate\\workspace\\.tmp-drafts\\office-chair-request.txt: 221 (nonspace; draft-before-postscript); 在范围内\r\n"
+        },
+        {
+          "script": "prose_lint.py",
+          "command_index": 13,
+          "item_id": "item_14",
+          "exit_code": 0,
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'python \"C:/Users/admin/AppData/Local/Temp/cow-native-common-layer-native-r12-coverage-g3d02fwe/m1-material_based_analysis-candidate/workspace/.agents/skills/chinese-official-writing/scripts/prose_lint.py\" --delivery-mode draft-body --structure --format \"C:/Users/admin/AppData/Local/Temp/cow-native-common-layer-native-r12-coverage-g3d02fwe/m1-material_based_analysis-candidate/workspace/.tmp-drafts/office-chair-request.txt\"'",
+          "stdout": "No prose risks found.\r\n"
+        },
+        {
+          "script": "draft_length.py",
+          "command_index": 15,
+          "item_id": "item_17",
+          "exit_code": 0,
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'python \"C:/Users/admin/AppData/Local/Temp/cow-native-common-layer-native-r12-coverage-g3d02fwe/m1-material_based_analysis-candidate/workspace/.agents/skills/chinese-official-writing/scripts/draft_length.py\" --min-chars 80 \"C:/Users/admin/AppData/Local/Temp/cow-native-common-layer-native-r12-coverage-g3d02fwe/m1-material_based_analysis-candidate/workspace/.tmp-drafts/office-chair-request.txt\"'",
+          "stdout": "C:\\Users\\admin\\AppData\\Local\\Temp\\cow-native-common-layer-native-r12-coverage-g3d02fwe\\m1-material_based_analysis-candidate\\workspace\\.tmp-drafts\\office-chair-request.txt: 218 (nonspace; draft-before-postscript); 在范围内\r\n"
+        },
+        {
+          "script": "prose_lint.py",
+          "command_index": 16,
+          "item_id": "item_18",
+          "exit_code": 0,
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'python \"C:/Users/admin/AppData/Local/Temp/cow-native-common-layer-native-r12-coverage-g3d02fwe/m1-material_based_analysis-candidate/workspace/.agents/skills/chinese-official-writing/scripts/prose_lint.py\" --delivery-mode draft-body --structure --format \"C:/Users/admin/AppData/Local/Temp/cow-native-common-layer-native-r12-coverage-g3d02fwe/m1-material_based_analysis-candidate/workspace/.tmp-drafts/office-chair-request.txt\"'",
+          "stdout": "No prose risks found.\r\n"
+        }
+      ],
+      "input_tokens": 275659,
+      "cached_input_tokens": 253440,
+      "uncached_input_tokens": 22219,
+      "output_tokens": 8262,
+      "trace_sha256": "28c803a9fa0ac90125ebe47dcbb5d19b5017a8c7309c4345a80667ffdbb47246",
+      "final_sha256": "7570e1639c49a1c77eec2aeaf40f8de94dd9dc8434959d8275617d54fe54288a"
+    },
+    {
+      "stem": "m3-guards_grammar_quote-baseline",
+      "case": "guards_grammar_quote",
+      "model": "minimax-cn/MiniMax-M3",
+      "arm": "baseline",
+      "invalid": [],
+      "seconds": 73.91,
+      "commands": 13,
+      "unique_pages": [
+        "SKILL.md",
+        "references/anti-ai-patterns.md",
+        "references/genre-playbook-work-summary.md",
+        "references/proofreading-checklist.md"
+      ],
+      "page_returns": {
+        "SKILL.md": 4,
+        "references/proofreading-checklist.md": 1,
+        "references/genre-playbook-work-summary.md": 1,
+        "references/anti-ai-patterns.md": 1
+      },
+      "read_chars_unique": 7305,
+      "script_calls": [],
+      "input_tokens": 161251,
+      "cached_input_tokens": 146176,
+      "uncached_input_tokens": 15075,
+      "output_tokens": 3469,
+      "trace_sha256": "9c39bbac33344a9fb64363aa6098c0ecb64931501cf06d66cfa803b1ff72182b",
+      "final_sha256": "3c0105d342a4b5867fd22d54e50fed004dc6896feb18d57324c8aae887254aa7"
+    },
+    {
+      "stem": "m3-guards_grammar_quote-candidate",
+      "case": "guards_grammar_quote",
+      "model": "minimax-cn/MiniMax-M3",
+      "arm": "candidate",
+      "invalid": [],
+      "seconds": 55.03,
+      "commands": 7,
+      "unique_pages": [
+        "SKILL.md",
+        "references/genre-playbook-work-summary.md",
+        "references/official-style.md",
+        "references/proofreading-checklist.md"
+      ],
+      "page_returns": {
+        "SKILL.md": 1,
+        "references/proofreading-checklist.md": 1,
+        "references/official-style.md": 1,
+        "references/genre-playbook-work-summary.md": 1
+      },
+      "read_chars_unique": 4657,
+      "script_calls": [],
+      "input_tokens": 152891,
+      "cached_input_tokens": 131584,
+      "uncached_input_tokens": 21307,
+      "output_tokens": 3351,
+      "trace_sha256": "a414cc6d867c9f6a002d324afe99627ba53b7ae66317055e8917a53698fe252e",
+      "final_sha256": "b4c43c2974fab73c3db4fe3696c156f1cb40c28a49d3eb364deaf50e884c0e71"
+    },
+    {
+      "stem": "m3-material_based_analysis-baseline",
+      "case": "material_based_analysis",
+      "model": "minimax-cn/MiniMax-M3",
+      "arm": "baseline",
+      "invalid": [],
+      "seconds": 117.86,
+      "commands": 32,
+      "unique_pages": [
+        "SKILL.md"
+      ],
+      "page_returns": {
+        "SKILL.md": 5
+      },
+      "read_chars_unique": 3847,
+      "script_calls": [],
+      "input_tokens": 500139,
+      "cached_input_tokens": 486056,
+      "uncached_input_tokens": 14083,
+      "output_tokens": 5203,
+      "trace_sha256": "aedcf3edd48295f47769d6c6fb0320a717faa65acb98fc0e568925ec4b205f2d",
+      "final_sha256": "8a3a89964cefdf2fe5346c892108938700557b89cf59b735170286c0cd495fdb"
+    },
+    {
+      "stem": "m3-material_based_analysis-candidate",
+      "case": "material_based_analysis",
+      "model": "minimax-cn/MiniMax-M3",
+      "arm": "candidate",
+      "invalid": [],
+      "seconds": 55.92,
+      "commands": 13,
+      "unique_pages": [
+        "SKILL.md",
+        "references/formal-addressing.md",
+        "references/formulaic-language.md",
+        "references/genre-checklist-request.md",
+        "references/genre-playbook-procurement-review.md",
+        "references/genre-playbook-request.md",
+        "references/writing-rules.md"
+      ],
+      "page_returns": {
+        "SKILL.md": 1,
+        "references/genre-playbook-request.md": 1,
+        "references/genre-playbook-procurement-review.md": 1,
+        "references/genre-checklist-request.md": 1,
+        "references/formulaic-language.md": 1,
+        "references/formal-addressing.md": 1,
+        "references/writing-rules.md": 1
+      },
+      "read_chars_unique": 9116,
+      "script_calls": [],
+      "input_tokens": 211057,
+      "cached_input_tokens": 190976,
+      "uncached_input_tokens": 20081,
+      "output_tokens": 3053,
+      "trace_sha256": "f7dca7ff8c4e46e1acbb2c95c8825709e8202f12122135cfa9a433d12fac1b5d",
+      "final_sha256": "028441d4012a14cd42d0e0dc29b8260a645ac233d8fe68159cf8be9854c584d2"
+    },
+    {
+      "stem": "m4-guards_grammar_quote-baseline",
+      "case": "guards_grammar_quote",
+      "model": "ollama-cloud/glm-5.3-flash",
+      "arm": "baseline",
+      "invalid": [],
+      "seconds": 47.34,
+      "commands": 11,
+      "unique_pages": [
+        "SKILL.md",
+        "references/anti-ai-patterns.md",
+        "references/delivery.md",
+        "references/final-review-layers.md",
+        "references/genre-playbook-work-summary.md",
+        "references/information-selection.md",
+        "references/proofreading-checklist.md",
+        "references/prose-lint-usage.md",
+        "references/short-draft-naturalness.md"
+      ],
+      "page_returns": {
+        "SKILL.md": 1,
+        "references/genre-playbook-work-summary.md": 1,
+        "references/anti-ai-patterns.md": 1,
+        "references/proofreading-checklist.md": 1,
+        "references/short-draft-naturalness.md": 1,
+        "references/delivery.md": 1,
+        "references/prose-lint-usage.md": 1,
+        "references/information-selection.md": 1,
+        "references/final-review-layers.md": 1
+      },
+      "read_chars_unique": 11469,
+      "script_calls": [
+        {
+          "script": "prose_lint.py",
+          "command_index": 9,
+          "item_id": "item_13",
+          "exit_code": 0,
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command '$text = '\"'本周，工作人员认真核对了三份登记表，整理出两份问题清单，形成了完整的记录。大家细致耐心，坚持防微杜渐，及时发现细小差错。负责人在会上说：“工作贵在持之以恒。”'\n\"'$text | python \".agents/skills/chinese-official-writing/scripts/prose_lint.py\" --delivery-mode draft-body -'",
+          "stdout": "No prose risks found.\r\n"
+        },
+        {
+          "script": "prose_lint.py",
+          "command_index": 10,
+          "item_id": "item_15",
+          "exit_code": 0,
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command '$text = '\"'本周，工作人员认真核对了三份登记表，整理出两份问题清单，形成了完整的记录。大家工作细致，坚持防微杜渐，及时发现细小差错。负责人在会上说：“工作贵在持之以恒。”'\n\"'$text | python \".agents/skills/chinese-official-writing/scripts/prose_lint.py\" --delivery-mode draft-body -'",
+          "stdout": "No prose risks found.\r\n"
+        }
+      ],
+      "input_tokens": 106476,
+      "cached_input_tokens": 0,
+      "uncached_input_tokens": 106476,
+      "output_tokens": 4395,
+      "trace_sha256": "b2ab75de3231f280234e011933c8897053f42f9cabfd4232427f496fd55573a4",
+      "final_sha256": "8542bd4f54c38cb4cc69d1dc3e503663343cf1fe3863ddedacff7b2cbff3fcd2"
+    },
+    {
+      "stem": "m4-guards_grammar_quote-candidate",
+      "case": "guards_grammar_quote",
+      "model": "ollama-cloud/glm-5.3-flash",
+      "arm": "candidate",
+      "invalid": [],
+      "seconds": 50.8,
+      "commands": 12,
+      "unique_pages": [
+        "SKILL.md",
+        "references/anti-ai-patterns.md",
+        "references/genre-playbook-work-summary.md",
+        "references/official-style.md",
+        "references/proofreading-checklist.md",
+        "references/prose-lint-usage.md",
+        "references/reference-index.md",
+        "references/review-checklist.md",
+        "references/writing-rules.md"
+      ],
+      "page_returns": {
+        "SKILL.md": 1,
+        "references/reference-index.md": 1,
+        "references/writing-rules.md": 1,
+        "references/review-checklist.md": 1,
+        "references/genre-playbook-work-summary.md": 1,
+        "references/proofreading-checklist.md": 1,
+        "references/prose-lint-usage.md": 1,
+        "references/anti-ai-patterns.md": 1,
+        "references/official-style.md": 1
+      },
+      "read_chars_unique": 12137,
+      "script_calls": [
+        {
+          "script": "prose_lint.py",
+          "command_index": 10,
+          "item_id": "item_15",
+          "exit_code": 0,
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'python \".agents/skills/chinese-official-writing/scripts/prose_lint.py\" --delivery-mode draft-body --structure --format \"polish-draft.txt\"'",
+          "stdout": "No prose risks found.\r\n"
+        }
+      ],
+      "input_tokens": 119226,
+      "cached_input_tokens": 0,
+      "uncached_input_tokens": 119226,
+      "output_tokens": 4772,
+      "trace_sha256": "e54ed0162dfff8262334ac81f65c5b993d6c8c54d5065a2ec69bfa2e8501f748",
+      "final_sha256": "867bf8117650814fc1b9fe6c691feba76ea829ad79118df16c3c8f049628ca30"
+    },
+    {
+      "stem": "m4-material_based_analysis-baseline",
+      "case": "material_based_analysis",
+      "model": "ollama-cloud/glm-5.3-flash",
+      "arm": "baseline",
+      "invalid": [],
+      "seconds": 50.88,
+      "commands": 12,
+      "unique_pages": [
+        "SKILL.md",
+        "references/anti-ai-patterns.md",
+        "references/delivery.md",
+        "references/final-review-layers.md",
+        "references/genre-checklist-request.md",
+        "references/genre-playbook-request.md",
+        "references/handling-elements.md",
+        "references/information-selection.md",
+        "references/proofreading-checklist.md",
+        "references/prose-lint-usage.md",
+        "references/reference-index.md"
+      ],
+      "page_returns": {
+        "SKILL.md": 1,
+        "references/reference-index.md": 1,
+        "references/information-selection.md": 1,
+        "references/handling-elements.md": 1,
+        "references/genre-playbook-request.md": 1,
+        "references/genre-checklist-request.md": 1,
+        "references/final-review-layers.md": 1,
+        "references/anti-ai-patterns.md": 1,
+        "references/delivery.md": 1,
+        "references/prose-lint-usage.md": 1,
+        "references/proofreading-checklist.md": 1
+      },
+      "read_chars_unique": 16688,
+      "script_calls": [
+        {
+          "script": "prose_lint.py",
+          "command_index": 11,
+          "item_id": "item_16",
+          "exit_code": 0,
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -NoProfile -Command \"@'\n关于购置办公椅的申请\n\n尊敬的领导：\n\n综合办公室现有固定工位24个，办公椅24把。其中6把已损坏且无法修复，对应6个工位目前临时借用会议室座椅。会议室使用时需将座椅归还，相关工位座位无法固定保障，日常办公受到影响，座椅也需在工位与会议室之间反复搬动。\n\n为满足综合办公室24个工位的日常办公需要，现申请购置办公椅6把，每把420元，合计2520元。目前供应商和采购日期尚未确定。\n\n妥否，请批示。\n\n综合办公室\n2026年9月13日\n\n文后提示：\n- 供应商和采购日期尚未确定，正文按材料原状态保留，未补写后续采购安排；如单位要求写明采购方式或时限，需另行补充依据。\n- 主送称谓和落款主体为暂拟，请按单位实际审批关系调整；成文日期暂按当前日期填写，可按实际成文日期修改。\n\n'@ | python \\\"C:/Users/admin/AppData/Local/Temp/cow-native-common-layer-native-r12-coverage-g3d02fwe/m4-material_based_analysis-baseline/workspace/.agents/skills/chinese-official-writing/scripts/prose_lint.py\\\" --delivery-mode gap-note-allowed - --structure --format\"",
+          "stdout": "No prose risks found.\r\n"
+        }
+      ],
+      "input_tokens": 90464,
+      "cached_input_tokens": 0,
+      "uncached_input_tokens": 90464,
+      "output_tokens": 5732,
+      "trace_sha256": "5997fdd569ca3785a82f2bc493f8e57f3c0df91193f7f309bc403d3a078d3b12",
+      "final_sha256": "dcdff211f8c4e86e53f8ac9145c52512758939784fae43f9e67ea41ac623a94a"
+    },
+    {
+      "stem": "m4-material_based_analysis-candidate",
+      "case": "material_based_analysis",
+      "model": "ollama-cloud/glm-5.3-flash",
+      "arm": "candidate",
+      "invalid": [],
+      "seconds": 44.78,
+      "commands": 8,
+      "unique_pages": [
+        "SKILL.md",
+        "references/anti-ai-patterns.md",
+        "references/genre-playbook-request.md",
+        "references/prose-lint-usage.md",
+        "references/reference-index.md",
+        "references/writing-rules.md"
+      ],
+      "page_returns": {
+        "SKILL.md": 1,
+        "references/reference-index.md": 1,
+        "references/writing-rules.md": 1,
+        "references/genre-playbook-request.md": 1,
+        "references/anti-ai-patterns.md": 1,
+        "references/prose-lint-usage.md": 1
+      },
+      "read_chars_unique": 10028,
+      "script_calls": [
+        {
+          "script": "prose_lint.py",
+          "command_index": 6,
+          "item_id": "item_13",
+          "exit_code": 0,
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"python \\\"C:\\\\Users\\\\admin\\\\AppData\\\\Local\\\\Temp\\\\cow-native-common-layer-native-r12-coverage-g3d02fwe\\\\m4-material_based_analysis-candidate\\\\workspace\\\\.agents\\\\skills\\\\chinese-official-writing\\\\scripts\\\\prose_lint.py\\\" --delivery-mode draft-body --structure --format \\\"C:\\\\Users\\\\admin\\\\AppData\\\\Local\\\\Temp\\\\cow-native-common-layer-native-r12-coverage-g3d02fwe\\\\m4-material_based_analysis-candidate\\\\workspace\\\\draft-office-chair-application.txt\\\"\"",
+          "stdout": "No prose risks found.\r\n"
+        },
+        {
+          "script": "draft_length.py",
+          "command_index": 7,
+          "item_id": "item_14",
+          "exit_code": 0,
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"python \\\"C:\\\\Users\\\\admin\\\\AppData\\\\Local\\\\Temp\\\\cow-native-common-layer-native-r12-coverage-g3d02fwe\\\\m4-material_based_analysis-candidate\\\\workspace\\\\.agents\\\\skills\\\\chinese-official-writing\\\\scripts\\\\draft_length.py\\\" --min-chars 80 \\\"C:\\\\Users\\\\admin\\\\AppData\\\\Local\\\\Temp\\\\cow-native-common-layer-native-r12-coverage-g3d02fwe\\\\m4-material_based_analysis-candidate\\\\workspace\\\\draft-office-chair-application.txt\\\"\"",
+          "stdout": "C:\\Users\\admin\\AppData\\Local\\Temp\\cow-native-common-layer-native-r12-coverage-g3d02fwe\\m4-material_based_analysis-candidate\\workspace\\draft-office-chair-application.txt: 195 (nonspace; draft-before-postscript); 在范围内\r\n"
+        }
+      ],
+      "input_tokens": 106515,
+      "cached_input_tokens": 0,
+      "uncached_input_tokens": 106515,
+      "output_tokens": 4316,
+      "trace_sha256": "418db3557a5449eda7c2a8e452e48904458be53e39e37bbae06631f264952c1e",
+      "final_sha256": "3abb9cb1974f486765f5de4ff7e0e1796bef3def6deeb3c1a718c349cebdda96"
+    }
+  ],
+  "summary": {
+    "baseline": {
+      "commands": 119,
+      "read_chars_unique": 69563,
+      "input_tokens": 1338375,
+      "cached_input_tokens": 1066408,
+      "uncached_input_tokens": 271967,
+      "output_tokens": 33412,
+      "seconds": 555.6600000000001,
+      "calls": 6,
+      "technical_valid": 6,
+      "prose_lint.py": 11,
+      "draft_length.py": 6,
+      "anti_ai_page_returned": 5,
+      "tasks_with_prose_command": 4
+    },
+    "candidate": {
+      "commands": 78,
+      "read_chars_unique": 59269,
+      "input_tokens": 1122346,
+      "cached_input_tokens": 804736,
+      "uncached_input_tokens": 317610,
+      "output_tokens": 32863,
+      "seconds": 495.39,
+      "calls": 6,
+      "technical_valid": 6,
+      "prose_lint.py": 8,
+      "draft_length.py": 6,
+      "anti_ai_page_returned": 4,
+      "tasks_with_prose_command": 4
+    }
+  },
+  "matched_anti_prose_pairs": {
+    "pairs": 4,
+    "scope": "Cost diagnostic for pairs with anti-AI page returned and a prose-script command on both arms. Not a quality-selected subset, proof of effective checking, or proof of equal length checks.",
+    "baseline": {
+      "read_chars_unique": 58411,
+      "uncached_input_tokens": 242809,
+      "commands": 74,
+      "seconds": 363.89
+    },
+    "candidate": {
+      "read_chars_unique": 45496,
+      "uncached_input_tokens": 276222,
+      "commands": 58,
+      "seconds": 384.44000000000005
+    }
+  }
+}

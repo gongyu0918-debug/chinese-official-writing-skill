@@ -1,0 +1,283 @@
+{
+  "binding": {
+    "main_commit": "1ce7112303172478faa2392667a2de1098eb912c",
+    "candidate_head": "f375e0478f86c94b7519ab5193e3394fe4cd4607",
+    "fingerprints": {
+      "baseline": "3dd64f2077f8916e4dde9c024c54a43fe0bd4b354bad62ef1b20ed59f4db78e3",
+      "candidate": "ce76f66c5ae712dd644b9b05ef1558e40925d57b3a826b98a3c9add045784049"
+    },
+    "models": [
+      "command-code/deepseek-deepseek-v4.1-flash"
+    ],
+    "cases": {
+      "request_reason_revision": "帮综合办公室审核并改好这份延期申请，报单位负责人审批。有效材料：资料核对原定9月20日完成，现拟申请延至9月27日；延期原因尚未提供。现稿：关于资料核对工作延期的申请。单位负责人：资料核对工作原定9月20日完成，因＿＿＿＿＿＿＿＿，申请将完成时间延至9月27日。妥否，请批示。综合办公室。请给改好稿件。"
+    },
+    "cli": "C:\\Users\\admin\\AppData\\Local\\OpenAI\\Codex\\bin\\7ac07f4ce733f89a\\codex.exe",
+    "cli_version": "codex-cli 0.153.4",
+    "effort": "medium",
+    "runtime": "C:\\Users\\admin\\AppData\\Local\\Temp\\cow-native-request-placeholder-script-only-r1-fh1bpp15",
+    "permissions": "inherited-host-config",
+    "timeout": 240,
+    "agent_documents": "project_doc_max_bytes=0",
+    "baseline_ref": "f375e047",
+    "candidate_source": "F:\\Workspaces\\chinese-official-writing-skill\\output\\route-worktrees\\reference-rewrite-20260912\\output\\request-placeholder-script-only-snapshot",
+    "baseline_commit": "f375e0478f86c94b7519ab5193e3394fe4cd4607",
+    "profile": "temporary-no-user-documents-or-credentials",
+    "runner_sha256": "cb1ecc3ce4e02f1279ae848da99253283bf0b0ca0c8d847c39fe55c764d8648e",
+    "prompt_prefix": "使用本目录 .agents/skills/chinese-official-writing/SKILL.md。\n\n"
+  },
+  "results": [
+    {
+      "model": "command-code/deepseek-deepseek-v4.1-flash",
+      "effort": "provider-default",
+      "case": "request_reason_revision",
+      "arm": "baseline",
+      "returncode": 0,
+      "seconds": 85.34,
+      "invalid": [],
+      "draft_sha256": "58654b6400a0b073e32d9a44966d1fe3656ef90351fa9c1bf7b7f181fde93076",
+      "commands": [
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"Get-Content -Raw -LiteralPath 'C:/Users/admin/AppData/Local/Temp/cow-native-request-placeholder-script-only-r1-fh1bpp15/m2-request_reason_revision-baseline/.agents/skills/chinese-official-writing/SKILL.md'\"",
+          "exit_code": 0,
+          "output": null
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"Get-Content -Raw -LiteralPath 'C:/Users/admin/AppData/Local/Temp/cow-native-request-placeholder-script-only-r1-fh1bpp15/m2-request_reason_revision-baseline/.agents/skills/chinese-official-writing/references/reference-index.md'\"",
+          "exit_code": 0,
+          "output": null
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"Get-Content -Raw -LiteralPath 'C:/Users/admin/AppData/Local/Temp/cow-native-request-placeholder-script-only-r1-fh1bpp15/m2-request_reason_revision-baseline/.agents/skills/chinese-official-writing/references/genre-routing.md'\"",
+          "exit_code": 0,
+          "output": null
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"Get-Content -Raw -LiteralPath 'C:/Users/admin/AppData/Local/Temp/cow-native-request-placeholder-script-only-r1-fh1bpp15/m2-request_reason_revision-baseline/.agents/skills/chinese-official-writing/references/review-checklist.md'\"",
+          "exit_code": 0,
+          "output": null
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"Get-Content -Raw -LiteralPath 'C:/Users/admin/AppData/Local/Temp/cow-native-request-placeholder-script-only-r1-fh1bpp15/m2-request_reason_revision-baseline/.agents/skills/chinese-official-writing/references/genre-playbook-request.md'\"",
+          "exit_code": 0,
+          "output": null
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"Get-Content -Raw -LiteralPath 'C:/Users/admin/AppData/Local/Temp/cow-native-request-placeholder-script-only-r1-fh1bpp15/m2-request_reason_revision-baseline/.agents/skills/chinese-official-writing/references/genre-checklist-request.md'\"",
+          "exit_code": 0,
+          "output": null
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"Get-Content -Raw -LiteralPath 'C:/Users/admin/AppData/Local/Temp/cow-native-request-placeholder-script-only-r1-fh1bpp15/m2-request_reason_revision-baseline/.agents/skills/chinese-official-writing/references/information-selection.md'\"",
+          "exit_code": 0,
+          "output": null
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"Get-Content -Raw -LiteralPath 'C:/Users/admin/AppData/Local/Temp/cow-native-request-placeholder-script-only-r1-fh1bpp15/m2-request_reason_revision-baseline/.agents/skills/chinese-official-writing/references/anti-ai-patterns.md'\"",
+          "exit_code": 0,
+          "output": null
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"Get-Content -Raw -LiteralPath 'C:/Users/admin/AppData/Local/Temp/cow-native-request-placeholder-script-only-r1-fh1bpp15/m2-request_reason_revision-baseline/.agents/skills/chinese-official-writing/references/final-review-layers.md'\"",
+          "exit_code": 0,
+          "output": null
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"Get-Content -Raw -LiteralPath 'C:/Users/admin/AppData/Local/Temp/cow-native-request-placeholder-script-only-r1-fh1bpp15/m2-request_reason_revision-baseline/.agents/skills/chinese-official-writing/references/delivery.md'\"",
+          "exit_code": 0,
+          "output": null
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"Get-Content -Raw -LiteralPath 'C:/Users/admin/AppData/Local/Temp/cow-native-request-placeholder-script-only-r1-fh1bpp15/m2-request_reason_revision-baseline/.agents/skills/chinese-official-writing/references/prose-lint-usage.md'\"",
+          "exit_code": 0,
+          "output": null
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"Get-Content -Raw -LiteralPath 'C:/Users/admin/AppData/Local/Temp/cow-native-request-placeholder-script-only-r1-fh1bpp15/m2-request_reason_revision-baseline/.agents/skills/chinese-official-writing/references/handling-elements.md'\"",
+          "exit_code": 0,
+          "output": null
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"Get-Content -Raw -LiteralPath 'C:/Users/admin/AppData/Local/Temp/cow-native-request-placeholder-script-only-r1-fh1bpp15/m2-request_reason_revision-baseline/.agents/skills/chinese-official-writing/references/formal-addressing.md'\"",
+          "exit_code": 0,
+          "output": null
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"Get-Content -Raw -LiteralPath 'C:/Users/admin/AppData/Local/Temp/cow-native-request-placeholder-script-only-r1-fh1bpp15/m2-request_reason_revision-baseline/.agents/skills/chinese-official-writing/references/proofreading-checklist.md'\"",
+          "exit_code": 0,
+          "output": null
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"Get-Content -Raw -LiteralPath 'C:/Users/admin/AppData/Local/Temp/cow-native-request-placeholder-script-only-r1-fh1bpp15/m2-request_reason_revision-baseline/.agents/skills/chinese-official-writing/references/short-draft-naturalness.md'\"",
+          "exit_code": 0,
+          "output": null
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"Get-ChildItem -Recurse -LiteralPath 'C:/Users/admin/AppData/Local/Temp/cow-native-request-placeholder-script-only-r1-fh1bpp15/m2-request_reason_revision-baseline/.agents/skills/chinese-official-writing/' | Select-Object -ExpandProperty FullName\"",
+          "exit_code": 0,
+          "output": null
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'python --version'",
+          "exit_code": 0,
+          "output": null
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"Get-Content -Raw -LiteralPath 'C:/Users/admin/AppData/Local/Temp/cow-native-request-placeholder-script-only-r1-fh1bpp15/m2-request_reason_revision-baseline/.agents/skills/chinese-official-writing/references/formulaic-language.md'\"",
+          "exit_code": 0,
+          "output": null
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"python 'C:/Users/admin/AppData/Local/Temp/cow-native-request-placeholder-script-only-r1-fh1bpp15/m2-request_reason_revision-baseline/.agents/skills/chinese-official-writing/scripts/prose_lint.py' --delivery-mode draft-body --structure --format '_check_delay_draft.txt'\"",
+          "exit_code": 0,
+          "output": "No prose risks found.\r\n"
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"Remove-Item -LiteralPath '_check_delay_draft.txt'\"",
+          "exit_code": 0,
+          "output": null
+        }
+      ],
+      "usage": [
+        {
+          "input_tokens": 184481,
+          "cached_input_tokens": 163712,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 10857,
+          "reasoning_output_tokens": 0
+        }
+      ]
+    },
+    {
+      "model": "command-code/deepseek-deepseek-v4.1-flash",
+      "effort": "provider-default",
+      "case": "request_reason_revision",
+      "arm": "candidate",
+      "returncode": 0,
+      "seconds": 71.09,
+      "invalid": [],
+      "draft_sha256": "9084feabf0b2b17850024bd5831362a88e5aaac2a0d39b2f78d1d9eff5d1f6c2",
+      "commands": [
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'cat .agents/skills/chinese-official-writing/SKILL.md'",
+          "exit_code": 0,
+          "output": null
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'ls .agents/skills/chinese-official-writing/references'",
+          "exit_code": 0,
+          "output": null
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'cat .agents/skills/chinese-official-writing/references/genre-playbook-request.md'",
+          "exit_code": 0,
+          "output": null
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'cat .agents/skills/chinese-official-writing/references/reference-index.md'",
+          "exit_code": 0,
+          "output": null
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'cat .agents/skills/chinese-official-writing/references/information-selection.md'",
+          "exit_code": 0,
+          "output": null
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'cat .agents/skills/chinese-official-writing/references/review-checklist.md'",
+          "exit_code": 0,
+          "output": null
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'cat .agents/skills/chinese-official-writing/references/anti-ai-patterns.md'",
+          "exit_code": 0,
+          "output": null
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'cat .agents/skills/chinese-official-writing/references/final-review-layers.md'",
+          "exit_code": 0,
+          "output": null
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'cat .agents/skills/chinese-official-writing/references/delivery.md'",
+          "exit_code": 0,
+          "output": null
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'cat .agents/skills/chinese-official-writing/references/short-draft-naturalness.md'",
+          "exit_code": 0,
+          "output": null
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'cat .agents/skills/chinese-official-writing/references/task-route-cards.md'",
+          "exit_code": 0,
+          "output": null
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'cat .agents/skills/chinese-official-writing/references/handling-elements.md'",
+          "exit_code": 0,
+          "output": null
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'cat .agents/skills/chinese-official-writing/references/field-editing.md'",
+          "exit_code": 0,
+          "output": null
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'cat .agents/skills/chinese-official-writing/references/formal-addressing.md'",
+          "exit_code": 0,
+          "output": null
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'cat .agents/skills/chinese-official-writing/references/formulaic-language.md'",
+          "exit_code": 0,
+          "output": null
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'cat .agents/skills/chinese-official-writing/references/official-style.md'",
+          "exit_code": 0,
+          "output": null
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'cat .agents/skills/chinese-official-writing/references/prose-lint-usage.md'",
+          "exit_code": 0,
+          "output": null
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'cat .agents/skills/chinese-official-writing/references/proofreading-checklist.md'",
+          "exit_code": 0,
+          "output": null
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'cat .agents/skills/chinese-official-writing/references/ai-compute-docs.md'",
+          "exit_code": 0,
+          "output": null
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'ls .agents/skills/chinese-official-writing/scripts'",
+          "exit_code": 0,
+          "output": null
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'python \"C:/Users/admin/AppData/Local/Temp/cow-native-request-placeholder-script-only-r1-fh1bpp15/m2-request_reason_revision-candidate/.agents/skills/chinese-official-writing/scripts/prose_lint.py\" --delivery-mode draft-body --structure --format \"C:/Users/admin/AppData/Local/Temp/cow-native-request-placeholder-script-only-r1-fh1bpp15/m2-request_reason_revision-candidate/延期申请-改后稿.txt\"'",
+          "exit_code": 0,
+          "output": "C:\\Users\\admin\\AppData\\Local\\Temp\\cow-native-request-placeholder-script-only-r1-fh1bpp15\\m2-request_reason_revision-candidate\\延期申请-改后稿.txt:5: medium: unfinished-reason-placeholder: 因＿＿＿＿＿＿＿＿\r\n  资料核对工作原定9月20日完成，因＿＿＿＿＿＿＿＿，现申请将完成时间延至9月27日，较原定时间延后7日。妥 | 原因句仍留有填写空位。交付完整申请时，依据材料补齐缘由；原因仍缺时清理空位，并在文后提示中询问。\r\n"
+        },
+        {
+          "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'python \"C:/Users/admin/AppData/Local/Temp/cow-native-request-placeholder-script-only-r1-fh1bpp15/m2-request_reason_revision-candidate/.agents/skills/chinese-official-writing/scripts/prose_lint.py\" --delivery-mode gap-note-allowed --structure --format \"C:/Users/admin/AppData/Local/Temp/cow-native-request-placeholder-script-only-r1-fh1bpp15/m2-request_reason_revision-candidate/延期申请-改后稿.txt\"'",
+          "exit_code": 0,
+          "output": "C:\\Users\\admin\\AppData\\Local\\Temp\\cow-native-request-placeholder-script-only-r1-fh1bpp15\\m2-request_reason_revision-candidate\\延期申请-改后稿.txt:5: medium: unfinished-reason-placeholder: 因＿＿＿＿＿＿＿＿\r\n  资料核对工作原定9月20日完成，因＿＿＿＿＿＿＿＿，现申请将完成时间延至9月27日，延后7日。妥否，请批示 | 原因句仍留有填写空位。交付完整申请时，依据材料补齐缘由；原因仍缺时清理空位，并在文后提示中询问。\r\n"
+        }
+      ],
+      "usage": [
+        {
+          "input_tokens": 158939,
+          "cached_input_tokens": 139520,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 7837,
+          "reasoning_output_tokens": 0
+        }
+      ]
+    }
+  ]
+}

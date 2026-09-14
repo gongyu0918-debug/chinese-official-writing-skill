@@ -1,0 +1,16 @@
+{
+  "frozen_test_baseline": "1ce7112303172478faa2392667a2de1098eb912c",
+  "main_observed_at_closing": "6ab57e0a7ce5b770fcbd602bc07d4644eea7a3db",
+  "product_delta_paths": [
+    "chinese-official-writing/hooks/adapters/claude-code/manifest.json",
+    "chinese-official-writing/hooks/adapters/codebuddy/manifest.json",
+    "chinese-official-writing/hooks/adapters/codex/manifest.json",
+    "chinese-official-writing/hooks/adapters/deepseek-harness/package.json",
+    "chinese-official-writing/hooks/adapters/kimi-code/manifest.json",
+    "chinese-official-writing/hooks/adapters/qwen-code/manifest.json",
+    "chinese-official-writing/hooks/adapters/zcode/manifest.json"
+  ],
+  "ordinary_product_delta_paths": [],
+  "conclusion": "Main advanced in another workflow while review ran; only seven Hook adapter/package manifests differ. Ordinary SKILL.md, references and scripts retain the tested baseline content. This thread made no main merge or publication.",
+  "archive_note": "This late closing check is outside the already frozen R28 archive; archived reports and raw evidence are unchanged."
+}

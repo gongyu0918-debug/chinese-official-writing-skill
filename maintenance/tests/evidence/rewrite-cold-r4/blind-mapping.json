@@ -1,0 +1,254 @@
+[
+  {
+    "id": "P01",
+    "source_run": "speech-host-duty-native-r1",
+    "case": "duty_oral",
+    "model": "command-code/deepseek-deepseek-v4.1-flash",
+    "arms": {
+      "A": {
+        "arm": "candidate",
+        "source": "output\\speech-host-duty-native-r1\\m2-duty_oral-candidate.final.txt",
+        "sha256": "9abd8d8beae3f0d817a406e166b76f1f5f57002ef872bf3acceb98991fd46671"
+      },
+      "B": {
+        "arm": "baseline",
+        "source": "output\\speech-host-duty-native-r1\\m2-duty_oral-baseline.final.txt",
+        "sha256": "d014f926d099cbbd63df03cb4a920612aeee30ceb042c64fd8ba7b5ba4e330f9"
+      }
+    }
+  },
+  {
+    "id": "P02",
+    "source_run": "speech-host-duty-native-r1",
+    "case": "duty_short",
+    "model": "command-code/deepseek-deepseek-v4.1-flash",
+    "arms": {
+      "A": {
+        "arm": "baseline",
+        "source": "output\\speech-host-duty-native-r1\\m2-duty_short-baseline.final.txt",
+        "sha256": "95cb90aa8f01443fedbf3bb87b83e66bbee721132865add9c868c9bb53eb9f15"
+      },
+      "B": {
+        "arm": "candidate",
+        "source": "output\\speech-host-duty-native-r1\\m2-duty_short-candidate.final.txt",
+        "sha256": "9afd483a37e9b5f3971868cae29cc17e8f0ad900499f1d03c67f157518ece87f"
+      }
+    }
+  },
+  {
+    "id": "P03",
+    "source_run": "speech-host-duty-native-r1",
+    "case": "hosting_agenda",
+    "model": "command-code/deepseek-deepseek-v4.1-flash",
+    "arms": {
+      "A": {
+        "arm": "candidate",
+        "source": "output\\speech-host-duty-native-r1\\m2-hosting_agenda-candidate.final.txt",
+        "sha256": "bbdb1fb2f1de3101dc635f1e98f27eb48e6d3294cab0f74dc86fa9ca519f75eb"
+      },
+      "B": {
+        "arm": "baseline",
+        "source": "output\\speech-host-duty-native-r1\\m2-hosting_agenda-baseline.final.txt",
+        "sha256": "9d636a50c56f83a0a449760cdcbd6f5f5e52853de5c990713e96622a24136e8e"
+      }
+    }
+  },
+  {
+    "id": "P04",
+    "source_run": "speech-host-duty-native-r1",
+    "case": "speech_control",
+    "model": "command-code/deepseek-deepseek-v4.1-flash",
+    "arms": {
+      "A": {
+        "arm": "baseline",
+        "source": "output\\speech-host-duty-native-r1\\m2-speech_control-baseline.final.txt",
+        "sha256": "6a8b95b9568ecfccaff334bf04899bdd49df94359c7af2ee865d2eceeb3ee9f7"
+      },
+      "B": {
+        "arm": "candidate",
+        "source": "output\\speech-host-duty-native-r1\\m2-speech_control-candidate.final.txt",
+        "sha256": "c08ea02e187fa51230626078f7e2ef8eade70a3f4b859bdb14ba723a6580db33"
+      }
+    }
+  },
+  {
+    "id": "P05",
+    "source_run": "speech-host-duty-native-r2",
+    "case": "duty_short",
+    "model": "ollama-cloud/glm-5.3-flash",
+    "arms": {
+      "A": {
+        "arm": "candidate",
+        "source": "output\\speech-host-duty-native-r2\\m4-duty_short-candidate.final.txt",
+        "sha256": "7c82202e7a0644560715a8f2ecd0fd531e23f3196ce9de2e55bf737ac9e834bc"
+      },
+      "B": {
+        "arm": "baseline",
+        "source": "output\\speech-host-duty-native-r2\\m4-duty_short-baseline.final.txt",
+        "sha256": "3ac02657db8464401582dc8948a3d5e7605fc1eb941561d43ab4ea1f185384c3"
+      }
+    }
+  },
+  {
+    "id": "P06",
+    "source_run": "speech-host-duty-native-r2",
+    "case": "hosting_agenda",
+    "model": "ollama-cloud/glm-5.3-flash",
+    "arms": {
+      "A": {
+        "arm": "baseline",
+        "source": "output\\speech-host-duty-native-r2\\m4-hosting_agenda-baseline.final.txt",
+        "sha256": "79cfc9e3544f051e3af8b61b79ecd5bc2895af7bbe6fa18742e05aa815f5c236"
+      },
+      "B": {
+        "arm": "candidate",
+        "source": "output\\speech-host-duty-native-r2\\m4-hosting_agenda-candidate.final.txt",
+        "sha256": "8efce15071ba00e9830f5f2bbfa2854664795b5d88b60895e7bd29bede17f78f"
+      }
+    }
+  },
+  {
+    "id": "P07",
+    "source_run": "speech-host-duty-main-r3",
+    "case": "duty_oral",
+    "model": "alibaba-token-plan/qwen3.8-flash",
+    "arms": {
+      "A": {
+        "arm": "main",
+        "source": "output\\speech-host-duty-main-r3\\m0-duty_oral-main.final.txt",
+        "sha256": "6987ce9152537f436fd3226343851ddeac11ac74019c024d607c6adf04312cb2"
+      },
+      "B": {
+        "arm": "candidate",
+        "source": "output\\speech-host-duty-main-r3\\m0-duty_oral-candidate.final.txt",
+        "sha256": "5fef52e3ff7b30230903741cb02cf52c1bc4a3be63fc03ed3114ee49c9ee5093"
+      }
+    }
+  },
+  {
+    "id": "P08",
+    "source_run": "speech-host-duty-main-r3",
+    "case": "hosting_agenda",
+    "model": "alibaba-token-plan/qwen3.8-flash",
+    "arms": {
+      "A": {
+        "arm": "candidate",
+        "source": "output\\speech-host-duty-main-r3\\m0-hosting_agenda-candidate.final.txt",
+        "sha256": "4ded80343fb53a8bea2300159bfed463be98342959c1b7399ae42d7366757944"
+      },
+      "B": {
+        "arm": "main",
+        "source": "output\\speech-host-duty-main-r3\\m0-hosting_agenda-main.final.txt",
+        "sha256": "c7163ec1b2213c1719db67ba5e27e4b578881d24965eebeb2ed370c3e6384b8d"
+      }
+    }
+  },
+  {
+    "id": "P09",
+    "source_run": "speech-host-duty-main-r3",
+    "case": "duty_oral",
+    "model": "alibaba-token-plan-2/qwen3.8-flash",
+    "arms": {
+      "A": {
+        "arm": "main",
+        "source": "output\\speech-host-duty-main-r3\\m1-duty_oral-main.final.txt",
+        "sha256": "a19e5c6b3ed540475865097f1182e10d59552c73dea49094152fe9de804e57e0"
+      },
+      "B": {
+        "arm": "candidate",
+        "source": "output\\speech-host-duty-main-r3\\m1-duty_oral-candidate.final.txt",
+        "sha256": "ad206a5471b8d114854d589be1896cf511cd227b552e5b150de9620e70b1fcb9"
+      }
+    }
+  },
+  {
+    "id": "P10",
+    "source_run": "speech-host-duty-main-r3",
+    "case": "hosting_agenda",
+    "model": "alibaba-token-plan-2/qwen3.8-flash",
+    "arms": {
+      "A": {
+        "arm": "candidate",
+        "source": "output\\speech-host-duty-main-r3\\m1-hosting_agenda-candidate.final.txt",
+        "sha256": "8992c08076ac734a99c6ebfed7097d901a97fa43950b0cf453414b418dd392b8"
+      },
+      "B": {
+        "arm": "main",
+        "source": "output\\speech-host-duty-main-r3\\m1-hosting_agenda-main.final.txt",
+        "sha256": "4489862dfd0bea31221e71c0e2110839c72054d940666f99a8d8e1c2c1bf9649"
+      }
+    }
+  },
+  {
+    "id": "P11",
+    "source_run": "speech-host-duty-main-r3",
+    "case": "duty_oral",
+    "model": "minimax-cn/MiniMax-M3",
+    "arms": {
+      "A": {
+        "arm": "main",
+        "source": "output\\speech-host-duty-main-r3\\m3-duty_oral-main.final.txt",
+        "sha256": "9ebf3c6c586a795f29b9cf1b9ffb20315589e982e8145bebc99e86ec2c5af21a"
+      },
+      "B": {
+        "arm": "candidate",
+        "source": "output\\speech-host-duty-main-r3\\m3-duty_oral-candidate.final.txt",
+        "sha256": "e569460cba638c0900876a71fb6bc5cc6be60f9e6275e42b92fb0c7259dc2445"
+      }
+    }
+  },
+  {
+    "id": "P12",
+    "source_run": "speech-host-duty-main-r3",
+    "case": "hosting_agenda",
+    "model": "minimax-cn/MiniMax-M3",
+    "arms": {
+      "A": {
+        "arm": "candidate",
+        "source": "output\\speech-host-duty-main-r3\\m3-hosting_agenda-candidate.final.txt",
+        "sha256": "57c5712b7c177686de43faa998a760a7faecc9ecd4f8131432d6e25874d2a6f0"
+      },
+      "B": {
+        "arm": "main",
+        "source": "output\\speech-host-duty-main-r3\\m3-hosting_agenda-main.final.txt",
+        "sha256": "a3922e70721bf5c51ac32af147e29d464c8ab9c04b9038498754f8a65b427aea"
+      }
+    }
+  },
+  {
+    "id": "P13",
+    "source_run": "lint-advice-native-r1",
+    "case": "platform_review",
+    "model": "alibaba-token-plan/qwen3.8-flash",
+    "arms": {
+      "A": {
+        "arm": "candidate",
+        "source": "output\\lint-advice-native-r1\\m0-platform_review-candidate.final.txt",
+        "sha256": "8ba30bd9fe33bcb05c2b8a9edb39e97b9e266ddd0e40c96e1a2678aa10b4c698"
+      },
+      "B": {
+        "arm": "baseline",
+        "source": "output\\lint-advice-native-r1\\m0-platform_review-baseline.final.txt",
+        "sha256": "ba44b3e6a84f4fbd279d4b51d740a0fb6da480689e723fdbe54792e316f419a5"
+      }
+    }
+  },
+  {
+    "id": "P14",
+    "source_run": "lint-advice-native-r1",
+    "case": "platform_review",
+    "model": "command-code/deepseek-deepseek-v4.1-flash",
+    "arms": {
+      "A": {
+        "arm": "baseline",
+        "source": "output\\lint-advice-native-r1\\m2-platform_review-baseline.final.txt",
+        "sha256": "1da6d121c3e0d51bf9f66495eb7965af921659b6eee164159414550a3849ff63"
+      },
+      "B": {
+        "arm": "candidate",
+        "source": "output\\lint-advice-native-r1\\m2-platform_review-candidate.final.txt",
+        "sha256": "86639007134cd741c988dbab8dffc3caccd3d83cdce4b13f1d327d3953691741"
+      }
+    }
+  }
+]

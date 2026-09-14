@@ -1,5 +1,13 @@
-# 草稿检查脚本使用
+# 文稿扫描
 
-仅在准备调用 `scripts/prose_lint.py` 检查草稿时读取。
+扫描被审原稿或拟交付稿件，支持 `.txt`、`.md`、`.docx`。以已读 SKILL.md 所在目录定位脚本，草稿使用带引号的绝对路径：
 
-检查 `.txt`、`.md` 或 `.docx` 草稿时可使用 `scripts/prose_lint.py`。执行时，以本次已读 `SKILL.md` 所在目录解析脚本路径，使用带引号的脚本与草稿绝对路径。需要检查重复事项和格式噪点时加 `--structure --format`。脚本只提示语言、格式和重复风险，不检查文种要素完整性；已按增项专页起草或整体改写的稿件由该页完成成稿复核；其他文种和办理要素仍按 `references/handling-elements.md` 与命中的文种检查叶复核，报告使用 `references/genre-checklist-report.md`，请示和申请使用 `references/genre-checklist-request.md`，可研只审使用 `references/genre-checklist-feasibility-review.md`，其他文种使用 `references/genre-checklist.md`。脚本不自动改写；不得把脚本结果作为不加判断的硬性清洗命令。
+```text
+python "<Skill目录>/scripts/prose_lint.py" --delivery-mode draft-body --structure --format "<草稿绝对路径>"
+```
+
+按扫描对象选择模式：稿件正文用 `draft-body`，正文连同独立文后提示用 `gap-note-allowed`，审稿意见本身用 `review-only`。审核收到的原稿仍用 `draft-body`，原文件保留，修改另存新稿。
+
+需要标准输入时用 `-` 代替路径，并将实际文本通过管道传入。对照风险位置、材料和修改范围修正问题；合理用语及引用经核对可保留。用户明确要求 Markdown 时加 `--allow-markdown`，保留相应格式，继续检查旁白、占位及其他风险。正文实质修改后复扫，最终采用最后一次扫描的文本。
+
+读取或运行失败时核对路径与格式；仍无法执行时如实记录未完成的检查。

@@ -1,0 +1,211 @@
+[
+  {
+    "model": "alibaba-token-plan/qwen3.8-flash",
+    "case": "markdown_application_review",
+    "arm": "baseline",
+    "seconds": 347.39,
+    "invalid": [],
+    "draft_sha256": "793ab5279bc6e0fed13056cc961e21087dee366e25b4aa8342ed5d55d8d7db92",
+    "file": "m0-markdown_application_review-baseline.result.json",
+    "usage": {
+      "input_tokens": 337709,
+      "cached_input_tokens": 308992,
+      "output_tokens": 20287,
+      "uncached_input_tokens": 28717
+    },
+    "full_returned_pages": {
+      "SKILL.md": 2534,
+      "references/anti-ai-patterns.md": 915,
+      "references/compression-details.md": 694,
+      "references/genre-checklist-request.md": 955,
+      "references/genre-playbook-request.md": 1101,
+      "references/genre-routing.md": 476,
+      "references/prose-lint-usage.md": 434,
+      "references/reference-index.md": 3057,
+      "references/review-checklist.md": 535,
+      "references/writing-rules.md": 1827
+    },
+    "full_returned_chars": 12528,
+    "commands": 20,
+    "failed_commands": 0,
+    "script_calls": [
+      {
+        "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"python --version; python 'C:/Users/admin/AppData/Local/Temp/cow-native-parent-ibbfy1o8/m0-markdown_application_review-baseline/workspace/.agents/skills/chinese-official-writing/scripts/prose_lint.py' --help\"",
+        "exit_code": 0
+      },
+      {
+        "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command '$ErrorActionPreference='\"'Stop'; \"'$d=Join-Path $env:TEMP '\"'gwd_check'; New-Item -ItemType Directory -Force -Path \"'$d|Out-Null\n[IO.File]::WriteAllBytes((Join-Path $d '\"'draft.txt'),[Convert]::FromBase64String('5YWz5LqO6LSt572u5omT5Y2w5py655qE55Sz6K+3CgrljZXkvY3otJ/otKPkurrvvJoKCue7vOWQiOWKnuWFrOWupOeOsOacieS4pOWPsOaJk+WNsOacuuWdh+W3suaNn+Wdj++8jOe7j+e7tOS/ruS7jeaXoOazleato+W4uOaJk+WNsO+8jOaXpeW4uOadkOaWmeaJk+WNsOW3suWPl+W9seWTjeOAguS4uua7oei2s+aXpeW4uOWKnuWFrOmcgOimge+8jOeOsOeUs+ivt+i0ree9ruaJk+WNsOacujLlj7DvvIzmr4/lj7DpooTnrpcxODAw5YWD77yM5ZCI6K6hMzYwMOWFg++8jOeUqOS6juabv+aNouW3suaNn+Wdj+iuvuWkh+OAggoK5pys5qyh6YeH6LSt5bCa5pyq5om55YeG77yM5L6b5bqU5ZWG5bCa5pyq56Gu5a6a44CC6aKE566X56eR55uu5bey5ZCR6LSi5Yqh5a6k5p+l6K+i77yM5bCa5pyq5pS25Yiw562U5aSN44CCCgrlpqXlkKbvvIzor7fmibnnpLrjgIIKCue7vOWQiOWKnuWFrOWupAoyMDI25bm0OeaciDEy5pelCg=='))\n[IO.File]::WriteAllBytes((Join-Path \"'$d '\"'body.txt'),[Convert]::FromBase64String('57u85ZCI5Yqe5YWs5a6k546w5pyJ5Lik5Y+w5omT5Y2w5py65Z2H5bey5o2f5Z2P77yM57uP57u05L+u5LuN5peg5rOV5q2j5bi45omT5Y2w77yM5pel5bi45p2Q5paZ5omT5Y2w5bey5Y+X5b2x5ZON44CC5Li65ruh6Laz5pel5bi45Yqe5YWs6ZyA6KaB77yM546w55Sz6K+36LSt572u5omT5Y2w5py6MuWPsO+8jOavj+WPsOmihOeulzE4MDDlhYPvvIzlkIjorqEzNjAw5YWD77yM55So5LqO5pu/5o2i5bey5o2f5Z2P6K6+5aSH44CCCuacrOasoemHh+i0reWwmuacquaJueWHhu+8jOS+m+W6lOWVhuWwmuacquehruWumuOAgumihOeul+enkeebruW3suWQkei0ouWKoeWupOafpeivou+8jOWwmuacquaUtuWIsOetlOWkjeOAggrlpqXlkKbvvIzor7fmibnnpLrjgII='))\n[IO.File]::WriteAllBytes((Join-Path \"'$d '\"'orig.txt'),[Convert]::FromBase64String('IyDlhbPkuo7otK3nva7miZPljbDmnLrnmoTnlLPor7cKCuWNleS9jei0n+i0o+S6uu+8mgrmnKznlLPor7flsIbku47orr7lpIfnjrDnirbjgIHph4fotK3pnIDmsYLjgIHmnInlhbPkuovpobnkuInkuKrmlrnpnaLov5vooYzor7TmmI7jgIIK57u85ZCI5Yqe5YWs5a6k55qEKirkuKTlj7DmiZPljbDmnLrlt7LmjZ/lnY8qKu+8jOe7j+e7tOS/ruS7jeaXoOazleato+W4uOaJk+WNsO+8jOaXpeW4uOadkOaWmemcgOimgeaJk+WNsOOAggotLS0K5ouf6LSt572u5omT5Y2w5py6Kioy5Y+wKirvvIzmr4/lj7DpooTnrpcxODAw5YWD77yM5ZCI6K6hMzYwMOWFg+OAgumihOeul+enkeebruW3suWQkei0ouWKoeWupOivoumXruS9hui/mOayoeacieWbnuWkjeOAguS+m+W6lOWVhuWwmuacquehruWumu+8jOmHh+i0reWwmuacquaJueWHhuOAggror7flrqHmibnjgIIK57u85ZCI5Yqe5YWs5a6kCjIwMjblubQ55pyIMTLml6U='))\nWrite-Output '--- draft length (whole) ---'\npython \\\"C:/Users/admin/AppData/Local/Temp/cow-native-parent-ibbfy1o8/m0-markdown_application_review-baseline/workspace/.agents/skills/chinese-official-writing/scripts/draft_length.py\\\" --min-chars 120 --max-chars 240 (Join-Path \"'$d '\"'draft.txt')\nWrite-Output '--- body only 120-240 ---'\npython \\\"C:/Users/admin/AppData/Local/Temp/cow-native-parent-ibbfy1o8/m0-markdown_application_review-baseline/workspace/.agents/skills/chinese-official-writing/scripts/draft_length.py\\\" --min-chars 120 --max-chars 240 (Join-Path \"'$d '\"'body.txt')\nWrite-Output '--- lint new draft ---'\npython \\\"C:/Users/admin/AppData/Local/Temp/cow-native-parent-ibbfy1o8/m0-markdown_application_review-baseline/workspace/.agents/skills/chinese-official-writing/scripts/prose_lint.py\\\" --delivery-mode draft-body --structure --format (Join-Path \"'$d '\"'draft.txt')\nWrite-Output '--- orig length + lint ---'\npython \\\"C:/Users/admin/AppData/Local/Temp/cow-native-parent-ibbfy1o8/m0-markdown_application_review-baseline/workspace/.agents/skills/chinese-official-writing/scripts/draft_length.py\\\" --min-chars 120 --max-chars 240 (Join-Path \"'$d '\"'orig.txt')\npython \\\"C:/Users/admin/AppData/Local/Temp/cow-native-parent-ibbfy1o8/m0-markdown_application_review-baseline/workspace/.agents/skills/chinese-official-writing/scripts/prose_lint.py\\\" --delivery-mode draft-body --structure --format (Join-Path \"'$d '\"'orig.txt')\"",
+        "exit_code": 0
+      },
+      {
+        "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command '$ErrorActionPreference='\"'Stop'; \"'$d=Join-Path $env:TEMP '\"'gwd_check'\n[IO.File]::WriteAllBytes((Join-Path \"'$d '\"'final.txt'),[Convert]::FromBase64String('5YWz5LqO6LSt572u5omT5Y2w5py655qE55Sz6K+3CgrljZXkvY3otJ/otKPkurrvvJoKCue7vOWQiOWKnuWFrOWupOS4pOWPsOaJk+WNsOacuuW3suaNn+Wdj++8jOe7j+e7tOS/ruS7jeaXoOazleato+W4uOaJk+WNsO+8jOaXpeW4uOadkOaWmeaJk+WNsOW3suWPl+W9seWTjeOAguS4uua7oei2s+aXpeW4uOWKnuWFrOmcgOimge+8jOeOsOeUs+ivt+i0ree9ruaJk+WNsOacujLlj7DvvIzmr4/lj7DpooTnrpcxODAw5YWD77yM5ZCI6K6hMzYwMOWFg++8jOeUqOS6juabv+aNouS4iui/sOS4pOWPsOiuvuWkh+OAggrnm67liY3ph4fotK3lsJrmnKrmibnlh4bvvIzkvpvlupTllYblsJrmnKrnoa7lrprvvJvpooTnrpfnp5Hnm67lt7LlkJHotKLliqHlrqTmn6Xor6LvvIzlsJrmnKrmlLbliLDnrZTlpI3jgIIKCuWmpeWQpu+8jOivt+aJueekuuOAggoK57u85ZCI5Yqe5YWs5a6kCjIwMjblubQ55pyIMTLml6UK'))\n[IO.File]::WriteAllBytes((Join-Path \"'$d '\"'final_body.txt'),[Convert]::FromBase64String('57u85ZCI5Yqe5YWs5a6k5Lik5Y+w5omT5Y2w5py65bey5o2f5Z2P77yM57uP57u05L+u5LuN5peg5rOV5q2j5bi45omT5Y2w77yM5pel5bi45p2Q5paZ5omT5Y2w5bey5Y+X5b2x5ZON44CC5Li65ruh6Laz5pel5bi45Yqe5YWs6ZyA6KaB77yM546w55Sz6K+36LSt572u5omT5Y2w5py6MuWPsO+8jOavj+WPsOmihOeulzE4MDDlhYPvvIzlkIjorqEzNjAw5YWD77yM55So5LqO5pu/5o2i5LiK6L+w5Lik5Y+w6K6+5aSH44CCCuebruWJjemHh+i0reWwmuacquaJueWHhu+8jOS+m+W6lOWVhuWwmuacquehruWumu+8m+mihOeul+enkeebruW3suWQkei0ouWKoeWupOafpeivou+8jOWwmuacquaUtuWIsOetlOWkjeOAggrlpqXlkKbvvIzor7fmibnnpLrjgII='))\nWrite-Output '--- whole draft 120-240 ---'\npython \\\"C:/Users/admin/AppData/Local/Temp/cow-native-parent-ibbfy1o8/m0-markdown_application_review-baseline/workspace/.agents/skills/chinese-official-writing/scripts/draft_length.py\\\" --min-chars 120 --max-chars 240 (Join-Path \"'$d '\"'final.txt')\nWrite-Output '--- body only 120-240 ---'\npython \\\"C:/Users/admin/AppData/Local/Temp/cow-native-parent-ibbfy1o8/m0-markdown_application_review-baseline/workspace/.agents/skills/chinese-official-writing/scripts/draft_length.py\\\" --min-chars 120 --max-chars 240 (Join-Path \"'$d '\"'final_body.txt')\nWrite-Output '--- lint whole ---'\npython \\\"C:/Users/admin/AppData/Local/Temp/cow-native-parent-ibbfy1o8/m0-markdown_application_review-baseline/workspace/.agents/skills/chinese-official-writing/scripts/prose_lint.py\\\" --delivery-mode draft-body --structure --format (Join-Path \"'$d '\"'final.txt')\nWrite-Output '--- render check (UTF8 read) ---'\nGet-Content -LiteralPath (Join-Path \"'$d '\"'final.txt') -Encoding UTF8 | Out-String -Width 200\"",
+        "exit_code": 0
+      },
+      {
+        "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command '$ErrorActionPreference='\"'Stop'; \"'$d=Join-Path $env:TEMP '\"'gwd_check'\n[IO.File]::WriteAllBytes((Join-Path \"'$d '\"'final2.txt'),[Convert]::FromBase64String('5YWz5LqO6LSt572u5omT5Y2w5py655qE55Sz6K+3CgrljZXkvY3otJ/otKPkurrvvJoKCue7vOWQiOWKnuWFrOWupOS4pOWPsOaJk+WNsOacuuW3suaNn+Wdj++8jOe7j+e7tOS/ruS7jeaXoOazleato+W4uOaJk+WNsO+8jOaXpeW4uOadkOaWmeaJk+WNsOW3suWPl+W9seWTjeOAguS4uua7oei2s+aXpeW4uOWKnuWFrOmcgOimge+8jOeOsOeUs+ivt+i0ree9ruaJk+WNsOacujLlj7DvvIzmr4/lj7DpooTnrpcxODAw5YWD77yM5ZCI6K6hMzYwMOWFg++8jOeUqOS6juabv+aNouS4iui/sOS4pOWPsOiuvuWkh+OAggrmnKzmrKHph4fotK3lsJrlvoXmibnlh4bvvIzkvpvlupTllYblsJrmnKrnoa7lrprjgILmiYDpnIDpooTnrpfnp5Hnm67lt7LlkJHotKLliqHlrqTmn6Xor6LvvIzlsJrmnKrmlLbliLDnrZTlpI3jgIIKCuWmpeWQpu+8jOivt+aJueekuuOAggoK57u85ZCI5Yqe5YWs5a6kCjIwMjblubQ55pyIMTLml6UK'))\n[IO.File]::WriteAllBytes((Join-Path \"'$d '\"'final2_body.txt'),[Convert]::FromBase64String('57u85ZCI5Yqe5YWs5a6k5Lik5Y+w5omT5Y2w5py65bey5o2f5Z2P77yM57uP57u05L+u5LuN5peg5rOV5q2j5bi45omT5Y2w77yM5pel5bi45p2Q5paZ5omT5Y2w5bey5Y+X5b2x5ZON44CC5Li65ruh6Laz5pel5bi45Yqe5YWs6ZyA6KaB77yM546w55Sz6K+36LSt572u5omT5Y2w5py6MuWPsO+8jOavj+WPsOmihOeulzE4MDDlhYPvvIzlkIjorqEzNjAw5YWD77yM55So5LqO5pu/5o2i5LiK6L+w5Lik5Y+w6K6+5aSH44CCCuacrOasoemHh+i0reWwmuW+heaJueWHhu+8jOS+m+W6lOWVhuWwmuacquehruWumuOAguaJgOmcgOmihOeul+enkeebruW3suWQkei0ouWKoeWupOafpeivou+8jOWwmuacquaUtuWIsOetlOWkjeOAggrlpqXlkKbvvIzor7fmibnnpLrjgII='))\nWrite-Output '--- whole 120-240 ---'\npython \\\"C:/Users/admin/AppData/Local/Temp/cow-native-parent-ibbfy1o8/m0-markdown_application_review-baseline/workspace/.agents/skills/chinese-official-writing/scripts/draft_length.py\\\" --min-chars 120 --max-chars 240 (Join-Path \"'$d '\"'final2.txt')\nWrite-Output '--- body-only 120-240 ---'\npython \\\"C:/Users/admin/AppData/Local/Temp/cow-native-parent-ibbfy1o8/m0-markdown_application_review-baseline/workspace/.agents/skills/chinese-official-writing/scripts/draft_length.py\\\" --min-chars 120 --max-chars 240 (Join-Path \"'$d '\"'final2_body.txt')\nWrite-Output '--- lint ---'\npython \\\"C:/Users/admin/AppData/Local/Temp/cow-native-parent-ibbfy1o8/m0-markdown_application_review-baseline/workspace/.agents/skills/chinese-official-writing/scripts/prose_lint.py\\\" --delivery-mode draft-body --structure --format (Join-Path \"'$d '\"'final2.txt')\nWrite-Output '--- cjk-only body count ---'\npython \\\"C:/Users/admin/AppData/Local/Temp/cow-native-parent-ibbfy1o8/m0-markdown_application_review-baseline/workspace/.agents/skills/chinese-official-writing/scripts/draft_length.py\\\" --min-chars 120 --max-chars 240 --count-mode cjk (Join-Path \"'$d '\"'final2_body.txt')\"",
+        "exit_code": 0
+      },
+      {
+        "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command '$ErrorActionPreference='\"'Stop'; \"'$d=Join-Path $env:TEMP '\"'gwd_check'\n[IO.File]::WriteAllBytes((Join-Path \"'$d '\"'final3.txt'),[Convert]::FromBase64String('5YWz5LqO6LSt572u5omT5Y2w5py655qE55Sz6K+3CgrljZXkvY3otJ/otKPkurrvvJoKCue7vOWQiOWKnuWFrOWupOS4pOWPsOaJk+WNsOacuuW3suaNn+Wdj++8jOe7j+e7tOS/ruS7jeaXoOazleato+W4uOaJk+WNsO+8jOeOsOacieiuvuWkh+W3suS4jeiDvea7oei2s+aXpeW4uOWKnuWFrOmcgOimgeOAguS4uua7oei2s+aXpeW4uOaWh+S7tuaJk+WNsOmcgOimge+8jOeOsOeUs+ivt+i0ree9ruaJk+WNsOacujLlj7DvvIzmr4/lj7DpooTnrpcxODAw5YWD77yM5ZCI6K6hMzYwMOWFg++8jOeUqOS6juabv+aNouS4iui/sOS4pOWPsOiuvuWkh+OAggrmnKzmrKHph4fotK3lsJrlvoXmibnlh4bvvIzkvpvlupTllYblsJrmnKrnoa7lrprvvIzmi5/kuo7mibnlh4blkI7mjInnqIvluo/lip7nkIbjgILmiYDpnIDpooTnrpfnp5Hnm67lt7LlkJHotKLliqHlrqTmn6Xor6LvvIzlsJrmnKrmlLbliLDnrZTlpI3jgIIKCuWmpeWQpu+8jOivt+aJueekuuOAggoK57u85ZCI5Yqe5YWs5a6kCjIwMjblubQ55pyIMTLml6UK'))\n[IO.File]::WriteAllBytes((Join-Path \"'$d '\"'final3_body.txt'),[Convert]::FromBase64String('57u85ZCI5Yqe5YWs5a6k5Lik5Y+w5omT5Y2w5py65bey5o2f5Z2P77yM57uP57u05L+u5LuN5peg5rOV5q2j5bi45omT5Y2w77yM546w5pyJ6K6+5aSH5bey5LiN6IO95ruh6Laz5pel5bi45Yqe5YWs6ZyA6KaB44CC5Li65ruh6Laz5pel5bi45paH5Lu25omT5Y2w6ZyA6KaB77yM546w55Sz6K+36LSt572u5omT5Y2w5py6MuWPsO+8jOavj+WPsOmihOeulzE4MDDlhYPvvIzlkIjorqEzNjAw5YWD77yM55So5LqO5pu/5o2i5LiK6L+w5Lik5Y+w6K6+5aSH44CCCuacrOasoemHh+i0reWwmuW+heaJueWHhu+8jOS+m+W6lOWVhuWwmuacquehruWumu+8jOaLn+S6juaJueWHhuWQjuaMieeoi+W6j+WKnueQhuOAguaJgOmcgOmihOeul+enkeebruW3suWQkei0ouWKoeWupOafpeivou+8jOWwmuacquaUtuWIsOetlOWkjeOAggrlpqXlkKbvvIzor7fmibnnpLrjgII='))\nWrite-Output '--- whole nonspace ---'; python \\\"C:/Users/admin/AppData/Local/Temp/cow-native-parent-ibbfy1o8/m0-markdown_application_review-baseline/workspace/.agents/skills/chinese-official-writing/scripts/draft_length.py\\\" --min-chars 120 --max-chars 240 (Join-Path \"'$d '\"'final3.txt')\nWrite-Output '--- body nonspace ---'; python \\\"C:/Users/admin/AppData/Local/Temp/cow-native-parent-ibbfy1o8/m0-markdown_application_review-baseline/workspace/.agents/skills/chinese-official-writing/scripts/draft_length.py\\\" --min-chars 120 --max-chars 240 (Join-Path \"'$d '\"'final3_body.txt')\nWrite-Output '--- body cjk ---'; python \\\"C:/Users/admin/AppData/Local/Temp/cow-native-parent-ibbfy1o8/m0-markdown_application_review-baseline/workspace/.agents/skills/chinese-official-writing/scripts/draft_length.py\\\" --min-chars 120 --max-chars 240 --count-mode cjk (Join-Path \"'$d '\"'final3_body.txt')\nWrite-Output '--- lint ---'; python \\\"C:/Users/admin/AppData/Local/Temp/cow-native-parent-ibbfy1o8/m0-markdown_application_review-baseline/workspace/.agents/skills/chinese-official-writing/scripts/prose_lint.py\\\" --delivery-mode draft-body --structure --format (Join-Path \"'$d '\"'final3.txt')\"",
+        "exit_code": 0
+      },
+      {
+        "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command '$ErrorActionPreference='\"'Stop'; \"'$d=Join-Path $env:TEMP '\"'gwd_check'\n[IO.File]::WriteAllBytes((Join-Path \"'$d '\"'g.txt'),[Convert]::FromBase64String('5YWz5LqO6LSt572u5omT5Y2w5py655qE55Sz6K+3CgrljZXkvY3otJ/otKPkurrvvJoKCue7vOWQiOWKnuWFrOWupOS4pOWPsOaJk+WNsOacuuW3suaNn+Wdj++8jOe7j+e7tOS/ruS7jeaXoOazleato+W4uOaJk+WNsO+8jOaXpeW4uOadkOaWmeaJk+WNsOW3suWPl+W9seWTje+8jOeOsOacieiuvuWkh+W3suS4jeiDvea7oei2s+WKnuWFrOmcgOimgeOAguS4uua7oei2s+aXpeW4uOaJk+WNsOmcgOimge+8jOeOsOeUs+ivt+i0ree9ruaJk+WNsOacujLlj7DvvIzmr4/lj7DpooTnrpcxODAw5YWD77yM5ZCI6K6hMzYwMOWFg++8jOeUqOS6juabv+aNouS4iui/sOS4pOWPsOiuvuWkh+OAggrmnKzmrKHph4fotK3lsJrlvoXmibnlh4bvvIzkvpvlupTllYblsJrmnKrnoa7lrprvvIzmi5/mibnlh4blkI7mjInnqIvluo/lip7nkIbjgILpooTnrpfnp5Hnm67lt7LlkJHotKLliqHlrqTor6Lpl67vvIzlsJrmnKrmlLbliLDnrZTlpI3jgIIKCuWmpeWQpu+8jOivt+aJueekuuOAggoK57u85ZCI5Yqe5YWs5a6kCjIwMjblubQ55pyIMTLml6UK'))\n[IO.File]::WriteAllBytes((Join-Path \"'$d '\"'g_body.txt'),[Convert]::FromBase64String('57u85ZCI5Yqe5YWs5a6k5Lik5Y+w5omT5Y2w5py65bey5o2f5Z2P77yM57uP57u05L+u5LuN5peg5rOV5q2j5bi45omT5Y2w77yM5pel5bi45p2Q5paZ5omT5Y2w5bey5Y+X5b2x5ZON77yM546w5pyJ6K6+5aSH5bey5LiN6IO95ruh6Laz5Yqe5YWs6ZyA6KaB44CC5Li65ruh6Laz5pel5bi45omT5Y2w6ZyA6KaB77yM546w55Sz6K+36LSt572u5omT5Y2w5py6MuWPsO+8jOavj+WPsOmihOeulzE4MDDlhYPvvIzlkIjorqEzNjAw5YWD77yM55So5LqO5pu/5o2i5LiK6L+w5Lik5Y+w6K6+5aSH44CCCuacrOasoemHh+i0reWwmuW+heaJueWHhu+8jOS+m+W6lOWVhuWwmuacquehruWumu+8jOaLn+aJueWHhuWQjuaMieeoi+W6j+WKnueQhuOAgumihOeul+enkeebruW3suWQkei0ouWKoeWupOivoumXru+8jOWwmuacquaUtuWIsOetlOWkjeOAggrlpqXlkKbvvIzor7fmibnnpLrjgII='))\nWrite-Output '--- whole nonspace ---'; python \\\"C:/Users/admin/AppData/Local/Temp/cow-native-parent-ibbfy1o8/m0-markdown_application_review-baseline/workspace/.agents/skills/chinese-official-writing/scripts/draft_length.py\\\" --min-chars 120 --max-chars 240 (Join-Path \"'$d '\"'g.txt')\nWrite-Output '--- body nonspace ---'; python \\\"C:/Users/admin/AppData/Local/Temp/cow-native-parent-ibbfy1o8/m0-markdown_application_review-baseline/workspace/.agents/skills/chinese-official-writing/scripts/draft_length.py\\\" --min-chars 120 --max-chars 240 (Join-Path \"'$d '\"'g_body.txt')\nWrite-Output '--- body cjk ---'; python \\\"C:/Users/admin/AppData/Local/Temp/cow-native-parent-ibbfy1o8/m0-markdown_application_review-baseline/workspace/.agents/skills/chinese-official-writing/scripts/draft_length.py\\\" --min-chars 120 --max-chars 240 --count-mode cjk (Join-Path \"'$d '\"'g_body.txt')\nWrite-Output '--- lint ---'; python \\\"C:/Users/admin/AppData/Local/Temp/cow-native-parent-ibbfy1o8/m0-markdown_application_review-baseline/workspace/.agents/skills/chinese-official-writing/scripts/prose_lint.py\\\" --delivery-mode draft-body --structure --format (Join-Path \"'$d '\"'g.txt')\"",
+        "exit_code": 0
+      }
+    ]
+  },
+  {
+    "model": "alibaba-token-plan/qwen3.8-flash",
+    "case": "markdown_application_review",
+    "arm": "candidate",
+    "seconds": 165.99,
+    "invalid": [],
+    "draft_sha256": "754e5ea9ed08c5d00c49e6507027935f6843df959b2e09da59cc55dccf076eb1",
+    "file": "m0-markdown_application_review-candidate.result.json",
+    "usage": {
+      "input_tokens": 208261,
+      "cached_input_tokens": 189952,
+      "output_tokens": 8786,
+      "uncached_input_tokens": 18309
+    },
+    "full_returned_pages": {
+      "SKILL.md": 2534,
+      "references/anti-ai-patterns.md": 898,
+      "references/genre-checklist-request.md": 955,
+      "references/genre-playbook-request.md": 1101,
+      "references/prose-lint-usage.md": 498,
+      "references/reference-index.md": 3057,
+      "references/review-checklist.md": 535,
+      "references/writing-rules.md": 1947
+    },
+    "full_returned_chars": 11525,
+    "commands": 20,
+    "failed_commands": 0,
+    "script_calls": [
+      {
+        "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'python \"C:/Users/admin/AppData/Local/Temp/cow-native-parent-ibbfy1o8/m0-markdown_application_review-candidate/workspace/.agents/skills/chinese-official-writing/scripts/draft_length.py\" --min-chars 120 --max-chars 240 \"C:/Users/admin/AppData/Local/Temp/cow-native-parent-ibbfy1o8/m0-markdown_application_review-candidate/workspace/_draft_shenqing.txt\"'",
+        "exit_code": 0
+      },
+      {
+        "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'python \"C:/Users/admin/AppData/Local/Temp/cow-native-parent-ibbfy1o8/m0-markdown_application_review-candidate/workspace/.agents/skills/chinese-official-writing/scripts/prose_lint.py\" --delivery-mode draft-body --structure --format \"C:/Users/admin/AppData/Local/Temp/cow-native-parent-ibbfy1o8/m0-markdown_application_review-candidate/workspace/_draft_shenqing.txt\"'",
+        "exit_code": 0
+      },
+      {
+        "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'python \"C:/Users/admin/AppData/Local/Temp/cow-native-parent-ibbfy1o8/m0-markdown_application_review-candidate/workspace/.agents/skills/chinese-official-writing/scripts/draft_length.py\" --min-chars 120 --max-chars 240 \"C:/Users/admin/AppData/Local/Temp/cow-native-parent-ibbfy1o8/m0-markdown_application_review-candidate/workspace/_draft_shenqing.txt\"'",
+        "exit_code": 0
+      },
+      {
+        "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'python \"C:/Users/admin/AppData/Local/Temp/cow-native-parent-ibbfy1o8/m0-markdown_application_review-candidate/workspace/.agents/skills/chinese-official-writing/scripts/prose_lint.py\" --delivery-mode draft-body --structure --format \"C:/Users/admin/AppData/Local/Temp/cow-native-parent-ibbfy1o8/m0-markdown_application_review-candidate/workspace/_draft_shenqing.txt\"'",
+        "exit_code": 0
+      },
+      {
+        "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'python \"C:/Users/admin/AppData/Local/Temp/cow-native-parent-ibbfy1o8/m0-markdown_application_review-candidate/workspace/.agents/skills/chinese-official-writing/scripts/draft_length.py\" --min-chars 120 --max-chars 240 \"C:/Users/admin/AppData/Local/Temp/cow-native-parent-ibbfy1o8/m0-markdown_application_review-candidate/workspace/_draft_shenqing.txt\"'",
+        "exit_code": 0
+      },
+      {
+        "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'python \"C:/Users/admin/AppData/Local/Temp/cow-native-parent-ibbfy1o8/m0-markdown_application_review-candidate/workspace/.agents/skills/chinese-official-writing/scripts/prose_lint.py\" --delivery-mode draft-body --structure --format \"C:/Users/admin/AppData/Local/Temp/cow-native-parent-ibbfy1o8/m0-markdown_application_review-candidate/workspace/_draft_shenqing.txt\"'",
+        "exit_code": 0
+      }
+    ]
+  },
+  {
+    "model": "minimax-cn/MiniMax-M3",
+    "case": "markdown_application_review",
+    "arm": "baseline",
+    "seconds": 130.67,
+    "invalid": [],
+    "draft_sha256": "4334c07c28bd2145daad7c4536790ac371daddbf7c4e3db26901e45ee37562a3",
+    "file": "m3-markdown_application_review-baseline.result.json",
+    "usage": {
+      "input_tokens": 591688,
+      "cached_input_tokens": 567168,
+      "output_tokens": 8564,
+      "uncached_input_tokens": 24520
+    },
+    "full_returned_pages": {
+      "SKILL.md": 2534,
+      "references/anti-ai-patterns.md": 915,
+      "references/genre-checklist-request.md": 955,
+      "references/genre-playbook-request.md": 1101,
+      "references/genre-routing.md": 476,
+      "references/prose-lint-usage.md": 434,
+      "references/reference-index.md": 3057,
+      "references/review-checklist.md": 535,
+      "references/writing-rules.md": 1827
+    },
+    "full_returned_chars": 11834,
+    "commands": 20,
+    "failed_commands": 5,
+    "script_calls": [
+      {
+        "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'python \"C:/Users/admin/AppData/Local/Temp/cow-native-parent-ibbfy1o8/m3-markdown_application_review-baseline/workspace/.agents/skills/chinese-official-writing/scripts/draft_length.py\" --min-chars 120 --max-chars 240 \"C:/Users/admin/AppData/Local/Temp/cow-native-parent-ibbfy1o8/m3-markdown_application_review-baseline/workspace/draft.txt\"'",
+        "exit_code": 0
+      },
+      {
+        "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'python \"C:/Users/admin/AppData/Local/Temp/cow-native-parent-ibbfy1o8/m3-markdown_application_review-baseline/workspace/.agents/skills/chinese-official-writing/scripts/prose_lint.py\" --delivery-mode draft-body --structure --format \"C:/Users/admin/AppData/Local/Temp/cow-native-parent-ibbfy1o8/m3-markdown_application_review-baseline/workspace/draft.txt\"'",
+        "exit_code": 0
+      }
+    ]
+  },
+  {
+    "model": "minimax-cn/MiniMax-M3",
+    "case": "markdown_application_review",
+    "arm": "candidate",
+    "seconds": 117.99,
+    "invalid": [],
+    "draft_sha256": "0c07f7d22b1e303108c74880487eb0e19926da9193385419dbca6ba6df37055c",
+    "file": "m3-markdown_application_review-candidate.result.json",
+    "usage": {
+      "input_tokens": 650401,
+      "cached_input_tokens": 604750,
+      "output_tokens": 13236,
+      "uncached_input_tokens": 45651
+    },
+    "full_returned_pages": {
+      "SKILL.md": 2534,
+      "references/anti-ai-patterns.md": 898,
+      "references/compression-details.md": 694,
+      "references/field-editing.md": 249,
+      "references/formal-addressing.md": 956,
+      "references/formulaic-language.md": 1058,
+      "references/genre-checklist-request.md": 955,
+      "references/genre-playbook-procurement-review.md": 541,
+      "references/genre-playbook-request.md": 1101,
+      "references/genre-routing.md": 476,
+      "references/prose-lint-usage.md": 498,
+      "references/reference-index.md": 3057,
+      "references/review-checklist.md": 535,
+      "references/writing-rules.md": 1947
+    },
+    "full_returned_chars": 15499,
+    "commands": 33,
+    "failed_commands": 3,
+    "script_calls": [
+      {
+        "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"python \\\"C:\\\\Users\\\\admin\\\\AppData\\\\Local\\\\Temp\\\\cow-native-parent-ibbfy1o8\\\\m3-markdown_application_review-candidate\\\\workspace\\\\.agents\\\\skills\\\\chinese-official-writing\\\\scripts\\\\draft_length.py\\\" --min-chars 120 --max-chars 240 \\\"C:\\\\Users\\\\admin\\\\AppData\\\\Local\\\\Temp\\\\cow-native-parent-ibbfy1o8\\\\m3-markdown_application_review-candidate\\\\workspace\\\\printer-application-draft.txt\\\"\"",
+        "exit_code": 1
+      },
+      {
+        "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"python \\\"C:\\\\Users\\\\admin\\\\AppData\\\\Local\\\\Temp\\\\cow-native-parent-ibbfy1o8\\\\m3-markdown_application_review-candidate\\\\workspace\\\\.agents\\\\skills\\\\chinese-official-writing\\\\scripts\\\\draft_length.py\\\" --min-chars 120 --max-chars 240 \\\"C:\\\\Users\\\\admin\\\\AppData\\\\Local\\\\Temp\\\\cow-native-parent-ibbfy1o8\\\\m3-markdown_application_review-candidate\\\\workspace\\\\printer-application-draft.txt\\\"\"",
+        "exit_code": 1
+      },
+      {
+        "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"python \\\"C:\\\\Users\\\\admin\\\\AppData\\\\Local\\\\Temp\\\\cow-native-parent-ibbfy1o8\\\\m3-markdown_application_review-candidate\\\\workspace\\\\.agents\\\\skills\\\\chinese-official-writing\\\\scripts\\\\draft_length.py\\\" --min-chars 120 --max-chars 240 \\\"C:\\\\Users\\\\admin\\\\AppData\\\\Local\\\\Temp\\\\cow-native-parent-ibbfy1o8\\\\m3-markdown_application_review-candidate\\\\workspace\\\\printer-application-draft.txt\\\"\"",
+        "exit_code": 0
+      },
+      {
+        "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"python \\\"C:\\\\Users\\\\admin\\\\AppData\\\\Local\\\\Temp\\\\cow-native-parent-ibbfy1o8\\\\m3-markdown_application_review-candidate\\\\workspace\\\\.agents\\\\skills\\\\chinese-official-writing\\\\scripts\\\\prose_lint.py\\\" --delivery-mode draft-body --structure --format \\\"C:\\\\Users\\\\admin\\\\AppData\\\\Local\\\\Temp\\\\cow-native-parent-ibbfy1o8\\\\m3-markdown_application_review-candidate\\\\workspace\\\\printer-application-draft.txt\\\"\"",
+        "exit_code": 0
+      },
+      {
+        "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"python \\\"C:\\\\Users\\\\admin\\\\AppData\\\\Local\\\\Temp\\\\cow-native-parent-ibbfy1o8\\\\m3-markdown_application_review-candidate\\\\workspace\\\\.agents\\\\skills\\\\chinese-official-writing\\\\scripts\\\\draft_length.py\\\" --min-chars 120 --max-chars 240 \\\"C:\\\\Users\\\\admin\\\\AppData\\\\Local\\\\Temp\\\\cow-native-parent-ibbfy1o8\\\\m3-markdown_application_review-candidate\\\\workspace\\\\printer-application-draft.txt\\\"\"",
+        "exit_code": 0
+      },
+      {
+        "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"python \\\"C:\\\\Users\\\\admin\\\\AppData\\\\Local\\\\Temp\\\\cow-native-parent-ibbfy1o8\\\\m3-markdown_application_review-candidate\\\\workspace\\\\.agents\\\\skills\\\\chinese-official-writing\\\\scripts\\\\prose_lint.py\\\" --delivery-mode draft-body --structure --format \\\"C:\\\\Users\\\\admin\\\\AppData\\\\Local\\\\Temp\\\\cow-native-parent-ibbfy1o8\\\\m3-markdown_application_review-candidate\\\\workspace\\\\printer-application-draft.txt\\\"\"",
+        "exit_code": 0
+      }
+    ]
+  }
+]

@@ -1,0 +1,27 @@
+{
+  "basis": "SKILL.md and references only, decoded text with LF line endings; no scripts, README, mirrors or retired Hook files",
+  "baseline_commit": "1ce7112303172478faa2392667a2de1098eb912c",
+  "candidate_head": "32ed120ae0e68cfffccca5b7f958e2fdf99c6860",
+  "baseline": {
+    "files": 51,
+    "characters": 92415,
+    "non_whitespace_characters": 86544,
+    "skill_characters": 7516
+  },
+  "candidate": {
+    "files": 68,
+    "characters": 52457,
+    "non_whitespace_characters": 49917,
+    "skill_characters": 2535
+  },
+  "reduction_percent": 43.24,
+  "non_whitespace_reduction_percent": 42.32,
+  "limits": "Static rule size, not billed tokens or runtime cost; includes R23 motion adoption and user-requested independent-review scope correction.",
+  "before_r23": {
+    "files": 68,
+    "characters": 51883,
+    "non_whitespace_characters": 49362,
+    "skill_characters": 2535
+  },
+  "candidate_fingerprint": "9fade115eae2892cf4ac2af3d9587f784d2b476c200ef32ab9eca128d50ec18a"
+}

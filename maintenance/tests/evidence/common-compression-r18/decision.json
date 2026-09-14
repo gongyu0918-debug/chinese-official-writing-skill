@@ -1,0 +1,11 @@
+{
+  "status": "adopt-development-only",
+  "candidate_fingerprint": "1640b9a5ed2b974390cbcb2d3b5523faeb1b5e57b4553d62d8044a78cac182d7",
+  "change": "Only writing-rules.md, 1750 to 1565 characters; four stages and existing responsibilities preserved.",
+  "static_review": "Zero explicit semantic losses; optional short-paragraph wording suggestion retained without changing tested bytes.",
+  "initial_native": "24 calls, 12 pairs, all technically complete. Qwen body/delivery 1 candidate, 2 baseline, 3 ties; DeepSeek 2 candidate, 0 baseline, 4 ties.",
+  "attribution_repeat": "One preregistered Qwen review pair, two calls. Candidate corrected both opening and ending drafting commentary and added no Zhang affiliation. Baseline now missed the ending commentary and added an ongoing-study status. Blind review preferred candidate on both axes.",
+  "calibration": "Budget information in the separate postscript is allowed; not requiring it again in the body. The Qwen procurement stock-quantity wording remains an ambiguity, not proof that compression removed a factual rule. Initial blind judgments are preserved. The paired reversal supports execution variation, not statistical proof that instructions have no effect.",
+  "benefit": "A smaller shared page and unchanged route count. Initial combined unique read characters decreased 1.8%; total elapsed work was nearly unchanged. No universal speed, cost or writing-quality improvement claim.",
+  "remaining": "Process narration, excessive postscripts, occasional unnecessary companion reads and script order/scope variation remain. Current 2.0 as a whole is not declared non-regressive against 1.x. No main merge, installation, push or release."
+}

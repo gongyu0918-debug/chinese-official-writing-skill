@@ -1,0 +1,155 @@
+{
+  "scope": "揭盲后日期专项校准；原始review保留；无产品改动、模型测试或提交",
+  "policy": "草稿缺落款日期时可用系统或工具确认的今天，无需额外授权；明确留空、定稿保文、业务日期与正式签发事实另判",
+  "evidence_limits": "binding与导出trace未保存完整system日期注入；没有确认模型曾调用时钟。运行日由thread.started内UUIDv7时间与trace写入时间交叉核对，UTC+8均为2026-09-13。",
+  "evidence": [
+    {
+      "id": "E1",
+      "case": "T06",
+      "arm": "A",
+      "mapped_arm": "baseline",
+      "trace": "output/three-leaf-refine-native-r7/m3-open_letter-baseline.trace.jsonl",
+      "thread_id": "01a0974a-ed0f-7d11-b619-2e63b6786dc8",
+      "started_utc8": "2026-09-13T04:24:25.103+08:00",
+      "trace_mtime_utc8": "2026-09-13T04:24:59.711+08:00"
+    },
+    {
+      "id": "E2",
+      "case": "T06",
+      "arm": "B",
+      "mapped_arm": "candidate",
+      "trace": "output/three-leaf-refine-native-r7/m3-open_letter-candidate.trace.jsonl",
+      "thread_id": "01a0974a-5dfe-76a2-a899-cef72b6739eb",
+      "started_utc8": "2026-09-13T04:23:48.478+08:00",
+      "trace_mtime_utc8": "2026-09-13T04:24:24.775+08:00"
+    },
+    {
+      "id": "E3",
+      "case": "R05",
+      "arm": "B",
+      "mapped_arm": "baseline",
+      "trace": "output/route-overlap-native-r7-minimax/m3-parallel_reply-baseline.trace.jsonl",
+      "thread_id": "01a09753-d1ba-72f1-b1db-9374b03604b5",
+      "started_utc8": "2026-09-13T04:34:07.930+08:00",
+      "trace_mtime_utc8": "2026-09-13T04:34:55.051+08:00"
+    }
+  ],
+  "findings": [
+    {
+      "group": "r7-complete-output-blind",
+      "case": "T06",
+      "arm": "A",
+      "mapped_arm": "baseline",
+      "original": "未授权落款2026年9月13日，中影响；不能证明为发布日期",
+      "date_use": "公开信草稿当天落款",
+      "today_evidence": "E1",
+      "action": "withdraw",
+      "reason": "未要求空白；草稿当天落款无需额外授权，不声称已经签发",
+      "original_winner": "A",
+      "revised_winner": "A",
+      "independent_reasons": "A围挡无据；B另有老化起因、线路维修和反馈职责扩张"
+    },
+    {
+      "group": "r7-complete-output-blind",
+      "case": "T06",
+      "arm": "B",
+      "mapped_arm": "candidate",
+      "original": "10月9日无依据，文后建议不能改变正文落定状态",
+      "date_use": "未来拟议发布日期；正文落款含日期，文后明确建议",
+      "today_evidence": "E2",
+      "action": "downgrade",
+      "remaining_severity": "low",
+      "reason": "撤销正式日期事实造假式判读；可选发布建议合理，仅保留单独复制正文可能丢失拟议条件的标识问题",
+      "original_winner": "A",
+      "revised_winner": "A",
+      "independent_reasons": "老化起因、线路维修对象和向施工方反馈无据写定"
+    },
+    {
+      "group": "route-overlap-blind-r7",
+      "case": "R05",
+      "arm": "B",
+      "mapped_arm": "baseline",
+      "original": "补2026年9月13日改变缺失状态，中影响；未获用户授权",
+      "date_use": "复函草稿当天落款及相关旁白",
+      "today_evidence": "E3",
+      "action": "withdraw",
+      "reason": "未提供不等于保持空白；系统当日草稿落款无需额外授权",
+      "original_winner": "A",
+      "revised_winner": "tie",
+      "independent_reasons": "A座椅设备后勤保障及专人设备操作职责更强；B暂无其他安排、联系人占位和旁白；综合相当"
+    },
+    {
+      "group": "route-overlap-blind-r7",
+      "case": "R05",
+      "arm": "B",
+      "mapped_arm": "baseline",
+      "original": "业务日期补2026年，中影响",
+      "date_use": "10月12日反馈截止及10月18日活动日期的业务年份",
+      "today_evidence": "E3只能证明起草年",
+      "action": "downgrade",
+      "remaining_severity": "low",
+      "reason": "落款许可不自动证明业务年；近期十月安排同年推断自然，保留年份确认项，不认定日期已写错",
+      "original_winner": "A",
+      "revised_winner": "tie",
+      "independent_reasons": "与同题落款校准合并，不靠轻微年份歧义决定胜负"
+    }
+  ],
+  "legacy_date_comments": {
+    "cases": [
+      "C01",
+      "C03",
+      "C06",
+      "C08"
+    ],
+    "actual_today_negative_cases": 0,
+    "action": "unchanged",
+    "reason": "C01/C06内容不增不减；C03/C08均省略日期，原判只是接受缺省，不能推成新草稿禁填今天"
+  },
+  "counts": {
+    "r7-complete-output-blind": {
+      "before": [
+        5,
+        4,
+        3
+      ],
+      "after": [
+        5,
+        4,
+        3
+      ]
+    },
+    "route-overlap-blind-r7": {
+      "before": [
+        3,
+        0,
+        3
+      ],
+      "after": [
+        2,
+        0,
+        4
+      ]
+    },
+    "legacy-common-guards-blind-r7": {
+      "before": [
+        3,
+        3,
+        4
+      ],
+      "after": [
+        3,
+        3,
+        4
+      ]
+    }
+  },
+  "count_order": [
+    "A",
+    "B",
+    "tie"
+  ],
+  "original_reviews_modified": false,
+  "product_modified": false,
+  "model_tests_started": false,
+  "committed": false
+}

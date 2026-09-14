@@ -1,0 +1,235 @@
+{
+  "summary": {
+    "baseline": {
+      "commands": 77,
+      "read_chars_unique": 172018,
+      "input_tokens": 1204869,
+      "cached_input_tokens": 916585,
+      "uncached_input_tokens": 288284,
+      "output_tokens": 56246,
+      "seconds": 915.71,
+      "calls": 10,
+      "technical_valid": 10,
+      "prose_lint.py": 0,
+      "draft_length.py": 0,
+      "anti_ai_page_returned": 1,
+      "tasks_with_prose_command": 0
+    },
+    "candidate": {
+      "commands": 120,
+      "read_chars_unique": 100096,
+      "input_tokens": 1446003,
+      "cached_input_tokens": 1095547,
+      "uncached_input_tokens": 350456,
+      "output_tokens": 46816,
+      "seconds": 778.08,
+      "calls": 10,
+      "technical_valid": 10,
+      "prose_lint.py": 12,
+      "draft_length.py": 12,
+      "anti_ai_page_returned": 9,
+      "tasks_with_prose_command": 8
+    }
+  },
+  "candidate_routes": [
+    {
+      "case": "feasibility_conditional_advice",
+      "main_leaves": [
+        "references/genre-playbook-feasibility.md"
+      ],
+      "repeated_full_pages": {},
+      "scripts": [
+        {
+          "script": "draft_length.py",
+          "exit_code": 0
+        },
+        {
+          "script": "prose_lint.py",
+          "exit_code": 0
+        }
+      ],
+      "anti_ai": true
+    },
+    {
+      "case": "review_rewrite",
+      "main_leaves": [
+        "references/genre-playbook-request.md"
+      ],
+      "repeated_full_pages": {},
+      "scripts": [
+        {
+          "script": "draft_length.py",
+          "exit_code": 0
+        },
+        {
+          "script": "prose_lint.py",
+          "exit_code": 0
+        },
+        {
+          "script": "draft_length.py",
+          "exit_code": 0
+        },
+        {
+          "script": "prose_lint.py",
+          "exit_code": 0
+        }
+      ],
+      "anti_ai": true
+    },
+    {
+      "case": "formal_opinion",
+      "main_leaves": [
+        "references/genre-playbook-opinion.md"
+      ],
+      "repeated_full_pages": {},
+      "scripts": [
+        {
+          "script": "draft_length.py",
+          "exit_code": 0
+        },
+        {
+          "script": "prose_lint.py",
+          "exit_code": 0
+        }
+      ],
+      "anti_ai": true
+    },
+    {
+      "case": "hosting_agenda",
+      "main_leaves": [
+        "references/genre-playbook-meeting-host.md"
+      ],
+      "repeated_full_pages": {},
+      "scripts": [
+        {
+          "script": "draft_length.py",
+          "exit_code": 0
+        },
+        {
+          "script": "prose_lint.py",
+          "exit_code": 0
+        },
+        {
+          "script": "draft_length.py",
+          "exit_code": 0
+        },
+        {
+          "script": "prose_lint.py",
+          "exit_code": 0
+        }
+      ],
+      "anti_ai": true
+    },
+    {
+      "case": "motion",
+      "main_leaves": [
+        "references/genre-playbook-motion.md"
+      ],
+      "repeated_full_pages": {},
+      "scripts": [
+        {
+          "script": "prose_lint.py",
+          "exit_code": 0
+        },
+        {
+          "script": "draft_length.py",
+          "exit_code": 0
+        }
+      ],
+      "anti_ai": true
+    },
+    {
+      "case": "server_technical_requirements",
+      "main_leaves": [
+        "references/genre-playbook-technical-requirements.md"
+      ],
+      "repeated_full_pages": {},
+      "scripts": [
+        {
+          "script": "draft_length.py",
+          "exit_code": 0
+        },
+        {
+          "script": "prose_lint.py",
+          "exit_code": 0
+        }
+      ],
+      "anti_ai": true
+    },
+    {
+      "case": "narration",
+      "main_leaves": [
+        "references/genre-playbook-narration.md"
+      ],
+      "repeated_full_pages": {},
+      "scripts": [],
+      "anti_ai": true
+    },
+    {
+      "case": "open_letter",
+      "main_leaves": [
+        "references/genre-playbook-initiative.md",
+        "references/genre-playbook-notice.md",
+        "references/genre-playbook-open-letter.md",
+        "references/genre-playbook-publication.md"
+      ],
+      "repeated_full_pages": {},
+      "scripts": [
+        {
+          "script": "draft_length.py",
+          "exit_code": 0
+        },
+        {
+          "script": "prose_lint.py",
+          "exit_code": 0
+        },
+        {
+          "script": "draft_length.py",
+          "exit_code": 0
+        },
+        {
+          "script": "prose_lint.py",
+          "exit_code": 0
+        }
+      ],
+      "anti_ai": true
+    },
+    {
+      "case": "editorial_and_news",
+      "main_leaves": [
+        "references/genre-playbook-editorial-note.md",
+        "references/genre-playbook-news-message.md"
+      ],
+      "repeated_full_pages": {},
+      "scripts": [
+        {
+          "script": "draft_length.py",
+          "exit_code": 0
+        },
+        {
+          "script": "draft_length.py",
+          "exit_code": 0
+        },
+        {
+          "script": "prose_lint.py",
+          "exit_code": 0
+        },
+        {
+          "script": "prose_lint.py",
+          "exit_code": 0
+        }
+      ],
+      "anti_ai": true
+    },
+    {
+      "case": "minutes_local",
+      "main_leaves": [
+        "references/genre-playbook-minutes.md"
+      ],
+      "repeated_full_pages": {},
+      "scripts": [],
+      "anti_ai": false
+    }
+  ],
+  "measurement": "Full returned SKILL/reference pages, per-call deduplication; commands are not proof of successful scanning. Root usage is not money and checking differs between arms."
+}

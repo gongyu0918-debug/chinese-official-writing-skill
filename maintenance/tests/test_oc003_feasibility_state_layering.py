@@ -20,7 +20,7 @@ REFERENCES = (
     "references/argument-chains.md",
     "references/genre-checklist-feasibility-review.md",
     "references/workflow.md",
-    "references/review-direct-checklist.md",
+    "references/review-checklist.md",
 )
 
 
