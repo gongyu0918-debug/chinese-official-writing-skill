@@ -28,15 +28,17 @@ def build(source: Path, output: Path) -> dict:
         data = path.read_bytes()
         if relative.as_posix() == 'SKILL.md':
             text = data.decode('utf-8-sig').replace('\r\n', '\n')
-            if text.count('name: chinese-official-writing\n') != 1:
+            legacy_name = 'name: chinese-official-writing\n'
+            current_name = f'name: {SLUG}\n'
+            if text.count(legacy_name) + text.count(current_name) != 1:
                 raise ValueError('Unexpected source skill name')
-            text = text.replace('name: chinese-official-writing\n', f'name: {SLUG}\n', 1)
+            text = text.replace(legacy_name, current_name, 1)
             text = text.replace('# 中文公文写作\n', '# 中文公文写作 2.0\n', 1)
             data = text.encode('utf-8')
-            changes.append('SKILL.md: product name and visible title only')
+            changes.append('SKILL.md: normalize independent product identity')
         elif relative.as_posix() == 'README.md':
             text = data.decode('utf-8-sig').replace('\r\n', '\n')
-            text = text.replace('# 中文公文写作\n', '# 中文公文写作 2.0\n\n独立产品标识：`chinese-official-writing-v2`。此包为 2.0 测试版；1.x 继续独立维护，既有 MIT 授权保持有效。\n', 1)
+            text = text.replace('# 中文公文写作\n', '# 中文公文写作 2.0\n\n独立产品标识：`chinese-official-writing-v2`。此包为 2.0 测试版；1.x 已归档，既有 MIT 授权保持有效。\n', 1)
             text = text.replace('Hook 后续归 Pro 专属能力，普通版保留独立运行的检查脚本。', '2.0 包含写作规则和独立运行的篇幅、文稿检查脚本。1.x 已发布的 Hook 继续遵循其 MIT 许可；2.0 未包含 Hook。')
             text = '\n'.join(line for line in text.split('\n') if not line.startswith('欢迎到[中文公文写作页面]'))
             data = text.encode('utf-8')

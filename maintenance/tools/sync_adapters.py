@@ -10,7 +10,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
 CANONICAL = ROOT / "chinese-official-writing"
-VERSION = "1.6.30"
+VERSION = "2.0.0-beta.1"
 REPOSITORY_LICENSE = "MIT"
 ROOT_LICENSE = ROOT / "LICENSE"
 CANONICAL_LICENSE = CANONICAL / "LICENSE"
@@ -60,8 +60,8 @@ def patch_openclaw_frontmatter(target: Path) -> None:
         raise RuntimeError(f"invalid OpenClaw SKILL frontmatter: {skill_path}")
     frontmatter = parts[1]
     frontmatter = re.sub(
-        r"^name: chinese-official-writing$",
-        "name: chinese_official_writing",
+        r"^name: chinese-official-writing-v2$",
+        "name: chinese_official_writing_v2",
         frontmatter,
         flags=re.M,
     )
