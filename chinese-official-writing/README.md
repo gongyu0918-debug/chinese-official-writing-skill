@@ -36,7 +36,7 @@ flowchart LR
 
 ## 版本与许可
 
-Skill 标识：`chinese-official-writing`。2.0 是原 Skill 的版本升级，当前为测试版。1.x 最后发布版本 1.6.36 保存在 GitHub 的 [legacy/1.x](https://github.com/gongyu0918-debug/chinese-official-writing-skill/tree/legacy/1.x) 分支。
+当前为 2.0 测试版。历史版本 1.6.36 见 [legacy/1.x](https://github.com/gongyu0918-debug/chinese-official-writing-skill/tree/legacy/1.x) 分支。
 
 本项目采用 [MIT License](LICENSE)，请保留版权及许可声明。
 

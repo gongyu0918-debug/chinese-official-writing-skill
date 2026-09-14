@@ -51,7 +51,7 @@ GitHub 默认分支维护 2.0；[legacy/1.x](https://github.com/gongyu0918-debug
 
 ## 获取与使用
 
-Skill 名称及安装标识仍为 **`chinese-official-writing`**，2.0 是原 Skill 的版本升级。手动安装时，将 [`chinese-official-writing/`](chinese-official-writing/) 目录复制到宿主的 Skill 目录。宿主发现技能后，用自然语言提供材料、用途和修改要求即可。
+将 [`chinese-official-writing/`](chinese-official-writing/) 目录复制到宿主的 Skill 目录，然后提供材料和写作要求即可。
 
 篇幅和文稿检查需要 Python 3；Word 文件生成需要宿主提供文档工具。具体使用见包内 [README](chinese-official-writing/README.md)。
 
