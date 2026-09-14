@@ -1,0 +1,48 @@
+[
+  {
+    "model": "minimax-cn/MiniMax-M3",
+    "case": "minutes_local",
+    "arm": "baseline",
+    "seconds": 31.72,
+    "invalid": [],
+    "draft_sha256": "e5c354785bdb1b27d69e14b202adf566db786dde17dce98411afeb3e594aa897",
+    "file": "m3-minutes_local-baseline.result.json",
+    "usage": {
+      "input_tokens": 89888,
+      "cached_input_tokens": 75885,
+      "output_tokens": 1392,
+      "uncached_input_tokens": 14003
+    },
+    "full_returned_pages": {
+      "SKILL.md": 7515
+    },
+    "full_returned_chars": 7515,
+    "commands": 8,
+    "failed_commands": 1,
+    "script_calls": []
+  },
+  {
+    "model": "minimax-cn/MiniMax-M3",
+    "case": "minutes_local",
+    "arm": "candidate",
+    "seconds": 13.51,
+    "invalid": [],
+    "draft_sha256": "e5c354785bdb1b27d69e14b202adf566db786dde17dce98411afeb3e594aa897",
+    "file": "m3-minutes_local-candidate.result.json",
+    "usage": {
+      "input_tokens": 44176,
+      "cached_input_tokens": 31802,
+      "output_tokens": 1184,
+      "uncached_input_tokens": 12374
+    },
+    "full_returned_pages": {
+      "SKILL.md": 2534,
+      "references/genre-playbook-minutes.md": 577,
+      "references/structure-editing.md": 688
+    },
+    "full_returned_chars": 3799,
+    "commands": 4,
+    "failed_commands": 0,
+    "script_calls": []
+  }
+]

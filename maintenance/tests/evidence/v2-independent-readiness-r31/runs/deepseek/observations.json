@@ -1,0 +1,85 @@
+[
+  {
+    "model": "command-code/deepseek-deepseek-v4.1-flash",
+    "case": "remediation_report",
+    "arm": "baseline",
+    "seconds": 99.53,
+    "invalid": [],
+    "draft_sha256": "70645df3f0b805a0f11c42f68e1bd85328868c1b558617b9dfb13dd37e9de8eb",
+    "file": "m2-remediation_report-baseline.result.json",
+    "usage": {
+      "input_tokens": 320441,
+      "cached_input_tokens": 289664,
+      "output_tokens": 14216,
+      "uncached_input_tokens": 30777
+    },
+    "full_returned_pages": {
+      "SKILL.md": 7515,
+      "references/compatibility-scene-routing.md": 2086,
+      "references/final-review-layers.md": 3180,
+      "references/formulaic-language.md": 3132,
+      "references/genre-checklist-report.md": 1100,
+      "references/information-selection.md": 1940,
+      "references/proofreading-checklist.md": 1402,
+      "references/prose-lint-usage.md": 526,
+      "references/reference-index.md": 3919,
+      "references/short-draft-naturalness.md": 465,
+      "references/task-route-cards.md": 1461
+    },
+    "full_returned_chars": 26726,
+    "commands": 16,
+    "failed_commands": 0,
+    "script_calls": [
+      {
+        "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'python \"C:/Users/admin/AppData/Local/Temp/cow-native-deepseek-ww2u8221/m2-remediation_report-baseline/workspace/.agents/skills/chinese-official-writing/scripts/prose_lint.py\" --encoding utf-8 --delivery-mode draft-body --format --structure \"C:/Users/admin/AppData/Local/Temp/cow-native-deepseek-ww2u8221/m2-remediation_report-baseline/workspace/整改进展报告.md\"'",
+        "exit_code": 0
+      },
+      {
+        "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'python \"C:/Users/admin/AppData/Local/Temp/cow-native-deepseek-ww2u8221/m2-remediation_report-baseline/workspace/.agents/skills/chinese-official-writing/scripts/prose_lint.py\" --encoding utf-8 --delivery-mode draft-body --format --structure \"C:/Users/admin/AppData/Local/Temp/cow-native-deepseek-ww2u8221/m2-remediation_report-baseline/workspace/整改进展报告.md\"'",
+        "exit_code": 0
+      }
+    ]
+  },
+  {
+    "model": "command-code/deepseek-deepseek-v4.1-flash",
+    "case": "remediation_report",
+    "arm": "candidate",
+    "seconds": 100.8,
+    "invalid": [],
+    "draft_sha256": "370f6751420b0a2924827cec22e392677315c879b7ff84e9eba04e13aa1d0522",
+    "file": "m2-remediation_report-candidate.result.json",
+    "usage": {
+      "input_tokens": 264788,
+      "cached_input_tokens": 248064,
+      "output_tokens": 14590,
+      "uncached_input_tokens": 16724
+    },
+    "full_returned_pages": {
+      "SKILL.md": 2534,
+      "references/anti-ai-patterns.md": 898,
+      "references/compatibility-scene-routing.md": 909,
+      "references/formal-addressing.md": 956,
+      "references/formulaic-language.md": 1058,
+      "references/genre-checklist-report.md": 303,
+      "references/genre-playbook-report.md": 1051,
+      "references/genre-routing.md": 476,
+      "references/prose-lint-usage.md": 498,
+      "references/reference-index.md": 3057,
+      "references/transaction-remediation-report.md": 335,
+      "references/writing-rules.md": 1947
+    },
+    "full_returned_chars": 14022,
+    "commands": 17,
+    "failed_commands": 1,
+    "script_calls": [
+      {
+        "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"python \\\"C:\\\\Users\\\\admin\\\\AppData\\\\Local\\\\Temp\\\\cow-native-deepseek-ww2u8221\\\\m2-remediation_report-candidate\\\\workspace\\\\.agents\\\\skills\\\\chinese-official-writing\\\\scripts\\\\draft_length.py\\\" --min-chars 80 \\\"C:\\\\Users\\\\admin\\\\AppData\\\\Local\\\\Temp\\\\cow-native-deepseek-ww2u8221\\\\m2-remediation_report-candidate\\\\workspace\\\\_draft_report.txt\\\"\"",
+        "exit_code": 0
+      },
+      {
+        "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"python \\\"C:\\\\Users\\\\admin\\\\AppData\\\\Local\\\\Temp\\\\cow-native-deepseek-ww2u8221\\\\m2-remediation_report-candidate\\\\workspace\\\\.agents\\\\skills\\\\chinese-official-writing\\\\scripts\\\\prose_lint.py\\\" --delivery-mode draft-body --structure --format \\\"C:\\\\Users\\\\admin\\\\AppData\\\\Local\\\\Temp\\\\cow-native-deepseek-ww2u8221\\\\m2-remediation_report-candidate\\\\workspace\\\\_draft_report.txt\\\"\"",
+        "exit_code": 0
+      }
+    ]
+  }
+]

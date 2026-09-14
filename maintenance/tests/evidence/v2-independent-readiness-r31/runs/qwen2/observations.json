@@ -1,0 +1,81 @@
+[
+  {
+    "model": "alibaba-token-plan-2/qwen3.8-flash",
+    "case": "news_commentary",
+    "arm": "baseline",
+    "seconds": 161.5,
+    "invalid": [],
+    "draft_sha256": "7f6594c5f870ed8dadae164c91932f2c2a1a547a4484a91b98dccca82afc4549",
+    "file": "m1-news_commentary-baseline.result.json",
+    "usage": {
+      "input_tokens": 376013,
+      "cached_input_tokens": 343680,
+      "output_tokens": 8386,
+      "uncached_input_tokens": 32333
+    },
+    "full_returned_pages": {
+      "SKILL.md": 7515,
+      "references/anti-ai-patterns.md": 5339,
+      "references/compatibility-scene-routing.md": 2086,
+      "references/genre-playbook-news-commentary.md": 377,
+      "references/information-selection.md": 1940,
+      "references/proofreading-checklist.md": 1402,
+      "references/prose-lint-usage.md": 526,
+      "references/reference-index.md": 3919,
+      "references/short-draft-naturalness.md": 465
+    },
+    "full_returned_chars": 23569,
+    "commands": 12,
+    "failed_commands": 0,
+    "script_calls": [
+      {
+        "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"python 'C:/Users/admin/AppData/Local/Temp/cow-native-qwen2-1km0z12v/m1-news_commentary-baseline/workspace/.agents/skills/chinese-official-writing/scripts/prose_lint.py' 'C:/Users/admin/AppData/Local/Temp/cow-native-qwen2-1km0z12v/m1-news_commentary-baseline/tmp/commentary-lint-draft/draft.txt' --structure --format\"",
+        "exit_code": 0
+      }
+    ]
+  },
+  {
+    "model": "alibaba-token-plan-2/qwen3.8-flash",
+    "case": "news_commentary",
+    "arm": "candidate",
+    "seconds": 79.26,
+    "invalid": [],
+    "draft_sha256": "1d48ec3308113e683a132eeb1d3487f7ea5bbde3dc8fbdd8fffc97d53c066482",
+    "file": "m1-news_commentary-candidate.result.json",
+    "usage": {
+      "input_tokens": 141039,
+      "cached_input_tokens": 126976,
+      "output_tokens": 4546,
+      "uncached_input_tokens": 14063
+    },
+    "full_returned_pages": {
+      "SKILL.md": 2534,
+      "references/anti-ai-patterns.md": 898,
+      "references/genre-playbook-news-commentary.md": 429,
+      "references/prose-lint-usage.md": 498,
+      "references/reference-index.md": 3057,
+      "references/writing-rules.md": 1947
+    },
+    "full_returned_chars": 9363,
+    "commands": 12,
+    "failed_commands": 0,
+    "script_calls": [
+      {
+        "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'python \"C:/Users/admin/AppData/Local/Temp/cow-native-qwen2-1km0z12v/m1-news_commentary-candidate/workspace/.agents/skills/chinese-official-writing/scripts/draft_length.py\" --min-chars 360 --max-chars 440 \"C:/Users/admin/AppData/Local/Temp/cow-native-qwen2-1km0z12v/m1-news_commentary-candidate/workspace/draft_commentary.txt\"'",
+        "exit_code": 0
+      },
+      {
+        "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'python \"C:/Users/admin/AppData/Local/Temp/cow-native-qwen2-1km0z12v/m1-news_commentary-candidate/workspace/.agents/skills/chinese-official-writing/scripts/prose_lint.py\" --delivery-mode draft-body --structure --format \"C:/Users/admin/AppData/Local/Temp/cow-native-qwen2-1km0z12v/m1-news_commentary-candidate/workspace/draft_commentary.txt\"'",
+        "exit_code": 0
+      },
+      {
+        "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'python \"C:/Users/admin/AppData/Local/Temp/cow-native-qwen2-1km0z12v/m1-news_commentary-candidate/workspace/.agents/skills/chinese-official-writing/scripts/prose_lint.py\" --delivery-mode draft-body --structure --format \"C:/Users/admin/AppData/Local/Temp/cow-native-qwen2-1km0z12v/m1-news_commentary-candidate/workspace/draft_commentary.txt\"'",
+        "exit_code": 0
+      },
+      {
+        "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'python \"C:/Users/admin/AppData/Local/Temp/cow-native-qwen2-1km0z12v/m1-news_commentary-candidate/workspace/.agents/skills/chinese-official-writing/scripts/draft_length.py\" --min-chars 360 --max-chars 440 \"C:/Users/admin/AppData/Local/Temp/cow-native-qwen2-1km0z12v/m1-news_commentary-candidate/workspace/draft_commentary.txt\"'",
+        "exit_code": 0
+      }
+    ]
+  }
+]

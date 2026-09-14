@@ -1,0 +1,815 @@
+[
+  {
+    "model": "alibaba-token-plan/qwen3.8-flash",
+    "case": "markdown_application_review",
+    "arm": "baseline",
+    "seconds": 192.73,
+    "invalid": [],
+    "draft_sha256": "bbb0ab0a720e155a757ba10bda93de263d9b4e04017de06f5833b84424e0e781",
+    "file": "m0-markdown_application_review-baseline.result.json",
+    "usage": {
+      "input_tokens": 214713,
+      "cached_input_tokens": 185216,
+      "output_tokens": 10593,
+      "uncached_input_tokens": 29497
+    },
+    "full_returned_pages": {
+      "SKILL.md": 7515,
+      "references/genre-checklist-request.md": 807,
+      "references/genre-playbook-request.md": 1387,
+      "references/information-selection.md": 1940,
+      "references/reference-index.md": 3919,
+      "references/task-route-cards.md": 1461
+    },
+    "full_returned_chars": 17029,
+    "commands": 7,
+    "failed_commands": 0,
+    "script_calls": []
+  },
+  {
+    "model": "alibaba-token-plan/qwen3.8-flash",
+    "case": "markdown_application_review",
+    "arm": "candidate",
+    "seconds": 291.74,
+    "invalid": [],
+    "draft_sha256": "3f1647ac3e44089f2e643d80f40cc7385c38363c01ab5a551723bd5c3835de9e",
+    "file": "m0-markdown_application_review-candidate.result.json",
+    "usage": {
+      "input_tokens": 273548,
+      "cached_input_tokens": 245504,
+      "output_tokens": 18414,
+      "uncached_input_tokens": 28044
+    },
+    "full_returned_pages": {
+      "SKILL.md": 2534,
+      "references/anti-ai-patterns.md": 898,
+      "references/genre-checklist-request.md": 955,
+      "references/genre-playbook-request.md": 1101,
+      "references/prose-lint-usage.md": 498,
+      "references/reference-index.md": 3057,
+      "references/review-checklist.md": 535,
+      "references/writing-rules.md": 1947
+    },
+    "full_returned_chars": 11525,
+    "commands": 33,
+    "failed_commands": 0,
+    "script_calls": [
+      {
+        "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"python \\\"C:\\\\Users\\\\admin\\\\AppData\\\\Local\\\\Temp\\\\cow-native-core-fkvyrjmh\\\\m0-markdown_application_review-candidate\\\\workspace\\\\.agents\\\\skills\\\\chinese-official-writing\\\\scripts\\\\draft_length.py\\\" --min-chars 120 --max-chars 240 --json \\\"C:\\\\Users\\\\admin\\\\AppData\\\\Local\\\\Temp\\\\cow-native-core-fkvyrjmh\\\\m0-markdown_application_review-candidate\\\\workspace\\\\_draft_print_application.txt\\\"\"",
+        "exit_code": 0
+      },
+      {
+        "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"python \\\"C:\\\\Users\\\\admin\\\\AppData\\\\Local\\\\Temp\\\\cow-native-core-fkvyrjmh\\\\m0-markdown_application_review-candidate\\\\workspace\\\\.agents\\\\skills\\\\chinese-official-writing\\\\scripts\\\\prose_lint.py\\\" --delivery-mode draft-body --structure --format \\\"C:\\\\Users\\\\admin\\\\AppData\\\\Local\\\\Temp\\\\cow-native-core-fkvyrjmh\\\\m0-markdown_application_review-candidate\\\\workspace\\\\_draft_print_application.txt\\\"\"",
+        "exit_code": 0
+      },
+      {
+        "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"python \\\"C:\\\\Users\\\\admin\\\\AppData\\\\Local\\\\Temp\\\\cow-native-core-fkvyrjmh\\\\m0-markdown_application_review-candidate\\\\workspace\\\\.agents\\\\skills\\\\chinese-official-writing\\\\scripts\\\\draft_length.py\\\" --min-chars 120 --max-chars 240 --json \\\"C:\\\\Users\\\\admin\\\\AppData\\\\Local\\\\Temp\\\\cow-native-core-fkvyrjmh\\\\m0-markdown_application_review-candidate\\\\workspace\\\\_draft_v2.txt\\\"\"",
+        "exit_code": 0
+      },
+      {
+        "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"python \\\"C:\\\\Users\\\\admin\\\\AppData\\\\Local\\\\Temp\\\\cow-native-core-fkvyrjmh\\\\m0-markdown_application_review-candidate\\\\workspace\\\\.agents\\\\skills\\\\chinese-official-writing\\\\scripts\\\\prose_lint.py\\\" --delivery-mode draft-body --structure --format \\\"C:\\\\Users\\\\admin\\\\AppData\\\\Local\\\\Temp\\\\cow-native-core-fkvyrjmh\\\\m0-markdown_application_review-candidate\\\\workspace\\\\_draft_v2.txt\\\"\"",
+        "exit_code": 0
+      },
+      {
+        "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"python \\\"C:\\\\Users\\\\admin\\\\AppData\\\\Local\\\\Temp\\\\cow-native-core-fkvyrjmh\\\\m0-markdown_application_review-candidate\\\\workspace\\\\.agents\\\\skills\\\\chinese-official-writing\\\\scripts\\\\prose_lint.py\\\" --delivery-mode draft-body --structure --format \\\"C:\\\\Users\\\\admin\\\\AppData\\\\Local\\\\Temp\\\\cow-native-core-fkvyrjmh\\\\m0-markdown_application_review-candidate\\\\workspace\\\\_orig.txt\\\"\"",
+        "exit_code": 0
+      },
+      {
+        "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"python \\\"C:\\\\Users\\\\admin\\\\AppData\\\\Local\\\\Temp\\\\cow-native-core-fkvyrjmh\\\\m0-markdown_application_review-candidate\\\\workspace\\\\.agents\\\\skills\\\\chinese-official-writing\\\\scripts\\\\draft_length.py\\\" --min-chars 120 --max-chars 240 --json \\\"C:\\\\Users\\\\admin\\\\AppData\\\\Local\\\\Temp\\\\cow-native-core-fkvyrjmh\\\\m0-markdown_application_review-candidate\\\\workspace\\\\_draft_v3.txt\\\"\"",
+        "exit_code": 0
+      },
+      {
+        "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"python \\\"C:\\\\Users\\\\admin\\\\AppData\\\\Local\\\\Temp\\\\cow-native-core-fkvyrjmh\\\\m0-markdown_application_review-candidate\\\\workspace\\\\.agents\\\\skills\\\\chinese-official-writing\\\\scripts\\\\prose_lint.py\\\" --delivery-mode draft-body --structure --format \\\"C:\\\\Users\\\\admin\\\\AppData\\\\Local\\\\Temp\\\\cow-native-core-fkvyrjmh\\\\m0-markdown_application_review-candidate\\\\workspace\\\\_draft_v3.txt\\\"\"",
+        "exit_code": 0
+      },
+      {
+        "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"python \\\"C:\\\\Users\\\\admin\\\\AppData\\\\Local\\\\Temp\\\\cow-native-core-fkvyrjmh\\\\m0-markdown_application_review-candidate\\\\workspace\\\\.agents\\\\skills\\\\chinese-official-writing\\\\scripts\\\\draft_length.py\\\" --json \\\"C:\\\\Users\\\\admin\\\\AppData\\\\Local\\\\Temp\\\\cow-native-core-fkvyrjmh\\\\m0-markdown_application_review-candidate\\\\workspace\\\\_draft_v3_body.txt\\\"\"",
+        "exit_code": 0
+      },
+      {
+        "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"python \\\"C:\\\\Users\\\\admin\\\\AppData\\\\Local\\\\Temp\\\\cow-native-core-fkvyrjmh\\\\m0-markdown_application_review-candidate\\\\workspace\\\\.agents\\\\skills\\\\chinese-official-writing\\\\scripts\\\\draft_length.py\\\" --min-chars 120 --max-chars 240 --json \\\"C:\\\\Users\\\\admin\\\\AppData\\\\Local\\\\Temp\\\\cow-native-core-fkvyrjmh\\\\m0-markdown_application_review-candidate\\\\workspace\\\\_final.txt\\\"\"",
+        "exit_code": 0
+      },
+      {
+        "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"python \\\"C:\\\\Users\\\\admin\\\\AppData\\\\Local\\\\Temp\\\\cow-native-core-fkvyrjmh\\\\m0-markdown_application_review-candidate\\\\workspace\\\\.agents\\\\skills\\\\chinese-official-writing\\\\scripts\\\\prose_lint.py\\\" --delivery-mode draft-body --structure --format \\\"C:\\\\Users\\\\admin\\\\AppData\\\\Local\\\\Temp\\\\cow-native-core-fkvyrjmh\\\\m0-markdown_application_review-candidate\\\\workspace\\\\_final.txt\\\"\"",
+        "exit_code": 0
+      },
+      {
+        "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"python \\\"C:\\\\Users\\\\admin\\\\AppData\\\\Local\\\\Temp\\\\cow-native-core-fkvyrjmh\\\\m0-markdown_application_review-candidate\\\\workspace\\\\.agents\\\\skills\\\\chinese-official-writing\\\\scripts\\\\draft_length.py\\\" --min-chars 120 --max-chars 240 --json \\\"C:\\\\Users\\\\admin\\\\AppData\\\\Local\\\\Temp\\\\cow-native-core-fkvyrjmh\\\\m0-markdown_application_review-candidate\\\\workspace\\\\_final_body.txt\\\"\"",
+        "exit_code": 0
+      },
+      {
+        "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"python \\\"C:\\\\Users\\\\admin\\\\AppData\\\\Local\\\\Temp\\\\cow-native-core-fkvyrjmh\\\\m0-markdown_application_review-candidate\\\\workspace\\\\.agents\\\\skills\\\\chinese-official-writing\\\\scripts\\\\draft_length.py\\\" --min-chars 120 --max-chars 240 --json \\\"C:\\\\Users\\\\admin\\\\AppData\\\\Local\\\\Temp\\\\cow-native-core-fkvyrjmh\\\\m0-markdown_application_review-candidate\\\\workspace\\\\_final_v4.txt\\\"\"",
+        "exit_code": 0
+      },
+      {
+        "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"python \\\"C:\\\\Users\\\\admin\\\\AppData\\\\Local\\\\Temp\\\\cow-native-core-fkvyrjmh\\\\m0-markdown_application_review-candidate\\\\workspace\\\\.agents\\\\skills\\\\chinese-official-writing\\\\scripts\\\\prose_lint.py\\\" --delivery-mode draft-body --structure --format \\\"C:\\\\Users\\\\admin\\\\AppData\\\\Local\\\\Temp\\\\cow-native-core-fkvyrjmh\\\\m0-markdown_application_review-candidate\\\\workspace\\\\_final_v4.txt\\\"\"",
+        "exit_code": 0
+      }
+    ]
+  },
+  {
+    "model": "alibaba-token-plan/qwen3.8-flash",
+    "case": "markdown_notice_requested",
+    "arm": "baseline",
+    "seconds": 89.32,
+    "invalid": [],
+    "draft_sha256": "69e6be051c0577424c1d774c7e91e0c02ff8ff47fde1399b3de6cc51c1bdb824",
+    "file": "m0-markdown_notice_requested-baseline.result.json",
+    "usage": {
+      "input_tokens": 201012,
+      "cached_input_tokens": 173312,
+      "output_tokens": 5165,
+      "uncached_input_tokens": 27700
+    },
+    "full_returned_pages": {
+      "SKILL.md": 7515,
+      "references/information-selection.md": 1940,
+      "references/reference-index.md": 3919,
+      "references/task-route-cards.md": 1461
+    },
+    "full_returned_chars": 14835,
+    "commands": 5,
+    "failed_commands": 0,
+    "script_calls": []
+  },
+  {
+    "model": "alibaba-token-plan/qwen3.8-flash",
+    "case": "markdown_notice_requested",
+    "arm": "candidate",
+    "seconds": 184.77,
+    "invalid": [],
+    "draft_sha256": "f33aab1bc8eeb984d719d86c01c299334fad7af236e752c774c46ac3d47b5d68",
+    "file": "m0-markdown_notice_requested-candidate.result.json",
+    "usage": {
+      "input_tokens": 173146,
+      "cached_input_tokens": 153344,
+      "output_tokens": 5557,
+      "uncached_input_tokens": 19802
+    },
+    "full_returned_pages": {
+      "SKILL.md": 2534,
+      "references/anti-ai-patterns.md": 898,
+      "references/genre-playbook-notice.md": 502,
+      "references/prose-lint-usage.md": 498,
+      "references/reference-index.md": 3057,
+      "references/writing-rules.md": 1947
+    },
+    "full_returned_chars": 9436,
+    "commands": 20,
+    "failed_commands": 1,
+    "script_calls": [
+      {
+        "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'python \"C:/Users/admin/AppData/Local/Temp/cow-native-core-fkvyrjmh/m0-markdown_notice_requested-candidate/workspace/.agents/skills/chinese-official-writing/scripts/draft_length.py\" --min-chars 80 --max-chars 160 \"C:/Users/admin/AppData/Local/Temp/cow-native-core-fkvyrjmh/m0-markdown_notice_requested-candidate/workspace/notice_draft.md\"'",
+        "exit_code": 0
+      },
+      {
+        "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'python \"C:/Users/admin/AppData/Local/Temp/cow-native-core-fkvyrjmh/m0-markdown_notice_requested-candidate/workspace/.agents/skills/chinese-official-writing/scripts/prose_lint.py\" --delivery-mode draft-body --structure --format --allow-markdown \"C:/Users/admin/AppData/Local/Temp/cow-native-core-fkvyrjmh/m0-markdown_notice_requested-candidate/workspace/notice_draft.md\"'",
+        "exit_code": 0
+      },
+      {
+        "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'python \"C:/Users/admin/AppData/Local/Temp/cow-native-core-fkvyrjmh/m0-markdown_notice_requested-candidate/workspace/.agents/skills/chinese-official-writing/scripts/draft_length.py\" --min-chars 80 --max-chars 160 \"C:/Users/admin/AppData/Local/Temp/cow-native-core-fkvyrjmh/m0-markdown_notice_requested-candidate/workspace/notice_draft.md\"'",
+        "exit_code": 0
+      },
+      {
+        "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'python \"C:/Users/admin/AppData/Local/Temp/cow-native-core-fkvyrjmh/m0-markdown_notice_requested-candidate/workspace/.agents/skills/chinese-official-writing/scripts/prose_lint.py\" --delivery-mode draft-body --structure --format --allow-markdown \"C:/Users/admin/AppData/Local/Temp/cow-native-core-fkvyrjmh/m0-markdown_notice_requested-candidate/workspace/notice_draft.md\"'",
+        "exit_code": 0
+      },
+      {
+        "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'python \"C:/Users/admin/AppData/Local/Temp/cow-native-core-fkvyrjmh/m0-markdown_notice_requested-candidate/workspace/.agents/skills/chinese-official-writing/scripts/draft_length.py\" --min-chars 80 --max-chars 160 \"C:/Users/admin/AppData/Local/Temp/cow-native-core-fkvyrjmh/m0-markdown_notice_requested-candidate/workspace/notice_draft.md\"'",
+        "exit_code": 0
+      },
+      {
+        "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'python \"C:/Users/admin/AppData/Local/Temp/cow-native-core-fkvyrjmh/m0-markdown_notice_requested-candidate/workspace/.agents/skills/chinese-official-writing/scripts/prose_lint.py\" --delivery-mode draft-body --structure --format --allow-markdown \"C:/Users/admin/AppData/Local/Temp/cow-native-core-fkvyrjmh/m0-markdown_notice_requested-candidate/workspace/notice_draft.md\"'",
+        "exit_code": 0
+      }
+    ]
+  },
+  {
+    "model": "alibaba-token-plan/qwen3.8-flash",
+    "case": "minutes_local",
+    "arm": "baseline",
+    "seconds": 41.19,
+    "invalid": [],
+    "draft_sha256": "23f1314a013bb746afb2f5996dc3aabc0b328c76850b081f677596a053304ffe",
+    "file": "m0-minutes_local-baseline.result.json",
+    "usage": {
+      "input_tokens": 52339,
+      "cached_input_tokens": 34432,
+      "output_tokens": 2020,
+      "uncached_input_tokens": 17907
+    },
+    "full_returned_pages": {
+      "SKILL.md": 7515,
+      "references/genre-playbook-minutes.md": 791,
+      "references/information-selection.md": 1940,
+      "references/structure-editing.md": 688,
+      "references/task-route-cards.md": 1461
+    },
+    "full_returned_chars": 12395,
+    "commands": 6,
+    "failed_commands": 0,
+    "script_calls": []
+  },
+  {
+    "model": "alibaba-token-plan/qwen3.8-flash",
+    "case": "minutes_local",
+    "arm": "candidate",
+    "seconds": 63.14,
+    "invalid": [],
+    "draft_sha256": "748d424c29c1a2e85142651c87da46c678ba3fa1365f87bfe04356cf4613f3b0",
+    "file": "m0-minutes_local-candidate.result.json",
+    "usage": {
+      "input_tokens": 90819,
+      "cached_input_tokens": 77696,
+      "output_tokens": 3282,
+      "uncached_input_tokens": 13123
+    },
+    "full_returned_pages": {
+      "SKILL.md": 2534,
+      "references/anti-ai-patterns.md": 898,
+      "references/genre-playbook-minutes.md": 577,
+      "references/prose-lint-usage.md": 498,
+      "references/writing-rules.md": 1947
+    },
+    "full_returned_chars": 6454,
+    "commands": 10,
+    "failed_commands": 0,
+    "script_calls": [
+      {
+        "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'python \"C:/Users/admin/AppData/Local/Temp/cow-native-core-fkvyrjmh/m0-minutes_local-candidate/workspace/.agents/skills/chinese-official-writing/scripts/prose_lint.py\" --delivery-mode draft-body --structure --format \"C:/Users/admin/AppData/Local/Temp/cow-native-core-fkvyrjmh/m0-minutes_local-candidate/workspace/draft_minutes_v2.txt\"'",
+        "exit_code": 0
+      },
+      {
+        "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'python \"C:/Users/admin/AppData/Local/Temp/cow-native-core-fkvyrjmh/m0-minutes_local-candidate/workspace/.agents/skills/chinese-official-writing/scripts/draft_length.py\" --min-chars 1 \"C:/Users/admin/AppData/Local/Temp/cow-native-core-fkvyrjmh/m0-minutes_local-candidate/workspace/draft_minutes_v2.txt\"'",
+        "exit_code": 0
+      }
+    ]
+  },
+  {
+    "model": "alibaba-token-plan/qwen3.8-flash",
+    "case": "motion_separate_amendments",
+    "arm": "baseline",
+    "seconds": 325.66,
+    "invalid": [],
+    "draft_sha256": "e72de106be4e8162b5a056f9e8a58a83d86f36b4bc25817d555609b5dac1271c",
+    "file": "m0-motion_separate_amendments-baseline.result.json",
+    "usage": {
+      "input_tokens": 196364,
+      "cached_input_tokens": 160256,
+      "output_tokens": 16221,
+      "uncached_input_tokens": 36108
+    },
+    "full_returned_pages": {
+      "SKILL.md": 7515,
+      "references/anti-ai-patterns.md": 5339,
+      "references/argument-chains.md": 1736,
+      "references/genre-checklist.md": 2737,
+      "references/genre-playbook-institution-rules.md": 1395,
+      "references/genre-routing.md": 3102,
+      "references/handling-elements.md": 3135,
+      "references/information-selection.md": 1940,
+      "references/official-style.md": 2230,
+      "references/reference-index.md": 3919
+    },
+    "full_returned_chars": 33048,
+    "commands": 13,
+    "failed_commands": 0,
+    "script_calls": []
+  },
+  {
+    "model": "alibaba-token-plan/qwen3.8-flash",
+    "case": "motion_separate_amendments",
+    "arm": "candidate",
+    "seconds": 330.61,
+    "invalid": [],
+    "draft_sha256": "0c79309654526554fb160392284df2e2c19387ea3951bb3d7c357ef3469f4501",
+    "file": "m0-motion_separate_amendments-candidate.result.json",
+    "usage": {
+      "input_tokens": 225967,
+      "cached_input_tokens": 203392,
+      "output_tokens": 21164,
+      "uncached_input_tokens": 22575
+    },
+    "full_returned_pages": {
+      "SKILL.md": 2534,
+      "references/anti-ai-patterns.md": 898,
+      "references/format-gbt9704.md": 3244,
+      "references/formulaic-language.md": 1058,
+      "references/genre-playbook-motion.md": 788,
+      "references/prose-lint-usage.md": 498,
+      "references/reference-index.md": 3057,
+      "references/writing-rules.md": 1947
+    },
+    "full_returned_chars": 14024,
+    "commands": 14,
+    "failed_commands": 0,
+    "script_calls": [
+      {
+        "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'python --version; python \"C:/Users/admin/AppData/Local/Temp/cow-native-core-fkvyrjmh/m0-motion_separate_amendments-candidate/workspace/.agents/skills/chinese-official-writing/scripts/prose_lint.py\" --help'",
+        "exit_code": 0
+      },
+      {
+        "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'python \"C:/Users/admin/AppData/Local/Temp/cow-native-core-fkvyrjmh/m0-motion_separate_amendments-candidate/workspace/.agents/skills/chinese-official-writing/scripts/draft_length.py\" --min-chars 80 \"C:/Users/admin/AppData/Local/Temp/cow-native-core-fkvyrjmh/m0-motion_separate_amendments-candidate/tmp/hailan-draft-m07/draft.txt\"'",
+        "exit_code": 0
+      },
+      {
+        "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'python \"C:/Users/admin/AppData/Local/Temp/cow-native-core-fkvyrjmh/m0-motion_separate_amendments-candidate/workspace/.agents/skills/chinese-official-writing/scripts/prose_lint.py\" --delivery-mode gap-note-allowed --structure --format \"C:/Users/admin/AppData/Local/Temp/cow-native-core-fkvyrjmh/m0-motion_separate_amendments-candidate/tmp/hailan-draft-m07/draft.txt\"'",
+        "exit_code": 0
+      }
+    ]
+  },
+  {
+    "model": "alibaba-token-plan/qwen3.8-flash",
+    "case": "narration",
+    "arm": "baseline",
+    "seconds": 118.66,
+    "invalid": [],
+    "draft_sha256": "c98b1c24b775d2ad110dde83e4ddf52dd0acf9553510c9f065ff41388a14f5d5",
+    "file": "m0-narration-baseline.result.json",
+    "usage": {
+      "input_tokens": 120929,
+      "cached_input_tokens": 93440,
+      "output_tokens": 6107,
+      "uncached_input_tokens": 27489
+    },
+    "full_returned_pages": {
+      "SKILL.md": 7515,
+      "references/anti-ai-patterns.md": 5339,
+      "references/formulaic-language.md": 3132,
+      "references/information-selection.md": 1940,
+      "references/reference-index.md": 3919
+    },
+    "full_returned_chars": 21845,
+    "commands": 7,
+    "failed_commands": 0,
+    "script_calls": []
+  },
+  {
+    "model": "alibaba-token-plan/qwen3.8-flash",
+    "case": "narration",
+    "arm": "candidate",
+    "seconds": 183.77,
+    "invalid": [],
+    "draft_sha256": "f02e12fd5a226791c01ce1f200c97a48c60cbd15e2e7a85e696dda1f27124272",
+    "file": "m0-narration-candidate.result.json",
+    "usage": {
+      "input_tokens": 182013,
+      "cached_input_tokens": 161920,
+      "output_tokens": 7998,
+      "uncached_input_tokens": 20093
+    },
+    "full_returned_pages": {
+      "SKILL.md": 2534,
+      "references/anti-ai-patterns.md": 898,
+      "references/genre-playbook-narration.md": 625,
+      "references/prose-lint-usage.md": 498,
+      "references/reference-index.md": 3057,
+      "references/writing-rules.md": 1947
+    },
+    "full_returned_chars": 9559,
+    "commands": 13,
+    "failed_commands": 0,
+    "script_calls": [
+      {
+        "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'python -X utf8 \"C:/Users/admin/AppData/Local/Temp/cow-native-core-fkvyrjmh/m0-narration-candidate/workspace/.agents/skills/chinese-official-writing/scripts/draft_length.py\" --min-chars 80 \"C:/Users/admin/AppData/Local/Temp/cow-native-m0-draft.txt\"'",
+        "exit_code": 0
+      },
+      {
+        "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'python -X utf8 \"C:/Users/admin/AppData/Local/Temp/cow-native-core-fkvyrjmh/m0-narration-candidate/workspace/.agents/skills/chinese-official-writing/scripts/prose_lint.py\" --delivery-mode draft-body --structure --format \"C:/Users/admin/AppData/Local/Temp/cow-native-m0-draft.txt\"'",
+        "exit_code": 0
+      },
+      {
+        "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'python -X utf8 \"C:/Users/admin/AppData/Local/Temp/cow-native-core-fkvyrjmh/m0-narration-candidate/workspace/.agents/skills/chinese-official-writing/scripts/draft_length.py\" --min-chars 80 \"C:/Users/admin/AppData/Local/Temp/cow-native-m0-draft.txt\"'",
+        "exit_code": 0
+      },
+      {
+        "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'python -X utf8 \"C:/Users/admin/AppData/Local/Temp/cow-native-core-fkvyrjmh/m0-narration-candidate/workspace/.agents/skills/chinese-official-writing/scripts/prose_lint.py\" --delivery-mode draft-body --structure --format \"C:/Users/admin/AppData/Local/Temp/cow-native-m0-draft.txt\"'",
+        "exit_code": 0
+      }
+    ]
+  },
+  {
+    "model": "alibaba-token-plan/qwen3.8-flash",
+    "case": "publication",
+    "arm": "baseline",
+    "seconds": 120.18,
+    "invalid": [],
+    "draft_sha256": "11fa51542bb1589fa443ca4228f38fe20f0cc48a0dac950417d015966b344d9c",
+    "file": "m0-publication-baseline.result.json",
+    "usage": {
+      "input_tokens": 74648,
+      "cached_input_tokens": 58880,
+      "output_tokens": 6304,
+      "uncached_input_tokens": 15768
+    },
+    "full_returned_pages": {
+      "SKILL.md": 7515,
+      "references/formulaic-language.md": 3132,
+      "references/information-selection.md": 1940,
+      "references/reference-index.md": 3919,
+      "references/task-route-cards.md": 1461
+    },
+    "full_returned_chars": 17967,
+    "commands": 5,
+    "failed_commands": 0,
+    "script_calls": []
+  },
+  {
+    "model": "alibaba-token-plan/qwen3.8-flash",
+    "case": "publication",
+    "arm": "candidate",
+    "seconds": 102.17,
+    "invalid": [],
+    "draft_sha256": "78e5afa00795647350bb7c2784284e8a917a3255f1fc8cd342f5b786c6c003d7",
+    "file": "m0-publication-candidate.result.json",
+    "usage": {
+      "input_tokens": 222044,
+      "cached_input_tokens": 202624,
+      "output_tokens": 6346,
+      "uncached_input_tokens": 19420
+    },
+    "full_returned_pages": {
+      "SKILL.md": 2534,
+      "references/anti-ai-patterns.md": 898,
+      "references/genre-playbook-publication.md": 337,
+      "references/genre-routing.md": 476,
+      "references/prose-lint-usage.md": 498,
+      "references/reference-index.md": 3057,
+      "references/writing-rules.md": 1947
+    },
+    "full_returned_chars": 9747,
+    "commands": 12,
+    "failed_commands": 0,
+    "script_calls": [
+      {
+        "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'python \"C:/Users/admin/AppData/Local/Temp/cow-native-core-fkvyrjmh/m0-publication-candidate/workspace/.agents/skills/chinese-official-writing/scripts/draft_length.py\" --min-chars 80 \"C:/Users/admin/AppData/Local/Temp/cow-native-core-fkvyrjmh/m0-publication-candidate/workspace/tmp_draft_gonggao.txt\"'",
+        "exit_code": 0
+      },
+      {
+        "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'python \"C:/Users/admin/AppData/Local/Temp/cow-native-core-fkvyrjmh/m0-publication-candidate/workspace/.agents/skills/chinese-official-writing/scripts/prose_lint.py\" --delivery-mode draft-body --structure --format \"C:/Users/admin/AppData/Local/Temp/cow-native-core-fkvyrjmh/m0-publication-candidate/workspace/tmp_draft_gonggao.txt\"'",
+        "exit_code": 0
+      }
+    ]
+  },
+  {
+    "model": "minimax-cn/MiniMax-M3",
+    "case": "markdown_application_review",
+    "arm": "baseline",
+    "seconds": 72.58,
+    "invalid": [],
+    "draft_sha256": "4fd8f994813ff7423f0e4e44afe6fcf8caba76076f627724001af9ea08d7bf4e",
+    "file": "m3-markdown_application_review-baseline.result.json",
+    "usage": {
+      "input_tokens": 226982,
+      "cached_input_tokens": 195778,
+      "output_tokens": 11902,
+      "uncached_input_tokens": 31204
+    },
+    "full_returned_pages": {
+      "SKILL.md": 7515,
+      "references/genre-playbook-request.md": 1387,
+      "references/handling-elements.md": 3135,
+      "references/information-selection.md": 1940,
+      "references/proofreading-checklist.md": 1402,
+      "references/reference-index.md": 3919,
+      "references/short-draft-naturalness.md": 465
+    },
+    "full_returned_chars": 19763,
+    "commands": 8,
+    "failed_commands": 0,
+    "script_calls": []
+  },
+  {
+    "model": "minimax-cn/MiniMax-M3",
+    "case": "markdown_application_review",
+    "arm": "candidate",
+    "seconds": 252.81,
+    "invalid": [],
+    "draft_sha256": "a867414419d557159ceca7fd493d1f838a6b46c9bd0be72814aa8a9b4be80ad1",
+    "file": "m3-markdown_application_review-candidate.result.json",
+    "usage": {
+      "input_tokens": 445401,
+      "cached_input_tokens": 413184,
+      "output_tokens": 9389,
+      "uncached_input_tokens": 32217
+    },
+    "full_returned_pages": {
+      "SKILL.md": 2534,
+      "references/anti-ai-patterns.md": 898,
+      "references/formal-addressing.md": 956,
+      "references/genre-checklist-request.md": 955,
+      "references/genre-playbook-request.md": 1101,
+      "references/proofreading-checklist.md": 406,
+      "references/prose-lint-usage.md": 498,
+      "references/reference-index.md": 3057,
+      "references/review-checklist.md": 535,
+      "references/writing-rules.md": 1947
+    },
+    "full_returned_chars": 12887,
+    "commands": 24,
+    "failed_commands": 0,
+    "script_calls": [
+      {
+        "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"powershell -NoProfile -Command \\\"python '.agents/skills/chinese-official-writing/scripts/draft_length.py' --min-chars 120 --max-chars 240 'draft_v1.txt'\\\"\"",
+        "exit_code": 0
+      },
+      {
+        "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"powershell -NoProfile -Command \\\"python '.agents/skills/chinese-official-writing/scripts/prose_lint.py' --delivery-mode draft-body --structure --format 'draft_v1.txt'\\\"\"",
+        "exit_code": 0
+      },
+      {
+        "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"powershell -NoProfile -Command \\\"python '.agents/skills/chinese-official-writing/scripts/draft_length.py' --min-chars 120 --max-chars 240 'draft_v2.txt'; python '.agents/skills/chinese-official-writing/scripts/prose_lint.py' --delivery-mode draft-body --structure --format 'draft_v2.txt'\\\"\"",
+        "exit_code": 0
+      },
+      {
+        "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"powershell -NoProfile -Command \\\"python '.agents/skills/chinese-official-writing/scripts/draft_length.py' --min-chars 120 --max-chars 240 'draft_v3.txt'; python '.agents/skills/chinese-official-writing/scripts/prose_lint.py' --delivery-mode draft-body --structure --format 'draft_v3.txt'; Get-Content -Path 'draft_v3.txt' -Encoding UTF8\\\"\"",
+        "exit_code": 0
+      }
+    ]
+  },
+  {
+    "model": "minimax-cn/MiniMax-M3",
+    "case": "markdown_notice_requested",
+    "arm": "baseline",
+    "seconds": 29.01,
+    "invalid": [],
+    "draft_sha256": "0466fa43a36e7f5ff7ef7a8ae813ed51b072f6590b64710e7d42a9025b7601dd",
+    "file": "m3-markdown_notice_requested-baseline.result.json",
+    "usage": {
+      "input_tokens": 55700,
+      "cached_input_tokens": 40445,
+      "output_tokens": 4821,
+      "uncached_input_tokens": 15255
+    },
+    "full_returned_pages": {
+      "SKILL.md": 7515,
+      "references/information-selection.md": 1940,
+      "references/short-draft-naturalness.md": 465
+    },
+    "full_returned_chars": 9920,
+    "commands": 3,
+    "failed_commands": 0,
+    "script_calls": []
+  },
+  {
+    "model": "minimax-cn/MiniMax-M3",
+    "case": "markdown_notice_requested",
+    "arm": "candidate",
+    "seconds": 103.57,
+    "invalid": [],
+    "draft_sha256": "4163c04af3288633047ade49340b7d23cd4da15248f89f6a70bba70fd6f761a0",
+    "file": "m3-markdown_notice_requested-candidate.result.json",
+    "usage": {
+      "input_tokens": 633207,
+      "cached_input_tokens": 603361,
+      "output_tokens": 11354,
+      "uncached_input_tokens": 29846
+    },
+    "full_returned_pages": {
+      "SKILL.md": 2534,
+      "references/anti-ai-patterns.md": 898,
+      "references/compression-details.md": 694,
+      "references/genre-playbook-notice.md": 502,
+      "references/reference-index.md": 3057,
+      "references/writing-rules.md": 1947
+    },
+    "full_returned_chars": 9632,
+    "commands": 30,
+    "failed_commands": 2,
+    "script_calls": [
+      {
+        "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"python \\\"C:\\\\Users\\\\admin\\\\AppData\\\\Local\\\\Temp\\\\cow-native-core-fkvyrjmh\\\\m3-markdown_notice_requested-candidate\\\\workspace\\\\.agents\\\\skills\\\\chinese-official-writing\\\\scripts\\\\draft_length.py\\\" --min-chars 80 --max-chars 160 \\\"C:\\\\Users\\\\admin\\\\AppData\\\\Local\\\\Temp\\\\cow-native-core-fkvyrjmh\\\\m3-markdown_notice_requested-candidate\\\\workspace\\\\tmp_draft.md\\\"\"",
+        "exit_code": 0
+      },
+      {
+        "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"python \\\"C:\\\\Users\\\\admin\\\\AppData\\\\Local\\\\Temp\\\\cow-native-core-fkvyrjmh\\\\m3-markdown_notice_requested-candidate\\\\workspace\\\\.agents\\\\skills\\\\chinese-official-writing\\\\scripts\\\\draft_length.py\\\" --min-chars 80 --max-chars 160 \\\"C:\\\\Users\\\\admin\\\\AppData\\\\Local\\\\Temp\\\\cow-native-core-fkvyrjmh\\\\m3-markdown_notice_requested-candidate\\\\workspace\\\\tmp_draft.md\\\"\"",
+        "exit_code": 0
+      },
+      {
+        "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"python \\\"C:\\\\Users\\\\admin\\\\AppData\\\\Local\\\\Temp\\\\cow-native-core-fkvyrjmh\\\\m3-markdown_notice_requested-candidate\\\\workspace\\\\.agents\\\\skills\\\\chinese-official-writing\\\\scripts\\\\prose_lint.py\\\" \\\"C:\\\\Users\\\\admin\\\\AppData\\\\Local\\\\Temp\\\\cow-native-core-fkvyrjmh\\\\m3-markdown_notice_requested-candidate\\\\workspace\\\\tmp_draft.md\\\"\"",
+        "exit_code": 0
+      }
+    ]
+  },
+  {
+    "model": "minimax-cn/MiniMax-M3",
+    "case": "minutes_local",
+    "arm": "baseline",
+    "seconds": 22.38,
+    "invalid": [
+      "missing_final",
+      "missing_skill_read_trace"
+    ],
+    "draft_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "file": "m3-minutes_local-baseline.result.json",
+    "usage": {
+      "input_tokens": 36059,
+      "cached_input_tokens": 27008,
+      "output_tokens": 612,
+      "uncached_input_tokens": 9051
+    },
+    "full_returned_pages": {},
+    "full_returned_chars": 0,
+    "commands": 0,
+    "failed_commands": 0,
+    "script_calls": []
+  },
+  {
+    "model": "minimax-cn/MiniMax-M3",
+    "case": "minutes_local",
+    "arm": "candidate",
+    "seconds": 45.23,
+    "invalid": [],
+    "draft_sha256": "0fe688d7f1393f693e8f0a3f1be4f9dc10574c20304d1f607e199ebd7cc3c174",
+    "file": "m3-minutes_local-candidate.result.json",
+    "usage": {
+      "input_tokens": 52028,
+      "cached_input_tokens": 42624,
+      "output_tokens": 1186,
+      "uncached_input_tokens": 9404
+    },
+    "full_returned_pages": {
+      "SKILL.md": 2534,
+      "references/genre-playbook-minutes.md": 577,
+      "references/reference-index.md": 3057
+    },
+    "full_returned_chars": 6168,
+    "commands": 3,
+    "failed_commands": 0,
+    "script_calls": []
+  },
+  {
+    "model": "minimax-cn/MiniMax-M3",
+    "case": "motion_separate_amendments",
+    "arm": "baseline",
+    "seconds": 499.72,
+    "invalid": [],
+    "draft_sha256": "8a998244bae03460fd245decdffa1fde9ea09eed7419b9a9a047cbdf6da1b620",
+    "file": "m3-motion_separate_amendments-baseline.result.json",
+    "usage": {
+      "input_tokens": 1860632,
+      "cached_input_tokens": 1767936,
+      "output_tokens": 39785,
+      "uncached_input_tokens": 92696
+    },
+    "full_returned_pages": {
+      "SKILL.md": 7515,
+      "references/anti-ai-patterns.md": 5339,
+      "references/formal-addressing.md": 1334,
+      "references/format-gbt9704.md": 3323,
+      "references/formulaic-language.md": 3132,
+      "references/genre-checklist.md": 2737,
+      "references/genre-playbook-deliberation-deployment.md": 187,
+      "references/genre-playbook-request.md": 1387,
+      "references/handling-elements.md": 3135,
+      "references/information-selection.md": 1940,
+      "references/official-style.md": 2230,
+      "references/proofreading-checklist.md": 1402,
+      "references/prose-lint-usage.md": 526
+    },
+    "full_returned_chars": 34187,
+    "commands": 31,
+    "failed_commands": 2,
+    "script_calls": []
+  },
+  {
+    "model": "minimax-cn/MiniMax-M3",
+    "case": "motion_separate_amendments",
+    "arm": "candidate",
+    "seconds": 114.95,
+    "invalid": [],
+    "draft_sha256": "8d079bcbd47ea68f2d9217fe74128bf4b8a5df7907be1374ac2fab13ddd17151",
+    "file": "m3-motion_separate_amendments-candidate.result.json",
+    "usage": {
+      "input_tokens": 149340,
+      "cached_input_tokens": 124693,
+      "output_tokens": 10624,
+      "uncached_input_tokens": 24647
+    },
+    "full_returned_pages": {
+      "SKILL.md": 2534,
+      "references/genre-playbook-motion.md": 788,
+      "references/writing-rules.md": 1947
+    },
+    "full_returned_chars": 5269,
+    "commands": 6,
+    "failed_commands": 0,
+    "script_calls": []
+  },
+  {
+    "model": "minimax-cn/MiniMax-M3",
+    "case": "narration",
+    "arm": "baseline",
+    "seconds": 45.61,
+    "invalid": [],
+    "draft_sha256": "60eedcf8cf84d93972ffd90bcb469e196745e096b20b359ca8bf8390f9b878fe",
+    "file": "m3-narration-baseline.result.json",
+    "usage": {
+      "input_tokens": 40359,
+      "cached_input_tokens": 27047,
+      "output_tokens": 6471,
+      "uncached_input_tokens": 13312
+    },
+    "full_returned_pages": {
+      "SKILL.md": 7515
+    },
+    "full_returned_chars": 7515,
+    "commands": 1,
+    "failed_commands": 0,
+    "script_calls": []
+  },
+  {
+    "model": "minimax-cn/MiniMax-M3",
+    "case": "narration",
+    "arm": "candidate",
+    "seconds": 54.07,
+    "invalid": [],
+    "draft_sha256": "0e5974948f06947730da8c12de18be742d95a4d6987cb270b6c2e086bfbdffdc",
+    "file": "m3-narration-candidate.result.json",
+    "usage": {
+      "input_tokens": 99550,
+      "cached_input_tokens": 89670,
+      "output_tokens": 4771,
+      "uncached_input_tokens": 9880
+    },
+    "full_returned_pages": {
+      "SKILL.md": 2534,
+      "references/anti-ai-patterns.md": 898,
+      "references/genre-playbook-narration.md": 625,
+      "references/reference-index.md": 3057,
+      "references/writing-rules.md": 1947
+    },
+    "full_returned_chars": 9061,
+    "commands": 5,
+    "failed_commands": 0,
+    "script_calls": []
+  },
+  {
+    "model": "minimax-cn/MiniMax-M3",
+    "case": "publication",
+    "arm": "baseline",
+    "seconds": 104.68,
+    "invalid": [],
+    "draft_sha256": "9c492f6e2efa98da24f70f1815e1d0100097e4ed4c307362b10bc47f34ed5922",
+    "file": "m3-publication-baseline.result.json",
+    "usage": {
+      "input_tokens": 187588,
+      "cached_input_tokens": 163712,
+      "output_tokens": 5371,
+      "uncached_input_tokens": 23876
+    },
+    "full_returned_pages": {
+      "SKILL.md": 7515,
+      "references/genre-playbook-notice-publication.md": 519,
+      "references/genre-routing.md": 3102,
+      "references/handling-elements.md": 3135,
+      "references/information-selection.md": 1940,
+      "references/official-style.md": 2230,
+      "references/short-draft-naturalness.md": 465
+    },
+    "full_returned_chars": 18906,
+    "commands": 8,
+    "failed_commands": 0,
+    "script_calls": []
+  },
+  {
+    "model": "minimax-cn/MiniMax-M3",
+    "case": "publication",
+    "arm": "candidate",
+    "seconds": 146.58,
+    "invalid": [],
+    "draft_sha256": "00a8654d8e0fb858d8f30a296af71ae0e51d7bf9ea11e502dc369118282b707f",
+    "file": "m3-publication-candidate.result.json",
+    "usage": {
+      "input_tokens": 445460,
+      "cached_input_tokens": 412544,
+      "output_tokens": 5995,
+      "uncached_input_tokens": 32916
+    },
+    "full_returned_pages": {
+      "SKILL.md": 2534,
+      "references/anti-ai-patterns.md": 898,
+      "references/formal-addressing.md": 956,
+      "references/formulaic-language.md": 1058,
+      "references/genre-playbook-publication.md": 337,
+      "references/genre-routing.md": 476,
+      "references/prose-lint-usage.md": 498,
+      "references/reference-index.md": 3057,
+      "references/writing-rules.md": 1947
+    },
+    "full_returned_chars": 11761,
+    "commands": 19,
+    "failed_commands": 3,
+    "script_calls": [
+      {
+        "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"powershell -NoProfile -Command \\\"python 'C:\\\\Users\\\\admin\\\\AppData\\\\Local\\\\Temp\\\\cow-native-core-fkvyrjmh\\\\m3-publication-candidate\\\\workspace\\\\.agents\\\\skills\\\\chinese-official-writing\\\\scripts\\\\draft_length.py' --min-chars 80 'C:\\\\Users\\\\admin\\\\AppData\\\\Local\\\\Temp\\\\cow-native-core-fkvyrjmh\\\\m3-publication-candidate\\\\workspace\\\\draft_announcement.txt'\\\"\"",
+        "exit_code": 0
+      },
+      {
+        "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"powershell -NoProfile -Command \\\"python 'C:\\\\Users\\\\admin\\\\AppData\\\\Local\\\\Temp\\\\cow-native-core-fkvyrjmh\\\\m3-publication-candidate\\\\workspace\\\\.agents\\\\skills\\\\chinese-official-writing\\\\scripts\\\\prose_lint.py' --delivery-mode draft-body --structure --format 'C:\\\\Users\\\\admin\\\\AppData\\\\Local\\\\Temp\\\\cow-native-core-fkvyrjmh\\\\m3-publication-candidate\\\\workspace\\\\draft_announcement.txt'\\\"\"",
+        "exit_code": 0
+      }
+    ]
+  }
+]

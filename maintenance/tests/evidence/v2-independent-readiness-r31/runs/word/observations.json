@@ -1,0 +1,48 @@
+[
+  {
+    "model": "minimax-cn/MiniMax-M3",
+    "case": "ordinary_word_summary",
+    "arm": "baseline",
+    "seconds": 31.8,
+    "invalid": [],
+    "draft_sha256": "4a668cbc338c68e7378834464fccf13a998b6f687e623cde6e92cf7cb43f09fe",
+    "file": "m3-ordinary_word_summary-baseline.result.json",
+    "usage": {
+      "input_tokens": 93454,
+      "cached_input_tokens": 83576,
+      "output_tokens": 3203,
+      "uncached_input_tokens": 9878
+    },
+    "full_returned_pages": {
+      "SKILL.md": 7515
+    },
+    "full_returned_chars": 7515,
+    "commands": 4,
+    "failed_commands": 0,
+    "script_calls": []
+  },
+  {
+    "model": "minimax-cn/MiniMax-M3",
+    "case": "ordinary_word_summary",
+    "arm": "candidate",
+    "seconds": 85.35,
+    "invalid": [],
+    "draft_sha256": "80f58e535cc2c362b5dd28ca6de61d946f7fe5d28b5d42a22321ddfb92030216",
+    "file": "m3-ordinary_word_summary-candidate.result.json",
+    "usage": {
+      "input_tokens": 654747,
+      "cached_input_tokens": 630428,
+      "output_tokens": 5842,
+      "uncached_input_tokens": 24319
+    },
+    "full_returned_pages": {
+      "SKILL.md": 2541,
+      "references/format-gbt9704.md": 3244,
+      "references/writing-rules.md": 1947
+    },
+    "full_returned_chars": 7732,
+    "commands": 29,
+    "failed_commands": 6,
+    "script_calls": []
+  }
+]

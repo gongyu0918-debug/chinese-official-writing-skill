@@ -1,0 +1,40 @@
+{
+  "main_commit": "d561bf6b54952e562be5910feda9182cff7d3646",
+  "candidate_head": "69914fb34f3be0e249aba2da2e84c20589191bd6",
+  "fingerprints": {
+    "baseline": "33e4f4480b2d12452e6505c74da11e5f7dadde6bcf11d61d4c4d39f5b5d06ddc",
+    "candidate": "bcccea1ba1531c246afbed467a8126fe6a8311f18f951be4264cf7a13e52c4cb"
+  },
+  "models": [
+    "alibaba-token-plan/qwen3.8-flash"
+  ],
+  "cases": {
+    "markdown_notice_requested": "请给资料室写一份完整的目录核对会议通知，控制在80至160字，用Markdown交付：标题使用一级#标题，参会事项使用-列表。资料室定于2026年9月18日下午3时在二楼会议室召开目录核对会，综合岗和各档案室负责人参加。请参会人员带本室待核对目录，会后于9月19日下班前将补充材料交资料室。联系人王老师，邮箱archive@example.org。通知署名资料室，落款日期为2026年9月12日。"
+  },
+  "cli": "C:\\Users\\admin\\AppData\\Local\\OpenAI\\Codex\\bin\\bffc5354119c8421\\codex.exe",
+  "cli_version": "codex-cli 0.154.0-alpha.6.2",
+  "effort": "max",
+  "runtime": "C:\\Users\\admin\\AppData\\Local\\Temp\\cow-native-script-delta-h4qo3f_x",
+  "permissions": "inherited-host-config",
+  "timeout": 600,
+  "agent_documents": "project_doc_max_bytes=0",
+  "baseline_ref": "snapshot",
+  "baseline_source": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\v2-independent-readiness-r31\\output\\v2-readiness-r31\\frozen\\candidate",
+  "candidate_source": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\v2-independent-readiness-r31\\output\\v2-readiness-r31\\frozen\\final",
+  "candidate_skill_name": "chinese-official-writing",
+  "baseline_commit": null,
+  "profile": "temporary-no-user-documents-or-credentials",
+  "runner_sha256": "65dc98c960c7f147e967005117bca541406d815b7c7bbd78d40a2d3e927a0cf5",
+  "prompt_prefix": "使用本目录 .agents/skills/chinese-official-writing/SKILL.md。\n\n使用普通写作能力，不启用 Hook。\n\n本目录文本文件为 UTF-8 编码，读取时显式指定 UTF-8 解码。\n\n",
+  "ordinary_only": true,
+  "utf8_read": true,
+  "runtime_layout": "each call has a separate parent, workspace and temporary directory",
+  "session_metadata": "ephemeral",
+  "review_host": {
+    "enabled": false,
+    "max_threads": null,
+    "max_depth": null,
+    "child_model": "host defaults",
+    "child_usage": "root JSON usage is not assumed to include child usage"
+  }
+}

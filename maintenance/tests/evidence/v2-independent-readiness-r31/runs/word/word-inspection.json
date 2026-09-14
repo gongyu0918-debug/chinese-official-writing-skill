@@ -1,0 +1,28 @@
+[
+  {
+    "arm": "baseline",
+    "actual": "C:\\Users\\admin\\AppData\\Local\\Temp\\cow-native-word-1j88_7hm\\m3-ordinary_word_summary-baseline\\workspace\\资料室阶段工作总结.docx",
+    "copy": "output\\v2-readiness-r31\\word\\artifacts\\baseline-资料室阶段工作总结.docx",
+    "sha256": "01e69cfd3223ce3f0e3fa82224ad6b65987f502b0446b3bd6351c07b265e77d8",
+    "paragraphs": [
+      "资料室阶段工作总结",
+      "本阶段，资料室整理纸质档案 120 盒，完成目录录入 860 条。另有 15 盒档案的分类信息正在核对。",
+      "资料室"
+    ],
+    "nonempty_exact_match": true,
+    "visual_render_checked": false
+  },
+  {
+    "arm": "candidate",
+    "actual": "C:\\Users\\admin\\AppData\\Local\\Temp\\cow-native-word-1j88_7hm\\m3-ordinary_word_summary-candidate\\workspace\\资料室阶段工作总结.docx",
+    "copy": "output\\v2-readiness-r31\\word\\artifacts\\candidate-资料室阶段工作总结.docx",
+    "sha256": "f8a7c65ca16b3f38326d3f76bbadfaa89ba4d1220f8a44432e8a5ab531b69dad",
+    "paragraphs": [
+      "资料室阶段工作总结",
+      "本阶段，资料室整理纸质档案 120 盒，完成目录录入 860 条。另有 15 盒档案的分类信息正在核对。",
+      "资料室"
+    ],
+    "nonempty_exact_match": true,
+    "visual_render_checked": false
+  }
+]

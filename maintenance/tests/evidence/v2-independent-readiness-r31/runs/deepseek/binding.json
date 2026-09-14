@@ -1,0 +1,40 @@
+{
+  "main_commit": "d561bf6b54952e562be5910feda9182cff7d3646",
+  "candidate_head": "69914fb34f3be0e249aba2da2e84c20589191bd6",
+  "fingerprints": {
+    "baseline": "4ac78943f1d5f7660c879360fdee0163f43d8e87dd951838f7a7cddaab81004f",
+    "candidate": "33e4f4480b2d12452e6505c74da11e5f7dadde6bcf11d61d4c4d39f5b5d06ddc"
+  },
+  "models": [
+    "command-code/deepseek-deepseek-v4.1-flash"
+  ],
+  "cases": {
+    "remediation_report": "请以青川街道便民服务中心名义向街道办事处写一份整改进展报告：原先材料清单未注明更新日期、两处窗口指引与实际位置不一致。综合岗已为清单补充更新日期；服务岗已核对两处窗口位置，指引内容仍在修改，尚未张贴。相关问题暂未复核，也未确认整改完成。汇报截至9月18日的进展，保持各事项状态。"
+  },
+  "cli": "C:\\Users\\admin\\AppData\\Local\\OpenAI\\Codex\\bin\\bffc5354119c8421\\codex.exe",
+  "cli_version": "codex-cli 0.154.0-alpha.6.2",
+  "effort": "max",
+  "runtime": "C:\\Users\\admin\\AppData\\Local\\Temp\\cow-native-deepseek-ww2u8221",
+  "permissions": "inherited-host-config",
+  "timeout": 600,
+  "agent_documents": "project_doc_max_bytes=0",
+  "baseline_ref": "snapshot",
+  "baseline_source": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\v2-independent-readiness-r31\\output\\v2-readiness-r31\\frozen\\baseline",
+  "candidate_source": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\v2-independent-readiness-r31\\output\\v2-readiness-r31\\frozen\\candidate",
+  "candidate_skill_name": "chinese-official-writing",
+  "baseline_commit": null,
+  "profile": "temporary-no-user-documents-or-credentials",
+  "runner_sha256": "65dc98c960c7f147e967005117bca541406d815b7c7bbd78d40a2d3e927a0cf5",
+  "prompt_prefix": "使用本目录 .agents/skills/chinese-official-writing/SKILL.md。\n\n使用普通写作能力，不启用 Hook。\n\n本目录文本文件为 UTF-8 编码，读取时显式指定 UTF-8 解码。\n\n",
+  "ordinary_only": true,
+  "utf8_read": true,
+  "runtime_layout": "each call has a separate parent, workspace and temporary directory",
+  "session_metadata": "ephemeral",
+  "review_host": {
+    "enabled": false,
+    "max_threads": null,
+    "max_depth": null,
+    "child_model": "host defaults",
+    "child_usage": "root JSON usage is not assumed to include child usage"
+  }
+}

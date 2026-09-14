@@ -1,0 +1,32 @@
+[
+  {
+    "final": "m0-markdown_notice_requested-candidate.final.txt",
+    "link": "/C:/Users/admin/AppData/Local/Temp/cow-native-core-fkvyrjmh/m0-markdown_notice_requested-candidate/workspace/notice_draft.md",
+    "resolved": "C:\\Users\\admin\\AppData\\Local\\Temp\\cow-native-core-fkvyrjmh\\m0-markdown_notice_requested-candidate\\workspace\\notice_draft.md",
+    "exists": true,
+    "copy": "artifacts/m0-markdown_notice_requested-candidate.final-0.md",
+    "sha256": "76ec372e36124e84d626aadeb61c08cbaffca8fa48ac9f6054e5632105840751"
+  },
+  {
+    "final": "m0-motion_separate_amendments-candidate.final.txt",
+    "link": "/C:/Users/admin/AppData/Local/Temp/cow-native-core-fkvyrjmh/m0-motion_separate_amendments-candidate/tmp/hailan-draft-m07/draft.txt",
+    "resolved": "C:\\Users\\admin\\AppData\\Local\\Temp\\cow-native-core-fkvyrjmh\\m0-motion_separate_amendments-candidate\\tmp\\hailan-draft-m07\\draft.txt",
+    "exists": true,
+    "copy": "artifacts/m0-motion_separate_amendments-candidate.final-0.txt",
+    "sha256": "914c5cd161fe47e40a52ace539e9b802c4fafff759814c5a723f1248c0bb49cc"
+  },
+  {
+    "final": "m3-motion_separate_amendments-baseline.final.txt",
+    "link": "/abs/path/drafts/draft-hailan-yian.md",
+    "resolved": "\\abs\\path\\drafts\\draft-hailan-yian.md",
+    "exists": false
+  },
+  {
+    "final": "m3-publication-candidate.final.txt",
+    "link": "/C:/Users/admin/AppData/Local/Temp/cow-native-core-fkvyrjmh/m3-publication-candidate/workspace/draft_announcement.txt",
+    "resolved": "C:\\Users\\admin\\AppData\\Local\\Temp\\cow-native-core-fkvyrjmh\\m3-publication-candidate\\workspace\\draft_announcement.txt",
+    "exists": true,
+    "copy": "artifacts/m3-publication-candidate.final-0.txt",
+    "sha256": "ef40a331a92f7f258cfd95145a22ed6cf6141bc03e30fa151121504e4de7b17d"
+  }
+]

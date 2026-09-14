@@ -9,3 +9,5 @@
 预览包含 SKILL.md、README.md、LICENSE、67 个 references 和两个 scripts，共 72 文件。没有复制可选 `agents/openai.yaml`，因其默认 prompt 仍指向旧标识；此文件不承载正文规则。Word 能力仍由宿主文档工具完成。预览须作一例使用真实新目录名和新 name 的原生调用；成功前只称包结构通过，不能称新产品已真实使用通过。
 
 完整预登记与结果位于 `maintenance/tests/evidence/v2-independent-readiness-r31/`。规则量、实际加载量、模型 input/缓存/输出、耗时、正文质量分别报告。正式替代 1.0、全面优于 1.0、普遍更快更省均须另有相应证据，不从静态减载比例推导。
+
+2026-09-14 R31 已完成 40 次原生调用，39 次技术有效；选择性采用 Markdown 修复，独立产品公开发布建议 HOLD，见[最终报告](../tests/evidence/v2-independent-readiness-r31/results.md)。最终预览 SHA-256 为 `17fbcb54eba56aba636b6f6034bfb0c743e17c304733c5cbc12d7f6c1c6c59a2`。新标识已完成原生读页与 Word 文件生成；两版最终文件链接均失效，因此只确认新标识可加载，不称完整下载交付通过。包未发布。

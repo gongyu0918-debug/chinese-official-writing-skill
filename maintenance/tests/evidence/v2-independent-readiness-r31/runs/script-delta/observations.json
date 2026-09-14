@@ -1,0 +1,90 @@
+[
+  {
+    "model": "alibaba-token-plan/qwen3.8-flash",
+    "case": "markdown_notice_requested",
+    "arm": "baseline",
+    "seconds": 86.77,
+    "invalid": [],
+    "draft_sha256": "daf2ed488b6aff32d7589e6a7e18dae0f0293c0755505dd5b4590d347613c7df",
+    "file": "m0-markdown_notice_requested-baseline.result.json",
+    "usage": {
+      "input_tokens": 144546,
+      "cached_input_tokens": 125184,
+      "output_tokens": 4410,
+      "uncached_input_tokens": 19362
+    },
+    "full_returned_pages": {
+      "SKILL.md": 2534,
+      "references/anti-ai-patterns.md": 898,
+      "references/compression-details.md": 694,
+      "references/genre-playbook-notice.md": 502,
+      "references/prose-lint-usage.md": 498,
+      "references/reference-index.md": 3057,
+      "references/writing-rules.md": 1947
+    },
+    "full_returned_chars": 10130,
+    "commands": 17,
+    "failed_commands": 0,
+    "script_calls": [
+      {
+        "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'python \"C:/Users/admin/AppData/Local/Temp/cow-native-script-delta-h4qo3f_x/m0-markdown_notice_requested-baseline/workspace/.agents/skills/chinese-official-writing/scripts/draft_length.py\" --min-chars 80 --max-chars 160 \"C:/Users/admin/AppData/Local/Temp/cow-native-script-delta-h4qo3f_x/m0-markdown_notice_requested-baseline/workspace/notice_draft.md\"'",
+        "exit_code": 0
+      },
+      {
+        "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'python \"C:/Users/admin/AppData/Local/Temp/cow-native-script-delta-h4qo3f_x/m0-markdown_notice_requested-baseline/workspace/.agents/skills/chinese-official-writing/scripts/prose_lint.py\" --delivery-mode draft-body --structure --format --allow-markdown \"C:/Users/admin/AppData/Local/Temp/cow-native-script-delta-h4qo3f_x/m0-markdown_notice_requested-baseline/workspace/notice_draft.md\"'",
+        "exit_code": 0
+      },
+      {
+        "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'python \"C:/Users/admin/AppData/Local/Temp/cow-native-script-delta-h4qo3f_x/m0-markdown_notice_requested-baseline/workspace/.agents/skills/chinese-official-writing/scripts/draft_length.py\" --min-chars 80 --max-chars 160 \"C:/Users/admin/AppData/Local/Temp/cow-native-script-delta-h4qo3f_x/m0-markdown_notice_requested-baseline/workspace/notice_draft.md\"'",
+        "exit_code": 0
+      },
+      {
+        "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'python \"C:/Users/admin/AppData/Local/Temp/cow-native-script-delta-h4qo3f_x/m0-markdown_notice_requested-baseline/workspace/.agents/skills/chinese-official-writing/scripts/prose_lint.py\" --delivery-mode draft-body --structure --format --allow-markdown \"C:/Users/admin/AppData/Local/Temp/cow-native-script-delta-h4qo3f_x/m0-markdown_notice_requested-baseline/workspace/notice_draft.md\"'",
+        "exit_code": 0
+      },
+      {
+        "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'python \"C:/Users/admin/AppData/Local/Temp/cow-native-script-delta-h4qo3f_x/m0-markdown_notice_requested-baseline/workspace/.agents/skills/chinese-official-writing/scripts/draft_length.py\" --min-chars 80 --max-chars 160 \"C:/Users/admin/AppData/Local/Temp/cow-native-script-delta-h4qo3f_x/m0-markdown_notice_requested-baseline/workspace/notice_draft2.md\"'",
+        "exit_code": 0
+      },
+      {
+        "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'python \"C:/Users/admin/AppData/Local/Temp/cow-native-script-delta-h4qo3f_x/m0-markdown_notice_requested-baseline/workspace/.agents/skills/chinese-official-writing/scripts/prose_lint.py\" --delivery-mode draft-body --structure --format --allow-markdown \"C:/Users/admin/AppData/Local/Temp/cow-native-script-delta-h4qo3f_x/m0-markdown_notice_requested-baseline/workspace/notice_draft2.md\"'",
+        "exit_code": 0
+      }
+    ]
+  },
+  {
+    "model": "alibaba-token-plan/qwen3.8-flash",
+    "case": "markdown_notice_requested",
+    "arm": "candidate",
+    "seconds": 95.93,
+    "invalid": [],
+    "draft_sha256": "cca1aa9b5b9d31d4c84f09d9e4e30313ce77663d7d8f6c1ba1998b7c446e7675",
+    "file": "m0-markdown_notice_requested-candidate.result.json",
+    "usage": {
+      "input_tokens": 202815,
+      "cached_input_tokens": 185856,
+      "output_tokens": 5782,
+      "uncached_input_tokens": 16959
+    },
+    "full_returned_pages": {
+      "SKILL.md": 2534,
+      "references/anti-ai-patterns.md": 898,
+      "references/genre-playbook-notice.md": 502,
+      "references/prose-lint-usage.md": 498,
+      "references/writing-rules.md": 1947
+    },
+    "full_returned_chars": 6379,
+    "commands": 11,
+    "failed_commands": 1,
+    "script_calls": [
+      {
+        "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"python 'C:/Users/admin/AppData/Local/Temp/cow-native-script-delta-h4qo3f_x/m0-markdown_notice_requested-candidate/workspace/.agents/skills/chinese-official-writing/scripts/draft_length.py' --min-chars 80 --max-chars 160 'C:/Users/admin/AppData/Local/Temp/cow-native-script-delta-h4qo3f_x/m0-markdown_notice_requested-candidate/workspace/draft_notice.md' --json; python 'C:/Users/admin/AppData/Local/Temp/cow-native-script-delta-h4qo3f_x/m0-markdown_notice_requested-candidate/workspace/.agents/skills/chinese-official-writing/scripts/prose_lint.py' --delivery-mode draft-body --structure --format --allow-markdown 'C:/Users/admin/AppData/Local/Temp/cow-native-script-delta-h4qo3f_x/m0-markdown_notice_requested-candidate/workspace/draft_notice.md'\"",
+        "exit_code": 0
+      },
+      {
+        "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"python 'C:/Users/admin/AppData/Local/Temp/cow-native-script-delta-h4qo3f_x/m0-markdown_notice_requested-candidate/workspace/.agents/skills/chinese-official-writing/scripts/draft_length.py' --min-chars 80 --max-chars 160 'C:/Users/admin/AppData/Local/Temp/cow-native-script-delta-h4qo3f_x/m0-markdown_notice_requested-candidate/workspace/draft_notice.md' --json; python 'C:/Users/admin/AppData/Local/Temp/cow-native-script-delta-h4qo3f_x/m0-markdown_notice_requested-candidate/workspace/.agents/skills/chinese-official-writing/scripts/prose_lint.py' --delivery-mode draft-body --structure --format --allow-markdown 'C:/Users/admin/AppData/Local/Temp/cow-native-script-delta-h4qo3f_x/m0-markdown_notice_requested-candidate/workspace/draft_notice.md'\"",
+        "exit_code": 0
+      }
+    ]
+  }
+]

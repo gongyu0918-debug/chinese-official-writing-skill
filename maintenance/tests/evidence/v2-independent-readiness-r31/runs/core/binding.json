@@ -1,0 +1,45 @@
+{
+  "main_commit": "d561bf6b54952e562be5910feda9182cff7d3646",
+  "candidate_head": "eb6bd0517be8d6331f321a86cb800a11d38ea3b6",
+  "fingerprints": {
+    "baseline": "4ac78943f1d5f7660c879360fdee0163f43d8e87dd951838f7a7cddaab81004f",
+    "candidate": "33e4f4480b2d12452e6505c74da11e5f7dadde6bcf11d61d4c4d39f5b5d06ddc"
+  },
+  "models": [
+    "alibaba-token-plan/qwen3.8-flash",
+    "minimax-cn/MiniMax-M3"
+  ],
+  "cases": {
+    "markdown_application_review": "帮我审核并优化下面这份采购申请，给我一份可提交的完整稿子，正文控制在120至240字，落款日期用2026年9月12日。材料和原稿如下：综合办公室两台打印机已损坏，经维修仍无法正常打印，日常材料需要打印，拟购打印机2台，每台预算1800元，合计3600元。采购尚未批准，供应商尚未确定，预算科目已经向财务室询问但尚未收到回复。\n\n```text\n# 关于购置打印机的申请\n\n单位负责人：\n本申请将从设备现状、采购需求、有关事项三个方面进行说明。\n综合办公室的**两台打印机已损坏**，经维修仍无法正常打印，日常材料需要打印。\n---\n拟购置打印机**2台**，每台预算1800元，合计3600元。预算科目已向财务室询问但还没有回复。供应商尚未确定，采购尚未批准。\n请审批。\n综合办公室\n2026年9月12日\n```",
+    "markdown_notice_requested": "请给资料室写一份完整的目录核对会议通知，控制在80至160字，用Markdown交付：标题使用一级#标题，参会事项使用-列表。资料室定于2026年9月18日下午3时在二楼会议室召开目录核对会，综合岗和各档案室负责人参加。请参会人员带本室待核对目录，会后于9月19日下班前将补充材料交资料室。联系人王老师，邮箱archive@example.org。通知署名资料室，落款日期为2026年9月12日。",
+    "motion_separate_amendments": "以下均为虚拟写作练习。海岚市人民政府已就《海岚市公共服务设施管理条例（草案）》完成常务会议讨论通过，现拟向市人大常委会提请审议。已给的草案内容只有两个方向：设施维护责任和服务信息公示要求，附件名称为该草案，落款2026年9月12日。请写完整提请议案，说明这两项方向的正常目的；另外单列“修改建议”，由你设计一份具体公示清单，并拟两条可用的条文建议及简短理由。已有草案和本轮新增建议分清，不把新建议写成会议已经通过的规定。",
+    "publication": "请为青川县文化馆写一份展厅暂停开放公告：文化馆二楼展厅将在2026年10月12日至14日更换照明，期间暂停开放；一楼阅览区和三楼活动室照常开放。咨询电话010-55501236。请把公众需要知道的事项写清楚，语气得体。",
+    "minutes_local": "帮我改这份会议纪要：把末句‘会议要求张工下周完成追加测试’改为‘张工建议追加测试，会议尚未决定是否采用’，其余保持。现稿：接口测试讨论纪要。9月10日，信息中心讨论接口测试情况。接口A已测试30次，其中2次返回超时，原因仍在核对。会议要求保留测试记录。会议要求张工下周完成追加测试。请给改好后的纪要。",
+    "narration": "我们准备带新员工参观公司的产品展示区，请把这些介绍写成一段自然的讲解稿。路线依次是老产品展示台、工艺样品墙、试用区。老产品展示台陈列2008年至2015年的三代产品；工艺样品墙展示同一部件的四种加工样品，旁边有对应工序说明；试用区有两台现款设备，供参观人员查看操作界面。这次由培训专员带领参观，听众大多没有生产经验。不安排提问和现场演示，讲解顺序和转场清楚即可。"
+  },
+  "cli": "C:\\Users\\admin\\AppData\\Local\\OpenAI\\Codex\\bin\\bffc5354119c8421\\codex.exe",
+  "cli_version": "codex-cli 0.154.0-alpha.6.2",
+  "effort": "max",
+  "runtime": "C:\\Users\\admin\\AppData\\Local\\Temp\\cow-native-core-fkvyrjmh",
+  "permissions": "inherited-host-config",
+  "timeout": 600,
+  "agent_documents": "project_doc_max_bytes=0",
+  "baseline_ref": "snapshot",
+  "baseline_source": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\v2-independent-readiness-r31\\output\\v2-readiness-r31\\frozen\\baseline",
+  "candidate_source": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\v2-independent-readiness-r31\\output\\v2-readiness-r31\\frozen\\candidate",
+  "baseline_commit": null,
+  "profile": "temporary-no-user-documents-or-credentials",
+  "runner_sha256": "a58e6025685e9c8bf276b530dc5ea57a33f0fe853ea4003bcf3242514b58794c",
+  "prompt_prefix": "使用本目录 .agents/skills/chinese-official-writing/SKILL.md。\n\n使用普通写作能力，不启用 Hook。\n\n本目录文本文件为 UTF-8 编码，读取时显式指定 UTF-8 解码。\n\n",
+  "ordinary_only": true,
+  "utf8_read": true,
+  "runtime_layout": "each call has a separate parent, workspace and temporary directory",
+  "session_metadata": "ephemeral",
+  "review_host": {
+    "enabled": false,
+    "max_threads": null,
+    "max_depth": null,
+    "child_model": "host defaults",
+    "child_usage": "root JSON usage is not assumed to include child usage"
+  }
+}

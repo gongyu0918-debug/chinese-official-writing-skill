@@ -13,11 +13,12 @@ while not (OUT/'core/results.json').is_file():
     time.sleep(5)
 runner=ROOT/'maintenance/tests/evidence/v2-independent-readiness-r31/run_native.py'
 jobs=[
+    ('script-delta', ['0'], ['markdown_notice_requested'], 'candidate', 'frozen/final', []),
     ('parent', ['0','3'], ['markdown_application_review'], 'parent', 'frozen/candidate', []),
     ('qwen2', ['1'], ['news_commentary'], 'baseline', 'frozen/candidate', []),
     ('deepseek', ['2'], ['remediation_report'], 'baseline', 'frozen/candidate', []),
     ('glmflash', ['4'], ['server_technical_requirements'], 'baseline', 'frozen/candidate', []),
-    ('word', ['3'], ['ordinary_word_summary'], 'baseline', 'preview/chinese-official-writing-v2', ['--candidate-skill-name','chinese-official-writing-v2']),
+    ('word', ['3'], ['ordinary_word_summary'], 'baseline', 'preview-final/chinese-official-writing-v2', ['--candidate-skill-name','chinese-official-writing-v2']),
 ]
 for name,models,cases,baseline,candidate,extra in jobs:
     command=[sys.executable,str(runner),'--output',str(OUT/name),'--baseline-dir',str(OUT/'frozen'/baseline),

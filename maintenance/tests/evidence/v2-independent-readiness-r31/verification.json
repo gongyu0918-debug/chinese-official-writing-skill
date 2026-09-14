@@ -1,0 +1,116 @@
+[
+  {
+    "batch": "core",
+    "models": [
+      "alibaba-token-plan/qwen3.8-flash",
+      "minimax-cn/MiniMax-M3"
+    ],
+    "effort": "max",
+    "candidate_head_label": "eb6bd0517be8d6331f321a86cb800a11d38ea3b6",
+    "snapshots_unchanged": {
+      "baseline": true,
+      "candidate": true
+    },
+    "final_hashes_match": true
+  },
+  {
+    "batch": "parent",
+    "models": [
+      "alibaba-token-plan/qwen3.8-flash",
+      "minimax-cn/MiniMax-M3"
+    ],
+    "effort": "max",
+    "candidate_head_label": "69914fb34f3be0e249aba2da2e84c20589191bd6",
+    "snapshots_unchanged": {
+      "baseline": true,
+      "candidate": true
+    },
+    "final_hashes_match": true
+  },
+  {
+    "batch": "script-delta",
+    "models": [
+      "alibaba-token-plan/qwen3.8-flash"
+    ],
+    "effort": "max",
+    "candidate_head_label": "69914fb34f3be0e249aba2da2e84c20589191bd6",
+    "snapshots_unchanged": {
+      "baseline": true,
+      "candidate": true
+    },
+    "final_hashes_match": true
+  },
+  {
+    "batch": "qwen2",
+    "models": [
+      "alibaba-token-plan-2/qwen3.8-flash"
+    ],
+    "effort": "max",
+    "candidate_head_label": "69914fb34f3be0e249aba2da2e84c20589191bd6",
+    "snapshots_unchanged": {
+      "baseline": true,
+      "candidate": true
+    },
+    "final_hashes_match": true
+  },
+  {
+    "batch": "deepseek",
+    "models": [
+      "command-code/deepseek-deepseek-v4.1-flash"
+    ],
+    "effort": "max",
+    "candidate_head_label": "69914fb34f3be0e249aba2da2e84c20589191bd6",
+    "snapshots_unchanged": {
+      "baseline": true,
+      "candidate": true
+    },
+    "final_hashes_match": true
+  },
+  {
+    "batch": "glmflash",
+    "models": [
+      "ollama-cloud/glm-5.3-flash"
+    ],
+    "effort": "max",
+    "candidate_head_label": "69914fb34f3be0e249aba2da2e84c20589191bd6",
+    "snapshots_unchanged": {
+      "baseline": true,
+      "candidate": true
+    },
+    "final_hashes_match": true
+  },
+  {
+    "batch": "word",
+    "models": [
+      "minimax-cn/MiniMax-M3"
+    ],
+    "effort": "max",
+    "candidate_head_label": "69914fb34f3be0e249aba2da2e84c20589191bd6",
+    "snapshots_unchanged": {
+      "baseline": true,
+      "candidate": true
+    },
+    "final_hashes_match": true
+  },
+  {
+    "batch": "minutes-retry",
+    "models": [
+      "minimax-cn/MiniMax-M3"
+    ],
+    "effort": "max",
+    "candidate_head_label": "69914fb34f3be0e249aba2da2e84c20589191bd6",
+    "snapshots_unchanged": {
+      "baseline": true,
+      "candidate": true
+    },
+    "final_hashes_match": true
+  },
+  {
+    "frozen_git_contents_match": [
+      "1ce71123",
+      "eb6bd051",
+      "69914fb3"
+    ],
+    "line_endings": "LF"
+  }
+]
