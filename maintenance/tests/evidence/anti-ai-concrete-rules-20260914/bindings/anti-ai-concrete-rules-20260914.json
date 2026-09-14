@@ -1,0 +1,43 @@
+{
+  "main_commit": "eb20eed0e0f63926c2ac49a7becfdda0baec6212",
+  "candidate_head": "c884463621173ae46b6ff62c2ed8467bda949eb8",
+  "fingerprints": {
+    "baseline": "9603879f182ff924ee8d408b458cd2a27ddf38a546eea08a74a85e053333cac2",
+    "candidate": "78153d734c23be82bd65b362454904a90450d9a864a4296dc4aa27b0917d7097"
+  },
+  "models": [
+    "alibaba-token-plan/qwen3.8-flash",
+    "minimax-cn/MiniMax-M3"
+  ],
+  "cases": {
+    "commentary_review_rewrite": "帮我审核并优化这篇新闻评论，修正错字、病句和空泛重复，保持事实与观点的意思，给我改好稿。事实材料：街道两个服务点的窗口位置已经调整，一个同步更新了入口指引，另一个仍使用旧指引；没有投诉数量或效率数据。原稿：指引要跟着实际办理条件更新。两个服务点已经调正窗口位置，一个服务点同步更新了入口指引，另一个服务点仍使用旧指引。`本文将从信息更新、服务衔接两个方面进行分析。`群众是否少走弯路，取决于指引是否准确。问题并不是有无设置指引，而是旧指引与实际窗口位置不一致。更新线上信息也不能代替现场指引，两者服务于不同的查询情境。信息更新应与窗口变动相衔接，避免已经变更的服务信息继续误导查询。避免信息没有更新，因为信息没有更新就不能正确指引。",
+    "narration": "我们准备带新员工参观公司的产品展示区，请把这些介绍写成一段自然的讲解稿。路线依次是老产品展示台、工艺样品墙、试用区。老产品展示台陈列2008年至2015年的三代产品；工艺样品墙展示同一部件的四种加工样品，旁边有对应工序说明；试用区有两台现款设备，供参观人员查看操作界面。这次由培训专员带领参观，听众大多没有生产经验。不安排提问和现场演示，讲解顺序和转场清楚即可。",
+    "motion_separate_amendments": "以下均为虚拟写作练习。海岚市人民政府已就《海岚市公共服务设施管理条例（草案）》完成常务会议讨论通过，现拟向市人大常委会提请审议。已给的草案内容只有两个方向：设施维护责任和服务信息公示要求，附件名称为该草案，落款2026年9月12日。请写完整提请议案，说明这两项方向的正常目的；另外单列“修改建议”，由你设计一份具体公示清单，并拟两条可用的条文建议及简短理由。已有草案和本轮新增建议分清，不把新建议写成会议已经通过的规定。"
+  },
+  "cli": "C:\\Users\\admin\\AppData\\Local\\OpenAI\\Codex\\bin\\bffc5354119c8421\\codex.exe",
+  "cli_version": "codex-cli 0.154.0-alpha.6.2",
+  "effort": "max",
+  "runtime": "C:\\Users\\admin\\AppData\\Local\\Temp\\cow-native-anti-ai-concrete-rules-20260914-kx5q_or5",
+  "permissions": "inherited-host-config",
+  "timeout": 600,
+  "agent_documents": "project_doc_max_bytes=0",
+  "baseline_ref": "eb20eed0",
+  "baseline_source": null,
+  "candidate_source": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\anti-ai-concrete-rules-20260914\\chinese-official-writing",
+  "candidate_skill_name": "chinese-official-writing",
+  "baseline_commit": "eb20eed0e0f63926c2ac49a7becfdda0baec6212",
+  "profile": "temporary-no-user-documents-or-credentials",
+  "runner_sha256": "180db1a815a192f612cf85b7c54976240abcfe8b6f834d22fedf5798cad5622d",
+  "prompt_prefix": "使用本目录 .agents/skills/chinese-official-writing/SKILL.md。\n\n使用普通写作能力，不启用 Hook。\n\n本目录文本文件为 UTF-8 编码，读取时显式指定 UTF-8 解码。\n\n",
+  "ordinary_only": true,
+  "utf8_read": true,
+  "runtime_layout": "each call has a separate parent, workspace and temporary directory",
+  "session_metadata": "ephemeral",
+  "review_host": {
+    "enabled": false,
+    "max_threads": null,
+    "max_depth": null,
+    "child_model": "host defaults",
+    "child_usage": "root JSON usage is not assumed to include child usage"
+  }
+}

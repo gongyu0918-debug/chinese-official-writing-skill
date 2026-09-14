@@ -1,0 +1,10 @@
+{
+  "题1-A": "output\\anti-ai-combination-20260914\\m3-aa02_summary-candidate.final.txt",
+  "题1-B": "output\\anti-ai-combination-20260914\\m3-aa02_summary-baseline.final.txt",
+  "题2-A": "output\\anti-ai-combination-20260914\\m3-narration-baseline.final.txt",
+  "题2-B": "output\\anti-ai-combination-20260914\\m3-narration-candidate.final.txt",
+  "题3-A": "output\\anti-ai-combination-20260914\\m3-motion_separate_amendments-candidate.final.txt",
+  "题3-B": "output\\anti-ai-combination-20260914\\m3-motion_separate_amendments-baseline.final.txt",
+  "题4-A": "output\\anti-ai-aa02-qwen-20260914\\m0-aa02_summary-baseline.final.txt",
+  "题4-B": "output\\anti-ai-aa02-qwen-20260914\\m0-aa02_summary-candidate.final.txt"
+}
