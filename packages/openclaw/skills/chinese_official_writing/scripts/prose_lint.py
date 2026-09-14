@@ -979,11 +979,22 @@ def compile_patterns(patterns: Iterable[PatternSpec]) -> list[CompiledPattern]:
     ]
 
 
-def prepare_pattern_sets(include_format: bool, delivery_mode: str) -> CompiledPatternSets:
+def prepare_pattern_sets(
+    include_format: bool,
+    delivery_mode: str,
+    allow_markdown: bool = False,
+) -> CompiledPatternSets:
     """按通用扫描、交付区扫描和代码围栏扫描准备规则。"""
 
     stage_patterns = DRAFT_BODY_PATTERNS if delivery_mode in {"draft-body", "gap-note-allowed"} else []
-    primary_patterns = PATTERNS + (FORMAT_PATTERNS if include_format else [])
+    format_patterns = FORMAT_PATTERNS if include_format else []
+    if allow_markdown:
+        format_patterns = [
+            item
+            for item in format_patterns
+            if item[1] not in {"markdown-bold", "markdown-heading", "western-bullet"}
+        ]
+    primary_patterns = PATTERNS + format_patterns
     if delivery_mode in {"draft-body", "gap-note-allowed"}:
         primary_patterns += DELIVERY_PATTERNS
     primary_patterns += stage_patterns
@@ -1056,6 +1067,7 @@ def external_note_boundary_findings(
     path_label: str,
     source: ScanSource,
     delivery_mode: str,
+    allow_markdown: bool = False,
 ) -> list[Finding]:
     """允许文后提示时，检查提示没有黏入正文结构。"""
 
@@ -1092,7 +1104,7 @@ def external_note_boundary_findings(
         (line.strip() for line in reversed(source.lines[:note_index]) if line.strip()),
         "",
     )
-    if re.fullmatch(r"-{3,}", prior_nonempty):
+    if re.fullmatch(r"-{3,}", prior_nonempty) and not allow_markdown:
         findings.append(
             Finding(
                 path=path_label,
@@ -1196,9 +1208,12 @@ def format_marker_findings(
     lines: list[str],
     line_index: int,
     line: str,
+    allow_markdown: bool = False,
 ) -> list[Finding]:
     """定位代码围栏和 Markdown 横线；不处理围栏内部正文。"""
 
+    if allow_markdown:
+        return []
     line_no = line_index + 1
     stripped = line.strip()
     if stripped.startswith("```"):
@@ -1234,6 +1249,7 @@ def primary_line_findings(
     pattern_sets: CompiledPatternSets,
     include_format: bool,
     delivery_mode: str,
+    allow_markdown: bool = False,
 ) -> list[Finding]:
     """完成正文逐行扫描；不承担正文外复核和全文统计。"""
 
@@ -1253,6 +1269,7 @@ def primary_line_findings(
                         source.lines_to_scan,
                         line_index,
                         line,
+                        allow_markdown=allow_markdown,
                     )
                 )
             in_fence = not in_fence
@@ -1264,6 +1281,7 @@ def primary_line_findings(
                     source.lines_to_scan,
                     line_index,
                     line,
+                    allow_markdown=allow_markdown,
                 )
             )
         if in_fence:
@@ -1422,11 +1440,12 @@ def aggregate_findings(
     include_format: bool,
     include_structure: bool,
     delivery_mode: str,
+    allow_markdown: bool = False,
 ) -> list[Finding]:
     """按固定顺序汇总格式、结构、标题和术语检查。"""
 
     findings: list[Finding] = []
-    if include_format:
+    if include_format and not allow_markdown:
         findings.extend(frequent_list_marker_findings(path_label, source.lines_to_scan))
         if delivery_mode in {"draft-body", "gap-note-allowed"}:
             findings.extend(postscript_heading_format_findings(path_label, source))
@@ -1463,6 +1482,7 @@ def scan(
     include_format: bool = False,
     include_structure: bool = False,
     delivery_mode: str = "generic",
+    allow_markdown: bool = False,
 ) -> list[Finding]:
     """编排一次完整扫描，不在此处实现具体检测职责。"""
 
@@ -1470,9 +1490,16 @@ def scan(
         raise ValueError(f"unsupported delivery mode: {delivery_mode}")
 
     source = prepare_scan_source(text, delivery_mode)
-    pattern_sets = prepare_pattern_sets(include_format, delivery_mode)
+    pattern_sets = prepare_pattern_sets(include_format, delivery_mode, allow_markdown)
     findings = unexpected_external_note_findings(path_label, source, delivery_mode)
-    findings.extend(external_note_boundary_findings(path_label, source, delivery_mode))
+    findings.extend(
+        external_note_boundary_findings(
+            path_label,
+            source,
+            delivery_mode,
+            allow_markdown=allow_markdown,
+        )
+    )
     findings.extend(
         primary_line_findings(
             path_label,
@@ -1480,6 +1507,7 @@ def scan(
             pattern_sets,
             include_format,
             delivery_mode,
+            allow_markdown,
         )
     )
     findings.extend(
@@ -1497,6 +1525,7 @@ def scan(
             include_format,
             include_structure,
             delivery_mode,
+            allow_markdown,
         )
     )
     return unique_findings(findings)
@@ -1516,6 +1545,7 @@ def build_argument_parser() -> argparse.ArgumentParser:
     parser.add_argument("--encoding", help="Encoding for plain-text files.")
     parser.add_argument("--json", action="store_true", help="Emit JSON findings.")
     parser.add_argument("--format", action="store_true", help="Also scan punctuation, number, list-marker, emoji, and explicit DOCX zero-font-size risks.")
+    parser.add_argument("--allow-markdown", action="store_true", help="Treat Markdown formatting as explicitly requested; keep other prose and delivery checks.")
     parser.add_argument("--structure", action="store_true", help="Also scan adjacent paragraphs for repeated matters.")
     parser.add_argument(
         "--delivery-mode",
@@ -1539,6 +1569,7 @@ def scan_input_files(
     include_format: bool,
     include_structure: bool,
     delivery_mode: str,
+    allow_markdown: bool = False,
 ) -> tuple[list[Finding], bool]:
     """读取并扫描全部输入文件，同时保留是否发生读取错误。"""
 
@@ -1562,6 +1593,7 @@ def scan_input_files(
                 include_format=include_format,
                 include_structure=include_structure,
                 delivery_mode=delivery_mode,
+                allow_markdown=allow_markdown,
             )
         )
         all_findings.extend(docx_format_findings)
@@ -1617,6 +1649,7 @@ def main(argv: list[str] | None = None) -> int:
         args.format,
         args.structure,
         args.delivery_mode,
+        args.allow_markdown,
     )
     emit_findings(all_findings, args.json, had_read_error)
     return determine_exit_code(all_findings, had_read_error, args.strict, args.fail_on)

@@ -140,6 +140,7 @@ def main():
     baseline.add_argument('--baseline-ref', default='main', help='Git baseline; a non-main ref is named baseline in artifacts.')
     baseline.add_argument('--baseline-dir', help='Explicit frozen Skill baseline; no Git commit is claimed for its contents.')
     parser.add_argument('--candidate-dir', help='Explicit frozen Skill directory for an attributable subset comparison.')
+    parser.add_argument('--candidate-skill-name', default='chinese-official-writing', help='Candidate installation folder for a separately named product smoke test.')
     parser.add_argument('--models', nargs='+', type=int, default=[0, 1])
     parser.add_argument('--cases', nargs='+', choices=list(CASES), default=[c for c in CASES if c != 'review_existing_docx'])
     parser.add_argument('--input-file', help='Existing DOCX for the explicit review_existing_docx case; copied unchanged into each isolated workspace.')
@@ -152,6 +153,8 @@ def main():
     parser.add_argument('--ordinary-only', action='store_true', help='Compare ordinary Skill writing in both arms without optional Hook enhancement.')
     parser.add_argument('--utf8-read', action='store_true', help='Give both arms the same file-encoding instruction after a witnessed Windows decoding failure.')
     args = parser.parse_args()
+    if not re.fullmatch(r'[a-z0-9-]+', args.candidate_skill_name):
+        parser.error('candidate skill name must be a simple lowercase slug')
     needs_input = 'review_existing_docx' in args.cases
     if needs_input != bool(args.input_file):
         parser.error('review_existing_docx requires --input-file; other cases do not use input files')
@@ -201,6 +204,7 @@ def main():
     binding['baseline_ref'] = 'snapshot' if args.baseline_dir else args.baseline_ref
     binding['baseline_source'] = str(Path(args.baseline_dir).resolve()) if args.baseline_dir else None
     binding['candidate_source'] = str(candidate_source)
+    binding['candidate_skill_name'] = args.candidate_skill_name
     binding['baseline_commit'] = commit
     binding['main_commit'] = subprocess.check_output(['git','rev-parse','main'],cwd=ROOT,text=True).strip()
     binding['profile'] = 'temporary-no-user-documents-or-credentials' if args.isolated_profile else 'host-profile'
@@ -229,7 +233,8 @@ def main():
         results=[]
         for arm in ([baseline_arm,'candidate'] if index%2==0 else ['candidate',baseline_arm]):
             run_root=runtime/f'm{index}-{case_id}-{arm}'
-            work=run_root/'workspace'; skill=work/'.agents/skills/chinese-official-writing'
+            skill_name = args.candidate_skill_name if arm == 'candidate' else 'chinese-official-writing'
+            work=run_root/'workspace'; skill=work/'.agents/skills'/skill_name
             shutil.copytree(snapshots[arm],skill)
             staged_input = work / 'received-application.docx' if case_id == 'review_existing_docx' else None
             if staged_input is not None:
@@ -238,16 +243,14 @@ def main():
             call_environment={**eval_environment, 'TEMP':str(scratch), 'TMP':str(scratch), 'TMPDIR':str(scratch)}
             prefix=out/f'm{index}-{case_id}-{arm}'
             final=Path(str(prefix)+'.final.txt')
-            prompt=binding['prompt_prefix']+CASES[case_id]
+            prompt=binding['prompt_prefix'].replace('.agents/skills/chinese-official-writing/SKILL.md', f'.agents/skills/{skill_name}/SKILL.md')+CASES[case_id]
             command=[str(cli),'exec','--ephemeral','--skip-git-repo-check','-C',str(work),'-m',MODELS[index],'-c','approval_policy="never"','-c','features.plugins=false','-c','features.apps=false','-c','features.memories=false','-c','openai_base_url="http://127.0.0.1:10100/v1"','-c',f'model_catalog_json="{catalog.as_posix()}"','--json','--output-last-message',str(final),'-']
-            if index != 2:
-                command[-1:-1]=['-c',f'model_reasoning_effort="{args.effort}"']
+            command[-1:-1]=['-c',f'model_reasoning_effort="{args.effort}"']
             if not args.inherit_agent_docs:
                 command[-1:-1]=['-c','project_doc_max_bytes=0']
             if args.review_host:
                 command[-1:-1]=['-c','features.multi_agent=true','-c','agents.max_threads=3','-c','agents.max_depth=1','-c',f'agents.default_subagent_model="{MODELS[index]}"']
-                if index != 2:
-                    command[-1:-1]=['-c',f'agents.default_subagent_reasoning_effort="{args.effort}"']
+                command[-1:-1]=['-c',f'agents.default_subagent_reasoning_effort="{args.effort}"']
             if args.retain_session_metadata:
                 command.remove('--ephemeral')
             started=time.monotonic(); error=None
@@ -277,13 +280,13 @@ def main():
                 x.get('exit_code') == 0 and bound_entry in x.get('aggregated_output', '').replace('\r\n', '\n')
                 for x in calls
             )
-            if 'chinese-official-writing/skill.md' not in commands and not entry_returned:
+            if f'{skill_name}/skill.md' not in commands and not entry_returned:
                 invalid.append('missing_skill_read_trace')
             foreign=[x for x in calls if ('/.codex/skills/' in x.get('command','').replace('\\','/').lower() or '/plugins/cache/' in x.get('command','').replace('\\','/').lower())]
             if foreign: invalid.append('foreign_skill_read')
             if '开发与验证' in stdout or '所有代码和文档改动提交' in stdout or '仅保留完整 Pro 安装' in stdout:
                 invalid.append('maintenance_instructions_contamination')
-            result={'model':MODELS[index],'effort':args.effort if index!=2 else 'provider-default','case':case_id,'arm':arm,'returncode':code,'seconds':round(time.monotonic()-started,2),'invalid':invalid,'draft_sha256':hashlib.sha256(text.encode()).hexdigest(),'commands':calls,'usage':[x.get('usage') for x in events if x.get('type')=='turn.completed']}
+            result={'model':MODELS[index],'effort':args.effort,'case':case_id,'arm':arm,'returncode':code,'seconds':round(time.monotonic()-started,2),'invalid':invalid,'draft_sha256':hashlib.sha256(text.encode()).hexdigest(),'commands':calls,'usage':[x.get('usage') for x in events if x.get('type')=='turn.completed']}
             if args.review_host:
                 result['collaboration_items']=[x['item'] for x in events if isinstance(x.get('item'),dict) and 'collab' in x['item'].get('type','') and x.get('type')=='item.completed']
             if staged_input is not None:
