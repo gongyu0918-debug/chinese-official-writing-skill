@@ -25,4 +25,26 @@
 
 ## 发布回执
 
-GitHub、SkillHub 与 ClawHub 的实际提交回执在发布完成后补记。
+### GitHub
+
+- 发布提交与 `v1.6.36^{commit}`：`92af987bf8a1b96e95a6e22bb0d33165cabd13d7`。
+- annotated tag object：`33183605b724a1889a39f5263afad82eb06401f6`。
+- `main` 与 tag 已原子推送；GitHub Release ID：`388079381`。
+- Release：<https://github.com/gongyu0918-debug/chinese-official-writing-skill/releases/tag/v1.6.36>；`draft=false`、`prerelease=false`。
+- 公开更新说明文件 SHA-256：`98518bef366241d00b22f9aa7f1e6ca96b885342672037cf556cc7b66e4363d4`。
+
+### SkillHub
+
+- 正式提交成功：`ok=true`、`version=1.6.36`、`versionId=310553`、`fileCount=104`。
+- 上传 ZIP SHA-256：`46faf818759ee63386e05b1059ac4afcf34d7cdaf5b0ca157c5960118884c0a2`；平台 fingerprint：`b1d75e382eaefc73f8d57af1e1cf84bb4db753b101fc1726f91e8ff2a23b9034`。
+- 回执中 `tags.latest=1.6.36`；`reviewStatus=pending`、`securityScanStatus=pending`、`contentAuditStatus=pending`。提交成功不等于审核完成，不重复提交。
+
+### ClawHub
+
+- 正式提交成功：`status=published`、`version=1.6.36`、`versionId=k97738x9bs05cqvb3tzxnxbhkn8ecmzx`、`fileCount=53`。
+- 无 Hook 包快照 ZIP SHA-256：`3f393aee484131d7a020b2e550ecc9e8aedc79aaa64c6b20414c2195c06e1207`；正式回执 fingerprint：`cdedd672ccaaa481bb63c5c7f727209f720098be01286e2a0b4c0f049d677550`。
+- 正式回执的 `latestVersion` 仍为 `1.6.35`，按传播状态记录；取得成功回执后不轮询、不重复提交。
+
+### 收口状态
+
+GitHub、SkillHub 与 ClawHub 均已完成各自唯一一次正式提交。后续证据提交只更新 GitHub `main`，不移动 `v1.6.36` tag，不改 Release 正文，也不再次提交两个平台。

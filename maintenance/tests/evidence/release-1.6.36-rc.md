@@ -1,5 +1,7 @@
 # v1.6.36 候选记录
 
+状态：`PUBLISHED / SEE release-1.6.36.md`。
+
 ## 基线与范围
 
 - 已发布基线：`origin/main@c0abfeeb3d2a21cfd6ec722de7d8ae534ad68f61`，对应 v1.6.35 tag 解引用提交。
