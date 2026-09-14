@@ -60,7 +60,6 @@ GitHub 默认分支维护 2.0；[legacy/1.x](https://github.com/gongyu0918-debug
 | [references/](chinese-official-writing/references/) | 文种、事务、场景附加、写作与复核参考 |
 | [draft_length.py](chinese-official-writing/scripts/draft_length.py) | 正文篇幅检查 |
 | [prose_lint.py](chinese-official-writing/scripts/prose_lint.py) | 文稿格式、语言模式和成品残留扫描 |
-| [packages/](packages/) | 同源兼容包，平台提交状态单独记录 |
 | [maintenance/](maintenance/) | 规格、构建工具、测试与历史证据，不参与普通写稿加载 |
 
 ## 开源许可

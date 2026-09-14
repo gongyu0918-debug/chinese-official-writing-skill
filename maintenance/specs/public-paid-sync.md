@@ -2,10 +2,10 @@
 
 ## 产品与许可边界
 
-- 1.x 作为历史归档，2.0 为活动普通写作来源。2.0 保留写稿入口、references、篇幅检查、文稿复核等普通脚本及兼容包，移出 Hook、交付门禁、宿主适配及对应活动构建链；1.x 保留其现有 MIT 能力，2.0 的删除记录不反向覆盖 1.x。2026-09-14 已授权 GitHub 更新，ClawHub、SkillHub 本轮不提交。
+- 1.x 作为历史归档，2.0 为活动普通写作来源。2.0 保留写稿入口、references、篇幅检查、文稿复核等普通脚本，移出 Hook、交付门禁、宿主适配及对应活动构建链；1.x 保留其现有 MIT 能力，2.0 的删除记录不反向覆盖 1.x。2026-09-14 已授权 GitHub 更新，ClawHub、SkillHub 本轮不提交。
 - Hook 资产保存在 `codex/pro-hooks-preserved-20260912`；来源、验证范围与后续接续事项见 [Hook 去向便条](../docs/pro-hooks-next.md)。原 `codex/paid-outline-review` 是既有付费候选，后续 Pro 不再限于提纲增量。
 - Pro 专属范围包括 Hook 核心、宿主适配、交付门禁、提纲审核、已授权的红头 DOCX 能力，以及对应说明、构建工具、测试和证据。它们不进入公开 GitHub 主线或普通 SkillHub、ClawHub、OpenClaw 包。
-- 普通写稿规则、references、普通脚本和公开兼容修复以明确绑定的 2.0 ref 和产品树为来源，避免维护两套普通规则。
+- 普通写稿规则、references、普通脚本和通用兼容修复以明确绑定的 2.0 ref 和产品树为来源，避免维护两套普通规则。
 - 按 2026-09-13 用户更新要求，1.x 及其既有 Hook 维持 MIT 授权，既往已发布副本保留原许可。另建 Pro 专属内容的许可独立记录，并保留所复用旧代码和第三方代码适用的原版权与许可声明；不再把 v1.6.34 作为整个 1.x Hook 授权截止点。
 
 ## 接续顺序
@@ -18,7 +18,7 @@
 
 ## 最小检查
 
-- 普通产品与兼容包均不含 `hooks/`、`scripts/review_gate.py`、`references/delivery-review-gate.md` 或付费红头路由。
+- 普通产品不含 `hooks/`、`scripts/review_gate.py`、`references/delivery-review-gate.md` 或付费红头路由。
 - 普通篇幅检查与 `prose_lint.py` 均保留，按写作阶段调用；移除 Hook 不构成删除普通脚本的理由。
 - Pro 相对所记录 MIT 来源的普通能力差异可解释，Hook 资产、适配器和已验证特性完整。
 - 每次接续记录准确来源与最小测试，不以 Git ancestry 单独替代内容一致性检查。

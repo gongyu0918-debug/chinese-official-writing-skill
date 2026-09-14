@@ -23,7 +23,7 @@
 
 ## 产品边界
 
-- `chinese-official-writing/` 为普通写作规则和脚本的 canonical；`packages/` 放公开兼容包，`maintenance/` 放维护和证据，`output/` 默认不提交。普通产品保留独立的篇幅检查与文稿复核脚本。
+- `chinese-official-writing/` 为普通写作规则和脚本的 canonical；各宿主使用同一标准 Skill，`maintenance/` 放维护和证据，`output/` 默认不提交。普通产品保留独立的篇幅检查与文稿复核脚本。
 - 本轮 2.0 测试候选移除全部 Hook、交付门禁、宿主适配及对应活动构建链；完整资产保存在[独立分支](pro-hooks-next.md)。1.x 稳定线继续按现有 MIT 能力维护，不合入这些删除记录。公开规则和普通脚本按[同步规则](../specs/public-paid-sync.md)接入 Pro，接续时保全 Pro Hook 文件。Pro 专属能力和测试不反向进入公开包，激活与发布另行授权。
 - Skill 安装与脚本真实执行分别举证；Pro 的 companion 组装、插件安装、启用、信任和生命周期执行分别举证。普通 Skill 及兼容包继续使用根 [LICENSE](../../LICENSE)（MIT）。按 2026-09-13 用户最新要求，1.x 及其既有 Hook 维持 MIT 授权；新建 Pro 专属内容的许可与历史 MIT 副本分别记录，第三方代码保留自身许可。当前 2.0 暂不发布。
 

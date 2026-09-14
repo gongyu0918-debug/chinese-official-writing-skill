@@ -162,7 +162,7 @@ def skill_prompt(tasks: list[tuple[str, str, str]], cwd: Path) -> str:
     return textwrap.dedent(
         f"""
         You are Writer A. The repository has the Skill installed at
-        `packages/agent-skills/skills/chinese-official-writing/`.
+        `chinese-official-writing/`.
 
         Use the installed Skill instructions and references below. Follow them as
         drafting rules, not as text to copy. Do not output explanations of the Skill.
