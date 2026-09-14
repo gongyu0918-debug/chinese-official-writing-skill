@@ -1,6 +1,6 @@
 # 中文公文写作 Skill
 
-[![Version](https://img.shields.io/badge/version-2.0.0--beta.2-blue)](chinese-official-writing/)
+[![Version](https://img.shields.io/badge/version-2.0.0--beta.2-blue)](https://github.com/gongyu0918-debug/chinese-official-writing-skill/releases/tag/v2.0.0-beta.2)
 [![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 [![1.x archive](https://img.shields.io/badge/1.x-历史归档-gray)](https://github.com/gongyu0918-debug/chinese-official-writing-skill/tree/legacy/1.x)
 
@@ -14,12 +14,9 @@
 
 ```mermaid
 flowchart LR
-    A[理解需求与材料] --> B[选择文种或事务页]
-    B --> C[起草或落实修改]
-    B --> S[按需补充场景参考]
-    S --> C
-    C --> D[篇幅、文种与抗 AI 味复核<br/>脚本扫描与修正]
-    D --> E[交付稿件<br/>文后提示单独呈现]
+    A[理解需求] --> B[按需读规则]
+    B --> C[写作与复核]
+    C --> D[交付]
 ```
 
 审核任务按同一文种和质量规则核对原稿，给出位置、问题及建议；需要改后稿时落实修改。局部任务沿用用户限定的修改范围。Word 任务结合宿主文档工具完成版式与文件交付。
@@ -51,7 +48,7 @@ GitHub 默认分支维护 2.0；[legacy/1.x](https://github.com/gongyu0918-debug
 
 ## 获取与使用
 
-将 [`chinese-official-writing/`](chinese-official-writing/) 目录复制到宿主的 Skill 目录，然后提供材料和写作要求即可。
+下载 [2.0 测试版](https://github.com/gongyu0918-debug/chinese-official-writing-skill/releases/tag/v2.0.0-beta.2)，将其中的 `chinese-official-writing` 目录复制到宿主的 Skill 目录，然后提供材料和写作要求即可。
 
 篇幅和文稿检查需要 Python 3；Word 文件生成需要宿主提供文档工具。具体使用见包内 [README](chinese-official-writing/README.md)。
 
