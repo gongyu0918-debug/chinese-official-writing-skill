@@ -8,12 +8,9 @@
 
 ```mermaid
 flowchart LR
-    A[用户需求与材料] --> B[对应文种或事务页]
-    B --> C[必要附加规则]
-    C --> D[成稿与篇幅检查]
-    D --> E[文种复核与抗 AI 味检查]
-    E --> F[文稿扫描与修正]
-    F --> G[稿件及独立文后提示]
+    A[理解需求] --> B[按需读规则]
+    B --> C[写作与复核]
+    C --> D[交付]
 ```
 
 文种页负责自身的要素、结构和行文习惯；共性规则处理材料分析、成稿、复核和交付；算力、领导讲话等附加参考按场景读取。审核给出位置、问题和建议，需要改后稿时落实修改。
@@ -38,6 +35,6 @@ flowchart LR
 
 独立标识：`chinese-official-writing-v2`。当前为 2.0 测试版。1.x 最后发布版本 1.6.36 保存在 GitHub 的 [legacy/1.x](https://github.com/gongyu0918-debug/chinese-official-writing-skill/tree/legacy/1.x) 分支。
 
-2.0 普通包保留规则与独立检查脚本，Hook 增强由 Pro 单独维护。普通包采用 [MIT License](LICENSE)，旧版及其中既有 Hook 的 MIT 授权继续有效。
+本项目采用 [MIT License](LICENSE)，请保留版权及许可声明。
 
-源码与反馈：[GitHub](https://github.com/gongyu0918-debug/chinese-official-writing-skill)。ClawHub、SkillHub 的 2.0 提交另行进行，以平台实际版本为准。
+源码与反馈：[GitHub](https://github.com/gongyu0918-debug/chinese-official-writing-skill)。

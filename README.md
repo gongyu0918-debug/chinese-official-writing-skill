@@ -13,19 +13,10 @@
 ## 怎么实现
 
 ```mermaid
-flowchart TD
-    A[理解用户需求与最新版材料] --> B[选择主文种或事务场景]
-    B --> C[读取对应文种叶]
-    C --> D{是否需要附加能力}
-    D -->|有对应场景| E[场景附加规则或专项能力]
-    D -->|直接写作| F[形成正文或落实修改]
-    E --> F
-    F --> G[篇幅检查 draft_length.py]
-    G --> H[文种复核与抗 AI 味检查]
-    H --> I[文稿扫描 prose_lint.py]
-    I --> J[处理检查结果]
-    J --> K[交付稿件或审稿意见]
-    K --> L[必要文后提示与正文分开]
+flowchart LR
+    A[理解需求] --> B[按需读规则]
+    B --> C[写作与复核]
+    C --> D[交付]
 ```
 
 审核任务按同一文种和质量规则核对原稿，给出位置、问题及建议；需要改后稿时落实修改。局部任务沿用用户限定的修改范围。Word 任务结合宿主文档工具完成版式与文件交付。
@@ -53,8 +44,6 @@ flowchart TD
 
 GitHub 默认分支维护 2.0；[legacy/1.x](https://github.com/gongyu0918-debug/chinese-official-writing-skill/tree/legacy/1.x) 保存 1.0 最后一版的完整源码和历史记录，对应已发布版本 **1.6.36**。旧版本及其中既有 Hook 的 MIT 授权继续有效。
 
-2.0 的普通包由 `SKILL.md`、`references/` 和 `scripts/` 构成，附带使用说明、许可和可选宿主元数据。普通写作通过规则与独立脚本完成，Hook 增强由 Pro 单独维护。Pro 的普通写作层接续 2.0，1.x 不再是其活动同步来源。
-
 本版定位为 **2.0 测试版**。本轮配对写稿中，成功完整返回的规则页字符约减少 47.7%；静态规则文本约减少 43.1%，首页约减少 66.3%。这些结果说明加载内容减少，不等于所有文种写作质量全面领先，也不等于相同比例的费用或耗时下降。完整稿件、用量、冷审分歧和已知问题见 [R31 验证记录](maintenance/tests/evidence/v2-independent-readiness-r31/results.md)。
 
 ## 获取与使用
@@ -62,8 +51,6 @@ GitHub 默认分支维护 2.0；[legacy/1.x](https://github.com/gongyu0918-debug
 本版独立标识为 **`chinese-official-writing-v2`**。GitHub 技能源目录为 [`chinese-official-writing/`](chinese-official-writing/)；手动安装时，将该目录复制到宿主的 Skill 目录并命名为 `chinese-official-writing-v2`。宿主发现技能后，用自然语言提供材料、用途和修改要求即可。
 
 篇幅和文稿检查需要 Python 3；Word 文件生成需要宿主提供文档工具。具体使用见包内 [README](chinese-official-writing/README.md)。
-
-ClawHub、SkillHub 本轮暂不更新，平台上的 1.x 仍以原页面标注为准。旧版入口：[ClawHub](https://clawhub.ai/gongyu0918-debug/skills/chinese-official-writing) · [SkillHub](https://skillhub.cn/skills/chinese-official-writing)。
 
 ## 实现与目录
 
@@ -76,10 +63,8 @@ ClawHub、SkillHub 本轮暂不更新，平台上的 1.x 仍以原页面标注�
 | [packages/](packages/) | 同源兼容包，平台提交状态单独记录 |
 | [maintenance/](maintenance/) | 规格、构建工具、测试与历史证据，不参与普通写稿加载 |
 
-写作规则采用中文 Markdown，脚本采用 Python。规则是否有效以原生真实写稿和独立审阅判断；Python 测试用于脚本行为、路径、来源和包一致性。
-
 ## 开源许可
 
-2.0 普通 Skill 采用 [MIT License](LICENSE)，允许修改、分发和商业使用，请保留版权及许可声明。Pro 增强的许可与其复用的 MIT 文件分别记录。历史 1.x 副本的许可保持原状。
+本项目采用 [MIT License](LICENSE)，允许修改、分发和商业使用，请保留版权及许可声明。
 
 问题反馈请提交 [GitHub Issue](https://github.com/gongyu0918-debug/chinese-official-writing-skill/issues)，附上可公开的材料、实际稿件和预期差异。
