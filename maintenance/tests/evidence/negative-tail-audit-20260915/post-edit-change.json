@@ -1,0 +1,6 @@
+{
+  "file": "chinese-official-writing\\references\\ai-compute-docs.md",
+  "before": "成本章节重点写需求来源、服务期限、资源覆盖、风险控制和费用边界；用户要求测算表时，将公式、单价与数量等计算过程放入表中。",
+  "after": "成本章节用完整语句说明需求来源、服务期限、资源覆盖、风险控制和费用边界，测算内容交代依据与结果。用户要求测算表时，再在表中列出公式和计算步骤。",
+  "reason": "post-edit reviewer identified missing default body shape; clarify ordinary prose and requested calculation table"
+}

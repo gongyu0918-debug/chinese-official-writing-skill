@@ -1,0 +1,20 @@
+{
+  "model": "xai/grok-4.6",
+  "effort": "max",
+  "transport": "native codex exec plaintext task",
+  "packet_delivery": "inline stdin",
+  "seconds": 274.19,
+  "returncode": 0,
+  "error": null,
+  "packet_sha256": "7184c6d796c41390f40263c831e7594994833344f4db6765d286acbd3a477fdd",
+  "final_exists": true,
+  "usage": [
+    {
+      "input_tokens": 32964,
+      "cached_input_tokens": 128,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 16731,
+      "reasoning_output_tokens": 16070
+    }
+  ]
+}

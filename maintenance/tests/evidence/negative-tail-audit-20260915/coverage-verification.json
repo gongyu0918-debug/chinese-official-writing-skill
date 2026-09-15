@@ -1,0 +1,609 @@
+{
+  "expected_pages": 68,
+  "covered_pages": 68,
+  "missing": [],
+  "extra": [],
+  "completed_groups": {
+    "A-common": {
+      "model": "alibaba-token-plan/qwen3.8-max",
+      "packet_hash_match": true,
+      "returncode": 0,
+      "error": null,
+      "review_chars": 6692,
+      "command_tool_calls": 0
+    },
+    "B-official": {
+      "model": "ollama-cloud/glm-5.3",
+      "packet_hash_match": true,
+      "returncode": 0,
+      "error": null,
+      "review_chars": 4810,
+      "command_tool_calls": 0
+    },
+    "C-speaking-news": {
+      "model": "ollama-cloud/kimi-k3",
+      "packet_hash_match": true,
+      "returncode": 0,
+      "error": null,
+      "review_chars": 5253,
+      "command_tool_calls": 0
+    },
+    "D-specialist": {
+      "model": "xai/grok-4.6",
+      "packet_hash_match": true,
+      "returncode": 0,
+      "error": null,
+      "review_chars": 10820,
+      "command_tool_calls": 0
+    }
+  },
+  "rows": [
+    {
+      "page": "SKILL.md",
+      "primary_groups": [
+        "A-common",
+        "B-official",
+        "C-speaking-news",
+        "D-specialist"
+      ],
+      "cross_groups": [],
+      "disposition": "retain; no necessary edit selected"
+    },
+    {
+      "page": "ai-compute-docs.md",
+      "primary_groups": [
+        "D-specialist"
+      ],
+      "cross_groups": [
+        "A-common"
+      ],
+      "disposition": "selective clause edits; see changes.json"
+    },
+    {
+      "page": "ai-compute-examples.md",
+      "primary_groups": [
+        "D-specialist"
+      ],
+      "cross_groups": [],
+      "disposition": "retain; no necessary edit selected"
+    },
+    {
+      "page": "anti-ai-patterns.md",
+      "primary_groups": [
+        "A-common"
+      ],
+      "cross_groups": [
+        "B-official",
+        "D-specialist"
+      ],
+      "disposition": "retain; no necessary edit selected"
+    },
+    {
+      "page": "argument-chains.md",
+      "primary_groups": [
+        "A-common"
+      ],
+      "cross_groups": [],
+      "disposition": "retain; no necessary edit selected"
+    },
+    {
+      "page": "compatibility-scene-routing.md",
+      "primary_groups": [
+        "D-specialist"
+      ],
+      "cross_groups": [],
+      "disposition": "selective clause edits; see changes.json"
+    },
+    {
+      "page": "compression-details.md",
+      "primary_groups": [
+        "A-common"
+      ],
+      "cross_groups": [],
+      "disposition": "retain; no necessary edit selected"
+    },
+    {
+      "page": "external-research.md",
+      "primary_groups": [
+        "D-specialist"
+      ],
+      "cross_groups": [
+        "C-speaking-news"
+      ],
+      "disposition": "retain; no necessary edit selected"
+    },
+    {
+      "page": "field-editing.md",
+      "primary_groups": [
+        "A-common"
+      ],
+      "cross_groups": [],
+      "disposition": "selective clause edits; see changes.json"
+    },
+    {
+      "page": "formal-addressing.md",
+      "primary_groups": [
+        "A-common"
+      ],
+      "cross_groups": [],
+      "disposition": "selective clause edits; see changes.json"
+    },
+    {
+      "page": "format-gbt9704.md",
+      "primary_groups": [
+        "D-specialist"
+      ],
+      "cross_groups": [],
+      "disposition": "selective clause edits; see changes.json"
+    },
+    {
+      "page": "formulaic-language.md",
+      "primary_groups": [
+        "A-common"
+      ],
+      "cross_groups": [],
+      "disposition": "selective clause edits; see changes.json"
+    },
+    {
+      "page": "genre-checklist-feasibility-review.md",
+      "primary_groups": [
+        "D-specialist"
+      ],
+      "cross_groups": [],
+      "disposition": "retain; no necessary edit selected"
+    },
+    {
+      "page": "genre-checklist-report.md",
+      "primary_groups": [
+        "B-official"
+      ],
+      "cross_groups": [],
+      "disposition": "retain; no necessary edit selected"
+    },
+    {
+      "page": "genre-checklist-request.md",
+      "primary_groups": [
+        "B-official"
+      ],
+      "cross_groups": [],
+      "disposition": "retain; no necessary edit selected"
+    },
+    {
+      "page": "genre-checklist.md",
+      "primary_groups": [
+        "D-specialist"
+      ],
+      "cross_groups": [],
+      "disposition": "retain; no necessary edit selected"
+    },
+    {
+      "page": "genre-playbook-advisory-feedback.md",
+      "primary_groups": [
+        "C-speaking-news"
+      ],
+      "cross_groups": [
+        "D-specialist"
+      ],
+      "disposition": "selective clause edits; see changes.json"
+    },
+    {
+      "page": "genre-playbook-bulletin.md",
+      "primary_groups": [
+        "B-official"
+      ],
+      "cross_groups": [],
+      "disposition": "retain; no necessary edit selected"
+    },
+    {
+      "page": "genre-playbook-communique.md",
+      "primary_groups": [
+        "B-official"
+      ],
+      "cross_groups": [],
+      "disposition": "retain; no necessary edit selected"
+    },
+    {
+      "page": "genre-playbook-complaint-reflection.md",
+      "primary_groups": [
+        "C-speaking-news"
+      ],
+      "cross_groups": [],
+      "disposition": "selective clause edits; see changes.json"
+    },
+    {
+      "page": "genre-playbook-correspondence.md",
+      "primary_groups": [
+        "B-official"
+      ],
+      "cross_groups": [],
+      "disposition": "retain; no necessary edit selected"
+    },
+    {
+      "page": "genre-playbook-decision.md",
+      "primary_groups": [
+        "B-official"
+      ],
+      "cross_groups": [],
+      "disposition": "retain; no necessary edit selected"
+    },
+    {
+      "page": "genre-playbook-deployment.md",
+      "primary_groups": [
+        "B-official"
+      ],
+      "cross_groups": [],
+      "disposition": "retain; no necessary edit selected"
+    },
+    {
+      "page": "genre-playbook-duty-report.md",
+      "primary_groups": [
+        "C-speaking-news"
+      ],
+      "cross_groups": [],
+      "disposition": "selective clause edits; see changes.json"
+    },
+    {
+      "page": "genre-playbook-editorial-note.md",
+      "primary_groups": [
+        "C-speaking-news"
+      ],
+      "cross_groups": [],
+      "disposition": "retain; no necessary edit selected"
+    },
+    {
+      "page": "genre-playbook-explanation.md",
+      "primary_groups": [
+        "B-official"
+      ],
+      "cross_groups": [
+        "C-speaking-news"
+      ],
+      "disposition": "retain; no necessary edit selected"
+    },
+    {
+      "page": "genre-playbook-feasibility.md",
+      "primary_groups": [
+        "D-specialist"
+      ],
+      "cross_groups": [],
+      "disposition": "retain; no necessary edit selected"
+    },
+    {
+      "page": "genre-playbook-information-materials.md",
+      "primary_groups": [
+        "B-official"
+      ],
+      "cross_groups": [],
+      "disposition": "retain; no necessary edit selected"
+    },
+    {
+      "page": "genre-playbook-initiative.md",
+      "primary_groups": [
+        "C-speaking-news"
+      ],
+      "cross_groups": [],
+      "disposition": "retain; no necessary edit selected"
+    },
+    {
+      "page": "genre-playbook-institution-rules.md",
+      "primary_groups": [
+        "B-official"
+      ],
+      "cross_groups": [],
+      "disposition": "retain; no necessary edit selected"
+    },
+    {
+      "page": "genre-playbook-meeting-host.md",
+      "primary_groups": [
+        "C-speaking-news"
+      ],
+      "cross_groups": [],
+      "disposition": "retain; no necessary edit selected"
+    },
+    {
+      "page": "genre-playbook-minutes.md",
+      "primary_groups": [
+        "B-official"
+      ],
+      "cross_groups": [],
+      "disposition": "selective clause edits; see changes.json"
+    },
+    {
+      "page": "genre-playbook-motion.md",
+      "primary_groups": [
+        "B-official"
+      ],
+      "cross_groups": [],
+      "disposition": "retain; no necessary edit selected"
+    },
+    {
+      "page": "genre-playbook-narration.md",
+      "primary_groups": [
+        "C-speaking-news"
+      ],
+      "cross_groups": [],
+      "disposition": "retain; no necessary edit selected"
+    },
+    {
+      "page": "genre-playbook-news-commentary.md",
+      "primary_groups": [
+        "C-speaking-news"
+      ],
+      "cross_groups": [],
+      "disposition": "retain; no necessary edit selected"
+    },
+    {
+      "page": "genre-playbook-news-message.md",
+      "primary_groups": [
+        "C-speaking-news"
+      ],
+      "cross_groups": [
+        "A-common"
+      ],
+      "disposition": "selective clause edits; see changes.json"
+    },
+    {
+      "page": "genre-playbook-notice.md",
+      "primary_groups": [
+        "B-official"
+      ],
+      "cross_groups": [
+        "D-specialist"
+      ],
+      "disposition": "retain; no necessary edit selected"
+    },
+    {
+      "page": "genre-playbook-open-letter.md",
+      "primary_groups": [
+        "C-speaking-news"
+      ],
+      "cross_groups": [],
+      "disposition": "selective clause edits; see changes.json"
+    },
+    {
+      "page": "genre-playbook-opinion.md",
+      "primary_groups": [
+        "B-official"
+      ],
+      "cross_groups": [],
+      "disposition": "retain; no necessary edit selected"
+    },
+    {
+      "page": "genre-playbook-order.md",
+      "primary_groups": [
+        "B-official"
+      ],
+      "cross_groups": [],
+      "disposition": "retain; no necessary edit selected"
+    },
+    {
+      "page": "genre-playbook-plan-construction.md",
+      "primary_groups": [
+        "D-specialist"
+      ],
+      "cross_groups": [],
+      "disposition": "retain; no necessary edit selected"
+    },
+    {
+      "page": "genre-playbook-procurement-announcement.md",
+      "primary_groups": [
+        "B-official"
+      ],
+      "cross_groups": [],
+      "disposition": "retain; no necessary edit selected"
+    },
+    {
+      "page": "genre-playbook-procurement-review.md",
+      "primary_groups": [
+        "D-specialist"
+      ],
+      "cross_groups": [],
+      "disposition": "retain; no necessary edit selected"
+    },
+    {
+      "page": "genre-playbook-project-application.md",
+      "primary_groups": [
+        "C-speaking-news"
+      ],
+      "cross_groups": [],
+      "disposition": "retain; no necessary edit selected"
+    },
+    {
+      "page": "genre-playbook-publication.md",
+      "primary_groups": [
+        "B-official"
+      ],
+      "cross_groups": [],
+      "disposition": "retain; no necessary edit selected"
+    },
+    {
+      "page": "genre-playbook-remediation-plan.md",
+      "primary_groups": [
+        "C-speaking-news"
+      ],
+      "cross_groups": [],
+      "disposition": "retain; no necessary edit selected"
+    },
+    {
+      "page": "genre-playbook-reply.md",
+      "primary_groups": [
+        "B-official"
+      ],
+      "cross_groups": [],
+      "disposition": "retain; no necessary edit selected"
+    },
+    {
+      "page": "genre-playbook-report.md",
+      "primary_groups": [
+        "B-official"
+      ],
+      "cross_groups": [],
+      "disposition": "retain; no necessary edit selected"
+    },
+    {
+      "page": "genre-playbook-request.md",
+      "primary_groups": [
+        "B-official"
+      ],
+      "cross_groups": [
+        "A-common"
+      ],
+      "disposition": "retain; no necessary edit selected"
+    },
+    {
+      "page": "genre-playbook-research.md",
+      "primary_groups": [
+        "D-specialist"
+      ],
+      "cross_groups": [],
+      "disposition": "retain; no necessary edit selected"
+    },
+    {
+      "page": "genre-playbook-resolution.md",
+      "primary_groups": [
+        "B-official"
+      ],
+      "cross_groups": [],
+      "disposition": "retain; no necessary edit selected"
+    },
+    {
+      "page": "genre-playbook-responsibility-letter.md",
+      "primary_groups": [
+        "B-official"
+      ],
+      "cross_groups": [],
+      "disposition": "retain; no necessary edit selected"
+    },
+    {
+      "page": "genre-playbook-review-opinion.md",
+      "primary_groups": [
+        "D-specialist"
+      ],
+      "cross_groups": [],
+      "disposition": "retain; no necessary edit selected"
+    },
+    {
+      "page": "genre-playbook-speech-address.md",
+      "primary_groups": [
+        "C-speaking-news"
+      ],
+      "cross_groups": [],
+      "disposition": "retain; no necessary edit selected"
+    },
+    {
+      "page": "genre-playbook-technical-requirements.md",
+      "primary_groups": [
+        "D-specialist"
+      ],
+      "cross_groups": [],
+      "disposition": "retain; no necessary edit selected"
+    },
+    {
+      "page": "genre-playbook-work-priorities.md",
+      "primary_groups": [
+        "B-official"
+      ],
+      "cross_groups": [],
+      "disposition": "retain; no necessary edit selected"
+    },
+    {
+      "page": "genre-playbook-work-summary.md",
+      "primary_groups": [
+        "B-official"
+      ],
+      "cross_groups": [],
+      "disposition": "retain; no necessary edit selected"
+    },
+    {
+      "page": "genre-routing.md",
+      "primary_groups": [
+        "D-specialist"
+      ],
+      "cross_groups": [],
+      "disposition": "retain; no necessary edit selected"
+    },
+    {
+      "page": "proofreading-checklist.md",
+      "primary_groups": [
+        "A-common"
+      ],
+      "cross_groups": [],
+      "disposition": "retain; no necessary edit selected"
+    },
+    {
+      "page": "prose-lint-usage.md",
+      "primary_groups": [
+        "A-common"
+      ],
+      "cross_groups": [],
+      "disposition": "retain; no necessary edit selected"
+    },
+    {
+      "page": "reference-index.md",
+      "primary_groups": [
+        "D-specialist"
+      ],
+      "cross_groups": [],
+      "disposition": "retain; no necessary edit selected"
+    },
+    {
+      "page": "review-checklist.md",
+      "primary_groups": [
+        "A-common"
+      ],
+      "cross_groups": [],
+      "disposition": "retain; no necessary edit selected"
+    },
+    {
+      "page": "speech-person-order.md",
+      "primary_groups": [
+        "A-common"
+      ],
+      "cross_groups": [],
+      "disposition": "selective clause edits; see changes.json"
+    },
+    {
+      "page": "structure-editing.md",
+      "primary_groups": [
+        "A-common"
+      ],
+      "cross_groups": [],
+      "disposition": "selective clause edits; see changes.json"
+    },
+    {
+      "page": "technical-terms.md",
+      "primary_groups": [
+        "D-specialist"
+      ],
+      "cross_groups": [],
+      "disposition": "selective clause edits; see changes.json"
+    },
+    {
+      "page": "transaction-feedback-report.md",
+      "primary_groups": [
+        "B-official"
+      ],
+      "cross_groups": [],
+      "disposition": "retain; no necessary edit selected"
+    },
+    {
+      "page": "transaction-remediation-report.md",
+      "primary_groups": [
+        "B-official"
+      ],
+      "cross_groups": [],
+      "disposition": "retain; no necessary edit selected"
+    },
+    {
+      "page": "writing-rules.md",
+      "primary_groups": [
+        "A-common"
+      ],
+      "cross_groups": [
+        "B-official",
+        "C-speaking-news"
+      ],
+      "disposition": "selective clause edits; see changes.json"
+    }
+  ]
+}

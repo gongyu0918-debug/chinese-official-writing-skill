@@ -1,0 +1,418 @@
+{
+  "baseline": "a0ff4155",
+  "candidate": "aa473b0f",
+  "pages": 68,
+  "changed_pages": 16,
+  "before_chars": 53068,
+  "after_chars": 52618,
+  "rows": [
+    {
+      "file": "chinese-official-writing/SKILL.md",
+      "before_chars": 2632,
+      "after_chars": 2632,
+      "changed": false
+    },
+    {
+      "file": "chinese-official-writing/references/ai-compute-docs.md",
+      "before_chars": 1437,
+      "after_chars": 1424,
+      "changed": true
+    },
+    {
+      "file": "chinese-official-writing/references/ai-compute-examples.md",
+      "before_chars": 684,
+      "after_chars": 684,
+      "changed": false
+    },
+    {
+      "file": "chinese-official-writing/references/anti-ai-patterns.md",
+      "before_chars": 1422,
+      "after_chars": 1422,
+      "changed": false
+    },
+    {
+      "file": "chinese-official-writing/references/argument-chains.md",
+      "before_chars": 452,
+      "after_chars": 452,
+      "changed": false
+    },
+    {
+      "file": "chinese-official-writing/references/compatibility-scene-routing.md",
+      "before_chars": 910,
+      "after_chars": 803,
+      "changed": true
+    },
+    {
+      "file": "chinese-official-writing/references/compression-details.md",
+      "before_chars": 695,
+      "after_chars": 695,
+      "changed": false
+    },
+    {
+      "file": "chinese-official-writing/references/external-research.md",
+      "before_chars": 821,
+      "after_chars": 821,
+      "changed": false
+    },
+    {
+      "file": "chinese-official-writing/references/field-editing.md",
+      "before_chars": 250,
+      "after_chars": 271,
+      "changed": true
+    },
+    {
+      "file": "chinese-official-writing/references/formal-addressing.md",
+      "before_chars": 957,
+      "after_chars": 940,
+      "changed": true
+    },
+    {
+      "file": "chinese-official-writing/references/format-gbt9704.md",
+      "before_chars": 3245,
+      "after_chars": 3167,
+      "changed": true
+    },
+    {
+      "file": "chinese-official-writing/references/formulaic-language.md",
+      "before_chars": 1059,
+      "after_chars": 1062,
+      "changed": true
+    },
+    {
+      "file": "chinese-official-writing/references/genre-checklist-feasibility-review.md",
+      "before_chars": 658,
+      "after_chars": 658,
+      "changed": false
+    },
+    {
+      "file": "chinese-official-writing/references/genre-checklist-report.md",
+      "before_chars": 304,
+      "after_chars": 304,
+      "changed": false
+    },
+    {
+      "file": "chinese-official-writing/references/genre-checklist-request.md",
+      "before_chars": 956,
+      "after_chars": 956,
+      "changed": false
+    },
+    {
+      "file": "chinese-official-writing/references/genre-checklist.md",
+      "before_chars": 145,
+      "after_chars": 145,
+      "changed": false
+    },
+    {
+      "file": "chinese-official-writing/references/genre-playbook-advisory-feedback.md",
+      "before_chars": 2012,
+      "after_chars": 1958,
+      "changed": true
+    },
+    {
+      "file": "chinese-official-writing/references/genre-playbook-bulletin.md",
+      "before_chars": 410,
+      "after_chars": 410,
+      "changed": false
+    },
+    {
+      "file": "chinese-official-writing/references/genre-playbook-communique.md",
+      "before_chars": 254,
+      "after_chars": 254,
+      "changed": false
+    },
+    {
+      "file": "chinese-official-writing/references/genre-playbook-complaint-reflection.md",
+      "before_chars": 1558,
+      "after_chars": 1541,
+      "changed": true
+    },
+    {
+      "file": "chinese-official-writing/references/genre-playbook-correspondence.md",
+      "before_chars": 434,
+      "after_chars": 434,
+      "changed": false
+    },
+    {
+      "file": "chinese-official-writing/references/genre-playbook-decision.md",
+      "before_chars": 264,
+      "after_chars": 264,
+      "changed": false
+    },
+    {
+      "file": "chinese-official-writing/references/genre-playbook-deployment.md",
+      "before_chars": 342,
+      "after_chars": 342,
+      "changed": false
+    },
+    {
+      "file": "chinese-official-writing/references/genre-playbook-duty-report.md",
+      "before_chars": 709,
+      "after_chars": 697,
+      "changed": true
+    },
+    {
+      "file": "chinese-official-writing/references/genre-playbook-editorial-note.md",
+      "before_chars": 400,
+      "after_chars": 400,
+      "changed": false
+    },
+    {
+      "file": "chinese-official-writing/references/genre-playbook-explanation.md",
+      "before_chars": 427,
+      "after_chars": 427,
+      "changed": false
+    },
+    {
+      "file": "chinese-official-writing/references/genre-playbook-feasibility.md",
+      "before_chars": 507,
+      "after_chars": 507,
+      "changed": false
+    },
+    {
+      "file": "chinese-official-writing/references/genre-playbook-information-materials.md",
+      "before_chars": 565,
+      "after_chars": 565,
+      "changed": false
+    },
+    {
+      "file": "chinese-official-writing/references/genre-playbook-initiative.md",
+      "before_chars": 472,
+      "after_chars": 472,
+      "changed": false
+    },
+    {
+      "file": "chinese-official-writing/references/genre-playbook-institution-rules.md",
+      "before_chars": 1381,
+      "after_chars": 1381,
+      "changed": false
+    },
+    {
+      "file": "chinese-official-writing/references/genre-playbook-meeting-host.md",
+      "before_chars": 523,
+      "after_chars": 523,
+      "changed": false
+    },
+    {
+      "file": "chinese-official-writing/references/genre-playbook-minutes.md",
+      "before_chars": 578,
+      "after_chars": 514,
+      "changed": true
+    },
+    {
+      "file": "chinese-official-writing/references/genre-playbook-motion.md",
+      "before_chars": 789,
+      "after_chars": 789,
+      "changed": false
+    },
+    {
+      "file": "chinese-official-writing/references/genre-playbook-narration.md",
+      "before_chars": 626,
+      "after_chars": 626,
+      "changed": false
+    },
+    {
+      "file": "chinese-official-writing/references/genre-playbook-news-commentary.md",
+      "before_chars": 430,
+      "after_chars": 430,
+      "changed": false
+    },
+    {
+      "file": "chinese-official-writing/references/genre-playbook-news-message.md",
+      "before_chars": 1472,
+      "after_chars": 1423,
+      "changed": true
+    },
+    {
+      "file": "chinese-official-writing/references/genre-playbook-notice.md",
+      "before_chars": 503,
+      "after_chars": 503,
+      "changed": false
+    },
+    {
+      "file": "chinese-official-writing/references/genre-playbook-open-letter.md",
+      "before_chars": 478,
+      "after_chars": 477,
+      "changed": true
+    },
+    {
+      "file": "chinese-official-writing/references/genre-playbook-opinion.md",
+      "before_chars": 466,
+      "after_chars": 466,
+      "changed": false
+    },
+    {
+      "file": "chinese-official-writing/references/genre-playbook-order.md",
+      "before_chars": 257,
+      "after_chars": 257,
+      "changed": false
+    },
+    {
+      "file": "chinese-official-writing/references/genre-playbook-plan-construction.md",
+      "before_chars": 582,
+      "after_chars": 582,
+      "changed": false
+    },
+    {
+      "file": "chinese-official-writing/references/genre-playbook-procurement-announcement.md",
+      "before_chars": 435,
+      "after_chars": 435,
+      "changed": false
+    },
+    {
+      "file": "chinese-official-writing/references/genre-playbook-procurement-review.md",
+      "before_chars": 542,
+      "after_chars": 542,
+      "changed": false
+    },
+    {
+      "file": "chinese-official-writing/references/genre-playbook-project-application.md",
+      "before_chars": 1495,
+      "after_chars": 1495,
+      "changed": false
+    },
+    {
+      "file": "chinese-official-writing/references/genre-playbook-publication.md",
+      "before_chars": 338,
+      "after_chars": 338,
+      "changed": false
+    },
+    {
+      "file": "chinese-official-writing/references/genre-playbook-remediation-plan.md",
+      "before_chars": 998,
+      "after_chars": 998,
+      "changed": false
+    },
+    {
+      "file": "chinese-official-writing/references/genre-playbook-reply.md",
+      "before_chars": 367,
+      "after_chars": 367,
+      "changed": false
+    },
+    {
+      "file": "chinese-official-writing/references/genre-playbook-report.md",
+      "before_chars": 1052,
+      "after_chars": 1052,
+      "changed": false
+    },
+    {
+      "file": "chinese-official-writing/references/genre-playbook-request.md",
+      "before_chars": 1102,
+      "after_chars": 1102,
+      "changed": false
+    },
+    {
+      "file": "chinese-official-writing/references/genre-playbook-research.md",
+      "before_chars": 424,
+      "after_chars": 424,
+      "changed": false
+    },
+    {
+      "file": "chinese-official-writing/references/genre-playbook-resolution.md",
+      "before_chars": 221,
+      "after_chars": 221,
+      "changed": false
+    },
+    {
+      "file": "chinese-official-writing/references/genre-playbook-responsibility-letter.md",
+      "before_chars": 489,
+      "after_chars": 489,
+      "changed": false
+    },
+    {
+      "file": "chinese-official-writing/references/genre-playbook-review-opinion.md",
+      "before_chars": 711,
+      "after_chars": 711,
+      "changed": false
+    },
+    {
+      "file": "chinese-official-writing/references/genre-playbook-speech-address.md",
+      "before_chars": 489,
+      "after_chars": 489,
+      "changed": false
+    },
+    {
+      "file": "chinese-official-writing/references/genre-playbook-technical-requirements.md",
+      "before_chars": 1116,
+      "after_chars": 1116,
+      "changed": false
+    },
+    {
+      "file": "chinese-official-writing/references/genre-playbook-work-priorities.md",
+      "before_chars": 610,
+      "after_chars": 610,
+      "changed": false
+    },
+    {
+      "file": "chinese-official-writing/references/genre-playbook-work-summary.md",
+      "before_chars": 701,
+      "after_chars": 701,
+      "changed": false
+    },
+    {
+      "file": "chinese-official-writing/references/genre-routing.md",
+      "before_chars": 477,
+      "after_chars": 477,
+      "changed": false
+    },
+    {
+      "file": "chinese-official-writing/references/proofreading-checklist.md",
+      "before_chars": 407,
+      "after_chars": 407,
+      "changed": false
+    },
+    {
+      "file": "chinese-official-writing/references/prose-lint-usage.md",
+      "before_chars": 499,
+      "after_chars": 499,
+      "changed": false
+    },
+    {
+      "file": "chinese-official-writing/references/reference-index.md",
+      "before_chars": 3048,
+      "after_chars": 3048,
+      "changed": false
+    },
+    {
+      "file": "chinese-official-writing/references/review-checklist.md",
+      "before_chars": 536,
+      "after_chars": 536,
+      "changed": false
+    },
+    {
+      "file": "chinese-official-writing/references/speech-person-order.md",
+      "before_chars": 432,
+      "after_chars": 420,
+      "changed": true
+    },
+    {
+      "file": "chinese-official-writing/references/structure-editing.md",
+      "before_chars": 689,
+      "after_chars": 656,
+      "changed": true
+    },
+    {
+      "file": "chinese-official-writing/references/technical-terms.md",
+      "before_chars": 354,
+      "after_chars": 348,
+      "changed": true
+    },
+    {
+      "file": "chinese-official-writing/references/transaction-feedback-report.md",
+      "before_chars": 274,
+      "after_chars": 274,
+      "changed": false
+    },
+    {
+      "file": "chinese-official-writing/references/transaction-remediation-report.md",
+      "before_chars": 336,
+      "after_chars": 336,
+      "changed": false
+    },
+    {
+      "file": "chinese-official-writing/references/writing-rules.md",
+      "before_chars": 1860,
+      "after_chars": 1849,
+      "changed": true
+    }
+  ]
+}
