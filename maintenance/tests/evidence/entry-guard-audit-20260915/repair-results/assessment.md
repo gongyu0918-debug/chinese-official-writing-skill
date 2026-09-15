@@ -22,3 +22,5 @@
 `python maintenance/tests/evidence/entry-guard-audit-20260915/run_native.py --output output/entry-guard-r1-20260915 --baseline-ref 770c27b8980d4fc2a82d6efa111d20004cd9b410 --models 0 3 --cases issuer_missing issuer_given plain_default markdown_requested --timeout 600 --effort max --isolated-profile --ordinary-only --utf8-read`
 
 16/16有效；16份归档稿件哈希与结果记录对应；16/16实际命令返回完整首页。`quick_validate.py chinese-official-writing`与产品路径扫描通过；没有使用规则关键词或整句断言判断语义。
+
+归档表空值用短横线表示；sha256s.txt按UTF-8文本、LF换行计算，原稿内容保持。最终Git空白检查通过；先前使用禁用换行转换的检查产生CRLF误报，随后发现并清理的是汇总TSV末尾空列与多余末行，二者分开记录。
