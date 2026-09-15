@@ -1,0 +1,716 @@
+[
+  {
+    "stage": "r1",
+    "case": "downward_opinion",
+    "arm": "baseline",
+    "model": "alibaba-token-plan/qwen3.8-flash",
+    "seconds": 93.36,
+    "script_execs": {
+      "draft_length.py": [
+        0
+      ],
+      "prose_lint.py": [
+        0
+      ]
+    },
+    "draft": "drafts/thin-leaf-r1-main/m0-downward_opinion-baseline.txt"
+  },
+  {
+    "stage": "r1",
+    "case": "downward_opinion",
+    "arm": "candidate",
+    "model": "alibaba-token-plan/qwen3.8-flash",
+    "seconds": 131.92,
+    "script_execs": {
+      "draft_length.py": [
+        0,
+        0
+      ],
+      "prose_lint.py": [
+        0,
+        0
+      ]
+    },
+    "draft": "drafts/thin-leaf-r1-main/m0-downward_opinion-candidate.txt"
+  },
+  {
+    "stage": "r1",
+    "case": "drafting_explanation",
+    "arm": "baseline",
+    "model": "alibaba-token-plan/qwen3.8-flash",
+    "seconds": 86.97,
+    "script_execs": {
+      "draft_length.py": [
+        0,
+        0
+      ],
+      "prose_lint.py": [
+        0,
+        0
+      ]
+    },
+    "draft": "drafts/thin-leaf-r1-main/m0-drafting_explanation-baseline.txt"
+  },
+  {
+    "stage": "r1",
+    "case": "drafting_explanation",
+    "arm": "candidate",
+    "model": "alibaba-token-plan/qwen3.8-flash",
+    "seconds": 134.95,
+    "script_execs": {
+      "draft_length.py": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "prose_lint.py": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    "draft": "drafts/thin-leaf-r1-main/m0-drafting_explanation-candidate.txt"
+  },
+  {
+    "stage": "r1",
+    "case": "meeting_communique",
+    "arm": "baseline",
+    "model": "alibaba-token-plan/qwen3.8-flash",
+    "seconds": 167.11,
+    "script_execs": {
+      "draft_length.py": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "prose_lint.py": [
+        0,
+        0,
+        0
+      ]
+    },
+    "draft": "drafts/thin-leaf-r1-main/m0-meeting_communique-baseline.txt"
+  },
+  {
+    "stage": "r1",
+    "case": "meeting_communique",
+    "arm": "candidate",
+    "model": "alibaba-token-plan/qwen3.8-flash",
+    "seconds": 171.88,
+    "script_execs": {
+      "draft_length.py": [
+        0,
+        0
+      ],
+      "prose_lint.py": [
+        0,
+        0
+      ]
+    },
+    "draft": "drafts/thin-leaf-r1-main/m0-meeting_communique-candidate.txt"
+  },
+  {
+    "stage": "r1",
+    "case": "ordinary_explanation",
+    "arm": "baseline",
+    "model": "alibaba-token-plan/qwen3.8-flash",
+    "seconds": 53.2,
+    "script_execs": {
+      "draft_length.py": [
+        0,
+        0,
+        0
+      ],
+      "prose_lint.py": [
+        0,
+        0
+      ]
+    },
+    "draft": "drafts/thin-leaf-r1-main/m0-ordinary_explanation-baseline.txt"
+  },
+  {
+    "stage": "r1",
+    "case": "ordinary_explanation",
+    "arm": "candidate",
+    "model": "alibaba-token-plan/qwen3.8-flash",
+    "seconds": 82.25,
+    "script_execs": {
+      "draft_length.py": [
+        0,
+        0
+      ],
+      "prose_lint.py": [
+        0,
+        0
+      ]
+    },
+    "draft": "drafts/thin-leaf-r1-main/m0-ordinary_explanation-candidate.txt"
+  },
+  {
+    "stage": "r1",
+    "case": "revision_explanation",
+    "arm": "baseline",
+    "model": "alibaba-token-plan/qwen3.8-flash",
+    "seconds": 70.95,
+    "script_execs": {
+      "draft_length.py": [
+        0
+      ],
+      "prose_lint.py": [
+        0
+      ]
+    },
+    "draft": "drafts/thin-leaf-r1-main/m0-revision_explanation-baseline.txt"
+  },
+  {
+    "stage": "r1",
+    "case": "revision_explanation",
+    "arm": "candidate",
+    "model": "alibaba-token-plan/qwen3.8-flash",
+    "seconds": 79.98,
+    "script_execs": {
+      "draft_length.py": [
+        0,
+        0,
+        0
+      ],
+      "prose_lint.py": [
+        0,
+        0,
+        0
+      ]
+    },
+    "draft": "drafts/thin-leaf-r1-main/m0-revision_explanation-candidate.txt"
+  },
+  {
+    "stage": "r1",
+    "case": "upward_opinion",
+    "arm": "baseline",
+    "model": "alibaba-token-plan/qwen3.8-flash",
+    "seconds": 110.83,
+    "script_execs": {
+      "draft_length.py": [
+        0
+      ],
+      "prose_lint.py": [
+        0
+      ]
+    },
+    "draft": "drafts/thin-leaf-r1-main/m0-upward_opinion-baseline.txt"
+  },
+  {
+    "stage": "r1",
+    "case": "upward_opinion",
+    "arm": "candidate",
+    "model": "alibaba-token-plan/qwen3.8-flash",
+    "seconds": 137.41,
+    "script_execs": {
+      "draft_length.py": [
+        0,
+        0
+      ],
+      "prose_lint.py": [
+        0,
+        0
+      ]
+    },
+    "draft": "drafts/thin-leaf-r1-main/m0-upward_opinion-candidate.txt"
+  },
+  {
+    "stage": "r1",
+    "case": "downward_opinion",
+    "arm": "baseline",
+    "model": "minimax-cn/MiniMax-M3",
+    "seconds": 120.83,
+    "script_execs": {
+      "draft_length.py": [
+        0,
+        0
+      ],
+      "prose_lint.py": [
+        0
+      ]
+    },
+    "draft": "drafts/thin-leaf-r1-main/m3-downward_opinion-baseline.txt"
+  },
+  {
+    "stage": "r1",
+    "case": "downward_opinion",
+    "arm": "candidate",
+    "model": "minimax-cn/MiniMax-M3",
+    "seconds": 70.16,
+    "script_execs": {
+      "draft_length.py": [
+        0,
+        0
+      ],
+      "prose_lint.py": [
+        0
+      ]
+    },
+    "draft": "drafts/thin-leaf-r1-main/m3-downward_opinion-candidate.txt"
+  },
+  {
+    "stage": "r1",
+    "case": "drafting_explanation",
+    "arm": "baseline",
+    "model": "minimax-cn/MiniMax-M3",
+    "seconds": 126.72,
+    "script_execs": {
+      "draft_length.py": [
+        0
+      ],
+      "prose_lint.py": [
+        0
+      ]
+    },
+    "draft": "drafts/thin-leaf-r1-main/m3-drafting_explanation-baseline.txt"
+  },
+  {
+    "stage": "r1",
+    "case": "drafting_explanation",
+    "arm": "candidate",
+    "model": "minimax-cn/MiniMax-M3",
+    "seconds": 165.31,
+    "script_execs": {
+      "draft_length.py": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "prose_lint.py": [
+        0
+      ]
+    },
+    "draft": "drafts/thin-leaf-r1-main/m3-drafting_explanation-candidate.txt"
+  },
+  {
+    "stage": "r1",
+    "case": "meeting_communique",
+    "arm": "baseline",
+    "model": "minimax-cn/MiniMax-M3",
+    "seconds": 140.09,
+    "script_execs": {
+      "draft_length.py": [
+        0,
+        1,
+        0
+      ],
+      "prose_lint.py": [
+        0,
+        0
+      ]
+    },
+    "draft": "drafts/thin-leaf-r1-main/m3-meeting_communique-baseline.txt"
+  },
+  {
+    "stage": "r1",
+    "case": "meeting_communique",
+    "arm": "candidate",
+    "model": "minimax-cn/MiniMax-M3",
+    "seconds": 78.38,
+    "script_execs": {
+      "draft_length.py": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "prose_lint.py": [
+        0,
+        0,
+        0
+      ]
+    },
+    "draft": "drafts/thin-leaf-r1-main/m3-meeting_communique-candidate.txt"
+  },
+  {
+    "stage": "r1",
+    "case": "ordinary_explanation",
+    "arm": "baseline",
+    "model": "minimax-cn/MiniMax-M3",
+    "seconds": 72.92,
+    "script_execs": {
+      "draft_length.py": [
+        0,
+        0
+      ],
+      "prose_lint.py": [
+        0
+      ]
+    },
+    "draft": "drafts/thin-leaf-r1-main/m3-ordinary_explanation-baseline.txt"
+  },
+  {
+    "stage": "r1",
+    "case": "ordinary_explanation",
+    "arm": "candidate",
+    "model": "minimax-cn/MiniMax-M3",
+    "seconds": 58.92,
+    "script_execs": {
+      "draft_length.py": [
+        0
+      ],
+      "prose_lint.py": [
+        0,
+        0
+      ]
+    },
+    "draft": "drafts/thin-leaf-r1-main/m3-ordinary_explanation-candidate.txt"
+  },
+  {
+    "stage": "r1",
+    "case": "revision_explanation",
+    "arm": "baseline",
+    "model": "minimax-cn/MiniMax-M3",
+    "seconds": 356.51,
+    "script_execs": {
+      "draft_length.py": [
+        0,
+        1,
+        0,
+        0,
+        0
+      ],
+      "prose_lint.py": [
+        0
+      ]
+    },
+    "draft": "drafts/thin-leaf-r1-main/m3-revision_explanation-baseline.txt"
+  },
+  {
+    "stage": "r1",
+    "case": "revision_explanation",
+    "arm": "candidate",
+    "model": "minimax-cn/MiniMax-M3",
+    "seconds": 67.33,
+    "script_execs": {
+      "draft_length.py": [
+        0,
+        0
+      ],
+      "prose_lint.py": [
+        0,
+        0
+      ]
+    },
+    "draft": "drafts/thin-leaf-r1-main/m3-revision_explanation-candidate.txt"
+  },
+  {
+    "stage": "r1",
+    "case": "upward_opinion",
+    "arm": "baseline",
+    "model": "minimax-cn/MiniMax-M3",
+    "seconds": 130.28,
+    "script_execs": {
+      "draft_length.py": [],
+      "prose_lint.py": []
+    },
+    "draft": "drafts/thin-leaf-r1-main/m3-upward_opinion-baseline.txt"
+  },
+  {
+    "stage": "r1",
+    "case": "upward_opinion",
+    "arm": "candidate",
+    "model": "minimax-cn/MiniMax-M3",
+    "seconds": 76.73,
+    "script_execs": {
+      "draft_length.py": [
+        0
+      ],
+      "prose_lint.py": [
+        0
+      ]
+    },
+    "draft": "drafts/thin-leaf-r1-main/m3-upward_opinion-candidate.txt"
+  },
+  {
+    "stage": "r1",
+    "case": "revision_explanation",
+    "arm": "baseline",
+    "model": "alibaba-token-plan-2/qwen3.8-flash",
+    "seconds": 64.22,
+    "script_execs": {
+      "draft_length.py": [
+        0
+      ],
+      "prose_lint.py": [
+        0
+      ]
+    },
+    "draft": "drafts/thin-leaf-r1-qwen2/m1-revision_explanation-baseline.txt"
+  },
+  {
+    "stage": "r1",
+    "case": "revision_explanation",
+    "arm": "candidate",
+    "model": "alibaba-token-plan-2/qwen3.8-flash",
+    "seconds": 60.62,
+    "script_execs": {
+      "draft_length.py": [
+        0,
+        0,
+        0
+      ],
+      "prose_lint.py": [
+        0,
+        0,
+        0
+      ]
+    },
+    "draft": "drafts/thin-leaf-r1-qwen2/m1-revision_explanation-candidate.txt"
+  },
+  {
+    "stage": "r1",
+    "case": "upward_opinion",
+    "arm": "baseline",
+    "model": "command-code/deepseek-deepseek-v4.1-flash",
+    "seconds": 120.62,
+    "script_execs": {
+      "draft_length.py": [
+        0,
+        0
+      ],
+      "prose_lint.py": [
+        0,
+        0
+      ]
+    },
+    "draft": "drafts/thin-leaf-r1-deepseek/m2-upward_opinion-baseline.txt"
+  },
+  {
+    "stage": "r1",
+    "case": "upward_opinion",
+    "arm": "candidate",
+    "model": "command-code/deepseek-deepseek-v4.1-flash",
+    "seconds": 89.26,
+    "script_execs": {
+      "draft_length.py": [
+        0
+      ],
+      "prose_lint.py": [
+        0
+      ]
+    },
+    "draft": "drafts/thin-leaf-r1-deepseek/m2-upward_opinion-candidate.txt"
+  },
+  {
+    "stage": "r1",
+    "case": "joint_communique",
+    "arm": "baseline",
+    "model": "ollama-cloud/glm-5.3-flash",
+    "seconds": 196.09,
+    "script_execs": {
+      "draft_length.py": [
+        0
+      ],
+      "prose_lint.py": [
+        0
+      ]
+    },
+    "draft": "drafts/thin-leaf-r1-glm/m4-joint_communique-baseline.txt"
+  },
+  {
+    "stage": "r1",
+    "case": "joint_communique",
+    "arm": "candidate",
+    "model": "ollama-cloud/glm-5.3-flash",
+    "seconds": 85.11,
+    "script_execs": {
+      "draft_length.py": [
+        0,
+        0
+      ],
+      "prose_lint.py": [
+        0,
+        0
+      ]
+    },
+    "draft": "drafts/thin-leaf-r1-glm/m4-joint_communique-candidate.txt"
+  },
+  {
+    "stage": "r1",
+    "case": "parallel_opinion",
+    "arm": "baseline",
+    "model": "alibaba-token-plan-2/qwen3.8-flash",
+    "seconds": 133.3,
+    "script_execs": {
+      "draft_length.py": [
+        0,
+        0
+      ],
+      "prose_lint.py": [
+        0,
+        0
+      ]
+    },
+    "draft": "drafts/thin-leaf-r1-parallel/m1-parallel_opinion-baseline.txt"
+  },
+  {
+    "stage": "r1",
+    "case": "parallel_opinion",
+    "arm": "candidate",
+    "model": "alibaba-token-plan-2/qwen3.8-flash",
+    "seconds": 91.94,
+    "script_execs": {
+      "draft_length.py": [
+        0,
+        0
+      ],
+      "prose_lint.py": [
+        0,
+        0
+      ]
+    },
+    "draft": "drafts/thin-leaf-r1-parallel/m1-parallel_opinion-candidate.txt"
+  },
+  {
+    "stage": "r1-repeat",
+    "case": "ordinary_explanation",
+    "arm": "baseline",
+    "model": "alibaba-token-plan/qwen3.8-flash",
+    "seconds": 104.66,
+    "script_execs": {
+      "draft_length.py": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "prose_lint.py": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    "draft": "drafts/thin-leaf-r1-repeat/m0-ordinary_explanation-baseline.txt"
+  },
+  {
+    "stage": "r1-repeat",
+    "case": "ordinary_explanation",
+    "arm": "candidate",
+    "model": "alibaba-token-plan/qwen3.8-flash",
+    "seconds": 172.7,
+    "script_execs": {
+      "draft_length.py": [
+        0,
+        0
+      ],
+      "prose_lint.py": [
+        0,
+        0
+      ]
+    },
+    "draft": "drafts/thin-leaf-r1-repeat/m0-ordinary_explanation-candidate.txt"
+  },
+  {
+    "stage": "r2",
+    "case": "drafting_explanation",
+    "arm": "baseline",
+    "model": "minimax-cn/MiniMax-M3",
+    "seconds": 55.91,
+    "script_execs": {
+      "draft_length.py": [
+        0,
+        0
+      ],
+      "prose_lint.py": [
+        0
+      ]
+    },
+    "draft": "drafts/thin-leaf-r2-minimax/m3-drafting_explanation-baseline.txt"
+  },
+  {
+    "stage": "r2",
+    "case": "drafting_explanation",
+    "arm": "candidate",
+    "model": "minimax-cn/MiniMax-M3",
+    "seconds": 97.11,
+    "script_execs": {
+      "draft_length.py": [
+        0
+      ],
+      "prose_lint.py": [
+        0
+      ]
+    },
+    "draft": "drafts/thin-leaf-r2-minimax/m3-drafting_explanation-candidate.txt"
+  },
+  {
+    "stage": "r2",
+    "case": "revision_explanation",
+    "arm": "baseline",
+    "model": "minimax-cn/MiniMax-M3",
+    "seconds": 56.98,
+    "script_execs": {
+      "draft_length.py": [
+        0
+      ],
+      "prose_lint.py": [
+        0
+      ]
+    },
+    "draft": "drafts/thin-leaf-r2-minimax/m3-revision_explanation-baseline.txt"
+  },
+  {
+    "stage": "r2",
+    "case": "revision_explanation",
+    "arm": "candidate",
+    "model": "minimax-cn/MiniMax-M3",
+    "seconds": 67.17,
+    "script_execs": {
+      "draft_length.py": [
+        0,
+        0
+      ],
+      "prose_lint.py": [
+        0
+      ]
+    },
+    "draft": "drafts/thin-leaf-r2-minimax/m3-revision_explanation-candidate.txt"
+  },
+  {
+    "stage": "r2",
+    "case": "ordinary_explanation",
+    "arm": "baseline",
+    "model": "alibaba-token-plan/qwen3.8-flash",
+    "seconds": 76.73,
+    "script_execs": {
+      "draft_length.py": [
+        0,
+        0
+      ],
+      "prose_lint.py": [
+        0
+      ]
+    },
+    "draft": "drafts/thin-leaf-r2-control/m0-ordinary_explanation-baseline.txt"
+  },
+  {
+    "stage": "r2",
+    "case": "ordinary_explanation",
+    "arm": "candidate",
+    "model": "alibaba-token-plan/qwen3.8-flash",
+    "seconds": 126.2,
+    "script_execs": {
+      "draft_length.py": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "prose_lint.py": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    "draft": "drafts/thin-leaf-r2-control/m0-ordinary_explanation-candidate.txt"
+  }
+]

@@ -1,0 +1,202 @@
+[
+  {
+    "id": "P01",
+    "stage": "r1",
+    "case": "downward_opinion",
+    "model": "alibaba-token-plan/qwen3.8-flash",
+    "X": "drafts/thin-leaf-r1-main/m0-downward_opinion-baseline.txt",
+    "Y": "drafts/thin-leaf-r1-main/m0-downward_opinion-candidate.txt",
+    "X_arm": "baseline",
+    "Y_arm": "candidate"
+  },
+  {
+    "id": "P02",
+    "stage": "r1",
+    "case": "downward_opinion",
+    "model": "minimax-cn/MiniMax-M3",
+    "X": "drafts/thin-leaf-r1-main/m3-downward_opinion-candidate.txt",
+    "Y": "drafts/thin-leaf-r1-main/m3-downward_opinion-baseline.txt",
+    "X_arm": "candidate",
+    "Y_arm": "baseline"
+  },
+  {
+    "id": "P03",
+    "stage": "r1",
+    "case": "drafting_explanation",
+    "model": "alibaba-token-plan/qwen3.8-flash",
+    "X": "drafts/thin-leaf-r1-main/m0-drafting_explanation-candidate.txt",
+    "Y": "drafts/thin-leaf-r1-main/m0-drafting_explanation-baseline.txt",
+    "X_arm": "candidate",
+    "Y_arm": "baseline"
+  },
+  {
+    "id": "P04",
+    "stage": "r1",
+    "case": "drafting_explanation",
+    "model": "minimax-cn/MiniMax-M3",
+    "X": "drafts/thin-leaf-r1-main/m3-drafting_explanation-candidate.txt",
+    "Y": "drafts/thin-leaf-r1-main/m3-drafting_explanation-baseline.txt",
+    "X_arm": "candidate",
+    "Y_arm": "baseline"
+  },
+  {
+    "id": "P05",
+    "stage": "r1",
+    "case": "joint_communique",
+    "model": "ollama-cloud/glm-5.3-flash",
+    "X": "drafts/thin-leaf-r1-glm/m4-joint_communique-baseline.txt",
+    "Y": "drafts/thin-leaf-r1-glm/m4-joint_communique-candidate.txt",
+    "X_arm": "baseline",
+    "Y_arm": "candidate"
+  },
+  {
+    "id": "P06",
+    "stage": "r1",
+    "case": "meeting_communique",
+    "model": "alibaba-token-plan/qwen3.8-flash",
+    "X": "drafts/thin-leaf-r1-main/m0-meeting_communique-baseline.txt",
+    "Y": "drafts/thin-leaf-r1-main/m0-meeting_communique-candidate.txt",
+    "X_arm": "baseline",
+    "Y_arm": "candidate"
+  },
+  {
+    "id": "P07",
+    "stage": "r1",
+    "case": "meeting_communique",
+    "model": "minimax-cn/MiniMax-M3",
+    "X": "drafts/thin-leaf-r1-main/m3-meeting_communique-baseline.txt",
+    "Y": "drafts/thin-leaf-r1-main/m3-meeting_communique-candidate.txt",
+    "X_arm": "baseline",
+    "Y_arm": "candidate"
+  },
+  {
+    "id": "P08",
+    "stage": "r1",
+    "case": "ordinary_explanation",
+    "model": "alibaba-token-plan/qwen3.8-flash",
+    "X": "drafts/thin-leaf-r1-main/m0-ordinary_explanation-candidate.txt",
+    "Y": "drafts/thin-leaf-r1-main/m0-ordinary_explanation-baseline.txt",
+    "X_arm": "candidate",
+    "Y_arm": "baseline"
+  },
+  {
+    "id": "P09",
+    "stage": "r1",
+    "case": "ordinary_explanation",
+    "model": "minimax-cn/MiniMax-M3",
+    "X": "drafts/thin-leaf-r1-main/m3-ordinary_explanation-candidate.txt",
+    "Y": "drafts/thin-leaf-r1-main/m3-ordinary_explanation-baseline.txt",
+    "X_arm": "candidate",
+    "Y_arm": "baseline"
+  },
+  {
+    "id": "P10",
+    "stage": "r1",
+    "case": "parallel_opinion",
+    "model": "alibaba-token-plan-2/qwen3.8-flash",
+    "X": "drafts/thin-leaf-r1-parallel/m1-parallel_opinion-candidate.txt",
+    "Y": "drafts/thin-leaf-r1-parallel/m1-parallel_opinion-baseline.txt",
+    "X_arm": "candidate",
+    "Y_arm": "baseline"
+  },
+  {
+    "id": "P11",
+    "stage": "r1",
+    "case": "revision_explanation",
+    "model": "alibaba-token-plan-2/qwen3.8-flash",
+    "X": "drafts/thin-leaf-r1-qwen2/m1-revision_explanation-candidate.txt",
+    "Y": "drafts/thin-leaf-r1-qwen2/m1-revision_explanation-baseline.txt",
+    "X_arm": "candidate",
+    "Y_arm": "baseline"
+  },
+  {
+    "id": "P12",
+    "stage": "r1",
+    "case": "revision_explanation",
+    "model": "alibaba-token-plan/qwen3.8-flash",
+    "X": "drafts/thin-leaf-r1-main/m0-revision_explanation-baseline.txt",
+    "Y": "drafts/thin-leaf-r1-main/m0-revision_explanation-candidate.txt",
+    "X_arm": "baseline",
+    "Y_arm": "candidate"
+  },
+  {
+    "id": "P13",
+    "stage": "r1",
+    "case": "revision_explanation",
+    "model": "minimax-cn/MiniMax-M3",
+    "X": "drafts/thin-leaf-r1-main/m3-revision_explanation-baseline.txt",
+    "Y": "drafts/thin-leaf-r1-main/m3-revision_explanation-candidate.txt",
+    "X_arm": "baseline",
+    "Y_arm": "candidate"
+  },
+  {
+    "id": "P14",
+    "stage": "r1",
+    "case": "upward_opinion",
+    "model": "alibaba-token-plan/qwen3.8-flash",
+    "X": "drafts/thin-leaf-r1-main/m0-upward_opinion-baseline.txt",
+    "Y": "drafts/thin-leaf-r1-main/m0-upward_opinion-candidate.txt",
+    "X_arm": "baseline",
+    "Y_arm": "candidate"
+  },
+  {
+    "id": "P15",
+    "stage": "r1",
+    "case": "upward_opinion",
+    "model": "command-code/deepseek-deepseek-v4.1-flash",
+    "X": "drafts/thin-leaf-r1-deepseek/m2-upward_opinion-baseline.txt",
+    "Y": "drafts/thin-leaf-r1-deepseek/m2-upward_opinion-candidate.txt",
+    "X_arm": "baseline",
+    "Y_arm": "candidate"
+  },
+  {
+    "id": "P16",
+    "stage": "r1",
+    "case": "upward_opinion",
+    "model": "minimax-cn/MiniMax-M3",
+    "X": "drafts/thin-leaf-r1-main/m3-upward_opinion-baseline.txt",
+    "Y": "drafts/thin-leaf-r1-main/m3-upward_opinion-candidate.txt",
+    "X_arm": "baseline",
+    "Y_arm": "candidate"
+  },
+  {
+    "id": "P17",
+    "stage": "r1-repeat",
+    "case": "ordinary_explanation",
+    "model": "alibaba-token-plan/qwen3.8-flash",
+    "X": "drafts/thin-leaf-r1-repeat/m0-ordinary_explanation-candidate.txt",
+    "Y": "drafts/thin-leaf-r1-repeat/m0-ordinary_explanation-baseline.txt",
+    "X_arm": "candidate",
+    "Y_arm": "baseline"
+  },
+  {
+    "id": "P18",
+    "stage": "r2",
+    "case": "drafting_explanation",
+    "model": "minimax-cn/MiniMax-M3",
+    "X": "drafts/thin-leaf-r2-minimax/m3-drafting_explanation-candidate.txt",
+    "Y": "drafts/thin-leaf-r2-minimax/m3-drafting_explanation-baseline.txt",
+    "X_arm": "candidate",
+    "Y_arm": "baseline"
+  },
+  {
+    "id": "P19",
+    "stage": "r2",
+    "case": "ordinary_explanation",
+    "model": "alibaba-token-plan/qwen3.8-flash",
+    "X": "drafts/thin-leaf-r2-control/m0-ordinary_explanation-candidate.txt",
+    "Y": "drafts/thin-leaf-r2-control/m0-ordinary_explanation-baseline.txt",
+    "X_arm": "candidate",
+    "Y_arm": "baseline"
+  },
+  {
+    "id": "P20",
+    "stage": "r2",
+    "case": "revision_explanation",
+    "model": "minimax-cn/MiniMax-M3",
+    "X": "drafts/thin-leaf-r2-minimax/m3-revision_explanation-baseline.txt",
+    "Y": "drafts/thin-leaf-r2-minimax/m3-revision_explanation-candidate.txt",
+    "X_arm": "baseline",
+    "Y_arm": "candidate"
+  }
+]

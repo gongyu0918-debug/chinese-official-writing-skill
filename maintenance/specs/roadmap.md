@@ -4,6 +4,8 @@
 
 ## 本轮分支候选
 
+- `THIN-LEAF-R1 / VALIDATED_LOCAL_CANDIDATE / NOT_MERGED`（2026-09-15）：对照三家同类Skill、政府实际稿及机构写法，核对12个偏薄文种页；只保留意见和说明补充（产品c7e6deb1，净增348字符，首页和读取层级未增加），公报试加段撤回。40次原生写稿、9对独立盲审完成；校准后的8对完整读叶比较2偏候选/2偏基线/4接近，MiniMax具体细节外扩仍保留风险。Qwen Max冷审超时后换独立Luna完成，未把超时记通过。不继续扩大本轮验证，未合main、推送、发布或安装。见[结果](../tests/evidence/thin-leaf-strengthening-r1-20260915/result.md)及[审阅校准](../tests/evidence/thin-leaf-strengthening-r1-20260915/adjudication.md)。
+
 - `WR-029 / PARTIAL / ENTRY_FIX_MERGED / R10_VALIDATED_BRANCH`：R9入口一句仍在main；R10同稿修改8次技术有效，3对改善、1对接近，仅信息选择一段及五镜像已提交2b9a4cef。84相关、817/817及独立冷审通过；自动审批拒绝main快进，待当前用户确认，日常安装未应用R10。累计96调用/95技术有效，全稿、首稿、多版及Hook仍未闭环。[R10结果](../tests/evidence/speech-revision-r10/result.md)、[集成状态](../tests/evidence/speech-revision-r10/integration.md)
 - `WR-030 / IN_PROGRESS / R3_NOT_ADMITTED`：已完成三轮8次经验交流实稿；实际路径上的两版有局部方法提炼收益，仍会新增具体操作、次数和实施限制，候选未准入。下一步针对操作解释与事实混写修正组织方法，不再加同义功能表提醒。[取舍](../tests/evidence/experience-report-r3/result.md)
 - `WR-031 / IN_PROGRESS / R3_NOT_ADMITTED`：已完成三轮8次面向领导汇报实稿；信息顺序收益不稳定，未完成抽检被改为未开展等状态问题保留，候选未准入。后续同时核对当前状态前置、过程取舍和启动/完成/验收区别。[取舍](../tests/evidence/experience-report-r3/result.md)

@@ -1,0 +1,21 @@
+{
+  "product_commit": "c7e6deb17e6142da5c60d3ec569dba5e5bca773f",
+  "baseline_commit": "9c4f12166c3a6a5920153b6e28a57d781993bb36",
+  "product_paths": "PASS",
+  "quick_validate": "PASS",
+  "harness_compile": "PASS",
+  "diff_check": "PASS",
+  "semantic_keyword_tests": "NOT_RUN_NOT_REQUIRED",
+  "final_blind_packet_sha256": "d1034ab723da2565b21c5da184baf8cd44302df49725d4d02e1c5188c29b2154",
+  "draft_files": 40,
+  "raw_observation_rows": 40,
+  "independent_blind_review": {
+    "task": "/root/thin_leaf_final_blind",
+    "requested_model": "gpt-5.6-luna",
+    "requested_effort": "max",
+    "pairs": 9,
+    "status": "completed"
+  },
+  "qwen_max_review": "TIMEOUT_NOT_PASSED",
+  "status": "VALIDATED_LOCAL_CANDIDATE_NOT_MERGED"
+}

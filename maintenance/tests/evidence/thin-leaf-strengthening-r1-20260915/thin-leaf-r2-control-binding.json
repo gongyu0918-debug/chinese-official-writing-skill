@@ -1,0 +1,40 @@
+{
+  "main_commit": "9c4f12166c3a6a5920153b6e28a57d781993bb36",
+  "candidate_head": "c7e6deb17e6142da5c60d3ec569dba5e5bca773f",
+  "fingerprints": {
+    "baseline": "b9497714d9ed2b37b2f2fcd536a1fd61407acb85ddc369ef46aeb5c24274a240",
+    "candidate": "22d1cfef25ad792cfbd2d52e4f0f0462182b765f441602f069532aa070d13d25"
+  },
+  "models": [
+    "alibaba-token-plan/qwen3.8-flash"
+  ],
+  "cases": {
+    "ordinary_explanation": "请写一份120至180字的内部情况说明。资料室本周核对12卷档案，其中10卷目录与实物相符，2卷仍有差异，原因待核。李华负责核对这2卷，9月20日前反馈；目前核对工作还在进行。请写清情况和当前安排，语句自然。"
+  },
+  "cli": "C:\\Users\\admin\\AppData\\Local\\OpenAI\\Codex\\bin\\bffc5354119c8421\\codex.exe",
+  "cli_version": "codex-cli 0.154.0-alpha.6.2",
+  "effort": "max",
+  "runtime": "C:\\Users\\admin\\AppData\\Local\\Temp\\cow-native-thin-leaf-r2-control-e6d_a117",
+  "permissions": "inherited-host-config",
+  "timeout": 420,
+  "agent_documents": "project_doc_max_bytes=0",
+  "baseline_ref": "9c4f1216",
+  "baseline_source": null,
+  "candidate_source": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\thin-leaf-strengthening-r1-20260915\\chinese-official-writing",
+  "candidate_skill_name": "chinese-official-writing",
+  "baseline_commit": "9c4f12166c3a6a5920153b6e28a57d781993bb36",
+  "profile": "temporary-no-user-documents-or-credentials",
+  "runner_sha256": "180db1a815a192f612cf85b7c54976240abcfe8b6f834d22fedf5798cad5622d",
+  "prompt_prefix": "使用本目录 .agents/skills/chinese-official-writing/SKILL.md。\n\n本目录文本文件为 UTF-8 编码，读取时显式指定 UTF-8 解码。\n\n",
+  "ordinary_only": false,
+  "utf8_read": true,
+  "runtime_layout": "each call has a separate parent, workspace and temporary directory",
+  "session_metadata": "ephemeral",
+  "review_host": {
+    "enabled": false,
+    "max_threads": null,
+    "max_depth": null,
+    "child_model": "host defaults",
+    "child_usage": "root JSON usage is not assumed to include child usage"
+  }
+}

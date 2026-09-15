@@ -1,0 +1,17 @@
+{
+  "result.json": {
+    "sha256": "b3b760b93b577be37ae4d84bc4bcec0dff6fc19b4819a51c0c2d61a805c4ac1d",
+    "bytes": 359,
+    "path": "output\\thin-leaf-final-blind\\result.json"
+  },
+  "stderr.txt": {
+    "sha256": "332abe7409fd0f91a7d9247e02b60d44da3566b4e420e204096d167a264aae92",
+    "bytes": 697,
+    "path": "output\\thin-leaf-final-blind\\stderr.txt"
+  },
+  "trace.jsonl": {
+    "sha256": "5e30a9e6af10d6cfb4d12b5634e3a6d5c05a97155df1377b5c682bbe2c32759b",
+    "bytes": 103,
+    "path": "output\\thin-leaf-final-blind\\trace.jsonl"
+  }
+}

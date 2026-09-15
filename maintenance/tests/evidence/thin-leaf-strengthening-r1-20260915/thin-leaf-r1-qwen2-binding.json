@@ -1,0 +1,40 @@
+{
+  "main_commit": "9c4f12166c3a6a5920153b6e28a57d781993bb36",
+  "candidate_head": "244dd97264cdc5b14030cb3514c5ab5c02e87967",
+  "fingerprints": {
+    "baseline": "b9497714d9ed2b37b2f2fcd536a1fd61407acb85ddc369ef46aeb5c24274a240",
+    "candidate": "9fdcb05afb970020ac0dd07076f23516bf39546a320fd7fe68a2a303a41428e9"
+  },
+  "models": [
+    "alibaba-token-plan-2/qwen3.8-flash"
+  ],
+  "cases": {
+    "revision_explanation": "以下为虚拟材料。请给业务组写一份《服务窗口指引修订说明》，180至260字。原指引写材料提交到一楼3号窗口，新稿拟改为二楼2号窗口，原因是受理窗口已搬迁；办理时段仍为工作日9时至17时。原稿遗漏预约方式，新稿补入现有的电话预约，号码010-55501234；本次未调整办理条件。前期两个业务组共提出4条修改意见，3条已采纳；关于增加周末受理的建议未采纳，因为目前周末没有值班人员。指引新稿待负责人确认后使用。请让读者容易看明白修改了哪里、为什么改及目前状态。"
+  },
+  "cli": "C:\\Users\\admin\\AppData\\Local\\OpenAI\\Codex\\bin\\bffc5354119c8421\\codex.exe",
+  "cli_version": "codex-cli 0.154.0-alpha.6.2",
+  "effort": "max",
+  "runtime": "C:\\Users\\admin\\AppData\\Local\\Temp\\cow-native-thin-leaf-r1-qwen2-f8czyb4n",
+  "permissions": "inherited-host-config",
+  "timeout": 420,
+  "agent_documents": "project_doc_max_bytes=0",
+  "baseline_ref": "9c4f1216",
+  "baseline_source": null,
+  "candidate_source": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\thin-leaf-strengthening-r1-20260915\\chinese-official-writing",
+  "candidate_skill_name": "chinese-official-writing",
+  "baseline_commit": "9c4f12166c3a6a5920153b6e28a57d781993bb36",
+  "profile": "temporary-no-user-documents-or-credentials",
+  "runner_sha256": "180db1a815a192f612cf85b7c54976240abcfe8b6f834d22fedf5798cad5622d",
+  "prompt_prefix": "使用本目录 .agents/skills/chinese-official-writing/SKILL.md。\n\n本目录文本文件为 UTF-8 编码，读取时显式指定 UTF-8 解码。\n\n",
+  "ordinary_only": false,
+  "utf8_read": true,
+  "runtime_layout": "each call has a separate parent, workspace and temporary directory",
+  "session_metadata": "ephemeral",
+  "review_host": {
+    "enabled": false,
+    "max_threads": null,
+    "max_depth": null,
+    "child_model": "host defaults",
+    "child_usage": "root JSON usage is not assumed to include child usage"
+  }
+}
