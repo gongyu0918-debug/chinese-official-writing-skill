@@ -1,10 +1,10 @@
 {
   "baseline": "a0ff4155",
-  "candidate": "aa473b0f",
+  "candidate": "final working tree after cost-clause withdrawal; bind by final product hashes",
   "pages": 68,
   "changed_pages": 16,
   "before_chars": 53068,
-  "after_chars": 52618,
+  "after_chars": 52631,
   "rows": [
     {
       "file": "chinese-official-writing/SKILL.md",
@@ -15,7 +15,7 @@
     {
       "file": "chinese-official-writing/references/ai-compute-docs.md",
       "before_chars": 1437,
-      "after_chars": 1424,
+      "after_chars": 1437,
       "changed": true
     },
     {

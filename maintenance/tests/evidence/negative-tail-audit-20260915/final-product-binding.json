@@ -1,0 +1,303 @@
+{
+  "source": "final local candidate with compute cost paragraph restored to a0ff4155",
+  "normalization": "CRLF to LF for portable text fingerprint",
+  "files": [
+    {
+      "path": "agents/openai.yaml",
+      "sha256_lf": "25b81d329b61f068f813f59c2e839623844a20d02ff37e9c72fe06570768de72"
+    },
+    {
+      "path": "LICENSE",
+      "sha256_lf": "80f0c345dc22aed5f59c33d0354c43a27642bdf78ec1b0e054bacca4443879ec"
+    },
+    {
+      "path": "README.md",
+      "sha256_lf": "f5330443da5761d517b0a3666bd944d661fbfbf3c6dae6ae04e37845018539d7"
+    },
+    {
+      "path": "references/ai-compute-docs.md",
+      "sha256_lf": "d0d3d6975c391d3706093e66905825c23b58512c916c1d41409457b9f1ffc981"
+    },
+    {
+      "path": "references/ai-compute-examples.md",
+      "sha256_lf": "f0503f82e26220e368797a56a04f924e9738daf774c5163b88689de71cfd9b96"
+    },
+    {
+      "path": "references/anti-ai-patterns.md",
+      "sha256_lf": "d57ce9459441b5dffe60f30bf7039952884b682568dc95aad4dba4803e2e6eba"
+    },
+    {
+      "path": "references/argument-chains.md",
+      "sha256_lf": "baeb595a3bca0a2cf7722c488c966e1f7c21f9f2b9479f7ca280e1149524cbdd"
+    },
+    {
+      "path": "references/compatibility-scene-routing.md",
+      "sha256_lf": "eab976c60239a18f5204224ff0a4dd8c141857f64e39353f9018083befc0c1eb"
+    },
+    {
+      "path": "references/compression-details.md",
+      "sha256_lf": "5be01fb222381944553df93ef22360accba8c28d0b9d7116f1defa3f9b5ffec8"
+    },
+    {
+      "path": "references/external-research.md",
+      "sha256_lf": "6f0a253a337900ebbd15da0d98920e0326cd2807300cd9c331c3f684572a4166"
+    },
+    {
+      "path": "references/field-editing.md",
+      "sha256_lf": "87b79231b2f3f9b3466bb0d55bb5e03c43bf87cb2c22cacaacc899427dd18254"
+    },
+    {
+      "path": "references/formal-addressing.md",
+      "sha256_lf": "b57decd40ccbde8ba39842bfdc2d90021c74987ac14f5334d4202c28560b2f90"
+    },
+    {
+      "path": "references/format-gbt9704.md",
+      "sha256_lf": "702189f361d325346cb0cc7f852a17f683462399a3dc49b1695d52a1c7db3eb0"
+    },
+    {
+      "path": "references/formulaic-language.md",
+      "sha256_lf": "cea107c8a6475d3a97da212112292f55c6c3251e47a4907870e7392d76acc7fc"
+    },
+    {
+      "path": "references/genre-checklist-feasibility-review.md",
+      "sha256_lf": "8ccfa9923dd38ff5390c6234c85dcdcd8b8753863ff00b0a460c5bc171bdd1b7"
+    },
+    {
+      "path": "references/genre-checklist-report.md",
+      "sha256_lf": "6b95e2e7d0ff478e0a1570099f46660df2b33eb8385c2b1cc38da9298fdefd16"
+    },
+    {
+      "path": "references/genre-checklist-request.md",
+      "sha256_lf": "90f9fdc99b5ff79929e9df10e47f26b84b869613abb4851ca35be41d962158ab"
+    },
+    {
+      "path": "references/genre-checklist.md",
+      "sha256_lf": "051d560fbc38dc4a87f573b122360e729fad3da06e073695b9cc2547ea5ba096"
+    },
+    {
+      "path": "references/genre-playbook-advisory-feedback.md",
+      "sha256_lf": "22c81c49cc2cb68a680b7f98a326bb8dc529944e38ebcce682f7a8c5445e1fb9"
+    },
+    {
+      "path": "references/genre-playbook-bulletin.md",
+      "sha256_lf": "21e40f3e505ac78059aadcfa8f62413752d39fd3c9ed4ed635f6ca441c8fdb1c"
+    },
+    {
+      "path": "references/genre-playbook-communique.md",
+      "sha256_lf": "0db7a33958debd64881937a5d743389b1e83bd40ec2344eaa24a51454ee8f659"
+    },
+    {
+      "path": "references/genre-playbook-complaint-reflection.md",
+      "sha256_lf": "48679ebe3085a35ed538d180086282d4c4ca99712699a3cee3636e9359642de4"
+    },
+    {
+      "path": "references/genre-playbook-correspondence.md",
+      "sha256_lf": "b380c100a356a0132c8c18cc81c52d320c1c91190d33b9e4738fe1d5be2b65c3"
+    },
+    {
+      "path": "references/genre-playbook-decision.md",
+      "sha256_lf": "f4d2c82f5fe10883238d0e788beaf8b54b62fe31fe1211a17f83e0e934dc4a25"
+    },
+    {
+      "path": "references/genre-playbook-deployment.md",
+      "sha256_lf": "b1a78c5240771de9c512600b4eaab984b490f23407897e5617334b0cd745d795"
+    },
+    {
+      "path": "references/genre-playbook-duty-report.md",
+      "sha256_lf": "21f7c42bee606e62e3820cc9eeeb91c2ea18e1466635e10c2933dd36f594ccf7"
+    },
+    {
+      "path": "references/genre-playbook-editorial-note.md",
+      "sha256_lf": "0e2c2f6ab9bc0026e3c8238b449011e1738a0e6f6f27e9dd3f07e12c4ef08982"
+    },
+    {
+      "path": "references/genre-playbook-explanation.md",
+      "sha256_lf": "de8b95cbd5b15776d3cca07cf288c32467ee25c749c63d496798ae1fa9fc56f5"
+    },
+    {
+      "path": "references/genre-playbook-feasibility.md",
+      "sha256_lf": "706418e4206fcd7e064896fe60ee0000ee01617c2a22eb5b4123c9b15afde136"
+    },
+    {
+      "path": "references/genre-playbook-information-materials.md",
+      "sha256_lf": "42f9f185d659538f6e1a97bdc026af1eb495788819b4a1defb06cabb97397133"
+    },
+    {
+      "path": "references/genre-playbook-initiative.md",
+      "sha256_lf": "f8d8094bc2fd40ebb698b350c14d34980e7d9662eb13ace36774fd01b179aa88"
+    },
+    {
+      "path": "references/genre-playbook-institution-rules.md",
+      "sha256_lf": "651711f5aaf45437d7120d36269e1d4b7bf6f5dc1290c956b59edbbcb68cd6dd"
+    },
+    {
+      "path": "references/genre-playbook-meeting-host.md",
+      "sha256_lf": "7a2b8af1818cce933826f3b195bb0f68533228e6343f0072a5a5600b035f9e50"
+    },
+    {
+      "path": "references/genre-playbook-minutes.md",
+      "sha256_lf": "ef7404e427a50d2bec4a36b1ec188fb9330aa32fcea9c1be05b3fd260cdb4f50"
+    },
+    {
+      "path": "references/genre-playbook-motion.md",
+      "sha256_lf": "da08fbfbfe93bb290c5d25ba840d612ed81f3cb2951abf12ac644e8ba065b2d5"
+    },
+    {
+      "path": "references/genre-playbook-narration.md",
+      "sha256_lf": "8e8cac95b7fa7ae4b3383d9195486bebcc416b7997bd082d9b71584a19acfd06"
+    },
+    {
+      "path": "references/genre-playbook-news-commentary.md",
+      "sha256_lf": "82c7dcc4c92218f1f98c91746d4e3e0df86ca3038765e1776a79a5f0b0fadb5a"
+    },
+    {
+      "path": "references/genre-playbook-news-message.md",
+      "sha256_lf": "da546cbd97b05b875d4080e6ad84f5647089968d0097ba05087216ffa10baddd"
+    },
+    {
+      "path": "references/genre-playbook-notice.md",
+      "sha256_lf": "33015a4bb54acc2117fea7dc9fc2e3a0e4b5256d4288a1bcb2d1159705e76ecd"
+    },
+    {
+      "path": "references/genre-playbook-open-letter.md",
+      "sha256_lf": "5c5db048391f176b3178fd225fa1fd9d6431173846aca6769cb08ccbf2c92f0d"
+    },
+    {
+      "path": "references/genre-playbook-opinion.md",
+      "sha256_lf": "7ef44e73189d89ef759e93ca3269b8db4d0380eed9080104a6acc3054487b193"
+    },
+    {
+      "path": "references/genre-playbook-order.md",
+      "sha256_lf": "4fb4ee84e4a883ed730d24bbaaf2997f622ac68cbcaaca5317dc9613460b4ef9"
+    },
+    {
+      "path": "references/genre-playbook-plan-construction.md",
+      "sha256_lf": "99fb0b14c66bad9a9d6f85031177349ea80f1615e5bc8da90f2b999cc75a2eef"
+    },
+    {
+      "path": "references/genre-playbook-procurement-announcement.md",
+      "sha256_lf": "c0f4d5101d969283457313f6bf20495fc92fcbd7b4add70e03d9bc8585eefbed"
+    },
+    {
+      "path": "references/genre-playbook-procurement-review.md",
+      "sha256_lf": "4b9d7b18a8123028657d7e1eb36ae52e52485fe51477f991ec70ec53a6b8a102"
+    },
+    {
+      "path": "references/genre-playbook-project-application.md",
+      "sha256_lf": "9006ab750571b4dab58acd43c1de1543fa434b9597c6c6d8865edf271159f514"
+    },
+    {
+      "path": "references/genre-playbook-publication.md",
+      "sha256_lf": "27008b4a9e1c7e46bd14f63577d9ce34423778cccbdded1791e50eecd0c2e902"
+    },
+    {
+      "path": "references/genre-playbook-remediation-plan.md",
+      "sha256_lf": "70ba20fb0f119067de45c972e9481a2f2fc009ae547912b871d08e7f7a133ec7"
+    },
+    {
+      "path": "references/genre-playbook-reply.md",
+      "sha256_lf": "e0520881fc98a135de2b2716dce63dbeb61de01c32a059f763ef09b5f7a5391f"
+    },
+    {
+      "path": "references/genre-playbook-report.md",
+      "sha256_lf": "ea80e349c870033517047ba9b9707a081a96590f0cf7743a8d5a594861dc94af"
+    },
+    {
+      "path": "references/genre-playbook-request.md",
+      "sha256_lf": "5bada9774d19a290ae92a05f58ab0f303d5bdd8e84a71f01a5a9f3b26754452c"
+    },
+    {
+      "path": "references/genre-playbook-research.md",
+      "sha256_lf": "5af405a2a6c3ae890a4451631097ac02c45e2fbbf3084e38b726357e5f0fdb09"
+    },
+    {
+      "path": "references/genre-playbook-resolution.md",
+      "sha256_lf": "1938d8cca4a26ea89b0e78b617e145c336fee6efa55a44830c6c277e64993474"
+    },
+    {
+      "path": "references/genre-playbook-responsibility-letter.md",
+      "sha256_lf": "7430ff21af1c06bccb85697891ab1efdfb752bb45d49e4b8013c1e0aa96a8be7"
+    },
+    {
+      "path": "references/genre-playbook-review-opinion.md",
+      "sha256_lf": "4af2679f1c35d0d1d1afa9d15f16b287d83e289a61675e9d9646628e6dc7d875"
+    },
+    {
+      "path": "references/genre-playbook-speech-address.md",
+      "sha256_lf": "a1d49514b2cc4004ee98fbebba0aaca167b04ae20e3021da3a27472887ca87bb"
+    },
+    {
+      "path": "references/genre-playbook-technical-requirements.md",
+      "sha256_lf": "c326b29e30eb0df7ea14e2f14d9ad8eafb5b4d8b1e264e17708ce35657fd37fd"
+    },
+    {
+      "path": "references/genre-playbook-work-priorities.md",
+      "sha256_lf": "4bb70d8a157d43421b36d9d60f66a7fc398fb9cd2405d3f69ca88f647622274a"
+    },
+    {
+      "path": "references/genre-playbook-work-summary.md",
+      "sha256_lf": "039087da84b84c465d2c63ff00f1621a2ee335e2c42f542438066f35275dfb1a"
+    },
+    {
+      "path": "references/genre-routing.md",
+      "sha256_lf": "29f935262a08eba7f59b9331cb6ebe1774fb5ad121a8a9d92ba3c65043f39602"
+    },
+    {
+      "path": "references/proofreading-checklist.md",
+      "sha256_lf": "086b9df3048c6b28ab644bd160ea0a5f65ab5f59d23d97f38f01525644a48cc8"
+    },
+    {
+      "path": "references/prose-lint-usage.md",
+      "sha256_lf": "ed1c227b49b8700e886f11d4c82feb6bfbf35e300eb6d706e3bd5b23f5e248a8"
+    },
+    {
+      "path": "references/reference-index.md",
+      "sha256_lf": "5583aa31e4d98ceab99801cf474cf4a829ddd2f1023d3233ccf2c22fae8b2a1d"
+    },
+    {
+      "path": "references/review-checklist.md",
+      "sha256_lf": "1dbf0da18a80bbef64ce685697f5d365fe3fc447023e04d5ba54948e1538c7c6"
+    },
+    {
+      "path": "references/speech-person-order.md",
+      "sha256_lf": "ecb6eaf6875a76e1b6d255aa53e77080e37f52de732c59cb6ef25d06a7519274"
+    },
+    {
+      "path": "references/structure-editing.md",
+      "sha256_lf": "296101501ceaf738187ac19234c6702a36cb3313f4a578f5c5086a9df457e982"
+    },
+    {
+      "path": "references/technical-terms.md",
+      "sha256_lf": "91979154d1bff178248d62242e9e78ba3b7d8fbf78fe6615d4cf183bcf30e750"
+    },
+    {
+      "path": "references/transaction-feedback-report.md",
+      "sha256_lf": "b812d3df9f1ec8e54c335d3abb9eae3d6f815e2b831cf0c4bdd481cfa51bccd2"
+    },
+    {
+      "path": "references/transaction-remediation-report.md",
+      "sha256_lf": "c9d09ef19306cf57c357e5ae5af20d5448e1f4e72b343b31efdc7965640fef5c"
+    },
+    {
+      "path": "references/writing-rules.md",
+      "sha256_lf": "9cd5ed1b728f294aa6b629a2adad0c97ade44f287acd9568c1402cf840a9c6dc"
+    },
+    {
+      "path": "scripts/draft_length.py",
+      "sha256_lf": "a1bb1f4a963387c8b8dd21179141d19d36fb03f9396c12ae5531e59cdc7c5307"
+    },
+    {
+      "path": "scripts/prose_lint.py",
+      "sha256_lf": "be874ebf199118c9f419605a8326871130adb120678414908468254c7917bc43"
+    },
+    {
+      "path": "SKILL.md",
+      "sha256_lf": "af4512fd80a13b5cc197de99b4c59b2f205ea8505592af8121378f144f9a9da4"
+    }
+  ],
+  "tree_sha256": "c45c33499033ab088d49510b7544933947d0b4b8826ae936e3d838c607b62b01",
+  "scripts_changed": [],
+  "tested_prototype": "aa473b0f",
+  "tested_compute_revision": "a77d6cfe",
+  "final_cost_paragraph": "equals a0ff4155; no new full product writing rerun after withdrawal"
+}

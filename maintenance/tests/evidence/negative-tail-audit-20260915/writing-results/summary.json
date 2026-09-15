@@ -1,0 +1,972 @@
+{
+  "attempts": 30,
+  "complete_drafts": 27,
+  "incomplete_drafts": 3,
+  "batch_pair_counts": {
+    "r1": 10,
+    "r2": 1,
+    "r3": 1
+  },
+  "rows": [
+    {
+      "batch": "r1",
+      "case": "advisory",
+      "model": "alibaba-token-plan/qwen3.8-flash",
+      "arm": "baseline",
+      "complete_draft": true,
+      "manual_reason": null,
+      "runner_invalid": [],
+      "seconds": 147.91,
+      "usage": {
+        "input_tokens": 233760,
+        "cached_input_tokens": 213888,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 7667,
+        "reasoning_output_tokens": 3709
+      },
+      "full_entry_returned": true,
+      "full_pages_returned": [
+        "SKILL.md",
+        "references/anti-ai-patterns.md",
+        "references/genre-playbook-advisory-feedback.md",
+        "references/prose-lint-usage.md",
+        "references/reference-index.md",
+        "references/writing-rules.md"
+      ],
+      "script_invocations": [
+        "draft_length.py",
+        "prose_lint.py"
+      ],
+      "command_count": 15
+    },
+    {
+      "batch": "r1",
+      "case": "advisory",
+      "model": "alibaba-token-plan/qwen3.8-flash",
+      "arm": "candidate",
+      "complete_draft": true,
+      "manual_reason": null,
+      "runner_invalid": [],
+      "seconds": 156.67,
+      "usage": {
+        "input_tokens": 279013,
+        "cached_input_tokens": 258816,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 8351,
+        "reasoning_output_tokens": 3565
+      },
+      "full_entry_returned": true,
+      "full_pages_returned": [
+        "SKILL.md",
+        "references/anti-ai-patterns.md",
+        "references/genre-playbook-advisory-feedback.md",
+        "references/prose-lint-usage.md",
+        "references/reference-index.md",
+        "references/writing-rules.md"
+      ],
+      "script_invocations": [
+        "draft_length.py",
+        "prose_lint.py"
+      ],
+      "command_count": 12
+    },
+    {
+      "batch": "r1",
+      "case": "application",
+      "model": "alibaba-token-plan/qwen3.8-flash",
+      "arm": "baseline",
+      "complete_draft": true,
+      "manual_reason": null,
+      "runner_invalid": [],
+      "seconds": 138.36,
+      "usage": {
+        "input_tokens": 175188,
+        "cached_input_tokens": 156800,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 6762,
+        "reasoning_output_tokens": 4499
+      },
+      "full_entry_returned": true,
+      "full_pages_returned": [
+        "SKILL.md",
+        "references/anti-ai-patterns.md",
+        "references/genre-checklist-request.md",
+        "references/genre-playbook-project-application.md",
+        "references/genre-playbook-request.md",
+        "references/prose-lint-usage.md",
+        "references/writing-rules.md"
+      ],
+      "script_invocations": [
+        "draft_length.py",
+        "prose_lint.py"
+      ],
+      "command_count": 14
+    },
+    {
+      "batch": "r1",
+      "case": "application",
+      "model": "alibaba-token-plan/qwen3.8-flash",
+      "arm": "candidate",
+      "complete_draft": true,
+      "manual_reason": null,
+      "runner_invalid": [],
+      "seconds": 115.84,
+      "usage": {
+        "input_tokens": 140922,
+        "cached_input_tokens": 121984,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 5631,
+        "reasoning_output_tokens": 3619
+      },
+      "full_entry_returned": true,
+      "full_pages_returned": [
+        "SKILL.md",
+        "references/anti-ai-patterns.md",
+        "references/genre-checklist-request.md",
+        "references/genre-playbook-request.md",
+        "references/prose-lint-usage.md",
+        "references/reference-index.md",
+        "references/writing-rules.md"
+      ],
+      "script_invocations": [
+        "draft_length.py",
+        "prose_lint.py"
+      ],
+      "command_count": 15
+    },
+    {
+      "batch": "r1",
+      "case": "compute",
+      "model": "alibaba-token-plan/qwen3.8-flash",
+      "arm": "baseline",
+      "complete_draft": true,
+      "manual_reason": null,
+      "runner_invalid": [],
+      "seconds": 280.06,
+      "usage": {
+        "input_tokens": 431434,
+        "cached_input_tokens": 398464,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 15147,
+        "reasoning_output_tokens": 7704
+      },
+      "full_entry_returned": true,
+      "full_pages_returned": [
+        "SKILL.md",
+        "references/ai-compute-docs.md",
+        "references/ai-compute-examples.md",
+        "references/anti-ai-patterns.md",
+        "references/argument-chains.md",
+        "references/genre-playbook-explanation.md",
+        "references/genre-playbook-research.md",
+        "references/genre-routing.md",
+        "references/prose-lint-usage.md",
+        "references/reference-index.md",
+        "references/writing-rules.md"
+      ],
+      "script_invocations": [
+        "draft_length.py",
+        "prose_lint.py"
+      ],
+      "command_count": 22
+    },
+    {
+      "batch": "r1",
+      "case": "compute",
+      "model": "alibaba-token-plan/qwen3.8-flash",
+      "arm": "candidate",
+      "complete_draft": true,
+      "manual_reason": null,
+      "runner_invalid": [],
+      "seconds": 169.28,
+      "usage": {
+        "input_tokens": 228576,
+        "cached_input_tokens": 202496,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 8289,
+        "reasoning_output_tokens": 4811
+      },
+      "full_entry_returned": true,
+      "full_pages_returned": [
+        "SKILL.md",
+        "references/ai-compute-docs.md",
+        "references/anti-ai-patterns.md",
+        "references/genre-playbook-explanation.md",
+        "references/genre-playbook-research.md",
+        "references/prose-lint-usage.md",
+        "references/reference-index.md",
+        "references/writing-rules.md"
+      ],
+      "script_invocations": [
+        "draft_length.py",
+        "prose_lint.py"
+      ],
+      "command_count": 17
+    },
+    {
+      "batch": "r1",
+      "case": "field_edit",
+      "model": "alibaba-token-plan/qwen3.8-flash",
+      "arm": "baseline",
+      "complete_draft": true,
+      "manual_reason": null,
+      "runner_invalid": [],
+      "seconds": 103.47,
+      "usage": {
+        "input_tokens": 263914,
+        "cached_input_tokens": 239104,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 5051,
+        "reasoning_output_tokens": 2856
+      },
+      "full_entry_returned": true,
+      "full_pages_returned": [
+        "SKILL.md",
+        "references/anti-ai-patterns.md",
+        "references/field-editing.md",
+        "references/genre-playbook-request.md",
+        "references/genre-routing.md",
+        "references/prose-lint-usage.md",
+        "references/reference-index.md",
+        "references/structure-editing.md",
+        "references/writing-rules.md"
+      ],
+      "script_invocations": [
+        "prose_lint.py"
+      ],
+      "command_count": 16
+    },
+    {
+      "batch": "r1",
+      "case": "field_edit",
+      "model": "alibaba-token-plan/qwen3.8-flash",
+      "arm": "candidate",
+      "complete_draft": true,
+      "manual_reason": null,
+      "runner_invalid": [],
+      "seconds": 169.5,
+      "usage": {
+        "input_tokens": 293240,
+        "cached_input_tokens": 264832,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 7313,
+        "reasoning_output_tokens": 4108
+      },
+      "full_entry_returned": true,
+      "full_pages_returned": [
+        "SKILL.md",
+        "references/anti-ai-patterns.md",
+        "references/field-editing.md",
+        "references/prose-lint-usage.md",
+        "references/reference-index.md",
+        "references/structure-editing.md",
+        "references/writing-rules.md"
+      ],
+      "script_invocations": [
+        "prose_lint.py"
+      ],
+      "command_count": 14
+    },
+    {
+      "batch": "r1",
+      "case": "minutes",
+      "model": "alibaba-token-plan/qwen3.8-flash",
+      "arm": "baseline",
+      "complete_draft": true,
+      "manual_reason": null,
+      "runner_invalid": [],
+      "seconds": 122.23,
+      "usage": {
+        "input_tokens": 170519,
+        "cached_input_tokens": 143616,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 6336,
+        "reasoning_output_tokens": 3815
+      },
+      "full_entry_returned": true,
+      "full_pages_returned": [
+        "SKILL.md",
+        "references/anti-ai-patterns.md",
+        "references/compression-details.md",
+        "references/genre-playbook-minutes.md",
+        "references/prose-lint-usage.md",
+        "references/reference-index.md",
+        "references/writing-rules.md"
+      ],
+      "script_invocations": [
+        "draft_length.py",
+        "prose_lint.py"
+      ],
+      "command_count": 13
+    },
+    {
+      "batch": "r1",
+      "case": "minutes",
+      "model": "alibaba-token-plan/qwen3.8-flash",
+      "arm": "candidate",
+      "complete_draft": true,
+      "manual_reason": null,
+      "runner_invalid": [],
+      "seconds": 104.42,
+      "usage": {
+        "input_tokens": 129220,
+        "cached_input_tokens": 112512,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 5333,
+        "reasoning_output_tokens": 3086
+      },
+      "full_entry_returned": true,
+      "full_pages_returned": [
+        "SKILL.md",
+        "references/anti-ai-patterns.md",
+        "references/genre-playbook-minutes.md",
+        "references/prose-lint-usage.md",
+        "references/writing-rules.md"
+      ],
+      "script_invocations": [
+        "draft_length.py",
+        "prose_lint.py"
+      ],
+      "command_count": 14
+    },
+    {
+      "batch": "r1",
+      "case": "news",
+      "model": "alibaba-token-plan/qwen3.8-flash",
+      "arm": "baseline",
+      "complete_draft": true,
+      "manual_reason": null,
+      "runner_invalid": [],
+      "seconds": 167.3,
+      "usage": {
+        "input_tokens": 142136,
+        "cached_input_tokens": 125056,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 8584,
+        "reasoning_output_tokens": 6044
+      },
+      "full_entry_returned": true,
+      "full_pages_returned": [
+        "SKILL.md",
+        "references/anti-ai-patterns.md",
+        "references/genre-playbook-news-message.md",
+        "references/prose-lint-usage.md",
+        "references/reference-index.md",
+        "references/writing-rules.md"
+      ],
+      "script_invocations": [
+        "draft_length.py",
+        "prose_lint.py"
+      ],
+      "command_count": 15
+    },
+    {
+      "batch": "r1",
+      "case": "news",
+      "model": "alibaba-token-plan/qwen3.8-flash",
+      "arm": "candidate",
+      "complete_draft": true,
+      "manual_reason": null,
+      "runner_invalid": [],
+      "seconds": 184.75,
+      "usage": {
+        "input_tokens": 318103,
+        "cached_input_tokens": 291968,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 10466,
+        "reasoning_output_tokens": 4510
+      },
+      "full_entry_returned": true,
+      "full_pages_returned": [
+        "SKILL.md",
+        "references/anti-ai-patterns.md",
+        "references/genre-playbook-news-message.md",
+        "references/prose-lint-usage.md",
+        "references/writing-rules.md"
+      ],
+      "script_invocations": [
+        "draft_length.py",
+        "prose_lint.py"
+      ],
+      "command_count": 11
+    },
+    {
+      "batch": "r1",
+      "case": "advisory",
+      "model": "minimax-cn/MiniMax-M3",
+      "arm": "baseline",
+      "complete_draft": true,
+      "manual_reason": null,
+      "runner_invalid": [],
+      "seconds": 156.0,
+      "usage": {
+        "input_tokens": 378161,
+        "cached_input_tokens": 354048,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 6221,
+        "reasoning_output_tokens": 0
+      },
+      "full_entry_returned": true,
+      "full_pages_returned": [
+        "SKILL.md",
+        "references/anti-ai-patterns.md",
+        "references/formulaic-language.md",
+        "references/genre-playbook-advisory-feedback.md",
+        "references/structure-editing.md",
+        "references/writing-rules.md"
+      ],
+      "script_invocations": [],
+      "command_count": 17
+    },
+    {
+      "batch": "r1",
+      "case": "advisory",
+      "model": "minimax-cn/MiniMax-M3",
+      "arm": "candidate",
+      "complete_draft": true,
+      "manual_reason": null,
+      "runner_invalid": [],
+      "seconds": 207.78,
+      "usage": {
+        "input_tokens": 788802,
+        "cached_input_tokens": 757862,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 8632,
+        "reasoning_output_tokens": 2521
+      },
+      "full_entry_returned": true,
+      "full_pages_returned": [
+        "SKILL.md",
+        "references/anti-ai-patterns.md",
+        "references/formal-addressing.md",
+        "references/format-gbt9704.md",
+        "references/formulaic-language.md",
+        "references/genre-playbook-advisory-feedback.md",
+        "references/prose-lint-usage.md",
+        "references/writing-rules.md"
+      ],
+      "script_invocations": [
+        "draft_length.py",
+        "prose_lint.py"
+      ],
+      "command_count": 33
+    },
+    {
+      "batch": "r1",
+      "case": "application",
+      "model": "minimax-cn/MiniMax-M3",
+      "arm": "baseline",
+      "complete_draft": true,
+      "manual_reason": null,
+      "runner_invalid": [],
+      "seconds": 94.36,
+      "usage": {
+        "input_tokens": 363876,
+        "cached_input_tokens": 335504,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 4735,
+        "reasoning_output_tokens": 2261
+      },
+      "full_entry_returned": true,
+      "full_pages_returned": [
+        "SKILL.md",
+        "references/anti-ai-patterns.md",
+        "references/field-editing.md",
+        "references/formal-addressing.md",
+        "references/formulaic-language.md",
+        "references/genre-checklist-request.md",
+        "references/genre-playbook-request.md",
+        "references/genre-routing.md",
+        "references/proofreading-checklist.md",
+        "references/prose-lint-usage.md",
+        "references/reference-index.md",
+        "references/structure-editing.md",
+        "references/writing-rules.md"
+      ],
+      "script_invocations": [
+        "draft_length.py",
+        "prose_lint.py"
+      ],
+      "command_count": 33
+    },
+    {
+      "batch": "r1",
+      "case": "application",
+      "model": "minimax-cn/MiniMax-M3",
+      "arm": "candidate",
+      "complete_draft": true,
+      "manual_reason": null,
+      "runner_invalid": [],
+      "seconds": 115.88,
+      "usage": {
+        "input_tokens": 546845,
+        "cached_input_tokens": 521556,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 7011,
+        "reasoning_output_tokens": 3722
+      },
+      "full_entry_returned": true,
+      "full_pages_returned": [
+        "SKILL.md",
+        "references/anti-ai-patterns.md",
+        "references/formal-addressing.md",
+        "references/genre-playbook-project-application.md",
+        "references/genre-playbook-request.md",
+        "references/writing-rules.md"
+      ],
+      "script_invocations": [
+        "draft_length.py",
+        "prose_lint.py"
+      ],
+      "command_count": 31
+    },
+    {
+      "batch": "r1",
+      "case": "compute",
+      "model": "minimax-cn/MiniMax-M3",
+      "arm": "baseline",
+      "complete_draft": true,
+      "manual_reason": null,
+      "runner_invalid": [],
+      "seconds": 439.33,
+      "usage": {
+        "input_tokens": 701952,
+        "cached_input_tokens": 656896,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 24577,
+        "reasoning_output_tokens": 0
+      },
+      "full_entry_returned": true,
+      "full_pages_returned": [
+        "SKILL.md",
+        "references/ai-compute-docs.md",
+        "references/ai-compute-examples.md",
+        "references/anti-ai-patterns.md",
+        "references/genre-playbook-research.md",
+        "references/prose-lint-usage.md",
+        "references/reference-index.md",
+        "references/writing-rules.md"
+      ],
+      "script_invocations": [
+        "draft_length.py",
+        "prose_lint.py"
+      ],
+      "command_count": 34
+    },
+    {
+      "batch": "r1",
+      "case": "compute",
+      "model": "minimax-cn/MiniMax-M3",
+      "arm": "candidate",
+      "complete_draft": false,
+      "manual_reason": "读取规则后仅交付准备步骤，没有正文或成果文件入口",
+      "runner_invalid": [],
+      "seconds": 83.17,
+      "usage": {
+        "input_tokens": 297721,
+        "cached_input_tokens": 276224,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 6113,
+        "reasoning_output_tokens": 0
+      },
+      "full_entry_returned": true,
+      "full_pages_returned": [
+        "SKILL.md",
+        "references/ai-compute-docs.md",
+        "references/ai-compute-examples.md",
+        "references/anti-ai-patterns.md",
+        "references/format-gbt9704.md",
+        "references/genre-playbook-research.md",
+        "references/genre-routing.md",
+        "references/writing-rules.md"
+      ],
+      "script_invocations": [
+        "draft_length.py"
+      ],
+      "command_count": 14
+    },
+    {
+      "batch": "r1",
+      "case": "field_edit",
+      "model": "minimax-cn/MiniMax-M3",
+      "arm": "baseline",
+      "complete_draft": true,
+      "manual_reason": null,
+      "runner_invalid": [],
+      "seconds": 59.38,
+      "usage": {
+        "input_tokens": 328821,
+        "cached_input_tokens": 304000,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 3754,
+        "reasoning_output_tokens": 0
+      },
+      "full_entry_returned": true,
+      "full_pages_returned": [
+        "SKILL.md",
+        "references/field-editing.md",
+        "references/genre-playbook-request.md",
+        "references/structure-editing.md",
+        "references/writing-rules.md"
+      ],
+      "script_invocations": [],
+      "command_count": 13
+    },
+    {
+      "batch": "r1",
+      "case": "field_edit",
+      "model": "minimax-cn/MiniMax-M3",
+      "arm": "candidate",
+      "complete_draft": true,
+      "manual_reason": null,
+      "runner_invalid": [],
+      "seconds": 560.52,
+      "usage": {
+        "input_tokens": 1890269,
+        "cached_input_tokens": 1827072,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 22133,
+        "reasoning_output_tokens": 6103
+      },
+      "full_entry_returned": true,
+      "full_pages_returned": [
+        "SKILL.md",
+        "references/field-editing.md",
+        "references/genre-playbook-request.md",
+        "references/structure-editing.md"
+      ],
+      "script_invocations": [],
+      "command_count": 43
+    },
+    {
+      "batch": "r1",
+      "case": "minutes",
+      "model": "minimax-cn/MiniMax-M3",
+      "arm": "baseline",
+      "complete_draft": false,
+      "manual_reason": "仅输出准备读取的过程说明，没有读页或成稿",
+      "runner_invalid": [
+        "missing_skill_read_trace"
+      ],
+      "seconds": 5.67,
+      "usage": {
+        "input_tokens": 19794,
+        "cached_input_tokens": 9984,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 273,
+        "reasoning_output_tokens": 0
+      },
+      "full_entry_returned": false,
+      "full_pages_returned": [],
+      "script_invocations": [],
+      "command_count": 0
+    },
+    {
+      "batch": "r1",
+      "case": "minutes",
+      "model": "minimax-cn/MiniMax-M3",
+      "arm": "candidate",
+      "complete_draft": true,
+      "manual_reason": null,
+      "runner_invalid": [],
+      "seconds": 144.69,
+      "usage": {
+        "input_tokens": 314178,
+        "cached_input_tokens": 293632,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 4331,
+        "reasoning_output_tokens": 0
+      },
+      "full_entry_returned": true,
+      "full_pages_returned": [
+        "SKILL.md",
+        "references/anti-ai-patterns.md",
+        "references/compression-details.md",
+        "references/genre-playbook-minutes.md",
+        "references/writing-rules.md"
+      ],
+      "script_invocations": [
+        "draft_length.py",
+        "prose_lint.py"
+      ],
+      "command_count": 19
+    },
+    {
+      "batch": "r1",
+      "case": "news",
+      "model": "minimax-cn/MiniMax-M3",
+      "arm": "baseline",
+      "complete_draft": true,
+      "manual_reason": null,
+      "runner_invalid": [],
+      "seconds": 100.64,
+      "usage": {
+        "input_tokens": 332484,
+        "cached_input_tokens": 316102,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 12439,
+        "reasoning_output_tokens": 9671
+      },
+      "full_entry_returned": true,
+      "full_pages_returned": [
+        "SKILL.md",
+        "references/anti-ai-patterns.md",
+        "references/genre-playbook-news-message.md",
+        "references/prose-lint-usage.md",
+        "references/reference-index.md",
+        "references/writing-rules.md"
+      ],
+      "script_invocations": [
+        "draft_length.py",
+        "prose_lint.py"
+      ],
+      "command_count": 13
+    },
+    {
+      "batch": "r1",
+      "case": "news",
+      "model": "minimax-cn/MiniMax-M3",
+      "arm": "candidate",
+      "complete_draft": true,
+      "manual_reason": null,
+      "runner_invalid": [],
+      "seconds": 321.75,
+      "usage": {
+        "input_tokens": 918209,
+        "cached_input_tokens": 886528,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 13701,
+        "reasoning_output_tokens": 9494
+      },
+      "full_entry_returned": true,
+      "full_pages_returned": [
+        "SKILL.md",
+        "references/anti-ai-patterns.md",
+        "references/genre-playbook-news-message.md",
+        "references/reference-index.md",
+        "references/writing-rules.md"
+      ],
+      "script_invocations": [
+        "draft_length.py",
+        "prose_lint.py"
+      ],
+      "command_count": 23
+    },
+    {
+      "batch": "r2",
+      "case": "compute",
+      "model": "alibaba-token-plan/qwen3.8-flash",
+      "arm": "baseline",
+      "complete_draft": true,
+      "manual_reason": null,
+      "runner_invalid": [],
+      "seconds": 175.88,
+      "usage": {
+        "input_tokens": 242198,
+        "cached_input_tokens": 215552,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 9769,
+        "reasoning_output_tokens": 2768
+      },
+      "full_entry_returned": true,
+      "full_pages_returned": [
+        "SKILL.md",
+        "references/ai-compute-docs.md",
+        "references/ai-compute-examples.md",
+        "references/anti-ai-patterns.md",
+        "references/genre-playbook-research.md",
+        "references/genre-routing.md",
+        "references/prose-lint-usage.md",
+        "references/writing-rules.md"
+      ],
+      "script_invocations": [
+        "draft_length.py",
+        "prose_lint.py"
+      ],
+      "command_count": 20
+    },
+    {
+      "batch": "r2",
+      "case": "compute",
+      "model": "alibaba-token-plan/qwen3.8-flash",
+      "arm": "candidate",
+      "complete_draft": true,
+      "manual_reason": null,
+      "runner_invalid": [],
+      "seconds": 195.41,
+      "usage": {
+        "input_tokens": 188876,
+        "cached_input_tokens": 170496,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 9626,
+        "reasoning_output_tokens": 5522
+      },
+      "full_entry_returned": true,
+      "full_pages_returned": [
+        "SKILL.md",
+        "references/ai-compute-docs.md",
+        "references/anti-ai-patterns.md",
+        "references/argument-chains.md",
+        "references/compression-details.md",
+        "references/genre-playbook-explanation.md",
+        "references/genre-playbook-research.md",
+        "references/prose-lint-usage.md",
+        "references/reference-index.md",
+        "references/writing-rules.md"
+      ],
+      "script_invocations": [
+        "draft_length.py",
+        "prose_lint.py"
+      ],
+      "command_count": 23
+    },
+    {
+      "batch": "r2",
+      "case": "compute",
+      "model": "minimax-cn/MiniMax-M3",
+      "arm": "baseline",
+      "complete_draft": true,
+      "manual_reason": null,
+      "runner_invalid": [],
+      "seconds": 114.83,
+      "usage": {
+        "input_tokens": 399595,
+        "cached_input_tokens": 370585,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 14559,
+        "reasoning_output_tokens": 4486
+      },
+      "full_entry_returned": true,
+      "full_pages_returned": [
+        "SKILL.md",
+        "references/ai-compute-docs.md",
+        "references/genre-routing.md",
+        "references/writing-rules.md"
+      ],
+      "script_invocations": [
+        "draft_length.py",
+        "prose_lint.py"
+      ],
+      "command_count": 21
+    },
+    {
+      "batch": "r2",
+      "case": "compute",
+      "model": "minimax-cn/MiniMax-M3",
+      "arm": "candidate",
+      "complete_draft": false,
+      "manual_reason": "空返回，没有读页或交稿",
+      "runner_invalid": [
+        "missing_final",
+        "missing_skill_read_trace"
+      ],
+      "seconds": 11.16,
+      "usage": {
+        "input_tokens": 9701,
+        "cached_input_tokens": 4096,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 298,
+        "reasoning_output_tokens": 0
+      },
+      "full_entry_returned": false,
+      "full_pages_returned": [],
+      "script_invocations": [],
+      "command_count": 0
+    },
+    {
+      "batch": "r3",
+      "case": "compute",
+      "model": "minimax-cn/MiniMax-M3",
+      "arm": "baseline",
+      "complete_draft": true,
+      "manual_reason": null,
+      "runner_invalid": [],
+      "seconds": 155.91,
+      "usage": {
+        "input_tokens": 501577,
+        "cached_input_tokens": 475629,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 8638,
+        "reasoning_output_tokens": 2984
+      },
+      "full_entry_returned": true,
+      "full_pages_returned": [
+        "SKILL.md",
+        "references/ai-compute-docs.md",
+        "references/anti-ai-patterns.md",
+        "references/genre-playbook-explanation.md",
+        "references/genre-playbook-research.md",
+        "references/prose-lint-usage.md",
+        "references/reference-index.md",
+        "references/technical-terms.md",
+        "references/writing-rules.md"
+      ],
+      "script_invocations": [
+        "draft_length.py",
+        "prose_lint.py"
+      ],
+      "command_count": 18
+    },
+    {
+      "batch": "r3",
+      "case": "compute",
+      "model": "minimax-cn/MiniMax-M3",
+      "arm": "candidate",
+      "complete_draft": true,
+      "manual_reason": null,
+      "runner_invalid": [],
+      "seconds": 515.56,
+      "usage": {
+        "input_tokens": 1241706,
+        "cached_input_tokens": 1191296,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 22739,
+        "reasoning_output_tokens": 0
+      },
+      "full_entry_returned": true,
+      "full_pages_returned": [
+        "SKILL.md",
+        "references/ai-compute-docs.md",
+        "references/ai-compute-examples.md",
+        "references/anti-ai-patterns.md",
+        "references/genre-playbook-research.md",
+        "references/genre-routing.md",
+        "references/prose-lint-usage.md",
+        "references/writing-rules.md"
+      ],
+      "script_invocations": [
+        "draft_length.py",
+        "prose_lint.py"
+      ],
+      "command_count": 49
+    }
+  ],
+  "representative_comparison": "11 complete same-case same-model pairs: r1 except compute and M3 minutes; Qwen compute from r2, M3 compute from r3. Compute cost paragraph subsequently withdrawn; this is experimental behavior, not a final-hash all-green claim.",
+  "representative_metrics": {
+    "baseline": {
+      "calls": 11,
+      "total_seconds": 1421.44,
+      "median_seconds": 138.36,
+      "total_input_tokens": 3132634,
+      "uncached_input_tokens": 253335,
+      "output_tokens": 79956,
+      "full_entry_returned": 11,
+      "anti_ai_full_returned": 10,
+      "prose_lint_invoked": 9,
+      "length_invoked": 8
+    },
+    "candidate": {
+      "calls": 11,
+      "total_seconds": 2648.08,
+      "median_seconds": 184.75,
+      "total_input_tokens": 6735205,
+      "uncached_input_tokens": 330283,
+      "output_tokens": 120936,
+      "full_entry_returned": 11,
+      "anti_ai_full_returned": 10,
+      "prose_lint_invoked": 10,
+      "length_invoked": 9
+    }
+  },
+  "script_count_scope": "Human-reviewed successful Python commands naming the script, excluding help/source-only reads; records remain available. Invocation is not proof that final text or metric complied."
+}

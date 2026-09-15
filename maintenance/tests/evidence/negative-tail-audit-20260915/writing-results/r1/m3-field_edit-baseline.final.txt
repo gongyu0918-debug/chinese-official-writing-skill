@@ -1,0 +1,13 @@
+[资料室设备申请.txt](</abs/path/C:\Users\admin\AppData\Local\Temp\cow-native-negative-tail-writing-20260915-b5n4eao2\m3-field_edit-baseline\workspace\资料室设备申请.txt>)（UTF-8 无 BOM）
+
+```text
+资料室设备申请
+
+申请部门：资料室
+申请事项：更换12把办公椅
+申请原因：现有办公椅升降、靠背或坐垫破损
+联系人：王老师
+联系电话：
+```
+
+按字段编辑规则，将申请事项由 18 把改为 12 把，在联系人下方新增联系电话字段并留空，其余字段照旧，每条字段独占一行。

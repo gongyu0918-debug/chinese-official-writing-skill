@@ -1,4 +1,7 @@
 {
   "raw_trace": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\negative-tail-audit-20260915\\output\\negative-tail-post-edit-20260915\\trace.jsonl",
-  "sha256": "009c98deec5bb80e0bb8c8b7280c472f6710d5459c2c20e9a013bcfb0f812f6e"
+  "sha256": "009c98deec5bb80e0bb8c8b7280c472f6710d5459c2c20e9a013bcfb0f812f6e",
+  "verbatim_request": "packets/post-edit-request.json text",
+  "verbatim_request_sha256": "7184c6d796c41390f40263c831e7594994833344f4db6765d286acbd3a477fdd",
+  "display_packet": "packets/post-edit.md; trailing whitespace normalized for readability"
 }

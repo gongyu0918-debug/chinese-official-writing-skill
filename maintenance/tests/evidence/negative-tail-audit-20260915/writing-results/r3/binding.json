@@ -1,0 +1,40 @@
+{
+  "main_commit": "c2577f534dad92f2de6bfd75667312da57e6e69b",
+  "candidate_head": "a77d6cfe70bebcfc2597e9286486c5c0938a2f44",
+  "fingerprints": {
+    "baseline": "39d70fe34211fecc7b153223e0ea3c1391e354dfaa129e9a4ad3aa18973f95dd",
+    "candidate": "4cb43d0bd64bd5678d3ca4d967f7d51f45566d9734800a08c1bafc31c5e8bb88"
+  },
+  "models": [
+    "minimax-cn/MiniMax-M3"
+  ],
+  "cases": {
+    "compute": "以下是虚拟需求。请写一份450至650字的AI算力采购方案研究说明，给出可供选择的方向：现有试点每月约1200万Token调用，额度限制使部分批量任务延后。拟将服务扩至3个业务组，预计月调用量约3000万Token，测算服务期12个月。需要比较API与GPU租赁，材料没有报价、并发测试和SLA阈值。可提出有条件的比较和验证建议，写清成本口径及待明确事项，暂不作采购决定。"
+  },
+  "cli": "C:\\Users\\admin\\AppData\\Local\\OpenAI\\Codex\\bin\\bffc5354119c8421\\codex.exe",
+  "cli_version": "codex-cli 0.154.0-alpha.6.2",
+  "effort": "max",
+  "runtime": "C:\\Users\\admin\\AppData\\Local\\Temp\\cow-native-negative-tail-compute-r3-20260915-ploz3mho",
+  "permissions": "inherited-host-config",
+  "timeout": 600,
+  "agent_documents": "project_doc_max_bytes=0",
+  "baseline_ref": "a0ff4155",
+  "baseline_source": null,
+  "candidate_source": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\negative-tail-audit-20260915\\chinese-official-writing",
+  "candidate_skill_name": "chinese-official-writing",
+  "baseline_commit": "a0ff415510d7eb6f4aac1bf6efe8feaca0951eee",
+  "profile": "temporary-no-user-documents-or-credentials",
+  "runner_sha256": "180db1a815a192f612cf85b7c54976240abcfe8b6f834d22fedf5798cad5622d",
+  "prompt_prefix": "使用本目录 .agents/skills/chinese-official-writing/SKILL.md。\n\n使用普通写作能力，不启用 Hook。\n\n本目录文本文件为 UTF-8 编码，读取时显式指定 UTF-8 解码。\n\n",
+  "ordinary_only": true,
+  "utf8_read": true,
+  "runtime_layout": "each call has a separate parent, workspace and temporary directory",
+  "session_metadata": "ephemeral",
+  "review_host": {
+    "enabled": false,
+    "max_threads": null,
+    "max_depth": null,
+    "child_model": "host defaults",
+    "child_usage": "root JSON usage is not assumed to include child usage"
+  }
+}
