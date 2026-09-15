@@ -1,0 +1,20 @@
+{
+  "model": "alibaba-token-plan/deepseek-v4.1-flash",
+  "effort": "max",
+  "transport": "native codex exec plaintext task",
+  "packet_delivery": "inline stdin",
+  "seconds": 73.33,
+  "returncode": 0,
+  "error": null,
+  "packet_sha256": "45a9c8dfd20a8b7efae365ef552792a6bf4ff80ddbc56fb6cd2b9508e1277689",
+  "final_exists": true,
+  "usage": [
+    {
+      "input_tokens": 13279,
+      "cached_input_tokens": 0,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 14215,
+      "reasoning_output_tokens": 13398
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "main_commit": "eb20eed0e0f63926c2ac49a7becfdda0baec6212",
+  "candidate_head": "2a1bb2e38e3590c8fa4b35003048be0adbd2ebc1",
+  "fingerprints": {
+    "baseline": "9603879f182ff924ee8d408b458cd2a27ddf38a546eea08a74a85e053333cac2",
+    "candidate": "82dc57981a0285f285f9c3442e04ef1b702bf12f34fa64bbc86a8f4fe1f95424"
+  },
+  "models": [
+    "alibaba-token-plan/qwen3.8-flash"
+  ],
+  "cases": {
+    "aa02_summary": "请把下面两段改成正式、自然的工作总结表达，保留全部事实，不新增数字、责任和时限，只输出改后全文。\n\n上半年，中心完成12项系统巡检，修复8项配置问题。首先要高度重视，其次要扎实推进，最后要形成闭环。\n\n下半年，中心继续按月检查现有系统，每月底汇总发现的问题。我们将持续发力、久久为功，不断推动运维工作再上新台阶。"
+  },
+  "cli": "C:\\Users\\admin\\AppData\\Local\\OpenAI\\Codex\\bin\\bffc5354119c8421\\codex.exe",
+  "cli_version": "codex-cli 0.154.0-alpha.6.2",
+  "effort": "max",
+  "runtime": "C:\\Users\\admin\\AppData\\Local\\Temp\\cow-native-anti-ai-aa02-qwen-20260914-eiu135vh",
+  "permissions": "inherited-host-config",
+  "timeout": 600,
+  "agent_documents": "project_doc_max_bytes=0",
+  "baseline_ref": "eb20eed0",
+  "baseline_source": null,
+  "candidate_source": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\anti-ai-concrete-rules-20260914\\chinese-official-writing",
+  "candidate_skill_name": "chinese-official-writing",
+  "baseline_commit": "eb20eed0e0f63926c2ac49a7becfdda0baec6212",
+  "profile": "temporary-no-user-documents-or-credentials",
+  "runner_sha256": "180db1a815a192f612cf85b7c54976240abcfe8b6f834d22fedf5798cad5622d",
+  "prompt_prefix": "使用本目录 .agents/skills/chinese-official-writing/SKILL.md。\n\n使用普通写作能力，不启用 Hook。\n\n本目录文本文件为 UTF-8 编码，读取时显式指定 UTF-8 解码。\n\n",
+  "ordinary_only": true,
+  "utf8_read": true,
+  "runtime_layout": "each call has a separate parent, workspace and temporary directory",
+  "session_metadata": "ephemeral",
+  "review_host": {
+    "enabled": false,
+    "max_threads": null,
+    "max_depth": null,
+    "child_model": "host defaults",
+    "child_usage": "root JSON usage is not assumed to include child usage"
+  }
+}

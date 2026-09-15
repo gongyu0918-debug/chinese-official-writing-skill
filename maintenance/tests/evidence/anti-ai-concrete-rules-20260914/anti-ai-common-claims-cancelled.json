@@ -1,0 +1,6 @@
+{
+  "status": "cancelled_after_user_requested_no_more_evaluation",
+  "native_cli_model": "alibaba-token-plan/deepseek-v4.1-flash",
+  "effort": "max",
+  "included_in_findings": false
+}

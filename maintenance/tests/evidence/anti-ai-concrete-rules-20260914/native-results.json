@@ -1,0 +1,584 @@
+[
+  {
+    "model": "alibaba-token-plan/qwen3.8-flash",
+    "effort": "max",
+    "case": "commentary_review_rewrite",
+    "arm": "baseline",
+    "returncode": 0,
+    "seconds": 186.66,
+    "invalid": [],
+    "draft_sha256": "21db5ef4e6a7c29443796d8899af317c1ad7281cd35f188633c782121f2f8c77",
+    "usage": [
+      {
+        "input_tokens": 109480,
+        "cached_input_tokens": 92672,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 8203,
+        "reasoning_output_tokens": 5729
+      }
+    ],
+    "batch": "anti-ai-concrete-rules-20260914",
+    "candidate_source_commit": "c884463621173ae46b6ff62c2ed8467bda949eb8",
+    "baseline_source_commit": "eb20eed0e0f63926c2ac49a7becfdda0baec6212",
+    "trace_location": "output\\anti-ai-concrete-rules-20260914\\m0-commentary_review_rewrite-baseline.result.json",
+    "trace_sha256": "c3eaf1b300fb5cdd9455e6a9e5fae5752b4949df139ec405f98f9822261fcadd",
+    "anti_ai_returned": true,
+    "failed_commands": 0,
+    "draft": "drafts\\anti-ai-concrete-rules-20260914-m0-commentary_review_rewrite-baseline.final.txt",
+    "raw_final_sha256": "21db5ef4e6a7c29443796d8899af317c1ad7281cd35f188633c782121f2f8c77",
+    "manuscript_present": true
+  },
+  {
+    "model": "alibaba-token-plan/qwen3.8-flash",
+    "effort": "max",
+    "case": "commentary_review_rewrite",
+    "arm": "candidate",
+    "returncode": 0,
+    "seconds": 158.02,
+    "invalid": [],
+    "draft_sha256": "ec820f533586e9af7abe98e45aa4846c3998aa575eaae9f6a686b31bfd160050",
+    "usage": [
+      {
+        "input_tokens": 147867,
+        "cached_input_tokens": 129024,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 7601,
+        "reasoning_output_tokens": 4644
+      }
+    ],
+    "batch": "anti-ai-concrete-rules-20260914",
+    "candidate_source_commit": "c884463621173ae46b6ff62c2ed8467bda949eb8",
+    "baseline_source_commit": "eb20eed0e0f63926c2ac49a7becfdda0baec6212",
+    "trace_location": "output\\anti-ai-concrete-rules-20260914\\m0-commentary_review_rewrite-candidate.result.json",
+    "trace_sha256": "6c907318f737b8ad0c5ce80756ca0ad1ad857313e0bcc41f036b87566d138dbc",
+    "anti_ai_returned": true,
+    "failed_commands": 0,
+    "draft": "drafts\\anti-ai-concrete-rules-20260914-m0-commentary_review_rewrite-candidate.final.txt",
+    "raw_final_sha256": "ec820f533586e9af7abe98e45aa4846c3998aa575eaae9f6a686b31bfd160050",
+    "manuscript_present": true
+  },
+  {
+    "model": "alibaba-token-plan/qwen3.8-flash",
+    "effort": "max",
+    "case": "motion_separate_amendments",
+    "arm": "baseline",
+    "returncode": 0,
+    "seconds": 341.56,
+    "invalid": [],
+    "draft_sha256": "8eaf25523657adf5fbfaa60f8f8f80f5dab9cfd453eb2b61b0c147c07d28aaaf",
+    "usage": [
+      {
+        "input_tokens": 397206,
+        "cached_input_tokens": 367360,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 20138,
+        "reasoning_output_tokens": 13248
+      }
+    ],
+    "batch": "anti-ai-concrete-rules-20260914",
+    "candidate_source_commit": "c884463621173ae46b6ff62c2ed8467bda949eb8",
+    "baseline_source_commit": "eb20eed0e0f63926c2ac49a7becfdda0baec6212",
+    "trace_location": "output\\anti-ai-concrete-rules-20260914\\m0-motion_separate_amendments-baseline.result.json",
+    "trace_sha256": "443e780fa9ee639005a8580218abfca93b8af6bd31401592171b1e8c6f0e4ec6",
+    "anti_ai_returned": true,
+    "failed_commands": 0,
+    "draft": "drafts\\anti-ai-concrete-rules-20260914-m0-motion_separate_amendments-baseline.final.txt",
+    "raw_final_sha256": "8eaf25523657adf5fbfaa60f8f8f80f5dab9cfd453eb2b61b0c147c07d28aaaf",
+    "manuscript_present": true
+  },
+  {
+    "model": "alibaba-token-plan/qwen3.8-flash",
+    "effort": "max",
+    "case": "motion_separate_amendments",
+    "arm": "candidate",
+    "returncode": 0,
+    "seconds": 306.2,
+    "invalid": [],
+    "draft_sha256": "816ec82224be255e5eefe6ffc39a27e3733789bd9c0599884d86e878740defe9",
+    "usage": [
+      {
+        "input_tokens": 524185,
+        "cached_input_tokens": 492160,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 19213,
+        "reasoning_output_tokens": 11563
+      }
+    ],
+    "batch": "anti-ai-concrete-rules-20260914",
+    "candidate_source_commit": "c884463621173ae46b6ff62c2ed8467bda949eb8",
+    "baseline_source_commit": "eb20eed0e0f63926c2ac49a7becfdda0baec6212",
+    "trace_location": "output\\anti-ai-concrete-rules-20260914\\m0-motion_separate_amendments-candidate.result.json",
+    "trace_sha256": "3dad3b61a19161e0d8fa9c624554b93b3d4ecf640aa4aee6fecbe199247ddece",
+    "anti_ai_returned": true,
+    "failed_commands": 0,
+    "draft": "drafts\\anti-ai-concrete-rules-20260914-m0-motion_separate_amendments-candidate.final.txt",
+    "raw_final_sha256": "816ec82224be255e5eefe6ffc39a27e3733789bd9c0599884d86e878740defe9",
+    "manuscript_present": true
+  },
+  {
+    "model": "alibaba-token-plan/qwen3.8-flash",
+    "effort": "max",
+    "case": "narration",
+    "arm": "baseline",
+    "returncode": 0,
+    "seconds": 188.48,
+    "invalid": [],
+    "draft_sha256": "d5288af6005a45ca2cb1c5d6aaa371c717cf5778283382de636d8fbbded354d2",
+    "usage": [
+      {
+        "input_tokens": 270523,
+        "cached_input_tokens": 237696,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 9443,
+        "reasoning_output_tokens": 4227
+      }
+    ],
+    "batch": "anti-ai-concrete-rules-20260914",
+    "candidate_source_commit": "c884463621173ae46b6ff62c2ed8467bda949eb8",
+    "baseline_source_commit": "eb20eed0e0f63926c2ac49a7becfdda0baec6212",
+    "trace_location": "output\\anti-ai-concrete-rules-20260914\\m0-narration-baseline.result.json",
+    "trace_sha256": "25f632798b2746e618345b359469a3794ce5f84037af98833807c4bffa2a267f",
+    "anti_ai_returned": true,
+    "failed_commands": 0,
+    "draft": "drafts\\anti-ai-concrete-rules-20260914-m0-narration-baseline.final.txt",
+    "raw_final_sha256": "d5288af6005a45ca2cb1c5d6aaa371c717cf5778283382de636d8fbbded354d2",
+    "manuscript_present": true
+  },
+  {
+    "model": "alibaba-token-plan/qwen3.8-flash",
+    "effort": "max",
+    "case": "narration",
+    "arm": "candidate",
+    "returncode": 0,
+    "seconds": 254.39,
+    "invalid": [],
+    "draft_sha256": "3a2658051e246f1d7b873455aec06233f2ae47e7e10aaef85d3d6d8cb43166a5",
+    "usage": [
+      {
+        "input_tokens": 326126,
+        "cached_input_tokens": 301568,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 12339,
+        "reasoning_output_tokens": 7388
+      }
+    ],
+    "batch": "anti-ai-concrete-rules-20260914",
+    "candidate_source_commit": "c884463621173ae46b6ff62c2ed8467bda949eb8",
+    "baseline_source_commit": "eb20eed0e0f63926c2ac49a7becfdda0baec6212",
+    "trace_location": "output\\anti-ai-concrete-rules-20260914\\m0-narration-candidate.result.json",
+    "trace_sha256": "35b8f38ca0442fa4b730cce75b38c1644fb27444d765777921e0befafea88ca2",
+    "anti_ai_returned": true,
+    "failed_commands": 1,
+    "draft": "drafts\\anti-ai-concrete-rules-20260914-m0-narration-candidate.final.txt",
+    "raw_final_sha256": "3a2658051e246f1d7b873455aec06233f2ae47e7e10aaef85d3d6d8cb43166a5",
+    "manuscript_present": true
+  },
+  {
+    "model": "minimax-cn/MiniMax-M3",
+    "effort": "max",
+    "case": "commentary_review_rewrite",
+    "arm": "baseline",
+    "returncode": 0,
+    "seconds": 117.33,
+    "invalid": [],
+    "draft_sha256": "415eea423030fe721c732f5173c66abfe128eba3e6f6150c4e642642f5d4bf72",
+    "usage": [
+      {
+        "input_tokens": 263045,
+        "cached_input_tokens": 241792,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 6514,
+        "reasoning_output_tokens": 0
+      }
+    ],
+    "batch": "anti-ai-concrete-rules-20260914",
+    "candidate_source_commit": "c884463621173ae46b6ff62c2ed8467bda949eb8",
+    "baseline_source_commit": "eb20eed0e0f63926c2ac49a7becfdda0baec6212",
+    "trace_location": "output\\anti-ai-concrete-rules-20260914\\m3-commentary_review_rewrite-baseline.result.json",
+    "trace_sha256": "2eb41dc2560604987366d16723f7caee7e3d77a7dc410e6e202a4e74f9abb31d",
+    "anti_ai_returned": true,
+    "failed_commands": 2,
+    "draft": "drafts\\anti-ai-concrete-rules-20260914-m3-commentary_review_rewrite-baseline.final.txt",
+    "raw_final_sha256": "415eea423030fe721c732f5173c66abfe128eba3e6f6150c4e642642f5d4bf72",
+    "manuscript_present": true
+  },
+  {
+    "model": "minimax-cn/MiniMax-M3",
+    "effort": "max",
+    "case": "commentary_review_rewrite",
+    "arm": "candidate",
+    "returncode": 0,
+    "seconds": 83.09,
+    "invalid": [],
+    "draft_sha256": "a387fbf47c4b7713d2285fbcd46966394fe96b467224d7df89147cc7b103fb2e",
+    "usage": [
+      {
+        "input_tokens": 303905,
+        "cached_input_tokens": 282880,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 6887,
+        "reasoning_output_tokens": 3730
+      }
+    ],
+    "batch": "anti-ai-concrete-rules-20260914",
+    "candidate_source_commit": "c884463621173ae46b6ff62c2ed8467bda949eb8",
+    "baseline_source_commit": "eb20eed0e0f63926c2ac49a7becfdda0baec6212",
+    "trace_location": "output\\anti-ai-concrete-rules-20260914\\m3-commentary_review_rewrite-candidate.result.json",
+    "trace_sha256": "6ca227aec72e3d1fd1fbbc9b6097865aba2785d9b15078a58e1fc2c38c72767f",
+    "anti_ai_returned": true,
+    "failed_commands": 1,
+    "draft": "drafts\\anti-ai-concrete-rules-20260914-m3-commentary_review_rewrite-candidate.final.txt",
+    "raw_final_sha256": "a387fbf47c4b7713d2285fbcd46966394fe96b467224d7df89147cc7b103fb2e",
+    "manuscript_present": true
+  },
+  {
+    "model": "minimax-cn/MiniMax-M3",
+    "effort": "max",
+    "case": "motion_separate_amendments",
+    "arm": "baseline",
+    "returncode": 0,
+    "seconds": 90.55,
+    "invalid": [],
+    "draft_sha256": "770cc4776514f8d21e7bcaf66b580358d7bc7beb16d40639224eecd59f0f0de4",
+    "usage": [
+      {
+        "input_tokens": 390253,
+        "cached_input_tokens": 372736,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 6369,
+        "reasoning_output_tokens": 2476
+      }
+    ],
+    "batch": "anti-ai-concrete-rules-20260914",
+    "candidate_source_commit": "c884463621173ae46b6ff62c2ed8467bda949eb8",
+    "baseline_source_commit": "eb20eed0e0f63926c2ac49a7becfdda0baec6212",
+    "trace_location": "output\\anti-ai-concrete-rules-20260914\\m3-motion_separate_amendments-baseline.result.json",
+    "trace_sha256": "600a5f889b83225afdad4cf9a4ce8076bdd68e718dada23c467348fa7b9c5eea",
+    "anti_ai_returned": true,
+    "failed_commands": 2,
+    "draft": "drafts\\anti-ai-concrete-rules-20260914-m3-motion_separate_amendments-baseline.final.txt",
+    "raw_final_sha256": "770cc4776514f8d21e7bcaf66b580358d7bc7beb16d40639224eecd59f0f0de4",
+    "manuscript_present": true
+  },
+  {
+    "model": "minimax-cn/MiniMax-M3",
+    "effort": "max",
+    "case": "motion_separate_amendments",
+    "arm": "candidate",
+    "returncode": 0,
+    "seconds": 75.5,
+    "invalid": [],
+    "draft_sha256": "9c1b5af5b80bbeac4e43af56de910318d1e74cbb9c236b2f5cbc7220dd3f4b1c",
+    "usage": [
+      {
+        "input_tokens": 189909,
+        "cached_input_tokens": 168320,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 2137,
+        "reasoning_output_tokens": 0
+      }
+    ],
+    "batch": "anti-ai-concrete-rules-20260914",
+    "candidate_source_commit": "c884463621173ae46b6ff62c2ed8467bda949eb8",
+    "baseline_source_commit": "eb20eed0e0f63926c2ac49a7becfdda0baec6212",
+    "trace_location": "output\\anti-ai-concrete-rules-20260914\\m3-motion_separate_amendments-candidate.result.json",
+    "trace_sha256": "c9505df1e1cb281ccefe96ed55c048c701377e44c76db12f6fabb4f95bc371a6",
+    "anti_ai_returned": true,
+    "failed_commands": 0,
+    "draft": "drafts\\anti-ai-concrete-rules-20260914-m3-motion_separate_amendments-candidate.final.txt",
+    "raw_final_sha256": "9c1b5af5b80bbeac4e43af56de910318d1e74cbb9c236b2f5cbc7220dd3f4b1c",
+    "manuscript_present": false
+  },
+  {
+    "model": "minimax-cn/MiniMax-M3",
+    "effort": "max",
+    "case": "narration",
+    "arm": "baseline",
+    "returncode": 0,
+    "seconds": 36.3,
+    "invalid": [],
+    "draft_sha256": "821cbc0ff2e524b6000ad53b36d07e62dabd9df100d6a616ab8803c9992a96bc",
+    "usage": [
+      {
+        "input_tokens": 152279,
+        "cached_input_tokens": 135217,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 4487,
+        "reasoning_output_tokens": 3449
+      }
+    ],
+    "batch": "anti-ai-concrete-rules-20260914",
+    "candidate_source_commit": "c884463621173ae46b6ff62c2ed8467bda949eb8",
+    "baseline_source_commit": "eb20eed0e0f63926c2ac49a7becfdda0baec6212",
+    "trace_location": "output\\anti-ai-concrete-rules-20260914\\m3-narration-baseline.result.json",
+    "trace_sha256": "451bb9b615fe9bd5d4457627d5d8bdb596ca142b0f7d0b527e6d68bab209982f",
+    "anti_ai_returned": true,
+    "failed_commands": 0,
+    "draft": "drafts\\anti-ai-concrete-rules-20260914-m3-narration-baseline.final.txt",
+    "raw_final_sha256": "821cbc0ff2e524b6000ad53b36d07e62dabd9df100d6a616ab8803c9992a96bc",
+    "manuscript_present": true
+  },
+  {
+    "model": "minimax-cn/MiniMax-M3",
+    "effort": "max",
+    "case": "narration",
+    "arm": "candidate",
+    "returncode": 0,
+    "seconds": 90.83,
+    "invalid": [],
+    "draft_sha256": "179a649d91f891b500b8465cfc3b9d64576c8fc5bde013db448b78badc610e3b",
+    "usage": [
+      {
+        "input_tokens": 536861,
+        "cached_input_tokens": 510037,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 9693,
+        "reasoning_output_tokens": 5262
+      }
+    ],
+    "batch": "anti-ai-concrete-rules-20260914",
+    "candidate_source_commit": "c884463621173ae46b6ff62c2ed8467bda949eb8",
+    "baseline_source_commit": "eb20eed0e0f63926c2ac49a7becfdda0baec6212",
+    "trace_location": "output\\anti-ai-concrete-rules-20260914\\m3-narration-candidate.result.json",
+    "trace_sha256": "eb0c17813fd15962c6cf3e0de297ecfc7b6ae5e2a87dbb3d88a73246656f88f5",
+    "anti_ai_returned": true,
+    "failed_commands": 3,
+    "draft": "drafts\\anti-ai-concrete-rules-20260914-m3-narration-candidate.final.txt",
+    "raw_final_sha256": "179a649d91f891b500b8465cfc3b9d64576c8fc5bde013db448b78badc610e3b",
+    "manuscript_present": true
+  },
+  {
+    "model": "minimax-cn/MiniMax-M3",
+    "effort": "max",
+    "case": "aa02_summary",
+    "arm": "baseline",
+    "returncode": 0,
+    "seconds": 8.14,
+    "invalid": [
+      "missing_skill_read_trace"
+    ],
+    "draft_sha256": "9ed6e93b815d6060667f10c696562022874561ffb7bb78b8399e60470770c94f",
+    "usage": [
+      {
+        "input_tokens": 26754,
+        "cached_input_tokens": 17920,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 342,
+        "reasoning_output_tokens": 0
+      }
+    ],
+    "batch": "anti-ai-combination-20260914",
+    "candidate_source_commit": "88694e8732ad1dee682ad973a28fcac4363b705d",
+    "baseline_source_commit": "eb20eed0e0f63926c2ac49a7becfdda0baec6212",
+    "trace_location": "output\\anti-ai-combination-20260914\\m3-aa02_summary-baseline.result.json",
+    "trace_sha256": "93ac8a57a767debac8c8ce7c2c4a015273d54351ac728ac175ead33daacdfddb",
+    "anti_ai_returned": false,
+    "failed_commands": 0,
+    "draft": "drafts\\anti-ai-combination-20260914-m3-aa02_summary-baseline.final.txt",
+    "raw_final_sha256": "9ed6e93b815d6060667f10c696562022874561ffb7bb78b8399e60470770c94f",
+    "manuscript_present": false
+  },
+  {
+    "model": "minimax-cn/MiniMax-M3",
+    "effort": "max",
+    "case": "aa02_summary",
+    "arm": "candidate",
+    "returncode": 0,
+    "seconds": 63.61,
+    "invalid": [],
+    "draft_sha256": "24105bf4b610955178e075c451ffc16d54f2ce52fae4787ac2459fb0fd72083c",
+    "usage": [
+      {
+        "input_tokens": 46763,
+        "cached_input_tokens": 35712,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 4218,
+        "reasoning_output_tokens": 0
+      }
+    ],
+    "batch": "anti-ai-combination-20260914",
+    "candidate_source_commit": "88694e8732ad1dee682ad973a28fcac4363b705d",
+    "baseline_source_commit": "eb20eed0e0f63926c2ac49a7becfdda0baec6212",
+    "trace_location": "output\\anti-ai-combination-20260914\\m3-aa02_summary-candidate.result.json",
+    "trace_sha256": "0a5f885f96b0a581269370b4209b67daa12891902c2d8f0927c16ddecdaa60cf",
+    "anti_ai_returned": false,
+    "failed_commands": 0,
+    "draft": "drafts\\anti-ai-combination-20260914-m3-aa02_summary-candidate.final.txt",
+    "raw_final_sha256": "24105bf4b610955178e075c451ffc16d54f2ce52fae4787ac2459fb0fd72083c",
+    "manuscript_present": true
+  },
+  {
+    "model": "minimax-cn/MiniMax-M3",
+    "effort": "max",
+    "case": "motion_separate_amendments",
+    "arm": "baseline",
+    "returncode": 0,
+    "seconds": 93.2,
+    "invalid": [],
+    "draft_sha256": "c4fefa6ace2b52f68e43df632c95b99862fc5ce7164f02cad02ba4a811427fa9",
+    "usage": [
+      {
+        "input_tokens": 347912,
+        "cached_input_tokens": 324208,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 9147,
+        "reasoning_output_tokens": 6655
+      }
+    ],
+    "batch": "anti-ai-combination-20260914",
+    "candidate_source_commit": "88694e8732ad1dee682ad973a28fcac4363b705d",
+    "baseline_source_commit": "eb20eed0e0f63926c2ac49a7becfdda0baec6212",
+    "trace_location": "output\\anti-ai-combination-20260914\\m3-motion_separate_amendments-baseline.result.json",
+    "trace_sha256": "2c0b9d60f066ae8f988c77b9aacc5928d8a3a55aee572fb3a3ba6e3239887e19",
+    "anti_ai_returned": true,
+    "failed_commands": 1,
+    "draft": "drafts\\anti-ai-combination-20260914-m3-motion_separate_amendments-baseline.final.txt",
+    "raw_final_sha256": "c4fefa6ace2b52f68e43df632c95b99862fc5ce7164f02cad02ba4a811427fa9",
+    "manuscript_present": true
+  },
+  {
+    "model": "minimax-cn/MiniMax-M3",
+    "effort": "max",
+    "case": "motion_separate_amendments",
+    "arm": "candidate",
+    "returncode": 0,
+    "seconds": 52.75,
+    "invalid": [],
+    "draft_sha256": "170960810aa5190e278492ffa07d87f61888214f3020f6b229659b6eaca08e16",
+    "usage": [
+      {
+        "input_tokens": 220626,
+        "cached_input_tokens": 198222,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 6360,
+        "reasoning_output_tokens": 4138
+      }
+    ],
+    "batch": "anti-ai-combination-20260914",
+    "candidate_source_commit": "88694e8732ad1dee682ad973a28fcac4363b705d",
+    "baseline_source_commit": "eb20eed0e0f63926c2ac49a7becfdda0baec6212",
+    "trace_location": "output\\anti-ai-combination-20260914\\m3-motion_separate_amendments-candidate.result.json",
+    "trace_sha256": "4f26433fc039d95bc8d6108d83aabfa65789f464a7b45bb0a17dc8e393f0b5c6",
+    "anti_ai_returned": true,
+    "failed_commands": 1,
+    "draft": "drafts\\anti-ai-combination-20260914-m3-motion_separate_amendments-candidate.final.txt",
+    "raw_final_sha256": "170960810aa5190e278492ffa07d87f61888214f3020f6b229659b6eaca08e16",
+    "manuscript_present": true
+  },
+  {
+    "model": "minimax-cn/MiniMax-M3",
+    "effort": "max",
+    "case": "narration",
+    "arm": "baseline",
+    "returncode": 0,
+    "seconds": 106.42,
+    "invalid": [],
+    "draft_sha256": "c9512048d8120cb2f8fa467ab52fe2fe4b9309eead872d816ee66887d4380828",
+    "usage": [
+      {
+        "input_tokens": 101496,
+        "cached_input_tokens": 89856,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 4268,
+        "reasoning_output_tokens": 0
+      }
+    ],
+    "batch": "anti-ai-combination-20260914",
+    "candidate_source_commit": "88694e8732ad1dee682ad973a28fcac4363b705d",
+    "baseline_source_commit": "eb20eed0e0f63926c2ac49a7becfdda0baec6212",
+    "trace_location": "output\\anti-ai-combination-20260914\\m3-narration-baseline.result.json",
+    "trace_sha256": "fb17368f51e2185476489e45b5cbde0ee3df6aa4a88adcbec5647d69044cbb1e",
+    "anti_ai_returned": false,
+    "failed_commands": 0,
+    "draft": "drafts\\anti-ai-combination-20260914-m3-narration-baseline.final.txt",
+    "raw_final_sha256": "c9512048d8120cb2f8fa467ab52fe2fe4b9309eead872d816ee66887d4380828",
+    "manuscript_present": true
+  },
+  {
+    "model": "minimax-cn/MiniMax-M3",
+    "effort": "max",
+    "case": "narration",
+    "arm": "candidate",
+    "returncode": 0,
+    "seconds": 123.81,
+    "invalid": [],
+    "draft_sha256": "b04624156d16ce136a894893b17fe6c53e2691d5538d54d12a74e61e4d8809e2",
+    "usage": [
+      {
+        "input_tokens": 418623,
+        "cached_input_tokens": 398848,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 7881,
+        "reasoning_output_tokens": 0
+      }
+    ],
+    "batch": "anti-ai-combination-20260914",
+    "candidate_source_commit": "88694e8732ad1dee682ad973a28fcac4363b705d",
+    "baseline_source_commit": "eb20eed0e0f63926c2ac49a7becfdda0baec6212",
+    "trace_location": "output\\anti-ai-combination-20260914\\m3-narration-candidate.result.json",
+    "trace_sha256": "ace87f8b3491d492c1e23b8b3a8047a6e9cfe90089321253f189d0b517ba4dfc",
+    "anti_ai_returned": true,
+    "failed_commands": 1,
+    "draft": "drafts\\anti-ai-combination-20260914-m3-narration-candidate.final.txt",
+    "raw_final_sha256": "b04624156d16ce136a894893b17fe6c53e2691d5538d54d12a74e61e4d8809e2",
+    "manuscript_present": false
+  },
+  {
+    "model": "alibaba-token-plan/qwen3.8-flash",
+    "effort": "max",
+    "case": "aa02_summary",
+    "arm": "baseline",
+    "returncode": 0,
+    "seconds": 209.06,
+    "invalid": [],
+    "draft_sha256": "61be753598b89c3280f0c46680e4a02d09465b6a0ec0de1a874965e89096ecb2",
+    "usage": [
+      {
+        "input_tokens": 146894,
+        "cached_input_tokens": 121344,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 9614,
+        "reasoning_output_tokens": 6423
+      }
+    ],
+    "batch": "anti-ai-aa02-qwen-20260914",
+    "candidate_source_commit": "88694e8732ad1dee682ad973a28fcac4363b705d",
+    "baseline_source_commit": "eb20eed0e0f63926c2ac49a7becfdda0baec6212",
+    "trace_location": "output\\anti-ai-aa02-qwen-20260914\\m0-aa02_summary-baseline.result.json",
+    "trace_sha256": "9409f504036fbd4bb2ae4b8e5aac79550699941b47d20fd27ab0971eac755a7b",
+    "anti_ai_returned": true,
+    "failed_commands": 0,
+    "draft": "drafts\\anti-ai-aa02-qwen-20260914-m0-aa02_summary-baseline.final.txt",
+    "raw_final_sha256": "61be753598b89c3280f0c46680e4a02d09465b6a0ec0de1a874965e89096ecb2",
+    "manuscript_present": true
+  },
+  {
+    "model": "alibaba-token-plan/qwen3.8-flash",
+    "effort": "max",
+    "case": "aa02_summary",
+    "arm": "candidate",
+    "returncode": 0,
+    "seconds": 123.38,
+    "invalid": [],
+    "draft_sha256": "943f5a0bddb58670ad7e2cf0b57fb938c769a0920585460bd78936866036d3af",
+    "usage": [
+      {
+        "input_tokens": 115407,
+        "cached_input_tokens": 102272,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 6933,
+        "reasoning_output_tokens": 4789
+      }
+    ],
+    "batch": "anti-ai-aa02-qwen-20260914",
+    "candidate_source_commit": "88694e8732ad1dee682ad973a28fcac4363b705d",
+    "baseline_source_commit": "eb20eed0e0f63926c2ac49a7becfdda0baec6212",
+    "trace_location": "output\\anti-ai-aa02-qwen-20260914\\m0-aa02_summary-candidate.result.json",
+    "trace_sha256": "65c0f8752321850206a0d8d3db92b593e044084d5d6eff6cb2509157abb6e246",
+    "anti_ai_returned": true,
+    "failed_commands": 0,
+    "draft": "drafts\\anti-ai-aa02-qwen-20260914-m0-aa02_summary-candidate.final.txt",
+    "raw_final_sha256": "943f5a0bddb58670ad7e2cf0b57fb938c769a0920585460bd78936866036d3af",
+    "manuscript_present": true
+  }
+]

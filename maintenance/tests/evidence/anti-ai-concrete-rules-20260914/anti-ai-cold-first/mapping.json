@@ -1,0 +1,6 @@
+{
+  "commentary_review_rewrite-A": "m0-commentary_review_rewrite-candidate.final.txt",
+  "commentary_review_rewrite-B": "m0-commentary_review_rewrite-baseline.final.txt",
+  "narration-A": "m0-narration-baseline.final.txt",
+  "narration-B": "m0-narration-candidate.final.txt"
+}
