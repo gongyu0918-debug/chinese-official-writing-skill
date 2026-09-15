@@ -1,0 +1,98 @@
+[
+  {
+    "model": "alibaba-token-plan/qwen3.8-flash",
+    "case": "issuer_missing",
+    "arm": "baseline",
+    "full_entry_returned": true
+  },
+  {
+    "model": "alibaba-token-plan/qwen3.8-flash",
+    "case": "issuer_missing",
+    "arm": "candidate",
+    "full_entry_returned": true
+  },
+  {
+    "model": "alibaba-token-plan/qwen3.8-flash",
+    "case": "issuer_given",
+    "arm": "baseline",
+    "full_entry_returned": true
+  },
+  {
+    "model": "alibaba-token-plan/qwen3.8-flash",
+    "case": "issuer_given",
+    "arm": "candidate",
+    "full_entry_returned": true
+  },
+  {
+    "model": "alibaba-token-plan/qwen3.8-flash",
+    "case": "plain_default",
+    "arm": "baseline",
+    "full_entry_returned": true
+  },
+  {
+    "model": "alibaba-token-plan/qwen3.8-flash",
+    "case": "plain_default",
+    "arm": "candidate",
+    "full_entry_returned": true
+  },
+  {
+    "model": "alibaba-token-plan/qwen3.8-flash",
+    "case": "markdown_requested",
+    "arm": "baseline",
+    "full_entry_returned": true
+  },
+  {
+    "model": "alibaba-token-plan/qwen3.8-flash",
+    "case": "markdown_requested",
+    "arm": "candidate",
+    "full_entry_returned": true
+  },
+  {
+    "model": "minimax-cn/MiniMax-M3",
+    "case": "issuer_missing",
+    "arm": "candidate",
+    "full_entry_returned": true
+  },
+  {
+    "model": "minimax-cn/MiniMax-M3",
+    "case": "issuer_missing",
+    "arm": "baseline",
+    "full_entry_returned": true
+  },
+  {
+    "model": "minimax-cn/MiniMax-M3",
+    "case": "issuer_given",
+    "arm": "candidate",
+    "full_entry_returned": true
+  },
+  {
+    "model": "minimax-cn/MiniMax-M3",
+    "case": "issuer_given",
+    "arm": "baseline",
+    "full_entry_returned": true
+  },
+  {
+    "model": "minimax-cn/MiniMax-M3",
+    "case": "plain_default",
+    "arm": "candidate",
+    "full_entry_returned": true
+  },
+  {
+    "model": "minimax-cn/MiniMax-M3",
+    "case": "plain_default",
+    "arm": "baseline",
+    "full_entry_returned": true
+  },
+  {
+    "model": "minimax-cn/MiniMax-M3",
+    "case": "markdown_requested",
+    "arm": "candidate",
+    "full_entry_returned": true
+  },
+  {
+    "model": "minimax-cn/MiniMax-M3",
+    "case": "markdown_requested",
+    "arm": "baseline",
+    "full_entry_returned": true
+  }
+]

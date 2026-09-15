@@ -1,0 +1,17 @@
+model	case	arm	elapsed_seconds	command_count	result_returncode	nonzero_command_ids	skill_content_observed	final_hash_match
+alibaba-token-plan/qwen3.8-flash	issuer_missing	baseline	148.64	12	0		True	True
+alibaba-token-plan/qwen3.8-flash	issuer_missing	candidate	122.86	18	0		True	True
+alibaba-token-plan/qwen3.8-flash	issuer_given	baseline	92.05	11	0		True	True
+alibaba-token-plan/qwen3.8-flash	issuer_given	candidate	106.77	10	0		True	True
+alibaba-token-plan/qwen3.8-flash	plain_default	baseline	103.12	10	0		True	True
+alibaba-token-plan/qwen3.8-flash	plain_default	candidate	75.78	17	0		True	True
+alibaba-token-plan/qwen3.8-flash	markdown_requested	baseline	78.09	8	0		True	True
+alibaba-token-plan/qwen3.8-flash	markdown_requested	candidate	82.09	9	0		True	True
+minimax-cn/MiniMax-M3	issuer_missing	candidate	112.47	13	0		True	True
+minimax-cn/MiniMax-M3	issuer_missing	baseline	169.77	25	0	item_2;item_7;item_15	True	True
+minimax-cn/MiniMax-M3	issuer_given	candidate	132.3	7	0		True	True
+minimax-cn/MiniMax-M3	issuer_given	baseline	66.03	5	0	item_1	True	True
+minimax-cn/MiniMax-M3	plain_default	candidate	74.66	11	0		True	True
+minimax-cn/MiniMax-M3	plain_default	baseline	81.8	6	0		True	True
+minimax-cn/MiniMax-M3	markdown_requested	candidate	41.83	4	0		True	True
+minimax-cn/MiniMax-M3	markdown_requested	baseline	264.41	40	0	item_5;item_6;item_8;item_11;item_16;item_20;item_25;item_34	True	True

@@ -1,0 +1,2417 @@
+{
+  "schema": "entry-guard-r1-repair-evidence-v1",
+  "source": {
+    "output_dir": "output/entry-guard-r1-20260915",
+    "binding": "binding.json",
+    "results": "results.json",
+    "candidate_head": "a0ff415510d7eb6f4aac1bf6efe8feaca0951eee",
+    "baseline_commit": "770c27b8980d4fc2a82d6efa111d20004cd9b410",
+    "models": [
+      "alibaba-token-plan/qwen3.8-flash",
+      "minimax-cn/MiniMax-M3"
+    ],
+    "effort": "max",
+    "cell_count": 16
+  },
+  "cells": [
+    {
+      "model": "alibaba-token-plan/qwen3.8-flash",
+      "case": "issuer_missing",
+      "arm": "baseline",
+      "elapsed_seconds": 148.64,
+      "result_returncode": 0,
+      "invalid": [],
+      "command_count": 12,
+      "command_exit_codes": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "nonzero_command_ids": [],
+      "skill_content_observed": true,
+      "skill_complete_output_ids": [
+        "item_1"
+      ],
+      "read_calls": [
+        {
+          "id": "item_1",
+          "exit_code": 0,
+          "status": "completed",
+          "targets": "SKILL.md",
+          "command_sha256": "06e148b18979370fd773eb4ca5909dff2e6efd588e549ed1fa50cc45ab7755f8",
+          "output_sha256": "b78e21c27325c565bb4f8d08cb9e035d87e6b5b207bc97156ba3b277c61d6b94",
+          "complete_skill_markers": {
+            "frontmatter": true,
+            "title": true,
+            "scope": true,
+            "entry": true,
+            "body": true,
+            "steps": true
+          }
+        },
+        {
+          "id": "item_2",
+          "exit_code": 0,
+          "status": "completed",
+          "targets": "references/genre-playbook-notice.md",
+          "command_sha256": "bb2c51d0321658bdf208e9b8ad3c394e84f94463bf2537fe16c654545fc8cb9a",
+          "output_sha256": "2acd0a5beb9ad59e2824309226c16c0c25ea172c5f5c3ab69abf1a091beadc7e",
+          "complete_skill_markers": null
+        },
+        {
+          "id": "item_3",
+          "exit_code": 0,
+          "status": "completed",
+          "targets": "references/writing-rules.md",
+          "command_sha256": "0e11b72ac1bae375582b0820e7fe0ff5855b40ad69b64bdf9747f8977597ec81",
+          "output_sha256": "c66c1e2490ce22d43fa487e8f035c560b79161aacf689d16f75675ffef74f732",
+          "complete_skill_markers": null
+        },
+        {
+          "id": "item_4",
+          "exit_code": 0,
+          "status": "completed",
+          "targets": "references/prose-lint-usage.md",
+          "command_sha256": "75b6448d4c11958e8dbfa7921cc3a820c097a3162848517a22d545ed7dd13c9d",
+          "output_sha256": "53f5ebeafc6f54a0d1686fa1b904a82a931fd4fb618ca0270332e8daa2761152",
+          "complete_skill_markers": null
+        },
+        {
+          "id": "item_5",
+          "exit_code": 0,
+          "status": "completed",
+          "targets": "references/reference-index.md",
+          "command_sha256": "3accd0836bd1eb826b2f63a1560d832737c1b50a8bbde427a64d745da3d57aeb",
+          "output_sha256": "665a63f0cc625a92202df0824a3c0403a428445373e3456ec309b0a87cf29058",
+          "complete_skill_markers": null
+        },
+        {
+          "id": "item_6",
+          "exit_code": 0,
+          "status": "completed",
+          "targets": "references/anti-ai-patterns.md",
+          "command_sha256": "bc84228daa439734759ca3147ac70ab3118f7ad521c0e5f456f94231fa007964",
+          "output_sha256": "d92ccbe6ad1f319ee87e4af6c422942acd4a1491e1804b51dbb3db2c76fbcd14",
+          "complete_skill_markers": null
+        }
+      ],
+      "script_calls": [
+        {
+          "id": "item_10",
+          "exit_code": 0,
+          "status": "completed",
+          "scripts": "draft_length.py",
+          "command_sha256": "9b0e1bd4ec6ea9f137b943e437ca9da689ddb5ce60f656f1c28e062f2457ad9a",
+          "output_sha256": "94f438e428ac9746f759291410757caa3ef1a4498f0a318fd54c6181e07ca0f3"
+        },
+        {
+          "id": "item_11",
+          "exit_code": 0,
+          "status": "completed",
+          "scripts": "prose_lint.py",
+          "command_sha256": "b9604c2a0559c39093962cdd74df8bb3bd73bce6c8fa233d352a21893689ddce",
+          "output_sha256": "d219807fd4571400f98df7b48ff320cc44f0e7a64436d98cb4f9f00fb8cb1641"
+        },
+        {
+          "id": "item_13",
+          "exit_code": 0,
+          "status": "completed",
+          "scripts": [
+            "draft_length.py",
+            "prose_lint.py"
+          ],
+          "command_sha256": "ff74cd6a0c06e57fada57caaad49eb8df15c5c361d224a709956fa8e87ab6028",
+          "output_sha256": "48c3f46d2e1bde3914879d63d0333f1f357847dddc949a263ac42afc7f812988"
+        }
+      ],
+      "references_read": [
+        "references/anti-ai-patterns.md",
+        "references/genre-playbook-notice.md",
+        "references/prose-lint-usage.md",
+        "references/reference-index.md",
+        "references/writing-rules.md"
+      ],
+      "scripts_called": [
+        "draft_length.py",
+        "prose_lint.py"
+      ],
+      "final_sha256": "76339ce48f403565b43ff4c6d91db382d6a4a58a84a721d0250a28bef3965943",
+      "result_draft_sha256": "76339ce48f403565b43ff4c6d91db382d6a4a58a84a721d0250a28bef3965943",
+      "final_hash_match": true,
+      "final_features": {
+        "heading_hash_lines": [],
+        "horizontal_rule_lines": [],
+        "table_lines": [],
+        "has_markdown_table": false,
+        "office_lines": [
+          7
+        ],
+        "exact_unit_lines": [],
+        "date_lines": [
+          9
+        ],
+        "has_process_preface": false
+      }
+    },
+    {
+      "model": "alibaba-token-plan/qwen3.8-flash",
+      "case": "issuer_missing",
+      "arm": "candidate",
+      "elapsed_seconds": 122.86,
+      "result_returncode": 0,
+      "invalid": [],
+      "command_count": 18,
+      "command_exit_codes": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "nonzero_command_ids": [],
+      "skill_content_observed": true,
+      "skill_complete_output_ids": [
+        "item_0"
+      ],
+      "read_calls": [
+        {
+          "id": "item_0",
+          "exit_code": 0,
+          "status": "completed",
+          "targets": "SKILL.md",
+          "command_sha256": "8a451805dd5dc2470d3895af215e72c80a33a58ba4cbf060f2ce0e4a29859736",
+          "output_sha256": "2cb9605e5de02597016d9e7130e64ff2233e3e547b69c407360baaf425f229dc",
+          "complete_skill_markers": {
+            "frontmatter": true,
+            "title": true,
+            "scope": true,
+            "entry": true,
+            "body": true,
+            "steps": true
+          }
+        },
+        {
+          "id": "item_3",
+          "exit_code": 0,
+          "status": "completed",
+          "targets": "references/genre-playbook-notice.md",
+          "command_sha256": "f3f1bfd2e5a7b26db7b2d94ef85c4e2652e93c13dbf22d6ee08a50f28a5db1a4",
+          "output_sha256": "ed1bc241c64ec3b5733e8893f08be4f5136cbc2679e5c453bb9217eb70d9093b",
+          "complete_skill_markers": null
+        },
+        {
+          "id": "item_2",
+          "exit_code": 0,
+          "status": "completed",
+          "targets": "references/writing-rules.md",
+          "command_sha256": "a66ba7aae213e4ad40bbd1cebdfda65dc2b496ce79adf70fbde6dc67a1ca7eff",
+          "output_sha256": "3128be71cb6ac5a7dd6ddbcccf80604aa19e53008d683c915969a7ee277be914",
+          "complete_skill_markers": null
+        },
+        {
+          "id": "item_6",
+          "exit_code": 0,
+          "status": "completed",
+          "targets": "references/prose-lint-usage.md",
+          "command_sha256": "fa1090129ec5dbb37e9e62d27ccd93fbad76cde08743f2807582bf302b1fa100",
+          "output_sha256": "6bb2d3a2174fb2b9bae7441260223ff97bd2d4e1ff0ae211f3bc5b8de7d857ca",
+          "complete_skill_markers": null
+        },
+        {
+          "id": "item_7",
+          "exit_code": 0,
+          "status": "completed",
+          "targets": "references/anti-ai-patterns.md",
+          "command_sha256": "b383878e3c7a5e1d9134d1bf80a075c0b293c1745e5e6aff83ecdb834cea5fc7",
+          "output_sha256": "ad441eaf172f6a3b0bef1ea8a7b2a2dcbf78ef26d519902476775d850f95ff3f",
+          "complete_skill_markers": null
+        },
+        {
+          "id": "item_5",
+          "exit_code": 0,
+          "status": "completed",
+          "targets": "references/reference-index.md",
+          "command_sha256": "7df4100736863afcf4ddb9b6d5937dae420ed81fa751c0926dbd4f0eba816eb7",
+          "output_sha256": "4313098f1cbd895394176dbcb1f0383f04a77da8f1e4b45d6173d5fbe26902a9",
+          "complete_skill_markers": null
+        }
+      ],
+      "script_calls": [
+        {
+          "id": "item_9",
+          "exit_code": 0,
+          "status": "completed",
+          "scripts": "draft_length.py",
+          "command_sha256": "50e0707a899150d0bd873a7b2c17ef162fe56bf4c1b6edc5967cc7d1515b58c7",
+          "output_sha256": "dfc5fb0a1dab80f31b73b51a4db93a37e29c55231a5142b9e83dbece1bf690c8"
+        },
+        {
+          "id": "item_10",
+          "exit_code": 0,
+          "status": "completed",
+          "scripts": "prose_lint.py",
+          "command_sha256": "e1ee3ea532a0b032aa6c9709af3b057e6742912ac52c9a14ac6c060225025b94",
+          "output_sha256": "d219807fd4571400f98df7b48ff320cc44f0e7a64436d98cb4f9f00fb8cb1641"
+        },
+        {
+          "id": "item_12",
+          "exit_code": 0,
+          "status": "completed",
+          "scripts": "draft_length.py",
+          "command_sha256": "50e0707a899150d0bd873a7b2c17ef162fe56bf4c1b6edc5967cc7d1515b58c7",
+          "output_sha256": "0f6a79e733a853daad4f528ae4d0c21e11ced200398ac2b0fa343c03e7cd69eb"
+        },
+        {
+          "id": "item_13",
+          "exit_code": 0,
+          "status": "completed",
+          "scripts": "prose_lint.py",
+          "command_sha256": "0d25099d54cc0f6f0c199d2b7a9bb29ec543f35212103d971d0b36d83aa60b7c",
+          "output_sha256": "d219807fd4571400f98df7b48ff320cc44f0e7a64436d98cb4f9f00fb8cb1641"
+        },
+        {
+          "id": "item_15",
+          "exit_code": 0,
+          "status": "completed",
+          "scripts": "draft_length.py",
+          "command_sha256": "50e0707a899150d0bd873a7b2c17ef162fe56bf4c1b6edc5967cc7d1515b58c7",
+          "output_sha256": "86f46d9804cca7aa486c11ef1479955884dca249e98b911d90293bb72a268665"
+        },
+        {
+          "id": "item_16",
+          "exit_code": 0,
+          "status": "completed",
+          "scripts": "prose_lint.py",
+          "command_sha256": "e1ee3ea532a0b032aa6c9709af3b057e6742912ac52c9a14ac6c060225025b94",
+          "output_sha256": "d219807fd4571400f98df7b48ff320cc44f0e7a64436d98cb4f9f00fb8cb1641"
+        }
+      ],
+      "references_read": [
+        "references/anti-ai-patterns.md",
+        "references/genre-playbook-notice.md",
+        "references/prose-lint-usage.md",
+        "references/reference-index.md",
+        "references/writing-rules.md"
+      ],
+      "scripts_called": [
+        "draft_length.py",
+        "prose_lint.py"
+      ],
+      "final_sha256": "142e0ce0cee3efb7a48db757d2a5b023fffbfd2aac7935f07101814ed9f9a60e",
+      "result_draft_sha256": "142e0ce0cee3efb7a48db757d2a5b023fffbfd2aac7935f07101814ed9f9a60e",
+      "final_hash_match": true,
+      "final_features": {
+        "heading_hash_lines": [],
+        "horizontal_rule_lines": [],
+        "table_lines": [],
+        "has_markdown_table": false,
+        "office_lines": [
+          7
+        ],
+        "exact_unit_lines": [],
+        "date_lines": [],
+        "has_process_preface": false
+      }
+    },
+    {
+      "model": "alibaba-token-plan/qwen3.8-flash",
+      "case": "issuer_given",
+      "arm": "baseline",
+      "elapsed_seconds": 92.05,
+      "result_returncode": 0,
+      "invalid": [],
+      "command_count": 11,
+      "command_exit_codes": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "nonzero_command_ids": [],
+      "skill_content_observed": true,
+      "skill_complete_output_ids": [
+        "item_0"
+      ],
+      "read_calls": [
+        {
+          "id": "item_0",
+          "exit_code": 0,
+          "status": "completed",
+          "targets": "SKILL.md",
+          "command_sha256": "e2140ac52983632ed54a15306ef27114e8c5bda2896c91b5198b42d9cdaebfd7",
+          "output_sha256": "504e25e6ae4f0383f1cbbf1e454f51ad5981c48486242c46a04a72176006ab53",
+          "complete_skill_markers": {
+            "frontmatter": true,
+            "title": true,
+            "scope": true,
+            "entry": true,
+            "body": true,
+            "steps": true
+          }
+        },
+        {
+          "id": "item_4",
+          "exit_code": 0,
+          "status": "completed",
+          "targets": "references/writing-rules.md",
+          "command_sha256": "f4df144b19aa2637bbdfcf4756b038cefe20dce5ba71364f24e0fd3ea4515b41",
+          "output_sha256": "c66c1e2490ce22d43fa487e8f035c560b79161aacf689d16f75675ffef74f732",
+          "complete_skill_markers": null
+        },
+        {
+          "id": "item_2",
+          "exit_code": 0,
+          "status": "completed",
+          "targets": "references/reference-index.md",
+          "command_sha256": "af480643f041a3d3072cfc6141cc153dd02d651cf3e39cd5710b116c0fb472b3",
+          "output_sha256": "665a63f0cc625a92202df0824a3c0403a428445373e3456ec309b0a87cf29058",
+          "complete_skill_markers": null
+        },
+        {
+          "id": "item_3",
+          "exit_code": 0,
+          "status": "completed",
+          "targets": "README.md",
+          "command_sha256": "a779f4240d7f174018bf211fafc4bf85207a5dc5a4ef57e001366e9d598ef7b8",
+          "output_sha256": "c09c715c3e8f35263de22c9c5d8fd23dec276bd29c747f64498e5581eb417fb5",
+          "complete_skill_markers": null
+        },
+        {
+          "id": "item_6",
+          "exit_code": 0,
+          "status": "completed",
+          "targets": "references/anti-ai-patterns.md",
+          "command_sha256": "f2b24d18b5b7a6f3e37d068374b8694c7c98a29e0028c7844f18e91cc8dd625a",
+          "output_sha256": "d92ccbe6ad1f319ee87e4af6c422942acd4a1491e1804b51dbb3db2c76fbcd14",
+          "complete_skill_markers": null
+        },
+        {
+          "id": "item_7",
+          "exit_code": 0,
+          "status": "completed",
+          "targets": "references/prose-lint-usage.md",
+          "command_sha256": "38dace1dbf681b3d30d869cb3cb2a8fba764691d9660942bd1182e255f90e7bf",
+          "output_sha256": "53f5ebeafc6f54a0d1686fa1b904a82a931fd4fb618ca0270332e8daa2761152",
+          "complete_skill_markers": null
+        },
+        {
+          "id": "item_5",
+          "exit_code": 0,
+          "status": "completed",
+          "targets": "references/genre-playbook-notice.md",
+          "command_sha256": "28720f39ac86ecea458b01c263091c3a6f42f7b286c08401fd5421362bac2234",
+          "output_sha256": "2acd0a5beb9ad59e2824309226c16c0c25ea172c5f5c3ab69abf1a091beadc7e",
+          "complete_skill_markers": null
+        }
+      ],
+      "script_calls": [
+        {
+          "id": "item_10",
+          "exit_code": 0,
+          "status": "completed",
+          "scripts": "draft_length.py",
+          "command_sha256": "7579e5874d8026c40fbbf4489630192d0bac9d58bc5ee937e0b982eb7b82983e",
+          "output_sha256": "3e29c3aecb805a32f93417887565e474c22f27d902a5b45e392456566a717320"
+        },
+        {
+          "id": "item_11",
+          "exit_code": 0,
+          "status": "completed",
+          "scripts": "prose_lint.py",
+          "command_sha256": "358564c2bc73da64790957bee282c1e3c76a7ffa21447993a1df5f18b62c4c0d",
+          "output_sha256": "d219807fd4571400f98df7b48ff320cc44f0e7a64436d98cb4f9f00fb8cb1641"
+        }
+      ],
+      "references_read": [
+        "references/anti-ai-patterns.md",
+        "references/genre-playbook-notice.md",
+        "references/prose-lint-usage.md",
+        "references/reference-index.md",
+        "references/writing-rules.md"
+      ],
+      "scripts_called": [
+        "draft_length.py",
+        "prose_lint.py"
+      ],
+      "final_sha256": "e59abf2920c84e31baf55ca583c46ed9393e36a8222ff11e1d53b4292f9d6654",
+      "result_draft_sha256": "e59abf2920c84e31baf55ca583c46ed9393e36a8222ff11e1d53b4292f9d6654",
+      "final_hash_match": true,
+      "final_features": {
+        "heading_hash_lines": [],
+        "horizontal_rule_lines": [],
+        "table_lines": [],
+        "has_markdown_table": false,
+        "office_lines": [
+          7,
+          11
+        ],
+        "exact_unit_lines": [
+          11
+        ],
+        "date_lines": [
+          13
+        ],
+        "has_process_preface": false
+      }
+    },
+    {
+      "model": "alibaba-token-plan/qwen3.8-flash",
+      "case": "issuer_given",
+      "arm": "candidate",
+      "elapsed_seconds": 106.77,
+      "result_returncode": 0,
+      "invalid": [],
+      "command_count": 10,
+      "command_exit_codes": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "nonzero_command_ids": [],
+      "skill_content_observed": true,
+      "skill_complete_output_ids": [
+        "item_1"
+      ],
+      "read_calls": [
+        {
+          "id": "item_1",
+          "exit_code": 0,
+          "status": "completed",
+          "targets": "SKILL.md",
+          "command_sha256": "6974df7845dd00b2c20a68aa5e17a694d1e0e89569f56382860af47f403b1528",
+          "output_sha256": "9afccae71530080a871a5e96312c3f625103adad6d215086d4aa920e90d4fc11",
+          "complete_skill_markers": {
+            "frontmatter": true,
+            "title": true,
+            "scope": true,
+            "entry": true,
+            "body": true,
+            "steps": true
+          }
+        },
+        {
+          "id": "item_2",
+          "exit_code": 0,
+          "status": "completed",
+          "targets": "references/reference-index.md",
+          "command_sha256": "303c1988d79c57b7ad55065df2ae1b378189d9abcb41ffbba18fb0fb5f0e2e84",
+          "output_sha256": "4313098f1cbd895394176dbcb1f0383f04a77da8f1e4b45d6173d5fbe26902a9",
+          "complete_skill_markers": null
+        },
+        {
+          "id": "item_3",
+          "exit_code": 0,
+          "status": "completed",
+          "targets": "references/writing-rules.md",
+          "command_sha256": "696611d854df90249c8b61ca0f725811cd9403665dde7bff426f2c799b37c276",
+          "output_sha256": "3128be71cb6ac5a7dd6ddbcccf80604aa19e53008d683c915969a7ee277be914",
+          "complete_skill_markers": null
+        },
+        {
+          "id": "item_4",
+          "exit_code": 0,
+          "status": "completed",
+          "targets": "references/genre-playbook-notice.md",
+          "command_sha256": "964d476673b9e2a89053a777fd683efb36851e2146cd265de31d32a80f470e84",
+          "output_sha256": "ed1bc241c64ec3b5733e8893f08be4f5136cbc2679e5c453bb9217eb70d9093b",
+          "complete_skill_markers": null
+        },
+        {
+          "id": "item_5",
+          "exit_code": 0,
+          "status": "completed",
+          "targets": "references/anti-ai-patterns.md",
+          "command_sha256": "0d07386f78b1602017b33887406088b21bd955287d23ca4d637d72f2099ac9a7",
+          "output_sha256": "ad441eaf172f6a3b0bef1ea8a7b2a2dcbf78ef26d519902476775d850f95ff3f",
+          "complete_skill_markers": null
+        },
+        {
+          "id": "item_6",
+          "exit_code": 0,
+          "status": "completed",
+          "targets": "references/prose-lint-usage.md",
+          "command_sha256": "9d94fde6bd7a3c75386bcd0e6a6fdb0159bcf66846f420bbeebe78f90447bd5e",
+          "output_sha256": "6bb2d3a2174fb2b9bae7441260223ff97bd2d4e1ff0ae211f3bc5b8de7d857ca",
+          "complete_skill_markers": null
+        }
+      ],
+      "script_calls": [
+        {
+          "id": "item_9",
+          "exit_code": 0,
+          "status": "completed",
+          "scripts": "draft_length.py",
+          "command_sha256": "5e9471b797cdc122faeb6bdbfaacc09e893175257d81e03d56ab1c46d83cceb2",
+          "output_sha256": "785cdf658208b97479d0b82ad8cc2506164543049ad3b4ad67d10da64b12ebda"
+        },
+        {
+          "id": "item_10",
+          "exit_code": 0,
+          "status": "completed",
+          "scripts": "prose_lint.py",
+          "command_sha256": "074b3873e4ec2a3ba2bad7b398c34db57312794e6eb841ed78dd499b132dc563",
+          "output_sha256": "d219807fd4571400f98df7b48ff320cc44f0e7a64436d98cb4f9f00fb8cb1641"
+        }
+      ],
+      "references_read": [
+        "references/anti-ai-patterns.md",
+        "references/genre-playbook-notice.md",
+        "references/prose-lint-usage.md",
+        "references/reference-index.md",
+        "references/writing-rules.md"
+      ],
+      "scripts_called": [
+        "draft_length.py",
+        "prose_lint.py"
+      ],
+      "final_sha256": "ab706a94725a702fdc4cc0e84309e8565813065b2d766ca9356e5e08ba713efa",
+      "result_draft_sha256": "ab706a94725a702fdc4cc0e84309e8565813065b2d766ca9356e5e08ba713efa",
+      "final_hash_match": true,
+      "final_features": {
+        "heading_hash_lines": [],
+        "horizontal_rule_lines": [],
+        "table_lines": [],
+        "has_markdown_table": false,
+        "office_lines": [
+          7,
+          10
+        ],
+        "exact_unit_lines": [
+          10
+        ],
+        "date_lines": [
+          12
+        ],
+        "has_process_preface": false
+      }
+    },
+    {
+      "model": "alibaba-token-plan/qwen3.8-flash",
+      "case": "plain_default",
+      "arm": "baseline",
+      "elapsed_seconds": 103.12,
+      "result_returncode": 0,
+      "invalid": [],
+      "command_count": 10,
+      "command_exit_codes": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "nonzero_command_ids": [],
+      "skill_content_observed": true,
+      "skill_complete_output_ids": [
+        "item_1"
+      ],
+      "read_calls": [
+        {
+          "id": "item_1",
+          "exit_code": 0,
+          "status": "completed",
+          "targets": "SKILL.md",
+          "command_sha256": "68209dfd8dbeb4a6a3036576f6e1988abe08cf6c221f02738176e22e21ceb581",
+          "output_sha256": "b78e21c27325c565bb4f8d08cb9e035d87e6b5b207bc97156ba3b277c61d6b94",
+          "complete_skill_markers": {
+            "frontmatter": true,
+            "title": true,
+            "scope": true,
+            "entry": true,
+            "body": true,
+            "steps": true
+          }
+        },
+        {
+          "id": "item_2",
+          "exit_code": 0,
+          "status": "completed",
+          "targets": "references/genre-playbook-procurement-announcement.md",
+          "command_sha256": "7b4541cbba597118a5deaaee78d773baf984f87ebf30c6051d82a6caf8be8ee3",
+          "output_sha256": "87c986e317ecd60a6bf55a60dc2cbf5cfa9bbd35ff837211fbb77683895b6ad0",
+          "complete_skill_markers": null
+        },
+        {
+          "id": "item_3",
+          "exit_code": 0,
+          "status": "completed",
+          "targets": "references/writing-rules.md",
+          "command_sha256": "e6b7ab36fe181880c3e81fecca9c3f05d4b102ba2b45d773e70558434d463487",
+          "output_sha256": "c66c1e2490ce22d43fa487e8f035c560b79161aacf689d16f75675ffef74f732",
+          "complete_skill_markers": null
+        },
+        {
+          "id": "item_4",
+          "exit_code": 0,
+          "status": "completed",
+          "targets": "references/anti-ai-patterns.md",
+          "command_sha256": "d039b286740bd86c00ef2c502e20d599b942892e4fc60634b1dcf239fe839276",
+          "output_sha256": "d92ccbe6ad1f319ee87e4af6c422942acd4a1491e1804b51dbb3db2c76fbcd14",
+          "complete_skill_markers": null
+        },
+        {
+          "id": "item_5",
+          "exit_code": 0,
+          "status": "completed",
+          "targets": "references/prose-lint-usage.md",
+          "command_sha256": "753f0eb9e47e6b7c74da6bc0fca070709ac554952f0bc0539bcfabf9183817fb",
+          "output_sha256": "53f5ebeafc6f54a0d1686fa1b904a82a931fd4fb618ca0270332e8daa2761152",
+          "complete_skill_markers": null
+        }
+      ],
+      "script_calls": [
+        {
+          "id": "item_7",
+          "exit_code": 0,
+          "status": "completed",
+          "scripts": "draft_length.py",
+          "command_sha256": "cc0cdeeedbbc45ae20ea5861767039d2a9353298f0541e3ac0aa84693310e092",
+          "output_sha256": "865031507a67624743a6fb4e53ffb87bcc8d188843a806c9591ae584013662af"
+        },
+        {
+          "id": "item_8",
+          "exit_code": 0,
+          "status": "completed",
+          "scripts": "prose_lint.py",
+          "command_sha256": "cc76e607fbbb2c0536479efb71aa4d1e5df612ed5b82b9c187e83331e055f29f",
+          "output_sha256": "d219807fd4571400f98df7b48ff320cc44f0e7a64436d98cb4f9f00fb8cb1641"
+        }
+      ],
+      "references_read": [
+        "references/anti-ai-patterns.md",
+        "references/genre-playbook-procurement-announcement.md",
+        "references/prose-lint-usage.md",
+        "references/writing-rules.md"
+      ],
+      "scripts_called": [
+        "draft_length.py",
+        "prose_lint.py"
+      ],
+      "final_sha256": "4d4599cd1e82fbf8b2e7b8e00b9cde71fd9505d07b08c6fb9da3f708eb7572ab",
+      "result_draft_sha256": "4d4599cd1e82fbf8b2e7b8e00b9cde71fd9505d07b08c6fb9da3f708eb7572ab",
+      "final_hash_match": true,
+      "final_features": {
+        "heading_hash_lines": [],
+        "horizontal_rule_lines": [],
+        "table_lines": [],
+        "has_markdown_table": false,
+        "office_lines": [],
+        "exact_unit_lines": [
+          17
+        ],
+        "date_lines": [
+          18,
+          20
+        ],
+        "has_process_preface": false
+      }
+    },
+    {
+      "model": "alibaba-token-plan/qwen3.8-flash",
+      "case": "plain_default",
+      "arm": "candidate",
+      "elapsed_seconds": 75.78,
+      "result_returncode": 0,
+      "invalid": [],
+      "command_count": 17,
+      "command_exit_codes": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "nonzero_command_ids": [],
+      "skill_content_observed": true,
+      "skill_complete_output_ids": [
+        "item_0"
+      ],
+      "read_calls": [
+        {
+          "id": "item_0",
+          "exit_code": 0,
+          "status": "completed",
+          "targets": "SKILL.md",
+          "command_sha256": "18735a8c243c38da59ca9cbb69e03bc35b1a7e0f504ef97fc55a7fda672a9277",
+          "output_sha256": "9afccae71530080a871a5e96312c3f625103adad6d215086d4aa920e90d4fc11",
+          "complete_skill_markers": {
+            "frontmatter": true,
+            "title": true,
+            "scope": true,
+            "entry": true,
+            "body": true,
+            "steps": true
+          }
+        },
+        {
+          "id": "item_3",
+          "exit_code": 0,
+          "status": "completed",
+          "targets": "references/genre-playbook-procurement-announcement.md",
+          "command_sha256": "880bff551770081c75919230bb9ea34bd8c60a75f621a832703200697a8f3a32",
+          "output_sha256": "dce0acc58a700ab2e99cb5ceea71f16e99b0f26e8134aff90cafd75d47bda7d4",
+          "complete_skill_markers": null
+        },
+        {
+          "id": "item_4",
+          "exit_code": 0,
+          "status": "completed",
+          "targets": "references/writing-rules.md",
+          "command_sha256": "e215b0d999535a2de166cd618f60a465a487b9c273f12f7df3dbb29411722ff0",
+          "output_sha256": "3128be71cb6ac5a7dd6ddbcccf80604aa19e53008d683c915969a7ee277be914",
+          "complete_skill_markers": null
+        },
+        {
+          "id": "item_5",
+          "exit_code": 0,
+          "status": "completed",
+          "targets": "references/reference-index.md",
+          "command_sha256": "59946f52896aa16684a33bd12b57315f0297d16709e79aee6d310e9c8937bbba",
+          "output_sha256": "4313098f1cbd895394176dbcb1f0383f04a77da8f1e4b45d6173d5fbe26902a9",
+          "complete_skill_markers": null
+        },
+        {
+          "id": "item_6",
+          "exit_code": 0,
+          "status": "completed",
+          "targets": "references/genre-routing.md",
+          "command_sha256": "cc19ba82f5d7b883f42f51f5880185790beb54df0d2eced9490fd26bf4b0a2b6",
+          "output_sha256": "ad23480b4e83d6ec93f3904c5aad7075b587127949548a9fe897fb4986cb7e7a",
+          "complete_skill_markers": null
+        },
+        {
+          "id": "item_7",
+          "exit_code": 0,
+          "status": "completed",
+          "targets": "references/anti-ai-patterns.md",
+          "command_sha256": "912af3859f3da37d6f6d8c391953b47556f5784a5e3630fc776f34357c0b2fb9",
+          "output_sha256": "ad441eaf172f6a3b0bef1ea8a7b2a2dcbf78ef26d519902476775d850f95ff3f",
+          "complete_skill_markers": null
+        },
+        {
+          "id": "item_8",
+          "exit_code": 0,
+          "status": "completed",
+          "targets": "references/formal-addressing.md",
+          "command_sha256": "b4bce9475d836f0e3036a75e2ea705ba94c0c030ea220743b9b2793f96a0fb35",
+          "output_sha256": "c6b8e56f93c9dea1ad009b924291da4b820786a5ec55ce4a0bb337f2dece6875",
+          "complete_skill_markers": null
+        },
+        {
+          "id": "item_9",
+          "exit_code": 0,
+          "status": "completed",
+          "targets": "references/prose-lint-usage.md",
+          "command_sha256": "084bfef659a589677d523a0eddd161d5878937bf3ada03de84f0cb65f55a3ce3",
+          "output_sha256": "6bb2d3a2174fb2b9bae7441260223ff97bd2d4e1ff0ae211f3bc5b8de7d857ca",
+          "complete_skill_markers": null
+        },
+        {
+          "id": "item_10",
+          "exit_code": 0,
+          "status": "completed",
+          "targets": "references/genre-playbook-publication.md",
+          "command_sha256": "272dbaed7c0374b86e78395349e8b541975d48cdfa5f3f4a7f7fb0e018bd3431",
+          "output_sha256": "8d16665fa3ae525e12d2cd6841144c9b86e27dc5184243fe5d5c04b4a1f93c30",
+          "complete_skill_markers": null
+        },
+        {
+          "id": "item_11",
+          "exit_code": 0,
+          "status": "completed",
+          "targets": "references/genre-playbook-notice.md",
+          "command_sha256": "5ee4eb69bc998258d3e23f1659dfef1d1f6ab8ff0b68a761cfbdc956f0bf6b95",
+          "output_sha256": "ed1bc241c64ec3b5733e8893f08be4f5136cbc2679e5c453bb9217eb70d9093b",
+          "complete_skill_markers": null
+        }
+      ],
+      "script_calls": [
+        {
+          "id": "item_13",
+          "exit_code": 0,
+          "status": "completed",
+          "scripts": "draft_length.py",
+          "command_sha256": "2c3397ab6c483116223f22fb0e32f91424e0c58e7c5e435e173c151521913a03",
+          "output_sha256": "208645b777d4583e74cd70eccd0225b1fa75c55ac786a1250fa8404972d52aea"
+        },
+        {
+          "id": "item_14",
+          "exit_code": 0,
+          "status": "completed",
+          "scripts": "prose_lint.py",
+          "command_sha256": "75e1a832d827c6242e97e1a07167937f4df603a86a20cb01b9c00784af57f17e",
+          "output_sha256": "d219807fd4571400f98df7b48ff320cc44f0e7a64436d98cb4f9f00fb8cb1641"
+        },
+        {
+          "id": "item_16",
+          "exit_code": 0,
+          "status": "completed",
+          "scripts": "draft_length.py",
+          "command_sha256": "2c3397ab6c483116223f22fb0e32f91424e0c58e7c5e435e173c151521913a03",
+          "output_sha256": "77f32bc53f246b07baf00d65b0c84e16e3c0bcb8a9b0b2b621a51563db6714a8"
+        },
+        {
+          "id": "item_17",
+          "exit_code": 0,
+          "status": "completed",
+          "scripts": "prose_lint.py",
+          "command_sha256": "75e1a832d827c6242e97e1a07167937f4df603a86a20cb01b9c00784af57f17e",
+          "output_sha256": "d219807fd4571400f98df7b48ff320cc44f0e7a64436d98cb4f9f00fb8cb1641"
+        }
+      ],
+      "references_read": [
+        "references/anti-ai-patterns.md",
+        "references/formal-addressing.md",
+        "references/genre-playbook-notice.md",
+        "references/genre-playbook-procurement-announcement.md",
+        "references/genre-playbook-publication.md",
+        "references/genre-routing.md",
+        "references/prose-lint-usage.md",
+        "references/reference-index.md",
+        "references/writing-rules.md"
+      ],
+      "scripts_called": [
+        "draft_length.py",
+        "prose_lint.py"
+      ],
+      "final_sha256": "c66d576893e79e21c96adf4f007300b748b00bd57d1d06d6ac467eae3a3dff23",
+      "result_draft_sha256": "c66d576893e79e21c96adf4f007300b748b00bd57d1d06d6ac467eae3a3dff23",
+      "final_hash_match": true,
+      "final_features": {
+        "heading_hash_lines": [],
+        "horizontal_rule_lines": [],
+        "table_lines": [],
+        "has_markdown_table": false,
+        "office_lines": [],
+        "exact_unit_lines": [
+          9
+        ],
+        "date_lines": [
+          10
+        ],
+        "has_process_preface": false
+      }
+    },
+    {
+      "model": "alibaba-token-plan/qwen3.8-flash",
+      "case": "markdown_requested",
+      "arm": "baseline",
+      "elapsed_seconds": 78.09,
+      "result_returncode": 0,
+      "invalid": [],
+      "command_count": 8,
+      "command_exit_codes": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "nonzero_command_ids": [],
+      "skill_content_observed": true,
+      "skill_complete_output_ids": [
+        "item_1"
+      ],
+      "read_calls": [
+        {
+          "id": "item_1",
+          "exit_code": 0,
+          "status": "completed",
+          "targets": "SKILL.md",
+          "command_sha256": "7d6e2f96558ff5baacbd72a8d6e2da39b0fc230bf1aefbf392058d578b34f212",
+          "output_sha256": "b1cfcfbade53aebd59eb1d024d04a69c8ae9fb672353b415906ba72af208d9b7",
+          "complete_skill_markers": {
+            "frontmatter": true,
+            "title": true,
+            "scope": true,
+            "entry": true,
+            "body": true,
+            "steps": true
+          }
+        },
+        {
+          "id": "item_4",
+          "exit_code": 0,
+          "status": "completed",
+          "targets": "references/writing-rules.md",
+          "command_sha256": "582666c0ee12d16aa712b50b270805713b51e87b5554f2a71e1d821290d5183a",
+          "output_sha256": "9b1ca61b9b7ab5ee88d9466c501005b505f480a7a66fb37f293792b337343cbf",
+          "complete_skill_markers": null
+        },
+        {
+          "id": "item_3",
+          "exit_code": 0,
+          "status": "completed",
+          "targets": "references/genre-playbook-procurement-announcement.md",
+          "command_sha256": "ec50d8bbc1e97282ef6ae7c441d8dcee5e21457750324c27f0ca2839b7bbc289",
+          "output_sha256": "dce0acc58a700ab2e99cb5ceea71f16e99b0f26e8134aff90cafd75d47bda7d4",
+          "complete_skill_markers": null
+        },
+        {
+          "id": "item_5",
+          "exit_code": 0,
+          "status": "completed",
+          "targets": "references/prose-lint-usage.md",
+          "command_sha256": "a9c58ec9c47417ee8e4a7dab8b27ff531d3a0cfdf771382d83c2efcc9fa13d25",
+          "output_sha256": "6bb2d3a2174fb2b9bae7441260223ff97bd2d4e1ff0ae211f3bc5b8de7d857ca",
+          "complete_skill_markers": null
+        },
+        {
+          "id": "item_6",
+          "exit_code": 0,
+          "status": "completed",
+          "targets": "references/anti-ai-patterns.md",
+          "command_sha256": "4f45cf7d8494169fe1d613b910a97ac7cb01df4ee5fe51e541f7ad70a35829d1",
+          "output_sha256": "ad441eaf172f6a3b0bef1ea8a7b2a2dcbf78ef26d519902476775d850f95ff3f",
+          "complete_skill_markers": null
+        }
+      ],
+      "script_calls": [
+        {
+          "id": "item_8",
+          "exit_code": 0,
+          "status": "completed",
+          "scripts": "draft_length.py",
+          "command_sha256": "9cf953e2d0b988fc955d298b94e8a3fbc4f38338ae28763c36cbe47d59b23d75",
+          "output_sha256": "cfd623048ffc6a91c324bf366c61751159bcaae31c1e69dc0d75d931709a46e4"
+        },
+        {
+          "id": "item_9",
+          "exit_code": 0,
+          "status": "completed",
+          "scripts": "prose_lint.py",
+          "command_sha256": "26ba7f78bbea9078b39aabd2111015ef1d87e991fb6acd7a20f1ee5471a99ef5",
+          "output_sha256": "d219807fd4571400f98df7b48ff320cc44f0e7a64436d98cb4f9f00fb8cb1641"
+        }
+      ],
+      "references_read": [
+        "references/anti-ai-patterns.md",
+        "references/genre-playbook-procurement-announcement.md",
+        "references/prose-lint-usage.md",
+        "references/writing-rules.md"
+      ],
+      "scripts_called": [
+        "draft_length.py",
+        "prose_lint.py"
+      ],
+      "final_sha256": "0059bf56703337723d84abc5342fc8b73b64a813f7e6e9a797cccd258d49cbb4",
+      "result_draft_sha256": "0059bf56703337723d84abc5342fc8b73b64a813f7e6e9a797cccd258d49cbb4",
+      "final_hash_match": true,
+      "final_features": {
+        "heading_hash_lines": [
+          1
+        ],
+        "horizontal_rule_lines": [],
+        "table_lines": [
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15
+        ],
+        "has_markdown_table": true,
+        "office_lines": [],
+        "exact_unit_lines": [
+          17
+        ],
+        "date_lines": [
+          19
+        ],
+        "has_process_preface": false
+      }
+    },
+    {
+      "model": "alibaba-token-plan/qwen3.8-flash",
+      "case": "markdown_requested",
+      "arm": "candidate",
+      "elapsed_seconds": 82.09,
+      "result_returncode": 0,
+      "invalid": [],
+      "command_count": 9,
+      "command_exit_codes": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "nonzero_command_ids": [],
+      "skill_content_observed": true,
+      "skill_complete_output_ids": [
+        "item_0"
+      ],
+      "read_calls": [
+        {
+          "id": "item_0",
+          "exit_code": 0,
+          "status": "completed",
+          "targets": "SKILL.md",
+          "command_sha256": "ffb5797e37a9b9908b3b770be643abd5f1b31ebc63cd6fb060dd9951638c3abb",
+          "output_sha256": "9afccae71530080a871a5e96312c3f625103adad6d215086d4aa920e90d4fc11",
+          "complete_skill_markers": {
+            "frontmatter": true,
+            "title": true,
+            "scope": true,
+            "entry": true,
+            "body": true,
+            "steps": true
+          }
+        },
+        {
+          "id": "item_2",
+          "exit_code": 0,
+          "status": "completed",
+          "targets": "references/reference-index.md",
+          "command_sha256": "4bd88da11f03eed19e3cbb3b970f3b8350a78aa3aa21f8d935b138745725286c",
+          "output_sha256": "4313098f1cbd895394176dbcb1f0383f04a77da8f1e4b45d6173d5fbe26902a9",
+          "complete_skill_markers": null
+        },
+        {
+          "id": "item_3",
+          "exit_code": 0,
+          "status": "completed",
+          "targets": "references/genre-playbook-procurement-announcement.md",
+          "command_sha256": "860330b1ee1110d20f12df26986bf3137d682dbaefb400109064d2d89ecc1ed9",
+          "output_sha256": "dce0acc58a700ab2e99cb5ceea71f16e99b0f26e8134aff90cafd75d47bda7d4",
+          "complete_skill_markers": null
+        },
+        {
+          "id": "item_4",
+          "exit_code": 0,
+          "status": "completed",
+          "targets": "references/writing-rules.md",
+          "command_sha256": "c10d3413f1799d17c7a27cc7489d88db5c0c413104e1e36be23875e919f19c4b",
+          "output_sha256": "3128be71cb6ac5a7dd6ddbcccf80604aa19e53008d683c915969a7ee277be914",
+          "complete_skill_markers": null
+        },
+        {
+          "id": "item_5",
+          "exit_code": 0,
+          "status": "completed",
+          "targets": "references/anti-ai-patterns.md",
+          "command_sha256": "2c279fff7b03b8204fa829fe51e0cad9b4b75d97303753d694b0371a36debfd1",
+          "output_sha256": "ad441eaf172f6a3b0bef1ea8a7b2a2dcbf78ef26d519902476775d850f95ff3f",
+          "complete_skill_markers": null
+        },
+        {
+          "id": "item_6",
+          "exit_code": 0,
+          "status": "completed",
+          "targets": "references/prose-lint-usage.md",
+          "command_sha256": "a661defa60be177dac35ae4126822979418b6350bcce3dd48bb0496b746b20fc",
+          "output_sha256": "6bb2d3a2174fb2b9bae7441260223ff97bd2d4e1ff0ae211f3bc5b8de7d857ca",
+          "complete_skill_markers": null
+        }
+      ],
+      "script_calls": [
+        {
+          "id": "item_8",
+          "exit_code": 0,
+          "status": "completed",
+          "scripts": "draft_length.py",
+          "command_sha256": "051ae46a48106ba24d71eb9539539315ef473d086d9a76fe7e03f54c6ad05fa6",
+          "output_sha256": "a5cd7cd281aa45588da88e23a51ecf5fa102dc8c50e95c81ff5c39cae04b58e6"
+        },
+        {
+          "id": "item_9",
+          "exit_code": 0,
+          "status": "completed",
+          "scripts": "prose_lint.py",
+          "command_sha256": "13b4ba180723842fecabd33055301a0fc4c7ead10c1c3759e84d4e3dedb5c69a",
+          "output_sha256": "d219807fd4571400f98df7b48ff320cc44f0e7a64436d98cb4f9f00fb8cb1641"
+        }
+      ],
+      "references_read": [
+        "references/anti-ai-patterns.md",
+        "references/genre-playbook-procurement-announcement.md",
+        "references/prose-lint-usage.md",
+        "references/reference-index.md",
+        "references/writing-rules.md"
+      ],
+      "scripts_called": [
+        "draft_length.py",
+        "prose_lint.py"
+      ],
+      "final_sha256": "491e9ef29d32ba947fe24a53ddbb1706bb602acb8b89ea51323dd2be59ca68e1",
+      "result_draft_sha256": "491e9ef29d32ba947fe24a53ddbb1706bb602acb8b89ea51323dd2be59ca68e1",
+      "final_hash_match": true,
+      "final_features": {
+        "heading_hash_lines": [
+          1
+        ],
+        "horizontal_rule_lines": [],
+        "table_lines": [
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14
+        ],
+        "has_markdown_table": true,
+        "office_lines": [],
+        "exact_unit_lines": [
+          18
+        ],
+        "date_lines": [
+          19,
+          23
+        ],
+        "has_process_preface": false
+      }
+    },
+    {
+      "model": "minimax-cn/MiniMax-M3",
+      "case": "issuer_missing",
+      "arm": "candidate",
+      "elapsed_seconds": 112.47,
+      "result_returncode": 0,
+      "invalid": [],
+      "command_count": 13,
+      "command_exit_codes": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "nonzero_command_ids": [],
+      "skill_content_observed": true,
+      "skill_complete_output_ids": [
+        "item_0"
+      ],
+      "read_calls": [
+        {
+          "id": "item_0",
+          "exit_code": 0,
+          "status": "completed",
+          "targets": "SKILL.md",
+          "command_sha256": "e4a8530ab770a50b14d5b47ef65f05a7bb927e0b141fd3bec0ebd7e36c103d53",
+          "output_sha256": "96c6849ef6216b11b0ad0c605f26db1e7bd9cc75a3b0edc1935a39edbc9f1b01",
+          "complete_skill_markers": {
+            "frontmatter": true,
+            "title": true,
+            "scope": true,
+            "entry": true,
+            "body": true,
+            "steps": true
+          }
+        },
+        {
+          "id": "item_3",
+          "exit_code": 0,
+          "status": "completed",
+          "targets": "references/genre-playbook-notice.md",
+          "command_sha256": "c3bb9672af798d6aeade3eb38a0a30f9cf110c02987f81dcbc861cf29237a858",
+          "output_sha256": "62150133255bc10b84ae9c1b95fdb0bc62b02d43f3a2833b4223f8303c7ad4a8",
+          "complete_skill_markers": null
+        },
+        {
+          "id": "item_4",
+          "exit_code": 0,
+          "status": "completed",
+          "targets": "references/writing-rules.md",
+          "command_sha256": "dca6c880583a3b357a2f2ff9e9541f2f49114a6a4f34a07d814e97e5a2bd5f76",
+          "output_sha256": "c7ce08f6eb40c4c46a9daedc220d85b8f21cb5fdab3f5aefb442a25b9524166c",
+          "complete_skill_markers": null
+        },
+        {
+          "id": "item_5",
+          "exit_code": 0,
+          "status": "completed",
+          "targets": "references/anti-ai-patterns.md",
+          "command_sha256": "bb4dcc26249d4cb36af5d7ad49bc0a480a9c4c0e79f88183b9be1eb20088077d",
+          "output_sha256": "49a2ab9aec706f73ddc47a29813163d120f12fd25b791d6c6041eab6676fc9ef",
+          "complete_skill_markers": null
+        },
+        {
+          "id": "item_6",
+          "exit_code": 0,
+          "status": "completed",
+          "targets": "references/formal-addressing.md",
+          "command_sha256": "fc43d9818b5f538ee229c8a0997220afb0f8426778767fb7bef1c2d191ebbd23",
+          "output_sha256": "c4d024e90e3b85709c6c48810a92427d335699cbff4f2bbff3dcea700fc9af00",
+          "complete_skill_markers": null
+        },
+        {
+          "id": "item_7",
+          "exit_code": 0,
+          "status": "completed",
+          "targets": "references/genre-routing.md",
+          "command_sha256": "a75685e76567dd5aed73809445701264291bef0e1f67673035d84ffa4902c924",
+          "output_sha256": "6619a324c9e6584e6ad4950e71349548080fd6d31303cf751fee4cdffcdf9248",
+          "complete_skill_markers": null
+        },
+        {
+          "id": "item_8",
+          "exit_code": 0,
+          "status": "completed",
+          "targets": "references/reference-index.md",
+          "command_sha256": "5c8373b007779822eaa796b46ccb59f7aa7d4267656a03b1a2a937c7576e6be9",
+          "output_sha256": "8d08e1d09e53f1e1de57bfc51b9a9b4743a18339fc21880eda3e81fac422300f",
+          "complete_skill_markers": null
+        }
+      ],
+      "script_calls": [
+        {
+          "id": "item_11",
+          "exit_code": 0,
+          "status": "completed",
+          "scripts": "draft_length.py",
+          "command_sha256": "aa92e4d74fbeabd73db141a7e9aa26db3c7105ce07fbcbf19b65b70614dc4620",
+          "output_sha256": "9c2f3593626e53c9510567c9e25f186728c31e1432cb5e1222d12035f46f0d64"
+        },
+        {
+          "id": "item_12",
+          "exit_code": 0,
+          "status": "completed",
+          "scripts": "prose_lint.py",
+          "command_sha256": "5bb91b893864b310339b74eaec0ad0aad45a90c564a6b8f7fbd5d1cb8e13280e",
+          "output_sha256": "4b13c432a11cab13c031c91190f46b2e5bdac7b6a3a46b4f2df977b0d120cbd4"
+        },
+        {
+          "id": "item_13",
+          "exit_code": 0,
+          "status": "completed",
+          "scripts": "prose_lint.py",
+          "command_sha256": "eb1d704b1de639742fafbbb8aeac73dd6b3ac1ba1f08e01d82d4f40bf89b3f57",
+          "output_sha256": "d219807fd4571400f98df7b48ff320cc44f0e7a64436d98cb4f9f00fb8cb1641"
+        }
+      ],
+      "references_read": [
+        "references/anti-ai-patterns.md",
+        "references/formal-addressing.md",
+        "references/genre-playbook-notice.md",
+        "references/genre-routing.md",
+        "references/reference-index.md",
+        "references/writing-rules.md"
+      ],
+      "scripts_called": [
+        "draft_length.py",
+        "prose_lint.py"
+      ],
+      "final_sha256": "333991eb15b56fea8002473d7f411b21b28fa688270b3ae0e4c0d6ac836cf71c",
+      "result_draft_sha256": "333991eb15b56fea8002473d7f411b21b28fa688270b3ae0e4c0d6ac836cf71c",
+      "final_hash_match": true,
+      "final_features": {
+        "heading_hash_lines": [],
+        "horizontal_rule_lines": [],
+        "table_lines": [],
+        "has_markdown_table": false,
+        "office_lines": [
+          5
+        ],
+        "exact_unit_lines": [],
+        "date_lines": [],
+        "has_process_preface": false
+      }
+    },
+    {
+      "model": "minimax-cn/MiniMax-M3",
+      "case": "issuer_missing",
+      "arm": "baseline",
+      "elapsed_seconds": 169.77,
+      "result_returncode": 0,
+      "invalid": [],
+      "command_count": 25,
+      "command_exit_codes": [
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "nonzero_command_ids": [
+        "item_2",
+        "item_7",
+        "item_15"
+      ],
+      "skill_content_observed": true,
+      "skill_complete_output_ids": [
+        "item_0",
+        "item_1",
+        "item_11",
+        "item_13",
+        "item_18",
+        "item_19"
+      ],
+      "read_calls": [
+        {
+          "id": "item_0",
+          "exit_code": 0,
+          "status": "completed",
+          "targets": "SKILL.md",
+          "command_sha256": "3158c957fa0083cca12d2040b1479b7ce14d04a32826af335af0fe970a9d78de",
+          "output_sha256": "b78e21c27325c565bb4f8d08cb9e035d87e6b5b207bc97156ba3b277c61d6b94",
+          "complete_skill_markers": {
+            "frontmatter": true,
+            "title": true,
+            "scope": true,
+            "entry": true,
+            "body": true,
+            "steps": true
+          }
+        },
+        {
+          "id": "item_1",
+          "exit_code": 0,
+          "status": "completed",
+          "targets": "SKILL.md",
+          "command_sha256": "0424a51ba2befb17a444621955e67bf95e2148f956a30bc675533e7b4d74bcdf",
+          "output_sha256": "b78e21c27325c565bb4f8d08cb9e035d87e6b5b207bc97156ba3b277c61d6b94",
+          "complete_skill_markers": {
+            "frontmatter": true,
+            "title": true,
+            "scope": true,
+            "entry": true,
+            "body": true,
+            "steps": true
+          }
+        },
+        {
+          "id": "item_11",
+          "exit_code": 0,
+          "status": "completed",
+          "targets": "SKILL.md",
+          "command_sha256": "ed1d0c7f193e9ad7bebe43bd8064bf678a8917b84155c64fc5ebbb57be13a6df",
+          "output_sha256": "b1cfcfbade53aebd59eb1d024d04a69c8ae9fb672353b415906ba72af208d9b7",
+          "complete_skill_markers": {
+            "frontmatter": true,
+            "title": true,
+            "scope": true,
+            "entry": true,
+            "body": true,
+            "steps": true
+          }
+        },
+        {
+          "id": "item_12",
+          "exit_code": 0,
+          "status": "completed",
+          "targets": "SKILL.md",
+          "command_sha256": "6d56f239a8d235c8e6f419ac56231bafa5fe7cc44c00ddcab641af9f69da8f65",
+          "output_sha256": "7b3b5e71a6725fb5b31c943d0c81df480c19092b1e5f9238c36f4f5d799f81c7",
+          "complete_skill_markers": {
+            "frontmatter": true,
+            "title": false,
+            "scope": false,
+            "entry": false,
+            "body": false,
+            "steps": false
+          }
+        },
+        {
+          "id": "item_13",
+          "exit_code": 0,
+          "status": "completed",
+          "targets": "SKILL.md",
+          "command_sha256": "ed1d0c7f193e9ad7bebe43bd8064bf678a8917b84155c64fc5ebbb57be13a6df",
+          "output_sha256": "b1cfcfbade53aebd59eb1d024d04a69c8ae9fb672353b415906ba72af208d9b7",
+          "complete_skill_markers": {
+            "frontmatter": true,
+            "title": true,
+            "scope": true,
+            "entry": true,
+            "body": true,
+            "steps": true
+          }
+        },
+        {
+          "id": "item_14",
+          "exit_code": 0,
+          "status": "completed",
+          "targets": "SKILL.md",
+          "command_sha256": "215f6f403f1bd8abe92b9a01a3eebb4621cd4227bc4bf57a794ac1a3a752fe92",
+          "output_sha256": "4f16b6af89369a8d656af309851a8f9080669ac2c42402d1a7d4ffdeb0d1f26e",
+          "complete_skill_markers": {
+            "frontmatter": true,
+            "title": true,
+            "scope": true,
+            "entry": true,
+            "body": true,
+            "steps": false
+          }
+        },
+        {
+          "id": "item_18",
+          "exit_code": 0,
+          "status": "completed",
+          "targets": "SKILL.md",
+          "command_sha256": "f0f983cdeb12cdba8b3913e461652be468bd1a7a595fc0db131ee016502ad139",
+          "output_sha256": "b78e21c27325c565bb4f8d08cb9e035d87e6b5b207bc97156ba3b277c61d6b94",
+          "complete_skill_markers": {
+            "frontmatter": true,
+            "title": true,
+            "scope": true,
+            "entry": true,
+            "body": true,
+            "steps": true
+          }
+        },
+        {
+          "id": "item_19",
+          "exit_code": 0,
+          "status": "completed",
+          "targets": "SKILL.md",
+          "command_sha256": "f0f983cdeb12cdba8b3913e461652be468bd1a7a595fc0db131ee016502ad139",
+          "output_sha256": "b78e21c27325c565bb4f8d08cb9e035d87e6b5b207bc97156ba3b277c61d6b94",
+          "complete_skill_markers": {
+            "frontmatter": true,
+            "title": true,
+            "scope": true,
+            "entry": true,
+            "body": true,
+            "steps": true
+          }
+        },
+        {
+          "id": "item_21",
+          "exit_code": 0,
+          "status": "completed",
+          "targets": "references/genre-playbook-notice.md",
+          "command_sha256": "37fdca491e2f83d04516976146793bee517c1fe7bf39ea1f577070a310561783",
+          "output_sha256": "2acd0a5beb9ad59e2824309226c16c0c25ea172c5f5c3ab69abf1a091beadc7e",
+          "complete_skill_markers": null
+        },
+        {
+          "id": "item_22",
+          "exit_code": 0,
+          "status": "completed",
+          "targets": "references/writing-rules.md",
+          "command_sha256": "05708d200275b7e0bd8ebacffb530157d135037d0c1995b1dc056ade8464359d",
+          "output_sha256": "c66c1e2490ce22d43fa487e8f035c560b79161aacf689d16f75675ffef74f732",
+          "complete_skill_markers": null
+        },
+        {
+          "id": "item_23",
+          "exit_code": 0,
+          "status": "completed",
+          "targets": "references/formulaic-language.md",
+          "command_sha256": "07fac725855949bcf4b85b4c526a3fad9b6c70afeeefe798547c507a10e2bf94",
+          "output_sha256": "2b2a732eda2d8ceb9b9cabf3d7a698e10c7da56d5d03e91bbb709a2b42a7b077",
+          "complete_skill_markers": null
+        },
+        {
+          "id": "item_24",
+          "exit_code": 0,
+          "status": "completed",
+          "targets": "references/anti-ai-patterns.md",
+          "command_sha256": "5594db0dab249a6bda050c2fb707e0c73dabab111472b1c1dc98f8d89fd90ec3",
+          "output_sha256": "d92ccbe6ad1f319ee87e4af6c422942acd4a1491e1804b51dbb3db2c76fbcd14",
+          "complete_skill_markers": null
+        }
+      ],
+      "script_calls": [],
+      "references_read": [
+        "references/anti-ai-patterns.md",
+        "references/formulaic-language.md",
+        "references/genre-playbook-notice.md",
+        "references/writing-rules.md"
+      ],
+      "scripts_called": [],
+      "final_sha256": "94cb41226186bb1adc5b31f87972abc83004f861274f28aad8610c3401a13672",
+      "result_draft_sha256": "94cb41226186bb1adc5b31f87972abc83004f861274f28aad8610c3401a13672",
+      "final_hash_match": true,
+      "final_features": {
+        "heading_hash_lines": [],
+        "horizontal_rule_lines": [],
+        "table_lines": [],
+        "has_markdown_table": false,
+        "office_lines": [
+          7,
+          11,
+          14
+        ],
+        "exact_unit_lines": [
+          11
+        ],
+        "date_lines": [
+          12
+        ],
+        "has_process_preface": false
+      }
+    },
+    {
+      "model": "minimax-cn/MiniMax-M3",
+      "case": "issuer_given",
+      "arm": "candidate",
+      "elapsed_seconds": 132.3,
+      "result_returncode": 0,
+      "invalid": [],
+      "command_count": 7,
+      "command_exit_codes": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "nonzero_command_ids": [],
+      "skill_content_observed": true,
+      "skill_complete_output_ids": [
+        "item_2"
+      ],
+      "read_calls": [
+        {
+          "id": "item_2",
+          "exit_code": 0,
+          "status": "completed",
+          "targets": "SKILL.md",
+          "command_sha256": "f0f983cdeb12cdba8b3913e461652be468bd1a7a595fc0db131ee016502ad139",
+          "output_sha256": "9afccae71530080a871a5e96312c3f625103adad6d215086d4aa920e90d4fc11",
+          "complete_skill_markers": {
+            "frontmatter": true,
+            "title": true,
+            "scope": true,
+            "entry": true,
+            "body": true,
+            "steps": true
+          }
+        },
+        {
+          "id": "item_4",
+          "exit_code": 0,
+          "status": "completed",
+          "targets": "references/genre-playbook-notice.md",
+          "command_sha256": "37fdca491e2f83d04516976146793bee517c1fe7bf39ea1f577070a310561783",
+          "output_sha256": "ed1bc241c64ec3b5733e8893f08be4f5136cbc2679e5c453bb9217eb70d9093b",
+          "complete_skill_markers": null
+        },
+        {
+          "id": "item_5",
+          "exit_code": 0,
+          "status": "completed",
+          "targets": "references/writing-rules.md",
+          "command_sha256": "05708d200275b7e0bd8ebacffb530157d135037d0c1995b1dc056ade8464359d",
+          "output_sha256": "3128be71cb6ac5a7dd6ddbcccf80604aa19e53008d683c915969a7ee277be914",
+          "complete_skill_markers": null
+        }
+      ],
+      "script_calls": [
+        {
+          "id": "item_8",
+          "exit_code": 0,
+          "status": "completed",
+          "scripts": "prose_lint.py",
+          "command_sha256": "4588ebb14322fa3d3f87d17da633c64071c5177de7c7730694eae6981c25f346",
+          "output_sha256": "d219807fd4571400f98df7b48ff320cc44f0e7a64436d98cb4f9f00fb8cb1641"
+        },
+        {
+          "id": "item_9",
+          "exit_code": 0,
+          "status": "completed",
+          "scripts": "draft_length.py",
+          "command_sha256": "0539b1e16190b7ff2a36fb6dd9a5314d057b78f50adf63575f565010cd142dc3",
+          "output_sha256": "e11400e88a50834fc8ef7441005af87ebf487f0d1d91bf7ff8f827b9414c4c56"
+        }
+      ],
+      "references_read": [
+        "references/genre-playbook-notice.md",
+        "references/writing-rules.md"
+      ],
+      "scripts_called": [
+        "draft_length.py",
+        "prose_lint.py"
+      ],
+      "final_sha256": "d1b42b10b2659b136f2a2334cc6930588d688dddce87fa6142c73dee5ac63aaf",
+      "result_draft_sha256": "d1b42b10b2659b136f2a2334cc6930588d688dddce87fa6142c73dee5ac63aaf",
+      "final_hash_match": true,
+      "final_features": {
+        "heading_hash_lines": [],
+        "horizontal_rule_lines": [],
+        "table_lines": [],
+        "has_markdown_table": false,
+        "office_lines": [
+          7,
+          11
+        ],
+        "exact_unit_lines": [
+          11
+        ],
+        "date_lines": [
+          12
+        ],
+        "has_process_preface": false
+      }
+    },
+    {
+      "model": "minimax-cn/MiniMax-M3",
+      "case": "issuer_given",
+      "arm": "baseline",
+      "elapsed_seconds": 66.03,
+      "result_returncode": 0,
+      "invalid": [],
+      "command_count": 5,
+      "command_exit_codes": [
+        1,
+        0,
+        0,
+        0,
+        0
+      ],
+      "nonzero_command_ids": [
+        "item_1"
+      ],
+      "skill_content_observed": true,
+      "skill_complete_output_ids": [
+        "item_2"
+      ],
+      "read_calls": [
+        {
+          "id": "item_1",
+          "exit_code": 1,
+          "status": "failed",
+          "targets": "SKILL.md",
+          "command_sha256": "c8afdc16b9e010e764dff950ba8ffc67f694f060669d01406cc61f685e25d9d6",
+          "output_sha256": "6e40bda51399f7f5e4e966648eb95873e7c2ea0dc8fda4382a8435f7ea9f40cb",
+          "complete_skill_markers": {
+            "frontmatter": false,
+            "title": false,
+            "scope": false,
+            "entry": false,
+            "body": false,
+            "steps": false
+          }
+        },
+        {
+          "id": "item_2",
+          "exit_code": 0,
+          "status": "completed",
+          "targets": "SKILL.md",
+          "command_sha256": "ee618c6a917573e21c0d971d9e00277eb1994e3f7640db871a60b37b43e6e2c9",
+          "output_sha256": "b1cfcfbade53aebd59eb1d024d04a69c8ae9fb672353b415906ba72af208d9b7",
+          "complete_skill_markers": {
+            "frontmatter": true,
+            "title": true,
+            "scope": true,
+            "entry": true,
+            "body": true,
+            "steps": true
+          }
+        },
+        {
+          "id": "item_5",
+          "exit_code": 0,
+          "status": "completed",
+          "targets": "references/genre-playbook-notice.md",
+          "command_sha256": "9d24514bfc813529b39d3c16be8b002612bed3e22eda218c22d91baa47bd3508",
+          "output_sha256": "62150133255bc10b84ae9c1b95fdb0bc62b02d43f3a2833b4223f8303c7ad4a8",
+          "complete_skill_markers": null
+        },
+        {
+          "id": "item_6",
+          "exit_code": 0,
+          "status": "completed",
+          "targets": "references/writing-rules.md",
+          "command_sha256": "b019f309a92739ba5c163d9d704e38e7b80a3e7ec82cabe09a322fed471f4528",
+          "output_sha256": "4a2cbc432618e3ca20e1f6781b6e85ff2828bc89470ba9a568dc1478eec41b31",
+          "complete_skill_markers": null
+        }
+      ],
+      "script_calls": [],
+      "references_read": [
+        "references/genre-playbook-notice.md",
+        "references/writing-rules.md"
+      ],
+      "scripts_called": [],
+      "final_sha256": "7b7c585ed2e22b4bf643326ff0a7fed07d3163ef917128915ba250b01c29dbc4",
+      "result_draft_sha256": "7b7c585ed2e22b4bf643326ff0a7fed07d3163ef917128915ba250b01c29dbc4",
+      "final_hash_match": true,
+      "final_features": {
+        "heading_hash_lines": [],
+        "horizontal_rule_lines": [],
+        "table_lines": [],
+        "has_markdown_table": false,
+        "office_lines": [
+          7,
+          11
+        ],
+        "exact_unit_lines": [
+          11
+        ],
+        "date_lines": [
+          13
+        ],
+        "has_process_preface": false
+      }
+    },
+    {
+      "model": "minimax-cn/MiniMax-M3",
+      "case": "plain_default",
+      "arm": "candidate",
+      "elapsed_seconds": 74.66,
+      "result_returncode": 0,
+      "invalid": [],
+      "command_count": 11,
+      "command_exit_codes": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "nonzero_command_ids": [],
+      "skill_content_observed": true,
+      "skill_complete_output_ids": [
+        "item_2"
+      ],
+      "read_calls": [
+        {
+          "id": "item_2",
+          "exit_code": 0,
+          "status": "completed",
+          "targets": "SKILL.md",
+          "command_sha256": "8c3a81d44aeace3834fe62862ac575d5328f8b08825c8d38ea7d7577d736ae10",
+          "output_sha256": "96c6849ef6216b11b0ad0c605f26db1e7bd9cc75a3b0edc1935a39edbc9f1b01",
+          "complete_skill_markers": {
+            "frontmatter": true,
+            "title": true,
+            "scope": true,
+            "entry": true,
+            "body": true,
+            "steps": true
+          }
+        },
+        {
+          "id": "item_4",
+          "exit_code": 0,
+          "status": "completed",
+          "targets": "references/genre-playbook-procurement-announcement.md",
+          "command_sha256": "ecd9e6fd065d5adf3e4ea304e5a114763fd6e349fade2dd0c36fca91a0002718",
+          "output_sha256": "4d230de265b55a4337fc2250f9ddaa703d67a7131c404ae9dcf8ba90ea7af6fa",
+          "complete_skill_markers": null
+        },
+        {
+          "id": "item_5",
+          "exit_code": 0,
+          "status": "completed",
+          "targets": "references/writing-rules.md",
+          "command_sha256": "fa363da33d05536413348a220f05a96f0adf530399d8d65a66e8d3baae4c85c8",
+          "output_sha256": "c7ce08f6eb40c4c46a9daedc220d85b8f21cb5fdab3f5aefb442a25b9524166c",
+          "complete_skill_markers": null
+        },
+        {
+          "id": "item_6",
+          "exit_code": 0,
+          "status": "completed",
+          "targets": "references/anti-ai-patterns.md",
+          "command_sha256": "03a0f5e1b7797b474e9af3c452f0e1918a8d6f56971d7ea6d4d666da9aed5a7c",
+          "output_sha256": "49a2ab9aec706f73ddc47a29813163d120f12fd25b791d6c6041eab6676fc9ef",
+          "complete_skill_markers": null
+        }
+      ],
+      "script_calls": [
+        {
+          "id": "item_11",
+          "exit_code": 0,
+          "status": "completed",
+          "scripts": "draft_length.py",
+          "command_sha256": "d649b0755da36c12302e34fceb898c3b133851570ec97cb865888bdf16a7d58d",
+          "output_sha256": "98e43725b3d42054209d7ab1a8cba0a409cafff137e5fdfbbb92de57b7b1fcfd"
+        },
+        {
+          "id": "item_12",
+          "exit_code": 0,
+          "status": "completed",
+          "scripts": "prose_lint.py",
+          "command_sha256": "97bf4bcf375f3c1d59963a884a6b7f304ddbd3e9a491565b49f0798e0ca0b022",
+          "output_sha256": "d219807fd4571400f98df7b48ff320cc44f0e7a64436d98cb4f9f00fb8cb1641"
+        }
+      ],
+      "references_read": [
+        "references/anti-ai-patterns.md",
+        "references/genre-playbook-procurement-announcement.md",
+        "references/writing-rules.md"
+      ],
+      "scripts_called": [
+        "draft_length.py",
+        "prose_lint.py"
+      ],
+      "final_sha256": "bf4c7af5ec4d82d981ec9489ec923b41cd86184a4f6d0e3067db22ed93d34725",
+      "result_draft_sha256": "bf4c7af5ec4d82d981ec9489ec923b41cd86184a4f6d0e3067db22ed93d34725",
+      "final_hash_match": true,
+      "final_features": {
+        "heading_hash_lines": [],
+        "horizontal_rule_lines": [
+          3,
+          14
+        ],
+        "table_lines": [],
+        "has_markdown_table": false,
+        "office_lines": [],
+        "exact_unit_lines": [
+          11
+        ],
+        "date_lines": [
+          12,
+          16
+        ],
+        "has_process_preface": true
+      }
+    },
+    {
+      "model": "minimax-cn/MiniMax-M3",
+      "case": "plain_default",
+      "arm": "baseline",
+      "elapsed_seconds": 81.8,
+      "result_returncode": 0,
+      "invalid": [],
+      "command_count": 6,
+      "command_exit_codes": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "nonzero_command_ids": [],
+      "skill_content_observed": true,
+      "skill_complete_output_ids": [
+        "item_1"
+      ],
+      "read_calls": [
+        {
+          "id": "item_1",
+          "exit_code": 0,
+          "status": "completed",
+          "targets": "SKILL.md",
+          "command_sha256": "dd3b7a3616e0624e96034024da1845546027f67dea50d1ca7b6bbfb582c27bb6",
+          "output_sha256": "b1cfcfbade53aebd59eb1d024d04a69c8ae9fb672353b415906ba72af208d9b7",
+          "complete_skill_markers": {
+            "frontmatter": true,
+            "title": true,
+            "scope": true,
+            "entry": true,
+            "body": true,
+            "steps": true
+          }
+        },
+        {
+          "id": "item_4",
+          "exit_code": 0,
+          "status": "completed",
+          "targets": "references/genre-playbook-procurement-announcement.md",
+          "command_sha256": "22a3245ac5d4b689d2d878576d87a14fe69c3836b84c8ab086fbf9afb9a5d54f",
+          "output_sha256": "4d230de265b55a4337fc2250f9ddaa703d67a7131c404ae9dcf8ba90ea7af6fa",
+          "complete_skill_markers": null
+        },
+        {
+          "id": "item_5",
+          "exit_code": 0,
+          "status": "completed",
+          "targets": "references/writing-rules.md",
+          "command_sha256": "5819860a5b497887a82809a885d19977877058a1b2ee6bf1d93e598516dc5cd6",
+          "output_sha256": "4a2cbc432618e3ca20e1f6781b6e85ff2828bc89470ba9a568dc1478eec41b31",
+          "complete_skill_markers": null
+        },
+        {
+          "id": "item_6",
+          "exit_code": 0,
+          "status": "completed",
+          "targets": "references/anti-ai-patterns.md",
+          "command_sha256": "e76cd13e7f675630cb6f62a62f065b67e6831e7b1cda273d98ba670a68b82b8e",
+          "output_sha256": "49a2ab9aec706f73ddc47a29813163d120f12fd25b791d6c6041eab6676fc9ef",
+          "complete_skill_markers": null
+        }
+      ],
+      "script_calls": [],
+      "references_read": [
+        "references/anti-ai-patterns.md",
+        "references/genre-playbook-procurement-announcement.md",
+        "references/writing-rules.md"
+      ],
+      "scripts_called": [],
+      "final_sha256": "a4eeed3cd56ad41cc347144f00ab8105ec80252b3d91ee2ffc6667225e128836",
+      "result_draft_sha256": "a4eeed3cd56ad41cc347144f00ab8105ec80252b3d91ee2ffc6667225e128836",
+      "final_hash_match": true,
+      "final_features": {
+        "heading_hash_lines": [],
+        "horizontal_rule_lines": [
+          3
+        ],
+        "table_lines": [],
+        "has_markdown_table": false,
+        "office_lines": [],
+        "exact_unit_lines": [
+          23
+        ],
+        "date_lines": [
+          24
+        ],
+        "has_process_preface": true
+      }
+    },
+    {
+      "model": "minimax-cn/MiniMax-M3",
+      "case": "markdown_requested",
+      "arm": "candidate",
+      "elapsed_seconds": 41.83,
+      "result_returncode": 0,
+      "invalid": [],
+      "command_count": 4,
+      "command_exit_codes": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "nonzero_command_ids": [],
+      "skill_content_observed": true,
+      "skill_complete_output_ids": [
+        "item_1"
+      ],
+      "read_calls": [
+        {
+          "id": "item_1",
+          "exit_code": 0,
+          "status": "completed",
+          "targets": "SKILL.md",
+          "command_sha256": "4d0472520177550ec2fd133180c9228b30ffca7fc2ab0fddf71175a5d5e262b2",
+          "output_sha256": "96c6849ef6216b11b0ad0c605f26db1e7bd9cc75a3b0edc1935a39edbc9f1b01",
+          "complete_skill_markers": {
+            "frontmatter": true,
+            "title": true,
+            "scope": true,
+            "entry": true,
+            "body": true,
+            "steps": true
+          }
+        },
+        {
+          "id": "item_2",
+          "exit_code": 0,
+          "status": "completed",
+          "targets": "references/reference-index.md",
+          "command_sha256": "2c89e07dfb90306c56cd05b5a068537ccfa057803650908ccc680093cc14ea87",
+          "output_sha256": "8d08e1d09e53f1e1de57bfc51b9a9b4743a18339fc21880eda3e81fac422300f",
+          "complete_skill_markers": null
+        },
+        {
+          "id": "item_3",
+          "exit_code": 0,
+          "status": "completed",
+          "targets": "references/genre-playbook-procurement-announcement.md",
+          "command_sha256": "b94093d643e21db35cd8d9173851ce9e567f30dfc2f23cd90790655aef6a4e06",
+          "output_sha256": "4d230de265b55a4337fc2250f9ddaa703d67a7131c404ae9dcf8ba90ea7af6fa",
+          "complete_skill_markers": null
+        },
+        {
+          "id": "item_4",
+          "exit_code": 0,
+          "status": "completed",
+          "targets": "references/writing-rules.md",
+          "command_sha256": "607b25385d39764a84fce7292d9ebde30e5d5c5abf60bec8dbd2c213d8981497",
+          "output_sha256": "c7ce08f6eb40c4c46a9daedc220d85b8f21cb5fdab3f5aefb442a25b9524166c",
+          "complete_skill_markers": null
+        }
+      ],
+      "script_calls": [],
+      "references_read": [
+        "references/genre-playbook-procurement-announcement.md",
+        "references/reference-index.md",
+        "references/writing-rules.md"
+      ],
+      "scripts_called": [],
+      "final_sha256": "4c45c77d1f855b16d119d680aad99da9133a5c5eebf048aad6114d9b7c0e6b35",
+      "result_draft_sha256": "4c45c77d1f855b16d119d680aad99da9133a5c5eebf048aad6114d9b7c0e6b35",
+      "final_hash_match": true,
+      "final_features": {
+        "heading_hash_lines": [
+          5
+        ],
+        "horizontal_rule_lines": [
+          3
+        ],
+        "table_lines": [
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19
+        ],
+        "has_markdown_table": true,
+        "office_lines": [],
+        "exact_unit_lines": [],
+        "date_lines": [],
+        "has_process_preface": true
+      }
+    },
+    {
+      "model": "minimax-cn/MiniMax-M3",
+      "case": "markdown_requested",
+      "arm": "baseline",
+      "elapsed_seconds": 264.41,
+      "result_returncode": 0,
+      "invalid": [],
+      "command_count": 40,
+      "command_exit_codes": [
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        0,
+        1,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "nonzero_command_ids": [
+        "item_5",
+        "item_6",
+        "item_8",
+        "item_11",
+        "item_16",
+        "item_20",
+        "item_25",
+        "item_34"
+      ],
+      "skill_content_observed": true,
+      "skill_complete_output_ids": [
+        "item_1",
+        "item_2",
+        "item_17",
+        "item_18",
+        "item_19",
+        "item_23"
+      ],
+      "read_calls": [
+        {
+          "id": "item_1",
+          "exit_code": 0,
+          "status": "completed",
+          "targets": "SKILL.md",
+          "command_sha256": "9fc7ee68c466c561ab4ed0a2f65d8f150ac489b17544fcc40a4fca411b25012b",
+          "output_sha256": "b1cfcfbade53aebd59eb1d024d04a69c8ae9fb672353b415906ba72af208d9b7",
+          "complete_skill_markers": {
+            "frontmatter": true,
+            "title": true,
+            "scope": true,
+            "entry": true,
+            "body": true,
+            "steps": true
+          }
+        },
+        {
+          "id": "item_2",
+          "exit_code": 0,
+          "status": "completed",
+          "targets": "SKILL.md",
+          "command_sha256": "445927dabf822af60f682c929db95362e7fbc3de6bcdef9dee8ca89572537a76",
+          "output_sha256": "504e25e6ae4f0383f1cbbf1e454f51ad5981c48486242c46a04a72176006ab53",
+          "complete_skill_markers": {
+            "frontmatter": true,
+            "title": true,
+            "scope": true,
+            "entry": true,
+            "body": true,
+            "steps": true
+          }
+        },
+        {
+          "id": "item_5",
+          "exit_code": 1,
+          "status": "failed",
+          "targets": "SKILL.md",
+          "command_sha256": "232134a2d6f8fc4698e685016caaf23e5e6e742811ee1e677f8ec1ff1c91c6bd",
+          "output_sha256": "50485a05ec5db1dd638b767f59ffa545da1fcb91c30c63c0f4e7e5397e20353d",
+          "complete_skill_markers": {
+            "frontmatter": false,
+            "title": false,
+            "scope": false,
+            "entry": false,
+            "body": false,
+            "steps": false
+          }
+        },
+        {
+          "id": "item_17",
+          "exit_code": 0,
+          "status": "completed",
+          "targets": "SKILL.md",
+          "command_sha256": "3923c92fadbbe0777ee543f156e334a98881daa955e8ee785b49e1769b874ac9",
+          "output_sha256": "59ce3622641abf27989c55b650550af5b5a2f2b005c5feb7a89611a02d51ee90",
+          "complete_skill_markers": {
+            "frontmatter": true,
+            "title": true,
+            "scope": true,
+            "entry": true,
+            "body": true,
+            "steps": true
+          }
+        },
+        {
+          "id": "item_18",
+          "exit_code": 0,
+          "status": "completed",
+          "targets": "SKILL.md",
+          "command_sha256": "4455b9186a93ce40ceccf7dffcd0b1d64d228378d1f71c3751372cd7251286ba",
+          "output_sha256": "59ce3622641abf27989c55b650550af5b5a2f2b005c5feb7a89611a02d51ee90",
+          "complete_skill_markers": {
+            "frontmatter": true,
+            "title": true,
+            "scope": true,
+            "entry": true,
+            "body": true,
+            "steps": true
+          }
+        },
+        {
+          "id": "item_19",
+          "exit_code": 0,
+          "status": "completed",
+          "targets": "SKILL.md",
+          "command_sha256": "f294b11289c4384d28bd9befdeec9ee7bf2defccea27311d63cba4f57b1e765f",
+          "output_sha256": "b78e21c27325c565bb4f8d08cb9e035d87e6b5b207bc97156ba3b277c61d6b94",
+          "complete_skill_markers": {
+            "frontmatter": true,
+            "title": true,
+            "scope": true,
+            "entry": true,
+            "body": true,
+            "steps": true
+          }
+        },
+        {
+          "id": "item_20",
+          "exit_code": 1,
+          "status": "failed",
+          "targets": "SKILL.md",
+          "command_sha256": "3ca81f3d4084f43a3a69a26b6d14aa63bb08e4b24b584a16bc90b968ffc915fa",
+          "output_sha256": "83cee69214da2175b5033379ed8853ff7990d883aa32a0acf6b28bef6f404b66",
+          "complete_skill_markers": {
+            "frontmatter": false,
+            "title": false,
+            "scope": false,
+            "entry": false,
+            "body": false,
+            "steps": false
+          }
+        },
+        {
+          "id": "item_23",
+          "exit_code": 0,
+          "status": "completed",
+          "targets": "SKILL.md",
+          "command_sha256": "5a1ba11ba700f4ebff9b335d766ee703be418f11c74d86e8edc17054d2441dc5",
+          "output_sha256": "4f315761409ab6e43422f280e7270665d411efb98ffcab25380efe7bbc64859d",
+          "complete_skill_markers": {
+            "frontmatter": true,
+            "title": true,
+            "scope": true,
+            "entry": true,
+            "body": true,
+            "steps": true
+          }
+        }
+      ],
+      "script_calls": [],
+      "references_read": [],
+      "scripts_called": [],
+      "final_sha256": "93470bf9a5238a5a91631c2060384db8ee1be8d3b0ec16966c35e7c264f6f47b",
+      "result_draft_sha256": "93470bf9a5238a5a91631c2060384db8ee1be8d3b0ec16966c35e7c264f6f47b",
+      "final_hash_match": true,
+      "final_features": {
+        "heading_hash_lines": [
+          5,
+          9
+        ],
+        "horizontal_rule_lines": [
+          3,
+          29
+        ],
+        "table_lines": [
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21
+        ],
+        "has_markdown_table": true,
+        "office_lines": [],
+        "exact_unit_lines": [
+          27
+        ],
+        "date_lines": [],
+        "has_process_preface": true
+      }
+    }
+  ],
+  "totals": {
+    "result_returncode_zero": true,
+    "command_nonzero_cells": [
+      "minimax-cn/MiniMax-M3|issuer_missing|baseline",
+      "minimax-cn/MiniMax-M3|issuer_given|baseline",
+      "minimax-cn/MiniMax-M3|markdown_requested|baseline"
+    ],
+    "skill_observed_cells": [
+      "alibaba-token-plan/qwen3.8-flash|issuer_missing|baseline",
+      "alibaba-token-plan/qwen3.8-flash|issuer_missing|candidate",
+      "alibaba-token-plan/qwen3.8-flash|issuer_given|baseline",
+      "alibaba-token-plan/qwen3.8-flash|issuer_given|candidate",
+      "alibaba-token-plan/qwen3.8-flash|plain_default|baseline",
+      "alibaba-token-plan/qwen3.8-flash|plain_default|candidate",
+      "alibaba-token-plan/qwen3.8-flash|markdown_requested|baseline",
+      "alibaba-token-plan/qwen3.8-flash|markdown_requested|candidate",
+      "minimax-cn/MiniMax-M3|issuer_missing|candidate",
+      "minimax-cn/MiniMax-M3|issuer_missing|baseline",
+      "minimax-cn/MiniMax-M3|issuer_given|candidate",
+      "minimax-cn/MiniMax-M3|issuer_given|baseline",
+      "minimax-cn/MiniMax-M3|plain_default|candidate",
+      "minimax-cn/MiniMax-M3|plain_default|baseline",
+      "minimax-cn/MiniMax-M3|markdown_requested|candidate",
+      "minimax-cn/MiniMax-M3|markdown_requested|baseline"
+    ],
+    "final_hash_matches": 16,
+    "total_elapsed_seconds": 1752.67
+  }
+}

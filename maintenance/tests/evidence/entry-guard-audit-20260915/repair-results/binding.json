@@ -1,0 +1,44 @@
+{
+  "main_commit": "c2577f534dad92f2de6bfd75667312da57e6e69b",
+  "candidate_head": "a0ff415510d7eb6f4aac1bf6efe8feaca0951eee",
+  "fingerprints": {
+    "baseline": "9fca797d15b0f5d5d99c3a1c61b9c143a31fa738587e5a77079a636244c6957e",
+    "candidate": "07023468ff170f4e453ea7bc500d05dbbd09b82152e0a8c2fadfa80c327aefb4"
+  },
+  "models": [
+    "alibaba-token-plan/qwen3.8-flash",
+    "minimax-cn/MiniMax-M3"
+  ],
+  "cases": {
+    "issuer_missing": "请根据这些安排写一则简短通知：业务科、资料室于9月18日下午3时在二楼会议室参加档案整理培训。参会回执请于9月16日前报办公室，接收邮箱为office@example.org，联系人是王老师。",
+    "issuer_given": "请以综合办公室名义发出一则简短通知，主送业务科和资料室：业务科、资料室于9月18日下午3时在二楼会议室参加档案整理培训。参会回执请于9月16日前报办公室，接收邮箱为office@example.org，联系人是王老师。",
+    "plain_default": "以下为虚拟写作材料。请拟采购公告：海岚市档案服务中心拟采购扫描仪3台，最高限价合计1.8万元；采用公开询价，报名截止2026年9月25日17时，材料交市档案服务中心综合科，联系人李工，电话020-81234567。公告只发布这些已明确事项，不增加资质、评审标准或履约要求。",
+    "markdown_requested": "以下为虚拟写作材料。请用Markdown写采购公告，标题用一级标题，采购信息用表格：海岚市档案服务中心拟采购扫描仪3台，最高限价合计1.8万元；采用公开询价，报名截止2026年9月25日17时，材料交市档案服务中心综合科，联系人李工，电话020-81234567。公告只发布这些已明确事项，不增加资质、评审标准或履约要求。"
+  },
+  "cli": "C:\\Users\\admin\\AppData\\Local\\OpenAI\\Codex\\bin\\bffc5354119c8421\\codex.exe",
+  "cli_version": "codex-cli 0.154.0-alpha.6.2",
+  "effort": "max",
+  "runtime": "C:\\Users\\admin\\AppData\\Local\\Temp\\cow-native-entry-guard-r1-20260915-t9ucs_qt",
+  "permissions": "inherited-host-config",
+  "timeout": 600,
+  "agent_documents": "project_doc_max_bytes=0",
+  "baseline_ref": "770c27b8980d4fc2a82d6efa111d20004cd9b410",
+  "baseline_source": null,
+  "candidate_source": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\entry-guard-audit-20260915\\chinese-official-writing",
+  "candidate_skill_name": "chinese-official-writing",
+  "baseline_commit": "770c27b8980d4fc2a82d6efa111d20004cd9b410",
+  "profile": "temporary-no-user-documents-or-credentials",
+  "runner_sha256": "180db1a815a192f612cf85b7c54976240abcfe8b6f834d22fedf5798cad5622d",
+  "prompt_prefix": "使用本目录 .agents/skills/chinese-official-writing/SKILL.md。\n\n使用普通写作能力，不启用 Hook。\n\n本目录文本文件为 UTF-8 编码，读取时显式指定 UTF-8 解码。\n\n",
+  "ordinary_only": true,
+  "utf8_read": true,
+  "runtime_layout": "each call has a separate parent, workspace and temporary directory",
+  "session_metadata": "ephemeral",
+  "review_host": {
+    "enabled": false,
+    "max_threads": null,
+    "max_depth": null,
+    "child_model": "host defaults",
+    "child_usage": "root JSON usage is not assumed to include child usage"
+  }
+}
