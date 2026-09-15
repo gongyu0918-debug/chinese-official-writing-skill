@@ -36,12 +36,12 @@ CompiledPattern = tuple[str, str, re.Pattern[str], str]
 
 
 PATTERNS: list[PatternSpec] = [
-    ("medium", "paired-summary", r"不是[^。；;\n]{0,80}而是", "改为直接肯定结论；必要否定对比可保留。"),
-    ("medium", "paired-summary", r"不仅[^。；;\n]{0,80}还", "拆成具体事实或只保留关键判断。"),
-    ("medium", "paired-summary", r"不仅[^。；;\n]{0,80}更是", "拆成具体事实或只保留关键判断。"),
-    ("medium", "paired-summary", r"不但[^。；;\n]{0,80}而且", "拆成具体事实或只保留关键判断。"),
-    ("medium", "paired-summary", r"既[^。；;\n]{0,80}又", "改为具体并列事项，避免套话。"),
-    ("medium", "paired-summary", r"一方面[^。；;\n]{0,100}另一方面", "改为按业务或数据自然分段。"),
+    ("medium", "paired-summary", r"不是[^。；;\n]{0,80}而是", "核对前半句是否澄清真实分歧或范围；必要对比保留，仅清理空设对立。"),
+    ("medium", "paired-summary", r"不仅[^。；;\n]{0,80}还", "核对两项是否各有信息作用；真实递进、并列和累积要求保留，合并同义重复。"),
+    ("medium", "paired-summary", r"不仅[^。；;\n]{0,80}更是", "核对递进关系和判断强度；有依据的递进保留，仅清理重复拔高。"),
+    ("medium", "paired-summary", r"不但[^。；;\n]{0,80}而且", "核对两项是否各有信息作用；真实递进、并列和累积要求保留，合并同义重复。"),
+    ("medium", "paired-summary", r"既(?!定|然)[^。；;\n]{0,80}又", "核对两项是否各有信息作用；真实并列保留，合并换词重复。"),
+    ("medium", "paired-summary", r"一方面[^。；;\n]{0,100}另一方面", "核对两方面是否承担不同事项；有用的分项保留，同义内容合并。"),
     ("high", "side-commentary", r"本方案重点说明", "删除写作说明，改成方案正文判断。"),
     ("high", "side-commentary", r"重点说明\s*Token\s*用在哪里", "改为年度调用需求来源描述。"),
     ("medium", "side-commentary", r"以下(直接)?列出", "改为正文承接，不写提示语。"),
@@ -57,7 +57,7 @@ PATTERNS: list[PatternSpec] = [
     ("medium", "side-commentary", r"简单来说", "正式文稿中通常不需要解释腔。"),
     ("medium", "side-commentary", r"通俗地说", "正式文稿中通常不需要解释腔。"),
     ("medium", "side-commentary", r"可以理解为", "正式文稿中通常不需要解释腔。"),
-    ("medium", "cost-explainer", r"测算口径|测算公式|计算公式|单价\s*[×xX*]\s*数量|计算如下", "检查需求与成本章节是否写成测算说明；必要时改为说明需求来源、费用对应事项和成本边界。"),
+    ("medium", "cost-explainer", r"测算口径|测算公式|计算公式|单价\s*[×xX*]\s*数量|计算如下", "核对该测算是否用于说明金额依据或响应用户要求；必要的口径、公式及明细保留，精简与本稿用途无关的计算讲解。"),
     ("medium", "unfinished-placeholder", r"\[[^\]\n]{0,30}(?:具体|待|填写|补充|确认|项目名称|单位名称|金额|日期)[^\]\n]{0,30}\]", "交付正文不应保留方括号占位；缺项改为正文外提示。"),
     ("medium", "unfinished-placeholder", r"(?<![A-Za-z])(?:X{2,}(?![A-Za-z\u4e00-\u9fff])|X+(?:万元|亿元|亿|项|%|％|卡|套|人|次|个|年|月|日|张|台|路|并发))", "交付正文不应保留 X/XXXX 类占位；缺项改为正文外提示。"),
     ("medium", "unfinished-placeholder", r"(?<![A-Za-z])X{2,}(?=[\u4e00-\u9fff])(?!发〔\d{4}〕\d+号)", "交付正文不应保留 XX类、XX系统等紧接中文的 X 类占位；缺项改为正文外提示或删去。"),
@@ -68,7 +68,6 @@ PATTERNS: list[PatternSpec] = [
     ("medium", "thought-leak", r"我将根据|接下来我会|按你的要求", "改为文稿正文或办理安排，不暴露生成过程。"),
     ("medium", "viewpoint-risk", r"(?:按|按照|根据)(?:录音|用户)要求|(?:录音|用户)要求(?:如下|为)|你让我|这版文章|这段文字", "检查是否把外部修改过程写进正文。"),
     ("medium", "vague-attribution", r"有关方面认为|业内专家指出", "避免模糊背书；补充明确来源或改为材料已给事实。"),
-    ("medium", "unsupported-conclusion", r"未发现重大隐患|总体较好[，,、]?\s*能够正常开展", "没有检查依据时不要补写正向或安全结论。"),
     ("medium", "casual", r"租赁方式更稳[，,、]?\s*也更省", "改为成本和服务保障更具确定性。"),
     ("medium", "casual", r"用不完", "改为阶段性资源余量或资源利用率。"),
     ("medium", "casual", r"AI味", "改为表述偏泛或判断不够具体。"),
@@ -253,7 +252,7 @@ DRAFT_BODY_PATTERNS: list[PatternSpec] = [
         rf"(?:推定|判断|认定|说明|证明|得出|确定|比较|"
         rf"形成[^。！？\n]{{0,{PROTECTIVE_DECISION_OBJECT_CHARS}}}(?:结论|决定|意见|安排)|"
         rf"作为[^。！？\n]{{0,{PROTECTIVE_BASIS_OBJECT_CHARS}}}依据)",
-        "核对这是否为材料明确要求的证据或结论边界；若只是事实后的保护性解释，删除该尾句。",
+        "核对该句是否说明必要的证据或结论范围；保留材料和合理分析支持的边界，精简重复解释。",
     ),
     (
         "medium",
@@ -261,7 +260,7 @@ DRAFT_BODY_PATTERNS: list[PatternSpec] = [
         rf"(?:尚未|仍未|暂未|还未|尚不|未(?!对|就|经|按|在))[^。！？\n]{{0,{UNRESOLVED_SUBJECT_CHARS}}}"
         rf"(?:形成|作出)[^。！？\n]{{0,{UNRESOLVED_RESULT_CHARS}}}(?:结论|定论|决定|意见|安排)"
         r"(?=[。！？]|$)",
-        "对照材料核对该未决状态是否属于本次事项；材料明确未决定、未形成结论或仍待核对时保留原状态，仅清理与事项无关的重复自我限定。",
+        "结合事项进展核对该句作用；保留必要的待核或未决状态，合并重复限定。",
     ),
     (
         "medium",
@@ -270,7 +269,7 @@ DRAFT_BODY_PATTERNS: list[PatternSpec] = [
         rf"不(?:直接)?(?:代表|等同于|意味着|构成)"
         rf"[^。！？\n]{{{MIN_NEGATIVE_BOUNDARY_TAIL_CHARS},{NEGATIVE_BOUNDARY_TAIL_CHARS}}}"
         r"(?=[。！？]|$)",
-        "核对这是否为必要的法律或决定边界；若只是用户未要求的免责或范围限定，删除该解释性尾句。",
+        "核对该句是否澄清实际范围、法律含义或决定状态；必要边界保留，精简与本稿用途无关的免责话术。",
     ),
 ]
 
@@ -279,7 +278,6 @@ DELIVERY_BODY_ONLY_LABELS = {"delivery-boilerplate"}
 
 # 程序控制阈值集中命名，便于区分“流程判断”与正则内部的局部长度上限。
 EXCERPT_CONTEXT_CHARS = 28
-CHECK_BASIS_CONTEXT_CHARS = 24
 QUOTE_LOOKAHEAD_LINES = 8
 ATTACHMENT_LOOKBACK_LINES = 5
 FRONTMATTER_METADATA_LOOKAHEAD_LINES = 7
@@ -624,17 +622,6 @@ def spans_overlap(first: tuple[int, int], second: tuple[int, int]) -> bool:
     """两个命中区间存在共同字符时返回 True。"""
 
     return first[0] < second[1] and second[0] < first[1]
-
-
-def has_check_basis_before(line: str, start: int) -> bool:
-    """安全结论前紧邻检查动作时返回 True。"""
-    prefix = line[max(0, start - CHECK_BASIS_CONTEXT_CHARS) : start]
-    return bool(
-        re.search(
-            r"经(?:现场|专项|全面|安全|联合|实地|书面)?(?:检查|核查|评估|审查)[，,、\s]*$",
-            prefix,
-        )
-    )
 
 
 def is_attachment_number_item(lines: list[str], line_index: int, line: str) -> bool:
@@ -1272,8 +1259,6 @@ def plain_line_findings(
             if label == "western-bullet" and is_attachment_number_item(
                 source.lines, line_index, line
             ):
-                continue
-            if label == "unsupported-conclusion" and has_check_basis_before(line, match.start()):
                 continue
             span = (match.start(), match.end())
             if any(

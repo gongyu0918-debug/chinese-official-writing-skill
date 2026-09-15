@@ -801,8 +801,6 @@ class ProseLintStructureTests(unittest.TestCase):
             "未来可期。",
             "高度重视。",
             "再上新台阶。",
-            "未发现重大隐患。",
-            "总体较好，能够正常开展。",
             "持续推进。",
         ]
 
@@ -834,12 +832,14 @@ class ProseLintStructureTests(unittest.TestCase):
 
         self.assertEqual(side_commentary_lines, {1, 2, 3, 4})
 
-    def test_unsupported_conclusion_keeps_warning_unless_check_basis_is_explicit(self) -> None:
-        unsupported = prose_lint.scan("<test>", "未发现重大隐患。")
-        supported = prose_lint.scan("<test>", "经现场检查，未发现重大隐患。")
-
-        self.assertTrue([item for item in unsupported if item.label == "unsupported-conclusion"])
-        self.assertFalse([item for item in supported if item.label == "unsupported-conclusion"])
+    def test_scan_does_not_adjudicate_factual_basis_from_adjacent_words(self) -> None:
+        for text in ("未发现重大隐患。", "经现场检查，未发现重大隐患。",
+                     "检查范围包括办公室插座和线路。\n本次检查未发现重大隐患。"):
+            with self.subTest(text=text):
+                findings = prose_lint.scan("<test>", text)
+                self.assertFalse(findings)
+        formatted = prose_lint.scan("<test>", "# 检查结果\n未发现重大隐患。", include_format=True)
+        self.assertTrue(any(item.label == "markdown-heading" for item in formatted))
 
     def test_attachment_numbered_list_is_not_western_bullet_noise(self) -> None:
         attachment = "附件：\n1. 项目清单\n2. 联系方式"

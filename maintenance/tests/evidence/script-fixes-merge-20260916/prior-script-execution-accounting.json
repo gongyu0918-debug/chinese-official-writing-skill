@@ -1,0 +1,181 @@
+{
+  "planned_calls": 4,
+  "actual_calls": 8,
+  "unnecessary_duplicate_calls": 4,
+  "total_three_workstreams_actual_calls": 28,
+  "cause": "The parent checked output only and missed the original run directly under maintenance evidence. No further model calls after discovery.",
+  "batches": {
+    "original": {
+      "directory": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\script-quality-r2-20260915\\maintenance\\tests\\evidence\\script-quality-r2-20260915\\run",
+      "started_at_utc": "2026-09-15T11:33:58.320711+00:00",
+      "finished_at_utc": "2026-09-15T11:41:19.300913+00:00",
+      "model": "alibaba-token-plan-2/qwen3.8-flash",
+      "effort": "max",
+      "baseline_commit": "9c4f12166c3a6a5920153b6e28a57d781993bb36",
+      "candidate_commit": "0078496df7e0553426dfdd80ecde93bac860d1ef",
+      "runner_sha256": "88cea1d33042e5f0c6d81b867bb68cb6106385625f469df27a132042958e1942",
+      "calls": [
+        {
+          "case": "markdown_quote_control",
+          "arm": "baseline",
+          "seconds": 158.36,
+          "invalid": [],
+          "final_sha256": "3755d4d3b12fb7fc104e0c73fa2ba12766adf08a9f4b0018a14203a3b4bf8402",
+          "trace_sha256": "f605c90defefc81accbc6f1fac092d741d242f61c898d538490d628368f84887",
+          "usage": [
+            {
+              "input_tokens": 250685,
+              "cached_input_tokens": 228096,
+              "cache_write_input_tokens": 0,
+              "output_tokens": 7919,
+              "reasoning_output_tokens": 4834
+            }
+          ],
+          "successful_prose_calls": 2,
+          "exact_multiline_quote_preserved": true
+        },
+        {
+          "case": "markdown_quote_control",
+          "arm": "candidate",
+          "seconds": 114.61,
+          "invalid": [],
+          "final_sha256": "6740356dab77849430c2000fa9b06c91b2c9fd8dbfb5e90cf525832e2dd41dee",
+          "trace_sha256": "ff400f1dd22d1fc786ab00fc708d83c87366394fa115080aaa211c8c27d5fd80",
+          "usage": [
+            {
+              "input_tokens": 146784,
+              "cached_input_tokens": 131072,
+              "cache_write_input_tokens": 0,
+              "output_tokens": 6559,
+              "reasoning_output_tokens": 5019
+            }
+          ],
+          "successful_prose_calls": 1,
+          "exact_multiline_quote_preserved": true
+        },
+        {
+          "case": "process_markdown",
+          "arm": "baseline",
+          "seconds": 81.14,
+          "invalid": [],
+          "final_sha256": "24a00dbf8d0b76f10515c6dc48fdd1d8dfcffdc64b84b764d29a9283521ec62a",
+          "trace_sha256": "a3bba91b35bc69646f54d26c8519d1103ad1c657ada6e017b18f3d9090fa394d",
+          "usage": [
+            {
+              "input_tokens": 208032,
+              "cached_input_tokens": 186752,
+              "cache_write_input_tokens": 0,
+              "output_tokens": 6134,
+              "reasoning_output_tokens": 3867
+            }
+          ],
+          "successful_prose_calls": 1
+        },
+        {
+          "case": "process_markdown",
+          "arm": "candidate",
+          "seconds": 84.84,
+          "invalid": [],
+          "final_sha256": "77b40d5852f0517f4afa5368efd30d8bc0a8a3b21ab099e0461d26712cd464f5",
+          "trace_sha256": "4380f9d6bb7d42386feeb64d9372dc346a072f218edbb5c75c25c65f093abda7",
+          "usage": [
+            {
+              "input_tokens": 130984,
+              "cached_input_tokens": 114688,
+              "cache_write_input_tokens": 0,
+              "output_tokens": 6345,
+              "reasoning_output_tokens": 4556
+            }
+          ],
+          "successful_prose_calls": 2
+        }
+      ]
+    },
+    "duplicate": {
+      "directory": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\script-quality-r2-20260915\\output\\script-quality-r2-20260915",
+      "started_at_utc": "2026-09-15T11:42:28.920993+00:00",
+      "finished_at_utc": "2026-09-15T11:54:45.659268+00:00",
+      "model": "alibaba-token-plan-2/qwen3.8-flash",
+      "effort": "max",
+      "baseline_commit": "9c4f12166c3a6a5920153b6e28a57d781993bb36",
+      "candidate_commit": "0078496df7e0553426dfdd80ecde93bac860d1ef",
+      "runner_sha256": "88cea1d33042e5f0c6d81b867bb68cb6106385625f469df27a132042958e1942",
+      "calls": [
+        {
+          "case": "markdown_quote_control",
+          "arm": "baseline",
+          "seconds": 157.8,
+          "invalid": [],
+          "final_sha256": "7ee48bf4400f9a1c7b0fbe232b76ad8e680cc05e77757cf95aa8815d42871f61",
+          "trace_sha256": "e9b30b0d05190160d52ebb1e64a88e8b5bafd29b3b12ddb89715689fbac7dd2b",
+          "usage": [
+            {
+              "input_tokens": 187242,
+              "cached_input_tokens": 169600,
+              "cache_write_input_tokens": 0,
+              "output_tokens": 8486,
+              "reasoning_output_tokens": 6637
+            }
+          ],
+          "successful_prose_calls": 2,
+          "exact_multiline_quote_preserved": true
+        },
+        {
+          "case": "markdown_quote_control",
+          "arm": "candidate",
+          "seconds": 272.52,
+          "invalid": [],
+          "final_sha256": "0ce84120e9beabc7ffe47f83af9c40de008fde5d2e6070b8d55fee51cb9cfe19",
+          "trace_sha256": "3f657151732f2aef30bca596c0946487cae415aeac6f7afb45047557d03f2627",
+          "usage": [
+            {
+              "input_tokens": 270008,
+              "cached_input_tokens": 247680,
+              "cache_write_input_tokens": 0,
+              "output_tokens": 14944,
+              "reasoning_output_tokens": 11183
+            }
+          ],
+          "successful_prose_calls": 3,
+          "exact_multiline_quote_preserved": true
+        },
+        {
+          "case": "process_markdown",
+          "arm": "baseline",
+          "seconds": 217.62,
+          "invalid": [],
+          "final_sha256": "1dd269217c344f54106842f48c508e2ee34834301ff0a97e95ca2d95c130e2c4",
+          "trace_sha256": "2885d7c8b9a36db88417595abbcb31d8ec4e0ae646c48b25bbbb6b8e8e573c17",
+          "usage": [
+            {
+              "input_tokens": 328137,
+              "cached_input_tokens": 305408,
+              "cache_write_input_tokens": 0,
+              "output_tokens": 11816,
+              "reasoning_output_tokens": 7275
+            }
+          ],
+          "successful_prose_calls": 3
+        },
+        {
+          "case": "process_markdown",
+          "arm": "candidate",
+          "seconds": 86.72,
+          "invalid": [],
+          "final_sha256": "306351459929b17934a45664cf224a607514453c2bdc3d4fbd617df94b772bae",
+          "trace_sha256": "a693254d638166243ed3344a4b8e612fca2ab47e691cd36d827dcb24df30f8e9",
+          "usage": [
+            {
+              "input_tokens": 251069,
+              "cached_input_tokens": 232576,
+              "cache_write_input_tokens": 0,
+              "output_tokens": 5197,
+              "reasoning_output_tokens": 3231
+            }
+          ],
+          "successful_prose_calls": 2
+        }
+      ]
+    }
+  }
+}
