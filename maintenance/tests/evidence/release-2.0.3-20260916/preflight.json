@@ -1,0 +1,16 @@
+{
+  "version": "2.0.3",
+  "product_commit": "ef5335edcffd2c16b7d826c80afcd2e743c69935",
+  "baseline_main": "c70f15c256c46b603881a364fb00ac9c48c5652a",
+  "product_route_audit": "PASS",
+  "skill_entry_format": "PASS",
+  "rules_and_scripts_match_approved_main": true,
+  "scripts_match_2_0_2": true,
+  "upload_sources_match_committed_product": true,
+  "skillhub_dry_run": "PASS",
+  "clawhub_preflight": "RETURNED_ACTUAL_PUBLICATION_RECEIPT_NO_RETRY",
+  "new_native_writing_calls": 0,
+  "existing_writing_evidence": "../thin-leaf-strengthening-r1-20260915/result.md",
+  "distribution_archives": "FROZEN_NOT_BUILT",
+  "local_installation": "PREVIOUS_VERIFIED_INSTALLATION_RETAINED"
+}

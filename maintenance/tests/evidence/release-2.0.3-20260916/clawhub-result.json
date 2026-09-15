@@ -1,0 +1,11 @@
+{
+  "version": "2.0.3",
+  "status": "published",
+  "versionId": "k976qv0r1936b2qhk9mmzq1mdn8ef3a7",
+  "exit_code": 0,
+  "receipt": "OK. Published chinese-official-writing@2.0.3 (k976qv0r1936b2qhk9mmzq1mdn8ef3a7)",
+  "submission_count": 1,
+  "invocation_requested_dry_run": true,
+  "note": "Actual successful publication receipt overrides intended preflight classification. No further publish or post-submission read performed. Wrapper argument issue is suspected but not established.",
+  "raw_receipt": "clawhub-dry-run.json"
+}
