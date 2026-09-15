@@ -1,0 +1,136 @@
+{
+  "base_commit": "a0ff4155",
+  "scope": "SKILL.md plus all 67 references; no README or Python code",
+  "models": {
+    "A-common": "alibaba-token-plan-2/qwen3.8-max",
+    "B-official": "ollama-cloud/glm-5.3",
+    "C-speaking-news": "ollama-cloud/kimi-k3",
+    "D-specialist": "xai/grok-4.6"
+  },
+  "groups": {
+    "A-common": {
+      "model": "alibaba-token-plan-2/qwen3.8-max",
+      "effort": "max",
+      "primary": [
+        "SKILL.md",
+        "writing-rules.md",
+        "anti-ai-patterns.md",
+        "review-checklist.md",
+        "proofreading-checklist.md",
+        "prose-lint-usage.md",
+        "compression-details.md",
+        "argument-chains.md",
+        "formal-addressing.md",
+        "formulaic-language.md",
+        "structure-editing.md",
+        "field-editing.md",
+        "speech-person-order.md"
+      ],
+      "cross": [
+        "genre-playbook-request.md",
+        "genre-playbook-news-message.md",
+        "ai-compute-docs.md"
+      ],
+      "chars": 19384,
+      "packet_sha256": "93c7eccc63c9f2b1248ee5a9aca0f0ea2b56c29c893e79b822aa4ff57c161f06"
+    },
+    "B-official": {
+      "model": "ollama-cloud/glm-5.3",
+      "effort": "max",
+      "primary": [
+        "SKILL.md",
+        "genre-playbook-request.md",
+        "genre-playbook-notice.md",
+        "genre-playbook-report.md",
+        "genre-playbook-reply.md",
+        "genre-playbook-correspondence.md",
+        "genre-playbook-opinion.md",
+        "genre-playbook-decision.md",
+        "genre-playbook-resolution.md",
+        "genre-playbook-order.md",
+        "genre-playbook-motion.md",
+        "genre-playbook-communique.md",
+        "genre-playbook-bulletin.md",
+        "genre-playbook-publication.md",
+        "genre-playbook-explanation.md",
+        "genre-playbook-minutes.md",
+        "genre-playbook-institution-rules.md",
+        "genre-playbook-deployment.md",
+        "genre-playbook-responsibility-letter.md",
+        "genre-playbook-work-priorities.md",
+        "genre-playbook-work-summary.md",
+        "genre-playbook-information-materials.md",
+        "genre-playbook-procurement-announcement.md",
+        "genre-checklist-request.md",
+        "genre-checklist-report.md",
+        "transaction-feedback-report.md",
+        "transaction-remediation-report.md"
+      ],
+      "cross": [
+        "writing-rules.md",
+        "anti-ai-patterns.md"
+      ],
+      "chars": 24820,
+      "packet_sha256": "ebc4572b82896aac389d49d802da6627ba90da7000a7abb894348fc9538da214"
+    },
+    "C-speaking-news": {
+      "model": "ollama-cloud/kimi-k3",
+      "effort": "max",
+      "primary": [
+        "SKILL.md",
+        "genre-playbook-speech-address.md",
+        "genre-playbook-meeting-host.md",
+        "genre-playbook-duty-report.md",
+        "genre-playbook-narration.md",
+        "genre-playbook-open-letter.md",
+        "genre-playbook-initiative.md",
+        "genre-playbook-news-message.md",
+        "genre-playbook-news-commentary.md",
+        "genre-playbook-editorial-note.md",
+        "genre-playbook-advisory-feedback.md",
+        "genre-playbook-complaint-reflection.md",
+        "genre-playbook-remediation-plan.md",
+        "genre-playbook-project-application.md"
+      ],
+      "cross": [
+        "writing-rules.md",
+        "genre-playbook-explanation.md",
+        "external-research.md"
+      ],
+      "chars": 21217,
+      "packet_sha256": "2f66a42c6ca0bebfa14e662f8eecfc8f68afaba5a7e29e3e81dc1c6f3b4a3179"
+    },
+    "D-specialist": {
+      "model": "xai/grok-4.6",
+      "effort": "max",
+      "primary": [
+        "SKILL.md",
+        "ai-compute-docs.md",
+        "ai-compute-examples.md",
+        "compatibility-scene-routing.md",
+        "external-research.md",
+        "format-gbt9704.md",
+        "genre-checklist-feasibility-review.md",
+        "genre-checklist.md",
+        "genre-playbook-feasibility.md",
+        "genre-playbook-plan-construction.md",
+        "genre-playbook-procurement-review.md",
+        "genre-playbook-research.md",
+        "genre-playbook-review-opinion.md",
+        "genre-playbook-technical-requirements.md",
+        "genre-routing.md",
+        "reference-index.md",
+        "technical-terms.md"
+      ],
+      "cross": [
+        "anti-ai-patterns.md",
+        "genre-playbook-notice.md",
+        "genre-playbook-advisory-feedback.md"
+      ],
+      "chars": 26727,
+      "packet_sha256": "6562baf8109bf7ecbb5872c44a2cc442bda3d4c72a86e105aa03959d65e50217"
+    }
+  },
+  "primary_reference_count": 67,
+  "new_model_availability_probes": 0
+}
