@@ -326,6 +326,7 @@ FORMAT_PATTERNS: list[PatternSpec] = [
         ),
         "正式公文正文不要用 Markdown 加粗标记；改为普通小标题或正文。",
     ),
+    # 星号分支避开带空白的乘式，下划线分支保留词内标识符。
     (
         "low",
         "markdown-emphasis",
@@ -333,7 +334,7 @@ FORMAT_PATTERNS: list[PatternSpec] = [
             r"(?:(?<!\*)\*(?![\s*])[^*\n]{1,80}?(?<![\s*])\*(?!\*)"
             r"|(?<![\w_])_(?![\s_])[^_\n]{1,80}?(?<![\s_])_(?![\w_]))"
         ),
-        "正式公文正文不要用 Markdown 斜体标记；星号避开空白乘式，下划线避开词内标识符。",
+        "正式公文正文不要用 Markdown 斜体标记；改为普通正文。",
     ),
     ("low", "markdown-heading", r"^\s*#{1,6}\s+", "正式公文正文不要用 Markdown 标题标记；改为普通小标题或正文。"),
     ("low", "western-bullet", r"^\s*(?:[-*+•●◆◇★✅☑]|[0-9]+[.)])\s+", "中文正式正文避免频繁使用西式项目符号或 1. 2. 编号；必要清单可保留。"),
@@ -687,7 +688,7 @@ def external_note_heading(line: str) -> re.Match[str] | None:
 
 
 def fence_marker_length(line: str) -> int:
-    """Return a backtick fence length, ignoring shorter inner fence text."""
+    """Return the length of a leading backtick fence marker, or zero."""
     match = FENCE_MARKER_PATTERN.match(line)
     return len(match.group(1)) if match else 0
 
