@@ -1,6 +1,6 @@
 # 中文公文写作 Skill
 
-[![Version](https://img.shields.io/badge/version-2.0.0--beta.2-blue)](https://github.com/gongyu0918-debug/chinese-official-writing-skill/releases/tag/v2.0.0-beta.2)
+[![Version](https://img.shields.io/badge/version-2.0.1-blue)](https://github.com/gongyu0918-debug/chinese-official-writing-skill/releases/tag/2.0.1)
 [![ClawHub downloads: 7,655](https://img.shields.io/badge/ClawHub%20downloads-7%2C655-2f80ed)](https://clawhub.ai/gongyu0918-debug/skills/chinese-official-writing)
 [![SkillHub downloads: 13.3万](https://img.shields.io/badge/SkillHub%20downloads-13.3%E4%B8%87-2f855a)](https://skillhub.cn/skills/user_f3d82da7/chinese-official-writing)
 [![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
@@ -48,13 +48,26 @@ flowchart LR
 
 GitHub 默认分支维护 2.0；[legacy/1.x](https://github.com/gongyu0918-debug/chinese-official-writing-skill/tree/legacy/1.x) 保存 1.0 最后一版的完整源码和历史记录，对应已发布版本 **1.6.36**。旧版本及其中既有 Hook 的 MIT 授权继续有效。
 
-本次升级为 **2.0 测试版**。规则文本约减少 43.1%，首页约减少 66.3%，写稿时需要读取的内容也更少。实际效果因稿件和模型而异：有些场景更稳定，有些与旧版相近；目前没有看到普遍提速。
+2.0 重新梳理了入口与参考，减少重复规则和无关内容的加载。实际效果因稿件和模型而异：有些场景更稳定，有些与旧版相近；目前没有看到普遍提速。
 
 ## 获取与使用
 
-下载 [2.0 测试版](https://github.com/gongyu0918-debug/chinese-official-writing-skill/releases/tag/v2.0.0-beta.2)，将其中的 `chinese-official-writing` 目录复制到宿主的 Skill 目录，然后提供材料和写作要求即可。
+下载 [2.0.1](https://github.com/gongyu0918-debug/chinese-official-writing-skill/releases/tag/2.0.1)，将其中的 `chinese-official-writing` 目录复制到宿主的 Skill 目录，然后提供材料和写作要求即可。
 
 篇幅和文稿检查需要 Python 3；Word 文件生成需要宿主提供文档工具。具体使用见包内 [README](chinese-official-writing/README.md)。
+
+## 你可以这样用
+
+几句想法、聊天记录、已有半稿都可以作为起点，直接说明用途和想改的地方即可。
+
+- **起草**：“这是下周培训的安排，帮我写个通知，把报名的事说清楚。”
+- **改稿、生成新版**：“这是今年的工作记录，帮我把去年的总结更新一下，已完成和还在推进的事项分清。”
+- **压缩、扩写**：“把这份调研报告改成会上讲的稿子，开头压短一点，建议部分结合我补充的材料展开。”
+- **审核后修改**：“帮我审核这份采购申请，把发现的问题改好，缺少的材料在文后提醒我。”
+- **去口语化、去 AI 味**：“这份整改方案读起来太像套话了，帮我改得平实些，具体要做的事保留。”
+- **Word 整理**：“这份申请内容已经定了，按单位模板整理成 Word，标题和段落格式也一起处理。”
+
+有篇幅、收件人、语气或必须保留的内容，可以一并说明。只需要稿件时，直接说“只要正文，不附修改说明”。
 
 ## 实现与目录
 
