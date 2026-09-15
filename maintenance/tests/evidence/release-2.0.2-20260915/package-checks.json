@@ -1,0 +1,124 @@
+{
+  "product_commit": "11aeccdd4c320abd38ea0c874f827eb376c19383",
+  "checks": {
+    "unpacked_word_count": {
+      "command": [
+        "python",
+        "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\release-2.0.2-20260915\\output\\release-2.0.2\\workbuddy-check-vdb6uo9y\\scripts\\draft_length.py",
+        "--min-chars",
+        "80",
+        "--max-chars",
+        "220",
+        "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\release-2.0.2-20260915\\output\\release-2.0.2\\script-smoke.txt"
+      ],
+      "returncode": 0,
+      "stdout": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\release-2.0.2-20260915\\output\\release-2.0.2\\script-smoke.txt: 105 (nonspace; draft-before-postscript); 在范围内\n",
+      "stderr": ""
+    },
+    "unpacked_clean_lint": {
+      "command": [
+        "python",
+        "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\release-2.0.2-20260915\\output\\release-2.0.2\\workbuddy-check-vdb6uo9y\\scripts\\prose_lint.py",
+        "--delivery-mode",
+        "draft-body",
+        "--structure",
+        "--format",
+        "--strict",
+        "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\release-2.0.2-20260915\\output\\release-2.0.2\\script-smoke.txt"
+      ],
+      "returncode": 0,
+      "stdout": "No prose risks found.\n",
+      "stderr": ""
+    },
+    "unpacked_markdown_detection": {
+      "command": [
+        "python",
+        "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\release-2.0.2-20260915\\output\\release-2.0.2\\workbuddy-check-vdb6uo9y\\scripts\\prose_lint.py",
+        "--delivery-mode",
+        "draft-body",
+        "--structure",
+        "--format",
+        "--strict",
+        "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\release-2.0.2-20260915\\output\\release-2.0.2\\format-smoke.txt"
+      ],
+      "returncode": 1,
+      "stdout": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\release-2.0.2-20260915\\output\\release-2.0.2\\format-smoke.txt:1: low: markdown-heading: # \n  # 关于参加档案整理培训的通知 | 正式公文正文不要用 Markdown 标题标记；改为普通小标题或正文。\n",
+      "stderr": ""
+    },
+    "requested_markdown_allowed": {
+      "command": [
+        "python",
+        "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\release-2.0.2-20260915\\output\\release-2.0.2\\workbuddy-check-vdb6uo9y\\scripts\\prose_lint.py",
+        "--delivery-mode",
+        "draft-body",
+        "--structure",
+        "--format",
+        "--strict",
+        "--allow-markdown",
+        "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\release-2.0.2-20260915\\output\\release-2.0.2\\format-smoke.txt"
+      ],
+      "returncode": 0,
+      "stdout": "No prose risks found.\n",
+      "stderr": ""
+    },
+    "unpacked_paths": {
+      "command": [
+        "python",
+        "maintenance/tools/audit_product_surface.py",
+        "--root",
+        "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\release-2.0.2-20260915\\output\\release-2.0.2\\workbuddy-check-vdb6uo9y"
+      ],
+      "returncode": 0,
+      "stdout": "product paths reachable; rule readability and semantics require independent review\n",
+      "stderr": ""
+    },
+    "approved_rules_unchanged": {
+      "passed": true,
+      "only_product_change": "README version 2.0.1 to 2.0.2"
+    },
+    "draft_length_unit_tests": {
+      "command": "python -m unittest maintenance.tests.test_draft_length",
+      "passed": 12
+    }
+  },
+  "workbuddy": {
+    "archive": "C:\\Users\\admin\\Desktop\\中文公文写作-WorkBuddy-v2.0.2-11aeccdd-无Hooks.zip",
+    "sha256": "33266fd30171f2c71ea5f0bedfde5bea20b2811c3791c797a1f833c1e126ab3a",
+    "files": 73,
+    "references": 67,
+    "scripts": 2,
+    "canonical_body_equal": true,
+    "canonical_other_files_equal": true,
+    "metadata_fields": [
+      "description",
+      "description_en",
+      "description_zh",
+      "display_name",
+      "display_name_en",
+      "metadata",
+      "name",
+      "version"
+    ],
+    "crc_ok": true,
+    "no_hooks_or_maintenance": true
+  },
+  "github": {
+    "archive": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\release-2.0.2-20260915\\output\\release-2.0.2\\github\\chinese-official-writing-2.0.2.zip",
+    "sha256": "9b2acdebe0bc3011e6dcbb4513625e8f7867ef5dd989c34a788520a9c0ccf0a8",
+    "files": 72,
+    "canonical_equal": true,
+    "crc_ok": true,
+    "optional_ui_metadata_omitted": [
+      "agents/openai.yaml"
+    ]
+  },
+  "scope": {
+    "not_run": "WorkBuddy application import/native writing; no new semantic writing tests",
+    "deferred": [
+      "SkillHub",
+      "ClawHub",
+      "other adaptation packages",
+      "local Pro build/install"
+    ]
+  }
+}
