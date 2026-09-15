@@ -20,16 +20,35 @@ def count_length(text: str, mode: str = "nonspace") -> int:
     return len(re.sub(r"\s+", "", text))
 
 
-def measure_draft(path: str, text: str, mode: str = "nonspace", minimum: int | None = None, maximum: int | None = None) -> dict:
+def measure_draft(
+    path: str,
+    text: str,
+    mode: str = "nonspace",
+    minimum: int | None = None,
+    maximum: int | None = None,
+) -> dict:
     draft = "\n".join(body_lines(text.splitlines()))
     count = count_length(draft, mode)
     below = max(minimum - count, 0) if minimum is not None else 0
     above = max(count - maximum, 0) if maximum is not None else 0
+    if below:
+        status = "below"
+    elif above:
+        status = "above"
+    elif minimum is not None or maximum is not None:
+        status = "within"
+    else:
+        status = "counted"
     return {
-        "path": path, "mode": mode, "scope": "draft-before-postscript",
-        "count": count, "minimum": minimum, "maximum": maximum,
-        "status": "below" if below else "above" if above else "within" if minimum is not None or maximum is not None else "counted",
-        "below_by": below, "above_by": above,
+        "path": path,
+        "mode": mode,
+        "scope": "draft-before-postscript",
+        "count": count,
+        "minimum": minimum,
+        "maximum": maximum,
+        "status": status,
+        "below_by": below,
+        "above_by": above,
     }
 
 
@@ -62,7 +81,14 @@ def main(argv: list[str] | None = None) -> int:
         print(json.dumps(reports, ensure_ascii=False, indent=2))
     else:
         for item in reports:
-            detail = f"低于下限，差 {item['below_by']}" if item["below_by"] else f"超过上限，多 {item['above_by']}" if item["above_by"] else "在范围内" if item["status"] == "within" else "已统计"
+            if item["below_by"]:
+                detail = f"低于下限，差 {item['below_by']}"
+            elif item["above_by"]:
+                detail = f"超过上限，多 {item['above_by']}"
+            elif item["status"] == "within":
+                detail = "在范围内"
+            else:
+                detail = "已统计"
             print(f"{item['path']}: {item['count']} ({item['mode']}; {item['scope']}); {detail}")
     return 2 if had_error else 0
 

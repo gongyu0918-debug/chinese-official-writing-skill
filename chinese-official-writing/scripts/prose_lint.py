@@ -106,7 +106,19 @@ PATTERNS: list[PatternSpec] = [
 ]
 
 # 交付态规则按需启用。相同措辞在复核意见中可能合理，因此默认扫描不加载这些规则。
+# 限制“阅读”动作与写稿规则对象之间的局部跨度，避免跨句匹配业务内容。
+READING_PROCESS_CONTEXT_CHARS = 60
+
 DELIVERY_PATTERNS: list[PatternSpec] = [
+    (
+        "medium",
+        "reading-process-narration",
+        r"(?i)^\s*(?:我(?:需要|将|会|准备|先|还要|要)?|让我)(?:先|继续|再)?"
+        r"(?:读取|阅读|查看|查阅|选读)"
+        rf"[^。！？\n]{{0,{READING_PROCESS_CONTEXT_CHARS}}}"
+        r"(?:SKILL\.md|(?:本|该)?(?:Skill|技能)(?:文件|说明|规则)|写作规则|文种(?:的)?规范)",
+        "核对是否为起草者读取写稿规则的过程自述；交付稿件或审核意见，保留有明确来源的业务引语。",
+    ),
     (
         "medium",
         "material-reading-narration",
@@ -293,6 +305,8 @@ PROJECT_CARD_CONSECUTIVE_FIELDS = 3
 PROJECT_CARD_TOTAL_FIELDS = 4
 FREQUENT_LIST_MARKER_COUNT = 8
 CODE_FENCE_MATCH_PREVIEW_CHARS = 20
+ATTACHMENT_NUMBER_ITEM_PATTERN = re.compile(r"^\s*[0-9]+[.)]\s+")
+FENCE_MARKER_PATTERN = re.compile(r"^\s*(`{3,})(?!`)")
 JSON_INDENT = 2
 EXIT_SUCCESS = 0
 EXIT_STRICT_FINDING = 1
@@ -303,9 +317,26 @@ FORMAT_PATTERNS: list[PatternSpec] = [
     ("low", "number-grouping-comma", r"\d{1,3}(?:,\d{3})+(?:\.\d+)?", "确认正式中文材料中是否应取消千位分隔符。"),
     ("low", "cn-number-space", r"[\u4e00-\u9fff]\s+\d|\d\s+[\u4e00-\u9fff]", "检查中文和数字之间是否误加空格。"),
     ("medium", "emoji-marker", r"[\U0001F300-\U0001FAFF]", "正式公文正文避免使用 Emoji。"),
-    ("low", "markdown-bold", r"\*\*[^*\n]{1,80}\*\*", "正式公文正文不要用 Markdown 加粗标记；改为普通小标题或正文。"),
+    (
+        "low",
+        "markdown-bold",
+        (
+            r"(?:\*\*(?!\s)[^*\n]{1,80}?(?<!\s)\*\*"
+            r"|(?<![\w_])__(?!\s)[^_\n]{1,80}?(?<!\s)__(?![\w_]))"
+        ),
+        "正式公文正文不要用 Markdown 加粗标记；改为普通小标题或正文。",
+    ),
+    (
+        "low",
+        "markdown-emphasis",
+        (
+            r"(?:(?<!\*)\*(?![\s*])[^*\n]{1,80}?(?<![\s*])\*(?!\*)"
+            r"|(?<![\w_])_(?![\s_])[^_\n]{1,80}?(?<![\s_])_(?![\w_]))"
+        ),
+        "正式公文正文不要用 Markdown 斜体标记；星号避开空白乘式，下划线避开词内标识符。",
+    ),
     ("low", "markdown-heading", r"^\s*#{1,6}\s+", "正式公文正文不要用 Markdown 标题标记；改为普通小标题或正文。"),
-    ("low", "western-bullet", r"^\s*(?:[-*•●◆◇★✅☑]|[0-9]+[.)])\s+", "中文正式正文避免频繁使用西式项目符号或 1. 2. 编号；必要清单可保留。"),
+    ("low", "western-bullet", r"^\s*(?:[-*+•●◆◇★✅☑]|[0-9]+[.)])\s+", "中文正式正文避免频繁使用西式项目符号或 1. 2. 编号；必要清单可保留。"),
 ]
 
 # 面向约 2k-5k 字正式材料的低风险经验线，只提示术语过度集中，不作为硬失败或自动改写依据。
@@ -477,6 +508,8 @@ def read_text(
             return str(path), raw.decode(enc)
         except UnicodeDecodeError:
             continue
+        except LookupError as exc:
+            raise InputReadError(f"不支持的文本编码: {enc}: {path}") from exc
     return str(path), raw.decode(encodings[-1], errors="replace")
 
 
@@ -605,10 +638,19 @@ def has_check_basis_before(line: str, start: int) -> bool:
 
 def is_attachment_number_item(lines: list[str], line_index: int, line: str) -> bool:
     """附件标题后的数字编号视为合理格式。"""
-    if not re.match(r"^\s*[0-9]+[.)]\s+", line):
+    if not ATTACHMENT_NUMBER_ITEM_PATTERN.match(line):
         return False
     window = lines[max(0, line_index - ATTACHMENT_LOOKBACK_LINES) : line_index]
-    return any("附件" in item for item in window)
+    if any("附件" in item for item in window):
+        return True
+    cursor = line_index - 1
+    while cursor >= 0:
+        previous = lines[cursor]
+        if not previous.strip() or ATTACHMENT_NUMBER_ITEM_PATTERN.match(previous):
+            cursor -= 1
+            continue
+        return "附件" in previous
+    return False
 
 
 def external_note_heading(line: str) -> re.Match[str] | None:
@@ -644,11 +686,34 @@ def external_note_heading(line: str) -> re.Match[str] | None:
     )
 
 
+def fence_marker_length(line: str) -> int:
+    """Return a backtick fence length, ignoring shorter inner fence text."""
+    match = FENCE_MARKER_PATTERN.match(line)
+    return len(match.group(1)) if match else 0
+
+
+def fence_marker_transition(current_length: int | None, line: str) -> tuple[bool, int | None]:
+    """Recognize a fence boundary only when it can open or close the current fence."""
+    marker_length = fence_marker_length(line)
+    if marker_length == 0:
+        return False, current_length
+    if current_length is None:
+        return True, marker_length
+    if marker_length >= current_length:
+        return True, None
+    return False, current_length
+
+
 def body_lines(lines: list[str]) -> list[str]:
     """返回明确文后提示区之前的正文行；通用章节标题不构成截断依据。"""
     result: list[str] = []
+    fence_length: int | None = None
     for line in lines:
-        if external_note_heading(line):
+        is_marker, fence_length = fence_marker_transition(fence_length, line)
+        if is_marker:
+            result.append(line)
+            continue
+        if fence_length is None and external_note_heading(line):
             break
         result.append(line)
     return result
@@ -689,7 +754,7 @@ def paragraph_blocks(lines: list[str]) -> list[tuple[int, str, int]]:
     current: list[str] = []
     start_line = 1
     section_id = 0
-    in_fence = False
+    fence_length: int | None = None
 
     def flush_current() -> None:
         nonlocal current
@@ -699,12 +764,12 @@ def paragraph_blocks(lines: list[str]) -> list[tuple[int, str, int]]:
 
     for idx, line in enumerate(lines, start=1):
         stripped = line.strip()
-        if stripped.startswith("```"):
+        is_marker, fence_length = fence_marker_transition(fence_length, line)
+        if is_marker:
             flush_current()
-            in_fence = not in_fence
             section_id += 1
             continue
-        if in_fence:
+        if fence_length is not None:
             continue
         if not stripped:
             flush_current()
@@ -992,7 +1057,7 @@ def prepare_pattern_sets(
         format_patterns = [
             item
             for item in format_patterns
-            if item[1] not in {"markdown-bold", "markdown-heading"}
+            if item[1] not in {"markdown-bold", "markdown-emphasis", "markdown-heading"}
         ]
         format_patterns = [
             (severity, label, r"^\s*[•●◆◇★✅☑]\s+", advice)
@@ -1159,9 +1224,17 @@ def fence_findings(
     """在代码围栏内部按指定规则扫描；围栏本身由上层处理。"""
 
     findings: list[Finding] = []
+    seen_spans_by_label: dict[str, list[tuple[int, int]]] = {}
     for pattern in patterns:
-        _severity, _label, regex, _advice = pattern
+        _severity, label, regex, _advice = pattern
         for match in regex.finditer(line):
+            span = (match.start(), match.end())
+            if any(
+                spans_overlap(span, prior)
+                for prior in seen_spans_by_label.get(label, [])
+            ):
+                continue
+            seen_spans_by_label.setdefault(label, []).append(span)
             findings.append(finding_from_match(path_label, line_no, line, pattern, match))
     return findings
 
@@ -1184,6 +1257,10 @@ def plain_line_findings(
             if inside_inline_code(line, match.start(), match.end()):
                 continue
             if delivery_mode == "review-only" and inside_spans(
+                source.quoted_spans[line_index], match.start(), match.end()
+            ):
+                continue
+            if label == "reading-process-narration" and inside_spans(
                 source.quoted_spans[line_index], match.start(), match.end()
             ):
                 continue
@@ -1221,7 +1298,7 @@ def format_marker_findings(
         return []
     line_no = line_index + 1
     stripped = line.strip()
-    if stripped.startswith("```"):
+    if fence_marker_length(line):
         return [
             Finding(
                 path=path_label,
@@ -1262,11 +1339,11 @@ def primary_line_findings(
     inline_patterns = pattern_sets.delivery_absolute + [
         pattern for pattern in pattern_sets.primary if pattern[1] in DELIVERY_BODY_ONLY_LABELS
     ]
-    in_fence = False
+    fence_length: int | None = None
     for line_index, line in enumerate(source.lines_to_scan):
         line_no = line_index + 1
-        stripped = line.strip()
-        if stripped.startswith("```"):
+        is_marker, fence_length = fence_marker_transition(fence_length, line)
+        if is_marker:
             if include_format:
                 findings.extend(
                     format_marker_findings(
@@ -1277,7 +1354,6 @@ def primary_line_findings(
                         allow_markdown=allow_markdown,
                     )
                 )
-            in_fence = not in_fence
             continue
         if include_format:
             findings.extend(
@@ -1289,7 +1365,7 @@ def primary_line_findings(
                     allow_markdown=allow_markdown,
                 )
             )
-        if in_fence:
+        if fence_length is not None:
             patterns = pattern_sets.primary if include_format else []
             if not include_format and delivery_mode in {"draft-body", "gap-note-allowed"}:
                 patterns = pattern_sets.delivery_fence
@@ -1327,13 +1403,12 @@ def delivery_section_findings(
 
     findings: list[Finding] = []
     start_index = 0 if delivery_mode == "review-only" else len(source.body_only_lines)
-    in_fence = False
+    fence_length: int | None = None
     for zero_index, line in enumerate(source.lines[start_index:], start=start_index):
-        stripped = line.strip()
-        if stripped.startswith("```"):
-            in_fence = not in_fence
+        is_marker, fence_length = fence_marker_transition(fence_length, line)
+        if is_marker:
             continue
-        if in_fence and delivery_mode == "review-only":
+        if fence_length is not None and delivery_mode == "review-only":
             continue
         for pattern in patterns:
             _severity, label, regex, _advice = pattern
@@ -1353,8 +1428,12 @@ def delivery_section_findings(
 def frequent_list_marker_findings(path_label: str, lines: list[str], allow_markdown: bool = False) -> list[Finding]:
     """按全文数量定位过密的西式项目符号。"""
 
-    pattern = r"^\s*[•●◆◇★✅☑]\s+" if allow_markdown else r"^\s*(?:[-*•●◆◇★✅☑]|[0-9]+[.)])\s+"
-    western_list_count = sum(1 for line in lines if re.match(pattern, line))
+    pattern = r"^\s*[•●◆◇★✅☑]\s+" if allow_markdown else r"^\s*(?:[-*+•●◆◇★✅☑]|[0-9]+[.)])\s+"
+    western_list_count = sum(
+        1
+        for line_index, line in enumerate(lines)
+        if re.match(pattern, line) and not is_attachment_number_item(lines, line_index, line)
+    )
     if western_list_count < FREQUENT_LIST_MARKER_COUNT:
         return []
     return [
