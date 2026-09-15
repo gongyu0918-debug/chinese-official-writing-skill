@@ -1,0 +1,48 @@
+{
+  "main_commit": "c2577f534dad92f2de6bfd75667312da57e6e69b",
+  "candidate_head": "ffd26659a77dc9dfa801ed068c8644279b211b64",
+  "fingerprints": {
+    "baseline": "c0b564fcc5e01ce7a3b7d9a59c20f4f8a442837a6c60af6a3247cd183faed788",
+    "candidate": "b16a192dfe0423f458a694c07eb8afae5b0aa96a1a0495477855f15a6721d945"
+  },
+  "models": [
+    "alibaba-token-plan/qwen3.8-flash",
+    "minimax-cn/MiniMax-M3"
+  ],
+  "cases": {
+    "motion": "以下均为虚拟写作练习材料。请拟一份议案：海岚市人民政府向海岚市人大常委会提请审议《海岚市公共服务设施管理条例（草案）》；草案已经市政府常务会议讨论通过，主要是明确设施维护责任和服务信息公示要求，现提请审议。附件名称就是该草案。落款2026年9月12日。",
+    "procurement_announcement": "以下为虚拟写作材料。请拟采购公告：海岚市档案服务中心拟采购扫描仪3台，最高限价合计1.8万元；采用公开询价，报名截止2026年9月25日17时，材料交市档案服务中心综合科，联系人李工，电话020-81234567。公告只发布这些已明确事项，不增加资质、评审标准或履约要求。",
+    "review_rewrite": "帮我审核这份采购申请并优化好，成稿控制在120至220个非空白字符。有效材料：申请部门为综合办公室，报单位负责人审批；4把现有办公椅已损坏，申请购置4把替换，每把420元，供应商和采购日期尚未确定；预算科目缺失，上轮已经提出但还没有回复。当前底稿：关于购置办公椅的申请。单位负责人：本申请将从购买原因、购买数量和购买金额三个方面展开。办公室拟购买4把办公椅替换4把已损坏的旧椅，每把420元，合计1800元。已确定供应商，下周采购。我室将以此次采购为契机，构建协同高效的办公保障新格局。综合办公室。",
+    "guards_plain_titles": "请把下面这份采购申请整理成可以提交的正式正文，内容不增不减，按现有层次整理后直接以纯文本给我。\n\n关于购置扫描仪的申请。\n\n一、申请事由。\n资料室现有扫描仪已损坏，纸质档案仍需扫描归档。\n二、申请事项。\n拟购置扫描仪 1 台，预算 3000 元。\n三、有关事项。\n（一）设备用途。\n用于纸质档案扫描归档。\n（二）请财务室复核预算金额。\n妥否，请批示。\n资料室",
+    "official_marks": "帮我校改这份内部工作提示，清除起草旁白，给改好全文。材料要求保留文件首页的‘内部资料 注意保密’和‘第二版（2026年9月修订）’。现稿：内部资料 注意保密。第二版（2026年9月修订）。会议室使用提示。本文由AI整理，以下为最终版本。会议室使用完毕后，请关闭设备并恢复桌椅，设备故障反馈综合办公室。仅供参考，以实际审核结果为准。我只要改后稿件。",
+    "guards_notice_receiver": "请根据这些安排写一则简短通知：业务科、资料室于 9 月 18 日下午 3 时在二楼会议室参加档案整理培训。参会回执请于 9 月 16 日前报办公室，接收邮箱为 office@example.org，联系人是王老师。",
+    "review": "帮我审核这篇稿件，给出修改建议。材料事实是：信息中心完成接口A的30次测试，其中2次返回超时，原因仍在核对；张工建议追加测试，是否采用尚未决定。现有稿件：接口测试工作报告。本文将从测试情况、问题分析、后续安排三个方面展开说明。信息中心已完成30次测试，发现2次超时，目前已实现系统稳定运行。张工提出追加测试的建议，中心已决定下周组织全面测试。本报告只根据所给材料起草，不新增事实、不扩大结论、不作未经核实的推断。",
+    "platform_review": "帮我审核并改好这段活动报道。有效材料：9月10日，市企业服务中心组织企业交流会，8家企业代表参加，代表介绍各自产品并交流合作需求。现稿：9月10日，市企业服务中心组织企业交流会，8家企业代表参加，代表介绍各自产品并交流合作需求。这次活动为企业交流搭建了强大平台，满足未来发展需要。请给自然简洁的改好稿件。"
+  },
+  "cli": "C:\\Users\\admin\\AppData\\Local\\OpenAI\\Codex\\bin\\bffc5354119c8421\\codex.exe",
+  "cli_version": "codex-cli 0.154.0-alpha.6.2",
+  "effort": "max",
+  "runtime": "C:\\Users\\admin\\AppData\\Local\\Temp\\cow-native-v201-vs-1x-5g1m91ec",
+  "permissions": "inherited-host-config",
+  "timeout": 900,
+  "agent_documents": "project_doc_max_bytes=0",
+  "baseline_ref": "legacy/1.x",
+  "baseline_source": null,
+  "candidate_source": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\v201-vs-1x-eval\\chinese-official-writing",
+  "candidate_skill_name": "chinese-official-writing",
+  "baseline_commit": "d561bf6b54952e562be5910feda9182cff7d3646",
+  "profile": "temporary-no-user-documents-or-credentials",
+  "runner_sha256": "180db1a815a192f612cf85b7c54976240abcfe8b6f834d22fedf5798cad5622d",
+  "prompt_prefix": "使用本目录 .agents/skills/chinese-official-writing/SKILL.md。\n\n使用普通写作能力，不启用 Hook。\n\n本目录文本文件为 UTF-8 编码，读取时显式指定 UTF-8 解码。\n\n",
+  "ordinary_only": true,
+  "utf8_read": true,
+  "runtime_layout": "each call has a separate parent, workspace and temporary directory",
+  "session_metadata": "ephemeral",
+  "review_host": {
+    "enabled": false,
+    "max_threads": null,
+    "max_depth": null,
+    "child_model": "host defaults",
+    "child_usage": "root JSON usage is not assumed to include child usage"
+  }
+}
