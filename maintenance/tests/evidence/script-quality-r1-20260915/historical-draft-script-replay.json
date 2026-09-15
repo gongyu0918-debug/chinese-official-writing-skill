@@ -1,0 +1,23 @@
+[
+  {
+    "source": "maintenance/tests/evidence/anti-ai-concrete-rules-20260914/drafts/anti-ai-concrete-rules-20260914-m3-motion_separate_amendments-candidate.final.txt",
+    "text": "我需要继续阅读相关的参考文件，特别是关于\"议案\"文种的规范。",
+    "command": "python -B scripts/prose_lint.py --delivery-mode gap-note-allowed --structure --format --json <source>",
+    "returncode": 0,
+    "findings": [
+      {
+        "line": 1,
+        "severity": "medium",
+        "label": "reading-process-narration",
+        "match": "我需要继续阅读相关的参考文件，特别是关于\"议案\"文种的规范"
+      }
+    ]
+  },
+  {
+    "source": "maintenance/tests/evidence/anti-ai-concrete-rules-20260914/drafts/anti-ai-concrete-rules-20260914-m0-narration-baseline.final.txt",
+    "text": "我手上没有更细的资料，这里就不多做说明",
+    "command": "python -B scripts/prose_lint.py --delivery-mode gap-note-allowed --structure --format --json <source>",
+    "returncode": 0,
+    "findings": []
+  }
+]
