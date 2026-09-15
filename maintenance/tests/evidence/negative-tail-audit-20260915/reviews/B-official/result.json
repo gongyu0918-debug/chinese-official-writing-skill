@@ -1,0 +1,20 @@
+{
+  "model": "ollama-cloud/glm-5.3",
+  "effort": "max",
+  "transport": "native codex exec plaintext task",
+  "packet_delivery": "inline stdin",
+  "seconds": 374.03,
+  "returncode": 0,
+  "error": null,
+  "packet_sha256": "ebc4572b82896aac389d49d802da6627ba90da7000a7abb894348fc9538da214",
+  "final_exists": true,
+  "usage": [
+    {
+      "input_tokens": 23797,
+      "cached_input_tokens": 0,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 57069,
+      "reasoning_output_tokens": 0
+    }
+  ]
+}

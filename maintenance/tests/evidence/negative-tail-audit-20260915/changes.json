@@ -1,0 +1,272 @@
+[
+  {
+    "file": "chinese-official-writing/references/writing-rules.md",
+    "before": "合计差额可核算，不据此认定其余正常。",
+    "after": "可核算合计差额；其余分项是否正常仍分别核对。",
+    "reason": "保留差额计算与逐项核实两种能力"
+  },
+  {
+    "file": "chinese-official-writing/references/writing-rules.md",
+    "before": "仍不足则说明实际差额与所需材料，不报达标。",
+    "after": "仍不足则在文后提示说明实测差额与所需材料。",
+    "reason": "以实测和交付位置替代重复否定"
+  },
+  {
+    "file": "chinese-official-writing/references/writing-rules.md",
+    "before": "这是讲自己的操作，不是稿件或审核意见。",
+    "after": "这是讲自己的操作过程。",
+    "reason": "示例分类已足够，审核意见边界在下文保留"
+  },
+  {
+    "file": "chinese-official-writing/references/writing-rules.md",
+    "before": "这是汇报自检结果，不是修改建议。",
+    "after": "这是汇报自检结果。",
+    "reason": "删除示例后的重复排除"
+  },
+  {
+    "file": "chinese-official-writing/references/formal-addressing.md",
+    "before": "本页只处理称谓、敬语、谦辞和关系一致性，不替代文种路由。称谓服从用户单位习惯、模板和原文事实，不机械替换。",
+    "after": "称谓、敬语和谦辞按行文关系、用户单位习惯、模板和原文事实选用。",
+    "reason": "删除页面职责自述，保留选词依据"
+  },
+  {
+    "file": "chinese-official-writing/references/formal-addressing.md",
+    "before": "不知道单位性质时使用“我单位”“贵单位”“有关单位”“相关部门”等中性称谓；",
+    "after": "正文提及性质不明的单位时，按已知行文关系使用“我单位”“贵单位”“有关单位”“相关部门”等中性称谓；",
+    "reason": "明确正文称谓适用范围，避免被用于补主送落款"
+  },
+  {
+    "file": "chinese-official-writing/references/formal-addressing.md",
+    "before": "明确可执行但不无依据扩大责任。",
+    "after": "要求写成明确可执行的事项，责任范围以材料依据为准。",
+    "reason": "消除双重否定，保留可执行性与责任依据"
+  },
+  {
+    "file": "chinese-official-writing/references/formal-addressing.md",
+    "before": "报告不写请批语，通知不写成感谢信；申请按模板和审批语境处理。",
+    "after": "申请按模板和审批语境处理。",
+    "reason": "同页上行文和结尾功能已完整表达"
+  },
+  {
+    "file": "chinese-official-writing/references/formulaic-language.md",
+    "before": "内容已完整时可自然结束，不叠加多层尾语",
+    "after": "内容已完整时可自然结束；使用尾语时选一句收束",
+    "reason": "保留自然收束选择，不强制补尾语"
+  },
+  {
+    "file": "chinese-official-writing/references/structure-editing.md",
+    "before": "以上一轮已确认正文为底稿，不回退到旧稿，不把旧主送、旧落款、旧标题带回正文。",
+    "after": "以上一轮已确认正文为底稿，落实本轮修改；主送、落款和标题采用最新确认值。",
+    "reason": "明确版本和字段取值，消除两重重复否定"
+  },
+  {
+    "file": "chinese-official-writing/references/structure-editing.md",
+    "before": "用空行或明显段落边界分隔，不合并进原段，不擅自改为小标题。",
+    "after": "用空行或明显段落边界分隔。",
+    "reason": "独立自然段及下一条粒度规则已约束形态"
+  },
+  {
+    "file": "chinese-official-writing/references/structure-editing.md",
+    "before": "不要把句子级补充升级为新小节，也不要把用户要求的小节压成普通句子。",
+    "after": "交付前核对句、段、节的粒度与要求一致。",
+    "reason": "三级动作已有明确条件，改成核对动作"
+  },
+  {
+    "file": "chinese-official-writing/references/structure-editing.md",
+    "before": "；不要在没有依据时硬改或硬删。",
+    "after": "，按这些依据决定保留或调整。",
+    "reason": "保留称谓判断依据与处理动作"
+  },
+  {
+    "file": "chinese-official-writing/references/field-editing.md",
+    "before": "- **字段和单元边界**：申请表、证明、采购明细、填报材料和清单式底稿已有字段式写法时，保留字段名、字段顺序和单元边界。即使用分号写在一行，只要呈现为“字段名：字段值”序列，也按字段单元处理，改写时优先每个字段独立成行，不合并成连续句；分号只是字段分隔符，拆成独立字段行后不要保留行尾分号或造成 `。；`。改字段值只改指定字段，新增或删除字段按完整字段处理；新增字段没有用户提供值时只写字段名并留空，不推断发票、票据、邮箱、截止日期等字段内容，不擅自散文化、表格化或改成编号清单。\n",
+    "after": "- **字段和单元边界**：申请表、证明、采购明细、填报材料和清单式底稿已有字段式写法时，保留字段名、字段顺序和单元边界。\n- **拆行**：即使用分号写在一行，只要呈现为“字段名：字段值”序列，也按字段单元处理。改写时优先每个字段独立成行，删去拆行后的行尾分号，清理 `。；`。\n- **增删和改值**：改字段值只改指定字段；新增或删除字段按完整字段处理。新增字段没有用户提供值时，只写字段名并留空，不推断发票、票据、邮箱、截止日期等字段内容。\n- **形态转换**：用户要求改为连续正文、表格或编号清单时，再作相应转换。\n",
+    "reason": "将多种操作分条，保留字段留空与形态授权边界"
+  },
+  {
+    "file": "chinese-official-writing/references/speech-person-order.md",
+    "before": "本页不单独覆盖全文写作；排序完成后接回原文种的正文与复核路线。",
+    "after": "排序完成后接回原文种的正文与复核路线。",
+    "reason": "删除架构说明，保留真实后续动作"
+  },
+  {
+    "file": "chinese-official-writing/references/ai-compute-docs.md",
+    "before": "TOPS/TFLOPS 说明服务器承载能力，不与 Token 单价混作同一成本口径。",
+    "after": "TOPS/TFLOPS 说明服务器承载能力，Token 单价用于费用测算，两类指标分别说明。",
+    "reason": "正向区分性能指标和费用口径"
+  },
+  {
+    "file": "chinese-official-writing/references/ai-compute-docs.md",
+    "before": "成本章节重点写需求来源、服务期限、资源覆盖、风险控制和费用边界；除非用户要求测算表，不把正文写成“测算公式”“单价×数量”“计算如下”的计算草稿。",
+    "after": "成本章节重点写需求来源、服务期限、资源覆盖、风险控制和费用边界；用户要求测算表时，将公式、单价与数量等计算过程放入表中。",
+    "reason": "保留正文决策信息和按需测算表，取消反向条件"
+  },
+  {
+    "file": "chinese-official-writing/references/ai-compute-docs.md",
+    "before": "SLA 不是孤立附件，可按任务写明",
+    "after": "SLA 内容按任务需要写入相应章节，包括",
+    "reason": "删除假想误读解释，给出实际落点"
+  },
+  {
+    "file": "chinese-official-writing/references/ai-compute-docs.md",
+    "before": "拟议的核对安排仍写成拟议，不写成已经完成。",
+    "after": "拟议的核对安排保持拟议语气。",
+    "reason": "前半已明确状态，删除同义否定"
+  },
+  {
+    "file": "chinese-official-writing/references/genre-playbook-duty-report.md",
+    "before": "不同岗位和场景各按实际要求组织，不套用其他行业的专门栏目。",
+    "after": "各岗位按自身适用要求组织相应栏目。",
+    "reason": "已列明材料制度模板依据，直接表达适用性"
+  },
+  {
+    "file": "chinese-official-writing/references/genre-playbook-open-letter.md",
+    "before": "保持发信方、执行方和受众各自的角色。公开信不因采用“我们”就把其他单位的动作归给发信方；",
+    "after": "区分发信方、执行方和受众的角色；使用“我们”时明确所指范围，各项动作归于实际执行主体。",
+    "reason": "保留代词涵盖受众的正常用途，明确动作归属"
+  },
+  {
+    "file": "chinese-official-writing/references/genre-playbook-news-message.md",
+    "before": "不只写“案件正在侦办”“正在抢修中”等无责任承载的尾句，也不为补主语虚构单位全称、人员身份或处置细节。",
+    "after": "具体单位全称、人员身份和处置细节须有材料依据。",
+    "reason": "保留同句主体规则及通用责任主体选项，移除重复失败形态"
+  },
+  {
+    "file": "chinese-official-writing/references/genre-playbook-news-message.md",
+    "before": "不得把一般“正在办理”机械升级。",
+    "after": "一般“正在办理”等中性表述保持原有强度。",
+    "reason": "明确按原强度写作"
+  },
+  {
+    "file": "chinese-official-writing/references/genre-playbook-news-message.md",
+    "before": "可依据材料事实、常识和二者直接支持的关系作合理推断和一般预期；推断不得改变事实对象或范围，不得反推动作起点、持续时长或阶段，也不得把待形成的统计、结论或结果写成原始内容尚未形成；不得把抽象活动、服务、资源或项目具体化为材料未写的人物、设备、内容、地点、引语、动作、合作方或后续安排。",
+    "after": "可依据材料事实、常识和二者直接支持的关系作合理推断和一般预期，保持事实对象和范围。动作起点、持续时长和阶段沿用材料表述。统计、结论或结果的形成状态，与其所依据的活动、材料或工作进展分别核对、分别表述。具体人物、设备、内容、地点、引语、动作、合作方和后续安排须有材料依据。",
+    "reason": "拆解长串否定；保留合理推断，澄清历史句的对象与派生结果状态"
+  },
+  {
+    "file": "chinese-official-writing/references/genre-playbook-news-message.md",
+    "before": "保持各自角色，不把承办、支持或参与方写成主办方。",
+    "after": "按主办、承办、协办、支持和参与身份分别表述。",
+    "reason": "明确角色逐项归属"
+  },
+  {
+    "file": "chinese-official-writing/references/genre-playbook-news-message.md",
+    "before": "材料较少时仍应把相互关联的活动事实合并成一至两个自然段，不把每个数字或动作拆成单句卡片，也不靠同义复述拉长篇幅。",
+    "after": "材料较少时，把相互关联的活动事实合并成一至两个自然段，数字和动作并入所属事项。",
+    "reason": "保留自然段和事实组织动作，同义复述边界本页已有"
+  },
+  {
+    "file": "chinese-official-writing/references/genre-playbook-advisory-feedback.md",
+    "before": "保持商议和建议语气，同时把方案说清，不用层层模糊词把主张写空。",
+    "after": "保持商议和建议语气，把方案和具体动作说清。",
+    "reason": "正向表达明确建议"
+  },
+  {
+    "file": "chinese-official-writing/references/genre-playbook-advisory-feedback.md",
+    "before": "礼貌说明来意和改进目的即可，不为“先夸”编造成绩。肯定段只作关系铺垫，不能比问题判断更长。",
+    "after": "礼貌说明来意和改进目的即可。肯定段用于关系铺垫，篇幅以问题判断部分为上限。",
+    "reason": "保留无肯定依据时出路及原有篇幅关系"
+  },
+  {
+    "file": "chinese-official-writing/references/genre-playbook-advisory-feedback.md",
+    "before": "对同一问题、同一对象、同一办理路径的多个动作，放在一个建议项内分层表达，不拆成若干近义标题；不在问题部分和建议部分各用一整段重复同一背景。",
+    "after": "对同一问题、同一对象、同一办理路径的多个动作，放在一个建议项内分层表达。背景集中交代，其他部分需要呼应时简要承接。",
+    "reason": "保留归并条件与必要呼应，不设全文一次硬限制"
+  },
+  {
+    "file": "chinese-official-writing/references/genre-playbook-advisory-feedback.md",
+    "before": "不机械缩成“问题—方案”标签，也不强制重复设置“问题”“建议”两大部分；",
+    "after": "以完整语句说明这些关系；",
+    "reason": "前文已有连续正文结构，保留完整表达要求"
+  },
+  {
+    "file": "chinese-official-writing/references/genre-playbook-complaint-reflection.md",
+    "before": "按用户给定名称保留，不用固定名称替换。",
+    "after": "按用户给定名称保留。",
+    "reason": "保留已给命名即足够"
+  },
+  {
+    "file": "chinese-official-writing/references/genre-playbook-complaint-reflection.md",
+    "before": "不同对象、不同状态或不同办理链条不要为追求简短强行合并。",
+    "after": "对象、状态或办理链条不同的事项分别表述。",
+    "reason": "保留三个分开条件"
+  },
+  {
+    "file": "chinese-official-writing/references/genre-playbook-minutes.md",
+    "before": "本页处理会议纪要的适用边界、输入要素、结构骨架和常见误区。\n\n",
+    "after": "",
+    "reason": "删除无写稿动作的页面说明"
+  },
+  {
+    "file": "chinese-official-writing/references/genre-playbook-minutes.md",
+    "before": "- 本页聚焦会议纪要骨架和专项风险；复杂改稿、多材料合稿或文种关系存疑时，结合相应共性页处理。",
+    "after": "复杂改稿、多材料合稿或文种关系存疑时，结合相应共性页处理。",
+    "reason": "保留按任务转读动作，删除页面职责重复"
+  },
+  {
+    "file": "chinese-official-writing/references/genre-playbook-minutes.md",
+    "before": "- 风险：不写成会议新闻；不把发言顺序当成结论顺序；不编造“会议决定”；原材料只给议题、责任和期限时，不补写“会议认为”“会议强调”等未给会议判断，也不补写问题类型、产生环节、处理建议、保障效果等未给交付物；责任或期限未给时不使用“按审核执行”“后续推进”等泛口径补齐。",
+    "after": "- 结论按议题和议定关系组织，发言顺序仅用于核对发言记录。\n- 会议判断及交付物以记录为据；只有议题、责任和期限时，就围绕这些内容成文。严禁补写未形成的“会议决定”“会议认为”“会议强调”。\n- 责任和期限按记录填写；缺项按共性写作页处理。",
+    "reason": "将六项连否定拆为组织、会议判断、字段依据；保留关键否定例"
+  },
+  {
+    "file": "chinese-official-writing/references/compatibility-scene-routing.md",
+    "before": "本页承接新闻消息、新闻评论、合作性意见建议、整改方案和投诉反映，按任务选读一个对应专页，不预读全部专页。这里的“非公文兼容场景”是加载分组，不改变正式工作材料的用途或行文关系。起草、改稿、复核和排版模式仍服从 `SKILL.md`。",
+    "after": "按任务用途选读下列一个对应专页。",
+    "reason": "后文已有具体触发、路由和流程指针；删除分组架构自述"
+  },
+  {
+    "file": "chinese-official-writing/references/compatibility-scene-routing.md",
+    "before": "；不因材料中偶然出现“新闻”或“媒体”而改变原定文种。",
+    "after": "。材料仅提及“新闻”或“媒体”时，沿用原定文种。",
+    "reason": "保留用途与词语命中区分"
+  },
+  {
+    "file": "chinese-official-writing/references/compatibility-scene-routing.md",
+    "before": "；普通公文内容中出现这些词语，不改变原定文种。",
+    "after": "。材料仅提及这些词语时，沿用原定文种。",
+    "reason": "条件加动作取代否定"
+  },
+  {
+    "file": "chinese-official-writing/references/technical-terms.md",
+    "before": "这四项不是通用术语词典，不据此补造其他英文全称、中文译名、指标定义或阈值。",
+    "after": "其他英文全称、中文译名、指标定义和阈值按材料或已核实来源使用。",
+    "reason": "删除页面自我分类，保留术语来源要求"
+  },
+  {
+    "file": "chinese-official-writing/references/format-gbt9704.md",
+    "before": "显式取消首行、左侧和右侧缩进，不继承正文的首行缩进",
+    "after": "显式取消首行、左侧和右侧缩进",
+    "reason": "明确取消动作已包含继承状态"
+  },
+  {
+    "file": "chinese-official-writing/references/format-gbt9704.md",
+    "before": "仍按正文标点处理，不因出现 `（一）` 就机械拆段。",
+    "after": "仍按正文标点处理。",
+    "reason": "同句已限定段首题编号句及用户接排模板"
+  },
+  {
+    "file": "chinese-official-writing/references/format-gbt9704.md",
+    "before": "年份使用六角括号 `〔〕`，不要用方括号 `[]` 或圆括号 `()` 替代。",
+    "after": "年份使用六角括号 `〔〕`。",
+    "reason": "具体括号形态已给出"
+  },
+  {
+    "file": "chinese-official-writing/references/format-gbt9704.md",
+    "before": "；不要在发文机关署名或日期后再补正文结尾。",
+    "after": "。",
+    "reason": "前半已给唯一正确位置"
+  },
+  {
+    "file": "chinese-official-writing/references/format-gbt9704.md",
+    "before": "抄送对象应与办理需要相关，不随意扩大范围。",
+    "after": "抄送对象按办理需要列出。",
+    "reason": "去除重复否定，保留办理依据"
+  },
+  {
+    "file": "chinese-official-writing/references/format-gbt9704.md",
+    "before": "新生成版本默认不覆盖源文件。",
+    "after": "新生成版本默认另存，源文件保持原状。",
+    "reason": "以默认另存动作表达源文件保护"
+  }
+]

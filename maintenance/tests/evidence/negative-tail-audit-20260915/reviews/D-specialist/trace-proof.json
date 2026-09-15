@@ -1,0 +1,10 @@
+{
+  "raw_trace": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\negative-tail-audit-20260915\\output\\negative-tail-cold-20260915\\D-specialist\\trace.jsonl",
+  "trace_sha256": "26e39262ee925a95561dfe4d9c4f04082630190fcb27699d4f5d60ea2640c4fb",
+  "review_chars": 10820,
+  "command_tool_calls": 0,
+  "completed_item_types": [
+    "agent_message",
+    "reasoning"
+  ]
+}

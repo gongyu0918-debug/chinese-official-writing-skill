@@ -1,0 +1,9 @@
+{
+  "raw_trace": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\negative-tail-audit-20260915\\output\\negative-tail-cold-20260915\\A-common-fallback\\trace.jsonl",
+  "trace_sha256": "170b3d68e49125cd27b7b2a0b4ae627e89c6e9f7f55891ba03b8371333b5ebba",
+  "review_chars": 6692,
+  "command_tool_calls": 0,
+  "completed_item_types": [
+    "agent_message"
+  ]
+}

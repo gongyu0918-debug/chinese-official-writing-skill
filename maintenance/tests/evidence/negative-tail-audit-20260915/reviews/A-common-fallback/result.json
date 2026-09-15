@@ -1,0 +1,20 @@
+{
+  "model": "alibaba-token-plan/qwen3.8-max",
+  "effort": "max",
+  "transport": "native codex exec plaintext task",
+  "packet_delivery": "inline stdin",
+  "seconds": 558.0,
+  "returncode": 0,
+  "error": null,
+  "packet_sha256": "93c7eccc63c9f2b1248ee5a9aca0f0ea2b56c29c893e79b822aa4ff57c161f06",
+  "final_exists": true,
+  "usage": [
+    {
+      "input_tokens": 21737,
+      "cached_input_tokens": 8192,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 28688,
+      "reasoning_output_tokens": 24710
+    }
+  ]
+}
