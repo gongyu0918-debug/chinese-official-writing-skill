@@ -1,0 +1,20 @@
+{
+  "version": "2.0.3",
+  "started_at": "2026-09-15T21:13:33.405884+00:00",
+  "one_attempt": true,
+  "args": [
+    "C:\\Program Files\\GitHub CLI\\gh.exe",
+    "release",
+    "create",
+    "2.0.3",
+    "--repo",
+    "gongyu0918-debug/chinese-official-writing-skill",
+    "--verify-tag",
+    "--title",
+    "中文公文写作 2.0.3",
+    "--notes-file",
+    "maintenance\\tests\\evidence\\release-2.0.3-20260916\\release-notes.md",
+    "--latest"
+  ],
+  "assets": "NONE_FROZEN"
+}
