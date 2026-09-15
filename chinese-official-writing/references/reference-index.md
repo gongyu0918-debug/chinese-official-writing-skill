@@ -57,4 +57,4 @@
 - 字段拆行、增删和表单边界：`field-editing.md`。
 - 结构增删、移动和标题重排：`structure-editing.md`。
 - 采购需求、规格报价、响应规则或履约条件需要专项核对时：在已选主文种上叠加 `genre-playbook-procurement-review.md`；只做语言或格式审校时不因此加读。
-- AI 算力场景：按首页的场景条件叠加 `ai-compute-docs.md`。独立技术需求进入 `genre-playbook-technical-requirements.md`，算力页仍是附加规则。
+- AI 算力场景：按首页的场景条件叠加 `ai-compute-docs.md`。独立技术需求进入 `genre-playbook-technical-requirements.md`。

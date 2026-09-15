@@ -43,7 +43,7 @@ metadata:
 - **审核、复核、审校或把关**：读取对应主文种/事务叶和 `references/review-checklist.md`，按该页确定审稿意见或改后稿件。
 - **格式交付**：内容和办理要素核对完成后，再按用户要求读取 Word、GB/T 9704 或格式工具页。
 
-需要 Word、docx、GB/T 9704、红头或正式版式时叠加 `references/format-gbt9704.md`。主文种已确定且稿件明确涉及 AI 算力、模型推理/训练、智算中心或模型服务资源时，在主文种叶上叠加 `references/ai-compute-docs.md`；服务器、GPU、Token、并发等词结合实际业务判断，普通服务器、接口、安全、SLA 或验收内容单独出现时沿用主文种规则。它是场景附加规则，主文种继续承担文种路由。
+需要 Word、docx、GB/T 9704、红头或正式版式时叠加 `references/format-gbt9704.md`。主文种已确定且稿件明确涉及 AI 算力、模型推理/训练、智算中心或模型服务资源时，在主文种叶上叠加 `references/ai-compute-docs.md`；服务器、GPU、Token、并发等词结合实际业务判断，普通服务器、接口、安全、SLA 或验收内容单独出现时沿用主文种规则。
 
 用户已有提纲、模板、标题顺序或字段表时优先保留。
 
