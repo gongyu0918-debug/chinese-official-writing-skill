@@ -1,6 +1,6 @@
 # 中文公文写作 Skill
 
-[![Version](https://img.shields.io/badge/version-2.0.2-blue)](https://github.com/gongyu0918-debug/chinese-official-writing-skill/releases/tag/2.0.2)
+[![Version](https://img.shields.io/badge/version-2.0.3-blue)](https://github.com/gongyu0918-debug/chinese-official-writing-skill/releases/tag/2.0.3)
 [![ClawHub downloads: 7,655](https://img.shields.io/badge/ClawHub%20downloads-7%2C655-2f80ed)](https://clawhub.ai/gongyu0918-debug/skills/chinese-official-writing)
 [![SkillHub downloads: 13.3万](https://img.shields.io/badge/SkillHub%20downloads-13.3%E4%B8%87-2f855a)](https://skillhub.cn/skills/user_f3d82da7/chinese-official-writing)
 [![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
@@ -52,7 +52,7 @@ GitHub 默认分支维护 2.0；[legacy/1.x](https://github.com/gongyu0918-debug
 
 ## 获取与使用
 
-下载 [2.0.2](https://github.com/gongyu0918-debug/chinese-official-writing-skill/releases/tag/2.0.2)，将其中的 `chinese-official-writing` 目录复制到宿主的 Skill 目录，然后提供材料和写作要求即可。
+下载 [2.0.3 源码](https://github.com/gongyu0918-debug/chinese-official-writing-skill/releases/tag/2.0.3)，将其中的 `chinese-official-writing` 目录复制到宿主的 Skill 目录，然后提供材料和写作要求即可。
 
 篇幅和文稿检查需要 Python 3；Word 文件生成需要宿主提供文档工具。具体使用见包内 [README](chinese-official-writing/README.md)。
 
