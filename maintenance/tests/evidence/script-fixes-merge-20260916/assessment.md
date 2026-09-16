@@ -33,3 +33,9 @@
 保持main原有anti-ai-patterns.md；新增近义重复条款在codex/anti-ai-near-meaning-r2-20260916另做单因素测试，不混入本次脚本合并。
 
 142项程序检查、产品路径及Skill结构检查通过，详见checks.md。没有将Python词句断言当成写作门禁，没有新增独立裁判票数。快照换行差异与产品源码绑定见snapshot-scope.json和native/binding.json。所有原始调用记录均保留；本轮不推送、不发布、不改桌面包。
+
+## 执行回执
+
+main已从82cc2819快进至8900d1e1。合并后复用本机同步器完成安装，普通源绑定8900d1e1；安装目录与Codex缓存的162份文件一致，三份本次改变的MIT文件与main逐一比对一致（归一换行）。详情见local-sync.json。
+
+宿主返回两项Pro Hook均已启用、已信任。新安装的activation_state仍为AWAITING_HOST_TRUST；同步器实现只有在成功收到原生宿主事件后才将其改为ENABLED，本轮没有伪造事件或重跑Pro生命周期，因此不宣称已验证新的宿主写稿生命周期。普通层文件同步完成与该状态分别记录。

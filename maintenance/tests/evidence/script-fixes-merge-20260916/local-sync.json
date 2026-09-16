@@ -1,0 +1,43 @@
+{
+  "status": "INSTALLED",
+  "version": "0.4.16",
+  "base_source_commit": "8900d1e1608b37d9d222ff68070d59630278979c",
+  "verified_public_main": "8900d1e1608b37d9d222ff68070d59630278979c",
+  "runtime_source_commit": "e0a3f9134c3a15d7522c11265e124ed0c7871798",
+  "pro_source_commit": "5c15c14ae8ccec6134dd6499c903152a539a4830",
+  "pro_hook_source_commit": "ecdbb4fc86692d7d05b2a36ed4c0d8d45852f506",
+  "activation_state": "AWAITING_HOST_TRUST",
+  "hooks": [
+    {
+      "key": "official-writing-pro@official-writing-pro-local:hooks/hooks.json:user_prompt_submit:0:0",
+      "enabled": true,
+      "trustStatus": "trusted",
+      "currentHash": "sha256:d645ed1de12daa39a2dd70189af6d501d5e609808e34c8f8d5486606155ff843"
+    },
+    {
+      "key": "official-writing-pro@official-writing-pro-local:hooks/hooks.json:stop:0:0",
+      "enabled": true,
+      "trustStatus": "trusted",
+      "currentHash": "sha256:2592218566eecec858e8538197e0e4b5870a9e00ac2e17599a8c5c991a5c931b"
+    }
+  ],
+  "uncommitted_source_changes_loaded": false,
+  "installed_skill_files": 162,
+  "installed_and_cache_match": true,
+  "changed_file_checks": {
+    "references/prose-lint-usage.md": {
+      "installed": true,
+      "equal_normalized": true
+    },
+    "scripts/prose_lint.py": {
+      "installed": true,
+      "equal_normalized": true
+    },
+    "scripts/draft_length.py": {
+      "installed": true,
+      "equal_normalized": true
+    }
+  },
+  "public_product_tree": "6e621e4fe7c93a2f902e1ae849c17bb895169098",
+  "activation_note": "Hooks are trusted and enabled in the host. AWAITING_HOST_TRUST is retained until a successful native host event; this turn did not replay Pro lifecycle events."
+}
