@@ -1,0 +1,15 @@
+{
+  "baseline": "82cc2819",
+  "candidate": "ac0da985",
+  "anti_ai_git_blob_unchanged": true,
+  "unit_tests": {
+    "distinct_count": 142,
+    "result": "PASS",
+    "seconds": 17.837
+  },
+  "path_audit": "PASS",
+  "skill_validate": "PASS",
+  "diff_check": "PASS",
+  "scanned_file_sha256": "dd1db99948a9ef360cce86645edf10018dd3fc49960ca4a67d4878d3ae2ff544",
+  "scanned_file_note": "Read after model completion; final chat response changed fullwidth punctuation to halfwidth."
+}

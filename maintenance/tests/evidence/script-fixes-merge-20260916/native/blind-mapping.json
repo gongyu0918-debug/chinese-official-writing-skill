@@ -1,0 +1,42 @@
+[
+  {
+    "pair": 1,
+    "label": "A",
+    "run": "m0-cost_sequence_control-candidate"
+  },
+  {
+    "pair": 1,
+    "label": "B",
+    "run": "m0-cost_sequence_control-baseline"
+  },
+  {
+    "pair": 2,
+    "label": "A",
+    "run": "m0-inspection_context-baseline"
+  },
+  {
+    "pair": 2,
+    "label": "B",
+    "run": "m0-inspection_context-candidate"
+  },
+  {
+    "pair": 3,
+    "label": "A",
+    "run": "m2-cost_sequence_control-candidate"
+  },
+  {
+    "pair": 3,
+    "label": "B",
+    "run": "m2-cost_sequence_control-baseline"
+  },
+  {
+    "pair": 4,
+    "label": "A",
+    "run": "m2-inspection_context-baseline"
+  },
+  {
+    "pair": 4,
+    "label": "B",
+    "run": "m2-inspection_context-candidate"
+  }
+]

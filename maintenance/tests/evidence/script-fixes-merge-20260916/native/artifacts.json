@@ -1,0 +1,162 @@
+[
+  {
+    "path": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\script-fixes-merge-20260916\\output\\script-fixes-merge-native\\m0-cost_sequence_control-baseline.result.json",
+    "sha256": "95ef83e21b9bed9d308ceda958d0eaea4e0494a6f08f0d89038983e5defabdc1",
+    "bytes": 59046
+  },
+  {
+    "path": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\script-fixes-merge-20260916\\output\\script-fixes-merge-native\\m0-cost_sequence_control-baseline.trace.jsonl",
+    "sha256": "7b5eccbf84a71f47e042843be6eb698e04cac7d30a1a00ac16ed3d90dbb928fd",
+    "bytes": 76883
+  },
+  {
+    "path": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\script-fixes-merge-20260916\\output\\script-fixes-merge-native\\m0-cost_sequence_control-baseline.stderr.txt",
+    "sha256": "5d6d743faa4bac639dc3549b45dd2687c89aa7d9f3161df8c2c822a2cdd4a64b",
+    "bytes": 2589
+  },
+  {
+    "path": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\script-fixes-merge-20260916\\output\\script-fixes-merge-native\\m0-cost_sequence_control-baseline.final.txt",
+    "sha256": "429835cf706eb66599f3481040860d3ffc4c1fb35158a612af835d322f243ef2",
+    "bytes": 2629
+  },
+  {
+    "path": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\script-fixes-merge-20260916\\output\\script-fixes-merge-native\\m0-cost_sequence_control-candidate.result.json",
+    "sha256": "215f5035dad1eca9de70403b2fedefdfe58b39e4adc01546f2f329cb22a1b4bf",
+    "bytes": 53317
+  },
+  {
+    "path": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\script-fixes-merge-20260916\\output\\script-fixes-merge-native\\m0-cost_sequence_control-candidate.trace.jsonl",
+    "sha256": "49c2138c8bc0a3d45cedb4c9d602573497be0b6f078d3aac55e3a14becfbad9d",
+    "bytes": 64208
+  },
+  {
+    "path": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\script-fixes-merge-20260916\\output\\script-fixes-merge-native\\m0-cost_sequence_control-candidate.stderr.txt",
+    "sha256": "79d75be9239107dc7f5b2d19f0398fe3dd4608c09fbd5a47ffb450bc2643410e",
+    "bytes": 417
+  },
+  {
+    "path": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\script-fixes-merge-20260916\\output\\script-fixes-merge-native\\m0-cost_sequence_control-candidate.final.txt",
+    "sha256": "676742f452282b5c5a99b60ea7cbf65e5dc445959c427a4bae3914aeef04e068",
+    "bytes": 2479
+  },
+  {
+    "path": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\script-fixes-merge-20260916\\output\\script-fixes-merge-native\\m0-inspection_context-baseline.result.json",
+    "sha256": "a02099afd7c26fc68e3dc50d354c15b792341dc34a82dddd6ec4a2e6ecb19cf3",
+    "bytes": 38708
+  },
+  {
+    "path": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\script-fixes-merge-20260916\\output\\script-fixes-merge-native\\m0-inspection_context-baseline.trace.jsonl",
+    "sha256": "3998e1439d57304eab9af9f4a58b34c9a9bcbc0857d5a343e4a83ff27b29f81e",
+    "bytes": 50654
+  },
+  {
+    "path": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\script-fixes-merge-20260916\\output\\script-fixes-merge-native\\m0-inspection_context-baseline.stderr.txt",
+    "sha256": "dd8880ca5a909c59d991070df3a0524fc9689c1237b5e2e7111f0d900a637267",
+    "bytes": 417
+  },
+  {
+    "path": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\script-fixes-merge-20260916\\output\\script-fixes-merge-native\\m0-inspection_context-baseline.final.txt",
+    "sha256": "52b951b5da0cadb7fb38ac26f4e1c24eaa7e999505855e45530b889711472676",
+    "bytes": 1356
+  },
+  {
+    "path": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\script-fixes-merge-20260916\\output\\script-fixes-merge-native\\m0-inspection_context-candidate.result.json",
+    "sha256": "3525c5093188bbf46f2f0ff7d8f598bccbad7a66ca20351a021ba747eeb5a5f8",
+    "bytes": 43331
+  },
+  {
+    "path": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\script-fixes-merge-20260916\\output\\script-fixes-merge-native\\m0-inspection_context-candidate.trace.jsonl",
+    "sha256": "ae57b1a9b7e77c99f5dbda75bc341152f3e82acef522a933b57cd0898dc646aa",
+    "bytes": 51475
+  },
+  {
+    "path": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\script-fixes-merge-20260916\\output\\script-fixes-merge-native\\m0-inspection_context-candidate.stderr.txt",
+    "sha256": "10c2496f6579631fb19feb321b01926c26f560f1c57def8eb086286c52429662",
+    "bytes": 417
+  },
+  {
+    "path": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\script-fixes-merge-20260916\\output\\script-fixes-merge-native\\m0-inspection_context-candidate.final.txt",
+    "sha256": "45a4515fcb7f1d20a8edd35548601dd54c6137bea3d412f69057e4133843915d",
+    "bytes": 1271
+  },
+  {
+    "path": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\script-fixes-merge-20260916\\output\\script-fixes-merge-native\\m2-cost_sequence_control-baseline.result.json",
+    "sha256": "ab78cdf7f58446076bd5c48e2643dec86e6e98c47afa1aa2a8e4bb39b10f114f",
+    "bytes": 106977
+  },
+  {
+    "path": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\script-fixes-merge-20260916\\output\\script-fixes-merge-native\\m2-cost_sequence_control-baseline.trace.jsonl",
+    "sha256": "ecc5616ae11f7ceafc0cf3d79bffb3b6a9c073a9cd346186e05b1c89e8202fe6",
+    "bytes": 123297
+  },
+  {
+    "path": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\script-fixes-merge-20260916\\output\\script-fixes-merge-native\\m2-cost_sequence_control-baseline.stderr.txt",
+    "sha256": "545deb254dc2d1633b9ac1521b24b8f8f92882ee51c96a19c7b110e282952843",
+    "bytes": 417
+  },
+  {
+    "path": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\script-fixes-merge-20260916\\output\\script-fixes-merge-native\\m2-cost_sequence_control-baseline.final.txt",
+    "sha256": "c8713f26cab6c5a0d24a2e155da6fa2f132b52341945b3753da9020368e373c7",
+    "bytes": 2512
+  },
+  {
+    "path": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\script-fixes-merge-20260916\\output\\script-fixes-merge-native\\m2-cost_sequence_control-candidate.result.json",
+    "sha256": "7d9b5df504926079a7472b493a47df9602f3966502edb0630957349915c617cd",
+    "bytes": 57523
+  },
+  {
+    "path": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\script-fixes-merge-20260916\\output\\script-fixes-merge-native\\m2-cost_sequence_control-candidate.trace.jsonl",
+    "sha256": "4f5724c555127cb0982c048f4486912e76e28678392c154a732a37c21e7f6c29",
+    "bytes": 69268
+  },
+  {
+    "path": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\script-fixes-merge-20260916\\output\\script-fixes-merge-native\\m2-cost_sequence_control-candidate.stderr.txt",
+    "sha256": "7567298036704a68d7a4bee6a067ff397297ae42c0b55442d8a4925dd144985d",
+    "bytes": 417
+  },
+  {
+    "path": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\script-fixes-merge-20260916\\output\\script-fixes-merge-native\\m2-cost_sequence_control-candidate.final.txt",
+    "sha256": "bdd988e1a0c86bf921802c9d7acd9c405f38cc90277dfb9acea257e63fb2c667",
+    "bytes": 2019
+  },
+  {
+    "path": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\script-fixes-merge-20260916\\output\\script-fixes-merge-native\\m2-inspection_context-baseline.result.json",
+    "sha256": "639cc985da188225e1a955e31e10f4e9b7e6f856dc8cdbd1078b8d12f54120db",
+    "bytes": 103042
+  },
+  {
+    "path": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\script-fixes-merge-20260916\\output\\script-fixes-merge-native\\m2-inspection_context-baseline.trace.jsonl",
+    "sha256": "407bae21a1ade0dd55c18895ac2acac9be84f1fe1ea134418c9784ee0cead390",
+    "bytes": 134503
+  },
+  {
+    "path": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\script-fixes-merge-20260916\\output\\script-fixes-merge-native\\m2-inspection_context-baseline.stderr.txt",
+    "sha256": "8fa9f163508b66867f8479be356fb0753bd487f3c1df9ebcd8415617f87e910d",
+    "bytes": 417
+  },
+  {
+    "path": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\script-fixes-merge-20260916\\output\\script-fixes-merge-native\\m2-inspection_context-baseline.final.txt",
+    "sha256": "e7dee4904cd433f4197d5aa6084a009f01c05454d041489767a761f301480e82",
+    "bytes": 1171
+  },
+  {
+    "path": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\script-fixes-merge-20260916\\output\\script-fixes-merge-native\\m2-inspection_context-candidate.result.json",
+    "sha256": "10c108b265ebbf8501d9205d03be045ad88d26b44d42d9ec091318b84781849c",
+    "bytes": 60031
+  },
+  {
+    "path": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\script-fixes-merge-20260916\\output\\script-fixes-merge-native\\m2-inspection_context-candidate.trace.jsonl",
+    "sha256": "66a06c68d95b9aec8a5d2c4eb7b28ac49fa0715ef48e1f97b393c1312f6675f6",
+    "bytes": 70509
+  },
+  {
+    "path": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\script-fixes-merge-20260916\\output\\script-fixes-merge-native\\m2-inspection_context-candidate.stderr.txt",
+    "sha256": "37840cd8c453a94c617be80aee22112e4cc5ade89638c5071115091189fd0af1",
+    "bytes": 833
+  },
+  {
+    "path": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\script-fixes-merge-20260916\\output\\script-fixes-merge-native\\m2-inspection_context-candidate.final.txt",
+    "sha256": "cc9c6124d79d326d5d92d8b6b0069203e0f06b2aac26ad9abf6daaf7b401375f",
+    "bytes": 1689
+  }
+]
