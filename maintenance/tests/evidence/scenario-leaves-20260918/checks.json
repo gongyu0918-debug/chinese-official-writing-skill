@@ -1,0 +1,45 @@
+{
+  "research_reports": {
+    "budget": {
+      "model": "alibaba-token-plan/deepseek-v4.1-flash",
+      "effort": "max",
+      "seconds": 431.47,
+      "report_sha256": "ebb812f7c544604ea24c2a31d7dafa026b809ca3d9c2d465b9344b0721c86551",
+      "trace_sha256": "28aef9fe44a4418b8a2eb6312b4bc6fdf5947ee644acc3fc35aca1c977590def",
+      "receipt": "budget-receipt.json"
+    },
+    "information": {
+      "model": "alibaba-token-plan-2/deepseek-v4.1-flash",
+      "effort": "max",
+      "seconds": 566.72,
+      "report_sha256": "de36579d180a8934dc4fd84a504e27cbbf4bdcde218f931a9c6de8502c99186a",
+      "trace_sha256": "838f3847bf3bbb45cbb10526f95cc18811e145e2d31147cf499ceb2703075626",
+      "receipt": "information-receipt.json"
+    },
+    "competitors": {
+      "model": "ollama-cloud/deepseek-v4.1-flash",
+      "effort": "max",
+      "seconds": 481.08,
+      "report_sha256": "eaf885e4f84969f40ecb8fd2b8f0503043acee585f2cd7dcfddae95a7e72a81d",
+      "trace_sha256": "b6d1708d95b1a78fe0e1fa1f5c2c39d3fcef30ff76c66c8feaab1a4e0ad47abc",
+      "receipt": "competitors-receipt.json"
+    },
+    "procurement_remediation": {
+      "model": "command-code/deepseek-deepseek-v4.1-flash",
+      "effort": "high",
+      "seconds": 115.33,
+      "report_sha256": "b3cf5d6cf04856059f433520384d8391af60fe3a52619175a939687a40f8e1ab",
+      "trace_sha256": "43a4de9028eac8fd4f88907099790d57ef407d7d6a29b50ab56082af15d10ba7",
+      "receipt": "procurement-remediation-followup-receipt.json"
+    }
+  },
+  "product_diff_from_main": "empty",
+  "main_commit": "70d241ca88e426ad03d9ddc7074a9d4314e4819d",
+  "python_syntax": "PASS",
+  "native_writing_calls": 0,
+  "status": "RESEARCH_COMPLETE_NOT_WRITING_VALIDATED",
+  "provider_failures_preserved": [
+    "desktop encrypted-agent-task errors x2",
+    "command-code max research timeout; high cached-material summary succeeded"
+  ]
+}
