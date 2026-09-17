@@ -1,0 +1,17 @@
+{
+  "time": "2026-09-17T06:12:14.685181+00:00",
+  "version": "2.0.4",
+  "product_commit": "f8b2e86f2cefa9a660c21faca37b24f42cb3ee64",
+  "command": [
+    "C:\\Users\\admin\\AppData\\Local\\hermes\\hermes-agent\\venv\\Scripts\\python.exe",
+    "C:\\Users\\admin\\.skillhub\\skills_store_cli.py",
+    "--skip-self-upgrade",
+    "publish",
+    "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\release-2.0.4-20260917\\output\\release-2.0.4\\skillhub",
+    "--version",
+    "2.0.4",
+    "--changelog",
+    "2.0.4 改进文稿扫描，减少对正常表达的误报。\n\n- 完善 Markdown 标记、代码围栏、占位残留和起草过程自述的检测。\n- 更准确地区分正常并列表达、业务引语和附件编号，减少不必要的修改提示。\n- 复核时结合材料和常识判断原因、作用及后续结论，保留有依据的合理分析。\n- 改进文件读取和编码异常时的错误提示，便于定位扫描未完成的原因。\n",
+    "--json"
+  ]
+}

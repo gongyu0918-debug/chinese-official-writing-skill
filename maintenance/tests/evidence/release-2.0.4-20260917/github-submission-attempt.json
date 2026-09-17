@@ -1,0 +1,19 @@
+{
+  "time": "2026-09-17T06:11:53.890188+00:00",
+  "version": "2.0.4",
+  "product_commit": "f8b2e86f2cefa9a660c21faca37b24f42cb3ee64",
+  "command": [
+    "C:/Program Files/GitHub CLI/gh.exe",
+    "release",
+    "create",
+    "2.0.4",
+    "--repo",
+    "gongyu0918-debug/chinese-official-writing-skill",
+    "--verify-tag",
+    "--title",
+    "中文公文写作 2.0.4",
+    "--notes-file",
+    "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\release-2.0.4-20260917\\maintenance\\tests\\evidence\\release-2.0.4-20260917\\release-notes.md",
+    "--latest"
+  ]
+}
