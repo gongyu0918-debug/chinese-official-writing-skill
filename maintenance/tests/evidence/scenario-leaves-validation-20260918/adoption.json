@@ -1,0 +1,35 @@
+{
+  "adopted_commit": "bc1a94faaae0c8cc4eabcc7025e1c981b48474c0",
+  "branch": "codex/scenario-leaves-validation-20260918",
+  "main_merge": "fast-forward",
+  "baseline": "70d241ca88e426ad03d9ddc7074a9d4314e4819d",
+  "product_tree": "2cdc9129cba7d9eb57a6422cb86cfcfa7a1481da",
+  "native_calls": 36,
+  "initial_pairs": 16,
+  "bounded_retests": 2,
+  "retained_read_path_pairs": 15,
+  "held_change": "procurement correction announcement increment",
+  "push": false,
+  "release": false,
+  "local_sync": {
+    "status": "INSTALLED",
+    "base_source_commit": "bc1a94faaae0c8cc4eabcc7025e1c981b48474c0",
+    "installed_files_verified": 166,
+    "plugin_enabled": true,
+    "reference_git_blob_matches": {
+      "funding-budget.md": true,
+      "information-system-projects.md": true,
+      "reference-index.md": true,
+      "genre-playbook-procurement-review.md": true,
+      "transaction-remediation-report.md": true,
+      "genre-playbook-procurement-announcement.md": true
+    },
+    "cli": "C:/Users/admin/AppData/Local/OpenAI/Codex/bin/eab8377aebac6c07/codex.exe",
+    "first_attempt": "Legacy npm codex.cmd rejected agents.default_subagent_model; failed before removing old registration.",
+    "retry": "Temporary process PATH wrapper selected already-tested Codex CLI 0.155.0-alpha.2.6. Agent model settings retained.",
+    "first_byte_check": "Worktree CRLF differed from installed LF; all six installed pages match committed Git blobs exactly.",
+    "hooks_enabled_and_trusted": true,
+    "hook_lifecycle_test": "NOT_RUN",
+    "private_online_validation": "NOT_RUN"
+  }
+}

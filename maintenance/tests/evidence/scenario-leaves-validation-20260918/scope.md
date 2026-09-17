@@ -31,3 +31,16 @@
 ## 首轮观察后的有限复测
 
 首轮Qwen P3候选比基线明显展开更多验收程序；DeepSeek R1候选有材料未说明的“分年度落实”及明显加长。新增规则本身没有要求这些安排，基线也有相近展开倾向，不能直接归因。因此最多补这两个原题的同模型、同max、同冻结版本A/B各一对（共4次），不改提示、不挑选只成功的样本，原失败/不足全部保留。复测仍无实质改善的部分允许暂缓，不再无边界扩展。
+
+## 本轮实际命令
+
+在本验证worktree执行（再次重现时给output另取目录名，以保留原冻结证据）：
+
+```text
+python maintenance/tests/evidence/scenario-leaves-validation-20260918/run_eval.py --output output/scenario-native-20260918/qwen --baseline-ref 70d241ca --models 0 --cases B2 I1 R2 P3 B1 P2 I2 C1 --timeout 360 --effort max --isolated-profile --ordinary-only --utf8-read
+python maintenance/tests/evidence/scenario-leaves-validation-20260918/run_eval.py --output output/scenario-native-20260918/deepseek --baseline-ref 70d241ca --models 2 --cases B2 I1 R2 P3 R1 P2 I2 C2 --timeout 360 --effort max --isolated-profile --ordinary-only --utf8-read
+python maintenance/tests/evidence/scenario-leaves-validation-20260918/run_eval.py --output output/scenario-native-20260918/deepseek-retest --baseline-ref 70d241ca --models 2 --cases R1 --timeout 360 --effort max --isolated-profile --ordinary-only --utf8-read
+python maintenance/tests/evidence/scenario-leaves-validation-20260918/run_eval.py --output output/scenario-native-20260918/qwen-retest --baseline-ref 70d241ca --models 0 --cases P3 --timeout 360 --effort max --isolated-profile --ordinary-only --utf8-read
+```
+
+独立评阅使用本目录review_native.py，cold-rules、blind-first、blind-risk、blind-rest、blind-retest各在单独输入目录运行，均--effort max --timeout 360，完整CLI及输入哈希见各receipt。prepare_review.py只匿名化本地路径与A/B标签，不修改正文；一次MSYS路径识别失败发生在模型调用前，修复匿名化后才发送，未混入错误的盲审。代码与证据处理错误不算模型写稿失败。
