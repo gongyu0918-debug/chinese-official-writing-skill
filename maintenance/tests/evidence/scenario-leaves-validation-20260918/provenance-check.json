@@ -1,0 +1,64 @@
+{
+  "calls": {
+    "qwen": 16,
+    "deepseek": 16,
+    "qwen-retest": 2,
+    "deepseek-retest": 2
+  },
+  "total_calls": 36,
+  "errors": [],
+  "bindings": [
+    {
+      "route": "qwen",
+      "baseline_commit": "70d241ca88e426ad03d9ddc7074a9d4314e4819d",
+      "candidate_head": "1cffe2e47cd4e1cb5935033fd04dfa4b593ea643",
+      "fingerprints": {
+        "baseline": "95b1d60b60c92156a2c1cf36cde063d57a34b0e024ed0b54ceb892cd7e01b1f7",
+        "candidate": "e148acfc4c73108908d2df2e0517c8fed0a9ed8aad5fa5d336288f66472c8265"
+      },
+      "models": [
+        "alibaba-token-plan/qwen3.8-flash"
+      ],
+      "effort": "max"
+    },
+    {
+      "route": "deepseek",
+      "baseline_commit": "70d241ca88e426ad03d9ddc7074a9d4314e4819d",
+      "candidate_head": "1cffe2e47cd4e1cb5935033fd04dfa4b593ea643",
+      "fingerprints": {
+        "baseline": "95b1d60b60c92156a2c1cf36cde063d57a34b0e024ed0b54ceb892cd7e01b1f7",
+        "candidate": "e148acfc4c73108908d2df2e0517c8fed0a9ed8aad5fa5d336288f66472c8265"
+      },
+      "models": [
+        "command-code/deepseek-deepseek-v4.1-flash"
+      ],
+      "effort": "max"
+    },
+    {
+      "route": "qwen-retest",
+      "baseline_commit": "70d241ca88e426ad03d9ddc7074a9d4314e4819d",
+      "candidate_head": "1cffe2e47cd4e1cb5935033fd04dfa4b593ea643",
+      "fingerprints": {
+        "baseline": "95b1d60b60c92156a2c1cf36cde063d57a34b0e024ed0b54ceb892cd7e01b1f7",
+        "candidate": "e148acfc4c73108908d2df2e0517c8fed0a9ed8aad5fa5d336288f66472c8265"
+      },
+      "models": [
+        "alibaba-token-plan/qwen3.8-flash"
+      ],
+      "effort": "max"
+    },
+    {
+      "route": "deepseek-retest",
+      "baseline_commit": "70d241ca88e426ad03d9ddc7074a9d4314e4819d",
+      "candidate_head": "1cffe2e47cd4e1cb5935033fd04dfa4b593ea643",
+      "fingerprints": {
+        "baseline": "95b1d60b60c92156a2c1cf36cde063d57a34b0e024ed0b54ceb892cd7e01b1f7",
+        "candidate": "e148acfc4c73108908d2df2e0517c8fed0a9ed8aad5fa5d336288f66472c8265"
+      },
+      "models": [
+        "command-code/deepseek-deepseek-v4.1-flash"
+      ],
+      "effort": "max"
+    }
+  ]
+}

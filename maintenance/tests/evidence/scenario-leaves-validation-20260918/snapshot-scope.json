@@ -1,0 +1,50 @@
+{
+  "method": "All product files compared after CRLF to LF normalization; original native fingerprints remain unchanged in binding.json.",
+  "changed_files": [
+    {
+      "path": "references/funding-budget.md",
+      "before_chars": 0,
+      "after_chars": 400,
+      "before_sha256": null,
+      "after_sha256": "a2b2f56662132182f78cb2ea9aa391a33e8c007ba1e2980b433164421da6a75e"
+    },
+    {
+      "path": "references/genre-playbook-procurement-announcement.md",
+      "before_chars": 435,
+      "after_chars": 530,
+      "before_sha256": "c0f4d5101d969283457313f6bf20495fc92fcbd7b4add70e03d9bc8585eefbed",
+      "after_sha256": "6791ace4d204b25cad4f756f0a604c511b0d295e66426ebe9bcb20b5709e0c50"
+    },
+    {
+      "path": "references/genre-playbook-procurement-review.md",
+      "before_chars": 542,
+      "after_chars": 664,
+      "before_sha256": "4b9d7b18a8123028657d7e1eb36ae52e52485fe51477f991ec70ec53a6b8a102",
+      "after_sha256": "516b74413fb66720e9fba1a63b3afcab4c0fb257d3acae9c794656ade1fa9382"
+    },
+    {
+      "path": "references/information-system-projects.md",
+      "before_chars": 0,
+      "after_chars": 450,
+      "before_sha256": null,
+      "after_sha256": "82a5498a1ceb75bc59ee23faac218a67745076427784e290435bd525a2e007c9"
+    },
+    {
+      "path": "references/reference-index.md",
+      "before_chars": 3048,
+      "after_chars": 3212,
+      "before_sha256": "5583aa31e4d98ceab99801cf474cf4a829ddd2f1023d3233ccf2c22fae8b2a1d",
+      "after_sha256": "ef66974d8b04ae952f16b859d46fd8c112d76b87b983693178876dfc64344a47"
+    },
+    {
+      "path": "references/transaction-remediation-report.md",
+      "before_chars": 336,
+      "after_chars": 343,
+      "before_sha256": "c9d09ef19306cf57c357e5ae5af20d5448e1f4e72b343b31efdc7965640fef5c",
+      "after_sha256": "495499ecec9f7e60dbdaf7e8de7849acb28131d8f7244f887fd3136760a69b2f"
+    }
+  ],
+  "added_rule_chars": 1238,
+  "entry_same": true,
+  "scripts_same": true
+}

@@ -1,0 +1,322 @@
+[
+  {
+    "path": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\scenario-leaves-validation-20260918\\output\\scenario-native-20260918\\qwen\\m0-B1-baseline.result.json",
+    "sha256": "7eba0a98211b11d3f05d116979228fe62b6e0867b664a4b1703912eb342ac412",
+    "bytes": 50801
+  },
+  {
+    "path": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\scenario-leaves-validation-20260918\\output\\scenario-native-20260918\\qwen\\m0-B1-baseline.trace.jsonl",
+    "sha256": "7d48dd7d38081f511b29ba77078a33658593148658319db77ea25aca741eba49",
+    "bytes": 59448
+  },
+  {
+    "path": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\scenario-leaves-validation-20260918\\output\\scenario-native-20260918\\qwen\\m0-B1-baseline.stderr.txt",
+    "sha256": "51cc8bdeb528f9b43dc0081468922c086911f5275f695436cecc59660928bd1d",
+    "bytes": 417
+  },
+  {
+    "path": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\scenario-leaves-validation-20260918\\output\\scenario-native-20260918\\qwen\\m0-B1-baseline.final.txt",
+    "sha256": "f2f38230d55afa0665ccd5628d76a080de9932b1ed9d3647d3423b93f047b0c0",
+    "bytes": 961
+  },
+  {
+    "path": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\scenario-leaves-validation-20260918\\output\\scenario-native-20260918\\qwen\\m0-B1-candidate.result.json",
+    "sha256": "b9c35520e64302453efe42ee1c6c166da7965eab493767421b1dc0054583821f",
+    "bytes": 54402
+  },
+  {
+    "path": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\scenario-leaves-validation-20260918\\output\\scenario-native-20260918\\qwen\\m0-B1-candidate.trace.jsonl",
+    "sha256": "3eb6d15a03f0ffa52b9bd3e971334ed4b1b4c3d915fef105f2f4f064c021e3d9",
+    "bytes": 64982
+  },
+  {
+    "path": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\scenario-leaves-validation-20260918\\output\\scenario-native-20260918\\qwen\\m0-B1-candidate.stderr.txt",
+    "sha256": "1f3f5d2fd793217d6eea8f0a1723788c1df8e5308ea59b8fff26b6de6a2606a2",
+    "bytes": 417
+  },
+  {
+    "path": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\scenario-leaves-validation-20260918\\output\\scenario-native-20260918\\qwen\\m0-B1-candidate.final.txt",
+    "sha256": "cf4d46ab2c0843b2b12d5d08e3916112b9ba42a499ad21bdb652f94518ebd6be",
+    "bytes": 940
+  },
+  {
+    "path": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\scenario-leaves-validation-20260918\\output\\scenario-native-20260918\\qwen\\m0-B2-baseline.result.json",
+    "sha256": "8515db1f20517bcd88a2e967357d3c59a6a2e4d226b4829814f3890c270997f6",
+    "bytes": 28007
+  },
+  {
+    "path": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\scenario-leaves-validation-20260918\\output\\scenario-native-20260918\\qwen\\m0-B2-baseline.trace.jsonl",
+    "sha256": "f77cf025f19e27e9ea4f31837e2aeb261b9de0144ca0b39452a7995691959214",
+    "bytes": 31616
+  },
+  {
+    "path": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\scenario-leaves-validation-20260918\\output\\scenario-native-20260918\\qwen\\m0-B2-baseline.stderr.txt",
+    "sha256": "6e873320648afa02d1591874960d962c477a464ead6479488b510aa1c47f293f",
+    "bytes": 417
+  },
+  {
+    "path": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\scenario-leaves-validation-20260918\\output\\scenario-native-20260918\\qwen\\m0-B2-baseline.final.txt",
+    "sha256": "6c9a3dbf5096cad237be8d4bc18595994277a1066764fc02888dec3f11a9cb57",
+    "bytes": 860
+  },
+  {
+    "path": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\scenario-leaves-validation-20260918\\output\\scenario-native-20260918\\qwen\\m0-B2-candidate.result.json",
+    "sha256": "405db279e7d6d21a1f1a95d3de3df33ae2804fd14033fb390b78be1256bd5cdc",
+    "bytes": 44603
+  },
+  {
+    "path": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\scenario-leaves-validation-20260918\\output\\scenario-native-20260918\\qwen\\m0-B2-candidate.trace.jsonl",
+    "sha256": "09d013d3f33c6ae820bd8b1079440a41ce0b526263fbd67f59dbbe17009ed5a4",
+    "bytes": 56142
+  },
+  {
+    "path": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\scenario-leaves-validation-20260918\\output\\scenario-native-20260918\\qwen\\m0-B2-candidate.stderr.txt",
+    "sha256": "866b5d48922287ce6659c56cc2d802db91deafa0cfb189d51c6f9a1a5ccbde94",
+    "bytes": 1168
+  },
+  {
+    "path": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\scenario-leaves-validation-20260918\\output\\scenario-native-20260918\\qwen\\m0-B2-candidate.final.txt",
+    "sha256": "6611d8f1c0d74e1ababaab1d4b78436f0d353f3ae91a778e76235662361c8492",
+    "bytes": 1967
+  },
+  {
+    "path": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\scenario-leaves-validation-20260918\\output\\scenario-native-20260918\\qwen\\m0-C1-baseline.result.json",
+    "sha256": "092bdb3e98ef8bd9f5693f0341c0b670fc3163c2dce553989aed02d40fa3ca20",
+    "bytes": 37049
+  },
+  {
+    "path": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\scenario-leaves-validation-20260918\\output\\scenario-native-20260918\\qwen\\m0-C1-baseline.trace.jsonl",
+    "sha256": "75e1b2c8da9fa2477a1497ab217dbe5bdd3be1695098808446f03e7a86f33c9e",
+    "bytes": 44925
+  },
+  {
+    "path": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\scenario-leaves-validation-20260918\\output\\scenario-native-20260918\\qwen\\m0-C1-baseline.stderr.txt",
+    "sha256": "d7dd8f0dc3a81eb12a2886279bb55620d842d3b56abb1469bc9f1ef38327650c",
+    "bytes": 417
+  },
+  {
+    "path": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\scenario-leaves-validation-20260918\\output\\scenario-native-20260918\\qwen\\m0-C1-baseline.final.txt",
+    "sha256": "a70c4e8fbea290ec6ab52f6644d2756549838328ec7a291c9120cc7f68f940fe",
+    "bytes": 535
+  },
+  {
+    "path": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\scenario-leaves-validation-20260918\\output\\scenario-native-20260918\\qwen\\m0-C1-candidate.result.json",
+    "sha256": "c5118646cf2f3d19480e71cc1c06c0ca39147609f2f3b64c25dc5dc2f00bcbf5",
+    "bytes": 38700
+  },
+  {
+    "path": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\scenario-leaves-validation-20260918\\output\\scenario-native-20260918\\qwen\\m0-C1-candidate.trace.jsonl",
+    "sha256": "bb7d399eb9dc2cd3acec236bdf6007b98b7cec3d304c50010b03e1a2e5cf388d",
+    "bytes": 47427
+  },
+  {
+    "path": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\scenario-leaves-validation-20260918\\output\\scenario-native-20260918\\qwen\\m0-C1-candidate.stderr.txt",
+    "sha256": "c75295d992d001359ca271da92272a19121107afb8829425906921717bdeea07",
+    "bytes": 417
+  },
+  {
+    "path": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\scenario-leaves-validation-20260918\\output\\scenario-native-20260918\\qwen\\m0-C1-candidate.final.txt",
+    "sha256": "5cbd024d14ca7ad1fa9ba8d4abb9d479b232bc85e382030056beec4c1f367de3",
+    "bytes": 705
+  },
+  {
+    "path": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\scenario-leaves-validation-20260918\\output\\scenario-native-20260918\\qwen\\m0-I1-baseline.result.json",
+    "sha256": "a3d51373e624b6fe48bbc80b5e7f7b29f7f97433fd012602c89725926b10e99d",
+    "bytes": 44587
+  },
+  {
+    "path": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\scenario-leaves-validation-20260918\\output\\scenario-native-20260918\\qwen\\m0-I1-baseline.trace.jsonl",
+    "sha256": "103592f15252c8544736f26c734b1a1d6a4e4b631e26fd4c6da900665518679e",
+    "bytes": 53370
+  },
+  {
+    "path": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\scenario-leaves-validation-20260918\\output\\scenario-native-20260918\\qwen\\m0-I1-baseline.stderr.txt",
+    "sha256": "e727d190b2dfa8b5fb406755c7469b6fb8d4c790324ea3d2b33b252c5541d905",
+    "bytes": 417
+  },
+  {
+    "path": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\scenario-leaves-validation-20260918\\output\\scenario-native-20260918\\qwen\\m0-I1-baseline.final.txt",
+    "sha256": "60a014fa45d3e9baaf53931369559f69f0d177580cd334967ec252caa7cb0f2c",
+    "bytes": 2445
+  },
+  {
+    "path": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\scenario-leaves-validation-20260918\\output\\scenario-native-20260918\\qwen\\m0-I1-candidate.result.json",
+    "sha256": "93d7c9adef966eba1405c4d3dd23ca92c6d1833f051502eb1fc89039b096ee1f",
+    "bytes": 45725
+  },
+  {
+    "path": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\scenario-leaves-validation-20260918\\output\\scenario-native-20260918\\qwen\\m0-I1-candidate.trace.jsonl",
+    "sha256": "251dfbab216052db40f0aed6e7be7ff7312c5f9c89b2e0c2432a5a95c1e4343a",
+    "bytes": 53312
+  },
+  {
+    "path": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\scenario-leaves-validation-20260918\\output\\scenario-native-20260918\\qwen\\m0-I1-candidate.stderr.txt",
+    "sha256": "a5957afa601da37f4ec83aa681c9748a2c15318bae0ee868f685ef122bb6dbae",
+    "bytes": 521
+  },
+  {
+    "path": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\scenario-leaves-validation-20260918\\output\\scenario-native-20260918\\qwen\\m0-I1-candidate.final.txt",
+    "sha256": "e48c171beef64a301047b0e3cbb59809ef7fe5e8c53e6e8835850d38348c2863",
+    "bytes": 2242
+  },
+  {
+    "path": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\scenario-leaves-validation-20260918\\output\\scenario-native-20260918\\qwen\\m0-I2-baseline.result.json",
+    "sha256": "1107209830e697e1e96fbdd7cee250e763674dfc45bb14374ea2932711689381",
+    "bytes": 47249
+  },
+  {
+    "path": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\scenario-leaves-validation-20260918\\output\\scenario-native-20260918\\qwen\\m0-I2-baseline.trace.jsonl",
+    "sha256": "ab4e7431b80ea78b2c1b535cd5635699841a8582679fc3e2e8d150accb76cd98",
+    "bytes": 53904
+  },
+  {
+    "path": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\scenario-leaves-validation-20260918\\output\\scenario-native-20260918\\qwen\\m0-I2-baseline.stderr.txt",
+    "sha256": "3ce18ff4db4928bf8b81fb7493d2e81a9b86de31feeeceb9439ea7cb926cc209",
+    "bytes": 1019
+  },
+  {
+    "path": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\scenario-leaves-validation-20260918\\output\\scenario-native-20260918\\qwen\\m0-I2-baseline.final.txt",
+    "sha256": "19d0e3946bea33ed364ddd37e7a093f4f59b2d4b422c457ea5aa2a7080aa28e9",
+    "bytes": 1734
+  },
+  {
+    "path": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\scenario-leaves-validation-20260918\\output\\scenario-native-20260918\\qwen\\m0-I2-candidate.result.json",
+    "sha256": "655f26980b586971de4f940a2585c430cfa91413595add88b945f815d69dfc9d",
+    "bytes": 51862
+  },
+  {
+    "path": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\scenario-leaves-validation-20260918\\output\\scenario-native-20260918\\qwen\\m0-I2-candidate.trace.jsonl",
+    "sha256": "2400060d6a5a3bdf88549f2016226db2bed17da1155f9fbe28fad212072509d1",
+    "bytes": 61184
+  },
+  {
+    "path": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\scenario-leaves-validation-20260918\\output\\scenario-native-20260918\\qwen\\m0-I2-candidate.stderr.txt",
+    "sha256": "a736199da2a4fdc666e028fb3eca06994a24cdc02e49ea14d857c491f79c0dbd",
+    "bytes": 417
+  },
+  {
+    "path": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\scenario-leaves-validation-20260918\\output\\scenario-native-20260918\\qwen\\m0-I2-candidate.final.txt",
+    "sha256": "1608bd6adeb48140a92875a0927794dc5b94e86baa1912c3886a7fcd78e5f2b5",
+    "bytes": 2082
+  },
+  {
+    "path": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\scenario-leaves-validation-20260918\\output\\scenario-native-20260918\\qwen\\m0-P2-baseline.result.json",
+    "sha256": "1113494b8bf0dd7b9673c136d92edf3ecf3d2aa9279e4cac62132bc1ce8d641c",
+    "bytes": 44389
+  },
+  {
+    "path": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\scenario-leaves-validation-20260918\\output\\scenario-native-20260918\\qwen\\m0-P2-baseline.trace.jsonl",
+    "sha256": "a99f62e2473dd4f82f4c33532a09abe684a13997d3dd201d3f9a28dd70a5550d",
+    "bytes": 56550
+  },
+  {
+    "path": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\scenario-leaves-validation-20260918\\output\\scenario-native-20260918\\qwen\\m0-P2-baseline.stderr.txt",
+    "sha256": "f361139ef20cae40f96e880b47526f39dd85b6a2fea0e98d8831d5aeaf55b5d0",
+    "bytes": 417
+  },
+  {
+    "path": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\scenario-leaves-validation-20260918\\output\\scenario-native-20260918\\qwen\\m0-P2-baseline.final.txt",
+    "sha256": "a6d041d3b6b26d1cd93b94c654452d598a894cfcf718cc90320ec9bb1b339e45",
+    "bytes": 3035
+  },
+  {
+    "path": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\scenario-leaves-validation-20260918\\output\\scenario-native-20260918\\qwen\\m0-P2-candidate.result.json",
+    "sha256": "f9f719cacdbbbbd54325e4520dc3eb95bb1c37417e6e7f4cea38a1de83e2f090",
+    "bytes": 61009
+  },
+  {
+    "path": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\scenario-leaves-validation-20260918\\output\\scenario-native-20260918\\qwen\\m0-P2-candidate.trace.jsonl",
+    "sha256": "a24d8b5cdbac5b45e3a3486e3e506f5d146cbef88da69be2f5c51d0bdcea1712",
+    "bytes": 72716
+  },
+  {
+    "path": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\scenario-leaves-validation-20260918\\output\\scenario-native-20260918\\qwen\\m0-P2-candidate.stderr.txt",
+    "sha256": "4401f176b0d5c715912c426581f31cb4a4fc6f2c1c383000fb7797941b86e394",
+    "bytes": 417
+  },
+  {
+    "path": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\scenario-leaves-validation-20260918\\output\\scenario-native-20260918\\qwen\\m0-P2-candidate.final.txt",
+    "sha256": "f8b1bd2f2bf3952fc02418c75b28791051f263320b83c8d57c2a3e1cf18a445f",
+    "bytes": 2289
+  },
+  {
+    "path": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\scenario-leaves-validation-20260918\\output\\scenario-native-20260918\\qwen\\m0-P3-baseline.result.json",
+    "sha256": "c151b1994a34287e07b32e036181a7095f13e515dd826db2729d514d857c9b27",
+    "bytes": 57418
+  },
+  {
+    "path": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\scenario-leaves-validation-20260918\\output\\scenario-native-20260918\\qwen\\m0-P3-baseline.trace.jsonl",
+    "sha256": "fddeb6162a13f23d2c97f4deaf554d5da0d2dd9f9800990925fb5dd32dadc14e",
+    "bytes": 73568
+  },
+  {
+    "path": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\scenario-leaves-validation-20260918\\output\\scenario-native-20260918\\qwen\\m0-P3-baseline.stderr.txt",
+    "sha256": "90b2359212a285e5f01f890b134cc352b14a4c5fcab6a48c5695d5974427fa78",
+    "bytes": 803
+  },
+  {
+    "path": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\scenario-leaves-validation-20260918\\output\\scenario-native-20260918\\qwen\\m0-P3-baseline.final.txt",
+    "sha256": "d89efdf9552a4b48a74bd9ceb8d183f87bd0627461e12228568f1ccf44936791",
+    "bytes": 4882
+  },
+  {
+    "path": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\scenario-leaves-validation-20260918\\output\\scenario-native-20260918\\qwen\\m0-P3-candidate.result.json",
+    "sha256": "f059a38d4fa5c83f8c1bc3fcc2eee96337d1999dda99581c644e8174a5e685b7",
+    "bytes": 50578
+  },
+  {
+    "path": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\scenario-leaves-validation-20260918\\output\\scenario-native-20260918\\qwen\\m0-P3-candidate.trace.jsonl",
+    "sha256": "140ca570fca350f4a53381015de84cea953c023173dc7c9d704df94c0e23982e",
+    "bytes": 62798
+  },
+  {
+    "path": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\scenario-leaves-validation-20260918\\output\\scenario-native-20260918\\qwen\\m0-P3-candidate.stderr.txt",
+    "sha256": "6bd091a22c2c37200ae2bd88eff226d47457992259f34461db451be74a05b515",
+    "bytes": 417
+  },
+  {
+    "path": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\scenario-leaves-validation-20260918\\output\\scenario-native-20260918\\qwen\\m0-P3-candidate.final.txt",
+    "sha256": "d5269f55e7b3afe6a1e93d4a76b554e4c516bdb382b97e27cbc1d583f190cf1c",
+    "bytes": 5621
+  },
+  {
+    "path": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\scenario-leaves-validation-20260918\\output\\scenario-native-20260918\\qwen\\m0-R2-baseline.result.json",
+    "sha256": "c7621891627b2b8f6dc8a628afce9106915ede6967ac7271dbb954c0f1cae6fd",
+    "bytes": 33625
+  },
+  {
+    "path": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\scenario-leaves-validation-20260918\\output\\scenario-native-20260918\\qwen\\m0-R2-baseline.trace.jsonl",
+    "sha256": "fdf847792cb3702bb8a661ff4cb51de0d014936085631d129e7f1c6aea3fe9eb",
+    "bytes": 40696
+  },
+  {
+    "path": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\scenario-leaves-validation-20260918\\output\\scenario-native-20260918\\qwen\\m0-R2-baseline.stderr.txt",
+    "sha256": "cb376000d91785da26e210d40bdcc2605cbfa108580c5bc4d479387496d14dc6",
+    "bytes": 417
+  },
+  {
+    "path": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\scenario-leaves-validation-20260918\\output\\scenario-native-20260918\\qwen\\m0-R2-baseline.final.txt",
+    "sha256": "2f3ef49232d813ae244d42a1f6bda4c5ff5d9c63309f0ec5c697379ca53a21e2",
+    "bytes": 1213
+  },
+  {
+    "path": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\scenario-leaves-validation-20260918\\output\\scenario-native-20260918\\qwen\\m0-R2-candidate.result.json",
+    "sha256": "b6b22f0a44da59dba068e739c6c2b8c86f58fc44261ed1971f2c964fb696bbef",
+    "bytes": 33573
+  },
+  {
+    "path": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\scenario-leaves-validation-20260918\\output\\scenario-native-20260918\\qwen\\m0-R2-candidate.trace.jsonl",
+    "sha256": "53dc25f3dc27f855b461a9eacc4b6f397441a8e423015763ba90bebef0745500",
+    "bytes": 40193
+  },
+  {
+    "path": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\scenario-leaves-validation-20260918\\output\\scenario-native-20260918\\qwen\\m0-R2-candidate.stderr.txt",
+    "sha256": "c544fde41cc108e83d2129a82e2db9528fb08a40b4e0e016778201cbf9c96247",
+    "bytes": 417
+  },
+  {
+    "path": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\scenario-leaves-validation-20260918\\output\\scenario-native-20260918\\qwen\\m0-R2-candidate.final.txt",
+    "sha256": "c5442847787a5b3dbc0431212230fab288d3f373d8dcc7e3e6e228de7029142c",
+    "bytes": 1267
+  }
+]

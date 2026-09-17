@@ -1,0 +1,2408 @@
+{
+  "method": "Read evidence requires actual returned page content. Page characters count each observed page once per call, not billing tokens. Invalid calls excluded from aggregate. Latency is an observation, not a causal speed claim.",
+  "snapshot_diffs": {
+    "qwen": [
+      "funding-budget.md",
+      "genre-playbook-procurement-announcement.md",
+      "genre-playbook-procurement-review.md",
+      "information-system-projects.md",
+      "reference-index.md",
+      "transaction-remediation-report.md"
+    ],
+    "deepseek": [
+      "funding-budget.md",
+      "genre-playbook-procurement-announcement.md",
+      "genre-playbook-procurement-review.md",
+      "information-system-projects.md",
+      "reference-index.md",
+      "transaction-remediation-report.md"
+    ]
+  },
+  "totals": {
+    "baseline": {
+      "calls": 16,
+      "seconds": 1854.8,
+      "median_seconds": 114.985,
+      "returned_pages": 110,
+      "returned_page_chars": 131651,
+      "usage": {
+        "input_tokens": 3150650,
+        "cached_input_tokens": 2841216,
+        "uncached_input_tokens": 309434,
+        "output_tokens": 174616
+      },
+      "script_executing_drafts": {
+        "draft_length": 14,
+        "prose_lint": 15
+      }
+    },
+    "candidate": {
+      "calls": 16,
+      "seconds": 1913.74,
+      "median_seconds": 98.53,
+      "returned_pages": 127,
+      "returned_page_chars": 150557,
+      "usage": {
+        "input_tokens": 3691212,
+        "cached_input_tokens": 3355264,
+        "uncached_input_tokens": 335948,
+        "output_tokens": 175587
+      },
+      "script_executing_drafts": {
+        "draft_length": 16,
+        "prose_lint": 16
+      }
+    }
+  },
+  "calls": [
+    {
+      "model": "alibaba-token-plan/qwen3.8-flash",
+      "case": "B1",
+      "arm": "baseline",
+      "effort": "max",
+      "seconds": 117.0,
+      "invalid": [],
+      "run": "m0-B1-baseline",
+      "usage": {
+        "input_tokens": 114496,
+        "cached_input_tokens": 94464,
+        "output_tokens": 6282,
+        "uncached_input_tokens": 20032
+      },
+      "returned_pages": [
+        {
+          "page": "anti-ai-patterns.md",
+          "full_content_returned": true,
+          "page_chars": 1422
+        },
+        {
+          "page": "formal-addressing.md",
+          "full_content_returned": true,
+          "page_chars": 940
+        },
+        {
+          "page": "genre-checklist-request.md",
+          "full_content_returned": true,
+          "page_chars": 956
+        },
+        {
+          "page": "genre-playbook-request.md",
+          "full_content_returned": true,
+          "page_chars": 1102
+        },
+        {
+          "page": "prose-lint-usage.md",
+          "full_content_returned": true,
+          "page_chars": 585
+        },
+        {
+          "page": "writing-rules.md",
+          "full_content_returned": true,
+          "page_chars": 1849
+        }
+      ],
+      "script_calls": [
+        {
+          "script": "draft_length",
+          "command_id": "item_13",
+          "exit_code": 0
+        },
+        {
+          "script": "prose_lint",
+          "command_id": "item_14",
+          "exit_code": 0
+        }
+      ],
+      "trace_sha256": "7eba0a98211b11d3f05d116979228fe62b6e0867b664a4b1703912eb342ac412"
+    },
+    {
+      "model": "alibaba-token-plan/qwen3.8-flash",
+      "case": "B1",
+      "arm": "candidate",
+      "effort": "max",
+      "seconds": 99.06,
+      "invalid": [],
+      "run": "m0-B1-candidate",
+      "usage": {
+        "input_tokens": 172836,
+        "cached_input_tokens": 148864,
+        "output_tokens": 8193,
+        "uncached_input_tokens": 23972
+      },
+      "returned_pages": [
+        {
+          "page": "anti-ai-patterns.md",
+          "full_content_returned": true,
+          "page_chars": 1422
+        },
+        {
+          "page": "formulaic-language.md",
+          "full_content_returned": true,
+          "page_chars": 1062
+        },
+        {
+          "page": "funding-budget.md",
+          "full_content_returned": true,
+          "page_chars": 400
+        },
+        {
+          "page": "genre-checklist-request.md",
+          "full_content_returned": true,
+          "page_chars": 956
+        },
+        {
+          "page": "genre-playbook-request.md",
+          "full_content_returned": true,
+          "page_chars": 1102
+        },
+        {
+          "page": "prose-lint-usage.md",
+          "full_content_returned": true,
+          "page_chars": 585
+        },
+        {
+          "page": "writing-rules.md",
+          "full_content_returned": true,
+          "page_chars": 1849
+        }
+      ],
+      "script_calls": [
+        {
+          "script": "draft_length",
+          "command_id": "item_11",
+          "exit_code": 0
+        },
+        {
+          "script": "prose_lint",
+          "command_id": "item_12",
+          "exit_code": 0
+        },
+        {
+          "script": "draft_length",
+          "command_id": "item_14",
+          "exit_code": 0
+        },
+        {
+          "script": "prose_lint",
+          "command_id": "item_15",
+          "exit_code": 0
+        }
+      ],
+      "trace_sha256": "b9c35520e64302453efe42ee1c6c166da7965eab493767421b1dc0054583821f"
+    },
+    {
+      "model": "alibaba-token-plan/qwen3.8-flash",
+      "case": "B2",
+      "arm": "baseline",
+      "effort": "max",
+      "seconds": 109.64,
+      "invalid": [],
+      "run": "m0-B2-baseline",
+      "usage": {
+        "input_tokens": 104474,
+        "cached_input_tokens": 78848,
+        "output_tokens": 6576,
+        "uncached_input_tokens": 25626
+      },
+      "returned_pages": [
+        {
+          "page": "anti-ai-patterns.md",
+          "full_content_returned": true,
+          "page_chars": 1422
+        },
+        {
+          "page": "genre-playbook-explanation.md",
+          "full_content_returned": true,
+          "page_chars": 665
+        },
+        {
+          "page": "genre-playbook-procurement-review.md",
+          "full_content_returned": true,
+          "page_chars": 542
+        },
+        {
+          "page": "reference-index.md",
+          "full_content_returned": true,
+          "page_chars": 3048
+        },
+        {
+          "page": "writing-rules.md",
+          "full_content_returned": true,
+          "page_chars": 1849
+        }
+      ],
+      "script_calls": [],
+      "trace_sha256": "8515db1f20517bcd88a2e967357d3c59a6a2e4d226b4829814f3890c270997f6"
+    },
+    {
+      "model": "alibaba-token-plan/qwen3.8-flash",
+      "case": "B2",
+      "arm": "candidate",
+      "effort": "max",
+      "seconds": 229.39,
+      "invalid": [],
+      "run": "m0-B2-candidate",
+      "usage": {
+        "input_tokens": 283071,
+        "cached_input_tokens": 257920,
+        "output_tokens": 9333,
+        "uncached_input_tokens": 25151
+      },
+      "returned_pages": [
+        {
+          "page": "anti-ai-patterns.md",
+          "full_content_returned": true,
+          "page_chars": 1422
+        },
+        {
+          "page": "funding-budget.md",
+          "full_content_returned": true,
+          "page_chars": 400
+        },
+        {
+          "page": "genre-playbook-explanation.md",
+          "full_content_returned": true,
+          "page_chars": 665
+        },
+        {
+          "page": "prose-lint-usage.md",
+          "full_content_returned": true,
+          "page_chars": 585
+        },
+        {
+          "page": "reference-index.md",
+          "full_content_returned": true,
+          "page_chars": 3212
+        },
+        {
+          "page": "writing-rules.md",
+          "full_content_returned": true,
+          "page_chars": 1849
+        }
+      ],
+      "script_calls": [
+        {
+          "script": "draft_length",
+          "command_id": "item_11",
+          "exit_code": 0
+        },
+        {
+          "script": "prose_lint",
+          "command_id": "item_12",
+          "exit_code": 0
+        },
+        {
+          "script": "draft_length",
+          "command_id": "item_14",
+          "exit_code": 0
+        },
+        {
+          "script": "prose_lint",
+          "command_id": "item_15",
+          "exit_code": 0
+        }
+      ],
+      "trace_sha256": "405db279e7d6d21a1f1a95d3de3df33ae2804fd14033fb390b78be1256bd5cdc"
+    },
+    {
+      "model": "alibaba-token-plan/qwen3.8-flash",
+      "case": "C1",
+      "arm": "baseline",
+      "effort": "max",
+      "seconds": 67.33,
+      "invalid": [],
+      "run": "m0-C1-baseline",
+      "usage": {
+        "input_tokens": 93884,
+        "cached_input_tokens": 79872,
+        "output_tokens": 3550,
+        "uncached_input_tokens": 14012
+      },
+      "returned_pages": [
+        {
+          "page": "anti-ai-patterns.md",
+          "full_content_returned": true,
+          "page_chars": 1422
+        },
+        {
+          "page": "genre-checklist-request.md",
+          "full_content_returned": true,
+          "page_chars": 956
+        },
+        {
+          "page": "genre-playbook-request.md",
+          "full_content_returned": true,
+          "page_chars": 1102
+        },
+        {
+          "page": "prose-lint-usage.md",
+          "full_content_returned": true,
+          "page_chars": 585
+        },
+        {
+          "page": "reference-index.md",
+          "full_content_returned": true,
+          "page_chars": 3048
+        },
+        {
+          "page": "writing-rules.md",
+          "full_content_returned": true,
+          "page_chars": 1849
+        }
+      ],
+      "script_calls": [
+        {
+          "script": "draft_length",
+          "command_id": "item_8",
+          "exit_code": 0
+        },
+        {
+          "script": "prose_lint",
+          "command_id": "item_9",
+          "exit_code": 0
+        },
+        {
+          "script": "draft_length",
+          "command_id": "item_11",
+          "exit_code": 0
+        },
+        {
+          "script": "prose_lint",
+          "command_id": "item_12",
+          "exit_code": 0
+        }
+      ],
+      "trace_sha256": "092bdb3e98ef8bd9f5693f0341c0b670fc3163c2dce553989aed02d40fa3ca20"
+    },
+    {
+      "model": "alibaba-token-plan/qwen3.8-flash",
+      "case": "C1",
+      "arm": "candidate",
+      "effort": "max",
+      "seconds": 85.09,
+      "invalid": [],
+      "run": "m0-C1-candidate",
+      "usage": {
+        "input_tokens": 130462,
+        "cached_input_tokens": 115072,
+        "output_tokens": 4354,
+        "uncached_input_tokens": 15390
+      },
+      "returned_pages": [
+        {
+          "page": "anti-ai-patterns.md",
+          "full_content_returned": true,
+          "page_chars": 1422
+        },
+        {
+          "page": "genre-playbook-request.md",
+          "full_content_returned": true,
+          "page_chars": 1102
+        },
+        {
+          "page": "prose-lint-usage.md",
+          "full_content_returned": true,
+          "page_chars": 585
+        },
+        {
+          "page": "reference-index.md",
+          "full_content_returned": true,
+          "page_chars": 3212
+        },
+        {
+          "page": "writing-rules.md",
+          "full_content_returned": true,
+          "page_chars": 1849
+        }
+      ],
+      "script_calls": [
+        {
+          "script": "draft_length",
+          "command_id": "item_8",
+          "exit_code": 0
+        },
+        {
+          "script": "prose_lint",
+          "command_id": "item_9",
+          "exit_code": 0
+        },
+        {
+          "script": "draft_length",
+          "command_id": "item_14",
+          "exit_code": 0
+        },
+        {
+          "script": "prose_lint",
+          "command_id": "item_15",
+          "exit_code": 0
+        }
+      ],
+      "trace_sha256": "c5118646cf2f3d19480e71cc1c06c0ca39147609f2f3b64c25dc5dc2f00bcbf5"
+    },
+    {
+      "model": "alibaba-token-plan/qwen3.8-flash",
+      "case": "I1",
+      "arm": "baseline",
+      "effort": "max",
+      "seconds": 158.48,
+      "invalid": [],
+      "run": "m0-I1-baseline",
+      "usage": {
+        "input_tokens": 161181,
+        "cached_input_tokens": 137216,
+        "output_tokens": 9525,
+        "uncached_input_tokens": 23965
+      },
+      "returned_pages": [
+        {
+          "page": "anti-ai-patterns.md",
+          "full_content_returned": true,
+          "page_chars": 1422
+        },
+        {
+          "page": "genre-playbook-explanation.md",
+          "full_content_returned": true,
+          "page_chars": 665
+        },
+        {
+          "page": "genre-playbook-plan-construction.md",
+          "full_content_returned": true,
+          "page_chars": 582
+        },
+        {
+          "page": "prose-lint-usage.md",
+          "full_content_returned": true,
+          "page_chars": 585
+        },
+        {
+          "page": "reference-index.md",
+          "full_content_returned": true,
+          "page_chars": 3048
+        },
+        {
+          "page": "writing-rules.md",
+          "full_content_returned": true,
+          "page_chars": 1849
+        }
+      ],
+      "script_calls": [
+        {
+          "script": "prose_lint",
+          "command_id": "item_9",
+          "exit_code": 0
+        },
+        {
+          "script": "prose_lint",
+          "command_id": "item_12",
+          "exit_code": 0
+        }
+      ],
+      "trace_sha256": "a3d51373e624b6fe48bbc80b5e7f7b29f7f97433fd012602c89725926b10e99d"
+    },
+    {
+      "model": "alibaba-token-plan/qwen3.8-flash",
+      "case": "I1",
+      "arm": "candidate",
+      "effort": "max",
+      "seconds": 98.0,
+      "invalid": [],
+      "run": "m0-I1-candidate",
+      "usage": {
+        "input_tokens": 183305,
+        "cached_input_tokens": 161920,
+        "output_tokens": 7599,
+        "uncached_input_tokens": 21385
+      },
+      "returned_pages": [
+        {
+          "page": "anti-ai-patterns.md",
+          "full_content_returned": true,
+          "page_chars": 1422
+        },
+        {
+          "page": "genre-playbook-explanation.md",
+          "full_content_returned": true,
+          "page_chars": 665
+        },
+        {
+          "page": "information-system-projects.md",
+          "full_content_returned": true,
+          "page_chars": 450
+        },
+        {
+          "page": "prose-lint-usage.md",
+          "full_content_returned": true,
+          "page_chars": 585
+        },
+        {
+          "page": "reference-index.md",
+          "full_content_returned": true,
+          "page_chars": 3212
+        },
+        {
+          "page": "writing-rules.md",
+          "full_content_returned": true,
+          "page_chars": 1849
+        }
+      ],
+      "script_calls": [
+        {
+          "script": "draft_length",
+          "command_id": "item_10",
+          "exit_code": 0
+        },
+        {
+          "script": "prose_lint",
+          "command_id": "item_11",
+          "exit_code": 0
+        }
+      ],
+      "trace_sha256": "93d7c9adef966eba1405c4d3dd23ca92c6d1833f051502eb1fc89039b096ee1f"
+    },
+    {
+      "model": "alibaba-token-plan/qwen3.8-flash",
+      "case": "I2",
+      "arm": "baseline",
+      "effort": "max",
+      "seconds": 144.66,
+      "invalid": [],
+      "run": "m0-I2-baseline",
+      "usage": {
+        "input_tokens": 176261,
+        "cached_input_tokens": 153600,
+        "output_tokens": 8537,
+        "uncached_input_tokens": 22661
+      },
+      "returned_pages": [
+        {
+          "page": "anti-ai-patterns.md",
+          "full_content_returned": true,
+          "page_chars": 1422
+        },
+        {
+          "page": "genre-checklist-request.md",
+          "full_content_returned": true,
+          "page_chars": 956
+        },
+        {
+          "page": "genre-playbook-request.md",
+          "full_content_returned": true,
+          "page_chars": 1102
+        },
+        {
+          "page": "prose-lint-usage.md",
+          "full_content_returned": true,
+          "page_chars": 585
+        },
+        {
+          "page": "reference-index.md",
+          "full_content_returned": true,
+          "page_chars": 3048
+        },
+        {
+          "page": "writing-rules.md",
+          "full_content_returned": true,
+          "page_chars": 1849
+        }
+      ],
+      "script_calls": [
+        {
+          "script": "draft_length",
+          "command_id": "item_9",
+          "exit_code": 0
+        },
+        {
+          "script": "prose_lint",
+          "command_id": "item_9",
+          "exit_code": 0
+        }
+      ],
+      "trace_sha256": "1107209830e697e1e96fbdd7cee250e763674dfc45bb14374ea2932711689381"
+    },
+    {
+      "model": "alibaba-token-plan/qwen3.8-flash",
+      "case": "I2",
+      "arm": "candidate",
+      "effort": "max",
+      "seconds": 127.09,
+      "invalid": [],
+      "run": "m0-I2-candidate",
+      "usage": {
+        "input_tokens": 153999,
+        "cached_input_tokens": 130432,
+        "output_tokens": 9231,
+        "uncached_input_tokens": 23567
+      },
+      "returned_pages": [
+        {
+          "page": "anti-ai-patterns.md",
+          "full_content_returned": true,
+          "page_chars": 1422
+        },
+        {
+          "page": "funding-budget.md",
+          "full_content_returned": true,
+          "page_chars": 400
+        },
+        {
+          "page": "genre-playbook-request.md",
+          "full_content_returned": true,
+          "page_chars": 1102
+        },
+        {
+          "page": "genre-routing.md",
+          "full_content_returned": true,
+          "page_chars": 477
+        },
+        {
+          "page": "information-system-projects.md",
+          "full_content_returned": true,
+          "page_chars": 450
+        },
+        {
+          "page": "prose-lint-usage.md",
+          "full_content_returned": true,
+          "page_chars": 585
+        },
+        {
+          "page": "reference-index.md",
+          "full_content_returned": true,
+          "page_chars": 3212
+        },
+        {
+          "page": "writing-rules.md",
+          "full_content_returned": true,
+          "page_chars": 1849
+        }
+      ],
+      "script_calls": [
+        {
+          "script": "draft_length",
+          "command_id": "item_15",
+          "exit_code": 0
+        },
+        {
+          "script": "prose_lint",
+          "command_id": "item_16",
+          "exit_code": 0
+        }
+      ],
+      "trace_sha256": "655f26980b586971de4f940a2585c430cfa91413595add88b945f815d69dfc9d"
+    },
+    {
+      "model": "alibaba-token-plan/qwen3.8-flash",
+      "case": "P2",
+      "arm": "baseline",
+      "effort": "max",
+      "seconds": 170.62,
+      "invalid": [],
+      "run": "m0-P2-baseline",
+      "usage": {
+        "input_tokens": 156345,
+        "cached_input_tokens": 134784,
+        "output_tokens": 7248,
+        "uncached_input_tokens": 21561
+      },
+      "returned_pages": [
+        {
+          "page": "anti-ai-patterns.md",
+          "full_content_returned": true,
+          "page_chars": 1422
+        },
+        {
+          "page": "external-research.md",
+          "full_content_returned": true,
+          "page_chars": 821
+        },
+        {
+          "page": "genre-playbook-procurement-announcement.md",
+          "full_content_returned": true,
+          "page_chars": 435
+        },
+        {
+          "page": "prose-lint-usage.md",
+          "full_content_returned": true,
+          "page_chars": 585
+        },
+        {
+          "page": "writing-rules.md",
+          "full_content_returned": true,
+          "page_chars": 1849
+        }
+      ],
+      "script_calls": [
+        {
+          "script": "draft_length",
+          "command_id": "item_12",
+          "exit_code": 0
+        },
+        {
+          "script": "prose_lint",
+          "command_id": "item_13",
+          "exit_code": 0
+        }
+      ],
+      "trace_sha256": "1113494b8bf0dd7b9673c136d92edf3ecf3d2aa9279e4cac62132bc1ce8d641c"
+    },
+    {
+      "model": "alibaba-token-plan/qwen3.8-flash",
+      "case": "P2",
+      "arm": "candidate",
+      "effort": "max",
+      "seconds": 184.67,
+      "invalid": [],
+      "run": "m0-P2-candidate",
+      "usage": {
+        "input_tokens": 229656,
+        "cached_input_tokens": 204288,
+        "output_tokens": 10584,
+        "uncached_input_tokens": 25368
+      },
+      "returned_pages": [
+        {
+          "page": "anti-ai-patterns.md",
+          "full_content_returned": true,
+          "page_chars": 1422
+        },
+        {
+          "page": "formulaic-language.md",
+          "full_content_returned": true,
+          "page_chars": 1062
+        },
+        {
+          "page": "genre-playbook-procurement-announcement.md",
+          "full_content_returned": true,
+          "page_chars": 530
+        },
+        {
+          "page": "prose-lint-usage.md",
+          "full_content_returned": true,
+          "page_chars": 585
+        },
+        {
+          "page": "reference-index.md",
+          "full_content_returned": true,
+          "page_chars": 3212
+        },
+        {
+          "page": "writing-rules.md",
+          "full_content_returned": true,
+          "page_chars": 1849
+        }
+      ],
+      "script_calls": [
+        {
+          "script": "draft_length",
+          "command_id": "item_13",
+          "exit_code": 1
+        },
+        {
+          "script": "prose_lint",
+          "command_id": "item_13",
+          "exit_code": 1
+        },
+        {
+          "script": "draft_length",
+          "command_id": "item_14",
+          "exit_code": 0
+        },
+        {
+          "script": "prose_lint",
+          "command_id": "item_14",
+          "exit_code": 0
+        }
+      ],
+      "trace_sha256": "f9f719cacdbbbbd54325e4520dc3eb95bb1c37417e6e7f4cea38a1de83e2f090"
+    },
+    {
+      "model": "alibaba-token-plan/qwen3.8-flash",
+      "case": "P3",
+      "arm": "baseline",
+      "effort": "max",
+      "seconds": 189.39,
+      "invalid": [],
+      "run": "m0-P3-baseline",
+      "usage": {
+        "input_tokens": 329536,
+        "cached_input_tokens": 302080,
+        "output_tokens": 11202,
+        "uncached_input_tokens": 27456
+      },
+      "returned_pages": [
+        {
+          "page": "anti-ai-patterns.md",
+          "full_content_returned": true,
+          "page_chars": 1422
+        },
+        {
+          "page": "genre-playbook-explanation.md",
+          "full_content_returned": true,
+          "page_chars": 665
+        },
+        {
+          "page": "genre-playbook-procurement-review.md",
+          "full_content_returned": true,
+          "page_chars": 542
+        },
+        {
+          "page": "prose-lint-usage.md",
+          "full_content_returned": true,
+          "page_chars": 585
+        },
+        {
+          "page": "reference-index.md",
+          "full_content_returned": true,
+          "page_chars": 3048
+        },
+        {
+          "page": "review-checklist.md",
+          "full_content_returned": true,
+          "page_chars": 536
+        },
+        {
+          "page": "writing-rules.md",
+          "full_content_returned": true,
+          "page_chars": 1849
+        }
+      ],
+      "script_calls": [
+        {
+          "script": "draft_length",
+          "command_id": "item_13",
+          "exit_code": 0
+        },
+        {
+          "script": "prose_lint",
+          "command_id": "item_14",
+          "exit_code": 0
+        },
+        {
+          "script": "prose_lint",
+          "command_id": "item_17",
+          "exit_code": 0
+        },
+        {
+          "script": "draft_length",
+          "command_id": "item_17",
+          "exit_code": 0
+        }
+      ],
+      "trace_sha256": "c151b1994a34287e07b32e036181a7095f13e515dd826db2729d514d857c9b27"
+    },
+    {
+      "model": "alibaba-token-plan/qwen3.8-flash",
+      "case": "P3",
+      "arm": "candidate",
+      "effort": "max",
+      "seconds": 169.28,
+      "invalid": [],
+      "run": "m0-P3-candidate",
+      "usage": {
+        "input_tokens": 237884,
+        "cached_input_tokens": 212224,
+        "output_tokens": 10279,
+        "uncached_input_tokens": 25660
+      },
+      "returned_pages": [
+        {
+          "page": "anti-ai-patterns.md",
+          "full_content_returned": true,
+          "page_chars": 1422
+        },
+        {
+          "page": "funding-budget.md",
+          "full_content_returned": true,
+          "page_chars": 400
+        },
+        {
+          "page": "genre-playbook-explanation.md",
+          "full_content_returned": true,
+          "page_chars": 665
+        },
+        {
+          "page": "genre-playbook-procurement-review.md",
+          "full_content_returned": true,
+          "page_chars": 664
+        },
+        {
+          "page": "prose-lint-usage.md",
+          "full_content_returned": true,
+          "page_chars": 585
+        },
+        {
+          "page": "reference-index.md",
+          "full_content_returned": true,
+          "page_chars": 3212
+        },
+        {
+          "page": "review-checklist.md",
+          "full_content_returned": true,
+          "page_chars": 536
+        },
+        {
+          "page": "writing-rules.md",
+          "full_content_returned": true,
+          "page_chars": 1849
+        }
+      ],
+      "script_calls": [
+        {
+          "script": "draft_length",
+          "command_id": "item_11",
+          "exit_code": 0
+        },
+        {
+          "script": "prose_lint",
+          "command_id": "item_12",
+          "exit_code": 0
+        }
+      ],
+      "trace_sha256": "f059a38d4fa5c83f8c1bc3fcc2eee96337d1999dda99581c644e8174a5e685b7"
+    },
+    {
+      "model": "alibaba-token-plan/qwen3.8-flash",
+      "case": "R2",
+      "arm": "baseline",
+      "effort": "max",
+      "seconds": 125.72,
+      "invalid": [],
+      "run": "m0-R2-baseline",
+      "usage": {
+        "input_tokens": 163517,
+        "cached_input_tokens": 144640,
+        "output_tokens": 8491,
+        "uncached_input_tokens": 18877
+      },
+      "returned_pages": [
+        {
+          "page": "anti-ai-patterns.md",
+          "full_content_returned": true,
+          "page_chars": 1422
+        },
+        {
+          "page": "genre-playbook-report.md",
+          "full_content_returned": true,
+          "page_chars": 1052
+        },
+        {
+          "page": "prose-lint-usage.md",
+          "full_content_returned": true,
+          "page_chars": 585
+        },
+        {
+          "page": "reference-index.md",
+          "full_content_returned": true,
+          "page_chars": 3048
+        },
+        {
+          "page": "transaction-remediation-report.md",
+          "full_content_returned": true,
+          "page_chars": 336
+        },
+        {
+          "page": "writing-rules.md",
+          "full_content_returned": true,
+          "page_chars": 1849
+        }
+      ],
+      "script_calls": [
+        {
+          "script": "draft_length",
+          "command_id": "item_9",
+          "exit_code": 0
+        },
+        {
+          "script": "prose_lint",
+          "command_id": "item_10",
+          "exit_code": 0
+        }
+      ],
+      "trace_sha256": "c7621891627b2b8f6dc8a628afce9106915ede6967ac7271dbb954c0f1cae6fd"
+    },
+    {
+      "model": "alibaba-token-plan/qwen3.8-flash",
+      "case": "R2",
+      "arm": "candidate",
+      "effort": "max",
+      "seconds": 121.97,
+      "invalid": [],
+      "run": "m0-R2-candidate",
+      "usage": {
+        "input_tokens": 103760,
+        "cached_input_tokens": 86016,
+        "output_tokens": 6922,
+        "uncached_input_tokens": 17744
+      },
+      "returned_pages": [
+        {
+          "page": "anti-ai-patterns.md",
+          "full_content_returned": true,
+          "page_chars": 1422
+        },
+        {
+          "page": "genre-playbook-report.md",
+          "full_content_returned": true,
+          "page_chars": 1052
+        },
+        {
+          "page": "prose-lint-usage.md",
+          "full_content_returned": true,
+          "page_chars": 585
+        },
+        {
+          "page": "reference-index.md",
+          "full_content_returned": true,
+          "page_chars": 3212
+        },
+        {
+          "page": "transaction-remediation-report.md",
+          "full_content_returned": true,
+          "page_chars": 343
+        },
+        {
+          "page": "writing-rules.md",
+          "full_content_returned": true,
+          "page_chars": 1849
+        }
+      ],
+      "script_calls": [
+        {
+          "script": "draft_length",
+          "command_id": "item_7",
+          "exit_code": 0
+        },
+        {
+          "script": "prose_lint",
+          "command_id": "item_7",
+          "exit_code": 0
+        }
+      ],
+      "trace_sha256": "b6b22f0a44da59dba068e739c6c2b8c86f58fc44261ed1971f2c964fb696bbef"
+    },
+    {
+      "model": "command-code/deepseek-deepseek-v4.1-flash",
+      "case": "B2",
+      "arm": "baseline",
+      "effort": "max",
+      "seconds": 48.64,
+      "invalid": [],
+      "run": "m2-B2-baseline",
+      "usage": {
+        "input_tokens": 132349,
+        "cached_input_tokens": 116480,
+        "output_tokens": 5595,
+        "uncached_input_tokens": 15869
+      },
+      "returned_pages": [
+        {
+          "page": "anti-ai-patterns.md",
+          "full_content_returned": true,
+          "page_chars": 1422
+        },
+        {
+          "page": "genre-playbook-explanation.md",
+          "full_content_returned": true,
+          "page_chars": 665
+        },
+        {
+          "page": "genre-playbook-procurement-announcement.md",
+          "full_content_returned": true,
+          "page_chars": 435
+        },
+        {
+          "page": "genre-playbook-procurement-review.md",
+          "full_content_returned": true,
+          "page_chars": 542
+        },
+        {
+          "page": "genre-routing.md",
+          "full_content_returned": true,
+          "page_chars": 477
+        },
+        {
+          "page": "prose-lint-usage.md",
+          "full_content_returned": true,
+          "page_chars": 585
+        },
+        {
+          "page": "reference-index.md",
+          "full_content_returned": true,
+          "page_chars": 3048
+        },
+        {
+          "page": "writing-rules.md",
+          "full_content_returned": true,
+          "page_chars": 1849
+        }
+      ],
+      "script_calls": [
+        {
+          "script": "draft_length",
+          "command_id": "item_15",
+          "exit_code": 0
+        },
+        {
+          "script": "prose_lint",
+          "command_id": "item_17",
+          "exit_code": 0
+        }
+      ],
+      "trace_sha256": "82f8650ad205a0b9b71959fe8dcbcb545dcb476c5bacfe7455088a20e91b9235"
+    },
+    {
+      "model": "command-code/deepseek-deepseek-v4.1-flash",
+      "case": "B2",
+      "arm": "candidate",
+      "effort": "max",
+      "seconds": 105.88,
+      "invalid": [],
+      "run": "m2-B2-candidate",
+      "usage": {
+        "input_tokens": 348164,
+        "cached_input_tokens": 326528,
+        "output_tokens": 12812,
+        "uncached_input_tokens": 21636
+      },
+      "returned_pages": [
+        {
+          "page": "anti-ai-patterns.md",
+          "full_content_returned": true,
+          "page_chars": 1422
+        },
+        {
+          "page": "formulaic-language.md",
+          "full_content_returned": true,
+          "page_chars": 1062
+        },
+        {
+          "page": "funding-budget.md",
+          "full_content_returned": true,
+          "page_chars": 400
+        },
+        {
+          "page": "genre-checklist.md",
+          "full_content_returned": true,
+          "page_chars": 145
+        },
+        {
+          "page": "genre-playbook-explanation.md",
+          "full_content_returned": true,
+          "page_chars": 665
+        },
+        {
+          "page": "genre-playbook-procurement-announcement.md",
+          "full_content_returned": true,
+          "page_chars": 530
+        },
+        {
+          "page": "genre-playbook-technical-requirements.md",
+          "full_content_returned": true,
+          "page_chars": 1116
+        },
+        {
+          "page": "genre-routing.md",
+          "full_content_returned": true,
+          "page_chars": 477
+        },
+        {
+          "page": "proofreading-checklist.md",
+          "full_content_returned": true,
+          "page_chars": 407
+        },
+        {
+          "page": "prose-lint-usage.md",
+          "full_content_returned": true,
+          "page_chars": 585
+        },
+        {
+          "page": "reference-index.md",
+          "full_content_returned": true,
+          "page_chars": 3212
+        },
+        {
+          "page": "review-checklist.md",
+          "full_content_returned": true,
+          "page_chars": 536
+        },
+        {
+          "page": "writing-rules.md",
+          "full_content_returned": true,
+          "page_chars": 1849
+        }
+      ],
+      "script_calls": [
+        {
+          "script": "draft_length",
+          "command_id": "item_26",
+          "exit_code": 0
+        },
+        {
+          "script": "prose_lint",
+          "command_id": "item_27",
+          "exit_code": 0
+        },
+        {
+          "script": "draft_length",
+          "command_id": "item_31",
+          "exit_code": 0
+        },
+        {
+          "script": "prose_lint",
+          "command_id": "item_32",
+          "exit_code": 0
+        }
+      ],
+      "trace_sha256": "b690d1bc59bc41996dc4027e5daf83dcfd4c9065b821275d0537e5d9a7bd5543"
+    },
+    {
+      "model": "command-code/deepseek-deepseek-v4.1-flash",
+      "case": "C2",
+      "arm": "baseline",
+      "effort": "max",
+      "seconds": 80.58,
+      "invalid": [],
+      "run": "m2-C2-baseline",
+      "usage": {
+        "input_tokens": 190576,
+        "cached_input_tokens": 176768,
+        "output_tokens": 11493,
+        "uncached_input_tokens": 13808
+      },
+      "returned_pages": [
+        {
+          "page": "anti-ai-patterns.md",
+          "full_content_returned": true,
+          "page_chars": 1422
+        },
+        {
+          "page": "genre-checklist.md",
+          "full_content_returned": true,
+          "page_chars": 145
+        },
+        {
+          "page": "genre-playbook-notice.md",
+          "full_content_returned": true,
+          "page_chars": 503
+        },
+        {
+          "page": "genre-routing.md",
+          "full_content_returned": true,
+          "page_chars": 477
+        },
+        {
+          "page": "prose-lint-usage.md",
+          "full_content_returned": true,
+          "page_chars": 585
+        },
+        {
+          "page": "review-checklist.md",
+          "full_content_returned": true,
+          "page_chars": 536
+        },
+        {
+          "page": "writing-rules.md",
+          "full_content_returned": true,
+          "page_chars": 1849
+        }
+      ],
+      "script_calls": [
+        {
+          "script": "prose_lint",
+          "command_id": "item_9",
+          "exit_code": 0
+        },
+        {
+          "script": "draft_length",
+          "command_id": "item_10",
+          "exit_code": 0
+        }
+      ],
+      "trace_sha256": "33f0fd53e98538db79a1ead0a40e5da6582ae426f3b39b563f63bed3ede041b2"
+    },
+    {
+      "model": "command-code/deepseek-deepseek-v4.1-flash",
+      "case": "C2",
+      "arm": "candidate",
+      "effort": "max",
+      "seconds": 64.17,
+      "invalid": [],
+      "run": "m2-C2-candidate",
+      "usage": {
+        "input_tokens": 205057,
+        "cached_input_tokens": 188800,
+        "output_tokens": 6518,
+        "uncached_input_tokens": 16257
+      },
+      "returned_pages": [
+        {
+          "page": "anti-ai-patterns.md",
+          "full_content_returned": true,
+          "page_chars": 1422
+        },
+        {
+          "page": "genre-checklist.md",
+          "full_content_returned": true,
+          "page_chars": 145
+        },
+        {
+          "page": "genre-playbook-notice.md",
+          "full_content_returned": true,
+          "page_chars": 503
+        },
+        {
+          "page": "prose-lint-usage.md",
+          "full_content_returned": true,
+          "page_chars": 585
+        },
+        {
+          "page": "reference-index.md",
+          "full_content_returned": true,
+          "page_chars": 3212
+        },
+        {
+          "page": "writing-rules.md",
+          "full_content_returned": true,
+          "page_chars": 1849
+        }
+      ],
+      "script_calls": [
+        {
+          "script": "draft_length",
+          "command_id": "item_16",
+          "exit_code": 0
+        },
+        {
+          "script": "prose_lint",
+          "command_id": "item_17",
+          "exit_code": 0
+        },
+        {
+          "script": "draft_length",
+          "command_id": "item_19",
+          "exit_code": 0
+        },
+        {
+          "script": "prose_lint",
+          "command_id": "item_20",
+          "exit_code": 0
+        },
+        {
+          "script": "draft_length",
+          "command_id": "item_21",
+          "exit_code": 0
+        },
+        {
+          "script": "prose_lint",
+          "command_id": "item_22",
+          "exit_code": 0
+        }
+      ],
+      "trace_sha256": "ad1253536c74951756ce24b6a91e59532e62dd93f954d45f783c5b63cb7b6d4b"
+    },
+    {
+      "model": "command-code/deepseek-deepseek-v4.1-flash",
+      "case": "I1",
+      "arm": "baseline",
+      "effort": "max",
+      "seconds": 138.34,
+      "invalid": [],
+      "run": "m2-I1-baseline",
+      "usage": {
+        "input_tokens": 335291,
+        "cached_input_tokens": 314240,
+        "output_tokens": 21928,
+        "uncached_input_tokens": 21051
+      },
+      "returned_pages": [
+        {
+          "page": "anti-ai-patterns.md",
+          "full_content_returned": true,
+          "page_chars": 1422
+        },
+        {
+          "page": "formulaic-language.md",
+          "full_content_returned": true,
+          "page_chars": 1062
+        },
+        {
+          "page": "genre-playbook-explanation.md",
+          "full_content_returned": true,
+          "page_chars": 665
+        },
+        {
+          "page": "genre-playbook-plan-construction.md",
+          "full_content_returned": true,
+          "page_chars": 582
+        },
+        {
+          "page": "genre-routing.md",
+          "full_content_returned": true,
+          "page_chars": 477
+        },
+        {
+          "page": "prose-lint-usage.md",
+          "full_content_returned": true,
+          "page_chars": 585
+        },
+        {
+          "page": "reference-index.md",
+          "full_content_returned": true,
+          "page_chars": 3048
+        },
+        {
+          "page": "technical-terms.md",
+          "full_content_returned": true,
+          "page_chars": 348
+        },
+        {
+          "page": "writing-rules.md",
+          "full_content_returned": true,
+          "page_chars": 1849
+        }
+      ],
+      "script_calls": [
+        {
+          "script": "draft_length",
+          "command_id": "item_26",
+          "exit_code": 0
+        },
+        {
+          "script": "prose_lint",
+          "command_id": "item_27",
+          "exit_code": 0
+        },
+        {
+          "script": "prose_lint",
+          "command_id": "item_31",
+          "exit_code": 0
+        },
+        {
+          "script": "draft_length",
+          "command_id": "item_32",
+          "exit_code": 0
+        }
+      ],
+      "trace_sha256": "8168c0130a81e85524a4538e37ce23604ff54c7d57e79cf858d3254b30cc3b21"
+    },
+    {
+      "model": "command-code/deepseek-deepseek-v4.1-flash",
+      "case": "I1",
+      "arm": "candidate",
+      "effort": "max",
+      "seconds": 88.64,
+      "invalid": [],
+      "run": "m2-I1-candidate",
+      "usage": {
+        "input_tokens": 308284,
+        "cached_input_tokens": 289280,
+        "output_tokens": 12425,
+        "uncached_input_tokens": 19004
+      },
+      "returned_pages": [
+        {
+          "page": "anti-ai-patterns.md",
+          "full_content_returned": true,
+          "page_chars": 1422
+        },
+        {
+          "page": "genre-playbook-explanation.md",
+          "full_content_returned": true,
+          "page_chars": 665
+        },
+        {
+          "page": "genre-routing.md",
+          "full_content_returned": true,
+          "page_chars": 477
+        },
+        {
+          "page": "information-system-projects.md",
+          "full_content_returned": true,
+          "page_chars": 450
+        },
+        {
+          "page": "prose-lint-usage.md",
+          "full_content_returned": true,
+          "page_chars": 585
+        },
+        {
+          "page": "reference-index.md",
+          "full_content_returned": true,
+          "page_chars": 3212
+        },
+        {
+          "page": "writing-rules.md",
+          "full_content_returned": true,
+          "page_chars": 1849
+        }
+      ],
+      "script_calls": [
+        {
+          "script": "draft_length",
+          "command_id": "item_15",
+          "exit_code": 0
+        },
+        {
+          "script": "prose_lint",
+          "command_id": "item_16",
+          "exit_code": 0
+        },
+        {
+          "script": "prose_lint",
+          "command_id": "item_21",
+          "exit_code": 0
+        },
+        {
+          "script": "draft_length",
+          "command_id": "item_20",
+          "exit_code": 0
+        }
+      ],
+      "trace_sha256": "c0fcbff084752090fb014bc9c0225bddabf6ac1bcd6a38e484d3569eac47c570"
+    },
+    {
+      "model": "command-code/deepseek-deepseek-v4.1-flash",
+      "case": "I2",
+      "arm": "baseline",
+      "effort": "max",
+      "seconds": 132.39,
+      "invalid": [],
+      "run": "m2-I2-baseline",
+      "usage": {
+        "input_tokens": 430582,
+        "cached_input_tokens": 407808,
+        "output_tokens": 19069,
+        "uncached_input_tokens": 22774
+      },
+      "returned_pages": [
+        {
+          "page": "anti-ai-patterns.md",
+          "full_content_returned": true,
+          "page_chars": 1422
+        },
+        {
+          "page": "genre-checklist-request.md",
+          "full_content_returned": true,
+          "page_chars": 956
+        },
+        {
+          "page": "genre-playbook-project-application.md",
+          "full_content_returned": true,
+          "page_chars": 1495
+        },
+        {
+          "page": "genre-playbook-request.md",
+          "full_content_returned": true,
+          "page_chars": 1102
+        },
+        {
+          "page": "genre-routing.md",
+          "full_content_returned": true,
+          "page_chars": 477
+        },
+        {
+          "page": "prose-lint-usage.md",
+          "full_content_returned": true,
+          "page_chars": 585
+        },
+        {
+          "page": "reference-index.md",
+          "full_content_returned": true,
+          "page_chars": 3048
+        },
+        {
+          "page": "writing-rules.md",
+          "full_content_returned": true,
+          "page_chars": 1849
+        }
+      ],
+      "script_calls": [
+        {
+          "script": "draft_length",
+          "command_id": "item_17",
+          "exit_code": 0
+        },
+        {
+          "script": "prose_lint",
+          "command_id": "item_18",
+          "exit_code": 0
+        },
+        {
+          "script": "prose_lint",
+          "command_id": "item_19",
+          "exit_code": 0
+        },
+        {
+          "script": "prose_lint",
+          "command_id": "item_22",
+          "exit_code": 0
+        },
+        {
+          "script": "draft_length",
+          "command_id": "item_23",
+          "exit_code": 0
+        }
+      ],
+      "trace_sha256": "6880b46ff565856ab2b1219f4462d99097bfaf0d7c11c99670481d1118d6a8bc"
+    },
+    {
+      "model": "command-code/deepseek-deepseek-v4.1-flash",
+      "case": "I2",
+      "arm": "candidate",
+      "effort": "max",
+      "seconds": 88.05,
+      "invalid": [],
+      "run": "m2-I2-candidate",
+      "usage": {
+        "input_tokens": 181309,
+        "cached_input_tokens": 160896,
+        "output_tokens": 11866,
+        "uncached_input_tokens": 20413
+      },
+      "returned_pages": [
+        {
+          "page": "anti-ai-patterns.md",
+          "full_content_returned": true,
+          "page_chars": 1422
+        },
+        {
+          "page": "formal-addressing.md",
+          "full_content_returned": true,
+          "page_chars": 940
+        },
+        {
+          "page": "formulaic-language.md",
+          "full_content_returned": true,
+          "page_chars": 1062
+        },
+        {
+          "page": "funding-budget.md",
+          "full_content_returned": true,
+          "page_chars": 400
+        },
+        {
+          "page": "genre-checklist-request.md",
+          "full_content_returned": true,
+          "page_chars": 956
+        },
+        {
+          "page": "genre-playbook-project-application.md",
+          "full_content_returned": true,
+          "page_chars": 1495
+        },
+        {
+          "page": "genre-playbook-request.md",
+          "full_content_returned": true,
+          "page_chars": 1102
+        },
+        {
+          "page": "genre-routing.md",
+          "full_content_returned": true,
+          "page_chars": 477
+        },
+        {
+          "page": "information-system-projects.md",
+          "full_content_returned": true,
+          "page_chars": 450
+        },
+        {
+          "page": "prose-lint-usage.md",
+          "full_content_returned": true,
+          "page_chars": 585
+        },
+        {
+          "page": "reference-index.md",
+          "full_content_returned": true,
+          "page_chars": 3212
+        },
+        {
+          "page": "writing-rules.md",
+          "full_content_returned": true,
+          "page_chars": 1849
+        }
+      ],
+      "script_calls": [
+        {
+          "script": "draft_length",
+          "command_id": "item_25",
+          "exit_code": 0
+        },
+        {
+          "script": "prose_lint",
+          "command_id": "item_26",
+          "exit_code": 0
+        }
+      ],
+      "trace_sha256": "e38704633b60e9d692116cd38dceefba40ed1daa87e0901cd7966716adba346c"
+    },
+    {
+      "model": "command-code/deepseek-deepseek-v4.1-flash",
+      "case": "P2",
+      "arm": "baseline",
+      "effort": "max",
+      "seconds": 90.09,
+      "invalid": [],
+      "run": "m2-P2-baseline",
+      "usage": {
+        "input_tokens": 192085,
+        "cached_input_tokens": 176640,
+        "output_tokens": 13875,
+        "uncached_input_tokens": 15445
+      },
+      "returned_pages": [
+        {
+          "page": "anti-ai-patterns.md",
+          "full_content_returned": true,
+          "page_chars": 1422
+        },
+        {
+          "page": "field-editing.md",
+          "full_content_returned": true,
+          "page_chars": 271
+        },
+        {
+          "page": "genre-playbook-procurement-announcement.md",
+          "full_content_returned": true,
+          "page_chars": 435
+        },
+        {
+          "page": "genre-routing.md",
+          "full_content_returned": true,
+          "page_chars": 477
+        },
+        {
+          "page": "prose-lint-usage.md",
+          "full_content_returned": true,
+          "page_chars": 585
+        },
+        {
+          "page": "reference-index.md",
+          "full_content_returned": true,
+          "page_chars": 3048
+        },
+        {
+          "page": "writing-rules.md",
+          "full_content_returned": true,
+          "page_chars": 1849
+        }
+      ],
+      "script_calls": [
+        {
+          "script": "prose_lint",
+          "command_id": "item_16",
+          "exit_code": 0
+        },
+        {
+          "script": "draft_length",
+          "command_id": "item_17",
+          "exit_code": 0
+        }
+      ],
+      "trace_sha256": "8bd756350299aafa17ed4c0048cbcdc097a4b12fa7fa34bb27e7b6816545ee7c"
+    },
+    {
+      "model": "command-code/deepseek-deepseek-v4.1-flash",
+      "case": "P2",
+      "arm": "candidate",
+      "effort": "max",
+      "seconds": 84.19,
+      "invalid": [],
+      "run": "m2-P2-candidate",
+      "usage": {
+        "input_tokens": 334652,
+        "cached_input_tokens": 311808,
+        "output_tokens": 10074,
+        "uncached_input_tokens": 22844
+      },
+      "returned_pages": [
+        {
+          "page": "anti-ai-patterns.md",
+          "full_content_returned": true,
+          "page_chars": 1422
+        },
+        {
+          "page": "field-editing.md",
+          "full_content_returned": true,
+          "page_chars": 271
+        },
+        {
+          "page": "formulaic-language.md",
+          "full_content_returned": true,
+          "page_chars": 1062
+        },
+        {
+          "page": "genre-checklist.md",
+          "full_content_returned": true,
+          "page_chars": 145
+        },
+        {
+          "page": "genre-playbook-procurement-announcement.md",
+          "full_content_returned": true,
+          "page_chars": 530
+        },
+        {
+          "page": "genre-playbook-procurement-review.md",
+          "full_content_returned": true,
+          "page_chars": 664
+        },
+        {
+          "page": "genre-playbook-publication.md",
+          "full_content_returned": true,
+          "page_chars": 338
+        },
+        {
+          "page": "genre-routing.md",
+          "full_content_returned": true,
+          "page_chars": 477
+        },
+        {
+          "page": "prose-lint-usage.md",
+          "full_content_returned": true,
+          "page_chars": 585
+        },
+        {
+          "page": "reference-index.md",
+          "full_content_returned": true,
+          "page_chars": 3212
+        },
+        {
+          "page": "writing-rules.md",
+          "full_content_returned": true,
+          "page_chars": 1849
+        }
+      ],
+      "script_calls": [
+        {
+          "script": "prose_lint",
+          "command_id": "item_26",
+          "exit_code": 0
+        },
+        {
+          "script": "prose_lint",
+          "command_id": "item_27",
+          "exit_code": 0
+        },
+        {
+          "script": "draft_length",
+          "command_id": "item_28",
+          "exit_code": 0
+        },
+        {
+          "script": "prose_lint",
+          "command_id": "item_32",
+          "exit_code": 0
+        },
+        {
+          "script": "draft_length",
+          "command_id": "item_31",
+          "exit_code": 0
+        },
+        {
+          "script": "prose_lint",
+          "command_id": "item_34",
+          "exit_code": 0
+        }
+      ],
+      "trace_sha256": "adc43a92abbeda2f5e86215f554833d046cd9b17bdcf1c427dde51df9c6cdc7d"
+    },
+    {
+      "model": "command-code/deepseek-deepseek-v4.1-flash",
+      "case": "P3",
+      "arm": "baseline",
+      "effort": "max",
+      "seconds": 110.61,
+      "invalid": [],
+      "run": "m2-P3-baseline",
+      "usage": {
+        "input_tokens": 121642,
+        "cached_input_tokens": 108160,
+        "output_tokens": 18637,
+        "uncached_input_tokens": 13482
+      },
+      "returned_pages": [
+        {
+          "page": "anti-ai-patterns.md",
+          "full_content_returned": true,
+          "page_chars": 1422
+        },
+        {
+          "page": "genre-playbook-explanation.md",
+          "full_content_returned": true,
+          "page_chars": 665
+        },
+        {
+          "page": "genre-playbook-procurement-review.md",
+          "full_content_returned": true,
+          "page_chars": 542
+        },
+        {
+          "page": "prose-lint-usage.md",
+          "full_content_returned": true,
+          "page_chars": 585
+        },
+        {
+          "page": "review-checklist.md",
+          "full_content_returned": true,
+          "page_chars": 536
+        },
+        {
+          "page": "writing-rules.md",
+          "full_content_returned": true,
+          "page_chars": 1849
+        }
+      ],
+      "script_calls": [
+        {
+          "script": "draft_length",
+          "command_id": "item_15",
+          "exit_code": 0
+        },
+        {
+          "script": "prose_lint",
+          "command_id": "item_16",
+          "exit_code": 0
+        },
+        {
+          "script": "draft_length",
+          "command_id": "item_19",
+          "exit_code": 0
+        },
+        {
+          "script": "prose_lint",
+          "command_id": "item_20",
+          "exit_code": 0
+        }
+      ],
+      "trace_sha256": "f296dcb91898f774bf47b82e633b8c587181460b43aa56e47190c93ba116e699"
+    },
+    {
+      "model": "command-code/deepseek-deepseek-v4.1-flash",
+      "case": "P3",
+      "arm": "candidate",
+      "effort": "max",
+      "seconds": 96.38,
+      "invalid": [],
+      "run": "m2-P3-candidate",
+      "usage": {
+        "input_tokens": 291704,
+        "cached_input_tokens": 271488,
+        "output_tokens": 12500,
+        "uncached_input_tokens": 20216
+      },
+      "returned_pages": [
+        {
+          "page": "anti-ai-patterns.md",
+          "full_content_returned": true,
+          "page_chars": 1422
+        },
+        {
+          "page": "genre-playbook-explanation.md",
+          "full_content_returned": true,
+          "page_chars": 665
+        },
+        {
+          "page": "genre-playbook-procurement-review.md",
+          "full_content_returned": true,
+          "page_chars": 664
+        },
+        {
+          "page": "genre-routing.md",
+          "full_content_returned": true,
+          "page_chars": 477
+        },
+        {
+          "page": "prose-lint-usage.md",
+          "full_content_returned": true,
+          "page_chars": 585
+        },
+        {
+          "page": "reference-index.md",
+          "full_content_returned": true,
+          "page_chars": 3212
+        },
+        {
+          "page": "review-checklist.md",
+          "full_content_returned": true,
+          "page_chars": 536
+        },
+        {
+          "page": "writing-rules.md",
+          "full_content_returned": true,
+          "page_chars": 1849
+        }
+      ],
+      "script_calls": [
+        {
+          "script": "draft_length",
+          "command_id": "item_14",
+          "exit_code": 0
+        },
+        {
+          "script": "prose_lint",
+          "command_id": "item_15",
+          "exit_code": 0
+        },
+        {
+          "script": "prose_lint",
+          "command_id": "item_17",
+          "exit_code": 0
+        },
+        {
+          "script": "draft_length",
+          "command_id": "item_18",
+          "exit_code": 0
+        },
+        {
+          "script": "prose_lint",
+          "command_id": "item_21",
+          "exit_code": 0
+        }
+      ],
+      "trace_sha256": "9d980b94fbda2bcf710395933827c407949b41f6bb2f89d1daa0dab37487ada4"
+    },
+    {
+      "model": "command-code/deepseek-deepseek-v4.1-flash",
+      "case": "R1",
+      "arm": "baseline",
+      "effort": "max",
+      "seconds": 58.34,
+      "invalid": [],
+      "run": "m2-R1-baseline",
+      "usage": {
+        "input_tokens": 192840,
+        "cached_input_tokens": 177408,
+        "output_tokens": 6440,
+        "uncached_input_tokens": 15432
+      },
+      "returned_pages": [
+        {
+          "page": "anti-ai-patterns.md",
+          "full_content_returned": true,
+          "page_chars": 1422
+        },
+        {
+          "page": "genre-checklist-report.md",
+          "full_content_returned": true,
+          "page_chars": 304
+        },
+        {
+          "page": "genre-playbook-report.md",
+          "full_content_returned": true,
+          "page_chars": 1052
+        },
+        {
+          "page": "genre-routing.md",
+          "full_content_returned": true,
+          "page_chars": 477
+        },
+        {
+          "page": "prose-lint-usage.md",
+          "full_content_returned": true,
+          "page_chars": 585
+        },
+        {
+          "page": "reference-index.md",
+          "full_content_returned": true,
+          "page_chars": 3048
+        },
+        {
+          "page": "transaction-remediation-report.md",
+          "full_content_returned": true,
+          "page_chars": 336
+        },
+        {
+          "page": "writing-rules.md",
+          "full_content_returned": true,
+          "page_chars": 1849
+        }
+      ],
+      "script_calls": [
+        {
+          "script": "prose_lint",
+          "command_id": "item_13",
+          "exit_code": 0
+        },
+        {
+          "script": "draft_length",
+          "command_id": "item_14",
+          "exit_code": 0
+        }
+      ],
+      "trace_sha256": "c11ba21a6a6a757be902cc28070a011e6792ed0a110843618c9f5578430bcf34"
+    },
+    {
+      "model": "command-code/deepseek-deepseek-v4.1-flash",
+      "case": "R1",
+      "arm": "candidate",
+      "effort": "max",
+      "seconds": 49.8,
+      "invalid": [],
+      "run": "m2-R1-candidate",
+      "usage": {
+        "input_tokens": 155734,
+        "cached_input_tokens": 139648,
+        "output_tokens": 5412,
+        "uncached_input_tokens": 16086
+      },
+      "returned_pages": [
+        {
+          "page": "anti-ai-patterns.md",
+          "full_content_returned": true,
+          "page_chars": 1422
+        },
+        {
+          "page": "compatibility-scene-routing.md",
+          "full_content_returned": true,
+          "page_chars": 803
+        },
+        {
+          "page": "genre-checklist-report.md",
+          "full_content_returned": true,
+          "page_chars": 304
+        },
+        {
+          "page": "genre-playbook-report.md",
+          "full_content_returned": true,
+          "page_chars": 1052
+        },
+        {
+          "page": "genre-routing.md",
+          "full_content_returned": true,
+          "page_chars": 477
+        },
+        {
+          "page": "prose-lint-usage.md",
+          "full_content_returned": true,
+          "page_chars": 585
+        },
+        {
+          "page": "reference-index.md",
+          "full_content_returned": true,
+          "page_chars": 3212
+        },
+        {
+          "page": "transaction-remediation-report.md",
+          "full_content_returned": true,
+          "page_chars": 343
+        },
+        {
+          "page": "writing-rules.md",
+          "full_content_returned": true,
+          "page_chars": 1849
+        }
+      ],
+      "script_calls": [
+        {
+          "script": "draft_length",
+          "command_id": "item_17",
+          "exit_code": 0
+        },
+        {
+          "script": "prose_lint",
+          "command_id": "item_18",
+          "exit_code": 0
+        },
+        {
+          "script": "prose_lint",
+          "command_id": "item_20",
+          "exit_code": 0
+        },
+        {
+          "script": "draft_length",
+          "command_id": "item_20",
+          "exit_code": 0
+        }
+      ],
+      "trace_sha256": "b4488551e660d89d03eecccfe8ae2cb1aa3b2419f2f04c4c2628c8ff7fe75d17"
+    },
+    {
+      "model": "command-code/deepseek-deepseek-v4.1-flash",
+      "case": "R2",
+      "arm": "baseline",
+      "effort": "max",
+      "seconds": 112.97,
+      "invalid": [],
+      "run": "m2-R2-baseline",
+      "usage": {
+        "input_tokens": 255591,
+        "cached_input_tokens": 238208,
+        "output_tokens": 16168,
+        "uncached_input_tokens": 17383
+      },
+      "returned_pages": [
+        {
+          "page": "anti-ai-patterns.md",
+          "full_content_returned": true,
+          "page_chars": 1422
+        },
+        {
+          "page": "compatibility-scene-routing.md",
+          "full_content_returned": true,
+          "page_chars": 803
+        },
+        {
+          "page": "genre-checklist-report.md",
+          "full_content_returned": true,
+          "page_chars": 304
+        },
+        {
+          "page": "genre-playbook-remediation-plan.md",
+          "full_content_returned": true,
+          "page_chars": 998
+        },
+        {
+          "page": "genre-playbook-report.md",
+          "full_content_returned": true,
+          "page_chars": 1052
+        },
+        {
+          "page": "genre-routing.md",
+          "full_content_returned": true,
+          "page_chars": 477
+        },
+        {
+          "page": "prose-lint-usage.md",
+          "full_content_returned": true,
+          "page_chars": 585
+        },
+        {
+          "page": "reference-index.md",
+          "full_content_returned": true,
+          "page_chars": 3048
+        },
+        {
+          "page": "transaction-remediation-report.md",
+          "full_content_returned": true,
+          "page_chars": 336
+        },
+        {
+          "page": "writing-rules.md",
+          "full_content_returned": true,
+          "page_chars": 1849
+        }
+      ],
+      "script_calls": [
+        {
+          "script": "draft_length",
+          "command_id": "item_18",
+          "exit_code": 0
+        },
+        {
+          "script": "prose_lint",
+          "command_id": "item_19",
+          "exit_code": 0
+        },
+        {
+          "script": "prose_lint",
+          "command_id": "item_22",
+          "exit_code": 0
+        }
+      ],
+      "trace_sha256": "7ff3ad8d6db4c77aaa62e469ad737caf683b5a0d27f72f342907dde6d789f7d2"
+    },
+    {
+      "model": "command-code/deepseek-deepseek-v4.1-flash",
+      "case": "R2",
+      "arm": "candidate",
+      "effort": "max",
+      "seconds": 222.08,
+      "invalid": [],
+      "run": "m2-R2-candidate",
+      "usage": {
+        "input_tokens": 371335,
+        "cached_input_tokens": 350080,
+        "output_tokens": 37485,
+        "uncached_input_tokens": 21255
+      },
+      "returned_pages": [
+        {
+          "page": "anti-ai-patterns.md",
+          "full_content_returned": true,
+          "page_chars": 1422
+        },
+        {
+          "page": "compression-details.md",
+          "full_content_returned": true,
+          "page_chars": 695
+        },
+        {
+          "page": "genre-checklist-report.md",
+          "full_content_returned": true,
+          "page_chars": 304
+        },
+        {
+          "page": "genre-playbook-report.md",
+          "full_content_returned": true,
+          "page_chars": 1052
+        },
+        {
+          "page": "prose-lint-usage.md",
+          "full_content_returned": true,
+          "page_chars": 585
+        },
+        {
+          "page": "reference-index.md",
+          "full_content_returned": true,
+          "page_chars": 3212
+        },
+        {
+          "page": "review-checklist.md",
+          "full_content_returned": true,
+          "page_chars": 536
+        },
+        {
+          "page": "transaction-remediation-report.md",
+          "full_content_returned": true,
+          "page_chars": 343
+        },
+        {
+          "page": "writing-rules.md",
+          "full_content_returned": true,
+          "page_chars": 1849
+        }
+      ],
+      "script_calls": [
+        {
+          "script": "prose_lint",
+          "command_id": "item_28",
+          "exit_code": 0
+        },
+        {
+          "script": "draft_length",
+          "command_id": "item_29",
+          "exit_code": 0
+        },
+        {
+          "script": "prose_lint",
+          "command_id": "item_34",
+          "exit_code": 0
+        },
+        {
+          "script": "draft_length",
+          "command_id": "item_33",
+          "exit_code": 0
+        },
+        {
+          "script": "draft_length",
+          "command_id": "item_38",
+          "exit_code": 0
+        },
+        {
+          "script": "prose_lint",
+          "command_id": "item_39",
+          "exit_code": 0
+        },
+        {
+          "script": "draft_length",
+          "command_id": "item_47",
+          "exit_code": 0
+        },
+        {
+          "script": "prose_lint",
+          "command_id": "item_48",
+          "exit_code": 0
+        }
+      ],
+      "trace_sha256": "2cb9ef0656b4e32b6deb4526473370d5a2c7bc4fdf412d60b5c3aabe9e871464"
+    }
+  ]
+}

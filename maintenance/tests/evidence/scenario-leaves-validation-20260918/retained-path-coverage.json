@@ -1,0 +1,136 @@
+{
+  "withdrawn_product_change": "references/genre-playbook-procurement-announcement.md",
+  "difference_from_tested_candidate": [
+    "chinese-official-writing/references/genre-playbook-procurement-announcement.md"
+  ],
+  "eligible_pairs": 15,
+  "total_pairs": 18,
+  "calls": [
+    {
+      "run": "qwen/m0-B1-candidate.result.json",
+      "case": "B1",
+      "model": "alibaba-token-plan/qwen3.8-flash",
+      "withdrawn_page_read": false,
+      "retained_read_path_unchanged": true
+    },
+    {
+      "run": "qwen/m0-B2-candidate.result.json",
+      "case": "B2",
+      "model": "alibaba-token-plan/qwen3.8-flash",
+      "withdrawn_page_read": false,
+      "retained_read_path_unchanged": true
+    },
+    {
+      "run": "qwen/m0-C1-candidate.result.json",
+      "case": "C1",
+      "model": "alibaba-token-plan/qwen3.8-flash",
+      "withdrawn_page_read": false,
+      "retained_read_path_unchanged": true
+    },
+    {
+      "run": "qwen/m0-I1-candidate.result.json",
+      "case": "I1",
+      "model": "alibaba-token-plan/qwen3.8-flash",
+      "withdrawn_page_read": false,
+      "retained_read_path_unchanged": true
+    },
+    {
+      "run": "qwen/m0-I2-candidate.result.json",
+      "case": "I2",
+      "model": "alibaba-token-plan/qwen3.8-flash",
+      "withdrawn_page_read": false,
+      "retained_read_path_unchanged": true
+    },
+    {
+      "run": "qwen/m0-P2-candidate.result.json",
+      "case": "P2",
+      "model": "alibaba-token-plan/qwen3.8-flash",
+      "withdrawn_page_read": true,
+      "retained_read_path_unchanged": false
+    },
+    {
+      "run": "qwen/m0-P3-candidate.result.json",
+      "case": "P3",
+      "model": "alibaba-token-plan/qwen3.8-flash",
+      "withdrawn_page_read": false,
+      "retained_read_path_unchanged": true
+    },
+    {
+      "run": "qwen/m0-R2-candidate.result.json",
+      "case": "R2",
+      "model": "alibaba-token-plan/qwen3.8-flash",
+      "withdrawn_page_read": false,
+      "retained_read_path_unchanged": true
+    },
+    {
+      "run": "deepseek/m2-B2-candidate.result.json",
+      "case": "B2",
+      "model": "command-code/deepseek-deepseek-v4.1-flash",
+      "withdrawn_page_read": true,
+      "retained_read_path_unchanged": false
+    },
+    {
+      "run": "deepseek/m2-C2-candidate.result.json",
+      "case": "C2",
+      "model": "command-code/deepseek-deepseek-v4.1-flash",
+      "withdrawn_page_read": false,
+      "retained_read_path_unchanged": true
+    },
+    {
+      "run": "deepseek/m2-I1-candidate.result.json",
+      "case": "I1",
+      "model": "command-code/deepseek-deepseek-v4.1-flash",
+      "withdrawn_page_read": false,
+      "retained_read_path_unchanged": true
+    },
+    {
+      "run": "deepseek/m2-I2-candidate.result.json",
+      "case": "I2",
+      "model": "command-code/deepseek-deepseek-v4.1-flash",
+      "withdrawn_page_read": false,
+      "retained_read_path_unchanged": true
+    },
+    {
+      "run": "deepseek/m2-P2-candidate.result.json",
+      "case": "P2",
+      "model": "command-code/deepseek-deepseek-v4.1-flash",
+      "withdrawn_page_read": true,
+      "retained_read_path_unchanged": false
+    },
+    {
+      "run": "deepseek/m2-P3-candidate.result.json",
+      "case": "P3",
+      "model": "command-code/deepseek-deepseek-v4.1-flash",
+      "withdrawn_page_read": false,
+      "retained_read_path_unchanged": true
+    },
+    {
+      "run": "deepseek/m2-R1-candidate.result.json",
+      "case": "R1",
+      "model": "command-code/deepseek-deepseek-v4.1-flash",
+      "withdrawn_page_read": false,
+      "retained_read_path_unchanged": true
+    },
+    {
+      "run": "deepseek/m2-R2-candidate.result.json",
+      "case": "R2",
+      "model": "command-code/deepseek-deepseek-v4.1-flash",
+      "withdrawn_page_read": false,
+      "retained_read_path_unchanged": true
+    },
+    {
+      "run": "qwen-retest/m0-P3-candidate.result.json",
+      "case": "P3",
+      "model": "alibaba-token-plan/qwen3.8-flash",
+      "withdrawn_page_read": false,
+      "retained_read_path_unchanged": true
+    },
+    {
+      "run": "deepseek-retest/m2-R1-candidate.result.json",
+      "case": "R1",
+      "model": "command-code/deepseek-deepseek-v4.1-flash",
+      "withdrawn_page_read": false,
+      "retained_read_path_unchanged": true
+    }
+  ]
+}

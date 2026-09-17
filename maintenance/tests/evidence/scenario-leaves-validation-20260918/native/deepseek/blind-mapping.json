@@ -1,0 +1,82 @@
+[
+  {
+    "pair": 1,
+    "label": "A",
+    "run": "m2-B2-candidate"
+  },
+  {
+    "pair": 1,
+    "label": "B",
+    "run": "m2-B2-baseline"
+  },
+  {
+    "pair": 2,
+    "label": "A",
+    "run": "m2-C2-baseline"
+  },
+  {
+    "pair": 2,
+    "label": "B",
+    "run": "m2-C2-candidate"
+  },
+  {
+    "pair": 3,
+    "label": "A",
+    "run": "m2-I1-candidate"
+  },
+  {
+    "pair": 3,
+    "label": "B",
+    "run": "m2-I1-baseline"
+  },
+  {
+    "pair": 4,
+    "label": "A",
+    "run": "m2-I2-baseline"
+  },
+  {
+    "pair": 4,
+    "label": "B",
+    "run": "m2-I2-candidate"
+  },
+  {
+    "pair": 5,
+    "label": "A",
+    "run": "m2-P2-candidate"
+  },
+  {
+    "pair": 5,
+    "label": "B",
+    "run": "m2-P2-baseline"
+  },
+  {
+    "pair": 6,
+    "label": "A",
+    "run": "m2-P3-baseline"
+  },
+  {
+    "pair": 6,
+    "label": "B",
+    "run": "m2-P3-candidate"
+  },
+  {
+    "pair": 7,
+    "label": "A",
+    "run": "m2-R1-candidate"
+  },
+  {
+    "pair": 7,
+    "label": "B",
+    "run": "m2-R1-baseline"
+  },
+  {
+    "pair": 8,
+    "label": "A",
+    "run": "m2-R2-baseline"
+  },
+  {
+    "pair": 8,
+    "label": "B",
+    "run": "m2-R2-candidate"
+  }
+]

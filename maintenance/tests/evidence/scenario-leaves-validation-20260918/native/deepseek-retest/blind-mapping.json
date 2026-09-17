@@ -1,0 +1,12 @@
+[
+  {
+    "pair": 1,
+    "label": "A",
+    "run": "m2-R1-candidate"
+  },
+  {
+    "pair": 1,
+    "label": "B",
+    "run": "m2-R1-baseline"
+  }
+]

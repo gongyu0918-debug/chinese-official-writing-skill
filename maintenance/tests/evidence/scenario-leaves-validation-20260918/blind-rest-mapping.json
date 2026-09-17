@@ -1,0 +1,128 @@
+[
+  {
+    "pair": 1,
+    "label": "A",
+    "arm": "baseline",
+    "case": "P2",
+    "model": "alibaba-token-plan/qwen3.8-flash",
+    "source": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\scenario-leaves-validation-20260918\\output\\scenario-native-20260918\\qwen\\m0-P2-baseline.final.txt",
+    "sha256": "a6d041d3b6b26d1cd93b94c654452d598a894cfcf718cc90320ec9bb1b339e45"
+  },
+  {
+    "pair": 1,
+    "label": "B",
+    "arm": "candidate",
+    "case": "P2",
+    "model": "alibaba-token-plan/qwen3.8-flash",
+    "source": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\scenario-leaves-validation-20260918\\output\\scenario-native-20260918\\qwen\\m0-P2-candidate.final.txt",
+    "sha256": "f8b1bd2f2bf3952fc02418c75b28791051f263320b83c8d57c2a3e1cf18a445f"
+  },
+  {
+    "pair": 2,
+    "label": "A",
+    "arm": "baseline",
+    "case": "C2",
+    "model": "command-code/deepseek-deepseek-v4.1-flash",
+    "source": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\scenario-leaves-validation-20260918\\output\\scenario-native-20260918\\deepseek\\m2-C2-baseline.final.txt",
+    "sha256": "986813e44698002a7788cd0cbd0dccae0e480b2a9e0b9ed53c000639a6d4e64b"
+  },
+  {
+    "pair": 2,
+    "label": "B",
+    "arm": "candidate",
+    "case": "C2",
+    "model": "command-code/deepseek-deepseek-v4.1-flash",
+    "source": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\scenario-leaves-validation-20260918\\output\\scenario-native-20260918\\deepseek\\m2-C2-candidate.final.txt",
+    "sha256": "dc502fb52376c5dbff57d1216612bcb2b86dad33cb54ba63a83069a9f8e74cb5"
+  },
+  {
+    "pair": 3,
+    "label": "A",
+    "arm": "baseline",
+    "case": "P2",
+    "model": "command-code/deepseek-deepseek-v4.1-flash",
+    "source": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\scenario-leaves-validation-20260918\\output\\scenario-native-20260918\\deepseek\\m2-P2-baseline.final.txt",
+    "sha256": "0a30b4dab48faceafe0aae5f1f1cb0b02b705c38e369b976e61a914c0e72b3a9"
+  },
+  {
+    "pair": 3,
+    "label": "B",
+    "arm": "candidate",
+    "case": "P2",
+    "model": "command-code/deepseek-deepseek-v4.1-flash",
+    "source": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\scenario-leaves-validation-20260918\\output\\scenario-native-20260918\\deepseek\\m2-P2-candidate.final.txt",
+    "sha256": "05c2feda4840a1fc37612981b5fcb13f63a7042cf5d3b99935bcb8678e8f96d1"
+  },
+  {
+    "pair": 4,
+    "label": "A",
+    "arm": "baseline",
+    "case": "C1",
+    "model": "alibaba-token-plan/qwen3.8-flash",
+    "source": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\scenario-leaves-validation-20260918\\output\\scenario-native-20260918\\qwen\\m0-C1-baseline.final.txt",
+    "sha256": "a70c4e8fbea290ec6ab52f6644d2756549838328ec7a291c9120cc7f68f940fe"
+  },
+  {
+    "pair": 4,
+    "label": "B",
+    "arm": "candidate",
+    "case": "C1",
+    "model": "alibaba-token-plan/qwen3.8-flash",
+    "source": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\scenario-leaves-validation-20260918\\output\\scenario-native-20260918\\qwen\\m0-C1-candidate.final.txt",
+    "sha256": "5cbd024d14ca7ad1fa9ba8d4abb9d479b232bc85e382030056beec4c1f367de3"
+  },
+  {
+    "pair": 5,
+    "label": "A",
+    "arm": "baseline",
+    "case": "B1",
+    "model": "alibaba-token-plan/qwen3.8-flash",
+    "source": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\scenario-leaves-validation-20260918\\output\\scenario-native-20260918\\qwen\\m0-B1-baseline.final.txt",
+    "sha256": "f2f38230d55afa0665ccd5628d76a080de9932b1ed9d3647d3423b93f047b0c0"
+  },
+  {
+    "pair": 5,
+    "label": "B",
+    "arm": "candidate",
+    "case": "B1",
+    "model": "alibaba-token-plan/qwen3.8-flash",
+    "source": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\scenario-leaves-validation-20260918\\output\\scenario-native-20260918\\qwen\\m0-B1-candidate.final.txt",
+    "sha256": "cf4d46ab2c0843b2b12d5d08e3916112b9ba42a499ad21bdb652f94518ebd6be"
+  },
+  {
+    "pair": 6,
+    "label": "A",
+    "arm": "candidate",
+    "case": "I2",
+    "model": "alibaba-token-plan/qwen3.8-flash",
+    "source": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\scenario-leaves-validation-20260918\\output\\scenario-native-20260918\\qwen\\m0-I2-candidate.final.txt",
+    "sha256": "1608bd6adeb48140a92875a0927794dc5b94e86baa1912c3886a7fcd78e5f2b5"
+  },
+  {
+    "pair": 6,
+    "label": "B",
+    "arm": "baseline",
+    "case": "I2",
+    "model": "alibaba-token-plan/qwen3.8-flash",
+    "source": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\scenario-leaves-validation-20260918\\output\\scenario-native-20260918\\qwen\\m0-I2-baseline.final.txt",
+    "sha256": "19d0e3946bea33ed364ddd37e7a093f4f59b2d4b422c457ea5aa2a7080aa28e9"
+  },
+  {
+    "pair": 7,
+    "label": "A",
+    "arm": "baseline",
+    "case": "I2",
+    "model": "command-code/deepseek-deepseek-v4.1-flash",
+    "source": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\scenario-leaves-validation-20260918\\output\\scenario-native-20260918\\deepseek\\m2-I2-baseline.final.txt",
+    "sha256": "807d08e23d3ec60a5d383dacecac7a8200ef7c55ad19857c6ca5347c20c1ded6"
+  },
+  {
+    "pair": 7,
+    "label": "B",
+    "arm": "candidate",
+    "case": "I2",
+    "model": "command-code/deepseek-deepseek-v4.1-flash",
+    "source": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\scenario-leaves-validation-20260918\\output\\scenario-native-20260918\\deepseek\\m2-I2-candidate.final.txt",
+    "sha256": "4f0cbe6bc7c64596fefaa4f6be5367b5b55a2b090bbe1ecfd8fae26fd7631d45"
+  }
+]

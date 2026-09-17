@@ -1,0 +1,47 @@
+{
+  "main_commit": "70d241ca88e426ad03d9ddc7074a9d4314e4819d",
+  "candidate_head": "1cffe2e47cd4e1cb5935033fd04dfa4b593ea643",
+  "fingerprints": {
+    "baseline": "95b1d60b60c92156a2c1cf36cde063d57a34b0e024ed0b54ceb892cd7e01b1f7",
+    "candidate": "e148acfc4c73108908d2df2e0517c8fed0a9ed8aad5fa5d336288f66472c8265"
+  },
+  "models": [
+    "alibaba-token-plan/qwen3.8-flash"
+  ],
+  "cases": {
+    "B2": "根据这些公开材料整理一段完整的项目费用说明：服务期限3年，总采购预算150万元；每个服务年度预算50万元，按12个月计费周期处理。最高限制单价为每笔业务2.5元，实际费用根据财政直接支付和授权支付笔数，按2.5元乘供应商报价折扣率计算。供应商折扣率尚无具体值。年度业务量计算的费用受50万元年度支付上限约束。请把总额、年度额度和计价方式写清，保持本题给出的支付口径。",
+    "I1": "根据该批复的建设范围，写一份简明的项目建设内容说明：原政务数据共享交换平台适配改造，包括主控制台、级联共享、智能报表分析；统一用户体系升级，包括组织机构、数据权限分级及共享交换；数据开放门户与运维监控升级；敏感数据管理、网络防护及前置机密码统一管理；平台应用数据迁移和部门前置库迁移分别涉及40多个部门，另有区县数据迁移；开展信息安全风险评估、商用密码应用安全性评估；项目部署于市政务信创云平台。说明现有基础、本次改造和数据迁移之间的关系即可。",
+    "R2": "请帮资料室写一份简短完整的整改进展报告，并针对尚未解决的问题提出合理的下一步建议。材料：本轮检查20本档案，发现其中3本页码缺漏。本周已补齐2本，剩下1本的原始材料还需要业务科室核对，复核时间尚未确定。请把已经完成和尚待处理的事项交代清楚，建议采用拟议口吻。",
+    "P3": "帮我审核并改好这份采购情况说明，保留采购事项和已有数字，纠正不准确的表述，给出必要的修改建议。原稿：资料中心拟购买扫描仪2台，每台报价4800元，配送已含在报价内，安装调试另报价1200元。年度预算上限11000元。扫描仪需支持双面扫描，验收时只核对设备到货数量。采购说明写成：本次采购2台扫描仪，含配送安装总价9600元，拟以到货数量齐全作为验收合格依据。有效补充材料：供应商尚未确定，上述只是估算报价；原文中的双面扫描需求继续保留。请形成完整的改后说明，并对拟验收要求提出与需求相称的建议。",
+    "B1": "成吉思汗镇建设村桥涵项目中标价279.292786万元。施工合同约定项目开工时预付合同价款30%。项目已开工，本次申请83.787836万元。请以成吉思汗镇人民政府名义，主送沿用原文“扎兰屯农牧和科技局”，整理成简洁完整的资金拨付请示，落款沿用2025年5月26日，金额按万元保留原精度。",
+    "P2": "请据这些材料整理一份采购成交结果更正公告，项目名称沿用“心理健康站设施设备采购项目”，项目编号为YLZDCG202626-1。原成交结果公告发布于2026年6月15日。本次更正的是采购结果：成交供应商部分所供货物与响应文件及合同约定的品牌型号不符，经催告仍不能在约定时间内完成整改，合同无法继续履行，双方已协商签订解除协议；采购人已决定重新开展采购活动。更正日期2026年9月17日。请按事项需要说明更正前后内容，写明当前结果与后续安排，其他发布字段缺项单列文后提示。",
+    "I2": "以下是根据公开信息化运维材料改编的写作练习数据。请以资料中心名义写一份报单位负责人审批的信息系统运维及升级经费申请，把业务需要、本次范围和费用关系写清，使用自然连贯的段落。现有预约登记系统用于登记、查询，已经运行3年；拟升级登记表单并迁移历史数据，保留原查询功能，使用现有服务器。一次性表单升级与数据迁移费合计8000元；软件维护每月4000元，网络租赁每月1000元，服务期为2026年10月至2027年9月，共12个月。项目已有资金20000元，本次拟申请其余所需资金，具体分年拨款安排未定。各项费用按以上口径测算，项目还在申请阶段。请核算总费用和本次申请额，必要时说明跨年费用；不要替我设定采购合同或分年拨款方式。",
+    "C1": "综合办公室有2把办公椅已损坏，拟购2把，每把估算420元，供应商和采购时间尚未确定。请写报单位负责人审批的简洁申请，说明日常办公需要、数量、金额和请求。"
+  },
+  "cli": "C:\\Users\\admin\\AppData\\Local\\OpenAI\\Codex\\bin\\eab8377aebac6c07\\codex.exe",
+  "cli_version": "codex-cli 0.155.0-alpha.2.6",
+  "effort": "max",
+  "runtime": "C:\\Users\\admin\\AppData\\Local\\Temp\\cow-native-qwen-tv5qb9mx",
+  "permissions": "inherited-host-config",
+  "timeout": 360,
+  "agent_documents": "project_doc_max_bytes=0",
+  "baseline_ref": "70d241ca",
+  "baseline_source": null,
+  "candidate_source": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\scenario-leaves-validation-20260918\\chinese-official-writing",
+  "candidate_skill_name": "chinese-official-writing",
+  "baseline_commit": "70d241ca88e426ad03d9ddc7074a9d4314e4819d",
+  "profile": "temporary-no-user-documents-or-credentials",
+  "runner_sha256": "180db1a815a192f612cf85b7c54976240abcfe8b6f834d22fedf5798cad5622d",
+  "prompt_prefix": "使用本目录 .agents/skills/chinese-official-writing/SKILL.md。\n\n使用普通写作能力，不启用 Hook。\n\n本目录文本文件为 UTF-8 编码，读取时显式指定 UTF-8 解码。\n\n",
+  "ordinary_only": true,
+  "utf8_read": true,
+  "runtime_layout": "each call has a separate parent, workspace and temporary directory",
+  "session_metadata": "ephemeral",
+  "review_host": {
+    "enabled": false,
+    "max_threads": null,
+    "max_depth": null,
+    "child_model": "host defaults",
+    "child_usage": "root JSON usage is not assumed to include child usage"
+  }
+}

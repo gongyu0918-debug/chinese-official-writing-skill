@@ -1,0 +1,42 @@
+[
+  {
+    "path": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\scenario-leaves-validation-20260918\\output\\scenario-native-20260918\\qwen-retest\\m0-P3-baseline.result.json",
+    "sha256": "0efc2c879fb3a1396ab1e0a6ea349fb6a5cc33a1e5099c64ddafffc906a02a38",
+    "bytes": 38696
+  },
+  {
+    "path": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\scenario-leaves-validation-20260918\\output\\scenario-native-20260918\\qwen-retest\\m0-P3-baseline.trace.jsonl",
+    "sha256": "804e30430d80bacaad6cf35ac28b687f218435a6e9657525f6f523b9d32470c1",
+    "bytes": 49286
+  },
+  {
+    "path": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\scenario-leaves-validation-20260918\\output\\scenario-native-20260918\\qwen-retest\\m0-P3-baseline.stderr.txt",
+    "sha256": "609def6ee85e8846d14660b1bf47f09217151991bb46bb6a503c10b37e7af1df",
+    "bytes": 417
+  },
+  {
+    "path": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\scenario-leaves-validation-20260918\\output\\scenario-native-20260918\\qwen-retest\\m0-P3-baseline.final.txt",
+    "sha256": "03d2a509624e872a94194bd2329c2f3103dfd3f289d2073d031ef51f45fbcef0",
+    "bytes": 2778
+  },
+  {
+    "path": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\scenario-leaves-validation-20260918\\output\\scenario-native-20260918\\qwen-retest\\m0-P3-candidate.result.json",
+    "sha256": "ff7245641061bc46f6b5e1374d90a93f7a313490fa8256bbf61a1b808685588a",
+    "bytes": 55125
+  },
+  {
+    "path": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\scenario-leaves-validation-20260918\\output\\scenario-native-20260918\\qwen-retest\\m0-P3-candidate.trace.jsonl",
+    "sha256": "0bcc493ac58fc7ac11d02a52f477ebf619e62330445b51d0c290debe015d0c83",
+    "bytes": 67345
+  },
+  {
+    "path": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\scenario-leaves-validation-20260918\\output\\scenario-native-20260918\\qwen-retest\\m0-P3-candidate.stderr.txt",
+    "sha256": "7f61f3ba9d814908f94ac6378ae2380f71a70361122e0b4ceaeb4226555cc0f7",
+    "bytes": 417
+  },
+  {
+    "path": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\scenario-leaves-validation-20260918\\output\\scenario-native-20260918\\qwen-retest\\m0-P3-candidate.final.txt",
+    "sha256": "1865b8e655328a9977f8504f036316407a5bae3a7f57ea12dfafac2d05d9ee23",
+    "bytes": 2511
+  }
+]

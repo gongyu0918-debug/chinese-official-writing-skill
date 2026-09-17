@@ -1,0 +1,252 @@
+[
+  {
+    "model": "command-code/deepseek-deepseek-v4.1-flash",
+    "effort": "max",
+    "case": "R1",
+    "arm": "baseline",
+    "returncode": 0,
+    "seconds": 80.97,
+    "invalid": [],
+    "draft_sha256": "f9b0214005205dec5d140b97521a045bc87bd3e1f4cb1dbbead382c7ccb2ae6b",
+    "usage": [
+      {
+        "input_tokens": 255057,
+        "cached_input_tokens": 236672,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 11487,
+        "reasoning_output_tokens": 0
+      }
+    ],
+    "run": "m2-R1-baseline",
+    "script_calls": [
+      {
+        "id": "item_11",
+        "type": "command_execution",
+        "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"python \\\"C:\\\\Users\\\\admin\\\\AppData\\\\Local\\\\Temp\\\\cow-native-deepseek-retest-c8jelor2\\\\m2-R1-baseline\\\\workspace\\\\.agents\\\\skills\\\\chinese-official-writing\\\\scripts\\\\prose_lint.py\\\" --delivery-mode draft-body --structure --format \\\"C:\\\\Users\\\\admin\\\\AppData\\\\Local\\\\Temp\\\\cow-native-deepseek-retest-c8jelor2\\\\m2-R1-baseline\\\\workspace\\\\draft-remediation-report.txt\\\"\"",
+        "aggregated_output": "No prose risks found.\r\n",
+        "exit_code": 0,
+        "status": "completed"
+      },
+      {
+        "id": "item_12",
+        "type": "command_execution",
+        "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"python \\\"C:\\\\Users\\\\admin\\\\AppData\\\\Local\\\\Temp\\\\cow-native-deepseek-retest-c8jelor2\\\\m2-R1-baseline\\\\workspace\\\\.agents\\\\skills\\\\chinese-official-writing\\\\scripts\\\\draft_length.py\\\" --min-chars 80 \\\"C:\\\\Users\\\\admin\\\\AppData\\\\Local\\\\Temp\\\\cow-native-deepseek-retest-c8jelor2\\\\m2-R1-baseline\\\\workspace\\\\draft-remediation-report.txt\\\"\"",
+        "aggregated_output": "C:\\Users\\admin\\AppData\\Local\\Temp\\cow-native-deepseek-retest-c8jelor2\\m2-R1-baseline\\workspace\\draft-remediation-report.txt: 531 (nonspace; draft-before-postscript); 在范围内\r\n",
+        "exit_code": 0,
+        "status": "completed"
+      },
+      {
+        "id": "item_15",
+        "type": "command_execution",
+        "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"python \\\"C:\\\\Users\\\\admin\\\\AppData\\\\Local\\\\Temp\\\\cow-native-deepseek-retest-c8jelor2\\\\m2-R1-baseline\\\\workspace\\\\.agents\\\\skills\\\\chinese-official-writing\\\\scripts\\\\prose_lint.py\\\" --delivery-mode draft-body --structure --format \\\"C:\\\\Users\\\\admin\\\\AppData\\\\Local\\\\Temp\\\\cow-native-deepseek-retest-c8jelor2\\\\m2-R1-baseline\\\\workspace\\\\draft-remediation-report.txt\\\"\"",
+        "aggregated_output": "No prose risks found.\r\n",
+        "exit_code": 0,
+        "status": "completed"
+      },
+      {
+        "id": "item_14",
+        "type": "command_execution",
+        "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"python \\\"C:\\\\Users\\\\admin\\\\AppData\\\\Local\\\\Temp\\\\cow-native-deepseek-retest-c8jelor2\\\\m2-R1-baseline\\\\workspace\\\\.agents\\\\skills\\\\chinese-official-writing\\\\scripts\\\\draft_length.py\\\" --min-chars 80 \\\"C:\\\\Users\\\\admin\\\\AppData\\\\Local\\\\Temp\\\\cow-native-deepseek-retest-c8jelor2\\\\m2-R1-baseline\\\\workspace\\\\draft-remediation-report.txt\\\"\"",
+        "aggregated_output": "C:\\Users\\admin\\AppData\\Local\\Temp\\cow-native-deepseek-retest-c8jelor2\\m2-R1-baseline\\workspace\\draft-remediation-report.txt: 489 (nonspace; draft-before-postscript); 在范围内\r\n",
+        "exit_code": 0,
+        "status": "completed"
+      }
+    ],
+    "read_commands": [
+      {
+        "id": "item_1",
+        "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"Get-Content -LiteralPath '.agents/skills/chinese-official-writing/SKILL.md' -Encoding UTF8 | Select-Object -First 200\"",
+        "exit_code": 0,
+        "output_chars": 2708,
+        "output_sha256": "96c6849ef6216b11b0ad0c605f26db1e7bd9cc75a3b0edc1935a39edbc9f1b01"
+      },
+      {
+        "id": "item_3",
+        "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"Get-Content -LiteralPath 'references/reference-index.md' -Encoding UTF8\"",
+        "exit_code": 0,
+        "output_chars": 3108,
+        "output_sha256": "8d08e1d09e53f1e1de57bfc51b9a9b4743a18339fc21880eda3e81fac422300f"
+      },
+      {
+        "id": "item_4",
+        "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"Get-Content -LiteralPath 'references/transaction-remediation-report.md' -Encoding UTF8\"",
+        "exit_code": 0,
+        "output_chars": 345,
+        "output_sha256": "a138db912ba64d370b47d9de339177a5afd7b6d2eabc1a0eb47fcc54abe3c22b"
+      },
+      {
+        "id": "item_5",
+        "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"Get-Content -LiteralPath 'references/genre-playbook-report.md' -Encoding UTF8\"",
+        "exit_code": 0,
+        "output_chars": 1077,
+        "output_sha256": "b06d218fa0d4036c2ceab2130ab97f98b94fa4ef88ef7de9f88468bef6339629"
+      },
+      {
+        "id": "item_6",
+        "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"Get-Content -LiteralPath 'references/writing-rules.md' -Encoding UTF8\"",
+        "exit_code": 0,
+        "output_chars": 1904,
+        "output_sha256": "4990c1fa9bbaa979330a5cd860e65d75894e3f5bc41ec29a9474bb949469c318"
+      },
+      {
+        "id": "item_8",
+        "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"Get-Content -LiteralPath 'references/prose-lint-usage.md' -Encoding UTF8\"",
+        "exit_code": 0,
+        "output_chars": 600,
+        "output_sha256": "18a3aafe72516f62bebb555f9c48ba503327d88238240863ef177a8b20b36574"
+      },
+      {
+        "id": "item_9",
+        "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"Get-Content -LiteralPath 'references/anti-ai-patterns.md' -Encoding UTF8\"",
+        "exit_code": 0,
+        "output_chars": 1459,
+        "output_sha256": "49a2ab9aec706f73ddc47a29813163d120f12fd25b791d6c6041eab6676fc9ef"
+      },
+      {
+        "id": "item_16",
+        "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"Get-Content -LiteralPath 'draft-remediation-report.txt' -Encoding UTF8 | ForEach-Object { '[' + \"'$_ + '\"']' }\"",
+        "exit_code": 0,
+        "output_chars": 557,
+        "output_sha256": "cff014f95183730e3d73cd5b21d63a5b364fcc462e38de2a79eb18d15ef3aedc"
+      }
+    ]
+  },
+  {
+    "model": "command-code/deepseek-deepseek-v4.1-flash",
+    "effort": "max",
+    "case": "R1",
+    "arm": "candidate",
+    "returncode": 0,
+    "seconds": 75.97,
+    "invalid": [],
+    "draft_sha256": "0a8acebd54c5108d0204e225c9164387ea5300ad397cb761999c77fbff918736",
+    "usage": [
+      {
+        "input_tokens": 210363,
+        "cached_input_tokens": 192512,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 10375,
+        "reasoning_output_tokens": 0
+      }
+    ],
+    "run": "m2-R1-candidate",
+    "script_calls": [
+      {
+        "id": "item_17",
+        "type": "command_execution",
+        "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"python \\\"C:\\\\Users\\\\admin\\\\AppData\\\\Local\\\\Temp\\\\cow-native-deepseek-retest-c8jelor2\\\\m2-R1-candidate\\\\workspace\\\\.agents\\\\skills\\\\chinese-official-writing\\\\scripts\\\\prose_lint.py\\\" --delivery-mode draft-body --structure --format \\\"C:\\\\Users\\\\admin\\\\AppData\\\\Local\\\\Temp\\\\cow-native-deepseek-retest-c8jelor2\\\\m2-R1-candidate\\\\workspace\\\\2022年度绩效审计整改进展情况报告.txt\\\"\"",
+        "aggregated_output": "No prose risks found.\r\n",
+        "exit_code": 0,
+        "status": "completed"
+      },
+      {
+        "id": "item_18",
+        "type": "command_execution",
+        "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"python \\\"C:\\\\Users\\\\admin\\\\AppData\\\\Local\\\\Temp\\\\cow-native-deepseek-retest-c8jelor2\\\\m2-R1-candidate\\\\workspace\\\\.agents\\\\skills\\\\chinese-official-writing\\\\scripts\\\\draft_length.py\\\" --min-chars 80 --json \\\"C:\\\\Users\\\\admin\\\\AppData\\\\Local\\\\Temp\\\\cow-native-deepseek-retest-c8jelor2\\\\m2-R1-candidate\\\\workspace\\\\2022年度绩效审计整改进展情况报告.txt\\\"\"",
+        "aggregated_output": "[\r\n  {\r\n    \"path\": \"C:\\\\Users\\\\admin\\\\AppData\\\\Local\\\\Temp\\\\cow-native-deepseek-retest-c8jelor2\\\\m2-R1-candidate\\\\workspace\\\\2022年度绩效审计整改进展情况报告.txt\",\r\n    \"mode\": \"nonspace\",\r\n    \"scope\": \"draft-before-postscript\",\r\n    \"count\": 448,\r\n    \"minimum\": 80,\r\n    \"maximum\": null,\r\n    \"status\": \"within\",\r\n    \"below_by\": 0,\r\n    \"above_by\": 0\r\n  }\r\n]\r\n",
+        "exit_code": 0,
+        "status": "completed"
+      }
+    ],
+    "read_commands": [
+      {
+        "id": "item_1",
+        "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"Get-Content -LiteralPath '.agents/skills/chinese-official-writing/SKILL.md' -Encoding utf8 -Raw\"",
+        "exit_code": 0,
+        "output_chars": 2710,
+        "output_sha256": "2cb9605e5de02597016d9e7130e64ff2233e3e547b69c407360baaf425f229dc"
+      },
+      {
+        "id": "item_2",
+        "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"Get-Content -LiteralPath 'C:\\\\Users\\\\admin\\\\AppData\\\\Local\\\\Temp\\\\cow-native-deepseek-retest-c8jelor2\\\\m2-R1-candidate\\\\workspace\\\\.agents\\\\skills\\\\chinese-official-writing\\\\references\\\\genre-routing.md' -Encoding utf8 -Raw\"",
+        "exit_code": 0,
+        "output_chars": 489,
+        "output_sha256": "ad23480b4e83d6ec93f3904c5aad7075b587127949548a9fe897fb4986cb7e7a"
+      },
+      {
+        "id": "item_3",
+        "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"Get-Content -LiteralPath 'C:\\\\Users\\\\admin\\\\AppData\\\\Local\\\\Temp\\\\cow-native-deepseek-retest-c8jelor2\\\\m2-R1-candidate\\\\workspace\\\\.agents\\\\skills\\\\chinese-official-writing\\\\references\\\\reference-index.md' -Encoding utf8 -Raw\"",
+        "exit_code": 0,
+        "output_chars": 3271,
+        "output_sha256": "7588309239c7972305587d3b1602a4c00a4290525755b4f3630e004dd5fce744"
+      },
+      {
+        "id": "item_4",
+        "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"Get-Content -LiteralPath 'C:\\\\Users\\\\admin\\\\AppData\\\\Local\\\\Temp\\\\cow-native-deepseek-retest-c8jelor2\\\\m2-R1-candidate\\\\workspace\\\\.agents\\\\skills\\\\chinese-official-writing\\\\references\\\\transaction-remediation-report.md' -Encoding utf8 -Raw\"",
+        "exit_code": 0,
+        "output_chars": 350,
+        "output_sha256": "a48ad345640524faac46022cc3249b32ff76bb3042ba7bf14f79bb5d150242ba"
+      },
+      {
+        "id": "item_5",
+        "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"Get-Content -LiteralPath 'C:\\\\Users\\\\admin\\\\AppData\\\\Local\\\\Temp\\\\cow-native-deepseek-retest-c8jelor2\\\\m2-R1-candidate\\\\workspace\\\\.agents\\\\skills\\\\chinese-official-writing\\\\references\\\\genre-playbook-report.md' -Encoding utf8 -Raw\"",
+        "exit_code": 0,
+        "output_chars": 1079,
+        "output_sha256": "8b14f6128e75ce45643fd72007ac9630efa8cc9aa7c2a65d286d274e88362676"
+      },
+      {
+        "id": "item_6",
+        "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"Get-Content -LiteralPath 'C:\\\\Users\\\\admin\\\\AppData\\\\Local\\\\Temp\\\\cow-native-deepseek-retest-c8jelor2\\\\m2-R1-candidate\\\\workspace\\\\.agents\\\\skills\\\\chinese-official-writing\\\\references\\\\prose-lint-usage.md' -Encoding utf8 -Raw\"",
+        "exit_code": 0,
+        "output_chars": 602,
+        "output_sha256": "4e4d14c43d531d1890c7e0f8c939eb4a6ea777f0908d0864847618cd9a24cfed"
+      },
+      {
+        "id": "item_7",
+        "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"Get-Content -LiteralPath 'C:\\\\Users\\\\admin\\\\AppData\\\\Local\\\\Temp\\\\cow-native-deepseek-retest-c8jelor2\\\\m2-R1-candidate\\\\workspace\\\\.agents\\\\skills\\\\chinese-official-writing\\\\references\\\\writing-rules.md' -Encoding utf8 -Raw\"",
+        "exit_code": 0,
+        "output_chars": 1906,
+        "output_sha256": "ea85f93b3605bc3ad11a041cb788a29ec957d4d97322bb0a536825c41e84dcdd"
+      },
+      {
+        "id": "item_8",
+        "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"Get-Content -LiteralPath 'C:\\\\Users\\\\admin\\\\AppData\\\\Local\\\\Temp\\\\cow-native-deepseek-retest-c8jelor2\\\\m2-R1-candidate\\\\workspace\\\\.agents\\\\skills\\\\chinese-official-writing\\\\references\\\\genre-checklist-report.md' -Encoding utf8 -Raw\"",
+        "exit_code": 0,
+        "output_chars": 317,
+        "output_sha256": "a6e4637c3d0b9942fc1bdf6c789282b1f16de33fec0bf6152e37bb52d1a70ccb"
+      },
+      {
+        "id": "item_10",
+        "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"Get-Content -LiteralPath 'C:\\\\Users\\\\admin\\\\AppData\\\\Local\\\\Temp\\\\cow-native-deepseek-retest-c8jelor2\\\\m2-R1-candidate\\\\workspace\\\\.agents\\\\skills\\\\chinese-official-writing\\\\agents\\\\openai.yaml' -Encoding utf8 -Raw\"",
+        "exit_code": 0,
+        "output_chars": 276,
+        "output_sha256": "f2fca8949cd9ba05e74b8c635453e90f4472042db06eb56c688df000d917f7dc"
+      },
+      {
+        "id": "item_11",
+        "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"Get-Content -LiteralPath 'C:\\\\Users\\\\admin\\\\AppData\\\\Local\\\\Temp\\\\cow-native-deepseek-retest-c8jelor2\\\\m2-R1-candidate\\\\workspace\\\\.agents\\\\skills\\\\chinese-official-writing\\\\README.md' -Encoding utf8 -Raw\"",
+        "exit_code": 0,
+        "output_chars": 1688,
+        "output_sha256": "027c8770fc633b06d2b730a992f46cf40bb1459f495d4f10eecbaf2a53ca0383"
+      },
+      {
+        "id": "item_12",
+        "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"Get-Content -LiteralPath 'C:\\\\Users\\\\admin\\\\AppData\\\\Local\\\\Temp\\\\cow-native-deepseek-retest-c8jelor2\\\\m2-R1-candidate\\\\workspace\\\\.agents\\\\skills\\\\chinese-official-writing\\\\references\\\\anti-ai-patterns.md' -Encoding utf8 -Raw\"",
+        "exit_code": 0,
+        "output_chars": 1461,
+        "output_sha256": "ad441eaf172f6a3b0bef1ea8a7b2a2dcbf78ef26d519902476775d850f95ff3f"
+      },
+      {
+        "id": "item_13",
+        "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"Get-Content -LiteralPath 'C:\\\\Users\\\\admin\\\\AppData\\\\Local\\\\Temp\\\\cow-native-deepseek-retest-c8jelor2\\\\m2-R1-candidate\\\\workspace\\\\.agents\\\\skills\\\\chinese-official-writing\\\\references\\\\compression-details.md' -Encoding utf8 -Raw\"",
+        "exit_code": 0,
+        "output_chars": 720,
+        "output_sha256": "392e74d9dd8795991d008d4533a8dffb46e65194d54483aa686523230288b5e2"
+      },
+      {
+        "id": "item_14",
+        "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"Get-Content -LiteralPath 'C:\\\\Users\\\\admin\\\\AppData\\\\Local\\\\Temp\\\\cow-native-deepseek-retest-c8jelor2\\\\m2-R1-candidate\\\\workspace\\\\.agents\\\\skills\\\\chinese-official-writing\\\\references\\\\review-checklist.md' -Encoding utf8 -Raw\"",
+        "exit_code": 0,
+        "output_chars": 553,
+        "output_sha256": "ed871eb3f31fc1e009b5ee03d5c310cdb36312e849426f32d1e1eeacc6d9bc9d"
+      },
+      {
+        "id": "item_19",
+        "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"Get-Content -LiteralPath 'C:\\\\Users\\\\admin\\\\AppData\\\\Local\\\\Temp\\\\cow-native-deepseek-retest-c8jelor2\\\\m2-R1-candidate\\\\workspace\\\\2022年度绩效审计整改进展情况报告.txt' -Encoding utf8 -Raw\"",
+        "exit_code": 0,
+        "output_chars": 463,
+        "output_sha256": "47a81ca6e264fee34e08ac910ea68604beffdf02c639a1129ad6a6136f81117b"
+      }
+    ]
+  }
+]
