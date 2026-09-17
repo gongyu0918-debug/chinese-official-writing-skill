@@ -36,7 +36,7 @@
 - 编者按、编发按语：`genre-playbook-editorial-note.md`。
 - 新闻评论、时评：`genre-playbook-news-commentary.md`。
 - 意见建议、建议信、投诉反映、整改方案：先读 `compatibility-scene-routing.md`，再进入对应专页；建议信按面向有权方提出合作性建议的用途进入意见建议页，法定“意见”直接进入意见主叶。
-- 整改进展/整改情况报告：报告主叶 + `transaction-remediation-report.md`；反馈情况报告：报告主叶 + `transaction-feedback-report.md`。两者不改用整改方案或合作性意见建议骨架。
+- 整改进展、整改情况：按报告、说明或情况通报的用途选主叶，并加读 `transaction-remediation-report.md`；反馈情况报告：报告主叶 + `transaction-feedback-report.md`。
 
 ### 目录未命中时
 
