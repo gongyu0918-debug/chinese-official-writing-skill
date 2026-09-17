@@ -1,0 +1,35 @@
+{
+  "status": "INSTALLED",
+  "version": "0.4.16",
+  "base_source_commit": "b9ded9eb1f8ce599f387807989fdfeb98ad6cf40",
+  "verified_public_main": "57b9cd91663737723d580643dde8a57e0ad0633a",
+  "runtime_source_commit": "562a803032ad21191c671194a86c3587c2e7f16c",
+  "pro_source_commit": "e0a3f9134c3a15d7522c11265e124ed0c7871798",
+  "pro_hook_source_commit": "3c71c6a018e669306c86b5243d5089e8d70696f6",
+  "activation_state": "AWAITING_HOST_TRUST",
+  "hooks": [
+    {
+      "key": "official-writing-pro@official-writing-pro-local:hooks/hooks.json:user_prompt_submit:0:0",
+      "enabled": true,
+      "trustStatus": "trusted",
+      "currentHash": "sha256:354c6574340f47744d73a12f5add623a196effab13fc918f29d24d57d3c34514"
+    },
+    {
+      "key": "official-writing-pro@official-writing-pro-local:hooks/hooks.json:stop:0:0",
+      "enabled": true,
+      "trustStatus": "trusted",
+      "currentHash": "sha256:377861bc11f8c093fe127cf546796f866b359957e5ee506a22b4b702c2982d15"
+    }
+  ],
+  "uncommitted_source_changes_loaded": false,
+  "installed_skill_files": 162,
+  "installed_and_cache_match": true,
+  "public_product_tree": "449209823f35525a4967fa3f1fd14b2782be854f",
+  "activation_note": "Hook enabled/trusted flags verified by sync tool; no native host lifecycle replay in this release task.",
+  "released_files_match": {
+    "README.md": true,
+    "references/prose-lint-usage.md": true,
+    "scripts/prose_lint.py": true,
+    "scripts/draft_length.py": true
+  }
+}
