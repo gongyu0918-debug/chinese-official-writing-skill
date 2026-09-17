@@ -57,4 +57,5 @@
 - 字段拆行、增删和表单边界：`field-editing.md`。
 - 结构增删、移动和标题重排：`structure-editing.md`。
 - 采购需求、规格报价、响应规则或履约条件需要专项核对时：在已选主文种上叠加 `genre-playbook-procurement-review.md`；只做语言或格式审校时不因此加读。
+- 编制预算、说明多项费用构成、核对年度或分期资金及申请额度时：`funding-budget.md`。简单单项费用直接按主文种写清用途和金额。
 - AI 算力场景：按首页的场景条件叠加 `ai-compute-docs.md`。独立技术需求进入 `genre-playbook-technical-requirements.md`。
