@@ -1,0 +1,9 @@
+{
+  "base": "21f3de03",
+  "purpose": "B revision 2 only; excludes A/C",
+  "changed_files": {
+    "genre-playbook-correspondence.md": "96440a96ca93716aac6e39923cff626f32c8518846c4233d5a366d461d5ba3b8",
+    "reference-index.md": "55568e2c326fdb607a1d670f1de72d712a592ee39fff4c0e5d8cc8dea6e10b95",
+    "suggestion-proposal-reply.md": "192ff96b2f31da0ab92e7112ca0e9ee38f5e0fd3eb62ef94130530fa185fbae9"
+  }
+}
