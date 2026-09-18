@@ -17,7 +17,7 @@
 - 决定：`genre-playbook-decision.md`；决议：`genre-playbook-resolution.md`；议案：`genre-playbook-motion.md`。
 - 公报：`genre-playbook-communique.md`；命令、令：`genre-playbook-order.md`；部署安排：`genre-playbook-deployment.md`。
 - 上级对下级请示的批复：`genre-playbook-reply.md`。
-- 不相隶属单位之间商洽、询答、请求批准或答复审批事项的函、复函、征求意见函，以及代表建议、委员提案的办理答复：`genre-playbook-correspondence.md`。
+- 不相隶属单位之间商洽、询答、请求批准或答复审批事项的函、复函、征求意见函：`genre-playbook-correspondence.md`。向代表、委员本人答复建议或提案的办理情况，也按该页处理。
 - 意见：`genre-playbook-opinion.md`；解释事实、既有流程或回应疑问的说明：`genre-playbook-explanation.md`。
 - 会议纪要：`genre-playbook-minutes.md`。
 - 讲话稿、致辞、演讲：`genre-playbook-speech-address.md`；开场人物顺序另加 `speech-person-order.md`。
