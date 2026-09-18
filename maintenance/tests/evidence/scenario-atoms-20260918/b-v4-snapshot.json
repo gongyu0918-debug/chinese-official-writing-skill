@@ -1,0 +1,5 @@
+{
+  "base": "21f3de03",
+  "purpose": "B4 only narrows expansion instruction; filename/route remain B3",
+  "leaf_sha256": "50209a09e8483d9181343ca63d83c51ef7d073edd817d72476c86d589f56f17b"
+}
