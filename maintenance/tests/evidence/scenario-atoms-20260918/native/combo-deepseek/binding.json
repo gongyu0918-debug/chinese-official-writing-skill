@@ -1,0 +1,40 @@
+{
+  "main_commit": "21f3de03beadb54f671e46446d68e3fb657e6c65",
+  "candidate_head": "48825e6cff165966034671bab6daf0168c858b87",
+  "fingerprints": {
+    "baseline": "65ef774469bb32b42f3b421aef2c17e5fde950f4ec3664c66f397ad4f34fc40a",
+    "candidate": "30d49550b309dddace9c7cee373b4efdacbc3f80e6012feceec29362f5d6bb0f"
+  },
+  "models": [
+    "command-code/deepseek-deepseek-v4.1-flash"
+  ],
+  "cases": {
+    "H1": "根据这些公开答复材料，帮南京市地铁集团给吴云川代表写一份对地铁站点适老化建议的简明答复，落款2024年6月25日。建议涉及出入口无障碍坡道管理、电梯加装、休息座椅。已知：部分站外非机动车停放区域不在集团管理范围，2023年集团配合街道、城管等开展50余次专项整治；部分早建车站受未预留土建空间、管线及征地条件限制，加装电梯需要逐站可行性分析和相应审批，拟开展研究并按条件成熟度分批推进；已组织设计单位对无扶手座椅车站调研论证，计划增补2号线新街口站、油坊桥站的站台休息座椅，在4号线鼓楼站增加两组扶手座椅。请回应这三方面问题，适当说明原因和后续工作。"
+  },
+  "cli": "C:\\Users\\admin\\AppData\\Local\\OpenAI\\Codex\\bin\\eab8377aebac6c07\\codex.exe",
+  "cli_version": "codex-cli 0.155.0-alpha.2.6",
+  "effort": "high",
+  "runtime": "C:\\Users\\admin\\AppData\\Local\\Temp\\cow-native-combo-deepseek-ac01chh6",
+  "permissions": "inherited-host-config",
+  "timeout": 360,
+  "agent_documents": "project_doc_max_bytes=0",
+  "baseline_ref": "21f3de03",
+  "baseline_source": null,
+  "candidate_source": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\scenario-atoms-20260918\\output\\atom-snapshots\\combined-v2",
+  "candidate_skill_name": "chinese-official-writing",
+  "baseline_commit": "21f3de03beadb54f671e46446d68e3fb657e6c65",
+  "profile": "temporary-no-user-documents-or-credentials",
+  "runner_sha256": "180db1a815a192f612cf85b7c54976240abcfe8b6f834d22fedf5798cad5622d",
+  "prompt_prefix": "使用本目录 .agents/skills/chinese-official-writing/SKILL.md。\n\n本目录文本文件为 UTF-8 编码，读取时显式指定 UTF-8 解码。\n\n",
+  "ordinary_only": false,
+  "utf8_read": true,
+  "runtime_layout": "each call has a separate parent, workspace and temporary directory",
+  "session_metadata": "ephemeral",
+  "review_host": {
+    "enabled": false,
+    "max_threads": null,
+    "max_depth": null,
+    "child_model": "host defaults",
+    "child_usage": "root JSON usage is not assumed to include child usage"
+  }
+}

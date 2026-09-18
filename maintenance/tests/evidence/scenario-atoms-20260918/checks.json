@@ -1,0 +1,20 @@
+{
+  "candidate_product_ref": "3451a5e6f81cdd2ac6d54f3b56ebac0b4b14bdf4",
+  "manifest_files": 76,
+  "manifest_mismatches": [],
+  "manifest_sha256": "ef20b0fc432c69f9b94571aac2fa34e46aab2d9a97fa71e28235f8509b0596d6",
+  "manifest_sha256_convention": "sorted relative path to Git blob SHA256 map serialized as compact UTF-8 JSON",
+  "final_exact_calls": 14,
+  "all_single_turn_calls": 68,
+  "final_invalid_calls": [],
+  "final_partial_page_returns": [],
+  "script_failed_calls": [],
+  "json_files_parsed": 80,
+  "git_diff_check_exit_code": 0,
+  "product_uncommitted_diff_exit_code": 0,
+  "earlier_product_checks": {
+    "audit_product_surface": "passed",
+    "quick_validate": "passed",
+    "note": "Previously executed against the unchanged final product; not rerun for evidence-only changes."
+  }
+}

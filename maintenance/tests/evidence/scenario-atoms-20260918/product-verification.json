@@ -1,0 +1,14 @@
+{
+  "baseline_rule_chars": 54208,
+  "candidate_rule_chars": 54757,
+  "delta": 549,
+  "snapshot_files": 76,
+  "snapshot_matches_git_blobs": true,
+  "changed_product_files": [
+    "chinese-official-writing/references/genre-playbook-correspondence.md",
+    "chinese-official-writing/references/genre-playbook-procurement-announcement.md",
+    "chinese-official-writing/references/material-submission.md",
+    "chinese-official-writing/references/reference-index.md"
+  ],
+  "product_scripts_unchanged": true
+}

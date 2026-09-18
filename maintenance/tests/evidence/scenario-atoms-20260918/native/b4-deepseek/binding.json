@@ -1,0 +1,40 @@
+{
+  "main_commit": "21f3de03beadb54f671e46446d68e3fb657e6c65",
+  "candidate_head": "a43249222efaa1ecbc45ea8b9d7420858c2557bf",
+  "fingerprints": {
+    "baseline": "65ef774469bb32b42f3b421aef2c17e5fde950f4ec3664c66f397ad4f34fc40a",
+    "candidate": "9f159e807ff33de94f210a313a19f3bfd76a54e53a576fdbc41c474f2babbd1d"
+  },
+  "models": [
+    "command-code/deepseek-deepseek-v4.1-flash"
+  ],
+  "cases": {
+    "H3": "请以市住房服务中心名义给陈明委员写一份关于改善老旧小区停车条件的提案答复。提案提出三项建议：利用小区闲置场地增加车位、协调周边单位夜间共享车位、将剩余小区纳入明年改造计划。办理材料：已排查12个小区，其中3个完成场地改造、新增180个车位，其余9个还需结合消防通道和场地权属逐一研究；已与机关事务部门就周边单位夜间共享停车事宜联系，对方尚未反馈，开放范围和时段尚无方案；拟把具备条件的小区列入明年改造建议清单，须由主管部门审定。本中心日常还承担房屋信息管理、维修资金咨询和物业指导，上半年提供咨询1200余次、组织物业培训4场。请就委员的三项建议作简明完整答复，交代办理进展和可行的后续工作。"
+  },
+  "cli": "C:\\Users\\admin\\AppData\\Local\\OpenAI\\Codex\\bin\\eab8377aebac6c07\\codex.exe",
+  "cli_version": "codex-cli 0.155.0-alpha.2.6",
+  "effort": "high",
+  "runtime": "C:\\Users\\admin\\AppData\\Local\\Temp\\cow-native-b4-deepseek-uyzada_e",
+  "permissions": "inherited-host-config",
+  "timeout": 360,
+  "agent_documents": "project_doc_max_bytes=0",
+  "baseline_ref": "21f3de03",
+  "baseline_source": null,
+  "candidate_source": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\scenario-atoms-20260918\\output\\atom-snapshots\\b-v4",
+  "candidate_skill_name": "chinese-official-writing",
+  "baseline_commit": "21f3de03beadb54f671e46446d68e3fb657e6c65",
+  "profile": "temporary-no-user-documents-or-credentials",
+  "runner_sha256": "180db1a815a192f612cf85b7c54976240abcfe8b6f834d22fedf5798cad5622d",
+  "prompt_prefix": "使用本目录 .agents/skills/chinese-official-writing/SKILL.md。\n\n本目录文本文件为 UTF-8 编码，读取时显式指定 UTF-8 解码。\n\n",
+  "ordinary_only": false,
+  "utf8_read": true,
+  "runtime_layout": "each call has a separate parent, workspace and temporary directory",
+  "session_metadata": "ephemeral",
+  "review_host": {
+    "enabled": false,
+    "max_threads": null,
+    "max_depth": null,
+    "child_model": "host defaults",
+    "child_usage": "root JSON usage is not assumed to include child usage"
+  }
+}

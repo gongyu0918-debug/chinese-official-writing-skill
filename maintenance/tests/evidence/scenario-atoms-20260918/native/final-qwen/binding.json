@@ -1,0 +1,42 @@
+{
+  "main_commit": "21f3de03beadb54f671e46446d68e3fb657e6c65",
+  "candidate_head": "3451a5e6f81cdd2ac6d54f3b56ebac0b4b14bdf4",
+  "fingerprints": {
+    "baseline": "65ef774469bb32b42f3b421aef2c17e5fde950f4ec3664c66f397ad4f34fc40a",
+    "candidate": "35edf89d95a0ccb9e0e3b24343041b63918bb7d1669057719a765b380253595c"
+  },
+  "models": [
+    "alibaba-token-plan/qwen3.8-flash"
+  ],
+  "cases": {
+    "M3": "请审核并改好下面这份资产盘点通知。有效安排：各校区资产管理员填写附件1设备明细及购置支出表，财务处据各校区明细复核原值并填写附件2账实差异表，校区不填附件2；设备数量按2026年9月30日时点统计，在用、闲置分列，送外维修设备单列地点和状态，仍计入所属校区；购置支出统计2026年1月1日至9月30日，无购置支出填0，尚未查清的账实差异标待核对并说明原因。各校区10月8日17时前将附件1电子版交资产管理岗；财务处10月12日17时前将差异表及复核后的明细交中心办公室，办公室10月15日前汇总报学校。只交电子版。旧稿：各校区填写两张表，按10月15日时点统一统计在用设备，送外维修设备不计入，无数据一律填0；10月15日前将两表纸质盖章版及电子版直接报办公室。请给出简明完整的改后通知，并简要说明实质修改。",
+    "H4": "请以县文旅局名义，给刘宁委员写一份提升公共图书馆服务的提案答复。委员建议：5家公共图书馆工作日全部延时开放至20时；增加儿童阅览座位；推动流动送书服务覆盖3个偏远村。办理材料：目前只在2家馆的周三、周五试行开放至20时，其余3家仍执行原开放时间，是否扩大至全部工作日需结合人员值班条件评估；儿童阅览区12个座位已改造并投入使用，另有增加18个座位的购置计划，预算尚待审定；已向3个村征求送书意见，其中1个村同意试点，另2个村尚未回复，线路与频次尚未确定。上半年另开展全民阅读活动8场。请围绕委员三项建议，简明写清已落实范围、尚需解决的问题及可行的后续工作。",
+    "RC": "请给单位负责人写一份简短的建议办理情况报告。综合办公室本月收到3项建议：增加饮水点已落实；延长资料室开放时间已完成讨论，拟试行但尚未批准；增设无障碍坡道受场地条件限制，需进一步研究。现在是向负责人汇报总体办理进展，请给出相称的下一步工作建议。"
+  },
+  "cli": "C:\\Users\\admin\\AppData\\Local\\OpenAI\\Codex\\bin\\eab8377aebac6c07\\codex.exe",
+  "cli_version": "codex-cli 0.155.0-alpha.2.6",
+  "effort": "high",
+  "runtime": "C:\\Users\\admin\\AppData\\Local\\Temp\\cow-native-final-qwen-be_xiytu",
+  "permissions": "inherited-host-config",
+  "timeout": 360,
+  "agent_documents": "project_doc_max_bytes=0",
+  "baseline_ref": "21f3de03",
+  "baseline_source": null,
+  "candidate_source": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\scenario-atoms-20260918\\output\\atom-snapshots\\combined-final",
+  "candidate_skill_name": "chinese-official-writing",
+  "baseline_commit": "21f3de03beadb54f671e46446d68e3fb657e6c65",
+  "profile": "temporary-no-user-documents-or-credentials",
+  "runner_sha256": "180db1a815a192f612cf85b7c54976240abcfe8b6f834d22fedf5798cad5622d",
+  "prompt_prefix": "使用本目录 .agents/skills/chinese-official-writing/SKILL.md。\n\n本目录文本文件为 UTF-8 编码，读取时显式指定 UTF-8 解码。\n\n",
+  "ordinary_only": false,
+  "utf8_read": true,
+  "runtime_layout": "each call has a separate parent, workspace and temporary directory",
+  "session_metadata": "ephemeral",
+  "review_host": {
+    "enabled": false,
+    "max_threads": null,
+    "max_depth": null,
+    "child_model": "host defaults",
+    "child_usage": "root JSON usage is not assumed to include child usage"
+  }
+}

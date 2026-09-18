@@ -1,0 +1,56 @@
+[
+  {
+    "pair": 1,
+    "label": "A",
+    "arm": "baseline",
+    "case": "H3",
+    "model": "command-code/deepseek-deepseek-v4.1-flash",
+    "source": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\scenario-atoms-20260918\\output\\scenario-atoms-native-20260918\\final-deepseek\\m2-H3-baseline.final.txt",
+    "sha256": "6a04485f75e7cbffcac145feb0417425e6643f3895eeedd3c0b06669a4f92cc3"
+  },
+  {
+    "pair": 1,
+    "label": "B",
+    "arm": "candidate",
+    "case": "H3",
+    "model": "command-code/deepseek-deepseek-v4.1-flash",
+    "source": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\scenario-atoms-20260918\\output\\scenario-atoms-native-20260918\\final-deepseek\\m2-H3-candidate.final.txt",
+    "sha256": "ebd6a9f343d2c6360b24f3cdba6c441930e6dcf435bc80ccb813ed7ec999d6ff"
+  },
+  {
+    "pair": 2,
+    "label": "A",
+    "arm": "candidate",
+    "case": "RC",
+    "model": "alibaba-token-plan/qwen3.8-flash",
+    "source": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\scenario-atoms-20260918\\output\\scenario-atoms-native-20260918\\final-qwen\\m0-RC-candidate.final.txt",
+    "sha256": "fabb57965366bf818b6e6a746e905e39e9ef6c20552a465dc55a5ebec3ad1a72"
+  },
+  {
+    "pair": 2,
+    "label": "B",
+    "arm": "baseline",
+    "case": "RC",
+    "model": "alibaba-token-plan/qwen3.8-flash",
+    "source": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\scenario-atoms-20260918\\output\\scenario-atoms-native-20260918\\final-qwen\\m0-RC-baseline.final.txt",
+    "sha256": "bee735815a3a3a0bc006e344cc78af5d7cc17f5087c98bbb8bdf64a7b6526e73"
+  },
+  {
+    "pair": 3,
+    "label": "A",
+    "arm": "baseline",
+    "case": "RC",
+    "model": "command-code/deepseek-deepseek-v4.1-flash",
+    "source": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\scenario-atoms-20260918\\output\\scenario-atoms-native-20260918\\final-deepseek\\m2-RC-baseline.final.txt",
+    "sha256": "6ca9d06becae75599605cd7a6951fa9ba12a48600847eef5e4446c764f11eeb5"
+  },
+  {
+    "pair": 3,
+    "label": "B",
+    "arm": "candidate",
+    "case": "RC",
+    "model": "command-code/deepseek-deepseek-v4.1-flash",
+    "source": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\scenario-atoms-20260918\\output\\scenario-atoms-native-20260918\\final-deepseek\\m2-RC-candidate.final.txt",
+    "sha256": "0541c7ae36fd9d6063826d6388eb95b644b7b68ef5f03547fe44c93004599066"
+  }
+]

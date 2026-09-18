@@ -1,0 +1,38 @@
+[
+  {
+    "pair": 1,
+    "label": "A",
+    "arm": "baseline",
+    "case": "MC",
+    "model": "ollama-cloud/glm-5.3-flash",
+    "source": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\scenario-atoms-20260918\\output\\scenario-atoms-native-20260918\\combo-glm\\m4-MC-baseline.final.txt",
+    "sha256": "a797fd7642817c1b458966a28eb46203db11e3c35219cd7a87bb9ab48480d603"
+  },
+  {
+    "pair": 1,
+    "label": "B",
+    "arm": "candidate",
+    "case": "MC",
+    "model": "ollama-cloud/glm-5.3-flash",
+    "source": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\scenario-atoms-20260918\\output\\scenario-atoms-native-20260918\\combo-glm\\m4-MC-candidate.final.txt",
+    "sha256": "387039ea4b7ee63be7118db8d3de21e13c0392ea5bfc6a6cf7735745025e8307"
+  },
+  {
+    "pair": 2,
+    "label": "A",
+    "arm": "baseline",
+    "case": "P1",
+    "model": "ollama-cloud/glm-5.3-flash",
+    "source": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\scenario-atoms-20260918\\output\\scenario-atoms-native-20260918\\combo-glm\\m4-P1-baseline.final.txt",
+    "sha256": "be6ca5d772924a49c3aa5dcf8ac27758086982d80161dfa3f9b503d52c403c06"
+  },
+  {
+    "pair": 2,
+    "label": "B",
+    "arm": "candidate",
+    "case": "P1",
+    "model": "ollama-cloud/glm-5.3-flash",
+    "source": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\scenario-atoms-20260918\\output\\scenario-atoms-native-20260918\\combo-glm\\m4-P1-candidate.final.txt",
+    "sha256": "d65e921fa2de6bc843a6db533ee9a51f86bfd88caec116e5717a0dfdc3bd812f"
+  }
+]

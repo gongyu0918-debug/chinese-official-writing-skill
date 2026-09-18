@@ -1,0 +1,43 @@
+{
+  "date": "2026-09-18",
+  "decision": "adopt_narrowed_candidate",
+  "baseline": "21f3de03beadb54f671e46446d68e3fb657e6c65",
+  "candidate_product_ref": "3451a5e6f81cdd2ac6d54f3b56ebac0b4b14bdf4",
+  "branch": "codex/scenario-atoms-20260918",
+  "product_manifest": "final-snapshot.json",
+  "product_verification": "product-verification.json",
+  "accepted": [
+    "A: conditional material-submission overlay for multiple materials, periods, roles and reporting levels",
+    "B: recipient-specific correspondence routing only",
+    "C: procurement correction distinguishes original announcement content from later performance and current reasons"
+  ],
+  "withdrawn": [
+    "B1 handling-response.md",
+    "B2 suggestion-proposal-reply.md",
+    "B3/B4 representative-member-reply.md"
+  ],
+  "counts": {
+    "all_single_turn_calls_including_iterations": 68,
+    "all_single_turn_pairs_including_iterations": 34,
+    "final_exact_pairs": 7,
+    "final_exact_calls": 14,
+    "separate_v1_v2_multiturn_calls": 12
+  },
+  "final_exact_queues": ["final-deepseek", "final-qwen", "final-broad-deepseek"],
+  "finding": "No confirmed candidate-induced semantic regression in the final seven pairs; route selection is more focused. No claim of universal writing superiority or universal cost and speed gains.",
+  "calibration": "judgment-calibration.md",
+  "adjudication": "final-adjudication.md",
+  "metrics": "phase-metrics.json",
+  "limitations": [
+    "A scope win based only on 各科室 versus 各业务科室 was retracted",
+    "remaining placeholders, outside-body commentary and occasional extra leaf reads are retained in raw evidence",
+    "earlier combined C/control evidence includes a subsequently removed B overlay; it is not counted as final exact candidate evidence",
+    "one independent review timed out; completed retry is preserved separately",
+    "multi-turn v1-v2 comparison showed higher v2 latency with actual script execution"
+  ],
+  "authorization": {
+    "local_main_merge": true,
+    "local_pro_ordinary_layer_sync": true,
+    "push_or_publish": false
+  }
+}

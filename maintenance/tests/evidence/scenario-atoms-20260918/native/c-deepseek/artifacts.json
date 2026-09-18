@@ -1,0 +1,82 @@
+[
+  {
+    "path": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\scenario-atoms-20260918\\output\\scenario-atoms-native-20260918\\c-deepseek\\m2-P1-baseline.result.json",
+    "sha256": "385a92307ed64e7b02b8285ce31fae4d46790ec4096686a719bc96baf95b0bb8",
+    "bytes": 66724
+  },
+  {
+    "path": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\scenario-atoms-20260918\\output\\scenario-atoms-native-20260918\\c-deepseek\\m2-P1-baseline.trace.jsonl",
+    "sha256": "ddbb758415ee074f13f7db59946d081b217e6dddff7faa213357dba8cbbb1eeb",
+    "bytes": 78143
+  },
+  {
+    "path": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\scenario-atoms-20260918\\output\\scenario-atoms-native-20260918\\c-deepseek\\m2-P1-baseline.stderr.txt",
+    "sha256": "844ed82485198ace61570ba9473dc3ed06e0a5121da27d3fb346cf3fe28e0860",
+    "bytes": 417
+  },
+  {
+    "path": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\scenario-atoms-20260918\\output\\scenario-atoms-native-20260918\\c-deepseek\\m2-P1-baseline.final.txt",
+    "sha256": "1411fcc428d383bccc47b7de713ad3e3e6cdd20e5e3088fe545e8f0a2b27bc6a",
+    "bytes": 2149
+  },
+  {
+    "path": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\scenario-atoms-20260918\\output\\scenario-atoms-native-20260918\\c-deepseek\\m2-P1-candidate.result.json",
+    "sha256": "7589671cd317f55ee342a6066458be5815bd6c01407d0caff9381851e2b3fbb1",
+    "bytes": 91333
+  },
+  {
+    "path": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\scenario-atoms-20260918\\output\\scenario-atoms-native-20260918\\c-deepseek\\m2-P1-candidate.trace.jsonl",
+    "sha256": "318706fd2cb122c18406037e6a3b0a484fc086532e50256a62ac9917debb987d",
+    "bytes": 105429
+  },
+  {
+    "path": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\scenario-atoms-20260918\\output\\scenario-atoms-native-20260918\\c-deepseek\\m2-P1-candidate.stderr.txt",
+    "sha256": "4c1090d300f05d47a25cf086b31e05c9cc53e1b9c14baec8fa1c3df09eb8955e",
+    "bytes": 417
+  },
+  {
+    "path": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\scenario-atoms-20260918\\output\\scenario-atoms-native-20260918\\c-deepseek\\m2-P1-candidate.final.txt",
+    "sha256": "20091488add9c9731f73a354dc2c7fe4912741c4155d62ed04840bfc776677a0",
+    "bytes": 2505
+  },
+  {
+    "path": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\scenario-atoms-20260918\\output\\scenario-atoms-native-20260918\\c-deepseek\\m2-P2-baseline.result.json",
+    "sha256": "4983fc0622ce7921717fda194e4f66e4c38a7b7f24bfcec95399bfd0d5815250",
+    "bytes": 57223
+  },
+  {
+    "path": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\scenario-atoms-20260918\\output\\scenario-atoms-native-20260918\\c-deepseek\\m2-P2-baseline.trace.jsonl",
+    "sha256": "071d65962a80ec06aec9c350b5bf3507e8f94db3a345322dd2558d1a8c58ea4c",
+    "bytes": 65836
+  },
+  {
+    "path": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\scenario-atoms-20260918\\output\\scenario-atoms-native-20260918\\c-deepseek\\m2-P2-baseline.stderr.txt",
+    "sha256": "55c6a48caa339da604003f4b007fb4adab2148c188dc6577744228e9593a6deb",
+    "bytes": 417
+  },
+  {
+    "path": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\scenario-atoms-20260918\\output\\scenario-atoms-native-20260918\\c-deepseek\\m2-P2-baseline.final.txt",
+    "sha256": "d8d61246f7e700e73353f0fc0a6e4d343a883627ad571daa321037f4a6a1be22",
+    "bytes": 1193
+  },
+  {
+    "path": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\scenario-atoms-20260918\\output\\scenario-atoms-native-20260918\\c-deepseek\\m2-P2-candidate.result.json",
+    "sha256": "bab4c1cffe7d74d1af19dbae0ebc40bdd375deda703228c7853823160a0c4db6",
+    "bytes": 49335
+  },
+  {
+    "path": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\scenario-atoms-20260918\\output\\scenario-atoms-native-20260918\\c-deepseek\\m2-P2-candidate.trace.jsonl",
+    "sha256": "280839b6b02fad037521d25730c77e65ebdee322af343bb2d2f49798f4516fa5",
+    "bytes": 59573
+  },
+  {
+    "path": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\scenario-atoms-20260918\\output\\scenario-atoms-native-20260918\\c-deepseek\\m2-P2-candidate.stderr.txt",
+    "sha256": "065794a8258f6bf68d3f89a238efc55ad1a2321196b28e1530177f95ce397acc",
+    "bytes": 417
+  },
+  {
+    "path": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\scenario-atoms-20260918\\output\\scenario-atoms-native-20260918\\c-deepseek\\m2-P2-candidate.final.txt",
+    "sha256": "1746eed5b3af508a9c7e7217f7e870a4d4eb9fe128f26eabce4bb2ba9d014da7",
+    "bytes": 1628
+  }
+]

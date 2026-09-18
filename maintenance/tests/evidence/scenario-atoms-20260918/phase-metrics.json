@@ -1,0 +1,90 @@
+{
+  "A_only": {
+    "baseline": {
+      "calls": 4,
+      "seconds": 394.05,
+      "median_seconds": 95.765,
+      "returned_page_chars": 29295,
+      "returned_pages": 27,
+      "uncached_input_tokens": 73359,
+      "input_tokens": 636559,
+      "output_tokens": 31490
+    },
+    "candidate": {
+      "calls": 4,
+      "seconds": 420.17,
+      "median_seconds": 91.555,
+      "returned_page_chars": 27768,
+      "returned_pages": 27,
+      "uncached_input_tokens": 69204,
+      "input_tokens": 619092,
+      "output_tokens": 31721
+    }
+  },
+  "C_only": {
+    "baseline": {
+      "calls": 4,
+      "seconds": 430.17,
+      "median_seconds": 85.11500000000001,
+      "returned_page_chars": 29224,
+      "returned_pages": 30,
+      "uncached_input_tokens": 80223,
+      "input_tokens": 773343,
+      "output_tokens": 28060
+    },
+    "candidate": {
+      "calls": 4,
+      "seconds": 351.73,
+      "median_seconds": 90.61500000000001,
+      "returned_page_chars": 32457,
+      "returned_pages": 25,
+      "uncached_input_tokens": 75691,
+      "input_tokens": 736171,
+      "output_tokens": 29904
+    }
+  },
+  "final_exact": {
+    "baseline": {
+      "calls": 7,
+      "seconds": 707.59,
+      "median_seconds": 80.78,
+      "returned_page_chars": 71751,
+      "returned_pages": 58,
+      "uncached_input_tokens": 137826,
+      "input_tokens": 1414370,
+      "output_tokens": 51906
+    },
+    "candidate": {
+      "calls": 7,
+      "seconds": 548.74,
+      "median_seconds": 61.95,
+      "returned_page_chars": 58410,
+      "returned_pages": 51,
+      "uncached_input_tokens": 119002,
+      "input_tokens": 1239130,
+      "output_tokens": 40906
+    }
+  },
+  "earlier_combination": {
+    "baseline": {
+      "calls": 6,
+      "seconds": 492.52,
+      "median_seconds": 73.5,
+      "returned_page_chars": 48299,
+      "returned_pages": 39,
+      "uncached_input_tokens": 375750,
+      "input_tokens": 896966,
+      "output_tokens": 29203
+    },
+    "candidate": {
+      "calls": 6,
+      "seconds": 403.6,
+      "median_seconds": 57.875,
+      "returned_page_chars": 48556,
+      "returned_pages": 41,
+      "uncached_input_tokens": 293606,
+      "input_tokens": 925414,
+      "output_tokens": 29922
+    }
+  }
+}

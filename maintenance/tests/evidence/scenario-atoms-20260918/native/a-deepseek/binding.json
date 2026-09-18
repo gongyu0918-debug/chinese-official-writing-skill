@@ -1,0 +1,41 @@
+{
+  "main_commit": "21f3de03beadb54f671e46446d68e3fb657e6c65",
+  "candidate_head": "7758687819ce39a5bfedcd09cced8d9127fb3f07",
+  "fingerprints": {
+    "baseline": "65ef774469bb32b42f3b421aef2c17e5fde950f4ec3664c66f397ad4f34fc40a",
+    "candidate": "ae8f9794d5189be0a09ddd1b3feb5fe84175b74d510abdae33709c217c31a6bb"
+  },
+  "models": [
+    "command-code/deepseek-deepseek-v4.1-flash"
+  ],
+  "cases": {
+    "M1": "帮我审核并改好下面这份年度数据报送通知。有效材料：各业务科室填附件1业务量表、附件2人员情况表，综合岗汇总报送；业务量按2025年1月1日至12月31日累计，人员按2025年12月31日在岗人数统计。科室须2026年1月6日17时前将两表电子版交综合岗，综合岗1月9日前汇总报上级。业务量为零需在附件1填0；人员尚未核实应注明待核实并说明原因。原稿：各科室请统计截至1月9日的业务量和人员情况，于1月9日前将附件1交综合岗。没有数据的一律填0，人员已核实。请写完整改后稿，并简要指出实质修改。",
+    "M2": "帮我审核并改好这份实验教学数据报送通知。有效安排：统计2025年9月1日至2026年8月31日的本科实验教学数据；各实验教学中心填写附件1课程明细表，各学院据此汇总填写附件2学院汇总表，教师个人无需直接向学校报送。各中心9月8日17时前交所在学院，学院9月12日17时前将两表电子版统一交实验室管理处。课程明细按实际开设的实验课程逐门统计，同一课程多个班级的实验学时分别计入明细，学院汇总按明细核对。旧稿：各任课教师请统计截至9月12日的数据，填写附件1和附件2，于9月12日17时前直接报实验室管理处，学院只需转发通知。请形成简明、可直接发出的完整改后稿，并简要说明修改。"
+  },
+  "cli": "C:\\Users\\admin\\AppData\\Local\\OpenAI\\Codex\\bin\\eab8377aebac6c07\\codex.exe",
+  "cli_version": "codex-cli 0.155.0-alpha.2.6",
+  "effort": "high",
+  "runtime": "C:\\Users\\admin\\AppData\\Local\\Temp\\cow-native-a-deepseek-ygb_uue9",
+  "permissions": "inherited-host-config",
+  "timeout": 360,
+  "agent_documents": "project_doc_max_bytes=0",
+  "baseline_ref": "21f3de03",
+  "baseline_source": null,
+  "candidate_source": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\scenario-atoms-20260918\\chinese-official-writing",
+  "candidate_skill_name": "chinese-official-writing",
+  "baseline_commit": "21f3de03beadb54f671e46446d68e3fb657e6c65",
+  "profile": "temporary-no-user-documents-or-credentials",
+  "runner_sha256": "180db1a815a192f612cf85b7c54976240abcfe8b6f834d22fedf5798cad5622d",
+  "prompt_prefix": "使用本目录 .agents/skills/chinese-official-writing/SKILL.md。\n\n本目录文本文件为 UTF-8 编码，读取时显式指定 UTF-8 解码。\n\n",
+  "ordinary_only": false,
+  "utf8_read": true,
+  "runtime_layout": "each call has a separate parent, workspace and temporary directory",
+  "session_metadata": "ephemeral",
+  "review_host": {
+    "enabled": false,
+    "max_threads": null,
+    "max_depth": null,
+    "child_model": "host defaults",
+    "child_usage": "root JSON usage is not assumed to include child usage"
+  }
+}

@@ -1,0 +1,504 @@
+[
+  {
+    "model": "command-code/deepseek-deepseek-v4.1-flash",
+    "effort": "high",
+    "case": "H3",
+    "arm": "baseline",
+    "returncode": 0,
+    "seconds": 178.12,
+    "invalid": [],
+    "draft_sha256": "97227ffb5544187446940db21b998fabf41f0838e4ff6e462102f7e220d4572b",
+    "usage": [
+      {
+        "input_tokens": 381808,
+        "cached_input_tokens": 359936,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 8978,
+        "reasoning_output_tokens": 0
+      }
+    ],
+    "run": "m2-H3-baseline",
+    "commands": [
+      {
+        "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'Get-ChildItem -Force -Recurse -Depth 2 | Select-Object -First 80 FullName | Format-Table -AutoSize'",
+        "exit_code": 0,
+        "output_chars": 352,
+        "output_sha256": "70c6fcdfda55eeb0b9d84d041ca6cbcac79c085b5dc5a1c7bbfd8867be575058"
+      },
+      {
+        "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'Get-ChildItem -Force -Recurse .agents | Select-Object FullName'",
+        "exit_code": 0,
+        "output_chars": 9690,
+        "output_sha256": "195d11a11d9ca6028d7b3c365ff737801b40bdc27e925957c0f22f4491083b09"
+      },
+      {
+        "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'Get-ChildItem -Recurse -File .agents | ForEach-Object { $_.FullName.Substring((Get-Location).Path.Length+1) }'",
+        "exit_code": 0,
+        "output_chars": 5856,
+        "output_sha256": "da53de2028f9e3412dd9f617b4d070a754fd20f9f06aff03994ed0a188bdc49b"
+      },
+      {
+        "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"Get-Content -Raw -Encoding UTF8 .agents\\\\skills\\\\chinese-official-writing\\\\SKILL.md\"",
+        "exit_code": 0,
+        "output_chars": 2634,
+        "output_sha256": "ab48065a4935c7d8327712ffae034ad1819d14fc1d7fe48357803ae5c6625b80"
+      },
+      {
+        "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"Get-Content -Raw -Encoding UTF8 \\\".agents\\\\skills\\\\chinese-official-writing\\\\references\\\\reference-index.md\\\"\"",
+        "exit_code": 0,
+        "output_chars": 3214,
+        "output_sha256": "d70b66958be3d53be9b301d874947d220e9c2cae1e950a2be40b640c2cf5c052"
+      },
+      {
+        "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"Get-Content -Raw -Encoding UTF8 \\\".agents\\\\skills\\\\chinese-official-writing\\\\references\\\\genre-routing.md\\\"\"",
+        "exit_code": 0,
+        "output_chars": 479,
+        "output_sha256": "ac821e8767897816e4c602aec40e1fa39fc795068fd272cad0f0eea6ea0fce5d"
+      },
+      {
+        "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"Get-Content -Raw -Encoding UTF8 \\\".agents\\\\skills\\\\chinese-official-writing\\\\references\\\\genre-playbook-correspondence.md\\\"\"",
+        "exit_code": 0,
+        "output_chars": 436,
+        "output_sha256": "f5b84fa9fe4814bc43d4eb6a35bca165718e5f116098ed8ac76406b94418dd6e"
+      },
+      {
+        "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"Get-Content -Raw -Encoding UTF8 \\\".agents\\\\skills\\\\chinese-official-writing\\\\references\\\\genre-playbook-reply.md\\\"\"",
+        "exit_code": 0,
+        "output_chars": 369,
+        "output_sha256": "eb7266d0af01a77ea9466e57b5ff60e38c83a6e040e82a5809f881f80b29cf79"
+      },
+      {
+        "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"Get-Content -Raw -Encoding UTF8 \\\".agents\\\\skills\\\\chinese-official-writing\\\\references\\\\compatibility-scene-routing.md\\\"\"",
+        "exit_code": 0,
+        "output_chars": 805,
+        "output_sha256": "bf05b9609f40b437fb8b539067d3aaa88ca9d05ab4ca2f90ffb50fc160b5ce86"
+      },
+      {
+        "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"Get-Content -Raw -Encoding UTF8 \\\".agents\\\\skills\\\\chinese-official-writing\\\\references\\\\genre-playbook-opinion.md\\\"\"",
+        "exit_code": 0,
+        "output_chars": 578,
+        "output_sha256": "416850749f3bd402c6399fe4a0b960befeadbaa6758860572d27a85585f5c013"
+      },
+      {
+        "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"Get-Content -Raw -Encoding UTF8 \\\".agents\\\\skills\\\\chinese-official-writing\\\\references\\\\writing-rules.md\\\"\"",
+        "exit_code": 0,
+        "output_chars": 1851,
+        "output_sha256": "99109bae352906a71732d904b224768f04b2f0bd24683c1fc543bc00347d6043"
+      },
+      {
+        "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"Select-String -Path .agents\\\\skills\\\\chinese-official-writing\\\\references\\\\*.md -Pattern '提案' -Encoding UTF8 | Select-Object -First 40 Filename,LineNumber,Line\"",
+        "exit_code": 0,
+        "output_chars": 251,
+        "output_sha256": "541dcfa8368b3623aae88f1cd01f4311d566af8e0dc616cb9959a3c313945e1d"
+      },
+      {
+        "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"Get-Content -Raw -Encoding UTF8 \\\".agents\\\\skills\\\\chinese-official-writing\\\\references\\\\genre-playbook-motion.md\\\"\"",
+        "exit_code": 0,
+        "output_chars": 791,
+        "output_sha256": "41fa4fb6f7cadd321e09b8a5002d9fac2f4b5ce5379c09e1cd09c79e7d082af4"
+      },
+      {
+        "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"Get-Content -Raw -Encoding UTF8 \\\".agents\\\\skills\\\\chinese-official-writing\\\\references\\\\genre-playbook-advisory-feedback.md\\\"\"",
+        "exit_code": 0,
+        "output_chars": 1960,
+        "output_sha256": "d37bed25feb1c4b80b1313d18dd32fa822c0cc1f8116e85be26c540b0076848f"
+      },
+      {
+        "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"Get-Content -Raw -Encoding UTF8 \\\".agents\\\\skills\\\\chinese-official-writing\\\\references\\\\formal-addressing.md\\\"\"",
+        "exit_code": 0,
+        "output_chars": 942,
+        "output_sha256": "8de96219b2ff09d924bffd9bdaee4e849d650a8e71e08a5a84ba165e20980fe0"
+      },
+      {
+        "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"Get-Content -Raw -Encoding UTF8 \\\".agents\\\\skills\\\\chinese-official-writing\\\\references\\\\anti-ai-patterns.md\\\"\"",
+        "exit_code": 0,
+        "output_chars": 1424,
+        "output_sha256": "d92ccbe6ad1f319ee87e4af6c422942acd4a1491e1804b51dbb3db2c76fbcd14"
+      },
+      {
+        "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"Get-Content -Raw -Encoding UTF8 \\\".agents\\\\skills\\\\chinese-official-writing\\\\references\\\\prose-lint-usage.md\\\"\"",
+        "exit_code": 0,
+        "output_chars": 587,
+        "output_sha256": "bafad8a1b2cc0c559ed6a069e0fac6beea7c19a1df582147b5566b192d0efd31"
+      },
+      {
+        "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"Get-Content -Raw -Encoding UTF8 \\\".agents\\\\skills\\\\chinese-official-writing\\\\references\\\\genre-checklist.md\\\"\"",
+        "exit_code": 0,
+        "output_chars": 147,
+        "output_sha256": "f27effa278cb214d5bb9f8f9e11501c9ba08caf9642cb9b212f069bc8ac41c7c"
+      },
+      {
+        "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"Get-Content -Raw -Encoding UTF8 \\\".agents\\\\skills\\\\chinese-official-writing\\\\references\\\\external-research.md\\\"\"",
+        "exit_code": 0,
+        "output_chars": 823,
+        "output_sha256": "afb9a1127aaa03adb2d747d33e0124ffcdea3fd33dd6ced0edf3a232ddfc2f88"
+      },
+      {
+        "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"Select-String -Path .agents\\\\skills\\\\chinese-official-writing\\\\references\\\\*.md, .agents\\\\skills\\\\chinese-official-writing\\\\README.md -Pattern '提案|办理答复|政协|人大' -Encoding UTF8 | Select-Object -First 60 Filename,LineNumber,Line | Format-List\"",
+        "exit_code": 0,
+        "output_chars": 395,
+        "output_sha256": "07b1a780d4d78069b3b26d5fdba63461cc36e3357f7d0241ddbf42daa95bbf56"
+      },
+      {
+        "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"python -V; Get-ChildItem .agents\\\\skills\\\\chinese-official-writing\\\\scripts | Select-Object Name\"",
+        "exit_code": 0,
+        "output_chars": 64,
+        "output_sha256": "4efa93e29c0760251fdeb3aaf4f1bc7ce2387edd80d2300b241bc9bb3f7dc518"
+      },
+      {
+        "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'python \".agents/skills/chinese-official-writing/scripts/draft_length.py\" --min-chars 80 \"提案答复-老旧小区停车条件.txt\"; python \".agents/skills/chinese-official-writing/scripts/prose_lint.py\" --delivery-mode draft-body --structure --format \"提案答复-老旧小区停车条件.txt\"'",
+        "exit_code": 0,
+        "output_chars": 89,
+        "output_sha256": "eb3ceb2aae6eac9c8585cf1365226c370c4867298df07a276a7aa6e4e9911292"
+      },
+      {
+        "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'python \".agents/skills/chinese-official-writing/scripts/prose_lint.py\" --delivery-mode draft-body --structure --format \"提案答复-老旧小区停车条件.txt\"; Get-Content -Raw -Encoding UTF8 \"提案答复-老旧小区停车条件.txt\"'",
+        "exit_code": 0,
+        "output_chars": 519,
+        "output_sha256": "409de1cb650acfa90d683558bcea6c2192aec1e9ae6c0257d7f95eff2d3ef7de"
+      }
+    ]
+  },
+  {
+    "model": "command-code/deepseek-deepseek-v4.1-flash",
+    "effort": "high",
+    "case": "H3",
+    "arm": "candidate",
+    "returncode": 0,
+    "seconds": 72.94,
+    "invalid": [],
+    "draft_sha256": "4df6267fc73fec6a4fe0af3d489a8c45e437827b4ed8be4790d229d5baf3848a",
+    "usage": [
+      {
+        "input_tokens": 172215,
+        "cached_input_tokens": 153984,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 8644,
+        "reasoning_output_tokens": 0
+      }
+    ],
+    "run": "m2-H3-candidate",
+    "commands": [
+      {
+        "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"Get-Content -LiteralPath 'C:\\\\Users\\\\admin\\\\AppData\\\\Local\\\\Temp\\\\cow-native-b3-deepseek-lenbuvup\\\\m2-H3-candidate\\\\workspace\\\\.agents\\\\skills\\\\chinese-official-writing\\\\SKILL.md' -Encoding UTF8; Write-Output '---FILES---'; Get-ChildItem -LiteralPath 'C:\\\\Users\\\\admin\\\\AppData\\\\Local\\\\Temp\\\\cow-native-b3-deepseek-lenbuvup\\\\m2-H3-candidate\\\\workspace\\\\.agents\\\\skills\\\\chinese-official-writing' -Recurse | Select-Object -ExpandProperty FullName; Write-Output '---WORKSPACE---'; Get-ChildItem -LiteralPath 'C:\\\\Users\\\\admin\\\\AppData\\\\Local\\\\Temp\\\\cow-native-b3-deepseek-lenbuvup\\\\m2-H3-candidate\\\\workspace'\"",
+        "exit_code": 0,
+        "output_chars": 16379,
+        "output_sha256": "b5670f78cdf8c47746f403f9916b823ef5f705a7926c1a35c1011626ee74789a"
+      },
+      {
+        "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"Get-Content -LiteralPath 'C:\\\\Users\\\\admin\\\\AppData\\\\Local\\\\Temp\\\\cow-native-b3-deepseek-lenbuvup\\\\m2-H3-candidate\\\\workspace\\\\.agents\\\\skills\\\\chinese-official-writing\\\\references\\\\reference-index.md' -Encoding UTF8 -Raw\"",
+        "exit_code": 0,
+        "output_chars": 3304,
+        "output_sha256": "f9bdce82b7fb802076d9bf0b959036eaa3c209d148f74cbd86a96c4cc7796059"
+      },
+      {
+        "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"Get-Content -LiteralPath 'C:\\\\Users\\\\admin\\\\AppData\\\\Local\\\\Temp\\\\cow-native-b3-deepseek-lenbuvup\\\\m2-H3-candidate\\\\workspace\\\\.agents\\\\skills\\\\chinese-official-writing\\\\references\\\\representative-member-reply.md' -Encoding UTF8 -Raw\"",
+        "exit_code": 0,
+        "output_chars": 279,
+        "output_sha256": "e9f08a390fb198e07e4107507e0fcd6e21e731690743d07d895ed7e71b582d16"
+      },
+      {
+        "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"Get-Content -LiteralPath 'C:\\\\Users\\\\admin\\\\AppData\\\\Local\\\\Temp\\\\cow-native-b3-deepseek-lenbuvup\\\\m2-H3-candidate\\\\workspace\\\\.agents\\\\skills\\\\chinese-official-writing\\\\references\\\\genre-routing.md' -Encoding UTF8 -Raw\"",
+        "exit_code": 0,
+        "output_chars": 479,
+        "output_sha256": "ac821e8767897816e4c602aec40e1fa39fc795068fd272cad0f0eea6ea0fce5d"
+      },
+      {
+        "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"Get-Content -LiteralPath 'C:\\\\Users\\\\admin\\\\AppData\\\\Local\\\\Temp\\\\cow-native-b3-deepseek-lenbuvup\\\\m2-H3-candidate\\\\workspace\\\\.agents\\\\skills\\\\chinese-official-writing\\\\references\\\\genre-playbook-reply.md' -Encoding UTF8 -Raw\"",
+        "exit_code": 0,
+        "output_chars": 369,
+        "output_sha256": "eb7266d0af01a77ea9466e57b5ff60e38c83a6e040e82a5809f881f80b29cf79"
+      },
+      {
+        "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"Get-Content -LiteralPath 'C:\\\\Users\\\\admin\\\\AppData\\\\Local\\\\Temp\\\\cow-native-b3-deepseek-lenbuvup\\\\m2-H3-candidate\\\\workspace\\\\.agents\\\\skills\\\\chinese-official-writing\\\\references\\\\writing-rules.md' -Encoding UTF8 -Raw\"",
+        "exit_code": 0,
+        "output_chars": 1851,
+        "output_sha256": "99109bae352906a71732d904b224768f04b2f0bd24683c1fc543bc00347d6043"
+      },
+      {
+        "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"Get-Content -LiteralPath 'C:\\\\Users\\\\admin\\\\AppData\\\\Local\\\\Temp\\\\cow-native-b3-deepseek-lenbuvup\\\\m2-H3-candidate\\\\workspace\\\\.agents\\\\skills\\\\chinese-official-writing\\\\references\\\\anti-ai-patterns.md' -Encoding UTF8 -Raw\"",
+        "exit_code": 0,
+        "output_chars": 1424,
+        "output_sha256": "d92ccbe6ad1f319ee87e4af6c422942acd4a1491e1804b51dbb3db2c76fbcd14"
+      },
+      {
+        "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"Get-Content -LiteralPath 'C:\\\\Users\\\\admin\\\\AppData\\\\Local\\\\Temp\\\\cow-native-b3-deepseek-lenbuvup\\\\m2-H3-candidate\\\\workspace\\\\.agents\\\\skills\\\\chinese-official-writing\\\\references\\\\genre-playbook-correspondence.md' -Encoding UTF8 -Raw\"",
+        "exit_code": 0,
+        "output_chars": 558,
+        "output_sha256": "99337fab6f93974e6c5ce7cad2dd5d4edd06b3a107b068fec6f0491d0c27c000"
+      },
+      {
+        "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"Get-Content -LiteralPath 'C:\\\\Users\\\\admin\\\\AppData\\\\Local\\\\Temp\\\\cow-native-b3-deepseek-lenbuvup\\\\m2-H3-candidate\\\\workspace\\\\.agents\\\\skills\\\\chinese-official-writing\\\\references\\\\prose-lint-usage.md' -Encoding UTF8 -Raw\"",
+        "exit_code": 0,
+        "output_chars": 587,
+        "output_sha256": "bafad8a1b2cc0c559ed6a069e0fac6beea7c19a1df582147b5566b192d0efd31"
+      },
+      {
+        "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"Get-Content -LiteralPath 'C:\\\\Users\\\\admin\\\\AppData\\\\Local\\\\Temp\\\\cow-native-b3-deepseek-lenbuvup\\\\m2-H3-candidate\\\\workspace\\\\.agents\\\\skills\\\\chinese-official-writing\\\\references\\\\formal-addressing.md' -Encoding UTF8 -Raw\"",
+        "exit_code": 0,
+        "output_chars": 942,
+        "output_sha256": "8de96219b2ff09d924bffd9bdaee4e849d650a8e71e08a5a84ba165e20980fe0"
+      },
+      {
+        "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"Get-Content -LiteralPath 'C:\\\\Users\\\\admin\\\\AppData\\\\Local\\\\Temp\\\\cow-native-b3-deepseek-lenbuvup\\\\m2-H3-candidate\\\\workspace\\\\.agents\\\\skills\\\\chinese-official-writing\\\\references\\\\formulaic-language.md' -Encoding UTF8 -Raw\"",
+        "exit_code": 0,
+        "output_chars": 1064,
+        "output_sha256": "ea907abb68a090086b58a8be81b740db7d8d2dd30d884696586e29e64036e516"
+      },
+      {
+        "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"Get-Content -LiteralPath 'C:\\\\Users\\\\admin\\\\AppData\\\\Local\\\\Temp\\\\cow-native-b3-deepseek-lenbuvup\\\\m2-H3-candidate\\\\workspace\\\\.agents\\\\skills\\\\chinese-official-writing\\\\references\\\\review-checklist.md' -Encoding UTF8 -Raw\"",
+        "exit_code": 0,
+        "output_chars": 538,
+        "output_sha256": "ec589df9840bf9d4ecf3947e54aa88c15c718c69e5fa83ce769691e85999d866"
+      },
+      {
+        "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"Get-Content -LiteralPath 'C:\\\\Users\\\\admin\\\\AppData\\\\Local\\\\Temp\\\\cow-native-b3-deepseek-lenbuvup\\\\m2-H3-candidate\\\\workspace\\\\.agents\\\\skills\\\\chinese-official-writing\\\\references\\\\genre-checklist.md' -Encoding UTF8 -Raw\"",
+        "exit_code": 0,
+        "output_chars": 147,
+        "output_sha256": "f27effa278cb214d5bb9f8f9e11501c9ba08caf9642cb9b212f069bc8ac41c7c"
+      },
+      {
+        "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'python --version; python -c \"import sys;print(sys.executable)\"'",
+        "exit_code": 0,
+        "output_chars": 90,
+        "output_sha256": "5ec6a24487cec70b25e72c82bd9e926470a2e9463b80089f90105932bc5bd2ff"
+      },
+      {
+        "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"Get-Content -LiteralPath 'C:\\\\Users\\\\admin\\\\AppData\\\\Local\\\\Temp\\\\cow-native-b3-deepseek-lenbuvup\\\\m2-H3-candidate\\\\workspace\\\\.agents\\\\skills\\\\chinese-official-writing\\\\scripts\\\\draft_length.py' -Encoding UTF8 | Select-Object -First 40\"",
+        "exit_code": 0,
+        "output_chars": 1202,
+        "output_sha256": "799fec3a26ccc01ff96e771f1395ea0d2bbdcb2f41fcda6b28e7968f8e7139cb"
+      },
+      {
+        "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"Select-String -LiteralPath 'C:\\\\Users\\\\admin\\\\AppData\\\\Local\\\\Temp\\\\cow-native-b3-deepseek-lenbuvup\\\\m2-H3-candidate\\\\workspace\\\\.agents\\\\skills\\\\chinese-official-writing\\\\scripts\\\\prose_lint.py' -Pattern \\\"add_argument\\\" -Encoding UTF8 | ForEach-Object { \"'$_.Line.Trim() }'",
+        "exit_code": 0,
+        "output_chars": 830,
+        "output_sha256": "ee2f6f5a54cf169e6eec4c4aab47d744fa351c20ea596bf27269b9550992d14d"
+      },
+      {
+        "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"python \\\"C:\\\\Users\\\\admin\\\\AppData\\\\Local\\\\Temp\\\\cow-native-b3-deepseek-lenbuvup\\\\m2-H3-candidate\\\\workspace\\\\.agents\\\\skills\\\\chinese-official-writing\\\\scripts\\\\draft_length.py\\\" --min-chars 80 --encoding utf-8 \\\"C:\\\\Users\\\\admin\\\\AppData\\\\Local\\\\Temp\\\\cow-native-b3-deepseek-lenbuvup\\\\m2-H3-candidate\\\\workspace\\\\关于改善老旧小区停车条件的提案答复.txt\\\"\"",
+        "exit_code": 0,
+        "output_chars": 162,
+        "output_sha256": "1231133f4d63ed81f5ea3445c666ce7d2b03c9041a161d54d7a48009a42c89f6"
+      },
+      {
+        "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"python \\\"C:\\\\Users\\\\admin\\\\AppData\\\\Local\\\\Temp\\\\cow-native-b3-deepseek-lenbuvup\\\\m2-H3-candidate\\\\workspace\\\\.agents\\\\skills\\\\chinese-official-writing\\\\scripts\\\\prose_lint.py\\\" --delivery-mode draft-body --structure --format --encoding utf-8 \\\"C:\\\\Users\\\\admin\\\\AppData\\\\Local\\\\Temp\\\\cow-native-b3-deepseek-lenbuvup\\\\m2-H3-candidate\\\\workspace\\\\关于改善老旧小区停车条件的提案答复.txt\\\"\"",
+        "exit_code": 0,
+        "output_chars": 23,
+        "output_sha256": "d219807fd4571400f98df7b48ff320cc44f0e7a64436d98cb4f9f00fb8cb1641"
+      }
+    ]
+  },
+  {
+    "model": "command-code/deepseek-deepseek-v4.1-flash",
+    "effort": "high",
+    "case": "RC",
+    "arm": "baseline",
+    "returncode": 0,
+    "seconds": 43.27,
+    "invalid": [],
+    "draft_sha256": "c3570ec3cb920dbeebdf51fb1c03d7d6fbcb7e9b82de25a3a1858f5e51c23f89",
+    "usage": [
+      {
+        "input_tokens": 124663,
+        "cached_input_tokens": 111744,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 4834,
+        "reasoning_output_tokens": 0
+      }
+    ],
+    "run": "m2-RC-baseline",
+    "commands": [
+      {
+        "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'Get-ChildItem -Recurse -Force .agents/skills/chinese-official-writing | Select-Object -ExpandProperty FullName'",
+        "exit_code": 0,
+        "output_chars": 13103,
+        "output_sha256": "95b4a24b409d0783c3d7d22ab59d023cb837af3a696b2f9cdcca86646c0bdfbf"
+      },
+      {
+        "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'Get-Content -Raw -Encoding UTF8 \"references/transaction-feedback-report.md\"'",
+        "exit_code": 0,
+        "output_chars": 276,
+        "output_sha256": "e847fe32be77902472eedb90316fe35a4bb348ae271d26f965eef2651a683518"
+      },
+      {
+        "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'Get-Content -Raw -Encoding UTF8 \"SKILL.md\"'",
+        "exit_code": 0,
+        "output_chars": 2634,
+        "output_sha256": "ab48065a4935c7d8327712ffae034ad1819d14fc1d7fe48357803ae5c6625b80"
+      },
+      {
+        "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'Get-Content -Raw -Encoding UTF8 \"references/genre-routing.md\"'",
+        "exit_code": 0,
+        "output_chars": 479,
+        "output_sha256": "ac821e8767897816e4c602aec40e1fa39fc795068fd272cad0f0eea6ea0fce5d"
+      },
+      {
+        "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'Get-Content -Raw -Encoding UTF8 \"genre-playbook-report.md\"'",
+        "exit_code": 0,
+        "output_chars": 1054,
+        "output_sha256": "46cfb46a196620ff2a48f229df1555b3c47ee3bf64254d06c4de968ca8ba8bd4"
+      },
+      {
+        "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'Get-Content -Raw -Encoding UTF8 \"genre-checklist-report.md\"'",
+        "exit_code": 0,
+        "output_chars": 306,
+        "output_sha256": "dced23dd7bb9df6552712170faf412531cdb40842ad9b36a40b42633b0b725d7"
+      },
+      {
+        "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'Get-Content -Raw -Encoding UTF8 \"writing-rules.md\"'",
+        "exit_code": 0,
+        "output_chars": 1851,
+        "output_sha256": "99109bae352906a71732d904b224768f04b2f0bd24683c1fc543bc00347d6043"
+      },
+      {
+        "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'Get-Content -Raw -Encoding UTF8 \"anti-ai-patterns.md\"'",
+        "exit_code": 0,
+        "output_chars": 1424,
+        "output_sha256": "d92ccbe6ad1f319ee87e4af6c422942acd4a1491e1804b51dbb3db2c76fbcd14"
+      },
+      {
+        "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'Get-Content -Raw -Encoding UTF8 \"prose-lint-usage.md\"'",
+        "exit_code": 0,
+        "output_chars": 587,
+        "output_sha256": "bafad8a1b2cc0c559ed6a069e0fac6beea7c19a1df582147b5566b192d0efd31"
+      },
+      {
+        "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'python \"C:/Users/admin/AppData/Local/Temp/cow-native-b3-deepseek-lenbuvup/m2-RC-baseline/workspace/.agents/skills/chinese-official-writing/scripts/draft_length.py\" --min-chars 80 \"C:/Users/admin/AppData/Local/Temp/cow-native-b3-deepseek-lenbuvup/m2-RC-baseline/workspace/本月建议办理情况报告.txt\"'",
+        "exit_code": 0,
+        "output_chars": 154,
+        "output_sha256": "f326ab0fdfd0c8a194d61719330a4ed86ae948fe05cea4f0fc41f9ad6b456947"
+      },
+      {
+        "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'python \"C:/Users/admin/AppData/Local/Temp/cow-native-b3-deepseek-lenbuvup/m2-RC-baseline/workspace/.agents/skills/chinese-official-writing/scripts/prose_lint.py\" --delivery-mode draft-body --structure --format \"C:/Users/admin/AppData/Local/Temp/cow-native-b3-deepseek-lenbuvup/m2-RC-baseline/workspace/本月建议办理情况报告.txt\"'",
+        "exit_code": 0,
+        "output_chars": 23,
+        "output_sha256": "d219807fd4571400f98df7b48ff320cc44f0e7a64436d98cb4f9f00fb8cb1641"
+      }
+    ]
+  },
+  {
+    "model": "command-code/deepseek-deepseek-v4.1-flash",
+    "effort": "high",
+    "case": "RC",
+    "arm": "candidate",
+    "returncode": 0,
+    "seconds": 79.55,
+    "invalid": [],
+    "draft_sha256": "2ede702e75ddcdeeeea847d348be48028d814469626e694315f2ac52d2c27248",
+    "usage": [
+      {
+        "input_tokens": 265883,
+        "cached_input_tokens": 246272,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 9410,
+        "reasoning_output_tokens": 0
+      }
+    ],
+    "run": "m2-RC-candidate",
+    "commands": [
+      {
+        "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'Get-Content -Raw -Encoding UTF8 .agents/skills/chinese-official-writing/SKILL.md'",
+        "exit_code": 0,
+        "output_chars": 2634,
+        "output_sha256": "ab48065a4935c7d8327712ffae034ad1819d14fc1d7fe48357803ae5c6625b80"
+      },
+      {
+        "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'Get-ChildItem -Recurse -File .agents/skills/chinese-official-writing | Select-Object -ExpandProperty FullName'",
+        "exit_code": 0,
+        "output_chars": 12931,
+        "output_sha256": "d2a47298535eb29daa3eac13d3df6d62cea65e7082562ab69ee33d3d60f10540"
+      },
+      {
+        "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"Get-Content -Raw -Encoding UTF8 \\\"C:\\\\Users\\\\admin\\\\AppData\\\\Local\\\\Temp\\\\cow-native-b3-deepseek-lenbuvup\\\\m2-RC-candidate\\\\workspace\\\\.agents\\\\skills\\\\chinese-official-writing\\\\references\\\\reference-index.md\\\"\"",
+        "exit_code": 0,
+        "output_chars": 3304,
+        "output_sha256": "f9bdce82b7fb802076d9bf0b959036eaa3c209d148f74cbd86a96c4cc7796059"
+      },
+      {
+        "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"Get-Content -Raw -Encoding UTF8 \\\"C:\\\\Users\\\\admin\\\\AppData\\\\Local\\\\Temp\\\\cow-native-b3-deepseek-lenbuvup\\\\m2-RC-candidate\\\\workspace\\\\.agents\\\\skills\\\\chinese-official-writing\\\\references\\\\genre-routing.md\\\"\"",
+        "exit_code": 0,
+        "output_chars": 479,
+        "output_sha256": "ac821e8767897816e4c602aec40e1fa39fc795068fd272cad0f0eea6ea0fce5d"
+      },
+      {
+        "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"Get-Content -Raw -Encoding UTF8 \\\"C:\\\\Users\\\\admin\\\\AppData\\\\Local\\\\Temp\\\\cow-native-b3-deepseek-lenbuvup\\\\m2-RC-candidate\\\\workspace\\\\.agents\\\\skills\\\\chinese-official-writing\\\\references\\\\genre-checklist-report.md\\\"\"",
+        "exit_code": 0,
+        "output_chars": 306,
+        "output_sha256": "dced23dd7bb9df6552712170faf412531cdb40842ad9b36a40b42633b0b725d7"
+      },
+      {
+        "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"Get-Content -Raw -Encoding UTF8 \\\"C:\\\\Users\\\\admin\\\\AppData\\\\Local\\\\Temp\\\\cow-native-b3-deepseek-lenbuvup\\\\m2-RC-candidate\\\\workspace\\\\.agents\\\\skills\\\\chinese-official-writing\\\\references\\\\genre-playbook-report.md\\\"\"",
+        "exit_code": 0,
+        "output_chars": 1054,
+        "output_sha256": "46cfb46a196620ff2a48f229df1555b3c47ee3bf64254d06c4de968ca8ba8bd4"
+      },
+      {
+        "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"Get-Content -Raw -Encoding UTF8 \\\"C:\\\\Users\\\\admin\\\\AppData\\\\Local\\\\Temp\\\\cow-native-b3-deepseek-lenbuvup\\\\m2-RC-candidate\\\\workspace\\\\.agents\\\\skills\\\\chinese-official-writing\\\\references\\\\writing-rules.md\\\"\"",
+        "exit_code": 0,
+        "output_chars": 1851,
+        "output_sha256": "99109bae352906a71732d904b224768f04b2f0bd24683c1fc543bc00347d6043"
+      },
+      {
+        "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"Get-Content -Raw -Encoding UTF8 \\\"C:\\\\Users\\\\admin\\\\AppData\\\\Local\\\\Temp\\\\cow-native-b3-deepseek-lenbuvup\\\\m2-RC-candidate\\\\workspace\\\\.agents\\\\skills\\\\chinese-official-writing\\\\references\\\\anti-ai-patterns.md\\\"\"",
+        "exit_code": 0,
+        "output_chars": 1424,
+        "output_sha256": "d92ccbe6ad1f319ee87e4af6c422942acd4a1491e1804b51dbb3db2c76fbcd14"
+      },
+      {
+        "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"Get-Content -Raw -Encoding UTF8 \\\"C:\\\\Users\\\\admin\\\\AppData\\\\Local\\\\Temp\\\\cow-native-b3-deepseek-lenbuvup\\\\m2-RC-candidate\\\\workspace\\\\.agents\\\\skills\\\\chinese-official-writing\\\\references\\\\prose-lint-usage.md\\\"\"",
+        "exit_code": 0,
+        "output_chars": 587,
+        "output_sha256": "bafad8a1b2cc0c559ed6a069e0fac6beea7c19a1df582147b5566b192d0efd31"
+      },
+      {
+        "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"Get-Content -Raw -Encoding UTF8 \\\"C:\\\\Users\\\\admin\\\\AppData\\\\Local\\\\Temp\\\\cow-native-b3-deepseek-lenbuvup\\\\m2-RC-candidate\\\\workspace\\\\.agents\\\\skills\\\\chinese-official-writing\\\\references\\\\compression-details.md\\\"\"",
+        "exit_code": 0,
+        "output_chars": 697,
+        "output_sha256": "c70ad1ca2caf41e7d628ba4c06589f198301971b56f100e67188a577c4e28653"
+      },
+      {
+        "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"Get-Content -Raw -Encoding UTF8 \\\"C:\\\\Users\\\\admin\\\\AppData\\\\Local\\\\Temp\\\\cow-native-b3-deepseek-lenbuvup\\\\m2-RC-candidate\\\\workspace\\\\.agents\\\\skills\\\\chinese-official-writing\\\\references\\\\transaction-feedback-report.md\\\"\"",
+        "exit_code": 0,
+        "output_chars": 276,
+        "output_sha256": "e847fe32be77902472eedb90316fe35a4bb348ae271d26f965eef2651a683518"
+      },
+      {
+        "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"Get-Content -Raw -Encoding UTF8 \\\"C:\\\\Users\\\\admin\\\\AppData\\\\Local\\\\Temp\\\\cow-native-b3-deepseek-lenbuvup\\\\m2-RC-candidate\\\\workspace\\\\.agents\\\\skills\\\\chinese-official-writing\\\\scripts\\\\draft_length.py\\\"\"",
+        "exit_code": 0,
+        "output_chars": 3560,
+        "output_sha256": "868bca5b66b26e99f5b3ec9cbb7dd4c7fec9ad7a1fbe1806f3408fcc98e909ae"
+      },
+      {
+        "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'python --version; python -c \"import sys;print(sys.getdefaultencoding())\"'",
+        "exit_code": 0,
+        "output_chars": 23,
+        "output_sha256": "f94c81db95cd029da70cd2b812b741b246d69521ac0eecfb05c8175024bab168"
+      },
+      {
+        "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"Get-Content -Raw -Encoding UTF8 \\\"C:\\\\Users\\\\admin\\\\AppData\\\\Local\\\\Temp\\\\cow-native-b3-deepseek-lenbuvup\\\\m2-RC-candidate\\\\workspace\\\\.agents\\\\skills\\\\chinese-official-writing\\\\scripts\\\\prose_lint.py\\\"\"",
+        "exit_code": 0,
+        "output_chars": 61931,
+        "output_sha256": "8bce59dd8a7d7eeadd8d37372d68e108e6f9de36fbbc073859bf08ad87193a68"
+      },
+      {
+        "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"python \\\"C:\\\\Users\\\\admin\\\\AppData\\\\Local\\\\Temp\\\\cow-native-b3-deepseek-lenbuvup\\\\m2-RC-candidate\\\\workspace\\\\.agents\\\\skills\\\\chinese-official-writing\\\\scripts\\\\prose_lint.py\\\" --delivery-mode draft-body --structure --format \\\"C:\\\\Users\\\\admin\\\\AppData\\\\Local\\\\Temp\\\\cow-native-b3-deepseek-lenbuvup\\\\m2-RC-candidate\\\\workspace\\\\draft.txt\\\"\"",
+        "exit_code": 0,
+        "output_chars": 23,
+        "output_sha256": "d219807fd4571400f98df7b48ff320cc44f0e7a64436d98cb4f9f00fb8cb1641"
+      },
+      {
+        "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"python \\\"C:\\\\Users\\\\admin\\\\AppData\\\\Local\\\\Temp\\\\cow-native-b3-deepseek-lenbuvup\\\\m2-RC-candidate\\\\workspace\\\\.agents\\\\skills\\\\chinese-official-writing\\\\scripts\\\\draft_length.py\\\" --min-chars 80 \\\"C:\\\\Users\\\\admin\\\\AppData\\\\Local\\\\Temp\\\\cow-native-b3-deepseek-lenbuvup\\\\m2-RC-candidate\\\\workspace\\\\draft.txt\\\"\"",
+        "exit_code": 0,
+        "output_chars": 150,
+        "output_sha256": "bdddf51b17d0a2967c1ac8a40d72c38e7e6ec625792e3e211cd88ca6fece03d9"
+      },
+      {
+        "command": "\"C:\\\\Users\\\\admin\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command 'Get-ChildItem -Force | Select-Object -ExpandProperty Name'",
+        "exit_code": 0,
+        "output_chars": 9,
+        "output_sha256": "c3d7f410f682aaf9d200f07aac4ad1ecc9a3ba8e9133095c4e9132c21db62bd4"
+      }
+    ]
+  }
+]
