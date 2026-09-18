@@ -1,0 +1,60 @@
+{
+  "date": "2026-09-18",
+  "branch": "codex/scenario-atoms-20260918",
+  "merge_method": "fast-forward",
+  "main_before": "21f3de03beadb54f671e46446d68e3fb657e6c65",
+  "main_product_and_evidence_merge": "4c1ee9730b753e60e4aa98a5583e4f5e1e81952e",
+  "product_frozen_at": "3451a5e6f81cdd2ac6d54f3b56ebac0b4b14bdf4",
+  "product_git_tree": "93bbfc3b91ae1dea68e9ca9cc013663e74e28b42",
+  "main_worktree_clean_after_merge": true,
+  "local_sync": {
+    "status": "INSTALLED",
+    "version": "0.4.16",
+    "base_source_commit": "4c1ee9730b753e60e4aa98a5583e4f5e1e81952e",
+    "runtime_source_commit": "a0dec7730b8c7985790a846bd8e6c6b48f0607f6",
+    "build_receipt": "F:\\Workspaces\\owp-mit-v2-transition-20260914\\output\\local-pro-builds\\264ad6e41db52f20b997\\release-receipt.json",
+    "installed_bytes_and_enabled_registration_verified": true,
+    "changed_public_pages": {
+      "genre-playbook-correspondence.md": {
+        "matches": true,
+        "sha256": "a38ca5e954716e318587db4db299732a8b90551a711953c7dc5ca279598b7b28"
+      },
+      "genre-playbook-procurement-announcement.md": {
+        "matches": true,
+        "sha256": "86334ad63a23766d0650f982f261a750c891bfe03014d063389e96db2208dc78"
+      },
+      "material-submission.md": {
+        "matches": true,
+        "sha256": "ad4b829c1ec6cf70cbb687e2fe440dbaed74f8fb781218dcba39a9ab2446e33e"
+      },
+      "reference-index.md": {
+        "matches": true,
+        "sha256": "9c1fdbe111f226106e6102caa728c665da4ec5b184934bec759b0087db0f2e81"
+      }
+    },
+    "hooks": [
+      {
+        "key": "official-writing-pro@official-writing-pro-local:hooks/hooks.json:user_prompt_submit:0:0",
+        "enabled": true,
+        "trustStatus": "trusted",
+        "currentHash": "sha256:1035753a7e6211163b02ff56a642d9e68dd48736a09791249a110ec2e4e6608a"
+      },
+      {
+        "key": "official-writing-pro@official-writing-pro-local:hooks/hooks.json:stop:0:0",
+        "enabled": true,
+        "trustStatus": "trusted",
+        "currentHash": "sha256:096e0f60682aa91ce85c6add9dfcf85e73fada7de8ed5f71f9ca80294c9768cd"
+      }
+    ],
+    "activation_state_after_health_check": "AWAITING_HOST_TRUST",
+    "hook_native_lifecycle_run_this_round": false,
+    "note": "Ordinary writing layer installed and bytes verified. Hook entries are trusted and enabled, but activation health still reports AWAITING_HOST_TRUST. No new Hook runtime claim or Pro activation change is made."
+  },
+  "external_actions": {
+    "pushed": false,
+    "released": false,
+    "marketplace_submitted": false,
+    "new_distribution_package": false
+  },
+  "remaining_scope": "No further scenario experiments in this round; broader model and long-document coverage remains outside this bounded validation."
+}
