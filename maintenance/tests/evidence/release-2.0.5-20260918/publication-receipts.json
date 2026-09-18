@@ -1,0 +1,27 @@
+{
+  "version": "2.0.5",
+  "product_commit": "79ee5083c9101bccd5ed88e4c39fe7b2ab4de279",
+  "pushed_main_commit": "4106c69a312be7ed8f8a51d98406d78ce581aff7",
+  "push": "atomic main plus new annotated tag",
+  "github_url": "https://github.com/gongyu0918-debug/chinese-official-writing-skill/releases/tag/2.0.5",
+  "skillhub": {
+    "ok": true,
+    "versionId": 323746,
+    "skillId": 70149,
+    "reviewStatus": "pending",
+    "fileCount": 75,
+    "fingerprint": "e257f20d4d65d483d004dd0865f41b89492317684f24fe3f6f1d86dc95cc88fc"
+  },
+  "clawhub": {
+    "status": "published",
+    "versionId": "k974dtp3p57aaphvmzmbq7cnrd8en39z",
+    "fileCount": 74,
+    "fingerprint": "9cb5cf9e19976f96da58d771c1ad186b2f1d50b7ca3fe3d1ef4e3c09dd68c5af"
+  },
+  "clawhub_preflight_fingerprint_match": true,
+  "skillhub_dry_run_fingerprint": "NOT_RETURNED; raw submission fingerprint retained without comparison claim",
+  "submissions_per_platform": 1,
+  "marketplace_post_submission_queries": 0,
+  "desktop_packages_changed": false,
+  "local_receipt_aggregation_note": "Initial local comparison treated absent SkillHub dry-run fingerprint as mismatch; corrected to NOT_RETURNED. No extra submission or online query."
+}

@@ -1,0 +1,5 @@
+{
+  "exit_code": 0,
+  "stdout": "{\n  \"ok\": true,\n  \"status\": \"published\",\n  \"slug\": \"chinese-official-writing\",\n  \"displayName\": \"中文公文写作\",\n  \"folder\": \"F:\\\\Workspaces\\\\chinese-official-writing-skill-worktrees\\\\release-2.0.5-20260918\\\\output\\\\release-2.0.5\\\\clawhub\",\n  \"version\": \"2.0.5\",\n  \"latestVersion\": \"2.0.4\",\n  \"fileCount\": 74,\n  \"fingerprint\": \"9cb5cf9e19976f96da58d771c1ad186b2f1d50b7ca3fe3d1ef4e3c09dd68c5af\",\n  \"versionId\": \"k974dtp3p57aaphvmzmbq7cnrd8en39z\"\n}\n",
+  "stderr": ""
+}

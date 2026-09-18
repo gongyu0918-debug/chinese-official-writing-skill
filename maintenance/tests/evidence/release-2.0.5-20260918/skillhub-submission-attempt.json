@@ -1,0 +1,17 @@
+{
+  "time": "2026-09-18T06:57:00.290887+00:00",
+  "version": "2.0.5",
+  "product_commit": "79ee5083c9101bccd5ed88e4c39fe7b2ab4de279",
+  "command": [
+    "C:/Users/admin/AppData/Local/hermes/hermes-agent/venv/Scripts/python.exe",
+    "C:\\Users\\admin\\.skillhub\\skills_store_cli.py",
+    "--skip-self-upgrade",
+    "publish",
+    "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\release-2.0.5-20260918\\output\\release-2.0.5\\skillhub",
+    "--version",
+    "2.0.5",
+    "--changelog",
+    "2.0.5 增强经费预算、信息化项目、采购和整改材料的写作支持。\n\n- 经费预算：写清费用用途和构成，区分项目总额、年度或分期安排与本次申请金额，核对计价及合计口径。\n- 信息化建设：衔接已有系统与本次改造、运维范围，交代数据迁移、一次性建设和持续服务费用。\n- 采购材料：更清楚地说明报价包含的内容，将核心需求、已计费服务与验收要求对应。\n- 整改材料：分清问题、整改事项和责任单位，保留完成整改、阶段达标、持续推进等状态，并支持有依据的后续建议。\n",
+    "--json"
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "status": "INSTALLED",
+  "base_source_commit": "4106c69a312be7ed8f8a51d98406d78ce581aff7",
+  "release_product_commit": "79ee5083c9101bccd5ed88e4c39fe7b2ab4de279",
+  "installed_matches": true,
+  "installed_file_count": 166,
+  "release_file_bytes_match": {
+    "README.md": true,
+    "references/funding-budget.md": true,
+    "references/information-system-projects.md": true,
+    "references/reference-index.md": true,
+    "references/genre-playbook-procurement-review.md": true,
+    "references/transaction-remediation-report.md": true
+  },
+  "hook_enable_trust_verified": true,
+  "hook_lifecycle_test": "NOT_RUN",
+  "online_paid_service_validation": "NOT_RUN",
+  "cli_compatibility": "Temporary process PATH wrapper selects tested Codex 0.155.0-alpha.2.6; no Agent model settings changed."
+}
