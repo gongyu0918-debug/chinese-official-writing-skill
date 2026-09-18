@@ -1,0 +1,22 @@
+{
+  "version": "2.0.5",
+  "product_commit": "79ee5083c9101bccd5ed88e4c39fe7b2ab4de279",
+  "baseline_main": "f00101bd",
+  "rules_and_scripts_match_approved_main": true,
+  "upload_sources_match_committed_product": true,
+  "checks": [
+    "product_paths",
+    "skill_format",
+    "supported_statement",
+    "markdown_detected",
+    "requested_markdown_allowed",
+    "placeholder_detected",
+    "word_count",
+    "skillhub_local_preflight"
+  ],
+  "checks_passed": true,
+  "new_native_writing_calls": 0,
+  "existing_writing_evidence": "../scenario-leaves-validation-20260918/results.md",
+  "existing_script_tests": "142 checks; same script bytes, not rerun",
+  "desktop_and_adaptation_archives": "NOT_CHANGED"
+}
