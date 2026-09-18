@@ -1,0 +1,86 @@
+[
+  {
+    "case": "structure",
+    "turn": 1,
+    "label": "A",
+    "arm": "v2",
+    "sha256": "a9c7bdbcb5504f47b320c15b9fdb59349b8778608ed574c1dd67b9236e5ff5eb"
+  },
+  {
+    "case": "structure",
+    "turn": 1,
+    "label": "B",
+    "arm": "v1",
+    "sha256": "a13527bf182d406cb53758eeea6102920a0b76c7b8a256f4aa16d201007cf3ee"
+  },
+  {
+    "case": "structure",
+    "turn": 2,
+    "label": "A",
+    "arm": "v2",
+    "sha256": "fa50bfa0a70041e7cd5a1966de1bf99f2efdc2eb561694b9b3f4820a9d300b2b"
+  },
+  {
+    "case": "structure",
+    "turn": 2,
+    "label": "B",
+    "arm": "v1",
+    "sha256": "7ca805bf850db837f3a3ce1d67373b6de19ba526db09072a884ac5de366a753a"
+  },
+  {
+    "case": "structure",
+    "turn": 3,
+    "label": "A",
+    "arm": "v2",
+    "sha256": "efe5e233096b1857d71fecfb418483b2b22f73f1082612768b34b7a4d59deacc"
+  },
+  {
+    "case": "structure",
+    "turn": 3,
+    "label": "B",
+    "arm": "v1",
+    "sha256": "8983302ce9dee7078d394cad2415f50af2bc69c55721d3e353b8922097694963"
+  },
+  {
+    "case": "fields",
+    "turn": 1,
+    "label": "A",
+    "arm": "v1",
+    "sha256": "becc2e2b97e0d8801a9ab407c6f60950dad2dc3ef6b7683744ae0e02c402df4c"
+  },
+  {
+    "case": "fields",
+    "turn": 1,
+    "label": "B",
+    "arm": "v2",
+    "sha256": "5295f945a43964b3b1e546759a0f9834bcf9741a2b1a7a377f2853b44b52338f"
+  },
+  {
+    "case": "fields",
+    "turn": 2,
+    "label": "A",
+    "arm": "v1",
+    "sha256": "6ef2146d53e86a65b12cf438097409ab5a4b52a65b59f2f8642159bb6a8aa959"
+  },
+  {
+    "case": "fields",
+    "turn": 2,
+    "label": "B",
+    "arm": "v2",
+    "sha256": "458a2a99c4d8ad0306befb7ca0a99c01d353b0d97d808c886a4d848278ff56b0"
+  },
+  {
+    "case": "fields",
+    "turn": 3,
+    "label": "A",
+    "arm": "v1",
+    "sha256": "945f1385bd684c181c68656118f940bd00bbc7682326d416190aca6504d31836"
+  },
+  {
+    "case": "fields",
+    "turn": 3,
+    "label": "B",
+    "arm": "v2",
+    "sha256": "8ac5c2a2e80d0058f736a2bc5c69b79cfaea5be29763d524a3edd251dadd3fa3"
+  }
+]

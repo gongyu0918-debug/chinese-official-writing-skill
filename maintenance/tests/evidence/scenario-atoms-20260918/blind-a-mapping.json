@@ -1,0 +1,74 @@
+[
+  {
+    "pair": 1,
+    "label": "A",
+    "arm": "candidate",
+    "case": "M2",
+    "model": "command-code/deepseek-deepseek-v4.1-flash",
+    "source": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\scenario-atoms-20260918\\output\\scenario-atoms-native-20260918\\a-deepseek\\m2-M2-candidate.final.txt",
+    "sha256": "19b52ecd00ae17b21e94bec79393bdbea63717899ede4ccdb886ec2f97527925"
+  },
+  {
+    "pair": 1,
+    "label": "B",
+    "arm": "baseline",
+    "case": "M2",
+    "model": "command-code/deepseek-deepseek-v4.1-flash",
+    "source": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\scenario-atoms-20260918\\output\\scenario-atoms-native-20260918\\a-deepseek\\m2-M2-baseline.final.txt",
+    "sha256": "9e4f596b458708f49a2cbbd9941486733ee6ca721196d48521b315e0a85a9255"
+  },
+  {
+    "pair": 2,
+    "label": "A",
+    "arm": "candidate",
+    "case": "M2",
+    "model": "alibaba-token-plan/qwen3.8-flash",
+    "source": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\scenario-atoms-20260918\\output\\scenario-atoms-native-20260918\\a-qwen\\m0-M2-candidate.final.txt",
+    "sha256": "1826419ca4e853d49924df2e273bd03d5f3764d9704a3d33fcf818bc5ba63598"
+  },
+  {
+    "pair": 2,
+    "label": "B",
+    "arm": "baseline",
+    "case": "M2",
+    "model": "alibaba-token-plan/qwen3.8-flash",
+    "source": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\scenario-atoms-20260918\\output\\scenario-atoms-native-20260918\\a-qwen\\m0-M2-baseline.final.txt",
+    "sha256": "7ad930c8d7653b14061a812bc07d15b3779d8e83190e75955d025a15bafa667a"
+  },
+  {
+    "pair": 3,
+    "label": "A",
+    "arm": "candidate",
+    "case": "M1",
+    "model": "alibaba-token-plan/qwen3.8-flash",
+    "source": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\scenario-atoms-20260918\\output\\scenario-atoms-native-20260918\\a-qwen\\m0-M1-candidate.final.txt",
+    "sha256": "dcf640ab4eff9eb4dac8c9f9e67c46c5e446edc94b0cc3af981cf07fb4c44e68"
+  },
+  {
+    "pair": 3,
+    "label": "B",
+    "arm": "baseline",
+    "case": "M1",
+    "model": "alibaba-token-plan/qwen3.8-flash",
+    "source": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\scenario-atoms-20260918\\output\\scenario-atoms-native-20260918\\a-qwen\\m0-M1-baseline.final.txt",
+    "sha256": "2676d1e309da9d06aa297daa6c168ffeba57364ec266e99e941c513470421388"
+  },
+  {
+    "pair": 4,
+    "label": "A",
+    "arm": "baseline",
+    "case": "M1",
+    "model": "command-code/deepseek-deepseek-v4.1-flash",
+    "source": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\scenario-atoms-20260918\\output\\scenario-atoms-native-20260918\\a-deepseek\\m2-M1-baseline.final.txt",
+    "sha256": "6cc599f31ba0fad7f767984f10788edd84a2c152163bb75e07e4e95a25917147"
+  },
+  {
+    "pair": 4,
+    "label": "B",
+    "arm": "candidate",
+    "case": "M1",
+    "model": "command-code/deepseek-deepseek-v4.1-flash",
+    "source": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\scenario-atoms-20260918\\output\\scenario-atoms-native-20260918\\a-deepseek\\m2-M1-candidate.final.txt",
+    "sha256": "eec1b1b6f346447e5cf8b21b369fc86e06268ab8db1a06dd10155ede4a430bb2"
+  }
+]

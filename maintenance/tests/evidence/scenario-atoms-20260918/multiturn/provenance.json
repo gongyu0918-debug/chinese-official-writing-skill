@@ -1,0 +1,56 @@
+{
+  "calls": 12,
+  "same_thread_per_three_turns": true,
+  "first_turn_bound_entry_returned": true,
+  "foreign_skill_or_maintenance_contamination": false,
+  "raw_artifacts": [
+    {
+      "path": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\scenario-atoms-20260918\\output\\scenario-multiturn-20260918\\fields-v1-1.trace.jsonl",
+      "sha256": "cfbc8a06e7efaf486454d997e632989e8b86aba5b8fc63f27e0d7e2b26d4bb5e"
+    },
+    {
+      "path": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\scenario-atoms-20260918\\output\\scenario-multiturn-20260918\\fields-v1-2.trace.jsonl",
+      "sha256": "1d562528415dea66ba89f52d875b55027fbe9224836d1f1957add0006a99d310"
+    },
+    {
+      "path": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\scenario-atoms-20260918\\output\\scenario-multiturn-20260918\\fields-v1-3.trace.jsonl",
+      "sha256": "3c122f01cfec724723bac19bbac8f613e062d93f9370241e6da6094f318576c6"
+    },
+    {
+      "path": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\scenario-atoms-20260918\\output\\scenario-multiturn-20260918\\fields-v2-1.trace.jsonl",
+      "sha256": "aaede0a145e5525cbe28d4d0ec52de3c7a4453963a605aaa927ca530d8fe541d"
+    },
+    {
+      "path": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\scenario-atoms-20260918\\output\\scenario-multiturn-20260918\\fields-v2-2.trace.jsonl",
+      "sha256": "5257a917cd32a47d971c07c9bbe963d0fd3e1c43aed50339f84186735b3026f3"
+    },
+    {
+      "path": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\scenario-atoms-20260918\\output\\scenario-multiturn-20260918\\fields-v2-3.trace.jsonl",
+      "sha256": "a9d852f8da5566ed81a714f80b80aca30214ae74cf80cf5493eab90c489fabee"
+    },
+    {
+      "path": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\scenario-atoms-20260918\\output\\scenario-multiturn-20260918\\structure-v1-1.trace.jsonl",
+      "sha256": "e510e4ddd7bb0b88c6d60f921c972a9ba9da80b81962fca5f1b5d37a0af6ec97"
+    },
+    {
+      "path": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\scenario-atoms-20260918\\output\\scenario-multiturn-20260918\\structure-v1-2.trace.jsonl",
+      "sha256": "6a8db23dc17d06a7924a6d7fc870dd7fd273490169775663b6f5668bcb322911"
+    },
+    {
+      "path": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\scenario-atoms-20260918\\output\\scenario-multiturn-20260918\\structure-v1-3.trace.jsonl",
+      "sha256": "7aa6e3c5269392d2b1ef5a8eccdb7de4ae1b1d0ac4ddf1ec01458b265e998060"
+    },
+    {
+      "path": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\scenario-atoms-20260918\\output\\scenario-multiturn-20260918\\structure-v2-1.trace.jsonl",
+      "sha256": "80b9334374d91f6c035a250c6232da1a7c5f87ec8e731a6a82d653f5707ae7ef"
+    },
+    {
+      "path": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\scenario-atoms-20260918\\output\\scenario-multiturn-20260918\\structure-v2-2.trace.jsonl",
+      "sha256": "ef0abbe9329739e4485cee9a004443eaa76ffaecb755c78e2813373d89d3251c"
+    },
+    {
+      "path": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\scenario-atoms-20260918\\output\\scenario-multiturn-20260918\\structure-v2-3.trace.jsonl",
+      "sha256": "5fb419a707e6c72c6d77969c15f6c60b71d4499677539aac6b8e65153a13c491"
+    }
+  ]
+}

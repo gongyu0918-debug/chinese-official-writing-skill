@@ -1,0 +1,15 @@
+{
+  "atom": "B",
+  "baseline": "21f3de03",
+  "source_commit": "de0ddffc4c920d416911e560aca05d1eb3e087ce",
+  "candidate_directory": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\scenario-atoms-20260918\\output\\atom-snapshots\\b-v1",
+  "changed_files": [
+    "references/handling-response.md",
+    "references/genre-playbook-correspondence.md",
+    "references/reference-index.md"
+  ],
+  "excluded_atoms": [
+    "A",
+    "C"
+  ]
+}
