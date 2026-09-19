@@ -23,3 +23,5 @@
 字段式、表单式和清单式材料保留字段名、顺序、数字和换行。材料只给接口、系统、页面异常时沿用原词，原因、责任、损失或整改结论以材料为准。
 
 报告已有整改进展或整改情况时，读取 `transaction-remediation-report.md`；报告意见办理、落实或反馈情况时，读取 `transaction-feedback-report.md`。
+
+承担单位编写财政项目支出绩效自评报告时，加读 `project-performance-self-review.md`，对照绩效目标、实际完成和资金执行情况。
