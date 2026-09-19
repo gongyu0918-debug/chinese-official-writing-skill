@@ -16,6 +16,6 @@
 
 按交付用途选择主叶：本页回答所需能力和条件；采购方案、建设方案组织采购或建设的路径、任务与实施安排，使用 `genre-playbook-plan-construction.md`；可研提供比较论证和决策依据，使用 `genre-playbook-feasibility.md`。方案或可研中出现技术内容时仍由原主叶组织，另交技术需求附件时再按本页处理附件。
 
-AI 算力场景按首页条件叠加 `ai-compute-docs.md`。采购规格、报价或履约条件需要专项核对时，叠加 `genre-playbook-procurement-review.md`。
+AI 算力场景按首页条件叠加 `ai-compute-docs.md`。采购规格、报价或履约条件需要专项核对时，叠加 `procurement-review.md`。
 
 完成需求范围、接口关系、运行条件、交付验收及未定状态核对后，按共性写作页复核并交付。
