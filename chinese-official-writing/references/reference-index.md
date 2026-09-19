@@ -36,7 +36,7 @@
 - 编者按、编发按语：`genre-playbook-editorial-note.md`。
 - 新闻评论、时评：`genre-playbook-news-commentary.md`。
 - 意见建议、建议信、投诉反映、整改方案：先读 `compatibility-scene-routing.md`，再进入对应专页；建议信按面向有权方提出合作性建议的用途进入意见建议页，法定“意见”直接进入意见主叶。
-- 整改进展、整改情况：按报告、说明或情况通报的用途选主叶，并加读 `transaction-remediation-report.md`；反馈情况报告：报告主叶 + `transaction-feedback-report.md`。
+- 整改进展、整改情况：按报告、说明或情况通报的用途选主叶，并加读 `transaction-remediation-report.md`。
 
 ### 目录未命中时
 
@@ -57,6 +57,7 @@
 - 字段拆行、增删和表单边界：`field-editing.md`。
 - 结构增删、移动和标题重排：`structure-editing.md`。
 - 材料报送、征集需区分填报主体、统计口径、分层汇总或多项材料要求时：`material-submission.md`。简单单项提交按主文种写清材料、期限和渠道。
+- 征求意见或办理反馈，需核对反馈来源、数量口径或采纳、回复、落实关系时：`transaction-feedback-report.md`。报告、结果公告、函等仍按各自主文种成稿。
 - 采购需求、规格报价、响应规则或履约条件需要专项核对时：在已选主文种上叠加 `genre-playbook-procurement-review.md`；只做语言或格式审校时不因此加读。
 - 编制预算、说明多项费用构成、核对年度或分期资金及申请额度时：`funding-budget.md`。简单单项费用直接按主文种写清用途和金额。
 - 组织信息系统新建、改造、整合或运维的需求、范围和实施安排时：`information-system-projects.md`。普通设备购买、活动消息或仅改语言格式时，按主文种和本次任务处理。
