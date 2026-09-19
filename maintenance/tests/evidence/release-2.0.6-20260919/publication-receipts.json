@@ -1,0 +1,28 @@
+{
+  "version": "2.0.6",
+  "product_commit": "82b26779abd4ddaff346a953877192871a374382",
+  "source_tree": "6cbe4932b45ee77fb4cb7899f4b54b910c9a6bab",
+  "pushed_main_commit": "006f1d5f5833126efcf9244bc53d0d3dc5067de7",
+  "push": "atomic main plus new annotated tag",
+  "github_url": "https://github.com/gongyu0918-debug/chinese-official-writing-skill/releases/tag/2.0.6",
+  "skillhub": {
+    "ok": true,
+    "versionId": 327468,
+    "skillId": 70149,
+    "reviewStatus": "pending",
+    "fileCount": 76,
+    "fingerprint": "65bd21955c7c884089056d9db6ca7de0fed2c4ebc9dd5809b8e171182896284f"
+  },
+  "clawhub": {
+    "status": "published",
+    "versionId": "k97bcyv87fb89gffqbb140bkyh8ep2ss",
+    "fileCount": 75,
+    "fingerprint": "1f609c94f6fb3069858424273106c4c413a72bce2d246d88d667b7c37d416358"
+  },
+  "clawhub_preflight_fingerprint_match": true,
+  "skillhub_dry_run_fingerprint": "NOT_RETURNED; raw submission fingerprint retained",
+  "submissions_per_platform": 1,
+  "marketplace_post_submission_queries": 0,
+  "desktop_packages_changed": false,
+  "local_install_or_hooks_changed": false
+}

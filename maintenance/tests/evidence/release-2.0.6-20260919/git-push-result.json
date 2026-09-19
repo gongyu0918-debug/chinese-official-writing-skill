@@ -1,0 +1,15 @@
+{
+  "command": [
+    "git",
+    "push",
+    "--atomic",
+    "origin",
+    "HEAD:main",
+    "refs/tags/2.0.6"
+  ],
+  "exit_code": 0,
+  "stdout": "",
+  "stderr": "To https://github.com/gongyu0918-debug/chinese-official-writing-skill.git\n   21f3de03..006f1d5f  HEAD -> main\n * [new tag]           2.0.6 -> 2.0.6\n",
+  "pushed_main": "006f1d5f5833126efcf9244bc53d0d3dc5067de7",
+  "tag_product": "82b26779abd4ddaff346a953877192871a374382"
+}

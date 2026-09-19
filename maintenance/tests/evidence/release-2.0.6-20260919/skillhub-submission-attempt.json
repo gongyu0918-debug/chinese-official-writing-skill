@@ -1,0 +1,17 @@
+{
+  "time": "2026-09-19T06:46:23.053938+00:00",
+  "version": "2.0.6",
+  "product_commit": "82b26779abd4ddaff346a953877192871a374382",
+  "command": [
+    "C:/Users/admin/AppData/Local/hermes/hermes-agent/venv/Scripts/python.exe",
+    "C:\\Users\\admin\\.skillhub\\skills_store_cli.py",
+    "--skip-self-upgrade",
+    "publish",
+    "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\release-2.0.6-20260919\\output\\release-2.0.6\\skillhub",
+    "--version",
+    "2.0.6",
+    "--changelog",
+    "本次更新完善了三类常见办文场景：\n\n- 材料报送与征集：多项材料、不同统计期间和分层报送的任务，进一步明确谁填报、统计谁、谁汇总，以及各项材料的期限和渠道。\n- 代表建议、委员提案答复：更明确地选择函的写法，让答复对象、称谓与用途对应，减少无关文种参考的干扰。\n- 采购更正公告：更清楚地交代原公告、更正理由和当前处理安排，区分原公告内容与后续履约、整改或解约情况。\n",
+    "--json"
+  ]
+}
