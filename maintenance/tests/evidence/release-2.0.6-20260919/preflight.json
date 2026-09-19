@@ -1,0 +1,22 @@
+{
+  "version": "2.0.6",
+  "product_commit": "82b26779abd4ddaff346a953877192871a374382",
+  "baseline_main": "b707e086ffd1bdc0857efd189872c301c26f36eb",
+  "rules_and_scripts_match_approved_main": true,
+  "upload_sources_match_committed_product": true,
+  "checks": [
+    "product_paths",
+    "skill_format",
+    "supported_statement",
+    "markdown_detected",
+    "requested_markdown_allowed",
+    "placeholder_detected",
+    "word_count",
+    "skillhub_local_preflight"
+  ],
+  "checks_passed": true,
+  "new_native_writing_calls": 0,
+  "existing_writing_evidence": "../scenario-atoms-20260918/results.md",
+  "existing_script_tests": "142 checks; same script bytes, not rerun",
+  "desktop_and_adaptation_archives": "NOT_CHANGED"
+}

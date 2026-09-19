@@ -1,0 +1,15 @@
+{
+  "failures": [
+    {
+      "surface": "collaboration",
+      "reason": "unreadable_encrypted_agent_task",
+      "review_completed": false
+    },
+    {
+      "surface": "native-cli",
+      "reason": "prior bound CLI executable removed after host upgrade (WinError 2)",
+      "review_completed": false
+    }
+  ],
+  "resolution": "Use current installed Codex binary through plaintext native CLI."
+}

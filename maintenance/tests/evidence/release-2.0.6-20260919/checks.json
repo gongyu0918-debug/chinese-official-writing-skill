@@ -1,0 +1,111 @@
+{
+  "product_paths": {
+    "command": [
+      "C:\\Users\\admin\\AppData\\Local\\hermes\\hermes-agent\\venv\\Scripts\\python.exe",
+      "maintenance/tools/audit_product_surface.py",
+      "--root",
+      "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\release-2.0.6-20260919\\output\\release-2.0.6\\source"
+    ],
+    "exit_code": 0,
+    "stdout": "product paths reachable; rule readability and semantics require independent review\n",
+    "stderr": ""
+  },
+  "skill_format": {
+    "command": [
+      "C:\\Users\\admin\\AppData\\Local\\hermes\\hermes-agent\\venv\\Scripts\\python.exe",
+      "C:\\Users\\admin\\.codex\\skills\\.system\\skill-creator\\scripts\\quick_validate.py",
+      "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\release-2.0.6-20260919\\output\\release-2.0.6\\source"
+    ],
+    "exit_code": 0,
+    "stdout": "Skill is valid!\n",
+    "stderr": ""
+  },
+  "supported_statement": {
+    "command": [
+      "C:\\Users\\admin\\AppData\\Local\\hermes\\hermes-agent\\venv\\Scripts\\python.exe",
+      "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\release-2.0.6-20260919\\output\\release-2.0.6\\skillhub\\scripts\\prose_lint.py",
+      "--delivery-mode",
+      "draft-body",
+      "--structure",
+      "--format",
+      "--strict",
+      "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\release-2.0.6-20260919\\output\\release-2.0.6\\clean.txt"
+    ],
+    "exit_code": 0,
+    "stdout": "No prose risks found.\n",
+    "stderr": ""
+  },
+  "markdown_detected": {
+    "command": [
+      "C:\\Users\\admin\\AppData\\Local\\hermes\\hermes-agent\\venv\\Scripts\\python.exe",
+      "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\release-2.0.6-20260919\\output\\release-2.0.6\\skillhub\\scripts\\prose_lint.py",
+      "--delivery-mode",
+      "draft-body",
+      "--structure",
+      "--format",
+      "--strict",
+      "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\release-2.0.6-20260919\\output\\release-2.0.6\\marked.txt"
+    ],
+    "exit_code": 1,
+    "stdout": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\release-2.0.6-20260919\\output\\release-2.0.6\\marked.txt:1: low: markdown-emphasis: _关于更新设备的申请_\n  _关于更新设备的申请_ | 正式公文正文不要用 Markdown 斜体标记；改为普通正文。\nF:\\Workspaces\\chinese-official-writing-skill-worktrees\\release-2.0.6-20260919\\output\\release-2.0.6\\marked.txt:3: low: western-bullet: + \n  + 请审核本次申请。 | 中文正式正文避免频繁使用西式项目符号或 1. 2. 编号；必要清单可保留。\n",
+    "stderr": ""
+  },
+  "requested_markdown_allowed": {
+    "command": [
+      "C:\\Users\\admin\\AppData\\Local\\hermes\\hermes-agent\\venv\\Scripts\\python.exe",
+      "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\release-2.0.6-20260919\\output\\release-2.0.6\\skillhub\\scripts\\prose_lint.py",
+      "--delivery-mode",
+      "draft-body",
+      "--structure",
+      "--format",
+      "--strict",
+      "--allow-markdown",
+      "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\release-2.0.6-20260919\\output\\release-2.0.6\\marked.txt"
+    ],
+    "exit_code": 0,
+    "stdout": "No prose risks found.\n",
+    "stderr": ""
+  },
+  "placeholder_detected": {
+    "command": [
+      "C:\\Users\\admin\\AppData\\Local\\hermes\\hermes-agent\\venv\\Scripts\\python.exe",
+      "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\release-2.0.6-20260919\\output\\release-2.0.6\\skillhub\\scripts\\prose_lint.py",
+      "--delivery-mode",
+      "draft-body",
+      "--structure",
+      "--format",
+      "--strict",
+      "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\release-2.0.6-20260919\\output\\release-2.0.6\\placeholder.txt"
+    ],
+    "exit_code": 1,
+    "stdout": "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\release-2.0.6-20260919\\output\\release-2.0.6\\placeholder.txt:3: medium: unfinished-placeholder: [单位名称]\n  [单位名称]申请更新设备。 | 交付正文不应保留方括号占位；缺项改为正文外提示。\n",
+    "stderr": ""
+  },
+  "word_count": {
+    "command": [
+      "C:\\Users\\admin\\AppData\\Local\\hermes\\hermes-agent\\venv\\Scripts\\python.exe",
+      "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\release-2.0.6-20260919\\output\\release-2.0.6\\skillhub\\scripts\\draft_length.py",
+      "--json",
+      "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\release-2.0.6-20260919\\output\\release-2.0.6\\clean.txt"
+    ],
+    "exit_code": 0,
+    "stdout": "[\n  {\n    \"path\": \"F:\\\\Workspaces\\\\chinese-official-writing-skill-worktrees\\\\release-2.0.6-20260919\\\\output\\\\release-2.0.6\\\\clean.txt\",\n    \"mode\": \"nonspace\",\n    \"scope\": \"draft-before-postscript\",\n    \"count\": 40,\n    \"minimum\": null,\n    \"maximum\": null,\n    \"status\": \"counted\",\n    \"below_by\": 0,\n    \"above_by\": 0\n  }\n]\n",
+    "stderr": ""
+  },
+  "skillhub_local_preflight": {
+    "command": [
+      "C:\\Users\\admin\\AppData\\Local\\hermes\\hermes-agent\\venv\\Scripts\\python.exe",
+      "C:\\Users\\admin\\.skillhub\\skills_store_cli.py",
+      "--skip-self-upgrade",
+      "publish",
+      "F:\\Workspaces\\chinese-official-writing-skill-worktrees\\release-2.0.6-20260919\\output\\release-2.0.6\\skillhub",
+      "--version",
+      "2.0.6",
+      "--dry-run",
+      "--json"
+    ],
+    "exit_code": 0,
+    "stdout": "{\"dryRun\": true, \"slug\": \"chinese-official-writing\", \"version\": \"2.0.6\"}\n",
+    "stderr": ""
+  }
+}
