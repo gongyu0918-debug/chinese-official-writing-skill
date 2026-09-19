@@ -59,6 +59,5 @@
 - 材料报送、征集需区分填报主体、统计口径、分层汇总或多项材料要求时：`material-submission.md`。简单单项提交按主文种写清材料、期限和渠道。
 - 采购需求、规格报价、响应规则或履约条件需要专项核对时：在已选主文种上叠加 `genre-playbook-procurement-review.md`；只做语言或格式审校时不因此加读。
 - 编制预算、说明多项费用构成、核对年度或分期资金及申请额度时：`funding-budget.md`。简单单项费用直接按主文种写清用途和金额。
-- 财政项目支出绩效自评报告：在报告主叶上加读 `project-performance-self-review.md`，核对目标完成、资金执行、偏差与自评结论；一般总结或资金申请不因此加读。
 - 组织信息系统新建、改造、整合或运维的需求、范围和实施安排时：`information-system-projects.md`。普通设备购买、活动消息或仅改语言格式时，按主文种和本次任务处理。
 - AI 算力场景：按首页的场景条件叠加 `ai-compute-docs.md`。独立技术需求进入 `genre-playbook-technical-requirements.md`。
