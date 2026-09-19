@@ -54,7 +54,7 @@
 - 固定用语或衔接选用拿不准时，读取 `formulaic-language.md`。
 - 不熟悉的新文种、新材料类型、特殊事务场景，或需要核查通用做法、必备要素、正式格式、常用语及外部最新事实时：`external-research.md`；常规已知文种不自动扩展搜索。
 - 长文压缩和超限处置：`compression-details.md`。
-- 字段拆行、增删和表单边界：`field-editing.md`。
+- 用户要求保留字段，或处理字段拆行、增删和表单边界：`field-editing.md`。
 - 结构增删、移动和标题重排：`structure-editing.md`。
 - 材料报送、征集需区分填报主体、统计口径、分层汇总或多项材料要求时：`material-submission.md`。简单单项提交按主文种写清材料、期限和渠道。
 - 请假申请涉及假别、事由、起止时间或交接安排时：申请主叶叠加 `leave-application.md`；仅按底稿改语言或格式时沿用原有内容。
