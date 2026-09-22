@@ -1,11 +1,11 @@
 # 中文公文写作 Skill
 
 [![Version](https://img.shields.io/badge/version-2.0.10-blue)](https://github.com/gongyu0918-debug/chinese-official-writing-skill/releases/tag/2.0.10)
-[![ClawHub downloads: 8,011](https://img.shields.io/badge/ClawHub%20downloads-8%2C011-2f80ed)](https://clawhub.ai/gongyu0918-debug/skills/chinese-official-writing)
-[![SkillHub downloads: 155,271](https://img.shields.io/badge/SkillHub%20downloads-155%2C271-2f855a)](https://skillhub.cn/skills/user_f3d82da7/chinese-official-writing)
+[![ClawHub downloads: 8,195](https://img.shields.io/badge/ClawHub%20downloads-8%2C195-2f80ed)](https://clawhub.ai/gongyu0918-debug/skills/chinese-official-writing)
+[![SkillHub downloads: 162,823](https://img.shields.io/badge/SkillHub%20downloads-162%2C823-2f855a)](https://skillhub.cn/skills/user_f3d82da7/chinese-official-writing)
 [![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 
-下载量更新于 2026-09-20。
+下载量更新于 2026-09-22。
 
 用于中文公文、事务性材料、工作材料、新闻消息和新闻评论的起草、改写、压缩、润色、审核及 Word 正文整理。
 
