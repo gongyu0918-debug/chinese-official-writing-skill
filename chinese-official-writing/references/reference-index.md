@@ -51,6 +51,7 @@
 
 ## 专项资料
 
+- 受理方对具体反映、争议或异常事项说明调查核实结果时：在已选主文种上加读 `investigation-verification.md`；一般调研和亲历方投诉分别沿用各自主叶。
 - 固定用语或衔接选用拿不准时，读取 `formulaic-language.md`。
 - 不熟悉的新文种、新材料类型、特殊事务场景，或需要核查通用做法、必备要素、正式格式、常用语及外部最新事实时：`external-research.md`；常规已知文种不自动扩展搜索。
 - 长文压缩和超限处置：`compression-details.md`。
