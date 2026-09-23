@@ -73,6 +73,6 @@ metadata:
 按 `references/writing-rules.md` 完成以下四步，具体命令与处理要求见该页：
 
 1. 材料与分析：核对本轮材料、修改范围及分析依据。
-2. 成稿与篇幅：按文种成稿，有篇幅要求时运行 `scripts/draft_length.py`。
-3. 复核：核对事实、文种与语言，完成抗 AI 味检查；按 `references/prose-lint-usage.md` 运行 `scripts/prose_lint.py` 并处理风险。
+2. 成稿与篇幅：按文种成稿，有篇幅要求时运行 `scripts/draft_length.py`；文字稿可加 `--scan` 与下一步的扫描合并。
+3. 复核：核对事实、文种与语言，完成抗 AI 味检查；按 `references/prose-lint-usage.md` 扫描并处理风险，同稿已合并检查则不重复运行。
 4. 交付：按本轮原始请求核对整条回复的内容、格式和各部分篇幅。“只给”“仅”等限定适用于整条回复：只要正文就止于稿件，只给位置、问题、建议就止于审稿条目，只改指定文字就保留其余原文；省略开场说明和文后提示。未给的署名、指定留空的日期按入口约定处理。其余任务按 `references/writing-rules.md` 单列实质提示。

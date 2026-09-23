@@ -4,11 +4,12 @@
 from __future__ import annotations
 
 import argparse
+from dataclasses import asdict
 import json
 import re
 import sys
 
-from prose_lint import InputReadError, body_lines, read_text
+from prose_lint import InputReadError, body_lines, read_text, scan
 
 
 def count_length(text: str, mode: str = "nonspace") -> int:
@@ -61,7 +62,15 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--count-mode", choices=("nonspace", "cjk"), default="nonspace")
     parser.add_argument("--min-chars", type=int, help="Lower bound per input draft.")
     parser.add_argument("--max-chars", type=int, help="Upper bound per input draft.")
+    parser.add_argument(
+        "--fail-on-violation",
+        action="store_true",
+        help="Return exit code 1 when a supplied length bound is violated.",
+    )
     parser.add_argument("--json", action="store_true")
+    parser.add_argument("--scan", action="store_true", help="Also scan the same text for prose, structure and format risks; emits JSON.")
+    parser.add_argument("--delivery-mode", choices=("draft-body", "gap-note-allowed", "review-only"), default="draft-body")
+    parser.add_argument("--allow-markdown", action="store_true")
     args = parser.parse_args(argv)
     if any(value is not None and value < 0 for value in (args.min_chars, args.max_chars)):
         parser.error("length bounds must be non-negative")
@@ -76,8 +85,14 @@ def main(argv: list[str] | None = None) -> int:
             print(f"ERROR: {exc}", file=sys.stderr)
             had_error = True
             continue
-        reports.append(measure_draft(path, text, args.count_mode, args.min_chars, args.max_chars))
-    if args.json:
+        report = measure_draft(path, text, args.count_mode, args.min_chars, args.max_chars)
+        if args.scan:
+            report["review_candidates"] = [asdict(finding) for finding in scan(
+                path, text, include_format=True, include_structure=True,
+                delivery_mode=args.delivery_mode, allow_markdown=args.allow_markdown)]
+            report["facts_verified"] = False
+        reports.append(report)
+    if args.json or args.scan:
         print(json.dumps(reports, ensure_ascii=False, indent=2))
     else:
         for item in reports:
@@ -90,7 +105,11 @@ def main(argv: list[str] | None = None) -> int:
             else:
                 detail = "已统计"
             print(f"{item['path']}: {item['count']} ({item['mode']}; {item['scope']}); {detail}")
-    return 2 if had_error else 0
+    if had_error:
+        return 2
+    if args.fail_on_violation and any(item["status"] in {"below", "above"} for item in reports):
+        return 1
+    return 0
 
 
 if __name__ == "__main__":
