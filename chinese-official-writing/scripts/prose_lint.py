@@ -234,6 +234,12 @@ NEGATIVE_BOUNDARY_TAIL_CHARS = 70
 # 两种成稿模式都检查正文；generic/review-only 不加载，允许的文后提示另按提示区规则扫描。
 DRAFT_BODY_PATTERNS: list[PatternSpec] = [
     (
+        "low",
+        "unfinished-entity-placeholder",
+        r"×{2,}(?:公司|单位)|(?:^|\s)(?:申请人|辞职人|署名)[ \t]*[：:][ \t]*×{2,}",
+        "核对主体或署名是否仍待填写；用户要求的模板、匿名或脱敏保留，否则依据材料补齐或省略，不擅自编造。",
+    ),
+    (
         "medium",
         "unfinished-reason-placeholder",
         r"(?:^|(?<=[。！？；;，,\"“‘]))[ \t]*(?:现)?"
@@ -1256,6 +1262,12 @@ def plain_line_findings(
                 source, line_index, match.start(), match.end()
             ):
                 continue
+            if label == "unfinished-entity-placeholder":
+                context = "\n".join(source.lines[max(0, line_index - 1):line_index + 1])
+                if inside_spans(source.quoted_spans[line_index], match.start(), match.end()):
+                    continue
+                if re.search(r"脱敏|匿名|化名|隐去|模板|保留占位", context):
+                    continue
             if label == "western-bullet" and is_attachment_number_item(
                 source.lines, line_index, line
             ):
