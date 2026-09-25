@@ -1,6 +1,6 @@
 # 中文公文写作 Skill
 
-[![Version](https://img.shields.io/badge/version-2.0.12-blue)](https://github.com/gongyu0918-debug/chinese-official-writing-skill/releases/tag/2.0.12)
+[![Version](https://img.shields.io/badge/version-2.0.13-blue)](https://github.com/gongyu0918-debug/chinese-official-writing-skill/releases/tag/2.0.13)
 [![ClawHub downloads: 8,294](https://img.shields.io/badge/ClawHub%20downloads-8%2C294-2f80ed)](https://clawhub.ai/gongyu0918-debug/skills/chinese-official-writing)
 [![SkillHub downloads: 176,470](https://img.shields.io/badge/SkillHub%20downloads-176%2C470-2f855a)](https://skillhub.cn/skills/user_f3d82da7/chinese-official-writing)
 [![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
@@ -21,7 +21,7 @@
 
 ## 安装
 
-下载 [2.0.12 源码](https://github.com/gongyu0918-debug/chinese-official-writing-skill/releases/tag/2.0.12)，将 `chinese-official-writing` 文件夹放入所用应用的 Skill 目录。
+下载 [2.0.13 源码](https://github.com/gongyu0918-debug/chinese-official-writing-skill/releases/tag/2.0.13)，将 `chinese-official-writing` 文件夹放入所用应用的 Skill 目录。
 
 也可从 [ClawHub](https://clawhub.ai/gongyu0918-debug/skills/chinese-official-writing) 获取。篇幅与文稿检查需要 Python 3；Word 文件生成需要宿主提供文档工具。
 
@@ -41,7 +41,7 @@
 
 ## 版本与许可
 
-当前版本为 **2.0.12**。1.x 最后版本 **1.6.36** 保留在 [legacy/1.x](https://github.com/gongyu0918-debug/chinese-official-writing-skill/tree/legacy/1.x) 分支。
+当前版本为 **2.0.13**。1.x 最后版本 **1.6.36** 保留在 [legacy/1.x](https://github.com/gongyu0918-debug/chinese-official-writing-skill/tree/legacy/1.x) 分支。
 
 本项目采用 [MIT License](LICENSE)，允许修改、分发和商业使用，请保留版权及许可声明。
 
