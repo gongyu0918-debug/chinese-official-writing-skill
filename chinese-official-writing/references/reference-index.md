@@ -32,9 +32,9 @@
 - 正式事项说明用途的宣传手册、宣传材料：`genre-playbook-information-materials.md`。
 - 调研、研究：`genre-playbook-research.md`；可研：`genre-playbook-feasibility.md`；只审可研用 `genre-checklist-feasibility-review.md`。
 - 独立审查意见、评审意见（包括采购、初步设计或项目材料）：`genre-playbook-review-opinion.md`；只审核既有稿件时保留原主文种，按首页审稿模式处理。
-- 新闻消息、活动报道：`genre-playbook-news-message.md`。
+- 新闻消息、新闻稿、新闻通稿、快讯、活动报道：`genre-playbook-news-message.md`。
 - 编者按、编发按语：`genre-playbook-editorial-note.md`。
-- 新闻评论、时评：`genre-playbook-news-commentary.md`。
+- 新闻评论、时评、评论员文章：`genre-playbook-news-commentary.md`；改写时按目标体裁选路。
 - 意见建议、建议信、投诉反映、整改方案：先读 `compatibility-scene-routing.md`，再进入对应专页；建议信按面向有权方提出合作性建议的用途进入意见建议页，法定“意见”直接进入意见主叶。
 - 整改进展、整改情况：按报告、说明或情况通报的用途选主叶，并加读 `transaction-remediation-report.md`；反馈情况报告：报告主叶 + `transaction-feedback-report.md`。
 
