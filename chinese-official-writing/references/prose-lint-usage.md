@@ -3,10 +3,10 @@
 文字稿同时需要篇幅实测时，在现有计数命令加 `--scan`，同一次读取完成计数及语言、结构、格式扫描，返回 JSON：
 
 ```text
-python "<Skill目录>/scripts/draft_length.py" --scan --min-chars 800 --max-chars 1000 "<草稿绝对路径>"
+python "<Skill目录>/scripts/draft_length.py" --scan --min-chars <用户下限> --max-chars <用户上限> "<草稿绝对路径>"
 ```
 
-上下限按实际要求传入。合并命令默认按仅正文扫描；输入文件已含允许的文后提示时，加 `--delivery-mode gap-note-allowed`，字数仍只计提示前的稿件。`review_candidates` 是待核对线索，不能直接当作错误或抄入文后提示，退出码0也不证明事实正确。已合并检查且未改动的同一稿件不再单独计数、扫描；只需扫描或处理 DOCX 时使用下面的原有接口。
+上下限按用户实际要求及共性页的适用80字下限传入；明确要求更短或非完整成稿时不套用默认下限。合并命令默认按仅正文扫描；输入文件已含允许的文后提示时，加 `--delivery-mode gap-note-allowed`，字数仍只计提示前的稿件。`review_candidates` 是待核对线索，不能直接当作错误或抄入文后提示，退出码0也不证明事实正确。已合并检查且未改动的同一稿件不再单独计数、扫描；只需扫描或处理 DOCX 时使用下面的原有接口。
 
 已选试写路由时，按 `references/trial-draft-routing.md` 保存正文和固定提示，再在同一计数命令中加 `--trial`；该参数只检查交付形态，不判断模式或事实正确性。
 
