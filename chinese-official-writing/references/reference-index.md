@@ -6,7 +6,7 @@
 
 ### 文种专页
 
-- 既有项目新增功能、服务或实施内容的增项申请：`genre-playbook-project-application.md`。
+- 项目立项、既有项目新增功能或服务的增项申请：`genre-playbook-project-application.md`，包括这类申请的润色、结构调整和要素补充。
 - 请示、普通采购或经费等申请：`genre-playbook-request.md`；审核、复核、审后改稿，或细查请批事项和办理要素时，读取 `genre-checklist-request.md`。
 - 报告、情况报告、情况综合、周报、月报：`genre-playbook-report.md`；报告功能或状态表达拿不准时用 `genre-checklist-report.md`。
 - 工作总结：`genre-playbook-work-summary.md`。
@@ -61,5 +61,5 @@
 - 请假申请涉及假别、事由、起止时间或交接安排时：申请主叶叠加 `leave-application.md`；仅按底稿改语言或格式时沿用原有内容。
 - 采购需求、规格报价、响应规则或履约条件需要专项核对时：在已选主文种上叠加 `procurement-review.md`；只做语言或格式审校时不因此加读。
 - 编制预算、说明多项费用构成、核对年度或分期资金及申请额度，或审查经费安排与资金落实状态时：`funding-budget.md`。简单单项费用起草时直接按主文种写清用途和金额。
-- 组织信息系统新建、改造、整合或运维的需求、范围和实施安排时：`information-system-projects.md`。普通设备购买、活动消息或仅改语言格式时，按主文种和本次任务处理。
+- 需要编制或审查信息系统实施方案，展开数据迁移、系统整合、运行过渡、交付验收或持续运维安排时：`information-system-projects.md`。只就已给需求、建设范围和费用提出立项请求时，按项目申请主叶成稿，后续实施细节不自动列为本次报批缺项；用户模板和本次明确要求照办。
 - AI 算力场景：按首页的场景条件叠加 `ai-compute-docs.md`。独立技术需求进入 `genre-playbook-technical-requirements.md`。
