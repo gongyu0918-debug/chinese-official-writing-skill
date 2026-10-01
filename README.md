@@ -1,6 +1,6 @@
 # 中文公文写作 Skill
 
-[![Version](https://img.shields.io/badge/version-2.0.18-blue)](https://github.com/gongyu0918-debug/chinese-official-writing-skill/releases/tag/2.0.18)
+[![Version](https://img.shields.io/badge/version-2.0.20-blue)](https://github.com/gongyu0918-debug/chinese-official-writing-skill/releases/tag/2.0.20)
 [![ClawHub downloads: 8,431](https://img.shields.io/badge/ClawHub%20downloads-8%2C431-2f80ed)](https://clawhub.ai/gongyu0918-debug/skills/chinese-official-writing)
 [![SkillHub downloads: 185,757](https://img.shields.io/badge/SkillHub%20downloads-185%2C757-2f855a)](https://skillhub.cn/skills/user_f3d82da7/chinese-official-writing)
 [![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
@@ -21,7 +21,7 @@
 
 ## 安装
 
-下载 [2.0.18 源码](https://github.com/gongyu0918-debug/chinese-official-writing-skill/releases/tag/2.0.18)，将 `chinese-official-writing` 文件夹放入所用应用的 Skill 目录。
+从 [SkillHub](https://skillhub.cn/skills/user_f3d82da7/chinese-official-writing) 获取 2.0.20。也可下载 [GitHub 2.0.20 源码](https://github.com/gongyu0918-debug/chinese-official-writing-skill/releases/tag/2.0.20)，将 `chinese-official-writing` 文件夹放入所用应用的 Skill 目录。
 
 也可从 [ClawHub](https://clawhub.ai/gongyu0918-debug/skills/chinese-official-writing) 获取。篇幅与文稿检查需要 Python 3；Word 文件生成需要宿主提供文档工具。
 
@@ -39,9 +39,17 @@
 
 篇幅、语气、收件人和交付形式可一并说明。只需要稿件时，可以说：“只输出正文，不附文后提示或过程说明。”
 
+## 写作说明
+
+稿件应围绕本次行文目的安排主次：申请、请示讲清请求批准的事项、理由、主要内容和资源；报告讲清需要了解的进展、问题及判断依据；评论围绕中心判断展开论证。关键内容依据材料写具体，背景、例子、反面观点和边界说明为其提供支撑。用户要求的必列事实、模板和必要的不同观点完整保留。详略以本次用途和材料为依据，长稿同样需要充分说明核心内容。
+
+可以直接指出重点和详略，例如：“这份立项申请重点写为何增加写作能力、具体建设什么、申请什么资源；推广数据只支撑已有基础，技术运行细节集中到附件。保留原章节和有效数字，不新增建设范围。”
+
+实际成稿仍可能出现平均铺陈、沿次要内容展开或重复解释边界。反馈时提供原始要求和完整稿件，指出应重点说明的事项及抢占篇幅的段落，可据此调整段落作用和详略。
+
 ## 版本与许可
 
-当前版本为 **2.0.18**。1.x 最后版本 **1.6.36** 保留在 [legacy/1.x](https://github.com/gongyu0918-debug/chinese-official-writing-skill/tree/legacy/1.x) 分支。
+当前版本为 **2.0.20**。1.x 最后版本 **1.6.36** 保留在 [legacy/1.x](https://github.com/gongyu0918-debug/chinese-official-writing-skill/tree/legacy/1.x) 分支。
 
 本项目采用 [MIT License](LICENSE)，允许修改、分发和商业使用，请保留版权及许可声明。
 
