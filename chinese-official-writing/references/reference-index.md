@@ -20,7 +20,7 @@
 - 上级对下级请示的批复：`genre-playbook-reply.md`。
 - 不相隶属单位之间商洽、询答、请求批准或答复审批事项的函、复函、征求意见函：`genre-playbook-correspondence.md`。向代表、委员本人答复建议或提案的办理情况，也按该页处理。
 - 意见：`genre-playbook-opinion.md`；解释事实、既有流程或回应疑问的说明：`genre-playbook-explanation.md`。
-- 会议纪要：`genre-playbook-minutes.md`。
+- 会议纪要：`genre-playbook-minutes.md`；会议事项抄告单在该主叶上加读 `meeting-copy-slip.md`。领导批示等非会议事项的抄告按实际来源和用途选路。
 - 讲话稿、致辞、演讲：`genre-playbook-speech-address.md`；开场人物顺序另加 `speech-person-order.md`。
 - 会议主持词、主持串词：`genre-playbook-meeting-host.md`；开场人物顺序另加 `speech-person-order.md`。
 - 书面述职、述职报告、履职情况报告、现场述职发言：`genre-playbook-duty-report.md`。单位工作报告或工作总结仍走各自主叶。
