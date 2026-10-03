@@ -1,6 +1,6 @@
 # 请示/申请细查
 
-本文件只在请示、申请需要细查文种功能、办理要素，或用户要求审稿、复核时读取。起草请示、申请仍按 `genre-playbook-request.md` 进入文种骨架。
+本文件只在请示、申请需要细查文种功能、办理要素，或用户要求审稿、复核时读取。正文沿用已选主文种：普通请示、申请按 `genre-playbook-request.md`，项目立项、增项申请按 `genre-playbook-project-application.md`；本页只补充细查。
 
 按审稿内容加读：采购状态、规格报价或履约条件用 `procurement-review.md`；经费安排及资金落实状态用 `funding-budget.md`；请假事项用 `leave-application.md`。本页只检查请批功能和办理要素。按全文是否明确请求及其对象判断请批功能；正文已有明确请求时，缺少独立请批语可建议补充，不判为功能缺失。
 

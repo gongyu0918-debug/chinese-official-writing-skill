@@ -1,6 +1,6 @@
 # 中文公文写作 Skill
 
-[![Version](https://img.shields.io/badge/version-2.0.21-blue)](https://github.com/gongyu0918-debug/chinese-official-writing-skill/releases/tag/2.0.21)
+[![Version](https://img.shields.io/badge/version-2.0.22-blue)](https://github.com/gongyu0918-debug/chinese-official-writing-skill/releases/tag/2.0.22)
 [![ClawHub downloads: 8,431](https://img.shields.io/badge/ClawHub%20downloads-8%2C431-2f80ed)](https://clawhub.ai/gongyu0918-debug/skills/chinese-official-writing)
 [![SkillHub downloads: 185,757](https://img.shields.io/badge/SkillHub%20downloads-185%2C757-2f855a)](https://skillhub.cn/skills/user_f3d82da7/chinese-official-writing)
 [![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
@@ -21,7 +21,7 @@
 
 ## 安装
 
-从 [SkillHub](https://skillhub.cn/skills/user_f3d82da7/chinese-official-writing) 获取 2.0.21。也可下载 [GitHub 2.0.21 源码](https://github.com/gongyu0918-debug/chinese-official-writing-skill/releases/tag/2.0.21)，将 `chinese-official-writing` 文件夹放入所用应用的 Skill 目录。
+从 [SkillHub](https://skillhub.cn/skills/user_f3d82da7/chinese-official-writing) 获取 2.0.22。也可下载 [GitHub 2.0.22 源码](https://github.com/gongyu0918-debug/chinese-official-writing-skill/releases/tag/2.0.22)，将 `chinese-official-writing` 文件夹放入所用应用的 Skill 目录。
 
 也可从 [ClawHub](https://clawhub.ai/gongyu0918-debug/skills/chinese-official-writing) 获取。篇幅与文稿检查需要 Python 3；Word 文件生成需要宿主提供文档工具。
 
@@ -30,7 +30,7 @@
 直接提供现有材料、稿件用途和要求。已有旧稿时，说明采用哪一版，以及哪些内容可以修改、哪些必须保留。
 
 - 起草：“这是下周培训的安排，帮我写个通知，把报名事项说清楚。”
-- 会议事项抄告：“从这份纪要中摘出需要抄告财务处的两项决定，按现有抄告单字段成稿，保留责任和期限。”
+- 抄告单：“从这份纪要中摘出需要抄告财务处的两项决定，按现有抄告单成稿，保留责任和期限。”也可整理领导批示、事项告知或审批结果公示；请提供对应原件和用途。
 - 改稿：“这是今年的工作记录，帮我更新去年的总结，分清已完成和正在推进的事项。”
 - 局部修改：“仅把回执接收人王老师改为李老师，其余文字、标点和空行原样保留。”
 - 压缩：“将这份汇报压缩到400字以内，保留关键数字、日期和未了事项。”
@@ -50,7 +50,7 @@
 
 ## 版本与许可
 
-当前版本为 **2.0.21**。1.x 最后版本 **1.6.36** 保留在 [legacy/1.x](https://github.com/gongyu0918-debug/chinese-official-writing-skill/tree/legacy/1.x) 分支。
+当前版本为 **2.0.22**。1.x 最后版本 **1.6.36** 保留在 [legacy/1.x](https://github.com/gongyu0918-debug/chinese-official-writing-skill/tree/legacy/1.x) 分支。
 
 本项目采用 [MIT License](LICENSE)，允许修改、分发和商业使用，请保留版权及许可声明。
 
