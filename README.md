@@ -1,6 +1,6 @@
 # 中文公文写作 Skill
 
-[![Version](https://img.shields.io/badge/version-2.0.22-blue)](https://github.com/gongyu0918-debug/chinese-official-writing-skill/releases/tag/2.0.22)
+[![Version](https://img.shields.io/badge/version-2.0.23-blue)](https://github.com/gongyu0918-debug/chinese-official-writing-skill/releases/tag/2.0.23)
 [![ClawHub downloads: 8,431](https://img.shields.io/badge/ClawHub%20downloads-8%2C431-2f80ed)](https://clawhub.ai/gongyu0918-debug/skills/chinese-official-writing)
 [![SkillHub downloads: 185,757](https://img.shields.io/badge/SkillHub%20downloads-185%2C757-2f855a)](https://skillhub.cn/skills/user_f3d82da7/chinese-official-writing)
 [![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
@@ -21,7 +21,7 @@
 
 ## 安装
 
-从 [SkillHub](https://skillhub.cn/skills/user_f3d82da7/chinese-official-writing) 获取 2.0.22。也可下载 [GitHub 2.0.22 源码](https://github.com/gongyu0918-debug/chinese-official-writing-skill/releases/tag/2.0.22)，将 `chinese-official-writing` 文件夹放入所用应用的 Skill 目录。
+从 [SkillHub](https://skillhub.cn/skills/user_f3d82da7/chinese-official-writing) 获取 2.0.23。也可下载 [GitHub 2.0.23 源码](https://github.com/gongyu0918-debug/chinese-official-writing-skill/releases/tag/2.0.23)，将 `chinese-official-writing` 文件夹放入所用应用的 Skill 目录。
 
 也可从 [ClawHub](https://clawhub.ai/gongyu0918-debug/skills/chinese-official-writing) 获取。篇幅与文稿检查需要 Python 3；Word 文件生成需要宿主提供文档工具。
 
@@ -46,11 +46,15 @@
 
 可以直接指出重点和详略，例如：“这份立项申请重点写为何增加写作能力、具体建设什么、申请什么资源；推广数据只支撑已有基础，技术运行细节集中到附件。保留原章节和有效数字，不新增建设范围。”
 
+有正文和附件时，正文说明本次事项、关键动作与作用，附件集中说明完整过程和细目；审批或理解所需的摘要、关键数字可以两处对应。用途分析与已发生的用户行为、调查测算分别表达，已提供的记录和判断按原状态保留。
+
+审校意见应区分有依据的错误、待核信息和可选表达建议。不同职责、主要标的与整包金额、旧值与新值分别核对；未核实的字段不直接补成确定值，数值差额也不能单独决定应修改哪一项。
+
 实际成稿仍可能出现平均铺陈、沿次要内容展开或重复解释边界。反馈时提供原始要求和完整稿件，指出应重点说明的事项及抢占篇幅的段落，可据此调整段落作用和详略。
 
 ## 版本与许可
 
-当前版本为 **2.0.22**。1.x 最后版本 **1.6.36** 保留在 [legacy/1.x](https://github.com/gongyu0918-debug/chinese-official-writing-skill/tree/legacy/1.x) 分支。
+当前版本为 **2.0.23**。1.x 最后版本 **1.6.36** 保留在 [legacy/1.x](https://github.com/gongyu0918-debug/chinese-official-writing-skill/tree/legacy/1.x) 分支。
 
 本项目采用 [MIT License](LICENSE)，允许修改、分发和商业使用，请保留版权及许可声明。
 
