@@ -48,7 +48,7 @@
 
 ## 版本与许可
 
-当前版本为 2.0.24。历史版本 1.6.36 见 [legacy/1.x](https://github.com/gongyu0918-debug/chinese-official-writing-skill/tree/legacy/1.x) 分支。
+当前版本为 2.0.25。历史版本 1.6.36 见 [legacy/1.x](https://github.com/gongyu0918-debug/chinese-official-writing-skill/tree/legacy/1.x) 分支。
 
 本项目采用 [MIT License](LICENSE)，请保留版权及许可声明。
 

@@ -1,11 +1,11 @@
 # 中文公文写作 Skill
 
-[![Version](https://img.shields.io/badge/version-2.0.24-blue)](https://github.com/gongyu0918-debug/chinese-official-writing-skill/releases/tag/2.0.24)
-[![ClawHub downloads: 8,966](https://img.shields.io/badge/ClawHub%20downloads-8%2C966-2f80ed)](https://clawhub.ai/gongyu0918-debug/skills/chinese-official-writing)
-[![SkillHub downloads: 223,006](https://img.shields.io/badge/SkillHub%20downloads-223%2C006-2f855a)](https://skillhub.cn/skills/user_f3d82da7/chinese-official-writing)
+[![Version](https://img.shields.io/badge/version-2.0.25-blue)](https://github.com/gongyu0918-debug/chinese-official-writing-skill/releases/tag/2.0.25)
+[![ClawHub downloads: 9,048](https://img.shields.io/badge/ClawHub%20downloads-9%2C048-2f80ed)](https://clawhub.ai/gongyu0918-debug/skills/chinese-official-writing)
+[![SkillHub downloads: 227,083](https://img.shields.io/badge/SkillHub%20downloads-227%2C083-2f855a)](https://skillhub.cn/skills/user_f3d82da7/chinese-official-writing)
 [![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 
-下载量更新于 2026-10-05。
+下载量更新于 2026-10-06。
 
 用于中文公文、事务性材料、工作材料、新闻消息和新闻评论的起草、改写、压缩、润色、审核及 Word 正文整理。
 
@@ -21,7 +21,7 @@
 
 ## 安装
 
-从 [SkillHub](https://skillhub.cn/skills/user_f3d82da7/chinese-official-writing) 获取 2.0.24。也可下载 [GitHub 2.0.24 源码](https://github.com/gongyu0918-debug/chinese-official-writing-skill/releases/tag/2.0.24)，将 `chinese-official-writing` 文件夹放入所用应用的 Skill 目录。
+从 [SkillHub](https://skillhub.cn/skills/user_f3d82da7/chinese-official-writing) 获取 2.0.25。也可下载 [GitHub 2.0.25 源码](https://github.com/gongyu0918-debug/chinese-official-writing-skill/releases/tag/2.0.25)，将 `chinese-official-writing` 文件夹放入所用应用的 Skill 目录。
 
 也可从 [ClawHub](https://clawhub.ai/gongyu0918-debug/skills/chinese-official-writing) 获取。篇幅与文稿检查需要 Python 3；Word 文件生成需要宿主提供文档工具。
 
@@ -54,7 +54,7 @@
 
 ## 版本与许可
 
-当前版本为 **2.0.24**。1.x 最后版本 **1.6.36** 保留在 [legacy/1.x](https://github.com/gongyu0918-debug/chinese-official-writing-skill/tree/legacy/1.x) 分支。
+当前版本为 **2.0.25**。1.x 最后版本 **1.6.36** 保留在 [legacy/1.x](https://github.com/gongyu0918-debug/chinese-official-writing-skill/tree/legacy/1.x) 分支。
 
 本项目采用 [MIT License](LICENSE)，允许修改、分发和商业使用，请保留版权及许可声明。
 

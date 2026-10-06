@@ -70,7 +70,7 @@ PATTERNS: list[PatternSpec] = [
     ("medium", "vague-attribution", r"有关方面认为|业内专家指出", "避免模糊背书；补充明确来源或改为材料已给事实。"),
     ("medium", "casual", r"租赁方式更稳[，,、]?\s*也更省", "改为成本和服务保障更具确定性。"),
     ("medium", "casual", r"用不完", "改为阶段性资源余量或资源利用率。"),
-    ("medium", "casual", r"AI味", "改为表述偏泛或判断不够具体。"),
+    ("medium", "casual", r"(?i)(?<!去)(?<!降)AI\s*味(?!\s*(?:审校|检测|识别|清理|清洗|词汇|功能|模块|工具|系统))", "核对是否为口语评价；功能名或术语保留，评价按实际的语言问题正式表述，不一概改成表述偏泛。"),
     ("medium", "casual", r"这个钱花得值", "改为资金使用必要性和预期效果，并保留依据边界。"),
     ("medium", "casual", r"老板关心", "改为相关负责人关注该事项，不无依据升级为领导高度关注。"),
     ("low", "empty-filler", r"全面赋能", "确认是否有具体机制支撑。"),
@@ -237,7 +237,7 @@ DRAFT_BODY_PATTERNS: list[PatternSpec] = [
         "low",
         "unfinished-entity-placeholder",
         r"×{2,}(?:公司|单位)|(?:^|\s)(?:申请人|辞职人|署名)[ \t]*[：:][ \t]*×{2,}",
-        "核对主体或署名是否仍待填写；用户要求的模板、匿名或脱敏保留，否则依据材料补齐或省略，不擅自编造。",
+        "核对主体或署名是否仍待填写；真实稿按材料补齐或省略，已明确试写时按相容场景补拟保留字段，用户指定的模板、匿名或脱敏照留。",
     ),
     (
         "medium",
@@ -1019,7 +1019,7 @@ def prepare_scan_source(text: str, delivery_mode: str) -> ScanSource:
 
     lines = text.splitlines() or [text]
     body_only = body_lines(lines)
-    lines_to_scan = lines if delivery_mode == "draft-body" else body_only
+    lines_to_scan = lines if delivery_mode in {"draft-body", "review-only"} else body_only
     return ScanSource(
         lines=lines,
         body_only_lines=body_only,

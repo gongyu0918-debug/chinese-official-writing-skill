@@ -29,8 +29,9 @@ def measure_draft(
     mode: str = "nonspace",
     minimum: int | None = None,
     maximum: int | None = None,
+    delivery_mode: str = "draft-body",
 ) -> dict:
-    draft = "\n".join(body_lines(text.splitlines()))
+    draft = text if delivery_mode == "review-only" else "\n".join(body_lines(text.splitlines()))
     count = count_length(draft, mode)
     below = max(minimum - count, 0) if minimum is not None else 0
     above = max(count - maximum, 0) if maximum is not None else 0
@@ -45,7 +46,7 @@ def measure_draft(
     return {
         "path": path,
         "mode": mode,
-        "scope": "draft-before-postscript",
+        "scope": "full-review" if delivery_mode == "review-only" else "draft-before-postscript",
         "count": count,
         "minimum": minimum,
         "maximum": maximum,
@@ -90,7 +91,7 @@ def main(argv: list[str] | None = None) -> int:
             print(f"ERROR: {exc}", file=sys.stderr)
             had_error = True
             continue
-        report = measure_draft(path, text, args.count_mode, args.min_chars, args.max_chars)
+        report = measure_draft(path, text, args.count_mode, args.min_chars, args.max_chars, args.delivery_mode)
         if args.trial:
             lines = text.strip().splitlines()
             report["trial_notice"] = {

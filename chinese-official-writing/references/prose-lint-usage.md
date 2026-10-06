@@ -16,7 +16,7 @@ python "<Skill目录>/scripts/draft_length.py" --scan --min-chars <用户下限>
 python "<Skill目录>/scripts/prose_lint.py" --delivery-mode draft-body --structure --format "<草稿绝对路径>"
 ```
 
-按扫描对象选择模式：稿件正文用 `draft-body`，正文连同独立文后提示用 `gap-note-allowed`，审稿意见本身用 `review-only`。审核收到的原稿仍用 `draft-body`，原文件保留，修改另存新稿。
+按扫描对象选择模式：稿件正文用 `draft-body`，正文连同独立文后提示用 `gap-note-allowed`，审稿意见本身用 `review-only`。审核意见需要限字时，计数命令同样传入 `--delivery-mode review-only`，计数和扫描覆盖意见全文；成稿的独立文后提示仍按原规则单列。审核收到的原稿仍用 `draft-body`，原文件保留，修改另存新稿。
 
 需要标准输入时用 `-` 代替路径，并将实际文本通过管道传入。用户明确要求 Markdown 时加 `--allow-markdown`，保留相应格式，继续检查旁白、占位及其他风险。
 
