@@ -1,11 +1,11 @@
 # 中文公文写作 Skill
 
-[![Version](https://img.shields.io/badge/version-2.0.25-blue)](https://github.com/gongyu0918-debug/chinese-official-writing-skill/releases/tag/2.0.25)
-[![ClawHub downloads: 9,048](https://img.shields.io/badge/ClawHub%20downloads-9%2C048-2f80ed)](https://clawhub.ai/gongyu0918-debug/skills/chinese-official-writing)
-[![SkillHub downloads: 227,083](https://img.shields.io/badge/SkillHub%20downloads-227%2C083-2f855a)](https://skillhub.cn/skills/user_f3d82da7/chinese-official-writing)
+[![Version](https://img.shields.io/badge/version-2.0.26-blue)](https://github.com/gongyu0918-debug/chinese-official-writing-skill/releases/tag/2.0.26)
+[![ClawHub downloads: 9,140](https://img.shields.io/badge/ClawHub%20downloads-9%2C140-2f80ed)](https://clawhub.ai/gongyu0918-debug/skills/chinese-official-writing)
+[![SkillHub downloads: 231,739](https://img.shields.io/badge/SkillHub%20downloads-231%2C739-2f855a)](https://skillhub.cn/skills/user_f3d82da7/chinese-official-writing)
 [![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 
-下载量更新于 2026-10-06。
+下载量更新于 2026-10-08。
 
 用于中文公文、事务性材料、工作材料、新闻消息和新闻评论的起草、改写、压缩、润色、审核及 Word 正文整理。
 
@@ -21,7 +21,7 @@
 
 ## 安装
 
-从 [SkillHub](https://skillhub.cn/skills/user_f3d82da7/chinese-official-writing) 获取 2.0.25。也可下载 [GitHub 2.0.25 源码](https://github.com/gongyu0918-debug/chinese-official-writing-skill/releases/tag/2.0.25)，将 `chinese-official-writing` 文件夹放入所用应用的 Skill 目录。
+从 [SkillHub](https://skillhub.cn/skills/user_f3d82da7/chinese-official-writing) 获取 2.0.26。也可下载 [GitHub 2.0.26 源码](https://github.com/gongyu0918-debug/chinese-official-writing-skill/releases/tag/2.0.26)，将 `chinese-official-writing` 文件夹放入所用应用的 Skill 目录。
 
 也可从 [ClawHub](https://clawhub.ai/gongyu0918-debug/skills/chinese-official-writing) 获取。篇幅与文稿检查需要 Python 3；Word 文件生成需要宿主提供文档工具。
 
@@ -50,11 +50,17 @@
 
 审校意见应区分有依据的错误、待核信息和可选表达建议。不同职责、主要标的与整包金额、旧值与新值分别核对；未核实的字段不直接补成确定值，数值差额也不能单独决定应修改哪一项。
 
+验收材料按用途和行文关系区分申请、组织验收、专家意见与审批答复，围绕本次验收范围、交付事实和已有结论组织，合同总额与本次金额分别表达。建议、提案办理答复逐项回应所提事项，分清已有措施与拟议安排；应急预案将响应条件、动作和有权主体对应起来。请提供实际材料及单位要求，地方流程和专属时限按其适用范围处理。
+
+经费材料按本次用途写作：预算或决算说明交代费用构成和资金状态；申请、拨付或报销交代需要办理的事项。预算额度、合同金额、拟支付额和已支付额分别表述。沿用历史材料另拟时效性通知或提醒时，请提供本次起草时点和日期要求，原件日期与新稿日期分别核对。
+
+Word 默认采用单位模板或默认样式；明确要求正式国标时另核对应规范。仅排版且要求保留文字时，原有标点、接排标题和段落保持；需要拆段或改写可明确授权。
+
 实际成稿仍可能出现平均铺陈、沿次要内容展开或重复解释边界。反馈时提供原始要求和完整稿件，指出应重点说明的事项及抢占篇幅的段落，可据此调整段落作用和详略。
 
 ## 版本与许可
 
-当前版本为 **2.0.25**。1.x 最后版本 **1.6.36** 保留在 [legacy/1.x](https://github.com/gongyu0918-debug/chinese-official-writing-skill/tree/legacy/1.x) 分支。
+当前版本为 **2.0.26**。1.x 最后版本 **1.6.36** 保留在 [legacy/1.x](https://github.com/gongyu0918-debug/chinese-official-writing-skill/tree/legacy/1.x) 分支。
 
 本项目采用 [MIT License](LICENSE)，允许修改、分发和商业使用，请保留版权及许可声明。
 

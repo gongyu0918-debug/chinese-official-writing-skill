@@ -25,7 +25,7 @@
 - 讲话稿、致辞、演讲：`genre-playbook-speech-address.md`；开场人物顺序另加 `speech-person-order.md`。
 - 会议主持词、主持串词：`genre-playbook-meeting-host.md`；开场人物顺序另加 `speech-person-order.md`。
 - 书面述职、述职报告、履职情况报告、现场述职发言：`genre-playbook-duty-report.md`。单位工作报告或工作总结仍走各自主叶。
-- 方案、实施方案、建设方案：`genre-playbook-plan-construction.md`。
+- 方案、实施方案、建设方案：`genre-playbook-plan-construction.md`；应急预案或应急处置章节在该页上加读 `emergency-plan.md`。
 - 技术需求书、软件需求说明、接口需求和技术需求附件：`genre-playbook-technical-requirements.md`；按所需能力和条件组织，技术主题不改变方案或可研的主文种。
 - 作为执行规则交付的制度、规定、办法、细则、操作规程：`genre-playbook-institution-rules.md`。
 - 责任书：`genre-playbook-responsibility-letter.md`。
@@ -54,6 +54,7 @@
 
 ## 专项资料
 
+- 项目、采购验收材料：按用途和行文关系选定申请/请示、函、批复、通知、报告、独立审查意见或公开发布主叶，再加读 `project-acceptance.md` 核对范围、事实和结论；组织或申请验收、专家意见与审批答复各按自身用途处理。仅做语言或格式处理时沿用本轮范围。
 - 受理方对具体反映、争议或异常事项说明调查核实结果时：在已选主文种上加读 `investigation-verification.md`；一般调研和亲历方投诉分别沿用各自主叶。
 - 固定用语或衔接选用拿不准时，读取 `formulaic-language.md`。
 - 不熟悉的新文种、新材料类型、特殊事务场景，或需要核查通用做法、必备要素、正式格式、常用语及外部最新事实时：`external-research.md`；常规已知文种不自动扩展搜索。
