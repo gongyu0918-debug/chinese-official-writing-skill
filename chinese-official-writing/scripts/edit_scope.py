@@ -10,6 +10,9 @@ from pathlib import Path
 import re
 import sys
 
+# Resolve the packaged sibling module even when the host enables safe-path mode.
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+
 from material_diff import occurrences, read_plain
 
 

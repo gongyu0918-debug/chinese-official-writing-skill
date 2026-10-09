@@ -13,7 +13,7 @@ from pathlib import Path
 # Resolve the packaged sibling module even when the host enables safe-path mode.
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
-from prose_lint import InputReadError, body_lines, read_text, scan
+from prose_lint import InputReadError, body_lines, printable, read_text, scan
 
 TRIAL_NOTICE = "文后提示：本稿为拟生成稿件。"
 
@@ -27,6 +27,50 @@ def count_length(text: str, mode: str = "nonspace") -> int:
     return len(re.sub(r"\s+", "", text))
 
 
+def outline_entries(text: str, mode: str) -> list[dict]:
+    """观察用：各段首句与字数占比，不判断主旨正确或篇幅是否达标。"""
+
+    stripped = text.strip()
+    if not stripped:
+        return []
+    base_offset = len(text) - len(text.lstrip())
+    separator = re.compile(r"\r?\n[ \t]*\r?\n")
+    segments: list[tuple[int, str]] = []
+    cursor = 0
+    for match in separator.finditer(stripped):
+        segments.append((cursor, stripped[cursor:match.start()]))
+        cursor = match.end()
+    segments.append((cursor, stripped[cursor:]))
+    blocks = [(offset, block) for offset, block in segments if block.strip()]
+    if len(blocks) == 1 and "\n" in blocks[0][1]:
+        offset, block = blocks[0]
+        blocks = []
+        for line_match in re.finditer(r"[^\r\n]+", block):
+            if line_match.group(0).strip():
+                blocks.append((offset + line_match.start(), line_match.group(0)))
+    total = count_length(stripped, mode)
+    entries: list[dict] = []
+    line_no = 1
+    consumed = 0
+    for offset, block in blocks:
+        start = base_offset + offset
+        line_no += text[consumed:start].count("\n")
+        consumed = start
+        content = block.strip()
+        sentence = re.match(r"[^。！？!?\n]*(?:[。！？!?]|$)", content)
+        first_sentence = sentence.group(0).strip() if sentence else content
+        if len(first_sentence) > 80:
+            first_sentence = first_sentence[:80] + "…"
+        block_count = count_length(content, mode)
+        entries.append({
+            "line": line_no,
+            "first_sentence": first_sentence,
+            "count": block_count,
+            "ratio": round(block_count / total, 4) if total else 0.0,
+        })
+    return entries
+
+
 def measure_draft(
     path: str,
     text: str,
@@ -34,6 +78,7 @@ def measure_draft(
     minimum: int | None = None,
     maximum: int | None = None,
     delivery_mode: str = "draft-body",
+    include_outline: bool = False,
 ) -> dict:
     draft = text if delivery_mode == "review-only" else "\n".join(body_lines(text.splitlines()))
     count = count_length(draft, mode)
@@ -47,7 +92,7 @@ def measure_draft(
         status = "within"
     else:
         status = "counted"
-    return {
+    report = {
         "path": path,
         "mode": mode,
         "scope": "full-review" if delivery_mode == "review-only" else "draft-before-postscript",
@@ -58,6 +103,9 @@ def measure_draft(
         "below_by": below,
         "above_by": above,
     }
+    if include_outline:
+        report["outline"] = outline_entries(draft, mode)
+    return report
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -75,6 +123,7 @@ def main(argv: list[str] | None = None) -> int:
         help="Return exit code 1 when a supplied length bound is violated.",
     )
     parser.add_argument("--json", action="store_true")
+    parser.add_argument("--outline", action="store_true", help="观察用列出各段首句和字数占比；不判断主旨或篇幅是否达标。")
     parser.add_argument("--scan", action="store_true", help="Also scan the same text for prose, structure and format risks; emits JSON.")
     parser.add_argument("--trial", action="store_true", help="Require the fixed final trial-draft notice; never infer drafting intent.")
     parser.add_argument("--delivery-mode", choices=("draft-body", "gap-note-allowed", "review-only"), default="draft-body")
@@ -92,10 +141,13 @@ def main(argv: list[str] | None = None) -> int:
         try:
             path, text = read_text(file_arg, args.encoding, docx_scope="main-document")
         except InputReadError as exc:
-            print(f"ERROR: {exc}", file=sys.stderr)
+            print(printable(f"ERROR: {exc}"), file=sys.stderr)
             had_error = True
             continue
-        report = measure_draft(path, text, args.count_mode, args.min_chars, args.max_chars, args.delivery_mode)
+        report = measure_draft(
+            path, text, args.count_mode, args.min_chars, args.max_chars,
+            args.delivery_mode, args.outline,
+        )
         if args.trial:
             lines = text.strip().splitlines()
             report["trial_notice"] = {
@@ -108,13 +160,17 @@ def main(argv: list[str] | None = None) -> int:
                     "只有确属试写时才补齐固定文后标识。"
                 )
         if args.scan:
-            report["review_candidates"] = [asdict(finding) for finding in scan(
-                path, text, include_format=True, include_structure=True,
-                delivery_mode="gap-note-allowed" if args.trial else args.delivery_mode, allow_markdown=args.allow_markdown)]
-            report["facts_verified"] = False
+            try:
+                report["review_candidates"] = [asdict(finding) for finding in scan(
+                    path, text, include_format=True, include_structure=True,
+                    delivery_mode=args.delivery_mode, allow_markdown=args.allow_markdown)]
+                report["facts_verified"] = False
+            except InputReadError as exc:
+                print(printable(f"ERROR: {exc}"), file=sys.stderr)
+                had_error = True
         reports.append(report)
     if args.json or args.scan or args.trial:
-        print(json.dumps(reports, ensure_ascii=False, indent=2))
+        print(printable(json.dumps(reports, ensure_ascii=False, indent=2)))
     else:
         for item in reports:
             if item["below_by"]:
@@ -125,7 +181,12 @@ def main(argv: list[str] | None = None) -> int:
                 detail = "在范围内"
             else:
                 detail = "已统计"
-            print(f"{item['path']}: {item['count']} ({item['mode']}; {item['scope']}); {detail}")
+            print(printable(f"{item['path']}: {item['count']} ({item['mode']}; {item['scope']}); {detail}"))
+            for index, entry in enumerate(item.get("outline", []), start=1):
+                percent = entry["ratio"] * 100
+                print(printable(
+                    f"  第 {index} 段（约第 {entry['line']} 行，{entry['count']} 字，占 {percent:.1f}%）：{entry['first_sentence']}"
+                ))
     if had_error:
         return 2
     if args.trial and any(not item["trial_notice"]["ok"] for item in reports):
