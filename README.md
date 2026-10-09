@@ -1,8 +1,8 @@
 # 中文公文写作 Skill
 
-[![Version](https://img.shields.io/badge/version-2.0.27-blue)](https://github.com/gongyu0918-debug/chinese-official-writing-skill/releases/tag/2.0.27)
-[![ClawHub downloads: 9,221](https://img.shields.io/badge/ClawHub%20downloads-9%2C221-2f80ed)](https://clawhub.ai/gongyu0918-debug/skills/chinese-official-writing)
-[![SkillHub downloads: 239,146](https://img.shields.io/badge/SkillHub%20downloads-239%2C146-2f855a)](https://skillhub.cn/skills/user_f3d82da7/chinese-official-writing)
+[![Version](https://img.shields.io/badge/version-2.0.28-blue)](https://github.com/gongyu0918-debug/chinese-official-writing-skill/releases/tag/2.0.28)
+[![ClawHub downloads: 9,266](https://img.shields.io/badge/ClawHub%20downloads-9%2C266-2f80ed)](https://clawhub.ai/gongyu0918-debug/skills/chinese-official-writing)
+[![SkillHub downloads: 244,126](https://img.shields.io/badge/SkillHub%20downloads-244%2C126-2f855a)](https://skillhub.cn/skills/user_f3d82da7/chinese-official-writing)
 [![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 
 下载量更新于 2026-10-09。
@@ -21,9 +21,9 @@
 
 ## 安装
 
-从 [SkillHub](https://skillhub.cn/skills/user_f3d82da7/chinese-official-writing) 获取 2.0.27。也可下载 [GitHub 2.0.27 源码](https://github.com/gongyu0918-debug/chinese-official-writing-skill/releases/tag/2.0.27)，将 `chinese-official-writing` 文件夹放入所用应用的 Skill 目录。
+从 [GitHub 2.0.28 源码](https://github.com/gongyu0918-debug/chinese-official-writing-skill/releases/tag/2.0.28) 获取本版，将 `chinese-official-writing` 文件夹放入所用应用的 Skill 目录。
 
-也可从 [ClawHub](https://clawhub.ai/gongyu0918-debug/skills/chinese-official-writing) 获取。篇幅与文稿检查需要 Python 3；Word 文件生成需要宿主提供文档工具。
+[SkillHub](https://skillhub.cn/skills/user_f3d82da7/chinese-official-writing) 和 [ClawHub](https://clawhub.ai/gongyu0918-debug/skills/chinese-official-writing) 当前提供 2.0.27。篇幅与文稿检查需要 Python 3；Word 文件生成需要宿主提供文档工具。
 
 ## 使用
 
@@ -39,6 +39,8 @@
 - Word：“申请内容已定，请按单位模板整理成 Word。”
 
 篇幅、语气、收件人和交付形式可一并说明。只需要稿件时，可以说：“只输出正文，不附文后提示或过程说明。”
+
+仅对正文限字时，正文单独计数，标题、主送、落款和附件按各自用途保留；检查完整交付稿时一并核对这些部分。整稿字数在范围内，不能代替正文达到要求。
 
 ## 写作说明
 
@@ -66,7 +68,7 @@ Word 默认采用单位模板或默认样式；明确要求正式国标时另核
 
 ## 版本与许可
 
-当前版本为 **2.0.27**。1.x 最后版本 **1.6.36** 保留在 [legacy/1.x](https://github.com/gongyu0918-debug/chinese-official-writing-skill/tree/legacy/1.x) 分支。
+GitHub 当前版本为 **2.0.28**。1.x 最后版本 **1.6.36** 保留在 [legacy/1.x](https://github.com/gongyu0918-debug/chinese-official-writing-skill/tree/legacy/1.x) 分支。
 
 本项目采用 [MIT License](LICENSE)，允许修改、分发和商业使用，请保留版权及许可声明。
 
