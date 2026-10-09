@@ -1,11 +1,11 @@
 # 中文公文写作 Skill
 
-[![Version](https://img.shields.io/badge/version-2.0.26-blue)](https://github.com/gongyu0918-debug/chinese-official-writing-skill/releases/tag/2.0.26)
-[![ClawHub downloads: 9,140](https://img.shields.io/badge/ClawHub%20downloads-9%2C140-2f80ed)](https://clawhub.ai/gongyu0918-debug/skills/chinese-official-writing)
-[![SkillHub downloads: 231,739](https://img.shields.io/badge/SkillHub%20downloads-231%2C739-2f855a)](https://skillhub.cn/skills/user_f3d82da7/chinese-official-writing)
+[![Version](https://img.shields.io/badge/version-2.0.27-blue)](https://github.com/gongyu0918-debug/chinese-official-writing-skill/releases/tag/2.0.27)
+[![ClawHub downloads: 9,221](https://img.shields.io/badge/ClawHub%20downloads-9%2C221-2f80ed)](https://clawhub.ai/gongyu0918-debug/skills/chinese-official-writing)
+[![SkillHub downloads: 239,146](https://img.shields.io/badge/SkillHub%20downloads-239%2C146-2f855a)](https://skillhub.cn/skills/user_f3d82da7/chinese-official-writing)
 [![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 
-下载量更新于 2026-10-08。
+下载量更新于 2026-10-09。
 
 用于中文公文、事务性材料、工作材料、新闻消息和新闻评论的起草、改写、压缩、润色、审核及 Word 正文整理。
 
@@ -14,14 +14,14 @@
 ## 适用场景
 
 - 公文：申请、请示、报告、通知、函、批复、意见、决定、公告、通告、纪要等。
-- 事务与工作材料：采购、整改、反馈、说明、公示、方案、制度、总结、调研、讲话和述职等。
+- 事务与工作材料：采购、整改、反馈、说明、公示、方案、制度、总结、调研、政务信息、工作简报、先进事迹、签报呈批、组织鉴定、人员考察、会议记录、承诺书、工作交接、礼仪书函、讲话和述职等。
 - 新闻与技术材料：新闻消息、编者按、新闻评论、可研、审查、技术需求及算力专项材料。
 - 修改与复核：压缩、扩写、润色、去口语化、降 AI 味、文种与格式检查、审核后改稿。
 - Word 整理：结合宿主文档工具处理正文和版式。
 
 ## 安装
 
-从 [SkillHub](https://skillhub.cn/skills/user_f3d82da7/chinese-official-writing) 获取 2.0.26。也可下载 [GitHub 2.0.26 源码](https://github.com/gongyu0918-debug/chinese-official-writing-skill/releases/tag/2.0.26)，将 `chinese-official-writing` 文件夹放入所用应用的 Skill 目录。
+从 [SkillHub](https://skillhub.cn/skills/user_f3d82da7/chinese-official-writing) 获取 2.0.27。也可下载 [GitHub 2.0.27 源码](https://github.com/gongyu0918-debug/chinese-official-writing-skill/releases/tag/2.0.27)，将 `chinese-official-writing` 文件夹放入所用应用的 Skill 目录。
 
 也可从 [ClawHub](https://clawhub.ai/gongyu0918-debug/skills/chinese-official-writing) 获取。篇幅与文稿检查需要 Python 3；Word 文件生成需要宿主提供文档工具。
 
@@ -54,13 +54,19 @@
 
 经费材料按本次用途写作：预算或决算说明交代费用构成和资金状态；申请、拨付或报销交代需要办理的事项。预算额度、合同金额、拟支付额和已支付额分别表述。沿用历史材料另拟时效性通知或提醒时，请提供本次起草时点和日期要求，原件日期与新稿日期分别核对。
 
+政务信息围绕一项进展、做法或问题组织，完整简报可按栏目编排多条信息；期号和编发信息请提供单位模板。先进事迹以代表经历和具体贡献突出个人或集体特点，人称、简介与详细材料的篇幅按本次要求分别处理；推荐名额与最终入选名额分别说明。
+
+签报与呈批件按正文的请批、汇报或说明用途组织，呈报意见、拟办意见与已有批示分别归属；编号和签批栏目沿用单位模板。组织鉴定以岗位、学习或实习表现及具体事例支持评价，正式干部考察按适用要求核对考察内容和已有程序结论。会议记录保留讨论过程与发言归属，纪要按本次议定事项整理。
+
+感谢、邀请、慰问和贺信分别突出本次来意及相关事项；邀请函按材料写清活动时间地点、参与方式及回执、费用等安排。单方承诺对应具体事项、条件和责任；交接材料对应在办事项、移交内容与接收状态。表单字段、署名日期及签署要求请提供实际模板。
+
 Word 默认采用单位模板或默认样式；明确要求正式国标时另核对应规范。仅排版且要求保留文字时，原有标点、接排标题和段落保持；需要拆段或改写可明确授权。
 
 实际成稿仍可能出现平均铺陈、沿次要内容展开或重复解释边界。反馈时提供原始要求和完整稿件，指出应重点说明的事项及抢占篇幅的段落，可据此调整段落作用和详略。
 
 ## 版本与许可
 
-当前版本为 **2.0.26**。1.x 最后版本 **1.6.36** 保留在 [legacy/1.x](https://github.com/gongyu0918-debug/chinese-official-writing-skill/tree/legacy/1.x) 分支。
+当前版本为 **2.0.27**。1.x 最后版本 **1.6.36** 保留在 [legacy/1.x](https://github.com/gongyu0918-debug/chinese-official-writing-skill/tree/legacy/1.x) 分支。
 
 本项目采用 [MIT License](LICENSE)，允许修改、分发和商业使用，请保留版权及许可声明。
 

@@ -10,6 +10,7 @@
 - 请示、普通采购或经费等申请：`genre-playbook-request.md`；审核、复核、审后改稿，或细查请批事项和办理要素时，读取 `genre-checklist-request.md`。
 - 报告、情况报告、情况综合、周报、月报：`genre-playbook-report.md`；报告功能或状态表达拿不准时用 `genre-checklist-report.md`。
 - 工作总结：`genre-playbook-work-summary.md`。
+- 个人或集体先进事迹、典型事迹材料、评优推荐中的独立事迹附件：`genre-playbook-advanced-deeds.md`；组织推荐或报送的通知仍按通知主叶，独立推荐意见、推荐请示按其办理用途选路。
 - 以介绍已有做法、供同行理解借鉴为主要目的的经验交流、典型做法材料：书面交流按 `genre-playbook-work-summary.md`，现场交流发言按 `genre-playbook-speech-address.md`；按实际交付形态和用途选定主叶。
 - 工作要点：`genre-playbook-work-priorities.md`。
 - 通知、批转或转发通知：`genre-playbook-notice.md`；情况、表彰批评或传达重要精神的通报：`genre-playbook-bulletin.md`，评价与处理强度沿用材料。
@@ -28,6 +29,10 @@
 - 方案、实施方案、建设方案：`genre-playbook-plan-construction.md`；应急预案或应急处置章节在该页上加读 `emergency-plan.md`。
 - 技术需求书、软件需求说明、接口需求和技术需求附件：`genre-playbook-technical-requirements.md`；按所需能力和条件组织，技术主题不改变方案或可研的主文种。
 - 作为执行规则交付的制度、规定、办法、细则、操作规程：`genre-playbook-institution-rules.md`。
+- 感谢信、邀请函、慰问信、贺信：`genre-playbook-courtesy-letter.md`；商洽询答按函、参会部署按通知选路。
+- 组织单位对人员作出的工作、学习、实习鉴定和考察材料：`genre-playbook-personnel-appraisal.md`；个人自述履职按述职，宣传事迹按事迹主叶。
+- 整理会议原始记录、发言摘要或逐字记录：`genre-playbook-meeting-record.md`；提炼议定事项的纪要仍走纪要主叶。
+- 单方承诺书、申报承诺附件：`genre-playbook-commitment-letter.md`；多方责任分工按责任书处理。
 - 责任书：`genre-playbook-responsibility-letter.md`。
 - 倡议书：`genre-playbook-initiative.md`；公开信：`genre-playbook-open-letter.md`。
 - 讲解稿、解说词：`genre-playbook-narration.md`。
@@ -35,7 +40,7 @@
 - 调研、研究：`genre-playbook-research.md`；可研：`genre-playbook-feasibility.md`；只审可研用 `genre-checklist-feasibility-review.md`。
 - 独立审查意见、评审意见（包括采购、初步设计或项目材料）：`genre-playbook-review-opinion.md`；只审核既有稿件时保留原主文种，按首页审稿模式处理。
 - 新闻消息、新闻稿、新闻通稿、快讯、活动报道：`genre-playbook-news-message.md`。
-- 政务信息、要情、专报等信息报送材料，按主要用途选路：汇报情况用报告，呈现研究发现用调研，公开报道已发生事实用新闻消息；组织填报、征集或汇总要求仍按相应主文种并依条件加读 `material-submission.md`，名称本身不触发宣传材料页。
+- 政务信息、要情、专报和工作简报，按主要用途选路：汇报情况用报告，呈现研究发现用调研，公开报道已发生事实用新闻消息；按信息题材选取内容或编排多条信息时，加读 `government-work-information.md`。组织填报、征集或汇总要求仍按相应主文种并依条件加读 `material-submission.md`；事务名称不单独触发宣传材料页。
 - 编者按、编发按语：`genre-playbook-editorial-note.md`。
 - 新闻评论、时评、评论员文章：`genre-playbook-news-commentary.md`；改写时按目标体裁选路。
 - 意见建议、建议信、投诉反映、整改方案：先读 `compatibility-scene-routing.md`，再进入对应专页；建议信按面向有权方提出合作性建议的用途进入意见建议页，法定“意见”直接进入意见主叶。
@@ -54,6 +59,8 @@
 
 ## 专项资料
 
+- 内部签报、呈批件：按请求批准、汇报情况或解释事项选相应主叶，需要处理拟办意见、签批栏或呈批表单时加读 `internal-signoff.md`；项目立项请求沿用项目申请主叶。
+- 工作交接：安排交接用通知，汇报交接情况用报告，解释交接事项用说明，按内容核对需要加读 `work-handover.md`；独立交接表、清单按 `field-editing.md` 并叠加该页。
 - 项目、采购验收材料：按用途和行文关系选定申请/请示、函、批复、通知、报告、独立审查意见或公开发布主叶，再加读 `project-acceptance.md` 核对范围、事实和结论；组织或申请验收、专家意见与审批答复各按自身用途处理。仅做语言或格式处理时沿用本轮范围。
 - 受理方对具体反映、争议或异常事项说明调查核实结果时：在已选主文种上加读 `investigation-verification.md`；一般调研和亲历方投诉分别沿用各自主叶。
 - 固定用语或衔接选用拿不准时，读取 `formulaic-language.md`。

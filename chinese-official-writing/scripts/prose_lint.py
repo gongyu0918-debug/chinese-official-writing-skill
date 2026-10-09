@@ -209,6 +209,19 @@ DELIVERY_PATTERNS: list[PatternSpec] = [
         "核对是否为与文种无关的小字结论、免责或边界话术；用户明确要求的声明和材料事实应保留。",
     ),
     (
+        "medium",
+        "tool-process-narration",
+        r"^\s*(?:(?=[^\n]{0,240}(?:字数|计数|篇幅|非空白|正文[ \t]*\d+[ \t]*(?:字|字符)))[^\n]{0,240}(?:文稿|语言)?扫描[^。\n]{0,24}(?:通过|完成|无待核线索)|"
+        r"(?:实测口径|字数核验|扫描结果)[：:][^。\n]{0,80}(?:正文|非空白|字符|字数))",
+        "核对是否为起草者的计数或扫描回执；按本轮交付要求去除工具自述，用户要求的实测结果或篇幅未达说明应保留。",
+    ),
+    (
+        "medium",
+        "tool-process-narration",
+        r"^\s*(?:临时稿|内部(?:计数|扫描)(?:用的)?(?:临时)?稿)[^。\n]{0,160}(?:工作目录|\.(?:txt|md)\b)",
+        "核对是否在交付内部临时稿路径；保留用户实际要求的文件链接、业务附件或归档位置。",
+    ),
+    (
         "high",
         "english-thought-fragment",
         r"(?i)^\s*(?:analysis\s*[:：]|reasoning\s*[:：]|we need(?: to)?\b|i need(?: to)?\b|i will\s+(?:draft|write|revise|produce|prepare|review|analy[sz]e|edit|summari[sz]e)\b|let['’]?s\b|the user (?:asked|asks|wants|requested)\b|i should\b|now (?:write|draft|produce)\b|given the (?:user|prompt|materials?|context)\b)[^\n]{0,160}",

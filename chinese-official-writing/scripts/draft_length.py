@@ -8,6 +8,10 @@ from dataclasses import asdict
 import json
 import re
 import sys
+from pathlib import Path
+
+# Resolve the packaged sibling module even when the host enables safe-path mode.
+sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 from prose_lint import InputReadError, body_lines, read_text, scan
 
