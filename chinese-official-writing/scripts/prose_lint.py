@@ -640,7 +640,7 @@ def read_text(
             continue
         except LookupError as exc:
             raise InputReadError(f"不支持的文本编码: {enc}: {path}") from exc
-    return str(path), raw.decode(encodings[-1], errors="replace")
+    raise InputReadError(f"无法按文本编码解码文件（{', '.join(encodings)}）: {path}")
 
 
 def excerpt(line: str, start: int, end: int) -> str:

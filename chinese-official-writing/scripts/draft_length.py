@@ -17,11 +17,22 @@ from prose_lint import InputReadError, body_lines, printable, read_text, scan
 
 TRIAL_NOTICE = "文后提示：本稿为拟生成稿件。"
 
+# Unicode 17.0 assigned CJK unified/compatibility ideographs plus ideographic zero.
+# Pin the repertoire rather than depending on the host Python Unicode database.
+# Sources: https://www.unicode.org/Public/17.0.0/ucd/PropList.txt
+#          https://www.unicode.org/Public/17.0.0/ucd/UnicodeData.txt
+CJK_IDEOGRAPHS = re.compile(
+    r"[\u3007\u3400-\u4dbf\u4e00-\u9fff\uf900-\ufa6d\ufa70-\ufad9"
+    r"\U00020000-\U0002a6df\U0002a700-\U0002b81d\U0002b820-\U0002cead"
+    r"\U0002ceb0-\U0002ebe0\U0002ebf0-\U0002ee5d\U0002f800-\U0002fa1d"
+    r"\U00030000-\U0003134a\U00031350-\U00033479]"
+)
+
 
 def count_length(text: str, mode: str = "nonspace") -> int:
     """Reuse the existing review-gate counting convention as a pure function."""
     if mode == "cjk":
-        return len(re.findall(r"[\u3400-\u4dbf\u4e00-\u9fff]", text))
+        return len(CJK_IDEOGRAPHS.findall(text))
     if mode != "nonspace":
         raise ValueError(f"unsupported count mode: {mode}")
     return len(re.sub(r"\s+", "", text))
@@ -138,8 +149,12 @@ def main(argv: list[str] | None = None) -> int:
     reports = []
     had_error = False
     for file_arg in args.files:
+        docx_format_findings = []
         try:
-            path, text = read_text(file_arg, args.encoding, docx_scope="main-document")
+            path, text = read_text(
+                file_arg, args.encoding, docx_scope="main-document",
+                docx_format_findings=docx_format_findings if args.scan else None,
+            )
         except InputReadError as exc:
             print(printable(f"ERROR: {exc}"), file=sys.stderr)
             had_error = True
@@ -161,9 +176,15 @@ def main(argv: list[str] | None = None) -> int:
                 )
         if args.scan:
             try:
-                report["review_candidates"] = [asdict(finding) for finding in scan(
+                findings = scan(
                     path, text, include_format=True, include_structure=True,
-                    delivery_mode=args.delivery_mode, allow_markdown=args.allow_markdown)]
+                    delivery_mode=args.delivery_mode, allow_markdown=args.allow_markdown,
+                )
+                findings.extend(docx_format_findings)
+                report["review_candidates"] = [asdict(finding) for finding in findings]
+                report["review_scope"] = (
+                    "main-document" if Path(file_arg).suffix.lower() == ".docx" else "full-text"
+                )
                 report["facts_verified"] = False
             except InputReadError as exc:
                 print(printable(f"ERROR: {exc}"), file=sys.stderr)

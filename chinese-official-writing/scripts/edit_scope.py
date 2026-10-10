@@ -40,6 +40,11 @@ def expected_text(original: str, plan: dict) -> str:
         old, new = edit.get("old"), edit.get("new")
         if not isinstance(old, str) or not old or not isinstance(new, str):
             raise ValueError(f"{label}: old 必须非空，new 必须为字符串")
+        try:
+            old.encode("utf-8")
+            new.encode("utf-8")
+        except UnicodeEncodeError as exc:
+            raise ValueError(f"{label}: old 和 new 必须为可编码的 Unicode 文本，不能含孤立代理项") from exc
         if "start" in edit:
             start = edit["start"]
             if type(start) is not int or start < 0 or not original.startswith(old, start):
