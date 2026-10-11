@@ -28,7 +28,7 @@ python "<Skill目录>/scripts/prose_lint.py" --delivery-mode draft-body --struct
 
 稿件用 `draft-body`，含允许的文后提示用 `gap-note-allowed`，审核意见本身用 `review-only`；合并命令同样按扫描对象显式选择模式。审核收到的原稿仍用 `draft-body`，修改另存新稿。用户明确Markdown时加 `--allow-markdown`。
 
-已选试写时保存正文及固定提示，计数用 `--trial`，含提示的扫描对象同时用 `--delivery-mode gap-note-allowed`；参数只核对交付形态，不判断模式或事实。
+试写默认带文后标识时，可用 `--trial` 核对，并以 `--delivery-mode gap-note-allowed` 扫描。用户限定正文或固定格式而省略标识时，不传 `--trial`；参数只核对已选交付形态，不决定模式。
 
 `review_candidates`及其他扫描命中都是待核线索，不能直接作为错误或抄入文后提示，退出码0不证明事实正确。核对位置、上下文、材料和修改范围，保留成立的原因、影响、比较、步骤、测算、术语、引用和状态，只修已确认的问题。未命中仍按抗AI页核句群。未改动的同稿不重复计数扫描，复扫上限按共性页。
 

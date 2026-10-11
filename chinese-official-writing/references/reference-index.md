@@ -12,6 +12,8 @@
 - 其他公告、公示、通告：`genre-playbook-publication.md`。
 - 决定：`genre-playbook-decision.md`；决议：`genre-playbook-resolution.md`；议案：`genre-playbook-motion.md`；公报：`genre-playbook-communique.md`；命令、令：`genre-playbook-order.md`；部署：`genre-playbook-deployment.md`。
 - 上级答复下级请示：`genre-playbook-reply.md`；不相隶属间商洽询答、请求批准及审批答复：`genre-playbook-correspondence.md`，向代表委员答复办理情况也用该页。
+- 证明、工作学习经历证明与介绍信：`genre-playbook-certification-introduction.md`；情况解释和表现鉴定各沿原主叶。
+- 会务筹备方案、会议手册、参会须知和日程：`genre-playbook-meeting-affairs.md`；会议通知、邀请和现场表达各沿原主叶。
 - 法定意见：`genre-playbook-opinion.md`；解释事实、流程或回应疑问：`genre-playbook-explanation.md`。
 - 纪要：`genre-playbook-minutes.md`；转达会议议定事项的抄告单加 `meeting-copy-slip.md`。其他抄告单按告知、批示传达、办理要求或印发用通知，审批答复按关系用批复或函，审批公示用公开发布，交办整改用通知或部署；保留原标题模板，来文、批示、拟办各守来源状态，不凭“抄告”或“经研究”补会议结论，独立印发件另选主叶。
 - 讲话、致辞、演讲：`genre-playbook-speech-address.md`；主持词：`genre-playbook-meeting-host.md`；开场人物顺序加 `speech-person-order.md`。
@@ -24,6 +26,7 @@
 - 原始会议记录、发言摘要或逐字记录：`genre-playbook-meeting-record.md`；议定事项提炼用纪要。
 - 单方承诺及承诺附件：`genre-playbook-commitment-letter.md`；多方责任：`genre-playbook-responsibility-letter.md`。
 - 倡议：`genre-playbook-initiative.md`；公开信：`genre-playbook-open-letter.md`；讲解解说：`genre-playbook-narration.md`；正式事项宣传手册材料：`genre-playbook-information-materials.md`。
+- 调研、座谈和访谈提纲：`genre-playbook-research-outline.md`；调研完成后的报告另按研究主叶。
 - 调研研究：`genre-playbook-research.md`；可研：`genre-playbook-feasibility.md`；独立采购/初设/项目审查评审意见：`genre-playbook-review-opinion.md`。只审核既有稿仍沿原主叶及首页审核路径。
 - 新闻消息、稿、通稿、快讯及活动报道：`genre-playbook-news-message.md`；编者按：`genre-playbook-editorial-note.md`；新闻时评评论：`genre-playbook-news-commentary.md`。
 - 政务信息、要情、专报简报按汇报、研究或公开报道用报告、调研或新闻主叶，选题编排加 `government-work-information.md`；填报征集汇总仍按办理用途，不因事务名称读宣传页。
@@ -38,8 +41,10 @@
 
 - 方案比较、跨段论证或执行链：`argument-chains.md`；关系敬语称谓：`formal-addressing.md`；固定用语：`formulaic-language.md`。
 - 内部签报、拟办意见及签批表单：`internal-signoff.md`；工作交接：`work-handover.md`；先按请批、告知、报告或说明用途选主叶，独立清单保留字段。
+- 项目或部门绩效自评报告加 `performance-self-evaluation.md`；经费申请或一般总结沿原用途。
 - 验收：先按组织申请、汇报、审批答复或独立意见用途选主叶，加 `project-acceptance.md`；仅语言格式仍限本轮范围。
 - 受理方调查核实具体反映争议异常：`investigation-verification.md`；一般调研与亲历投诉沿主叶。
+- 交办、催办和督办通知、函或流程说明加 `follow-up-supervision.md`；办理汇报沿报告及反馈页。
 - 多主体、口径、分层汇总或多项材料报送征集：`material-submission.md`；简单提交只写材料期限渠道。
 - 字段表单：`field-editing.md`；结构增删移动标题重排：`structure-editing.md`；长文压缩：`compression-details.md`。
 - 请假采购经费申请的业务加读见申请主叶；其他文种核采购规格响应履约用 `procurement-review.md`，核多项费用分期资金或申请额用 `funding-budget.md`。
