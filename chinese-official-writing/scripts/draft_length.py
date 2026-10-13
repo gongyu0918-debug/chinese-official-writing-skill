@@ -137,9 +137,11 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--outline", action="store_true", help="观察用列出各段首句和字数占比；不判断主旨或篇幅是否达标。")
     parser.add_argument("--scan", action="store_true", help="Also scan the same text for prose, structure and format risks; emits JSON.")
     parser.add_argument("--trial", action="store_true", help="Require the fixed final trial-draft notice; never infer drafting intent.")
-    parser.add_argument("--delivery-mode", choices=("draft-body", "gap-note-allowed", "review-only"), default="draft-body")
+    parser.add_argument("--delivery-mode", choices=("draft-body", "gap-note-allowed", "review-only"), default=None)
     parser.add_argument("--allow-markdown", action="store_true")
     args = parser.parse_args(argv)
+    if args.delivery_mode is None:
+        args.delivery_mode = "gap-note-allowed" if args.trial else "draft-body"
     if args.trial and args.delivery_mode == "review-only":
         parser.error("--trial applies to a draft, not review-only output")
     if any(value is not None and value < 0 for value in (args.min_chars, args.max_chars)):
