@@ -39,6 +39,7 @@
 
 ## 任务加读
 
+- 党支部组织生活、民主评议及相关述职整改需区分主体和程序时，加 `party-organizational-life.md`；党务主题仍按实际用途选主叶。
 - 方案比较、跨段论证或执行链：`argument-chains.md`；关系敬语称谓：`formal-addressing.md`；固定用语：`formulaic-language.md`。
 - 内部签报、拟办意见及签批表单：`internal-signoff.md`；工作交接：`work-handover.md`；先按请批、告知、报告或说明用途选主叶，独立清单保留字段。
 - 项目或部门绩效自评报告加 `performance-self-evaluation.md`；经费申请或一般总结沿原用途。

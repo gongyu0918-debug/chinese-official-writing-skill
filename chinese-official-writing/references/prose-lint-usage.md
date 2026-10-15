@@ -28,7 +28,7 @@ DOCX 合并命令计数与扫描均限主文档，保留其字号、修订和隐
 python "<Skill目录>/scripts/prose_lint.py" --delivery-mode draft-body --structure --format "<完整文本绝对路径>"
 ```
 
-稿件用 `draft-body`，含允许的文后提示用 `gap-note-allowed`，审核意见本身用 `review-only`；合并命令同样按扫描对象显式选择模式。审核收到的原稿仍用 `draft-body`，修改另存新稿。用户明确Markdown时加 `--allow-markdown`。
+稿件用 `draft-body`，含允许的文后提示用 `gap-note-allowed`，审核意见本身用 `review-only`；合并命令只沿用交付模式，不接收 `--structure`、`--format`。审核收到的原稿仍用 `draft-body`，修改另存新稿。用户明确Markdown时加 `--allow-markdown`。
 
 试写交付含文后标识时，可用 `--trial` 核对；未指定扫描模式时，该参数使用 `gap-note-allowed`，显式模式优先。用户限定正文或固定格式而省略标识时，不传 `--trial`；参数只核对已选交付形态，不决定模式。
 
