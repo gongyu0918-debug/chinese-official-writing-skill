@@ -2,7 +2,7 @@
 
 本页供需要且允许工具检查的稿件使用；工具或写入受限时按共性页直接复核交付，不宣称实测。适用条件见 `writing-rules.md`。工具输出即本轮检查记录，无需另建日志；实测篇幅和未完成检查不进入最终回复；影响正文使用的实质缺项或来源问题按共性页处理。
 
-按本页接口直接运行，通常无需加载脚本实现。以已读SKILL.md所在目录定位脚本，以整条拟回复作为检查输入；使用文件时以UTF-8保存正文、允许的提示或审核意见，保留原输入。临时文件位置、清理和不落盘条件按共性页；支持标准输入时可直接传入文本。核对修正后按定稿交付，不再包裹或补写操作说明。输入路径用宿主参数数组传入，不拼接为可执行命令；不能确认字面传参时，复制到自建临时目录的简洁文件名，或用 `-` 经标准输入传入。工具支持TXT、MD及DOCX。
+按本页接口直接运行，通常无需加载脚本实现。以已读SKILL.md所在目录定位脚本，以整条拟回复为检查输入。纯文本优先用 `-` 经标准输入传入，按UTF-8编码；已有TXT、MD或DOCX可用路径，确需文件时按共性页处理并保留原输入。参数用宿主参数数组传入，不拼接为可执行命令；不能确认路径的字面传参时改用标准输入。核对后按定稿交付，工具记录留在本地。
 
 ## 计数范围
 
@@ -13,7 +13,7 @@
 计数与扫描覆盖同一文本时一次完成：
 
 ```text
-python "<Skill目录>/scripts/draft_length.py" --scan --delivery-mode gap-note-allowed --min-chars <用户下限> --max-chars <用户上限> --fail-on-violation "<完整文本绝对路径>"
+python -X utf8 "<Skill目录>/scripts/draft_length.py" --scan --delivery-mode gap-note-allowed --min-chars <用户下限> --max-chars <用户上限> --fail-on-violation -
 ```
 
 上例用于允许文后提示的交付；只交付稿件时改用 `--delivery-mode draft-body`，审核意见用 `review-only`。模式按用户交付要求选择，不由文本里的提示标题自动放行。
@@ -25,7 +25,7 @@ DOCX 合并命令计数与扫描均限主文档，保留其字号、修订和隐
 ## 扫描对象与模式
 
 ```text
-python "<Skill目录>/scripts/prose_lint.py" --delivery-mode draft-body --structure --format "<完整文本绝对路径>"
+python -X utf8 "<Skill目录>/scripts/prose_lint.py" --delivery-mode draft-body --structure --format -
 ```
 
 稿件用 `draft-body`，含允许的文后提示用 `gap-note-allowed`，审核意见本身用 `review-only`；合并命令只沿用交付模式，不接收 `--structure`、`--format`。审核收到的原稿仍用 `draft-body`，修改另存新稿。用户明确Markdown时加 `--allow-markdown`。
@@ -36,6 +36,4 @@ python "<Skill目录>/scripts/prose_lint.py" --delivery-mode draft-body --struct
 
 读取或运行失败先核路径和格式，仍失败时保留失败输出，不另建日志；用户明确要求检查报告时才按其范围交付。可选 `draft_length.py --outline` 观察段首句和字数占比，不判主旨正确或规定主体占比。
 
-## 工具结束后的交付
-
-计数、扫描和修正结束后，核对实际交付文本与定稿一致，清理本轮不再需要的临时文件。不把工具成功变成回复开头的完成说明，也不把工具记录追加到稿后。用户明确要求检查报告时，按其范围提供。
+交付与临时文件处理统一按共性页；用户要求检查报告时按其范围提供。
