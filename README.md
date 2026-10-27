@@ -5,9 +5,9 @@
 [![SkillHub downloads: 363,303](https://img.shields.io/badge/SkillHub%20downloads-363%2C303-2f855a)](https://skillhub.cn/skills/user_f3d82da7/chinese-official-writing)
 [![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 
-下载量更新于 2026-10-27。北京时间 15:53（UTC+8）读取 [ClawHub API](https://clawhub.ai/api/v1/skills/chinese-official-writing) 和 [SkillHub API](https://api.skillhub.cn/api/v1/skills/chinese-official-writing) 的 `skill.stats.downloads`；徽章为静态快照，不将下载计数视为安装量或独立用户数。
+下载量更新于 2026-10-27。
 
-[WorkBuddy](https://www.workbuddy.cn/app/skills)（客户端截图快照）：使用量约 **2.3 万**，安装量约 **1.7 万**。截图显示 v2.0.43，ID 为 `skill_2095528776994959360`；于 2026-10-27（北京时间）核对用户提供的截图，截图拍摄时间未提供。这两项不是实时精确读数，也不与上述下载量合计；尚未验证可匿名读取计数的稳定接口，暂不设置动态徽章。
+[WorkBuddy](https://www.workbuddy.cn/app/skills)：使用量约 **2.3 万**，安装量约 **1.7 万**。
 
 用于中文公文、事务性材料、工作材料、新闻消息和新闻评论的起草、改写、压缩、润色、审核及 Word 正文整理。
 
