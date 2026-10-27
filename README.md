@@ -7,7 +7,7 @@
 
 下载量更新于 2026-10-27。
 
-[WorkBuddy](https://www.workbuddy.cn/app/skills)：使用量约 **2.3 万**，安装量约 **1.7 万**。
+[WorkBuddy](https://www.workbuddy.cn/app/skills)（近90天，截至2026-10-26）：调用量 **22,852**，安装量 **16,970**。
 
 用于中文公文、事务性材料、工作材料、新闻消息和新闻评论的起草、改写、压缩、润色、审核及 Word 正文整理。
 
