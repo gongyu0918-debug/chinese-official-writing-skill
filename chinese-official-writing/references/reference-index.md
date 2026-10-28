@@ -16,7 +16,7 @@
 - 会务筹备方案、会议手册、参会须知和日程：`genre-playbook-meeting-affairs.md`；会议通知、邀请和现场表达各沿原主叶。
 - 法定意见：`genre-playbook-opinion.md`；解释事实、流程或回应疑问：`genre-playbook-explanation.md`。
 - 纪要：`genre-playbook-minutes.md`；转达会议议定事项的抄告单加 `meeting-copy-slip.md`。其他抄告单按告知、批示传达、办理要求或印发用通知，审批答复按关系用批复或函，审批公示用公开发布，交办整改用通知或部署；保留原标题模板，来文、批示、拟办各守来源状态，不凭“抄告”或“经研究”补会议结论，独立印发件另选主叶。
-- 讲话、致辞、演讲：`genre-playbook-speech-address.md`；主持词：`genre-playbook-meeting-host.md`；开场人物顺序加 `speech-person-order.md`。
+- 讲话、致辞、演讲、党课及学习交流发言：`genre-playbook-speech-address.md`；主持词：`genre-playbook-meeting-host.md`；开场人物顺序加 `speech-person-order.md`。
 - 书面述职或现场述职：`genre-playbook-duty-report.md`，单位工作报告总结各用其主叶。
 - 方案、实施建设方案：`genre-playbook-plan-construction.md`，应急预案/章节加 `emergency-plan.md`。
 - 独立技术需求、接口说明及需求附件：`genre-playbook-technical-requirements.md`；技术主题不改变方案或可研用途。
@@ -41,7 +41,7 @@
 
 - 党支部组织生活、民主评议及相关述职整改需区分主体和程序时，加 `party-organizational-life.md`；党务主题仍按实际用途选主叶。
 - 方案比较、跨段论证或执行链：`argument-chains.md`；关系敬语称谓：`formal-addressing.md`；固定用语：`formulaic-language.md`。
-- 内部签报、拟办意见及签批表单：`internal-signoff.md`；工作交接：`work-handover.md`；先按请批、告知、报告或说明用途选主叶，独立清单保留字段。
+- 内部签报、拟办意见及签批表单：`internal-signoff.md`；工作及值班交接：`work-handover.md`；先按请批、告知、报告或说明用途选主叶，独立清单保留字段。
 - 项目或部门绩效自评报告加 `performance-self-evaluation.md`；经费申请或一般总结沿原用途。
 - 验收：先按组织申请、汇报、审批答复或独立意见用途选主叶，加 `project-acceptance.md`；仅语言格式仍限本轮范围。
 - 受理方调查核实具体反映争议异常：`investigation-verification.md`；一般调研与亲历投诉沿主叶。
