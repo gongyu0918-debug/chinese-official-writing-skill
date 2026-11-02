@@ -1,0 +1,18 @@
+{
+  "examples_zh": [
+    "请把我提供的活动安排写成一份可直接转发的通知，讲清参加事项和办理要求，只输出通知正文。",
+    "请根据我提供的采购需求、报价和经费情况，起草一份设备采购请示，重点写清采购理由、主要内容和请求批准的事项。",
+    "请把本阶段工作记录整理成工作总结，突出重点和代表性成果，合并重复内容，已有安排与下一步建议分别表述。",
+    "请把我提供的会议记录整理成会议纪要，提炼议定事项，按记录写清责任分工和办理期限，保留尚未议定事项的状态。",
+    "请把这份汇报压缩到800字以内，保留关键事实、数字和原意，删去重复铺陈，语言平实自然，返回完整改后稿。",
+    "请审校这份公文，按“位置、问题、修改建议”列出意见，区分明确错误、待核实信息和可选的表达优化。"
+  ],
+  "examples_en": [
+    "Turn the activity arrangements I provide into a Chinese notice ready to forward. Explain participation details and required actions, and return only the notice.",
+    "Use the procurement needs, quotations, and funding information I provide to draft a Chinese request for approval to purchase equipment. Explain the reasons, scope, and approval requested.",
+    "Turn my work records for this period into a Chinese work summary. Highlight priorities and representative results, combine repeated points, and distinguish existing plans from recommendations for next steps.",
+    "Turn the meeting notes I provide into formal Chinese minutes. Extract agreed items, include responsibilities and deadlines stated in the notes, and preserve the status of unresolved matters.",
+    "Condense this Chinese report to 800 characters or fewer. Preserve its key facts, figures, and meaning, remove repetition, and return the full revised draft in plain, natural Chinese.",
+    "Review this Chinese official document. List the location, issue, and suggested revision for each comment, distinguishing definite errors, information needing verification, and optional wording improvements."
+  ]
+}
