@@ -1,11 +1,11 @@
 # 中文公文写作 Skill
 
 [![Version](https://img.shields.io/badge/version-2.0.50-blue)](https://github.com/gongyu0918-debug/chinese-official-writing-skill/releases/tag/2.0.50)
-[![ClawHub downloads: 10,508](https://img.shields.io/badge/ClawHub%20downloads-10%2C508-2f80ed)](https://clawhub.ai/gongyu0918-debug/skills/chinese-official-writing)
-[![SkillHub downloads: 363,303](https://img.shields.io/badge/SkillHub%20downloads-363%2C303-2f855a)](https://skillhub.cn/skills/user_f3d82da7/chinese-official-writing)
+[![ClawHub downloads: 10,938](https://img.shields.io/badge/ClawHub%20downloads-10%2C938-2f80ed)](https://clawhub.ai/gongyu0918-debug/skills/chinese-official-writing)
+[![SkillHub downloads: 399,253](https://img.shields.io/badge/SkillHub%20downloads-399%2C253-2f855a)](https://skillhub.cn/skills/user_f3d82da7/chinese-official-writing)
 [![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 
-下载量更新于 2026-10-27。
+下载量更新于 2026-11-03 14:38（北京时间），取自各平台公开统计接口。
 
 [WorkBuddy](https://www.workbuddy.cn/app/skills)（近90天，截至2026-10-26）：调用量 **22,852**，安装量 **16,970**。
 
