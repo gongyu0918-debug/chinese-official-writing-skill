@@ -176,6 +176,28 @@ DELIVERY_PATTERNS: list[PatternSpec] = [
     (
         "high",
         "delivery-explanation",
+        r"^\s*(?:(?:我(?:将|会)?|本(?:轮|次))?)(?:已|已经)?(?:按|按照|根据|依照)"
+        r"[^。\n]{0,32}(?:chinese-official-writing|(?:(?:指定|本轮|中文公文写作)\s*)?(?:Skill|技能))"
+        r"[^。\n]{0,120}(?:成稿|"
+        r"(?:核对|复核)(?:了)?(?:这|本|该|审核|上述|其中)?[^。\n]{0,12}(?:意见|稿件|文稿|材料|正文|数字|事实)|"
+        r"(?:核算|核对)(?:了)?[^。\n]{0,12}(?:小计|金额|数据|结果)|"
+        r"(?:起草|撰写)(?:了)?[^。\n]{0,8}(?:正文|稿件|文稿|材料)|"
+        r"(?:修改|压缩|整理)(?:了)?[^。\n]{0,12}(?:正文|稿件|文稿|材料|内容)|"
+        r"(?:只|仅)?(?:输出|交付)[^。\n]{0,12}(?:栏目|正文|稿件|成稿))",
+        "核对是否为 Skill 或模型制作过程自述；正式起草内容、技术 Skill 介绍和标注来源的引语保留。",
+    ),
+    (
+        "high",
+        "delivery-explanation",
+        r"(?:(?:以下|下面)(?:这段|这份|这一)?(?:内容|意见|文字)?(?:是|为)?(?:可|可以)?直接"
+        r"(?:发回(?:给)?|回给|发给)(?:同事|对方|用户)?(?:的)?(?:审核)?(?:意见|内容|文字|稿子|稿件)?(?=[：:。]|如下|$)"
+        r"|(?:可|可以)?直接(?:发回(?:给)?|回给|发给)(?:同事|对方|用户)?(?:的)?"
+        r"(?:审核|修改|核验)?(?:意见|内容|文字|稿子|稿件)(?=如下|[：:。]|$))",
+        "核对是否为“可直接发回/回给”的交付外壳；用户要求和标注来源的待审核引语保留。",
+    ),
+    (
+        "high",
+        "delivery-explanation",
         r"^本(?:次|轮)(?:按|根据|依照)?[^。\n]{0,80}(?:读取|阅读|选读|核对|复核|整理|修改|压缩|起草|撰写|完成)[^。\n]{0,80}(?:正文|成稿|稿件)(?:如下|为)?[：:]?\s*$",
         "删除本次任务的处理过程说明，直接输出正文。",
     ),
@@ -464,7 +486,7 @@ UNRESOLVED_PREDICATE_PATTERN = re.compile(
     r"(?:尚未|仍未|暂未|还未|未能|尚无|仍无|暂无)\s*(?=[\u4e00-\u9fff])"
 )
 SOURCE_EXCERPT_PREFIX_PATTERN = re.compile(
-    r"^\s*[^：:\n]*(?:原文|原句|引文|引用)(?:如下)?\s*[：:]"
+    r"^\s*[^：:\n]*(?:原文|原句|引文|引用|待审核(?:片段|内容|原稿)?|用户原话|用户引语)(?:如下)?\s*[：:]"
 )
 
 
@@ -1609,6 +1631,10 @@ def plain_line_findings(
                 continue
             if delivery_mode == "review-only" and inside_sorted_spans(
                 quoted_spans, quoted_starts, match.start(), match.end()
+            ):
+                continue
+            if label == "delivery-explanation" and explicitly_attributed_quote(
+                source, line_index, match.start(), match.end(), quoted_spans, quoted_starts
             ):
                 continue
             if label == "reading-process-narration" and inside_sorted_spans(

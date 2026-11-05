@@ -31,7 +31,7 @@
 
 几句想法、聊天记录或已有半稿都可以直接发来。用途、篇幅、语气和需要保留的内容，按实际需要说明。
 
-通知、采购请示、工作总结、会议纪要、汇报压缩和公文审校的六组中英文用法示例见 [examples/prompts.json](examples/prompts.json)，可按实际材料选用。
+通知、采购请示、工作总结、会议纪要、汇报压缩、公文审校、提案答复和科研／教改申报的八组中英文用法示例见 [examples/prompts.json](examples/prompts.json)，可按实际材料选用。
 
 - **起草**：“这是下周培训的安排，帮我写个通知，把报名的事说清楚。”也可以说：“活动记录在下面，帮我写一篇新闻消息。”
 - **抄告单**：“从这份纪要中摘出需要抄告财务处的两项决定，按现有抄告单成稿，保留责任和期限。”也可整理领导批示、事项告知或审批结果公示；请提供对应原件和用途。
@@ -69,7 +69,7 @@ Word 默认采用单位模板或默认样式；明确要求正式国标时另核
 
 ## 版本与许可
 
-当前版本为 2.0.51。历史版本 1.6.36 见 [legacy/1.x](https://github.com/gongyu0918-debug/chinese-official-writing-skill/tree/legacy/1.x) 分支。
+当前版本为 2.0.52。历史版本 1.6.36 见 [legacy/1.x](https://github.com/gongyu0918-debug/chinese-official-writing-skill/tree/legacy/1.x) 分支。
 
 本项目采用 [MIT License](LICENSE)，请保留版权及许可声明。
 

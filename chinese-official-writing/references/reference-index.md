@@ -4,7 +4,7 @@
 
 ## 文种主叶
 
-- 立项及既有项目增项申请：`genre-playbook-project-application.md`；普通请示、采购经费申请：`genre-playbook-request.md`。
+- 科研、教改、建设项目申报及既有项目增项申请：`genre-playbook-project-application.md`；普通请示、采购经费申请：`genre-playbook-request.md`。
 - 报告、情况综合、周月报：`genre-playbook-report.md`；总结：`genre-playbook-work-summary.md`；工作要点：`genre-playbook-work-priorities.md`。
 - 先进/典型事迹、独立事迹附件：`genre-playbook-advanced-deeds.md`；组织推荐通知、推荐意见或请示按办理用途另选。介绍已有做法的书面经验交流用总结，现场交流用讲话主叶。
 - 通知、批转转发：`genre-playbook-notice.md`；情况或表彰批评通报：`genre-playbook-bulletin.md`。
