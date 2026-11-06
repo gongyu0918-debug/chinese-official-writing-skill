@@ -13,12 +13,13 @@
 - 决定：`genre-playbook-decision.md`；决议：`genre-playbook-resolution.md`；议案：`genre-playbook-motion.md`；公报：`genre-playbook-communique.md`；命令、令：`genre-playbook-order.md`；部署：`genre-playbook-deployment.md`。
 - 上级答复下级请示：`genre-playbook-reply.md`；不相隶属间商洽询答、请求批准及审批答复：`genre-playbook-correspondence.md`，向代表委员答复办理情况也用该页。
 - 证明、工作学习经历证明与介绍信：`genre-playbook-certification-introduction.md`；情况解释和表现鉴定各沿原主叶。
+- 授予他人代办权限的授权委托书：`genre-playbook-authorization.md`；单纯介绍身份和接洽事项仍用介绍信。
 - 会务筹备方案、会议手册、参会须知和日程：`genre-playbook-meeting-affairs.md`；会议通知、邀请和现场表达各沿原主叶。
 - 法定意见：`genre-playbook-opinion.md`；解释事实、流程或回应疑问：`genre-playbook-explanation.md`。
 - 纪要：`genre-playbook-minutes.md`；转达会议议定事项的抄告单加 `meeting-copy-slip.md`。其他抄告单按告知、批示传达、办理要求或印发用通知，审批答复按关系用批复或函，审批公示用公开发布，交办整改用通知或部署；保留原标题模板，来文、批示、拟办各守来源状态，不凭“抄告”或“经研究”补会议结论，独立印发件另选主叶。
 - 讲话、致辞、演讲、党课及学习交流发言：`genre-playbook-speech-address.md`；主持词：`genre-playbook-meeting-host.md`；开场人物顺序加 `speech-person-order.md`。
 - 书面述职或现场述职：`genre-playbook-duty-report.md`，单位工作报告总结各用其主叶。
-- 方案、实施建设方案：`genre-playbook-plan-construction.md`，应急预案/章节加 `emergency-plan.md`。
+- 活动、竞赛评选、实施与建设方案：`genre-playbook-plan-construction.md`，应急预案/章节加 `emergency-plan.md`。
 - 独立技术需求、接口说明及需求附件：`genre-playbook-technical-requirements.md`；技术主题不改变方案或可研用途。
 - 执行规则的制度、规定、办法、细则、操作规程：`genre-playbook-institution-rules.md`。
 - 感谢、邀请、慰问、贺信：`genre-playbook-courtesy-letter.md`，商洽询答用函、参会部署用通知。
