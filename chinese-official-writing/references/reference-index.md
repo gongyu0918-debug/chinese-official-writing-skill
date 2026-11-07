@@ -44,10 +44,10 @@
 - 方案比较、跨段论证或执行链：`argument-chains.md`；关系敬语称谓：`formal-addressing.md`；固定用语：`formulaic-language.md`。
 - 内部签报、拟办意见及签批表单：`internal-signoff.md`；工作及值班交接：`work-handover.md`；先按请批、告知、报告或说明用途选主叶，独立清单保留字段。
 - 项目或部门绩效自评报告加 `performance-self-evaluation.md`；经费申请或一般总结沿原用途。
-- 验收：先按组织申请、汇报、审批答复或独立意见用途选主叶，加 `project-acceptance.md`；仅语言格式仍限本轮范围。
+- 本次验收的组织、记录、意见或结果材料：按交付用途选主叶，加 `project-acceptance.md`；仅语言格式仍限本轮范围。
 - 受理方调查核实具体反映争议异常：`investigation-verification.md`；一般调研与亲历投诉沿主叶。
 - 交办、催办和督办通知、函或流程说明加 `follow-up-supervision.md`；办理汇报沿报告及反馈页。
-- 涉及多个主体、不同统计口径、分层汇总或多项材料报送与征集时：`material-submission.md`；简单提交只写材料期限渠道。
+- 材料报送或征集任务涉及多个主体、不同统计口径、分层汇总或多项材料时，加 `material-submission.md`；简单提交只写材料期限渠道。
 - 字段表单：`field-editing.md`；结构增删移动标题重排：`structure-editing.md`；长文压缩：`compression-details.md`。
 - 请假、采购或经费申请的业务加读见申请主叶；其他文种需核对采购规格、响应或履约条件时用 `procurement-review.md`，核对多项费用、分期资金或申请额度时用 `funding-budget.md`。
 - 系统实施、迁移整合、过渡交付运维：`information-system-projects.md`；只申请已给范围费用时沿项目申请，不自动扩展后续缺项。
