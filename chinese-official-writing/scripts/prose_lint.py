@@ -357,7 +357,7 @@ PROJECT_CARD_TOTAL_FIELDS = 4
 FREQUENT_LIST_MARKER_COUNT = 8
 CODE_FENCE_MATCH_PREVIEW_CHARS = 20
 ATTACHMENT_NUMBER_ITEM_PATTERN = re.compile(r"^\s*[0-9]+[.)]\s+")
-FENCE_MARKER_PATTERN = re.compile(r"^\s*(`{3,})(?!`)")
+FENCE_MARKER_PATTERN = re.compile(r"^ {0,3}(`{3,}|~{3,})([^\r\n]*)$")
 JSON_INDENT = 2
 EXIT_SUCCESS = 0
 EXIT_STRICT_FINDING = 1
@@ -409,6 +409,7 @@ WORD_MAIN_NAMESPACES = {
     "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}",
     "{http://purl.oclc.org/ooxml/wordprocessingml/main}",
 }
+MARKUP_COMPATIBILITY_NAMESPACE = "{http://schemas.openxmlformats.org/markup-compatibility/2006}"
 
 FORMAT_PATTERNS: list[PatternSpec] = [
     ("medium", "halfwidth-punctuation", r"[\u4e00-\u9fff][,;:!?][\u4e00-\u9fff]", "中文正文中通常改用全角标点。"),
@@ -480,7 +481,7 @@ EXPLANATORY_TAIL_PATTERN = re.compile(
 )
 PLAIN_SECTION_HEADING_PATTERN = re.compile(
     rf"^(?:[一二三四五六七八九十]+、|第[一二三四五六七八九十0-9]+[章节]|"
-    rf"[（(][一二三四五六七八九十0-9]+[）)])[^。！？；：:]{{0,{PLAIN_SECTION_HEADING_MAX_CHARS}}}$"
+    rf"[（(][一二三四五六七八九十0-9]+[）)])[^。！？!?；;：:]{{1,{PLAIN_SECTION_HEADING_MAX_CHARS}}}$"
 )
 UNRESOLVED_PREDICATE_PATTERN = re.compile(
     r"(?:尚未|仍未|暂未|还未|未能|尚无|仍无|暂无)\s*(?=[\u4e00-\u9fff])"
@@ -522,6 +523,41 @@ def dtd_payload_present(data: bytes) -> bool:
 
     lowered = data.lower()
     return any(needle in lowered for needle in DOCX_DTD_NEEDLES)
+
+
+def docx_content_elements(root: ElementTree.Element) -> Iterable[ElementTree.Element]:
+    """每个 AlternateContent 只取首个有可提取文字的 Choice，否则取 Fallback。
+
+    这是文本提取策略，不模拟 Word 对 Requires 扩展的渲染支持。自底向上处理嵌套
+    备选内容，再迭代遍历选中分支，避免反复扫描子树或依赖 Python 递归深度。
+    """
+
+    has_text: set[ElementTree.Element] = set()
+    selected: dict[ElementTree.Element, ElementTree.Element | None] = {}
+    for elem in reversed(list(root.iter())):
+        children = list(elem)
+        if elem.tag == f"{MARKUP_COMPATIBILITY_NAMESPACE}AlternateContent":
+            choices = [child for child in children if child.tag == f"{MARKUP_COMPATIBILITY_NAMESPACE}Choice"]
+            fallback = elem.find(f"{MARKUP_COMPATIBILITY_NAMESPACE}Fallback")
+            default = fallback if fallback is not None else next(iter(choices), None)
+            branch = next((child for child in choices if child in has_text), default)
+            selected[elem] = branch
+            children = [branch] if branch is not None else []
+        if (elem.tag.rsplit("}", 1)[-1] == "t" and (elem.text or "").strip()) or any(
+            child in has_text for child in children
+        ):
+            has_text.add(elem)
+
+    pending = [root]
+    while pending:
+        elem = pending.pop()
+        yield elem
+        if elem in selected:
+            branch = selected[elem]
+            if branch is not None:
+                pending.append(branch)
+        else:
+            pending.extend(reversed(elem))
 
 
 def read_docx(
@@ -577,7 +613,7 @@ def read_docx(
                     raise InputReadError(f"DOCX 部件含 DTD，拒绝解析: {name}")
                 root = ElementTree.fromstring(data)
                 run_number = 0
-                for elem in root.iter():
+                for elem in docx_content_elements(root):
                     tag = elem.tag.rsplit("}", 1)[-1]
                     namespace = elem.tag.rsplit("}", 1)[0] + "}" if "}" in elem.tag else ""
                     if count_residue and namespace in WORD_MAIN_NAMESPACES:
@@ -929,33 +965,36 @@ def external_note_heading(line: str) -> re.Match[str] | None:
 
 
 def fence_marker_length(line: str) -> int:
-    """Return the length of a leading backtick fence marker, or zero."""
-    match = FENCE_MARKER_PATTERN.match(line)
-    return len(match.group(1)) if match else 0
+    """Return the length of a valid opening fence marker, or zero."""
+    is_marker, marker = fence_marker_transition(None, line)
+    return len(marker) if is_marker and marker is not None else 0
 
 
-def fence_marker_transition(current_length: int | None, line: str) -> tuple[bool, int | None]:
+def fence_marker_transition(current_marker: str | None, line: str) -> tuple[bool, str | None]:
     """Recognize a fence boundary only when it can open or close the current fence."""
-    marker_length = fence_marker_length(line)
-    if marker_length == 0:
-        return False, current_length
-    if current_length is None:
-        return True, marker_length
-    if marker_length >= current_length:
+    match = FENCE_MARKER_PATTERN.fullmatch(line)
+    if match is None:
+        return False, current_marker
+    marker, suffix = match.groups()
+    if current_marker is None:
+        if marker[0] == "`" and "`" in suffix:
+            return False, None
+        return True, marker
+    if marker[0] == current_marker[0] and len(marker) >= len(current_marker) and not suffix.strip(" \t"):
         return True, None
-    return False, current_length
+    return False, current_marker
 
 
 def body_lines(lines: list[str]) -> list[str]:
     """返回明确文后提示区之前的正文行；通用章节标题不构成截断依据。"""
     result: list[str] = []
-    fence_length: int | None = None
+    fence_marker: str | None = None
     for line in lines:
-        is_marker, fence_length = fence_marker_transition(fence_length, line)
+        is_marker, fence_marker = fence_marker_transition(fence_marker, line)
         if is_marker:
             result.append(line)
             continue
-        if fence_length is None and external_note_heading(line):
+        if fence_marker is None and external_note_heading(line):
             break
         result.append(line)
     return result
@@ -1016,7 +1055,7 @@ def paragraph_blocks(lines: list[str]) -> list[tuple[int, str, int]]:
     current: list[str] = []
     start_line = 1
     section_id = 0
-    fence_length: int | None = None
+    fence_marker: str | None = None
 
     def flush_current() -> None:
         nonlocal current
@@ -1026,12 +1065,12 @@ def paragraph_blocks(lines: list[str]) -> list[tuple[int, str, int]]:
 
     for idx, line in enumerate(lines, start=1):
         stripped = line.strip()
-        is_marker, fence_length = fence_marker_transition(fence_length, line)
+        is_marker, fence_marker = fence_marker_transition(fence_marker, line)
         if is_marker:
             flush_current()
             section_id += 1
             continue
-        if fence_length is not None:
+        if fence_marker is not None:
             continue
         if not stripped:
             flush_current()
@@ -1043,6 +1082,16 @@ def paragraph_blocks(lines: list[str]) -> list[tuple[int, str, int]]:
         if re.match(r"^\s*(?:[-*]|\d+[.)、])\s+", stripped):
             flush_current()
             continue
+        heading_body = plain_section_heading_body(stripped)
+        if heading_body is not None:
+            flush_current()
+            section_id += 1
+            if not heading_body:
+                continue
+            stripped = heading_body
+        elif re.match(r"^(?:[一二三四五六七八九十]+、|[（(][一二三四五六七八九十0-9]+[）)])", stripped):
+            # 编号正文分段但不换节，仍可比对相邻或隔段的实质重复。
+            flush_current()
         if not current:
             start_line = idx
         current.append(stripped)
@@ -1124,6 +1173,24 @@ def is_plain_section_heading(text: str) -> bool:
 
     compact = re.sub(r"\s+", "", text)
     return bool(PLAIN_SECTION_HEADING_PATTERN.fullmatch(compact))
+
+
+def plain_section_heading_body(text: str) -> str | None:
+    """返回独立短标题后的空串或一级接排标题后的正文；普通列举返回 None。"""
+
+    if is_plain_section_heading(text):
+        return ""
+    # 括号编号接排通常也是事项列举，不仅凭编号切断同节比对。
+    prefix = re.match(r"^(?:[一二三四五六七八九十]+、|第[一二三四五六七八九十0-9]+[章节])", text)
+    if prefix is None:
+        return None
+    parts = re.split(r"[。：:]", text, maxsplit=1)
+    if len(parts) == 2 and parts[1].strip() and is_plain_section_heading(parts[0]):
+        # 独立短标题可以有并列词；接排时含列举、分句标点的首句仍按正文保守处理。
+        if re.search(r"[，,、]", parts[0][prefix.end():]):
+            return None
+        return parts[1].strip()
+    return None
 
 
 def explanatory_tail_cluster_findings(path_label: str, lines: list[str]) -> list[Finding]:
@@ -1225,7 +1292,7 @@ def state_paragraph_blocks(lines: list[str]) -> list[tuple[int, str]]:
     blocks: list[tuple[int, str]] = []
     current: list[str] = []
     start = 1
-    fence_length: int | None = None
+    fence_marker: str | None = None
 
     def flush() -> None:
         nonlocal current
@@ -1234,8 +1301,8 @@ def state_paragraph_blocks(lines: list[str]) -> list[tuple[int, str]]:
             current = []
 
     for index, line in enumerate(lines, start=1):
-        is_marker, fence_length = fence_marker_transition(fence_length, line)
-        if is_marker or fence_length is not None:
+        is_marker, fence_marker = fence_marker_transition(fence_marker, line)
+        if is_marker or fence_marker is not None:
             flush()
             continue
         if not line.strip():
@@ -1721,10 +1788,10 @@ def primary_line_findings(
         pattern for pattern in pattern_sets.primary if pattern[1] in DELIVERY_BODY_ONLY_LABELS
     ]
     frontmatter_lines = frontmatter_delimiter_indices(source.lines_to_scan) if include_format else None
-    fence_length: int | None = None
+    fence_marker: str | None = None
     for line_index, line in enumerate(source.lines_to_scan):
         line_no = line_index + 1
-        is_marker, fence_length = fence_marker_transition(fence_length, line)
+        is_marker, fence_marker = fence_marker_transition(fence_marker, line)
         if is_marker:
             if include_format:
                 findings.extend(
@@ -1749,7 +1816,7 @@ def primary_line_findings(
                     frontmatter_lines=frontmatter_lines,
                 )
             )
-        if fence_length is not None:
+        if fence_marker is not None:
             patterns = pattern_sets.primary if include_format else []
             if not include_format and delivery_mode in {"draft-body", "gap-note-allowed"}:
                 patterns = pattern_sets.delivery_fence
@@ -1788,12 +1855,12 @@ def delivery_section_findings(
 
     findings: list[Finding] = []
     start_index = 0 if delivery_mode == "review-only" else len(source.body_only_lines)
-    fence_length: int | None = None
+    fence_marker: str | None = None
     for zero_index, line in enumerate(source.lines[start_index:], start=start_index):
-        is_marker, fence_length = fence_marker_transition(fence_length, line)
+        is_marker, fence_marker = fence_marker_transition(fence_marker, line)
         if is_marker:
             continue
-        if fence_length is not None and delivery_mode == "review-only":
+        if fence_marker is not None and delivery_mode == "review-only":
             continue
         inline_spans = inline_code_spans(line)
         inline_starts = span_starts(inline_spans)
@@ -1871,10 +1938,10 @@ def paired_skeleton_findings(
     compiled = [(name, re.compile(pattern)) for name, pattern in PAIRED_SUMMARY_SKELETONS]
     counts = {name: 0 for name, _regex in compiled}
     first: dict[str, tuple[int, str]] = {}
-    fence_length: int | None = None
+    fence_marker: str | None = None
     for line_index, line in enumerate(source.lines_to_scan):
-        is_marker, fence_length = fence_marker_transition(fence_length, line)
-        if is_marker or fence_length is not None:
+        is_marker, fence_marker = fence_marker_transition(fence_marker, line)
+        if is_marker or fence_marker is not None:
             continue
         inline_spans = inline_code_spans(line)
         inline_starts = span_starts(inline_spans)
