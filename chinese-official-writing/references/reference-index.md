@@ -33,6 +33,7 @@
 - 政务信息、要情、专报简报按汇报、研究或公开报道用报告、调研或新闻主叶，选题编排加 `government-work-information.md`；填报征集汇总仍按办理用途，不因事务名称读宣传页。
 - 面向有权方的合作性意见建议、反馈、建议信：`genre-playbook-advisory-feedback.md`，建议信保留书信形态；下行指导监督或法定意见按相应文种。
 - 亲历方投诉、问题反映：`genre-playbook-complaint-reflection.md`。
+- 办理单位向群众答复热线、信箱或来函诉求：按解释回应或函件用途选主叶，需分清群众反映、核实情况与办理结论时加 `investigation-verification.md`。
 - 根据检查审计督察评估反馈或问题清单制定本单位整改方案：`genre-playbook-remediation-plan.md`；普通方案不因偶现“整改”改路。
 - 整改进展按报告、说明或通报加 `transaction-remediation-report.md`；反馈情况报告用报告加 `transaction-feedback-report.md`。
 
