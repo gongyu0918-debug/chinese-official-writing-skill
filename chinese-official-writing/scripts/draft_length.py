@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Measure draft length before substantive review; no host lifecycle required."""
+"""Measure draft length before substantive review."""
 
 from __future__ import annotations
 
@@ -30,7 +30,7 @@ CJK_IDEOGRAPHS = re.compile(
 
 
 def count_length(text: str, mode: str = "nonspace") -> int:
-    """Reuse the existing review-gate counting convention as a pure function."""
+    """Count non-whitespace characters or CJK ideographs as a pure function."""
     if mode == "cjk":
         return len(CJK_IDEOGRAPHS.findall(text))
     if mode != "nonspace":
