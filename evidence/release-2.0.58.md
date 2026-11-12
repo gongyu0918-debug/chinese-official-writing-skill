@@ -30,4 +30,26 @@
 
 ## 发布回执
 
-待追加。
+### GitHub
+
+- 发布提交：`bb1260c94cd622bf89db33883d938d8295743792`；annotated tag object：`a09f1f274735d75e3231d7151d4a96601042c953`。
+- `main` 已从 `b2fb168` 快进至 `bb1260c`，annotated tag `2.0.58` 已推送；Release 为 `https://github.com/gongyu0918-debug/chinese-official-writing-skill/releases/tag/2.0.58`，`draft=false`、`prerelease=false`。
+- 通用 ZIP 94 文件，SHA-256 `4f70bd6d083b0a7fc0945d7c234682b4539b794f767eb62cd341cefe96891e6e`；ClawHub ZIP 93 文件，`0de2e6b6c5d923f6f3b903dba3071290b1acf7262723b4617198eff6c47409e5`；SkillHub ZIP 94 文件，`23b060daab172593b4b5b71f6576f76264447b9d4e8894997c583dc434490e85`。四个远程附件均实际下载复核，字节哈希与本地一致，`SHA256SUMS.txt` 内容一致。
+
+### ClawHub
+
+- 正式提交一次，返回 `Published chinese-official-writing@2.0.58`，`versionId=k9729jc768ywftygh7byjk2ckh8j2f5y`。
+- 首次只读查询公开 latest 仍为 2.0.57，精确 2.0.58 返回 `Version not found`，按异步传播处理，未重复提交。
+- 后续公开 latest 与精确版本均已切换为 2.0.58；文件清单 93 个，与 Release 的 ClawHub ZIP 逐文件 SHA-256 一致。`security.status=clean`、`hasWarnings=false`，版本级 `security.sha256hash=facb983add6221636824c3d102e2f3586937673ae4ab5f7df9bbba0aea46bf05`，moderation 为 clean。
+
+### skillhub.cn
+
+- 正式提交一次，返回 `skillId=70149`、`versionId=509410`、94 文件、fingerprint `29c1b9aa7c2afc1e90b34785d05b6332244d5383a791d643e3099fba1fa2d041`、`tags.latest=2.0.58`。
+- 提交时 `reviewStatus=pending`、`securityScanStatus=pending`、`contentAuditStatus=pending`。公开搜索首次仍显示 2.0.57，未重复提交。
+- 后续公开搜索已切换为 2.0.58。隔离安装共 94 个文件；排除平台补入的 `_meta.json` 后，其余 93 个文件与 Release 的 SkillHub ZIP 逐文件 SHA-256 一致。内部 review、security scan 和 content audit 状态不因公开切换而推定为通过。
+
+### 本机 Codex 安装
+
+- 本地插件源提交：`2b746505c080e58852d1273470dde78b71029b64`。
+- `chinese-official-writing@personal` 已重装为 2.0.58，`installed=true`、`enabled=true`。安装缓存 94/94 个 Git blob 和 SHA-256 均与发布提交 `bb1260c` 一致。
+- 下一轮对话可使用更新后的 Skill；未向小红书 Red SkillHub 提交。
