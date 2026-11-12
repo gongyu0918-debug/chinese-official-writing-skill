@@ -16,7 +16,7 @@
     "outputs": ["L6-B3.md"]
   },
   "release_metadata": {
-    "commit": "0e1281e",
-    "note": "仅推进 README 版本元数据并增加发布证据；相对 abda42e 未再改变写稿规则。"
+    "commit": null,
+    "note": "0e1281e 及后续文档提交仅推进 README 版本元数据并增加证据；相对 abda42e 未再改变写稿规则。最终发布提交以 tag 解引用为准。"
   }
 }

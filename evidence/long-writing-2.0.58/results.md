@@ -1,6 +1,6 @@
 # 长文与多文种真实写稿结果
 
-日期：2026-11-12。基线为 `b2fb1682f1f7a968f2e9c5a806acd29a475d333d`，首轮候选为 `b86e45a1df1dd69a703cfa1bd51bf3eda6656ef0`。优化后候选分两段：`7016f35` 对应 L1-A2、L5-A2、L6-B2、L9-A2；`abda42e` 仅对应 L6-B3。最终发布提交为 `0e1281e`，其产品规则树相对 `abda42e` 仅推进 README 版本元数据并增加发布证据，未再改变写稿规则。原始输出保存在 scratch `C:\Users\2\Documents\chinese-official-writing\output\long-writing-2.0.58`，原始 prompt 与映射见 `cases/`、`plan.md`。verifier 不接收映射，以下在评审结束后解盲。
+日期：2026-11-12。基线为 `b2fb1682f1f7a968f2e9c5a806acd29a475d333d`，首轮候选为 `b86e45a1df1dd69a703cfa1bd51bf3eda6656ef0`。优化后候选分两段：`7016f35` 对应 L1-A2、L5-A2、L6-B2、L9-A2；`abda42e` 仅对应 L6-B3。版本与证据提交为 `0e1281e` 及后续文档提交，最终发布提交以 tag 解引用为准；这些提交相对 `abda42e` 未再改变写稿规则。原始输出保存在 scratch `C:\Users\2\Documents\chinese-official-writing\output\long-writing-2.0.58`，原始 prompt 与映射见 `cases/`、`plan.md`。verifier 不接收映射，以下在评审结束后解盲。
 
 ## 首轮 2.0.57 对 b86e45a
 
