@@ -16,6 +16,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 from prose_lint import InputReadError, body_lines, printable, read_text, scan
 
 TRIAL_NOTICE = "文后提示：本稿为拟生成稿件。"
+COUNT_SCOPES = ("auto", "full")
 
 # Unicode 17.0 assigned CJK unified/compatibility ideographs plus ideographic zero.
 # Pin the repertoire rather than depending on the host Python Unicode database.
@@ -90,8 +91,22 @@ def measure_draft(
     maximum: int | None = None,
     delivery_mode: str = "draft-body",
     include_outline: bool = False,
+    count_scope: str = "auto",
 ) -> dict:
-    draft = text if delivery_mode == "review-only" else "\n".join(body_lines(text.splitlines()))
+    if count_scope not in COUNT_SCOPES:
+        raise ValueError(f"unsupported count scope: {count_scope}")
+    if count_scope == "full":
+        draft = text
+        scope = "full-text"
+    elif delivery_mode == "gap-note-allowed":
+        draft = "\n".join(body_lines(text.splitlines()))
+        scope = "draft-before-postscript"
+    elif delivery_mode == "review-only":
+        draft = text
+        scope = "full-review"
+    else:
+        draft = text
+        scope = "full-draft"
     count = count_length(draft, mode)
     below = max(minimum - count, 0) if minimum is not None else 0
     above = max(count - maximum, 0) if maximum is not None else 0
@@ -106,7 +121,7 @@ def measure_draft(
     report = {
         "path": path,
         "mode": mode,
-        "scope": "full-review" if delivery_mode == "review-only" else "draft-before-postscript",
+        "scope": scope,
         "count": count,
         "minimum": minimum,
         "maximum": maximum,
@@ -126,6 +141,12 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("files", nargs="+", help="TXT/MD/DOCX paths, or '-' for stdin.")
     parser.add_argument("--encoding", help="Encoding for text files.")
     parser.add_argument("--count-mode", choices=("nonspace", "cjk"), default="nonspace")
+    parser.add_argument(
+        "--count-scope",
+        choices=("auto", "full"),
+        default="auto",
+        help="auto follows delivery mode; full always counts the complete input.",
+    )
     parser.add_argument("--min-chars", type=int, help="Lower bound per input draft.")
     parser.add_argument("--max-chars", type=int, help="Upper bound per input draft.")
     parser.add_argument(
@@ -163,7 +184,7 @@ def main(argv: list[str] | None = None) -> int:
             continue
         report = measure_draft(
             path, text, args.count_mode, args.min_chars, args.max_chars,
-            args.delivery_mode, args.outline,
+            args.delivery_mode, args.outline, args.count_scope,
         )
         if args.trial:
             lines = text.strip().splitlines()
