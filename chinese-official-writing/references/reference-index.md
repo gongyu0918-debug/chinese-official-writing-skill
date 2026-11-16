@@ -49,6 +49,7 @@
 - 受理方调查核实具体反映争议异常：`investigation-verification.md`；一般调研与亲历投诉沿主叶。
 - 交办、催办和督办通知、函或流程说明加 `follow-up-supervision.md`；办理汇报沿报告及反馈页。
 - 材料报送或征集任务涉及多个主体、不同统计口径、分层汇总或多项材料时，加 `material-submission.md`；简单提交只写材料期限渠道。
+- 多份记录、数据表、旧稿与补充说明需要跨来源归并、协调口径或连续统稿时，加 `multi-material-drafting.md`；文种沿本次稿件用途。
 - 字段表单：`field-editing.md`；结构增删移动标题重排：`structure-editing.md`；长文压缩：`compression-details.md`。
 - 请假、采购或经费申请的业务加读见申请主叶；其他文种需核对采购规格、响应或履约条件时用 `procurement-review.md`，核对多项费用、分期资金或申请额度时用 `funding-budget.md`。
 - 系统实施、迁移整合、过渡交付运维：`information-system-projects.md`；只申请已给范围费用时沿项目申请，不自动扩展后续缺项。
