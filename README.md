@@ -1,6 +1,6 @@
 # 中文公文写作 Skill
 
-[![Version](https://img.shields.io/badge/version-2.0.61-blue)](https://github.com/gongyu0918-debug/chinese-official-writing-skill/releases/tag/2.0.61)
+[![Version](https://img.shields.io/badge/version-2.0.62-blue)](https://github.com/gongyu0918-debug/chinese-official-writing-skill/releases/tag/2.0.62)
 [![ClawHub downloads: 10,938](https://img.shields.io/badge/ClawHub%20downloads-10%2C938-2f80ed)](https://clawhub.ai/gongyu0918-debug/skills/chinese-official-writing)
 [![SkillHub downloads: 399,253](https://img.shields.io/badge/SkillHub%20downloads-399%2C253-2f855a)](https://skillhub.cn/skills/user_f3d82da7/chinese-official-writing)
 [![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
@@ -22,11 +22,11 @@
 
 ## 安装
 
-从 [GitHub 2.0.61 源码](https://github.com/gongyu0918-debug/chinese-official-writing-skill/releases/tag/2.0.61) 获取本版，将 `chinese-official-writing` 文件夹放入所用应用的 Skill 目录。
+从 [GitHub 2.0.62 源码](https://github.com/gongyu0918-debug/chinese-official-writing-skill/releases/tag/2.0.62) 获取本版，将 `chinese-official-writing` 文件夹放入所用应用的 Skill 目录。
 
-WorkBuddy 用户可下载[无 Hooks 适配包](https://github.com/gongyu0918-debug/chinese-official-writing-skill/releases/download/2.0.61/chinese-official-writing-2.0.61-workbuddy.zip)，包内包含完整规则、脚本及平台入口。
+WorkBuddy 用户可下载[无 Hooks 适配包](https://github.com/gongyu0918-debug/chinese-official-writing-skill/releases/download/2.0.62/chinese-official-writing-2.0.62-workbuddy.zip)，包内包含完整规则、脚本及平台入口。
 
-[SkillHub](https://skillhub.cn/skills/user_f3d82da7/chinese-official-writing) 和 [ClawHub](https://clawhub.ai/gongyu0918-debug/skills/chinese-official-writing) 提供商店安装；本版发布号为 2.0.61，各商店可用版本及审核状态以平台实际结果为准。篇幅与文稿检查需要 Python 3；Word 文件生成需要宿主提供文档工具。
+[SkillHub](https://skillhub.cn/skills/user_f3d82da7/chinese-official-writing) 和 [ClawHub](https://clawhub.ai/gongyu0918-debug/skills/chinese-official-writing) 提供商店安装；本版发布号为 2.0.62，各商店可用版本及审核状态以平台实际结果为准。篇幅与文稿检查需要 Python 3；Word 文件生成需要宿主提供文档工具。
 
 ## 使用
 
@@ -73,7 +73,7 @@ Word 默认采用单位模板或默认样式；明确要求正式国标时另核
 
 ## 版本与许可
 
-GitHub 当前版本为 **2.0.61**。1.x 最后版本 **1.6.36** 保留在 [legacy/1.x](https://github.com/gongyu0918-debug/chinese-official-writing-skill/tree/legacy/1.x) 分支。
+GitHub 当前版本为 **2.0.62**。1.x 最后版本 **1.6.36** 保留在 [legacy/1.x](https://github.com/gongyu0918-debug/chinese-official-writing-skill/tree/legacy/1.x) 分支。
 
 本项目采用 [MIT License](LICENSE)，允许修改、分发和商业使用，请保留版权及许可声明。
 
