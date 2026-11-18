@@ -1,13 +1,13 @@
 # 中文公文写作 Skill
 
 [![Version](https://img.shields.io/badge/version-2.0.63-blue)](https://github.com/gongyu0918-debug/chinese-official-writing-skill/releases/tag/2.0.63)
-[![ClawHub downloads: 10,938](https://img.shields.io/badge/ClawHub%20downloads-10%2C938-2f80ed)](https://clawhub.ai/gongyu0918-debug/skills/chinese-official-writing)
-[![SkillHub downloads: 399,253](https://img.shields.io/badge/SkillHub%20downloads-399%2C253-2f855a)](https://skillhub.cn/skills/user_f3d82da7/chinese-official-writing)
+[![ClawHub downloads: 11,975](https://img.shields.io/badge/ClawHub%20downloads-11%2C975-2f80ed)](https://clawhub.ai/gongyu0918-debug/skills/chinese-official-writing)
+[![SkillHub downloads: 482,559](https://img.shields.io/badge/SkillHub%20downloads-482%2C559-2f855a)](https://skillhub.cn/skills/user_f3d82da7/chinese-official-writing)
 [![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 
-下载量更新于 2026-11-03 14:38（北京时间），取自各平台公开统计接口。
+下载量更新于 2026-11-18。取自各平台公开统计接口。
 
-[WorkBuddy](https://www.workbuddy.cn/app/skills)（近90天，截至2026-10-26）：调用量 **22,852**，安装量 **16,970**。
+[WorkBuddy](https://www.workbuddy.cn/share/asset?extra_from=&resource_type=link&shareCode=cs261118nAUsKCiZKU2BcVQJ8NE7LL&share_way=link&sig=-5u190H_fC6YHhBu)（客户端快照，2026-11-18）：使用量约 **5.06 万**，下载量约 **5.25 万**。
 
 用于中文公文、事务性材料、工作材料、新闻消息和新闻评论的起草、改写、压缩、润色、审核及 Word 正文整理。
 
@@ -24,7 +24,7 @@
 
 从 [GitHub 2.0.63 源码](https://github.com/gongyu0918-debug/chinese-official-writing-skill/releases/tag/2.0.63) 获取本版，将 `chinese-official-writing` 文件夹放入所用应用的 Skill 目录。
 
-WorkBuddy 用户可下载[无 Hooks 适配包](https://github.com/gongyu0918-debug/chinese-official-writing-skill/releases/download/2.0.63/chinese-official-writing-2.0.63-workbuddy.zip)，包内包含完整规则、脚本及平台入口。
+WorkBuddy 用户可打开[分享页](https://www.workbuddy.cn/share/asset?extra_from=&resource_type=link&shareCode=cs261118nAUsKCiZKU2BcVQJ8NE7LL&share_way=link&sig=-5u190H_fC6YHhBu)，或下载[无 Hooks 适配包](https://github.com/gongyu0918-debug/chinese-official-writing-skill/releases/download/2.0.63/chinese-official-writing-2.0.63-workbuddy.zip)，包内包含完整规则、脚本及平台入口。
 
 [SkillHub](https://skillhub.cn/skills/user_f3d82da7/chinese-official-writing) 和 [ClawHub](https://clawhub.ai/gongyu0918-debug/skills/chinese-official-writing) 提供商店安装；本版发布号为 2.0.63，各商店可用版本及审核状态以平台实际结果为准。篇幅与文稿检查需要 Python 3；Word 文件生成需要宿主提供文档工具。
 
