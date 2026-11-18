@@ -26,4 +26,4 @@
 
 核对报告功能、用户指定结构与名称、各组数量及状态对应，区分事实、分析和建议。尤其检查子集变整体、建议变决定、统计时点变个案发生时点，以及无关同期工作挤占主旨；通用语言与交付按 `writing-rules.md`。
 
-已有整改进展或整改情况读 `transaction-remediation-report.md`；意见办理、落实或反馈情况读 `transaction-feedback-report.md`。
+已有整改进展或整改情况读 `transaction-remediation-report.md`；意见办理、落实或反馈情况读 `transaction-feedback-report.md`。实际突发事件初报、续报、阶段终报读 `incident-reporting.md`。
