@@ -160,6 +160,11 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--trial", action="store_true", help="Require the fixed final trial-draft notice; never infer drafting intent.")
     parser.add_argument("--delivery-mode", choices=("draft-body", "gap-note-allowed", "review-only"), default=None)
     parser.add_argument("--allow-markdown", action="store_true")
+    parser.add_argument(
+        "--include-hidden",
+        action="store_true",
+        help="Include DOCX hidden runs (w:vanish) in character counts; skipped by default.",
+    )
     args = parser.parse_args(argv)
     if args.delivery_mode is None:
         args.delivery_mode = "gap-note-allowed" if args.trial else "draft-body"
@@ -177,6 +182,7 @@ def main(argv: list[str] | None = None) -> int:
             path, text = read_text(
                 file_arg, args.encoding, docx_scope="main-document",
                 docx_format_findings=docx_format_findings if args.scan else None,
+                docx_skip_hidden=not args.include_hidden,
             )
         except InputReadError as exc:
             print(printable(f"ERROR: {exc}"), file=sys.stderr)

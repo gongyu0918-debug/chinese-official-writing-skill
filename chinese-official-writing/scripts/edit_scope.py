@@ -86,6 +86,21 @@ def check_scope(original: str, candidate: str, plan: dict) -> dict:
     }
 
 
+def generate_in_memory(original: str, plan: dict) -> dict:
+    """Apply the validated literal plan strictly in memory with zero disk writes."""
+    expected = expected_text(original, plan)
+    payload = expected.encode("utf-8")
+    return {
+        "scope": "exact-text-replacement-plan",
+        "action": "generated-in-memory",
+        "source_sha256": text_sha256(original),
+        "output_sha256": hashlib.sha256(payload).hexdigest(),
+        "edit_count": len(plan["edits"]),
+        "output_length": len(expected),
+        "output_text": expected,
+    }
+
+
 def write_candidate(original: str, plan: dict, output: str) -> dict:
     """Apply the validated literal plan to a new file; never overwrite a draft."""
     expected = expected_text(original, plan)
@@ -107,15 +122,51 @@ def main(argv: list[str] | None = None) -> int:
     if hasattr(sys.stdout, "reconfigure"):
         sys.stdout.reconfigure(encoding="utf-8")
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--original", required=True, help="最新版原稿，UTF-8 TXT/MD。")
-    destination = parser.add_mutually_exclusive_group(required=True)
+    parser.add_argument("--original", help="最新版原稿，UTF-8 TXT/MD。")
+    destination = parser.add_mutually_exclusive_group()
     destination.add_argument("--candidate", help="比较改后稿件，UTF-8 TXT/MD。")
-    destination.add_argument("--output", help="按计划生成新的 UTF-8 TXT/MD，不覆盖已有文件。")
-    parser.add_argument("--plan", required=True, help="依本轮修改要求预先确定的 JSON 替换计划。")
+    destination.add_argument("--output", help="按计划生成新的 UTF-8 TXT/MD（不覆盖已有文件），或传 '-' 经标准输出返回纯文本。")
+    parser.add_argument("--plan", help="依本轮修改要求预先确定的 JSON 替换计划。")
+    parser.add_argument(
+        "--stdin",
+        action="store_true",
+        help="零落盘内存模式：从标准输入读取 UTF-8 JSON（含 original、edits，及可选 source_sha256、candidate）。",
+    )
     args = parser.parse_args(argv)
     try:
+        if args.stdin:
+            if args.original or args.plan or args.output is not None or args.candidate is not None:
+                raise ValueError("--stdin 模式不可与文件路径参数混用")
+            raw = json.loads(sys.stdin.read().lstrip("\ufeff"))
+            if not isinstance(raw, dict):
+                raise ValueError("--stdin 输入必须为 JSON 对象")
+            allowed_keys = {"original", "edits", "source_sha256", "candidate"}
+            if set(raw) - allowed_keys:
+                raise ValueError(f"--stdin 输入含未支持字段：{sorted(set(raw) - allowed_keys)}")
+            original = raw.get("original")
+            if not isinstance(original, str):
+                raise ValueError("--stdin 必须包含字符串字段 original")
+            plan = {"edits": raw.get("edits")}
+            if "source_sha256" in raw:
+                plan["source_sha256"] = raw["source_sha256"]
+            if "candidate" in raw:
+                candidate = raw["candidate"]
+                if not isinstance(candidate, str):
+                    raise ValueError("--stdin 的 candidate 必须为字符串")
+                report = check_scope(original, candidate, plan)
+                print(json.dumps(report, ensure_ascii=False, indent=2))
+                return 0 if report["matches"] else 1
+            report = generate_in_memory(original, plan)
+            print(json.dumps(report, ensure_ascii=False, indent=2))
+            return 0
+
+        if not args.original or not args.plan or (args.output is None and args.candidate is None):
+            raise ValueError("非 --stdin 模式必须提供 --original、--plan 以及 --output 或 --candidate")
         plan = json.loads(Path(args.plan).read_bytes().decode("utf-8-sig"))
         original = read_plain(args.original)
+        if args.output == "-":
+            sys.stdout.write(expected_text(original, plan))
+            return 0
         if args.output is not None:
             report = write_candidate(original, plan, args.output)
         else:

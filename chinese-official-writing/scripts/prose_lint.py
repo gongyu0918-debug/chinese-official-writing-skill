@@ -140,7 +140,7 @@ DELIVERY_PATTERNS: list[PatternSpec] = [
     (
         "medium",
         "material-reading-narration",
-        r"受(?:当前|现有|已有|本轮|本次)?(?:资料|材料|信息|数据|素材)(?:范围|口径)?(?:所限|限制)",
+        r"受(?:当前|现有|已有|本轮|本次)?(?:资料|材料|信息|数据|素材|统计|样本)(?:范围|口径)?(?:所限|限制)",
         "核对这是否是模型对输入范围的解释；成稿直接按已有事实表述，默认删去对素材范围受限的旁白。",
     ),
     (
@@ -315,7 +315,7 @@ DRAFT_BODY_PATTERNS: list[PatternSpec] = [
     (
         "medium",
         "negative-boundary-tail",
-        r"[，,；;](?:但|但这|这|也|并|同时|并且|而且|因而|因此)?(?:也|并)?"
+        r"(?:[，,；;]|(?<=[。！？]))(?:但|但这|这|也|并|同时|并且|而且|因而|因此|上述[^，,；;。！？\n]{0,10})?(?:也|并)?"
         r"(?:"
         r"(?:(?:暂|尚|仍)?不|并非)(?:直接)?(?:代表|等同于|意味着|构成|视作|视为|认定为|表明|说明|替代)"
         rf"[^。！？\n]{{{MIN_NEGATIVE_BOUNDARY_TAIL_CHARS},{NEGATIVE_BOUNDARY_TAIL_CHARS}}}"
@@ -327,10 +327,10 @@ DRAFT_BODY_PATTERNS: list[PatternSpec] = [
         rf"[^。！？\n]{{{MIN_NEGATIVE_BOUNDARY_TAIL_CHARS},{NEGATIVE_BOUNDARY_RESTRICTION_CHARS}}}"
         r"|(?:(?:本次|本轮|上述|相关|该)?[^，,；;。！？\n]{0,10})?(?:仅|只)作(?:[工作内部初步阶段性]*参考|为[^。！？\n]{2,36})"
         r"|(?:具体(?:情况|效果|成效|进展|结果|结论|水平|状态|是否[^，,；;。\n]{1,12})?(?:仍|还|最终)|具体(?:情况|效果|成效|结果|结论|状态|是否[^，,；;。\n]{1,12})|(?:最终|整体)?(?:效果|成效|结论|结果|定论)(?:仍|还)?)(?:需|要|须)?以[^。！？，,；;\n]{1,28}为准"
-        r"|(?:[^，,；;。！？\n]{0,24})(?:尚待|仍有待|有待)(?:在)?(?:后续|下一步)?[^。！？\n]{0,18}(?:进一步|持续)(?:检验|核实|验证|观察|评估|梳理)"
+        r"|(?:[^，,；;。！？\n]{0,24})(?:尚待|仍有待|有待)(?:在)?(?:后续|下一步)?[^。！？\n]{0,18}(?:进一步|持续)(?:检验|核实|验证|观察|评估|梳理|确认|研判|论证){1,2}"
         r")"
         r"(?=[，,；;。！？]|$)",
-        "疑似作者追加的保护性尾句。默认优先删除该尾句；原材料业务事实或用户指定条款按原意保留，并用准确阶段、依据和程度改写原句。仅为复核线索，不自动删除或阻止交付。",
+        "疑似作者追加的保护性尾句。优先删除该尾句并用前置定语写准范围；原材料业务事实、制度适用条款或用户指定条款按原意保留。仅为复核线索，不自动删除或阻止交付。",
     ),
     (
         "low",
@@ -380,6 +380,8 @@ DUPLICATE_NGRAM_SIZES = (2, 3)
 MIN_DUPLICATE_PARAGRAPH_CHARS = 60
 MIN_DUPLICATE_SHARED_TOKENS = 18
 MIN_DUPLICATE_TOKEN_RATIO = 0.42
+MIN_CROSS_SECTION_SHARED_TOKENS = 22
+MIN_CROSS_SECTION_TOKEN_RATIO = 0.55
 DUPLICATE_MATCH_PREVIEW_TOKENS = 6
 EXPLANATORY_TAIL_WINDOW_PARAGRAPHS = 5
 EXPLANATORY_TAIL_MIN_MATCHES = 3
@@ -599,13 +601,31 @@ def docx_content_elements(root: ElementTree.Element) -> Iterable[ElementTree.Ele
             pending.extend(reversed(elem))
 
 
+def run_is_hidden(run: ElementTree.Element) -> bool:
+    """判断单个文本运行是否标记了 Word 隐藏文字（w:vanish）。"""
+
+    namespace = run.tag.rsplit("}", 1)[0] + "}" if "}" in run.tag else ""
+    if namespace not in WORD_MAIN_NAMESPACES:
+        return False
+    properties = run.find(f"{namespace}rPr")
+    if properties is None:
+        return False
+    hidden = properties.find(f"{namespace}vanish")
+    return hidden is not None and hidden.get(f"{namespace}val", "true").lower() not in {"0", "false", "off"}
+
+
 def read_docx(
-    path: Path, scope: str = "all", *, format_findings: list[Finding] | None = None,
+    path: Path,
+    scope: str = "all",
+    *,
+    format_findings: list[Finding] | None = None,
+    skip_hidden: bool = False,
 ) -> str:
     """读取全部检查部件，或仅读取用于正文篇幅统计的主文档。
 
     读取前检查部件大小、压缩比和解压总量，拒绝含 DTD 的部件；--format 时仅统计
-    批注、修订和隐藏文字数量，不修改文件。
+    批注、修订和隐藏文字数量，不修改文件。skip_hidden=True 时跳过 w:vanish 隐藏运行
+    正文，避免隐藏文字混入可见篇幅统计。
     """
 
     pieces: list[str] = []
@@ -652,6 +672,7 @@ def read_docx(
                     raise InputReadError(f"DOCX 部件含 DTD，拒绝解析: {name}")
                 root = ElementTree.fromstring(data)
                 run_number = 0
+                hidden_run_children: set[ElementTree.Element] = set()
                 for elem in docx_content_elements(root):
                     tag = elem.tag.rsplit("}", 1)[-1]
                     namespace = elem.tag.rsplit("}", 1)[0] + "}" if "}" in elem.tag else ""
@@ -666,17 +687,30 @@ def read_docx(
                             residue["comments"] += 1
                     if tag == "r":
                         run_number += 1
+                        if skip_hidden and run_is_hidden(elem):
+                            for child_tag in ("t", "br", "tab"):
+                                hidden_run_children.update(elem.findall(f"{namespace}{child_tag}"))
                         if format_findings is not None:
                             finding = docx_zero_font_finding(path, elem, name, run_number, line_number)
                             if finding is not None:
                                 format_findings.append(finding)
                     if tag == "t" and elem.text:
+                        if skip_hidden and elem in hidden_run_children:
+                            continue
                         pieces.append(elem.text)
                         line_number += elem.text.count("\n")
-                    elif tag in {"p", "br"}:
+                    elif tag == "br":
+                        if skip_hidden and elem in hidden_run_children:
+                            continue
                         pieces.append("\n")
                         line_number += 1
+                    elif tag == "p":
+                        if pieces:
+                            pieces.append("\n")
+                            line_number += 1
                     elif tag == "tab":
+                        if skip_hidden and elem in hidden_run_children:
+                            continue
                         pieces.append("\t")
     except zipfile.BadZipFile as exc:
         raise InputReadError(f"文件损坏或不是有效 DOCX: {path}") from exc
@@ -707,8 +741,9 @@ def read_text(
     *,
     docx_scope: str = "all",
     docx_format_findings: list[Finding] | None = None,
+    docx_skip_hidden: bool = False,
 ) -> tuple[str, str]:
-    """读取文本；docx_scope 仅影响 DOCX，默认保持全包检查行为。"""
+    """读取文本；docx_scope 与 docx_skip_hidden 仅影响 DOCX，默认保持全包检查行为。"""
 
     if path_arg == "-":
         return "<stdin>", sys.stdin.read()
@@ -716,7 +751,12 @@ def read_text(
     path = Path(path_arg)
     try:
         if path.suffix.lower() == ".docx":
-            return str(path), read_docx(path, scope=docx_scope, format_findings=docx_format_findings)
+            return str(path), read_docx(
+                path,
+                scope=docx_scope,
+                format_findings=docx_format_findings,
+                skip_hidden=docx_skip_hidden,
+            )
         raw = path.read_bytes()
     except InputReadError:
         raise
@@ -1151,7 +1191,7 @@ def content_tokens(text: str) -> set[str]:
 
 
 def duplicate_findings(path_label: str, lines: list[str]) -> list[Finding]:
-    """同节内比对重复事项；整篇两两比较有上限，超长稿改用固定滑窗保持有界。"""
+    """比对同节重复与高相似跨节复述（如总述预演）；整篇两两比较有上限，超长稿用滑窗保持有界。"""
 
     prepared: list[tuple[int, str, int, set[str]]] = []
     for line_no, text, section in paragraph_blocks(lines):
@@ -1172,24 +1212,32 @@ def duplicate_findings(path_label: str, lines: list[str]) -> list[Finding]:
             for second in range(len(prepared))
             for first in range(max(0, second - DUPLICATE_COMPARE_WINDOW), second)
         )
-    best: dict[int, tuple[float, int, set[str]]] = {}
+    same_section_best: dict[int, tuple[float, int, set[str]]] = {}
+    cross_section_best: dict[int, tuple[float, int, set[str]]] = {}
     for first, second in pairs:
         prev_line, _prev_text, prev_section, prev_tokens = prepared[first]
         line_no, _text, section, tokens = prepared[second]
-        if section != prev_section:
-            continue
         shared = prev_tokens & tokens
-        if len(shared) < MIN_DUPLICATE_SHARED_TOKENS:
-            continue
-        union = prev_tokens | tokens
-        ratio = len(shared) / len(union)
-        if ratio < MIN_DUPLICATE_TOKEN_RATIO:
-            continue
-        current = best.get(second)
-        if current is None or ratio > current[0]:
-            best[second] = (ratio, first, shared)
+        if section == prev_section:
+            if len(shared) < MIN_DUPLICATE_SHARED_TOKENS:
+                continue
+            ratio = len(shared) / len(prev_tokens | tokens)
+            if ratio < MIN_DUPLICATE_TOKEN_RATIO:
+                continue
+            current = same_section_best.get(second)
+            if current is None or ratio > current[0]:
+                same_section_best[second] = (ratio, first, shared)
+        else:
+            if len(shared) < MIN_CROSS_SECTION_SHARED_TOKENS:
+                continue
+            ratio = len(shared) / len(prev_tokens | tokens)
+            if ratio < MIN_CROSS_SECTION_TOKEN_RATIO:
+                continue
+            current = cross_section_best.get(second)
+            if current is None or ratio > current[0]:
+                cross_section_best[second] = (ratio, first, shared)
     findings: list[Finding] = []
-    for second, (_ratio, first, shared) in sorted(best.items()):
+    for second, (_ratio, first, shared) in sorted(same_section_best.items()):
         prev_line = prepared[first][0]
         line_no = prepared[second][0]
         gap = second - first - 1
@@ -1202,6 +1250,21 @@ def duplicate_findings(path_label: str, lines: list[str]) -> list[Finding]:
                 label="adjacent-duplicate-matter",
                 match=";".join(sorted(shared)[:DUPLICATE_MATCH_PREVIEW_TOKENS]),
                 excerpt=f"与前面约第 {prev_line} 行（{distance}）事项重叠较高；检查是否为同一组事实多处回说。",
+            )
+        )
+    for second, (_ratio, first, shared) in sorted(cross_section_best.items()):
+        if second in same_section_best:
+            continue
+        prev_line = prepared[first][0]
+        line_no = prepared[second][0]
+        findings.append(
+            Finding(
+                path=path_label,
+                line=line_no,
+                severity="low",
+                label="cross-section-duplicate-matter",
+                match=";".join(sorted(shared)[:DUPLICATE_MATCH_PREVIEW_TOKENS]),
+                excerpt=f"与前节约第 {prev_line} 行文字重叠较高（疑似总述预演或跨章照搬复述）；若非必要承接摘要，建议合在一处写清。",
             )
         )
     return findings
@@ -1713,6 +1776,47 @@ def fence_findings(
     return findings
 
 
+STATUTORY_SCOPE_SENTENCE_PATTERN = re.compile(
+    r"(?:本(?:办法|规定|制度|细则|规程|条例|合同|协议)(?:所称|适用|仅|不)|"
+    r"不替代(?:国家|有关|现行|相关)[^。！？\n]{0,28}(?:监管|管理|安全|许可|法律|法规|标准|规定))"
+)
+
+
+def is_statutory_scope_clause(line: str, start: int, end: int) -> bool:
+    """仅当命中片段所在的同一句本身在陈述制度/合同适用或法定不替代规则时豁免。"""
+
+    sent_left = max(line.rfind("。", 0, start), line.rfind("！", 0, start), line.rfind("？", 0, start))
+    sent_start = sent_left + 1 if sent_left != -1 else 0
+    sent_ends = [pos for sep in ("。", "！", "？") if (pos := line.find(sep, end)) != -1]
+    sent_end = min(sent_ends) if sent_ends else len(line)
+    sentence = line[sent_start:sent_end]
+    return bool(STATUTORY_SCOPE_SENTENCE_PATTERN.search(sentence))
+CROSS_LINE_SUGGESTION_HEADING_PATTERN = re.compile(
+    r"(?:^|\n)[ \t]*(?:[一二三四五六七八九十]+、|（[一二三四五六七八九十]+）)?[^。\n]{0,14}(?:建议|拟采取|下步建议|工作建议)[：:]?\s*\n[ \t]*(?:一是|1\.|（一）)拟"
+)
+
+
+def cross_line_stacked_hedging_findings(path_label: str, source: ScanSource) -> list[Finding]:
+    """检查建议类小标题或总领行与下一行分项叠用“拟”的情况。"""
+
+    findings: list[Finding] = []
+    text = source.text_to_scan
+    for match in CROSS_LINE_SUGGESTION_HEADING_PATTERN.finditer(text):
+        line_no = text[: match.start()].count("\n") + (2 if match.group(0).startswith("\n") else 1)
+        snippet = re.sub(r"\s+", " ", match.group(0).strip())
+        findings.append(
+            Finding(
+                path=path_label,
+                line=line_no,
+                severity="low",
+                label="stacked-hedging-prefix",
+                match=snippet,
+                excerpt="小标题或总领句已交代建议性质，下一行分项无需再次叠用“拟”；保留一处即可。",
+            )
+        )
+    return findings
+
+
 def plain_line_findings(
     path_label: str,
     source: ScanSource,
@@ -1759,6 +1863,10 @@ def plain_line_findings(
                     continue
             if label == "western-bullet" and is_attachment_number_item(
                 source.lines, line_index, line, attachment_boundary
+            ):
+                continue
+            if label == "negative-boundary-tail" and is_statutory_scope_clause(
+                line, match.start(), match.end()
             ):
                 continue
             span = (match.start(), match.end())
@@ -2195,6 +2303,7 @@ def scan(
     )
     if delivery_mode in {"draft-body", "gap-note-allowed"}:
         findings.extend(protective_state_findings(path_label, source))
+        findings.extend(cross_line_stacked_hedging_findings(path_label, source))
     findings.extend(
         aggregate_findings(
             path_label,
