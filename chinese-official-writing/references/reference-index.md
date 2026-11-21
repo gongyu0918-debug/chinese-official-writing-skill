@@ -41,6 +41,8 @@
 
 ## 任务加读
 
+- 受调研单位向主管部门书面说明本单位专项工作，按主文种加读 `genre-playbook-explanation.md` 的“向主管部门作专项调研情况说明”。
+- 软件正版使用、许可范围核查或整改是本次交付的主项时，加 `software-licensing.md`。采购的许可条款随采购条件写，接入的账号及接口随技术用途写。
 - 党支部组织生活、民主评议及相关述职整改需区分主体和程序时，加 `party-organizational-life.md`；党务主题仍按实际用途选主叶。
 - 方案比较、跨段论证或执行链：`argument-chains.md`；关系敬语称谓：`formal-addressing.md`；固定用语：`formulaic-language.md`。
 - 内部签报、拟办意见及签批表单：`internal-signoff.md`；工作及值班交接：`work-handover.md`；先按请批、告知、报告或说明用途选主叶，独立清单保留字段。
