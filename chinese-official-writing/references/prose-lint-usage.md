@@ -1,6 +1,6 @@
 # 脚本工具使用指南（计数、扫描、定位与精确替换）
 
-本页供需要实测篇幅、机械风险扫描、原文定位或精确逐字替换时使用。所有脚本均为 Python 3 标准库实现，按已读 `SKILL.md` 所在目录定位，命令统一加 `-B` 避免生成字节码缓存。工具输出仅供内部核对，不写入最终回复（用户明确要求检查报告时除外）；工具受限时直接人工核对，不宣称实测达标。
+本页供需要实测篇幅、机械风险扫描、原文定位或精确逐字替换时使用。所有脚本均为 Python 3 标准库实现（macOS/Linux 优先用 `python3`，Windows 可用 `python` 或 `py -3`），按已读 `SKILL.md` 所在目录定位，命令统一加 `-B` 避免生成字节码缓存。工具输出仅供内部核对，不写入最终回复（用户明确要求检查报告时除外）；工具受限时直接人工核对，不宣称实测达标。
 
 ---
 
@@ -17,7 +17,7 @@
 - **常用命令（计数与扫描一次合并执行，无需重复跑两次）：**
 
 ```text
-python -B -X utf8 "<Skill目录>/scripts/draft_length.py" --scan --delivery-mode draft-body --min-chars <下限> --max-chars <上限> --fail-on-violation -
+python3 -B -X utf8 "<Skill目录>/scripts/draft_length.py" --scan --delivery-mode draft-body --min-chars <下限> --max-chars <上限> --fail-on-violation -
 ```
 
 - 仅计数不扫描时去掉 `--scan`（需 JSON 加 `--json`，单侧限字只传对应上下限，不给短稿加默认下限；`--outline` 可观察各段首句及字数占比）。
@@ -28,7 +28,7 @@ python -B -X utf8 "<Skill目录>/scripts/draft_length.py" --scan --delivery-mode
 无字数要求、仅需检查机械风险（AI 旁白、交付外壳、未完成占位符、重复标题、同节/跨节高相似复述、保护性尾句、Markdown 残留、DOCX 零字号与修订批注痕迹）或需扫描 DOCX 页眉页脚/批注全包时使用：
 
 ```text
-python -B -X utf8 "<Skill目录>/scripts/prose_lint.py" --delivery-mode draft-body --structure --format -
+python3 -B -X utf8 "<Skill目录>/scripts/prose_lint.py" --delivery-mode draft-body --structure --format -
 ```
 
 - 用户明确要求 Markdown 输出时加 `--allow-markdown`。
@@ -43,7 +43,7 @@ python -B -X utf8 "<Skill目录>/scripts/prose_lint.py" --delivery-mode draft-bo
 经标准输入传一条 UTF-8 JSON，在内存中完成精确校验与生成，**脚本自身不读写任何磁盘文件**（宿主自身的工具日志与标准输出留存仍按宿主安全策略处理）：
 
 ```text
-python -B -X utf8 "<Skill目录>/scripts/edit_scope.py" --stdin
+python3 -B -X utf8 "<Skill目录>/scripts/edit_scope.py" --stdin
 ```
 
 标准输入 JSON 格式：
@@ -59,7 +59,7 @@ python -B -X utf8 "<Skill目录>/scripts/edit_scope.py" --stdin
 3. 执行生成（`--output -` 直接向 stdout 输出纯文本不落盘；传新文件路径则排他创建，绝不覆盖原稿）：
 
 ```text
-python -B -X utf8 "<Skill目录>/scripts/edit_scope.py" --original "<原稿路径>" --output "<新稿路径或->" --plan "<计划JSON路径>"
+python3 -B -X utf8 "<Skill目录>/scripts/edit_scope.py" --original "<原稿路径>" --output "<新稿路径或->" --plan "<计划JSON路径>"
 ```
 - `old` 须非空；删除用 `new: ""`，插入用相邻原文作 `old` 锚点，空 `edits` 表示逐字保留；替换范围不得重叠。
 - 核对交付时，若用户只要求改后全文，最终回复直接从改后第一字开始、最后一字结束，不附脚本结果或说明。
@@ -69,13 +69,13 @@ python -B -X utf8 "<Skill目录>/scripts/edit_scope.py" --original "<原稿路�
 多份材料含补充更正、或需定位重复替换目标的精确 0 基偏移 `start` 时使用，支持 `--stdin` 零落盘 JSON 及本地 TXT/MD/DOCX 文件：
 
 ```text
-python -B -X utf8 "<Skill目录>/scripts/material_diff.py" --stdin
+python3 -B -X utf8 "<Skill目录>/scripts/material_diff.py" --stdin
 ```
 标准输入 JSON：`{"source": "有效材料", "draft": "稿件", "literals": ["预算38万元", "建议分期实施"]}`
 
 本地文件模式：
 ```text
-python -B -X utf8 "<Skill目录>/scripts/material_diff.py" --source "<材料路径>" --draft "<稿件路径>" --literal "预算38万元"
+python3 -B -X utf8 "<Skill目录>/scripts/material_diff.py" --source "<材料路径>" --draft "<稿件路径>" --literal "预算38万元"
 ```
 - 工具只列出精确子串的位置与上下文，不判定遗漏或事实对错（未命中可能是改写或格式变化），由人工结合上下文核对。DOCX 文件返回的是主文档提取文本坐标（不代表 Word 原生字符偏移，不可直接用作纯文本替换计划的 `start`）；`--stdin` 仅接收 UTF-8 文本 JSON。
 
