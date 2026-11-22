@@ -318,14 +318,14 @@ DRAFT_BODY_PATTERNS: list[PatternSpec] = [
         r"(?:[，,；;]|(?<=[。！？]))(?:但|但这|这|也|并|同时|并且|而且|因而|因此|上述[^，,；;。！？\n]{0,10})?(?:也|并)?"
         r"(?:"
         r"(?:(?:暂|尚|仍)?不|并非)(?:直接)?(?:代表|等同于|意味着|构成|视作|视为|认定为|表明|说明|替代)"
-        rf"[^。！？\n]{{{MIN_NEGATIVE_BOUNDARY_TAIL_CHARS},{NEGATIVE_BOUNDARY_TAIL_CHARS}}}"
+        rf"[^。！？；;\n]{{{MIN_NEGATIVE_BOUNDARY_TAIL_CHARS},{NEGATIVE_BOUNDARY_TAIL_CHARS}}}"
         r"|不宜(?:直接)?(?:代表|等同于|意味着|构成|视作|视为|认定为|替代|推论为)"
-        rf"[^。！？\n]{{{MIN_NEGATIVE_BOUNDARY_TAIL_CHARS},{NEGATIVE_BOUNDARY_TAIL_CHARS}}}"
+        rf"[^。！？；;\n]{{{MIN_NEGATIVE_BOUNDARY_TAIL_CHARS},{NEGATIVE_BOUNDARY_TAIL_CHARS}}}"
         r"|(?:(?:暂|尚|仍)?不|不宜)(?:直接)?(?:作为|用作)"
         rf"[^。！？，,；;\n]{{1,{NEGATIVE_BOUNDARY_BASIS_CHARS}}}(?:的)?(?:依据|凭证|证明|结论|定论|标准)"
         r"|(?:仅|只)(?:代表|反映|说明|用于|作为)"
-        rf"[^。！？\n]{{{MIN_NEGATIVE_BOUNDARY_TAIL_CHARS},{NEGATIVE_BOUNDARY_RESTRICTION_CHARS}}}"
-        r"|(?:(?:本次|本轮|上述|相关|该)?[^，,；;。！？\n]{0,10})?(?:仅|只)作(?:[工作内部初步阶段性]*参考|为[^。！？\n]{2,36})"
+        rf"[^。！？；;\n]{{{MIN_NEGATIVE_BOUNDARY_TAIL_CHARS},{NEGATIVE_BOUNDARY_RESTRICTION_CHARS}}}"
+        r"|(?:(?:本次|本轮|上述|相关|该)?[^，,；;。！？\n]{0,10})?(?:仅|只)作(?:[工作内部初步阶段性]*参考|为[^。！？；;\n]{2,36})"
         r"|(?:具体(?:情况|效果|成效|进展|结果|结论|水平|状态|是否[^，,；;。\n]{1,12})?(?:仍|还|最终)|具体(?:情况|效果|成效|结果|结论|状态|是否[^，,；;。\n]{1,12})|(?:最终|整体)?(?:效果|成效|结论|结果|定论)(?:仍|还)?)(?:需|要|须)?以[^。！？，,；;\n]{1,28}为准"
         r"|(?:[^，,；;。！？\n]{0,24})(?:尚待|仍有待|有待)(?:在)?(?:后续|下一步)?[^。！？\n]{0,18}(?:进一步|持续)(?:检验|核实|验证|观察|评估|梳理|确认|研判|论证){1,2}"
         r")"
@@ -1197,6 +1197,11 @@ def duplicate_findings(path_label: str, lines: list[str]) -> list[Finding]:
     for line_no, text, section in paragraph_blocks(lines):
         if len(text) < MIN_DUPLICATE_PARAGRAPH_CHARS:
             continue
+        stripped_p = text.strip()
+        if (stripped_p.startswith("“") and stripped_p.endswith("”")) or (
+            stripped_p.startswith('"') and stripped_p.endswith('"')
+        ):
+            continue
         tokens = content_tokens(text)
         if tokens:
             prepared.append((line_no, text, section, tokens))
@@ -1783,25 +1788,36 @@ STATUTORY_SCOPE_SENTENCE_PATTERN = re.compile(
 
 
 def is_statutory_scope_clause(line: str, start: int, end: int) -> bool:
-    """仅当命中片段所在的同一句本身在陈述制度/合同适用或法定不替代规则时豁免。"""
+    """仅当命中片段所在的同一分句本身在陈述制度/合同适用或法定不替代规则时豁免。"""
 
-    sent_left = max(line.rfind("。", 0, start), line.rfind("！", 0, start), line.rfind("？", 0, start))
+    while start < end and line[start] in "，,；; \t":
+        start += 1
+    seps = ("。", "！", "？", "；", ";")
+    sent_left = max(line.rfind(sep, 0, start) for sep in seps)
     sent_start = sent_left + 1 if sent_left != -1 else 0
-    sent_ends = [pos for sep in ("。", "！", "？") if (pos := line.find(sep, end)) != -1]
+    sent_ends = [pos for sep in seps if (pos := line.find(sep, end)) != -1]
     sent_end = min(sent_ends) if sent_ends else len(line)
-    sentence = line[sent_start:sent_end]
-    return bool(STATUTORY_SCOPE_SENTENCE_PATTERN.search(sentence))
+    clause = line[sent_start:sent_end]
+    return bool(STATUTORY_SCOPE_SENTENCE_PATTERN.search(clause))
+
+
 CROSS_LINE_SUGGESTION_HEADING_PATTERN = re.compile(
     r"(?:^|\n)[ \t]*(?:[一二三四五六七八九十]+、|（[一二三四五六七八九十]+）)?[^。\n]{0,14}(?:建议|拟采取|下步建议|工作建议)[：:]?\s*\n[ \t]*(?:一是|1\.|（一）)拟"
+)
+SPEAKER_ATTRIBUTION_SUGGESTION_PATTERN = re.compile(
+    r"(?:与会(?:人员|代表|专家)|代表|委员|专家|群众|企业|受访(?:者|单位|企业))建议"
 )
 
 
 def cross_line_stacked_hedging_findings(path_label: str, source: ScanSource) -> list[Finding]:
-    """检查建议类小标题或总领行与下一行分项叠用“拟”的情况。"""
+    """检查建议类小标题或总领行与下一行分项叠用“拟”的情况（排除会议发言归属行）。"""
 
     findings: list[Finding] = []
     text = source.text_to_scan
     for match in CROSS_LINE_SUGGESTION_HEADING_PATTERN.finditer(text):
+        lead_line = match.group(0).strip().splitlines()[0]
+        if SPEAKER_ATTRIBUTION_SUGGESTION_PATTERN.search(lead_line):
+            continue
         line_no = text[: match.start()].count("\n") + (2 if match.group(0).startswith("\n") else 1)
         snippet = re.sub(r"\s+", " ", match.group(0).strip())
         findings.append(

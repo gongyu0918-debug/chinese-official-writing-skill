@@ -14,22 +14,22 @@ metadata:
 - **指定替换（其余逐字保留）**：读 `references/prose-lint-usage.md` 的精确替换节，优先用 `scripts/edit_scope.py --stdin` 在内存完成替换并核对全文（脚本自身不读写磁盘文件），范围外逐字保留；目标有歧义先澄清。同轮另要审核时，再按 `references/review-checklist.md` 独立审核改后稿。
 - **仅排版或整理空白模板**：保留业务文字与原标点，按要求调整版式或模板字段；Word/国标读 `references/format-gbt9704.md`，字段整理读 `references/editing-and-multisource.md`。
 - **仅审核**：读 `references/review-checklist.md`（涉及文种要素时补读对应文种页，涉及突发事件补读 `references/domain-incident-reporting.md`）。审后改稿先确认有据问题，再在授权范围内修改。
-- **快速写稿（仅限单份短通知或报送提醒）**：真实材料充分、办理要求与行文关系清晰、无字数下限、无正式版式和联网核查要求时，直接按下方“正文形态”直写对象、动作、条件、时间、地点、渠道和期限并核对材料即可，不再加载其他规则页。有限字上限时，用 `python -B -X utf8 "<Skill目录>/scripts/draft_length.py" --count-scope full -` 经标准输入实测一次；有缺项、用途冲突、多稿、附件或试写需求时转入完整路径。
-- **完整写稿 / 改写 / 统稿**：按下节读 `references/writing-rules.md` + 1 个主文种页即可起草，按需再加 1 个专项页（通常共读 2–3 页）。
+- **快速写稿（仅限单份短通知或报送提醒）**：真实材料充分、办理要求与行文关系清晰、无字数下限、无正式版式和联网核查要求时，直接按下方“正文形态”直写对象、动作、条件、时间、地点、渠道和期限并核对材料即可，不再加载其他规则页。有限字上限时，直接执行 `python -B -X utf8 "<Skill目录>/scripts/draft_length.py" --count-scope full -` 经标准输入实测一次（**无需读取脚本源码或 `references/prose-lint-usage.md`**）；有缺项、用途冲突、多稿、附件或试写需求时转入完整路径。
+- **完整写稿 / 改写 / 统稿**：按下节读 `references/writing-rules.md` + **1 个主文种页**，仅在命中专项主题时加读 **1 个专项页**（通常共读 2–3 页；**不浏览无关参考页或脚本源码**）。
 
-## 2. 完整路径：选模式与选页
+## 2. 完整路径：先定前提，再两步选页
 
 **起草前先定两件事：**
 1. **核事实前提**：关键事实互相冲突，或真实稿固定题名断定的关键阶段/结论（如“终报”“已完成验收”）与材料矛盾且材料无法支撑时，先请用户确认依据或能否改题，核定后再交稿；用户明确要先交草稿时，已确定部分先成稿。
 2. **定真实稿 / 试写**：题面明确要求模拟、虚构或出样稿测试（或仅给文种/宽泛主题、无现实材料）时按试写；有旧稿、现实材料、具体事项或要求据实使用时按真实稿。模式一旦确定不中途重选；多份独立稿件或独立附件逐件定用途。
 
-**直接从下表选页（必读 `references/writing-rules.md`，再选 1 个主文种页）：**
+**第一步：必读 `references/writing-rules.md`，再从下表选 1 个主文种页：**
 
-| 用途 / 场景 | 读取页面 |
+| 用途 / 场景 | 主文种页（只选 1 页） |
 | --- | --- |
 | 请示、申请、项目/科研/教改立项与增项申报、经费预算、签报呈批、请假 | `references/genre-request-application.md` |
-| 报告、情况综合、周月报、工作总结、书面经验交流、工作要点、述职、整改/反馈进展报告、绩效自评、政务信息与简报 | `references/genre-report-summary.md` |
-| 通知、批转转发、部署安排、通报、公告/公示/通告、采购公告、交办催办督办、多主体报送征集 | `references/genre-notice-deployment.md` |
+| 报告、情况综合、周月报、工作总结、书面经验交流、工作要点、述职、整改/反馈进展报告、绩效自评、内部政务信息与工作简报 | `references/genre-report-summary.md` |
+| 通知、批转转发、部署安排、通报、公告/公示/通告、对外公开政务办事信息/简报、招募启事、采购公告、交办催办督办、多主体报送征集 | `references/genre-notice-deployment.md` |
 | 决定、决议、命令（令）、公报、议案、法定意见 | `references/genre-statutory-decisions.md` |
 | 批复、函、复函、征求意见函（含代表委员建议提案答复）、感谢/邀请/慰问/贺信、公开信、倡议书 | `references/genre-correspondence-reply.md` |
 | 情况说明（含受调研单位专项说明、文件起草/修订说明）、合作性意见建议与建议信、投诉反映、调查核实与群众诉求答复 | `references/genre-explanation-feedback.md` |
@@ -39,15 +39,18 @@ metadata:
 | 先进事迹、组织鉴定与干部考察、证明与介绍信、授权委托书、承诺书、责任书、工作交接、党支部组织生活 | `references/genre-personnel-certificates.md` |
 | 独立技术需求书、软件/接口需求说明 | `references/domain-tech-procurement.md` |
 
-**仅在任务实际涉及时加读专项页：**
-- **突发事件初报、续报、阶段终报**：`references/domain-incident-reporting.md`
-- **技术需求、AI 算力、信息化运维、采购专项核对、项目验收、软件正版化**：`references/domain-tech-procurement.md`
-- **字段表单编辑、结构重排、多材料归并与连续统稿**：`references/editing-and-multisource.md`
-- **审稿检查或标题/文种/行文关系冲突**：`references/review-checklist.md`
-- **Word / docx / 红头 / GB/T 9704 正式版式**：`references/format-gbt9704.md`
-- **党政机关正式行文关系、称谓敬语、固定用语或开场人物排序**：`references/addressing-and-style.md`
-- **陌生文种写法核查或用户要求联网检索/核验时效事实**：`references/external-research.md`
-- **需要实测字数、精确替换或扫描机械问题**：`references/prose-lint-usage.md`
+**第二步：命中以下专项主题或动作时，必须同步加读对应页（未命中不读）：**
+
+| 命中主题 / 任务特征 | 必加读页面 |
+| --- | --- |
+| **软件正版化、采购与招投标核对、项目验收、AI 算力、信息化系统运维** | `references/domain-tech-procurement.md` |
+| **突发事件初报、续报、阶段终报** | `references/domain-incident-reporting.md` |
+| **字段表单编辑、结构重排、多材料归并与连续统稿** | `references/editing-and-multisource.md` |
+| **审稿检查，或标题、文种、行文关系冲突** | `references/review-checklist.md` |
+| **Word / docx / 红头 / GB/T 9704 正式版式** | `references/format-gbt9704.md` |
+| **党政机关正式行文关系、称谓敬语、固定用语或开场人物排序** | `references/addressing-and-style.md` |
+| **陌生文种写法核查，或用户要求联网检索/核验时效事实** | `references/external-research.md` |
+| **需要实测字数（非快速路径）、精确替换或脚本扫描** | `references/prose-lint-usage.md` |
 
 ## 3. 正文形态与交付底线
 
