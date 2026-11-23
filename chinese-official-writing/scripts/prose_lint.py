@@ -454,6 +454,12 @@ MARKUP_COMPATIBILITY_NAMESPACE = "{http://schemas.openxmlformats.org/markup-comp
 
 FORMAT_PATTERNS: list[PatternSpec] = [
     ("medium", "halfwidth-punctuation", r"[\u4e00-\u9fff][,;:!?][\u4e00-\u9fff]", "中文正文中通常改用全角标点。"),
+    ("medium", "mixed-brackets", r"（[^（）\n]{1,30}\)|\([^()\n]{1,30}）", "括号全半角混配，正式中文正文应统一使用全角括号“（）”。"),
+    ("medium", "non-hex-docno-brackets", r"[\u4e00-\u9fff]{1,6}\s*[\[(【]20\d{2}[\])】]\s*第?0?\d+号|〔20\d{2}〕(?:第\d+|0\d+)号", "发文字号年份应使用六角括号“〔〕”，序号不加“第”且不补零（如“××发〔2026〕5号”）。"),
+    ("low", "ascii-ellipsis-dash", r"[\u4e00-\u9fff]\s*(?:\.{3,}|-{3,})\s*[\u4e00-\u9fff]", "中文正文中省略号应使用“……”，破折号应使用“——”，避免使用半角“...”或“---”。"),
+    ("medium", "jiezhi-date-misuse", r"截止(?=(?:20\d{2}年|\d{1,2}月|\d{1,2}日|目前|当前|年底|月底|今日))", "“截止”后一般不直接接时间点；表截至某时点改用“截至”，或改为“××日截止”。"),
+    ("low", "date-leading-zero", r"(?:20\d{2}年0[1-9]月|(?:20\d{2}年\d{1,2}月|\d{1,2}月)0[1-9]日)", "正式公文日期的月、日一般不补零（如“2026年9月5日”）。"),
+    ("low", "missing-subject-through-make", r"(?:^|[。！？；;，,])\s*(?:通过|经过|随着)[^。！？；;\n]{2,28}[，,]\s*(?:使|让)(?=[\u4e00-\u9fff])", "核对“通过/经过……，使……”是否缺少主语；删去“通过”或“使”通常更通顺。"),
     ("low", "number-grouping-comma", r"\d{1,3}(?:,\d{3})+(?:\.\d+)?", "确认正式中文材料中是否应取消千位分隔符。"),
     ("low", "cn-number-space", r"[\u4e00-\u9fff]\s+\d|\d\s+[\u4e00-\u9fff]", "检查中文和数字之间是否误加空格。"),
     ("medium", "emoji-marker", r"[\U0001F300-\U0001FAFF]", "正式公文正文避免使用 Emoji。"),
@@ -2219,6 +2225,311 @@ def unresolved_state_chain_findings(path_label: str, source: ScanSource) -> list
     return findings
 
 
+def chinese_numeral_to_int(text: str) -> int | None:
+    """将常见公文中文序号（一至九百九十九）转为整数；无法解析返回 None。"""
+
+    digits = {"零": 0, "〇": 0, "一": 1, "二": 2, "三": 3, "四": 4, "五": 5, "六": 6, "七": 7, "八": 8, "九": 9}
+    units = {"十": 10, "百": 100}
+    if not text or any(ch not in digits and ch not in units for ch in text):
+        return None
+    total, current = 0, 0
+    for ch in text:
+        if ch in digits:
+            current = digits[ch]
+        else:
+            unit = units[ch]
+            if current == 0:
+                current = 1
+            total += current * unit
+            current = 0
+    total += current
+    return total if total > 0 else None
+
+
+def numbering_sequence_findings(path_label: str, lines: list[str]) -> list[Finding]:
+    """检测一级大标题（一、二、……）及法条（第一条、第二条……）的跳号或重号。"""
+
+    findings: list[Finding] = []
+    heading_re = re.compile(r"^\s*([一二三四五六七八九十]+)、\s*\S")
+    article_re = re.compile(r"^\s*第([一二三四五六七八九十百]+)条(?:\s|　|[\u4e00-\u9fff]|$)")
+    chapter_re = re.compile(r"^\s*第([一二三四五六七八九十百]+)章(?:\s|　|$)")
+
+    for label, pattern, kind_name in (
+        ("numbering-sequence-gap", heading_re, "一级标题序号"),
+        ("numbering-sequence-gap", article_re, "条款号"),
+        ("numbering-sequence-gap", chapter_re, "章节号"),
+    ):
+        prev_num: int | None = None
+        for idx, line in enumerate(lines):
+            m = pattern.match(line)
+            if not m:
+                continue
+            num = chinese_numeral_to_int(m.group(1))
+            if num is None:
+                continue
+            # 多份并列独立稿件重新从“一/第一”开始属于正常重置
+            if num == 1 and prev_num is not None and prev_num >= 2:
+                prev_num = 1
+                continue
+            if prev_num is not None and num != prev_num + 1:
+                findings.append(
+                    Finding(
+                        path=path_label,
+                        line=idx + 1,
+                        severity="medium",
+                        label=label,
+                        match=m.group(0).strip(),
+                        excerpt=f"{kind_name}疑似不连续（前项为第 {prev_num} 项，本项为第 {num} 项）；请核对是否跳号或重号。",
+                    )
+                )
+            prev_num = num
+    return findings
+
+
+def title_and_signoff_findings(path_label: str, source: ScanSource) -> list[Finding]:
+    """检测标题语意重复、落款与成文日期间多余空行、附件名原始后缀泄漏。"""
+
+    findings: list[Finding] = []
+    lines = source.lines_to_scan
+    # 1. 标题语意重复（仅查首个非空行）
+    for idx, line in enumerate(lines):
+        s = line.strip()
+        if not s:
+            continue
+        if len(s) <= 64 and re.search(
+            r"关于(?:请求批准|请示)[^。\n]*的请示$|关于[^。\n]*的报告的请示$|的(通知|请示|报告|意见|决定|函|批复|通报)的\1$",
+            s,
+        ):
+            findings.append(
+                Finding(
+                    path=path_label,
+                    line=idx + 1,
+                    severity="medium",
+                    label="title-redundancy",
+                    match=s,
+                    excerpt="标题存在语意重复（如“请求批准……的请示”或“报告的请示”）；请精简为规范文种标题。",
+                )
+            )
+        break
+
+    # 2. 纯文本落款单位与成文日期间多余空行
+    date_re = re.compile(r"^\s*\d{4}年\d{1,2}月\d{1,2}日\s*$")
+    non_unit_prefix = re.compile(r"^(?:附件|特此|妥否|当否|以上|此复|此致|请予|一、|（一）|第[一二三四五六七八九十百]+[条章]|文后提示)")
+    for idx, line in enumerate(lines):
+        if not date_re.match(line):
+            continue
+        # 若日期行前紧跟 1~2 行空行，再往前是短落款单位行，则提示紧排
+        j = idx - 1
+        blanks = 0
+        while j >= 0 and not lines[j].strip():
+            blanks += 1
+            j -= 1
+        if 1 <= blanks <= 2 and j >= 0:
+            unit = lines[j].strip()
+            if (
+                2 <= len(unit) <= 30
+                and not re.search(r"[。！？!?；;：:,，]", unit)
+                and not non_unit_prefix.match(unit)
+                and not date_re.match(unit)
+            ):
+                findings.append(
+                    Finding(
+                        path=path_label,
+                        line=idx + 1,
+                        severity="low",
+                        label="signoff-date-blank-line",
+                        match=f"{unit} / {line.strip()}",
+                        excerpt="纯文本落款单位与成文日期之间多空了行；建议连续两行紧排，中间不空行。",
+                    )
+                )
+
+    # 3. 附件说明行及后续编号行保留了裸扩展名（如 .docx/.xlsx/.pdf），排除带链接/路径的办理要求
+    att_re = re.compile(r"^\s*附件[：:]\s*(.+)$")
+    att_cont_re = re.compile(r"^\s*\d+\.\s*\S")
+    ext_re = re.compile(r"\.(?:docx?|xlsx?|pptx?|pdf|zip|rar)\b", re.IGNORECASE)
+    in_att_block = False
+    for idx, line in enumerate(lines):
+        m = att_re.match(line)
+        if m:
+            in_att_block = True
+            target = m.group(1)
+        elif in_att_block and att_cont_re.match(line):
+            target = line.strip()
+        else:
+            in_att_block = False
+            continue
+        if "http://" not in line and "https://" not in line and "/" not in target:
+            em = ext_re.search(target)
+            if em:
+                findings.append(
+                    Finding(
+                        path=path_label,
+                        line=idx + 1,
+                        severity="low",
+                        label="attachment-raw-extension",
+                        match=line.strip()[:60],
+                        excerpt="正文“附件：”说明建议转为规范题名并去掉文件后缀（如 .docx/.xlsx），下载或提交要求中再写完整文件名。",
+                    )
+                )
+            if target.rstrip().endswith(("。", "；", ";", "，", ",")):
+                findings.append(
+                    Finding(
+                        path=path_label,
+                        line=idx + 1,
+                        severity="low",
+                        label="attachment-trailing-punct",
+                        match=line.strip()[:60],
+                        excerpt="正文“附件：”说明名称末尾按 GB/T 9704 不加标点符号。",
+                    )
+                )
+
+    # 4. 层次序数写法误用（1、 / 一. / （一）、）及独立一级小标题末尾误加句号
+    bad_marker_re = re.compile(r"^\s*(?:\d+、\S|[一二三四五六七八九十]+\.\s*[\u4e00-\u9fff]|（[一二三四五六七八九十]+）、)")
+    standalone_h1_period_re = re.compile(r"^\s*[一二三四五六七八九十]+、[^。！？；;\n]{2,26}。\s*$")
+    for idx, line in enumerate(lines):
+        if bad_marker_re.match(line):
+            findings.append(
+                Finding(
+                    path=path_label,
+                    line=idx + 1,
+                    severity="low",
+                    label="heading-marker-syntax",
+                    match=line.strip()[:24],
+                    excerpt="层次序数建议按 GB/T 9704 规范统一为“一、”“（一）”“1.”“（1）”，避免“1、”“一.”或“（一）、”。",
+                )
+            )
+        elif standalone_h1_period_re.match(line):
+            findings.append(
+                Finding(
+                    path=path_label,
+                    line=idx + 1,
+                    severity="low",
+                    label="standalone-heading-period",
+                    match=line.strip()[:30],
+                    excerpt="独立成行的一级小标题末尾一般不加句号（段首领起句后接正文时保留句号）。",
+                )
+            )
+    return findings
+
+
+def hierarchy_balance_findings(path_label: str, lines: list[str]) -> list[Finding]:
+    """基于 27 份真实政府公文分布校准的主次与分节结构均衡性检查（零误报阈值）。"""
+
+    findings: list[Finding] = []
+    h1_re = re.compile(r"^\s*[一二三四五六七八九十]+、\S")
+    recipient_re = re.compile(r"^\s*[^。！？；;\n]{1,42}[：:]\s*$")
+    tail_meta_re = re.compile(r"^\s*(?:附件[：:]|\d{4}年\d{1,2}月\d{1,2}日|文后提示)")
+    next_step_re = re.compile(r"下一步|工作打算|后续安排|下步工作")
+
+    non_empty: list[tuple[int, str]] = [(idx + 1, line.strip()) for idx, line in enumerate(lines) if line.strip()]
+    h1_positions = [pos for pos, (_, s) in enumerate(non_empty) if h1_re.match(s) and len(s) <= 45]
+    if len(h1_positions) < 2:
+        return findings
+
+    # 1. 空壳一级节检查（某一级标题下无正文即跳下一一级标题）
+    sec_stats: list[tuple[int, str, int]] = []
+    for k, pos in enumerate(h1_positions):
+        line_no, title_txt = non_empty[pos]
+        end_pos = h1_positions[k + 1] if k + 1 < len(h1_positions) else len(non_empty)
+        content_chars = 0
+        for _, seg in non_empty[pos + 1 : end_pos]:
+            if tail_meta_re.match(seg):
+                break
+            # 排除末尾纯单位落款短行（紧跟日期行）
+            if k == len(h1_positions) - 1 and len(seg) <= 24 and not re.search(r"[。！？，、；：]", seg):
+                continue
+            content_chars += len(re.sub(r"\s+", "", seg))
+        sec_stats.append((line_no, title_txt, content_chars))
+        if content_chars == 0 and k + 1 < len(h1_positions):
+            findings.append(
+                Finding(
+                    path=path_label,
+                    line=line_no,
+                    severity="medium",
+                    label="empty-heading-section",
+                    match=title_txt[:30],
+                    excerpt="该一级标题下无实质正文即转入下一节，请补齐内容或合并空壳层次。",
+                )
+            )
+
+    # 2. 导语/背景过长（帽子偏大、头重脚轻）
+    first_h1_pos = h1_positions[0]
+    body_start = 1
+    for p in range(min(8, first_h1_pos)):
+        seg = non_empty[p][1]
+        if recipient_re.match(seg) and not seg.startswith(("发布", "来源", "日期", "时间", "公开")):
+            body_start = p + 1
+            break
+    intro_chars = sum(
+        len(re.sub(r"\s+", "", seg))
+        for _, seg in non_empty[body_start:first_h1_pos]
+        if len(seg) > 12 and not seg.startswith(("发布日期", "公开日期", "来源：", "时间："))
+    )
+    sections_total = sum(c for _, _, c in sec_stats)
+    body_total = intro_chars + sections_total
+    if body_total >= 400 and intro_chars >= 260 and intro_chars / body_total >= 0.38:
+        intro_line = non_empty[body_start][0] if body_start < first_h1_pos else non_empty[0][0]
+        findings.append(
+            Finding(
+                path=path_label,
+                line=intro_line,
+                severity="low",
+                label="top-heavy-intro",
+                match=f"导语约{intro_chars}字（占主体{round(intro_chars * 100 / body_total)}%）",
+                excerpt="多节公文导语/背景段篇幅占比偏高（帽子偏大、头重脚轻），建议压薄铺垫，把篇幅让给核心主体分节。",
+            )
+        )
+
+    # 3. 收尾“下一步/工作打算”节反超核心主体节（主次倒挂）
+    last_line, last_title, last_chars = sec_stats[-1]
+    core_max = max((c for _, _, c in sec_stats[:-1]), default=0)
+    if body_total >= 400 and core_max > 0 and next_step_re.search(last_title) and last_chars > core_max * 1.25:
+        findings.append(
+            Finding(
+                path=path_label,
+                line=last_line,
+                severity="low",
+                label="tail-heavier-than-core",
+                match=f"{last_title[:16]}（{last_chars}字 > 主体最大节{core_max}字）",
+                excerpt="收尾“下一步/打算”分节篇幅明显超过前面核心主体节，疑似主次倒挂，建议精简表态或做实主体进展。",
+            )
+        )
+    return findings
+
+
+def public_release_leak_findings(path_label: str, source: ScanSource) -> list[Finding]:
+    """对外公开发布稿件（--public）的确定性隐私与内部密级标记拦截。"""
+
+    findings: list[Finding] = []
+    phone_re = re.compile(r"(?<!\d)1[3-9]\d(?:[\s-]?\d{4}){2}(?!\d)")
+    idcard_re = re.compile(r"(?<!\d)[1-9]\d{5}(?:19|20)\d{2}(?:0[1-9]|1[0-2])(?:0[1-9]|[12]\d|3[01])\d{3}[\dXx](?!\d)")
+    addr_re = re.compile(r"[\u4e00-\u9fff]{2,8}\d+(?:号|栋|幢|楼)(?:\d+(?:栋|幢|楼))?(?:\d+单元)?\d+室")
+    internal_re = re.compile(
+        r"(?:仅供内部(?:掌握|参考|使用)?|内部掌握|勿对外公开|勿公开|不得外传|绝密|机密|"
+        r"(?<!国家)(?<!商业)(?<!工作)(?<!保守)秘密(?!保护|法|或者|、商业秘密|义务))"
+    )
+    for idx, line in enumerate(source.lines_to_scan):
+        line_no = idx + 1
+        for severity, label, pat, msg in (
+            ("high", "public-leak-idcard", idcard_re, "对外公开稿件疑似包含未脱敏身份证号，请立即脱敏或删除。"),
+            ("high", "public-leak-phone", phone_re, "对外公开稿件疑似包含未脱敏个人手机号（若系单位公开业务手机请确认，否则脱敏或改留座机/热线）。"),
+            ("medium", "public-leak-address", addr_re, "对外公开稿件疑似包含精确到户室的个人住址，请核对是否需要脱敏。"),
+            ("high", "public-leak-internal-marker", internal_re, "对外公开稿件疑似残留内部掌握/密级标记，请剥离并按保密流程人工复核。"),
+        ):
+            for m in pat.finditer(line):
+                findings.append(
+                    Finding(
+                        path=path_label,
+                        line=line_no,
+                        severity=severity,
+                        label=label,
+                        match=m.group(0),
+                        excerpt=msg,
+                    )
+                )
+    return findings
+
+
 def aggregate_findings(
     path_label: str,
     source: ScanSource,
@@ -2227,6 +2538,7 @@ def aggregate_findings(
     delivery_mode: str,
     allow_markdown: bool = False,
     attachment_boundary: dict[int, int] | None = None,
+    public_release: bool = False,
 ) -> list[Finding]:
     """按固定顺序汇总格式、结构、标题和术语检查。"""
 
@@ -2239,14 +2551,19 @@ def aggregate_findings(
         )
         if not allow_markdown and delivery_mode in {"draft-body", "gap-note-allowed"}:
             findings.extend(postscript_heading_format_findings(path_label, source))
+            findings.extend(title_and_signoff_findings(path_label, source))
     if include_structure:
         findings.extend(duplicate_findings(path_label, source.lines_to_scan))
         findings.extend(repeated_number_findings(path_label, source.lines_to_scan))
+        findings.extend(numbering_sequence_findings(path_label, source.lines_to_scan))
+        findings.extend(hierarchy_balance_findings(path_label, source.lines_to_scan))
         findings.extend(
             structured_smell_findings(path_label, source.text_to_scan, source.lines_to_scan)
         )
         if delivery_mode in {"draft-body", "gap-note-allowed"}:
             findings.extend(unresolved_state_chain_findings(path_label, source))
+    if public_release:
+        findings.extend(public_release_leak_findings(path_label, source))
     if delivery_mode in {"draft-body", "gap-note-allowed"}:
         findings.extend(duplicate_title_findings(path_label, source.lines_to_scan))
     findings.extend(paired_skeleton_findings(path_label, source, delivery_mode))
@@ -2275,6 +2592,7 @@ def scan(
     include_structure: bool = False,
     delivery_mode: str = "generic",
     allow_markdown: bool = False,
+    public_release: bool = False,
 ) -> list[Finding]:
     """编排一次完整扫描，不在此处实现具体检测职责。"""
 
@@ -2329,6 +2647,7 @@ def scan(
             delivery_mode,
             allow_markdown,
             attachment_boundary,
+            public_release=public_release,
         )
     )
     return unique_findings(findings)
@@ -2350,6 +2669,7 @@ def build_argument_parser() -> argparse.ArgumentParser:
     parser.add_argument("--format", action="store_true", help="Also scan punctuation, number, list-marker, emoji, explicit DOCX zero-font-size risks, and DOCX review-residue counts.")
     parser.add_argument("--allow-markdown", action="store_true", help="Treat Markdown formatting as explicitly requested; keep other prose and delivery checks.")
     parser.add_argument("--structure", action="store_true", help="Also scan repeated matters across paragraphs (bounded) and other structure risks.")
+    parser.add_argument("--public", action="store_true", help="Scan public-release drafts for unmasked phone numbers, ID cards, apartment addresses, and internal/secret markers.")
     parser.add_argument(
         "--delivery-mode",
         choices=DELIVERY_MODES,
@@ -2373,6 +2693,7 @@ def scan_input_files(
     include_structure: bool,
     delivery_mode: str,
     allow_markdown: bool = False,
+    public_release: bool = False,
 ) -> tuple[list[Finding], bool]:
     """读取并扫描全部输入文件，同时保留是否发生读取错误。"""
 
@@ -2397,6 +2718,7 @@ def scan_input_files(
                 include_structure=include_structure,
                 delivery_mode=delivery_mode,
                 allow_markdown=allow_markdown,
+                public_release=public_release,
             )
         except InputReadError as exc:
             print(printable(f"ERROR: {exc}"), file=sys.stderr)
@@ -2459,6 +2781,7 @@ def main(argv: list[str] | None = None) -> int:
         args.structure,
         args.delivery_mode,
         args.allow_markdown,
+        args.public,
     )
     emit_findings(all_findings, args.json, had_read_error)
     return determine_exit_code(all_findings, had_read_error, args.strict, args.fail_on)

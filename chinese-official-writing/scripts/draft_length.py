@@ -160,6 +160,7 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--trial", action="store_true", help="Require the fixed final trial-draft notice; never infer drafting intent.")
     parser.add_argument("--delivery-mode", choices=("draft-body", "gap-note-allowed", "review-only"), default=None)
     parser.add_argument("--allow-markdown", action="store_true")
+    parser.add_argument("--public", action="store_true", help="With --scan, also check for unmasked phone numbers, ID cards, apartment addresses, and internal/secret markers.")
     parser.add_argument(
         "--include-hidden",
         action="store_true",
@@ -208,6 +209,7 @@ def main(argv: list[str] | None = None) -> int:
                 findings = scan(
                     path, text, include_format=True, include_structure=True,
                     delivery_mode=args.delivery_mode, allow_markdown=args.allow_markdown,
+                    public_release=args.public,
                 )
                 findings.extend(docx_format_findings)
                 report["review_candidates"] = [asdict(finding) for finding in findings]
