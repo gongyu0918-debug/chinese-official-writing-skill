@@ -48,11 +48,13 @@
 
 ## 五、DOCX 确定性生成与保真操作
 
-- **从纯文本/草稿直接生成规范公文 `.docx`**：优先直接调用内置零依赖脚本 `scripts/build_docx.py`（无需安装 `python-docx`，自动设置 A4、国标页边距、方正小标宋/仿宋_GB2312/黑体/楷体_GB2312 与 Times New Roman 双字体、28 磅固定行距、梯形/菱形标题智能断行、原生 `Heading1-4` 大纲样式、附件与落款防跨页拆裂、纪要出席/列席专排、镜像页边距、奇偶一字线页码与 22行×28字落款孤悬预警）：
+- **从纯文本/草稿直接生成规范公文 `.docx`**：优先直接调用内置零依赖脚本 `scripts/build_docx.py`（无需安装 `python-docx`，自动设置 A4、国标页边距、方正小标宋/仿宋_GB2312/黑体/楷体_GB2312 与 Times New Roman 双字体、28 磅固定行距、梯形/菱形标题智能断行、原生 `Heading1-4` 大纲样式、多件附件及落款各自防跨页拆裂、纪要出席/列席专排、镜像页边距、奇偶一字线页码与 22行×28字落款孤悬预警）：
   - 普通正式稿：`python3 -B -X utf8 "<Skill目录>/scripts/build_docx.py" --input - --output "<输出.docx>" --profile ordinary`
   - 预印红头纸套打（默认首面留白 72mm，不重绘红头）：`--profile formal-preprinted --doc-no "××发〔2026〕1号"`（上行文加 `--signer "姓名"`，不盖章加 `--seal-mode unstamped`）
   - 完整电子红头（仅用户明确要求时）：`--profile formal-digital --org "××市人民政府文件" --doc-no "××发〔2026〕1号"`（需版记加 `--cc`、`--print-org`、`--print-date`）；会议纪要可用 `--profile minutes`。
-  - **一步出件免反复**：`build_docx.py` 已内置 ZIP 完整性、GB/T 9704 关键版式与 `prose_lint` 自检；调用一次返回 `ok: true` 后**直接向用户交付文件和正文**，不要再手工拆包检查 XML、不要探测 LibreOffice/WPS 渲染、也不要因估算页数反复重跑覆盖（确有硬差错提示时最多修正重生成一次）。核验既有 `.docx` 可直接执行 `build_docx.py --verify "<文件.docx>" --profile <版式>`。
-- **修改既有 `.docx` 模板与保真**：授权修改外保留原样式、节、页眉页脚、页码、批注、修订、脚注和高亮；正式 Word 按授权把 Markdown 转为真实样式。
+  - **一步出件免反复**：`build_docx.py` 已内置 ZIP 完整性、GB/T 9704 关键版式与 `prose_lint` 自检；按上述参数直接执行一次返回 `ok: true` 后**直接向用户交付文件和正文**，不要读取 `build_docx.py` 源码、不要做 `/tmp` 试跑或重复执行 `--verify` / `--overwrite`、也不要探测 LibreOffice/WPS 渲染（确有硬差错提示时最多修正重生成一次）。返回值中的 `estimated_pages` 仅为粗略估算（`pages_verified: false`），不得在回复中把估算页数报成已核验的实际页数，也不得宣称脚本未写入的绑定属性。核验既有 `.docx` 可直接执行 `build_docx.py --verify "<文件.docx>" --profile <版式>`。
+- **修改既有 `.docx` 模板与保真（支持原生修订与批注）**：授权修改外保留原样式、节、页眉页脚、页码、批注、修订、脚注和高亮。优先直接调用内置零依赖脚本 `scripts/patch_docx.py`，仅更新授权文本并原封保留红头、矢量图形、样式与表格结构：
+  1. 先查段落索引与表格单元格：`python3 -B -X utf8 "<Skill目录>/scripts/patch_docx.py" --inspect "<原件.docx>"`
+  2. 一次完成无损替换、原生 Word 修订（`track_changes: true`）与批注（`comments`，可直接锚定原文或刚修订插入的文本）：`python3 -B -X utf8 "<Skill目录>/scripts/patch_docx.py" --input "<原件.docx>" --output "<新件.docx>" --plan -`，stdin 传 JSON `{"author":"核稿人","replacements":[{"old":"原文","new":"新文","track_changes":false}],"comments":[{"anchor":"锚定文","text":"批注"}]}`。脚本已内置 ZIP/XML 自检，返回 `ok: true` 且 `missed_items` 为空后**直接向用户交付文件并说明改动**，不要再读取脚本源码、不要手工拆包检查 XML、也不要反复重跑覆盖（不覆盖原件）。
 - **痕迹与隐私**：内部改稿保留批注、修订与隐藏文字；对外报送或公开版交付前检查批注、修订、隐藏文字及文档属性（作者/单位），列出可核数量由用户决定是否清除，不自动接受修订或宣称已清理未核项目。
 - **复杂版头保真**：含组合形状、文本框或红头版头的既有模板，通用文本库整包重存可能破坏版式；优先保留源包未改部件、仅局部更新授权段落，并渲染视觉对照；未做渲染核验时不宣称整份版式通过。

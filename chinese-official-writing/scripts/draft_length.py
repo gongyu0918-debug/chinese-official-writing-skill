@@ -13,6 +13,7 @@ from pathlib import Path
 # Resolve the packaged sibling module even when the host enables safe-path mode.
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
+from material_diff import audit_material
 from prose_lint import InputReadError, body_lines, printable, read_text, scan
 
 TRIAL_NOTICE = "文后提示：本稿为拟生成稿件。"
@@ -134,11 +135,83 @@ def measure_draft(
     return report
 
 
+def run_bundle_audit(payload: dict, args: argparse.Namespace) -> dict:
+    """一次零落盘调用同时完成字数实测、全项规则体检与素材↔成稿数字/日期/书名号对账。"""
+    if not isinstance(payload, dict):
+        raise ValueError("--bundle-stdin 输入必须为 JSON 对象")
+    draft = payload.get("draft")
+    if not isinstance(draft, str):
+        raise ValueError("--bundle-stdin JSON 必须包含字符串字段 draft")
+    source = payload.get("source")
+    if source is not None and not isinstance(source, str):
+        raise ValueError("--bundle-stdin 字段 source 若提供则必须为字符串")
+
+    count_mode = payload.get("count_mode", args.count_mode)
+    count_scope = payload.get("count_scope", args.count_scope)
+    min_chars = payload.get("min_chars", args.min_chars)
+    max_chars = payload.get("max_chars", args.max_chars)
+    trial = bool(payload.get("trial", args.trial))
+    delivery_mode = payload.get("delivery_mode") or args.delivery_mode or ("gap-note-allowed" if trial else "draft-body")
+    allow_markdown = bool(payload.get("allow_markdown", args.allow_markdown))
+    public_release = bool(payload.get("public", args.public))
+    include_outline = bool(payload.get("outline", args.outline))
+
+    if count_mode not in ("nonspace", "cjk"):
+        raise ValueError(f"unsupported count_mode: {count_mode}")
+    if count_scope not in COUNT_SCOPES:
+        raise ValueError(f"unsupported count_scope: {count_scope}")
+    if delivery_mode not in ("draft-body", "gap-note-allowed", "review-only"):
+        raise ValueError(f"unsupported delivery_mode: {delivery_mode}")
+    if trial and delivery_mode == "review-only":
+        raise ValueError("trial 模式不适用于 review-only")
+    if any(v is not None and (isinstance(v, bool) or not isinstance(v, int) or v < 0) for v in (min_chars, max_chars)):
+        raise ValueError("min_chars / max_chars 必须为非负整数")
+    if min_chars is not None and max_chars is not None and min_chars > max_chars:
+        raise ValueError("min_chars 不得大于 max_chars")
+
+    report = measure_draft(
+        "<stdin:bundle>",
+        draft,
+        count_mode,
+        min_chars,
+        max_chars,
+        delivery_mode,
+        include_outline,
+        count_scope,
+    )
+    if trial:
+        lines = draft.strip().splitlines()
+        report["trial_notice"] = {
+            "required": TRIAL_NOTICE,
+            "ok": len(lines) >= 3 and not lines[-2].strip() and lines[-1].strip() == TRIAL_NOTICE,
+        }
+        if not report["trial_notice"]["ok"]:
+            report["trial_notice"]["next_step"] = (
+                "先核对入口模式：真实稿应移除误传的 --trial，不得为通过检查改贴试写标签；"
+                "只有确属试写时才补齐固定文后标识。"
+            )
+    findings = scan(
+        "<stdin:bundle>",
+        draft,
+        include_format=True,
+        include_structure=True,
+        delivery_mode=delivery_mode,
+        allow_markdown=allow_markdown,
+        public_release=public_release,
+    )
+    report["review_candidates"] = [asdict(finding) for finding in findings]
+    report["review_scope"] = "full-text"
+    report["facts_verified"] = False
+    if source:
+        report["fact_reconcile"] = audit_material(source, draft)
+    return report
+
+
 def main(argv: list[str] | None = None) -> int:
     if hasattr(sys.stdout, "reconfigure"):
         sys.stdout.reconfigure(encoding="utf-8")
     parser = argparse.ArgumentParser(description="Measure Chinese draft length and report optional bounds.")
-    parser.add_argument("files", nargs="+", help="TXT/MD/DOCX paths, or '-' for stdin.")
+    parser.add_argument("files", nargs="*", help="TXT/MD/DOCX paths, or '-' for stdin (omit when using --bundle-stdin).")
     parser.add_argument("--encoding", help="Encoding for text files.")
     parser.add_argument("--count-mode", choices=("nonspace", "cjk"), default="nonspace")
     parser.add_argument(
@@ -157,16 +230,39 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--json", action="store_true")
     parser.add_argument("--outline", action="store_true", help="观察用列出各段首句和字数占比；不判断主旨或篇幅是否达标。")
     parser.add_argument("--scan", action="store_true", help="Also scan the same text for prose, structure and format risks; emits JSON.")
+    parser.add_argument(
+        "--bundle-stdin",
+        action="store_true",
+        help="一次零落盘全项体检：从标准输入读取 JSON（含 draft、可选 source/min_chars/max_chars/public），合并输出字数、全项风险扫描与素材对账。",
+    )
     parser.add_argument("--trial", action="store_true", help="Require the fixed final trial-draft notice; never infer drafting intent.")
     parser.add_argument("--delivery-mode", choices=("draft-body", "gap-note-allowed", "review-only"), default=None)
     parser.add_argument("--allow-markdown", action="store_true")
-    parser.add_argument("--public", action="store_true", help="With --scan, also check for unmasked phone numbers, ID cards, apartment addresses, and internal/secret markers.")
+    parser.add_argument("--public", action="store_true", help="With --scan or --bundle-stdin, also check for unmasked phone numbers, ID cards, apartment addresses, and internal/secret markers.")
     parser.add_argument(
         "--include-hidden",
         action="store_true",
         help="Include DOCX hidden runs (w:vanish) in character counts; skipped by default.",
     )
     args = parser.parse_args(argv)
+    if args.bundle_stdin:
+        if args.files and args.files != ["-"]:
+            parser.error("--bundle-stdin cannot be combined with positional file arguments")
+        try:
+            raw = sys.stdin.read().lstrip("\ufeff")
+            payload = json.loads(raw)
+            report = run_bundle_audit(payload, args)
+        except (ValueError, OSError) as exc:
+            print(printable(f"ERROR: {exc}"), file=sys.stderr)
+            return 2
+        print(printable(json.dumps(report, ensure_ascii=False, indent=2)))
+        if report.get("trial_notice") and not report["trial_notice"]["ok"]:
+            return 1
+        if args.fail_on_violation and report["status"] in {"below", "above"}:
+            return 1
+        return 0
+    if not args.files:
+        parser.error("the following arguments are required: files (or pass --bundle-stdin)")
     if args.delivery_mode is None:
         args.delivery_mode = "gap-note-allowed" if args.trial else "draft-body"
     if args.trial and args.delivery_mode == "review-only":

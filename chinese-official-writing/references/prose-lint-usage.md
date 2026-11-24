@@ -14,13 +14,12 @@
   - `--delivery-mode gap-note-allowed`：允许文后提示区，`auto` 口径自动排除 `文后提示` 之后内容；若用户限定整条回复总字数，加 `--count-scope full`。
   - `--delivery-mode review-only`：仅审稿意见，计全文并豁免引文内规则。
   - `--trial`：核对试写固定尾行 `文后提示：本稿为拟生成稿件。`（仅当交付含该标识时使用）。
-- **常用命令（计数与扫描一次合并执行，无需重复跑两次）：**
+- **首选命令：一次零落盘全项体检（`--bundle-stdin`）**：合并返回字数、全项风险扫描、公开脱敏体检与素材对账（禁止手写 Python `len()`/`re.sub` 替代脚本计数；落入目标区间且无硬伤即定稿，实质修改后最多复扫 1 次，勿为十余字微调反复重跑）：
 
 ```text
-python3 -B -X utf8 "<Skill目录>/scripts/draft_length.py" --scan --delivery-mode draft-body --min-chars <下限> --max-chars <上限> --fail-on-violation -
+python3 -B -X utf8 "<Skill目录>/scripts/draft_length.py" --bundle-stdin
 ```
-
-- 仅计数不扫描时去掉 `--scan`（需 JSON 加 `--json`，单侧限字只传对应上下限，不给短稿加默认下限；`--outline` 可观察各段首句及字数占比）。
+stdin 传入 JSON：`{"draft": "成稿", "source": "有效材料(可选)", "min_chars": 310, "max_chars": 440, "public": false}`（单侧限字只传对应上下限；仅需单稿计数扫描无对照材料时，也可用 `draft_length.py --scan --delivery-mode draft-body --min-chars <下限> --max-chars <上限> --fail-on-violation -`，加 `--outline` 可观察各段首句与字数占比，仅计数去掉 `--scan`）。
 - 带 `--fail-on-violation` 时超界返回退出码 1，读取失败返回 2；无论退出码如何都须读取输出的计数结果。
 
 ## 二、独立机械风险与公开脱敏扫描（`scripts/prose_lint.py`）
@@ -98,5 +97,25 @@ python3 -B -X utf8 "<Skill目录>/scripts/build_docx.py" --input - --output "<�
 ```
 - 支持 `--profile ordinary | formal-preprinted | formal-digital | minutes`、`--doc-no`、`--org`、`--signer`、`--cc`、`--print-org`、`--print-date`、`--seal-mode stamped|unstamped`、`--overwrite`。
 - 独立核验既有 `.docx` 版式合规性：`python3 -B -X utf8 "<Skill目录>/scripts/build_docx.py" --verify "<文件.docx>" --profile formal-preprinted`。
+
+## 六、既有 DOCX 保真局部改稿与原生修订/批注（`scripts/patch_docx.py`）
+
+修改已有红头/表格/公文模板且需保留原样式版头时使用，不重打包、不覆盖原文件：
+1. `--inspect "<原件.docx>"` 列出正文与表格中全部非空段落的 `p_index` 与文本。
+2. `--input "<原件.docx>" --output "<新件.docx>" --plan -` 从 stdin 读入修改计划 JSON：
+```json
+{
+  "author": "公文核稿",
+  "replacements": [
+    {"old": "原文字1", "new": "新文字1", "track_changes": false},
+    {"old": "原文字2", "new": "新文字2", "track_changes": true}
+  ],
+  "comments": [
+    {"anchor": "锚定原文", "text": "批注意见内容"}
+  ]
+}
+```
+- `track_changes: true` 写入 Word 原生 `<w:del>`/`<w:ins>` 修订痕迹；`comments` 写入 `word/comments.xml` 与精确锚点。
+- `comments` 可直接锚定原文或本轮（及既有）`track_changes: true` 生成的 `<w:ins>` 插入修订文本；`patch_docx.py` 自动保留分拆 run 内的 `<w:br/>`/`<w:tab/>`、`<w:sdt>` 内容控件与原文档根 `xmlns:*`（`mc:Ignorable`）声明，并在编辑段落内清理跨 run 遗留的 `<w:proofErr>`。
 
 *Windows 宿主提示*：优先通过宿主标准输入接口直接传 UTF-8 字符串；若经 PowerShell 管道传文本，先确认编码与引号/美元符号/换行字面保真。

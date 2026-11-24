@@ -1,6 +1,6 @@
 # 中文公文写作 Skill
 
-[![Version](https://img.shields.io/badge/version-2.1.3-blue)](https://github.com/gongyu0918-debug/chinese-official-writing-skill/releases/tag/2.1.3)
+[![Version](https://img.shields.io/badge/version-2.1.4-blue)](https://github.com/gongyu0918-debug/chinese-official-writing-skill/releases/tag/2.1.4)
 [![ClawHub downloads: 11,975](https://img.shields.io/badge/ClawHub%20downloads-11%2C975-2f80ed)](https://clawhub.ai/gongyu0918-debug/skills/chinese-official-writing)
 [![SkillHub downloads: 482,559](https://img.shields.io/badge/SkillHub%20downloads-482%2C559-2f855a)](https://skillhub.cn/skills/user_f3d82da7/chinese-official-writing)
 [![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
@@ -18,15 +18,15 @@
 - 事务专项：证明和介绍信、授权委托、会务筹备与参会材料、交办催办、调研访谈提纲、绩效自评。
 - 新闻与技术材料：新闻消息、编者按、新闻评论、可研、审查、技术需求及算力专项材料。
 - 修改与复核：压缩、扩写、润色、去口语化、降 AI 味、文种与格式检查、审核后改稿。
-- Word 整理：内置零依赖 Python 3 脚本直接生成和核验 GB/T 9704-2012 公文 `.docx`，也支持结合宿主文档工具保真修改既有模板。
+- Word 整理：内置零依赖 Python 3 脚本支持直接生成/核验 GB/T 9704-2012 公文 `.docx`，也支持对既有红头/表格模板保真局部改稿与写入 Word 原生修订和批注（也可结合宿主文档工具处理）。
 
 ## 安装
 
-从 [GitHub 2.1.3 源码](https://github.com/gongyu0918-debug/chinese-official-writing-skill/releases/tag/2.1.3) 获取本版，将 `chinese-official-writing` 文件夹放入所用应用的 Skill 目录。
+从 [GitHub 2.1.4 源码](https://github.com/gongyu0918-debug/chinese-official-writing-skill/releases/tag/2.1.4) 获取本版，将 `chinese-official-writing` 文件夹放入所用应用的 Skill 目录。
 
-WorkBuddy 用户可打开[分享页](https://www.workbuddy.cn/share/asset?extra_from=&resource_type=link&shareCode=cs261118nAUsKCiZKU2BcVQJ8NE7LL&share_way=link&sig=-5u190H_fC6YHhBu)，或下载[无 Hooks 适配包](https://github.com/gongyu0918-debug/chinese-official-writing-skill/releases/download/2.1.3/chinese-official-writing-2.1.3-workbuddy.zip)，包内包含完整规则、脚本及平台入口。
+WorkBuddy 用户可打开[分享页](https://www.workbuddy.cn/share/asset?extra_from=&resource_type=link&shareCode=cs261118nAUsKCiZKU2BcVQJ8NE7LL&share_way=link&sig=-5u190H_fC6YHhBu)，或下载[无 Hooks 适配包](https://github.com/gongyu0918-debug/chinese-official-writing-skill/releases/download/2.1.4/chinese-official-writing-2.1.4-workbuddy.zip)，包内包含完整规则、脚本及平台入口。
 
-[SkillHub](https://skillhub.cn/skills/user_f3d82da7/chinese-official-writing) 和 [ClawHub](https://clawhub.ai/gongyu0918-debug/skills/chinese-official-writing) 提供商店安装；本版发布号为 2.1.3，各商店可用版本及审核状态以平台实际结果为准。篇幅统计、文稿体检、自动对账与规范 Word 生成均仅依赖 Python 3 标准库（零第三方依赖）。
+[SkillHub](https://skillhub.cn/skills/user_f3d82da7/chinese-official-writing) 和 [ClawHub](https://clawhub.ai/gongyu0918-debug/skills/chinese-official-writing) 提供商店安装；本版发布号为 2.1.4，各商店可用版本及审核状态以平台实际结果为准。篇幅统计、文稿体检、自动对账、规范 Word 生成与既有模板修订批注均仅依赖 Python 3 标准库（零第三方依赖）。
 
 ## 使用
 
@@ -73,7 +73,7 @@ Word 默认采用单位模板或默认样式；明确要求正式国标时另核
 
 ## 版本与许可
 
-GitHub 当前版本为 **2.1.3**。1.x 最后版本 **1.6.36** 保留在 [legacy/1.x](https://github.com/gongyu0918-debug/chinese-official-writing-skill/tree/legacy/1.x) 分支。
+GitHub 当前版本为 **2.1.4**。1.x 最后版本 **1.6.36** 保留在 [legacy/1.x](https://github.com/gongyu0918-debug/chinese-official-writing-skill/tree/legacy/1.x) 分支。
 
 本项目采用 [MIT License](LICENSE)，允许修改、分发和商业使用，请保留版权及许可声明。
 

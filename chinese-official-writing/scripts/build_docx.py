@@ -706,10 +706,11 @@ def build_docx(
         title_line_count=len(title_lines),
         parsed=parsed,
         has_colophon=bool(cc or print_org or print_date),
+        seal_mode=seal_mode,
     )
     pagination_note = ""
-    if est_pages >= 2 and 1 <= tail_lines <= 4:
-        pagination_note = f"按国标22行/页估算共约{est_pages}页、末页余约{tail_lines}行，实际打印前可在 Word/WPS 核对末页分页"
+    if est_pages >= 2 and 1 <= tail_lines <= 3:
+        pagination_note = f"按国标22行/页粗略估算约{est_pages}页、末页余约{tail_lines}行（仅供参考，非实际渲染页数），打印前可在 Word/WPS 核对分页"
 
     verify_report = verify_docx(output_path, profile=profile)
     if not verify_report["zip_ok"]:
@@ -739,6 +740,7 @@ def build_docx(
         "attachments": len(parsed["attachments"]),
         "extracted_nonws_chars": len(re.sub(r"\s+", "", extracted)),
         "estimated_pages": est_pages,
+        "pages_verified": False,
         "tail_lines_on_last_page": tail_lines,
         "pagination_note": pagination_note,
         "zip_ok": verify_report["zip_ok"],
@@ -759,11 +761,12 @@ def _estimate_pagination(
     title_line_count: int,
     parsed: dict,
     has_colophon: bool,
+    seal_mode: str = "stamped",
 ) -> tuple[int, int]:
     """按 GB/T 9704-2012 每面 22 行 × 每行 28 字估算总页数与末页行数。"""
     lines = 0
     if profile == "formal-preprinted":
-        lines += max(round((letterhead_reserve_mm - 37.0) / 10.2), 0) + (1 if has_doc_no else 0) + 2
+        lines += max(round((letterhead_reserve_mm - 37.0) / 9.88), 0) + (1 if has_doc_no else 0) + 2
     elif profile == "formal-digital":
         lines += (3 if has_org else 0) + (1 if has_doc_no else 0) + 2
     elif profile == "minutes":
@@ -779,7 +782,8 @@ def _estimate_pagination(
         for att in parsed["attachments"]:
             lines += max(1, math.ceil((_display_width_chars(att) + 3.0) / 28.0))
     if parsed["sign_unit"] or parsed["sign_date"]:
-        lines += 2 + (1 if parsed["sign_unit"] else 0) + (1 if parsed["sign_date"] else 0)
+        sign_blank = 1 if (profile in {"formal-preprinted", "formal-digital"} and seal_mode == "unstamped") else 2
+        lines += sign_blank + (1 if parsed["sign_unit"] else 0) + (1 if parsed["sign_date"] else 0)
     if has_colophon:
         lines += 3
     pages = max(1, math.ceil(lines / 22.0))
