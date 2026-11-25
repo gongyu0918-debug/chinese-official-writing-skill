@@ -109,6 +109,32 @@ PATTERNS: list[PatternSpec] = [
     ("medium", "vague-claim", r"强大平台", "结合稿件语境，用材料已有的具体活动、服务或能力说明平台作用，删去无依据的强度评价。"),
     ("medium", "vague-claim", r"成本更低", "核对材料中的比较对象、周期和成本口径；依据不足时收回比较结论，实际缺项列入文后提示。"),
     ("medium", "vague-claim", r"满足未来发展需要", "对照材料中的需求及其依据，写清已有内容支持的作用或预期；缺少依据时删去泛化判断。"),
+    (
+        "medium",
+        "staged-contrast-elevation",
+        r"(?:不是|并非|不仅是|不仅仅是)[^。！？；;\n]{1,28}(?:而是|更是)[^。！？；;\n]{0,16}(?:一次|一场)?[^。！？；;\n]{0,12}(?:跃升|飞跃|重塑|重构|洗礼|蜕变|里程碑|新起点|新征程|试金石|必答题|系统工程)",
+        "删去空泛拔高的假对比，直接写清具体变化、措施或结果；若两项分别承载不同业务事实则保留。",
+    ),
+    (
+        "medium",
+        "macro-throat-clearing",
+        r"(?:随着|伴随)(?:我国|当今|当前)?(?:经济社会|时代|科技|数字(?:化|经济)|人工智能|信息技术)[^，,。\n]{0,16}(?:不断|快速|迅猛|蓬勃|深入)(?:发展|推进|演进|变革)"
+        r"|在(?:当前|当今|新时代)[^，,。\n]{0,16}(?:时代|历史|宏观)背景下"
+        r"|在(?:技术|科技|数字经济|经济社会)(?:不断|快速|深入)发展的背景下",
+        "公文开头直切具体政策依据或业务事由，删去泛泛而谈的宏观时代背景；确为具体因果变化时保留。",
+    ),
+    (
+        "medium",
+        "inflated-elevation-tail",
+        r"注入(?:了)?(?:强劲|强大|澎湃|源源不断的)?(?:动力|动能|活力)|谱写[^。！？\n]{0,18}新篇章|绘就[^。！？\n]{0,18}新画卷",
+        "删去空泛拔高的收尾套话，直接写清实际效果、后续任务或具体行动。",
+    ),
+    (
+        "low",
+        "inflated-elevation-tail",
+        r"(?:充分|生动|深刻)?(?:彰显了|折射出|凸显了)[^。！？\n]{0,24}(?:决心|担当|格局|智慧|力量|魅力|底色|追求|精神)",
+        "核对是否为空泛拔高表述；正式工作汇报或说明优先用具体事实与成效替代。",
+    ),
 ]
 
 # 交付态规则按需启用。相同措辞在复核意见中可能合理，因此默认扫描不加载这些规则。
@@ -495,7 +521,19 @@ REPEAT_TERMS: dict[str, int] = {
     "生态": 4,  # 产业和平台材料常用词，4 次起提示是否泛化。
     "抓手": 3,  # 容易变成套话，3 次起提示是否需要改成事项或机制。
     "矩阵": 3,  # 组织和传播材料常用词，3 次起提示是否堆概念。
+    "多措并举": 2,  # 空泛并举套话，重复出现提示改为具体举措。
+    "靶向发力": 2,  # 抽象黑话，重复出现提示改为具体对象与动作。
+    "全链条": 3,  # 管理类抽象修饰，高频出现提示核对具体环节。
+    "立体化": 2,  # 空泛形容词，重复出现提示改成实际措施。
+    "打通最后一公里": 2,  # 套话，重复出现提示改为具体衔接事项。
+    "形成合力": 3,  # 结尾套话，高频出现提示写出明确分工协同。
 }
+
+JINXING_VERB_PATTERN = re.compile(r"进行(?:了|过)?(?![中时曲到至前后了的])[\u4e00-\u9fff]{2,6}")
+JINXING_PARAGRAPH_THRESHOLD = 3
+STACKED_DE_CLAUSE_THRESHOLD = 4
+BOOK_TITLE_SPAN_PATTERN = re.compile(r"《[^》\n]+》")
+CLAUSE_SPLIT_PATTERN = re.compile(r"[，,。！？；;：\n]+")
 
 # 重复段落检测用的通用低信息词。不要放入“数据、系统、平台、服务、管理、实施、保障”等实义领域词。
 DUPLICATE_GENERIC_TOKENS = {
@@ -1003,17 +1041,26 @@ def attachment_boundary_line(
     return cursor
 
 
+ANCHOR_NUMBER_LEAD_RE = re.compile(
+    r"^\s*（[一二三四五六七八九十]+）"
+    r"|(?:(?:名单|清单|对象|目录)|(?:名单|清单|对象|人员|公示|明细|目录)如下)[：:。]?\s*$"
+)
+
+
 def is_attachment_number_item(
     lines: list[str], line_index: int, line: str, boundary: dict[int, int] | None = None,
 ) -> bool:
-    """附件标题后的数字编号视为合理格式。"""
+    """附件标题、二级小标题或公文名单领起行后的数字编号视为合理格式。"""
     if not ATTACHMENT_NUMBER_ITEM_PATTERN.match(line):
         return False
     window = lines[max(0, line_index - ATTACHMENT_LOOKBACK_LINES) : line_index]
     if any("附件" in item for item in window):
         return True
     cursor = attachment_boundary_line(lines, line_index - 1, boundary)
-    return cursor >= 0 and "附件" in lines[cursor]
+    if cursor < 0:
+        return False
+    anchor = lines[cursor].strip()
+    return "附件" in anchor or bool(ANCHOR_NUMBER_LEAD_RE.search(anchor))
 
 
 def external_note_heading(line: str) -> re.Match[str] | None:
@@ -2418,7 +2465,7 @@ def hierarchy_balance_findings(path_label: str, lines: list[str]) -> list[Findin
     findings: list[Finding] = []
     h1_re = re.compile(r"^\s*[一二三四五六七八九十]+、\S")
     recipient_re = re.compile(r"^\s*[^。！？；;\n]{1,42}[：:]\s*$")
-    tail_meta_re = re.compile(r"^\s*(?:附件[：:]|\d{4}年\d{1,2}月\d{1,2}日|文后提示)")
+    tail_meta_re = re.compile(r"^\s*(?:附件[：:]|文后提示|\d{4}年\d{1,2}月\d{1,2}日\s*$)")
     next_step_re = re.compile(r"下一步|工作打算|后续安排|下步工作")
 
     non_empty: list[tuple[int, str]] = [(idx + 1, line.strip()) for idx, line in enumerate(lines) if line.strip()]
@@ -2530,6 +2577,113 @@ def public_release_leak_findings(path_label: str, source: ScanSource) -> list[Fi
     return findings
 
 
+def _mask_non_prose_spans(
+    line: str,
+    quoted_spans: list[tuple[int, int]] | None = None,
+    *,
+    mask_titles: bool = False,
+) -> str:
+    """将行内代码、指定引文与书名号替换为等长空格，避免统计辅助检查误报。"""
+
+    chars = list(line)
+    spans = list(inline_code_spans(line))
+    if quoted_spans:
+        spans.extend(quoted_spans)
+    if mask_titles:
+        spans.extend((m.start(), m.end()) for m in BOOK_TITLE_SPAN_PATTERN.finditer(line))
+    for left, right in spans:
+        for idx in range(max(0, left), min(len(chars), right)):
+            chars[idx] = " "
+    return "".join(chars)
+
+
+def jinxing_verb_density_findings(
+    path_label: str,
+    source: ScanSource,
+    delivery_mode: str = "generic",
+) -> list[Finding]:
+    """同段密集连用 3 次及以上“进行+动词”时提示精简，不误杀单次正式表达。"""
+
+    findings: list[Finding] = []
+    para_lines: list[tuple[int, str]] = []
+
+    def flush_paragraph() -> None:
+        if not para_lines:
+            return
+        hits: list[tuple[int, str]] = []
+        for lno, masked in para_lines:
+            for match in JINXING_VERB_PATTERN.finditer(masked):
+                hits.append((lno, match.group(0)))
+        if len(hits) >= JINXING_PARAGRAPH_THRESHOLD:
+            findings.append(
+                Finding(
+                    path=path_label,
+                    line=hits[0][0],
+                    severity="low",
+                    label="jinxing-verb-density",
+                    match=" / ".join(word for _lno, word in hits[:JINXING_PARAGRAPH_THRESHOLD]),
+                    excerpt=(
+                        f"本段密集连用 {len(hits)} 次“进行+动词”，可改用直接动词"
+                        "（如将“进行了排查、梳理和整改”改为“排查、梳理并整改”）；"
+                        "单次合规正式表达（如“依法进行审查”）保留。"
+                    ),
+                )
+            )
+        para_lines.clear()
+
+    fence_marker: str | None = None
+    for line_index, line in enumerate(source.lines_to_scan):
+        is_marker, fence_marker = fence_marker_transition(fence_marker, line)
+        if is_marker:
+            flush_paragraph()
+            continue
+        if fence_marker is not None:
+            continue
+        if not line.strip():
+            flush_paragraph()
+            continue
+        quoted = (
+            source.quoted_spans[line_index]
+            if delivery_mode == "review-only" and line_index < len(source.quoted_spans)
+            else None
+        )
+        para_lines.append((line_index + 1, _mask_non_prose_spans(line, quoted)))
+    flush_paragraph()
+    return findings
+
+
+def stacked_de_modifier_findings(
+    path_label: str,
+    source: ScanSource,
+) -> list[Finding]:
+    """单分句连续出现 4 个及以上“的”字层叠定语时提示拆顺，跳过代码、引文和书名号。"""
+
+    findings: list[Finding] = []
+    fence_marker: str | None = None
+    for line_index, line in enumerate(source.lines_to_scan):
+        is_marker, fence_marker = fence_marker_transition(fence_marker, line)
+        if is_marker or fence_marker is not None:
+            continue
+        quoted = source.quoted_spans[line_index] if line_index < len(source.quoted_spans) else None
+        masked = _mask_non_prose_spans(line, quoted, mask_titles=True)
+        for clause in CLAUSE_SPLIT_PATTERN.split(masked):
+            compact = clause.strip()
+            if compact.count("的") >= STACKED_DE_CLAUSE_THRESHOLD:
+                snippet = compact if len(compact) <= 60 else compact[:57] + "..."
+                findings.append(
+                    Finding(
+                        path=path_label,
+                        line=line_index + 1,
+                        severity="low",
+                        label="stacked-de-modifier",
+                        match=snippet,
+                        excerpt="分句定语“的”字层叠较多，建议拆顺主谓宾以提高公文可读性。",
+                    )
+                )
+                break
+    return findings
+
+
 def aggregate_findings(
     path_label: str,
     source: ScanSource,
@@ -2560,6 +2714,8 @@ def aggregate_findings(
         findings.extend(
             structured_smell_findings(path_label, source.text_to_scan, source.lines_to_scan)
         )
+        findings.extend(jinxing_verb_density_findings(path_label, source, delivery_mode))
+        findings.extend(stacked_de_modifier_findings(path_label, source))
         if delivery_mode in {"draft-body", "gap-note-allowed"}:
             findings.extend(unresolved_state_chain_findings(path_label, source))
     if public_release:

@@ -1,6 +1,6 @@
 # 中文公文写作 Skill
 
-[![Version](https://img.shields.io/badge/version-2.1.4-blue)](https://github.com/gongyu0918-debug/chinese-official-writing-skill/releases/tag/2.1.4)
+[![Version](https://img.shields.io/badge/version-2.1.6-blue)](https://github.com/gongyu0918-debug/chinese-official-writing-skill/releases/tag/2.1.6)
 [![ClawHub downloads: 11,975](https://img.shields.io/badge/ClawHub%20downloads-11%2C975-2f80ed)](https://clawhub.ai/gongyu0918-debug/skills/chinese-official-writing)
 [![SkillHub downloads: 482,559](https://img.shields.io/badge/SkillHub%20downloads-482%2C559-2f855a)](https://skillhub.cn/skills/user_f3d82da7/chinese-official-writing)
 [![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
@@ -22,36 +22,36 @@
 
 ## 安装
 
-从 [GitHub 2.1.4 源码](https://github.com/gongyu0918-debug/chinese-official-writing-skill/releases/tag/2.1.4) 获取本版，将 `chinese-official-writing` 文件夹放入所用应用的 Skill 目录。
+从 [GitHub 2.1.6 源码](https://github.com/gongyu0918-debug/chinese-official-writing-skill/releases/tag/2.1.6) 获取本版，将 `chinese-official-writing` 文件夹放入所用应用的 Skill 目录。
 
-WorkBuddy 用户可打开[分享页](https://www.workbuddy.cn/share/asset?extra_from=&resource_type=link&shareCode=cs261118nAUsKCiZKU2BcVQJ8NE7LL&share_way=link&sig=-5u190H_fC6YHhBu)，或下载[无 Hooks 适配包](https://github.com/gongyu0918-debug/chinese-official-writing-skill/releases/download/2.1.4/chinese-official-writing-2.1.4-workbuddy.zip)，包内包含完整规则、脚本及平台入口。
+WorkBuddy 用户可打开[分享页](https://www.workbuddy.cn/share/asset?extra_from=&resource_type=link&shareCode=cs261118nAUsKCiZKU2BcVQJ8NE7LL&share_way=link&sig=-5u190H_fC6YHhBu)，或下载[无 Hooks 适配包](https://github.com/gongyu0918-debug/chinese-official-writing-skill/releases/download/2.1.6/chinese-official-writing-2.1.6-workbuddy.zip)，包内包含完整规则、脚本及平台入口。
 
-[SkillHub](https://skillhub.cn/skills/user_f3d82da7/chinese-official-writing) 和 [ClawHub](https://clawhub.ai/gongyu0918-debug/skills/chinese-official-writing) 提供商店安装；本版发布号为 2.1.4，各商店可用版本及审核状态以平台实际结果为准。篇幅统计、文稿体检、自动对账、规范 Word 生成与既有模板修订批注均仅依赖 Python 3 标准库（零第三方依赖）。
+[SkillHub](https://skillhub.cn/skills/user_f3d82da7/chinese-official-writing) 和 [ClawHub](https://clawhub.ai/gongyu0918-debug/skills/chinese-official-writing) 提供商店安装；本版发布号为 2.1.6，各商店可用版本及审核状态以平台实际结果为准。篇幅统计、文稿体检、自动对账、规范 Word 生成与既有模板修订批注均仅依赖 Python 3 标准库（零第三方依赖）。
 
 ## 使用
 
-直接提供现有材料、稿件用途和要求。已有旧稿时，说明采用哪一版，以及哪些内容可以修改、哪些必须保留。
+不用背提示词——把零散记录、会议要点、旧稿直接发过来，像平时跟同事交代一样说清用途就行。有旧稿时，顺带说一句用哪一版、哪些不能改。
 
-- 起草：“这是下周培训的安排，帮我写个通知，把报名事项说清楚。”
-- 抄告单：“从这份纪要中摘出需要抄告财务处的两项决定，按现有抄告单成稿，保留责任和期限。”也可整理领导批示、事项告知或审批结果公示；请提供对应原件和用途。
-- 改稿：“这是今年的工作记录，帮我更新去年的总结，分清已完成和正在推进的事项。”
-- 局部修改：“仅把回执接收人王老师改为李老师，其余文字、标点和空行原样保留。”
-- 压缩：“将这份汇报压缩到400字以内，保留关键数字、日期和未了事项。”
-- 审校：“先指出位置、问题和建议；涉及待核实的信息不要改成确定事实。”
-- 去口语化：“帮我把这份整改方案写得平实些，保留具体事项。”
-- Word：“申请内容已定，请按单位模板整理成 Word。”
+- **群发通知**：“周五下午2点半在302开信息安全培训，各部门来2个骨干，自带电脑提前10分钟签到，帮我写个150字以内的通知发群里。”
+- **降 AI 味**：“这段汇报AI味太重了，帮我改得自然点，里面的数字别动。”
+- **散料整总结**：“这几个月的零散工作记录我贴给你，帮我理成一份工作总结，下周汇报要用。”
+- **理纪要/抄告**：“帮我把刚开会的记录理成会议纪要，顺便把需要转给财务处办的两件事单拎出来。”
+- **精准改几个字**：“只把回执联系人王老师改成李老师，别的字、标点和空行一个都别动。”
+- **长稿压字数**：“这份汇报写太长了，领导只要400字以内，帮我压一下，关键数字和还没办完的事别删掉。”
+- **发前把把关**：“这份稿子快要发出去了，帮我把把关，看看有没有写错的地方，或者哪里读着别扭。”
+- **排 Word 公文**：“这份通知的内容已经定好了，帮我直接排成规范的公文 Word 发我。”
 
-篇幅、语气、收件人和交付形式可一并说明。只需要稿件时，可以说：“只输出正文，不附文后提示或过程说明。”
+字数要求、发给谁、或者不需要多余解释的话，顺手补一句“只给正文就行”。
 
 仅对正文限字时，正文单独计数，标题、主送、落款和附件按各自用途保留；检查完整交付稿时一并核对这些部分。整稿字数在范围内，不能代替正文达到要求。
 
-更多用法见[八组中英文示例](chinese-official-writing/examples/prompts.json)。
+更多日常中英文示例见[八组中英文示例](chinese-official-writing/examples/prompts.json)。
 
 ## 写作说明
 
 稿件应围绕本次行文目的安排主次：申请、请示讲清请求批准的事项、理由、主要内容和资源；报告讲清需要了解的进展、问题及判断依据；评论围绕中心判断展开论证。关键内容依据材料写具体，背景、例子、反面观点和边界说明为其提供支撑。用户要求的必列事实、模板和必要的不同观点完整保留。详略以本次用途和材料为依据，长稿同样需要充分说明核心内容。
 
-可以直接指出重点和详略，例如：“这份立项申请重点写为何增加写作能力、具体建设什么、申请什么资源；推广数据只支撑已有基础，技术运行细节集中到附件。保留原章节和有效数字，不新增建设范围。”
+想指定重点和篇幅分配时，照平时说话交代就行，比如：“帮我把这份立项申请理顺一下，正文重点写为什么要做、做什么和要多少钱，技术细节挪到附件里，原来的数字别改。”
 
 有正文和附件时，正文说明本次事项、关键动作与作用，附件集中说明完整过程和细目；审批或理解所需的摘要、关键数字可以两处对应。用途分析与已发生的用户行为、调查测算分别表达，已提供的记录和判断按原状态保留。
 
@@ -73,7 +73,7 @@ Word 默认采用单位模板或默认样式；明确要求正式国标时另核
 
 ## 版本与许可
 
-GitHub 当前版本为 **2.1.4**。1.x 最后版本 **1.6.36** 保留在 [legacy/1.x](https://github.com/gongyu0918-debug/chinese-official-writing-skill/tree/legacy/1.x) 分支。
+GitHub 当前版本为 **2.1.6**。1.x 最后版本 **1.6.36** 保留在 [legacy/1.x](https://github.com/gongyu0918-debug/chinese-official-writing-skill/tree/legacy/1.x) 分支。
 
 本项目采用 [MIT License](LICENSE)，允许修改、分发和商业使用，请保留版权及许可声明。
 

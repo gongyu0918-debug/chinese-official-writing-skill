@@ -11,9 +11,14 @@
 
 ## 使用方式
 
-直接提供现有材料、稿件用途和写作要求即可（几句要点、会议记录、多份草稿或旧版文件均可）。多轮修改默认以最新版底稿和本轮要求为准；需要只输出成品时，直接说明“只给正文”。
+把微信聊天记录、会议流水账、旧稿或文件直接发过来，用平时说话的方式讲清想做成什么稿子、给谁看就行。常见用法：
 
-八组常见中英文用法示例见 [examples/prompts.json](examples/prompts.json)。
+- 群发通知：“周五下午2点半在302开信息安全培训，各部门来2个骨干，自带电脑提前10分钟签到，帮我写个150字以内的通知发群里。”
+- 降 AI 味：“这段汇报AI味太重了，帮我改得自然点，里面的数字别动。”
+- 散料整稿：“这几个月的零散工作记录我贴给你，帮我理成一份工作总结，下周汇报要用。”
+- Word 与改字：“这份通知内容已经定好了，帮我排成规范 Word；或者只把回执联系人改成李老师，别的地方别动。”
+
+更多日常中英文例子见 [examples/prompts.json](examples/prompts.json)。
 
 ## 写作理念
 
@@ -24,7 +29,7 @@
 
 ## 版本与许可
 
-当前版本为 2.1.4。历史版本 1.6.36 见 [legacy/1.x](https://github.com/gongyu0918-debug/chinese-official-writing-skill/tree/legacy/1.x) 分支。
+当前版本为 2.1.6。历史版本 1.6.36 见 [legacy/1.x](https://github.com/gongyu0918-debug/chinese-official-writing-skill/tree/legacy/1.x) 分支。
 
 本项目采用 [MIT License](LICENSE)，请保留版权及许可声明。
 

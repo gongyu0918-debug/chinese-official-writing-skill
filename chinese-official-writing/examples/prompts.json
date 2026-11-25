@@ -1,22 +1,22 @@
 {
   "examples_zh": [
-    "写一份可转发的短通知：周五14:30在302会议室开信息安全培训，各部门派2名骨干参加，自带电脑、提前10分钟签到，150字内，只给通知。",
-    "帮我给这段汇报降AI味去叠甲：“三季度我办多措并举赋能排查，查企业120家、整改隐患32处，余3处月底完成；注：数据系初步汇总，后续视情况更新。”",
-    "把这条会议记录整成纪要，分清已定和待议事项：18日王副总主持研究门禁改造，同意30万内实施、信息部下月20日前上线；访客收费标准待法务核查政策后下次再议。",
-    "请根据我提供的采购需求、报价和经费情况，起草一份设备采购请示，重点写清采购理由、主要内容和请求批准的事项。",
-    "请把本阶段工作记录整理成工作总结，重点写主要进展和代表性成果，合并重复内容，分别交代已有安排和下一步建议。",
-    "请把这份汇报压缩到800字以内，保留关键事实、数字和原意，删去重复铺陈，语言平实自然，返回完整改后稿。",
-    "请审校这份公文，按“位置、问题、修改建议”列出意见，区分明确错误、待核实信息和可选的表达优化。",
-    "请根据提案和办理记录起草答复，逐项回应建议，讲清当前进展和后续安排，只给完整答复。"
+    "周五下午2点半在302开信息安全培训，各部门来2个骨干，自带电脑提前10分钟签到，帮我写个150字以内的通知发群里。",
+    "这段汇报AI味太重了，帮我改得自然点，里面的数字别动：“三季度我办多措并举全面赋能安全排查，共检查企业120家，整改隐患32处，剩下3处月底前弄完，注：数据为初步汇总，仅供参考。”",
+    "帮我把刚开会的记录理成会议纪要：18号王副总开会定了门禁改造控制在30万以内，信息部下月20号前上线；访客收费标准还没定，等法务核完政策下次再议。",
+    "我要给领导打一份设备采购请示，采购清单、几家报价和预算我都准备好了，发你帮我写成正式请示。",
+    "这几个月的零散工作记录我贴给你，帮我理成一份工作总结，下周汇报要用。",
+    "这份汇报写太长了，领导只要800字以内，帮我压一下，关键数字和还没办完的事别删掉。",
+    "这份稿子快要发出去了，帮我把把关，看看有没有写错的地方，或者哪里读着别扭。",
+    "这份通知的内容已经定好了，帮我直接排成规范的公文 Word 发我。"
   ],
   "examples_en": [
-    "Draft a forward-ready Chinese notice under 150 chars: info-security training Friday 14:30 in Room 302, 2 key staff per department, bring laptops, sign in 10 min early; notice only.",
-    "Remove AI-ese and hedging from this Chinese report excerpt while keeping all figures: 'In Q3 our office took multiple measures to empower inspections of 120 firms, fixed 32 hazards with 3 due by month-end; note: figures are preliminary and subject to update.'",
-    "Turn these notes into formal Chinese minutes separating decisions from open items: VP Wang chaired an access-control upgrade meeting on the 18th; approved within RMB 300k, IT to launch by the 20th next month; visitor fees deferred pending Legal policy review.",
-    "Use the procurement needs, quotations, and funding information I provide to draft a Chinese request for approval to purchase equipment. Explain the reasons, scope, and approval requested.",
-    "Turn my work records for this period into a Chinese work summary. Focus on the main progress and representative results, combine repeated points, and distinguish existing plans from recommendations for next steps.",
-    "Condense this Chinese report to 800 characters or fewer. Preserve its key facts, figures, and meaning, remove repetition, and return the full revised draft in plain, natural Chinese.",
-    "Review this Chinese official document. List the location, issue, and suggested revision for each comment, distinguishing definite errors, information needing verification, and optional wording improvements.",
-    "Draft a Chinese reply from the proposal and handling records I provide. Address each recommendation, explain current progress and follow-up arrangements, and return only the complete reply."
+    "Info-security training is this Friday at 2:30 PM in Room 302—2 key staff per team, bring laptops, sign in 10 minutes early. Write me a Chinese notice under 150 chars to drop in our group chat.",
+    "This Chinese update sounds too robotic—rewrite it naturally without changing the numbers: 'In Q3 our office took multiple measures to empower safety checks of 120 firms, fixed 32 hazards with 3 due by month-end; note: figures are preliminary and for reference only.'",
+    "Turn these meeting notes into Chinese minutes: on the 18th VP Wang approved the access-control upgrade within 300k yuan for IT launch by the 20th next month; visitor fee rules aren't decided yet pending Legal's policy check.",
+    "I need to send a hardware purchase request to management—I have the item list, vendor quotes, and budget ready, please turn them into a formal Chinese request.",
+    "Here are my scattered work notes from the past few months—help me turn them into a Chinese work summary for next week's briefing.",
+    "This Chinese report is too long—please trim it under 800 characters for management, keeping the key figures and unfinished items.",
+    "This Chinese draft is about to go out—please review it and let me know if anything looks wrong or reads awkwardly.",
+    "The notice text is finalized—please format it into a clean standard official Word document for me."
   ]
 }
