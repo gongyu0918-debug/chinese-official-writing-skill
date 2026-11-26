@@ -81,13 +81,7 @@ PATTERNS: list[PatternSpec] = [
     ("medium", "casual", r"(?:钱|资金|费用|经费|投入|成本)[^。！？；;\n]{0,10}(?:花得值|花得划算|花得不亏|值不值|划得来|划不划算)", "改为资金使用必要性和预期效果，并保留依据边界。"),
     ("medium", "casual", r"(?:老板|金主|上头)[^。！？；;\n]{0,10}(?:关心|在意|盯着|催)", "改为相关负责人关注该事项，不无依据升级为领导高度关注。"),
     ("low", "empty-filler", r"全面赋能", "确认是否有具体机制支撑。"),
-    ("low", "empty-filler", r"提供有力支撑", "确认是否有具体支撑对象、机制或结果。"),
-    ("low", "empty-filler", r"奠定坚实基础", "确认是否有具体基础内容和后续事项。"),
     ("low", "empty-filler", r"未来可期", "正式材料中通常改为具体预期目标或删去。"),
-    ("low", "empty-filler", r"高度重视", "确认是否有具体部署、责任或行动支撑。"),
-    ("low", "empty-filler", r"充分发挥", "确认后文是否说明发挥方式。"),
-    ("low", "empty-filler", r"不断提升", "确认是否有具体对象或目标。"),
-    ("low", "empty-filler", r"持续推进", "确认是否有具体推进事项、时限或责任。"),
     ("low", "template-phrase", r"形成一批", "确认是否有明确对象、数量或结果形态。"),
     ("low", "template-phrase", r"重点任务包括", "避免用一个总括句承接长清单，改为分项任务条款。"),
     ("low", "template-phrase", r"保障措施包括", "避免泛化清单，改为组织、资金、督导、责任等具体措施。"),
@@ -364,6 +358,18 @@ DRAFT_BODY_PATTERNS: list[PatternSpec] = [
         r"拟建议|(?:拟提出|提出)[^。！？\n]{0,16}建议[：:][^。！？\n]{0,20}(?:一是|1\.|（一）)拟",
         "“拟”与“建议”语义重复，或总领句已交代建议性质后分项再次叠用“拟”；保留一处即可。",
     ),
+    (
+        "low",
+        "archaic-official-term",
+        r"(?:切切(?:此布)?|(?<![发公])此布(?=[。！？；;，,\s]|$)|仰即(?:遵照|查照)?|希即查照|顷接|近奉|左列|右列|顺颂商祺|台鉴|钧鉴|大鉴|为荷(?=[。！？；;，,\s]|$)|俯顺)",
+        "疑似古旧公文或商业信函非常用语；现代法定公文一般改用平实规范表述，历史文献转写或指定旧模板按原样保留。",
+    ),
+    (
+        "low",
+        "hedge-fence-sitting",
+        r"在某种程度上(?:可能|或许)?(?:会|将)?(?:产生|带来|造成|存在)一定(?:的)?(?:影响|偏差|作用|制约)|取决于多种(?:因素|条件)(?:的)?综合(?:作用|影响)",
+        "疑似空泛骑墙式叠甲；有真实制约时直写具体前提与边界，否则删去。",
+    ),
 ]
 
 # 未决与保护性状态句按段落复核：单个独立状态句不报，仅尾部附加或同段重复提示 low。
@@ -467,6 +473,39 @@ PROTECTIVE_STATE_TAIL_PATTERN = re.compile(
 # 对比骨架聚合：同一骨架出现 3 次以上才给一条 low。
 PAIRED_SKELETON_MIN_COUNT = 3
 
+# 常规机关公文高频规范惯用语：偶用属正常公文语感，同篇重复 3 次及以上才给一条 low。
+OFFICIAL_IDIOM_TERMS: tuple[str, ...] = (
+    "高度重视",
+    "充分发挥",
+    "不断提升",
+    "持续推进",
+    "提供有力支撑",
+    "奠定坚实基础",
+)
+OFFICIAL_IDIOM_OVERUSE_THRESHOLD = 3
+OFFICIAL_IDIOM_PARAGRAPH_THRESHOLD = 3
+JINXING_CLUSTER_WINDOW_CHARS = 120
+JINXING_LONG_OR_STATUTORY_THRESHOLD = 4
+DECIMAL_OUTLINE_HEADING_PATTERN = re.compile(
+    r"^\d+(?:\.\d+)+[ \t]+(?!万元|亿元|万|亿|元|%|％|人|次|个|项|套|台|吨|米|公里|小时)[\u4e00-\u9fffⅠⅡⅢⅣⅤⅥⅦⅧⅨⅩ]"
+)
+STATUTORY_ARTICLE_LINE_PATTERN = re.compile(r"^第[一二三四五六七八九十百零0-9]+条(?:\s|　|$)")
+DECIMAL_SUBHEADING_CHAPTER_RE = re.compile(
+    r"^\s*(\d+)\.\d+(?:\.\d+)*[ \t]+(?!万元|亿元|万|亿|元|倍|%|％|人|次|个|项|套|台|吨|米|公里|小时)[\u4e00-\u9fffⅠⅡⅢⅣⅤⅥⅦⅧⅨⅩ]"
+)
+DECIMAL_CHAPTER_HEADING_RE = re.compile(r"^\s*(\d+)\.[ \t]+[\u4e00-\u9fff]{1,20}\s*$")
+CN_NUMBER_LEADING_HEADING_RE = re.compile(r"^\s*\d+(?:\.\d+)*[ \t]+[\u4e00-\u9fff]")
+CN_NUMBER_CAPTION_RE = re.compile(r"^\s*(?:表|图)\d+(?:\.\d+)*[ \t]+[\u4e00-\u9fff]")
+CN_NUMBER_DATELINE_RE = re.compile(r"^\s*[\u4e00-\u9fff]{2,12}[ \t\u00a0]+\d{4}-\d{2}-\d{2}\s*$")
+CN_NUMBER_META_LINE_RE = re.compile(r"^\s*(?:日期|时间|来源|发布时间|地址|备案号|网站标识码|索引号|文号)[：:]")
+TIER_THRESHOLD_RE = re.compile(
+    r"([一二三四五六七八九十百千零\d]+(?:\.\d+)?)\s*((?:人|万元|亿元|元|倍|%|％|日|小时)(?:以上|以下))"
+)
+CONDITIONAL_DUTY_TAIL_RE = re.compile(
+    r"^[^。！？；;\n]{0,16}的[，,]\s*[\u4e00-\u9fff]{0,10}(?:应当|应|须|必须|可以|由|按照|参照)"
+)
+LEXICAL_DE_WORDS_RE = re.compile(r"目的|的确|标的")
+
 # 输出到人读终端时统一转义的控制、零宽和双向字符。
 UNSAFE_OUTPUT_PATTERN = re.compile(
     r"[\x00-\x08\x0b\x0c\x0e-\x1f\x7f-\x9f\u200b-\u200f\u202a-\u202e\u2066-\u2069]"
@@ -484,10 +523,11 @@ FORMAT_PATTERNS: list[PatternSpec] = [
     ("medium", "non-hex-docno-brackets", r"[\u4e00-\u9fff]{1,6}\s*[\[(【]20\d{2}[\])】]\s*第?0?\d+号|〔20\d{2}〕(?:第\d+|0\d+)号", "发文字号年份应使用六角括号“〔〕”，序号不加“第”且不补零（如“××发〔2026〕5号”）。"),
     ("low", "ascii-ellipsis-dash", r"[\u4e00-\u9fff]\s*(?:\.{3,}|-{3,})\s*[\u4e00-\u9fff]", "中文正文中省略号应使用“……”，破折号应使用“——”，避免使用半角“...”或“---”。"),
     ("medium", "jiezhi-date-misuse", r"截止(?=(?:20\d{2}年|\d{1,2}月|\d{1,2}日|目前|当前|年底|月底|今日))", "“截止”后一般不直接接时间点；表截至某时点改用“截至”，或改为“××日截止”。"),
+    ("medium", "jiezhi-redundancy", r"截至到", "“截至”已含“到”义，避免叠写“截至到”；改用“截至……”或“到……为止”。"),
     ("low", "date-leading-zero", r"(?:20\d{2}年0[1-9]月|(?:20\d{2}年\d{1,2}月|\d{1,2}月)0[1-9]日)", "正式公文日期的月、日一般不补零（如“2026年9月5日”）。"),
     ("low", "missing-subject-through-make", r"(?:^|[。！？；;，,])\s*(?:通过|经过|随着)[^。！？；;\n]{2,28}[，,]\s*(?:使|让)(?=[\u4e00-\u9fff])", "核对“通过/经过……，使……”是否缺少主语；删去“通过”或“使”通常更通顺。"),
     ("low", "number-grouping-comma", r"\d{1,3}(?:,\d{3})+(?:\.\d+)?", "确认正式中文材料中是否应取消千位分隔符。"),
-    ("low", "cn-number-space", r"[\u4e00-\u9fff]\s+\d|\d\s+[\u4e00-\u9fff]", "检查中文和数字之间是否误加空格。"),
+    ("low", "cn-number-space", r"[\u4e00-\u9fff][ \t\u00a0]+\d|\d[ \t\u00a0]+[\u4e00-\u9fff]", "检查中文和数字之间是否误加空格。"),
     ("medium", "emoji-marker", r"[\U0001F300-\U0001FAFF]", "正式公文正文避免使用 Emoji。"),
     (
         "low",
@@ -529,7 +569,7 @@ REPEAT_TERMS: dict[str, int] = {
     "形成合力": 3,  # 结尾套话，高频出现提示写出明确分工协同。
 }
 
-JINXING_VERB_PATTERN = re.compile(r"进行(?:了|过)?(?![中时曲到至前后了的])[\u4e00-\u9fff]{2,6}")
+JINXING_VERB_PATTERN = re.compile(r"(?<![推促增改演渐循迈奋昂精急激并])进行(?:了|过)?(?![中时曲到至前后了的])[\u4e00-\u9fff]{2,6}")
 JINXING_PARAGRAPH_THRESHOLD = 3
 STACKED_DE_CLAUSE_THRESHOLD = 4
 BOOK_TITLE_SPAN_PATTERN = re.compile(r"《[^》\n]+》")
@@ -1041,10 +1081,12 @@ def attachment_boundary_line(
     return cursor
 
 
+ANCHOR_H2_LEAD_RE = re.compile(r"^\s*（[一二三四五六七八九十]+）")
 ANCHOR_NUMBER_LEAD_RE = re.compile(
-    r"^\s*（[一二三四五六七八九十]+）"
-    r"|(?:(?:名单|清单|对象|目录)|(?:名单|清单|对象|人员|公示|明细|目录)如下)[：:。]?\s*$"
+    r"(?:(?:名单|清单|对象|目录)|(?:名单|清单|对象|人员|公示|明细|目录)如下)[：:。]?\s*$"
 )
+ANCHOR_NEGATIVE_RECEIPT_RE = re.compile(r"尚未|暂未|没有收到|未收到|未提交|未报送|未形成|无此")
+ATTACHMENT_HEADER_RE = re.compile(r"^\s*附件(?:\s*[一二三四五六七八九十0-9]*)?\s*[：:]")
 
 
 def is_attachment_number_item(
@@ -1054,13 +1096,19 @@ def is_attachment_number_item(
     if not ATTACHMENT_NUMBER_ITEM_PATTERN.match(line):
         return False
     window = lines[max(0, line_index - ATTACHMENT_LOOKBACK_LINES) : line_index]
-    if any("附件" in item for item in window):
+    if any(ATTACHMENT_HEADER_RE.match(item) for item in window):
         return True
     cursor = attachment_boundary_line(lines, line_index - 1, boundary)
     if cursor < 0:
         return False
     anchor = lines[cursor].strip()
-    return "附件" in anchor or bool(ANCHOR_NUMBER_LEAD_RE.search(anchor))
+    if ATTACHMENT_HEADER_RE.match(anchor) or ANCHOR_H2_LEAD_RE.search(anchor):
+        return True
+    return (
+        len(anchor) <= 32
+        and not ANCHOR_NEGATIVE_RECEIPT_RE.search(anchor)
+        and bool(ANCHOR_NUMBER_LEAD_RE.search(anchor))
+    )
 
 
 def external_note_heading(line: str) -> re.Match[str] | None:
@@ -1211,6 +1259,14 @@ def paragraph_blocks(lines: list[str]) -> list[tuple[int, str, int]]:
             flush_current()
             section_id += 1
             continue
+        if (
+            DECIMAL_OUTLINE_HEADING_PATTERN.match(stripped)
+            and len(re.sub(r"\s+", "", stripped)) <= 45
+            and not stripped.endswith(("。", "！", "？", "；", ";"))
+        ):
+            flush_current()
+            section_id += 1
+            continue
         if re.match(r"^\s*(?:[-*]|\d+[.)、])\s+", stripped):
             flush_current()
             continue
@@ -1221,14 +1277,51 @@ def paragraph_blocks(lines: list[str]) -> list[tuple[int, str, int]]:
             if not heading_body:
                 continue
             stripped = heading_body
+        elif STATUTORY_ARTICLE_LINE_PATTERN.match(stripped):
+            # 法条分条分段但保持同节，避免同章内同等义务实质重复被抬高阈值漏检。
+            flush_current()
         elif re.match(r"^(?:[一二三四五六七八九十]+、|[（(][一二三四五六七八九十0-9]+[）)])", stripped):
             # 编号正文分段但不换节，仍可比对相邻或隔段的实质重复。
             flush_current()
         if not current:
             start_line = idx
         current.append(stripped)
+        if stripped.endswith(("。", "！", "？")):
+            flush_current()
     flush_current()
     return blocks
+
+
+def _normalized_tier_thresholds(text: str) -> set[str]:
+    """统一中/阿数字后再提取分级阈值，避免“十人以上”与“10人以上”绕过复核。"""
+
+    out: set[str] = set()
+    for num_str, unit in TIER_THRESHOLD_RE.findall(text):
+        if re.fullmatch(r"\d+(?:\.\d+)?", num_str):
+            norm = str(float(num_str)).rstrip("0").rstrip(".") if "." in num_str else str(int(num_str))
+        else:
+            parsed = chinese_numeral_to_int(num_str)
+            norm = str(parsed) if parsed is not None else num_str
+        out.add(f"{norm}{unit}")
+    return out
+
+
+def is_distinct_statutory_boilerplate(prev_text: str, text: str, ratio: float) -> bool:
+    """豁免实质内容不同的法定列举与分级标准（阈值数字不同）的模板相似。"""
+
+    if (
+        STATUTORY_ARTICLE_LINE_PATTERN.match(prev_text.lstrip())
+        and STATUTORY_ARTICLE_LINE_PATTERN.match(text.lstrip())
+        and "有下列情形之一" in prev_text
+        and "有下列情形之一" in text
+    ):
+        prev_body = STATUTORY_ARTICLE_LINE_PATTERN.sub("", prev_text.lstrip()).strip()
+        curr_body = STATUTORY_ARTICLE_LINE_PATTERN.sub("", text.lstrip()).strip()
+        if prev_body != curr_body and ratio < 0.80:
+            return True
+    prev_tiers = _normalized_tier_thresholds(prev_text)
+    curr_tiers = _normalized_tier_thresholds(text)
+    return bool(prev_tiers and curr_tiers and prev_tiers != curr_tiers)
 
 
 def content_tokens(text: str) -> set[str]:
@@ -1251,6 +1344,18 @@ def duplicate_findings(path_label: str, lines: list[str]) -> list[Finding]:
         if len(text) < MIN_DUPLICATE_PARAGRAPH_CHARS:
             continue
         stripped_p = text.strip()
+        is_short_title = (
+            line_no == 1
+            and len(stripped_p) <= 64
+            and not re.search(r"[，,。！？；;]", stripped_p)
+        )
+        is_short_att = (
+            stripped_p.startswith(("附件：", "附件:"))
+            and len(stripped_p) <= 60
+            and not re.search(r"[，,。！？；;]", stripped_p)
+        )
+        if is_short_title or is_short_att:
+            continue
         if (stripped_p.startswith("“") and stripped_p.endswith("”")) or (
             stripped_p.startswith('"') and stripped_p.endswith('"')
         ):
@@ -1273,13 +1378,15 @@ def duplicate_findings(path_label: str, lines: list[str]) -> list[Finding]:
     same_section_best: dict[int, tuple[float, int, set[str]]] = {}
     cross_section_best: dict[int, tuple[float, int, set[str]]] = {}
     for first, second in pairs:
-        prev_line, _prev_text, prev_section, prev_tokens = prepared[first]
-        line_no, _text, section, tokens = prepared[second]
+        prev_line, prev_text, prev_section, prev_tokens = prepared[first]
+        line_no, text, section, tokens = prepared[second]
         shared = prev_tokens & tokens
+        ratio = len(shared) / len(prev_tokens | tokens)
+        if is_distinct_statutory_boilerplate(prev_text, text, ratio):
+            continue
         if section == prev_section:
             if len(shared) < MIN_DUPLICATE_SHARED_TOKENS:
                 continue
-            ratio = len(shared) / len(prev_tokens | tokens)
             if ratio < MIN_DUPLICATE_TOKEN_RATIO:
                 continue
             current = same_section_best.get(second)
@@ -1288,7 +1395,6 @@ def duplicate_findings(path_label: str, lines: list[str]) -> list[Finding]:
         else:
             if len(shared) < MIN_CROSS_SECTION_SHARED_TOKENS:
                 continue
-            ratio = len(shared) / len(prev_tokens | tokens)
             if ratio < MIN_CROSS_SECTION_TOKEN_RATIO:
                 continue
             current = cross_section_best.get(second)
@@ -1506,6 +1612,10 @@ def protective_state_findings(path_label: str, source: ScanSource) -> list[Findi
             if not repeated and not protective_tail_context(block_text, start):
                 continue
             severity, label, _regex, advice = pattern
+            if label == "protective-negative-inference" and CONDITIONAL_DUTY_TAIL_RE.match(
+                block_text[start:]
+            ):
+                continue
             findings.append(
                 Finding(
                     path=path_label,
@@ -1886,6 +1996,54 @@ def cross_line_stacked_hedging_findings(path_label: str, source: ScanSource) -> 
     return findings
 
 
+def decimal_outline_chapters(lines: list[str]) -> set[str]:
+    """返回确有“N.1 / N.2”短小标题支撑的十进制顶层章号集合（排除带句号的金额正文）。"""
+
+    chapters: set[str] = set()
+    for line in lines:
+        stripped = line.strip()
+        if len(stripped) > 40 or re.search(r"[。！？；;]", stripped):
+            continue
+        match = DECIMAL_SUBHEADING_CHAPTER_RE.match(stripped)
+        if match:
+            chapters.add(match.group(1))
+    return chapters
+
+
+def is_decimal_outline_chapter_heading(
+    line: str,
+    decimal_chapters: set[str],
+) -> bool:
+    if not decimal_chapters:
+        return False
+    match = DECIMAL_CHAPTER_HEADING_RE.match(line)
+    return bool(match and match.group(1) in decimal_chapters)
+
+
+def is_exempt_cn_number_space(line: str, start: int, end: int) -> bool:
+    """豁免行首十进制/数字标题、图表题、备案号及网页日期时间中的常规分隔空格。"""
+
+    stripped = line.strip()
+    if len(stripped) <= 40 and not re.search(r"[。！？；;]", stripped):
+        lead = CN_NUMBER_LEADING_HEADING_RE.match(line)
+        if lead and lead.start() <= start and end <= lead.end():
+            return True
+    if not stripped.endswith(("。", "！", "？")):
+        cap = CN_NUMBER_CAPTION_RE.match(line)
+        if cap and cap.start() <= start and end <= cap.end():
+            return True
+    if CN_NUMBER_DATELINE_RE.match(line) or (
+        not re.search(r"[。！？]", stripped) and CN_NUMBER_META_LINE_RE.match(line)
+    ):
+        return True
+    local = line[max(0, start - 6) : min(len(line), end + 6)]
+    if re.search(r"(?:ICP备|公网安备)[ \t\u00a0]+\d", local):
+        return True
+    if re.search(r"\d{1,2}日[ \t\u00a0]+\d{1,2}:\d{2}", local):
+        return True
+    return False
+
+
 def plain_line_findings(
     path_label: str,
     source: ScanSource,
@@ -1894,6 +2052,7 @@ def plain_line_findings(
     patterns: list[CompiledPattern],
     delivery_mode: str,
     attachment_boundary: dict[int, int] | None = None,
+    decimal_chapters: set[str] | None = None,
 ) -> list[Finding]:
     """扫描普通正文行，并处理引用、附件编号和检查依据例外。"""
 
@@ -1930,12 +2089,23 @@ def plain_line_findings(
                     continue
                 if re.search(r"脱敏|匿名|化名|隐去|模板|保留占位", context):
                     continue
-            if label == "western-bullet" and is_attachment_number_item(
-                source.lines, line_index, line, attachment_boundary
+            if label == "western-bullet" and (
+                is_attachment_number_item(source.lines, line_index, line, attachment_boundary)
+                or is_decimal_outline_chapter_heading(line, decimal_chapters or set())
             ):
                 continue
-            if label == "negative-boundary-tail" and is_statutory_scope_clause(
+            if label == "cn-number-space" and is_exempt_cn_number_space(
                 line, match.start(), match.end()
+            ):
+                continue
+            if label == "negative-boundary-tail" and (
+                is_statutory_scope_clause(line, match.start(), match.end())
+                or bool(
+                    re.match(
+                        r"^[，,；;]*不代表[^。！？；;\n]{0,10}(?:利益|人民|群众|立场|方向)",
+                        match.group(0),
+                    )
+                )
             ):
                 continue
             span = (match.start(), match.end())
@@ -1996,6 +2166,7 @@ def primary_line_findings(
     delivery_mode: str,
     allow_markdown: bool = False,
     attachment_boundary: dict[int, int] | None = None,
+    decimal_chapters: set[str] | None = None,
 ) -> list[Finding]:
     """完成正文逐行扫描；不承担正文外复核和全文统计。"""
 
@@ -2047,6 +2218,7 @@ def primary_line_findings(
                 pattern_sets.primary,
                 delivery_mode,
                 attachment_boundary,
+                decimal_chapters=decimal_chapters,
             )
         )
         if delivery_mode in {"draft-body", "gap-note-allowed"} and line_index < len(source.body_only_lines):
@@ -2102,15 +2274,19 @@ def frequent_list_marker_findings(
     lines: list[str],
     allow_markdown: bool = False,
     attachment_boundary: dict[int, int] | None = None,
+    decimal_chapters: set[str] | None = None,
 ) -> list[Finding]:
     """按全文数量定位过密的西式项目符号。"""
 
+    if decimal_chapters is None:
+        decimal_chapters = decimal_outline_chapters(lines)
     pattern = r"^\s*[•●◆◇★✅☑]\s+" if allow_markdown else r"^\s*(?:[-*+•●◆◇★✅☑]|[0-9]+[.)])\s+"
     western_list_count = sum(
         1
         for line_index, line in enumerate(lines)
         if re.match(pattern, line)
         and not is_attachment_number_item(lines, line_index, line, attachment_boundary)
+        and not is_decimal_outline_chapter_heading(line, decimal_chapters)
     )
     if western_list_count < FREQUENT_LIST_MARKER_COUNT:
         return []
@@ -2126,12 +2302,109 @@ def frequent_list_marker_findings(
     ]
 
 
+ECO_NON_ENV_PATTERN = re.compile(
+    r"(?<!政治)生态(?!环境|保护|文明|修复|治理|安全|系统|产品|补偿|红线|监测|环保|警务|林业|农业|湿地|流域|廊道|屏障|效益|功能|空间|评估|区|旅游|优势|绿色|宜居)"
+)
+
+
+def official_idiom_overuse_findings(
+    path_label: str,
+    source: ScanSource,
+    delivery_mode: str,
+) -> list[Finding]:
+    """常规公文惯用语聚合：同词全文 ≥3 次或单段集中堆砌不同惯用语 ≥3 次才提示 low。"""
+
+    compiled = [(term, re.compile(re.escape(term))) for term in OFFICIAL_IDIOM_TERMS]
+    counts = {term: 0 for term in OFFICIAL_IDIOM_TERMS}
+    first: dict[str, tuple[int, str]] = {}
+    para_findings: list[tuple[int, str, list[str]]] = []
+    para_hits: list[tuple[int, int, str, str]] = []
+    fence_marker: str | None = None
+
+    def flush_para() -> None:
+        if len(para_hits) >= OFFICIAL_IDIOM_PARAGRAPH_THRESHOLD:
+            para_hits.sort(key=lambda item: (item[0], item[1]))
+            terms_used: list[str] = []
+            for _ln, _pos, trm, _ex in para_hits:
+                if trm not in terms_used:
+                    terms_used.append(trm)
+            para_findings.append((para_hits[0][0], para_hits[0][3], terms_used))
+        para_hits.clear()
+
+    for line_index, line in enumerate(source.lines_to_scan):
+        is_marker, fence_marker = fence_marker_transition(fence_marker, line)
+        if is_marker:
+            flush_para()
+            continue
+        if fence_marker is not None:
+            continue
+        if not line.strip():
+            flush_para()
+            continue
+        inline_spans = inline_code_spans(line)
+        inline_starts = span_starts(inline_spans)
+        quoted_spans = source.quoted_spans[line_index]
+        quoted_starts = span_starts(quoted_spans)
+        for term, regex in compiled:
+            for match in regex.finditer(line):
+                if inside_sorted_spans(inline_spans, inline_starts, match.start(), match.end()):
+                    continue
+                if delivery_mode == "review-only" and inside_sorted_spans(
+                    quoted_spans, quoted_starts, match.start(), match.end()
+                ):
+                    continue
+                sample = excerpt(line, match.start(), match.end())
+                counts[term] += 1
+                if term not in first:
+                    first[term] = (line_index + 1, sample)
+                para_hits.append((line_index + 1, match.start(), term, sample))
+    flush_para()
+
+    findings: list[Finding] = []
+    overused_terms: set[str] = set()
+    for term in OFFICIAL_IDIOM_TERMS:
+        if counts[term] < OFFICIAL_IDIOM_OVERUSE_THRESHOLD:
+            continue
+        overused_terms.add(term)
+        line_no, sample = first[term]
+        findings.append(
+            Finding(
+                path=path_label,
+                line=line_no,
+                severity="low",
+                label="empty-filler",
+                match=term,
+                excerpt=(
+                    f"`{term}` 在正文重复出现 {counts[term]} 次（首处：{sample}）；"
+                    "常规公文偶用可保留，反复出现建议改为具体机制、事项、时限或成果。"
+                ),
+            )
+        )
+    for line_no, sample, terms_used in para_findings:
+        if len(terms_used) < OFFICIAL_IDIOM_PARAGRAPH_THRESHOLD:
+            continue
+        findings.append(
+            Finding(
+                path=path_label,
+                line=line_no,
+                severity="low",
+                label="empty-filler",
+                match=" / ".join(terms_used[:OFFICIAL_IDIOM_PARAGRAPH_THRESHOLD]),
+                excerpt=(
+                    f"同段集中叠加 {len(terms_used)} 处空泛惯用语（{sample}）；"
+                    "建议保留实质行动、主体或结果，删去堆叠套话。"
+                ),
+            )
+        )
+    return findings
+
+
 def repeat_term_findings(path_label: str, text: str) -> list[Finding]:
     """按各术语独立阈值定位全文高频复述。"""
 
     findings: list[Finding] = []
     for term, threshold in REPEAT_TERMS.items():
-        count = text.count(term)
+        count = len(ECO_NON_ENV_PATTERN.findall(text)) if term == "生态" else text.count(term)
         if count >= threshold:
             findings.append(
                 Finding(
@@ -2338,13 +2611,17 @@ def title_and_signoff_findings(path_label: str, source: ScanSource) -> list[Find
 
     findings: list[Finding] = []
     lines = source.lines_to_scan
-    # 1. 标题语意重复（仅查首个非空行）
+    # 1. 标题语意重复（仅查首个非空行，同时记录题名供文种错配核对）
+    first_title = ""
+    title_idx = -1
     for idx, line in enumerate(lines):
         s = line.strip()
         if not s:
             continue
+        first_title = s
+        title_idx = idx
         if len(s) <= 64 and re.search(
-            r"关于(?:请求批准|请示)[^。\n]*的请示$|关于[^。\n]*的报告的请示$|的(通知|请示|报告|意见|决定|函|批复|通报)的\1$",
+            r"关于(?:请求(?:批准)?|请示)[^。\n]*的请示$|关于(?:上报|呈报)[^。\n]*的报告$|关于[^。\n]*的报告的请示$|的(通知|请示|报告|意见|决定|函|批复|通报)的\1$",
             s,
         ):
             findings.append(
@@ -2431,6 +2708,8 @@ def title_and_signoff_findings(path_label: str, source: ScanSource) -> list[Find
                 )
 
     # 4. 层次序数写法误用（1、 / 一. / （一）、）及独立一级小标题末尾误加句号
+    non_empty_lines, h1_positions = _numbered_h1_positions(lines)
+    clause_list_mode = _is_numbered_clause_list(non_empty_lines, h1_positions)
     bad_marker_re = re.compile(r"^\s*(?:\d+、\S|[一二三四五六七八九十]+\.\s*[\u4e00-\u9fff]|（[一二三四五六七八九十]+）、)")
     standalone_h1_period_re = re.compile(r"^\s*[一二三四五六七八九十]+、[^。！？；;\n]{2,26}。\s*$")
     for idx, line in enumerate(lines):
@@ -2445,7 +2724,7 @@ def title_and_signoff_findings(path_label: str, source: ScanSource) -> list[Find
                     excerpt="层次序数建议按 GB/T 9704 规范统一为“一、”“（一）”“1.”“（1）”，避免“1、”“一.”或“（一）、”。",
                 )
             )
-        elif standalone_h1_period_re.match(line):
+        elif not clause_list_mode and standalone_h1_period_re.match(line):
             findings.append(
                 Finding(
                     path=path_label,
@@ -2456,21 +2735,125 @@ def title_and_signoff_findings(path_label: str, source: ScanSource) -> list[Find
                     excerpt="独立成行的一级小标题末尾一般不加句号（段首领起句后接正文时保留句号）。",
                 )
             )
+
+    # 5. 文种与结语/用语错配及叠床请批尾语
+    if first_title and len(first_title) <= 64 and not re.search(r"[，,。！？；;：:]", first_title):
+        is_report = first_title.endswith("的报告") and "请示" not in first_title
+        is_letter = first_title.endswith("的函")
+        is_minutes = first_title.endswith("纪要")
+        is_request = first_title.endswith("的请示")
+        if is_report or is_letter or is_minutes or is_request:
+            report_qingshi_re = re.compile(
+                r"(?:妥否|当否)[，,]?\s*请批[示复]|请予(?:审批|批复|核准|批准)|"
+                r"(?:^|[，,。；;\s])请(?:审批|批复|核准|批准)(?=[。！？\s]|$)"
+            )
+            letter_qingshi_re = re.compile(r"^\s*(?:以上[^，,]{0,6}[，,])?(?:妥否|当否)[，,]?\s*请批示[。.]?\s*$")
+            letter_baoqing_re = re.compile(
+                r"报请贵(?:单位|局|厅|委|部|办|司|院|行|公司)|"
+                r"(?<![已曾正经])(?<!正在)(?<!曾向)(?<!已向)报请"
+                r"(?!(?:本级|上级)?(?:党委|市委|省委|县委|区委|市政府|省政府|县政府|区政府|国务院|人民政府|董事会|集团(?:公司)?))"
+            )
+            minutes_bad_closer_re = re.compile(r"^\s*(?:特此通知|特此报告|(?:妥否|当否)[，,]?\s*请批示)[。.]?\s*$")
+            stacked_qingshi_re = re.compile(r"^\s*以上请示[，,]\s*(?:妥否|当否)[，,]?\s*请批示[。.]?\s*$")
+            for idx in range(title_idx + 1, len(lines)):
+                line = lines[idx]
+                if not line.strip():
+                    continue
+                quoted = source.quoted_spans[idx] if idx < len(source.quoted_spans) else None
+                masked = _mask_non_prose_spans(line, quoted)
+                if is_report and report_qingshi_re.search(masked):
+                    findings.append(
+                        Finding(
+                            path=path_label,
+                            line=idx + 1,
+                            severity="medium",
+                            label="genre-closer-mismatch",
+                            match=line.strip()[:32],
+                            excerpt="报告不带请批语；如需请批请改用请示或另行行文。",
+                        )
+                    )
+                    break
+                if is_letter and (letter_baoqing_re.search(masked) or letter_qingshi_re.match(masked)):
+                    findings.append(
+                        Finding(
+                            path=path_label,
+                            line=idx + 1,
+                            severity="medium",
+                            label="genre-closer-mismatch",
+                            match=line.strip()[:32],
+                            excerpt="平行函件禁用上行用语“报请/请批示”；改用“商请/函请/特此函商/盼复”。",
+                        )
+                    )
+                    break
+                if is_minutes and minutes_bad_closer_re.match(masked):
+                    findings.append(
+                        Finding(
+                            path=path_label,
+                            line=idx + 1,
+                            severity="medium",
+                            label="genre-closer-mismatch",
+                            match=line.strip()[:32],
+                            excerpt="会议纪要一般自然收束，不带“特此通知/特此报告/请批示”。",
+                        )
+                    )
+                    break
+                if is_request and stacked_qingshi_re.match(masked):
+                    findings.append(
+                        Finding(
+                            path=path_label,
+                            line=idx + 1,
+                            severity="low",
+                            label="stacked-qingshi-closer",
+                            match=line.strip()[:32],
+                            excerpt="“以上请示，妥否，请批示”略显叠床，常规精简为“妥否，请批示。”即可。",
+                        )
+                    )
+                    break
     return findings
+
+
+def _numbered_h1_positions(lines: list[str]) -> tuple[list[tuple[int, str]], list[int]]:
+    h1_re = re.compile(r"^\s*[一二三四五六七八九十]+、\S")
+    non_empty = [(idx + 1, line.strip()) for idx, line in enumerate(lines) if line.strip()]
+    h1_positions = [pos for pos, (_, s) in enumerate(non_empty) if h1_re.match(s) and len(s) <= 45]
+    return non_empty, h1_positions
+
+
+def _is_numbered_clause_list(non_empty: list[tuple[int, str]], h1_positions: list[int]) -> bool:
+    """区分批复/纪要等逐条一句的“一、……。二、……。”条款与分层小标题。"""
+
+    if len(h1_positions) < 2 or not all(non_empty[pos][1].endswith(("。", "！", "？")) for pos in h1_positions):
+        return False
+    h1_re = re.compile(r"^\s*[一二三四五六七八九十]+、\s*")
+    for k in range(len(h1_positions) - 1):
+        for between in range(h1_positions[k] + 1, h1_positions[k + 1]):
+            seg = non_empty[between][1]
+            if not (h1_re.match(seg) and seg.endswith(("。", "！", "？"))):
+                return False
+    bodies = [h1_re.sub("", non_empty[pos][1]).rstrip("。！？") for pos in h1_positions]
+    if all(
+        re.search(
+            r"同意|批准|专款专用|验收|备案|施行|有效|严禁|不得|应当|必须|按期|严格|落实|执行|暂停|取消|停止",
+            body,
+        )
+        for body in bodies
+    ):
+        return True
+    avg_len = sum(len(body) for body in bodies) / len(bodies)
+    max_len = max(len(body) for body in bodies)
+    return avg_len >= 8.5 and max_len >= 10
 
 
 def hierarchy_balance_findings(path_label: str, lines: list[str]) -> list[Finding]:
     """基于 27 份真实政府公文分布校准的主次与分节结构均衡性检查（零误报阈值）。"""
 
     findings: list[Finding] = []
-    h1_re = re.compile(r"^\s*[一二三四五六七八九十]+、\S")
     recipient_re = re.compile(r"^\s*[^。！？；;\n]{1,42}[：:]\s*$")
     tail_meta_re = re.compile(r"^\s*(?:附件[：:]|文后提示|\d{4}年\d{1,2}月\d{1,2}日\s*$)")
     next_step_re = re.compile(r"下一步|工作打算|后续安排|下步工作")
 
-    non_empty: list[tuple[int, str]] = [(idx + 1, line.strip()) for idx, line in enumerate(lines) if line.strip()]
-    h1_positions = [pos for pos, (_, s) in enumerate(non_empty) if h1_re.match(s) and len(s) <= 45]
-    if len(h1_positions) < 2:
+    non_empty, h1_positions = _numbered_h1_positions(lines)
+    if len(h1_positions) < 2 or _is_numbered_clause_list(non_empty, h1_positions):
         return findings
 
     # 1. 空壳一级节检查（某一级标题下无正文即跳下一一级标题）
@@ -2514,7 +2897,15 @@ def hierarchy_balance_findings(path_label: str, lines: list[str]) -> list[Findin
     )
     sections_total = sum(c for _, _, c in sec_stats)
     body_total = intro_chars + sections_total
-    if body_total >= 400 and intro_chars >= 260 and intro_chars / body_total >= 0.38:
+    preceding_statutory_articles = sum(
+        1 for _, seg in non_empty[:first_h1_pos] if STATUTORY_ARTICLE_LINE_PATTERN.match(seg)
+    )
+    if (
+        preceding_statutory_articles < 5
+        and body_total >= 400
+        and intro_chars >= 260
+        and intro_chars / body_total >= 0.38
+    ):
         intro_line = non_empty[body_start][0] if body_start < first_h1_pos else non_empty[0][0]
         findings.append(
             Finding(
@@ -2610,18 +3001,27 @@ def jinxing_verb_density_findings(
     def flush_paragraph() -> None:
         if not para_lines:
             return
-        hits: list[tuple[int, str]] = []
+        hits: list[tuple[int, int, str]] = []
+        offset = 0
         for lno, masked in para_lines:
             for match in JINXING_VERB_PATTERN.finditer(masked):
-                hits.append((lno, match.group(0)))
-        if len(hits) >= JINXING_PARAGRAPH_THRESHOLD:
+                hits.append((lno, offset + match.start(), match.group(0)))
+            offset += len(masked) + 1
+        has_local_cluster = any(
+            hits[idx + JINXING_PARAGRAPH_THRESHOLD - 1][1] - hits[idx][1] <= JINXING_CLUSTER_WINDOW_CHARS
+            for idx in range(len(hits) - JINXING_PARAGRAPH_THRESHOLD + 1)
+        )
+        if len(hits) >= JINXING_LONG_OR_STATUTORY_THRESHOLD or (
+            len(hits) >= JINXING_PARAGRAPH_THRESHOLD and has_local_cluster
+        ):
+            preview = hits[: JINXING_PARAGRAPH_THRESHOLD]
             findings.append(
                 Finding(
                     path=path_label,
                     line=hits[0][0],
                     severity="low",
                     label="jinxing-verb-density",
-                    match=" / ".join(word for _lno, word in hits[:JINXING_PARAGRAPH_THRESHOLD]),
+                    match=" / ".join(word for _lno, _pos, word in preview),
                     excerpt=(
                         f"本段密集连用 {len(hits)} 次“进行+动词”，可改用直接动词"
                         "（如将“进行了排查、梳理和整改”改为“排查、梳理并整改”）；"
@@ -2639,15 +3039,28 @@ def jinxing_verb_density_findings(
             continue
         if fence_marker is not None:
             continue
-        if not line.strip():
+        stripped = line.strip()
+        if not stripped:
             flush_paragraph()
             continue
+        if (
+            STATUTORY_ARTICLE_LINE_PATTERN.match(stripped)
+            or is_plain_section_heading(stripped)
+            or (
+                DECIMAL_OUTLINE_HEADING_PATTERN.match(stripped)
+                and len(re.sub(r"\s+", "", stripped)) <= 45
+                and not stripped.endswith(("。", "！", "？", "；", ";"))
+            )
+        ):
+            flush_paragraph()
         quoted = (
             source.quoted_spans[line_index]
             if delivery_mode == "review-only" and line_index < len(source.quoted_spans)
             else None
         )
         para_lines.append((line_index + 1, _mask_non_prose_spans(line, quoted)))
+        if stripped.endswith(("。", "！", "？")):
+            flush_paragraph()
     flush_paragraph()
     return findings
 
@@ -2668,19 +3081,26 @@ def stacked_de_modifier_findings(
         masked = _mask_non_prose_spans(line, quoted, mask_titles=True)
         for clause in CLAUSE_SPLIT_PATTERN.split(masked):
             compact = clause.strip()
-            if compact.count("的") >= STACKED_DE_CLAUSE_THRESHOLD:
-                snippet = compact if len(compact) <= 60 else compact[:57] + "..."
-                findings.append(
-                    Finding(
-                        path=path_label,
-                        line=line_index + 1,
-                        severity="low",
-                        label="stacked-de-modifier",
-                        match=snippet,
-                        excerpt="分句定语“的”字层叠较多，建议拆顺主谓宾以提高公文可读性。",
-                    )
+            cleaned = LEXICAL_DE_WORDS_RE.sub(lambda m: " " * len(m.group(0)), compact)
+            de_count = cleaned.count("的")
+            if de_count < STACKED_DE_CLAUSE_THRESHOLD:
+                continue
+            if "、" in cleaned:
+                items = [part.strip() for part in cleaned.split("、") if part.strip()]
+                if len(items) >= 3 and max(part.count("的") for part in items) < STACKED_DE_CLAUSE_THRESHOLD and de_count < STACKED_DE_CLAUSE_THRESHOLD + 2:
+                    continue
+            snippet = compact if len(compact) <= 60 else compact[:57] + "..."
+            findings.append(
+                Finding(
+                    path=path_label,
+                    line=line_index + 1,
+                    severity="low",
+                    label="stacked-de-modifier",
+                    match=snippet,
+                    excerpt="分句定语“的”字层叠较多，建议拆顺主谓宾以提高公文可读性。",
                 )
-                break
+            )
+            break
     return findings
 
 
@@ -2693,6 +3113,7 @@ def aggregate_findings(
     allow_markdown: bool = False,
     attachment_boundary: dict[int, int] | None = None,
     public_release: bool = False,
+    decimal_chapters: set[str] | None = None,
 ) -> list[Finding]:
     """按固定顺序汇总格式、结构、标题和术语检查。"""
 
@@ -2700,7 +3121,11 @@ def aggregate_findings(
     if include_format:
         findings.extend(
             frequent_list_marker_findings(
-                path_label, source.lines_to_scan, allow_markdown, attachment_boundary,
+                path_label,
+                source.lines_to_scan,
+                allow_markdown,
+                attachment_boundary,
+                decimal_chapters=decimal_chapters,
             )
         )
         if not allow_markdown and delivery_mode in {"draft-body", "gap-note-allowed"}:
@@ -2723,6 +3148,7 @@ def aggregate_findings(
     if delivery_mode in {"draft-body", "gap-note-allowed"}:
         findings.extend(duplicate_title_findings(path_label, source.lines_to_scan))
     findings.extend(paired_skeleton_findings(path_label, source, delivery_mode))
+    findings.extend(official_idiom_overuse_findings(path_label, source, delivery_mode))
     findings.extend(repeat_term_findings(path_label, source.text_to_scan))
     return findings
 
@@ -2763,6 +3189,7 @@ def scan(
     source = prepare_scan_source(text, delivery_mode)
     pattern_sets = prepare_pattern_sets(include_format, delivery_mode, allow_markdown)
     attachment_boundary: dict[int, int] = {}
+    decimal_chapters = decimal_outline_chapters(source.lines_to_scan)
     findings = unexpected_external_note_findings(path_label, source, delivery_mode)
     findings.extend(
         external_note_boundary_findings(
@@ -2781,6 +3208,7 @@ def scan(
             delivery_mode,
             allow_markdown,
             attachment_boundary,
+            decimal_chapters=decimal_chapters,
         )
     )
     findings.extend(
@@ -2804,6 +3232,7 @@ def scan(
             allow_markdown,
             attachment_boundary,
             public_release=public_release,
+            decimal_chapters=decimal_chapters,
         )
     )
     return unique_findings(findings)
